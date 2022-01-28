@@ -50,6 +50,7 @@
 	prob_perk = 60
 	bad_type = /obj/item/oddity/common
 	spawn_blacklisted = FALSE
+	price_tag = 500
 
 /obj/item/oddity/common/blueprint
 	name = "strange blueprint"

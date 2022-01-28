@@ -1,23 +1,56 @@
 /datum/trade_station/example
-	start_discovered = TRUE
-	max_missing_assortiment = 1
-
 	name_pool = list(
 		"Name" = "Description",
 		"T3-ST" = "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 	)
+	icon_states = "htu_station"		// Overmap icon
+	forced_overmap_zone = list()	// For forcing the station into a specific zone. Format: list(list(minx, maxx), list(miny, maxy))
+	spawn_always = FALSE			// Should this station always spawn? (does not affect whether the station is available at round start or not)
+	spawn_probability = 60			// This is actually treated as a weight variable. The number isn't the actual probability that the station will spawn.
+	spawn_cost = 1					// How many points this station takes up in the budget (spawn_always = TRUE means it won't use any budget)
+	start_discovered = FALSE		// Should the station start discovered? (players are able to trade with discovered stations)
+	commision = 200 				// Cost of trading more than one thing or cost for crate
+	markup = COMMON_GOODS			// Multiplier for the price of goods sold by the station. See _trade_station.dm for standard markups.
+	markdown = 0.6					// Multiplier for the price of goods bought by the station (does not affect special offers)
+	base_income = 1600				// Stations can replenish some stock without player interaction. Adds to value so stations will unlock hidden inventory after some time.
+	wealth = 5000					// The abstract value of the goods sold to the station via offers + base income. Represents the station's ability to produce or purchase goods.
+	total_value_received = 0		// For keeping track of how much wealth a station has handled. Triggers events when certain thresholds are reached. Should always start at 0.
+	secret_inv_threshold = 32000	// Total value required to unlock secret inventory
 
-	//Types of items sold by the station
+	// Types of items sold by the station
+	// Notes: Duplicate items in the same category will cause runtimes
+	//		  Items without a price cannot be bought or sold
+	//		  /obj/... is the only type supported
 	assortiment = list(
-		"Cells"  = list(
-			/obj/item/cell/large = custom_good_name("Large Not a Cell"),
+		"Category Name"  = list(
+			/obj/item/cell/large = custom_good_name("Item name"),
 			/obj/item/cell/medium = custom_good_amount_range(list(0,3)),
-			/obj/item/cell/small = good_data("Small Not a Cell", list(6, 20)),
+			/obj/item/cell/small = good_data("Item name", list(6, 20)),
+		),
+		"Next category" = list(
+			/obj/spawner/scrap/dense = good_data("random trash pile", list(5,10))
 		)
 	)
 
-	//Types of items the station may ask for
+	// Hidden types of items sold by the station. Unlocked when the threshold is reached.
+	// This follows the same rules as assortiments and gets appended to the assortiment list when the secret inv threshold is reached
+	secret_inventory = list(
+		"Category name II" = list(
+			/obj/item/organ/internal/kidney = good_data("kidney", list(1,3))
+		)
+	)
+
+	// Types of items bought buy the station via special offers.
+	/*
+	At the time of writing (10 Jan 2021), offers must come with the offer_data(name, price, max amount) packet as shown below.
+
+	/obj/... and /datum/reagent/... are the only types supported.
+	
+	Reagents are requested 60u per unit shown. The container type does not matter, but you cannot use a single container to fulfill an offer for two or more.
+	For example, an offer for 3 inaprovaline bottles cannot be fulfilled with a mixing bowl containing 180u inaprovaline. It must be 3 separate containers.
+	Any excess in those containers will be consumed with the 60u asked for and will not count.
+	*/
 	offer_types = list(
-		/obj/item/computer_hardware/hard_drive/cluster,
-		/obj/item/computer_hardware/processor_unit/super,
+		/obj/item/computer_hardware/hard_drive/cluster = offer_data("name", 100, 5),
+		/datum/reagent/medicine/inaprovaline = offer_data("inaprovaline bottle (60u)", 150, 3)
 	)

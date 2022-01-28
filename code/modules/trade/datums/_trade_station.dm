@@ -6,10 +6,10 @@
 
 #define category_data(nam, listOfTags) list("name" = nam, "tags" = listOfTags)
 
-#define COMMON_GOODS 0
-#define UNCOMMON_GOODS 1
-#define RARE_GOODS 3
-#define UNIQUE_GOODS 7
+#define COMMON_GOODS 1.2
+#define UNCOMMON_GOODS 2.4
+#define RARE_GOODS 4.8
+#define UNIQUE_GOODS 9.6
 
 /datum/trade_station
 	var/name
@@ -31,11 +31,11 @@
 
 	var/list/name_pool = list()
 
-	var/markup = 0
+	var/markup = COMMON_GOODS
 	var/markdown = 0.6				// Default markdown is 60%
 	var/list/assortiment = list()
 	var/list/offer_types = list()	// Defines special offers
-	var/list/offer_limit = 0		// For limiting sell offer quantity. 0 is no cap. Offer_data has its own cap, but this may still be useful.
+	var/list/offer_limit = 20		// For limiting sell offer quantity. 0 is no cap. Offer_data has its own cap, but this may still be useful.
 
 	var/list/amounts_of_goods = list()
 	var/unique_good_count = 0
@@ -150,7 +150,6 @@
 			var/offer_index = offer_types.Find(offer_path)
 			special_offers.Insert(offer_index, offer_path)
 			special_offers[offer_path] = offer_content
-
 
 // The station will restock based on base_income + wealth, then check to see if the secret inventory is unlocked.
 /datum/trade_station/proc/goods_tick()

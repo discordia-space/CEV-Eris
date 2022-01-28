@@ -136,24 +136,74 @@ SUBSYSTEM_DEF(trade)
 
 /datum/controller/subsystem/trade/proc/get_import_cost(path, datum/trade_station/station)
 	. = get_new_cost(path)
-	var/markup = 1
+	var/markup = 1.2
 	if(istype(station))
-		markup += station.markup
+		markup = station.markup
 	. *= markup
 
-/datum/controller/subsystem/trade/proc/assess_offer(obj/machinery/trade_beacon/sending/beacon, datum/trade_station/station, atom/movable/offer_path)
+// Checks item stacks amd item containers to see if they match their base states (no more selling empty first-aid kits or split item stacks as if they were full)
+// Checks reagent containers to see if they match their base state or if they match the special offer from a station
+/datum/controller/subsystem/trade/proc/check_contents(item_path, offer_path, assessing_special_offer = FALSE)
+	if(!ispath(offer_path, /datum/reagent))
+		if(istype(item_path, /obj/item/stack))					// Check if item is an item stack
+			var/obj/item/stack/item_stack = item_path
+			if(item_stack.amount == item_stack.max_amount)
+				return TRUE										// You can only sell items when they are at max stacks
+			return FALSE
+
+		if(istype(item_path, /obj/item/storage))			// Storage items are too resource intensive to check (populate_contents() means we have to create new instances of every object within the initial object)
+			return FALSE									// Also, directly selling storage items after emptying them is abusable
+
+	if(istype(item_path, /obj/item/reagent_containers))						// Check if item is a reagent container
+		var/obj/item/reagent_containers/current_container = item_path
+		var/datum/reagent/target_reagent = offer_path
+		var/target_volume = 0
+
+		if(current_container.preloaded_reagents?.len < 1 && !ispath(offer_path, /datum/reagent))		// If a new instance of the container does not start with reagents and the offer is not a reagent, pass
+			return TRUE
+
+		if(!current_container.reagents)		// If the previous check fails, we are looking for a container with reagents or a specific reagent
+			return FALSE					// If the container is empty, fail
+
+		var/reagent_found = 0
+		for(var/datum/reagent/current_reagent in current_container.reagents?.reagent_list)
+			var/current_reagent_id = current_reagent.id
+			var/current_volume = current_reagent.volume
+
+			if(assessing_special_offer)
+				target_volume = 60																	// Each good requested in a reagent offer is a 60u container (container type is irrelevant)
+				if(current_volume >= target_volume && istype(current_reagent, target_reagent))		// Check volume and reagent type
+					return TRUE
+			else																					// If there is no offer to check against, compare to preloaded reagents
+				for(var/target_reagent_id in current_container.preloaded_reagents)
+					target_volume = current_container.preloaded_reagents[target_reagent_id]
+					if(current_volume >= target_volume && current_reagent_id == target_reagent_id)	// Check volume and reagent id
+						reagent_found += 1
+				if(reagent_found == current_container.preloaded_reagents.len)						// If all preloaded reagents are in the container, pass
+					return TRUE
+
+		return FALSE
+
+	if(ispath(offer_path, /datum/reagent))		// If item is not of the types checked and the offer is for a reagent, fail
+		return FALSE
+
+	return TRUE
+		
+/datum/controller/subsystem/trade/proc/assess_offer(obj/machinery/trade_beacon/sending/beacon, datum/trade_station/station, offer_path, assessing_special_offer = FALSE)
 	if(QDELETED(beacon) || !station)
 		return
 
 	. = list()
 
 	for(var/atom/movable/AM in beacon.get_objects())
-		if(AM.anchored || !istype(AM, offer_path))
+		if(AM.anchored || !(istype(AM, offer_path) || ispath(offer_path, /datum/reagent)))
+			continue
+		if(!check_contents(AM, offer_path, assessing_special_offer))		// Check contents after we know it's the same type
 			continue
 		. += AM
 
-/datum/controller/subsystem/trade/proc/fulfill_offer(obj/machinery/trade_beacon/sending/beacon, datum/money_account/account, datum/trade_station/station, atom/movable/offer_path)
-	var/list/exported = assess_offer(beacon, station, offer_path)
+/datum/controller/subsystem/trade/proc/fulfill_offer(obj/machinery/trade_beacon/sending/beacon, datum/money_account/account, datum/trade_station/station, offer_path)
+	var/list/exported = assess_offer(beacon, station, offer_path, TRUE)
 
 	var/list/offer_content = station.special_offers[offer_path]
 	var/offer_amount = text2num(offer_content["amount"])
@@ -177,7 +227,6 @@ SUBSYSTEM_DEF(trade)
 		offer_content["amount"] = 0
 		offer_content["price"] = 0
 		station.special_offers[offer_path] = offer_content
-		//station.generate_offer()
 
 /datum/controller/subsystem/trade/proc/collect_counts_from(list/shopList)
 	. = 0
@@ -226,7 +275,6 @@ SUBSYSTEM_DEF(trade)
 	if(QDELETED(senderBeacon) || !istype(senderBeacon) || !account || !istype(thing) || !istype(station))
 		return
 
-	// Doesn't add to wealth since it goes straight to the stock
 	var/cost = get_sell_price(thing, station)
 
 	if(account)
@@ -235,4 +283,4 @@ SUBSYSTEM_DEF(trade)
 		var/datum/money_account/A = account
 		var/datum/transaction/T = new(cost, account.get_name(), "Sold item", station.name)
 		T.apply_to(A)
-		station.add_to_stock(thing)		// This should just increment existing stock by 1 since it is being sold direct
+		station.add_to_wealth(cost)

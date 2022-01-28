@@ -1069,4 +1069,3 @@
 /obj/item/ore/osmium/price_tag = 5
 /obj/item/ore/hydrogen/price_tag = 5
 /obj/item/ore/slag/price_tag = 1
-

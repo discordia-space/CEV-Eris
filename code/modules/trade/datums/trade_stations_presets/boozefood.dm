@@ -4,6 +4,7 @@
 	)
 	start_discovered = TRUE
 	spawn_always = TRUE
+	markup = COMMON_GOODS
 	base_income = 1600
 	wealth = 0
 	secret_inv_threshold = 16000
@@ -50,7 +51,7 @@
 			/obj/item/reagent_containers/food/drinks/carafe,
 			/obj/item/reagent_containers/food/drinks/flask/barflask,
 			/obj/item/reagent_containers/food/drinks/flask/vacuumflask
-		),
+		)
 	)
 	secret_inventory = list(
 		"Drinks II" = list(
@@ -58,4 +59,11 @@
 			/obj/item/reagent_containers/food/drinks/bottle/pwine,
 			/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing
 		)
+	)
+	offer_types = list(
+		/datum/reagent/alcohol/changelingsting = offer_data("Changeling Sting bottle (60u)", 1500, 1),
+		/datum/reagent/alcohol/longislandicedtea = offer_data("Long Island Iced Tea bottle (60u)", 1500, 1),
+		/datum/reagent/alcohol/neurotoxin = offer_data("Neurotoxin bottle (60u)", 1500, 1),
+		/datum/reagent/alcohol/hippies_delight = offer_data("Hippie\'s Delight bottle (60u)", 1000, 1),
+		/datum/reagent/alcohol/silencer = offer_data("Silencer bottle (60u)", 1000, 1)
 	)
