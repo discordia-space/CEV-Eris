@@ -11,4 +11,13 @@
 	recoil_buildup = 6
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	gun_parts = list(/obj/item/part/gun/frame/mateba = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)
 
+/obj/item/part/gun/frame/mateba
+	name = "Mateba frame"
+	desc = "A Mateba revolver frame. The officer's choice."
+	icon_state = "frame_mateba"
+	result = /obj/item/gun/projectile/revolver/mateba
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/revolver
+	barrel = /obj/item/part/gun/barrel/magnum

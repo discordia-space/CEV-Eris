@@ -103,7 +103,7 @@
 	rand_max = 30
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES
 	rarity_value = 45
-	
+
 /obj/item/stack/material/iron/full
 	amount = 120
 
@@ -130,7 +130,7 @@
 	rand_max = 8
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 90
-	
+
 /obj/item/stack/material/diamond/full
 	amount = 120
 	spawn_blacklisted = TRUE
@@ -197,7 +197,7 @@
 	rand_max = 15
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 45
-	
+
 /obj/item/stack/material/gold/full
 	amount = 120
 	spawn_blacklisted = TRUE
@@ -214,7 +214,7 @@
 	rand_max = 30
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 45
-	
+
 /obj/item/stack/material/silver/full
 	amount = 120
 	spawn_blacklisted = TRUE
@@ -256,7 +256,7 @@
 	default_type = MATERIAL_TRITIUM
 	apply_colour = 1
 	price_tag = 50
-	
+
 /obj/item/stack/material/tritium/full
 	amount = 120
 	spawn_blacklisted = TRUE
@@ -267,7 +267,7 @@
 	default_type = MATERIAL_OSMIUM
 	apply_colour = 1
 	price_tag = 50
-	
+
 /obj/item/stack/material/osmium/full
 	amount = 120
 	spawn_blacklisted = TRUE
@@ -400,6 +400,7 @@
 	icon_state = "sheet-biomatter"
 	default_type = MATERIAL_BIOMATTER
 	price_tag = 10
+	novariants = FALSE
 	var/biomatter_in_sheet = BIOMATTER_PER_SHEET // defined in solidifier.dm
 
 /obj/item/stack/material/biomatter/random

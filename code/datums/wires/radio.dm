@@ -2,9 +2,9 @@
 	holder_type = /obj/item/device/radio
 	wire_count = 3
 	descriptions = list(
-		new /datum/wire_description(WIRE_SIGNAL, "This wire connects several radio components."),
-		new /datum/wire_description(WIRE_RECEIVE, "This wire runs to the radio reciever.",),
-		new /datum/wire_description(WIRE_TRANSMIT, "This wire runs to the radio transmitter.")
+		new /datum/wire_description(WIRE_SIGNAL, "Power"),
+		new /datum/wire_description(WIRE_RECEIVE, "Reciever"),
+		new /datum/wire_description(WIRE_TRANSMIT, "Transmitter")
 	)
 
 var/const/WIRE_SIGNAL = 1
