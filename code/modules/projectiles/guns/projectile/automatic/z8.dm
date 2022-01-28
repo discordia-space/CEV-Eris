@@ -24,6 +24,7 @@
 	damage_multiplier = 1.1
 	zoom_factor = 0.2
 	one_hand_penalty = 10 //bullpup rifle level
+	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
