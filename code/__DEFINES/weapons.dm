@@ -55,7 +55,6 @@
 #define SEMI_AUTO_NODELAY	list(mode_name = "semiauto",  mode_desc = "Fire as fast as you can pull the trigger", burst=1, fire_delay=0, move_delay=null, icon="semi")
 
 //Cog firemode
-Full-Auto
 #define BURST_2_BEAM		list(mode_name="2-beam bursts", mode_desc = "Short, controlled bursts", burst=2, fire_delay=null, move_delay=2, icon="burst", damage_mult_add = -0.1)
 
 #define BURST_2_ROUND		list(mode_name="2-round bursts", mode_desc = "Short, controlled bursts", burst=2, fire_delay=null, move_delay=2, icon="burst", damage_mult_add = -0.1)
