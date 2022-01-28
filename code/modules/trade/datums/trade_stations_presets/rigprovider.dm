@@ -11,8 +11,8 @@
 		),
 		"RIGs" =  list(
 			/obj/item/rig/eva = custom_good_amount_range(list(1, 5)),
-//			/obj/item/rig/medical = custom_good_amount_range(list(1, 5))
-//			/obj/item/rig/light = custom_good_amount_range(list(1, 5)) light rigs PR???
+			/obj/item/rig/medical = custom_good_amount_range(list(1, 5)),
+			/obj/item/rig/light = custom_good_amount_range(list(1, 5)),
 			/obj/item/rig/hazmat = custom_good_amount_range(list(1, 5)),
 			/obj/item/rig/combat = custom_good_amount_range(list(1, 5)),
 			/obj/item/rig/hazard = custom_good_amount_range(list(1, 5)),
@@ -36,5 +36,5 @@
 			/obj/item/rig_module/vision/nvg,
 			/obj/item/rig_module/vision/sechud,
 			/obj/item/rig_module/vision/medhud
-		),
+		)
 	)
