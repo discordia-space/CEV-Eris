@@ -87222,6 +87222,14 @@
 "eaT" = (
 /turf/simulated/wall/r_wall,
 /area/eris/medical/genetics)
+"eaU" = (
+/obj/spawner/mob/roaches/cluster/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/medical/genetics)
+"eaV" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/medical/genetics)
 "eaX" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
@@ -286466,10 +286474,10 @@ dNn
 dNL
 eEB
 alC
-bjR
-bjR
-bjR
-bjR
+bjQ
+bjQ
+eaV
+eaV
 bjR
 bjR
 bjQ
@@ -286668,7 +286676,7 @@ dNn
 dNP
 eEC
 alC
-bjR
+bjQ
 bjR
 bjR
 bjR
@@ -286871,7 +286879,7 @@ dNU
 dOC
 alC
 bjR
-bjR
+eaU
 bjR
 bjR
 bjR
