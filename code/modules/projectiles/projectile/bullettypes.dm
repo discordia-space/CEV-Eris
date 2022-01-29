@@ -297,6 +297,7 @@ There are important things regarding this file:
 	name = "shrapnel"
 	icon_state = "birdshot-1"
 	damage_types = list(BRUTE = 8)
+	armor_penetration = 60
 	pellets = 8
 	range_step = 1
 	spread_step = 10
