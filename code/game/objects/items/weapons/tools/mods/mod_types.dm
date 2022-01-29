@@ -353,10 +353,6 @@
 		)
 	I.gun_loc_tag = GUN_GRIP
 	I.req_gun_tags = list(GUN_PROJECTILE, GUN_GRIP)
-
-/obj/item/tool_upgrade/refinement/stabilized_grip/New()
-	..()
-	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.tool_upgrades = list(
 	UPGRADE_PRECISION = 10,
 	UPGRADE_HEALTH_THRESHOLD = 10)
