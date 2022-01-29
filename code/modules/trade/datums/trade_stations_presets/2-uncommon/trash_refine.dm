@@ -38,6 +38,9 @@
 		)
 	)
 	offer_types = list(
-		// TODO: offers
-		// roach burgers?
+		/datum/reagent/alcohol/changelingsting = offer_data("Changeling Sting bottle (60u)", 2500, 1),
+		/datum/reagent/alcohol/longislandicedtea = offer_data("Long Island Iced Tea bottle (60u)", 2500, 1),
+		/datum/reagent/alcohol/neurotoxin = offer_data("Neurotoxin bottle (60u)", 2500, 1),
+		/datum/reagent/alcohol/hippies_delight = offer_data("Hippie's Delight bottle (60u)", 1500, 1),
+		/datum/reagent/alcohol/silencer = offer_data("Silencer bottle (60u)", 1500, 1),
 	)

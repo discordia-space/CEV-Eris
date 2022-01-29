@@ -44,3 +44,8 @@
 			/obj/item/gun/projectile/shotgun/pump/grenade
 		),
 	)
+	offer_types = list(
+		/obj/item/implant/core_implant/cruciform = offer_data("cruciform", 2500, 3),
+		/obj/item/book/ritual/cruciform = offer_data("Neotheology ritual book", 600, 5),		// base price: 300
+		/obj/item/oddity/common/towel = offer_data("trustworthy towel", 800, 1)
+	)

@@ -172,7 +172,7 @@
 		),
 	)
 	offer_types = list(
-		/obj/item/rig_module = offer_data("rig module", 500, 0),							// base price: 500
+		/obj/item/rig_module = offer_data("rig module", 500, 10),							// base price: 500
 		/obj/item/rig/eva = offer_data("EVA suit control module", 700, 4),					// base price: 682 (incl. components)
 		/obj/item/rig/hazard = offer_data("hazard hardsuit control module", 700, 4),		// base price: 682 (incl. components)
 		/obj/item/rig/industrial = offer_data("industrial suit control module", 950, 4),	// base price: 882 (incl. components)

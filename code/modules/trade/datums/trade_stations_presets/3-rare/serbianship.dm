@@ -39,5 +39,9 @@
 		)
 	)
 	offer_types = list(
-		
+		/obj/item/part/gun/frame/boltgun  = offer_data("gun frame", 800, 3),
+		/obj/item/part/gun/frame/kovacs  = offer_data("gun frame", 800, 3),
+		/obj/item/part/gun/frame/ak47  = offer_data("gun frame", 800, 3),
+		/obj/item/part/gun/frame/zoric  = offer_data("gun frame", 800, 3),
+		/obj/item/part/gun/frame/pk  = offer_data("gun frame", 800, 3),
 	)

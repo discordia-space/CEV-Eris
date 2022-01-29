@@ -53,6 +53,9 @@
 		)
 	)
 	offer_types = list(
+		/obj/item/oddity/common/healthscanner = offer_data("odd health scanner", 800, 1),
+		/obj/item/oddity/common/disk = offer_data("broken design disk", 800, 1),
+		/obj/item/oddity/common/device = offer_data("odd device", 800, 1),
 		/obj/item/slime_extract/lightpink = offer_data("light pink slime extract", 10000, 1),
 		/obj/item/slime_extract/black = offer_data("black slime extract", 10000, 1),
 		/obj/item/slime_extract/oil = offer_data("oil slime extract", 10000, 1),

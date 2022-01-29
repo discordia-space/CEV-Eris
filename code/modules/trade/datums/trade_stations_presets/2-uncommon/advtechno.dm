@@ -64,9 +64,12 @@ name_pool = list(
 		),
 	)
 	offer_types = list(
-		/obj/item/tool/screwdriver/combi_driver/onestar = offer_data("onestar combi driver", 1000, 3),
-		/obj/item/tool/weldingtool/onestar  = offer_data("onestar welding tool", 1000, 3),
+		/obj/item/oddity/techno = offer_data("unknown technological part", 1600, 2),
+		/obj/item/tool/crowbar/onestar = offer_data("onestar crowbar", 1500, 3),
+		/obj/item/tool/pickaxe/onestar = offer_data("onestar pickaxe", 1500, 3),
+		/obj/item/tool/pickaxe/jackhammer/onestar = offer_data("onestar jackhammer", 1500, 3),
+		/obj/item/tool/screwdriver/combi_driver/onestar = offer_data("onestar combi driver", 2000, 3),
+		/obj/item/tool/weldingtool/onestar  = offer_data("onestar welding tool", 2000, 3),
 		/obj/item/tool_upgrade/augment/repair_nano = offer_data("repair nano", 5000, 1),
-		/obj/item/organ/external/robotic/one_star = offer_data("onestar external prosthetic", 1800, 4),			// base price: 900
-		/obj/item/organ/external/robotic/serbian = offer_data("serbian external prosthetic", 600, 8),			// base price: 600; roundstart item, but you'd be giving up an arm and a leg for cash
+		/obj/item/organ/external/robotic/one_star = offer_data("onestar external prosthetic", 2700, 4),			// base price: 900
 	)

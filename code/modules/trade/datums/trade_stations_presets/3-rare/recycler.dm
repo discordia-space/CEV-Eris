@@ -30,13 +30,6 @@
 			/obj/item/stock_parts/manipulator/nano = custom_good_amount_range(list(1, 3)),
 			/obj/item/stock_parts/micro_laser/high = custom_good_amount_range(list(1, 3)),
 			/obj/item/stock_parts/matter_bin/adv = custom_good_amount_range(list(1, 3)),
-			/obj/item/stock_parts/subspace/ansible,
-			/obj/item/stock_parts/subspace/filter,
-			/obj/item/stock_parts/subspace/amplifier,
-			/obj/item/stock_parts/subspace/treatment,
-			/obj/item/stock_parts/subspace/analyzer,
-			/obj/item/stock_parts/subspace/crystal,
-			/obj/item/stock_parts/subspace/transmitter
 		)
 	)
 	secret_inventory = list(

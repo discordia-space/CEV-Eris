@@ -64,9 +64,8 @@
 		)
 	)
 	offer_types = list(
-		/datum/reagent/alcohol/changelingsting = offer_data("Changeling Sting bottle (60u)", 1500, 1),
-		/datum/reagent/alcohol/longislandicedtea = offer_data("Long Island Iced Tea bottle (60u)", 1500, 1),
-		/datum/reagent/alcohol/neurotoxin = offer_data("Neurotoxin bottle (60u)", 1500, 1),
-		/datum/reagent/alcohol/hippies_delight = offer_data("Hippie's Delight bottle (60u)", 1000, 1),
-		/datum/reagent/alcohol/silencer = offer_data("Silencer bottle (60u)", 1000, 1),
+		/obj/item/reagent_containers/food/snacks/kampferburger = offer_data("kampfer burger", 400, 3),
+		/obj/item/reagent_containers/food/snacks/panzerburger = offer_data("panzer burger", 500, 2),
+		/obj/item/reagent_containers/food/snacks/jagerburger = offer_data("jager burger", 500, 2),
+		/obj/item/reagent_containers/food/snacks/seucheburger = offer_data("seuche burger", 500, 2),
 	)

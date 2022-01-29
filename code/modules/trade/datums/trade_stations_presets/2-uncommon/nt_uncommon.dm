@@ -30,5 +30,5 @@
 		),
     )
 	offer_types = list(
-
+		/obj/item/oddity/nt/seal = offer_data("High Inquisitor's Seal", 1600, 2)
 	)

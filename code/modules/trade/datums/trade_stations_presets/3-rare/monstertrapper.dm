@@ -54,7 +54,6 @@
 			/mob/living/carbon/superior_animal/roach/bluespace = custom_good_amount_range(list(5, 10))
 		)
 	)
-	//Types of items bought by the station
 	offer_types = list(
 		/obj/item/mine/old = offer_data("old landmine", 1200, 0),
 		/obj/item/beartrap/makeshift = offer_data("makeshift mechanical trap", 600, 0),

@@ -24,5 +24,7 @@
 		// loot box inside the box
 	)
 	offer_types = list(
-		// coins, old money
+		/obj/item/coin = offer_data("metal coin", 2000, 1)
+		/obj/item/oddity/common/coin = offer_data("strange coin", 800, 1),
+		/obj/item/oddity/common/old_money = offer_data("old money", 800, 1),
 	)

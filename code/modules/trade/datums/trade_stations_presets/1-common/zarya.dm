@@ -66,8 +66,8 @@
 		),
 	)
 	offer_types = list(
-		/obj/item/tool_upgrade = offer_data("tool upgrade", 200, 0),				// base price: 200
-		/obj/item/tool/crowbar/onestar = offer_data("onestar crowbar", 1000, 3),
-		/obj/item/tool/pickaxe/onestar = offer_data("onestar pickaxe", 1000, 3),
-		/obj/item/tool/pickaxe/jackhammer/onestar = offer_data("onestar jackhammer", 1000, 3),
+		/obj/item/tool_upgrade = offer_data("tool upgrade", 200, 10),									// base price: 200
+		/obj/item/oddity/common/blueprint = offer_data("strange blueprint", 800, 1),
+		/obj/item/oddity/common/old_radio = offer_data("old radio", 800, 1),
+		/obj/item/organ/external/robotic/serbian = offer_data("serbian external prosthetic", 600, 8),	// base price: 600; roundstart item, but you'd be giving up an arm and a leg for cash
 	)
