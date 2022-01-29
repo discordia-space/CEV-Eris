@@ -16,6 +16,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_SCRAP
 	sanity_damage = 0.1
+	price_tag = 100
 	var/loot_generated = FALSE
 	var/icontype = "general"
 	var/obj/item/storage/internal/updating/loot	//the visible loot
@@ -429,7 +430,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	loot_max = 10
 	rarity_value = 90
 	loot_tags = list(
-		SPAWN_GUN = 0.3,
+		SPAWN_GUN_HANDMADE = 0.3,
 		SPAWN_PART_GUN = 3,
 		SPAWN_AMMO_S,
 		SPAWN_KNIFE,

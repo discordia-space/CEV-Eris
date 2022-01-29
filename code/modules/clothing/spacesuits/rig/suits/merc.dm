@@ -16,9 +16,7 @@
 		bio = 100,
 		rad = 50
 	)
-	slowdown = 1
 	drain = 3.5
-	offline_slowdown = 3
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/space/rig/merc
@@ -34,6 +32,8 @@
 		/obj/item/rig_module/chem_dispenser/combat,
 		/obj/item/rig_module/fabricator/energy_net
 		)
+	stiffness = 0
+	obscuration = 0
 
 //Has most of the modules removed
 /obj/item/rig/merc/empty

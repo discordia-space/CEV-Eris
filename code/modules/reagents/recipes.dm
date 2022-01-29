@@ -615,15 +615,6 @@
 	new /obj/item/stack/material/silver(get_turf(holder.my_atom), created_volume)
 	return
 
-/datum/chemical_reaction/platinumsolidification
-	result = null
-	required_reagents = list("iron" = 5, "frostoil" = 5, "platinum" = 20)
-	result_amount = 1
-
-/datum/chemical_reaction/platinumsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
-	new /obj/item/stack/material/platinum(get_turf(holder.my_atom), created_volume)
-	return
-
 /datum/chemical_reaction/plastication
 	result = null
 	required_reagents = list("pacid" = 1, "plasticide" = 2)

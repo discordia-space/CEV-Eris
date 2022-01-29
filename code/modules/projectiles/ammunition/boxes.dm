@@ -167,7 +167,7 @@
 
 //// . 30 ////
 /obj/item/ammo_magazine/ammobox/lrifle
-	name = "ammunition box (.30 Rifle lethal)"
+	name = "ammunition box (.30 Rifle)"
 	icon_state = "box_lrifle"
 	matter = list(MATERIAL_STEEL = 60)
 	w_class = ITEM_SIZE_BULKY
@@ -181,6 +181,8 @@
 	ammo_type = /obj/item/ammo_casing/lrifle/rubber
 
 /obj/item/ammo_magazine/ammobox/lrifle_small
+	name = "ammunition packet (.30 Rifle)"
+	icon_state = "lrifle"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_CARDBOARD = 1)
 	caliber = CAL_LRIFLE
 	ammo_type = /obj/item/ammo_casing/lrifle

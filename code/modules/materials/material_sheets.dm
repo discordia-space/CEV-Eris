@@ -103,7 +103,7 @@
 	rand_max = 30
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES
 	rarity_value = 45
-	
+
 /obj/item/stack/material/iron/full
 	amount = 120
 
@@ -130,9 +130,10 @@
 	rand_max = 8
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 90
-	
+
 /obj/item/stack/material/diamond/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 /obj/item/stack/material/uranium
 	name = MATERIAL_URANIUM
@@ -149,6 +150,7 @@
 
 /obj/item/stack/material/uranium/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 /obj/item/stack/material/plasma
 	name = "solid plasma"
@@ -162,6 +164,10 @@
 	rand_max = 20
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES
 	rarity_value = 30
+
+/obj/item/stack/material/plasma/full
+	amount = 120
+	spawn_blacklisted = TRUE
 
 /obj/item/stack/material/plastic
 	name = "plastic"
@@ -191,9 +197,10 @@
 	rand_max = 15
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 45
-	
+
 /obj/item/stack/material/gold/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 /obj/item/stack/material/silver
 	name = MATERIAL_SILVER
@@ -207,9 +214,10 @@
 	rand_max = 30
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 45
-	
+
 /obj/item/stack/material/silver/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/material/platinum
@@ -227,6 +235,7 @@
 
 /obj/item/stack/material/platinum/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 //Extremely valuable to Research.
 /obj/item/stack/material/mhydrogen
@@ -238,6 +247,7 @@
 
 /obj/item/stack/material/mhydrogen/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 //Fuel for MRSPACMAN generator.
 /obj/item/stack/material/tritium
@@ -246,9 +256,10 @@
 	default_type = MATERIAL_TRITIUM
 	apply_colour = 1
 	price_tag = 50
-	
+
 /obj/item/stack/material/tritium/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 /obj/item/stack/material/osmium
 	name = "osmium"
@@ -256,9 +267,10 @@
 	default_type = MATERIAL_OSMIUM
 	apply_colour = 1
 	price_tag = 50
-	
+
 /obj/item/stack/material/osmium/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 /obj/item/stack/material/steel
 	name = MATERIAL_STEEL
@@ -388,6 +400,7 @@
 	icon_state = "sheet-biomatter"
 	default_type = MATERIAL_BIOMATTER
 	price_tag = 10
+	novariants = FALSE
 	var/biomatter_in_sheet = BIOMATTER_PER_SHEET // defined in solidifier.dm
 
 /obj/item/stack/material/biomatter/random

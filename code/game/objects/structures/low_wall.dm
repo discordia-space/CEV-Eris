@@ -117,15 +117,18 @@
 //Drag and drop onto low walls. Copied from tables
 //This is mainly so that janiborg can put things on tables
 /obj/structure/low_wall/MouseDrop_T(atom/A, mob/user, src_location, over_location, src_control, over_control, params)
+	if(!CanMouseDrop(A, user))
+		return
+
 	if(ismob(A.loc))
 		user.unEquip(A, loc)
 		set_pixel_click_offset(A, params)
 		return
 
-	if (istype(A, /obj/item) && istype(A.loc, /turf) && (A.Adjacent(src) || user.Adjacent(src)))
+	if(istype(A, /obj/item) && istype(A.loc, /turf) && (A.Adjacent(src) || user.Adjacent(src)))
 		var/obj/item/O = A
 		//Mice can push around pens and paper, but not heavy tools
-		if (O.w_class <= user.can_pull_size)
+		if(O.w_class <= user.can_pull_size)
 			O.forceMove(loc)
 			set_pixel_click_offset(O, params, animate=TRUE)
 			return

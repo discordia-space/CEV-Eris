@@ -5,11 +5,13 @@
 	icon_state = "fuhrer"
 
 	turns_per_move = 4
-	maxHealth = 200
-	health = 200
+	maxHealth = 150
+	health = 150
 
-	melee_damage_lower = 15
-	melee_damage_upper = 30
+	melee_damage_lower = 12
+	melee_damage_upper = 25
+	armor_penetration = 20
+
 	move_to_delay = 8
 	mob_size = MOB_MEDIUM
 	extra_burrow_chance = 100
@@ -24,6 +26,16 @@
 	var/distress_level = 0
 	var/distress_calls = 1 //Each fuhrer can only call for help once in its life
 	var/retreat_calls = 1 //Can call for retreat once too
+
+	// Armor related variables
+	armor = list(
+		melee = 40,
+		bullet = 40,
+		energy = 40,
+		bomb = 0,
+		bio = 25,
+		rad = 50
+	)
 
 /mob/living/carbon/superior_animal/roach/fuhrer/bullet_act()
 	.=..()
