@@ -26,7 +26,7 @@
 	icon_state = "rocket"
 	damage_types = list(BRUTE = 50)
 	armor_penetration = 100
-	style_damage = 110 //single shot, incredibly powerful. If you get direct hit with this you deserve it, if you dodge the direct shot you're protected from the explosion.
+	style_damage = 101 //single shot, incredibly powerful. If you get direct hit with this you deserve it, if you dodge the direct shot you're protected from the explosion.
 	check_armour = ARMOR_BULLET
 	penetrating = -5
 
