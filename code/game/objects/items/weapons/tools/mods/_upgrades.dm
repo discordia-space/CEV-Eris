@@ -312,7 +312,6 @@
 		G.braceable = 0
 	if(weapon_upgrades[GUN_UPGRADE_BIPOD])
 		G.braceable = 2
-		G.slowdown_hold = 2
 	if(weapon_upgrades[GUN_UPGRADE_EXPLODE])
 		G.rigged = 2
 	if(weapon_upgrades[GUN_UPGRADE_ZOOM])

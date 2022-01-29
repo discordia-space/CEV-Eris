@@ -10,8 +10,8 @@
 		else 
 			recoil -= 3
 
-	if(brace_penalty && !braced)
-		recoil = recoil += 30
+	if(G.brace_penalty && !G.braced)
+		recoil = recoil += brace_penalty
 
 	var/debug_recoil = min(0.3, G.fire_delay)
 	if(G.fire_delay == 0)

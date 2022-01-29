@@ -125,7 +125,7 @@
 
 /obj/item/tool_upgrade/productivity/ergonomic_grip
 	name = "ergonomic grip"
-	desc = "A replacement grip for a tool which allows it to be more precisely controlled with one hand."
+	desc = "A replacement grip for a tool which allows it to be more precisely controlled with one hand. Can be placed under a gun\'s barrel to reduce recoil. However, it also makes bracing impossible."
 	icon_state = "ergonomic"
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 5)
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE
@@ -137,10 +137,9 @@
 	UPGRADE_WORKSPEED = 0.15
 	)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_RECOIL = 0.9,
+		GUN_UPGRADE_RECOIL = 0.8,
 	)
-	I.gun_loc_tag = GUN_GRIP
-	I.req_gun_tags = list(GUN_GRIP)
+	I.gun_loc_tag = GUN_UNDERBARREL
 
 	I.prefix = "ergonomic"
 

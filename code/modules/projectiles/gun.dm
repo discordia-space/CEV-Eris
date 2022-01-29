@@ -40,6 +40,7 @@
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
 	var/rigged = FALSE
 	var/braced = FALSE //for gun_brace proc.
+	var/brace_penalty = FALSE//penalty if not braced.
 	var/braceable = 1 //can the gun be used for gun_brace proc, modifies recoil. If the gun has foregrip mod installed, it's not braceable. Bipod mod increases value by 1.
 	var/fire_sound_text = "gunshot"
 	var/recoil_buildup = 2 //How quickly recoil builds up

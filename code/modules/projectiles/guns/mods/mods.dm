@@ -15,24 +15,9 @@
 /obj/item/gun_upgrade/underbarrel
 	bad_type = /obj/item/gun_upgrade/underbarrel
 
-/obj/item/gun_upgrade/underbarrel/foregrip
-	name = "foregrip"
-	desc = "A fancy rubber grip that reduces recoil during firing when installed under the gun barrel. However, it also makes bracing impossible."
-	icon_state = "foregrip"
-	rarity_value = 15
-
-/obj/item/gun_upgrade/underbarrel/foregrip/New()
-	..()
-	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.weapon_upgrades = list(
-		GUN_UPGRADE_FOREGRIP = TRUE,
-		GUN_UPGRADE_RECOIL = 0.8
-		)
-	I.gun_loc_tag = GUN_UNDERBARREL
-
 /obj/item/gun_upgrade/underbarrel/bipod
 	name = "bipod"
-	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. It greatly reduces recoil when deployed, but also increases the gun\'s weight, making it heavy to carry."
+	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. It greatly reduces recoil when deployed, but also increases the gun\'s weight, making it unwieldy unless braced."
 	icon_state = "bipod"
 	rarity_value = 15
 
@@ -40,7 +25,8 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_BIPOD = TRUE
+		GUN_UPGRADE_BIPOD = TRUE,
+		GUN_UPGRADE_RECOIL = 1.2
 		)
 	I.gun_loc_tag = GUN_UNDERBARREL
 
