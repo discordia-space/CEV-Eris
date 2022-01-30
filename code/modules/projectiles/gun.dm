@@ -547,23 +547,25 @@
 		return
 
 /obj/item/gun/proc/gun_brace(mob/living/user, atom/target)
-	if(braceable)
+	if(braceable && user.unstack)
 		var/atom/original_loc = user.loc
-		var/dir = get_dir(user, target)
-		user.facing_dir = 0
-		user.set_dir(dir)
+		var/brace_direction = get_dir(user, target)
+		user.unstack = FALSE
+		user.facing_dir = null
 		to_chat(user, SPAN_NOTICE("You brace your weapon on \the [target]."))
 		braced = TRUE
-		while(user.loc == original_loc)
+		while(user.loc == original_loc && (brace_direction == user.dir))
 			sleep(2)
-			if(get_dir(user, target) != dir)
-				braced = FALSE
-				to_chat(user, SPAN_NOTICE("You stop bracing your weapon."))
-				break
-		braced = FALSE //a failsafe.
+		to_chat(user, SPAN_NOTICE("You stop bracing your weapon."))
+		braced = FALSE
+		user.unstack = TRUE
 	else
-		to_chat(user, SPAN_WARNING("You can\'t properly place your weapon on \the [target] because of the foregrip!"))
-		return
+		if(!user.unstack)
+			to_chat(user, SPAN_NOTICE("You are already bracing your weapon!"))
+			return
+		else
+			to_chat(user, SPAN_WARNING("You can\'t properly place your weapon on \the [target] because of the foregrip!"))
+			return
 
 /obj/item/gun/proc/toggle_scope(mob/living/user)
 	//looking through a scope limits your periphereal vision

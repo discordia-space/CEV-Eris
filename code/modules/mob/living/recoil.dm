@@ -6,9 +6,9 @@
 
 	if(G.braced)
 		if(G.braceable == 2)
-			recoil -= 6
+			recoil -= 2
 		else 
-			recoil -= 3
+			recoil -= 1
 
 	if(G.brace_penalty && !G.braced)
 		recoil += G.brace_penalty
