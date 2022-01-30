@@ -26,9 +26,9 @@
 	desc = "Standard Security gear. Protects the head from impacts."
 	icon_state = "helmet"
 	armor = list(
-		melee = 35,
-		bullet = 30,
-		energy = 30,
+		melee = 30,
+		bullet = 40,
+		energy = 40,
 		bomb = 20,
 		bio = 0,
 		rad = 0
@@ -49,7 +49,7 @@
 	)
 
 /obj/item/clothing/head/armor/helmet/merchelm
-	name = "Heavy Armour Helmet"
+	name = "Mercenary Armour Helmet"
 	desc = "A high-quality helmet in a fetching tan. Very durable"
 	icon_state = "merchelm"
 	body_parts_covered = HEAD | EARS | EYES | FACE
@@ -90,7 +90,7 @@
 	brightness_on = 4
 	armor = list(
 		melee = 35,
-		bullet = 25,
+		bullet = 30,
 		energy = 40,
 		bomb = 20,
 		bio = 0,
@@ -115,8 +115,8 @@
 	brightness_on = 4
 	armor = list(
 		melee = 35,
-		bullet = 40,
-		energy = 20,
+		bullet = 50,
+		energy = 30,
 		bomb = 40,
 		bio = 0,
 		rad = 0
@@ -130,10 +130,10 @@
 	desc = "It looks like it was made from a bucket and some steel. Uncomfortable and heavy but better than nothing."
 	icon_state = "helmet_handmade"
 	armor = list(
-		melee = 35,
-		bullet = 25,
-		energy = 20,
-		bomb = 10,
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
@@ -154,9 +154,9 @@
 	body_parts_covered = HEAD | EARS | EYES | FACE
 	armor = list(
 		melee = 30,
-		bullet = 55,
-		energy = 25,
-		bomb = 25,
+		bullet = 60,
+		energy = 30,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
@@ -249,14 +249,6 @@
 	name = "full ballistic helmet"
 	desc = "Standard-issue Ironhammer ballistic helmet with a basic HUD included, covers the operator's entire face."
 	icon_state = "ironhammer_full"
-	armor = list(
-		melee = 30,
-		bullet = 60,
-		energy = 25,
-		bomb = 25,
-		bio = 0,
-		rad = 0
-	)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	price_tag = 500
 	matter = list(
@@ -273,8 +265,8 @@
 	flags_inv = HIDEEARS | HIDEEYES
 	armor = list(
 		melee = 30,
-		bullet = 25,
-		energy = 75,
+		bullet = 30,
+		energy = 65,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -383,7 +375,7 @@
 
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(
-		melee = 50,
+		melee = 65,
 		bullet = 50,
 		energy = 40,
 		bomb = 35,
@@ -456,7 +448,7 @@
 	name = "steelpot helmet"
 	desc = "A titanium helmet of serbian origin. Still widely used despite being discontinued."
 	icon_state = "steelpot"
-	armor = list(melee = 40, bullet = 35, energy = 0, bomb = 30, bio = 0, rad = 0) // slightly buffed IHS helmet minus energy resistance
+	armor = list(melee = 40, bullet = 40, energy = 30, bomb = 30, bio = 0, rad = 0) // slightly buffed IHS helmet minus energy resistance
 	flags_inv = BLOCKHEADHAIR
 	body_parts_covered = HEAD|EARS
 	siemens_coefficient = 1
@@ -465,8 +457,8 @@
 	name = "altyn helmet"
 	desc = "A titanium helmet of serbian origin. Still widely used despite being discontinued."
 	icon_state = "altyn"
-	armor_up = list(melee = 20, bullet = 15, energy = 0, bomb = 15, bio = 0, rad = 0)
-	armor_down = list(melee = 40, bullet = 40, energy = 0, bomb = 35, bio = 0, rad = 0)
+	armor_up = list(melee = 20, bullet = 20, energy = 10, bomb = 15, bio = 0, rad = 0)
+	armor_down = list(melee = 40, bullet = 50, energy = 30, bomb = 35, bio = 0, rad = 0)
 	siemens_coefficient = 1
 	up = TRUE
 
@@ -480,7 +472,7 @@
 	name = "maska helmet"
 	desc = "\"I do not know who I am, I don\'t know why I\'m here. All I know is that I must kill.\""
 	icon_state = "maska"
-	armor_down = list(melee = 55, bullet = 55, energy = 0, bomb = 45, bio = 0, rad = 0) // best what you can get, unless you face lasers
+	armor_down = list(melee = 55, bullet = 60, energy = 30, bomb = 45, bio = 0, rad = 0) // superior ballistic protection, mediocre laser protection.
 
 /obj/item/clothing/head/armor/faceshield/altyn/maska/tripoloski
 	name = "striped maska helmet"
@@ -508,8 +500,8 @@
 	desc = "Armored helmet used by certain law enforcement agencies. It's hard to believe there's a human somewhere behind that."
 	armor = list(
 		melee = 30,
-		bullet = 30,
-		energy = 30,
+		bullet = 40,
+		energy = 40,
 		bomb = 20,
 		bio = 0,
 		rad = 0
@@ -523,10 +515,10 @@
 	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
 	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 5, MATERIAL_GOLD = 1)
 	armor = list(
-		melee = 70,
+		melee = 50,
 		bullet = 50,
 		energy = 50,
-		bomb = 30,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
@@ -577,18 +569,18 @@
 		MATERIAL_PLATINUM = 2
 		)
 	armor_up = list(
-		melee = 25,
-		bullet = 25,
+		melee = 20,
+		bullet = 20,
 		energy = 20,
 		bomb = 10,
 		bio = 100,
 		rad = 50
 		)
 	armor_down = list(
-		melee = 35,
-		bullet = 35,
+		melee = 30,
+		bullet = 30,
 		energy = 30,
-		bomb = 15,
+		bomb = 10,
 		bio = 100,
 		rad = 50)
 	up = TRUE

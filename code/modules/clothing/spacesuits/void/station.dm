@@ -135,7 +135,7 @@
 		)
 	armor = list(
 		melee = 50,
-		bullet = 35,
+		bullet = 30,
 		energy = 30,
 		bomb = 25,
 		bio = 100,
@@ -150,7 +150,7 @@
 	icon_state = "miner_suit"
 	armor = list(
 		melee = 50,
-		bullet = 35,
+		bullet = 30,
 		energy = 30,
 		bomb = 25,
 		bio = 100,
@@ -172,7 +172,7 @@
 	armor = list(
 		melee = 30,
 		bullet = 10,
-		energy = 35,
+		energy = 40,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -218,8 +218,8 @@
 
 	armor = list(
 		melee = 35,
-		bullet = 45,
-		energy = 35,
+		bullet = 40,
+		energy = 40,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -235,8 +235,8 @@
 	item_state = "ihvoidsuit"
 	armor = list(
 		melee = 35,
-		bullet = 45,
-		energy = 35,
+		bullet = 40,
+		energy = 40,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -306,8 +306,8 @@
 	price_tag = 200
 	armor = list(
 		melee = 40,
-		bullet = 40,
-		energy = 55,
+		bullet = 50,
+		energy = 60,
 		bomb = 40,
 		bio = 100,
 		rad = 75
@@ -358,8 +358,8 @@
 	)
 	armor = list(
 		melee = 40,
-		bullet = 40,
-		energy = 55,
+		bullet = 50,
+		energy = 60,
 		bomb = 40, //platinum price justifies bloated stats
 		bio = 100,
 		rad = 75
@@ -400,7 +400,7 @@
 
 	armor = list(
 		melee = 20,
-		bullet = 15,
+		bullet = 20,
 		energy = 20,
 		bomb = 25,
 		bio = 100,
@@ -416,7 +416,7 @@
 	item_state = "makeshift_void"
 	siemens_coefficient = 0.4
 	armor = list(
-		melee = 10,
+		melee = 20,
 		bullet = 20,
 		energy = 20,
 		bomb = 25,
@@ -438,8 +438,8 @@
 	flags_inv = BLOCKHAIR
 	armor = list(
 		melee = 40,
-		bullet = 30,
-		energy = 30,
+		bullet = 40,
+		energy = 40,
 		bomb = 30,
 		bio = 100,
 		rad = 50
@@ -458,8 +458,8 @@
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
 	    melee = 40,
-		bullet = 30,
-		energy = 30,
+		bullet = 40,
+		energy = 40,
 		bomb = 30,
 		bio = 100,
 		rad = 50

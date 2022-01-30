@@ -29,9 +29,9 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		melee = 30,
-		bullet = 30,
-		energy = 30,
-		bomb = 10,
+		bullet = 40,
+		energy = 40,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
@@ -92,9 +92,9 @@
 	icon_state = "armor_handmade"
 	armor = list(
 		melee = 30,
-		bullet = 25,
-		energy = 15,
-		bomb = 10,
+		bullet = 30,
+		energy = 30,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
@@ -126,9 +126,9 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	armor = list(
 		melee = 30,
-		bullet = 35,
-		energy = 30,
-		bomb = 15,
+		bullet = 40,
+		energy = 40,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
@@ -161,10 +161,10 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 35,
-		bullet = 35,
-		energy = 0,
-		bomb = 20,
+		melee = 40,
+		bullet = 50,
+		energy = 30,
+		bomb = 30,
 		bio = 0,
 		rad = 0
 	)
@@ -195,9 +195,9 @@
 	slowdown = 0.15
 	armor = list(
 		melee = 25,
-		bullet = 55,
-		energy = 25,
-		bomb = 10,
+		bullet = 60,
+		energy = 30,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
@@ -226,14 +226,6 @@
 			This one has been done in Ironhammer Security colors."
 	icon_state = "bulletproof_ironhammer"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	armor = list(
-		melee = 25,
-		bullet = 60,
-		energy = 25,
-		bomb = 10,
-		bio = 0,
-		rad = 0
-	)
 	matter = list(
 		MATERIAL_STEEL = 15, // fullbody suit, so it costs a lot of steel compared to the non-ih one
 		MATERIAL_PLASTEEL = 3,
@@ -247,10 +239,10 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 25,
+		melee = 40,
 		bullet = 50,
-		energy = 0,
-		bomb = 0,
+		energy = 30,
+		bomb = 30,
 		bio = 0,
 		rad = 0
 	)
@@ -297,10 +289,10 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 25,
-		bullet = 25,
-		energy = 75,
-		bomb = 0,
+		melee = 20,
+		bullet = 30,
+		energy = 65,
+		bomb = 10,
 		bio = 0,
 		rad = 0
 	)
@@ -314,7 +306,7 @@
 	slowdown = LIGHT_SLOWDOWN
 	stiffness = LIGHT_STIFFNESS
 	//spawn_blacklisted = TRUE//antag_item_targets-crafteable?
-
+/*
 /obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack") //TODO: Refactor this all into humandefense
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
 		var/obj/item/projectile/P = damage_source
@@ -334,7 +326,7 @@
 			P.redirect(new_x, new_y, curloc, user)
 
 			return PROJECTILE_CONTINUE // complete projectile permutation
-
+*/
 /obj/item/clothing/suit/storage/greatcoat/german_overcoat
 	name = "Oberth Republic uniform overcoat"
 	desc = "A black overcoat made out of special materials that will protect against energy projectiles. Probably surplus."
@@ -343,8 +335,8 @@
 	armor = list(
 		melee = 30,
 		bullet = 30,
-		energy = 45,
-		bomb = 15,
+		energy = 50,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
@@ -368,8 +360,8 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(
-		melee = 45, //massive slowdown justifies
-		bullet = 45,
+		melee = 65, //massive slowdown justifies
+		bullet = 50,
 		energy = 40,
 		bomb = 30,
 		bio = 0,
@@ -441,9 +433,9 @@
 	price_tag = 250 //Normal vest is worth 200, this one is worth 250 because it also has storage space
 	armor = list( //Same stats as the standard vest only difference is that this one has storage
 		melee = 30,
-		bullet = 30,
-		energy = 30,
-		bomb = 10,
+		bullet = 40,
+		energy = 40,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
@@ -476,7 +468,7 @@
 
 //Provides the protection of a merc voidsuit, but only covers the chest/groin, and also takes up a suit slot. In exchange it has no slowdown and provides storage.
 /obj/item/clothing/suit/storage/vest/merc
-	name = "heavy armor vest"
+	name = "mercenary armor vest"
 	desc = "A high-quality armor vest in a fetching tan. It is surprisingly flexible and light, even with the added webbing and armor plating."
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
@@ -506,7 +498,7 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		melee = 35,
-		bullet = 25,
+		bullet = 30,
 		energy = 40,
 		bomb = 20,
 		bio = 0,
@@ -585,7 +577,7 @@
 		melee = 50,
 		bullet = 50,
 		energy = 50,
-		bomb = 25,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
