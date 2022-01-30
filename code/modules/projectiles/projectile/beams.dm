@@ -5,6 +5,7 @@
 	hitsound_wall = 'sound/weapons/guns/misc/laser_searwall.ogg'
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage_types = list(BURN = 30)
+	armor_penetration = 10
 	check_armour = ARMOR_ENERGY
 	eyeblur = 4
 	var/frequency = 1
@@ -33,7 +34,7 @@
 	name = "cutting beam"
 	icon_state = "plasmablaster"
 	damage_types = list(BRUTE = 25)
-	armor_penetration = 10
+	armor_penetration = 20
 	pass_flags = PASSTABLE
 
 	muzzle_type = /obj/effect/projectile/laser/plasmacutter/muzzle
@@ -55,13 +56,13 @@
 	eyeblur = 2
 
 /obj/item/projectile/beam/midlaser
-	armor_penetration = 10
+	armor_penetration = 20
 
 /obj/item/projectile/beam/heavylaser
 	name = "heavy laser"
 	icon_state = "heavylaser"
 	damage_types = list(BURN = 50)
-	armor_penetration = 20
+	armor_penetration = 30
 
 	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
 	tracer_type = /obj/effect/projectile/laser_heavy/tracer
