@@ -67,12 +67,12 @@
 			var/turf/possible_T = get_step(GB.loc, pick_n_take(possible_directions))
 			if(!check_density_no_mobs(possible_T))
 				i++
-				var/golemtype = pick(subtypesof(/mob/living/carbon/superior_animal/golem))
+				var/golemtype = pickweight(GW.golem_types)
 				new golemtype(possible_T, drill=DD)  // Spawn golem at free location
 		// Spawn remaining golems on top of burrow
 		if(i < GW.golem_spawn)
 			for(var/j in i to GW.golem_spawn)
-				var/golemtype = pick(subtypesof(/mob/living/carbon/superior_animal/golem))
+				var/golemtype = pickweight(GW.golem_types)
 				new golemtype(GB.loc, drill=DD)  // Spawn golem at that burrow
 
 /datum/golem_controller/proc/stop()
