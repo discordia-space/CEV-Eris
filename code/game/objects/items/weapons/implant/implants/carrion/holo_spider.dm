@@ -3,7 +3,6 @@
 	desc = "A spider with a peculiarly reflective surface"
 	icon_state = "spiderling_breeding"
 	spider_price = 5
-	gibs_color = "#1e9fa3"
 	slot_flags = SLOT_ID | SLOT_BELT | SLOT_EARS | SLOT_HOLSTER | SLOT_BACK | SLOT_MASK | SLOT_GLOVES | SLOT_HEAD | SLOT_OCLOTHING | SLOT_ICLOTHING | SLOT_FEET | SLOT_EYES
 	var/can_use = 1
 	var/saved_name
@@ -20,6 +19,7 @@
 	var/saved_appearance
 	var/saved_item_state
 	var/saved_w_class
+	var/spider_appearance
 	var/dummy_active = FALSE
 	var/scan_mobs = TRUE
 
@@ -34,13 +34,40 @@
 
 
 /obj/item/implant/carrion_spider/holographic/examine(mob/user)
-	if(dummy_active && saved_item)
+	if(dummy_active && saved_item && saved_message)
 		to_chat(user, saved_message)
-	else
-		. = ..()
-	if(user.stats.getStat(STAT_COG) > STAT_LEVEL_PROF)
-		return
+	else if(dummy_active && saved_item && saved_w_class)
+		to_chat(world, "ISANITEM")
+		var/distance = -1
+		var/message
+		var/size
+		switch(saved_w_class)
+			if(ITEM_SIZE_TINY)
+				size = "tiny"
+			if(ITEM_SIZE_SMALL)
+				size = "small"
+				to_chat(world, "issmall")
+			if(ITEM_SIZE_NORMAL)
+				size = "normal-sized"
+			if(ITEM_SIZE_BULKY)
+				size = "bulky"
+			if(ITEM_SIZE_HUGE)
+				size = "huge"
+			if(ITEM_SIZE_GARGANTUAN)
+				size = "gargantuan"
+			if(ITEM_SIZE_COLOSSAL)
+				size = "colossal"
+			if(ITEM_SIZE_TITANIC)
+				size = "titanic"
+		message += "\nIt is a [size] item."
 
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H.stats.getPerk(PERK_MARKET_PROF))
+				message += SPAN_NOTICE("\nThis item cost: [get_item_cost()][CREDITS]")
+
+		return ..(user, distance, "", message)
+			. = ..()
 /obj/item/implant/carrion_spider/holographic/toggle_attack(mob/user)
 	if(ready_to_attack)
 		ready_to_attack = FALSE
@@ -57,13 +84,10 @@
 	else
 		..()
 
-/obj/item/implant/carrion_spider/holographic/afterattack(atom/target, mob/user , proximity)
+/obj/item/implant/carrion_spider/holographic/afterattack(atom/target, mob/user, proximity)
 	if(istype(target, /obj/item/storage)) return
 	if(!proximity) return
 	if(dummy_active) return
-	//if(istype(target, /turf))
-	//	to_chat(user, SPAN_WARNING("\The [target] is an invalid target."))
-	//	return
 	reset_data()
 	playsound(get_turf(src), 'sound/weapons/flash.ogg', 100, 1, -6)
 	to_chat(user, SPAN_NOTICE("Scanned [target]."))
@@ -77,15 +101,15 @@
 	saved_alpha = target.alpha
 	saved_opacity = target.opacity
 	saved_appearance = target.appearance
-	saved_item_state = target.item_state
-//	if(istype(target, /obj))
-//		if(target.size)
-//			saved_w_class = target.size
-	saved_message = target.examine(user, -1)
-	to_chat(world, "HJJJJJJJKKKKK")
+	spider_appearance = src.appearance
+	if(istype(target, /obj))	
+		var/obj/O = new saved_item(src)
+		saved_item_state = O.item_state
+		saved_w_class = O.w_class
+		qdel(O)
 	if(istype(target, /mob))
 		saved_mob = target // help
-		//saved_message = target.examine()
+		saved_message = target.examine(user)
 	return
 
 /obj/item/implant/carrion_spider/holographic/proc/reset_data()
@@ -104,17 +128,13 @@
 	saved_item_state = initial(item_state)
 	saved_w_class = initial(saved_w_class)
 
-/obj/item/implant/carrion_spider/holographic/proc/scan_eligible(atom/I)
-//	if(scan_mobs && !istype(I, /turf))
-	return TRUE
-//	return FALSE
 
 /obj/item/implant/carrion_spider/holographic/proc/toggle()
 	if(!can_use || !saved_item) 
 		return
 	if(dummy_active)
 		dummy_active = FALSE
-		//appearance = initial(appearance)
+		appearance = spider_appearance
 		name = initial(name)
 		desc = initial(desc)
 		icon = initial(icon)
@@ -166,12 +186,3 @@
 /obj/item/implant/carrion_spider/holographic/bullet_act()
 	..()
 	disrupt()
-
-/obj/item/implant/carrion_spider/holographic/proc/test()
-	appearance = initial(appearance)
-
-///obj/item/implant/carrion_spider/holographic/New()
-//	var/superspecialappearance = appearance
-//	. = ..()
-
-
