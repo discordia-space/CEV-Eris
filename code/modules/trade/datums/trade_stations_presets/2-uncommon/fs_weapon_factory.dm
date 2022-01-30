@@ -39,7 +39,7 @@
 		),
 	)
 	offer_types = list(
-		/obj/item/part/gun/frame/ = offer_data("gun frame", 800, 3),
+		/obj/item/part/gun/frame/ = offer_data("gun frame", 600, 3),
 		/obj/item/part/gun/grip = offer_data("gun grip", 250, 3),				// base price: 100
 		/obj/item/part/gun/mechanism = offer_data("gun mechanism", 250, 3),		// base price: 100
 		/obj/item/part/gun/barrel = offer_data("gun barrel", 250, 3),			// base price: 200

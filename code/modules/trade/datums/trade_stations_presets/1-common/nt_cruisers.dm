@@ -4,6 +4,8 @@
 	)
 	icon_states = "nt_cruiser"
 	uid = "nt_basic"
+	start_discovered = TRUE
+	spawn_always = TRUE
 	markup = UNCOMMON_GOODS		// dept-specific stuff should be more expensive for guild
 	base_income = 1600
 	wealth = 0

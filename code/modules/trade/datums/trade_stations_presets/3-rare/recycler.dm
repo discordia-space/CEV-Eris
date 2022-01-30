@@ -10,7 +10,7 @@
 	wealth = -48000		// Starts in debt so we don't get too many oddities early on.
 	secret_inv_threshold = 2000
 	recommendation_threshold = 4000
-	stations_recommended = list("anomalous_machines")
+	stations_recommended = list("bluespace")
 	recommendations_needed = 2
 	assortiment = list(
 		"Old Junk" = list(

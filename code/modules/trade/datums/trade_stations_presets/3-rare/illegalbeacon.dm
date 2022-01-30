@@ -19,9 +19,9 @@
 			/obj/item/storage/toolbox/syndicate = custom_good_amount_range(list(1, 3)),
 			/obj/item/clothing/suit/space/syndicate = custom_good_amount_range(list(1, 1)),
 			/obj/item/clothing/head/space/syndicate = custom_good_amount_range(list(1, 1)),
+			/obj/item/clothing/suit/space/void/merc = custom_good_amount_range(list(1, 1)),
 			/obj/item/clothing/mask/gas/syndicate = custom_good_amount_range(list(-3, 1)),
-			/obj/item/gun/projectile/selfload = custom_good_amount_range(list(1, 1)),
-			/obj/item/gun/projectile/automatic/c20r = custom_good_amount_range(list(1, 1)),
+			/obj/item/gun/projectile/selfload = custom_good_amount_range(list(1, 1))
 		),
 		"Useful Stuff" = list(
 			// Autoinjectors defined in hypospray.dm

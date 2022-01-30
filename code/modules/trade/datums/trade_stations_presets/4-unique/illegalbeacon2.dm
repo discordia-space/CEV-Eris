@@ -14,7 +14,6 @@
 	assortiment = list(
         // add uplink gear
 		"Voidsuits" = list(
-            /obj/item/clothing/suit/space/void/merc,
 			/obj/item/rig/merc,
 		),
 		"Tools" = list(
@@ -22,7 +21,7 @@
 	)
 	secret_inventory = list(
 		"Firearms" = list(
-
+			/obj/item/gun/projectile/automatic/c20r = custom_good_amount_range(list(1, 1)),
 		),
 		"RIG Modules" = list(
 			/obj/item/rig_module/fabricator,

@@ -24,7 +24,7 @@
 			/obj/item/rig_module/held/shield,
 			/obj/item/rig_module/datajack,
 			/obj/item/rig_module/chem_dispenser,
-		),
+		)
 	)
 	secret_inventory = list(
 		"RIG Specialized Modules III" = list(

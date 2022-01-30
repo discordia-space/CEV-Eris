@@ -42,7 +42,7 @@
 	secret_inventory = list(
 		"Secret Menu" = list(
 			/obj/item/storage/box/monkeycubes = good_data("Chicken Nuggets", list(1, 5))
-			// Needs funny and useful things
+			// TODO: Needs funny and useful stuff
 		)
 	)
 	offer_types = list(

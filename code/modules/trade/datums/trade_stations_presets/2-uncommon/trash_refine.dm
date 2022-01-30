@@ -31,7 +31,7 @@
 			/obj/structure/scrap_spawner/guns/large = custom_good_amount_range(list(2,5)),
 			/obj/structure/scrap_spawner/science = custom_good_amount_range(list(2,5)),
 			/obj/structure/scrap_spawner/science/large = custom_good_amount_range(list(2,5)),
-			/obj/structure/scrap_spawner/cloth = custom_good_amount_range(list(2,5)),			// Could be a concern with the armor part offer, but it's locked behind discovery and a secret inventory. Something to watch for.
+			/obj/structure/scrap_spawner/cloth = custom_good_amount_range(list(2,5)),			// Could be a concern with the armor part offer, but it requires multiple unlocks and 30-50 minutes minimum. Something to watch for.
 			/obj/structure/scrap_spawner/cloth/large = custom_good_amount_range(list(2,5)),
 			/obj/structure/scrap_spawner/poor = custom_good_amount_range(list(2,5)),
 			/obj/structure/scrap_spawner/poor/large = custom_good_amount_range(list(2,5)),

@@ -238,7 +238,7 @@
 					if(PRG.station && PRG.sending)
 						amount2sell = length(SStrade.assess_offer(PRG.sending, PRG.station, path))
 					var/pathname = initial(AM.name)
-					var/desc = initial(AM.desc)
+
 					var/list/good_packet = assort[path]
 					if(islist(good_packet))
 						pathname = good_packet["name"] ? good_packet["name"] : pathname

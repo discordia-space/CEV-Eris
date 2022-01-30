@@ -21,10 +21,10 @@
 		)
 	)
 	secret_inventory = list(
-		// loot box inside the box
+		// TODO: More stuff. Maybe I'll make my own spawners for this.
 	)
 	offer_types = list(
-		/obj/item/coin = offer_data("metal coin", 2000, 1)
+		/obj/item/coin = offer_data("metal coin", 2000, 1),						// From what I can tell, these are pretty rare
 		/obj/item/oddity/common/coin = offer_data("strange coin", 800, 1),
-		/obj/item/oddity/common/old_money = offer_data("old money", 800, 1),
+		/obj/item/oddity/common/old_money = offer_data("old money", 800, 1)
 	)

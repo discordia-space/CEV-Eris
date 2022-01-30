@@ -386,7 +386,7 @@
 	price_tag = 200
 
 /obj/item/storage/deferred/electronics
-	name = "powercell box"
+	name = "circuit board box"
 	desc = "A small collection of circuit boards"
 	initial_contents = list(/obj/spawner/electronics = 7)
 	price_tag = 500
