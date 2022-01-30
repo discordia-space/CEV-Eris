@@ -193,6 +193,11 @@
 
 /obj/structure/window/hitby(AM as mob|obj)
 	..()
+
+	if(isliving(AM))
+		hit_by_living(AM)
+		return
+
 	visible_message(SPAN_DANGER("[src] was hit by [AM]."))
 	var/tforce = 0
 	if(ismob(AM))
@@ -278,6 +283,20 @@
 	sleep(5) //Allow a littleanimating time
 	return TRUE
 
+/obj/structure/window/proc/hit_by_living(var/mob/living/M)
+	var/body_part = pick(BP_HEAD, BP_CHEST, BP_GROIN)
+	visible_message(SPAN_DANGER("[M] slams against \the [src]!"))
+	if(prob(30))
+		M.Weaken(1)
+	M.damage_through_armor(8, BRUTE, body_part, ARMOR_MELEE)
+
+	var/tforce = 15
+	if(reinf) tforce *= 0.25
+	if(health - tforce <= 7 && !reinf)
+		set_anchored(FALSE)
+		step(src, get_dir(M, src))
+	hit(tforce)
+	mount_check()
 
 /obj/structure/window/attackby(obj/item/I, mob/user)
 

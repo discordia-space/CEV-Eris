@@ -618,7 +618,7 @@ default behaviour is:
 
 	if(resting && unstack)
 		unstack = FALSE
-		if((livmomentum <= 0) && do_after(src, (src.stats.getPerk(PERK_PARKOUR) ? 0.3 SECONDS : 0.7 SECONDS), null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
+		if((livmomentum <= 0) && do_after(src, (src.stats.getPerk(PERK_PARKOUR) ? 0.4 SECONDS : 1 SECOND), null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
 			resting = FALSE
 			unstack = TRUE
 			to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
@@ -639,7 +639,7 @@ default behaviour is:
 			var/is_jump = FALSE
 			if(istype(get_step(H, dir), /turf/simulated/open))
 				is_jump = TRUE
-			H.throw_at(get_edge_target_turf(H, dir), 2 + is_jump, 1)// "Diving"; if you dive over a table, your momentum is set to 0. If you dive over space, you are thrown a tile further.
+			H.throw_at(get_edge_target_turf(H, dir), 1 + is_jump, 1)// "Diving"; if you dive over a table, your momentum is set to 0. If you dive over space, you are thrown a tile further.
 			update_lying_buckled_and_verb_status()
 			pass_flags -= PASSTABLE // Jumpn't over them anymore!
 			H.allow_spin = TRUE
@@ -663,7 +663,7 @@ default behaviour is:
 mob/living/carbon/human/verb/stopSliding()
 	set hidden = 1
 	set instant = 1
-	src.livmomentum = 0
+	livmomentum = 0
 
 /mob/living/proc/cannot_use_vents()
 	return "You can't fit into that vent."
