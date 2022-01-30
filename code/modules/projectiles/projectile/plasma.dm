@@ -27,6 +27,9 @@
 	damage_types = list(HALLOSS = 30,BURN = 5)
 	impact_type = /obj/effect/projectile/stun/impact
 
+/obj/item/projectile/plasma/stun/heavy
+	damage_types = list(HALLOSS = 30, BURN = 42)
+
 /obj/item/projectile/plasma/aoe
 	name = "default plasma aoe"
 	icon_state = "ion"
