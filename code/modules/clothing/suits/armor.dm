@@ -603,9 +603,9 @@
 		)
 	armor = list(
 		melee = 30,
-		bullet = 30,
-		energy = 30,
-		bomb = 10,
+		bullet = 40,
+		energy = 40,
+		bomb = 20,
 		bio = 100,
 		rad = 50
 	)
