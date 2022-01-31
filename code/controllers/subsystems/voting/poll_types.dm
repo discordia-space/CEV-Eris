@@ -232,6 +232,29 @@
 	text = "No need to depart yet!"
 
 
+/datum/poll/chaos_level_increase
+	name = "Increse Chaos Level"
+	question = "Do you want to incease the chaos level?"
+	description = "Higher chaos level makes storyteller events much more likely."
+	time = 60
+	minimum_win_percentage = 0.75 //High % needed for something that alters the whole round
+	cooldown = 30 MINUTES
+	next_vote = 90 MINUTES //Same lenght as bluspace jump
+	choice_types = list(/datum/vote_choice/yes_chaos_level, /datum/vote_choice/no_chaos_level)
+	only_admin = FALSE
+	can_revote = TRUE
+	can_unvote = TRUE
+	
+
+/datum/vote_choice/yes_chaos_level
+	text = "Increase the chaos level!"
+
+/datum/vote_choice/yes_chaos_level/on_win()
+	GLOB.chaos_level += 1
+
+/datum/vote_choice/no_chaos_level
+	text = "We have enough chaos already!"
+
 
 
 
