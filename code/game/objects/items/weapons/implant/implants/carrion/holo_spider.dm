@@ -33,41 +33,12 @@
 	..()
 
 
-/obj/item/implant/carrion_spider/holographic/examine(mob/user)
+/obj/item/implant/carrion_spider/holographic/examine(mob/user, saved_w_class)
 	if(dummy_active && saved_item && saved_message)
 		to_chat(user, saved_message)
-	else if(dummy_active && saved_item && saved_w_class)
-		to_chat(world, "ISANITEM")
-		var/distance = -1
-		var/message
-		var/size
-		switch(saved_w_class)
-			if(ITEM_SIZE_TINY)
-				size = "tiny"
-			if(ITEM_SIZE_SMALL)
-				size = "small"
-				to_chat(world, "issmall")
-			if(ITEM_SIZE_NORMAL)
-				size = "normal-sized"
-			if(ITEM_SIZE_BULKY)
-				size = "bulky"
-			if(ITEM_SIZE_HUGE)
-				size = "huge"
-			if(ITEM_SIZE_GARGANTUAN)
-				size = "gargantuan"
-			if(ITEM_SIZE_COLOSSAL)
-				size = "colossal"
-			if(ITEM_SIZE_TITANIC)
-				size = "titanic"
-		message += "\nIt is a [size] item."
+	else
+		. = ..()
 
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if(H.stats.getPerk(PERK_MARKET_PROF))
-				message += SPAN_NOTICE("\nThis item cost: [get_item_cost()][CREDITS]")
-
-		return ..(user, distance, "", message)
-			. = ..()
 /obj/item/implant/carrion_spider/holographic/toggle_attack(mob/user)
 	if(ready_to_attack)
 		ready_to_attack = FALSE
