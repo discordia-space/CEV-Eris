@@ -5,12 +5,10 @@
 			recoil += G.one_hand_penalty // Then the one hand penalty will be added to the recoil.
 
 	if(G.braced)
-		if(G.braceable == 2)
-			recoil -= 2
-		else 
-			recoil -= 1
-
-	if(G.brace_penalty && !G.braced)
+		recoil--
+		if(G.braceable > 1)
+			recoil--
+	else if(G.brace_penalty)
 		recoil += G.brace_penalty
 
 	var/debug_recoil = min(0.3, G.fire_delay)
