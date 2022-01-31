@@ -137,7 +137,7 @@
 	UPGRADE_WORKSPEED = 0.15
 	)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_RECOIL = 0.8,
+		GUN_UPGRADE_RECOIL = 0.9,
 	)
 	I.gun_loc_tag = GUN_UNDERBARREL
 
