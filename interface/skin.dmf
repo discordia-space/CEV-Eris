@@ -1500,3 +1500,4 @@ window "text_editor"
 		border = line
 		saved-params = ""
 		multi-line = true
+
