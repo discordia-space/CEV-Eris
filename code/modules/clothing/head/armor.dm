@@ -518,7 +518,7 @@
 		melee = 50,
 		bullet = 50,
 		energy = 50,
-		bomb = 20,
+		bomb = 25,
 		bio = 0,
 		rad = 0
 	)
