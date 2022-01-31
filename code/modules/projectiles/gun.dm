@@ -554,7 +554,7 @@
 		user.facing_dir = null
 		to_chat(user, SPAN_NOTICE("You brace your weapon on \the [target]."))
 		braced = TRUE
-		while(user.loc == original_loc && (brace_direction == user.dir))
+		while(user.loc == original_loc && user.dir == brace_direction)
 			sleep(2)
 		to_chat(user, SPAN_NOTICE("You stop bracing your weapon."))
 		braced = FALSE
