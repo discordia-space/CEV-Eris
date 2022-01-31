@@ -562,7 +562,6 @@
 	else
 		if(!user.unstack)
 			to_chat(user, SPAN_NOTICE("You are already bracing your weapon!"))
-			return
 		else
 			to_chat(user, SPAN_WARNING("You can\'t properly place your weapon on \the [target] because of the foregrip!"))
 			return
