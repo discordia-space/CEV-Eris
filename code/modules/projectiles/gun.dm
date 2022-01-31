@@ -564,7 +564,6 @@
 			to_chat(user, SPAN_NOTICE("You are already bracing your weapon!"))
 		else
 			to_chat(user, SPAN_WARNING("You can\'t properly place your weapon on \the [target] because of the foregrip!"))
-			return
 
 /obj/item/gun/proc/toggle_scope(mob/living/user)
 	//looking through a scope limits your periphereal vision
