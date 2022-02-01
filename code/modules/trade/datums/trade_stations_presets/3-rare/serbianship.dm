@@ -33,9 +33,7 @@
 		"Guns II" = list(
 			/obj/item/gun/projectile/automatic/lmg/pk = custom_good_amount_range(list(1, 1)),
 			/obj/item/gun/projectile/shotgun/bojevic = custom_good_amount_range(list(1, 1)),
-			/obj/item/computer_hardware/hard_drive/portable/design/guns/sa_boltgun = good_data("Novakovic design disk", list(1, 3)),
-			/obj/item/computer_hardware/hard_drive/portable/design/guns/sa_ak = good_data("Krinkov design disk", list(1, 3)),
-			/obj/item/computer_hardware/hard_drive/portable/design/guns/sa_br = good_data("Kovacs design disk", list(1, 3))
+			/obj/item/storage/deferred/serb_rifle = custom_good_amount_range(list(1, 3)),
 		)
 	)
 	offer_types = list(
