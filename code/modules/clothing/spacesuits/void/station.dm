@@ -135,7 +135,7 @@
 		)
 	armor = list(
 		melee = 50,
-		bullet = 30,
+		bullet = 40,
 		energy = 30,
 		bomb = 25,
 		bio = 100,
@@ -150,7 +150,7 @@
 	icon_state = "miner_suit"
 	armor = list(
 		melee = 50,
-		bullet = 30,
+		bullet = 40,
 		energy = 30,
 		bomb = 25,
 		bio = 100,
@@ -218,7 +218,7 @@
 
 	armor = list(
 		melee = 35,
-		bullet = 40,
+		bullet = 50,
 		energy = 40,
 		bomb = 25,
 		bio = 100,
@@ -235,7 +235,7 @@
 	item_state = "ihvoidsuit"
 	armor = list(
 		melee = 35,
-		bullet = 40,
+		bullet = 50,
 		energy = 40,
 		bomb = 25,
 		bio = 100,
@@ -399,9 +399,9 @@
 	slowdown = 2
 
 	armor = list(
-		melee = 20,
-		bullet = 20,
-		energy = 20,
+		melee = 30,
+		bullet = 30,
+		energy = 30,
 		bomb = 25,
 		bio = 100,
 		rad = 0
@@ -416,9 +416,9 @@
 	item_state = "makeshift_void"
 	siemens_coefficient = 0.4
 	armor = list(
-		melee = 20,
-		bullet = 20,
-		energy = 20,
+		melee = 30,
+		bullet = 30,
+		energy = 30,
 		bomb = 25,
 		bio = 100,
 		rad = 0

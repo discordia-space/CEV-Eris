@@ -161,7 +161,7 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 40,
+		melee = 30,
 		bullet = 50,
 		energy = 30,
 		bomb = 30,
@@ -241,8 +241,8 @@
 	armor = list(
 		melee = 40,
 		bullet = 50,
-		energy = 30,
-		bomb = 30,
+		energy = 40,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
