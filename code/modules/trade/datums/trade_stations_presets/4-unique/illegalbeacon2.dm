@@ -42,9 +42,9 @@
 			/obj/item/rig_module/mounted,
 			/obj/item/rig_module/fabricator,
 			/obj/item/rig_module/fabricator/energy_net
-		)
+		),
 		"Software" = list(
-			/obj/item/computer_hardware/hard_drive/portable/advanced/shady = good_data("old data disk", (list(1, 1))
+			/obj/item/computer_hardware/hard_drive/portable/advanced/shady = good_data("old data disk", list(1, 1))
 		)
 	)
 	offer_types = list(
