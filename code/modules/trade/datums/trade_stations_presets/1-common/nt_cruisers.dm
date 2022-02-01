@@ -6,7 +6,7 @@
 	uid = "nt_basic"
 	start_discovered = TRUE
 	spawn_always = TRUE
-	markup = UNCOMMON_GOODS		// dept-specific stuff should be more expensive for guild
+	markup = COMMON_GOODS
 	base_income = 1600
 	wealth = 0
 	secret_inv_threshold = 2000
@@ -29,16 +29,24 @@
 			/obj/item/clothing/accessory/holster/waist,
 			/obj/item/clothing/accessory/holster/hip
 		),
-		"Energy Weapons" = list(
-			/obj/item/gun/energy/taser,
-			/obj/item/gun/energy/nt_svalinn,
-			/obj/item/gun/energy/laser = custom_good_amount_range(list(1, 5))
+		"Agro Supply" = list(
+			/obj/machinery/vending/hydroseeds,
+			/obj/structure/largecrate/animal/corgi,
+			/obj/structure/largecrate/animal/cow,
+			/obj/structure/largecrate/animal/goat,
+			/obj/structure/largecrate/animal/cat,
+			/obj/structure/largecrate/animal/chick,
 		),
-		"Ballistic Weapons" = list(
-			/obj/item/gun/projectile/mk58,
-			/obj/item/gun/projectile/mk58/wood,
-			/obj/item/gun/projectile/shotgun/pump/regulator,
-			/obj/item/gun/projectile/shotgun/pump/grenade
+		"Custodial Supply" = list(
+			/obj/item/reagent_containers/glass/bucket,
+			/obj/item/mop,
+			/obj/item/caution,
+			/obj/item/storage/bag/trash,
+			/obj/item/device/lightreplacer,
+			/obj/item/reagent_containers/spray/cleaner,
+			/obj/item/reagent_containers/glass/rag,
+			/obj/item/grenade/chem_grenade/cleaner,
+			/obj/structure/mopbucket
 		)
 	)
 	offer_types = list(
