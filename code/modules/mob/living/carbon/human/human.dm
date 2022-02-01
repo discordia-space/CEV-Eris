@@ -1438,7 +1438,7 @@ var/list/rank_prefix = list(\
 		return FALSE
 	if(lying)
 		return FALSE // No tripping while crawling
-	if(stats.getPerk(PERK_ASS_OF_CONCRETE)) //No tripping if your ass is heavy
+	if(stats.getPerk(PERK_SURE_STEP)) //No tripping if your step is sure
 		return FALSE
 	stop_pulling()
 	if (tripped_on)

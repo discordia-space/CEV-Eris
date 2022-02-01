@@ -96,7 +96,7 @@
 /datum/perk/oddity/triumph_of_the_will
 	name = "Triumph of the Will"
 	desc = "You know the blood will be spilt and you are ready for it. \
-	Your chances to incur a positive breakdown are increased."
+			Your chances to incur a positive breakdown are increased."
 	icon_state = "triumph" //https://game-icons.net
 
 /datum/perk/oddity/triumph_of_the_will/assign(mob/living/carbon/human/H)

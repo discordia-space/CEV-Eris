@@ -35,9 +35,6 @@
 //unique oddity perks
 #define PERK_BIG_SHOT /datum/perk/big_shot
 
-//negative perks
-#define PERK_BROKEN /datum/perk/negative/broken
-
 //job perks
 #define PERK_ARTIST /datum/perk/job/artist
 #define PERK_SURVIVOR /datum/perk/survivor
