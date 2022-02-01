@@ -69,6 +69,11 @@
 			/obj/item/storage/pouch/medium_generic,
 			/obj/item/storage/pouch/large_generic
 		),
+		"Neotheology Cells" = list(
+			/obj/item/cell/small/neotheology,
+			/obj/item/cell/medium/neotheology,
+			/obj/item/cell/large/neotheology
+		),
 		"Energy Weapons" = list(
 			/obj/item/gun/energy/ionrifle = custom_good_amount_range(list(1, 4)),
 			/obj/item/gun/energy/plasma = custom_good_amount_range(list(-3, 2))

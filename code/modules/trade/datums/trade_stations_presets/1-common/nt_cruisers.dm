@@ -29,11 +29,6 @@
 			/obj/item/clothing/accessory/holster/waist,
 			/obj/item/clothing/accessory/holster/hip
 		),
-		"Neotheology Cells" = list(
-			/obj/item/cell/small/neotheology,
-			/obj/item/cell/medium/neotheology,
-			/obj/item/cell/large/neotheology
-		),
 		"Energy Weapons" = list(
 			/obj/item/gun/energy/taser,
 			/obj/item/gun/energy/nt_svalinn,
@@ -45,13 +40,6 @@
 			/obj/item/gun/projectile/shotgun/pump/regulator,
 			/obj/item/gun/projectile/shotgun/pump/grenade
 		)
-	)
-	secret_inventory = list(
-		"Neotheology Cells II" = list(
-			/obj/item/cell/small/neotheology/plasma,
-			/obj/item/cell/medium/neotheology/plasma,
-			/obj/item/cell/large/neotheology/plasma
-		),
 	)
 	offer_types = list(
 		/obj/item/implant/core_implant/cruciform = offer_data("cruciform", 2500, 3),
