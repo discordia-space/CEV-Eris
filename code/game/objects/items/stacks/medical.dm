@@ -178,6 +178,10 @@
 							SPAN_NOTICE("You place a bandaid over \a [W.desc] on [M]'s [affecting.name].")
 						)
 					W.bandage()
+					if(user.stats.getPerk(PERK_MORALIST))
+						var/mob/living/carbon/human/J = user
+						if(J.sanity)
+							J.sanity.changeLevel(3)
 					// user's stat check that causing pain if they are amateurs
 					if(user && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
 						if(prob(affecting.get_damage() - user.stats.getStat(STAT_BIO)))
@@ -258,6 +262,10 @@
 				else
 					use(1)
 				affecting.salve()
+				if(user.stats.getPerk(PERK_MORALIST))
+					var/mob/living/carbon/human/J = user
+					if(J.sanity)
+						J.sanity.changeLevel(3)
 				// user's stat check that causing pain if they are amateurs
 				if(user && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
 					if(prob(affecting.get_damage() - user.stats.getStat(STAT_BIO)))
@@ -358,6 +366,10 @@
 				else
 					used++
 			affecting.update_damages()
+			if(user.stats.getPerk(PERK_MORALIST))
+				var/mob/living/carbon/human/J = user
+				if(J.sanity)
+					J.sanity.changeLevel(3)
 			// user's stat check that causing pain if they are amateurs
 			if(user && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
 				if(prob(affecting.get_damage() - user.stats.getStat(STAT_BIO)))
@@ -433,6 +445,10 @@
 					use(1)
 					update_icon()
 				affecting.salve()
+				if(user.stats.getPerk(PERK_MORALIST))
+					var/mob/living/carbon/human/J = user
+					if(J.sanity)
+						J.sanity.changeLevel(3)
 				// user's stat check that causing pain if they are amateurs
 				if(user && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
 					if(prob(affecting.get_damage() - user.stats.getStat(STAT_BIO)))

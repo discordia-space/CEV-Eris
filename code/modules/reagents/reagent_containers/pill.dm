@@ -48,7 +48,7 @@
 
 		reagents.trans_to(target, reagents.total_volume)
 		for(var/mob/O in viewers(2, user))
-			if(!user.stats.getPerk(PERK_FAST_FINGERS))
+			if(!user.stats.getPerk(PERK_PROFIT_MAKER))
 				O.show_message(SPAN_WARNING("[user] puts something in \the [target]."), 1)
 
 		qdel(src)

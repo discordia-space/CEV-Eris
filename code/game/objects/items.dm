@@ -168,7 +168,7 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.stats.getPerk(PERK_MARKET_PROF))
+		if(H.stats.getPerk(PERK_PROFIT_MAKER))
 			message += SPAN_NOTICE("\nThis item cost: [get_item_cost()][CREDITS]")
 
 	return ..(user, distance, "", message)

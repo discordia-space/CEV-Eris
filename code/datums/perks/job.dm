@@ -18,7 +18,7 @@
 	name = "Artist"
 	desc = "You have a lot of expertise in making works of art. You gain 150% insight from all sources but can only level \
 			up by creating works of art."
-	icon_state = "paintbrush" // https://game-icons.net/1x1/delapouite/paint-brush.html
+	icon_state = "artist" // https://game-icons.net/1x1/delapouite/paint-brush.html
 	var/old_max_insight = INFINITY
 	var/old_max_resting = INFINITY
 	var/old_insight_rest_gain_multiplier = 1
@@ -171,11 +171,11 @@
 /datum/perk/sanityboost
 	name = "True Faith"
 	desc = "When near an obelisk, you feel your mind at ease. Your sanity regeneration is boosted."
-	icon_state = "sanityboost" // https://game-icons.net/1x1/lorc/templar-eye.html
+	icon_state = "faith" // https://game-icons.net/1x1/lorc/templar-eye.html
 
 /datum/perk/active_sanityboost
 	name = "True Faith (Active)"
-	icon_state = "sanityboost" // https://game-icons.net/1x1/lorc/templar-eye.html
+	icon_state = "faith" // https://game-icons.net/1x1/lorc/templar-eye.html
 
 /datum/perk/active_sanityboost/assign(mob/living/carbon/human/H)
 	..()
@@ -191,16 +191,17 @@
 /datum/perk/inspiration
 	name = "Exotic Inspiration"
 	desc = "Boosts your Cognition and Mechanical stats any time you imbibe any alcohol."
-	icon_state = "drinking" // https://game-icons.net/1x1/delapouite/drinking.html
+	icon_state = "inspiration" // https://game-icons.net/1x1/delapouite/drinking.html
 
 /datum/perk/active_inspiration
 	name = "Exotic Inspiration (Active)"
+	desc = "COG and MEC stats increased."
 	icon_state = "inspiration_active" // https://game-icons.net/1x1/lorc/enlightenment.html
 
 /datum/perk/active_inspiration/assign(mob/living/carbon/human/H)
 	..()
 	if(holder)
-		holder.stats.addTempStat(STAT_COG, 5, INFINITY, "Exotic Inspiration")
+		holder.stats.addTempStat(STAT_COG, 10, INFINITY, "Exotic Inspiration")
 		holder.stats.addTempStat(STAT_MEC, 10, INFINITY, "Exotic Inspiration")
 
 /datum/perk/active_inspiration/remove()
@@ -212,7 +213,7 @@
 /datum/perk/sommelier
 	name = "Sommelier"
 	desc = "You know how to handle even strongest alcohol in the universe."
-	icon_state = "celebration" // https://game-icons.net/1x1/delapouite/glass-celebration.html
+	icon_state = "sommelier" // https://game-icons.net/1x1/delapouite/glass-celebration.html
 
 /datum/perk/neat
 	name = "Neat"
@@ -246,7 +247,7 @@
 /datum/perk/job/club
 	name = "Raising the bar"
 	desc = "You know how to mix drinks and change lives. People near you recover sanity."
-	icon_state = "inspiration"
+	icon_state = "bar"
 
 /datum/perk/job/club/assign(mob/living/carbon/human/H)
 	..()

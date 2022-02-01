@@ -68,7 +68,7 @@
 			SPAN_DANGER("Warning: user death event. Mobility control passed to integrated intelligence system.")
 		)
 	var/message = species.death_message
-	if(stats.getPerk(PERK_TERRIBLE_FATE))
+	if(stats.getPerk(PERK_MENACE_TO_SOCIETY))
 		message = "their inert body emits a strange sensation and a cold invades your body. Their screams before dying recount in your mind."
 	. = ..(gibbed,message)
 	if(!gibbed)

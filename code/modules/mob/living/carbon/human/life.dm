@@ -771,7 +771,7 @@
 			if(stats.getPerk(/datum/perk/inspiration))
 				stats.removePerk(/datum/perk/active_inspiration)
 			if(stats.getPerk(PERK_ALCOHOLIC))
-				stats.removePerk(PERK_ALCOHOLIC_ACTIVE)
+				stats.removePerk(/datum/perk/fate/alcoholic_active)
 
 		var/total_plasmaloss = 0
 		for(var/obj/item/I in src)
@@ -820,11 +820,12 @@
 			silent = 0
 			return 1
 		if(health <= HEALTH_THRESHOLD_DEAD) //No health = death
-			if(stats.getPerk(PERK_UNFINISHED_DELIVERY) && prob(33)) //Unless you have this perk
-				heal_organ_damage(20, 20)
+			if(stats.getPerk(PERK_UNFINISHED_DELIVERY)) //Unless you have this perk!
+				heal_organ_damage(50, 50)
 				adjustOxyLoss(-100)
-				adjustToxLoss(-20)
-				AdjustSleeping(rand(20,30))
+				adjustToxLoss(-50)
+				AdjustSleeping(rand(15, 20))
+				restore_blood()
 				updatehealth()
 				stats.removePerk(PERK_UNFINISHED_DELIVERY)
 			else

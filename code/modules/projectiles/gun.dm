@@ -390,7 +390,7 @@
 	//update timing
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	user.set_move_cooldown(move_delay)
-	if(!twohanded && user.stats.getPerk(PERK_GUNSLINGER))
+	if(!twohanded && user.stats.getPerk(PERK_GUNMASTER))
 		next_fire_time = world.time + fire_delay - fire_delay * 0.33
 	else
 		next_fire_time = world.time + fire_delay

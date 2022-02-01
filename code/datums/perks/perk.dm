@@ -11,7 +11,7 @@
 	var/name = "Perk"
 	var/desc = ""
 	var/icon = 'icons/effects/perks.dmi'
-	var/icon_state = ""
+	var/icon_state = "perk" // https://game-icons.net
 	var/mob/living/carbon/human/holder
 	var/gain_text
 	var/lose_text

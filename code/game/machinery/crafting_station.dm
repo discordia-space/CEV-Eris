@@ -191,7 +191,7 @@
 
 	var/dice_roll = (rand(0,20) * (1 + cog_stat / mat_efficiency))
 
-	if(user.stats.getPerk(/datum/perk/oddity/gunsmith))
+	if(user.stats.getPerk(PERK_GUNMASTER))
 		dice_roll = dice_roll * 2
 	switch(produce_type)//God forgive me
 		if("pistol")

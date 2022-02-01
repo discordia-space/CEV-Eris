@@ -75,7 +75,7 @@
 				ear_safety += 1
 			if(istype(M:head, /obj/item/clothing/head/armor/helmet))
 				ear_safety += 1
-			if(M.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
+			if(M.stats.getPerk(PERK_RAT))
 				stat_def *= 2
 
 //Flashing everyone

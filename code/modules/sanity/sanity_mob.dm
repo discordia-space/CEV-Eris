@@ -132,8 +132,8 @@
 
 		if(owner.stats.getPerk(PERK_MORALIST) && ishuman(A)) //Moralists react negatively to people in distress
 			var/mob/living/carbon/human/H = A
-			if(H.sanity.level < 30 || H.health < 50)
-				. += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
+			if(H.sanity.level < 45)
+				. += SANITY_DAMAGE_VIEW(0.2, vig, get_dist(owner, A))
 
 
 /datum/sanity/proc/handle_area()
@@ -150,13 +150,12 @@
 			breakdowns -= B
 
 /datum/sanity/proc/handle_Insight()
-	var/moralist_factor = 1
+	var/moralist_factor = 0
 	var/style_factor = owner.get_style_factor()
 	if(owner.stats.getPerk(PERK_MORALIST))
 		for(var/mob/living/carbon/human/H in view(owner))
-			if(H.sanity.level > 60)
-				moralist_factor += 0.02
-	give_insight(INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier)
+			moralist_factor += 0.5
+	give_insight((INSIGHT_GAIN(level_change) + moralist_factor) * insight_passive_gain_multiplier * style_factor * life_tick_modifier)
 	while(resting < max_resting && insight >= 100)
 		give_resting(1)
 		if(owner.stats.getPerk(PERK_ARTIST))
@@ -297,7 +296,7 @@
 					penalty *= -1
 				if(75 to 100)
 					penalty *= 0
-		if(M.stats.getPerk(PERK_TERRIBLE_FATE) && prob(100-owner.stats.getStat(STAT_VIG)))
+		if(M.stats.getPerk(PERK_MENACE_TO_SOCIETY) && prob(100-owner.stats.getStat(STAT_VIG)))
 			setLevel(0)
 		else
 			changeLevel(penalty*death_view_multiplier)
@@ -350,6 +349,9 @@
 	changeLevel(SANITY_GAIN_SAY)
 
 /datum/sanity/proc/changeLevel(amount)
+	for(var/mob/living/carbon/human/H in view(src))
+		if(H.stats.getPerk(PERK_MORALIST) && amount > 0)
+			H.sanity.give_insight(1)
 	if(sanity_invulnerability && amount < 0)
 		return
 	updateLevel(level + amount)

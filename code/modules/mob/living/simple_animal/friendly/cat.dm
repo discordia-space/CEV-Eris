@@ -299,7 +299,7 @@ var/cat_number = 0
 
 /mob/living/simple_animal/cat/runtime/New(loc)
 	..(loc)
-	stats.addPerk(PERK_TERRIBLE_FATE)
+	stats.addPerk(PERK_MENACE_TO_SOCIETY)
 	cat_number += 1
 	playsound(loc, 'sound/effects/teleport.ogg', 50, 1)
 	spawn(cat_life_duration)

@@ -246,6 +246,9 @@
 	if(assailant_stat > 0)
 		// Positive ROB decreases cooldown, but not linearely
 		cooldown_increase = -(assailant_stat ** 0.8)
+		//Absolute grab decreases cooldown even further
+		if(assailant.stats.getPerk(PERK_ABSOLUTE_GRAB))
+			cooldown_increase = cooldown_increase ** 0.5
 	else
 		// Negative ROB is a flat cooldown increase
 		cooldown_increase = assailant_stat

@@ -12,7 +12,7 @@
 	switch(slot_to_strip)
 		// Handle things that are part of this interface but not removing/replacing a given item.
 		if("pockets")
-			if(!user.stats.getPerk(PERK_FAST_FINGERS))
+			if(!user.stats.getPerk(PERK_PROFIT_MAKER))
 				visible_message(SPAN_DANGER("\The [user] is trying to empty \the [src]'s pockets!"))
 			else
 				to_chat(user, SPAN_NOTICE("You silently try to empty \the [src]'s pockets."))	
@@ -65,12 +65,12 @@
 		stripping = TRUE
 
 	if(stripping)
-		if((target_slot == r_hand || target_slot == l_hand) && user.stats.getPerk(PERK_FAST_FINGERS))
+		if((target_slot == r_hand || target_slot == l_hand) && user.stats.getPerk(PERK_PROFIT_MAKER))
 			to_chat(user, SPAN_NOTICE("You silently try to remove \the [src]'s [target_slot.name]."))
 		else
 			visible_message(SPAN_DANGER("\The [user] is trying to remove \the [src]'s [target_slot.name]!"))
 	else
-		if((slot_to_strip == r_hand || slot_to_strip == l_hand) && user.stats.getPerk(PERK_FAST_FINGERS))
+		if((slot_to_strip == r_hand || slot_to_strip == l_hand) && user.stats.getPerk(PERK_PROFIT_MAKER))
 			to_chat(user, SPAN_NOTICE("You silently try to put \a [held] on \the [src]."))
 		else
 			visible_message(SPAN_DANGER("\The [user] is trying to put \a [held] on \the [src]!"))
@@ -100,7 +100,7 @@
 		unEquip(r_store)
 	if(l_store)
 		unEquip(l_store)
-	if(!user.stats.getPerk(PERK_FAST_FINGERS))
+	if(!user.stats.getPerk(PERK_PROFIT_MAKER))
 		visible_message(SPAN_DANGER("\The [user] empties \the [src]'s pockets!"))
 	else
 		to_chat(user, SPAN_NOTICE("You empty \the [src]'s pockets."))

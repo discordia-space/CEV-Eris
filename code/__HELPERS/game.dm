@@ -43,7 +43,7 @@
 			if(!ishuman(ear))
 				continue
 			var/mob/living/carbon/human/H = ear
-			if(!H.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
+			if(!H.stats.getPerk(PERK_RAT))
 				continue
 			heard += ear
 	source.luminosity = lum

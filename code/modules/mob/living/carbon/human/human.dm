@@ -1438,6 +1438,8 @@ var/list/rank_prefix = list(\
 		return FALSE
 	if(lying)
 		return FALSE // No tripping while crawling
+	if(stats.getPerk(PERK_ASS_OF_CONCRETE)) //No tripping if your ass is heavy
+		return FALSE
 	stop_pulling()
 	if (tripped_on)
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)

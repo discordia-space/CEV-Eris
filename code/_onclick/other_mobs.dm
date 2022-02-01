@@ -66,12 +66,6 @@
 				shadow.visible_message(SPAN_WARNING("[shadow] gives up on trying to climb onto \the [A]!"))
 			return
 
-	//PERK_ABSOLUTE_GRAB
-	
-	if(get_dist_euclidian(get_turf(A), get_turf(src)) < 3 && ishuman(A))
-		if(stats.getPerk(PERK_ABSOLUTE_GRAB) && a_intent == I_GRAB)
-			absolute_grab(A) // moved into a proc belowaa
-			return
 	if(!gloves && !mutations.len) return
 	var/obj/item/clothing/gloves/G = gloves
 	if((LASER in mutations) && a_intent == I_HURT)

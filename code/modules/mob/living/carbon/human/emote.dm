@@ -222,7 +222,7 @@
 			cloud_emote = "cloud-gasp"
 
 		if ("deathgasp")
-			if(stats.getPerk(PERK_TERRIBLE_FATE))
+			if(stats.getPerk(PERK_MENACE_TO_SOCIETY))
 				message = "their inert body emits a strange sensation and a cold invades your body. Their screams before dying recount in your mind."
 			else
 				message = "[species.death_message]"
