@@ -5,7 +5,7 @@
 	)
 	icon_states = "serb_frigate"
 	uid = "serbian"
-	start_discovered = TRUE//FALSE
+	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = RARE_GOODS
 	offer_limit = 20
