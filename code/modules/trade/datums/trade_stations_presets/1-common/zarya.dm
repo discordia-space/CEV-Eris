@@ -1,6 +1,6 @@
 /datum/trade_station/station_zarya
 	name_pool = list(
-		"FTB 'Zarya'" = "Free Trade Beacon 'Zarya':\n\"Privet, this is the trade beacon 'Zarya'. We sell electronics, construction, and anything related to engineering! If you are looking for a more general shop, you should contact our main station: FTS 'Solnishko'"
+		"FTB 'Zarya'" = "Free Trade Beacon 'Zarya': \"Privet, this is the trade beacon 'Zarya'. We sell electronics, construction, and anything related to engineering! If you are looking for a more general shop, you should contact our main station: FTS 'Solnishko'"
 	)
 	uid = "techno_basic"
 	start_discovered = TRUE
@@ -69,5 +69,5 @@
 		/obj/item/tool_upgrade = offer_data("tool upgrade", 200, 10),									// base price: 200
 		/obj/item/oddity/common/blueprint = offer_data("strange blueprint", 800, 1),
 		/obj/item/oddity/common/old_radio = offer_data("old radio", 800, 1),
-		/obj/item/organ/external/robotic/serbian = offer_data("serbian external prosthetic", 600, 8),	// base price: 600; roundstart item, but you'd be giving up an arm and a leg for cash
+		/obj/item/organ/external/robotic/serbian = offer_data("serbian external prosthetic", 600, 8)	// base price: 600; roundstart item, but you'd be giving up an arm and a leg for cash
 	)

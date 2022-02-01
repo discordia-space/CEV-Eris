@@ -1,6 +1,6 @@
 /datum/trade_station/fs_experimental_factory
 	name_pool = list(
-		"FSTB 'Suoh'" = "Frozen Star Trade Beacon 'Suoh'. They're sending a message. \"Hello there! We are looking for beta testers of our experimental weapons and upgrades. Sign up now!\""
+		"FSTB 'Suoh'" = "Frozen Star Trade Beacon 'Suoh': \"Hello there! We are looking for beta testers of our experimental weapons and upgrades. Sign up now!\""
 	)
 	uid = "fs_experimental"
 	start_discovered = FALSE
@@ -30,6 +30,6 @@
 			/obj/item/ammo_magazine/ammobox/lrifle_small/hv = custom_good_amount_range(list(-3, 2)),
 			/obj/item/ammo_magazine/ammobox/pistol/hv = custom_good_amount_range(list(-1, 2)),
 			/obj/item/ammo_magazine/ammobox/magnum/hv = custom_good_amount_range(list(-1, 2)),
-			/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells
-		),
+			/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells = custom_good_name("ammunition box (.50 incendiary)")
+		)
 	)

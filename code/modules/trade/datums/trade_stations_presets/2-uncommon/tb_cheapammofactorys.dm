@@ -1,7 +1,7 @@
 /datum/trade_station/tb_cheapammofactory
 	name_pool = list(
-		"ATB 'Zeus'" = "Ammunition Trade Beacon 'Zeus'\nCheap ammunition! Almost free! If we don't have it, that means it doesn't exists or it is illegal enough!",
-		"AFTB 'Hispa'" = "Ammunition Factory Trade Beacon 'Hispa'\nAll ammunition in existence is here! Buy all calibers, all types! We don't sell anything illegal and everything comes from us! Cheap as breathing!",
+		"ATB 'Zeus'" = "Ammunition Trade Beacon 'Zeus': \"Cheap ammunition! Almost free! If we don't have it, that means it doesn't exists or it isn't legal enough!\"",
+		"AFTB 'Hispa'" = "Ammunition Factory Trade Beacon 'Hispa': \"All ammunition in existence is here! Buy all calibers, all types! Cheap as breathing!\"",
 	)
 	uid = "fs_ammo"
 	start_discovered = FALSE
@@ -60,7 +60,7 @@
 
 			/obj/item/ammo_magazine/ammobox/clrifle,
 			/obj/item/ammo_magazine/ammobox/clrifle/rubber = custom_good_name("ammunition box (.25 Caseless Rifle rubber)"),
-			/obj/item/ammo_magazine/ammobox/clrifle_small,	// object def needs name and icon
+			/obj/item/ammo_magazine/ammobox/clrifle_small,
 			/obj/item/ammo_magazine/ammobox/clrifle_small/rubber = custom_good_name("ammunition packet (.25 Caseless Rifle rubber)")
 		),
 		".30 Caliber" = list(
@@ -83,5 +83,5 @@
 		),
 	)
 	offer_types = list(
-		/obj/item/gun_upgrade/ = offer_data("gun mod", 100, 10),
+		/obj/item/gun_upgrade = offer_data("gun mod", 100, 10)
 	)

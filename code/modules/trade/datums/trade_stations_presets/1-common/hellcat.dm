@@ -63,17 +63,17 @@
 			/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg,
 			/obj/item/clothing/suit/armor/laserproof/full,
 			/obj/item/clothing/head/armor/laserproof
-		),
+		)
 	)
 	secret_inventory = list(
 		"Basic Gun Mods" = list(
 			/obj/item/gun_upgrade/barrel/forged,
 			/obj/item/gun_upgrade/mechanism/gravcharger,
 			/obj/item/tool_upgrade/productivity/ergonomic_grip,
-			/obj/item/tool_upgrade/refinement/laserguide,
+			/obj/item/tool_upgrade/refinement/laserguide
 		)
 	)
 	offer_types = list(
 		/obj/item/part/gun = offer_data("gun part", 100, 10),					// base price: 100, guns can be bought and broken down into 4 parts
-		/obj/item/part/armor = offer_data("armor part", 500, 10),				// base price: 300
+		/obj/item/part/armor = offer_data("armor part", 500, 10)				// base price: 300
 	)

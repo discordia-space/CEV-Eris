@@ -1,6 +1,6 @@
 /datum/trade_station/nt_uncommon
 	name_pool = list(
-		"NTV 'Hope'" = "They are sending message, \"Reliable, blessed and sanctified goods for the correct price.\""
+		"NTV 'Hope'" = "NeoTheology Vessel 'Hope': \"Reliable, blessed and sanctified goods for the correct price.\""
 	)
 	icon_states = "nt_cruiser"
 	uid = "nt_uncommon"
@@ -62,7 +62,7 @@
 			/obj/item/seeds/mtearseed = custom_good_name("Messa's tear seeds"),
 			/obj/item/seeds/nettleseed = custom_good_name("nettle seeds"),
 			/obj/item/seeds/reishimycelium = custom_good_name("reishi spores"),
-			/obj/item/seeds/shandseed = custom_good_name("S'randar's hand seeds"),
+			/obj/item/seeds/shandseed = custom_good_name("S'randar's hand seeds")
 		),
 		"Pouches" = list(
 			/obj/item/storage/pouch/small_generic,
@@ -71,7 +71,7 @@
 		),
 		"Energy Weapons" = list(
 			/obj/item/gun/energy/ionrifle = custom_good_amount_range(list(1, 4)),
-			/obj/item/gun/energy/plasma = custom_good_amount_range(list(-3, 2)),
+			/obj/item/gun/energy/plasma = custom_good_amount_range(list(-3, 2))
 		)
 	)
 	offer_types = list(

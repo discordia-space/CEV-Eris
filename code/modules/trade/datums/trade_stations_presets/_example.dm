@@ -1,7 +1,7 @@
 /datum/trade_station/example
-	name_pool = list(
+	name_pool = list(				// Names in the pool are selected randomly on initialization
 		"Name" = "Description",
-		"T3-ST" = "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+		"T3-ST" = "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 	)
 	icon_states = "htu_station"		// Overmap icon
 	forced_overmap_zone = list()	// For forcing the station into a specific zone. Format: list(list(minx, maxx), list(miny, maxy))
@@ -14,15 +14,15 @@
 	markdown = 0.6					// Multiplier for the price of goods bought by the station (does not affect special offers)
 	base_income = 1600				// Stations can replenish some stock without player interaction. Adds to value so stations will unlock hidden inventory after some time.
 	wealth = 5000					// The abstract value of the goods sold to the station via offers + base income. Represents the station's ability to produce or purchase goods.
-	total_value_received = 0		// For keeping track of how much wealth a station has handled. Triggers events when certain thresholds are reached. Should always start at 0.
-	secret_inv_threshold = 2000	// Total value required to unlock secret inventory
-	recommendation_threshold = 4000
-	stations_recommended = list("station_uid")
-	recommendations_needed = 1
+	favor = 0						// For keeping track of how much favor we have with a given station. Triggers events when certain thresholds are reached. Should always start at 0.
+	secret_inv_threshold = 2000		// Favor required to unlock secret inventory
+	recommendation_threshold = 4000				// Favor required to unlock next station(s) in the tree
+	stations_recommended = list("station_uid")	// List of stations unlocked when the recommendation threshold is reached
+	recommendations_needed = 1					// How many stations need to recommend this one before unlocking
 
 	// Types of items sold by the station
 	// Notes: Duplicate items in the same category will cause runtimes
-	//		  Items without a price cannot be bought or sold
+	//		  Items without a price_tag variable are priced at 100 before markup/markdown
 	//		  /obj/... is the only type supported
 	assortiment = list(
 		"Category Name"  = list(
@@ -38,14 +38,14 @@
 	// Hidden types of items sold by the station. Unlocked when the threshold is reached.
 	// This follows the same rules as assortiments and gets appended to the assortiment list when the secret inv threshold is reached
 	secret_inventory = list(
-		"Category name II" = list(
+		"Category Name II" = list(
 			/obj/item/organ/internal/kidney = good_data("kidney", list(1,3))
 		)
 	)
 
 	// Types of items bought buy the station via special offers.
 	/*
-	At the time of writing (10 Jan 2021), offers must come with the offer_data(name, price, max amount) packet as shown below.
+	At the time of writing (31 Jan 2022), offers must come with the offer_data(name, price, max amount) packet as shown below.
 
 	/obj/... and /datum/reagent/... are the only types supported.
 	

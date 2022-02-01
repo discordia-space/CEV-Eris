@@ -1,6 +1,6 @@
 /datum/trade_station/McRonalds
 	name_pool = list(
-		"CTB 'Dionis'" = "Corporate Trade Beacon of food chain 'McRonalds'. You hope they still have Happy Meals with a toy."
+		"McTB 'Dionis'" = "'McRonalds' Trade Beacon 'Dionis'. You hope they still have Happy Meals with a toy."
 	)
 	uid = "mcronalds"
 	start_discovered = FALSE
@@ -47,5 +47,5 @@
 	)
 	offer_types = list(
 		/obj/item/reagent_containers/food/snacks/meat/roachmeat = offer_data("roach meat", 300, 0),
-		/obj/item/reagent_containers/food/snacks/meat/spider = offer_data("spider meat", 300, 0),
+		/obj/item/reagent_containers/food/snacks/meat/spider = offer_data("spider meat", 300, 0)
 	)

@@ -1,9 +1,9 @@
 /datum/trade_station/illegaltrader2
 	name_pool = list(
-		"NSTB 'Arau'" = "Null-Space Trade Beacon 'Arau'. The Trade Beacon is sending an automatized message. \"Hey, Buddie. Interested in our legal goods?"
+		"NSTB 'Introversion'" = "Null-Space Trade Beacon 'Introversion'. The Trade Beacon is sending an automated message. \"Uplink established. Welcome, agent.\""
 	)
 	uid = "illegal2"
-	start_discovered = TRUE//FALSE
+	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = UNIQUE_GOODS
 	offer_limit = 20
@@ -42,6 +42,9 @@
 			/obj/item/rig_module/mounted,
 			/obj/item/rig_module/fabricator,
 			/obj/item/rig_module/fabricator/energy_net
+		)
+		"Software" = list(
+			/obj/item/computer_hardware/hard_drive/portable/advanced/shady = good_data("old data disk", (list(1, 1))
 		)
 	)
 	offer_types = list(

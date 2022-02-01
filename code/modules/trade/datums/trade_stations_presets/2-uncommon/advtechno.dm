@@ -1,6 +1,6 @@
 /datum/trade_station/nauka
 	name_pool = list(
-		"FTB 'Nauka'" = "Free Trade Beacon 'Nauka':\n\"Privet, this is the trade beacon 'Nauka'.\""
+		"FTB 'Nauka'" = "Free Trade Beacon 'Nauka': \"Privet, this is the trade beacon 'Nauka'.\""
 	)
 	uid = "techno_adv"
 	start_discovered = FALSE

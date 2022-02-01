@@ -1,6 +1,6 @@
 /datum/trade_station/rigvider
 	name_pool = list(
-		"HTB 'Boris'" = "Hardsuit Trade Beacon 'Boris'. They're sending a message. \"Hello there, we are hardsuit salvagers. We will be around the system for some time and we have leftover stock. We can sell some off if you want them."
+		"HTB 'Boris'" = "Hardsuit Trade Beacon 'Boris': \"Hello there, we are hardsuit salvagers. We will be around the system for some time and we have leftover stock. We can sell some off if you want them."
 	)
 	uid = "rigs"
 	start_discovered = FALSE
@@ -16,7 +16,7 @@
 	assortiment = list(
 		"RIGs II" =  list(
 			/obj/item/rig/light = custom_good_amount_range(list(1, 5)),
-			/obj/item/rig/combat = custom_good_amount_range(list(1, 5)),
+			/obj/item/rig/combat = custom_good_amount_range(list(1, 5))
 		),
 		"RIG Specialized Modules II" = list(
 			/obj/item/rig_module/grenade_launcher,

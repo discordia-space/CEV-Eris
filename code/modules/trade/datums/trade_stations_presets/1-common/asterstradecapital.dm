@@ -1,6 +1,6 @@
 /datum/trade_station/asterstradecapital
 	name_pool = list(
-		"FTS 'Solnishko'" = "Free Trade Station 'Solnishko':\n\"Zdravstvuite, this is the trade station 'Solaris'. We have the best products in Hanza space! You couldn't find better prices!.\"",
+		"FTS 'Solnishko'" = "Free Trade Station 'Solnishko': \"Zdravstvuite, this is the trade station 'Solaris'. We have the best products in Hanza space! You couldn't find better prices!.\"",
 	)
 	forced_overmap_zone = list(
 		list(24, 26),
@@ -63,7 +63,6 @@
 			/obj/item/toy/bosunwhistle,
 			/obj/item/toy/figure/vagabond,
 			/obj/item/toy/figure/roach
-//			/obj/item/ammo_casing/cap
 		),
 		"Frozen Star Accessories & Ammunition" = list(
 			/obj/item/clothing/accessory/holster,

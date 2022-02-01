@@ -1,6 +1,6 @@
 /datum/trade_station/illegaltrader
 	name_pool = list(
-		"NSTB 'Arau'" = "Null-Space Trade Beacon 'Arau'. The Trade Beacon is sending an automatized message. \"Hey, Buddie. Interested in our legal goods?"
+		"NSTB 'Arau'" = "Null-Space Trade Beacon 'Arau'. The Trade Beacon is sending an automated message: \"Hey, Buddie. Interested in our 'legal' goods?\""
 	)
 	uid = "illegal1"
 	start_discovered = FALSE
@@ -28,24 +28,23 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = custom_good_amount_range(list(5, 10)),
 			/obj/item/reagent_containers/hypospray/autoinjector/drugs = custom_good_amount_range(list(5, 10)),
 			/obj/item/reagent_containers/hypospray/autoinjector/quickhealbrute = custom_good_amount_range(list(5, 10)),
-			/obj/item/reagent_containers/hypospray/autoinjector/quickhealburn = custom_good_amount_range(list(5, 10)),
-		),
+			/obj/item/reagent_containers/hypospray/autoinjector/quickhealburn = custom_good_amount_range(list(5, 10))
+		)
 	)
 	secret_inventory = list(
 		"Syndicate Gear II" = list(
 			/obj/item/gun/energy/crossbow = custom_good_amount_range(list(1, 1)),
 			/obj/item/clothing/suit/space/syndicate/uplink = custom_good_amount_range(list(1, 1)),
 			/obj/item/clothing/head/space/syndicate/uplink = custom_good_amount_range(list(1, 1)),
-			/obj/item/device/pda/syndicate = custom_good_amount_range(list(1, 1)),
-			/obj/item/clothing/glasses/powered/night = custom_good_amount_range(list(1, 1)),
+			/obj/item/clothing/glasses/powered/night = custom_good_amount_range(list(1, 1))
 		),
 		"Syndicate Gun Mods" = list(
 			/obj/item/gun_upgrade/barrel/gauss,
 			/obj/item/gun_upgrade/mechanism/glass_widow,
-			/obj/item/gun_upgrade/scope/killer,
+			/obj/item/gun_upgrade/scope/killer
 		)
 	)
 	offer_types = list(
 		/obj/item/organ/internal/kidney = offer_data("kidney", 800, 8),					// base price: 400
-		/obj/item/organ/internal/liver = offer_data("liver", 1800, 8),					// base price: 900
+		/obj/item/organ/internal/liver = offer_data("liver", 1800, 8)					// base price: 900
 	)

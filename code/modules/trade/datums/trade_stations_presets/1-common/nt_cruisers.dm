@@ -1,6 +1,6 @@
 /datum/trade_station/nt_cruisers
 	name_pool = list(
-		"NTV 'Faith'" = "They are sending message, \"The most holy purveyors of ecclesiarchic goods!\"",
+		"NTV 'Faith'" = "NeoTheology Vessel 'Faith': \"The most holy purveyors of ecclesiarchic goods!\"",
 	)
 	icon_states = "nt_cruiser"
 	uid = "nt_basic"
@@ -37,13 +37,20 @@
 		"Energy Weapons" = list(
 			/obj/item/gun/energy/taser,
 			/obj/item/gun/energy/nt_svalinn,
-			/obj/item/gun/energy/laser = custom_good_amount_range(list(1, 5)),
+			/obj/item/gun/energy/laser = custom_good_amount_range(list(1, 5))
 		),
 		"Ballistic Weapons" = list(
 			/obj/item/gun/projectile/mk58,
 			/obj/item/gun/projectile/mk58/wood,
 			/obj/item/gun/projectile/shotgun/pump/regulator,
 			/obj/item/gun/projectile/shotgun/pump/grenade
+		)
+	)
+	secret_inventory = list(
+		"Neotheology Cells II" = list(
+			/obj/item/cell/small/neotheology/plasma,
+			/obj/item/cell/medium/neotheology/plasma,
+			/obj/item/cell/large/neotheology/plasma
 		),
 	)
 	offer_types = list(

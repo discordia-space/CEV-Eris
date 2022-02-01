@@ -1,6 +1,6 @@
 /datum/trade_station/suit_up
 	name_pool = list(
-		"ATB 'Suit Up!'" = "Aster's Trade Beacon 'Suit Up!':\n\"Suits, voidsuits and more for you, traveler!\""
+		"ATB 'Suit Up!'" = "Aster's Trade Beacon 'Suit Up!': \"Suits, voidsuits and more for you, traveler!\""
 	)
 	uid = "suit_up"
 	start_discovered = TRUE
@@ -178,5 +178,5 @@
 		/obj/item/rig/hazard = offer_data("hazard hardsuit control module", 700, 2),		// base price: 682 (incl. components)
 		/obj/item/rig/industrial = offer_data("industrial suit control module", 950, 2),	// base price: 882 (incl. components)
 		/obj/item/rig/hazmat = offer_data("AMI control module", 950, 2),					// base price: 882 (incl. components)
-		/obj/item/rig/combat = offer_data("combat hardsuit control module", 1100, 2),		// base price: 1032 (incl. components)
+		/obj/item/rig/combat = offer_data("combat hardsuit control module", 1100, 2)		// base price: 1032 (incl. components)
 	)

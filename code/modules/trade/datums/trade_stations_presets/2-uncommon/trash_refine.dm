@@ -1,6 +1,6 @@
 /datum/trade_station/lancer
 	name_pool = list(
-		"IRS 'Lancer'" = "IRS Trash Railgun 'Lancer'. They're sending a message. \"Hoho, you want some Trash?\""
+		"ITR 'Lancer'" = "IRS Trash Railgun 'Lancer': \"Hoho, you want some Trash?\""
 	)
 	uid = "trash"
 	start_discovered = FALSE

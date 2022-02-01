@@ -1,6 +1,6 @@
 /datum/trade_station/boozefood
 	name_pool = list(
-		"ATB 'Vermouth'" = "Aster's Trade Beacon 'Vermouth':\nBest Drinks! Best Beverages! Ingredients for your cooks! Anything that is needed for your private bars and more!"
+		"ATB 'Vermouth'" = "Aster's Trade Beacon 'Vermouth': \"Best Drinks! Best Beverages! Ingredients for your cooks! Anything that is needed for your private bars and more!\""
 	)
 	uid = "commissary"
 	start_discovered = TRUE
@@ -68,5 +68,5 @@
 		/obj/item/reagent_containers/food/snacks/kampferburger = offer_data("kampfer burger", 400, 3),
 		/obj/item/reagent_containers/food/snacks/panzerburger = offer_data("panzer burger", 500, 2),
 		/obj/item/reagent_containers/food/snacks/jagerburger = offer_data("jager burger", 500, 2),
-		/obj/item/reagent_containers/food/snacks/seucheburger = offer_data("seuche burger", 500, 2),
+		/obj/item/reagent_containers/food/snacks/seucheburger = offer_data("seuche burger", 500, 2)
 	)

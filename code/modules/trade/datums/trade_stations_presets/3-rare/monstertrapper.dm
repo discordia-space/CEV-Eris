@@ -1,7 +1,7 @@
 // roach toxin bottles defined in module/reagents/reagent_containters/glass/bottle.dm
 /datum/trade_station/trapper
 	name_pool = list(
-		"EXT 'Armitage'" = "Exterminator 'Armitage':\n\"Greetings, Eris. We're in a bit of a rough spot at the moment. Got any traps to spare?\".",
+		"EXT 'Armitage'" = "Exterminator 'Armitage': \"Greetings, Eris. We're in a bit of a rough spot at the moment. Got any traps to spare?\"",
 	)
 	uid = "trapper"
 	start_discovered = FALSE
@@ -22,7 +22,7 @@
 			/obj/item/reagent_containers/food/snacks/roachcube/jager = custom_good_amount_range(list(1, 5)),
 			/obj/item/reagent_containers/food/snacks/roachcube/seuche = custom_good_amount_range(list(1, 5)),
 			/obj/item/reagent_containers/food/snacks/roachcube/panzer = custom_good_amount_range(list(1, 5)),
-			/obj/item/reagent_containers/food/snacks/roachcube/gestrahlte = custom_good_amount_range(list(1, 5)),
+			/obj/item/reagent_containers/food/snacks/roachcube/gestrahlte = custom_good_amount_range(list(1, 5))
 		),
 		"Roach Toxins" = list(
 			/obj/item/reagent_containers/glass/bottle/trade/blattedin = good_data("blattedin bottle", list(-1, 2)),
@@ -37,7 +37,7 @@
 		),
 		"Carp Toxins" = list(
 			/obj/item/reagent_containers/glass/bottle/trade/carpotoxin = good_data("carpotoxin bottle", list(-1, 2))
-		),
+		)
 	)
 	secret_inventory = list(
 		"High-End Roach Product" = list(

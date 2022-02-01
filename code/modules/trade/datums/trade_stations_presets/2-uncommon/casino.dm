@@ -1,6 +1,6 @@
 /datum/trade_station/gamba
 	name_pool = list(
-		"FTB 'Solntsey'" = "Free Trade Beacon 'Solntsey':\n\"TBD\"",
+		"FTB 'Solntsey'" = "Free Trade Beacon 'Solntsey': \"Try your luck with our grab bag specials!\"",
 	)
 	uid = "casino"
 	start_discovered = FALSE
@@ -17,11 +17,11 @@
 			/obj/item/storage/deferred/disks = custom_good_amount_range(list(2, 4)),
 			/obj/item/storage/deferred/gun_parts = custom_good_amount_range(list(2, 4)),
 			/obj/item/storage/deferred/powercells = custom_good_amount_range(list(2, 4)),
-			/obj/item/storage/deferred/electronics = custom_good_amount_range(list(2, 4)),
+			/obj/item/storage/deferred/electronics = custom_good_amount_range(list(2, 4))
 		)
 	)
 	secret_inventory = list(
-		// TODO: More stuff. Maybe I'll make my own spawners for this.
+		// TODO: More stuff.
 	)
 	offer_types = list(
 		/obj/item/coin = offer_data("metal coin", 2000, 1),						// From what I can tell, these are pretty rare

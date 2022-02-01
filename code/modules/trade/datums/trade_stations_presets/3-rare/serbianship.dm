@@ -1,7 +1,7 @@
 /datum/trade_station/serbfrigate
 	name_pool = list(
-		"STF 'Kovac'" = "They are sending message, \"Come with money for very good stuff! You can pay with your life, even!\"",
-		"SV 'Zoric'" = "They are sending message, \"For the correct price, we can sell you something... even jobs!\""
+		"STF 'Kovac'" = "Serbain Trade Freighter 'Kovac': \"Come with money for very good stuff! You can pay with your life, even!\"",
+		"SV 'Zoric'" = "Serbian Vessel 'Zoric': \"For the correct price, we can sell you something... even jobs!\""
 	)
 	icon_states = "serb_frigate"
 	uid = "serbian"
@@ -33,7 +33,7 @@
 		"Guns II" = list(
 			/obj/item/gun/projectile/automatic/lmg/pk = custom_good_amount_range(list(1, 1)),
 			/obj/item/gun/projectile/shotgun/bojevic = custom_good_amount_range(list(1, 1)),
-			/obj/item/storage/deferred/serb_rifle = custom_good_amount_range(list(1, 3)),
+			/obj/item/storage/deferred/serb_rifle = custom_good_amount_range(list(1, 3))
 		)
 	)
 	offer_types = list(
@@ -41,5 +41,5 @@
 		/obj/item/part/gun/frame/kovacs  = offer_data("Kovacs frame", 1000, 2),
 		/obj/item/part/gun/frame/ak47  = offer_data("AK frame", 800, 2),
 		/obj/item/part/gun/frame/zoric  = offer_data("Zoric frame", 1000, 2),
-		/obj/item/part/gun/frame/pk  = offer_data("Pulemyot Kalashnikova frame", 1000, 2),
+		/obj/item/part/gun/frame/pk  = offer_data("Pulemyot Kalashnikova frame", 1000, 2)
 	)
