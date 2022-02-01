@@ -433,7 +433,7 @@
 		/obj/item/computer_hardware/hard_drive/portable/research_points = 3,
 		/obj/item/computer_hardware/hard_drive/portable/research_points/rare = 1
 	)
-	price_tag = 650
+	price_tag = 2500
 
 // Trapper - markup = 4.8
 /obj/item/storage/deferred/roacheggs
