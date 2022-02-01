@@ -1,6 +1,6 @@
 /datum/trade_station/serbfrigate
 	name_pool = list(
-		"STF 'Kovac'" = "Serbain Trade Freighter 'Kovac': \"Come with money for very good stuff! You can pay with your life, even!\"",
+		"STF 'Kovac'" = "Serbian Trade Freighter 'Kovac': \"Come with money for very good stuff! You can pay with your life, even!\"",
 		"SV 'Zoric'" = "Serbian Vessel 'Zoric': \"For the correct price, we can sell you something... even jobs!\""
 	)
 	icon_states = "serb_frigate"
