@@ -173,9 +173,10 @@
 	)
 	offer_types = list(
 		/obj/item/rig_module = offer_data("rig module", 500, 10),							// base price: 500
-		/obj/item/rig/eva = offer_data("EVA suit control module", 700, 4),					// base price: 682 (incl. components)
-		/obj/item/rig/hazard = offer_data("hazard hardsuit control module", 700, 4),		// base price: 682 (incl. components)
-		/obj/item/rig/industrial = offer_data("industrial suit control module", 950, 4),	// base price: 882 (incl. components)
-		/obj/item/rig/hazmat = offer_data("AMI control module", 950, 4),					// base price: 882 (incl. components)
-		/obj/item/rig/combat = offer_data("combat hardsuit control module", 1100, 4),		// base price: 1032 (incl. components)
+		/obj/item/rig/medical = offer_data("rescue suit control module", 700, 2),			// base price: 682 (incl. components)
+		/obj/item/rig/eva = offer_data("EVA suit control module", 700, 2),					// base price: 682 (incl. components)
+		/obj/item/rig/hazard = offer_data("hazard hardsuit control module", 700, 2),		// base price: 682 (incl. components)
+		/obj/item/rig/industrial = offer_data("industrial suit control module", 950, 2),	// base price: 882 (incl. components)
+		/obj/item/rig/hazmat = offer_data("AMI control module", 950, 2),					// base price: 882 (incl. components)
+		/obj/item/rig/combat = offer_data("combat hardsuit control module", 1100, 2),		// base price: 1032 (incl. components)
 	)

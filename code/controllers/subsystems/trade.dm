@@ -143,7 +143,7 @@ SUBSYSTEM_DEF(trade)
 	. = round(get_new_cost(path) * station.markdown)
 
 /datum/controller/subsystem/trade/proc/get_import_cost(path, datum/trade_station/station)
-	. = get_new_cost(path)
+	. = get_new_cost(path) ? get_new_cost(path) : 100			// Should solve the issue of items without price tags
 	var/markup = 1.2
 	if(istype(station))
 		markup = station.markup

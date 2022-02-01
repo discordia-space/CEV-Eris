@@ -14,10 +14,10 @@
 	recommendations_needed = 1
 	assortiment = list(
 		"Assorted Goods" = list(
-			/obj/item/storage/deferred/disks = custom_good_amount_range(list(1, 5)),
-			/obj/item/storage/deferred/gun_parts = custom_good_amount_range(list(1, 5)),
-			/obj/item/storage/deferred/powercells = custom_good_amount_range(list(1, 5)),
-			/obj/item/storage/deferred/electronics = custom_good_amount_range(list(1, 5)),
+			/obj/item/storage/deferred/disks = custom_good_amount_range(list(2, 4)),
+			/obj/item/storage/deferred/gun_parts = custom_good_amount_range(list(2, 4)),
+			/obj/item/storage/deferred/powercells = custom_good_amount_range(list(2, 4)),
+			/obj/item/storage/deferred/electronics = custom_good_amount_range(list(2, 4)),
 		)
 	)
 	secret_inventory = list(

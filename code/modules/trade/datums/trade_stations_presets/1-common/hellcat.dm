@@ -74,6 +74,6 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/part/gun = offer_data("gun part", 500, 10),					// base price: 300
+		/obj/item/part/gun = offer_data("gun part", 100, 10),					// base price: 100, guns can be bought and broken down into 4 parts
 		/obj/item/part/armor = offer_data("armor part", 500, 10),				// base price: 300
 	)

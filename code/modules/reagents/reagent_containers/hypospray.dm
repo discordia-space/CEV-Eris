@@ -113,7 +113,7 @@
 	else
 		icon_state = "[initial(icon_state)]0"
 
-// Basic
+// TRADE
 /obj/item/reagent_containers/hypospray/autoinjector/antitoxin
 	name = "autoinjector (anti-toxin)"
 	preloaded_reagents = list("anti_toxin" = 5)
@@ -146,7 +146,6 @@
 	name = "autoinjector (tramadol)"
 	preloaded_reagents = list("tramadol" = 5)
 
-// Intermediate
 /obj/item/reagent_containers/hypospray/autoinjector/polystem
 	name = "autoinjector (polystem)"
 	preloaded_reagents = list("polystem" = 5)
@@ -179,15 +178,12 @@
 	name = "autoinjector (drugs)"
 	preloaded_reagents = list("space_drugs" = 5)
 
-// Custom mixes
 /obj/item/reagent_containers/hypospray/autoinjector/quickhealbrute
 	name = "autoinjector (brute-aid)"
 	preloaded_reagents = list("bicaridine" = 1, "meralyne" = 1, "seligitillin" = 1, "tricordrazine" = 1, "polystem" = 1)
 	price_tag = 100
-	spawn_blacklisted = TRUE
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickhealburn
 	name = "autoinjector (burn-aid)"
 	preloaded_reagents = list("kelotane" = 1.25, "dermaline" = 1.25, "tricordrazine" = 1.25, "polystem" = 1.25)
 	price_tag = 100
-	spawn_blacklisted = TRUE

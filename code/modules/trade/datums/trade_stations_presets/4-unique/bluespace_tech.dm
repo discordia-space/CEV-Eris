@@ -17,4 +17,3 @@
 		/obj/item/bluespace_crystal = offer_data("bluespace crystal", 1000, 10),
 		/obj/item/device/mmi/digital/posibrain = offer_data("positronic brain", 2500, 3),
 	)	
-

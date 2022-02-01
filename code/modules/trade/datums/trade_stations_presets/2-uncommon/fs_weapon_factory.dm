@@ -5,7 +5,7 @@
 	uid = "fs_guns"
 	start_discovered = FALSE
 	spawn_always = TRUE
-	markup = RARE_GOODS		// dept-specific stuff should be more expensive for guild
+	markup = RARE_GOODS		// Dept-specific stuff should be more expensive for guild
 	offer_limit = 20
 	base_income = 0
 	wealth = 0
@@ -39,8 +39,14 @@
 		),
 	)
 	offer_types = list(
-		/obj/item/part/gun/frame/ = offer_data("gun frame", 600, 3),
-		/obj/item/part/gun/grip = offer_data("gun grip", 250, 3),				// base price: 100
-		/obj/item/part/gun/mechanism = offer_data("gun mechanism", 250, 3),		// base price: 100
-		/obj/item/part/gun/barrel = offer_data("gun barrel", 250, 3),			// base price: 200
+		/obj/item/part/gun/frame/ak47 = offer_data("AK frame", 800, 1),
+		/obj/item/part/gun/frame/sol = offer_data("Sol frame", 1000, 1),
+		/obj/item/part/gun/frame/straylight = offer_data("Straylight frame", 1000, 1),
+		/obj/item/part/gun/frame/atreides = offer_data("Atreides frame", 1000, 1),
+		/obj/item/part/gun/frame/wintermute = offer_data("Wintermute frame", 1000, 1),
+		/obj/item/part/gun/frame/tosshin = offer_data("Tosshin frame", 1000, 1),
+		/obj/item/part/gun/frame/bull = offer_data("Bull frame", 1000, 1),
+		/obj/item/part/gun/frame/gladstone = offer_data("Gladstone frame", 1000, 1),
+		/obj/item/part/gun/frame/lamia = offer_data("Lamia frame", 1000, 1),
+		/obj/item/part/gun/frame/molly = offer_data("Molly frame", 1000, 1),
 	)

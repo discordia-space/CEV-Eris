@@ -28,7 +28,7 @@
 		"Category Name"  = list(
 			/obj/item/cell/large = custom_good_name("Item name"),
 			/obj/item/cell/medium = custom_good_amount_range(list(0,3)),
-			/obj/item/cell/small = good_data("Item name", list(6, 20)),
+			/obj/item/cell/small = good_data("Item name", list(6, 20))
 		),
 		"Next category" = list(
 			/obj/spawner/scrap/dense = good_data("random trash pile", list(5,10))

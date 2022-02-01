@@ -7,7 +7,7 @@
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = RARE_GOODS
-	offer_limit = 20
+	offer_limit = 1
 	base_income = 1600
 	wealth = 0
 	secret_inv_threshold = 2000
@@ -15,26 +15,25 @@
 	stations_recommended = list("trapper")//, "anomalies")
 	recommendations_needed = 1
 	assortiment = list(
-		// Use deferred storage boxes with pre-defined inventories to make surplus packages (no need to alter base item price)
 		"Scientific Surplus" = list(
-			/obj/item/slime_extract/grey = custom_good_amount_range(list(5, 10)),	// needs price tag
-			/obj/item/extinguisher,													// needs price tag
-			/obj/item/seeds/random = good_data("random seed packet", list(3, 7)),	// needs price tag
-			/obj/item/computer_hardware/hard_drive/portable/research_points = good_data("research data", list(2, 4))	// should probably get a price increase
+			/obj/item/storage/deferred/slime = custom_good_amount_range(list(1, 3)),
+			/obj/item/storage/deferred/xenobotany = custom_good_amount_range(list(1, 3)),
+			/obj/item/storage/deferred/rnd = custom_good_amount_range(list(1, 3))
 		),
 		"Chemical Surplus" = list(
 			/obj/item/reagent_containers/glass/bottle/inaprovaline = custom_good_amount_range(list(1, 3)),
 			/obj/item/reagent_containers/glass/bottle/antitoxin = custom_good_amount_range(list(1, 3)),
-			/obj/item/reagent_containers/glass/bottle/kelotane = custom_good_amount_range(list(1, 3)),
-			/obj/item/reagent_containers/glass/bottle/bicaridine = custom_good_amount_range(list(1, 3)),
-			/obj/item/reagent_containers/glass/bottle/clonexadone = custom_good_amount_range(list(1, 3)),
-			/obj/item/reagent_containers/glass/bottle/imidazoline = custom_good_amount_range(list(1, 3)),
-			/obj/item/reagent_containers/glass/bottle/alkysine = custom_good_amount_range(list(1, 3))
+			/obj/item/reagent_containers/glass/bottle/trade/kelotane = good_data("kelotane bottle", list(1, 3)),
+			/obj/item/reagent_containers/glass/bottle/trade/bicaridine = good_data("bicaridine bottle", list(1, 3)),
+			/obj/item/reagent_containers/glass/bottle/trade/clonexadone = good_data("clonexadone bottle", list(1, 3)),
+			/obj/item/reagent_containers/glass/bottle/trade/imidazoline = good_data("imidazoline bottle", list(1, 3)),
+			/obj/item/reagent_containers/glass/bottle/trade/alkysine = good_data("alkysine bottle", list(1, 3))
 		)
 	)
 	secret_inventory = list(
 		"Upgraded Organs" = list(
-			/obj/item/computer_hardware/hard_drive/portable/design/surgery = good_data("back alley organs", list(1, 2))
+			/obj/item/computer_hardware/hard_drive/portable/design/surgery = good_data("back alley organs disk", list(1, 2)),
+			/obj/item/organ_module/active/simple/armshield
 		),
 		"Autoinjectors II" = list(
 			// Autoinjectors defined in hypospray.dm
@@ -44,9 +43,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = custom_good_amount_range(list(10, 20)),
 			/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = custom_good_amount_range(list(10, 20)),
 			/obj/item/reagent_containers/hypospray/autoinjector/ryetalyn = custom_good_amount_range(list(10, 20))
-		),
-		"Scientific Enigmas" = list(
-			/obj/item/computer_hardware/hard_drive/portable/research_points/rare = good_data("rare research data", list(1, 3))	// should probably get a price increase
 		)
 	)
 	offer_types = list(

@@ -36,5 +36,5 @@
 	)
 	offer_types = list(
 		// TODO: offers
-		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 4000, 1),
+		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 7000, 1)		// base price: 6282 (incl. components)
 	)

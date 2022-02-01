@@ -5,6 +5,7 @@
 	uid = "trash"
 	start_discovered = FALSE
 	spawn_always = TRUE
+	markup = UNCOMMON_GOODS
 	offer_limit = 20
 	base_income = 0
 	wealth = 0
@@ -34,13 +35,13 @@
 			/obj/structure/scrap_spawner/cloth = custom_good_amount_range(list(2,5)),			// Could be a concern with the armor part offer, but it requires multiple unlocks and 30-50 minutes minimum. Something to watch for.
 			/obj/structure/scrap_spawner/cloth/large = custom_good_amount_range(list(2,5)),
 			/obj/structure/scrap_spawner/poor = custom_good_amount_range(list(2,5)),
-			/obj/structure/scrap_spawner/poor/large = custom_good_amount_range(list(2,5)),
+			/obj/structure/scrap_spawner/poor/large = custom_good_amount_range(list(2,5))
 		)
 	)
 	offer_types = list(
-		/datum/reagent/alcohol/changelingsting = offer_data("Changeling Sting bottle (60u)", 2500, 1),
-		/datum/reagent/alcohol/longislandicedtea = offer_data("Long Island Iced Tea bottle (60u)", 2500, 1),
+		/datum/reagent/alcohol/changelingsting = offer_data("Changeling Sting bottle (60u)", 1500, 1),
+		/datum/reagent/alcohol/longislandicedtea = offer_data("Long Island Iced Tea bottle (60u)", 1500, 1),
 		/datum/reagent/alcohol/neurotoxin = offer_data("Neurotoxin bottle (60u)", 2500, 1),
-		/datum/reagent/alcohol/hippies_delight = offer_data("Hippie's Delight bottle (60u)", 1500, 1),
-		/datum/reagent/alcohol/silencer = offer_data("Silencer bottle (60u)", 1500, 1),
+		/datum/reagent/alcohol/hippies_delight = offer_data("Hippie's Delight bottle (60u)", 2500, 1),
+		/datum/reagent/alcohol/silencer = offer_data("Silencer bottle (60u)", 2500, 1)
 	)

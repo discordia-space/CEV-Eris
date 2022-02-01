@@ -10,7 +10,7 @@
 	wealth = 0
 	secret_inv_threshold = 2000
 	recommendation_threshold = 4000
-	stations_recommended = list("mcronalds")
+	stations_recommended = list("mcronalds", "serbian")
 	assortiment = list(
 		"Basic Ingredients" = list(
 			/obj/item/reagent_containers/food/condiment/flour,
@@ -47,14 +47,15 @@
 			/obj/item/reagent_containers/food/drinks/cans/sodawater,
 			/obj/item/reagent_containers/food/drinks/cans/tonic
 		),
-		"Flasks, Glasses" = list(
+		"Commissary Supplies" = list(
 			/obj/item/reagent_containers/food/drinks/drinkingglass,
 			/obj/item/reagent_containers/food/drinks/teapot,
 			/obj/item/reagent_containers/food/drinks/pitcher,
 			/obj/item/reagent_containers/food/drinks/carafe,
 			/obj/item/reagent_containers/food/drinks/flask/barflask,
-			/obj/item/reagent_containers/food/drinks/flask/vacuumflask
-		),
+			/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+			/obj/item/storage/deferred/kitchen
+		)
 	)
 	secret_inventory = list(
 		"Drinks II" = list(

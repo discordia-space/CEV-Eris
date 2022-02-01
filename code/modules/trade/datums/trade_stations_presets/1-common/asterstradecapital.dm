@@ -22,7 +22,7 @@
 			/obj/item/computer_hardware/hard_drive/portable/design/robustcells = good_data("Asters Robustcells", list(1, 10)),
 			/obj/item/computer_hardware/hard_drive/portable/design/devices = good_data("Asters Devices and Instruments", list(1, 10)),
 			/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo = good_data("Frozen Star Nonlethal Magazines Pack", list(1, 10)),
-			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = good_data("Frozen Star Lethal Magazines Pack", list(1, 10)),
+			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = good_data("Frozen Star Lethal Magazines Pack", list(1, 10))
 		),
 		"Tools and Equipment" = list(
 			/obj/item/clothing/suit/storage/hazardvest,
@@ -62,7 +62,7 @@
 			/obj/item/toy/snappop,
 			/obj/item/toy/bosunwhistle,
 			/obj/item/toy/figure/vagabond,
-			/obj/item/toy/figure/roach,
+			/obj/item/toy/figure/roach
 //			/obj/item/ammo_casing/cap
 		),
 		"Frozen Star Accessories & Ammunition" = list(
@@ -100,9 +100,8 @@
 			/obj/item/caution,
 			/obj/item/storage/bag/trash,
 			/obj/item/reagent_containers/spray/cleaner,
-			/obj/item/reagent_containers/glass/rag,
-			/obj/item/organ_module/active/simple/armshield
-		),
+			/obj/item/reagent_containers/glass/rag
+		)
 	)
 	secret_inventory = list(
 		"Exosuits" = list(
@@ -111,25 +110,25 @@
 			/mob/living/exosuit/premade/powerloader/flames_red,
 			/mob/living/exosuit/premade/light,
 			/mob/living/exosuit/premade/heavy,
-			/mob/living/exosuit/premade/combat/slayer,
+			/mob/living/exosuit/premade/combat/slayer
 		),
 		"Mech Armor" = list(
 			/obj/item/robot_parts/robot_component/armour/exosuit/plain,
 			/obj/item/robot_parts/robot_component/armour/exosuit/radproof,
 			/obj/item/robot_parts/robot_component/armour/exosuit/ablative,
-			/obj/item/robot_parts/robot_component/armour/exosuit/combat,
+			/obj/item/robot_parts/robot_component/armour/exosuit/combat
 		),
 		"Parts" = list(
 			/obj/item/mech_component/chassis,
 			/obj/item/mech_component/manipulators,
 			/obj/item/mech_component/sensors,
-			/obj/item/mech_component/propulsion,
+			/obj/item/mech_component/propulsion
 		),
 		"Soft" = list(
 			/obj/item/electronics/circuitboard/exosystem/engineering,
 			/obj/item/electronics/circuitboard/exosystem/utility,
 			/obj/item/electronics/circuitboard/exosystem/medical,
-			/obj/item/electronics/circuitboard/exosystem/weapons,
+			/obj/item/electronics/circuitboard/exosystem/weapons
 		),
 		"Equipment" = list(
 			/obj/item/mech_equipment/mounted_system/taser,
@@ -140,8 +139,8 @@
 			/obj/item/mech_equipment/light,
 			/obj/item/mech_equipment/drill,
 			/obj/item/mech_equipment/mounted_system/extinguisher,
-			/obj/item/mech_equipment/sleeper,
-		),
+			/obj/item/mech_equipment/sleeper
+		)
 	)
 	offer_types = list(
 		/obj/item/mech_component/ = offer_data("mech component", 150, 10),															// base price: 150
@@ -149,5 +148,5 @@
 		/obj/item/robot_parts/robot_component/armour/exosuit/plain = offer_data("exosuit armor plating", 300, 8),					// base price: 300
 		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = offer_data("rad-proof exosuit armor plating", 500, 8),		// base price: 500
 		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 550, 8),		// base price: 550
-		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 1000, 8),			// base price: 1000
+		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 1000, 8)			// base price: 1000
 	)

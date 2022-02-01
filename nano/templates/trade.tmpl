@@ -86,7 +86,7 @@
 									{{if value.isblacklisted}}
 										{{:helper.link("X", null, null, 'disabled')}}
 									{{else}}
-										{{:helper.link(value.amount_available_around ? value.amount_available_around : "", 'suitcase', {'PRG_sell' : value.index}, value.amount_available_around ? null : 'disabled')}}
+										{{:helper.link(value.amount_available_around ? value.amount_available_around : "", 'suitcase', {'PRG_sell' : value.index}, (value.amount_available_around && value.sell_price > 0) ? null : 'disabled')}}
 									{{/if}}
 						{{/for}}
 					</table>
