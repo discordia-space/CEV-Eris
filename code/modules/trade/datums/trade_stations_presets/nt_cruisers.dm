@@ -1,6 +1,6 @@
 /datum/trade_station/nt_cruisers
 	icon_states = "nt_cruiser"
-	markup = 1.2
+	markup = RARE_GOODS		// dept-specific stuff should be more expensive for guild
 	name_pool = list(
 		"NTV 'Faith'" = "They are sending message, \"The most holy purveyors of ecclesiarchic goods!\"",
 		"NTV 'Hope'" = "They are sending message, \"Reliable, blessed and sanctified goods for the correct price.\""
@@ -20,7 +20,6 @@
 			/obj/item/storage/pouch/tubular,
 			/obj/item/storage/pouch/tubular/vial,
 			/obj/item/storage/pouch/ammo,
-			/obj/item/storage/pouch/medical_supply,
 			/obj/item/clothing/accessory/holster,
 			/obj/item/clothing/accessory/holster/armpit,
 			/obj/item/clothing/accessory/holster/waist,

@@ -24,9 +24,9 @@
 	if(islist(new_data))
 		for(var/i in 1 to length(new_data))
 			if (istype(new_data) && !isweakref(new_data))
-				new_data[i] = weakref(new_data[i])
+				new_data[i] = WEAKREF(new_data[i])
 	if (istype(new_data) && !isweakref(new_data))
-		new_data = weakref(new_data)
+		new_data = WEAKREF(new_data)
 	var/datum/integrated_io/pin = get_pin_ref(pin_type, pin_number)
 	return pin.write_data_to_pin(new_data)
 
