@@ -1,5 +1,10 @@
 /obj/item/var/list/center_of_mass = list("x"=16, "y"=16) //can be null for no exact placement behaviour
 /obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(isliving(mover))
+		var/mob/living/L = mover
+		L.livmomentum = 0
+		if(L.weakened)
+			return 1
 	if(air_group || (height==0)) return 1
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))

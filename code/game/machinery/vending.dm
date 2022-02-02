@@ -25,7 +25,7 @@
 
 	var/obj/tmp = path
 
-	if(istype(tmp, /obj/item/ammo_magazine))
+	if(ispath(tmp, /obj/item/ammo_magazine))
 		// On New() magazine gets a proper name assigned
 		var/obj/item/ammo_magazine/AM = new tmp
 		product_name = AM.name

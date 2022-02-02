@@ -618,6 +618,7 @@ default behaviour is:
 
 	if(resting && unstack)
 		unstack = FALSE
+
 		if((livmomentum <= 0) && do_after(src, (src.stats.getPerk(PERK_PARKOUR) ? 0.3 SECONDS : 1 SECOND), null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
 			resting = FALSE
 			unstack = TRUE
