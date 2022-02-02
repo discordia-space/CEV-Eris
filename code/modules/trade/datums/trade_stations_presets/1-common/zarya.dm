@@ -49,7 +49,7 @@
 			/obj/item/electronics/tracker,
 			/obj/machinery/power/emitter,
 			/obj/machinery/power/rad_collector,
-			/obj/machinery/power/supermatter,
+			/obj/machinery/power/supermatter = custom_good_amount_range(list(1,2)),
 			/obj/machinery/power/generator,
 			/obj/machinery/atmospherics/binary/circulator,
 			/obj/item/solar_assembly,
