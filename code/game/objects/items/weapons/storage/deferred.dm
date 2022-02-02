@@ -428,12 +428,11 @@
 
 /obj/item/storage/deferred/rnd
 	name = "research box"
-	desc = "A small collection of intellectual curiosities"
+	desc = "A packaged intellectual curiosity"
 	initial_contents = list(
-		/obj/item/computer_hardware/hard_drive/portable/research_points = 3,
-		/obj/item/computer_hardware/hard_drive/portable/research_points/rare = 1
+		/obj/item/computer_hardware/hard_drive/portable/research_points = 1
 	)
-	price_tag = 2500
+	price_tag = 500
 
 // Trapper - markup = 4.8
 /obj/item/storage/deferred/roacheggs
@@ -443,14 +442,3 @@
 		/obj/item/roach_egg = 12
 	)
 	price_tag = 100
-
-// Serb - markup = 3.6
-/obj/item/storage/deferred/serb_rifle
-	name = "serbian rifle pack"
-	desc = "A small collection of Serbian Arms disks"
-	initial_contents = list(
-		/obj/item/computer_hardware/hard_drive/portable/design/guns/sa_boltgun = 1,
-		/obj/item/computer_hardware/hard_drive/portable/design/guns/sa_ak = 1,
-		/obj/item/computer_hardware/hard_drive/portable/design/guns/sa_br = 1
-	)
-	price_tag = 3000
