@@ -97,8 +97,9 @@
 
 /datum/perk/fate/alcoholic/assign(mob/living/carbon/human/H)
 	..()
-	if(!(/datum/reagent/alcohol in holder.metabolism_effects.addiction_list))
-		holder.metabolism_effects.addiction_list.Add(/datum/reagent/ethanol) //yes, it is called ethanol but is actually alcohol(alco metabolizes into etha in the stomach)
+	if(!(/datum/reagent/ethanol in holder.metabolism_effects.addiction_list))
+		var/datum/reagent/R = new /datum/reagent/ethanol
+		holder.metabolism_effects.addiction_list.Add(R)
 
 /datum/perk/fate/alcoholic_active
 	name = "Alcoholic - active"

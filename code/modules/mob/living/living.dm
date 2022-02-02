@@ -619,7 +619,7 @@ default behaviour is:
 	if(resting && unstack)
 		unstack = FALSE
 
-		if((livmomentum <= 0) && do_after(src, (src.stats.getPerk(PERK_PARKOUR) ? 0.3 SECONDS : 1 SECOND), null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
+		if((livmomentum <= 0) && do_after(src, (src.stats.getPerk(PERK_PARKOUR) ? 0.3 SECONDS : 0.7 SECONDS), null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
 			resting = FALSE
 			unstack = TRUE
 			to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
@@ -650,7 +650,7 @@ default behaviour is:
 				H.Move(get_step(H.loc, _dir),dir)
 				livmomentum = (livmomentum - speed)
 				H.regen_slickness(0.25) // The longer you slide, the more stylish it is
-				sleep(world.tick_lag + 1)
+				sleep(world.tick_lag + 1.5)
 			C.mloop = 0
 		else
 			to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
