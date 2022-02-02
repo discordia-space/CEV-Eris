@@ -65,7 +65,11 @@
 				visible_message(SPAN_WARNING("[src] gives up on trying to climb onto \the [A]!"))
 				shadow.visible_message(SPAN_WARNING("[shadow] gives up on trying to climb onto \the [A]!"))
 			return
-
+	//PERK_ABSOLUTE_GRAB
+	if(get_dist_euclidian(get_turf(A), get_turf(src)) < 4 && ishuman(A))
+		if(stats.getPerk(PERK_ABSOLUTE_GRAB) && a_intent == I_GRAB)
+			leap(A)
+			return
 	if(!gloves && !mutations.len) return
 	var/obj/item/clothing/gloves/G = gloves
 	if((LASER in mutations) && a_intent == I_HURT)

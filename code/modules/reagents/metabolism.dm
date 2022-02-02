@@ -210,17 +210,17 @@
 		if(!parent.chem_effects[CE_PURGER] && ishuman(parent))
 			addiction_list[R] += 1
 			switch(addiction_list[R])
-				if(1 to 10)
+				if(1 to 20)
 					R.addiction_act_stage1(parent)
-				if(10 to 20)
-					R.addiction_act_stage2(parent)
 				if(20 to 30)
-					R.addiction_act_stage3(parent)
+					R.addiction_act_stage2(parent)
 				if(30 to 40)
+					R.addiction_act_stage3(parent)
+				if(40 to 50)
 					R.addiction_act_stage4(parent)
-				if(40 to INFINITY && ((parent.stats.getPerk(PERK_ALCOHOLIC) && R == /datum/reagent/alcohol) || (parent.stats.getPerk(PERK_DRUG_ADDICT) && R == /datum/reagent/stim)))
+				if(50 to INFINITY && ((parent.stats.getPerk(PERK_ALCOHOLIC) && istype(R, /datum/reagent/ethanol)) || (parent.stats.getPerk(PERK_DRUG_ADDICT) && istype(R, /datum/reagent/stim))))
 					R.addiction_act_stage4(parent)
-				else
+				if(50 to INFINITY && !((parent.stats.getPerk(PERK_ALCOHOLIC) && istype(R, /datum/reagent/ethanol)) || (parent.stats.getPerk(PERK_DRUG_ADDICT) && istype(R, /datum/reagent/stim))))
 					R.addiction_end(parent)
 					addiction_list.Remove(R)
 
