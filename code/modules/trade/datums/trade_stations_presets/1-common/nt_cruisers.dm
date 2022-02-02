@@ -35,7 +35,7 @@
 			/obj/structure/largecrate/animal/cow,
 			/obj/structure/largecrate/animal/goat,
 			/obj/structure/largecrate/animal/cat,
-			/obj/structure/largecrate/animal/chick,
+			/obj/structure/largecrate/animal/chick
 		),
 		"Custodial Supply" = list(
 			/obj/item/reagent_containers/glass/bucket,
@@ -45,9 +45,29 @@
 			/obj/item/device/lightreplacer,
 			/obj/item/reagent_containers/spray/cleaner,
 			/obj/item/reagent_containers/glass/rag,
-			/obj/item/grenade/chem_grenade/cleaner,
-			/obj/item/grenade/chem_grenade/antiweed,
-			/obj/structure/mopbucket
+			/obj/item/grenade/chem_grenade/cleaner/nt_cleaner,
+			/obj/item/grenade/chem_grenade/antiweed/nt_antiweed,
+			/obj/structure/mopbucket,		
+			/obj/structure/janitorialcart
+		)
+	)
+	secret_inventory = list(
+		"Curious Seeds" = list(
+			/obj/item/seeds/greengrapeseed = good_data("green grape seeds", list(1,3)),
+			/obj/item/seeds/icepepperseed = good_data("ice-pepper seeds", list(1,3)),
+			/obj/item/seeds/glowberryseed = good_data("glowberry seeds", list(1,3)),
+			/obj/item/seeds/poisonberryseed = good_data("poison berry seeds", list(1,3)),
+			/obj/item/seeds/deathberryseed = good_data("death berry seeds", list(1,3)),
+			/obj/item/seeds/deathnettleseed = good_data("death nettle seeds", list(1,3)),
+			/obj/item/seeds/bloodtomatoseed = good_data("blood tomato seeds", list(1,3)),
+			/obj/item/seeds/killertomatoseed = good_data("killer tomato seeds", list(1,3)),
+			/obj/item/seeds/bluetomatoseed = good_data("blue tomato seeds", list(1,3)),
+			/obj/item/seeds/bluespacetomatoseed = good_data("blusepace tomato seeds", list(1,3)),
+			/obj/item/seeds/poisonedappleseed = good_data("poison apple seeds", list(1,3)),
+			/obj/item/seeds/goldappleseed = good_data("golden apple seeds", list(1,3)),
+			/obj/item/seeds/ambrosiadeusseed = good_data("ambrosia deus seeds", list(1,3)),
+			/obj/item/seeds/walkingmushroommycelium = good_data("walking mushroom spores", list(1,3)),
+			/obj/item/seeds/angelmycelium = good_data("destroying angel spores", list(1,3))
 		)
 	)
 	offer_types = list(
