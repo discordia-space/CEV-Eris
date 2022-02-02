@@ -26,10 +26,8 @@
 			/obj/item/tool_upgrade/augment/sanctifier,
 			/obj/item/tool/sword/nt/shortsword,
 			/obj/item/tool/sword/nt/longsword,
-			/obj/item/tool/sword/nt/halberd,
-			/obj/item/tool/sword/nt/scourge,
-			/obj/item/tool/sword/nt/spear,
-			/obj/item/tool/knife/dagger/nt
+			/obj/item/tool/knife/dagger/nt,
+			/obj/item/shield/buckler/nt
 		)
 	)
 	secret_inventory = list(
@@ -44,7 +42,6 @@
 			/obj/item/cell/large/neotheology
 		),
 		"Holy Defense Equipment" = list(
-			/obj/item/shield/riot/nt = custom_good_amount_range(list(1, 3)),
 			/obj/item/grenade/smokebomb/nt = custom_good_amount_range(list(1, 4)),
 			/obj/item/grenade/flashbang/nt = custom_good_amount_range(list(1, 4)),
 			/obj/item/gun/energy/ionrifle = custom_good_amount_range(list(1, 4)),

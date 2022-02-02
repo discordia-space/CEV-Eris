@@ -46,6 +46,7 @@
 			/obj/item/reagent_containers/spray/cleaner,
 			/obj/item/reagent_containers/glass/rag,
 			/obj/item/grenade/chem_grenade/cleaner,
+			/obj/item/grenade/chem_grenade/antiweed,
 			/obj/structure/mopbucket
 		)
 	)
