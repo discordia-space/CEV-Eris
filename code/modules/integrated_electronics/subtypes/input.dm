@@ -276,7 +276,7 @@
 	if(istype(filter) && assembly && (filter in assembly.assembly_components))
 		for(var/atom/A in view(get_turf(assembly)))
 			if(istype(A, filter.filter_type))
-				objects.Add(weakref(A))
+				objects.Add(WEAKREF(A))
 		set_pin_data(IC_OUTPUT, 1, objects)
 		push_data()
 		activate_pin(2)
@@ -402,7 +402,7 @@
 		activate_pin(3)
 		return
 	else
-		set_pin_data(IC_OUTPUT, 1, weakref(A))
+		set_pin_data(IC_OUTPUT, 1, WEAKREF(A))
 	push_data()
 	activate_pin(2)
 
@@ -438,9 +438,9 @@
 	if(scanned_turf in view(circuit_turf)) // This is a camera. It can't examine things that it can't see.
 		var/list/turf_contents = new()
 		for(var/obj/U in scanned_turf)
-			turf_contents += weakref(U)
+			turf_contents += WEAKREF(U)
 		for(var/mob/living/U in scanned_turf)
-			turf_contents += weakref(U)
+			turf_contents += WEAKREF(U)
 		set_pin_data(IC_OUTPUT, 1, turf_contents)
 		set_pin_data(IC_OUTPUT, 3, area_name)
 		var/list/St = new()
@@ -477,7 +477,7 @@
 		activate_pin(3)
 		return
 	else
-		set_pin_data(IC_OUTPUT, 1, weakref(A))
+		set_pin_data(IC_OUTPUT, 1, WEAKREF(A))
 	push_data()
 	activate_pin(2)
 
@@ -499,7 +499,7 @@
 	var/datum/integrated_io/O = outputs[1]
 	O.data = null
 	if(assembly)
-		O.data = weakref(assembly.loc)
+		O.data = WEAKREF(assembly.loc)
 	set_pin_data(IC_OUTPUT, 2, isturf(assembly.loc))
 	set_pin_data(IC_OUTPUT, 3, ismob(assembly.loc))
 	push_data()
@@ -538,7 +538,7 @@
 			continue
 		valid_things.Add(thing)
 	if(valid_things.len)
-		O.data = weakref(pick(valid_things))
+		O.data = WEAKREF(pick(valid_things))
 		activate_pin(2)
 	else
 		activate_pin(3)
@@ -585,7 +585,7 @@
 						if(ismob(thing) && !isliving(thing))
 							continue
 						if(findtext(addtext(thing.name," ",thing.desc), item, 1, 0) )
-							valid_things.Add(weakref(thing))
+							valid_things.Add(WEAKREF(thing))
 				else
 					var/atom/A = item
 					var/desired_type = A.type
@@ -595,7 +595,7 @@
 							continue
 						if(ismob(thing) && !isliving(thing))
 							continue
-						valid_things.Add(weakref(thing))
+						valid_things.Add(WEAKREF(thing))
 		if(valid_things.len)
 			O.data = valid_things
 			O.push_data()
@@ -655,7 +655,7 @@
 			if(findtext(addtext(thing.name," ",thing.desc), DT, 1, 0) )
 				valid_things.Add(thing)
 	if(valid_things.len)
-		O.data = weakref(pick(valid_things))
+		O.data = WEAKREF(pick(valid_things))
 		O.push_data()
 		activate_pin(2)
 	else
@@ -808,7 +808,7 @@
 
 /obj/item/integrated_circuit/input/teleporter_locator/Initialize()
 	. = ..()
-	set_pin_data(IC_OUTPUT, 1, weakref(null))
+	set_pin_data(IC_OUTPUT, 1, WEAKREF(null))
 
 /obj/item/integrated_circuit/input/teleporter_locator/ask_for_input(mob/user)
 	var/list/teleporters_id = list()
@@ -825,7 +825,7 @@
 		selected_console = null
 	else
 		selected_console = teleporters[selected_id]
-	set_pin_data(IC_OUTPUT, 1, selected_console && weakref(selected_console))
+	set_pin_data(IC_OUTPUT, 1, selected_console && WEAKREF(selected_console))
 	push_data()
 	activate_pin(1)
 
@@ -857,7 +857,7 @@
 /obj/item/integrated_circuit/input/teleporter_locator/OnICTopic(href_list, mob/user)
 	if(href_list["tport"] && user.IsAdvancedToolUser())
 		var/output = href_list["tport"] == "random" ? null : locate(href_list["tport"])
-		set_pin_data(IC_OUTPUT, 1, output && weakref(output))
+		set_pin_data(IC_OUTPUT, 1, output && WEAKREF(output))
 		push_data()
 		activate_pin(1)
 		return IC_TOPIC_REFRESH
@@ -956,7 +956,7 @@
 	var/ignore_bags = get_pin_data(IC_INPUT, 1)
 	if(ignore_bags && istype(A, /obj/item/storage))
 		return FALSE
-	set_pin_data(IC_OUTPUT, 1, weakref(A))
+	set_pin_data(IC_OUTPUT, 1, WEAKREF(A))
 	push_data()
 	to_chat(user, SPAN("notice", "You scan [A] with [assembly]."))
 	activate_pin(1)
@@ -988,7 +988,7 @@
 	var/ignore_bags = get_pin_data(IC_INPUT, 1)
 	if(ignore_bags && istype(A, /obj/item/storage))
 		return FALSE
-	set_pin_data(IC_OUTPUT, 1, weakref(A))
+	set_pin_data(IC_OUTPUT, 1, WEAKREF(A))
 	push_data()
 	to_chat(user, SPAN("notice", "You scan [A] with [assembly]."))
 	activate_pin(1)
@@ -1017,7 +1017,7 @@
 		return FALSE
 	if(pu)
 		user.drop_item(A)
-	set_pin_data(IC_OUTPUT, 1, weakref(A))
+	set_pin_data(IC_OUTPUT, 1, WEAKREF(A))
 	push_data()
 	to_chat(user, SPAN("notice", "You let [assembly] scan [A]."))
 	activate_pin(1)
@@ -1049,12 +1049,12 @@
 	set_pin_data(IC_OUTPUT, 4, null)
 	set_pin_data(IC_OUTPUT, 5, null)
 	if(assembly)
-		set_pin_data(IC_OUTPUT, 4, weakref(assembly))
+		set_pin_data(IC_OUTPUT, 4, WEAKREF(assembly))
 		if(assembly.battery)
 			set_pin_data(IC_OUTPUT, 1, assembly.battery.charge)
 			set_pin_data(IC_OUTPUT, 2, assembly.battery.maxcharge)
 			set_pin_data(IC_OUTPUT, 3, 100*assembly.battery.charge/assembly.battery.maxcharge)
-			set_pin_data(IC_OUTPUT, 5, weakref(assembly.battery))
+			set_pin_data(IC_OUTPUT, 5, WEAKREF(assembly.battery))
 	push_data()
 	activate_pin(2)
 
@@ -1279,7 +1279,7 @@
 
 	var/list/regurgitated_contents = list()
 	for(var/obj/O in inv)
-		regurgitated_contents.Add(weakref(O))
+		regurgitated_contents.Add(WEAKREF(O))
 
 
 	set_pin_data(IC_OUTPUT, 2, regurgitated_contents)

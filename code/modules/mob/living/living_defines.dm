@@ -39,7 +39,8 @@
 	var/mob_swap_flags = 0
 	var/mob_push_flags = 0
 	var/mob_always_swap = 0
-	var/move_to_delay = 4 //delay for the automated movement.
+	var/livmomentum = 0 //Used for advanced movement options.
+	var/move_to_delay = 4 //Delay for the automated movement.
 	var/can_burrow = FALSE //If true, this mob can travel around using the burrow network.
 	//When this mob spawns at roundstart, a burrow will be created near it if it can't find one
 
@@ -48,6 +49,7 @@
 	var/step_count = 0
 
 	var/update_slimes = 1
+	var/unstack = 1 //prevent stacking of certain actions, like resting/diving
 	var/silent 		// Can't talk. Value goes down every life proc.
 	var/on_fire = 0 //The "Are we on fire?" var
 	var/fire_stacks
