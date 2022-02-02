@@ -80,7 +80,7 @@
 			/obj/item/ammo_magazine/ammobox/shotgun/blanks = custom_good_name("ammunition box (.50 blank)"),
 			/obj/item/ammo_magazine/ammobox/shotgun/flashshells = custom_good_name("ammunition box (.50 flash)"),
 			/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells = custom_good_name("ammunition box (.50 incendiary)")
-		),
+		)
 	)
 	offer_types = list(
 		/obj/item/gun_upgrade = offer_data("gun mod", 100, 10)

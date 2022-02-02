@@ -23,7 +23,7 @@
 			/obj/item/rig_module/held/energy_blade,
 			/obj/item/rig_module/held/shield,
 			/obj/item/rig_module/datajack,
-			/obj/item/rig_module/chem_dispenser,
+			/obj/item/rig_module/chem_dispenser
 		)
 	)
 	secret_inventory = list(

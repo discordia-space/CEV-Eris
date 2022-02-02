@@ -136,7 +136,7 @@
 			/obj/item/clothing/head/collectable/xenom,
 			/obj/item/clothing/head/collectable/petehat,
 			/obj/item/clothing/head/collectable/festive
-		),
+		)
 	)
 	secret_inventory = list(
 		"Voidsuits" = list(
@@ -169,7 +169,7 @@
 			/obj/item/rig_module/vision/nvg,
 			/obj/item/rig_module/vision/sechud,
 			/obj/item/rig_module/vision/medhud
-		),
+		)
 	)
 	offer_types = list(
 		/obj/item/rig_module = offer_data("rig module", 500, 10),							// base price: 500

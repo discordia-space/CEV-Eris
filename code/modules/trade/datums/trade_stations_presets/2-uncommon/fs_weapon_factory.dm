@@ -36,7 +36,7 @@
 			/obj/item/grenade/empgrenade/low_yield,
 			/obj/item/grenade/flashbang,
 			/obj/item/grenade/smokebomb
-		),
+		)
 	)
 	offer_types = list(
 		/obj/item/part/gun/frame/ak47 = offer_data("AK frame", 800, 1),

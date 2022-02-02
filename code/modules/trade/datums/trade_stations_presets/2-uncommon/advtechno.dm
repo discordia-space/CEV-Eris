@@ -55,7 +55,7 @@
 			/obj/item/tool_upgrade/augment/spikes = custom_good_amount_range(list(1, 5)),
 			/obj/item/tool_upgrade/augment/hammer_addon = custom_good_amount_range(list(1, 5)),
 			/obj/item/tool_upgrade/augment/hydraulic = custom_good_amount_range(list(1, 5))
-		),
+		)
 	)
 	secret_inventory = list(
 		"Extra Mods" = list(

@@ -63,7 +63,7 @@
 			/obj/structure/reagent_dispensers/watertank,
 			/obj/structure/reagent_dispensers/fueltank,
 			/obj/machinery/floodlight
-		),
+		)
 	)
 	offer_types = list(
 		/obj/item/tool_upgrade = offer_data("tool upgrade", 200, 10),									// base price: 200

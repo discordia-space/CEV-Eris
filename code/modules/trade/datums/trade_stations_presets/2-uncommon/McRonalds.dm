@@ -36,8 +36,8 @@
 		),
 		"Misc" = list(
 			/obj/item/reagent_containers/food/snacks/fishandchips = custom_good_name("Fishps"),
-			/obj/item/storage/box/happy_meal,
-		),
+			/obj/item/storage/box/happy_meal
+		)
 	)
 	secret_inventory = list(
 		"Secret Menu" = list(
