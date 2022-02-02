@@ -1,8 +1,8 @@
 /obj/item/implant/carrion_spider/smokebomb
 	name = "black mist spider"
 	desc = "A spider bloated with ebony gasses, it looks ready to burst!"
-	icon_state = "spiderling_toxicbomb"
-	spider_price = 4
+	icon_state = "spiderling_smoke"
+	spider_price = 5
 	gibs_color = "#401122"
 	var/datum/effect/effect/system/smoke_spread/smoke
 	var/charges = 1
@@ -20,6 +20,8 @@
 	S.attach(src)
 	S.set_up(10, 0, usr.loc)
 	charges = 0
+	S.start()
+	sleep(10)
 	S.start()
 	sleep(10)
 	S.start()

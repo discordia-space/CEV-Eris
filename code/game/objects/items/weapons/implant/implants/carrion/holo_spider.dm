@@ -1,8 +1,8 @@
+// TODO: make the saved layer and saved plane change when chanign zlevel 
 /obj/item/implant/carrion_spider/holographic
 	name = "holographic spider"
 	desc = "A spider with a peculiarly reflective surface"
-	icon_state = "spiderling_breeding"
-	spider_price = 5
+	icon_state = "spiderling_holographic"
 	slot_flags = SLOT_ID | SLOT_BELT | SLOT_EARS | SLOT_HOLSTER | SLOT_BACK | SLOT_MASK | SLOT_GLOVES | SLOT_HEAD | SLOT_OCLOTHING | SLOT_ICLOTHING | SLOT_FEET | SLOT_EYES
 	var/can_use = 1
 	var/saved_name
@@ -11,17 +11,18 @@
 	var/saved_type
 	var/saved_icon
 	var/saved_icon_state
-	var/saved_overlays
+//	var/saved_plane
+	var/saved_layer
 	var/saved_dir
-	var/saved_mob
-	var/saved_alpha
-	var/saved_opacity
 	var/saved_message
 	var/saved_appearance
 	var/saved_item_state
 	var/saved_w_class
 	var/spider_appearance
 	var/saved_gender
+
+	var/saved_overlays
+
 	var/dummy_active = FALSE
 	var/scan_mobs = TRUE
 
@@ -131,18 +132,17 @@
 	saved_overlays = target.overlays
 	saved_description = target.desc
 	saved_dir = target.dir
-	saved_alpha = target.alpha
-	saved_opacity = target.opacity
 	saved_appearance = target.appearance
 	saved_gender = target.gender
 	spider_appearance = src.appearance
+//	saved_plane = target.plane
+	saved_layer = target.layer
 	if(istype(target, /obj))	
 		var/obj/O = new saved_type(src)
 		saved_item_state = O.item_state
 		saved_w_class = O.w_class
 		qdel(O)
 	if(istype(target, /mob))
-		saved_mob = target
 		saved_message = target.examine(user)
 	return
 
@@ -155,14 +155,13 @@
 	saved_overlays = initial(saved_overlays)
 	saved_description = initial(saved_description)
 	saved_dir = initial(saved_dir)
-	saved_mob = initial(saved_mob)
-	saved_alpha = initial(saved_alpha)
-	saved_opacity = initial(saved_opacity)
 	saved_message = initial(saved_message)
 	saved_appearance = initial(appearance)
 	saved_item_state = initial(item_state)
 	saved_w_class = initial(saved_w_class)
 	saved_gender = initial(saved_gender)
+//	saved_plane = initial(saved_plane)
+	saved_layer = initial(saved_layer)
 
 
 /obj/item/implant/carrion_spider/holographic/proc/toggle()
@@ -176,8 +175,9 @@
 		icon = initial(icon)
 		icon_state = initial(icon_state)
 		overlays = initial(overlays)
-		alpha = initial(alpha)
-		opacity = initial(opacity)
+		if(is_equipped())
+			layer = ABOVE_HUD_LAYER
+//			plane = ABOVE_HUD_PLANE
 		item_state = initial(item_state)
 		set_dir(initial(dir))
 		update_icon()
@@ -187,22 +187,28 @@
 			to_chat(owner_mob, SPAN_NOTICE("The [src] does not have anything scanned."))
 			return
 		else
-			activate_holo(saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, saved_dir, saved_alpha, saved_opacity, saved_appearance, saved_item_state)		
+			activate_holo(saved_name, saved_icon, saved_icon_state, saved_overlays, saved_description, saved_dir, saved_appearance, saved_item_state)		
 			to_chat(owner_mob, SPAN_NOTICE("You activate the [src]."))
 
-/obj/item/implant/carrion_spider/holographic/proc/activate_holo(new_name, new_icon, new_iconstate, new_overlays, new_description, new_dir, new_alpha, new_opacity, new_appearance, new_item_state)
+/obj/item/implant/carrion_spider/holographic/proc/activate_holo(new_name, new_icon, new_iconstate, new_overlays, new_description, new_dir, new_appearance, new_item_state)
 	name = new_name
 	desc = new_description
 	icon = new_icon
 	icon_state = new_iconstate
+	item_state = new_item_state
 	overlays = new_overlays
 	appearance = new_appearance
-	alpha = new_alpha
-	opacity = new_opacity
-	item_state = new_item_state
-	set_dir(new_dir) // invisibilty is because the spider is BEHIND the hands layer!
+	set_dir(new_dir) 
+	if(is_equipped())
+//		plane = ABOVE_HUD_PLANE
+		layer = ABOVE_HUD_LAYER
 	dummy_active = TRUE
 
+/obj/item/implant/carrion_spider/holographic/dropped(mob/living/W)
+	if(dummy_active)
+		layer = saved_layer
+//		plane = saved_plane
+	..()
 
 /obj/item/implant/carrion_spider/holographic/proc/disrupt()
 	if(dummy_active)

@@ -101,7 +101,7 @@ var/list/datum/power/carrion/powerinstances = list()
 /datum/power/carrion/holographic_spider
 	name = "Holographic spider"
 	desc = "Creates a spider with the ability to mimic appearances."
-	genomecost = 4
+	genomecost = 3
 	spiderpath = /obj/item/implant/carrion_spider/holographic
 
 /datum/power/carrion/smooth_spider
