@@ -248,23 +248,6 @@
 		return
 	wealth -= cost
 
-// Part of the new method of directly restocking goods. Does not add to favor.
-/datum/trade_station/proc/add_to_stock(atom/movable/AM)
-	var/path_found = FALSE
-	for(var/category_name in assortiment)
-		if(path_found)
-			break
-		var/list/category = assortiment[category_name]
-		if(islist(category))
-			for(var/good_path in category)
-				if(ispath(good_path, AM.type))
-					if(typesof(good_path).len == typesof(AM.type).len)
-						var/amount_cat = amounts_of_goods[category_name]
-						amount_cat["[category.Find(good_path)]"] += 1
-						path_found = TRUE
-						break
-
-
 /datum/trade_station/proc/cost_trade_stations_budget(budget = spawn_cost)
 	if(!spawn_always)
 		SStrade.trade_stations_budget -= budget
