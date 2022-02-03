@@ -68,7 +68,7 @@
 	icon_state = "addict" //https://game-icons.net/1x1/delapouite/medicines.html
 	desc = "For reasons you cannot remember, you decided to resort to major drug use. You have lost the battle, and now you suffer the consequences. \
 			You start with a permanent addiction to a random stimulator, as well as a bottle of pills containing the drug. \
-			Beware, if you get addicted to another stim, you will not get rid of the addiction."
+			Beware, if you get addicted to another stimulant, you will not get rid of the addiction."
 
 /datum/perk/fate/drug_addict/assign(mob/living/carbon/human/H)
 	..()
