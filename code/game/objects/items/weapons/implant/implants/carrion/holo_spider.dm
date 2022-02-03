@@ -1,9 +1,10 @@
-// TODO: make the saved layer and saved plane change when chanign zlevel 
+// TODO: make the saved_layer = target.original_layer and switch to that when moving up or down 
 /obj/item/implant/carrion_spider/holographic
 	name = "holographic spider"
 	desc = "A spider with a peculiarly reflective surface"
 	icon_state = "spiderling_holographic"
 	slot_flags = SLOT_ID | SLOT_BELT | SLOT_EARS | SLOT_HOLSTER | SLOT_BACK | SLOT_MASK | SLOT_GLOVES | SLOT_HEAD | SLOT_OCLOTHING | SLOT_ICLOTHING | SLOT_FEET | SLOT_EYES
+	spider_price = 5
 	var/can_use = 1
 	var/saved_name
 	var/saved_description
@@ -11,7 +12,6 @@
 	var/saved_type
 	var/saved_icon
 	var/saved_icon_state
-//	var/saved_plane
 	var/saved_layer
 	var/saved_dir
 	var/saved_message
@@ -135,7 +135,6 @@
 	saved_appearance = target.appearance
 	saved_gender = target.gender
 	spider_appearance = src.appearance
-//	saved_plane = target.plane
 	saved_layer = target.layer
 	if(istype(target, /obj))	
 		var/obj/O = new saved_type(src)
@@ -160,9 +159,7 @@
 	saved_item_state = initial(item_state)
 	saved_w_class = initial(saved_w_class)
 	saved_gender = initial(saved_gender)
-//	saved_plane = initial(saved_plane)
 	saved_layer = initial(saved_layer)
-
 
 /obj/item/implant/carrion_spider/holographic/proc/toggle()
 	if(!can_use || !saved_item) 
@@ -175,9 +172,12 @@
 		icon = initial(icon)
 		icon_state = initial(icon_state)
 		overlays = initial(overlays)
-		if(is_equipped())
+		if(is_equipped(src))
 			layer = ABOVE_HUD_LAYER
-//			plane = ABOVE_HUD_PLANE
+			plane = ABOVE_HUD_PLANE
+		else
+			layer = initial(layer)
+			plane = calculate_plane(z, original_plane)
 		item_state = initial(item_state)
 		set_dir(initial(dir))
 		update_icon()
@@ -199,15 +199,20 @@
 	overlays = new_overlays
 	appearance = new_appearance
 	set_dir(new_dir) 
-	if(is_equipped())
-//		plane = ABOVE_HUD_PLANE
+	if(is_equipped(src))
+		plane = ABOVE_HUD_PLANE
 		layer = ABOVE_HUD_LAYER
+	else
+		plane = calculate_plane(z, original_plane)
+		layer = saved_layer
 	dummy_active = TRUE
 
 /obj/item/implant/carrion_spider/holographic/dropped(mob/living/W)
+	plane = calculate_plane(z, original_plane)
 	if(dummy_active)
 		layer = saved_layer
-//		plane = saved_plane
+	else
+		layer = initial(layer)
 	..()
 
 /obj/item/implant/carrion_spider/holographic/proc/disrupt()
