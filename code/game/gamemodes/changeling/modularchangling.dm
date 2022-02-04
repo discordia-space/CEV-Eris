@@ -55,7 +55,7 @@ var/list/datum/power/carrion/powerinstances = list()
 	spiderpath = /obj/item/implant/carrion_spider/explosive
 
 /datum/power/carrion/spark_spider
-	name = "Electric spider"
+	name = "Spark spider"
 	desc = "Creates a spider that can pulse wires in machines or make a small spark."
 	genomecost = 1
 	spiderpath = /obj/item/implant/carrion_spider/spark
