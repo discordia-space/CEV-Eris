@@ -618,6 +618,7 @@ default behaviour is:
 
 	if(resting && unstack)
 		unstack = FALSE
+
 		if((livmomentum <= 0) && do_after(src, (src.stats.getPerk(PERK_PARKOUR) ? 0.3 SECONDS : 0.7 SECONDS), null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
 			resting = FALSE
 			unstack = TRUE
@@ -629,27 +630,27 @@ default behaviour is:
 		var/client/C = src.client
 		var/speed = movement_delay()
 		resting = TRUE
-		var/dir = C.true_dir
-		if(ishuman(src) && (dir))// If true_dir = 0(src isn't moving), doesn't proc
+		var/_dir = C.true_dir
+		if(ishuman(src) && !weakened && (dir))// If true_dir = 0(src isn't moving), doesn't proc.
 			var/mob/living/carbon/human/H = src
 			livmomentum = 5 // Set momentum value as soon as possible for stopSliding to work better
 			to_chat(H, SPAN_NOTICE("You dive onwards!"))
 			pass_flags += PASSTABLE // Jump over them!
 			H.allow_spin = FALSE
 			var/is_jump = FALSE
-			if(istype(get_step(H, dir), /turf/simulated/open))
+			if(istype(get_step(H, _dir), /turf/simulated/open))
 				is_jump = TRUE
-			H.throw_at(get_edge_target_turf(H, dir), 2 + is_jump, 1)// "Diving"; if you dive over a table, your momentum is set to 0. If you dive over space, you are thrown a tile further.
+			H.throw_at(get_edge_target_turf(H, _dir), 2 + is_jump, 1)// "Diving"; if you dive over a table, your momentum is set to 0. If you dive over space, you are thrown a tile further.
 			update_lying_buckled_and_verb_status()
 			pass_flags -= PASSTABLE // Jumpn't over them anymore!
 			H.allow_spin = TRUE
 			sleep(2)
 			C.mloop = 1
 			while(livmomentum > 0 && C.true_dir)
-				H.Move(get_step(H.loc, dir),dir)
+				H.Move(get_step(H.loc, _dir),dir)
 				livmomentum = (livmomentum - speed)
 				H.regen_slickness(0.25) // The longer you slide, the more stylish it is
-				sleep(world.tick_lag + 1)
+				sleep(world.tick_lag + 1.5)
 			C.mloop = 0
 		else
 			to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
