@@ -21,15 +21,20 @@
 	item_state = "artwork_revolver_[random_icon]"
 	set_item_state("_[random_icon]")
 	caliber = pick(CAL_MAGNUM,CAL_PISTOL)
+	custom_default["caliber"] = caliber
 	max_shells += rand(-2,7)
+	custom_default["max_shells"] = max_shells
 
 	AddComponent(/datum/component/atom_sanity, 0.2 + pick(0,0.1,0.2), "")
 
 	//var/gun_pattern = pick("pistol","magnum","shotgun","rifle","sniper","gyro","cap","rocket","grenade")
 
 	damage_multiplier += pick(-0.2,-0.1,0,0.1,0.2)
+	custom_default["damage_multiplier"] = damage_multiplier
 	penetration_multiplier += pick(-0.2,-0.1,0,0.1,0.2)
+	custom_default["penetration_multiplier"] = penetration_multiplier
 	recoil_buildup += rand(-(recoil_buildup / 5),(recoil_buildup / 5))
+	custom_default["recoil_buildup"] = recoil_buildup
 	price_tag += rand(0, 2500)
 	. = ..()
 
