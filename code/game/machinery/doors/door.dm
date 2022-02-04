@@ -214,7 +214,7 @@
 	if (istype(AM, /obj/item))
 		var/obj/item/O = AM
 		damage = O.throwforce
-	else if (istype(AM, /mob/living))
+	else if (isliving(AM))
 		var/mob/living/M = AM
 		hit_by_living(M)
 		return
