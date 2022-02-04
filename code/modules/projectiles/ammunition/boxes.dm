@@ -109,8 +109,8 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_CARDBOARD = 1)
 	caliber = CAL_SRIFLE
 	ammo_type = /obj/item/ammo_casing/srifle
-	max_ammo = 60
-	ammo_states = list(60)
+	max_ammo = 50
+	ammo_states = list(50)
 
 /obj/item/ammo_magazine/ammobox/srifle_small/practice
 	ammo_type = /obj/item/ammo_casing/srifle/practice
