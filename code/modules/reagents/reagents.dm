@@ -217,7 +217,7 @@
 // Addiction
 // Addiction
 /datum/reagent/proc/addiction_act_stage1(mob/living/carbon/human/M)
-	if(prob(30) && ishuman(M))
+	if(prob(30))
 		to_chat(M, SPAN_NOTICE("You feel like having some [name] right about now."))
 
 /datum/reagent/proc/addiction_act_stage2(mob/living/carbon/human/M)
