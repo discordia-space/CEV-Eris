@@ -25,7 +25,7 @@ GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 		GLOB.bluespace_entropy += entropy_value
 		var/entropy_cap = rand(GLOB.bluespace_hazard_threshold, GLOB.bluespace_hazard_threshold*2)
 		if(GLOB.bluespace_entropy >= entropy_cap && world.time > GLOB.bluespace_distotion_cooldown)
-			GLOB.bluespace_distotion_cooldown = world.time + (10 MINUTES * GLOB.chaos_level)
+			GLOB.bluespace_distotion_cooldown = world.time + (10 MINUTES / GLOB.chaos_level)
 			bluespace_distorsion(T, minor_distortion)
 			GLOB.bluespace_entropy -= rand(GLOB.bluespace_hazard_threshold, GLOB.bluespace_hazard_threshold*1.5)
 
