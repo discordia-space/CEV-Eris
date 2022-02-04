@@ -62,7 +62,7 @@
 	var/initialhealth = health
 
 	if (!ignore_resistance)
-		damage = damage * (1 - silicate / 200) // up to 50% damage resistance 
+		damage = damage * (1 - silicate / 200) // up to 50% damage resistance
 		damage -= resistance // then flat resistance from material
 	if (damage <= 0)
 		return 0
@@ -99,12 +99,12 @@
 	if (is_full_window())
 		return
 	if (overlays)
-		cut_overlays()
+		overlays.Cut()
 
 	var/image/img = image(src.icon, src.icon_state)
 	img.color = "#ffffff"
 	img.alpha = silicate * 255 / 100
-	add_overlays(img)
+	overlays += img
 
 //Setting the explode var makes the shattering louder and more violent, possibly injuring surrounding mobs
 /obj/structure/window/proc/shatter(var/display_message = 1, var/explode = FALSE)
@@ -118,6 +118,8 @@
 	var/list/turf/nearby
 	if (explode)
 		nearby = (RANGE_TURFS(2, src) - get_turf(src))
+	else
+		nearby = (RANGE_TURFS(1, src) - get_turf(src))
 
 	if(display_message)
 		visible_message("[src] shatters!")
@@ -128,7 +130,7 @@
 			new /obj/item/stack/rods(loc)
 		while(index < rand(4,6))
 			var/obj/item/material/shard/S = new shardtype(loc)
-			if (explode && nearby.len > 0)
+			if (nearby.len > 0)
 				var/turf/target = pick(nearby)
 				spawn()
 					S.throw_at(target,40,3)
@@ -305,10 +307,13 @@
 						return
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
+						var/obj/glass
 						if(is_fulltile())
-							new glasstype(loc, 6)
+							glass = new glasstype(loc, 6)
 						else
-							new glasstype(loc, 1)
+							glass = new glasstype(loc, 1)
+						glass.add_fingerprint(user)
+
 						qdel(src)
 						return
 				return 1 //No whacking the window with tools unless harm intent
@@ -468,10 +473,10 @@
 		verbs += /obj/structure/window/proc/revrotate
 
 //merges adjacent full-tile windows into one (blatant ripoff from game/smoothwall.dm)
-/obj/structure/window/on_update_icon()
+/obj/structure/window/update_icon()
 	//A little cludge here, since I don't know how it will work with slim windows. Most likely VERY wrong.
 	//this way it will only update full-tile ones
-	cut_overlays()
+	overlays.Cut()
 	if(!is_fulltile())
 		icon_state = "[basestate]"
 		return
@@ -499,7 +504,7 @@
 	icon_state = ""
 	for(var/i = 1 to 4)
 		var/image/I = image(icon, "[basestate][connections[i]]", dir = 1<<(i-1))
-		add_overlays(I)
+		overlays += I
 
 	return
 
@@ -697,7 +702,7 @@
 	if(active && !powered(power_channel))
 		toggle_tint()
 
-/obj/machinery/button/windowtint/on_update_icon()
+/obj/machinery/button/windowtint/update_icon()
 	icon_state = "light[active]"
 
 

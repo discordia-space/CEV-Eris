@@ -15,7 +15,7 @@
 		switch(powerlevel)
 
 			if(2 to 3)
-				msg += "It is flickering gently with a little electrical activity.\n"
+				msg += "It is flick_lighting gently with a little electrical activity.\n"
 
 			if(4 to 5)
 				msg += "It is glowing gently with moderate levels of electrical activity.\n"

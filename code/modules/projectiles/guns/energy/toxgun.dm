@@ -10,3 +10,4 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASMA = 5)
 	price_tag = 2500
 	projectile_type = /obj/item/projectile/energy/plasma
+

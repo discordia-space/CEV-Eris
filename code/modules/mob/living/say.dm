@@ -91,6 +91,12 @@ var/list/channel_to_radio_key = new
 		verb = pick("stammers", "stutters")
 		speech_problem_flag = 1
 
+	if(ishuman(src) && prob(75))
+		var/mob/living/carbon/human/H = src
+		var/datum/perk/big_shot/BS = H.stats.getPerk(PERK_BIG_SHOT)
+		if(BS)
+			message = BS.screw_up_the_text(message)
+
 	returns[1] = message
 	returns[2] = verb
 	returns[3] = speech_problem_flag
@@ -112,8 +118,9 @@ var/list/channel_to_radio_key = new
 /mob/living/proc/get_speech_ending(verb, var/ending)
 	if(ending=="!")
 		return pick("exclaims", "shouts", "yells")
-	if(ending=="?")
+	else if(ending=="?")
 		return "asks"
+
 	return verb
 
 // returns message
@@ -302,7 +309,7 @@ var/list/channel_to_radio_key = new
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol, 1)
 
 	INVOKE_ASYNC(GLOBAL_PROC, .proc/animate_speechbubble, speech_bubble, speech_bubble_recipients, 30)
-	INVOKE_ASYNC(src, /atom/movable/proc/animate_chat, message, speaking, italics, speech_bubble_recipients, 40)
+	INVOKE_ASYNC(src, /atom/movable/proc/animate_chat, message, speaking, italics, speech_bubble_recipients, 40, verb)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
@@ -394,7 +401,6 @@ var/list/channel_to_radio_key = new
 
 	..()
 
-
 /mob/living/hear_radio(message, verb="says", datum/language/language=null, part_a, part_b, speaker = null, hard_to_hear = 0, voice_name ="")
 	if(!client)
 		return
@@ -409,27 +415,28 @@ var/list/channel_to_radio_key = new
 		return
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
-	if(language && language.flags&NONVERBAL)
-		if(!speaker || (src.sdisabilities&BLIND || src.blinded) || !(speaker in view(src)))
-			message = stars(message)
+	if(language)
+		if(language.flags&NONVERBAL)
+			if(!speaker || (src.sdisabilities&BLIND || src.blinded) || !(speaker in view(src)))
+				message = stars(message)
 
-	// skip understanding checks for INNATE languages
-	if(!(language && language.flags&INNATE))
-		if(!say_understands(speaker, language))
-			if(isanimal(speaker))
-				var/mob/living/simple_animal/S = speaker
-				if(S.speak && S.speak.len)
-					message = pick(S.speak)
+		// skip understanding checks for INNATE languages
+		if(!(language.flags&INNATE))
+			if(!say_understands(speaker, language))
+				if(isanimal(speaker))
+					var/mob/living/simple_animal/S = speaker
+					if(S.speak && S.speak.len)
+						message = pick(S.speak)
+					else
+						return
 				else
-					return
-			else
-				if(language)
-					message = language.scramble(message)
-				else
-					message = stars(message)
+					if(language)
+						message = language.scramble(message)
+					else
+						message = stars(message)
 
-		if(hard_to_hear)
-			message = stars(message)
+			if(hard_to_hear)
+				message = stars(message)
 
 	..()
 

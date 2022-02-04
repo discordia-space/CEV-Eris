@@ -83,25 +83,25 @@
 	var/tendrils_deployed = FALSE				// Whether the dummy capacitors are currently extended
 
 
-/obj/machinery/power/shield_generator/on_update_icon()
-	cut_overlays()
+/obj/machinery/power/shield_generator/update_icon()
+	overlays.Cut()
 	if(running)
-		SetIconState("generator1")
+		icon_state = "generator1"
 		set_light(2, 2, "#8AD55D")
 	else
-		SetIconState("generator0")
+		icon_state = "generator0"
 		set_light(0)
 	if (tendrils_deployed)
 		for (var/D in tendril_dirs)
 			var/I = image(icon,"capacitor_connected", dir = D)
-			add_overlays(I)
+			overlays += I
 
 	for (var/obj/machinery/shield_conduit/S in tendrils)
 		if (running)
-			S.SetIconState("conduit_1")
+			S.icon_state = "conduit_1"
 			S.bright_light()
 		else
-			S.SetIconState("conduit_0")
+			S.icon_state = "conduit_0"
 			S.no_light()
 
 
@@ -123,7 +123,7 @@
 		toggle_flag(DM)
 
 	// Link to Eris object on the overmap
-	linked_ship = locate(/obj/effect/overmap/ship/eris)
+	linked_ship = (locate(/obj/effect/overmap/ship/eris) in GLOB.ships)
 
 /obj/machinery/power/shield_generator/Destroy()
 	toggle_tendrils(FALSE)

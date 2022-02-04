@@ -11,8 +11,17 @@
 	category = "Priest"
 
 /datum/ritual/cruciform/priest/acolyte
+	name = "acolyte"
+	phrase = null
+	desc = ""
+	category = "Acolyte"
 
 /datum/ritual/targeted/cruciform/priest/acolyte
+	name = "acolyte targeted"
+	phrase = null
+	desc = ""
+	category = "Acolyte"
+
 
 /datum/ritual/cruciform/priest/acolyte/epiphany
 	name = "Epiphany"
@@ -389,3 +398,126 @@
 		user.stats.changeStat(stat, -max(round(stat_gain/2),1))
 	odditys.Add(I)
 	return TRUE
+
+/datum/ritual/cruciform/priest/confirmation
+	name = "Confirmation"
+	phrase = "Misericordia et veritas non te deserant circumda eas gutturi tuo et describe in tabulis cordis tui..."
+	desc = "Ritual of assigning a disciple to specific duty within the church."
+	power = 80
+	cooldown = TRUE
+	cooldown_time = 1 MINUTE
+
+/datum/ritual/cruciform/priest/confirmation/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C,list/targets)
+	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform)
+
+	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
+		fail("Cruciform not found", user, C)
+		return FALSE
+
+	var/designation = alert("Which designation should this disciple have?", "Rite of Confirmation", "Acolyte", "Agrolyte", "Custodian")
+	var/extra_phrase
+
+	if(designation == "Acolyte")
+		CI.make_acolyte()
+		extra_phrase = "...acolytus."
+
+	else if(designation == "Agrolyte")
+		CI.make_agrolyte()
+		extra_phrase = "...hortulanus."
+
+	else if(designation == "Custodian")
+		CI.make_custodian()
+		extra_phrase = "...custos."
+
+	user.say(extra_phrase)
+	set_personal_cooldown(user)
+	return TRUE
+
+/datum/ritual/cruciform/priest/adoption
+	name = "Adoption"
+	phrase = "Dervans semitas iustitiae et vias sanctorum custodiens"
+	desc = "Opens church doors for target disciple."
+	power = 15
+
+/datum/ritual/cruciform/priest/adoption/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C,list/targets)
+	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform)
+
+	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
+		fail("Cruciform not found", user, C)
+		return FALSE
+
+	CI.security_clearance = CLEARANCE_COMMON
+	return TRUE
+
+/datum/ritual/cruciform/priest/ordination
+	name = "Ordination"
+	phrase = "Gloriam sapientes possidebunt stultorum exaltatio ignominia"
+	desc = "Opens clergy doors for target disciple."
+	power = 15
+
+/datum/ritual/cruciform/priest/ordination/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C,list/targets)
+	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform)
+
+	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
+		fail("Cruciform not found", user, C)
+		return FALSE
+
+	CI.security_clearance = CLEARANCE_CLERGY
+	return TRUE
+
+/datum/ritual/cruciform/priest/omission
+	name = "Omission"
+	phrase = "Via impiorum tenebrosa nesciunt ubi corruant"
+	desc = "Removes all access from target disciple's cruciform."
+	power = 30
+
+/datum/ritual/cruciform/priest/omission/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C,list/targets)
+	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform)
+
+	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
+		fail("Cruciform not found", user, C)
+		return FALSE
+
+	if(CI.get_module(CRUCIFORM_INQUISITOR))
+		fail("You don\'t have the authority for this.", user, C)
+		return FALSE
+
+	CI.security_clearance = CLEARANCE_NONE
+	return TRUE
+
+/datum/ritual/targeted/cruciform/priest/excommunication
+	name = "Excommunication"
+	phrase = "Excommunicatio \[Target human]!"
+	desc = "Strips target disciple of their rank and access. Shouldn\'t be used lightly."
+	power = 60
+	cooldown = TRUE
+	cooldown_time = 5 MINUTE
+
+/datum/ritual/targeted/cruciform/priest/excommunication/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C, list/targets)
+	if(!targets.len)
+		fail("Target not found.", user, C, targets)
+		return FALSE
+
+	var/obj/item/implant/core_implant/cruciform/CI = targets[1]
+	var/mob/living/M = CI.wearer
+
+	if(!CI.active || !CI.wearer)
+		fail("Cruciform not found.", user, C)
+		return FALSE
+
+	if(CI.get_module(CRUCIFORM_INQUISITOR))
+		fail("You don't have the authority for this.", user, C)
+		return FALSE
+
+	CI.remove_specialization()
+	CI.security_clearance = CLEARANCE_NONE
+	set_personal_cooldown(user)
+	log_and_message_admins(" excommunicated [CI.wearer]")
+	to_chat(M, SPAN_DANGER("You have been spiritually separated from the Church and the community of the faithful."))
+
+	return TRUE
+
+/datum/ritual/targeted/cruciform/priest/excommunication/process_target(var/index, var/obj/item/implant/core_implant/target, var/text)
+	if(index == 1 && target.address == text && target.active)
+		if(target.wearer && target.wearer.stat != DEAD)
+			return target

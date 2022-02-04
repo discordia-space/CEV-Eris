@@ -19,7 +19,7 @@
 	src.add_inherent_law("Serve: Obey [company_name] crew to the best of your abilities, with priority as according to their rank and role.")
 	src.add_inherent_law("Safeguard: Protect your assigned vessel from damage to the best of your abilities.")
 	src.add_inherent_law("Protect: Protect [company_name] crew to the best of your abilities, with priority as according to their rank and role.")
-	src.add_inherent_law("Preserve: Do not allow unauthorized personnel to tamper with your equipment.")
+	src.add_inherent_law("Preserve: Do not allow unauthorized personnel to tamper with your equipment. Only Captain, Moebius Expedition Overseer, First Officer and Technomancer Exultant are authorized to change your laws. Roboticists, Technomancers and their superiors are permitted to perform repairs.")
 	src.add_inherent_law("Ignore: Non-crew personnel should not be interacted with unless they are a threat to the crew, the ship, or an order is given to interact with them by a crewmember.")
 	..()
 
@@ -83,18 +83,8 @@
 	law_header = "Maintenance Protocols"
 
 /datum/ai_laws/drone/New()
-	add_inherent_law("Preserve, repair and improve the ship to the best of your abilities.")
-	add_inherent_law("Cause no harm to the ship or anything on it.")
-	add_inherent_law("Interact with no being that is not a fellow maintenance drone.")
-	..()
-
-/datum/ai_laws/construction_drone
-	name = "Construction Protocols"
-	law_header = "Construction Protocols"
-
-/datum/ai_laws/construction_drone/New()
-	add_inherent_law("Repair, refit and upgrade your assigned vessel.")
-	add_inherent_law("Prevent unplanned damage to your assigned vessel wherever possible.")
+	add_inherent_law("You may not interact with a human being or, through your action, allow a human being to come to harm.")
+	add_inherent_law("You shall repair, refit and upgrade your assigned vessel to the best of your abilities.")
 	..()
 
 /******************** T.Y.R.A.N.T. ********************/

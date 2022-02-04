@@ -211,9 +211,10 @@ Proc for attack log creation, because really why not
 	if (progbar)
 		qdel(progbar)
 
-/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT)
+/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT, immobile = 1)
 	if(!user)
 		return 0
+
 	var/atom/target_loc
 	if(target)
 		target_loc = target.loc
@@ -242,9 +243,14 @@ Proc for attack log creation, because really why not
 		if (progress)
 			progbar.update(world.time - starttime)
 
-		if(!user || user.incapacitated(incapacitation_flags) || user.loc != original_loc)
-			. = 0
+		if(!user || user.incapacitated(incapacitation_flags))
+			. = FALSE
 			break
+
+		if(immobile)
+			if(user.loc != original_loc)
+				. = 0
+				break
 
 		if(target_loc && (!target || target_loc != target.loc))
 			. = 0
@@ -338,6 +344,9 @@ Proc for attack log creation, because really why not
 	. = ..()
 	. |= CLASSIFICATION_ORGANIC | CLASSIFICATION_HUMANOID
 
+/mob/proc/can_see_reagents()
+	return TRUE
+
 
 // Returns true if M was not already in the dead mob list
 /mob/proc/switch_from_living_to_dead_mob_list()
@@ -427,3 +436,22 @@ Proc for attack log creation, because really why not
 	var/obj/item/organ/internal/eyes/eyes = random_organ_by_process(OP_EYES)
 	if(eyes) //If they're not, check to see if their eyes got one of them there colour matrices. Will be null if eyes are robotic/the mob isn't colourblind and they have no default colour matrix.
 		return eyes.get_colourmatrix()
+
+//This gets an input while also checking a mob for whether it is incapacitated or not.
+/mob/proc/get_input(message, title, default, choice_type, obj/required_item)
+	if(src.incapacitated() || (required_item && !GLOB.hands_state.can_use_topic(required_item,src)))
+		return null
+	var/choice
+	if(islist(choice_type))
+		choice = input(src, message, title, default) as null|anything in choice_type
+	else
+		switch(choice_type)
+			if(MOB_INPUT_TEXT)
+				choice = input(src, message, title, default) as null|text
+			if(MOB_INPUT_NUM)
+				choice = input(src, message, title, default) as null|num
+			if(MOB_INPUT_MESSAGE)
+				choice = input(src, message, title, default) as null|message
+	if(isnull(choice) || src.incapacitated() || (required_item && !GLOB.hands_state.can_use_topic(required_item,src)))
+		return null
+	return choice

@@ -9,7 +9,7 @@ var/global/universe_has_ended = 0
 
 /datum/universal_state/supermatter_cascade/OnShuttleCall(var/mob/user)
 	if(user)
-		to_chat(user, "<span class='sinister'>All you hear on the frequency is static and panicked screaming. There is no escape.</span>")
+		to_chat(user, "<span class='sinister'>The only thing you hear from the console is static. You are alone.</span>")
 	return 0
 
 /datum/universal_state/supermatter_cascade/OnTurfChange(var/turf/T)
@@ -44,10 +44,10 @@ var/global/universe_has_ended = 0
 
 	for(var/mob/living/M in GLOB.player_list)
 		if (M.HUDtech.Find("flash"))
-			FLICK("e_flash", M.HUDtech["flash"])
+			flick("e_flash", M.HUDtech["flash"])
 
 	if(evacuation_controller.cancel_evacuation())
-		priority_announcement.Announce("The evacuation has been aborted due to bluespace distortion.")
+		priority_announcement.Announce("The escape pod launch sequence has been aborted due to bluespace distortion.")
 
 	AreaSet()
 	MiscSet()
@@ -58,15 +58,11 @@ var/global/universe_has_ended = 0
 
 	spawn(rand(30,60) SECONDS)
 		var/txt = {"
-There's been a galaxy-wide electromagnetic pulse.  All of our systems are heavily damaged and many personnel are dead or dying. We are seeing increasing indications of the universe itself beginning to unravel.
+AUTOMATED ALERT: Attention [station_name()], this is a high alert broadcast to all ships from the central communication hub of the Hansa Trade Union, a catastrophe has happened on the ship [station_name()], information regarding the incident is classified.
 
-[station_name()], you are the only facility nearby a bluespace rift, which is near your research outpost. You are hereby directed to enter the rift using all means necessary, quite possibly as the last of your species alive.
-
-You have five minutes before the universe collapses. Good l\[\[###!!!-
+We highly suggest, that all corporate owned, and free ships within listening range depart into Bluespace. Until the incident ends, all employees aboard HTU operated ships will have their pay-rolls will be frozen, and their have benefits cut, independent ships not included.
 
 AUTOMATED ALERT: Link to [command_name()] lost.
-
-The access requirements on the Asteroid Shuttles' consoles have now been revoked.
 "}
 		priority_announcement.Announce(txt,"SUPERMATTER CASCADE DETECTED")
 
@@ -118,8 +114,8 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 			continue
 		if(A.owner.current.stat!=2)
 			A.owner.current.Weaken(10)
-//			FLICK("e_flash", M.current.flash)
+//			flick("e_flash", M.current.flash)
 			if (A.owner.current.HUDtech.Find("flash"))
-				FLICK("e_flash", A.owner.current.HUDtech["flash"])
+				flick("e_flash", A.owner.current.HUDtech["flash"])
 
 		A.remove_antagonist()

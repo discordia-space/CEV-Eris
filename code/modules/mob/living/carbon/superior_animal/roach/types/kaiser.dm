@@ -15,16 +15,18 @@ Has ability of every roach.
 	rarity_value = 100
 
 	turns_per_move = 6
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 1500
+	health = 1500
 	contaminant_immunity = TRUE
 
 	var/datum/reagents/gas_sac
 
 	melee_damage_lower = 20
 	melee_damage_upper = 35
+	armor_penetration = 40
+
 	move_to_delay = 8
-	mob_size = MOB_HUGE
+	mob_size = MOB_GIGANTIC
 	status_flags = 0
 	mouse_opacity = MOUSE_OPACITY_OPAQUE // Easier to click on in melee, they're giant targets anyway
 
@@ -44,6 +46,16 @@ Has ability of every roach.
 	var/health_marker_2 = 1000
 	var/health_marker_3 = 500
 
+	// Armor related variables
+	armor = list(
+		melee = 40,
+		bullet = 40,
+		energy = 60,
+		bomb = 0,
+		bio = 25,
+		rad = 50
+	)
+
 /mob/living/carbon/superior_animal/roach/kaiser/New()
 	..()
 	gas_sac = new /datum/reagents(100, src)
@@ -51,13 +63,9 @@ Has ability of every roach.
 	pixel_y = -16
 
 
-/mob/living/carbon/superior_animal/roach/kaiser/Life()
-	. = ..()
-	if(stat != CONSCIOUS)
-		return
-
-	if(stat != AI_inactive)
-		return
+/mob/living/carbon/superior_animal/roach/kaiser/handle_ai()
+	if(!..())
+		return FALSE
 
 	if(can_call_reinforcements())
 		distress_call()
@@ -76,7 +84,7 @@ Has ability of every roach.
 		if(prob(10))
 			var/damage = rand(melee_damage_lower, melee_damage_upper)
 			L.apply_effect(200, IRRADIATE) // as much as a radioactive AMR shot or five times the gestrahlte's
-			L.damage_through_armor(damage, TOX, ARMOR_BIO)
+			L.damage_through_armor(damage, TOX, attack_flag = ARMOR_BIO)
 			playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
 			L.visible_message(SPAN_DANGER("\the [src] globs up some glowing bile all over \the [L]!"))
 

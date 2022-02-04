@@ -9,7 +9,7 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	charge_cost = 100
 	matter = list(MATERIAL_PLASTEEL = 13, MATERIAL_PLASTIC = 6, MATERIAL_SILVER = 6)
-	price_tag = 2500
+	price_tag = 1600
 
 	projectile_type = /obj/item/projectile/beam/stun
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
@@ -42,7 +42,7 @@
 	charge_cost = 50
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)
 	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_PLASTIC = 4, MATERIAL_SILVER = 2)
-	price_tag = 800
+	price_tag = 700
 	modifystate = null
 	suitable_cell = /obj/item/cell/small
 	cell_type = /obj/item/cell/small
@@ -52,11 +52,11 @@
 /obj/item/gun/energy/gun/martin/proc/update_mode()
 	var/datum/firemode/current_mode = firemodes[sel_mode]
 	if(current_mode.name == "stun")
-		add_overlays("taser_pdw")
+		overlays += "taser_pdw"
 	else
-		add_overlays("lazer_pdw")
+		overlays += "lazer_pdw"
 
-/obj/item/gun/energy/gun/martin/on_update_icon()
+/obj/item/gun/energy/gun/martin/update_icon()
 	cut_overlays()
 	if(cell && cell.charge >= charge_cost) //no overlay if we dont have any power
 		update_mode()

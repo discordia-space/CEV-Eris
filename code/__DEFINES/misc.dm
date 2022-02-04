@@ -44,7 +44,7 @@
 // These define the time taken for the shuttle to get to the space station, and the time before it leaves again.
 
 #define PODS_PREPTIME 	600	//10 mins = 600 sec - hol long pods will wait before launch
-#define PODS_TRANSIT 	120 //2 mins - how long pods takes to get to the centcomm
+#define PODS_TRANSIT 	120 //2 mins - how long pods takes to get to the centcom
 #define PODS_LOCKDOWN	90	//1.5 mins - how long pods stay opened, if evacuation will be cancelled
 
 // Shuttle moving status.
@@ -169,6 +169,7 @@
 //HUD element hidings flags
 #define F12_FLAG 1 // 0001
 #define TOGGLE_INVENTORY_FLAG 2 //0010
+#define TOGGLE_BOTTOM_FLAG 4 //0100
 
 // Default name for announcement system
 #define ANNOUNCER_NAME "CEV Eris System Announcer"
@@ -237,10 +238,16 @@
 #define SPAN_WARNING(text) "<span class='warning'>[text]</span>"
 #define SPAN_DANGER(text)  "<span class='danger'>[text]</span>"
 #define span(class, text) ("<span class='[class]'>[text]</span>")
+// the thing below allow using SPANning in datum definition, the above can't.
+#define SPAN(class, X) "<span class='" + ##class + "'>" + ##X + "</span>"
 
 #define text_starts_with(text, start) (copytext(text, 1, length(start) + 1) == start)
 
 #define attack_animation(A) if(istype(A)) A.do_attack_animation(src)
+
+// Overlays
+// (placeholders for if/when TG overlays system is ported)
+#define cut_overlays(...)			overlays.Cut()
 
 #define sequential_id(key) uniqueness_repository.Generate(/datum/uniqueness_generator/id_sequential, key)
 
@@ -337,3 +344,14 @@
 
 //Sounds list
 #define WALLHIT_SOUNDS list('sound/effects/wallhit.ogg', 'sound/effects/wallhit2.ogg', 'sound/effects/wallhit3.ogg')
+
+//Prevent the master controller from starting automatically
+#define NO_INIT_PARAMETER "no-init"
+
+/// Required minimum values to see reagents in a beaker
+#define HUMAN_REQ_COG_FOR_REG 35
+#define HUMAN_REQ_BIO_FOR_REG 50
+
+/// Misc atmos equations
+
+#define FIRESTACKS_TEMP_CONV(firestacks) min(5200,max(2.25*round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2), 700))

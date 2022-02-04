@@ -28,26 +28,34 @@
 		list(mode_name = "full auto",  mode_desc = "600 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 1, icon="auto", damage_mult_add = -0.1, move_delay=6),
 		list(mode_name="short bursts", mode_desc="dakka", burst=5,    burst_delay=1, move_delay=6,  icon="burst"),
 		list(mode_name="long bursts", mode_desc="Dakka", burst=8, burst_delay=1, move_delay=8,  icon="burst"),
-		list(mode_name="suppressing fire", mode_desc="DAKKA", burst=16, burst_delay=1, move_delay=110,  icon="burst")
+		list(mode_name="suppressing fire", mode_desc="DAKKA", burst=16, burst_delay=1, move_delay=16,  icon="burst")
 		)
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
 	slowdown_hold = 5
+	wield_delay = 1 SECOND
+	wield_delay_factor = 0.9 // 90 vig
+	gun_parts = list(/obj/item/part/gun/frame/maxim = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
-/obj/item/gun/projectile/automatic/maxim/on_update_icon()
+/obj/item/gun/projectile/automatic/maxim/update_icon()
 	..()
-
-	var/iconstring = initial(icon_state)
 	var/itemstring = ""
+	cut_overlays()
 
-	if (ammo_magazine)
-		iconstring += "[ammo_magazine? "-full[ammo_magazine.ammo_color]": ""]"
+	if(ammo_magazine)
+		overlays += "mag[ammo_magazine.ammo_label_string]"
 		itemstring += "_full"
 
 	if(wielded)
 		itemstring += "_doble"
 
-	icon_state = iconstring
 	set_item_state(itemstring)
 
-
+/obj/item/part/gun/frame/maxim
+	name = "Maxim frame"
+	desc = "A Maxim HMG frame. Whatever happens, we have got the Maxim gun and they have not."
+	icon_state = "frame_maxim"
+	result = /obj/item/gun/projectile/automatic/maxim
+	grip = /obj/item/part/gun/grip/excel
+	mechanism = /obj/item/part/gun/mechanism/machinegun
+	barrel = /obj/item/part/gun/barrel/lrifle

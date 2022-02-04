@@ -30,7 +30,7 @@
 	show_above_suit = !show_above_suit
 	update_icon()
 
-/obj/item/storage/on_update_icon()
+/obj/item/storage/update_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_belt()
@@ -65,7 +65,8 @@
 		/obj/item/cell/medium,
 		/obj/item/grenade/chem_grenade/cleaner,
 		/obj/item/grenade/chem_grenade/antiweed,
-		/obj/item/grenade/chem_grenade/metalfoam
+		/obj/item/grenade/chem_grenade/metalfoam,
+		/obj/item/gun/projectile/flare_gun
 	)
 	price_tag = 200
 /obj/item/storage/belt/utility/full
@@ -172,6 +173,7 @@
 		/obj/item/device/megaphone,
 		/obj/item/melee,
 		/obj/item/gun/projectile/selfload,
+		/obj/item/gun/projectile/flare_gun,
 		/obj/item/gun/projectile/giskard,
 		/obj/item/gun/energy/gun/martin,
 		/obj/item/taperoll
@@ -193,6 +195,7 @@
 		/obj/item/tool/knife/neotritual,
 		/obj/item/gun/energy/crossbow,
 		/obj/item/tool/knife/dagger/nt,
+		/obj/item/gun/energy/nt_svalinn,
 		/obj/item/reagent_containers/food/drinks/bottle/ntcahors
 	)
 	spawn_blacklisted = TRUE

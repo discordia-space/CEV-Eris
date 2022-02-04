@@ -24,7 +24,9 @@
 	recoil_buildup = 1.8
 	one_hand_penalty = 15 //automatic rifle level
 	spawn_blacklisted = TRUE
-	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/plasteel = 7)
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
+
+	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(
 		FULL_AUTO_400,
@@ -35,7 +37,26 @@
 
 	var/folded = FALSE
 
-/obj/item/gun/projectile/automatic/ak47/on_update_icon()
+/obj/item/part/gun/frame/ak47
+	name = "AK frame"
+	desc = "An AK rifle frame. The eternal firearm."
+	icon_state = "frame_ak"
+	matter = list(MATERIAL_PLASTEEL = 8)
+	result = /obj/item/gun/projectile/automatic/ak47
+	variant_grip = TRUE
+	gripvars = list(/obj/item/part/gun/grip/excel, /obj/item/part/gun/grip/serb, /obj/item/part/gun/grip/wood, /obj/item/part/gun/grip/rubber)
+	resultvars = list(/obj/item/gun/projectile/automatic/ak47, /obj/item/gun/projectile/automatic/ak47/sa, /obj/item/gun/projectile/automatic/ak47/fs, /obj/item/gun/projectile/automatic/ak47/fs/ih)
+	mechanism = /obj/item/part/gun/mechanism/autorifle
+	barrel = /obj/item/part/gun/barrel/lrifle
+
+/obj/item/gun/projectile/automatic/ak47/proc/can_interact(mob/user)
+	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
+		return 1
+	if(istype(loc, /obj/item/storage))
+		return 2
+	return 0
+
+/obj/item/gun/projectile/automatic/ak47/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -79,40 +100,49 @@
 
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
+
 	price_tag = 3500
 
-/obj/item/gun/projectile/automatic/ak47/sa/CtrlShiftClick()
+/obj/item/gun/projectile/automatic/ak47/sa/CtrlShiftClick(mob/user)
 	. = ..()
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	var/able = can_interact(user)
+
+	if(able == 1)
+		return
+
+	if(able == 2)
+		to_chat(user, SPAN_NOTICE("You cannot [folded ? "unfold" : "fold"] the stock while \the [src] is in a container."))
 		return
 
 	fold()
 
 
-/obj/item/gun/projectile/automatic/ak47/sa/verb/quick_fold()
+/obj/item/gun/projectile/automatic/ak47/sa/verb/quick_fold(mob/user)
 	set name = "Fold or Unfold Stock"
 	set category = "Object"
 	set src in view(1)
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	if(can_interact(user) == 1)
 		return
-	fold()
 
-/obj/item/gun/projectile/automatic/ak47/sa/proc/fold()
+	fold(user)
+
+/obj/item/gun/projectile/automatic/ak47/sa/proc/fold(user)
 
 	if(folded)
-		to_chat(usr, SPAN_NOTICE("You unfold the stock on the [src]."))
+		to_chat(user, SPAN_NOTICE("You unfold the stock on \the [src]."))
 		recoil_buildup = 1.5
 		w_class = ITEM_SIZE_BULKY
 		folded = FALSE
 	else
-		to_chat(usr, SPAN_NOTICE("You fold the stock on the [src]."))
+		to_chat(user, SPAN_NOTICE("You fold the stock on \the [src]."))
 		recoil_buildup = 1.8
 		w_class = ITEM_SIZE_NORMAL
 		folded = TRUE
 
-	playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
+	playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()
 
 //////////////////////////////////////////FS//////////////////////////////////////////
@@ -130,6 +160,7 @@
 
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
+	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
@@ -140,6 +171,7 @@
 	price_tag = 2000
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	spawn_blacklisted = FALSE
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
 
 
@@ -154,38 +186,45 @@
 	icon = 'icons/obj/guns/projectile/ak/venger.dmi'
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
-/obj/item/gun/projectile/automatic/ak47/fs/ih/CtrlShiftClick()
+/obj/item/gun/projectile/automatic/ak47/fs/ih/CtrlShiftClick(mob/user)
 	. = ..()
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	var/able = can_interact(user)
+
+	if(able == 1)
+		return
+
+	if(able == 2)
+		to_chat(user, SPAN_NOTICE("The stock on \the [src] gets caught on the bag."))
 		return
 
 	fold()
 
-/obj/item/gun/projectile/automatic/ak47/fs/ih/verb/quick_fold()	//Easier to redo the proc than redo everything else
+/obj/item/gun/projectile/automatic/ak47/fs/ih/verb/quick_fold(mob/user)	//Easier to redo the proc than redo everything else
 	set name = "Fold or Unfold Stock"
 	set category = "Object"
 	set src in view(1)
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	if(can_interact(user) == 1)
 		return
-	fold()
+	fold(user)
 
-/obj/item/gun/projectile/automatic/ak47/fs/ih/proc/fold()
+/obj/item/gun/projectile/automatic/ak47/fs/ih/proc/fold(user)
 
 	if(folded)
-		to_chat(usr, SPAN_NOTICE("You unfold the stock on the [src]."))
+		to_chat(user, SPAN_NOTICE("You unfold the stock on \the [src]."))
 		recoil_buildup = 1.5
 		w_class = ITEM_SIZE_HUGE
 		folded = FALSE
 	else
-		to_chat(usr, SPAN_NOTICE("You fold the stock on the [src]."))
+		to_chat(user, SPAN_NOTICE("You fold the stock on \the [src]."))
 		recoil_buildup = 1.8
 		w_class = ITEM_SIZE_BULKY
 		folded = TRUE
 
-	playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
+	playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()
 
 //////////////////////////////////////////Makeshift//////////////////////////////////////////
@@ -199,12 +238,36 @@
 	icon = 'icons/obj/guns/projectile/ak/kalash.dmi'
 	w_class = ITEM_SIZE_HUGE
 	recoil_buildup = 1.6	//Full size, but cheap
+	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/plasteel = 7)
 
 	origin_tech = list(TECH_COMBAT = 2)	//bad copies don't give good science
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
+	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY	//too poorly made for burst or automatic
 	)
-
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	price_tag = 500
+	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/steel = 15)
+
+/obj/item/gun/projectile/automatic/ak47/makeshift/attackby(obj/item/W, mob/user)
+	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
+		to_chat(user, SPAN_NOTICE("You begin to rechamber \the [src]."))
+		if(!ammo_magazine && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+			if(caliber == CAL_LRIFLE)
+				caliber = CAL_SRIFLE
+				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .20 Caliber."))
+			else if(caliber == CAL_SRIFLE)
+				caliber = CAL_CLRIFLE
+				mag_well = MAG_WELL_IH
+				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .25 Caseless."))
+			else if(caliber == CAL_CLRIFLE)
+				caliber = CAL_LRIFLE
+				mag_well = MAG_WELL_RIFLE
+				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .30 Caliber."))
+		else
+			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
+			return
+	..()

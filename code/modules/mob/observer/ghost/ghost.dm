@@ -3,7 +3,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 
 /mob/observer/ghost
 	name = "ghost"
-	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
+	desc = "A g-g-g-g-ghooooost!" //jinkies!
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "ghost"
 	canmove = 0
@@ -43,11 +43,11 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		if (ishuman(body))
 			var/mob/living/carbon/human/H = body
 			icon = H.stand_icon
-			set_overlays(H.overlays_standing)
+			overlays = H.overlays_standing
 		else
 			icon = body.icon
 			icon_state = body.icon_state
-			set_overlays(body.overlays)
+			overlays = body.overlays
 
 		alpha = 127
 
@@ -308,9 +308,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	stop_following()
 	usr.forceMove(pick(L))
 
-/mob/observer/ghost/verb/follow(input in getmobs())
+/mob/observer/ghost/verb/Follow(atom/A as mob|obj in view(usr.client)) ////// Follow verb in context menu
+	set category ="Ghost"
+	set name = "Follow"
+	if(following)
+		stop_following()
+	var/target = A
+	ManualFollow(target)
+
+/mob/observer/ghost/verb/follow_mob(input in getmobs()) ////// Follow mobs on list
 	set category = "Ghost"
-	set name = "Follow" // "Haunt"
+	set name = "Follow mob" // "Haunt"
 	set desc = "Follow and haunt a mob."
 
 	var/target = getmobs()[input]

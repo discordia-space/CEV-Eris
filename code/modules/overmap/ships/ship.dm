@@ -19,6 +19,9 @@
 	var/thrust_limit = 1 //global thrust limit for all engines, 0..1
 	var/triggers_events = 1
 
+	var/scan_range = PASSIVE_SCAN_RANGE
+	var/pulsing = FALSE
+
 	Crossed(var/obj/effect/overmap_event/movable/ME)
 		..()
 		if(ME)
@@ -34,6 +37,14 @@
 				if(ME.OE)
 					if(istype(src, /obj/effect/overmap/ship))
 						ME.OE:leave(src)
+
+/obj/effect/overmap/ship/New()
+	GLOB.ships += src
+	. = ..()
+
+/obj/effect/overmap/ship/Destroy()
+	GLOB.ships -= src
+	. = ..()
 
 /obj/effect/overmap/ship/Initialize()
 	. = ..()
@@ -138,6 +149,9 @@
 		return INFINITY
 	var/num_burns = get_speed()/get_acceleration() + 2 //some padding in case acceleration drops form fuel usage
 	var/burns_per_grid = (default_delay - speed_mod*get_speed())/burn_delay
+	if (burns_per_grid == 0)
+		error("ship attempted get_brake_path, burns_per_grid is 0")
+		return INFINITY
 	return round(num_burns/burns_per_grid)
 
 /obj/effect/overmap/ship/proc/decelerate()
@@ -175,11 +189,11 @@
 		update_icon()
 	SEND_SIGNAL(src, COMSIG_SHIP_STILL, x, y, is_still())
 
-/obj/effect/overmap/ship/on_update_icon()
+/obj/effect/overmap/ship/update_icon()
 	cut_overlays()
 	if(!is_still())
 		dir = get_heading()
-		add_overlays(image('icons/obj/overmap.dmi', "vector", "dir"=dir))
+		overlays += image('icons/obj/overmap.dmi', "vector", "dir"=dir)
 
 /obj/effect/overmap/ship/proc/burn()
 
@@ -235,17 +249,24 @@
 
 /obj/effect/overmap/ship/proc/pulse()
 
-	var/max_range = 0
-	var/obj/machinery/power/long_range_scanner/max_LRS = null
-	for(var/obj/machinery/power/long_range_scanner/LRS in scanners)
-		if(LRS.scan_range > max_range)
-			max_range = LRS.scan_range
-			max_LRS = LRS
+	if(pulsing)  // Should not happen but better to check
+		return
 
-	if(max_LRS)
-		max_LRS.consume_energy_scan()
+	var/obj/machinery/power/long_range_scanner/enough_LRS = null
+	for(var/obj/machinery/power/long_range_scanner/LRS in scanners)  // Among all ship's scanners get one with enough energy
+		if(LRS.running && (LRS.current_energy > round(ENERGY_PER_SCAN * LRS.as_energy_multiplier)))
+			enough_LRS = LRS
 
-	// TODO: Briefly scan events around the ship with a big range
+	if(enough_LRS)
+		enough_LRS.consume_energy_scan()
+
+		pulsing = TRUE
+		scan_range = ACTIVE_SCAN_RANGE
+		spawn(ACTIVE_SCAN_DURATION * enough_LRS.as_duration_multiplier)
+			pulsing = FALSE
+			scan_range = initial(scan_range) // get back to PASSIVE_SCAN_RANGE
+			// Reset icons far from the ship to unknown state otherwise they remain discovered
+			overmap_event_handler.scan_loc(src, loc, can_scan(), ACTIVE_SCAN_RANGE - initial(scan_range) + 3)
 
 /obj/effect/overmap/ship/proc/can_scan()
 
@@ -254,5 +275,21 @@
 
 /obj/effect/overmap/ship/proc/can_pulse()
 
+	if(pulsing)  // If the ship is already pulsing it cannot pulse again
+		return FALSE
+
+	// Check if one of the ship's scanners has enough energy to pulse
 	for(var/obj/machinery/power/long_range_scanner/LRS in scanners)
-		. |= (LRS.running && (LRS.current_energy > round(ENERGY_PER_SCAN)))
+		. |= (LRS.running && (LRS.current_energy > round(ENERGY_PER_SCAN * LRS.as_energy_multiplier)))
+
+/obj/effect/overmap/ship/proc/can_scan_poi()
+
+	if(!is_still())  // Ship must be immobile
+		return FALSE
+
+	for(var/obj/machinery/power/long_range_scanner/LRS in scanners)
+		. |= (LRS.running)
+
+/obj/effect/overmap/ship/proc/scan_poi()
+	overmap_event_handler.scan_poi(src, loc) // Eris uses its sensors to scan a nearby point of interest
+	return

@@ -21,8 +21,8 @@
 
 	var/blattedin_revives_left = 1 // how many times blattedin can get us back to life (as num for adminbus fun).
 
-	melee_damage_lower = 1
-	melee_damage_upper = 4
+	melee_damage_lower = 3
+	melee_damage_upper = 8
 
 	min_breath_required_type = 3
 	min_air_pressure = 15 //below this, brute damage is dealt
@@ -46,9 +46,22 @@
 	var/busy_time // how long it will take to eat/lay egg
 	var/busy_start_time // when it started eating/laying egg
 
+	// Armor related variables
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 25,
+		rad = 50
+	)
 //When roaches die near a leader, the leader may call for reinforcements
 /mob/living/carbon/superior_animal/roach/death()
 	.=..()
 	if(.)
 		for (var/mob/living/carbon/superior_animal/roach/fuhrer/F in range(src,8))
 			F.distress_call()
+
+	if(prob(3))
+		visible_message(SPAN_DANGER("\the [src] hacks up a tape!"))
+		new /obj/item/music_tape(get_turf(src))

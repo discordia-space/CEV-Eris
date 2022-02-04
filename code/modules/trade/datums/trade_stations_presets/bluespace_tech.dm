@@ -5,13 +5,10 @@
 			/obj/item/electronics/circuitboard/teleporter,
 			/obj/item/tool/knife/dagger/bluespace,
 			/obj/item/reagent_containers/glass/beaker/bluespace,
-			/obj/item/electronics/circuitboard/bssilk_hub,
+			/obj/item/electronics/circuitboard/bssilk_hub
 		)
 	)
-
 	offer_types = list(
-		/obj/item/bluespace_crystal = 0.25,
-		/obj/item/device/mmi/digital/posibrain,
-		/obj/item/reagent_containers/food/snacks/csandwich = 4
+		/obj/item/bluespace_crystal = offer_data("bluespace crystal", 1000, 10),
+		/obj/item/device/mmi/digital/posibrain = offer_data("positronic brain", 750, 3)
 	)	
-

@@ -10,6 +10,8 @@
 
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "tomato"
+	// AI activation for players is handled in sanity , if it has sanity damage it activates AI.
+	sanity_damage = 0.5
 
 	var/icon_living
 	var/icon_dead
@@ -58,6 +60,8 @@
 
 	var/melee_damage_lower = 0
 	var/melee_damage_upper = 10
+	var/melee_sharp = FALSE //whether mob attacks have sharp property
+	var/melee_edge = FALSE //whether mob attacks have edge property
 
 	var/list/objectsInView //memoization for getObjectsInView()
 	var/viewRange = 7 //how far the mob AI can see
@@ -93,6 +97,10 @@
 	var/kept_distance //how far away will it be before it stops moving closer
 
 	var/grabbed_by_friend = FALSE //is this superior_animal being wrangled?
+	var/ticks_processed = 0
+
+	// Armor related datum
+	var/datum/armor/armor
 
 /mob/living/carbon/superior_animal/New()
 	..()
@@ -110,9 +118,16 @@
 	pixel_x = RAND_DECIMAL(-randpixel, randpixel)
 	pixel_y = RAND_DECIMAL(-randpixel, randpixel)
 
-
 /mob/living/carbon/superior_animal/Initialize(var/mapload)
+	if(islist(armor))
+		armor = getArmor(arglist(armor))
+	else if(!armor)
+		armor = getArmor()
+	else if(!istype(armor, /datum/armor))
+		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
+
 	.=..()
+	
 	if (mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
 		if (prob(extra_burrow_chance))
@@ -158,3 +173,194 @@
 /mob/living/carbon/superior_animal/updateicon()
 	. = ..()
 	update_icons()
+
+// Same as breath but with innecesarry code removed and damage tripled. Environment pressure damage moved here since we handle moles.
+
+/mob/living/carbon/superior_animal/proc/handle_cheap_breath(datum/gas_mixture/breath as anything)
+	var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
+	var/breath_required = breath_pressure > 15 && (breath_required_type || breath_poison_type)
+	if(!breath_required) // 15 KPA Minimum
+		return FALSE
+	adjustOxyLoss(breath.gas[breath_required_type] ? 0 : ((((breath.gas[breath_required_type] / breath.total_moles) * breath_pressure) < min_breath_required_type) ? 0 : 6))
+	adjustToxLoss(breath.gas[breath_poison_type] ? 0 : ((((breath.gas[breath_poison_type] / breath.total_moles) * breath_pressure) < min_breath_poison_type) ? 0 : 6))
+
+
+/mob/living/carbon/superior_animal/proc/handle_cheap_environment(datum/gas_mixture/environment as anything)
+	var/pressure = environment.return_pressure()
+	var/enviro_damage = (bodytemperature < min_bodytemperature) || (pressure < min_air_pressure) || (pressure > max_air_pressure)
+	if(enviro_damage) // its like this to avoid extra processing further below without using goto
+		bodytemperature += (bodytemperature - environment.temperature) * (environment.total_moles / MOLES_CELLSTANDARD) * (bodytemperature < min_bodytemperature ? 1 - heat_protection : -1 + cold_protection)
+		adjustFireLoss(bodytemperature < min_bodytemperature ? 0 : 15)
+		adjustBruteLoss((pressure < min_air_pressure  || pressure > max_air_pressure) ? 0 : 6)
+		bad_environment = TRUE
+		return FALSE
+	bad_environment = FALSE
+	if (!contaminant_immunity)
+		for(var/g in environment.gas)
+			if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && environment.gas[g] > gas_data.overlay_limit[g] + 1)
+				pl_effects()
+				break
+
+	if (overkill_dust && (getFireLoss() >= maxHealth*2))
+		dust()
+		return FALSE
+
+// branchless isincapacited check made for roaches.
+/mob/living/carbon/superior_animal/proc/cheap_incapacitation_check() // This works based off constants ,override it if you want it to be dynamic . Based off isincapacited
+	return stunned > 0 || weakened > 0 || resting || pinned.len > 0 || stat || paralysis || sleeping || (status_flags & FAKEDEATH) || buckled() > 0
+
+/mob/living/carbon/superior_animal/proc/cheap_update_lying_buckled_and_verb_status_()
+
+	if(!cheap_incapacitation_check())
+		lying = FALSE
+		canmove = TRUE
+	else
+		canmove = FALSE //TODO
+		if(buckled)
+			anchored = buckled.buckle_movable
+			lying = buckled.buckle_lying
+	if(lying)
+		set_density(FALSE)
+	else
+		canmove = TRUE
+		set_density(initial(density))
+
+/mob/living/carbon/superior_animal/proc/handle_ai()
+
+	objectsInView = null
+
+	//CONSCIOUS UNCONSCIOUS DEAD
+
+	if (!check_AI_act())
+		return FALSE
+
+	switch(stance)
+		if(HOSTILE_STANCE_IDLE)
+			if (!busy) // if not busy with a special task
+				stop_automated_movement = FALSE
+			target_mob = findTarget()
+			if (target_mob)
+				stance = HOSTILE_STANCE_ATTACK
+
+		if(HOSTILE_STANCE_ATTACK)
+			if(destroy_surroundings)
+				destroySurroundings()
+
+			stop_automated_movement = TRUE
+			stance = HOSTILE_STANCE_ATTACKING
+			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
+			if(!kept_distance)
+				walk_to(src, target_mob, 1, move_to_delay)
+			else
+				step_to(src, target_mob, kept_distance)
+
+		if(HOSTILE_STANCE_ATTACKING)
+			if(destroy_surroundings)
+				destroySurroundings()
+
+			prepareAttackOnTarget()
+
+	//random movement
+	if(wander && !stop_automated_movement && !anchored)
+		if(isturf(loc) && !resting && !buckled && canmove)
+			turns_since_move++
+			if(turns_since_move >= turns_per_move)
+				if(!(stop_automated_movement_when_pulled && pulledby))
+					var/moving_to = pick(cardinal)
+					set_dir(moving_to)
+					step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
+					turns_since_move = 0
+
+	//Speaking
+	if(speak_chance && prob(speak_chance))
+		visible_emote(emote_see)
+
+	return TRUE
+
+// Same as overridden proc but -3 instead of -1 since its 3 times less frequently envoked, if checks removed
+/mob/living/carbon/superior_animal/handle_status_effects()
+	paralysis = max(paralysis-3,0)
+	stunned = max(stunned-3,0)
+	weakened = max(weakened-3,0)
+
+/mob/living/carbon/superior_animal/proc/handle_cheap_regular_status_updates()
+	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
+	if(health <= 0 && stat != DEAD)
+		death()
+		// STOP_PROCESSING(SSmobs, src) This is handled in Superior animal Life().
+		blinded = TRUE
+		silent = FALSE
+		return TRUE
+	return FALSE
+
+/mob/living/carbon/superior_animal/proc/handle_cheap_chemicals_in_body()
+	if(reagents)
+		chem_effects.Cut()
+		if(touching)
+			touching.metabolize()
+		if(bloodstr)
+			bloodstr.metabolize()
+
+	/*
+	if(light_dam)
+		var/light_amount = 0
+		if(isturf(loc))
+			var/turf/T = loc
+			light_amount = round((T.get_lumcount()*10)-5)
+
+		if(light_amount > light_dam) //if there's enough light, start dying
+			take_overall_damage(1,1)
+		else //heal in the dark
+			heal_overall_damage(1,1)
+
+	// nutrition decrease
+	if (hunger_factor && (nutrition > 0) && (stat != DEAD))
+		nutrition = max (0, nutrition - hunger_factor)
+
+	updatehealth()
+	*/
+
+/mob/living/carbon/superior_animal/Life()
+	ticks_processed++
+	var/datum/gas_mixture/environment = loc.return_air_for_internal_lifeform()
+	/// Fire handling , not passing the whole list because thats unefficient.
+	handle_fire(environment.gas["oxygen"], loc)
+	handle_regular_hud_updates()
+	handle_cheap_chemicals_in_body()
+	if(!(ticks_processed%3))
+		// handle_status_effects() this is handled here directly to save a bit on procedure calls
+		paralysis = max(paralysis-3,0)
+		stunned = max(stunned-3,0)
+		weakened = max(weakened-3,0)
+		cheap_update_lying_buckled_and_verb_status_()
+		var/datum/gas_mixture/breath = environment.remove_volume(BREATH_VOLUME)
+		handle_cheap_breath(breath)
+		handle_cheap_environment(environment)
+		updateicon()
+		ticks_processed = 0
+	if(handle_cheap_regular_status_updates()) // They have died after all of this, do not scan or do not handle AI anymore.
+		return PROCESS_KILL
+
+	if (can_burrow && bad_environment)
+		evacuate()
+
+	if(!AI_inactive)
+		handle_ai()
+	if(life_cycles_before_sleep)
+		life_cycles_before_sleep--
+		return TRUE
+	if(!(AI_inactive && life_cycles_before_sleep))
+		AI_inactive = TRUE
+
+	if(life_cycles_before_scan)
+		life_cycles_before_scan--
+		return FALSE
+	if(check_surrounding_area(7))
+		activate_ai()
+		life_cycles_before_scan = initial(life_cycles_before_scan)/6 //So it doesn't fall asleep just to wake up the next tick
+		return TRUE
+	life_cycles_before_scan = initial(life_cycles_before_scan)
+	return FALSE
+
+/mob/living/carbon/superior_animal/getarmor(def_zone, type)
+	return armor.getRating(type)

@@ -36,6 +36,7 @@
 	var/stasis_timeofdeath = 0
 	var/pulse = PULSE_NORM
 	var/global/list/overlays_cache = null
+	var/dodge_time = 0 // will be set to timeofgame on dodging
 
 /mob/living/carbon/human/Life()
 	set invisibility = 0
@@ -78,6 +79,12 @@
 		handle_pain()
 
 		handle_medical_side_effects()
+
+		if (life_tick % 4 == 1 && (get_game_time() >= dodge_time + 5 SECONDS))
+			if (confidence == FALSE)
+				to_chat(src, SPAN_NOTICE("You feel confident again."))
+				confidence = TRUE
+			regen_slickness()
 
 		if(life_tick % 2)	//Upadated every 2 life ticks, lots of for loops in this, needs to feel smother in the UI
 			for(var/obj/item/organ/external/E in organs)
@@ -297,11 +304,9 @@
 	/** breathing **/
 
 /mob/living/carbon/human/handle_chemical_smoke(var/datum/gas_mixture/environment)
-	if(wear_mask && (wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT))
+	if(wear_mask && (wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT & AIRTIGHT))
 		return
-	if(glasses && (glasses.item_flags & BLOCK_GAS_SMOKE_EFFECT))
-		return
-	if(head && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT))
+	if(head && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT & AIRTIGHT))
 		return
 	..()
 
@@ -1136,7 +1141,7 @@
 
 /mob/living/carbon/human/handle_vision()
 	if(client)
-		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science)
+		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.lightMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science)
 	if(machine)
 		var/viewflags = machine.check_eye(src)
 		if(viewflags < 0)
@@ -1172,6 +1177,14 @@
 		return
 	if(XRAY in mutations)
 		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
+
+/mob/living/carbon/human/proc/regen_slickness(var/source_modifier = 1)
+	var/slick = TRUE
+	if (slickness == style*10) // is slickness at the maximum?
+		slick = FALSE
+	slickness = max(min(slickness + 1 * source_modifier * style, style*10), 0)
+	if (slick && slickness == style*10 && style > 0) // if slickness was not at the maximum and now is
+		to_chat(src, SPAN_NOTICE("You feel slick!")) // notify of slickness entering maximum
 
 /mob/living/carbon/human/proc/EnterStasis()
 	in_stasis = TRUE

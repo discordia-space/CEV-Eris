@@ -1,13 +1,18 @@
 // Wires for cameras.
 
 /datum/wires/camera
-	random = 1
 	holder_type = /obj/machinery/camera
 	wire_count = 6
+	descriptions = list(
+		new /datum/wire_description(CAMERA_WIRE_FOCUS, "Focus"),
+		new /datum/wire_description(CAMERA_WIRE_POWER, "Power"),
+		new /datum/wire_description(CAMERA_WIRE_LIGHT, "Light"),
+		new /datum/wire_description(CAMERA_WIRE_ALARM, "Alarm")
+	)
 
-/datum/wires/camera/GetInteractWindow()
+/datum/wires/camera/GetInteractWindow(mob/living/user)
 
-	. = ..()
+	. = ..(user)
 	var/obj/machinery/camera/C = holder
 	. += "<br>\n[(C.view_range == initial(C.view_range) ? "The focus light is on." : "The focus light is off.")]"
 	. += "<br>\n[(C.can_use() ? "The power link light is on." : "The power link light is off.")]"

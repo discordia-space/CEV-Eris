@@ -82,7 +82,7 @@
 				qdel(src)
 	return
 
-/obj/item/toy/balloon/on_update_icon()
+/obj/item/toy/balloon/update_icon()
 	if(src.reagents.total_volume >= 1)
 		icon_state = "waterballoon"
 		item_state = "balloon"
@@ -590,7 +590,7 @@
 
 /obj/structure/plushie/drone
 	name = "plush drone"
-	desc = "A plushie of a happy drone! It appears to be smiling, and has a small tag which reads \"N.D.V. Icarus Gift Shop\"."
+	desc = "A plushie of a happy drone! It appears to be smiling, and has a small tag which reads \"I.H.S. Atomos Gift Shop\"."
 	icon_state = "droneplushie"
 	phrase = "Beep boop!"
 

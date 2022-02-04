@@ -59,7 +59,7 @@
 	QDEL_NULL(separation_beaker)
 	return ..()
 
-/obj/machinery/electrolyzer/on_update_icon()
+/obj/machinery/electrolyzer/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "[initial(icon_state)]_off"
 		return
@@ -215,6 +215,7 @@
 	rarity_value = 50
 	starting_cell = FALSE
 	suitable_cell = /obj/item/cell/small
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 	var/on = FALSE
 	var/tick_cost = 3
 	var/obj/item/reagent_containers/beaker

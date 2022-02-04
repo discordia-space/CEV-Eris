@@ -72,6 +72,11 @@
 	name = "industrial grinder"
 	build_path = /obj/item/electronics/circuitboard/industrial_grinder
 
+/datum/design/autolathe/circuit/craftingstation
+	name = "crafting station"
+	build_path = /obj/item/electronics/circuitboard/crafting_station
+
+
 //Exelsior ciruits
 /datum/design/autolathe/circuit/shieldgen_excelsior
 	name = "excelsior shield wall generator"
@@ -88,6 +93,10 @@
 /datum/design/autolathe/circuit/excelsior_boombox
 	name = "excelsior boombox"
 	build_path = /obj/item/electronics/circuitboard/excelsior_boombox
+
+/datum/design/autolathe/circuit/excelsior_autodoc
+	name = "excelsior autodoc"
+	build_path = /obj/item/electronics/circuitboard/excelsior_autodoc
 
 /datum/design/autolathe/circuit/teleporter_excelsior
 	name = "excelsior long-range teleporter"

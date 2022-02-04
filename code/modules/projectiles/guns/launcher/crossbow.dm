@@ -189,7 +189,7 @@
 	bolt.icon_state = "metal-rod-superheated"
 	cell.use(500)
 
-/obj/item/gun/launcher/crossbow/on_update_icon()
+/obj/item/gun/launcher/crossbow/update_icon()
 	if(tension > 1)
 		icon_state = "crossbow-drawn"
 	else if(bolt)
@@ -225,7 +225,7 @@
 		update_icon()
 	else
 		to_chat(user, "<span class='warning'>The \'Low Ammo\' light on the device blinks yellow.</span>")
-		FLICK("[icon_state]-empty", src)
+		flick("[icon_state]-empty", src)
 
 /obj/item/gun/launcher/crossbow/RCD/attack_self(mob/living/user)
 	if(tension)
@@ -237,16 +237,16 @@
 		draw(user)
 
 /obj/item/gun/launcher/crossbow/RCD/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/rcd_ammo))
-		if((stored_matter + 20) > max_stored_matter)
-			to_chat(user, "<span class='notice'>The RXD can't hold that many additional matter-units.</span>")
-			return
-		stored_matter += 20
-		qdel(W)
-		playsound(loc, 'sound/machines/click.ogg', 50, 1)
-		to_chat(user, "<span class='notice'>The RXD now holds [stored_matter]/[max_stored_matter] matter-units.</span>")
-		update_icon()
-		return
+	var/obj/item/stack/material/M = W
+	if(istype(M) && M.material.name == MATERIAL_COMPRESSED)
+		var/amount = min(M.get_amount(), round(max_stored_matter - stored_matter))
+		if(M.use(amount) && stored_matter < max_stored_matter)
+			stored_matter += amount
+			playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src]</span>.")
+			update_icon()	//Updates the ammo counter
+	else
+		..()
 	if(istype(W, /obj/item/arrow/RCD))
 		var/obj/item/arrow/RCD/A = W
 		if((stored_matter + 5) > max_stored_matter)
@@ -259,26 +259,25 @@
 		update_icon()
 		return
 
-/obj/item/gun/launcher/crossbow/RCD/on_update_icon()
+/obj/item/gun/launcher/crossbow/RCD/update_icon()
 	cut_overlays()
 	if(bolt)
-		add_overlays("rxb-bolt")
+		overlays += "rxb-bolt"
 	var/ratio = 0
 	if(stored_matter < boltcost)
 		ratio = 0
 	else
 		ratio = stored_matter / max_stored_matter
 		ratio = max(round(ratio, 0.25) * 100, 25)
-	add_overlays("rxb-[ratio]")
+	overlays += "rxb-[ratio]"
 	if(tension > 1)
 		icon_state = "rxb-drawn"
 	else
 		icon_state = "rxb"
 
 /obj/item/gun/launcher/crossbow/RCD/examine(user)
-	. = ..()
-	if(.)
-		to_chat(user, "It currently holds [stored_matter]/[max_stored_matter] matter-units.")
+	if(..(user, 0))
+		to_chat(user, "It currently holds [stored_matter]/[max_stored_matter] Compressed Matter.")
 
 
 /obj/item/arrow/ironrod

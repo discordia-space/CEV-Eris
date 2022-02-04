@@ -29,16 +29,15 @@
 		list(mode_name="Single-fire", mode_desc="Send Vagabonds flying back several paces", burst=1, icon="semi"),
 		list(mode_name="Both Barrels", mode_desc="Give them the side-by-side", burst=2, icon="burst"),
 		)
+	saw_off = TRUE
+	sawn = /obj/item/gun/projectile/shotgun/doublebarrel/sawn
+	gun_parts = list(/obj/item/part/gun/frame/doublebarrel = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
 
 /obj/item/gun/projectile/shotgun/doublebarrel/pellet
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
 
-/obj/item/gun/projectile/shotgun/doublebarrel/flare
-	name = "signal shotgun"
-	desc = "A double-barreled shotgun meant to fire signal flash shells."
-	ammo_type = /obj/item/ammo_casing/shotgun/flash
 
-/obj/item/gun/projectile/shotgun/doublebarrel/on_update_icon()
+/obj/item/gun/projectile/shotgun/doublebarrel/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -77,31 +76,22 @@
 	if(!bolt_open)
 		to_chat(user, SPAN_WARNING("You can't load [src] while the barrel is closed!"))
 		return
-	..()
+	. = ..()
+	if (. && ishuman(user)) // if it actually loaded and the user is human
+		var/mob/living/carbon/human/stylish = user
+		stylish.regen_slickness()
+
 
 /obj/item/gun/projectile/shotgun/doublebarrel/unload_ammo(mob/user, var/allow_dump=1)
 	if(!bolt_open)
 		return
 	..()
 
-/obj/item/gun/projectile/shotgun/doublebarrel/attackby(var/obj/item/A as obj, mob/user as mob)
-	if(QUALITY_SAWING in A.tool_qualities)
-		if (!istype(src, /obj/item/gun/projectile/shotgun/doublebarrel/sawn))
-			if (src.item_upgrades.len)
-				if("No" == input(user, "There are attachments present. Would you like to destroy them?") in list("Yes", "No"))
-					return
-			to_chat(user, SPAN_NOTICE("You begin to shorten the barrel of \the [src]."))
-			if(loaded.len)
-				for(var/i in 1 to max_shells)
-					afterattack(user, user)	//will this work? //it will. we call it twice, for twice the FUN
-					playsound(user, fire_sound, 50, 1)
-				user.visible_message(SPAN_DANGER("The shotgun goes off!"), SPAN_DANGER("The shotgun goes off in your face!"))
-				return
-			if(A.use_tool(user, src, WORKTIME_FAST, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_COG))
-				qdel(src)
-				new /obj/item/gun/projectile/shotgun/doublebarrel/sawn(usr.loc)
-				to_chat(user, SPAN_WARNING("You shorten the barrel of \the [src]!"))
-		else
-			to_chat(user, SPAN_WARNING("You cannot shorten \the [src] any further!"))
-	else
-		..()
+/obj/item/part/gun/frame/doublebarrel
+	name = "double-barreled shotgun frame"
+	desc = "A double-barreled shotgun frame. An immortal classic of cowboys and bartenders alike."
+	icon_state = "frame_dshotgun"
+	result = /obj/item/gun/projectile/shotgun/doublebarrel
+	grip = /obj/item/part/gun/grip/wood
+	mechanism = /obj/item/part/gun/mechanism/shotgun
+	barrel = /obj/item/part/gun/barrel/shotgun

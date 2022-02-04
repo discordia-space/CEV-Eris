@@ -73,20 +73,23 @@
 
 	var/boxxes = 0
 	var/piles = 0
+	var/mags = 0
 
 	switch(dice)
 		if(-99 to 10)	//if someone gets less than -99, they deserve the ammo
 			piles = 1
 		if(10 to 20)
-			boxxes = 1
+			mags = 1
 		if(20 to 30)
 			boxxes = 1
-			piles = 1
+			mags = 1
 		if(30 to 40)
-			boxxes = 2
+			boxxes = 1
+			mags = 2
 		if(40 to 50)
 			piles = 1
 			boxxes = 2
+			mags = 1
 		else
 			boxxes = 3+ round(dice/10-5,1)	//rich get richer
 
@@ -96,6 +99,12 @@
 	if(boxxes)
 		for(var/j = 1 to boxxes)
 			new /obj/item/ammo_magazine/ammobox/pistol/scrap(user.loc)
+	if(mags)
+		for(var/j = 1 to mags)
+			if(prob(50))
+				new /obj/item/ammo_magazine/pistol/scrap(user.loc)
+			else
+				new /obj/item/ammo_magazine/smg/scrap(user.loc)
 
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -103,22 +112,26 @@
 
 	var/boxxes = 0
 	var/piles = 0
+	var/mags = 0
 
 	switch(dice)
 		if(-99 to 8)
 			piles = 2
 		if(8 to 16)
-			piles = 4
+			piles = 2
+			mags = 1
 		if(16 to 24)
 			boxxes = 1
 		if(24 to 32)
+			boxxes = 1
+			mags = 1
+		if(32 to 40)
 			piles = 2
 			boxxes = 1
-		if(32 to 40)
-			piles = 4
-			boxxes = 1
+			mags = 1
 		if(40 to 48)
-			boxxes = 2
+			boxxes = 1
+			mags = 3
 		else
 			boxxes = 3 + round(dice/10-5,1)
 
@@ -128,7 +141,12 @@
 	if(boxxes)
 		for(var/j = 1 to boxxes)
 			new /obj/item/ammo_magazine/ammobox/magnum/scrap(user.loc)
-
+	if(mags)
+		for(var/j = 1 to mags)
+			if(prob(50))
+				new /obj/item/ammo_magazine/magnum/scrap(user.loc)
+			else
+				new /obj/item/ammo_magazine/msmg/scrap(user.loc)
 
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -136,6 +154,7 @@
 
 	var/boxxes = 0
 	var/piles = 0
+	var/mags = 0
 
 	switch(dice)
 		if(-99 to 6)	//if someone gets less than -99, they deserve the ammo
@@ -143,17 +162,20 @@
 		if(6 to 12)
 			piles = 2
 		if(12 to 18)
-			piles = 3
+			piles = 1
+			mags = 1
 		if(18 to 24)
-			piles = 4
+			piles = 2
+			mags = 1
 		if(24 to 30)
 			boxxes = 1
-		if(36 to 42)
+		if(30 to 42)
 			boxxes = 1
-			piles = 2
+			mags = 1
 		if(42 to 48)
 			boxxes = 1
-			piles = 4
+			piles = 2
+			mags = 1
 		else
 			boxxes = 2 + round(dice/10-5,1)
 
@@ -164,6 +186,9 @@
 		if(boxxes)
 			for(var/j = 1 to boxxes)
 				new /obj/item/ammo_magazine/ammobox/srifle_small/scrap(user.loc)
+		if(mags)
+			for(var/j = 1 to mags)
+				new /obj/item/ammo_magazine/srifle/scrap(user.loc)
 
 	if(rifle==2) //clrifle
 		if(piles)
@@ -172,6 +197,9 @@
 		if(boxxes)
 			for(var/j = 1 to boxxes)
 				new /obj/item/ammo_magazine/ammobox/clrifle_small/scrap(user.loc)
+		if(mags)
+			for(var/j = 1 to mags)
+				new /obj/item/ammo_magazine/ihclrifle/scrap(user.loc)
 
 	if(rifle==3) //lrifle
 		if(piles)
@@ -180,6 +208,9 @@
 		if(boxxes)
 			for(var/j = 1 to boxxes)
 				new /obj/item/ammo_magazine/ammobox/lrifle_small/scrap(user.loc)
+		if(mags)
+			for(var/j = 1 to mags)
+				new /obj/item/ammo_magazine/lrifle/scrap(user.loc)
 //////////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/ammo_kit/proc/spawn_antim(dice = 0, mob/user)	//Shazbot- I know there is probably a better way to do this, but this is easier to code

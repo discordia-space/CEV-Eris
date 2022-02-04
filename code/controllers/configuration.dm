@@ -36,11 +36,11 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	//var/enable_authentication = 0		// goon authentication
 	var/del_new_on_log = 1				// del's new players if they log before they spawn in
 	var/objectives_disabled = 0 			//if objectives are disabled or not
-	var/protect_roles_from_antagonist = 0// If security and such can be traitor/cult/other
+	var/protect_roles_from_antagonist = 0// If security and such can be contractor/cult/other
 	var/allow_Metadata = 0				// Metadata is supported.
 	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
 	var/tick_limit_mc_init = TICK_LIMIT_MC_INIT_DEFAULT	//SSinitialization throttling
-	var/Ticklag = 0.33
+	var/fps = 40
 	var/socket_talk	= 0					// use socket_talk to communicate with other processes
 	var/list/resource_urls
 	var/antag_hud_allowed = 0			// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
@@ -229,6 +229,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/profiler_permission = R_DEBUG | R_SERVER
 
+	var/allow_ic_printing = TRUE
+
 /datum/configuration/New()
 	fill_storyevents_list()
 
@@ -367,6 +369,9 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if ("vote_delay")
 					config.vote_delay = text2num(value)
+
+				if ("disable_ic_printing")
+					config.allow_ic_printing = FALSE
 
 				if ("vote_period")
 					config.vote_period = text2num(value)
@@ -543,8 +548,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("irc_bot_export")
 					irc_bot_export = 1
 
-				if("ticklag")
-					Ticklag = text2num(value)
+				if("fps")
+					fps = text2num(value)
 
 				if("tick_limit_mc_init")
 					tick_limit_mc_init = text2num(value)

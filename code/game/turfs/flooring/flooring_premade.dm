@@ -39,6 +39,39 @@
 	icon_state = "oracarpet"
 	initial_flooring = /decl/flooring/carpet/oracarpet
 
+// Airless versions
+/turf/simulated/floor/carpet/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/carpet/bcarpet/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/carpet/blucarpet/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/carpet/turcarpet/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/carpet/sblucarpet/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/carpet/gaycarpet/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/carpet/purcarpet/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/carpet/oracarpet/airless
+	oxygen = 0
+	nitrogen = 0
+
 /turf/simulated/floor/bluegrid
 	name = "mainframe floor"
 	icon = 'icons/turf/flooring/circuit.dmi'
@@ -59,9 +92,9 @@
 	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood
 
-
-
-
+/turf/simulated/floor/wood/airless
+	oxygen = 0
+	nitrogen = 0
 
 /turf/simulated/floor/tiled
 	name = "floor"
@@ -373,10 +406,6 @@
 	air.adjust_gas("sleeping_agent", ATMOSTANK_NITROUSOXIDE)
 
 
-/turf/simulated/floor/tiled/steel/airless
-	oxygen = 0
-	nitrogen = 0
-
 
 //ATMOS PREMADES
 /turf/simulated/floor/reinforced/airless
@@ -445,6 +474,252 @@
 	icon_state = "derelict4"
 	initial_flooring = /decl/flooring/tiling/derelict/white_big_edges
 
+////
+// Airless versions
+////
+/turf/simulated/floor/tiled/steel/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/panels/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/techfloor/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/techfloor_grid/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/brown_perforated/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/gray_perforated/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/cargo/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/brown_platform/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/gray_platform/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/danger/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/golden/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/bluecorner/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/orangecorner/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/cyancorner/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/violetcorener/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/monofloor/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/bar_flat/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/bar_dance/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/steel/bar_light/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/panels/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/techfloor/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/techfloor_grid/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/brown_perforated/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/gray_perforated/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/cargo/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/brown_platform/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/gray_platform/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/danger/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/golden/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/bluecorner/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/orangecorner/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/cyancorner/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/violetcorener/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/white/monofloor/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/panels/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/techfloor/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/techfloor_grid/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/brown_perforated/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/gray_perforated/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/cargo/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/brown_platform/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/gray_platform/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/danger/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/golden/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/bluecorner/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/orangecorner/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/cyancorner/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/violetcorener/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/dark/monofloor/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/cafe/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/techmaint/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/techmaint_perforated/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/techmaint_panels/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/techmaint_cargo/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/derelict/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/derelict/white_red_edges/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/derelict/white_small_edges/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/derelict/red_white_edges/airless
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/tiled/derelict/white_big_edges/airless
+	oxygen = 0
+	nitrogen = 0
 
 // Placeholders
 /turf/simulated/floor/airless/lava
@@ -479,5 +754,5 @@
 
 /turf/simulated/floor/beach/water/New()
 	..()
-	add_overlays(image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1))
+	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
 

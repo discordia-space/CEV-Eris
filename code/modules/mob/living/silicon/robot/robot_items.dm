@@ -27,7 +27,7 @@
 			var/confirm = alert(user, "This will destroy the item inside forever.  Are you sure?","Confirm Analyze","Yes","No")
 			if(confirm == "Yes") //This is pretty copypasta-y
 				to_chat(user, "You activate the analyzer's microlaser, analyzing \the [loaded_item] and breaking it down.")
-				FLICK("portable_analyzer_scan", src)
+				flick("portable_analyzer_scan", src)
 				playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
 				for(var/T in loaded_item.origin_tech)
 					files.check_item_for_tech(loaded_item)
@@ -97,7 +97,7 @@
 		for(var/mob/M in viewers())
 			M.show_message(text(SPAN_NOTICE("[user] adds the [I] to the [src].")), 1)
 		desc = initial(desc) + "<br>It is holding \the [loaded_item]."
-		FLICK("portable_analyzer_load", src)
+		flick("portable_analyzer_load", src)
 		icon_state = "portable_analyzer_full"
 
 //This is used to unlock other borg covers.
@@ -169,7 +169,7 @@
 
 				I.forceMove(src)
 				carrying.Add(I)
-				add_overlays(image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer))
+				overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer)
 				addedSomething = 1
 		if ( addedSomething )
 			user.visible_message("\blue [user] load some items onto their service tray.")
@@ -195,7 +195,7 @@
 			dropspot = target.loc
 
 
-		set_overlays(null)
+		overlays = null
 
 		var droppedSomething = 0
 
@@ -429,21 +429,30 @@
 	//random_icon = FALSE
 	spawn_tags = null
 
-/obj/item/tool/multitool/robotic
-	icon = 'icons/obj/robot_items.dmi'
-	spawn_tags = null
-
-/obj/item/tool/wirecutters/robotic
-	icon = 'icons/obj/robot_items.dmi'
-	tool_qualities = list(QUALITY_WIRE_CUTTING = 40, QUALITY_CUTTING = 30)
-	spawn_tags = null
-
-/obj/item/tool/weldingtool/robotic
-	icon = 'icons/obj/robot_items.dmi'
-	switched_on_qualities = list(QUALITY_WELDING = 40, QUALITY_CAUTERIZING = 15, QUALITY_WIRE_CUTTING = 15)
-	spawn_tags = null
-
 /obj/item/tool/shovel/robotic
 	icon = 'icons/obj/robot_items.dmi'
 	tool_qualities = list(QUALITY_SHOVELING = 40, QUALITY_DIGGING = 40, QUALITY_EXCAVATION = 20, QUALITY_HAMMERING = 20)
 	spawn_tags = null
+
+/obj/item/tool/robotic_medical_omnitool
+	name = "Medical Omnitool"
+	desc = "An all-in-one medical omnitool."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "medmulti"
+	force = WEAPON_FORCE_PAINFUL
+	sharp = TRUE
+	edge = TRUE
+	worksound = WORKSOUND_DRIVER_TOOL
+	tool_qualities = list(QUALITY_CLAMPING = 30, QUALITY_RETRACTING = 30, QUALITY_BONE_SETTING = 30, QUALITY_CAUTERIZING = 30, QUALITY_SAWING = 15, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 15)
+	spawn_tags = null
+
+/obj/item/tool/robotic_engineering_omnitool
+	name = "Engineering Omnitool"
+	desc = "An all-in-one engineering omnitool."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "engimplant"
+	force = WEAPON_FORCE_DANGEROUS
+	worksound = WORKSOUND_DRIVER_TOOL
+	tool_qualities = list(QUALITY_SCREW_DRIVING = 35, QUALITY_BOLT_TURNING = 35, QUALITY_DRILLING = 15, QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10, QUALITY_PRYING = 25, QUALITY_DIGGING = 20, QUALITY_PULSING = 30, QUALITY_WIRE_CUTTING = 30)
+	spawn_tags = null
+

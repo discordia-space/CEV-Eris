@@ -1,4 +1,8 @@
 /client
+		//////////////////////
+		//BLACK MAGIC THINGS//
+		//////////////////////
+	parent_type = /datum
 		////////////////
 		//ADMIN THINGS//
 		////////////////
@@ -51,7 +55,7 @@
 	// But we change it.
 	preload_rsc = 1
 
-	//fps = 60
+	fps = 45
 
 
 		////////////////

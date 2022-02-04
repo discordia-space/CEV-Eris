@@ -60,6 +60,7 @@
 		SSchemistry.active_holders -= src
 
 	for(var/datum/reagent/R in reagent_list)
+		R.holder = null
 		qdel(R)
 	reagent_list.Cut()
 	reagent_list = null
@@ -110,12 +111,6 @@
 		else
 			total_volume += R.volume
 	return
-
-/datum/reagents/proc/delete()
-	for(var/datum/reagent/R in reagent_list)
-		R.holder = null
-	if(my_atom)
-		my_atom.reagents = null
 
 /datum/reagents/proc/handle_reactions()
 	if(SSchemistry)
@@ -573,6 +568,11 @@
 		var/amt = list_reagents[r_id]
 		add_reagent(r_id, amt, data)
 
+/datum/reagents/proc/get_reagents()
+	. = list()
+	for(var/datum/reagent/current in reagent_list)
+		. += "[current.name] ([current.volume])"
+	return english_list(., "EMPTY", "", ", ", ", ")
 
 /proc/get_chem_id(chem_name)
 	for(var/X in GLOB.chemical_reagents_list)

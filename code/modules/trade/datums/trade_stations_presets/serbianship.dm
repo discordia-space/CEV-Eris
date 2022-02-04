@@ -2,7 +2,7 @@
 	icon_states = "serb_frigate"
 	spawn_cost = 2
 	spawn_probability = 10
-	markup = 3
+	markup = RARE_GOODS
 	name_pool = list(
 		"STF 'Kovac'" = "They are sending message, \"Come with money for very good stuff! You can pay with your life, even!\"",
 		"SV 'Zoric'" = "They are sending message, \"For the correct price, we can sell you something... even jobs!\""
@@ -19,8 +19,8 @@
 			/obj/item/ammo_magazine/lrifle,
 			/obj/item/ammo_magazine/lrifle/pk = custom_good_amount_range(list(-4, 1)),
 			/obj/item/ammo_magazine/m12/empty,
-			/obj/item/storage/box/shotgunammo/slug,
-			/obj/item/storage/box/shotgunammo/buckshot,
-			/obj/item/storage/box/shotgunammo/incendiaryshells
+			/obj/item/ammo_magazine/ammobox/shotgun,
+			/obj/item/ammo_magazine/ammobox/shotgun/buckshot,
+			/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells
 		),
 	)

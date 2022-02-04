@@ -16,8 +16,8 @@
 	magazine_type = /obj/item/ammo_magazine/msmg
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 4)
 	price_tag = 2000
-	damage_multiplier = 1	 // 34 lethal
-	penetration_multiplier = 0.5 // 7.5 lethal
+	damage_multiplier = 1.1	 // 34 lethal on FA
+	penetration_multiplier = 0.65 // 9.75 lethal
 	recoil_buildup = 0.7
 	twohanded = FALSE
 	one_hand_penalty = 5 //smg level
@@ -26,15 +26,29 @@
 		FULL_AUTO_300,
 		SEMI_AUTO_NODELAY,
 		)
+	gun_tags = list(GUN_SILENCABLE)
+	gun_parts = list(/obj/item/part/gun/frame/zoric = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/magnum = 1)
 
-/obj/item/gun/projectile/automatic/zoric/on_update_icon()
+/obj/item/gun/projectile/automatic/zoric/update_icon()
+	..()
+	var/itemstring = ""
 	cut_overlays()
-	icon_state = "[initial(icon_state)][silenced ? "_s" : ""]"
+
 	if(ammo_magazine)
-		add_overlays("mag[silenced ? "_s" : ""][ammo_magazine.ammo_color]")
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		add_overlays("slide[silenced ? "_s" : ""]")
+		overlays += "mag[ammo_magazine.ammo_label_string]"
+		itemstring += "_mag"
+
+	set_item_state(itemstring)
 
 /obj/item/gun/projectile/automatic/zoric/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/part/gun/frame/zoric
+	name = "Zoric frame"
+	desc = "A Zoric SMG frame. Workhorse of the Excelsior force."
+	icon_state = "frame_zorik"
+	result = /obj/item/gun/projectile/automatic/zoric
+	grip = /obj/item/part/gun/grip/serb
+	mechanism = /obj/item/part/gun/mechanism/smg
+	barrel = /obj/item/part/gun/barrel/magnum

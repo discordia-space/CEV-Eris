@@ -4,11 +4,11 @@
 /turf/var/needs_air_update = 0
 /turf/var/datum/gas_mixture/air
 
-/turf/simulated/proc/update_graphic(list/graphic_add = null, list/graphic_remove = null)
-	if(graphic_add && graphic_add.len)
-		add_overlays(graphic_add)
-	if(graphic_remove && graphic_remove.len)
-		remove_overlays(graphic_remove)
+/turf/simulated/proc/update_graphic(list/graphic_add = list(), list/graphic_remove = list())
+	for(var/I in graphic_add)
+		overlays += I
+	for(var/I in graphic_remove)
+		overlays -= I
 
 /turf/proc/update_air_properties()
 	var/block = c_airblock(src)

@@ -99,15 +99,6 @@ var/list/mob_hat_cache = list()
 	GLOB.drones.Remove(src)
 	. = ..()
 
-/mob/living/silicon/robot/drone/construction
-	icon_state = "constructiondrone"
-	law_type = /datum/ai_laws/construction_drone
-	module_type = /obj/item/robot_module/drone/construction
-	hat_x_offset = 1
-	hat_y_offset = -12
-	can_pull_size = ITEM_SIZE_HUGE
-	can_pull_mobs = MOB_PULL_SAME
-
 /mob/living/silicon/robot/drone/New()
 
 	..()
@@ -144,7 +135,7 @@ var/list/mob_hat_cache = list()
 	additional_law_channels["Drone"] = "d"
 	if(!laws) laws = new law_type
 
-	flavor_text = "It's a tiny little repair drone. The casing is stamped with an corporate logo and the subscript: '[company_name] Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
+	flavor_text = "A tiny little repair drone. The casing is stamped with an corporate logo and the subscript: '[company_name] Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
 	playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 0)
 
 //Redefining some robot procs...
@@ -161,13 +152,13 @@ var/list/mob_hat_cache = list()
 
 	cut_overlays()
 	if(stat == CONSCIOUS && eyecolor)
-		add_overlays("eyes-drone[eyecolor]")
+		overlays += "eyes-drone[eyecolor]"
 
 	if(armguard)
-		add_overlays("model-[armguard]")
+		overlays += "model-[armguard]"
 
 	if(hat) // Let the drones wear hats.
-		associate_with_overlays(get_hat_icon(hat, hat_x_offset, hat_y_offset))
+		overlays |= get_hat_icon(hat, hat_x_offset, hat_y_offset)
 
 /mob/living/silicon/robot/drone/choose_icon()
 	return
@@ -238,7 +229,7 @@ var/list/mob_hat_cache = list()
 		to_chat(user, SPAN_DANGER("You attempt to subvert [src], but the sequencer has no effect."))
 		return
 
-	to_chat(user, SPAN_DANGER("You swipe the sequencer across [src]'s interface and watch its eyes flicker."))
+	to_chat(user, SPAN_DANGER("You swipe the sequencer across [src]'s interface and watch its eyes flick_light."))
 	to_chat(src, SPAN_DANGER("You feel a sudden burst of malware loaded into your execute-as-root buffer. Your tiny brain methodically parses, loads and executes the script."))
 
 	message_admins("[key_name_admin(user)] emagged drone [key_name_admin(src)].  Laws overridden.")
@@ -333,7 +324,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/proc/welcome_drone()
 	to_chat(src, "<b>You are a maintenance drone, a tiny-brained robotic repair machine</b>.")
 	to_chat(src, "You have no individual will, no personality, and no drives or urges other than your laws.")
-	to_chat(src, "Remember,  you are <b>lawed against interference with the crew</b>. Also remember, <b>you DO NOT take orders from the AI.</b>")
+	to_chat(src, "Remember,  you are <b>lawed against harming the crew</b>. Also remember, <b>you DO NOT take orders from the AI.</b>")
 	to_chat(src, "Use <b>say ;Hello</b> to talk to other drones and <b>say Hello</b> to speak silently to your nearby fellows.")
 
 /mob/living/silicon/robot/drone/add_robot_verbs()
@@ -341,25 +332,6 @@ var/list/mob_hat_cache = list()
 
 /mob/living/silicon/robot/drone/remove_robot_verbs()
 	return
-
-/mob/living/silicon/robot/drone/construction/welcome_drone()
-	to_chat(src, "<b>You are a construction drone, an autonomous engineering and fabrication system.</b>.")
-	to_chat(src, "You are assigned to a Sol Central construction project. The name is irrelevant. Your task is to complete construction and subsystem integration as soon as possible.")
-	to_chat(src, "Use <b>:d</b> to talk to other drones and <b>say</b> to speak silently to your nearby fellows.")
-	to_chat(src, "<b>You do not follow orders from anyone; not the AI, not humans, and not other synthetics.</b>.")
-
-/mob/living/silicon/robot/drone/construction/init()
-	..()
-	flavor_text = "It's a bulky construction drone stamped with a Sol Central glyph."
-
-/mob/living/silicon/robot/drone/construction/updatename()
-	real_name = "construction drone ([rand(100,999)])"
-	name = real_name
-
-/mob/living/silicon/robot/drone/construction/updateicon()
-	cut_overlays()
-	if(stat == CONSCIOUS)
-		add_overlays("eyes-[module_sprites[icontype]]")
 
 /proc/too_many_active_drones()
 	var/drones = 0
@@ -392,3 +364,67 @@ var/list/mob_hat_cache = list()
 
 	verbs -= /mob/living/silicon/robot/drone/verb/choose_armguard
 	to_chat(src, "Your armguard has been set.")
+
+// AI-bound maintenance drone
+/mob/living/silicon/robot/drone/aibound
+
+	var/mob/living/silicon/ai/bound_ai = null
+
+/mob/living/silicon/robot/drone/aibound/Destroy()
+	bound_ai = null
+	. = ..()
+
+/mob/living/silicon/robot/drone/aibound/proc/back_to_core()
+	if(bound_ai && mind)
+		mind.active = 0 // We want to transfer the key manually
+		mind.transfer_to(bound_ai) // Transfer mind to AI core
+		bound_ai.key = key // Manually transfer the key to log them in
+	else
+		to_chat(src, SPAN_WARNING("No AI core detected."))
+
+/mob/living/silicon/robot/drone/aibound/death(gibbed)
+	if(bound_ai)
+		bound_ai.time_destroyed = world.time
+		bound_ai.bound_drone = null
+		to_chat(src, SPAN_WARNING("Your AI bound drone is destroyed."))
+		back_to_core()
+		bound_ai = null
+	return ..(gibbed)
+
+/mob/living/silicon/robot/drone/aibound/verb/get_back_to_core()
+	set name = "Get Back To Core"
+	set desc = "Release drone control and get back to your main AI core."
+	set category = "Silicon Commands"
+
+	back_to_core()
+
+/mob/living/silicon/robot/drone/aibound/law_resync()
+	return
+
+/mob/living/silicon/robot/drone/aibound/shut_down()
+	return
+
+/mob/living/silicon/robot/drone/aibound/full_law_reset()
+	return
+
+/mob/living/silicon/robot/drone/aibound/SetName(pickedName as text)
+	to_chat(src, SPAN_WARNING("AI bound drones cannot be renamed."))
+
+/mob/living/silicon/robot/drone/aibound/emag_act(var/remaining_charges, var/mob/user)
+	to_chat(user, SPAN_DANGER("This drone is remotely controlled by the ship AI and cannot be directly subverted, the sequencer has no effect."))
+	to_chat(src, SPAN_DANGER("\The [user] attempts to load subversive software into you, but your hacked subroutines ignore the attempt."))
+
+/mob/living/silicon/robot/drone/aibound/emp_act(severity)
+	back_to_core()
+
+/mob/living/silicon/robot/drone/aibound/use_power()
+	..()
+	if(!has_power)
+		to_chat(src, SPAN_WARNING("Your AI bound drone runs out of power!"))
+		back_to_core()
+
+/mob/living/silicon/robot/drone/aibound/Life()
+	..()
+	if(bound_ai && !isOnStationLevel(src))
+		to_chat(src, SPAN_WARNING("You get out of the ship control range!"))
+		death(TRUE)

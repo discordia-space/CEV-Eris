@@ -26,7 +26,7 @@
 
 /mob/living/carbon/proc/get_blood_data()
 	var/data = list()
-	data["donor"] = weakref(src)
+	data["donor"] = WEAKREF(src)
 	if (!data["virus2"])
 		data["virus2"] = list()
 	data["virus2"] |= virus_copylist(virus2)
@@ -223,7 +223,7 @@ proc/blood_splatter(var/target,var/datum/reagent/organic/blood/source,var/large)
 
 	var/obj/effect/decal/cleanable/blood/drip/drop = B
 	if(istype(drop) && drips && drips.len && !large)
-		drop.associate_with_overlays(drips)
+		drop.overlays |= drips
 		drop.drips |= drips
 
 	// If there's no data to copy, call it quits here.
@@ -315,7 +315,7 @@ proc/blood_splatter(var/target,var/datum/reagent/organic/blood/source,var/large)
 				pulse_mod *= 1.1
 			if(PULSE_2FAST, PULSE_THREADY)
 				pulse_mod *= 1.25
-		blood_volume *= max(0.3, (1-((100 - heart_efficiency) / 100))) * pulse_mod
+		blood_volume *= max(0.3, (heart_efficiency / 100)) * pulse_mod
 
 	if(!open_check && chem_effects[CE_BLOODCLOT])
 		blood_volume *= max(0, 1-chem_effects[CE_BLOODCLOT])

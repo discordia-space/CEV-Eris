@@ -420,6 +420,7 @@ var/list/datum/power/carrion/powerinstances = list()
 		var/obj/item/organ/internal/organ = new Thepower.organpath
 		var/obj/item/organ/external/parentorgan =  owner.get_organ(organ.parent_organ_base)
 		parentorgan.add_item(organ, owner, FALSE)
+		add_to_associated_organs(organ)
 
 	if(Thepower.spiderpath)
 		spiderlist |= Thepower.spiderpath

@@ -23,11 +23,11 @@
 	silenced = TRUE
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
-		FULL_AUTO_400
+		BURST_2_ROUND
 		)
+	gun_parts = list(/obj/item/part/gun/frame/vintorez = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)
 
-
-/obj/item/gun/projectile/automatic/vintorez/on_update_icon()
+/obj/item/gun/projectile/automatic/vintorez/update_icon()
 	var/iconstring = initial(icon_state)
 	var/itemstring = initial(item_state)
 
@@ -40,3 +40,12 @@
 
 	icon_state = iconstring
 	item_state = itemstring
+
+/obj/item/part/gun/frame/vintorez
+	name = "Vintorez frame"
+	desc = "A Vintorez rifle frame. Accurate and damaging."
+	icon_state = "frame_vintorez"
+	result = /obj/item/gun/projectile/automatic/vintorez
+	grip = /obj/item/part/gun/grip/excel
+	mechanism = /obj/item/part/gun/mechanism/autorifle
+	barrel = /obj/item/part/gun/barrel/srifle

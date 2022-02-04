@@ -33,6 +33,7 @@
 
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
 	price_tag = 2000 //gives tactical advantage with beanbags, but consumes more ammo and hits less harder with lethal ammo, so Gladstone or Regulator would be better for lethal takedowns in general
+	gun_parts = list(/obj/item/part/gun/frame/bull = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
 
 /obj/item/gun/projectile/shotgun/bull/proc/pump(mob/M as mob)
 	var/turf/newloc = get_turf(src)
@@ -88,9 +89,9 @@
 /obj/item/gun/projectile/shotgun/bull/proc/update_charge()
 	var/ratio = get_ammo() / (max_shells + 1)//1 in the chamber
 	ratio = round(ratio, 0.25) * 100
-	add_overlays("[ratio]_PW")
+	overlays += "[ratio]_PW"
 
-/obj/item/gun/projectile/shotgun/bull/on_update_icon()
+/obj/item/gun/projectile/shotgun/bull/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -103,3 +104,12 @@
 	set_item_state(itemstring)
 	cut_overlays()
 	update_charge()
+
+/obj/item/part/gun/frame/bull
+	name = "Bull frame"
+	desc = "A Bull shotgun frame. Double-barrel and pump action, through a miracle of engineering."
+	icon_state = "frame_bull"
+	result = /obj/item/gun/projectile/shotgun/bull
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/shotgun
+	barrel = /obj/item/part/gun/barrel/shotgun

@@ -1,8 +1,14 @@
 /datum/trade_station/station_zarya
 	name_pool = list(
-	"FTB 'Zarya'" = "Free Trade Beacon 'Zarya', they sending message \"Privet, this is the trade beacon 'Zarya'. We selling electronics, construction and anything related to engineering! If you are looking for more general shop, you should contact our main station: FTS 'Solnishko'")
+		"FTB 'Zarya'" = "Free Trade Beacon 'Zarya':\n\"Privet, this is the trade beacon 'Zarya'. We sell electronics, construction, and anything related to engineering! If you are looking for a more general shop, you should contact our main station: FTS 'Solnishko'"
+	)
 	start_discovered = TRUE
 	spawn_always = TRUE
+	markup = COMMON_GOODS
+	offer_limit = 20
+	base_income = 1600
+	wealth = 0
+	secret_inv_threshold = 16000
 	assortiment = list(
 		"BO3DYX" = list(
 			/obj/item/tank/air,
@@ -10,7 +16,8 @@
 			/obj/machinery/portable_atmospherics/canister/sleeping_agent,
 			/obj/machinery/portable_atmospherics/canister/nitrogen,
 			/obj/machinery/portable_atmospherics/canister/oxygen,
-			/obj/machinery/portable_atmospherics/canister/air
+			/obj/machinery/portable_atmospherics/canister/air,
+			/obj/machinery/portable_atmospherics/canister/carbon_dioxide
 		),
 		"CHAPR*EHNE" = list(
 			/obj/item/clothing/mask/gas,
@@ -20,6 +27,7 @@
 			/obj/item/clothing/head/welding,
 			/obj/item/storage/belt/utility,
 			/obj/item/storage/pouch/engineering_supply,
+			/obj/item/storage/pouch/engineering_material,
 			/obj/item/storage/pouch/engineering_tools,
 			/obj/item/storage/briefcase/inflatable/empty,
 			/obj/item/inflatable/door,
@@ -48,11 +56,20 @@
 		"BCRKAR BCR4NHA" = list(
 			/obj/machinery/pipedispenser/orderable,
 			/obj/machinery/pipedispenser/disposal/orderable,
-			/obj/machinery/pipelayer, // is this unused for some reason? its broken????
+//			/obj/machinery/pipelayer, // is this unused for some reason? its broken????
 			/obj/item/cell/large,
 			/obj/item/cell/large/high,
 			/obj/structure/reagent_dispensers/watertank,
 			/obj/structure/reagent_dispensers/fueltank,
 			/obj/machinery/floodlight
-		),
+		)
+	)
+	offer_types = list(
+		/obj/item/tool_upgrade = offer_data("tool upgrade", 200, 0),				// base price: 200
+		/obj/item/tool/crowbar/onestar = offer_data("onestar crowbar", 1000, 3),
+		/obj/item/tool/pickaxe/onestar = offer_data("onestar pickaxe", 1000, 3),
+		/obj/item/tool/pickaxe/jackhammer/onestar = offer_data("onestar jackhammer", 1000, 3),
+		/obj/item/tool/screwdriver/combi_driver/onestar = offer_data("onestar combi driver", 1000, 3),
+		/obj/item/tool/weldingtool/onestar  = offer_data("onestar welding tool", 1000, 3),
+		/obj/item/tool_upgrade/augment/repair_nano = offer_data("repair nano", 5000, 1)
 	)

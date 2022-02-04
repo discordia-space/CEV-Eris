@@ -3,7 +3,8 @@
 	title = "Guild Merchant"
 	flag = MERCHANT
 	department = DEPARTMENT_GUILD
-	head_position = 1
+	head_position = TRUE
+	aster_guild_member = TRUE
 	department_flag = GUILD | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
@@ -11,7 +12,7 @@
 	supervisors = "your greed"
 	selection_color = "#b3a68c"
 	wage = WAGE_NONE	//Guild merchant draws a salary from the guild account
-	also_known_languages = list(LANGUAGE_CYRILLIC = 80, LANGUAGE_SERBIAN = 100, LANGUAGE_JIVE = 80)
+	also_known_languages = list(LANGUAGE_JIVE = 100)
 	access = list(
 		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining,
 		access_heads, access_mining_station, access_RC_announce, access_keycard_auth, access_sec_doors,
@@ -73,7 +74,7 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 	spawn_positions = 3
 	supervisors = "the Guild Merchant"
 	selection_color = "#c3b9a6"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
+	also_known_languages = list(LANGUAGE_JIVE = 100)
 	wage = WAGE_LABOUR_DUMB
 	department_account_access = TRUE
 	outfit_type = /decl/hierarchy/outfit/job/cargo/cargo_tech
@@ -127,7 +128,7 @@ Your main duties are to keep the local guild branch operational and profitable. 
 	supervisors = "the Guild Merchant"
 	selection_color = "#c3b9a6"
 	wage = WAGE_LABOUR_HAZARD //The miners union is stubborn
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
+	also_known_languages = list(LANGUAGE_JIVE = 100)
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/mining
 
@@ -187,7 +188,7 @@ Character Expectations:<br>\
 	spawn_positions = 1
 	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
+	also_known_languages = list(LANGUAGE_JIVE = 100)
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station, access_artist, access_theatre)
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/artist

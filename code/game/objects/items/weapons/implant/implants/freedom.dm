@@ -3,8 +3,9 @@
 
 /obj/item/implant/freedom
 	name = "freedom implant"
-	desc = "Use this to escape from those evil Red Shirts."
-	implant_color = "r"
+	desc = "Use this if you ever get tied up. Has a cooldown of ten minutes."
+	icon_state = "implant_freedom"
+	implant_overlay = "implantstorage_freedom"
 	var/activation_emote = "chuckle"
 	var/uses = 1
 	var/install_organ = INSTALL_HANDS
@@ -18,6 +19,8 @@
 		return
 	if (emote == src.activation_emote)
 		src.uses--
+		spawn(10 MINUTES)
+			src.uses++
 		to_chat(source, "You feel a faint click.")
 		if (source.handcuffed && install_organ == INSTALL_HANDS)
 			var/obj/item/W = source.handcuffed
@@ -51,7 +54,7 @@
 /obj/item/implant/freedom/on_install(mob/living/source)
 
 	activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
-	uses = rand(2, 5)
+	uses = 1
 	if(source.mind)
 		source.mind.store_memory("Freedom matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
 	to_chat(source, "The freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.")

@@ -159,6 +159,10 @@
 	name = "SA BR .30 \"Novakovic\""
 	build_path = /obj/item/gun/projectile/boltgun/serbian
 
+/datum/design/autolathe/gun/boltgun_fs
+	name = "FS BR .20 \"Tosshin\""
+	build_path = /obj/item/gun/projectile/boltgun/fs
+
 /datum/design/autolathe/gun/ak47
 	name = "Excelsior .30 AK-47"
 	build_path = /obj/item/gun/projectile/automatic/ak47
@@ -182,9 +186,8 @@
 // Heavy
 
 /datum/design/autolathe/gun/heavysniper
-	name = "NT AMR .60 \"Penetrator\""
+	name = "SA AMR .60 \"Hristov\""
 	build_path = /obj/item/gun/projectile/heavysniper
-	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/mg_pk
 	name = "SA MG .30 \"Pulemyot Kalashnikova\""
@@ -196,12 +199,12 @@
 
 /datum/design/autolathe/gun/grenade_launcher
 	name = "NT GL \"Protector\""
-	build_path = /obj/item/gun/launcher/grenade
+	build_path = /obj/item/gun/projectile/shotgun/pump/grenade
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/grenade_launcher_lenar
 	name = "FS GL \"Lenar\""
-	build_path = /obj/item/gun/launcher/grenade/lenar
+	build_path = /obj/item/gun/projectile/shotgun/pump/grenade/lenar
 
 /datum/design/autolathe/gun/hmg_maxim
 	name = "Excelsior HMG .30 \"Maxim\""
@@ -292,3 +295,7 @@
 /datum/design/autolathe/gun/dart_gun
 	name = "Z-H P Artemis Dartgun"
 	build_path = /obj/item/gun/projectile/dartgun
+
+/datum/design/autolathe/gun/flare_gun
+	name = "flare gun"
+	build_path = /obj/item/gun/projectile/flare_gun

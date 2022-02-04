@@ -1,6 +1,8 @@
+#define GAS_MASK_SANITY_COEFF_BUFF 1.7
+
 /obj/item/clothing/mask/gas
 	name = "gas mask"
-	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
+	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air and the smell of roaches."
 	icon_state = "gas_alt"
 	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
@@ -10,6 +12,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
+	style_coverage = COVERS_WHOLE_FACE
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list("plasma", "sleeping_agent")
 	armor = list(
@@ -36,6 +39,10 @@
 
 	return filtered
 
+/obj/item/clothing/mask/gas/New()
+	..()
+	AddComponent(/datum/component/clothing_sanity_protection, GAS_MASK_SANITY_COEFF_BUFF)
+
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
 	name = "plague doctor mask"
@@ -43,7 +50,7 @@
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
 	body_parts_covered = HEAD|FACE|EYES
-	style = STYLE_NONE
+	style = STYLE_LOW
 
 /obj/item/clothing/mask/gas/swat
 	name = "\improper SWAT mask"
@@ -118,7 +125,7 @@
 	desc = "The traditional mime's mask. It has an eerie facial posture."
 	icon_state = "mime"
 	item_state = "mime"
-	style = STYLE_NONE
+	style = STYLE_LOW
 
 /obj/item/clothing/mask/gas/monkeymask
 	name = "monkey mask"
@@ -132,7 +139,7 @@
 	desc = "A traditional female mime's mask."
 	icon_state = "sexymime"
 	item_state = "sexymime"
-	style = STYLE_NONE
+	style = STYLE_LOW
 
 /obj/item/clothing/mask/gas/death_commando
 	name = "Death Commando Mask"

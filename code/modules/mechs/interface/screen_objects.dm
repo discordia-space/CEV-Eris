@@ -113,7 +113,7 @@
 				GLOB.hardpoint_bar_cache += bar
 		for(var/i = 1; i <= value; i++) new_overlays += GLOB.hardpoint_bar_cache[i]
 	if(ovrls["hardpoint"]) new_overlays += ovrls["hardpoint"]
-	set_overlays(new_overlays)
+	overlays = new_overlays
 
 /obj/screen/movable/exosuit/hardpoint/Click(var/location, var/control, var/params)
 	if(..() && owner && holding)
@@ -235,7 +235,7 @@
 
 	if(!owner.body.computer?.is_functional() || ((owner.emp_damage > EMP_HUD_DISRUPT) && prob(owner.emp_damage * 2)))
 		if(!GLOB.mech_damage_overlay_cache["critfail"]) GLOB.mech_damage_overlay_cache["critfail"] = image(icon = MECH_HUD_ICON, icon_state="dam_error")
-		associate_with_overlays(GLOB.mech_damage_overlay_cache["critfail"])
+		overlays |= GLOB.mech_damage_overlay_cache["critfail"]
 		return
 
 	var/list/part_to_state = list("legs" = owner.legs,"body" = owner.body,"head" = owner.head,"arms" = owner.arms)
@@ -254,7 +254,7 @@
 				if(4) I.color = "#f00"
 				else I.color = "#f5f5f0"
 			GLOB.mech_damage_overlay_cache["[part]-[state]"] = I
-		add_overlays(GLOB.mech_damage_overlay_cache["[part]-[state]"])
+		overlays += GLOB.mech_damage_overlay_cache["[part]-[state]"]
 
 //Controls if cameras set the vision flags
 /obj/screen/movable/exosuit/toggle/camera
@@ -275,7 +275,10 @@
 	name = "toggle strafing"
 	icon_state = "strafe"
 
-/obj/screen/movable/exosuit/toggle/strafe/toggled()
+/obj/screen/movable/exosuit/toggle/strafe/toggled() // Prevents exosuits from strafing when EMP'd enough
+	if(owner.emp_damage >= EMP_STRAFE_DISABLE)
+		to_chat(usr, SPAN_WARNING("Error: Coordination systems are unable to synchronize. Contact an authorised exo-electrician immediately."))
+		return
 	owner.strafing = ..()
 	to_chat(usr, SPAN_NOTICE("Strafing [owner.strafing ? "enabled" : "disabled"]."))
 

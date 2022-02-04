@@ -3,6 +3,7 @@
 	icon = 'icons/inventory/eyes/icon.dmi'
 	spawn_tags = SPAWN_TAG_GLASSES
 	bad_type = /obj/item/clothing/glasses
+	style_coverage = COVERS_EYES
 	var/prescription = FALSE
 	var/toggleable = FALSE
 	var/off_state = "black_goggles"
@@ -46,3 +47,8 @@
 	..()
 	if(((toggleable || hud) && prescription) && (user.disabilities&NEARSIGHTED) && (slot == slot_glasses))
 		to_chat(user, SPAN_NOTICE("[src] optical matrix automatically adjust to your poor prescription."))
+
+/obj/item/clothing/glasses/attackby(obj/item/Z, mob/user)
+	if(istype(Z,/obj/item/clothing/glasses/attachable_lenses))
+		var/obj/item/clothing/glasses/attachable_lenses/lenses = Z
+		lenses.handle_insertion(src, user)

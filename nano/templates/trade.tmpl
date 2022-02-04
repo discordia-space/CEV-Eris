@@ -5,26 +5,12 @@
 	{width: auto;}
 </style>
 <table>
-	<tr><td class="link withToolTip">
-			Trade Station{{if data.station_name}}: {{:data.station_name}}{{/if}}
-			<span class="ImTooltip">
-				<span class="right_aligned">{{:helper.link('X', null, {'PRG_station' : null}, null, 'redButton')}}</span>
-				{{if data.station_desc}}
-					<h3>Current station description:</h3><br>
-						{{:data.station_desc}}
-					<hr><br>
-				{{else}}
-					No selected station provided.
-				{{/if}}
-				<div>
-					{{for data.station_list}}
-						{{:helper.link(value.name, null, {'PRG_station' : value.index})}}
-					{{empty}}
-						No Trade Stations found.
-					{{/for}}
-					<br>
-				</div>
-			</span>
+	<tr>
+		{{if data.station_name}}
+			<td>{{:helper.link("Trade Station: " + data.station_name, null, {'PRG_station' : 1})}}{{:helper.link('X', null, {'PRG_station_unlink' : 1}, null, 'redButton')}}
+		{{else}}
+			<td>{{:helper.link("Trade Station", null, {'PRG_station' : 1})}}
+		{{/if}}
 	<tr>
 		<td class="link withToolTip">
 			Receiving Beacon{{if data.receiving}}: {{:data.receiving}}{{/if}}
@@ -66,7 +52,7 @@
 			{{for data.categories}}
 				{{:helper.link(value.name, (data.current_category == value.index ? 'folder-open' : 'folder-collapsed'), {'PRG_goods_category': value.index}, (data.current_category == value.index ? 'selected' : null))}}
 			{{empty}}
-				Some retard created trade station without categories, or it is bug, tell it to devs.
+				This trade station has nothing to sell.
 			{{/for}}
 			<br><br>
 			{{if data.current_category}}
@@ -77,6 +63,7 @@
 							<td>Price
 							<td>Available
 							<td>Cart
+							<td>Sell Price
 							<td>Sell
 						{{for data.goods}}
 							<tr>
@@ -87,7 +74,18 @@
 									{{:helper.link("", 'plus', {'PRG_cart_add' : value.index}, value.amount_available > value.count ? null : 'disabled')}}
 									{{:helper.link(value.count, null, {'PRG_cart_add_input' : value.index})}}</div>
 									{{:helper.link("", 'minus', {'PRG_cart_remove' : value.index}, value.count ? null : 'disabled')}}
-								<td>{{:helper.link(value.amount_available_around ? value.amount_available_around : "", 'suitcase', {'PRG_sell' : value.index}, value.amount_available_around ? null : 'disabled')}}
+								<td>
+									{{if value.isblacklisted}}
+										N/A
+									{{else}}
+										{{:value.sell_price}}
+									{{/if}}
+								<td>
+									{{if value.isblacklisted}}
+										{{:helper.link("X", null, null, 'disabled')}}
+									{{else}}
+										{{:helper.link(value.amount_available_around ? value.amount_available_around : "", 'suitcase', {'PRG_sell' : value.index}, value.amount_available_around ? null : 'disabled')}}
+									{{/if}}
 						{{/for}}
 					</table>
 				{{else}}
@@ -106,7 +104,7 @@
 {{else}}
 	<div class='notice' id='SpecialOffer'>
 		{{if data.offers}}
-			<h3>Special offers</h3>
+			<h3>Special offers{{if data.time}} (time left: {{:data.time}}){{/if}}</h3>
 			<table class='item'>
 				<tr>
 					<th>Station
@@ -121,7 +119,7 @@
 						<td>{{:value.name}}
 						<td>{{:value.price}}
 						<td>{{:(isNaN(value.available) ? '' : +value.available + '/') + value.amount}}
-						<td style="width: 0">{{:helper.link("", 'check', {'PRG_offer_fulfill' : value.index}, value.available >= value.amount ? null : 'disabled')}}
+						<td style="width: 0">{{:helper.link("", 'check', {'PRG_offer_fulfill' : value.index, 'PRG_offer_fulfill_path' : value.path}, (value.available >= value.amount && value.amount > 0) ? null : 'disabled')}}
 					{{/if}}
 				{{/for}}
 			</table>

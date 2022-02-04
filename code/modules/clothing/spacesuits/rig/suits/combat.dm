@@ -9,18 +9,18 @@
 	suit_type = "combat hardsuit"
 	armor = list(
 		melee = 45,
-		bullet = 50,
+		bullet = 45,
 		energy = 45,
 		bomb = 50,
 		bio = 100,
 		rad = 50
 	)
-	slowdown = 1
 	drain = 4
-	offline_slowdown = 3
 	offline_vision_restriction = 1
 	rarity_value = 20
 	helm_type = /obj/item/clothing/head/space/rig/combat
+	stiffness = 0
+	obscuration = 0
 
 /obj/item/rig/combat/equipped
 	rarity_value = 40
@@ -66,15 +66,13 @@
 	icon_state = "hazard_rig"
 	armor = list(
 		melee = 35,
-		bullet = 40,
+		bullet = 35,
 		energy = 35,
 		bomb = 90,
 		bio = 100,
 		rad = 100
 	)
-	slowdown = 1
 	drain = 4
-	offline_slowdown = 3
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/space/rig/hazard

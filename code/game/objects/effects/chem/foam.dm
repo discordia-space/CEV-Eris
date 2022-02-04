@@ -30,7 +30,7 @@
 			var/obj/structure/foamedmetal/M = new(src.loc)
 			M.metal = metal
 			M.updateicon()
-		FLICK("[icon_state]-disolve", src)
+		flick("[icon_state]-disolve", src)
 		sleep(5)
 		qdel(src)
 	return
@@ -70,7 +70,7 @@
 // foam disolves when heated, except metal foams
 /obj/effect/effect/foam/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(!metal && prob(max(0, exposed_temperature - 475)))
-		FLICK("[icon_state]-disolve", src)
+		flick("[icon_state]-disolve", src)
 
 		spawn(5)
 			qdel(src)
@@ -80,7 +80,7 @@
 		return
 	if(isliving(AM))
 		var/mob/living/M = AM
-		M.slip("the foam", 6)
+		M.slip("the foam", 3)
 
 /datum/effect/effect/system/foam_spread
 	var/amount = 5				// the size of the foam spread.

@@ -30,32 +30,33 @@
 /mob/living/simple_animal/cat/Life()
 	..()
 
-	if (turns_since_move > 5 || (flee_target || mousetarget))
-		walk_to(src,0)
-		turns_since_move = 0
+	if(!stasis)
+		if (turns_since_move > 5 || (flee_target || mousetarget))
+			walk_to(src,0)
+			turns_since_move = 0
 
-		if (flee_target) //fleeing takes precendence
-			handle_flee_target()
-		else
-			handle_movement_target()
+			if (flee_target) //fleeing takes precendence
+				handle_flee_target()
+			else
+				handle_movement_target()
 
-	if (!movement_target)
-		walk_to(src,0)
+		if (!movement_target)
+			walk_to(src,0)
 
-	spawn(2)
-		attack_mice()
+		spawn(2)
+			attack_mice()
 
-	if(prob(2)) //spooky
-		var/mob/observer/ghost/spook = locate() in range(src,5)
-		if(spook)
-			var/turf/T = spook.loc
-			var/list/visible = list()
-			for(var/obj/O in T.contents)
-				if(!O.invisibility && O.name)
-					visible += O
-			if(visible.len)
-				var/atom/A = pick(visible)
-				visible_emote("suddenly stops and stares at something unseen[istype(A) ? " near [A]":""].")
+		if(prob(2)) //spooky
+			var/mob/observer/ghost/spook = locate() in range(src,5)
+			if(spook)
+				var/turf/T = spook.loc
+				var/list/visible = list()
+				for(var/obj/O in T.contents)
+					if(!O.invisibility && O.name)
+						visible += O
+				if(visible.len)
+					var/atom/A = pick(visible)
+					visible_emote("suddenly stops and stares at something unseen[istype(A) ? " near [A]":""].")
 
 /mob/living/simple_animal/cat/proc/handle_movement_target()
 	//if our target is neither inside a turf or inside a human(???), stop
@@ -253,11 +254,12 @@
 
 /mob/living/simple_animal/cat/fluff/bones
 	name = "Bones"
-	desc = "That's Bones the cat. He's a laid back, black cat. Meow."
+	desc = "That's Bones the cat. He's a laid back, research cat. Meow."
 	gender = MALE
 	icon_state = "cat3"
 	item_state = "cat3"
 	holder_type = /obj/item/holder/cat/fluff/bones
+	befriend_job = "Moebius Biolab Officer"
 	var/friend_name = "Erstatz Vryroxes"
 
 /mob/living/simple_animal/cat/kitten/New()
@@ -339,7 +341,7 @@ var/cat_number = 0
 			M.do_attack_animation(src)
 			visible_message(SPAN_WARNING("\The [src] hisses."))
 			strike_back(M)
-	
+
 	return
 
 /mob/living/simple_animal/cat/runtime/proc/strike_back(var/mob/target_mob)

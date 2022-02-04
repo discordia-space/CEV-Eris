@@ -1,9 +1,15 @@
 /datum/trade_station/fbv_hellcat
-	name_pool = list("FBV 'Hellcat'" = "They are sending message, \"Greetings. This is the Hellcat. We're currently escorting the Caduceus and we will be departing the system shortly alongside them. We are willing to depart with some extra supplies to get rid of while we're still here.\"")
+	name_pool = list(
+		"FBV 'Hellcat'" = "\"Greetings. This is the Hellcat. We're currently escorting the Caduceus and we will be departing the system shortly alongside them. We are willing to part with our spare supplies while we're here.\""
+	)
 	icon_states = "ihs_destroyer"
 	start_discovered = TRUE
 	spawn_always = TRUE
-	markup = 0.5
+	markup = COMMON_GOODS * 1.5
+	offer_limit = 20
+	base_income = 1600
+	wealth = 0
+	secret_inv_threshold = 32000
 	forced_overmap_zone = list(
 		list(15, 20),
 		list(20, 25)
@@ -40,9 +46,9 @@
 			/obj/item/ammo_magazine/smg,
 			/obj/item/ammo_magazine/pistol,
 			/obj/item/ammo_magazine/hpistol,
-			/obj/item/storage/box/shotgunammo/slug,
-			/obj/item/storage/box/shotgunammo/buckshot,
-			/obj/item/storage/box/shotgunammo/beanbags
+			/obj/item/ammo_magazine/ammobox/shotgun,
+			/obj/item/ammo_magazine/ammobox/shotgun/buckshot,
+			/obj/item/ammo_magazine/ammobox/shotgun/beanbags
 		),
 		"Armor" = list(
 			/obj/item/clothing/suit/armor/heavy/riot,
@@ -56,6 +62,19 @@
 			/obj/item/clothing/head/armor/laserproof
 		),
 	)
-	
+	secret_inventory = list(
+		"Basic Gun Mods" = list(
+			/obj/item/gun_upgrade/barrel/forged,
+			/obj/item/gun_upgrade/mechanism/gravcharger,
+			/obj/item/tool_upgrade/productivity/ergonomic_grip,
+			/obj/item/tool_upgrade/refinement/laserguide
+		)
+	)
 	offer_types = list(
+		/obj/item/part/gun = offer_data("gun part", 500, 0),					// base price: 300
+		/obj/item/part/armor = offer_data("armor part", 500, 0)					// base price: 300
+//		/obj/item/gun/projectile/automatic/type_17 = offer_data("Type XVII", 19000, 1)	// base price: 3800, 5x mult for rarity
+//		/obj/item/gun/projectile/type_42 = offer_data("Type XLII", 9000, 1)				// base price: 1800, 5x mult for rarity
+//		/obj/item/gun/projectile/type_47 = offer_data("Type XLVII", 14000, 1)			// base price: 2800, 5x mult for rarity
+//		/obj/item/gun/projectile/type_69 = offer_data("Type LXIX", 12500, 1)			// base price: 2500, 5x mult for rarity
 	)

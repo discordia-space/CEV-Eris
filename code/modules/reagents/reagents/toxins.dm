@@ -72,6 +72,8 @@
 	heating_point = 523
 	heating_products = list("toxin")
 	reagent_type = "Toxin/Stimulator"
+	withdrawal_threshold = 10
+	withdrawal_rate = REM
 
 /datum/reagent/toxin/carpotoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(ishuman(M))
@@ -79,7 +81,7 @@
 		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
 		if(istype(L))
 			L.take_damage(strength * effect_multiplier, 0)
-	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_BASIC, STIM_TIME, "carpotoxin")
+	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_ADEPT, STIM_TIME, "carpotoxin")
 
 /datum/reagent/toxin/carpotoxin/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC, STIM_TIME, "carpotoxin_w")
@@ -248,7 +250,7 @@
 	return TRUE
 
 /datum/reagent/toxin/plantbgone/touch_obj(obj/O, var/volume)
-	if(istype(O, /obj/effect/plant))
+	if(istype(O, /obj/effect/plant) && !istype(O, /obj/effect/plant/hivemind))
 		qdel(O)
 	if(istype(O, /obj/machinery/portable_atmospherics/hydroponics))
 		var/obj/machinery/portable_atmospherics/hydroponics/T = O
@@ -436,7 +438,7 @@
 	ADD_TRANSFORMATION_MOVEMENT_HANDLER(M)
 	M.canmove = 0
 	M.icon = null
-	M.cut_overlays()
+	M.overlays.Cut()
 	M.invisibility = 101
 	for(var/obj/item/W in M)
 		if(istype(W, /obj/item/implant)) //TODO: Carn. give implants a dropped() or something
@@ -465,17 +467,58 @@
 /datum/reagent/toxin/pararein
 	name = "Pararein"
 	id = "pararein"
-	description = "Venom used by spiders."
+	description = "Venom used by spiders. Infamous for it's influence of the nervous system."
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#a37d9c"
 	metabolism = REM * 2
 	overdose = REAGENTS_OVERDOSE/3
-	nerve_system_accumulations = 5
+	nerve_system_accumulations = 10
 	strength = 0.01
-	sanityloss = 3
+	sanityloss = 1
 	heating_point = 523
 	heating_products = list("toxin")
+
+/datum/reagent/toxin/pararein/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
+	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "pararein")
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "pararein")
+	M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "pararein")
+	sanity_gain = 1.2
+	if(prob(10))
+		to_chat(M, SPAN_WARNING ("you feel like your mind is boiling and the blood in your veins is coming alive!"))
+
+/datum/reagent/toxin/aranecolmin
+	name = "Aranecolmin"
+	id = "aranecolmin"
+	description = "Toxin used by Nurse spiders. Speeds up metabolism of other spider toxins immensely."
+	taste_description = "sludge"
+	reagent_state = LIQUID
+	color = "#acc107"
+	overdose = REAGENTS_OVERDOSE
+	strength = 0.1
+	metabolism = REM * 2
+	addiction_chance = 10
+	nerve_system_accumulations = 5
+
+/datum/reagent/toxin/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
+	M.add_chemical_effect(CE_PAINKILLER, 15)
+	if(M.bloodstr)
+		for(var/current in M.bloodstr.reagent_list)
+			var/datum/reagent/toxin/pararein/R = current
+			if(istype(R))
+				R.metabolism = initial(R.metabolism) * 3
+
+/datum/reagent/toxin/aranecolmin/on_mob_delete(mob/living/carbon/M)
+	..()
+	if(istype(M))
+		if(M.bloodstr)
+			for(var/current in M.bloodstr.reagent_list)
+				var/datum/reagent/toxin/pararein/R = current
+				if(istype(R))
+					R.metabolism = initial(R.metabolism)
+					break
 
 /datum/reagent/toxin/diplopterum
 	name = "Diplopterum"
@@ -491,6 +534,7 @@
 	heating_point = 573
 	heating_products = list("radium", "acetone", "hydrazine", "nutriment")
 	reagent_type = "Toxin/Stimulator"
+	withdrawal_threshold = 15
 
 /datum/reagent/toxin/diplopterum/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
@@ -523,6 +567,7 @@
 	nerve_system_accumulations = 5
 	heating_point = 573
 	heating_products = list("radium", "ammonia", "sulfur", "nutriment")
+	withdrawal_threshold = 10
 
 /datum/reagent/toxin/seligitillin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.2)
@@ -560,6 +605,7 @@
 	heating_point = 573
 	heating_products = list("radium", "aluminum", "tungsten", "nutriment")
 	reagent_type = "Toxin/Stimulator"
+	withdrawal_threshold = 10
 
 /datum/reagent/toxin/starkellin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
@@ -583,6 +629,7 @@
 	heating_point = 573
 	heating_products = list("radium", "mercury", "sugar", "nutriment")
 	reagent_type = "Toxin/Stimulator"
+	withdrawal_threshold = 10
 
 /datum/reagent/toxin/gewaltine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
@@ -608,8 +655,10 @@
 	nerve_system_accumulations = 4
 	heating_point = 573
 	heating_products = list("radium", "mercury", "lithium", "nutriment")
+	withdrawal_threshold = 5
 
 /datum/reagent/toxin/fuhrerole/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "fuhrerole_w")
 	M.faction = "roach"
 
 /datum/reagent/toxin/fuhrerole/on_mob_delete(mob/living/L)
@@ -623,6 +672,39 @@
 /datum/reagent/toxin/fuhrerole/overdose(mob/living/carbon/M, alien)
 	M.add_chemical_effect(CE_SPEECH_VOLUME, rand(3,4))
 	M.adjustBrainLoss(0.5)
+
+/datum/reagent/toxin/kaiseraurum
+	name = "Kaiseraurum"
+	id = "kaiseraurum"
+	description = "Harvested from Kaiser roaches."
+	taste_description = "Kommandant\'s authority"
+	reagent_state = LIQUID
+	color = "#030f08"
+	addiction_chance = 50
+	addiction_threshold = 8
+	overdose = 6
+	nerve_system_accumulations = 50
+	heating_point = 573
+	heating_products = list("fuhrerole", "radium", "nutriment", "tungsten")
+	reagent_type = "Toxin/Stimulator"
+	withdrawal_threshold = 10
+
+/datum/reagent/toxin/kaiseraurum/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
+	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "kaiseraurum")
+	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "kaiseraurum")
+	M.stats.addTempStat(STAT_ROB, STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "kaiseraurum")
+	M.faction = "roach"
+
+/datum/reagent/toxin/kaiseraurum/withdrawal_act(mob/living/carbon/M)
+	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, STIM_TIME, "kaiseraurum_w")
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT, STIM_TIME, "kaiseraurum_w")
+	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_ADEPT, STIM_TIME, "kaiseraurum_w")
+
+/datum/reagent/toxin/kaiseraurum/overdose(mob/living/carbon/M, alien)
+	M.add_chemical_effect(CE_SPEECH_VOLUME, rand(3, 4))
+	M.adjustBrainLoss(0.5)
+	M.adjustToxLoss(1)
 
 /datum/reagent/toxin/biomatter
 	name = "Biomatter"
@@ -665,6 +747,10 @@
 	taste_description = "bleach"
 	color = "#707c13"
 	strength = 15
+/datum/reagent/toxin/chlorine/touch_obj(obj/O)
+	if(istype(O, /obj/effect/plant/hivemind))
+		qdel(O)
+
 
 /datum/reagent/toxin/tar
 	name = "Tar"
@@ -673,3 +759,21 @@
 	color = "#140b30"
 	reagent_state = LIQUID
 	strength = 4
+
+/datum/reagent/toxin/mold
+	name = "Mold"
+	id = "mold"
+	description = "Food that went rotting for so long it liquefied. Do not consume."
+	taste_description = "stale vomit mixed with pineapples"
+	reagent_state = LIQUID
+	color = "#467508"
+	metabolism = REM
+	overdose = REAGENTS_OVERDOSE/2
+	nerve_system_accumulations = 5
+	strength = 0.01
+	sanityloss = 2
+
+/datum/reagent/toxin/mold/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(prob(20 * effect_multiplier))
+		M.vomit()

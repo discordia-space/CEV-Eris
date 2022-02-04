@@ -1,6 +1,6 @@
 /obj/item/storage/pill_bottle/dice
 	name = "pack of dice"
-	desc = "It's a small container with dice inside."
+	desc = "A small container with dice inside."
 	spawn_tags = SPAWN_TAG_ITEM
 	pill_type = /obj/item/dice/d20
 	initial_amt = 1
@@ -29,11 +29,11 @@
 		new spawn_type(src)
 	update_icon()
 
-/obj/item/storage/box/donut/on_update_icon()
+/obj/item/storage/box/donut/update_icon()
 	cut_overlays()
 	var/i = 0
 	for(var/obj/item/reagent_containers/food/snacks/donut/D in contents)
-		add_overlays(image('icons/obj/food.dmi', "[i][D.overlay_state]"))
+		overlays += image('icons/obj/food.dmi', "[i][D.overlay_state]")
 		i++
 
 /obj/item/storage/box/donut/empty
@@ -105,7 +105,7 @@
 
 /obj/item/storage/box/clown
 	name = "clown costume box"
-	desc = "It's a cardboard box with a clown costume."
+	desc = "A cardboard box with a clown costume."
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/box/clown/populate_contents()
@@ -115,4 +115,4 @@
 	new /obj/item/clothing/under/rank/clown(src)
 	new /obj/item/stamp/clown(src)
 	new /obj/item/bananapeel(src)
-	
+

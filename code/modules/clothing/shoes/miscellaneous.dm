@@ -105,16 +105,13 @@
 	item_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN+1
 	species_restricted = null
+	style = STYLE_NEG_HIGH
 
 /obj/item/clothing/shoes/leather
 	name = "leather shoes"
 	desc = "A sturdy pair of leather shoes."
 	icon_state = "leather"
-
-/obj/item/clothing/shoes/leather
-	name = "leather shoes"
-	desc = "A sturdy pair of leather shoes."
-	icon_state = "leather"
+	style = STYLE_HIGH
 
 /obj/item/clothing/shoes/redboot
 	name = "red boots"

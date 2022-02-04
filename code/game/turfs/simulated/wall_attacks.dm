@@ -6,7 +6,7 @@
 
 	if(density)
 		can_open = WALL_OPENING
-		//FLICK("[material.icon_base]fwall_opening", src)
+		//flick("[material.icon_base]fwall_opening", src)
 		sleep(15)
 		density = FALSE
 		set_opacity(FALSE)
@@ -14,7 +14,7 @@
 		set_light(0)
 	else
 		can_open = WALL_OPENING
-		//FLICK("[material.icon_base]fwall_closing", src)
+		//flick("[material.icon_base]fwall_closing", src)
 		density = TRUE
 		set_opacity(TRUE)
 		update_icon()
@@ -140,7 +140,7 @@
 					return
 			if(thermite)
 				if(I.use_tool(user, src, WORKTIME_INSTANT,tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You ignite the termit with the [I]!"))
+					to_chat(user, SPAN_NOTICE("You ignite the thermite with the [I]!"))
 					thermitemelt(user)
 					return
 			if(damage)
@@ -185,7 +185,7 @@
 				to_chat(user, SPAN_NOTICE("You struggle to pry off the outer sheath..."))
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You pry off the outer sheath."))
-					dismantle_wall()
+					dismantle_wall(user)
 					return
 			return
 

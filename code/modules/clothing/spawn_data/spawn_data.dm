@@ -37,9 +37,6 @@
 /obj/item/clothing/head/space/void
 	rarity_value = 43.0556
 
-/obj/item/clothing/head/space/bomb/security
-	rarity_value = 62.2222
-
 /obj/item/clothing/head/space/bomb
 	rarity_value = 62.2222
 
@@ -166,8 +163,6 @@
 /obj/item/clothing/head/ushanka
 	rarity_value = 10
 
-/obj/item/clothing/head/kitty
-	rarity_value = 50
 
 /obj/item/clothing/head/bio_hood/general
 	rarity_value = 23.8889
@@ -377,19 +372,19 @@
 /obj/item/clothing/suit/armor/vest
 	rarity_value = 26.1111
 
-/obj/item/clothing/suit/armor/greatcoat/ironhammer
+/obj/item/clothing/suit/storage/greatcoat/ironhammer
 	rarity_value = 27.5
 
-/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat
+/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat
 	rarity_value = 27.5
 
-/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat_brown
+/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat_brown
 	rarity_value = 27.5
 
-/obj/item/clothing/suit/armor/greatcoat/german_overcoat
+/obj/item/clothing/suit/storage/greatcoat/german_overcoat
 	rarity_value = 29.1667
 
-/obj/item/clothing/suit/armor/greatcoat
+/obj/item/clothing/suit/storage/greatcoat
 	rarity_value = 27.5
 
 /obj/item/clothing/suit/armor/flak/full
@@ -404,16 +399,16 @@
 /obj/item/clothing/suit/armor/bulletproof/ironhammer
 	rarity_value = 29.4444
 
-/obj/item/clothing/suit/armor/bulletproof/serbian/green
+/obj/item/clothing/suit/armor/platecarrier/green
 	rarity_value = 22.5
 
-/obj/item/clothing/suit/armor/bulletproof/serbian/tan
+/obj/item/clothing/suit/armor/platecarrier/tan
 	rarity_value = 22.5
 
-/obj/item/clothing/suit/armor/bulletproof/serbian/full
+/obj/item/clothing/suit/armor/platecarrier/full
 	rarity_value = 30
 
-/obj/item/clothing/suit/armor/bulletproof/serbian
+/obj/item/clothing/suit/armor/platecarrier
 	rarity_value = 22.5
 
 /obj/item/clothing/suit/armor/bulletproof
@@ -428,7 +423,7 @@
 /obj/item/clothing/suit/armor/heavy/green
 	rarity_value = 30.2778
 
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer
+/obj/item/clothing/suit/armor/heavy/ironhammer
 	rarity_value = 33.6111
 
 /obj/item/clothing/suit/armor/heavy/riot

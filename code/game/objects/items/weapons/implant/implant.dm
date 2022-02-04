@@ -5,13 +5,13 @@
 /obj/item/implant
 	name = "implant"
 	icon = 'icons/obj/device.dmi'
-	icon_state = "implant"
+	icon_state = "implant_health"
 	w_class = ITEM_SIZE_TINY
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 	var/implanted = FALSE
 	var/mob/living/carbon/human/wearer
 	var/obj/item/organ/external/part
-	var/implant_color = "b"
+	var/implant_overlay = "implantstorage_deathalarm"
 	var/allow_reagents = FALSE
 	var/malfunction = MALFUNCTION_NONE
 	var/is_legal = TRUE
@@ -19,6 +19,7 @@
 	var/position_flag = 0
 	var/external = FALSE
 	var/cruciform_resist = FALSE
+	var/scanner_hidden = FALSE	//Does this implant show up on the body scanner
 
 /obj/item/implant/attackby(obj/item/I, mob/user)
 	..()
@@ -29,6 +30,7 @@
 		if(!M.implant && user.unEquip(src, M))
 			M.implant = src
 			M.update_icon()
+		return TRUE
 
 
 /obj/item/implant/proc/trigger(emote, mob/living/source)

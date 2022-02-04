@@ -176,7 +176,10 @@
 	if ((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
 		return 1
 
-	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (weakened || resting || pinned.len))
+	if ((incapacitation_flags & INCAPACITATION_SOFTLYING) && (resting))
+		return 1
+
+	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (weakened || pinned.len))
 		return 1
 
 	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
@@ -213,6 +216,7 @@
 			else
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = loc
+		client.view = world.view  // Reset view range if it has been altered
 
 	if(hud_used)
 		hud_used.updatePlaneMasters(src)
@@ -558,16 +562,20 @@
 	var/mob/M = AM
 	if(ismob(AM))
 
+		if(M.mob_size >=  MOB_GIGANTIC)
+			to_chat(src, SPAN_WARNING("It won't budge!"))
+			return
+
 		if(!can_pull_mobs || !can_pull_size)
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
 		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
 		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
 		// If your size is larger than theirs and you have some
@@ -726,13 +734,14 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 				anchored = FALSE
 		canmove = FALSE //TODO: Remove this
 	else
-		lying = incapacitated(INCAPACITATION_KNOCKDOWN)
+		lying = incapacitated(INCAPACITATION_GROUNDED)
 		canmove = FALSE //TODO: Remove this
 
 	if(lying)
 		set_density(0)
-		if(l_hand) unEquip(l_hand)
-		if(r_hand) unEquip(r_hand)
+		if(stat == UNCONSCIOUS)
+			if(l_hand) unEquip(l_hand) //we want to be able to keep items, for tactical resting and ducking behind cover
+			if(r_hand) unEquip(r_hand)
 	else
 		canmove = TRUE
 		set_density(initial(density))
@@ -892,9 +901,9 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	return
 
 /mob/living/flash_weak_pain()
-//	FLICK("weak_pain", flash["pain"])
+//	flick("weak_pain", flash["pain"])
 	if(HUDtech.Find("pain"))
-		FLICK("weak_pain", HUDtech["pain"])
+		flick("weak_pain", HUDtech["pain"])
 
 
 /mob/proc/get_visible_implants()
@@ -1055,7 +1064,7 @@ mob/proc/yank_out_object()
 		if(istype(I,/mob/living/simple_animal/borer))
 			return I
 
-	return 0
+	return FALSE
 
 /mob/proc/updateicon()
 	return
@@ -1160,19 +1169,48 @@ mob/proc/yank_out_object()
 
 /mob/verb/northfaceperm()
 	set hidden = 1
-	set_face_dir(client.client_dir(NORTH))
+	if(facing_dir)
+		facing_dir = null
+		to_chat(usr, "You are now not facing anything.")
+	else
+		set_face_dir(client.client_dir(NORTH))
+		to_chat(usr, "You are now facing north.")
 
 /mob/verb/southfaceperm()
 	set hidden = 1
-	set_face_dir(client.client_dir(SOUTH))
+	if(facing_dir)
+		facing_dir = null
+		to_chat(usr, "You are now not facing anything.")
+	else
+		set_face_dir(client.client_dir(SOUTH))
+		to_chat(usr, "You are now facing south.")
 
 /mob/verb/eastfaceperm()
 	set hidden = 1
-	set_face_dir(client.client_dir(EAST))
+	if(facing_dir)
+		facing_dir = null
+		to_chat(usr, "You are now not facing anything.")
+	else
+		set_face_dir(client.client_dir(EAST))
+		to_chat(usr, "You are now facing east.")
 
 /mob/verb/westfaceperm()
 	set hidden = 1
-	set_face_dir(client.client_dir(WEST))
+	if(facing_dir)
+		facing_dir = null
+		to_chat(usr, "You are now not facing anything.")
+	else
+		set_face_dir(client.client_dir(WEST))
+		to_chat(usr, "You are now facing west.")
+
+/mob/verb/change_move_intent()
+	set name = "Change moving intent"
+	set category = "IC"
+	set src = usr
+
+	if(HUDneed["move intent"])
+		var/obj/screen/mov_intent/mov_intent = HUDneed["move intent"]
+		mov_intent.Click()  // Yep , this is all.
 
 /mob/proc/adjustEarDamage()
 	return

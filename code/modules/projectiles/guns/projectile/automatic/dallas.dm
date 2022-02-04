@@ -20,21 +20,36 @@
 	reload_sound = 'sound/weapons/guns/interact/m41_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m41_cocked.ogg'
 	damage_multiplier = 1.35
-	penetration_multiplier = 1
+	penetration_multiplier = 1.2
 	recoil_buildup = 1.3
 	one_hand_penalty = 10 //heavy, but very advanced, so bullpup rifle level despite not being bullpup
 	rarity_value = 65
 	gun_parts = list(/obj/item/part/gun = 5 ,/obj/item/stack/material/plasteel = 6)
+	wield_delay = 1 SECOND
+	wield_delay_factor = 0.4 // 40 vig for insta wield
+	gun_parts = list(/obj/item/part/gun/frame/dallas = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/clrifle = 1)
+
+	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
 		)
 
-/obj/item/gun/projectile/automatic/dallas/on_update_icon()
+/obj/item/gun/projectile/automatic/dallas/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "[initial(icon_state)]-full"
 	else
 		icon_state = initial(icon_state)
 	return
+
+/obj/item/part/gun/frame/dallas
+	name = "Dallas frame"
+	desc = "A Dallas pulse rifle frame. Sawing aliens in twain since time immemorial."
+	icon_state = "frame_dallas"
+	result = /obj/item/gun/projectile/automatic/dallas
+	grip = /obj/item/part/gun/grip/black
+	mechanism = /obj/item/part/gun/mechanism/machinegun
+	barrel = /obj/item/part/gun/barrel/clrifle
+	spawn_blacklisted = TRUE

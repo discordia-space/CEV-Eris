@@ -183,13 +183,6 @@
 
 		set_expand_time()
 
-/obj/effect/blob/verb/expandverb()
-	set src in view()
-	set name = "Expand"
-
-	expand(pick(non_blob_neighbors))
-
-
 /obj/effect/blob/proc/regen()
 	if (!(QDELETED(core)))
 		health = min(health + health_regen, maxHealth)
@@ -276,7 +269,7 @@
 /obj/effect/blob/fire_act()
 	take_damage(rand(20, 60) / fire_resist)
 
-/obj/effect/blob/on_update_icon()
+/obj/effect/blob/update_icon()
 	var/healthpercent = health / maxHealth
 	if(healthpercent > 0.5)
 		icon_state = "blob"
@@ -527,7 +520,7 @@
 	core = src //It is its own core
 	..()
 
-/obj/effect/blob/core/on_update_icon()
+/obj/effect/blob/core/update_icon()
 	return
 
 //When the core dies, wake up all our sub-blobs so they can slowly die too
@@ -555,7 +548,7 @@
 	density = TRUE
 	icon_scale = 1.2
 
-/obj/effect/blob/shield/on_update_icon()
+/obj/effect/blob/shield/update_icon()
 	var/healthpercent = health / maxHealth
 	if(healthpercent > 0.6)
 		icon_state = "blob_idle"

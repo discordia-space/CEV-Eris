@@ -206,7 +206,15 @@
 	name = "long magazine (.20 Rifle rubber)"
 	build_path = /obj/item/ammo_magazine/srifle/rubber
 
-// . 20 ammoboxes
+// . 20 ammoboxes, speedloader
+
+/datum/design/autolathe/ammo/sl_srifle
+	name = "ammo strip (.20 Rifle)"
+	build_path = /obj/item/ammo_magazine/slsrifle
+
+/datum/design/autolathe/ammo/sl_srifle/rubber
+	name = "ammo strip (.20 Rifle rubber)"
+	build_path = /obj/item/ammo_magazine/slsrifle/rubber
 
 /datum/design/autolathe/ammo/srifle_ammobox
 	name = "ammunition box (.20 Rifle)"
@@ -358,3 +366,6 @@
 	name = "chemical darts magazine"
 	build_path = /obj/item/ammo_magazine/chemdart
 
+/datum/design/autolathe/ammo/flare_shell
+	name = "flare shell"
+	build_path = /obj/item/ammo_casing/flare

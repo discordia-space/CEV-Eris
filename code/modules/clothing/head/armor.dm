@@ -16,6 +16,7 @@
 	spawn_tags = SPAWN_TAG_CLOTHING_HEAD_HELMET
 	bad_type = /obj/item/clothing/head/armor
 	style = STYLE_NEG_HIGH
+	style_coverage = COVERS_HAIR
 
 /*
  * Helmets
@@ -62,6 +63,8 @@
 	)
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 500
+	obscuration = LIGHT_OBSCURATION
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/dermal
 	name = "Dermal Armour Patch"
@@ -72,7 +75,7 @@
 
 /obj/item/clothing/head/armor/helmet/ironhammer
 	name = "operator helmet"
-	desc = "Ironhammer Security gear. Protects the head from impacts."
+	desc = "Ironhammer Security gear. Protects the head from impacts, and the lack of a visor ensures an unhindered aim."
 	icon_state = "helmet_ironhammer"
 	flags_inv = BLOCKHEADHAIR|HIDEEARS
 
@@ -95,10 +98,32 @@
 	)//Mix between hardhat.dm armor values, helmet armor values in armor.dm, and armor values for TM void helmet in station.dm.
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 500
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/technomancer/New()
 	. = ..()
 	icon_state = pick(list("technohelmet_visor", "technohelmet_googles"))
+
+/obj/item/clothing/head/armor/helmet/technomancer_old
+	name = "reinforced technomancer helmet"
+	desc = "Technomancer League's ballistic helmet. Comes with a built-in flashlight. The welder-proof visor hinders aim."
+	icon_state = "technohelmet_old"
+	body_parts_covered = HEAD|EARS|EYES|FACE
+	item_flags = THICKMATERIAL
+	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
+	action_button_name = "Toggle Headlamp"
+	brightness_on = 4
+	armor = list(
+		melee = 35,
+		bullet = 40,
+		energy = 20,
+		bomb = 40,
+		bio = 0,
+		rad = 0
+	)
+	flash_protection = FLASH_PROTECTION_MAJOR
+	obscuration = MEDIUM_OBSCURATION
+	price_tag = 500
 
 /obj/item/clothing/head/armor/helmet/handmade
 	name = "handmade combat helmet"
@@ -143,6 +168,8 @@
 		MATERIAL_PLASTEEL = 2, //Higher plasteel cost since it's booletproof
 		MATERIAL_GLASS = 3 //For the visor parts
 	)
+	obscuration = LIGHT_OBSCURATION
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg //currently junk-only
 	name = "tactical ballistic helmet"
@@ -150,8 +177,11 @@
 			Comes with inbuilt nightvision HUD."
 	icon_state = "bulletproof_ironhammer"
 	body_parts_covered = HEAD | EARS
+	flags_inv = NONE
 	action_button_name = "Toggle Night Vision"
-	var/obj/item/clothing/glasses/bullet_proof_ironhammer/hud
+	var/obj/item/clothing/glasses/powered/bullet_proof_ironhammer/hud
+	var/last_toggle = 0
+	var/toggle_delay = 2 SECONDS
 	price_tag = 600
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/New()
@@ -175,17 +205,23 @@
 	if(user.get_equipped_item(slot_head) != src)
 		return
 	if(hud in src)
-		if(user.equip_to_slot_if_possible(hud, slot_glasses))
-			to_chat(user, "You enable security hud on [src].")
+		if(user.equip_to_slot_if_possible(hud, slot_glasses) && world.time > last_toggle)
+			to_chat(user, "You flip down [src] night vision goggles with a high-pitched whine.")
+			last_toggle = world.time + toggle_delay
+			hud.toggle(user, TRUE)
 			update_icon()
 		else
-			to_chat(user, "You are wearing something which is in the way.")
+			to_chat(user, "You are wearing something which is in the way or trying to flip the googles too fast!")
 	else
-		if(ismob(hud.loc))
+		if(ismob(hud.loc) && world.time > last_toggle)
+			last_toggle = world.time + toggle_delay
 			var/mob/hud_loc = hud.loc
 			hud_loc.drop_from_inventory(hud, src)
-			to_chat(user, "You disable security hud on [src].")
-		hud.forceMove(src)
+			hud.toggle(user, TRUE)
+			to_chat(user, "You flip up [src] night vision goggles, turning them off.")
+			hud.forceMove(src)
+		else
+			to_chat(user, "You can't pull off the goggles so fast!")
 		update_icon()
 	usr.update_action_buttons()
 
@@ -199,7 +235,7 @@
 		hud.forceMove(src)
 		update_icon()
 
-/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/on_update_icon()
+/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/update_icon()
 	if(hud in src)
 		icon_state = "bulletproof_ironhammer"
 		set_light(0, 0)
@@ -250,6 +286,7 @@
 		MATERIAL_PLASTEEL = 1,
 		MATERIAL_GLASS = 10 // glass is reflective yo, make it cost a lot of it - also, visor
 	)
+	style_coverage = COVERS_WHOLE_HEAD
 
 // toggleable face guard
 /obj/item/clothing/head/armor/faceshield
@@ -257,7 +294,8 @@
 	var/list/armor_up = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	var/list/armor_down = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
-	var/tint_down = TINT_MODERATE
+	var/tint_down = TINT_LOW
+	var/obscuration_down = MEDIUM_OBSCURATION
 	flags_inv = HIDEEARS
 	var/flags_inv_down = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHEADHAIR
 	body_parts_covered = HEAD|EARS
@@ -267,13 +305,14 @@
 	action_button_name = "Flip Face Shield"
 	var/up = FALSE
 	bad_type = /obj/item/clothing/head/armor/faceshield
+	style_coverage = COVERS_HAIR|COVERS_EARS
 
 /obj/item/clothing/head/armor/faceshield/riot
 	name = "riot helmet"
-	desc = "It's a helmet specifically designed to protect against close range attacks."
+	desc = "A helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
-	armor_up = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
-	armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)
+	armor_up = list(melee = 30, bullet = 20, energy = 20, bomb = 20, bio = 0, rad = 0)
+	armor_down = list(melee = 40, bullet = 35, energy = 30, bomb = 35, bio = 0, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	price_tag = 150
 	matter = list(
@@ -289,7 +328,7 @@
 /obj/item/clothing/head/armor/faceshield/attack_self()
 	toggle()
 
-/obj/item/clothing/head/armor/faceshield/on_update_icon()
+/obj/item/clothing/head/armor/faceshield/update_icon()
 	icon_state = up ? "[initial(icon_state)]_up" : initial(icon_state)
 
 //I wanted to name it set_up() but some how I thought that would be misleading
@@ -299,14 +338,18 @@
 		armor = getArmor(arglist(armor_up))
 		flash_protection = initial(flash_protection)
 		tint = initial(tint)
+		obscuration = initial(obscuration)
 		flags_inv = initial(flags_inv)
 		body_parts_covered = initial(body_parts_covered)
+		style_coverage = initial(style_coverage)
 	else
 		armor = getArmor(arglist(armor_down))
 		flash_protection = flash_protection_down
 		tint = tint_down
+		obscuration = obscuration_down
 		flags_inv = flags_inv_down
 		body_parts_covered = body_parts_covered_down
+		style_coverage = COVERS_WHOLE_HEAD
 
 	update_icon()
 	update_wear_icon()	//update our mob overlays
@@ -331,15 +374,19 @@
  * Ironhammer riot helmet with HUD
  */
 /obj/item/clothing/head/armor/riot_hud
-	name = "riot helmet"
+	name = "heavy operator helmet"
 	desc = "Standard-issue Ironhammer helmet with a basic HUD and targeting system included."
 	icon_state = "light_riot"
+
+	tint = TINT_NONE
+	obscuration = LIGHT_OBSCURATION
+
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(
-		melee = 75,
-		bullet = 30,
-		energy = 30,
-		bomb = 25,
+		melee = 50,
+		bullet = 50,
+		energy = 40,
+		bomb = 35,
 		bio = 0,
 		rad = 0
 	)
@@ -348,7 +395,8 @@
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
-	price_tag = 300
+	price_tag = 500
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/riot_hud/New()
 	..()
@@ -392,7 +440,7 @@
 		hud.forceMove(src)
 		update_icon()
 
-/obj/item/clothing/head/armor/riot_hud/on_update_icon()
+/obj/item/clothing/head/armor/riot_hud/update_icon()
 	if(hud in src)
 		icon_state = "light_riot"
 		set_light(0, 0)
@@ -434,6 +482,11 @@
 	icon_state = "maska"
 	armor_down = list(melee = 55, bullet = 55, energy = 0, bomb = 45, bio = 0, rad = 0) // best what you can get, unless you face lasers
 
+/obj/item/clothing/head/armor/faceshield/altyn/maska/tripoloski
+	name = "striped maska helmet"
+	desc = "Someone has painted a Maska in the Gopnik style."
+	icon_state = "altyn_tripoloski"
+
 /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
 	name = "\improper Type-34C Semi-Enclosed Headwear"
 	desc = "Civilian model of a popular helmet used by certain law enforcement agencies. It does not have any armor plating, but has a neo-laminated fabric lining."
@@ -445,6 +498,19 @@
 		bullet = 20,
 		energy = 10,
 		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	style_coverage = COVERS_FACE|COVERS_HAIR
+
+/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle/armored
+	name = "\improper Type-34 Semi-Enclosed Headwear"
+	desc = "Armored helmet used by certain law enforcement agencies. It's hard to believe there's a human somewhere behind that."
+	armor = list(
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
@@ -466,6 +532,8 @@
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
+	obscuration = MEDIUM_OBSCURATION // May God guide your aim
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/tanker
 	name = "black tanker helmet"
@@ -495,3 +563,116 @@
 	name = "gray tanker helmet"
 	icon_state = "tanker_helmet_gray"
 
+/obj/item/clothing/head/armor/faceshield/paramedic
+	name = "Moebius paramedic helmet"
+	desc = "Seven minutes or a refund."
+	icon_state = "trauma_team"
+	item_state = "trauma_team"
+	flags_inv = HIDEEARS|BLOCKHAIR
+	item_flags = BLOCK_GAS_SMOKE_EFFECT|AIRTIGHT
+	matter = list(
+		MATERIAL_PLASTEEL = 10,
+		MATERIAL_GLASS = 5,
+		MATERIAL_PLASTIC = 5,
+		MATERIAL_PLATINUM = 2
+		)
+	armor_up = list(
+		melee = 25,
+		bullet = 25,
+		energy = 20,
+		bomb = 10,
+		bio = 100,
+		rad = 50
+		)
+	armor_down = list(
+		melee = 35,
+		bullet = 35,
+		energy = 30,
+		bomb = 15,
+		bio = 100,
+		rad = 50)
+	up = TRUE
+	spawn_blacklisted = TRUE
+	style = STYLE_HIGH
+	tint_down = TINT_NONE
+	obscuration_down = LIGHT_OBSCURATION
+	var/speaker_enabled = TRUE
+	var/scan_scheduled = FALSE
+	var/scan_interval = 15 SECONDS
+	var/repeat_report_after = 60 SECONDS
+	var/list/crewmembers_recently_reported = list()
+
+
+/obj/item/clothing/head/armor/faceshield/paramedic/equipped(mob/M)
+	. = ..()
+	schedule_scan()
+
+
+/obj/item/clothing/head/armor/faceshield/paramedic/proc/schedule_scan()
+	if(scan_scheduled)
+		return
+
+	if(!speaker_enabled)
+		return
+
+	scan_scheduled = TRUE
+	spawn(scan_interval)
+		if(QDELETED(src))
+			return
+		scan_scheduled = FALSE
+		report_health_alerts()
+
+
+/obj/item/clothing/head/armor/faceshield/paramedic/proc/schedule_memory_cleanup(entry)
+	spawn(repeat_report_after)
+		if(QDELETED(src))
+			return
+		crewmembers_recently_reported.Remove(entry)
+
+
+/obj/item/clothing/head/armor/faceshield/paramedic/proc/report_health_alerts()
+	if(!speaker_enabled)
+		return
+
+	if(!ishuman(loc))
+		return
+
+
+	var/mob/living/carbon/human/user = loc
+
+	var/list/crewmembers = list()
+	var/list/z_levels_to_scan = list(1, 2, 3, 4, 5)
+
+	for(var/z_level in z_levels_to_scan)
+		crewmembers += crew_repository.health_data(z_level)
+
+	if(crewmembers.len)
+		for(var/i = 1, i <= crewmembers.len, i++)
+			var/list/entry = crewmembers[i]
+			if(entry["alert"] && !entry["muted"])
+				if(entry["name"] in crewmembers_recently_reported)
+					continue
+				crewmembers_recently_reported += entry["name"]
+				schedule_memory_cleanup(entry["name"])
+				to_chat(user, SPAN_WARNING("[src] beeps: '[entry["name"]]'s on-suit sensors broadcast an emergency signal. Access monitoring software for details.'"))
+
+	schedule_scan()
+
+
+/obj/item/clothing/head/armor/faceshield/paramedic/AltClick()
+	toogle_speaker()
+
+
+/obj/item/clothing/head/armor/faceshield/paramedic/verb/toogle_speaker()
+	set name = "Toogle helmet's speaker"
+	set category = "Object"
+	set src in usr
+
+	if(speaker_enabled)
+		to_chat(usr, SPAN_WARNING("[src] beeps: 'Notifications disabled.'"))
+		speaker_enabled = FALSE
+	else
+		to_chat(usr, SPAN_WARNING("[src] beeps: 'Notifications enabled.'"))
+		speaker_enabled = TRUE
+		report_health_alerts()
+		schedule_scan()

@@ -1,11 +1,17 @@
 /datum/trade_station/asterstradecapital
-	name_pool = list("FTS 'Solnishko'" = "Free Trade Station 'Solnishko', they sending message \"Zdravstvuite, this is the Trade Station 'Solaris'. We have all of the bests products on sale at Hansa! You couldn't get even better prices!. Everything for sale here, don't be afraid to come aboard and check our wares!\"")
-	start_discovered = TRUE
-	spawn_always = TRUE
+	name_pool = list(
+		"FTS 'Solnishko'" = "Free Trade Station 'Solnishko':\n\"Zdravstvuite, this is the trade station 'Solaris'. We have the best products in Hanza space! You couldn't find better prices!.\"",
+	)
 	forced_overmap_zone = list(
 		list(24, 26),
 		list(30, 30)
 	)
+	start_discovered = TRUE
+	spawn_always = TRUE
+	markup = COMMON_GOODS
+	base_income = 1600
+	wealth = 0
+	secret_inv_threshold = 16000
 	assortiment = list(
 		"Disk Designs" = list(
 			/obj/item/computer_hardware/hard_drive/portable/design/tools = good_data("Asters Basic Tool Pack", list(1, 10)),
@@ -13,8 +19,8 @@
 			/obj/item/computer_hardware/hard_drive/portable/design/robustcells = good_data("Asters Robustcells", list(1, 10)),
 			/obj/item/computer_hardware/hard_drive/portable/design/devices = good_data("Asters Devices and Instruments", list(1, 10)),
 			/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo = good_data("Frozen Star Nonlethal Magazines Pack", list(1, 10)),
-			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = good_data("Frozen Star Lethal Magazines Pack", list(1, 10)),
-			/obj/item/storage/deferred/disks
+			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = good_data("Frozen Star Lethal Magazines Pack", list(1, 10))
+//			/obj/item/storage/deferred/disks = custom_good_amount_range(list(1, 5))
 		),
 		"Tools and Equipment" = list(
 			/obj/item/clothing/suit/storage/hazardvest,
@@ -57,17 +63,11 @@
 			/obj/item/toy/figure/roach,
 //			/obj/item/ammo_casing/cap
 		),
-		"Frozen Star Sidearms & Ammunitions" = list(
+		"Frozen Star Accessories & Ammunition" = list(
 			/obj/item/clothing/accessory/holster,
 			/obj/item/clothing/accessory/holster/armpit,
 			/obj/item/clothing/accessory/holster/waist,
 			/obj/item/clothing/accessory/holster/hip,
-			/obj/item/gun/projectile/revolver/havelock,
-			/obj/item/gun/projectile/olivaw,
-			/obj/item/gun/projectile/giskard,
-			/obj/item/gun/projectile/selfload,
-			/obj/item/gun/energy/gun/martin,
-			/obj/item/gun/energy/gun,
 			/obj/item/ammo_magazine/slpistol,
 			/obj/item/ammo_magazine/slpistol/rubber,
 			/obj/item/ammo_magazine/pistol,
@@ -100,5 +100,54 @@
 			/obj/item/reagent_containers/spray/cleaner,
 			/obj/item/reagent_containers/glass/rag,
 			/obj/item/organ_module/active/simple/armshield
+		)
+	)
+	secret_inventory = list(
+		"Exosuits" = list(
+			/mob/living/exosuit/premade/powerloader/firefighter,
+			/mob/living/exosuit/premade/powerloader/flames_blue,
+			/mob/living/exosuit/premade/powerloader/flames_red,
+			/mob/living/exosuit/premade/light,
+			/mob/living/exosuit/premade/heavy,
+			/mob/living/exosuit/premade/combat/slayer
 		),
+		"Mech Armor" = list(
+			/obj/item/robot_parts/robot_component/armour/exosuit/plain,
+			/obj/item/robot_parts/robot_component/armour/exosuit/radproof,
+			/obj/item/robot_parts/robot_component/armour/exosuit/ablative,
+			/obj/item/robot_parts/robot_component/armour/exosuit/combat
+		),
+		"Parts" = list(
+			/obj/item/mech_component/chassis,
+			/obj/item/mech_component/manipulators,
+			/obj/item/mech_component/sensors,
+			/obj/item/mech_component/propulsion
+		),
+		"Soft" = list(
+			/obj/item/electronics/circuitboard/exosystem/engineering,
+			/obj/item/electronics/circuitboard/exosystem/utility,
+			/obj/item/electronics/circuitboard/exosystem/medical,
+			/obj/item/electronics/circuitboard/exosystem/weapons
+		),
+		"Equipment" = list(
+			/obj/item/mech_equipment/mounted_system/taser,
+			/obj/item/mech_equipment/mounted_system/taser/ion,
+			/obj/item/mech_equipment/mounted_system/taser/plasma,
+			/obj/item/mech_equipment/mounted_system/rcd,
+			/obj/item/mech_equipment/clamp,
+			/obj/item/mech_equipment/light,
+			/obj/item/mech_equipment/drill,
+			/obj/item/mech_equipment/mounted_system/extinguisher,
+			/obj/item/mech_equipment/sleeper
+		)
+	)
+	offer_types = list(
+		/obj/item/mech_component = offer_data("mech component", 150, 10),															// base price: 150
+		/obj/item/mech_equipment = offer_data("mech equipment", 200, 10),															// base price: 200
+		/obj/item/robot_parts/robot_component/armour/exosuit/plain = offer_data("exosuit armor plating", 300, 8),					// base price: 300
+		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = offer_data("rad-proof exosuit armor plating", 500, 8),		// base price: 500
+		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 550, 8),		// base price: 550
+		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 1000, 8),			// base price: 1000
+		/obj/item/organ/external/robotic/one_star = offer_data("onestar external prosthetic", 1800, 4),								// base price: 900
+		/obj/item/organ/external/robotic/serbian = offer_data("serbian external prosthetic", 600, 8)								// base price: 600; roundstart item, but you'd be giving up an arm and a leg for cash
 	)

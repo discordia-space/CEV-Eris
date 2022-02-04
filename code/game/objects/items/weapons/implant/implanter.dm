@@ -1,7 +1,7 @@
 /obj/item/implanter
 	name = "implanter"
 	icon = 'icons/obj/items.dmi'
-	icon_state = "implanter0"
+	icon_state = "implanter"
 	item_state = "syringe_0"
 	throw_speed = 1
 	throw_range = 5
@@ -28,12 +28,11 @@
 	update_icon()
 	return
 
-/obj/item/implanter/on_update_icon()
+/obj/item/implanter/update_icon()
+	cut_overlays()
 	if(implant)
-		icon_state = "implanter1"
-	else
-		icon_state = "implanter0"
-	return
+		var/image/content = image('icons/obj/items.dmi', icon_state = implant.implant_overlay)
+		add_overlay(content)
 
 /obj/item/implanter/attack(mob/living/M, mob/living/user)
 	if(!istype(M) || !implant)

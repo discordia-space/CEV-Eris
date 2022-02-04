@@ -107,7 +107,7 @@
 	..()
 	if(!blinded)
 		if (HUDtech.Find("flash"))
-			FLICK("flash", HUDtech["flash"])
+			flick("flash", HUDtech["flash"])
 
 	var/b_loss = null
 	var/f_loss = null
@@ -141,11 +141,10 @@
 		blinded = TRUE
 		silent = 0
 	else
-		updatehealth()
+		updatehealth() // updatehealth calls death if health <= 0
 		handle_stunned()
 		handle_weakened()
 		if(health <= 0)
-			death()
 			blinded = TRUE
 			silent = 0
 			return 1
@@ -177,6 +176,7 @@
 
 /mob/living/carbon/superior_animal/adjustBruteLoss(var/amount)
 	. = ..()
+	reagr_new_targets()
 	if (overkill_gib && (amount >= overkill_gib) && (getBruteLoss() >= maxHealth*2))
 		if (bodytemperature > T0C)
 			gib()
@@ -186,9 +186,14 @@
 	if (overkill_dust && (amount >= overkill_dust) && (getFireLoss() >= maxHealth*2))
 		dust()
 
+/mob/living/carbon/superior_animal/proc/reagr_new_targets(reagr_radius = 1)
+	var/target = findTarget()
+	for(var/mob/living/carbon/superior_animal/SA in view(reagr_radius))
+		SA.target_mob = target
+
 /mob/living/carbon/superior_animal/updatehealth()
 	. = ..() //health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
-	if (health <= 0)
+	if (health <= 0 && stat != DEAD)
 		death()
 
 /mob/living/carbon/superior_animal/gib(var/anim = icon_gib, var/do_gibs = 1)
@@ -339,22 +344,27 @@
 		if(toxins_pp > min_breath_poison_type)
 			adjustToxLoss(2)
 
-	return 1
+	return TRUE
 
-/mob/living/carbon/superior_animal/handle_fire()
-	if(..())
-		return
-
-	var/burn_temperature = fire_burn_temperature()
-	var/thermal_protection = get_heat_protection(burn_temperature)
-
-	if (thermal_protection < 1 && bodytemperature < burn_temperature)
-		bodytemperature += round(BODYTEMP_HEATING_MAX*(1-thermal_protection), 1)
+/mob/living/carbon/superior_animal/handle_fire(flammable_gas, turf/location)
+	// if its lower than 0 , just bring it back to 0
+	fire_stacks = fire_stacks > 0 ? min(0, ++fire_stacks) : fire_stacks
+	// branchless programming , faster than conventional the more we avoid if checks
+	var/handling_needed = on_fire && (fire_stacks < 0 || flammable_gas < 1)
+	if(handling_needed)
+		ExtinguishMob() //Fire's been put out.
+		return TRUE
+	if(!on_fire)
+		return FALSE
+	adjustFireLoss(2 * bodytemperature / max_bodytemperature * (1 - heat_protection)) // scaling with how much you are over your body temp
+	bodytemperature += fire_stacks * 5 * ( 1 - heat_protection )// 5 degrees per firestack
+	if(isturf(location))
+		location.hotspot_expose( FIRESTACKS_TEMP_CONV(fire_stacks), 50, 1)
 
 /mob/living/carbon/superior_animal/update_fire()
-	remove_overlays(image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing"))
+	overlays -= image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing")
 	if(on_fire)
-		add_overlays(image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing"))
+		overlays += image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing")
 
 //The most common cause of an airflow stun is a sudden breach. Evac conditions generally
 /mob/living/carbon/superior_animal/airflow_stun()
@@ -369,3 +379,26 @@
 	var/obj/structure/burrow/B = find_visible_burrow(src)
 	if (B)
 		B.evacuate()
+
+/mob/living/carbon/superior_animal/attack_generic(mob/user, var/damage, var/attack_message)
+
+	if(!damage || !istype(user))
+		return
+
+	var/penetration = 0
+	if(istype(user, /mob/living))
+		var/mob/living/L = user
+		penetration = L.armor_penetration
+
+	damage_through_armor(damage, BRUTE, attack_flag=ARMOR_MELEE, armour_pen=penetration)
+	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
+	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
+	src.visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
+	user.do_attack_animation(src)
+	spawn(1) updatehealth()
+	return TRUE
+
+/mob/living/carbon/superior_animal/adjustHalLoss(amount)
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	halloss = min(max(halloss + (amount / 2), 0),(maxHealth*2)) // Agony is less effective against beasts

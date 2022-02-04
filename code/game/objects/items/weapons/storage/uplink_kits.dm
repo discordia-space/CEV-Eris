@@ -141,6 +141,7 @@
 	new /obj/item/clothing/mask/chameleon(src)
 	new /obj/item/clothing/glasses/chameleon(src)
 	new /obj/item/gun/energy/chameleon(src)
+	new /obj/item/device/radio/headset/chameleon(src)
 
 /obj/item/storage/box/syndie_kit/clerical
 	name = "clerical kit"
@@ -230,15 +231,21 @@
 
 /obj/item/storage/briefcase/antimaterial_rifle/populate_contents()
 	new /obj/item/ammo_casing/antim(src)
-	new /obj/item/weaponparts/heavysniper/stock(src)
-	new /obj/item/weaponparts/heavysniper/reciever(src)
-	new /obj/item/weaponparts/heavysniper/barrel(src)
+	new /obj/item/part/gun/frame/heavysniper(src)
+	new /obj/item/part/gun/grip/serb(src)
+	new /obj/item/part/gun/mechanism/boltgun(src)
+	new /obj/item/part/gun/barrel/antim(src)
 
 /obj/item/storage/box/syndie_kit/toxin
 	name = "toxin kit"
 	desc = "An apple will not be enough to keep the doctor away after this."
 
 /obj/item/storage/box/syndie_kit/toxin/populate_contents()
+	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
+	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
+	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
+	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
+	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
 	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
 	new /obj/item/reagent_containers/syringe(src)
 
@@ -334,3 +341,54 @@
 
 /obj/item/storage/box/syndie_kit/pickle/populate_contents()
 	new /obj/item/reagent_containers/food/snacks/pickle(src)
+
+/obj/item/storage/box/syndie_kit/gentleman_kit
+	name = "\improper Gentleman's Kit"
+	desc = "Cane with hidden sword and white insulated gloves."
+
+/obj/item/storage/box/syndie_kit/gentleman_kit/populate_contents()
+	new /obj/item/tool/cane/concealed(src)
+	new /obj/item/clothing/gloves/color/white/insulated(src)
+
+/obj/item/storage/box/syndie_kit/cleanup_kit
+	name = "\improper Crime Scene Cleanup Kit"
+	desc = "Say good-fucking-bye to the evidence."
+
+/obj/item/storage/box/syndie_kit/cleanup_kit/populate_contents()
+	new /obj/item/soap/syndie(src)
+	new /obj/item/bodybag/expanded(src)
+	new /obj/item/grenade/chem_grenade/cleaner(src)
+	new /obj/item/reagent_containers/spray/cleaner(src)
+
+/obj/item/storage/box/syndie_kit/slmagnum
+	name = ".40 lethal speedloader box"
+	desc = "Contains 2 .40 lethal speedloaders."
+
+/obj/item/storage/box/syndie_kit/slmagnum/populate_contents()
+	new /obj/item/ammo_magazine/slmagnum(src)
+	new /obj/item/ammo_magazine/slmagnum(src)
+
+/obj/item/storage/box/syndie_kit/slmagnum/highvelocity
+	name = ".40 HV speedloader box"
+	desc = "Contains 2 .40 HV speedloaders."
+
+/obj/item/storage/box/syndie_kit/slmagnum/highvelocity/populate_contents()
+	new /obj/item/ammo_magazine/slmagnum/highvelocity(src)
+	new /obj/item/ammo_magazine/slmagnum/highvelocity(src)
+
+/obj/item/storage/box/syndie_kit/slpistol
+	name = ".35 lethal speedloader box"
+	desc = "Contains 2 .35 lethal speedloaders."
+
+/obj/item/storage/box/syndie_kit/slpistol/populate_contents()
+	new /obj/item/ammo_magazine/slpistol(src)
+	new /obj/item/ammo_magazine/slpistol(src)
+
+/obj/item/storage/box/syndie_kit/slpistol/hv
+	name = ".35 HV speedloaders box"
+	desc = "Contains 2 .35 HV speedloaders."
+
+/obj/item/storage/box/syndie_kit/slpistol/hv/populate_contents()
+	new /obj/item/ammo_magazine/slpistol/hv(src)
+	new /obj/item/ammo_magazine/slpistol/hv(src)
+

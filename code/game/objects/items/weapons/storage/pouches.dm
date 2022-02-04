@@ -82,7 +82,7 @@
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
-	storage_slots = 3
+	storage_slots = 4
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
@@ -131,14 +131,42 @@
 		/obj/item/clothing/glasses,
 		/obj/item/flame/lighter,
 		/obj/item/cell/small,
-		/obj/item/cell/medium
+		/obj/item/cell/medium,
+		/obj/item/gun/projectile/flare_gun
 		)
 
 /obj/item/storage/pouch/engineering_supply
 	name = "engineering supply pouch"
-	desc = "Can hold engineering equipment. But only about two pieces of it."
+	desc = "Can hold engineering equipment. 12 pieces of hardware, cells, rods or cables."
 	icon_state = "engineering_supply"
 	item_state = "engineering_supply"
+	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
+	rarity_value = 33
+
+	storage_slots = 12
+	w_class = ITEM_SIZE_NORMAL
+	max_w_class = ITEM_SIZE_NORMAL
+
+	can_hold = list(
+		/obj/item/cell,
+		/obj/item/electronics/circuitboard,
+		/obj/item/device/lighting/toggleable/flashlight,
+		/obj/item/stack/cable_coil,
+		/obj/item/device/t_scanner,
+		/obj/item/device/scanner/gas,
+		/obj/item/taperoll/engineering,
+		/obj/item/device/robotanalyzer,
+		/obj/item/device/scanner/plant,
+		/obj/item/stack/rods,
+		/obj/item/extinguisher/mini,
+		/obj/item/gun/projectile/flare_gun
+		)
+
+/obj/item/storage/pouch/engineering_material
+	name = "engineering material pouch"
+	desc = "Can hold sheets, rods and cable coil."
+	icon_state = "engineering_material"
+	item_state = "engineering_material"
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
@@ -147,19 +175,10 @@
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
-		/obj/item/cell,
-		/obj/item/electronics/circuitboard,
-		/obj/item/tool,
 		/obj/item/stack/material,
 		/obj/item/material,
-		/obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/stack/cable_coil,
-		/obj/item/device/t_scanner,
-		/obj/item/device/scanner/gas,
-		/obj/item/taperoll/engineering,
-		/obj/item/device/robotanalyzer,
-		/obj/item/device/scanner/plant,
-		/obj/item/extinguisher/mini
+		/obj/item/stack/rods,
 		)
 
 /obj/item/storage/pouch/ammo
@@ -170,7 +189,7 @@
 	matter = list(MATERIAL_BIOMATTER = 19, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
-	storage_slots = 3
+	storage_slots = 6
 	w_class = ITEM_SIZE_NORMAL
 	max_w_class = ITEM_SIZE_NORMAL
 
@@ -194,24 +213,38 @@
 	can_hold = list(
 		/obj/item/device/lighting/glowstick,
 		/obj/item/reagent_containers/syringe,
-		/obj/item/reagent_containers/glass/beaker/vial,
+		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/pen,
 		/obj/item/storage/pill_bottle,
 		/obj/item/hatton_magazine,
 		/obj/item/ammo_casing/rocket,
-		/obj/item/ammo_casing/grenade
+		/obj/item/ammo_casing/grenade,
+		/obj/item/cell/small,
+		/obj/item/cell/medium
 		)
 
 /obj/item/storage/pouch/tubular/vial
 	name = "vial pouch"
-	desc = "Can hold about five vials. Rebranding!"
+	desc = "Can hold about ten vials. Rebranding!"
 
-/obj/item/storage/pouch/tubular/on_update_icon()
+	storage_slots = 10
+
+	can_hold = list(
+		/obj/item/device/lighting/glowstick,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/glass/beaker/vial,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/pen,
+		/obj/item/cell/small,
+		/obj/item/storage/pill_bottle
+		)
+
+/obj/item/storage/pouch/tubular/update_icon()
 	..()
 	cut_overlays()
 	if(contents.len)
-		add_overlays(image('icons/inventory/pockets/icon.dmi', "flare_[contents.len]"))
+		overlays += image('icons/inventory/pockets/icon.dmi', "flare_[contents.len]")
 
 /obj/item/storage/pouch/pistol_holster
 	name = "pistol holster"
@@ -231,6 +264,7 @@
 		/obj/item/gun/projectile/giskard,
 		/obj/item/gun/projectile/gyropistol,
 		/obj/item/gun/projectile/handmade_pistol,
+		/obj/item/gun/projectile/flare_gun,
 		/obj/item/gun/projectile/lamia,
 		/obj/item/gun/projectile/mk58,
 		/obj/item/gun/projectile/olivaw,
@@ -244,16 +278,20 @@
 		/obj/item/gun/projectile/paco,
 		/obj/item/gun/projectile/shotgun/doublebarrel/sawn, //short enough to fit in
 		/obj/item/gun/launcher/syringe,
-		/obj/item/gun/energy/plasma/brigador
+		/obj/item/gun/energy/plasma/brigador,
+		/obj/item/gun/projectile/shotgun/pump/sawn,
+		/obj/item/gun/projectile/boltgun/obrez,
+		/obj/item/gun/energy/retro/sawn,
+		/obj/item/gun/projectile/automatic/luty
 		)
 
 	sliding_behavior = TRUE
 
-/obj/item/storage/pouch/pistol_holster/on_update_icon()
+/obj/item/storage/pouch/pistol_holster/update_icon()
 	..()
 	cut_overlays()
 	if(contents.len)
-		add_overlays(image('icons/inventory/pockets/icon.dmi', "pistol_layer"))
+		overlays += image('icons/inventory/pockets/icon.dmi', "pistol_layer")
 
 /obj/item/storage/pouch/baton_holster
 	name = "baton sheath"
@@ -272,11 +310,11 @@
 
 	sliding_behavior = TRUE
 
-/obj/item/storage/pouch/baton_holster/on_update_icon()
+/obj/item/storage/pouch/baton_holster/update_icon()
 	..()
 	cut_overlays()
 	if(contents.len)
-		add_overlays(image('icons/inventory/pockets/icon.dmi', "baton_layer"))
+		overlays += image('icons/inventory/pockets/icon.dmi', "baton_layer")
 
 /obj/item/storage/pouch/holding
 	name = "pouch of holding"

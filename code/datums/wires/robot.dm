@@ -1,7 +1,13 @@
 /datum/wires/robot
-	random = 1
 	holder_type = /mob/living/silicon/robot
 	wire_count = 5
+	descriptions = list(
+		new /datum/wire_description(BORG_WIRE_LAWCHECK, "LawSync"),
+		new /datum/wire_description(BORG_WIRE_MAIN_POWER, "Power",),
+		new /datum/wire_description(BORG_WIRE_LOCKED_DOWN, "Failsafe"),
+		new /datum/wire_description(BORG_WIRE_AI_CONTROL, "Remote access"),
+		new /datum/wire_description(BORG_WIRE_CAMERA,  "Camera")
+	)
 
 var/const/BORG_WIRE_LAWCHECK = 1
 var/const/BORG_WIRE_MAIN_POWER = 2 // The power wires do nothing whyyyyyyyyyyyyy
@@ -9,9 +15,9 @@ var/const/BORG_WIRE_LOCKED_DOWN = 4
 var/const/BORG_WIRE_AI_CONTROL = 8
 var/const/BORG_WIRE_CAMERA = 16
 
-/datum/wires/robot/GetInteractWindow()
+/datum/wires/robot/GetInteractWindow(mob/living/user)
 
-	. = ..()
+	. = ..(user)
 	var/mob/living/silicon/robot/R = holder
 	. += text("<br>\n[(R.lawupdate ? "The LawSync light is on." : "The LawSync light is off.")]")
 	. += text("<br>\n[(R.connected_ai ? "The AI link light is on." : "The AI link light is off.")]")

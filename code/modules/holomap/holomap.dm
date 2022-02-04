@@ -120,7 +120,7 @@
 			holomap_datum.station_map.loc = global_hud.holomap  // Put the image on the holomap hud
 			holomap_datum.station_map.alpha = 0 // Set to transparent so we can fade in
 			animate(holomap_datum.station_map, alpha = 255, time = 5, easing = LINEAR_EASING)
-			FLICK("station_map_activate", src)
+			flick("station_map_activate", src)
 			// Wait, if wea re not modifying the holomap_obj... can't it be part of the global hud?
 			user.client.screen |= global_hud.holomap // TODO - HACK! This should be there permenently really.
 			user.client.images |= holomap_datum.station_map
@@ -172,16 +172,16 @@
 	stat |= BROKEN
 	update_icon()
 
-/obj/machinery/holomap/on_update_icon()
+/obj/machinery/holomap/update_icon()
 	if(!holomap_datum)
 		return //Not yet.
 
-	cut_overlays()
+	overlays.Cut()
 
 	if(panel_open)
-		add_overlays("station_map-panel")
+		overlays += "station_map-panel"
 	else
-		remove_overlays("station_map-panel")
+		overlays -= "station_map-panel"
 
 	if(wiresexposed)
 		switch(buildstage)
@@ -205,7 +205,7 @@
 			holomap_datum.initialize_holomap_bogus()
 		else
 			small_station_map.icon = SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"]
-			associate_with_overlays(small_station_map)
+			overlays |= small_station_map
 			holomap_datum.initialize_holomap(get_turf(src))
 
 /obj/machinery/holomap/attackby(obj/item/I, mob/user)

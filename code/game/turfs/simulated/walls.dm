@@ -222,6 +222,8 @@
 			ricochetchance = min(ricochetchance * ricochetchance, 100)
 		// here it is multiplied by 1/2 temporally, changes will be required when new wall system gets implemented
 		ricochetchance = round(ricochetchance * projectile_reflection(Proj, TRUE) / 2)
+		
+		ricochetchance *= Proj.ricochet_ability
 		ricochetchance = min(max(ricochetchance, 0), 100)
 		if(prob(ricochetchance))
 			// projectile loses up to 50% of its damage when it ricochets, depending on situation
@@ -351,14 +353,15 @@
 
 	return ..()
 
-/turf/simulated/wall/proc/dismantle_wall(devastated, explode, no_product)
+/turf/simulated/wall/proc/dismantle_wall(devastated, explode, no_product, mob/user)
 	playsound(src, 'sound/items/Welder.ogg', 100, 1)
 	if(!no_product)
 		if(reinf_material)
 			reinf_material.place_dismantled_girder(src, reinf_material)
 		else
 			material.place_dismantled_girder(src)
-		material.place_sheet(src, amount=3)
+		var/obj/sheets = material.place_sheet(src, amount=3)
+		sheets.add_fingerprint(user)
 
 	for(var/obj/O in src.contents) //Eject contents!
 		if(istype(O,/obj/item/contraband/poster))

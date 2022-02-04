@@ -98,9 +98,9 @@ var/list/name_to_material
 
 	// Icons
 	var/icon_colour                                      // Colour applied to products of this material.
-	var/icon_base = "metal"                              // Wall and table base icon tag. See header.
+	var/icon_base = "solid"                              // Wall and table base icon tag. See header.
 	var/door_icon_base = "metal"                         // Door base icon tag. See header.
-	var/icon_reinf = "reinf_metal"                       // Overlay used
+	var/icon_reinf = "reinf_over"                       // Overlay used
 	var/list/stack_origin_tech = list(TECH_MATERIAL = 1) // Research level for stacks.
 
 	// Attributes
@@ -217,10 +217,13 @@ var/list/name_to_material
 		G.reinforce_girder()
 
 // Use this to drop a given amount of material.
-/material/proc/place_material(target, amount=1)
+/material/proc/place_material(target, amount=1, mob/living/user = null)
 	// Drop the integer amount of sheets
-	if(place_sheet(target, round(amount)))
+	var/obj/sheets = place_sheet(target, round(amount))
+	if(sheets)
 		amount -= round(amount)
+		if(user)
+			sheets.add_fingerprint(user)
 
 	// If there is a remainder left, drop it as a shard instead
 	if(amount)

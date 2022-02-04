@@ -19,6 +19,7 @@
 		"Food",
 			list(name="Milk, 30u", cost=60, reagent="milk"),
 			list(name="Slab of meat", cost=50, path=/obj/item/reagent_containers/food/snacks/meat),
+			list(name="Box of eggs", cost=200, path=/obj/item/storage/fancy/egg_box),
 		"Nutrient",
 			list(name="EZ-Nutrient, 30u", cost=30, reagent="eznutrient"),
 			list(name="Left4Zed, 30u", cost=60, reagent="left4zed"),
@@ -52,7 +53,7 @@
 /obj/machinery/biogenerator/on_reagent_change()			//When the reagents change, change the icon as well.
 	update_icon()
 
-/obj/machinery/biogenerator/on_update_icon()
+/obj/machinery/biogenerator/update_icon()
 	if(!beaker)
 		icon_state = "biogen-empty"
 	else if(!processing)

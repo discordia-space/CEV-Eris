@@ -26,7 +26,7 @@ var/global/list/plant_seed_sprites = list()
 	if(!seed) return
 
 	// Update icon.
-	cut_overlays()
+	overlays.Cut()
 	var/is_seeds = ((seed.seed_noun in list("seeds","pits","nodes")) ? 1 : 0)
 	var/image/seed_mask
 	var/seed_base_key = "base-[is_seeds ? seed.get_trait(TRAIT_PLANT_COLOUR) : "spores"]"
@@ -47,8 +47,8 @@ var/global/list/plant_seed_sprites = list()
 		seed_overlay.color = seed.get_trait(TRAIT_PRODUCT_COLOUR)
 		plant_seed_sprites[seed_overlay_key] = seed_overlay
 
-	associate_with_overlays(seed_mask)
-	associate_with_overlays(seed_overlay)
+	overlays |= seed_mask
+	overlays |= seed_overlay
 
 	if(is_seeds)
 		src.name = "packet of [seed.seed_name] [seed.seed_noun]"

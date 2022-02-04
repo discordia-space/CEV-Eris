@@ -3,7 +3,7 @@
 
 /obj/item/device/electronic_assembly
 	name = "electronic assembly"
-	desc = "It's a case, for building electronics with."
+	desc = "A case for building electronics."
 	w_class = ITEM_SIZE_SMALL
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "setup_small"
@@ -70,7 +70,7 @@
 			if(!draw_power(IC.power_draw_idle))
 				IC.power_fail()
 
-/obj/item/device/electronic_assembly/implant/on_update_icon()
+/obj/item/device/electronic_assembly/implant/update_icon()
 	..()
 	implant.icon_state = icon_state
 
@@ -156,7 +156,7 @@
 /obj/item/device/electronic_assembly/drone/can_move()
 	return TRUE
 
-/obj/item/device/electronic_assembly/on_update_icon()
+/obj/item/device/electronic_assembly/update_icon()
 	if(opened)
 		icon_state = initial(icon_state) + "-open"
 	else
@@ -226,7 +226,7 @@
 	if(proximity)
 		var/scanned = FALSE
 		for(var/obj/item/integrated_circuit/input/sensor/S in contents)
-//			S.set_pin_data(IC_OUTPUT, 1, weakref(target))
+//			S.set_pin_data(IC_OUTPUT, 1, WEAKREF(target))
 //			S.check_then_do_work()
 			if(S.scan(target))
 				scanned = TRUE

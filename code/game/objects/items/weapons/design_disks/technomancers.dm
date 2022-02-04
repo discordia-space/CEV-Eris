@@ -7,6 +7,7 @@
 	license = 20
 	designs = list(
 		/datum/design/autolathe/part/consolescreen,
+		/datum/design/autolathe/part/cable_coil = 0,
 		/datum/design/research/item/part/smes_coil,
 		/datum/design/research/item/part/basic_capacitor,
 		/datum/design/research/item/part/basic_sensor,
@@ -20,7 +21,8 @@
 		/datum/design/autolathe/part/voice_analyzer,
 		/datum/design/autolathe/part/sensor_prox,
 		/datum/design/autolathe/part/camera_assembly,
-		/datum/design/autolathe/part/laserguide
+		/datum/design/autolathe/part/laserguide,
+		/datum/design/autolathe/container/hcase_parts
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/adv_tools
@@ -48,6 +50,8 @@
 		/datum/design/autolathe/tool/weldertool_adv,
 		/datum/design/autolathe/part/diamondblade,
 		/datum/design/autolathe/tool/rpd,
+		/datum/design/autolathe/container/hcase_engi,
+		/datum/design/autolathe/container/hcase_parts
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/circuits
@@ -76,6 +80,8 @@
 		/datum/design/autolathe/circuit/electrolyzer,
 		/datum/design/autolathe/circuit/reagentgrinder,
 		/datum/design/autolathe/circuit/industrialgrinder = 2,
+		/datum/design/autolathe/container/hcase_parts,
+		/datum/design/autolathe/circuit/craftingstation
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/conveyors
@@ -83,11 +89,11 @@
 	icon_state = "technomancers"
 	rarity_value = 4
 	spawn_tags = SPAWN_TAG_DESIGN_COMMON
-	license = 10
+	license = -1
 	designs = list(
 		/datum/design/autolathe/conveyor = 0,
 		/datum/design/autolathe/conveyor_switch = 0,
-		/datum/design/autolathe/circuit/smelter = 4,
-		/datum/design/autolathe/circuit/sorter = 2
+		/datum/design/autolathe/circuit/smelter = 0,
+		/datum/design/autolathe/circuit/sorter = 0
 	)
 

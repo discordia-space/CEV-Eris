@@ -10,7 +10,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	silenced = TRUE
-
+	fire_sound = 'sound/weapons/Gunshot_silenced.wav'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	price_tag = 1500
@@ -23,9 +23,10 @@
 	recoil_buildup = 2
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	gun_parts = list(/obj/item/part/gun/frame/mandella = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/clrifle = 1)
 
 
-/obj/item/gun/projectile/mandella/on_update_icon()
+/obj/item/gun/projectile/mandella/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -41,3 +42,12 @@
 /obj/item/gun/projectile/mandella/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/part/gun/frame/mandella
+	name = "Mandella frame"
+	desc = "A Mandella pistol frame. Covertness never looked so good."
+	icon_state = "frame_mandella"
+	result = /obj/item/gun/projectile/mandella
+	grip = /obj/item/part/gun/grip/black
+	mechanism = /obj/item/part/gun/mechanism/pistol
+	barrel = /obj/item/part/gun/barrel/clrifle

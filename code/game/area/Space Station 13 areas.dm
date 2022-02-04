@@ -71,7 +71,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	power_environ = 0
 	has_gravity = FALSE
 	flags = AREA_FLAG_EXTERNAL
-	ambience = list('sound/ambience/ambispace.ogg')
+	ambience = list('sound/ambience/ambispace.ogg','sound/ambience/spaceambient1.ogg','sound/ambience/spaceambient2.ogg','sound/ambience/spaceambient3.ogg','sound/ambience/spaceambient4.ogg','sound/ambience/spaceambient5.ogg','sound/ambience/spaceambient6.ogg')
 	vessel = null
 
 area/space/atmosalert()
@@ -631,7 +631,7 @@ area/space/atmosalert()
 /area/turret_protected/ai_upload_foyer
 	name = "AI Upload Access"
 	icon_state = "ai_foyer"
-	ambience = list('sound/ambience/ambimalf.ogg')
+	ambience = list('sound/ambience/ambimalf.ogg','sound/ambience/aicoreambient.ogg')
 	sound_env = SMALL_ENCLOSED
 
 /area/turret_protected/ai_server_room
@@ -643,7 +643,7 @@ area/space/atmosalert()
 /area/turret_protected/ai
 	name = "\improper AI Chamber"
 	icon_state = "ai_chamber"
-	ambience = list('sound/ambience/ambimalf.ogg')
+	ambience = list('sound/ambience/ambimalf.ogg','sound/ambience/aicoreambient.ogg')
 	flags = AREA_FLAG_CRITICAL
 
 /area/turret_protected/ai_cyborg_station

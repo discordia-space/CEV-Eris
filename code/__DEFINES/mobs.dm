@@ -54,6 +54,12 @@
 #define I_GRAB		"grab"
 #define I_HURT		"harm"
 
+//Used in mob/proc/get_input
+
+#define MOB_INPUT_TEXT "text"
+#define MOB_INPUT_MESSAGE "message"
+#define MOB_INPUT_NUM "num"
+
 //These are used Bump() code for living mobs, in the mob_bump_flag, mob_swap_flags, and mob_push_flags vars to determine whom can bump/swap with whom.
 #define HUMAN 1
 #define MONKEY 2
@@ -109,6 +115,7 @@
 #define ONLY_GHOSTS_IN_VIEW 0
 
 // Defines mob sizes, used by lockers and to determine what is considered a small sized mob, etc.
+#define MOB_GIGANTIC	120
 #define MOB_HUGE 		80
 #define MOB_LARGE  		40
 #define MOB_MEDIUM 		20
@@ -132,9 +139,10 @@
 
 
 #define TINT_NONE 0
-#define TINT_MODERATE 1
-#define TINT_HEAVY 2
-#define TINT_BLIND 3
+#define TINT_LOW 1
+#define TINT_MODERATE 2
+#define TINT_HEAVY 4
+#define TINT_BLIND 8
 
 #define FLASH_PROTECTION_REDUCED -1
 #define FLASH_PROTECTION_NONE 0
@@ -164,10 +172,14 @@
 #define INCAPACITATION_STUNNED 8
 #define INCAPACITATION_FORCELYING 16 //needs a better name - represents being knocked down BUT still conscious.
 #define INCAPACITATION_UNCONSCIOUS 32
+#define INCAPACITATION_SOFTLYING 64
 
 #define INCAPACITATION_KNOCKDOWN (INCAPACITATION_UNCONSCIOUS|INCAPACITATION_FORCELYING)
+#define INCAPACITATION_GROUNDED (INCAPACITATION_KNOCKDOWN|INCAPACITATION_SOFTLYING)
 #define INCAPACITATION_DISABLED (INCAPACITATION_KNOCKDOWN|INCAPACITATION_STUNNED)
 #define INCAPACITATION_DEFAULT (INCAPACITATION_RESTRAINED|INCAPACITATION_BUCKLED_FULLY|INCAPACITATION_DISABLED)
+#define INCAPACITATION_UNMOVING (INCAPACITATION_BUCKLED_FULLY|INCAPACITATION_STUNNED|INCAPACITATION_UNCONSCIOUS)
+#define INCAPACITATED_ROACH (INCAPACITATION_BUCKLED_FULLY | INCAPACITATION_DISABLED)
 #define INCAPACITATION_ALL (~INCAPACITATION_NONE)
 
 

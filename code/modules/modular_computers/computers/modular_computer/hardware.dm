@@ -147,7 +147,7 @@
 	H.forceMove(drop_location())
 
 	if(critical)
-		to_chat(user, SPAN_DANGER("\The [src]'s screen freezes for a split second and flickers to black."))
+		to_chat(user, SPAN_DANGER("\The [src]'s screen freezes for a split second and flick_lights to black."))
 		shutdown_computer()
 	update_verbs()
 	update_icon()

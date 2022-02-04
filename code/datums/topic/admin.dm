@@ -1127,15 +1127,15 @@
 		H.show(source.owner)
 
 
-/datum/admin_topic/centcommfaxreply
-	keyword = "CentcommFaxReply"
+/datum/admin_topic/centcomfaxreply
+	keyword = "CentcomFaxReply"
 
-/datum/admin_topic/centcommfaxreply/Run(list/input)
-	var/mob/sender = locate(input["CentcommFaxReply"])
+/datum/admin_topic/centcomfaxreply/Run(list/input)
+	var/mob/sender = locate(input["CentcomFaxReply"])
 	var/obj/machinery/photocopier/faxmachine/fax = locate(input["originfax"])
 
 	//todo: sanitize
-	var/msg = input(source.owner, "Please enter a message to reply to [key_name(sender)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null
+	var/msg = input(source.owner, "Please enter a message to reply to [key_name(sender)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcom", "") as message|null
 	if(!msg)
 		return
 
@@ -1153,7 +1153,7 @@
 	if(!P.stamped)
 		P.stamped = new
 	P.stamped += /obj/item/stamp
-	P.add_overlays(stampoverlay)
+	P.overlays += stampoverlay
 	P.stamps += "<HR><i>This paper has been stamped by the Central Command Quantum Relay.</i>"
 
 	if(fax.recievefax(P))
@@ -1236,20 +1236,20 @@
 	source.view_log_panel(M)
 
 
-/datum/admin_topic/traitor
-	keyword = "traitor"
+/datum/admin_topic/contractor
+	keyword = "contractor"
 	require_perms = list(R_MOD|R_ADMIN)
 
-/datum/admin_topic/traitor/Run(list/input)
+/datum/admin_topic/contractor/Run(list/input)
 	if(!GLOB.storyteller)
 		alert("The game hasn't started yet!")
 		return
 
-	var/mob/M = locate(input["traitor"])
+	var/mob/M = locate(input["contractor"])
 	if(!ismob(M))
 		to_chat(usr, "This can only be used on instances of type /mob.")
 		return
-	source.show_traitor_panel(M)
+	source.show_contractor_panel(M)
 
 
 /datum/admin_topic/create_object

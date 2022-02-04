@@ -134,6 +134,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			if(ishuman(loc))
 				if (src == C.wear_mask && C.check_has_mouth()) // if it's in the human/monkey mouth, transfer reagents to the mob
 					reagents.trans_to_mob(C, REM, CHEM_INGEST, 0.2) // Most of it is not inhaled... balance reasons.
+					C.regen_slickness() // smoking is cool, but don't try this at home
 			else // else just remove some of the reagents
 				reagents.remove_any(REM)
 
@@ -272,11 +273,17 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			else
 				to_chat(user, SPAN_NOTICE("[src] is full."))
 
-/obj/item/clothing/mask/smokable/cigarette/attack_self(mob/user as mob)
+/obj/item/clothing/mask/smokable/cigarette/attack_self(mob/living/user as mob)
 	if(lit == 1)
 		user.visible_message(SPAN_NOTICE("[user] calmly drops and treads on the lit [src], putting it out instantly."))
+		add_fingerprint(user)
 		die(1)
 	return ..()
+
+/obj/item/clothing/mask/smokable/cigarette/on_slotmove(mob/user)
+	. = ..()
+	if(get_equip_slot() == SLOT_MASK)
+		add_fingerprint(user)
 
 /obj/item/clothing/mask/smokable/cigarette/dromedaryco
 	desc = "A roll of tobacco and nicotine. They are just cancer sticks."
@@ -297,9 +304,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/cigarette/cigar
 	name = "premium cigar"
 	desc = "A brown roll of tobacco and... well, you're not quite sure. This thing's huge!"
-	icon_state = "cigar2off"
-	icon_on = "cigar2on"
-	icon_off = "cigar2off"
+	icon_state = "cigaroff"
+	icon_on = "cigaron"
+	icon_off = "cigaroff"
 	type_butt = /obj/item/trash/cigbutt/cigarbutt
 	throw_speed = 0.5
 	item_state = "cigaroff"
@@ -316,16 +323,16 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
 	name = "\improper Cohiba Robusto cigar"
 	desc = "There's little more you could want from a cigar."
-	icon_state = "cigar2off"
-	icon_on = "cigar2on"
-	icon_off = "cigar2off"
+	icon_state = "cigaroff"
+	icon_on = "cigaron"
+	icon_off = "cigaroff"
 
 /obj/item/clothing/mask/smokable/cigarette/cigar/havana
 	name = "premium Havanian cigar"
 	desc = "A cigar fit for only the best of the best."
-	icon_state = "cigar2off"
-	icon_on = "cigar2on"
-	icon_off = "cigar2off"
+	icon_state = "cigaroff"
+	icon_on = "cigaron"
+	icon_off = "cigaroff"
 	smoketime = 1000
 	chem_volume = 30
 	preloaded_reagents = list("nicotine" = 20)
@@ -560,7 +567,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/voltage = 0
 	var/quality_multiplier = 1
 
-	var/charge_per_use = 0.5
+	var/charge_per_use = 0.2
 	var/obj/item/cell/cell
 	var/suitable_cell = /obj/item/cell/small
 

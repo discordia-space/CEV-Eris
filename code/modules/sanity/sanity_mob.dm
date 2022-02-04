@@ -39,6 +39,7 @@
 
 
 #define EAT_COOLDOWN_MESSAGE 15 SECONDS
+#define SANITY_MOB_DISTANCE_ACTIVATION 12
 
 /datum/sanity
 	var/flags
@@ -121,17 +122,13 @@
 
 /datum/sanity/proc/handle_view()
 	. = 0
+	activate_mobs_in_range(owner, SANITY_MOB_DISTANCE_ACTIVATION)
 	if(sanity_invulnerability)//Sorry, but that needed to be added here :C
-		for(var/mob/living/L in view(owner.client ? owner.client : owner))
-			L.try_activate_ai()
 		return
 	var/vig = owner.stats.getStat(STAT_VIG)
 	for(var/atom/A in view(owner.client ? owner.client : owner))
 		if(A.sanity_damage) //If this thing is not nice to behold
 			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
-			if(isliving(A))
-				var/mob/living/L = A
-				L.try_activate_ai()
 
 		if(owner.stats.getPerk(PERK_MORALIST) && ishuman(A)) //Moralists react negatively to people in distress
 			var/mob/living/carbon/human/H = A
@@ -202,6 +199,13 @@
 		INSIGHT_DESIRE_SMOKING,
 		INSIGHT_DESIRE_DRUGS,
 	)
+
+	for(var/i in owner.metabolism_effects.addiction_list)
+		if(istype(i, /datum/reagent/drug))
+			if(istype(i, /datum/reagent/drug/nicotine))
+				candidates.Remove(INSIGHT_DESIRE_SMOKING)
+				continue
+			candidates.Remove(INSIGHT_DESIRE_DRUGS)
 	for(var/i = 0; i < INSIGHT_DESIRE_COUNT; i++)
 		var/desire = pick_n_take(candidates)
 		var/list/potential_desires = list()
@@ -313,6 +317,10 @@
 	var/sanity_gain = E.sanity_gain_ingest
 	if(E.id == "ethanol")
 		sanity_gain /= 5
+	else if(istype(E, /datum/reagent/alcohol))
+		var/datum/reagent/alcohol/fine_drink = E
+		if (fine_drink.strength <= 20)
+			sanity_gain *= (5 - (fine_drink.strength / 5))
 	changeLevel(sanity_gain * multiplier)
 	if(resting && E.taste_tag.len)
 		for(var/taste_tag in E.taste_tag)

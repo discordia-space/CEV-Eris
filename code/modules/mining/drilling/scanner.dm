@@ -62,6 +62,12 @@
 
 		lines += "- [result] of [ore_type]."
 
+	if(istype(source, /turf/simulated))
+		var/turf/simulated/source_simulated = source
+		lines += "Seismic activity: [source_simulated.seismic_activity]"
+	else
+		lines += "Seismic activity: 1"
+
 	return jointext(lines, "<br>")
 
 /proc/mining_scan_action_precise(turf/source, mob/user)

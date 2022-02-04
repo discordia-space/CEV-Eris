@@ -209,8 +209,8 @@ GITHUBURL https://github.com/Endless-Horizon/CEV-Eris
 
 ## Remove the # to allow special 'Easter-egg' events on special holidays such as seasonal holidays and stuff like 'Talk Like a Pirate Day' :3 YAARRR
 ALLOW_HOLIDAYS
-##Defines the ticklag for the world.  0.9 is the normal one, 0.5 is smoother.
-TICKLAG 0.3
+## Defines the FPS for the world. 30 is the normal one, 45+ is smoother.
+FPS 40
 
 ## Defines if Tick Compensation is used.  It results in a minor slowdown of movement of all mobs, but attempts to result in a level movement speed across all ticks.  Recommended if tickrate is lowered.
 #TICKCOMP
@@ -274,6 +274,8 @@ BONES_CAN_BREAK 1
 ## 0 means limbs can't be amputated, 1 means they can
 LIMBS_CAN_BREAK 1
 
+## Uncomment this to prevent players from printing copy/pasted circuits
+# DISABLE_CIRCUIT_PRINTING
 
 ### REVIVAL ###
 

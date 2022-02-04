@@ -2,9 +2,9 @@
 	holder_type = /obj/machinery/power/shield_generator/
 	wire_count = 5
 	descriptions = list(
-		new /datum/wire_description(SHIELDGEN_WIRE_POWER, "This wire seems to be carrying a heavy current."),//, STAT_LEVEL_EXPERT), //TODO: Hook in Eris skills here
-		new /datum/wire_description(SHIELDGEN_WIRE_CONTROL, "This wire connects to the main control panel."),
-		new /datum/wire_description(SHIELDGEN_WIRE_AICONTROL, "This wire connects to automated control systems.")
+		new /datum/wire_description(SHIELDGEN_WIRE_POWER, "Main power"),
+		new /datum/wire_description(SHIELDGEN_WIRE_CONTROL, "Physical access"),
+		new /datum/wire_description(SHIELDGEN_WIRE_AICONTROL, "Remote access")
 	)
 
 var/const/SHIELDGEN_WIRE_POWER = 1			// Cut to disable power input into the generator. Pulse does nothing. Mend to restore.

@@ -124,6 +124,14 @@
 	M.used_now = FALSE
 
 
+/datum/vertical_travel_method/proc/delete_self()
+	var/mob/owner = M
+	if(ismob(owner))
+		spawn(3)
+		owner.current_vertical_travel_method = null
+	qdel(src)
+
+
 /datum/vertical_travel_method/proc/calculate_time()
 	if (gravity)
 		if (direction == UP)
@@ -161,6 +169,11 @@
 	if (!get_destination())
 		to_chat(M, SPAN_NOTICE("There is nothing in that direction."))
 		return FALSE
+	
+	if(ismob(M))
+		var/mob/O = M
+		if(O.resting)
+			return FALSE
 
 	return TRUE
 
@@ -191,6 +204,8 @@
 	if (prob(slip_chance))
 		slip()
 
+	delete_self()
+
 /datum/vertical_travel_method/proc/finish()
 	animating = FALSE
 	reset_values()
@@ -207,6 +222,7 @@
 	if (prob(slip_chance))
 		slip()
 	announce_end()
+	delete_self()
 
 /datum/vertical_travel_method/proc/get_destination()
 	destination = (direction == UP) ? GetAbove(origin) : GetBelow(origin)

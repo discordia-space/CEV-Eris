@@ -96,5 +96,5 @@
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_state = "concrete"
 
-/turf/simulated/floor/exoplanet/concrete/on_update_icon()
+/turf/simulated/floor/exoplanet/concrete/update_icon()
 	return

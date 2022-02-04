@@ -1,5 +1,10 @@
 /obj/item/var/list/center_of_mass = list("x"=16, "y"=16) //can be null for no exact placement behaviour
 /obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(isliving(mover))
+		var/mob/living/L = mover
+		L.livmomentum = 0
+		if(L.weakened)
+			return 1
 	if(air_group || (height==0)) return 1
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
@@ -26,21 +31,29 @@
 	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return 1
 	if (get_turf(P.original) == cover)
-		var/chance = 20
+		var/valid = FALSE
+		var/distance = get_dist(P.last_interact,loc)
+		P.check_hit_zone(loc, distance)
+
+		var/targetzone = check_zone(P.def_zone)
+		if (targetzone in list(BP_R_LEG, BP_L_LEG))
+			valid = TRUE //The legs are always concealed
 		if (ismob(P.original))
 			var/mob/M = P.original
 			if (M.lying)
-				chance += 20				//Lying down lets you catch less bullets
+				valid = TRUE				//Lying down covers your whole body
 		if(flipped==1)
 			if(get_dir(loc, from) == dir)	//Flipped tables catch mroe bullets
-				chance += 20
+				if (targetzone == BP_GROIN)
+					valid = TRUE
 			else
-				return 1					//But only from one side
-		if(prob(chance))
+				valid = FALSE					//But only from one side
+		if(valid)
+			var/pierce = P.check_penetrate(src)
 			health -= P.get_structure_damage()/2
 			if (health > 0)
 				visible_message(SPAN_WARNING("[P] hits \the [src]!"))
-				return 0
+				return pierce
 			else
 				visible_message(SPAN_WARNING("[src] breaks down!"))
 				break_to_parts()
@@ -60,6 +73,9 @@
 //Drag and drop onto tables
 //This is mainly so that janiborg can put things on tables
 /obj/structure/table/MouseDrop_T(atom/A, mob/user, src_location, over_location, src_control, over_control, params)
+	if(!CanMouseDrop(A, user))
+		return
+
 	if(ismob(A.loc))
 		if (user.unEquip(A, loc))
 			set_pixel_click_offset(A, params)
@@ -95,6 +111,12 @@
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
+			if (ishuman(target))
+				var/mob/living/carbon/human/depleted = target
+				depleted.regen_slickness(-1)
+			if (ishuman(user))
+				var/mob/living/carbon/human/stylish = user
+				stylish.regen_slickness()
 			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been slammed by [user.name] ([user.ckey] against \the [src])</font>"
@@ -119,6 +141,14 @@
 			to_chat(user, SPAN_DANGER("You need a better grip to do that!"))
 			return
 	else
+		if (ishuman(target))
+			var/mob/living/carbon/human/depleted = target
+			depleted.regen_slickness(-1)
+			depleted.confidence = FALSE
+			depleted.dodge_time = get_game_time()
+		if (ishuman(user))
+			var/mob/living/carbon/human/stylish = user
+			stylish.regen_slickness()
 		target.forceMove(loc)
 		target.Weaken(5)
 		visible_message(SPAN_DANGER("[user] puts [target] on \the [src]."))

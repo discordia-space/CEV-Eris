@@ -14,12 +14,12 @@
 					life_cycles_before_scan = 29 //So it doesn't fall asleep just to wake up the next tick
 				else
 					life_cycles_before_scan = 240
-
 			if(life_cycles_before_sleep)
 				life_cycles_before_sleep--
 
 			if(life_cycles_before_sleep < 1 && !AI_inactive)
 				AI_inactive = TRUE
+
 
 
 	if((!stasis && !AI_inactive) || ishuman(src)) //god fucking forbid we do this to humanmobs somehow
@@ -169,7 +169,7 @@
 
 //this handles hud updates. Calls update_vision() and handle_hud_icons()
 /mob/living/proc/handle_regular_hud_updates()
-	if(!client)	return 0
+	if(!client)	return FALSE
 
 	handle_hud_icons()
 	handle_vision()

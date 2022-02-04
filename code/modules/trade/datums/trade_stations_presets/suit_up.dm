@@ -1,9 +1,17 @@
 /datum/trade_station/suit_up
-	name_pool = list("ATB 'Suit Up!'" = "Aster's Trade Beacon 'Suit Up!'. They're broadcasting a message. \"Suits, voidsuits and more for you, traveler!\"")
+	name_pool = list(
+		"ATB 'Suit Up!'" = "Aster's Trade Beacon 'Suit Up!':\n\"Suits, voidsuits and more for you, traveler!\""
+	)
 	start_discovered = TRUE
 	spawn_always = TRUE
+	markup = COMMON_GOODS
+	offer_limit = 20
+	base_income = 3200
+	wealth = 0
+	secret_inv_threshold = 24000
 	assortiment = list(
 		"Spacesuits" = list(
+			/obj/item/clothing/suit/space/void,
 			/obj/item/clothing/suit/space/void/atmos,
 			/obj/item/rig/eva
 		),
@@ -56,7 +64,7 @@
 			/obj/item/clothing/under/blazer,
 			/obj/item/clothing/under/brown,
 			/obj/item/clothing/under/cyber,
-			/obj/item/clothing/under/dress,
+			/obj/item/clothing/under/dress/gray,
 			/obj/item/clothing/under/dress/blue,
 			/obj/item/clothing/under/dress/red,
 			/obj/item/clothing/under/genericb,
@@ -125,5 +133,49 @@
 			/obj/item/clothing/head/collectable/xenom,
 			/obj/item/clothing/head/collectable/petehat,
 			/obj/item/clothing/head/collectable/festive
+		)
+	)
+	secret_inventory = list(
+		"Voidsuits" = list(
+			/obj/item/clothing/suit/space/void/mining = custom_good_amount_range(list(1, 5)),
+			/obj/item/clothing/suit/space/void/engineering = custom_good_amount_range(list(1, 5)),
+			/obj/item/clothing/suit/space/void/medical = custom_good_amount_range(list(1, 5)),
+			/obj/item/clothing/suit/space/void/security = custom_good_amount_range(list(1, 5))
 		),
+		"RIGs" =  list(
+			/obj/item/rig/medical = custom_good_amount_range(list(1, 5)),
+			/obj/item/rig/light = custom_good_amount_range(list(1, 5)),
+			/obj/item/rig/hazmat = custom_good_amount_range(list(1, 5)),
+			/obj/item/rig/combat = custom_good_amount_range(list(1, 5)),
+			/obj/item/rig/hazard = custom_good_amount_range(list(1, 5)),
+			/obj/item/rig/industrial = custom_good_amount_range(list(1, 5))
+		),
+		"RIG Specialized Modules" = list(
+			/obj/item/rig_module/storage = good_data("Internal Storage compartment", list(1, 10)),
+			/obj/item/rig_module/maneuvering_jets = good_data("Mounted Jetpack", list(1, 10)),
+			/obj/item/rig_module/device/flash = good_data("Mounted Flash", list(1, 10)),
+			/obj/item/rig_module/mounted/egun = good_data("Mounted Energy Gun", list(1, 10)),
+			/obj/item/rig_module/mounted/taser = good_data("Mounted Taser", list(1, 10)),
+			/obj/item/rig_module/device/drill = good_data("Mounted Drill", list(1, 10)),
+			/obj/item/rig_module/device/orescanner = good_data("Mounted Ore Scanner", list(1, 10)),
+			/obj/item/rig_module/device/anomaly_scanner = good_data("Mounted Anomaly Scanner", list(1,10)),
+			/obj/item/rig_module/device/rcd = good_data("Mounted RCD", list(1, 10)),
+			/obj/item/rig_module/device/healthscanner = good_data("Mounted Health Scanner", list(1, 10)),
+			/obj/item/rig_module/chem_dispenser/ninja = good_data("Mounted Chemical Dispenser (small version)", list(-3, 2)),
+			/obj/item/rig_module/ai_container,
+			/obj/item/rig_module/power_sink,
+			/obj/item/rig_module/vision/meson,
+			/obj/item/rig_module/vision/nvg,
+			/obj/item/rig_module/vision/sechud,
+			/obj/item/rig_module/vision/medhud
+		)
+	)
+	offer_types = list(
+		/obj/item/rig_module = offer_data("rig module", 500, 0),							// base price: 500
+		/obj/item/rig/eva = offer_data("EVA suit control module", 700, 4),					// base price: 682 (incl. components)
+		/obj/item/rig/hazard = offer_data("hazard hardsuit control module", 700, 4),		// base price: 682 (incl. components)
+		/obj/item/rig/industrial = offer_data("industrial suit control module", 950, 4),	// base price: 882 (incl. components)
+		/obj/item/rig/hazmat = offer_data("AMI control module", 950, 4),					// base price: 882 (incl. components)
+		/obj/item/rig/combat = offer_data("combat hardsuit control module", 1100, 4),		// base price: 1032 (incl. components)
+		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 4000, 1)
 	)

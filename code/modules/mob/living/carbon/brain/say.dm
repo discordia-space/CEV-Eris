@@ -18,7 +18,7 @@
 		else
 			if(ending=="!")
 				verb=pick("exclaims","shouts","yells")
-			if(ending=="?")
+			else if(ending=="?")
 				verb="asks"
 
 		if(prob(emp_damage*4))

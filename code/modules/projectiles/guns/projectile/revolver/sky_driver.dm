@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/revolver/sky_driver
 	name = "S REV .35 Auto \"Sky Driver\""
-	desc = "Old, Syndicate revolver made on lost tech before the Corporate war. Uses .35 special rounds."
+	desc = "Old, Syndicate revolver made on lost tech before the Corporate war. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/sky_driver.dmi'
 	icon_state = "sky_driver"
 	item_state = "sky_driver"
@@ -12,7 +12,6 @@
 	caliber = CAL_PISTOL
 	max_shells = 5
 	ammo_type = /obj/item/ammo_casing/pistol
-	magazine_type = /obj/item/ammo_magazine/slpistol
 	price_tag = 20000
 	damage_multiplier = 1.1
 	penetration_multiplier = 20
@@ -21,7 +20,7 @@
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
 	noricochet = TRUE
-	gun_parts = list(/obj/item/gun_upgrade/barrel/gauss = 3, /obj/item/stack/material/plasteel = 2)
+	gun_parts = list(/obj/item/part/gun/frame/sky_driver = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/pistol = 1)
 
 /obj/item/gun/projectile/revolver/sky_driver/New()
 	..()
@@ -39,3 +38,12 @@
 		return FALSE
 	..()
 
+/obj/item/part/gun/frame/sky_driver
+	name = "Sky Driver frame"
+	desc = "A Sky Driver revolver frame. A device that can put holes in ships, let alone a person."
+	icon_state = "frame_skydriver"
+	result = /obj/item/gun/projectile/revolver/sky_driver
+	grip = /obj/item/part/gun/grip/black
+	mechanism = /obj/item/part/gun/mechanism/revolver
+	barrel = /obj/item/part/gun/barrel/pistol
+	spawn_blacklisted = TRUE

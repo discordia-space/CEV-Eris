@@ -1,6 +1,11 @@
 /datum/wires/radio
 	holder_type = /obj/item/device/radio
 	wire_count = 3
+	descriptions = list(
+		new /datum/wire_description(WIRE_SIGNAL, "Power"),
+		new /datum/wire_description(WIRE_RECEIVE, "Reciever"),
+		new /datum/wire_description(WIRE_TRANSMIT, "Transmitter")
+	)
 
 var/const/WIRE_SIGNAL = 1
 var/const/WIRE_RECEIVE = 2

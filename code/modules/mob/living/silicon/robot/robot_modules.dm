@@ -138,8 +138,8 @@ var/global/list/robot_modules = list(
 	R.choose_icon()
 
 /obj/item/robot_module/Destroy()
-	QDEL_NULL_LIST(modules)
-	QDEL_NULL_LIST(synths)
+	QDEL_LIST(modules)
+	QDEL_LIST(synths)
 	qdel(emag)
 	qdel(jetpack)
 	qdel(malfAImodule)
@@ -316,19 +316,16 @@ var/global/list/robot_modules = list(
 	)
 
 /obj/item/robot_module/medical/general/New(var/mob/living/silicon/robot/R)
+	src.modules += new /obj/item/tool/wrench/robotic(src)
 	src.modules += new /obj/item/tool/crowbar/robotic(src)
+	src.modules += new /obj/item/tool/screwdriver/robotic(src)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/hud/med(src)
 	src.modules += new /obj/item/device/scanner/health(src)
 	src.modules += new /obj/item/reagent_containers/borghypo/medical(src)
-	src.modules += new /obj/item/tool/scalpel(src)
-	src.modules += new /obj/item/tool/hemostat(src)
-	src.modules += new /obj/item/tool/retractor(src)
-	src.modules += new /obj/item/tool/cautery(src)
-	src.modules += new /obj/item/tool/bonesetter(src)
-	src.modules += new /obj/item/tool/saw/circular(src)
-	src.modules += new /obj/item/tool/surgicaldrill(src)
+	src.modules += new /obj/item/tool/robotic_medical_omnitool(src)
 	src.modules += new /obj/item/gripper/chemistry(src)
+	src.modules += new /obj/item/gripper/surgery(src)
 	src.modules += new /obj/item/reagent_containers/dropper/industrial(src)
 	src.modules += new /obj/item/reagent_containers/syringe(src)
 	src.modules += new /obj/item/device/scanner/reagent/adv(src)
@@ -516,12 +513,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/extinguisher(src)
 	src.modules += new /obj/item/rcd/borg(src)
-	src.modules += new /obj/item/tool/screwdriver/robotic(src)
-	src.modules += new /obj/item/tool/wrench/robotic(src)
-	src.modules += new /obj/item/tool/crowbar/robotic(src)
-	src.modules += new /obj/item/tool/weldingtool/robotic(src)
-	src.modules += new /obj/item/tool/wirecutters/robotic(src)
-	src.modules += new /obj/item/tool/multitool/robotic(src)
+	src.modules += new /obj/item/tool/robotic_engineering_omnitool(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/gripper/no_use/loader(src)
 	src.modules += new /obj/item/gripper(src)
@@ -579,12 +571,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/extinguisher(src)
-	src.modules += new /obj/item/tool/weldingtool/robotic(src)
-	src.modules += new /obj/item/tool/screwdriver/robotic(src)
-	src.modules += new /obj/item/tool/wrench/robotic(src)
-	src.modules += new /obj/item/tool/crowbar/robotic(src)
-	src.modules += new /obj/item/tool/wirecutters/robotic(src)
-	src.modules += new /obj/item/tool/multitool/robotic(src)
+	src.modules += new /obj/item/tool/robotic_engineering_omnitool(src)
 	src.modules += new /obj/item/device/t_scanner(src)
 	src.modules += new /obj/item/device/scanner/gas(src)
 	src.modules += new /obj/item/taperoll/engineering(src)
@@ -978,7 +965,7 @@ var/global/list/robot_modules = list(
 	..(R)
 
 
-//Syndicate borg is intended for summoning by traitors. Not currently implemented
+//Syndicate borg is intended for summoning by contractors. Not currently implemented
 /obj/item/robot_module/syndicate
 	name = "syndicate robot module"
 	hide_on_manifest = TRUE
@@ -1008,7 +995,7 @@ var/global/list/robot_modules = list(
 	//Todo, replace these with suitable weapons from eris
 	//src.modules += new /obj/item/gun/energy/mountedsmg(src)
 	//src.modules += new /obj/item/gun/energy/net/mounted(src)
-	//src.modules += new /obj/item/gun/launcher/grenade/cyborg(src)
+	//src.modules += new /obj/item/gun/projectile/shotgun/pump/grenade/cyborg(src)
 	src.modules += new /obj/item/tool/crowbar/robotic(src)
 	//src.modules += new /obj/item/robot_emag(src)
 
@@ -1049,12 +1036,7 @@ var/global/list/robot_modules = list(
 	)
 
 /obj/item/robot_module/drone/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/tool/weldingtool/robotic(src)
-	src.modules += new /obj/item/tool/screwdriver/robotic(src)
-	src.modules += new /obj/item/tool/wrench/robotic(src)
-	src.modules += new /obj/item/tool/crowbar/robotic(src)
-	src.modules += new /obj/item/tool/wirecutters/robotic(src)
-	src.modules += new /obj/item/tool/multitool/robotic(src)
+	src.modules += new /obj/item/tool/robotic_engineering_omnitool(src)
 	src.modules += new /obj/item/tool/shovel/robotic(src)
 	src.modules += new /obj/item/device/t_scanner(src)
 	src.modules += new /obj/item/device/lightreplacer(src)
@@ -1125,15 +1107,6 @@ var/global/list/robot_modules = list(
 	src.modules += P
 	..(R)
 
-/obj/item/robot_module/drone/construction
-	name = "construction drone module"
-	channels = list("Engineering" = 1)
-	languages = list()
-
-/obj/item/robot_module/drone/construction/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/rcd/borg(src)
-	..(R)
-
 /obj/item/robot_module/drone/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/device/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
@@ -1165,11 +1138,6 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/tool/pickaxe/drill(src)
 	src.modules += new /obj/item/borg/sight/thermal(src)
-	src.modules += new /obj/item/tool/crowbar/robotic(src)
-	src.modules += new /obj/item/tool/wrench/robotic(src)
-	src.modules += new /obj/item/tool/screwdriver/robotic(src)
-	src.modules += new /obj/item/tool/multitool/robotic(src)
-	src.modules += new /obj/item/tool/wirecutters/robotic(src)
-	src.modules += new /obj/item/tool/weldingtool/robotic(src)
+	src.modules += new /obj/item/tool/robotic_engineering_omnitool(src)
 
 	..(R)

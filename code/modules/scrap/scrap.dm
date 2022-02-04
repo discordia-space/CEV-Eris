@@ -16,6 +16,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_SCRAP
 	sanity_damage = 0.1
+	price_tag = 100
 	var/loot_generated = FALSE
 	var/icontype = "general"
 	var/obj/item/storage/internal/updating/loot	//the visible loot
@@ -243,7 +244,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	I.transform = M
 	return I
 
-/obj/structure/scrap_spawner/on_update_icon(rebuild_base=FALSE)
+/obj/structure/scrap_spawner/update_icon(rebuild_base=FALSE)
 	if(clear_if_empty())
 		return
 
@@ -255,9 +256,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			for(var/i in 1 to num)
 				var/image/I = image(parts_icon,pick(icon_states(parts_icon)))
 				I.color = pick("#996633", "#663300", "#666666", "")
-				base_icon.overlays.Add(randomize_image(I))
+				base_icon.overlays += randomize_image(I)
 			GLOB.scrap_base_cache["[icontype][icon_state][ID]"] = base_icon
-		add_overlays(GLOB.scrap_base_cache["[icontype][icon_state][ID]"])
+		overlays += GLOB.scrap_base_cache["[icontype][icon_state][ID]"]
 	if(loot_generated)
 		underlays.Cut()
 		for(var/obj/O in loot.contents)
@@ -429,7 +430,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	loot_max = 10
 	rarity_value = 90
 	loot_tags = list(
-		SPAWN_GUN = 0.3,
+		SPAWN_GUN_HANDMADE = 0.3,
 		SPAWN_PART_GUN = 3,
 		SPAWN_AMMO_S,
 		SPAWN_KNIFE,
@@ -652,7 +653,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	spawn_tags = SPAWN_TAG_BEACON_SCRAP
 
 
-/obj/structure/scrap_spawner/poor/structure/on_update_icon(rebuild_base=FALSE) //make big trash icon for this
+/obj/structure/scrap_spawner/poor/structure/update_icon(rebuild_base=FALSE) //make big trash icon for this
 	..()
 	if(!loot_generated)
 		underlays += image(icon, icon_state = "underlay_big")

@@ -21,6 +21,9 @@
 	recoil_buildup = 12
 	one_hand_penalty = 15 //full sized shotgun level
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
+	saw_off = TRUE
+	sawn = /obj/item/gun/projectile/shotgun/pump/sawn
+	gun_parts = list(/obj/item/part/gun/frame/kammerer = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
 
 /obj/item/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)
@@ -46,3 +49,33 @@
 		chambered = AC
 
 	update_icon()
+
+/obj/item/part/gun/frame/kammerer
+	name = "Kammerer frame"
+	desc = "A Kammerer shotgun frame. A militiaman's favorite."
+	icon_state = "frame_shotgun"
+	result = /obj/item/gun/projectile/shotgun/pump
+	grip = /obj/item/part/gun/grip/wood
+	mechanism = /obj/item/part/gun/mechanism/shotgun
+	barrel = /obj/item/part/gun/barrel/shotgun
+
+/obj/item/gun/projectile/shotgun/pump/sawn
+	name = "sawn-off FS SG \"Kammerer\""
+	desc = "When an old Remington design meets a hacksaw, this is the result. Hacked up, sawn down, and ready to rob a liquor store."
+	icon = 'icons/obj/guns/projectile/obrez_sg.dmi'
+	icon_state = "obrez"
+	item_state = "obrez"
+	max_shells = 3
+	w_class = ITEM_SIZE_NORMAL
+	force = WEAPON_FORCE_PAINFUL
+	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 5)
+	ammo_type = /obj/item/ammo_casing/shotgun/pellet/scrap
+	price_tag = 350
+	damage_multiplier = 0.5
+	penetration_multiplier = 0.7
+	recoil_buildup = 24 //double that of full version
+	one_hand_penalty = 20 //more than shotgun
+	can_dual = TRUE
+	saw_off = FALSE
+	spawn_blacklisted = TRUE

@@ -70,6 +70,9 @@
 		assembly = null
 	qdel(wires)
 	wires = null
+	if(alarm_on)
+		alarm_on = 0
+		camera_alarm.clearAlarm(loc, src)
 	return ..()
 
 /obj/machinery/camera/Process()
@@ -310,7 +313,7 @@
 	if(isXRay()) return SEE_TURFS|SEE_MOBS|SEE_OBJS
 	return 0
 
-/obj/machinery/camera/on_update_icon()
+/obj/machinery/camera/update_icon()
 	if (!status || (stat & BROKEN))
 		icon_state = "[initial(icon_state)]1"
 	else if (stat & EMPED)

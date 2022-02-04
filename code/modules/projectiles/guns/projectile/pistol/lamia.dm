@@ -24,11 +24,21 @@
 	recoil_buildup = 2
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	gun_parts = list(/obj/item/part/gun/frame/lamia = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/magnum = 1)
 
-/obj/item/gun/projectile/lamia/on_update_icon()
+/obj/item/gun/projectile/lamia/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "lamia-[round(ammo_magazine.stored_ammo.len,2)]"
 	else
 		icon_state = "lamia"
 	return
+
+/obj/item/part/gun/frame/lamia
+	name = "Lamia frame"
+	desc = "A Lamia pistol frame. Summary executions are never the same without it."
+	icon_state = "frame_lamia"
+	result = /obj/item/gun/projectile/lamia
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/pistol
+	barrel = /obj/item/part/gun/barrel/magnum

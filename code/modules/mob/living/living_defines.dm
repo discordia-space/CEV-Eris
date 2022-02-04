@@ -25,6 +25,8 @@
 	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
 	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
 
+	var/armor_penetration = 0 //Used for generic attacks
+
 	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 
 	var/t_plasma
@@ -37,7 +39,8 @@
 	var/mob_swap_flags = 0
 	var/mob_push_flags = 0
 	var/mob_always_swap = 0
-	var/move_to_delay = 4 //delay for the automated movement.
+	var/livmomentum = 0 //Used for advanced movement options.
+	var/move_to_delay = 4 //Delay for the automated movement.
 	var/can_burrow = FALSE //If true, this mob can travel around using the burrow network.
 	//When this mob spawns at roundstart, a burrow will be created near it if it can't find one
 
@@ -46,6 +49,7 @@
 	var/step_count = 0
 
 	var/update_slimes = 1
+	var/unstack = 1 //prevent stacking of certain actions, like resting/diving
 	var/silent 		// Can't talk. Value goes down every life proc.
 	var/on_fire = 0 //The "Are we on fire?" var
 	var/fire_stacks
@@ -74,6 +78,9 @@
 	var/mob_bomb_defense = 0	// protection from explosives
 	var/mod_climb_delay = 1 // delay for climb
 	var/noise_coeff = 1 //noise coefficient
+
+	var/can_multiz_pb = FALSE
+	var/is_watching = FALSE
 
 	spawn_frequency = 10
 	bad_type = /mob/living

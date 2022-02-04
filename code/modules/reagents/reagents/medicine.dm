@@ -241,7 +241,7 @@
 	nerve_system_accumulations = 60
 
 /datum/reagent/medicine/oxycodone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 65)
+	M.add_chemical_effect(CE_PAINKILLER, 75)
 	M.druggy = max(M.druggy, 10)
 
 /datum/reagent/medicine/oxycodone/overdose(mob/living/carbon/M, alien)
@@ -383,10 +383,10 @@
 	M.drowsyness = 0
 	M.stuttering = 0
 	M.confused = 0
-	if(M.ingested)
-		for(var/datum/reagent/R in M.ingested.reagent_list)
+	if(M.bloodstr)
+		for(var/datum/reagent/R in M.bloodstr.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))
-				R.dose = max(R.dose - effect_multiplier, 0)
+				R.dose = max(R.dose + effect_multiplier * 4, 0) // Increases the metabolism rate of ethanol by 0.2 for each unit of ethylredoxrazine metabolised
 
 /datum/reagent/medicine/hyronalin
 	name = "Hyronalin"
@@ -682,19 +682,19 @@
 	metabolism = REM/2
 
 /datum/reagent/medicine/detox/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	if(M.metabolism_effects.nsa_threshold == initial(M.metabolism_effects.nsa_threshold))
-		M.metabolism_effects.nsa_threshold += rand(20, 60)
+	if(M.metabolism_effects.nsa_threshold_base == initial(M.metabolism_effects.nsa_threshold_base))
+		M.metabolism_effects.nsa_threshold_base += rand(20, 60)
 
 /datum/reagent/medicine/detox/on_mob_delete(mob/living/L)
 	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		C.metabolism_effects.nsa_threshold = initial(C.metabolism_effects.nsa_threshold)
+		C.metabolism_effects.nsa_threshold_base = initial(C.metabolism_effects.nsa_threshold_base)
 
 /datum/reagent/medicine/detox/overdose(mob/living/carbon/M, alien)
 	var/mob/living/carbon/C = M
 	if(istype(C))
-		C.metabolism_effects.nsa_threshold = initial(C.metabolism_effects.nsa_threshold) - rand(20, 40)
+		C.metabolism_effects.nsa_threshold_base = initial(C.metabolism_effects.nsa_threshold_base) - rand(20, 40)
 
 /datum/reagent/medicine/purger
 	name = "Purger"

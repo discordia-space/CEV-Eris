@@ -44,6 +44,11 @@
 	item_cost = 7
 	path = /obj/item/rig_module/mounted/egun
 
+/datum/uplink_item/item/hardsuit_modules/esword
+	name = "Energy Blade Projector"
+	item_cost = 5
+	path = /obj/item/rig_module/held/energy_blade
+
 /datum/uplink_item/item/hardsuit_modules/power_sink
 	name = "Power Sink"
 	item_cost = 8
@@ -56,5 +61,5 @@
 
 /datum/uplink_item/item/hardsuit_modules/ric_merc
 	name = "Crimson Hardsuit Control Module"
-	item_cost = 25
+	item_cost = 20
 	path = /obj/item/rig/merc/empty

@@ -11,6 +11,7 @@
 	throw_speed = 1
 	throw_range = 7
 	w_class = ITEM_SIZE_BULKY
+	matter = list(MATERIAL_STEEL = 6)
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 14 //enough to hold all starting contents
 	origin_tech = list(TECH_COMBAT = 1)
@@ -30,8 +31,11 @@
 /obj/item/storage/toolbox/emergency/populate_contents()
 	new /obj/item/tool/crowbar(src)
 	new /obj/item/extinguisher/mini(src)
-	if(prob(50))
+	if(prob(40))
 		new /obj/item/device/lighting/toggleable/flashlight(src)
+	else if(prob(30))
+		new /obj/item/gun/projectile/flare_gun(src)
+		new /obj/item/ammo_casing/flare(src)
 	else
 		new /obj/item/device/lighting/glowstick/flare(src)
 	if (prob(40))

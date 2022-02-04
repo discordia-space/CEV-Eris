@@ -68,19 +68,19 @@
 		/datum/design/bioprinter/nt_clothes/sports_uniform,
 		/datum/design/bioprinter/nt_clothes/church_uniform,
 
-		/datum/design/bioprinter/belt/security/neotheology,
-		/datum/design/bioprinter/belt/utility/neotheology,
+		/datum/design/bioprinter/shoes,
+		/datum/design/bioprinter/jackboots,
+
+		/datum/design/bioprinter/belt/security,
+		/datum/design/bioprinter/belt/utility,
 
 		/datum/design/bioprinter/satchel,
-		/datum/design/bioprinter/leather_jacket,
+		/datum/design/bioprinter/backpack,
 		/datum/design/bioprinter/wallet,
 		/datum/design/bioprinter/botanic_leather,
 
-		/datum/design/bioprinter/belt/utility,
 		/datum/design/bioprinter/belt/medical,
-		/datum/design/bioprinter/belt/security,
 		/datum/design/bioprinter/belt/medical/emt,
-		/datum/design/bioprinter/belt/misc/champion,
 
 		/datum/design/bioprinter/leather/holster,
 		/datum/design/bioprinter/leather/holster/armpit,
@@ -93,13 +93,13 @@
 		/datum/design/bioprinter/medical_supply,
 		/datum/design/bioprinter/engineering_tools,
 		/datum/design/bioprinter/engineering_supply,
+		/datum/design/bioprinter/engineering_material,
 		/datum/design/bioprinter/ammo,
 		/datum/design/bioprinter/tubular,
 		/datum/design/bioprinter/tubular/vial,
 		/datum/design/bioprinter/part,
 
-   		/datum/design/autolathe/device/headset_church,
-		/datum/design/bioprinter/leather/cash_bag
+   		/datum/design/autolathe/device/headset_church
 	)
 
 // Kinda like the regular product NT disk, minus the grenades, soap and the cleaner carbine. Should spawn in public access bioprinters if they get added by any chance.
@@ -119,15 +119,11 @@
 		/datum/design/bioprinter/wallet,
 		/datum/design/bioprinter/botanic_leather,
 		/datum/design/bioprinter/satchel,
-		/datum/design/bioprinter/leather_jacket,
-		/datum/design/bioprinter/leather/cash_bag,
+		/datum/design/bioprinter/backpack,
 		/datum/design/bioprinter/belt/utility,
-		/datum/design/bioprinter/belt/utility/neotheology,
 		/datum/design/bioprinter/belt/medical,
 		/datum/design/bioprinter/belt/security,
-		/datum/design/bioprinter/belt/security/neotheology,
 		/datum/design/bioprinter/belt/medical/emt,
-		/datum/design/bioprinter/belt/misc/champion,
 
 		/datum/design/bioprinter/leather/holster,
 		/datum/design/bioprinter/leather/holster/armpit,
@@ -153,12 +149,11 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt
-	disk_name = "NeoTheology Armory - Blank"
-	rarity_value = 50
-	license = -1
-	spawn_blacklisted = TRUE
-	price_tag = 1000
-	bad_type = /obj/item/computer_hardware/hard_drive/portable/design/nt
+	disk_name = "NeoTheology Armory - NeoTheology Medkit"
+	icon_state = "neotheology"
+	designs = list(
+		/datum/design/autolathe/firstaid/nt
+	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/melee
 	disk_name = "NeoTheology Armory - Basic Melee Weapons"
@@ -167,6 +162,7 @@
 		/datum/design/autolathe/nt/sword/nt_sword,
 		/datum/design/autolathe/nt/sword/nt_dagger,
 		/datum/design/bioprinter/storage/sheath,
+		/datum/design/autolathe/nt/shield/nt_buckler,
 		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)
 
@@ -181,13 +177,6 @@
 		/datum/design/autolathe/nt/sword/nt_halberd,
 		/datum/design/autolathe/nt/shield/nt_shield,
 		/datum/design/autolathe/nt/sword/nt_spear
-	)
-
-/obj/item/computer_hardware/hard_drive/portable/design/nt/firstaid
-	disk_name = "NeoTheology Armory - NeoTheologian Medkit"
-	icon_state = "neotheology"
-	designs = list(
-		/datum/design/autolathe/firstaid/nt
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/guns/nt_dominion
@@ -259,7 +248,7 @@
 		/datum/design/autolathe/cell/medium/high,
 	)
 
-/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_valkirye
+/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_valkyrie
 	disk_name = "NeoTheology Armory - Valkyrie Energy Rifle"
 	icon_state = "neotheology"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
@@ -311,18 +300,6 @@
 	license = 15
 	designs = list(
 		/datum/design/autolathe/gun/grenade_launcher = 3, // "NT GL \"Protector\""
-	)
-
-/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_heavysniper
-	disk_name = "NeoTheology Armory - .60 Penetrator AMR"
-	icon_state = "neotheology"
-	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
-	rarity_value = 90
-	license = 12
-	designs = list(
-		/datum/design/autolathe/gun/heavysniper = 3, // "NT AMR .60 \"Penetrator\""
-		/datum/design/autolathe/ammo/antim,
-		/datum/design/autolathe/ammo/box_antim,
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/nt_mk58

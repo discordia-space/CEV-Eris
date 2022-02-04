@@ -48,7 +48,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 				if(pod.arming_controller)
 					pod.arming_controller.close_door()
 
-//called when the pods is aarived to centcomm
+//called when the pods is aarived to centcom
 /datum/emergency_shuttle_controller/proc/pods_arrived()
 	if(pods_departed)
 		pods_arrived = TRUE
@@ -207,7 +207,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	pixel_y += rand(-2, 30)
 	var/starnum = pick("1", "1", "1", "2", "3", "4")
 
-	SetIconState("star"+starnum)
+	icon_state = "star"+starnum
 
 	speed = rand(2, 5)
 

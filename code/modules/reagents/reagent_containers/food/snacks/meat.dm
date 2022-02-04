@@ -9,17 +9,8 @@
 	matter = list(MATERIAL_BIOMATTER = 20)
 	preloaded_reagents = list("protein" = 9)
 	taste_tag = list(MEAT_FOOD)
-
-/obj/item/reagent_containers/food/snacks/meat/attackby(obj/item/I, mob/user)
-	if(QUALITY_CUTTING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_ZERO, required_stat = STAT_BIO))
-			to_chat(user, SPAN_NOTICE("You cut the meat into thin strips."))
-			new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
-			new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
-			new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
-			qdel(src)
-	else
-		..()
+	slice_path = /obj/item/reagent_containers/food/snacks/rawcutlet
+	slices_num = 3
 
 /obj/item/reagent_containers/food/snacks/meat/syntiflesh
 	name = "synthetic meat"
@@ -37,7 +28,8 @@
 	desc = "Tastes like... well, you know."
 
 /obj/item/reagent_containers/food/snacks/meat/roachmeat
-	desc = "A slab of sickly-green bubbling meat cut from a giant roach. You swear you can see it still twitching occasionally. Delicious!"
+	name = "Kampfer meat"
+	desc = "A slab of sickly-green bubbling meat cut from a kampfer roach. You swear you can see it still twitching occasionally. Delicious!"
 	icon_state = "xenomeat"
 	filling_color = "#E2FFDE"
 
@@ -45,46 +37,61 @@
 	preloaded_reagents = list("protein" = 4, "blattedin" = 8, "diplopterum" = 7)
 
 /obj/item/reagent_containers/food/snacks/meat/roachmeat/seuche
+	name = "Seuche meat"
+	desc = "A slab of sickly-green bubbling meat cut from a seuche roach. You can already taste the hepatitis. Delicious!"
 	preloaded_reagents = list("protein" = 4, "seligitillin" = 8, "diplopterum" = 6)
 
 /obj/item/reagent_containers/food/snacks/meat/roachmeat/panzer
+	name = "Panzer meat"
+	desc = "A slab of sickly-green bubbling meat cut from a panzer roach. Very tough, but crunchy, Delicious!"
 	preloaded_reagents = list("protein" = 8, "blattedin" = 12, "starkellin" = 15, "diplopterum" = 4)
 
 /obj/item/reagent_containers/food/snacks/meat/roachmeat/fuhrer
+	name = "Fuhrer meat"
+	desc = "A glorious slab of sickly-green bubbling meat cut from a fuhrer roach. it emanates an aura of dominance. Delicious!"
 	preloaded_reagents = list("protein" = 6, "seligitillin" = 6, "fuhrerole" = 12, "diplopterum" = 6)
 
 /obj/item/reagent_containers/food/snacks/meat/roachmeat/kaiser
-	preloaded_reagents = list("protein" = 6, "blattedin" = 12, "seligitillin" = 6, "starkellin" = 15, "fuhrerole" = 12, "diplopterum" = 6)
+	name = "Kaiser meat"
+	desc = "A slab of sickly-green meat of a kaiser roach, bubbling with unimaginable power. Delicious!"
+	preloaded_reagents = list("protein" = 6, "blattedin" = 12, "seligitillin" = 6, "starkellin" = 15, "fuhrerole" = 4, "diplopterum" = 6, "kaiseraurum" = 16)
 
 /obj/item/reagent_containers/food/snacks/meat/roachmeat/jager
+	name = "Jager meat"
+	desc = "A slab of sickly-green bubbling meat cut from a jager roach. You swear you can see it still twitching. Delicious!"
 	preloaded_reagents = list("protein" = 6, "blattedin" = 6, "gewaltine" = 8, "diplopterum" = 2)
 
 /obj/item/reagent_containers/food/snacks/meat/roachmeat/kraftwerk 
+	name = "Kraftwerk meat"
+	desc = "A slab of sickly-green meat cut from a kraftwerk roach, bursting with nanite activity. Delicious!"
 	preloaded_reagents = list("protein" = 6, "blattedin" = 6, "gewaltine" = 6, "uncap nanites" = 2, "nanites" = 3)
 
 /obj/item/reagent_containers/food/snacks/meat/spider
-	desc = "A bloated slab of sickly-green meat cut from a spider. The venom just gives it more flavor. Delicious!"
+	name = "Senshi meat"
+	desc = "A bloated slab of sickly-green meat cut from a warrior spider. The venom just gives it more flavor. Delicious!"
+	icon_state = "xenomeat"
+	filling_color = "#E2FFDE"
+
+	bitesize = 6
+	preloaded_reagents = list("protein" = 9, "pararein" = 8)
+
+/obj/item/reagent_containers/food/snacks/meat/spider/hunter
+	name = "Sokuryou meat"
+	desc = "A bloated slab of sickly-green meat cut from a hunter spider. The venom just gives it more flavor. Delicious!"
 	icon_state = "xenomeat"
 	filling_color = "#E2FFDE"
 
 	bitesize = 6
 	preloaded_reagents = list("protein" = 7, "pararein" = 12)
 
-/obj/item/reagent_containers/food/snacks/meat/spider/hunter
-	desc = "A bloated slab of sickly-green meat cut from a spider. The venom just gives it more flavor. Delicious!"
-	icon_state = "xenomeat"
-	filling_color = "#E2FFDE"
-
-	bitesize = 6
-	preloaded_reagents = list("protein" = 9, "aranecolmin" = 8, "pararein" = 2)
-
 /obj/item/reagent_containers/food/snacks/meat/spider/nurse
-	desc = "A bloated slab of sickly-green meat cut from a spider. The venom just gives it more flavor. Delicious!"
+	name = "Kouchiku meat"
+	desc = "A bloated slab of sickly-green meat cut from a nurse spider. The venom just gives it more flavor. Delicious!"
 	icon_state = "xenomeat"
 	filling_color = "#E2FFDE"
 	
 	bitesize = 6
-	preloaded_reagents = list("protein" = 8, "pararein" = 8)
+	preloaded_reagents = list("protein" = 6, "aranecolmin" = 8,"pararein" = 8)
 
 /obj/item/reagent_containers/food/snacks/meat/carp
 	name = "carp fillet"

@@ -11,7 +11,7 @@
 
 /datum/uplink_item/item/grenades/teargas
 	name = "6xTear gas Grenades"
-	item_cost = 6
+	item_cost = 4
 	path = /obj/item/storage/box/teargas
 
 /datum/uplink_item/item/grenades/smoke
@@ -25,12 +25,12 @@
 	path = /obj/item/storage/box/emps
 
 /datum/uplink_item/item/grenades/frag
-	name = "5xFrag Grenades"
+	name = "4xFrag Grenades"
 	item_cost = 8
 	path = /obj/item/storage/box/frag
 
 /datum/uplink_item/item/grenades/explosive
-	name = "5xHigh Explosive Grenades"
+	name = "4xHigh Explosive Grenades"
 	item_cost = 10
 	path = /obj/item/storage/box/explosive
 
@@ -40,6 +40,26 @@
 	path = /obj/item/grenade/spawnergrenade/manhacks
 	
 /datum/uplink_item/item/grenades/flash
-	name = "5x Flashbang Grenades"
+	name = "5xFlashbang Grenades"
 	item_cost = 5
 	path = /obj/item/storage/box/flashbangs/uplink_item
+
+/datum/uplink_item/item/grenades/baton_rounds
+	name = "6xRubber rounds"
+	item_cost = 6
+	path = /obj/item/storage/box/baton_rounds
+
+/datum/uplink_item/item/grenades/blast_rounds
+	name = "6xBlast rounds"
+	item_cost = 18
+	path = /obj/item/storage/box/blast_rounds
+
+/datum/uplink_item/item/grenades/frag_rounds
+	name = "6xFrag rounds"
+	item_cost = 12
+	path = /obj/item/storage/box/frag_rounds
+
+/datum/uplink_item/item/grenades/emp_rounds
+	name = "6xEMP rounds"
+	item_cost = 12
+	path = /obj/item/storage/box/emp_rounds

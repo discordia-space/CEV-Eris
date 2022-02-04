@@ -35,6 +35,7 @@
 	var/stop_automated_movement_when_pulled = TRUE //When set to 1 this stops the animal from moving when someone is pulling it.
 	var/atom/movement_target = null//Thing we're moving towards
 	var/turns_since_scan = 0
+	var/eat_from_hand = TRUE
 
 	//Interaction
 	var/response_help   = "tries to help"
@@ -180,7 +181,7 @@
 		if(!.)
 			return FALSE
 
-		if(health <= 0)
+		if(health <= 0 && stat != DEAD)
 			death()
 			return FALSE
 
@@ -327,7 +328,12 @@
 	..(icon_gib,1)
 
 /mob/living/simple_animal/bullet_act(var/obj/item/projectile/Proj)
-	if(!Proj || Proj.nodamage)
+	if(!Proj)
+		return
+
+	if(Proj.nodamage)
+		if(istype(Proj, /obj/item/projectile/ion))
+			Proj.on_hit(loc)
 		return
 
 	adjustBruteLoss(Proj.get_total_damage())
@@ -425,12 +431,13 @@
 	movement_target = null
 	icon_state = icon_dead
 	density = FALSE
+	stasis = TRUE
 	return ..(gibbed,deathmessage)
 
 /mob/living/simple_animal/ex_act(severity)
 	if(!blinded)
 		if (HUDtech.Find("flash"))
-			FLICK("flash", HUDtech["flash"])
+			flick("flash", HUDtech["flash"])
 	switch (severity)
 		if (1)
 			adjustBruteLoss(500)
@@ -619,7 +626,7 @@
 /mob/living/simple_animal/lay_down()
 	set name = "Rest"
 	set category = "Abilities"
-	if(resting && can_stand_up())
+	if(resting)
 		wake_up()
 	else if (!resting)
 		fall_asleep()

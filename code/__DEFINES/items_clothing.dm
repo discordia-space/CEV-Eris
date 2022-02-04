@@ -75,7 +75,7 @@
 #define STOPPRESSUREDAMAGE         0x2  // Counts towards pressure protection. Note that like temperature protection, body_parts_covered is considered here as well.
 #define AIRTIGHT                   0x4  // Functions with internals.
 #define NOSLIP                     0x8  // Prevents from slipping on wet floors, in space, etc.
-#define BLOCK_GAS_SMOKE_EFFECT     0x10 // Blocks the effect that chemical clouds would have on a mob -- glasses, mask and helmets ONLY! (NOTE: flag shared with ONESIZEFITSALL)
+#define BLOCK_GAS_SMOKE_EFFECT     0x10 // Blocks the effect that chemical clouds would have on a mob -- mask and helmets ONLY! (NOTE: flag shared with ONESIZEFITSALL)
 #define FLEXIBLEMATERIAL           0x20 // At the moment, masks with this flag will not prevent eating even if they are covering your face.
 #define COVER_PREVENT_MANIPULATION 0x40 // Only clothing with this flag will prevent manipulation under it. Its for space suits and such, unlike from usual Bay12 rules of clothing manipulation.
 #define DRAG_AND_DROP_UNEQUIP      0x80 // Allow you put intems in hands with drag and drop
@@ -216,3 +216,47 @@
 #define STORY_CRIME	"Crime"
 #define STORY_MUTINY "Mutiny"
 #define STORY_MALFUNCTION "Malfunction"
+
+//Recoil for suits
+#define LIGHT_STIFFNESS 1
+#define MEDIUM_STIFFNESS 1.5
+#define HEAVY_STIFFNESS 2
+
+//Slowdown for suits
+#define LIGHT_SLOWDOWN 0.1
+#define MEDIUM_SLOWDOWN 0.2
+#define HEAVY_SLOWDOWN 1
+
+//Offset for helmets
+#define LIGHT_OBSCURATION 3
+#define MEDIUM_OBSCURATION 5
+#define HEAVY_OBSCURATION 8
+
+//Style amount
+#define STYLE_NEG_HIGH -2
+#define STYLE_NEG_LOW -1
+#define STYLE_NONE 0
+#define STYLE_LOW 1
+#define STYLE_HIGH 2
+#define STYLE_HATHATHAT 3
+
+//Style coverage
+#define COVERS_HAIR 1
+#define COVERS_EARS 2
+#define COVERS_EYES 4
+#define COVERS_MOUTH 8
+#define COVERS_FACE 16
+#define COVERS_CHEST 32
+#define COVERS_GROIN 64
+#define COVERS_UPPER_ARMS 128
+#define COVERS_UPPER_LEGS 256
+#define COVERS_FOREARMS 512
+#define COVERS_FORELEGS 1024
+
+//Style coverage shortcuts
+#define COVERS_WHOLE_FACE COVERS_EYES|COVERS_MOUTH|COVERS_FACE
+#define COVERS_WHOLE_HEAD COVERS_HAIR|COVERS_EARS|COVERS_WHOLE_FACE
+#define COVERS_TORSO COVERS_CHEST|COVERS_GROIN
+#define COVERS_WHOLE_ARMS COVERS_UPPER_ARMS|COVERS_FOREARMS
+#define COVERS_WHOLE_LEGS COVERS_UPPER_LEGS|COVERS_FORELEGS
+#define COVERS_WHOLE_TORSO_AND_LIMBS COVERS_TORSO|COVERS_WHOLE_ARMS|COVERS_WHOLE_LEGS

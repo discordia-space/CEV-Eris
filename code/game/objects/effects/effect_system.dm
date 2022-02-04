@@ -32,13 +32,6 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		pixel_x += rand(-random_offset,random_offset)
 		pixel_y += rand(-random_offset,random_offset)
 
-
-
-/obj/effect/Destroy()
-	if(reagents)
-		reagents.delete()
-	return ..()
-
 /datum/effect/effect/system
 	var/number = 3
 	var/cardinals = 0
@@ -236,11 +229,11 @@ steam.start() -- spawns the effect
 	if (istype(M))
 		return 0
 	if (M.internal != null)
-		if(M.wear_mask && (M.wear_mask.item_flags & AIRTIGHT))
+		if(M.wear_mask && (M.wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT & AIRTIGHT))
 			return 0
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.head && (H.head.item_flags & AIRTIGHT))
+			if(H.head && (H.head.item_flags & BLOCK_GAS_SMOKE_EFFECT & AIRTIGHT))
 				return 0
 		return 0
 	return 1
@@ -268,18 +261,23 @@ steam.start() -- spawns the effect
 	var/radius = 3
 	var/brightness = 2
 
-/obj/effect/effect/light/New(var/newloc, var/radius, var/brightness)
+/obj/effect/effect/light/New(var/newloc, var/radius, var/brightness, color, selfdestruct_timer)
 	..()
 
 	src.radius = radius
 	src.brightness = brightness
+	
+	set_light(radius,brightness,color)
 
-	set_light(radius,brightness)
+	if(selfdestruct_timer)
+		spawn(selfdestruct_timer)
+		qdel(src)
 
 /obj/effect/effect/light/set_light(l_range, l_power, l_color)
 	..()
 	radius = l_range
 	brightness = l_power
+	color = l_color
 
 /obj/effect/effect/smoke/illumination
 	name = "illumination"
@@ -287,10 +285,10 @@ steam.start() -- spawns the effect
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "sparks"
 
-/obj/effect/effect/smoke/illumination/New(var/newloc, var/brightness=15, var/lifetime=10)
+/obj/effect/effect/smoke/illumination/New(var/newloc, var/brightness=15, var/lifetime=10, var/color=COLOR_WHITE)
 	time_to_live=lifetime
 	..()
-	set_light(brightness)
+	set_light(brightness, 1, color)
 
 /////////////////////////////////////////////
 // Bad smoke

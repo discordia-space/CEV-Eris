@@ -24,17 +24,17 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/blood/reveal_blood()
 	if(!fluorescent)
-		fluorescent = 1
+		fluorescent = TRUE
 		basecolor = COLOR_LUMINOL
 		update_icon()
 
 /obj/effect/decal/cleanable/blood/clean_blood()
-	fluorescent = 0
+	fluorescent = FALSE
 	if(invisibility != 100)
 		invisibility = 100
 		amount = 0
 		STOP_PROCESSING(SSobj, src)
-	..(ignore=1)
+	..(ignore=TRUE)
 
 /obj/effect/decal/cleanable/blood/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -62,7 +62,7 @@ var/global/list/image/splatter_cache=list()
 	if(world.time > drytime)
 		dry()
 
-/obj/effect/decal/cleanable/blood/on_update_icon()
+/obj/effect/decal/cleanable/blood/update_icon()
 	if(basecolor == "rainbow") basecolor = get_random_colour(1)
 	color = basecolor
 
@@ -87,11 +87,11 @@ var/global/list/image/splatter_cache=list()
 			if(!S.blood_DNA)
 				S.blood_DNA = list()
 				S.blood_overlay.color = basecolor
-				S.add_overlays(S.blood_overlay)
+				S.overlays += S.blood_overlay
 			if(S.blood_overlay && S.blood_overlay.color != basecolor)
 				S.blood_overlay.color = basecolor
-				S.cut_overlays()
-				S.add_overlays(S.blood_overlay)
+				S.overlays.Cut()
+				S.overlays += S.blood_overlay
 			S.blood_DNA |= blood_DNA.Copy()
 
 	else if (hasfeet)//Or feet
@@ -119,7 +119,7 @@ var/global/list/image/splatter_cache=list()
 	if (amount && istype(user))
 		add_fingerprint(user)
 		if (user.gloves)
-			return
+			return FALSE
 		var/taken = rand(1,amount)
 		amount -= taken
 		to_chat(user, SPAN_NOTICE("You get some of \the [src] on your hands."))
@@ -182,7 +182,7 @@ var/global/list/image/splatter_cache=list()
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
 	var/fleshcolor = "#FFFFFF"
 
-/obj/effect/decal/cleanable/blood/gibs/on_update_icon()
+/obj/effect/decal/cleanable/blood/gibs/update_icon()
 
 	var/image/giblets = new(base_icon, "[icon_state]_flesh", dir)
 	if(!fleshcolor || fleshcolor == "rainbow")
@@ -194,8 +194,8 @@ var/global/list/image/splatter_cache=list()
 	blood.Blend(basecolor,ICON_MULTIPLY)
 
 	icon = blood
-	cut_overlays()
-	add_overlays(giblets)
+	overlays.Cut()
+	overlays += giblets
 
 /obj/effect/decal/cleanable/blood/gibs/up
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6","gibup1","gibup1","gibup1")

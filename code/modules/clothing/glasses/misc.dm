@@ -4,6 +4,7 @@
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 	body_parts_covered = 0
+	style = STYLE_HIGH
 
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
@@ -11,6 +12,7 @@
 	icon_state = "monocle"
 	item_state = "headset" // lol
 	body_parts_covered = 0
+	style = STYLE_HIGH
 
 /obj/item/clothing/glasses/regular
 	name = "Prescription Glasses"
@@ -64,6 +66,7 @@
 	item_state = "sunglasses"
 	darkness_view = -1
 	flash_protection = FLASH_PROTECTION_MODERATE
+	style = STYLE_HIGH
 
 /obj/item/clothing/glasses/sunglasses/blindfold
 	name = "blindfold"
@@ -74,7 +77,7 @@
 
 /obj/item/clothing/glasses/sunglasses/blindfold/tape
 	name = "length of tape"
-	desc = "It's a robust DIY blindfold!"
+	desc = "A robust DIY blindfold!"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape_cross"
 	item_state = null

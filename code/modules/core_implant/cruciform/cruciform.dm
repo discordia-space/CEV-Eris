@@ -40,7 +40,7 @@ var/list/disciples = list()
 	UnregisterSignal(wearer, COMSIG_GROUP_RITUAL)
 
 /obj/item/implant/core_implant/cruciform/proc/on_happy(datum/reagent/happy, signal)
-	if(istype(happy, /datum/reagent/ethanol))
+	if(istype(happy, /datum/reagent/ethanol) && happy.id != "ntcahors")
 		righteous_life = max(righteous_life - 0.1, 0)
 	else if(istype(happy, /datum/reagent/drug))
 		righteous_life = max(righteous_life - 0.5, 0)
@@ -204,9 +204,32 @@ var/list/disciples = list()
 /obj/item/implant/core_implant/cruciform/proc/make_priest()
 	add_module(new CRUCIFORM_PRIEST)
 	add_module(new CRUCIFORM_REDLIGHT)
+	security_clearance = CLEARANCE_CLERGY
 
 /obj/item/implant/core_implant/cruciform/proc/make_inquisitor()
 	add_module(new CRUCIFORM_PRIEST)
 	add_module(new CRUCIFORM_INQUISITOR)
 	add_module(new /datum/core_module/cruciform/uplink())
 	remove_modules(CRUCIFORM_REDLIGHT)
+	security_clearance = CLEARANCE_CLERGY
+
+/obj/item/implant/core_implant/cruciform/proc/make_acolyte()
+	remove_modules(CRUCIFORM_AGROLYTE)
+	remove_modules(CRUCIFORM_CUSTODIAN)
+	add_module(new CRUCIFORM_ACOLYTE)
+
+/obj/item/implant/core_implant/cruciform/proc/make_custodian()
+	remove_modules(CRUCIFORM_AGROLYTE)
+	remove_modules(CRUCIFORM_ACOLYTE)
+	add_module(new CRUCIFORM_CUSTODIAN)
+
+/obj/item/implant/core_implant/cruciform/proc/make_agrolyte()
+	remove_modules(CRUCIFORM_ACOLYTE)
+	remove_modules(CRUCIFORM_CUSTODIAN)
+	add_module(new CRUCIFORM_AGROLYTE)
+
+/obj/item/implant/core_implant/cruciform/proc/remove_specialization()
+	remove_modules(CRUCIFORM_ACOLYTE)
+	remove_modules(CRUCIFORM_AGROLYTE)
+	remove_modules(CRUCIFORM_CUSTODIAN)
+	update_rituals()

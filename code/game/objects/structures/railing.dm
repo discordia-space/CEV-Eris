@@ -135,7 +135,7 @@
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
-/obj/structure/railing/on_update_icon(var/UpdateNeighbors = 1)
+/obj/structure/railing/update_icon(var/UpdateNeighbors = 1)
 	NeighborsCheck(UpdateNeighbors)
 	cut_overlays()
 	if (!check || !anchored)
@@ -144,21 +144,21 @@
 		icon_state = "[icon_modifier][reinforced ? "reinforced_": null]railing1"
 		//left side
 		if (check & 32)
-			add_overlays(image ('icons/obj/railing.dmi', src, "[icon_modifier]corneroverlay"))
+			overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]corneroverlay")
 		if ((check & 16) || !(check & 32) || (check & 64))
-			add_overlays(image ('icons/obj/railing.dmi', src, "[icon_modifier]frontoverlay_l"))
+			overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]frontoverlay_l")
 		if (!(check & 2) || (check & 1) || (check & 4))
-			add_overlays(image ('icons/obj/railing.dmi', src, "[icon_modifier]frontoverlay_r"))
+			overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]frontoverlay_r")
 			if(check & 4)
 				switch (src.dir)
 					if (NORTH)
-						add_overlays(image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_x = 32))
+						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_x = 32)
 					if (SOUTH)
-						add_overlays(image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_x = -32))
+						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_x = -32)
 					if (EAST)
-						add_overlays(image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_y = -32))
+						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_y = -32)
 					if (WEST)
-						add_overlays(image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_y = 32))
+						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_y = 32)
 
 /obj/structure/railing/verb/rotate()
 	set name = "Rotate Railing Counter-Clockwise"
@@ -291,7 +291,7 @@
 			if(!anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."), SPAN_NOTICE("You dismantle \the [src]."))
-					drop_materials(get_turf(user))
+					drop_materials(get_turf(user), user)
 					qdel(src)
 			if(reinforced)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
@@ -384,4 +384,4 @@
 /obj/structure/railing/bullet_act(obj/item/projectile/P, def_zone)
 	. = ..()
 	take_damage(P.get_structure_damage())
-	
+

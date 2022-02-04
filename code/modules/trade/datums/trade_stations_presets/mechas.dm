@@ -8,25 +8,25 @@
 			/mob/living/exosuit/premade/powerloader/flames_red,
 			/mob/living/exosuit/premade/light,
 			/mob/living/exosuit/premade/heavy,
-			/mob/living/exosuit/premade/combat/slayer,
+			/mob/living/exosuit/premade/combat/slayer
 		),
 		"Mech Armor" = list(
-			/obj/item/robot_parts/robot_component/armour/exosuit,
+			/obj/item/robot_parts/robot_component/armour/exosuit/plain,
 			/obj/item/robot_parts/robot_component/armour/exosuit/radproof,
-			/obj/item/robot_parts/robot_component/armour/exosuit/em,
-			/obj/item/robot_parts/robot_component/armour/exosuit/combat,
+			/obj/item/robot_parts/robot_component/armour/exosuit/ablative,
+			/obj/item/robot_parts/robot_component/armour/exosuit/combat
 		),
 		"Parts" = list(
 			/obj/item/mech_component/chassis,
 			/obj/item/mech_component/manipulators,
 			/obj/item/mech_component/sensors,
-			/obj/item/mech_component/propulsion,
+			/obj/item/mech_component/propulsion
 		),
 		"Soft" = list(
 			/obj/item/electronics/circuitboard/exosystem/engineering,
 			/obj/item/electronics/circuitboard/exosystem/utility,
 			/obj/item/electronics/circuitboard/exosystem/medical,
-			/obj/item/electronics/circuitboard/exosystem/weapons,
+			/obj/item/electronics/circuitboard/exosystem/weapons
 		),
 		"Equipment" = list(
 			/obj/item/mech_equipment/mounted_system/taser,
@@ -37,6 +37,6 @@
 			/obj/item/mech_equipment/light,
 			/obj/item/mech_equipment/drill,
 			/obj/item/mech_equipment/mounted_system/extinguisher,
-			/obj/item/mech_equipment/sleeper,
-		),
+			/obj/item/mech_equipment/sleeper
+		)
 	)

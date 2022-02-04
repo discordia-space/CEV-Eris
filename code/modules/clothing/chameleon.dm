@@ -21,6 +21,11 @@
 	update_wear_icon()
 
 	return copy //for inheritance
+obj/item/clothing/disguise(newtype, mob/user)
+	. = ..()
+	var/obj/item/clothing/copy = .
+	if (istype(copy))
+		style_coverage = copy.style_coverage
 
 /proc/generate_chameleon_choices(basetype, blacklist=list())
 	. = list()
@@ -39,7 +44,7 @@
 /obj/item/clothing/under/chameleon
 //starts off as black
 	name = "black jumpsuit"
-	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
+	desc = "A plain jumpsuit. It seems to have a small dial on the wrist."
 	icon_state = "black"
 	item_state = "bl_suit"
 	spawn_blacklisted = TRUE
@@ -93,7 +98,7 @@
 
 /obj/item/clothing/head/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "grey cap"
-	desc = "It's a baseball hat in a tasteful grey colour."
+	desc = "A baseball hat in a tasteful grey colour."
 	icon_state = "greysoft"
 	update_icon()
 	update_wear_icon()
@@ -269,6 +274,7 @@
 	spawn_tags = SPAWN_TAG_MASK_CONTRABAND
 	flags_inv = HIDEEYES|HIDEFACE
 	var/global/list/clothing_choices
+	style_coverage = COVERS_WHOLE_FACE//default state
 
 /obj/item/clothing/mask/chameleon/New()
 	..()
@@ -277,7 +283,7 @@
 
 /obj/item/clothing/mask/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "gas mask"
-	desc = "It's a gas mask."
+	desc = "A gas mask."
 	icon_state = "gas_alt"
 	update_icon()
 	update_wear_icon()
@@ -313,7 +319,7 @@
 
 /obj/item/clothing/glasses/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "Optical Meson Scanner"
-	desc = "It's a set of mesons."
+	desc = "A set of mesons."
 	icon_state = "meson"
 	update_icon()
 	update_wear_icon()
@@ -405,3 +411,39 @@
 		return
 
 	disguise(gun_choices[picked], usr)
+
+//*****************
+//**Chameleon Headset**
+//*****************
+
+/obj/item/device/radio/headset/chameleon
+	name = "radio headset"
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys. There is a dial on the side to change the headset's disguise."
+	icon_state = "headset"
+	item_state = "headset"
+	origin_tech = list(TECH_COVERT = 1)
+	spawn_blacklisted = TRUE
+	ks1type = null // No keys pre-installed
+	var/list/global/clothing_choices
+
+/obj/item/device/radio/headset/chameleon/New()
+	..()
+	if(!clothing_choices)
+		clothing_choices = generate_chameleon_choices(/obj/item/device/radio/headset, list(src.type))
+
+/obj/item/device/radio/headset/chameleon/emp_act(severity)
+	name = "radio headset"
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
+	icon_state = "headset"
+	update_icon()
+	update_wear_icon()
+
+/obj/item/device/radio/headset/chameleon/verb/change(picked in clothing_choices)
+	set name = "Change Headset Appearance"
+	set category = "Chameleon Items"
+	set src in usr
+
+	if(!ispath(clothing_choices[picked]))
+		return
+
+	disguise(clothing_choices[picked], usr)

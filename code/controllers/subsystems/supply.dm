@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(supply)
 /datum/controller/subsystem/supply/stat_entry()
 	..("Credits: [get_account_credits(department_accounts[DEPARTMENT_GUILD])]")
 
-//To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
+//To stop things being sent to centcom which should not be sent to centcom. Recursively checks for these types.
 /datum/controller/subsystem/supply/proc/forbidden_atoms_check(atom/A)
 	if(isliving(A))
 		return TRUE
@@ -64,7 +64,6 @@ SUBSYSTEM_DEF(supply)
 	for(var/A in exports)
 		var/datum/export/E = A
 		var/export_text = E.total_printout()
-		GLOB.supply_profit += E.cost
 		if(!export_text)
 			continue
 
@@ -112,7 +111,6 @@ SUBSYSTEM_DEF(supply)
 
 		var/datum/supply_order/SO = S
 		var/datum/supply_pack/SP = SO.object
-		GLOB.supply_profit -= SP.cost
 		var/obj/A = new SP.containertype(pickedloc)
 		A.name = "[SP.name][SO.reason ? " ([SO.reason])":"" ]"
 

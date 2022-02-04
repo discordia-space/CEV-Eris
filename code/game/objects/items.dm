@@ -19,7 +19,7 @@
 	var/max_health
 	var/burn_point
 	var/burning
-	var/hitsound
+	var/hitsound = 'sound/weapons/genhit1.ogg'
 	var/worksound
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 
@@ -51,6 +51,9 @@
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 	var/slowdown_hold // How much holding an item slows you down.
+	var/stiffness = 0 // How much recoil is caused by moving
+	var/obscuration = 0 // How much firearm accuracy is decreased
+
 	var/datum/armor/armor // Ref to the armor datum
 	var/list/allowed = list() //suit storage stuff.
 	var/obj/item/device/uplink/hidden/hidden_uplink // All items can have an uplink hidden inside, just remember to add the triggers.
@@ -78,9 +81,12 @@
 	var/embed_mult = 0.5 //Multiplier for the chance of embedding in mobs. Set to zero to completely disable embedding
 	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
 	//Does not affect damage dealt to mobs
+	var/style = STYLE_NONE // how much using this item increases your style
 
 	var/list/item_upgrades = list()
 	var/max_upgrades = 3
+
+	var/can_use_lying = 0
 
 /obj/item/Initialize()
 	if(islist(armor))
@@ -208,6 +214,10 @@
 		unwield(user)
 	if(zoom)
 		zoom(user)
+	if(get_equip_slot() in unworn_slots)
+		SEND_SIGNAL(src, COMSIG_CLOTH_DROPPED, user)
+		if(user)
+			SEND_SIGNAL(user, COMSIG_CLOTH_DROPPED, src)
 
 
 //	Called before an item is picked up (loc is not yet changed)
@@ -384,7 +394,7 @@
 	//apply the blood-splatter overlay if it isn't already in there
 	if(!blood_DNA.len)
 		blood_overlay.color = blood_color
-		add_overlays(blood_overlay)
+		overlays += blood_overlay
 
 	//if this blood isn't already in the list, add it
 	if(istype(M))
@@ -420,6 +430,45 @@ var/global/list/items_blood_overlay_by_type = list()
 	var/obj/item/I = get_active_hand()
 	if(I && !I.abstract)
 		I.showoff(src)
+
+/mob/living/carbon/verb/spin_in_hand()
+	set name = "Spin Held Item"
+	set category = "Object"
+
+	var/obj/item/I = get_active_hand()
+	if (istype(I, /obj/item/grab)) // a grab signifies that it's another mob that should be spun
+		var/obj/item/grab/inhand_grab = I
+		var/mob/living/grabbed = inhand_grab.throw_held()
+		if (a_intent == I_HELP && inhand_grab.affecting.a_intent == I_HELP) // this doesn't use grabbed to allow passive twirl
+			visible_message(SPAN_NOTICE("[src] twirls [inhand_grab.affecting]."), SPAN_NOTICE("You twirl [inhand_grab.affecting]."))
+		else if (grabbed)
+			if (grabbed.stats.getPerk(PERK_ASS_OF_CONCRETE))
+				visible_message(SPAN_WARNING("[src] tries to pick up [grabbed], and fails!"))
+				if (ishuman(src))
+					var/mob/living/carbon/human/depleted = src
+					depleted.regen_slickness(-1) // unlucky and unobservant gets the penalty
+					return
+			else
+				visible_message(SPAN_WARNING("[src] picks up, spins, and drops [grabbed]."), SPAN_WARNING("You pick up, spin, and drop [grabbed]."))
+				grabbed.external_recoil(60)
+				grabbed.Weaken(1)
+				grabbed.resting = TRUE
+				grabbed.update_lying_buckled_and_verb_status()
+				unEquip(inhand_grab)
+		else
+			to_chat(src, SPAN_WARNING("You do not have a firm enough grip to forcibly spin [inhand_grab.affecting]."))
+
+	else if (I && !I.abstract && I.mob_can_unequip(src, get_active_hand_slot())) // being unable to unequip normally means
+		I.SpinAnimation(5,1) // that the item is stuck on or in, and so cannot spin
+		external_recoil(60)
+		visible_message("[src] spins [I.name] in \his hand.") // had to mess with the macros a bit to get
+		if (recoil > 60) // the text to work, which is why "a" is not included
+			visible_message(SPAN_WARNING("[I] flies out of [src]\'s hand!"))
+			unEquip(I)
+			return
+	if (ishuman(src))
+		var/mob/living/carbon/human/stylish = src
+		stylish.regen_slickness()
 
 /*
 For zooming with scope or binoculars. This is called from
@@ -535,3 +584,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/on_embed_removal(mob/living/user)
 	return
+
+/obj/item/proc/get_style()
+	return style

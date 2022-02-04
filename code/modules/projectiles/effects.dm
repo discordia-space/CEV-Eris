@@ -3,6 +3,7 @@
 	icon_state = "bolt"
 	layer = ABOVE_MOB_LAYER
 	var/lifetime = 3
+	mouse_opacity = 0
 
 /obj/effect/projectile/New(var/turf/location)
 	init_plane()
@@ -161,3 +162,16 @@
 
 /obj/effect/projectile/plasma/impact/heavy
 	icon_state = "impact_plasma_blue"
+
+//----------------------------
+// Cutter
+//----------------------------
+/obj/effect/projectile/laser/plasmacutter/tracer
+	icon_state = "plasmacutter"
+
+/obj/effect/projectile/laser/plasmacutter/impact
+	icon_state = "impact_plasmacutter"
+
+/obj/effect/projectile/laser/plasmacutter/muzzle
+	icon_state = "muzzle_plasmacutter"
+

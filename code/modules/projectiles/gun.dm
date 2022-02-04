@@ -1,7 +1,7 @@
 //Parent gun type. Guns are weapons that can be aimed at mobs and act over a distance
 /obj/item/gun
 	name = "gun"
-	desc = "It's a gun. It's pretty terrible, though."
+	desc = "A gun. It's pretty terrible, though."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "giskard_old"
 	item_state = "gun"
@@ -29,8 +29,10 @@
 	spawn_frequency = 10
 
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
+	var/style_damage_multiplier = 1 // multiplies style damage of projectiles fired from this gun
 	var/penetration_multiplier = 1 //Multiplies armor penetration of projectiles fired from this gun
 	var/pierce_multiplier = 0 //Additing wall penetration to projectiles fired from this gun
+	var/ricochet_multiplier = 1 //multiplier for how much projectiles fired from this gun can ricochet, modified by the bullet blender weapon mod
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
@@ -88,6 +90,21 @@
 	var/see_invisible_gun = -1
 	var/noricochet = FALSE // wether or not bullets fired from this gun can ricochet off of walls
 	var/inversed_carry = FALSE
+	var/wield_delay = 0 // Gun wielding delay , generally in seconds.
+	var/wield_delay_factor = 0 // A factor that characterizes weapon size , this makes it require more vig to insta-wield this weapon or less , values below 0 reduce the vig needed and above 1 increase it
+
+/obj/item/gun/wield(mob/user)
+	if(!wield_delay)
+		..()
+		return
+	var/calculated_delay = wield_delay
+	if(ishuman(user))
+		calculated_delay = wield_delay - (wield_delay * (user.stats.getStat(STAT_VIG) / (100 * (wield_delay_factor ? wield_delay_factor : 0.01)))) // wield delay - wield_delay * user vigilance / 100 * wield_factor
+	if (calculated_delay > 0 && do_after(user, calculated_delay, immobile = FALSE))
+		..()
+	else if (calculated_delay <= 0)
+		..()
+
 
 /obj/item/gun/attackby(obj/item/I, mob/living/user, params)
 	if(!istool(I) || user.a_intent != I_HURT)
@@ -157,7 +174,7 @@
 		wield_state = wielded_item_state
 	if(!(hands || back || onsuit))
 		hands = back = onsuit = TRUE
-	if(hands)//Ok this is a bit hacky. But basically if the gun is weilded, we want to use the wielded icon state over the other one.
+	if(hands)//Ok this is a bit hacky. But basically if the gun is wielded, we want to use the wielded icon state over the other one.
 		if(wield_state && wielded)//Because most of the time the "normal" icon state is held in one hand. This could be expanded to be less hacky in the future.
 			item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state
 			item_state_slots[slot_r_hand_str] = "righthand" + wield_state
@@ -176,7 +193,7 @@
 	if(onsuit && carry_state)
 		item_state_slots[slot_s_store_str]= "back"    + state
 
-/obj/item/gun/on_update_icon()
+/obj/item/gun/update_icon()
 	if(wielded_item_state)
 		if(icon_contained)//If it has it own icon file then we want to pull from that.
 			if(wielded)
@@ -327,6 +344,8 @@
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
 	for(var/i in 1 to burst)
+		if(user.resting)
+			break
 		var/obj/projectile = consume_next_projectile(user)
 		if(!projectile)
 			handle_click_empty(user)
@@ -337,6 +356,8 @@
 		projectile.multiply_projectile_penetration(penetration_multiplier + user.stats.getStat(STAT_VIG) * 0.02)
 
 		projectile.multiply_pierce_penetration(pierce_multiplier)
+
+		projectile.multiply_ricochet(ricochet_multiplier)
 
 		projectile.multiply_projectile_step_delay(proj_step_multiplier)
 
@@ -469,10 +490,7 @@
 
 	if(params)
 		P.set_clickpoint(params)
-	var/offset = init_offset
-	if(user.recoil)
-		offset += user.recoil
-	offset = min(offset, MAX_ACCURACY_OFFSET)
+	var/offset = user.calculate_offset(init_offset)
 	offset = rand(-offset, offset)
 
 	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
@@ -534,10 +552,7 @@
 	var/view_size = round(world.view + zoom_factor)
 
 	zoom(zoom_offset, view_size)
-	if(safety)
-		user.remove_cursor()
-	else
-		user.update_cursor()
+	check_safety_cursor(user)
 	update_hud_actions()
 
 /obj/item/gun/examine(mob/user)
@@ -556,7 +571,7 @@
 
 
 /obj/item/gun/proc/initialize_firemodes()
-	QDEL_CLEAR_LIST(firemodes)
+	QDEL_LIST(firemodes)
 
 	for(var/i in 1 to init_firemodes.len)
 		var/list/L = init_firemodes[i]
@@ -616,6 +631,16 @@
 	update_hud_actions()
 	return new_mode
 
+/// Set firemode , but without a refresh_upgrades at the start
+/obj/item/gun/proc/very_unsafe_set_firemode(index)
+	if(index > firemodes.len)
+		index = 1
+	var/datum/firemode/new_mode = firemodes[sel_mode]
+	new_mode.apply_to(src)
+	new_mode.update()
+	update_hud_actions()
+	return new_mode
+
 /obj/item/gun/attack_self(mob/user)
 	if(zoom)
 		toggle_scope(user)
@@ -639,10 +664,13 @@
 	//Update firemode when safeties are toggled
 	update_firemode()
 	update_hud_actions()
+	check_safety_cursor(user)
+	
+/obj/item/gun/proc/check_safety_cursor(mob/living/user)
 	if(safety)
 		user.remove_cursor()
 	else
-		user.update_cursor()
+		user.update_cursor(src)
 
 /obj/item/gun/proc/toggle_carry_state(mob/living/user)
 	inversed_carry = !inversed_carry
@@ -709,6 +737,7 @@
 	var/list/data = list()
 	data["damage_multiplier"] = damage_multiplier
 	data["pierce_multiplier"] = pierce_multiplier
+	data["ricochet_multiplier"] = ricochet_multiplier
 	data["penetration_multiplier"] = penetration_multiplier
 
 	data["fire_delay"] = fire_delay //time between shot, in ms
@@ -781,6 +810,7 @@
 	damage_multiplier = initial(damage_multiplier)
 	penetration_multiplier = initial(penetration_multiplier)
 	pierce_multiplier = initial(pierce_multiplier)
+	ricochet_multiplier = initial(ricochet_multiplier)
 	proj_step_multiplier = initial(proj_step_multiplier)
 	proj_agony_multiplier = initial(proj_agony_multiplier)
 	fire_delay = initial(fire_delay)
@@ -810,6 +840,9 @@
 	//Now lets have each upgrade reapply its modifications
 	SEND_SIGNAL(src, COMSIG_ADDVAL, src)
 	SEND_SIGNAL(src, COMSIG_APPVAL, src)
+
+	if(firemodes.len)
+		very_unsafe_set_firemode(sel_mode) // Reset the firemode so it gets the new changes
 
 	update_icon()
 	//then update any UIs with the new stats

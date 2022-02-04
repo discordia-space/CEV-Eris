@@ -85,7 +85,3 @@
 	unit_name = "rapid construction device"
 	export_types = list(/obj/item/rcd)
 
-/datum/export/rcd_ammo
-	cost = 300
-	unit_name = "compressed matter cardridge"
-	export_types = list(/obj/item/rcd_ammo)

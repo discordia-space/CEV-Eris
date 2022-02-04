@@ -21,11 +21,14 @@
 	reload_sound = 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
-	recoil_buildup = 1.9
+	recoil_buildup = 1.3 // Very rare LMG , should be decent
+	damage_multiplier = 1.3
 	one_hand_penalty = 30 //you're not Stallone. LMG level.
 	spawn_blacklisted = TRUE
 	rarity_value = 80
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/plasteel = 4)
+	wield_delay = 1 SECOND
+	wield_delay_factor = 0.9 // 90 vig for instant wield
 
 	init_firemodes = list(
 		FULL_AUTO_600,
@@ -64,7 +67,7 @@
 	.=..()
 	update_icon()
 
-/obj/item/gun/projectile/automatic/lmg/on_update_icon()
+/obj/item/gun/projectile/automatic/lmg/update_icon()
 	icon_state = "[icon_base][cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
 	set_item_state("-[cover_open ? "open" : null][ammo_magazine ?"mag":"nomag"]", hands = TRUE)
 	set_item_state("-[ammo_magazine ?"mag":"nomag"]", back = TRUE, onsuit = TRUE)
@@ -91,8 +94,18 @@
 	icon_state = "pkclosed-empty"
 	item_state = "pkclosedmag"
 	spawn_blacklisted = FALSE
+	gun_parts = list(/obj/item/part/gun/frame/pk = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
-/obj/item/gun/projectile/automatic/lmg/pk/on_update_icon()
+/obj/item/part/gun/frame/pk
+	name = "Pulemyot Kalashnikova frame"
+	desc = "A Pulemyot Kalashnikova LMG frame. A violent and beautiful spark of the past."
+	icon_state = "frame_pk"
+	result = /obj/item/gun/projectile/automatic/lmg/pk
+	grip = /obj/item/part/gun/grip/serb
+	mechanism = /obj/item/part/gun/mechanism/machinegun
+	barrel = /obj/item/part/gun/barrel/lrifle
+
+/obj/item/gun/projectile/automatic/lmg/pk/update_icon()
 	icon_state = "[icon_base][cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
 	set_item_state(ammo_magazine ? null : "-empty")
 	update_wear_icon()
@@ -109,4 +122,13 @@
 	penetration_multiplier = 1.1
 	recoil_buildup = 1.7
 	spawn_blacklisted = FALSE
+	gun_parts = list(/obj/item/part/gun/frame/tk = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
+/obj/item/part/gun/frame/tk
+	name = "Takeshi frame"
+	desc = "A Takeshi LMG frame. A fine-oiled machine of war and death."
+	icon_state = "frame_mg"
+	result = /obj/item/gun/projectile/automatic/lmg/tk
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/machinegun
+	barrel = /obj/item/part/gun/barrel/lrifle

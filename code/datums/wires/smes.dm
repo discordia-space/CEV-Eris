@@ -1,6 +1,13 @@
 /datum/wires/smes
 	holder_type = /obj/machinery/power/smes/buildable
 	wire_count = 5
+	descriptions = list(
+		new /datum/wire_description(SMES_WIRE_RCON, "Remote access"),
+		new /datum/wire_description(SMES_WIRE_INPUT, "Input"),
+		new /datum/wire_description(SMES_WIRE_OUTPUT, "Output"),
+		new /datum/wire_description(SMES_WIRE_GROUNDING, "Grounding"),
+		new /datum/wire_description(SMES_WIRE_FAILSAFES, "Failsafe")
+	)
 
 var/const/SMES_WIRE_RCON = 1		// Remote control (AI and consoles), cut to disable
 var/const/SMES_WIRE_INPUT = 2		// Input wire, cut to disable input, pulse to disable for 60s
@@ -16,9 +23,9 @@ var/const/SMES_WIRE_FAILSAFES = 16	// Cut to disable failsafes, mend to reenable
 	return 0
 
 
-/datum/wires/smes/GetInteractWindow()
+/datum/wires/smes/GetInteractWindow(mob/living/user)
 	var/obj/machinery/power/smes/buildable/S = holder
-	. += ..()
+	. += ..(user)
 	. += "The green light is [(S.input_cut || S.input_pulsed || S.output_cut || S.output_pulsed) ? "off" : "on"]<br>"
 	. += "The red light is [(S.safeties_enabled || S.grounding) ? "off" : "blinking"]<br>"
 	. += "The blue light is [S.RCon ? "on" : "off"]"

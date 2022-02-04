@@ -9,7 +9,7 @@
 
 		message = sanitize(message)
 
-		if (stat == DEAD)
+		if(stat == DEAD)
 			return say_dead(message)
 
 		if(copytext(message,1,2) == "*")

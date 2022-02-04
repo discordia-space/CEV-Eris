@@ -33,10 +33,12 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)
 
-	price_tag = 1700
+	price_tag = 1400
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	wield_delay = 0 // pistols don't get delays. X Doubt
+	gun_parts = list(/obj/item/part/gun/frame/molly = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
 
-/obj/item/gun/projectile/automatic/molly/on_update_icon()
+/obj/item/gun/projectile/automatic/molly/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -61,3 +63,12 @@
 /obj/item/gun/projectile/automatic/molly/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/part/gun/frame/molly
+	name = "Molly frame"
+	desc = "A Molly machine pistol frame. Toeing the line between pistol and SMG."
+	icon_state = "frame_autopistol"
+	result = /obj/item/gun/projectile/automatic/molly
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/pistol
+	barrel = /obj/item/part/gun/barrel/pistol

@@ -1,6 +1,6 @@
 /datum/trade_station/tb_cheapammofactory
 	spawn_always = TRUE
-	markup = 0.4
+	markup = COMMON_GOODS / 2
 	name_pool = list(
 		"ATB 'Zeus'" = "Ammunition Trade Beacon 'Zeus'\nCheap ammunition! Almost free! If we don't have it, that means it doesn't exists or it is illegal enough!",
 		"AFTB 'Hispa'" = "Ammunition Factory Trade Beacon 'Hispa'\nAll ammunition in existence is here! Buy all calibers, all types! We don't sell anything illegal and everything comes from us! Cheap as breathing!",
@@ -64,11 +64,11 @@
 			/obj/item/ammo_magazine/ammobox/lrifle_small/rubber
 		),
 		"Shotgun shells" = list(
-			/obj/item/storage/box/shotgunammo/slug,
-			/obj/item/storage/box/shotgunammo/buckshot,
-			/obj/item/storage/box/shotgunammo/beanbags,
-			/obj/item/storage/box/shotgunammo/blanks,
-			/obj/item/storage/box/shotgunammo/flashshells,
-			/obj/item/storage/box/shotgunammo/incendiaryshells
-		),
+			/obj/item/ammo_magazine/ammobox/shotgun,
+			/obj/item/ammo_magazine/ammobox/shotgun/buckshot,
+			/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
+			/obj/item/ammo_magazine/ammobox/shotgun/blanks,
+			/obj/item/ammo_magazine/ammobox/shotgun/flashshells,
+			/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells
+		)
 	)

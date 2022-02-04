@@ -25,8 +25,8 @@
 	if(process_list && process_list.len)
 		for(var/organ in process_list)
 			var/obj/item/organ/internal/I = organ
-			effective_efficiency += I.get_process_eficiency(process_define)
-		
+			effective_efficiency += I.get_process_efficiency(process_define)
+
 	return effective_efficiency ? effective_efficiency : 1
 
 /mob/living/carbon/human/get_specific_organ_efficiency(process_define, parent_organ_tag)
@@ -40,8 +40,8 @@
 		for(var/organ in parent_organ.internal_organs)
 			var/obj/item/organ/internal/I = organ
 			if(process_define in I.organ_efficiency)
-				effective_efficiency += I.get_process_eficiency(process_define)
-	
+				effective_efficiency += I.get_process_efficiency(process_define)
+
 	return effective_efficiency ? effective_efficiency : 1
 
 /mob/living/carbon/human/proc/eye_process()
@@ -157,7 +157,7 @@
 		eye_blurry = max(eye_blurry,6)
 		adjustOxyLoss(1)
 		if(prob(15))
-			Paralyse(rand(1,3))
+			Weaken(rand(1,3))
 			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
 
 	else if(blood_volume < blood_safe)
@@ -166,7 +166,7 @@
 		if(getOxyLoss() < 10)
 			adjustOxyLoss(1)
 
-	if(blood_volume > total_blood_req)	
+	if(blood_volume > total_blood_req)
 		status_flags &= ~BLEEDOUT
 
 	//Blood regeneration if there is some space

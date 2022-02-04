@@ -1,5 +1,5 @@
 
-#define isweakref(A) istype(A, /weakref)
+#define isweakref(D) (istype(D, /datum/weakref))
 
 #define islist(A) istype(A, /list)
 
@@ -38,6 +38,8 @@
 #define isanimal(A) istype(A, /mob/living/simple_animal)
 
 #define iscorgi(A) istype(A, /mob/living/simple_animal/corgi)
+
+#define iscat(A) istype(A, /mob/living/simple_animal/cat)
 
 #define ismouse(A) istype(A, /mob/living/simple_animal/mouse)
 
@@ -78,3 +80,15 @@
 #define isstructure(A) (istype(A, /obj/structure))
 
 #define ismachinery(A) (istype(A, /obj/machinery))
+
+#define isWrench(A) istype(A, /obj/item/tool/wrench)
+
+#define isWelder(A) istype(A, /obj/item/tool/weldingtool)
+
+#define isWirecutter(A) istype(A, /obj/item/tool/wirecutters)
+
+#define isScrewdriver(A) istype(A, /obj/item/tool/screwdriver)
+
+#define isMultitool(A) istype(A, /obj/item/tool/multitool)
+
+#define isCrowbar(A) istype(A, /obj/item/tool/crowbar)

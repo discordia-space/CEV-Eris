@@ -198,6 +198,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	reagent_type = "Organic/Stimulator"
+	withdrawal_threshold = 30
 
 /datum/reagent/adrenaline/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.SetParalysis(0)
@@ -251,7 +252,7 @@
 		if(istype(T, /turf/simulated/wall))
 			var/turf/simulated/wall/W = T
 			W.thermite = 1
-			W.add_overlays(image('icons/effects/effects.dmi',icon_state = "#673910"))
+			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
 			remove_self(5)
 	return TRUE
 
@@ -448,45 +449,6 @@
 /datum/reagent/other/luminol/touch_mob(mob/living/L)
 	L.reveal_blood()
 
-
-/datum/reagent/other/aranecolmin
-	name = "Aranecolmin"
-	id = "aranecolmin"
-	description = "Weak antitoxin used by warrior spiders. Speeds up metabolism immensely."
-	taste_description = "sludge"
-	reagent_state = LIQUID
-	color = "#acc107"
-	overdose = REAGENTS_OVERDOSE
-	addiction_chance = 10
-	nerve_system_accumulations = 5
-
-/datum/reagent/other/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_ANTITOX, 0.3)
-	if(M.bloodstr)
-		for(var/current in M.bloodstr.reagent_list)
-			var/datum/reagent/toxin/pararein/R = current
-			if(istype(R))
-				R.metabolism = initial(R.metabolism) * 3
-
-/datum/reagent/other/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_ANTITOX, 0.3)
-	if(M.bloodstr)
-		for(var/current in M.bloodstr.reagent_list)
-			var/datum/reagent/toxin/pararein/R = current
-			if(istype(R))
-				R.metabolism = initial(R.metabolism) * 3
-				break
-
-/datum/reagent/other/aranecolmin/on_mob_delete(mob/living/carbon/M)
-	..()
-	if(istype(M))
-		if(M.bloodstr)
-			for(var/current in M.bloodstr.reagent_list)
-				var/datum/reagent/toxin/pararein/R = current
-				if(istype(R))
-					R.metabolism = initial(R.metabolism)
-					break
-
 /datum/reagent/other/arectine
 	name = "Arectine"
 	id = "arectine"
@@ -538,6 +500,7 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = TRUE
 	affects_dead = TRUE
+	reagent_type = "Medicine"
 
 /datum/reagent/resuscitator/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 
@@ -559,3 +522,25 @@
 		var/obj/item/organ/internal/heart/heart = H.random_organ_by_process(OP_HEART)
 		if(heart)
 			heart.die()
+
+/datum/reagent/oddity_tea
+	name = "tea"
+	id = "oddity_tea"
+	description = "Unusually refreshing tea."
+	taste_description = "refreshing tea"
+	reagent_state = LIQUID
+	color = "#cf820f"
+	metabolism = REM * 0.2
+	nerve_system_accumulations = 20
+	sanity_gain_ingest = 0.5	
+	taste_tag = list(TASTE_LIGHT)
+	glass_icon_state = "teaglass"
+	glass_name = "odd tea"
+	glass_desc = "Tea of unrecognizable type. There is tiny golden bits floating in it."
+	appear_in_default_catalog = FALSE
+	reagent_type = "Drink"
+
+/datum/reagent/oddity_tea/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
+	M.add_chemical_effect(CE_SPEEDBOOST, 0.3)
+	M.add_chemical_effect(CE_PULSE, 1.5)

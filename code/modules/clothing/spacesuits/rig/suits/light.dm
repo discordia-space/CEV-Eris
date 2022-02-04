@@ -14,6 +14,7 @@
 	)
 	emp_protection = 10
 	slowdown = 0
+	obscuration = 0
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | DRAG_AND_DROP_UNEQUIP | EQUIP_SOUNDS
 	offline_slowdown = 0
 	offline_vision_restriction = 0
@@ -103,7 +104,7 @@
 	initial_modules = list(
 		/obj/item/rig_module/teleporter,
 		/obj/item/rig_module/stealth_field,
-		/obj/item/rig_module/mounted/energy_blade,
+		/obj/item/rig_module/held/energy_blade,
 		/obj/item/rig_module/vision,
 		/obj/item/rig_module/voice,
 		/obj/item/rig_module/fabricator/energy_net,

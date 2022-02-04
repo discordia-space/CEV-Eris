@@ -1,15 +1,21 @@
-/datum/wires/apc
-	holder_type = /obj/machinery/power/apc
-	wire_count = 4
-
 #define APC_WIRE_IDSCAN 1
 #define APC_WIRE_MAIN_POWER1 2
 #define APC_WIRE_MAIN_POWER2 4
 #define APC_WIRE_AI_CONTROL 8
 
-/datum/wires/apc/GetInteractWindow()
+/datum/wires/apc
+	holder_type = /obj/machinery/power/apc
+	wire_count = 4
+	descriptions = list(
+		new /datum/wire_description(APC_WIRE_IDSCAN, "ID scanner"),
+		new /datum/wire_description(APC_WIRE_MAIN_POWER1, "Main power"),
+		new /datum/wire_description(APC_WIRE_MAIN_POWER2, "Backup power"),
+		new /datum/wire_description(APC_WIRE_AI_CONTROL, "Remote access")
+	)
+
+/datum/wires/apc/GetInteractWindow(mob/living/user)
 	var/obj/machinery/power/apc/A = holder
-	. += ..()
+	. += ..(user)
 	. += text("<br>\n[(A.locked ? "The APC is locked." : "The APC is unlocked.")]<br>\n[(A.shorted ? "The APCs power has been shorted." : "The APC is working properly!")]<br>\n[(A.aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
 
 

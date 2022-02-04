@@ -58,8 +58,9 @@
 	item_state = "retro"
 	desc = "A One Star cheaply produced laser gun. In the distant past - this was the main weapon of low-rank police forces, billions of copies of this gun were made. They are ubiquitous."
 	fire_sound = 'sound/weapons/Laser.ogg'
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEM_SIZE_NORMAL
+	force = WEAPON_FORCE_PAINFUL
 	can_dual = TRUE
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 15, MATERIAL_GLASS = 5)
 	projectile_type = /obj/item/projectile/beam
@@ -67,12 +68,34 @@
 	zoom_factor = 0
 	damage_multiplier = 1
 	charge_cost = 100
-	price_tag = 2000
+	price_tag = 750
 	init_firemodes = list(
 		WEAPON_NORMAL,
-		BURST_2_ROUND
+		BURST_2_BEAM
 	)
 	twohanded = TRUE
+	saw_off = TRUE
+	sawn = /obj/item/gun/energy/retro/sawn
+
+/obj/item/gun/energy/retro/sawn
+	name = "sawn down OS LG \"Cog\""
+	icon = 'icons/obj/guns/energy/obrez_retro.dmi'
+	desc = "A modified One Star cheaply produced laser gun. \
+		 In the distant past - this was the main weapon of low-rank police forces, and thus widely used by criminals."
+	icon_state = "shorty"
+	item_state = "shorty"
+	slot_flags = SLOT_BACK|SLOT_HOLSTER
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 10, MATERIAL_GLASS = 5)
+	damage_multiplier = 0.8
+	penetration_multiplier = 0.8
+	charge_cost = 125
+	price_tag = 400
+	init_firemodes = list(
+		WEAPON_NORMAL
+	)
+	twohanded = FALSE
+	saw_off = FALSE
+	spawn_blacklisted = TRUE
 
 /obj/item/gun/energy/captain
 	name = "NT LG \"Destiny\""
@@ -143,7 +166,7 @@
 	projectile_type = /obj/item/projectile/beam/psychic
 	icon_contained = TRUE
 	spawn_blacklisted = TRUE
-	var/traitor = FALSE //Check if it's a traitor psychic weapon
+	var/contractor = FALSE //Check if it's a contractor psychic weapon
 	var/datum/mind/owner
 	var/list/victims = list()
 	var/datum/antag_contract/derail/contract
@@ -151,11 +174,11 @@
 
 /obj/item/gun/energy/psychic/Initialize()
 	..()
-	if(traitor)
+	if(contractor)
 		START_PROCESSING(SSobj, src)
 
 /obj/item/gun/energy/psychic/Destroy()
-	if(traitor)
+	if(contractor)
 		STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -217,7 +240,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_NORMAL
 	slot_flags = SLOT_BELT|SLOT_BACK
-	traitor = TRUE
+	contractor = TRUE
 	pierce_multiplier = 2
 	zoom_factor = 0
 	damage_multiplier = 1
@@ -263,4 +286,4 @@
 	init_firemodes = list(
 		WEAPON_NORMAL
 	)
-	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_GUN_HANDMADE

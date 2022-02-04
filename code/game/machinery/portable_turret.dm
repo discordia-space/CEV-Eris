@@ -162,7 +162,7 @@
 
 var/list/turret_icons
 
-/obj/machinery/porta_turret/on_update_icon()
+/obj/machinery/porta_turret/update_icon()
 	if(!turret_icons)
 		turret_icons = list()
 		turret_icons["open"] = image(icon, "openTurretCover")
@@ -286,7 +286,7 @@ var/list/turret_icons
 
 	var/obj/item/card/id/ID = I.GetIdCard()
 
-	if (user.a_intent != I_HURT)
+	if (user.a_intent == I_HELP)
 		if(stat & BROKEN)
 			if(QUALITY_PRYING in I.tool_qualities)
 				//If the turret is destroyed, you can remove it with a crowbar to
@@ -305,6 +305,7 @@ var/list/turret_icons
 					else
 						to_chat(user, SPAN_NOTICE("You remove the turret but did not manage to salvage anything."))
 					qdel(src) // qdel
+			return 1 //No whacking the turret with tools on help intent
 
 		else if(QUALITY_BOLT_TURNING in I.tool_qualities)
 			if(enabled)
@@ -346,6 +347,7 @@ var/list/turret_icons
 					to_chat(user, SPAN_NOTICE("You unsecure the exterior bolts on the turret."))
 					update_icon()
 			wrenching = 0
+			return 1 //No whacking the turret with tools on help intent
 
 		else if(istype(I, /obj/item/card/id)||istype(I, /obj/item/modular_computer))
 			if(allowed(user))
@@ -357,6 +359,7 @@ var/list/turret_icons
 				to_chat(user, SPAN_NOTICE("You transfer the card's ID code to the turret's list of targetting exceptions."))
 			else
 				to_chat(user, SPAN_NOTICE("Access denied."))
+			return 1 //No whacking the turret with tools on help intent
 
 		else if(QUALITY_PULSING in I.tool_qualities)
 			if(debugopen)
@@ -386,7 +389,7 @@ var/list/turret_icons
 						hackfail = 0
 					else
 						to_chat(user, SPAN_WARNING("You fail to hack the ID reader, but avoid tripping the security protocol."))
-
+			return 1 //No whacking the turret with tools on help intent
 
 		else if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_HARD,  required_stat = STAT_MEC))
@@ -397,6 +400,7 @@ var/list/turret_icons
 					debugopen = 1
 					to_chat(user, SPAN_NOTICE("You gently unscrew the seconday maintenance hatch, gaining access to the turret's internal circuitry and debug functions."))
 					desc = "A hatch on the bottom of the access panel is opened, exposing the circuitry inside."
+			return 1 //No whacking the turret with tools on help intent
 
 		else if((QUALITY_WIRE_CUTTING in I.tool_qualities) && (debugopen))
 			if(overridden)
@@ -417,6 +421,7 @@ var/list/turret_icons
 						hackfail = 1
 						sleep(300)
 						hackfail = 0
+			return 1 //No whacking the turret with tools on help intent
 
 	if (!(I.flags & NOBLUDGEON) && I.force && !(stat & BROKEN))
 		//if the turret was attacked with the intention of harming it:
@@ -446,7 +451,7 @@ var/list/turret_icons
 		iconholder = 1
 		controllock = 1
 		enabled = 0 //turns off the turret temporarily
-		sleep(60) //6 seconds for the traitor to gtfo of the area before the turret decides to ruin his shit
+		sleep(60) //6 seconds for the contractor to gtfo of the area before the turret decides to ruin his shit
 		enabled = 1 //turns it back on. The cover popUp() popDown() are automatically called in process(), no need to define it here
 		return 1
 
@@ -470,6 +475,8 @@ var/list/turret_icons
 	var/damage = Proj.get_structure_damage()
 
 	if(!damage)
+		if(istype(Proj, /obj/item/projectile/ion))
+			Proj.on_hit(loc)
 		return
 
 	if(enabled)
@@ -648,7 +655,7 @@ var/list/turret_icons
 
 	var/atom/flick_holder = new /atom/movable/porta_turret_cover(loc)
 	flick_holder.layer = layer + 0.1
-	FLICK("popup", flick_holder)
+	flick("popup", flick_holder)
 	sleep(10)
 	qdel(flick_holder)
 
@@ -668,7 +675,7 @@ var/list/turret_icons
 
 	var/atom/flick_holder = new /atom/movable/porta_turret_cover(loc)
 	flick_holder.layer = layer + 0.1
-	FLICK("popdown", flick_holder)
+	flick("popdown", flick_holder)
 	sleep(10)
 	qdel(flick_holder)
 

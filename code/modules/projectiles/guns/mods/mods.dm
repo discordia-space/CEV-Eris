@@ -49,6 +49,25 @@
 	I.gun_loc_tag = GUN_BARREL
 	I.req_gun_tags = list(GUN_PROJECTILE)
 
+/obj/item/gun_upgrade/barrel/blender
+	name = "OR \"Bullet Blender\" barrel"
+	desc = "A curious-looking barrel bearing the Oberth insignia. A small label reads \"No refunds for any collateral damage caused\"."
+	icon_state = "Penetrator"
+	rarity_value = 30
+
+/obj/item/gun_upgrade/barrel/blender/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_PEN_MULT = 0.2,
+		GUN_UPGRADE_PIERC_MULT = 3,
+		GUN_UPGRADE_RICO_MULT = 5,
+		GUN_UPGRADE_STEPDELAY_MULT = 0.6,
+		GUN_UPGRADE_RECOIL = 1.4
+		)
+	I.gun_loc_tag = GUN_BARREL
+	I.req_gun_tags = list(GUN_PROJECTILE)
+
 //For energy weapons, increases the damage output, but also the charge cost. Acquired through loot spawns or Eye of the Protector.
 /obj/item/gun_upgrade/barrel/excruciator
 	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
@@ -177,7 +196,7 @@
 //Lets the SOL be made into a fully automatic weapon, but increases recoil. Acquirable through Frozen Star Guns&Ammo Vendor
 /obj/item/gun_upgrade/mechanism/weintraub
 	name = "Frozen Star \"Weintraub\" full auto kit"
-	desc = "A fully automatic receiver for the .25 \"Sol\"."
+	desc = "A fully automatic receiver for rifles"
 	icon_state = "Weintraub"
 	rarity_value = 30
 
@@ -188,7 +207,7 @@
 		GUN_UPGRADE_FULLAUTO = TRUE,
 		GUN_UPGRADE_RECOIL = 1.2
 	)
-	I.req_gun_tags = list(GUN_SOL)
+	I.req_gun_tags = list(GUN_FA_MODDABLE)
 	I.gun_loc_tag = GUN_MECHANISM
 
 //Causes your weapon to shoot you in the face, then explode. Acquired through uplink
@@ -406,7 +425,87 @@
 	I.gun_loc_tag = GUN_SCOPE
 	I.removable = FALSE
 
+/obj/item/gun_upgrade/trigger/better
+	name = "Refined trigger"
+	desc = "This trigger seems to be made of durable alloys and cut to the precision of milimeters."
+	spawn_blacklisted = TRUE
+	price_tag = 100
+
+/obj/item/gun_upgrade/trigger/better/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_FIRE_DELAY = 0.7
+	)
+	I.destroy_on_removal = TRUE
+	I.gun_loc_tag = GUN_TRIGGER
+
+/obj/item/gun_upgrade/barrel/better
+	name = "High-temperature forged barrel"
+	desc = "A barrel forged in high temperature, making the metal more resistant."
+	spawn_blacklisted = TRUE
+	price_tag = 150
+
+/obj/item/gun_upgrade/barrel/better/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_FIRE_DELAY = 0.7
+	)
+	I.destroy_on_removal = TRUE
+	I.gun_loc_tag = GUN_BARREL
+
+/obj/item/gun_upgrade/muzzle/better
+	name = "Resonance muzzle"
+	desc = "A high tech muzzle, made to resonate at the same frequency as the sound that comes from the gun."
+	spawn_blacklisted = TRUE
+	price_tag = 150
+
+/obj/item/gun_upgrade/muzzle/better/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_SILENCER = TRUE,
+		GUN_UPGRADE_STEPDELAY_MULT = 0.9
+	)
+	I.destroy_on_removal = TRUE
+	I.gun_loc_tag = GUN_MUZZLE
+
+/obj/item/gun_upgrade/mechanism/better
+	name = "Hydraulic mechanism"
+	desc = "A high tech mechanism that uses hydraulic pumps to keep recoil at a minimum."
+	spawn_blacklisted = TRUE
+	price_tag = 300
+
+/obj/item/gun_upgrade/mechanism/better/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_RECOIL = 0.8,
+	)
+	I.destroy_on_removal = TRUE
+	I.gun_loc_tag = GUN_MECHANISM
+
+/obj/item/gun_upgrade/scope/better
+	name = "High-res scope"
+	desc = "A high resolution scope"
+	spawn_blacklisted = TRUE
+	price_tag = 100
+
+/obj/item/gun_upgrade/scope/better/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_ZOOM = 2,
+	)
+	I.destroy_on_removal = TRUE
+	I.gun_loc_tag = GUN_SCOPE
+
+
 #define TRASH_GUNMODS list(/obj/item/gun_upgrade/trigger/faulty, /obj/item/gun_upgrade/barrel/faulty, \
 		/obj/item/gun_upgrade/muzzle/faulty, /obj/item/gun_upgrade/mechanism/faulty, \
 		/obj/item/gun_upgrade/scope/faulty)
+
+#define GREAT_GUNMODS list(/obj/item/gun_upgrade/trigger/better, /obj/item/gun_upgrade/barrel/better, \
+	/obj/item/gun_upgrade/muzzle/better, /obj/item/gun_upgrade/mechanism/better, /obj/item/gun_upgrade/scope/better)
 

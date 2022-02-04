@@ -14,7 +14,7 @@
  */
 /obj/structure/closet/emcloset
 	name = "emergency closet"
-	desc = "It's a storage unit for emergency breathmasks and o2 tanks."
+	desc = "A storage unit for emergency breathmasks and o2 tanks."
 	icon_state = "emergency"
 	rarity_value = 3
 	spawn_tags = SPAWN_TAG_CLOSET_TECHNICAL
@@ -59,7 +59,7 @@
  */
 /obj/structure/closet/firecloset
 	name = "fire-safety closet"
-	desc = "It's a storage unit for fire-fighting supplies."
+	desc = "A storage unit for fire-fighting supplies."
 	icon_state = "fire"
 	rarity_value = 1.5
 	spawn_tags = SPAWN_TAG_CLOSET_TECHNICAL
@@ -80,7 +80,7 @@
  */
 /obj/structure/closet/toolcloset
 	name = "tool closet"
-	desc = "It's a storage unit for tools."
+	desc = "A storage unit for tools."
 	icon_state = "eng"
 	icon_door = "eng_tool"
 	rarity_value = 1.5
@@ -121,6 +121,8 @@
 		new /obj/item/storage/pouch/engineering_tools(src)
 	if(prob(1))
 		new /obj/item/storage/pouch/engineering_supply(src)
+	if(prob(1))
+		new /obj/item/storage/pouch/engineering_material(src)
 	if(prob(40))
 		new /obj/item/clothing/head/hardhat(src)
 	new /obj/spawner/tool_upgrade(src)
@@ -132,7 +134,7 @@
  */
 /obj/structure/closet/radiation
 	name = "radiation suit closet"
-	desc = "It's a storage unit for rad-protective suits."
+	desc = "A storage unit for rad-protective suits."
 	icon_state = "eng"
 	icon_door = "eng_rad"
 
@@ -147,7 +149,7 @@
  */
 /obj/structure/closet/bombcloset
 	name = "\improper EOD closet"
-	desc = "It's a storage unit for explosion-protective space suits."
+	desc = "A storage unit for explosion-protective space suits."
 	icon_state = "bomb"
 	rarity_value = 14.28
 	spawn_tags = SPAWN_TAG_CLOSET_BOMB
@@ -163,10 +165,10 @@
 	rarity_value = 50
 
 /obj/structure/closet/bombcloset/security/populate_contents()
-	new /obj/item/clothing/suit/space/bomb/security(src)
+	new /obj/item/clothing/suit/space/bomb(src)
 	new /obj/item/clothing/under/rank/security(src)
 	new /obj/item/clothing/shoes/color/brown(src)
-	new /obj/item/clothing/head/space/bomb/security(src)
+	new /obj/item/clothing/head/space/bomb(src)
 
 /obj/structure/closet/self_pacification
 	name = "\improper Anti-Depressive Self-Pacification Treatment Utility closet"

@@ -13,7 +13,7 @@
 	label_icon_state = "label_bottle"
 	lid_icon_state = "lid_bottle"
 
-/obj/item/reagent_containers/glass/bottle/on_update_icon()
+/obj/item/reagent_containers/glass/bottle/update_icon()
 	cut_overlays()
 
 	if(reagents?.total_volume)
@@ -103,6 +103,77 @@
 	icon_state = "bottle"
 	preloaded_reagents = list("frostoil" = 60)
 
+// === Used by trade stations
+/obj/item/reagent_containers/glass/bottle/carpotoxin
+	name = "carpotoxin bottle"
+	desc = "A small bottle. Contains carpotoxin."
+	icon_state = "bottle"
+	preloaded_reagents = list("carpotoxin" = 60)
+	spawn_blacklisted = TRUE	// These were made for the trade program. Blacklisting until otherwise to prevent unintended consequences.
+
+/obj/item/reagent_containers/glass/bottle/pararein
+	name = "pararein bottle"
+	desc = "A small bottle. Contains pararein."
+	icon_state = "bottle"
+	preloaded_reagents = list("pararein" = 60)
+	spawn_blacklisted = TRUE
+
+/obj/item/reagent_containers/glass/bottle/aranecolmin
+	name = "aranecolmin bottle"
+	desc = "A small bottle. Contains aranecolmin."
+	icon_state = "bottle"
+	preloaded_reagents = list("aranecolmin" = 60)
+	spawn_blacklisted = TRUE
+
+/obj/item/reagent_containers/glass/bottle/blattedin
+	name = "blattedin bottle"
+	desc = "A small bottle. Contains blattedin."
+	icon_state = "bottle"
+	preloaded_reagents = list("blattedin" = 60)
+	spawn_blacklisted = TRUE
+
+/obj/item/reagent_containers/glass/bottle/diplopterum
+	name = "diplopterum bottle"
+	desc = "A small bottle. Contains diplopterum."
+	icon_state = "bottle"
+	preloaded_reagents = list("diplopterum" = 60)
+	spawn_blacklisted = TRUE
+
+/obj/item/reagent_containers/glass/bottle/seligitillin
+	name = "seligitillin bottle"
+	desc = "A small bottle. Contains seligitillin."
+	icon_state = "bottle"
+	preloaded_reagents = list("seligitillin" = 60)
+	spawn_blacklisted = TRUE
+
+/obj/item/reagent_containers/glass/bottle/starkellin
+	name = "starkellin bottle"
+	desc = "A small bottle. Contains starkellin."
+	icon_state = "bottle"
+	preloaded_reagents = list("starkellin" = 60)
+	spawn_blacklisted = TRUE
+
+/obj/item/reagent_containers/glass/bottle/gewaltine
+	name = "gewaltine bottle"
+	desc = "A small bottle. Contains gewaltine."
+	icon_state = "bottle"
+	preloaded_reagents = list("gewaltine" = 60)
+	spawn_blacklisted = TRUE
+
+/obj/item/reagent_containers/glass/bottle/fuhrerole
+	name = "fuhrerole bottle"
+	desc = "A small bottle. Contains fuhrerole."
+	icon_state = "bottle"
+	preloaded_reagents = list("fuhrerole" = 60)
+	spawn_blacklisted = TRUE
+
+/obj/item/reagent_containers/glass/bottle/kaiseraurum
+	name = "kaiseraurum bottle"
+	desc = "A small bottle. Contains kaiseraurum."
+	icon_state = "bottle"
+	preloaded_reagents = list("kaiseraurum" = 60)
+	spawn_blacklisted = TRUE
+// ===
 
 /obj/item/reagent_containers/glass/bottle/adminordrazine
 	name = "adminordrazine bottle"

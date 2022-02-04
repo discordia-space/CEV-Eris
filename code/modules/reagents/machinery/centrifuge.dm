@@ -32,10 +32,10 @@
 
 /obj/machinery/centrifuge/Destroy()
 	QDEL_NULL(mainBeaker)
-	QDEL_NULL_LIST(separationBeakers)
+	QDEL_LIST(separationBeakers)
 	return ..()
 
-/obj/machinery/centrifuge/on_update_icon()
+/obj/machinery/centrifuge/update_icon()
 	if(stat & BROKEN)
 		icon_state = "[initial(icon_state)]_broken"
 		return
@@ -229,6 +229,7 @@
 	icon_state = "centrifuge_makeshift"
 	matter = list(MATERIAL_STEEL = 4)
 	rarity_value = 50
+	spawn_tags = SPAWN_TAG_JUNKTOOL
 	var/obj/item/reagent_containers/mainBeaker
 	var/list/obj/item/reagent_containers/separationBeakers = list()
 	var/beakerSlots = 2
@@ -237,7 +238,7 @@
 
 /obj/item/device/makeshift_centrifuge/Destroy()
 	QDEL_NULL(mainBeaker)
-	QDEL_NULL_LIST(separationBeakers)
+	QDEL_LIST(separationBeakers)
 	return ..()
 
 /obj/item/device/makeshift_centrifuge/attack_self(mob/user)
