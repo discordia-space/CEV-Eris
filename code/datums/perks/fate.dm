@@ -67,49 +67,51 @@
 	name = "Drug Addict"
 	icon_state = "medicine" //https://game-icons.net/1x1/delapouite/medicines.html
 	desc = "For reasons you cannot remember, you decided to resort to major drug use. You have lost the battle, and now you suffer the consequences. \
-			You start with an addiction to a random drug, as well as a bottle of pills containing the drug."
+			You start with a permanent addiction to a random stimulator, as well as a bottle of pills containing the drug. \
+			Beware, if you get addicted to another stimulant, you will not get rid of the addiction."
 
 /datum/perk/fate/drug_addict/assign(mob/living/carbon/human/H)
 	..()
 	spawn(1)
 		var/turf/T = get_turf(holder)
-		var/drugtype = pick(subtypesof(/datum/reagent/drug))
+		var/drugtype = pick(subtypesof(/datum/reagent/stim))
 		if(!(drugtype in holder.metabolism_effects.addiction_list))
 			var/datum/reagent/drug = new drugtype
 			holder.metabolism_effects.addiction_list.Add(drug)
-			for(var/j= 1 to 2)
-				var/obj/item/storage/pill_bottle/PB = new /obj/item/storage/pill_bottle(T)
-				PB.name = "bottle of happiness"
-				for(var/i=1 to 7)
-					var/obj/item/reagent_containers/pill/pill = new /obj/item/reagent_containers/pill(T)
-					pill.reagents.add_reagent(drug.id, pill.volume)
-					pill.name = "happy pill"
-					PB.handle_item_insertion(pill)
-				holder.equip_to_storage_or_drop(PB)
+			var/obj/item/storage/pill_bottle/PB = new /obj/item/storage/pill_bottle(T)
+			PB.name = "[drug] (15 units)"
+			for(var/i=1 to 12)
+				var/obj/item/reagent_containers/pill/pill = new /obj/item/reagent_containers/pill(T)
+				pill.reagents.add_reagent(drug.id, 15)
+				pill.name = "[drug]"
+				PB.handle_item_insertion(pill)
+			holder.equip_to_storage_or_drop(PB)
 
 /datum/perk/fate/alcoholic
 	name = "Alcoholic"
 	icon_state = "beer" //https://game-icons.net/1x1/delapouite/beer-bottle.html
 	desc = "You imagined the egress from all your trouble and pain at the bottom of the bottle, but the way only led to a labyrinth. \
-			You have an alcohol addiction, which gives you a boost to robustness while under the influence and lowers your cognition permanently."
+			You never stopped from coming back to it, trying again and again, poisoning your mind until you lost control. Now your face bears witness to your self-destruction. \
+			There is only one key to survival, and it is the liquid that has shown you the way down. \
+			You have a permanent alcohol addiction, which gives you a boost to combat stats while under the influence and lowers your cognition permanently."
 
 /datum/perk/fate/alcoholic/assign(mob/living/carbon/human/H)
 	..()
-	var/ethanoltype = pick(subtypesof(/datum/reagent/alcohol))
-	if(!(ethanoltype in holder.metabolism_effects.addiction_list))
-		var/datum/reagent/alcohol = new ethanoltype
-		holder.metabolism_effects.addiction_list.Add(alcohol)
+	if(!(/datum/reagent/ethanol in holder.metabolism_effects.addiction_list))
+		var/datum/reagent/R = new /datum/reagent/ethanol
+		holder.metabolism_effects.addiction_list.Add(R)
 
 /datum/perk/fate/alcoholic_active
-	name = "Alcoholic (active)"
-	icon_state = "drinking" //https://game-icons.net/1x1/delapouite/drinking.html
+	name = "Alcoholic - active"
+	icon_state = "drinking" //https://game-icons.net
+	desc = "Combat stats increased."
 
 /datum/perk/fate/alcoholic_active/assign(mob/living/carbon/human/H)
 	..()
 	if(holder)
-		holder.stats.addTempStat(STAT_ROB, 10, INFINITY, "Fate Alcoholic")
-		holder.stats.addTempStat(STAT_TGH, 10, INFINITY, "Fate Alcoholic")
-		holder.stats.addTempStat(STAT_VIG, 10, INFINITY, "Fate Alcoholic")
+		holder.stats.addTempStat(STAT_ROB, 15, INFINITY, "Fate Alcoholic")
+		holder.stats.addTempStat(STAT_TGH, 15, INFINITY, "Fate Alcoholic")
+		holder.stats.addTempStat(STAT_VIG, 15, INFINITY, "Fate Alcoholic")
 
 /datum/perk/fate/alcoholic_active/remove()
 	if(holder)
