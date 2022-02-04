@@ -110,7 +110,7 @@
 	caliber = CAL_SRIFLE
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 50
-	ammo_states = list(50)
+	ammo_states = list(60)
 
 /obj/item/ammo_magazine/ammobox/srifle_small/practice
 	ammo_type = /obj/item/ammo_casing/srifle/practice
