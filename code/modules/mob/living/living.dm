@@ -633,6 +633,9 @@ default behaviour is:
 		var/_dir = C.true_dir
 		if(ishuman(src) && !weakened && (dir))// If true_dir = 0(src isn't moving), doesn't proc.
 			var/mob/living/carbon/human/H = src
+			var/range = 1 //checks for move intent; dive one tile further if on run intent
+			if (move_intent.flags & MOVE_INTENT_EXERTIVE)
+				range += 1
 			livmomentum = 5 // Set momentum value as soon as possible for stopSliding to work better
 			to_chat(H, SPAN_NOTICE("You dive onwards!"))
 			pass_flags += PASSTABLE // Jump over them!
@@ -640,7 +643,7 @@ default behaviour is:
 			var/is_jump = FALSE
 			if(istype(get_step(H, _dir), /turf/simulated/open))
 				is_jump = TRUE
-			H.throw_at(get_edge_target_turf(H, _dir), 2 + is_jump, 1)// "Diving"; if you dive over a table, your momentum is set to 0. If you dive over space, you are thrown a tile further.
+			H.throw_at(get_edge_target_turf(H, _dir), range + is_jump), 1)// "Diving"; if you dive over a table, your momentum is set to 0. If you dive over space, you are thrown a tile further.
 			update_lying_buckled_and_verb_status()
 			pass_flags -= PASSTABLE // Jumpn't over them anymore!
 			H.allow_spin = TRUE
