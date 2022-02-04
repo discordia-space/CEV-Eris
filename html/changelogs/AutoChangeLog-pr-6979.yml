@@ -1,0 +1,6 @@
+author: Chickenish
+delete-after: true
+changes:
+  - bugfix: Rejuv now removes modifiers from tools and guns instead of invisibly keeping
+      them
+  - bugfix: Artwork Revolvers now interact with modifiers properly
