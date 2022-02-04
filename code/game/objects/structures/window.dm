@@ -289,6 +289,16 @@
 		M.Weaken(1)
 	M.damage_through_armor(rand(7,10), BRUTE, body_part, ARMOR_MELEE)
 
+	var/tforce = (M.stats.getPerk(PERK_ASS_OF_CONCRETE) ? 60 : 15)
+	if(reinf) tforce *= 0.25
+	if(health - tforce <= 7 && !reinf)
+		set_anchored(FALSE)
+		step(src, direction)
+		if(M.stats.getPerk(PERK_ASS_OF_CONCRETE)) //if your ass is heavy and the window is not reinforced, you are moved on the tile where it was
+			M.forceMove(get_step(M.loc, direction), direction)
+	hit(tforce)
+	mount_check()
+
 /obj/structure/window/attackby(obj/item/I, mob/user)
 
 	var/list/usable_qualities = list()
