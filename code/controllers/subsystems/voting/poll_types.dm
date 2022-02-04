@@ -239,7 +239,7 @@
 	time = 120
 	minimum_win_percentage = 0.75 //High % needed for something that alters the whole round
 	cooldown = 30 MINUTES
-	next_vote = 90 MINUTES //Same lenght as bluspace jump
+	next_vote = 90 MINUTES //Same lenght as bluespace jump
 	choice_types = list(/datum/vote_choice/yes_chaos_level, /datum/vote_choice/no_chaos_level)
 	only_admin = FALSE
 	can_revote = TRUE
