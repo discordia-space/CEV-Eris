@@ -43,13 +43,23 @@
 	else
 		return candidates_list(role_id)
 
-/datum/storyevent/roleset/proc/candidates_list(var/antag, var/report)
+/datum/storyevent/roleset/proc/candidates_list(var/antag, var/report, var/act_test = TRUE)
 	var/datum/antagonist/temp = GLOB.all_antag_types[antag]
 	if(!istype(temp))
-		if (report) to_chat(report, SPAN_NOTICE("Failure: Unable to locate antag datum: -[temp]-[temp.type]- for antag [antag]"))
-		return list()
+		if(report)
+			to_chat(report, SPAN_NOTICE("Failure: Unable to locate antag datum: -[temp]-[temp.type]- for antag [antag]"))
+			return list()
+
 	var/list/candidates = list()
+	var/agree_time_out = FALSE
+	var/any_candidates = FALSE
+
 	for(var/datum/mind/candidate in SSticker.minds)
+		if((candidate.key in request_log))
+			var/last_request = request_log[candidate.key]
+			if ((world.time - last_request) < request_timeout)
+				if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] was already asked too recently"))
+				continue
 		if(!candidate.current)
 			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] has no mob"))
 			continue
@@ -68,7 +78,24 @@
 		if(player_is_antag_id(candidate,antag))
 			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] is already a [antag]"))
 			continue
-		candidates.Add(candidate)
+
+		any_candidates = TRUE
+
+		//Activity test
+		if(act_test)
+			spawn()
+				request_log[candidate.key] = world.time //Record this request so we don't spam them repeatedly
+				candidate.current << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever when he's chosen to decide.
+				if(alert("Do you want to become the [temp.role_text]? Hurry up, you have 60 seconds to make choice!","Antag lottery","Yes","No") == "Yes")
+					if(!agree_time_out)
+						candidates.Add(candidate)
+		else
+			candidates.Add(candidate)
+	
+	if(any_candidates && act_test)	//we don't need to wait if there's no candidates
+		sleep(60 SECONDS)
+		agree_time_out = TRUE
+
 	return shuffle(candidates)
 
 /datum/storyevent/roleset/proc/ghost_candidates_list(var/antag, var/act_test = TRUE, var/report)
