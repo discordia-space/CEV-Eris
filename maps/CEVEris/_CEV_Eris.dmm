@@ -81531,7 +81531,6 @@
 /area/eris/engineering/propulsion/right)
 "dMX" = (
 /obj/machinery/light/small,
-/obj/spawner/pack/machine,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/medical/genetics)
 "dMY" = (
@@ -87228,6 +87227,8 @@
 /area/eris/medical/genetics)
 "eaV" = (
 /obj/structure/table/standard,
+/obj/spawner/boxes,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/medical/genetics)
 "eaX" = (
@@ -102586,6 +102587,15 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
+"kzz" = (
+/obj/structure/table/rack,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section2deck1port)
 "kAt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -103764,6 +103774,11 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
+"oYV" = (
+/obj/spawner/junk/low_chance,
+/obj/spawner/pack/machine,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/medical/genetics)
 "oZm" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
@@ -104739,6 +104754,11 @@
 	},
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/neotheology/churchbarracks)
+"sOb" = (
+/obj/spawner/pack/machine,
+/obj/structure/catwalk,
+/turf/space,
+/area/eris/maintenance/section2deck1port)
 "sOh" = (
 /obj/structure/closet/coffin,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
@@ -104897,6 +104917,12 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"ttp" = (
+/obj/structure/table/standard,
+/obj/spawner/electronics,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/medical/genetics)
 "tuO" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
@@ -284660,7 +284686,7 @@ dQw
 amk
 dQr
 dQr
-dQr
+sOb
 dUW
 dTT
 alG
@@ -284860,8 +284886,8 @@ dNZ
 dPK
 amc
 anQ
-dQr
-dQr
+kzz
+kzz
 anQ
 dUW
 dUW
@@ -286474,13 +286500,13 @@ dNn
 dNL
 eEB
 alC
-bjQ
+oYV
 bjQ
 eaV
+ttp
 eaV
 bjR
-bjR
-bjQ
+oYV
 dUW
 alG
 dVp
