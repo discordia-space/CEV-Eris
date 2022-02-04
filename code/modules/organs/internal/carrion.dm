@@ -104,10 +104,12 @@
 	for(var/item in active_spiders)
 		var/obj/item/implant/carrion_spider/S = item
 		var/turf/T = get_turf(S)
+		var/area/area = get_area(S)
+		var/location = area.name
 		spiders_in_list += list(
 			list(
 				"name" = initial(S.name),
-				"location" = "[S.loc]([T.x]:[T.y]:[T.z])",
+				"location" = "[location], [S.loc]([T.x]:[T.y]:[T.z])",
 				"spider" = "\ref[item]",
 				"implanted" = S.wearer
 			)
