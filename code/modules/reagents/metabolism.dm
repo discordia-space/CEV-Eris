@@ -218,11 +218,12 @@
 					R.addiction_act_stage3(parent)
 				if(40 to 50)
 					R.addiction_act_stage4(parent)
-				if(50 to INFINITY && ((parent.stats.getPerk(PERK_ALCOHOLIC) && istype(R, /datum/reagent/ethanol)) || (parent.stats.getPerk(PERK_DRUG_ADDICT) && istype(R, /datum/reagent/stim))))
-					R.addiction_act_stage4(parent)
-				if(50 to INFINITY && !((parent.stats.getPerk(PERK_ALCOHOLIC) && istype(R, /datum/reagent/ethanol)) || (parent.stats.getPerk(PERK_DRUG_ADDICT) && istype(R, /datum/reagent/stim))))
-					R.addiction_end(parent)
-					addiction_list.Remove(R)
+				if(50 to INFINITY)
+					if((parent.stats.getPerk(PERK_ALCOHOLIC) && istype(R, /datum/reagent/ethanol)) || (parent.stats.getPerk(PERK_DRUG_ADDICT) && istype(R, /datum/reagent/stim)))
+						R.addiction_act_stage4(parent)
+					else
+						R.addiction_end(parent)
+						addiction_list.Remove(R)
 
 /datum/metabolism_effects/proc/clear_effects()
 	for(var/withdrawal in active_withdrawals)
