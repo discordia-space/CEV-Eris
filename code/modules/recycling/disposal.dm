@@ -518,7 +518,6 @@
 			else
 				for(var/mob/M in viewers(src))
 					M.show_message("\The [I] bounces off of \the [src]\'s rim!", 3)
-		return
 	else
 		return ..(mover, target, height, air_group)
 
