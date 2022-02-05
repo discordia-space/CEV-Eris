@@ -21,12 +21,17 @@
 	//They will not be asked again until a certain time has passed
 	var/list/request_log = list()
 	var/request_timeout = 60 MINUTES
+	var/list/opt_out_log = list()		// For players who opted out of role when prompted
 
 	//Transient vars, these are specific to one triggering of the event
 	var/tmp/target_quantity = 0 //How many copies of this antag we are currently attempting to spawn, based on the above
 	var/tmp/success_quantity = 0 //How many copies we have successfully spawned so far
 	var/severity = EVENT_LEVEL_MUNDANE //The severity we're trying to trigger with
 
+/datum/storyevent/roleset/Topic(href, href_list)
+	if(href_list["opt_out"])
+		opt_out_log.Add(locate(href_list["opt_out"]))
+		to_chat(usr, "<font color='purple'>You have opted out of the candidate pool for this role.<font>")
 
 /datum/storyevent/roleset/proc/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
 	return TRUE
@@ -51,11 +56,11 @@
 			return list()
 
 	var/list/candidates = list()
-	var/agree_time_out = FALSE
 	var/any_candidates = FALSE
+	var/mob/living/L
 
 	for(var/datum/mind/candidate in SSticker.minds)
-		var/mob/living/L = candidate.current
+		L = candidate.current
 		if(request_log.Find(candidate.key))
 			var/last_request = request_log[candidate.key]
 			if((world.time - last_request) < request_timeout)
@@ -87,6 +92,7 @@
 				to_chat(report, SPAN_NOTICE("Failure: [candidate] is already a [antag]"))
 			continue
 
+		candidates.Add(candidate)
 		any_candidates = TRUE
 
 		//Activity test
@@ -97,15 +103,16 @@
 				request_log[candidate.key] = world.time //Record this request so we don't spam them repeatedly
 				usr = L
 				usr << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever when he's chosen to decide.
-				if(alert("Do you want to become the [temp.role_text]? Hurry up, you have 60 seconds to make choice!","Antag lottery","Yes","No") == "Yes")
-					if(!agree_time_out)
-						candidates.Add(L)
-		else
-			candidates.Add(L)
+				to_chat(usr, "<font color='purple'>You are a candidate for [temp.role_text].\
+								<br>If you wish to opt-out of the candidate pool, click <a HREF=?src=\ref[src];opt_out=\ref[candidate.key]>here</a> within 60 seconds.\
+								<br>Otherwise, do nothing and you will be added to the list of candidates.</font>")
 	
 	if(any_candidates && act_test)	//we don't need to wait if there's no candidates
 		sleep(60 SECONDS)
-		agree_time_out = TRUE
+		if(L)
+			if(opt_out_log.Find(L.key))
+				opt_out_log.Remove(L.key)
+				candidates.Remove(L.mind)
 
 	return shuffle(candidates)
 
