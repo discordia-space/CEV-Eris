@@ -62,17 +62,34 @@
 	for(var/obj/structure/golem_burrow/GB in burrows)
 		var/list/possible_directions = cardinal.Copy()
 		var/i = 0
+		var/proba = GW.special_probability
 		// Spawn golems around the burrow on free turfs
 		while(i < GW.golem_spawn && possible_directions.len)
 			var/turf/possible_T = get_step(GB.loc, pick_n_take(possible_directions))
 			if(!check_density_no_mobs(possible_T))
+				var/golemtype
+				testing("Proba: [proba], Num: [i]")
+				if(prob(proba))
+					testing("Spawning special")
+					golemtype = pick(GLOB.golems_special)  // Pick a special golem
+					proba = max(0.0, proba - 0.1)  // Decreasing probability to avoid mass spawn of special
+				else
+					testing("Spawning normal")
+					golemtype = pick(GLOB.golems_normal)  // Pick a normal golem
 				i++
-				var/golemtype = pickweight(GW.golem_types)
 				new golemtype(possible_T, drill=DD)  // Spawn golem at free location
 		// Spawn remaining golems on top of burrow
 		if(i < GW.golem_spawn)
-			for(var/j in i to GW.golem_spawn)
-				var/golemtype = pickweight(GW.golem_types)
+			for(var/j in i to (GW.golem_spawn-1))
+				var/golemtype
+				testing("Proba bis: [proba], Num: [i]")
+				if(prob(proba))
+					testing("Spawning special (bis)")
+					golemtype = pick(GLOB.golems_special)  // Pick a special golem
+					proba = max(0.0, proba - 0.1)  // Decreasing probability to avoid mass spawn of special
+				else
+					testing("Spawning normal (bis)")
+					golemtype = pick(GLOB.golems_normal)  // Pick a normal golem
 				new golemtype(GB.loc, drill=DD)  // Spawn golem at that burrow
 
 /datum/golem_controller/proc/stop()

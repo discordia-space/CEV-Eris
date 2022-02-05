@@ -19,6 +19,18 @@
 #define GOLEM_SPEED_MED 5
 #define GOLEM_SPEED_HIGH 3
 
+// Normal types of golems
+GLOBAL_LIST_INIT(golems_normal, list(/mob/living/carbon/superior_animal/golem/coal,
+                                     /mob/living/carbon/superior_animal/golem/iron))
+
+// Special types of golems
+GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/silver,
+									  /mob/living/carbon/superior_animal/golem/plasma,
+									  /mob/living/carbon/superior_animal/golem/platinum,
+									  /mob/living/carbon/superior_animal/golem/diamond,
+									  /mob/living/carbon/superior_animal/golem/ansible,
+									  /mob/living/carbon/superior_animal/golem/uranium))
+
 // OneStar patrol borg that defends OneStar facilities
 /mob/living/carbon/superior_animal/golem
 	icon = 'icons/mob/golems.dmi'
@@ -76,7 +88,7 @@
 	..()
 
 /mob/living/carbon/superior_animal/golem/death(gibbed, message = deathmessage)
-	..()
+	. = ..()
 
 	// Spawn ores
 	if(ore)
@@ -86,3 +98,6 @@
 
 	// Poof
 	qdel(src)
+
+/mob/living/carbon/superior_animal/golem/gib(var/anim = icon_gib, var/do_gibs = FALSE)
+	. = ..(anim, FALSE)  // No gibs when gibbing a golem (no blood)

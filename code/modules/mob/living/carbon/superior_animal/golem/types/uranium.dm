@@ -29,5 +29,5 @@
 	// Loot related variables
 	ore = /obj/item/ore/uranium
 
-    // Uranium golem does not attack
-    viewRange = 0  // Cannot attack if it cannot see
+	// Uranium golem does not attack
+	viewRange = 0  // Cannot attack if it cannot see

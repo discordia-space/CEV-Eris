@@ -27,10 +27,10 @@
 	)
 
 	// Loot related variables
-	ore = /obj/item/ore/platinum
+	ore = /obj/item/ore/osmium
 
-    // Ranged attack related variables
-    ranged = TRUE // Will it shoot?
+	// Ranged attack related variables
+	ranged = TRUE // Will it shoot?
 	rapid = FALSE // Will it shoot fast?
 	projectiletype = /obj/item/projectile/plasma/stun/heavy
 	projectilesound = 'sound/weapons/energy/burn.ogg'

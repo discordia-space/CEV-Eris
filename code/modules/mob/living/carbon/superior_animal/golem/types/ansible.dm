@@ -1,8 +1,8 @@
-/mob/living/carbon/superior_animal/golem/uranium
-	name = "uranium golem"
-	desc = "A moving pile of rocks with uranium specks in it."
-	icon_state = "golem_uranium"
-	icon_living = "golem_uranium"
+/mob/living/carbon/superior_animal/golem/ansible
+	name = "ansible golem"
+	desc = "A moving pile of rocks with ansible crystals in it."
+	icon_state = "golem_ansible"
+	icon_living = "golem_ansible"
 
 	// Health related variables
 	maxHealth = GOLEM_HEALTH_LOW
@@ -29,8 +29,8 @@
 	// Loot related variables
 	ore = /obj/item/stock_parts/subspace/crystal
 
-    // Ranged attack related variables
-    ranged = TRUE // Will it shoot?
+	// Ranged attack related variables
+	ranged = TRUE // Will it shoot?
 	rapid = FALSE // Will it shoot fast?
 	projectiletype = /obj/item/projectile/beam/psychic
 	projectilesound = 'sound/weapons/Laser.ogg'
