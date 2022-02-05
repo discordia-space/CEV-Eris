@@ -43,7 +43,7 @@
 	else
 		return candidates_list(role_id)
 
-/datum/storyevent/roleset/proc/candidates_list(var/antag, var/report, var/act_test = TRUE)
+/datum/storyevent/roleset/proc/candidates_list(var/antag, var/act_test = TRUE, var/report)
 	var/datum/antagonist/temp = GLOB.all_antag_types[antag]
 	if(!istype(temp))
 		if(report)
@@ -55,28 +55,36 @@
 	var/any_candidates = FALSE
 
 	for(var/datum/mind/candidate in SSticker.minds)
-		if((candidate.key in request_log))
+		var/mob/living/L = candidate.current
+		if(request_log.Find(candidate.key))
 			var/last_request = request_log[candidate.key]
-			if ((world.time - last_request) < request_timeout)
-				if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] was already asked too recently"))
+			if((world.time - last_request) < request_timeout)
+				if(report)
+					to_chat(report, SPAN_NOTICE("Failure: [candidate] was already asked too recently"))
 				continue
-		if(!candidate.current)
-			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] has no mob"))
+		if(!L)
+			if(report)
+				to_chat(report, SPAN_NOTICE("Failure: [candidate] has no mob"))
 			continue
 		if(!temp.can_become_antag(candidate, report))
-			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] can't become this antag"))
+			if(report)
+				to_chat(report, SPAN_NOTICE("Failure: [candidate] can't become this antag"))
 			continue
 		if(!antagonist_suitable(candidate, temp))
-			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] is not antagonist suitable"))
+			if(report)
+				to_chat(report, SPAN_NOTICE("Failure: [candidate] is not antagonist suitable"))
 			continue
-		if(!(temp.bantype in candidate.current.client.prefs.be_special_role))
-			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] has special role [temp.bantype] disabled"))
+		if(!(temp.bantype in L.client.prefs.be_special_role))
+			if(report)
+				to_chat(report, SPAN_NOTICE("Failure: [candidate] has special role [temp.bantype] disabled"))
 			continue
 		if(GLOB.storyteller && GLOB.storyteller.one_role_per_player && candidate.antagonist.len)
-			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] is already a [candidate.antagonist[1]] and can't be two antags"))
+			if(report)
+				to_chat(report, SPAN_NOTICE("Failure: [candidate] is already a [candidate.antagonist[1]] and can't be two antags"))
 			continue
 		if(player_is_antag_id(candidate,antag))
-			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] is already a [antag]"))
+			if(report)
+				to_chat(report, SPAN_NOTICE("Failure: [candidate] is already a [antag]"))
 			continue
 
 		any_candidates = TRUE
@@ -84,13 +92,16 @@
 		//Activity test
 		if(act_test)
 			spawn()
+				if(!request_log.Find(candidate.key))
+					request_log.Add(candidate.key)
 				request_log[candidate.key] = world.time //Record this request so we don't spam them repeatedly
-				candidate.current << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever when he's chosen to decide.
+				usr = L
+				usr << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever when he's chosen to decide.
 				if(alert("Do you want to become the [temp.role_text]? Hurry up, you have 60 seconds to make choice!","Antag lottery","Yes","No") == "Yes")
 					if(!agree_time_out)
-						candidates.Add(candidate)
+						candidates.Add(L)
 		else
-			candidates.Add(candidate)
+			candidates.Add(L)
 	
 	if(any_candidates && act_test)	//we don't need to wait if there's no candidates
 		sleep(60 SECONDS)
@@ -132,6 +143,8 @@
 			//Activity test
 			if(act_test)
 				spawn()
+					if(!request_log.Find(candidate.key))
+						request_log.Add(candidate.key)
 					request_log[candidate.key] = world.time //Record this request so we don't spam them repeatedly
 					usr = candidate
 					usr << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever when he's chosen to decide.
@@ -226,7 +239,7 @@
 	if(GLOB.outer_antag_types[role_id])
 		possible_candidates = ghost_candidates_list(role_id, FALSE, report) //We set act check to false so it doesn't ask ghosts
 	else
-		possible_candidates = candidates_list(role_id, report)
+		possible_candidates = candidates_list(role_id, FALSE, report)
 
 	if (possible_candidates.len > 0)
 		return TRUE

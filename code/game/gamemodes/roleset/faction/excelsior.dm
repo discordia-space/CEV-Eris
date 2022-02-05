@@ -10,5 +10,5 @@
 	base_quantity = 2 //They're a group antag, we want a few of em
 	scaling_threshold = 8
 
-	req_crew = 6
+	req_crew = 3
 	leaders = -1 //Every excelsior spawned directly is a leader. Non leaders are those recruited during gameplay
