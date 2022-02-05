@@ -375,6 +375,7 @@
 
 	to_chat(user, msg)
 	. = msg
+	return(msg)
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
 /proc/hasHUD(mob/M as mob, hudtype)
