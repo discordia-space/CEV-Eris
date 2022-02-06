@@ -195,5 +195,3 @@
 /obj/structure/simple_door/wood/New(var/newloc,var/material_name)
 	..(newloc, MATERIAL_WOOD)
 
-/obj/structure/simple_door/resin/New(var/newloc,var/material_name)
-	..(newloc, MATERIAL_RESIN)

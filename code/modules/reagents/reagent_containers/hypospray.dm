@@ -96,7 +96,7 @@
 	reagent_flags = REFILLABLE | DRAINABLE | AMOUNT_VISIBLE
 	volume = 5
 	preloaded_reagents = list("inaprovaline" = 5)
-	spawn_blacklisted = FALSE
+	spawn_blacklisted = TRUE
 
 /obj/item/reagent_containers/hypospray/autoinjector/on_reagent_change()
 	..()
