@@ -6,6 +6,9 @@ Used In File(s): code\modules\organs\internal\carrion.dm
 <div class="item">
 	<div class="itemContent">
 		{{:helper.link('Activate All', 'radiation', {'activate_all' : 1}, null, 'fixedLeft')}}
+		{{:helper.link('Activate Group 1', 'null', {'activate_group_1' : 1}, null)}}
+		{{:helper.link('Activate Group 2', 'null', {'activate_group_2' : 1}, null)}}
+		{{:helper.link('Activate Group 3', 'null', {'activate_group_3' : 1}, null)}}
 	</div>
 </div>
 <table class='itemContent' style="width: 100%;">
@@ -19,6 +22,9 @@ Used In File(s): code\modules\organs\internal\carrion.dm
 		<td>{{:value.name}}</td>
 		<td>{{:value.location}}</td>
 		<td>{{:helper.link('activate', 'circle-arrow-s', {'activate_spider' : value.spider})}}</td>
+		<td>{{:helper.link('1', 'null', {'toggle_group_1' : value.spider})}}</td>
+		<td>{{:helper.link('2', 'null', {'toggle_group_2' : value.spider})}}</td>
+		<td>{{:helper.link('3', 'null', {'toggle_group_3' : value.spider})}}</td>
 		<td>
 		{{if value.implanted}}
 		{{:helper.link('pop out', 'circle-arrow-s', {'pop_out_spider' : value.spider})}}

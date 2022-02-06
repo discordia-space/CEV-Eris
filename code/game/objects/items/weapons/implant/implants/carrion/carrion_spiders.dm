@@ -12,6 +12,10 @@
 	var/do_gibs = TRUE
 	var/last_stun_time = 0 //Used to avoid cheese
 
+	var/assigned_group_1 = FALSE
+	var/assigned_group_2 = FALSE	
+	var/assigned_group_3 = FALSE
+
 	var/obj/item/organ/internal/carrion/core/owner_core
 	var/mob/living/carbon/human/owner_mob
 
@@ -98,3 +102,21 @@
 
 /obj/item/implant/carrion_spider/proc/update_owner_mob()
 	owner_mob = owner_core.owner
+
+/obj/item/implant/carrion_spider/proc/toggle_group(group)
+	if(group == 1)
+		if(assigned_group_1 == FALSE)
+			assigned_group_1 = TRUE
+		else
+			assigned_group_1 = FALSE
+	if(group == 2)
+		if(assigned_group_2 == FALSE)
+			assigned_group_2 = TRUE
+		else
+			assigned_group_2 = FALSE
+	if(group == 3)
+		if(assigned_group_3 == FALSE)
+			assigned_group_3 = TRUE
+		else
+			assigned_group_3 = FALSE	
+

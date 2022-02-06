@@ -144,6 +144,39 @@
 			if(istype(CS))
 				CS.activate()
 
+	if(href_list["activate_group_1"])
+		for(var/spider in active_spiders)
+			var/obj/item/implant/carrion_spider/CS = spider
+			if(istype(CS) && CS.assigned_group_1 == TRUE)
+				CS.activate()
+
+	if(href_list["activate_group_2"])
+		for(var/spider in active_spiders)
+			var/obj/item/implant/carrion_spider/CS = spider
+			if(istype(CS) && CS.assigned_group_2 == TRUE)
+				CS.activate()
+
+	if(href_list["activate_group_3"])
+		for(var/spider in active_spiders)
+			var/obj/item/implant/carrion_spider/CS = spider
+			if(istype(CS) && CS.assigned_group_3 == TRUE)
+				CS.activate()
+
+	if(href_list["toggle_group_1"])
+		var/obj/item/implant/carrion_spider/activated_spider = locate(href_list["toggle_group_1"]) in active_spiders
+		if(activated_spider)
+			activated_spider.toggle_group(1)
+
+	if(href_list["toggle_group_2"])
+		var/obj/item/implant/carrion_spider/activated_spider = locate(href_list["toggle_group_2"]) in active_spiders
+		if(activated_spider)
+			activated_spider.toggle_group(2)
+
+	if(href_list["toggle_group_3"])
+		var/obj/item/implant/carrion_spider/activated_spider = locate(href_list["toggle_group_3"]) in active_spiders
+		if(activated_spider)
+			activated_spider.toggle_group(3)
+
 	if(href_list["P"])
 		purchasePower(href_list["P"])
 		EvolutionMenu()
