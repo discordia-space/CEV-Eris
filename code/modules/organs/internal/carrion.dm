@@ -114,7 +114,10 @@
 				"name" = initial(S.name),
 				"location" = "[spider_location]",
 				"spider" = "\ref[item]",
-				"implanted" = S.wearer
+				"implanted" = S.wearer,
+				"assigned_group_1" = S.assigned_group_1,
+				"assigned_group_2" = S.assigned_group_2,
+				"assigned_group_3" = S.assigned_group_3
 			)
 		)
 
@@ -141,7 +144,7 @@
 	if(href_list["activate_all"])
 		for(var/spider in active_spiders)
 			var/obj/item/implant/carrion_spider/CS = spider
-			if(istype(CS))
+			if(istype(CS) && CS.ignore_activate_all == FALSE)
 				CS.activate()
 
 	if(href_list["activate_group_1"])

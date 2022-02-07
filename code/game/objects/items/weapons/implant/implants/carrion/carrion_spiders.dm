@@ -11,6 +11,7 @@
 	var/gene_price = 0
 	var/do_gibs = TRUE
 	var/last_stun_time = 0 //Used to avoid cheese
+	var/ignore_activate_all = FALSE
 
 	var/assigned_group_1 = FALSE
 	var/assigned_group_2 = FALSE	
@@ -105,18 +106,9 @@
 
 /obj/item/implant/carrion_spider/proc/toggle_group(group)
 	if(group == 1)
-		if(assigned_group_1 == FALSE)
-			assigned_group_1 = TRUE
-		else
-			assigned_group_1 = FALSE
+		assigned_group_1 = !assigned_group_1
 	if(group == 2)
-		if(assigned_group_2 == FALSE)
-			assigned_group_2 = TRUE
-		else
-			assigned_group_2 = FALSE
+		assigned_group_2 = !assigned_group_2
 	if(group == 3)
-		if(assigned_group_3 == FALSE)
-			assigned_group_3 = TRUE
-		else
-			assigned_group_3 = FALSE	
+		assigned_group_3 = !assigned_group_3	
 
