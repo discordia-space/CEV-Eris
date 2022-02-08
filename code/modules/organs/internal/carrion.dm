@@ -162,7 +162,7 @@
 	if(href_list["activate_group_3"])
 		for(var/spider in active_spiders)
 			var/obj/item/implant/carrion_spider/CS = spider
-			if(istype(CS) && CS.assigned_group_3 == TRUE)
+			if(istype(CS) && CS.assigned_group_3)
 				CS.activate()
 
 	if(href_list["toggle_group_1"])
