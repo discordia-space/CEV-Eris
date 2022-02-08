@@ -105,10 +105,11 @@
 	owner_mob = owner_core.owner
 
 /obj/item/implant/carrion_spider/proc/toggle_group(group)
-	if(group == 1)
-		assigned_group_1 = !assigned_group_1
-	if(group == 2)
-		assigned_group_2 = !assigned_group_2
-	if(group == 3)
-		assigned_group_3 = !assigned_group_3	
+	switch(group)
+		if(1)
+			assigned_group_1 = !assigned_group_1
+		if(2)
+			assigned_group_2 = !assigned_group_2
+		if(3)
+			assigned_group_3 = !assigned_group_3	
 
