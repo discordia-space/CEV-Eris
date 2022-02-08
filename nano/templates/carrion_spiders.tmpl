@@ -8,12 +8,13 @@ Used In File(s): code\modules\organs\internal\carrion.dm
 		{{:helper.link('Activate All', 'radiation', {'activate_all' : 1}, null, 'fixedLeft')}}
 	</div>
 </div>
-<div class="item">
-	<div class="itemContent">
-		<td>{{:helper.link('Activate Group 1', null, {'activate_group_1' : 1}, null)}}<td>
-		<td>{{:helper.link('Activate Group 2', null, {'activate_group_2' : 1}, null)}}<td>
-		<td>{{:helper.link('Activate Group 3', null, {'activate_group_3' : 1}, null)}}<td>
+<div class="item" style="width: 100%;">
+	<div table class="itemContent" style="width: 100%;">
+		{{:helper.link('Activate Group 1', null, {'activate_group_1' : 1}, null)}}
+		{{:helper.link('Activate Group 2', null, {'activate_group_2' : 1}, null)}}
+		{{:helper.link('Activate Group 3', null, {'activate_group_3' : 1}, null)}}
 	</div>
+</table>
 </div>
 <table class='itemContent' style="width: 100%;">
 	<tr>
@@ -30,19 +31,19 @@ Used In File(s): code\modules\organs\internal\carrion.dm
 		<td>{{:value.location}}</td>
 		<td>{{:helper.link('activate', 'circle-arrow-s', {'activate_spider' : value.spider})}}</td>
 		{{if value.assigned_group_1}}
-			<td style="font-weight: bold;">{{:helper.link('1', null, {'toggle_group_1' : value.spider})}}</td>
+			<td>{{:helper.link('', 'check', {'toggle_group_1' : value.spider})}}</td>
 		{{else}}
-			<td style="font-weight: bold;"">{{:helper.link('1', null, {'toggle_group_1' : value.spider})}}</td>
+			<td>{{:helper.link('', 'close', {'toggle_group_1' : value.spider})}}</td>
 		{{/if}}
 		{{if value.assigned_group_2}}
-			<td style="font-weight: bold;">{{:helper.link('2', null, {'toggle_group_2' : value.spider})}}</td>
+			<td>{{:helper.link('', 'check', {'toggle_group_2' : value.spider})}}</td>
 		{{else}}
-			<td style="font-weight: bold;">{{:helper.link('2', null, {'toggle_group_2' : value.spider})}}</td>
+			<td>{{:helper.link('', 'close', {'toggle_group_2' : value.spider})}}</td>
 		{{/if}}
 		{{if value.assigned_group_3}}
-			<td style="font-weight: bold;">{{:helper.link('3', null, {'toggle_group_3' : value.spider})}}</td>
+			<td>{{:helper.link('', 'check', {'toggle_group_3' : value.spider})}}</td>
 		{{else}}
-			<td style="font-weight: bold;">{{:helper.link('3', null, {'toggle_group_3' : value.spider})}}</td>
+			<td>{{:helper.link('', 'close' , {'toggle_group_3' : value.spider})}}</td>
 		{{/if}}
 		<td>
 		{{if value.implanted}}
