@@ -24,7 +24,7 @@
 		if(potential_thermals.overlay == global_hud.thermal)
 			flashbang_without_the_bang(get_turf(src), thermal_user)
 
-	for(var/obj/effect/blob/B in hear(8,get_turf(src)))       		//Blob damage here
+	for(var/obj/effect/blob/B in hear(8,get_turf(src)))	//Blob damage here
 		var/damage = round(30/(get_dist(B,get_turf(src))+1))
 		B.health -= damage
 		B.update_icon()
@@ -33,7 +33,7 @@
 	new/obj/effect/effect/smoke/illumination(loc, brightness=15)
 	qdel(src)
 
-/obj/item/proc/flashbang_without_the_bang(turf/T, mob/living/carbon/M) ///flashbang_bang but bang-less.
+/obj/item/proc/flashbang_without_the_bang(turf/T, mob/living/carbon/M) //Flashbang_bang but bang-less.
 //Checking for protections
 	var/eye_safety = 0
 	if(iscarbon(M))
@@ -136,7 +136,29 @@
 
 /obj/item/grenade/flashbang/nt
 	name = "NT FBG \"Holy Light\""
-	desc = "An old \"NanoTrasen\" flashbang grenade, modified to spread the light of god."
+	desc = "An old \"NanoTrasen\" flashbang grenade. \
+            There's an inscription along the bands. \'Rome will glow with the light of her Lord.\'"
 	icon_state = "flashbang_nt"
 	item_state = "flashbang_nt"
 	matter = list(MATERIAL_BIOMATTER = 15)
+
+/obj/item/grenade/flashbang/nt/flashbang_without_the_bang(turf/T, mob/living/carbon/M)
+	if(M.get_core_implant(/obj/item/implant/core_implant/cruciform))
+		to_chat(M, span_singing("You are blinded by the light of the Angels!"))
+		if (M.HUDtech.Find("flash"))
+			flick("e_flash", M.HUDtech["flash"])
+		return
+	..()
+
+/obj/item/grenade/flashbang/nt/flashbang_bang(var/turf/T, var/mob/living/carbon/M, var/explosion_text = "BANG", var/stat_reduction = TRUE)
+	if(M.get_core_implant(/obj/item/implant/core_implant/cruciform))
+		to_chat(M, SPAN_DANGER(explosion_text))								// Called during the loop that bangs people in lockers/containers and when banging
+		playsound(loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
+
+		var/eye_safety_nt = M.eyecheck()
+		if(eye_safety_nt < FLASH_PROTECTION_MODERATE)
+			to_chat(M, span_singing("You are blinded by the light of the Angels!"))
+			if (M.HUDtech.Find("flash"))
+				flick("e_flash", M.HUDtech["flash"])
+		return
+	..()

@@ -356,9 +356,9 @@
 	name = "NT SG \"Holy Fog\""
 	build_path = /obj/item/grenade/smokebomb/nt
 
-/datum/design/autolathe/nt/grenade/nt_frag
-	name = "NT DFG \"Holy Thunder\""
-	build_path = /obj/item/grenade/frag/nt
+/datum/design/autolathe/nt/grenade/nt_heatwave
+	name = "NT HG \"Hellfire\""
+	build_path = /obj/item/grenade/heatwave/nt
 
 /datum/design/autolathe/nt/grenade/nt_flashbang
 	name = "NT FBG \"Holy Light\""
