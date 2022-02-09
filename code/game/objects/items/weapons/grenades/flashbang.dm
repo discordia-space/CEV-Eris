@@ -57,7 +57,7 @@
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_ADEPT, 10 SECONDS, "flashbang")
 	M.update_icons()
 
-/obj/item/proc/flashbang_bang(var/turf/T, var/mob/living/carbon/M, var/explosion_text = "BANG", var/stat_reduction = TRUE) //Bang made into an item proc so lot's of stuff can use it wtihout copy - paste
+/obj/item/proc/flashbang_bang(var/turf/T, var/mob/living/carbon/M, var/explosion_text = "BANG", var/stat_reduction = TRUE, var/intensity = FALSE) //Bang made into an item proc so lot's of stuff can use it wtihout copy - paste
 	to_chat(M, SPAN_DANGER(explosion_text))								// Called during the loop that bangs people in lockers/containers and when banging
 	playsound(loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
 																// -- Polymorph
@@ -77,44 +77,64 @@
 				ear_safety += 1
 			if(M.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
 				stat_def *= 2
+	if(intensity)
+		eye_safety += 1
 
 //Flashing everyone
-	if(eye_safety < FLASH_PROTECTION_MODERATE)
+	if(eye_safety < FLASH_PROTECTION_MAJOR)
 		if (M.HUDtech.Find("flash"))
 			flick("e_flash", M.HUDtech["flash"])
+	if(eye_safety < FLASH_PROTECTION_MODERATE)
 		M.eye_blurry = max(M.eye_blurry, 15)
 		M.eye_blind = max(M.eye_blind, 5)
 
-
 //Now applying sound
-	if((get_dist(M, T) <= 2 || loc == M.loc || loc == M))
-		if(ear_safety <= 0)
-			stat_def *= 5
-			if ((prob(14) || (M == loc && prob(70))))
-				M.adjustEarDamage(rand(1, 10))
-				M.confused = max(M.confused,8)
+	var/flash_distance
+	var/bang_intensity
+
+	if(loc == M.loc || loc == M)
+		flash_distance = 0
+	else
+		flash_distance = get_dist(M, T) + ear_safety
+
+	switch(flash_distance)
+		if(-INFINITY to 3)
+			bang_intensity = 1
+		if(3 to 6)
+			bang_intensity = 2
+		if(6 to INFINITY)
+			bang_intensity = 3
+
+	if(intensity)
+		bang_intensity += intensity
+
+	switch(bang_intensity)
+		if(1)
+			if(ear_safety <= 0)
+				stat_def *= 5
+				if ((prob(14) || (M == loc && prob(70))))
+					M.adjustEarDamage(rand(1, 10))
+					M.confused = max(M.confused,8)
+				else
+					M.adjustEarDamage(rand(0, 5))
+					M.ear_deaf = max(M.ear_deaf,15)
+					M.confused = max(M.confused,8)
 			else
-				M.adjustEarDamage(rand(0, 5))
-				M.ear_deaf = max(M.ear_deaf,15)
-				M.confused = max(M.confused,8)
-		else
+				stat_def *= 2
+				M.confused = max(M.confused,4)
+		if(2)
+			if(ear_safety <= 0)
+				stat_def *= 4
+				M.adjustEarDamage(rand(0, 3))
+				M.ear_deaf = max(M.ear_deaf,10)
+				M.confused = max(M.confused,6)
+			else
+				M.confused = max(M.confused,2)
+		if(3)
 			stat_def *= 2
-			M.confused = max(M.confused,4)
-
-	else if(get_dist(M, T) <= 5)
-		if(ear_safety <= 0)
-			stat_def *= 4
-			M.adjustEarDamage(rand(0, 3))
-			M.ear_deaf = max(M.ear_deaf,10)
-			M.confused = max(M.confused,6)
-		else
-			M.confused = max(M.confused,2)
-
-	else if(!ear_safety)
-		stat_def *= 2
-		M.adjustEarDamage(rand(0, 1))
-		M.ear_deaf = max(M.ear_deaf,5)
-		M.confused = max(M.confused,5)
+			M.adjustEarDamage(rand(0, 1))
+			M.ear_deaf = max(M.ear_deaf,5)
+			M.confused = max(M.confused,5)
 
 	//This really should be in mob not every check
 	if(ishuman(M))
@@ -137,7 +157,7 @@
 /obj/item/grenade/flashbang/nt
 	name = "NT FBG \"Holy Light\""
 	desc = "An old \"NanoTrasen\" flashbang grenade. \
-            There's an inscription along the bands. \'Rome will glow with the light of her Lord.\'"
+			There's an inscription along the bands. \'Rome will glow with the light of her Lord.\'"
 	icon_state = "flashbang_nt"
 	item_state = "flashbang_nt"
 	matter = list(MATERIAL_BIOMATTER = 15)
@@ -150,15 +170,7 @@
 		return
 	..()
 
-/obj/item/grenade/flashbang/nt/flashbang_bang(var/turf/T, var/mob/living/carbon/M, var/explosion_text = "BANG", var/stat_reduction = TRUE)
+/obj/item/grenade/flashbang/nt/flashbang_bang(var/turf/T, var/mob/living/carbon/M, var/explosion_text = "BANG", var/stat_reduction = TRUE, var/intensity = FALSE)
 	if(M.get_core_implant(/obj/item/implant/core_implant/cruciform))
-		to_chat(M, SPAN_DANGER(explosion_text))								// Called during the loop that bangs people in lockers/containers and when banging
-		playsound(loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
-
-		var/eye_safety_nt = M.eyecheck()
-		if(eye_safety_nt < FLASH_PROTECTION_MODERATE)
-			to_chat(M, span_singing("You are blinded by the light of the Angels!"))
-			if (M.HUDtech.Find("flash"))
-				flick("e_flash", M.HUDtech["flash"])
-		return
+		intensity += 1
 	..()
