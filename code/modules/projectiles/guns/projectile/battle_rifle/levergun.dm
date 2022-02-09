@@ -11,7 +11,6 @@
 	recoil_buildup = 15
 	init_offset = -2
 	one_hand_penalty = 15
-	init_offset = 0
 	max_shells = 10
 	zoom_factor = 0
 	magazine_type = /obj/item/ammo_magazine/magnum
