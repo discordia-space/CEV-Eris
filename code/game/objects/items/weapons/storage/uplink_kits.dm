@@ -225,7 +225,7 @@
 	new /obj/item/ammo_magazine/slmagnum(src)
 
 /obj/item/storage/box/syndie_kit/lshotgun
-	name = "Lever shotgun box"
+	name = "lever shotgun box"
 	desc = "Lever shotgun kit"
 	icon_state = "box_of_doom_big"
 	w_class = ITEM_SIZE_HUGE
