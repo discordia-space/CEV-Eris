@@ -16,7 +16,7 @@
 	var/rag_underlay = "rag"
 	var/icon_state_full
 	var/icon_state_empty
-	var/bottle_thrower
+	var/bottle_thrower_intent
 
 /obj/item/reagent_containers/food/drinks/bottle/on_reagent_change()
 	update_icon()
@@ -36,16 +36,17 @@
 	return ..()
 
 /obj/item/reagent_containers/food/drinks/bottle/throw_at(atom/target, range, speed, thrower)
-	bottle_thrower = thrower
+	var/mob/H = thrower
+	if(istype(H))
+		bottle_thrower_intent = H.a_intent
 	..()
-	bottle_thrower = null
+	bottle_thrower_intent = null
 
 //when thrown on impact, bottles smash and spill their contents
 /obj/item/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, speed)
 	..()
 
-	var/mob/M = bottle_thrower
-	if(istype(M) && M.a_intent == I_HURT)
+	if(bottle_thrower_intent == I_HURT)
 		var/throw_dist = get_dist(throw_source, loc)
 		if(speed >= throw_speed && smash_check(throw_dist)) //not as reliable as smashing directly
 			if(reagents)
