@@ -47,13 +47,13 @@
 	path = /obj/item/storage/box/syndie_kit/sts35
 
 /datum/uplink_item/item/visible_weapons/winchestertrifle
-	name = "FS BR .40 \"Svengali\" box"
+	name = "FS BR .40 \"Svengali\""
 	item_cost = 10
 	antag_roles = list(ROLE_MARSHAL)
 	path = /obj/item/storage/box/syndie_kit/winchester
 
 /datum/uplink_item/item/visible_weapons/lshotgun
-	name = "FS BR \"Sogekihei\" box"
+	name = "FS BR \"Sogekihei\""
 	item_cost = 8
 	antag_roles = list(ROLE_MARSHAL)
 	path = /obj/item/storage/box/syndie_kit/lshotgun
