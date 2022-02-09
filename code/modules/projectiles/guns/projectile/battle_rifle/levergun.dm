@@ -28,6 +28,7 @@
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	damage_multiplier = 0.8
 	penetration_multiplier = 0.8
+	recoil_buildup = 12
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 8, MATERIAL_PLASTEEL = 20)
 	one_hand_penalty = 10
 	item_suffix  = "_winchester_sawn"
@@ -65,6 +66,7 @@
 	proj_step_multiplier = 1.2
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	damage_multiplier = 0.7
+	recoil_buildup = 12
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 8)
 	one_hand_penalty = 10
 	item_suffix  = "_shotgun_sawn"
