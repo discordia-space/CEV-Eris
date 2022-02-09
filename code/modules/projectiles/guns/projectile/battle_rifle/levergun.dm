@@ -8,7 +8,8 @@
 	caliber = CAL_MAGNUM
 	damage_multiplier = 1.5
 	penetration_multiplier = 1.5
-	recoil_buildup = 10
+	recoil_buildup = 15
+	one_hand_penalty = 15
 	init_offset = 0
 	max_shells = 10
 	zoom_factor = 0
@@ -26,9 +27,9 @@
 	w_class = ITEM_SIZE_NORMAL
 	proj_step_multiplier = 1.2
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
-	recoil_buildup = 15
+	recoil_buildup = 20
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 8, MATERIAL_PLASTEEL = 20)
-	one_hand_penalty = 15
+	one_hand_penalty = 10
 	item_suffix  = "_winchester_sawn"
 	wielded_item_state = "_doble_winchester_sawn"
 	saw_off = TRUE
