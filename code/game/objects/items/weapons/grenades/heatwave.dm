@@ -34,6 +34,6 @@
     item_state = "fraggrenade_nt"
     heavy_range = 2
     weak_range = 4
-    heat_damage = 120
+    heat_damage = 90
     penetration = 25
-    matter = list(MATERIAL_BIOMATTER = 30, MATERIAL_PLASMA = 3)
+    matter = list(MATERIAL_BIOMATTER = 30, MATERIAL_PLASMA = 5)
