@@ -226,7 +226,7 @@
 
 /obj/item/storage/box/syndie_kit/lshotgun
 	name = "lever shotgun box"
-	desc = "Lever shotgun kit"
+	desc = "lever-action shotgun kit"
 	icon_state = "box_of_doom_big"
 	w_class = ITEM_SIZE_HUGE
 
