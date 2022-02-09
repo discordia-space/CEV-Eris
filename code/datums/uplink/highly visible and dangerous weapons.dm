@@ -43,11 +43,24 @@
 /datum/uplink_item/item/visible_weapons/assaultrifle
 	name = "Assault Rifle"
 	item_cost = 10
+	antag_roles = list(ROLE_CONTRACTOR,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/storage/box/syndie_kit/sts35
 
+/datum/uplink_item/item/visible_weapons/winchestertrifle
+	name = "Winchester Rifle"
+	item_cost = 10
+	antag_roles = list(ROLE_MARSHAL)
+	path = /obj/item/storage/box/syndie_kit/winchester
+
+/datum/uplink_item/item/visible_weapons/lshotgun
+	name = "Lever shotgun"
+	item_cost = 8
+	antag_roles = list(ROLE_MARSHAL)
+	path = /obj/item/storage/box/syndie_kit/lshotgun
 /datum/uplink_item/item/visible_weapons/pug
 	name = "Pug Shotgun"
 	item_cost = 8
+	antag_roles = list(ROLE_CONTRACTOR,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/storage/box/syndie_kit/pug
 
 /datum/uplink_item/item/visible_weapons/heavysniper
