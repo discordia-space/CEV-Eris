@@ -33,7 +33,7 @@
 	sawn = /obj/item/gun/projectile/boltgun/obrez
 	var/bolt_open = 0
 	var/item_suffix = ""
-	var/message = "bolt"
+	var/message = "bolt"        // what message appears when cocking, eg "You work the [bolt] open, ejecting a casing!"
 	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
 
 /obj/item/part/gun/frame/boltgun
