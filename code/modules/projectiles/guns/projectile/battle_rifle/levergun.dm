@@ -9,6 +9,7 @@
 	damage_multiplier = 1.5
 	penetration_multiplier = 1.5
 	recoil_buildup = 15
+	init_offset = -2
 	one_hand_penalty = 15
 	init_offset = 0
 	max_shells = 10
