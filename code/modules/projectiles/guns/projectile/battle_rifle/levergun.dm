@@ -6,12 +6,12 @@
 	force = WEAPON_FORCE_DANGEROUS
 	armor_penetration = ARMOR_PEN_GRAZING
 	caliber = CAL_MAGNUM
-	damage_multiplier = 1.5
-	penetration_multiplier = 1.5
+	damage_multiplier = 1.6
+	penetration_multiplier = 1.6
 	recoil_buildup = 15
 	init_offset = -2
 	one_hand_penalty = 15
-	max_shells = 10
+	max_shells = 6
 	zoom_factor = 0
 	magazine_type = /obj/item/ammo_magazine/magnum
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 15, MATERIAL_PLASTEEL = 20)
