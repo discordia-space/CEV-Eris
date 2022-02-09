@@ -10,7 +10,7 @@
 	penetration_multiplier = 1.5
 	recoil_buildup = 10
 	init_offset = 0
-	max_shells = 6
+	max_shells = 10
 	zoom_factor = 0
 	magazine_type = /obj/item/ammo_magazine/magnum
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 15, MATERIAL_PLASTEEL = 20)
