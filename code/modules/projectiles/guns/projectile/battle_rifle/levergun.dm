@@ -47,7 +47,6 @@
 	damage_multiplier = 1.2
 	penetration_multiplier = 0.65
 	max_shells = 9
-	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 15)
 	wielded_item_state = "_doble_shotgun"
 	sawn = /obj/item/gun/projectile/boltgun/levergun/shotgun/sawn
