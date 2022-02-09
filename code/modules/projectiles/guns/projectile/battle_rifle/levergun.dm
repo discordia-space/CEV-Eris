@@ -24,6 +24,7 @@
 	name = "sawn-off FS BR .40 \"Svengali\""
 	icon_state = "lever_winchester_sawn"
 	w_class = ITEM_SIZE_NORMAL
+	proj_step_multiplier = 1.2
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	damage_multiplier = 0.8
 	penetration_multiplier = 0.8
@@ -61,6 +62,7 @@
 	name = "sawn-off FS BR \"Sogekihei\""
 	icon_state = "lever_shotgun_sawn"
 	w_class = ITEM_SIZE_NORMAL
+	proj_step_multiplier = 1.2
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	damage_multiplier = 0.7
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 8)
