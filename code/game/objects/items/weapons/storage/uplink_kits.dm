@@ -215,8 +215,8 @@
 	new /obj/item/ammo_magazine/lrifle(src)
 
 /obj/item/storage/box/syndie_kit/winchester
-	name = "Winchester rifle box"
-	desc = "Winchester rifle kit"
+	name = "lever-action rifle box"
+	desc = "A suspicious looking box containing a lever-action rifle and some spare ammo to it."
 	icon_state = "box_of_doom_big"
 	w_class = ITEM_SIZE_HUGE
 
@@ -225,8 +225,8 @@
 	new /obj/item/ammo_magazine/slmagnum(src)
 
 /obj/item/storage/box/syndie_kit/lshotgun
-	name = "Lever shotgun box"
-	desc = "Lever shotgun kit"
+	name = "lever shotgun box"
+	desc = "lever-action shotgun kit"
 	icon_state = "box_of_doom_big"
 	w_class = ITEM_SIZE_HUGE
 
