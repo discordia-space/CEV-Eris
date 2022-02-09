@@ -51,7 +51,7 @@
 	init_offset = 0
 	max_shells = 9
 	zoom_factor = 0
-	magazine_type = /obj/item/ammo_magazine/magnum
+	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 15)
 	wielded_item_state = "_doble_shotgun"
 	sharp = FALSE
