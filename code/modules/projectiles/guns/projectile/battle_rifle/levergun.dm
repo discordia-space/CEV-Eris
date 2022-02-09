@@ -53,10 +53,7 @@
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 15)
 	wielded_item_state = "_doble_shotgun"
-	sharp = FALSE
-	spawn_blacklisted = TRUE
 	sawn = /obj/item/gun/projectile/boltgun/levergun/shotgun/sawn
-	message = "lever"
 
 /obj/item/gun/projectile/boltgun/levergun/shotgun/sawn
 	name = "sawn-off FS BR \"Sogekihei\""
