@@ -215,7 +215,7 @@
 	new /obj/item/ammo_magazine/lrifle(src)
 
 /obj/item/storage/box/syndie_kit/winchester
-	name = "Winchester rifle box"
+	name = "lever-action rifle box"
 	desc = "Winchester rifle kit"
 	icon_state = "box_of_doom_big"
 	w_class = ITEM_SIZE_HUGE
