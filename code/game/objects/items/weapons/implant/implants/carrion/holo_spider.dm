@@ -183,7 +183,7 @@
 					message += SPAN_NOTICE("\nThis item cost: [get_item_cost(saved_item)][CREDITS]")
 
 		var/full_name = "\a [src]."
-		if(src.blood_DNA)
+		if(blood_DNA)
 			if(saved_gender == PLURAL)
 				full_name = "some "
 			else
