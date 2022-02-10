@@ -7,7 +7,7 @@
 
 /obj/item/implant/carrion_spider/spark/activate()
 	..()
-	if(src.connected)
+	if(connected)
 		connected.Pulse(src)
 	else
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
