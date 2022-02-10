@@ -13,7 +13,7 @@
 	playsound(src, 'sound/voice/insect_battle_screeching.ogg', 80, 1, 5)
 	playsound(src, 'sound/effects/smoke.ogg', 50, 1, -3)
 	if(charges)
-		src?.prime()
+		src.prime()
 
 /obj/item/implant/carrion_spider/smokebomb/proc/prime()
 	var/datum/effect/effect/system/smoke_spread/S = new
@@ -21,8 +21,8 @@
 	S.set_up(10, 0, usr.loc)
 	charges = 0
 	S.start()
-	sleep(10)
+	sleep(1 SECOND)
 	S.start()
-	sleep(10)
+	sleep(1 SECOND)
 	S.start()
 	die()

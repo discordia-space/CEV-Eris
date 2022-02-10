@@ -70,10 +70,9 @@
 	saved_layer = target.layer
 	saved_original_plane = target.original_plane
 	if(istype(target, /obj))	
-		var/obj/O = new saved_type(src)
+		var/obj/O = target
 		saved_item_state = O.item_state
 		saved_w_class = O.w_class
-		qdel(O)
 	if(istype(target, /mob))
 		saved_message = target.examine(user)
 	return
@@ -173,10 +172,7 @@
 				if(ITEM_SIZE_TITANIC)
 					size = "titanic"
 			message += "\nIt is a [size] item."
-			var/obj/item/N = saved_item
-			for(var/Q in N.tool_qualities)
-				message += "\n<blue>It possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
-			qdel(N)
+
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
 				if(H.stats.getPerk(PERK_MARKET_PROF))
