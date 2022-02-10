@@ -106,13 +106,13 @@
 				to_chat(usr, "<font color='purple'>You are a candidate for [temp.role_text].\
 								<br>If you wish to opt-out of the candidate pool, click <a HREF=?src=\ref[src];opt_out=\ref[candidate.key]>here</a> within 60 seconds.\
 								<br>Otherwise, do nothing and you will be added to the list of candidates.</font>")
-	
+				sleep(60 SECONDS)
+				if(opt_out_log.Find(L.key))
+					opt_out_log.Remove(L.key)
+					candidates.Remove(L.mind)
+
 	if(any_candidates && act_test)	//we don't need to wait if there's no candidates
-		sleep(60 SECONDS)
-		if(L)
-			if(opt_out_log.Find(L.key))
-				opt_out_log.Remove(L.key)
-				candidates.Remove(L.mind)
+		sleep(65 SECONDS)
 
 	return shuffle(candidates)
 
