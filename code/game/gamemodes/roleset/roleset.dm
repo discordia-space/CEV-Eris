@@ -30,8 +30,12 @@
 
 /datum/storyevent/roleset/Topic(href, href_list)
 	if(href_list["opt_out"])
-		opt_out_log.Add(locate(href_list["opt_out"]))
-		to_chat(usr, "<font color='purple'>You have opted out of the candidate pool for this role.<font>")
+		var/key = locate(href_list["opt_out"])
+		if(!opt_out_log.Find(key))
+			opt_out_log.Add(key)
+			to_chat(usr, "<font color='purple'>You have opted out of the candidate pool for this role.<font>")
+		else
+			to_chat(usr, "<font color='purple'>You have already opted out.<font>")
 
 /datum/storyevent/roleset/proc/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
 	return TRUE
