@@ -1,8 +1,8 @@
 /mob/living/carbon/superior_animal/golem/uranium
 	name = "uranium golem"
 	desc = "A moving pile of rocks with uranium specks in it."
-	icon_state = "golem_uranium"
-	icon_living = "golem_uranium"
+	icon_state = "golem_uranium_idle"
+	icon_living = "golem_uranium_idle"
 
 	// Health related variables
 	maxHealth = GOLEM_HEALTH_MED
@@ -31,3 +31,19 @@
 
 	// Uranium golem does not attack
 	viewRange = 0  // Cannot attack if it cannot see
+
+/mob/living/carbon/superior_animal/golem/uranium/New(loc, obj/machinery/mining/deep_drill/drill, datum/golem_controller/parent)
+	..()
+	set_light(3, 3, "#8AD55D")
+
+/mob/living/carbon/superior_animal/golem/uranium/Destroy()
+	set_light(0)
+	. = ..()
+
+// Special capacity of uranium golem: quickly repair all nearby golems.
+/mob/living/carbon/superior_animal/golem/uranium/handle_ai()
+	if(controller)
+		for(var/mob/living/carbon/superior_animal/golem/GO in controller.golems)
+			if(!istype(GO, /mob/living/carbon/superior_animal/golem/uranium))  // Uraniums do not regen
+				GO.adjustBruteLoss(-GOLEM_REGENERATION) // Regeneration
+	. = ..()

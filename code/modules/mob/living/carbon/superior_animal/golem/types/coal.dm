@@ -34,7 +34,7 @@
 /mob/living/carbon/superior_animal/golem/coal/handle_ai()
 	if(on_fire)
 		visible_message(SPAN_DANGER("\The [src] is engulfed by fire and turns into diamond!"))
-		new /mob/living/carbon/superior_animal/golem/diamond(loc, drill=DD)  // Spawn diamond golem at location
+		new /mob/living/carbon/superior_animal/golem/diamond(loc, drill=DD, parent=controller)  // Spawn diamond golem at location
 		ore = null  // So that the golem does not drop coal ores
 		death(FALSE, "no message")
 	. = ..()

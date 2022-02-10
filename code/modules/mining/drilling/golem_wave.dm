@@ -15,14 +15,14 @@ GLOBAL_LIST_INIT(golem_waves, list(/datum/golem_wave/dormant,
 	var/special_probability  // Probability of a golem being a special one instead of a normal one
 	var/mineral_multiplier  // A multiplier of materials excavated by the drill
 	// Active NT obelisk reduces golem_spawn by 1
-	// Active NT obelisk reduces special_probability by 0.1
+	// Active NT obelisk reduces special_probability by 10 percent
 
 /datum/golem_wave/dormant
 	burrow_count = 2
 	burrow_interval = 15 SECONDS
 	golem_spawn = 2
 	spawn_interval = 12 SECONDS
-	special_probability = 0.0
+	special_probability = 0
 	mineral_multiplier = 1.0
 
 /datum/golem_wave/negligible
@@ -30,7 +30,7 @@ GLOBAL_LIST_INIT(golem_waves, list(/datum/golem_wave/dormant,
 	burrow_interval = 15 SECONDS
 	golem_spawn = 2
 	spawn_interval = 12 SECONDS
-	special_probability = 0.0
+	special_probability = 0
 	mineral_multiplier = 1.1
 
 /datum/golem_wave/typical
@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(golem_waves, list(/datum/golem_wave/dormant,
 	burrow_interval = 12 SECONDS
 	golem_spawn = 3
 	spawn_interval = 9 SECONDS
-	special_probability = 0.1
+	special_probability = 10
 	mineral_multiplier = 1.2
 
 /datum/golem_wave/substantial
@@ -46,7 +46,7 @@ GLOBAL_LIST_INIT(golem_waves, list(/datum/golem_wave/dormant,
 	burrow_interval = 12 SECONDS
 	golem_spawn = 3
 	spawn_interval = 9 SECONDS
-	special_probability = 0.2
+	special_probability = 20
 	mineral_multiplier = 1.35
 
 /datum/golem_wave/major
@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(golem_waves, list(/datum/golem_wave/dormant,
 	burrow_interval = 10 SECONDS
 	golem_spawn = 4
 	spawn_interval = 7 SECONDS
-	special_probability = 0.3
+	special_probability = 30
 	mineral_multiplier = 1.5
 
 /datum/golem_wave/abnormal
@@ -62,5 +62,5 @@ GLOBAL_LIST_INIT(golem_waves, list(/datum/golem_wave/dormant,
 	burrow_interval = 9 SECONDS
 	golem_spawn = 4
 	spawn_interval = 6 SECONDS
-	special_probability = 0.3
+	special_probability = 30
 	mineral_multiplier = 2.0

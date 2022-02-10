@@ -19,6 +19,8 @@
 #define GOLEM_SPEED_MED 5
 #define GOLEM_SPEED_HIGH 3
 
+#define GOLEM_REGENERATION 10  // Healing by special ability of uranium golems
+
 // Normal types of golems
 GLOBAL_LIST_INIT(golems_normal, list(/mob/living/carbon/superior_animal/golem/coal,
                                      /mob/living/carbon/superior_animal/golem/iron))
@@ -69,14 +71,23 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 	min_bodytemperature = 0 //below this, burn damage is dealt
 	max_bodytemperature = 10000 //above this, burn damage is dealt
 
+	// Damage multiplier when destroying surroundings
+	var/surrounds_mult = 0.5
+
 	// Type of ore to spawn when the golem dies
 	var/ore
 
 	// The ennemy of all golemkind
 	var/obj/machinery/mining/deep_drill/DD
 
-/mob/living/carbon/superior_animal/golem/New(loc, obj/machinery/mining/deep_drill/drill)
+	// Controller that spawned the golem
+	var/datum/golem_controller/controller
+
+/mob/living/carbon/superior_animal/golem/New(loc, obj/machinery/mining/deep_drill/drill, datum/golem_controller/parent)
 	..()
+	if(parent)
+		controller = parent  // Link golem with golem controller
+		controller.golems += src
 	if(drill)
 		DD = drill
 		if(prob(50))
@@ -88,6 +99,10 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 	..()
 
 /mob/living/carbon/superior_animal/golem/death(gibbed, message = deathmessage)
+	if(controller) // Unlink from controller
+		controller.golems -= src
+		controller = null
+
 	. = ..()
 
 	// Spawn ores
@@ -101,3 +116,35 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 
 /mob/living/carbon/superior_animal/golem/gib(var/anim = icon_gib, var/do_gibs = FALSE)
 	. = ..(anim, FALSE)  // No gibs when gibbing a golem (no blood)
+
+/mob/living/carbon/superior_animal/golem/destroySurroundings()
+	// Get next turf the golem wants to walk on
+	var/turf/T = get_step_towards(src, target_mob)
+
+	if(iswall(T))  // Wall breaker attack
+		T.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
+		return
+
+	for (var/obj/structure/window/obstacle in T)
+		obstacle.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
+		return
+
+	for (var/obj/machinery/door/window/obstacle in T)
+		obstacle.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
+		return
+
+	var/obj/structure/obstacle = locate(/obj/structure, T)
+	if (istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) \
+		|| istype(obstacle, /obj/structure/grille) || istype(obstacle, /obj/structure/low_wall) || istype(obstacle, /obj/structure/railing) \
+		|| istype(obstacle, /obj/structure/girder))
+		obstacle.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
+
+/mob/living/carbon/superior_animal/golem/handle_ai()
+	// Chance to re-aggro the drill if doing nothing
+	if((stance == HOSTILE_STANCE_IDLE) && prob(10))
+		if (!busy) // if not busy with a special task
+			stop_automated_movement = FALSE
+		target_mob = DD
+		if (target_mob)
+			stance = HOSTILE_STANCE_ATTACK
+	. = ..()

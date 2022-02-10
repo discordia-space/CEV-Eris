@@ -1,8 +1,8 @@
 /mob/living/carbon/superior_animal/golem/ansible
 	name = "ansible golem"
 	desc = "A moving pile of rocks with ansible crystals in it."
-	icon_state = "golem_ansible"
-	icon_living = "golem_ansible"
+	icon_state = "golem_ansible_idle"
+	icon_living = "golem_ansible_idle"
 
 	// Health related variables
 	maxHealth = GOLEM_HEALTH_LOW
@@ -39,3 +39,11 @@
 	fire_verb = "fires"
 	acceptableTargetDistance = 6
 	kept_distance = 3
+
+/mob/living/carbon/superior_animal/golem/uranium/New(loc, obj/machinery/mining/deep_drill/drill, datum/golem_controller/parent)
+	..()
+	set_light(3, 3, "#82C2D8")
+
+/mob/living/carbon/superior_animal/golem/uranium/Destroy()
+	set_light(0)
+	. = ..()
