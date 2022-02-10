@@ -40,10 +40,10 @@
 	acceptableTargetDistance = 6
 	kept_distance = 3
 
-/mob/living/carbon/superior_animal/golem/uranium/New(loc, obj/machinery/mining/deep_drill/drill, datum/golem_controller/parent)
+/mob/living/carbon/superior_animal/golem/ansible/New(loc, obj/machinery/mining/deep_drill/drill, datum/golem_controller/parent)
 	..()
 	set_light(3, 3, "#82C2D8")
 
-/mob/living/carbon/superior_animal/golem/uranium/Destroy()
+/mob/living/carbon/superior_animal/golem/ansible/Destroy()
 	set_light(0)
 	. = ..()
