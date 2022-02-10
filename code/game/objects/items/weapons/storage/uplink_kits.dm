@@ -233,7 +233,8 @@
 /obj/item/storage/box/syndie_kit/lshotgun/populate_contents()
 	new /obj/item/gun/projectile/boltgun/levergun/shotgun(src)
 	new /obj/item/ammo_casing/shotgun/prespawned(src)
-/obj/item/storage/box/syndie_kit/pug
+
+ /obj/item/storage/box/syndie_kit/pug
 	name = "Pug box"
 	desc = "Pug kit with one M12 buckshot mag"
 	icon_state = "box_of_doom_big"
