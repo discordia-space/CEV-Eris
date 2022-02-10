@@ -28,6 +28,7 @@
 	rarity_value = 5
 	spawn_frequency = 10
 
+	var/list/custom_default = list() // used to preserve changes to stats past refresh_upgrades proccing
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
 	var/style_damage_multiplier = 1 // multiplies style damage of projectiles fired from this gun
 	var/penetration_multiplier = 1 //Multiplies armor penetration of projectiles fired from this gun
@@ -834,6 +835,10 @@
 	sharp = initial(sharp)
 	attack_verb = list()
 	one_hand_penalty = initial(one_hand_penalty)
+	if (custom_default.len) // this override is used by the artwork_revolver for RNG gun stats
+		for(var/propname in custom_default) // taken from gun_firemode.dm
+			if(propname in vars)
+				vars[propname] = custom_default[propname]
 	initialize_scope()
 	initialize_firemodes()
 
@@ -847,6 +852,7 @@
 	update_icon()
 	//then update any UIs with the new stats
 	SSnano.update_uis(src)
+
 
 /obj/item/gun/proc/generate_guntags()
 	if(one_hand_penalty)
