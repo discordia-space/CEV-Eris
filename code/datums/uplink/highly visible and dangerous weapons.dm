@@ -57,6 +57,7 @@
 	item_cost = 8
 	antag_roles = list(ROLE_MARSHAL)
 	path = /obj/item/storage/box/syndie_kit/lshotgun
+
 /datum/uplink_item/item/visible_weapons/pug
 	name = "Pug Shotgun"
 	item_cost = 8
