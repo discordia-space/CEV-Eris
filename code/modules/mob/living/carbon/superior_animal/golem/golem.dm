@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 /mob/living/carbon/superior_animal/golem/handle_ai()
 	// Chance to re-aggro the drill if doing nothing
 	if((stance == HOSTILE_STANCE_IDLE) && prob(10))
-		if (!busy) // if not busy with a special task
+		if(!busy) // if not busy with a special task
 			stop_automated_movement = FALSE
 		target_mob = DD
 		if(target_mob)
