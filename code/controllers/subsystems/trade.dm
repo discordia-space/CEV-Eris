@@ -162,6 +162,9 @@ SUBSYSTEM_DEF(trade)
 		if(istype(item, /obj/item/storage))						// Storage items are too resource intensive to check (populate_contents() means we have to create new instances of every object within the initial object)
 			return FALSE										// Also, directly selling storage items after emptying them is abusable
 
+		if(istype(item, /obj/machinery/portable_atmospherics/canister/))	// Air canisters can be constructed for 10 steel
+			return FALSE
+
 		if(istype(item, /obj/item/reagent_containers/food))		// Food check (needed because contents are populated using something other than preloaded_reagents)
 			return TRUE
 
