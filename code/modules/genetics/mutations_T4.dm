@@ -7,3 +7,9 @@
 	NSA_load = 0
 
 /datum/mutation/t4/placeholder
+
+/*
+/datum/mutation/t4/onestar
+	name = "Net Terminal Gene"
+	desc = "\[REDACTED\]"
+*/

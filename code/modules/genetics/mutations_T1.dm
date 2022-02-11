@@ -22,13 +22,13 @@
 	user.stats.removeTempStat(stat_type, "Mutation_[hex]_[name]")
 
 /datum/mutation/t1/stat_buff/biology
-	name = "Nerve stabilization (Temporary Name)"
+	name = "Supressed neural oscillation"
 	desc = "Stabilizes muscle motility and reduces tremor."
 	stat_type = STAT_BIO
 
 /datum/mutation/t1/stat_buff/cognition
-	name = "Cortex overstimulation (Temporary Name)"
-	desc = "Buffs cognition."
+	name = "Hypercalculia"
+	desc = "Improves ability to perform mathematical calculations."
 	stat_type = STAT_COG
 
 /datum/mutation/t1/stat_buff/vigilance
@@ -38,12 +38,12 @@
 
 /datum/mutation/t1/stat_buff/robustness
 	name = "Altered fibroblast growth factors"
-	desc = "Increases peak muscle contraction force and pain resistance."
+	desc = "Increases peak muscle contraction force and pain tolerance."
 	stat_type = STAT_ROB
 
 /datum/mutation/t1/stat_buff/toughness
-	name = "Skin hardening (Temporary Name)"
-	desc = "Increases survivability and all that."
+	name = "Controlled osteoderm formation"
+	desc = "Causes growth of tiny bony patches thoughout the body."
 	stat_type = STAT_TGH
 
 // Implanted organs and transfused blood never rejected

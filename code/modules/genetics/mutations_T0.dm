@@ -1,3 +1,4 @@
+// Mostly disabilities and junk mutations
 /datum/mutation/t0
 	name = "Unknown sequence"
 	desc = "Unknown function"
@@ -6,9 +7,9 @@
 	NSA_load = 5
 
 /datum/mutation/t0/blindness
-	name = "Beep"
+	name = "Blind((("
 	desc = "Beep"
 
 /datum/mutation/t0/deafness
-	name = "Boop"
+	name = "Def(((("
 	desc = "Boop"

@@ -11,17 +11,6 @@ var/global/default_dna_machinery_style
 	default_dna_machinery_style = pick(GLOB.dna_machinery_styles)
 
 
-/proc/get_domino_value()
-	return pick(1, 2, 3, 4, 5, 6, 7, 8)
-
-
-/proc/get_random_hex()
-	var/hex = ""
-	while(length(hex) < 6)
-		hex += num2text(pick(hexdigits))
-	return hex
-
-
 /datum/computer_file/binary/animalgene
 	filetype = "ADNA"
 	size = 5
@@ -42,9 +31,9 @@ var/global/default_dna_machinery_style
 
 
 /datum/mutation/New()
-	hex = get_random_hex()
-	domino_r = get_domino_value()
-	domino_l = get_domino_value()
+	hex = num2hex(rand(21845, 65535))
+	domino_r = pick(1, 2, 3, 4, 5, 6, 7, 8)
+	domino_l = pick(1, 2, 3, 4, 5, 6, 7, 8)
 
 
 /datum/mutation/proc/imprint(mob/living/carbon/user)

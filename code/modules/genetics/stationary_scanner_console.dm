@@ -16,7 +16,6 @@
 	var/obj/machinery/cryo_slab/linked
 	var/linked_direction
 	var/obj/item/computer_hardware/hard_drive/portable/usb
-	var/tmp/obj/effect/flicker_overlay/flicker_overlay
 
 
 /obj/machinery/dna_console/initalize_statverbs()
@@ -28,14 +27,12 @@
 	color_key = default_dna_machinery_style
 	establish_connection()
 	update_icon()
-	flicker_overlay = new(src)
 
 /obj/machinery/dna_console/New()
 	..()
 	color_key = default_dna_machinery_style
 	establish_connection()
 	update_icon()
-	flicker_overlay = new(src)
 
 /obj/machinery/dna_console/proc/establish_connection()
 	if(linked)
@@ -91,10 +88,12 @@
 /obj/machinery/dna_console/proc/error_popup()
 	if(error)
 		return
+
 	error = TRUE
-	flick("console_error", flicker_overlay)
-	sleep(3 SECONDS)
+	overlays += "console_error"
+	sleep(1.5 SECONDS)
 	error = FALSE
+	update_icon()
 
 
 /obj/machinery/dna_console/proc/save_pe()
@@ -111,9 +110,8 @@
 	F.filename = "AN_GENE_SPECIES_[uppertext(H.species.name)]"
 	F.gene_type = "species"
 	F.gene_value = H.species
-	if(!usb.store_file(F))
+	if(!usb?.store_file(F))
 		error_popup()
-		return
 
 	// Blood type // GLOB.blood_types = list("A-", "A+", "B-", "B+", "AB-", "AB+", "O-", "O+")
 	F = new // Gotta do that each time or magic won't happen
@@ -123,27 +121,24 @@
 	F.filename = "AN_GENE_BLOOD_[blood_type]"
 	F.gene_type = "b_type"
 	F.gene_value = H.b_type
-	if(!usb.store_file(F))
+	if(!usb?.store_file(F))
 		error_popup()
-		return
 
 	// Unique identity // Fingerprints is md5() of real_name, while dna trace is sha1() of it
 	F = new
-	F.filename = "AN_GENE_APPEARANCE_[uppertext(sha1(H.real_name))]"
+	F.filename = "AN_GENE_APPEARANCE_[uppertext(copytext(sha1(H.real_name), 1, 12))]"
 	F.gene_type = "real_name"
 	F.gene_value = H.real_name
-	if(!usb.store_file(F))
+	if(!usb?.store_file(F))
 		error_popup()
-		return
 /*
 	// Not sure if we need that one
 	F = new
 	F.filename = "Genus sequence '[H.gender]'"
 	F.gene_type = "gender"
 	F.gene_value = H.gender
-	if(!usb.store_file(F))
+	if(!usb?.store_file(F))
 		error_popup()
-		return
 */
 	// to_chat(user, "beep boop all copied")
 
@@ -157,29 +152,27 @@
 	if(!H || !istype(H))
 		return
 
-
 	for(var/i in H.dormant_mutations)
-		var/datum/computer_file/binary/animalgene/F = new
 		var/datum/mutation/M = i
-		if(!istype(M))
-			log_and_message_admins("PIZDETS NAHUI BLYAT! Mutation is not a type!")
-		var/mut_name = replacetext("[M.name]", " ", "_")
+		var/datum/computer_file/binary/animalgene/F = new
+		// Show mutation name instead of hex value if it have been activated previously
+		var/mut_name = M.is_active ? replacetext("[M.name]", " ", "_") : ("[M.tier_string]_[M.hex]")
 		F.filename = "AN_GENE_MUT_[uppertext(mut_name)]"
 		F.gene_type = "mutation"
 		F.gene_value = M
-		if(!usb.store_file(F))
+		if(!usb?.store_file(F))
 			error_popup()
-			return
+			continue
 
 	for(var/i in H.active_mutations)
-		var/datum/computer_file/binary/animalgene/F = new
 		var/datum/mutation/M = i
-		F.filename = "AN_GENE_MUT_[uppertext(M.tier_string)]"//"AN_GENE_MUT_[uppertext(M.tier_string)]_[M.hex]"
+		var/datum/computer_file/binary/animalgene/F = new
+		F.filename = "AN_GENE_MUT_[uppertext(M.tier_string)]_[M.hex]"
 		F.gene_type = "mutation"
 		F.gene_value = M
-		if(!usb.store_file(F))
+		if(!usb?.store_file(F))
 			error_popup()
-			return
+			continue
 
 	// to_chat(user, "beep boop all copied")
 
@@ -212,10 +205,7 @@
 
 
 /obj/machinery/dna_console/proc/try_eject_usb(mob/user)
-	if(!usb)
-		return
-
-	if(user.incapacitated() || !Adjacent(user) || !isliving(user))
+	if(!usb || user.incapacitated() || !Adjacent(user) || !isliving(user))
 		return
 
 	eject_item(usb, user)
