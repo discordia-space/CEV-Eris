@@ -2423,6 +2423,7 @@
 #include "code\modules\projectiles\guns\projectile\automatic\zoric.dm"
 #include "code\modules\projectiles\guns\projectile\battle_rifle\boltgun.dm"
 #include "code\modules\projectiles\guns\projectile\battle_rifle\kovacs.dm"
+#include "code\modules\projectiles\guns\projectile\battle_rifle\levergun.dm"
 #include "code\modules\projectiles\guns\projectile\battle_rifle\type47.dm"
 #include "code\modules\projectiles\guns\projectile\other\RPG.dm"
 #include "code\modules\projectiles\guns\projectile\pistol\avasarala.dm"
