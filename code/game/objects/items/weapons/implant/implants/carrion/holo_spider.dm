@@ -48,11 +48,7 @@
 /obj/item/implant/carrion_spider/holographic/afterattack(atom/target, mob/user, proximity)
 	if(istype(target, /obj/item/storage)) 
 		return
-	if(!proximity)
-		return
-	if(dummy_active)
-		return
-	if(!scan_mobs)
+	if(!proximity || dummy_active || !scan_mobs)
 		return
 	reset_data()
 	playsound(get_turf(src), 'sound/weapons/flash.ogg', 100, 1, -6)
