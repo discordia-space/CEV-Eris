@@ -69,7 +69,7 @@
 
 // Called when the mob is hit with an item in combat.
 /mob/living/carbon/superior_animal/golem/plasma/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
-	if (det_status == DET_BLOWING)
+	if(det_status == DET_BLOWING)
 		det_status = DET_DEFUSED
 		icon_state = "golem_plasma"
 	. = ..()
