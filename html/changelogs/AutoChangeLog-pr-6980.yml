@@ -1,5 +1,0 @@
-author: TheShown911
-delete-after: true
-changes:
-  - rscadd: Added chaos level that can be increased by player vote, that increases
-      storyteller point generation.
