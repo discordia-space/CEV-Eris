@@ -1,0 +1,4 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - bugfix: added missing name and icon for .25 caseless ammo packet
