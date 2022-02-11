@@ -1,7 +1,10 @@
+var/const/WIRE_EXPLODE = 1
 /datum/wires/explosive
 	wire_count = 1
+	descriptions = list(
+		new /datum/wire_description(WIRE_EXPLODE, "Detonation"),
+	)
 
-var/const/WIRE_EXPLODE = 1
 
 /datum/wires/explosive/proc/explode()
 	return
