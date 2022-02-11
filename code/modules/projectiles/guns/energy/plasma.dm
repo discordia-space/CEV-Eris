@@ -46,7 +46,7 @@
 /obj/item/gun/energy/plasma/destroyer
 	name = "NT PR \"Purger\""
 	desc = "A more recent \"NeoTheology\" brand plasma cannon, focused on the superior firepower at the cost of high energy usage. \
-            There's an inscription on the stock. \'For those whom the Angels hath cursed: thou wilt find, have no one to help.\'"
+            There\'s an inscription on the stock. \'For those whom the Angels hath cursed: thou wilt find, have no one to help.\'"
 	icon = 'icons/obj/guns/energy/destroyer.dmi'
 	fire_sound = 'sound/weapons/energy/incinerate.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 10, MATERIAL_URANIUM = 5)
