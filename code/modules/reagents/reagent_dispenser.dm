@@ -36,7 +36,7 @@
 	else if(W.is_refillable())
 		return FALSE //so we can refill them via their afterattack.
 
-	else if(QUALITY_BOLT_TURNING in W.tool_qualities && user.a_intent == I_HELP)
+	else if((QUALITY_BOLT_TURNING in W.tool_qualities) && (user.a_intent == I_HELP))
 		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			src.add_fingerprint(user)
 			if(anchored)
@@ -161,7 +161,7 @@
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
-	if(QUALITY_SCREW_DRIVING in I.tool_qualities && user.a_intent == I_HURT)
+	if((QUALITY_SCREW_DRIVING in I.tool_qualities) && (user.a_intent == I_HURT))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			user.visible_message("[user] screws [src]'s faucet [modded ? "closed" : "open"].", \
 				"You screw [src]'s faucet [modded ? "closed" : "open"]")
