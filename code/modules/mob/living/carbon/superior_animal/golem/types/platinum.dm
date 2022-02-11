@@ -1,5 +1,5 @@
 /mob/living/carbon/superior_animal/golem/platinum
-	name = "plastinum golem"
+	name = "platinum golem"
 	desc = "A moving pile of rocks with platinum specks in it."
 	icon_state = "golem_platinum"
 	icon_living = "golem_platinum"
