@@ -1,6 +1,7 @@
 /obj/item/gun/projectile/boltgun/levergun
 	name = "FS BR .40 \"Svengali\""
-	desc = "A well-made Frozen Star battle rifle. Uses .40 rounds."
+	desc = "A perfect modernization of an old earth classic hailing popular use with gun ho lawmen and bounty hunters. \
+	When you need someone to have a closed casket funeral!"
 	icon_state = "lever_winchester"
 	item_suffix  = "_winchester"
 	force = WEAPON_FORCE_DANGEROUS
