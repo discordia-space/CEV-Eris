@@ -30,6 +30,8 @@
 
 #define isroach(A) istype(A, /mob/living/carbon/superior_animal/roach)
 
+#define isgolem(A) istype(A, /mob/living/carbon/superior_animal/golem)
+
 #define isbrain(A) istype(A, /mob/living/carbon/brain)
 
 #define ishuman(A) istype(A, /mob/living/carbon/human)
