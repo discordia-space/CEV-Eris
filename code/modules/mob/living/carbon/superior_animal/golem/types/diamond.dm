@@ -47,7 +47,7 @@
 			if (!busy) // if not busy with a special task
 				stop_automated_movement = FALSE
 			target_mob = DD
-			if (target_mob)
+			if(target_mob)
 				stance = HOSTILE_STANCE_ATTACK
 
 		if(HOSTILE_STANCE_ATTACK)
