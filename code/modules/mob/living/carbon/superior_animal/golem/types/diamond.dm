@@ -44,7 +44,7 @@
 
 	switch(stance)
 		if(HOSTILE_STANCE_IDLE)
-			if (!busy) // if not busy with a special task
+			if(!busy) // if not busy with a special task
 				stop_automated_movement = FALSE
 			target_mob = DD
 			if(target_mob)
