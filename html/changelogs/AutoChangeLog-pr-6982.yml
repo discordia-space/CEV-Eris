@@ -1,0 +1,7 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - rscadd: created favor mechanic to handle unlockables
+  - tweak: unlocks are much easier to obtain
+  - rscadd: 4 new stations, all existing stations are unlockable
+  - rscdel: cybernetics station (broken)
