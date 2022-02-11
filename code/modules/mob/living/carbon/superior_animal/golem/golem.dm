@@ -114,7 +114,7 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 	// Poof
 	qdel(src)
 
-/mob/living/carbon/superior_animal/golem/gib(var/anim = icon_gib, var/do_gibs = FALSE)
+/mob/living/carbon/superior_animal/golem/gib(anim = icon_gib, do_gibs = FALSE)
 	. = ..(anim, FALSE)  // No gibs when gibbing a golem (no blood)
 
 /mob/living/carbon/superior_animal/golem/destroySurroundings()
