@@ -631,7 +631,7 @@ default behaviour is:
 		var/speed = movement_delay()
 		resting = TRUE
 		var/_dir = C.true_dir
-		if(ishuman(src) && !weakened && (dir))// If true_dir = 0(src isn't moving), doesn't proc.
+		if(ishuman(src) && !weakened && (_dir))// If true_dir = 0(src isn't moving), doesn't proc.
 			var/mob/living/carbon/human/H = src
 			var/range = 1 //checks for move intent; dive one tile further if on run intent
 			if (move_intent.flags & MOVE_INTENT_EXERTIVE)
