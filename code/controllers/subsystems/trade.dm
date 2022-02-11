@@ -153,6 +153,12 @@ SUBSYSTEM_DEF(trade)
 // Checks reagent containers to see if they match their base state or if they match the special offer from a station
 /datum/controller/subsystem/trade/proc/check_contents(item, offer_path, assessing_special_offer = FALSE)
 	if(!ispath(offer_path, /datum/reagent))
+		if(istype(item, /obj/machinery/portable_atmospherics/canister))			// Air canisters can be constructed for 10 steel
+			var/obj/machinery/portable_atmospherics/canister/canister = item
+			if(canister.air_contents.total_moles >= 1871.71)
+				return TRUE
+			return FALSE
+
 		if(istype(item, /obj/item/stack))						// Check if item is an item stack
 			var/obj/item/stack/item_stack = item
 			if(item_stack.amount == item_stack.max_amount)
