@@ -145,6 +145,8 @@
 	spawn_tags = SPAWN_TAG_AMMO_IH
 
 /obj/item/ammo_magazine/ammobox/clrifle_small
+	name = "ammunition packet (.25 Caseless Rifle)"
+	icon_state = "clrifle"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_CARDBOARD = 1)
 	caliber = CAL_CLRIFLE
 	ammo_type = /obj/item/ammo_casing/clrifle
