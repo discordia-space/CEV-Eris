@@ -39,7 +39,7 @@
 
 	//CONSCIOUS UNCONSCIOUS DEAD
 
-	if (!check_AI_act())
+	if(!check_AI_act())
 		return FALSE
 
 	switch(stance)
