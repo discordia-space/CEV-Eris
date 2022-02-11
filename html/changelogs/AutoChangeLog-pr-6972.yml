@@ -1,0 +1,9 @@
+author: Sparrowbird611
+delete-after: true
+changes:
+  - balance: Reduces the damage on ballistic and plasma projectiles. On average it's
+      a 20% reduction, with some tweaks up or down.
+  - balance: Increased style damage on RPG rockets and lasers.
+  - balance: gives buckshot AP to help it deal with the Eris armor system.
+  - balance: removes -0.1 damage mod on AMR. It's ammo was nerfed so it's about the
+      same.
