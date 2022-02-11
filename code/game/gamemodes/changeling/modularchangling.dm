@@ -68,7 +68,7 @@ var/list/datum/power/carrion/powerinstances = list()
 
 /datum/power/carrion/smoke_spider
 	name = "Smoke spider"
-	desc = "Creates a spider filled with smoke that it releases on activation."
+	desc = "Creates a spider filled with smoke that is released on activation."
 	genomecost = 3
 	spiderpath = /obj/item/implant/carrion_spider/smokebomb
 
