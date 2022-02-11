@@ -65,11 +65,11 @@
 	spider_appearance = src.appearance
 	saved_layer = target.layer
 	saved_original_plane = target.original_plane
-	if(istype(target, /obj))	
+	if(isobj(target))	
 		var/obj/O = target
 		saved_item_state = O.item_state
 		saved_w_class = O.w_class
-	if(istype(target, /mob))
+	if(ismob(target))
 		saved_message = target.examine(user)
 	return
 
