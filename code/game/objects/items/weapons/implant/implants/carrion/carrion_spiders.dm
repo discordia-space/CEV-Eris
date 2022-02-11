@@ -10,6 +10,7 @@
 	var/spider_price = 15
 	var/gene_price = 0
 	var/do_gibs = TRUE
+	var/gibs_color = "#666600"
 	var/last_stun_time = 0 //Used to avoid cheese
 	var/ignore_activate_all = FALSE
 
@@ -63,7 +64,7 @@
 
 /obj/item/implant/carrion_spider/proc/die()
 	if(!wearer)
-		gibs(loc, null, /obj/effect/gibspawner/generic, "#666600", "#666600")
+		gibs(loc, null, /obj/effect/gibspawner/generic, gibs_color, gibs_color)
 
 	qdel(src)
 
