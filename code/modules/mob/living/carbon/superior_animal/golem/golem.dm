@@ -123,21 +123,9 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 
 	if(iswall(T))  // Wall breaker attack
 		T.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
-		return
-
-	for (var/obj/structure/window/obstacle in T)
-		obstacle.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
-		return
-
-	for (var/obj/machinery/door/window/obstacle in T)
-		obstacle.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
-		return
-
-	var/obj/structure/obstacle = locate(/obj/structure, T)
-	if (istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) \
-		|| istype(obstacle, /obj/structure/grille) || istype(obstacle, /obj/structure/low_wall) || istype(obstacle, /obj/structure/railing) \
-		|| istype(obstacle, /obj/structure/girder))
-		obstacle.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
+	else
+		var/obj/structure/obstacle = locate(/obj/structure) in T
+		obstacle?.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
 
 /mob/living/carbon/superior_animal/golem/handle_ai()
 	// Chance to re-aggro the drill if doing nothing
