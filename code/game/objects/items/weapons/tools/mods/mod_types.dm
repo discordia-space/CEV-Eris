@@ -353,6 +353,7 @@
 		)
 	I.gun_loc_tag = GUN_GRIP
 	I.req_gun_tags = list(GUN_PROJECTILE, GUN_GRIP)
+
 	I.tool_upgrades = list(
 	UPGRADE_PRECISION = 10,
 	UPGRADE_HEALTH_THRESHOLD = 10)
