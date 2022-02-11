@@ -40,9 +40,7 @@
 		scan_mobs = FALSE
 
 /obj/item/implant/carrion_spider/holographic/attack(mob/living/M, mob/living/user)
-	if(scan_mobs)
-		return
-	else
+	if(!scan_mobs)
 		..()
 
 /obj/item/implant/carrion_spider/holographic/afterattack(atom/target, mob/user, proximity)
