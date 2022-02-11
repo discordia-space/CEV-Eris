@@ -1,0 +1,4 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - bugfix: fixed canister exploit in trade beacons
