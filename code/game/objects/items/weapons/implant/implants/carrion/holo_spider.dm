@@ -36,7 +36,7 @@
 		scan_mobs = TRUE
 	else
 		ready_to_attack = TRUE
-		to_chat(user, SPAN_NOTICE("\The [src] is ready to attack nearby creatures or to be attached manually"))
+		to_chat(user, SPAN_NOTICE("\The [src] is ready to attack nearby creatures or to be attached manually."))
 		scan_mobs = FALSE
 
 /obj/item/implant/carrion_spider/holographic/attack(mob/living/M, mob/living/user)
