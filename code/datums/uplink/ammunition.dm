@@ -73,7 +73,7 @@
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/ammo_magazine/srifle/hv
 
-/datum/uplink_item/item/ammo/sl_lrifle/highvelocity
+/datum/uplink_item/item/ammo/sl_srifle/highvelocity
 	name = ".20 Rifle HV ammo strip"
 	desc = "Contains 2 standard .20 ammo strips, loaded with high velocity ammunition. Can fit 5 bullets."
 	item_cost = 1
