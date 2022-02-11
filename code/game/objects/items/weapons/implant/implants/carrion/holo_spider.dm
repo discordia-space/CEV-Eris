@@ -4,7 +4,7 @@
 	icon_state = "spiderling_holographic"
 	slot_flags = SLOT_ID | SLOT_BELT | SLOT_EARS | SLOT_HOLSTER | SLOT_BACK | SLOT_MASK | SLOT_GLOVES | SLOT_HEAD | SLOT_OCLOTHING | SLOT_ICLOTHING | SLOT_FEET | SLOT_EYES
 	spider_price = 5
-	var/can_use = 1
+	var/can_use = TRUE
 	var/saved_name
 	var/saved_description
 	var/saved_item
