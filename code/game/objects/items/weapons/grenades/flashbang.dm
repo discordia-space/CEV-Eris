@@ -157,7 +157,7 @@
 /obj/item/grenade/flashbang/nt
 	name = "NT FBG \"Holy Light\""
 	desc = "An old \"NanoTrasen\" flashbang grenade. \
-			There's an inscription along the bands. \'Rome will glow with the light of her Lord.\'"
+			There\'s an inscription along the bands. \'Rome will glow with the light of her Lord.\'"
 	icon_state = "flashbang_nt"
 	item_state = "flashbang_nt"
 	matter = list(MATERIAL_BIOMATTER = 15)
