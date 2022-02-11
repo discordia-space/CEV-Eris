@@ -1,0 +1,4 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - rscadd: gasmasks and bandanas replacing speaker name with "Unknown"
