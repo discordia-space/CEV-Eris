@@ -409,7 +409,8 @@ BLIND     // can't see anything
 	bad_type = /obj/item/clothing/mask
 	spawn_tags = SPAWN_TAG_MASK
 
-	var/voicechange = 0
+	var/muffle_voice = FALSE
+	var/voicechange = FALSE
 	var/list/say_messages
 	var/list/say_verbs
 
