@@ -1,13 +1,15 @@
 // Eyes
 /datum/gear/eyes
-	display_name = "eyepatch"
-	path = /obj/item/clothing/glasses/eyepatch
+	display_name = "Glasses, prescription"
+	path = /obj/item/clothing/glasses/regular
 	slot = slot_glasses
 	sort_category = "Glasses and Eyewear"
 
-/datum/gear/eyes/glasses
-	display_name = "Glasses, prescription"
-	path = /obj/item/clothing/glasses/regular
+
+/datum/gear/eyes/eyepatch
+	display_name = "eyepatch"
+	path = /obj/item/clothing/glasses/eyepatch
+	cost = 2
 
 /datum/gear/eyes/glasses/prescriptionhipster
 	display_name = "Glasses, hipster"
@@ -16,6 +18,7 @@
 /datum/gear/eyes/glasses/monocle
 	display_name = "Monocle"
 	path = /obj/item/clothing/glasses/monocle
+	cost = 2
 
 /datum/gear/eyes/scanning_goggles
 	display_name = "scanning goggles"
@@ -45,11 +48,17 @@
 	allowed_roles = list(JOBS_MEDICAL)
 
 /datum/gear/eyes/shades
+	display_name = "sunglasses"
+	path = /obj/item/clothing/glasses/sunglasses
+	cost = 2
+/datum/gear/eyes/shades/prescriptionsun
+	display_name = "sunglasses, presciption"
+	path = /obj/item/clothing/glasses/sunglasses/prescription
+
+
+/datum/gear/eyes/shades/big
 	display_name = "Sunglasses, fat"
 	path = /obj/item/clothing/glasses/sunglasses/big
 	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Ironhammer Gunnery Sergeant","Captain","First Officer","Quartermaster","Ironhammer Inspector")
 
-/datum/gear/eyes/shades/prescriptionsun
-	display_name = "sunglasses, presciption"
-	path = /obj/item/clothing/glasses/sunglasses/prescription
-	cost = 2
+

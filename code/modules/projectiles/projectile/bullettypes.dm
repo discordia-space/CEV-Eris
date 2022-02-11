@@ -16,6 +16,7 @@ There are important things regarding this file:
 	armor_penetration = 10
 	can_ricochet = TRUE
 	penetrating = 1
+	style_damage = 20
 
 /obj/item/projectile/bullet/pistol/hv
 	damage_types = list(BRUTE = 32)

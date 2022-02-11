@@ -61,7 +61,7 @@
 		bio = 0,
 		rad = 0
 	)
-	flash_protection = FLASH_PROTECTION_MAJOR
+	flash_protection = FLASH_PROTECTION_MODERATE
 	price_tag = 500
 	obscuration = LIGHT_OBSCURATION
 	style_coverage = COVERS_WHOLE_HEAD
@@ -162,7 +162,7 @@
 	)
 	price_tag = 400
 	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
-	flash_protection = FLASH_PROTECTION_MAJOR
+	flash_protection = FLASH_PROTECTION_MINOR
 	matter = list(
 		MATERIAL_STEEL = 8,
 		MATERIAL_PLASTEEL = 2, //Higher plasteel cost since it's booletproof
@@ -301,7 +301,7 @@
 	body_parts_covered = HEAD|EARS
 	var/body_parts_covered_down = HEAD|EARS|EYES|FACE
 	flash_protection = FLASH_PROTECTION_NONE
-	var/flash_protection_down = FLASH_PROTECTION_MAJOR
+	var/flash_protection_down = FLASH_PROTECTION_MINOR
 	action_button_name = "Flip Face Shield"
 	var/up = FALSE
 	bad_type = /obj/item/clothing/head/armor/faceshield
@@ -320,6 +320,7 @@
 		MATERIAL_PLASTEEL = 2,
 		MATERIAL_GLASS = 6,
 	)
+	flash_protection_down = FLASH_PROTECTION_MODERATE // used against flash mobs
 
 /obj/item/clothing/head/armor/faceshield/Initialize()
 	. = ..()
@@ -392,7 +393,7 @@
 	)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
-	flash_protection = FLASH_PROTECTION_MAJOR
+	flash_protection = FLASH_PROTECTION_MINOR
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
 	price_tag = 500
