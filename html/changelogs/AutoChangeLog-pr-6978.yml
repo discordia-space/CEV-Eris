@@ -1,0 +1,5 @@
+author: hex37
+delete-after: true
+changes:
+  - bugfix: prevents players with the weakened status from being able to speed up
+      movement by diving repeatedly instead of crawling.
