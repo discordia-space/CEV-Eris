@@ -1,14 +1,17 @@
 /datum/trade_station/suit_up
 	name_pool = list(
-		"ATB 'Suit Up!'" = "Aster's Trade Beacon 'Suit Up!':\n\"Suits, voidsuits and more for you, traveler!\""
+		"ATB 'Suit Up!'" = "Aster's Trade Beacon 'Suit Up!': \"Suits, voidsuits and more for you, traveler!\""
 	)
+	uid = "suit_up"
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = COMMON_GOODS
 	offer_limit = 20
 	base_income = 3200
 	wealth = 0
-	secret_inv_threshold = 24000
+	secret_inv_threshold = 2000
+	recommendation_threshold = 4000
+	stations_recommended = list("rigs")
 	assortiment = list(
 		"Spacesuits" = list(
 			/obj/item/clothing/suit/space/void,
@@ -144,9 +147,7 @@
 		),
 		"RIGs" =  list(
 			/obj/item/rig/medical = custom_good_amount_range(list(1, 5)),
-			/obj/item/rig/light = custom_good_amount_range(list(1, 5)),
 			/obj/item/rig/hazmat = custom_good_amount_range(list(1, 5)),
-			/obj/item/rig/combat = custom_good_amount_range(list(1, 5)),
 			/obj/item/rig/hazard = custom_good_amount_range(list(1, 5)),
 			/obj/item/rig/industrial = custom_good_amount_range(list(1, 5))
 		),
@@ -171,11 +172,11 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/rig_module = offer_data("rig module", 500, 0),							// base price: 500
-		/obj/item/rig/eva = offer_data("EVA suit control module", 700, 4),					// base price: 682 (incl. components)
-		/obj/item/rig/hazard = offer_data("hazard hardsuit control module", 700, 4),		// base price: 682 (incl. components)
-		/obj/item/rig/industrial = offer_data("industrial suit control module", 950, 4),	// base price: 882 (incl. components)
-		/obj/item/rig/hazmat = offer_data("AMI control module", 950, 4),					// base price: 882 (incl. components)
-		/obj/item/rig/combat = offer_data("combat hardsuit control module", 1100, 4),		// base price: 1032 (incl. components)
-		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 4000, 1)
+		/obj/item/rig_module = offer_data("rig module", 500, 10),							// base price: 500
+		/obj/item/rig/medical = offer_data("rescue suit control module", 700, 2),			// base price: 682 (incl. components)
+		/obj/item/rig/eva = offer_data("EVA suit control module", 700, 2),					// base price: 682 (incl. components)
+		/obj/item/rig/hazard = offer_data("hazard hardsuit control module", 700, 2),		// base price: 682 (incl. components)
+		/obj/item/rig/industrial = offer_data("industrial suit control module", 950, 2),	// base price: 882 (incl. components)
+		/obj/item/rig/hazmat = offer_data("AMI control module", 950, 2),					// base price: 882 (incl. components)
+		/obj/item/rig/combat = offer_data("combat hardsuit control module", 1100, 2)		// base price: 1032 (incl. components)
 	)

@@ -1,7 +1,17 @@
 /datum/trade_station/fs_experimental_factory
-	name_pool = list("FSTB 'Suoh'" = "Frozen Star Trade Beacon 'Suoh'. They're sending a message. \"Hello there! We are looking for beta testers of our experimental weapons and upgrades. Sign up now!\"")
-	markup = 1
-	spawn_probability = 10
+	name_pool = list(
+		"FSTB 'Suoh'" = "Frozen Star Trade Beacon 'Suoh': \"Hello there! We are looking for beta testers of our experimental weapons and upgrades. Sign up now!\""
+	)
+	uid = "fs_experimental"
+	start_discovered = FALSE
+	spawn_always = TRUE
+	markup = RARE_GOODS
+	offer_limit = 20
+	base_income = 0
+	wealth = 0
+	secret_inv_threshold = 2000
+	recommendation_threshold = 4000
+	recommendations_needed = 2
 	assortiment = list(
 		"Gunmods" = list(
 			/obj/item/gun_upgrade/trigger/dangerzone,
@@ -20,6 +30,6 @@
 			/obj/item/ammo_magazine/ammobox/lrifle_small/hv = custom_good_amount_range(list(-3, 2)),
 			/obj/item/ammo_magazine/ammobox/pistol/hv = custom_good_amount_range(list(-1, 2)),
 			/obj/item/ammo_magazine/ammobox/magnum/hv = custom_good_amount_range(list(-1, 2)),
-			/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells
-		),
+			/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells = custom_good_name("ammunition box (.50 incendiary)")
+		)
 	)
