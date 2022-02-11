@@ -164,7 +164,7 @@
 
 /obj/item/grenade/flashbang/nt/flashbang_without_the_bang(turf/T, mob/living/carbon/M)
 	if(M.get_core_implant(/obj/item/implant/core_implant/cruciform))
-		to_chat(M, span_singing("You are blinded by the light of the Angels!"))
+		to_chat(M, span_singing("You are blinded by the Angels\' light!"))
 		if (M.HUDtech.Find("flash"))
 			flick("e_flash", M.HUDtech["flash"])
 		return
