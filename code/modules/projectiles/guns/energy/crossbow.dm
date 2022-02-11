@@ -27,7 +27,7 @@
 /obj/item/gun/energy/crossbow/largecrossbow
 	name = "NT EC \"Themis\""
 	desc = "Energy crossbow, produced by NeoTheology. A weapon favored by inquisitorial infiltration teams. \
-            There's an inscription on the stock. \'The guilty will be recognized by their mark; so they will be seized by their forelocks and feet.\'"
+            There\'s an inscription on the stock. \'The guilty will be recognized by their mark; so they will be seized by their forelocks and feet.\'"
 	icon = 'icons/obj/guns/energy/constantine.dmi'
 	icon_state = "constantine"
 	w_class = ITEM_SIZE_BULKY
