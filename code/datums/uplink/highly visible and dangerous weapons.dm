@@ -46,7 +46,7 @@
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/storage/box/syndie_kit/sts35
 
-/datum/uplink_item/item/visible_weapons/winchestertrifle
+/datum/uplink_item/item/visible_weapons/winchesterrifle
 	name = "FS BR .40 \"Svengali\""
 	item_cost = 10
 	antag_roles = list(ROLE_MARSHAL)
