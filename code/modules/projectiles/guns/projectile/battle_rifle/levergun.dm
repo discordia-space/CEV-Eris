@@ -39,7 +39,8 @@
 
 /obj/item/gun/projectile/boltgun/levergun/shotgun
 	name = "FS BR \"Sogekihei\""
-	desc = "A well-made Frozen Star shotgun. Uses shotgun shells."
+	desc = "A refined weapon for the lawmen who wants to get up close and personal. \
+	Marketed as the number one choice for crack shots on Oberth colonies and large vessels."
 	icon_state = "lever_shotgun"
 	item_suffix  = "_shotgun"
 	force = WEAPON_FORCE_DANGEROUS
