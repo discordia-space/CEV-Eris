@@ -1,4 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - bugfix: the gyroscopic stabilizer can now be used as a toolmod and gunmod again.

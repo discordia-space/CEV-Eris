@@ -1,5 +1,0 @@
-author: hex37
-delete-after: true
-changes:
-  - bugfix: Causes MC to not cause a bunch of runtimes every time an admin opens it,
-      also allows subsystems to actually show for them.

@@ -1,5 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - balance: bottles now always break when thrown with harm intent active
-  - bugfix: bottles can now break again when thrown with harm intent active
