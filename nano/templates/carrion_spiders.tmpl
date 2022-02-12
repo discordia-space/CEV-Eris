@@ -33,17 +33,17 @@ Used In File(s): code\modules\organs\internal\carrion.dm
 		{{if value.assigned_group_1}}
 			<td>{{:helper.link('', 'check', {'toggle_group_1' : value.spider})}}</td>
 		{{else}}
-			<td>{{:helper.link('', 'close', {'toggle_group_1' : value.spider})}}</td>
+			<td>{{:helper.link('', 'close', {'toggle_group_1' : value.spider}, null, 'redButton')}}</td>
 		{{/if}}
 		{{if value.assigned_group_2}}
 			<td>{{:helper.link('', 'check', {'toggle_group_2' : value.spider})}}</td>
 		{{else}}
-			<td>{{:helper.link('', 'close', {'toggle_group_2' : value.spider})}}</td>
+			<td>{{:helper.link('', 'close', {'toggle_group_2' : value.spider}, null, 'redButton')}}</td>
 		{{/if}}
 		{{if value.assigned_group_3}}
 			<td>{{:helper.link('', 'check', {'toggle_group_3' : value.spider})}}</td>
 		{{else}}
-			<td>{{:helper.link('', 'close' , {'toggle_group_3' : value.spider})}}</td>
+			<td>{{:helper.link('', 'close' , {'toggle_group_3' : value.spider}, null, 'redButton')}}</td>
 		{{/if}}
 		<td>
 		{{if value.implanted}}
@@ -54,3 +54,4 @@ Used In File(s): code\modules\organs\internal\carrion.dm
 	{{/for}}
 </table>
 </div>
+
