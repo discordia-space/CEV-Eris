@@ -226,6 +226,7 @@
 	siemens_coefficient = 0.9
 	body_parts_covered = HEAD|FACE|EYES
 	style_coverage = COVERS_WHOLE_HEAD
+	muffle_voice = TRUE
 
 /obj/item/clothing/mask/pig/New()
 	..()
@@ -241,6 +242,7 @@
 	w_class = ITEM_SIZE_SMALL
 	siemens_coefficient = 0.9
 	style_coverage = COVERS_WHOLE_HEAD
+	muffle_voice = TRUE
 
 /obj/item/clothing/mask/horsehead/New()
 	..()
@@ -298,7 +300,8 @@
 	w_class = ITEM_SIZE_SMALL
 	price_tag = 20
 	style = STYLE_LOW
-
+	muffle_voice = TRUE
+ 
 /obj/item/clothing/mask/bandana/equipped(var/mob/user, var/slot)
 	switch(slot)
 		if(slot_wear_mask) //Mask is the default for all the settings

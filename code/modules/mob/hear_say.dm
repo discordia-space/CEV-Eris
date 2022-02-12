@@ -14,7 +14,11 @@
 	var/speaker_name = speaker.name
 	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
-		speaker_name = H.rank_prefix_name(H.GetVoice())
+		// GetVoice(TRUE) checks if mask hiding the voice
+		speaker_name = H.rank_prefix_name(H.GetVoice(TRUE))
+		// If we have the right perk or standing close - GetVoice() again, but skip mask check
+		if((get_dist(src, H) < 2) || stats?.getPerk(PERK_EAR_OF_QUICKSILVER))
+			speaker_name = H.rank_prefix_name(H.GetVoice(FALSE))
 
 	if(speech_volume)
 		message = "<FONT size='[speech_volume]'>[message]</FONT>"
