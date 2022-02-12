@@ -1,9 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - rscadd: Adds the carrion smoke spider, which works like a smoke bomb
-  - rscadd: Adds the carrion holographic spider, can be used to imitate scanned objects
-      or mobs
-  - tweak: merges the signal spider with the electric spider
-  - tweak: The carrion spider menu will now show the name of the area that a spider
-      is located in

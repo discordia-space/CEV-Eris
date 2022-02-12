@@ -1,6 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - rscadd: antag opt-out prompt
-  - tweak: excel and serb minimum candidate requirements added (3 and 2, respectively)
-  - bugfix: storyteller panel button runtime

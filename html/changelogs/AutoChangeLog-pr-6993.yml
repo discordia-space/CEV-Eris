@@ -1,9 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - rscadd: Carrion spiders can now be assigned to groups to make them activateable
-      at the same time.
-  - tweak: the observer spider will no longer be triggered when activating all carrion
-      spiders
-  - bugfix: you can now secure water and fuel tanks to the ground and make fuel tanks
-      leak fuel again
