@@ -194,8 +194,7 @@
 	if(n_timer > timer)
 		units_completed += n_timer - timer
 		timer = world.time
-	if(check_for_completion())
-	
+	if(check_for_completion())	
 		completed()
 
 /datum/individual_objective/helper/completed()
