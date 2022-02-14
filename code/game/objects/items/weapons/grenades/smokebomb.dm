@@ -1,6 +1,8 @@
 /obj/item/grenade/smokebomb
 	name = "FS SG \"Reynolds\""
 	desc = "Smoke grenade, used to create a cloud of smoke providing cover and hiding movement."
+	icon_state = "smokegrenade"
+	item_state = "smokegrenade"
 	det_time = 20
 	var/datum/effect/effect/system/smoke_spread/bad/smoke
 
