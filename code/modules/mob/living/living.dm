@@ -630,7 +630,7 @@ default behaviour is:
 		var/speed = movement_delay()
 		resting = TRUE
 		var/dir = C.true_dir
-		if(ishuman(src) && (dir))// If true_dir = 0(src isn't moving), doesn't proc
+		if(ishuman(src) && !src.weakened && (dir))// If true_dir = 0(src isn't moving), doesn't proc
 			var/mob/living/carbon/human/H = src
 			livmomentum = 5 // Set momentum value as soon as possible for stopSliding to work better
 			to_chat(H, SPAN_NOTICE("You dive onwards!"))
