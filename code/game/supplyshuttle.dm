@@ -30,9 +30,9 @@ var/list/mechtoys = list(
 	icon_state = "plasticflaps"
 	density = FALSE
 	anchored = TRUE
-	matter = list(MATERIAL_PLASTIC = 4)
 	layer = ABOVE_MOB_LAYER
 	explosion_resistance = 5
+	matter = list(MATERIAL_PLASTIC = 4)
 	var/list/mobs_can_pass = list(
 		/mob/living/carbon/slime,
 		/mob/living/simple_animal/mouse,
