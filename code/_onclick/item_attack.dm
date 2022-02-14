@@ -83,7 +83,83 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	var/surgery_check = can_operate(src, user)
 	if(surgery_check && do_surgery(src, user, I, surgery_check)) //Surgery
 		return TRUE
+	if(I.doubletact)
+		if(!(I.ready))
+			user.visible_message(SPAN_DANGER("[user] raises \his [I]"))
+			I.ready = 1
+			var/endtime = world.time + 100
+			while(world.time < endtime)
+				sleep(1)
+				if(!(I.ready))
+					return
+				if(!(I.is_equipped()))
+					I.ready = 0
+					return
+			user.visible_message(SPAN_DANGER("[user] lowers \his [I]"))
+			I.ready = 0
+			return
+		else
+			I.ready = 0
+
+	if(ishuman(user)) //Swinging
+		var/mob/living/carbon/human/H = user
+		if(I.can_swing)
+			if(I.wielded)
+				if(H.a_intent == I_HURT)
+					var/x_difference = src.x - H.x
+					var/y_difference = src.y - H.y
+					var/z_level = src.z
+					var/holdinghand = user.get_inventory_slot(I)
+					var/turf/R
+					var/turf/L
+					switch(x_difference)
+						if(0)
+							R = locate((src.x + 1), src.y, z_level)
+							L = locate((src.x - 1), src.y, z_level)
+						if(1)
+							switch(y_difference)
+								if(0)
+									R = locate(src.x, (src.y - 1), z_level)
+									L = locate(src.x, (src.y + 1), z_level)
+								if(1)
+									R = locate(src.x, (src.y - 1), z_level)
+									L = locate((src.x - 1), src.y, z_level)
+								if(-1)
+									R = locate((src.x - 1), src.y, z_level)
+									L = locate(src.x, (src.y + 1), z_level)
+						if(-1)
+							switch(y_difference)
+								if(0)
+									R = locate(src.x, (src.y + 1), z_level)
+									L = locate(src.x, (src.y - 1), z_level)
+								if(1)
+									R = locate((src.x + 1), src.y, z_level)
+									L = locate(src.x, (src.y - 1), z_level)
+								if(-1)
+									R = locate(src.x, (src.y + 1), z_level)
+									L = locate((src.x + 1), src.y, z_level)
+					if(holdinghand == slot_l_hand)
+						I.tileattack(user, L)
+						I.attack(src, user, user.targeted_organ)
+						I.tileattack(user, R)
+						return
+					else if(holdinghand == slot_r_hand)
+						I.tileattack(user, R)
+						I.attack(src, user, user.targeted_organ)
+						I.tileattack(user, L)
+						return
 	return I.attack(src, user, user.targeted_organ)
+
+//Handles AOE attacking on tiles
+/obj/item/proc/tileattack(mob/living/user, turf/targetarea, modifier = 1)
+	if(istype(targetarea, /turf/simulated/wall))
+		var/turf/simulated/W = targetarea
+		return W.attackby(src, user)
+	for(var/obj/structure/S in targetarea)
+		if (S.density)
+			S.attackby(src, user)
+	for(var/mob/living/M in targetarea)
+		src.attack(M, user, user.targeted_organ)
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
