@@ -111,6 +111,10 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 		for(var/i in 1 to nb_ores)
 			new ore(loc)
 
+		// Specials have a small chance to also drop a golem core
+		if(prob(30) && !istype(src, /mob/living/carbon/superior_animal/golem/coal) && !istype(src, /mob/living/carbon/superior_animal/golem/iron))
+			new /obj/item/golem_core(loc)
+
 	// Poof
 	qdel(src)
 
