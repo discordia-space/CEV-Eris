@@ -369,6 +369,9 @@
 			to_chat(usr, "You flip the [src] down to protect your face.")
 
 		usr.update_action_buttons()
+		if(ishuman(usr))
+			var/mob/living/carbon/human/beingofeyes = usr
+			beingofeyes.update_equipment_vision()
 
 
 /*
