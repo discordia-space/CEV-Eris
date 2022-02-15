@@ -30,7 +30,6 @@
 /obj/spawner/scrap/dense
 	name = "Random dense trash"
 	rarity_value = 10
-	price_tag = 100		// for trade program
 	spawn_tags = SPAWN_TAG_SPAWNER_SCRAP_LARGE
 	tags_to_spawn = list(SPAWN_SCRAP_LARGE)
 

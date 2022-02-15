@@ -1,4 +1,5 @@
 GLOBAL_DATUM(storyteller, /datum/storyteller)
+GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller points, also used in bluespace entropy.
 
 /datum/storyteller
 	//Strings
@@ -222,10 +223,10 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 			points[a] += delta
 
 /datum/storyteller/proc/handle_points()
-	points[EVENT_LEVEL_MUNDANE] += 1 * (gain_mult_mundane) * (RAND_DECIMAL(1-variance, 1+variance))
-	points[EVENT_LEVEL_MODERATE] += 1 * (gain_mult_moderate) * (RAND_DECIMAL(1-variance, 1+variance))
-	points[EVENT_LEVEL_MAJOR] += 1 * (gain_mult_major) * (RAND_DECIMAL(1-variance, 1+variance))
-	points[EVENT_LEVEL_ROLESET] += 1 * (gain_mult_roleset) * (RAND_DECIMAL(1-variance, 1+variance))
+	points[EVENT_LEVEL_MUNDANE] += GLOB.chaos_level * (gain_mult_mundane) * (RAND_DECIMAL(1-variance, 1+variance))
+	points[EVENT_LEVEL_MODERATE] += GLOB.chaos_level * (gain_mult_moderate) * (RAND_DECIMAL(1-variance, 1+variance))
+	points[EVENT_LEVEL_MAJOR] += GLOB.chaos_level * (gain_mult_major) * (RAND_DECIMAL(1-variance, 1+variance))
+	points[EVENT_LEVEL_ROLESET] += GLOB.chaos_level * (gain_mult_roleset) * (RAND_DECIMAL(1-variance, 1+variance))
 	check_thresholds()
 
 /datum/storyteller/proc/check_thresholds()

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/cyberplants.dmi'
 	icon_state = "holopot"
 	w_class = ITEM_SIZE_TINY
-	var/brightness_on = 3
+	var/brightness_on = 4
 	var/emagged = FALSE
 	var/interference = FALSE
 	var/icon/plant = null
