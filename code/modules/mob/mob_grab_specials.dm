@@ -51,7 +51,7 @@
 	if(!organ || organ.dislocated == -1)
 		return
 
-	if(!do_after(attacker, 70, target))
+	if(!do_after(attacker, 7 SECONDS, target))
 		to_chat(attacker, SPAN_WARNING("You must stand still to jointlock [target]!"))
 	else
 		visible_message(SPAN_WARNING("[attacker] [pick("bent", "twisted")] [target]'s [organ.name] into a jointlock!"))
