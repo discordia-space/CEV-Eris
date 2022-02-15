@@ -5,7 +5,7 @@
 	hitsound_wall = 'sound/weapons/guns/misc/laser_searwall.ogg'
 	armor_penetration = 25
 	check_armour = ARMOR_ENERGY
-	damage_types = list(BURN = 33)
+	damage_types = list(BURN = 27)
 
 	muzzle_type = /obj/effect/projectile/plasma/muzzle
 	impact_type = /obj/effect/projectile/plasma/impact
@@ -13,12 +13,12 @@
 /obj/item/projectile/plasma/light
 	name = "light plasma bolt"
 	armor_penetration = 15
-	damage_types = list(BURN = 27)
+	damage_types = list(BURN = 23)
 
 /obj/item/projectile/plasma/heavy
 	name = "heavy plasma bolt"
 	armor_penetration = 50
-	damage_types = list(BURN = 42)
+	damage_types = list(BURN = 34)
 
 /obj/item/projectile/plasma/stun
 	name = "stun plasma bolt"
@@ -26,6 +26,9 @@
 	agony = 30
 	damage_types = list(HALLOSS = 30,BURN = 5)
 	impact_type = /obj/effect/projectile/stun/impact
+
+/obj/item/projectile/plasma/stun/heavy
+	damage_types = list(HALLOSS = 30, BURN = 42)
 
 /obj/item/projectile/plasma/aoe
 	name = "default plasma aoe"
@@ -51,7 +54,7 @@
 	name = "ion-plasma bolt"
 	icon_state = "ion"
 	armor_penetration = 0
-	damage_types = list(BURN = 27)
+	damage_types = list(BURN = 23)
 
 	aoe_strong = 1
 	aoe_weak = 1
@@ -63,7 +66,7 @@
 /obj/item/projectile/plasma/aoe/ion/light
 	name = "light ion-plasma bolt"
 	armor_penetration = 0
-	damage_types = list(BURN = 20)
+	damage_types = list(BURN = 19)
 
 	aoe_strong = 0
 	aoe_weak = 1
@@ -75,7 +78,7 @@
 /obj/item/projectile/plasma/aoe/heat
 	name = "high-temperature plasma blast"
 	armor_penetration = 50
-	damage_types = list(BURN = 20)
+	damage_types = list(BURN = 19)
 
 	aoe_strong = 1
 	aoe_weak = 1
@@ -87,7 +90,7 @@
 /obj/item/projectile/plasma/aoe/heat/strong
 	name = "high-temperature plasma blast"
 	armor_penetration = 25
-	damage_types = list(BURN = 33)
+	damage_types = list(BURN = 27)
 
 	aoe_strong = 1
 	aoe_weak = 2
