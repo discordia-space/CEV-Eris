@@ -650,7 +650,7 @@ mob/living/carbon/human/verb/stopSliding()
 	var/_dir = C.true_dir
 	var/_hunger = (MOB_BASE_MAX_HUNGER - nutrition)
 	if(_hunger >= 250) //Will be shown on overlay as orange nutrition
-		to_chat(src, SPAN_WARNING("You weakly slump down!")) //You fall down, without stylishly diving over stuff
+		to_chat(src, SPAN_WARNING("You weakly slump down!")) //You fall down because the rest still procs; a huge disadvantage
 		return
 	if(ishuman(src) && !weakened && (_dir))// If true_dir = 0(src isn't moving), doesn't proc.
 		livmomentum = 5 // Set momentum value as soon as possible for stopSliding to work better
