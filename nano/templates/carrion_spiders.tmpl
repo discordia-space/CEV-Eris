@@ -30,21 +30,10 @@ Used In File(s): code\modules\organs\internal\carrion.dm
 		<td>{{:value.name}}</td>
 		<td>{{:value.location}}</td>
 		<td>{{:helper.link('activate', 'circle-arrow-s', {'activate_spider' : value.spider})}}</td>
-		{{if value.assigned_group_1}}
-			<td>{{:helper.link('', 'check', {'toggle_group_1' : value.spider})}}</td>
-		{{else}}
-			<td>{{:helper.link('', 'close', {'toggle_group_1' : value.spider}, null, 'redButton')}}</td>
-		{{/if}}
-		{{if value.assigned_group_2}}
-			<td>{{:helper.link('', 'check', {'toggle_group_2' : value.spider})}}</td>
-		{{else}}
-			<td>{{:helper.link('', 'close', {'toggle_group_2' : value.spider}, null, 'redButton')}}</td>
-		{{/if}}
-		{{if value.assigned_group_3}}
-			<td>{{:helper.link('', 'check', {'toggle_group_3' : value.spider})}}</td>
-		{{else}}
-			<td>{{:helper.link('', 'close' , {'toggle_group_3' : value.spider}, null, 'redButton')}}</td>
-		{{/if}}
+		<td>{{:helper.link('', value.assigned_group_1 ? 'check' : 'close', {'toggle_group_1' : value.spider}, null, value.assigned_group_1 ? null : 'redButton')}}</td>
+		<td>{{:helper.link('', value.assigned_group_2 ? 'check' : 'close', {'toggle_group_2' : value.spider}, null, value.assigned_group_2 ? null : 'redButton')}}</td>
+		<td>{{:helper.link('', value.assigned_group_3 ? 'check' : 'close', {'toggle_group_3' : value.spider}, null, value.assigned_group_3 ? null : 'redButton')}}</td>
+
 		<td>
 		{{if value.implanted}}
 		{{:helper.link('pop out', 'circle-arrow-s', {'pop_out_spider' : value.spider})}}
