@@ -1,10 +1,18 @@
 /datum/trade_station/McRonalds
 	name_pool = list(
-		"CTB 'Dionis'" = "Corporate Trade Beacon of food chain 'McRonalds'. You hope they still have Happy Meals with a toy."
+		"McTB 'Dionis'" = "'McRonalds' Trade Beacon 'Dionis'. You hope they still have Happy Meals with a toy."
 	)
+	uid = "mcronalds"
+	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = UNCOMMON_GOODS
 	offer_limit = 30
+	base_income = 1600
+	wealth = 0
+	secret_inv_threshold = 2000
+	recommendation_threshold = 4000
+	stations_recommended = list("trapper")
+	recommendations_needed = 1
 	assortiment = list(
 		"Burgers" = list(
 			/obj/item/reagent_containers/food/snacks/bigbiteburger = custom_good_name("Big RBurger"),
@@ -28,20 +36,16 @@
 		),
 		"Misc" = list(
 			/obj/item/reagent_containers/food/snacks/fishandchips = custom_good_name("Fishps"),
-			/obj/item/storage/box/happy_meal,
-		),
+			/obj/item/storage/box/happy_meal
+		)
 	)
 	secret_inventory = list(
 		"Secret Menu" = list(
 			/obj/item/storage/box/monkeycubes = good_data("Chicken Nuggets", list(1, 5))
-			// Needs funny and useful things
+			// TODO: Needs funny and useful stuff
 		)
 	)
 	offer_types = list(
-//		/obj/item/reagent_containers/food/snacks/meat = offer_data("meat", 100, 10),
-		/obj/item/reagent_containers/food/snacks/meat/corgi = offer_data("corgi meat", 1000, 2),
 		/obj/item/reagent_containers/food/snacks/meat/roachmeat = offer_data("roach meat", 300, 0),
-//		/obj/item/reagent_containers/food/snacks/meat/roachmeat/seuche,
-//		/obj/item/reagent_containers/food/snacks/meat/roachmeat/kraftwerk,
-//		/obj/item/reagent_containers/food/snacks/meat/roachmeat/jager,
+		/obj/item/reagent_containers/food/snacks/meat/spider = offer_data("spider meat", 300, 0)
 	)

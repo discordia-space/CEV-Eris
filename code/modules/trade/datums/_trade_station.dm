@@ -6,16 +6,17 @@
 
 #define category_data(nam, listOfTags) list("name" = nam, "tags" = listOfTags)
 
-#define COMMON_GOODS 0
-#define UNCOMMON_GOODS 1
-#define RARE_GOODS 3
-#define UNIQUE_GOODS 7
+#define COMMON_GOODS 1.2
+#define UNCOMMON_GOODS 2.4
+#define RARE_GOODS 3.6
+#define UNIQUE_GOODS 4.8
 
 /datum/trade_station
 	var/name
 	var/desc
 	var/list/icon_states = "htu_station"
 	var/initialized = FALSE
+	var/uid 						// Needed for unlocking via recommendations since names are selected from a pool
 
 	var/update_time = 0				// For displaying the time remaining on the UI
 	var/update_timer_start = 0		//
@@ -31,22 +32,27 @@
 
 	var/list/name_pool = list()
 
-	var/markup = 0
+	var/markup = COMMON_GOODS
 	var/markdown = 0.6				// Default markdown is 60%
 	var/list/assortiment = list()
 	var/list/offer_types = list()	// Defines special offers
-	var/list/offer_limit = 0		// For limiting sell offer quantity. 0 is no cap. Offer_data has its own cap, but this may still be useful.
+	var/list/offer_limit = 20		// For limiting sell offer quantity. 0 is no cap. Offer_data has its own cap, but this may still be useful.
 
 	var/list/amounts_of_goods = list()
 	var/unique_good_count = 0
 	var/list/special_offers = list()	// The special offer created using the data in offer_types()
 
-	var/base_income = 1600				// Stations can restock without player interaction. Adds to value so stations will unlock hidden inventory after some time.
+	var/base_income = 1600				// Lets stations restock without player interaction.
 	var/wealth = 0						// The abstract value of the goods sold to the station via offers + base income. Represents the station's ability to produce or purchase goods.
-	var/total_value_received = 0		// For keeping track of how much wealth a station has handled. Triggers events when certain thresholds are reached.
-	var/secret_inv_threshold = 32000	// Total value required to unlock secret inventory
+
+	var/favor = 0							// For keeping track of how much wealth a station has handled. Triggers events when certain thresholds are reached.
+	var/secret_inv_threshold = 2000			// Favor required to unlock secret inventory
 	var/secret_inv_unlocked = FALSE
 	var/list/secret_inventory = list()
+	var/recommendation_threshold = 4000	// Favor required to unlock recommendation
+	var/recommendation_unlocked = FALSE
+	var/list/stations_recommended = list()	// Stations recommended by this station
+	var/list/recommendations_needed = 0		// Station recommendations needed to unlock this station
 
 	var/obj/effect/overmap_event/overmap_object
 	var/turf/overmap_location
@@ -151,11 +157,10 @@
 			special_offers.Insert(offer_index, offer_path)
 			special_offers[offer_path] = offer_content
 
-
 // The station will restock based on base_income + wealth, then check to see if the secret inventory is unlocked.
 /datum/trade_station/proc/goods_tick()
 	// Get base income
-	add_to_wealth(base_income)
+	wealth += base_income		// Shouldn't contribute towards unlocks
 
 	// Restock
 	// TODO: Make this actually random.
@@ -178,9 +183,14 @@
 						subtract_from_wealth(amount_to_add * cost)
 
 	// Compare total score and unlock thresholds
-	if(secret_inv_unlocked)
-		return
-	if(total_value_received >= secret_inv_threshold)
+	if(!secret_inv_unlocked)
+		try_unlock_secret_inv()
+
+	if(!recommendation_unlocked)
+		try_recommendation()
+	
+/datum/trade_station/proc/try_unlock_secret_inv()
+	if(favor >= secret_inv_threshold)
 		secret_inv_unlocked = TRUE
 		for(var/category_name in secret_inventory)
 			var/list/category = secret_inventory[category_name]
@@ -203,6 +213,11 @@
 					var/good_amount = amounts_of_goods[category_name]
 					good_amount["[category.Find(good_path)]"] = max(0, rand(rand_args[1], rand_args[2]))
 
+/datum/trade_station/proc/try_recommendation()
+	if(favor >= recommendation_threshold)
+		recommendation_unlocked = TRUE
+		SStrade.discover_by_uid(stations_recommended)
+
 /datum/trade_station/proc/get_good_amount(cat, index)
 	. = 0
 	if(isnum(cat))
@@ -222,33 +237,16 @@
 			if(islist(L))
 				L[L[index]] = value
 
-/datum/trade_station/proc/add_to_wealth(var/income)
+/datum/trade_station/proc/add_to_wealth(var/income, is_offer = FALSE)
 	if(!isnum(income))
 		return
 	wealth += income
-	total_value_received += income
+	favor += income * (is_offer ? 1 : 0.5)
 
 /datum/trade_station/proc/subtract_from_wealth(var/cost)
 	if(!isnum(cost))
 		return
 	wealth -= cost
-
-// Part of the new method of directly restocking goods. Does not add to total_value_received.
-datum/trade_station/proc/add_to_stock(atom/movable/AM)
-	var/path_found = FALSE
-	for(var/category_name in assortiment)
-		if(path_found)
-			break
-		var/list/category = assortiment[category_name]
-		if(islist(category))
-			for(var/good_path in category)
-				if(ispath(good_path, AM.type))
-					if(typesof(good_path).len == typesof(AM.type).len)
-						var/amount_cat = amounts_of_goods[category_name]
-						amount_cat["[category.Find(good_path)]"] += 1
-						path_found = TRUE
-						break
-
 
 /datum/trade_station/proc/cost_trade_stations_budget(budget = spawn_cost)
 	if(!spawn_always)

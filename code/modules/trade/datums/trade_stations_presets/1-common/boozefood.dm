@@ -1,12 +1,16 @@
 /datum/trade_station/boozefood
 	name_pool = list(
-		"ATB 'Vermouth'" = "Aster's Trade Beacon 'Vermouth':\nBest Drinks! Best Beverages! Ingredients for your cooks! Anything that is needed for your private bars and more!"
+		"ATB 'Vermouth'" = "Aster's Trade Beacon 'Vermouth': \"Best Drinks! Best Beverages! Ingredients for your cooks! Anything that is needed for your private bars and more!\""
 	)
+	uid = "commissary"
 	start_discovered = TRUE
 	spawn_always = TRUE
+	markup = COMMON_GOODS
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 16000
+	secret_inv_threshold = 2000
+	recommendation_threshold = 4000
+	stations_recommended = list("mcronalds", "serbian")
 	assortiment = list(
 		"Basic Ingredients" = list(
 			/obj/item/reagent_containers/food/condiment/flour,
@@ -43,14 +47,15 @@
 			/obj/item/reagent_containers/food/drinks/cans/sodawater,
 			/obj/item/reagent_containers/food/drinks/cans/tonic
 		),
-		"Flasks, Glasses" = list(
+		"Commissary Supplies" = list(
 			/obj/item/reagent_containers/food/drinks/drinkingglass,
 			/obj/item/reagent_containers/food/drinks/teapot,
 			/obj/item/reagent_containers/food/drinks/pitcher,
 			/obj/item/reagent_containers/food/drinks/carafe,
 			/obj/item/reagent_containers/food/drinks/flask/barflask,
-			/obj/item/reagent_containers/food/drinks/flask/vacuumflask
-		),
+			/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+			/obj/item/storage/deferred/kitchen
+		)
 	)
 	secret_inventory = list(
 		"Drinks II" = list(
@@ -58,4 +63,10 @@
 			/obj/item/reagent_containers/food/drinks/bottle/pwine,
 			/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing
 		)
+	)
+	offer_types = list(
+		/obj/item/reagent_containers/food/snacks/kampferburger = offer_data("kampfer burger", 400, 3),
+		/obj/item/reagent_containers/food/snacks/panzerburger = offer_data("panzer burger", 500, 2),
+		/obj/item/reagent_containers/food/snacks/jagerburger = offer_data("jager burger", 500, 2),
+		/obj/item/reagent_containers/food/snacks/seucheburger = offer_data("seuche burger", 500, 2)
 	)

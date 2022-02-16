@@ -214,7 +214,27 @@
 	new /obj/item/gun/projectile/automatic/sts35(src)
 	new /obj/item/ammo_magazine/lrifle(src)
 
-/obj/item/storage/box/syndie_kit/pug
+/obj/item/storage/box/syndie_kit/winchester
+	name = "lever-action rifle box"
+	desc = "A suspicious looking box containing a lever-action rifle and some spare ammo to it."
+	icon_state = "box_of_doom_big"
+	w_class = ITEM_SIZE_HUGE
+
+/obj/item/storage/box/syndie_kit/winchester/populate_contents()
+	new /obj/item/gun/projectile/boltgun/levergun(src)
+	new /obj/item/ammo_magazine/slmagnum(src)
+
+/obj/item/storage/box/syndie_kit/lshotgun
+	name = "lever shotgun box"
+	desc = "lever-action shotgun kit"
+	icon_state = "box_of_doom_big"
+	w_class = ITEM_SIZE_HUGE
+
+/obj/item/storage/box/syndie_kit/lshotgun/populate_contents()
+	new /obj/item/gun/projectile/boltgun/levergun/shotgun(src)
+	new /obj/item/ammo_casing/shotgun/prespawned(src)
+
+ /obj/item/storage/box/syndie_kit/pug
 	name = "Pug box"
 	desc = "Pug kit with one M12 buckshot mag"
 	icon_state = "box_of_doom_big"
@@ -231,9 +251,10 @@
 
 /obj/item/storage/briefcase/antimaterial_rifle/populate_contents()
 	new /obj/item/ammo_casing/antim(src)
-	new /obj/item/weaponparts/heavysniper/stock(src)
-	new /obj/item/weaponparts/heavysniper/reciever(src)
-	new /obj/item/weaponparts/heavysniper/barrel(src)
+	new /obj/item/part/gun/frame/heavysniper(src)
+	new /obj/item/part/gun/grip/serb(src)
+	new /obj/item/part/gun/mechanism/boltgun(src)
+	new /obj/item/part/gun/barrel/antim(src)
 
 /obj/item/storage/box/syndie_kit/toxin
 	name = "toxin kit"

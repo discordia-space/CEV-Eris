@@ -8,7 +8,7 @@
 
 	var/max_health = 50
 	var/health = 50
-	var/datum/golem_controller/controller 
+	var/datum/golem_controller/controller
 
 /obj/structure/golem_burrow/New(loc, parent)
 	..()
