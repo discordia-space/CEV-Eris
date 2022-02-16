@@ -355,6 +355,15 @@
 	initial_amount = 4
 	spawn_type = /obj/item/grenade/frag
 
+/obj/item/storage/box/stinger
+	name = "box of fragmentation grenades"
+	desc = "A box containing 4 stinger grenades. Designed for use against unruly crowds. <br> WARNING: May cause long-lasting injuries in close proximity."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	initial_amount = 4
+	spawn_type = /obj/item/grenade/frag/sting
+
 /obj/item/storage/box/frag/populate_contents()
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
