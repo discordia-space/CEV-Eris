@@ -418,8 +418,8 @@
 		new spawn_type(src)
 
 /obj/item/storage/box/baton_rounds
-	name = "box of baton rounds"
-	desc = "A box containing 6 rubber rounds, designed to be fired from grenade launchers."
+	name = "box of sting rounds"
+	desc = "A box containing 6 sting rounds, designed to be fired from grenade launchers."
 	icon_state = "box_security"
 	illustration = "flashbang"
 	rarity_value = 60
