@@ -676,7 +676,7 @@ mob/living/carbon/human/verb/stopSliding()
 			H.Move(get_step(H.loc, _dir),dir)
 			livmomentum = (livmomentum - speed)
 			H.regen_slickness(0.25) // The longer you slide, the more stylish it is
-			sleep(world.tick_lag + 1.5)
+			sleep(world.tick_lag + 1)
 		C.mloop = 0
 
 /mob/living/proc/cannot_use_vents()
