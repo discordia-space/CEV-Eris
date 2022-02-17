@@ -502,7 +502,7 @@
 		for(var/cardinals in tile_info)
 			var/target_card = text2dir(cardinals)
 			var/list/turf_data = tile_info[cardinals]
-			if(turf_data[FIREDOOR_ALERT])
+			if(length(turf_data) && turf_data[FIREDOOR_ALERT])
 				var/our_alert_color = (turf_data[FIREDOOR_ALERT] & FIREDOOR_ALERT_HOT) ? 1 : 2
 				overlays += new/icon(icon,"alert_[ALERT_STATES[our_alert_color]]", dir=target_card)
 		/*
