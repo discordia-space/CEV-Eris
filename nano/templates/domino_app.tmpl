@@ -1,20 +1,12 @@
 {{if data.have_files}}
-	<div align="center">
-		<div class='item'>
-			<div style="font-size: large; font-weight: bold;">Interface should have been here</div>
-		</div>
-		<div class="item">
-			<div class="itemLabel">
-				Options:
-			</div>
-			<div class="itemContent">
-				<table>
-					{{for data.files}}
-						<tr>{{:value.name}} {{:helper.link('Do the thing', null, {'start_minigame' : value.content})}}</tr>
-					{{/for}}
-				</table>
-			</div>
-		</div>
+	<div align="center" style="font-size: large; font-weight: bold;">
+		Compatible DNA sequences:
+	</div>
+	<div align="left">
+	{{for data.files}}
+		<br>
+		{{:value.name}} {{:helper.link('Do the thing', null, {'start_minigame' : value.content})}}
+	{{/for}}
 	</div>
 {{else}}
 	<div align="center" class='item' style="font-size: large; font-weight: bold;">No valid DNA sequences.</div>

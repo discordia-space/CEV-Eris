@@ -1,6 +1,6 @@
 /datum/computer_file/program/dna
 	filename = "dnaapp"
-	filedesc = "Bla bla bla dna bla bla"
+	filedesc = "Genome decoder"
 	program_icon_state = "generic"
 	extended_desc = "Lorem Ipsum"
 	size = 2
@@ -17,14 +17,18 @@
 	if(..())
 		return TOPIC_HANDLED
 
+	var/datum/computer_file/program/dna/P = program
+	var/obj/item/modular_computer/C = P.computer
+	var/obj/item/computer_hardware/hard_drive/portable/USB = C.portable_drive
+
 	if(href_list["start_minigame"])
 		if(USB)
 			for(var/datum/computer_file/binary/animalgene/F in USB.stored_files)
 				if(F.gene_value == href_list["start_minigame"])
 					var/datum/mutation/M = F.gene_value
 					M.is_active = TRUE
+					F.gene_value = M
 		return TOPIC_REFRESH
-
 
 
 /datum/nano_module/program/dna/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)

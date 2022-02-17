@@ -99,9 +99,13 @@
 			if(entry["index"] == href_list["placeholder"])
 				do_flick(FALSE)
 				sleep(1.5 SECONDS)
-				var/obj/item/moecube/M = new(src.loc)
-				M.gene_type = entry["type"]
-				M.gene_value = entry["content"]
+				var/obj/item/moecube/C = new(src.loc)
+				C.gene_type = entry["type"]
+				if(entry["type"] == "mutation")
+					var/datum/mutation/M = entry["content"]
+					C.gene_value = M
+				else
+					C.gene_value = entry["content"]
 		return TOPIC_REFRESH
 
 
