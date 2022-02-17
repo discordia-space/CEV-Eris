@@ -47,7 +47,7 @@
 
 	var/last_update = 0
 	var/delay_between_updates = 5 SECONDS
-	var/list/tile_info = list(F_NORTH = null, F_SOUTH = null, F_EAST = null, F_WEST = null)
+	var/list/tile_info = list(F_NORTH = list(), F_SOUTH = list(), F_EAST = list(), F_WEST = list())
 	var/list/registered_zas_zones = list(F_NORTH = null , F_SOUTH = null , F_EAST = null , F_WEST = null)
 	// MUST be in same order as FIREDOOR_ALERT_*
 	var/list/ALERT_STATES=list(
@@ -502,7 +502,7 @@
 		for(var/cardinals in tile_info)
 			var/target_card = text2dir(cardinals)
 			var/list/turf_data = tile_info[cardinals]
-			if(turf_data[FIREDOOR_ALERT])
+			if(length(turf_data) && turf_data[FIREDOOR_ALERT])
 				var/our_alert_color = (turf_data[FIREDOOR_ALERT] & FIREDOOR_ALERT_HOT) ? 1 : 2
 				overlays += new/icon(icon,"alert_[ALERT_STATES[our_alert_color]]", dir=target_card)
 		/*
