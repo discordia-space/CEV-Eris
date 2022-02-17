@@ -63,7 +63,7 @@
 	var/sel_mode = 1 //index of the currently selected mode
 	var/list/firemodes = list()
 	var/list/init_firemodes = list()
-	var/currently_firing = FALSE //Used to prevent thing well firing, mainly swapping fire modes well shooting.
+	var/currently_firing = FALSE // To prevent firemode swapping while shooting.
 
 	var/init_offset = 0
 
