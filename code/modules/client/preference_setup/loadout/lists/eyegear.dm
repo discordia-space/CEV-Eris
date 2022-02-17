@@ -48,11 +48,12 @@
 	allowed_roles = list(JOBS_MEDICAL)
 
 /datum/gear/eyes/shades
-	display_name = "sunglasses"
+	display_name = "Sunglasses"
 	path = /obj/item/clothing/glasses/sunglasses
 	cost = 2
+
 /datum/gear/eyes/shades/prescriptionsun
-	display_name = "sunglasses, presciption"
+	display_name = "Sunglasses, prescription"
 	path = /obj/item/clothing/glasses/sunglasses/prescription
 
 
