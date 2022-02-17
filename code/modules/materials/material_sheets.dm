@@ -104,6 +104,9 @@
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES
 	rarity_value = 45
 
+/obj/item/stack/material/iron/full
+	amount = 120
+
 /obj/item/stack/material/sandstone
 	name = "sandstone brick"
 	icon_state = "sheet-sandstone"
@@ -128,6 +131,10 @@
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 90
 
+/obj/item/stack/material/diamond/full
+	amount = 120
+	spawn_blacklisted = TRUE
+
 /obj/item/stack/material/uranium
 	name = MATERIAL_URANIUM
 	icon_state = "sheet-uranium"
@@ -141,6 +148,10 @@
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 90
 
+/obj/item/stack/material/uranium/full
+	amount = 120
+	spawn_blacklisted = TRUE
+
 /obj/item/stack/material/plasma
 	name = "solid plasma"
 	icon_state = "sheet-plasma"
@@ -153,6 +164,10 @@
 	rand_max = 20
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES
 	rarity_value = 30
+
+/obj/item/stack/material/plasma/full
+	amount = 120
+	spawn_blacklisted = TRUE
 
 /obj/item/stack/material/plastic
 	name = "plastic"
@@ -183,6 +198,10 @@
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 45
 
+/obj/item/stack/material/gold/full
+	amount = 120
+	spawn_blacklisted = TRUE
+
 /obj/item/stack/material/silver
 	name = MATERIAL_SILVER
 	icon_state = "sheet-silver"
@@ -195,6 +214,10 @@
 	rand_max = 30
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 45
+
+/obj/item/stack/material/silver/full
+	amount = 120
+	spawn_blacklisted = TRUE
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/material/platinum
@@ -210,6 +233,10 @@
 	//spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	//rarity_value = 45
 
+/obj/item/stack/material/platinum/full
+	amount = 120
+	spawn_blacklisted = TRUE
+
 //Extremely valuable to Research.
 /obj/item/stack/material/mhydrogen
 	name = "metallic hydrogen"
@@ -217,6 +244,10 @@
 	default_type = MATERIAL_MHYDROGEN
 	price_tag = 50
 	novariants = FALSE
+
+/obj/item/stack/material/mhydrogen/full
+	amount = 120
+	spawn_blacklisted = TRUE
 
 //Fuel for MRSPACMAN generator.
 /obj/item/stack/material/tritium
@@ -226,12 +257,20 @@
 	apply_colour = 1
 	price_tag = 50
 
+/obj/item/stack/material/tritium/full
+	amount = 120
+	spawn_blacklisted = TRUE
+
 /obj/item/stack/material/osmium
 	name = "osmium"
 	icon_state = "sheet-silver"
 	default_type = MATERIAL_OSMIUM
 	apply_colour = 1
 	price_tag = 50
+
+/obj/item/stack/material/osmium/full
+	amount = 120
+	spawn_blacklisted = TRUE
 
 /obj/item/stack/material/steel
 	name = MATERIAL_STEEL
@@ -361,6 +400,7 @@
 	icon_state = "sheet-biomatter"
 	default_type = MATERIAL_BIOMATTER
 	price_tag = 10
+	novariants = FALSE
 	var/biomatter_in_sheet = BIOMATTER_PER_SHEET // defined in solidifier.dm
 
 /obj/item/stack/material/biomatter/random

@@ -615,15 +615,6 @@
 	new /obj/item/stack/material/silver(get_turf(holder.my_atom), created_volume)
 	return
 
-/datum/chemical_reaction/platinumsolidification
-	result = null
-	required_reagents = list("iron" = 5, "frostoil" = 5, "platinum" = 20)
-	result_amount = 1
-
-/datum/chemical_reaction/platinumsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
-	new /obj/item/stack/material/platinum(get_turf(holder.my_atom), created_volume)
-	return
-
 /datum/chemical_reaction/plastication
 	result = null
 	required_reagents = list("pacid" = 1, "plasticide" = 2)
@@ -673,7 +664,7 @@
 						continue
 
 				if (M.HUDtech.Find("flash"))
-					FLICK("e_flash", M.HUDtech["flash"])
+					flick("e_flash", M.HUDtech["flash"])
 				M.Weaken(15)
 
 			if(4 to 5)
@@ -682,7 +673,7 @@
 						continue
 
 				if (M.HUDtech.Find("flash"))
-					FLICK("e_flash", M.HUDtech["flash"])
+					flick("e_flash", M.HUDtech["flash"])
 				M.Stun(5)
 
 /datum/chemical_reaction/emp_pulse
@@ -1085,7 +1076,7 @@
 	for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
 		if(M.eyecheck() < FLASH_PROTECTION_MODERATE)
 			if (M.HUDtech.Find("flash"))
-				FLICK("e_flash", M.HUDtech["flash"])
+				flick("e_flash", M.HUDtech["flash"])
 
 	for(var/i = 1, i <= 4 + rand(1,2), i++)
 		var/chosen = pick(borks)

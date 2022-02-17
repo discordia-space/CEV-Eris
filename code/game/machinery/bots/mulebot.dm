@@ -141,7 +141,7 @@
 /obj/machinery/bot/mulebot/emag_act(var/remaining_charges, var/user)
 	locked = !locked
 	to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the mulebot's controls!</span>")
-	FLICK("mulebot-emagged", src)
+	flick("mulebot-emagged", src)
 	playsound(src.loc, 'sound/effects/sparks1.ogg', 100, 0)
 	return 1
 
@@ -239,7 +239,7 @@
 			else
 				dat += "<A href='byond://?src=\ref[src];op=cellinsert'>Removed</A><BR>"
 
-			dat += wires.GetInteractWindow()
+			dat += wires.GetInteractWindow(user)
 		else
 			dat += "The bot is in maintenance mode and cannot be controlled.<BR>"
 
@@ -429,7 +429,7 @@
 	C.pixel_y += 9
 	if(C.layer < layer)
 		C.layer = layer + 0.1
-	add_overlays(C)
+	overlays += C
 
 	if(ismob(C))
 		var/mob/M = C
@@ -448,7 +448,7 @@
 		return
 
 	mode = 1
-	cut_overlays()
+	overlays.Cut()
 
 	load.loc = src.loc
 	load.pixel_y -= 9

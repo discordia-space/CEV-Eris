@@ -49,45 +49,20 @@
 		if ((O.client && !( O.blinded )))
 			O.show_message(text("\red <B>[] [failed ? "tried to tackle" : "has tackled"] down []!</B>", src, T), 1)
 
-/mob/living/carbon/human/proc/leap()
-	set category = "Abilities"
-	set name = "Leap"
-	set desc = "Leap at a target and grab them aggressively."
-
+/mob/living/carbon/human/proc/leap(mob/living/carbon/human/T)
 	if(last_special > world.time)
 		return
-
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		to_chat(src, "You cannot leap in your current state.")
+	if(!T || !src || src.stat) 
 		return
-
-	var/list/choices = list()
-	for(var/mob/living/M in view(6,src))
-		if(!issilicon(M))
-			choices += M
-	choices -= src
-
-	var/mob/living/T = input(src,"Who do you wish to leap at?") as null|anything in choices
-
-	if(!T || !src || src.stat) return
-
-	if(get_dist(get_turf(T), get_turf(src)) > 4) return
-
-	if(last_special > world.time)
-		return
-
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		to_chat(src, "You cannot leap in your current state.")
+		to_chat(src, "You cannot lunge in your current state.")
 		return
 
 	last_special = world.time + 75
 	status_flags |= LEAPING
 
-	src.visible_message(SPAN_DANGER("\The [src] leaps at [T]!"))
 	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
 	mob_playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
-
-	sleep(5)
 
 	if(status_flags & LEAPING) status_flags &= ~LEAPING
 
@@ -95,32 +70,13 @@
 		to_chat(src, SPAN_WARNING("You miss!"))
 		return
 
-	T.Weaken(3)
-
-	// Pariahs are not good at leaping. This is snowflakey, pls fix.
-	if(species.name == "Vox Pariah")
-		src.Weaken(5)
-		return
-
-	var/use_hand = "left"
-	if(l_hand)
-		if(r_hand)
-			to_chat(src, SPAN_DANGER("You need to have one hand free to grab someone."))
-			return
-		else
-			use_hand = "right"
-
-	src.visible_message(SPAN_WARNING("<b>\The [src]</b> seizes [T] aggressively!"))
+	src.visible_message(SPAN_WARNING("<b>\The [src]</b> lunges at [T]!"))
 
 	var/obj/item/grab/G = new(src,T)
-	if(use_hand == "left")
-		l_hand = G
-	else
-		r_hand = G
-
+	src.put_in_hands(G)
 	G.state = GRAB_PASSIVE
-	G.icon_state = "grabbed1"
 	G.synch()
+	G.Process()
 
 /mob/living/carbon/human/proc/gut()
 	set category = "Abilities"

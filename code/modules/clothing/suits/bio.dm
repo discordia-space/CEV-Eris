@@ -45,7 +45,7 @@
 		bio = 100,
 		rad = 25
 	)
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
+	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	siemens_coefficient = 0.9
 	price_tag = 100
 	style = STYLE_NONE

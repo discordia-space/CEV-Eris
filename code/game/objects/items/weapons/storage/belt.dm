@@ -30,7 +30,7 @@
 	show_above_suit = !show_above_suit
 	update_icon()
 
-/obj/item/storage/on_update_icon()
+/obj/item/storage/update_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_belt()

@@ -215,22 +215,22 @@
 	playsound(src.loc, 'sound/machines/medbayscanner1.ogg', 50, 1)
 	update_icon()
 
-/obj/machinery/excelsior_autodoc/on_update_icon()
+/obj/machinery/excelsior_autodoc/update_icon()
 
 	cut_overlays()
 
 	if(panel_open)
 		var/image/panel = image(icon, "panel")
 		panel.layer = 4.5
-		add_overlays(panel)
+		overlays += panel
 
 	if(occupant)
 		var/image/comrade = image(occupant.icon, occupant.icon_state)
 		comrade.overlays = occupant.overlays
 		comrade.pixel_x = 6
 		comrade.layer = 4
-		add_overlays(comrade)
-		add_overlays(cover_state)
+		overlays += comrade
+		overlays += cover_state
 		if(cover_moving)
 			sleep (15)
 			if(cover_closed)
@@ -252,4 +252,4 @@
 	if(stat & (NOPOWER|BROKEN))
 		screen_state = image(icon, "screen_off")
 
-	add_overlays(screen_state)
+	overlays += screen_state

@@ -902,9 +902,9 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	return
 
 /mob/living/flash_weak_pain()
-//	FLICK("weak_pain", flash["pain"])
+//	flick("weak_pain", flash["pain"])
 	if(HUDtech.Find("pain"))
-		FLICK("weak_pain", HUDtech["pain"])
+		flick("weak_pain", HUDtech["pain"])
 
 
 /mob/proc/get_visible_implants()

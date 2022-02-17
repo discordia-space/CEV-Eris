@@ -1,5 +1,10 @@
 /obj/item/var/list/center_of_mass = list("x"=16, "y"=16) //can be null for no exact placement behaviour
 /obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(isliving(mover))
+		var/mob/living/L = mover
+		L.livmomentum = 0
+		if(L.weakened)
+			return 1
 	if(air_group || (height==0)) return 1
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
@@ -68,6 +73,9 @@
 //Drag and drop onto tables
 //This is mainly so that janiborg can put things on tables
 /obj/structure/table/MouseDrop_T(atom/A, mob/user, src_location, over_location, src_control, over_control, params)
+	if(!CanMouseDrop(A, user))
+		return
+
 	if(ismob(A.loc))
 		if (user.unEquip(A, loc))
 			set_pixel_click_offset(A, params)
@@ -103,6 +111,12 @@
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
+			if (ishuman(target))
+				var/mob/living/carbon/human/depleted = target
+				depleted.regen_slickness(-1)
+			if (ishuman(user))
+				var/mob/living/carbon/human/stylish = user
+				stylish.regen_slickness()
 			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been slammed by [user.name] ([user.ckey] against \the [src])</font>"
@@ -127,6 +141,14 @@
 			to_chat(user, SPAN_DANGER("You need a better grip to do that!"))
 			return
 	else
+		if (ishuman(target))
+			var/mob/living/carbon/human/depleted = target
+			depleted.regen_slickness(-1)
+			depleted.confidence = FALSE
+			depleted.dodge_time = get_game_time()
+		if (ishuman(user))
+			var/mob/living/carbon/human/stylish = user
+			stylish.regen_slickness()
 		target.forceMove(loc)
 		target.Weaken(5)
 		visible_message(SPAN_DANGER("[user] puts [target] on \the [src]."))

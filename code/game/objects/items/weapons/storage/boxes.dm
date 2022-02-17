@@ -43,7 +43,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/storage/box/on_update_icon()
+/obj/item/storage/box/update_icon()
 	. = ..()
 	if(illustration)
 		cut_overlays()

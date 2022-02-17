@@ -96,7 +96,7 @@
 /obj/structure/simple_door/proc/Open()
 	isSwitchingStates = 1
 	playsound(loc, material.dooropen_noise, 100, 1)
-	FLICK("[material.door_icon_base]opening",src)
+	flick("[material.door_icon_base]opening",src)
 	sleep(10)
 	density = FALSE
 	set_opacity(FALSE)
@@ -108,7 +108,7 @@
 /obj/structure/simple_door/proc/Close()
 	isSwitchingStates = 1
 	playsound(loc, material.dooropen_noise, 100, 1)
-	FLICK("[material.door_icon_base]closing",src)
+	flick("[material.door_icon_base]closing",src)
 	sleep(10)
 	density = TRUE
 	set_opacity(TRUE)
@@ -117,7 +117,7 @@
 	isSwitchingStates = 0
 	update_nearby_tiles()
 
-/obj/structure/simple_door/on_update_icon()
+/obj/structure/simple_door/update_icon()
 	if(state)
 		icon_state = "[material.door_icon_base]open"
 	else
@@ -195,5 +195,3 @@
 /obj/structure/simple_door/wood/New(var/newloc,var/material_name)
 	..(newloc, MATERIAL_WOOD)
 
-/obj/structure/simple_door/resin/New(var/newloc,var/material_name)
-	..(newloc, MATERIAL_RESIN)

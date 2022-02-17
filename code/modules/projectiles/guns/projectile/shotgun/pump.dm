@@ -23,6 +23,7 @@
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/shotgun/pump/sawn
+	gun_parts = list(/obj/item/part/gun/frame/kammerer = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
 
 /obj/item/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)
@@ -48,6 +49,15 @@
 		chambered = AC
 
 	update_icon()
+
+/obj/item/part/gun/frame/kammerer
+	name = "Kammerer frame"
+	desc = "A Kammerer shotgun frame. A militiaman's favorite."
+	icon_state = "frame_shotgun"
+	result = /obj/item/gun/projectile/shotgun/pump
+	grip = /obj/item/part/gun/grip/wood
+	mechanism = /obj/item/part/gun/mechanism/shotgun
+	barrel = /obj/item/part/gun/barrel/shotgun
 
 /obj/item/gun/projectile/shotgun/pump/sawn
 	name = "sawn-off FS SG \"Kammerer\""

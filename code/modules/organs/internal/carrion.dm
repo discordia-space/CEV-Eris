@@ -106,15 +106,20 @@
 	for(var/item in active_spiders)
 		var/obj/item/implant/carrion_spider/S = item
 		var/turf/T = get_turf(S)
+		var/area/area = get_area(S)
+		var/location_name = area.name
 		var/spider_location = "Unknown location"
 		if(T)
-			spider_location = "[S.loc]([T.x]:[T.y]:[T.z])"
+			spider_location = "[location_name], [S.loc]([T.x]:[T.y]:[T.z])"
 		spiders_in_list += list(
 			list(
 				"name" = initial(S.name),
 				"location" = "[spider_location]",
 				"spider" = "\ref[item]",
-				"implanted" = S.wearer
+				"implanted" = S.wearer,
+				"assigned_group_1" = S.assigned_group_1,
+				"assigned_group_2" = S.assigned_group_2,
+				"assigned_group_3" = S.assigned_group_3
 			)
 		)
 
@@ -141,8 +146,41 @@
 	if(href_list["activate_all"])
 		for(var/spider in active_spiders)
 			var/obj/item/implant/carrion_spider/CS = spider
-			if(istype(CS))
+			if(istype(CS) && !CS.ignore_activate_all)
 				CS.activate()
+
+	if(href_list["activate_group_1"])
+		for(var/spider in active_spiders)
+			var/obj/item/implant/carrion_spider/CS = spider
+			if(istype(CS) && CS.assigned_group_1)
+				CS.activate()
+
+	if(href_list["activate_group_2"])
+		for(var/spider in active_spiders)
+			var/obj/item/implant/carrion_spider/CS = spider
+			if(istype(CS) && CS.assigned_group_2)
+				CS.activate()
+
+	if(href_list["activate_group_3"])
+		for(var/spider in active_spiders)
+			var/obj/item/implant/carrion_spider/CS = spider
+			if(istype(CS) && CS.assigned_group_3)
+				CS.activate()
+
+	if(href_list["toggle_group_1"])
+		var/obj/item/implant/carrion_spider/activated_spider = locate(href_list["toggle_group_1"]) in active_spiders
+		if(activated_spider)
+			activated_spider.toggle_group(1)
+
+	if(href_list["toggle_group_2"])
+		var/obj/item/implant/carrion_spider/activated_spider = locate(href_list["toggle_group_2"]) in active_spiders
+		if(activated_spider)
+			activated_spider.toggle_group(2)
+
+	if(href_list["toggle_group_3"])
+		var/obj/item/implant/carrion_spider/activated_spider = locate(href_list["toggle_group_3"]) in active_spiders
+		if(activated_spider)
+			activated_spider.toggle_group(3)
 
 	if(href_list["P"])
 		purchasePower(href_list["P"])

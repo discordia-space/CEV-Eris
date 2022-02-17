@@ -50,19 +50,20 @@
 		//cap projectile damage so that there's still a minimum number of hits required to break the door
 		take_damage(min(damage, 100))
 
-/obj/machinery/door/unpowered/simple/on_update_icon()
-	. = ""
-	if(!density)
-		. = "open"
-	. = "[icon_base][.]"
-	SetIconState(.)
+/obj/machinery/door/unpowered/simple/update_icon()
+	if(density)
+		icon_state = "[icon_base]"
+	else
+		icon_state = "[icon_base]open"
+	return
 
 /obj/machinery/door/unpowered/simple/do_animate(animation)
 	switch(animation)
 		if("opening")
-			flicker("[icon_base]opening")
+			flick("[icon_base]opening", src)
 		if("closing")
-			flicker("[icon_base]closing")
+			flick("[icon_base]closing", src)
+	return
 
 /obj/machinery/door/unpowered/simple/inoperable(additional_flags = 0)
 	return (stat & (BROKEN|additional_flags))
@@ -145,6 +146,8 @@
 			close()
 		return
 
+	return
+
 
 /obj/machinery/door/unpowered/simple/iron/New(var/newloc,var/material_name)
 	..(newloc, MATERIAL_IRON)
@@ -180,6 +183,3 @@
 	..(newloc, MATERIAL_WOOD)
 	glass = 1
 	set_opacity(0)
-
-/obj/machinery/door/unpowered/simple/resin/New(var/newloc,var/material_name)
-	..(newloc, MATERIAL_RESIN)

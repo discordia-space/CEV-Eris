@@ -47,7 +47,7 @@
 
 	var/last_update = 0
 	var/delay_between_updates = 5 SECONDS
-	var/list/tile_info = list(F_NORTH = null, F_SOUTH = null, F_EAST = null, F_WEST = null)
+	var/list/tile_info = list(F_NORTH = list(), F_SOUTH = list(), F_EAST = list(), F_WEST = list())
 	var/list/registered_zas_zones = list(F_NORTH = null , F_SOUTH = null , F_EAST = null , F_WEST = null)
 	// MUST be in same order as FIREDOOR_ALERT_*
 	var/list/ALERT_STATES=list(
@@ -479,45 +479,45 @@
 /obj/machinery/door/firedoor/do_animate(animation)
 	switch(animation)
 		if("opening")
-			flicker("door_opening")
+			flick("door_opening", src)
 			playsound(src, 'sound/machines/airlock_ext_open.ogg', 37, 1)
 		if("closing")
-			flicker("door_closing")
+			flick("door_opening", src)
 			playsound(src, 'sound/machines/airlock_ext_close.ogg', 37, 1)
 	return
 
 
-/obj/machinery/door/firedoor/on_update_icon()
+/obj/machinery/door/firedoor/update_icon()
 	cut_overlays()
 	set_light(0)
 	var/do_set_light = FALSE
 
 	if(density)
-		SetIconState("door_closed")
+		icon_state = "door_closed"
 		if(hatch_open)
-			add_overlays("hatch")
+			overlays += "hatch"
 		if(blocked)
-			add_overlays("welded")
+			overlays += "welded"
 			do_set_light = TRUE
 		for(var/cardinals in tile_info)
 			var/target_card = text2dir(cardinals)
 			var/list/turf_data = tile_info[cardinals]
-			if(turf_data[FIREDOOR_ALERT])
+			if(length(turf_data) && turf_data[FIREDOOR_ALERT])
 				var/our_alert_color = (turf_data[FIREDOOR_ALERT] & FIREDOOR_ALERT_HOT) ? 1 : 2
-				add_overlays(new/icon(icon,"alert_[ALERT_STATES[our_alert_color]]", dir=target_card))
+				overlays += new/icon(icon,"alert_[ALERT_STATES[our_alert_color]]", dir=target_card)
 		/*
 		if(dir_alerts)
 			for(var/d=1;d<=4;d++)
 				var/cdir = cardinal[d]
 				for(var/i=1;i<=ALERT_STATES.len;i++)
 					if(dir_alerts[d] & (1<<(i-1)))
-						add_overlays(new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir))
+						overlays += new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir)
 						do_set_light = TRUE
 		*/
 	else
-		SetIconState("door_open")
+		icon_state = "door_open"
 		if(blocked)
-			add_overlays("welded_open")
+			overlays += "welded_open"
 
 	if(do_set_light)
 		set_light(1.5, 0.5, COLOR_SUN)

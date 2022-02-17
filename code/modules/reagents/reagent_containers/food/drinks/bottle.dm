@@ -16,6 +16,7 @@
 	var/rag_underlay = "rag"
 	var/icon_state_full
 	var/icon_state_empty
+	var/bottle_thrower_intent
 
 /obj/item/reagent_containers/food/drinks/bottle/on_reagent_change()
 	update_icon()
@@ -34,12 +35,18 @@
 	rag = null
 	return ..()
 
+/obj/item/reagent_containers/food/drinks/bottle/throw_at(atom/target, range, speed, thrower)
+	var/mob/H = thrower
+	if(istype(H))
+		bottle_thrower_intent = H.a_intent
+	..()
+	bottle_thrower_intent = null
+
 //when thrown on impact, bottles smash and spill their contents
 /obj/item/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, speed)
 	..()
 
-	var/mob/M = thrower
-	if(isGlass && istype(M) && M.a_intent == I_HURT)
+	if(bottle_thrower_intent == I_HURT)
 		var/throw_dist = get_dist(throw_source, loc)
 		if(speed >= throw_speed && smash_check(throw_dist)) //not as reliable as smashing directly
 			if(reagents)
@@ -50,12 +57,8 @@
 /obj/item/reagent_containers/food/drinks/bottle/proc/smash_check(distance)
 	if(!isGlass || !smash_duration)
 		return 0
-
-	var/list/chance_table = list(90, 90, 85, 85, 60, 35, 15) //starting from distance 0
-	var/idx = max(distance + 1, 1) //since list indices start at 1
-	if(idx > chance_table.len)
-		return 0
-	return prob(chance_table[idx])
+	else
+		return TRUE
 
 /obj/item/reagent_containers/food/drinks/bottle/proc/smash(newloc, atom/against)
 	if(ismob(loc))
@@ -123,7 +126,7 @@
 	if(rag) return
 	..()
 
-/obj/item/reagent_containers/food/drinks/bottle/on_update_icon()
+/obj/item/reagent_containers/food/drinks/bottle/update_icon()
 	underlays.Cut()
 	if(rag)
 		var/underlay_image = image(icon='icons/obj/drinks.dmi', icon_state=rag.on_fire? "[rag_underlay]_lit" : rag_underlay)

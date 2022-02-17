@@ -107,7 +107,7 @@
 	..()
 	if(!blinded)
 		if (HUDtech.Find("flash"))
-			FLICK("flash", HUDtech["flash"])
+			flick("flash", HUDtech["flash"])
 
 	var/b_loss = null
 	var/f_loss = null
@@ -344,7 +344,7 @@
 		if(toxins_pp > min_breath_poison_type)
 			adjustToxLoss(2)
 
-	return 1
+	return TRUE
 
 /mob/living/carbon/superior_animal/handle_fire(flammable_gas, turf/location)
 	// if its lower than 0 , just bring it back to 0
@@ -362,9 +362,9 @@
 		location.hotspot_expose( FIRESTACKS_TEMP_CONV(fire_stacks), 50, 1)
 
 /mob/living/carbon/superior_animal/update_fire()
-	remove_overlays(image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing"))
+	overlays -= image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing")
 	if(on_fire)
-		add_overlays(image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing"))
+		overlays += image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing")
 
 //The most common cause of an airflow stun is a sudden breach. Evac conditions generally
 /mob/living/carbon/superior_animal/airflow_stun()
@@ -379,3 +379,26 @@
 	var/obj/structure/burrow/B = find_visible_burrow(src)
 	if (B)
 		B.evacuate()
+
+/mob/living/carbon/superior_animal/attack_generic(mob/user, var/damage, var/attack_message)
+
+	if(!damage || !istype(user))
+		return
+
+	var/penetration = 0
+	if(istype(user, /mob/living))
+		var/mob/living/L = user
+		penetration = L.armor_penetration
+
+	damage_through_armor(damage, BRUTE, attack_flag=ARMOR_MELEE, armour_pen=penetration)
+	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
+	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
+	src.visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
+	user.do_attack_animation(src)
+	spawn(1) updatehealth()
+	return TRUE
+
+/mob/living/carbon/superior_animal/adjustHalLoss(amount)
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	halloss = min(max(halloss + (amount / 2), 0),(maxHealth*2)) // Agony is less effective against beasts

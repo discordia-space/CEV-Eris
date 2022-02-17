@@ -81,14 +81,14 @@
 				if(flash_strength > 0)
 					M.Weaken(flash_strength)
 					if (M.HUDtech.Find("flash"))
-						FLICK("e_flash", M.HUDtech["flash"])
+						flick("e_flash", M.HUDtech["flash"])
 			else
 				flashfail = 1
 
 	else if(isrobot(M))
 		M.Weaken(rand(5,10))
 		if (M.HUDtech.Find("flash"))
-			FLICK("e_flash", M.HUDtech["flash"])
+			flick("e_flash", M.HUDtech["flash"])
 	else
 		flashfail = 1
 
@@ -99,12 +99,12 @@
 			animation.icon_state = "blank"
 			animation.icon = 'icons/mob/mob.dmi'
 			animation.master = user
-			FLICK("blspell", animation)
+			flick("blspell", animation)
 			sleep(5)
 			qdel(animation)
 
 	if(!flashfail)
-		FLICK("flash2", src)
+		flick("flash2", src)
 		if(!issilicon(M))
 
 			user.visible_message("<span class='disarm'>[user] blinds [M] with the flash!</span>")
@@ -145,7 +145,7 @@
 			user.show_message(SPAN_WARNING("*click* *click*"), 2)
 			return
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
-	FLICK("flash2", src)
+	flick("flash2", src)
 	if(user && isrobot(user))
 		spawn(0)
 			var/atom/movable/overlay/animation = new(user.loc)
@@ -153,7 +153,7 @@
 			animation.icon_state = "blank"
 			animation.icon = 'icons/mob/mob.dmi'
 			animation.master = user
-			FLICK("blspell", animation)
+			flick("blspell", animation)
 			sleep(5)
 			qdel(animation)
 
@@ -162,7 +162,7 @@
 		if(safety < FLASH_PROTECTION_MODERATE)
 			if(!M.blinded)
 				if (M.HUDtech.Find("flash"))
-					FLICK("flash", M.HUDtech["flash"])
+					flick("flash", M.HUDtech["flash"])
 
 	return
 
@@ -182,7 +182,7 @@
 				if(safety < FLASH_PROTECTION_MODERATE)
 					M.Weaken(10)
 					if (M.HUDtech.Find("flash"))
-						FLICK("e_flash", M.HUDtech["flash"])
+						flick("e_flash", M.HUDtech["flash"])
 					for(var/mob/O in viewers(M, null))
 						O.show_message("<span class='disarm'>[M] is blinded by the flash!</span>")
 	..()

@@ -147,7 +147,7 @@
 
 	..()
 
-/obj/item/camera_assembly/on_update_icon()
+/obj/item/camera_assembly/update_icon()
 	if(anchored)
 		icon_state = "camera1"
 	else

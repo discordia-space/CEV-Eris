@@ -20,7 +20,7 @@
 
 /obj/item/device/paicard/New()
 	..()
-	add_overlays("pai-off")
+	overlays += "pai-off"
 
 /obj/item/device/paicard/Destroy()
 	//Will stop people throwing friend pAIs into the singularity so they can respawn
@@ -274,34 +274,34 @@
 
 /obj/item/device/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
 	src.pai = personality
-	src.add_overlays("pai-happy")
+	src.overlays += "pai-happy"
 
 /obj/item/device/paicard/proc/removePersonality()
 	src.pai = null
-	src.cut_overlays()
-	src.add_overlays("pai-off")
+	src.overlays.Cut()
+	src.overlays += "pai-off"
 
 /obj/item/device/paicard
 	var/current_emotion = 1
 /obj/item/device/paicard/proc/setEmotion(var/emotion)
 	if(pai)
-		src.cut_overlays()
+		src.overlays.Cut()
 		switch(emotion)
-			if(1) src.add_overlays("pai-happy")
-			if(2) src.add_overlays("pai-cat")
-			if(3) src.add_overlays("pai-extremely-happy")
-			if(4) src.add_overlays("pai-face")
-			if(5) src.add_overlays("pai-laugh")
-			if(6) src.add_overlays("pai-off")
-			if(7) src.add_overlays("pai-sad")
-			if(8) src.add_overlays("pai-angry")
-			if(9) src.add_overlays("pai-what")
-			if(10) src.add_overlays("pai-neutral")
-			if(11) src.add_overlays("pai-silly")
-			if(12) src.add_overlays("pai-nose")
-			if(13) src.add_overlays("pai-smirk")
-			if(14) src.add_overlays("pai-exclamation")
-			if(15) src.add_overlays("pai-question")
+			if(1) src.overlays += "pai-happy"
+			if(2) src.overlays += "pai-cat"
+			if(3) src.overlays += "pai-extremely-happy"
+			if(4) src.overlays += "pai-face"
+			if(5) src.overlays += "pai-laugh"
+			if(6) src.overlays += "pai-off"
+			if(7) src.overlays += "pai-sad"
+			if(8) src.overlays += "pai-angry"
+			if(9) src.overlays += "pai-what"
+			if(10) src.overlays += "pai-neutral"
+			if(11) src.overlays += "pai-silly"
+			if(12) src.overlays += "pai-nose"
+			if(13) src.overlays += "pai-smirk"
+			if(14) src.overlays += "pai-exclamation"
+			if(15) src.overlays += "pai-question"
 		current_emotion = emotion
 
 /obj/item/device/paicard/proc/alertUpdate()

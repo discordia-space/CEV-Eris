@@ -72,12 +72,13 @@ var/global/use_preloader = FALSE
 	var/key_len = 0
 
 	var/stored_index = 1
-	while(dmmRegex.Find(tfile, stored_index))
-		stored_index = dmmRegex.next
+	var/regex/localRegex = regex(dmmRegex)
+	while(localRegex.Find(tfile, stored_index))
+		stored_index = localRegex.next
 
 		// "aa" = (/type{vars=blah})
-		if(dmmRegex.group[1]) // Model
-			var/key = dmmRegex.group[1]
+		if(localRegex.group[1]) // Model
+			var/key = localRegex.group[1]
 			if(grid_models[key]) // Duplicate model keys are ignored in DMMs
 				continue
 			if(key_len != length(key))
@@ -86,18 +87,19 @@ var/global/use_preloader = FALSE
 				else
 					throw EXCEPTION("Inconsistant key length in DMM")
 			if(!measureOnly)
-				grid_models[key] = dmmRegex.group[2]
+				grid_models[key] = localRegex.group[2]
 
 		// (1,1,1) = {"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}
-		else if(dmmRegex.group[3]) // Coords
+		else if(localRegex.group[3]) // Coords
 			if(!key_len)
-				throw EXCEPTION("Coords before model definition in DMM")
+				testing("[localRegex.group[3]]")
+				throw EXCEPTION("Coords before model definition in DMM - [dmm_file]")
 
-			var/xcrdStart = text2num(dmmRegex.group[3]) + x_offset - 1
+			var/xcrdStart = text2num(localRegex.group[3]) + x_offset - 1
 			//position of the currently processed square
 			var/xcrd
-			var/ycrd = text2num(dmmRegex.group[4]) + y_offset - 1
-			var/zcrd = text2num(dmmRegex.group[5]) + z_offset - 1
+			var/ycrd = text2num(localRegex.group[4]) + y_offset - 1
+			var/zcrd = text2num(localRegex.group[5]) + z_offset - 1
 
 			if(orientation & (EAST | WEST)) //VOREStation edit we just have to pray the upstream spacebrains take into consideration before their refator is done.
 				xcrd = ycrd // temp variable
@@ -118,7 +120,7 @@ var/global/use_preloader = FALSE
 			bounds[MAP_MINZ] = min(bounds[MAP_MINZ], zcrd)
 			bounds[MAP_MAXZ] = max(bounds[MAP_MAXZ], zcrd)
 
-			var/list/gridLines = splittext(dmmRegex.group[6], "\n")
+			var/list/gridLines = splittext(localRegex.group[6], "\n")
 
 			var/leadingBlanks = 0
 			while(leadingBlanks < gridLines.len && gridLines[++leadingBlanks] == "")

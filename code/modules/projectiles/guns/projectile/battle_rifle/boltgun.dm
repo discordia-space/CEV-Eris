@@ -33,8 +33,21 @@
 	sawn = /obj/item/gun/projectile/boltgun/obrez
 	var/bolt_open = 0
 	var/item_suffix = ""
+	var/message = "bolt"        // what message appears when cocking, eg "You work the [bolt] open, ejecting a casing!"
+	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
 
-/obj/item/gun/projectile/boltgun/on_update_icon()
+/obj/item/part/gun/frame/boltgun
+	name = "bolt-action rifle frame"
+	desc = "A bolt-action rifle frame. For hunting or endless trench warfare."
+	icon_state = "frame_serbrifle"
+	result = /obj/item/gun/projectile/boltgun
+	variant_grip = TRUE
+	gripvars = list(/obj/item/part/gun/grip/excel, /obj/item/part/gun/grip/wood)
+	resultvars = list(/obj/item/gun/projectile/boltgun, /obj/item/gun/projectile/boltgun/serbian)
+	mechanism = /obj/item/part/gun/mechanism/boltgun
+	barrel = /obj/item/part/gun/barrel/lrifle
+
+/obj/item/gun/projectile/boltgun/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -68,19 +81,19 @@
 	if(bolt_open)
 		if(contents.len)
 			if(chambered)
-				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [chambered]!"))
+				to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [chambered]!"))
 				chambered.forceMove(get_turf(src))
 				loaded -= chambered
 				chambered = null
 			else
 				var/obj/item/ammo_casing/B = loaded[loaded.len]
-				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [B]!"))
+				to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [B]!"))
 				B.forceMove(get_turf(src))
 				loaded -= B
 		else
-			to_chat(user, SPAN_NOTICE("You work the bolt open."))
+			to_chat(user, SPAN_NOTICE("You work the [message] open."))
 	else
-		to_chat(user, SPAN_NOTICE("You work the bolt closed."))
+		to_chat(user, SPAN_NOTICE("You work the [message] closed."))
 		playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltforward.ogg', 75, 1)
 		bolt_open = 0
 	add_fingerprint(user)
@@ -116,13 +129,15 @@
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/stack/material/steel = 16)
 	sawn = /obj/item/gun/projectile/boltgun/obrez/serbian
+	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
 
 /obj/item/gun/projectile/boltgun/fs
 	name = "FS BR .20 \"Tosshin\""
 	desc = "Weapon for hunting, or endless coastal warfare. \
-			Replica of an ancient bolt action known for its easy maintenance and low price."
-	icon_state = "arisaka_ih"
-	item_suffix  = "_arisaka_ih"
+			A replica of an ancient bolt action known for its easy maintenance and low price. \
+			This is mounted with a scope, for ranges longer than a maintenance tunnel."
+	icon_state = "arisaka_ih_scope"
+	item_suffix  = "_ih_scope"
 	force = WEAPON_FORCE_DANGEROUS // weaker than novakovic, but with a bayonet installed it will be slightly stronger
 	armor_penetration = ARMOR_PEN_GRAZING
 	caliber = CAL_SRIFLE
@@ -131,13 +146,23 @@
 	recoil_buildup = 8
 	init_offset = 0 //no bayonet
 	max_shells = 6
+	zoom_factor = 0.8 //vintorez level
 	magazine_type = /obj/item/ammo_magazine/srifle
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
-	wielded_item_state = "_doble_arisaka_ih"
+	wielded_item_state = "_doble_ih_scope"
 	sharp = FALSE
 	spawn_blacklisted = TRUE
 	saw_off = FALSE
-	gun_parts = list(/obj/item/stack/material/steel = 16)
+	gun_parts = list(/obj/item/part/gun/frame/tosshin = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/srifle/steel = 1)
+
+/obj/item/part/gun/frame/tosshin
+	name = "Tosshin frame"
+	desc = "A Tosshin bolt-action rifle frame. For hunting or endless coastal warfare."
+	icon_state = "frame_excelrifle"
+	result = /obj/item/gun/projectile/boltgun/fs
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/boltgun
+	barrel = /obj/item/part/gun/barrel/srifle
 
 /obj/item/gun/projectile/boltgun/handmade
 	name = "handmade bolt action rifle"
@@ -157,7 +182,8 @@
 	price_tag = 800
 	one_hand_penalty = 30 //don't you dare to one hand this
 	sharp = FALSE //no bayonet here
-	spawn_blacklisted = TRUE
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	saw_off = FALSE
 
 /obj/item/gun/projectile/boltgun/handmade/attackby(obj/item/W, mob/user)

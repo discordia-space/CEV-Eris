@@ -17,7 +17,7 @@
 
 	init_firemodes = list(
 		WEAPON_NORMAL,
-		BURST_2_ROUND
+		BURST_2_BEAM
 		)
 
 	var/lightfail = 0
@@ -39,6 +39,6 @@
 		if("stun") overlays += "nucgun-stun"
 		if("lethal") overlays += "nucgun-kill"
 
-/obj/item/gun/energy/nuclear/on_update_icon()
+/obj/item/gun/energy/nuclear/update_icon()
 	cut_overlays()
 	update_mode()

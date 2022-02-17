@@ -130,7 +130,7 @@
 	refresh_upgrades() //it's also sets all to default
 	update_icon()
 
-/obj/item/tool/sword/nt/scourge/on_update_icon()
+/obj/item/tool/sword/nt/scourge/update_icon()
 	if(extended)
 		icon_state = initial(icon_state) + "_extended"
 	else
@@ -156,7 +156,7 @@
 	var/force_broken = WEAPON_FORCE_NORMAL
 	var/throwforce_broken = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_HUGE
-	slot_flags = SLOT_BACK | SLOT_BELT 
+	slot_flags = SLOT_BACK | SLOT_BELT
 	throwforce = 75
 	armor_penetration = ARMOR_PEN_HALF
 	throw_speed = 3
@@ -196,7 +196,7 @@
 			to_chat(user, SPAN_NOTICE("You repair the damaged spear-tip."))
 			tipbroken = FALSE
 			force = initial(force)
-			throwforce = initial(throwforce)		
+			throwforce = initial(throwforce)
 
 
 /obj/item/shield/riot/nt
@@ -278,7 +278,6 @@
 	var/max_w_class = ITEM_SIZE_HUGE
 	var/list/can_hold = list(
 		/obj/item/tool/sword/nt/shortsword,
-		/obj/item/tool/sword/nt/spear,
 		/obj/item/tool/knife/dagger/nt,
 		/obj/item/tool/knife/neotritual,
 		/obj/item/book/ritual/cruciform,

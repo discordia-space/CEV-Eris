@@ -63,7 +63,7 @@
 
 /datum/perk/oddity/parkour
 	name = "Parkour"
-	desc = "You can climb tables and ladders faster. Also clings to railings and low walls."
+	desc = "You cling to railings and low walls, climb faster, and get up after diving or sliding sooner."
 	icon_state = "parkour" //https://game-icons.net/1x1/delapouite/jump-across.html
 
 /datum/perk/oddity/parkour/assign(mob/living/carbon/human/H)

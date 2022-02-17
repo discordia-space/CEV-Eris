@@ -31,8 +31,9 @@
 	wield_delay = 0 // Super weak SMG
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	gun_parts = list(/obj/item/part/gun/frame/straylight = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
 
-/obj/item/gun/projectile/automatic/straylight/on_update_icon()
+/obj/item/gun/projectile/automatic/straylight/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -55,3 +56,12 @@
 /obj/item/gun/projectile/automatic/straylight/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/part/gun/frame/straylight
+	name = "Straylight frame"
+	desc = "A Straylight SMG frame. A rabidly fast bullet hose."
+	icon_state = "frame_ihsmg"
+	result = /obj/item/gun/projectile/automatic/straylight
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/smg
+	barrel = /obj/item/part/gun/barrel/pistol

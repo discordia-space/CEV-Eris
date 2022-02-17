@@ -28,7 +28,7 @@
 	for (var/mob/living/carbon/M in viewers(T, flash_range))
 		if(M.eyecheck() < FLASH_PROTECTION_MODERATE)
 			if (M.HUDtech.Find("flash"))
-				FLICK("e_flash", M.HUDtech["flash"])
+				flick("e_flash", M.HUDtech["flash"])
 
 	//snap pop
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
@@ -78,15 +78,15 @@
 /obj/item/projectile/energy/bolt
 	name = "bolt"
 	icon_state = "cbbolt"
-	damage_types = list(TOX = 25)
+	damage_types = list(TOX = 20)
 	nodamage = 0
-	agony = 40
+	agony = 30
 	stutter = 10
 
 
 /obj/item/projectile/energy/bolt/large
 	name = "largebolt"
-	damage_types = list(BURN = 30)
+	damage_types = list(BURN = 25)
 
 /obj/item/projectile/energy/neurotoxin
 	name = "neuro"

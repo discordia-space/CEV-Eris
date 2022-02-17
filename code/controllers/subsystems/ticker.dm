@@ -318,11 +318,11 @@ SUBSYSTEM_DEF(ticker)
 	//Now animate the cinematic
 	sleep(30)
 
-	FLICK("intro_nuke", cinematic)
+	flick("intro_nuke", cinematic)
 
 	sleep(30)
 
-	FLICK("ship_explode_fade_red", cinematic)
+	flick("ship_explode_fade_red", cinematic)
 
 	sleep(15)
 

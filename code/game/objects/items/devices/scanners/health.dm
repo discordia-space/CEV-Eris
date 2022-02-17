@@ -23,7 +23,7 @@
 	scan_data = medical_scan_action(A, user, src, mode)
 	scan_title = "Health scan - [A]"
 	show_results(user)
-	FLICK("health2", src)
+	flick("health2", src)
 
 /obj/item/device/scanner/health/verb/toggle_mode()
 	set name = "Switch Verbosity"

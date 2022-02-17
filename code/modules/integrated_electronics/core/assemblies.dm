@@ -31,7 +31,7 @@
 	var/creator // circuit creator if any
 	var/static/next_assembly_id = 0
 	var/sealed = FALSE
-	var/weakref/idlock = null
+	var/datum/weakref/idlock = null
 	var/use_ui_window = TRUE
 	var/force_sealed = FALSE // it's like sealed, but from component and can't be unsealed.
 
@@ -1154,7 +1154,7 @@
 	bad_type = /obj/item/device/electronic_assembly/implant
 	spawn_frequency = 0
 
-/obj/item/device/electronic_assembly/implant/on_update_icon()
+/obj/item/device/electronic_assembly/implant/update_icon()
 	..()
 	implant.icon_state = icon_state
 	implant.overlays = overlays

@@ -5,6 +5,7 @@
 	item_state = "egloves"
 	armor = list(melee = 25, bullet = 10, energy = 25, bomb = 0, bio = 0, rad = 0)
 	price_tag = 500
+	style = STYLE_HIGH
 
 /obj/item/clothing/gloves/insulated
 	desc = "These gloves will protect the wearer from electric shock."
@@ -16,6 +17,7 @@
 	permeability_coefficient = 0.05
 	price_tag = 200
 	spawn_tags = SPAWN_TAG_GLOVES_INSULATED
+	style = STYLE_NEG_HIGH // very powergame much unstylish... literal power this time
 
 /obj/item/clothing/gloves/insulated/cheap                          //Cheap Chinese Crap
 	desc = "These gloves are cheap copies of the coveted gloves, no way this can end badly."

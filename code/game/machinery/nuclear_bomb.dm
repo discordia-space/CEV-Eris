@@ -20,7 +20,7 @@ var/bomb_set
 	var/lastentered
 	use_power = NO_POWER_USE
 	unacidable = 1
-	var/previous_level = ""
+	var/previous_level = "" // For resetting alert level to where it was before the nuke was armed
 	var/datum/wires/nuclearbomb/wires = null
 
 	var/eris_ship_bomb = FALSE           // if TRUE (1 in map editor), then Heads will get parts of code for this bomb. Obviously used in map editor. Single mapped bomb supported.
@@ -71,21 +71,21 @@ var/bomb_set
 				if (src.auth)
 					if (panel_open == 0)
 						panel_open = 1
-						add_overlays(image(icon, "npanel_open"))
+						overlays += image(icon, "npanel_open")
 						to_chat(user, SPAN_NOTICE("You unscrew the control panel of [src]."))
 					else
 						panel_open = 0
-						remove_overlays(image(icon, "npanel_open"))
+						overlays -= image(icon, "npanel_open")
 						to_chat(user, SPAN_NOTICE("You screw the control panel of [src] back on."))
 				else
 					if (panel_open == 0)
 						to_chat(user, SPAN_NOTICE("\The [src] emits a buzzing noise, the panel staying locked in."))
 					if (panel_open == 1)
 						panel_open = 0
-						remove_overlays(image(icon, "npanel_open"))
+						overlays -= image(icon, "npanel_open")
 						to_chat(user, SPAN_NOTICE("You screw the control panel of \the [src] back on."))
 						playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-					FLICK("nuclearbombc", src)
+					flick("nuclearbombc", src)
 				return
 			return
 
@@ -157,7 +157,7 @@ var/bomb_set
 			visible_message(SPAN_WARNING("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 		extended = 1
 		if(!src.lighthack)
-			FLICK("nuclearbombc", src)
+			flick("nuclearbombc", src)
 			update_icon()
 	return
 
@@ -283,6 +283,10 @@ var/bomb_set
 					timing = 1
 					log_and_message_admins("engaged a nuclear bomb")
 					bomb_set++ //There can still be issues with this resetting when there are multiple bombs. Not a big deal though for Nuke/N
+					if(eris_ship_bomb)
+						var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
+						previous_level = security_state.current_security_level
+						security_state.set_security_level(security_state.severe_security_level)
 					update_icon()
 				else
 					secure_device()
@@ -320,6 +324,8 @@ var/bomb_set
 	bomb_set--
 	timing = 0
 	timeleft = CLAMP(timeleft, 120, 600)
+	var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
+	security_state.set_security_level(previous_level)
 	update_icon()
 
 /obj/machinery/nuclearbomb/ex_act(severity)
@@ -362,7 +368,7 @@ var/bomb_set
 
 	return
 
-/obj/machinery/nuclearbomb/on_update_icon()
+/obj/machinery/nuclearbomb/update_icon()
 	if(lighthack)
 		icon_state = "nuclearbomb0"
 		return

@@ -785,21 +785,21 @@
 	return FALSE
 
 /mob/living/silicon/robot/updateicon()
-	cut_overlays()
+	overlays.Cut()
 	if(stat == CONSCIOUS)
-		add_overlays("eyes-[module_sprites[icontype]]")
+		overlays += "eyes-[module_sprites[icontype]]"
 
 	if(opened)
 		var/panelprefix = custom_sprite ? ckey : "ov"
 		if(wiresexposed)
-			add_overlays("[panelprefix]-openpanel +w")
+			overlays += "[panelprefix]-openpanel +w"
 		else if(cell)
-			add_overlays("[panelprefix]-openpanel +c")
+			overlays += "[panelprefix]-openpanel +c"
 		else
-			add_overlays("[panelprefix]-openpanel -c")
+			overlays += "[panelprefix]-openpanel -c"
 
 	if(module_active && istype(module_active,/obj/item/borg/combat/shield))
-		add_overlays("[module_sprites[icontype]]-shield")
+		overlays += "[module_sprites[icontype]]-shield"
 
 	if(modtype == "Combat")
 		if(module_active && istype(module_active,/obj/item/borg/combat/mobility))

@@ -5970,7 +5970,7 @@
 /area/eris/maintenance/section2deck1port)
 "aog" = (
 /obj/structure/closet/oldstyle,
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
 /obj/item/clothing/mask/gas/ihs,
 /obj/spawner/gun_parts/low_chance,
 /obj/spawner/gun_parts/low_chance,
@@ -12227,8 +12227,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aDX" = (
-/obj/spawner/gun/cheap/low_chance,
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "aDY" = (
@@ -15621,7 +15621,7 @@
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 1, floor 2. Maints above the dorms, behind the window on the west end of it."
 	},
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/sleep)
 "aNo" = (
@@ -25118,7 +25118,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/rnd/anomalisolone)
 "bih" = (
-/obj/spawner/gun/energy_cheap/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/rnd/anomalisolone)
 "bii" = (
@@ -29155,7 +29155,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "bro" = (
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "brp" = (
@@ -33869,7 +33869,7 @@
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bCY" = (
@@ -33989,7 +33989,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bDr" = (
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bDs" = (
@@ -34738,7 +34738,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "bFb" = (
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck4port)
 "bFc" = (
@@ -47200,7 +47200,7 @@
 	name = "Toxins Lab";
 	req_access = list(5)
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/tiled/white/cargo,
 /area/eris/rnd/mixing)
 "ciF" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
@@ -49352,11 +49352,11 @@
 /area/eris/rnd/lab)
 "coc" = (
 /obj/machinery/newscaster,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/eris/rnd/lab)
 "cog" = (
 /obj/structure/sign/department/toxin_res,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/eris/rnd/mixing)
 "coh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -49717,7 +49717,7 @@
 	name = "Research and Development";
 	req_access = list(5)
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/tiled/white/cargo,
 /area/eris/rnd/lab)
 "cpe" = (
 /obj/machinery/door/firedoor,
@@ -50453,7 +50453,7 @@
 /area/eris/rnd/lab)
 "cqY" = (
 /obj/structure/sign/department/sci,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/eris/rnd/lab)
 "crb" = (
 /obj/effect/window_lwall_spawn/smartspawn,
@@ -51053,7 +51053,7 @@
 /area/eris/medical/patients_rooms)
 "csx" = (
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/dark/golden,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/eris/crew_quarters/hydroponics/garden)
 "csy" = (
 /turf/simulated/floor/tiled/white,
@@ -52258,7 +52258,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/dark/golden,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/eris/crew_quarters/hydroponics/garden)
 "cwd" = (
 /obj/machinery/alarm{
@@ -53071,7 +53071,7 @@
 /obj/item/clothing/mask/gas,
 /obj/item/tank/jetpack/carbondioxide,
 /obj/item/pinpointer,
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/engineering/post)
 "cxV" = (
@@ -53360,7 +53360,7 @@
 /area/eris/engineering/engine_room)
 "cyC" = (
 /obj/structure/catwalk,
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/open,
 /area/eris/maintenance/oldtele)
 "cyD" = (
@@ -59299,7 +59299,7 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section4)
 "cNe" = (
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck3port)
 "cNf" = (
@@ -69020,7 +69020,7 @@
 /area/eris/rnd/research)
 "dkc" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/handmade,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/hallway/side/atmosphericshallway)
@@ -74583,14 +74583,14 @@
 "dwO" = (
 /obj/structure/closet/oldstyle,
 /obj/effect/decal/cleanable/dirt,
-/obj/spawner/gun/energy_cheap/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dwP" = (
 /obj/structure/closet/oldstyle,
 /obj/effect/decal/cleanable/dirt,
-/obj/spawner/gun/cheap/low_chance,
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dwQ" = (
@@ -76796,7 +76796,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/handmade,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -78760,7 +78760,7 @@
 /obj/structure/multiz/ladder/up,
 /obj/effect/floor_decal/rust,
 /obj/spawner/flora/low_chance,
-/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHi" = (
@@ -81531,7 +81531,6 @@
 /area/eris/engineering/propulsion/right)
 "dMX" = (
 /obj/machinery/light/small,
-/obj/spawner/pack/machine,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/medical/genetics)
 "dMY" = (
@@ -83924,7 +83923,7 @@
 /area/eris/maintenance/section2deck1port)
 "dTa" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/normal/low_chance,
+/obj/spawner/gun/handmade,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
@@ -87223,17 +87222,14 @@
 /turf/simulated/wall/r_wall,
 /area/eris/medical/genetics)
 "eaU" = (
-/turf/simulated/open,
+/obj/spawner/mob/roaches/cluster/low_chance,
+/turf/simulated/floor/tiled/techmaint,
 /area/eris/medical/genetics)
 "eaV" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/open,
-/area/eris/medical/genetics)
-"eaW" = (
-/obj/structure/catwalk,
-/turf/simulated/open,
+/obj/structure/table/standard,
+/obj/spawner/boxes,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/techmaint,
 /area/eris/medical/genetics)
 "eaX" = (
 /obj/structure/table/standard,
@@ -87390,13 +87386,6 @@
 	dir = 4
 	},
 /area/eris/hallway/main/section4)
-"ebs" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing,
-/turf/simulated/open,
-/area/eris/medical/genetics)
 "ebt" = (
 /obj/item/device/radio/intercom{
 	dir = 4;
@@ -87883,17 +87872,6 @@
 	opacity = 0
 	},
 /area/shuttle/research/station)
-"ecK" = (
-/obj/structure/railing,
-/turf/simulated/open,
-/area/eris/medical/genetics)
-"ecL" = (
-/obj/structure/railing,
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/open,
-/area/eris/medical/genetics)
 "ecM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -101036,11 +101014,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
-"eOl" = (
-/obj/structure/catwalk,
-/obj/spawner/junk/low_chance,
-/turf/simulated/open,
-/area/eris/medical/genetics)
 "ePg" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -102273,7 +102246,7 @@
 "jlF" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/holy,
-/turf/simulated/floor/tiled/dark/golden,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapel)
 "jmK" = (
 /obj/machinery/door/firedoor,
@@ -102546,7 +102519,7 @@
 "keu" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/holy,
-/turf/simulated/floor/tiled/white/golden,
+/turf/simulated/floor/tiled/white/cargo,
 /area/eris/neotheology/chapelritualroom)
 "kfX" = (
 /obj/machinery/alarm{
@@ -102597,7 +102570,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/dark/golden,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapel)
 "ksR" = (
 /obj/machinery/light{
@@ -102614,6 +102587,12 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
+"kzz" = (
+/obj/structure/table/rack,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section2deck1port)
 "kAt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -103206,8 +103185,8 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/crew_quarters/janitor)
 "mUP" = (
-/turf/simulated/floor/tiled/steel,
-/area/eris/rnd/lab)
+/turf/simulated/wall,
+/area/eris/rnd/mixing)
 "mVq" = (
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section2deck1port)
@@ -103792,6 +103771,11 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
+"oYV" = (
+/obj/spawner/junk/low_chance,
+/obj/spawner/pack/machine,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/medical/genetics)
 "oZm" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
@@ -103988,7 +103972,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/dark/golden,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapel)
 "pXs" = (
 /obj/machinery/door/firedoor,
@@ -104679,7 +104663,7 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/holy/preacher,
-/turf/simulated/floor/carpet/bcarpet,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/office)
 "sAd" = (
 /obj/structure/cable/green{
@@ -104767,6 +104751,11 @@
 	},
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/neotheology/churchbarracks)
+"sOb" = (
+/obj/spawner/pack/machine,
+/obj/structure/catwalk,
+/turf/space,
+/area/eris/maintenance/section2deck1port)
 "sOh" = (
 /obj/structure/closet/coffin,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
@@ -104925,6 +104914,12 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"ttp" = (
+/obj/structure/table/standard,
+/obj/spawner/electronics,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/medical/genetics)
 "tuO" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
@@ -106045,7 +106040,7 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/holy/preacher,
-/turf/simulated/floor/tiled/white/golden,
+/turf/simulated/floor/tiled/white/cargo,
 /area/eris/neotheology/office)
 "xHE" = (
 /obj/structure/sign/faction/neotheology_cross/gold{
@@ -209546,8 +209541,8 @@ cjr
 clF
 clF
 crb
-mUP
-mUP
+crN
+crN
 crb
 clF
 clF
@@ -209748,8 +209743,8 @@ cjr
 bjE
 cmB
 qOs
-mUP
-mUP
+crN
+crN
 qOs
 cmB
 fbK
@@ -209950,8 +209945,8 @@ clF
 clF
 clF
 crb
-mUP
-mUP
+crN
+crN
 fPb
 clF
 clF
@@ -210152,8 +210147,8 @@ clF
 clF
 clF
 crb
-mUP
-mUP
+crN
+crN
 bvu
 clF
 clF
@@ -210354,8 +210349,8 @@ clF
 clF
 clF
 crb
-mUP
-mUP
+crN
+crN
 bvu
 clF
 clF
@@ -210558,7 +210553,7 @@ chr
 cog
 ciE
 ciE
-cid
+mUP
 chr
 chr
 cto
@@ -282657,7 +282652,7 @@ abF
 abF
 abF
 abF
-abF
+aaa
 alb
 ezd
 dMv
@@ -282859,7 +282854,7 @@ abF
 abF
 abF
 abF
-abF
+aaa
 alb
 dMm
 enF
@@ -283265,8 +283260,8 @@ abF
 abF
 abF
 aaa
-aaa
-aaa
+abF
+abF
 alb
 dNZ
 dPK
@@ -284282,8 +284277,8 @@ dNZ
 dPK
 amQ
 anQ
-dNZ
-dNZ
+dQr
+dQr
 anQ
 dER
 amc
@@ -284484,8 +284479,8 @@ dNZ
 dPK
 amc
 amk
-dNZ
-dNZ
+dQr
+dQr
 anQ
 dUW
 dUW
@@ -284686,9 +284681,9 @@ dNZ
 dPK
 dQw
 amk
-dNZ
-dNZ
-dNZ
+dQr
+dQr
+sOb
 dUW
 dTT
 alG
@@ -284888,8 +284883,8 @@ dNZ
 dPK
 amc
 anQ
-dNZ
-dNZ
+kzz
+kzz
 anQ
 dUW
 dUW
@@ -286502,13 +286497,13 @@ dNn
 dNL
 eEB
 alC
-eaU
-eaU
-eaU
-eaU
-ecK
-eaW
+oYV
 bjQ
+eaV
+ttp
+eaV
+bjR
+oYV
 dUW
 alG
 dVp
@@ -286704,12 +286699,12 @@ dNn
 dNP
 eEC
 alC
-eaU
-eaU
-eaU
-eaU
-ecK
-eaW
+bjQ
+bjR
+bjR
+bjR
+bjR
+bjR
 bjR
 ath
 alG
@@ -286906,12 +286901,12 @@ dNn
 dNU
 dOC
 alC
+bjR
 eaU
-eaU
-eaV
-eaV
-ecL
-eaW
+bjR
+bjR
+bjR
+bjR
 bjR
 efd
 efd
@@ -287108,12 +287103,12 @@ dNn
 dNV
 dNL
 ala
-eaV
-ebs
-eaW
-eOl
-eaW
-eaW
+bjR
+bjR
+bjR
+bjQ
+bjR
+bjR
 dMX
 efd
 efY
@@ -287310,9 +287305,9 @@ dNn
 dNL
 dOK
 ath
-eaW
-eaW
-eOl
+bjR
+bjR
+bjQ
 ect
 ect
 ect

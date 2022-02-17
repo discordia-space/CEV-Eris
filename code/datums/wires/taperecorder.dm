@@ -2,10 +2,10 @@
 	holder_type = /obj/item/device/taperecorder
 	wire_count = 4
 	descriptions = list(
-		new /datum/wire_description(TAPE_WIRE_STOP, "This wire runs to the Stop button."),
-		new /datum/wire_description(TAPE_WIRE_PLAY, "This wire runs to the Play button."),
-		new /datum/wire_description(TAPE_WIRE_RECORD, "This wire runs to the Record button."),
-		new /datum/wire_description(TAPE_WIRE_WIPE, "This wire runs to the Clear button."),
+		new /datum/wire_description(TAPE_WIRE_STOP, "Stop"),
+		new /datum/wire_description(TAPE_WIRE_PLAY, "Play"),
+		new /datum/wire_description(TAPE_WIRE_RECORD, "Record"),
+		new /datum/wire_description(TAPE_WIRE_WIPE, "Wipe"),
 	)
 
 var/const/TAPE_WIRE_STOP = 1

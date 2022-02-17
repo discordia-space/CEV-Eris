@@ -75,7 +75,7 @@
 
 /obj/item/modular_computer/Destroy()
 	kill_program(forced=TRUE)
-	QDEL_NULL_LIST(terminals)
+	QDEL_LIST(terminals)
 	STOP_PROCESSING(SSobj, src)
 
 	if(stored_pen && !ispath(stored_pen))
@@ -98,29 +98,29 @@
 		return NO_EMAG_ACT
 	else
 		computer_emagged = TRUE
-		to_chat(user, "You emag \the [src]. Its screen flickers briefly.")
+		to_chat(user, "You emag \the [src]. Its screen flick_lights briefly.")
 		return TRUE
 
-/obj/item/modular_computer/on_update_icon()
-	cut_overlays()
+/obj/item/modular_computer/update_icon()
+	overlays.Cut()
 	if (screen_on)
 		if(bsod)
-			add_overlays("bsod")
+			overlays.Add("bsod")
 			set_light(screen_light_range, screen_light_strength, get_average_color(icon,"bsod"), skip_screen_check = TRUE)
 			return
 		if(!enabled)
 			if(icon_state_screensaver && try_use_power(0))
-				add_overlays(icon_state_screensaver)
+				overlays.Add(icon_state_screensaver)
 			set_light(0, skip_screen_check = TRUE)
 			return
 		if(active_program)
-			add_overlays(active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
+			overlays.Add(active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
 			var/target_color = get_average_color(icon,active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
 			set_light(screen_light_range, screen_light_strength, target_color, skip_screen_check = TRUE)
 			if(active_program.program_key_state)
-				add_overlays(active_program.program_key_state)
+				overlays.Add(active_program.program_key_state)
 		else
-			add_overlays(icon_state_menu)
+			overlays.Add(icon_state_menu)
 			set_light(screen_light_range, screen_light_strength, get_average_color(icon,icon_state_menu), skip_screen_check = TRUE)
 	else
 		set_light(0, skip_screen_check = TRUE)
@@ -200,7 +200,7 @@
 	return ntnet_global.add_log(text, network_card)
 
 /obj/item/modular_computer/proc/shutdown_computer(loud = TRUE)
-	QDEL_NULL_LIST(terminals)
+	QDEL_LIST(terminals)
 
 	kill_program(forced=TRUE)
 	for(var/p in all_threads)

@@ -28,7 +28,9 @@
 	rarity_value = 5
 	spawn_frequency = 10
 
+	var/list/custom_default = list() // used to preserve changes to stats past refresh_upgrades proccing
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
+	var/style_damage_multiplier = 1 // multiplies style damage of projectiles fired from this gun
 	var/penetration_multiplier = 1 //Multiplies armor penetration of projectiles fired from this gun
 	var/pierce_multiplier = 0 //Additing wall penetration to projectiles fired from this gun
 	var/ricochet_multiplier = 1 //multiplier for how much projectiles fired from this gun can ricochet, modified by the bullet blender weapon mod
@@ -173,7 +175,7 @@
 		wield_state = wielded_item_state
 	if(!(hands || back || onsuit))
 		hands = back = onsuit = TRUE
-	if(hands)//Ok this is a bit hacky. But basically if the gun is weilded, we want to use the wielded icon state over the other one.
+	if(hands)//Ok this is a bit hacky. But basically if the gun is wielded, we want to use the wielded icon state over the other one.
 		if(wield_state && wielded)//Because most of the time the "normal" icon state is held in one hand. This could be expanded to be less hacky in the future.
 			item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state
 			item_state_slots[slot_r_hand_str] = "righthand" + wield_state
@@ -192,7 +194,7 @@
 	if(onsuit && carry_state)
 		item_state_slots[slot_s_store_str]= "back"    + state
 
-/obj/item/gun/on_update_icon()
+/obj/item/gun/update_icon()
 	if(wielded_item_state)
 		if(icon_contained)//If it has it own icon file then we want to pull from that.
 			if(wielded)
@@ -490,10 +492,7 @@
 
 	if(params)
 		P.set_clickpoint(params)
-	var/offset = init_offset
-	if(user.recoil)
-		offset += user.recoil
-	offset = min(offset, MAX_ACCURACY_OFFSET)
+	var/offset = user.calculate_offset(init_offset)
 	offset = rand(-offset, offset)
 
 	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
@@ -555,10 +554,7 @@
 	var/view_size = round(world.view + zoom_factor)
 
 	zoom(zoom_offset, view_size)
-	if(safety)
-		user.remove_cursor()
-	else
-		user.update_cursor()
+	check_safety_cursor(user)
 	update_hud_actions()
 
 /obj/item/gun/examine(mob/user)
@@ -577,7 +573,7 @@
 
 
 /obj/item/gun/proc/initialize_firemodes()
-	QDEL_CLEAR_LIST(firemodes)
+	QDEL_LIST(firemodes)
 
 	for(var/i in 1 to init_firemodes.len)
 		var/list/L = init_firemodes[i]
@@ -670,10 +666,13 @@
 	//Update firemode when safeties are toggled
 	update_firemode()
 	update_hud_actions()
+	check_safety_cursor(user)
+	
+/obj/item/gun/proc/check_safety_cursor(mob/living/user)
 	if(safety)
 		user.remove_cursor()
 	else
-		user.update_cursor()
+		user.update_cursor(src)
 
 /obj/item/gun/proc/toggle_carry_state(mob/living/user)
 	inversed_carry = !inversed_carry
@@ -837,6 +836,10 @@
 	sharp = initial(sharp)
 	attack_verb = list()
 	one_hand_penalty = initial(one_hand_penalty)
+	if (custom_default.len) // this override is used by the artwork_revolver for RNG gun stats
+		for(var/propname in custom_default) // taken from gun_firemode.dm
+			if(propname in vars)
+				vars[propname] = custom_default[propname]
 	initialize_scope()
 	initialize_firemodes()
 
@@ -850,6 +853,7 @@
 	update_icon()
 	//then update any UIs with the new stats
 	SSnano.update_uis(src)
+
 
 /obj/item/gun/proc/generate_guntags()
 	if(one_hand_penalty)

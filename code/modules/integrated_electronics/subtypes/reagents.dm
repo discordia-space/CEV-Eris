@@ -121,7 +121,7 @@
 /obj/item/integrated_circuit/reagent/injector/do_work()
 	inject()
 
-/obj/item/integrated_circuit/reagent/injector/proc/target_nearby(weakref/target)
+/obj/item/integrated_circuit/reagent/injector/proc/target_nearby(datum/weakref/target)
 	var/mob/living/L = target.resolve()
 	if(!L || get_dist(src,L) > 1)
 		return
@@ -139,7 +139,7 @@
 
 	return TRUE
 
-/obj/item/integrated_circuit/reagent/injector/proc/inject_after(weakref/target)
+/obj/item/integrated_circuit/reagent/injector/proc/inject_after(datum/weakref/target)
 	busy = FALSE
 	var/mob/living/L = target_nearby(target)
 	if(!L)
@@ -154,7 +154,7 @@
 	reagents.trans_to_mob(L, transfer_amount, CHEM_BLOOD)
 	activate_pin(2)
 
-/obj/item/integrated_circuit/reagent/injector/proc/draw_after(weakref/target, amount)
+/obj/item/integrated_circuit/reagent/injector/proc/draw_after(datum/weakref/target, amount)
 	busy = FALSE
 	var/mob/living/carbon/C = target_nearby(target)
 	if(!C)
@@ -201,7 +201,7 @@
 			L.visible_message(SPAN("danger", "[acting_object] is trying to inject [L]!"), \
 								SPAN("danger", "[acting_object] is trying to inject you!"))
 			busy = TRUE
-			addtimer(CALLBACK(src, .proc/inject_after, weakref(L)), injection_status * 3 SECONDS)
+			addtimer(CALLBACK(src, .proc/inject_after, WEAKREF(L)), injection_status * 3 SECONDS)
 			return
 		else
 			if(!AM.is_open_container())
@@ -228,7 +228,7 @@
 			C.visible_message(SPAN("danger", "[acting_object] takes a blood sample from [C]!"), \
 			SPAN("danger", "[acting_object] takes a blood sample from you!"))
 			busy = TRUE
-			addtimer(CALLBACK(src, .proc/draw_after, weakref(C), tramount), injection_status * 3 SECONDS)
+			addtimer(CALLBACK(src, .proc/draw_after, WEAKREF(C), tramount), injection_status * 3 SECONDS)
 			return
 
 		else
@@ -330,7 +330,7 @@
 
 
 /obj/item/integrated_circuit/reagent/storage/do_work()
-	set_pin_data(IC_OUTPUT, 2, weakref(src))
+	set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
 	push_data()
 
 /obj/item/integrated_circuit/reagent/storage/on_reagent_change(changetype)
@@ -668,7 +668,7 @@
 
 	//Set the pin to a weak reference of the current beaker
 	push_vol()
-	set_pin_data(IC_OUTPUT, 2, weakref(current_beaker))
+	set_pin_data(IC_OUTPUT, 2, WEAKREF(current_beaker))
 	push_data()
 	activate_pin(1)
 	activate_pin(3)

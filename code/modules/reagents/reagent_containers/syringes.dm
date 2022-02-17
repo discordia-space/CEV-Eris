@@ -215,7 +215,7 @@
 			to_chat(user, SPAN_NOTICE("You inject [trans] units of the solution. [src] now contains [src.reagents.total_volume] units."))
 
 
-/obj/item/reagent_containers/syringe/on_update_icon()
+/obj/item/reagent_containers/syringe/update_icon()
 	cut_overlays()
 
 	var/iconstring = initial(item_state)
@@ -339,7 +339,7 @@
 	unacidable = 1 //glass
 	reagent_flags = TRANSPARENT
 
-/obj/item/reagent_containers/syringe/large/on_update_icon()
+/obj/item/reagent_containers/syringe/large/update_icon()
 	cut_overlays()
 
 	var/iconstring = initial(item_state)

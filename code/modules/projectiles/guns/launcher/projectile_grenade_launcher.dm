@@ -20,6 +20,7 @@
 	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_WOOD = 10)
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2)
 	price_tag = 3000
+	gun_parts = list(/obj/item/part/gun = 2, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/shotgun = 1)
 
 /obj/item/gun/projectile/shotgun/pump/grenade/examine(mob/user)
 	if(..(user, 2))
@@ -68,15 +69,16 @@
 	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_PLASTIC = 10)
 	fire_sound = 'sound/weapons/empty.ogg'
+	gun_parts = list(/obj/item/part/gun = 2, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/shotgun = 1)
 
 /obj/item/gun/projectile/shotgun/pump/grenade/lenar/proc/update_charge()
 	var/ratio = (contents.len + (chambered? 1 : 0)) / (max_shells + 1)
 	if(ratio < 0.33 && ratio != 0)
 		ratio = 0.33
 	ratio = round(ratio, 0.33) * 100
-	add_overlays("grenademag_[ratio]")
+	overlays += "grenademag_[ratio]"
 
-/obj/item/gun/projectile/shotgun/pump/grenade/lenar/on_update_icon()
+/obj/item/gun/projectile/shotgun/pump/grenade/lenar/update_icon()
 	cut_overlays()
 	update_charge()
 
@@ -91,6 +93,8 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 500
 	max_shells = 0
+	spawn_blacklisted = FALSE//this may be a bad idea
+	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 
 /obj/item/gun/projectile/shotgun/pump/grenade/makeshift/attackby(obj/item/I, mob/user)
 	if((istype(I, /obj/item/ammo_casing/grenade)))

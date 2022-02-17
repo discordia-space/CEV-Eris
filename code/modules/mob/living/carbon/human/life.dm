@@ -36,6 +36,7 @@
 	var/stasis_timeofdeath = 0
 	var/pulse = PULSE_NORM
 	var/global/list/overlays_cache = null
+	var/dodge_time = 0 // will be set to timeofgame on dodging
 
 /mob/living/carbon/human/Life()
 	set invisibility = 0
@@ -78,6 +79,12 @@
 		handle_pain()
 
 		handle_medical_side_effects()
+
+		if (life_tick % 4 == 1 && (get_game_time() >= dodge_time + 5 SECONDS))
+			if (confidence == FALSE)
+				to_chat(src, SPAN_NOTICE("You feel confident again."))
+				confidence = TRUE
+			regen_slickness()
 
 		if(life_tick % 2)	//Upadated every 2 life ticks, lots of for loops in this, needs to feel smother in the UI
 			for(var/obj/item/organ/external/E in organs)
@@ -1140,6 +1147,14 @@
 		return
 //	if(XRAY in mutations)
 //		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
+
+/mob/living/carbon/human/proc/regen_slickness(var/source_modifier = 1)
+	var/slick = TRUE
+	if (slickness == style*10) // is slickness at the maximum?
+		slick = FALSE
+	slickness = max(min(slickness + 1 * source_modifier * style, style*10), 0)
+	if (slick && slickness == style*10 && style > 0) // if slickness was not at the maximum and now is
+		to_chat(src, SPAN_NOTICE("You feel slick!")) // notify of slickness entering maximum
 
 /mob/living/carbon/human/proc/EnterStasis()
 	in_stasis = TRUE

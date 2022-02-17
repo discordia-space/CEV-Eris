@@ -13,13 +13,28 @@
 	turns_per_move = 5
 
 	// Damage related variables
-	melee_damage_lower = GOLEM_DMG_MED
+	melee_damage_lower = GOLEM_DMG_LOW
 	melee_damage_upper = GOLEM_DMG_MED
 
 	// Armor related variables
-	melee = GOLEM_ARMOR_MED
-	bullet = GOLEM_ARMOR_MED
-	energy = GOLEM_ARMOR_LOW
+	armor = list(
+		melee = GOLEM_ARMOR_MED,
+		bullet = GOLEM_ARMOR_MED,
+		energy = GOLEM_ARMOR_LOW,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 
 	// Loot related variables
 	ore = /obj/item/ore/coal
+
+// Special capacity of coal golem: when set on fire, it turns into a diamond golem
+// Especially dangerous since uranium golem can explode into a fireball
+/mob/living/carbon/superior_animal/golem/coal/handle_ai()
+	if(on_fire)
+		visible_message(SPAN_DANGER("\The [src] is engulfed by fire and turns into diamond!"))
+		new /mob/living/carbon/superior_animal/golem/diamond(loc, drill=DD, parent=controller)  // Spawn diamond golem at location
+		ore = null  // So that the golem does not drop coal ores
+		death(FALSE, "no message")
+	. = ..()
