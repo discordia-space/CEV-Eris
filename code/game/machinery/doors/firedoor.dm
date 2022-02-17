@@ -47,7 +47,7 @@
 
 	var/last_update = 0
 	var/delay_between_updates = 5 SECONDS
-	var/list/tile_info = list(F_NORTH = null, F_SOUTH = null, F_EAST = null, F_WEST = null)
+	var/list/tile_info = list(F_NORTH = list(), F_SOUTH = list(), F_EAST = list(), F_WEST = list())
 	var/list/registered_zas_zones = list(F_NORTH = null , F_SOUTH = null , F_EAST = null , F_WEST = null)
 	// MUST be in same order as FIREDOOR_ALERT_*
 	var/list/ALERT_STATES=list(
