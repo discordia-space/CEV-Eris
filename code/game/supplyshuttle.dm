@@ -79,6 +79,7 @@ var/list/mechtoys = list(
 			to_chat(user, SPAN_NOTICE("You dissasembled the [src]!"))
 			drop_materials(drop_location(), user)
 			qdel(src)
+	return ..()
 
 /obj/structure/plasticflaps/mining //A specific type for mining that doesn't allow airflow because of them damn crates
 	name = "airtight plastic flaps"
