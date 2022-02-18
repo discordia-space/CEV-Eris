@@ -35,6 +35,7 @@
 		list(CRAFT_MATERIAL, 4, MATERIAL_PLASTIC)
 	)
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+	related_stats = list(STAT_MEC)
 
 /datum/craft_recipe/metal_rod
 	name = "metal rod"
