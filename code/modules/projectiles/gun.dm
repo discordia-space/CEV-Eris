@@ -655,7 +655,7 @@
 	toggle_firemode(user)
 
 /obj/item/gun/proc/toggle_firemode(mob/living/user)
-	if(currently_firing) // Prevents a bug with swapping fire mods well brust firing.
+	if(currently_firing) // Prevents a bug with swapping fire mode while burst firing.
 		return
 	var/datum/firemode/new_mode = switch_firemodes()
 	if(new_mode)
