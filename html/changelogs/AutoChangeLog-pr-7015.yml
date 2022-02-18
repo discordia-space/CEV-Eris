@@ -1,0 +1,8 @@
+author: Hyperio
+delete-after: true
+changes:
+  - rscadd: Golem core dropped by special golems. Special golems now have a 30% chance
+      to drop a golem core upon death.
+  - balance: Cut golem HP by 60%
+  - balance: Remove melee armor of almost all golems
+  - balance: Golems now drop x2.5 more ores upon death
