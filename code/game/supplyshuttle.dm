@@ -74,7 +74,10 @@ var/list/mechtoys = list(
 
 /obj/structure/plasticflaps/attackby(obj/item/I, mob/user)
 	if((QUALITY_BOLT_TURNING in I.tool_qualities) && (!istype(src, /obj/structure/plasticflaps/mining)))
-		to_chat(user, SPAN_NOTICE("You start disassembling the [src]..."))
+		user.visible_message(
+				SPAN_NOTICE("\The [user] start disassembling \the [src]."),
+				SPAN_NOTICE("You start disassembling \the [src].")
+		)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			to_chat(user, SPAN_NOTICE("You dissasembled the [src]!"))
 			drop_materials(drop_location(), user)
