@@ -1,5 +1,5 @@
 /obj/item/grenade/heatwave
-    name = "FS HG \"Heatwave\""
+    name = "FS HG \"Phoenix\""
     desc = "A military-grade offensive heatwave grenade, designed to be thrown behind cover."
     icon_state = "incendiary"
     item_state = "grenade"
