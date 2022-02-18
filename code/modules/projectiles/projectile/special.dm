@@ -24,10 +24,10 @@
 /obj/item/projectile/bullet/rocket
 	name = "high explosive rocket"
 	icon_state = "rocket"
-	damage_types = list(BRUTE = 50)
-	armor_penetration = 100
+	damage_types = list(BRUTE = 60)
+	armor_penetration = 20
 	style_damage = 101 //single shot, incredibly powerful. If you get direct hit with this you deserve it, if you dodge the direct shot you're protected from the explosion.
-	check_armour = ARMOR_BULLET
+	check_armour = ARMOR_BOMB
 	penetrating = -5
 
 /obj/item/projectile/bullet/rocket/launch(atom/target, target_zone, x_offset, y_offset, angle_offset)
@@ -44,6 +44,18 @@
 
 /obj/item/projectile/bullet/rocket/scrap/on_hit(atom/target)
 	explosion(target, -1, -1, 0, 3)
+	set_light(0)
+	return TRUE
+
+/obj/item/projectile/bullet/rocket/hesh
+	name = "high-explosive anti-tank rocket"
+	damage_types = list(BRUTE = 60)
+	armor_penetration = 100
+	check_armour = ARMOR_BULLET
+
+/obj/item/projectile/bullet/rocket/hesh/on_hit(atom/target)
+	fragment_explosion_angled(target, starting, /obj/item/projectile/bullet/pellet/fragment/strong, 20)
+	explosion(target, -1, 0, 2, 3) // Much weaker explosion, but offset by shrapnel released
 	set_light(0)
 	return TRUE
 
