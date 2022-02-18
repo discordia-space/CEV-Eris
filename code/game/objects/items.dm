@@ -462,7 +462,10 @@ var/global/list/items_blood_overlay_by_type = list()
 		I.SpinAnimation(5,1) // that the item is stuck on or in, and so cannot spin
 		external_recoil(60)
 		visible_message("[src] spins [I.name] in \his hand.") // had to mess with the macros a bit to get
-		if (recoil > 60) // the text to work, which is why "a" is not included
+		if(istype(I, /obj/item/tool/sword))  // the text to work, which is why "a" is not included
+			visible_message("The blood is flicked off \the [I.name]!")
+			I.clean_blood()
+		if (recoil > 60)
 			visible_message(SPAN_WARNING("[I] flies out of [src]\'s hand!"))
 			unEquip(I)
 			return
