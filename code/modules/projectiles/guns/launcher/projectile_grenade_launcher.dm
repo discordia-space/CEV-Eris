@@ -72,7 +72,7 @@
 	gun_parts = list(/obj/item/part/gun = 2, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/shotgun = 1)
 
 /obj/item/gun/projectile/shotgun/pump/grenade/lenar/proc/update_charge()
-	var/ratio = (contents.len + (chambered? 1 : 0)) / (max_shells + 1)
+	var/ratio = (contents.len + (chambered? 1 : 0)) / (max_shells + 1.2)
 	if(ratio < 0.33 && ratio != 0)
 		ratio = 0.33
 	ratio = round(ratio, 0.33) * 100
