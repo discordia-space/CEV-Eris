@@ -14,8 +14,6 @@ GLOBAL_LIST_INIT(golem_waves, list(/datum/golem_wave/dormant,
 	var/spawn_interval  // Number of seconds that pass between spawn events of burrows
 	var/special_probability  // Probability of a golem being a special one instead of a normal one
 	var/mineral_multiplier  // A multiplier of materials excavated by the drill
-	// Active NT obelisk reduces golem_spawn by 1
-	// Active NT obelisk reduces special_probability by 10 percent
 
 /datum/golem_wave/dormant
 	burrow_count = 2

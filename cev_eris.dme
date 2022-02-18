@@ -1959,6 +1959,7 @@
 #include "code\modules\mob\living\carbon\superior_animal\golem\ai.dm"
 #include "code\modules\mob\living\carbon\superior_animal\golem\attack.dm"
 #include "code\modules\mob\living\carbon\superior_animal\golem\golem.dm"
+#include "code\modules\mob\living\carbon\superior_animal\golem\golem_core.dm"
 #include "code\modules\mob\living\carbon\superior_animal\golem\life.dm"
 #include "code\modules\mob\living\carbon\superior_animal\golem\types\ansible.dm"
 #include "code\modules\mob\living\carbon\superior_animal\golem\types\coal.dm"

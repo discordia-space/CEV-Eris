@@ -1,7 +1,7 @@
-#define GOLEM_HEALTH_LOW 50
-#define GOLEM_HEALTH_MED 100
-#define GOLEM_HEALTH_HIGH 150
-#define GOLEM_HEALTH_ULTRA 200
+#define GOLEM_HEALTH_LOW 20
+#define GOLEM_HEALTH_MED 40
+#define GOLEM_HEALTH_HIGH 60
+#define GOLEM_HEALTH_ULTRA 80
 
 #define GOLEM_ARMOR_LOW 20
 #define GOLEM_ARMOR_MED 35
@@ -107,9 +107,13 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 
 	// Spawn ores
 	if(ore)
-		var/nb_ores = rand(3, 5)
+		var/nb_ores = rand(8, 13)
 		for(var/i in 1 to nb_ores)
 			new ore(loc)
+
+		// Specials have a small chance to also drop a golem core
+		if(prob(30) && !istype(src, /mob/living/carbon/superior_animal/golem/coal) && !istype(src, /mob/living/carbon/superior_animal/golem/iron))
+			new /obj/item/golem_core(loc)
 
 	// Poof
 	qdel(src)
