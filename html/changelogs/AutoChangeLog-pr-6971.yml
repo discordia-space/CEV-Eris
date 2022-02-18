@@ -1,0 +1,8 @@
+author: Kegdo
+delete-after: true
+changes:
+  - rscadd: bipod gun mod
+  - rscadd: bracing guns on low walls and tables on help intent for FAR less recoil
+  - balance: LMGs now slow you down, gain a recoil penalty if not braced, gain more
+      recoil by default
+  - tweak: stabilizing grip can be used as a foregrip on guns
