@@ -27,7 +27,7 @@
 	spawn_blacklisted = TRUE
 	rarity_value = 80
 	slowdown_hold = 1
-	brace_penalty = 20
+	brace_penalty = 4
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/plasteel = 4)
 	wield_delay = 1 SECOND
 	wield_delay_factor = 0.9 // 90 vig for instant wield

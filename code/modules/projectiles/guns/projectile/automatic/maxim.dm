@@ -32,7 +32,7 @@
 		)
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
-	brace_penalty = 25
+	brace_penalty = 5
 	slowdown_hold = 2
 	wield_delay = 1 SECOND
 	wield_delay_factor = 0.9 // 90 vig
