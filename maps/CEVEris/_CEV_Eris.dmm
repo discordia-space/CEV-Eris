@@ -18108,6 +18108,8 @@
 /obj/item/storage/box/smokes,
 /obj/item/storage/box/flashbangs,
 /obj/item/storage/box/flashbangs,
+/obj/item/storage/box/stinger,
+/obj/item/storage/box/stinger,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
@@ -18682,9 +18684,9 @@
 "aUq" = (
 /obj/structure/table/rack,
 /obj/item/storage/box/frag_rounds,
-/obj/item/storage/box/baton_rounds,
-/obj/item/storage/box/baton_rounds,
-/obj/item/storage/box/baton_rounds,
+/obj/item/storage/box/sting_rounds,
+/obj/item/storage/box/sting_rounds,
+/obj/item/storage/box/sting_rounds,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"

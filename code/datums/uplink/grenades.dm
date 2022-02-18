@@ -47,7 +47,7 @@
 /datum/uplink_item/item/grenades/baton_rounds
 	name = "6xRubber rounds"
 	item_cost = 6
-	path = /obj/item/storage/box/baton_rounds
+	path = /obj/item/storage/box/sting_rounds
 
 /datum/uplink_item/item/grenades/blast_rounds
 	name = "6xBlast rounds"
