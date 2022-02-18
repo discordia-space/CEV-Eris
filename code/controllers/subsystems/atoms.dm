@@ -29,8 +29,10 @@ SUBSYSTEM_DEF(atoms)
 	if(initialized == INITIALIZATION_INSSATOMS)
 		return
 
-	old_initialized = initialized
-	initialized = INITIALIZATION_INNEW_MAPLOAD
+	var/previous_state = null
+	if(initialized != INITIALIZATION_INNEW_MAPLOAD)
+		previous_state = initialized
+		initialized = INITIALIZATION_INNEW_MAPLOAD
 
 	if (atoms_to_return)
 		LAZYINITLIST(created_atoms)
@@ -56,7 +58,8 @@ SUBSYSTEM_DEF(atoms)
 	testing("Initialized [count] atoms")
 	pass(count)
 
-	initialized = old_initialized
+	if(previous_state != initialized)
+		initialized = previous_state
 
 	if(late_loaders.len)
 		for(var/I in 1 to late_loaders.len)

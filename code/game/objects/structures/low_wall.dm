@@ -395,7 +395,7 @@
 		return
 
 	//If the user isn't in harm intent and there's no window ontop of this wall, it is treated like a table.
-		//Items used on it will be placed on it like a surface
+		//Items used on it will be placed on it like a surface, if you use a gun on it while on help intent, you brace the gun.
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_WELDING), src)
 	switch(tool_type)
@@ -423,12 +423,15 @@
 					return
 
 	//Turn on harm intent to override this behaviour and instead attack the wall
-	if (!(locate(/obj/structure/window) in loc) && user.a_intent != I_HURT)
+	if (!(locate(/obj/structure/window) in loc) && user.a_intent != I_HURT && user.a_intent != I_HELP)
 		if (user.unEquip(I, src.loc))
 			set_pixel_click_offset(I, params)
 			return
-
-
+	//Gun bracing
+	if(!(locate(/obj/structure/window) in loc) && user.a_intent == I_HELP && istype(I, /obj/item/gun))
+		var/obj/item/gun/G = I
+		G.gun_brace(user, src) //.../modules/projectiles/gun.dm
+		return
 	//Hitting the wall with stuff
 	if(!istype(I,/obj/item/rcd) && !istype(I, /obj/item/reagent_containers))
 		if(!I.force)

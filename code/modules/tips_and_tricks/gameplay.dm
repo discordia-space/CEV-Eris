@@ -2,6 +2,9 @@
 /tipsAndTricks/gameplay
     textColor = "#32690e"
 
+/tipsAndTricks/gameplay/bracing
+    tipText = "You can brace your weapon on a table or a low wall to reduce its recoil."
+
 /tipsAndTricks/gameplay/airlockInteractions
     tipText = "Did you know? You can click on the turf tile where an airlock is located instead of the actual airlock to toggle it."
 

@@ -40,6 +40,9 @@
 	var/move_delay = 1
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
 	var/rigged = FALSE
+	var/braced = FALSE //for gun_brace proc.
+	var/brace_penalty = FALSE//penalty if not braced.
+	var/braceable = 1 //can the gun be used for gun_brace proc, modifies recoil. If the gun has foregrip mod installed, it's not braceable. Bipod mod increases value by 1.
 	var/fire_sound_text = "gunshot"
 	var/recoil_buildup = 2 //How quickly recoil builds up
 	var/list/gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/steel = 4)
@@ -63,6 +66,7 @@
 	var/sel_mode = 1 //index of the currently selected mode
 	var/list/firemodes = list()
 	var/list/init_firemodes = list()
+	var/currently_firing = FALSE // To prevent firemode swapping while shooting.
 
 	var/init_offset = 0
 
@@ -338,6 +342,8 @@
 	if(!special_check(user))
 		return
 
+	currently_firing = TRUE
+
 	var/shoot_time = (burst - 1)* burst_delay
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting
 	next_fire_time = world.time + shoot_time
@@ -399,6 +405,8 @@
 	if(muzzle_flash)
 		set_light(0)
 
+	currently_firing = FALSE
+
 //obtains the next projectile to fire
 /obj/item/gun/proc/consume_next_projectile()
 	return null
@@ -456,7 +464,8 @@
 					to_chat(user, "<span class='warning'>You have trouble keeping \the [src] on target with just one hand.</span>")
 				if(4 to INFINITY)
 					to_chat(user, "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>")
-
+	if(brace_penalty && !braced)
+		to_chat(user, "<span class='warning'>You struggle to keep \the [src] on target while carrying it!</span>")
 	user.handle_recoil(src)
 	update_icon()
 
@@ -542,6 +551,25 @@
 		handle_click_empty(user)
 		mouthshoot = FALSE
 		return
+
+/obj/item/gun/proc/gun_brace(mob/living/user, atom/target)
+	if(braceable && user.unstack)
+		var/atom/original_loc = user.loc
+		var/brace_direction = get_dir(user, target)
+		user.unstack = FALSE
+		user.facing_dir = null
+		to_chat(user, SPAN_NOTICE("You brace your weapon on \the [target]."))
+		braced = TRUE
+		while(user.loc == original_loc && user.dir == brace_direction)
+			sleep(2)
+		to_chat(user, SPAN_NOTICE("You stop bracing your weapon."))
+		braced = FALSE
+		user.unstack = TRUE
+	else
+		if(!user.unstack)
+			to_chat(user, SPAN_NOTICE("You are already bracing your weapon!"))
+		else
+			to_chat(user, SPAN_WARNING("You can\'t properly place your weapon on \the [target] because of the foregrip!"))
 
 /obj/item/gun/proc/toggle_scope(mob/living/user)
 	//looking through a scope limits your periphereal vision
@@ -650,6 +678,8 @@
 	toggle_firemode(user)
 
 /obj/item/gun/proc/toggle_firemode(mob/living/user)
+	if(currently_firing) // Prevents a bug with swapping fire mode while burst firing.
+		return
 	var/datum/firemode/new_mode = switch_firemodes()
 	if(new_mode)
 		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
@@ -666,7 +696,7 @@
 	update_firemode()
 	update_hud_actions()
 	check_safety_cursor(user)
-	
+
 /obj/item/gun/proc/check_safety_cursor(mob/living/user)
 	if(safety)
 		user.remove_cursor()
