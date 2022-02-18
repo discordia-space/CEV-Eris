@@ -43,7 +43,7 @@
 	H.alpha = 0
 	H.mouse_opacity = 0
 
-	anim(get_turf(H), H,'icons/mob/mob.dmi',,"cloak",,H.dir)
+	anim(get_turf(H), H, 'icons/mob/mob.dmi', , "cloak", , H.dir)
 	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity", null, 20, null)
 
 /obj/item/rig_module/stealth_field/deactivate()
