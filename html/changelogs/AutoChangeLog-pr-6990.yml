@@ -1,0 +1,6 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - balance: HV ammo no longer has damage buff, penetration buffed where needed
+  - balance: HV ammo is cheaper in uplink, uplink has no lethals anymore
+  - spellcheck: fixed typos
