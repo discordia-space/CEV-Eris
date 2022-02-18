@@ -417,7 +417,7 @@
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
 
-/obj/item/storage/box/baton_rounds
+/obj/item/storage/box/sting_rounds
 	name = "box of sting rounds"
 	desc = "A box containing 6 sting rounds, designed to be fired from grenade launchers."
 	icon_state = "box_security"
@@ -426,7 +426,7 @@
 	initial_amount = 6
 	spawn_type = /obj/item/ammo_casing/grenade
 
-/obj/item/storage/box/baton_rounds/populate_contents()
+/obj/item/storage/box/sting_rounds/populate_contents()
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
 
