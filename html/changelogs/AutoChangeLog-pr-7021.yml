@@ -1,0 +1,4 @@
+author: pexel5
+delete-after: true
+changes:
+  - bugfix: Add name for wires in rig code, to avilable hack em.
