@@ -1,0 +1,6 @@
+author: Kegdo
+delete-after: true
+changes:
+  - bugfix: jointlock
+  - tweak: progress bars for joint and dislocating
+  - balance: less pain damage on joint
