@@ -1,0 +1,5 @@
+author: Alliostra
+delete-after: true
+changes:
+  - bugfix: Wire panels without descriptions for wires in them will no longer runtime
+      when interacted with.

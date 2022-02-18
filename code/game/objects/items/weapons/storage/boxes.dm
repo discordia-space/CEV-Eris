@@ -355,6 +355,15 @@
 	initial_amount = 4
 	spawn_type = /obj/item/grenade/frag
 
+/obj/item/storage/box/stinger
+	name = "box of fragmentation grenades"
+	desc = "A box containing 4 stinger grenades. Designed for use against unruly crowds. <br> WARNING: May cause long-lasting injuries in close proximity."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	initial_amount = 4
+	spawn_type = /obj/item/grenade/frag/sting
+
 /obj/item/storage/box/frag/populate_contents()
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
@@ -408,16 +417,16 @@
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
 
-/obj/item/storage/box/baton_rounds
-	name = "box of baton rounds"
-	desc = "A box containing 6 rubber rounds, designed to be fired from grenade launchers."
+/obj/item/storage/box/sting_rounds
+	name = "box of sting rounds"
+	desc = "A box containing 6 sting rounds, designed to be fired from grenade launchers."
 	icon_state = "box_security"
 	illustration = "flashbang"
 	rarity_value = 60
 	initial_amount = 6
 	spawn_type = /obj/item/ammo_casing/grenade
 
-/obj/item/storage/box/baton_rounds/populate_contents()
+/obj/item/storage/box/sting_rounds/populate_contents()
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
 
