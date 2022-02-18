@@ -36,6 +36,13 @@
 			to_chat(usr, "<font color='purple'>You have opted out of the candidate pool for this role.<font>")
 		else
 			to_chat(usr, "<font color='purple'>You have already opted out.<font>")
+	if(href_list["opt_in"])
+		var/key = locate(href_list["opt_in"])
+		if(opt_out_log.Find(key))
+			opt_out_log.Remove(key)
+			to_chat(usr, "<font color='purple'>You have opted in to the candidate pool for this role.<font>")
+		else
+			to_chat(usr, "<font color='purple'>You have already opted in.<font>")
 
 /datum/storyevent/roleset/proc/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
 	return TRUE
@@ -108,8 +115,8 @@
 				usr = L
 				usr << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever when he's chosen to decide.
 				to_chat(usr, "<font color='purple'>You are a candidate for [temp.role_text].\
-								<br>If you wish to opt-out of the candidate pool, click <a HREF=?src=\ref[src];opt_out=\ref[candidate.key]>here</a> within 60 seconds.\
-								<br>Otherwise, do nothing and you will be added to the list of candidates.</font>")
+								<br><a HREF=?src=\ref[src];opt_out=\ref[candidate.key]>Opt out</a> or <a HREF=?src=\ref[src];opt_in=\ref[candidate.key]>opt in</a> to the candidate pool.\
+								<br>By default, you are already in the candidate pool.</font>")
 				sleep(60 SECONDS)
 				if(opt_out_log.Find(L.key))
 					opt_out_log.Remove(L.key)
