@@ -81,7 +81,7 @@
 		handle_medical_side_effects()
 
 		if (life_tick % 4 == 1 && (get_game_time() >= dodge_time + 5 SECONDS))
-			if (confidence == FALSE)
+			if (confidence == FALSE && style > 0)
 				to_chat(src, SPAN_NOTICE("You feel confident again."))
 				confidence = TRUE
 			regen_slickness()
