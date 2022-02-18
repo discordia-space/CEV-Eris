@@ -47,13 +47,13 @@
 	set_light(0)
 	return TRUE
 
-/obj/item/projectile/bullet/rocket/heat
+/obj/item/projectile/bullet/rocket/hesh
 	name = "high-explosive anti-tank rocket"
 	damage_types = list(BRUTE = 60)
 	armor_penetration = 100
 	check_armour = ARMOR_BULLET
 
-/obj/item/projectile/bullet/rocket/heat/on_hit(atom/target)
+/obj/item/projectile/bullet/rocket/hesh/on_hit(atom/target)
 	fragment_explosion_angled(target, starting, /obj/item/projectile/bullet/pellet/fragment/strong, 20)
 	explosion(target, -1, 0, 2, 3) // Much weaker explosion, but offset by shrapnel released
 	set_light(0)
