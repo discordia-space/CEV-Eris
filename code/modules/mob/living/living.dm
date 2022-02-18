@@ -659,7 +659,6 @@ mob/living/carbon/human/verb/stopSliding()
 		var/range = 1 //checks for move intent; dive one tile further if on run intent
 		if (move_intent.flags & MOVE_INTENT_EXERTIVE)
 			range++
-		livmomentum = 5 // Set momentum value as soon as possible for stopSliding to work better
 		to_chat(H, SPAN_NOTICE("You dive onwards!"))
 		pass_flags += PASSTABLE // Jump over them!
 		H.allow_spin = FALSE
