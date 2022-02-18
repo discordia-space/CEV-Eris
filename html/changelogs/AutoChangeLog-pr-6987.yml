@@ -1,0 +1,7 @@
+author: Kegdo
+delete-after: true
+changes:
+  - rscadd: sanity damage on withdrawal
+  - tweak: drug addict does not get two bottles of 60u pills now
+  - tweak: addiction fate perks have permanent addiction
+  - tweak: increased alcoholic bonus
