@@ -63,6 +63,7 @@
 	var/sel_mode = 1 //index of the currently selected mode
 	var/list/firemodes = list()
 	var/list/init_firemodes = list()
+	var/currently_firing = FALSE // To prevent firemode swapping while shooting.
 
 	var/init_offset = 0
 
@@ -338,6 +339,8 @@
 	if(!special_check(user))
 		return
 
+	currently_firing = TRUE
+
 	var/shoot_time = (burst - 1)* burst_delay
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting
 	next_fire_time = world.time + shoot_time
@@ -398,6 +401,8 @@
 
 	if(muzzle_flash)
 		set_light(0)
+
+	currently_firing = FALSE
 
 //obtains the next projectile to fire
 /obj/item/gun/proc/consume_next_projectile()
@@ -650,6 +655,8 @@
 	toggle_firemode(user)
 
 /obj/item/gun/proc/toggle_firemode(mob/living/user)
+	if(currently_firing) // Prevents a bug with swapping fire mode while burst firing.
+		return
 	var/datum/firemode/new_mode = switch_firemodes()
 	if(new_mode)
 		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
@@ -666,7 +673,7 @@
 	update_firemode()
 	update_hud_actions()
 	check_safety_cursor(user)
-	
+
 /obj/item/gun/proc/check_safety_cursor(mob/living/user)
 	if(safety)
 		user.remove_cursor()
