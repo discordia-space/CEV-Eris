@@ -13,6 +13,7 @@
 	caliber = CAL_LRIFLE
 	fire_delay = 8
 	damage_multiplier = 1.4
+	style_damage_multiplier = 3
 	penetration_multiplier = 1.5
 	recoil_buildup = 7 // increased from the AK's/Takeshi's buildup of 1.7/1.8 because of the massive multipliers and slow firerate
 	init_offset = 2 //bayonet's effect on aim, reduced from 4

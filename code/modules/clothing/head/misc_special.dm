@@ -73,6 +73,9 @@
 			icon_state = "[base_state]up"
 			to_chat(usr, "You push the [src] up out of your face.")
 			style_coverage = COVERS_HAIR
+		if(ishuman(usr))
+			var/mob/living/carbon/human/beingofeyes = usr
+			beingofeyes.update_equipment_vision()
 		update_wear_icon()	//so our mob-overlays
 		usr.update_action_buttons()
 

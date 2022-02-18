@@ -29,7 +29,7 @@
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
 	species_restricted = list("exclude")
-	flash_protection = FLASH_PROTECTION_MAJOR
+	flash_protection = FLASH_PROTECTION_MAJOR // kept because seeing the sun in space without flash prot is... ouch.
 	price_tag = 100
 	spawn_blacklisted = TRUE
 	bad_type = /obj/item/clothing/head/space
