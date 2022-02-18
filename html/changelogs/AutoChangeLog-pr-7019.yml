@@ -1,0 +1,5 @@
+author: HentaiStorm
+delete-after: true
+changes:
+  - bugfix: fix bug with invisible module
+  - imageadd: added icons for ninja RIGs
