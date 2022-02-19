@@ -31,6 +31,7 @@
 	var/bolt_open = 0
 	var/item_suffix = ""
 	wield_delay = 0
+	pierce_multiplier = 3
 	gun_parts = list(/obj/item/part/gun/frame/heavysniper = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/antim = 1)
 
 /obj/item/part/gun/frame/heavysniper

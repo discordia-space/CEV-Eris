@@ -61,6 +61,7 @@
 		chance = 100
 	else if(istype(A, /obj/structure/low_wall))
 		chance = round(penetrating * armor_penetration * 2 / 150 * 180) // hardcoded, value is same as steel wall, will have to be changed once low walls have integrity
+		to_chat(world, "hit a low wall")
 	else if(istype(A, /obj/structure/table))
 		var/obj/structure/table/T = A
 		chance = round(penetrating * armor_penetration * 2 / T.maxhealth * 180)
@@ -71,6 +72,7 @@
 		chance = armor_penetration * penetrating
 
 	if(prob(chance))
+		to_chat(world, "velocity lost")	
 		var/maintainedVelocity = min(max(20, chance), 90) / 100 //the chance to penetrate is used to calculate leftover velocity, capped at 90%
 		armor_penetration *= maintainedVelocity
 		for(var/i in damage_types)
