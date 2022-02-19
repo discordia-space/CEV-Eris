@@ -1,5 +1,0 @@
-author: Wouju
-delete-after: true
-changes:
-  - balance: Pipebomb plasma cost reduced from 2 to 1 unit, and removed drilling requirement
-  - bugfix: fixed pipebomb inhand sprite when facing north

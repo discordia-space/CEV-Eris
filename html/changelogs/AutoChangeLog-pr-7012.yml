@@ -1,5 +1,0 @@
-author: pexel5
-delete-after: true
-changes:
-  - bugfix: Now lanar with 6 grenades has a normal full sprite instead of a sprite
-      without grenades.

@@ -1,5 +1,0 @@
-author: hex37
-delete-after: true
-changes:
-  - bugfix: fixes a niche issue in TGUI when ssatoms.old_initialized is set by another
-      process at the same time InitializeAtoms is sleeping due to lag compensation.
