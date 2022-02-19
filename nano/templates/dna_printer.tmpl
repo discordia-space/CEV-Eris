@@ -1,0 +1,39 @@
+{{if data.have_files}}
+	{{:helper.syndicateMode()}}
+
+	<b>Currently selected DNA sequence</b>:
+	<table style="width:100%">
+		<tr>
+			<th>Pattern</th>
+			<th style="width:70%">Description</th>
+		</tr>
+		<tr class="candystripe">
+			<td style="background-color: #8daf6a;">{{:data.name}}</td>
+			<td style="background-color: #8daf6a;">{{:data.desc}}</td>
+		</tr>
+	</table>
+
+	<div class="item">
+		{{:helper.link('Produce gene imprinter', 'circle-plus', {'make_meat_cube' : 1}, data.can_print ? null : 'disabled')}}
+	</div>
+
+	<div class="item">
+		{{:helper.link('Produce cleansing substrate', 'circle-plus', {'make_worm_cube' : 1}, data.can_print ? null : 'disabled')}}
+	</div>
+
+	<div align="center" style="font-size: large; font-weight: bold;">
+		Compatible DNA sequences:
+	</div>
+
+	<div style="margin-top: 15px;" align="left">
+		{{for data.files}}
+			<tr class="candystripe">
+				{{:value.name}} {{:helper.link('Select', null, {'cache' : value.index})}}
+			</tr>
+		{{/for}}
+	</div>
+
+{{else}}
+	<div align="center" class='item' style="font-size: large; font-weight: bold;">No valid DNA sequences.</div>
+{{/if}}
+

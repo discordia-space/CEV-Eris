@@ -157,7 +157,7 @@
 		var/datum/computer_file/binary/animalgene/F = new
 		// Show mutation name instead of hex value if it have been activated previously
 		var/mut_name = M.is_active ? replacetext("[M.name]", " ", "_") : ("[M.tier_string]_[M.hex]")
-		F.filename = "AN_GENE_MUT_[uppertext(mut_name)]"
+		F.filename = "AN_GENE_MUT_[M.hex]_[uppertext(mut_name)]"
 		F.gene_type = "mutation"
 		F.gene_value = M
 		if(!usb?.store_file(F))
@@ -167,7 +167,7 @@
 	for(var/i in H.active_mutations)
 		var/datum/mutation/M = i
 		var/datum/computer_file/binary/animalgene/F = new
-		F.filename = "AN_GENE_MUT_[uppertext(M.tier_string)]_[M.hex]"
+		F.filename = "AN_GENE_MUT_[M.hex]_[uppertext(M.tier_string)]"
 		F.gene_type = "mutation"
 		F.gene_value = M
 		if(!usb?.store_file(F))
@@ -263,7 +263,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "dna_console.tmpl", "PLACEHOLDER", 450, 600, state = state)
+		ui = new(user, src, ui_key, "dna_console.tmpl", "Waffle Maker 3000", 450, 600, state = state)
 		ui.auto_update_layout = TRUE
 		ui.set_initial_data(data)
 		ui.open()

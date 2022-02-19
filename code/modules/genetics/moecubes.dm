@@ -25,7 +25,7 @@
 
 	// Default eating messages from reagent_containers.dm, will do for now
 	if(H == user)
-		to_chat(user, SPAN_NOTICE("You eat \the [src]"))
+		to_chat(user, SPAN_NOTICE("You eat \the [src]. It feels absolutely disgusting."))
 
 	else
 		user.visible_message(SPAN_WARNING("[user] is trying to feed [H] \the [src]!"))
@@ -88,7 +88,7 @@
 		return
 
 	if(H == user)
-		to_chat(user, SPAN_NOTICE("You eat \the [src]"))
+		to_chat(user, SPAN_NOTICE("You eat \the [src]. It feels absolutely disgusting."))
 
 	else
 		user.visible_message(SPAN_WARNING("[user] is trying to feed [H] \the [src]!"))

@@ -7,9 +7,18 @@
 	NSA_load = 5
 
 /datum/mutation/t0/blindness
-	name = "Blind((("
-	desc = "Beep"
+	name = "Blindness"
+	desc = "Decreased ability to see to a degree that causes problems not fixable by usual means, such as glasses."
 
 /datum/mutation/t0/deafness
-	name = "Def(((("
-	desc = "Boop"
+	name = "Deafness"
+	desc = "Prevents from hearing any sounds at all, regardless of amplification or method of production."
+/* 
+/datum/mutation/t0/blindness/imprint(mob/living/carbon/user)
+	..(user)
+	user.status_effects.addCondition(BLIND, INFINITY, INFINITY, "Mutation_[hex]_[name]")
+
+/datum/mutation/t0/blindness/cleanse(mob/living/carbon/user)
+	..(user)
+	user.status_effects.removeCondition(BLIND, "Mutation_[hex]_[name]")
+*/

@@ -23,11 +23,12 @@
 
 	if(href_list["start_minigame"])
 		if(USB)
+			var/datum/mutation/M = href_list["start_minigame"]
 			for(var/datum/computer_file/binary/animalgene/F in USB.stored_files)
-				if(F.gene_value == href_list["start_minigame"])
-					var/datum/mutation/M = F.gene_value
-					M.is_active = TRUE
-					F.gene_value = M
+				if(F.gene_type == "mutation")
+					var/datum/mutation/MF = F.gene_value
+					if(MF.hex == M.hex)
+						MF.is_active = TRUE
 		return TOPIC_REFRESH
 
 
@@ -49,8 +50,8 @@
 				var/datum/mutation/M = F.gene_value
 				if(!M.is_active)
 					files.Add(list(list(
-					"name" = "[M.tier_string]_[M.hex]",
-					"content" = "\ref[M]")))
+					"name" = "[M.hex]_[M.tier_string]",
+					"content" = M)))
 
 	if(USB)
 		for(var/datum/computer_file/binary/animalgene/F in USB.stored_files)
@@ -58,8 +59,8 @@
 				var/datum/mutation/M = F.gene_value
 				if(!M.is_active)
 					files.Add(list(list(
-					"name" = "[M.tier_string]_[M.hex]",
-					"content" = "\ref[M]")))
+					"name" = "[M.hex]_[M.tier_string]",
+					"content" = M)))
 
 	if(files.len)
 		data["have_files"] = TRUE

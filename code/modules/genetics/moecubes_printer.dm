@@ -15,6 +15,11 @@
 	var/obj/item/computer_hardware/hard_drive/portable/usb
 	var/list/files[0]
 	var/index = 0 // Maybe use files.len or something
+	var/gene_cache = list(
+		"name" = "\[NOT SELECTED\]",
+		"desc" = "\[NOT FOUND\]",
+		"type" = "b_type",
+		"content" = "O-")
 
 
 /obj/machinery/moeballs_printer/initalize_statverbs()
@@ -94,18 +99,49 @@
 	if(..())
 		return TOPIC_HANDLED
 
-	if(href_list["placeholder"])
+	if(href_list["cache"])
 		for(var/entry in files)
-			if(entry["index"] == href_list["placeholder"])
-				do_flick(FALSE)
-				sleep(1.5 SECONDS)
-				var/obj/item/moecube/C = new(src.loc)
-				C.gene_type = entry["type"]
-				if(entry["type"] == "mutation")
-					var/datum/mutation/M = entry["content"]
-					C.gene_value = M
-				else
-					C.gene_value = entry["content"]
+			if(entry["index"] == href_list["cache"])
+				gene_cache["name"] = entry["name"]
+				gene_cache["type"] = entry["type"]
+				gene_cache["content"] = entry["content"]
+
+				switch(entry["type"])
+					if("mutation")
+						var/datum/mutation/M = entry["content"]
+						gene_cache["desc"] = M.desc
+
+					if("b_type")
+						gene_cache["desc"] = "Permanently changes blood type to [entry["content"]]."
+
+					if("real_name")
+						gene_cache["desc"] = "Alters person\'s appearance, voice and fingerprints to match those of [entry["content"]]."
+
+					if("species")
+						gene_cache["desc"] = "Significantly alters body structure. Resulting creature would clasify as [entry["content"]]"
+		return TOPIC_REFRESH
+
+	if(href_list["make_worm_cube"])
+		do_flick(FALSE)
+		sleep(1.5 SECONDS)
+		var/obj/item/wormcube/C = new(src.loc)
+		if(gene_cache["type"] == "mutation")
+			var/datum/mutation/M = gene_cache["content"]
+			C.gene_value = M
+		else
+			C.gene_value = gene_cache["content"]
+		return TOPIC_REFRESH
+
+	if(href_list["make_meat_cube"])
+		do_flick(FALSE)
+		sleep(1.5 SECONDS)
+		var/obj/item/moecube/C = new(src.loc)
+		C.gene_type = gene_cache["type"]
+		if(gene_cache["type"] == "mutation")
+			var/datum/mutation/M = gene_cache["content"]
+			C.gene_value = M
+		else
+			C.gene_value = gene_cache["content"]
 		return TOPIC_REFRESH
 
 
@@ -113,17 +149,21 @@
 	var/list/data = ui_data()
 
 	data["have_files"] = FALSE
+	data["can_print"] = TRUE //TODO: Add conditions when it's false. Like nutriment requirement or some such.
 
-	// Accept everything othen than inactive mutation
+	data["name"] = gene_cache["name"]
+	data["desc"] = gene_cache["desc"]
+
+	// Accept everything but inactive mutation
 	if(usb && !index)
 		for(var/datum/computer_file/binary/animalgene/F in usb.stored_files)
 			if(F.gene_type == "mutation")
 				var/datum/mutation/M = F.gene_value
 				if(M.is_active)
 					files.Add(list(list(
-					"name" = M.name,
+					"name" = "AN_GENE_MUT_[M.hex]_[uppertext(replacetext("[M.name]", " ", "_"))]",
 					"type" = "mutation",
-					"content" = "\ref[M]",
+					"content" = M,
 					"index" = "[++index]")))
 			else
 				files.Add(list(list(
@@ -138,7 +178,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "moeballs_printer.tmpl", "Dna 3: Rework of the rework", 450, 600, state = state)
+		ui = new(user, src, ui_key, "dna_printer.tmpl", "Dna 3: Rework of the rework", 450, 600, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(TRUE)
