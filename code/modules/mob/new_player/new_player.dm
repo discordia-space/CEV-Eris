@@ -99,6 +99,24 @@
 	if(href_list["ready"])
 		if(SSticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
 			ready = text2num(href_list["ready"])
+			if(ready)
+				// Warn the player if they are trying to spawn without a brain
+				var/datum/body_modification/mod = client.prefs.get_modification(BP_BRAIN)
+				if(istype(mod, /datum/body_modification/limb/amputation))
+					if(alert(src,"Are you sure you wish to spawn without a brain? This will likely cause you do die immediately. \
+								If not, go into the Augmentation section of Setup Character and check you do not have Removed for the brain category.", \
+								"Player Setup", "Yes", "No") == "No")
+						ready = 0
+						return
+
+				// Warn the player if they are trying to spawn without eyes
+				mod = client.prefs.get_modification(BP_EYES)
+				if(istype(mod, /datum/body_modification/limb/amputation))
+					if(alert(src,"Are you sure you wish to spawn without eyes? It will likely be difficult to see without them. \
+								If not, go into the Augmentation section of Setup Character and check you do not have Removed for the eyes category.", \
+								"Player Setup", "Yes", "No") == "No")
+						ready = 0
+						return
 		else
 			ready = 0
 
