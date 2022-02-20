@@ -10,7 +10,6 @@
 	armor_penetration = 100 // Hits through armor, only GDR helps
 
 	sanity_damage = 1
-	price_tag = 500
 	spawn_blacklisted = TRUE
 	var/change_tele_to_mob = 25
 	var/chance_tele_to_eat = 25
