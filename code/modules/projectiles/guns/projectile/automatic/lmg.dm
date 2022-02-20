@@ -34,7 +34,9 @@
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/plasteel = 4)
 
 	init_firemodes = list(
-		FULL_AUTO_600
+		FULL_AUTO_600,
+		BURST_5_ROUND,
+		BURST_8_ROUND
 		)
 
 	var/cover_open = 0
