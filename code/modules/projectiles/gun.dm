@@ -500,10 +500,17 @@
 
 	if(params)
 		P.set_clickpoint(params)
-	var/offset = user.calculate_offset(init_offset)
+	var/offset = user.calculate_offset(init_offset_with_brace())
 	offset = rand(-offset, offset)
 
 	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
+	
+//Support proc for calculate_offset
+/obj/item/gun/proc/init_offset_with_brace()
+	var/offset = init_offset
+	if(braced)
+		offset -= 3
+	return offset
 
 //Suicide handling.
 /obj/item/gun/proc/handle_suicide(mob/living/user)
