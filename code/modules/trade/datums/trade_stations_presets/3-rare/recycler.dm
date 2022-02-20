@@ -5,14 +5,14 @@
 	uid = "oddities"
 	start_discovered = FALSE
 	spawn_always = TRUE
-	markup = RARE_GOODS
+	markup = 5			// Oddities have no price tag, trade subsystem sets unpriced goods to 100 by default
 	base_income = 3200
 	wealth = -48000		// Starts in debt so we don't get too many oddities early on.
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("bluespace")
 	recommendations_needed = 2
-	assortiment = list(
+	inventory = list(
 		"Old Junk" = list(
 			/obj/item/oddity/common/coin = custom_good_amount_range(list(1, 2)),
 			/obj/item/oddity/common/photo_landscape = custom_good_amount_range(list(1, 2)),
@@ -21,18 +21,9 @@
 			/obj/item/oddity/common/old_money = custom_good_amount_range(list(1, 2)),
 			/obj/item/oddity/common/mirror = custom_good_amount_range(list(1, 2)),
 			/obj/item/oddity/common/lighter = custom_good_amount_range(list(1, 2))
-		),
-		"Spare Parts" = list(
-			/obj/item/part/armor = custom_good_amount_range(list(1, 5)),
-			/obj/item/part/gun = custom_good_amount_range(list(1, 5)),
-			/obj/item/stock_parts/capacitor/adv = custom_good_amount_range(list(1, 3)),
-			/obj/item/stock_parts/scanning_module/adv = custom_good_amount_range(list(1, 3)),
-			/obj/item/stock_parts/manipulator/nano = custom_good_amount_range(list(1, 3)),
-			/obj/item/stock_parts/micro_laser/high = custom_good_amount_range(list(1, 3)),
-			/obj/item/stock_parts/matter_bin/adv = custom_good_amount_range(list(1, 3))
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Older Junk" = list(
 			/obj/item/oddity/common/blueprint = custom_good_amount_range(list(-1, 2)),
 			/obj/item/oddity/common/photo_eyes = custom_good_amount_range(list(-1, 2)),

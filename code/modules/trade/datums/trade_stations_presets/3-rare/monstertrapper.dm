@@ -6,17 +6,17 @@
 	uid = "trapper"
 	start_discovered = FALSE
 	spawn_always = TRUE
-	markup = UNIQUE_GOODS
+	markup = UNCOMMON_GOODS
 	offer_limit = 5
 	base_income = 3200
 	wealth = -48000
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("illegal2")
 	recommendations_needed = 2
-	assortiment = list(
+	inventory = list(
 		"Roach Cubes and Eggs" = list(
-			/obj/item/storage/deferred/roacheggs,	// make egg box
+			/obj/item/storage/deferred/roacheggs,	// make icon egg box
 			/obj/item/reagent_containers/food/snacks/roachcube/roachling = custom_good_amount_range(list(1, 5)),
 			/obj/item/reagent_containers/food/snacks/roachcube/kampfer = custom_good_amount_range(list(1, 5)),
 			/obj/item/reagent_containers/food/snacks/roachcube/jager = custom_good_amount_range(list(1, 5)),
@@ -39,7 +39,7 @@
 			/obj/item/reagent_containers/glass/bottle/trade/carpotoxin = good_data("carpotoxin bottle", list(-1, 2))
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"High-End Roach Product" = list(
 			/obj/item/reagent_containers/food/snacks/roachcube/kraftwerk = custom_good_amount_range(list(1, 5)),
 			/obj/item/reagent_containers/food/snacks/roachcube/fuhrer = custom_good_amount_range(list(1, 3)),

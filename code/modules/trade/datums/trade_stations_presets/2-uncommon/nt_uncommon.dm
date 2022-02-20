@@ -7,10 +7,10 @@
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = UNCOMMON_GOODS		// Dept-specific stuff should be more expensive for guild
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	recommendations_needed = 1
-	assortiment = list(
+	inventory = list(
 		"Energy Weapons" = list(
 			/obj/item/gun/energy/taser,
 			/obj/item/gun/energy/nt_svalinn,
@@ -30,7 +30,7 @@
 			/obj/item/shield/buckler/nt
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Pouches" = list(
 			/obj/item/storage/pouch/small_generic,
 			/obj/item/storage/pouch/medium_generic,

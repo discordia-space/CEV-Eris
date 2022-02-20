@@ -5,10 +5,10 @@
 	uid = "commissary"
 	start_discovered = TRUE
 	spawn_always = TRUE
-	markup = COMMON_GOODS
+	markup = WHOLESALE_GOODS
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("mcronalds", "serbian")
 	assortiment = list(
@@ -57,7 +57,7 @@
 			/obj/item/storage/deferred/kitchen
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Drinks II" = list(
 			/obj/item/reagent_containers/food/drinks/bottle/goldschlager,
 			/obj/item/reagent_containers/food/drinks/bottle/pwine,

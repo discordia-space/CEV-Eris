@@ -6,10 +6,10 @@
 	uid = "nt_basic"
 	start_discovered = TRUE
 	spawn_always = TRUE
-	markup = COMMON_GOODS
+	markup = WHOLESALE_GOODS
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("nt_uncommon")
 	assortiment = list(
@@ -51,7 +51,7 @@
 			/obj/structure/janitorialcart
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Curious Seeds" = list(
 			/obj/item/seeds/greengrapeseed = good_data("green grape seeds", list(1,3)),
 			/obj/item/seeds/icepepperseed = good_data("ice-pepper seeds", list(1,3)),

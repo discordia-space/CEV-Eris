@@ -5,20 +5,20 @@
 	uid = "trash"
 	start_discovered = FALSE
 	spawn_always = TRUE
-	markup = UNCOMMON_GOODS
+	markup = 5
 	offer_limit = 20
 	base_income = 0
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("oddities")
 	recommendations_needed = 1
-	assortiment = list(
+	inventory = list(
 		"Trash" = list(
 			/obj/spawner/scrap/dense = custom_good_amount_range(list(15, 60))
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Premium Trash" = list(
 			/obj/structure/scrap_spawner = custom_good_amount_range(list(2,5)),
 			/obj/structure/scrap_spawner/large = custom_good_amount_range(list(2,5)),

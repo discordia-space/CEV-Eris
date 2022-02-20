@@ -5,15 +5,15 @@
 	uid = "rigs"
 	start_discovered = FALSE
 	spawn_always = TRUE
-	markup = UNCOMMON_GOODS
+	markup = COMMON_GOODS
 	offer_limit = 20
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("illegal1")
 	recommendations_needed = 1
-	assortiment = list(
+	inventory = list(
 		"RIGs II" =  list(
 			/obj/item/rig/light = custom_good_amount_range(list(1, 5)),
 			/obj/item/rig/combat = custom_good_amount_range(list(1, 5))
@@ -26,7 +26,7 @@
 			/obj/item/rig_module/chem_dispenser
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"RIG Specialized Modules III" = list(
 			/obj/item/rig_module/electrowarfare_suite,
 			/obj/item/rig_module/chem_dispenser/combat,

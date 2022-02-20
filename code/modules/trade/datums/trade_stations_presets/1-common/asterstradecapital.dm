@@ -12,7 +12,7 @@
 	markup = COMMON_GOODS
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("casino")
 	assortiment = list(
@@ -97,7 +97,7 @@
 			/obj/item/storage/lunchbox/cat = good_data("Cat Lunchbox", list(1, 10)),
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Exosuits" = list(
 			/mob/living/exosuit/premade/powerloader/firefighter,
 			/mob/living/exosuit/premade/powerloader/flames_blue,

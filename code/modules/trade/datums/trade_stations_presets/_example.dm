@@ -20,7 +20,7 @@
 	wealth = 5000					// The abstract value of the goods sold to the station via offers + base income. Represents the station's ability to produce or purchase goods.
 
 	favor = 0									// For keeping track of how much favor we have with a given station. Triggers events when certain thresholds are reached. Should always start at 0.
-	secret_inv_threshold = 2000					// Favor required to unlock secret inventory
+	hidden_inv_threshold = 2000					// Favor required to unlock secret inventory
 	recommendation_threshold = 4000				// Favor required to unlock next station(s) in the tree
 	stations_recommended = list("station_uid")	// List of stations unlocked when the recommendation threshold is reached
 	recommendations_needed = 1					// How many stations need to recommend this one before unlocking
@@ -42,7 +42,7 @@
 
 	// Hidden types of items sold by the station. Unlocked when the threshold is reached.
 	// This follows the same rules as assortiments and gets appended to the assortiment list when the secret inv threshold is reached
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Category Name II" = list(
 			/obj/item/organ/internal/kidney = good_data("kidney", list(1,3))
 		)

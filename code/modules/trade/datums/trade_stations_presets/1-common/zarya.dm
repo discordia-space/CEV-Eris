@@ -5,11 +5,11 @@
 	uid = "techno_basic"
 	start_discovered = TRUE
 	spawn_always = TRUE
-	markup = COMMON_GOODS
+	markup = WHOLESALE_GOODS
 	offer_limit = 20
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 0
+	hidden_inv_threshold = 0
 	recommendation_threshold = 3000
 	stations_recommended = list("techno_adv")
 	assortiment = list(

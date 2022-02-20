@@ -6,16 +6,16 @@
 	uid = "fs_ammo"
 	start_discovered = FALSE
 	spawn_always = TRUE
-	markup = COMMON_GOODS / 2
+	markup = WHOLESALE_GOODS
 	markdown = 0
 	offer_limit = 20
 	base_income = 0
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("fs_experimental")
 	recommendations_needed = 1
-	assortiment = list(
+	inventory = list(
 		".35 Caliber"  = list(
 			/obj/item/ammo_magazine/slpistol,
 			/obj/item/ammo_magazine/slpistol/rubber = custom_good_name("speed loader (.35 Auto rubber)"),

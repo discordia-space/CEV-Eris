@@ -9,10 +9,10 @@
 	offer_limit = 20
 	base_income = 0
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	recommendations_needed = 2
-	assortiment = list(
+	inventory = list(
 		"Gunmods" = list(
 			/obj/item/gun_upgrade/trigger/dangerzone,
 			/obj/item/gun_upgrade/trigger/cop_block,

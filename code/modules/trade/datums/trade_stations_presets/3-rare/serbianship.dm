@@ -11,11 +11,11 @@
 	offer_limit = 20
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("illegal2")
 	recommendations_needed = 2
-	assortiment = list(
+	inventory = list(
 		"Guns" = list(
 			/obj/item/gun/projectile/boltgun/serbian = custom_good_amount_range(list(1, 10)),
 			/obj/item/gun/projectile/automatic/ak47/sa = custom_good_amount_range(list(1, 3)),
@@ -29,7 +29,7 @@
 			/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells = custom_good_name("ammunition box (.50 incendiary)")
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Guns II" = list(
 			/obj/item/gun/projectile/automatic/lmg/pk = custom_good_amount_range(list(1, 1)),
 			/obj/item/gun/projectile/shotgun/bojevic = custom_good_amount_range(list(1, 1)),

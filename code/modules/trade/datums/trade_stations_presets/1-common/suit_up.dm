@@ -5,11 +5,11 @@
 	uid = "suit_up"
 	start_discovered = TRUE
 	spawn_always = TRUE
-	markup = COMMON_GOODS
+	markup = WHOLESALE_GOODS
 	offer_limit = 20
 	base_income = 3200
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("rigs")
 	assortiment = list(
@@ -138,7 +138,7 @@
 			/obj/item/clothing/head/collectable/festive
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Voidsuits" = list(
 			/obj/item/clothing/suit/space/void/mining = custom_good_amount_range(list(1, 5)),
 			/obj/item/clothing/suit/space/void/engineering = custom_good_amount_range(list(1, 5)),

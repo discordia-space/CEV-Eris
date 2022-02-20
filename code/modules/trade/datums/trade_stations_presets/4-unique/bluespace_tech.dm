@@ -3,9 +3,9 @@
 	uid = "bluespace"
 	start_discovered = FALSE
 	spawn_always = TRUE
-	markup = UNIQUE_GOODS
+	markup = RARE_GOODS
 	recommendations_needed = 1
-	assortiment = list(
+	inventory = list(
 		"#$285@$532#$@" = list(
 			/obj/item/electronics/circuitboard/teleporter,
 			/obj/item/tool/knife/dagger/bluespace,

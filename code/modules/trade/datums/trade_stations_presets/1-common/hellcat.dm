@@ -3,21 +3,21 @@
 		"FBV 'Hellcat'" = "\"Greetings. This is the Hellcat. We're currently escorting the Caduceus and we will be departing the system shortly alongside them. We are willing to part with our spare supplies while we're here.\""
 	)
 	icon_states = "ihs_destroyer"
-	uid = "guns_basic"
 	forced_overmap_zone = list(
 		list(15, 20),
 		list(20, 25)
 	)
+	uid = "guns_basic"
 	start_discovered = TRUE
 	spawn_always = TRUE
-	markup = COMMON_GOODS * 1.5
+	markup = WHOLESALE_GOODS
 	offer_limit = 20
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("fs_guns", "fs_ammo")
-	assortiment = list(
+	inventory = list(
 		"Enforce Equipment" = list(
 			/obj/item/handcuffs,
 			/obj/item/shield/riot,
@@ -65,7 +65,7 @@
 			/obj/item/clothing/head/armor/laserproof
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Basic Gun Mods" = list(
 			/obj/item/gun_upgrade/barrel/forged,
 			/obj/item/gun_upgrade/mechanism/gravcharger,

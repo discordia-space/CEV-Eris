@@ -5,15 +5,15 @@
 	uid = "mcronalds"
 	start_discovered = FALSE
 	spawn_always = TRUE
-	markup = UNCOMMON_GOODS
-	offer_limit = 30
+	markup = COMMON_GOODS
+	offer_limit = 10
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("trapper")
 	recommendations_needed = 1
-	assortiment = list(
+	inventory = list(
 		"Burgers" = list(
 			/obj/item/reagent_containers/food/snacks/bigbiteburger = custom_good_name("Big RBurger"),
 			/obj/item/reagent_containers/food/snacks/jellyburger/cherry = custom_good_name("JellyCherry RBurger"),
@@ -39,7 +39,7 @@
 			/obj/item/storage/box/happy_meal
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Secret Menu" = list(
 			/obj/item/storage/box/monkeycubes = good_data("Chicken Nuggets", list(1, 5))
 			// TODO: Needs funny and useful stuff

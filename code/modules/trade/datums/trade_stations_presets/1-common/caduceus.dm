@@ -10,11 +10,11 @@
 	uid = "moe_basic"
 	start_discovered = TRUE
 	spawn_always = TRUE
-	markup = COMMON_GOODS
+	markup = WHOLESALE_GOODS
 	offer_limit = 20
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("moe_adv")
 	assortiment = list(
@@ -62,7 +62,7 @@
 			/obj/item/computer_hardware/hard_drive/portable/design
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Autoinjectors" = list(
 			// Autoinjectors defined in hypospray.dm
 			/obj/item/reagent_containers/hypospray/autoinjector/antitoxin = custom_good_amount_range(list(10, 20)),

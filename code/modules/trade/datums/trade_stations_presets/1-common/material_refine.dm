@@ -5,11 +5,11 @@
 	uid = "materials"
 	start_discovered = TRUE
 	spawn_always = TRUE
-	markup = COMMON_GOODS
+	markup = WHOLESALE_GOODS
 	offer_limit = 30
 	base_income = 0		// Needs ore to refine
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("trash")
 	assortiment = list(
@@ -23,7 +23,7 @@
 			/obj/item/stack/material/plasma/full = good_data("plasma sheets (x120)", list(1, 2))
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Refined Material Stacks" = list(
 			/obj/item/stack/material/iron/full = good_data("iron ingots (x120)", list(1, 2)),
 			/obj/item/stack/material/silver/full = good_data("silver ingots (x120)", list(1, 2)),
