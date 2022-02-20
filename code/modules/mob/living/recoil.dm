@@ -4,8 +4,9 @@
 		if(!G.wielded)
 			recoil += G.one_hand_penalty // Then the one hand penalty will be added to the recoil.
 
-	if(G.braced && G.braceable > 1)
-		recoil *= 0.5 // Taking penalty into account, bipod reduces recoil by 40%.
+	if(G.braced)
+		if(G.braceable > 1)
+			recoil *= 0.5 // Taking penalty into account, bipod reduces recoil by 40%.
 	else if(G.brace_penalty)
 		recoil += G.brace_penalty
 
