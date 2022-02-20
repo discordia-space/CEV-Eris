@@ -1,15 +1,16 @@
+// Breaks the economy
 /datum/trade_station/lancer
 	name_pool = list(
 		"ITR 'Lancer'" = "IRS Trash Railgun 'Lancer': \"Hoho, you want some Trash?\""
 	)
 	uid = "trash"
-	start_discovered = TRUE//FALSE
+	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = UNCOMMON_GOODS
 	offer_limit = 20
 	base_income = 0
 	wealth = 0
-	secret_inv_threshold = 0//2000
+	secret_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("oddities")
 	recommendations_needed = 1
