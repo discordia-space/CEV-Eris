@@ -5,13 +5,29 @@ SUBSYSTEM_DEF(trade)
 	priority = SS_PRIORITY_SUPPLY
 	flags = SS_NO_FIRE
 
-	var/trade_stations_budget = 7
+	var/trade_stations_budget = 7 // Currently unused. This is the budget for stations with spawn_always = FALSE
 
 	var/list/obj/machinery/trade_beacon/sending/beacons_sending = list()
 	var/list/obj/machinery/trade_beacon/receiving/beacons_receiving = list()
 
 	var/list/datum/trade_station/all_stations = list()
 	var/list/datum/trade_station/discovered_stations = list()
+
+	var/list/master_inventory_list = list()
+	//	list(
+	//		"station name" = list(
+	//			"category name" = list(
+	//				item path = list(name, quantity)
+	//			)
+	//		)
+	//	)
+
+	var/list/master_offer_list = list()
+	//	list(
+	//		"station name" = list(
+	//			offer path = list(name)
+	//		)
+	//	)
 
 /datum/controller/subsystem/trade/proc/DiscoverAllTradeStations()
 	discovered_stations = all_stations.Copy()
@@ -112,13 +128,14 @@ SUBSYSTEM_DEF(trade)
 			if(station.uid == target_uid)
 				station.recommendations_needed -= 1
 				if(!station.recommendations_needed)
-					discovered_stations += station
+					discovered_stations |= station
+					GLOB.entered_event.register(station.overmap_location, station, station/proc/discovered)
 
 //Returns cost of an existing object including contents
-/datum/controller/subsystem/trade/proc/get_cost(atom/movable/target)
+/datum/controller/subsystem/trade/proc/get_cost(atom/movable/target, is_export = FALSE)
 	. = 0
 	for(var/atom/movable/A in target.GetAllContents(includeSelf = TRUE))
-		. += A.get_item_cost(TRUE)
+		. += A.get_item_cost(is_export)
 
 //Returns cost of a newly created object including contents
 /datum/controller/subsystem/trade/proc/get_new_cost(path)
@@ -137,7 +154,7 @@ SUBSYSTEM_DEF(trade)
 	return GLOB.price_cache[path]
 
 /datum/controller/subsystem/trade/proc/get_export_cost(atom/movable/target)
-	. = round(get_cost(target) * 0.6)
+	. = round(get_cost(target, TRUE) * 0.6)
 
 /datum/controller/subsystem/trade/proc/get_sell_price(path, datum/trade_station/station)
 	. = round(get_new_cost(path) * station.markdown)
@@ -149,13 +166,15 @@ SUBSYSTEM_DEF(trade)
 		markup = station.markup
 	. *= markup
 
+/datum/controller/subsystem/trade/proc/check_oldification(item, offer_path)
+
 // Checks item stacks amd item containers to see if they match their base states (no more selling empty first-aid kits or split item stacks as if they were full)
 // Checks reagent containers to see if they match their base state or if they match the special offer from a station
 /datum/controller/subsystem/trade/proc/check_contents(item, offer_path, assessing_special_offer = FALSE)
 	if(!ispath(offer_path, /datum/reagent))
 		if(istype(item, /obj/machinery/portable_atmospherics/canister))			// Air canisters can be constructed for 10 steel
 			var/obj/machinery/portable_atmospherics/canister/canister = item
-			if(canister.air_contents.total_moles >= 1871.71)
+			if(canister.air_contents.total_moles > 1871.7)
 				return TRUE
 			return FALSE
 
@@ -281,11 +300,11 @@ SUBSYSTEM_DEF(trade)
 
 	for(var/categoryName in shopList)
 		var/list/shoplist_category = shopList[categoryName]
-		var/list/assortiment_category = station.assortiment[categoryName]
-		if(length(shoplist_category) && length(assortiment_category))
+		var/list/inventory_category = station.inventory[categoryName]
+		if(length(shoplist_category) && length(inventory_category))
 			for(var/pathOfGood in shoplist_category)
 				var/count_of_good = shoplist_category[pathOfGood] //in shoplist
-				var/index_of_good = assortiment_category.Find(pathOfGood) //in assortiment
+				var/index_of_good = inventory_category.Find(pathOfGood) //in inventory
 				for(var/i in 1 to count_of_good)
 					istype(C) ? new pathOfGood(C) : senderBeacon.drop(pathOfGood)
 				if(isnum(index_of_good))

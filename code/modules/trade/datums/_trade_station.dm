@@ -6,10 +6,10 @@
 
 #define category_data(nam, listOfTags) list("name" = nam, "tags" = listOfTags)
 
+#define WHOLESALE_GOODS 0.8
 #define COMMON_GOODS 1.2
-#define UNCOMMON_GOODS 2.4
-#define RARE_GOODS 3.6
-#define UNIQUE_GOODS 4.8
+#define UNCOMMON_GOODS 1.6
+#define RARE_GOODS 2.0
 
 /datum/trade_station
 	var/name
@@ -32,11 +32,11 @@
 
 	var/list/name_pool = list()
 
-	var/markup = COMMON_GOODS
-	var/markdown = 0.6				// Default markdown is 60%
-	var/list/assortiment = list()
+	var/markup = WHOLESALE_GOODS
+	var/markdown = 0.6				// Default markdown is 60%, remove with direct selling when the beacons can export
+	var/list/inventory = list()
 	var/list/offer_types = list()	// Defines special offers
-	var/list/offer_limit = 20		// For limiting sell offer quantity. 0 is no cap. Offer_data has its own cap, but this may still be useful.
+	var/list/offer_limit = 20		// For limiting sell offer quantity. 0 is no cap. Offer data packet can set a good specific cap that overrides this.
 
 	var/list/amounts_of_goods = list()
 	var/unique_good_count = 0
@@ -45,11 +45,11 @@
 	var/base_income = 1600				// Lets stations restock without player interaction.
 	var/wealth = 0						// The abstract value of the goods sold to the station via offers + base income. Represents the station's ability to produce or purchase goods.
 
-	var/favor = 0							// For keeping track of how much wealth a station has handled. Triggers events when certain thresholds are reached.
-	var/secret_inv_threshold = 2000			// Favor required to unlock secret inventory
-	var/secret_inv_unlocked = FALSE
-	var/list/secret_inventory = list()
-	var/recommendation_threshold = 4000	// Favor required to unlock recommendation
+	var/favor = 0							// For keeping track of how much wealth a station has handled with the players. Triggers events when certain thresholds are reached.
+	var/hidden_inv_threshold = 2000			// Amount of favor required to unlock secret inventory
+	var/hidden_inv_unlocked = FALSE
+	var/list/hidden_inventory = list()
+	var/recommendation_threshold = 4000		// Amount of favor required to unlock recommendation
 	var/recommendation_unlocked = FALSE
 	var/list/stations_recommended = list()	// Stations recommended by this station
 	var/list/recommendations_needed = 0		// Station recommendations needed to unlock this station
@@ -74,7 +74,7 @@
 	name = pick(name_pool)
 	desc = name_pool[name]
 
-	AssembleAssortiment()
+	AssembleInventory()
 	init_goods()
 
 	update_tick()
@@ -99,8 +99,8 @@
 	if(start_discovered)
 		SStrade.discovered_stations += src
 
-/datum/trade_station/proc/AssembleAssortiment()
-	for(var/list/category_name in assortiment)
+/datum/trade_station/proc/AssembleInventory()
+	for(var/list/category_name in inventory)
 		if(category_name?.len >= 2) // ?. len and not checking islist() cuz only lists have var/len and ?. check it's isnull
 			var/new_category_name
 			if(category_name.Find("name"))
@@ -109,32 +109,21 @@
 				continue
 			var/list/content
 			var/list/category_content_tag = (category_name.Find("tags") ? category_name["tags"] : null)
-			if(islist(assortiment[category_name]))
-				content = assortiment[category_name]
+			if(islist(inventory[category_name]))
+				content = inventory[category_name]
 			else
 				content = list()
 			content.Add(SSspawn_data.valid_candidates(category_content_tag,,TRUE))
 
 			if(istext(new_category_name) && islist(content))
-				var/category_name_index = assortiment.Find(category_name)
-				assortiment.Cut(category_name_index, category_name_index + 1)
-				assortiment.Insert(category_name_index, new_category_name)
-				assortiment[new_category_name] = content
+				var/category_name_index = inventory.Find(category_name)
+				inventory.Cut(category_name_index, category_name_index + 1)
+				inventory.Insert(category_name_index, new_category_name)
+				inventory[new_category_name] = content
 
-/datum/trade_station/proc/update_tick()
-	offer_tick()
-	if(initialized)		// So the station doesn't get paid or restock at roundstart
-		goods_tick()
-	else
-		initialized = TRUE
-	update_time = rand(15,25) MINUTES
-	addtimer(CALLBACK(src, .proc/update_tick), update_time, TIMER_STOPPABLE)
-	update_timer_start = world.time
-
-// Old goods_tick(). Now, good amounts are randomly chosen once at round start.
 /datum/trade_station/proc/init_goods()
-	for(var/category_name in assortiment)
-		var/list/category = assortiment[category_name]
+	for(var/category_name in inventory)
+		var/list/category = inventory[category_name]
 		if(islist(category))
 			for(var/good_path in category)
 				var/cost = SStrade.get_import_cost(good_path, src)
@@ -157,18 +146,28 @@
 			special_offers.Insert(offer_index, offer_path)
 			special_offers[offer_path] = offer_content
 
-// The station will restock based on base_income + wealth, then check to see if the secret inventory is unlocked.
+/datum/trade_station/proc/update_tick()
+	offer_tick()
+	if(initialized)		// So the station doesn't get paid or restock at roundstart
+		goods_tick()
+	else
+		initialized = TRUE
+	update_time = rand(15,25) MINUTES
+	addtimer(CALLBACK(src, .proc/update_tick), update_time, TIMER_STOPPABLE)
+	update_timer_start = world.time
+
+// The station will restock based on base_income + wealth, then check unlockables.
 /datum/trade_station/proc/goods_tick()
 	// Get base income
-	wealth += base_income		// Shouldn't contribute towards unlocks
+	wealth += base_income		// Base income doesn't contribute to favor
 
 	// Restock
 	// TODO: Make this actually random.
 	// 		 Currently, items that are closer to the end of the list have a lower chance to restock because they can't restock if wealth goes to zero as a result of earlier items restocking.
 	var/starting_balance = wealth								// For calculating production budget
 	var/budget = round(starting_balance / unique_good_count)	// Don't wanna blow the whole balance on one item
-	for(var/category_name in assortiment)
-		var/list/category = assortiment[category_name]
+	for(var/category_name in inventory)
+		var/list/category = inventory[category_name]
 		if(islist(category))
 			for(var/good_path in category)
 				var/good_index = category.Find(good_path)
@@ -183,22 +182,22 @@
 						subtract_from_wealth(amount_to_add * cost)
 
 	// Compare total score and unlock thresholds
-	if(!secret_inv_unlocked)
-		try_unlock_secret_inv()
+	if(!hidden_inv_unlocked)
+		try_unlock_hidden_inv()
 
 	if(!recommendation_unlocked)
 		try_recommendation()
 	
-/datum/trade_station/proc/try_unlock_secret_inv()
-	if(favor >= secret_inv_threshold)
-		secret_inv_unlocked = TRUE
-		for(var/category_name in secret_inventory)
-			var/list/category = secret_inventory[category_name]
+/datum/trade_station/proc/try_unlock_hidden_inv()
+	if(favor >= hidden_inv_threshold)
+		hidden_inv_unlocked = TRUE
+		for(var/category_name in hidden_inventory)
+			var/list/category = hidden_inventory[category_name]
 			if(istext(category_name) && islist(category))
-				var/category_name_index = secret_inventory.Find(category_name)
-				secret_inventory.Cut(category_name_index, category_name_index + 1)
-				assortiment.Add(category_name)
-				assortiment[category_name] = category
+				var/category_name_index = hidden_inventory.Find(category_name)
+				hidden_inventory.Cut(category_name_index, category_name_index + 1)
+				inventory.Add(category_name)
+				inventory[category_name] = category
 				for(var/good_path in category)
 					var/cost = SStrade.get_import_cost(good_path, src)
 					var/list/rand_args = list(0, 50 / max(cost/200, 1))
@@ -221,7 +220,7 @@
 /datum/trade_station/proc/get_good_amount(cat, index)
 	. = 0
 	if(isnum(cat))
-		cat = assortiment[cat]
+		cat = inventory[cat]
 	if(istext(cat) && text2num(index))
 		if(islist(amounts_of_goods))
 			var/list/L = amounts_of_goods[cat]
@@ -230,7 +229,7 @@
 
 /datum/trade_station/proc/set_good_amount(cat, index, value)
 	if(isnum(cat))
-		cat = assortiment[cat]
+		cat = inventory[cat]
 	if(istext(cat) && text2num(index))
 		if(islist(amounts_of_goods))
 			var/list/L = amounts_of_goods[cat]
