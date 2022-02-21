@@ -70,7 +70,7 @@ mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 		if(H.head)
 			offset += H.head.obscuration
 	offset = round(offset)
-	offset = min(offset, MAX_ACCURACY_OFFSET)
+	offset = max(0, min(offset, MAX_ACCURACY_OFFSET))
 	return offset
 
 //Called after setting recoil

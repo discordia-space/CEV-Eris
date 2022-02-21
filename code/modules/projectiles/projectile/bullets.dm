@@ -61,6 +61,7 @@
 		chance = 100
 	else if(istype(A, /obj/structure/low_wall))
 		chance = round(penetrating * armor_penetration * 2 / 150 * 180) // hardcoded, value is same as steel wall, will have to be changed once low walls have integrity
+		to_chat(world, "hit a low wall")
 	else if(istype(A, /obj/structure/table))
 		var/obj/structure/table/T = A
 		chance = round(penetrating * armor_penetration * 2 / T.maxhealth * 180)

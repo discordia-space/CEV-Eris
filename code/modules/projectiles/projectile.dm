@@ -359,6 +359,8 @@
 	return TRUE
 
 /obj/item/projectile/Bump(atom/A as mob|obj|turf|area, forced = FALSE)
+	if(istype(A, /obj/structure/low_wall))
+		to_chat(world, "projectile BUMPED a low wall")
 	if(A == src)
 		return FALSE
 	if(A == firer)

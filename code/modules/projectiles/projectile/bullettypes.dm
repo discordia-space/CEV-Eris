@@ -210,7 +210,7 @@ There are important things regarding this file:
 	irradiate = 200
 
 /obj/item/projectile/bullet/antim/breach
-	damage_types = list(BRUTE = 20)
+	damage_types = list(BRUTE = 50)
 	armor_penetration = 40
 	agony = 40
 	penetrating = 0

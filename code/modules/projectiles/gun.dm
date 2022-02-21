@@ -69,7 +69,7 @@
 	var/currently_firing = FALSE // To prevent firemode swapping while shooting.
 
 	var/init_offset = 0
-
+	var/scoped_offset_reduction = 3
 	var/mouthshoot = FALSE //To stop people from suiciding twice... >.>
 
 	var/list/gun_tags = list() //Attributes of the gun, used to see if an upgrade can be applied to this weapon.
@@ -502,7 +502,6 @@
 		P.set_clickpoint(params)
 	var/offset = user.calculate_offset(init_offset)
 	offset = rand(-offset, offset)
-
 	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
 
 //Suicide handling.
@@ -899,5 +898,7 @@
 	var/mob/living/carbon/human/H = usr
 	if(zoom)
 		H.using_scope = src
+		init_offset -= scoped_offset_reduction
 	else
 		H.using_scope = null
+		refresh_upgrades()

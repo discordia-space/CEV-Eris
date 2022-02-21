@@ -49,6 +49,7 @@
 			else
 				valid = FALSE					//But only from one side
 		if(valid)
+			to_chat(world, "valid")
 			var/pierce = P.check_penetrate(src)
 			health -= P.get_structure_damage()/2
 			if (health > 0)
