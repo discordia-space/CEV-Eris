@@ -10,7 +10,13 @@
 	var/spider_price = 15
 	var/gene_price = 0
 	var/do_gibs = TRUE
+	var/gibs_color = "#666600"
 	var/last_stun_time = 0 //Used to avoid cheese
+	var/ignore_activate_all = FALSE
+
+	var/assigned_group_1 = FALSE
+	var/assigned_group_2 = FALSE	
+	var/assigned_group_3 = FALSE
 
 	var/obj/item/organ/internal/carrion/core/owner_core
 	var/mob/living/carbon/human/owner_mob
@@ -58,7 +64,7 @@
 
 /obj/item/implant/carrion_spider/proc/die()
 	if(!wearer)
-		gibs(loc, null, /obj/effect/gibspawner/generic, "#666600", "#666600")
+		gibs(loc, null, /obj/effect/gibspawner/generic, gibs_color, gibs_color)
 
 	qdel(src)
 
@@ -79,7 +85,7 @@
 /obj/item/implant/carrion_spider/proc/toggle_attack(mob/user)
 	if (ready_to_attack)
 		ready_to_attack = FALSE
-		to_chat(user, SPAN_NOTICE("\The [src] wont attack nearby creatures anymore."))
+		to_chat(user, SPAN_NOTICE("\The [src] won't attack nearby creatures anymore."))
 	else
 		ready_to_attack = TRUE
 		to_chat(user, SPAN_NOTICE("\The [src] is ready to attack nearby creatures."))
@@ -98,3 +104,13 @@
 
 /obj/item/implant/carrion_spider/proc/update_owner_mob()
 	owner_mob = owner_core.owner
+
+/obj/item/implant/carrion_spider/proc/toggle_group(group)
+	switch(group)
+		if(1)
+			assigned_group_1 = !assigned_group_1
+		if(2)
+			assigned_group_2 = !assigned_group_2
+		if(3)
+			assigned_group_3 = !assigned_group_3	
+
