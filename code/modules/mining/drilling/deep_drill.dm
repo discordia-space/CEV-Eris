@@ -8,8 +8,8 @@
 
 	circuit = /obj/item/electronics/circuitboard/miningdrill
 
-	var/max_health = 1000
-	var/health = 1000
+	var/max_health = 2000
+	var/health = 2000
 
 	var/active = FALSE
 	var/list/resource_field = list()
