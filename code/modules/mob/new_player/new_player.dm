@@ -103,8 +103,8 @@
 				// Warn the player if they are trying to spawn without a brain
 				var/datum/body_modification/mod = client.prefs.get_modification(BP_BRAIN)
 				if(istype(mod, /datum/body_modification/limb/amputation))
-					if(alert(src,"Are you sure you wish to spawn without a brain? This will likely cause you do die immediately. \
-								If not, go into the Augmentation section of Setup Character and check you do not have Removed for the brain category.", \
+					if(alert(src,"Are you sure you wish to spawn without a brain? This will likely cause you to do die immediately. \
+								If not, go to the Augmentation section of Setup Character and change the \"brain\" slot from Removed to the desired kind of brain.", \
 								"Player Setup", "Yes", "No") == "No")
 						ready = 0
 						return
@@ -113,7 +113,7 @@
 				mod = client.prefs.get_modification(BP_EYES)
 				if(istype(mod, /datum/body_modification/limb/amputation))
 					if(alert(src,"Are you sure you wish to spawn without eyes? It will likely be difficult to see without them. \
-								If not, go into the Augmentation section of Setup Character and check you do not have Removed for the eyes category.", \
+								If not, go to the Augmentation section of Setup Character and change the \"eyes\" slot from Removed to the desired kind of eyes.", \
 								"Player Setup", "Yes", "No") == "No")
 						ready = 0
 						return
@@ -171,8 +171,8 @@
 		// Warn the player if they are trying to spawn without a brain
 		var/datum/body_modification/mod = client.prefs.get_modification(BP_BRAIN)
 		if(istype(mod, /datum/body_modification/limb/amputation))
-			if(alert(src,"Are you sure you wish to spawn without a brain? This will likely cause you do die immediately. \
-			              If not, go into the Augmentation section of Setup Character and check you do not have Removed for the brain category.", \
+			if(alert(src,"Are you sure you wish to spawn without a brain? This will likely cause you to do die immediately. \
+			              If not, go to the Augmentation section of Setup Character and change the \"brain\" slot from Removed to the desired kind of brain.", \
 						  "Player Setup", "Yes", "No") == "No")
 				return 0
 
@@ -180,7 +180,7 @@
 		mod = client.prefs.get_modification(BP_EYES)
 		if(istype(mod, /datum/body_modification/limb/amputation))
 			if(alert(src,"Are you sure you wish to spawn without eyes? It will likely be difficult to see without them. \
-			              If not, go into the Augmentation section of Setup Character and check you do not have Removed for the eyes category.", \
+			              If not, go to the Augmentation section of Setup Character and change the \"eyes\" slot from Removed to the desired kind of eyes.", \
 						  "Player Setup", "Yes", "No") == "No")
 				return 0
 
