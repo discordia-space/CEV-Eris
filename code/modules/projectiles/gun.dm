@@ -502,6 +502,7 @@
 		P.set_clickpoint(params)
 	var/offset = user.calculate_offset(init_offset)
 	offset = rand(-offset, offset)
+
 	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
 
 //Suicide handling.
