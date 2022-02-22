@@ -13,7 +13,8 @@
 
 
 /obj/structure/grille/ex_act(severity)
-	qdel(src)
+	if(severity < 4)
+		qdel(src)
 
 /obj/structure/grille/update_icon()
 	if(destroyed)

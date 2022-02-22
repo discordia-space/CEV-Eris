@@ -31,6 +31,8 @@
 			stability -= 40
 		if(3)
 			stability -= 20
+		if(4)
+			stability -= 10
 	//check_stability()
 	return
 
