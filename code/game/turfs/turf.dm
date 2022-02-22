@@ -113,8 +113,6 @@
 	for(var/obj/obstacle in mover.loc)
 		if(!(obstacle.flags & ON_BORDER) && (mover != obstacle) && (forget != obstacle))
 			if(!obstacle.CheckExit(mover, src))
-				if(istype(obstacle, /obj/structure/low_wall))
-					to_chat(world, "[mover.name] bumped [obstacle.name] through var/obj/obstacle in mover.loc")
 				mover.Bump(obstacle, 1)
 				return 0
 
@@ -141,8 +139,6 @@
 	for(var/atom/movable/obstacle in src)
 		if(!(obstacle.flags & ON_BORDER))			
 			if(!obstacle.CanPass(mover, mover.loc, 1, 0) && (forget != obstacle))
-				if(istype(obstacle, /obj/structure/low_wall))
-					to_chat(world, "[mover.name] bumped [obstacle.name] through var/atom/movable.")
 				mover.Bump(obstacle, 1)
 				return 0
 	return 1 //Nothing found to block so return success!

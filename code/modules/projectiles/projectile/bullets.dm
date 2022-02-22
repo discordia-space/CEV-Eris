@@ -76,6 +76,8 @@
 		for(var/i in damage_types)
 			damage_types[i] *= maintainedVelocity
 		step_delay = min(step_delay / maintainedVelocity, step_delay / 2)
+		if(istype(A, /obj/structure/low_wall))
+			to_chat(world, "maintainedvelocity = [maintainedVelocity], hit a low wall")
 
 		if(A.opacity || istype(A, /obj/item/shield))
 			//display a message so that people on the other side aren't so confused
