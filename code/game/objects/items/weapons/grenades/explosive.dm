@@ -29,5 +29,5 @@
 	icon_state = "explosive_nt"
 	item_state = "explosive_nt"
 	weak_range = 4
-    weakest_range = 6
+	weakest_range = 6
 	matter = list(MATERIAL_BIOMATTER = 100)
