@@ -213,7 +213,7 @@ There are important things regarding this file:
 	damage_types = list(BRUTE = 50)
 	armor_penetration = 40
 	agony = 40
-	penetrating = 0
+	penetrating = -5
 	step_delay = 0.6
 	hitscan = FALSE
 	nocap_structures = TRUE
