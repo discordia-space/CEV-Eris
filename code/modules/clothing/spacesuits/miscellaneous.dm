@@ -24,7 +24,7 @@
 	item_state = "syndi_helm_erm"	//currently not working somehow
 	desc = "A simple helmet with a built in light, smells like mothballs."
 	light_overlay = "helmet_light_syndi_soft"
-	flash_protection = FLASH_PROTECTION_NONE
+	flash_protection = FLASH_PROTECTION_MINOR
 
 /obj/item/clothing/suit/space/emergency
 	name = "emergency softsuit"

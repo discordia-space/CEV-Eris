@@ -18,7 +18,7 @@
 
 	// Armor related variables
 	armor = list(
-		melee = GOLEM_ARMOR_LOW,
+		melee = 0,
 		bullet = GOLEM_ARMOR_HIGH,
 		energy = GOLEM_ARMOR_MED,
 		bomb = 0,
