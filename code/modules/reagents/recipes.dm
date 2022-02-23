@@ -1519,8 +1519,8 @@
 
 /datum/chemical_reaction/gargle_blaster
 	result = "gargleblaster"
-	required_reagents = list("vodka" = 2, "gin" = 1, "whiskey" = 1, "cognac" = 1, "limejuice" = 1)
-	result_amount = 6
+	required_reagents = list("sbiten" = 1, "carpotoxin" = 1, "singulo" = 1, "pwine" = 1, "fuhrerole" = 1, "limejuice" = 1)
+	result_amount = 2
 
 /datum/chemical_reaction/brave_bull
 	result = "bravebull"
@@ -1583,11 +1583,6 @@
 	result_amount = 3
 
 /datum/chemical_reaction/longislandicedtea
-	result = "longislandicedtea"
-	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "cubalibre" = 3)
-	result_amount = 6
-
-/datum/chemical_reaction/icedtea
 	result = "longislandicedtea"
 	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "cubalibre" = 3)
 	result_amount = 6
