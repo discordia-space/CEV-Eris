@@ -21,43 +21,35 @@
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /obj/structure/table/proc/check_cover(obj/item/projectile/P, turf/from)
-	var/turf/cover
-	if(flipped==1)
-		cover = get_turf(src)
-	else if(flipped==0)
-		cover = get_step(loc, get_dir(from, loc))
-	if(!cover)
-		return 1
 	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return 1
-	if (get_turf(P.original) == cover)
-		var/valid = FALSE
-		var/distance = get_dist(P.last_interact,loc)
-		P.check_hit_zone(loc, distance)
+	var/valid = FALSE
+	var/distance = get_dist(P.last_interact,loc)
+	P.check_hit_zone(loc, distance)
 
-		var/targetzone = check_zone(P.def_zone)
-		if (targetzone in list(BP_R_LEG, BP_L_LEG))
-			valid = TRUE //The legs are always concealed
-		if (ismob(P.original))
-			var/mob/M = P.original
-			if (M.lying)
-				valid = TRUE				//Lying down covers your whole body
-		if(flipped==1)
-			if(get_dir(loc, from) == dir)	//Flipped tables catch mroe bullets
-				if (targetzone == BP_GROIN)
-					valid = TRUE
-			else
-				valid = FALSE					//But only from one side
-		if(valid)
-			var/pierce = P.check_penetrate(src)
-			health -= P.get_structure_damage()/2
-			if (health > 0)
-				visible_message(SPAN_WARNING("[P] hits \the [src]!"))
-				return pierce
-			else
-				visible_message(SPAN_WARNING("[src] breaks down!"))
-				break_to_parts()
-				return 1
+	var/targetzone = check_zone(P.def_zone)
+	if (targetzone in list(BP_R_LEG, BP_L_LEG))
+		valid = TRUE //The legs are always concealed
+	if (ismob(P.original))
+		var/mob/M = P.original
+		if (M.lying)
+			valid = TRUE				//Lying down covers your whole body
+	if(flipped==1)
+		if(get_dir(loc, from) == dir)	//Flipped tables catch mroe bullets
+			if (targetzone == BP_GROIN)
+				valid = TRUE
+		else
+			valid = FALSE					//But only from one side
+	if(valid)
+		var/pierce = P.check_penetrate(src)
+		health -= P.get_structure_damage()/2
+		if (health > 0)
+			visible_message(SPAN_WARNING("[P] hits \the [src]!"))
+			return pierce
+		else
+			visible_message(SPAN_WARNING("[src] breaks down!"))
+			break_to_parts()
+			return 1
 	return 1
 
 /obj/structure/table/CheckExit(atom/movable/O as mob|obj, target as turf)
