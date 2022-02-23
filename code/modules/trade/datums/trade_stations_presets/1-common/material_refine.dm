@@ -1,14 +1,17 @@
-/datum/trade_station/collector
+/datum/trade_station/mat_refinery
 	name_pool = list(
-		"RS 'Recoll'" = "Refinery Ship 'Recoll':\n\"Hey! We are a small refinery looking for customers. We accept all types of ores and we sell refined materials at cheap prices aswell!\""
+		"RS 'Recoll'" = "Refinery Ship 'Recoll': \"Hey! We are a small refinery looking for customers. We accept all types of ores and we sell refined materials at cheap prices aswell!\""
 	)
+	uid = "materials"
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = COMMON_GOODS
 	offer_limit = 30
 	base_income = 0		// Needs ore to refine
 	wealth = 0
-	secret_inv_threshold = 32000	// Has many offers
+	secret_inv_threshold = 2000
+	recommendation_threshold = 4000
+	stations_recommended = list("oddities")
 	assortiment = list(
 		"Refined Materials" = list(
 			/obj/item/stack/material/plastic/full = good_data("plastic sheets (x120)", list(2, 5)),
@@ -18,7 +21,7 @@
 			/obj/item/stack/material/wood/full = good_data("wood planks (x120)", list(2, 5)),
 			/obj/item/stack/material/glass/full = good_data("glass sheets (x120)", list(2, 5)),
 			/obj/item/stack/material/plasma/full = good_data("plasma sheets (x120)", list(1, 2))
-		),
+		)
 	)
 	secret_inventory = list(
 		"Refined Material Stacks" = list(

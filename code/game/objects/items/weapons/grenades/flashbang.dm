@@ -42,8 +42,8 @@
 	if(eye_safety < FLASH_PROTECTION_MODERATE)
 		if (M.HUDtech.Find("flash"))
 			flick("e_flash", M.HUDtech["flash"])
-		M.eye_blurry = max(M.eye_blurry, 15)
-		M.eye_blind = max(M.eye_blind, 5)
+		M.eye_blurry = max(M.eye_blurry, 15-(15*eye_safety))
+		M.eye_blind = max(M.eye_blind, 5-(5*eye_safety))
 
 	//This really should be in mob not every check
 	if(ishuman(M))
@@ -85,8 +85,8 @@
 		if (M.HUDtech.Find("flash"))
 			flick("e_flash", M.HUDtech["flash"])
 	if(eye_safety < FLASH_PROTECTION_MODERATE)
-		M.eye_blurry = max(M.eye_blurry, 15)
-		M.eye_blind = max(M.eye_blind, 5)
+		M.eye_blurry = max(M.eye_blurry, 15-(15*eye_safety))
+		M.eye_blind = max(M.eye_blind, 5-(5*eye_safety))
 
 //Now applying sound
 	var/flash_distance

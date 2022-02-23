@@ -199,6 +199,14 @@
 
 
 
+/obj/machinery/door/proc/hit_by_living(var/mob/living/M)
+	var/body_part = pick(BP_HEAD, BP_CHEST, BP_GROIN)
+	visible_message(SPAN_DANGER("[M] slams against \the [src]!"))
+	if(prob(30))
+		M.Weaken(1)
+	M.damage_through_armor(rand(5,8), BRUTE, body_part, ARMOR_MELEE)
+	take_damage(M.mob_size)
+
 /obj/machinery/door/hitby(AM as mob|obj, var/speed=5)
 
 	..()
@@ -206,9 +214,10 @@
 	if (istype(AM, /obj/item))
 		var/obj/item/O = AM
 		damage = O.throwforce
-	else if (istype(AM, /mob/living))
+	else if (isliving(AM))
 		var/mob/living/M = AM
-		damage = M.mob_size
+		hit_by_living(M)
+		return
 	take_damage(damage)
 	return
 

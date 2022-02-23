@@ -90,12 +90,6 @@
 	icon_state = "box_serbian"
 	initial_contents = list(/obj/item/device/synthesized_instrument/trumpet = 1) //TODO: Add an accordian to this, sprites already made.
 
-/obj/item/storage/deferred/disks //for the beacon, cause we want it priced right and actually functional
-	name = "autolathe disk box"
-	desc = "A small collection of autolathe disks"
-	initial_contents = list(/obj/spawner/lathe_disk = 7)
-	price_tag = 2800
-
 //Medical
 /obj/item/storage/deferred/surgery
 	name = "combat surgery kit"
@@ -190,8 +184,9 @@
 /obj/item/storage/deferred/crate/antiarmor //change to demolitions, won't do now because will affect map
 	name = "demolitions crate"
 	icon_state = "serbcrate_deferred_black"
-	desc = "A crate containing one \"RPG-7\" launcher, and twelve 40mm PG-7VL warheads."
-	initial_contents = list(/obj/item/ammo_casing/rocket = 12,
+	desc = "A crate containing one \"RPG-7\" launcher, and twelve 40mm PG-7 warheads."
+	initial_contents = list(/obj/item/ammo_casing/rocket = 8,
+	/obj/item/ammo_casing/rocket/hesh = 4,
 	/obj/item/storage/pouch/tubular = 1,
 	/obj/item/gun/projectile/rpg = 1,
 	/obj/item/storage/pouch/tubular = 1)
@@ -371,3 +366,80 @@
 	/obj/item/clothing/shoes/reinforced = 1,
 	/obj/item/clothing/gloves/latex/nitrile = 1,
 	/obj/item/clothing/suit/armor/vest = 1)
+
+// TRADE
+
+// Gambling - markup = 10
+/obj/item/storage/deferred/disks
+	name = "autolathe disk box"
+	desc = "A small collection of autolathe disks"
+	initial_contents = list(/obj/spawner/lathe_disk = 7)
+	price_tag = 300
+
+/obj/item/storage/deferred/gun_parts
+	name = "gun part box"
+	desc = "Uppers, lowers, and everything in between"
+	initial_contents = list(/obj/spawner/gun_parts = 7)
+	price_tag = 300
+
+/obj/item/storage/deferred/powercells
+	name = "powercell box"
+	desc = "A small collection of powercells"
+	initial_contents = list(/obj/spawner/powercell = 7)
+	price_tag = 200
+
+/obj/item/storage/deferred/electronics
+	name = "circuit board box"
+	desc = "A small collection of circuit boards"
+	initial_contents = list(/obj/spawner/electronics = 7)
+	price_tag = 500
+
+// Kitchen supply - markup = 1.2
+/obj/item/storage/deferred/kitchen
+	name = "galley supply box"
+	desc = "A small collection of kitchen essentials"
+	initial_contents = list(
+		/obj/item/tool/knife = 1,
+		/obj/item/tool/knife/butch = 1,
+		/obj/item/material/kitchen/rollingpin = 1,
+		/obj/item/packageWrap = 1,
+		/obj/item/reagent_containers/food/condiment/saltshaker = 1,
+		/obj/item/reagent_containers/food/condiment/peppermill = 1
+	)
+	price_tag = 50
+
+// MoeSci supply - markup = 3.6
+/obj/item/storage/deferred/slime
+	name = "slime supply box"
+	desc = "A slime startup kit"
+	initial_contents = list(
+		/obj/item/slime_extract/grey = 4,
+		/obj/item/extinguisher = 1,
+		/obj/item/storage/box/monkeycubes = 1
+	)
+	price_tag = 200
+
+/obj/item/storage/deferred/xenobotany
+	name = "xenobotany supply box"
+	desc = "A small collection of interesting seeds"
+	initial_contents = list(
+		/obj/item/seeds/random = 7
+	)
+	price_tag = 200
+
+/obj/item/storage/deferred/rnd
+	name = "research box"
+	desc = "A packaged intellectual curiosity"
+	initial_contents = list(
+		/obj/item/computer_hardware/hard_drive/portable/research_points = 1
+	)
+	price_tag = 500
+
+// Trapper - markup = 4.8
+/obj/item/storage/deferred/roacheggs
+	name = "roach egg box"
+	desc = "A carton for eggs of the roach variety"
+	initial_contents = list(
+		/obj/item/roach_egg = 12
+	)
+	price_tag = 100

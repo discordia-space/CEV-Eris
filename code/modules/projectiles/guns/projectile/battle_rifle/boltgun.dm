@@ -13,6 +13,7 @@
 	caliber = CAL_LRIFLE
 	fire_delay = 8
 	damage_multiplier = 1.4
+	style_damage_multiplier = 3
 	penetration_multiplier = 1.5
 	recoil_buildup = 7 // increased from the AK's/Takeshi's buildup of 1.7/1.8 because of the massive multipliers and slow firerate
 	init_offset = 2 //bayonet's effect on aim, reduced from 4
@@ -33,6 +34,7 @@
 	sawn = /obj/item/gun/projectile/boltgun/obrez
 	var/bolt_open = 0
 	var/item_suffix = ""
+	var/message = "bolt"        // what message appears when cocking, eg "You work the [bolt] open, ejecting a casing!"
 	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
 
 /obj/item/part/gun/frame/boltgun
@@ -80,19 +82,19 @@
 	if(bolt_open)
 		if(contents.len)
 			if(chambered)
-				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [chambered]!"))
+				to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [chambered]!"))
 				chambered.forceMove(get_turf(src))
 				loaded -= chambered
 				chambered = null
 			else
 				var/obj/item/ammo_casing/B = loaded[loaded.len]
-				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [B]!"))
+				to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [B]!"))
 				B.forceMove(get_turf(src))
 				loaded -= B
 		else
-			to_chat(user, SPAN_NOTICE("You work the bolt open."))
+			to_chat(user, SPAN_NOTICE("You work the [message] open."))
 	else
-		to_chat(user, SPAN_NOTICE("You work the bolt closed."))
+		to_chat(user, SPAN_NOTICE("You work the [message] closed."))
 		playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltforward.ogg', 75, 1)
 		bolt_open = 0
 	add_fingerprint(user)

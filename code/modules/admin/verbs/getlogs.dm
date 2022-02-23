@@ -92,13 +92,7 @@ ADMIN_VERB_ADD(/datum/admins/proc/view_txt_log, R_ADMIN, FALSE)
 	set name = "Show Server Log"
 	set desc = "Shows today's server log."
 
-	var/path = "data/logs/[time2text(world.realtime,"YYYY/MM-Month/DD-Day")].log"
-	if( fexists(path) )
-		src << run( file(path) )
-	else
-		to_chat(src, "<font color='red'>Error: view_txt_log(): File not found/Invalid path([path]).</font>")
-		return
-
+	src << run(diary)
 	return
 
 ADMIN_VERB_ADD(/datum/admins/proc/view_atk_log, R_ADMIN, FALSE)

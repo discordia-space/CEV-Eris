@@ -109,7 +109,7 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_CARDBOARD = 1)
 	caliber = CAL_SRIFLE
 	ammo_type = /obj/item/ammo_casing/srifle
-	max_ammo = 60
+	max_ammo = 50
 	ammo_states = list(60)
 
 /obj/item/ammo_magazine/ammobox/srifle_small/practice
@@ -145,6 +145,8 @@
 	spawn_tags = SPAWN_TAG_AMMO_IH
 
 /obj/item/ammo_magazine/ammobox/clrifle_small
+	name = "ammunition packet (.25 Caseless Rifle)"
+	icon_state = "clrifle"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_CARDBOARD = 1)
 	caliber = CAL_CLRIFLE
 	ammo_type = /obj/item/ammo_casing/clrifle
