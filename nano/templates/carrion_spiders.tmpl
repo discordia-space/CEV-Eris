@@ -6,6 +6,7 @@ Used In File(s): code\modules\organs\internal\carrion.dm
 <div class="item">
 	<div class="itemContent">
 		{{:helper.link('Activate All', 'radiation', {'activate_all' : 1}, null, 'fixedLeft')}}
+		{{:helper.link(data.autoassigning ? 'Group auto-assigning: On' : 'Group auto-assigning: Off', null, {'toggle_autoassign' : 1}, null)}}
 	</div>
 </div>
 <div class="item" style="width: 100%;">
@@ -13,6 +14,7 @@ Used In File(s): code\modules\organs\internal\carrion.dm
 		{{:helper.link('Activate Group 1', null, {'activate_group_1' : 1}, null)}}
 		{{:helper.link('Activate Group 2', null, {'activate_group_2' : 1}, null)}}
 		{{:helper.link('Activate Group 3', null, {'activate_group_3' : 1}, null)}}
+		{{:helper.link('Activate Group 4', null, {'activate_group_4' : 1}, null)}}
 	</div>
 </table>
 </div>
@@ -24,6 +26,7 @@ Used In File(s): code\modules\organs\internal\carrion.dm
 		<td><b>1</b></td>
 		<td><b>2</b></td>
 		<td><b>3</b></td>
+		<td><b>4</b></td>
 	</tr>
 	{{for data.list_of_spiders}}
 		<tr>
@@ -33,7 +36,8 @@ Used In File(s): code\modules\organs\internal\carrion.dm
 		<td>{{:helper.link('', value.assigned_group_1 ? 'check' : 'close', {'toggle_group_1' : value.spider}, null, value.assigned_group_1 ? null : 'redButton')}}</td>
 		<td>{{:helper.link('', value.assigned_group_2 ? 'check' : 'close', {'toggle_group_2' : value.spider}, null, value.assigned_group_2 ? null : 'redButton')}}</td>
 		<td>{{:helper.link('', value.assigned_group_3 ? 'check' : 'close', {'toggle_group_3' : value.spider}, null, value.assigned_group_3 ? null : 'redButton')}}</td>
-
+		<td>{{:helper.link('', value.assigned_group_4 ? 'check' : 'close', {'toggle_group_4' : value.spider}, null, value.assigned_group_4 ? null : 'redButton')}}</td>
+		
 		<td>
 		{{if value.implanted}}
 		{{:helper.link('pop out', 'circle-arrow-s', {'pop_out_spider' : value.spider})}}
