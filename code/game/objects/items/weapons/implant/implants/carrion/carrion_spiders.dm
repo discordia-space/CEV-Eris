@@ -106,13 +106,14 @@
 		layer = PROJECTILE_HIT_THRESHHOLD_LAYER //You are still able to shoot them while they apper below tables
 
 /obj/item/implant/carrion_spider/proc/update_owner_mob()
-	owner_mob = owner_core.owner	
+	owner_mob = owner_core.owner
 
 /obj/item/implant/carrion_spider/proc/toggle_group(group)
 	if(check_group(group))
 		assigned_groups = assigned_groups & ~group
 	else
 		assigned_groups = assigned_groups | group
+
 /obj/item/implant/carrion_spider/proc/check_group(group)
 	if(assigned_groups & group)
 		return TRUE
