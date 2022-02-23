@@ -96,11 +96,11 @@
 
 	if(user.a_intent == I_HELP && istype(I, /obj/item/gun))
 		var/obj/item/gun/G = I
-		if(anchored == TRUE) //Just makes sure were not making movable braced cover
+		if(anchored == TRUE) //Just makes sure we're not bracing on movable cover
 			G.gun_brace(user, src)
 			return
 		else
-			to_chat(user, SPAN_NOTICE("You can't brace well the grille not anchored down."))
+			to_chat(user, SPAN_NOTICE("You can't brace your weapon - the [src] is not anchored down."))
 		return
 
 	var/list/usable_qualities = list(QUALITY_WIRE_CUTTING)

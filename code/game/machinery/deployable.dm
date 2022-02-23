@@ -206,11 +206,11 @@ for reference:
 
 	if(user.a_intent == I_HELP && istype(W, /obj/item/gun))
 		var/obj/item/gun/G = W
-		if(anchored == TRUE) //Just makes sure were not making movable braced cover
+		if(anchored == TRUE) //Just makes sure we're not bracing on movable cover
 			G.gun_brace(user, src)
 			return
 		else
-			to_chat(user, SPAN_NOTICE("You can't brace well the barrier not anchored down."))
+			to_chat(user, SPAN_NOTICE("You can't brace your weapon - the [src] is not anchored down."))
 		return
 
 	if(W.GetIdCard())
