@@ -1956,6 +1956,23 @@
 	glass_center_of_mass = list("x"=16, "y"=9)
 	taste_tag = list(TASTE_SWEET)
 
+/datum/reagent/alcohol/gargle_blaster_lite
+	name = "Pan-Galactic Gargle Blaster Lite"
+	id = "gargleblasterlite"
+	description = "A fancy drink designed by and for extrovert geeks."
+	taste_description = "your brains smashed out by a lemon wrapped around a gold brick, almost"
+	taste_mult = 2
+	reagent_state = LIQUID
+	color = "#00ffea"
+	strength = 5
+	sanity_gain_ingest = 0.85
+
+	glass_unique_appearance = TRUE
+	glass_icon_state = "gargleblasterglass"
+	glass_name = "Pan-Galactic Gargle Blaster"
+	glass_desc = "Does... does this mean that Arthur and Ford are on the ship? Oh joy."
+	glass_center_of_mass = list("x"=17, "y"=6)
+	taste_tag = list(TASTE_SOUR, TASTE_SPICY, TASTE_STRONG)
 
 /datum/reagent/alcohol/gargle_blaster
 	name = "Pan-Galactic Gargle Blaster"
@@ -1974,7 +1991,14 @@
 	glass_name = "Pan-Galactic Gargle Blaster"
 	glass_desc = "Does... does this mean that Arthur and Ford are on the ship? Oh joy."
 	glass_center_of_mass = list("x"=17, "y"=6)
-	taste_tag = list(TASTE_SOUR, TASTE_SPICY,TASTE_STRONG)
+	taste_tag = list(TASTE_SOUR, TASTE_SPICY, TASTE_STRONG)
+
+/datum/reagent/alcohol/gargle_blaster/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	M.adjustBrainLoss(effect_multiplier)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H
+		H.sanity.give_insight(effect_multiplier)
+	.. ()
 
 /datum/reagent/alcohol/gintonic
 	name = "Gin and Tonic"
@@ -2230,7 +2254,7 @@
 	taste_description = "a numbing sensation"
 	reagent_state = LIQUID
 	color = "#2E2E61"
-	strength = 10
+	strength = 1
 	sanity_gain_ingest = 2
 
 	glass_unique_appearance = TRUE
