@@ -69,7 +69,7 @@
 /obj/structure/girder/attackby(obj/item/I, mob/user)
 	if(user.a_intent == I_HELP && istype(I, /obj/item/gun))
 		var/obj/item/gun/G = I
-		if(anchored == TRUE) //Just makes sure were not making movable braced cover
+		if(anchored == TRUE) //Just makes sure we're not bracing on movable cover
 			G.gun_brace(user, src)
 			return
 		else
