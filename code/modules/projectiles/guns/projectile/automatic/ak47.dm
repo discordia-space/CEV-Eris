@@ -91,12 +91,14 @@
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 			This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
 			It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
-			This shortened rifle was made specifically for boarding actions with a folding stock and short barrel."
+			This shortened rifle was made specifically for boarding actions with a folding stock and short barrel. \
+			The flexible design also fits drum magazines."
 	icon = 'icons/obj/guns/projectile/ak/krinkov.dmi'
 	w_class = ITEM_SIZE_BULKY	//small rifle, also because it's basically an smg now
 	recoil_buildup = 1.5
 	damage_multiplier = 0.9 //Better control, worse damage
 	penetration_multiplier = 1.2
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 
@@ -239,6 +241,7 @@
 	w_class = ITEM_SIZE_HUGE
 	recoil_buildup = 1.6	//Full size, but cheap
 	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/plasteel = 7)
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 
 	origin_tech = list(TECH_COMBAT = 2)	//bad copies don't give good science
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
@@ -258,6 +261,7 @@
 		if(!ammo_magazine && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			if(caliber == CAL_LRIFLE)
 				caliber = CAL_SRIFLE
+				mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
 				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .20 Caliber."))
 			else if(caliber == CAL_SRIFLE)
 				caliber = CAL_CLRIFLE
@@ -265,7 +269,7 @@
 				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .25 Caseless."))
 			else if(caliber == CAL_CLRIFLE)
 				caliber = CAL_LRIFLE
-				mag_well = MAG_WELL_RIFLE
+				mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .30 Caliber."))
 		else
 			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
