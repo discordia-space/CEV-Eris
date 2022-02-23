@@ -21,9 +21,11 @@
 	recoil_buildup = 1.3
 	one_hand_penalty = 15 //automatic rifle level
 	silenced = TRUE
+	burst_delay = 1
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
-		BURST_2_ROUND
+		BURST_2_ROUND,
+		list(mode_name="6-round bursts", burst=6, fire_delay=5, move_delay=7, icon="burst")		
 		)
 	gun_parts = list(/obj/item/part/gun/frame/vintorez = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)
 
