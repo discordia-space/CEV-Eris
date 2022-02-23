@@ -94,6 +94,15 @@
 
 /obj/structure/grille/attackby(obj/item/I, mob/user)
 
+	if(user.a_intent == I_HELP && istype(I, /obj/item/gun))
+		var/obj/item/gun/G = I
+		if(anchored == TRUE) //Just makes sure were not making movable braced cover
+			G.gun_brace(user, src)
+			return
+		else
+			to_chat(user, SPAN_NOTICE("You can't brace well the grille not anchored down."))
+		return
+
 	var/list/usable_qualities = list(QUALITY_WIRE_CUTTING)
 	if(anchored)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)

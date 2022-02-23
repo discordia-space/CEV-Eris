@@ -83,6 +83,10 @@ for reference:
 	return material
 
 /obj/structure/barricade/attackby(obj/item/W as obj, mob/user as mob)
+	if(user.a_intent == I_HELP && istype(W, /obj/item/gun))
+		var/obj/item/gun/G = W
+		G.gun_brace(user, src)
+		return
 	if(istype(W, /obj/item/stack))
 		var/obj/item/stack/D = W
 		if(D.get_material_name() != material.name)
@@ -199,6 +203,16 @@ for reference:
 	icon_state = "barrier[locked]"
 
 /obj/machinery/deployable/barrier/attackby(obj/item/W, mob/user)
+
+	if(user.a_intent == I_HELP && istype(W, /obj/item/gun))
+		var/obj/item/gun/G = W
+		if(anchored == TRUE) //Just makes sure were not making movable braced cover
+			G.gun_brace(user, src)
+			return
+		else
+			to_chat(user, SPAN_NOTICE("You can't brace well the barrier not anchored down."))
+		return
+
 	if(W.GetIdCard())
 		if(allowed(user))
 			if	(emagged < 2)

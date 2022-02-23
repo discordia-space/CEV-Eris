@@ -47,11 +47,12 @@
 		R.update_icon()
 	. = ..()
 
-/obj/structure/railing/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(!mover)
+/obj/structure/railing/CanPass(obj/item/projectile/P, turf/target, height=0, air_group=0)
+	if(!P)
 		return 1
-
-	if(!reinforced && istype(mover) && mover.checkpass(PASSTABLE))
+	if (get_dist(P.starting, loc) <= 1) //So if its reinforced we can brace on it + to close to miss
+		return 1
+	if(!reinforced && istype(P) && P.checkpass(PASSTABLE))
 		return 1
 	if(get_dir(loc, target) == dir)
 		return !density
@@ -254,6 +255,16 @@
 	return TRUE
 
 /obj/structure/railing/attackby(obj/item/I, mob/user)
+
+	if(user.a_intent == I_HELP && istype(I, /obj/item/gun))
+		var/obj/item/gun/G = I
+		if(anchored == TRUE || reinforced) //Just makes sure were not making movable braced cover
+			G.gun_brace(user, src)
+			return
+		if(!anchored)
+			to_chat(user, SPAN_NOTICE("You can't brace well the railing not anchored down."))
+		return
+
 	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
 	if(health < maxhealth)
 		usable_qualities.Add(QUALITY_WELDING)
