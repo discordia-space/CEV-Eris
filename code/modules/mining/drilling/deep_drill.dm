@@ -181,7 +181,12 @@
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
-			take_damage(-damage)
+			if(damage < 0.33 * max_health)
+				take_damage(-damage)  // Completely repair the drill
+			else if(damage < 0.66 * max_health)
+				take_damage(-(0.66 * max_health - health))  // Repair the drill to 66 percents
+			else
+				take_damage(-(0.33 * max_health - health))  // Repair the drill to 33 percents
 		return
 
 	if(!panel_open || active)
@@ -341,12 +346,14 @@
 	. = ..()
 	if(health <= 0)
 		to_chat(user, "\The [src] is wrecked.")
-	else if(health < max_health * 0.25)
+	else if(health < max_health * 0.33)
 		to_chat(user, "<span class='danger'>\The [src] looks like it's about to break!</span>")
-	else if(health < max_health * 0.5)
+	else if(health < max_health * 0.66)
 		to_chat(user, "<span class='danger'>\The [src] looks seriously damaged!</span>")
-	else if(health < max_health * 0.75)
+	else if(health < max_health)
 		to_chat(user, "\The [src] shows signs of damage!")
+	else
+		to_chat(user, "\The [src] is in pristine condition.")
 
 /obj/machinery/mining/deep_drill/verb/unload()
 	set name = "Unload Drill"
