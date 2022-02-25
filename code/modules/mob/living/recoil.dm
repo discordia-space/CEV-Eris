@@ -2,7 +2,13 @@
 	deltimer(recoil_reduction_timer)
 	if(G.one_hand_penalty) // If the gun has a two handed penalty and is not wielded.
 		if(!G.wielded)
-			recoil += G.one_hand_penalty // Then the one hand penalty wil lbe added to the recoil.
+			recoil += G.one_hand_penalty // Then the one hand penalty will be added to the recoil.
+
+	if(G.braced)
+		if(G.braceable > 1)
+			recoil *= 0.5 // Taking penalty into account, bipod reduces recoil by 40%.
+	else if(G.brace_penalty)
+		recoil += G.brace_penalty
 
 	var/debug_recoil = min(0.3, G.fire_delay)
 	if(G.fire_delay == 0)
@@ -85,7 +91,7 @@ mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 		return
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
-		var/offset = round(calculate_offset(G.init_offset) * 0.8)
+		var/offset = round(calculate_offset(G.init_offset_with_brace()) * 0.8)
 		var/icon/base = find_cursor_icon('icons/obj/gun_cursors/standard/standard.dmi', offset)
 		ASSERT(isicon(base))
 		client.mouse_pointer_icon = base

@@ -13,6 +13,7 @@
 	caliber = CAL_LRIFLE
 	fire_delay = 8
 	damage_multiplier = 1.4
+	style_damage_multiplier = 3
 	penetration_multiplier = 1.5
 	recoil_buildup = 7 // increased from the AK's/Takeshi's buildup of 1.7/1.8 because of the massive multipliers and slow firerate
 	init_offset = 2 //bayonet's effect on aim, reduced from 4
@@ -33,6 +34,19 @@
 	sawn = /obj/item/gun/projectile/boltgun/obrez
 	var/bolt_open = 0
 	var/item_suffix = ""
+	var/message = "bolt"        // what message appears when cocking, eg "You work the [bolt] open, ejecting a casing!"
+	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
+
+/obj/item/part/gun/frame/boltgun
+	name = "bolt-action rifle frame"
+	desc = "A bolt-action rifle frame. For hunting or endless trench warfare."
+	icon_state = "frame_serbrifle"
+	result = /obj/item/gun/projectile/boltgun
+	variant_grip = TRUE
+	gripvars = list(/obj/item/part/gun/grip/excel, /obj/item/part/gun/grip/wood)
+	resultvars = list(/obj/item/gun/projectile/boltgun, /obj/item/gun/projectile/boltgun/serbian)
+	mechanism = /obj/item/part/gun/mechanism/boltgun
+	barrel = /obj/item/part/gun/barrel/lrifle
 
 /obj/item/gun/projectile/boltgun/update_icon()
 	..()
@@ -68,19 +82,19 @@
 	if(bolt_open)
 		if(contents.len)
 			if(chambered)
-				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [chambered]!"))
+				to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [chambered]!"))
 				chambered.forceMove(get_turf(src))
 				loaded -= chambered
 				chambered = null
 			else
 				var/obj/item/ammo_casing/B = loaded[loaded.len]
-				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [B]!"))
+				to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [B]!"))
 				B.forceMove(get_turf(src))
 				loaded -= B
 		else
-			to_chat(user, SPAN_NOTICE("You work the bolt open."))
+			to_chat(user, SPAN_NOTICE("You work the [message] open."))
 	else
-		to_chat(user, SPAN_NOTICE("You work the bolt closed."))
+		to_chat(user, SPAN_NOTICE("You work the [message] closed."))
 		playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltforward.ogg', 75, 1)
 		bolt_open = 0
 	add_fingerprint(user)
@@ -116,6 +130,7 @@
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/stack/material/steel = 16)
 	sawn = /obj/item/gun/projectile/boltgun/obrez/serbian
+	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
 
 /obj/item/gun/projectile/boltgun/fs
 	name = "FS BR .20 \"Tosshin\""
@@ -139,7 +154,16 @@
 	sharp = FALSE
 	spawn_blacklisted = TRUE
 	saw_off = FALSE
-	gun_parts = list(/obj/item/stack/material/steel = 16)
+	gun_parts = list(/obj/item/part/gun/frame/tosshin = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/srifle/steel = 1)
+
+/obj/item/part/gun/frame/tosshin
+	name = "Tosshin frame"
+	desc = "A Tosshin bolt-action rifle frame. For hunting or endless coastal warfare."
+	icon_state = "frame_excelrifle"
+	result = /obj/item/gun/projectile/boltgun/fs
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/boltgun
+	barrel = /obj/item/part/gun/barrel/srifle
 
 /obj/item/gun/projectile/boltgun/handmade
 	name = "handmade bolt action rifle"

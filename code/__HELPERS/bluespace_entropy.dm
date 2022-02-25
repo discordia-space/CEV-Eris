@@ -12,20 +12,20 @@ GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 	do_teleport(ateleatom, adestination, aprecision, afteleport, aeffectin, aeffectout, asoundin, asoundout)
 
 /proc/bluespace_entropy(max_value=1, turf/T, minor_distortion=FALSE)
-	var/entropy_value = rand(0, max_value)
+	var/entropy_value = rand(0, max_value) * GLOB.chaos_level
 	var/area/A = get_area(T)
 	if(minor_distortion && A)
 		A.bluespace_entropy += entropy_value
 		var/area_entropy_cap = rand(A.bluespace_hazard_threshold, A.bluespace_hazard_threshold*2)
 		if(A.bluespace_entropy > area_entropy_cap && world.time > GLOB.bluespace_distotion_cooldown)
-			GLOB.bluespace_distotion_cooldown = world.time + 5 MINUTES
+			GLOB.bluespace_distotion_cooldown = world.time + (5 MINUTES / GLOB.chaos_level)
 			A.bluespace_entropy -= rand(A.bluespace_hazard_threshold, A.bluespace_hazard_threshold*1.5)
 			bluespace_distorsion(T, minor_distortion)
 	else
 		GLOB.bluespace_entropy += entropy_value
 		var/entropy_cap = rand(GLOB.bluespace_hazard_threshold, GLOB.bluespace_hazard_threshold*2)
 		if(GLOB.bluespace_entropy >= entropy_cap && world.time > GLOB.bluespace_distotion_cooldown)
-			GLOB.bluespace_distotion_cooldown = world.time + 10 MINUTES
+			GLOB.bluespace_distotion_cooldown = world.time + (10 MINUTES / GLOB.chaos_level)
 			bluespace_distorsion(T, minor_distortion)
 			GLOB.bluespace_entropy -= rand(GLOB.bluespace_hazard_threshold, GLOB.bluespace_hazard_threshold*1.5)
 

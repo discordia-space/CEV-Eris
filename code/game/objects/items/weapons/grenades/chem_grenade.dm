@@ -348,7 +348,8 @@
 	name = "FS TGG \"Simon\""
 	desc = "Concentrated Capsaicin. Contents under pressure. Use with caution."
 	can_be_modified = FALSE
-	icon_state = "grenade"
+	icon_state = "teargas"
+	item_state = "teargas"
 	stage = READY
 	path = 1
 

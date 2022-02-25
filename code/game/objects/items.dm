@@ -523,7 +523,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				usr.client.pixel_y = 0
 
 		usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [name]" : "[name]"].")
-
+		var/mob/living/carbon/human/H = usr
+		H.using_scope = src
 	else
 		usr.client.view = world.view
 		//if(!usr.hud_used.hud_shown)
@@ -535,6 +536,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 		if(!cannotzoom)
 			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [name]" : "[usr] lowers the [name]"].")
+		var/mob/living/carbon/human/H = usr
+		H.using_scope = null
 	usr.parallax.update()
 	return
 

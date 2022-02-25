@@ -28,6 +28,7 @@
 	rarity_value = 5
 	spawn_frequency = 10
 
+	var/list/custom_default = list() // used to preserve changes to stats past refresh_upgrades proccing
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
 	var/style_damage_multiplier = 1 // multiplies style damage of projectiles fired from this gun
 	var/penetration_multiplier = 1 //Multiplies armor penetration of projectiles fired from this gun
@@ -39,6 +40,9 @@
 	var/move_delay = 1
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
 	var/rigged = FALSE
+	var/braced = FALSE //for gun_brace proc.
+	var/brace_penalty = FALSE//penalty if not braced.
+	var/braceable = 1 //can the gun be used for gun_brace proc, modifies recoil. If the gun has foregrip mod installed, it's not braceable. Bipod mod increases value by 1.
 	var/fire_sound_text = "gunshot"
 	var/recoil_buildup = 2 //How quickly recoil builds up
 	var/list/gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/steel = 4)
@@ -62,6 +66,7 @@
 	var/sel_mode = 1 //index of the currently selected mode
 	var/list/firemodes = list()
 	var/list/init_firemodes = list()
+	var/currently_firing = FALSE // To prevent firemode swapping while shooting.
 
 	var/init_offset = 0
 
@@ -337,6 +342,8 @@
 	if(!special_check(user))
 		return
 
+	currently_firing = TRUE
+
 	var/shoot_time = (burst - 1)* burst_delay
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting
 	next_fire_time = world.time + shoot_time
@@ -398,6 +405,8 @@
 	if(muzzle_flash)
 		set_light(0)
 
+	currently_firing = FALSE
+
 //obtains the next projectile to fire
 /obj/item/gun/proc/consume_next_projectile()
 	return null
@@ -455,7 +464,8 @@
 					to_chat(user, "<span class='warning'>You have trouble keeping \the [src] on target with just one hand.</span>")
 				if(4 to INFINITY)
 					to_chat(user, "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>")
-
+	if(brace_penalty && !braced)
+		to_chat(user, "<span class='warning'>You struggle to keep \the [src] on target while carrying it!</span>")
 	user.handle_recoil(src)
 	update_icon()
 
@@ -490,10 +500,17 @@
 
 	if(params)
 		P.set_clickpoint(params)
-	var/offset = user.calculate_offset(init_offset)
+	var/offset = user.calculate_offset(init_offset_with_brace())
 	offset = rand(-offset, offset)
 
 	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
+	
+//Support proc for calculate_offset
+/obj/item/gun/proc/init_offset_with_brace()
+	var/offset = init_offset
+	if(braced)
+		offset -= 3
+	return offset
 
 //Suicide handling.
 /obj/item/gun/proc/handle_suicide(mob/living/user)
@@ -542,6 +559,25 @@
 		mouthshoot = FALSE
 		return
 
+/obj/item/gun/proc/gun_brace(mob/living/user, atom/target)
+	if(braceable && user.unstack)
+		var/atom/original_loc = user.loc
+		var/brace_direction = get_dir(user, target)
+		user.unstack = FALSE
+		user.facing_dir = null
+		to_chat(user, SPAN_NOTICE("You brace your weapon on \the [target]."))
+		braced = TRUE
+		while(user.loc == original_loc && user.dir == brace_direction)
+			sleep(2)
+		to_chat(user, SPAN_NOTICE("You stop bracing your weapon."))
+		braced = FALSE
+		user.unstack = TRUE
+	else
+		if(!user.unstack)
+			to_chat(user, SPAN_NOTICE("You are already bracing your weapon!"))
+		else
+			to_chat(user, SPAN_WARNING("You can\'t properly place your weapon on \the [target] because of the foregrip!"))
+
 /obj/item/gun/proc/toggle_scope(mob/living/user)
 	//looking through a scope limits your periphereal vision
 	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
@@ -571,7 +607,7 @@
 
 
 /obj/item/gun/proc/initialize_firemodes()
-	QDEL_CLEAR_LIST(firemodes)
+	QDEL_LIST(firemodes)
 
 	for(var/i in 1 to init_firemodes.len)
 		var/list/L = init_firemodes[i]
@@ -649,6 +685,8 @@
 	toggle_firemode(user)
 
 /obj/item/gun/proc/toggle_firemode(mob/living/user)
+	if(currently_firing) // Prevents a bug with swapping fire mode while burst firing.
+		return
 	var/datum/firemode/new_mode = switch_firemodes()
 	if(new_mode)
 		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
@@ -665,7 +703,7 @@
 	update_firemode()
 	update_hud_actions()
 	check_safety_cursor(user)
-	
+
 /obj/item/gun/proc/check_safety_cursor(mob/living/user)
 	if(safety)
 		user.remove_cursor()
@@ -834,6 +872,10 @@
 	sharp = initial(sharp)
 	attack_verb = list()
 	one_hand_penalty = initial(one_hand_penalty)
+	if (custom_default.len) // this override is used by the artwork_revolver for RNG gun stats
+		for(var/propname in custom_default) // taken from gun_firemode.dm
+			if(propname in vars)
+				vars[propname] = custom_default[propname]
 	initialize_scope()
 	initialize_firemodes()
 
@@ -848,6 +890,7 @@
 	//then update any UIs with the new stats
 	SSnano.update_uis(src)
 
+
 /obj/item/gun/proc/generate_guntags()
 	if(one_hand_penalty)
 		gun_tags |= GUN_GRIP
@@ -855,13 +898,3 @@
 		gun_tags |= GUN_SCOPE
 	if(!sharp)
 		gun_tags |= SLOT_BAYONET
-
-/obj/item/gun/zoom(tileoffset, viewsize)
-	..()
-	if(!ishuman(usr))
-		return
-	var/mob/living/carbon/human/H = usr
-	if(zoom)
-		H.using_scope = src
-	else
-		H.using_scope = null

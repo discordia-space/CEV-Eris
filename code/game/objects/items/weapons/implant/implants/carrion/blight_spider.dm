@@ -1,12 +1,13 @@
 /obj/item/implant/carrion_spider/blight
 	name = "blight spider"
 	icon_state = "spiderling_blight"
-	spider_price = 30
+	spider_price = 15
 
 /obj/item/implant/carrion_spider/blight/activate()
 	..()
 	if(wearer)
-		wearer.reagents.add_reagent("amatoxin", 5)
+		wearer.reagents.add_reagent("amatoxin", 10)
+		wearer.reagents.add_reagent("pararein", 5)
 		to_chat(wearer, SPAN_WARNING("You feel sick and nauseous"))
 		die()
 	else

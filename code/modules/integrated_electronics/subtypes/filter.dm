@@ -19,10 +19,10 @@
 	inputs = list( "input" = IC_PINTYPE_REF )
 	outputs = list("result" = IC_PINTYPE_BOOLEAN, "self ref" = IC_PINTYPE_SELFREF)
 
-/obj/item/integrated_circuit/filter/ref/may_pass(weakref/data)
+/obj/item/integrated_circuit/filter/ref/may_pass(datum/weakref/data)
 	if(!(filter_type && isweakref(data)))
 		return FALSE
-	var/weakref/wref = data
+	var/datum/weakref/wref = data
 	return istype(wref.resolve(), filter_type)
 
 
@@ -79,11 +79,11 @@
 	icon_state = "filter_custom"
 	inputs = list( "input" = IC_PINTYPE_REF, "expected type" = IC_PINTYPE_REF )
 
-/obj/item/integrated_circuit/filter/ref/custom/may_pass(weakref/data, weakref/typedata)
+/obj/item/integrated_circuit/filter/ref/custom/may_pass(datum/weakref/data, datum/weakref/typedata)
 	if(!isweakref(data) || !isweakref(typedata))
 		return FALSE
-	var/weakref/wref = data
-	var/weakref/wref2 = typedata
+	var/datum/weakref/wref = data
+	var/datum/weakref/wref2 = typedata
 	var/atom/A = wref.resolve()
 	var/atom/B = wref2.resolve()
 	return (A && B && (istype(A, B.type)))

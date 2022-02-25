@@ -12,55 +12,53 @@ GLOBAL_LIST_INIT(golem_waves, list(/datum/golem_wave/dormant,
 	var/burrow_interval  // Number of seconds that pass between each new burrow spawns
 	var/golem_spawn  // Number of golems spawned by each burrow on spawn event
 	var/spawn_interval  // Number of seconds that pass between spawn events of burrows
-	var/special_interval  // Number of spawn events between a Special is spawned
+	var/special_probability  // Probability of a golem being a special one instead of a normal one
 	var/mineral_multiplier  // A multiplier of materials excavated by the drill
-	// Active NT obelisk reduces golem_spawn by 1
-	// Active NT obelisk increases special_interval golem_spawn by 1
 
 /datum/golem_wave/dormant
 	burrow_count = 2
-	burrow_interval = 15 SECONDS
+	burrow_interval = 30 SECONDS
 	golem_spawn = 2
-	spawn_interval = 12 SECONDS
-	special_interval = 0
+	spawn_interval = 24 SECONDS
+	special_probability = 0
 	mineral_multiplier = 1.0
 
 /datum/golem_wave/negligible
-	burrow_count = 3
-	burrow_interval = 15 SECONDS
+	burrow_count = 2
+	burrow_interval = 24 SECONDS
 	golem_spawn = 2
-	spawn_interval = 12 SECONDS
-	special_interval = 4
-	mineral_multiplier = 1.1
+	spawn_interval = 20 SECONDS
+	special_probability = 0
+	mineral_multiplier = 1.4
 
 /datum/golem_wave/typical
 	burrow_count = 3
-	burrow_interval = 12 SECONDS
+	burrow_interval = 24 SECONDS
 	golem_spawn = 3
-	spawn_interval = 9 SECONDS
-	special_interval = 3
-	mineral_multiplier = 1.2
+	spawn_interval = 18 SECONDS
+	special_probability = 10
+	mineral_multiplier = 1.7
 
 /datum/golem_wave/substantial
-	burrow_count = 4
-	burrow_interval = 12 SECONDS
+	burrow_count = 3
+	burrow_interval = 24 SECONDS
 	golem_spawn = 3
-	spawn_interval = 9 SECONDS
-	special_interval = 3
-	mineral_multiplier = 1.35
+	spawn_interval = 18 SECONDS
+	special_probability = 20
+	mineral_multiplier = 2
 
 /datum/golem_wave/major
-	burrow_count = 5
-	burrow_interval = 10 SECONDS
+	burrow_count = 4
+	burrow_interval = 20 SECONDS
 	golem_spawn = 4
-	spawn_interval = 7 SECONDS
-	special_interval = 3
-	mineral_multiplier = 1.5
+	spawn_interval = 14 SECONDS
+	special_probability = 30
+	mineral_multiplier = 2.3
 
 /datum/golem_wave/abnormal
-	burrow_count = 7
-	burrow_interval = 9 SECONDS
+	burrow_count = 5
+	burrow_interval = 18 SECONDS
 	golem_spawn = 4
-	spawn_interval = 6 SECONDS
-	special_interval = 2
-	mineral_multiplier = 2.0
+	spawn_interval = 12 SECONDS
+	special_probability = 30
+	mineral_multiplier = 3.0

@@ -40,7 +40,7 @@
 //Guild Technician
 /obj/item/clothing/suit/storage/cargo_jacket
 	name = "guild technician jacket"
-	desc = "Stylish jacket lined with pockets. It seems have a little protection from physical harm."
+	desc = "Stylish jacket lined with pockets. It seems to have a little protection from physical harm."
 	icon_state = "cargo_jacket"
 	item_state = "cargo_jacket"
 	blood_overlay_type = "coat"
@@ -64,7 +64,7 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	armor = list(
-		melee = 30,
+		melee = 20,
 		bullet = 20,
 		energy = 20,
 		bomb = 0,
@@ -114,7 +114,7 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 25,
+		melee = 20,
 		bullet = 20,
 		energy = 20,
 		bomb = 0,
@@ -127,7 +127,7 @@
 //Chaplain
 /obj/item/clothing/suit/storage/neotheology_jacket
 	name = "acolyte jacket"
-	desc = "A long, lightly armoured jacket. Dark, stylish, and authoritarian."
+	desc = "A long jacket. Dark, stylish, and authoritarian."
 	icon_state = "chaplain_hoodie"
 	item_state = "chaplain_hoodie"
 	blood_overlay_type = "coat"
@@ -136,8 +136,8 @@
 	spawn_blacklisted = TRUE
 	armor = list(
 		melee = 20,
-		bullet = 15,
-		energy = 15,
+		bullet = 10,
+		energy = 10,
 		bomb = 0,
 		bio = 50,  //same as labcoats at LEAST
 		rad = 0
@@ -153,7 +153,7 @@
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_GOLD = 5)
 	armor = list(
-		melee = 30,
+		melee = 20,
 		bullet = 20,
 		energy = 20,
 		bomb = 0,
@@ -170,9 +170,9 @@
 	style_coverage = COVERS_CHEST|COVERS_UPPER_ARMS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 25,
+		melee = 10,
 		bullet = 10,
-		energy = 20,
+		energy = 10,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -270,7 +270,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 25,
+		melee = 30,
 		bullet = 20,
 		energy = 20,
 		bomb = 0,
@@ -290,8 +290,8 @@
 	price_tag = 50
 	armor = list(
 		melee = 10,
-		bullet = 0,
-		energy = 0,
+		bullet = 10,
+		energy = 10,
 		bomb = 0,
 		bio = 0,
 		rad = 0

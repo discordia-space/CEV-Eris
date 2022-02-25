@@ -56,8 +56,8 @@
 /area/map_template/marooned)
 "l" = (
 /obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "corner_white";
-	dir = 9
+	dir = 9;
+	icon_state = "corner_white"
 	},
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -78,8 +78,8 @@
 	},
 /obj/structure/table/steel_reinforced,
 /obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "corner_white";
-	dir = 6
+	dir = 6;
+	icon_state = "corner_white"
 	},
 /obj/item/paper/marooned/note09,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -100,8 +100,8 @@
 	},
 /obj/structure/table/steel_reinforced,
 /obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "corner_white";
-	dir = 9
+	dir = 9;
+	icon_state = "corner_white"
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/marooned)
@@ -117,8 +117,8 @@
 	},
 /obj/structure/table/steel_reinforced,
 /obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "corner_white";
-	dir = 6
+	dir = 6;
+	icon_state = "corner_white"
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/marooned)
@@ -129,8 +129,8 @@
 "t" = (
 /obj/structure/closet/crate/freezer,
 /obj/structure/railing{
-	icon_state = "handrail";
-	dir = 4
+	dir = 4;
+	icon_state = "handrail"
 	},
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -164,8 +164,8 @@
 	pixel_y = 1
 	},
 /obj/structure/railing{
-	icon_state = "handrail";
-	dir = 4
+	dir = 4;
+	icon_state = "handrail"
 	},
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -196,12 +196,12 @@
 /area/template_noop)
 "D" = (
 /obj/structure/railing{
-	icon_state = "handrail";
-	dir = 4
+	dir = 4;
+	icon_state = "handrail"
 	},
 /obj/structure/bed/chair{
-	icon_state = "chair_preview";
-	dir = 4
+	dir = 4;
+	icon_state = "chair_preview"
 	},
 /obj/item/trash/liquidfood,
 /obj/item/trash/liquidfood,
@@ -222,12 +222,12 @@
 /area/map_template/marooned)
 "H" = (
 /obj/structure/railing{
-	icon_state = "handrail";
-	dir = 4
+	dir = 4;
+	icon_state = "handrail"
 	},
 /obj/structure/bed/chair{
-	icon_state = "chair_preview";
-	dir = 4
+	dir = 4;
+	icon_state = "chair_preview"
 	},
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -236,10 +236,6 @@
 /obj/item/tool/wirecutters,
 /obj/item/stack/cable_coil,
 /obj/machinery/power/port_gen/pacman/super,
-/obj/structure/cable{
-	icon_state = "0-5";
-	dir = 8
-	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "J" = (
@@ -249,36 +245,28 @@
 "L" = (
 /obj/structure/inflatable/wall,
 /obj/structure/railing{
-	icon_state = "handrail";
-	dir = 4
+	dir = 4;
+	icon_state = "handrail"
 	},
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/dark,
 /area/map_template/marooned)
 "M" = (
 /obj/structure/inflatable/door,
-/obj/structure/cable{
-	icon_state = "1-6";
-	dir = 1
-	},
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "N" = (
 /obj/structure/inflatable/wall,
 /obj/structure/railing{
-	icon_state = "handrail";
-	dir = 8
+	dir = 8;
+	icon_state = "handrail"
 	},
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "O" = (
 /obj/structure/inflatable/door,
-/obj/structure/cable{
-	icon_state = "2-5";
-	dir = 1
-	},
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/door/airlock/centcom,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -288,15 +276,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/wall,
 /area/map_template/marooned)
-"Q" = (
-/obj/structure/inflatable/wall,
-/obj/structure/cable{
-	icon_state = "2-5";
-	dir = 2
-	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
 "R" = (
 /obj/structure/inflatable/door,
 /obj/effect/damagedfloor,
@@ -304,14 +283,6 @@
 /area/template_noop)
 "S" = (
 /obj/structure/inflatable/wall,
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"T" = (
-/obj/structure/cable{
-	icon_state = "2-5";
-	dir = 1
-	},
 /obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
@@ -332,24 +303,6 @@
 	},
 /obj/item/device/radio,
 /obj/item/stack/cable_coil,
-/obj/structure/cable{
-	icon_state = "0-6";
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"X" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
-	},
 /obj/effect/damagedfloor,
 /turf/template_noop,
 /area/template_noop)
@@ -359,10 +312,6 @@
 	name = "Jurry-rigged antenna";
 	pixel_x = 5;
 	pixel_y = 3
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
 	},
 /obj/effect/damagedfloor,
 /turf/template_noop,
@@ -581,9 +530,9 @@ E
 I
 L
 h
-Q
-T
-X
+S
+i
+i
 i
 i
 i
@@ -615,7 +564,7 @@ M
 O
 R
 i
-X
+i
 i
 i
 i
@@ -647,7 +596,7 @@ N
 h
 S
 i
-X
+i
 i
 i
 i
@@ -679,7 +628,7 @@ h
 P
 i
 i
-X
+i
 i
 i
 i
@@ -711,7 +660,7 @@ h
 i
 i
 i
-X
+i
 Z
 i
 a

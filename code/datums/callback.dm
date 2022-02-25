@@ -56,8 +56,8 @@
 	var/delegate
 	///A list of arguments to pass into the proc
 	var/list/arguments
-	///A weak reference to the user who triggered this callback @unimplimented
-	// var/datum/weakref/user
+	///A weak reference to the user who triggered this callback
+	var/datum/weakref/user
 
 /**
  * Create a new callback datum
@@ -73,7 +73,8 @@
 	delegate = proctocall
 	if (length(args) > 2)
 		arguments = args.Copy(3)
-
+	if(usr)
+		user = WEAKREF(usr)
 /**
  * Immediately Invoke proctocall on thingtocall, with waitfor set to false
  *
@@ -104,17 +105,26 @@
  * If the datum being called on is varedited, the call is wrapped via [WrapAdminProcCall][/proc/WrapAdminProcCall]
  */
 /datum/callback/proc/Invoke(...)
+	if(!usr)
+		var/datum/weakref/W = user
+		if(W)
+			var/mob/M = W.resolve()
+			if(M)
+				if (length(args))
+					return world.PushUsr(arglist(list(M, src) + args))
+				return world.PushUsr(M, src)
+
 	if (!object)
 		return
 
 	var/list/calling_arguments = arguments
-
 	if (length(args))
 		if (length(arguments))
 			calling_arguments = calling_arguments + args //not += so that it creates a new list so the arguments list stays clean
 		else
 			calling_arguments = args
-
+	// if(datum_flags & DF_VAR_EDITED)
+	// 	return WrapAdminProcCall(object, delegate, calling_arguments)
 	if (object == GLOBAL_PROC)
 		return call(delegate)(arglist(calling_arguments))
 	return call(object, delegate)(arglist(calling_arguments))
@@ -130,6 +140,15 @@
 /datum/callback/proc/InvokeAsync(...)
 	set waitfor = FALSE
 
+	if(!usr)
+		var/datum/weakref/W = user
+		if(W)
+			var/mob/M = W.resolve()
+			if(M)
+				if (length(args))
+					return world.PushUsr(arglist(list(M, src) + args))
+				return world.PushUsr(M, src)
+
 	if (!object)
 		return
 
@@ -139,11 +158,68 @@
 			calling_arguments = calling_arguments + args //not += so that it creates a new list so the arguments list stays clean
 		else
 			calling_arguments = args
-
+	// if(datum_flags & DF_VAR_EDITED)
+	// 	return WrapAdminProcCall(object, delegate, calling_arguments)
 	if (object == GLOBAL_PROC)
 		return call(delegate)(arglist(calling_arguments))
 	return call(object, delegate)(arglist(calling_arguments))
 
+/**
+	Helper datum for the select callbacks proc
+ */
+/datum/callback_select
+	var/list/finished
+	var/pendingcount
+	var/total
+
+/datum/callback_select/New(count, savereturns)
+	total = count
+	if (savereturns)
+		finished = new(count)
+
+
+/datum/callback_select/proc/invoke_callback(index, datum/callback/callback, list/callback_args, savereturn = TRUE)
+	set waitfor = FALSE
+	if (!callback || !istype(callback))
+		//This check only exists because the alternative is callback_select would block forever if given invalid data
+		CRASH("invalid callback passed to invoke_callback")
+	if (!length(callback_args))
+		callback_args = list()
+	pendingcount++
+	var/rtn = callback.Invoke(arglist(callback_args))
+	pendingcount--
+	if (savereturn)
+		finished[index] = rtn
+
+/**
+ * Runs a list of callbacks asyncronously, returning only when all have finished
+ *
+ * Callbacks can be repeated, to call it multiple times
+ *
+ * Arguments:
+ * * list/callbacks the list of callbacks to be called
+ * * list/callback_args the list of lists of arguments to pass into each callback
+ * * savereturns Optionally save and return the list of returned values from each of the callbacks
+ * * resolution The number of byond ticks between each time you check if all callbacks are complete
+ */
+/proc/callback_select(list/callbacks, list/callback_args, savereturns = TRUE, resolution = 1)
+	if (!callbacks)
+		return
+	var/count = length(callbacks)
+	if (!count)
+		return
+	if (!callback_args)
+		callback_args = list()
+
+	callback_args.len = count
+
+	var/datum/callback_select/CS = new(count, savereturns)
+	for (var/i in 1 to count)
+		CS.invoke_callback(i, callbacks[i], callback_args[i], savereturns)
+
+	while(CS.pendingcount)
+		sleep(resolution*world.tick_lag)
+	return CS.finished
 
 /proc/___callbacknew(typepath, arguments)
 	new typepath(arglist(arguments))

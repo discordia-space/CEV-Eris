@@ -31,6 +31,16 @@
 		var/mutable_appearance/label = mutable_appearance(icon, label_icon)
 		add_overlay(label)
 
+/obj/item/reagent_containers/glass/bottle/trade
+	spawn_blacklisted = TRUE
+
+/obj/item/reagent_containers/glass/bottle/trade/New()
+	for(var/reagent_id in preloaded_reagents)
+		var/reagent_name = lowertext(get_reagent_name_by_id(reagent_id))
+		name = "[reagent_name] bottle"
+		desc = "A small bottle. Contains [reagent_name]."
+	..()
+
 /obj/item/reagent_containers/glass/bottle/inaprovaline
 	name = "inaprovaline bottle"
 	desc = "A small bottle. Contains inaprovaline - used to stabilize patients."
@@ -103,7 +113,6 @@
 	icon_state = "bottle"
 	preloaded_reagents = list("frostoil" = 60)
 
-
 /obj/item/reagent_containers/glass/bottle/adminordrazine
 	name = "adminordrazine bottle"
 	desc = "A small bottle. Contains the liquid essence of the gods."
@@ -117,3 +126,50 @@
 	icon_state = "bottle"
 	spawn_blacklisted = TRUE
 	preloaded_reagents = list("resuscitator" = 60)
+
+// === Used by trade stations
+/obj/item/reagent_containers/glass/bottle/trade/clonexadone
+	preloaded_reagents = list("clonexadone" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/imidazoline
+	preloaded_reagents = list("imidazoline" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/alkysine
+	preloaded_reagents = list("alkysine" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/bicaridine
+	preloaded_reagents = list("bicaridine" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/kelotane
+	preloaded_reagents = list("kelotane" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/carpotoxin
+	preloaded_reagents = list("carpotoxin" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/pararein
+	preloaded_reagents = list("pararein" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/aranecolmin
+	preloaded_reagents = list("aranecolmin" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/blattedin
+	preloaded_reagents = list("blattedin" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/diplopterum
+	preloaded_reagents = list("diplopterum" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/seligitillin
+	preloaded_reagents = list("seligitillin" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/starkellin
+	preloaded_reagents = list("starkellin" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/gewaltine
+	preloaded_reagents = list("gewaltine" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/fuhrerole
+	preloaded_reagents = list("fuhrerole" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/kaiseraurum
+	preloaded_reagents = list("kaiseraurum" = 60)
+// ===

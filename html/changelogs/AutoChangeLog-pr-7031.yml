@@ -1,0 +1,5 @@
+author: Hyperio
+delete-after: true
+changes:
+  - tweak: Remove cables and pipes from planetary ruins to reduce server load.
+  - tweak: Replace boombas by other roombas to avoid undesired roundstart explosions

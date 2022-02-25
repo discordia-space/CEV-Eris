@@ -47,19 +47,16 @@
 	if(state < GRAB_AGGRESSIVE)
 		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
 		return
-
 	var/obj/item/organ/external/organ = target.get_organ(check_zone(target_zone))
 	if(!organ || organ.dislocated == -1)
 		return
 
-	var/time_to_jointlock = max( 0, ( target.getarmor(target_zone, ARMOR_MELEE) - attacker.stats.getStat(STAT_ROB) ) )
-	if(!do_mob(attacker, target, time_to_jointlock))
-		attacker << SPAN_WARNING("You must stand still to jointlock [target]!")
+	if(!do_after(attacker, 7 SECONDS, target))
+		to_chat(attacker, SPAN_WARNING("You must stand still to jointlock [target]!"))
 	else
-		attacker << SPAN_WARNING("[attacker] [pick("bent", "twisted")] [target]'s [organ.name] into a jointlock!")
+		visible_message(SPAN_WARNING("[attacker] [pick("bent", "twisted")] [target]'s [organ.name] into a jointlock!"))
 		to_chat(target, SPAN_DANGER("You feel extreme pain!"))
-		affecting.adjustHalLoss(CLAMP(0, 60-affecting.halloss, 30)) //up to 60 halloss
-
+		affecting.adjustHalLoss(rand(30, 40))
 
 /obj/item/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))
@@ -120,7 +117,7 @@
 	attacker.next_move = world.time + 20 //2 seconds, also should prevent user from triggering this repeatedly
 	if(do_after(attacker, 20, progress=0) && target)
 		visible_message(SPAN_DANGER("...And falls backwards, slamming the opponent back onto the floor!"))
-		var/damage = ((attacker.stats.getStat(STAT_ROB) / 2) + 15)
+		var/damage = min(65, attacker.stats.getStat(STAT_ROB) + 15)
 		target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_MELEE) //crunch
 		attacker.Weaken(2)
 		target.Stun(6)

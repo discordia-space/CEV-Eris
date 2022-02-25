@@ -25,7 +25,7 @@
 
 	var/obj/tmp = path
 
-	if(istype(tmp, /obj/item/ammo_magazine))
+	if(ispath(tmp, /obj/item/ammo_magazine))
 		// On New() magazine gets a proper name assigned
 		var/obj/item/ammo_magazine/AM = new tmp
 		product_name = AM.name
@@ -1535,7 +1535,7 @@
 					/obj/item/clothing/head/armor/faceshield/altyn/maska/tripoloski
 					)
 	prices = list(
-					/obj/item/reagent_containers/food/drinks/bottle/vodka = 50,
+					/obj/item/reagent_containers/food/drinks/bottle/vodka = 200,
           			/obj/item/storage/deferred/crate/uniform_green = 2000,
           			/obj/item/storage/deferred/crate/uniform_brown = 2000,
 					/obj/item/storage/deferred/crate/uniform_black = 2000,
