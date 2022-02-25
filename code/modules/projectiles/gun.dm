@@ -360,7 +360,7 @@
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 
-		projectile.multiply_projectile_penetration(penetration_multiplier + user.stats.getStat(STAT_VIG) * 0.02)
+		projectile.multiply_projectile_penetration(penetration_multiplier)
 
 		projectile.multiply_pierce_penetration(pierce_multiplier)
 
