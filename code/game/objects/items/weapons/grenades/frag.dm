@@ -35,15 +35,6 @@
 
 	qdel(src)
 
-/obj/item/grenade/frag/nt
-	name = "NT DFG \"Holy Thunder\""
-	desc = "A military-grade defensive fragmentation grenade, designed to be thrown from cover."
-	icon_state = "frag_nt"
-	item_state = "fraggrenade_nt"
-	matter = list(MATERIAL_BIOMATTER = 75)
-	fragment_damage = 7
-	damage_step = 3
-
 /obj/item/grenade/frag/pipebomb
 	name = "improvised pipebomb"
 	desc = "A jury rigged medium cell filled with plasma. Throw at authorities."

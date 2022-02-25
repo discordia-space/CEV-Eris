@@ -207,7 +207,7 @@
 	icon_state = "neotheology"
 	designs = list(
 		/datum/design/autolathe/nt/grenade/nt_flashbang,
-		/datum/design/autolathe/nt/grenade/nt_frag,
+		/datum/design/autolathe/nt/grenade/nt_heatwave,
 		/datum/design/autolathe/nt/grenade/nt_smokebomb
 	)
 
