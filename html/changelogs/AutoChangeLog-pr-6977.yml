@@ -1,0 +1,11 @@
+author: Sparrowbird611
+delete-after: true
+changes:
+  - balance: Rebalance armor numbers. In general, lower tier armors should be more
+      valuable now, and some things that didn't seem like they should be so armored
+      were reduced.
+  - balance: Gave lasers to compensate for armor change, plasma already has enough
+      to be sustainable.
+  - balance: Removed ablative's ability to deflect projectiles, to make it less of
+      a hard counter to certain weapons.
+  - tweak: Renamed heavy armor vest to mercenary armor vest.
