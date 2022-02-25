@@ -1,0 +1,11 @@
+author: Alliostra
+delete-after: true
+changes:
+  - balance: doubled the maximum amount of walls bullets are able to pierce and piercing
+      a wall no longer makes the bullet lose AP.
+  - balance: made AMR ammo from the uplink cheaper and increased the damage of the
+      Breacher shells
+  - balance: tripled the penetration power of the AMR
+  - balance: using a scope makes shots more accurate now
+  - tweak: the talking spider and the control spiders will no longer be triggered
+      when activating all carrion spiders.
