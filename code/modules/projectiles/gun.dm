@@ -891,13 +891,3 @@
 		gun_tags |= GUN_SCOPE
 	if(!sharp)
 		gun_tags |= SLOT_BAYONET
-
-/obj/item/gun/zoom(tileoffset, viewsize)
-	..()
-	if(!ishuman(usr))
-		return
-	var/mob/living/carbon/human/H = usr
-	if(zoom)
-		H.using_scope = src
-	else
-		H.using_scope = null
