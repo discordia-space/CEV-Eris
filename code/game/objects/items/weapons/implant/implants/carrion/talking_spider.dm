@@ -1,6 +1,7 @@
 /obj/item/implant/carrion_spider/talking
 	name = "talking spider"
 	icon_state = "spiderling_talking"
+	ignore_activate_all = TRUE
 	spider_price = 15
 	var/on_cooldown = FALSE
 
