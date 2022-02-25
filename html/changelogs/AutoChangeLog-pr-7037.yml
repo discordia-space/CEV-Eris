@@ -1,0 +1,11 @@
+author: Hyperio
+delete-after: true
+changes:
+  - balance: Double time interval between burrows for all waves
+  - balance: Double time interval between golem spawn for all waves
+  - balance: Double drill health
+  - balance: Increased mineral multiplier
+  - bugfix: Golems no longer try to destry golem burrows in their way
+  - rscadd: Drill has three health stage. If its healths falls under 66%, you can
+      only repair it up to 66%. If it falls under 33%, you can only repair it up to
+      33%.
