@@ -32,8 +32,8 @@
 	icon_state = "engineering_rig"
 	armor = list(
 		melee = 50,
-		bullet = 40,
-		energy = 10,
+		bullet = 50,
+		energy = 20,
 		bomb = 25,
 		bio = 100,
 		rad = 90
@@ -312,4 +312,3 @@ Technomancer RIG
 		/obj/item/rig_module/device/healthscanner,
 		/obj/item/rig_module/vision/medhud
 		)
- 

@@ -159,13 +159,13 @@
 		return
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		user.visible_message( \
-		"<span class='notice'>\The [user] begins [src.anchored ? "securing" : "unsecuring"] the [src].</span>", \
-		"<span class='notice'>You attempt to [src.anchored ? "secure" : "unsecure"] the [src].</span>"
+		"<span class='notice'>\The [user] begins [src.anchored ? "unsecuring" : "securing"] the [src].</span>", \
+		"<span class='notice'>You attempt to [src.anchored ? "unsecure" : "secure"] the [src].</span>"
 		)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			user.visible_message( \
-			"<span class='notice'>\The [user] [src.anchored ? "secures" : "unsecures"] the [src].</span>", \
-			"<span class='notice'>You [src.anchored ? "secure" : "unsecure"] the [src].</span>"
+			"<span class='notice'>\The [user] [src.anchored ? "unsecures" : "secures"] the [src].</span>", \
+			"<span class='notice'>You [src.anchored ? "unsecure" : "secure"] the [src].</span>"
 			)
 			src.anchored = !src.anchored
 	else

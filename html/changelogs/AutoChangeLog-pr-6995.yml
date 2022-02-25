@@ -1,0 +1,6 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - rscadd: NT "Hellfire" grenade
+  - balance: NT "Holy Light" grenades are weaker against the Faithful
+  - rscadd: More NT flavour descriptions

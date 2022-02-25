@@ -1,0 +1,4 @@
+author: Hyperio
+delete-after: true
+changes:
+  - rscadd: Added warning when trying to spawn without brain or eyes

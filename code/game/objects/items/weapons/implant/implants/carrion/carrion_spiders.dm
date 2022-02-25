@@ -1,3 +1,8 @@
+ #define SPIDER_GROUP_1 1
+ #define SPIDER_GROUP_2 2
+ #define SPIDER_GROUP_3 4
+ #define SPIDER_GROUP_4 8
+
 /obj/item/implant/carrion_spider
 	name = "spooky spider"
 	desc = "Small spider filled with some sort of strange fluid."
@@ -14,9 +19,7 @@
 	var/last_stun_time = 0 //Used to avoid cheese
 	var/ignore_activate_all = FALSE
 
-	var/assigned_group_1 = FALSE
-	var/assigned_group_2 = FALSE	
-	var/assigned_group_3 = FALSE
+	var/assigned_groups
 
 	var/obj/item/organ/internal/carrion/core/owner_core
 	var/mob/living/carbon/human/owner_mob
@@ -106,11 +109,13 @@
 	owner_mob = owner_core.owner
 
 /obj/item/implant/carrion_spider/proc/toggle_group(group)
-	switch(group)
-		if(1)
-			assigned_group_1 = !assigned_group_1
-		if(2)
-			assigned_group_2 = !assigned_group_2
-		if(3)
-			assigned_group_3 = !assigned_group_3	
+	if(check_group(group))
+		assigned_groups = assigned_groups & ~group
+	else
+		assigned_groups = assigned_groups | group
 
+/obj/item/implant/carrion_spider/proc/check_group(group)
+	if(assigned_groups & group)
+		return TRUE
+	else
+		return FALSE
