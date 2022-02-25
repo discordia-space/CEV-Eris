@@ -8,7 +8,7 @@
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_lying_buckled_and_verb_status() call.
-	var/obj/item/gun/using_scope // This is not very good either, because I've copied it. Sorry.
+	var/using_scope // This is not very good either, because I've copied it. Sorry.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species)
 
