@@ -21,16 +21,17 @@
 	reload_sound = 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
-	recoil_buildup = 4
+	recoil_buildup = 1 // Large size allows better than average control
 	damage_multiplier = 1.3
-	one_hand_penalty = 30 //you're not Stallone. LMG level.
+	penetration_multiplier = 1.3
+	twohanded = TRUE
+	one_hand_penalty = 30 // You're not Stallone. LMG level.
 	spawn_blacklisted = TRUE
 	rarity_value = 80
-	slowdown_hold = 1
-	brace_penalty = 4
+	slowdown_hold = 0.5
+	brace_penalty = 2 // Not easy to fire in hand
+	init_offset = 3 // Countered by bracing it
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/plasteel = 4)
-	wield_delay = 1 SECOND
-	wield_delay_factor = 0.9 // 90 vig for instant wield
 
 	init_firemodes = list(
 		FULL_AUTO_600,
@@ -120,8 +121,9 @@
 	icon_base = "tk"
 	icon_state = "tkclosed-empty"
 	item_state = "tkclosedmag"
-	damage_multiplier = 0.9
-	penetration_multiplier = 1.1
+	recoil_buildup = 0.8 // More tacticool than the other LMGs
+	damage_multiplier = 1.1
+	penetration_multiplier = 1.1 // Marginally punchier projectiles than from AKs
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/tk = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
