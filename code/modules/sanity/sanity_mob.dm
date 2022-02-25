@@ -319,7 +319,7 @@
 		sanity_gain /= 5
 	else if(istype(E, /datum/reagent/alcohol))
 		var/datum/reagent/alcohol/fine_drink = E
-		sanity_gain *= (50 / (fine_drink.strength + 10))
+		sanity_gain *= (40 / (fine_drink.strength + 15))
 	changeLevel(sanity_gain * multiplier)
 	if(resting && E.taste_tag.len)
 		for(var/taste_tag in E.taste_tag)
