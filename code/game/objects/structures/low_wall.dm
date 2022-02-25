@@ -96,7 +96,7 @@
 
 /obj/structure/low_wall/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 
-	if(istype(mover,/obj/item/projectile))
+	if(istype(mover,/obj/item/projectile) && !istype(mover,/obj/item/projectile/beam/emitter))
 		return (check_cover(mover,target))
 
 
