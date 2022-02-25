@@ -97,8 +97,6 @@
 /obj/structure/low_wall/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 
 	if(istype(mover,/obj/item/projectile))
-		if(istype(mover,/obj/item/projectile/beam/emitter))
-			return 1
 		return (check_cover(mover,target))
 
 
@@ -157,8 +155,10 @@
 		return 1
 	var/valid = FALSE
 	var/distance = get_dist(P.last_interact,loc)
-	P.check_hit_zone(loc, distance)
 
+	if(!P.def_zone)
+		return 1 // Emitters, or anything with no targeted bodypart will always bypass the cover
+	P.check_hit_zone(loc, distance)
 	var/targetzone = check_zone(P.def_zone)
 	if (targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
 		valid = TRUE //The lower body is always concealed
