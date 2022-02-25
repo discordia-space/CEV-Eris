@@ -1,0 +1,4 @@
+author: Alliostra
+delete-after: true
+changes:
+  - bugfix: fixed a bug with zooming out
