@@ -468,7 +468,7 @@
 						else
 							to_chat(user, SPAN_NOTICE("Nothing happens."))
 							return
-				to_chat(user, SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src]."))
+				to_chat(user, SPAN_NOTICE("You [anchored ? "unwrench" : "wrench"] \the [src]."))
 				set_anchored(!anchored)
 				return
 			return
