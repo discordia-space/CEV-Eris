@@ -2,6 +2,7 @@
 	name = "control spider"
 	icon_state = "spiderling_control"
 	spider_price = 25
+	ignore_activate_all = TRUE
 	var/active = FALSE
 	var/last_use = - 2 MINUTES
 	var/cooldown = 2 MINUTES
