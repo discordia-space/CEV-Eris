@@ -1,6 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - balance: recoil recovery and recoil from running adjusted
-  - rscdel: removed extra penetration from vigilance
-  - rscadd: vigilance increases accuracy

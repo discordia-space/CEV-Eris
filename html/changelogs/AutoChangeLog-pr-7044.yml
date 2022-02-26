@@ -1,7 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - tweak: alcohol gives more sanity
-  - tweak: alcohol more lethal
-  - rscadd: lore-accurate gargleblaster
-  - balance: serb vendor vodka price increased to match increased sanity gain
