@@ -252,7 +252,8 @@
 	spawn_tags = SPAWN_TAG_AMMO
 
 /obj/item/storage/box/sniperammo/populate_contents()
-	new spawn_type(src)
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
 	for(var/obj/item/ammo_casing/temp_casing in src)
 		temp_casing.update_icon()
 
@@ -265,11 +266,6 @@
 	spawn_type = /obj/item/ammo_casing/antim/emp/prespawned
 	spawn_tags = SPAWN_TAG_AMMO
 
-/obj/item/storage/box/sniperammo/emp/populate_contents()
-	new spawn_type(src)
-	for(var/obj/item/ammo_casing/temp_casing in src)
-		temp_casing.update_icon()
-
 /obj/item/storage/box/sniperammo/uranium
 	name = "box of .60 \"Meltdown\" Anti Material shells"
 	desc = "It has a picture of a gun and several warning symbols on the front, including a radiation hazard sign.<br>WARNING: Live depleted uranium ammunition. Misuse may result in serious injury or death."
@@ -279,11 +275,6 @@
 	spawn_type = /obj/item/ammo_casing/antim/uranium/prespawned
 	spawn_tags = SPAWN_TAG_AMMO
 
-/obj/item/storage/box/sniperammo/uranium/populate_contents()
-	new spawn_type(src)
-	for(var/obj/item/ammo_casing/temp_casing in src)
-		temp_casing.update_icon()
-
 /obj/item/storage/box/sniperammo/breach
 	name = "box of .60 \"Breacher\" Anti Material shells"
 	desc = "It has a picture of a gun and several warning symbols on the front, including an explosive hazard sign.<br>WARNING: Live breaching ammunition. Misuse may result in serious injury or death."
@@ -292,11 +283,6 @@
 	initial_amount = 3
 	spawn_type = /obj/item/ammo_casing/antim/breach/prespawned
 	spawn_tags = SPAWN_TAG_AMMO
-
-/obj/item/storage/box/sniperammo/breach/populate_contents()
-	new spawn_type(src)
-	for(var/obj/item/ammo_casing/temp_casing in src)
-		temp_casing.update_icon()
 
 /obj/item/storage/box/flashbangs
 	name = "box of flashbangs"
