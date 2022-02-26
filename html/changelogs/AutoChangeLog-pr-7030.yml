@@ -1,5 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - bugfix: Fixed microwave and fire barrel secure unsecure verbs
-  - bugfix: Fixed hydroponics tray secure unsecure verbs
