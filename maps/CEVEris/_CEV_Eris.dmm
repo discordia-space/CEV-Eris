@@ -61394,7 +61394,6 @@
 	},
 /area/shuttle/mining/station)
 "cSI" = (
-/obj/machinery/mining/deep_drill,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "11,17"
 	},
@@ -61406,13 +61405,13 @@
 	},
 /area/shuttle/mining/station)
 "cSK" = (
-/obj/machinery/mining/drill,
+/obj/machinery/mining/deep_drill,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "13,17"
 	},
 /area/shuttle/mining/station)
 "cSL" = (
-/obj/machinery/mining/brace,
+/obj/machinery/mining/deep_drill,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "14,17"
 	},
@@ -61640,7 +61639,6 @@
 	},
 /area/shuttle/mining/station)
 "cTn" = (
-/obj/machinery/mining/brace,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "14,16"
 	},

@@ -1202,18 +1202,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 */
 /datum/supply_pack/mining_drill
 	name = "Drill Crate"
-	contains = list(/obj/machinery/mining/drill)
+	contains = list(/obj/machinery/mining/deep_drill)
 	cost = 2000
 	containertype = /obj/structure/closet/crate/secure/large
 	crate_name = "Drill Crate"
-	group = "Mining"
-
-/datum/supply_pack/mining_brace
-	name = "Brace Crate"
-	contains = list(/obj/machinery/mining/brace)
-	cost = 1000
-	containertype = /obj/structure/closet/crate/secure/large
-	crate_name = "Brace Crate"
 	group = "Mining"
 
 /datum/supply_pack/mining_supply

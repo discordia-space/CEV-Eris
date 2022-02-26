@@ -228,7 +228,6 @@
 	cost = 2000
 
 	unlocks_designs = list(	/datum/design/research/circuit/miningdrill,
-							/datum/design/research/circuit/miningdrillbrace,
 							/datum/design/research/item/weapon/mining/drill_diamond,
 							/datum/design/research/item/weapon/mining/jackhammer,
 							/datum/design/research/item/weapon/mining/scanner
