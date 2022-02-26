@@ -15,7 +15,7 @@ There are important things regarding this file:
 	damage_types = list(BRUTE = 26)
 	armor_penetration = 10
 	can_ricochet = TRUE
-	penetrating = 1
+	penetrating = 2
 	style_damage = 20
 
 /obj/item/projectile/bullet/pistol/hv
@@ -51,7 +51,7 @@ There are important things regarding this file:
 	name = ".20 caliber bullet"
 	damage_types = list(BRUTE = 21)
 	armor_penetration = 25
-	penetrating = 1
+	penetrating = 2
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/srifle/nomuzzle
@@ -88,7 +88,7 @@ There are important things regarding this file:
 	name = ".25 caliber bullet"
 	damage_types = list(BRUTE = 23)
 	armor_penetration = 15
-	penetrating = 1
+	penetrating = 2
 	sharp = TRUE
 	can_ricochet = FALSE //to reduce collateral damage and FF, since IH use it in their primary firearm
 
@@ -125,7 +125,7 @@ There are important things regarding this file:
 	name = ".30 caliber bullet"
 	damage_types = list(BRUTE = 24)
 	armor_penetration = 20
-	penetrating = 1
+	penetrating = 2
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/lrifle/practice
@@ -159,7 +159,7 @@ There are important things regarding this file:
 	damage_types = list(BRUTE = 31)
 	armor_penetration = 15
 	can_ricochet = TRUE
-	penetrating = 1
+	penetrating = 2
 	style_damage = 40
 
 /obj/item/projectile/bullet/magnum/practice
@@ -192,7 +192,7 @@ There are important things regarding this file:
 	name = ".60 caliber bullet"
 	damage_types = list(BRUTE = 65)
 	armor_penetration = 50
-	penetrating = 1
+	penetrating = 2
 	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
 	style_damage = 70
 
@@ -210,10 +210,10 @@ There are important things regarding this file:
 	irradiate = 200
 
 /obj/item/projectile/bullet/antim/breach
-	damage_types = list(BRUTE = 20)
+	damage_types = list(BRUTE = 50)
 	armor_penetration = 40
 	agony = 40
-	penetrating = 0
+	penetrating = -5
 	step_delay = 0.6
 	hitscan = FALSE
 	nocap_structures = TRUE

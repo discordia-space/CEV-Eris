@@ -19,17 +19,14 @@
 /area/map_template/oldpod)
 "ag" = (
 /obj/structure/shuttle/engine/heater{
-	icon_state = "heater";
-	dir = 1
+	dir = 1;
+	icon_state = "heater"
 	},
 /turf/simulated/floor/plating,
 /area/map_template/oldpod)
 "ah" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/portable_atmospherics/canister/air/airlock,
-/obj/machinery/atmospherics/portables_connector{
-	dir = 4
-	},
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -46,9 +43,6 @@
 /obj/machinery/portable_atmospherics/canister/empty,
 /obj/structure/window/reinforced{
 	dir = 4
-	},
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/map_template/oldpod)
@@ -79,8 +73,8 @@
 /area/map_template/oldpod)
 "ao" = (
 /obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair_preview";
-	dir = 8
+	dir = 8;
+	icon_state = "shuttle_chair_preview"
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -90,8 +84,8 @@
 /area/map_template/oldpod)
 "ap" = (
 /obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair_preview";
-	dir = 4
+	dir = 4;
+	icon_state = "shuttle_chair_preview"
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -121,23 +115,6 @@
 "at" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"au" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"av" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -225,25 +202,10 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aH" = (
-/obj/structure/cable/cyan{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/item/frame/apc,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/cell/small,
 /obj/item/gun_upgrade/mechanism/battery_shunt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aI" = (
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aJ" = (
@@ -296,13 +258,12 @@
 /area/map_template/oldpod)
 "aP" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/structure/cable/cyan,
 /obj/machinery/light/small{
 	dir = 8
 	},
 /obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 5
+	dir = 5;
+	icon_state = "warning"
 	},
 /obj/machinery/power/smes/buildable,
 /turf/simulated/floor/plating,
@@ -313,8 +274,8 @@
 /area/map_template/oldpod)
 "aR" = (
 /obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 9
+	dir = 9;
+	icon_state = "warning"
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -340,8 +301,8 @@
 /area/map_template/oldpod)
 "aT" = (
 /obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 5
+	dir = 5;
+	icon_state = "warning"
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -370,14 +331,6 @@
 /turf/simulated/floor/plating,
 /area/map_template/oldpod)
 "aW" = (
-/obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
-	},
-/obj/structure/cable/cyan{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
@@ -433,7 +386,6 @@
 /area/map_template/oldpod)
 "bc" = (
 /obj/machinery/power/port_gen/pacman,
-/obj/structure/cable/cyan,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
@@ -446,8 +398,8 @@
 /area/map_template/oldpod)
 "be" = (
 /obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 10
+	dir = 10;
+	icon_state = "warning"
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -472,17 +424,13 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 6
+	dir = 6;
+	icon_state = "warning"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white/techfloor,
-/area/map_template/oldpod)
-"bq" = (
-/mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/plating,
 /area/map_template/oldpod)
 "jX" = (
 /mob/living/simple_animal/hostile/roomba/slayer,
@@ -538,12 +486,12 @@ aa
 aa
 "}
 (5,1,1) = {"
-bq
+jX
 ai
 am
-au
+am
 aB
-aI
+am
 aP
 aW
 bc
@@ -553,7 +501,7 @@ ad
 ae
 ai
 an
-av
+ai
 aC
 aJ
 aQ
