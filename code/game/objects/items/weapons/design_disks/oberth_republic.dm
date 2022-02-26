@@ -1,7 +1,7 @@
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/or_silenced
 	disk_name = "Oberth Republic - .25 Mandella"
-	icon_state = "frozenstar"
+	icon_state = "black"
 	rarity_value = 13
 	license = 12
 	designs = list(
@@ -13,7 +13,7 @@
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/fs_bulldog
 	disk_name = "Oberth Republic - .20 Bulldog Carabine"
-	icon_state = "frozenstar"
+	icon_state = "black"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	license = 12
 	designs = list(
