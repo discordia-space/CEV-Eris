@@ -349,6 +349,12 @@
 	sort_string = "KCAAA"
 	category = CAT_MINING
 
+/datum/design/research/circuit/miningturret
+	name = "mining turret"
+	build_path = /obj/item/electronics/circuitboard/miningturret
+	sort_string = "KDAAA"
+	category = CAT_MINING
+
 /datum/design/research/circuit/comconsole
 	name = "communications console"
 	build_path = /obj/item/electronics/circuitboard/communications

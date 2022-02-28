@@ -61394,6 +61394,7 @@
 	},
 /area/shuttle/mining/station)
 "cSI" = (
+/obj/machinery/porta_turret/mining,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "11,17"
 	},
@@ -61634,11 +61635,13 @@
 	},
 /area/shuttle/mining/station)
 "cTm" = (
+/obj/machinery/porta_turret/mining,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "13,16"
 	},
 /area/shuttle/mining/station)
 "cTn" = (
+/obj/machinery/porta_turret/mining,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "14,16"
 	},

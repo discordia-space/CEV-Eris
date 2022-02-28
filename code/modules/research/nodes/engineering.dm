@@ -216,7 +216,7 @@
 
 /datum/technology/advanced_mining
 	name = "Advanced Mining"
-	desc = "Static drill, improved handrill."
+	desc = "Static drill, mining turret, improved handrill."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.4
@@ -228,6 +228,7 @@
 	cost = 2000
 
 	unlocks_designs = list(	/datum/design/research/circuit/miningdrill,
+							/datum/design/research/circuit/miningturret,
 							/datum/design/research/item/weapon/mining/drill_diamond,
 							/datum/design/research/item/weapon/mining/jackhammer,
 							/datum/design/research/item/weapon/mining/scanner
