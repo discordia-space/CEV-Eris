@@ -49,7 +49,8 @@ var/global/list/default_medbay_channels = list(
 	var/listening = 1
 	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
 	var/subspace_transmission = 0
-	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
+	var/syndie = FALSE//Holder to see if it's a syndicate encrypted radio
+	var/merc = FALSE  //Holder to see if it's a syndicate encrypted radio
 	var/const/FREQ_LISTENING = 1
 	var/list/internal_channels
 
@@ -510,7 +511,7 @@ var/global/list/default_medbay_channels = list(
 		if(!position || !(position.z in level))
 			return -1
 	if(freq in ANTAG_FREQS)
-		if(!(src.syndie))//Checks to see if it's allowed on that frequency, based on the encryption keys
+		if(!syndie && !merc)//Checks to see if it's allowed on that frequency, based on the encryption keys
 			return -1
 	if (!on)
 		return -1
@@ -643,7 +644,7 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/borg/proc/recalculateChannels()
 	src.channels = list()
-	src.syndie = 0
+	src.syndie = FALSE
 
 	var/mob/living/silicon/robot/D = src.loc
 	if(D.module)
@@ -660,7 +661,7 @@ var/global/list/default_medbay_channels = list(
 			src.channels[ch_name] += keyslot.channels[ch_name]
 
 		if(keyslot.syndie)
-			src.syndie = 1
+			src.syndie = TRUE
 
 	for (var/ch_name in src.channels)
 		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
