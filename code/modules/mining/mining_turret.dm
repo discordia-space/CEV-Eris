@@ -26,7 +26,7 @@
 	use_power = NO_POWER_USE
 	anchored = FALSE
 	locked = FALSE
-	disabled = TRUE
+	enabled = FALSE
 
 /obj/machinery/porta_turret/mining/allowed(mob/M)  // No access lock on turret
 	return TRUE
@@ -59,7 +59,6 @@
 	return FALSE
 
 /obj/machinery/porta_turret/mining/Process()
-	message_admins("PROC")
 	if(anchored)
 		disabled = FALSE
 	..()
@@ -105,7 +104,6 @@
 		overlays += image("turret_gun")
 
 /obj/machinery/porta_turret/mining/target(mob/living/target)
-	message_admins("Targeting [target]")
 	if(disabled)
 		return
 	if(target)
@@ -117,7 +115,6 @@
 	return
 
 /obj/machinery/porta_turret/mining/shootAt(mob/living/target)
-	message_admins("Shootat [target]")
 	var/turf/T = get_turf(src)
 	var/turf/U = get_turf(target)
 	if(!istype(T) || !istype(U))

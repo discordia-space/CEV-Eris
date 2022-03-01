@@ -1,4 +1,4 @@
-#define RADIUS 7
+#define RADIUS 4
 #define DRILL_COOLDOWN 1 MINUTE
 
 /obj/machinery/mining
