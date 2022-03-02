@@ -216,13 +216,13 @@
 	ammo_type = /obj/item/ammo_casing/srifle/practice
 
 /obj/item/ammo_magazine/srifle/long/hv
-	ammo_type = /obj/item/ammo_casing/srifle/long/hv
+	ammo_type = /obj/item/ammo_casing/srifle/hv
 
 /obj/item/ammo_magazine/srifle/long/rubber
-	ammo_type = /obj/item/ammo_casing/srifle/long/rubber
+	ammo_type = /obj/item/ammo_casing/srifle/rubber
 
 /obj/item/ammo_magazine/srifle/long/scrap
-	ammo_type = /obj/item/ammo_casing/srifle/long/scrap
+	ammo_type = /obj/item/ammo_casing/srifle/scrap
 	spawn_tags = SPAWN_AMMO_COMMON
 
 ////////// .20 DRUM ///////////
@@ -249,13 +249,13 @@
 	ammo_type = /obj/item/ammo_casing/srifle/practice
 
 /obj/item/ammo_magazine/srifle/drum/hv
-	ammo_type = /obj/item/ammo_casing/srifle/long/hv
+	ammo_type = /obj/item/ammo_casing/srifle/hv
 
 /obj/item/ammo_magazine/srifle/drum/rubber
-	ammo_type = /obj/item/ammo_casing/srifle/long/rubber
+	ammo_type = /obj/item/ammo_casing/srifle/rubber
 
 /obj/item/ammo_magazine/srifle/drum/scrap
-	ammo_type = /obj/item/ammo_casing/srifle/long/scrap
+	ammo_type = /obj/item/ammo_casing/srifle/scrap
 	spawn_tags = SPAWN_AMMO_COMMON
 
 ////////// .25 RIFLE ///////////

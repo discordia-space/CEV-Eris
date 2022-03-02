@@ -46,6 +46,8 @@
 	if (ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
+		if(ammo_magazine.mag_well == MAG_WELL_RIFLE_L)
+			itemstring += "_l"
 
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"

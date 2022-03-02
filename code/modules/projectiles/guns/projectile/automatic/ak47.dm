@@ -67,8 +67,11 @@
 		itemstring += "_gold"
 
 	if (ammo_magazine)
-		iconstring += "[ammo_magazine? "_mag[ammo_magazine.max_ammo]": ""]"
 		itemstring += "_full"
+		if (ammo_magazine.mag_well == MAG_WELL_RIFLE_D)
+			iconstring += "_drum"
+		else	
+			iconstring += "[ammo_magazine? "_mag[ammo_magazine.max_ammo]": ""]"
 
 	if(wielded)
 		itemstring += "_doble"
