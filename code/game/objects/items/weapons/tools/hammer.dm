@@ -10,6 +10,8 @@
 	origin_tech = list(TECH_ENGINEERING = 1)
 	tool_qualities = list(QUALITY_HAMMERING = 20, QUALITY_PRYING = 10)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_WOOD = 2)
+	doubletact = 1
+	can_swing = 1
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked","flattened","pulped")
 	hitsound = 'sound/weapons/melee/blunthit.ogg'
 	rarity_value = 5

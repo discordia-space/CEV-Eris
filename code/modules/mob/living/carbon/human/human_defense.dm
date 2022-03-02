@@ -49,7 +49,7 @@ meteor_act
 			organ.embed(SP)
 
 
-/mob/living/carbon/human/hit_impact(damage, dir)
+/mob/living/carbon/human/hit_impact(damage, dir, hit_zone)
 	if(incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_BUCKLED_PARTIALLY))
 		return
 	if(damage < stats.getStat(STAT_TGH))
@@ -63,10 +63,10 @@ meteor_act
 	var/hit_dirs = (r_dir in cardinal) ? r_dir : list(r_dir & NORTH|SOUTH, r_dir & EAST|WEST)
 
 	var/stumbled = FALSE
-
-	if(prob(60 - stats.getStat(STAT_TGH)))
-		stumbled = TRUE
-		step(src, pick(cardinal - hit_dirs))
+	if(hit_zone == BP_L_LEG || hit_zone == BP_R_LEG)
+		if(prob(60 - stats.getStat(STAT_TGH)))
+			stumbled = TRUE
+			step(src, pick(cardinal - hit_dirs))
 
 	for(var/atom/movable/A in oview(1))
 		if(!A.Adjacent(src) || prob(50 + stats.getStat(STAT_TGH)))
@@ -146,7 +146,7 @@ meteor_act
 				var/weight = organ_rel_size[organ_name]
 				armorval += getarmor_organ(organ, type) * weight
 				total += weight
-	
+
 	armorval = armorval/max(total, 1)
 
 	if (armorval > 75) // reducing the risks from powergaming
@@ -188,7 +188,7 @@ meteor_act
 
 	if(shield)
 		protection += shield.armor[type]
-	
+
 	if (protection > 75) // reducing the risks from powergaming
 		switch (type)
 			if (ARMOR_MELEE,ARMOR_BULLET,ARMOR_ENERGY) protection = (75+protection/2)
@@ -259,8 +259,19 @@ meteor_act
 	if(!affecting)
 		return FALSE
 
+	if(I.can_broad) //Handles broad attacks
+		if(I.forced_broad || (user.a_intent == I_DISARM) || (I.can_swing && I.wielded && (user.a_intent == I_HURT)))
+			var/L[] = BP_ALL_LIMBS
+			var/temp_zone
+			effective_force /= 3
+			L.Remove(hit_zone)
+			for(var/i = 1, i <= 2, i++)
+				temp_zone = pick(L)
+				L.Remove(temp_zone)
+				..(I, user, effective_force, temp_zone)
+
 	// Handle striking to cripple.
-	if(user.a_intent == I_DISARM)
+	if(user.a_intent == I_GRAB)
 		effective_force /= 2 //half the effective force
 		if(!..(I, user, effective_force, hit_zone))
 			return FALSE

@@ -102,7 +102,7 @@
 	return 0
 
 
-/mob/living/proc/hit_impact(damage, dir)
+/mob/living/proc/hit_impact(damage, dir, hit_zone)
 	if(incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_BUCKLED_PARTIALLY))
 		return
 	shake_animation(damage)
@@ -128,7 +128,7 @@
 		to_chat(src, SPAN_WARNING("You have been hit by [P]!"))
 		qdel(P)
 		return TRUE
-	
+
 	if(P.agony > 0)
 		hit_impact(P.agony, hit_dir)
 		damage_through_armor(P.agony, HALLOSS, def_zone, P.check_armour, armour_pen = P.armor_penetration, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P))

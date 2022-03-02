@@ -44,6 +44,7 @@
 	worksound = WORKSOUND_HARD_SLASH
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_PAINFUL
+	can_broad = 1
 	w_class = ITEM_SIZE_SMALL
 	sharp = TRUE
 	edge = TRUE
@@ -69,6 +70,8 @@
 	force_wielded_multiplier = 3.3
 	doubletact = 1
 	can_swing = 1
+	can_broad = 1
+	forced_broad = 1
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
@@ -108,6 +111,10 @@
 	worksound = WORKSOUND_HARD_SLASH
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_PAINFUL
+	doubletact = 1
+	can_swing = 1
+	can_broad = 1
+	forced_broad = 1
 	w_class = ITEM_SIZE_BULKY
 	slot_flags = SLOT_BACK
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
@@ -133,6 +140,8 @@
 	armor_penetration = ARMOR_PEN_DEEP
 
 	throwforce = WEAPON_FORCE_NORMAL
+	can_swing = 1
+	can_broad = 1
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/melee/sharphit.ogg'
 	tool_qualities = list(QUALITY_CUTTING = 10)

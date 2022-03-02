@@ -92,6 +92,8 @@
 	var/doubletact = 0
 	var/ready = 0
 	var/can_swing = 0
+	var/can_broad = 0
+	var/forced_broad = 0
 
 /obj/item/Initialize()
 	if(islist(armor))
