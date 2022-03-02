@@ -202,10 +202,11 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE_L
 	caliber = CAL_SRIFLE
-	matter = list(MATERIAL_STEEL = 6)
+	matter = list(MATERIAL_STEEL = 9)
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 35
 	ammo_states = list(35)
+	rarity_value = 20
 
 /obj/item/ammo_magazine/srifle/long/empty
 	matter = list(MATERIAL_STEEL = 3)
@@ -233,11 +234,12 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE_D
 	caliber = CAL_SRIFLE
-	matter = list(MATERIAL_STEEL = 6)
+	matter = list(MATERIAL_STEEL = 18)
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 60
 	ammo_states = list(60)
 	w_class = ITEM_SIZE_NORMAL
+	spawn_blacklisted = TRUE // Not in use yet
 
 /obj/item/ammo_magazine/srifle/drum/empty
 	matter = list(MATERIAL_STEEL = 3)
@@ -363,7 +365,7 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_BOX
 	caliber = CAL_LRIFLE
-	matter = list(MATERIAL_STEEL = 8)
+	matter = list(MATERIAL_STEEL = 16)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 80
 	w_class = ITEM_SIZE_NORMAL
@@ -377,11 +379,12 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE_D
 	caliber = CAL_LRIFLE
-	matter = list(MATERIAL_STEEL = 5)
+	matter = list(MATERIAL_STEEL = 10)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 45
 	ammo_states = list(45)
 	w_class = ITEM_SIZE_NORMAL
+	rarity_value = 20
 
 /obj/item/ammo_magazine/lrifle/drum/empty
 	initial_ammo = 0
@@ -418,7 +421,7 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_PAN
 	caliber = CAL_LRIFLE
-	matter = list(MATERIAL_STEEL = 10)
+	matter = list(MATERIAL_STEEL = 20)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 96
 	ammo_states = list(96)
