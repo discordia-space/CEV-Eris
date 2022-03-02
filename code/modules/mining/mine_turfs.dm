@@ -500,3 +500,7 @@
 
 /turf/simulated/floor/asteroid/proc/check_radial_dig()
 	return FALSE
+
+/turf/simulated/floor/asteroid/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
+	// Asteroid turfs are indestructible, otherwise they can be destroyed at some point and expose metal plating
+	return
