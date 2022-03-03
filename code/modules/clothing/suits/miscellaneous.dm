@@ -479,7 +479,7 @@
 
 /obj/item/clothing/suit/storage/puffyblue
 	name = "blue puffy coat"
-	desc = "A stylish, shiny, very blue Aster's Guild branded puffer coat."
+	desc = "A stylish, shiny, very blue Aster\'s Guild branded puffer coat."
 	icon_state = "puffycoatblue"
 	item_state = "puffycoatblue"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
