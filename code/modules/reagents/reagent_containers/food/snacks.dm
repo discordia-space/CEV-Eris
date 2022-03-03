@@ -1149,7 +1149,7 @@
 	cooked = TRUE
 	junk_food = TRUE
 	spawn_tags = SPAWN_TAG_JUNKFOOD
-	style_damage = 40
+	style_damage = 60
 	rarity_value = 20
 	taste_tag = list(SWEET_FOOD,FLOURY_FOOD)
 
