@@ -391,7 +391,7 @@ obj/item/clothing/under/genericr
 
 /obj/item/clothing/under/tropicalblue
 	name = "blue tropical shirt" 
-	desc = "An Aster's Guild branded neosilk tropical shirt. This one makes you feel out of touch."
+	desc = "An Aster\'s Guild branded neosilk tropical shirt. This one makes you feel out of touch."
 	icon_state = "miamivice"
 	item_state = "miamivice"
 	style = STYLE_HIGH
