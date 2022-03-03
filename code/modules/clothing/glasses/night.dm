@@ -6,6 +6,7 @@
 	darkness_view = 7
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	off_state = "denight"
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 2, MATERIAL_PLASTIC = 5, MATERIAL_URANIUM = 2) //Sheet for each eye!
 	origin_tech = list(TECH_MAGNET = 2)
 	price_tag = 500
 
