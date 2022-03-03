@@ -14,6 +14,7 @@ meteor_act
 		slickness -= P.style_damage
 		dodge_time = get_game_time()
 		confidence = FALSE
+		external_recoil(P.style_damage)
 		return PROJECTILE_FORCE_MISS_SILENCED // src dodged.
 
 	def_zone = check_zone(def_zone)
@@ -339,6 +340,7 @@ meteor_act
 			slickness -= O.style_damage
 			dodge_time = get_game_time()
 			confidence = FALSE
+			external_recoil(O.style_damage)
 			return
 
 
