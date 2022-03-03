@@ -405,7 +405,7 @@ obj/item/clothing/under/genericr
 
 /obj/item/clothing/under/tropicalgreen
 	name = "puke-green tropical shirt"
-	desc = "An Aster's Guild branded neosilk tropical shirt. This one makes you look like puke."
+	desc = "An Aster\'s Guild branded neosilk tropical shirt. This one makes you look like puke."
 	icon_state = "tropicopuke"
 	item_state = "tropicopuke"
 	style = STYLE_HIGH
