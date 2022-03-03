@@ -8,8 +8,8 @@
 
 	mob_size = MOB_MEDIUM
 
-	maxHealth = 200
-	health = 200
+	maxHealth = 100
+	health = 100
 
 	//spawn_values
 	rarity_value = 37.5
@@ -67,6 +67,11 @@
 	icon_state = "stalker_mk2"
 	icon_living = "stalker_mk2"
 
-	maxHealth = 250
-	health = 250
+	maxHealth = 200
+	health = 200
 	rapid = 1
+
+/mob/living/carbon/superior_animal/stalker/New()
+	..()
+	pixel_x = 0
+	pixel_y = 0
