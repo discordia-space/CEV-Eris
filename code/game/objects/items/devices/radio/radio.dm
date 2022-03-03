@@ -50,7 +50,7 @@ var/global/list/default_medbay_channels = list(
 	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
 	var/subspace_transmission = 0
 	var/syndie = FALSE//Holder to see if it's a syndicate encrypted radio
-	var/merc = FALSE  //Holder to see if it's a syndicate encrypted radio
+	var/merc = FALSE  //Holder to see if it's a mercenary encrypted radio
 	var/const/FREQ_LISTENING = 1
 	var/list/internal_channels
 
