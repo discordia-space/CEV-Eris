@@ -35,7 +35,7 @@ var/const/company_name  = "CEV Eris"
 var/const/company_short = "Eris"
 var/game_version        = "Discordia"
 var/changelog_hash      = ""
-var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
+var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 319)
 
 var/round_progressing = 1
 var/master_storyteller       = "shitgenerator"

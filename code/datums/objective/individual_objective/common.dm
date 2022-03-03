@@ -164,7 +164,7 @@
 
 /datum/individual_objective/helper
 	name = "Helping Hand"
-	units_requested = 15 MINUTES
+	units_requested = 5 MINUTES
 	based_time = TRUE
 	var/mob/living/carbon/human/target
 	var/timer
@@ -206,7 +206,7 @@
 	name = "Obsessive Observation"
 	var/mob/living/carbon/human/target
 	var/timer
-	units_requested = 5 MINUTES
+	units_requested = 3 MINUTES
 	based_time = TRUE
 
 /datum/individual_objective/obsession/can_assign(mob/living/L)

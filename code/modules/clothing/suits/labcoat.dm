@@ -8,9 +8,9 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 	armor = list(
-		melee = 0,
-		bullet = 0,
-		bomb = 0,
+		melee = 10,
+		bullet = 10,
+		energy = 10,
 		bio = 50,
 		bomb = 0,
 		bio = 0,
@@ -39,8 +39,9 @@
 	icon_open = "labcoat_vir_open"
 	icon_closed = "labcoat_vir"
 	armor = list(
-		melee = 0,
-		bullet = 0,
+		melee = 10,
+		bullet = 10,
+		energy = 10,
 		bomb = 0,
 		bio = 75,
 		bomb = 0,

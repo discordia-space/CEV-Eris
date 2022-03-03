@@ -81,7 +81,7 @@
 		handle_medical_side_effects()
 
 		if (life_tick % 4 == 1 && (get_game_time() >= dodge_time + 5 SECONDS))
-			if (confidence == FALSE)
+			if (confidence == FALSE && style > 0)
 				to_chat(src, SPAN_NOTICE("You feel confident again."))
 				confidence = TRUE
 			regen_slickness()
@@ -1164,7 +1164,7 @@
 		else if(((mRemote in mutations) || remoteviewer) && remoteview_target)
 			if(remoteview_target.stat == CONSCIOUS)
 				isRemoteObserve = TRUE
-		if(!isRemoteObserve && client && !client.adminobs)
+		if(!isRemoteObserve && client && !client.adminobs && !using_scope)
 			remoteview_target = null
 			reset_view(null, FALSE)
 

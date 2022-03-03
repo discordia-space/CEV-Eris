@@ -21,12 +21,28 @@
 	//They will not be asked again until a certain time has passed
 	var/list/request_log = list()
 	var/request_timeout = 60 MINUTES
+	var/list/opt_out_log = list()		// For players who opted out of role when prompted
 
 	//Transient vars, these are specific to one triggering of the event
 	var/tmp/target_quantity = 0 //How many copies of this antag we are currently attempting to spawn, based on the above
 	var/tmp/success_quantity = 0 //How many copies we have successfully spawned so far
 	var/severity = EVENT_LEVEL_MUNDANE //The severity we're trying to trigger with
 
+/datum/storyevent/roleset/Topic(href, href_list)
+	if(href_list["opt_out"])
+		var/key = locate(href_list["opt_out"])
+		if(!opt_out_log.Find(key))
+			opt_out_log.Add(key)
+			to_chat(usr, "<font color='purple'>You have opted out of the candidate pool for this role.<font>")
+		else
+			to_chat(usr, "<font color='purple'>You have already opted out.<font>")
+	if(href_list["opt_in"])
+		var/key = locate(href_list["opt_in"])
+		if(opt_out_log.Find(key))
+			opt_out_log.Remove(key)
+			to_chat(usr, "<font color='purple'>You have opted in to the candidate pool for this role.<font>")
+		else
+			to_chat(usr, "<font color='purple'>You have already opted in.<font>")
 
 /datum/storyevent/roleset/proc/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
 	return TRUE
@@ -43,32 +59,72 @@
 	else
 		return candidates_list(role_id)
 
-/datum/storyevent/roleset/proc/candidates_list(var/antag, var/report)
+/datum/storyevent/roleset/proc/candidates_list(var/antag, var/act_test = TRUE, var/report)
 	var/datum/antagonist/temp = GLOB.all_antag_types[antag]
 	if(!istype(temp))
-		if (report) to_chat(report, SPAN_NOTICE("Failure: Unable to locate antag datum: -[temp]-[temp.type]- for antag [antag]"))
-		return list()
+		if(report)
+			to_chat(report, SPAN_NOTICE("Failure: Unable to locate antag datum: -[temp]-[temp.type]- for antag [antag]"))
+			return list()
+
 	var/list/candidates = list()
+	var/any_candidates = FALSE
+	var/mob/living/L
+
 	for(var/datum/mind/candidate in SSticker.minds)
-		if(!candidate.current)
-			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] has no mob"))
+		L = candidate.current
+		if(request_log.Find(candidate.key))
+			var/last_request = request_log[candidate.key]
+			if((world.time - last_request) < request_timeout)
+				if(report)
+					to_chat(report, SPAN_NOTICE("Failure: [candidate] was already asked too recently"))
+				continue
+		if(!L)
+			if(report)
+				to_chat(report, SPAN_NOTICE("Failure: [candidate] has no mob"))
 			continue
 		if(!temp.can_become_antag(candidate, report))
-			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] can't become this antag"))
+			if(report)
+				to_chat(report, SPAN_NOTICE("Failure: [candidate] can't become this antag"))
 			continue
 		if(!antagonist_suitable(candidate, temp))
-			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] is not antagonist suitable"))
+			if(report)
+				to_chat(report, SPAN_NOTICE("Failure: [candidate] is not antagonist suitable"))
 			continue
-		if(!(temp.bantype in candidate.current.client.prefs.be_special_role))
-			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] has special role [temp.bantype] disabled"))
+		if(!(temp.bantype in L.client.prefs.be_special_role))
+			if(report)
+				to_chat(report, SPAN_NOTICE("Failure: [candidate] has special role [temp.bantype] disabled"))
 			continue
 		if(GLOB.storyteller && GLOB.storyteller.one_role_per_player && candidate.antagonist.len)
-			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] is already a [candidate.antagonist[1]] and can't be two antags"))
+			if(report)
+				to_chat(report, SPAN_NOTICE("Failure: [candidate] is already a [candidate.antagonist[1]] and can't be two antags"))
 			continue
 		if(player_is_antag_id(candidate,antag))
-			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] is already a [antag]"))
+			if(report)
+				to_chat(report, SPAN_NOTICE("Failure: [candidate] is already a [antag]"))
 			continue
+
 		candidates.Add(candidate)
+		any_candidates = TRUE
+
+		//Activity test
+		if(act_test)
+			spawn()
+				if(!request_log.Find(candidate.key))
+					request_log.Add(candidate.key)
+				request_log[candidate.key] = world.time //Record this request so we don't spam them repeatedly
+				usr = L
+				usr << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever when he's chosen to decide.
+				to_chat(usr, "<font color='purple'>You are a candidate for [temp.role_text].\
+								<br><a HREF=?src=\ref[src];opt_out=\ref[candidate.key]>Opt out</a> or <a HREF=?src=\ref[src];opt_in=\ref[candidate.key]>opt in</a> to the candidate pool.\
+								<br>By default, you are already in the candidate pool.</font>")
+				sleep(60 SECONDS)
+				if(opt_out_log.Find(L.key))
+					opt_out_log.Remove(L.key)
+					candidates.Remove(L.mind)
+
+	if(any_candidates && act_test)	//we don't need to wait if there's no candidates
+		sleep(65 SECONDS)
+
 	return shuffle(candidates)
 
 /datum/storyevent/roleset/proc/ghost_candidates_list(var/antag, var/act_test = TRUE, var/report)
@@ -105,6 +161,8 @@
 			//Activity test
 			if(act_test)
 				spawn()
+					if(!request_log.Find(candidate.key))
+						request_log.Add(candidate.key)
 					request_log[candidate.key] = world.time //Record this request so we don't spam them repeatedly
 					usr = candidate
 					usr << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever when he's chosen to decide.
@@ -199,7 +257,7 @@
 	if(GLOB.outer_antag_types[role_id])
 		possible_candidates = ghost_candidates_list(role_id, FALSE, report) //We set act check to false so it doesn't ask ghosts
 	else
-		possible_candidates = candidates_list(role_id, report)
+		possible_candidates = candidates_list(role_id, FALSE, report)
 
 	if (possible_candidates.len > 0)
 		return TRUE

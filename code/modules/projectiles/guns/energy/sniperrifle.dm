@@ -17,6 +17,7 @@
 	price_tag = 5000
 	cell_type = /obj/item/cell/medium
 	zoom_factor = 2
+	scoped_offset_reduction = 8
 	init_firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
