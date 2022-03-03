@@ -9,7 +9,7 @@ meteor_act
 
 /mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
-	if (slickness && P.style_damage <= slickness && !incapacitated(INCAPACITATION_UNMOVING))
+	if (dodging && slickness && P.style_damage <= slickness && !incapacitated(INCAPACITATION_UNMOVING))
 		visible_message(SPAN_WARNING("[src] dodges [P]!"))
 		slickness -= P.style_damage
 		dodge_time = get_game_time()
@@ -335,7 +335,7 @@ meteor_act
 					throw_mode_off()
 					return
 
-		if (slickness && O.style_damage <= slickness && !incapacitated(INCAPACITATION_UNMOVING))
+		if (dodging && slickness && O.style_damage <= slickness && !incapacitated(INCAPACITATION_UNMOVING))
 			visible_message(SPAN_WARNING("[src] dodges [O]!"))
 			slickness -= O.style_damage
 			dodge_time = get_game_time()
