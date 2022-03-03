@@ -63,7 +63,7 @@
 
 /mob/living/carbon/superior_animal/stalker/dual
 	name = "OneStar Stalker Mk2"
-	desc = "A ruthless patrol borg that defends OneStar facilities. This one is upgraded version with a dual minigun, don\'t stand in front of it for too long.'"
+	desc = "A ruthless patrol borg that defends OneStar facilities. This one is an upgraded version with a dual minigun, don\'t stand in front of it for too long."
 	icon_state = "stalker_mk2"
 	icon_living = "stalker_mk2"
 
