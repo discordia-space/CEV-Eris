@@ -286,6 +286,7 @@
 	src.translate_binary = FALSE
 	src.translate_hive = FALSE
 	src.syndie = FALSE
+	src.merc = FALSE
 
 	if(keyslot1)
 		for(var/ch_name in keyslot1.channels)
