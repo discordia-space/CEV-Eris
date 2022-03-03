@@ -108,3 +108,15 @@
 	)
 	gear_tweaks += new /datum/gear_tweak/path(punkvest)
 
+/datum/gear/suit/puffypurple
+	display_name = "purple puffy coat"
+	path = /obj/item/clothing/suit/storage/puffypurple
+	cost = 1
+/datum/gear/suit/puffyblue
+	display_name = "blue puffy coat"
+	path = /obj/item/clothing/suit/storage/puffyblue
+	cost = 1
+/datum/gear/suit/puffyred
+	display_name = "crimson puffy coat"
+	path = /obj/item/clothing/suit/storage/puffyred
+	cost = 1
