@@ -398,7 +398,7 @@ obj/item/clothing/under/genericr
 
 /obj/item/clothing/under/tropicalblack
 	name = "black tropical shirt"
-	desc = "An Aster's Guild branded neosilk tropical shirt. This one makes you feel like an animal."
+	desc = "An Aster\'s Guild branded neosilk tropical shirt. This one makes you feel like an animal."
 	icon_state = "animalstyle"
 	item_state = "animalstyle"
 	style = STYLE_HIGH
