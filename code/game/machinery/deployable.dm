@@ -148,34 +148,29 @@ for reference:
 		return 0
 
 /obj/structure/barricade/proc/check_cover(obj/item/projectile/P, turf/from)
-	var/turf/cover
-	cover = get_step(loc, get_dir(from, loc))
-	if(!cover)
-		return 1
 	if (get_dist(P.starting, loc) <= 1) //Cover won't help you if people are THIS close
 		return 1
-	if (get_turf(P.original) == cover)
-		var/valid = FALSE
-		var/distance = get_dist(P.last_interact,loc)
-		P.check_hit_zone(loc, distance)
+	var/valid = FALSE
+	var/distance = get_dist(P.last_interact,loc)
+	P.check_hit_zone(loc, distance)
 
-		var/targetzone = check_zone(P.def_zone)
-		if (targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
-			valid = TRUE //The lower body is always concealed
-		if (ismob(P.original))
-			var/mob/M = P.original
-			if (M.lying)
-				valid = TRUE			//Lying down covers your whole body
-		if(valid)
-			var/pierce = P.check_penetrate(src)
-			health -= P.get_structure_damage()/2
-			if (health > 0)
-				visible_message(SPAN_WARNING("[P] hits \the [src]!"))
-				return pierce
-			else
-				visible_message(SPAN_WARNING("[src] breaks down!"))
-				qdel(src)
-				return 1
+	var/targetzone = check_zone(P.def_zone)
+	if (targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
+		valid = TRUE //The lower body is always concealed
+	if (ismob(P.original))
+		var/mob/M = P.original
+		if (M.lying)
+			valid = TRUE			//Lying down covers your whole body
+	if(valid)
+		var/pierce = P.check_penetrate(src)
+		health -= P.get_structure_damage()/2
+		if (health > 0)
+			visible_message(SPAN_WARNING("[P] hits \the [src]!"))
+			return pierce
+		else
+			visible_message(SPAN_WARNING("[src] breaks down!"))
+			qdel(src)
+			return 1
 	return 1
 
 //Actual Deployable machinery stuff
@@ -324,32 +319,27 @@ for reference:
 		return 1
 
 /obj/machinery/deployable/barrier/proc/check_cover(obj/item/projectile/P, turf/from)
-	var/turf/cover
-	cover = get_step(loc, get_dir(from, loc))
-	if(!cover)
-		return 1
 	if (get_dist(P.starting, loc) <= 1) //Cover won't help you if people are THIS close
 		return 1
-	if (get_turf(P.original) == cover)
-		var/valid = FALSE
-		var/distance = get_dist(P.last_interact,loc)
-		P.check_hit_zone(loc, distance)
+	var/valid = FALSE
+	var/distance = get_dist(P.last_interact,loc)
+	P.check_hit_zone(loc, distance)
 
-		var/targetzone = check_zone(P.def_zone)
-		if (targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
-			valid = TRUE //The lower body is always concealed
-		if (ismob(P.original))
-			var/mob/M = P.original
-			if (M.lying)
-				valid = TRUE			//Lying down covers your whole body
-		if(valid)
-			var/pierce = P.check_penetrate(src)
-			health -= P.get_structure_damage()/2
-			if (health > 0)
-				visible_message(SPAN_WARNING("[P] hits \the [src]!"))
-				return pierce
-			else
-				visible_message(SPAN_WARNING("[src] breaks down!"))
-				qdel(src)
-				return 1
+	var/targetzone = check_zone(P.def_zone)
+	if (targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
+		valid = TRUE //The lower body is always concealed
+	if (ismob(P.original))
+		var/mob/M = P.original
+		if (M.lying)
+			valid = TRUE			//Lying down covers your whole body
+	if(valid)
+		var/pierce = P.check_penetrate(src)
+		health -= P.get_structure_damage()/2
+		if (health > 0)
+			visible_message(SPAN_WARNING("[P] hits \the [src]!"))
+			return pierce
+		else
+			visible_message(SPAN_WARNING("[src] breaks down!"))
+			qdel(src)
+			return 1
 	return 1
