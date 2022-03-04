@@ -377,6 +377,7 @@
 
 /obj/item/ammo_magazine/lrifle/drum
 	name = "drum magazine (.30 Rifle)"
+	desc = "Heavy .30 caliber magazine, holds 45 rounds. Only fits \"Krinkov\" and \"Kalash\"."
 	icon_state = "lrifle_drum"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE_D
