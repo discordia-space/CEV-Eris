@@ -1,10 +1,18 @@
-#define RADIUS 7
+#define RADIUS 4
 #define DRILL_COOLDOWN 1 MINUTE
+
+/obj/machinery/mining
+	icon = 'icons/obj/mining_drill.dmi'
+	anchored = FALSE
+	use_power = NO_POWER_USE //The drill takes power directly from a cell.
+	density = TRUE
+	layer = MOB_LAYER+0.1 //So it draws over mobs in the tile north of it.
 
 /obj/machinery/mining/deep_drill
 	name = "deep mining drill head"
 	desc = "An enormous drill to dig out deep ores."
 	icon_state = "mining_drill"
+	pixel_x = -16
 
 	circuit = /obj/item/electronics/circuitboard/miningdrill
 

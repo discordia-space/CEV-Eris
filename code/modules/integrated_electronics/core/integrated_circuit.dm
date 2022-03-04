@@ -123,8 +123,8 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		var/obj/machinery/power/apc/A = AM
 		cell = A.cell
 
-	else if(istype(AM, /obj/machinery/mining/drill))
-		var/obj/machinery/mining/drill/hdrill = AM
+	else if(istype(AM, /obj/machinery/mining/deep_drill))
+		var/obj/machinery/mining/deep_drill/hdrill = AM
 		cell = hdrill.cell
 
 	else if(istype(AM, /obj/item/gun/energy))
