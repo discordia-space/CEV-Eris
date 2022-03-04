@@ -1,0 +1,4 @@
+author: Alliostra
+delete-after: true
+changes:
+  - rscadd: Adds rapid 3-round-bursts to the Sol
