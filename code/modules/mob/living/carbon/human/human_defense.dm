@@ -63,7 +63,7 @@ meteor_act
 	var/hit_dirs = (r_dir in cardinal) ? r_dir : list(r_dir & NORTH|SOUTH, r_dir & EAST|WEST)
 
 	var/stumbled = FALSE
-	if(hit_zone == BP_L_LEG || hit_zone == BP_R_LEG)
+	if(hit_zone in BP_LEGS)
 		if(prob(60 - stats.getStat(STAT_TGH)))
 			stumbled = TRUE
 			step(src, pick(cardinal - hit_dirs))
