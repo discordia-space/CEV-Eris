@@ -39,6 +39,12 @@
 	icon_state = "black_goggles"
 	item_state = "black_goggles"
 
+/obj/item/clothing/glasses/regular/goggles/clear
+	name = "Goggles"
+	desc = "Goggles made of plastic."
+	icon_state = "clear_goggles"
+	item_state = "clear_goggles"
+
 /obj/item/clothing/glasses/regular/hipster
 	name = "Prescription Glasses"
 	desc = "Made by Uncool. Co."
