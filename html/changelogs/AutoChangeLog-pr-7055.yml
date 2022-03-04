@@ -1,4 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - bugfix: fixed .60 ammo boxes not containing as many shells as they should
