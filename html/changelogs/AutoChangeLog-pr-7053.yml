@@ -1,0 +1,8 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - tweak: hunting rifle and PD rifle crates now contain Tosshin and Vipr respectively
+  - balance: changed the prices of the hunting and PD rifle crates, increased price
+      of tosshin, reduced price of Vipr
+  - bugfix: OR guns are no longer FS
+  - spellcheck: fixed some typos
