@@ -1,0 +1,4 @@
+author: hyperioo
+delete-after: true
+changes:
+  - bugfix: Covers now trigger properly
