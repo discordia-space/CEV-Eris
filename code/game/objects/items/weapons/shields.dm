@@ -126,7 +126,7 @@
 /obj/item/shield/proc/get_partial_protected_area(mob/user)
 	return get_protected_area(user)
 
-/obj/item/shield/attack(mob/M, mob/user)
+/obj/item/shield/attack(mob/M, mob/user, var/modifier = 1)
 	if(isliving(M))
 		var/mob/living/L = M
 		if(L.slowdown < slowdown_time * 3)

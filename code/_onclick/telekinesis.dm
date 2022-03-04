@@ -137,7 +137,7 @@ var/const/tk_maxrange = 15
 		last_throw = world.time
 	return
 
-/obj/item/tk_grab/attack(mob/living/M, mob/living/user, def_zone)
+/obj/item/tk_grab/attack(mob/living/M, mob/living/user, def_zone, var/modifier = 1)
 	return
 
 

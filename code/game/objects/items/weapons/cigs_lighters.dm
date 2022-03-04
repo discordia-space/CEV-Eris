@@ -216,7 +216,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		text = replacetext(text, "FLAME", "[W.name]")
 		light(text)
 
-/obj/item/clothing/mask/smokable/attack(var/mob/living/M, var/mob/living/user, def_zone)
+/obj/item/clothing/mask/smokable/attack(var/mob/living/M, var/mob/living/user, def_zone, var/modifier = 1)
 	if(istype(M) && M.on_fire)
 		user.do_attack_animation(M)
 		light(SPAN_NOTICE("\The [user] coldly lights the \the [src] with the burning body of \the [M]."))
@@ -526,7 +526,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	return
 
 
-/obj/item/flame/lighter/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/flame/lighter/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob, var/modifier = 1)
 	if(!ismob(M))
 		return
 	M.IgniteMob()

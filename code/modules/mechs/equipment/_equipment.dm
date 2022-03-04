@@ -19,7 +19,7 @@
 	var/passive_power_use = 0          // For gear that for some reason takes up power even if it's supposedly doing nothing (mech will idly consume power)
 	var/mech_layer = MECH_COCKPIT_LAYER //For the part where it's rendered as mech gear
 
-/obj/item/mech_equipment/attack() //Generally it's not desired to be able to attack with items
+/obj/item/mech_equipment/attack(var/modifier = 1) //Generally it's not desired to be able to attack with items
 	return 0
 
 /obj/item/mech_equipment/afterattack(atom/target, mob/living/user, inrange, params)

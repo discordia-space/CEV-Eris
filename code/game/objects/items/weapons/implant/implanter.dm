@@ -34,7 +34,7 @@
 		var/image/content = image('icons/obj/items.dmi', icon_state = implant.implant_overlay)
 		add_overlay(content)
 
-/obj/item/implanter/attack(mob/living/M, mob/living/user)
+/obj/item/implanter/attack(mob/living/M, mob/living/user, var/modifier = 1)
 	if(!istype(M) || !implant)
 		return
 	if(!implant.is_external())

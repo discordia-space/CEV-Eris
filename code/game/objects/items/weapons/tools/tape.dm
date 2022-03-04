@@ -45,7 +45,7 @@
 	matter = list(MATERIAL_BIOMATTER = 30)
 	worksound = NO_WORKSOUND
 
-/obj/item/tool/tape_roll/attack(mob/living/carbon/human/H, mob/user)
+/obj/item/tool/tape_roll/attack(mob/living/carbon/human/H, mob/user, var/modifier = 1)
 	if(istype(H))
 		if(user.targeted_organ == BP_EYES)
 

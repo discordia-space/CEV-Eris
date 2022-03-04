@@ -89,7 +89,7 @@
 			to_chat(user, SPAN_WARNING("[src] is out of charge."))
 	add_fingerprint(user)
 
-/obj/item/melee/baton/attack(mob/M, mob/user)
+/obj/item/melee/baton/attack(mob/M, mob/user, var/modifier = 1)
 	if(status && (CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_DANGER("You accidentally hit yourself with the [src]!"))
 		user.Weaken(30)
@@ -110,8 +110,8 @@
 
 	if(user.a_intent == I_HURT)
 		. = ..()
-		if (!.)	//item/attack() does it's own messaging and logs
-			return 0	// item/attack() will return 1 if they hit, 0 if they missed.
+		if (!.)	//item/attack(, var/modifier = 1) does it's own messaging and logs
+			return 0	// item/attack(, var/modifier = 1) will return 1 if they hit, 0 if they missed.
 
 		//whacking someone causes a much poorer electrical contact than deliberately prodding them.
 		stun *= 0.5

@@ -48,7 +48,7 @@
 	sharp = FALSE
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 10, QUALITY_CLAMPING = 20, QUALITY_BOLT_TURNING = 15, QUALITY_BONE_SETTING = 20)
 
-/obj/item/tool/wirecutters/attack(mob/living/carbon/C, mob/user)
+/obj/item/tool/wirecutters/attack(mob/living/carbon/C, mob/user, var/modifier = 1)
 	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/handcuffs/cable)))
 		usr.visible_message(
 			"\The [usr] cuts \the [C]'s restraints with \the [src]!",

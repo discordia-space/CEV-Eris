@@ -9,7 +9,7 @@
 	var/labels_left = 30
 	var/mode = 0	//off or on.
 
-/obj/item/hand_labeler/attack()
+/obj/item/hand_labeler/attack(var/modifier = 1)
 	return
 
 /obj/item/hand_labeler/afterattack(atom/A, mob/user as mob, proximity)

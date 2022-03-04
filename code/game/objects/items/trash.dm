@@ -10,7 +10,7 @@
 	spawn_tags = SPAWN_TAG_JUNK
 	matter = list(MATERIAL_PLASTIC = 1)
 
-/obj/item/trash/attack(mob/M, mob/living/user)
+/obj/item/trash/attack(mob/M, mob/living/user, var/modifier = 1)
 	return
 
 

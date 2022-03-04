@@ -143,7 +143,7 @@
 	slot_flags = SLOT_BACK
 	var/entropy_value = 1 //for bluespace entropy
 
-/obj/item/tele_spear/attack(mob/living/carbon/human/M, mob/living/carbon/user)
+/obj/item/tele_spear/attack(mob/living/carbon/human/M, mob/living/carbon/user, var/modifier = 1)
 	playsound(src.loc, 'sound/effects/EMPulse.ogg', 65, 1)
 	var/turf/teleport_location = pick( getcircle(user.loc, 8) )
 	if(prob(5))

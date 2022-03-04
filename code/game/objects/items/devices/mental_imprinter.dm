@@ -29,7 +29,7 @@
 	to_chat(user, SPAN_DANGER("[src] plunges into your eye, imprinting your mind with new information!"))
 	spent = TRUE
 
-/obj/item/device/mental_imprinter/attack(mob/M, mob/living/carbon/human/user, target_zone)
+/obj/item/device/mental_imprinter/attack(mob/M, mob/living/carbon/human/user, target_zone, var/modifier = 1)
 	if(!istype(user) || M != user || target_zone != BP_EYES || user.incapacitated() || spent)
 		return ..()
 	if(length(user.get_covering_equipped_items(EYES)))

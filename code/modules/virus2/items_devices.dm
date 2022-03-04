@@ -10,7 +10,7 @@
 	flags = CONDUCT
 	rarity_value = 50
 
-/obj/item/device/antibody_scanner/attack(mob/M as mob, mob/user as mob)
+/obj/item/device/antibody_scanner/attack(mob/M as mob, mob/user as mob, var/modifier = 1)
 	if(!istype(M,/mob/living/carbon/))
 		report("Scan aborted: Incompatible target.", user)
 		return

@@ -94,5 +94,5 @@
 		target.overlays -= image_overlay
 	qdel(src)
 
-/obj/item/plastique/attack(mob/M, mob/user, def_zone)
+/obj/item/plastique/attack(mob/M, mob/user, def_zone, var/modifier = 1)
 	return

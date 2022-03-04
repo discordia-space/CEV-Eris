@@ -171,7 +171,7 @@
 	usr.put_in_hands(P)
 	usr.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*4) //To stop people spamclicking and generating tons of paper
 
-/obj/item/autopsy_scanner/attack(mob/living/carbon/human/M, mob/living/carbon/user)
+/obj/item/autopsy_scanner/attack(mob/living/carbon/human/M, mob/living/carbon/user, var/modifier = 1)
 	if(!istype(M))
 		return
 

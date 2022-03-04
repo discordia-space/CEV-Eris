@@ -20,7 +20,7 @@
 		icon_state = "pill[rand(1, 20)]"
 
 
-/obj/item/reagent_containers/pill/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/pill/attack(mob/M as mob, mob/user as mob, def_zone, var/modifier = 1)
 	standard_feed_mob(user, M)
 
 /obj/item/reagent_containers/pill/self_feed_message(var/mob/user)

@@ -21,7 +21,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
-/obj/item/melee/classic_baton/attack(mob/M, mob/living/user)
+/obj/item/melee/classic_baton/attack(mob/M, mob/living/user, var/modifier = 1)
 	if ((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("You club yourself over the head."))
 		user.Weaken(3 * force)
@@ -89,7 +89,7 @@
 
 	return
 
-/obj/item/melee/telebaton/attack(mob/target, mob/living/user)
+/obj/item/melee/telebaton/attack(mob/target, mob/living/user, var/modifier = 1)
 	if(on)
 		if ((CLUMSY in user.mutations) && prob(50))
 			to_chat(user, SPAN_WARNING("You club yourself over the head."))

@@ -21,7 +21,7 @@
 	attack_self(var/mob/user as mob)
 		return
 
-	attack(var/mob/M as mob, var/mob/user as mob, var/def_zone)
+	attack(var/mob/M as mob, var/mob/user as mob, var/def_zone, var/modifier = 1)
 		standard_feed_mob(user, M)
 
 	afterattack(var/obj/target, var/mob/user, var/proximity)

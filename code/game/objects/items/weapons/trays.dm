@@ -16,7 +16,7 @@
 	var/list/carrying = list() // List of things on the tray. - Doohl
 	var/max_carry = 10
 
-/obj/item/tray/attack(mob/living/carbon/M, mob/living/carbon/user)
+/obj/item/tray/attack(mob/living/carbon/M, mob/living/carbon/user, var/modifier = 1)
 
 	// Drop all the things. All of them.
 	overlays.Cut()

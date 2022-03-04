@@ -246,7 +246,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	. = ..()
 	experiments = new
 
-/obj/item/device/science_tool/attack(mob/living/M, mob/living/user)
+/obj/item/device/science_tool/attack(mob/living/M, mob/living/user, var/modifier = 1)
 	return
 
 /obj/item/device/science_tool/afterattack(obj/O, mob/living/user)

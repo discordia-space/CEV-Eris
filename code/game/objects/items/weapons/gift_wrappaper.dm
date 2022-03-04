@@ -182,7 +182,7 @@
 	if(..(user, 1))
 		to_chat(user, text("There is about [] square units of paper left!", src.amount))
 
-/obj/item/wrapping_paper/attack(mob/target, mob/user)
+/obj/item/wrapping_paper/attack(mob/target, mob/user, var/modifier = 1)
 	if (!ishuman(target))
 		return
 	var/mob/living/carbon/human/H = target

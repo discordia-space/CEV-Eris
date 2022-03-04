@@ -964,7 +964,7 @@
 				to_chat(user, SPAN_WARNING("Your eyes are really starting to hurt. This can't be good for you!"))
 
 
-/obj/item/tool/attack(mob/living/M, mob/living/user, var/target_zone, var/modifier = 1)
+/obj/item/tool/attack(mob/living/M, mob/living/user, var/target_zone, var/modifier = 1, var/modifier = 1)
 	if(isBroken)
 		to_chat(user, SPAN_WARNING("\The [src] is broken."))
 		return

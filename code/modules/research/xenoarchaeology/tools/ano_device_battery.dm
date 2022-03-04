@@ -194,7 +194,7 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/item/anodevice/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
+/obj/item/anodevice/attack(mob/living/M as mob, mob/living/user as mob, def_zone, var/modifier = 1)
 	if (!istype(M))
 		return
 

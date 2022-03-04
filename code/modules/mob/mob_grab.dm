@@ -353,7 +353,7 @@
 	else if (assailant.mob_size < affecting.mob_size)
 		slowdown *= 1.5
 
-/obj/item/grab/attack(mob/M, mob/living/user)
+/obj/item/grab/attack(mob/M, mob/living/user, var/modifier = 1)
 	if(!affecting)
 		return
 	if(world.time < (last_action + 20))

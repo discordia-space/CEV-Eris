@@ -18,7 +18,7 @@
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
 	var/cuff_type = "handcuffs"
 
-/obj/item/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+/obj/item/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user, var/modifier = 1)
 
 	if(!user.IsAdvancedToolUser())
 		return

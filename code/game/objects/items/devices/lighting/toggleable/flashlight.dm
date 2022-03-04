@@ -232,7 +232,7 @@
 		else if(cell.percent() <= 25)
 			apply_power_deficiency()
 
-/obj/item/device/lighting/toggleable/flashlight/attack(mob/living/M, mob/living/user)
+/obj/item/device/lighting/toggleable/flashlight/attack(mob/living/M, mob/living/user, var/modifier = 1)
 	add_fingerprint(user)
 	if(on && user.targeted_organ == BP_EYES)
 

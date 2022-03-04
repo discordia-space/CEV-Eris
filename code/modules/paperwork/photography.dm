@@ -127,7 +127,7 @@ var/global/photo_count = 0
 		radius = (nsize - 1) * 0.5
 		to_chat(usr, SPAN_NOTICE("Camera will now take [(radius*2)+1]x[(radius*2)+1] photos."))
 
-/obj/item/device/camera/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/device/camera/attack(mob/living/carbon/human/M as mob, mob/user as mob, var/modifier = 1)
 	return
 
 /obj/item/device/camera/attack_self(mob/user as mob)

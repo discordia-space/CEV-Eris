@@ -60,7 +60,7 @@
 	colour = "white"
 
 
-/obj/item/pen/attack(mob/M, mob/user)
+/obj/item/pen/attack(mob/M, mob/user, var/modifier = 1)
 	if(!ismob(M))
 		return
 	to_chat(user, SPAN_WARNING("You stab [M] with the pen."))
@@ -84,7 +84,7 @@
 	..()
 	create_reagents(30)
 
-/obj/item/pen/reagent/attack(mob/living/M, mob/user)
+/obj/item/pen/reagent/attack(mob/living/M, mob/user, var/modifier = 1)
 
 	if(!istype(M))
 		return

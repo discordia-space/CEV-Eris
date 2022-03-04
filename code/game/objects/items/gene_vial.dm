@@ -7,7 +7,7 @@
 	matter = list(MATERIAL_GLASS = 1)
 	w_class = ITEM_SIZE_TINY
 
-/obj/item/gene_vial/attack(mob/M, mob/living/user, def_zone)
+/obj/item/gene_vial/attack(mob/M, mob/living/user, def_zone, var/modifier = 1)
 	if(user != M || !istype(user))
 		return ..()
 

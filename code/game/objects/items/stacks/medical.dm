@@ -17,7 +17,7 @@
 	var/charge_sections = 5		// How many indicator blips are there?
 	var/charge_x_offset = 2		//The spacing between each charge indicator. Should be 2 to leave a 1px gap between each blip.
 
-/obj/item/stack/medical/attack(mob/living/M, mob/living/user)
+/obj/item/stack/medical/attack(mob/living/M, mob/living/user, var/modifier = 1)
 	var/types = M.get_classification()
 	if (!(types & CLASSIFICATION_ORGANIC))
 		to_chat(user, SPAN_WARNING("\The [src] cannot be applied to [M]!"))
@@ -123,7 +123,7 @@
 	rarity_value = 5
 	spawn_tags = SPAWN_TAG_MEDICINE_COMMON
 
-/obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M, mob/living/user)
+/obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M, mob/living/user, var/modifier = 1)
 	if(..())
 		return 1
 
@@ -225,7 +225,7 @@
 	rarity_value = 5
 	spawn_tags = SPAWN_TAG_MEDICINE_COMMON
 
-/obj/item/stack/medical/ointment/attack(mob/living/carbon/M, mob/living/user)
+/obj/item/stack/medical/ointment/attack(mob/living/carbon/M, mob/living/user, var/modifier = 1)
 	if(..())
 		return 1
 
@@ -292,7 +292,7 @@
 	preloaded_reagents = list("silicon" = 4, "ethanol" = 10, "lithium" = 4)
 	rarity_value = 10
 
-/obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M, mob/living/user)
+/obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M, mob/living/user, var/modifier = 1)
 	if(..())
 		return 1
 
@@ -395,7 +395,7 @@
 	preloaded_reagents = list("silicon" = 4, "ethanol" = 10, "mercury" = 4)
 	rarity_value = 10
 
-/obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M, mob/living/user)
+/obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M, mob/living/user, var/modifier = 1)
 	if(..())
 		return 1
 
@@ -459,7 +459,7 @@
 	rarity_value = 20
 	spawn_tags = SPAWN_TAG_MEDICINE_COMMON
 
-/obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/living/user)
+/obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/living/user, var/modifier = 1)
 	if(..())
 		return 1
 

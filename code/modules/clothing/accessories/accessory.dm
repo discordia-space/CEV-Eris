@@ -92,7 +92,7 @@
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
 	icon_state = "stethoscope"
 
-/obj/item/clothing/accessory/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
+/obj/item/clothing/accessory/stethoscope/attack(mob/living/carbon/human/M, mob/living/user, var/modifier = 1)
 	// TODO: baymed, rework this to use something like get_heartbeat()
 	if(ishuman(M) && isliving(user))
 		if(user.a_intent == I_HELP)

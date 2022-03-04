@@ -105,7 +105,7 @@
 			return TRUE
 	return ..()
 
-/obj/item/reagent_containers/glass/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/glass/attack(mob/M as mob, mob/user as mob, def_zone, var/modifier = 1)
 	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 		return ..()
 

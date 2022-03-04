@@ -76,7 +76,7 @@
 	name = "[initial(name)] (\the [H])"
 	icon_state = "fingerprint1"
 
-/obj/item/sample/print/attack(var/mob/living/M, var/mob/user)
+/obj/item/sample/print/attack(var/mob/living/M, var/mob/user, var/modifier = 1)
 
 	if(!ishuman(M))
 		return ..()

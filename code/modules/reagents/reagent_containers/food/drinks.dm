@@ -34,7 +34,7 @@
 	verbs += /obj/item/reagent_containers/food/drinks/proc/gulp_whole
 	update_icon()
 
-/obj/item/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone, var/modifier = 1)
 	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 		return ..()
 

@@ -10,7 +10,7 @@
 /obj/item/forensics/swab/proc/is_used()
 	return used
 
-/obj/item/forensics/swab/attack(var/mob/living/M, var/mob/user)
+/obj/item/forensics/swab/attack(var/mob/living/M, var/mob/user, var/modifier = 1)
 
 	if(!ishuman(M))
 		return ..()

@@ -17,7 +17,7 @@
 	rarity_value = 50
 	suitable_cell = /obj/item/cell/small
 
-/obj/item/device/robotanalyzer/attack(mob/living/M, mob/living/user)
+/obj/item/device/robotanalyzer/attack(mob/living/M, mob/living/user, var/modifier = 1)
 	if(!cell_use_check(5, user))
 		return
 	if((CLUMSY in user.mutations) && prob(50))

@@ -26,7 +26,7 @@
 	var/canRwall = 1
 	var/disabled = 0
 
-/obj/item/rcd/attack()
+/obj/item/rcd/attack(var/modifier = 1)
 	return 0
 
 /obj/item/rcd/proc/can_use(var/mob/user,var/turf/T)

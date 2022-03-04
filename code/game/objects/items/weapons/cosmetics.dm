@@ -41,7 +41,7 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/lipstick/attack(mob/M as mob, mob/user as mob)
+/obj/item/lipstick/attack(mob/M as mob, mob/user as mob, var/modifier = 1)
 	if(!open)
 		return
 
@@ -69,7 +69,7 @@
 	else
 		to_chat(user, SPAN_NOTICE("Where are the lips on that?"))
 
-//you can wipe off lipstick with paper! see code/modules/paperwork/paper.dm, paper/attack()
+//you can wipe off lipstick with paper! see code/modules/paperwork/paper.dm, paper/attack(, var/modifier = 1)
 
 
 /obj/item/haircomb //sparklysheep's comb

@@ -7,7 +7,7 @@
 	var/obj/carrying
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 
-/obj/item/mech_equipment/clamp/attack()
+/obj/item/mech_equipment/clamp/attack(var/modifier = 1)
 	return 0
 
 /obj/item/mech_equipment/clamp/afterattack(atom/target, mob/living/user, inrange, params)
@@ -294,7 +294,7 @@
 			owner.visible_message(SPAN_DANGER("\The [owner] starts to drill \the [target]"), SPAN_WARNING("You hear a large drill."))
 			var/T = target.loc
 
-			//Better materials = faster drill! // 
+			//Better materials = faster drill! //
 			var/delay = 30
 			switch (drill_head.material.hardness) // It's either default (steel), plasteel or diamond
 				if(80) delay = 15

@@ -105,7 +105,7 @@
 			user.visible_message("\The [user] finishes wiping off the [A]!")
 			A.clean_blood()
 
-/obj/item/reagent_containers/glass/rag/attack(atom/target as obj|turf|area, mob/user, flag)
+/obj/item/reagent_containers/glass/rag/attack(atom/target as obj|turf|area, mob/user, flag, var/modifier = 1)
 	if(isliving(target))
 		var/mob/living/M = target
 		if(on_fire)

@@ -98,7 +98,7 @@
 		qdel(src)
 	return uses
 
-/obj/item/dnainjector/attack(mob/M as mob, mob/user as mob)
+/obj/item/dnainjector/attack(mob/M as mob, mob/user as mob, var/modifier = 1)
 	if (!ismob(M))
 		return
 	if (!usr.IsAdvancedToolUser())

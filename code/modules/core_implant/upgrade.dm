@@ -13,7 +13,7 @@
 	..()
 	set_up()
 
-/obj/item/coreimplant_upgrade/attack(var/mob/living/carbon/human/target, var/mob/living/user, var/target_zone)
+/obj/item/coreimplant_upgrade/attack(var/mob/living/carbon/human/target, var/mob/living/user, var/target_zone, var/modifier = 1)
 	if(!ishuman(target) || !module)
 		to_chat(user, SPAN_WARNING("This upgrade is blank."))
 		return

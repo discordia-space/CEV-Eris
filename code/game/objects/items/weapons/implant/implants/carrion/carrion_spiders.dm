@@ -62,7 +62,7 @@
 
 	qdel(src)
 
-/obj/item/implant/carrion_spider/attack(mob/living/M, mob/living/user)
+/obj/item/implant/carrion_spider/attack(mob/living/M, mob/living/user, var/modifier = 1)
 	if(!(istype(M, /mob/living/simple_animal) || istype(M, /mob/living/carbon)))
 		to_chat(user, SPAN_WARNING("You can't implant spiders into robots."))
 		return

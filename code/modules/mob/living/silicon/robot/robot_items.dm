@@ -277,7 +277,7 @@
 	item_state = "sheet-metal"
 	bad_type = /obj/item/form_printer
 
-/obj/item/form_printer/attack(mob/living/carbon/M, mob/living/carbon/user)
+/obj/item/form_printer/attack(mob/living/carbon/M, mob/living/carbon/user, var/modifier = 1)
 	return
 
 /obj/item/form_printer/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)

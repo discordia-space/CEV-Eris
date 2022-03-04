@@ -37,7 +37,7 @@
 	spawn_tags = null
 
 
-/obj/item/implanter/compressed/attack(mob/living/M, mob/living/user)
+/obj/item/implanter/compressed/attack(mob/living/M, mob/living/user, var/modifier = 1)
 	var/obj/item/implant/compressed/c = implant
 	if (!c)	return
 	if (c.scanned == null)

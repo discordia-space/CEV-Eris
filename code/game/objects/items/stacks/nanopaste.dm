@@ -13,7 +13,7 @@
 	rarity_value = 40
 
 
-/obj/item/stack/nanopaste/attack(mob/living/M, mob/user)
+/obj/item/stack/nanopaste/attack(mob/living/M, mob/user, var/modifier = 1)
 	if(..())
 		return 1
 	if (!istype(M) || !istype(user))

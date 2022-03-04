@@ -1177,7 +1177,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			update_icon()
 	return
 
-/obj/item/device/pda/attack(mob/living/C as mob, mob/living/user as mob)
+/obj/item/device/pda/attack(mob/living/C as mob, mob/living/user as mob, var/modifier = 1)
 	if (iscarbon(C))
 		switch(scanmode)
 			if(1)

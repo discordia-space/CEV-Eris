@@ -41,7 +41,7 @@
 	create_reagents(10)
 	..()
 
-/obj/item/toy/balloon/attack(mob/living/carbon/human/M, mob/user)
+/obj/item/toy/balloon/attack(mob/living/carbon/human/M, mob/user, var/modifier = 1)
 	return
 
 /obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user, proximity)
@@ -193,7 +193,7 @@
 				O.show_message(SPAN_WARNING("\The [user] realized they were out of ammo and starting scrounging for some!"), 1)
 
 
-	attack(mob/M as mob, mob/user)
+	attack(mob/M as mob, mob/user, var/modifier = 1)
 		src.add_fingerprint(user)
 
 // ******* Check
@@ -327,7 +327,7 @@
 	preloaded_reagents = list("water" = 10)
 	var/empty = 0
 
-/obj/item/toy/waterflower/attack(mob/living/carbon/human/M, mob/user )
+/obj/item/toy/waterflower/attack(mob/living/carbon/human/M, mob/user , var/modifier = 1)
 	return
 
 /obj/item/toy/waterflower/afterattack(atom/A as mob|obj, mob/user)

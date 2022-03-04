@@ -23,7 +23,7 @@
 	var/pipe_type = 0
 	var/p_dir = 1
 
-/obj/item/rpd/attack()
+/obj/item/rpd/attack(var/modifier = 1)
 	return 0
 
 /obj/item/rpd/proc/can_use(var/mob/user,var/turf/T)

@@ -78,7 +78,7 @@
 			to_chat(user, SPAN_NOTICE("You tied [C] to [src] and finally finish it!"))
 	update_icon()
 
-/obj/item/melee/toolbox_maul/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
+/obj/item/melee/toolbox_maul/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob, var/modifier = 1)
 	..()
 	if(!reinforced && prob(5))
 		break_apart(user)

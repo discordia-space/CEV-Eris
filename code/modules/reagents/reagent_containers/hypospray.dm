@@ -17,7 +17,7 @@
 	preloaded_reagents = list("bicaridine" = 40)
 	//spawn_blacklisted = TRUE//antag_item_targets?
 
-/obj/item/reagent_containers/hypospray/attack(mob/living/M as mob, mob/user as mob)
+/obj/item/reagent_containers/hypospray/attack(mob/living/M as mob, mob/user as mob, var/modifier = 1)
 	if(!reagents.total_volume)
 		to_chat(user, SPAN_WARNING("[src] is empty."))
 		return

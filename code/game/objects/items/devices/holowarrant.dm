@@ -69,7 +69,7 @@
 	..()
 
 //hit other people with it
-/obj/item/device/holowarrant/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/device/holowarrant/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob, var/modifier = 1)
 	user.visible_message("<span class='notice'>[user] holds up a warrant projector and shows the contents to [M].</span>", \
 			"<span class='notice'>You show the warrant to [M].</span>")
 	M.examinate(src)

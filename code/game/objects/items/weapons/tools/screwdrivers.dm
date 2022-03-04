@@ -51,7 +51,7 @@
 	rarity_value = 48
 	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
-/obj/item/tool/screwdriver/attack(mob/living/carbon/M, mob/living/carbon/user)
+/obj/item/tool/screwdriver/attack(mob/living/carbon/M, mob/living/carbon/user, var/modifier = 1)
 	if(!istype(M) || user.a_intent == "help")
 		return ..()
 	if(user.targeted_organ != BP_EYES && user.targeted_organ != BP_HEAD)
