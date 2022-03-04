@@ -197,6 +197,7 @@
 
 /obj/item/ammo_magazine/srifle/long
 	name = "extended magazine (.20 Rifle)"
+	desc = "Extended .20 caliber magazine, holds 35 rounds. Only fits \"Vintorez\" and \"Wintermute\" and \"Kalash\"."
 	desc = "Extended .20 caliber magazine, hold 35 rounds. Only fits \"Vintorez\" and \"Wintermute\".
 	icon_state = "srifle_long"
 	origin_tech = list(TECH_COMBAT = 2)
