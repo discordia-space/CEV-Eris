@@ -25,6 +25,8 @@
 		return 1
 	var/valid = FALSE
 	var/distance = get_dist(P.last_interact,loc)
+	if(!P.def_zone)
+		return 1 // Emitters, or anything with no targeted bodypart will always bypass the cover
 	P.check_hit_zone(loc, distance)
 
 	var/targetzone = check_zone(P.def_zone)
