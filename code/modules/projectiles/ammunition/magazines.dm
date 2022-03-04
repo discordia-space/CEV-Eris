@@ -193,6 +193,73 @@
 	ammo_type = /obj/item/ammo_casing/srifle/scrap
 	spawn_tags = SPAWN_AMMO_COMMON
 
+////////// .20 LONG ///////////
+
+/obj/item/ammo_magazine/srifle/long
+	name = "extended magazine (.20 Rifle)"
+	desc = "Extended .20 caliber magazine, holds 35 rounds. Only fits \"Vintorez\" and \"Wintermute\" and \"Kalash\"."
+	icon_state = "srifle_long"
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_RIFLE_L
+	caliber = CAL_SRIFLE
+	matter = list(MATERIAL_STEEL = 9)
+	ammo_type = /obj/item/ammo_casing/srifle
+	max_ammo = 35
+	ammo_states = list(35)
+	rarity_value = 20
+
+/obj/item/ammo_magazine/srifle/long/empty
+	matter = list(MATERIAL_STEEL = 3)
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/srifle/long/practice
+	ammo_type = /obj/item/ammo_casing/srifle/practice
+
+/obj/item/ammo_magazine/srifle/long/hv
+	ammo_type = /obj/item/ammo_casing/srifle/hv
+
+/obj/item/ammo_magazine/srifle/long/rubber
+	ammo_type = /obj/item/ammo_casing/srifle/rubber
+
+/obj/item/ammo_magazine/srifle/long/scrap
+	ammo_type = /obj/item/ammo_casing/srifle/scrap
+	spawn_tags = SPAWN_AMMO_COMMON
+
+////////// .20 DRUM ///////////
+
+/obj/item/ammo_magazine/srifle/drum
+	name = "drum magazine (.20 Rifle)"
+	desc = "Heavy .20 caliber magazine, holds 60 rounds. Only fits \"Kalash\"."
+	icon_state = "srifle_drum"
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_RIFLE_D
+	caliber = CAL_SRIFLE
+	matter = list(MATERIAL_STEEL = 18)
+	ammo_type = /obj/item/ammo_casing/srifle
+	max_ammo = 60
+	ammo_states = list(60)
+	w_class = ITEM_SIZE_NORMAL
+	spawn_blacklisted = TRUE // Not in use yet
+
+/obj/item/ammo_magazine/srifle/drum/empty
+	matter = list(MATERIAL_STEEL = 3)
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/srifle/drum/practice
+	ammo_type = /obj/item/ammo_casing/srifle/practice
+
+/obj/item/ammo_magazine/srifle/drum/hv
+	ammo_type = /obj/item/ammo_casing/srifle/hv
+
+/obj/item/ammo_magazine/srifle/drum/rubber
+	ammo_type = /obj/item/ammo_casing/srifle/rubber
+
+/obj/item/ammo_magazine/srifle/drum/scrap
+	ammo_type = /obj/item/ammo_casing/srifle/scrap
+	spawn_tags = SPAWN_AMMO_COMMON
+
 ////////// .25 RIFLE ///////////
 
 /obj/item/ammo_magazine/c10x24
@@ -276,31 +343,6 @@
 	max_ammo = 30
 	ammo_states = list(30)
 
-/obj/item/ammo_magazine/lrifle/pk
-	name = "LMG munitions box (.30 Rifle)"
-	icon_state = "pk_box"
-	modular_sprites = FALSE
-	origin_tech = list(TECH_COMBAT = 2)
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_BOX
-	caliber = CAL_LRIFLE
-	matter = list(MATERIAL_STEEL = 8)
-	ammo_type = /obj/item/ammo_casing/lrifle
-	max_ammo = 80
-	w_class = ITEM_SIZE_NORMAL
-	ammo_states = list(15, 30, 50, 79, 80)
-
-//Magazine type for the mech PK, you shouldn't see this
-
-/obj/item/ammo_magazine/lrifle/pk/mech
-	name = "LMG munitions box (.30 Rifle, Exosuit)"
-	matter = list()
-	spawn_blacklisted = TRUE
-	bad_type = /obj/item/ammo_magazine/lrifle/pk/mech
-
-/obj/item/ammo_magazine/lrifle/pk/empty
-	initial_ammo = 0
-
 /obj/item/ammo_magazine/lrifle/empty
 	initial_ammo = 0
 
@@ -317,13 +359,72 @@
 	ammo_type = /obj/item/ammo_casing/lrifle/scrap
 	spawn_tags = SPAWN_AMMO_COMMON
 
+/obj/item/ammo_magazine/lrifle/pk
+	name = "LMG munitions box (.30 Rifle)"
+	icon_state = "pk_box"
+	modular_sprites = FALSE
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_BOX
+	caliber = CAL_LRIFLE
+	matter = list(MATERIAL_STEEL = 16)
+	ammo_type = /obj/item/ammo_casing/lrifle
+	max_ammo = 80
+	w_class = ITEM_SIZE_NORMAL
+	ammo_states = list(15, 30, 50, 79, 80)
+
+///////// .30 DRUM ///////////
+
+/obj/item/ammo_magazine/lrifle/drum
+	name = "drum magazine (.30 Rifle)"
+	desc = "Heavy .30 caliber magazine, holds 45 rounds. Only fits \"Krinkov\" and \"Kalash\"."
+	icon_state = "lrifle_drum"
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_RIFLE_D
+	caliber = CAL_LRIFLE
+	matter = list(MATERIAL_STEEL = 10)
+	ammo_type = /obj/item/ammo_casing/lrifle
+	max_ammo = 45
+	ammo_states = list(45)
+	w_class = ITEM_SIZE_NORMAL
+	rarity_value = 20
+
+/obj/item/ammo_magazine/lrifle/drum/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/lrifle/drum/practice
+	ammo_type = /obj/item/ammo_casing/lrifle/practice
+
+/obj/item/ammo_magazine/lrifle/drum/highvelocity
+	ammo_type = /obj/item/ammo_casing/lrifle/hv
+
+/obj/item/ammo_magazine/lrifle/drum/rubber
+	ammo_type = /obj/item/ammo_casing/lrifle/rubber
+
+/obj/item/ammo_magazine/lrifle/drum/scrap
+	ammo_type = /obj/item/ammo_casing/lrifle/scrap
+	spawn_tags = SPAWN_AMMO_COMMON
+
+//Magazine type for the mech PK, you shouldn't see this
+
+/obj/item/ammo_magazine/lrifle/pk/mech
+	name = "LMG munitions box (.30 Rifle, Exosuit)"
+	matter = list()
+	spawn_blacklisted = TRUE
+	bad_type = /obj/item/ammo_magazine/lrifle/pk/mech
+
+/obj/item/ammo_magazine/lrifle/pk/empty
+	initial_ammo = 0
+
+///////// .30 MAXIM ///////////
+
 /obj/item/ammo_magazine/maxim
 	name = "pan magazine (.30 Rifle)"
 	icon_state = "maxim"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_PAN
 	caliber = CAL_LRIFLE
-	matter = list(MATERIAL_STEEL = 10)
+	matter = list(MATERIAL_STEEL = 20)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 96
 	ammo_states = list(96)
