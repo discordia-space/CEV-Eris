@@ -2,7 +2,7 @@
 // .25 handguns
 
 /datum/design/autolathe/gun/mandella
-	name = "FS HG .25 Auto \"Mandella\""
+	name = "OR HG .25 Auto \"Mandella\""
 	build_path = /obj/item/gun/projectile/mandella
 
 // .35 handguns
@@ -127,7 +127,7 @@
 	build_path = /obj/item/gun/projectile/automatic/vintorez
 
 /datum/design/autolathe/gun/z8
-	name = "FS CAR .20 \"Z8 Bulldog\""
+	name = "OR CAR .20 \"Z8 Bulldog\""
 	build_path = /obj/item/gun/projectile/automatic/z8
 
 /datum/design/autolathe/gun/wintermute
@@ -176,11 +176,11 @@
 	build_path = /obj/item/gun/projectile/automatic/ak47/fs/ih
 
 /datum/design/autolathe/gun/ak47_sa
-	name = "SA Car .30 \"Krinkov\""
+	name = "SA CAR .30 \"Krinkov\""
 	build_path = /obj/item/gun/projectile/automatic/ak47/sa
 
 /datum/design/autolathe/gun/sts35
-	name = "STS-35"
+	name = "OR SDF .30 \"STS-35\""
 	build_path = /obj/item/gun/projectile/automatic/sts35
 
 // Heavy
