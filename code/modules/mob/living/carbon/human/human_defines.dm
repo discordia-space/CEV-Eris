@@ -68,6 +68,7 @@
 
 	var/gunshot_residue
 	var/pulling_punches // Are you trying not to hurt your opponent?
+	var/dodging = TRUE // are you dodging those shots?
 
 	mob_bump_flag = HUMAN
 	mob_push_flags = ~HEAVY

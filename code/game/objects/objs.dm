@@ -11,7 +11,7 @@
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
 	var/armor_penetration = 0
-	var/style_damage = 20 // used for dealing damage to slickness
+	var/style_damage = 30 // used for dealing damage to slickness
 	var/corporation
 	var/heat = 0
 

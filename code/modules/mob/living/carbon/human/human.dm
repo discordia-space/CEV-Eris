@@ -713,7 +713,7 @@ var/list/rank_prefix = list(\
 
 				adjustNutrition(-40)
 				adjustToxLoss(-3)
-				regen_slickness(-1)
+				regen_slickness(-3)
 				dodge_time = get_game_time()
 				confidence = FALSE
 				spawn(350)	//wait 35 seconds before next volley
@@ -1429,7 +1429,7 @@ var/list/rank_prefix = list(\
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
 		return 0
 	..(slipped_on,stun_duration)
-	regen_slickness(-1)
+	regen_slickness(-3)
 	dodge_time = get_game_time()
 	confidence = FALSE
 
@@ -1443,6 +1443,9 @@ var/list/rank_prefix = list(\
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 		to_chat(src, SPAN_WARNING("You tripped over!"))
 	Weaken(stun_duration)
+	regen_slickness(-1)
+	dodge_time = get_game_time()
+	confidence = FALSE
 	return TRUE
 
 /mob/living/carbon/human/proc/undislocate()
@@ -1532,6 +1535,14 @@ var/list/rank_prefix = list(\
 	to_chat(src, "<span class='notice'>You are now [pulling_punches ? "pulling your punches" : "not pulling your punches"].</span>")
 	return
 
+/mob/living/carbon/human/verb/toggle_dodging()
+	set name = "Toggle Dodging"
+	set desc = "Just stand still while under fire."
+	set category = "IC"
+	if(stat) return
+	dodging = !dodging
+	to_chat(src, "<span class='notice'>You are now [dodging ? "dodging incoming fire" : "not dodging incoming fire"].</span>")
+	return
 //generates realistic-ish pulse output based on preset levels
 /mob/living/carbon/human/proc/get_pulse(var/method)	//method 0 is for hands, 1 is for machines, more accurate
 	var/temp = 0

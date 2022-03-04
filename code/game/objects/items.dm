@@ -460,15 +460,19 @@ var/global/list/items_blood_overlay_by_type = list()
 
 	else if (I && !I.abstract && I.mob_can_unequip(src, get_active_hand_slot())) // being unable to unequip normally means
 		I.SpinAnimation(5,1) // that the item is stuck on or in, and so cannot spin
-		external_recoil(60)
+		external_recoil(50)
 		visible_message("[src] spins [I.name] in \his hand.") // had to mess with the macros a bit to get
 		if (recoil > 60) // the text to work, which is why "a" is not included
 			visible_message(SPAN_WARNING("[I] flies out of [src]\'s hand!"))
 			unEquip(I)
 			return
+		I.hand_spin(src)
 	if (ishuman(src))
 		var/mob/living/carbon/human/stylish = src
 		stylish.regen_slickness()
+
+/obj/item/proc/hand_spin(mob/living/carbon/caller) // used for custom behaviour on the above proc
+	return
 
 /*
 For zooming with scope or binoculars. This is called from
