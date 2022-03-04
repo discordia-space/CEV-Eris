@@ -55,3 +55,15 @@
 		"Purple"		=	/obj/item/clothing/shoes/color/purple,
 	)
 	gear_tweaks += new /datum/gear_tweak/path(shoes)
+
+/datum/gear/shoes/sneakerspurple
+	display_name = "purple sneakers"
+	path = /obj/item/clothing/shoes/sneakerspurple
+
+/datum/gear/shoes/sneakersblue
+	display_name = "blue sneakers"
+	path = /obj/item/clothing/shoes/sneakersblue
+
+/datum/gear/shoes/sneakersred
+	display_name = "red sneakers"
+	path = /obj/item/clothing/shoes/sneakersred

@@ -476,3 +476,27 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 	style = STYLE_HIGH
 	price_tag = 400
+
+/obj/item/clothing/suit/storage/puffyblue
+	name = "blue puffy coat"
+	desc = "A stylish, shiny, very blue Aster\'s Guild branded puffer coat."
+	icon_state = "puffycoatblue"
+	item_state = "puffycoatblue"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	siemens_coefficient = 0.7
+
+/obj/item/clothing/suit/storage/puffypurple
+	name = "purple puffy coat"
+	desc = "A stylish, shiny, very purple Aster\'s Guild branded puffer coat."
+	icon_state = "puffycoatpurple"
+	item_state = "puffycoatpurple"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	siemens_coefficient = 0.7
+
+/obj/item/clothing/suit/storage/puffyred
+	name = "crimson puffy coat"
+	desc = "A stylish, shiny, crimson Aster\'s Guild branded puffer coat."
+	icon_state = "puffycoatred"
+	item_state = "puffycoatred"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	siemens_coefficient = 0.7
