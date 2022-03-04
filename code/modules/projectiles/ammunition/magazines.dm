@@ -230,6 +230,7 @@
 
 /obj/item/ammo_magazine/srifle/drum
 	name = "drum magazine (.20 Rifle)"
+	desc = "Heavy .20 caliber magazine, holds 60 rounds. Only fits \"Kalash\"."
 	icon_state = "srifle_drum"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
