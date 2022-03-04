@@ -1,0 +1,6 @@
+author: Trilbyspaceclone
+delete-after: true
+changes:
+  - rscadd: Mercenaries now have a radio with their own privet channel rather then
+      needing to buy it form their uplinks - But its more limited then the version
+      they do buy
