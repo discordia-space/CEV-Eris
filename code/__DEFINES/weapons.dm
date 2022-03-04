@@ -59,6 +59,7 @@
 
 #define BURST_2_ROUND		list(mode_name="2-round bursts", mode_desc = "Short, controlled bursts", burst=2, fire_delay=null, move_delay=2, icon="burst", damage_mult_add = -0.1)
 #define BURST_3_ROUND		list(mode_name="3-round bursts", mode_desc = "Short, controlled bursts", burst=3, fire_delay=null, move_delay=4, icon="burst", damage_mult_add = -0.1)
+#define BURST_3_ROUND_RAPID		list(mode_name=" High-delay Rapid 3-round bursts", mode_desc = "Short, fast bursts with a higher delay between bursts", burst=3, fire_delay=15, move_delay=4, icon="auto", damage_mult_add = -0.1, burst_delay = 0.9)
 #define BURST_5_ROUND		list(mode_name="5-round bursts", mode_desc = "Short, controlled bursts", burst=5, fire_delay=null, move_delay=6, icon="burst", damage_mult_add = -0.1)
 #define BURST_8_ROUND		list(mode_name="8-round bursts", mode_desc = "Short, uncontrolled bursts", burst=8, fire_delay=null, move_delay=8, icon="burst", damage_mult_add = -0.1)
 

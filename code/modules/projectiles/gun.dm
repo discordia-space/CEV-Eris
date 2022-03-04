@@ -852,6 +852,7 @@
 	proj_step_multiplier = initial(proj_step_multiplier)
 	proj_agony_multiplier = initial(proj_agony_multiplier)
 	fire_delay = initial(fire_delay)
+	burst_delay = initial(burst_delay)
 	move_delay = initial(move_delay)
 	recoil_buildup = initial(recoil_buildup)
 	muzzle_flash = initial(muzzle_flash)
@@ -901,13 +902,8 @@
 
 /obj/item/gun/zoom(tileoffset, viewsize)
 	..()
-	if(!ishuman(usr))
-		return
-	var/mob/living/carbon/human/H = usr
 	if(zoom)
-		H.using_scope = src
 		init_offset -= scoped_offset_reduction
 	else
-		H.using_scope = null
 		refresh_upgrades()
 
