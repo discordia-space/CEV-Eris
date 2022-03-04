@@ -26,11 +26,12 @@
 	name = "blast shell"
 	var/devastation_range = 0
 	var/heavy_impact_range = 0
-	var/light_impact_range = 3
+	var/light_impact_range = 1
+	var/lightest_impact_range = 3
 	var/flash_range = 10
 
 /obj/item/projectile/bullet/grenade/blast/grenade_effect(target)
-	explosion(target, devastation_range, heavy_impact_range, light_impact_range, flash_range)
+	explosion(target, devastation_range, heavy_impact_range, light_impact_range, flash_range, singe_impact_range = lightest_impact_range)
 
 /obj/item/projectile/bullet/grenade/frag
 	name = "frag shell"

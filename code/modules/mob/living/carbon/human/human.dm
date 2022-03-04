@@ -136,7 +136,7 @@
 
 		if (2)
 			if (not_slick)
-				b_loss = 150
+				b_loss = 120
 				if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 					adjustEarDamage(30,120)
 			else
@@ -146,9 +146,18 @@
 
 		if(3)
 			if (not_slick)
-				b_loss += 100
+				b_loss += 80
 				if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 					adjustEarDamage(15,60)
+			else
+				visible_message(SPAN_WARNING("[src] rides the shockwave!"))
+				dodge_time = get_game_time()
+				confidence = FALSE
+		if(4)
+			if (not_slick)
+				b_loss += 50
+				if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
+					adjustEarDamage(10,30)
 			else
 				visible_message(SPAN_WARNING("[src] rides the shockwave!"))
 				dodge_time = get_game_time()
@@ -166,7 +175,7 @@
 		b_loss -= exp_damage
 		exp_damage = rand(0, b_loss)
 		src.apply_damage(exp_damage, BRUTE, organ_hit)
-		organ_hit = pickweight(list(BP_HEAD = 0.2, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG = 0.1, BP_L_LEG = 0.1))  //We determine some other body parts that should be hit
+		organ_hit = pickweight(list(BP_HEAD = 0.1, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG = 0.1, BP_L_LEG = 0.1))  //We determine some other body parts that should be hit
 
 /mob/living/carbon/human/restrained()
 	if (handcuffed)

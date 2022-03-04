@@ -386,6 +386,8 @@
 			take_damage(rand(200, 500))
 		if(3)
 			take_damage(rand(90, 250))
+		if(4)
+			take_damage(rand(40, 100))
 		else
 	return
 

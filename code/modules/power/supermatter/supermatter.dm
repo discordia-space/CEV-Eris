@@ -106,6 +106,8 @@
 			damage += 500
 		if(3)
 			damage += 200
+		if(4)
+			damage += 50
 
 /obj/machinery/power/supermatter/proc/explode()
 	log_and_message_admins("Supermatter exploded at [x] [y] [z]")

@@ -908,6 +908,10 @@
 			health -= rand(0,15)
 			healthcheck()
 			return
+		if(4)
+			health -= rand(0,5)
+			healthcheck()
+			return
 
 
 	// test health for brokenness

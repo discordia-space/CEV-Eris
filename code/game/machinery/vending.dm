@@ -295,6 +295,10 @@
 			if(prob(50))
 				qdel(src)
 				return
+			if(prob(50))
+				spawn(0)
+					malfunction()
+					return
 		if(3)
 			if(prob(25))
 				spawn(0)

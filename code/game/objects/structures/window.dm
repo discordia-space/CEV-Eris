@@ -157,14 +157,13 @@
 	switch(severity)
 		if(1)
 			qdel(src)
-			return
 		if(2)
 			shatter(0,TRUE)
-			return
 		if(3)
+			shatter(0,TRUE)
+		if(4)
 			if(prob(50))
 				shatter(0,TRUE)
-				return
 
 //TODO: Make full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point

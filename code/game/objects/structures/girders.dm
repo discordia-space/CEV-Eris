@@ -322,9 +322,10 @@
 			take_damage(rand(500))
 		if(2)
 			take_damage(rand(120,300))
-
 		if(3)
 			take_damage(rand(60,180))
+		if(4)
+			take_damage(rand(20,80))
 
 
 /obj/structure/girder/get_fall_damage(var/turf/from, var/turf/dest)

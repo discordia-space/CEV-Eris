@@ -411,6 +411,14 @@
 				s.start()
 			else
 				take_damage(150)
+		if(4)
+			if(prob(80))
+				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+				s.set_up(2, 1, src)
+				s.start()
+			else
+				take_damage(60)
+
 	return
 
 
