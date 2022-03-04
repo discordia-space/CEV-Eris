@@ -173,7 +173,7 @@
 		BURST_5_ROUND
 	)
 
-	price_tag = 2000
+	price_tag = 1600
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
@@ -192,6 +192,7 @@
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	price_tag = 2000
 
 /obj/item/gun/projectile/automatic/ak47/fs/ih/CtrlShiftClick(mob/user)
 	. = ..()
