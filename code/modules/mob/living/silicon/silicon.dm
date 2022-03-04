@@ -268,6 +268,9 @@
 		if(3)
 			if (stat != 2)
 				adjustBruteLoss(30)
+		if(4)
+			if (stat != 2)
+				adjustBruteLoss(15)
 
 	updatehealth()
 

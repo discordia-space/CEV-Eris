@@ -13,8 +13,9 @@
 	if(Proj.get_structure_damage())
 		explode()
 
-/obj/structure/reagent_dispensers/coolanttank/ex_act()
-	explode()
+/obj/structure/reagent_dispensers/coolanttank/ex_act(severity)
+	if(severity < 4)
+		explode()
 
 /obj/structure/reagent_dispensers/coolanttank/explode()
 	var/datum/effect/effect/system/smoke_spread/S = new /datum/effect/effect/system/smoke_spread
