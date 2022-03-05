@@ -8,6 +8,7 @@
 // END_PREFERENCES
 // BEGIN_INCLUDE
 #include "code\_compile_options.dm"
+#include "code\_debugger.dm"
 #include "code\client_macros.dm"
 #include "code\global.dm"
 #include "code\hub.dm"
@@ -89,7 +90,6 @@
 #include "code\__HELPERS\atom_movables.dm"
 #include "code\__HELPERS\atoms.dm"
 #include "code\__HELPERS\bluespace_entropy.dm"
-#include "code\__HELPERS\debugger.dm"
 #include "code\__HELPERS\delays.dm"
 #include "code\__HELPERS\files.dm"
 #include "code\__HELPERS\functional.dm"
