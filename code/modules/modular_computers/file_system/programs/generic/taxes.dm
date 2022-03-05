@@ -27,7 +27,7 @@
 /datum/nano_module/program/tax/Topic(href, href_list)
 	if(..())
 		return TOPIC_HANDLED
-	
+
 	// Used to call set_icon()
 	// When not logined or have an "error" popup - screen is uplink red
 	// When logined and have no popups - screen is blue
@@ -89,7 +89,7 @@
 		else
 			P.set_icon("uplink")
 		return TOPIC_REFRESH
-	
+
 	if(href_list["transfer"])
 		var/target	= text2num(input(usr,"Target account number", "Funds transfer"))
 		var/amount	= text2num(input(usr,"Amount to transfer", "Funds transfer"))
@@ -249,7 +249,7 @@
 	return TOPIC_HANDLED
 
 
-/datum/nano_module/program/tax/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/program/tax/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
 	var/list/data = host.initial_data()
 	data["stored_login"] = account_num ? account_num : ""
 	data["popup"] = popup
