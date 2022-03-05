@@ -1,5 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - rscadd: Severity 4 explosions implemented
-  - balance: blast and explosive grenades now less deadly

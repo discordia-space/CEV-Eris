@@ -1,8 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - rscadd: New sprite for deep drill by CeUvi
-  - rscadd: Mining turret that shoots golems on sight.
-  - rscdel: Removed old mining drill from the game
-  - bugfix: Fix issue with plasma golem not exploding properly without atmosphere
-  - tweak: Reduce drill digging radius from 7 to 4
