@@ -53,6 +53,7 @@
 	var/list/spiderlist = list()
 	var/list/active_spiders = list()
 	var/geneticpoints = 10
+	var/autoassign_groups = FALSE
 
 	var/mob/living/simple_animal/spider_core/associated_spider = null
 
@@ -96,6 +97,13 @@
 		active_spiders += spider
 		spider.owner_core = src
 		spider.update_owner_mob()
+		if(autoassign_groups)
+			var/obj/item/implant/carrion_spider/A
+			for(var/obj/item/implant/carrion_spider/F in active_spiders)
+				if(istype(F, spider.type))
+					A = F
+					spider.assigned_groups = A.assigned_groups
+					break
 
 		owner.put_in_active_hand(spider)
 
@@ -106,23 +114,30 @@
 	for(var/item in active_spiders)
 		var/obj/item/implant/carrion_spider/S = item
 		var/turf/T = get_turf(S)
+		var/area/area = get_area(S)
+		var/location_name = area.name
 		var/spider_location = "Unknown location"
 		if(T)
-			spider_location = "[S.loc]([T.x]:[T.y]:[T.z])"
+			spider_location = "[location_name], [S.loc]([T.x]:[T.y]:[T.z])"
 		spiders_in_list += list(
 			list(
 				"name" = initial(S.name),
 				"location" = "[spider_location]",
 				"spider" = "\ref[item]",
-				"implanted" = S.wearer
+				"implanted" = S.wearer,
+				"assigned_group_1" = S.check_group(SPIDER_GROUP_1),
+				"assigned_group_2" = S.check_group(SPIDER_GROUP_2),
+				"assigned_group_3" = S.check_group(SPIDER_GROUP_3),
+				"assigned_group_4" = S.check_group(SPIDER_GROUP_4)
 			)
 		)
 
 	data["list_of_spiders"] = spiders_in_list
+	data["autoassigning"] = autoassign_groups
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "carrion_spiders.tmpl", "Carrion Spiders", 400, 400)
+		ui = new(user, src, ui_key, "carrion_spiders.tmpl", "Carrion Spiders", 600, 400)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -141,8 +156,55 @@
 	if(href_list["activate_all"])
 		for(var/spider in active_spiders)
 			var/obj/item/implant/carrion_spider/CS = spider
-			if(istype(CS))
+			if(istype(CS) && !CS.ignore_activate_all)
 				CS.activate()
+
+	if(href_list["activate_group_1"])
+		for(var/spider in active_spiders)
+			var/obj/item/implant/carrion_spider/CS = spider
+			if(istype(CS) && CS.check_group(SPIDER_GROUP_1))
+				CS.activate()
+
+	if(href_list["activate_group_2"])
+		for(var/spider in active_spiders)
+			var/obj/item/implant/carrion_spider/CS = spider
+			if(istype(CS) && CS.check_group(SPIDER_GROUP_2))
+				CS.activate()
+
+	if(href_list["activate_group_3"])
+		for(var/spider in active_spiders)
+			var/obj/item/implant/carrion_spider/CS = spider
+			if(istype(CS) && CS.check_group(SPIDER_GROUP_3))
+				CS.activate()
+
+	if(href_list["activate_group_4"])
+		for(var/spider in active_spiders)
+			var/obj/item/implant/carrion_spider/CS = spider
+			if(istype(CS) && CS.check_group(SPIDER_GROUP_4))
+				CS.activate()
+
+	if(href_list["toggle_group_1"])
+		var/obj/item/implant/carrion_spider/activated_spider = locate(href_list["toggle_group_1"]) in active_spiders
+		if(activated_spider)
+			activated_spider.toggle_group(SPIDER_GROUP_1)
+
+	if(href_list["toggle_group_2"])
+		var/obj/item/implant/carrion_spider/activated_spider = locate(href_list["toggle_group_2"]) in active_spiders
+		if(activated_spider)
+			activated_spider.toggle_group(SPIDER_GROUP_2)
+
+	if(href_list["toggle_group_3"])
+		var/obj/item/implant/carrion_spider/activated_spider = locate(href_list["toggle_group_3"]) in active_spiders
+		if(activated_spider)
+			activated_spider.toggle_group(SPIDER_GROUP_3)
+
+	if(href_list["toggle_group_4"])
+		var/obj/item/implant/carrion_spider/activated_spider = locate(href_list["toggle_group_4"]) in active_spiders
+		if(activated_spider)
+			activated_spider.toggle_group(SPIDER_GROUP_4)
+
+	if(href_list["toggle_autoassign"])
+		autoassign_groups = !autoassign_groups
 
 	if(href_list["P"])
 		purchasePower(href_list["P"])

@@ -1,5 +1,5 @@
 
-#define isweakref(A) istype(A, /weakref)
+#define isweakref(D) (istype(D, /datum/weakref))
 
 #define islist(A) istype(A, /list)
 
@@ -29,6 +29,8 @@
 #define isslime(A) istype(A, /mob/living/carbon/slime)
 
 #define isroach(A) istype(A, /mob/living/carbon/superior_animal/roach)
+
+#define isgolem(A) istype(A, /mob/living/carbon/superior_animal/golem)
 
 #define isbrain(A) istype(A, /mob/living/carbon/brain)
 

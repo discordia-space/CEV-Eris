@@ -1,7 +1,8 @@
 #define BEAM_IDLE        0
 #define BEAM_CAPTURING   1
-#define BEAM_STABILIZED  2
-#define BEAM_COOLDOWN    3
+#define BEAM_STABILIZING 2
+#define BEAM_STABILIZED  3
+#define BEAM_COOLDOWN    4
 
 #define JTB_EDGE     3
 #define JTB_MAXX   100
@@ -134,7 +135,7 @@
 	beam_state = BEAM_CAPTURING
 	spawn(beam_capture_time)
 		if(src && beam_state == BEAM_CAPTURING)  // Check if jtb_generator has not been destroyed during spawn time and if capture has not been cancelled
-			beam_state = BEAM_STABILIZED
+			beam_state = BEAM_STABILIZING  // Junk field is being created
 
 			generate_junk_field()  // Generate the junk field
 
@@ -144,6 +145,7 @@
 				jf_counter++
 
 			create_link_portal(T)
+			beam_state = BEAM_STABILIZED  // Junk field has been created and portals linked
 	return
 
 /obj/jtb_generator/proc/create_link_portal(var/turf/T)
@@ -858,17 +860,17 @@
 
 /turf/simulated/jtb_edge/Exited(atom/movable/AM)
 	. = ..()
-	LAZYREMOVE(victims, weakref(AM))
+	LAZYREMOVE(victims, WEAKREF(AM))
 
 /turf/simulated/jtb_edge/Entered(atom/movable/AM)
 	..()
-	LAZYADD(victims, weakref(AM))
+	LAZYADD(victims, WEAKREF(AM))
 	START_PROCESSING(SSobj, src)
 
 /turf/simulated/jtb_edge/Process()
 	. = ..()
 
-	for(var/weakref/W in victims)
+	for(var/datum/weakref/W in victims)
 		var/atom/movable/AM = W.resolve()
 		if (AM == null || get_turf(AM) != src )
 			if(victims) // Avoid null runtimes
@@ -923,6 +925,7 @@
 
 #undef BEAM_IDLE
 #undef BEAM_CAPTURING
+#undef BEAM_STABILIZING
 #undef BEAM_STABILIZED
 #undef JTB_EDGE
 #undef JTB_MAXX

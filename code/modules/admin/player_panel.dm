@@ -322,8 +322,9 @@
 
 
 /datum/admins/proc/storyteller_panel()
-	if(get_storyteller())
-		get_storyteller().storyteller_panel()
+	var/datum/storyteller/ST = get_storyteller()
+	if(ST)
+		ST.storyteller_panel()
 	else
 		to_chat(usr, SPAN_WARNING("There is no storyteller."))
 

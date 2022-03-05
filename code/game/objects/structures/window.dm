@@ -157,14 +157,13 @@
 	switch(severity)
 		if(1)
 			qdel(src)
-			return
 		if(2)
 			shatter(0,TRUE)
-			return
 		if(3)
+			shatter(0,TRUE)
+		if(4)
 			if(prob(50))
 				shatter(0,TRUE)
-				return
 
 //TODO: Make full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point
@@ -193,6 +192,9 @@
 
 /obj/structure/window/hitby(AM as mob|obj)
 	..()
+	if(isliving(AM))
+		hit_by_living(AM)
+		return
 	visible_message(SPAN_DANGER("[src] was hit by [AM]."))
 	var/tforce = 0
 	if(ismob(AM))
@@ -278,6 +280,23 @@
 	sleep(5) //Allow a littleanimating time
 	return TRUE
 
+/obj/structure/window/proc/hit_by_living(var/mob/living/M)
+	var/body_part = pick(BP_HEAD, BP_CHEST, BP_GROIN)
+	var/direction = get_dir(M, src)
+	visible_message(SPAN_DANGER("[M] slams against \the [src]!"))
+	if(prob(30))
+		M.Weaken(1)
+	M.damage_through_armor(rand(7,10), BRUTE, body_part, ARMOR_MELEE)
+
+	var/tforce = (M.stats.getPerk(PERK_ASS_OF_CONCRETE) ? 60 : 15)
+	if(reinf) tforce *= 0.25
+	if(health - tforce <= 7 && !reinf)
+		set_anchored(FALSE)
+		step(src, direction)
+		if(M.stats.getPerk(PERK_ASS_OF_CONCRETE)) //if your ass is heavy and the window is not reinforced, you are moved on the tile where it was
+			M.forceMove(get_step(M.loc, direction), direction)
+	hit(tforce)
+	mount_check()
 
 /obj/structure/window/attackby(obj/item/I, mob/user)
 

@@ -264,6 +264,8 @@
 			take_damage(rand(60, 100) / brute_resist)
 		if(3)
 			take_damage(rand(20, 60) / brute_resist)
+		if(4)
+			take_damage(rand(10, 30) / brute_resist)
 
 
 /obj/effect/blob/fire_act()

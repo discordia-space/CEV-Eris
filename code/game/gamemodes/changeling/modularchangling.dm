@@ -39,7 +39,7 @@ var/list/datum/power/carrion/powerinstances = list()
 /datum/power/carrion/blight_spider
 	name = "Blight spider"
 	desc = "Evolves a spider filled with a sickening venom."
-	genomecost = 7
+	genomecost = 5
 	spiderpath = /obj/item/implant/carrion_spider/blight
 
 /datum/power/carrion/breeding_spider
@@ -56,7 +56,7 @@ var/list/datum/power/carrion/powerinstances = list()
 
 /datum/power/carrion/spark_spider
 	name = "Spark spider"
-	desc = "Creates a spider that makes a small spark."
+	desc = "Creates a spider that can pulse wires in machines or make a small spark."
 	genomecost = 1
 	spiderpath = /obj/item/implant/carrion_spider/spark
 
@@ -65,6 +65,12 @@ var/list/datum/power/carrion/powerinstances = list()
 	desc = "Creates a spider filled with dangerous lexorin gas, explodes on activation."
 	genomecost = 5
 	spiderpath = /obj/item/implant/carrion_spider/toxicbomb
+
+/datum/power/carrion/smoke_spider
+	name = "Smoke spider"
+	desc = "Creates a spider filled with smoke that is released on activation."
+	genomecost = 3
+	spiderpath = /obj/item/implant/carrion_spider/smokebomb
 
 /datum/power/carrion/mindboil_spider
 	name = "Mindboil spider"
@@ -76,7 +82,7 @@ var/list/datum/power/carrion/powerinstances = list()
 /datum/power/carrion/talking_spider
 	name = "Talking spider"
 	desc = "Creates a spider that can hijack someones vocal cords, giving you the ability to talk through them."
-	genomecost = 5
+	genomecost = 1
 	spiderpath = /obj/item/implant/carrion_spider/talking
 
 /datum/power/carrion/observer_spider
@@ -89,14 +95,14 @@ var/list/datum/power/carrion/powerinstances = list()
 /datum/power/carrion/identity_spider
 	name = "Idenitity spider"
 	desc = "Creates a spider with the ability to extract and transmit human DNA to you."
-	genomecost = 3
+	genomecost = 1
 	spiderpath = /obj/item/implant/carrion_spider/identity
 
-/datum/power/carrion/signal_spider
-	name = "Electrocurrent spider"
-	desc = "Creates a spider that can pulse wires in machines."
-	genomecost = 2
-	spiderpath = /obj/item/implant/carrion_spider/signal
+/datum/power/carrion/holographic_spider
+	name = "Holographic spider"
+	desc = "Creates a spider with the ability to mimic appearances. Not always able to create a perfect copy. Use in hand to toggle modes."
+	genomecost = 1
+	spiderpath = /obj/item/implant/carrion_spider/holographic
 
 /datum/power/carrion/smooth_spider
 	name = "Smooth spider"

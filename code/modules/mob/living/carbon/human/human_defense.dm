@@ -9,12 +9,13 @@ meteor_act
 
 /mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
-	if (slickness && P.style_damage <= slickness && !incapacitated(INCAPACITATION_UNMOVING))
+	if (dodging && slickness && P.style_damage <= slickness && !incapacitated(INCAPACITATION_UNMOVING))
 		visible_message(SPAN_WARNING("[src] dodges [P]!"))
 		slickness -= P.style_damage
 		dodge_time = get_game_time()
 		confidence = FALSE
-		return PROJECTILE_FORCE_MISS // src dodged.
+		external_recoil(P.style_damage)
+		return PROJECTILE_FORCE_MISS_SILENCED // src dodged.
 
 	def_zone = check_zone(def_zone)
 	if(!has_organ(def_zone))
@@ -146,7 +147,7 @@ meteor_act
 				var/weight = organ_rel_size[organ_name]
 				armorval += getarmor_organ(organ, type) * weight
 				total += weight
-	
+
 	armorval = armorval/max(total, 1)
 
 	if (armorval > 75) // reducing the risks from powergaming
@@ -188,7 +189,7 @@ meteor_act
 
 	if(shield)
 		protection += shield.armor[type]
-	
+
 	if (protection > 75) // reducing the risks from powergaming
 		switch (type)
 			if (ARMOR_MELEE,ARMOR_BULLET,ARMOR_ENERGY) protection = (75+protection/2)
@@ -334,11 +335,12 @@ meteor_act
 					throw_mode_off()
 					return
 
-		if (slickness && O.style_damage <= slickness && !incapacitated(INCAPACITATION_UNMOVING))
+		if (dodging && slickness && O.style_damage <= slickness && !incapacitated(INCAPACITATION_UNMOVING))
 			visible_message(SPAN_WARNING("[src] dodges [O]!"))
 			slickness -= O.style_damage
 			dodge_time = get_game_time()
 			confidence = FALSE
+			external_recoil(O.style_damage)
 			return
 
 

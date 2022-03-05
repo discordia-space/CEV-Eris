@@ -46,7 +46,7 @@
 /datum/perk/oddity/space_asshole
 	name = "Space Asshole"
 	desc = "Holes, gravity, falling, tumbling. It's all the same. \
-			You take less damage from falling."
+			You take less damage from falling and can dive into disposal chutes. Disposals deal no damage to you."
 	icon_state = "bomb" // https://game-icons.net
 
 /datum/perk/oddity/space_asshole/assign(mob/living/carbon/human/H)
@@ -63,7 +63,7 @@
 
 /datum/perk/oddity/parkour
 	name = "Parkour"
-	desc = "You can climb tables and ladders faster. Also clings to railings and low walls."
+	desc = "You cling to railings and low walls, climb faster, and get up after diving or sliding sooner."
 	icon_state = "parkour" //https://game-icons.net/1x1/delapouite/jump-across.html
 
 /datum/perk/oddity/parkour/assign(mob/living/carbon/human/H)
@@ -156,7 +156,8 @@
 /datum/perk/oddity/ass_of_concrete
 	name = "Ass of Concrete"
 	desc = "Years of training your body made you a hulk of a person. No more pushing around. \
-			Nobody can move past you, even on help intent. You wont slip in gravity."
+			Nobody can move past you, even on help intent. You won\'t slip in gravity. \
+			You deal more damage to windows when you dive into them."
 	icon_state = "muscular" // https://game-icons.net
 
 /datum/perk/oddity/ass_of_concrete/assign(mob/living/carbon/human/H)

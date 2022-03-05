@@ -409,7 +409,8 @@ BLIND     // can't see anything
 	bad_type = /obj/item/clothing/mask
 	spawn_tags = SPAWN_TAG_MASK
 
-	var/voicechange = 0
+	var/muffle_voice = FALSE
+	var/voicechange = FALSE
 	var/list/say_messages
 	var/list/say_verbs
 
@@ -570,7 +571,8 @@ BLIND     // can't see anything
 		/obj/item/reagent_containers/spray,
 		/obj/item/device/radio,
 		/obj/item/clothing/mask,
-		/obj/item/storage/belt/sheath)
+		/obj/item/storage/belt/sheath,
+		/obj/item/implant/carrion_spider/holographic)
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9

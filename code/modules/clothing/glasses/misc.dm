@@ -39,6 +39,12 @@
 	icon_state = "black_goggles"
 	item_state = "black_goggles"
 
+/obj/item/clothing/glasses/regular/goggles/clear
+	name = "Goggles"
+	desc = "Goggles made of plastic."
+	icon_state = "clear_goggles"
+	item_state = "clear_goggles"
+
 /obj/item/clothing/glasses/regular/hipster
 	name = "Prescription Glasses"
 	desc = "Made by Uncool. Co."
@@ -60,12 +66,12 @@
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/sunglasses
-	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
+	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding reduces many flashes."
 	name = "sunglasses"
 	icon_state = "sun"
 	item_state = "sunglasses"
 	darkness_view = -1
-	flash_protection = FLASH_PROTECTION_MODERATE
+	flash_protection = FLASH_PROTECTION_MINOR // does not "cover the whole eye socket", lets light leak.
 	style = STYLE_HIGH
 
 /obj/item/clothing/glasses/sunglasses/blindfold
@@ -91,6 +97,7 @@
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
+	flash_protection = FLASH_PROTECTION_MODERATE //does cover the whole eye socket
 
 /obj/item/clothing/glasses/artist
 	name = "4-D Glasses"

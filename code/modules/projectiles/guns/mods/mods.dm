@@ -12,6 +12,24 @@
 /obj/item/gun_upgrade/muzzle
 	bad_type = /obj/item/gun_upgrade/muzzle
 
+/obj/item/gun_upgrade/underbarrel
+	bad_type = /obj/item/gun_upgrade/underbarrel
+
+/obj/item/gun_upgrade/underbarrel/bipod
+	name = "bipod"
+	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. It greatly reduces recoil when deployed, but also increases the gun\'s weight, making it unwieldy unless braced."
+	icon_state = "bipod"
+	rarity_value = 15
+
+/obj/item/gun_upgrade/underbarrel/bipod/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_BIPOD = TRUE,
+		GUN_UPGRADE_RECOIL = 1.2
+		)
+	I.gun_loc_tag = GUN_UNDERBARREL
+
 //Silences the weapon, reduces damage multiplier slightly, Legacy port.
 /obj/item/gun_upgrade/muzzle/silencer
 	name = "silencer"
@@ -196,7 +214,7 @@
 //Lets the SOL be made into a fully automatic weapon, but increases recoil. Acquirable through Frozen Star Guns&Ammo Vendor
 /obj/item/gun_upgrade/mechanism/weintraub
 	name = "Frozen Star \"Weintraub\" full auto kit"
-	desc = "A fully automatic receiver for the .25 \"Sol\"."
+	desc = "A fully automatic receiver for rifles"
 	icon_state = "Weintraub"
 	rarity_value = 30
 
@@ -207,7 +225,7 @@
 		GUN_UPGRADE_FULLAUTO = TRUE,
 		GUN_UPGRADE_RECOIL = 1.2
 	)
-	I.req_gun_tags = list(GUN_SOL)
+	I.req_gun_tags = list(GUN_FA_MODDABLE)
 	I.gun_loc_tag = GUN_MECHANISM
 
 //Causes your weapon to shoot you in the face, then explode. Acquired through uplink
@@ -226,9 +244,6 @@
 	I.removal_time *= 5
 	I.req_gun_tags = list(GUN_PROJECTILE)
 	I.gun_loc_tag = GUN_MECHANISM
-
-/obj/item/gun_upgrade/underbarrel
-	bad_type = /obj/item/gun_upgrade/underbarrel
 
 /obj/item/storage/box/gun_upgrades
 	name = "Big box of gun fun"

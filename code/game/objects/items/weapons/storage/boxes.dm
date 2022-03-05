@@ -247,12 +247,13 @@
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
 	illustration = "ammo"
 	rarity_value = 80
-	initial_amount = 1
+	initial_amount = 3
 	spawn_type = /obj/item/ammo_casing/antim/prespawned
 	spawn_tags = SPAWN_TAG_AMMO
 
 /obj/item/storage/box/sniperammo/populate_contents()
-	new spawn_type(src)
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
 	for(var/obj/item/ammo_casing/temp_casing in src)
 		temp_casing.update_icon()
 
@@ -261,42 +262,27 @@
 	desc = "It has a picture of a gun and several warning symbols on the front, among them is a symbol you're not quite able to make sense of.<br>WARNING: Live EMP ammunition. Misuse may result in serious injury or death."
 	illustration = "ammo"
 	rarity_value = 80
-	initial_amount = 1
+	initial_amount = 3
 	spawn_type = /obj/item/ammo_casing/antim/emp/prespawned
 	spawn_tags = SPAWN_TAG_AMMO
-
-/obj/item/storage/box/sniperammo/emp/populate_contents()
-	new spawn_type(src)
-	for(var/obj/item/ammo_casing/temp_casing in src)
-		temp_casing.update_icon()
 
 /obj/item/storage/box/sniperammo/uranium
 	name = "box of .60 \"Meltdown\" Anti Material shells"
 	desc = "It has a picture of a gun and several warning symbols on the front, including a radiation hazard sign.<br>WARNING: Live depleted uranium ammunition. Misuse may result in serious injury or death."
 	illustration = "ammo"
 	rarity_value = 80
-	initial_amount = 1
+	initial_amount = 3
 	spawn_type = /obj/item/ammo_casing/antim/uranium/prespawned
 	spawn_tags = SPAWN_TAG_AMMO
-
-/obj/item/storage/box/sniperammo/uranium/populate_contents()
-	new spawn_type(src)
-	for(var/obj/item/ammo_casing/temp_casing in src)
-		temp_casing.update_icon()
 
 /obj/item/storage/box/sniperammo/breach
 	name = "box of .60 \"Breacher\" Anti Material shells"
 	desc = "It has a picture of a gun and several warning symbols on the front, including an explosive hazard sign.<br>WARNING: Live breaching ammunition. Misuse may result in serious injury or death."
 	illustration = "ammo"
 	rarity_value = 80
-	initial_amount = 1
+	initial_amount = 3
 	spawn_type = /obj/item/ammo_casing/antim/breach/prespawned
 	spawn_tags = SPAWN_TAG_AMMO
-
-/obj/item/storage/box/sniperammo/breach/populate_contents()
-	new spawn_type(src)
-	for(var/obj/item/ammo_casing/temp_casing in src)
-		temp_casing.update_icon()
 
 /obj/item/storage/box/flashbangs
 	name = "box of flashbangs"
@@ -359,6 +345,23 @@
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
 
+/obj/item/storage/box/stinger
+	name = "box of sting grenades"
+	desc = "A box containing 4 sting grenades. Designed for use against unruly crowds. <br> WARNING: May cause long-lasting injuries in close proximity."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	initial_amount = 4
+	spawn_type = /obj/item/grenade/frag/sting
+
+/obj/item/storage/box/stinger/populate_contents()
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+
+/obj/item/storage/box/frag/populate_contents()
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+
 /obj/item/storage/box/explosive
 	name = "box of blast grenades"
 	desc = "A box containing 4 blast grenades. Designed for assaulting strongpoints."
@@ -408,16 +411,16 @@
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
 
-/obj/item/storage/box/baton_rounds
-	name = "box of baton rounds"
-	desc = "A box containing 6 rubber rounds, designed to be fired from grenade launchers."
+/obj/item/storage/box/sting_rounds
+	name = "box of sting rounds"
+	desc = "A box containing 6 sting rounds, designed to be fired from grenade launchers."
 	icon_state = "box_security"
 	illustration = "flashbang"
 	rarity_value = 60
 	initial_amount = 6
 	spawn_type = /obj/item/ammo_casing/grenade
 
-/obj/item/storage/box/baton_rounds/populate_contents()
+/obj/item/storage/box/sting_rounds/populate_contents()
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
 

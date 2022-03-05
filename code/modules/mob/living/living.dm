@@ -616,50 +616,67 @@ default behaviour is:
 	set name = "Rest"
 	set category = "IC"
 
-	var/state_changed = FALSE
-	if(resting && can_stand_up())
-		if(do_after(src, 0.5 SECONDS, null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
+	if(resting && unstack)
+		unstack = FALSE
+
+		if(do_after(src, (src.stats.getPerk(PERK_PARKOUR) ? 0.3 SECONDS : 0.7 SECONDS), null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
 			resting = FALSE
-			state_changed = TRUE
-	else if (!resting)
-		if(ishuman(src))
-			var/obj/item/bedsheet/BS = locate(/obj/item/bedsheet) in get_turf(src)
-			// If there is unrolled bedsheet roll and unroll it to get in bed like a proper adult does
-			if(BS && !BS.rolled && !BS.folded)
-				resting = TRUE
-				BS.toggle_roll(src, no_message = TRUE)
-				BS.toggle_roll(src)
-			else
-				resting = TRUE
-			state_changed = TRUE
+			unstack = TRUE
+			to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
+			update_lying_buckled_and_verb_status()
 		else
-			resting = TRUE
-			state_changed = TRUE
-	if(state_changed)
-		to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
-		update_lying_buckled_and_verb_status()
-
-/mob/living/proc/can_stand_up()
-	var/no_blankets = FALSE
-	no_blankets = unblanket()
-
-	if(no_blankets)
-		return TRUE
+			unstack = TRUE
 	else
-		to_chat(src, SPAN_WARNING("You can't stand up, bedsheets are in the way and you struggle to get rid of them."))
-		return FALSE
-
-//used to push away bedsheets in order to stand up, only humans will roll them (see overriden human proc)
-/mob/living/proc/unblanket()
-	var/obj/item/bedsheet/blankets = (locate(/obj/item/bedsheet) in loc)
-	if (blankets && !blankets.rolled && !blankets.folded)
-		return blankets.toggle_roll(src)
-	return TRUE
+		if (!resting)
+			dive()
+		else
+			to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
+			update_lying_buckled_and_verb_status()
 
 /mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item == held_item)
 		return FALSE
 	return ..()
+
+mob/living/carbon/human/verb/stopSliding()
+	set hidden = 1
+	set instant = 1
+	src.livmomentum = 0
+
+/mob/living/proc/dive()
+	var/client/C = src.client
+	var/speed = movement_delay()
+	resting = TRUE
+	var/_dir = C.true_dir
+	var/_hunger = (MOB_BASE_MAX_HUNGER - nutrition)
+	if(_hunger >= 250) //Will be shown on overlay as orange nutrition
+		to_chat(src, SPAN_WARNING("You weakly slump down!")) //You fall down because the rest still procs; a huge disadvantage
+		return
+	if(ishuman(src) && !weakened && (_dir))// If true_dir = 0(src isn't moving), doesn't proc.
+		livmomentum = 5 // Set momentum value as soon as possible for stopSliding to work better
+		nutrition -= 25
+		var/mob/living/carbon/human/H = src
+		var/range = 1 //checks for move intent; dive one tile further if on run intent
+		if (move_intent.flags & MOVE_INTENT_EXERTIVE)
+			range++
+		to_chat(H, SPAN_NOTICE("You dive onwards!"))
+		pass_flags += PASSTABLE // Jump over them!
+		H.allow_spin = FALSE
+		var/is_jump = FALSE
+		if(istype(get_step(H, _dir), /turf/simulated/open))
+			is_jump = TRUE
+		H.throw_at(get_edge_target_turf(H, _dir), range + is_jump, 1)// "Diving"; if you dive over a table, your momentum is set to 0. If you dive over space, you are thrown a tile further.
+		update_lying_buckled_and_verb_status()
+		pass_flags -= PASSTABLE // Jumpn't over them anymore!
+		H.allow_spin = TRUE
+		sleep(2)
+		C.mloop = 1
+		while(livmomentum > 0 && C.true_dir)
+			H.Move(get_step(H.loc, _dir),dir)
+			livmomentum = (livmomentum - speed)
+			H.regen_slickness(0.25) // The longer you slide, the more stylish it is
+			sleep(world.tick_lag + 1)
+		C.mloop = 0
 
 /mob/living/proc/cannot_use_vents()
 	return "You can't fit into that vent."

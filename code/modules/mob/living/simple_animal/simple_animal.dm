@@ -450,6 +450,8 @@
 
 		if(3)
 			adjustBruteLoss(30)
+		if(4)
+			adjustBruteLoss(15)
 
 
 
@@ -626,7 +628,7 @@
 /mob/living/simple_animal/lay_down()
 	set name = "Rest"
 	set category = "Abilities"
-	if(resting && can_stand_up())
+	if(resting)
 		wake_up()
 	else if (!resting)
 		fall_asleep()

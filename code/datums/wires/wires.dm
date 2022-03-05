@@ -123,8 +123,11 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 	for(var/colour in wires)
 		html += "<tr>"
 		var/datum/wire_description/wd = get_description(GetIndex(colour))
-		if(user.stats && user.stats.getPerk(PERK_TECHNOMANCER) || user_skill && (wd.skill_level <= user_skill))
-			html += "<td[row_options1]><font color='[colour]'>[wd.description]</font></td>"
+		if(wd)
+			if(user.stats && user.stats.getPerk(PERK_TECHNOMANCER) || user_skill && (wd.skill_level <= user_skill))
+				html += "<td[row_options1]><font color='[colour]'>[wd.description]</font></td>"
+			else
+				html += "<td[row_options1]><font color='[colour]'>[capitalize(colour)]</font></td>"
 		else
 			html += "<td[row_options1]><font color='[colour]'>[capitalize(colour)]</font></td>"
 		html += "<td[row_options2]>"
@@ -182,7 +185,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 
 				// Attach
 				else
-					if(istype(I, /obj/item/device/assembly/signaler) || istype(I, /obj/item/implant/carrion_spider/signal))
+					if(istype(I, /obj/item/device/assembly/signaler) || istype(I, /obj/item/implant/carrion_spider/spark))
 						L.drop_item()
 						add_log_entry(L, "has attached [I] to the <font color='[colour]'>[capitalize(colour)]</font> wire")
 						Attach(colour, I)
@@ -278,7 +281,7 @@ var/const/POWER = 8
 	return null
 
 /datum/wires/proc/Attach(var/colour, var/obj/item/device/assembly/signaler/S)
-    var/obj/item/implant/carrion_spider/signal/I = S
+    var/obj/item/implant/carrion_spider/spark/I = S
     if(istype(S) || istype(I))
         if(!IsAttached(colour))
             signallers[colour] = S
@@ -289,7 +292,7 @@ var/const/POWER = 8
 /datum/wires/proc/Detach(var/colour)
 	if(colour)
 		var/obj/item/device/assembly/signaler/S = GetAttached(colour)
-		var/obj/item/implant/carrion_spider/signal/I = S
+		var/obj/item/implant/carrion_spider/spark/I = S
 		if(istype(S) || istype(I))
 			signallers -= colour
 			S.connected = null
@@ -298,7 +301,7 @@ var/const/POWER = 8
 
 
 /datum/wires/proc/Pulse(var/obj/item/device/assembly/signaler/S)
-	var/obj/item/implant/carrion_spider/signal/I = S
+	var/obj/item/implant/carrion_spider/spark/I = S
 	if(istype(S) || istype(I))
 		for(var/colour in signallers)
 			if(S == signallers[colour])

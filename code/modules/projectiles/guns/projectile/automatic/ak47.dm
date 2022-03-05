@@ -24,7 +24,7 @@
 	recoil_buildup = 1.8
 	one_hand_penalty = 15 //automatic rifle level
 	spawn_blacklisted = TRUE
-	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/plasteel = 7)
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
 	gun_tags = list(GUN_SILENCABLE)
 
@@ -36,6 +36,18 @@
 	spawn_blacklisted = TRUE
 
 	var/folded = FALSE
+
+/obj/item/part/gun/frame/ak47
+	name = "AK frame"
+	desc = "An AK rifle frame. The eternal firearm."
+	icon_state = "frame_ak"
+	matter = list(MATERIAL_PLASTEEL = 8)
+	result = /obj/item/gun/projectile/automatic/ak47
+	variant_grip = TRUE
+	gripvars = list(/obj/item/part/gun/grip/excel, /obj/item/part/gun/grip/serb, /obj/item/part/gun/grip/wood, /obj/item/part/gun/grip/rubber)
+	resultvars = list(/obj/item/gun/projectile/automatic/ak47, /obj/item/gun/projectile/automatic/ak47/sa, /obj/item/gun/projectile/automatic/ak47/fs, /obj/item/gun/projectile/automatic/ak47/fs/ih)
+	mechanism = /obj/item/part/gun/mechanism/autorifle
+	barrel = /obj/item/part/gun/barrel/lrifle
 
 /obj/item/gun/projectile/automatic/ak47/proc/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
@@ -55,8 +67,11 @@
 		itemstring += "_gold"
 
 	if (ammo_magazine)
-		iconstring += "[ammo_magazine? "_mag[ammo_magazine.max_ammo]": ""]"
 		itemstring += "_full"
+		if (ammo_magazine.mag_well == MAG_WELL_RIFLE_D)
+			iconstring += "_drum"
+		else	
+			iconstring += "[ammo_magazine? "_mag[ammo_magazine.max_ammo]": ""]"
 
 	if(wielded)
 		itemstring += "_doble"
@@ -79,14 +94,18 @@
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 			This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
 			It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
-			This shortened rifle was made specifically for boarding actions with a folding stock and short barrel."
+			This shortened rifle was made specifically for boarding actions with a folding stock and short barrel. \
+			The flexible design also fits drum magazines."
 	icon = 'icons/obj/guns/projectile/ak/krinkov.dmi'
 	w_class = ITEM_SIZE_BULKY	//small rifle, also because it's basically an smg now
 	recoil_buildup = 1.5
 	damage_multiplier = 0.9 //Better control, worse damage
 	penetration_multiplier = 1.2
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
+
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
 	price_tag = 3500
 
@@ -146,6 +165,7 @@
 
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
+	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
@@ -153,9 +173,10 @@
 		BURST_5_ROUND
 	)
 
-	price_tag = 2000
+	price_tag = 1600
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	spawn_blacklisted = FALSE
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
 
 
@@ -170,6 +191,8 @@
 	icon = 'icons/obj/guns/projectile/ak/venger.dmi'
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	price_tag = 2000
 
 /obj/item/gun/projectile/automatic/ak47/fs/ih/CtrlShiftClick(mob/user)
 	. = ..()
@@ -221,9 +244,12 @@
 	icon = 'icons/obj/guns/projectile/ak/kalash.dmi'
 	w_class = ITEM_SIZE_HUGE
 	recoil_buildup = 1.6	//Full size, but cheap
+	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/plasteel = 7)
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 
 	origin_tech = list(TECH_COMBAT = 2)	//bad copies don't give good science
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
+	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY	//too poorly made for burst or automatic
@@ -231,6 +257,7 @@
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	price_tag = 500
+	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/steel = 15)
 
 /obj/item/gun/projectile/automatic/ak47/makeshift/attackby(obj/item/W, mob/user)
 	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
@@ -238,6 +265,7 @@
 		if(!ammo_magazine && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			if(caliber == CAL_LRIFLE)
 				caliber = CAL_SRIFLE
+				mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
 				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .20 Caliber."))
 			else if(caliber == CAL_SRIFLE)
 				caliber = CAL_CLRIFLE
@@ -245,7 +273,7 @@
 				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .25 Caseless."))
 			else if(caliber == CAL_CLRIFLE)
 				caliber = CAL_LRIFLE
-				mag_well = MAG_WELL_RIFLE
+				mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .30 Caliber."))
 		else
 			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))

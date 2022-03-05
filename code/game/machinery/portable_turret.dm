@@ -517,6 +517,8 @@ var/list/turret_icons
 			take_damage(rand(80,170))
 		if (3)
 			take_damage(rand(50,120))
+		if (4)
+			take_damage(rand(25,60))
 
 /obj/machinery/porta_turret/proc/die()	//called when the turret dies, ie, health <= 0
 	health = 0

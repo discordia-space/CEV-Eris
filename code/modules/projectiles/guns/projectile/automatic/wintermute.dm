@@ -1,6 +1,7 @@
 /obj/item/gun/projectile/automatic/wintermute
 	name = "FS AR .20 \"Wintermute\""
-	desc = "A high end military grade assault rifle, designed as a modern ballistic infantry weapon. Primarily used by and produced for IH troops. Uses IH .20 Rifle magazines."
+	desc = "A high end military grade assault rifle, designed as a modern ballistic infantry weapon. Primarily used by and produced for IH troops. Uses IH .20 Rifle magazines. \
+			The design was made to be able to fit long magazine alongside the standard ones."
 	icon = 'icons/obj/guns/projectile/wintermute.dmi'
 	icon_state = "wintermute"
 	item_state = "wintermute"
@@ -10,7 +11,7 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	mag_well = MAG_WELL_RIFLE
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L
 	magazine_type = /obj/item/ammo_magazine/srifle
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
@@ -24,16 +25,17 @@
 	recoil_buildup = 1.5
 	one_hand_penalty = 15 //automatic rifle level
 	damage_multiplier = 1.15
+	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(
-		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		BURST_3_ROUND
+		BURST_3_ROUND,
+		FULL_AUTO_400
 		)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	gun_parts = list(/obj/item/part/gun/frame/wintermute = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)
 
-	gun_tags = list(GUN_SILENCABLE)
 
 /obj/item/gun/projectile/automatic/wintermute/update_icon()
 	..()
@@ -44,6 +46,8 @@
 	if (ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
+		if(ammo_magazine.mag_well == MAG_WELL_RIFLE_L)
+			itemstring += "_l"
 
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
@@ -54,3 +58,12 @@
 /obj/item/gun/projectile/automatic/wintermute/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/part/gun/frame/wintermute
+	name = "Wintermute frame"
+	desc = "A Wintermute assault rifle frame. The finest of the Ironhammer lineup."
+	icon_state = "frame_wintermute"
+	result = /obj/item/gun/projectile/automatic/wintermute
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/autorifle
+	barrel = /obj/item/part/gun/barrel/srifle
