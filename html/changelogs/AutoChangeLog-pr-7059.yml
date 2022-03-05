@@ -1,4 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - tweak: Asteroid and exoplanet turfs are now indestructible
