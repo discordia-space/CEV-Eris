@@ -1,7 +1,7 @@
 /obj/item/implant/carrion_spider/identity
 	name = "identity spider"
 	icon_state = "spiderling_identity"
-	spider_price = 25
+	spider_price = 15
 
 /obj/item/implant/carrion_spider/identity/activate()
 	..()

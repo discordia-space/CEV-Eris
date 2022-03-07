@@ -175,20 +175,20 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/fshunting	//3 hunting rifles
 	name = "FS Hunting Rifle Pack"
-	contains = list(/obj/item/gun/projectile/automatic/ak47/fs,
-			/obj/item/gun/projectile/automatic/ak47/fs,
-			/obj/item/gun/projectile/automatic/ak47/fs)
-	cost = 4500
+	contains = list(/obj/item/gun/projectile/boltgun/fs,
+			/obj/item/gun/projectile/boltgun/fs,
+			/obj/item/gun/projectile/boltgun/fs)
+	cost = 2700
 	containertype = /obj/structure/closet/crate/secure/weapon
 	crate_name = "FS Hunting Rifle Pack"
 	group = "Security"
 
 /datum/supply_pack/fsassault
 	name = "FS Assault Pack"
-	contains = list(/obj/item/gun/projectile/automatic/ak47/fs/ih,
-			/obj/item/gun/projectile/automatic/z8,
-			/obj/item/gun/projectile/automatic/atreides)
-	cost = 4500
+	contains = list(/obj/item/gun/projectile/automatic/ak47/fs,
+			/obj/item/gun/projectile/automatic/ak47/fs,
+			/obj/item/gun/projectile/automatic/ak47/fs)
+	cost = 3600
 	containertype = /obj/structure/closet/crate/secure/weapon
 	crate_name = "FS Assault Pack"
 	group = "Security"
@@ -1202,18 +1202,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 */
 /datum/supply_pack/mining_drill
 	name = "Drill Crate"
-	contains = list(/obj/machinery/mining/drill)
+	contains = list(/obj/machinery/mining/deep_drill)
 	cost = 2000
 	containertype = /obj/structure/closet/crate/secure/large
 	crate_name = "Drill Crate"
-	group = "Mining"
-
-/datum/supply_pack/mining_brace
-	name = "Brace Crate"
-	contains = list(/obj/machinery/mining/brace)
-	cost = 1000
-	containertype = /obj/structure/closet/crate/secure/large
-	crate_name = "Brace Crate"
 	group = "Mining"
 
 /datum/supply_pack/mining_supply

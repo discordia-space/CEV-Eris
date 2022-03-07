@@ -382,8 +382,33 @@ obj/item/clothing/under/genericr
 		rad = 0
 	)
 
+/obj/item/clothing/under/tropicalpink
+	name = "pink tropical shirt"
+	desc = "An Aster\'s Guild branded neosilk tropical shirt. This one makes you feel nostalgic."
+	icon_state = "3005vintage"
+	item_state = "3005vintage"
+	style = STYLE_HIGH
 
+/obj/item/clothing/under/tropicalblue
+	name = "blue tropical shirt" 
+	desc = "An Aster\'s Guild branded neosilk tropical shirt. This one makes you feel out of touch."
+	icon_state = "miamivice"
+	item_state = "miamivice"
+	style = STYLE_HIGH
 
+/obj/item/clothing/under/tropicalblack
+	name = "black tropical shirt"
+	desc = "An Aster\'s Guild branded neosilk tropical shirt. This one makes you feel like an animal."
+	icon_state = "animalstyle"
+	item_state = "animalstyle"
+	style = STYLE_HIGH
+
+/obj/item/clothing/under/tropicalgreen
+	name = "puke-green tropical shirt"
+	desc = "An Aster\'s Guild branded neosilk tropical shirt. This one makes you look like puke."
+	icon_state = "tropicopuke"
+	item_state = "tropicopuke"
+	style = STYLE_HIGH
 
 //Adminbus versions with extremly high armor, should never spawn in game
 /obj/item/clothing/under/tuxedo/adminspawn

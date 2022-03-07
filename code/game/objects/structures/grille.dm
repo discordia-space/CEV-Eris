@@ -13,7 +13,8 @@
 
 
 /obj/structure/grille/ex_act(severity)
-	qdel(src)
+	if(severity < 4)
+		qdel(src)
 
 /obj/structure/grille/update_icon()
 	if(destroyed)
@@ -93,6 +94,15 @@
 	spawn(0) healthcheck() //spawn to make sure we return properly if the grille is deleted
 
 /obj/structure/grille/attackby(obj/item/I, mob/user)
+
+	if(user.a_intent == I_HELP && istype(I, /obj/item/gun))
+		var/obj/item/gun/G = I
+		if(anchored == TRUE) //Just makes sure we're not bracing on movable cover
+			G.gun_brace(user, src)
+			return
+		else
+			to_chat(user, SPAN_NOTICE("You can't brace your weapon - the [src] is not anchored down."))
+		return
 
 	var/list/usable_qualities = list(QUALITY_WIRE_CUTTING)
 	if(anchored)

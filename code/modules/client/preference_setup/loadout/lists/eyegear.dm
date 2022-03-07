@@ -32,6 +32,10 @@
 	display_name = "black goggles"
 	path = /obj/item/clothing/glasses/regular/goggles/black
 
+/datum/gear/eyes/clear_goggles
+	display_name = "goggles"
+	path = /obj/item/clothing/glasses/regular/goggles/clear
+
 /datum/gear/eyes/sciencegoggles
 	display_name = "Science Goggles"
 	path = /obj/item/clothing/glasses/powered/science

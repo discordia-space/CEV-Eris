@@ -109,8 +109,8 @@
 		if (HUDtech.Find("flash"))
 			flick("flash", HUDtech["flash"])
 
+	var/bomb_defense = getarmor(null, ARMOR_BOMB)
 	var/b_loss = null
-	var/f_loss = null
 	switch (severity)
 		if (1)
 			gib()
@@ -118,7 +118,6 @@
 
 		if (2)
 			b_loss += 60
-			f_loss += 60
 			adjustEarDamage(30,120)
 
 		if (3)
@@ -126,9 +125,16 @@
 			if (prob(50))
 				Paralyse(1)
 			adjustEarDamage(15,60)
+		
+		if (4)
+			b_loss += 15
+			if (prob(25))
+				Paralyse(1)
+			adjustEarDamage(15,60)
+
+	b_loss = max(0, b_loss - bomb_defense)
 
 	adjustBruteLoss(b_loss)
-	adjustFireLoss(f_loss)
 
 	updatehealth()
 

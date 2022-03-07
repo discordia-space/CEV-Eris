@@ -201,7 +201,8 @@
 	can_hold = list(
 		/obj/item/cell,
 		/obj/item/stock_parts,
-		/obj/item/electronics/circuitboard/miningdrill
+		/obj/item/electronics/circuitboard/miningdrill,
+		/obj/item/electronics/circuitboard/miningturret
 	)
 
 /obj/item/gripper/paperwork

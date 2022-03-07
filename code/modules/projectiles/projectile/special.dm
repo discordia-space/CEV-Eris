@@ -35,7 +35,7 @@
 	..(target, target_zone, x_offset, y_offset, angle_offset)
 
 /obj/item/projectile/bullet/rocket/on_hit(atom/target)
-	explosion(target, 0, 1, 2, 4)
+	explosion(target, 0, 1, 2, 5)
 	set_light(0)
 	return TRUE
 
@@ -43,7 +43,7 @@
 	damage_types = list(BRUTE = 30)
 
 /obj/item/projectile/bullet/rocket/scrap/on_hit(atom/target)
-	explosion(target, -1, -1, 0, 3)
+	explosion(target, 0, 0, 1, 4, singe_impact_range = 3)
 	set_light(0)
 	return TRUE
 
@@ -55,7 +55,7 @@
 
 /obj/item/projectile/bullet/rocket/hesh/on_hit(atom/target)
 	fragment_explosion_angled(target, starting, /obj/item/projectile/bullet/pellet/fragment/strong, 20)
-	explosion(target, -1, 0, 2, 3) // Much weaker explosion, but offset by shrapnel released
+	explosion(target, 0, 0, 1, 3) // Much weaker explosion, but offset by shrapnel released
 	set_light(0)
 	return TRUE
 
