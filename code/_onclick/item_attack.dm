@@ -128,6 +128,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	var/power = force
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
+		power *= ((H.organs_by_name[(H.hand ? BP_L_ARM : BP_R_ARM)]:limb_efficiency) / 100) //Makes all weapon damage scale on limb efficiency of the hand holding it
 		power *= H.damage_multiplier
 	if(HULK in user.mutations)
 		power *= 2
