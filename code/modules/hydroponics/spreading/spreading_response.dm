@@ -148,7 +148,10 @@
 			if (prob(75))
 				die_off()
 				return
-		else
+		if(4)
+			if(prob(40))
+				die_off()
+				return
 	return
 
 //Fire is instakill. Deploy flamethrowers

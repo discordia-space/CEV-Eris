@@ -129,7 +129,8 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 		T.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
 	else
 		var/obj/structure/obstacle = locate(/obj/structure) in T
-		obstacle?.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
+		if(obstacle && !istype(obstacle, /obj/structure/golem_burrow))
+			obstacle.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
 
 /mob/living/carbon/superior_animal/golem/handle_ai()
 	// Chance to re-aggro the drill if doing nothing

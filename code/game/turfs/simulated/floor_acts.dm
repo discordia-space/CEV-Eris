@@ -21,6 +21,8 @@
 			take_damage(rand(115, 430), BLAST) //Breaks through 2 - 3 layers
 		if(3)
 			take_damage(rand(20, 120), BLAST) //Breaks 1-2 layers
+		if(4)
+			take_damage(rand(10, 50), BLAST)
 
 
 /turf/simulated/floor/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
