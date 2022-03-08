@@ -104,6 +104,11 @@ obj/item/clothing/disguise(newtype, mob/user)
 	if(!clothing_choices)
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/under)
 
+/obj/item/clothing/under/chameleon/Initialize(mapload, ...)
+	. = ..()
+	matter = list()
+	matter.Add(list(MATERIAL_PLASTIC = 2 * w_class))
+
 /obj/item/clothing/under/chameleon/emp_act(severity)
 	name = "psychedelic"
 	desc = "Groovy!"
@@ -311,6 +316,11 @@ obj/item/clothing/disguise(newtype, mob/user)
 		var/blocked = list(src.type, /obj/item/clothing/head/justice,)//Prevent infinite loops and bad hats.
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/head, blocked)
 
+/obj/item/clothing/head/chameleon/Initialize(mapload, ...)
+	. = ..()
+	matter = list()
+	matter.Add(list(MATERIAL_PLASTIC = 2 * w_class))
+
 /obj/item/clothing/head/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "grey cap"
 	desc = "A baseball hat in a tasteful grey colour."
@@ -346,6 +356,11 @@ obj/item/clothing/disguise(newtype, mob/user)
 	if(!clothing_choices)
 		var/blocked = list(src.type, null)
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/suit, blocked)
+
+/obj/item/clothing/suit/chameleon/Initialize(mapload, ...)
+	. = ..()
+	matter = list()
+	matter.Add(list(MATERIAL_PLASTIC = 2 * w_class))
 
 /obj/item/clothing/suit/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "armor"
@@ -383,6 +398,11 @@ obj/item/clothing/disguise(newtype, mob/user)
 		var/blocked = list(src.type, /obj/item/clothing/shoes/syndigaloshes, /obj/item/clothing/shoes/cyborg)//prevent infinite loops and bad shoes.
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/shoes, blocked)
 
+/obj/item/clothing/shoes/chameleon/Initialize(mapload, ...)
+	. = ..()
+	matter = list()
+	matter.Add(list(MATERIAL_PLASTIC = 2 * w_class))
+
 /obj/item/clothing/shoes/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "black shoes"
 	desc = "A pair of black shoes."
@@ -415,11 +435,16 @@ obj/item/clothing/disguise(newtype, mob/user)
 	rarity_value = 50
 	var/global/list/clothing_choices
 
-/obj/item/storage/backpack/chameleon/Initialize()
+/obj/item/storage/backpack/chameleon/New()
 	. = ..()
 	if(!clothing_choices)
 		var/blocked = list(src.type, /obj/item/storage/backpack/satchel/leather/withwallet)
 		clothing_choices = generate_chameleon_choices(/obj/item/storage/backpack, blocked)
+
+/obj/item/storage/backpack/chameleon/Initialize(mapload, ...)
+	. = ..()
+	matter = list()
+	matter.Add(list(MATERIAL_PLASTIC = 2 * w_class))
 
 /obj/item/storage/backpack/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "grey backpack"
@@ -452,11 +477,16 @@ obj/item/clothing/disguise(newtype, mob/user)
 	rarity_value = 50
 	var/global/list/clothing_choices
 
-/obj/item/storage/backpack/satchel/chameleon/Initialize()
+/obj/item/storage/backpack/satchel/chameleon/New()
 	. = ..()
 	if(!clothing_choices)
 		var/blocked = list(src.type, /obj/item/storage/backpack/satchel/leather/withwallet)
 		clothing_choices = generate_chameleon_choices(/obj/item/storage/backpack, blocked)
+
+/obj/item/storage/backpack/satchel/chameleon/Initialize(mapload, ...)
+	. = ..()
+	matter = list()
+	matter.Add(list(MATERIAL_PLASTIC = 2 * w_class))
 
 /obj/item/storage/backpack/satchel/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "grey satchel"
@@ -494,6 +524,11 @@ obj/item/clothing/disguise(newtype, mob/user)
 	..()
 	if(!clothing_choices)
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/gloves, list(src.type))
+
+/obj/item/clothing/gloves/chameleon/Initialize(mapload, ...)
+	. = ..()
+	matter = list()
+	matter.Add(list(MATERIAL_PLASTIC = 2 * w_class))
 
 /obj/item/clothing/gloves/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "black gloves"
@@ -533,6 +568,11 @@ obj/item/clothing/disguise(newtype, mob/user)
 	if(!clothing_choices)
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/mask, list(src.type))
 
+/obj/item/clothing/mask/chameleon/Initialize(mapload, ...)
+	. = ..()
+	matter = list()
+	matter.Add(list(MATERIAL_PLASTIC = 2 * w_class))
+
 /obj/item/clothing/mask/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "gas mask"
 	desc = "A gas mask."
@@ -568,6 +608,11 @@ obj/item/clothing/disguise(newtype, mob/user)
 	..()
 	if(!clothing_choices)
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/glasses, list(src.type))
+
+/obj/item/clothing/glasses/chameleon/Initialize(mapload, ...)
+	. = ..()
+	matter = list()
+	matter.Add(list(MATERIAL_PLASTIC = 2 * w_class))
 
 /obj/item/clothing/glasses/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "Optical Meson Scanner"
