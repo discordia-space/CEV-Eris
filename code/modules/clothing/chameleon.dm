@@ -174,15 +174,15 @@ obj/item/clothing/disguise(newtype, mob/user)
 
 /obj/item/clothing/under/chameleon/proc/disguise_as_loadout(mob/user, loadout)
 	var/obj/item/A
+	for(var/obj/item/clothing/suit/chameleon/F in user.get_contents())
+		A = F
+		A.disguise(loadout[3], user)
 	for(var/obj/item/clothing/under/chameleon/F in user.get_contents())
 		A = F
 		A.disguise(loadout[1], user)
 	for(var/obj/item/clothing/head/chameleon/F in user.get_contents())
 		A = F
 		A.disguise(loadout[2], user)
-	for(var/obj/item/clothing/suit/chameleon/F in user.get_contents())
-		A = F
-		A.disguise(loadout[3], user)
 	for(var/obj/item/clothing/shoes/chameleon/F in user.get_contents())
 		A = F
 		A.disguise(loadout[4], user)
