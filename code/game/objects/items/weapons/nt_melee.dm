@@ -163,7 +163,7 @@
 	price_tag = 150
 	allow_spin = FALSE
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 5) // easy to mass-produce and arm the faithful
-
+	style_damage = 50
 /obj/item/tool/sword/nt/spear/equipped(mob/living/W)
 	..()
 	if(is_held() && is_neotheology_disciple(W))
