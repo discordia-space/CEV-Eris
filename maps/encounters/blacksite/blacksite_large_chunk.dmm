@@ -1,923 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ai" = (
-/obj/machinery/computer/arcade,
-/turf/space,
-/area/outpost/blacksite/large)
-"bt" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/item/stamp/chameleon,
-/obj/spawner/lowkeyrandom/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"bu" = (
-/obj/structure/closet/secure_closet/freezer/meat,
-/obj/item/tool/knife/butch,
-/turf/space,
-/area/outpost/blacksite/large)
-"bD" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
-/obj/item/remains/human,
-/turf/space,
-/area/outpost/blacksite/large)
-"bE" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/item/phone,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"bN" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/item/paper_bin,
-/turf/space,
-/area/outpost/blacksite/large)
-"bV" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4
-	},
-/obj/machinery/light,
-/turf/space,
-/area/outpost/blacksite/large)
-"bX" = (
-/obj/structure/table/standard,
-/obj/machinery/reagentgrinder/portable,
-/turf/space,
-/area/outpost/blacksite/large)
-"bY" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 8
-	},
-/obj/structure/window/reinforced/crescent{
-	dir = 1
-	},
-/obj/structure/window/reinforced/crescent{
-	dir = 4
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"ca" = (
-/obj/structure/table/rack,
-/obj/spawner/gun/normal,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"cA" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/table/onestar,
-/obj/spawner/junk,
-/turf/space,
-/area/outpost/blacksite/large)
-"cW" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"dp" = (
-/obj/structure/table/onestar,
-/obj/spawner/soda,
-/obj/spawner/soda,
-/turf/space,
-/area/outpost/blacksite/large)
-"dA" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
-/obj/spawner/soda,
-/turf/space,
-/area/outpost/blacksite/large)
-"dK" = (
-/obj/structure/closet/emcloset,
-/turf/space,
-/area/outpost/blacksite/large)
-"dS" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/item/device/lighting/toggleable/lamp,
-/turf/space,
-/area/outpost/blacksite/large)
-"eh" = (
-/obj/structure/sign/faction/one_star{
-	pixel_x = 32
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"eQ" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/item/pen,
-/turf/space,
-/area/outpost/blacksite/large)
-"fg" = (
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/obj/structure/railing/grey{
-	dir = 1
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"fw" = (
-/obj/machinery/door/airlock/sandstone{
-	icon_state = "door_locked";
-	locked = 1;
-	name = "OneStar Airlock"
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"fx" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger,
-/turf/space,
-/area/outpost/blacksite/large)
-"gC" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/obj/spawner/booze/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"gV" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/item/device/lighting/toggleable/lamp,
-/turf/space,
-/area/outpost/blacksite/large)
-"gX" = (
-/obj/structure/closet/onestar/tier2/normal,
-/turf/space,
-/area/outpost/blacksite/large)
-"hi" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
-	},
-/turf/space,
-/area/template_noop)
-"hy" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"if" = (
-/obj/structure/table/onestar,
-/obj/item/storage/lunchbox/rainbow,
-/turf/space,
-/area/outpost/blacksite/large)
-"iy" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/spawner/cloth/under/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"je" = (
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/obj/structure/railing/grey,
-/turf/space,
-/area/outpost/blacksite/large)
-"jg" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/spawner/junk,
-/turf/space,
-/area/outpost/blacksite/large)
-"jr" = (
-/obj/machinery/door/airlock/centcom{
-	icon_state = "door_locked";
-	locked = 1
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"jF" = (
-/obj/structure/table/rack,
-/obj/spawner/rations,
-/obj/spawner/rations,
-/obj/spawner/rations,
-/obj/spawner/rations,
-/obj/spawner/rations,
-/turf/space,
-/area/outpost/blacksite/large)
-"kz" = (
-/obj/item/modular_computer/console,
-/turf/space,
-/area/outpost/blacksite/large)
-"kC" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/item/stamp/denied,
-/obj/spawner/lowkeyrandom/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"kD" = (
-/obj/structure/toilet{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/spawner/credits/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"ld" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"lW" = (
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/donkpockets,
-/obj/item/storage/box/donkpockets,
-/obj/structure/closet/crate,
-/turf/space,
-/area/outpost/blacksite/large)
-"nD" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 1;
-	icon_state = "propulsion_l"
-	},
-/turf/space,
-/area/template_noop)
-"oj" = (
-/obj/structure/table/woodentable,
-/obj/spawner/junkfood,
-/turf/space,
-/area/outpost/blacksite/large)
-"oX" = (
-/obj/machinery/light,
-/obj/item/modular_computer/console{
-	dir = 1
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"pf" = (
-/obj/structure/sign/derelict2{
-	pixel_x = -32
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"pr" = (
-/obj/structure/table/woodentable,
-/obj/item/device/lighting/toggleable/lamp,
-/turf/space,
-/area/outpost/blacksite/large)
-"pJ" = (
-/obj/structure/table/woodentable,
-/obj/spawner/toy/plushie,
-/turf/space,
-/area/outpost/blacksite/large)
-"qv" = (
-/obj/structure/curtain/open/shower,
-/obj/machinery/shower{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"qw" = (
-/obj/machinery/vending/cigarette,
-/turf/space,
-/area/outpost/blacksite/large)
-"qZ" = (
-/obj/machinery/vending/assist{
-	dir = 4
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"ro" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"rD" = (
-/obj/structure/table/onestar,
-/obj/spawner/medical,
-/turf/space,
-/area/outpost/blacksite/large)
-"rH" = (
-/obj/structure/catwalk,
-/turf/space,
-/area/template_noop)
-"rN" = (
-/obj/structure/dispenser,
-/turf/space,
-/area/outpost/blacksite/large)
-"rQ" = (
-/obj/machinery/door/airlock/sandstone{
-	name = "OneStar Airlock"
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"sf" = (
-/obj/structure/sign/derelict3{
-	pixel_y = 32
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"sl" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
-/obj/spawner/lowkeyrandom/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"sv" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/door/airlock/external{
-	frequency = null;
-	icon_state = "door_locked";
-	id_tag = null;
-	locked = 1
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"tp" = (
-/obj/structure/railing,
-/turf/space,
-/area/template_noop)
-"ue" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/space,
-/area/outpost/blacksite/large)
-"us" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/space,
-/area/outpost/blacksite/large)
-"uC" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 26
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"uT" = (
-/obj/machinery/vending/coffee,
-/turf/space,
-/area/outpost/blacksite/large)
-"vN" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/spawner/cloth/under/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/helmet/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"wz" = (
-/obj/structure/table/onestar,
-/obj/item/board,
-/obj/spawner/toy/figure,
-/turf/space,
-/area/outpost/blacksite/large)
-"xq" = (
-/obj/structure/closet/onestar/tier1,
-/turf/space,
-/area/outpost/blacksite/large)
-"xU" = (
-/obj/spawner/lowkeyrandom,
-/turf/space,
-/area/outpost/blacksite/large)
-"yN" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
-	dir = 6
-	},
-/obj/item/device/taperecorder,
-/turf/space,
-/area/outpost/blacksite/large)
-"Av" = (
-/obj/machinery/door/window/brigdoor/northright{
-	dir = 4;
-	req_access = null
-	},
-/obj/structure/table/onestar,
-/turf/space,
-/area/outpost/blacksite/large)
-"BS" = (
-/obj/structure/table/rack,
-/obj/spawner/gun/cheap,
-/turf/space,
-/area/outpost/blacksite/large)
-"BX" = (
-/obj/machinery/light/floor,
-/turf/space,
-/area/outpost/blacksite/large)
-"Co" = (
-/obj/structure/noticeboard{
-	pixel_y = 32
-	},
-/obj/spawner/soda,
-/turf/space,
-/area/outpost/blacksite/large)
-"CU" = (
-/obj/structure/urinal{
-	pixel_y = 32
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"Da" = (
-/obj/machinery/chem_master/condimaster,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"Dz" = (
-/obj/structure/sign/faction/one_star{
-	pixel_y = 32
-	},
-/obj/structure/bed/chair/custom/onestar,
-/obj/spawner/junkfood/rotten/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"Ea" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/item/modular_computer/laptop,
-/turf/space,
-/area/outpost/blacksite/large)
-"Ex" = (
-/obj/spawner/boxes,
-/obj/spawner/boxes,
-/obj/structure/table/rack,
-/turf/space,
-/area/outpost/blacksite/large)
-"EI" = (
-/obj/structure/table/onestar,
-/obj/item/newspaper,
-/turf/space,
-/area/outpost/blacksite/large)
-"ES" = (
-/obj/structure/table/standard,
-/obj/item/packageWrap,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/spawner/booze/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"EW" = (
-/obj/structure/table/onestar,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot,
-/turf/space,
-/area/outpost/blacksite/large)
-"EX" = (
-/obj/machinery/shower{
-	dir = 1
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"Fe" = (
-/obj/structure/table/rack,
-/obj/spawner/medical,
-/turf/space,
-/area/outpost/blacksite/large)
-"Fi" = (
-/obj/spawner/traps/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"FF" = (
-/obj/structure/table/rack,
-/obj/item/storage/belt/tactical/ironhammer,
-/obj/spawner/ammo,
-/turf/space,
-/area/outpost/blacksite/large)
-"FX" = (
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"Gf" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/spawner/cloth/under/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/shoes/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"Gt" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/bed/chair/office/dark,
-/turf/space,
-/area/outpost/blacksite/large)
-"Gx" = (
-/obj/machinery/vending,
-/turf/space,
-/area/outpost/blacksite/large)
-"GL" = (
-/obj/machinery/recharge_station,
-/turf/space,
-/area/outpost/blacksite/large)
-"Ha" = (
-/obj/spawner/pack/machine,
-/turf/space,
-/area/outpost/blacksite/large)
-"Hi" = (
-/obj/item/modular_computer/console{
-	dir = 1
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"Hp" = (
-/obj/spawner/soda,
-/turf/space,
-/area/outpost/blacksite/large)
-"HE" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 1
-	},
-/obj/structure/window/reinforced/crescent,
-/turf/space,
-/area/outpost/blacksite/large)
-"HM" = (
-/obj/item/remains/human,
-/turf/space,
-/area/outpost/blacksite/large)
-"If" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"IE" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/turf/space,
-/area/outpost/blacksite/large)
-"JA" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
-	},
-/obj/structure/mirror{
-	dir = 8;
-	pixel_x = -28
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"JD" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/space,
-/area/template_noop)
-"JI" = (
-/obj/structure/sign/faction/one_star{
-	pixel_y = 32
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"Kl" = (
-/obj/structure/window/reinforced,
-/turf/space,
-/area/outpost/blacksite/large)
-"Ko" = (
-/obj/structure/table/rack,
-/obj/spawner/boxes,
-/obj/spawner/boxes,
-/turf/space,
-/area/outpost/blacksite/large)
-"Kz" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/spawner/junk/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"Lq" = (
-/obj/structure/sign/derelict2{
-	pixel_x = -32
-	},
-/obj/spawner/mob/roomba,
-/turf/space,
-/area/outpost/blacksite/large)
 "Ls" = (
 /turf/space,
 /area/template_noop)
-"MF" = (
-/obj/structure/table/rack,
-/obj/item/storage/box/handcuffs,
-/obj/item/storage/box/flashbangs,
-/turf/space,
-/area/outpost/blacksite/large)
-"NN" = (
-/obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/space,
-/area/outpost/blacksite/large)
-"NX" = (
-/obj/spawner/scrap/sparse,
-/obj/structure/sign/derelict3{
-	pixel_x = 32
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"Og" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"OA" = (
-/obj/structure/window/reinforced,
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"OC" = (
-/obj/machinery/shower{
-	dir = 1
-	},
-/obj/structure/curtain/open/shower,
-/turf/space,
-/area/outpost/blacksite/large)
-"OH" = (
-/obj/spawner/lowkeyrandom/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"PQ" = (
-/obj/structure/table/standard,
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"Qt" = (
-/obj/structure/bed/chair/comfy/beige{
-	dir = 4
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"Qv" = (
-/obj/structure/bed/chair/comfy/beige{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/spawner/junkfood/rotten/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"QJ" = (
-/obj/spawner/junk,
-/turf/space,
-/area/outpost/blacksite/large)
-"RF" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
-/obj/machinery/camera/network/third_section{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/freezer/kitchen,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/reagent_containers/food/drinks/soymilk,
-/obj/item/reagent_containers/food/drinks/soymilk,
-/obj/item/reagent_containers/food/drinks/soymilk,
-/obj/item/reagent_containers/food/drinks/milk,
-/obj/item/reagent_containers/food/drinks/milk,
-/obj/item/reagent_containers/food/drinks/milk,
-/turf/space,
-/area/outpost/blacksite/large)
-"Sh" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/structure/closet/chefcloset,
-/obj/item/tool/knife,
-/obj/item/tool/knife,
-/turf/space,
-/area/outpost/blacksite/large)
-"SB" = (
-/obj/item/soap,
-/turf/space,
-/area/outpost/blacksite/large)
-"SP" = (
-/obj/machinery/door/window/brigdoor/northleft{
-	dir = 2
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"Tq" = (
-/obj/structure/table/rack,
-/obj/spawner/gun_parts,
-/turf/space,
-/area/outpost/blacksite/large)
-"Tu" = (
-/obj/machinery/vending/cola,
-/turf/space,
-/area/outpost/blacksite/large)
-"Tv" = (
-/obj/machinery/light,
-/turf/space,
-/area/outpost/blacksite/large)
-"Tz" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
-/obj/machinery/light,
-/obj/item/material/kitchen/rollingpin,
-/turf/space,
-/area/outpost/blacksite/large)
-"TC" = (
-/obj/item/clothing/accessory/blue,
-/turf/space,
-/area/outpost/blacksite/large)
-"TZ" = (
-/obj/structure/bed/chair/custom/onestar{
-	dir = 4
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"Ub" = (
-/obj/spawner/junk,
-/obj/structure/table/onestar,
-/turf/space,
-/area/outpost/blacksite/large)
-"Ux" = (
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/obj/spawner/junk/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"UF" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"Vi" = (
-/obj/machinery/door/window/westright,
-/obj/item/remains/human,
-/turf/space,
-/area/outpost/blacksite/large)
-"Vz" = (
-/obj/machinery/suit_storage_unit/standard_unit,
-/turf/space,
-/area/outpost/blacksite/large)
-"VC" = (
-/obj/structure/bed/padded,
-/obj/item/bedsheet,
-/obj/spawner/medical/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"VT" = (
-/obj/structure/table/onestar,
-/obj/spawner/junk,
-/turf/space,
-/area/outpost/blacksite/large)
-"WF" = (
-/obj/spawner/junkfood/rotten,
-/turf/space,
-/area/outpost/blacksite/large)
-"WH" = (
-/obj/structure/reagent_dispensers/water_cooler,
-/turf/space,
-/area/outpost/blacksite/large)
-"Xg" = (
-/obj/structure/toilet{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/spawner/lowkeyrandom/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"Xm" = (
-/obj/spawner/junk/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"Xn" = (
-/obj/spawner/pack/tech_loot,
-/turf/space,
-/area/outpost/blacksite/large)
-"Yd" = (
-/obj/structure/bed/chair/custom/onestar{
-	dir = 4
-	},
-/obj/spawner/junkfood/rotten/low_chance,
-/turf/space,
-/area/outpost/blacksite/large)
-"Yp" = (
-/obj/structure/table/rack,
-/obj/spawner/tank,
-/turf/space,
-/area/outpost/blacksite/large)
-"Yz" = (
-/obj/structure/sign/derelict1{
-	pixel_x = 32
-	},
-/turf/space,
-/area/outpost/blacksite/large)
-"YM" = (
-/obj/spawner/mob/roomba,
-/turf/space,
-/area/outpost/blacksite/large)
-"ZQ" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 6
-	},
-/obj/spawner/junk,
-/turf/space,
-/area/outpost/blacksite/large)
-"ZS" = (
-/turf/space,
-/area/outpost/blacksite/large)
 
 (1,1,1) = {"
 Ls
@@ -927,44 +11,44 @@ Ls
 Ls
 Ls
 Ls
-ZS
-ZS
-ZS
-ue
-ZS
-ue
-ZS
-ZS
-ZS
-ue
-ue
-ZS
-ue
-ue
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ue
-ZS
-tp
-rH
-JD
-ZS
-ue
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 "}
@@ -974,47 +58,47 @@ Ls
 Ls
 Ls
 Ls
-ZS
-ZS
-ZS
-GL
-JA
-Xm
-JA
-Xm
-JA
-rD
-ZS
-Xm
-Xm
-ZS
-Gx
-Tu
-bt
-ro
-Og
-VT
-jg
-OA
-EI
-VT
-if
-ZS
-MF
-xq
-gX
-FF
-ZS
-ZS
-ZS
-ZS
-sv
-ZS
-ZS
-ZS
-ZS
-ZS
-hi
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 "}
 (3,1,1) = {"
@@ -1022,511 +106,511 @@ Ls
 Ls
 Ls
 Ls
-ZS
-ZS
-ZS
-CU
-ZS
-ZS
-YM
-QJ
-ZS
-YM
-Tv
-ZS
-ZS
-ZS
-ZS
-Co
-Hp
-bN
-HM
-Gt
-eQ
-bE
-Kl
-ZS
-bD
-OH
-ZS
-ca
-HM
-ZS
-BS
-ZS
-Ux
-je
-ZS
-ZS
-ZS
-fg
-Ux
-ZS
-Ha
-bY
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (4,1,1) = {"
 Ls
 Ls
 Ls
-nD
-HE
-Xn
-ZS
-CU
-ZS
-Kz
-ZS
-NX
-ZS
-Xm
-ZS
-rQ
-ZS
-ZS
-rQ
-ZS
-ZS
-ZS
-If
-If
-ZS
-Xm
-If
-If
-Ea
-cW
-ZS
-Tq
-ZS
-ZS
-Fe
-ZS
-Xm
-ZS
-ZS
-ZS
-YM
-ZS
-ZS
-ZS
-ZS
-Xm
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (5,1,1) = {"
 Ls
 Ls
 Ls
-nD
-HE
-FX
-ZS
-Vi
-qv
-ZS
-fw
-ZS
-fw
-ZS
-fw
-ZS
-YM
-ZS
-ZS
-sf
-ZS
-ZS
-YM
-ZS
-ZS
-ZS
-ZS
-ZS
-dS
-QJ
-ZS
-ZS
-ZS
-jr
-ZS
-ZS
-BX
-ZS
-ZS
-ZS
-ZS
-ZS
-BX
-ZS
-Xm
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (6,1,1) = {"
 Ls
 Ls
 Ls
-nD
-HE
-Fi
-ZS
-SB
-OC
-ZS
-Xg
-ZS
-kD
-ZS
-kD
-ZS
-ZS
-ZS
-ZS
-WH
-UF
-Xm
-UF
-UF
-ZS
-ZS
-YM
-ZS
-ZS
-bV
-ZS
-YM
-ZS
-ZS
-QJ
-ZS
-uT
-WF
-ZS
-ZS
-Yz
-Xm
-dK
-ZS
-ZS
-EW
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (7,1,1) = {"
 Ls
 Ls
 Ls
 Ls
-ZS
-rQ
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-gV
-HM
-kC
-TC
-Gt
-ZQ
-ZS
-ZS
-ZS
-us
-HM
-ZS
-ZS
-fx
-WF
-oX
-ZS
-ZS
-ZS
-ue
-rQ
-ZS
-ZS
-ZS
-ZS
-Xm
-EW
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (8,1,1) = {"
 Ls
 Ls
 Ls
-ZS
-ZS
-ZS
-Xm
-oj
-VC
-pJ
-VC
-pr
-VC
-pJ
-VC
-ZS
-Xm
-ZS
-ZS
-kz
-sl
-cA
-ro
-ld
-yN
-ZS
-ZS
-Yz
-jg
-dA
-ZS
-ZS
-NN
-TZ
-Hi
-ZS
-EI
-Yd
-ZS
-ZS
-ZS
-WH
-uT
-ZS
-ZS
-EW
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (9,1,1) = {"
 Ls
 Ls
 Ls
-ue
-Qt
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-Xm
-YM
-ZS
-ZS
-ZS
-JI
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-rQ
-ZS
-ZS
-ZS
-ZS
-rQ
-ue
-Av
-ue
-ZS
-Dz
-ZS
-ZS
-YM
-ZS
-WF
-ZS
-rQ
-Fi
-Ha
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (10,1,1) = {"
 Ls
 Ls
 Ls
-ue
-wz
-ZS
-YM
-ZS
-Xm
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-rQ
-ZS
-ZS
-pf
-Xm
-ZS
-YM
-ZS
-ZS
-Xm
-ZS
-ZS
-ZS
-ZS
-ZS
-hy
-ZS
-SP
-IE
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-Ko
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (11,1,1) = {"
 Ls
 Ls
-ZS
-ZS
-ai
-Xm
-dp
-qZ
-qw
-Gf
-vN
-Gf
-vN
-iy
-Xm
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-YM
-ZS
-Xm
-ZS
-ZS
-Kl
-ZS
-ZS
-ZS
-ZS
-YM
-ZS
-ZS
-ZS
-Qv
-Ub
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 "}
 (12,1,1) = {"
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ue
-ue
-ue
-ZS
-ZS
-ZS
-ue
-ZS
-ZS
-ue
-ZS
-ZS
-ZS
-ue
-ue
-ue
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 "}
 (13,1,1) = {"
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-EX
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 Ls
@@ -1558,24 +642,24 @@ Ls
 "}
 (14,1,1) = {"
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 Ls
@@ -1607,25 +691,25 @@ Ls
 "}
 (15,1,1) = {"
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 Ls
@@ -1656,29 +740,29 @@ Ls
 "}
 (16,1,1) = {"
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 Ls
@@ -1705,30 +789,30 @@ Ls
 "}
 (17,1,1) = {"
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 Ls
@@ -1754,30 +838,30 @@ Ls
 "}
 (18,1,1) = {"
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 Ls
@@ -1803,30 +887,30 @@ Ls
 "}
 (19,1,1) = {"
 Ls
-ZS
-ZS
-HM
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 Ls
@@ -1852,30 +936,30 @@ Ls
 "}
 (20,1,1) = {"
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 Ls
@@ -1901,30 +985,30 @@ Ls
 "}
 (21,1,1) = {"
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 Ls
@@ -1950,29 +1034,29 @@ Ls
 "}
 (22,1,1) = {"
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 Ls
@@ -1999,25 +1083,25 @@ Ls
 "}
 (23,1,1) = {"
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 Ls
@@ -2048,24 +1132,24 @@ Ls
 "}
 (24,1,1) = {"
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 Ls
@@ -2097,24 +1181,24 @@ Ls
 "}
 (25,1,1) = {"
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 Ls
@@ -2146,493 +1230,493 @@ Ls
 "}
 (26,1,1) = {"
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ue
-ZS
-ZS
-ue
-ZS
-ZS
-ZS
-ue
-ue
-ue
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 "}
 (27,1,1) = {"
 Ls
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-Xm
-ZS
-ZS
-Lq
-ZS
-ZS
-ZS
-ZS
-Xm
-Xm
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 "}
 (28,1,1) = {"
 Ls
 Ls
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-Xm
-eh
-ZS
-ZS
-ZS
-rQ
-Fi
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (29,1,1) = {"
 Ls
 Ls
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-rQ
-ue
-ue
-ZS
-ZS
-ue
-ZS
-ZS
-ZS
-rQ
-ZS
-ZS
-ZS
-EW
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (30,1,1) = {"
 Ls
 Ls
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-bX
-ZS
-bu
-ZS
-Vz
-YM
-Yp
-ZS
-Xm
-EW
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (31,1,1) = {"
 Ls
 Ls
 Ls
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ES
-ZS
-gC
-ZS
-Vz
-Xm
-rN
-ZS
-ZS
-EW
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (32,1,1) = {"
 Ls
 Ls
 Ls
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-Da
-ZS
-Tz
-ZS
-Vz
-ZS
-xU
-ZS
-Xm
-Ha
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (33,1,1) = {"
 Ls
 Ls
 Ls
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-PQ
-HM
-jF
-ZS
-ZS
-sv
-ue
-ZS
-Xm
-Ex
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (34,1,1) = {"
 Ls
 Ls
 Ls
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-uC
-YM
-RF
-ZS
-Xm
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (35,1,1) = {"
 Ls
 Ls
 Ls
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-HM
-ZS
-ZS
-ZS
-rQ
-ZS
-ZS
-Sh
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 "}
 (36,1,1) = {"
 Ls
@@ -2640,46 +1724,46 @@ Ls
 Ls
 Ls
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-lW
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 "}
@@ -2691,44 +1775,44 @@ Ls
 Ls
 Ls
 Ls
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
-ZS
 Ls
 Ls
 Ls
-ZS
-ZS
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
+Ls
 Ls
 Ls
 "}
