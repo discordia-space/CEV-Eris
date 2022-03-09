@@ -348,6 +348,10 @@
 	icon_state = "2,4"
 	},
 /area/space)
+"hQ" = (
+/obj/structure/closet/onestar/tier1/special/empty,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
 "hS" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "9,9"
@@ -372,6 +376,10 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "4,11"
 	},
+/area/space)
+"ib" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait,
+/turf/space,
 /area/space)
 "ii" = (
 /turf/simulated/floor/tiled/derelict/white_red_edges,
@@ -539,10 +547,6 @@
 	icon_state = "10,3"
 	},
 /area/space)
-"mI" = (
-/obj/structure/salvageable/os/data,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/space)
 "mQ" = (
 /obj/machinery/camera/network/research_outpost{
 	dir = 1
@@ -652,7 +656,7 @@
 /obj/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "oV" = (
 /obj/machinery/door/airlock/sandstone{
@@ -1111,6 +1115,10 @@
 /obj/structure/bed,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
+"Am" = (
+/obj/structure/salvageable/os/data,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
 "Au" = (
 /obj/structure/flora/ausbushes/grassybush,
 /turf/simulated/floor/grass,
@@ -1226,6 +1234,12 @@
 	},
 /turf/space,
 /area/space)
+"DT" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	dir = 1
+	},
+/turf/space,
+/area/space)
 "Ek" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/airlock/freezer{
@@ -1258,6 +1272,10 @@
 "EN" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/simulated/floor/grass,
+/area/space)
+"EO" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "ES" = (
 /obj/machinery/porta_turret/excelsior,
@@ -1789,6 +1807,12 @@
 	icon_state = "1,1"
 	},
 /turf/space,
+/area/space)
+"WX" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "WY" = (
 /obj/machinery/door/airlock/multi_tile/metal/mait,
@@ -13289,12 +13313,12 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
+ke
+ke
+ke
+ke
+ke
+ke
 cb
 cb
 cb
@@ -13511,12 +13535,12 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
+ke
+ke
+ke
+ke
+ke
+ke
 cb
 cb
 cb
@@ -13735,8 +13759,8 @@ cb
 cb
 cb
 cb
-cb
-cb
+ke
+ke
 cb
 cb
 cb
@@ -13956,22 +13980,22 @@ cb
 cb
 cb
 cb
+gV
+ke
+ke
+gV
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
 gV
 TJ
 Cz
@@ -13979,7 +14003,7 @@ Cz
 Cz
 Cz
 Cz
-Cz
+hQ
 gV
 ii
 ii
@@ -14178,6 +14202,10 @@ aa
 aa
 aa
 aa
+gV
+ke
+ke
+gV
 aa
 aa
 aa
@@ -14187,13 +14215,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
 gV
 QO
 Cz
@@ -14201,7 +14225,7 @@ Cz
 Cz
 Cz
 Cz
-Cz
+hQ
 gV
 ii
 ii
@@ -14400,30 +14424,30 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 gV
-mI
+ke
+ke
+gV
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+gV
+Am
 Cz
 Cz
 Cz
 Cz
 Cz
-Cz
+hQ
 gV
 ii
 ii
@@ -14622,21 +14646,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+gV
+ke
+WX
+gV
+EO
+EO
+gV
+EO
+EO
 gV
 kd
 kd
 gV
-kd
-kd
-gV
-kd
-kd
+EO
+EO
 gV
 gV
 gV
@@ -14844,15 +14868,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ib
+ke
+ke
+WY
+ke
+ke
+ke
+ke
+ke
 ke
 ke
 ke
@@ -15067,14 +15091,14 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ke
+ke
+ke
+ke
+ke
+ke
+ke
+ke
 ke
 ke
 ke
@@ -15288,12 +15312,23 @@ aa
 aa
 aa
 aa
+gV
 aa
-aa
-aa
-aa
-aa
-aa
+DT
+gV
+EO
+EO
+gV
+EO
+EO
+gV
+EO
+EO
+gV
+EO
+EO
+gV
+gV
 gV
 kd
 kd
@@ -15308,23 +15343,12 @@ gV
 gV
 gV
 gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
 kd
 gV
 gV
 gV
-aa
-aa
+ke
+WX
 gV
 gV
 gV
@@ -15536,18 +15560,18 @@ aa
 aa
 aa
 aa
-aa
 cb
 cb
-cb
-cb
-aa
 cb
 cb
 cb
 aa
-aa
 cb
+cb
+gV
+ke
+ke
+gV
 cb
 cb
 cb
@@ -15767,8 +15791,8 @@ aa
 aa
 aa
 gV
-aa
-aa
+ke
+ke
 gV
 aa
 aa
@@ -15933,7 +15957,7 @@ cb
 cb
 cb
 cb
-cb
+aa
 aa
 aa
 aa
@@ -15989,8 +16013,8 @@ aa
 aa
 aa
 gV
-aa
-aa
+ke
+ke
 gV
 aa
 aa
@@ -16345,7 +16369,7 @@ aa
 aa
 aa
 aa
-aa
+cb
 cb
 cb
 cb
@@ -16567,7 +16591,7 @@ aa
 aa
 aa
 aa
-aa
+cb
 cb
 cb
 cb
@@ -16788,8 +16812,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+cb
+cb
 cb
 cb
 cb
@@ -17009,8 +17033,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+cb
+cb
 cb
 cb
 cb
@@ -17230,8 +17254,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+cb
+cb
 cb
 cb
 cb
@@ -20782,7 +20806,7 @@ aa
 aa
 aa
 aa
-aa
+cb
 cb
 cb
 cb
@@ -21004,7 +21028,7 @@ aa
 aa
 aa
 aa
-aa
+cb
 cb
 cb
 cb
@@ -21226,7 +21250,7 @@ aa
 aa
 aa
 aa
-aa
+cb
 cb
 cb
 cb
@@ -21448,7 +21472,7 @@ aa
 aa
 aa
 aa
-aa
+cb
 cb
 cb
 cb
@@ -21671,8 +21695,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+cb
+cb
 cb
 cb
 cb
@@ -21893,8 +21917,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+cb
+cb
 cb
 cb
 cb
@@ -22115,8 +22139,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+cb
+cb
 cb
 cb
 cb
@@ -22338,7 +22362,7 @@ aa
 aa
 aa
 aa
-aa
+cb
 cb
 cb
 cb
@@ -28365,7 +28389,7 @@ cb
 cb
 cb
 cb
-cb
+aa
 aa
 aa
 aa
