@@ -215,3 +215,7 @@
 
 	else
 		..(C,user)
+
+/turf/simulated/floor/exoplanet/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
+	// Exoplanet turfs are indestructible, otherwise they can be destroyed at some point and expose metal plating
+	return

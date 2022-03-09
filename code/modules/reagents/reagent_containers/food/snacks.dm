@@ -1149,6 +1149,7 @@
 	cooked = TRUE
 	junk_food = TRUE
 	spawn_tags = SPAWN_TAG_JUNKFOOD
+	style_damage = 60
 	rarity_value = 20
 	taste_tag = list(SWEET_FOOD,FLOURY_FOOD)
 
@@ -1159,6 +1160,9 @@
 		SPAN_DANGER("\The [src.name] splats."),
 		SPAN_DANGER("You hear a splat.")
 	)
+	if(ishuman(hit_atom))
+		var/mob/living/carbon/human/depleted = hit_atom
+		depleted.slickness -= style_damage// did not do the confidence stuff as hitby proc handles that
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/berryclafoutis

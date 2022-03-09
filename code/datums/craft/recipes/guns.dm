@@ -119,6 +119,19 @@
 		list(QUALITY_ADHESIVE, 15)
 	)
 
+/datum/craft_recipe/gun/armgun
+	name = "embedded SMG"
+	result = /obj/item/organ_module/active/simple/armsmg
+	steps = list(
+		list(/obj/item/part/gun, 5),
+		list(QUALITY_ADHESIVE, 15, 70),
+		list(CRAFT_MATERIAL, 20, MATERIAL_PLASTEEL, "time" = 10),
+		list(QUALITY_WELDING, 10, "time" = 40),
+		list(/obj/item/stack/cable_coil, 5, "time" = 20),
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC, "time" = 10),
+		list(QUALITY_ADHESIVE, 15, 70)
+	)
+
 /datum/craft_recipe/gun/flaregun
 	name = "Flare gun shotgun"
 	result = /obj/item/gun/projectile/flare_gun/shotgun

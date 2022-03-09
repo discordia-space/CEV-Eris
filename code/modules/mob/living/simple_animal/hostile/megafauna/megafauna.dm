@@ -77,6 +77,8 @@
 
 		if(3)
 			adjustBruteLoss(50)
+		if(4)
+			adjustBruteLoss(25)
 
 /mob/living/simple_animal/hostile/megafauna/proc/SetRecoveryTime(buffer_time)
 	recovery_time = world.time + buffer_time

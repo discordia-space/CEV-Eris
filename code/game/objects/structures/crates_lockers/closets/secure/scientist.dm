@@ -16,6 +16,7 @@
 	new /obj/item/device/radio/headset/headset_sci(src)
 	new /obj/item/tank/air(src)
 	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/clothing/glasses/regular/goggles/clear(src)
 
 /obj/structure/closet/secure_closet/reinforced/RD
 	name = "Moebius Expedition Overseer locker"
@@ -35,3 +36,4 @@
 	new /obj/item/tank/air(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/device/flash(src)
+	new /obj/item/clothing/glasses/regular/goggles/clear(src)
