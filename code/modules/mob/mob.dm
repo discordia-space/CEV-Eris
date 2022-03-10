@@ -820,11 +820,11 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		update_lying_buckled_and_verb_status()
 	return
 
-/mob/proc/Weaken(amount)
+/mob/proc/Weaken(amount, dropitems = TRUE)
 	if(status_flags & CANWEAKEN)
 		facing_dir = null
 		weakened = max(max(weakened,amount),0)
-		update_lying_buckled_and_verb_status(TRUE)	//updates lying, canmove and icons
+		update_lying_buckled_and_verb_status(dropitems)	//updates lying, canmove and icons
 	return
 
 /mob/proc/SetWeakened(amount)
