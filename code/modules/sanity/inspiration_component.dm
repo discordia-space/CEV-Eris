@@ -33,7 +33,44 @@
 /datum/component/inspiration/proc/on_examine(mob/user)
 	for(var/stat in stats)
 		var/aspect
-		switch(stats[stat])
+		var/message
+		var/list/nouns_overwhelming = list("<span style='color:#d0b050;'>overwhelming</span>", "<span style='color:#d0b050;'>extreme</span>", "<span style='color:#d0b050;'>incredible</span>", "<span style='color:#d0b050;'>unbelieavable</span>", "<span style='color:#d0b050;'>exceeding</span>")
+		var/list/adjectives_overwhelming = list("<span style='color:#d0b050;'>overwhelmingly</span>", "<span style='color:#d0b050;'>extremely</span>", "<span style='color:#d0b050;'>incredibly</span>", "<span style='color:#d0b050;'>unbelievably</span>", "<span style='color:#d0b050;'>exceedingly</span>")
+		var/list/nouns_strong = list("<span class='red'>strong</span>", "<span class='red'>heavy</span>", "<span class='red'>powerful</span>")
+		var/list/adjectives_strong = list("<span class='red'>strongly</span>", "<span class='red'>heavily</span>", "<span class='red'>highly</span>")
+		var/list/nouns_medium = list("<span class='green'>medium</span>", "<span class='green'>moderate</span>", "<span class='green'>unremarkable</span>")
+		var/list/adjectives_medium = list("<span class='green'>moderately</span>", "<span class='green'>relatively</span>", "<span class='green'>considerably</span>", "<span class='green'>somewhat</span>")
+		var/list/nouns_weak = list("<span class='blue'>weak</span>", "<span class='blue'>slight</span>", "<span class='blue'>mild</span>", "<span class='blue'>light</span>")
+		var/list/adjectives_weak = list("<span class='blue'>weakly</span>", "<span class='blue'>slightly</span>", "<span class='blue'>mildly</span>", "<span class='blue'>lightly</span>")
+		var/a_or_an = "a"
+		if(prob(50))
+			switch(stats[stat])
+				if(10 to INFINITY)
+					a_or_an = "an"
+					aspect = pick(nouns_overwhelming)
+				if(6 to 10)
+					aspect = pick(nouns_strong)
+				if(3 to 6)
+					aspect = pick(nouns_medium)
+				if(1 to 3)
+					aspect = pick(nouns_weak)
+				else
+					continue
+			message = pick("This item has [a_or_an] [aspect] aspect of [stat]", "[a_or_an] [aspect] Aura of [stat] pertains to it")
+		else
+			switch(stats[stat])
+				if(10 to INFINITY)
+					aspect = pick(verbs_overwhelming)
+				if(6 to 10)
+					aspect = pick(verbs_strong)
+				if(3 to 6)
+					aspect = pick(verbs_medium)
+				if(1 to 3)
+					aspect = pick(verbs_weak)
+				else
+					continue
+			message = pick("It feels [aspect] [stat]", "It [aspect] smells of [stat]", "It reminds you of [stat] [aspect]", "It makes you feel [aspect] [stat]")	
+/*		switch(stats[stat])
 			if(10 to INFINITY)
 				aspect = "an <span style='color:#d0b050;'>overwhelming</span>"
 			if(6 to 10)
@@ -43,8 +80,16 @@
 			if(1 to 3)
 				aspect = "a <span class='blue'>weak</span>"
 			else
-				continue
+				continue			
+		"[a_or_an] [aspect] Aura of [stat] pertains to it"
+		"It feels [aspect] [stat]"
+		"It [aspect] smells of [stat]"
+		"It reminds you of [stat] [aspect]"
+		"It makes you feel [aspect] [stat]"
+		"This item has [a_or_an] [aspect] aspect of [stat]"
+*/
 		to_chat(user, SPAN_NOTICE("This item has [aspect] aspect of [stat]"))
+		to_chat(user, SPAN_NOTICE(message))
 	if(perk)
 		var/datum/perk/oddity/OD = GLOB.all_perks[perk]
 		to_chat(user, SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>"))
