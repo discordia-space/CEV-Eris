@@ -36,10 +36,77 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if (pre_attack(A, user, params))
 		return 1 //Returning 1 passes an abort signal upstream
 	add_fingerprint(user)
+	if(src.doubletact)
+		if(!(src.ready))
+			user.visible_message(SPAN_DANGER("[user] raises \his [src]"))
+			src.ready = 1
+			var/endtime = world.time + 100
+			while(world.time < endtime)
+				sleep(1)
+				if(!(src.ready))
+					return
+				if(!(src.is_equipped()))
+					src.ready = 0
+					return
+			user.visible_message(SPAN_DANGER("[user] lowers \his [src]"))
+			src.ready = 0
+			return
+		else
+			src.ready = 0
+
+	if(ishuman(user)) //Swinging
+		var/mob/living/carbon/human/H = user
+		if(src.can_swing)
+			if(src.wielded)
+				if(H.a_intent == I_HURT)
+					var/x_difference = A.x - H.x
+					var/y_difference = A.y - H.y
+					var/z_level = A.z
+					var/holdinghand = user.get_inventory_slot(src)
+					var/turf/R
+					var/turf/C
+					var/turf/L
+					C = locate(A.x, A.y, z_level)
+					switch(x_difference)
+						if(0)
+							R = locate((A.x + 1), A.y, z_level)
+							L = locate((A.x - 1), A.y, z_level)
+						if(1)
+							switch(y_difference)
+								if(0)
+									R = locate(A.x, (A.y - 1), z_level)
+									L = locate(A.x, (A.y + 1), z_level)
+								if(1)
+									R = locate(A.x, (A.y - 1), z_level)
+									L = locate((A.x - 1), A.y, z_level)
+								if(-1)
+									R = locate((A.x - 1), A.y, z_level)
+									L = locate(A.x, (A.y + 1), z_level)
+						if(-1)
+							switch(y_difference)
+								if(0)
+									R = locate(A.x, (A.y + 1), z_level)
+									L = locate(A.x, (A.y - 1), z_level)
+								if(1)
+									R = locate((A.x + 1), A.y, z_level)
+									L = locate(A.x, (A.y - 1), z_level)
+								if(-1)
+									R = locate(A.x, (A.y + 1), z_level)
+									L = locate((A.x + 1), A.y, z_level)
+					if(holdinghand == slot_l_hand)
+						src.tileattack(user, L, modifier = 1)
+						src.tileattack(user, C, modifier = 0.8)
+						src.tileattack(user, R, modifier = 0.6)
+						return
+					else if(holdinghand == slot_r_hand)
+						src.tileattack(user, R, modifier = 1)
+						src.tileattack(user, C, modifier = 0.8)
+						src.tileattack(user, L, modifier = 0.6)
+						return
 	return A.attackby(src, user, params)
 
 // No comment
-/atom/proc/attackby(obj/item/W, mob/user, params)
+/atom/proc/attackby(obj/item/I, mob/user, params)
 	return
 
 /atom/movable/attackby(obj/item/I, mob/living/user)
@@ -83,71 +150,6 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	var/surgery_check = can_operate(src, user)
 	if(surgery_check && do_surgery(src, user, I, surgery_check)) //Surgery
 		return TRUE
-	if(I.doubletact)
-		if(!(I.ready))
-			user.visible_message(SPAN_DANGER("[user] raises \his [I]"))
-			I.ready = 1
-			var/endtime = world.time + 100
-			while(world.time < endtime)
-				sleep(1)
-				if(!(I.ready))
-					return
-				if(!(I.is_equipped()))
-					I.ready = 0
-					return
-			user.visible_message(SPAN_DANGER("[user] lowers \his [I]"))
-			I.ready = 0
-			return
-		else
-			I.ready = 0
-
-	if(ishuman(user)) //Swinging
-		var/mob/living/carbon/human/H = user
-		if(I.can_swing)
-			if(I.wielded)
-				if(H.a_intent == I_HURT)
-					var/x_difference = src.x - H.x
-					var/y_difference = src.y - H.y
-					var/z_level = src.z
-					var/holdinghand = user.get_inventory_slot(I)
-					var/turf/R
-					var/turf/L
-					switch(x_difference)
-						if(0)
-							R = locate((src.x + 1), src.y, z_level)
-							L = locate((src.x - 1), src.y, z_level)
-						if(1)
-							switch(y_difference)
-								if(0)
-									R = locate(src.x, (src.y - 1), z_level)
-									L = locate(src.x, (src.y + 1), z_level)
-								if(1)
-									R = locate(src.x, (src.y - 1), z_level)
-									L = locate((src.x - 1), src.y, z_level)
-								if(-1)
-									R = locate((src.x - 1), src.y, z_level)
-									L = locate(src.x, (src.y + 1), z_level)
-						if(-1)
-							switch(y_difference)
-								if(0)
-									R = locate(src.x, (src.y + 1), z_level)
-									L = locate(src.x, (src.y - 1), z_level)
-								if(1)
-									R = locate((src.x + 1), src.y, z_level)
-									L = locate(src.x, (src.y - 1), z_level)
-								if(-1)
-									R = locate(src.x, (src.y + 1), z_level)
-									L = locate((src.x + 1), src.y, z_level)
-					if(holdinghand == slot_l_hand)
-						I.tileattack(user, L, modifier = 1)
-						I.attack(src, user, user.targeted_organ, modifier = 0.8)
-						I.tileattack(user, R, modifier = 0.6)
-						return
-					else if(holdinghand == slot_r_hand)
-						I.tileattack(user, R, modifier = 1)
-						I.attack(src, user, user.targeted_organ, modifier = 0.8)
-						I.tileattack(user, L, modifier = 0.6)
-						return
 	return I.attack(src, user, user.targeted_organ)
 
 //Handles AOE attacking on tiles
@@ -156,7 +158,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		var/turf/simulated/W = targetarea
 		return W.attackby(src, user)
 	for(var/obj/structure/S in targetarea)
-		if (S.density)
+		if (S.density && !istype(S, /obj/structure/table))
 			S.attackby(src, user)
 	for(var/mob/living/M in targetarea)
 		src.attack(M, user, user.targeted_organ, modifier)
