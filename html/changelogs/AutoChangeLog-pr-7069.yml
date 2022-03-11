@@ -1,0 +1,5 @@
+author: Alliostra
+delete-after: true
+changes:
+  - balance: The NT spear now deals the intended 45 damage when thrown instead of
+      75 damage, and deals 50 style damage instead of 20.
