@@ -1,0 +1,4 @@
+author: Alliostra
+delete-after: true
+changes:
+  - tweak: the "Keep hotkeys on mob change" preference will now be toggled on by default
