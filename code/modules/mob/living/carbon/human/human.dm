@@ -136,7 +136,7 @@
 
 		if (2)
 			if (not_slick)
-				b_loss = 150
+				b_loss = 120
 				if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 					adjustEarDamage(30,120)
 			else
@@ -146,9 +146,18 @@
 
 		if(3)
 			if (not_slick)
-				b_loss += 100
+				b_loss += 80
 				if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 					adjustEarDamage(15,60)
+			else
+				visible_message(SPAN_WARNING("[src] rides the shockwave!"))
+				dodge_time = get_game_time()
+				confidence = FALSE
+		if(4)
+			if (not_slick)
+				b_loss += 50
+				if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
+					adjustEarDamage(10,30)
 			else
 				visible_message(SPAN_WARNING("[src] rides the shockwave!"))
 				dodge_time = get_game_time()
@@ -166,7 +175,7 @@
 		b_loss -= exp_damage
 		exp_damage = rand(0, b_loss)
 		src.apply_damage(exp_damage, BRUTE, organ_hit)
-		organ_hit = pickweight(list(BP_HEAD = 0.2, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG = 0.1, BP_L_LEG = 0.1))  //We determine some other body parts that should be hit
+		organ_hit = pickweight(list(BP_HEAD = 0.1, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG = 0.1, BP_L_LEG = 0.1))  //We determine some other body parts that should be hit
 
 /mob/living/carbon/human/restrained()
 	if (handcuffed)
@@ -713,7 +722,7 @@ var/list/rank_prefix = list(\
 
 				adjustNutrition(-40)
 				adjustToxLoss(-3)
-				regen_slickness(-1)
+				regen_slickness(-3)
 				dodge_time = get_game_time()
 				confidence = FALSE
 				spawn(350)	//wait 35 seconds before next volley
@@ -1429,7 +1438,7 @@ var/list/rank_prefix = list(\
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
 		return 0
 	..(slipped_on,stun_duration)
-	regen_slickness(-1)
+	regen_slickness(-3)
 	dodge_time = get_game_time()
 	confidence = FALSE
 
@@ -1443,6 +1452,9 @@ var/list/rank_prefix = list(\
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 		to_chat(src, SPAN_WARNING("You tripped over!"))
 	Weaken(stun_duration)
+	regen_slickness(-1)
+	dodge_time = get_game_time()
+	confidence = FALSE
 	return TRUE
 
 /mob/living/carbon/human/proc/undislocate()
@@ -1532,6 +1544,14 @@ var/list/rank_prefix = list(\
 	to_chat(src, "<span class='notice'>You are now [pulling_punches ? "pulling your punches" : "not pulling your punches"].</span>")
 	return
 
+/mob/living/carbon/human/verb/toggle_dodging()
+	set name = "Toggle Dodging"
+	set desc = "Just stand still while under fire."
+	set category = "IC"
+	if(stat) return
+	dodging = !dodging
+	to_chat(src, "<span class='notice'>You are now [dodging ? "dodging incoming fire" : "not dodging incoming fire"].</span>")
+	return
 //generates realistic-ish pulse output based on preset levels
 /mob/living/carbon/human/proc/get_pulse(var/method)	//method 0 is for hands, 1 is for machines, more accurate
 	var/temp = 0

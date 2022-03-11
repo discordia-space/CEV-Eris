@@ -9,9 +9,10 @@
 	slot_flags = SLOT_EARS
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_STEEL = 0.5, MATERIAL_SILVER = 0.5)
-	var/translate_binary = 0
-	var/translate_hive = 0
-	var/syndie = 0
+	var/translate_binary = FALSE
+	var/translate_hive = FALSE
+	var/syndie = FALSE
+	var/merc = FALSE
 	var/list/channels = list()
 
 /obj/item/device/encryptionkey/attackby(obj/item/W, mob/user)
@@ -20,11 +21,16 @@
 	icon_state = "cypherkey"
 	channels = list("Mercenary" = 1)
 	origin_tech = list(TECH_COVERT = 3)
-	syndie = 1//Signifies that it de-crypts Syndicate transmissions
+	syndie = TRUE//Signifies that it de-crypts Syndicate transmissions
+
+/obj/item/device/encryptionkey/mercenaries
+	icon_state = "cypherkey"
+	channels = list("Mercenary" = 1)
+	merc = TRUE
 
 /obj/item/device/encryptionkey/binary
 	icon_state = "cypherkey"
-	translate_binary = 1
+	translate_binary = TRUE
 	origin_tech = list(TECH_COVERT = 3)
 
 /obj/item/device/encryptionkey/headset_sec
