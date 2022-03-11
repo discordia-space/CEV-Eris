@@ -1,0 +1,5 @@
+author: Alliostra
+delete-after: true
+changes:
+  - bugfix: fixed the fullauto/burst damage reduction being applied twice. doubled
+      fullauto and burst damage reduction.
