@@ -1,0 +1,52 @@
+<!-- 
+Used In File(s): code/modules/clothing/chameleon.dm
+ -->
+{{:helper.syndicateMode()}}
+<table class='itemContent' style="width: 25%;">
+	<tr>
+		<td><b>Loadout 1</b></td>
+	</tr>
+	{{for data.clothes_in_loadout}}
+		{{if value.loadout == 1}}
+			<tr>
+			<td>{{:helper.link(value.name, 'circle-arrow-s', {'set_clothing_1' : value.type})}}</td>
+			</tr>
+		{{/if}}	
+	{{/for}}
+</table>
+<table class='itemContent' style="width: 25%;">
+	<tr>
+		<td><b>Loadout 2</b></td>
+	</tr>
+	{{for data.clothes_in_loadout}}
+		{{if value.loadout == 2}}
+			<tr>
+			<td>{{:helper.link(value.name, 'circle-arrow-s', {'set_clothing_2' : value.type})}}</td>
+			</tr>
+		{{/if}}	
+	{{/for}}
+</table>
+<table class='itemContent' style="width: 25%;">
+	<tr>
+		<td><b>Loadout 3</b></td>
+	</tr>
+	{{for data.clothes_in_loadout}}
+		{{if value.loadout == 3}}
+			<tr>
+			<td>{{:helper.link(value.name, 'circle-arrow-s', {'set_clothing_3' : value.type})}}</td>
+			</tr>
+		{{/if}}	
+	{{/for}}
+</table>
+<table class='itemContent' style="width: 25%;">
+	<tr>
+		<td><b>Loadout 4</b></td>
+	</tr>
+	{{for data.clothes_in_loadout}}
+		{{if value.loadout == 4}}
+			<tr>
+			<td>{{:helper.link(value.name, 'circle-arrow-s', {'set_clothing_4' : value.type})}}</td>
+			</tr>
+		{{/if}}	
+	{{/for}}
+</table>
