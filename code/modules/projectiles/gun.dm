@@ -662,7 +662,6 @@
 	if(index > firemodes.len)
 		index = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
-	new_mode.apply_to(src)
 	new_mode.update()
 	update_hud_actions()
 	return new_mode
