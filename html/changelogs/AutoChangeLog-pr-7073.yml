@@ -1,0 +1,6 @@
+author: Alliostra
+delete-after: true
+changes:
+  - tweak: The voice changer mask can now change appearances like a chameleon mask.
+  - tweak: The "change voice" and "toggle voice" verbs of the voice changer have been
+      moved to the chameleon item tab
