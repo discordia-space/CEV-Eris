@@ -18,6 +18,7 @@
 /obj/item/gun_upgrade/underbarrel/bipod
 	name = "bipod"
 	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. It greatly reduces recoil when deployed, but also increases the gun\'s weight, making it unwieldy unless braced."
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3)
 	icon_state = "bipod"
 	rarity_value = 15
 
@@ -55,6 +56,7 @@
 /obj/item/gun_upgrade/barrel/forged
 	name = "forged barrel"
 	desc = "Despite advancements in 3D printing, a properly forged plasteel barrel can still outperform anything that comes from an autolathe."
+	matter = list(MATERIAL_PLASTEEL = 5)
 	icon_state = "Forged_barrel"
 	rarity_value = 10
 
@@ -70,6 +72,7 @@
 /obj/item/gun_upgrade/barrel/blender
 	name = "OR \"Bullet Blender\" barrel"
 	desc = "A curious-looking barrel bearing the Oberth insignia. A small label reads \"No refunds for any collateral damage caused\"."
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTEEL = 4, MATERIAL_DIAMOND = 1)
 	icon_state = "Penetrator"
 	rarity_value = 30
 
@@ -111,6 +114,7 @@
 /obj/item/gun_upgrade/trigger/dangerzone
 	name = "Frozen Star \"Danger Zone\" Trigger"
 	desc = "When you need that extra edge."
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_DIAMOND = 1)
 	icon_state = "Danger_Zone"
 	rarity_value = 15
 
@@ -128,6 +132,7 @@
 /obj/item/gun_upgrade/trigger/cop_block
 	name = "Frozen Star \"Cop Block\" Trigger"
 	desc = "A simpler way of making a weapon display-only"
+	matter = list(MATERIAL_PLASTEEL = 2)
 	icon_state = "Cop_Block"
 	rarity_value = 15
 
@@ -144,6 +149,7 @@
 /obj/item/gun_upgrade/trigger/dnalock
 	name = "Frozen Star \"DNA lock\" Trigger"
 	desc = "There are many guns, but that one will be yours. Prevents others from using weapon with this trigger."
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_DIAMOND = 1)
 	icon_state = "DNA_lock"
 	rarity_value = 15
 
@@ -161,6 +167,7 @@
 /obj/item/gun_upgrade/trigger/dnalock
 	name = "Frozen Star \"DNA lock\" Trigger"
 	desc = "There are many guns, but that one will be yours. Prevents others from using weapon with this trigger."
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_DIAMOND = 1)
 	icon_state = "DNA_lock"
 	rarity_value = 15
 
@@ -182,6 +189,7 @@
 /obj/item/gun_upgrade/mechanism/overshooter
 	name = "Frozen Star \"Overshooter\" internal magazine kit"
 	desc = "A method of overloading a weapon's internal magazine, fitting more ammunition within the weapon."
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 5, MATERIAL_CARDBOARD = 5)
 	icon_state = "Overshooter"
 	rarity_value = 20
 
@@ -197,7 +205,8 @@
 //Adds radiation damage to .35 rounds. Acquired through telecrystal uplink
 /obj/item/gun_upgrade/mechanism/glass_widow
 	name = "Syndicate \"Glass Widow\" infuser"
-	desc = "An old technology from the Corporate Wars, used to make formerly useless civilian-grade weaponry into something much more lethal."
+	desc = "An old technology from the Corporate Wars, this mechanism rests inside the receiver and adds trace amounts of radioactive material to each bullet fired." // wtf
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_URANIUM = 4)
 	icon_state = "Glass_Widow"
 	rarity_value = 50
 	spawn_blacklisted = TRUE
@@ -215,6 +224,7 @@
 /obj/item/gun_upgrade/mechanism/weintraub
 	name = "Frozen Star \"Weintraub\" full auto kit"
 	desc = "A fully automatic receiver for rifles"
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3)
 	icon_state = "Weintraub"
 	rarity_value = 30
 
@@ -232,6 +242,7 @@
 /obj/item/gun_upgrade/mechanism/reverse_loader
 	name = "Syndicate reverse loader"
 	desc = "Makes bullets loaded into the weapon fire backwards, into its user."
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3, MATERIAL_CARDBOARD = 3)
 	icon_state = "Reverse_loader"
 	spawn_blacklisted = TRUE
 
@@ -263,6 +274,7 @@
 /obj/item/gun_upgrade/trigger/boom
 	name = "Syndicate \"Self Destruct\" trigger"
 	desc = "Trigger that explode gun on shoot, only for energy weapon."
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_SILVER = 3)
 	icon_state = "Boom"
 	spawn_blacklisted = TRUE
 
@@ -282,6 +294,7 @@
 /obj/item/gun_upgrade/scope/watchman
 	name = "Frozen Star \"Watchman\" scope"
 	desc = "Scope that can be attachet to avarage gun."
+	matter = list(MATERIAL_PLASMAGLASS = 2, MATERIAL_PLASTEEL = 2)
 	icon_state = "Watchman"
 
 /obj/item/gun_upgrade/scope/watchman/New()
@@ -297,6 +310,7 @@
 /obj/item/gun_upgrade/scope/killer
 	name = "Syndicate \"Contract Killer\" scope"
 	desc = "Scope used for sniping from large distances."
+	matter = list(MATERIAL_PLASMAGLASS = 3, MATERIAL_PLASTEEL = 3)
 	icon_state = "Killer"
 	spawn_blacklisted = TRUE
 
@@ -314,6 +328,7 @@
 /obj/item/gun_upgrade/mechanism/gravcharger
 	name = "makeshift bullet time generator"
 	desc = "When attached to a gun, this device bends time and space to create a localized microgravity field around each bullet, with peculiar results"
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASMA = 2, MATERIAL_PLASTEEL = 2, MATERIAL_URANIUM = 2)
 	icon_state = "gravbarrel"
 	rarity_value = 20
 
@@ -352,6 +367,7 @@
 /obj/item/gun_upgrade/trigger/faulty
 	name = "Faulty Trigger"
 	desc = "Weirdly sticky, and none of your fingers seem to fit to it comfortably. This causes more recoil and increases delay between shots as you try to compensate for it."
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_BIOMATTER = 2)
 	icon_state = "Cop_Block"
 	spawn_blacklisted = TRUE
 	price_tag = 0
@@ -370,6 +386,7 @@
 /obj/item/gun_upgrade/barrel/faulty
 	name = "Warped Barrel"
 	desc = "Extreme heat has warped this barrel off-target. This decreases the impact force of bullets fired through it and makes it more difficult to correctly aim the weapon it's attached to."
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
 	icon_state = "Forged_barrel"
 	spawn_blacklisted = TRUE
 	price_tag = 0
@@ -389,6 +406,7 @@
 /obj/item/gun_upgrade/muzzle/faulty
 	name = "Failed Makeshift Silencer"
 	desc = "Inspired by cheesy action movies, somebody has left trash on the end of this weapon. This causes the attached weapon to suffer from weaker armor penetration."
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_BIOMATTER = 2, MATERIAL_CARDBOARD = 2)
 	icon_state = "silencer"
 	spawn_blacklisted = TRUE
 	price_tag = 0
@@ -408,6 +426,7 @@
 /obj/item/gun_upgrade/mechanism/faulty
 	name = "Unknown Clockwork Mechanism"
 	desc = "It's really not clear what this modification actually does. It appears to effect the attached weapon's recoil, but if it actually helps or hinders the weapon is unclear."
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3, MATERIAL_BIOMATTER = 3)
 	icon_state = "Weintraub"
 	spawn_blacklisted = TRUE
 	price_tag = 0
@@ -425,6 +444,7 @@
 /obj/item/gun_upgrade/scope/faulty
 	name = "Misaligned sights"
 	desc = "Some bad knocks have changed the angling on the sights of this weapon. This causes the attached weapon to suffer from decreased accuracy."
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_CARDBOARD = 2)
 	icon_state = "Watchman"
 	spawn_blacklisted = TRUE
 	price_tag = 0
@@ -443,6 +463,7 @@
 /obj/item/gun_upgrade/trigger/better
 	name = "Refined trigger"
 	desc = "This trigger seems to be made of durable alloys and cut to the precision of milimeters."
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 3, MATERIAL_DIAMOND = 1)
 	spawn_blacklisted = TRUE
 	price_tag = 100
 
@@ -458,6 +479,7 @@
 /obj/item/gun_upgrade/barrel/better
 	name = "High-temperature forged barrel"
 	desc = "A barrel forged in high temperature, making the metal more resistant."
+	matter = list(MATERIAL_PLASTEEL = 3)
 	spawn_blacklisted = TRUE
 	price_tag = 150
 
@@ -473,6 +495,7 @@
 /obj/item/gun_upgrade/muzzle/better
 	name = "Resonance muzzle"
 	desc = "A high tech muzzle, made to resonate at the same frequency as the sound that comes from the gun."
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 2)
 	spawn_blacklisted = TRUE
 	price_tag = 150
 
@@ -489,6 +512,7 @@
 /obj/item/gun_upgrade/mechanism/better
 	name = "Hydraulic mechanism"
 	desc = "A high tech mechanism that uses hydraulic pumps to keep recoil at a minimum."
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 3)
 	spawn_blacklisted = TRUE
 	price_tag = 300
 
@@ -504,6 +528,7 @@
 /obj/item/gun_upgrade/scope/better
 	name = "High-res scope"
 	desc = "A high resolution scope"
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASMAGLASS = 3)
 	spawn_blacklisted = TRUE
 	price_tag = 100
 
