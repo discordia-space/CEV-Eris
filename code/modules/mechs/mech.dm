@@ -72,8 +72,16 @@
 /mob/living/exosuit/is_flooded()
 	. = (body && body.pilot_coverage >= 100 && hatch_closed) ? FALSE : ..()
 */
+
 /mob/living/exosuit/Initialize(mapload, var/obj/structure/heavy_vehicle_frame/source_frame)
+	if(islist(body.armor))
+		body.armor = getArmor(arglist(body.armor))
+	else if(!body.armor)
+		body.armor = getArmor()
+	else if(!istype(body.armor, /datum/armor))
+		error("Invalid type [body.armor.type] found in .armor during /obj Initialize()")
 	. = ..()
+
 	material = get_material_by_name("[material]")
 	if(!access_card) access_card = new (src)
 
