@@ -55,6 +55,7 @@
 	desc = "This standard combat chassis is reinforced with plasteel for extra durability without compromising visibility or ease of access."
 	pilot_coverage = 100
 	transparent_cabin = TRUE
+	hide_pilot = TRUE
 	exosuit_desc_string = "an armored chassis"
 	icon_state = "combat_body"
 	max_damage = 100
