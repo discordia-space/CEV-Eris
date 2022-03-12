@@ -1,6 +1,7 @@
 // Wires for airlocks
 
 /datum/wires/airlock/secure
+	random = 1
 	wire_count = 14
 
 /datum/wires/airlock

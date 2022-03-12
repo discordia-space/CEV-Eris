@@ -1,4 +1,5 @@
 /datum/wires/nuclearbomb
+	random = 1
 	holder_type = /obj/machinery/nuclearbomb
 	wire_count = 7
 	descriptions = list(

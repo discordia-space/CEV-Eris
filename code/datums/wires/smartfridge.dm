@@ -8,6 +8,7 @@
 	)
 
 /datum/wires/smartfridge/secure
+	random = 1
 	wire_count = 4
 
 var/const/SMARTFRIDGE_WIRE_ELECTRIFY	= 1

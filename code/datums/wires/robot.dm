@@ -1,4 +1,5 @@
 /datum/wires/robot
+	random = 1
 	holder_type = /mob/living/silicon/robot
 	wire_count = 5
 	descriptions = list(

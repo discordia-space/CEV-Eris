@@ -1,4 +1,5 @@
 /datum/wires/rig
+	random = 1
 	holder_type = /obj/item/rig
 	wire_count = 5
 	descriptions = list(

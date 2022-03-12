@@ -11,7 +11,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 
 /datum/wires
 
-	var/random = 1 // Will the wires be different for every single instance.
+	var/random = 0 // Will the wires be different for every single instance.
 	var/atom/holder = null // The holder
 	var/holder_type = null // The holder type; used to make sure that the holder is the correct type.
 	var/wire_count = 0 // Max is 16
