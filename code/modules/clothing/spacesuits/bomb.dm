@@ -4,6 +4,7 @@
 /obj/item/clothing/head/space/bomb
 	name = "bomb helmet"
 	desc = "Use in case of bomb. The shielded visor makes aiming harder."
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 8, MATERIAL_CARDBOARD = 5)
 	icon_state = "bombsuit"
 	armor = list(
 		melee = 40,
@@ -21,6 +22,7 @@
 /obj/item/clothing/suit/space/bomb
 	name = "bomb suit"
 	desc = "A heavy armored space suit designed for safety when handling explosives."
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTEEL = 10, MATERIAL_CARDBOARD = 10)
 	icon_state = "bombsuit"
 	item_state = "bombsuit"
 	spawn_tags = SPAWN_TAG_HAZMATSUIT
