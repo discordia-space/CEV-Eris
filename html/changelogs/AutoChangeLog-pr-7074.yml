@@ -1,4 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - tweak: the seclite now uses half as much power per tick as it did before.

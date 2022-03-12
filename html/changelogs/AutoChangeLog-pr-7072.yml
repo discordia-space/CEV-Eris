@@ -1,9 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - rscadd: added the ability to quickly switch between different loadouts for chameleon
-      clothes if the chameleon jumpsuit is worn.
-  - rscadd: Added the chameleon satchel
-  - bugfix: chameleon items will no longer block other clothing sprites from appearing
-      when they weren't supposed to
-  - tweak: chameleon clothes are now made of plastic instead of bioatter
