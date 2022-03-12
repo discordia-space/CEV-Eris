@@ -1,6 +1,7 @@
 /obj/item/clothing/head/space/void/SCAF
 	name = "SCAF helmet"
 	desc = "A thick airtight helmet designed for planetside warfare retrofitted with seals to act like normal space suit helmet."
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 15, MATERIAL_URANIUM = 7, MATERIAL_PLASMAGLASS = 10)
 	icon_state = "scaf"
 	item_state = "scaf"
 	armor = list(
@@ -9,7 +10,7 @@
 		energy = 60,
 		bomb = 75,
 		bio = 100,
-		rad = 30
+		rad = 75
 	)
 	siemens_coefficient = 0.35
 	species_restricted = list(SPECIES_HUMAN)
@@ -20,6 +21,7 @@
 /obj/item/clothing/suit/space/void/SCAF
 	name = "SCAF suit"
 	desc = "A bulky antique suit of refurbished infantry armour, retrofitted with seals and coatings to make it EVA capable but also reducing mobility."
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 20, MATERIAL_URANIUM = 12, MATERIAL_PLASTIC = 5, MATERIAL_PLATINUM = 8)
 	icon_state = "scaf"
 	item_state = "scaf"
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
@@ -29,7 +31,7 @@
 		energy = 60,
 		bomb = 75,
 		bio = 100,
-		rad = 30
+		rad = 75
 	)
 	siemens_coefficient = 0.35
 	breach_threshold = 10
@@ -46,6 +48,7 @@
 /obj/item/clothing/head/space/void/merc
 	name = "blood-red voidsuit helmet"
 	desc = "An advanced helmet designed for work in special operations. This version is additionally reinforced against melee attacks."
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 5, MATERIAL_URANIUM = 2, MATERIAL_PLASMAGLASS = 5)
 	icon_state = "syndiehelm"
 	item_state = "syndiehelm"
 	armor = list(
@@ -74,6 +77,7 @@
 	icon_state = "syndievoidsuit"
 	name = "blood-red voidsuit"
 	desc = "An advanced suit that protects against injuries during special operations. Surprisingly flexible. This version is additionally reinforced against melee attacks."
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 10, MATERIAL_URANIUM = 4, MATERIAL_PLASTIC = 10, MATERIAL_PLATINUM = 4)
 	item_state = "syndie_voidsuit"
 	armor = list(
 		melee = 50,
