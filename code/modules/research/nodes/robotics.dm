@@ -243,8 +243,8 @@
 	unlocks_designs = list(/datum/design/research/item/exosuit/gravity_catapult)
 
 /datum/technology/mech_util_armor
-	name = "Utility Armor"
-	desc = "Exosuit combat armor plates reinforced EM protection and radiation protection."
+	name = "EM-Shielded Exosuit Armour"
+	desc = "Exosuit combat armor plates reinforced EM protection."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.3
@@ -256,10 +256,9 @@
 		/datum/technology/mech_utility_modules
 	)
 	required_tech_levels = list()
-	cost = 2000
+	cost = 1000
 
 	unlocks_designs = list(
-			/datum/design/research/item/mechfab/exosuit/armour/radproof,
 			/datum/design/research/item/mechfab/exosuit/armour/em
 		)
 

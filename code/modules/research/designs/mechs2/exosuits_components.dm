@@ -25,9 +25,6 @@
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/plain
 	starts_unlocked = TRUE
 
-/datum/design/research/item/mechfab/exosuit/armour/radproof
-	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/radproof
-
 /datum/design/research/item/mechfab/exosuit/armour/em
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/ablative
 
