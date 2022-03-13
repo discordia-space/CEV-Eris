@@ -531,15 +531,17 @@
 	power = 20
 
 /datum/ritual/cruciform/priest/buy_item/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
-	if (!GLOB.armaments_points > 0)
-		fail("You have no miracle of this type to spend.",H,C)
-		return FALSE
+
 
 	var/list/OBJS = get_front(H)
 
 	var/obj/machinery/power/eotp/EOTP = locate(/obj/machinery/power/eotp) in OBJS
 	if(!EOTP)
 		fail("You must be in front of the Eye of the Protector.", H, C)
+		return FALSE
+
+	if (!EOTP.armaments_points > 0)
+		fail("You have no miracle of this type to spend.",H,C)
 		return FALSE
 
 	var/list/item_choice = list()
@@ -555,7 +557,7 @@
 	reward_Item = item_choice[item_chosen]
 	var/obj/item/_item = new reward_Item(get_turf(EOTP))
 	EOTP.visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [EOTP]!"))
-	GLOB.armaments_points -= EOTP.armaments[reward_Item]
+	EOTP.armaments_points -= EOTP.armaments[reward_Item]
 	log_and_message_admins("[key_name(H)] has orderd a [_item.name]")
 
 	return TRUE

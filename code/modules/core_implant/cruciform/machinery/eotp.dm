@@ -1,5 +1,4 @@
 GLOBAL_VAR_INIT(miracle_points, 0)
-GLOBAL_VAR_INIT(armaments_points,1000000)
 
 var/global/obj/machinery/power/eotp/eotp
 
@@ -45,8 +44,14 @@ var/global/obj/machinery/power/eotp/eotp
 									/obj/item/computer_hardware/hard_drive/portable/design/nt/cells = 25,
 									/obj/item/computer_hardware/hard_drive/portable/design/nt/cruciform_upgrade = 100,
 									/obj/item/computer_hardware/hard_drive/portable/design/nt/grenades = 200,
+									/obj/item/computer_hardware/hard_drive/portable/design/nt/crusader = 100,
+									/obj/item/computer_hardware/hard_drive/portable/design/nt/excruciator = 200,
+									/obj/item/computer_hardware/hard_drive/portable/design/nt/guns/nt_dominion = 200,
+									/obj/item/computer_hardware/hard_drive/portable/design/nt/grenades = 200,
 									/obj/item/grenade/heatwave/nt = 10,
 									/obj/item/computer_hardware/hard_drive/portable/design/nt/crusader = 100)
+	var/armaments_points = 800
+	var/max_armaments_points = 800
 
 /obj/machinery/power/eotp/New()
 	..()
@@ -61,6 +66,7 @@ var/global/obj/machinery/power/eotp/eotp
 		if(I && I.active && I.wearer)
 			var/comment = "Power level: [power]/[max_power]."
 			comment += "\nObservation level: [observation]/[max_observation]."
+			comment += "\nArmement level: [armaments_points]/[max_armaments_points]"
 			to_chat(user, SPAN_NOTICE(comment))
 
 /obj/machinery/power/eotp/Process()
@@ -125,7 +131,10 @@ var/global/obj/machinery/power/eotp/eotp
 	else
 		type_release = pick(rewards)
 
-	GLOB.armaments_points += 100
+	if
+	armaments_points += 100
+	if armaments_points > max_armaments_points
+		armaments = max_armaments_points
 
 	if(type_release == ALERT)
 
