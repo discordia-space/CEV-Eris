@@ -1,5 +1,5 @@
 GLOBAL_VAR_INIT(miracle_points, 0)
-GLOBAL_VAR_INIT(armaments_points,0) //could be either global var or var of eotp, dunu
+GLOBAL_VAR_INIT(armaments_points,0)
 
 var/global/obj/machinery/power/eotp/eotp
 
@@ -26,8 +26,6 @@ var/global/obj/machinery/power/eotp/eotp
 							/obj/item/stack/material/diamond = 30,
 							/obj/item/stack/material/plasteel = 120,
 							/obj/item/stack/material/silver = 60)
-	var/list/disk_types = list()
-	var/list/unneeded_disk_types = list(/obj/item/computer_hardware/hard_drive/portable/design/nt/melee)
 
 	var/list/mob/living/carbon/human/scanned = list()
 	var/max_power = 100
@@ -43,6 +41,12 @@ var/global/obj/machinery/power/eotp/eotp
 	var/last_power_update = 0
 	var/rescan_cooldown = 10 MINUTES
 	var/last_rescan = 0
+	var/static/list/armaments = list(/obj/item/computer_hardware/hard_drive/portable/design/nt/advancedmelee = 50,
+									/obj/item/computer_hardware/hard_drive/portable/design/nt/cells = 25,
+									/obj/item/computer_hardware/hard_drive/portable/design/nt/cruciform_upgrade = 100,
+									/obj/item/computer_hardware/hard_drive/portable/design/nt/grenades = 200,
+									/obj/item/grenade/heatwave/nt = 10,
+									/obj/item/computer_hardware/hard_drive/portable/design/nt/crusader = 100)
 
 /obj/machinery/power/eotp/New()
 	..()
@@ -113,9 +117,6 @@ var/global/obj/machinery/power/eotp/eotp
 		power -= max_power
 		power_release()
 
-/obj/machinery/power/eotp/proc/disk_reward_update()
-	disk_types =  subtypesof(/obj/item/computer_hardware/hard_drive/portable/design/nt) - unneeded_disk_types
-
 /obj/machinery/power/eotp/proc/power_release()
 	var/type_release
 	if(current_rewards)
@@ -124,10 +125,9 @@ var/global/obj/machinery/power/eotp/eotp
 	else
 		type_release = pick(rewards)
 
-	if(type_release == ARMAMENTS)
-		GLOB.armaments_points++
+	GLOB.armaments_points += 100
 
-	else if(type_release == ALERT)
+	if(type_release == ALERT)
 
 		var/area/antagonist_area
 		var/preacher

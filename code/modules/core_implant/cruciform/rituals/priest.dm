@@ -522,7 +522,7 @@
 		if(target.wearer && target.wearer.stat != DEAD)
 			return target
 
-/datum/ritual/cruciform/priest/buy_disk
+/datum/ritual/cruciform/priest/buy_item
 	name = "Order armaments"
 	phrase = "I need suggestions for a phrase"
 	desc = "Allows you to spend a point to unlock an NT disk."
@@ -530,7 +530,7 @@
 	fail_message = "Your prayers have not been answered."
 	power = 20
 
-/datum/ritual/cruciform/priest/buy_disk/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
+/datum/ritual/cruciform/priest/buy_item/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
 	if (!GLOB.armaments_points > 0)
 		fail("You have no miracle of this type to spend.",H,C)
 		return FALSE
@@ -542,23 +542,20 @@
 		fail("You must be in front of the Eye of the Protector.", H, C)
 		return FALSE
 
-	if(!length(EOTP.disk_types))
-		EOTP.disk_reward_update()
-	var/list/disk_choices = list()
-	var/reward_disk
+	var/list/item_choice = list()
+	var/reward_Item
 
-	for(var/i=1; i<=length(EOTP.disk_types);i++)
-		var/str = initial(EOTP.disk_types[i].disk_name)
-		disk_choices["[str]"] = EOTP.disk_types[i]
-	var/disk_chosen = input(H,"What does youre church require?","Armenents") as null | anything in disk_choices
-	if (!disk_chosen)
+	for(var/i=1; i<=length(EOTP.armaments);i++)
+		var/cost = EOTP.armaments[EOTP.armaments[i]]
+		item_choice["[cost] - [ispath(EOTP.armaments[i],/obj/item/computer_hardware/hard_drive/portable/design) ? initial(EOTP.armaments[i].disk_name) : initial(EOTP.armaments[i].name)]"] = EOTP.armaments[i]
+	var/item_chosen = input(H,"What does youre church require?","Armenents") as null | anything in item_choice
+	if (!item_chosen)
 		fail("Pick a reward.",H,C)
 		return FALSE
-	reward_disk = disk_choices[disk_chosen]
-	EOTP.disk_types -= reward_disk
-	var/obj/item/_item = new reward_disk(get_turf(EOTP))
+	reward_Item = item_choice[item_chosen]
+	var/obj/item/_item = new reward_Item(get_turf(EOTP))
 	EOTP.visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [EOTP]!"))
-	GLOB.armaments_points--
+	GLOB.armaments_points -= EOTP.armaments[reward_Item]
 	log_and_message_admins("[key_name(H)] has orderd a [_item.name]")
 
 	return TRUE
