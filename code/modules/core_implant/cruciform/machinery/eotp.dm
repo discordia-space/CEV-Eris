@@ -1,5 +1,5 @@
 GLOBAL_VAR_INIT(miracle_points, 0)
-GLOBAL_VAR_INIT(armaments_points,0)
+GLOBAL_VAR_INIT(armaments_points,1000000)
 
 var/global/obj/machinery/power/eotp/eotp
 
@@ -41,7 +41,7 @@ var/global/obj/machinery/power/eotp/eotp
 	var/last_power_update = 0
 	var/rescan_cooldown = 10 MINUTES
 	var/last_rescan = 0
-	var/static/list/armaments = list(/obj/item/computer_hardware/hard_drive/portable/design/nt/advancedmelee = 50,
+	var/list/armaments = list(/obj/item/computer_hardware/hard_drive/portable/design/nt/advancedmelee = 50,
 									/obj/item/computer_hardware/hard_drive/portable/design/nt/cells = 25,
 									/obj/item/computer_hardware/hard_drive/portable/design/nt/cruciform_upgrade = 100,
 									/obj/item/computer_hardware/hard_drive/portable/design/nt/grenades = 200,
