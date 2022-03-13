@@ -23,8 +23,8 @@
 	var/obj/item/device/radio/exosuit/radio
 
 	var/wreckage_path = /obj/structure/exosuit_wreckage
-	var/mech_turn_sound = 'sound/mechs/mechturn.ogg'
-	var/mech_step_sound = 'sound/mechs/mechstep.ogg'
+	var/mech_turn_sound = 'sound/mechs/Mech_Rotation.ogg'
+	var/mech_step_sound = 'sound/mechs/Mech_Step.ogg'
 
 	// Access updating/container.
 	var/obj/item/card/id/access_card
@@ -72,7 +72,7 @@
 /mob/living/exosuit/is_flooded()
 	. = (body && body.pilot_coverage >= 100 && hatch_closed) ? FALSE : ..()
 */
-
+/*
 /mob/living/exosuit/Initialize(mapload, var/obj/structure/heavy_vehicle_frame/source_frame)
 	if(islist(body.armor))
 		body.armor = getArmor(arglist(body.armor))
@@ -80,6 +80,10 @@
 		body.armor = getArmor()
 	else if(!istype(body.armor, /datum/armor))
 		error("Invalid type [body.armor.type] found in .armor during /obj Initialize()")
+	. = ..()
+*/
+
+/mob/living/exosuit/Initialize(mapload, var/obj/structure/heavy_vehicle_frame/source_frame)
 	. = ..()
 
 	material = get_material_by_name("[material]")
