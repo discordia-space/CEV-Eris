@@ -109,7 +109,7 @@
 	computer = new /obj/item/robot_parts/robot_component/exosuit_control(src)
 	armor = new /obj/item/robot_parts/robot_component/armour/exosuit(src)
 	cell = new /obj/item/cell/large/high(src)
-	diagnostics = new /obj/item/robot_parts/robot_component/diagnosis_unit
+	diagnostics = new /obj/item/robot_parts/robot_component/diagnosis_unit(src)
 
 /obj/item/mech_component/chassis/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/robot_parts/robot_component/exosuit_control))
