@@ -43,7 +43,7 @@
 
 
 	on_purchase(H)
-
+	ui_interact(H)
 	log_and_message_admins("[key_name(H)] has invoked [src.name]")
 	return TRUE
 
@@ -51,7 +51,6 @@
 //maby buying buffs,blessings, miracles,etc instead of just items
 /datum/armament/proc/on_purchase(var/mob/living/carbon/H)
 	return
-
 
 
 /datum/armament/ui_data(mob/user)
@@ -64,26 +63,26 @@
 			"name" = strip_improper(A.name),
 			"cost" = A.cost,
 			"desc" = A.desc)))
-	data["armements"] = listed_armaments
+	data["armaments"] = listed_armaments
 	return data
 
 
 /datum/armament/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/list/data = ui_data(user, ui_key)
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, eotp, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "eopt.tmpl", "Eye of the protector", 550, 655)
+		ui = new(user, eotp, ui_key, "eopt.tmpl", "Eye of the protector", 550, 655)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
 		ui.open()
 
-/datum/armament/Topic(href, href_list)
-	if (href_list["Buy"])
-		var/i = text2num(href_list["vend"])
+/obj/machinery/power/eotp/Topic(href, href_list)
+	if (href_list["chosen"])
+		var/i = text2num(href_list["chosen"])
 		var/datum/armament/A = eotp.armaments[i]
 		A.purchase(usr)
 

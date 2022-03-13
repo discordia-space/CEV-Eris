@@ -538,18 +538,9 @@
 		fail("You must be in front of the Eye of the Protector.", H, C)
 		return FALSE
 
-	var/list/armament_choice = list()
-
-	for(var/datum/armament/A in EOTP.armaments)
-		armament_choice["[A.get_cost()] - [A.name]"] = EOTP.armaments
-	var/armament_chosen = input(H,"What does youre church require?","Armenents") as null | anything in armament_choice
-	if (!armament_chosen)
-		fail("Pick a reward.",H,C)
-		return FALSE
-	var/datum/armament/reward_armament
-	reward_armament = armament_choice[armament_chosen]
-
-	if (!reward_armament[1].purchase(H))
-		return FALSE
+	var/datum/armament/arm = new /datum/armament
+	arm.ui_interact(H)
+	//if (!reward_armament[1].purchase(H))
+	//	return FALSE
 	return TRUE
 
