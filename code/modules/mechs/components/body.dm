@@ -132,7 +132,7 @@
 			armor_plate = I
 	else if(istype(I, /obj/item/robot_parts/robot_component/diagnosis_unit))
 		if(diagnostics)
-			to_chat(user, SPAN_WARNING("\The [src] already has armor installed."))
+			to_chat(user, SPAN_WARNING("\The [src] already has a diagnosis unit installed."))
 			return
 		else if(insert_item(I, user))
 			diagnostics = I

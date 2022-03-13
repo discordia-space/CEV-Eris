@@ -17,6 +17,9 @@
 /datum/design/research/item/mechfab/exosuit/basics/radio
 	build_path = /obj/item/robot_parts/robot_component/radio
 
+/datum/design/research/item/mechfab/robot/component/diagnosis_unit
+	build_path = /obj/item/robot_parts/robot_component/diagnosis_unit
+
 //Armor
 /datum/design/research/item/mechfab/exosuit/armour
 	category = "Exosuit Armor"
