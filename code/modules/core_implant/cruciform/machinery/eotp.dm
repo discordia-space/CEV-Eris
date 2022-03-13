@@ -1,4 +1,5 @@
 GLOBAL_VAR_INIT(miracle_points, 0)
+GLOBAL_VAR_INIT(armaments_points,0) //could be either global var or var of eotp, dunu
 
 var/global/obj/machinery/power/eotp/eotp
 
@@ -124,12 +125,7 @@ var/global/obj/machinery/power/eotp/eotp
 		type_release = pick(rewards)
 
 	if(type_release == ARMAMENTS)
-		if(!length(disk_types))
-			disk_reward_update()
-		var/reward_disk = pick(disk_types)
-		disk_types -= reward_disk
-		var/obj/item/_item = new reward_disk(get_turf(src))
-		visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [src]!"))
+		GLOB.armaments_points++
 
 	else if(type_release == ALERT)
 
@@ -169,6 +165,7 @@ var/global/obj/machinery/power/eotp/eotp
 		var/oddity_reward = pick(subtypesof(/obj/item/oddity/nt))
 		var/obj/item/_item = new oddity_reward(get_turf(src))
 		visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [src]!"))
+		rewards -= ODDITY
 
 	else if(type_release == STAT_BUFF)
 		var/random_stat = pick(ALL_STATS)
