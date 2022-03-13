@@ -279,7 +279,7 @@
 	cost = 2000
 
 	unlocks_designs = list(
-			/datum/design/research/circuit/exosuit/ballistics,
+			/datum/design/research/circuit/exosuit/weapons,
 			/datum/design/research/item/exosuit/taser,
 			/datum/design/research/item/exosuit/weapon/ion
 		)
