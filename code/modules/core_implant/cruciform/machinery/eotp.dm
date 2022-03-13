@@ -52,6 +52,7 @@ var/global/obj/machinery/power/eotp/eotp
 									/obj/item/computer_hardware/hard_drive/portable/design/nt/crusader = 100)
 	var/armaments_points = 800
 	var/max_armaments_points = 800
+	var/armaments_rate = 100
 
 /obj/machinery/power/eotp/New()
 	..()
@@ -131,7 +132,7 @@ var/global/obj/machinery/power/eotp/eotp
 	else
 		type_release = pick(rewards)
 
-	armaments_points += 100
+	armaments_points += armaments_rate
 
 	if (armaments_points > max_armaments_points)
 		armaments = max_armaments_points
