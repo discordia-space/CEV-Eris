@@ -20,6 +20,9 @@
 	if (!eotp)
 		error("no eotp found to purchase from")
 		return FALSE
+	if (get_dist(eotp.loc,H.loc) > 3)
+		log_and_message_admins("[key_name(H)] tryed to make a topic call out of range for the [eotp]")
+		return FALSE
 
 	if (!is_neotheology_disciple(H))
 		to_chat(H, SPAN_DANGER("You do not understand how to use this."))
@@ -43,6 +46,7 @@
 
 
 	on_purchase(H)
+	SSnano.update_uis(eotp)
 	ui_interact(H)
 	log_and_message_admins("[key_name(H)] has invoked [src.name]")
 	return TRUE
@@ -61,7 +65,7 @@
 		listed_armaments.Add(list(list(
 			"key" = i,
 			"name" = strip_improper(A.name),
-			"cost" = A.cost,
+			"cost" = A.get_cost(),
 			"desc" = A.desc)))
 	data["armaments"] = listed_armaments
 	return data
@@ -95,6 +99,27 @@
 		var/obj/_item = new path(get_turf(eotp))
 		eotp.visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [eotp]!"))
 
+/datum/armament/item/disk
+	name = "disk"
+	cost = 100
+	discount_increase = 25
+	min_cost = 25
+
+/datum/armament/item/disk/crusader
+	name = "Crusader disk"
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/crusader
+
+/datum/armament/item/disk/advancedmelee
+	name = "Advanced melee disk"
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/advancedmelee
+
+/datum/armament/item/disk/cruciform_upgrade
+	name = "Cruciform upgrade disk"
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/cruciform_upgrade
+
+/datum/armament/item/disk/cells
+	name = "Power Cells disk"
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/cells
 
 
 
