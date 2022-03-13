@@ -40,16 +40,7 @@ var/global/obj/machinery/power/eotp/eotp
 	var/last_power_update = 0
 	var/rescan_cooldown = 10 MINUTES
 	var/last_rescan = 0
-	var/list/armaments = list(/obj/item/computer_hardware/hard_drive/portable/design/nt/advancedmelee = 50,
-									/obj/item/computer_hardware/hard_drive/portable/design/nt/cells = 25,
-									/obj/item/computer_hardware/hard_drive/portable/design/nt/cruciform_upgrade = 100,
-									/obj/item/computer_hardware/hard_drive/portable/design/nt/grenades = 200,
-									/obj/item/computer_hardware/hard_drive/portable/design/nt/crusader = 100,
-									/obj/item/computer_hardware/hard_drive/portable/design/nt/excruciator = 200,
-									/obj/item/computer_hardware/hard_drive/portable/design/nt/guns/nt_dominion = 200,
-									/obj/item/computer_hardware/hard_drive/portable/design/nt/grenades = 200,
-									/obj/item/grenade/heatwave/nt = 10,
-									/obj/item/computer_hardware/hard_drive/portable/design/nt/crusader = 100)
+	var/list/armaments = list()
 	var/armaments_points = 800
 	var/max_armaments_points = 800
 	var/armaments_rate = 100
@@ -57,6 +48,10 @@ var/global/obj/machinery/power/eotp/eotp
 /obj/machinery/power/eotp/New()
 	..()
 	eotp = src
+	var/list/arm_paths = subtypesof(/datum/armament)
+	for(var/arm in arm_paths)
+		armaments += new arm
+
 
 /obj/machinery/power/eotp/examine(user)
 	..()

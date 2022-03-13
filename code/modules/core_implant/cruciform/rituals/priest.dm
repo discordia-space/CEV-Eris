@@ -531,8 +531,6 @@
 	power = 20
 
 /datum/ritual/cruciform/priest/buy_item/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
-
-
 	var/list/OBJS = get_front(H)
 
 	var/obj/machinery/power/eotp/EOTP = locate(/obj/machinery/power/eotp) in OBJS
@@ -540,25 +538,18 @@
 		fail("You must be in front of the Eye of the Protector.", H, C)
 		return FALSE
 
-	if (!EOTP.armaments_points > 0)
-		fail("You have no miracle of this type to spend.",H,C)
-		return FALSE
+	var/list/armament_choice = list()
 
-	var/list/item_choice = list()
-	var/reward_Item
-
-	for(var/i=1; i<=length(EOTP.armaments);i++)
-		var/cost = EOTP.armaments[EOTP.armaments[i]]
-		item_choice["[cost] - [ispath(EOTP.armaments[i],/obj/item/computer_hardware/hard_drive/portable/design) ? initial(EOTP.armaments[i].disk_name) : initial(EOTP.armaments[i].name)]"] = EOTP.armaments[i]
-	var/item_chosen = input(H,"What does youre church require?","Armenents") as null | anything in item_choice
-	if (!item_chosen)
+	for(var/datum/armament/A in EOTP.armaments)
+		armament_choice["[A.get_cost()] - [A.name]"] = EOTP.armaments
+	var/armament_chosen = input(H,"What does youre church require?","Armenents") as null | anything in armament_choice
+	if (!armament_chosen)
 		fail("Pick a reward.",H,C)
 		return FALSE
-	reward_Item = item_choice[item_chosen]
-	var/obj/item/_item = new reward_Item(get_turf(EOTP))
-	EOTP.visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [EOTP]!"))
-	EOTP.armaments_points -= EOTP.armaments[reward_Item]
-	log_and_message_admins("[key_name(H)] has orderd a [_item.name]")
+	var/datum/armament/reward_armament
+	reward_armament = armament_choice[armament_chosen]
 
+	if (!reward_armament[1].purchase(H))
+		return FALSE
 	return TRUE
 
