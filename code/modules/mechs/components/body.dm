@@ -7,6 +7,7 @@
 
 	var/mech_health = 300
 	var/obj/item/cell/cell
+	var/obj/item/robot_parts/robot_component/diagnosis_unit/diagnostics
 	var/obj/item/robot_parts/robot_component/armour/exosuit/armor_plate
 	var/obj/item/robot_parts/robot_component/exosuit_control/computer
 	var/obj/machinery/portable_atmospherics/canister/air_supply
@@ -40,6 +41,7 @@
 	QDEL_NULL(computer)
 	QDEL_NULL(armor_plate)
 	QDEL_NULL(air_supply)
+	QDEL_NULL(diagnostics)
 	. = ..()
 
 /obj/item/mech_component/chassis/handle_atom_del(atom/A)
@@ -52,6 +54,8 @@
 		armor_plate = null
 	if(A == air_supply)
 		air_supply = null
+	if(A == diagnostics)
+		diagnostics = null
 
 /obj/item/mech_component/chassis/update_components()
 	. = ..()
@@ -59,6 +63,7 @@
 	computer = locate() in src
 	armor_plate = locate() in src
 	air_supply = locate() in src
+	diagnostics = locate() in src
 
 /obj/item/mech_component/chassis/show_missing_parts(var/mob/user)
 	if(!cell)
@@ -67,6 +72,8 @@
 		to_chat(user, SPAN_WARNING("It is missing exosuit armor plating."))
 	if(!computer)
 		to_chat(user, SPAN_WARNING("It is missing a control computer."))
+	if(!diagnostics)
+		to_chat(user, SPAN_WARNING("It is missing a diagnostic scanner."))
 
 /obj/item/mech_component/chassis/Initialize()
 	. = ..()
@@ -96,12 +103,13 @@
 		cockpit.react()
 
 /obj/item/mech_component/chassis/ready_to_install()
-	return (cell && armor_plate && computer)
+	return (cell && armor_plate && computer && diagnostics)
 
 /obj/item/mech_component/chassis/prebuild()
 	computer = new /obj/item/robot_parts/robot_component/exosuit_control(src)
 	armor = new /obj/item/robot_parts/robot_component/armour/exosuit(src)
 	cell = new /obj/item/cell/large/high(src)
+	diagnostics = new /obj/item/robot_parts/robot_component/diagnosis_unit
 
 /obj/item/mech_component/chassis/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/robot_parts/robot_component/exosuit_control))
@@ -122,6 +130,14 @@
 			return
 		else if(insert_item(I, user))
 			armor_plate = I
+	else if(istype(I, /obj/item/robot_parts/robot_component/diagnosis_unit))
+		if(diagnostics)
+			to_chat(user, SPAN_WARNING("\The [src] already has armor installed."))
+			return
+		else if(insert_item(I, user))
+			diagnostics = I
+
+
 	else
 		return ..()
 
@@ -135,3 +151,20 @@
 		C.forceMove(src)
 		update_components()
 	else . = ..()
+
+/obj/item/mech_component/chassis/return_diagnostics(mob/user)
+	..()
+	if(diagnostics)
+		to_chat(user, SPAN_NOTICE(" Diagnostics Unit Integrity: <b>[round((((diagnostics.max_dam - diagnostics.total_dam) / diagnostics.max_dam)) * 100)]%</b>"))
+	else
+		to_chat(user, SPAN_WARNING(" Diagnostics Unit Missing or Non-functional."))
+	if(armor_plate)
+		to_chat(user, SPAN_NOTICE(" Armor Integrity: <b>[round((((armor_plate.max_dam - armor_plate.total_dam) / armor_plate.max_dam)) * 100)]%</b>"))
+	else
+		to_chat(user, SPAN_WARNING(" Armor Missing or Non-functional."))
+	if(computer)
+		to_chat(user, SPAN_NOTICE(" Installed Software"))
+		for(var/exosystem_computer in computer.installed_software)
+			to_chat(user, SPAN_NOTICE(" - <b>[capitalize(exosystem_computer)]</b>"))
+	else
+		to_chat(user, SPAN_WARNING(" Control Module Missing or Non-functional."))

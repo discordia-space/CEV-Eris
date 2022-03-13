@@ -226,6 +226,14 @@
 	name = "exosuit integrity"
 	icon_state = "health"
 
+/obj/screen/movable/exosuit/health/Click()
+	if(..())
+		if(owner && owner.body && owner.body.diagnostics?.is_functional())
+			to_chat(usr, SPAN_NOTICE("The diagnostics panel blinks several times as it updates:"))
+			for(var/obj/item/mech_component/MC in list(owner.arms, owner.legs, owner.body, owner.head))
+				if(MC)
+					MC.return_diagnostics(usr)
+
 /obj/screen/movable/exosuit/health/on_handle_hud(var/mob/living/exosuit/E)
 	. = ..()
 	cut_overlays()

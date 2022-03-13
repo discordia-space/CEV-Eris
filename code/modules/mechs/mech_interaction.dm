@@ -314,6 +314,13 @@
 		P.use(1, user)
 		return TRUE
 
+	else if(istype(I, /obj/item/device/robotanalyzer))
+		to_chat(user, SPAN_NOTICE("Diagnostic Report for \the [src]:"))
+		for(var/obj/item/mech_component/MC in list(arms, legs, body, head))
+			if(MC)
+				MC.return_diagnostics(user)
+		return
+
 	else if(istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = I
 		if(coil.amount < 5)

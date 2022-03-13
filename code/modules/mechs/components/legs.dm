@@ -7,8 +7,8 @@
 	var/move_delay = 5
 	var/turn_delay = 5
 	var/obj/item/robot_parts/robot_component/actuator/motivator
-	var/mech_turn_sound = 'sound/mechs/mechturn.ogg'
-	var/mech_step_sound = 'sound/mechs/mechstep.ogg'
+	var/mech_turn_sound = 'sound/mechs/Mech_Rotation.ogg'
+	var/mech_step_sound = 'sound/mechs/Mech_Step.ogg'
 
 /obj/item/mech_component/propulsion/Destroy()
 	QDEL_NULL(motivator)
@@ -45,3 +45,10 @@
 	if(!istype(target_loc))
 		return 0 // What are you even doing.
 	return 1
+
+/obj/item/mech_component/propulsion/return_diagnostics(mob/user)
+	..()
+	if(motivator)
+		to_chat(user, SPAN_NOTICE(" Actuator Integrity: <b>[round((((motivator.max_dam - motivator.total_dam) / motivator.max_dam)) * 100)]%</b>"))
+	else
+		to_chat(user, SPAN_WARNING(" Actuator Missing or Non-functional."))
