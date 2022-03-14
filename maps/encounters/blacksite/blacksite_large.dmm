@@ -1234,12 +1234,6 @@
 	},
 /turf/space,
 /area/space)
-"DT" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait{
-	dir = 1
-	},
-/turf/space,
-/area/space)
 "Ek" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/airlock/freezer{
@@ -14648,7 +14642,7 @@ aa
 aa
 gV
 ke
-WX
+ke
 gV
 EO
 EO
@@ -15313,8 +15307,8 @@ aa
 aa
 aa
 gV
-aa
-DT
+gV
+gV
 gV
 EO
 EO
@@ -17309,7 +17303,7 @@ aa
 aa
 aa
 aa
-aa
+gV
 kd
 kd
 gV
@@ -17531,7 +17525,7 @@ aa
 aa
 aa
 aa
-aa
+WY
 ke
 ke
 ke
@@ -17753,7 +17747,7 @@ aa
 aa
 aa
 aa
-aa
+ke
 ke
 ke
 ke
@@ -17975,7 +17969,7 @@ aa
 aa
 aa
 aa
-aa
+gV
 EO
 EO
 gV
@@ -18419,11 +18413,11 @@ aa
 aa
 aa
 aa
-aa
 gV
 gV
 gV
 kd
+gV
 gV
 gV
 gV
@@ -18641,14 +18635,14 @@ aa
 aa
 aa
 aa
-aa
 oV
 ke
 ke
 ke
 ke
 ke
-oV
+XX
+ke
 ke
 XX
 ke
@@ -18863,13 +18857,13 @@ aa
 aa
 aa
 aa
-aa
 gV
 ke
 ke
 ke
 ke
 ke
+gV
 gV
 gV
 gV
@@ -19085,14 +19079,14 @@ aa
 aa
 aa
 aa
-aa
 oV
 ke
 ke
 ke
 ke
 ke
-oV
+XX
+ke
 ke
 XX
 ke
@@ -19307,11 +19301,11 @@ aa
 aa
 aa
 aa
-aa
 gV
 gV
 gV
 kd
+gV
 gV
 gV
 gV
