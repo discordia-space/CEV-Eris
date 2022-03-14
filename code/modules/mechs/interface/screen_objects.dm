@@ -229,6 +229,8 @@
 /obj/screen/movable/exosuit/health/Click()
 	if(..())
 		if(owner && owner.body && owner.body.diagnostics?.is_functional())
+			usr.setClickCooldown(1 SECONDS)
+			playsound(owner.loc,'sound/effects/scanbeep.ogg',30,0)
 			to_chat(usr, SPAN_NOTICE("The diagnostics panel blinks several times as it updates:"))
 			for(var/obj/item/mech_component/MC in list(owner.arms, owner.legs, owner.body, owner.head))
 				if(MC)
