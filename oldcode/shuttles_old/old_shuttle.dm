@@ -136,7 +136,7 @@
 		break
 
 	for(var/obj/structure/plasticflaps/mining/F in destination)
-		F.update_turf_underneath(1)	//������� �� ��� ���������
+		F.update_turf_underneath(1)	
 
 	if(update_power)
 		makepowernets()

@@ -2267,7 +2267,7 @@
 
 /datum/reagent/alcohol/neurotoxin/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
-	M.Weaken(3 * effect_multiplier, FALSE)
+	M.Weaken(3 * effect_multiplier)
 	M.add_chemical_effect(CE_PULSE, -1)
 
 /datum/reagent/alcohol/patron
