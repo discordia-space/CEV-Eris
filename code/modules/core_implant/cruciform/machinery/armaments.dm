@@ -47,7 +47,6 @@
 
 	on_purchase(H)
 	SSnano.update_uis(eotp)
-	ui_interact(H)
 	log_and_message_admins("[key_name(H)] has invoked [src.name]")
 	return TRUE
 
@@ -57,11 +56,11 @@
 	return
 
 
-/datum/armament/ui_data(mob/user)
+/obj/machinery/power/eotp/ui_data(mob/user)
 	var/list/data = list()
 	var/list/listed_armaments = list()
-	for(var/i=1 to eotp.armaments.len)
-		var/datum/armament/A = eotp.armaments[i]
+	for(var/i=1 to armaments.len)
+		var/datum/armament/A = armaments[i]
 		listed_armaments.Add(list(list(
 			"key" = i,
 			"name" = strip_improper(A.name),
@@ -71,14 +70,14 @@
 	return data
 
 
-/datum/armament/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+/obj/machinery/power/eotp/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/list/data = ui_data(user, ui_key)
 
 	ui = SSnano.try_update_ui(user, eotp, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, eotp, ui_key, "eopt.tmpl", "Eye of the protector", 550, 655)
+		ui = new(user, src, ui_key, "eopt.tmpl", "Eye of the protector", 550, 655)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
