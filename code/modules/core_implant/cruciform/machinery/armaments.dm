@@ -120,5 +120,11 @@
 	name = "Power Cells disk"
 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/cells
 
-
+/datum/armament/item/grenade
+	name = "Grenade"
+	desc = "Summoning of boom booms"
+	path = /obj/item/grenade/explosive/nt
+	cost = 50
+	min_cost = 5
+	discount_increase = 5
 
