@@ -224,7 +224,7 @@ var/list/_client_preferences_by_type
 /datum/client_preference/stay_in_hotkey_mode
 	description = "Keep hotkeys on mob change"
 	key = "KEEP_HOTKEY_MODE"
-	default_value = GLOB.PREF_NO
+	default_value = GLOB.PREF_YES
 
 /********************
 * General Staff Preferences *

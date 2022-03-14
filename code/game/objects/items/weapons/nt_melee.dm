@@ -157,13 +157,13 @@
 	var/throwforce_broken = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT
-	throwforce = 75
+	throwforce = 45
 	armor_penetration = ARMOR_PEN_HALF
 	throw_speed = 3
 	price_tag = 150
 	allow_spin = FALSE
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 5) // easy to mass-produce and arm the faithful
-
+	style_damage = 50
 /obj/item/tool/sword/nt/spear/equipped(mob/living/W)
 	..()
 	if(is_held() && is_neotheology_disciple(W))
