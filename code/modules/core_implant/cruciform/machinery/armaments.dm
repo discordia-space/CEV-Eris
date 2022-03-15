@@ -93,16 +93,30 @@
 //////////////////////Item summonings
 /datum/armament/item
 	name = "item summoning"
+	desc = "item"
+	path = /obj/item/book/ritual/cruciform
+
+//Im really lazy, some one else can make fitting descriptions
+/datum/armament/item/New()
+	if (desc == "item")
+		var/obj/item/I = path
+		desc = initial(I.desc)
 
 /datum/armament/item/on_purchase(mob/living/carbon/H)
 	if (path)
 		var/obj/_item = new path(get_turf(eotp))
 		eotp.visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [eotp]!"))
+
 /datum/armament/item/disk
 	name = "disk"
 	cost = 75
 	discount_increase = 100
 	min_cost = 25
+
+/datum/armament/item/disk/New()
+	if (desc == "item")
+		var/obj/item/computer_hardware/hard_drive/portable/design/D
+		desc = initial(D.disk_name)
 
 /datum/armament/item/disk/crusader
 	name = "Crusader disk"
@@ -122,31 +136,31 @@
 	min_cost = 50
 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/cells
 /datum/armament/item/disk/pouches
-	name = 'Pouches disk'
+	name = "Pouches disk"
 	cost = 75
 	min_cost = 25
 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/pouches
 
 /datum/armament/item/disk/svalinn
-	name = 'Svalinn disk'
+	name = "Svalinn disk"
 	cost = 125
 	min_cost = 75
  	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/nt_svalinn
 
 /datum/armament/item/disk/velite
-	name = 'Velite disk'
+	name = "Velite disk"
 	cost = 125
 	min_cost = 75
  	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/velite
 
 /datum/armament/item/disk/nt_protector
-	name = 'Protector disk'
+	name = "Protector disk"
 	cost = 175
 	min_cost = 125
 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/nt_protector
 
 /datum/armament/item/disk/principes
-	name = 'Principes disk'
+	name = "Principes disk"
 	cost = 175
 	min_cost = 125
 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/principes
@@ -197,17 +211,17 @@
 	discount_increase = 100
 
 /datum/armement/item/gun
-	name = 'gun'
+	name = "gun"
 	discount_increase = 100
 
 /datum/armement/item/gun/largecrossobw
-	name = 'Large crossbow'
+	name = "Large crossbow"
 	path = /obj/item/gun/energy/crossbow/largecrossbow
 	cost = 125
 	min_cost = 50
 
 /datum/armement/item/gun/destroyer
-	name = 'Destroyer'
+	name = "Destroyer"
 	path = /obj/item/gun/energy/plasma/destroyer
 	cost = 325
 	min_cost = 200
