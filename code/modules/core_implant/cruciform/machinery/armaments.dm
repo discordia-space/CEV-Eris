@@ -100,7 +100,9 @@
 /datum/armament/item/New()
 	if (desc == "item")
 		var/obj/item/I = path
-		desc = initial(I.desc)
+		var/text = initial(I.desc)
+		if (text)
+			desc = text
 
 /datum/armament/item/on_purchase(mob/living/carbon/H)
 	if (path)
@@ -116,25 +118,18 @@
 /datum/armament/item/disk/New()
 	if (desc == "item")
 		var/obj/item/computer_hardware/hard_drive/portable/design/D
-		desc = initial(D.disk_name)
+		var/text = initial(D.disk_name)
+		if (text)
+			desc = text
+		desc = text
 
-/datum/armament/item/disk/crusader
-	name = "Crusader disk"
-	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/crusader
-
-/datum/armament/item/disk/advancedmelee
-	name = "Advanced melee disk"
-	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/advancedmelee
-
-/datum/armament/item/disk/cruciform_upgrade
-	name = "Cruciform upgrade disk"
-	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/cruciform_upgrade
 
 /datum/armament/item/disk/cells
 	name = "Power Cells disk"
 	cost = 75
 	min_cost = 50
 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/cells
+
 /datum/armament/item/disk/pouches
 	name = "Pouches disk"
 	cost = 75
@@ -145,13 +140,13 @@
 	name = "Svalinn disk"
 	cost = 125
 	min_cost = 75
- 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/nt_svalinn
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/nt_svalinn
 
 /datum/armament/item/disk/velite
 	name = "Velite disk"
 	cost = 125
 	min_cost = 75
- 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/velite
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/velite
 
 /datum/armament/item/disk/nt_protector
 	name = "Protector disk"
@@ -210,17 +205,17 @@
 	min_cost = 200
 	discount_increase = 100
 
-/datum/armement/item/gun
+/datum/armament/item/gun
 	name = "gun"
 	discount_increase = 100
 
-/datum/armement/item/gun/largecrossobw
+/datum/armament/item/gun/largecrossobw
 	name = "Large crossbow"
 	path = /obj/item/gun/energy/crossbow/largecrossbow
 	cost = 125
 	min_cost = 50
 
-/datum/armement/item/gun/destroyer
+/datum/armament/item/gun/destroyer
 	name = "Destroyer"
 	path = /obj/item/gun/energy/plasma/destroyer
 	cost = 325
