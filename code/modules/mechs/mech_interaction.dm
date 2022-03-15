@@ -30,6 +30,13 @@
 		A.examine(user)
 		return
 
+	if(modifiers["ctrl"])
+		if(selected_system)
+			if(selected_system == A)
+				selected_system.CtrlClick(user)
+				setClickCooldown(3)
+			return
+
 	if(!(user in pilots) && user != src)
 		return
 
@@ -113,7 +120,7 @@
 
 		var/resolved
 		if(adj)
-			resolved = A.attackby(temp_system, src)
+			resolved = temp_system.resolve_attackby(A, src, params)
 
 		if(!resolved && A && temp_system)
 			var/mob/ruser = src
