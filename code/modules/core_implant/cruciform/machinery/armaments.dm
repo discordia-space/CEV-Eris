@@ -7,7 +7,7 @@
 	var/purchase_count = 0 //how many times its bought
 	var/discount_increase = 25 //discount increase per purchase
 	var/discount = 0 //total discount to apply to the cost
-	var/max_discount = 25 //max amount of discounts
+	var/max_discount = 0 //max amount of discounts
 	var/rate_increase = 0 //rate increase per purchase
 	var/max_rate_increase = 0 //max rate increase from buying this
 	var/max_increase = 50 //incease of eotp max armement points per purchase
@@ -37,12 +37,14 @@
 
 	purchase_count++
 
-	discount = max(max_discount,discount + discount_increase)
+	if (!max_discount)
+		discount = discount + discount_increase
+	else
+		discount = min(max_discount,discount + discount_increase)
 
-	if (eotp.armaments_rate + rate_increase > max_rate_increase)
-		eotp.armaments_rate += rate_increase
-
-	eotp.max_armaments_points += max_increase
+	if (purchase_count >= 0)
+		eotp.max_armaments_points += max_increase
+		//eotp.armaments_rate += rate_increase
 
 	on_purchase(H)
 	SSnano.update_uis(eotp)
@@ -96,11 +98,10 @@
 	if (path)
 		var/obj/_item = new path(get_turf(eotp))
 		eotp.visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [eotp]!"))
-
 /datum/armament/item/disk
 	name = "disk"
-	cost = 100
-	discount_increase = 25
+	cost = 75
+	discount_increase = 100
 	min_cost = 25
 
 /datum/armament/item/disk/crusader
@@ -117,13 +118,96 @@
 
 /datum/armament/item/disk/cells
 	name = "Power Cells disk"
+	cost = 75
+	min_cost = 50
 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/cells
+/datum/armament/item/disk/pouches
+	name = 'Pouches disk'
+	cost = 75
+	min_cost = 25
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/pouches
+
+/datum/armament/item/disk/svalinn
+	name = 'Svalinn disk'
+	cost = 125
+	min_cost = 75
+ 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/nt_svalinn
+
+/datum/armament/item/disk/velite
+	name = 'Velite disk'
+	cost = 125
+	min_cost = 75
+ 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/velite
+
+/datum/armament/item/disk/nt_protector
+	name = 'Protector disk'
+	cost = 175
+	min_cost = 125
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/nt_protector
+
+/datum/armament/item/disk/principes
+	name = 'Principes disk'
+	cost = 175
+	min_cost = 125
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/principes
+
+/datum/armament/item/disk/medicii
+	name = "Medicii disk"
+	cost = 175
+	min_cost = 125
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/medicii
+
+/datum/armament/item/disk/nt_dominion
+	name = "Dominion disk"
+	cost = 225
+	min_cost = 125
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/nt_dominion
+
+/datum/armament/item/disk/grenades
+	name = "Grenades disk"
+	cost = 225
+	min_cost = 175
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/grenades
+
+/datum/armament/item/disk/triarii
+	name = "Triarri disk"
+	cost = 225
+	min_cost = 175
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/triarii
+
+/datum/armament/item/disk/nt_lightfall
+	name = "Lightfall disk"
+	cost = 275
+	min_cost = 200
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/nt_lightfall
+
+/datum/armament/item/disk/excruciator
+	name = "Excruciator disk"
+	cost = 275
+	min_cost = 200
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt/excruciator
+
 
 /datum/armament/item/grenade
 	name = "Grenade"
 	desc = "Summoning of boom booms"
 	path = /obj/item/grenade/explosive/nt
-	cost = 50
-	min_cost = 5
-	discount_increase = 5
+	cost = 275
+	min_cost = 200
+	discount_increase = 100
 
+/datum/armement/item/gun
+	name = 'gun'
+	discount_increase = 100
+
+/datum/armement/item/gun/largecrossobw
+	name = 'Large crossbow'
+	path = /obj/item/gun/energy/crossbow/largecrossbow
+	cost = 125
+	min_cost = 50
+
+/datum/armement/item/gun/destroyer
+	name = 'Destroyer'
+	path = /obj/item/gun/energy/plasma/destroyer
+	cost = 325
+	min_cost = 200
