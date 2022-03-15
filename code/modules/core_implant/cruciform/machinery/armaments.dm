@@ -121,7 +121,6 @@
 		var/text = initial(D.disk_name)
 		if (text)
 			desc = text
-		desc = text
 
 
 /datum/armament/item/disk/cells
