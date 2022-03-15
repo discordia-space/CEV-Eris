@@ -2,6 +2,7 @@
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt
 	disk_name = "NeoTheology Armory"
+	icon_state = "neotheology"
 	license = -1
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/pouches
@@ -48,12 +49,12 @@
 		/datum/design/bioprinter/nt_cells/small
 	)
 
-// Spears & bucklers, speed upgrade TODO: light armor
+// Javelins & bucklers, speed upgrade TODO: light armor
 /obj/item/computer_hardware/hard_drive/portable/design/nt/velite
 	disk_name = "NeoTheology Armory - \"Velite Arms\""
 	license = 12
 	designs = list(
-		/datum/design/autolathe/nt/sword/nt_spear,
+		/datum/design/autolathe/nt/sword/nt_verutum,
 		/datum/design/autolathe/nt/shield/nt_buckler,
 		/datum/design/autolathe/cruciform_upgrade/speed_of_the_chosen
 	)
