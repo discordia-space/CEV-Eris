@@ -222,6 +222,7 @@
 		/obj/item/tool/knife/dagger/nt,
 		/obj/item/tool/knife/neotritual,
 		/obj/item/book/ritual/cruciform,
+		/obj/item/stack/thrown/nt/verutum
 		)
 
 /obj/item/shield/riot/nt/New()
@@ -281,7 +282,8 @@
 		/obj/item/tool/knife/dagger/nt,
 		/obj/item/tool/knife/neotritual,
 		/obj/item/book/ritual/cruciform,
-		/obj/item/tool/sword/nt/spear
+		/obj/item/tool/sword/nt/spear,
+		/obj/item/stack/thrown/nt/verutum
 		)
 
 /obj/item/shield/buckler/nt/New()
