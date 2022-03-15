@@ -345,7 +345,7 @@
 	name = "NT Verutum"
 	desc = "A short, saintly-looking javelin for throwing or use with a shield. They are small enough to be easy to hold multiple."
 	icon_state = "nt_verutum"
-	item_state = "nt_verutum1"
+	item_state = "nt_verutum"
 	singular_name = "NT Verutum"
 	wielded_icon = "nt_verutum_wielded"
 	force = 20

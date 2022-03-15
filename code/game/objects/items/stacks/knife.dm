@@ -4,7 +4,7 @@
 	desc = "A knife that is specially designed and weighted so that the wielder\'s strength can be accounted when being thrown."
 	icon = 'icons/obj/stack/items.dmi'
 	icon_state = "knife"
-	item_state = "knife1"
+	item_state = "knife"
 	singular_name = "throwing knife"
 	flags = CONDUCT
 	sharp = TRUE
@@ -41,8 +41,8 @@
 	else
 		amount--
 		update_icon()
-		
-		var/obj/item/stack/thrown/J = new src(get_turf(src))
+
+		var/obj/item/stack/thrown/J = new src.type(get_turf(src))
 		J.throwforce = throwforce
 		J.amount = 1
 		J.update_icon()
@@ -59,7 +59,7 @@
 	desc = "A knife that is specially designed and weighted so that the wielder\'s strength can be accounted when being thrown."
 	icon = 'icons/obj/stack/items.dmi'
 	icon_state = "knife"
-	item_state = "knife1"
+	item_state = "knife"
 	singular_name = "throwing knife"
 	flags = CONDUCT
 	sharp = TRUE
