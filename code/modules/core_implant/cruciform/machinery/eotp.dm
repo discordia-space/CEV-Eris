@@ -127,10 +127,9 @@ var/global/obj/machinery/power/eotp/eotp
 	else
 		type_release = pick(rewards)
 
-	armaments_points += armaments_rate
 
-	if (armaments_points > max_armaments_points)
-		armaments = max_armaments_points
+	armaments_points = min(armaments + armaments_rate,max_armaments_points)
+
 
 	if(type_release == ALERT)
 

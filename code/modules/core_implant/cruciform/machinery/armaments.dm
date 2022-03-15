@@ -2,19 +2,19 @@
 	var/name = "Virtue of coding"
 	var/desc = "The gods made it quite clear this should not exist, Perhaps inform those above."
 	var/cost = 100
-	var/min_cost = 10
-	var/path = /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter_public
-	var/purchase_count = 0
-	var/discount_increase = 25
-	var/discount = 0
-	var/max_discount = 25
-	var/rate_increase = 0
-	var/max_rate_increase = 0
-	var/max_increase = 50
+	var/min_cost = 10 //aboslute minimum it should cost
+	var/path = /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter_public //path to spawn
+	var/purchase_count = 0 //how many times its bought
+	var/discount_increase = 25 //discount increase per purchase
+	var/discount = 0 //total discount to apply to the cost
+	var/max_discount = 25 //max amount of discounts
+	var/rate_increase = 0 //rate increase per purchase
+	var/max_rate_increase = 0 //max rate increase from buying this
+	var/max_increase = 50 //incease of eotp max armement points per purchase
 
 //modifiers in the future? maby some rituals to reduce cost for certain subtype
 /datum/armament/proc/get_cost()
-	return (cost - discount) > min_cost ? cost - discount : min_cost
+	return max(min_cost,cost - discount)
 
 /datum/armament/proc/purchase(var/mob/living/carbon/H)
 	if (!eotp)
@@ -37,13 +37,12 @@
 
 	purchase_count++
 
-	discount += discount_increase
-	if (max_discount > discount)
-		discount = max_discount
+	discount = max(max_discount,discount + discount_increase)
 
-	if (eotp.armaments_rate > max_rate_increase)
+	if (eotp.armaments_rate + rate_increase > max_rate_increase)
 		eotp.armaments_rate += rate_increase
 
+	eotp.max_armaments_points += max_increase
 
 	on_purchase(H)
 	SSnano.update_uis(eotp)
