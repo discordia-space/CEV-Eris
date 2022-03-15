@@ -98,7 +98,7 @@
 
 //Im really lazy, some one else can make fitting descriptions
 /datum/armament/item/New()
-	if (desc == "item")
+	if (desc == initial(desc))
 		var/obj/item/I = path
 		var/text = initial(I.desc)
 		if (text)
@@ -116,8 +116,8 @@
 	min_cost = 25
 
 /datum/armament/item/disk/New()
-	if (desc == "item")
-		var/obj/item/computer_hardware/hard_drive/portable/design/D
+	if (desc == initial(desc))
+		var/obj/item/computer_hardware/hard_drive/portable/design/D = path
 		var/text = initial(D.disk_name)
 		if (text)
 			desc = text
