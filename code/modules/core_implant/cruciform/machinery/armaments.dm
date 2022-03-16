@@ -28,19 +28,13 @@
 		to_chat(H, SPAN_DANGER("You do not understand how to use this."))
 		return FALSE
 
-	if (!eotp.armaments_points >= cost)
+	if (!eotp.armaments_points >= get_cost())
 		to_chat(H, SPAN_DANGER("You lack required armament points."))
 		return FALSE
 
 
-	eotp.armaments_points -= get_cost()
-
 	purchase_count++
 
-	if (!max_discount)
-		discount = discount + discount_increase
-	else
-		discount = min(max_discount,discount + discount_increase)
 
 	if (purchase_count >= 0)
 		eotp.max_armaments_points += max_increase
