@@ -28,7 +28,7 @@
 		to_chat(H, SPAN_DANGER("You do not understand how to use this."))
 		return FALSE
 
-	if (!eotp.armaments_points >= get_cost())
+	if (eotp.armaments_points < get_cost())
 		to_chat(H, SPAN_DANGER("You lack required armament points."))
 		return FALSE
 
