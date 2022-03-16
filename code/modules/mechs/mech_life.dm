@@ -60,7 +60,6 @@
 		if(prob(5))
 			visible_message(SPAN_DANGER("\The [src]'s hull bends and buckles under the intense heat!"))
 
-	hud_heat.Update()
 
 /mob/living/exosuit/death(gibbed)
 	// Eject the pilots

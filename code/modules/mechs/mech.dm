@@ -61,16 +61,6 @@
 	//Air!
 	var/use_air = FALSE
 
-// Interface stuff.
-	var/list/hud_elements = list()
-	var/list/hardpoint_hud_elements = list()
-	var/obj/screen/movable/exosuit/health/hud_health
-	var/obj/screen/movable/exosuit/toggle/hatch_open/hud_open
-	var/obj/screen/movable/exosuit/power/hud_power
-	var/obj/screen/movable/exosuit/heat/hud_heat
-	var/obj/screen/movable/exosuit/toggle/power_control/hud_power_control
-	var/obj/screen/movable/exosuit/toggle/camera/hud_camera
-
 	// Strafing - Is the mech currently strafing?
 	var/strafing = FALSE
 
