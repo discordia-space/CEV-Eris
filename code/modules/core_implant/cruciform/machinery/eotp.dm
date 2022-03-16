@@ -41,8 +41,8 @@ var/global/obj/machinery/power/eotp/eotp
 	var/rescan_cooldown = 10 MINUTES
 	var/last_rescan = 0
 	var/list/armaments = list()
-	var/armaments_points = 800
-	var/max_armaments_points = 800
+	var/armaments_points = 0
+	var/max_armaments_points = 100
 	var/armaments_rate = 100
 	var/static/list/unneeded_armaments = list(/datum/armament/item/gun,/datum/armament/item,/datum/armament/item/disk)
 

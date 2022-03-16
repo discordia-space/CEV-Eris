@@ -32,13 +32,18 @@
 		to_chat(H, SPAN_DANGER("You lack required armament points."))
 		return FALSE
 
+	eotp.armaments_points -= get_cost()
 
 	purchase_count++
 
+	if (!max_discount)
+		discount = discount + discount_increase
+	else
+		discount = min(max_discount,discount + discount_increase)
 
-	if (purchase_count <= 0)
+
+	if (purchase_count < 2)
 		eotp.max_armaments_points += max_increase
-		//eotp.armaments_rate += rate_increase
 
 	on_purchase(H)
 	SSnano.update_uis(eotp)
