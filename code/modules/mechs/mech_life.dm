@@ -65,7 +65,7 @@
 		if(prob(damage))
 			visible_message(SPAN_DANGER("\The [src]'s hull bends and buckles under the intense heat!"))
 
-//	hud_heat.Update()
+//	hud_heat.Update() // Don't animate for now 'til HUDs are properly converted
 
 /mob/living/exosuit/death(gibbed)
 	// Eject the pilots
