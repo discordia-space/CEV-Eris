@@ -533,7 +533,7 @@
 	amount = 3
 	icon_state = "f-shell"
 	spent_icon = "f-shell-spent"
-	projectile_type = /obj/item/projectile/bullet/flare
+	projectile_type = /obj/item/projectile/energy/flash/flare
 	matter = list(MATERIAL_PLASTIC = 1)
 	matter_reagents = list("phosphorus" = 3)
 	rarity_value = 8
