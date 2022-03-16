@@ -40,7 +40,7 @@
 
 //blinds people like the flash round, but can also be used for temporary illumination
 /obj/item/projectile/energy/flash/flare
-	damage_types = list(BURN = 10)
+	damage_types = list(BURN = 0)
 	flash_range = 1
 	brightness = 9 //similar to a flare
 	light_duration = 200

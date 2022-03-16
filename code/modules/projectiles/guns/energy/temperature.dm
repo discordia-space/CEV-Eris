@@ -13,7 +13,7 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	matter = list(MATERIAL_STEEL = 20)
 	price_tag = 1500
-	projectile_type = /obj/item/projectile/temp
+	projectile_type = /obj/item/projectile/beam/practice
 	zoom_factor = 2
 	gun_parts = list(/obj/item/stack/material/steel = 4)
 

@@ -8,7 +8,7 @@
 	price_tag = 2000
 	fire_sound = 'sound/weapons/Taser.ogg'
 	can_dual = TRUE
-	projectile_type = /obj/item/projectile/beam/stun
+	projectile_type = /obj/item/projectile/beam/practice
 	wield_delay = 0.3 SECOND
 	wield_delay_factor = 0.2 // 20 vig
 
