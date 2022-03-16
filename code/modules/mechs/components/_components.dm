@@ -101,7 +101,16 @@
 /obj/item/mech_component/attackby(obj/item/I, mob/living/user)
 	if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_ZERO))
 		if(contents.len)
-			var/obj/item/removed = pick(contents)
+			//Filter non movables
+			var/list/valid_contents = list()
+			for(var/atom/movable/A in contents)
+				if(!A.anchored)
+					valid_contents += A
+			if(!valid_contents.len)
+				return
+			var/obj/item/removed = pick(valid_contents)
+			if(!(removed in contents))
+				return
 			if(eject_item(removed, user))
 				update_components()
 		else
