@@ -524,7 +524,7 @@
 
 /datum/ritual/cruciform/priest/buy_item
 	name = "Order armaments"
-	phrase = "I need suggestions for a phrase"
+	phrase = "Et qui non habet, vendat tunicam suam et emat gladium."
 	desc = "Allows you to spend a point to unlock an NT disk."
 	success_message = "Your prayers have been heard."
 	fail_message = "Your prayers have not been answered."
