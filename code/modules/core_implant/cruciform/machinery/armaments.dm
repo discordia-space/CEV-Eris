@@ -46,7 +46,7 @@
 		eotp.max_armaments_points += max_increase
 
 	on_purchase(H)
-	SSnano.update_uis(eotp)
+
 	log_and_message_admins("[key_name(H)] has invoked [src.name]")
 	return TRUE
 
@@ -88,6 +88,7 @@
 		var/i = text2num(href_list["chosen"])
 		var/datum/armament/A = eotp.armaments[i]
 		A.purchase(usr)
+		SSnano.update_uis(src)
 
 //////////////////////Item summonings
 /datum/armament/item
