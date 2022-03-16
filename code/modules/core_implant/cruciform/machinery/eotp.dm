@@ -44,13 +44,15 @@ var/global/obj/machinery/power/eotp/eotp
 	var/armaments_points = 800
 	var/max_armaments_points = 800
 	var/armaments_rate = 100
+	var/static/list/unneeded_armaments = list(/datum/armament/item/gun,/datum/armament/item,/datum/armament/item/disk)
 
 /obj/machinery/power/eotp/New()
 	..()
 	eotp = src
-	var/list/arm_paths = subtypesof(/datum/armament)
+	var/list/arm_paths = subtypesof(/datum/armament) - unneeded_armaments
 	for(var/arm in arm_paths)
 		armaments += new arm
+
 
 
 /obj/machinery/power/eotp/examine(user)

@@ -10,7 +10,7 @@
 	var/max_discount = 0 //max amount of discounts
 	var/rate_increase = 0 //rate increase per purchase
 	var/max_rate_increase = 0 //max rate increase from buying this
-	var/max_increase = 50 //incease of eotp max armement points per purchase
+	var/max_increase = 25 //incease of eotp max armement points per purchase
 
 //modifiers in the future? maby some rituals to reduce cost for certain subtype
 /datum/armament/proc/get_cost()
@@ -36,7 +36,7 @@
 	purchase_count++
 
 
-	if (purchase_count >= 0)
+	if (purchase_count <= 0)
 		eotp.max_armaments_points += max_increase
 		//eotp.armaments_rate += rate_increase
 
