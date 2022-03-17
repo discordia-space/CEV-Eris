@@ -4,7 +4,7 @@
 	icon_state = "emp"
 	item_state = "empgrenade"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 3)
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_IRON = 2, MATERIAL_URANIUM = 2)
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASMA = 1, MATERIAL_SILVER = 1)
 
 /obj/item/grenade/empgrenade/prime()
 	..()
