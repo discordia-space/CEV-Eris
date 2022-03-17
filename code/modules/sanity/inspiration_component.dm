@@ -36,15 +36,19 @@
 		var/stat_noun
 		var/stat_adjective
 		var/message
-		var/list/nouns_overwhelming = list("<span style='color:#d0b050;'>overwhelming</span>", "<span style='color:#d0b050;'>extreme</span>", "<span style='color:#d0b050;'>incredible</span>", "<span style='color:#d0b050;'>unbelieavable</span>", "<span style='color:#d0b050;'>exceeding</span>")
-		var/list/adjectives_overwhelming = list("<span style='color:#d0b050;'>overwhelmingly</span>", "<span style='color:#d0b050;'>extremely</span>", "<span style='color:#d0b050;'>incredibly</span>", "<span style='color:#d0b050;'>unbelievably</span>", "<span style='color:#d0b050;'>exceedingly</span>")
-		var/list/nouns_strong = list("<span class='red'>strong</span>", "<span class='red'>heavy</span>", "<span class='red'>powerful</span>", "<span class='red'>nagging</span>")
-		var/list/adjectives_strong = list("<span class='red'>strongly</span>", "<span class='red'>heavily</span>", "<span class='red'>highly</span>", "<span class='red'>naggingly</span>")
-		var/list/nouns_medium = list("<span class='green'>medium</span>", "<span class='green'>moderate</span>", "<span class='green'>unremarkable</span>")
-		var/list/adjectives_medium = list("<span class='green'>moderately</span>", "<span class='green'>relatively</span>", "<span class='green'>considerably</span>", "<span class='green'>somewhat</span>")
-		var/list/nouns_weak = list("<span class='blue'>weak</span>", "<span class='blue'>slight</span>", "<span class='blue'>mild</span>", "<span class='blue'>light</span>", "<span class='blue'>subtle</span>")
-		var/list/adjectives_weak = list("<span class='blue'>weakly</span>", "<span class='blue'>slightly</span>", "<span class='blue'>mildly</span>", "<span class='blue'>lightly</span>", "<span class='blue'>subtly</span>")
 		var/a_or_an = "a"
+		var/aspect_noun_or_adjective = "noun"
+		var/stat_color
+		var/list/nouns_overwhelming = list("overwhelming", "extreme", "incredible", "unbelieavable", "exceeding")
+		var/list/adjectives_overwhelming = list("overwhelmingly", "extremely", "incredibly", "unbelievably", "exceedingly")
+		var/list/nouns_strong = list("strong", "heavy", "powerful", "unusual")
+		var/list/adjectives_strong = list("strongly", "heavily", "highly", "naggingly", "unusually")
+		var/list/nouns_medium = list("medium", "moderate", "unremarkable")
+		var/list/adjectives_medium = list("moderately", "relatively", "considerably", "somewhat")
+		var/list/nouns_weak = list("weak", "slight", "mild", "light", "subtle")
+		var/list/adjectives_weak = list("weakly", "slightly", "mildly", "lightly", "subtly")
+		if(prob(75))
+			aspect_noun_or_adjective = "adjective"		
 		switch(stat)
 			if("Robustness")
 				stat_noun = pick("robustness", "strength", "brawls", "fighting")
@@ -56,60 +60,48 @@
 				stat_noun = pick("vigilance", "watchfulness", "awareness")
 				stat_adjective = pick("vigilant", "watchful", "aware", "wary")
 			if("Mechanical")
-				stat_noun = pick("mechanical", "tools", "crafting", "machinery", )
-				stat_adjective = pick("mechanics-affine", "skilled in reparation")
+				stat_noun = pick("mechanical", "tools", "crafting", "machinery", "mechanical restoration")
+				stat_adjective = pick("mechanically inclined", "accustomed to machinery", "proficient at mending machinery", "proficient at servicing machinery", "capable of restoring gadgets")
 			if("Biology")
-				stat_noun = pick("biology", "medicine", "medical knowledge", "anatomy")
-				stat_adjective = pick("skilled in surgery", "used to anatomy")				
+				stat_noun = pick("biology", "medicine", "medical knowledge", "anatomy", "physiology")
+				stat_adjective = pick("skilled at surgery", "accustomed to anatomy", "knowledgeable in physiology")				
 			if("Cognition")
 				stat_noun = pick("cognition", "intelligence", "knowledge")
-				stat_adjective = pick("smart", "intelligent", "concentrated")		
-		if(prob(50))
-			switch(stats[stat])
-				if(10 to INFINITY)
-					a_or_an = "an"
+				stat_adjective = pick("smart", "intelligent", "concentrated", "knowledgable")		
+		switch(stats[stat])
+			if(10 to INFINITY)
+				a_or_an = "an"
+				stat_color = "<span style='color:#d0b050;'>"
+				if(aspect_noun_or_adjective == "noun")
 					aspect = pick(nouns_overwhelming)
-				if(6 to 10)
+				else
+					aspect = pick(adjectives_overwhelming)
+			if(6 to 10)
+				stat_color = "<span class='red'>"
+				if(aspect_noun_or_adjective == "noun")
 					aspect = pick(nouns_strong)
-				if(3 to 6)
+				else
+					aspect = pick(adjectives_strong)
+			if(3 to 6)
+				stat_color = "<span class='green'>"
+				if(aspect_noun_or_adjective == "noun")
 					aspect = pick(nouns_medium)
-				if(1 to 3)
+				else
+					aspect = pick(adjectives_medium)
+			if(1 to 3)
+				stat_color = "<span class='blue'>"
+				if(aspect_noun_or_adjective == "noun")
 					aspect = pick(nouns_weak)
 				else
-					continue
-			message = pick("This item has [a_or_an] [aspect] aspect of [stat_noun]", "[a_or_an] [aspect] Aura of [stat_noun] pertains to it")
-		else
-			switch(stats[stat])
-				if(10 to INFINITY)
-					aspect = pick(adjectives_overwhelming)
-				if(6 to 10)
-					aspect = pick(adjectives_strong)
-				if(3 to 6)
-					aspect = pick(adjectives_medium)
-				if(1 to 3)
 					aspect = pick(adjectives_weak)
-				else
-					continue
-			message = pick("It feels [aspect] [stat_adjective]", "It [aspect] smells of [stat_noun]", "It [aspect] reminds you of [stat_noun]", "It makes you feel [aspect] [stat_adjective]", "it can only be described as [aspect] [stat_adjective]", "This will make you will make you [aspect] [stat_adjective]")	
-/*		switch(stats[stat])
-			if(10 to INFINITY)
-				aspect = "an <span style='color:#d0b050;'>overwhelming</span>"
-			if(6 to 10)
-				aspect = "a <span class='red'>strong</span>"
-			if(3 to 6)
-				aspect = "a <span class='green'>medium</span>"
-			if(1 to 3)
-				aspect = "a <span class='blue'>weak</span>"
 			else
-				continue			
-		"[a_or_an] [aspect] Aura of [stat] pertains to it"
-		"It feels [aspect] [stat]"
-		"It [aspect] smells of [stat]"
-		"It reminds you of [stat] [aspect]"
-		"It makes you feel [aspect] [stat]"
-		"This item has [a_or_an] [aspect] aspect of [stat]"
-*/
-		to_chat(user, SPAN_NOTICE(message))
+				continue
+		if(aspect_noun_or_adjective == "noun")
+			message = pick("This item has [a_or_an] [stat_color][aspect]</span> aspect of [stat_noun]", "[a_or_an] [stat_color][aspect]</span> Aura of [stat_noun] pertains to it")
+		else if(aspect_noun_or_adjective == "adjective")
+			message = pick("It feels [stat_color][aspect]</span> like [stat_noun]", "It [stat_color][aspect]</span> smells of [stat_noun]", "It [stat_color][aspect]</span> reminds you of [stat_noun]", "It makes you feel [stat_color][aspect]</span> [stat_adjective]", "This feels like it might make you [stat_color][aspect]</span> [stat_adjective]", "[stat_color][aspect]</span> [stat_adjective].")			
+		if(message)
+			to_chat(user, SPAN_NOTICE(message))
 	if(perk)
 		var/datum/perk/oddity/OD = GLOB.all_perks[perk]
 		to_chat(user, SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>"))
