@@ -226,10 +226,9 @@ proc/n_ceil(var/num)
 
 
 
-#define T0C   273.15 //    0.0 degrees celsius
-#define T20C  293.15 //   20.0 degrees celsius
+
 #define T100C 373.15 //  100.0 degrees celsius
-#define TCMB  2.7    // -270.3 degrees celsius
+
 
 
 #define CELSIUS + T0C
