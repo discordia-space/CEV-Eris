@@ -261,7 +261,7 @@
 	spent_icon = "atmr-spent"
 	caliber = CAL_ANTIM
 	projectile_type = /obj/item/projectile/bullet/antim
-	matter = list(MATERIAL_STEEL = 2)
+	matter = list(MATERIAL_PLASTEEL = 2)
 	maxamount = 5
 
 	sprite_update_spawn = TRUE
@@ -288,7 +288,7 @@
 	icon_state = "atmr-DU"
 	spent_icon = "atmr-DU-spent"
 	projectile_type = /obj/item/projectile/bullet/antim/uranium
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_URANIUM = 2)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_URANIUM = 1)
 
 /obj/item/ammo_casing/antim/uranium/prespawned
 	amount = 5
@@ -299,7 +299,7 @@
 	icon_state = "atmr-HE"
 	spent_icon = "atmr-HE-spent"
 	projectile_type = /obj/item/projectile/bullet/antim/breach
-	matter = list(MATERIAL_PLASTEEL = 2, MATERIAL_URANIUM = 1)
+	matter = list(MATERIAL_PLASTEEL = 1, MATERIAL_URANIUM = 1)
 
 /obj/item/ammo_casing/antim/breach/prespawned
 	amount = 5
