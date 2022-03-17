@@ -195,7 +195,7 @@
 			to_chat(user, SPAN_NOTICE(" - <b>[capitalize(exosystem_computer)]</b>"))
 	else
 		to_chat(user, SPAN_WARNING(" Control Module Missing or Non-functional."))
-obj/item/mech_component/chassis/MouseDrop(atom/over)
+/obj/item/mech_component/chassis/MouseDrop(atom/over)
 	if(!usr || !over) return
 	if(!Adjacent(usr) || !over.Adjacent(usr)) return
 
