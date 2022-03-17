@@ -131,8 +131,8 @@
 	name = "boxed soft suit"
 
 /obj/item/storage/box/syndie_kit/softsuit/populate_contents()
-	new /obj/item/clothing/suit/space/syndicate(src)
-	new /obj/item/clothing/head/space/syndicate(src)
+	new /obj/item/clothing/suit/space/syndicate/uplink(src)
+	new /obj/item/clothing/head/space/syndicate/uplink(src)
 
 /obj/item/storage/box/syndie_kit/chameleon
 	name = "chameleon kit"
