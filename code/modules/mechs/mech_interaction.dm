@@ -405,9 +405,9 @@
 					to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))
 					return TRUE
 			to_chat(user, SPAN_NOTICE("You start removing [cell] from \the [src]."))
-			(do_mob(user, src, 30) && cell == body.cell && body.eject_item(cell, user))
-			body.cell = null
-			return
+			if(do_mob(user, src, 30) && cell == body.cell && body.eject_item(cell, user))
+				body.cell = null
+				return
 
 
 		if(QUALITY_SCREW_DRIVING)
