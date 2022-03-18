@@ -1,0 +1,10 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - rscadd: Nature's Blessing Cruciform upgrade now heals the heavily injured
+  - rscadd: Heatwave and NT Stinger shells for the Protector Grenade Launcher
+  - rscadd: Velutum throwing javelin
+  - balance: Reworks NT disks for the EOTP
+  - bugfix: Fixes shrapnel and sting grenades misbehaving at long ranges
+  - bugfix: Stacks no longer runtime when bloody
+  - refactor: Throwing knife code improved
