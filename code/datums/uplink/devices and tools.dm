@@ -90,7 +90,7 @@
 
 /datum/uplink_item/item/tools/softsuit
 	name = "Armoured Softsuit"
-	item_cost = 4
+	item_cost = 3
 	path = /obj/item/storage/box/syndie_kit/softsuit
 
 /datum/uplink_item/item/tools/thermal
