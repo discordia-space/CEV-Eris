@@ -109,7 +109,7 @@
 	license = 12
 	designs = list(
 		/datum/design/bioprinter/storage/sheath = 0,
-		/datum/design/autolathe/nt/sword/nt_scourge,,
+		/datum/design/autolathe/nt/sword/nt_scourge,
 		/datum/design/autolathe/nt/sword/nt_halberd,
 		/datum/design/autolathe/nt/sword/nt_spear,
 		/datum/design/autolathe/nt/helmet/crusader,
