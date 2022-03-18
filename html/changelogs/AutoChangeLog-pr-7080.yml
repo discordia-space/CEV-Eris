@@ -1,0 +1,5 @@
+author: greggbot
+delete-after: true
+changes:
+  - bugfix: Attempting to construct a bioreactor platform now gives the correct result,
+      instead of a tank platform.
