@@ -112,7 +112,7 @@
 
 /obj/item/oddity/common/old_newspaper
 	name = "old newspaper"
-	desc = "It contains a report on some old and strange phenomenon. Maybe it's lies, maybe it's corporate experiments gone wrong. Wait, there's two comically obvious holes for peering through!"
+	desc = "It contains a report on some old and strange phenomenon. Maybe it's lies, maybe it's corporate experiments gone wrong. Wait, there are two comically obvious holes for peering through!"
 	icon_state = "old_newspaper"
 	oddity_stats = list(
 		STAT_MEC = 4,
