@@ -323,7 +323,7 @@
 
 /obj/item/stack/thrown/nt
 	name = "NT Throwing knife"
-	desc = "A saintly-looking sword forged to do God's distant work."
+	desc = "A saintly-looking sword forged to do God\'s distant work."
 	icon_state = "nt_shortsword"
 	item_state = "nt_shortsword"
 	force = WEAPON_FORCE_DANGEROUS
