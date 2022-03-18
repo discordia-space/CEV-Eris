@@ -458,7 +458,7 @@
 
 /obj/item/ammo_casing/grenade/weak
 	name = "NT SR \"Dard\""
-	desc = "A standard-issue sting round for use against unruly crowds. The abbreviation \"NT\" marks its producer, but the lack of detatil makes it ubiquitous."
+	desc = "A standard-issue sting round for use against unruly crowds. The abbreviation \"NT\" marks its producer, but the lack of details makes it ubiquitous."
 	projectile_type = /obj/item/projectile/bullet/grenade/frag/sting/weak
 	rarity_value = 10
 
