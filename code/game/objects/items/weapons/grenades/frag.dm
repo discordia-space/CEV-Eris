@@ -7,7 +7,7 @@
 	var/fragment_type = /obj/item/projectile/bullet/pellet/fragment
 	var/num_fragments = 50  //total number of fragments produced by the grenade
 	var/fragment_damage = 15
-	var/damage_step = 3      //projectiles lose a fragment each time they travel this distance. Can be a non-integer.
+	var/damage_step = 8      //projectiles lose a fragment each time they travel this distance. Can be a non-integer.
 
 	//The radius of the circle used to launch projectiles. Lower values mean less projectiles are used but if set too low gaps may appear in the spread pattern
 	var/spread_range = 7
@@ -43,7 +43,7 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 2, MATERIAL_PLASMA = 2, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 2)
 	num_fragments = 25
 	fragment_damage = 10
-	damage_step = 5
+	damage_step = 7
 
 /obj/item/grenade/frag/sting
 	name = "FS SG \"Hornet\""
@@ -53,7 +53,7 @@
 	fragment_type = /obj/item/projectile/bullet/pellet/fragment/rubber
 	num_fragments = 25
 	fragment_damage = 5
-	damage_step = 3
+	damage_step = 12
 	spread_range = 7
 
 /obj/item/grenade/frag/sting/AG
@@ -63,6 +63,6 @@
 	item_state = "fraggrenade"
 	fragment_type = /obj/item/projectile/bullet/pellet/fragment/rubber/weak
 	num_fragments = 25
-	fragment_damage = 3
-	damage_step = 3
+	fragment_damage = 10
+	damage_step = 8
 	spread_range = 7

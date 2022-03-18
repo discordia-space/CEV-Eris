@@ -454,6 +454,12 @@
 	is_caseless = TRUE
 	maxamount = 1
 	spawn_tags = SPAWN_TAG_AMMO
+	rarity_value = 15
+
+/obj/item/ammo_casing/grenade/weak
+	name = "NT SR \"Dard\""
+	desc = "A standard-issue sting round for use against unruly crowds. The abbreviation \"NT\" marks its producer, but the lack of details makes it ubiquitous."
+	projectile_type = /obj/item/projectile/bullet/grenade/frag/sting/weak
 	rarity_value = 10
 
 /obj/item/ammo_casing/grenade/blast
@@ -465,16 +471,24 @@
 
 /obj/item/ammo_casing/grenade/frag
 	name = "NT DFR \"Pallad\""
-	desc = "A military-grade grenade shell, designed to be fired from grenade launchers."
+	desc = "A military-grade grenade shell, designed to be fired from grenade launchers. The abbreviation \"NT\" marks its producer, but the lack of detatil makes it ubiquitous."
 	icon_state = "frag"
 	projectile_type = /obj/item/projectile/bullet/grenade/frag
 	rarity_value = 25
 
 /obj/item/ammo_casing/grenade/emp
 	name = "NT EMPR \"Remote Switch\""
-	desc = "An EMP grenade shell, designed to be fired from grenade launchers"
+	desc = "An EMP grenade shell, designed to be fired from grenade launchers. The abbreviation \"NT\" marks its producer, but the lack of detatil makes it ubiquitous."
 	icon_state = "emp"
 	projectile_type = /obj/item/projectile/bullet/grenade/emp // gonna keep this from being maint-lootable for now
+
+/obj/item/ammo_casing/grenade/heatwave
+	name = "NT HG \"Purifico\""
+	desc = "A military-grade offensive heatwave grenade shell, designed to be fired from grenade launchers. \
+			There\'s an inscription along the sides. \'For those who disbelieve, for them are cut out garments of fire, boiling water shall be poured over their heads.\'"
+	icon_state = "blast"
+	projectile_type = /obj/item/projectile/bullet/grenade/heatwave
+	rarity_value = 40 // Neotheology
 
 //// Other ////
 

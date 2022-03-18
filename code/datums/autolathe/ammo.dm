@@ -369,3 +369,25 @@
 /datum/design/autolathe/ammo/flare_shell
 	name = "flare shell"
 	build_path = /obj/item/ammo_casing/flare
+
+// Grenade launcher
+
+/datum/design/autolathe/ammo/fs_stinger
+	name = "FS sting shell"
+	build_path = /obj/item/ammo_casing/grenade
+	
+/datum/design/autolathe/ammo/nt_stinger
+	name = "NT sting shell"
+	build_path = /obj/item/ammo_casing/grenade/weak
+		
+/datum/design/autolathe/ammo/shell_frag
+	name = "frag shell"
+	build_path = /obj/item/ammo_casing/grenade/frag
+		
+/datum/design/autolathe/ammo/shell_emp
+	name = "emp shell"
+	build_path = /obj/item/ammo_casing/grenade/emp
+
+/datum/design/autolathe/ammo/shell_heatwave
+	name = "heatwave shell"
+	build_path = /obj/item/ammo_casing/grenade/heatwave

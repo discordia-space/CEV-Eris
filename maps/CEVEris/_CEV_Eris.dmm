@@ -104136,7 +104136,7 @@
 "qBj" = (
 /obj/structure/table/standard,
 /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter_clothes,
-/obj/item/computer_hardware/hard_drive/portable/design/nt/melee,
+/obj/item/computer_hardware/hard_drive/portable/design/nt_melee,
 /obj/machinery/camera/network/third_section{
 	dir = 4
 	},

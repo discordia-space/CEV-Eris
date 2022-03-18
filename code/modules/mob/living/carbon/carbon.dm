@@ -273,23 +273,9 @@
 
 	if(!item) return
 
-	if(istype(item, /obj/item/stack/throwing_knife))
-		var/obj/item/stack/throwing_knife/V = item
-		var/ROB_throwing_damage = max(stats.getStat(STAT_ROB), 1)
-		V.throwforce = 35 / (1 + 100 / ROB_throwing_damage) + 10 //soft cap; This would result in knives doing 10 damage at 0 rob, 20 at 50 ROB, 25 at 100 etc.
-		if(V.amount == 1)
-			drop_from_inventory(V)
-			V.throw_at(target, item.throw_range, item.throw_speed, src)
-		else
-			V.amount--
-			V.update_icon()
-			var/obj/item/stack/throwing_knife/J = new(get_turf(src))
-			J.throwforce = V.throwforce
-			J.amount = 1
-			J.update_icon()
-			J.throw_at(target, throw_range, throw_speed, src)
-		visible_message(SPAN_DANGER("[src] has thrown [item]."))
-		V.update_icon()
+	if(istype(item, /obj/item/stack/thrown))
+		var/obj/item/stack/thrown/V = item
+		V.fireAt(target, src)
 		return
 
 	if (istype(item, /obj/item/grab))
