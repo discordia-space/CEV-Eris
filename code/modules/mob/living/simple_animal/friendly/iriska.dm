@@ -132,14 +132,16 @@ var/list/despised = list()
 		return B
 
 /mob/living/simple_animal/iriska/proc/despise(mob/living/carbon/human/M as mob)
-	despised |= M.real_name
-	if(M.real_name in tolerated)
-		tolerated -= M.real_name
+	if(istype(M))
+		despised |= M.real_name
+		if(M.real_name in tolerated)
+			tolerated -= M.real_name
 
 /mob/living/simple_animal/iriska/proc/tolerate(mob/living/carbon/human/M as mob)
-	if(!(M.real_name in tolerated) && prob(30))
-		visible_emote("looks at [M] approvingly.")
-		tolerated += M.real_name
+	if(istype(M))
+		if(!(M.real_name in tolerated) && prob(30))
+			visible_emote("looks at [M] approvingly.")
+			tolerated += M.real_name
 
 /mob/living/simple_animal/iriska/attackby(var/obj/item/O, var/mob/user)
 	. = ..()
