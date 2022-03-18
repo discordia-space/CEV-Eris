@@ -100,6 +100,7 @@
 
 	var/emp_protection = 0
 
+	// 2022- Just so everyone knows , this doesn't get checked at all down the line. It only checks if its on the back , regardles of its value.
 	var/rig_wear_slot = slot_back //Changing this allows for rigs that are worn as a belt or a tie or something
 
 	// Wiring! How exciting.
@@ -590,6 +591,9 @@
 	else if(href_list["toggle_suit_lock"])
 		if (locked != -1)
 			locked = !locked
+
+	// Makes it so the UI instantly updates , instead of using the MC tick, way faster at high stress.
+	SSnano.update_uis(src)
 
 	usr.set_machine(src)
 	add_fingerprint(usr)
