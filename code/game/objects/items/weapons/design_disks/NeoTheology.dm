@@ -348,7 +348,7 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/plasma/destroyer = 3, // "NT PR \"Purger\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/autolathe/cell/medium/high
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/cruciform_upgrade/New()
