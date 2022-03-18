@@ -1603,7 +1603,6 @@
 #include "code\modules\core_implant\cruciform\modules.dm"
 #include "code\modules\core_implant\cruciform\upgrades.dm"
 #include "code\modules\core_implant\cruciform\machinery\altar.dm"
-#include "code\modules\core_implant\cruciform\machinery\armaments.dm"
 #include "code\modules\core_implant\cruciform\machinery\cloning.dm"
 #include "code\modules\core_implant\cruciform\machinery\cruciformforge.dm"
 #include "code\modules\core_implant\cruciform\machinery\eotp.dm"
