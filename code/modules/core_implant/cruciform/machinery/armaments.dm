@@ -2,7 +2,7 @@
 	var/name = "Virtue of coding"
 	var/desc = "The gods made it quite clear this should not exist, Perhaps inform those above."
 	var/cost = 100
-	var/min_cost = 10 //aboslute minimum it should cost
+	var/min_cost = 10 //absolute minimum it should cost
 	var/path = /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter_public //path to spawn
 	var/purchase_count = 0 //how many times its bought
 	var/discount_increase = 25 //discount increase per purchase
@@ -10,18 +10,18 @@
 	var/max_discount = 0 //max amount of discounts
 	var/rate_increase = 0 //rate increase per purchase
 	var/max_rate_increase = 0 //max rate increase from buying this
-	var/max_increase = 25 //incease of eotp max armement points per purchase
+	var/max_increase = 25 //increase of eotp max armament points per purchase
 
-//modifiers in the future? maby some rituals to reduce cost for certain subtype
+//modifiers in the future? maybe some rituals to reduce cost for certain subtype
 /datum/armament/proc/get_cost()
-	return max(min_cost,cost - discount)
+	return max(min_cost, cost - discount)
 
 /datum/armament/proc/purchase(var/mob/living/carbon/H)
 	if (!eotp)
-		error("no eotp found to purchase from")
+		error("No EOTP found to purchase from.")
 		return FALSE
-	if (get_dist(eotp.loc,H.loc) > 3)
-		log_and_message_admins("[key_name(H)] tryed to make a topic call out of range for the [eotp]")
+	if (get_dist(eotp.loc, H.loc) > 3)
+		log_and_message_admins("[key_name(H)] tried to make a topic call out of range of the [eotp]")
 		return FALSE
 
 	if (!is_neotheology_disciple(H))
@@ -29,7 +29,7 @@
 		return FALSE
 
 	if (eotp.armaments_points < get_cost())
-		to_chat(H, SPAN_DANGER("You lack required armament points."))
+		to_chat(H, SPAN_DANGER("You lack the required amount of armament points."))
 		return FALSE
 
 	eotp.armaments_points -= get_cost()
@@ -39,7 +39,7 @@
 	if (!max_discount)
 		discount = discount + discount_increase
 	else
-		discount = min(max_discount,discount + discount_increase)
+		discount = min(max_discount, discount + discount_increase)
 
 
 	if (purchase_count < 2)
@@ -51,7 +51,7 @@
 	return TRUE
 
 
-//maby buying buffs,blessings, miracles,etc instead of just items
+//maybe buying buffs, blessings, miracles, etc instead of just items
 /datum/armament/proc/on_purchase(var/mob/living/carbon/H)
 	return
 
@@ -107,7 +107,7 @@
 /datum/armament/item/on_purchase(mob/living/carbon/H)
 	if (path)
 		var/obj/_item = new path(get_turf(eotp))
-		eotp.visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [eotp]!"))
+		eotp.visible_message(SPAN_NOTICE("The [_item.name] appears out of bluespace near the [eotp]!"))
 
 /datum/armament/item/disk
 	name = "disk"

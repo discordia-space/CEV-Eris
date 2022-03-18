@@ -44,7 +44,7 @@ var/global/obj/machinery/power/eotp/eotp
 	var/armaments_points = 0
 	var/max_armaments_points = 100
 	var/armaments_rate = 100
-	var/static/list/unneeded_armaments = list(/datum/armament/item/gun,/datum/armament/item,/datum/armament/item/disk)
+	var/static/list/unneeded_armaments = list(/datum/armament/item/gun, /datum/armament/item, /datum/armament/item/disk)
 
 /obj/machinery/power/eotp/New()
 	..()
@@ -130,7 +130,7 @@ var/global/obj/machinery/power/eotp/eotp
 		type_release = pick(rewards)
 
 
-	armaments_points = min(armaments + armaments_rate,max_armaments_points)
+	armaments_points = min(armaments + armaments_rate, max_armaments_points)
 
 
 	if(type_release == ALERT)
