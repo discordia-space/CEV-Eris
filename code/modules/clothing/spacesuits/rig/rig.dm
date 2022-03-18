@@ -593,7 +593,7 @@
 			locked = !locked
 
 	// Makes it so the UI instantly updates , instead of using the MC tick, way faster at high stress.
-	ui_interact(usr)
+	SSnano.update_uis(src)
 
 	usr.set_machine(src)
 	add_fingerprint(usr)
