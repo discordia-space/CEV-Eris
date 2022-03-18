@@ -326,7 +326,6 @@
 	desc = "A saintly-looking sword forged to do God's distant work."
 	icon_state = "nt_shortsword"
 	item_state = "nt_shortsword"
-	singular_name = "throwing knife"
 	force = WEAPON_FORCE_DANGEROUS
 	throwforce = WEAPON_FORCE_WEAK
 	armor_penetration = ARMOR_PEN_DEEP
@@ -344,11 +343,12 @@
 		embed_mult = initial(embed_mult)
 
 /obj/item/stack/thrown/nt/verutum
-	name = "NT Veruta"
+	name = "NT Verutum"
 	desc = "A short, saintly-looking javelin for throwing or use with a shield. They are small enough to allow holding multiple in one hand."
 	icon_state = "nt_verutum"
 	item_state = "nt_verutum"
 	singular_name = "NT Verutum"
+	plural_name = "NT Veruta"
 	wielded_icon = "nt_verutum_wielded"
 	force = 20
 	force_wielded_multiplier = 1.08
