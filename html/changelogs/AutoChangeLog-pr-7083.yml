@@ -1,0 +1,5 @@
+author: Autisem
+delete-after: true
+changes:
+  - rscadd: priests may use new litany to summon items from the EOTP
+  - tweak: Only 1 High Inquisitor's Seal may be recieved from the EOTP
