@@ -1,5 +1,5 @@
 /obj/item/stack/thrown
-	name = "throwing knife"
+	name = "throwing knives"
 	gender = NEUTER  //Grammatically correct knives
 	desc = "A knife that is specially designed and weighted so that the wielder\'s strength can be accounted when being thrown."
 	icon = 'icons/obj/stack/items.dmi'
@@ -32,7 +32,7 @@
 
 /obj/item/stack/thrown/examine(mob/user)
 	if(..(user, 1))
-		to_chat(user, "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.amount == 1 ? "knife" : "knives"] in the stack.")
+		to_chat(user, "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.amount == 1 ? singular_name : name] in the stack.")
 
 /obj/item/stack/thrown/proc/fireAt(atom/target, mob/living/carbon/C)
 	if(amount == 1)
@@ -54,7 +54,7 @@
 	throw_at(target, throw_range, throw_speed, C)
 
 /obj/item/stack/thrown/throwing_knife
-	name = "throwing knife"
+	name = "throwing knives"
 	gender = NEUTER  //Grammatically correct knives
 	desc = "A knife that is specially designed and weighted so that the wielder\'s strength can be accounted when being thrown."
 	icon = 'icons/obj/stack/items.dmi'
