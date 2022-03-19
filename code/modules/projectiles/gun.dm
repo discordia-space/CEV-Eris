@@ -662,7 +662,6 @@
 	if(index > firemodes.len)
 		index = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
-	new_mode.apply_to(src)
 	new_mode.update()
 	update_hud_actions()
 	return new_mode
@@ -852,6 +851,7 @@
 	proj_step_multiplier = initial(proj_step_multiplier)
 	proj_agony_multiplier = initial(proj_agony_multiplier)
 	fire_delay = initial(fire_delay)
+	burst_delay = initial(burst_delay)
 	move_delay = initial(move_delay)
 	recoil_buildup = initial(recoil_buildup)
 	muzzle_flash = initial(muzzle_flash)
@@ -901,13 +901,8 @@
 
 /obj/item/gun/zoom(tileoffset, viewsize)
 	..()
-	if(!ishuman(usr))
-		return
-	var/mob/living/carbon/human/H = usr
 	if(zoom)
-		H.using_scope = src
 		init_offset -= scoped_offset_reduction
 	else
-		H.using_scope = null
 		refresh_upgrades()
 

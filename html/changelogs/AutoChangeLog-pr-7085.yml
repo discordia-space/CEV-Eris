@@ -1,0 +1,4 @@
+author: Alliostra
+delete-after: true
+changes:
+  - rscadd: The "Old newspaper" oddity can now be used to zoom out a couple tiles.

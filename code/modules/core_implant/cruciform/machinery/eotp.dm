@@ -26,7 +26,7 @@ var/global/obj/machinery/power/eotp/eotp
 							/obj/item/stack/material/plasteel = 120,
 							/obj/item/stack/material/silver = 60)
 	var/list/disk_types = list()
-	var/list/unneeded_disk_types = list(/obj/item/computer_hardware/hard_drive/portable/design/nt/melee)
+	var/list/unneeded_disk_types = list(/obj/item/computer_hardware/hard_drive/portable/design/nt_melee)
 
 	var/list/mob/living/carbon/human/scanned = list()
 	var/max_power = 100

@@ -26,11 +26,23 @@
 	name = "blast shell"
 	var/devastation_range = 0
 	var/heavy_impact_range = 0
-	var/light_impact_range = 3
+	var/light_impact_range = 1
+	var/lightest_impact_range = 3
 	var/flash_range = 10
 
 /obj/item/projectile/bullet/grenade/blast/grenade_effect(target)
-	explosion(target, devastation_range, heavy_impact_range, light_impact_range, flash_range)
+	explosion(target, devastation_range, heavy_impact_range, light_impact_range, flash_range, singe_impact_range = lightest_impact_range)
+
+/obj/item/projectile/bullet/grenade/heatwave
+	name = "heatwave shell"
+	var/heat_damage = 40
+	var/penetration = 10
+	var/heavy_range = 1
+	var/weak_range = 3
+	var/fire_stacks = TRUE
+
+/obj/item/projectile/bullet/grenade/heatwave/grenade_effect(target)
+    heatwave(target, heavy_range, weak_range, heat_damage, fire_stacks, penetration)
 
 /obj/item/projectile/bullet/grenade/frag
 	name = "frag shell"
@@ -38,23 +50,30 @@
 	var/f_type = /obj/item/projectile/bullet/pellet/fragment
 	var/f_amount = 30
 	var/f_damage = 12
-	var/f_step = 3
+	var/f_step = 8 // Less amount of fragment means range will be shorter despite same step
 	var/same_turf_hit_chance = 15
 
 /obj/item/projectile/bullet/grenade/frag/weak
 	name = "frag shell"
-	f_damage = 6
-	f_step = 2
+	f_damage = 8
+	f_step = 4
 
 /obj/item/projectile/bullet/grenade/frag/sting
 	name = "sting shell"
 	f_type = /obj/item/projectile/bullet/pellet/fragment/rubber
 	f_amount = 18
 	f_damage = 5
-	f_step = 3
+	f_step = 8
 
 /obj/item/projectile/bullet/grenade/frag/grenade_effect(target)
 	fragment_explosion(target, range, f_type, f_amount, f_damage, f_step, same_turf_hit_chance)
+
+/obj/item/projectile/bullet/grenade/frag/sting/weak
+	name = "sting shell"
+	f_type = /obj/item/projectile/bullet/pellet/fragment/rubber/weak
+	f_amount = 18
+	f_damage = 3
+	f_step = 8
 
 /obj/item/projectile/bullet/grenade/emp
 	var/heavy_emp_range = 3
