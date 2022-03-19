@@ -386,15 +386,9 @@
 	name = "sheetmaterials"
 
 /datum/asset/spritesheet/sheetmaterials/register()
-	for(var/type in subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg))
-		var/obj/item/stack/material = type
-		var/materialIconState = initial(type.icon_state)
-		var/icon/materialIcon = initial(type.icon)
-		Insert(materialIconState, materialIcon, materialIconState)
-	// InsertAll("", 'icons/obj/stack_objects.dmi')
-
-	// // Special case to handle Bluespace Crystals
-	// Insert("polycrystal", 'icons/obj/telescience.dmi', "polycrystal")
+	InsertAll("", 'icons/obj/stack/material.dmi')
+	// Special case on RCD objects
+	Insert("rcd", 'icons/obj/ammo.dmi', "rcd")
 	..()
 
 /* === ERIS STUFF === */
