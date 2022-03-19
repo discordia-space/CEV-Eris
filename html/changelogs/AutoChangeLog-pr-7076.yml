@@ -1,4 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - tweak: weaken() makes you drop items again

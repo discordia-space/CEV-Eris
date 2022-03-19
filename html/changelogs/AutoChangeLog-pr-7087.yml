@@ -1,4 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - bugfix: chemical reagent smoke should be much more reliable now.
