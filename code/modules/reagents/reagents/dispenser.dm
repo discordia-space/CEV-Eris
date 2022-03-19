@@ -131,36 +131,31 @@
 
 //Tough people can drink a lot
 	var/tolerance = 3 + max(0, M.stats.getStat(STAT_TGH)) * 0.1
-	var/drunkenness = volume * strength_mod / tolerance // Level of drunkenness, based on how many times the strength of ethanol is compared to tolerance
 
 	if(M.stats.getPerk(/datum/perk/sommelier))
 		tolerance *= 10
 
-	if(drunkenness >= 1) // Early warning
+	if(volume * strength_mod >= tolerance) // Early warning
 		M.make_dizzy(9) // It is decreased at the speed of 3 per tick
 
-	if(drunkenness >= 2) // Slurring, prevents using codewords and some litanies
-		if(prob(drunkenness*10))
-			M.slurring = max(M.slurring, 10)
+	if(volume * strength_mod >= tolerance * 2) // Slurring
+		M.slurring = max(M.slurring, 30)
 
-	if(drunkenness >= 3) // Confusion - walking in random directions
-		if(prob(drunkenness*5))
-			if(M.confused < 2)
-				to_chat(M, SPAN_WARNING("Everything is spinning around you!"))
-			M.confused = max(M.confused, 10)
+	if(volume * strength_mod >= tolerance * 4) // Confusion - walking in random directions
+		M.confused = max(M.confused, 20)
 
 	// if(volume * strength_mod >= tolerance * 4) // Blurry vision // Not fun
 	//	M.eye_blurry = max(M.eye_blurry, 10)
 
-	if(drunkenness >= 5) // Toxic dose, at least 15 ethanol required
-		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity * drunkenness / 5)
-
-	if(drunkenness >= 6) // Drowsyness - periodically falling asleep
+	if(volume * strength_mod >= tolerance * 6) // Drowsyness - periodically falling asleep
 		M.drowsyness = max(M.drowsyness, 20)
 
-	if(drunkenness >= 8) // Pass out
+	if(volume * strength_mod >= tolerance * 8) // Pass out
 		M.paralysis = max(M.paralysis, 20)
 		M.sleeping  = max(M.sleeping, 30)
+
+	if(volume * strength_mod >= tolerance * 10) // Toxic dose, at least 30 ethanol required
+		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
 
 	metabolism = REM * (0.25 + dose * 0.05) // For the sake of better balancing between alcohol strengths
 

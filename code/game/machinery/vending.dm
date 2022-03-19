@@ -1539,7 +1539,7 @@
 					/obj/item/clothing/head/armor/faceshield/altyn/maska/tripoloski
 					)
 	prices = list(
-					/obj/item/reagent_containers/food/drinks/bottle/vodka = 200,
+					/obj/item/reagent_containers/food/drinks/bottle/vodka = 50,
           			/obj/item/storage/deferred/crate/uniform_green = 2000,
           			/obj/item/storage/deferred/crate/uniform_brown = 2000,
 					/obj/item/storage/deferred/crate/uniform_black = 2000,
