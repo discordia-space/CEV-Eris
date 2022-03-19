@@ -24,8 +24,6 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	var/last_asset_job = 0 // Last job done.
 	var/VPN_whitelist //avoid vpn cheking
 
-	var/list/related_ip = list()
-	var/list/related_cid = list()
 
 //This proc sends the asset to the client, but only if it needs it.
 //This proc blocks(sleeps) unless verify is set to false
@@ -251,91 +249,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		A.check_sent(client)
 
 
-//DEFINITIONS FOR ASSET DATUMS START HERE.
-/datum/asset/simple/design_icons/register()
-	for(var/D in SSresearch.all_designs)
-		var/datum/design/design = D
 
-		var/filename = sanitizeFileName("[design.build_path].png")
-		var/icon/I = getFlatTypeIcon(design.build_path)
-		assets[filename] = I
-
-		design.ui_data["icon"] = filename
-	..()
-
-
-/datum/asset/simple/craft/register()
-	for(var/name in SScraft.categories)
-		for(var/datum/craft_recipe/CR in SScraft.categories[name])
-			if(CR.result)
-				var/filename = sanitizeFileName("[CR.result].png")
-				var/icon/I = getFlatTypeIcon(CR.result)
-				assets[filename] = I
-
-			for(var/datum/craft_step/CS in CR.steps)
-				if(CS.reqed_type)
-					var/filename = sanitizeFileName("[CS.reqed_type].png")
-					var/icon/I = getFlatTypeIcon(CS.reqed_type)
-					assets[filename] = I
-	..()
-
-/datum/asset/simple/materials/register()
-	for(var/type in subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg))
-		var/filename = sanitizeFileName("[type].png")
-		var/icon/I = getFlatTypeIcon(type)
-		assets[filename] = I
-	..()
-
-/datum/asset/simple/tool_upgrades/register()
-	for(var/type in subtypesof(/obj/item/tool_upgrade))
-		var/filename = sanitizeFileName("[type].png")
-		var/icon/I = getFlatTypeIcon(type)
-		assets[filename] = I
-	..()
-
-/datum/asset/simple/perks/register()
-	for(var/type in subtypesof(/datum/perk))
-		var/datum/perk/P = new type
-		var/filename = sanitizeFileName("[type].png")
-		var/icon/I = icon(P.icon, P.icon_state)
-		assets[filename] = I
-	..()
-
-/datum/asset/simple/codicon
-	isTrivial = TRUE
-	verify = FALSE
-	assets = list(
-		"codicon.css" = 'html/codicon/codicon.css',
-		"codicon.ttf" = 'html/codicon/codicon.ttf'
-	)
-
-/datum/asset/directories/nanoui
-	isTrivial = FALSE
-	dirs = list(
-		"nano/js/",
-		"nano/css/",
-		"nano/images/",
-		"nano/templates/",
-		"nano/images/status_icons/",
-		"nano/images/modular_computers/",
-	)
-
-/datum/asset/directories/images_news
-	dirs = list("news_articles/images/")
-
-
-/datum/asset/images_map/register()
-	var/list/mapnames = list()
-	for(var/z in GLOB.maps_data.station_levels)
-		mapnames += map_image_file_name(z)
-
-	var/list/filenames = flist(MAP_IMAGE_PATH)
-	for(var/filename in filenames)
-		if(copytext(filename, length(filename)) != "/") // Ignore directories.
-			var/file_path = MAP_IMAGE_PATH + filename
-			if((filename in mapnames) && fexists(file_path))
-				assets[filename] = fcopy_rsc(file_path)
-	..()
 
 /*
 	Asset cache

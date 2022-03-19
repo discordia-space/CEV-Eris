@@ -504,7 +504,7 @@
 	offset = rand(-offset, offset)
 
 	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
-	
+
 //Support proc for calculate_offset
 /obj/item/gun/proc/init_offset_with_brace()
 	var/offset = init_offset
@@ -814,7 +814,7 @@
 	if(item_upgrades.len)
 		data["attachments"] = list()
 		for(var/atom/A in item_upgrades)
-			data["attachments"] += list(list("name" = A.name, "icon" = getAtomCacheFilename(A)))
+			data["attachments"] += list(list("name" = A.name, "icon" = SSassets.transport.get_asset_url(A)))
 
 	return data
 
