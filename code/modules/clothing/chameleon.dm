@@ -133,48 +133,68 @@ obj/item/clothing/disguise(newtype, mob/user)
 
 /obj/item/clothing/under/chameleon/proc/set_single_loadout_slot(itemtype, loadout)
 	var/obj/item/currentitem = new itemtype(null)
-	var/obj/item/chameleonitem
+	var/chameleon_choice
 	var/obj/item/item_to_disguise
 	if(istype(currentitem, /obj/item/clothing/under))
-		var/obj/item/clothing/under/chameleon/G = chameleonitem
-		item_to_disguise = input("","Choose a disguise") in G.clothing_choices
-		loadout[1] = G.clothing_choices[item_to_disguise]
+		var/obj/item/clothing/under/chameleon/G
+		chameleon_choice = G
+		chameleon_choice = G.clothing_choices
+		item_to_disguise = input("","Choose a disguise") in chameleon_choice
+		loadout[1] = chameleon_choice[item_to_disguise]
 	if(istype(currentitem, /obj/item/clothing/head))
-		var/obj/item/clothing/head/chameleon/G = chameleonitem
-		item_to_disguise = input("","Choose a disguise") in G.clothing_choices
-		loadout[2] = G.clothing_choices[item_to_disguise]
+		var/obj/item/clothing/head/chameleon/G
+		chameleon_choice = G
+		chameleon_choice = G.clothing_choices
+		item_to_disguise = input("","Choose a disguise") in chameleon_choice
+		loadout[2] = chameleon_choice[item_to_disguise]
 	if(istype(currentitem, /obj/item/clothing/suit))
-		var/obj/item/clothing/suit/chameleon/G = chameleonitem
-		item_to_disguise = input("","Choose a disguise") in G.clothing_choices
-		loadout[3] = G.clothing_choices[item_to_disguise]
+		var/obj/item/clothing/suit/chameleon/G = new /obj/item/clothing/suit/chameleon(null)
+		chameleon_choice = G
+		chameleon_choice = G.clothing_choices
+		item_to_disguise = input("","Choose a disguise") in chameleon_choice
+		loadout[3] = chameleon_choice[item_to_disguise]
 	if(istype(currentitem, /obj/item/clothing/shoes))
-		var/obj/item/clothing/shoes/chameleon/G = chameleonitem
-		item_to_disguise = input("","Choose a disguise") in G.clothing_choices
-		loadout[4] = G.clothing_choices[item_to_disguise]
+		var/obj/item/clothing/shoes/chameleon/G = new /obj/item/clothing/shoes/chameleon(null)
+		chameleon_choice = G
+		chameleon_choice = G.clothing_choices
+		item_to_disguise = input("","Choose a disguise") in chameleon_choice
+		loadout[4] = chameleon_choice[item_to_disguise]
 	if(istype(currentitem, /obj/item/storage/backpack))
-		var/obj/item/storage/backpack/chameleon/G = chameleonitem
-		item_to_disguise = input("","Choose a disguise") in G.clothing_choices
-		loadout[5] = G.clothing_choices[item_to_disguise]
+		var/obj/item/storage/backpack/chameleon/G = new /obj/item/storage/backpack/chameleon(null)
+		chameleon_choice = G
+		chameleon_choice = G.clothing_choices
+		item_to_disguise = input("","Choose a disguise") in chameleon_choice
+		loadout[5] = chameleon_choice[item_to_disguise]
 	if(istype(currentitem, /obj/item/clothing/gloves))
-		var/obj/item/clothing/gloves/chameleon/G = chameleonitem
-		item_to_disguise = input("","Choose a disguise") in G.clothing_choices
-		loadout[6] = G.clothing_choices[item_to_disguise]
+		var/obj/item/clothing/gloves/chameleon/G = new /obj/item/clothing/gloves/chameleon(null)
+		chameleon_choice = G
+		chameleon_choice = G.clothing_choices
+		item_to_disguise = input("","Choose a disguise") in chameleon_choice
+		loadout[6] = chameleon_choice[item_to_disguise]
 	if(istype(currentitem, /obj/item/clothing/mask))
-		var/obj/item/clothing/mask/chameleon/G = chameleonitem
-		item_to_disguise = input("","Choose a disguise") in G.clothing_choices
-		loadout[7] = G.clothing_choices[item_to_disguise]
+		var/obj/item/clothing/mask/chameleon/G = new /obj/item/clothing/mask/chameleon(null)
+		chameleon_choice = G
+		chameleon_choice = G.clothing_choices		
+		item_to_disguise = input("","Choose a disguise") in chameleon_choice
+		loadout[7] = chameleon_choice[item_to_disguise]
 	if(istype(currentitem, /obj/item/clothing/glasses))
-		var/obj/item/clothing/glasses/chameleon/G = chameleonitem
-		item_to_disguise = input("","Choose a disguise") in G.clothing_choices
-		loadout[8] = G.clothing_choices[item_to_disguise]
+		var/obj/item/clothing/glasses/chameleon/G = new /obj/item/clothing/glasses/chameleon(null)
+		chameleon_choice = G
+		chameleon_choice = G.clothing_choices
+		item_to_disguise = input("","Choose a disguise") in chameleon_choice
+		loadout[8] = chameleon_choice[item_to_disguise]
 	if(istype(currentitem, /obj/item/gun))
-		var/obj/item/gun/energy/chameleon/G = chameleonitem
-		item_to_disguise = input("","Choose a disguise") in G.gun_choices
-		loadout[9] = G.gun_choices[item_to_disguise]
+		var/obj/item/gun/energy/chameleon/G = new /obj/item/gun/energy/chameleon(null)
+		chameleon_choice = G	
+		chameleon_choice = G.gun_choices
+		item_to_disguise = input("","Choose a disguise") in chameleon_choice
+		loadout[9] = chameleon_choice[item_to_disguise]
 	if(istype(currentitem, /obj/item/device/radio/headset))
-		var/obj/item/device/radio/headset/chameleon/G = chameleonitem
-		item_to_disguise = input("","Choose a disguise") in G.clothing_choices
-		loadout[10] = G.clothing_choices[item_to_disguise]
+		var/obj/item/device/radio/headset/chameleon/G = new /obj/item/device/radio/headset/chameleon(null)
+		chameleon_choice = G	
+		chameleon_choice = G.clothing_choices
+		item_to_disguise = input("","Choose a disguise") in chameleon_choice
+		loadout[10] = chameleon_choice[item_to_disguise]
 
 
 /obj/item/clothing/under/chameleon/proc/disguise_as_loadout(mob/user, loadout)
