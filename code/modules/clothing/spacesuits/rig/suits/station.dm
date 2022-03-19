@@ -307,7 +307,7 @@ Technomancer RIG
 	req_one_access = list()
 	rarity_value = 20
 	initial_modules = list(
-		/obj/item/rig_module/chem_dispenser/injector,
+		/obj/item/rig_module/modular_injector/medical,
 		/obj/item/rig_module/maneuvering_jets,
 		/obj/item/rig_module/device/healthscanner,
 		/obj/item/rig_module/vision/medhud
