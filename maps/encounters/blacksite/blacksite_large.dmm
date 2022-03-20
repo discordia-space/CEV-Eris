@@ -17,6 +17,10 @@
 	icon_state = "12,2"
 	},
 /area/space)
+"ar" = (
+/obj/structure/lattice,
+/turf/space,
+/area/space)
 "ax" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "12,0"
@@ -113,9 +117,6 @@
 /area/space)
 "cb" = (
 /turf/simulated/mineral,
-/area/space)
-"cm" = (
-/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "cv" = (
 /obj/structure/shuttle_part/science{
@@ -584,9 +585,6 @@
 	icon_state = "7,17"
 	},
 /area/space)
-"nR" = (
-/turf/simulated/wall/untinted/onestar,
-/area/space)
 "nX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -736,6 +734,10 @@
 	icon_state = "13,5"
 	},
 /area/space)
+"qq" = (
+/obj/structure/table/onestar,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
 "qL" = (
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1380;
@@ -769,6 +771,12 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "10,15"
 	},
+/area/space)
+"rl" = (
+/obj/structure/sign/derelict2{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "rn" = (
 /obj/structure/cable/yellow{
@@ -1069,6 +1077,9 @@
 	opacity = 0
 	},
 /area/space)
+"yI" = (
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "yM" = (
 /obj/structure/table/standard,
 /obj/item/storage/toolbox/mechanical,
@@ -1120,6 +1131,12 @@
 "zN" = (
 /obj/structure/bed,
 /turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"zS" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Am" = (
 /obj/structure/salvageable/os/data,
@@ -1312,9 +1329,9 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/simulated/floor/grass,
 /area/space)
-"Gu" = (
-/obj/structure/lattice,
-/turf/space,
+"Go" = (
+/obj/structure/table/onestar,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "GD" = (
 /obj/structure/flora/ausbushes/brflowers,
@@ -1369,16 +1386,16 @@
 	},
 /turf/space,
 /area/space)
-"HH" = (
-/obj/structure/bed/chair/custom/onestar/red{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
 "HQ" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "14,7"
 	},
+/area/space)
+"Ip" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Ix" = (
 /obj/item/tool/pickaxe/excavation,
@@ -1425,10 +1442,6 @@
 	icon_state = "3,1"
 	},
 /area/space)
-"JA" = (
-/obj/structure/bed/chair/custom/onestar/red,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
 "JJ" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "4,14"
@@ -1458,10 +1471,6 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "10,4"
 	},
-/area/space)
-"KF" = (
-/obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "KK" = (
 /turf/simulated/shuttle/wall/science{
@@ -1667,12 +1676,6 @@
 	icon_state = "14,3"
 	},
 /area/space)
-"So" = (
-/obj/structure/sign/derelict2{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
 "St" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "9,16"
@@ -1870,6 +1873,10 @@
 	icon_state = "14,6"
 	},
 /area/space)
+"YH" = (
+/obj/structure/bed/chair/custom/onestar/red,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "YZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/science{
@@ -1880,6 +1887,9 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "2,6"
 	},
+/area/space)
+"Zi" = (
+/turf/simulated/wall/untinted/onestar,
 /area/space)
 "Zp" = (
 /turf/simulated/shuttle/wall/science{
@@ -11339,13 +11349,13 @@ cb
 cb
 cb
 aa
-nR
-cm
-nR
-nR
-nR
-nR
-nR
+Zi
+zS
+Zi
+Zi
+Zi
+Zi
+Zi
 cb
 cb
 cb
@@ -11561,13 +11571,13 @@ cb
 cb
 cb
 aa
-nR
-cm
+Zi
+yI
+XX
 ke
 ke
 ke
-ke
-nR
+Zi
 cb
 cb
 cb
@@ -11783,13 +11793,13 @@ cb
 cb
 cb
 aa
-nR
-cm
-nR
+Zi
+yI
+Zi
 ke
 ke
 ke
-nR
+Zi
 cb
 cb
 cb
@@ -12004,14 +12014,14 @@ cb
 cb
 cb
 cb
-nR
-nR
-cm
-nR
-ke
-ke
-nR
-nR
+Zi
+Zi
+zS
+Zi
+qq
+qq
+Zi
+Zi
 cb
 cb
 cb
@@ -12226,14 +12236,14 @@ cb
 cb
 cb
 cb
-nR
-JA
-cm
-cm
-cm
-cm
-HH
-nR
+Zi
+YH
+yI
+yI
+yI
+yI
+Ip
+Zi
 cb
 cb
 cb
@@ -12448,14 +12458,14 @@ cb
 cb
 cb
 cb
-nR
-JA
-cm
-cm
-cm
-cm
-HH
-nR
+Zi
+YH
+yI
+yI
+yI
+yI
+Ip
+Zi
 cb
 cb
 cb
@@ -12670,14 +12680,14 @@ cb
 cb
 cb
 cb
-nR
-KF
-cm
-cm
-cm
-cm
-KF
-nR
+Zi
+Go
+yI
+yI
+yI
+yI
+Go
+Zi
 cb
 cb
 cb
@@ -12892,14 +12902,14 @@ cb
 cb
 cb
 cb
-nR
-JA
-cm
-cm
-cm
-cm
-HH
-nR
+Zi
+YH
+yI
+yI
+yI
+yI
+Ip
+Zi
 cb
 cb
 cb
@@ -13114,14 +13124,14 @@ cb
 cb
 cb
 cb
-nR
-KF
-cm
-cm
-cm
-cm
-KF
-nR
+Zi
+Go
+yI
+yI
+yI
+yI
+Go
+Zi
 cb
 cb
 cb
@@ -13336,14 +13346,14 @@ cb
 cb
 cb
 cb
-nR
-JA
-cm
-cm
-cm
-cm
-HH
-nR
+Zi
+YH
+yI
+yI
+yI
+yI
+Ip
+Zi
 cb
 cb
 cb
@@ -13558,14 +13568,14 @@ cb
 cb
 cb
 cb
-nR
-JA
-cm
-cm
-cm
-cm
-HH
-nR
+Zi
+YH
+yI
+yI
+yI
+yI
+Ip
+Zi
 cb
 cb
 cb
@@ -13780,14 +13790,14 @@ cb
 cb
 cb
 cb
-nR
-nR
-nR
-cm
-cm
-nR
-nR
-nR
+Zi
+Zi
+Zi
+yI
+yI
+Zi
+Zi
+Zi
 gV
 cb
 cb
@@ -14005,12 +14015,12 @@ cb
 cb
 cb
 gV
-So
+rl
 WX
 gV
 cb
 aa
-Gu
+ar
 aa
 aa
 aa
@@ -14222,7 +14232,7 @@ cb
 aa
 aa
 aa
-Gu
+ar
 aa
 aa
 cb
@@ -14232,13 +14242,13 @@ ke
 gV
 aa
 aa
-Gu
+ar
 aa
 aa
 aa
 aa
 aa
-Gu
+ar
 cb
 cb
 cb
@@ -14444,7 +14454,7 @@ aa
 aa
 aa
 aa
-Gu
+ar
 aa
 aa
 aa
@@ -14454,13 +14464,13 @@ ke
 gV
 aa
 aa
-Gu
+ar
 aa
 aa
 aa
 aa
 aa
-Gu
+ar
 aa
 aa
 cb
