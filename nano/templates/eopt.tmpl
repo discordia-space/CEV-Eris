@@ -1,0 +1,12 @@
+<div class='item'>
+	{{for data.armaments}}
+	<div class="block">
+		<div class='item'>
+			<div class='itemContent'>
+				{{:value.name}} {{:helper.link('' + value.cost + '','power',{'chosen' : value.key})}}<br>
+				<div class="itemLabelWidest">{{:value.desc}}</div></b>
+			</div>
+		</div>
+	</div>
+	{{/for}}
+</div>
