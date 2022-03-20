@@ -125,7 +125,7 @@
 		)
 
 	var/global/list/potency_reagents = list(
-		"diethylamine" =    2
+		"diethylamine" =    1
 	)
 
 /obj/machinery/portable_atmospherics/hydroponics/AltClick()
@@ -211,7 +211,8 @@
 				mutation_mod += beneficial_reagents[R.id][3] * reagent_total
 			//potency reagents boost the plats genetic potency, tweaking needed
 			if(potency_reagents[R.id])
-				seed.set_trait(TRAIT_POTENCY, min(100,seed.get_trait(TRAIT_POTENCY) + -round(-(potency_reagents[R.id] * reagent_total) * 0.5,1)))
+				seed.set_trait(TRAIT_POTENCY, min(100,seed.get_trait(TRAIT_POTENCY) + potency_reagents[R.id] * reagent_total))
+
 
 			// Mutagen is distinct from the previous types and mostly has a chance of proccing a mutation.
 			if(mutagenic_reagents[R.id])
