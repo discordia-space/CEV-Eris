@@ -124,7 +124,7 @@
 					shake_camera(M, 10, 1)
 		if(iscarbon(M))
 			if(!M.buckled)
-				M.Weaken(3)
+				M.Weaken(3, FALSE)
 	// Power-related checks. If shuttle contains power related machinery, update powernets.
 	var/update_power = 0
 	for(var/obj/machinery/power/P in destination)
@@ -136,7 +136,7 @@
 		break
 
 	for(var/obj/structure/plasticflaps/mining/F in destination)
-		F.update_turf_underneath(1)	//костыли вы мои костылики
+		F.update_turf_underneath(1)	
 
 	if(update_power)
 		makepowernets()
