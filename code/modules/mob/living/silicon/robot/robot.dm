@@ -12,7 +12,9 @@
 	mob_bump_flag = ROBOT
 	mob_swap_flags = ROBOT|MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = ~HEAVY //trundle trundle
-	var/robot_traits
+	var/robot_traits = null
+	// managed lists that contains all cyborg upgrade modules appliedto them
+	var/robot_upgrades = list()
 
 	var/lights_on = FALSE // Is our integrated light on?
 	var/used_power_this_tick = 0
@@ -68,7 +70,6 @@
 	var/obj/item/stock_parts/matter_bin/storage = null
 
 	var/opened = FALSE
-	var/emagged = FALSE
 	var/wiresexposed = FALSE
 	var/locked = TRUE
 	var/has_power = 1
@@ -512,7 +513,7 @@
 	return FALSE
 
 /mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj)
-	if(HasTrait(CYBORG_TRAIT_DEFLECTIVE_ARMOR) && istype(Proj, /obj/item/projectile/bullet))
+	if(HasTrait(CYBORG_TRAIT_DEFLECTIVE_BALLISTIC_ARMOR) && istype(Proj, /obj/item/projectile/bullet))
 		var/chance = 90
 		if(ishuman(Proj.firer))
 			var/mob/living/carbon/human/firer = Proj.firer
@@ -635,11 +636,21 @@
 							var/datum/robot_component/C = components[V]
 							if(C.installed == 1 || C.installed == -1)
 								removable_components += V
+						if(robot_upgrades)
+							for(var/item in robot_upgrades)
+								removable_components += item
 
 						var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null|anything in removable_components
 						if(!remove)
 							return
 						if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+							if(istype(remove, /obj/item/borg/upgrade))
+								var/obj/item/borg/upgrade/comp = remove
+								robot_upgrades -= comp
+								comp.unaction(src)
+								comp.forceMove(get_turf(src))
+								to_chat(user, SPAN_NOTICE("You remove \the [comp]."))
+								return
 							var/datum/robot_component/C = components[remove]
 							var/obj/item/robot_parts/robot_component/RC = C.wrapped
 							to_chat(user, SPAN_NOTICE("You remove \the [RC]."))
@@ -754,7 +765,7 @@
 			to_chat(user, SPAN_WARNING("Unable to locate a radio."))
 
 	else if(I.GetIdCard() || length(I.GetAccess()))			// trying to unlock the interface with an ID card
-		if(emagged)//still allow them to open the cover
+		if(HasTrait(CYBORG_TRAIT_EMAGGED))//still allow them to open the cover
 			to_chat(user, SPAN_WARNING("The interface seems slightly damaged."))
 		if(opened)
 			to_chat(user, SPAN_WARNING("You must close the cover to swipe an ID card."))
@@ -779,6 +790,8 @@
 				to_chat(usr, "You apply the upgrade to [src]!")
 				usr.drop_item()
 				U.loc = src
+				if(U.permanent)
+					robot_upgrades += U
 			else
 				to_chat(usr, "Upgrade error!")
 
@@ -884,7 +897,7 @@
 			dat += text("[obj]: <B>Activated</B><BR>")
 		else
 			dat += text("[obj]: <A HREF=?src=\ref[src];act=\ref[obj]>Activate</A><BR>")
-	if (emagged)
+	if (HasTrait(CYBORG_TRAIT_EMAGGED))
 		if(activated(module.emag))
 			dat += text("[module.emag]: <B>Activated</B><BR>")
 		else
@@ -1079,7 +1092,7 @@
 	icon_state = module_sprites[icontype]
 	updateicon()
 
-	if(alert("Do you like this icon?",null, "No","Yes") == "No")
+	if(alert(client,"Do you like this icon?",null, "No","Yes") == "No") // We lose the USR reference because this is called from a spawned proc, so we have to use client.
 		return choose_icon()
 
 	icon_selected = 1
@@ -1167,14 +1180,14 @@
 		return
 
 	if(opened)//Cover is open
-		if(emagged)	return//Prevents the X has hit Y with Z message also you cant emag them twice
+		if(HasTrait(CYBORG_TRAIT_EMAGGED))	return//Prevents the X has hit Y with Z message also you cant emag them twice
 		if(wiresexposed)
 			to_chat(user, "You must close the panel first")
 			return
 		else
 			sleep(6)
 			if(prob(50))
-				emagged = TRUE
+				AddTrait(CYBORG_TRAIT_EMAGGED)
 				lawupdate = FALSE
 				disconnect_from_ai()
 				to_chat(user, "You emag [src]'s interface.")

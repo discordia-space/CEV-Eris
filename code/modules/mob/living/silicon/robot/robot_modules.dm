@@ -48,6 +48,7 @@ var/global/list/robot_modules = list(
 	var/obj/item/borg/upgrade/jetpack
 	var/list/subsystems = list()
 	var/list/obj/item/borg/upgrade/supported_upgrades = list()
+	// A list of robot traits , these can be found at cyborg_traits.dm
 	var/robot_traits = null
 
 	// Bookkeeping
@@ -100,14 +101,14 @@ var/global/list/robot_modules = list(
 
 	R.set_module_sprites(sprites)
 	R.icon_selected = 0
-	spawn()
+	spawn() // For future coders , this "corrupts" the USR reference, so for good practice ,don't make the proc use USR if its called with a spawn.
 		R.choose_icon() //Choose icon recurses and blocks new from completing, so spawn it off
 
 
 /obj/item/robot_module/Initialize()
 	. = ..()
 	for(var/obj/item/I in modules)
-		I.canremove = 0
+		I.canremove = FALSE
 		I.set_plane(ABOVE_HUD_PLANE)
 		I.layer = ABOVE_HUD_LAYER
 
@@ -124,7 +125,7 @@ var/global/list/robot_modules = list(
 	// I wanna make component cell holders soooo bad, but it's going to be a big refactor, and I don't have the time -- ACCount
 
 /obj/item/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
-	if(robot_traits)
+	if(robot_traits) // removes module-only traits
 		R.RemoveTrait(robot_traits)
 	remove_camera_networks(R)
 	remove_languages(R)
@@ -170,7 +171,7 @@ var/global/list/robot_modules = list(
 	var/obj/item/device/flash/F = locate() in src.modules
 	if(F)
 		if(F.broken)
-			F.broken = 0
+			F.broken = FALSE
 			F.times_used = 0
 			F.icon_state = "flash"
 		else if(F.times_used)
@@ -680,7 +681,6 @@ var/global/list/robot_modules = list(
 	desc = "Focused on keeping the peace and fighting off threats to the ship, the security module is a \
 	heavily armored, though lightly armed battle unit."
 
-	robot_traits = CYBORG_TRAIT_FLASH_RESISTANT
 	stat_modifiers = list(
 		STAT_ROB = 30,
 		STAT_TGH = 20
@@ -838,7 +838,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/gripper/paperwork(src)
 	src.modules += new /obj/item/hand_labeler(src)
 	src.modules += new /obj/item/tool/tape_roll(src) //allows it to place flyers
-	src.modules += new /obj/item/stamp/denied(src) //why was this even a emagged item before smh
+	src.modules += new /obj/item/stamp/denied(src) //why was this even a emagged item before smh // a good cyborg folows crew orders of accepting everything
 	src.modules += new /obj/item/device/synthesized_instrument/synthesizer
 
 	var/obj/item/rsf/M = new /obj/item/rsf(src)
