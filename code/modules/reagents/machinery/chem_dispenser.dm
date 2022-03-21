@@ -34,7 +34,7 @@
 		2 = list("inaprovaline","anti_toxin","kelotane"), // basic upgrade
 		3 = list("tricordrazine","spaceacillin","dermaline"), // max moebius tech
 		4 = list("blattedin", "polsytem"), // excel tech
-		5 = list("carpotoxin, bicaridine"),// one-star
+		5 = list("carpotoxin", "bicaridine"),// one-star
 		6 = list("meralyne", "nanites") // alien
 	)
 	var/maximum_reagent_tier = 0
