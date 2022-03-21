@@ -33,9 +33,9 @@
 	path = /obj/item/storage/box/syndie_kit/cleanup_kit
 
 /datum/uplink_item/item/stealth_items/voice
-	name = "Voice Changer"
+	name = "Chameleon Voice Changer"
 	item_cost = 5
-	path = /obj/item/clothing/mask/gas/voice
+	path = /obj/item/clothing/mask/chameleon/voice
 
 /datum/uplink_item/item/stealth_items/chameleon_projector
 	name = "Chameleon-Projector"
