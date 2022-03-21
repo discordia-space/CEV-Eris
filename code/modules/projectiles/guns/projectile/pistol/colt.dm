@@ -46,3 +46,11 @@
 	grip = /obj/item/part/gun/grip/wood
 	mechanism = /obj/item/part/gun/mechanism/pistol
 	barrel = /obj/item/part/gun/barrel/pistol
+
+/obj/item/gun/projectile/colt/real
+	name = "Colt \"M1911\" Pistol"
+	desc = "An authentic Colt M1911 army standard. Appears to have been lightly modified with Frozen Star components to take more accessible .35 rounds."
+	origin_tech = list(TECH_COMBAT = 3)
+	matter = list(MATERIAL_STEEL = 11, MATERIAL_PLASTEEL = 1, MATERIAL_WOOD = 6)
+	spawn_blacklisted = TRUE
+	recoil_buildup = 6

@@ -151,6 +151,15 @@
 	spawn_blacklisted = TRUE
 	price_tag = 10000
 
+/obj/item/tool/sword/saber/real
+	name = "traditional officer's saber"
+	desc = "A well-decorated steel saber with golden grip, made with traditional techniques in some bygone age."
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_WOOD = 10, MATERIAL_GOLD = 10)
+	spawn_blacklisted = TRUE
+	price_tag = 4500
+	force = WEAPON_FORCE_DANGEROUS
+	armor_penetration = ARMOR_PEN_SHALLOW * 1.5
+
 /obj/item/tool/sword/improvised
 	name = "junkblade"
 	desc = "Hack and slash!"
@@ -211,6 +220,21 @@
 		overlays += "[icon_state]_power_on"
 	else
 		overlays += "[icon_state]_power_off"
+
+/obj/item/tool/sword/katana/real
+	name = "traditional katana"
+	desc = "An ancient single-edged straight sword forged in fuedal japan. Or at a 21st century replica shop. Either way, it's been created with folding techniques now lost to time."
+	icon_state = "katana"
+	item_state = "katana"
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 2, MATERIAL_IRON = 2)
+	force = WEAPON_FORCE_ROBUST
+	armor_penetration = NONE//true katanas struggle even to cut through thick clothing
+	rarity_value = 75
+	spawn_blacklisted = TRUE
+	price_tag = 4500
+	max_health = 250
+	health_threshold = NONE
+	style = STYLE_HIGH + 1//a weapon wielded only by the deeply deranged and yakuza(not mutally exclusive)
 
 //Flails
 /obj/item/tool/chainofcommand

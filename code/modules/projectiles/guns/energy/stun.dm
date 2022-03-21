@@ -41,7 +41,18 @@
 	projectile_type = /obj/item/projectile/energy/electrode
 
 /obj/item/gun/energy/stunrevolver/moebius
-	name = "Moebius SP \"Suez\""	//Ersatz name 
+	name = "Moebius SP \"Suez\""	//Ersatz name
 	desc = "Also know as stunrevolver. A Moebius copy of the older and less precise Nanotrasen solution for non-lethal takedowns. This gun has smaller capacity in exchange for S-cells use."
 	icon = 'icons/obj/guns/energy/stunrevolver_moebius.dmi'
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 6, MATERIAL_SILVER = 2, MATERIAL_PLASTIC = 5)
+
+/obj/item/gun/energy/stunrevolver/real
+	name = "Nanotrasen \"Zeus\" Prototype"
+	desc = "A \"stun-revolver\" design produced in Nanotrasen's early weapons program. This rare antique comes from the weapon's limited preproduction run, during which it contained a prototype self-charging system."
+	self_recharge = TRUE
+	charge_cost = 75
+	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 6, MATERIAL_SILVER = 3, MATERIAL_URANIUM = 2)
+	price_tag = 6500
+	spawn_blacklisted = TRUE
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_POWER = 7)
+
