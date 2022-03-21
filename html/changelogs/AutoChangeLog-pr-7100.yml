@@ -1,4 +1,0 @@
-author: Autisem
-delete-after: true
-changes:
-  - bugfix: dielthymine did not process properly in trays.
