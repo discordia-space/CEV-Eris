@@ -29,7 +29,7 @@
 	mechanism = /obj/item/part/gun/mechanism/revolver
 	barrel = /obj/item/part/gun/barrel/pistol
 
-/obj/item/gun/projectile/revolver/havelock/real
+/obj/item/gun/projectile/revolver/havelock/relic
 	name = "S&W .35 \"Model 10\""
 	desc = "An authentic Smith & Wesson six-shooter, clearly grandfathered in from a more civilized age. Feels considerably heavier then modern plasteel gunworks."
 	price_tag = 4500

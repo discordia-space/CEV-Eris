@@ -143,17 +143,17 @@
 				/obj/item/tool/sword/nt/scourge = 0.1,
 				/obj/item/tool/knife/dagger/nt = 0.8,
 				/obj/item/gun/energy/nt_svalinn = 0.4,
-				/obj/item/gun/energy/stunrevolver/real = 0.1))
+				/obj/item/gun/energy/stunrevolver/relic = 0.1))
 	else
 		W = pickweight(list(
 				/obj/item/tool/knife/ritual = 0.5,
 				/obj/item/tool/knife/switchblade = 0.5,
 				/obj/item/tool/sword = 0.2,
 				/obj/item/tool/sword/katana = 0.2,
-				/obj/item/tool/sword/saber/real = 0.1,
+				/obj/item/tool/sword/saber/relic = 0.1,
 				/obj/item/tool/knife/dagger = 0.8,
-				/obj/item/gun/projectile/colt/real = 0.1,
-				/obj/item/gun/projectile/revolver/havelock/real = 0.1,
+				/obj/item/gun/projectile/colt/relic = 0.1,
+				/obj/item/gun/projectile/revolver/havelock/relic = 0.1,
 				/obj/item/tool/knife/dagger/ceremonial = 0.8,
 				/obj/item/gun/projectile/revolver = 0.4))
 	holder.sanity.valid_inspirations += W
