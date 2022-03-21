@@ -136,7 +136,7 @@
 		return
 	var/turf/T = get_turf(holder)
 	var/obj/item/W = null
-	if(holder.get_core_implant(/obj/item/implant/core_implant/cruciform))
+	if(is_neotheology_disciple(holder))
 		W = pickweight(list(
 				/obj/item/tool/sword/nt/longsword = 0.5,
 				/obj/item/tool/sword/nt/shortsword = 0.5,

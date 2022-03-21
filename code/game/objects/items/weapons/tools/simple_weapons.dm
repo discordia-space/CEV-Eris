@@ -155,10 +155,8 @@
 	name = "traditional officer's saber"
 	desc = "A well-decorated steel saber with golden grip, made with traditional techniques in some bygone age."
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_WOOD = 10, MATERIAL_GOLD = 10)
-	spawn_blacklisted = TRUE
 	price_tag = 4500
 	force = WEAPON_FORCE_DANGEROUS
-	armor_penetration = ARMOR_PEN_SHALLOW * 1.5
 
 /obj/item/tool/sword/improvised
 	name = "junkblade"
