@@ -152,8 +152,8 @@ meteor_act
 
 	if(armorval > 75) // Reducing the risks from powergaming
 		switch (type)
-			if (ARMOR_MELEE,ARMOR_BULLET,ARMOR_ENERGY) armorval = (75+(armorval-75)/2)
-			else return armorval
+			if(ARMOR_MELEE, ARMOR_BULLET, ARMOR_ENERGY)
+				armorval = (75+(armorval-75)/2)
 
 	return armorval
 
