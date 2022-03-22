@@ -106,7 +106,7 @@
 	update_momentum()
 
 /mob/living/carbon/human/proc/update_momentum()
-	if(momentum_speed > 0)
+	if(momentum_speed)
 		momentum_reduction_timer = addtimer(CALLBACK(src, .proc/calc_momentum), 1 SECONDS, TIMER_STOPPABLE)
 	else
 		momentum_speed = 0
