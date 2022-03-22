@@ -59,9 +59,9 @@
 	damage_state = CLAMP(round((total_damage/max_damage) * 4), MECH_COMPONENT_DAMAGE_UNDAMAGED, MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
 	if(damage_state > prev_state)
 		if(damage_state == MECH_COMPONENT_DAMAGE_DAMAGED_BAD)
-			playsound(src.loc, 'sound/mechs/internaldmgalarm.ogg', 40, 1)
+			playsound(loc, 'sound/mechs/internaldmgalarm.ogg', 40, 1)
 		if(damage_state == MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
-			playsound(src.loc, 'sound/mechs/critdestr.ogg', 50)
+			playsound(loc, 'sound/mechs/critdestr.ogg', 50)
 /obj/item/mech_component/proc/ready_to_install()
 	return TRUE
 
@@ -95,7 +95,7 @@
 		QDEL_NULL(RC)
 
 /obj/item/mech_component/proc/return_diagnostics(var/mob/user)
-	to_chat(user, SPAN_NOTICE("[capitalize(src.name)]:"))
+	to_chat(user, SPAN_NOTICE("[capitalize(name)]:"))
 	to_chat(user, SPAN_NOTICE(" - Integrity: <b>[round((((max_damage - total_damage) / max_damage)) * 100)]%</b>" ))
 
 /obj/item/mech_component/attackby(obj/item/I, mob/living/user)
