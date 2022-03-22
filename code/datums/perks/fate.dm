@@ -136,12 +136,12 @@
 		return
 	var/turf/T = get_turf(holder)
 	var/obj/item/W = null
-	if(is_neotheology_disciple(holder))
+	if(is_neotheology_disciple(holder) && prob(50))
 		W = pickweight(list(
 				/obj/item/tool/sword/nt/longsword = 0.5,
 				/obj/item/tool/sword/nt/shortsword = 0.5,
 				/obj/item/tool/sword/nt/scourge = 0.1,
-				/obj/item/tool/knife/dagger/nt = 0.8,
+				/obj/item/tool/knife/dagger/nt = 0.6,
 				/obj/item/gun/energy/nt_svalinn = 0.4,
 				/obj/item/gun/energy/stunrevolver/relic = 0.1))
 	else
@@ -151,14 +151,15 @@
 				/obj/item/tool/sword = 0.2,
 				/obj/item/tool/sword/katana = 0.2,
 				/obj/item/tool/sword/saber/relic = 0.1,
-				/obj/item/tool/knife/dagger = 0.8,
+				/obj/item/tool/knife/dagger = 0.6,
 				/obj/item/gun/projectile/colt/relic = 0.1,
 				/obj/item/gun/projectile/revolver/havelock/relic = 0.1,
-				/obj/item/tool/knife/dagger/ceremonial = 0.8,
+				/obj/item/tool/knife/dagger/ceremonial = 0.6,
 				/obj/item/gun/projectile/revolver = 0.4))
 	holder.sanity.valid_inspirations += W
 	W = new W(T)
 	W.desc += " It has been inscribed with the \"[holder.last_name]\" family name."
+	W.name = "[W] of [holder.last_name]"
 	var/oddities = rand(2,4)
 	var/list/stats = ALL_STATS
 	var/list/final_oddity = list()
