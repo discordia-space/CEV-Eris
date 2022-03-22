@@ -93,10 +93,10 @@
 		return 1
 	return 0
 
-/mob/living/carbon/human/add_momentum(var/direction)
-	if (momentum_dir == direction)
+/mob/living/carbon/human/add_momentum(direction)
+	if(momentum_dir == direction)
 		momentum_speed++
-	else if (momentum_dir == reverse_dir[direction])
+	else if(momentum_dir == reverse_dir[direction])
 		momentum_speed = 0
 		momentum_dir = direction
 	else
