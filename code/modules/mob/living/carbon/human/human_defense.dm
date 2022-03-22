@@ -150,7 +150,7 @@ meteor_act
 
 	armorval = armorval/max(total, 1)
 
-	if (armorval > 75) // reducing the risks from powergaming
+	if(armorval > 75) // Reducing the risks from powergaming
 		switch (type)
 			if (ARMOR_MELEE,ARMOR_BULLET,ARMOR_ENERGY) armorval = (75+(armorval-75)/2)
 			else return armorval
