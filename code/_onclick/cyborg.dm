@@ -32,7 +32,7 @@
 		CtrlClickOn(A)
 		return
 
-	if(stat || lockcharge || stunned || paralysis)
+	if(stat || lockcharge || weakened || stunned || paralysis)
 		return
 
 
