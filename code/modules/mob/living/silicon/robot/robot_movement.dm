@@ -30,8 +30,6 @@
 	if(module_active && istype(module_active,/obj/item/borg/combat/mobility)) //And so is this silly check
 		tally-=1
 	tally /= speed_factor
-	if(weakened)
-		tally += weakened / 8
 	return tally
 
 
