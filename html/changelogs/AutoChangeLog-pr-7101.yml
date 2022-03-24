@@ -1,0 +1,5 @@
+author: StiffRobot
+delete-after: true
+changes:
+  - bugfix: The Maintenance Control Hatch button in perma now opens that shutter instead
+      of the (nonexistant) one at the firing range
