@@ -217,7 +217,6 @@
 
 	playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
 	AddMovementHandler(/datum/movement_handler/robot/use_power, /datum/movement_handler/mob/space)
-	RemoveMovementHandler(/datum/movement_handler/mob/physically_capable) // this lets robots move around when weakened. but they receive a speed debuff.
 
 /mob/living/silicon/robot/SetName(pickedName as text)
 	custom_name = pickedName
