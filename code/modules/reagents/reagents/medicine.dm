@@ -42,23 +42,23 @@
 	M.add_chemical_effect(CE_BLOODCLOT, 0.15)
 
 /datum/reagent/medicine/bicaridine/overdose(mob/living/carbon/human/user, alien)
-	var/obj/item/organ/internal/muscle/pain = user.random_organ_by_process(OP_MUSCLE)
-	var/obj/item/organ/internal/nerve/pain2 = user.random_organ_by_process(OP_NERVE)
-	if(!pain)
+	var/obj/item/organ/internal/muscle/user_muscle = user.random_organ_by_process(OP_MUSCLE)
+	var/obj/item/organ/internal/nerve/user_nerve = user.random_organ_by_process(OP_NERVE)
+	if(!user_muscle)
 		return FALSE
-	pain.take_damage(round(volume/6))
-	if(!pain2)
+	user_muscle.take_damage(round(volume/6))
+	if(!user_nerve)
 		return FALSE
-	pain2.take_damage(round(volume/6))
+	user_nerve.take_damage(round(volume/6))
 	if(prob(3))
 		to_chat(user, span_danger("Your muscles ache with agonizing pain!"))
 		user.Weaken(2)
 	if(volume > 100 && prob(1))
-		var/obj/item/organ/internal/heart/powergamer_curbstomp = user.random_organ_by_process(OP_HEART)
-		if(!powergamer_curbstomp || BP_IS_ROBOTIC(powergamer_curbstomp))
+		var/obj/item/organ/internal/heart/user_heart = user.random_organ_by_process(OP_HEART)
+		if(!user_heart || BP_IS_ROBOTIC(user_heart))
 			return FALSE
 		to_chat(user, span_danger("You feel like your heart just exploded!"))
-		powergamer_curbstomp.take_damage(powergamer_curbstomp.health)
+		user_heart.take_damage(user_heart.health)
 
 /datum/reagent/medicine/meralyne
 	name = "Meralyne"
@@ -119,10 +119,10 @@
 	holder.remove_reagent("blattedin", 0.2 )
 
 /datum/reagent/medicine/dylovene/overdose(mob/living/carbon/human/user, alien)
-	var/obj/item/organ/internal/blood_vessel/pain = user.random_organ_by_process(OP_BLOOD_VESSEL)
-	if(!pain)
+	var/obj/item/organ/internal/blood_vessel/user_vessel = user.random_organ_by_process(OP_BLOOD_VESSEL)
+	if(!user_vessel)
 		return FALSE
-	pain.take_damage(round(volume/10)) // 5 out of 100 at 60 units
+	user_vessel.take_damage(round(volume/10)) // 5 out of 100 at 60 units
 	if(prob(1))
 		to_chat(user, "You feel a sharp pain in your chest")
 
@@ -177,18 +177,18 @@
 	M.add_chemical_effect(CE_BLOODCLOT, 0.1)
 
 /datum/reagent/medicine/tricordrazine/overdose(mob/living/carbon/human/user, alien)
-	var/obj/item/organ/internal/liver/pain = user.random_organ_by_process(OP_LIVER)
-	if(!pain)
+	var/obj/item/organ/internal/liver/user_liver = user.random_organ_by_process(OP_LIVER)
+	if(!user_liver)
 		return FALSE
-	pain.take_damage(round(volume/12)) // 5 out of 100 at 60 units
+	user_liver.take_damage(round(volume/12)) // 5 out of 100 at 60 units
 	// For those special people
 	if(volume > 300 && prob(10))
-		var/obj/item/organ/internal/blood_vessel/suffer = user.random_organ_by_process(OP_BLOOD_VESSEL)
-		if(!suffer)
+		var/obj/item/organ/internal/blood_vessel/user_vessel = user.random_organ_by_process(OP_BLOOD_VESSEL)
+		if(!user_vessel)
 			return FALSE
-		to_chat(user, "You feel intense swelling in your [suffer.loc?.name] , and you notice it going numb and red!")
+		to_chat(user, "You feel intense swelling in your [user_vessel.loc?.name] , and you notice it going numb and red!")
 		user.AdjustParalysis(5)
-		suffer.take_damage(suffer.health)
+		user_vessel.take_damage(user_vessel.health)
 
 /datum/reagent/medicine/cryoxadone
 	name = "Cryoxadone"
