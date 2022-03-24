@@ -3,6 +3,7 @@
 	desc = "A military-grade defensive fragmentation grenade, designed to be thrown from cover."
 	icon_state = "frag"
 	item_state = "fraggrenade"
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 2, MATERIAL_PLASMA = 1)
 
 	var/fragment_type = /obj/item/projectile/bullet/pellet/fragment
 	var/num_fragments = 50  //total number of fragments produced by the grenade

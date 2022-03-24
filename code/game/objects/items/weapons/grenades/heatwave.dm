@@ -3,6 +3,7 @@
     desc = "A military-grade offensive heatwave grenade, designed to be thrown behind cover."
     icon_state = "incendiary"
     item_state = "grenade"
+    matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASMA = 4)
 
     var/heavy_range = 2
     var/weak_range = 3
