@@ -92720,7 +92720,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
-	id = "maint_hatch_firingrange";
+	id = "maint_hatch_prison";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
