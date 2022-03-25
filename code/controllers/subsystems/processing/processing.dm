@@ -56,6 +56,6 @@ SUBSYSTEM_DEF(processing)
 	var/tick_time = world.time - start_tick
 	var/tick_use_limit = world.tick_usage - start_tick_usage - 100 // Current tick use - starting tick use - 100% (a full tick excess)
 	if(tick_time > 0)
-		crash_with("[log_info_line(subsystem.debug_last_thing)] slept during processing. Spent [tick_time] tick\s.")
+		CRASH("[log_info_line(subsystem.debug_last_thing)] slept during processing. Spent [tick_time] tick\s.")
 	if(tick_use_limit > 0)
-		crash_with("[log_info_line(subsystem.debug_last_thing)] took longer than a tick to process. Exceeded with [tick_use_limit]%")
+		CRASH("[log_info_line(subsystem.debug_last_thing)] took longer than a tick to process. Exceeded with [tick_use_limit]%")
