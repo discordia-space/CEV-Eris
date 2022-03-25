@@ -166,7 +166,7 @@
 		charges = processed_charges
 
 
-/obj/item/rig_module/modular_injector/accepts_item(obj/item/reagent_containers/item, mob/living/user,userless = FALSE)
+/obj/item/rig_module/modular_injector/accepts_item(obj/item/reagent_containers/item, mob/living/user, userless = FALSE)
 	if(!istype(item))
 		return FALSE
 	if(beakers.len == max_beakers)
