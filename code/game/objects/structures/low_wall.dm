@@ -443,7 +443,7 @@
 			playsound(src, hitsound, 80, 1)
 			if(!prob(dam_prob))
 				visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I]!"))
-				playsound(src, pick(WALLHIT_SOUNDS), 100, 5)
+				playsound(loc, pick(WALLHIT_SOUNDS), 100, 5)
 				take_damage(attackforce)
 			else
 				visible_message(SPAN_WARNING("\The [user] attacks \the [src] with \the [I]!"))
@@ -452,7 +452,24 @@
 		user.do_attack_animation(src)
 		return
 
-
+/obj/structure/low_wall/attack_generic(var/mob/living/exosuit/M, var/damage, var/attack_message)
+	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	var/rotting = (locate(/obj/effect/overlay/wallrot) in src)
+	if(!damage)
+		return
+	if(rotting)
+		return dismantle_wall()
+	if(damage < 30)
+		playsound(src, 'sound/effects/metalhit2.ogg' , 100, 5)
+		M.do_attack_animation(src)
+		M.visible_message(SPAN_DANGER("\The [M] thumps on \the [src]!"))
+		return take_damage(damage*4)
+	if(damage >= 30)
+		playsound(src, 'sound/effects/metalhit2.ogg' , 100, 5)
+		M.do_attack_animation(src)
+		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))
+		return take_damage(damage*2.5)
+	return
 
 /obj/structure/low_wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product)
 	if (QDELETED(src))

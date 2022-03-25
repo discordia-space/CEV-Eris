@@ -342,6 +342,18 @@
 		else
 	return
 
+/obj/structure/railing/attack_generic(var/mob/living/exosuit/M, var/damage, var/attack_message)
+	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(!damage)
+		return
+	if(damage)
+		playsound(loc, 'sound/effects/metal_crash.ogg', 50, 1)
+		M.do_attack_animation(src)
+		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))
+		drop_materials(get_turf(loc))
+		qdel(src)
+	return
+
 /obj/structure/railing/do_climb(var/mob/living/user)
 	if(!can_climb(user))
 		return
