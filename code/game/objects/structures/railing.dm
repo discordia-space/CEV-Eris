@@ -342,7 +342,7 @@
 		else
 	return
 
-/obj/structure/railing/attack_generic(var/mob/living/exosuit/M, var/damage, var/attack_message)
+/obj/structure/railing/attack_generic(mob/living/exosuit/M, damage, attack_message)
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!damage)
 		return
@@ -352,7 +352,6 @@
 		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))
 		drop_materials(get_turf(loc))
 		qdel(src)
-	return
 
 /obj/structure/railing/do_climb(var/mob/living/user)
 	if(!can_climb(user))

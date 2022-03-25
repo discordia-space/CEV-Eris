@@ -239,7 +239,7 @@ var/list/custom_table_appearance = list(
 		update_icon()
 		update_material()
 
-/obj/structure/table/attack_generic(var/mob/living/exosuit/M, var/damage, var/attack_message)
+/obj/structure/table/attack_generic(mob/living/exosuit/M, damage, attack_message)
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!damage)
 		return
@@ -249,7 +249,6 @@ var/list/custom_table_appearance = list(
 		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
 		drop_materials(get_turf(loc))
 		qdel(src)
-	return
 
 /obj/structure/table/proc/update_desc()
 	if(custom_appearance)

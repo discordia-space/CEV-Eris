@@ -53,12 +53,11 @@
 		toggle_open(user)
 	return 0
 
-/turf/simulated/wall/attack_generic(var/mob/living/exosuit/M, var/damage, var/attack_message)
+/turf/simulated/wall/attack_generic(mob/living/exosuit/M, damage, attack_message)
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	var/rotting = (locate(/obj/effect/overlay/wallrot) in src)
 	if(!damage)
 		return
-	if(rotting)
+	if(locate(/obj/effect/overlay/wallrot) in src)
 		return success_smash(M)
 	if(reinf_material)
 		return attack_hand(M)
@@ -77,7 +76,6 @@
 		M.do_attack_animation(src)
 		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))
 		return take_damage(damage)
-	return
 
 /turf/simulated/wall/attack_hand(var/mob/user)
 
@@ -277,4 +275,4 @@
 		else
 			visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I], but it bounces off!"))
 		user.do_attack_animation(src)
-		return
+

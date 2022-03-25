@@ -117,10 +117,28 @@ for reference:
 			return
 		..()
 
+/obj/structure/barricade/proc/take_damage(var/damage, var/damage_type = BRUTE)
+	if (!damage || damage <= 0)
+		return
+
+	health -= damage
+	if (health <= 0)
+		dismantle()
+
 /obj/structure/barricade/proc/dismantle()
 	drop_materials(drop_location())
 	qdel(src)
 	return
+
+/obj/structure/barricade/attack_generic(mob/living/exosuit/M, damage, attack_message)
+	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(!damage)
+		return
+	if(damage)
+		M.do_attack_animation(src)
+		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))
+		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
+		take_damage(damage)
 
 /obj/structure/barricade/ex_act(severity)
 	switch(severity)
@@ -347,3 +365,21 @@ for reference:
 			qdel(src)
 			return 1
 	return 1
+
+/obj/machinery/deployable/barrier/proc/take_damage(var/damage, var/damage_type = BRUTE)
+	if (!damage || damage <= 0)
+		return
+
+	health -= damage
+	if (health <= 0)
+		dismantle()
+
+/obj/machinery/deployable/barrier/attack_generic(mob/living/exosuit/M, damage, attack_message)
+	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(!damage)
+		return
+	if(damage)
+		M.do_attack_animation(src)
+		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))
+		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
+		take_damage(damage*1.25)

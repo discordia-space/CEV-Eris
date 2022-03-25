@@ -40,7 +40,7 @@
 	spawn(1) dismantle(user)
 	return 1
 
-/obj/structure/girder/attack_generic(var/mob/living/exosuit/M, var/damage, var/attack_message)
+/obj/structure/girder/attack_generic(mob/living/exosuit/M, damage, attack_message)
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!damage)
 		return
@@ -55,7 +55,6 @@
 		M.do_attack_animation(src)
 		M.visible_message(SPAN_DANGER("\The [M] smashes through \the [src]!"))
 		spawn(1) dismantle()
-	return
 
 /obj/structure/girder/bullet_act(var/obj/item/projectile/Proj)
 	//Girders only provide partial cover. There's a chance that the projectiles will just pass through. (unless you are trying to shoot the girder)
