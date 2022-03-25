@@ -47,6 +47,7 @@
 	if(reinf_material)
 		return attack_hand(M)
 	if(damage < 30)
+		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
 		M.do_attack_animation(src)
 		M.visible_message(SPAN_DANGER("\The [M] whacks \the [src]!"))
 		return take_damage(damage*2.5)

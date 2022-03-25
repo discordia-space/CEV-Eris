@@ -53,30 +53,6 @@
 		toggle_open(user)
 	return 0
 
-/turf/simulated/wall/attack_generic(mob/living/exosuit/M, damage, attack_message)
-	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(!damage)
-		return
-	if(locate(/obj/effect/overlay/wallrot) in src)
-		return success_smash(M)
-	if(reinf_material)
-		return attack_hand(M)
-	if(damage < 30)
-		if(prob(50))
-			M.do_attack_animation(src)
-			M.visible_message(SPAN_DANGER("\The [M] punches the [src] to no effect!"))
-			return attack_hand(M)
-		else
-			playsound(src, pick(WALLHIT_SOUNDS), 50, 1)
-			M.do_attack_animation(src)
-			M.visible_message(SPAN_DANGER("\The [M] whacks \the [src]!"))
-			return take_damage(damage)
-	if(damage >= 30)
-		playsound(src, pick(WALLHIT_SOUNDS), 50, 1)
-		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))
-		return take_damage(damage)
-
 /turf/simulated/wall/attack_hand(var/mob/user)
 
 	radiate()
@@ -92,7 +68,7 @@
 
 	try_touch(user, rotting)
 
-/turf/simulated/wall/attack_generic(var/mob/user, var/damage, var/attack_message, var/wallbreaker)
+/turf/simulated/wall/attack_generic(mob/user, damage, attack_message, wallbreaker)
 
 	radiate()
 	if(!istype(user))
@@ -113,6 +89,31 @@
 	else if(damage >= material.hardness)
 		return success_smash(user)
 	return fail_smash(user)
+
+/turf/simulated/wall/attack_generic(mob/living/exosuit/M, damage, attack_message)
+	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+//	if(!damage)
+//		return
+	if(locate(/obj/effect/overlay/wallrot) in src)
+		return success_smash(M)
+	if(reinf_material)
+		return attack_hand(M)
+
+	if(damage < 30)
+		if(prob(50))
+			M.do_attack_animation(src)
+			M.visible_message(SPAN_DANGER("\The [M] punches the [src] to no effect!"))
+			return attack_hand(M)
+		else
+			playsound(src, pick(WALLHIT_SOUNDS), 50, 1)
+			M.do_attack_animation(src)
+			M.visible_message(SPAN_DANGER("\The [M] whacks \the [src]!"))
+			return take_damage(damage)
+	if(damage >= 30)
+		playsound(src, pick(WALLHIT_SOUNDS), 50, 1)
+		M.do_attack_animation(src)
+		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))
+		take_damage(damage)
 
 /turf/simulated/wall/attackby(obj/item/I, mob/user)
 
