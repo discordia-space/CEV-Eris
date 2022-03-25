@@ -1,0 +1,14 @@
+author: githubuser4141
+delete-after: true
+changes:
+  - tweak: Ports new sprites from Baystation with a /slight/ adjustment to the combat
+      exosuit chestpiece to account for it being transparent. Ports exosuit diagnoses
+      via clicking the exosuit health doll. Changes mech walking and turning sounds.
+      Ports exo clamps being able to hold up to 5 items. Ports exosuit storage spaces
+      which can be accessed via click-and-drag. Ports exosuit health and temperature
+      sensors (click the mech health icon / air gauge for more info.) Ports a fix
+      for mechs dying instantly in too-hot air, now they properly receive damage.
+  - bugfix: Fixes simple mobs ignoring mech armor.
+  - balance: Merges 'radproof' exo armor into 'plain' exo armor to clean things up.
+      Minor armor tweaks, buffs the NV mech sensors to 50 HP, same as the thermals.
+      Exosuits now receive the correct damage when overheating.
