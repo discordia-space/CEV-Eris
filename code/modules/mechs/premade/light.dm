@@ -7,7 +7,7 @@
 
 	material = MATERIAL_PLASTIC
 	exosuit_color = COLOR_OFF_WHITE
-	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/radproof
+	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/plain
 	arms = /obj/item/mech_component/manipulators/light
 	legs = /obj/item/mech_component/propulsion/light
 	head = /obj/item/mech_component/sensors/light
@@ -50,7 +50,7 @@
 	exosuit_desc_string = "advanced sensor array"
 	desc = "A series of high resolution optical sensors. They can overlay several images to give the pilot a sense of location even in total darkness."
 	icon_state = "light_head"
-	max_damage = 30
+	max_damage = 50
 	vision_flags = SEE_TURFS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	power_use = 50

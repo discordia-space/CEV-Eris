@@ -3,7 +3,10 @@
 	if(!GLOB.mech_image_cache[use_key])
 		var/image/I = image(icon = cache_icon, icon_state = cache_key)
 		if(image_colour)
-			I.color = image_colour
+			var/image/masked_color = image(icon = cache_icon, icon_state = "[cache_key]_mask")
+			masked_color.color = image_colour
+			masked_color.blend_mode = BLEND_MULTIPLY
+			I.overlays += masked_color
 		if(decal)
 			var/decal_key = "decal-[cache_key]"
 			if(!GLOB.mech_icon_cache[decal_key])
@@ -42,7 +45,19 @@
 		if(hardpoint_object)
 			var/use_icon_state = "[hardpoint_object.icon_state]_[hardpoint]"
 			if(use_icon_state in GLOB.mech_weapon_overlays)
-				new_overlays += get_mech_image(null, use_icon_state, MECH_WEAPON_OVERLAYS_ICON, null, hardpoint_object.mech_layer )
+				var/color = COLOR_WHITE
+				var/decal = null
+				if(hardpoint in list(HARDPOINT_BACK, HARDPOINT_RIGHT_SHOULDER, HARDPOINT_LEFT_SHOULDER))
+					color = body.color
+					decal = body.decal
+				else if(hardpoint in list(HARDPOINT_RIGHT_HAND, HARDPOINT_LEFT_HAND))
+					color = arms.color
+					decal = arms.decal
+				else
+					color = head.color
+					decal = head.decal
+
+				new_overlays += get_mech_image(decal, use_icon_state, 'icons/mechs/mech_weapon_overlays.dmi', color, hardpoint_object.mech_layer )
 	overlays = new_overlays
 
 /mob/living/exosuit/proc/update_pilots(var/update_overlays = TRUE)
