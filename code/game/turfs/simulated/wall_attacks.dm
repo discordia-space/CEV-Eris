@@ -53,29 +53,6 @@
 		toggle_open(user)
 	return 0
 
-
-/turf/simulated/wall/attack_generic(var/mob/user, var/damage, var/attack_message, var/wallbreaker)
-
-	radiate()
-	if(!istype(user))
-		return
-
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	var/rotting = (locate(/obj/effect/overlay/wallrot) in src)
-	if(!damage || !wallbreaker)
-		try_touch(user, rotting)
-		return
-
-	if(rotting)
-		return success_smash(user)
-
-	if(reinf_material)
-		if((wallbreaker == 2) || (damage >= max(material.hardness,reinf_material.hardness)))
-			return success_smash(user)
-	else if(damage >= material.hardness)
-		return success_smash(user)
-	return fail_smash(user)
-
 /turf/simulated/wall/attack_generic(var/mob/living/exosuit/M, var/damage, var/attack_message)
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	var/rotting = (locate(/obj/effect/overlay/wallrot) in src)
@@ -101,6 +78,43 @@
 		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))
 		return take_damage(damage)
 	return
+
+/turf/simulated/wall/attack_hand(var/mob/user)
+
+	radiate()
+	add_fingerprint(user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	var/rotting = (locate(/obj/effect/overlay/wallrot) in src)
+	if (HULK in user.mutations)
+		if (rotting || !prob(material.hardness))
+			success_smash(user)
+		else
+			fail_smash(user)
+			return 1
+
+	try_touch(user, rotting)
+
+/turf/simulated/wall/attack_generic(var/mob/user, var/damage, var/attack_message, var/wallbreaker)
+
+	radiate()
+	if(!istype(user))
+		return
+
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	var/rotting = (locate(/obj/effect/overlay/wallrot) in src)
+	if(!damage || !wallbreaker)
+		try_touch(user, rotting)
+		return
+
+	if(rotting)
+		return success_smash(user)
+
+	if(reinf_material)
+		if((wallbreaker == 2) || (damage >= max(material.hardness,reinf_material.hardness)))
+			return success_smash(user)
+	else if(damage >= material.hardness)
+		return success_smash(user)
+	return fail_smash(user)
 
 /turf/simulated/wall/attackby(obj/item/I, mob/user)
 
