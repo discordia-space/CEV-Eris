@@ -298,7 +298,7 @@
 
 	if(!MOVING_DELIBERATELY(mob))
 		mob.handle_movement_recoil()
-	mob.add_momentum(direction)
+
 	// Something with pulling things
 	var/extra_delay = HandleGrabs(direction, old_turf)
 	mob.add_move_cooldown(extra_delay)
