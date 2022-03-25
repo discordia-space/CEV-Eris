@@ -40,7 +40,6 @@
 	spawn(1) dismantle(user)
 	return 1
 
-
 /obj/structure/girder/attack_generic(var/mob/living/exosuit/M, var/damage, var/attack_message)
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!damage)
