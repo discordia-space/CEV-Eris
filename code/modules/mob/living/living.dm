@@ -651,7 +651,7 @@ mob/living/carbon/human/verb/stopSliding()
 	if(ishuman(src) && !weakened && (_dir))// If true_dir = 0(src isn't moving), doesn't proc.
 		var/mob/living/carbon/human/H = src
 		
-		if(momentum_dir == _dir)
+		if(H.momentum_dir == _dir)
 			livmomentum = H.momentum_speed // Set momentum value as soon as possible for stopSliding to work better
 		var/range = 1 //checks for move intent; dive one tile further if on run intent
 
