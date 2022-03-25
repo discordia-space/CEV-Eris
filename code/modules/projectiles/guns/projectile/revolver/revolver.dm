@@ -21,7 +21,7 @@
 	fire_delay = 3 //all revolvers can fire faster, but have huge recoil
 	damage_multiplier = 1.75
 	penetration_multiplier = 0.65 // Insanely powerful handcannon, but worthless against heavy armor
-	recoil_buildup = 8
+	recoil = HANDGUN_RECOIL
 	var/drawChargeMeter = TRUE
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
 	gun_parts = list(/obj/item/part/gun/frame/miller = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)

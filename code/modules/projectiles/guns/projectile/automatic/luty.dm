@@ -26,8 +26,7 @@
 	can_dual = 1
 	damage_multiplier = 0.7
 	penetration_multiplier = 0.9
-	recoil_buildup = 1
-	one_hand_penalty = 5 //SMG level.
+	recoil = SMG_RECOIL
 	spawn_blacklisted = TRUE
 	wield_delay = 0 // No delay for this , its litteraly a junk gun
 

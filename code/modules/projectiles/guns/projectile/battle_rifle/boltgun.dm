@@ -15,7 +15,7 @@
 	damage_multiplier = 1.4
 	style_damage_multiplier = 3
 	penetration_multiplier = 1.5
-	recoil_buildup = 7 // increased from the AK's/Takeshi's buildup of 1.7/1.8 because of the massive multipliers and slow firerate
+	recoil = RIFLE_RECOIL
 	init_offset = 2 //bayonet's effect on aim, reduced from 4
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
@@ -25,7 +25,6 @@
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 900
-	one_hand_penalty = 20 //full sized rifle with bayonet is hard to keep on target
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") // Considering attached bayonet
 	sharp = TRUE
 	spawn_blacklisted = TRUE
@@ -177,12 +176,11 @@
 	slot_flags = SLOT_BACK
 	damage_multiplier = 1.2
 	penetration_multiplier = 1.3
-	recoil_buildup = 9 // joonk gun
+	recoil = RIFLE_RECOIL
 	max_shells = 5
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	price_tag = 800
-	one_hand_penalty = 30 //don't you dare to one hand this
 	sharp = FALSE //no bayonet here
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
@@ -221,11 +219,10 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	penetration_multiplier = 1.1 // short barrel means maximum velocity isn't reached
 	proj_step_multiplier = 1.2
-	recoil_buildup = 15
+	recoil = CARBINE_RECOIL
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
 	price_tag = 600
 	attack_verb = list("struck","hit","bashed")
-	one_hand_penalty = 10 // not a full rifle, but not easy either
 	can_dual = TRUE
 	sharp = FALSE
 	spawn_blacklisted = TRUE

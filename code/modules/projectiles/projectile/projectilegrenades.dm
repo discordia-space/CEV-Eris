@@ -8,6 +8,7 @@
 	sharp = FALSE
 	check_armour = ARMOR_BULLET
 	step_delay = 1.2
+	recoil = 7 // Unlike shotgun shells, this one doesn't rely on velocity, but payload instead
 
 /obj/item/projectile/bullet/grenade/Move()	//Makes grenade shells cause their effect when they arrive at their target turf
 	if(get_turf(src) == get_turf(original))

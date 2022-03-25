@@ -22,10 +22,9 @@
 	reload_sound = 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
-	recoil_buildup = 0.6 // HMG size absorbs recoil effectively
+	recoil = HMG_RECOIL
 	damage_multiplier = 1.1
 	penetration_multiplier = 1.3
-	one_hand_penalty = 45 //not like it's used anyway, but HMG level
 	burst_delay = 0.8
 	init_firemodes = list(
 		list(mode_name = "full auto",  mode_desc="800 rounds per minute", mode_type = /datum/firemode/automatic, fire_delay=0.8, icon="auto", damage_mult_add=-0.2, move_delay=5),
@@ -35,8 +34,7 @@
 		)
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
-	brace_penalty = 5 // You won't hit anything without bracing this
-	init_offset = 7 // Too much even for cover
+	init_offset = 10 // Too much even for cover
 	slowdown_hold = 1
 	wield_delay = 1 SECOND
 	wield_delay_factor = 0.9 // 90 vig

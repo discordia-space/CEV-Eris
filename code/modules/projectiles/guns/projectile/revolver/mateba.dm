@@ -8,7 +8,7 @@
 	price_tag = 3000 //more op and rare than miller, hits as hard as a Miller and doesn't struggle with armor, good luck finding it
 	damage_multiplier = 1.75
 	penetration_multiplier = 1.5
-	recoil_buildup = 6
+	recoil = HANDGUN_RECOIL
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/mateba = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)

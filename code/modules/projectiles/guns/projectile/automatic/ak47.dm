@@ -21,8 +21,7 @@
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	recoil_buildup = 1.8
-	one_hand_penalty = 15 //automatic rifle level
+	recoil = RIFLE_RECOIL
 	spawn_blacklisted = TRUE
 	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
@@ -98,7 +97,6 @@
 			The flexible design also fits drum magazines."
 	icon = 'icons/obj/guns/projectile/ak/krinkov.dmi'
 	w_class = ITEM_SIZE_BULKY	//small rifle, also because it's basically an smg now
-	recoil_buildup = 1.5
 	damage_multiplier = 0.9 //Better control, worse damage
 	penetration_multiplier = 1.2
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
@@ -141,11 +139,13 @@
 		recoil_buildup = 1.5
 		w_class = ITEM_SIZE_BULKY
 		folded = FALSE
+		recoil = RIFLE_RECOIL
 	else
 		to_chat(user, SPAN_NOTICE("You fold the stock on \the [src]."))
 		recoil_buildup = 1.8
 		w_class = ITEM_SIZE_NORMAL
 		folded = TRUE
+		recoil = CARBINE_RECOIL
 
 	playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()
@@ -160,7 +160,6 @@
 			This cheap copy has been made to look as least militaristic as possible to be sold to as many civilian populations as possible."
 	icon = 'icons/obj/guns/projectile/ak/vipr.dmi'
 	w_class = ITEM_SIZE_HUGE
-	recoil_buildup = 1.5	//Heavy, semi-auto and burst only
 	damage_multiplier = 1.1	//Long barrels help you get more out of a round.
 
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
@@ -243,7 +242,6 @@
 			This crude copy shows just how forgiving the design can be."
 	icon = 'icons/obj/guns/projectile/ak/kalash.dmi'
 	w_class = ITEM_SIZE_HUGE
-	recoil_buildup = 1.6	//Full size, but cheap
 	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/plasteel = 7)
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 

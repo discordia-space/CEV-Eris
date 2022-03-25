@@ -18,8 +18,7 @@
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 800
-	recoil_buildup = 12
-	one_hand_penalty = 15 //full sized shotgun level
+	recoil = RIFLE_RECOIL
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/shotgun/pump/sawn
@@ -74,8 +73,7 @@
 	price_tag = 350
 	damage_multiplier = 0.5
 	penetration_multiplier = 0.7
-	recoil_buildup = 24 //double that of full version
-	one_hand_penalty = 20 //more than shotgun
+	recoil = CARBINE_RECOIL
 	can_dual = TRUE
 	saw_off = FALSE
 	spawn_blacklisted = TRUE

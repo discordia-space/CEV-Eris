@@ -27,8 +27,7 @@
 
 	damage_multiplier = 0.8
 	penetration_multiplier = 0.2
-	recoil_buildup = 3
-	one_hand_penalty = 5 //despite it being handgun, it's better to hold in two hands while shooting. SMG level.
+	recoil = HANDGUN_RECOIL
 
 	gun_tags = list(GUN_SILENCABLE)
 

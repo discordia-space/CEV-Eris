@@ -16,7 +16,7 @@
 	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 4)
 	gun_parts = list(/obj/item/stack/material/plastic = 4)
 	ammo_type = /obj/item/ammo_casing/flare
-	recoil_buildup = 20
+	recoil = HANDGUN_RECOIL
 	rarity_value = 9
 	no_internal_mag = TRUE
 	var/bolt_open = FALSE

@@ -18,9 +18,8 @@
 	price_tag = 2000
 	damage_multiplier = 1.1	 // 34 lethal on FA
 	penetration_multiplier = 0.65 // 9.75 lethal
-	recoil_buildup = 0.7
+	recoil = SMG_RECOIL
 	twohanded = FALSE
-	one_hand_penalty = 5 //smg level
 
 	init_firemodes = list(
 		FULL_AUTO_300,

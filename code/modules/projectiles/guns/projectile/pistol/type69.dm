@@ -12,10 +12,9 @@
     matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLATINUM = 8, MATERIAL_PLASTIC = 4)
     can_dual = TRUE
     slot_flags = SLOT_BELT|SLOT_HOLSTER
-    one_hand_penalty = 10 //a bit more than smg level
     damage_multiplier = 1.2
     penetration_multiplier = 1.1
-    recoil_buildup = 2.5
+    recoil = HANDGUN_RECOIL
     init_firemodes = list(
         FULL_AUTO_400,
         SEMI_AUTO_NODELAY

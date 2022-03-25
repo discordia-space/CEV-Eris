@@ -11,7 +11,7 @@
 	price_tag = 1000
 	damage_multiplier = 1.4 //because pistol round //From havelock.dm
 	penetration_multiplier = 1.4
-	recoil_buildup = 3
+	recoil = HANDGUN_RECOIL
 	spawn_frequency = 0
 
 /obj/item/gun/projectile/revolver/artwork_revolver/Initialize()
@@ -34,7 +34,7 @@
 	penetration_multiplier += pick(-0.2,-0.1,0,0.1,0.2)
 	custom_default["penetration_multiplier"] = penetration_multiplier
 	recoil_buildup += rand(-(recoil_buildup / 5),(recoil_buildup / 5))
-	custom_default["recoil_buildup"] = recoil_buildup
+	custom_default["recoil"] = recoil
 	price_tag += rand(0, 2500)
 	. = ..()
 

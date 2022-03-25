@@ -19,11 +19,10 @@
 	unload_sound = 'sound/weapons/guns/interact/batrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/batrifle_cock.ogg'
-	recoil_buildup = 1
+	recoil = CARBINE_RECOIL
 	penetration_multiplier = 1.1
 	damage_multiplier = 1.1
 	zoom_factor = 0.2
-	one_hand_penalty = 10 //bullpup rifle level
 	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(

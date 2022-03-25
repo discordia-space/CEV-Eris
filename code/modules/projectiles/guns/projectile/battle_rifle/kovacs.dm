@@ -22,8 +22,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 1.2 //30
 	penetration_multiplier = 1.4 //35
-	recoil_buildup = 2
-	one_hand_penalty = 20 //full sized rifle
+	recoil = RIFLE_RECOIL
 	zoom_factor = 0.6
 	fire_delay = 6.5
 	gun_parts = list(/obj/item/part/gun/frame/kovacs = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)

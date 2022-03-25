@@ -19,8 +19,7 @@
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	damage_multiplier = 0.65	 //made with rubber rounds in mind. For lethality refer to Wintermute. Still quite lethal if you manage to land most shots.
 	penetration_multiplier = 0.5 //practically no AP, 2.5 with regular rounds and 5 with HV. Still deadly to unarmored targets.
-	recoil_buildup = 1
-	one_hand_penalty = 5 //smg level
+	recoil = SMG_RECOIL
 	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(

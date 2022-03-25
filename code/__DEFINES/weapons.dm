@@ -75,3 +75,11 @@
 #define RECOIL_REDUCTION_TIME 1 SECOND
 
 #define VIG_OVERCHARGE_GEN 0.05
+
+#define EMBEDDED_RECOIL     list(recoil_buildup = 1.4,  brace_penalty = 0.1,   one_hand_penalty = 0     )
+#define HANDGUN_RECOIL      list(recoil_buildup = 1.2,  brace_penalty = 0.2,    one_hand_penalty = 0.6  )
+#define SMG_RECOIL          list(recoil_buildup = 1.0,  brace_penalty = 0.3,   one_hand_penalty = 1.2   )
+#define CARBINE_RECOIL      list(recoil_buildup = 0.8,  brace_penalty = 0.4,    one_hand_penalty = 1.8  )
+#define RIFLE_RECOIL        list(recoil_buildup = 0.6,  brace_penalty = 0.5,   one_hand_penalty = 2.4   )
+#define LMG_RECOIL          list(recoil_buildup = 0.4,  brace_penalty = 0.6,    one_hand_penalty = 3    )
+#define HMG_RECOIL          list(recoil_buildup = 0.2,  brace_penalty = 0.7,   one_hand_penalty = 3.6   )

@@ -19,8 +19,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
 	damage_multiplier = 0.75
 	penetration_multiplier = 0.75
-	recoil_buildup = 7
-	one_hand_penalty = 10 //compact shotgun level
+	recoil = CARBINE_RECOIL
 	burst_delay = null
 	fire_delay = null
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'

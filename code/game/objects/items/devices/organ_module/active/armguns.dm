@@ -19,8 +19,7 @@
 	damage_multiplier = 0.8
 	penetration_multiplier = 0.5
 	gun_tags = list(GUN_SILENCABLE)
-	recoil_buildup = 5 // it's stuck in your fucking hand or something
-	one_hand_penalty = 1 // see the above
+	recoil = EMBEDDED_RECOIL
 	spawn_blacklisted = TRUE
 
 /obj/item/organ_module/active/simple/armsmg

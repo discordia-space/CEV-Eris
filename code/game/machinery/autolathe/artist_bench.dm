@@ -146,8 +146,6 @@
 				R.custom_default["damage_multiplier"] = R.damage_multiplier
 				R.penetration_multiplier = 1.4 + rand(-5,5)/10
 				R.custom_default["penetration_multiplier"] = R.penetration_multiplier
-				R.recoil_buildup = 3 + rand(-3,3)/5
-				R.custom_default["recoil_buildup"] = R.recoil_buildup
 
 			if("magnum") //From consul.dm, Arbitrary values
 				R.caliber = CAL_MAGNUM
@@ -156,8 +154,6 @@
 				R.custom_default["damage_multiplier"] = R.damage_multiplier
 				R.penetration_multiplier = 1.5 + rand(-5,5)/10
 				R.custom_default["penetration_multiplier"] = R.penetration_multiplier
-				R.recoil_buildup = 6 + rand(-6,6)/5
-				R.custom_default["recoil_buildup"] = R.recoil_buildup
 
 			if("shotgun") //From bull.dm, Arbitrary values
 				R.caliber = CAL_SHOTGUN
@@ -166,10 +162,6 @@
 				R.custom_default["damage_multiplier"] = R.damage_multiplier
 				R.penetration_multiplier = 0.75 + rand(-3,3)/10
 				R.custom_default["penetration_multiplier"] = R.penetration_multiplier
-				R.recoil_buildup = 1.2 + rand(-2,2)/10//from sawnoff.dm
-				R.custom_default["recoil_buildup"] = R.recoil_buildup
-				R.one_hand_penalty = 10 + rand(-2,3)
-				R.custom_default["one_hand_penalty"] = R.one_hand_penalty
 				R.bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 				R.custom_default["bulletinsert_sound"] = R.bulletinsert_sound
 				R.fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
@@ -192,10 +184,6 @@
 				R.custom_default["bulletinsert_sound"] = R.bulletinsert_sound
 				R.fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 				R.custom_default["fire_sound"] = R.fire_sound
-				R.one_hand_penalty = 10 + rand(-3,5) //From sniper.dm, Temporary values
-				R.custom_default["one_hand_penalty"] = R.one_hand_penalty
-				R.recoil_buildup = 75 + rand(-10,10)
-				R.custom_default["recoil_buildup"] = R.recoil_buildup
 
 			if("rocket")//From RPG.dm, Arbitrary values
 				R.caliber = CAL_ROCKET
@@ -208,15 +196,14 @@
 				R.custom_default["fire_sound"] = R.fire_sound
 				R.bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
 				R.custom_default["bulletinsert_sound"] = R.bulletinsert_sound
-				R.one_hand_penalty = 15 + rand(-3,5)//From ak47.dm, temporary values
-				R.custom_default["one_hand_penalty"] = R.one_hand_penalty
-				R.recoil_buildup = 3 + rand(-1,1)
-				R.custom_default["recoil_buildup"] = R.recoil_buildup
 
 
 			//No gun currently uses CAL_357 far as I know
 			//	if("revolver")
 			//		caliber = pick(CAL_357)
+
+		R.recoil.modifyAllRatings(1+rand(-2,2)/10)
+		R.custom_default["recoil"] = R.recoil
 
 		if(R.max_shells == 3 && (gun_pattern == "shotgun"||"rocket"))//From Timesplitters triple-firing RPG far as I know
 			R.init_firemodes = list(

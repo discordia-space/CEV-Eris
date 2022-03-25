@@ -13,7 +13,7 @@
 	price_tag = 1700
 	damage_multiplier = 1.35
 	penetration_multiplier = 1.5
-	recoil_buildup = 6
+	recoil = HANDGUN_RECOIL
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/consul = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)
 

@@ -1,14 +1,5 @@
-/mob/living/proc/handle_recoil(var/obj/item/gun/G)
+/mob/living/proc/handle_recoil(var/obj/item/gun/G, var/recoil_buildup)
 	deltimer(recoil_reduction_timer)
-	if(G.one_hand_penalty) // If the gun has a two handed penalty and is not wielded.
-		if(!G.wielded)
-			recoil += G.one_hand_penalty // Then the one hand penalty will be added to the recoil.
-
-	if(G.braced)
-		if(G.braceable > 1)
-			recoil *= 0.5 // Taking penalty into account, bipod reduces recoil by 40%.
-	else if(G.brace_penalty)
-		recoil += G.brace_penalty
 
 	var/debug_recoil = min(0.3, G.fire_delay)
 	if(G.fire_delay == 0)
@@ -16,31 +7,15 @@
 	if(G.burst > 1)
 		debug_recoil = max(debug_recoil, G.burst_delay)
 
-	add_recoil(G.recoil_buildup + debug_recoil) // DEBUG, remove the debug_recoil after testing is over!
+	add_recoil(recoil_buildup + debug_recoil) // DEBUG, remove the debug_recoil after testing is over!
 
 /mob/living/proc/external_recoil(var/recoil_buildup) // Used in human_attackhand.dm
 	deltimer(recoil_reduction_timer)
 	add_recoil(recoil_buildup)
 
 mob/proc/handle_movement_recoil() // Used in movement/mob.dm
-	return // Only the living have recoil
+	return // Ghosts and roaches have no movement recoil
 
-/mob/living/handle_movement_recoil()
-	deltimer(recoil_reduction_timer)
-
-	var/base_recoil = 1
-
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		var/suit_stiffness = 0
-		var/uniform_stiffness = 0
-		if(H.wear_suit)
-			suit_stiffness = H.wear_suit.stiffness
-		if(H.w_uniform)
-			uniform_stiffness = H.w_uniform.stiffness
-		base_recoil += suit_stiffness + suit_stiffness * uniform_stiffness // Wearing it under actual armor, or anything too thick is extremely uncomfortable.
-	add_recoil(base_recoil)
-	
 /mob/living/proc/add_recoil(var/recoil_buildup)
 	if(recoil_buildup)
 		recoil += recoil_buildup
@@ -48,17 +23,14 @@ mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 
 /mob/living/proc/calc_recoil()
 
-	var/minimum = 0.4
-	var/scale = 0.8
-	var/limit = minimum / (1 - scale)
+	var/base = 0.4
+	var/scale = 0.9
 
-	if(recoil >= limit)
-		recoil *= scale
-	else if(recoil < limit && recoil > minimum)
-		recoil -= minimum
-	else
+	if(recoil <= base)
 		recoil = 0
-
+	else
+		recoil -= base
+		recoil *= scale
 	update_recoil()
 
 /mob/living/proc/calculate_offset(var/offset = 0)

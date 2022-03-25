@@ -19,7 +19,7 @@
 	magazine_type = /obj/item/ammo_magazine/pistol
 	rarity_value = 16
 	damage_multiplier = 1
-	recoil_buildup = 2
+	recoil = HANDGUN_RECOIL
 
 	gun_tags = list(GUN_SILENCABLE)
 	init_firemodes = list(
@@ -65,7 +65,6 @@
 	icon = 'icons/obj/guns/projectile/makarov.dmi'
 	icon_state = "makarov"
 	damage_multiplier = 1.2
-	recoil_buildup = 3
 	price_tag = 1400
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2, TECH_COVERT = 3)
 	init_firemodes = list(

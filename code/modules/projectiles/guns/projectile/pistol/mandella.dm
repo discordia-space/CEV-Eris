@@ -21,7 +21,7 @@
 	proj_step_multiplier = 0.8
 	damage_multiplier = 1.6
 	penetration_multiplier = 3
-	recoil_buildup = 2
+	recoil = HANDGUN_RECOIL
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/mandella = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/clrifle = 1)

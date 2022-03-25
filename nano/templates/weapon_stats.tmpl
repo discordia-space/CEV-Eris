@@ -51,14 +51,23 @@
 					{{:data.burst_delay}} ms
 				</div>
 		{{/if}}
-		
-		<div class="itemLabel">
-			Kickback: 
-		</div>
+		<h4>Armor details:</h4>
 			<div class="itemContent">
-				{{:helper.displayBar(data.recoil_buildup, 0, data.recoil_buildup_max, '', data.recoil_buildup)}}
+				{{if data.recoil_info.length}}
+					{{for data.recoil_info}}
+						<div class="itemLabel">
+							{{:value.name}}
+						</div>
+						<div class="itemContent">
+						{{:helper.displayBar(value.value, 0, 5, value.value <= 0.5 ? 'little' : value.value <= 1.5 ? 'average' : 'high', value.value + ' degrees')}}
+						</div>
+					{{/for}}
+					<br>
+				{{else}}
+					<div class="average">
+						Has no kickback.
+					</div>
 			</div>
-		
 		<div class="itemLabel">
 			Melee capabilities:
 		</div>
