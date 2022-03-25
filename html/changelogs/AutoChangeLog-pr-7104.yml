@@ -1,0 +1,8 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - code_imp: Added framework for Cyborg trait , removed a few variables and replaced
+      them with robot traits
+  - balance: Robot upgrades can now be removed
+  - balance: Hacked cyborgs can't be hacked by other AI's if they've already been
+      hacked by another one.
