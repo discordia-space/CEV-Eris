@@ -177,8 +177,8 @@
 /obj/item/borg/upgrade/tasercooler/unaction(mob/living/silicon/robot/R)
 	..()
 	if(!R.module || !(type in R.module.supported_upgrades))
-		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
-		to_chat(usr, "There's no mounting point for the module!")
+		to_chat(R, "Upgrade mounting error! No suitable hardpoint detected!")
+		to_chat(usr, "There\'s no mounting point for the module!")
 		return 0
 
 	var/obj/item/gun/energy/taser/mounted/cyborg/T = locate() in R.module
