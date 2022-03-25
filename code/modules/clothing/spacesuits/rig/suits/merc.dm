@@ -29,7 +29,7 @@
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/power_sink,
 		/obj/item/rig_module/electrowarfare_suite,
-		/obj/item/rig_module/chem_dispenser/combat,
+		/obj/item/rig_module/modular_injector/combat,
 		/obj/item/rig_module/fabricator/energy_net
 		)
 	stiffness = 0
