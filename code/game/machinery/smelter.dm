@@ -201,8 +201,7 @@
 	// Sanity check: avoid an infinite loop in eject_all_material when trying to drop an invalid material
 	if(!stack_type)
 		stored_material[material] = 0
-		crash_with("Attempted to drop an invalid material: [material]")
-		return
+		CRASH("Attempted to drop an invalid material: [material]")
 
 	var/ejected_amount = min(initial(stack_type.max_amount), round(stored_material[material]), storage_capacity)
 	var/obj/item/stack/material/S = new stack_type(src, ejected_amount)
