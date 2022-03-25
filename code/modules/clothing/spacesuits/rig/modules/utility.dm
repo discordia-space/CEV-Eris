@@ -170,7 +170,7 @@
 	if(!istype(item))
 		return FALSE
 	if(beakers.len == max_beakers)
-		to_chat(user, "\The [src] has all its beaker slots filled , remove one of them!")
+		to_chat(user, "\The [src] has all its beaker slots filled, remove one of them!")
 		return FALSE
 	if(userless)
 		beakers += item
