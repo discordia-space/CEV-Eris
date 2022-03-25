@@ -124,7 +124,7 @@
 		return FALSE
 	user_vessel.take_damage(round(volume/10)) // 5 out of 100 at 60 units
 	if(prob(1))
-		to_chat(user, "You feel a sharp pain in your chest")
+		to_chat(user, "You feel a sharp pain in your chest.")
 
 
 /datum/reagent/medicine/dexalin
