@@ -226,6 +226,16 @@
 	name = "exosuit integrity"
 	icon_state = "health"
 
+/obj/screen/movable/exosuit/health/Click()
+	if(..())
+		if(owner && owner.body && owner.body.diagnostics?.is_functional())
+			usr.setClickCooldown(1 SECONDS)
+			playsound(owner.loc,'sound/effects/scanbeep.ogg',30,0)
+			to_chat(usr, SPAN_NOTICE("The diagnostics panel blinks several times as it updates:"))
+			for(var/obj/item/mech_component/MC in list(owner.arms, owner.legs, owner.body, owner.head))
+				if(MC)
+					MC.return_diagnostics(usr)
+
 /obj/screen/movable/exosuit/health/on_handle_hud(var/mob/living/exosuit/E)
 	. = ..()
 	cut_overlays()
@@ -270,6 +280,60 @@
 		return
 	owner.head.active_sensors = ..()
 	to_chat(usr, SPAN_NOTICE("[owner.head.name] advanced sensor mode is [owner.head.active_sensors ? "now" : "no longer" ] active."))
+
+/obj/screen/movable/exosuit/needle
+	vis_flags = VIS_INHERIT_ID
+	icon_state = "heatprobe_needle"
+
+/obj/screen/movable/exosuit/heat
+	name = "heat probe"
+	icon_state = "heatprobe"
+	var/celsius = TRUE
+	var/obj/screen/movable/exosuit/needle/gauge_needle = null
+	desc = "TEST"
+
+/obj/screen/movable/exosuit/heat/Initialize()
+	. = ..()
+	gauge_needle = new /obj/screen/movable/exosuit/needle(owner)
+	vis_contents += gauge_needle
+
+/obj/screen/movable/exosuit/heat/Destroy()
+	QDEL_NULL(gauge_needle)
+	. = ..()
+
+/obj/screen/movable/exosuit/heat/Click(location, control, params)
+	if(..())
+		var/modifiers = params2list(params)
+		if(modifiers["shift"])
+			if(owner && owner.material)
+				usr.show_message(SPAN_NOTICE("Your suit's safe operating limit ceiling is [(celsius ? "[owner.material.melting_point - T0C] °C" : "[owner.material.melting_point] K" )]."))
+			return
+		if(modifiers["ctrl"])
+			celsius = !celsius
+			usr.show_message(SPAN_NOTICE("You switch the chassis probe display to use [celsius ? "celsius" : "kelvin"]."))
+			return
+		if(owner && owner.body && owner.body.diagnostics?.is_functional() && owner.loc)
+			usr.show_message(SPAN_NOTICE("The life support panel blinks several times as it updates:"))
+
+			usr.show_message(SPAN_NOTICE("Chassis heat probe reports temperature of [(celsius ? "[owner.bodytemperature - T0C] °C" : "[owner.bodytemperature] K" )]."))
+			if(owner.material.melting_point < owner.bodytemperature)
+				usr.show_message(SPAN_WARNING("Warning: Current chassis temperature exceeds operating parameters."))
+			var/air_contents = owner.loc.return_air()
+			if(!air_contents)
+				usr.show_message(SPAN_WARNING("The external air probe isn't reporting any data!"))
+			else
+				usr.show_message(SPAN_NOTICE("External probes report: [jointext(atmosanalyzer_scan(owner.loc, air_contents), "<br>")]"))
+		else
+			usr.show_message(SPAN_WARNING("The life support panel isn't responding."))
+
+/obj/screen/movable/exosuit/heat/proc/Update()
+	//Relative value of heat
+	if(owner && owner.body && owner.body.diagnostics?.is_functional() && gauge_needle)
+		var/value = clamp( owner.bodytemperature / (owner.material.melting_point * 1.55), 0, 1)
+		var/matrix/rot_matrix = matrix()
+		rot_matrix.Turn(LERP(-90, 90, value))
+		rot_matrix.Translate(0, -2)
+		animate(gauge_needle, transform = rot_matrix, 0.1, easing = SINE_EASING)
 
 /obj/screen/movable/exosuit/toggle/strafe
 	name = "toggle strafing"
