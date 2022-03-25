@@ -186,7 +186,7 @@
 		var/obj/item/organ/internal/blood_vessel/user_vessel = user.random_organ_by_process(OP_BLOOD_VESSEL)
 		if(!user_vessel)
 			return FALSE
-		to_chat(user, "You feel intense swelling in your [user_vessel.loc?.name] , and you notice it going numb and red!")
+		to_chat(user, "You feel intense swelling in your [user_vessel.loc?.name], and you notice it going numb and red!")
 		user.AdjustParalysis(5)
 		user_vessel.take_damage(user_vessel.health)
 
