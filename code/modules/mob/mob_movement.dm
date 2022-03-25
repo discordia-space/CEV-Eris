@@ -243,3 +243,6 @@
 		delay /= speed_factor
 
 	return delay
+
+/mob/proc/add_momentum()
+	return FALSE
