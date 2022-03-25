@@ -1,0 +1,4 @@
+author: Hyperio
+delete-after: true
+changes:
+  - bugfix: Fixed broken vent in kitchen quarters
