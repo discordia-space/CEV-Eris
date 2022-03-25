@@ -663,7 +663,7 @@ mob/living/carbon/human/verb/stopSliding()
 			range++
 		if(H.momentum_speed > 4)
 			range++
-		H.throw_at(get_edge_target_turf(H, _dir), range, 1) // If you dive over a table, your momentum is set to 0. If you dive over space, you are thrown a tile further.
+		H.throw_at(get_edge_target_turf(H, _dir), range, 1) // If you dive over a table, your momentum is set to 0. If you dive over space, you are thrown 1 tile further.
 		update_lying_buckled_and_verb_status()
 		pass_flags -= PASSTABLE // Jumpn't over them anymore!
 		H.allow_spin = TRUE
