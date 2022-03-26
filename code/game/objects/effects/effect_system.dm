@@ -266,7 +266,7 @@ steam.start() -- spawns the effect
 
 	src.radius = radius
 	src.brightness = brightness
-	
+
 	set_light(radius,brightness,color)
 
 	if(selfdestruct_timer)

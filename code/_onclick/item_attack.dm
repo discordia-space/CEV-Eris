@@ -29,13 +29,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /obj/item/proc/pre_attack(atom/a, mob/user, var/params)
 	return
 
-//I would prefer to rename this to attack(), but that would involve touching hundreds of files.
-/obj/item/proc/resolve_attackby(atom/A, mob/user, params)
-	if(item_flags & ABSTRACT)//Abstract items cannot be interacted with. They're not real.
-		return 1
-	if (pre_attack(A, user, params))
-		return 1 //Returning 1 passes an abort signal upstream
-	add_fingerprint(user)
+//Handles double tact weapons, returns 1 if attack is to be carried out, 0 otherwise
+/obj/item/proc/double_tact(mob/user)
 	if(src.doubletact)
 		if(!(src.ready))
 			user.visible_message(SPAN_DANGER("[user] raises \his [src]"))
@@ -44,64 +39,80 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			while(world.time < endtime)
 				sleep(1)
 				if(!(src.ready))
-					return
+					return 0
 				if(!(src.is_equipped()))
 					src.ready = 0
-					return
+					return 0
 			user.visible_message(SPAN_DANGER("[user] lowers \his [src]"))
 			src.ready = 0
-			return
+			return 0
 		else
 			src.ready = 0
+			return 1
+	else
+		return 1
 
-	if(ishuman(user)) //Swinging
+//I would prefer to rename this to attack(), but that would involve touching hundreds of files.
+/obj/item/proc/resolve_attackby(atom/A, mob/user, params)
+	if(item_flags & ABSTRACT)//Abstract items cannot be interacted with. They're not real.
+		return 1
+	if (pre_attack(A, user, params))
+		return 1 //Returning 1 passes an abort signal upstream
+	add_fingerprint(user)
+
+	if(ishuman(user) && !(user == A)) //Swinging
 		var/mob/living/carbon/human/H = user
 		if(src.can_swing)
 			if(src.wielded)
 				if(H.a_intent == I_HURT)
-					var/x_difference = A.x - H.x
-					var/y_difference = A.y - H.y
+					if(!double_tact(user))
+						return
 					var/z_level = A.z
 					var/holdinghand = user.get_inventory_slot(src)
 					var/turf/R
 					var/turf/C
 					var/turf/L
 					C = locate(A.x, A.y, z_level)
-					switch(x_difference)
-						if(0)
+					var/dir = get_dir(H, A)
+					switch(dir)
+						if(NORTH, SOUTH)
 							R = locate((A.x + 1), A.y, z_level)
 							L = locate((A.x - 1), A.y, z_level)
-						if(1)
-							switch(y_difference)
-								if(0)
-									R = locate(A.x, (A.y - 1), z_level)
-									L = locate(A.x, (A.y + 1), z_level)
-								if(1)
-									R = locate(A.x, (A.y - 1), z_level)
-									L = locate((A.x - 1), A.y, z_level)
-								if(-1)
-									R = locate((A.x - 1), A.y, z_level)
-									L = locate(A.x, (A.y + 1), z_level)
-						if(-1)
-							switch(y_difference)
-								if(0)
-									R = locate(A.x, (A.y + 1), z_level)
-									L = locate(A.x, (A.y - 1), z_level)
-								if(1)
-									R = locate((A.x + 1), A.y, z_level)
-									L = locate(A.x, (A.y - 1), z_level)
-								if(-1)
-									R = locate(A.x, (A.y + 1), z_level)
-									L = locate((A.x + 1), A.y, z_level)
+						if(EAST)
+							R = locate(A.x, (A.y - 1), z_level)
+							L = locate(A.x, (A.y + 1), z_level)
+						if(NORTHEAST)
+							R = locate(A.x, (A.y - 1), z_level)
+							L = locate((A.x - 1), A.y, z_level)
+						if(SOUTHEAST)
+							R = locate((A.x - 1), A.y, z_level)
+							L = locate(A.x, (A.y + 1), z_level)
+						if(WEST)
+							R = locate(A.x, (A.y + 1), z_level)
+							L = locate(A.x, (A.y - 1), z_level)
+						if(NORTHWEST)
+							R = locate((A.x + 1), A.y, z_level)
+							L = locate(A.x, (A.y - 1), z_level)
+						if(SOUTHWEST)
+							R = locate(A.x, (A.y + 1), z_level)
+							L = locate((A.x + 1), A.y, z_level)
+					var/obj/effect/melee/swing/S = new(locate(H.x, H.y, H.z))
+					S.dir = dir
+					user.visible_message(SPAN_DANGER("[user] swings \his [src]"))
+					playsound(loc, 'sound/effects/swoosh.ogg', 50, 1, -1)
 					if(holdinghand == slot_l_hand)
+						flick("left_swing", S)
 						src.tileattack(user, L, modifier = 1)
 						src.tileattack(user, C, modifier = 0.8)
 						src.tileattack(user, R, modifier = 0.6)
+						del S
 						return
 					else if(holdinghand == slot_r_hand)
+						flick("right_swing", S)
 						src.tileattack(user, R, modifier = 1)
 						src.tileattack(user, C, modifier = 0.8)
 						src.tileattack(user, L, modifier = 0.6)
+						del S
 						return
 	return A.attackby(src, user, params)
 
@@ -150,6 +161,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	var/surgery_check = can_operate(src, user)
 	if(surgery_check && do_surgery(src, user, I, surgery_check)) //Surgery
 		return TRUE
+	if(!I.double_tact(user))
+		return
 	return I.attack(src, user, user.targeted_organ)
 
 //Handles AOE attacking on tiles
@@ -160,8 +173,18 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	for(var/obj/structure/S in targetarea)
 		if (S.density && !istype(S, /obj/structure/table))
 			S.attackby(src, user)
+	var/list/T
 	for(var/mob/living/M in targetarea)
-		src.attack(M, user, user.targeted_organ, modifier)
+		if(!M.lying)
+			T += M
+	if(T)
+		return src.attack(pick(T), user, user.targeted_organ, modifier)
+	else
+		for(var/mob/living/M in targetarea)
+			T += M
+		if(T)
+			return src.attack(pick(T), user, user.targeted_organ, modifier)
+		return
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
