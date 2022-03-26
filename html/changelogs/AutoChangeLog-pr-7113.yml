@@ -1,5 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - tweak: Diving & Sliding is now based on momentum
-  - bugfix: Sliding no longer starves you out
