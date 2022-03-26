@@ -11,7 +11,7 @@
 	var/mob/living/silicon/ai/carded_ai
 	var/flush
 
-/obj/item/device/aicard/attack(mob/living/silicon/decoy/M, mob/user, var/modifier = 1)
+/obj/item/device/aicard/attack(mob/living/silicon/decoy/M, mob/user, modifier = 1)
 	if (!istype (M, /mob/living/silicon/decoy))
 		return ..()
 	else
