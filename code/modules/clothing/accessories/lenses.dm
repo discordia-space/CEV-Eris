@@ -33,6 +33,9 @@
 		usr.put_in_hands(have_lenses)
 		SEND_SIGNAL(src, COMSIG_GLASS_LENSES_REMOVED, usr, src)
 		have_lenses = FALSE
+		if(ishuman(usr))
+			var/mob/living/carbon/human/beingofeyes = usr
+			beingofeyes.update_equipment_vision()
 	else
 		to_chat(usr, "You haven't got any lenses in \the [src]");
 

@@ -35,13 +35,13 @@
 
 /datum/stat_holder/proc/removeTempStat(statName, id)
 	if(!id)
-		crash_with("no id passed to removeTempStat(")
+		CRASH("no id passed to removeTempStat(")
 	var/datum/stat/S = stat_list[statName]
 	S.remove_modifier(id)
 
 /datum/stat_holder/proc/getTempStat(statName, id)
 	if(!id)
-		crash_with("no id passed to getTempStat(")
+		CRASH("no id passed to getTempStat(")
 	var/datum/stat/S = stat_list[statName]
 	return S.get_modifier(id)
 

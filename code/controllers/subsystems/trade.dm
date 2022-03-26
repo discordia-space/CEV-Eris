@@ -106,6 +106,14 @@ SUBSYSTEM_DEF(trade)
 		if(a)
 			. += a
 
+/datum/controller/subsystem/trade/proc/discover_by_uid(list/uid_list)
+	for(var/target_uid in uid_list)
+		for(var/datum/trade_station/station in all_stations)
+			if(station.uid == target_uid)
+				station.recommendations_needed -= 1
+				if(!station.recommendations_needed)
+					discovered_stations += station
+
 //Returns cost of an existing object including contents
 /datum/controller/subsystem/trade/proc/get_cost(atom/movable/target)
 	. = 0
@@ -119,8 +127,8 @@ SUBSYSTEM_DEF(trade)
 		if(istype(A))
 			path = A.type
 		else
-			crash_with("Unacceptable get_new_cost() by path ([path]) and type ([A?.type]).")
-			return 0
+			. = 0
+			CRASH("Unacceptable get_new_cost() by path ([path]) and type ([A?.type]).")
 
 	if(!GLOB.price_cache[path])
 		var/atom/movable/AM = new path
@@ -135,7 +143,7 @@ SUBSYSTEM_DEF(trade)
 	. = round(get_new_cost(path) * station.markdown)
 
 /datum/controller/subsystem/trade/proc/get_import_cost(path, datum/trade_station/station)
-	. = get_new_cost(path)
+	. = get_new_cost(path) ? get_new_cost(path) : 100			// Should solve the issue of items without price tags
 	var/markup = 1.2
 	if(istype(station))
 		markup = station.markup
@@ -143,27 +151,41 @@ SUBSYSTEM_DEF(trade)
 
 // Checks item stacks amd item containers to see if they match their base states (no more selling empty first-aid kits or split item stacks as if they were full)
 // Checks reagent containers to see if they match their base state or if they match the special offer from a station
-/datum/controller/subsystem/trade/proc/check_contents(item_path, offer_path, assessing_special_offer = FALSE)
+/datum/controller/subsystem/trade/proc/check_contents(item, offer_path, assessing_special_offer = FALSE)
 	if(!ispath(offer_path, /datum/reagent))
-		if(istype(item_path, /obj/item/stack))					// Check if item is an item stack
-			var/obj/item/stack/item_stack = item_path
+		if(istype(item, /obj/machinery/portable_atmospherics/canister))			// Air canisters can be constructed for 10 steel
+			var/obj/machinery/portable_atmospherics/canister/canister = item
+			if(canister.air_contents.total_moles >= 1871.71)
+				return TRUE
+			return FALSE
+
+		if(istype(item, /obj/item/stack))						// Check if item is an item stack
+			var/obj/item/stack/item_stack = item
 			if(item_stack.amount == item_stack.max_amount)
 				return TRUE										// You can only sell items when they are at max stacks
 			return FALSE
 
-		if(istype(item_path, /obj/item/storage))			// Storage items are too resource intensive to check (populate_contents() means we have to create new instances of every object within the initial object)
-			return FALSE									// Also, directly selling storage items after emptying them is abusable
+		if(istype(item, /obj/item/storage))						// Storage items are too resource intensive to check (populate_contents() means we have to create new instances of every object within the initial object)
+			return FALSE										// Also, directly selling storage items after emptying them is abusable
 
-	if(istype(item_path, /obj/item/reagent_containers))						// Check if item is a reagent container
-		var/obj/item/reagent_containers/current_container = item_path
+		if(istype(item, /obj/item/reagent_containers/food))		// Food check (needed because contents are populated using something other than preloaded_reagents)
+			return TRUE
+
+	if(istype(item, /obj/item/reagent_containers))					// Check if item is a reagent container
+		var/obj/item/reagent_containers/current_container = item
 		var/datum/reagent/target_reagent = offer_path
 		var/target_volume = 0
 
-		if(current_container.preloaded_reagents?.len < 1 && !ispath(offer_path, /datum/reagent))		// If a new instance of the container does not start with reagents and the offer is not a reagent, pass
-			return TRUE
+		if(!ispath(offer_path, /datum/reagent))
+			if(istype(item, /obj/item/reagent_containers/blood))	// Blood pack check (needed because contents are populated using something other than preloaded_reagents)
+				if(current_container.reagents?.reagent_list[1]?.id == "blood" && current_container.reagents?.reagent_list[1]?.volume >= 200)
+					return TRUE
 
-		if(!current_container.reagents)		// If the previous check fails, we are looking for a container with reagents or a specific reagent
-			return FALSE					// If the container is empty, fail
+			if(current_container.preloaded_reagents?.len < 1)		// If a new instance of the container does not start with reagents and the offer is not a reagent, pass
+				return TRUE
+
+		if(!current_container.reagents)								// If the previous check fails, we are looking for a container with reagents or a specific reagent
+			return FALSE											// If the container is empty, fail
 
 		var/reagent_found = 0
 		for(var/datum/reagent/current_reagent in current_container.reagents?.reagent_list)
@@ -188,7 +210,7 @@ SUBSYSTEM_DEF(trade)
 		return FALSE
 
 	return TRUE
-		
+
 /datum/controller/subsystem/trade/proc/assess_offer(obj/machinery/trade_beacon/sending/beacon, datum/trade_station/station, offer_path, assessing_special_offer = FALSE)
 	if(QDELETED(beacon) || !station)
 		return
@@ -222,7 +244,7 @@ SUBSYSTEM_DEF(trade)
 		var/datum/money_account/A = account
 		var/datum/transaction/T = new(offer_price, account.get_name(), "Special deal", station.name)
 		T.apply_to(A)
-		station.add_to_wealth(offer_price)
+		station.add_to_wealth(offer_price, TRUE)
 		// clear offer, wait until next tick to generate a new one
 		offer_content["amount"] = 0
 		offer_content["price"] = 0

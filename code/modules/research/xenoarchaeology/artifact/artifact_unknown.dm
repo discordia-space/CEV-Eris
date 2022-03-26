@@ -314,6 +314,12 @@
 				my_effect.ToggleActivate()
 			if(secondary_effect && (secondary_effect.trigger == TRIGGER_FORCE || secondary_effect.trigger == TRIGGER_HEAT) && prob(25))
 				secondary_effect.ToggleActivate(0)
+		if(4)
+			if(prob(25))
+				if (my_effect.trigger == TRIGGER_FORCE || my_effect.trigger == TRIGGER_HEAT)
+					my_effect.ToggleActivate()
+				if(secondary_effect && (secondary_effect.trigger == TRIGGER_FORCE || secondary_effect.trigger == TRIGGER_HEAT) && prob(25))
+					secondary_effect.ToggleActivate(0)				
 	return
 
 /obj/machinery/artifact/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)

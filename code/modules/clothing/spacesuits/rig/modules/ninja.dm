@@ -11,14 +11,17 @@
 	desc = "A robust hardsuit-integrated stealth module."
 	icon_state = "cloak"
 
+	origin_tech = list(TECH_POWER = 6, TECH_MAGNET = 6, TECH_ENGINEERING = 6)
+
 	toggleable = 1
 	disruptable = 1
 	disruptive = 0
 
-	use_power_cost = 50
-	active_power_cost = 10
+	// Fully charged RIG have 0.5 KILOWATTS
+	use_power_cost = 0.1 KILOWATTS
+	active_power_cost = 0.01 KILOWATTS
 	passive_power_cost = 0
-	module_cooldown = 30
+	module_cooldown = 3 SECONDS
 
 	activate_string = "Enable Cloak"
 	deactivate_string = "Disable Cloak"
@@ -26,39 +29,38 @@
 	interface_name = "integrated stealth system"
 	interface_desc = "An integrated active camouflage system."
 
-	suit_overlay_active =   "stealth_active"
-	suit_overlay_inactive = "stealth_inactive"
 	spawn_blacklisted = TRUE
 
 /obj/item/rig_module/stealth_field/activate()
-
 	if(!..())
 		return 0
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, "<font color='blue'><b>You are now invisible to normal detection.</b></font>")
+	H.visible_message(SPAN_WARNING("\The [H] seems to disappear before your eyes!"), SPAN_NOTICE("You feel completely invisible."))
+
 	H.invisibility = INVISIBILITY_LEVEL_TWO
+	H.alpha = 0
+	H.mouse_opacity = 0
 
-	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
-
-	H.visible_message("[H.name] vanishes into thin air!",1)
+	anim(get_turf(H), H, 'icons/mob/mob.dmi', , "cloak", , H.dir)
+	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity", null, 20, null)
 
 /obj/item/rig_module/stealth_field/deactivate()
-
 	if(!..())
 		return 0
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, SPAN_DANGER("You are now visible."))
-	H.invisibility = 0
+	H.visible_message(SPAN_WARNING("\The [src] appears from thin air!"), SPAN_NOTICE("You have re-appeared."))
+
+	H.invisibility = initial(H.invisibility)
+	H.alpha = initial(H.alpha)
+	H.mouse_opacity = initial(H.mouse_opacity)
 
 	anim(get_turf(H), H,'icons/mob/mob.dmi',,"uncloak",,H.dir)
-	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
+	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity", null, 20, null)
 
-	for(var/mob/O in oviewers(H))
-		O.show_message("[H.name] appears from thin air!",1)
 	playsound(get_turf(H), 'sound/effects/stealthoff.ogg', 75, 1)
 
 

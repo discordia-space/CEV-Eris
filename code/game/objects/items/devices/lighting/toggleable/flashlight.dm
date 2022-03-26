@@ -312,8 +312,8 @@
 	desc = "A hand-held security flashlight."
 	icon_state = "seclite"
 	item_state = "seclite"
-	light_spot_radius = 3
 	light_spot_power = 2.5
+	tick_cost = 0.2
 
 /obj/item/device/lighting/toggleable/flashlight/seclite/update_icon()
 	. = ..()

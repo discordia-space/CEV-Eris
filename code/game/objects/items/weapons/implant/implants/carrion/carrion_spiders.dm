@@ -1,3 +1,8 @@
+ #define SPIDER_GROUP_1 1
+ #define SPIDER_GROUP_2 2
+ #define SPIDER_GROUP_3 4
+ #define SPIDER_GROUP_4 8
+
 /obj/item/implant/carrion_spider
 	name = "spooky spider"
 	desc = "Small spider filled with some sort of strange fluid."
@@ -10,7 +15,11 @@
 	var/spider_price = 15
 	var/gene_price = 0
 	var/do_gibs = TRUE
+	var/gibs_color = "#666600"
 	var/last_stun_time = 0 //Used to avoid cheese
+	var/ignore_activate_all = FALSE
+
+	var/assigned_groups
 
 	var/obj/item/organ/internal/carrion/core/owner_core
 	var/mob/living/carbon/human/owner_mob
@@ -58,7 +67,7 @@
 
 /obj/item/implant/carrion_spider/proc/die()
 	if(!wearer)
-		gibs(loc, null, /obj/effect/gibspawner/generic, "#666600", "#666600")
+		gibs(loc, null, /obj/effect/gibspawner/generic, gibs_color, gibs_color)
 
 	qdel(src)
 
@@ -79,7 +88,7 @@
 /obj/item/implant/carrion_spider/proc/toggle_attack(mob/user)
 	if (ready_to_attack)
 		ready_to_attack = FALSE
-		to_chat(user, SPAN_NOTICE("\The [src] wont attack nearby creatures anymore."))
+		to_chat(user, SPAN_NOTICE("\The [src] won't attack nearby creatures anymore."))
 	else
 		ready_to_attack = TRUE
 		to_chat(user, SPAN_NOTICE("\The [src] is ready to attack nearby creatures."))
@@ -98,3 +107,15 @@
 
 /obj/item/implant/carrion_spider/proc/update_owner_mob()
 	owner_mob = owner_core.owner
+
+/obj/item/implant/carrion_spider/proc/toggle_group(group)
+	if(check_group(group))
+		assigned_groups = assigned_groups & ~group
+	else
+		assigned_groups = assigned_groups | group
+
+/obj/item/implant/carrion_spider/proc/check_group(group)
+	if(assigned_groups & group)
+		return TRUE
+	else
+		return FALSE

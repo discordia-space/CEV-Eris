@@ -13,7 +13,7 @@
 /turf/template_noop,
 /area/template_noop)
 "f" = (
-/obj/machinery/mining/brace,
+/obj/spawner/oddities,
 /turf/template_noop,
 /area/template_noop)
 "g" = (
@@ -25,7 +25,7 @@
 /turf/template_noop,
 /area/template_noop)
 "k" = (
-/obj/machinery/mining/drill,
+/obj/machinery/mining/deep_drill,
 /turf/template_noop,
 /area/template_noop)
 "l" = (
@@ -33,10 +33,6 @@
 /area/template_noop)
 "n" = (
 /obj/spawner/booze,
-/turf/template_noop,
-/area/template_noop)
-"s" = (
-/obj/spawner/oddities,
 /turf/template_noop,
 /area/template_noop)
 "y" = (
@@ -64,9 +60,9 @@ l
 (2,1,1) = {"
 l
 l
-f
 l
-b
+l
+l
 n
 l
 "}
@@ -83,16 +79,16 @@ O
 l
 l
 l
-s
 l
 l
+b
 l
 "}
 (5,1,1) = {"
 l
 e
 b
-l
+f
 l
 b
 l

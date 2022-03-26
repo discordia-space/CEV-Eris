@@ -170,7 +170,7 @@
 	var/datum/mind/owner
 	var/list/victims = list()
 	var/datum/antag_contract/derail/contract
-	pierce_multiplier = 2
+	pierce_multiplier = 4
 
 /obj/item/gun/energy/psychic/Initialize()
 	..()
@@ -241,7 +241,7 @@
 	force = WEAPON_FORCE_NORMAL
 	slot_flags = SLOT_BELT|SLOT_BACK
 	contractor = TRUE
-	pierce_multiplier = 2
+	pierce_multiplier = 4
 	zoom_factor = 0
 	damage_multiplier = 1
 	charge_cost = 50

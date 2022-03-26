@@ -10,15 +10,17 @@
 			{{else data.beam_state == 1}}
 				<span style="font-weight: bold;color: #336699">CAPTURING JUNK FIELD</span>
 			{{else data.beam_state == 2}}
-				<span style="font-weight: bold;color: #336699">STABILIZED</span>
+				<span style="font-weight: bold;color: #336699">STABILIZING</span>
 			{{else data.beam_state == 3}}
+				<span style="font-weight: bold;color: #336699">STABILIZED</span>
+			{{else data.beam_state == 4}}
 				<span class="bad">COOLING DOWN</span>
 			{{else}}
 				<span class="bad">ERROR</span>
 			{{/if}}
 		</div>
 		<div class="itemContent">
-		{{if data.beam_state == 3}}
+		{{if data.beam_state == 4}}
 			{{:helper.displayBar(data.bar_current, 0, data.bar_max, 'good')}}
 		{{else}}
 			{{:helper.displayBar(0, 0, data.bar_max, 'good')}}

@@ -37,6 +37,9 @@
 			tint = TINT_NONE
 			obscuration = 0
 			to_chat(usr, "You push \the [src] up out of your face.")
+		if(ishuman(usr))
+			var/mob/living/carbon/human/beingofeyes = usr
+			beingofeyes.update_equipment_vision()
 		update_wear_icon()
 		usr.update_action_buttons()
 

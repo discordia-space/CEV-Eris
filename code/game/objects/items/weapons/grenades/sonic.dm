@@ -2,6 +2,7 @@
 	name = "SG \"Loudmouth\""
 	desc = "A hailer overclocked to reproduce a noise similar to the leading roaches."
 	icon_state = "screamer"
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 2)
 
 /obj/item/grenade/sonic/prime()
 	playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)

@@ -44,8 +44,7 @@
 
 /datum/metabolism_effects/proc/adjust_nsa(value, tag)
 	if(!tag)
-		crash_with("no tag given to adjust_nsa()")
-		return
+		CRASH("no tag given to adjust_nsa()")
 	nerve_system_accumulations[tag] = value
 
 /datum/metabolism_effects/proc/remove_nsa(tag)
@@ -207,21 +206,23 @@
 			addiction_list.Remove(R)
 			continue
 
-		addiction_list[R] += 1
-		if(!parent.chem_effects[CE_PURGER])
-
+		if(!parent.chem_effects[CE_PURGER] && ishuman(parent))
+			addiction_list[R] += 1
 			switch(addiction_list[R])
-				if(1 to 10)
+				if(1 to 20)
 					R.addiction_act_stage1(parent)
-				if(10 to 20)
-					R.addiction_act_stage2(parent)
 				if(20 to 30)
-					R.addiction_act_stage3(parent)
+					R.addiction_act_stage2(parent)
 				if(30 to 40)
+					R.addiction_act_stage3(parent)
+				if(40 to 50)
 					R.addiction_act_stage4(parent)
-				if(40 to INFINITY)
-					R.addiction_end(parent)
-					addiction_list.Remove(R)
+				if(50 to INFINITY)
+					if((parent.stats.getPerk(PERK_ALCOHOLIC) && istype(R, /datum/reagent/ethanol)) || (parent.stats.getPerk(PERK_DRUG_ADDICT) && istype(R, /datum/reagent/stim)))
+						R.addiction_act_stage4(parent)
+					else
+						R.addiction_end(parent)
+						addiction_list.Remove(R)
 
 /datum/metabolism_effects/proc/clear_effects()
 	for(var/withdrawal in active_withdrawals)

@@ -12,13 +12,13 @@ There are important things regarding this file:
 //Low-caliber pistols and SMGs .35
 /obj/item/projectile/bullet/pistol
 	name = ".35 caliber bullet"
-	damage_types = list(BRUTE = 28)
+	damage_types = list(BRUTE = 26)
 	armor_penetration = 10
 	can_ricochet = TRUE
-	penetrating = 1
+	penetrating = 2
+	style_damage = 20
 
 /obj/item/projectile/bullet/pistol/hv
-	damage_types = list(BRUTE = 32)
 	armor_penetration = 20
 	step_delay = 0.75
 
@@ -41,7 +41,7 @@ There are important things regarding this file:
 	sharp = FALSE
 
 /obj/item/projectile/bullet/pistol/scrap
-	damage_types = list(BRUTE = 25)
+	damage_types = list(BRUTE = 23)
 
 //Carbines and rifles
 
@@ -49,9 +49,9 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/srifle
 	name = ".20 caliber bullet"
-	damage_types = list(BRUTE = 25)
+	damage_types = list(BRUTE = 21)
 	armor_penetration = 25
-	penetrating = 1
+	penetrating = 2
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/srifle/nomuzzle
@@ -67,8 +67,7 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/srifle/hv
-	damage_types = list(BRUTE = 30)
-	armor_penetration = 30
+	armor_penetration = 35
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/srifle/rubber
@@ -81,15 +80,15 @@ There are important things regarding this file:
 	sharp = FALSE
 
 /obj/item/projectile/bullet/srifle/scrap
-	damage_types = list(BRUTE = 22)
+	damage_types = list(BRUTE = 18)
 
 // .25 caseless rifle
 
 /obj/item/projectile/bullet/clrifle
 	name = ".25 caliber bullet"
-	damage_types = list(BRUTE = 27)
+	damage_types = list(BRUTE = 23)
 	armor_penetration = 15
-	penetrating = 1
+	penetrating = 2
 	sharp = TRUE
 	can_ricochet = FALSE //to reduce collateral damage and FF, since IH use it in their primary firearm
 
@@ -103,8 +102,7 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/clrifle/hv
-	damage_types = list(BRUTE = 32)
-	armor_penetration = 20
+	armor_penetration = 25
 	step_delay = 0.75
 	can_ricochet = TRUE
 
@@ -119,15 +117,15 @@ There are important things regarding this file:
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/clrifle/scrap
-	damage_types = list(BRUTE = 24)
+	damage_types = list(BRUTE = 20)
 
 // .30 rifle
 
 /obj/item/projectile/bullet/lrifle
 	name = ".30 caliber bullet"
-	damage_types = list(BRUTE = 28)
+	damage_types = list(BRUTE = 24)
 	armor_penetration = 20
-	penetrating = 1
+	penetrating = 2
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/lrifle/practice
@@ -140,7 +138,6 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/lrifle/hv
-	damage_types = list(BRUTE = 30)
 	armor_penetration = 30
 	step_delay = 0.75
 
@@ -154,15 +151,15 @@ There are important things regarding this file:
 	sharp = FALSE
 
 /obj/item/projectile/bullet/lrifle/scrap
-	damage_types = list(BRUTE = 25)
+	damage_types = list(BRUTE = 21)
 
 //Revolvers and high-caliber pistols .40
 /obj/item/projectile/bullet/magnum
 	name = " .40 caliber bullet"
-	damage_types = list(BRUTE = 34)
+	damage_types = list(BRUTE = 31)
 	armor_penetration = 15
 	can_ricochet = TRUE
-	penetrating = 1
+	penetrating = 2
 	style_damage = 40
 
 /obj/item/projectile/bullet/magnum/practice
@@ -175,8 +172,7 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/magnum/hv
-	damage_types = list(BRUTE = 39)
-	armor_penetration = 20
+	armor_penetration = 25
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/magnum/rubber
@@ -189,14 +185,14 @@ There are important things regarding this file:
 	sharp = FALSE
 
 /obj/item/projectile/bullet/magnum/scrap
-	damage_types = list(BRUTE = 30)
+	damage_types = list(BRUTE = 28)
 
 //Sniper rifles .60
 /obj/item/projectile/bullet/antim
 	name = ".60 caliber bullet"
-	damage_types = list(BRUTE = 70)
+	damage_types = list(BRUTE = 65)
 	armor_penetration = 50
-	penetrating = 1
+	penetrating = 2
 	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
 	style_damage = 70
 
@@ -209,15 +205,15 @@ There are important things regarding this file:
 	empulse(target, 0, 0)
 
 /obj/item/projectile/bullet/antim/uranium
-	damage_types = list(BRUTE = 65)
+	damage_types = list(BRUTE = 60)
 	armor_penetration = 100
 	irradiate = 200
 
 /obj/item/projectile/bullet/antim/breach
-	damage_types = list(BRUTE = 20)
+	damage_types = list(BRUTE = 50)
 	armor_penetration = 40
 	agony = 40
-	penetrating = 0
+	penetrating = -5
 	step_delay = 0.6
 	hitscan = FALSE
 	nocap_structures = TRUE
@@ -247,14 +243,14 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
 	icon_state = "slug"
-	damage_types = list(BRUTE = 54)
+	damage_types = list(BRUTE = 48)
 	armor_penetration = 15
 	knockback = 1
 	step_delay = 1.1
 	style_damage = 25
 
 /obj/item/projectile/bullet/shotgun/scrap
-	damage_types = list(BRUTE = 48)
+	damage_types = list(BRUTE = 42)
 
 /obj/item/projectile/bullet/shotgun/beanbag
 	name = "beanbag"
@@ -279,7 +275,7 @@ There are important things regarding this file:
 	knockback = 0
 
 /obj/item/projectile/bullet/shotgun/incendiary
-	damage_types = list(BRUTE = 45)
+	damage_types = list(BRUTE = 38)
 	knockback = 0
 
 	var/fire_stacks = 4
@@ -296,7 +292,8 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
 	icon_state = "birdshot-1"
-	damage_types = list(BRUTE = 10)
+	damage_types = list(BRUTE = 8)
+	armor_penetration = 60
 	pellets = 8
 	range_step = 1
 	spread_step = 10
@@ -307,7 +304,7 @@ There are important things regarding this file:
 	icon_state = "birdshot-[rand(1,4)]"
 
 /obj/item/projectile/bullet/pellet/shotgun/scrap
-	damage_types = list(BRUTE = 9)
+	damage_types = list(BRUTE = 7)
 
 //Miscellaneous
 /obj/item/projectile/bullet/blank
