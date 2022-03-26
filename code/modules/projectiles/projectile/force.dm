@@ -4,6 +4,7 @@
 	icon_state = "ice_1"
 	damage_types = list(BRUTE = 20)
 	check_armour = ARMOR_ENERGY
+	recoil = 20 // Newton reference
 
 /obj/item/projectile/forcebolt/strong
 	name = "force bolt"

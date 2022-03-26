@@ -44,6 +44,7 @@
 	flash_range = 1
 	brightness = 9 //similar to a flare
 	light_duration = 200
+	recoil = 8 // Shot from shotguns
 
 /obj/item/projectile/energy/electrode
 	name = "electrode"
@@ -54,12 +55,14 @@
 	agony = 40
 	damage_types = list(HALLOSS = 0)
 	//Damage will be handled on the MOB side, to prevent window shattering.
+	recoil = 2
 
 /obj/item/projectile/energy/electrode/stunshot
 	name = "stunshot"
 	damage_types = list(BURN = 5)
 	taser_effect = 1
 	agony = 80
+	recoil = 5
 
 /obj/item/projectile/energy/declone
 	name = "demolecularisor"
@@ -73,7 +76,7 @@
 	name = "dart"
 	icon_state = "toxin"
 	damage_types = list(TOX = 20)
-
+	recoil = 2
 
 /obj/item/projectile/energy/bolt
 	name = "bolt"
@@ -82,11 +85,13 @@
 	nodamage = 0
 	agony = 30
 	stutter = 10
+	recoil = 3
 
 
 /obj/item/projectile/energy/bolt/large
 	name = "largebolt"
 	damage_types = list(BURN = 25)
+	recoil = 5
 
 /obj/item/projectile/energy/neurotoxin
 	name = "neuro"
@@ -94,7 +99,7 @@
 	damage_types = list(TOX = 5)
 	weaken = 5
 
-/obj/item/projectile/energy/plasma
+/obj/item/projectile/energy/plasma // What?
 	name = "plasma bolt"
 	icon_state = "energy"
 	damage_types = list(TOX = 25)

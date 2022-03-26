@@ -6,6 +6,7 @@
 	armor_penetration = 25
 	check_armour = ARMOR_ENERGY
 	damage_types = list(BURN = 27)
+	recoil = 4 // .20 level
 
 	muzzle_type = /obj/effect/projectile/plasma/muzzle
 	impact_type = /obj/effect/projectile/plasma/impact
@@ -14,11 +15,13 @@
 	name = "light plasma bolt"
 	armor_penetration = 15
 	damage_types = list(BURN = 23)
+	recoil = 2
 
 /obj/item/projectile/plasma/heavy
 	name = "heavy plasma bolt"
 	armor_penetration = 50
 	damage_types = list(BURN = 34)
+	recoil = 6
 
 /obj/item/projectile/plasma/stun
 	name = "stun plasma bolt"
@@ -29,6 +32,7 @@
 
 /obj/item/projectile/plasma/stun/heavy
 	damage_types = list(HALLOSS = 30, BURN = 42)
+	recoil = 6
 
 /obj/item/projectile/plasma/aoe
 	name = "default plasma aoe"
@@ -55,6 +59,7 @@
 	icon_state = "ion"
 	armor_penetration = 0
 	damage_types = list(BURN = 23)
+	recoil = 8
 
 	aoe_strong = 1
 	aoe_weak = 1
@@ -67,6 +72,7 @@
 	name = "light ion-plasma bolt"
 	armor_penetration = 0
 	damage_types = list(BURN = 19)
+	recoil = 6
 
 	aoe_strong = 0
 	aoe_weak = 1
@@ -79,6 +85,7 @@
 	name = "high-temperature plasma blast"
 	armor_penetration = 50
 	damage_types = list(BURN = 19)
+	recoil = 12
 
 	aoe_strong = 1
 	aoe_weak = 1
@@ -91,6 +98,7 @@
 	name = "high-temperature plasma blast"
 	armor_penetration = 25
 	damage_types = list(BURN = 27)
+	recoil = 18
 
 	aoe_strong = 1
 	aoe_weak = 2

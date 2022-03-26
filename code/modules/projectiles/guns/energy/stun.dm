@@ -11,6 +11,7 @@
 	projectile_type = /obj/item/projectile/beam/stun
 	wield_delay = 0.3 SECOND
 	wield_delay_factor = 0.2 // 20 vig
+	recoil = HANDGUN_RECOIL
 
 /obj/item/gun/energy/taser/mounted
 	name = "mounted taser gun"
@@ -39,6 +40,7 @@
 	suitable_cell = /obj/item/cell/small
 	cell_type = /obj/item/cell/small
 	projectile_type = /obj/item/projectile/energy/electrode
+	recoil = HANDGUN_RECOIL
 
 /obj/item/gun/energy/stunrevolver/moebius
 	name = "Moebius SP \"Suez\""	//Ersatz name 

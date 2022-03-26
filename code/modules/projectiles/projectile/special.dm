@@ -4,6 +4,7 @@
 	damage_types = list(BURN = 0)
 	nodamage = TRUE
 	check_armour = ARMOR_ENERGY
+	recoil = 5
 
 /obj/item/projectile/ion/on_hit(atom/target)
 	empulse(target, 1, 1)

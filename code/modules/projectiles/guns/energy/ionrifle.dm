@@ -17,6 +17,7 @@
 	projectile_type = /obj/item/projectile/ion
 	one_hand_penalty = 5
 	twohanded = TRUE
+	recoil = LMG_RECOIL
 
 /obj/item/gun/energy/ionrifle/emp_act(severity)
 	..(max(severity, 2)) //so it doesn't EMP itself, I guess
