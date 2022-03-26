@@ -93,7 +93,7 @@
 					qdel(src)
 	return
 
-/obj/item/pen/crayon/attack(mob/living/carbon/M as mob, mob/user as mob, var/modifier = 1)
+/obj/item/pen/crayon/attack(mob/living/carbon/M as mob, mob/user as mob, modifier = 1)
 	if(istype(M) && M == user)
 		to_chat(M, "You take a bite of the crayon and swallow it.")
 		M.adjustNutrition(1)
