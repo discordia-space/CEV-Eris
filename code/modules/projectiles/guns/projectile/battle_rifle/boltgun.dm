@@ -176,6 +176,7 @@
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	damage_multiplier = 1.2
+	penetration_multiplier = 1.3
 	recoil_buildup = 9 // joonk gun
 	max_shells = 5
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
