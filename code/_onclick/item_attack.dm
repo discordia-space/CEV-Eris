@@ -106,13 +106,13 @@ avoid code duplication. This includes items that may sometimes act as a standard
 						src.tileattack(user, C, modifier = 0.8)
 						src.tileattack(user, R, modifier = 0.6)
 						del S
+						qdel(S)
 						return
 					else if(holdinghand == slot_r_hand)
 						flick("right_swing", S)
 						src.tileattack(user, R, modifier = 1)
 						src.tileattack(user, C, modifier = 0.8)
 						src.tileattack(user, L, modifier = 0.6)
-						del S
 						return
 	return A.attackby(src, user, params)
 
