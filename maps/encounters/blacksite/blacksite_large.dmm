@@ -54,6 +54,11 @@
 	icon_state = "4,5"
 	},
 /area/space)
+"aX" = (
+/obj/structure/table/onestar,
+/obj/item/reagent_containers/spray/sterilizine,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "aZ" = (
 /turf/simulated/shuttle/floor/science{
 	icon_state = "11,4"
@@ -253,6 +258,11 @@
 	icon_state = "2,3"
 	},
 /area/space)
+"eB" = (
+/obj/structure/table/onestar,
+/obj/item/tool/medmultitool,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "eI" = (
 /obj/machinery/light/small,
 /turf/simulated/shuttle/floor/science{
@@ -269,6 +279,12 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "10,1"
 	},
+/area/space)
+"eQ" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "eV" = (
 /obj/structure/shuttle_part/science{
@@ -618,6 +634,12 @@
 	},
 /turf/space,
 /area/space)
+"of" = (
+/obj/structure/salvageable/os/console{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "ok" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -868,6 +890,10 @@
 	icon_state = "13,7"
 	},
 /area/space)
+"sh" = (
+/obj/machinery/vending/wallmed,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "sk" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "9,21"
@@ -975,6 +1001,12 @@
 	},
 /turf/space,
 /area/space)
+"vp" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "vt" = (
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/tiled/dark/brown_perforated,
@@ -1030,8 +1062,8 @@
 /turf/space,
 /area/space)
 "wl" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/obj/structure/salvageable/os/data,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "wS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -1050,6 +1082,10 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"xi" = (
+/obj/machinery/porta_turret/excelsior,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "xF" = (
 /turf/simulated/shuttle/wall/science{
@@ -1084,6 +1120,15 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "14,2"
 	},
+/area/space)
+"yz" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 8
+	},
+/obj/structure/sign/faction/one_star{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "yE" = (
 /turf/simulated/shuttle/wall/science{
@@ -1192,6 +1237,12 @@
 	icon_state = "9,20"
 	},
 /turf/space,
+/area/space)
+"AX" = (
+/obj/structure/salvageable/os/implant_container{
+	name = "implant container"
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Bd" = (
 /turf/simulated/shuttle/wall/science{
@@ -1322,6 +1373,10 @@
 	icon_state = "4,6"
 	},
 /area/space)
+"Fb" = (
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "Fc" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "6,19"
@@ -1378,15 +1433,6 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "10,8"
 	},
-/area/space)
-"Hj" = (
-/obj/structure/bed/chair/custom/onestar{
-	dir = 8
-	},
-/obj/structure/sign/faction/one_star{
-	pixel_x = 32
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Hn" = (
 /obj/structure/shuttle_part/science{
@@ -1468,6 +1514,12 @@
 	icon_state = "3,1"
 	},
 /area/space)
+"JF" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "JJ" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "4,14"
@@ -1483,12 +1535,6 @@
 	icon_state = "13,0"
 	},
 /turf/space,
-/area/space)
-"Kv" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Kw" = (
 /obj/structure/shuttle_part/science{
@@ -1619,6 +1665,12 @@
 	icon_state = "5,7"
 	},
 /area/space)
+"PD" = (
+/obj/structure/salvageable/os/implant_container{
+	name = "implant container"
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "PK" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -1690,6 +1742,15 @@
 	icon_state = "7,3"
 	},
 /area/space)
+"RM" = (
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"RU" = (
+/obj/structure/sign/faction/one_star{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "Sa" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
@@ -1738,9 +1799,6 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "7,2"
 	},
-/area/space)
-"SS" = (
-/turf/simulated/floor/tiled/derelict,
 /area/space)
 "Ti" = (
 /obj/structure/table/onestar,
@@ -1797,6 +1855,10 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "11,15"
 	},
+/area/space)
+"Vy" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "VF" = (
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -1915,12 +1977,6 @@
 	icon_state = "14,6"
 	},
 /area/space)
-"Yo" = (
-/obj/structure/bed/chair/custom/onestar{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
 "YH" = (
 /obj/structure/bed/chair/custom/onestar/red,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
@@ -1967,11 +2023,11 @@
 	icon_state = "9,1"
 	},
 /area/space)
-"ZS" = (
+"ZX" = (
 /obj/structure/bed/chair/custom/onestar{
-	dir = 8
+	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 
 (1,1,1) = {"
@@ -9405,14 +9461,14 @@ cb
 cb
 cb
 cb
-Zi
-yI
-Zi
-Zi
-Zi
-Zi
-Zi
-Zi
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -9627,13 +9683,13 @@ cb
 cb
 cb
 cb
+cb
+cb
 Zi
-yI
 Zi
-yI
-yI
-yI
-yI
+Zi
+Zi
+Zi
 Zi
 cb
 cb
@@ -9850,12 +9906,12 @@ cb
 cb
 cb
 Zi
-yI
 Zi
+Zi
+sh
 yI
-yI
-yI
-yI
+RU
+xi
 Zi
 cb
 cb
@@ -10073,7 +10129,7 @@ cb
 cb
 Zi
 yI
-Zi
+zS
 yI
 yI
 yI
@@ -10288,18 +10344,18 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+Zi
+Zi
+Zi
+Zi
+Zi
 Zi
 yI
-zS
+Zi
 yI
 yI
-yI
-yI
+eB
+AX
 Zi
 cb
 cb
@@ -10510,18 +10566,18 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+Zi
+xL
+wl
+PD
+PD
 Zi
 yI
 Zi
-yI
-yI
-yI
-yI
+of
+Fb
+aX
+Zi
 Zi
 cb
 cb
@@ -10732,19 +10788,19 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-zS
+Zi
+xL
+xL
+xL
+xL
+eQ
 yI
 Zi
-wl
-wl
-wl
+Vy
+Vy
+Vy
 Zi
-Zi
+cb
 cb
 cb
 cb
@@ -10954,11 +11010,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+Zi
+xL
+xL
+xL
+xL
 Zi
 yI
 zS
@@ -11176,17 +11232,17 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+Zi
+xL
+xL
+xL
+xL
 Zi
 yI
 Zi
-ZS
-Hj
-ZS
+JF
+yz
+JF
 Zi
 cb
 cb
@@ -11398,11 +11454,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+Zi
+Zi
+Zi
+Zi
+Zi
 Zi
 zS
 Zi
@@ -11851,7 +11907,7 @@ Zi
 yI
 Zi
 ES
-Yo
+ZX
 ke
 Zi
 cb
@@ -12293,7 +12349,7 @@ cb
 Zi
 YH
 yI
-yI
+sh
 yI
 yI
 Ip
@@ -12762,7 +12818,7 @@ kd
 gV
 dR
 ii
-BJ
+vp
 dR
 gV
 kd
@@ -13848,7 +13904,7 @@ Zi
 Zi
 Zi
 yI
-Kv
+vp
 Zi
 Zi
 Zi
@@ -16737,8 +16793,8 @@ aa
 yI
 yI
 aa
-SS
-SS
+RM
+RM
 aa
 xL
 xL
@@ -16959,8 +17015,8 @@ aa
 yI
 yI
 aa
-SS
-SS
+RM
+RM
 aa
 xL
 xL
