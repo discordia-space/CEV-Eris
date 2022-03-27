@@ -31,6 +31,7 @@ SUBSYSTEM_DEF(mapping)
 			testing("Overmap already exist in GLOB.maps_data for [GLOB.maps_data.overmap_z].")
 	else
 		testing("Overmap generation disabled in config.")
+	build_pulsar()
 
 //	world.max_z_changed() // This is to set up the player z-level list, maxz hasn't actually changed (probably)
 	maploader = new()
@@ -67,6 +68,48 @@ SUBSYSTEM_DEF(mapping)
 	ghostteleportlocs = sortAssoc(ghostteleportlocs)
 
 	return ..()
+
+/datum/controller/subsystem/mapping/proc/build_pulsar()
+	world.incrementMaxZ()
+	GLOB.maps_data.pulsar_z = world.maxz
+	add_z_level(GLOB.maps_data.pulsar_z, GLOB.maps_data.pulsar_z, 1)
+	message_admins(GLOB.maps_data.pulsar_z)
+	var/list/turfs = list()
+	for (var/square in block(locate(1,1,GLOB.maps_data.pulsar_z), locate(GLOB.maps_data.pulsar_size, GLOB.maps_data.pulsar_size, GLOB.maps_data.pulsar_z)))
+		// Switch to space turf with green grid overlay
+		var/turf/space/T = square
+		T.name = "[T.x]-[T.y]"
+		T.icon_state = "grid"
+		T.update_starlight()
+		turfs += T
+		CHECK_TICK
+
+	var/area/pulsar/A = new
+	A.contents.Add(turfs)
+
+	for (var/i = 1 to GLOB.maps_data.pulsar_size)
+		var/turf/beam_loc = locate(i, i, GLOB.maps_data.pulsar_z)
+		new /obj/effect/pulsar_beam(beam_loc)
+
+		var/turf/beam_right = locate(i + 1, i, GLOB.maps_data.pulsar_z)
+		new /obj/effect/pulsar_beam/ur(beam_right)
+
+		var/turf/beam_left = locate(i - 1, i, GLOB.maps_data.pulsar_z)
+		new /obj/effect/pulsar_beam/dl(beam_left)
+
+	var/turf/satellite_loc = locate(round((GLOB.maps_data.pulsar_size)/2 + (GLOB.maps_data.pulsar_size)/4),round((GLOB.maps_data.pulsar_size)/2 - (GLOB.maps_data.pulsar_size)/4),GLOB.maps_data.pulsar_z)
+	var/turf/shadow_loc = locate(round((GLOB.maps_data.pulsar_size)/2 - (GLOB.maps_data.pulsar_size)/4), round((GLOB.maps_data.pulsar_size)/2 + (GLOB.maps_data.pulsar_size)/4), GLOB.maps_data.pulsar_z)
+
+	var/obj/effect/pulsar_ship/ship = new /obj/effect/pulsar_ship(satellite_loc)
+	var/newshadow = new /obj/effect/pulsar_ship/shadow(shadow_loc)
+	ship.shadow = newshadow
+
+	if (!GLOB.maps_data.pulsar_star)
+		var/turf/T = locate(round((GLOB.maps_data.pulsar_size - 1)/2),round((GLOB.maps_data.pulsar_size - 1)/2),GLOB.maps_data.pulsar_z)
+		GLOB.maps_data.pulsar_star = new /obj/effect/pulsar(T)
+
+	GLOB.maps_data.sealed_levels |= GLOB.maps_data.pulsar_z
+
 
 /datum/controller/subsystem/mapping/proc/build_overmap()
 	testing("Building overmap...")

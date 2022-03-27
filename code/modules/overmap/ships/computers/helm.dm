@@ -67,6 +67,7 @@
 			user.reset_view(user.eyeobj)
 		return 0
 	if (!manual_control || (!get_dist(user, src) > 1) || user.blinded || !linked )
+		user.unset_machine()
 		return -1
 	return 0
 
