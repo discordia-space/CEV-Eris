@@ -82,7 +82,7 @@
 /obj/item/mech_equipment/mounted_system/taser/plasma
 	name = "mounted plasma cutter"
 	desc = "An industrial plasma cutter mounted onto the chassis of the mech. "
-	icon_state = "railauto" //TODO: Make a new sprite that doesn't get sec called on you.
+	icon_state = "mech_plasma" //TODO: Make a new sprite that doesn't get sec called on you.
 	holding_type = /obj/item/gun/energy/plasmacutter/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_PLASMA = 4, TECH_ENGINEERING = 6, TECH_COMBAT = 3)
