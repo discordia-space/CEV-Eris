@@ -10,15 +10,15 @@
 	base_income = 1600
 	wealth = 0
 	hidden_inv_threshold = 2000
-	recommendation_threshold = 4000
-	stations_recommended = list("oddities", "anomalies")
+	recommendation_threshold = 0
+	//stations_recommended = list("oddities")
 	recommendations_needed = 1
 	inventory = list(
 		"Design Disks" = list(
-			/obj/item/computer_hardware/hard_drive/portable/design/components = custom_good_name("Technomancers ARK-034 Components"),
-			/obj/item/computer_hardware/hard_drive/portable/design/adv_tools = custom_good_name("Technomancers IJIRO-451 Advanced Tools"),
-			/obj/item/computer_hardware/hard_drive/portable/design/circuits = custom_good_name("Technomancers ESPO-830 Circuits"),
-			/obj/item/computer_hardware/hard_drive/portable/design/conveyors = custom_good_name("Technomancers LAT-018 Logistics")
+			/obj/item/computer_hardware/hard_drive/portable/design/components = good_data("Technomancers ARK-034 Components", list(5, 10), 400),
+			/obj/item/computer_hardware/hard_drive/portable/design/adv_tools = good_data("Technomancers IJIRO-451 Advanced Tools", list(5, 10), 1500),
+			/obj/item/computer_hardware/hard_drive/portable/design/circuits = good_data("Technomancers ESPO-830 Circuits", list(5, 10), 400),
+			/obj/item/computer_hardware/hard_drive/portable/design/conveyors = good_data("Technomancers LAT-018 Logistics", list(5, 10), 300)
 		),
 		"Reinforcement Mods" = list(
 			/obj/item/tool_upgrade/reinforcement/stick = custom_good_amount_range(list(1, 5)),
@@ -64,12 +64,12 @@
 		),
 	)
 	offer_types = list(
-		/obj/item/oddity/techno = offer_data("unknown technological part", 1600, 2),
-		/obj/item/tool/crowbar/onestar = offer_data("onestar crowbar", 3000, 3),
-		/obj/item/tool/pickaxe/onestar = offer_data("onestar pickaxe", 3000, 3),
-		/obj/item/tool/pickaxe/jackhammer/onestar = offer_data("onestar jackhammer", 3000, 3),
-		/obj/item/tool/screwdriver/combi_driver/onestar = offer_data("onestar combi driver", 4000, 3),
-		/obj/item/tool/weldingtool/onestar  = offer_data("onestar welding tool", 4000, 3),
-		/obj/item/tool_upgrade/augment/repair_nano = offer_data("repair nano", 10000, 1),
-		/obj/item/organ/external/robotic/one_star = offer_data("onestar external prosthetic", 3600, 4)			// base price: 900
+		/obj/item/oddity/techno = offer_data("unknown technological part", 3200, 2),
+		/obj/item/tool/crowbar/onestar = offer_data("onestar crowbar", 5000, 3),
+		/obj/item/tool/pickaxe/onestar = offer_data("onestar pickaxe", 5000, 3),
+		/obj/item/tool/pickaxe/jackhammer/onestar = offer_data("onestar jackhammer", 5000, 3),
+		/obj/item/tool/screwdriver/combi_driver/onestar = offer_data("onestar combi driver", 6500, 3),
+		/obj/item/tool/weldingtool/onestar  = offer_data("onestar welding tool", 6500, 3),
+		/obj/item/tool_upgrade/augment/repair_nano = offer_data("repair nano", 13000, 1),
+		/obj/item/organ/external/robotic/one_star = offer_data("onestar external prosthetic", 5000, 4)
 	)

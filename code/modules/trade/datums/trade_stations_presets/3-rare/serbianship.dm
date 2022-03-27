@@ -28,15 +28,36 @@
 			/obj/item/ammo_magazine/ammobox/shotgun,
 			/obj/item/ammo_magazine/ammobox/shotgun/buckshot = custom_good_name("ammunition box (.50 pellet)"),
 			/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells = custom_good_name("ammunition box (.50 incendiary)")
+		),
+		"Serbian Attire" = list(
+			/obj/item/clothing/under/serbiansuit,
+			/obj/item/clothing/under/serbiansuit/brown,
+			/obj/item/clothing/under/serbiansuit/black,
+			/obj/item/clothing/head/soft/green2soft,
+			/obj/item/clothing/head/soft/tan2soft,
+			/obj/item/clothing/suit/armor/flak/green,
+			/obj/item/clothing/suit/armor/flak,
+			/obj/item/clothing/suit/armor/platecarrier/green,
+			/obj/item/clothing/suit/armor/platecarrier/tan,
+			/obj/item/clothing/suit/armor/platecarrier,
+			/obj/item/clothing/head/armor/steelpot,
+			/obj/item/clothing/head/armor/faceshield/altyn/maska,
+			/obj/item/clothing/head/armor/faceshield/altyn/brown,
+			/obj/item/clothing/head/armor/faceshield/altyn/black,
+			/obj/item/clothing/mask/balaclava/tactical,
+			/obj/item/clothing/shoes/jackboots,
+			/obj/item/clothing/gloves/fingerless,
+			/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat_brown,
+			/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat
 		)
 	)
 	hidden_inventory = list(
 		"Guns II" = list(
 			/obj/item/gun/projectile/automatic/lmg/pk = custom_good_amount_range(list(1, 1)),
 			/obj/item/gun/projectile/shotgun/bojevic = custom_good_amount_range(list(1, 1)),
-			/obj/item/computer_hardware/hard_drive/portable/design/guns/sa_boltgun = good_data("Novakovic design disk", list(1, 1)),
-			/obj/item/computer_hardware/hard_drive/portable/design/guns/sa_ak = good_data("Krinkov design disk", list(1, 1)),
-			/obj/item/computer_hardware/hard_drive/portable/design/guns/sa_br = good_data("Kovacs design disk", list(1, 1))
+			/obj/item/computer_hardware/hard_drive/portable/design/guns/sa_boltgun = good_data("Novakovic design disk", list(1, 1), null),
+			/obj/item/computer_hardware/hard_drive/portable/design/guns/sa_ak = good_data("Krinkov design disk", list(1, 1), null),
+			/obj/item/computer_hardware/hard_drive/portable/design/guns/sa_br = good_data("Kovacs design disk", list(1, 1), null)
 		)
 	)
 	offer_types = list(

@@ -16,7 +16,7 @@
 	wealth = 0
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
-	stations_recommended = list("fs_guns", "fs_ammo")
+	stations_recommended = list("fs_guns", "fs_ammo", "style")
 	inventory = list(
 		"Enforce Equipment" = list(
 			/obj/item/handcuffs,
@@ -27,20 +27,20 @@
 		),
 		"Energy weapons" = list(
 			/obj/item/gun/energy/gun/martin,
-			/obj/item/gun/energy/laser
+			/obj/item/gun/energy/retro
 		),
 		"Ballistic weapons" = list(
 			/obj/item/gun/projectile/paco,
 			/obj/item/gun/projectile/selfload,
 			/obj/item/gun/projectile/olivaw,
 			/obj/item/gun/projectile/revolver/havelock,
-			/obj/item/gun/projectile/revolver/consul,
-			/obj/item/gun/projectile/automatic/ak47/fs/ih,
+			/obj/item/gun/projectile/automatic/ak47/fs,
 			/obj/item/gun/projectile/automatic/atreides,
-			/obj/item/gun/projectile/shotgun/pump,
-			/obj/item/gun/projectile/shotgun/pump/gladstone
+			/obj/item/gun/projectile/shotgun/pump
 		),
 		"Ammunition" = list(
+			/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo = good_data("Frozen Star Nonlethal Magazines Pack", list(1, 10), 500),
+			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = good_data("Frozen Star Lethal Magazines Pack", list(1, 10), 1000),
 			/obj/item/grenade/empgrenade/low_yield,
 			/obj/item/grenade/smokebomb,
 			/obj/item/grenade/flashbang,
@@ -55,14 +55,14 @@
 		),
 		"Armor" = list(
 			/obj/item/clothing/suit/armor/heavy/riot,
-			/obj/item/clothing/head/armor/riot_hud,
-			/obj/item/clothing/suit/armor/vest,
+			/obj/item/clothing/head/armor/faceshield/riot,
 			/obj/item/clothing/suit/armor/vest/security,
+			/obj/item/clothing/suit/armor/vest/full/security,
 			/obj/item/clothing/head/armor/helmet,
 			/obj/item/clothing/suit/armor/bulletproof,
-			/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg,
-			/obj/item/clothing/suit/armor/laserproof/full,
-			/obj/item/clothing/head/armor/laserproof
+			/obj/item/clothing/suit/armor/bulletproof/full,
+			/obj/item/clothing/head/armor/laserproof,
+			/obj/item/clothing/suit/armor/laserproof/full
 		)
 	)
 	hidden_inventory = list(

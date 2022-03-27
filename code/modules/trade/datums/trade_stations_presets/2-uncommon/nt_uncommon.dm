@@ -6,7 +6,9 @@
 	uid = "nt_uncommon"
 	start_discovered = FALSE
 	spawn_always = TRUE
-	markup = UNCOMMON_GOODS		// Dept-specific stuff should be more expensive for guild
+	markup = COMMON_GOODS
+	base_income = 1600
+	wealth = 0
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	recommendations_needed = 1
@@ -14,13 +16,12 @@
 		"Energy Weapons" = list(
 			/obj/item/gun/energy/taser,
 			/obj/item/gun/energy/nt_svalinn,
-			/obj/item/gun/energy/laser = custom_good_amount_range(list(1, 5))
+			/obj/item/gun/energy/laser = custom_good_amount_range(list(1, 3))
 		),
 		"Ballistic Weapons" = list(
 			/obj/item/gun/projectile/mk58,
 			/obj/item/gun/projectile/mk58/wood,
 			/obj/item/gun/projectile/shotgun/pump/regulator,
-			/obj/item/gun/projectile/shotgun/pump/grenade
 		),
 		"Melee Weapons" = list(
 			/obj/item/tool_upgrade/augment/sanctifier,
@@ -49,5 +50,5 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/oddity/nt/seal = offer_data("High Inquisitor's Seal", 1600, 2)
+		/obj/item/oddity/nt/seal = offer_data("High Inquisitor's Seal", 3200, 2)
 	)

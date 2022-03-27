@@ -10,7 +10,9 @@
 			/obj/item/electronics/circuitboard/teleporter,
 			/obj/item/tool/knife/dagger/bluespace,
 			/obj/item/reagent_containers/glass/beaker/bluespace,
-			/obj/item/electronics/circuitboard/bssilk_hub
+			/obj/item/electronics/circuitboard/bssilk_hub,
+			/obj/item/electronics/circuitboard/bssilk_cons,
+			/obj/item/bluespace_crystal = custom_good_price(1000)
 		)
 	)
 	offer_types = list(

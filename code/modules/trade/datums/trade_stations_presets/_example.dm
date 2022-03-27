@@ -29,7 +29,7 @@
 	// Notes: Duplicate items in the same category will cause runtimes
 	//		  Items without a price_tag variable are priced at 100 before markup/markdown
 	//		  /obj/... is the only type supported
-	assortiment = list(
+	inventory = list(
 		"Category Name"  = list(
 			/obj/item/cell/large = custom_good_name("Item name"),
 			/obj/item/cell/medium = custom_good_amount_range(list(0,3)),
@@ -41,7 +41,7 @@
 	)
 
 	// Hidden types of items sold by the station. Unlocked when the threshold is reached.
-	// This follows the same rules as assortiments and gets appended to the assortiment list when the secret inv threshold is reached
+	// This follows the same rules as inventorys and gets appended to the inventory list when the secret inv threshold is reached
 	hidden_inventory = list(
 		"Category Name II" = list(
 			/obj/item/organ/internal/kidney = good_data("kidney", list(1,3))

@@ -15,14 +15,12 @@
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("casino")
-	assortiment = list(
+	inventory = list(
 		"Disk Designs" = list(
-			/obj/item/computer_hardware/hard_drive/portable/design/tools = good_data("Asters Basic Tool Pack", list(1, 10)),
-			/obj/item/computer_hardware/hard_drive/portable/design/misc = good_data("Asters Miscellaneous Pack", list(1, 10)),
-			/obj/item/computer_hardware/hard_drive/portable/design/robustcells = good_data("Asters Robustcells", list(1, 10)),
-			/obj/item/computer_hardware/hard_drive/portable/design/devices = good_data("Asters Devices and Instruments", list(1, 10)),
-			/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo = good_data("Frozen Star Nonlethal Magazines Pack", list(1, 10)),
-			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = good_data("Frozen Star Lethal Magazines Pack", list(1, 10))
+			/obj/item/computer_hardware/hard_drive/portable/design/tools = good_data("Asters Basic Tool Pack", list(1, 10), 200),
+			/obj/item/computer_hardware/hard_drive/portable/design/misc = good_data("Asters Miscellaneous Pack", list(1, 10), 200),
+			/obj/item/computer_hardware/hard_drive/portable/design/robustcells = good_data("Asters Robustcells", list(1, 10), 200),
+			/obj/item/computer_hardware/hard_drive/portable/design/devices = good_data("Asters Devices and Instruments", list(1, 10), 200)
 		),
 		"Tools and Equipment" = list(
 			/obj/item/clothing/suit/storage/hazardvest,
@@ -32,7 +30,7 @@
 			/obj/item/storage/belt/utility,
 			/obj/item/device/lighting/toggleable/flashlight,
 			/obj/item/device/lighting/toggleable/flashlight/heavy,
-			/obj/item/tool/omnitool = good_data("Asters \"Munchkin 5000\"", list(1, 3)),
+			/obj/item/tool/omnitool = good_data("Asters \"Munchkin 5000\"", list(1, 3), null),
 			/obj/item/tool/crowbar,
 			/obj/item/tool/screwdriver,
 			/obj/item/tool/shovel,
@@ -52,8 +50,13 @@
 			/obj/item/cell/large/high,
 			/obj/item/cell/large/super
 		),
+		"Mining Gear" = list(
+			/obj/machinery/mining/deep_drill,
+			/obj/item/tool/pickaxe,
+			/obj/item/tool/pickaxe/excavation
+		),
 		"Toys" = list(
-			/obj/item/toy/balloon = good_data("Water Balloon", list(1, 50)),
+			/obj/item/toy/balloon = good_data("Water Balloon", list(1, 50), null),
 			/obj/item/toy/blink,
 			/obj/item/toy/crossbow,
 			/obj/item/toy/ammo/crossbow,
@@ -78,6 +81,29 @@
 			/obj/item/ammo_magazine/ammobox/pistol,
 			/obj/item/ammo_magazine/ammobox/pistol/rubber
 		),
+		"Bags" = list(
+			/obj/item/storage/backpack/satchel,
+			/obj/item/storage/backpack/satchel/white,
+			/obj/item/storage/backpack/satchel/purple,
+			/obj/item/storage/backpack/satchel/blue,
+			/obj/item/storage/backpack/satchel/green,
+			/obj/item/storage/backpack/satchel/orange,
+			/obj/item/storage/backpack/satchel/leather,
+			/obj/item/storage/backpack,
+			/obj/item/storage/backpack/white,
+			/obj/item/storage/backpack/purple,
+			/obj/item/storage/backpack/blue,
+			/obj/item/storage/backpack/green,
+			/obj/item/storage/backpack/orange,
+			/obj/item/storage/backpack/sport,
+			/obj/item/storage/backpack/sport/white,
+			/obj/item/storage/backpack/sport/purple,
+			/obj/item/storage/backpack/sport/blue,
+			/obj/item/storage/backpack/sport/green,
+			/obj/item/storage/backpack/sport/orange,
+			/obj/item/storage/backpack/duffelbag,
+			/obj/item/storage/backpack/duffelbag/loot
+		),
 		"Miscellanous" = list(
 			/obj/item/device/camera,
 			/obj/item/device/camera_film,
@@ -85,16 +111,16 @@
 			/obj/item/storage/photo_album,
 			/obj/item/wrapping_paper,
 			/obj/item/packageWrap,
-			/obj/item/reagent_containers/glass/paint/red = good_data("Red Paint", list(1, 10)),
-			/obj/item/reagent_containers/glass/paint/green = good_data("Green Paint", list(1, 10)),
-			/obj/item/reagent_containers/glass/paint/blue = good_data("Blue Paint", list(1, 10)),
-			/obj/item/reagent_containers/glass/paint/yellow = good_data("Yellow Paint", list(1, 10)),
-			/obj/item/reagent_containers/glass/paint/purple = good_data("Purple Paint", list(1, 10)),
-			/obj/item/reagent_containers/glass/paint/black = good_data("Black Paint", list(1, 10)),
-			/obj/item/reagent_containers/glass/paint/white = good_data("White Paint", list(1, 10)),
-			/obj/item/storage/lunchbox = good_data("Lunchbox", list(1, 10)),
-			/obj/item/storage/lunchbox/rainbow = good_data("Rainbow Lunchbox", list(1, 10)),
-			/obj/item/storage/lunchbox/cat = good_data("Cat Lunchbox", list(1, 10)),
+			/obj/item/reagent_containers/glass/paint/red = good_data("Red Paint", list(1, 10), null),
+			/obj/item/reagent_containers/glass/paint/green = good_data("Green Paint", list(1, 10), null),
+			/obj/item/reagent_containers/glass/paint/blue = good_data("Blue Paint", list(1, 10), null),
+			/obj/item/reagent_containers/glass/paint/yellow = good_data("Yellow Paint", list(1, 10), null),
+			/obj/item/reagent_containers/glass/paint/purple = good_data("Purple Paint", list(1, 10), null),
+			/obj/item/reagent_containers/glass/paint/black = good_data("Black Paint", list(1, 10), null),
+			/obj/item/reagent_containers/glass/paint/white = good_data("White Paint", list(1, 10), null),
+			/obj/item/storage/lunchbox = good_data("Lunchbox", list(1, 10), null),
+			/obj/item/storage/lunchbox/rainbow = good_data("Rainbow Lunchbox", list(1, 10), null),
+			/obj/item/storage/lunchbox/cat = good_data("Cat Lunchbox", list(1, 10), null),
 		)
 	)
 	hidden_inventory = list(
@@ -137,10 +163,10 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/mech_component = offer_data("mech component", 150, 10),															// base price: 150
-		/obj/item/mech_equipment = offer_data("mech equipment", 200, 10),															// base price: 200
-		/obj/item/robot_parts/robot_component/armour/exosuit/plain = offer_data("exosuit armor plating", 300, 8),					// base price: 300
-		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = offer_data("rad-proof exosuit armor plating", 500, 8),		// base price: 500
-		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 550, 8),		// base price: 550
-		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 1000, 8)			// base price: 1000
+		/obj/item/mech_component = offer_data("mech component", 120, 4),															// base price: 150
+		/obj/item/mech_equipment = offer_data("mech equipment", 160, 4),															// base price: 200
+		/obj/item/robot_parts/robot_component/armour/exosuit/plain = offer_data("exosuit armor plating", 240, 4),					// base price: 300
+		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = offer_data("rad-proof exosuit armor plating", 400, 4),		// base price: 500
+		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 440, 4),		// base price: 550
+		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 800, 4)			// base price: 1000
 	)

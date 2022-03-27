@@ -369,32 +369,28 @@
 
 // TRADE
 
-// Gambling - markup = 10
+// Gambling
 /obj/item/storage/deferred/disks
 	name = "autolathe disk box"
 	desc = "A small collection of autolathe disks"
 	initial_contents = list(/obj/spawner/lathe_disk = 7)
-	price_tag = 300
 
 /obj/item/storage/deferred/gun_parts
 	name = "gun part box"
 	desc = "Uppers, lowers, and everything in between"
 	initial_contents = list(/obj/spawner/gun_parts = 7)
-	price_tag = 300
 
 /obj/item/storage/deferred/powercells
 	name = "powercell box"
 	desc = "A small collection of powercells"
 	initial_contents = list(/obj/spawner/powercell = 7)
-	price_tag = 200
 
 /obj/item/storage/deferred/electronics
 	name = "circuit board box"
 	desc = "A small collection of circuit boards"
 	initial_contents = list(/obj/spawner/electronics = 7)
-	price_tag = 500
 
-// Kitchen supply - markup = 1.2
+// Kitchen supply
 /obj/item/storage/deferred/kitchen
 	name = "galley supply box"
 	desc = "A small collection of kitchen essentials"
@@ -406,18 +402,15 @@
 		/obj/item/reagent_containers/food/condiment/saltshaker = 1,
 		/obj/item/reagent_containers/food/condiment/peppermill = 1
 	)
-	price_tag = 50
 
-// MoeSci supply - markup = 3.6
+// MoeSci supply
 /obj/item/storage/deferred/slime
 	name = "slime supply box"
 	desc = "A slime startup kit"
 	initial_contents = list(
 		/obj/item/slime_extract/grey = 4,
 		/obj/item/extinguisher = 1,
-		/obj/item/storage/box/monkeycubes = 1
 	)
-	price_tag = 200
 
 /obj/item/storage/deferred/xenobotany
 	name = "xenobotany supply box"
@@ -425,7 +418,6 @@
 	initial_contents = list(
 		/obj/item/seeds/random = 7
 	)
-	price_tag = 200
 
 /obj/item/storage/deferred/rnd
 	name = "research box"
@@ -433,13 +425,13 @@
 	initial_contents = list(
 		/obj/item/computer_hardware/hard_drive/portable/research_points = 1
 	)
-	price_tag = 500
 
-// Trapper - markup = 4.8
+// Trapper
 /obj/item/storage/deferred/roacheggs
 	name = "roach egg box"
 	desc = "A carton for eggs of the roach variety"
+	icon = 'icons/obj/food.dmi'
+	icon_state = "eggbox"
 	initial_contents = list(
 		/obj/item/roach_egg = 12
 	)
-	price_tag = 100

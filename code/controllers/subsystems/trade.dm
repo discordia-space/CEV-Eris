@@ -17,7 +17,7 @@ SUBSYSTEM_DEF(trade)
 	//	list(
 	//		"station name" = list(
 	//			"category name" = list(
-	//				item path = list(name, quantity)
+	//				item path
 	//			)
 	//		)
 	//	)
@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(trade)
 	var/list/master_offer_list = list()
 	//	list(
 	//		"station name" = list(
-	//			offer path = list(name)
+	//			offer path
 	//		)
 	//	)
 
@@ -129,7 +129,7 @@ SUBSYSTEM_DEF(trade)
 				station.recommendations_needed -= 1
 				if(!station.recommendations_needed)
 					discovered_stations |= station
-					GLOB.entered_event.register(station.overmap_location, station, station/proc/discovered)
+					//GLOB.entered_event.register(station.overmap_location, station, station/proc/discovered)
 
 //Returns cost of an existing object including contents
 /datum/controller/subsystem/trade/proc/get_cost(atom/movable/target, is_export = FALSE)
@@ -160,13 +160,13 @@ SUBSYSTEM_DEF(trade)
 	. = round(get_new_cost(path) * station.markdown)
 
 /datum/controller/subsystem/trade/proc/get_import_cost(path, datum/trade_station/station)
-	. = get_new_cost(path) ? get_new_cost(path) : 100			// Should solve the issue of items without price tags
-	var/markup = 1.2
-	if(istype(station))
-		markup = station.markup
-	. *= markup
-
-/datum/controller/subsystem/trade/proc/check_oldification(item, offer_path)
+	. = station?.get_good_price(path)
+	if(!.)
+		. = get_new_cost(path) ? get_new_cost(path) : 100			// Should solve the issue of items without price tags
+		var/markup = 1.2
+		if(istype(station))
+			markup = station.markup
+		. *= markup
 
 // Checks item stacks amd item containers to see if they match their base states (no more selling empty first-aid kits or split item stacks as if they were full)
 // Checks reagent containers to see if they match their base state or if they match the special offer from a station

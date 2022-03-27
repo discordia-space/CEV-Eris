@@ -7,7 +7,7 @@
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS
 	offer_limit = 20
-	base_income = 0
+	base_income = 3200
 	wealth = 0
 //	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
@@ -42,7 +42,6 @@
 		/obj/item/part/gun/frame/ak47 = offer_data("AK frame", 800, 1),
 		/obj/item/part/gun/frame/sol = offer_data("Sol frame", 1000, 1),
 		/obj/item/part/gun/frame/straylight = offer_data("Straylight frame", 1000, 1),
-		/obj/item/part/gun/frame/atreides = offer_data("Atreides frame", 1000, 1),
 		/obj/item/part/gun/frame/wintermute = offer_data("Wintermute frame", 1000, 1),
 		/obj/item/part/gun/frame/tosshin = offer_data("Tosshin frame", 1000, 1),
 		/obj/item/part/gun/frame/bull = offer_data("Bull frame", 1000, 1),

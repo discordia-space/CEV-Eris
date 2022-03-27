@@ -16,8 +16,8 @@
 	wealth = 0
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
-	stations_recommended = list("moe_adv")
-	assortiment = list(
+	stations_recommended = list("moe_adv", "trapper")
+	inventory = list(
 		"First Aid" = list(
 			/obj/item/storage/firstaid/regular,
 			/obj/item/storage/firstaid/fire,
@@ -58,7 +58,6 @@
 			/obj/item/reagent_containers/syringe,
 			/obj/item/reagent_containers/hypospray/autoinjector,
 			/obj/item/bodybag,
-			/obj/machinery/suspension_gen,
 			/obj/item/computer_hardware/hard_drive/portable/design
 		)
 	)
@@ -75,8 +74,8 @@
 		)
 	)
 	offer_types = list(
-		/datum/reagent/medicine/ossisine = offer_data("ossissine bottle (60u)", 2000, 1),
-		/datum/reagent/medicine/kyphotorin = offer_data("kyphotorin bottle (60u)", 4000, 1),
+		/datum/reagent/medicine/ossisine = offer_data("ossissine bottle (60u)", 4000, 1),
+		/datum/reagent/medicine/kyphotorin = offer_data("kyphotorin bottle (60u)", 8000, 1),
 		/datum/reagent/nanites/uncapped/control_booster_utility = offer_data("Control Booster Utility bottle (60u)", 30000, 1),
 		/datum/reagent/nanites/uncapped/control_booster_combat = offer_data("Control Booster Combat bottle (60u)", 30000, 1)
 //		/datum/reagent/toxin/slimetoxin

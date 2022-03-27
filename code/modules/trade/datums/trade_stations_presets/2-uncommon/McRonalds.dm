@@ -20,14 +20,14 @@
 			/obj/item/reagent_containers/food/snacks/tofuburger = custom_good_name("Tofu RBurger")
 		),
 		"Pizza" = list(
-			/obj/item/pizzabox/meat = good_data("Supreme Meatlover: Pizza Alliance", list(1, 3)),
-			/obj/item/pizzabox/mushroom = good_data("Mushrooms' Impact 3rd", list(1, 3)),
-			/obj/item/pizzabox/vegetable = good_data("Pizza Fantasy 7: Vegeterian Deluxe Edition", list(1, 3)),
-			/obj/item/pizzabox/margherita = good_data("PizzeR: autoTomato", list(1, 3))
+			/obj/item/pizzabox/meat = good_data("Supreme Meatlover: Pizza Alliance", list(1, 3), null),
+			/obj/item/pizzabox/mushroom = good_data("Mushrooms' Impact 3rd", list(1, 3), null),
+			/obj/item/pizzabox/vegetable = good_data("Pizza Fantasy 7: Vegeterian Deluxe Edition", list(1, 3), null),
+			/obj/item/pizzabox/margherita = good_data("PizzeR: autoTomato", list(1, 3), null)
 		),
 		"Cakes" = list(
-			/obj/item/reagent_containers/food/snacks/sliceable/plaincake = good_data("Vanilla", list(1, 3)),
-			/obj/item/reagent_containers/food/snacks/sliceable/chocolatecake = good_data("Chocola", list(1, 3)),
+			/obj/item/reagent_containers/food/snacks/sliceable/plaincake = good_data("Vanilla", list(1, 3), null),
+			/obj/item/reagent_containers/food/snacks/sliceable/chocolatecake = good_data("Chocola", list(1, 3), null),
 			/obj/item/reagent_containers/food/snacks/sliceable/carrotcake = custom_good_amount_range(list(1, 3)),
 			/obj/item/reagent_containers/food/snacks/sliceable/cheesecake = custom_good_amount_range(list(1, 3)),
 			/obj/item/reagent_containers/food/snacks/sliceable/orangecake = custom_good_amount_range(list(1, 3)),
@@ -40,10 +40,6 @@
 		)
 	)
 	hidden_inventory = list(
-		"Secret Menu" = list(
-			/obj/item/storage/box/monkeycubes = good_data("Chicken Nuggets", list(1, 5))
-			// TODO: Needs funny and useful stuff
-		)
 	)
 	offer_types = list(
 		/obj/item/reagent_containers/food/snacks/meat/roachmeat = offer_data("roach meat", 300, 0),

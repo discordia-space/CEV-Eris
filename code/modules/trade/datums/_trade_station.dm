@@ -1,6 +1,7 @@
-#define good_data(nam, randList) list("name" = nam, "amount_range" = randList)
-#define custom_good_name(nam) good_data(nam, null)
-#define custom_good_amount_range(randList) good_data(null, randList)
+#define good_data(nam, randList, price) list("name" = nam, "amount_range" = randList, "price" = price)
+#define custom_good_name(nam) good_data(nam, null, null)
+#define custom_good_amount_range(randList) good_data(null, randList, null)
+#define custom_good_price(price) good_data(null, null, price)
 
 #define offer_data(name, price, amount) list("name" = name, "price" = price, "amount" = amount)
 
@@ -25,7 +26,7 @@
 	var/spawn_probability = 60		// This is actually treated as a weight variable. The number isn't the actual probability that the station will spawn.
 	var/spawn_cost = 1
 	var/start_discovered = FALSE
-	var/commision = 200 			// Cost of trading more than one thing or cost for crate
+	var/commision = 0 				// Cost of trading more than one thing or cost for crate
 
 	var/list/forced_overmap_zone 	// list(list(minx, maxx), list(miny, maxy))
 	var/overmap_opacity = 0
@@ -122,10 +123,14 @@
 				inventory[new_category_name] = content
 
 /datum/trade_station/proc/init_goods()
+	var/list/master_inventory_data_packet = list()
+	var/list/master_offer_data_packet = list()
 	for(var/category_name in inventory)
 		var/list/category = inventory[category_name]
 		if(islist(category))
+			var/list/master_inventory_data_content = list()
 			for(var/good_path in category)
+				// Station inventory
 				var/cost = SStrade.get_import_cost(good_path, src)
 				var/list/rand_args = list(0, 50 / max(cost/200, 1))
 				var/list/good_packet = category[good_path]
@@ -139,12 +144,28 @@
 				var/good_amount = amounts_of_goods[category_name]
 				good_amount["[category.Find(good_path)]"] = max(0, rand(rand_args[1], rand_args[2]))
 				unique_good_count += 1
+
+				// Master inventory list
+				master_inventory_data_content.Add(good_path)
+			master_inventory_data_packet.Add(category_name)
+			master_inventory_data_packet[category_name] = master_inventory_data_content
+
+
 	for(var/offer_path in offer_types)
+		// Station offers
 		var/list/offer_content = offer_types[offer_path]
 		if(ispath(offer_path) && islist(offer_content))
 			var/offer_index = offer_types.Find(offer_path)
 			special_offers.Insert(offer_index, offer_path)
 			special_offers[offer_path] = offer_content
+	
+		// Master offer list
+		master_offer_data_packet.Add(offer_path)
+
+	SStrade.master_inventory_list.Add(name)
+	SStrade.master_inventory_list[name] = master_inventory_data_packet
+	SStrade.master_offer_list.Add(name)
+	SStrade.master_offer_list[name] = master_offer_data_packet
 
 /datum/trade_station/proc/update_tick()
 	offer_tick()
@@ -158,7 +179,7 @@
 
 // The station will restock based on base_income + wealth, then check unlockables.
 /datum/trade_station/proc/goods_tick()
-	// Get base income
+	// Add base income
 	wealth += base_income		// Base income doesn't contribute to favor
 
 	// Restock
@@ -191,6 +212,7 @@
 /datum/trade_station/proc/try_unlock_hidden_inv()
 	if(favor >= hidden_inv_threshold)
 		hidden_inv_unlocked = TRUE
+		var/list/master_inventory_data_packet = list()
 		for(var/category_name in hidden_inventory)
 			var/list/category = hidden_inventory[category_name]
 			if(istext(category_name) && islist(category))
@@ -198,7 +220,9 @@
 				hidden_inventory.Cut(category_name_index, category_name_index + 1)
 				inventory.Add(category_name)
 				inventory[category_name] = category
+				var/list/master_inventory_data_content = list()
 				for(var/good_path in category)
+					// Station inventory
 					var/cost = SStrade.get_import_cost(good_path, src)
 					var/list/rand_args = list(0, 50 / max(cost/200, 1))
 					var/list/good_packet = category[good_path]
@@ -211,6 +235,12 @@
 						amounts_of_goods[category_name] = list()
 					var/good_amount = amounts_of_goods[category_name]
 					good_amount["[category.Find(good_path)]"] = max(0, rand(rand_args[1], rand_args[2]))
+				
+					// Master inventory list
+					master_inventory_data_content.Add(good_path)
+				master_inventory_data_packet.Add(category_name)
+				master_inventory_data_packet[category_name] = master_inventory_data_content
+				SStrade.master_inventory_list[name] |= master_inventory_data_packet
 
 /datum/trade_station/proc/try_recommendation()
 	if(favor >= recommendation_threshold)
@@ -236,11 +266,30 @@
 			if(islist(L))
 				L[L[index]] = value
 
+/datum/trade_station/proc/get_good_price(item_path)
+	. = 0
+	if(ispath(item_path))
+		for(var/category_name in inventory)
+			var/list/category = inventory[category_name]
+			var/list/item_path_check = list(item_path)
+			var/list/good_path = category & item_path_check
+			if(good_path.len)
+				if(islist(category[item_path]))
+					var/list/good_packet = category[item_path]
+					. += good_packet["price"]
+
 /datum/trade_station/proc/add_to_wealth(var/income, is_offer = FALSE)
 	if(!isnum(income))
 		return
 	wealth += income
 	favor += income * (is_offer ? 1 : 0.5)
+
+	// Unlocks without needing to wait for update tick
+	if(!hidden_inv_unlocked)
+		try_unlock_hidden_inv()
+
+	if(!recommendation_unlocked)
+		try_recommendation()
 
 /datum/trade_station/proc/subtract_from_wealth(var/cost)
 	if(!isnum(cost))

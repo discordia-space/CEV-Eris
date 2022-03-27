@@ -10,8 +10,8 @@
 	wealth = 0
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
-	stations_recommended = list("mcronalds", "serbian")
-	assortiment = list(
+	stations_recommended = list("mcronalds", "serbian", "trapper")
+	inventory = list(
 		"Basic Ingredients" = list(
 			/obj/item/reagent_containers/food/condiment/flour,
 			/obj/item/reagent_containers/food/drinks/milk,
@@ -54,7 +54,7 @@
 			/obj/item/reagent_containers/food/drinks/carafe,
 			/obj/item/reagent_containers/food/drinks/flask/barflask,
 			/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
-			/obj/item/storage/deferred/kitchen
+			/obj/item/storage/deferred/kitchen = custom_good_price(50)
 		)
 	)
 	hidden_inventory = list(
@@ -65,8 +65,11 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/reagent_containers/food/snacks/kampferburger = offer_data("kampfer burger", 400, 3),
-		/obj/item/reagent_containers/food/snacks/panzerburger = offer_data("panzer burger", 500, 2),
-		/obj/item/reagent_containers/food/snacks/jagerburger = offer_data("jager burger", 500, 2),
-		/obj/item/reagent_containers/food/snacks/seucheburger = offer_data("seuche burger", 500, 2)
+		/obj/item/reagent_containers/food/snacks/kampferburger = offer_data("kampfer burger", 500, 3),
+		/obj/item/reagent_containers/food/snacks/panzerburger = offer_data("panzer burger", 700, 2),
+		/obj/item/reagent_containers/food/snacks/jagerburger = offer_data("jager burger", 700, 2),
+		/obj/item/reagent_containers/food/snacks/seucheburger = offer_data("seuche burger", 700, 2),
+		/obj/item/reagent_containers/food/snacks/bigroachburger = offer_data("big roach burger", 2000, 2),
+		/obj/item/reagent_containers/food/snacks/fuhrerburger = offer_data("fuhrer burger", 2000, 2),
+		/obj/item/reagent_containers/food/snacks/kaiserburger = offer_data("kaiser burger", 25000, 2)
 	)
