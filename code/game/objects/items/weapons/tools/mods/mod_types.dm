@@ -692,7 +692,7 @@
 	var/sanity_value = 0.2 + pick(0,0.1,0.2)
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	var/modtype = rand(1,4)//awful temp solution until I can implement a better random mod system
+	var/modtype = rand(1,4)//awful temp solution until I can implement a better random mod system. Should I do it this way? waiting for input from coders
 	switch(modtype)
 		if(1)
 			I.tool_upgrades = list(
