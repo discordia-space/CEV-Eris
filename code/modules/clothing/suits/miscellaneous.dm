@@ -435,6 +435,43 @@
 	pockets.max_w_class = ITEM_SIZE_SMALL
 	pockets.max_storage_space = 6
 
+/obj/item/clothing/suit/storage/scavengerarmor/artwork
+	name = "\improper Artisan's Curaiss"
+	desc = "A handsome set of plate, forged from scavenged materials and imagination by a creative soul. Your mileage may vary."
+	icon_state = "scav_armor"
+	item_state = "scav_armor"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	siemens_coefficient = 0.9
+	spawn_blacklisted = TRUE
+	price_tag = 500
+	style = STYLE_LOW//functionally "stylish" but it has to be this for balancing purposes
+
+/obj/item/clothing/suit/storage/scavengerarmor/artwork/New()
+	..()
+	pockets = new/obj/item/storage/internal(src)
+	pockets.storage_slots = 1
+	pockets.max_w_class = ITEM_SIZE_SMALL
+	pockets.max_storage_space = 6
+	var/dice = "4d20"
+	var/rander = rand(-20,10)//double chance to gimp stats, keeps things reasonable
+	armor = armor.setRating(roll(dice) + rander, roll(dice) + rander, roll(dice) + rander, roll(dice) + rander, 45, roll(dice) + rander)
+	price_tag += rand(1000, 2500)
+
+/obj/item/clothing/head/armor/artwork
+	name = "\improper Artisan's Morion"
+	desc = "A crested metal helmet, sporting a festive dash of arts and craft feathers and crazy glue. Your mileage may vary."
+	style = STYLE_LOW
+	price_tag = 500
+	spawn_blacklisted = TRUE
+	siemens_coefficient = 0.9
+	style_coverage = COVERS_HAIR
+
+/obj/item/clothing/head/armor/artwork/New()
+	..()
+	var/dice = "5d16"
+	var/rander = rand(-20,10)//slightly higher chance to gimp stats
+	armor = armor.setRating(roll(dice) + rander, roll(dice) + rander, roll(dice) + rander, roll(dice) + rander, 45, roll(dice) + rander)
+	price_tag += rand(1000, 2500)
 
 /obj/item/clothing/suit/storage/triad
 	name = "triad jacket"//RUINER reference

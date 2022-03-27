@@ -315,6 +315,7 @@
 		to_chat(user, SPAN_WARNING("To create this work of art you have sacrificed a part of yourself."))
 	else if(user.sanity.resting)
 		user.sanity.finish_rest()
+		user.sanity.pick_desires()
 
 /obj/machinery/autolathe/artist_bench/can_print(datum/design/design)
 	if(working)

@@ -683,6 +683,7 @@
 	icon_state = "artmod_1"
 	spawn_frequency = 0
 	price_tag = 200
+	spawn_blacklisted = TRUE
 
 /obj/item/tool_upgrade/artwork_tool_mod/Initialize(mapload, prob_rare = 33)
 	. = ..()
@@ -690,18 +691,24 @@
 	icon_state = "artmod_[rand(1,16)]"
 	var/sanity_value = 0.2 + pick(0,0.1,0.2)
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
-	var/obj/randomcatcher/CATCH = new(src)
-	var/obj/item/tool_upgrade/spawn_type = pickweight(list(/obj/spawner/tool_upgrade = max(100-prob_rare,0), /obj/spawner/tool_upgrade/rare = prob_rare), 0)
-	spawn_type = CATCH.get_item(spawn_type)
-	spawn_type.TransferComponents(src)
-	GET_COMPONENT(tool_comp, /datum/component/item_upgrade)
-	for(var/upgrade in (tool_comp.tool_upgrades - GLOB.tool_aspects_blacklist))
-		if(isnum(tool_comp.tool_upgrades[upgrade]))
-			tool_comp.tool_upgrades[upgrade] = tool_comp.tool_upgrades[upgrade] * rand(5,15)/10
-	tool_comp.tool_upgrades[UPGRADE_BULK] = rand(-1,2)
-	QDEL_NULL(spawn_type)
-	QDEL_NULL(CATCH)
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	var/modtype = rand(1,4)//awful temp solution until I can implement a better random mod system
+	switch(modtype)
+		if(1)
+			I.tool_upgrades = list(
+			UPGRADE_DEGRADATION_MULT = rand(-1,10),
+			)
+			I.prefix = "embellished"
+		if(2)
+			I.tool_upgrades = list(
+			UPGRADE_DEGRADATION_MULT = rand(-1,10),
+			UPGRADE_HEALTH_THRESHOLD = rand(-10,10),
+			UPGRADE_WORKSPEED = rand(-1,3),
+			UPGRADE_FORCE_MULT = rand(-1.5,1.5),
+			)
 	price_tag += rand(0, 1000)
+	var/weirdmod = pick("hand-painted", "mastercrafted", "embellished", "grotesque", "laminated", "menacing", "bejeweled", "sparkling", "fine-tuned")
+	I.prefix = "[weirdmod]"
 
 /obj/item/tool_upgrade/artwork_tool_mod/get_item_cost(export)
 	. = ..()

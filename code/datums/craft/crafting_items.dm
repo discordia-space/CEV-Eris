@@ -26,11 +26,11 @@
 	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 5, MATERIAL_CARDBOARD = 5, MATERIAL_STEEL = 5)
 
 /obj/item/part/armor/artwork
-	desc = "This is an artistically-made armor part."
+	name = "handcrafted armor parts"
+	desc = "A collection of bits and bobs of indeterminate origin, stitched together by a creative."
 	spawn_frequency = 0
 
 /obj/item/part/armor/artwork/Initialize()
-	name = get_weapon_name(capitalize = TRUE)
 	AddComponent(/datum/component/atom_sanity, 0.2 + pick(0,0.1,0.2), "")
 	price_tag += rand(0, 500)
 	return ..()

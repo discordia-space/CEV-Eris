@@ -86,6 +86,34 @@
 		list(QUALITY_WELDING, 10, 20),
 	)
 
+/datum/craft_recipe/clothing/artistarmor
+	name = "Artisan's Curaiss"
+	result = /obj/item/clothing/suit/storage/scavengerarmor/artwork
+	steps = list(
+		list(/obj/item/part/armor/artwork, 3),
+		list(QUALITY_ADHESIVE, 15, 15),
+		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
+		list(QUALITY_SCREW_DRIVING, 10, 15),
+		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTEEL),
+		list(QUALITY_WELDING, 10, 20),
+		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC),
+		list(QUALITY_ADHESIVE, 15, 15),
+	)
+
+/datum/craft_recipe/clothing/artisthelmet
+	name = "Artisan's Morion"
+	result = /obj/item/clothing/head/armor/artwork
+	steps = list(
+		list(/obj/item/part/armor/artwork, 3),
+		list(QUALITY_ADHESIVE, 15, 15),
+		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
+		list(QUALITY_SCREW_DRIVING, 10, 15),
+		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTEEL),
+		list(QUALITY_WELDING, 10, 20),
+		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC),
+		list(QUALITY_ADHESIVE, 15, 15),
+	)
+
 /datum/craft_recipe/clothing/armor_attach
 	name = "Armor plates"
 	result = /obj/item/clothing/accessory/armor

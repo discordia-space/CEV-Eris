@@ -223,6 +223,8 @@
 	print_desires()
 
 /datum/sanity/proc/print_desires()
+	if(owner.stats.getPerk(PERK_ARTIST))
+		to_chat(owner, SPAN_NOTICE("You desire [english_list(desires)]."))
 	if(!resting)
 		return
 	to_chat(owner, SPAN_NOTICE("You desire [english_list(desires)]."))
@@ -234,6 +236,11 @@
 	if(insight_rest >= 100)
 		insight_rest = 0
 		finish_rest()
+
+/datum/sanity/proc/add_artrest(type, amount)
+	if(!(type in desires))
+		amount /= 12
+	give_insight(amount)
 
 /datum/sanity/proc/finish_rest()
 	var/list/stat_change = list()
@@ -309,6 +316,8 @@
 	changeLevel(R.sanity_gain * multiplier)
 	if(resting)
 		add_rest(INSIGHT_DESIRE_DRUGS, 4 * multiplier)
+	if(owner.stats.getPerk(PERK_ARTIST))
+		add_artrest(INSIGHT_DESIRE_DRUGS, 4 * multiplier)
 
 /datum/sanity/proc/onToxin(datum/reagent/toxin/R, multiplier)
 	changeLevel(-R.sanityloss * multiplier)
@@ -327,6 +336,13 @@
 				add_rest(taste_tag, 4 * 1/E.taste_tag.len)  //just so it got somme effect of things with small multipliers
 			else
 				add_rest(taste_tag, 4 * multiplier/E.taste_tag.len)
+	if(owner.stats.getPerk(PERK_ARTIST))
+		if(E.taste_tag.len)
+			for(var/taste_tag in E.taste_tag)
+				if(multiplier <= 1 )
+					add_artrest(taste_tag, 2 * 1/E.taste_tag.len)
+				else
+					add_artrest(taste_tag, 3 * multiplier/E.taste_tag.len)
 
 /datum/sanity/proc/onEat(obj/item/reagent_containers/food/snacks/snack, snack_sanity_gain, snack_sanity_message)
 	if(world.time > eat_time_message && snack_sanity_message)
@@ -336,11 +352,17 @@
 	if(snack.cooked && resting && snack.taste_tag.len)
 		for(var/taste in snack.taste_tag)
 			add_rest(taste, snack_sanity_gain * 50/snack.taste_tag.len)
+	if(owner.stats.getPerk(PERK_ARTIST))
+		if(snack.cooked && snack.taste_tag.len)
+			for(var/taste in snack.taste_tag)
+				add_artrest(taste, snack_sanity_gain * 50/snack.taste_tag.len)
 
 /datum/sanity/proc/onSmoke(obj/item/clothing/mask/smokable/S)
 	changeLevel(SANITY_GAIN_SMOKE * S.quality_multiplier)
 	if(resting)
 		add_rest(INSIGHT_DESIRE_SMOKING, 0.4 * S.quality_multiplier)
+	if(owner.stats.getPerk(PERK_ARTIST))
+		add_artrest(INSIGHT_DESIRE_SMOKING, 0.4 * S.quality_multiplier)
 
 /datum/sanity/proc/onSay()
 	if(world.time < say_time)

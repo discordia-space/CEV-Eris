@@ -106,7 +106,9 @@ GLOBAL_LIST_INIT(art_description_types_statue, file2list("strings/artist_strings
 	var/description_artwork_statue = pick(description_artwork_statue_verb,description_artwork_statue_stationary)
 
 	var/description_statue = "[description_artwork_statue] [get_artwork_description()]"
+	var/description_quality = SPAN_NOTICE("<br> This piece makes you feel <b>[qspan][quality]</span></b>.")
 	desc += " [description_statue]"
+	desc += " [description_quality]"
 	return description_statue
 
 //GLOBAL_LIST_INIT(art_description_types, file2list("strings/artist_strings/names/art_types.txt"))
@@ -121,6 +123,12 @@ GLOBAL_LIST_INIT(art_description_objectsubject_actions_present, file2list("strin
 GLOBAL_LIST_INIT(art_description_objectsubject_states, file2list("strings/artist_strings/descriptors/art_objectsubject_states.txt"))
 GLOBAL_LIST_INIT(art_description_style_descriptors, file2list("strings/artist_strings/descriptors/art_style_descriptors.txt"))
 GLOBAL_LIST_INIT(art_description_themes, file2list("strings/artist_strings/descriptors/art_themes.txt"))
+
+GLOBAL_LIST_INIT(quality_awful_descriptors, file2list("strings/artist_strings/descriptors/quality_awful_descriptors.txt"))
+GLOBAL_LIST_INIT(quality_bad_descriptors, file2list("strings/artist_strings/descriptors/quality_bad_descriptors.txt"))
+GLOBAL_LIST_INIT(quality_boring_descriptors, file2list("strings/artist_strings/descriptors/quality_boring_descriptors.txt"))
+GLOBAL_LIST_INIT(quality_good_descriptors, file2list("strings/artist_strings/descriptors/quality_good_descriptors.txt"))
+GLOBAL_LIST_INIT(quality_great_descriptors, file2list("strings/artist_strings/descriptors/quality_great_descriptors.txt"))
 
 /proc/get_artwork_description()
 	var/object = pick(pick(GLOB.art_description_objectssubjects),get_artwork_crew_name(pick(TRUE, FALSE), pick(TRUE, FALSE)))

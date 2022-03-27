@@ -345,7 +345,7 @@
 
 	if(G.dna_lock_sample == "not_set") //that may look stupid, but without it previous two lines won't trigger on DNALOCK removal.
 		G.dna_compare_samples = FALSE
-	
+
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
 		G.safety = weapon_upgrades[GUN_UPGRADE_FORCESAFETY]
@@ -389,9 +389,10 @@
 		to_chat(user, SPAN_NOTICE("Enhances precision by [tool_upgrades[UPGRADE_PRECISION]]"))
 	else if(tool_upgrades[UPGRADE_PRECISION] < 0)
 		to_chat(user, SPAN_WARNING("Reduces precision by [abs(tool_upgrades[UPGRADE_PRECISION])]"))
-	if(tool_upgrades[UPGRADE_WORKSPEED])
+	if(tool_upgrades[UPGRADE_WORKSPEED] > 0)
 		to_chat(user, SPAN_NOTICE("Enhances workspeed by [tool_upgrades[UPGRADE_WORKSPEED]*100]%"))
-
+	else if(tool_upgrades[UPGRADE_WORKSPEED] < 0)
+		to_chat(user, SPAN_WARNING("Reduces workspeed by [tool_upgrades[UPGRADE_WORKSPEED]*100]%"))
 	if(tool_upgrades[UPGRADE_DEGRADATION_MULT])
 		if(tool_upgrades[UPGRADE_DEGRADATION_MULT] < 1)
 			to_chat(user, SPAN_NOTICE("Reduces tool degradation by [(1-tool_upgrades[UPGRADE_DEGRADATION_MULT])*100]%"))
@@ -524,7 +525,7 @@
 			to_chat(user, SPAN_WARNING("Disables the safety toggle of the weapon."))
 		else if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == 1)
 			to_chat(user, SPAN_WARNING("Forces the safety toggle of the weapon to always be on."))
-		
+
 		if(weapon_upgrades[GUN_UPGRADE_DNALOCK] == 1)
 			to_chat(user, SPAN_WARNING("Adds a biometric scanner to the weapon."))
 
