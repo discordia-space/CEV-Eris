@@ -105,7 +105,6 @@ avoid code duplication. This includes items that may sometimes act as a standard
 						src.tileattack(user, L, modifier = 1)
 						src.tileattack(user, C, modifier = 0.8)
 						src.tileattack(user, R, modifier = 0.6)
-						del S
 						qdel(S)
 						return
 					else if(holdinghand == slot_r_hand)
@@ -113,6 +112,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 						src.tileattack(user, R, modifier = 1)
 						src.tileattack(user, C, modifier = 0.8)
 						src.tileattack(user, L, modifier = 0.6)
+						qdel(S)
 						return
 	return A.attackby(src, user, params)
 
@@ -184,7 +184,6 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			T += M
 		if(T)
 			return src.attack(pick(T), user, user.targeted_organ, modifier)
-		return
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
