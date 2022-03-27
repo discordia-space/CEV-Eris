@@ -83,14 +83,18 @@
 					if (M.HUDtech.Find("flash"))
 						flick("e_flash", M.HUDtech["flash"])
 			else
-				flashfail = 1
+				flashfail = TRUE
 
 	else if(isrobot(M))
-		M.Weaken(rand(5,10))
-		if (M.HUDtech.Find("flash"))
-			flick("e_flash", M.HUDtech["flash"])
+		var/mob/living/silicon/robot/robo = M
+		if(robo.HasTrait(CYBORG_TRAIT_FLASH_RESISTANT))
+			flashfail = TRUE
+		else
+			robo.Weaken(rand(5,10))
+			if (robo.HUDtech.Find("flash"))
+				flick("e_flash", robo.HUDtech["flash"])
 	else
-		flashfail = 1
+		flashfail = TRUE
 
 	if(isrobot(user))
 		spawn(0)

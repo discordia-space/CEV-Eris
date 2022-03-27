@@ -10,6 +10,11 @@
 				return 0
 	else . = ..()
 
+/mob/living/exosuit/MouseDrop(mob/living/carbon/human/over_object) //going from assumption none of previous options are relevant to exosuit
+	if(body)
+		if(!body.MouseDrop(over_object))
+			return ..()
+
 /mob/living/exosuit/proc/arms_action_delay()
 	return arms ? arms.action_delay : 15
 
@@ -29,6 +34,13 @@
 	if(modifiers["shift"])
 		A.examine(user)
 		return
+
+	if(modifiers["ctrl"])
+		if(selected_system)
+			if(selected_system == A)
+				selected_system.CtrlClick(user)
+				setClickCooldown(3)
+			return
 
 	if(!(user in pilots) && user != src)
 		return
@@ -113,7 +125,7 @@
 
 		var/resolved
 		if(adj)
-			resolved = A.attackby(temp_system, src)
+			resolved = temp_system.resolve_attackby(A, src, params)
 
 		if(!resolved && A && temp_system)
 			var/mob/ruser = src
@@ -314,6 +326,13 @@
 		P.use(1, user)
 		return TRUE
 
+	else if(istype(I, /obj/item/device/robotanalyzer))
+		to_chat(user, SPAN_NOTICE("Diagnostic Report for \the [src]:"))
+		for(var/obj/item/mech_component/MC in list(arms, legs, body, head))
+			if(MC)
+				MC.return_diagnostics(user)
+		return
+
 	else if(istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = I
 		if(coil.amount < 5)
@@ -329,7 +348,7 @@
 		if(do_mob(user, src, 30) && coil.use(5))
 			mc.repair_burn_damage(15)
 
-	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_WELDING)
+	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_WELDING, QUALITY_PRYING, QUALITY_SCREW_DRIVING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
@@ -379,10 +398,34 @@
 				mc.repair_brute_damage(15)
 				return TRUE
 
+		if(QUALITY_PRYING)
+			var/obj/item/cell/cell = get_cell()
+			if(cell)
+				if(!maintenance_protocols)
+					to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))
+					return TRUE
+			to_chat(user, SPAN_NOTICE("You start removing [cell] from \the [src]."))
+			if(do_mob(user, src, 30) && cell == body.cell && body.eject_item(cell, user))
+				body.cell = null
+				return
+
+
+		if(QUALITY_SCREW_DRIVING)
+			if(length(body.computer?.contents))
+				if(!maintenance_protocols)
+					to_chat(user, SPAN_WARNING("The software upload bay is locked while maintenance protocols are disabled."))
+					return
+				var/obj/item/board = body.computer.contents[length(body.computer.contents)]
+				to_chat(user, SPAN_NOTICE("You start removing [board] from \the [src]."))
+				if(do_mob(user, src, 30) && (board in body.computer) && body.computer?.eject_item(board, user))
+					body.computer.update_software()
+					return
+
 		if(ABORT_CHECK)
 			return
 
 
+/*
 /mob/living/exosuit/MouseDrop(atom/over_object)
 	var/mob/living/carbon/human/user = usr
 
@@ -414,6 +457,7 @@
 
 	return ..()
 
+*/
 /mob/living/exosuit/attack_hand(mob/living/user)
 	// Drag the pilot out if possible.
 	if(user.a_intent == I_HURT)

@@ -113,8 +113,158 @@
 		device.afterattack(target,holder.wearer,1)
 	return 1
 
+/obj/item/rig_module/modular_injector
+	name = "mounted modular injector"
+	desc = "A specialized system for inserting chemicals"
+	icon_state = "injector"
+	usable = TRUE
+	selectable = FALSE
+	toggleable = FALSE
+	disruptive = FALSE
+
+	engage_string = "Inject"
+
+	interface_name = "integrated injector"
+	interface_desc = "A chemical injector"
+	var/list/beakers = list()
+	var/max_beakers = 5
+	var/injection_amount = 5
+	var/max_injection_amount = 20
+	var/empties = 0
+	var/initial_beakers = null
+	/// ^ Used for initializing with beakers , the format used is list(beaker_type, beaker_reagent_id, beaker_reagent_amount)
+
+	charges = list()
+
+/obj/item/rig_module/modular_injector/Initialize()
+	. = ..()
+	if(initial_beakers)
+		for(var/list/bdata in initial_beakers)
+			var/btype = bdata[1]
+			var/obj/item/reagent_containers/beaker = new btype(src)
+			beaker.reagents.add_reagent(bdata[2], bdata[3])
+			accepts_item(beaker, null , TRUE)
+
+// Rebuilds charges , sad but necesarry due to how rig UI's get its data
+/obj/item/rig_module/modular_injector/proc/rebuild_charges()
+	empties = 0
+	if(beakers && beakers.len)
+		var/list/processed_charges = list()
+		for(var/obj/item/reagent_containers/beaker in beakers)
+			var/datum/rig_charge/charge_dat = new
+			var/reag_name = beaker.reagents.get_master_reagent_name()
+			empties++;
+
+			charge_dat.short_name   = reag_name ? reag_name : "Empty[empties]"
+			charge_dat.display_name = reag_name ? reag_name : "Empty[empties]"
+			charge_dat.product_type = ref(beaker)
+			charge_dat.charges      = beaker.reagents.total_volume
+
+			if(!charge_selected) charge_selected = charge_dat.short_name
+			processed_charges[charge_dat.short_name] = charge_dat
+
+		charges = processed_charges
 
 
+/obj/item/rig_module/modular_injector/accepts_item(obj/item/reagent_containers/item, mob/living/user, userless = FALSE)
+	if(!istype(item))
+		return FALSE
+	if(beakers.len == max_beakers)
+		to_chat(user, "\The [src] has all its beaker slots filled, remove one of them!")
+		return FALSE
+	if(userless)
+		beakers += item
+		rebuild_charges()
+		item.forceMove(src)
+		return TRUE
+	if(user.unEquip(item))
+		// Gotta keep it for later when we remove the beaker.
+		beakers += item
+		rebuild_charges()
+		item.forceMove(src)
+
+
+/obj/item/rig_module/modular_injector/attackby(obj/item/W, mob/user)
+	if(..())
+		return FALSE
+	if(istype(W, /obj/item/reagent_containers))
+		accepts_item(W, user)
+		return FALSE
+	if(W.get_tool_quality(QUALITY_SCREW_DRIVING))
+		var/obj/item/reagent_containers/sel_ref = input(user, "Choose a beaker to remove", null) in beakers
+		if(sel_ref)
+			beakers -= sel_ref
+			charge_selected = null
+			rebuild_charges()
+			user.visible_message("[user] removes \the [sel_ref.name] from \the [src]")
+			if(!user.put_in_active_hand(sel_ref))
+				sel_ref.loc = get_turf(src)
+	if(W.get_tool_quality(QUALITY_BOLT_TURNING))
+		var/amount = input(user, "Choose reagent injection amount", null) in list(0, initial(injection_amount), max_injection_amount * 0.5, max_injection_amount)
+		if(amount != null)
+			injection_amount = amount
+			to_chat(user, "You set the injection amount to [amount] on \the [src]")
+			user.visible_message("[user] tweaks the injection amount on \the [src]")
+
+/obj/item/rig_module/modular_injector/engage(atom/target)
+
+	if(!..())
+		return FALSE
+
+	var/mob/living/carbon/human/H = holder.wearer
+
+	if(!charge_selected)
+		to_chat(H, SPAN_DANGER("You have not selected a beaker to inject from!"))
+		return FALSE
+
+	var/datum/rig_charge/charge = charges[charge_selected]
+	var/obj/item/reagent_containers/beaker = locate(charge.product_type)
+	if(beaker.reagents.total_volume < injection_amount)
+		to_chat(H, SPAN_DANGER("Insufficient chems!"))
+		return FALSE
+
+	var/mob/living/carbon/target_mob
+	if(target)
+		if(iscarbon(target))
+			target_mob = target
+		else
+			return FALSE
+	else
+		target_mob = H
+
+	if(target_mob != H)
+		to_chat(H, SPAN_DANGER("You inject [target_mob] with [injection_amount] unit\s of [beaker.name]."))
+	to_chat(target_mob, "<span class='danger'>You feel a rushing in your veins as [injection_amount] unit\s are injected in your bloodstream.</span>")
+	// Update display
+	beaker.reagents.trans_to_mob(target_mob, injection_amount, CHEM_BLOOD)
+	rebuild_charges()
+	return TRUE
+
+/obj/item/rig_module/modular_injector/combat
+	name = "mounted combat injector"
+	desc = "A specialized system for inserting chemicals meant for combat"
+	max_injection_amount = 30
+	max_beakers = 6
+	initial_beakers = list(
+		list(/obj/item/reagent_containers/glass/beaker/large, "hyperzine", 60),
+		list(/obj/item/reagent_containers/glass/beaker/large, "tramadol", 60),
+		list(/obj/item/reagent_containers/glass/beaker/large, "nutriment", 60),
+		list(/obj/item/reagent_containers/glass/beaker/large, "tricordrazine", 60)
+	)
+
+/obj/item/rig_module/modular_injector/medical
+	name = "mounted medical injector"
+	desc = "A specialized system for inserting chemicals to pacients"
+	max_injection_amount = 60
+	max_beakers = 6
+	initial_beakers = list(
+		list(/obj/item/reagent_containers/glass/beaker/large, "bicaridine", 60),
+		list(/obj/item/reagent_containers/glass/beaker/large, "inaprovaline",60),
+		list(/obj/item/reagent_containers/glass/beaker/large, "kelotane",60),
+		list(/obj/item/reagent_containers/glass/beaker/large, "anti_toxin", 60),
+		list(/obj/item/reagent_containers/glass/beaker/large, "spaceacillin", 60)
+	)
+/*
 /obj/item/rig_module/chem_dispenser
 	name = "mounted chemical dispenser"
 	desc = "A complex web of tubing and needles suitable for hardsuit use."
@@ -261,6 +411,7 @@
 	interface_name = "mounted chem injector"
 	interface_desc = "Dispenses loaded chemicals via an arm-mounted injector."
 	rarity_value = 20
+*/
 
 /obj/item/rig_module/voice
 	name = "hardsuit voice synthesiser"
