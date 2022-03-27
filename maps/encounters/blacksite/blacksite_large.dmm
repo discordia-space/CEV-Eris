@@ -54,11 +54,6 @@
 	icon_state = "4,5"
 	},
 /area/space)
-"aX" = (
-/obj/structure/table/onestar,
-/obj/item/reagent_containers/spray/sterilizine,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
 "aZ" = (
 /turf/simulated/shuttle/floor/science{
 	icon_state = "11,4"
@@ -258,11 +253,6 @@
 	icon_state = "2,3"
 	},
 /area/space)
-"eB" = (
-/obj/structure/table/onestar,
-/obj/item/tool/medmultitool,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
 "eI" = (
 /obj/machinery/light/small,
 /turf/simulated/shuttle/floor/science{
@@ -279,12 +269,6 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "10,1"
 	},
-/area/space)
-"eQ" = (
-/obj/machinery/door/airlock/sandstone{
-	name = "OneStar Airlock"
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "eV" = (
 /obj/structure/shuttle_part/science{
@@ -337,6 +321,12 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "5,5"
 	},
+/area/space)
+"gC" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "gE" = (
 /obj/structure/shuttle_part/science{
@@ -522,6 +512,10 @@
 	},
 /turf/space,
 /area/space)
+"lg" = (
+/obj/structure/closet/onestar/tier3/medical,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "lk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/airlock/freezer{
@@ -598,6 +592,12 @@
 	},
 /turf/space,
 /area/space)
+"nt" = (
+/obj/structure/salvageable/os/console{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "nI" = (
 /obj/structure/table/standard,
 /obj/machinery/camera/network/research_outpost{
@@ -633,12 +633,6 @@
 	icon_state = "11,0"
 	},
 /turf/space,
-/area/space)
-"of" = (
-/obj/structure/salvageable/os/console{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "ok" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -890,10 +884,6 @@
 	icon_state = "13,7"
 	},
 /area/space)
-"sh" = (
-/obj/machinery/vending/wallmed,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
 "sk" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "9,21"
@@ -1001,12 +991,6 @@
 	},
 /turf/space,
 /area/space)
-"vp" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
 "vt" = (
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/tiled/dark/brown_perforated,
@@ -1062,8 +1046,16 @@
 /turf/space,
 /area/space)
 "wl" = (
-/obj/structure/salvageable/os/data,
+/obj/structure/salvageable/os/console_broken{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"wm" = (
+/obj/structure/sign/faction/one_star{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "wS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -1077,14 +1069,19 @@
 	icon_state = "8,6"
 	},
 /area/space)
+"wV" = (
+/obj/structure/closet/onestar/tier1/medical,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "xb" = (
 /obj/structure/toilet{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
-"xi" = (
-/obj/machinery/porta_turret/excelsior,
+"xe" = (
+/obj/structure/table/onestar,
+/obj/item/reagent_containers/spray/sterilizine,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "xF" = (
@@ -1121,15 +1118,6 @@
 	icon_state = "14,2"
 	},
 /area/space)
-"yz" = (
-/obj/structure/bed/chair/custom/onestar{
-	dir = 8
-	},
-/obj/structure/sign/faction/one_star{
-	pixel_x = 32
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
 "yE" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "8,19";
@@ -1150,6 +1138,12 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "6,6"
 	},
+/area/space)
+"yY" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "ze" = (
 /turf/simulated/shuttle/floor/science{
@@ -1197,9 +1191,18 @@
 	},
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
+"Ab" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
 "Am" = (
 /obj/structure/salvageable/os/data,
 /turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"As" = (
+/turf/simulated/floor/tiled/derelict,
 /area/space)
 "Au" = (
 /obj/structure/flora/ausbushes/grassybush,
@@ -1238,16 +1241,19 @@
 	},
 /turf/space,
 /area/space)
-"AX" = (
-/obj/structure/salvageable/os/implant_container{
-	name = "implant container"
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
 "Bd" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "4,9"
 	},
+/area/space)
+"Bi" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 8
+	},
+/obj/structure/sign/faction/one_star{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Bo" = (
 /turf/simulated/shuttle/wall/science{
@@ -1258,6 +1264,11 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "7,5"
 	},
+/area/space)
+"Bw" = (
+/obj/structure/table/onestar,
+/obj/item/tool/medmultitool,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Bx" = (
 /obj/structure/shuttle_part/science{
@@ -1372,10 +1383,6 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "4,6"
 	},
-/area/space)
-"Fb" = (
-/obj/machinery/optable,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Fc" = (
 /obj/structure/shuttle_part/science{
@@ -1514,12 +1521,6 @@
 	icon_state = "3,1"
 	},
 /area/space)
-"JF" = (
-/obj/structure/bed/chair/custom/onestar{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
 "JJ" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "4,14"
@@ -1554,6 +1555,14 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "9,3"
 	},
+/area/space)
+"Lt" = (
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"LI" = (
+/obj/structure/closet/onestar/tier2/medical,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "LU" = (
 /obj/structure/shuttle_part/science{
@@ -1648,6 +1657,10 @@
 	},
 /turf/simulated/floor/tiled/derelict/white_red_edges,
 /area/space)
+"OD" = (
+/obj/structure/salvageable/os/data,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "Pj" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "15,3"
@@ -1665,12 +1678,6 @@
 	icon_state = "5,7"
 	},
 /area/space)
-"PD" = (
-/obj/structure/salvageable/os/implant_container{
-	name = "implant container"
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
 "PK" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -1680,6 +1687,22 @@
 	icon_state = "0-2"
 	},
 /turf/simulated/floor,
+/area/space)
+"PL" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"PO" = (
+/obj/structure/salvageable/os/implant_container{
+	name = "implant container"
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"PX" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Qd" = (
 /turf/simulated/shuttle/wall/science{
@@ -1742,15 +1765,6 @@
 	icon_state = "7,3"
 	},
 /area/space)
-"RM" = (
-/turf/simulated/floor/tiled/derelict,
-/area/space)
-"RU" = (
-/obj/structure/sign/faction/one_star{
-	pixel_x = -32
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
 "Sa" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
@@ -1799,6 +1813,12 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "7,2"
 	},
+/area/space)
+"Te" = (
+/obj/structure/salvageable/os/implant_container{
+	name = "implant container"
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Ti" = (
 /obj/structure/table/onestar,
@@ -1855,10 +1875,6 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "11,15"
 	},
-/area/space)
-"Vy" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "VF" = (
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -1931,6 +1947,10 @@
 	icon_state = "1,1"
 	},
 /turf/space,
+/area/space)
+"WU" = (
+/obj/machinery/vending/wallmed,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "WX" = (
 /obj/machinery/door/airlock/multi_tile/metal/mait{
@@ -2023,11 +2043,9 @@
 	icon_state = "9,1"
 	},
 /area/space)
-"ZX" = (
-/obj/structure/bed/chair/custom/onestar{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+"ZS" = (
+/obj/machinery/porta_turret/excelsior,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 
 (1,1,1) = {"
@@ -9908,10 +9926,10 @@ cb
 Zi
 Zi
 Zi
-sh
+WU
 yI
-RU
-xi
+wm
+ZS
 Zi
 cb
 cb
@@ -10354,8 +10372,8 @@ yI
 Zi
 yI
 yI
-eB
-AX
+Bw
+Te
 Zi
 cb
 cb
@@ -10567,16 +10585,16 @@ cb
 cb
 cb
 Zi
-xL
 wl
-PD
-PD
+OD
+PO
+PO
 Zi
 yI
 Zi
-of
-Fb
-aX
+nt
+Lt
+xe
 Zi
 Zi
 cb
@@ -10793,12 +10811,12 @@ xL
 xL
 xL
 xL
-eQ
+yY
 yI
 Zi
-Vy
-Vy
-Vy
+PL
+PL
+PL
 Zi
 cb
 cb
@@ -11233,16 +11251,16 @@ cb
 cb
 cb
 Zi
-xL
-xL
-xL
-xL
+lg
+LI
+LI
+wV
 Zi
 yI
 Zi
-JF
-yz
-JF
+PX
+Bi
+PX
 Zi
 cb
 cb
@@ -11907,7 +11925,7 @@ Zi
 yI
 Zi
 ES
-ZX
+Ab
 ke
 Zi
 cb
@@ -12349,7 +12367,7 @@ cb
 Zi
 YH
 yI
-sh
+WU
 yI
 yI
 Ip
@@ -12818,7 +12836,7 @@ kd
 gV
 dR
 ii
-vp
+gC
 dR
 gV
 kd
@@ -13904,7 +13922,7 @@ Zi
 Zi
 Zi
 yI
-vp
+gC
 Zi
 Zi
 Zi
@@ -16793,8 +16811,8 @@ aa
 yI
 yI
 aa
-RM
-RM
+As
+As
 aa
 xL
 xL
@@ -17015,8 +17033,8 @@ aa
 yI
 yI
 aa
-RM
-RM
+As
+As
 aa
 xL
 xL
