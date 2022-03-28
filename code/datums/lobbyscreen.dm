@@ -17,7 +17,7 @@
 
 /datum/lobbyscreen/New()
 	if(!length(possibleMusic) || !image_file)
-		crash_with("Login screen setup is wrong.")
+		CRASH("Login screen setup is wrong.")
 	musicTrack = pick(possibleMusic)
 	return ..()
 

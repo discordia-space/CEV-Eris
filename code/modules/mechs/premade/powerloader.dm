@@ -6,6 +6,7 @@
 	rarity_value = 15
 	material = MATERIAL_STEEL
 	exosuit_color = "#ffbc37"
+	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/plain
 	arms = /obj/item/mech_component/manipulators/cheap
 	legs = /obj/item/mech_component/propulsion/cheap
 	head = /obj/item/mech_component/sensors/cheap
