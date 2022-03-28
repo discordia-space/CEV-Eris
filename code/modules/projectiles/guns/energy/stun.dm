@@ -47,7 +47,7 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 6, MATERIAL_SILVER = 2, MATERIAL_PLASTIC = 5)
 
 /obj/item/gun/energy/stunrevolver/relic
-	name = "NanoTrasen \"Zeus\" Prototype"
+	name = "NT SP \"Zeus\" Prototype"
 	desc = "A \"stun-revolver\" design produced in Nanotrasen's early weapons program. This rare antique comes from the weapon's limited preproduction run, during which it contained a prototype self-charging system at the cost of some of the weapon's capacitors."
 	self_recharge = TRUE
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 6, MATERIAL_SILVER = 3, MATERIAL_URANIUM = 2)
