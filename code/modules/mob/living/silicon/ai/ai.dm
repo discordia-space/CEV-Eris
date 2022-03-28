@@ -218,6 +218,13 @@ var/list/ai_verbs_default = list(
 	// AI bound drone related stuff
 	time_destroyed = world.time - drone_cooldown_time
 
+	// AI fucking dies
+	spawn(5)
+		var/turf/T = get_turf(src)
+		explosion(T, 3, 6, 12, 24)
+		spawn(5)
+			new /obj/item/reagent_containers/food/snacks/pickle(T)
+
 /mob/living/silicon/ai/proc/on_mob_init()
 	to_chat(src, "<B>You are playing the spaceship's AI. The AI cannot move, but can interact with many objects while viewing them (through cameras).</B>")
 	to_chat(src, "<B>To look at other parts of the ship, click on yourself to get a camera menu.</B>")
