@@ -9,7 +9,7 @@
 
 	health = 60
 	maxHealth = 60 //Same as post nerf blitz hp
-	var/time_to_generate_body = 69 SECONDS		// Should be longer than the time it takes for the core to die in a vacuum. See New() for longer explanation.
+	var/time_to_generate_body = 66 SECONDS		// Should be longer than the time it takes for the core to die in a vacuum. Adjust accordingly when maxHealth changes (as of March 27 2022, it's 1 damage per second).
 
 	speed = -1
 	see_in_dark = 8
@@ -32,12 +32,6 @@
 	verbs |= /mob/living/proc/ventcrawl
 	verbs |= /mob/living/proc/hide
 	verbs |= /mob/living/simple_animal/spider_core/proc/generate_body
-
-	// If the spider core can generate a new body before the weakest environmental effect can kill it, a player can generate an indefinite number of bodies and grief the server.
-	// This approximates the time it would take for the core to die and adds 10%. Assuming everything works as intended, the core should die before a new body can be made.
-	var/seconds_per_tick = SSmobs.wait / (1 SECONDS)
-	var/time_extension_mult = 1.1
-	time_to_generate_body = ( maxHealth * (min(unsuitable_atoms_damage, heat_damage_per_tick, cold_damage_per_tick) / seconds_per_tick) ) * time_extension_mult SECONDS
 
 /mob/living/simple_animal/spider_core/death()
 	gibs(loc, null, /obj/effect/gibspawner/generic, "#666600", "#666600")
