@@ -32,30 +32,21 @@
 	if(reinf_material)
 		LAZYAPLUS(., reinf_material.name, 2)
 
-/obj/structure/girder/attack_generic(var/mob/user, var/damage, var/attack_message = "smashes apart", var/wallbreaker)
-	if(!damage || !wallbreaker)
-		return 0
-	user.do_attack_animation(src)
-	visible_message(SPAN_DANGER("[user] [attack_message] the [src]!"))
-	spawn(1) dismantle(user)
-	return 1
-
-/obj/structure/girder/attack_generic(mob/living/exosuit/M, damage, attack_message)
+/obj/structure/girder/attack_generic(mob/M, damage, attack_message = "smashes apart")
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!damage)
-		return
-	if(reinf_material)
 		return attack_hand(M)
-	if(damage < 30)
+
+	if(damage < 20)
 		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] whacks \the [src]!"))
+		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
 		return take_damage(damage*2.5)
 	if(damage >= 30)
 		playsound(loc, 'sound/effects/metal_crash.ogg', 50, 1)
 		M.do_attack_animation(src)
 		M.visible_message(SPAN_DANGER("\The [M] smashes through \the [src]!"))
-		spawn(1) dismantle()
+		dismantle()
 
 /obj/structure/girder/bullet_act(var/obj/item/projectile/Proj)
 	//Girders only provide partial cover. There's a chance that the projectiles will just pass through. (unless you are trying to shoot the girder)

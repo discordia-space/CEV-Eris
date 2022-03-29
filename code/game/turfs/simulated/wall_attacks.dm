@@ -68,48 +68,39 @@
 
 	try_touch(user, rotting)
 
-/turf/simulated/wall/attack_generic(mob/user, damage, attack_message, wallbreaker)
-
-	radiate()
-	if(!istype(user))
-		return
-
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	var/rotting = (locate(/obj/effect/overlay/wallrot) in src)
-	if(!damage || !wallbreaker)
-		try_touch(user, rotting)
-		return
-
-	if(rotting)
-		return success_smash(user)
-
-	if(reinf_material)
-		if((wallbreaker == 2) || (damage >= max(material.hardness,reinf_material.hardness)))
-			return success_smash(user)
-	else if(damage >= material.hardness)
-		return success_smash(user)
-	return fail_smash(user)
-
-/turf/simulated/wall/attack_generic(mob/living/exosuit/M, damage, attack_message)
+/turf/simulated/wall/attack_generic(mob/M, damage, attack_message)
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-//	if(!damage)
-//		return
+
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		return success_smash(M)
-	if(reinf_material)
-		return attack_hand(M)
 
-	if(damage < 30)
-		if(prob(50))
-			M.do_attack_animation(src)
-			M.visible_message(SPAN_DANGER("\The [M] punches the [src] to no effect!"))
+	radiate()
+	if(!istype(M))
+		return
+
+	if(reinf_material)
+		if (damage < max(material.hardness + reinf_material.hardness/2))
 			return attack_hand(M)
 		else
 			playsound(src, pick(WALLHIT_SOUNDS), 50, 1)
 			M.do_attack_animation(src)
-			M.visible_message(SPAN_DANGER("\The [M] whacks \the [src]!"))
+			M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
 			return take_damage(damage)
-	if(damage >= 30)
+
+	if(!damage || damage < material.hardness/5)
+		return attack_hand(M)
+
+	if(damage < material.hardness/2)
+		if(prob(50))
+			M.do_attack_animation(src)
+			M.visible_message(SPAN_DANGER("\The [M] [attack_message] the [src] to no effect!"))
+			return attack_hand(M)
+		else
+			playsound(src, pick(WALLHIT_SOUNDS), 50, 1)
+			M.do_attack_animation(src)
+			M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+			return take_damage(damage)
+	if(damage > material.hardness/2)
 		playsound(src, pick(WALLHIT_SOUNDS), 50, 1)
 		M.do_attack_animation(src)
 		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))

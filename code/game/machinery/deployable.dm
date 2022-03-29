@@ -130,13 +130,13 @@ for reference:
 	qdel(src)
 	return
 
-/obj/structure/barricade/attack_generic(mob/living/exosuit/M, damage, attack_message)
+/obj/structure/barricade/attack_generic(mob/M, damage, attack_message)
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!damage)
-		return
+		return attack_hand(M)
 	if(damage)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))
+		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
 		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
 		take_damage(damage)
 
@@ -374,12 +374,12 @@ for reference:
 	if (health <= 0)
 		dismantle()
 
-/obj/machinery/deployable/barrier/attack_generic(mob/living/exosuit/M, damage, attack_message)
+/obj/machinery/deployable/barrier/attack_generic(mob/M, damage, attack_message)
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!damage)
-		return
+		return attack_hand(M)
 	if(damage)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))
+		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
 		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
 		take_damage(damage*1.25)

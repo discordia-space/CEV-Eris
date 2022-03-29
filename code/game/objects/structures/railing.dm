@@ -342,14 +342,14 @@
 		else
 	return
 
-/obj/structure/railing/attack_generic(mob/living/exosuit/M, damage, attack_message)
+/obj/structure/railing/attack_generic(mob/M, damage, attack_message)
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!damage)
-		return
+		return attack_hand(M)
 	if(damage)
 		playsound(loc, 'sound/effects/metal_crash.ogg', 50, 1)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))
+		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
 		drop_materials(get_turf(loc))
 		qdel(src)
 

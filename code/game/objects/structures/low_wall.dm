@@ -452,17 +452,17 @@
 		user.do_attack_animation(src)
 		return
 
-/obj/structure/low_wall/attack_generic(mob/living/exosuit/M, damage, attack_message)
+/obj/structure/low_wall/attack_generic(mob/M, damage, attack_message)
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(!damage)
-		return
+	if(!damage || damage < 10)
+		return attack_hand(M)
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		return dismantle_wall()
-	if(damage < 30)
+	if(damage < 20)
 		playsound(src, 'sound/effects/metalhit2.ogg' , 100, 5)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] thumps on \the [src]!"))
-		return take_damage(damage*4)
+		M.visible_message(SPAN_DANGER("\The [M] [attack_message] on \the [src]!"))
+		return take_damage(damage*3)
 	if(damage >= 30)
 		playsound(src, 'sound/effects/metalhit2.ogg' , 100, 5)
 		M.do_attack_animation(src)
