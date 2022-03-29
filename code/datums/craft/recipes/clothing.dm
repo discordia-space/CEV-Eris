@@ -97,7 +97,7 @@
 		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTEEL),
 		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC),
-		list(QUALITY_ADHESIVE, 15, 15),
+		list(QUALITY_ADHESIVE, 15, 15)
 	)
 
 /datum/craft_recipe/clothing/artisthelmet
