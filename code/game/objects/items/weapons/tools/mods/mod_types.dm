@@ -707,8 +707,7 @@
 			UPGRADE_FORCE_MULT = rand(-1.5,1.5),
 			)
 	price_tag += rand(0, 1000)
-	var/weirdmod = pick("hand-painted", "mastercrafted", "embellished", "grotesque", "laminated", "menacing", "bejeweled", "sparkling", "fine-tuned")
-	I.prefix = "[weirdmod]"
+	I.prefix = pick("hand-painted", "mastercrafted", "embellished", "grotesque", "laminated", "menacing", "bejeweled", "sparkling", "fine-tuned")
 
 /obj/item/tool_upgrade/artwork_tool_mod/get_item_cost(export)
 	. = ..()
