@@ -449,9 +449,9 @@
 /obj/item/clothing/suit/storage/scavengerarmor/artwork/New()
 	..()
 	pockets.storage_slots = 1
-	var/dice = "4d20"
-	var/rander = rand(-20,10)//double chance to gimp stats, keeps things reasonable
-	armor = armor.setRating(roll(dice) + rander, roll(dice) + rander, roll(dice) + rander, roll(dice) + rander, 45, roll(dice) + rander)
+	var/dice = "4d18"
+	var/rander = rand(-25,15)//double chance to gimp stats, keeps things reasonable
+	armor = armor.setRating(clamp(roll(dice) + rander, 0, 90), clamp(roll(dice) + rander, 0, 90), clamp(roll(dice) + rander, 0, 90), 45, clamp(roll(dice) + rander, 0, 90))
 	price_tag += rand(1000, 2500)
 
 /obj/item/clothing/head/armor/artwork
