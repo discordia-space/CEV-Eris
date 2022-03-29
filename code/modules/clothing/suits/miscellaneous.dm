@@ -448,10 +448,7 @@
 
 /obj/item/clothing/suit/storage/scavengerarmor/artwork/New()
 	..()
-	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 1
-	pockets.max_w_class = ITEM_SIZE_SMALL
-	pockets.max_storage_space = 6
 	var/dice = "4d20"
 	var/rander = rand(-20,10)//double chance to gimp stats, keeps things reasonable
 	armor = armor.setRating(roll(dice) + rander, roll(dice) + rander, roll(dice) + rander, roll(dice) + rander, 45, roll(dice) + rander)
