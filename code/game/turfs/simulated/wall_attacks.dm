@@ -69,7 +69,7 @@
 	try_touch(user, rotting)
 
 /turf/simulated/wall/attack_generic(mob/M, damage, attack_message)
-	add_logs(M, src, loc, "attacked")
+	log_and_message_admins("attacked [src]: [jumplink(src)]")
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
