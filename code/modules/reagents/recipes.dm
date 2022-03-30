@@ -611,7 +611,7 @@
 
 /datum/chemical_reaction/uraniumsolidification
 	result = null
-	required_reagents = list("iron" = 5, "frostoil" = 5, "uranium" = 20)
+	required_reagents = list("aluminum" = 5, "frostoil" = 10, "uranium" = 20)
 	result_amount = 1
 
 /datum/chemical_reaction/uraniumsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
