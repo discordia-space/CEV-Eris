@@ -503,6 +503,17 @@
 		return 1
 	return ..()
 
+/obj/effect/blob/attack_generic(mob/M, damage, attack_message)
+	add_logs(M, src, loc, "attacked")
+	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(!damage)
+		return attack_hand(M)
+	if(damage)
+		M.do_attack_animation(src)
+		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
+		take_damage(damage/brute_resist)
+
 /obj/effect/blob/core
 	name = "blob core"
 	icon = 'icons/mob/blob.dmi'

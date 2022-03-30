@@ -33,6 +33,7 @@
 		LAZYAPLUS(., reinf_material.name, 2)
 
 /obj/structure/girder/attack_generic(mob/M, damage, attack_message = "smashes apart")
+	add_logs(M, src, loc, "attacked")
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!damage)
 		return attack_hand(M)

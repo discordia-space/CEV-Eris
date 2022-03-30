@@ -240,6 +240,7 @@ var/list/custom_table_appearance = list(
 		update_material()
 
 /obj/structure/table/attack_generic(mob/M, damage, attack_message)
+	add_logs(M, src, loc, "attacked")
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!damage)
 		return attack_hand(M)

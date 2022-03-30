@@ -453,6 +453,7 @@
 		return
 
 /obj/structure/low_wall/attack_generic(mob/M, damage, attack_message)
+	add_logs(M, src, loc, "attacked")
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!damage || damage < 10)
 		return attack_hand(M)

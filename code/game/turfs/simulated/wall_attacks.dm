@@ -69,6 +69,7 @@
 	try_touch(user, rotting)
 
 /turf/simulated/wall/attack_generic(mob/M, damage, attack_message)
+	add_logs(M, src, loc, "attacked")
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
@@ -87,7 +88,7 @@
 			M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
 			return take_damage(damage)
 
-	if(!damage || damage < material.hardness/5)
+	if(!damage || damage < material.hardness/6)
 		return attack_hand(M)
 
 	if(damage < material.hardness/2)

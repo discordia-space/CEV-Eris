@@ -33,12 +33,23 @@
 /obj/effect/plant/attack_hand(var/mob/user)
 	manual_unbuckle(user)
 
-/obj/effect/plant/attack_generic(var/mob/user)
-	if(istype(user))
-		manual_unbuckle(user)
+/obj/effect/plant/attack_generic(var/mob/M, var/damage, var/attack_message)
+	if(istype(M))
+		manual_unbuckle(M)
+
+	if(!damage)
+		return attack_hand(M)
+
+	add_logs(M, src, loc, "attacked")
+	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(damage)
+		M.do_attack_animation(src)
+		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
+		health -= damage
+		check_health()
 
 /obj/effect/plant/attackby(var/obj/item/W, var/mob/user)
-
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	plant_controller.add_plant(src)
 	if(istype(W, /obj/item/reagent_containers/syringe))

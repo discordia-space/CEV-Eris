@@ -131,6 +131,7 @@ for reference:
 	return
 
 /obj/structure/barricade/attack_generic(mob/M, damage, attack_message)
+	add_logs(M, src, loc, "attacked")
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!damage)
 		return attack_hand(M)
@@ -375,6 +376,7 @@ for reference:
 		dismantle()
 
 /obj/machinery/deployable/barrier/attack_generic(mob/M, damage, attack_message)
+	add_logs(M, src, loc, "attacked")
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!damage)
 		return attack_hand(M)
