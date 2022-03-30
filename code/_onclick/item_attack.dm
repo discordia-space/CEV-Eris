@@ -96,7 +96,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 						if(SOUTHWEST)
 							R = locate(A.x, (A.y + 1), z_level)
 							L = locate((A.x + 1), A.y, z_level)
-					var/obj/effect/melee/swing/S = new(locate(H.x, H.y, H.z))
+					var/obj/effect/effect/melee/swing/S = new(locate(H.x, H.y, H.z))
 					S.dir = dir
 					user.visible_message(SPAN_DANGER("[user] swings \his [src]"))
 					playsound(loc, 'sound/effects/swoosh.ogg', 50, 1, -1)
@@ -105,14 +105,14 @@ avoid code duplication. This includes items that may sometimes act as a standard
 						src.tileattack(user, L, modifier = 1)
 						src.tileattack(user, C, modifier = 0.8)
 						src.tileattack(user, R, modifier = 0.6)
-						qdel(S)
+						QDEL_IN(S, 20)
 						return
 					else if(holdinghand == slot_r_hand)
 						flick("right_swing", S)
 						src.tileattack(user, R, modifier = 1)
 						src.tileattack(user, C, modifier = 0.8)
 						src.tileattack(user, L, modifier = 0.6)
-						qdel(S)
+						QDEL_IN(S, 20)
 						return
 	return A.attackby(src, user, params)
 
@@ -173,17 +173,19 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	for(var/obj/structure/S in targetarea)
 		if (S.density && !istype(S, /obj/structure/table))
 			S.attackby(src, user)
-	var/list/T
+	var/list/T = new/list()
 	for(var/mob/living/M in targetarea)
-		if(!M.lying)
-			T += M
-	if(T)
-		return src.attack(pick(T), user, user.targeted_organ, modifier)
+		if(M.stat != DEAD)
+			T.Add(M)
+	if(T.len)
+		var/target = pick(T)
+		return src.attack(target, user, user.targeted_organ, modifier)
 	else
 		for(var/mob/living/M in targetarea)
-			T += M
-		if(T)
-			return src.attack(pick(T), user, user.targeted_organ, modifier)
+			T.Add(M)
+		var/target = pick(T)
+		return src.attack(target, user, user.targeted_organ, modifier)
+
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
