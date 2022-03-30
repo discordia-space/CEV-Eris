@@ -123,7 +123,7 @@
 	seed_name = "nettle"
 	display_name = "nettles"
 	mutants = list("deathnettle")
-	chems = list("nutriment" = list(1,50), "sacid" = list(0,1))
+	chems = list("nutriment" = list(1,50), "tricordrazine" = list(1,5))
 	kitchen_tag = "nettle"
 	kitchen_tag = "nettle"
 
@@ -144,7 +144,7 @@
 	seed_name = "death nettle"
 	display_name = "death nettles"
 	mutants = null
-	chems = list("nutriment" = list(1,50), "pacid" = list(0,1))
+	chems = list("nutriment" = list(1,50), "zombiepowder" = list(0,1))
 	kitchen_tag = "deathnettle"
 
 /datum/seed/nettle/death/New()
