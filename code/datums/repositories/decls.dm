@@ -42,5 +42,6 @@
 	return
 
 /decl/Destroy()
-	crash_with("Prevented attempt to delete a decl instance: [log_info_line(src)]")
-	return QDEL_HINT_LETMELIVE // Prevents Decl destruction
+	. = QDEL_HINT_LETMELIVE // Prevents Decl destruction
+	CRASH("Prevented attempt to delete a decl instance: [log_info_line(src)]")
+

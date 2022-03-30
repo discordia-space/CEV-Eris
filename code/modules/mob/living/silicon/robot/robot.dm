@@ -1,5 +1,6 @@
 #define CYBORG_POWER_USAGE_MULTIPLIER 1.5 // Multiplier for amount of power cyborgs use.
 
+
 /mob/living/silicon/robot
 	name = "Cyborg"
 	real_name = "Cyborg"
@@ -11,6 +12,9 @@
 	mob_bump_flag = ROBOT
 	mob_swap_flags = ROBOT|MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = ~HEAVY //trundle trundle
+	var/robot_traits = null
+	// managed lists that contains all cyborg upgrade modules appliedto them
+	var/robot_upgrades = list()
 
 	var/lights_on = FALSE // Is our integrated light on?
 	var/used_power_this_tick = 0
@@ -66,7 +70,6 @@
 	var/obj/item/stock_parts/matter_bin/storage = null
 
 	var/opened = FALSE
-	var/emagged = FALSE
 	var/wiresexposed = FALSE
 	var/locked = TRUE
 	var/has_power = 1
@@ -97,6 +100,37 @@
 		/mob/living/silicon/robot/proc/sensor_mode,
 		/mob/living/silicon/robot/proc/robot_checklaws
 	)
+
+/mob/living/silicon/robot/proc/AddTrait(trait_type)
+	if(robot_traits & trait_type)
+		return FALSE
+	robot_traits |= trait_type
+	return TRUE
+
+/mob/living/silicon/robot/proc/HasTrait(trait_type)
+	if(robot_traits & trait_type)
+		return TRUE
+	return FALSE
+
+/mob/living/silicon/robot/proc/RemoveTrait(trait_type)
+	if(robot_traits & trait_type)
+		robot_traits &= ~trait_type
+		return TRUE
+	return FALSE
+
+/mob/living/silicon/robot/proc/AddTraitsFromParts()
+	for(var/datum/robot_component/comp in components)
+		if(comp.robot_trait)
+			AddTrait(comp.robot_trait)
+
+/mob/living/silicon/robot/proc/RemoveTraitsFromParts()
+	for(var/datum/robot_component/comp in components)
+		if(comp.robot_trait)
+			RemoveTrait(comp.robot_trait)
+
+/mob/living/silicon/robot/proc/UpdateTraitsFromParts()
+	RemoveTraitsFromParts()
+	AddTraitsFromParts()
 
 /mob/living/silicon/robot/New(loc,var/unfinished = 0)
 	spark_system = new /datum/effect/effect/system/spark_spread()
@@ -151,13 +185,13 @@
 
 	add_robot_verbs()
 
-	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[STATUS_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100")
-	hud_list[LIFE_HUD]        = image('icons/mob/hud.dmi', src, "hudhealth100")
-	hud_list[ID_HUD]          = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[WANTED_HUD]      = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPCHEM_HUD]     = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank")
+	hud_list[HEALTH_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
+	hud_list[STATUS_HUD] = image('icons/mob/hud.dmi', src, "hudhealth100")
+	hud_list[LIFE_HUD] = image('icons/mob/hud.dmi', src, "hudhealth100")
+	hud_list[ID_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
+	hud_list[WANTED_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
+	hud_list[IMPCHEM_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
+	hud_list[IMPTRACK_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 
 	create_HUD()
@@ -478,6 +512,22 @@
 	return FALSE
 
 /mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj)
+	if(HasTrait(CYBORG_TRAIT_DEFLECTIVE_BALLISTIC_ARMOR) && istype(Proj, /obj/item/projectile/bullet))
+		var/chance = 90
+		if(ishuman(Proj.firer))
+			var/mob/living/carbon/human/firer = Proj.firer
+			chance -= firer.stats.getStat(STAT_VIG, FALSE) / 5
+		var/obj/item/projectile/bullet/B = Proj
+		chance = max((chance - B.armor_penetration), 0)
+		if(B.starting && prob(chance))
+			visible_message(SPAN_DANGER("\The [Proj.name] ricochets off [src]\'s armour!"))
+			var/multiplier = round(10 / get_dist(B.starting, src))
+			var/turf/sourceloc = get_turf_away_from_target_complex(src, B.starting, multiplier)
+			var/distance = get_dist(sourceloc, src)
+			var/new_x =  sourceloc.x + ( rand(0, distance) * prob(50) ? -1 : 1 )
+			var/new_y =  sourceloc.y + ( rand(0, distance) * prob(50) ? -1 : 1 )
+			B.redirect(new_x, new_y, get_turf(src), src)
+			return PROJECTILE_CONTINUE // complete projectile permutation
 	..(Proj)
 	if(prob(75) && Proj.get_structure_damage() > 0) spark_system.start()
 	return 2
@@ -536,7 +586,7 @@
 	switch(tool_type)
 
 		if(QUALITY_WELDING)
-			if (user.a_intent == I_HELP)		
+			if (user.a_intent == I_HELP)
 				if (src == user)
 					to_chat(user, SPAN_WARNING("You lack the reach to be able to repair yourself."))
 					return
@@ -556,7 +606,7 @@
 				return
 
 		if(QUALITY_PRYING)
-			if (user.a_intent == I_HELP)	
+			if (user.a_intent == I_HELP)
 				if(opened)
 					if(cell)
 						if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
@@ -585,11 +635,21 @@
 							var/datum/robot_component/C = components[V]
 							if(C.installed == 1 || C.installed == -1)
 								removable_components += V
+						if(robot_upgrades)
+							for(var/item in robot_upgrades)
+								removable_components += item
 
 						var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null|anything in removable_components
 						if(!remove)
 							return
 						if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+							if(istype(remove, /obj/item/borg/upgrade))
+								var/obj/item/borg/upgrade/comp = remove
+								robot_upgrades -= comp
+								comp.unaction(src)
+								comp.forceMove(get_turf(src))
+								to_chat(user, SPAN_NOTICE("You remove \the [comp]."))
+								return
 							var/datum/robot_component/C = components[remove]
 							var/obj/item/robot_parts/robot_component/RC = C.wrapped
 							to_chat(user, SPAN_NOTICE("You remove \the [RC]."))
@@ -616,13 +676,13 @@
 				return
 
 		if(QUALITY_WIRE_CUTTING)
-			if (user.a_intent == I_HELP)		
+			if (user.a_intent == I_HELP)
 				if (wiresexposed)
 					wires.Interact(user)
 				return
 
 		if(QUALITY_SCREW_DRIVING)
-			if (user.a_intent == I_HELP)	
+			if (user.a_intent == I_HELP)
 				if (opened && !cell)
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						wiresexposed = !wiresexposed
@@ -704,7 +764,7 @@
 			to_chat(user, SPAN_WARNING("Unable to locate a radio."))
 
 	else if(I.GetIdCard() || length(I.GetAccess()))			// trying to unlock the interface with an ID card
-		if(emagged)//still allow them to open the cover
+		if(HasTrait(CYBORG_TRAIT_EMAGGED))//still allow them to open the cover
 			to_chat(user, SPAN_WARNING("The interface seems slightly damaged."))
 		if(opened)
 			to_chat(user, SPAN_WARNING("You must close the cover to swipe an ID card."))
@@ -729,6 +789,8 @@
 				to_chat(usr, "You apply the upgrade to [src]!")
 				usr.drop_item()
 				U.loc = src
+				if(U.permanent)
+					robot_upgrades += U
 			else
 				to_chat(usr, "Upgrade error!")
 
@@ -834,7 +896,7 @@
 			dat += text("[obj]: <B>Activated</B><BR>")
 		else
 			dat += text("[obj]: <A HREF=?src=\ref[src];act=\ref[obj]>Activate</A><BR>")
-	if (emagged)
+	if (HasTrait(CYBORG_TRAIT_EMAGGED))
 		if(activated(module.emag))
 			dat += text("[module.emag]: <B>Activated</B><BR>")
 		else
@@ -927,7 +989,7 @@
 	. = ..()
 
 	if(module)
-		if(istype(module, /obj/item/robot_module/custodial))
+		if(HasTrait(CYBORG_TRAIT_CLEANING_WALK))
 			var/turf/tile = loc
 			if(isturf(tile))
 				tile.clean_blood()
@@ -1029,7 +1091,7 @@
 	icon_state = module_sprites[icontype]
 	updateicon()
 
-	if(alert("Do you like this icon?",null, "No","Yes") == "No")
+	if(alert(client,"Do you like this icon?",null, "No","Yes") == "No") // We lose the USR reference because this is called from a spawned proc, so we have to use client.
 		return choose_icon()
 
 	icon_selected = 1
@@ -1117,14 +1179,14 @@
 		return
 
 	if(opened)//Cover is open
-		if(emagged)	return//Prevents the X has hit Y with Z message also you cant emag them twice
+		if(HasTrait(CYBORG_TRAIT_EMAGGED))	return//Prevents the X has hit Y with Z message also you cant emag them twice
 		if(wiresexposed)
 			to_chat(user, "You must close the panel first")
 			return
 		else
 			sleep(6)
 			if(prob(50))
-				emagged = TRUE
+				AddTrait(CYBORG_TRAIT_EMAGGED)
 				lawupdate = FALSE
 				disconnect_from_ai()
 				to_chat(user, "You emag [src]'s interface.")

@@ -23,8 +23,8 @@
 	var/obj/item/device/radio/exosuit/radio
 
 	var/wreckage_path = /obj/structure/exosuit_wreckage
-	var/mech_turn_sound = 'sound/mechs/mechturn.ogg'
-	var/mech_step_sound = 'sound/mechs/mechstep.ogg'
+	var/mech_turn_sound = 'sound/mechs/Mech_Rotation.ogg'
+	var/mech_step_sound = 'sound/mechs/Mech_Step.ogg'
 
 	// Access updating/container.
 	var/obj/item/card/id/access_card
@@ -61,6 +61,16 @@
 	//Air!
 	var/use_air = FALSE
 
+// Interface stuff.
+	var/list/hud_elements = list()
+	var/list/hardpoint_hud_elements = list()
+	var/obj/screen/movable/exosuit/health/hud_health
+	var/obj/screen/movable/exosuit/toggle/hatch_open/hud_open
+	var/obj/screen/movable/exosuit/power/hud_power
+	var/obj/screen/movable/exosuit/heat/hud_heat
+	var/obj/screen/movable/exosuit/toggle/power_control/hud_power_control
+	var/obj/screen/movable/exosuit/toggle/camera/hud_camera
+
 	// Strafing - Is the mech currently strafing?
 	var/strafing = FALSE
 
@@ -72,8 +82,20 @@
 /mob/living/exosuit/is_flooded()
 	. = (body && body.pilot_coverage >= 100 && hatch_closed) ? FALSE : ..()
 */
+/*
+/mob/living/exosuit/Initialize(mapload, var/obj/structure/heavy_vehicle_frame/source_frame)
+	if(islist(body.armor))
+		body.armor = getArmor(arglist(body.armor))
+	else if(!body.armor)
+		body.armor = getArmor()
+	else if(!istype(body.armor, /datum/armor))
+		error("Invalid type [body.armor.type] found in .armor during /obj Initialize()")
+	. = ..()
+*/
+
 /mob/living/exosuit/Initialize(mapload, var/obj/structure/heavy_vehicle_frame/source_frame)
 	. = ..()
+
 	material = get_material_by_name("[material]")
 	if(!access_card) access_card = new (src)
 
