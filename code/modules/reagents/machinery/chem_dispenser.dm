@@ -33,7 +33,7 @@
 		1 = list(),
 		2 = list("inaprovaline","anti_toxin","kelotane"), // basic upgrade
 		3 = list("tricordrazine","spaceacillin","dermaline"), // max moebius tech
-		4 = list("blattedin", "polsytem"), // excel tech
+		4 = list("blattedin", "polystem"), // excel tech
 		5 = list("carpotoxin", "bicaridine"),// one-star
 		6 = list("meralyne", "nanites") // alien
 	)
