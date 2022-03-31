@@ -37,6 +37,20 @@
 		5 = list("carpotoxin", "bicaridine"),// one-star
 		6 = list("meralyne", "nanites") // alien
 	)
+	var/list/tiered_reagents_cost = list(
+		"inaprovaline" = 8,
+		"anti_toxin" = 8,
+		"kelotane" = 8,
+		"tricordrazine" = 8,
+		"spaceaccilin" = 8,
+		"dermaline" = 8,
+		"blattedin" = 8,
+		"polystem" = 8,
+		"carpotoxin" = 10,
+		"bicaridine" = 10,
+		"meralyne" = 12,
+		"nanites" = 20
+	)
 	var/maximum_reagent_tier = 0
 	var/has_tiered_reagents = TRUE
 	var/list/hacked_reagents = list()
@@ -150,14 +164,25 @@
 		amount = CLAMP(amount, 0, 120)
 
 	if(href_list["dispense"])
-		if (dispensable_reagents.Find(href_list["dispense"]) && beaker && beaker.is_refillable())
+		if(beaker && beaker.is_refillable())
 			var/obj/item/reagent_containers/B = src.beaker
 			var/datum/reagents/R = B.reagents
 			var/space = R.maximum_volume - R.total_volume
-
-			var/added_amount = min(amount, cell.charge / chemical_dispenser_ENERGY_COST, space)
+			var/added_amount = 0
+			if (dispensable_reagents.Find(href_list["dispense"]))
+				added_amount = min(amount, cell.charge / chemical_dispenser_ENERGY_COST, space)
+				cell.use(added_amount * chemical_dispenser_ENERGY_COST)
+			// In a perfect world , we  would pass the cost through Topic() and not search lists , in reality , this is necesarry
+			// If the lists are not checked , topics can and will be exploited, becuase anyone competent can feed fake data to a HTML/JS webpage.
+			// to get any reagent that is
+			// also nanoUI is a bitch and only allows limited data feeding >:(
+			else if(tiered_reagents_cost.Find(href_list["dispense"]))
+				added_amount = min(amount, cell.charge / tiered_reagents_cost[href_list["dispense"]], space)
+				cell.use(added_amount * tiered_reagents_cost[href_list["dispense"]])
+			else
+				message_admins("[key_name(usr)] has tried to dispense a non-existant reagent [href_list["dispense"]], possible Topic() data manipulation")
+				return TRUE
 			R.add_reagent(href_list["dispense"], added_amount)
-			cell.use(added_amount * chemical_dispenser_ENERGY_COST)
 			investigate_log("dispensed [href_list["dispense"]] into [B], while being operated by [key_name(usr)]", "chemistry")
 
 	if(href_list["ejectBeaker"])
