@@ -32,7 +32,8 @@ Game Master		+EVERYTHING
 Head Admin		+EVERYTHING
 Retired Admin	+ADMIN
 
-Host			+EVERYTHING
+Big Boss			+EVERYTHING
+Host			+HOST
 
-Developer		+DEBUG +SERVER
+Developer		+ADMIN +FUN +BAN +DEBUG +SERVER
 Dev Mod			+@ +MOD
