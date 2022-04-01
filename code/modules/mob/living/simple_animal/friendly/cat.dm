@@ -295,7 +295,7 @@ var/cat_number = 0
 	attacktext = "slashed"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 
-	var/cat_life_duration = 15 MINUTES
+	var/cat_life_duration = 30 MINUTES
 
 /mob/living/simple_animal/cat/runtime/New(loc)
 	..(loc)
