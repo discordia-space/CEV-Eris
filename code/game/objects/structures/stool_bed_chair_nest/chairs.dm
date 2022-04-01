@@ -137,8 +137,8 @@
 	else
 		. = ..()
 
-/obj/structure/bed/chair/comfy/brown/captain/post_buckle_mob(/mob/living/M)
-	if(mob.ckey == "trexdude")// I heard that Simski's ckey is trexdude
+/obj/structure/bed/chair/comfy/brown/captain/post_buckle_mob(var/mob/living/M)
+	if(M.ckey == "trexdude")// I heard that Simski's ckey is trexdude
 		. = ..()
 	else
 		detonate()
