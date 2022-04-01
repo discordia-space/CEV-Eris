@@ -1,6 +1,6 @@
 /datum/antagonist/excelsior
 	id = ROLE_EXCELSIOR_REV
-	role_text = "Excelsior Infiltrator"
+	role_text = "Incelsior Infiltrator"
 	role_text_plural = "Infiltrators"
 	bantype = ROLE_BANTYPE_EXCELSIOR
 	welcome_text = "Viva la revolution!"

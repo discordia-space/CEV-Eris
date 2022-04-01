@@ -1,9 +1,9 @@
 /datum/faction/excelsior
 	id = FACTION_EXCELSIOR
-	name = "Excelsior"
-	antag = "infiltrator"
-	antag_plural = "infiltrators"
-	welcome_text = "You are Excelsior, Ever Upward. You have infiltrated this vessel to further the Revolution.\n\
+	name = "Incelsior"
+	antag = "Incelsior Infiltrator"
+	antag_plural = "Incelsior infiltrators"
+	welcome_text = "You are Incelsior, Ever Upward. You have infiltrated this vessel to further the Revolution.\n\
 	The People's strength lies in securing our position, gathering the oppressed, spreading propaganda and producing arms and armor for the final revolution. A methodical approach is recommended. \n\n\
 	Our first phase is to retrieve the cache of manufacturing materials and circuit boards. Without a means of production our revolution is in peril.\n\n\
 	Our second phase is to establish a fortified position in secret. The People will send additional resources through the teleporter once it is established. This and our autolathe can be protected further with turrets and shield generators, in addition to loyal comrades.\n\n\

@@ -69,7 +69,7 @@
 	join_tag = /datum/job/chaplain
 
 /datum/job/acolyte
-	title = "Cult Melter"
+	title = "40k Larper"
 	flag = ACOLYTE
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
@@ -113,7 +113,7 @@
 	join_tag = /datum/job/acolyte
 
 /datum/job/hydro
-	title = "Cult Plantman"
+	title = "Botanist"
 	flag = BOTANIST
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
@@ -160,7 +160,7 @@
 	join_tag = /datum/job/hydro
 
 /datum/job/janitor
-	title = "Cult Jannie"
+	title = "Cult Janny"
 	flag = JANITOR
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
