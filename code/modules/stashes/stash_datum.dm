@@ -129,10 +129,6 @@ This file contains the underlying code for stash datums
 		//If we're using landmark spawning then we do that
 		var/obj/landmark/storyevent/midgame_stash_spawn/S = pick_landmark(/obj/landmark/storyevent/midgame_stash_spawn)
 
-		if(!S)
-			warning("There are no midgame stash spawn landmarks to place a stash with!")
-			return
-
 		stash_location = S.get_loc()
 		//Take the string that tells us where to find this landmark
 		create_direction_string(S)
@@ -166,10 +162,7 @@ This file contains the underlying code for stash datums
 	//First of all, lets select how we're going to direct the user. This is not purely random
 
 	//If there's only one possible direction, then we take that
-
-	if(!pick_landmark(/obj/landmark/storyevent/midgame_stash_spawn)) // we can have zero landmarks
-		selected_direction = DIRECTION_COORDS
-	else if (directions == DIRECTION_COORDS || directions == DIRECTION_LANDMARK)
+	if (directions == DIRECTION_COORDS || directions == DIRECTION_LANDMARK)
 		selected_direction = directions
 
 	else

@@ -200,47 +200,46 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 	if(MD.is_sealed)
 		sealed_levels += level
-	if(MD.do_holomap) // disabled if parameter of map exceeds practical level, one example being size 55 height 13 or above causing runtimes for every level there and after
-		//holomaps
-		if(MD.holomap_smoosh)
-			holomap_smoosh = MD.holomap_smoosh
+	//holomaps
+	if(MD.holomap_smoosh)
+		holomap_smoosh = MD.holomap_smoosh
 
-		if(MD.is_station_level)
-			var/max_holo_per_colum_l = MD.height/2 + 0.5
-			var/max_holo_per_colum_r = MD.height/2 - 0.5
-			var/even_mult = (0.15*level-0.3)*level+0.4
-			var/odd_mult = (level-1)/2
-			if(ISEVEN(MD.height))
-				max_holo_per_colum_l -= 0.5
-				max_holo_per_colum_r = max_holo_per_colum_l
-				even_mult = (level-1)/2 - 0.5
-				odd_mult = level/2 - 0.5
-			MD.holomap_legend_x = HOLOMAP_ICON_SIZE - world.maxx - MD.legend_size
-			MD.holomap_legend_y = HOLOMAP_ICON_SIZE - world.maxy - MD.legend_size - ERIS_HOLOMAP_CENTER_GUTTER
-			if(ISODD(level))
-				MD.holomap_offset_x = HOLOMAP_ICON_SIZE - world.maxx - ERIS_HOLOMAP_CENTER_GUTTER - MD.size - MD.legend_size
-				if(!odd_mult)
-					MD.holomap_offset_y = 0
-				else
-					MD.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y(MD.size, max_holo_per_colum_l, 0) + MD.size*odd_mult
+	if(MD.is_station_level)
+		var/max_holo_per_colum_l = MD.height/2 + 0.5
+		var/max_holo_per_colum_r = MD.height/2 - 0.5
+		var/even_mult = (0.15*level-0.3)*level+0.4
+		var/odd_mult = (level-1)/2
+		if(ISEVEN(MD.height))
+			max_holo_per_colum_l -= 0.5
+			max_holo_per_colum_r = max_holo_per_colum_l
+			even_mult = (level-1)/2 - 0.5
+			odd_mult = level/2 - 0.5
+		MD.holomap_legend_x = HOLOMAP_ICON_SIZE - world.maxx - MD.legend_size
+		MD.holomap_legend_y = HOLOMAP_ICON_SIZE - world.maxy - MD.legend_size - ERIS_HOLOMAP_CENTER_GUTTER
+		if(ISODD(level))
+			MD.holomap_offset_x = HOLOMAP_ICON_SIZE - world.maxx - ERIS_HOLOMAP_CENTER_GUTTER - MD.size - MD.legend_size
+			if(!odd_mult)
+				MD.holomap_offset_y = 0
 			else
-				MD.holomap_offset_x = HOLOMAP_ICON_SIZE - world.maxx
-				if(!even_mult && max_holo_per_colum_l == max_holo_per_colum_r)
-					MD.holomap_offset_y = 0
-				else
-					MD.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y(MD.size, max_holo_per_colum_r, 0) + MD.size*even_mult
+				MD.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y(MD.size, max_holo_per_colum_l, 0) + MD.size*odd_mult
+		else
+			MD.holomap_offset_x = HOLOMAP_ICON_SIZE - world.maxx
+			if(!even_mult && max_holo_per_colum_l == max_holo_per_colum_r)
+				MD.holomap_offset_y = 0
+			else
+				MD.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y(MD.size, max_holo_per_colum_r, 0) + MD.size*even_mult
 
-		// Auto-center the map if needed (Guess based on maxx/maxy)
-		if (MD.holomap_offset_x < 0)
-			MD.holomap_offset_x = ((HOLOMAP_ICON_SIZE - world.maxx) / 2)
-		if (MD.holomap_offset_y < 0)
-			MD.holomap_offset_y = ((HOLOMAP_ICON_SIZE - world.maxy) / 2)
-		// Assign them to the map lists
+	// Auto-center the map if needed (Guess based on maxx/maxy)
+	if (MD.holomap_offset_x < 0)
+		MD.holomap_offset_x = ((HOLOMAP_ICON_SIZE - world.maxx) / 2)
+	if (MD.holomap_offset_y < 0)
+		MD.holomap_offset_y = ((HOLOMAP_ICON_SIZE - world.maxy) / 2)
+	// Assign them to the map lists
 
-		LIST_NUMERIC_SET(holomap_offset_x, level, MD.holomap_offset_x)
-		LIST_NUMERIC_SET(holomap_offset_y, level, MD.holomap_offset_y)
-		LIST_NUMERIC_SET(holomap_legend_x, level, MD.holomap_legend_x)
-		LIST_NUMERIC_SET(holomap_legend_y, level, MD.holomap_legend_y)
+	LIST_NUMERIC_SET(holomap_offset_x, level, MD.holomap_offset_x)
+	LIST_NUMERIC_SET(holomap_offset_y, level, MD.holomap_offset_y)
+	LIST_NUMERIC_SET(holomap_legend_x, level, MD.holomap_legend_x)
+	LIST_NUMERIC_SET(holomap_legend_y, level, MD.holomap_legend_y)
 
 /datum/maps_data/proc/get_empty_zlevel()
 	if(empty_levels == null)
@@ -292,7 +291,6 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/height = -1	///< The number of Z-Levels in the map.
 
 	// Holomaps
-	var/do_holomap = TRUE // if holomap should be enabled here
 	var/holomap_offset_x = -1	// Number of pixels to offset the map right (for centering) for this z
 	var/holomap_offset_y = -1	// Number of pixels to offset the map up (for centering) for this z
 	var/holomap_legend_x = 96	// x position of the holomap legend for this z
@@ -311,10 +309,6 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 	var/original_name = name
 	var/original_level = z_level
-
-	if((HOLOMAP_ICON_SIZE - ((height/2)*size)/((height/2)+5) + size * ((height-1) / 2)) > 480)
-		warning("holomap of [src] would likely runtime from exceeding acceptable parameters and has been disabled.")
-		do_holomap = FALSE
 
 	for(var/shift in 1 to height)
 		var/z_level_r = original_level + shift - 1
@@ -342,18 +336,6 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	holomap_smoosh = list(list(1,2,3,4,5))
 
 /obj/map_data/eris/custom_z_name(z_level)
-	return "Deck [height - z_level + 1]"
-/obj/map_data/tower_crawl
-	name = "Eris"
-	is_station_level = TRUE
-	is_player_level = TRUE
-	is_contact_level = TRUE
-	is_accessable_level = TRUE
-	custom_z_names = TRUE
-	height = 32
-	size = 55
-
-/obj/map_data/tower_crawl/custom_z_name(z_level)
 	return "Deck [height - z_level + 1]"
 
 /obj/map_data/admin

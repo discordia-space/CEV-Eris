@@ -1,5 +1,4 @@
 #include "overmap-eris.dm"
 #include "shuttles-eris.dm"
-#include "tower_crawl.dmm"
-//#include "_CEV_Eris.dmm"
+#include "_CEV_Eris.dmm"
 #include "centcomm.dmm"
