@@ -9,6 +9,7 @@
 
 	health = 60
 	maxHealth = 60 //Same as post nerf blitz hp
+	var/time_to_generate_body = 66 SECONDS		// Should be longer than the time it takes for the core to die in a vacuum. Adjust accordingly when maxHealth changes (as of March 27 2022, it's 1 damage per second).
 
 	speed = -1
 	see_in_dark = 8
@@ -44,8 +45,8 @@
 
 	to_chat(src, SPAN_NOTICE("You start building a body"))
 
-	if(!do_after(src, 1 MINUTES, src))
-		to_chat(src, SPAN_NOTICE("The new body is not ready yet, it takes a minute to make one. You have to stand still."))
+	if(!do_after(src, time_to_generate_body, src))
+		to_chat(src, SPAN_NOTICE("The new body is not ready yet, it takes a little over a minute to make one. You have to stand still."))
 		return
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(loc)
