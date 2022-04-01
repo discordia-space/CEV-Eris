@@ -1,6 +1,6 @@
 /datum/antagonist/inquisitor
 	id = ROLE_INQUISITOR
-	role_text = "NeoTheology Inquisitor"
+	role_text = "Warhammer Larper"
 	role_text_plural = "NeoTheology Inquisitors"
 	bantype = ROLE_BANTYPE_INQUISITOR
 	welcome_text = ""
