@@ -86,3 +86,4 @@
 /obj/item/stack/thrown/throwing_knife/launchAt(atom/target, mob/living/carbon/C)
 	var/ROB_throwing_damage = max(C.stats.getStat(STAT_ROB), 1)
 	throwforce = 35 / (1 + 100 / ROB_throwing_damage) + throwforce //soft cap; This would result in knives doing 10 damage at 0 rob, 20 at 50 ROB, 25 at 100 etc.
+	..()
