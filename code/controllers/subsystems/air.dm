@@ -84,7 +84,7 @@ SUBSYSTEM_DEF(air)
 /datum/controller/subsystem/air/fire(resumed = 0)
 	var/timer = world.tick_usage
 
-	if (currentpart == SSAIR_PIPENETS || !resumed)
+	if ((currentpart == SSAIR_PIPENETS || !resumed) && prob(30))
 		process_pipenets(resumed)
 		cost_pipenets = MC_AVERAGE(cost_pipenets, TICK_DELTA_TO_MS(world.tick_usage - timer))
 		if(state != SS_RUNNING)

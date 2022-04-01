@@ -42,6 +42,9 @@
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
 
+	if(prob(10))
+		return
+
 	if(in_stasis && (stat == DEAD))
 		timeofdeath = world.time - stasis_timeofdeath
 

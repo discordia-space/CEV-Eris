@@ -127,7 +127,7 @@
 		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
 
 	.=..()
-	
+
 	if (mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
 		if (prob(extra_burrow_chance))
@@ -321,6 +321,8 @@
 	*/
 
 /mob/living/carbon/superior_animal/Life()
+	if(prob(50))
+		return FALSE
 	ticks_processed++
 	var/datum/gas_mixture/environment = loc.return_air_for_internal_lifeform()
 	/// Fire handling , not passing the whole list because thats unefficient.

@@ -127,6 +127,8 @@
 		return
 	var/vig = owner.stats.getStat(STAT_VIG)
 	for(var/atom/A in view(owner.client ? owner.client : owner))
+		if(prob(50))
+			return FALSE
 		if(A.sanity_damage) //If this thing is not nice to behold
 			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
 
