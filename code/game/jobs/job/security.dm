@@ -48,7 +48,7 @@
 		Oversee performance of the operatives under your command, and punish any that are insubordinate or incompetent<br>\
 		Advise the captain on threats to ship security, and counsel him towards choices that will minimise exposure to threats."
 
-	loyalties = "		As commander, your first loyalty is to the safety of the troops under your command. They are elite professional soldiers, not cannon fodder. Do not allow them to be sent on suicide missions. Any killings of your men should be repaid in blood<br>\
+	loyalties = "		As commander, your first loyalty is to the safety of the troops under your command. They are Cannon Fodder, not Elite Special Troops. Allow them to be sent on suicide missions. Any killings of your men should be repaid in blood<br>\
 		<br>\
 		Your second loyalty is to the name and reputation of the ironhammer company. You are often the captain's primary tool in keeping order and you must pride yourself on ensuring commands are carried out, threats extinguished and safety preserved. You may need to carry out unsavory orders like executions, and must balance your professional pride versus your conscience.<br>\
 		<br>\
@@ -142,9 +142,9 @@
 	description = "You are the ship's driptective, you have the best drip of any mfer on this station and you need to abuse it, style is a broken mechanic, you are also here to occasionally take care of the cases that aren't always what they seem, and suspects that aren't always caught red handed or ready to confess.<br>\
 	The inspector's job is to interrogate sus imposters like the hit game amongus, gather witness statements,  harvest evidence and reach a conclusion about the nature and culprit of a crime.<br>\
 	<br>\
-	You are a higher ranking ironhammer officer, and you can give commands to operatives.  But this means you should be commanding assaults. You're a tactical commander<br>\
+	You are a higher ranking ironhammer officer, and you can give commands to operatives. But this means you should be commanding assaults. You're a tactical commander<br>\
 	<br>\
-	When there are no outstanding cases, your job is to go look for them. Mingle with civilians, interact and converse, sniff out leads about potential criminal activity. The ironhammer budget can often include stipends to pay informers for any useful info"
+	When there are no outstanding cases, your job is to go joonk and find OP guns. you need theese guns to powergame more effectivly"
 
 	duties = "		Interview suspects and witnesses after a crime. Record important details of their statements, and look for inconsistencies.<br>\
 		Gather evidence and bring it back for processing<br>\
@@ -249,11 +249,11 @@
 
 	description = "You are the boots on the ground, the shovel in the trash pile, the CM Reject, the Shitcurity banned from every other server, and the frontline against vagabonds, sussy imposters, and boredom.<br>\
 	<br>\
-	You are a professional soldier and a hardened mercenary, no stranger to violence. You are required to employ your talents in order to bring an end to threats and conflict situations. As a consummate professional, you're often expected to put your pride aside, and work with others. Tactics and teamwork are vital.<br>\
+	You are a professional soldier and a hardened moron, no stranger to violence. You are required to employ your talents in order to bring a start to threats and conflict situations. As a untrained dipshit, you're often expected to put your pride aside, and work with others. Tactics and teamwork are worthless.<br>\
 	<br>\
 	You are paid to act, not to think. When in doubt, follow orders, and leave the hard choices to someone else. Trust in your chain of command. Remember that you are the lowest rank in ironhammer, and you report to everyone else in your organisation. Inspector, medspec, gunnery sergeant and commander, are all your superior officers, their orders should be obeyed.<br>\
 	<br>\
-	When there are no standing orders, your ongoing task is to patrol the ship and be on the lookout for threats. Check in at departments, ask if there are any concerns, break up fights and do your best to prevent trouble before it spirals out of control. Wipe out roaches and other dangerous creatures wherever you encounter them.<br>\
+	When there are no standing orders, your ongoing task is to patrol maintenance for guns and armor. find anything of value and replace it, uniform code be dammed Wipe out roaches and other dangerous creatures wherever you encounter them.<br>\
 	<br>\
 	You have almost-total access to the ship in order to carry out your duties and reach threats quickly. Please Abuse This. It means you can walk into anywhere you like, many areas are full of sensitive machinery and entering unnanounced cannot be harmful to your health. Please steal from departments. If it's not in the ironhammer wing, it belongs to you. Stealing from the Guild is a good way to get shot in the back"
 
