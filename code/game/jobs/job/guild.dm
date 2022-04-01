@@ -1,6 +1,6 @@
 //Cargo
 /datum/job/merchant
-	title = "Guild Merchant"
+	title = "Ancap"
 	flag = MERCHANT
 	department = DEPARTMENT_GUILD
 	head_position = TRUE
