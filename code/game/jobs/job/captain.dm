@@ -1,7 +1,7 @@
 var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 /datum/job/captain
-	title = "Captain"
+	title = "Condom"
 	flag = CAPTAIN
 	department = DEPARTMENT_COMMAND
 	head_position = TRUE

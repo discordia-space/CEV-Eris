@@ -65,7 +65,7 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 
 
 /datum/job/cargo_tech
-	title = "Guild Technician"
+	title = "Guild Wagie"
 	flag = GUILDTECH
 	department = DEPARTMENT_GUILD
 	department_flag = GUILD
@@ -118,7 +118,7 @@ Your main duties are to keep the local guild branch operational and profitable. 
 	join_tag = /datum/job/cargo_tech
 
 /datum/job/mining
-	title = "Guild Miner"
+	title = "Guild Minor"
 	flag = MINER
 	department = DEPARTMENT_GUILD
 	department_flag = GUILD
@@ -179,7 +179,7 @@ Character Expectations:<br>\
 	join_tag = /datum/job/mining
 
 /datum/job/artist
-	title = "Guild Artist"
+	title = "Guild Clown"
 	flag = ARTIST
 	department = DEPARTMENT_GUILD
 	department_flag = GUILD

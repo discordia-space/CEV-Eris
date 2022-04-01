@@ -219,7 +219,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	faction = "CEV Eris"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the Moebius Biolab Officer"
+	supervisors = "the Moebius Healslut Officer"
 	selection_color = "#a8b69a"
 	wage = WAGE_LABOUR_HAZARD
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 15)

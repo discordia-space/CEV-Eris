@@ -1,5 +1,5 @@
 /datum/job/chaplain
-	title = "NeoTheology Preacher"
+	title = "Cult Leader"
 	flag = CHAPLAIN
 	head_position = 1
 	department = DEPARTMENT_CHURCH
@@ -69,7 +69,7 @@
 	join_tag = /datum/job/chaplain
 
 /datum/job/acolyte
-	title = "NeoTheology Acolyte"
+	title = "Cult Melter"
 	flag = ACOLYTE
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
@@ -113,7 +113,7 @@
 	join_tag = /datum/job/acolyte
 
 /datum/job/hydro
-	title = "NeoTheology Agrolyte"
+	title = "Cult Plantman"
 	flag = BOTANIST
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
@@ -160,7 +160,7 @@
 	join_tag = /datum/job/hydro
 
 /datum/job/janitor
-	title = "NeoTheology Custodian"
+	title = "Cult Jannie"
 	flag = JANITOR
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
