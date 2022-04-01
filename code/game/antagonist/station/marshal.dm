@@ -1,6 +1,6 @@
 /datum/antagonist/marshal
 	id = ROLE_MARSHAL
-	role_text = "Ironhammer Marshal"
+	role_text = "Ironhammer Validhunter"
 	role_text_plural = "Ironhammer Marshals"
 	bantype = ROLE_BANTYPE_CREW_SIDED
 	protected_jobs = list(JOBS_COMMAND, JOBS_SECURITY)
