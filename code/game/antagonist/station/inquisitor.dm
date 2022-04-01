@@ -2,7 +2,6 @@
 	id = ROLE_INQUISITOR
 	role_text = "Warhammer Larper"
 	role_text_plural = "Warhammer Larper"
-	bantype = ROLE_BANTYPE_INQUISITORS
 	welcome_text = ""
 	antaghud_indicator = "hudcyberchristian"
 	possible_objectives = list(
