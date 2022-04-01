@@ -12,19 +12,19 @@
 	)
 
 /datum/job_flavor/assistant/veterinarian
-	title = "Cattle Export Vehicle \"Eris\" Veterinarian"
+	title = "Simplemob"
 
 /datum/job_flavor/assistant/shepherd
-	title = "Cattle Export Vehicle \"Eris\" Shepherd"
+	title = "Trashman"
 
 /datum/job_flavor/assistant/colonist
-	title = "Colony Expansion Vehicle \"Eris\" Colonist"
+	title = "NPC"
 
 /datum/job_flavor/assistant/geoengineer
-	title = "Colony Expansion Vehicle \"Eris\" Geoengineer"
+	title = "Vaggot"
 
 /datum/job_flavor/assistant/ecologist
-	title = "Colony Expansion Vehicle \"Eris\" Ecologist"
+	title = "Shitter"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -35,7 +35,7 @@
 	)
 
 /datum/job_flavor/assistant/ensign
-	title = "Command Evacuation Vehicle \"Eris\" Ensign"
+	title = "Ratman"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 16,
@@ -46,7 +46,7 @@
 	)
 
 /datum/job_flavor/assistant/pilot
-	title = "Command Evacuation Vehicle \"Eris\" Pilot"
+	title = "Joonker"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -57,10 +57,10 @@
 	)
 
 /datum/job_flavor/assistant/cmcp_janitor
-	title = "Command Evacuation Vehicle \"Eris\" Command Master Chief Petty Janitor"
+	title = "Hobo"
 
 /datum/job_flavor/assistant/dc_tech
-	title = "Combat Engineer Vehicle \"Eris\" Damage Control Technician"
+	title = "Greytider"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
