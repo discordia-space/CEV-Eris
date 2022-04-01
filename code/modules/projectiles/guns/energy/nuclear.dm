@@ -8,7 +8,7 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	self_recharge = TRUE
 	twohanded = FALSE
-	projectile_type = /obj/item/projectile/beam
+	projectile_type = /obj/item/projectile/beam/practice
 	charge_cost = 50
 	modifystate = null
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5, MATERIAL_URANIUM = 6)

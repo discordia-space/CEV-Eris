@@ -11,7 +11,7 @@
 	slot_flags = SLOT_BELT
 	silenced = TRUE
 	fire_sound = 'sound/weapons/Genhit.ogg'
-	projectile_type = /obj/item/projectile/energy/bolt
+	projectile_type = /obj/item/projectile/beam/practice
 	self_recharge = 1
 	charge_meter = 0
 	charge_cost = 200
@@ -20,7 +20,7 @@
 
 /obj/item/gun/energy/crossbow/ninja
 	name = "energy dart thrower"
-	projectile_type = /obj/item/projectile/energy/dart
+	projectile_type = /obj/item/projectile/beam/practice
 	safety = FALSE
 	restrict_safety = TRUE
 
@@ -33,5 +33,5 @@
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_NORMAL
 	matter = list(MATERIAL_PLASTEEL = 35, MATERIAL_PLASTIC = 20, MATERIAL_SILVER = 9, MATERIAL_URANIUM = 9)
-	projectile_type = /obj/item/projectile/energy/bolt/large
+	projectile_type = /obj/item/projectile/beam/practice
 	price_tag = 4000

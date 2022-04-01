@@ -10,7 +10,7 @@
 	fire_sound = 'sound/weapons/Laser.ogg'
 	suitable_cell = /obj/item/cell/medium
 	can_dual = TRUE
-	projectile_type = /obj/item/projectile/beam
+	projectile_type = /obj/item/projectile/beam/practice
 	charge_meter = FALSE //TODO: Rework overlays, check assets storage for charge states.
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
@@ -19,7 +19,7 @@
 	damage_multiplier = 0.28 //makeshift laser
 	recoil_buildup = 3
 	one_hand_penalty = 4
-	projectile_type = /obj/item/projectile/beam
+	projectile_type = /obj/item/projectile/beam/practice
 	init_offset = 7 // bad accuracy even on the first shot
 	suitable_cell = /obj/item/cell/medium
 	charge_cost = 25 // 4 bursts with a 800m cell

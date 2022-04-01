@@ -234,7 +234,8 @@ There are important things regarding this file:
 	playsound(target, 'sound/effects/explosion1.ogg', 100, 25, 8, 8)
 
 
-
+/obj/item/projectile/bullet/antim/practice
+	damage_types = list(BRUTE = 0)
 
 /obj/item/projectile/bullet/antim/scrap
 	damage_types = list(BRUTE = 63)
