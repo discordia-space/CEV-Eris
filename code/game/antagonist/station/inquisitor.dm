@@ -66,9 +66,9 @@
 	to_chat(player, "<span class='danger'><font size=3>You are a [role_text]!</font></span>")
 
 	to_chat(player, "Inquisitor is a higher ranking officer in the Church of NeoTheology.<br>\
-	You are here to promote the Church's interests and protect disciples, but more importantly, you are also here to \
-	track down criminals, spies and saboteurs within the church's ranks. Interrogate NT followers, and deal with those \
-	who would tarnish the public image of the Church or betray its principles.<br>\
+	You are here to larp as your favorite warhammer 40k characters , but more importantly, you are also here to \
+	track down mutants, valids and heretics amog the crew. Interrogate NT followers for no reason, and deal with those \
+	who would tarnish the public image of the God Emperor or betray its principles.<br>\
 	<br>\
 	Any local Church staff are your subordinates and should obey your commands. With other disciples, things are less clear, \
 	people may put their shipboard duties above loyalty to the church. You should be discreet in your interactions with the ship command staff \
