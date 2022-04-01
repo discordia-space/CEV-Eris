@@ -16,12 +16,12 @@
 	var/list/story_ineligible =	list()	// Denies the job from getting the antag status by story teller itself but allows become antag via different means.
 
 	// Strings.
-	var/welcome_text = "Cry havoc and let slip the dogs of war!"
+	var/welcome_text = "Security Veyran Sylas (Operative Sylas) (follow) says, I just saw a red hardsuit."
 
 	// Role data.
 	var/id = null                      		// Unique type identifier.
-	var/role_text = "Contractor"               // special_role text.
-	var/role_text_plural = "Contractors"       // As above but plural.
+	var/role_text = "Sus Imposter"               // special_role text.
+	var/role_text_plural = "Sus Imposters"       // As above but plural.
 	var/selectable = TRUE
 
 	// Faction data.
