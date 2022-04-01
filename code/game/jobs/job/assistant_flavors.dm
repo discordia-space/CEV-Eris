@@ -71,7 +71,7 @@
 	)
 
 /datum/job_flavor/assistant/field_eng
-	title = "Combat Engineer Vehicle \"Eris\" Field Engineer"
+	title = "Autist"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -82,13 +82,13 @@
 	)
 
 /datum/job_flavor/assistant/politruk
-	title = "Cosmicheskiy Edinstveniy Velikohod \"Eris\" Politruk"
+	title = "Schizophrenic"
 
 /datum/job_flavor/assistant/krasnoarmeets
-	title = "Cosmicheskiy Edinstveniy Velikohod \"Eris\" Krasnoarmeets"
+	title = "Roach Killer"
 
 /datum/job_flavor/assistant/kosmonavt
-	title = "Cosmicheskiy Edinstveniy Velikohod \"Eris\" Kosmonavt"
+	title = "Shitcurity Robuster"
 	stat_modifiers = list(
 		STAT_ROB = 16,
 		STAT_TGH = 16,
@@ -99,16 +99,16 @@
 	)
 
 /datum/job_flavor/assistant/reg_officer
-	title = "Czech Emigration Vessel \"Eris\" Registration Officer"
+	title = "Antag Main"
 
 /datum/job_flavor/assistant/refugee
-	title = "Czech Emigration Vessel \"Eris\" Refugee"
+	title = "Refugee"
 
 /datum/job_flavor/assistant/mig_officer
-	title = "Czech Emigration Vessel \"Eris\" Emigration Officer"
+	title = "VG Reject"
 
 /datum/job_flavor/assistant/protein_farmer
-	title = "Cockroach Exile Vessel \"Eris\" Protein Farmer"
+	title = "LRP Master"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -119,7 +119,7 @@
 	)
 
 /datum/job_flavor/assistant/biotechnician
-	title = "Cockroach Exile Vessel \"Eris\" Biotechnician"
+	title = "Maint Goblin"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -130,7 +130,7 @@
 	)
 
 /datum/job_flavor/assistant/bioterror_spec
-	title = "Cockroach Exile Vessel \"Eris\" Bioterror Specialist"
+	title = "Metaganger"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,

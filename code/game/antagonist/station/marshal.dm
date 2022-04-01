@@ -1,6 +1,6 @@
 /datum/antagonist/marshal
 	id = ROLE_MARSHAL
-	role_text = "Ironhammer Validhunter"
+	role_text = "Anti Antagonist"
 	role_text_plural = "Ironhammer Marshals"
 	bantype = ROLE_BANTYPE_CREW_SIDED
 	protected_jobs = list(JOBS_COMMAND, JOBS_SECURITY)
@@ -17,9 +17,7 @@
 		STAT_VIG = 15
 	)
 
-	welcome_text = "You are a freelance bounty hunter, contracted by Ironhammer to bring in a wanted fugitive, dead or alive.\n\
-	Local Ironhammer forces may assist you if you introduce yourself and win their trust. Remember that you hold no official rank \
-	and they are under no obligation to help or listen to you."
+	welcome_text = "Im not an antagonist, im an anti-antagonist. The person is still alive, is he not? I had an amr in my arms, and asked him if he work for any prohibited organisations, he had yes, your mom, and instantly started running. Also there are no real unlethal guns at my disposal on the antag menu"
 
 /datum/antagonist/marshal/can_become_antag(datum/mind/M)
 	if(!..())
