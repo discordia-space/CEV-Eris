@@ -61,6 +61,19 @@
 /obj/machinery/power/apc/hyper/critical
 	is_critical = 1
 
+/obj/machinery/power/apc/event
+	start_charge = 100
+	cell_type = /obj/item/cell/large/moebius/nuclear/infinite
+	aidisabled = 2 // AI having an APC using a bluespace cell is not good and so we disable ai control and re-enabling it
+
+/obj/machinery/power/apc/Destroy()
+	QDEL_NULL(cell)
+	..()
+
+/obj/machinery/power/apc/event/Topic(href, href_list)
+	if(href_list["lock"])
+		return FALSE // Event apcs are impossible to obtain the cell of using normal methods
+	. = ..()
 /obj/machinery/power/apc
 	name = "area power controller"
 	desc = "A control terminal for the area electrical systems."

@@ -123,6 +123,49 @@
 /obj/structure/bed/chair/comfy/brown/New(var/newloc,var/newmaterial)
 	..(newloc,MATERIAL_STEEL, MATERIAL_LEATHER)
 
+/obj/structure/bed/chair/comfy/brown/captain
+	name = "Captain's Chair"
+	desc = "This comfortable leather chair is for the true captain."
+
+/obj/structure/bed/chair/comfy/brown/captain/ex_act(severity)
+	return FALSE
+
+/obj/structure/bed/chair/comfy/brown/captain/affect_grab(var/mob/user, var/mob/target)
+	if(target.ckey != "trexdude") // I heard that Simski's ckey is trexdude
+		if(alert(user, "Do you want to end the round?", "Important Decision", "Yes", "No") == "Yes")
+			. = ..()
+	else
+		. = ..()
+
+/obj/structure/bed/chair/comfy/brown/captain/post_buckle_mob(var/mob/living/M)
+	if(M.ckey == "trexdude")// I heard that Simski's ckey is trexdude
+		. = ..()
+	else
+		detonate()
+
+/obj/structure/bed/chair/comfy/brown/captain/proc/detonate()
+	visible_message(SPAN_DANGER("A pretender to the throne in the place of the rightful captain, [src] detonates."))
+	to_chat(world, "<b>The ship was destoyed by the nuclear blast!</b>")
+	SSticker.ship_was_nuked = TRUE
+	SSticker.station_explosion_cinematic()
+
+/obj/structure/bed/chair/comfy/brown/captain/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/grab))
+		var/obj/item/grab/G = W
+		if(G.affecting.ckey != "trexdude") // I heard that Simski's ckey is trexdude
+			if(alert(user, "Do you want to end the round?", "Important Decision", "Yes", "No") == "Yes")
+				. = ..()
+		else
+			. = ..()
+
+/obj/structure/bed/chair/comfy/brown/captain/MouseDrop_T(mob/target, mob/user)
+	if(target.ckey != "trexdude")
+		if(alert(user, "Do you want to end the round?", "Important Decision", "Yes", "No") == "Yes")
+			. = ..()
+	else
+		. = ..()
+
+
 /obj/structure/bed/chair/comfy/red/New(var/newloc,var/newmaterial)
 	..(newloc,MATERIAL_STEEL, MATERIAL_CARPET)
 
