@@ -162,6 +162,15 @@
 					continue
 				else if (ismob(A))
 					chemholder.reagents.touch_mob(A)
+					if(istype(A, /mob/living/carbon))
+						var/mob/living/carbon/H = A
+						var/internals = H.get_breath_from_internal()
+						var/gasmask = FALSE
+						if(H.wear_mask)
+							gasmask = H.wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT			
+						if(!internals && !gasmask)
+							chemholder.reagents.trans_to_mob(H, 5, CHEM_INGEST, copy = FALSE)
+							chemholder.reagents.trans_to_mob(H, 5, CHEM_BLOOD, copy = FALSE)
 				else if(isobj(A) && !A.simulated)
 					chemholder.reagents.touch_obj(A)
 

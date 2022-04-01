@@ -66,9 +66,11 @@
 
 /obj/item/cruciform_upgrade/natures_blessing
 	name = "Natures blessing"
-	desc = "This upgrade slowly heals and fertilizes all plants near the follower. Useful for Agrolytes."
+	desc = "This upgrade stabilizes the Faithful and nurtures the plants near the follower. Useful for Agrolytes."
 	icon_state = "natures_blessing"
 	matter = list(MATERIAL_BIOMATTER = 100, MATERIAL_GOLD = 5, MATERIAL_PLASTEEL = 5)
+	var/cooldown = 1 SECONDS // Just to make sure that upgrade don't go berserk.
+	var/initial_time
 
 /obj/item/cruciform_upgrade/natures_blessing/OnInstall(var/disciple, var/_cruciform)
 	..()
@@ -86,6 +88,18 @@
 				tray.health += 0.1
 			if(tray.weedlevel)
 				tray.weedlevel -= 0.1
+	if(world.time < initial_time + cooldown)
+		return
+	initial_time = world.time
+	for(var/mob/living/L in oviewers(5, wearer))
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(H.stat == DEAD || !(H.get_core_implant(/obj/item/implant/core_implant/cruciform)))
+				continue
+			if(H.getBruteLoss() > 50)
+				H.adjustBruteLoss(-0.2)
+			if(H.getFireLoss() > 50)
+				H.adjustFireLoss(-0.2)
 
 /obj/item/cruciform_upgrade/faiths_shield
 	name = "Faiths shield"

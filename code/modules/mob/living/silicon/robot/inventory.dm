@@ -86,15 +86,16 @@
 		//inv3.icon_state = "inv3"
 	for (var/obj/screen/HUDelement in HUDinventory)
 		HUDelement.underlays.Cut()
+	update_robot_modules_display()
 	updateicon()
 
 /mob/living/silicon/robot/proc/activated(obj/item/O)
 	if(module_state_1 == O || module_state_2 == O || module_state_3 == O)
 		updateicon()
-		return 1
+		return TRUE
 	else
-		return 0
-	
+		return FALSE
+
 
 //Helper procs for cyborg modules on the UI.
 //These are hackish but they help clean up code elsewhere.

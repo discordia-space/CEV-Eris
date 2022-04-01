@@ -5,6 +5,7 @@
 	item_state = "flashbang"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	var/banglet = 0
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_SILVER = 1)
 
 /obj/item/grenade/flashbang/prime()
 	..()

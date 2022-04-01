@@ -69,7 +69,7 @@
 
 /datum/craft_recipe/weapon/throwing_knife
 	name = "throwing knife"
-	result = /obj/item/stack/throwing_knife
+	result = /obj/item/stack/thrown/throwing_knife
 	steps = list(
 		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTEEL),
 		list(QUALITY_WELDING, 10, "time" = 30),
