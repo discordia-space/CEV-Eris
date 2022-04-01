@@ -1,5 +1,5 @@
 /datum/job/ihc
-	title = "Ironhammer Commander"
+	title = "Ironhammer Cummander"
 	flag = IHC
 	head_position = 1
 	department = DEPARTMENT_SECURITY
@@ -42,9 +42,9 @@
 	Your goal is to keep everyone aboard the ship as safe as possible, and to eliminate any threats to safety.<br>\
 	The Gunnery Sergeant is your second in command, and any of your duties can be delegated to him at your discretion"
 
-	duties = "		Coordinate operatives in the field, assigning them to threats and distress calls as needed.<br>\
-		Allocate department funds for necessary supplies, equipment, armor, weapons, upgrades, etc. Spend your money as required to ensure your troops are at peak combat performance<br>\
-		Plan assaults on entrenched threats, ensure each operative knows their roles and carries them out precisely.<br>\
+	duties = "		dont Coordinate operatives in the field, assigning them to threats and distress calls as needed.<br>\
+		horde department funds for necessary supplies, equipment, armor, weapons, upgrades, etc. Spend your money as required to ensure your troops are at peak combat performance<br>\
+		Plan assaults on entrenched threats, ensure each doesnt operative know their roles and carries them out precisely.<br>\
 		Oversee performance of the operatives under your command, and punish any that are insubordinate or incompetent<br>\
 		Advise the captain on threats to ship security, and counsel him towards choices that will minimise exposure to threats."
 
@@ -94,19 +94,9 @@
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/camera_monitor)
 
-	description = "You are the Second-in-Command of the local Ironhammer regiment, and the defacto leader if the commander isn't around. <br>\
-	Within ironhammer you largely hold a desk job, your duties will rarely take you outside of the Ironhammer wing, and you are not expected to interact with civilians. You have enough to deal with as is, and are probably the hardest working member of Ironhammer.<br>\
-	<br>\
-	You have several core duties:<br>\
-		1. As second in command, any of the commander's duties may be delegated to you, if they decide to do so. This means that at any time, you may be expected to handle funding, paperwork, disciplinary matters, planning combat tactics, or even carrying out executions. If there's no commander, these duties fall naturally to you. If there is a commander on site though, you shouldn't make these kind of decisions without consulting them.<br>\
-		<br>\
-		2. You serve as the ironhammer quartermaster. And as such, it is your job to maintain the armoury, and stocks of other equipment. You should keep track of its contents, and who has what. Make sure weapons and equipment are returned at the end of a shift, and procure new armaments from the guild or from scavengers as necessary to keep supplies up and respond to new threat	s.<br>\
-		<br>\
-		3. You are the defacto warden, and if there are any prisoners being kept in the Ironhammer brig, it is your responsibility to ensure they are fed, treated appropriately with regard to their legal rights, and ensure they have access to medical care. If necessary you may need to suppress riots or escape attempts within the brig too.<br>\
-		<br>\
-		4. In times of peace, prepare for war. To this end, you are also the onsite military instructor. If the ship is in a lull and there are no outstanding threats, you should take the initiative to order training drills. Allow junior operatives to train and learn with less conventional weapons and tactics, give lessons on aiming, trigger discipline, hand to hand combat. Conduct drills on threat response, squad tactics, and EVA manoeuvres.<br>\ "
+	description = "You know why i use the takeshi ? because unlike the shitty Sol , it kills a contractor in 30 hits , bang bang bang bang bang bang bang bang bang bang bang bang bang bang bang bang bang bang bang bang bang bang bang bang bang bang bang bang bang and they're fucken dead . I use full box mags just to make sure they're dead.Because once again, im not here to coddle a bunch of "techically" agreement-following criminals, im here to 1)Survive the shift and 2)Enforce the shit out of the agreement. So you can absolutely get fucked.If i get unbanned , which i won't, i can guarantee you i will use the Takeshi to deal with people, because its big , fast firing  and has a huge magazine. Why in the seven hells i would use the shitty Sol Carbine , which takes 9 bursts to even put a dent into someone with armor, or the shitty AK which doesn't even have full auto. The Takeshi is the superior law enforcement weapon, because it reduces the amount of crime by reducing the amount of ship"
 
-	loyalties = "You're a military man through and through. As such, your first loyalty is to the Commander, and thusly to the chain of command"
+	loyalties = "your giant ass armory"
 
 /obj/landmark/join/start/gunserg
 	name = "Ironhammer Gunnery Sergeant"
@@ -149,7 +139,7 @@
 							 /datum/computer_file/program/audio,
 							 /datum/computer_file/program/camera_monitor)
 
-	description = "You are the ship's detective, you have the best drip of any mfer on this station and you need to abuse it, style is a broken mechanic, you are also here to occasionally take care of the cases that aren't always what they seem, and suspects that aren't always caught red handed or ready to confess.<br>\
+	description = "You are the ship's driptective, you have the best drip of any mfer on this station and you need to abuse it, style is a broken mechanic, you are also here to occasionally take care of the cases that aren't always what they seem, and suspects that aren't always caught red handed or ready to confess.<br>\
 	The inspector's job is to interrogate sus imposters like the hit game amongus, gather witness statements,  harvest evidence and reach a conclusion about the nature and culprit of a crime.<br>\
 	<br>\
 	You are a higher ranking ironhammer officer, and you can give commands to operatives.  But this means you should be commanding assaults. You're a tactical commander<br>\
@@ -210,10 +200,10 @@
 	<br>\
 	1. Field Medic. <br>\
 	You may be expected to serve on the backlines in a combat situation, treating and stabilising the wounded, making the call as to whether they can return to combat or leave by medivac. You may need to perform emergency trauma surgery in undesireable conditions. <br>\
-	You are allowed to be armed, but remember that saving lives, not taking them, is your first duty. Don't be afraid to send patients to moebius medical for proper specialist care.<br>\
+	You are allowed to be armed, but remember that taking lives, not saving them, is your first duty. Don't be afraid to send patients to the grave for proper specialist care.<br>\
 	<br>\
 	2. Prison Doctor.<br>\
-	During quiet times, when inmates are serving in the brig, you will often be required to treat prisoners, criminal suspects, and the condemned. Suicide attempts are common in prison, and you will often be treating a patient against their will, who is attempting to escape. When serving in this role, stay on guard, work closely with the gunnery sergeant, and keep control of the situation<br>\
+	During quiet times, when inmates are serving in the brig, you will often be required to treat prisoners, criminal sussy imposters, and the condemned. Suicide attempts are common in prison, and you will often be treating a patient against their will, who is attempting to escape. When serving in this role, stay on guard, work closely with the armory opener, and loose control of the situation<br>\
 	<br>\
 	3. Forensic Specialist.<br>\
 	Solving crimes often requires scientific analysis, and expert rulings from a trusted source within Ironhammer. You will often be expected to analyze blood, chemicals and fingerprints, conduct autopsies, and submit your findings to help track down elusive culprits. In this task, you will work closely with the inspector, and if necessary, he often has the talents to perform these tasks. But his time is better spent questioning and interrogating people"
@@ -257,7 +247,7 @@
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/camera_monitor)
 
-	description = "You are the boots on the ground, the rifle in the window, the CM Reject, the Shitcurity banned from every other server, and the frontline against criminals, terrorists, and xenos.<br>\
+	description = "You are the boots on the ground, the shovel in the trash pile, the CM Reject, the Shitcurity banned from every other server, and the frontline against vagabonds, sussy imposters, and boredom.<br>\
 	<br>\
 	You are a professional soldier and a hardened mercenary, no stranger to violence. You are required to employ your talents in order to bring an end to threats and conflict situations. As a consummate professional, you're often expected to put your pride aside, and work with others. Tactics and teamwork are vital.<br>\
 	<br>\
