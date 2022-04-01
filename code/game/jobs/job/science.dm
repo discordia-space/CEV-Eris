@@ -1,5 +1,5 @@
 /datum/job/rd
-	title = "Moebius Expedition Overseer"
+	title = "Moebius Tard Wrangler"
 	flag = MEO
 	head_position = 1
 	department = DEPARTMENT_SCIENCE
@@ -60,14 +60,14 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 
 
 /datum/job/scientist
-	title = "Moebius Scientist"
+	title = "Moebius Powergaymer"
 	flag = SCIENTIST
 	department = DEPARTMENT_SCIENCE
 	department_flag = SCIENCE
 	faction = "CEV Eris"
 	total_positions = 5
 	spawn_positions = 5
-	supervisors = "the Moebius Expedition Overseer"
+	supervisors = "the Moebius Tard Wrangler"
 	selection_color = "#bdb1bb"
 	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
@@ -120,14 +120,14 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 
 
 /datum/job/roboticist
-	title = "Moebius Roboticist"
+	title = "Moebius Mech Maker"
 	flag = ROBOTICIST
 	department = DEPARTMENT_SCIENCE
 	department_flag = SCIENCE
 	faction = "CEV Eris"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the Moebius Expedition Overseer"
+	supervisors = "the Moebius Tard Wrangler"
 	selection_color = "#bdb1bb"
 	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)

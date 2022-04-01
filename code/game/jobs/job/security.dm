@@ -68,7 +68,7 @@
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Ironhammer Commander"
+	supervisors = "the Ironhammer Cummander"
 	selection_color = "#a7bbc6"
 	department_account_access = TRUE
 	wage = WAGE_LABOUR_HAZARD
@@ -122,7 +122,7 @@
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Ironhammer Commander"
+	supervisors = "the Ironhammer Cummander"
 	selection_color = "#a7bbc6"
 	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_NEOHONGO = 100)
@@ -149,10 +149,10 @@
 							 /datum/computer_file/program/audio,
 							 /datum/computer_file/program/camera_monitor)
 
-	description = "You are the ship's detective, here to take care of the cases that aren't always what they seem, and suspects that aren't always caught red handed or ready to confess.<br>\
-	The inspector's job is to interrogate suspects, gather witness statements,  harvest evidence and reach a conclusion about the nature and culprit of a crime.<br>\
+	description = "You are the ship's detective, you have the best drip of any mfer on this station and you need to abuse it, style is a broken mechanic, you are also here to occasionally take care of the cases that aren't always what they seem, and suspects that aren't always caught red handed or ready to confess.<br>\
+	The inspector's job is to interrogate sus imposters like the hit game amongus, gather witness statements,  harvest evidence and reach a conclusion about the nature and culprit of a crime.<br>\
 	<br>\
-	You are a higher ranking ironhammer officer, and you can give commands to operatives.  But this doesn't mean you should be commanding assaults. You're not any kind of tactical commander<br>\
+	You are a higher ranking ironhammer officer, and you can give commands to operatives.  But this means you should be commanding assaults. You're a tactical commander<br>\
 	<br>\
 	When there are no outstanding cases, your job is to go look for them. Mingle with civilians, interact and converse, sniff out leads about potential criminal activity. The ironhammer budget can often include stipends to pay informers for any useful info"
 
@@ -179,7 +179,7 @@
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Ironhammer Commander"
+	supervisors = "the Ironhammer Cummander"
 	selection_color = "#a7bbc6"
 	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_NEOHONGO = 100)
@@ -232,7 +232,7 @@
 	faction = "CEV Eris"
 	total_positions = 6
 	spawn_positions = 6
-	supervisors = "the Ironhammer Commander"
+	supervisors = "the Ironhammer Cummander"
 	//alt_titles = list("Ironhammer Junior Operative")
 	selection_color = "#a7bbc6"
 	wage = WAGE_LABOUR_HAZARD

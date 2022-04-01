@@ -1,5 +1,5 @@
 /datum/job/cmo
-	title = "Moebius Biolab Officer"
+	title = "Moebius Healslut Officer"
 	flag = MBO
 	head_position = 1
 	department = DEPARTMENT_MEDICAL
@@ -60,7 +60,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 
 
 /datum/job/doctor
-	title = "Moebius Doctor"
+	title = "Moebius Healslut"
 	flag = DOCTOR
 	department = DEPARTMENT_MEDICAL
 	department_flag = MEDICAL
@@ -121,7 +121,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 
 
 /datum/job/chemist
-	title = "Moebius Chemist"
+	title = "Moebius Choomist"
 	flag = CHEMIST
 	department = DEPARTMENT_MEDICAL
 	department_flag = MEDICAL
@@ -174,7 +174,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 
 
 /datum/job/psychiatrist
-	title = "Moebius Psychiatrist"
+	title = "Moebius Legacy Role"
 	flag = PSYCHIATRIST
 	department = DEPARTMENT_MEDICAL
 	department_flag = MEDICAL
@@ -212,7 +212,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 
 
 /datum/job/paramedic
-	title = "Moebius Paramedic"
+	title = "Moebius Powergaymer"
 	flag = PARAMEDIC
 	department = DEPARTMENT_MEDICAL
 	department_flag = MEDICAL
