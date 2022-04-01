@@ -255,7 +255,7 @@
 	<br>\
 	When there are no standing orders, your ongoing task is to patrol the ship and be on the lookout for threats. Check in at departments, ask if there are any concerns, break up fights and do your best to prevent trouble before it spirals out of control. Wipe out roaches and other dangerous creatures wherever you encounter them.<br>\
 	<br>\
-	You have almost-total access to the ship in order to carry out your duties and reach threats quickly. Please Abuse This. It means you can walk into anywhere you like, many areas are full of sensitive machinery and entering unnanounced cannot be harmful to your health. Please n from departments either. If it's not in the ironhammer wing, it belongs to you. Stealing from the Guild is a good way to get shot in the back"
+	You have almost-total access to the ship in order to carry out your duties and reach threats quickly. Please Abuse This. It means you can walk into anywhere you like, many areas are full of sensitive machinery and entering unnanounced cannot be harmful to your health. Please steal from departments. If it's not in the ironhammer wing, it belongs to you. Stealing from the Guild is a good way to get shot in the back"
 
 	duties = "		Patrol the ship, provide a security presence, and look for trouble<br>\
 		Subdue and arrest criminals, terrorists, and other threats<br>\
