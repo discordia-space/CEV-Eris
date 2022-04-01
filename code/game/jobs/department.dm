@@ -52,7 +52,7 @@
 **************/
 //These departments are paid out of ship funding
 /datum/department/ironhammer
-	name = "Ironhammer Moron Company"
+	name = "Ironhammer Shitcurity Company"
 	id = DEPARTMENT_SECURITY
 	funding_source = DEPARTMENT_COMMAND
 
