@@ -7,7 +7,7 @@
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Moebius Corporation"
+	supervisors = "Moron Corporation"
 	selection_color = "#b39aaf"
 	req_admin_notify = 1
 	wage = WAGE_COMMAND
@@ -90,7 +90,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 
 	perks = list(/datum/perk/selfmedicated)
 
-	description = "You are a scientist, standing at the frontier of human advancement. Here representing Moebius corp, to find new research opportunities in deep space. The science wing is located in the second section, starboard side, opposite medical, and your medical colleagues should be fast friends. The medical wing is part of Moebius too, and so you fully share access with each other, and are free to use each others' supplies.<br>\
+	description = "You are a scientist, standing at the frontier of powergaming. Here representing Moebius corp, to find new research opportunities by spamming decon analyzer. The science wing is located in the second section, starboard side, opposite medical, and your medical colleagues should be fast friends. The medical wing is part of Moebius too, and so you fully share access with each other, and are free to use each others' supplies.<br>\
 <br>\
 As a scientist, your primary purpose is research, testing, and the advancement of knowledge. You can justify almost anything if its done for the purpose of science, and people have no reason to be suspicious if you stomp around wearing strange devices and carrying stranger weapons still. You should craft, lathe and print anything you can, toy around with it, and figure out how it works in detail. Deeply explore everything you can.<br>\
 <br>\
@@ -101,9 +101,9 @@ There are a few specialist branches within the research wing that you may delve 
 	Xenobiology: A wing full of cells, for the study of alien life forms. Primarily slimes<br>\
 	Xenoarchaeology: A facility for analysing artefacts and finds brought back from expeditions.<br>\
 	<br>\
-	The Vasily Dokuchaev is the Expedition shuttle, and is intended for going on adventures down to strange sites, and recovering items of value. <br>\
+	The Long ass Russian Name is the Expedition shuttle, and is intended for going on adventures down to strange sites, and recovering items of no value. <br>\
 	<br>\
-	<br>\[Note: Research content on Eris is still in its infancy, and is mostly just baystation content at the moment. We have major plans for redesigning it in the future\]"
+	<br>\[Note: Research content on Eris is still in its infancy, and is mostly just baystation content at the moment. We no plans for redesigning it in the future\]"
 
 	duties = "	Create unusual things and experiment with them<br>\
 	Explore, learn and adventure, do anything to advance the cause of knowledge"
@@ -148,9 +148,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 
 	perks = list(/datum/perk/selfmedicated)
 
-	description = "As a roboticist, you are probably the busiest person in the research wing. For it is the only area of the department that focuses on providing services to others.<br>\
-<br>\
-You have a broad range of tools and machinery at your disposal, and a similarly broad range of responsibilities. You will also have a constant stream of visitors, and rarely a moment to yourself<br>\
+	description = "As a roboticist, you are probably least busy person in the research wing. For it is the only area of the department that focuses on wasting all the fucking mats on mechs.<br>\
 <br>\
 The duties of robotics are many, and the lab often benefits from having multiple staff.<br>\
 You must maintain, tend to, and upgrade the fleet of synthetics that help keep the ship running. Farther to that, the duty of constructing new robots falls to you too. With the aid of your fabricators, you may turn a pile of sheet metal and wires into sentient life. The robots of the ship are operated by moebius, and its not unknown for roboticists to develop a parental attachment to them.<br>\

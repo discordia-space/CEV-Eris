@@ -141,7 +141,7 @@
 	)
 
 /datum/job_flavor/assistant/bomber
-	title = "Capital Extermination Vessel \"Eris\" Bomber"
+	title = "Corpse in Maint"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -152,7 +152,7 @@
 	)
 
 /datum/job_flavor/assistant/m_arms
-	title = "Capital Extermination Vessel \"Eris\" Master at Arms"
+	title = "Roach Food"
 	stat_modifiers = list(
 		STAT_ROB = 16,
 		STAT_TGH = 16,
