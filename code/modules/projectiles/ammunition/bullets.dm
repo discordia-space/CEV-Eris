@@ -261,7 +261,7 @@
 	spent_icon = "atmr-spent"
 	caliber = CAL_ANTIM
 	projectile_type = /obj/item/projectile/bullet/antim
-	matter = list(MATERIAL_STEEL = 2)
+	matter = list(MATERIAL_PLASTEEL = 2)
 	maxamount = 5
 
 	sprite_update_spawn = TRUE
@@ -277,6 +277,7 @@
 	icon_state = "atmr-emp"
 	spent_icon = "atmr-emp-spent"
 	projectile_type = /obj/item/projectile/bullet/antim/emp
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_IRON = 1, MATERIAL_URANIUM = 1)
 
 /obj/item/ammo_casing/antim/emp/prespawned
 	amount = 5
@@ -287,6 +288,7 @@
 	icon_state = "atmr-DU"
 	spent_icon = "atmr-DU-spent"
 	projectile_type = /obj/item/projectile/bullet/antim/uranium
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_URANIUM = 1)
 
 /obj/item/ammo_casing/antim/uranium/prespawned
 	amount = 5
@@ -297,6 +299,7 @@
 	icon_state = "atmr-HE"
 	spent_icon = "atmr-HE-spent"
 	projectile_type = /obj/item/projectile/bullet/antim/breach
+	matter = list(MATERIAL_PLASTEEL = 1, MATERIAL_URANIUM = 1)
 
 /obj/item/ammo_casing/antim/breach/prespawned
 	amount = 5
@@ -307,6 +310,7 @@
 	icon_state = "atmr_s"
 	spent_icon = "atmr_s-spent"
 	projectile_type = /obj/item/projectile/bullet/antim/scrap
+	matter = list(MATERIAL_STEEL = 1)
 	maxamount = 5
 
 /obj/item/ammo_casing/antim/scrap/prespawned
@@ -467,6 +471,7 @@
 	desc = "A military-grade explosive shell, designed to be fired from grenade launchers."
 	icon_state = "blast"
 	projectile_type = /obj/item/projectile/bullet/grenade/blast
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3)
 	rarity_value = 25
 
 /obj/item/ammo_casing/grenade/frag
@@ -474,6 +479,7 @@
 	desc = "A military-grade grenade shell, designed to be fired from grenade launchers. The abbreviation \"NT\" marks its producer, but the lack of detatil makes it ubiquitous."
 	icon_state = "frag"
 	projectile_type = /obj/item/projectile/bullet/grenade/frag
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 2)
 	rarity_value = 25
 
 /obj/item/ammo_casing/grenade/emp
@@ -481,6 +487,7 @@
 	desc = "An EMP grenade shell, designed to be fired from grenade launchers. The abbreviation \"NT\" marks its producer, but the lack of detatil makes it ubiquitous."
 	icon_state = "emp"
 	projectile_type = /obj/item/projectile/bullet/grenade/emp // gonna keep this from being maint-lootable for now
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_IRON = 2, MATERIAL_URANIUM = 2)
 
 /obj/item/ammo_casing/grenade/heatwave
 	name = "NT HG \"Purifico\""
@@ -497,6 +504,7 @@
 	desc = "A high explosive warhead designed for the RPG-7 launcher. Has a tubular shape."
 	icon_state = "rocketshell"
 	projectile_type = /obj/item/projectile/bullet/rocket
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3, MATERIAL_PLASMA = 2)
 	caliber = CAL_ROCKET
 	maxamount = 1
 	reload_delay = 15
@@ -508,6 +516,7 @@
 	desc = "An old improvised rocket shell for the RPG-7 launcher. Has a tubular shape."
 	icon_state = "old_rocketshell"
 	projectile_type = /obj/item/projectile/bullet/rocket/scrap
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASMA = 2)
 	caliber = CAL_ROCKET
 
 /obj/item/ammo_casing/rocket/hesh
@@ -515,6 +524,7 @@
 	desc = "A high-explosive squash head anti-vehicle warhead designed for the RPG-7 launcher. Has a tubular shape."
 	icon_state = "rocketshell_hesh"
 	projectile_type = /obj/item/projectile/bullet/rocket/hesh
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_PLASMA = 2)
 	caliber = CAL_ROCKET
 	maxamount = 1
 	reload_delay = 15
@@ -530,6 +540,7 @@
 	spent_icon = "atmr-spent"
 	caliber = CAL_70
 	projectile_type = /obj/item/projectile/bullet/gyro
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASMA = 1)
 
 /obj/item/ammo_casing/cap
 	name = "cap"
@@ -539,6 +550,7 @@
 	color = "#FF0000"
 	shell_color = "r"
 	projectile_type = /obj/item/projectile/bullet/cap
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_CARDBOARD = 1)
 
 /obj/item/ammo_casing/flare
 	name = "AG FR \"Floodlight\""
@@ -548,6 +560,6 @@
 	icon_state = "f-shell"
 	spent_icon = "f-shell-spent"
 	projectile_type = /obj/item/projectile/bullet/flare
-	matter = list(MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASMA = 1)
 	matter_reagents = list("phosphorus" = 3)
 	rarity_value = 8

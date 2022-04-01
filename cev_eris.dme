@@ -27,6 +27,7 @@
 #include "code\__DEFINES\components.dm"
 #include "code\__DEFINES\construction.dm"
 #include "code\__DEFINES\craft.dm"
+#include "code\__DEFINES\cyborg_traits.dm"
 #include "code\__DEFINES\damage_organs.dm"
 #include "code\__DEFINES\dna.dm"
 #include "code\__DEFINES\economy.dm"

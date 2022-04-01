@@ -167,7 +167,7 @@
 	barrel = /obj/item/part/gun/barrel/srifle
 
 /obj/item/gun/projectile/boltgun/handmade
-	name = "handmade bolt action rifle"
+	name = "HM BR \"Riose\""
 	desc = "A handmade bolt action rifle, made from junk and some spare parts."
 	icon_state = "boltgun_hand"
 	item_suffix = "_hand"
