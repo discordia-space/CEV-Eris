@@ -268,8 +268,8 @@
 
 // Runtime cat
 
-var/cat_cooldown = 20 SECONDS
-var/cat_max_number = 10
+var/cat_cooldown = 0 SECONDS  // UNLIMITED .... POOOOOOWER
+var/cat_max_number = 300  // Physics limit the number of Dusties to the number of Spartans that held the Thermopylae 
 var/cat_teleport = 0.0
 var/cat_number = 0
 
@@ -295,7 +295,7 @@ var/cat_number = 0
 	attacktext = "slashed"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 
-	var/cat_life_duration = 1 MINUTES
+	var/cat_life_duration = 15 MINUTES
 
 /mob/living/simple_animal/cat/runtime/New(loc)
 	..(loc)

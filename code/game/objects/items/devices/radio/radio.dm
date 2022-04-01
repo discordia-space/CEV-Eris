@@ -524,7 +524,7 @@ var/global/list/default_medbay_channels = list(
 		if (!accept)
 			for (var/ch_name in channels)
 				var/datum/radio_frequency/RF = secure_radio_connections[ch_name]
-				if (RF.frequency==freq && (channels[ch_name]&FREQ_LISTENING))
+				if(RF?.frequency == freq && (channels[ch_name] & FREQ_LISTENING))
 					accept = 1
 					break
 

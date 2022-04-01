@@ -50,7 +50,7 @@
 		return TRUE
 	if(istype(T, /turf/simulated/floor))
 		var/turf/simulated/floor/t = T
-		if(!t.flooring.is_plating || istype(t.flooring, /decl/flooring/reinforced/plating/hull)) //Caution stripes go where elevation would change, eg, stepping down onto underplating 
+		if((t.flooring && !t.flooring.is_plating) || istype(t.flooring, /decl/flooring/reinforced/plating/hull)) //Caution stripes go where elevation would change, eg, stepping down onto underplating 
 			return TRUE
 
 /obj/structure/catwalk/update_icon()
