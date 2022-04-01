@@ -1,5 +1,5 @@
 /datum/job/ai
-	title = "AI"
+	title = "Malf Moment"
 	flag = AI
 	department_flag = COMMAND
 	faction = "CEV Eris"

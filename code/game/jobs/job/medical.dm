@@ -212,7 +212,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 
 
 /datum/job/paramedic
-	title = "Moebius Powergaymer"
+	title = "Moebius Medbay Powergaymer"
 	flag = PARAMEDIC
 	department = DEPARTMENT_MEDICAL
 	department_flag = MEDICAL
