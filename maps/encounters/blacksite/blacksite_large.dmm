@@ -3,8 +3,23 @@
 /turf/space,
 /area/space)
 "ac" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "5,10"
+/obj/spawner/structures/os,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"ad" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,14"
+	},
+/turf/space,
+/area/space)
+"ae" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "16,22"
+	},
+/area/space)
+"af" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "4,15"
 	},
 /area/space)
 "ag" = (
@@ -12,36 +27,3036 @@
 /obj/map_data/blacksite/large,
 /turf/space,
 /area/space)
-"an" = (
-/turf/simulated/shuttle/floor/science{
-	icon_state = "12,2"
+"ah" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "16,4"
 	},
+/turf/space,
+/area/space)
+"an" = (
+/obj/structure/closet/onestar/tier3/medical,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "ar" = (
 /obj/structure/lattice,
 /turf/space,
 /area/space)
-"at" = (
+"ax" = (
+/obj/structure/closet/onestar/tier2/medical,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"ay" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,8"
+	},
+/area/space)
+"aA" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,10"
+	},
+/turf/space,
+/area/space)
+"aC" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "4,18"
+	},
+/area/space)
+"aE" = (
+/obj/structure/salvageable/os/implant_container{
+	name = "implant container"
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"aJ" = (
+/obj/structure/closet/onestar/tier2/medical,
+/obj/spawner/prothesis_one_star,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"aP" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "3,8"
+	},
+/area/space)
+"aX" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,1";
+	opacity = 0
+	},
+/area/space)
+"aY" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "0,21"
+	},
+/turf/space,
+/area/space)
+"aZ" = (
+/obj/structure/closet/onestar/tier1/medical,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"ba" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "2,0"
+	},
+/turf/space,
+/area/space)
+"bb" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"bc" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,14"
+	},
+/area/space)
+"bf" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,7"
+	},
+/area/space)
+"bm" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait,
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/space)
+"bo" = (
+/obj/machinery/vending/wallmed,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"bp" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "16,23"
+	},
+/turf/space,
+/area/space)
+"bs" = (
+/obj/structure/salvageable/os/console{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"bv" = (
+/obj/structure/table/steel,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,3"
+	},
+/area/space)
+"bA" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"bH" = (
+/obj/machinery/button/crematorium{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"bL" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"bM" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "2,7"
+	},
+/area/space)
+"bN" = (
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"bP" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "12,8";
+	opacity = 0
+	},
+/area/space)
+"bS" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,23"
+	},
+/area/space)
+"bT" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"bV" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"ca" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "2,13"
+	},
+/turf/space,
+/area/space)
+"cb" = (
+/turf/simulated/mineral,
+/area/space)
+"cf" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,0"
+	},
+/area/space)
+"cg" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,8";
+	opacity = 0
+	},
+/area/space)
+"cj" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,1";
+	opacity = 0
+	},
+/area/space)
+"cm" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "mining_shuttle_pump";
+	power_rating = 20000
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,22"
+	},
+/area/space)
+"ct" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,10"
+	},
+/area/space)
+"cv" = (
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"cw" = (
+/turf/simulated/floor,
+/area/space)
+"cy" = (
+/obj/structure/reagent_dispensers/fueltank/huge,
+/turf/simulated/floor,
+/area/space)
+"cz" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 8
+	},
+/obj/structure/sign/faction/one_star{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"cC" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"cN" = (
+/obj/structure/sign/faction/one_star{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"cO" = (
+/obj/structure/table/onestar,
+/obj/item/tool/medmultitool,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"cQ" = (
 /obj/structure/table/onestar,
 /obj/item/stack/medical/advanced/ointment,
 /obj/item/stack/medical/advanced/bruise_pack,
 /obj/item/reagent_containers/spray/sterilizine,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
-"ax" = (
+"cR" = (
+/obj/machinery/porta_turret/excelsior,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"cU" = (
+/obj/structure/salvageable/os/implant_container{
+	name = "implant container"
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"db" = (
+/obj/effect/shuttle_landmark/blacksite/large/nav1,
+/turf/simulated/mineral,
+/area/space)
+"dc" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "12,0"
+	icon_state = "7,21"
 	},
 /turf/space,
 /area/space)
-"aE" = (
+"de" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "8,21"
+	},
+/obj/effect/shuttle_landmark/eris/dock/exploration_shuttle,
+/turf/space,
+/area/space)
+"dj" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "9,21"
+	},
+/turf/space,
+/area/space)
+"du" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "6,20"
+	},
+/turf/space,
+/area/space)
+"dB" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,8"
+	},
+/area/space)
+"dC" = (
+/obj/machinery/conveyor/east{
+	id = "mining_internal"
+	},
+/turf/simulated/floor,
+/area/space)
+"dI" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "7,20"
+	},
+/turf/space,
+/area/space)
+"dJ" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "8,0"
+	},
+/area/space)
+"dN" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "8,20"
+	},
+/turf/space,
+/area/space)
+"dQ" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "9,20"
+	},
+/turf/space,
+/area/space)
+"dR" = (
+/obj/structure/sign/faction/one_star,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/space)
+"dS" = (
+/obj/machinery/power/port_gen/pacman{
+	anchored = 1
+	},
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor,
+/area/space)
+"dV" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "4,3"
+	},
+/area/space)
+"ea" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "10,20"
+	},
+/turf/space,
+/area/space)
+"ec" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,7"
+	},
+/turf/space,
+/area/space)
+"ed" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "2,12"
+	},
+/turf/space,
+/area/space)
+"ef" = (
+/obj/machinery/conveyor/west{
+	id = "mining_internal"
+	},
+/turf/simulated/floor,
+/area/space)
+"eh" = (
+/obj/machinery/camera/network/mining{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,6"
+	},
+/area/space)
+"ei" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "6,19"
+	},
+/turf/space,
+/area/space)
+"ej" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "2,8"
+	},
+/area/space)
+"eo" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,8"
+	},
+/area/space)
+"eq" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,5"
+	},
+/area/space)
+"ev" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,19";
+	opacity = 0
+	},
+/area/space)
+"ex" = (
+/obj/structure/table/reinforced,
+/obj/item/device/t_scanner,
+/obj/item/tank/emergency_oxygen{
+	pixel_x = -8
+	},
+/obj/item/tank/emergency_oxygen{
+	pixel_x = -8
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = 4
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "13,19"
+	},
+/area/space)
+"eI" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "8,19";
+	opacity = 0
+	},
+/area/space)
+"eJ" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,19";
+	opacity = 0
+	},
+/area/space)
+"eM" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "13,12";
+	opacity = 0
+	},
+/area/space)
+"eN" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "10,19"
+	},
+/turf/space,
+/area/space)
+"eV" = (
+/turf/simulated/shuttle/wall/science{
+	opacity = 0
+	},
+/area/space)
+"fi" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "14,21"
+	},
+/area/space)
+"fj" = (
 /obj/structure/table/standard,
 /obj/item/storage/box/donut,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "7,18"
 	},
 /area/space)
-"aJ" = (
+"fn" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "12,15"
+	},
+/area/space)
+"fr" = (
+/obj/machinery/computer/shuttle_control/explore/hulk{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,2"
+	},
+/area/space)
+"fw" = (
+/obj/machinery/computer/shuttle_control/explore/exploration_shuttle,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,18"
+	},
+/area/space)
+"fy" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,3"
+	},
+/area/space)
+"fF" = (
+/obj/structure/table/standard,
+/obj/item/storage/toolbox/mechanical,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "9,18"
+	},
+/area/space)
+"fL" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,14"
+	},
+/area/space)
+"fM" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "1,20"
+	},
+/area/space)
+"fO" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,0"
+	},
+/area/space)
+"fS" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "10,18";
+	opacity = 0
+	},
+/area/space)
+"fX" = (
+/obj/structure/flora/ausbushes/genericbush,
+/turf/simulated/floor/grass,
+/area/space)
+"gm" = (
+/obj/machinery/atmospherics/pipe/tank/air,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "13,21"
+	},
+/area/space)
+"gn" = (
+/obj/landmark/machinery/input,
+/obj/structure/ore_box,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,9"
+	},
+/area/space)
+"gp" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "4,17"
+	},
+/turf/space,
+/area/space)
+"gv" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "5,17"
+	},
+/turf/space,
+/area/space)
+"gx" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,19"
+	},
+/area/space)
+"gB" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "6,17";
+	opacity = 0
+	},
+/area/space)
+"gE" = (
+/obj/structure/table/standard,
+/obj/machinery/camera/network/research_outpost{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "7,17"
+	},
+/area/space)
+"gH" = (
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "11,13"
+	},
+/area/space)
+"gI" = (
+/obj/structure/ore_box,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "11,14"
+	},
+/area/space)
+"gN" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,17"
+	},
+/area/space)
+"gV" = (
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/space)
+"hk" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "5,0"
+	},
+/turf/space,
+/area/space)
+"hl" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,12"
+	},
+/area/space)
+"hq" = (
+/obj/structure/table/standard,
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "9,17"
+	},
+/area/space)
+"ht" = (
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "West APC";
+	pixel_x = -28
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/table/steel,
+/obj/machinery/recharger,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "3,7"
+	},
+/area/space)
+"hy" = (
+/obj/structure/closet/secure_closet/personal/miner,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,9"
+	},
+/area/space)
+"hz" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "10,17";
+	opacity = 0
+	},
+/area/space)
+"hC" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,17"
+	},
+/area/space)
+"hK" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "11,17"
+	},
+/turf/space,
+/area/space)
+"hN" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "0,19"
+	},
+/turf/space,
+/area/space)
+"hO" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "3,15"
+	},
+/turf/space,
+/area/space)
+"hQ" = (
+/obj/structure/closet/onestar/tier1/special/empty,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"hS" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "12,17"
+	},
+/turf/space,
+/area/space)
+"hT" = (
+/obj/machinery/door/airlock/mining{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "11,19"
+	},
+/area/space)
+"hY" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,16"
+	},
+/area/space)
+"hZ" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "5,16"
+	},
+/area/space)
+"ib" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "6,16"
+	},
+/area/space)
+"ii" = (
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/space)
+"ir" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "4,13"
+	},
+/area/space)
+"iu" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "1,22"
+	},
+/area/space)
+"ix" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "16,12"
+	},
+/turf/space,
+/area/space)
+"iz" = (
+/obj/machinery/door/airlock/mining{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "cargofloor1"
+	},
+/area/space)
+"iE" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,16"
+	},
+/area/space)
+"iL" = (
+/obj/machinery/atmospherics/pipe/tank/air,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "12,21"
+	},
+/area/space)
+"iO" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "0,18"
+	},
+/turf/space,
+/area/space)
+"iU" = (
+/obj/machinery/conveyor/southwest/ccw{
+	id = "mining_internal"
+	},
+/turf/simulated/floor,
+/area/space)
+"iV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/freezer{
+	name = "Vasiliy Dokuchaev Internal Airlock";
+	req_access = list(5)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,16"
+	},
+/area/space)
+"iZ" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,16"
+	},
+/area/space)
+"jb" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "13,15"
+	},
+/area/space)
+"jc" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "12,18"
+	},
+/area/space)
+"jg" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "16,8"
+	},
+/turf/space,
+/area/space)
+"jp" = (
+/obj/structure/table/rack,
+/obj/item/clothing/suit/space/void/mining,
+/obj/item/clothing/mask/breath,
+/obj/item/device/scanner/mining,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "2,20"
+	},
+/area/space)
+"js" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "14,19"
+	},
+/area/space)
+"jx" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "10,16"
+	},
+/area/space)
+"jB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,22"
+	},
+/area/space)
+"jD" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "11,16"
+	},
+/area/space)
+"jH" = (
+/turf/simulated/floor/grass,
+/area/space)
+"jN" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,11"
+	},
+/area/space)
+"jP" = (
+/obj/structure/crematorium,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"jR" = (
+/obj/structure/table/onestar,
+/obj/item/reagent_containers/glass/bottle/cyanide{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/glass/bottle/stoxin{
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/syringe,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"jS" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,16"
+	},
+/area/space)
+"jX" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,15"
+	},
+/area/space)
+"ka" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/camera/network/mining{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,19"
+	},
+/area/space)
+"kd" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/space,
+/area/space)
+"ke" = (
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"kf" = (
+/obj/machinery/porta_turret/mining,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "14,16"
+	},
+/area/space)
+"kh" = (
+/obj/structure/table/standard,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,15"
+	},
+/area/space)
+"kj" = (
+/obj/machinery/camera/network/research_outpost,
+/obj/machinery/doppler_array,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "6,15"
+	},
+/area/space)
+"kk" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "9,0"
+	},
+/turf/space,
+/area/space)
+"kl" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,15"
+	},
+/area/space)
+"kq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/science,
+/area/space)
+"ks" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,15"
+	},
+/area/space)
+"kJ" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "2,2"
+	},
+/turf/space,
+/area/space)
+"kO" = (
+/obj/structure/bed/padded,
+/obj/item/bedsheet,
+/obj/machinery/camera/network/research_outpost,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "10,15"
+	},
+/area/space)
+"kW" = (
+/obj/structure/table/standard,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,15"
+	},
+/area/space)
+"kX" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,15"
+	},
+/area/space)
+"lj" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,6"
+	},
+/area/space)
+"lk" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,14"
+	},
+/area/space)
+"ll" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "3,19"
+	},
+/area/space)
+"ls" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,15"
+	},
+/area/space)
+"lw" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,14"
+	},
+/area/space)
+"lB" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "6,14"
+	},
+/area/space)
+"lC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "12,20"
+	},
+/area/space)
+"lT" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/airlock/freezer{
+	name = "Vasiliy Dokuchaev Internal Airlock";
+	req_access = list(5)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "7,14"
+	},
+/area/space)
+"lV" = (
+/obj/machinery/mineral/processing_unit_console{
+	pixel_x = -3;
+	pixel_y = 27
+	},
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "13,7";
+	opacity = 0
+	},
+/area/space)
+"lY" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/space)
+"md" = (
+/obj/structure/salvageable/os/console{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"mm" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "8,1";
+	opacity = 0
+	},
+/area/space)
+"mn" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "mining_shuttle_pump";
+	power_rating = 20000
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,21"
+	},
+/area/space)
+"mq" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,16"
+	},
+/area/space)
+"mr" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "12,16"
+	},
+/area/space)
+"mw" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "2,15"
+	},
+/turf/space,
+/area/space)
+"mx" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/airlock/freezer{
+	name = "Vasiliy Dokuchaev Internal Airlock";
+	req_access = list(5)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "9,14"
+	},
+/area/space)
+"mz" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "2,11"
+	},
+/turf/space,
+/area/space)
+"mC" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "15,23"
+	},
+/turf/space,
+/area/space)
+"mH" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,3"
+	},
+/turf/space,
+/area/space)
+"mQ" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "10,14"
+	},
+/area/space)
+"mR" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,14"
+	},
+/area/space)
+"mT" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "3,2"
+	},
+/turf/space,
+/area/space)
+"mV" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "16,19"
+	},
+/area/space)
+"mZ" = (
+/obj/structure/table/rack,
+/obj/item/clothing/suit/space/void/mining,
+/obj/item/clothing/mask/breath,
+/obj/item/device/scanner/mining,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "2,19"
+	},
+/area/space)
+"na" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "6,7"
+	},
+/area/space)
+"ng" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,14"
+	},
+/area/space)
+"ns" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "1,17"
+	},
+/area/space)
+"nv" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,22"
+	},
+/area/space)
+"nz" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,4"
+	},
+/area/space)
+"nE" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "5,0"
+	},
+/turf/space,
+/area/space)
+"nI" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,13"
+	},
+/area/space)
+"nM" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "13,18"
+	},
+/area/space)
+"nQ" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "1,0"
+	},
+/turf/space,
+/area/space)
+"nR" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,20"
+	},
+/area/space)
+"nX" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "5,13"
+	},
+/area/space)
+"nZ" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "6,13"
+	},
+/area/space)
+"ob" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "0,17"
+	},
+/turf/space,
+/area/space)
+"oe" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,13"
+	},
+/area/space)
+"of" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "16,13"
+	},
+/turf/space,
+/area/space)
+"og" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,5"
+	},
+/area/space)
+"ok" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/freezer{
+	name = "Vasiliy Dokuchaev Internal Airlock";
+	req_access = list(5)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,14"
+	},
+/area/space)
+"or" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,13"
+	},
+/area/space)
+"ou" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "10,13"
+	},
+/area/space)
+"oB" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "3,10"
+	},
+/area/space)
+"oC" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "11,13"
+	},
+/area/space)
+"oF" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,13"
+	},
+/area/space)
+"oG" = (
+/obj/structure/sign/faction/one_star,
+/turf/simulated/wall/untinted/onestar,
+/area/space)
+"oJ" = (
+/obj/machinery/door/airlock/multi_tile/metal{
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "mining_shuttle_inner";
+	locked = 1;
+	name = "Hulk External Access"
+	},
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "hulk_shuttle";
+	name = "interior access button";
+	pixel_x = -25
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,20"
+	},
+/area/space)
+"oN" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,13"
+	},
+/area/space)
+"oO" = (
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "vasiliy_dokuchaev_shuttle";
+	name = "exterior access button";
+	pixel_y = 25;
+	req_one_access = list(13,65)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "4,12"
+	},
+/area/space)
+"oR" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"oU" = (
+/obj/structure/table/rack,
+/obj/item/clothing/suit/space/void/mining,
+/obj/item/clothing/mask/breath,
+/obj/item/device/scanner/mining,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "2,21"
+	},
+/area/space)
+"oV" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/space,
+/area/space)
+"oW" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/space)
+"oX" = (
+/turf/simulated/shuttle/wall/mining,
+/area/space)
+"oY" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "17,21"
+	},
+/turf/space,
+/area/space)
+"pe" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,23"
+	},
+/area/space)
+"pf" = (
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "vasiliy_dokuchaev_shuttle";
+	pixel_y = 28;
+	req_one_access = list(13,48);
+	tag_airpump = "research_shuttle_pump";
+	tag_chamber_sensor = "research_shuttle_sensor";
+	tag_exterior_door = "research_shuttle_outer";
+	tag_interior_door = "research_shuttle_inner"
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,12"
+	},
+/area/space)
+"pg" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,13"
+	},
+/area/space)
+"pk" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "research_shuttle_pump";
+	power_rating = 30000
+	},
+/obj/machinery/airlock_sensor{
+	frequency = 1380;
+	id_tag = "research_shuttle_sensor";
+	pixel_y = 25
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "6,12"
+	},
+/area/space)
+"pn" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "vasiliy_dokuchaev_shuttle";
+	name = "interior access button";
+	pixel_y = 25;
+	req_one_access = list(13,65)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "7,12"
+	},
+/area/space)
+"pp" = (
+/obj/machinery/conveyor_switch/oneway{
+	id = "mining_internal";
+	name = "mining conveyor"
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "11,6"
+	},
+/area/space)
+"pw" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,12"
+	},
+/area/space)
+"pC" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,18"
+	},
+/area/space)
+"pD" = (
+/obj/structure/salvageable/os/console,
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/space)
+"pJ" = (
+/obj/item/device/radio/beacon,
+/obj/machinery/camera/network/research_outpost,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "9,12"
+	},
+/area/space)
+"pK" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "2,10"
+	},
+/area/space)
+"pL" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "10,12"
+	},
+/area/space)
+"pR" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "0,16"
+	},
+/turf/space,
+/area/space)
+"pS" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "13,17"
+	},
+/area/space)
+"pT" = (
+/obj/structure/table/standard,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/firstaid/regular,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,12"
+	},
+/area/space)
+"pV" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "1,21"
+	},
+/area/space)
+"pW" = (
+/obj/machinery/door/airlock/mining{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,15"
+	},
+/area/space)
+"qd" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "4,14"
+	},
+/area/space)
+"qi" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,12"
+	},
+/area/space)
+"qj" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,5"
+	},
+/area/space)
+"qq" = (
+/obj/structure/table/onestar,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"qy" = (
+/obj/machinery/door/airlock/mining{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,13"
+	},
+/area/space)
+"qA" = (
+/obj/machinery/power/sensor{
+	long_range = 1;
+	name_tag = "Hulk Mining Barge Grid"
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,7"
+	},
+/area/space)
+"qB" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,12"
+	},
+/area/space)
+"qI" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,6"
+	},
+/turf/space,
+/area/space)
+"qL" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "13,12"
+	},
+/turf/space,
+/area/space)
+"qO" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "6,0"
+	},
+/turf/space,
+/area/space)
+"qP" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,14"
+	},
+/area/space)
+"qR" = (
+/obj/item/modular_computer/console/preset/civilian/professional{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,2"
+	},
+/area/space)
+"qV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,19"
+	},
+/area/space)
+"qX" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "6,15"
+	},
+/area/space)
+"rb" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "2,4"
+	},
+/area/space)
+"rc" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/table/rack,
+/obj/item/stack/material/plasma{
+	amount = 25
+	},
+/turf/simulated/floor,
+/area/space)
+"rd" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"re" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,2";
+	opacity = 0
+	},
+/area/space)
+"rf" = (
+/obj/machinery/door/airlock/multi_tile/metal{
+	dir = 2;
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "research_shuttle_outer";
+	locked = 1;
+	name = "Vasiliy Dokuchaev External Access";
+	req_access = list(13)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "4,11"
+	},
+/area/space)
+"rj" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,13"
+	},
+/area/space)
+"rk" = (
+/obj/structure/fuel_port{
+	pixel_y = 32
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,21"
+	},
+/area/space)
+"rl" = (
+/obj/structure/sign/derelict2{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"rn" = (
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,11"
+	},
+/area/space)
+"rs" = (
+/obj/machinery/camera/network/research_outpost{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "research_shuttle_pump";
+	power_rating = 30000
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "6,11"
+	},
+/area/space)
+"rv" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "13,7";
+	opacity = 0
+	},
+/area/space)
+"rz" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/door/airlock/multi_tile/metal{
+	dir = 2;
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "research_shuttle_inner";
+	locked = 1;
+	name = "Vasiliy Dokuchaev Internal Access";
+	req_access = list(13)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "7,11"
+	},
+/area/space)
+"rC" = (
+/obj/machinery/suit_storage_unit/mining,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,20"
+	},
+/area/space)
+"rE" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,11"
+	},
+/area/space)
+"rF" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "9,11"
+	},
+/area/space)
+"rG" = (
+/turf/simulated/shuttle/floor/science{
+	icon_state = "10,11"
+	},
+/area/space)
+"rH" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "3,18"
+	},
+/area/space)
+"rK" = (
+/obj/structure/table/steel,
+/obj/item/cell/large/high,
+/obj/item/cell/large/high,
+/obj/item/cell/large/high,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "3,6"
+	},
+/area/space)
+"rL" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,11"
+	},
+/area/space)
+"rM" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "12,3"
+	},
+/area/space)
+"rN" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,11"
+	},
+/area/space)
+"rO" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "15,2"
+	},
+/turf/space,
+/area/space)
+"rS" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "4,12";
+	opacity = 0
+	},
+/area/space)
+"rX" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "6,13"
+	},
+/area/space)
+"rY" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "14,12"
+	},
+/area/space)
+"sb" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "13,11"
+	},
+/turf/space,
+/area/space)
+"sf" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,10"
+	},
+/area/space)
+"sg" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "5,10"
+	},
+/area/space)
+"sh" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "11,7"
+	},
+/area/space)
+"sj" = (
+/obj/machinery/conveyor_switch{
+	id = "mining_internal"
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "14,13"
+	},
+/area/space)
+"sk" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "6,10"
+	},
+/area/space)
+"sl" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,6"
+	},
+/area/space)
+"st" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,10"
+	},
+/area/space)
+"sw" = (
+/obj/structure/table/steel,
+/obj/item/storage/box/donkpockets,
+/obj/machinery/camera/network/mining,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,4"
+	},
+/area/space)
+"sy" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,7"
+	},
+/area/space)
+"sD" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,15"
+	},
+/area/space)
+"sE" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,10"
+	},
+/area/space)
+"sF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/freezer{
+	name = "Vasiliy Dokuchaev Internal Airlock";
+	req_access = list(5)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,10"
+	},
+/area/space)
+"sI" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,8"
+	},
+/area/space)
+"sK" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,14"
+	},
+/area/space)
+"sW" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,10"
+	},
+/area/space)
+"sX" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "10,10"
+	},
+/area/space)
+"tu" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,4"
+	},
+/area/space)
+"ty" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "11,10"
+	},
+/area/space)
+"tA" = (
+/obj/structure/table/steel,
+/obj/item/tool/crowbar,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,2"
+	},
+/area/space)
+"tB" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,10"
+	},
+/area/space)
+"tF" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,17"
+	},
+/area/space)
+"tG" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "13,10"
+	},
+/turf/space,
+/area/space)
+"tH" = (
+/obj/structure/table/steel,
+/obj/item/tool/pickaxe,
+/obj/item/storage/belt/utility,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/tool/multitool,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,9"
+	},
+/area/space)
+"tJ" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "13,16"
+	},
+/area/space)
+"tM" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "14,10"
+	},
+/turf/space,
+/area/space)
+"tV" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "2,9"
+	},
+/turf/space,
+/area/space)
+"tX" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "3,9"
+	},
+/turf/space,
+/area/space)
+"ub" = (
+/obj/structure/sign/derelict1{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/space)
+"ue" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "3,16"
+	},
+/turf/space,
+/area/space)
+"uo" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,19"
+	},
+/area/space)
+"uA" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "12,22"
+	},
+/area/space)
+"uE" = (
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/space)
+"uF" = (
+/obj/machinery/door/airlock/vault,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/space)
+"uG" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "2,5";
+	opacity = 0
+	},
+/area/space)
+"uL" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,9"
+	},
+/area/space)
+"uO" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,16"
+	},
+/area/space)
+"uQ" = (
+/obj/structure/closet/excavation,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,9"
+	},
+/area/space)
+"uV" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/simulated/floor/grass,
+/area/space)
+"va" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,4"
+	},
+/area/space)
+"ve" = (
+/obj/machinery/camera/network/research_outpost,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "6,9"
+	},
+/area/space)
+"vj" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,9"
+	},
+/area/space)
+"vl" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "16,21"
+	},
+/area/space)
+"vo" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "2,16"
+	},
+/turf/space,
+/area/space)
+"vt" = (
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"vC" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "4,22"
+	},
+/area/space)
+"vD" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,9"
+	},
+/area/space)
+"vG" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,9"
+	},
+/area/space)
+"vK" = (
+/obj/machinery/camera/network/research_outpost,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "10,9"
+	},
+/area/space)
+"vL" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "3,17"
+	},
+/area/space)
+"vM" = (
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,9"
+	},
+/area/space)
+"vN" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,9"
+	},
+/area/space)
+"vO" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "13,9"
+	},
+/turf/space,
+/area/space)
+"vP" = (
+/obj/structure/closet/secure_closet/personal/miner,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "3,9"
+	},
+/area/space)
+"vW" = (
+/obj/machinery/door/airlock/multi_tile/metal{
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "mining_shuttle_outer";
+	locked = 1;
+	name = "Hulk External Access"
+	},
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "hulk_shuttle";
+	name = "exterior access button";
+	pixel_x = -25
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,23"
+	},
+/area/space)
+"wa" = (
+/obj/machinery/mech_recharger,
+/turf/simulated/floor/tiled/dark,
+/area/space)
+"wb" = (
+/obj/machinery/airlock_sensor{
+	frequency = 1380;
+	id_tag = "mining_shuttle_sensor";
+	pixel_y = 25
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 8;
+	frequency = 1380;
+	id_tag = "mining_shuttle_pump";
+	power_rating = 20000
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "hulk_shuttle";
+	pixel_x = 27;
+	req_one_access = list(13,48);
+	tag_airpump = "mining_shuttle_pump";
+	tag_chamber_sensor = "mining_shuttle_sensor";
+	tag_exterior_door = "mining_shuttle_outer";
+	tag_interior_door = "mining_shuttle_inner"
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,22"
+	},
+/area/space)
+"wf" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "14,9"
+	},
+/turf/space,
+/area/space)
+"wg" = (
+/obj/structure/ore_box,
+/obj/landmark/machinery/input,
+/turf/simulated/floor,
+/area/space)
+"wl" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "1,8"
+	},
+/turf/space,
+/area/space)
+"wm" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "13,2"
+	},
+/turf/space,
+/area/space)
+"wz" = (
+/obj/machinery/mineral/stacking_unit_console,
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "13,5"
+	},
+/area/space)
+"wF" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "12,6"
+	},
+/area/space)
+"wI" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "16,18"
+	},
+/area/space)
+"wJ" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "11,0"
+	},
+/turf/space,
+/area/space)
+"wS" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "2,8"
+	},
+/turf/space,
+/area/space)
+"wW" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,21"
+	},
+/area/space)
+"xa" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "13,22"
+	},
+/area/space)
+"xb" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"xp" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,11"
+	},
+/turf/space,
+/area/space)
+"xv" = (
+/obj/machinery/power/smes/buildable{
+	RCon_tag = "Hulk Mining Barge";
+	charge = 1.5e+007;
+	cur_coils = 3;
+	input_attempt = 1;
+	input_level = 750000;
+	input_level_max = 750000;
+	output_attempt = 1;
+	output_level = 750000;
+	output_level_max = 750000
+	},
+/obj/structure/cable,
+/turf/simulated/floor,
+/area/space)
+"xz" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,17"
+	},
+/area/space)
+"xA" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "2,18"
+	},
+/area/space)
+"xB" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "9,1";
+	opacity = 0
+	},
+/area/space)
+"xF" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "3,8"
+	},
+/turf/space,
+/area/space)
+"xI" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,4"
+	},
+/area/space)
+"xK" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,8"
+	},
+/area/space)
+"xL" = (
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"ya" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/space)
+"ym" = (
+/obj/structure/closet/excavation,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,8"
+	},
+/area/space)
+"yx" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "6,8"
+	},
+/area/space)
+"yE" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/airlock/freezer{
+	name = "Vasiliy Dokuchaev Internal Airlock";
+	req_access = list(5)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "7,8"
+	},
+/area/space)
+"yG" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "3,12"
+	},
+/turf/space,
+/area/space)
+"yI" = (
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"yK" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,10"
+	},
+/area/space)
+"yM" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,8"
+	},
+/area/space)
+"yQ" = (
+/obj/landmark/machinery/input,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,9"
+	},
+/area/space)
+"yR" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,3"
+	},
+/area/space)
+"yU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/airlock/freezer{
+	name = "Vasiliy Dokuchaev Internal Airlock";
+	req_access = list(5)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "9,8"
+	},
+/area/space)
+"yY" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "2,3"
+	},
+/area/space)
+"zd" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "3,21"
+	},
+/area/space)
+"ze" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "10,8"
+	},
+/area/space)
+"zj" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "5,2"
+	},
+/turf/space,
+/area/space)
+"zr" = (
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,8"
+	},
+/area/space)
+"zs" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,20"
+	},
+/area/space)
+"zz" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,8"
+	},
+/area/space)
+"zB" = (
+/obj/structure/bed/chair,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,3"
+	},
+/area/space)
+"zC" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "13,8"
+	},
+/turf/space,
+/area/space)
+"zG" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "14,8"
+	},
+/turf/space,
+/area/space)
+"zH" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,12"
+	},
+/area/space)
+"zL" = (
+/obj/structure/table/onestar,
+/obj/item/handcuffs,
+/obj/item/clothing/glasses/sunglasses/blindfold{
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/muzzle,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"zN" = (
+/obj/structure/bed,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"zO" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "3,11"
+	},
+/turf/space,
+/area/space)
+"zS" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"zT" = (
+/obj/machinery/door/airlock/mining{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining,
+/area/space)
+"zV" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,4"
+	},
+/area/space)
+"Ag" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "13,10"
+	},
+/area/space)
+"Am" = (
+/obj/structure/salvageable/os/data,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"Ao" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "2,9"
+	},
+/area/space)
+"Ar" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "2,6";
+	opacity = 0
+	},
+/area/space)
+"Au" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/simulated/floor/grass,
+/area/space)
+"Ax" = (
+/obj/structure/dispenser,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,21"
+	},
+/area/space)
+"Az" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,6"
+	},
+/area/space)
+"AL" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "15,8"
+	},
+/turf/space,
+/area/space)
+"AO" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "1,7"
+	},
+/turf/space,
+/area/space)
+"AP" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "2,7"
+	},
+/turf/space,
+/area/space)
+"AR" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "3,7"
+	},
+/area/space)
+"AS" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,7"
+	},
+/area/space)
+"AU" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "2,23"
+	},
+/turf/space,
+/area/space)
+"AX" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "5,3"
+	},
+/area/space)
+"Ba" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "6,16"
+	},
+/area/space)
+"Bd" = (
+/obj/structure/closet/excavation,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,7"
+	},
+/area/space)
+"Bh" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,20"
+	},
+/area/space)
+"Bo" = (
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "6,7"
+	},
+/area/space)
+"Bp" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,7"
+	},
+/area/space)
+"Bx" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,7"
+	},
+/area/space)
+"BI" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "0,20"
+	},
+/turf/space,
+/area/space)
+"BJ" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/space)
+"BM" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "15,0"
+	},
+/turf/space,
+/area/space)
+"BN" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,7"
+	},
+/area/space)
+"BO" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,5"
+	},
+/area/space)
+"BP" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "16,16"
+	},
+/turf/space,
+/area/space)
+"BS" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "16,3"
+	},
+/turf/space,
+/area/space)
+"Co" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,7"
+	},
+/area/space)
+"Ct" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,12"
+	},
+/area/space)
+"Cu" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "2,17"
+	},
+/area/space)
+"Cv" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "4,17"
+	},
+/area/space)
+"Cz" = (
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"CB" = (
+/obj/structure/flora/ausbushes/pointybush,
+/turf/simulated/floor/grass,
+/area/space)
+"CD" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"CE" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,4"
+	},
+/turf/space,
+/area/space)
+"CF" = (
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "10,7"
+	},
+/area/space)
+"CK" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,15"
+	},
+/area/space)
+"CR" = (
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,7"
+	},
+/area/space)
+"CS" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "17,22"
+	},
+/turf/space,
+/area/space)
+"De" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,4"
+	},
+/area/space)
+"Di" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,7"
+	},
+/area/space)
+"Dr" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,21"
+	},
+/area/space)
+"Du" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "13,7"
+	},
+/area/space)
+"Dw" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "14,7"
+	},
+/area/space)
+"DG" = (
+/obj/machinery/mineral/stacking_machine,
+/turf/simulated/floor/tiled/dark,
+/area/space)
+"DR" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "15,7"
+	},
+/turf/space,
+/area/space)
+"Ea" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,8"
+	},
+/area/space)
+"Ek" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "1,6"
+	},
+/turf/space,
+/area/space)
+"Eq" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "2,6"
+	},
+/area/space)
+"Ez" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "16,20"
+	},
+/area/space)
+"EG" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "3,23"
+	},
+/turf/space,
+/area/space)
+"EH" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "13,8"
+	},
+/area/space)
+"EL" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "3,6"
+	},
+/area/space)
+"EM" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,6"
+	},
+/area/space)
+"EN" = (
+/obj/structure/flora/ausbushes/fernybush,
+/turf/simulated/floor/grass,
+/area/space)
+"EO" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"ES" = (
+/obj/machinery/porta_turret/excelsior,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"ET" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "5,6"
+	},
+/area/space)
+"EX" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "6,6"
+	},
+/area/space)
+"Fc" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,6"
+	},
+/area/space)
+"Fd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/camera/network/research_outpost{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,6"
+	},
+/area/space)
+"Fe" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "14,15"
+	},
+/area/space)
+"Fi" = (
+/obj/landmark/machinery/output,
+/obj/machinery/conveyor/southeast/ccw{
+	id = "mining_internal"
+	},
+/turf/simulated/floor,
+/area/space)
+"Fo" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,9"
+	},
+/area/space)
+"Fu" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "5,18"
+	},
+/area/space)
+"Fv" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,6"
+	},
+/area/space)
+"Fw" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/simulated/floor/grass,
+/area/space)
+"FC" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,22"
+	},
+/area/space)
+"FT" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "14,10"
+	},
+/area/space)
+"Gd" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,14"
+	},
+/area/space)
+"Ge" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,12"
+	},
+/area/space)
+"Go" = (
+/obj/structure/table/onestar,
+/obj/structure/sign/faction/one_star{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"Gz" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,5";
+	opacity = 0
+	},
+/area/space)
+"GD" = (
+/obj/structure/flora/ausbushes/brflowers,
+/turf/simulated/floor/grass,
+/area/space)
+"GF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,9"
+	},
+/area/space)
+"GJ" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,10"
+	},
+/area/space)
+"GL" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,12"
+	},
+/turf/space,
+/area/space)
+"GQ" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "10,6"
+	},
+/area/space)
+"GU" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "11,6"
+	},
+/area/space)
+"GV" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,23"
+	},
+/area/space)
+"GZ" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,21"
+	},
+/area/space)
+"Hb" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,6"
+	},
+/area/space)
+"Hg" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "13,6"
+	},
+/area/space)
+"Hh" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,8"
+	},
+/area/space)
+"Hm" = (
+/obj/structure/bed/padded,
+/obj/item/bedsheet,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "6,17"
+	},
+/area/space)
+"Hn" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "14,6"
+	},
+/area/space)
+"Hs" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "15,6"
+	},
+/turf/space,
+/area/space)
+"Hu" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/space)
+"HB" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "1,5"
+	},
+/turf/space,
+/area/space)
+"HD" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,16"
+	},
+/area/space)
+"HE" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,15"
+	},
+/area/space)
+"HG" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "4,2"
+	},
+/turf/space,
+/area/space)
+"HL" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,2";
+	opacity = 0
+	},
+/area/space)
+"HP" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "16,5"
+	},
+/turf/space,
+/area/space)
+"HQ" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "2,5"
+	},
+/area/space)
+"HT" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "8,0"
+	},
+/turf/space,
+/area/space)
+"HV" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,11"
+	},
+/area/space)
+"Ig" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "17,20"
+	},
+/turf/space,
+/area/space)
+"Il" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,7"
+	},
+/area/space)
+"Ip" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"Is" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "12,12"
+	},
+/area/space)
+"Ix" = (
+/obj/machinery/power/smes/buildable{
+	RCon_tag = "Hulk Mining Barge";
+	charge = 1.5e+007;
+	cur_coils = 3;
+	input_attempt = 1;
+	input_level = 750000;
+	input_level_max = 750000;
+	output_attempt = 1;
+	output_level = 750000;
+	output_level_max = 750000
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor,
+/area/space)
+"Iy" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "12,2"
+	},
+/turf/space,
+/area/space)
+"IA" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "3,13"
+	},
+/turf/space,
+/area/space)
+"ID" = (
 /obj/structure/table/standard,
 /obj/machinery/power/apc{
 	dir = 1;
@@ -61,89 +3076,350 @@
 	icon_state = "4,5"
 	},
 /area/space)
-"aZ" = (
+"IL" = (
+/obj/structure/plasticflaps/mining,
+/obj/machinery/conveyor/south{
+	id = "mining_internal"
+	},
+/turf/simulated/floor,
+/area/space)
+"IN" = (
+/obj/structure/closet/crate,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "14,14"
+	},
+/area/space)
+"IR" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/camera/network/mining{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,14"
+	},
+/area/space)
+"IT" = (
+/obj/machinery/atmospherics/pipe/tank/air,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "11,4"
+	icon_state = "5,5"
 	},
 /area/space)
-"bb" = (
+"IU" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "7,0"
+	},
+/turf/space,
+/area/space)
+"IV" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/camera/network/research_outpost,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "6,5"
+	},
+/area/space)
+"IW" = (
+/obj/machinery/door/airlock/sandstone{
+	icon_state = "door_locked";
+	locked = 1;
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"IX" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "6,0"
+	},
+/turf/space,
+/area/space)
+"IY" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "3,20"
+	},
+/area/space)
+"Jb" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,3"
+	},
+/area/space)
+"Jp" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "12,0"
+	},
+/turf/space,
+/area/space)
+"Ju" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "4,23"
+	},
+/turf/space,
+/area/space)
+"Jy" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "12,1"
+	icon_state = "7,5"
 	},
 /area/space)
-"bm" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait,
-/turf/simulated/floor/tiled/derelict/white_red_edges,
+"JG" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "4,1"
+	},
+/turf/space,
 /area/space)
-"bo" = (
+"JJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "8,5"
 	},
 /area/space)
-"bs" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/machinery/light/small,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "6,14"
-	},
-/area/space)
-"bA" = (
+"JY" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "12,15"
+	icon_state = "9,5"
 	},
 /area/space)
-"bH" = (
-/obj/machinery/button/crematorium{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
-"bL" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,7"
+"Kb" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,10"
 	},
 /area/space)
-"bN" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,13"
-	},
-/area/space)
-"bT" = (
-/obj/structure/bed/chair/custom/onestar/red{
+"Ke" = (
+/obj/structure/closet/secure_closet/personal/miner,
+/obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,9"
+	},
 /area/space)
-"bV" = (
+"Kj" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,20"
+	},
+/area/space)
+"Km" = (
+/obj/structure/dispenser/oxygen,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "12,3"
+	icon_state = "10,5"
 	},
 /area/space)
-"cb" = (
-/turf/simulated/mineral,
+"Kw" = (
+/obj/machinery/suspension_gen,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,5"
+	},
 /area/space)
-"cv" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "5,17"
+"Kz" = (
+/obj/machinery/camera/network/research_outpost,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "12,5"
+	},
+/area/space)
+"KK" = (
+/obj/item/tool/pickaxe/excavation,
+/obj/item/tool/pickaxe,
+/obj/item/tool/wrench,
+/obj/item/device/measuring_tape,
+/obj/item/stack/flag/green,
+/obj/structure/table/steel,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "13,5"
+	},
+/area/space)
+"KP" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,13"
 	},
 /turf/space,
 /area/space)
-"cz" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "6,0"
+"KQ" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "5,23"
+	},
+/area/space)
+"Lb" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "13,23"
 	},
 /turf/space,
 /area/space)
-"cC" = (
+"Lk" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "4,10"
+	},
+/area/space)
+"Lo" = (
+/obj/structure/ore_box,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "12,14"
+	},
+/area/space)
+"Lr" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "5,10"
+	},
+/area/space)
+"LL" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,5"
+	},
+/area/space)
+"LM" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,22"
+	},
+/area/space)
+"LU" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "14,5"
+	},
+/area/space)
+"Md" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "3,0"
+	},
+/turf/space,
+/area/space)
+"Mf" = (
+/obj/structure/table/rack,
+/obj/item/ammo_magazine/ammobox/shotgun,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,9"
+	},
+/area/space)
+"Mh" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "6,12"
+	},
+/area/space)
+"Mj" = (
+/obj/landmark/machinery/output,
+/obj/machinery/conveyor/south{
+	id = "mining_internal"
+	},
+/turf/simulated/floor,
+/area/space)
+"Ml" = (
+/obj/structure/table/standard,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,16"
+	},
+/area/space)
+"Mo" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "0,23"
+	},
+/turf/space,
+/area/space)
+"Ms" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "4,11"
+	},
+/area/space)
+"Mv" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "14,2"
+	},
+/turf/space,
+/area/space)
+"Mw" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "15,5"
+	},
+/turf/space,
+/area/space)
+"Mz" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,1";
+	opacity = 0
+	},
+/area/space)
+"MF" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "1,4"
 	},
 /turf/space,
 /area/space)
-"cN" = (
+"MH" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "3,3"
+	},
+/area/space)
+"MK" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "2,4"
+	},
+/area/space)
+"MN" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,5"
+	},
+/area/space)
+"MV" = (
+/obj/machinery/mineral/unloading_machine,
+/turf/simulated/floor,
+/area/space)
+"MZ" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor,
+/area/space)
+"Nb" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "2,22"
+	},
+/area/space)
+"Nd" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "1,18"
+	},
+/area/space)
+"Ng" = (
+/obj/structure/bed/chair,
+/obj/machinery/camera/network/mining{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,13"
+	},
+/area/space)
+"Nk" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"Nl" = (
+/turf/simulated/shuttle/floor/science{
+	icon_state = "4,4"
+	},
+/area/space)
+"Np" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,4"
+	},
+/area/space)
+"Ns" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "6,4"
+	},
+/area/space)
+"Nv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -155,590 +3431,18 @@
 	icon_state = "7,4"
 	},
 /area/space)
-"cO" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "11,6"
+"Ny" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "14,18"
 	},
 /area/space)
-"cQ" = (
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1380;
-	master_tag = "vasiliy_dokuchaev_shuttle";
-	name = "exterior access button";
-	pixel_y = 25;
-	req_one_access = list(13,65)
-	},
+"NB" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "4,12"
+	icon_state = "8,4"
 	},
 /area/space)
-"cR" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "5,0"
-	},
-/turf/space,
-/area/space)
-"cU" = (
-/obj/structure/dispenser/oxygen,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,5"
-	},
-/area/space)
-"db" = (
-/obj/effect/shuttle_landmark/blacksite/large/nav1,
-/turf/simulated/mineral,
-/area/space)
-"dc" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "14,0"
-	},
-/turf/space,
-/area/space)
-"de" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,9"
-	},
-/area/space)
-"dj" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "6,1"
-	},
-/area/space)
-"du" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "10,10"
-	},
-/area/space)
-"dI" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "4,3"
-	},
-/area/space)
-"dN" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "13,1"
-	},
-/area/space)
-"dQ" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "7,20"
-	},
-/turf/space,
-/area/space)
-"dR" = (
-/obj/structure/sign/faction/one_star,
-/turf/simulated/wall/untinted/onestar_reinforced,
-/area/space)
-"ea" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/airlock/freezer{
-	name = "Vasiliy Dokuchaev Internal Airlock";
-	req_access = list(5)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "7,8"
-	},
-/area/space)
-"ei" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,14"
-	},
-/area/space)
-"eq" = (
-/obj/machinery/optable,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
-"ev" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "2,3"
-	},
-/area/space)
-"eI" = (
-/obj/machinery/light/small,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,11"
-	},
-/area/space)
-"eJ" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "3,0"
-	},
-/turf/space,
-/area/space)
-"eN" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "10,1"
-	},
-/area/space)
-"eV" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "10,0"
-	},
-/turf/space,
-/area/space)
-"fj" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/camera/network/research_outpost,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "6,5"
-	},
-/area/space)
-"fw" = (
-/obj/machinery/camera/network/research_outpost,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,9"
-	},
-/area/space)
-"fF" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "10,2"
-	},
-/area/space)
-"fS" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,19";
-	opacity = 0
-	},
-/area/space)
-"fX" = (
-/obj/structure/flora/ausbushes/genericbush,
-/turf/simulated/floor/grass,
-/area/space)
-"gp" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "6,17";
-	opacity = 0
-	},
-/area/space)
-"gv" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "8,20"
-	},
-/turf/space,
-/area/space)
-"gB" = (
-/obj/machinery/atmospherics/pipe/tank/air,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,5"
-	},
-/area/space)
-"gE" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "15,5"
-	},
-/turf/space,
-/area/space)
-"gN" = (
-/obj/machinery/floodlight,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,3"
-	},
-/area/space)
-"gV" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
-/area/space)
-"hl" = (
-/turf/simulated/floor/tiled/derelict,
-/area/space)
-"hq" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "10,6"
-	},
-/area/space)
-"hz" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,7"
-	},
-/area/space)
-"hK" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "2,4"
-	},
-/area/space)
-"hQ" = (
-/obj/structure/closet/onestar/tier1/special/empty,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/space)
-"hS" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,9"
-	},
-/area/space)
-"hY" = (
-/obj/structure/closet/excavation,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,8"
-	},
-/area/space)
-"hZ" = (
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2;
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "research_shuttle_outer";
-	locked = 1;
-	name = "Vasiliy Dokuchaev External Access";
-	req_access = list(13)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "4,11"
-	},
-/area/space)
-"ib" = (
-/obj/spawner/structures/os,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
-"ii" = (
-/turf/simulated/floor/tiled/derelict/white_red_edges,
-/area/space)
-"ik" = (
-/obj/machinery/porta_turret/excelsior,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
-"iE" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,13"
-	},
-/area/space)
-"iV" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,12"
-	},
-/area/space)
-"iZ" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "10,19"
-	},
-/turf/space,
-/area/space)
-"jx" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,12"
-	},
-/area/space)
-"jD" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "11,16"
-	},
-/area/space)
-"jH" = (
-/turf/simulated/floor/grass,
-/area/space)
-"jP" = (
-/obj/structure/crematorium,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
-"jR" = (
-/obj/structure/table/onestar,
-/obj/item/reagent_containers/glass/bottle/cyanide{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/glass/bottle/stoxin{
-	pixel_x = -5
-	},
-/obj/item/reagent_containers/syringe,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
-"jS" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,13"
-	},
-/area/space)
-"jX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/airlock/freezer{
-	name = "Vasiliy Dokuchaev Internal Airlock";
-	req_access = list(5)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "9,14"
-	},
-/area/space)
-"kd" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/space,
-/area/space)
-"ke" = (
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
-"kh" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "2,7"
-	},
-/turf/space,
-/area/space)
-"kj" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "15,7"
-	},
-/turf/space,
-/area/space)
-"kl" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "11,17"
-	},
-/turf/space,
-/area/space)
-"kq" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "14,8"
-	},
-/turf/space,
-/area/space)
-"ks" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "13,6"
-	},
-/area/space)
-"kO" = (
-/obj/machinery/suit_storage_unit/moebius,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,7"
-	},
-/area/space)
-"kW" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "3,6"
-	},
-/area/space)
-"kX" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "15,0"
-	},
-/turf/space,
-/area/space)
-"lk" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/freezer{
-	name = "Vasiliy Dokuchaev Internal Airlock";
-	req_access = list(5)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,14"
-	},
-/area/space)
-"lw" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "8,0"
-	},
-/area/space)
-"lB" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,7"
-	},
-/area/space)
-"lT" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "6,20"
-	},
-/turf/space,
-/area/space)
-"lY" = (
-/obj/machinery/door/airlock/sandstone{
-	name = "OneStar Airlock"
-	},
-/turf/simulated/floor/tiled/derelict/white_red_edges,
-/area/space)
-"md" = (
-/obj/structure/salvageable/os/console{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
-"mq" = (
-/obj/machinery/camera/network/research_outpost,
-/obj/machinery/doppler_array,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "6,15"
-	},
-/area/space)
-"mx" = (
-/obj/machinery/floodlight,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,3"
-	},
-/area/space)
-"mQ" = (
-/obj/machinery/camera/network/research_outpost{
-	dir = 1
-	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
-	frequency = 1380;
-	id_tag = "research_shuttle_pump";
-	power_rating = 30000
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "6,11"
-	},
-/area/space)
-"mR" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "14,4"
-	},
-/area/space)
-"ng" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "15,4"
-	},
-/turf/space,
-/area/space)
-"nI" = (
-/obj/structure/table/standard,
-/obj/machinery/camera/network/research_outpost{
-	dir = 1
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "7,17"
-	},
-/area/space)
-"nJ" = (
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
-"nX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1380;
-	master_tag = "vasiliy_dokuchaev_shuttle";
-	name = "interior access button";
-	pixel_y = 25;
-	req_one_access = list(13,65)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "7,12"
-	},
-/area/space)
-"nZ" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,6"
-	},
-/area/space)
-"oe" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "11,0"
-	},
-/turf/space,
-/area/space)
-"ok" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/airlock/freezer{
-	name = "Vasiliy Dokuchaev Internal Airlock";
-	req_access = list(5)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "9,8"
-	},
-/area/space)
-"or" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,10"
-	},
-/area/space)
-"ou" = (
-/obj/item/tool/pickaxe/excavation,
-/obj/item/tool/pickaxe,
-/obj/item/tool/wrench,
-/obj/item/device/measuring_tape,
-/obj/item/stack/flag/green,
-/obj/structure/table/steel,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "13,4"
-	},
-/area/space)
-"oC" = (
-/turf/simulated/shuttle/wall/science{
-	opacity = 0
-	},
-/area/space)
-"oG" = (
-/obj/structure/sign/faction/one_star,
-/turf/simulated/wall/untinted/onestar,
-/area/space)
-"oN" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "13,10"
-	},
-/turf/space,
-/area/space)
-"oO" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,11"
-	},
-/area/space)
-"oR" = (
-/obj/machinery/door/airlock/sandstone{
-	name = "OneStar Airlock"
-	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/space)
-"oV" = (
-/obj/machinery/door/airlock/sandstone{
-	name = "OneStar Airlock"
-	},
-/turf/space,
-/area/space)
-"oW" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/wall/untinted/onestar_reinforced,
-/area/space)
-"pf" = (
-/obj/machinery/suspension_gen,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,5"
-	},
-/area/space)
-"pk" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,10"
-	},
-/area/space)
-"pn" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,6"
-	},
-/area/space)
-"pw" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,11"
-	},
-/area/space)
-"pD" = (
-/obj/structure/salvageable/os/console,
-/turf/simulated/floor/tiled/derelict/white_red_edges,
-/area/space)
-"pJ" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "2,8"
-	},
-/turf/space,
-/area/space)
-"pL" = (
+"NE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -750,18 +3454,117 @@
 	icon_state = "9,4"
 	},
 /area/space)
-"pT" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,10"
+"NF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,20"
 	},
 /area/space)
-"qf" = (
-/obj/structure/salvageable/os/console{
+"NR" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "10,4"
+	},
 /area/space)
-"qi" = (
+"Od" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "4,16";
+	opacity = 0
+	},
+/area/space)
+"Of" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,13"
+	},
+/area/space)
+"Oi" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "5,22"
+	},
+/area/space)
+"Ok" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,5"
+	},
+/turf/space,
+/area/space)
+"Om" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/space)
+"On" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "16,14"
+	},
+/turf/space,
+/area/space)
+"Ou" = (
+/obj/machinery/door/airlock/mining{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,16"
+	},
+/area/space)
+"Oz" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,18"
+	},
+/area/space)
+"OB" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,18"
+	},
+/area/space)
+"OC" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,12"
+	},
+/area/space)
+"OJ" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,11"
+	},
+/area/space)
+"OM" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "12,7"
+	},
+/area/space)
+"Pa" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "5,1"
+	},
+/turf/space,
+/area/space)
+"Pd" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "12,1"
+	},
+/turf/space,
+/area/space)
+"Pj" = (
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,4"
+	},
+/area/space)
+"Pm" = (
+/turf/simulated/shuttle/floor/science{
+	icon_state = "12,4"
+	},
+/area/space)
+"Po" = (
 /obj/item/tool/pickaxe/excavation,
 /obj/item/tool/pickaxe,
 /obj/item/tool/wrench,
@@ -769,64 +3572,83 @@
 /obj/item/stack/flag/green,
 /obj/structure/table/steel,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "13,5"
+	icon_state = "13,4"
 	},
 /area/space)
-"qq" = (
-/obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
-"qx" = (
-/obj/machinery/vending/wallmed,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
-"qL" = (
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
-	id_tag = "vasiliy_dokuchaev_shuttle";
-	pixel_y = 28;
-	req_one_access = list(13,48);
-	tag_airpump = "research_shuttle_pump";
-	tag_chamber_sensor = "research_shuttle_sensor";
-	tag_exterior_door = "research_shuttle_outer";
-	tag_interior_door = "research_shuttle_inner"
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,12"
+"Pp" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,6"
 	},
 /area/space)
-"rc" = (
-/obj/structure/bed/chair/custom/onestar{
-	dir = 4
+"Px" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,8"
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/space,
 /area/space)
-"rd" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/obj/structure/fuel_port{
-	pixel_y = -32
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "6,3"
+"Py" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "12,19"
 	},
 /area/space)
-"rf" = (
+"PK" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "14,4"
+	},
+/area/space)
+"Qd" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "15,4"
+	},
+/turf/space,
+/area/space)
+"Qf" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,7"
+	},
+/area/space)
+"Qg" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,17"
+	},
+/area/space)
+"Qi" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "1,3"
+	},
+/turf/space,
+/area/space)
+"Qj" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,9"
+	},
+/area/space)
+"Qm" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "2,3"
+	},
+/area/space)
+"Qp" = (
 /obj/structure/bed/padded,
 /obj/item/bedsheet,
-/obj/machinery/camera/network/research_outpost,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,15"
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "6,11"
 	},
 /area/space)
-"rl" = (
-/obj/structure/sign/derelict2{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+"Qr" = (
+/obj/structure/salvageable/os/console_broken,
+/turf/simulated/floor/tiled/derelict/white_red_edges,
 /area/space)
-"rn" = (
+"Qy" = (
+/obj/structure/bed/padded,
+/obj/item/bedsheet,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,17"
+	},
+/area/space)
+"QD" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -844,652 +3666,205 @@
 	icon_state = "3,3"
 	},
 /area/space)
-"rs" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,17"
+"QK" = (
+/obj/structure/table/steel,
+/obj/machinery/microwave,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,4"
 	},
 /area/space)
-"rz" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,19";
-	opacity = 0
-	},
-/area/space)
-"rE" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,9"
-	},
-/area/space)
-"rF" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "11,13"
-	},
-/area/space)
-"rG" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "4,17"
-	},
-/turf/space,
-/area/space)
-"rL" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "2,2"
-	},
-/area/space)
-"rN" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "6,16"
-	},
-/area/space)
-"sb" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "6,8"
-	},
-/area/space)
-"sf" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "6,4"
-	},
-/area/space)
-"sg" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "13,7"
-	},
-/area/space)
-"sk" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "9,21"
-	},
-/turf/space,
-/area/space)
-"sw" = (
-/obj/structure/salvageable/os/implant_container{
-	name = "implant container"
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
-"sE" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "14,10"
-	},
-/turf/space,
-/area/space)
-"sF" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "10,18";
-	opacity = 0
-	},
-/area/space)
-"sW" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "11,10"
-	},
-/area/space)
-"sX" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,1"
-	},
-/area/space)
-"ty" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "5,13"
-	},
-/area/space)
-"tB" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "3,7"
-	},
-/area/space)
-"tG" = (
-/obj/machinery/suit_storage_unit/moebius,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,8"
-	},
-/area/space)
-"tM" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,6"
-	},
-/turf/space,
-/area/space)
-"tV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/airlock/freezer{
-	name = "Vasiliy Dokuchaev Internal Airlock";
-	req_access = list(5)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "7,14"
-	},
-/area/space)
-"tX" = (
-/obj/machinery/camera/network/research_outpost,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "12,5"
-	},
-/area/space)
-"ub" = (
-/obj/structure/sign/derelict1{
-	pixel_x = 32
-	},
-/turf/simulated/floor/tiled/derelict/white_red_edges,
-/area/space)
-"uE" = (
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/space)
-"uF" = (
-/obj/machinery/door/airlock/vault,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/space)
-"uL" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "10,13"
-	},
-/area/space)
-"uQ" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,8"
-	},
-/area/space)
-"uV" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/simulated/floor/grass,
-/area/space)
-"ve" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,0"
-	},
-/area/space)
-"vj" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "12,17"
-	},
-/turf/space,
-/area/space)
-"vt" = (
-/obj/effect/floor_decal/industrial/danger,
+"QO" = (
+/obj/structure/salvageable/os/implant_container,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
-"vD" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "10,16"
+"QT" = (
+/obj/machinery/telecomms/relay/preset/mining,
+/turf/simulated/floor/bluegrid{
+	name = "Mainframe Base"
 	},
 /area/space)
-"vG" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Hulk Mining Barge";
-	charge = 1.5e+007;
-	cur_coils = 3;
-	input_attempt = 1;
-	input_level = 750000;
-	input_level_max = 750000;
-	output_attempt = 1;
-	output_level = 750000;
-	output_level_max = 750000
+"QY" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/turf/simulated/floor,
-/area/space)
-"vK" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "5,16"
+/turf/simulated/shuttle/floor/science{
+	icon_state = "4,3"
 	},
 /area/space)
-"vM" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "6,13"
-	},
-/area/space)
-"vN" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,2"
-	},
-/area/space)
-"vO" = (
+"QZ" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "1,3"
+	icon_state = "13,0"
 	},
 /turf/space,
 /area/space)
-"wf" = (
+"Ra" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,3"
+	},
+/area/space)
+"Rl" = (
+/obj/machinery/mining/deep_drill,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "14,17"
+	},
+/area/space)
+"Rp" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/structure/fuel_port{
+	pixel_y = -32
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "6,3"
+	},
+/area/space)
+"Rs" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "14,3"
+	},
+/area/space)
+"Rt" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,23"
+	},
+/turf/space,
+/area/space)
+"Ry" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "17,23"
+	},
+/turf/space,
+/area/space)
+"Rz" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,18"
+	},
+/area/space)
+"RA" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,11"
+	},
+/area/space)
+"RE" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "12,17"
+	},
+/area/space)
+"RG" = (
+/obj/structure/table/standard,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,12"
+	},
+/area/space)
+"RI" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "14,22"
+	},
+/area/space)
+"RJ" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,3"
+	},
+/area/space)
+"RK" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,18"
+	},
+/area/space)
+"RL" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "16,7"
+	},
+/turf/space,
+/area/space)
+"RM" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,15"
+	},
+/turf/space,
+/area/space)
+"RO" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "3,14"
+	},
+/turf/space,
+/area/space)
+"RU" = (
 /obj/structure/shuttle_part/science{
+	icon_state = "4,0"
+	},
+/turf/space,
+/area/space)
+"RZ" = (
+/obj/structure/shuttle_part/mining{
 	icon_state = "16,6"
 	},
 /turf/space,
 /area/space)
-"wl" = (
-/obj/structure/closet/onestar/tier3/medical,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
-"wL" = (
-/obj/structure/closet/onestar/tier2/medical,
-/obj/spawner/prothesis_one_star,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
-"wS" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/camera/network/research_outpost{
-	dir = 8
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,6"
-	},
-/area/space)
-"xb" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/space)
-"xF" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,1"
-	},
-/area/space)
-"xK" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,1"
-	},
-/area/space)
-"xL" = (
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
-"xM" = (
-/obj/structure/sign/faction/one_star{
-	pixel_x = -32
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
-"xV" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
-"ya" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/wall/untinted/onestar_reinforced,
-/area/space)
-"ym" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,9"
-	},
-/area/space)
-"yx" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "14,2"
-	},
-/area/space)
-"yE" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "8,19";
-	opacity = 0
-	},
-/area/space)
-"yI" = (
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
-"yM" = (
-/obj/structure/table/standard,
-/obj/item/storage/toolbox/mechanical,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "9,18"
-	},
-/area/space)
-"yU" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "6,6"
-	},
-/area/space)
-"ze" = (
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,11"
-	},
-/area/space)
-"zr" = (
-/turf/simulated/shuttle/floor/science{
-	icon_state = "4,4"
-	},
-/area/space)
-"zz" = (
-/obj/item/device/radio/beacon,
-/obj/machinery/camera/network/research_outpost,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "9,12"
-	},
-/area/space)
-"zC" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,14"
-	},
-/area/space)
-"zG" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,0"
-	},
-/area/space)
-"zL" = (
-/obj/structure/table/onestar,
-/obj/item/handcuffs,
-/obj/item/clothing/glasses/sunglasses/blindfold{
-	pixel_y = 6
-	},
-/obj/item/clothing/mask/muzzle,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
-"zN" = (
-/obj/structure/bed,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/space)
-"zS" = (
-/obj/machinery/door/airlock/sandstone{
-	name = "OneStar Airlock"
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
-"Am" = (
-/obj/structure/salvageable/os/data,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/space)
-"Au" = (
-/obj/structure/flora/ausbushes/grassybush,
-/turf/simulated/floor/grass,
-/area/space)
-"AL" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
+"Sa" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "8,2"
+	icon_state = "8,3"
 	},
 /area/space)
-"AO" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "13,12"
+"Sd" = (
+/obj/effect/shuttle_landmark/eris/dock/hulk,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,23"
 	},
-/turf/space,
 /area/space)
-"AP" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+"Sh" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,3"
+	},
+/area/space)
+"Si" = (
+/obj/machinery/floodlight,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "8,11"
+	icon_state = "10,3"
 	},
 /area/space)
-"AR" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,0"
-	},
-/turf/space,
-/area/space)
-"AS" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "9,20"
+"Sk" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "2,14"
 	},
 /turf/space,
 /area/space)
-"Bd" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,9"
+"Sq" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,19"
 	},
 /area/space)
-"Bo" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,8"
+"Sr" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,16"
 	},
 /area/space)
-"Bp" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,5"
-	},
-/area/space)
-"Bx" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "16,4"
-	},
-/turf/space,
-/area/space)
-"BJ" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/derelict/white_red_edges,
-/area/space)
-"BK" = (
-/obj/structure/closet/onestar/tier1/medical,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
-"Co" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,8"
-	},
-/area/space)
-"Cz" = (
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/space)
-"CB" = (
-/obj/structure/flora/ausbushes/pointybush,
-/turf/simulated/floor/grass,
-/area/space)
-"CD" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/space)
-"CF" = (
+"St" = (
+/obj/machinery/floodlight,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "12,4"
+	icon_state = "11,3"
 	},
 /area/space)
-"CR" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,8"
-	},
-/turf/space,
-/area/space)
-"Di" = (
-/obj/machinery/camera/network/research_outpost,
+"Sv" = (
 /turf/simulated/shuttle/floor/science{
-	icon_state = "6,9"
+	icon_state = "12,3"
 	},
 /area/space)
-"Du" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "13,11"
-	},
-/turf/space,
-/area/space)
-"Dw" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,7"
-	},
-/area/space)
-"DR" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,5"
-	},
-/turf/space,
-/area/space)
-"Ek" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/freezer{
-	name = "Vasiliy Dokuchaev Internal Airlock";
-	req_access = list(5)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,16"
-	},
-/area/space)
-"Eq" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,12"
-	},
-/area/space)
-"EL" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,14"
-	},
-/area/space)
-"EM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/universal,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,4"
-	},
-/area/space)
-"EN" = (
-/obj/structure/flora/ausbushes/fernybush,
-/turf/simulated/floor/grass,
-/area/space)
-"EO" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
-"ES" = (
-/obj/machinery/porta_turret/excelsior,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
-"ET" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "11,2"
-	},
-/area/space)
-"EX" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,6"
-	},
-/area/space)
-"Fc" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "6,19"
-	},
-/turf/space,
-/area/space)
-"Fd" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "2,1"
-	},
-/area/space)
-"Fv" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "16,5"
-	},
-/turf/space,
-/area/space)
-"Fw" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/simulated/floor/grass,
-/area/space)
-"Go" = (
-/obj/structure/table/onestar,
-/obj/structure/sign/faction/one_star{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
-"GD" = (
-/obj/structure/flora/ausbushes/brflowers,
-/turf/simulated/floor/grass,
-/area/space)
-"GM" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
-"GQ" = (
-/obj/machinery/computer/shuttle_control/explore/exploration_shuttle,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,18"
-	},
-/area/space)
-"GU" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "2,0"
-	},
-/turf/space,
-/area/space)
-"Hb" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,6"
-	},
-/area/space)
-"Hg" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,8"
-	},
-/area/space)
-"Hn" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,7"
-	},
-/turf/space,
-/area/space)
-"Hs" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "13,9"
-	},
-/turf/space,
-/area/space)
-"Hu" = (
-/obj/structure/bed/chair/custom/onestar{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/derelict/white_red_edges,
-/area/space)
-"HB" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "15,6"
-	},
-/turf/space,
-/area/space)
-"HL" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
-"HQ" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "14,7"
-	},
-/area/space)
-"Ip" = (
-/obj/structure/bed/chair/custom/onestar/red{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
-"Ix" = (
+"Sy" = (
 /obj/item/tool/pickaxe/excavation,
 /obj/item/tool/pickaxe,
 /obj/item/tool/wrench,
@@ -1503,142 +3878,285 @@
 	icon_state = "13,3"
 	},
 /area/space)
-"ID" = (
+"SA" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "14,3"
+	},
+/area/space)
+"SD" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "1,19"
+	},
+/area/space)
+"SI" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "4,0"
+	icon_state = "15,3"
 	},
 /turf/space,
 /area/space)
-"IT" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "2,9"
+"SJ" = (
+/obj/structure/bed/padded,
+/obj/item/bedsheet,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,11"
+	},
+/area/space)
+"SK" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,9"
 	},
 /turf/space,
 /area/space)
-"IV" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "3,9"
-	},
-/turf/space,
-/area/space)
-"IW" = (
-/obj/machinery/door/airlock/sandstone{
-	icon_state = "door_locked";
-	locked = 1;
-	name = "OneStar Airlock"
-	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/space)
-"Js" = (
-/obj/structure/bed/chair/custom/onestar{
-	dir = 8
-	},
-/obj/structure/sign/faction/one_star{
-	pixel_x = 32
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
-"Jy" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "3,1"
+"SO" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "13,3"
 	},
 /area/space)
-"JJ" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,14"
+"SP" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,18"
 	},
 /area/space)
-"JY" = (
-/turf/simulated/shuttle/wall/science{
+"SQ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,21"
+	},
+/area/space)
+"SY" = (
+/obj/landmark/machinery/output,
+/obj/machinery/conveyor/west{
+	id = "mining_internal"
+	},
+/turf/simulated/floor,
+/area/space)
+"Td" = (
+/turf/simulated/shuttle/floor/mining{
 	icon_state = "9,5"
 	},
 /area/space)
-"Km" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "13,0"
+"Tf" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,10"
+	},
+/area/space)
+"Ti" = (
+/obj/structure/table/onestar,
+/obj/machinery/door/window/brigdoor,
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/space)
+"Tk" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,1";
+	opacity = 0
+	},
+/area/space)
+"Tm" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "12,13"
+	},
+/area/space)
+"Ts" = (
+/obj/structure/ore_box,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "13,14"
+	},
+/area/space)
+"Tu" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "13,1"
 	},
 /turf/space,
 /area/space)
-"Kw" = (
+"Tv" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "1,2"
 	},
 /turf/space,
 /area/space)
-"Kz" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,4"
+"Tw" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,10"
 	},
 /area/space)
-"KK" = (
+"Ty" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "9,3"
+	icon_state = "2,2"
 	},
 /area/space)
-"LO" = (
-/obj/structure/table/onestar,
-/obj/item/tool/medmultitool,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+"TA" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,9"
+	},
 /area/space)
-"LU" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "16,3"
+"TH" = (
+/obj/machinery/power/port_gen/pacman{
+	anchored = 1
+	},
+/obj/structure/cable/yellow,
+/turf/simulated/floor,
+/area/space)
+"TI" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "5,2"
+	},
+/area/space)
+"TJ" = (
+/obj/structure/salvageable/os/server,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"TN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,11"
+	},
+/area/space)
+"TW" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/bluegrid{
+	name = "Mainframe Base"
+	},
+/area/space)
+"Uu" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,17"
+	},
+/area/space)
+"UI" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "6,2"
+	},
+/area/space)
+"UL" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "5,14"
+	},
+/area/space)
+"UR" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "13,13"
+	},
+/area/space)
+"UZ" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,20"
+	},
+/area/space)
+"Ve" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "16,15"
 	},
 /turf/space,
 /area/space)
-"Mw" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "11,1"
+"Vg" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,15"
 	},
 /area/space)
-"MF" = (
+"Vj" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "10,17";
-	opacity = 0
+	icon_state = "7,2"
 	},
 /area/space)
-"MK" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,16"
+"Vl" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "17,17"
 	},
+/turf/space,
 /area/space)
-"MZ" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "14,1"
-	},
-/area/space)
-"Nk" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
-"Nl" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+"Vn" = (
+/obj/machinery/light/small{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "9,11"
+	icon_state = "8,2"
 	},
 /area/space)
-"Np" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
-	frequency = 1380;
-	id_tag = "research_shuttle_pump";
-	power_rating = 30000
+"Vp" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "16,9"
 	},
-/obj/machinery/airlock_sensor{
-	frequency = 1380;
-	id_tag = "research_shuttle_sensor";
-	pixel_y = 25
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "6,12"
+/turf/space,
+/area/space)
+"Vt" = (
+/obj/structure/table/steel,
+/obj/item/device/radio/off,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,2"
 	},
 /area/space)
-"Ns" = (
+"Vu" = (
+/obj/structure/table/steel,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,3"
+	},
+/area/space)
+"VD" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,16"
+	},
+/area/space)
+"VF" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/simulated/floor/grass,
+/area/space)
+"VH" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,2"
+	},
+/area/space)
+"VJ" = (
+/turf/simulated/floor/tiled/derelict,
+/area/space)
+"VN" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "10,2"
+	},
+/area/space)
+"VP" = (
+/obj/structure/bed,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/space)
+"VY" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "3,22"
+	},
+/area/space)
+"Wh" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "11,2"
+	},
+/area/space)
+"Wn" = (
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/steel,
+/area/space)
+"Wo" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,16"
+	},
+/turf/space,
+/area/space)
+"Wr" = (
+/turf/simulated/shuttle/floor/science{
+	icon_state = "12,2"
+	},
+/area/space)
+"Wt" = (
 /obj/item/tool/pickaxe/excavation,
 /obj/item/tool/pickaxe,
 /obj/item/tool/wrench,
@@ -1649,339 +4167,96 @@
 	icon_state = "13,2"
 	},
 /area/space)
-"Nv" = (
+"Wu" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "9,15"
+	icon_state = "14,2"
 	},
 /area/space)
-"NB" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,16"
+"Ww" = (
+/obj/landmark/storyevent/midgame_stash_spawn{
+	navigation = "Mining Barge comunications room, on north-east of the barge itself."
+	},
+/turf/simulated/floor/bluegrid{
+	name = "Mainframe Base"
 	},
 /area/space)
-"NE" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,7"
-	},
-/area/space)
-"NR" = (
-/obj/machinery/suit_storage_unit/moebius,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,9"
-	},
-/area/space)
-"Om" = (
-/obj/structure/bed/chair/custom/onestar/red{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/derelict/white_red_edges,
-/area/space)
-"OI" = (
-/obj/structure/bed/chair/custom/onestar{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
-"Pf" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
-"Pj" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "15,3"
-	},
-/turf/space,
-/area/space)
-"Pm" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "6,2"
-	},
-/area/space)
-"Po" = (
-/obj/structure/closet/excavation,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,7"
-	},
-/area/space)
-"PK" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/simulated/floor,
-/area/space)
-"Qd" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,13"
-	},
-/area/space)
-"Qi" = (
-/obj/machinery/light/small,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,7"
-	},
-/area/space)
-"Qm" = (
-/obj/structure/closet/excavation,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,9"
-	},
-/area/space)
-"Qr" = (
-/obj/structure/salvageable/os/console_broken,
-/turf/simulated/floor/tiled/derelict/white_red_edges,
-/area/space)
-"QD" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "13,8"
-	},
-/turf/space,
-/area/space)
-"QO" = (
-/obj/structure/salvageable/os/implant_container,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/space)
-"QY" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,15"
-	},
-/area/space)
-"Ra" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,10"
-	},
-/area/space)
-"Rp" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2;
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "research_shuttle_inner";
-	locked = 1;
-	name = "Vasiliy Dokuchaev Internal Access";
-	req_access = list(13)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "7,11"
-	},
-/area/space)
-"RJ" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,3"
-	},
-/area/space)
-"Sa" = (
-/obj/structure/table/standard,
-/obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,15"
-	},
-/area/space)
-"Sh" = (
+"Wz" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "15,2"
 	},
 /turf/space,
 /area/space)
-"Si" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "14,3"
-	},
-/area/space)
-"St" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,16"
-	},
-/area/space)
-"Sv" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/machinery/light/small,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,14"
-	},
-/area/space)
-"Sy" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,16"
-	},
-/area/space)
-"SA" = (
-/obj/structure/table/standard,
-/obj/machinery/light/small,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "9,17"
-	},
-/area/space)
-"SI" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,2"
-	},
-/area/space)
-"Ti" = (
-/obj/structure/table/onestar,
-/obj/machinery/door/window/brigdoor,
-/turf/simulated/floor/tiled/derelict/white_red_edges,
-/area/space)
-"Tv" = (
-/obj/machinery/light/small,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "6,7"
-	},
-/area/space)
-"Ty" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,16"
-	},
-/area/space)
-"TH" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "15,8"
-	},
-/turf/space,
-/area/space)
-"TI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/freezer{
-	name = "Vasiliy Dokuchaev Internal Airlock";
-	req_access = list(5)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,10"
-	},
-/area/space)
-"TJ" = (
-/obj/structure/salvageable/os/server,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/space)
-"UI" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "14,9"
-	},
-/turf/space,
-/area/space)
-"Vj" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "10,20"
-	},
-/turf/space,
-/area/space)
-"Vn" = (
-/obj/structure/table/standard,
-/obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,15"
-	},
-/area/space)
-"VF" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/grass,
-/area/space)
-"VH" = (
-/obj/machinery/power/port_gen/pacman{
-	anchored = 1
-	},
-/obj/structure/cable/yellow,
-/turf/simulated/floor,
-/area/space)
-"VN" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "5,2"
-	},
-/area/space)
-"VP" = (
-/obj/structure/bed,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/space)
-"Wh" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,3"
-	},
-/area/space)
-"Wr" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "6,10"
-	},
-/area/space)
-"Ws" = (
-/obj/machinery/door/airlock/sandstone{
-	name = "OneStar Airlock"
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
-"Wt" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "3,8"
-	},
-/turf/space,
-/area/space)
-"Wu" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "5,6"
-	},
-/area/space)
-"Wz" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "5,1"
-	},
-/area/space)
 "WH" = (
-/obj/structure/table/standard,
-/obj/item/storage/firstaid/toxin,
-/obj/item/storage/firstaid/fire,
-/obj/item/storage/firstaid/o2,
-/obj/item/storage/firstaid/regular,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,12"
-	},
-/area/space)
-"WM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/shuttle/floor/science,
-/area/space)
-"WQ" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "1,1"
 	},
 /turf/space,
 /area/space)
-"WX" = (
-/obj/structure/closet/onestar/tier2/medical,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
-"WY" = (
-/obj/structure/salvageable/os/implant_container{
-	name = "implant container"
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
-"Xr" = (
+"WM" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "14,5"
+	icon_state = "2,1"
 	},
 /area/space)
-"Xs" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "7,21"
+"WN" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "14,23"
 	},
 /turf/space,
 /area/space)
+"WQ" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "3,1"
+	},
+/area/space)
+"WX" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,1"
+	},
+/area/space)
+"WY" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "5,1"
+	},
+/area/space)
+"Xc" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "10,0"
+	},
+/turf/space,
+/area/space)
+"Xi" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "16,17"
+	},
+/area/space)
+"Xj" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "0,22"
+	},
+/turf/space,
+/area/space)
+"Xp" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,6";
+	opacity = 0
+	},
+/area/space)
+"Xr" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "6,1"
+	},
+/area/space)
+"Xs" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,1"
+	},
+/area/space)
 "Xv" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor/science{
-	icon_state = "8,4"
+	icon_state = "8,1"
 	},
 /area/space)
 "Xz" = (
@@ -1991,30 +4266,118 @@
 	},
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
+"XC" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "10,0"
+	},
+/turf/space,
+/area/space)
+"XQ" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,22"
+	},
+/area/space)
+"XR" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "12,0"
+	},
+/turf/space,
+/area/space)
 "XX" = (
 /obj/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
+"Ye" = (
+/obj/machinery/mineral/processing_unit,
+/turf/simulated/floor/tiled/dark,
+/area/space)
+"Yg" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "12,23"
+	},
+/area/space)
+"Yh" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "14,0"
+	},
+/turf/space,
+/area/space)
+"Yi" = (
+/obj/machinery/camera/network/mining{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,19"
+	},
+/area/space)
 "Yl" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "14,6"
+	icon_state = "9,1"
+	},
+/area/space)
+"Ym" = (
+/obj/structure/bed/chair,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,3"
+	},
+/area/space)
+"Yu" = (
+/obj/landmark/machinery/output,
+/obj/machinery/conveyor/southwest{
+	id = "mining_internal"
+	},
+/turf/simulated/floor,
+/area/space)
+"Yx" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "13,20"
 	},
 /area/space)
 "YH" = (
 /obj/structure/bed/chair/custom/onestar/red,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
+"YM" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,18"
+	},
+/area/space)
+"YR" = (
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "11,17"
+	},
+/area/space)
+"YS" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/machinery/camera/network/mining{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,15"
+	},
+/area/space)
+"YX" = (
+/obj/item/device/radio/beacon,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,7"
+	},
+/area/space)
 "YZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,3"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "10,1"
 	},
 /area/space)
 "Ze" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "2,6"
+	icon_state = "11,1"
 	},
 /area/space)
 "Zi" = (
@@ -2022,31 +4385,65 @@
 /area/space)
 "Zp" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "4,15"
+	icon_state = "12,1"
 	},
+/area/space)
+"Zt" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "17,18"
+	},
+/turf/space,
 /area/space)
 "Zw" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "2,5"
+	icon_state = "13,1"
 	},
 /area/space)
 "Zz" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "14,1"
+	},
+/area/space)
+"ZA" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 8;
+	frequency = 1380;
+	id_tag = "mining_shuttle_pump";
+	power_rating = 20000
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,21"
+	},
+/area/space)
+"ZB" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "15,1"
 	},
 /turf/space,
 /area/space)
-"ZB" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "8,21"
+"ZD" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "17,19"
 	},
-/obj/effect/shuttle_landmark/eris/dock/exploration_shuttle,
 /turf/space,
 /area/space)
-"ZM" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,1"
+"ZH" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "11,0"
 	},
+/turf/space,
+/area/space)
+"ZJ" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "11,16"
+	},
+/area/space)
+"ZM" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 
 (1,1,1) = {"
@@ -3128,8 +5525,8 @@ aa
 yI
 yI
 aa
-hl
-hl
+VJ
+VJ
 aa
 xL
 xL
@@ -3350,8 +5747,8 @@ aa
 yI
 yI
 aa
-hl
-hl
+VJ
+VJ
 aa
 xL
 xL
@@ -3796,7 +6193,7 @@ EO
 EO
 gV
 ke
-HL
+rd
 gV
 kd
 kd
@@ -4010,22 +6407,22 @@ aa
 aa
 aa
 aa
-Pf
+ZM
 ke
 ke
 ke
 ke
 ke
-Pf
+ZM
 ke
 ke
-Pf
+ZM
 ke
 ke
 ke
 ke
 ke
-Pf
+ZM
 aa
 aa
 aa
@@ -4462,7 +6859,7 @@ EO
 EO
 gV
 ke
-HL
+rd
 gV
 EO
 EO
@@ -9927,10 +12324,10 @@ cb
 gV
 gV
 gV
-qx
+bo
 yI
-xM
-ik
+cN
+cR
 gV
 cb
 cb
@@ -10373,8 +12770,8 @@ yI
 Zi
 yI
 yI
-LO
-sw
+cO
+cU
 gV
 cb
 cb
@@ -10435,7 +12832,7 @@ aa
 aa
 aa
 aa
-aa
+Hs
 aa
 aa
 aa
@@ -10586,16 +12983,16 @@ cb
 cb
 cb
 gV
-ib
-ib
-WY
-WY
+ac
+ac
+aE
+aE
 Zi
 yI
 Zi
-qf
-eq
-at
+bs
+cv
+cQ
 gV
 gV
 cb
@@ -10812,12 +13209,12 @@ xL
 xL
 xL
 xL
-Ws
+bb
 yI
 Zi
-GM
-GM
-GM
+bA
+bA
+bA
 gV
 cb
 cb
@@ -11252,16 +13649,16 @@ cb
 cb
 cb
 gV
-wl
-WX
-wL
-BK
+an
+ax
+aJ
+aZ
 Zi
 yI
 Zi
-OI
-Js
-OI
+bL
+cz
+bL
 gV
 cb
 cb
@@ -11926,7 +14323,7 @@ gV
 yI
 Zi
 ES
-rc
+cC
 ke
 gV
 cb
@@ -12368,7 +14765,7 @@ cb
 gV
 YH
 yI
-qx
+bo
 yI
 yI
 Ip
@@ -12813,7 +15210,7 @@ gV
 Go
 yI
 yI
-nJ
+bN
 yI
 Xz
 gV
@@ -12837,7 +15234,7 @@ kd
 gV
 dR
 ii
-xV
+bV
 dR
 gV
 kd
@@ -13923,7 +16320,7 @@ gV
 gV
 gV
 yI
-xV
+bV
 gV
 gV
 gV
@@ -14423,7 +16820,7 @@ cb
 cb
 cb
 cb
-cb
+aa
 aa
 aa
 aa
@@ -14644,8 +17041,8 @@ cb
 cb
 cb
 cb
-cb
-cb
+aa
+aa
 aa
 aa
 aa
@@ -14866,8 +17263,8 @@ cb
 cb
 cb
 cb
-cb
-cb
+aa
+aa
 aa
 aa
 aa
@@ -15087,14 +17484,14 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
+Mo
+Xj
+aY
+BI
+hN
+iO
+ob
+pR
 aa
 aa
 aa
@@ -15309,27 +17706,27 @@ cb
 cb
 cb
 cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rt
+iu
+pV
+fM
+SD
+Nd
+ns
+Wo
+RM
+ad
+KP
+GL
+xp
+aA
+SK
+Px
+ec
+qI
+Ok
+CE
+mH
 aa
 aa
 aa
@@ -15522,7 +17919,7 @@ ke
 XX
 ke
 ke
-Pf
+ZM
 ke
 ke
 ke
@@ -15531,28 +17928,28 @@ cb
 cb
 cb
 cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+AU
+Nb
+oU
+jp
+mZ
+xA
+Cu
+vo
+mw
+Sk
+ca
+ed
+mz
+pK
+Ao
+ej
+bM
+Ar
+uG
+rb
+yY
+kJ
 aa
 aa
 aa
@@ -15733,7 +18130,7 @@ gV
 gV
 gV
 ke
-HL
+rd
 gV
 gV
 gV
@@ -15753,28 +18150,28 @@ cb
 cb
 cb
 cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+EG
+VY
+zd
+IY
+ll
+rH
+vL
+ue
+hO
+RO
+IA
+yG
+zO
+oB
+vP
+aP
+ht
+rK
+cy
+dS
+MH
+mT
 aa
 aa
 aa
@@ -15899,7 +18296,7 @@ cb
 cb
 cb
 cb
-aa
+cb
 aa
 aa
 aa
@@ -15975,29 +18372,29 @@ cb
 cb
 cb
 cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ju
+vC
+rk
+zs
+Yi
+aC
+Cv
+Od
+af
+qd
+ir
+rS
+Ms
+Lk
+hy
+Hh
+BN
+Pp
+og
+tu
+dV
+HG
+JG
 aa
 aa
 aa
@@ -16120,7 +18517,7 @@ gV
 cb
 cb
 cb
-aa
+cb
 aa
 aa
 aa
@@ -16197,30 +18594,30 @@ gV
 gV
 cb
 cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+KQ
+Oi
+Ax
+rC
+uo
+Fu
+Qy
+Ml
+YS
+UL
+Ng
+RG
+SJ
+Lr
+Ke
+Hh
+qA
+sl
+xv
+rc
+AX
+zj
+Pa
+nE
 aa
 aa
 aa
@@ -16341,6 +18738,7 @@ ke
 gV
 cb
 cb
+cb
 aa
 aa
 aa
@@ -16396,11 +18794,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+gV
+ke
+ke
+gV
 cb
 cb
 cb
@@ -16415,34 +18812,34 @@ gV
 ke
 ke
 ke
-ke
+ES
 gV
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+gV
+gV
+bS
+FC
+GZ
+nR
+zT
+YM
+Hm
+Ba
+qX
+sK
+rX
+Mh
+Qp
+Tw
+tH
+Hh
+na
+Wn
+eq
+va
+Jb
+HL
+aX
+IX
 aa
 aa
 aa
@@ -16562,6 +18959,7 @@ ke
 ke
 gV
 cb
+cb
 aa
 aa
 aa
@@ -16618,11 +19016,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+gV
+ke
+ke
+gV
 aa
 cb
 cb
@@ -16638,33 +19035,33 @@ ke
 ke
 ke
 ke
-kd
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+gV
+gV
+gV
+pe
+cm
+mn
+Bh
+ka
+pC
+Qg
+Sr
+pW
+qP
+qy
+OC
+OJ
+st
+Mf
+eo
+bf
+wa
+MN
+QK
+bv
+tA
+cj
+IU
 aa
 aa
 aa
@@ -16841,10 +19238,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+gV
+ke
+ke
+gV
 aa
 aa
 cb
@@ -16860,33 +19257,33 @@ ke
 ke
 ke
 ke
-kd
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ke
+ke
+ke
+vW
+jB
+SQ
+oJ
+gx
+RK
+Uu
+uO
+HE
+IR
+oF
+Ge
+TN
+yK
+GF
+sI
+Qf
+Az
+LL
+zV
+zB
+fr
+mm
+HT
 aa
 aa
 aa
@@ -17005,6 +19402,7 @@ ke
 ke
 ke
 gV
+cb
 aa
 aa
 aa
@@ -17062,11 +19460,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+gV
+ke
+ke
+gV
 aa
 aa
 aa
@@ -17082,33 +19479,33 @@ ke
 ke
 ke
 ke
-kd
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ke
+ke
+ke
+Sd
+XQ
+Dr
+NF
+Sq
+Oz
+tF
+HD
+ls
+bc
+Of
+hl
+jN
+Tf
+TA
+ay
+YX
+lj
+Td
+nz
+Ym
+qR
+xB
+kk
 aa
 aa
 aa
@@ -17285,10 +19682,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+gV
+ke
+ke
+gV
 aa
 aa
 aa
@@ -17304,33 +19701,33 @@ ke
 ke
 ke
 ES
-kd
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+gV
+gV
+gV
+GV
+wb
+ZA
+UZ
+qV
+OB
+hC
+Ou
+CK
+Gd
+rj
+zH
+HV
+GJ
+gn
+Ea
+sy
+eh
+BO
+sw
+Vu
+Vt
+Mz
+Xc
 aa
 aa
 aa
@@ -17507,10 +19904,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+gV
+ke
+ke
+gV
 aa
 aa
 aa
@@ -17527,32 +19924,32 @@ gV
 gV
 gV
 gV
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+gV
+gV
+oX
+LM
+wW
+Kj
+hT
+Rz
+YR
+ZJ
+Vg
+gI
+gH
+Ct
+RA
+ct
+MV
+cg
+sh
+pp
+qj
+xI
+yR
+re
+Tk
+wJ
 aa
 aa
 aa
@@ -17729,10 +20126,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+gV
+ke
+ke
+gV
 aa
 aa
 aa
@@ -17748,33 +20145,33 @@ cb
 cb
 cb
 cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+Yg
+uA
+iL
+lC
+Py
+jc
+RE
+mr
+fn
+Lo
+Tm
+Is
+iU
+IL
+Fi
+bP
+OM
+wF
+Fo
+cw
+rM
+Iy
+Pd
+Jp
 aa
 aa
 aa
@@ -17951,24 +20348,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+gV
+ke
+ke
+gV
 aa
 aa
 aa
@@ -17987,15 +20370,29 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Lb
+xa
+gm
+Yx
+ex
+nM
+pS
+tJ
+jb
+Ts
+UR
+eM
+SY
+Ag
+dC
+EH
+lV
+rv
+wz
+ef
+SO
+wm
+Tu
 aa
 aa
 aa
@@ -18173,6 +20570,20 @@ aa
 aa
 aa
 aa
+gV
+ke
+ke
+gV
+aa
+wl
+AO
+Ek
+HB
+MF
+Qi
+Tv
+WH
+nQ
 aa
 aa
 aa
@@ -18181,42 +20592,28 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+WN
+RI
+fi
+iz
+js
+Ny
+Rl
+kf
+Fe
+IN
+sj
+rY
+MV
+FT
+yQ
+Ye
+Mj
+yQ
+DG
+Yu
+Rs
+Mv
 aa
 aa
 aa
@@ -18395,6 +20792,20 @@ aa
 aa
 aa
 aa
+gV
+ke
+ke
+gV
+tV
+wS
+AP
+Eq
+HQ
+MK
+Qm
+Ty
+WM
+ba
 aa
 aa
 aa
@@ -18403,42 +20814,28 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+mC
+nv
+QT
+TW
+Ww
+SP
+xz
+VD
+sD
+fL
+pg
+qB
+wg
+Kb
+Qj
+dB
+Il
+Xp
+Gz
+De
+fy
+rO
 aa
 aa
 aa
@@ -18617,6 +21014,20 @@ aa
 aa
 aa
 aa
+gV
+ke
+ke
+gV
+tX
+xF
+AR
+EL
+Ix
+MZ
+QD
+TH
+WQ
+Md
 aa
 aa
 aa
@@ -18625,41 +21036,27 @@ aa
 aa
 aa
 aa
+bp
+ae
+vl
+Ez
+mV
+wI
+Xi
+BP
+Ve
+On
+of
+ix
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Vp
+jg
+RL
+RZ
+HP
+ah
+BS
 aa
 aa
 aa
@@ -18835,6 +21232,24 @@ aa
 aa
 aa
 aa
+gp
+hY
+jX
+lk
+nI
+oO
+rf
+sf
+uL
+xK
+AS
+EM
+ID
+Nl
+QY
+TH
+WX
+RU
 aa
 aa
 aa
@@ -18843,31 +21258,13 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ry
+CS
+oY
+Ig
+ZD
+Zt
+Vl
 aa
 aa
 aa
@@ -19057,24 +21454,24 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+gv
+hZ
+kh
+lw
+nX
+pf
+rn
+sg
+uQ
+ym
+Bd
+ET
+IT
+Np
+Ra
+TI
+WY
+hk
 aa
 aa
 aa
@@ -19276,27 +21673,27 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+du
+ei
+eV
+gB
+ib
+kj
+lB
+nZ
+pk
+rs
+sk
+ve
+yx
+Bo
+EX
+IV
+Ns
+Rp
+UI
+Xr
+qO
 aa
 aa
 aa
@@ -19497,28 +21894,28 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+dc
+dI
+ev
+fj
+gE
+iE
+kl
+lT
+oe
+pn
+rz
+sE
+vj
+yE
+Bp
+Fc
+Jy
+Nv
+RJ
+Vj
+Xs
+fO
 aa
 aa
 aa
@@ -19719,28 +22116,28 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+de
+dN
+eI
+fw
+gN
+iV
+kq
+mq
+ok
+pw
+rE
+sF
+vD
+yM
+Bx
+Fd
+JJ
+NB
+Sa
+Vn
+Xv
+dJ
 aa
 aa
 aa
@@ -19941,28 +22338,28 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+dj
+dQ
+eJ
+fF
+hq
+iZ
+ks
+mx
+or
+pJ
+rF
+sW
+vG
+yU
+Co
+Fv
+JY
+NE
+Sh
+VH
+Yl
+cf
 aa
 aa
 aa
@@ -20164,27 +22561,27 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ea
+eN
+fS
+hz
+jx
+kO
+mQ
+ou
+pL
+rG
+sX
+vK
+ze
+CF
+GQ
+Km
+NR
+Si
+VN
+YZ
+XC
 aa
 aa
 aa
@@ -20389,24 +22786,24 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hK
+jD
+kW
+mR
+oC
+pT
+rL
+ty
+vM
+zr
+CR
+GU
+Kw
+Pj
+St
+Wh
+Ze
+ZH
 aa
 aa
 aa
@@ -20611,24 +23008,24 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hS
+jS
+kX
+ng
+oN
+qi
+rN
+tB
+vN
+zz
+Di
+Hb
+Kz
+Pm
+Sv
+Wr
+Zp
+XR
 aa
 aa
 aa
@@ -20838,19 +23235,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+qL
+sb
+tG
+vO
+zC
+Du
+Hg
+KK
+Po
+Sy
+Wt
+Zw
+QZ
 aa
 aa
 aa
@@ -21062,62 +23459,62 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-CR
-Hn
 tM
-DR
-cC
-vO
-Kw
-WQ
-AR
+wf
+zG
+Dw
+Hn
+LU
+PK
+SA
+Wu
+Zz
+Yh
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -21286,6 +23683,15 @@ aa
 aa
 aa
 aa
+AL
+DR
+Hs
+Mw
+Qd
+SI
+Wz
+ZB
+BM
 aa
 aa
 aa
@@ -21330,16 +23736,7 @@ aa
 aa
 aa
 aa
-IT
-pJ
-kh
-Ze
-Zw
-hK
-ev
-rL
-Fd
-GU
+aa
 aa
 aa
 aa
@@ -21552,16 +23949,16 @@ aa
 aa
 aa
 aa
-IV
-Wt
-tB
-kW
-vG
-PK
-rn
-VH
-Jy
-eJ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -21766,24 +24163,24 @@ aa
 aa
 aa
 aa
-rG
-MK
-Zp
-JJ
-jS
-cQ
-hZ
-or
-Bd
-Bo
-hz
-EX
-aJ
-zr
-dI
-VH
-xF
-ID
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -21988,24 +24385,24 @@ aa
 aa
 aa
 aa
-cv
-vK
-Sa
-ei
-ty
-qL
-eI
-ac
-Qm
-hY
-Po
-Wu
-gB
-EM
-Wh
-VN
-Wz
-cR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -22207,27 +24604,27 @@ aa
 aa
 aa
 aa
-lT
-Fc
-oC
-gp
-rN
-mq
-bs
-vM
-Np
-mQ
-Wr
-Di
-sb
-Tv
-yU
-fj
-sf
-rd
-Pm
-dj
-cz
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -22428,28 +24825,28 @@ aa
 aa
 aa
 aa
-Xs
-dQ
-fS
-aE
-nI
-Sy
-QY
-tV
-Qd
-nX
-Rp
-pT
-de
-ea
-NE
-nZ
-Bp
-cN
-RJ
-SI
-sX
-ve
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -22650,28 +25047,28 @@ aa
 aa
 aa
 aa
-ZB
-gv
-yE
-GQ
-rs
-Ek
-WM
-Ty
-lk
-jx
-AP
-TI
-ym
-uQ
-Dw
-wS
-bo
-Xv
-YZ
-AL
-xK
-lw
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -22872,28 +25269,28 @@ aa
 aa
 aa
 aa
-sk
-AS
-rz
-yM
-SA
-St
-Nv
-jX
-bN
-zz
-Nl
-Ra
-hS
-ok
-lB
-Hb
-JY
-pL
-KK
-vN
-ZM
-zG
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -23095,27 +25492,27 @@ aa
 aa
 aa
 aa
-Vj
-iZ
-sF
-MF
-vD
-rf
-Sv
-uL
-iV
-ze
-du
-fw
-Hg
-Qi
-hq
-cU
-Kz
-mx
-fF
-eN
-eV
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -23320,24 +25717,24 @@ aa
 aa
 aa
 aa
-kl
-jD
-Vn
-EL
-rF
-WH
-pw
-sW
-NR
-tG
-kO
-cO
-pf
-aZ
-gN
-ET
-Mw
-oe
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -23542,24 +25939,24 @@ aa
 aa
 aa
 aa
-vj
-NB
-bA
-zC
-iE
-Eq
-oO
-pk
-rE
-Co
-bL
-pn
-tX
-CF
-bV
-an
-bb
-ax
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -23769,19 +26166,19 @@ aa
 aa
 aa
 aa
-AO
-Du
-oN
-Hs
-QD
-sg
-ks
-qi
-ou
-Ix
-Ns
-dN
-Km
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -23993,17 +26390,17 @@ aa
 aa
 aa
 aa
-sE
-UI
-kq
-HQ
-Yl
-Xr
-mR
-Si
-yx
-MZ
-dc
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -24217,15 +26614,15 @@ aa
 aa
 aa
 aa
-TH
-kj
-HB
-gE
-ng
-Pj
-Sh
-Zz
-kX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -24441,10 +26838,10 @@ aa
 aa
 aa
 aa
-wf
-Fv
-Bx
-LU
+aa
+aa
+aa
+aa
 aa
 aa
 aa
