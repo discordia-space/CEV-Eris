@@ -3,7 +3,7 @@
 
 
 /datum/job/clubmanager
-	title = "Club Manager"
+	title = "Gay Bar Manager"
 	flag = CLUBMANAGER
 	department = DEPARTMENT_CIVILIAN
 	department_flag = SERVICE
@@ -35,12 +35,12 @@
 	loyalties = LOYALTY_CIVILIAN
 
 /obj/landmark/join/start/clubmanager
-	name = "Club Manager"
+	name = "Gay Bar Manager"
 	icon_state = "player-grey"
 	join_tag = /datum/job/clubmanager
 
 /datum/job/clubworker
-	title = "Club Worker"
+	title = "Gay Bar Alchoholic"
 	flag = CLUBWORKER
 	department = DEPARTMENT_CIVILIAN
 	department_flag = SERVICE
