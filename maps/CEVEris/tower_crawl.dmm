@@ -687,6 +687,7 @@
 "bKS" = (/obj/machinery/atmospherics/unary/heat_exchanger{dir = 1},/turf/simulated/floor/tiled/steel/danger,/area/eris/engineering/engine_room)
 "bKU" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 6},/turf/simulated/floor/carpet,/area/eris/crew_quarters/sleep)
 "bLb" = (/obj/structure/railing,/obj/structure/cable/yellow{d2 = 2; icon_state = "0-2"},/obj/structure/cable/yellow{d1 = 16; d2 = 0; icon_state = "16-0"},/turf/simulated/floor/plating/under,/area/eris/engineering/engine_room)
+"bLk" = (/obj/vagabond_idol,/turf/simulated/floor/tiled/steel/bar_dance,/area/eris/crew_quarters/bar)
 "bLo" = (/obj/structure/disposalpipe/down{dir = 8},/turf/simulated/floor/plating/under,/area/eris/maintenance/filler6)
 "bLB" = (/obj/structure/multiz/ladder,/turf/simulated/floor/tiled/steel/techfloor_grid,/area/space)
 "bLC" = (/obj/machinery/atmospherics/pipe/simple/visible/universal,/turf/simulated/floor/plating/under,/area/eris/maintenance/filler5)
@@ -10849,7 +10850,7 @@ oqjoqjoqjoqjoqjoqjoqjoqjbFFtWKdPEcuLfkasYbpOQsZuwUDfRMfRMfRMydkkYdgEhpOjvPNjUdhy
 oqjoqjoqjoqjoqjoqjoqjoqjoqjdyfdPEcuLrZighdeKSeKSeKSeKSeKSjWFydklDgcYqhiigAVgAVwyniHAfTlfTltXjtXjtXjtXjtXjhiRtXjtXjtXjhiRtXjtXjtXjqOygagtAvtAvtAvtAvtAvsUcqeeoqjoqjoqj
 oqjoqjoqjoqjoqjoqjoqjoqjoqjkuvcuLcuLdecdeccuLcuLcuLcuLdecdeccuLiHAoSVvwEwMqaUnhPDiHAfTlfTlfTlfTlfTlfTlfTlfTlfTlfTlfTlfTlfTlfTlfTllZxtAvtAvtAvtAvtAvtAvgeoqeeoqjoqjoqj
 oqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjxEXbmMgAVfslgAVkksiHAfTlfTlfTlfTlfTlfTlfTlfTlfTlfTlfTlfTlfTlfTlfTlwrotAvtAvtAvtAvtAvtAvkOCqeeoqjoqjoqj
-oqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjiHAiHAiHAiHAiHAiHAiHAtXjtXjtXjtXjtXjtXjtXjtXjtXjxMPtXjtXjtXjtXjlsoqOyqOyqOyqOytAvsWtqOyqOyqOyoqjoqjoqj
+oqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjiHAiHAiHAiHAiHAiHAiHAbLktXjtXjtXjtXjtXjtXjtXjtXjxMPtXjtXjtXjtXjlsoqOyqOyqOyqOytAvsWtqOyqOyqOyoqjoqjoqj
 oqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjajbawdcuYtXjtXjaLcaLctXjtXjtXjtXjtXjtXjaeZaeZaeZaeZaeZtXjtXjtXjxCagmVbBSqOytAvtAvwmcgIzqOyoqjoqjoqj
 oqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjajbpuLtXjtXjseUmXifEfcuYtXjtXjtXjaeZaeZfEffEffEffEffEfaeZaeZtXjtXjtXjaeZqOytAvtAvwmcgIzqOyoqjoqjoqj
 oqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjoqjivnaLctXjtXjseUfEffEfcuYtXjtXjaeZfEffEffEftXjtXjtXjfEffEffEfaeZtXjtXjivEqOyqOyqOyqOyqOyqOyoqjoqjoqj
