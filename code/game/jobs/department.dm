@@ -34,7 +34,7 @@
 	Command
 **************/
 /datum/department/command
-	name = "CEV Eris Command"
+	name = "CEV Eris Cummand"
 	id = DEPARTMENT_COMMAND
 	/*
 	The command account is the ship account. It is the master account that retainer departments are paid from,
@@ -52,12 +52,12 @@
 **************/
 //These departments are paid out of ship funding
 /datum/department/ironhammer
-	name = "Ironhammer Mercenary Company"
+	name = "Ironhammer Moron Company"
 	id = DEPARTMENT_SECURITY
 	funding_source = DEPARTMENT_COMMAND
 
 /datum/department/technomancers
-	name = "Technomancer League"
+	name = "Sexnomancer League"
 	id = DEPARTMENT_ENGINEERING
 	funding_source = DEPARTMENT_COMMAND
 
@@ -72,17 +72,17 @@
 *******************/
 //Departments subsidised by an external organisation. These pay their own employees
 /datum/department/moebius_medical
-	name = "Moebius Corp: Medical Division"
+	name = "Moron Corp: Healslut Division"
 	id = DEPARTMENT_MEDICAL
 	funding_source = "Moebius Corp."
 
 /datum/department/moebius_research
-	name = "Moebius Corp: Research Division"
+	name = "Moron Corp: Autist Division"
 	id = DEPARTMENT_SCIENCE
 	funding_source = "Moebius Corp."
 
 /datum/department/church
-	name = "Church of NeoTheology"
+	name = "Church of NeoTards"
 	id = DEPARTMENT_CHURCH
 
 
@@ -91,7 +91,7 @@
 *******************/
 //Self funds and pays wages out of its earnings
 /datum/department/guild
-	name = "Asters Merchant Guild"
+	name = "Asstors Ancap Guild"
 	id = DEPARTMENT_GUILD
 
 	/*
@@ -101,5 +101,5 @@
 	account_initial_balance = 7500
 
 /datum/department/offship // Money from serbomat and billomat come here
-	name = "Offship entities"
+	name = "Offshit entities"
 	id = DEPARTMENT_OFFSHIP

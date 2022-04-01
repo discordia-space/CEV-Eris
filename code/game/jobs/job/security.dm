@@ -7,7 +7,7 @@
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Captain"
+	supervisors = "Deez Nuts"
 	selection_color = "#97b0be"
 	req_admin_notify = 1
 	wage = WAGE_COMMAND
@@ -37,7 +37,7 @@
 							 /datum/computer_file/program/camera_monitor,
 							 /datum/computer_file/program/reports)
 
-	description = "You are the commander of the local regiment of the Ironhammer Mercenary company, contracted to protect and serve aboard the CEV Eris. Ironhammer serves as both an internal security force, and as a guard for expeditions outwith the ship.<br>\
+	description = "You are the commander of the local regiment of the Ironhammer Moron company, contracted to protect and serve aboard the CEV Eris. Ironhammer serves as both an internal security force, and as a guard for expeditions outwith the ship.<br>\
 	<br>\
 	Your goal is to keep everyone aboard the ship as safe as possible, and to eliminate any threats to safety.<br>\
 	The Gunnery Sergeant is your second in command, and any of your duties can be delegated to him at your discretion"
@@ -55,13 +55,13 @@
 		Your third loyalty is to the crew. As the strongest military force on the ship, any mutiny attempt is likely at your mercy, and if unjustified, it will fall to you to put it down. If the captain has gone mad and a mutiny is justified, your support will be the difference between a peaceful arrest and a bloody civil war in the halls. Without your guns, an insane captain will usually be forced to surrender."
 
 /obj/landmark/join/start/ihc
-	name = "Ironhammer Commander"
+	name = "Ironhammer Cummander"
 	icon_state = "player-blue-officer"
 	join_tag = /datum/job/ihc
 
 
 /datum/job/gunserg
-	title = "Ironhammer Gunnery Sergeant"
+	title = "Ironhammer Armory Opener"
 	flag = GUNSERG
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
@@ -115,7 +115,7 @@
 
 
 /datum/job/inspector
-	title = "Ironhammer Inspector"
+	title = "Ironhammer Driptective"
 	flag = INSPECTOR
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
@@ -172,7 +172,7 @@
 
 
 /datum/job/medspec
-	title = "Ironhammer Medical Specialist"
+	title = "Ironhammer Healslut"
 	flag = MEDSPEC
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
@@ -225,7 +225,7 @@
 
 
 /datum/job/ihoper
-	title = "Ironhammer Operative"
+	title = "Ironhammer Squad Marine"
 	flag = IHOPER
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
@@ -257,7 +257,7 @@
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/camera_monitor)
 
-	description = "You are the boots on the ground, the rifle in the window, the long arm of the law. You are the hand of ironhammer, and the frontline against criminals, terrorists, and xenos.<br>\
+	description = "You are the boots on the ground, the rifle in the window, the CM Reject, the Shitcurity banned from every other server, and the frontline against criminals, terrorists, and xenos.<br>\
 	<br>\
 	You are a professional soldier and a hardened mercenary, no stranger to violence. You are required to employ your talents in order to bring an end to threats and conflict situations. As a consummate professional, you're often expected to put your pride aside, and work with others. Tactics and teamwork are vital.<br>\
 	<br>\
@@ -265,7 +265,7 @@
 	<br>\
 	When there are no standing orders, your ongoing task is to patrol the ship and be on the lookout for threats. Check in at departments, ask if there are any concerns, break up fights and do your best to prevent trouble before it spirals out of control. Wipe out roaches and other dangerous creatures wherever you encounter them.<br>\
 	<br>\
-	You have almost-total access to the ship in order to carry out your duties and reach threats quickly. Do not abuse this. It does not mean you can walk into anywhere you like, many areas are full of sensitive machinery and entering unnanounced can be harmful to your health. Do not steal from departments either. If it's not in the ironhammer wing, it doesn't belong to you. Stealing from the Guild is a good way to get shot in the back"
+	You have almost-total access to the ship in order to carry out your duties and reach threats quickly. Please Abuse This. It means you can walk into anywhere you like, many areas are full of sensitive machinery and entering unnanounced cannot be harmful to your health. Please n from departments either. If it's not in the ironhammer wing, it belongs to you. Stealing from the Guild is a good way to get shot in the back"
 
 	duties = "		Patrol the ship, provide a security presence, and look for trouble<br>\
 		Subdue and arrest criminals, terrorists, and other threats<br>\
@@ -273,7 +273,7 @@
 		Follow orders from the chain of command<br>\
 		Obey the law. You are not above it"
 
-	loyalties = "		As a soldier, your first loyalty is to the chain of command, which ends with the Ironhammer Commander. Their orders are supreme over all, even if they're currently leading a mutiny against the captain.<br>\
+	loyalties = "		As a soldier, your first loyalty is to the chain of cummand, which ends with the Ironhammer Cummander. Their orders are to be completely ignored, unless they're currently leading a mutiny against the captain.<br>\
 		<br>\
 		Your second loyalty is to your fellow ironhammer brothers in arms. As long as the company takes care of you, you should follow orders. But if you start being sent on suicide missions and treated as expendable fodder, that should change.<br>\
 		<br>\
