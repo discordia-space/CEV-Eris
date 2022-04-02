@@ -14,7 +14,7 @@
 	charge_cost = 200
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_WOOD = 8, MATERIAL_SILVER = 10)
 	price_tag = 3000
-	projectile_type = /obj/item/projectile/beam/practice
+	projectile_type = /obj/item/projectile/ion
 	one_hand_penalty = 5
 	twohanded = TRUE
 

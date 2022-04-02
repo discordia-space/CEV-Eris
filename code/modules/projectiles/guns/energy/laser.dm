@@ -15,7 +15,7 @@
 	damage_multiplier = 1.3
 	charge_cost = 50
 	price_tag = 2500
-	projectile_type = /obj/item/projectile/beam/practice
+	projectile_type = /obj/item/projectile/beam/midlaser
 	init_firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
@@ -63,7 +63,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	can_dual = TRUE
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 15, MATERIAL_GLASS = 5)
-	projectile_type = /obj/item/projectile/beam/practice
+	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
 	zoom_factor = 0
 	damage_multiplier = 1
@@ -109,7 +109,7 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = TRUE
-	projectile_type = /obj/item/projectile/beam/practice
+	projectile_type = /obj/item/projectile/beam/midlaser
 	zoom_factor = 0
 	damage_multiplier = 1.2
 	origin_tech = null
@@ -134,7 +134,7 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BELT|SLOT_BACK
-	projectile_type = /obj/item/projectile/beam/practice
+	projectile_type = /obj/item/projectile/beam/heavylaser
 	charge_cost = 100
 	fire_delay = 20
 	zoom_factor = 0
@@ -163,7 +163,7 @@
 	icon = 'icons/obj/guns/energy/psychiccannon.dmi'
 	icon_state = "psychic_lasercannon"
 	item_state = "psychic_lasercannon"
-	projectile_type = /obj/item/projectile/beam/practice
+	projectile_type = /obj/item/projectile/beam/psychic
 	icon_contained = TRUE
 	spawn_blacklisted = TRUE
 	var/contractor = FALSE //Check if it's a contractor psychic weapon
@@ -236,7 +236,7 @@
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	item_charge_meter = FALSE
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3, TECH_COVERT = 5)
-	projectile_type = /obj/item/projectile/beam/practice
+	projectile_type = /obj/item/projectile/beam/psychic/heavylaser
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_NORMAL
 	slot_flags = SLOT_BELT|SLOT_BACK
@@ -259,7 +259,7 @@
 	desc = "A cruel weapon designed to break the minds of those it targets, causing sanity loss and mental breakdowns."
 	icon = 'icons/obj/guns/energy/xray.dmi'
 	icon_state = "xray"
-	projectile_type = /obj/item/projectile/beam/practice
+	projectile_type = /obj/item/projectile/beam/psychic
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	fire_delay = 10

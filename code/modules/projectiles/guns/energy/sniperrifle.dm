@@ -7,7 +7,7 @@
 	item_charge_meter = TRUE
 	fire_sound = 'sound/weapons/marauder.ogg'
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
-	projectile_type = /obj/item/projectile/beam/practice
+	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
 	charge_cost = 300
 	fire_delay = 35
