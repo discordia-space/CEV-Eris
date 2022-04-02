@@ -137,7 +137,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 //**Chameleon Jumpsuit loadout functionality**
 //********************************************
 
-/obj/item/clothing/under/chameleon/proc/set_single_loadout_slot(slot, loadout)
+/obj/item/clothing/under/chameleon/proc/set_loadout_slot(slot, loadout)
 	var/chameleon_choices
 	var/obj/item/item_to_disguise
 	switch(slot)
@@ -187,16 +187,8 @@ obj/item/clothing/disguise(newtype, mob/user)
 	for(var/obj/item/A in user.get_contents())
 		if(A.chameleon_slot)
 			user_chameleon_items += A
-	var/list/ordered_list = list() //sadly neccessary because the suit and glasses need to be disguised before all other items, otherwise shoes and glasses will appear invisible.
 	for(var/obj/item/I in user_chameleon_items)
-		if(istype(obj/item/clothing/suit/chameleon))
-			ordered_list += I
-		else if(istype(obj/item/clothing/glasses_chameleon))
-			ordered_list += I
-	user_chameleon_items -= ordered_list
-	ordered_list += user_chameleon_items
-	for(var/obj/item/U in ordered_list)
-		disguise(loadout[U.chameleon_slot], user)
+		I.disguise(loadout[I.chameleon_slot], user)
 
 /obj/item/clothing/under/chameleon/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
 	var/list/data = list()
@@ -223,7 +215,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "chameleon.tmpl", "Chameleon clothing", 1000, 400)
+		ui = new(user, src, ui_key, "chameleon.tmpl", "Chameleon clothing", 1100, 400)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -233,16 +225,16 @@ obj/item/clothing/disguise(newtype, mob/user)
 	loadouts += list(loadout_1, loadout_2, loadout_3, loadout_4)
 	if(href_list["set_clothing_1"])
 		slot = href_list["set_clothing_1"]
-		set_single_loadout_slot(slot, loadout_1)
+		set_loadout_slot(slot, loadout_1)
 	if(href_list["set_clothing_2"])
 		slot = href_list["set_clothing_2"]
-		set_single_loadout_slot(slot, loadout_2)
+		set_loadout_slot(slot, loadout_2)
 	if(href_list["set_clothing_3"])
 		slot = href_list["set_clothing_3"]
-		set_single_loadout_slot(slot, loadout_3)
+		set_loadout_slot(slot, loadout_3)
 	if(href_list["set_clothing_4"])
 		slot = href_list["set_clothing_4"]
-		set_single_loadout_slot(slot, loadout_4)
+		set_loadout_slot(slot, loadout_4)
 	SSnano.update_uis(src)
 	..()
 
@@ -258,14 +250,15 @@ obj/item/clothing/disguise(newtype, mob/user)
 	set category = "Chameleon Items"
 	set src in usr.contents
 
+	disguise_as_loadout(usr, loadout_1)//need to do this twice, otherwise jumpsuits will appear invisible when switching from a voidsuit to a non-voidsuit disguise (known bug when taking off suits)
 	disguise_as_loadout(usr, loadout_1)
-
 
 /obj/item/clothing/under/chameleon/verb/disguise_as_loadout_2()
 	set name = "Disguise as loadout 2"
 	set category = "Chameleon Items"
 	set src in usr.contents
 
+	disguise_as_loadout(usr, loadout_2)
 	disguise_as_loadout(usr, loadout_2)
 
 /obj/item/clothing/under/chameleon/verb/disguise_as_loadout_3()
@@ -274,6 +267,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 	set src in usr.contents
 
 	disguise_as_loadout(usr, loadout_3)
+	disguise_as_loadout(usr, loadout_3)
 
 /obj/item/clothing/under/chameleon/verb/disguise_as_loadout_4()
 	set name = "Disguise as loadout 4"
@@ -281,7 +275,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 	set src in usr.contents
 
 	disguise_as_loadout(usr, loadout_4)
-
+	disguise_as_loadout(usr, loadout_4)
 
 //*****************
 //**Chameleon Hat**
