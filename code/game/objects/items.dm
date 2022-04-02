@@ -87,6 +87,7 @@
 	var/max_upgrades = 3
 
 	var/can_use_lying = 0
+	var/chameleon_slot //if this is a chameleon item, what kind of item is it?
 
 /obj/item/Initialize()
 	if(islist(armor))

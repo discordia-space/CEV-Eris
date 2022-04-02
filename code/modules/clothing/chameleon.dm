@@ -28,11 +28,18 @@ obj/item/clothing/disguise(newtype, mob/user)
 	if (istype(copy))
 		style_coverage = copy.style_coverage
 
-/proc/generate_chameleon_choices(basetype, blacklist=list())
+/proc/generate_chameleon_choices(basetype)
 	. = list()
 
 	var/i = 1 //in case there is a collision with both name AND icon_state
-	for(var/typepath in typesof(basetype) - blacklist)
+	var/is_item = FALSE
+	if(istype(basetype, /obj/item))
+		is_item = TRUE
+	for(var/typepath in typesof(basetype))
+		if(is_item)
+			var/obj/item/K = typepath
+			if(K.chameleon_slot)
+				return
 		var/obj/O = typepath
 		if(initial(O.icon) && initial(O.icon_state))
 			var/name = initial(O.name)
@@ -50,6 +57,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 	item_state = "bl_suit"
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_CLOTHING_UNDER_CHAMALEON
+	chameleon_slot = "uniform"
 
 	origin_tech = list(TECH_COVERT = 3)
 	var/global/list/clothing_choices
@@ -130,107 +138,65 @@ obj/item/clothing/disguise(newtype, mob/user)
 //********************************************
 
 /obj/item/clothing/under/chameleon/proc/set_single_loadout_slot(slot, loadout)
-	var/chameleon_choice
+	var/chameleon_choices
 	var/obj/item/item_to_disguise
 	switch(slot)
 		if("uniform")
-			var/obj/item/clothing/under/chameleon/G
-			chameleon_choice = G
-			chameleon_choice = G.clothing_choices
-			item_to_disguise = input("","Choose a disguise") in chameleon_choice
-			loadout["uniform"] = chameleon_choice[item_to_disguise]
+			chameleon_choices = generate_chameleon_choices(/obj/item/clothing/under)
+			item_to_disguise = input("","Choose a disguise") in chameleon_choices
+			loadout["uniform"] = chameleon_choices[item_to_disguise]
 		if("hat")
-			var/obj/item/clothing/head/chameleon/G
-			chameleon_choice = G
-			chameleon_choice = G.clothing_choices
-			item_to_disguise = input("","Choose a disguise") in chameleon_choice
-			loadout["hat"] = chameleon_choice[item_to_disguise]
+			chameleon_choices = generate_chameleon_choices(/obj/item/clothing/head)
+			item_to_disguise = input("","Choose a disguise") in chameleon_choices
+			loadout["hat"] = chameleon_choices[item_to_disguise]
 		if("suit")
-			var/obj/item/clothing/suit/chameleon/G = new /obj/item/clothing/suit/chameleon(null)
-			chameleon_choice = G
-			chameleon_choice = G.clothing_choices
-			item_to_disguise = input("","Choose a disguise") in chameleon_choice
-			loadout["suit"] = chameleon_choice[item_to_disguise]
+			chameleon_choices = generate_chameleon_choices(/obj/item/clothing/suit)
+			item_to_disguise = input("","Choose a disguise") in chameleon_choices
+			loadout["suit"] = chameleon_choices[item_to_disguise]
 		if("shoes")
-			var/obj/item/clothing/shoes/chameleon/G = new /obj/item/clothing/shoes/chameleon(null)
-			chameleon_choice = G
-			chameleon_choice = G.clothing_choices
-			item_to_disguise = input("","Choose a disguise") in chameleon_choice
-			loadout["shoes"] = chameleon_choice[item_to_disguise]
+			chameleon_choices = generate_chameleon_choices(/obj/item/clothing/shoes)
+			item_to_disguise = input("","Choose a disguise") in chameleon_choices
+			loadout["shoes"] = chameleon_choices[item_to_disguise]
 		if("back")
-			var/obj/item/storage/backpack/chameleon/G = new /obj/item/storage/backpack/chameleon(null)
-			chameleon_choice = G
-			chameleon_choice = G.clothing_choices
-			item_to_disguise = input("","Choose a disguise") in chameleon_choice
-			loadout["back"] = chameleon_choice[item_to_disguise]
+			chameleon_choices = generate_chameleon_choices(/obj/item/storage/backpack)
+			item_to_disguise = input("","Choose a disguise") in chameleon_choices
+			loadout["back"] = chameleon_choices[item_to_disguise]
 		if("gloves")
-			var/obj/item/clothing/gloves/chameleon/G = new /obj/item/clothing/gloves/chameleon(null)
-			chameleon_choice = G
-			chameleon_choice = G.clothing_choices
-			item_to_disguise = input("","Choose a disguise") in chameleon_choice
-			loadout["gloves"] = chameleon_choice[item_to_disguise]
-		if("mask")
-			var/obj/item/clothing/mask/chameleon/G = new /obj/item/clothing/mask/chameleon(null)
-			chameleon_choice = G
-			chameleon_choice = G.clothing_choices		
-			item_to_disguise = input("","Choose a disguise") in chameleon_choice
-			loadout["mask"] = chameleon_choice[item_to_disguise]
+			chameleon_choices = generate_chameleon_choices(/obj/item/clothing/gloves)
+			item_to_disguise = input("","Choose a disguise") in chameleon_choices
+			loadout["gloves"] = chameleon_choices[item_to_disguise]
+		if("mask")	
+			chameleon_choices = generate_chameleon_choices(/obj/item/clothing/mask)
+			item_to_disguise = input("","Choose a disguise") in chameleon_choices
+			loadout["mask"] = chameleon_choices[item_to_disguise]
 		if("glasses")
-			var/obj/item/clothing/glasses/chameleon/G = new /obj/item/clothing/glasses/chameleon(null)
-			chameleon_choice = G
-			chameleon_choice = G.clothing_choices
-			item_to_disguise = input("","Choose a disguise") in chameleon_choice
-			loadout["glasses"] = chameleon_choice[item_to_disguise]
+			chameleon_choices = generate_chameleon_choices(/obj/item/clothing/glasses)
+			item_to_disguise = input("","Choose a disguise") in chameleon_choices
+			loadout["glasses"] = chameleon_choices[item_to_disguise]
 		if("gun")
-			var/obj/item/gun/energy/chameleon/G = new /obj/item/gun/energy/chameleon(null)
-			chameleon_choice = G	
-			chameleon_choice = G.gun_choices
-			item_to_disguise = input("","Choose a disguise") in chameleon_choice
-			loadout["gun"] = chameleon_choice[item_to_disguise]
+			chameleon_choices = generate_chameleon_choices(/obj/item/gun)
+			item_to_disguise = input("","Choose a disguise") in chameleon_choices
+			loadout["gun"] = chameleon_choices[item_to_disguise]
 		if("headset")
-			var/obj/item/device/radio/headset/chameleon/G = new /obj/item/device/radio/headset/chameleon(null)
-			chameleon_choice = G	
-			chameleon_choice = G.clothing_choices
-			item_to_disguise = input("","Choose a disguise") in chameleon_choice
-			loadout["headset"] = chameleon_choice[item_to_disguise]
-
+			chameleon_choices = generate_chameleon_choices(/obj/item/device/radio/headset)
+			item_to_disguise = input("","Choose a disguise") in chameleon_choices
+			loadout["headset"] = chameleon_choices[item_to_disguise]
 
 /obj/item/clothing/under/chameleon/proc/disguise_as_loadout(mob/user, loadout)
-	var/obj/item/A
-	for(var/obj/item/clothing/suit/chameleon/F in user.get_contents())
-		A = F
-		A.disguise(loadout["suit"], user)
-	for(var/obj/item/clothing/under/chameleon/F in user.get_contents())
-		A = F
-		A.disguise(loadout["uniform"], user)
-	for(var/obj/item/clothing/head/chameleon/F in user.get_contents())
-		A = F
-		A.disguise(loadout["hat"], user)
-	for(var/obj/item/clothing/shoes/chameleon/F in user.get_contents())
-		A = F
-		A.disguise(loadout["shoes"], user)
-	for(var/obj/item/storage/backpack/chameleon/F in user.get_contents())
-		A = F
-		A.disguise(loadout["back"], user)
-	for(var/obj/item/storage/backpack/satchel/chameleon/F in user.get_contents())
-		A = F
-		A.disguise(loadout["back"], user)
-	for(var/obj/item/clothing/gloves/chameleon/F in user.get_contents())
-		A = F
-		A.disguise(loadout["gloves"], user)
-	for(var/obj/item/clothing/mask/chameleon/F in user.get_contents())
-		A = F
-		A.disguise(loadout["mask"], user)
-	for(var/obj/item/clothing/glasses/chameleon/F in user.get_contents())
-		A = F
-		A.disguise(loadout["glasses"], user)
-	for(var/obj/item/gun/energy/chameleon/F in user.get_contents())
-		A = F
-		A.disguise(loadout["gun"], user)
-	for(var/obj/item/device/radio/headset/chameleon/F in user.get_contents())
-		A = F
-		A.disguise(loadout["headset"], user)
-
+	var/list/user_chameleon_items = list()
+	for(var/obj/item/A in user.get_contents())
+		if(A.chameleon_slot)
+			user_chameleon_items += A
+	var/list/ordered_list = list() //sadly neccessary because the suit and glasses need to be disguised before all other items, otherwise shoes and glasses will appear invisible.
+	for(var/obj/item/I in user_chameleon_items)
+		if(istype(obj/item/clothing/suit/chameleon))
+			ordered_list += I
+		else if(istype(obj/item/clothing/glasses_chameleon))
+			ordered_list += I
+	user_chameleon_items -= ordered_list
+	ordered_list += user_chameleon_items
+	for(var/obj/item/U in ordered_list)
+		disguise(loadout[U.chameleon_slot], user)
 
 /obj/item/clothing/under/chameleon/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
 	var/list/data = list()
@@ -329,13 +295,13 @@ obj/item/clothing/disguise(newtype, mob/user)
 	body_parts_covered = 0
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_CLOTHING_HEAD_CHAMALEON
+	chameleon_slot = "hat"
 	var/global/list/clothing_choices
 
 /obj/item/clothing/head/chameleon/New()
 	..()
 	if(!clothing_choices)
-		var/blocked = list(src.type, /obj/item/clothing/head/justice,)//Prevent infinite loops and bad hats.
-		clothing_choices = generate_chameleon_choices(/obj/item/clothing/head, blocked)
+		clothing_choices = generate_chameleon_choices(/obj/item/clothing/head)
 
 /obj/item/clothing/head/chameleon/Initialize(mapload, ...)
 	. = ..()
@@ -370,13 +336,13 @@ obj/item/clothing/disguise(newtype, mob/user)
 	desc = "It appears to be a vest of standard armor, except this is embedded with a hidden holographic cloaker, allowing it to change it's appearance, but offering no protection.. It seems to have a small dial inside."
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
+	chameleon_slot = "suit"
 	var/global/list/clothing_choices
 
 /obj/item/clothing/suit/chameleon/New()
 	..()
 	if(!clothing_choices)
-		var/blocked = list(src.type, null)
-		clothing_choices = generate_chameleon_choices(/obj/item/clothing/suit, blocked)
+		clothing_choices = generate_chameleon_choices(/obj/item/clothing/suit)
 
 /obj/item/clothing/suit/chameleon/Initialize(mapload, ...)
 	. = ..()
@@ -411,13 +377,13 @@ obj/item/clothing/disguise(newtype, mob/user)
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_SHOES_CHAMALEON
+	chameleon_slot = "shoes"
 	var/global/list/clothing_choices
 
 /obj/item/clothing/shoes/chameleon/New()
 	..()
 	if(!clothing_choices)
-		var/blocked = list(src.type, /obj/item/clothing/shoes/syndigaloshes, /obj/item/clothing/shoes/cyborg)//prevent infinite loops and bad shoes.
-		clothing_choices = generate_chameleon_choices(/obj/item/clothing/shoes, blocked)
+		clothing_choices = generate_chameleon_choices(/obj/item/clothing/shoes)
 
 /obj/item/clothing/shoes/chameleon/Initialize(mapload, ...)
 	. = ..()
@@ -454,13 +420,13 @@ obj/item/clothing/disguise(newtype, mob/user)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_BACKPACK_CHAMALEON
 	rarity_value = 50
+	chameleon_slot = "back"
 	var/global/list/clothing_choices
 
 /obj/item/storage/backpack/chameleon/New()
 	. = ..()
 	if(!clothing_choices)
-		var/blocked = list(src.type, /obj/item/storage/backpack/satchel/leather/withwallet)
-		clothing_choices = generate_chameleon_choices(/obj/item/storage/backpack, blocked)
+		clothing_choices = generate_chameleon_choices(/obj/item/storage/backpack)
 
 /obj/item/storage/backpack/chameleon/Initialize(mapload, ...)
 	. = ..()
@@ -496,13 +462,13 @@ obj/item/clothing/disguise(newtype, mob/user)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_BACKPACK_CHAMALEON
 	rarity_value = 50
+	chameleon_slot = "back"
 	var/global/list/clothing_choices
 
 /obj/item/storage/backpack/satchel/chameleon/New()
 	. = ..()
 	if(!clothing_choices)
-		var/blocked = list(src.type, /obj/item/storage/backpack/satchel/leather/withwallet)
-		clothing_choices = generate_chameleon_choices(/obj/item/storage/backpack, blocked)
+		clothing_choices = generate_chameleon_choices(/obj/item/storage/backpack)
 
 /obj/item/storage/backpack/satchel/chameleon/Initialize(mapload, ...)
 	. = ..()
@@ -539,12 +505,13 @@ obj/item/clothing/disguise(newtype, mob/user)
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_GLOVES_CHAMALEON
+	chameleon_slot = "gloves"
 	var/global/list/clothing_choices
 
 /obj/item/clothing/gloves/chameleon/New()
 	..()
 	if(!clothing_choices)
-		clothing_choices = generate_chameleon_choices(/obj/item/clothing/gloves, list(src.type))
+		clothing_choices = generate_chameleon_choices(/obj/item/clothing/gloves)
 
 /obj/item/clothing/gloves/chameleon/Initialize(mapload, ...)
 	. = ..()
@@ -581,13 +548,14 @@ obj/item/clothing/disguise(newtype, mob/user)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_MASK_CONTRABAND
 	flags_inv = HIDEEYES|HIDEFACE
+	chameleon_slot = "mask"
 	var/global/list/clothing_choices
 	style_coverage = COVERS_WHOLE_FACE//default state
 
 /obj/item/clothing/mask/chameleon/New()
 	..()
 	if(!clothing_choices)
-		clothing_choices = generate_chameleon_choices(/obj/item/clothing/mask, list(src.type))
+		clothing_choices = generate_chameleon_choices(/obj/item/clothing/mask)
 
 /obj/item/clothing/mask/chameleon/Initialize(mapload, ...)
 	. = ..()
@@ -623,12 +591,13 @@ obj/item/clothing/disguise(newtype, mob/user)
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_GLASSES_CHAMALEON
+	chameleon_slot = "glasses"
 	var/list/global/clothing_choices
 
 /obj/item/clothing/glasses/chameleon/New()
 	..()
 	if(!clothing_choices)
-		clothing_choices = generate_chameleon_choices(/obj/item/clothing/glasses, list(src.type))
+		clothing_choices = generate_chameleon_choices(/obj/item/clothing/glasses)
 
 /obj/item/clothing/glasses/chameleon/Initialize(mapload, ...)
 	. = ..()
@@ -666,6 +635,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 	rarity_value = 25
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_COVERT = 2)
 	matter = list()
+	chameleon_slot = "gun"
 
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	projectile_type = /obj/item/projectile/chameleon
@@ -742,12 +712,13 @@ obj/item/clothing/disguise(newtype, mob/user)
 	origin_tech = list(TECH_COVERT = 1)
 	spawn_blacklisted = TRUE
 	ks1type = null // No keys pre-installed
+	chameleon_slot = "headset"
 	var/list/global/clothing_choices
 
 /obj/item/device/radio/headset/chameleon/New()
 	..()
 	if(!clothing_choices)
-		clothing_choices = generate_chameleon_choices(/obj/item/device/radio/headset, list(src.type))
+		clothing_choices = generate_chameleon_choices(/obj/item/device/radio/headset)
 
 /obj/item/device/radio/headset/chameleon/emp_act(severity)
 	name = "radio headset"
