@@ -341,6 +341,23 @@
 		rad = 0
 	)
 
+/obj/item/clothing/suit/storage/greatcoat/onestar
+	name = "One Star officer jacket"
+	desc = "A rare stylish red jacket worn by One Star officers. It seems to be extremly durable and is strangely warm to the touch."
+	icon_state = "onestar_jacket"
+	price_tag = 2000
+	armor = list(
+		melee = 15,
+		bullet = 40,
+		energy = 30,
+		bomb = 10,
+		bio = 5,
+		rad = 5
+	)
+
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	siemens_coefficient = 0.7
+
 /*
  * Heavy Armor Types
  */

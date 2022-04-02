@@ -382,6 +382,23 @@ obj/item/clothing/under/genericr
 		rad = 0
 	)
 
+/obj/item/clothing/under/onestar
+	name = "One Star uniform"
+	desc = "A Comfortable red silk uniform. It is emblazened with the One Star insignia on the collar. Strangely, it seems to fit you perfectly"
+	icon_state = "onestar_uniform"
+	item_state = "onestar_uniform"
+	style = STYLE_HIGH
+	spawn_tags = SPAWN_TAG_CLOTHING_OS
+	price_tag = 500
+	armor = list(
+		melee = 0,
+		bullet = 5,
+		energy = 5,
+		bomb = 0,
+		bio = 5,
+		rad = 5
+	)
+
 /obj/item/clothing/under/tropicalpink
 	name = "pink tropical shirt"
 	desc = "An Aster\'s Guild branded neosilk tropical shirt. This one makes you feel nostalgic."
