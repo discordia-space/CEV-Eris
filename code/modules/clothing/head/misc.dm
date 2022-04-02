@@ -283,7 +283,7 @@
 	desc = "A fancy red and blue cap sporting the One Star insignia."
 	icon_state = "onestar_hat"
 	siemens_coefficient = 1
-	price_tag = 2000
+	price_tag = 1000
 	armor = list(
 		melee = 10,
 		bullet = 30,
