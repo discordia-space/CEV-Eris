@@ -10,13 +10,6 @@
 	var/obj/item/device/mmi/brain
 
 
-/obj/structure/AIcore/New()
-	. = ..()
-	var/turf/T = get_turf(src)
-	explosion(T, 3, 6, 12, 24)
-	spawn(5)
-		new /obj/item/reagent_containers/food/snacks/pickle(T)
-	
 /obj/structure/AIcore/attackby(obj/item/I, mob/user)
 
 	var/list/usable_qualities = list()
