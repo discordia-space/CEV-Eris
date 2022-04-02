@@ -388,7 +388,6 @@ obj/item/clothing/under/genericr
 	icon_state = "onestar_uniform"
 	item_state = "onestar_uniform"
 	style = STYLE_HIGH
-	spawn_tags = SPAWN_TAG_CLOTHING_OS
 	price_tag = 500
 	armor = list(
 		melee = 0,

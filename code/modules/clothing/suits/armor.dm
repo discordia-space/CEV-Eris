@@ -342,9 +342,10 @@
 	)
 
 /obj/item/clothing/suit/storage/greatcoat/onestar
-	name = "One Star officer jacket"
+	name = "One Star officer coat"
 	desc = "A rare stylish red jacket worn by One Star officers. It seems to be extremly durable and is strangely warm to the touch."
-	icon_state = "onestar_jacket"
+	icon_state = "onestar_coat"
+	item_state = "onestar_coat"
 	price_tag = 2000
 	armor = list(
 		melee = 15,
