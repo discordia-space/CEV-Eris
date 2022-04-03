@@ -384,7 +384,7 @@ obj/item/clothing/under/genericr
 
 /obj/item/clothing/under/onestar
 	name = "One Star uniform"
-	desc = "A Comfortable red silk uniform. It is emblazened with the One Star insignia on the collar. Strangely, it seems to fit you perfectly"
+	desc = "Comfortable red silk uniform. It is emblazoned with One Star insignia on the collar. Strangely, it seems to fit you perfectly."
 	icon_state = "onestar_uniform"
 	item_state = "onestar_uniform"
 	style = STYLE_HIGH
