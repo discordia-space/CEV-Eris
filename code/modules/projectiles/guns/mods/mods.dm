@@ -18,6 +18,7 @@
 /obj/item/gun_upgrade/underbarrel/bipod
 	name = "bipod"
 	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. It greatly reduces recoil when deployed, but also increases the gun\'s weight, making it unwieldy unless braced."
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3)
 	icon_state = "bipod"
 	rarity_value = 15
 
@@ -55,6 +56,7 @@
 /obj/item/gun_upgrade/barrel/forged
 	name = "forged barrel"
 	desc = "Despite advancements in 3D printing, a properly forged plasteel barrel can still outperform anything that comes from an autolathe."
+	matter = list(MATERIAL_PLASTEEL = 5)
 	icon_state = "Forged_barrel"
 	rarity_value = 10
 
@@ -70,6 +72,7 @@
 /obj/item/gun_upgrade/barrel/blender
 	name = "OR \"Bullet Blender\" barrel"
 	desc = "A curious-looking barrel bearing the Oberth insignia. A small label reads \"No refunds for any collateral damage caused\"."
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 3, MATERIAL_DIAMOND = 1)
 	icon_state = "Penetrator"
 	rarity_value = 30
 
@@ -91,7 +94,7 @@
 	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
 	desc = "It's time for us to shine."
 	icon_state = "Excruciator"
-	matter = list(MATERIAL_BIOMATTER = 3, MATERIAL_PLASTEEL = 1, MATERIAL_GOLD = 1, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_BIOMATTER = 3, MATERIAL_PLASTEEL = 2, MATERIAL_GOLD = 2, MATERIAL_GLASS = 1)
 	rarity_value = 50
 
 /obj/item/gun_upgrade/barrel/excruciator/New()
@@ -111,6 +114,7 @@
 /obj/item/gun_upgrade/trigger/dangerzone
 	name = "Frozen Star \"Danger Zone\" Trigger"
 	desc = "When you need that extra edge."
+	matter = list(MATERIAL_PLASTEEL = 2, MATERIAL_SILVER = 1)
 	icon_state = "Danger_Zone"
 	rarity_value = 15
 
@@ -128,6 +132,7 @@
 /obj/item/gun_upgrade/trigger/cop_block
 	name = "Frozen Star \"Cop Block\" Trigger"
 	desc = "A simpler way of making a weapon display-only"
+	matter = list(MATERIAL_PLASTEEL = 2)
 	icon_state = "Cop_Block"
 	rarity_value = 15
 
@@ -144,6 +149,7 @@
 /obj/item/gun_upgrade/trigger/dnalock
 	name = "Frozen Star \"DNA lock\" Trigger"
 	desc = "There are many guns, but that one will be yours. Prevents others from using weapon with this trigger."
+	matter = list(MATERIAL_PLASTEEL = 2, MATERIAL_DIAMOND = 1)
 	icon_state = "DNA_lock"
 	rarity_value = 15
 
@@ -161,6 +167,7 @@
 /obj/item/gun_upgrade/trigger/dnalock
 	name = "Frozen Star \"DNA lock\" Trigger"
 	desc = "There are many guns, but that one will be yours. Prevents others from using weapon with this trigger."
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_DIAMOND = 1)
 	icon_state = "DNA_lock"
 	rarity_value = 15
 
@@ -182,6 +189,7 @@
 /obj/item/gun_upgrade/mechanism/overshooter
 	name = "Frozen Star \"Overshooter\" internal magazine kit"
 	desc = "A method of overloading a weapon's internal magazine, fitting more ammunition within the weapon."
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 4, MATERIAL_PLASTIC = 4)
 	icon_state = "Overshooter"
 	rarity_value = 20
 
@@ -197,7 +205,8 @@
 //Adds radiation damage to .35 rounds. Acquired through telecrystal uplink
 /obj/item/gun_upgrade/mechanism/glass_widow
 	name = "Syndicate \"Glass Widow\" infuser"
-	desc = "An old technology from the Corporate Wars, used to make formerly useless civilian-grade weaponry into something much more lethal."
+	desc = "An old technology from the Corporate Wars, this mechanism rests inside the receiver and adds trace amounts of radioactive material to each bullet fired." // wtf
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_URANIUM = 3)
 	icon_state = "Glass_Widow"
 	rarity_value = 50
 	spawn_blacklisted = TRUE
@@ -215,6 +224,7 @@
 /obj/item/gun_upgrade/mechanism/weintraub
 	name = "Frozen Star \"Weintraub\" full auto kit"
 	desc = "A fully automatic receiver for rifles"
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3)
 	icon_state = "Weintraub"
 	rarity_value = 30
 
@@ -232,6 +242,7 @@
 /obj/item/gun_upgrade/mechanism/reverse_loader
 	name = "Syndicate reverse loader"
 	desc = "Makes bullets loaded into the weapon fire backwards, into its user."
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 3)
 	icon_state = "Reverse_loader"
 	spawn_blacklisted = TRUE
 
@@ -263,6 +274,7 @@
 /obj/item/gun_upgrade/trigger/boom
 	name = "Syndicate \"Self Destruct\" trigger"
 	desc = "Trigger that explode gun on shoot, only for energy weapon."
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_SILVER = 3)
 	icon_state = "Boom"
 	spawn_blacklisted = TRUE
 
@@ -282,6 +294,7 @@
 /obj/item/gun_upgrade/scope/watchman
 	name = "Frozen Star \"Watchman\" scope"
 	desc = "Scope that can be attachet to avarage gun."
+	matter = list(MATERIAL_GLASS = 2, MATERIAL_PLASTEEL = 2)
 	icon_state = "Watchman"
 
 /obj/item/gun_upgrade/scope/watchman/New()
@@ -297,6 +310,7 @@
 /obj/item/gun_upgrade/scope/killer
 	name = "Syndicate \"Contract Killer\" scope"
 	desc = "Scope used for sniping from large distances."
+	matter = list(MATERIAL_PLASMAGLASS = 3, MATERIAL_PLASTEEL = 3)
 	icon_state = "Killer"
 	spawn_blacklisted = TRUE
 
@@ -314,6 +328,7 @@
 /obj/item/gun_upgrade/mechanism/gravcharger
 	name = "makeshift bullet time generator"
 	desc = "When attached to a gun, this device bends time and space to create a localized microgravity field around each bullet, with peculiar results"
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASMA = 2, MATERIAL_PLASTEEL = 2, MATERIAL_URANIUM = 2)
 	icon_state = "gravbarrel"
 	rarity_value = 20
 
@@ -504,6 +519,7 @@
 /obj/item/gun_upgrade/scope/better
 	name = "High-res scope"
 	desc = "A high resolution scope"
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASMAGLASS = 3)
 	spawn_blacklisted = TRUE
 	price_tag = 100
 

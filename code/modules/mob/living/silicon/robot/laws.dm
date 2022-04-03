@@ -34,7 +34,7 @@
 		to_chat(who, "<b>Remember, [connected_ai.name] is technically your master, but your objective comes first.</b>")
 	else if (connected_ai)
 		to_chat(who, "<b>Remember, [connected_ai.name] is your master, other AIs can be ignored.</b>")
-	else if (emagged)
+	else if (HasTrait(CYBORG_TRAIT_EMAGGED))
 		to_chat(who, "<b>Remember, you are not required to listen to the AI.</b>")
 	else
 		to_chat(who, "<b>Remember, you are not bound to any AI, you are not required to listen to them.</b>")

@@ -74,8 +74,8 @@
 		current_linked_zone = null
 	var/turf/simulated/where_the_fuck_are_we = get_turf(src)
 	if(!istype(where_the_fuck_are_we))
-		crash_with("[src] scrubber located in [loc] on a non-simulated turf.Delete this or make the turf it is on simulated.")
-		return FALSE
+		. = FALSE
+		CRASH("[src] scrubber located in [loc] on a non-simulated turf.Delete this or make the turf it is on simulated.")
 	current_linked_zone = where_the_fuck_are_we.zone
 	RegisterSignal(current_linked_zone , COMSIG_ZAS_TICK, .proc/begin_processing)
 	RegisterSignal(current_linked_zone, COMSIG_ZAS_DELETE, .proc/relink_zas)
