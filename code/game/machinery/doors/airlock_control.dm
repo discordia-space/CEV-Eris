@@ -7,7 +7,7 @@
 	var/shockedby = list()
 	var/datum/radio_frequency/radio_connection
 	var/cur_command = null	//the command the door is currently attempting to complete
-	var/completing = FALSE
+	var/completing_command = 0
 
 /obj/machinery/door/airlock/receive_signal(datum/signal/signal)
 	if(!arePowerSystemsOn()) return //no power
@@ -29,12 +29,12 @@
 
 	do_command(cur_command)
 	if(command_completed(cur_command))
-		completing = FALSE
 		cur_command = null
+		completing_command = FALSE
 		return TRUE
-	if(!completing)
+	if(!completing_command)
 		addtimer(CALLBACK(src , .proc/execute_current_command), 2 SECONDS) // Fuck it , try again.
-		completing = TRUE
+		completing_command = TRUE
 	return FALSE
 
 /obj/machinery/door/airlock/proc/do_command(var/command)
@@ -170,14 +170,14 @@
 	var/alert = 0
 	var/previousPressure
 
-/obj/machinery/airlock_sensor/update_icon()
+/obj/machinery/airlock_sensor/on_update_icon()
 	if(on)
 		if(alert)
-			icon_state = "airlock_sensor_alert"
+			SetIconState("airlock_sensor_alert")
 		else
-			icon_state = "airlock_sensor_standby"
+			SetIconState("airlock_sensor_standby")
 	else
-		icon_state = "airlock_sensor_off"
+		SetIconState("airlock_sensor_off")
 
 /obj/machinery/airlock_sensor/attack_hand(mob/user)
 	var/datum/signal/signal = new
@@ -186,7 +186,7 @@
 	signal.data["command"] = command
 
 	radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
-	flick("airlock_sensor_cycle", src)
+	flicker("airlock_sensor_cycle")
 
 /obj/machinery/airlock_sensor/Process()
 	if(on)
@@ -310,9 +310,9 @@
 	var/on = TRUE
 
 
-/obj/machinery/access_button/update_icon()
+/obj/machinery/access_button/on_update_icon()
 	. = ..()
-	icon_state = "[base_of_state]_[on?"standby":"off"]"
+	SetIconState("[base_of_state]_[on?"standby":"off"]")
 
 /obj/machinery/access_button/attackby(obj/item/I as obj, mob/user as mob)
 	//Swiping ID on the access button
@@ -334,7 +334,7 @@
 		signal.data["command"] = command
 
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
-	flick("access_button_cycle", src)
+	flicker("access_button_cycle")
 
 
 /obj/machinery/access_button/proc/set_frequency(new_frequency)

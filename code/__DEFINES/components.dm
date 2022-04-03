@@ -143,3 +143,5 @@
 #define COMSIG_SHIP_STILL "ship_still" // /obj/effect/overmap/ship/Process() && is_still()
 
 /*******Non-Signal Component Related Defines*******/
+
+#define COMSIG_ZAS_ZONE_CHANGE
