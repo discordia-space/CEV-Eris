@@ -1,5 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - tweak: added mind check to living Life() sleep check logic
-  - balance: slightly extends the generate_body() timer to 66 seconds from 60
