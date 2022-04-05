@@ -530,7 +530,7 @@
 	fail_message = "Your prayers have not been answered."
 	power = 20
 
-/datum/ritual/cruciform/priest/buy_item/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
+/datum/ritual/cruciform/priest/acolyte/buy_item/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
 	var/list/OBJS = get_front(H)
 
 	var/obj/machinery/power/eotp/EOTP = locate(/obj/machinery/power/eotp) in OBJS
