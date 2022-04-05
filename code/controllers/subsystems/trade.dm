@@ -137,7 +137,7 @@ SUBSYSTEM_DEF(trade)
 	return GLOB.price_cache[path]
 
 /datum/controller/subsystem/trade/proc/get_export_cost(atom/movable/target)
-	. = round(get_cost(target) * 1)
+	. = round(get_cost(target))
 
 /datum/controller/subsystem/trade/proc/get_sell_price(path, datum/trade_station/station)
 	. = round(get_new_cost(path) * station.markdown)
