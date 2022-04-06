@@ -193,20 +193,18 @@ obj/item/clothing/disguise(newtype, mob/user)
 /obj/item/clothing/under/chameleon/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
 	var/list/data = list()
 
-	var/list/loadouts = list()
-	loadouts += list(loadout_1, loadout_2, loadout_3, loadout_4)
-
+	var/list/loadouts = list(loadout_1, loadout_2, loadout_3, loadout_4)
 	var/list/clothes_in_loadout = list()
+
 	var/current_loadout = 1
-	for(var/I in loadouts)
-		var/list/S = I
-		for(var/G in S)
-			var/K = S[G]
+	for(var/list/loadout in loadouts)
+		for(var/slot in loadout)
+			var/K = loadout[slot]
 			var/obj/item/copy = new K (null)
 			clothes_in_loadout += list(
 				list(
 					"name" = copy.name,
-					"slot" = G,
+					"slot" = slot,
 					"loadout" = current_loadout
 				)
 			)
