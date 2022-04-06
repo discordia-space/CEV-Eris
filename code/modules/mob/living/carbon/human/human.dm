@@ -1243,7 +1243,7 @@ var/list/rank_prefix = list(\
 				qdel(I)
 			new organ_type(src)
 
-		if(checkprefcruciform)
+		if(checkprefcruciform && client)
 			var/datum/category_item/setup_option/core_implant/I = client.prefs.get_option("Core implant")
 			if(I.implant_type)
 				var/obj/item/implant/core_implant/C = new I.implant_type

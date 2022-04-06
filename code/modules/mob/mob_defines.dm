@@ -127,8 +127,16 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/dna_trace // sha1(real_name)
 	var/fingers_trace // md5(real_name)
 
-	var/list/dormant_mutations = list() // Human
-	var/list/active_mutations = list() // Human
+	var/mutation_index = 0 // Sum of active mutation tiers, approximation of how much of a mutant this mob are
+	var/list/dormant_mutations = list()
+	var/list/active_mutations = list()
+	var/list/mutation_count_by_tier = list(
+		"0" = 0, // Nero
+		"1" = 0, // Vespasian
+		"2" = 0, // Tacitus
+		"3" = 0, // Hadrian
+		"4" = 0 // Aurelien
+		)
 
 	var/radiation = 0//Carbon
 

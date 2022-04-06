@@ -15,7 +15,6 @@
 	var/can_order_contraband = FALSE
 	var/requestonly = FALSE
 	var/contraband = FALSE
-	var/hacked = FALSE
 
 /obj/machinery/computer/supplycomp/attack_hand(mob/user)
 	if(!allowed(user))

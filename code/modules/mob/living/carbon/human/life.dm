@@ -225,9 +225,40 @@
 	if(in_stasis)
 		return
 
-//	if(getFireLoss())
-//		if((COLD_RESISTANCE in mutations) || (prob(1)))
-//			heal_organ_damage(0,1)
+	if(mutation_index)
+		if(get_active_mutation(src, MUTATION_REJECT))
+			for(var/obj/item/organ/external/limb in organs)
+				for(var/obj/thing in limb.implants)
+					if(istype(thing, /obj/item/implant))
+						var/obj/item/implant/implant = thing
+						implant.uninstall()
+						implant.malfunction = MALFUNCTION_PERMANENT
+					else
+						limb.remove_item(thing)
+					limb.take_damage(rand(15, 30))
+					visible_message(SPAN_DANGER("[thing.name] rips through [src]'s [limb.name]."),\
+					SPAN_DANGER("[thing.name] rips through your [limb.name]."))
+
+				if(BP_IS_ROBOTIC(limb))
+					visible_message(SPAN_DANGER("[src]'s [limb.name] tears off."),
+					SPAN_DANGER("Your [limb.name] tears off."))
+					limb.droplimb()
+					update_implants()
+
+		if(health != maxHealth)
+			if(get_active_mutation(src, MUTATION_GREATER_HEALING))
+				// Effects of kelotane, bicaridine (minus percentage healing) and tricordrazine
+				adjustOxyLoss(-0.6)
+				heal_organ_damage(0.6, 0.6)
+				adjustToxLoss(-0.3)
+				add_chemical_effect(CE_BLOODCLOT, 0.15)
+
+			else if(get_active_mutation(src, MUTATION_LESSER_HEALING))
+				// Effects of tricordrazine
+				adjustOxyLoss(-0.6)
+				heal_organ_damage(0.3, 0.3)
+				adjustToxLoss(-0.3)
+				add_chemical_effect(CE_BLOODCLOT, 0.1)
 
 	radiation = CLAMP(radiation,0,100)
 
@@ -1145,8 +1176,12 @@
 	..()
 	if(stat == DEAD)
 		return
-//	if(XRAY in mutations)
-//		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
+	
+	if(get_active_mutation(src, MUTATION_XRAY))
+		sight |= SEE_TURFS|SEE_OBJS|SEE_MOBS
+	else if(get_active_mutation(src, MUTATION_THERMAL_VISION))
+		sight |= SEE_MOBS
+
 
 /mob/living/carbon/human/proc/regen_slickness(var/source_modifier = 1)
 	var/slick = TRUE

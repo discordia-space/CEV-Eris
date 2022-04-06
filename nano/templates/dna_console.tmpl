@@ -1,29 +1,32 @@
 {{if !data.linked}}
-	<tbody>
-		<td><span class="white">Connection failed.</span></td>
-	</tbody>
+	<div align="center" style="font-size: large; font-weight: bold;">
+		Connection failed.
+	</div>
 {{else !data.occupied}}
-	<tbody>
-		<td><span class="white">Test subject is missing.</span></td>
-	</tbody>
+	<div align="center" style="font-size: large; font-weight: bold;">
+		Test subject is missing.
+	</div>
 {{else}}
-	<tbody>
-		<div align="center">
-		<tr><td><span class="white">Test subject's biometric data:</span></td></tr>
-		</div>
-		<div align="left">
+	<table><tbody>
+		<tr><td align="center">Test subject's biometric data:</td></tr>
 		<tr><td>Species:   {{:data.species}}</td></tr>
 		<tr><td>Blood type:   {{:data.b_type}}</td></tr>
 		<tr><td>Biological age:   {{:data.age}}</td></tr>
 		<tr><td>DNA signature:   {{:data.dna_trace}}</td></tr>
 		<tr><td>Fingerprint pattern:   {{:data.fingers_trace}}</td></tr>
-		<tr><td>Active mutations:   {{:data.active_mutations}}</td></tr>
-		<tr><td>Dormant mutations:   {{:data.dormant_mutations}}</td></tr>
-		</div>
+		{{if data.have_mutations}}
+			<tr><td>Mutations:</td></tr>
+			{{for data.occupant_mutations}}
+				<tr><td>
+					{{:value.name}} - {{:value.is_active}}
+				</td></tr>
+			{{/for}}
+		{{else}}
+			<tr><td>Mutations: Not found.</td></tr>
+		{{/if}}
 		<br>
 		<hr>
-		<tr><td>{{:helper.link('Save all data', null, {'save_all' : 1})}}</td></tr>
 		<tr><td>{{:helper.link('Save personal enzymes', null, {'save_pe' : 1})}}</td></tr>
 		<tr><td>{{:helper.link('Save mutations', null, {'save_ue' : 1})}}</td></tr>
-	</tbody>
+	</tbody></table>
 {{/if}}

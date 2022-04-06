@@ -196,7 +196,7 @@
 	// Process unsuitable transplants. TODO: consider some kind of
 	// immunosuppressant that changes transplant data to make it match.
 	if(!rejecting)
-		if(blood_incompatible(b_type, owner.b_type, species, owner.species) && !owner.GetMutation(MUTATION_NO_REJECT))
+		if(blood_incompatible(b_type, owner.b_type, species, owner.species) && !get_active_mutation(owner, MUTATION_NO_REJECT))
 			rejecting = 1
 	else
 		rejecting++ //Rejection severity increases over time.

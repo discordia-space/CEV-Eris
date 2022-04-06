@@ -15,11 +15,27 @@
 // Heal wounds with effectivenes of Bicaridine
 /datum/mutation/t3/healing_factor
 	name = "Greater healing factor"
-	desc = "123"
+	desc = "Significantly improves natural regeneration."
+
 
 /datum/mutation/t3/oborin
 	name = "Oborin Syndrome"
-	desc = "123"
+	desc = "\[REDACTED\]"
+	NSA_load = 0
+
+/datum/mutation/t3/oborin/imprint(mob/living/carbon/user)
+	if(..())
+		user.stats.addPerk(PERK_OBORIN_SYNDROME)
+
+/datum/mutation/t3/oborin/cleanse(mob/living/carbon/user)
+	if(..())
+		user.stats.removePerk(PERK_OBORIN_SYNDROME)
 
 
+/datum/mutation/t3/night_vision
+	name = "Night Vision"
+	desc = "Enhances eye sensitivity, allowing to see in the dark as if wearing night-vision goggles."
 
+/datum/mutation/t3/thermal_vision
+	name = "Thermal Vision"
+	desc = "Provides ability to detect heat signatures of synthetics and organics alike."

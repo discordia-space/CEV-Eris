@@ -1,5 +1,5 @@
 /obj/machinery/moeballs_printer
-	name = "moeballs printer"
+	name = "Gene regurgitator"
 	desc = "Lorem Ipsum"
 	icon = 'icons/obj/eris_genetics.dmi'
 	icon_state = "printer_base"
@@ -11,10 +11,9 @@
 	active_power_usage = 10000
 	req_access = list(access_research_equipment)
 	var/color_key = "yellow"
-	var/hacked = FALSE
 	var/obj/item/computer_hardware/hard_drive/portable/usb
 	var/list/files[0]
-	var/index = 0 // Maybe use files.len or something
+	var/index = 0
 	var/gene_cache = list(
 		"name" = "\[NOT SELECTED\]",
 		"desc" = "\[NOT FOUND\]",
@@ -27,25 +26,17 @@
 		add_statverb(/datum/statverb/hack_console)
 
 
-/obj/machinery/moeballs_printer/LateInitialize()
+/obj/machinery/moeballs_printer/Initialize(mapload, d=0)
+	. = ..()
 	color_key = default_dna_machinery_style
 	update_icon()
 
-
+/*
 /obj/machinery/moeballs_printer/New()
 	..()
 	color_key = default_dna_machinery_style
 	update_icon()
-
-
-//obj/machinery/moeballs_printer/attackby(obj/item/I, mob/living/user)
-// Reaction to multitool here, for changing color_key
-
-
-//obj/machinery/moeballs_printer/emag_act(remaining_charges, mob/user, emag_source)
-//	. = ..()
-//	hacked = TRUE
-
+*/
 
 /obj/machinery/moeballs_printer/update_icon()
 	..()
@@ -84,15 +75,28 @@
 
 
 /obj/machinery/moeballs_printer/attack_hand(mob/user)
-	ui_interact(user)
+	if(hacked || allowed(user))
+		ui_interact(user)
+	else
+		to_chat(user, SPAN_WARNING("Unauthorized access."))
 
 
 /obj/machinery/moeballs_printer/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/computer_hardware/hard_drive/portable) && !usb)
 		insert_item(I, user)
 		usb = I
+	else if(QUALITY_PULSING in I.tool_qualities)
+		var/input_color = input(user, "Available colors", "Configuration") in GLOB.dna_machinery_styles
+		if(input_color)
+			color_key = input_color
+			update_icon()
 	else
 		..()
+
+
+/obj/machinery/moeballs_printer/emag_act(remaining_charges, mob/user, emag_source)
+	. = ..()
+	hacked = TRUE
 
 
 /obj/machinery/moeballs_printer/Topic(href, href_list)
@@ -124,18 +128,17 @@
 	if(href_list["make_worm_cube"])
 		do_flick(FALSE)
 		sleep(1.5 SECONDS)
-		var/obj/item/wormcube/C = new(src.loc)
+		var/obj/item/wormcube/C = new(loc)
+		// gene_value here either mutation datum or null
 		if(gene_cache["type"] == "mutation")
 			var/datum/mutation/M = gene_cache["content"]
 			C.gene_value = M
-		else
-			C.gene_value = gene_cache["content"]
 		return TOPIC_REFRESH
 
 	if(href_list["make_meat_cube"])
 		do_flick(FALSE)
 		sleep(1.5 SECONDS)
-		var/obj/item/moecube/C = new(src.loc)
+		var/obj/item/moecube/C = new(loc)
 		C.gene_type = gene_cache["type"]
 		if(gene_cache["type"] == "mutation")
 			var/datum/mutation/M = gene_cache["content"]
@@ -145,7 +148,7 @@
 		return TOPIC_REFRESH
 
 
-/obj/machinery/moeballs_printer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+/obj/machinery/moeballs_printer/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
 	var/list/data = ui_data()
 
 	data["have_files"] = FALSE

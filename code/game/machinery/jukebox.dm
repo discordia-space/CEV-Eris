@@ -23,7 +23,6 @@
 
 	// Vars for hacking
 	var/datum/wires/jukebox/wires
-	var/hacked = FALSE // Whether to show the hidden songs or not
 	var/freq = 0 // Currently no effect, will return in phase II of mediamanager.
 
 	var/loop_mode = JUKEMODE_PLAY_ONCE			// Behavior when finished playing a song

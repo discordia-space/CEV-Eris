@@ -342,6 +342,8 @@
 
 	if(!H.druggy)
 		H.see_in_dark = (H.sight == SEE_TURFS|SEE_MOBS|SEE_OBJS) ? 8 : min(darksight + H.equipment_darkness_modifier, 8)
+		if(get_active_mutation(H, MUTATION_NIGHT_VISION))
+			H.see_in_dark = max(H.see_in_dark, 7)
 
 	if(H.equipment_see_invis)
 		H.see_invisible = H.equipment_see_invis

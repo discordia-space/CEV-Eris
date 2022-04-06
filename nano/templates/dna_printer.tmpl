@@ -1,6 +1,4 @@
 {{if data.have_files}}
-	{{:helper.syndicateMode()}}
-
 	<b>Currently selected DNA sequence</b>:
 	<table style="width:100%">
 		<tr>
@@ -25,15 +23,16 @@
 		Compatible DNA sequences:
 	</div>
 
-	<div style="margin-top: 15px;" align="left">
+	<table class='wideTable'><tbody>
 		{{for data.files}}
-			<tr class="candystripe">
-				{{:value.name}} {{:helper.link('Select', null, {'cache' : value.index})}}
-			</tr>
+			<tr><td>
+			{{:value.name}} {{:helper.link('Select', null, {'cache' : value.index})}}
+			</td></tr>
 		{{/for}}
-	</div>
-
+	</tbody></table>
 {{else}}
-	<div align="center" class='item' style="font-size: large; font-weight: bold;">No valid DNA sequences.</div>
+	<div align="center" class='item' style="font-size: large; font-weight: bold;">
+		No valid DNA sequences.
+	</div>
 {{/if}}
 

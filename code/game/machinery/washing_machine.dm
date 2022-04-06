@@ -31,7 +31,7 @@
 	var/panel = 0
 	//0 = closed
 	//1 = open
-	var/hacked = 1 //Bleh, screw hacking, let's have it hacked by default.
+	hacked = 1 //Bleh, screw hacking, let's have it hacked by default.
 	//0 = not hacked
 	//1 = hacked
 	var/gibs_ready = 0

@@ -1,5 +1,5 @@
 /obj/machinery/cryo_slab
-	name = "moebius dna machine"
+	name = "Chrysalis"
 	desc = "Lorem Ipsum"
 	icon = 'icons/obj/eris_genetics.dmi'
 	icon_state = "cybercoffin_open"
@@ -11,17 +11,20 @@
 	active_power_usage = 10000
 	var/mob/living/carbon/human/han_solo
 
+
 /obj/machinery/cryo_slab/Destroy()
 	if(han_solo)
 		han_solo.ghostize(0)
 		han_solo.gib()
 	return ..()
 
+
 /obj/machinery/cryo_slab/relaymove(mob/user)
 	if(user.incapacitated())
 		return
 	go_out()
 	return
+
 
 /obj/machinery/cryo_slab/verb/eject()
 	set src in view(1)
@@ -33,6 +36,7 @@
 	go_out()
 	add_fingerprint(usr)
 	return
+
 
 /obj/machinery/cryo_slab/verb/move_inside()
 	set src in view(1)
@@ -51,6 +55,7 @@
 	add_fingerprint(usr)
 	return
 
+
 /obj/machinery/cryo_slab/proc/go_out()
 	if (!han_solo)
 		return
@@ -64,6 +69,7 @@
 	update_use_power(1)
 	update_icon()
 
+
 /obj/machinery/cryo_slab/proc/set_occupant(mob/living/user)
 	add_fingerprint(user)
 	user.forceMove(src)
@@ -71,6 +77,7 @@
 	update_use_power(2)
 	user.set_machine(src)
 	update_icon()
+
 
 /obj/machinery/cryo_slab/affect_grab(mob/user, mob/target)
 	if(han_solo)
@@ -85,6 +92,7 @@
 	set_occupant(target)
 	add_fingerprint(user)
 	return TRUE
+
 
 /obj/machinery/cryo_slab/MouseDrop_T(mob/target, mob/user)
 	if(!ismob(target))
@@ -106,6 +114,7 @@
 	set_occupant(target)
 	add_fingerprint(user)
 	return
+
 
 /obj/machinery/cryo_slab/update_icon()
 	..()

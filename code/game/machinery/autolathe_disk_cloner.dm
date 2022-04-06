@@ -10,7 +10,6 @@
 	idle_power_usage = 5
 	active_power_usage = 500
 
-	var/hacked = FALSE
 	var/copying_delay = 0
 	var/hack_fail_chance = 0
 

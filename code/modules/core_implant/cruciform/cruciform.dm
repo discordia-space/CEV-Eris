@@ -156,7 +156,7 @@ var/list/disciples = list()
 			return TRUE
 
 /obj/item/implant/core_implant/cruciform/proc/remove_cyber()
-	if(!wearer)
+	if(!wearer || get_active_mutation(wearer, MUTATION_ATHEIST))
 		return
 	for(var/obj/O in wearer)
 		if(istype(O, /obj/item/organ/external))

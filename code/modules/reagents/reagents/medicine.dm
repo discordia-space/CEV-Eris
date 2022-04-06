@@ -352,6 +352,15 @@
 		var/mob/living/carbon/human/H = M
 		H.update_mutations()
 */
+/datum/reagent/medicine/kognim
+	name = "Kognim"
+	id = "kognim"
+	description = "This chem causes a small amount of pain on human."
+	taste_description = "acid"
+	reagent_state = SOLID
+	color = "#224422"
+	overdose = REAGENTS_OVERDOSE
+
 /datum/reagent/medicine/negative_ling
 	name = "Negative Paragenetic Marker"
 	id = "negativeling"
