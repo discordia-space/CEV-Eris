@@ -4,7 +4,7 @@
 	icon = 'icons/obj/stack/items.dmi'
 	singular_name = "metal rod"
 	icon_state = "rods"
-	novariants = FALSE
+	novariants = TRUE
 	flags = CONDUCT
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_WEAK
