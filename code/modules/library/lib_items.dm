@@ -60,7 +60,7 @@
 		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
 		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
-		playsound(loc, 'sound/effects/metal_crash.ogg', 50, 1)
+		playsound(loc, 'sound/items/Welder.ogg', 50, 1)
 		drop_materials(drop_location())
 		for(var/obj/item/book/b in contents)
 			b.loc = (get_turf(src))
