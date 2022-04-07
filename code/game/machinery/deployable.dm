@@ -122,6 +122,11 @@ for reference:
 	qdel(src)
 	return
 
+/obj/structure/barricade/proc/take_damage(damage)
+	health -= damage
+	if(health <= 0)
+		dismantle()
+
 /obj/structure/barricade/attack_generic(mob/M, damage, attack_message)
 	if(damage)
 		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -358,12 +363,12 @@ for reference:
 			return 1
 	return 1
 
-/obj/structure/barricade/proc/take_damage(damage)
+/obj/machinery/deployable/barrier/proc/take_damage(damage)
 	health -= damage
 	if(health <= 0)
 		dismantle()
 
-/obj/structure/barricade/attack_generic(mob/M, damage, attack_message)
+/obj/machinery/deployable/barrier/attack_generic(mob/M, damage, attack_message)
 	if(damage)
 		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
