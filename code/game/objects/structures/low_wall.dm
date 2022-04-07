@@ -34,8 +34,8 @@
 
 	var/construction_stage
 
-	var/maxhealth = 600
-	var/health = 600
+	var/maxhealth = 450
+	var/health = 450
 
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	climbable = TRUE
@@ -453,23 +453,14 @@
 		return
 
 /obj/structure/low_wall/attack_generic(mob/M, damage, attack_message)
-	log_and_message_admins("attacked [src]: [jumplink(src)]")
-	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(!damage || damage < 10)
-		return attack_hand(M)
-	if(locate(/obj/effect/overlay/wallrot) in src)
-		return dismantle_wall()
-	if(damage < 20)
-		playsound(src, 'sound/effects/metalhit2.ogg' , 100, 5)
+	if(damage)
+		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
+		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] [attack_message] on \the [src]!"))
-		return take_damage(damage*3)
-	if(damage >= 30)
-		playsound(src, 'sound/effects/metalhit2.ogg' , 100, 5)
-		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))
-		return take_damage(damage*2.5)
-
+		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		take_damage(damage*2)
+	else
+		attack_hand(M)
 
 /obj/structure/low_wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product)
 	if (QDELETED(src))

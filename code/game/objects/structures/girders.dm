@@ -6,7 +6,7 @@
 	layer = BELOW_OBJ_LAYER
 	matter = list(MATERIAL_STEEL = 5)
 	var/state = 0
-	var/health = 150
+	var/health = 100
 	var/cover = 50 //how much cover the girder provides against projectiles.
 	var/material/reinf_material
 	var/reinforcing = 0
@@ -22,7 +22,7 @@
 /obj/structure/girder/low
 	name = "low wall girder"
 	matter = list(MATERIAL_STEEL = 3)
-	health = 120
+	health = 90
 	cover = 25 //how much cover the girder provides against projectiles.
 
 //Used in recycling or deconstruction
@@ -33,21 +33,14 @@
 		LAZYAPLUS(., reinf_material.name, 2)
 
 /obj/structure/girder/attack_generic(mob/M, damage, attack_message = "smashes apart")
-	log_and_message_admins("attacked [src]: [jumplink(src)]")
-	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(!damage)
-		return attack_hand(M)
-
-	if(damage < 20)
-		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
+	if(damage)
+		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
 		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
-		return take_damage(damage*2.5)
-	if(damage >= 30)
-		playsound(loc, 'sound/effects/metal_crash.ogg', 50, 1)
-		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] smashes through \the [src]!"))
-		dismantle()
+		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
+		take_damage(damage)
+	else
+		attack_hand(M)
 
 /obj/structure/girder/bullet_act(var/obj/item/projectile/Proj)
 	//Girders only provide partial cover. There's a chance that the projectiles will just pass through. (unless you are trying to shoot the girder)
@@ -298,7 +291,7 @@
 
 /obj/structure/girder/proc/reinforce_girder()
 	cover = reinf_material.hardness
-	health = 500
+	health = 250
 	state = 2
 	icon_state = "reinforced"
 	reinforcing = 0

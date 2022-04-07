@@ -343,16 +343,14 @@
 	return
 
 /obj/structure/railing/attack_generic(mob/M, damage, attack_message)
-	log_and_message_admins("attacked [src]: [jumplink(src)]")
-	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(!damage)
-		return attack_hand(M)
 	if(damage)
-		playsound(loc, 'sound/effects/metal_crash.ogg', 50, 1)
+		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
 		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
-		drop_materials(get_turf(loc))
-		qdel(src)
+		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
+		take_damage(damage)
+	else
+		attack_hand(M)
 
 /obj/structure/railing/do_climb(var/mob/living/user)
 	if(!can_climb(user))

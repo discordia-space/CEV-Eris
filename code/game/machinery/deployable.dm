@@ -117,29 +117,20 @@ for reference:
 			return
 		..()
 
-/obj/structure/barricade/proc/take_damage(var/damage, var/damage_type = BRUTE)
-	if (!damage || damage <= 0)
-		return
-
-	health -= damage
-	if (health <= 0)
-		dismantle()
-
 /obj/structure/barricade/proc/dismantle()
 	drop_materials(drop_location())
 	qdel(src)
 	return
 
 /obj/structure/barricade/attack_generic(mob/M, damage, attack_message)
-	log_and_message_admins("attacked [src]: [jumplink(src)]")
-	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(!damage)
-		return attack_hand(M)
 	if(damage)
+		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
 		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
 		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
 		take_damage(damage)
+	else
+		attack_hand(M)
 
 /obj/structure/barricade/ex_act(severity)
 	switch(severity)
@@ -367,21 +358,17 @@ for reference:
 			return 1
 	return 1
 
-/obj/machinery/deployable/barrier/proc/take_damage(var/damage, var/damage_type = BRUTE)
-	if (!damage || damage <= 0)
-		return
-
+/obj/structure/barricade/proc/take_damage(damage)
 	health -= damage
-	if (health <= 0)
+	if(health <= 0)
 		dismantle()
 
-/obj/machinery/deployable/barrier/attack_generic(mob/M, damage, attack_message)
-	log_and_message_admins("attacked [src]: [jumplink(src)]")
-	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(!damage)
-		return attack_hand(M)
+/obj/structure/barricade/attack_generic(mob/M, damage, attack_message)
 	if(damage)
+		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
 		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
 		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
-		take_damage(damage*1.25)
+		take_damage(damage * 1.25)
+	else
+		attack_hand(M)

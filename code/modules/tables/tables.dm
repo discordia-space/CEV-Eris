@@ -240,22 +240,14 @@ var/list/custom_table_appearance = list(
 		update_material()
 
 /obj/structure/table/attack_generic(mob/M, damage, attack_message)
-	log_and_message_admins("attacked [src]: [jumplink(src)]")
-	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(!damage)
-		return attack_hand(M)
-
-	if(damage > maxhealth/4)
-		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))
-		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
-		drop_materials(get_turf(loc))
-		qdel(src)
-	else
+	if(damage)
+		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
 		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
 		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
 		take_damage(damage)
+	else
+		attack_hand(M)
 
 /obj/structure/table/proc/update_desc()
 	if(custom_appearance)

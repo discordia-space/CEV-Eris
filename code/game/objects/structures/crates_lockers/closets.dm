@@ -609,7 +609,7 @@
 				add_overlay(icon_sparking)
 
 /obj/structure/closet/attack_generic(var/mob/user, var/damage, var/attack_message = "destroys", var/wallbreaker)
-	if(!damage || !wallbreaker)
+	if(!damage)
 		return
 	attack_animation(user)
 	visible_message(SPAN_DANGER("[user] [attack_message] the [src]!"))

@@ -25,9 +25,10 @@
 	update_icon()
 
 /turf/simulated/wall/proc/fail_smash(var/mob/user)
+	playsound(src, pick(WALLHIT_SOUNDS), 50, 1)
 	to_chat(user, SPAN_DANGER("You smash against the wall!"))
 	user.do_attack_animation(src)
-	take_damage(rand(25,75))
+	take_damage(rand(15,45))
 
 /turf/simulated/wall/proc/success_smash(var/mob/user)
 	to_chat(user, SPAN_DANGER("You smash through the wall!"))
@@ -68,44 +69,26 @@
 
 	try_touch(user, rotting)
 
+
+
 /turf/simulated/wall/attack_generic(mob/M, damage, attack_message)
 	log_and_message_admins("attacked [src]: [jumplink(src)]")
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-
-	if(locate(/obj/effect/overlay/wallrot) in src)
-		return success_smash(M)
 
 	radiate()
 	if(!istype(M))
 		return
 
-	if(reinf_material)
-		if (damage < max(material.hardness + reinf_material.hardness/2))
-			return attack_hand(M)
-		else
-			playsound(src, pick(WALLHIT_SOUNDS), 50, 1)
-			M.do_attack_animation(src)
-			M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
-			return take_damage(damage)
+	var/rot = locate(/obj/effect/overlay/wallrot) in src
+	var/hardness = reinf_material ? max(material.hardness, reinf_material.hardness) : material.hardness
 
-	if(!damage || damage < material.hardness/6)
-		return attack_hand(M)
+	if(!damage)
+		try_touch(M, rot)
 
-	if(damage < material.hardness/2)
-		if(prob(50))
-			M.do_attack_animation(src)
-			M.visible_message(SPAN_DANGER("\The [M] [attack_message] the [src] to no effect!"))
-			return attack_hand(M)
-		else
-			playsound(src, pick(WALLHIT_SOUNDS), 50, 1)
-			M.do_attack_animation(src)
-			M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
-			return take_damage(damage)
-	if(damage > material.hardness/2)
-		playsound(src, pick(WALLHIT_SOUNDS), 50, 1)
-		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] smashes \the [src]!"))
-		take_damage(damage)
+	else if(damage >= hardness)
+		return success_smash(M)
+	else
+		fail_smash(M)
 
 /turf/simulated/wall/attackby(obj/item/I, mob/user)
 
