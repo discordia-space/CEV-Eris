@@ -391,8 +391,8 @@ obj/item/clothing/under/genericr
 	price_tag = 500
 	armor = list(
 		melee = 0,
-		bullet = 5,
-		energy = 5,
+		bullet = 10,
+		energy = 10,
 		bomb = 0,
 		bio = 5,
 		rad = 5

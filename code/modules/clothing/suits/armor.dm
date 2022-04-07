@@ -347,11 +347,12 @@
 	icon_state = "onestar_coat"
 	item_state = "onestar_coat"
 	style = STYLE_HIGH
+	slowdown = 0
 	price_tag = 2000
 	armor = list(
 		melee = 15,
-		bullet = 40,
-		energy = 30,
+		bullet = 50,
+		energy = 45,
 		bomb = 10,
 		bio = 5,
 		rad = 5
