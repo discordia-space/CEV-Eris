@@ -6,7 +6,7 @@
 	layer = BELOW_OBJ_LAYER
 	matter = list(MATERIAL_STEEL = 5)
 	var/state = 0
-	var/health = 100
+	var/health = 150
 	var/cover = 50 //how much cover the girder provides against projectiles.
 	var/material/reinf_material
 	var/reinforcing = 0
@@ -22,7 +22,7 @@
 /obj/structure/girder/low
 	name = "low wall girder"
 	matter = list(MATERIAL_STEEL = 3)
-	health = 90
+	health = 120
 	cover = 25 //how much cover the girder provides against projectiles.
 
 //Used in recycling or deconstruction
@@ -291,7 +291,7 @@
 
 /obj/structure/girder/proc/reinforce_girder()
 	cover = reinf_material.hardness
-	health = 250
+	health = 500
 	state = 2
 	icon_state = "reinforced"
 	reinforcing = 0
