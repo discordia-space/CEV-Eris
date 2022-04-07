@@ -280,15 +280,15 @@
 
 /obj/item/clothing/head/onestar
 	name = "One Star officer cap"
-	desc = "A fancy red and blue cap sporting the One Star insignia."
+	desc = "A fancy red and blue cap sporting the One Star insignia. its made out of a strange material that feels like it could stop a bullet."
 	icon_state = "onestar_hat"
 	siemens_coefficient = 1
 	price_tag = 1000
 	style = STYLE_HIGH
 	armor = list(
 		melee = 10,
-		bullet = 30,
-		energy = 30,
+		bullet = 35,
+		energy = 35,
 		bomb = 10,
 		bio = 5,
 		rad = 5
