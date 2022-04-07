@@ -72,7 +72,6 @@
 
 
 /turf/simulated/wall/attack_generic(mob/M, damage, attack_message)
-	log_and_message_admins("attacked [src]: [jumplink(src)]")
 	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 	radiate()
