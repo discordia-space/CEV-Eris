@@ -39,8 +39,7 @@
 //Drill bits
 
 /datum/design/research/item/mechfab/exosuit/drillbit
-	category = "Exosuit Drill bits"
-	materials = list()
+	category = "Exosuit Drill Bits"
 
 /datum/design/research/item/mechfab/exosuit/drillbit/steel
 	build_path = /obj/item/material/drill_head/steel
