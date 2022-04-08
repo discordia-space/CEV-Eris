@@ -1,0 +1,5 @@
+author: greggbot
+delete-after: true
+changes:
+  - bugfix: having biograde vision active as a borer no longer prevents infesting
+      a host.
