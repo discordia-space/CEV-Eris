@@ -280,7 +280,7 @@
 
 /obj/item/clothing/head/onestar
 	name = "One Star officer cap"
-	desc = "A fancy red and blue cap sporting the One Star insignia. its made out of a strange material that feels like it could stop a bullet."
+	desc = "A fancy red and blue cap sporting the One Star insignia. It's made out of a strange material that feels like it could stop a bullet."
 	icon_state = "onestar_hat"
 	siemens_coefficient = 1
 	price_tag = 1000
