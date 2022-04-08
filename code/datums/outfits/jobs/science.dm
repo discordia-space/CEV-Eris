@@ -19,7 +19,7 @@
 	l_hand = /obj/item/clipboard
 	id_type = /obj/item/card/id/rd
 	pda_type = /obj/item/modular_computer/pda/heads/rd
-	backpack_contents = list(/obj/item/oddity/secdocs = 1)
+	backpack_contents = list(/obj/item/oddity/secdocs = 1, /obj/item/gun/projectile/selfload/moebius = 1, /obj/item/ammo_magazine/pistol/rubber = 2)
 
 /decl/hierarchy/outfit/job/science/scientist
 	name = OUTFIT_JOB_NAME("Moebius Scientist")
