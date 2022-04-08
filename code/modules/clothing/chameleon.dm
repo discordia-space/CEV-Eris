@@ -187,6 +187,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 	for(var/obj/item/A in user.get_contents())
 		if(A.chameleon_slot)
 			user_chameleon_items += A
+
 	for(var/obj/item/I in user_chameleon_items)
 		I.disguise(loadout[I.chameleon_slot], user)
 
