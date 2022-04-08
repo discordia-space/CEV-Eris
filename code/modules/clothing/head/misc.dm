@@ -278,6 +278,22 @@
 		rad = 0
 	)
 
+/obj/item/clothing/head/onestar
+	name = "One Star officer cap"
+	desc = "A fancy red and blue cap sporting the One Star insignia. It's made out of a strange material that feels like it could stop a bullet."
+	icon_state = "onestar_hat"
+	siemens_coefficient = 1
+	price_tag = 1000
+	style = STYLE_HIGH
+	armor = list(
+		melee = 10,
+		bullet = 35,
+		energy = 35,
+		bomb = 10,
+		bio = 5,
+		rad = 5
+	)
+
 /obj/item/clothing/head/ranger
 	name = "ranger hat"
 	desc = "A rather generic sergeant hat. On second look it's actually a ranger hat."
