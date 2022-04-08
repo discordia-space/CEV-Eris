@@ -37,8 +37,6 @@
 	new /obj/item/storage/box/ids( src )
 	new /obj/item/storage/belt/sheath(src)
 	new /obj/item/tool/sword/saber(src)
-	new /obj/item/gun/projectile/avasarala(src)
-	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
