@@ -49,8 +49,7 @@
 		/obj/item/device/t_scanner,
 		/obj/item/storage/bag/ore,
 		/obj/item/tool/pickaxe,
-		/obj/item/rcd,
-		/obj/item/rig_module/storage
+		/obj/item/rcd
 	)
 
 	req_access = list()
@@ -140,7 +139,7 @@ Advanced Voidsuit: Technomancer Exultant
 		/obj/item/storage/toolbox,
 		/obj/item/storage/briefcase/inflatable,
 		/obj/item/device/t_scanner,
-		/obj/item/rcd,
+		/obj/item/rcd
 	)
 
 	req_access = list(access_ce)
