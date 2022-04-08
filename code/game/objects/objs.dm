@@ -201,7 +201,7 @@
 	GLOB.hearing_objects.Remove(src)
 
 /obj/proc/eject_item(obj/item/I, mob/living/user)
-	if(!I || !user.IsAdvancedToolUser())
+	if(!I || !user.IsAdvancedToolUser() || user.incapacitated() || !Adjacent(user) || istype(user))
 		return FALSE
 	user.put_in_hands(I)
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
@@ -212,7 +212,7 @@
 	return TRUE
 
 /obj/proc/insert_item(obj/item/I, mob/living/user)
-	if(!I || !user.unEquip(I))
+	if(!I || !user.unEquip(I) || user.incapacitated() || !Adjacent(user) || istype(user))
 		return FALSE
 	I.forceMove(src)
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)

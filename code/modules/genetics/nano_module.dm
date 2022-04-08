@@ -83,7 +83,7 @@
 				break
 
 		if(!hex)
-			message = "ERROR: Data cashe corrupted."
+			message = "ERROR: Data cache corrupted."
 			return TOPIC_REFRESH
 
 		target_hex = hex

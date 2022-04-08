@@ -135,8 +135,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 		"1" = 0, // Vespasian
 		"2" = 0, // Tacitus
 		"3" = 0, // Hadrian
-		"4" = 0 // Aurelien
-		)
+		"4" = 0) // Aurelien
 
 	var/radiation = 0//Carbon
 

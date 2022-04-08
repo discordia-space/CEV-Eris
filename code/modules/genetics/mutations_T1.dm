@@ -1,6 +1,4 @@
 /datum/mutation/t1
-	name = "Unknown mutation"
-	desc = "Unknown function"
 	tier_num = 1
 	tier_string = "Vespasian"
 	NSA_load = 10

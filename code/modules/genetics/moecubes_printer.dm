@@ -65,14 +65,10 @@
 
 
 /obj/machinery/moeballs_printer/proc/try_eject_usb(mob/user)
-	if(!usb || user.incapacitated() || !Adjacent(user) || !isliving(user))
-		return
-
-	eject_item(usb, user)
-	usb = null
-	files.Cut()
-	index = 0
-
+	if(usb && eject_item(usb, user))
+		usb = null
+		files.Cut()
+		index = 0
 
 /obj/machinery/moeballs_printer/attack_hand(mob/user)
 	if(hacked || allowed(user))
@@ -82,8 +78,7 @@
 
 
 /obj/machinery/moeballs_printer/attackby(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/computer_hardware/hard_drive/portable) && !usb)
-		insert_item(I, user)
+	if(istype(I, /obj/item/computer_hardware/hard_drive/portable) && !usb && insert_item(I, user))
 		usb = I
 	else if(QUALITY_PULSING in I.tool_qualities)
 		var/input_color = input(user, "Available colors", "Configuration") in GLOB.dna_machinery_styles

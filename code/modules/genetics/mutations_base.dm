@@ -59,7 +59,7 @@ proc/get_active_mutation(mob/user, mutation_type)
 	hex = num2hex(rand(21845, 65535))
 
 /datum/mutation/proc/imprint(mob/living/carbon/user)
-	if(!istype(user))
+	if(!istype(user)) // Simplemob ate moecube
 		return FALSE
 
 	if(!can_get_mutation(user, tier_num))

@@ -1,11 +1,9 @@
 /datum/mutation/t3
-	name = "Unknown mutation"
-	desc = "Unknown function"
 	tier_num = 3
 	tier_string = "Hadrian"
 	NSA_load = 20
 
-// Imunity to viruses, reject shrapnel, carrion spiders and augmentations, like cruciform does
+// Reject shrapnel, carrion spiders and augmentations, like cruciform does
 // If cruciform is supressed by another mutation - reject cruciform too, with fatal consiquences
 /datum/mutation/t3/reject
 	name = "Overwhelming immune response"

@@ -1063,12 +1063,7 @@ mob/proc/yank_out_object()
 	for(var/I in contents)
 		if(istype(I, /mob/living/simple_animal/borer))
 			return I
-	return FALSE
 
-/mob/proc/has_brain_spiders()
-	for(var/I in contents)
-		if(istype(I, /obj/item/implant/carrion_spider/control))
-			return I
 	return FALSE
 
 /mob/proc/updateicon()

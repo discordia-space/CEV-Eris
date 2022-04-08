@@ -35,7 +35,7 @@ var/global/file_uid = 0
 
 	return temp
 
-/datum/computer_file/binary/animalgene/clone(rename = 0)
+/datum/computer_file/binary/animalgene/clone(rename)
 	var/datum/computer_file/binary/animalgene/temp = new type
 	temp.unsendable = unsendable
 	temp.undeletable = undeletable

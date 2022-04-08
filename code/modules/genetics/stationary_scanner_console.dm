@@ -205,8 +205,7 @@
 
 
 /obj/machinery/dna_console/attackby(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/computer_hardware/hard_drive/portable) && !usb)
-		insert_item(I, user)
+	if(istype(I, /obj/item/computer_hardware/hard_drive/portable) && !usb && insert_item(I, user))
 		usb = I
 	else if(QUALITY_PULSING in I.tool_qualities)
 		var/input_color = input(user, "Available colors", "Configuration") in GLOB.dna_machinery_styles
@@ -229,11 +228,8 @@
 
 
 /obj/machinery/dna_console/proc/try_eject_usb(mob/user)
-	if(!usb || user.incapacitated() || !Adjacent(user) || !isliving(user))
-		return
-
-	eject_item(usb, user)
-	usb = null
+	if(eject_item(usb, user))
+		usb = null
 
 
 /obj/machinery/dna_console/Topic(href, href_list)

@@ -1,11 +1,8 @@
 // Mostly disabilities and junk mutations
 /datum/mutation/t0
-	name = "Unknown sequence"
-	desc = "Unknown function"
 	tier_num = 0
 	tier_string = "Nero"
 	NSA_load = 5
-
 
 /datum/mutation/t0/blindness
 	name = "Blindness"
@@ -18,7 +15,6 @@
 /datum/mutation/t0/blindness/cleanse(mob/living/carbon/user)
 	if(..())
 		user.sdisabilities -= BLIND
-
 
 /datum/mutation/t0/deafness
 	name = "Deafness"
