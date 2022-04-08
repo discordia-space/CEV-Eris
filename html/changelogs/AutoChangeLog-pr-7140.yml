@@ -1,0 +1,5 @@
+author: greggbot
+delete-after: true
+changes:
+  - bugfix: Hydraulic clamps can now properly load scrap cubes without destabilizing
+      them and creating a ghost cube out of nothing.
