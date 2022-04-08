@@ -42,7 +42,7 @@
 		"anti_toxin" = 8,
 		"kelotane" = 8,
 		"tricordrazine" = 8,
-		"spaceaccilin" = 8,
+		"spaceacillin" = 8,
 		"dermaline" = 8,
 		"blattedin" = 8,
 		"polystem" = 8,
