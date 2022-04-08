@@ -608,7 +608,7 @@
 				add_overlay("[icon_lock]_off")
 				add_overlay(icon_sparking)
 
-/obj/structure/closet/attack_generic(mob/M, damage, attack_message = "destroys")
+/obj/structure/closet/attack_generic(mob/M, damage, attack_message)
 	if(damage)
 		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
 		attack_animation(M)
