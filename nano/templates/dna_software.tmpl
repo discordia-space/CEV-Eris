@@ -8,20 +8,15 @@
 	</div>
 {{else data.current_progress}}
 	<div class="item">
-		<div class="itemLabel">
-			Current progress:
-			<br>
-		</div>
 		<div class="itemContent">
-			<br>
 			{{:helper.displayBar(data.current_progress, 0, data.target_progress, 'good')}}
 			<br><br>
 		</div>
 		<div class="itemContent">
-			{{:helper.link("Cancel", null, {'reset' : 1})}}
+			{{:helper.link("Abort", null, {'reset' : 1})}}
 		</div>
 	</div>
-{{else data.files}}
+{{else data.have_files}}
 	<table class='wideTable'>
 		{{for data.files}}
 			<tr><td>

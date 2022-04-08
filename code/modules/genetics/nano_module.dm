@@ -124,6 +124,8 @@
 
 	data["message"] = message
 	data["files"] = files
+	// Can't just check for files.len in template, nope
+	data["have_files"] = files.len ? TRUE : FALSE
 	data["target_progress"] = target_progress
 	data["current_progress"] = current_progress
 

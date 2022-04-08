@@ -200,6 +200,7 @@
 
 	if(hacked || allowed(user))
 		ui_interact(user)
+		update_icon()
 	else
 		to_chat(user, SPAN_WARNING("Unauthorized access."))
 
