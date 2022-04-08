@@ -236,6 +236,9 @@
 				return
 			if (prob(25))
 				corrupt()
+		if(4)
+			if (prob(25))
+				corrupt()
 	return
 
 // Calculation of cell shock damage

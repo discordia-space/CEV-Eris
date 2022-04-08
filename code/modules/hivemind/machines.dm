@@ -292,6 +292,8 @@
 			take_damage(30)
 		if(3)
 			take_damage(10)
+		if(4)
+			take_damage(5)
 
 
 /obj/machinery/hivemind_machine/emp_act(severity)
@@ -302,6 +304,9 @@
 		if(2)
 			take_damage(30)
 			stun(8)
+		if(3)
+			take_damage(15)
+			stun(3)
 	..()
 
 

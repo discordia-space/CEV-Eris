@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/shotgun/slidebarrel
-	name = "slide barrel shotgun"
-	desc = "Made out of trash, but rather special on its design"
+	name = "HM SG \"Ponyets\""
+	desc = "Made out of trash, but rather special on its design."
 	icon = 'icons/obj/guns/projectile/slideshotgun.dmi'
 	icon_state = "slideshotgun"
 	item_state = "slideshotgun"

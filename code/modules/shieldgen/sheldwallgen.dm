@@ -350,6 +350,12 @@
 				else
 					G = gen_secondary
 				G.storedpower -= 12000
+			if(3) //minuscule amount of boom
+				if(prob(50))
+					G = gen_primary
+				else
+					G = gen_secondary
+				G.storedpower -= 6000
 	return
 
 

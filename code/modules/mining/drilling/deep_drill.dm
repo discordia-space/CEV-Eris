@@ -1,15 +1,23 @@
-#define RADIUS 7
+#define RADIUS 4
 #define DRILL_COOLDOWN 1 MINUTE
+
+/obj/machinery/mining
+	icon = 'icons/obj/mining_drill.dmi'
+	anchored = FALSE
+	use_power = NO_POWER_USE //The drill takes power directly from a cell.
+	density = TRUE
+	layer = MOB_LAYER+0.1 //So it draws over mobs in the tile north of it.
 
 /obj/machinery/mining/deep_drill
 	name = "deep mining drill head"
 	desc = "An enormous drill to dig out deep ores."
 	icon_state = "mining_drill"
+	pixel_x = -16
 
 	circuit = /obj/item/electronics/circuitboard/miningdrill
 
-	var/max_health = 1000
-	var/health = 1000
+	var/max_health = 2000
+	var/health = 2000
 
 	var/active = FALSE
 	var/list/resource_field = list()
@@ -181,7 +189,12 @@
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
-			take_damage(-damage)
+			if(damage < 0.33 * max_health)
+				take_damage(-damage)  // Completely repair the drill
+			else if(damage < 0.66 * max_health)
+				take_damage(-(0.66 * max_health - health))  // Repair the drill to 66 percents
+			else
+				take_damage(-(0.33 * max_health - health))  // Repair the drill to 33 percents
 		return
 
 	if(!panel_open || active)
@@ -341,12 +354,14 @@
 	. = ..()
 	if(health <= 0)
 		to_chat(user, "\The [src] is wrecked.")
-	else if(health < max_health * 0.25)
+	else if(health < max_health * 0.33)
 		to_chat(user, "<span class='danger'>\The [src] looks like it's about to break!</span>")
-	else if(health < max_health * 0.5)
+	else if(health < max_health * 0.66)
 		to_chat(user, "<span class='danger'>\The [src] looks seriously damaged!</span>")
-	else if(health < max_health * 0.75)
+	else if(health < max_health)
 		to_chat(user, "\The [src] shows signs of damage!")
+	else
+		to_chat(user, "\The [src] is in pristine condition.")
 
 /obj/machinery/mining/deep_drill/verb/unload()
 	set name = "Unload Drill"

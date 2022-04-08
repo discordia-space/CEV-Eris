@@ -169,9 +169,8 @@
 	))
 
 	installed_armor = pickweight(list(
-		/obj/item/robot_parts/robot_component/armour/exosuit/plain = 50,
+		/obj/item/robot_parts/robot_component/armour/exosuit/plain = 75,
 		/obj/item/robot_parts/robot_component/armour/exosuit/combat = 5,
-		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = 25,
 		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = 20
 	))
 

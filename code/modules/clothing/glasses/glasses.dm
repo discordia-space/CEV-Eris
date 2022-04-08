@@ -42,6 +42,9 @@
 	if(user)
 		user.update_inv_glasses()
 		user.update_action_buttons()
+		if(ishuman(user))
+			var/mob/living/carbon/human/beingofeyes = user
+			beingofeyes.update_equipment_vision()
 
 /obj/item/clothing/glasses/equipped(mob/user, slot)
 	..()

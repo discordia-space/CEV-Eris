@@ -39,7 +39,7 @@ var/list/datum/power/carrion/powerinstances = list()
 /datum/power/carrion/blight_spider
 	name = "Blight spider"
 	desc = "Evolves a spider filled with a sickening venom."
-	genomecost = 7
+	genomecost = 5
 	spiderpath = /obj/item/implant/carrion_spider/blight
 
 /datum/power/carrion/breeding_spider
@@ -82,7 +82,7 @@ var/list/datum/power/carrion/powerinstances = list()
 /datum/power/carrion/talking_spider
 	name = "Talking spider"
 	desc = "Creates a spider that can hijack someones vocal cords, giving you the ability to talk through them."
-	genomecost = 5
+	genomecost = 1
 	spiderpath = /obj/item/implant/carrion_spider/talking
 
 /datum/power/carrion/observer_spider
@@ -95,13 +95,13 @@ var/list/datum/power/carrion/powerinstances = list()
 /datum/power/carrion/identity_spider
 	name = "Idenitity spider"
 	desc = "Creates a spider with the ability to extract and transmit human DNA to you."
-	genomecost = 3
+	genomecost = 1
 	spiderpath = /obj/item/implant/carrion_spider/identity
 
 /datum/power/carrion/holographic_spider
 	name = "Holographic spider"
 	desc = "Creates a spider with the ability to mimic appearances. Not always able to create a perfect copy. Use in hand to toggle modes."
-	genomecost = 3
+	genomecost = 1
 	spiderpath = /obj/item/implant/carrion_spider/holographic
 
 /datum/power/carrion/smooth_spider

@@ -162,7 +162,7 @@
 			/obj/item/rig_module/device/anomaly_scanner = good_data("Mounted Anomaly Scanner", list(1,10)),
 			/obj/item/rig_module/device/rcd = good_data("Mounted RCD", list(1, 10)),
 			/obj/item/rig_module/device/healthscanner = good_data("Mounted Health Scanner", list(1, 10)),
-			/obj/item/rig_module/chem_dispenser/ninja = good_data("Mounted Chemical Dispenser (small version)", list(-3, 2)),
+			/obj/item/rig_module/modular_injector/medical = good_data("Mounted Chemical Dispenser (medical version)", list(-3, 2)),
 			/obj/item/rig_module/ai_container,
 			/obj/item/rig_module/power_sink,
 			/obj/item/rig_module/vision/meson,

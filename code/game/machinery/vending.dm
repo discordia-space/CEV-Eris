@@ -295,6 +295,10 @@
 			if(prob(50))
 				qdel(src)
 				return
+			if(prob(50))
+				spawn(0)
+					malfunction()
+					return
 		if(3)
 			if(prob(25))
 				spawn(0)
@@ -1535,7 +1539,7 @@
 					/obj/item/clothing/head/armor/faceshield/altyn/maska/tripoloski
 					)
 	prices = list(
-					/obj/item/reagent_containers/food/drinks/bottle/vodka = 50,
+					/obj/item/reagent_containers/food/drinks/bottle/vodka = 200,
           			/obj/item/storage/deferred/crate/uniform_green = 2000,
           			/obj/item/storage/deferred/crate/uniform_brown = 2000,
 					/obj/item/storage/deferred/crate/uniform_black = 2000,
@@ -1644,6 +1648,10 @@
 		/obj/item/clothing/under/helltaker = 4,
 		/obj/item/clothing/under/johnny = 3,
 		/obj/item/clothing/under/raider = 3,
+		/obj/item/clothing/under/tropicalpink = 3,
+		/obj/item/clothing/under/tropicalblue = 3,
+		/obj/item/clothing/under/tropicalblack = 3,
+		/obj/item/clothing/under/tropicalgreen = 3,
 		/obj/item/clothing/suit/storage/triad = 2,
 		/obj/item/clothing/suit/storage/akira = 2,
 		/obj/item/clothing/under/storage/tracksuit = 4
@@ -1670,6 +1678,10 @@
 		/obj/item/clothing/under/helltaker = 450,
 		/obj/item/clothing/under/johnny = 600,
 		/obj/item/clothing/under/raider = 600,
+		/obj/item/clothing/under/tropicalpink = 450,
+		/obj/item/clothing/under/tropicalblue = 450,
+		/obj/item/clothing/under/tropicalblack = 450,
+		/obj/item/clothing/under/tropicalgreen = 450,
 		/obj/item/clothing/suit/storage/triad = 1200,
 		/obj/item/clothing/suit/storage/akira = 600,
 		/obj/item/clothing/under/storage/tracksuit = 450,

@@ -17,7 +17,7 @@
 /datum/design/research/item/chem_dispenser
 	name = "mounted chemical dispenser"
 	desc = "A complex web of tubing and needles suitable for hardsuit use."
-	build_path = /obj/item/rig_module/chem_dispenser
+	build_path = /obj/item/rig_module/modular_injector
 	sort_string = "VDAAD"
 
 /datum/design/research/item/medhud

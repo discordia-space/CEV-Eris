@@ -1,11 +1,15 @@
 //TODO: Flash range does nothing currently
 
-proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN)
+proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, singe_impact_range)
 	spawn(0)
 		if(config.use_recursive_explosions)
 			var/power = devastation_range * 2 + heavy_impact_range + light_impact_range //The ranges add up, ie light 14 includes both heavy 7 and devestation 3. So this calculation means devestation counts for 4, heavy for 2 and light for 1 power, giving us a cap of 27 power.
 			explosion_rec(epicenter, power)
 			return
+		
+		if(light_impact_range > 2 && isnull(singe_impact_range))
+			singe_impact_range = light_impact_range + 1
+			light_impact_range--
 
 		var/start = world.timeofday
 		epicenter = get_turf(epicenter)
@@ -14,11 +18,11 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		// Handles recursive propagation of explosions.
 		if(devastation_range > 2 || heavy_impact_range > 2)
 			if(HasAbove(epicenter.z) && z_transfer & UP)
-				explosion(GetAbove(epicenter), max(0, devastation_range - 2), max(0, heavy_impact_range - 2), max(0, light_impact_range - 2), max(0, flash_range - 2), 0, UP)
+				explosion(GetAbove(epicenter), max(0, devastation_range - 2), max(0, heavy_impact_range - 2), max(0, light_impact_range - 2), max(0, flash_range - 2), 0, UP, max(0, singe_impact_range - 2))
 			if(HasBelow(epicenter.z) && z_transfer & DOWN)
-				explosion(GetBelow(epicenter), max(0, devastation_range - 2), max(0, heavy_impact_range - 2), max(0, light_impact_range - 2), max(0, flash_range - 2), 0, DOWN)
+				explosion(GetBelow(epicenter), max(0, devastation_range - 2), max(0, heavy_impact_range - 2), max(0, light_impact_range - 2), max(0, flash_range - 2), 0, DOWN, max(0, singe_impact_range - 2))
 
-		var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flash_range)
+		var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flash_range, singe_impact_range)
 
 		// Play sounds; we want sounds to be different depending on distance so we will manually do it ourselves.
 		// Stereo users will also hear the direction of the explosion!
@@ -52,10 +56,10 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 			if(M.ear_deaf <= 0 || !M.ear_deaf) if(!istype(M.loc,/turf/space))
 				M << 'sound/effects/explosionfar.ogg'
 		if(adminlog)
-			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
-			log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ")
+			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [singe_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
+			log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [singe_impact_range]) in area [epicenter.loc.name] ")
 
-		var/approximate_intensity = (devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range
+		var/approximate_intensity = (devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range + round(singe_impact_range / 2)
 		var/powernet_rebuild_was_deferred_already = defer_powernet_rebuild
 		// Large enough explosion. For performance reasons, powernets will be rebuilt manually
 		if(!defer_powernet_rebuild && (approximate_intensity > 25))
@@ -77,6 +81,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 			if(dist < devastation_range)		dist = 1
 			else if(dist < heavy_impact_range)	dist = 2
 			else if(dist < light_impact_range)	dist = 3
+			else if(dist < singe_impact_range)	dist = 4
 			else								continue
 
 			T.ex_act(dist)
@@ -93,7 +98,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		for(var/i,i<=doppler_arrays.len,i++)
 			var/obj/machinery/doppler_array/Array = doppler_arrays[i]
 			if(Array)
-				Array.sense_explosion(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range,took)
+				Array.sense_explosion(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range,singe_impact_range,took)
 
 		sleep(8)
 
@@ -109,7 +114,7 @@ proc/secondaryexplosion(turf/epicenter, range)
 	for(var/turf/tile in range(range, epicenter))
 		tile.ex_act(2)
 
-proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount = 100, var/f_damage = null, var/f_step = 2, var/same_turf_hit_chance = 95)
+proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount = 100, var/f_damage = null, var/f_step = 2, var/same_turf_hit_chance = 20)
 	if(!isturf(epicenter))
 		epicenter = get_turf(epicenter)
 

@@ -127,8 +127,8 @@ SUBSYSTEM_DEF(trade)
 		if(istype(A))
 			path = A.type
 		else
-			crash_with("Unacceptable get_new_cost() by path ([path]) and type ([A?.type]).")
-			return 0
+			. = 0
+			CRASH("Unacceptable get_new_cost() by path ([path]) and type ([A?.type]).")
 
 	if(!GLOB.price_cache[path])
 		var/atom/movable/AM = new path
@@ -210,7 +210,7 @@ SUBSYSTEM_DEF(trade)
 		return FALSE
 
 	return TRUE
-		
+
 /datum/controller/subsystem/trade/proc/assess_offer(obj/machinery/trade_beacon/sending/beacon, datum/trade_station/station, offer_path, assessing_special_offer = FALSE)
 	if(QDELETED(beacon) || !station)
 		return

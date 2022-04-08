@@ -175,6 +175,7 @@
 	icon_state = "assdagger"
 	item_state = "ass_dagger"
 	reagent_flags = INJECTABLE|TRANSPARENT
+	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_DIAMOND = 2)
 	spawn_blacklisted = TRUE
 
 /obj/item/tool/knife/dagger/assassin/New()
@@ -214,7 +215,7 @@
 	sharp = FALSE
 	force = WEAPON_FORCE_WEAK
 	switched_on_force = WEAPON_FORCE_PAINFUL
-	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL =6)
+	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL = 6)
 	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 	w_class = ITEM_SIZE_TINY
 	var/switched_on_w_class = ITEM_SIZE_SMALL

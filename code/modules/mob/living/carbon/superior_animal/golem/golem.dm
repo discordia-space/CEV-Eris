@@ -1,7 +1,7 @@
-#define GOLEM_HEALTH_LOW 50
-#define GOLEM_HEALTH_MED 100
-#define GOLEM_HEALTH_HIGH 150
-#define GOLEM_HEALTH_ULTRA 200
+#define GOLEM_HEALTH_LOW 20
+#define GOLEM_HEALTH_MED 40
+#define GOLEM_HEALTH_HIGH 60
+#define GOLEM_HEALTH_ULTRA 80
 
 #define GOLEM_ARMOR_LOW 20
 #define GOLEM_ARMOR_MED 35
@@ -107,9 +107,13 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 
 	// Spawn ores
 	if(ore)
-		var/nb_ores = rand(3, 5)
+		var/nb_ores = rand(8, 13)
 		for(var/i in 1 to nb_ores)
 			new ore(loc)
+
+		// Specials have a small chance to also drop a golem core
+		if(prob(30) && !istype(src, /mob/living/carbon/superior_animal/golem/coal) && !istype(src, /mob/living/carbon/superior_animal/golem/iron))
+			new /obj/item/golem_core(loc)
 
 	// Poof
 	qdel(src)
@@ -125,7 +129,8 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 		T.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
 	else
 		var/obj/structure/obstacle = locate(/obj/structure) in T
-		obstacle?.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
+		if(obstacle && !istype(obstacle, /obj/structure/golem_burrow))
+			obstacle.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
 
 /mob/living/carbon/superior_animal/golem/handle_ai()
 	// Chance to re-aggro the drill if doing nothing

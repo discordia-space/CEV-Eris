@@ -73,8 +73,8 @@
 		if(M.stat!=DEAD)
 			var/mob/living/carbon/C = M
 			var/safety = C.eyecheck()
-			if(safety < FLASH_PROTECTION_MODERATE)
-				var/flash_strength = 10
+			var/flash_strength = 10 - (10*safety) // FLASH_PROTECTION_MINOR halves it, FLASH_PROTECTION_REDUCED doubles it.
+			if(flash_strength > 0)
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
 					flash_strength *= H.species.flash_mod
@@ -83,14 +83,18 @@
 					if (M.HUDtech.Find("flash"))
 						flick("e_flash", M.HUDtech["flash"])
 			else
-				flashfail = 1
+				flashfail = TRUE
 
 	else if(isrobot(M))
-		M.Weaken(rand(5,10))
-		if (M.HUDtech.Find("flash"))
-			flick("e_flash", M.HUDtech["flash"])
+		var/mob/living/silicon/robot/robo = M
+		if(robo.HasTrait(CYBORG_TRAIT_FLASH_RESISTANT))
+			flashfail = TRUE
+		else
+			robo.Weaken(rand(5,10))
+			if (robo.HUDtech.Find("flash"))
+				flick("e_flash", robo.HUDtech["flash"])
 	else
-		flashfail = 1
+		flashfail = TRUE
 
 	if(isrobot(user))
 		spawn(0)
@@ -180,7 +184,7 @@
 				var/mob/living/carbon/M = loc
 				var/safety = M.eyecheck()
 				if(safety < FLASH_PROTECTION_MODERATE)
-					M.Weaken(10)
+					M.Weaken(10-(10*safety)) // FLASH_PROTECTION_MINOR halves it, FLASH_PROTECTION_REDUCED doubles it.
 					if (M.HUDtech.Find("flash"))
 						flick("e_flash", M.HUDtech["flash"])
 					for(var/mob/O in viewers(M, null))

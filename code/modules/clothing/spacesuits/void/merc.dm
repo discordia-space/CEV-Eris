@@ -50,8 +50,8 @@
 	item_state = "syndiehelm"
 	armor = list(
 		melee = 50,
-		bullet = 40,
-		energy = 40,
+		bullet = 50,
+		energy = 50,
 		bomb = 50,
 		bio = 100,
 		rad = 75
@@ -77,8 +77,8 @@
 	item_state = "syndie_voidsuit"
 	armor = list(
 		melee = 50,
-		bullet = 40,
-		energy = 40,
+		bullet = 50,
+		energy = 50,
 		bomb = 50,
 		bio = 100,
 		rad = 75

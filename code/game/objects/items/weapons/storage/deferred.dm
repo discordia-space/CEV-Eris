@@ -162,7 +162,7 @@
 	desc = "A crate containing six SA AK-47 rifles, and plenty of magazines."
 	icon_state = "serbcrate_deferred_green"
 	initial_contents = list(/obj/item/gun/projectile/automatic/ak47/sa  = 6,
-	/obj/item/ammo_magazine/lrifle = 18)
+	/obj/item/ammo_magazine/lrifle = 12, /obj/item/ammo_magazine/lrifle/drum = 6)
 
 /obj/item/storage/deferred/crate/kovacs
 	name = "designated marksman crate"
@@ -184,8 +184,9 @@
 /obj/item/storage/deferred/crate/antiarmor //change to demolitions, won't do now because will affect map
 	name = "demolitions crate"
 	icon_state = "serbcrate_deferred_black"
-	desc = "A crate containing one \"RPG-7\" launcher, and twelve 40mm PG-7VL warheads."
-	initial_contents = list(/obj/item/ammo_casing/rocket = 12,
+	desc = "A crate containing one \"RPG-7\" launcher, and twelve 40mm PG-7 warheads."
+	initial_contents = list(/obj/item/ammo_casing/rocket = 8,
+	/obj/item/ammo_casing/rocket/hesh = 4,
 	/obj/item/storage/pouch/tubular = 1,
 	/obj/item/gun/projectile/rpg = 1,
 	/obj/item/storage/pouch/tubular = 1)

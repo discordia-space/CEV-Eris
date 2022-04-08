@@ -5,6 +5,7 @@
 	item_state = "glasses"
 	action_button_name = "Toggle Optical Matrix"
 	origin_tech = list(TECH_MAGNET = 3)
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_URANIUM = 3, MATERIAL_PLATINUM = 2)
 	vision_flags = SEE_MOBS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	flash_protection = FLASH_PROTECTION_REDUCED

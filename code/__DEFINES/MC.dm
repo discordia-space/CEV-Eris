@@ -23,7 +23,7 @@
 if (Datum.is_processing) {\
 	if(Datum.is_processing != #Processor)\
 	{\
-		crash_with("Failed to start processing. [log_info_line(Datum)] is already being processed by [Datum.is_processing] but queue attempt occured on [#Processor]."); \
+		CRASH("Failed to start processing. [log_info_line(Datum)] is already being processed by [Datum.is_processing] but queue attempt occured on [#Processor]."); \
 	}\
 } else {\
 	Datum.is_processing = #Processor;\
@@ -35,7 +35,7 @@ if(Datum.is_processing) {\
 	if(Processor.processing.Remove(Datum)) {\
 		Datum.is_processing = null;\
 	} else {\
-		crash_with("Failed to stop processing. [log_info_line(Datum)] is being processed by [Datum.is_processing] but de-queue attempt occured on [#Processor]."); \
+		CRASH("Failed to stop processing. [log_info_line(Datum)] is being processed by [Datum.is_processing] but de-queue attempt occured on [#Processor]."); \
 	}\
 }
 

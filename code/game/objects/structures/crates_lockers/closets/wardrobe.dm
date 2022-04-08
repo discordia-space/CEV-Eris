@@ -203,6 +203,9 @@
 	new /obj/item/clothing/shoes/slippers(src)
 	new /obj/item/clothing/shoes/slippers(src)
 	new /obj/item/clothing/shoes/slippers(src)
+	new /obj/item/clothing/glasses/regular/goggles/clear(src)
+	new /obj/item/clothing/glasses/regular/goggles/clear(src)
+	new /obj/item/clothing/glasses/regular/goggles/clear(src)
 
 /obj/structure/closet/wardrobe/robotics_black
 	name = "robotics wardrobe"
@@ -229,6 +232,8 @@
 	new /obj/item/clothing/shoes/color/white(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/chemist(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/chemist(src)
+	new /obj/item/clothing/glasses/regular/goggles/clear(src)
+	new /obj/item/clothing/glasses/regular/goggles/clear(src)
 
 /obj/structure/closet/wardrobe/virology_white
 	name = "virology wardrobe"
