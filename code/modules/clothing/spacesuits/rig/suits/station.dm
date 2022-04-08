@@ -76,8 +76,8 @@
 	icon_state = "eva_rig"
 	armor = list(
 		melee = 30,
-		bullet = 20,
-		energy = 20,
+		bullet = 10,
+		energy = 10,
 		bomb = 10,
 		bio = 100,
 		rad = 100
@@ -261,7 +261,7 @@ Technomancer RIG
 
 	req_access = list()
 	req_one_access = list()
-	slowdown = HEAVY_SLOWDOWN * 0.7
+	slowdown = MEDIUM_SLOWDOWN
 
 /obj/item/rig/hazmat/equipped
 	req_access = list(access_rd)
