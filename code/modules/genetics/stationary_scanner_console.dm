@@ -1,6 +1,6 @@
 /obj/machinery/dna_console
-	name = "moebius dna console"
-	desc = "Lorem Ipsum"
+	name = "Chrysalis controller"
+	desc = "A stationary computer."
 	icon = 'icons/obj/eris_genetics.dmi'
 	icon_state = "console_base"
 	density = TRUE
@@ -28,13 +28,13 @@
 	establish_connection()
 	update_icon()
 
-/*
+
 /obj/machinery/dna_console/New()
 	..()
 	color_key = default_dna_machinery_style
 	establish_connection()
 	update_icon()
-*/
+
 
 /obj/machinery/dna_console/proc/establish_connection()
 	if(linked)
@@ -299,7 +299,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "dna_console.tmpl", "Waffle Maker 3000", 450, 600, state = state)
+		ui = new(user, src, ui_key, "dna_console.tmpl", "Chrysalis controller", 450, 600, state = state)
 		ui.auto_update_layout = TRUE
 		ui.set_initial_data(data)
 		ui.open()

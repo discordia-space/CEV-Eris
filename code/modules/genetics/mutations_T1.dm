@@ -1,4 +1,3 @@
-// Mildly useful mutations without side-effects aside of NSA load
 /datum/mutation/t1
 	name = "Unknown mutation"
 	desc = "Unknown function"
@@ -8,8 +7,8 @@
 
 // Minor stat buffs, equivalent of what T1 stimulators provide
 /datum/mutation/t1/stat_buff
-	name = "MEC buff (Temporary Name)"
-	desc = "Buffs MEC."
+	name = "Mnemonic stimulation"
+	desc = "Improves abstract thinking."
 	buff_type = STAT_MEC
 	buff_power = STAT_LEVEL_ADEPT
 
@@ -46,7 +45,6 @@
 	desc = "Causes growth of tiny bony patches thoughout the body."
 	buff_type = STAT_TGH
 
-// Implanted organs and transfused blood never rejected
 /datum/mutation/t1/no_reject
 	name = "Enforced histocompatibility"
 	desc = "Prevents implant and blood rejection."

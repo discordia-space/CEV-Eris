@@ -106,6 +106,9 @@
 	preloaded_reagents = list("uncap nanites" = 30)
 	spawn_blacklisted = TRUE
 
+/obj/item/reagent_containers/glass/beaker/vial/kognim
+	preloaded_reagents = list("kognim" = 30)
+	spawn_blacklisted = TRUE
 
 /obj/item/reagent_containers/glass/beaker/cryoxadone
 	preloaded_reagents = list("cryoxadone" = 30)

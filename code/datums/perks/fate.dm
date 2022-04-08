@@ -216,7 +216,7 @@
 			var/datum/mutation/M = new MUTATION_OBORIN
 			M.imprint(holder)
 		spawn(1)
-			holder.update_client_colour() //Handle the activation of the colourblindness on the mob.
+			holder?.update_client_colour() //Handle the activation of the colourblindness on the mob.
 
 /datum/perk/fate/oborin_syndrome/remove()
 	if(holder)
@@ -224,7 +224,7 @@
 		var/datum/mutation/M = get_active_mutation(holder, MUTATION_OBORIN)
 		M?.cleanse(holder)
 		spawn(1)
-			holder.update_client_colour()
+			holder?.update_client_colour()
 	..()
 
 /datum/perk/fate/lowborn

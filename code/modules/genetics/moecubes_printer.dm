@@ -1,6 +1,6 @@
 /obj/machinery/moeballs_printer
 	name = "Gene regurgitator"
-	desc = "Lorem Ipsum"
+	desc = "A stationary computer."
 	icon = 'icons/obj/eris_genetics.dmi'
 	icon_state = "printer_base"
 	density = TRUE
@@ -31,12 +31,12 @@
 	color_key = default_dna_machinery_style
 	update_icon()
 
-/*
+
 /obj/machinery/moeballs_printer/New()
 	..()
 	color_key = default_dna_machinery_style
 	update_icon()
-*/
+
 
 /obj/machinery/moeballs_printer/update_icon()
 	..()
@@ -181,7 +181,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "dna_printer.tmpl", "Dna 3: Rework of the rework", 450, 600, state = state)
+		ui = new(user, src, ui_key, "dna_printer.tmpl", "Gene regurgitator", 450, 600, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(TRUE)

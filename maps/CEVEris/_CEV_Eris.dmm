@@ -104891,7 +104891,8 @@
 /area/eris/neotheology/churchbarracks)
 "tiX" = (
 /obj/structure/table/glass,
-/obj/spawner/firstaid/low_chance,
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/glass/beaker/vial/kognim,
 /turf/simulated/floor/tiled/dark,
 /area/eris/medical/genetics)
 "tlP" = (

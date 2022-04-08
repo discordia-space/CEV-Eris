@@ -1,0 +1,36 @@
+{{if data.message}}
+	<div align="center" class='item' style="font-size: large; font-weight: bold;">
+		{{:data.message}}
+		<br>
+	</div>
+	<div align="left">
+		{{:helper.link("Back", null, {'reset' : 1})}}
+	</div>
+{{else data.current_progress}}
+	<div class="item">
+		<div class="itemLabel">
+			Current progress:
+			<br>
+		</div>
+		<div class="itemContent">
+			<br>
+			{{:helper.displayBar(data.current_progress, 0, data.target_progress, 'good')}}
+			<br><br>
+		</div>
+		<div class="itemContent">
+			{{:helper.link("Cancel", null, {'reset' : 1})}}
+		</div>
+	</div>
+{{else data.files}}
+	<table class='wideTable'>
+		{{for data.files}}
+			<tr><td>
+				{{:value.name}} {{:helper.link('Process', null, {'decode' : value.index})}}
+			</td></tr>
+		{{/for}}
+	</table>
+{{else}}
+	<div align="center" class='item' style="font-size: large; font-weight: bold;">
+		No valid DNA sequences.
+	</div>
+{{/if}}

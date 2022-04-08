@@ -1,5 +1,3 @@
-#define DOMINO_ROW_LENGTH			4
-
 #define STARTING_MUTATIONS			3
 
 #define MUTATION_BLIND				/datum/mutation/t0/blindness
@@ -17,7 +15,7 @@
 
 #define MUTATION_ATHEIST			/datum/mutation/t4/atheist
 #define MUTATION_XRAY				/datum/mutation/t4/xray
-#define MUTATION_PHAZING			/datum/mutation/t4/phazing
+//#define MUTATION_PHAZING			/datum/mutation/t4/phazing
 
 // Sdisabilities
 #define BLIND 0x1

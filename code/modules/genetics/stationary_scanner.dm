@@ -1,6 +1,6 @@
 /obj/machinery/cryo_slab
 	name = "Chrysalis"
-	desc = "Lorem Ipsum"
+	desc = "Stationary dna sequencer."
 	icon = 'icons/obj/eris_genetics.dmi'
 	icon_state = "cybercoffin_open"
 	density = TRUE

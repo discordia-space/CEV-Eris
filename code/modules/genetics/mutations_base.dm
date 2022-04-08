@@ -51,17 +51,12 @@ proc/get_active_mutation(mob/user, mutation_type)
 	var/tier_string = "Nero" // "Nero", "Vespasian", "Tacitus", "Hadrian", "Aurelien"
 	var/NSA_load = 1 // How much NSA holder get if mutation is active
 	var/is_active = FALSE
-	var/domino_r = 1
-	var/domino_l = 1
 	var/buff_type
 	var/buff_power
 
 
 /datum/mutation/New()
 	hex = num2hex(rand(21845, 65535))
-	domino_r = pick(1, 2, 3, 4, 5, 6, 7, 8)
-	domino_l = pick(1, 2, 3, 4, 5, 6, 7, 8)
-
 
 /datum/mutation/proc/imprint(mob/living/carbon/user)
 	if(!istype(user))
@@ -110,8 +105,6 @@ proc/get_active_mutation(mob/user, mutation_type)
 	M.tier_string = tier_string
 	M.NSA_load = NSA_load
 	M.is_active = is_active
-	M.domino_r = domino_r
-	M.domino_l = domino_l
 	M.buff_type = buff_type
 	M.buff_power = buff_power
 	return M

@@ -7,7 +7,7 @@
 		Test subject is missing.
 	</div>
 {{else}}
-	<table><tbody>
+	<table>
 		<tr><td align="center">Test subject's biometric data:</td></tr>
 		<tr><td>Species:   {{:data.species}}</td></tr>
 		<tr><td>Blood type:   {{:data.b_type}}</td></tr>
@@ -28,5 +28,5 @@
 		<hr>
 		<tr><td>{{:helper.link('Save personal enzymes', null, {'save_pe' : 1})}}</td></tr>
 		<tr><td>{{:helper.link('Save mutations', null, {'save_ue' : 1})}}</td></tr>
-	</tbody></table>
+	</table>
 {{/if}}

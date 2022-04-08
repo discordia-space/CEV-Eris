@@ -2,144 +2,134 @@
 	filename = "dnaapp"
 	filedesc = "Genome decoder"
 	program_icon_state = "generic"
-	extended_desc = "Lorem Ipsum"
+	extended_desc = "Copyright © 2563, Moebius Laboratories. All rights reserved."
 	size = 2
 	available_on_ntnet = 1
 	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP
 	nanomodule_path = /datum/nano_module/program/dna
 
 
+/datum/computer_file/program/dna/process_tick()
+	. = ..()
+	var/datum/nano_module/program/dna/D = NM
+	if(D.current_progress)
+		D.tick()
+
+
 /datum/nano_module/program/dna
-	name = "Domino 2: Wraith of the Reere"
-	var/list/domino_pool[0]
-	var/list/domino_row_1[0]
-	var/list/domino_row_2[0]
+	name = "Genome Decoder"
+	var/list/files[0]
 	var/index = 0
+	var/target_hex
+	var/message = ""
+	var/current_progress = 0
+	var/target_progress = 50
+
+
+/datum/nano_module/program/dna/proc/tick()
+	var/datum/computer_file/program/dna/P = program
+	var/obj/item/modular_computer/C = P.computer
+
+	var/processing_power = C.processor_unit.max_programs - C.all_threads.len
+
+	if(!processing_power) // Too many programs running in the background
+		message = "ERROR: Insufficient processing power."
+		current_progress = 0
+		return
+
+	current_progress += processing_power
+
+	if(current_progress >= target_progress)
+		message = "Genome isolation complete." // Whatever that is supposed to mean
+		current_progress = 0
+
+		var/obj/item/computer_hardware/hard_drive/HDD = C.hard_drive
+		var/obj/item/computer_hardware/hard_drive/portable/USB = C.portable_drive
+
+		// Look for the right datum and make it "active" so /moeballs_printer would recognize it
+		if(USB)
+			for(var/datum/computer_file/binary/animalgene/F in USB.stored_files)
+				if(F.gene_type == "mutation")
+					var/datum/mutation/MF = F.gene_value
+					if(MF.hex == target_hex)
+						MF.is_active = TRUE
+						F.filename = "AN_GENE_MUT_[MF.hex]_[uppertext(replacetext("[MF.name]", " ", "_"))]"
+
+		if(HDD)
+			for(var/datum/computer_file/binary/animalgene/F in HDD.stored_files)
+				if(F.gene_type == "mutation")
+					var/datum/mutation/MF = F.gene_value
+					if(MF.hex == target_hex)
+						MF.is_active = TRUE
+						F.filename = "AN_GENE_MUT_[MF.hex]_[uppertext(replacetext("[MF.name]", " ", "_"))]"
 
 
 /datum/nano_module/program/dna/Topic(href, href_list)
 	if(..())
 		return TOPIC_HANDLED
-/*
-	var/datum/computer_file/program/dna/P = program
-	var/obj/item/modular_computer/C = P.computer
-	var/obj/item/computer_hardware/hard_drive/HDD = C.hard_drive
-	var/obj/item/computer_hardware/hard_drive/portable/USB = C.portable_drive
 
-	if(href_list["start_minigame"])
+	if(href_list["reset"])
+		message = ""
+		current_progress = 0
+		return TOPIC_REFRESH
+
+	if(href_list["decode"])
 		var/hex
 
-		for(var/entry in domino_pool)
-			if(entry["index"] == href_list["start_minigame"])
+		for(var/entry in files)
+			if(entry["index"] == href_list["decode"])
 				var/datum/mutation/M = entry["content"]
 				hex = M.hex
 				break
 
 		if(!hex)
+			message = "ERROR: Data cashe corrupted."
 			return TOPIC_REFRESH
 
-		if(USB)
-			for(var/datum/computer_file/binary/animalgene/F in USB.stored_files)
-				if(F.gene_type == "mutation")
-					var/datum/mutation/MF = F.gene_value
-					if(MF.hex == hex)
-						MF.is_active = TRUE
-						F.filename = "AN_GENE_MUT_[MF.hex]_[uppertext(replacetext("[MF.name]", " ", "_"))]"
-		if(HDD)
-			for(var/datum/computer_file/binary/animalgene/F in HDD.stored_files)
-				if(F.gene_type == "mutation")
-					var/datum/mutation/MF = F.gene_value
-					if(MF.hex == hex)
-						MF.is_active = TRUE
-						F.filename = "AN_GENE_MUT_[MF.hex]_[uppertext(replacetext("[MF.name]", " ", "_"))]"
-		
-*/
-
-	if(href_list["draw_from_pool"])
-		for(var/entry in domino_pool)
-			if(entry["index"] == href_list["draw_from_pool"])
-				if(!domino_row_1.len)
-					domino_row_1 += entry
-					domino_pool -= entry
-
-				else if(domino_row_1.len != DOMINO_ROW_LENGTH)
-					var/last_entry = domino_row_1.len
-					if(entry["domino_r"] == last_entry["domino_l"])
-						domino_row_1 += entry
-						domino_pool -= entry
-
-				else if(!domino_row_2.len)
-					domino_row_2 += entry
-					domino_pool -= entry
-
-				else if(domino_row_2.len != DOMINO_ROW_LENGTH)
-					var/last_entry = domino_row_2.len
-					if(entry["domino_r"] == last_entry["domino_l"])
-						domino_row_2 += entry
-						domino_pool -= entry
-				break
-		return TOPIC_REFRESH
-
-
-	if(href_list["discard_to_pool"])
-		var/target_row = domino_row_1
-
-		if(domino_row_2.len)
-			target_row = domino_row_2
-
-		for(var/entry in target_row)
-			if(entry["index"] == href_list["discard_to_pool"])
-				domino_pool += entry
-				target_row -= entry
-				break
+		target_hex = hex
+		current_progress++
 		return TOPIC_REFRESH
 
 
 /datum/nano_module/program/dna/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
 	var/list/data = host.initial_data()
-//	domino_pool.Cut()
-//	index = 0
+	if(!current_progress)
+		files.Cut()
+		index = 0
 
-	var/datum/computer_file/program/dna/P = program
-	var/obj/item/modular_computer/C = P.computer
-	var/obj/item/computer_hardware/hard_drive/HDD = C.hard_drive
-	var/obj/item/computer_hardware/hard_drive/portable/USB = C.portable_drive
+		var/datum/computer_file/program/dna/P = program
+		var/obj/item/modular_computer/C = P.computer
+		var/obj/item/computer_hardware/hard_drive/HDD = C.hard_drive
+		var/obj/item/computer_hardware/hard_drive/portable/USB = C.portable_drive
 
-	// Accept only inactive mutations
-	if(HDD)
-		for(var/datum/computer_file/binary/animalgene/F in HDD.stored_files)
-			if(F.gene_type == "mutation")
-				var/datum/mutation/M = F.gene_value
-				if(!M.is_active)
-					domino_pool.Add(list(list(
-					"name" = F.filename,
-					"content" = F.gene_value,
-					"hex" = M.hex,
-					"domino_l" = M.domino_l,
-					"domino_r" = M.domino_r,
-					"index" = "[++index]")))
-	if(USB)
-		for(var/datum/computer_file/binary/animalgene/F in USB.stored_files)
-			if(F.gene_type == "mutation")
-				var/datum/mutation/M = F.gene_value
-				if(!M.is_active)
-					domino_pool.Add(list(list(
-					"name" = F.filename,
-					"content" = F.gene_value,
-					"index" = "[++index]")))
+		// Accept only inactive mutations
+		if(HDD)
+			for(var/datum/computer_file/binary/animalgene/F in HDD.stored_files)
+				if(F.gene_type == "mutation")
+					var/datum/mutation/M = F.gene_value
+					if(!M.is_active)
+						files.Add(list(list(
+						"name" = F.filename,
+						"content" = F.gene_value,
+						"index" = "[++index]")))
+		if(USB)
+			for(var/datum/computer_file/binary/animalgene/F in USB.stored_files)
+				if(F.gene_type == "mutation")
+					var/datum/mutation/M = F.gene_value
+					if(!M.is_active)
+						files.Add(list(list(
+						"name" = F.filename,
+						"content" = F.gene_value,
+						"index" = "[++index]")))
 
-	data["domino_pool"] = domino_pool
-	data["domino_row_1"] = domino_row_1
-	data["domino_row_2"] = domino_row_2
+	data["message"] = message
+	data["files"] = files
+	data["target_progress"] = target_progress
+	data["current_progress"] = current_progress
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "domino_app.tmpl", "Domino 2: Wraith of the Reere", 450, 600, state = state)
+		ui = new(user, src, ui_key, "dna_software.tmpl", "Genome Decoder", 450, 600, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(TRUE)
-
-
-
-// {{:value.name}} {{:helper.link('Do the thing', null, {'start_minigame' : value.index})}}
-// {{:value.hex}}{{:value.domino_l}}{{:value.domino_r}}
