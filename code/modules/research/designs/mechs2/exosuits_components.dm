@@ -20,8 +20,6 @@
 /datum/design/research/item/mechfab/exosuit/basics/diagnosis_unit
 	build_path = /obj/item/robot_parts/robot_component/diagnosis_unit
 
-
-
 //Armor
 /datum/design/research/item/mechfab/exosuit/armour
 	category = "Exosuit Armor"
@@ -37,7 +35,6 @@
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/combat
 
 //Drill bits
-
 /datum/design/research/item/mechfab/exosuit/drillbit
 	category = "Exosuit Drill Bits"
 
