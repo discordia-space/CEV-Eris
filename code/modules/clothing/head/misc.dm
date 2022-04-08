@@ -284,6 +284,7 @@
 	icon_state = "onestar_hat"
 	siemens_coefficient = 1
 	price_tag = 1000
+	spawn_blacklisted = TRUE
 	style = STYLE_HIGH
 	armor = list(
 		melee = 10,

@@ -387,6 +387,7 @@ obj/item/clothing/under/genericr
 	desc = "Comfortable red silk uniform. It is emblazoned with One Star insignia on the collar. Strangely, it seems to fit you perfectly."
 	icon_state = "onestar_uniform"
 	item_state = "onestar_uniform"
+	spawn_blacklisted = TRUE
 	style = STYLE_HIGH
 	price_tag = 500
 	armor = list(
