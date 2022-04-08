@@ -9,7 +9,7 @@
 	var/list/obj/carrying = list()
 
 /obj/item/mech_equipment/clamp/resolve_attackby(atom/A, mob/user, click_params)
-	if(istype(A, /obj/structure/closet) || istype(A, /obj/item/storage) && owner)
+	if(istype(A, /obj/structure/closet) || istype(A, /obj/item/storage) || istype(A, /obj/structure/scrap_cube) && owner)
 		return 0
 	return ..()
 

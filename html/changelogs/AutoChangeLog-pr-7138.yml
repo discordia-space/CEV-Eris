@@ -1,0 +1,6 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - tweak: acolytes can now call armaments from the EOTP
+  - balance: observation maximum raised, but more power is required for a miracle
+  - bugfix: observation update bug preventing reaching maximum observation
