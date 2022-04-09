@@ -1,6 +1,0 @@
-author: HentaiStorm
-delete-after: true
-changes:
-  - bugfix: fix of missing stacks of metal rods
-  - bugfix: fix opened water bottle sprite
-  - bugfix: fix missing halbert back sprite
