@@ -63,7 +63,7 @@
 					(org.powered)	?	"Power ON"		:	"<font color='red'>Power OFF</font>"),1)
 			else
 				user.show_message("\blue \t Components are OK.",1)
-			if(H.emagged && prob(5))
+			if(H.HasTrait(CYBORG_TRAIT_EMAGGED) && prob(5))
 				user.show_message("\red \t ERROR: INTERNAL SYSTEMS COMPROMISED",1)
 			user.show_message("\blue Operating Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)", 1)
 

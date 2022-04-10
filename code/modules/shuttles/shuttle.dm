@@ -177,7 +177,7 @@
 							shake_camera(M, 10, 1)
 				if(istype(M, /mob/living/carbon))
 					if(!M.buckled)
-						M.Weaken(3)
+						M.Weaken(3, FALSE)
 
 		for(var/obj/structure/cable/C in A)
 			powernets |= C.powernet

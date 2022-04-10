@@ -12,5 +12,6 @@
 		"mech health"				=	list("type"	=	/obj/screen/movable/exosuit/health,				"loc" = "WEST:4,BOTTOM+3"),
 		"mech power"				=	list("type"	=	/obj/screen/movable/exosuit/power,				"loc" = "WEST+1:4,BOTTOM+3"),
 		"strafe"					=	list("type"	=	/obj/screen/movable/exosuit/toggle/strafe,		"loc" = "WEST:4,CENTER-3:92"),
-		"air"						=	list("type" =   /obj/screen/movable/exosuit/toggle/air,         "loc" = "WEST:4,CENTER-3:00"),
+		"air"						=	list("type"	=	/obj/screen/movable/exosuit/toggle/air,         "loc" = "WEST:4,CENTER-3:00"),
+		"mech heat gauge"			=	list("type"	=	/obj/screen/movable/exosuit/heat,				"loc" = "WEST:4,BOTTOM+4")
 	)

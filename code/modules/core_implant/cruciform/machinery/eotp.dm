@@ -25,14 +25,13 @@ var/global/obj/machinery/power/eotp/eotp
 							/obj/item/stack/material/diamond = 30,
 							/obj/item/stack/material/plasteel = 120,
 							/obj/item/stack/material/silver = 60)
-	var/list/disk_types = list()
-	var/list/unneeded_disk_types = list(/obj/item/computer_hardware/hard_drive/portable/design/nt/melee)
+
 
 	var/list/mob/living/carbon/human/scanned = list()
-	var/max_power = 100
+	var/max_power = 120
 	var/power = 0
 	var/power_gaine = 2
-	var/max_observation = 800
+	var/max_observation = 1800
 	var/observation = 0
 	var/min_observation = -100
 
@@ -42,10 +41,18 @@ var/global/obj/machinery/power/eotp/eotp
 	var/last_power_update = 0
 	var/rescan_cooldown = 10 MINUTES
 	var/last_rescan = 0
+	var/list/armaments = list()
+	var/armaments_points = 0
+	var/max_armaments_points = 100
+	var/armaments_rate = 100
+	var/static/list/unneeded_armaments = list(/datum/armament/item/gun, /datum/armament/item, /datum/armament/item/disk)
 
 /obj/machinery/power/eotp/New()
 	..()
 	eotp = src
+	var/list/arm_paths = subtypesof(/datum/armament) - unneeded_armaments
+	for(var/arm in arm_paths)
+		armaments += new arm
 
 /obj/machinery/power/eotp/examine(user)
 	..()
@@ -56,14 +63,13 @@ var/global/obj/machinery/power/eotp/eotp
 		if(I && I.active && I.wearer)
 			var/comment = "Power level: [power]/[max_power]."
 			comment += "\nObservation level: [observation]/[max_observation]."
+			comment += "\nArmement level: [armaments_points]/[max_armaments_points]"
 			to_chat(user, SPAN_NOTICE(comment))
 
 /obj/machinery/power/eotp/Process()
 	..()
 	if(stat)
 		return
-
-	updateObservation()
 
 	if(world.time >= (last_rescan + rescan_cooldown) && length(scanned))
 		var/mob/living/carbon/human/H = pick(scanned)
@@ -94,15 +100,8 @@ var/global/obj/machinery/power/eotp/eotp
 	observation -= number
 	return observation
 
-/obj/machinery/power/eotp/proc/updateObservation()
-	if(observation > max_observation)
-		observation = max_observation
-
-	if(observation < min_observation)
-		observation = min_observation
-
 /obj/machinery/power/eotp/proc/updatePower()
-	power_gaine = initial(power_gaine) + (observation / 100)
+	power_gaine = initial(power_gaine) + (CLAMP(observation, min_observation, max_observation) / 100)
 
 	if(world.time >= (last_power_update + power_cooldown))
 		power += power_gaine
@@ -112,9 +111,6 @@ var/global/obj/machinery/power/eotp/eotp
 		power -= max_power
 		power_release()
 
-/obj/machinery/power/eotp/proc/disk_reward_update()
-	disk_types =  subtypesof(/obj/item/computer_hardware/hard_drive/portable/design/nt) - unneeded_disk_types
-
 /obj/machinery/power/eotp/proc/power_release()
 	var/type_release
 	if(current_rewards)
@@ -123,15 +119,11 @@ var/global/obj/machinery/power/eotp/eotp
 	else
 		type_release = pick(rewards)
 
-	if(type_release == ARMAMENTS)
-		if(!length(disk_types))
-			disk_reward_update()
-		var/reward_disk = pick(disk_types)
-		disk_types -= reward_disk
-		var/obj/item/_item = new reward_disk(get_turf(src))
-		visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [src]!"))
 
-	else if(type_release == ALERT)
+	armaments_points = min(armaments_points + armaments_rate, max_armaments_points)
+
+
+	if(type_release == ALERT)
 
 		var/area/antagonist_area
 		var/preacher
@@ -169,6 +161,7 @@ var/global/obj/machinery/power/eotp/eotp
 		var/oddity_reward = pick(subtypesof(/obj/item/oddity/nt))
 		var/obj/item/_item = new oddity_reward(get_turf(src))
 		visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [src]!"))
+		rewards -= ODDITY
 
 	else if(type_release == STAT_BUFF)
 		var/random_stat = pick(ALL_STATS)

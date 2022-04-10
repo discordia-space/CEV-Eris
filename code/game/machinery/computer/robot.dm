@@ -57,7 +57,7 @@
 			return
 
 		// Antagonistic cyborgs? Left here for downstream
-		if(target.mind && player_is_antag(target.mind) && target.emagged)
+		if(target.mind && player_is_antag(target.mind) && target.HasTrait(CYBORG_TRAIT_EMAGGED))
 			to_chat(target, "Extreme danger.  Termination codes detected.  Scrambling security codes and automatic AI unlink triggered.")
 			target.ResetSecurityCodes()
 		else
@@ -111,7 +111,7 @@
 			to_chat(user, "Access Denied")
 			return
 
-		if(target.emagged)
+		if(target.HasTrait(CYBORG_TRAIT_EMAGGED))
 			to_chat(user, "Robot is already hacked.")
 			return
 
@@ -124,7 +124,7 @@
 
 		message_admins(SPAN_NOTICE("[key_name_admin(usr)] emagged [target.name] using robotic console!"))
 		log_game("[key_name(usr)] emagged [target.name] using robotic console!")
-		target.emagged = 1
+		target.AddTrait(CYBORG_TRAIT_EMAGGED)
 		to_chat(target, SPAN_NOTICE("Failsafe protocols overriden. New tools available."))
 
 	// Arms the emergency self-destruct system
@@ -195,8 +195,8 @@
 		robot["hackable"] = 0
 		// Antag AIs know whether linked cyborgs are hacked or not.
 		if(operator && isAI(operator) && (R.connected_ai == operator) && (operator.mind.antagonist.len && operator.mind.original == operator))
-			robot["hacked"] = R.emagged ? 1 : 0
-			robot["hackable"] = R.emagged? 0 : 1
+			robot["hacked"] = R.HasTrait(CYBORG_TRAIT_EMAGGED) ? 1 : 0
+			robot["hackable"] = R.HasTrait(CYBORG_TRAIT_EMAGGED) ? 0 : 1
 		robots.Add(list(robot))
 	return robots
 

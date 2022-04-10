@@ -1,13 +1,14 @@
 /obj/item/grenade/explosive
-    name = "NT OBG \"Cracker\""
-    desc = "A military-grade offensive blast grenade, designed to be thrown by assaulting troops."
-    icon_state = "explosive"
+	name = "NT OBG \"Cracker\""
+	desc = "A military-grade offensive blast grenade, designed to be thrown by assaulting troops."
+	icon_state = "explosive"
+	matter = list(MATERIAL_STEEL = 5)
 
-    var/devastation_range = -1
-    var/heavy_range = 1
-    var/weak_range = 3
-    var/weakest_range = 5
-    var/flash_range = 10
+	var/devastation_range = -1
+	var/heavy_range = 1
+	var/weak_range = 3
+	var/weakest_range = 5
+	var/flash_range = 10
 
 
 /obj/item/grenade/explosive/prime()

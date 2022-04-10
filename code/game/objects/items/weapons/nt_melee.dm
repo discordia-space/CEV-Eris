@@ -146,23 +146,24 @@
 
 /obj/item/tool/sword/nt/spear
 	name = "NT Pilum"
-	desc = "A short, saintly-looking spear for throwing or use with a shield. The spear-tip usually deforms after being thrown at a target, but it can be hammered into shape again."
+	desc = "A long, saintly-looking spear for throwing or use with a shield. The spear-tip usually deforms after being thrown at a target, but it can be hammered into shape again."
 	icon_state = "nt_spear"
 	item_state = "nt_spear"
 	wielded_icon = "nt_spear_wielded"
-	force = 24
+	force = 26
 	force_wielded_multiplier = 1.08
 	var/tipbroken = FALSE
 	var/force_broken = WEAPON_FORCE_NORMAL
 	var/throwforce_broken = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT
-	throwforce = 75
+	throwforce = WEAPON_FORCE_LETHAL * 1.5
 	armor_penetration = ARMOR_PEN_HALF
 	throw_speed = 3
-	price_tag = 150
+	price_tag = 450
 	allow_spin = FALSE
-	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 5) // easy to mass-produce and arm the faithful
+	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_PLASTEEL = 10) // More expensive, high-end spear
+	style_damage = 50
 
 /obj/item/tool/sword/nt/spear/equipped(mob/living/W)
 	..()
@@ -198,7 +199,6 @@
 			force = initial(force)
 			throwforce = initial(throwforce)
 
-
 /obj/item/shield/riot/nt
 	name = "NT Scutum"
 	desc = "A saintly-looking shield. May God protect you. The leather straps on the back can hold melee weapons."
@@ -222,6 +222,7 @@
 		/obj/item/tool/knife/dagger/nt,
 		/obj/item/tool/knife/neotritual,
 		/obj/item/book/ritual/cruciform,
+		/obj/item/stack/thrown/nt/verutum
 		)
 
 /obj/item/shield/riot/nt/New()
@@ -274,13 +275,15 @@
 	item_flags = DRAG_AND_DROP_UNEQUIP
 	shield_integrity = 110
 	var/obj/item/storage/internal/container
-	var/storage_slots = 3
+	var/storage_slots = 1
 	var/max_w_class = ITEM_SIZE_HUGE
 	var/list/can_hold = list(
 		/obj/item/tool/sword/nt/shortsword,
 		/obj/item/tool/knife/dagger/nt,
 		/obj/item/tool/knife/neotritual,
 		/obj/item/book/ritual/cruciform,
+		/obj/item/tool/sword/nt/spear,
+		/obj/item/stack/thrown/nt/verutum
 		)
 
 /obj/item/shield/buckler/nt/New()
@@ -317,3 +320,49 @@
 		on_bash(W, user)
 	else
 		..()
+
+/obj/item/stack/thrown/nt
+	name = "NT Throwing knife"
+	desc = "A saintly-looking sword forged to do God\'s distant work."
+	icon_state = "nt_shortsword"
+	item_state = "nt_shortsword"
+	force = WEAPON_FORCE_DANGEROUS
+	throwforce = WEAPON_FORCE_WEAK
+	armor_penetration = ARMOR_PEN_DEEP
+	spawn_blacklisted = TRUE
+	aspects = list(SANCTIFIED)
+	price_tag = 300
+	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_STEEL = 5)
+	bad_type = /obj/item/stack/thrown/nt
+
+/obj/item/stack/thrown/nt/equipped(mob/living/M)
+	..()
+	if(is_held() && is_neotheology_disciple(M))
+		embed_mult = 0.1
+	else
+		embed_mult = initial(embed_mult)
+
+/obj/item/stack/thrown/nt/verutum
+	name = "NT Verutum"
+	desc = "A short, saintly-looking javelin for throwing or use with a shield. They are small enough to allow holding multiple in one hand."
+	icon_state = "nt_verutum"
+	item_state = "nt_verutum"
+	singular_name = "NT Verutum"
+	plural_name = "NT Veruta"
+	wielded_icon = "nt_verutum_wielded"
+	force = 20
+	force_wielded_multiplier = 1.08
+
+	w_class = ITEM_SIZE_HUGE
+	slot_flags = SLOT_BACK | SLOT_BELT
+	throwforce = WEAPON_FORCE_LETHAL
+	armor_penetration = ARMOR_PEN_DEEP
+	throw_speed = 3
+	price_tag = 150
+	allow_spin = FALSE
+	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 5) // Easy to mass-produce and arm the faithful
+	style_damage = 30
+
+/obj/item/stack/thrown/nt/verutum/launchAt()
+	embed_mult = 300
+	..()

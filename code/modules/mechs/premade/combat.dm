@@ -12,7 +12,7 @@
 
 
 	material = MATERIAL_PLASTEEL
-	exosuit_color = COLOR_DARK_GUNMETAL
+	exosuit_color = COLOR_GUNMETAL
 	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/combat
 	installed_software_boards = list(
 		/obj/item/electronics/circuitboard/exosystem/weapons,
@@ -55,6 +55,7 @@
 	desc = "This standard combat chassis is reinforced with plasteel for extra durability without compromising visibility or ease of access."
 	pilot_coverage = 100
 	transparent_cabin = TRUE
+	hide_pilot = TRUE
 	exosuit_desc_string = "an armored chassis"
 	icon_state = "combat_body"
 	max_damage = 100

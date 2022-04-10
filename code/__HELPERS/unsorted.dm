@@ -1266,8 +1266,9 @@ var/list/FLOORITEMS = list(
 	see_in_dark = 1e6
 
 /mob/dview/Destroy()
-	crash_with("Prevented attempt to delete dview mob: [log_info_line(src)]")
-	return QDEL_HINT_LETMELIVE // Prevents destruction
+	. = QDEL_HINT_LETMELIVE // Prevents destruction
+	CRASH("Prevented attempt to delete dview mob: [log_info_line(src)]")
+
 
 /atom/proc/get_light_and_color(atom/origin)
 	if(origin)
@@ -1277,9 +1278,7 @@ var/list/FLOORITEMS = list(
 /mob/dview/Initialize() // Properly prevents this mob from gaining huds or joining any global lists
 	return INITIALIZE_HINT_NORMAL
 
-// call to generate a stack trace and print to runtime logs
-/proc/crash_with(msg)
-	CRASH(msg)
+
 
 /proc/CheckFace(atom/Obj1, atom/Obj2)
 	var/CurrentDir = get_dir(Obj1, Obj2)
