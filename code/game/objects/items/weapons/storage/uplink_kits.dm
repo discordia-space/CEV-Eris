@@ -5,7 +5,7 @@
 	switch (pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "guns" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, /*"lordsingulo" = 1,*/ "smoothoperator" = 1)))
 		if("bloodyspai")
 			new /obj/item/clothing/under/chameleon(src)
-			new /obj/item/clothing/mask/gas/voice(src)
+			new /obj/item/clothing/mask/chameleon/voice(src)
 			new /obj/item/card/id/syndicate(src)
 			new /obj/item/clothing/shoes/syndigaloshes(src)
 			return
@@ -126,6 +126,13 @@
 /obj/item/storage/box/syndie_kit/space/populate_contents()
 	new /obj/item/clothing/suit/space/void/merc/boxed(src)
 	new /obj/item/clothing/mask/gas/syndicate(src)
+
+/obj/item/storage/box/syndie_kit/softsuit
+	name = "boxed soft suit"
+
+/obj/item/storage/box/syndie_kit/softsuit/populate_contents()
+	new /obj/item/clothing/suit/space/syndicate/uplink(src)
+	new /obj/item/clothing/head/space/syndicate/uplink(src)
 
 /obj/item/storage/box/syndie_kit/chameleon
 	name = "chameleon kit"

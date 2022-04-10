@@ -648,7 +648,7 @@
 /obj/item/clothing/mask/gas/german
 	rarity_value = 36
 
-/obj/item/clothing/mask/gas/voice
+/obj/item/clothing/mask/chameleon/voice
 	rarity_value = 100
 
 /obj/item/clothing/mask/gas

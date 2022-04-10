@@ -166,7 +166,6 @@
 		/obj/item/mech_component = offer_data("mech component", 120, 4),															// base price: 150
 		/obj/item/mech_equipment = offer_data("mech equipment", 160, 4),															// base price: 200
 		/obj/item/robot_parts/robot_component/armour/exosuit/plain = offer_data("exosuit armor plating", 240, 4),					// base price: 300
-		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = offer_data("rad-proof exosuit armor plating", 400, 4),		// base price: 500
 		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 440, 4),		// base price: 550
 		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 800, 4)			// base price: 1000
 	)

@@ -1,5 +1,5 @@
 /obj/item/gun/projectile/automatic/luty
-	name = "handmade SMG .35 Auto \"Luty\""
+	name = "HM SMG Auto \"Luty\""
 	desc = "A dead simple open-bolt automatic firearm, easily made and easily concealed.\
 			A gun that has gone by many names, from the Grease gun to the Carlo to the Swedish K. \
 			Some designs are too good to change."

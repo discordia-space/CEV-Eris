@@ -17,6 +17,9 @@
 /datum/design/research/item/mechfab/exosuit/basics/radio
 	build_path = /obj/item/robot_parts/robot_component/radio
 
+/datum/design/research/item/mechfab/robot/component/diagnosis_unit
+	build_path = /obj/item/robot_parts/robot_component/diagnosis_unit
+
 //Armor
 /datum/design/research/item/mechfab/exosuit/armour
 	category = "Exosuit Armor"
@@ -24,9 +27,6 @@
 /datum/design/research/item/mechfab/exosuit/armour/plain
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/plain
 	starts_unlocked = TRUE
-
-/datum/design/research/item/mechfab/exosuit/armour/radproof
-	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/radproof
 
 /datum/design/research/item/mechfab/exosuit/armour/em
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/ablative

@@ -4,21 +4,21 @@
 	var/voice //If set and item is present in mask/suit, this name will be used for the wearer's speech.
 	var/active
 
-/obj/item/clothing/mask/gas/voice
+/obj/item/clothing/mask/chameleon/voice
 	name = "gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. It seems to house some odd electronics."
 	var/obj/item/voice_changer/changer
 	origin_tech = list(TECH_COVERT = 4)
 
-/obj/item/clothing/mask/gas/voice/verb/Toggle_Voice_Changer()
-	set category = "Object"
+/obj/item/clothing/mask/chameleon/voice/verb/Toggle_Voice_Changer()
+	set category = "Chameleon Items"
 	set src in usr
 
 	changer.active = !changer.active
 	to_chat(usr, "<span class='notice'>You [changer.active ? "enable" : "disable"] the voice-changing module in \the [src].</span>")
 
-/obj/item/clothing/mask/gas/voice/verb/Set_Voice(name as text)
-	set category = "Object"
+/obj/item/clothing/mask/chameleon/voice/verb/Set_Voice(name as text)
+	set category = "Chameleon Items"
 	set src in usr
 
 	var/voice = sanitize(name, MAX_NAME_LEN)
@@ -26,6 +26,6 @@
 	changer.voice = voice
 	to_chat(usr, SPAN_NOTICE("You are now mimicking <B>[changer.voice]</B>."))
 
-/obj/item/clothing/mask/gas/voice/New()
+/obj/item/clothing/mask/chameleon/voice/New()
 	..()
 	changer = new(src)

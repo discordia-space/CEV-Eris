@@ -718,7 +718,7 @@ Note from Nanako: 2019-02-01
 TODO: Bay Movement:
 All Canmove setting in this proc is temporary. This var should not be set from here, but from movement controllers
 */
-/mob/proc/update_lying_buckled_and_verb_status()
+/mob/proc/update_lying_buckled_and_verb_status(dropitems = FALSE)
 
 	if(!resting && cannot_stand() && can_stand_overridden())
 		lying = 0
@@ -739,7 +739,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 
 	if(lying)
 		set_density(0)
-		if(stat == UNCONSCIOUS)
+		if(stat == UNCONSCIOUS || dropitems)
 			if(l_hand) unEquip(l_hand) //we want to be able to keep items, for tactical resting and ducking behind cover
 			if(r_hand) unEquip(r_hand)
 	else
@@ -820,11 +820,11 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		update_lying_buckled_and_verb_status()
 	return
 
-/mob/proc/Weaken(amount)
+/mob/proc/Weaken(amount, dropitems = TRUE)
 	if(status_flags & CANWEAKEN)
 		facing_dir = null
 		weakened = max(max(weakened,amount),0)
-		update_lying_buckled_and_verb_status()	//updates lying, canmove and icons
+		update_lying_buckled_and_verb_status(dropitems)	//updates lying, canmove and icons
 	return
 
 /mob/proc/SetWeakened(amount)

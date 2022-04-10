@@ -44,8 +44,7 @@
 
 /datum/metabolism_effects/proc/adjust_nsa(value, tag)
 	if(!tag)
-		crash_with("no tag given to adjust_nsa()")
-		return
+		CRASH("no tag given to adjust_nsa()")
 	nerve_system_accumulations[tag] = value
 
 /datum/metabolism_effects/proc/remove_nsa(tag)

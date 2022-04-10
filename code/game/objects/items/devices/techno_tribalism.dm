@@ -65,7 +65,7 @@
 				oddity_stats[STAT_VIG] += 2
 				oddity_stats[STAT_COG] += 2
 			else
-				crash_with("[W], incompatible department")
+				CRASH("[W], incompatible department")
 
 		else if(istool(W))
 			var/useful = FALSE

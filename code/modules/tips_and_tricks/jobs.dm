@@ -171,22 +171,22 @@
     jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
     tipText = "Bots are tireless servants that you can create. No janitor? CleanBot to the rescue! Not enough medical staff? MedBot will solve that."
 
-/tipsAndTricks/jobs/ripley
+/tipsAndTricks/jobs/mech1
     jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
-    tipText = "The Ripley mech is an universal tool for a variety of tasks, be it mining, building, or deconstructing. It also has a rather strong melee attack."
+    tipText = "Exosuits are combat-oriented suits designed to excel against low-penetration attacks in close quarters. If spider infestations are giving you a bad time, try using an armed comabt exosuit to clear them. Watch out for EMPs."
 
-/tipsAndTricks/jobs/odysseus
+/tipsAndTricks/jobs/mech2
     jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
-    tipText = "The Odysseus is a reliable medical mech that can be used as a paramedic vehicle or mobile medical treatment machine."
+    tipText = "Exosuits have on-board gas analyzers and diagnostics. Try clicking on the gauge icon near your internals for a read-out of outside atmospherics conditions when using one, or click your exosuit's health icon to give a basic idea of your exosuit's status!"
 
-/tipsAndTricks/jobs/gygax
+/tipsAndTricks/jobs/mech3
     jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
-    tipText = "The Gygax is a combat mech. It is a lighly armored, but rather mobile, threat to any antagonist."
+    tipText = "Don't be afraid of mix-and-matching exosuit parts if you prefer a specific stat or just like the look. A powerloader with treads and a light, sealed chassis is perfectly valid."
 
-/tipsAndTricks/jobs/durand
+/tipsAndTricks/jobs/mech4
     jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
-    tipText = "The Durand is a combat mech. It is heavily armored and extra scary in confined spaces due to its punches and defense mode."
+    tipText = "Want to change your exosuit's control software or power cell mid-fight? With maintenance mode enabled, use a screwdriver to remove circuit boards or a crowbar to remove the onboard power cell!"
 
-/tipsAndTricks/jobs/phazon
+/tipsAndTricks/jobs/mech5
     jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
-    tipText = "The Phazon is a combat mech. It has the highest base movespeed, good armor, and can phase through anything thanks to bluespace technology."
+    tipText = "Exosuits have integrated storage pockets which can be accessed by dragging its sprite to yourself."

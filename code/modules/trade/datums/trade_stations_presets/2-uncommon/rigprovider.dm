@@ -43,21 +43,15 @@
 	hidden_inventory = list(
 		"RIGs II" =  list(
 			/obj/item/rig/light = custom_good_amount_range(list(1, 5)),
-			/obj/item/rig/combat = custom_good_amount_range(list(1, 5))
-		),
-		"RIG Specialized Modules II" = list(
-			/obj/item/rig_module/grenade_launcher,
-			/obj/item/rig_module/held/energy_blade,
 			/obj/item/rig_module/held/shield,
 			/obj/item/rig_module/datajack,
-			/obj/item/rig_module/chem_dispenser,
+			/obj/item/rig_module/modular_injector,
 			/obj/item/rig_module/electrowarfare_suite,
-			/obj/item/rig_module/chem_dispenser/combat,
-			/obj/item/rig_module/chem_dispenser/injector,
+			/obj/item/rig_module/modular_injector/combat,
+			/obj/item/rig_module/modular_injector/medical,
 			/obj/item/rig_module/cape
 		)
 	)
 	offer_types = list(
-		// TODO: offers
 		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 10000, 1)		// base price: 6282 (incl. components)
 	)
