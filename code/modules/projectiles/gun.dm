@@ -542,10 +542,21 @@
 	if(params)
 		P.set_clickpoint(params)
 	var/offset = user.calculate_offset(init_offset_with_brace())
-	offset = rand(-offset, offset)
+	var/remainder = offset % 4
+	offset /= 4
+	offset = round(offset)
+
+	offset = roll(offset,9) - offset * 5
+	switch(remainder)
+		if(1)
+			offset += roll(1,3) - 2
+		if(2)
+			offset += roll(1,5) - 3
+		if(3)
+			offset += roll(1,7) - 4
 
 	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
-	
+
 //Support proc for calculate_offset
 /obj/item/gun/proc/init_offset_with_brace()
 	var/offset = init_offset
@@ -825,9 +836,11 @@
 
 	data["force"] = force
 	data["force_max"] = initial(force)*10
+	data["armor_penetration"] = armor_penetration
 	data["muzzle_flash"] = muzzle_flash
 
-	var/list/recoilList = recoil.getList()
+	var/total_recoil = 0
+	var/list/recoilList = recoil.getFancyList()
 	if(recoilList.len)
 		var/list/recoil_vals = list()
 		for(var/i in recoilList)
@@ -836,7 +849,10 @@
 					"name" = i,
 					"value" = recoilList[i]
 					))
+				total_recoil += recoilList[i]
 		data["recoil_info"] = recoil_vals
+
+	data["total_recoil"] = total_recoil
 
 	data += ui_data_projectile(get_dud_projectile())
 
@@ -888,6 +904,7 @@
 	data["projectile_name"] = P.name
 	data["projectile_damage"] = (P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()
 	data["projectile_AP"] = P.armor_penetration * penetration_multiplier
+	data["projectile_recoil"] = P.recoil
 	qdel(P)
 	return data
 

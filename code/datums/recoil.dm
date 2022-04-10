@@ -36,8 +36,13 @@
 /datum/recoil/proc/getRating(rating)
 	return vars[rating]
 
+// Readable via recoil datum
 /datum/recoil/proc/getList()
 	return list(RECOIL_BASE = recoil_buildup, RECOIL_TWOHAND = brace_penalty, RECOIL_ONEHAND = one_hand_penalty)
+
+// Better for nanoUI data
+/datum/recoil/proc/getFancyList()
+	return list("Recoil Buildup" = recoil_buildup, "Unbraced Penalty" = brace_penalty, "Onehanding Penalty" = one_hand_penalty)
 
 /datum/recoil/proc/setList(list/varList)
 	recoil_buildup = varList[1]
