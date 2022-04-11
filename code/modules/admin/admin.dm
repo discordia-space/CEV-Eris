@@ -803,7 +803,7 @@ ADMIN_VERB_ADD(/datum/admins/proc/immreboot, R_SERVER, FALSE)
 
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
-		if(R.emagged)
+		if(R.HasTrait(CYBORG_TRAIT_EMAGGED))
 			return ANTAG
 
 	return NO_ANTAG

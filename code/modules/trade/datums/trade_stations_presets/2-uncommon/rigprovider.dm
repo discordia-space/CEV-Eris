@@ -23,14 +23,14 @@
 			/obj/item/rig_module/held/energy_blade,
 			/obj/item/rig_module/held/shield,
 			/obj/item/rig_module/datajack,
-			/obj/item/rig_module/chem_dispenser
+			/obj/item/rig_module/modular_injector
 		)
 	)
 	secret_inventory = list(
 		"RIG Specialized Modules III" = list(
 			/obj/item/rig_module/electrowarfare_suite,
-			/obj/item/rig_module/chem_dispenser/combat,
-			/obj/item/rig_module/chem_dispenser/injector,
+			/obj/item/rig_module/modular_injector/combat,
+			/obj/item/rig_module/modular_injector/medical,
 			/obj/item/rig_module/cape
 		)
 	)
