@@ -27,7 +27,7 @@
 	spawn_tags = SPAWN_TAG_GUN_SHOTGUN_ENERGY
 	twohanded = TRUE
 	var/consume_cell = TRUE
-	recoil = RIFLE_RECOIL
+	recoil = RIFLE_RECOIL(1)
 
 /obj/item/gun/energy/shrapnel/consume_next_projectile()
 	if(!cell) return null

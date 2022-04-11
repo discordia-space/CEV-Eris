@@ -19,7 +19,7 @@
 		WEAPON_NORMAL,
 		BURST_2_BEAM
 		)
-	recoil = HANDGUN_RECOIL
+	recoil = HANDGUN_RECOIL(1)
 	var/lightfail = 0
 
 //override for failcheck behaviour

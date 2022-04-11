@@ -16,7 +16,7 @@
 	charge_meter = 0
 	charge_cost = 200
 	price_tag = 2500
-	recoil = HANDGUN_RECOIL
+	recoil = HANDGUN_RECOIL(1)
 
 
 /obj/item/gun/energy/crossbow/ninja
@@ -36,5 +36,5 @@
 	matter = list(MATERIAL_PLASTEEL = 35, MATERIAL_PLASTIC = 20, MATERIAL_SILVER = 9, MATERIAL_URANIUM = 9)
 	projectile_type = /obj/item/projectile/energy/bolt/large
 	price_tag = 4000
-	recoil = RIFLE_RECOIL
+	recoil = RIFLE_RECOIL(1)
 	

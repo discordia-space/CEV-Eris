@@ -15,7 +15,7 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	modifystate = "energystun"
 	item_modifystate = "stun"
-	recoil = SMG_RECOIL
+	recoil = SMG_RECOIL(1)
 
 	init_firemodes = list(
 		STUNBOLT,
@@ -47,7 +47,7 @@
 	modifystate = null
 	suitable_cell = /obj/item/cell/small
 	cell_type = /obj/item/cell/small
-	recoil = HANDGUN_RECOIL
+	recoil = HANDGUN_RECOIL(1)
 
 	spawn_tags = SPAWN_TAG_FS_ENERGY
 

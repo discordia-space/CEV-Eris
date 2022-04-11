@@ -19,7 +19,7 @@
 	zoom_factor = 0.8 // double as IH_heavy
 	penetration_multiplier = 1.2
 	damage_multiplier = 1.2
-	recoil = RIFLE_RECOIL
+	recoil = RIFLE_RECOIL(0.65)
 	silenced = TRUE
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,

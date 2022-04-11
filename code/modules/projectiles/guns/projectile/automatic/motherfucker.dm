@@ -16,7 +16,7 @@
 	proj_step_multiplier = 0.8 // faster than non-shotgun bullets, slower than non-shotgun bullets with an accelerator
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 15)
 	price_tag = 300
-	recoil = LMG_RECOIL
+	recoil = LMG_RECOIL(1)
 	burst_delay = 0
 	burst = 6
 	init_offset = 7 //awful accuracy

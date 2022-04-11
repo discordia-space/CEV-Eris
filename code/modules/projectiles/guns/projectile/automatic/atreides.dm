@@ -18,7 +18,7 @@
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2)
 	price_tag = 800
 	damage_multiplier = 0.9
-	recoil = SMG_RECOIL
+	recoil = SMG_RECOIL(0.7)
 	gun_tags = list(GUN_SILENCABLE, GUN_GILDABLE)
 	gun_parts = list(/obj/item/part/gun/frame/atreides = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
 

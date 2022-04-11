@@ -76,10 +76,10 @@
 
 #define VIG_OVERCHARGE_GEN 0.05
 
-#define EMBEDDED_RECOIL     list(recoil_buildup = 1.4,  brace_penalty = 0.1,   one_hand_penalty = 0     )
-#define HANDGUN_RECOIL      list(recoil_buildup = 1.2,  brace_penalty = 0.2,    one_hand_penalty = 0.6  )
-#define SMG_RECOIL          list(recoil_buildup = 1.0,  brace_penalty = 0.3,   one_hand_penalty = 1.2   )
-#define CARBINE_RECOIL      list(recoil_buildup = 0.8,  brace_penalty = 0.4,    one_hand_penalty = 1.8  )
-#define RIFLE_RECOIL        list(recoil_buildup = 0.6,  brace_penalty = 0.5,   one_hand_penalty = 2.4   )
-#define LMG_RECOIL          list(recoil_buildup = 0.4,  brace_penalty = 0.6,    one_hand_penalty = 3    )
-#define HMG_RECOIL          list(recoil_buildup = 0.2,  brace_penalty = 0.7,   one_hand_penalty = 3.6   )
+#define EMBEDDED_RECOIL(x)     list(recoil_buildup = 1.4*x,  brace_penalty = 0.1*x,   one_hand_penalty = 0*x     )
+#define HANDGUN_RECOIL(x)      list(recoil_buildup = 1.2*x,  brace_penalty = 0.2*x,   one_hand_penalty = 0.6*x   )
+#define SMG_RECOIL(x)          list(recoil_buildup = 1.0*x,  brace_penalty = 0.3*x,   one_hand_penalty = 1.2*x   )
+#define CARBINE_RECOIL(x)      list(recoil_buildup = 0.8*x,  brace_penalty = 0.4*x,   one_hand_penalty = 1.8*x   )
+#define RIFLE_RECOIL(x)        list(recoil_buildup = 0.6*x,  brace_penalty = 0.5*x,   one_hand_penalty = 2.4*x   )
+#define LMG_RECOIL(x)          list(recoil_buildup = 0.4*x,  brace_penalty = 0.6*x,   one_hand_penalty = 3*x     )
+#define HMG_RECOIL(x)          list(recoil_buildup = 0.2*x,  brace_penalty = 0.7*x,   one_hand_penalty = 3.6*x   )

@@ -19,7 +19,7 @@
 	load_method = SINGLE_CASING
 	handle_casings = EJECT_CASINGS
 	max_shells = 1
-	recoil = HMG_RECOIL // RPGs tend to be very large
+	recoil = HMG_RECOIL(1) // RPGs tend to be very large
 	fire_sound = 'sound/effects/bang.ogg'
 	bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg' //placeholder, needs new sound
 	twohanded = TRUE

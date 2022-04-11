@@ -469,8 +469,6 @@
 	update_icon()
 
 /obj/item/gun/proc/kickback(mob/living/user, obj/item/projectile/P)
-	var/bullet_recoil = P.recoil * damage_multiplier
-
 	var/base_recoil = recoil.getRating(RECOIL_BASE) * bullet_recoil
 	var/brace_recoil = 0
 	var/unwielded_recoil = 0

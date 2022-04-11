@@ -24,4 +24,4 @@
 	)
 	twohanded = TRUE
 	wield_delay = 0
-	recoil = RIFLE_RECOIL
+	recoil = RIFLE_RECOIL(1)

@@ -14,7 +14,7 @@
     slot_flags = SLOT_BELT|SLOT_HOLSTER
     damage_multiplier = 1.2
     penetration_multiplier = 1.1
-    recoil = HANDGUN_RECOIL
+    recoil = HANDGUN_RECOIL(0.5)
     init_firemodes = list(
         FULL_AUTO_400,
         SEMI_AUTO_NODELAY

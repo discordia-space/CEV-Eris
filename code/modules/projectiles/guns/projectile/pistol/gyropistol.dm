@@ -15,7 +15,7 @@
 	mag_well = MAG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/a75
 	auto_eject = 1
-	recoil = HANDGUN_RECOIL //recoil handled by bullettype
+	recoil = HANDGUN_RECOIL(1) //recoil handled by bullettype
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	unload_sound = 'sound/weapons/guns/interact/hpistol_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/hpistol_magin.ogg'

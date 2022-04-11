@@ -19,7 +19,7 @@
 	damage_multiplier = 0.8
 	penetration_multiplier = 0.5
 	gun_tags = list(GUN_SILENCABLE)
-	recoil = EMBEDDED_RECOIL
+	recoil = EMBEDDED_RECOIL(1.5)
 	spawn_blacklisted = TRUE
 
 /obj/item/organ_module/active/simple/armsmg
