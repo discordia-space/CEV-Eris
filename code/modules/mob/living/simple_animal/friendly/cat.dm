@@ -261,6 +261,7 @@
 	item_state = "cat3"
 	holder_type = /obj/item/holder/cat/fluff/bones
 	befriend_job = "Moebius Biolab Officer"
+	sanity_damage = -4
 	var/friend_name = "Erstatz Vryroxes"
 
 /mob/living/simple_animal/cat/kitten/New()
