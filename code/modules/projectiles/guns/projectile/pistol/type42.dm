@@ -22,7 +22,7 @@
 
 	spawn_blacklisted = TRUE //until loot rework
 
-	serial_type = "武器"
+	serial_type = "OS"
 
 
 /obj/item/gun/projectile/type_42/update_icon()
