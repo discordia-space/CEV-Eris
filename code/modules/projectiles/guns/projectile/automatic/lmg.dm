@@ -28,7 +28,7 @@
 	spawn_blacklisted = TRUE
 	rarity_value = 80
 	slowdown_hold = 0.5
-	init_offset = 5 // Countered by bracing it
+	init_offset = 10 // Countered by bracing it
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/plasteel = 4)
 
 	init_firemodes = list(

@@ -559,7 +559,7 @@
 /obj/item/gun/proc/init_offset_with_brace()
 	var/offset = init_offset
 	if(braced)
-		offset -= braceable * 3 // Bipod doubles effect
+		offset -= braceable * 6 // Bipod doubles effect
 	return offset
 
 //Suicide handling.

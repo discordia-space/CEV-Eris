@@ -16,7 +16,7 @@
 	style_damage_multiplier = 3
 	penetration_multiplier = 1.5
 	recoil = RIFLE_RECOIL(2.8)
-	init_offset = 2 //bayonet's effect on aim, reduced from 4
+	init_offset = 4 //bayonet's effect on aim, reduced from 4
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
 	max_shells = 10

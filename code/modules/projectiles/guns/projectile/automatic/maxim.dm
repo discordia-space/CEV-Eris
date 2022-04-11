@@ -34,7 +34,7 @@
 		)
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
-	init_offset = 10 // Too much even for cover
+	init_offset = 20 // Too much even for cover
 	slowdown_hold = 1
 	wield_delay = 1 SECOND
 	wield_delay_factor = 0.9 // 90 vig
