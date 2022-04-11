@@ -98,7 +98,7 @@
 	item_state = "pkclosedmag"
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/pk = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/lrifle = 1)
-	serial_type = "SGAM" // serbia global arms manufacturer
+	serial_type = "SA"
 
 /obj/item/part/gun/frame/pk
 	name = "Pulemyot Kalashnikova frame"
