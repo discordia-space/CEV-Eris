@@ -469,17 +469,17 @@
 	update_icon()
 
 /obj/item/gun/proc/kickback(mob/living/user, obj/item/projectile/P)
-	var/base_recoil = recoil.getRating(RECOIL_BASE) * bullet_recoil
+	var/base_recoil = recoil.getRating(RECOIL_BASE) * P.recoil
 	var/brace_recoil = 0
 	var/unwielded_recoil = 0
 
 	if(!braced)
-		brace_recoil = recoil.getRating(RECOIL_TWOHAND) * bullet_recoil
+		brace_recoil = recoil.getRating(RECOIL_TWOHAND) * P.recoil
 	else if(braceable > 1)
 		base_recoil = 0.25 // With a bipod, you can negate most of your recoil
 
 	if(!wielded)
-		unwielded_recoil = recoil.getRating(RECOIL_ONEHAND) * bullet_recoil
+		unwielded_recoil = recoil.getRating(RECOIL_ONEHAND) * P.recoil
 
 	if(unwielded_recoil)
 		switch(unwielded_recoil)
