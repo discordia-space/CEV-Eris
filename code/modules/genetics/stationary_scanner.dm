@@ -5,7 +5,7 @@
 	icon_state = "cybercoffin_open"
 	density = TRUE
 	anchored = TRUE
-//	circuit = /obj/item/electronics/circuitboard/cryo_slab
+	circuit = /obj/item/electronics/circuitboard/cryo_slab
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
 	active_power_usage = 10000
@@ -114,6 +114,16 @@
 	set_occupant(target)
 	add_fingerprint(user)
 	return
+
+
+/obj/machinery/cryo_slab/attackby(obj/item/I, mob/living/user)
+	if(default_part_replacement(I, user))
+		return
+
+	if(default_deconstruction(I, user))
+		return
+
+	..()
 
 
 /obj/machinery/cryo_slab/update_icon()

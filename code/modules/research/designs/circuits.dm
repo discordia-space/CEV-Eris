@@ -460,3 +460,22 @@
 	build_path = /obj/item/electronics/circuitboard/mindswapper
 	sort_string = "WAAAA"
 	category = CAT_MEDI
+
+// Genetics
+/datum/design/research/circuit/dna_console
+	name = "chrysalis controller"
+	build_path = /obj/item/electronics/circuitboard/dna_console
+	sort_string = "WAAAB"
+	category = CAT_MEDI
+
+/datum/design/research/circuit/cryo_slab
+	name = "chrysalis"
+	build_path = /obj/item/electronics/circuitboard/cryo_slab
+	sort_string = "WAAAC"
+	category = CAT_MEDI
+
+/datum/design/research/circuit/moeballs_printer
+	name = "regurgitator"
+	build_path = /obj/item/electronics/circuitboard/moeballs_printer
+	sort_string = "WAAAD"
+	category = CAT_MEDI

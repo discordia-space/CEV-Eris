@@ -5,7 +5,7 @@
 	icon_state = "printer_base"
 	density = TRUE
 	anchored = TRUE
-//	circuit = /obj/item/electronics/circuitboard/moeballs_printer
+	circuit = /obj/item/electronics/circuitboard/moeballs_printer
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
 	active_power_usage = 10000
@@ -78,8 +78,15 @@
 
 
 /obj/machinery/moeballs_printer/attackby(obj/item/I, mob/living/user)
+	if(default_part_replacement(I, user))
+		return
+
+	if(default_deconstruction(I, user))
+		return
+
 	if(istype(I, /obj/item/computer_hardware/hard_drive/portable) && !usb && insert_item(I, user))
 		usb = I
+
 	else if(QUALITY_PULSING in I.tool_qualities)
 		var/input_color = input(user, "Available colors", "Configuration") in GLOB.dna_machinery_styles
 		if(input_color)

@@ -3,6 +3,7 @@
 	desc = "Portable dna sequencer."
 	icon = 'icons/obj/eris_genetics.dmi'
 	icon_state = "dnascanner_standby_yellow"
+	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_SILVER = 2)
 	var/color_key = "yellow"
 	var/current_state = "standby" // opening, closing, working, no
 	var/obj/item/computer_hardware/hard_drive/portable/usb

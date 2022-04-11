@@ -993,6 +993,7 @@
 #include "code\game\objects\items\weapons\circuitboards\machinery\commsantenna.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\crafting_station.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\excelsior.dm"
+#include "code\game\objects\items\weapons\circuitboards\machinery\genetics.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\jukebox.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\lrange_scanner.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\mech_recharger.dm"
