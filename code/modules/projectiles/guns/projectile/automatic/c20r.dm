@@ -36,7 +36,7 @@
 		SEMI_AUTO_NODELAY,
 		)
 
-	serial_type = "SYN" // syndicate
+	serial_type = "S"
 
 
 /obj/item/part/gun/frame/c20r
