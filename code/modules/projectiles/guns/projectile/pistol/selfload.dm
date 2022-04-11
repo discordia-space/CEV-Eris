@@ -30,7 +30,7 @@
 
 	//spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/clarissa = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
-	serial_type = "SYN"
+	serial_type = "S"
 
 /obj/item/gun/projectile/selfload/update_icon()
 	..()
