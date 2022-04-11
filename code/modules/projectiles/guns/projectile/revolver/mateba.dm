@@ -12,6 +12,7 @@
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/mateba = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)
+	serial_type = "FSH"
 
 /obj/item/part/gun/frame/mateba
 	name = "Mateba frame"

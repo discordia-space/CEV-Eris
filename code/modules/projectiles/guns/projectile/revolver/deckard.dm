@@ -14,6 +14,7 @@
 	recoil_buildup = 6
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/deckard = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)
+	serial_type = "FSH"
 
 /obj/item/part/gun/frame/deckard
 	name = "Deckard frame"

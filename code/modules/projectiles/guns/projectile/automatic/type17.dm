@@ -31,6 +31,7 @@
     spawn_blacklisted = TRUE //until loot rework
 
     gun_tags = list(GUN_SILENCABLE)
+    serial_type = "武器" // chinese for weapon
 
 /obj/item/gun/projectile/automatic/type_17/update_icon()
 	..()

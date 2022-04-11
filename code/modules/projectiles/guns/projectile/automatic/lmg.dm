@@ -98,6 +98,7 @@
 	item_state = "pkclosedmag"
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/pk = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	serial_type = "SGAM" // serbia global arms manufacturer
 
 /obj/item/part/gun/frame/pk
 	name = "Pulemyot Kalashnikova frame"
@@ -126,6 +127,7 @@
 	penetration_multiplier = 1.1 // Marginally punchier projectiles than from AKs
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/tk = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	serial_type = "FSH" // Frozenstar heavy
 
 /obj/item/part/gun/frame/tk
 	name = "Takeshi frame"

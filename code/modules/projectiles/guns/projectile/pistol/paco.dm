@@ -25,6 +25,7 @@
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/paco = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	serial_type = "FSH"
 
 /obj/item/gun/projectile/paco/update_icon()
 	..()
@@ -56,4 +57,4 @@
 	result = /obj/item/gun/projectile/paco
 	grip = /obj/item/part/gun/grip/rubber
 	mechanism = /obj/item/part/gun/mechanism/pistol
-	barrel = /obj/item/part/gun/barrel/pistol 
+	barrel = /obj/item/part/gun/barrel/pistol

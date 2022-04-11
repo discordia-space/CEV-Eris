@@ -28,6 +28,7 @@
 	gun_tags = list(GUN_GILDABLE)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/avasarala = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/magnum = 1)
+	serial_type = "NT®" // NANOTRANSEN TRADEMARK
 
 /obj/item/gun/projectile/avasarala/update_icon()
 	..()

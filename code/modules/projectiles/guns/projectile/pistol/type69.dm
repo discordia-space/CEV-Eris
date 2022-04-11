@@ -24,6 +24,7 @@
     price_tag = 2500
 
     spawn_blacklisted = TRUE //until loot rework
+    serial_type = "武器" // chinese arms
 
 /obj/item/gun/projectile/type_69/update_icon()
 	..()

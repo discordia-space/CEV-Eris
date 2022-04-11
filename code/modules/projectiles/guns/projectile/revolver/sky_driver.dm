@@ -21,6 +21,7 @@
 	spawn_blacklisted = TRUE
 	noricochet = TRUE
 	gun_parts = list(/obj/item/part/gun/frame/sky_driver = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/pistol = 1)
+	serial_type = "SYN-EXP" // Syndicate experimental
 
 /obj/item/gun/projectile/revolver/sky_driver/New()
 	..()

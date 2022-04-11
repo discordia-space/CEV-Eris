@@ -34,6 +34,7 @@
 		BURST_5_ROUND
 		)
 	spawn_blacklisted = TRUE
+	serial_type = "REV" // revolution
 
 	var/folded = FALSE
 
@@ -70,7 +71,7 @@
 		itemstring += "_full"
 		if (ammo_magazine.mag_well == MAG_WELL_RIFLE_D)
 			iconstring += "_drum"
-		else	
+		else
 			iconstring += "[ammo_magazine? "_mag[ammo_magazine.max_ammo]": ""]"
 
 	if(wielded)
