@@ -23,6 +23,7 @@
 
 	scan_range = 3//less aggressive about stealing food
 	metabolic_factor = 0.75
+	sanity_damage = -1
 	var/mob/living/simple_animal/mouse/mousetarget = null
 	seek_speed = 5
 	pass_flags = PASSTABLE
