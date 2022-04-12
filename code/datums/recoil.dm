@@ -16,10 +16,10 @@
 	var/brace_penalty
 	var/one_hand_penalty
 
-/datum/recoil/New(recoil_buildup = 0, brace_penalty = 0, one_hand_penalty = 0)
-	src.recoil_buildup = recoil_buildup
-	src.brace_penalty = brace_penalty
-	src.one_hand_penalty = one_hand_penalty
+/datum/recoil/New(_recoil_buildup = 0, _brace_penalty = 0, _one_hand_penalty = 0)
+	recoil_buildup = _recoil_buildup
+	brace_penalty = _brace_penalty
+	one_hand_penalty = _one_hand_penalty
 	tag = RECOILID
 
 /datum/recoil/proc/modifyRating(recoil_buildup = 0, brace_penalty = 0, one_hand_penalty = 0)
