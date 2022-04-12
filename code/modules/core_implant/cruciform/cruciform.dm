@@ -84,8 +84,13 @@ var/list/disciples = list()
 	var/observation_points = 200
 	if(!wearer || active)
 		return
-	if(wearer.get_species() != SPECIES_HUMAN || is_carrion(wearer))
-		if(wearer.get_species() == "Monkey")
+	if(get_active_mutation(wearer, MUTATION_ATHEIST))
+		spawn(2 MINUTES)
+		for(var/mob/living/carbon/human/H in (disciples - wearer))
+			to_chat(H, SPAN_WARNING("A distand scream pierced your mind. You feel that a vile mutant sneaked among the faithful."))
+			playsound(wearer.loc, 'sound/hallucinations/veryfar_noise.ogg', 55, 1)
+	else if(wearer.get_species() != SPECIES_HUMAN || is_carrion(wearer))
+		if(wearer.get_species() == SPECIES_MONKEY)
 			observation_points /= 20
 		playsound(wearer.loc, 'sound/hallucinations/wail.ogg', 55, 1)
 		wearer.gib()
