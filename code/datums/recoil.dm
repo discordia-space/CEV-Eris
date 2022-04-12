@@ -22,8 +22,8 @@
 	one_hand_penalty = _one_hand_penalty
 	tag = RECOILID
 
-/datum/recoil/proc/modifyRating(recoil_buildup = 0, brace_penalty = 0, one_hand_penalty = 0)
-	return getRecoil(src.recoil_buildup*recoil_buildup, src.brace_penalty*brace_penalty, src.one_hand_penalty*one_hand_penalty)
+/datum/recoil/proc/modifyRating(_recoil_buildup = 0, _brace_penalty = 0, _one_hand_penalty = 0)
+	return getRecoil(recoil_buildup * _recoil_buildup, brace_penalty * _brace_penalty, one_hand_penalty * _one_hand_penalty)
 
 /datum/recoil/proc/modifyAllRatings(modifier = 0)
 	return getRecoil(recoil_buildup * modifier, brace_penalty * modifier, one_hand_penalty * modifier) // Set to multiply due to nature of recoil
