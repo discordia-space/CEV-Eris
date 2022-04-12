@@ -348,6 +348,7 @@
 	item_state = "onestar_coat"
 	style = STYLE_HIGH
 	slowdown = 0
+	spawn_blacklisted = TRUE
 	price_tag = 2000
 	armor = list(
 		melee = 15,
