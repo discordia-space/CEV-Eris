@@ -331,7 +331,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/ghost/verb/follow_mob(input in getmobs()) ////// Follow mobs on list
 	set category = "Ghost"
 	set name = "Follow mob" // "Haunt"
-	set desc = "."
+	set desc = "Follow and haunt a mob."
 
 	var/target = getmobs()[input]
 	if(!target) return
