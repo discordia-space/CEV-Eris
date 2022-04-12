@@ -26,7 +26,7 @@
 	return getRecoil(src.recoil_buildup*recoil_buildup, src.brace_penalty*brace_penalty, src.one_hand_penalty*one_hand_penalty)
 
 /datum/recoil/proc/modifyAllRatings(modifier = 0)
-	return getRecoil(recoil_buildup*modifier, brace_penalty*modifier, one_hand_penalty*modifier) // Set to multiply due to nature of recoil
+	return getRecoil(recoil_buildup * modifier, brace_penalty * modifier, one_hand_penalty * modifier) // Set to multiply due to nature of recoil
 
 /datum/recoil/proc/setRating(recoil_buildup, brace_penalty, one_hand_penalty)
   return getRecoil((isnull(recoil_buildup) ? src.recoil_buildup : recoil_buildup),\
