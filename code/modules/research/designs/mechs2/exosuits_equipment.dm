@@ -14,8 +14,8 @@
 	name = "medical system control"
 	build_path = /obj/item/electronics/circuitboard/exosystem/medical
 
-/datum/design/research/circuit/exosuit/ballistics
-	name = "ballistic weapon control"
+/datum/design/research/circuit/exosuit/weapons
+	name = "weapon system control"
 	build_path = /obj/item/electronics/circuitboard/exosystem/weapons
 
 /datum/design/research/circuit/exosuit/advweapons

@@ -137,6 +137,7 @@
 	name = "Syndicate \"Gauss Coil\" barrel"
 	desc = "Make bullet pierce through wall and penetrate armors easily, but losing rate of fire and increece recoil."
 	icon_state = "Gauss"
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLATINUM = 1)
 	spawn_blacklisted = TRUE
 
 /obj/item/gun_upgrade/barrel/gauss/New()

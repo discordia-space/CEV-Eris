@@ -28,9 +28,6 @@
 	new /obj/item/deck/tarot(src)
 	new /obj/item/storage/box/headset/church
 	new /obj/item/tool/knife/neotritual(src)
-	new /obj/item/gun/energy/nt_svalinn(src)
-	new /obj/item/cell/small/neotheology/plasma(src)
-	new /obj/item/cell/small/neotheology/plasma(src)
 	new /obj/item/tool/sword/nt/longsword(src)
 	new /obj/item/tool/knife/dagger/nt(src)
 	new /obj/item/storage/box/ids(src)
