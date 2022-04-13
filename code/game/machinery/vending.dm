@@ -1167,7 +1167,7 @@
 	auto_price = FALSE
 	custom_vendor = TRUE // Chemists can load it for MDs
 	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle)
-
+	vendor_department = DEPARTMENT_MEDICAL
 
 //This one's from bay12
 /obj/machinery/vending/plasmaresearch
@@ -1188,6 +1188,7 @@
 	product_ads = "Self-medication can be healthy!;Natural chemicals!;This stuff saves lives.;Don't you want some?;Hook it up to your veins!"
 	custom_vendor = TRUE // Chemists can load it for customers
 	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle)
+	vendor_department = DEPARTMENT_MEDICAL
 
 /obj/machinery/vending/wallmed/minor
 	products = list(
@@ -1255,7 +1256,6 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = 500,
 		/obj/item/reagent_containers/hypospray/autoinjector/drugs = 500,
 		)
-	vendor_department = DEPARTMENT_MEDICAL
 	auto_price = FALSE
 
 /obj/machinery/vending/security
