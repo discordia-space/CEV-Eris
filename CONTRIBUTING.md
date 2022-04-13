@@ -261,7 +261,7 @@ Procedure arguments should not contain `var/`. Specified input type e.g. `some_t
 ```
 ***Bad:***
 ```
-/proc/rename_area(var/mob/user as mob, var/area/A as area, var/new_name as string)
+/proc/rename_area(var/mob/user as mob, var/area/A as area, var/new_name as text)
 
 ```
 ***
