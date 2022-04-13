@@ -57,7 +57,7 @@
 
 	//Secondly, cruciforms.
 	//This is handled seperately to account for the future possibility of non-humans having cruciforms. Like holy dogs!
-	if(is_neotheology_disciple(target) && !get_active_mutation(target, MUTATION_ATHEIST))
+	if(is_neotheology_disciple(target))
 		//Cruciform blocks other implants
 		return FALSE
 

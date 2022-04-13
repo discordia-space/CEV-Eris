@@ -53,7 +53,7 @@
 			H.set_species(S.name)
 
 	// Neither safe nor pleasant experience
-	H.adjustToxLoss(10, 50)
+	H.adjustToxLoss(rand(10, 50))
 	H.adjustCloneLoss(rand(1, 10))
 //	H.sanity.changeLevel(-20)
 

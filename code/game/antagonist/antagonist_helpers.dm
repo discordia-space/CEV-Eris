@@ -18,7 +18,7 @@
 	if(only_human && !ishuman(player.current))
 		if (report) to_chat(report, SPAN_NOTICE("Failure: [player] is not human and this antag requires it"))
 		return FALSE
-	if(!allow_neotheology && is_neotheology_disciple(player.current) && !get_active_mutation(player, MUTATION_ATHEIST))
+	if(!allow_neotheology && is_neotheology_disciple(player.current))
 		if (report) to_chat(report, SPAN_NOTICE("Failure: [player] is an NT disciple and this antag disallows it"))
 		return FALSE
 
