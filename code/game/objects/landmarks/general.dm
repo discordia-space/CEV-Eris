@@ -1,11 +1,12 @@
-/obj/landmark/gun_paper_gen
+/obj/landmark/IH_Armoury_Gun_Serial_Printer
 	name = "Gun serial ref sheet landmark"
+	desc = "Grabs all the guns in the area , prints a paper with all their serials"
 
-/obj/landmark/gun_paper_gen/Initialize()
+/obj/landmark/IH_Armoury_Gun_Serial_Printer/Initialize()
 	..()
 	. = INITIALIZE_HINT_LATELOAD
 
-/obj/landmark/gun_paper_gen/LateInitialize()
+/obj/landmark/IH_Armoury_Gun_Serial_Printer/LateInitialize()
 	. = ..()
 	var/area/our_area = get_area(src)
 	var/text = "CEV ERIS IHS Armoury gun serials \n"
