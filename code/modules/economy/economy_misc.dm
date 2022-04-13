@@ -92,7 +92,11 @@ var/global/datum/computer_file/data/email_account/service/payroll/payroll_mailer
 		create_department_account(GLOB.all_departments[d])
 
 	station_account = department_accounts[DEPARTMENT_COMMAND]
-	
+
+	for(var/obj/machinery/vending/V in GLOB.machines)
+		if(V.vendor_department)
+			V.earnings_account = department_accounts[V.vendor_department]
+
 	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [game_year]"
 
 	economy_init = 1

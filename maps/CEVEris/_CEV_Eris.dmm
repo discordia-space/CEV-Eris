@@ -52796,7 +52796,7 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/hallway/side/bridgehallway)
 "cxm" = (
-/obj/machinery/smartfridge/drinks,
+/obj/machinery/vending/drink_showcase,
 /obj/machinery/alarm{
 	pixel_y = 26
 	},

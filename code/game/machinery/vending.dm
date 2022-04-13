@@ -144,7 +144,7 @@
 	var/seconds_electrified = 0 //Shock customers like an airlock.
 	var/shoot_inventory = 0 //Fire items at customers! We're broken!
 
-	var/custom_vendor = TRUE //If it's custom, it can be loaded with stuff as long as it's unlocked.
+	var/custom_vendor = FALSE //If it's custom, it can be loaded with stuff as long as it's unlocked.
 	var/locked = TRUE
 	var/datum/money_account/machine_vendor_account //Owner of this vendomat. Used for access.
 	var/datum/money_account/earnings_account //Money flows in and out of this account.
@@ -182,10 +182,6 @@
 
 	if(product_ads)
 		ads_list += splittext(src.product_ads, ";")
-
-	if(!machine_vendor_account && vendor_department)
-		earnings_account = department_accounts[vendor_department]
-		machine_vendor_account = department_accounts[vendor_department]
 
 	build_inventory()
 	power_change()
@@ -967,6 +963,22 @@
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
 	auto_price = FALSE
 
+/obj/machinery/vending/drink_showcase
+	name = "Club Cocktail Showcase"
+	desc = "A vending machine to showcase cocktails."
+	icon_state = "showcase"
+	var/icon_fill = "showcase-fill"
+	vend_delay = 15
+	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	vendor_department = DEPARTMENT_CIVILIAN
+	custom_vendor = TRUE
+	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/food/drinks, /obj/item/reagent_containers/food/condiment)
+
+/obj/machinery/vending/drink_showcase/update_icon()
+	..()
+	if(contents.len && !(stat & NOPOWER))
+		overlays += image(icon, icon_fill)
+
 /obj/machinery/vending/coffee
 	name = "Hot Drinks machine"
 	desc = "A vending machine which dispenses hot drinks."
@@ -1153,6 +1165,8 @@
 	contraband = list(/obj/item/reagent_containers/pill/tox = 3,/obj/item/reagent_containers/pill/stox = 4,/obj/item/reagent_containers/pill/antitox = 6)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	auto_price = FALSE
+	custom_vendor = TRUE // Chemists can load it for MDs
+	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle)
 
 
 //This one's from bay12
@@ -1172,6 +1186,8 @@
 	light_color = COLOR_LIGHTING_GREEN_BRIGHT
 	icon_deny = "wallmed-deny"
 	product_ads = "Self-medication can be healthy!;Natural chemicals!;This stuff saves lives.;Don't you want some?;Hook it up to your veins!"
+	custom_vendor = TRUE // Chemists can load it for customers
+	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle)
 
 /obj/machinery/vending/wallmed/minor
 	products = list(
@@ -1363,10 +1379,11 @@
 	/obj/item/reagent_containers/food/drinks/mug/teacup = 10)
 	contraband = list(/obj/item/material/kitchen/rollingpin = 2, /obj/item/tool/knife/butch = 2)
 	auto_price = FALSE
+	always_open = TRUE
 
 /obj/machinery/vending/sovietsoda
 	name = "BODA"
-	desc = "An old sweet water vending machine,how did this end up here?"
+	desc = "An old sweet water vending machine, how did this end up here?"
 	icon_state = "sovietsoda"
 	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
 	products = list(/obj/item/reagent_containers/food/drinks/drinkingglass/soda = 30)
@@ -1455,6 +1472,7 @@
 	contraband = list(/obj/item/implant/core_implant/cruciform = 3)
 	prices = list(/obj/item/book/ritual/cruciform = 500, /obj/item/storage/fancy/candle_box = 200, /obj/item/reagent_containers/food/drinks/bottle/ntcahors = 250,
 				/obj/item/implant/core_implant/cruciform = 1000)
+	custom_vendor = TRUE // So they can sell pouches and other printed goods, if they bother to stock them
 
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
