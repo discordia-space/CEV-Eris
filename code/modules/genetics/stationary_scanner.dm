@@ -71,6 +71,8 @@
 
 
 /obj/machinery/cryo_slab/proc/set_occupant(mob/living/user)
+	if(han_solo)
+		return
 	add_fingerprint(user)
 	user.forceMove(src)
 	han_solo = user
