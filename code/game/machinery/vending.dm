@@ -148,7 +148,7 @@
 	var/locked = TRUE
 	var/datum/money_account/machine_vendor_account //Owner of this vendomat. Used for access.
 	var/datum/money_account/earnings_account //Money flows in and out of this account.
-	var/vendor_department = null //If set, members can manage this vendomat. earnings_account is set to the department's account automatically.
+	var/vendor_department = DEPARTMENT_GUILD //If set, members can manage this vendomat. earnings_account is set to the department's account automatically.
 	var/buying_percentage = 0 //If set, the vendomat will accept people selling items to it, and in return will give (percentage * listed item price) in cash
 	var/scan_id = 1
 	var/auto_price = TRUE //The vendomat will automatically set prices on products if their price is not specified.
@@ -168,9 +168,6 @@
 
 /obj/machinery/vending/Initialize()
 	..()
-	if(!machine_vendor_account && vendor_department)
-		earnings_account = department_accounts[vendor_department]
-		machine_vendor_account = department_accounts[vendor_department]
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/vending/LateInitialize()
@@ -185,6 +182,10 @@
 
 	if(product_ads)
 		ads_list += splittext(src.product_ads, ";")
+
+	if(!machine_vendor_account && vendor_department)
+		earnings_account = department_accounts[vendor_department]
+		machine_vendor_account = department_accounts[vendor_department]
 
 	build_inventory()
 	power_change()
