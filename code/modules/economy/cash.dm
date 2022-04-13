@@ -3,7 +3,6 @@
 /obj/item/spacecash
 	name = "coin"
 	desc = "It's worth something. Probably."
-	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spacecash1"
 	force = 1
@@ -48,21 +47,47 @@
 
 /obj/item/spacecash/bundle/update_icon()
 	cut_overlays()
-	var/sum = worth
-	var/num = 0
-	var/list/denominations = list(1000,500,200,100,50,20,10,5,1)
-	for(var/i in denominations)
-		while(sum >= i && num < 50)
-			sum -= i
-			num++
+	var/remaining_worth = worth
+	var/iteration = 0
+	var/coins_only = TRUE
+	var/list/coin_denominations = list(10, 5, 1)
+	var/list/banknote_denominations = list(1000, 500, 200, 100, 50, 20)
+	for(var/i in banknote_denominations)
+		while(remaining_worth >= i && iteration < 50)
+			remaining_worth -= i
+			iteration++
 			var/image/banknote = image('icons/obj/items.dmi', "spacecash[i]")
 			var/matrix/M = matrix()
 			M.Translate(rand(-6, 6), rand(-4, 8))
 			banknote.transform = M
 			overlays += banknote
+			coins_only = FALSE
 
-	name = "[worth] credit"
-	desc = "They are worth [worth] credits."
+	if(remaining_worth)
+		for(var/i in coin_denominations)
+			while(remaining_worth >= i && iteration < 50)
+				remaining_worth -= i
+				iteration++
+				var/image/coin = image('icons/obj/items.dmi', "spacecash[i]")
+				var/matrix/M = matrix()
+				M.Translate(rand(-6, 6), rand(-4, 8))
+				coin.transform = M
+				overlays += coin
+
+	if(coins_only)
+		if(worth == 1)
+			name = "coin"
+			desc = "A single credit."
+			gender = NEUTER
+
+		else
+			name = "coins"
+			desc = "Total of [worth] credits."
+			gender = PLURAL
+	else
+		name = "[worth] credits"
+		desc = "Cold hard cash."
+		gender = NEUTER
 
 
 /obj/item/spacecash/bundle/attack_self()
@@ -84,6 +109,7 @@
 	bundle.worth = amount
 	bundle.update_icon()
 	usr.put_in_hands(bundle)
+	update_icon()
 
 
 /obj/item/spacecash/bundle/Initialize()
@@ -133,7 +159,7 @@
 
 // Exists here specifically for vagabond since they do not have bank accounts and used to have around 800 credits.
 /obj/item/spacecash/bundle/vagabond/Initialize()
-	worth = rand(700,900)
+	worth = rand(700, 900)
 	. = ..()
 
 /obj/item/spacecash/bundle/c1000
