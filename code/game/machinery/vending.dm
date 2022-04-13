@@ -144,7 +144,7 @@
 	var/seconds_electrified = 0 //Shock customers like an airlock.
 	var/shoot_inventory = 0 //Fire items at customers! We're broken!
 
-	var/custom_vendor = FALSE //If it's custom, it can be loaded with stuff as long as it's unlocked.
+	var/custom_vendor = TRUE //If it's custom, it can be loaded with stuff as long as it's unlocked.
 	var/locked = TRUE
 	var/datum/money_account/machine_vendor_account //Owner of this vendomat. Used for access.
 	var/datum/money_account/earnings_account //Money flows in and out of this account.
@@ -168,6 +168,9 @@
 
 /obj/machinery/vending/Initialize()
 	..()
+	if(!machine_vendor_account && vendor_department)
+		earnings_account = department_accounts[vendor_department]
+		machine_vendor_account = department_accounts[vendor_department]
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/vending/LateInitialize()
@@ -814,16 +817,15 @@
 
 	//Pitch to the people!  Really sell it!
 	if(((last_slogan + slogan_delay) <= world.time) && (slogan_list.len > 0 || custom_vendor) && (!shut_up) && prob(5))
-		if(custom_vendor && product_records.len)
+		if(slogan_list.len)
+			var/slogan = pick(slogan_list)
+			speak(slogan)
+			last_slogan = world.time
+		else if(custom_vendor && product_records.len)
 			var/datum/data/vending_product/advertised = pick(product_records)
 			if(advertised)
 				var/advertisement = "[pick("Come get","Come buy","Buy","Sale on","We have")] \an [advertised.product_name], [pick("for only","only","priced at")] [advertised.price] credits![pick(" What a deal!"," Can you believe it?","")]"
 				speak(advertisement)
-				last_slogan = world.time
-		else
-			if(slogan_list.len)
-				var/slogan = pick(slogan_list)
-				speak(slogan)
 				last_slogan = world.time
 
 	if(shoot_inventory && prob(2))
