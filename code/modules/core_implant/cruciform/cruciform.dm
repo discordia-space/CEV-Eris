@@ -134,11 +134,15 @@ var/list/disciples = list()
 
 /obj/item/implant/core_implant/cruciform/Process()
 	..()
-	if(active && round(world.time) % 5 == 0)
+	if(active && round(world.time) % 5 == 0 && !get_active_mutation(wearer, MUTATION_ATHEIST))
 		remove_cyber()
-	if(wearer)
-		if(wearer.stat == DEAD)
-			deactivate()
+		if(wearer.mutation_index)
+			var/datum/mutation/M = pick(wearer.active_mutations)
+			M.cleanse(wearer)
+			wearer.adjustToxLoss(rand(5, 25))
+
+	if(wearer.stat == DEAD)
+		deactivate()
 
 /obj/item/implant/core_implant/cruciform/proc/transfer_soul()
 	if(!wearer || !activated)
@@ -150,18 +154,18 @@ var/list/disciples = list()
 				if(M.stat != DEAD)
 					return FALSE
 		var/datum/mind/MN = data.mind
-		if(!istype(MN, /datum/mind))
+		if(!istype(MN))
 			return
 		MN.transfer_to(wearer)
 		wearer.ckey = data.ckey
 		for(var/datum/language/L in data.languages)
 			wearer.add_language(L.name)
 		update_data()
-		if (activate())
+		if(activate())
 			return TRUE
 
 /obj/item/implant/core_implant/cruciform/proc/remove_cyber()
-	if(!wearer || get_active_mutation(wearer, MUTATION_ATHEIST))
+	if(!wearer)
 		return
 	for(var/obj/O in wearer)
 		if(istype(O, /obj/item/organ/external))
