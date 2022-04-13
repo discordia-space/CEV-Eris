@@ -21,7 +21,6 @@
 	var/chamber_open = FALSE
 	var/jammed = FALSE
 	var/jam_chance = 15
-	serial_type = 0
 
 /obj/item/gun/projectile/handmade_pistol/New()
 	..()
