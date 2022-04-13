@@ -19,21 +19,43 @@ var/global/default_dna_machinery_style
 	default_dna_machinery_style = pick(GLOB.dna_machinery_styles)
 
 
-proc/can_get_mutation(mob/user, tier)
+/proc/can_get_mutation(mob/user, tier)
 	if(user.mutation_count_by_tier["[tier]"] < GLOB.mutation_limit_by_tier["[tier]"])
 		return TRUE
 
 
-proc/get_dormant_mutation(mob/user, mutation_type)
+/proc/get_dormant_mutation(mob/user, mutation_type)
 	for(var/datum/mutation/M in user.dormant_mutations)
 		if(ispath(M.type, mutation_type))
 			return M
 
 
-proc/get_active_mutation(mob/user, mutation_type)
+/proc/get_active_mutation(mob/user, mutation_type)
 	for(var/datum/mutation/M in user.active_mutations)
 		if(ispath(M.type, mutation_type))
 			return M
+
+// Meant to be manually called on mob for testing purposes
+/mob/living/carbon/human/proc/add_mutation(mutation_type)
+	var/datum/mutation/M = new mutation_type
+	M?.imprint(src)
+
+// Same, but also accepts keywords as argument
+/mob/living/carbon/human/proc/remove_mutation(mutation_type)
+	if(mutation_type in list("all", "active", "dormant"))
+		switch(mutation_type)
+			if("active")
+				for(var/datum/mutation/M in active_mutations)
+					M.cleanse(src)
+			if("dormant")
+				dormant_mutations.Cut()
+			if("all")
+				for(var/datum/mutation/M in active_mutations)
+					M.cleanse(src)
+				dormant_mutations.Cut()
+	else
+		var/datum/mutation/M = get_active_mutation(src, mutation_type)
+		M?.cleanse(src)
 
 
 /datum/computer_file/binary/animalgene
