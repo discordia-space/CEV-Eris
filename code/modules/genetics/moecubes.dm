@@ -7,11 +7,9 @@
 	var/gene_value
 
 
-/obj/item/moecube/attack(mob/M as mob, mob/user as mob, def_zone)
-	if(!ishuman(M))
+/obj/item/moecube/attack(mob/living/carbon/human/H, mob/user)
+	if(!istype(H))
 		return
-
-	var/mob/living/carbon/human/H = M
 
 	if(!H.check_has_mouth())
 		to_chat(user, "Where do you intend to put \the [src]?")
@@ -71,11 +69,9 @@
 	var/gene_value
 
 
-/obj/item/wormcube/attack(mob/M as mob, mob/user as mob, def_zone)
-	if(!ishuman(M))
+/obj/item/wormcube/attack(mob/living/carbon/human/H, mob/user)
+	if(!istype(H))
 		return
-
-	var/mob/living/carbon/human/H = M
 
 	if(!H.check_has_mouth())
 		to_chat(user, "Where do you intend to put \the [src]?")
