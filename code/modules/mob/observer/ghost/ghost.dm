@@ -316,7 +316,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/target = A
 	ManualFollow(target)
 
-/mob/observer/ghost/verb/follow_player() ////// Follow mobs on list
+/mob/observer/ghost/verb/follow_player()
 	set category = "Ghost"
 	set name = "Follow player"
 
