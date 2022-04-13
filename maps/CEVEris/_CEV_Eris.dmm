@@ -17906,7 +17906,7 @@
 /obj/item/cell/medium/high,
 /obj/item/cell/medium/high,
 /obj/item/cell/medium/high,
-/obj/landmark/gun_paper_gen,
+/obj/landmark/IH_Armoury_Gun_Serial_Printer,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/security/warden)
 "aSz" = (
