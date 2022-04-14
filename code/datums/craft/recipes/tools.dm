@@ -94,8 +94,8 @@
 	)
 
 /datum/craft_recipe/tool/toolimplant
-	name = "Multitool implant"
-	result = /obj/item/organ_module/active/multitool/improvised
+	name = "Improvised multitool implant"
+	result = /obj/item/organ_module/active/simple/makeshift
 	steps = list(
 		list(/obj/item/storage/toolbox, 1),
 		list(/obj/item/electronics/circuitboard, 1),
