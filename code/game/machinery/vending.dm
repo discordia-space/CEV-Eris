@@ -1474,30 +1474,27 @@
 				/obj/item/implant/core_implant/cruciform = 1000)
 	custom_vendor = TRUE // So they can sell pouches and other printed goods, if they bother to stock them
 
-/obj/machinery/vending/theomat/try_to_buy(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
-	var/obj/item/implant/core_implant/cruciform/CI
+/obj/machinery/vending/theomat/try_to_buy(obj/item/W, datum/data/vending_product/R, mob/user)
 	var/bingo = FALSE
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		CI = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
-		if(!CI)
-			bingo = TRUE
-		if(istype(H.get_active_hand(), /obj/item/clothing/accessory/cross))
+		if(is_neotheology_disciple(H))
 			bingo = TRUE
 
-		if(istype(H.wear_mask, /obj/item/clothing/accessory/cross))
+		else if(istype(H.get_active_hand(), /obj/item/clothing/accessory/cross))
 			bingo = TRUE
 
-		var/obj/item/clothing/C = H.w_uniform
-		if(istype(C))
+		else if(istype(H.wear_mask, /obj/item/clothing/accessory/cross))
+			bingo = TRUE
+
+		else if(H.w_uniform && istype(H.w_uniform, obj/item/clothing))
+			var/obj/item/clothing/C = H.w_uniform
 			for(var/obj/item/I in C.accessories)
 				if(istype(I, /obj/item/clothing/accessory/cross))
 					bingo = TRUE
 					break
-	if(!bingo)
-		to_chat(user, SPAN_WARNING("[src] flashes a message: Theo-Mat detected no cruciform."))
-		return
-	..()
+
+	bingo ? ..() : to_chat(user, SPAN_WARNING("[src] flashes a message: Unauthorized Access."))
 
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
