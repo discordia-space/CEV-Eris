@@ -18,3 +18,7 @@
 	. = ..()
 	if(prob(80))
 		explosion(get_turf(src), -1, -1, 2, 3)
+
+/mob/living/carbon/superior_animal/roach/benzin/death()
+	. = ..()
+	new /obj/effect/decal/cleanable/liquid_fuel(loc, 10, 1)
