@@ -878,15 +878,16 @@
 		to_chat(user, SPAN_WARNING("\The [src] is broken."))
 		return
 	if(use_fuel_cost)
-		if(!proximity) return
-		if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weldpack)) && get_dist(src,O) <= 1 && !has_quality(QUALITY_WELDING))
+		if(!proximity)
+			return
+		if((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weldpack)) || istype(O, /mob/living/carbon/superior_animal/roach/benzin) && get_dist(src,O) <= 1 && !has_quality(QUALITY_WELDING))
 			O.reagents.trans_to_obj(src, max_fuel)
 			to_chat(user, SPAN_NOTICE("[src] refueled"))
 			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
-		else if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weldpack)) && get_dist(src,O) <= 1 && has_quality(QUALITY_WELDING))
-			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
-			log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
+		else if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weldpack)) || istype(O, /mob/living/carbon/superior_animal/roach/benzin) && get_dist(src,O) <= 1 && has_quality(QUALITY_WELDING))
+			message_admins("[key_name_admin(user)] triggered an explosion with a welding tool.")
+			log_game("[key_name(user)] triggered an explosion with a welding tool.")
 			to_chat(user, SPAN_DANGER("You begin welding on the [O] and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done."))
 			var/obj/structure/reagent_dispensers/fueltank/tank = O
 			tank.explode()
