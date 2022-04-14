@@ -1474,7 +1474,7 @@
 				/obj/item/implant/core_implant/cruciform = 1000)
 	custom_vendor = TRUE // So they can sell pouches and other printed goods, if they bother to stock them
 
-/obj/machinery/vending/theomat/try_to_buy(obj/item/W, datum/data/vending_product/R, mob/user)
+/obj/machinery/vending/theomat/proc/check_NT(mob/user)
 	var/bingo = FALSE
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -1494,7 +1494,18 @@
 					bingo = TRUE
 					break
 
-	bingo ? ..() : to_chat(user, SPAN_WARNING("[src] flashes a message: Unauthorized Access."))
+	if(bingo)
+		return TRUE
+	to_chat(user, SPAN_WARNING("[src] flashes a message: Unauthorized Access."))
+	return FALSE
+
+/obj/machinery/vending/theomat/vend(datum/data/vending_product/R, mob/user)
+	if(check_NT(user))
+		..()
+
+/obj/machinery/vending/theomat/try_to_buy(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
+	if(check_NT(user))
+		..()
 
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
