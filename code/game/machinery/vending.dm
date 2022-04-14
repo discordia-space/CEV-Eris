@@ -211,6 +211,9 @@
 	if(!earnings_account)
 		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not registered to an account."))
 		return
+	if(!earnings_account)
+		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not registered to an account."))
+		return
 	if(vendor_department)
 		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not authorized to accept sales. Please contact a member of [GLOB.all_departments[vendor_department]]."))
 		return
@@ -1473,6 +1476,31 @@
 	prices = list(/obj/item/book/ritual/cruciform = 500, /obj/item/storage/fancy/candle_box = 200, /obj/item/reagent_containers/food/drinks/bottle/ntcahors = 250,
 				/obj/item/implant/core_implant/cruciform = 1000)
 	custom_vendor = TRUE // So they can sell pouches and other printed goods, if they bother to stock them
+
+/obj/machinery/vending/theomat/try_to_buy(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
+	var/obj/item/implant/core_implant/cruciform/CI
+	var/bingo = FALSE
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		CI = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
+	if(!CI)
+		bingo = TRUE
+	if(istype(H.get_active_hand(), /obj/item/clothing/accessory/cross))
+		bingo = TRUE
+
+	if(istype(H.wear_mask, /obj/item/clothing/accessory/cross))
+		bingo = TRUE
+
+	var/obj/item/clothing/C = H.w_uniform
+	if(istype(C))
+		for(var/obj/item/I in C.accessories)
+			if(istype(I, /obj/item/clothing/accessory/cross))
+				bingo = TRUE
+				break
+	if(!bingo)
+		to_chat(user, SPAN_WARNING("[src] flashes a message: Theo-Mat detected no cruciform."))
+		return
+	..()
 
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
