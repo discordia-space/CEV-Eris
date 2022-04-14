@@ -1480,20 +1480,20 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		CI = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
-	if(!CI)
-		bingo = TRUE
-	if(istype(H.get_active_hand(), /obj/item/clothing/accessory/cross))
-		bingo = TRUE
+		if(!CI)
+			bingo = TRUE
+		if(istype(H.get_active_hand(), /obj/item/clothing/accessory/cross))
+			bingo = TRUE
 
-	if(istype(H.wear_mask, /obj/item/clothing/accessory/cross))
-		bingo = TRUE
+		if(istype(H.wear_mask, /obj/item/clothing/accessory/cross))
+			bingo = TRUE
 
-	var/obj/item/clothing/C = H.w_uniform
-	if(istype(C))
-		for(var/obj/item/I in C.accessories)
-			if(istype(I, /obj/item/clothing/accessory/cross))
-				bingo = TRUE
-				break
+		var/obj/item/clothing/C = H.w_uniform
+		if(istype(C))
+			for(var/obj/item/I in C.accessories)
+				if(istype(I, /obj/item/clothing/accessory/cross))
+					bingo = TRUE
+					break
 	if(!bingo)
 		to_chat(user, SPAN_WARNING("[src] flashes a message: Theo-Mat detected no cruciform."))
 		return
