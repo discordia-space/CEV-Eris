@@ -57,7 +57,7 @@
 	desc = "A jury-rigged implant, holding cobbled-together tools. For those who are more interested in tool carrying than scared of tetanus."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "multitool_improvised"
-	force = WEAPON_FORCE_WEAK
+	force = WEAPON_FORCE_PAINFUL
 	switched_on_force = WEAPON_FORCE_PAINFUL * 0.8
 	worksound = WORKSOUND_DRIVER_TOOL
 	flags = CONDUCT
