@@ -69,7 +69,7 @@
 /obj/item/reagent_containers/food/snacks/meat/roachmeat/benzin
 	name = "Benzin meat"
 	desc = "A slab of sickly-green meat cut from a benzin roach. Stinks of welding fuel. Delicious!"
-	preloaded_reagents = list("protein" = 4, "fuel" = 30)
+	preloaded_reagents = list("protein" = 4, "blattedin" = 6, "fuel" = 30)
 
 /obj/item/reagent_containers/food/snacks/meat/spider
 	name = "Senshi meat"
