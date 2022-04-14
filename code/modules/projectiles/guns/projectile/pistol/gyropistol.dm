@@ -11,6 +11,7 @@
 	price_tag = 2500
 	ammo_type = /obj/item/ammo_casing/a75
 	caliber = CAL_70
+	style_damage_multiplier = 5
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/a75

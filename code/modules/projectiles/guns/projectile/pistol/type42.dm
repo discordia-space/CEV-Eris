@@ -15,6 +15,7 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	magazine_type = /obj/item/ammo_magazine/cspistol
 	damage_multiplier = 1.8
+	style_damage_multiplier = 5
 	penetration_multiplier = 1.5
 	recoil_buildup = 2.5
 	spawn_tags = SPAWN_TAG_GUN_OS

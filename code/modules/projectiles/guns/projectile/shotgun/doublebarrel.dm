@@ -14,6 +14,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
+	style_damage_multiplier = 5
 	recoil_buildup = 7
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1)
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag

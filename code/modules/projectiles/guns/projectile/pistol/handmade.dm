@@ -14,6 +14,7 @@
 	gun_parts = list(/obj/item/stack/material/steel = 2)
 	ammo_type = /obj/item/ammo_casing/magnum
 	damage_multiplier = 1.36
+	style_damage_multiplier = 5
 	recoil_buildup = 15
 	spawn_frequency = 0
 	spawn_blacklisted = FALSE

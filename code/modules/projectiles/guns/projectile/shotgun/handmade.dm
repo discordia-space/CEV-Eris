@@ -15,6 +15,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL
 	damage_multiplier = 1.1 // 3 gun parts and only 1 shell capacity, needs this much to be viable - compare to other trash guns
+	style_damage_multiplier = 5
 	recoil_buildup = 20 //makin it a bit more than most shotguns
 	one_hand_penalty = 5 //compact shotgun level, so same as sawn off
 	price_tag = 250 //cheap as they get

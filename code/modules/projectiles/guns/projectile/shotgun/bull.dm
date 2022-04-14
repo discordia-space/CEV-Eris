@@ -18,6 +18,7 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
 	damage_multiplier = 0.75
+	style_damage_multiplier = 3
 	penetration_multiplier = 0.75
 	recoil_buildup = 7
 	one_hand_penalty = 10 //compact shotgun level
