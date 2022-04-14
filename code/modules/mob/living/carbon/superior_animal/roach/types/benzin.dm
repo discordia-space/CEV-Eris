@@ -9,16 +9,17 @@
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/benzin
 	meat_amount = 3
 	rarity_value = 15
-	var/fuel_max_capacity = 40
+
 
 
 /mob/living/carbon/superior_animal/roach/benzin/Initialize(mapload)
 	. = ..()
 	set_light(0.5)
+	reagents.maximum_volume = 40
 
 
 /mob/living/carbon/superior_animal/roach/benzin/Life()
-	if(reagents.total_volume < fuel_max_capacity)
+	if(reagents.total_volume < reagents.maximum_volume)
 		reagents.add_reagent("fuel", 1)
 	..()
 
@@ -38,7 +39,8 @@
 
 
 /mob/living/carbon/superior_animal/roach/benzin/fire_act()
-	explosion(get_turf(src), -1, -1, 2, 3)
+	if(stat != DEAD)
+		explosion(get_turf(src), -1, -1, 2, 3)
 
 
 /mob/living/carbon/superior_animal/roach/benzin/death()
