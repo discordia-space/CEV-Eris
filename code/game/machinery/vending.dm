@@ -211,9 +211,6 @@
 	if(!earnings_account)
 		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not registered to an account."))
 		return
-	if(!earnings_account)
-		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not registered to an account."))
-		return
 	if(vendor_department)
 		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not authorized to accept sales. Please contact a member of [GLOB.all_departments[vendor_department]]."))
 		return
