@@ -1487,7 +1487,7 @@
 		else if(istype(H.wear_mask, /obj/item/clothing/accessory/cross))
 			bingo = TRUE
 
-		else if(H.w_uniform && istype(H.w_uniform, obj/item/clothing))
+		else if(H.w_uniform && istype(H.w_uniform, /obj/item/clothing))
 			var/obj/item/clothing/C = H.w_uniform
 			for(var/obj/item/I in C.accessories)
 				if(istype(I, /obj/item/clothing/accessory/cross))
