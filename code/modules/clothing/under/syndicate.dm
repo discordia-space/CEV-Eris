@@ -1,5 +1,5 @@
 /obj/item/clothing/under/syndicate
-	name = "Syndicate Turtleneck"
+	name = "syndicate turtleneck"
 	desc = "An old corporate war era Ironhammer uniform, worn as standard by Syndicate marines. it consists of a black turtleneck and cargo pants. It reminds you of a different time"
 	icon_state = "syndicate"
 	item_state = "syndicate"
