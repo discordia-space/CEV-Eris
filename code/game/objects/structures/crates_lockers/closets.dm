@@ -608,14 +608,14 @@
 				add_overlay("[icon_lock]_off")
 				add_overlay(icon_sparking)
 
-/obj/structure/closet/attack_generic(var/mob/user, var/damage, var/attack_message = "destroys", var/wallbreaker)
-	if(!damage || !wallbreaker)
-		return
-	attack_animation(user)
-	visible_message(SPAN_DANGER("[user] [attack_message] the [src]!"))
-	dump_contents()
-	spawn(1) qdel(src)
-	return 1
+/obj/structure/closet/attack_generic(mob/M, damage, attack_message)
+	if(damage)
+		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
+		attack_animation(M)
+		visible_message(SPAN_DANGER("[M] [attack_message] the [src]!"))
+		damage(damage)
+	else
+		attack_hand(M)
 
 /obj/structure/closet/proc/req_breakout()
 	if(opened)
