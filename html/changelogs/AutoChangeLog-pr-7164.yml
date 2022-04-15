@@ -1,0 +1,8 @@
+author: assortedbeads
+delete-after: true
+changes:
+  - rscadd: A new makeshift omnitool entire has been added in organmodule/active/makeshift
+  - rscdel: The old makeshift omnitool entry has been removed
+  - balance: The makeshift omnitool is now a single tool rather than a container with
+      several tools
+  - soundadd: The new makeshift omnitool has been given the "cutting sound"
