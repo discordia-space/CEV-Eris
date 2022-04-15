@@ -57,11 +57,6 @@
 //If its not valid, null will be returned
 //In the case of click catchers, we resolve and return the turf under it
 /datum/click_handler/proc/resolve_world_target(var/a)
-
-	if (istype(a, /obj/screen/click_catcher))
-		var/obj/screen/click_catcher/CC = a
-		return CC.resolve(owner.mob)
-
 	if (istype(a, /turf))
 		return a
 
@@ -90,8 +85,6 @@
 		if(isliving(reciever.loc))
 			reciever.check_safety_cursor(reciever.loc)
 
-/datum/click_handler/fullauto/proc/do_fire()
-	reciever.afterattack(target, owner.mob, FALSE)
 
 /datum/click_handler/fullauto/MouseDown(object, location, control, params)
 	if(!isturf(owner.mob.loc)) // This stops from firing full auto weapons inside closets or in /obj/effect/dummy/chameleon chameleon projector
@@ -107,12 +100,12 @@
 	return TRUE
 
 /datum/click_handler/fullauto/proc/shooting_loop()
-
 	if(owner.mob.resting)
 		return FALSE
+
 	if(target)
 		owner.mob.face_atom(target)
-		do_fire()
+		reciever.afterattack(target, owner.mob, FALSE) // was a proc for no reason, changed for efficiency
 		spawn(reciever.burst_delay) shooting_loop()
 
 /datum/click_handler/fullauto/MouseDrag(over_object, src_location, over_location, src_control, over_control, params)

@@ -60,7 +60,6 @@
 			client.UI.show()
 		else
 			client.create_UI(src.type)
-		add_click_catcher()
 		client.CAN_MOVE_DIAGONALLY = FALSE
 
 	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
