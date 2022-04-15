@@ -105292,10 +105292,13 @@
 /area/space)
 "uwp" = (
 /obj/structure/table/glass,
-/obj/item/storage/box/monkeycubes,
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -28
+	},
+/obj/item/storage/firstaid/toxin{
+	pixel_x = -2;
+	pixel_y = 4
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/medical/genetics)
