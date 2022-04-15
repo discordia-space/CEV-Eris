@@ -1,0 +1,7 @@
+author: githubuser4141
+delete-after: true
+changes:
+  - balance: Mobs, including mechs can bash through light structures (tables, girders,
+      l-walls, walls and railings), their speed of wall destruction depends on their
+      melee damage ofc.
+  - soundadd: Ports two metal smash/hit sounds from TGMC or CM.
