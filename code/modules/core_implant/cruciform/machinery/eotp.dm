@@ -28,10 +28,10 @@ var/global/obj/machinery/power/eotp/eotp
 
 
 	var/list/mob/living/carbon/human/scanned = list()
-	var/max_power = 100
+	var/max_power = 120
 	var/power = 0
 	var/power_gaine = 2
-	var/max_observation = 800
+	var/max_observation = 1800
 	var/observation = 0
 	var/min_observation = -100
 
@@ -54,8 +54,6 @@ var/global/obj/machinery/power/eotp/eotp
 	for(var/arm in arm_paths)
 		armaments += new arm
 
-
-
 /obj/machinery/power/eotp/examine(user)
 	..()
 
@@ -72,8 +70,6 @@ var/global/obj/machinery/power/eotp/eotp
 	..()
 	if(stat)
 		return
-
-	updateObservation()
 
 	if(world.time >= (last_rescan + rescan_cooldown) && length(scanned))
 		var/mob/living/carbon/human/H = pick(scanned)
@@ -104,15 +100,8 @@ var/global/obj/machinery/power/eotp/eotp
 	observation -= number
 	return observation
 
-/obj/machinery/power/eotp/proc/updateObservation()
-	if(observation > max_observation)
-		observation = max_observation
-
-	if(observation < min_observation)
-		observation = min_observation
-
 /obj/machinery/power/eotp/proc/updatePower()
-	power_gaine = initial(power_gaine) + (observation / 100)
+	power_gaine = initial(power_gaine) + (CLAMP(observation, min_observation, max_observation) / 100)
 
 	if(world.time >= (last_power_update + power_cooldown))
 		power += power_gaine
