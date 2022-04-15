@@ -24,6 +24,10 @@
 	..()
 
 
+/mob/living/carbon/superior_animal/roach/benzin/adjustToxLoss()
+    return
+
+
 /mob/living/carbon/superior_animal/roach/benzin/bullet_act(obj/item/projectile/P, def_zone)
 	. = ..()
 	if(prob(80))
