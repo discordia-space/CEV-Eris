@@ -363,6 +363,7 @@
 	if(prob(5 - (2 * M.stats.getMult(STAT_TGH))))
 		M.paralysis = max(M.paralysis, 20)
 
+// if psionics ever get added , this should awaken them.
 /datum/reagent/stim/party_drops
 	name = "Party Drops"
 	id = "party drops"
@@ -397,6 +398,7 @@
 	if(prob(5))
 		M.vomit()
 
+#define MENACE_HEALTH_BUFF 100
 /datum/reagent/stim/menace
 	name = "MENACE"
 	id = "menace"
@@ -408,6 +410,24 @@
 	nerve_system_accumulations = 90
 	addiction_chance = 70
 
+/datum/reagent/stim/menace/on_mob_add(mob/living/L)
+	. = ..()
+	var/mob/living/carbon/human/dreamer = L
+	if(!istype(L))
+		return
+	dreamer.adjustMaxHealth(MENACE_HEALTH_BUFF) // should be tougher, after all its a death wish
+	dreamer.heal_overall_damage(MENACE_HEALTH_BUFF, MENACE_HEALTH_BUFF) // just so they start at full power
+
+/datum/reagent/stim/menace/on_mob_delete(mob/living/L)
+	. = ..()
+	var/mob/living/carbon/human/dreamer = L
+	if(!istype(L))
+		return
+	dreamer.adjustMaxHealth(-MENACE_HEALTH_BUFF)
+	dreamer.adjustToxLoss(MENACE_HEALTH_BUFF * 0.3) // 30 tox damage , so people don't game this
+	dreamer.Paralyse(3)
+
+
 /datum/reagent/stim/menace/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "menace")
 	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "menace")
@@ -417,6 +437,14 @@
 	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "menace")
 	M.slurring = max(M.slurring, 30)
 	M.add_chemical_effect(CE_SPEECH_VOLUME, 4)
+	// fully numbs pain
+	M.add_chemical_effect(CE_PAINKILLER,150 * effect_multiplier)
+	// ain't got time for bleeding or viruses
+	M.add_chemical_effect(CE_ANTIBIOTIC, 50 * effect_multiplier) // not great , but stops infections
+	M.add_chemical_effect(CE_BLOODRESTORE, 2 * effect_multiplier) // can bleed some
+	// in the future , this should add a special perk , maybe called "Death Wish"
+	// that can go indepth and remove even more downsides of taking damage
+	// or have special interactions with guns / CQC (Auto-reload , parrying)
 	sanity_gain = 1
 
 /datum/reagent/stim/menace/withdrawal_act(mob/living/carbon/M)
