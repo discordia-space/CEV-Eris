@@ -1,0 +1,5 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - bugfix: diving in space
+  - bugfix: diving when grabbed
