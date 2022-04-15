@@ -26,7 +26,7 @@
 		)
 
 	spawn_blacklisted = TRUE
-	serial_type = "ORPDF"
+	serial_type = "OR"
 
 /obj/item/gun/projectile/type_47/update_icon()
 	..()
