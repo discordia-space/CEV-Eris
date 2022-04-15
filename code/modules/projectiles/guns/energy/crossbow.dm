@@ -16,6 +16,7 @@
 	charge_meter = 0
 	charge_cost = 200
 	price_tag = 2500
+	serial_type = "S"
 
 
 /obj/item/gun/energy/crossbow/ninja

@@ -13,6 +13,7 @@
 	penetration_multiplier = 1.4
 	recoil_buildup = 3
 	spawn_frequency = 0
+	serial_type = "" // artists are special and dont' care
 
 /obj/item/gun/projectile/revolver/artwork_revolver/Initialize()
 	name = get_weapon_name(capitalize = TRUE)

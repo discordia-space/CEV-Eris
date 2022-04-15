@@ -21,6 +21,7 @@
 	spawn_blacklisted = TRUE
 	sawn = /obj/item/gun/projectile/boltgun/levergun/sawn
 	message = "lever"
+	serial_type = "FS"
 
 /obj/item/gun/projectile/boltgun/levergun/hand_spin(mob/living/carbon/caller)
 	bolt_act(caller)
@@ -39,6 +40,7 @@
 	saw_off = TRUE
 	can_dual = TRUE
 	twohanded = FALSE
+	serial_type = "FS"
 
 /obj/item/gun/projectile/boltgun/levergun/shotgun
 	name = "FS BR \"Sogekihei\""
@@ -57,6 +59,7 @@
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 15)
 	wielded_item_state = "_doble_shotgun"
 	sawn = /obj/item/gun/projectile/boltgun/levergun/shotgun/sawn
+	serial_type = "FS"
 
 /obj/item/gun/projectile/boltgun/levergun/shotgun/sawn
 	name = "sawn-off FS BR \"Sogekihei\""

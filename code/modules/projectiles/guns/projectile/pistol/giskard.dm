@@ -21,6 +21,7 @@
 	recoil_buildup = 2
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/giskard = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	serial_type = "FS"
 
 /obj/item/gun/projectile/giskard/update_icon()
 	..()
