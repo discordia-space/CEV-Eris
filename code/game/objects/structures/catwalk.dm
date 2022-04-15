@@ -43,14 +43,14 @@
 			var/obj/structure/catwalk/L = locate(/obj/structure/catwalk, get_step(src, direction))
 			L.update_icon() //so siding get updated properly
 
-/obj/structure/catwalk/proc/test_connect(var/turf/T)
+/obj/structure/catwalk/proc/test_connect(turf/T)
 	if(locate(/obj/structure/catwalk, T))
 		return TRUE
 	if(T && T.is_wall)
 		return TRUE
 	if(istype(T, /turf/simulated/floor))
-		var/turf/simulated/floor/t = T
-		if(!t.flooring.is_plating || istype(t.flooring, /decl/flooring/reinforced/plating/hull)) //Caution stripes go where elevation would change, eg, stepping down onto underplating 
+		var/turf/simulated/floor/F = T
+		if(!F.flooring?.is_plating || istype(F.flooring, /decl/flooring/reinforced/plating/hull)) //Caution stripes go where elevation would change, eg, stepping down onto underplating 
 			return TRUE
 
 /obj/structure/catwalk/update_icon()
