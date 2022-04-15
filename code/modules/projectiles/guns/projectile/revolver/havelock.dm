@@ -19,7 +19,7 @@
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/havelock = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/pistol = 1)
-	serial_type = "FSA"
+	serial_type = "FS"
 
 /obj/item/part/gun/frame/havelock
 	name = "Havelock frame"
