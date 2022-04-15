@@ -156,6 +156,7 @@
 	saw_off = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/tosshin = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/srifle/steel = 1)
 	price_tag = 1200
+	serial_type = "FS"
 
 /obj/item/part/gun/frame/tosshin
 	name = "Tosshin frame"

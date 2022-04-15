@@ -25,6 +25,7 @@
 	var/drawChargeMeter = TRUE
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
 	gun_parts = list(/obj/item/part/gun/frame/miller = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)
+	serial_type = "FS"
 
 
 /obj/item/gun/projectile/revolver/pickup(mob/user)

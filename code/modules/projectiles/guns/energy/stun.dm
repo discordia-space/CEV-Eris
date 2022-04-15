@@ -11,6 +11,7 @@
 	projectile_type = /obj/item/projectile/beam/stun
 	wield_delay = 0.3 SECOND
 	wield_delay_factor = 0.2 // 20 vig
+	serial_type = "NT"
 
 /obj/item/gun/energy/taser/mounted
 	name = "mounted taser gun"
@@ -39,9 +40,11 @@
 	suitable_cell = /obj/item/cell/small
 	cell_type = /obj/item/cell/small
 	projectile_type = /obj/item/projectile/energy/electrode
+	serial_type = "NT"
 
 /obj/item/gun/energy/stunrevolver/moebius
-	name = "Moebius SP \"Suez\""	//Ersatz name 
+	name = "Moebius SP \"Suez\""	//Ersatz name
 	desc = "Also know as stunrevolver. A Moebius copy of the older and less precise Nanotrasen solution for non-lethal takedowns. This gun has smaller capacity in exchange for S-cells use."
 	icon = 'icons/obj/guns/energy/stunrevolver_moebius.dmi'
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 6, MATERIAL_SILVER = 2, MATERIAL_PLASTIC = 5)
+	serial_type = "M"

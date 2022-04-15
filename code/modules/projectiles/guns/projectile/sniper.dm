@@ -34,6 +34,7 @@
 	wield_delay = 0
 	pierce_multiplier = 6
 	gun_parts = list(/obj/item/part/gun/frame/heavysniper = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/antim = 1)
+	serial_type = "SA"
 
 /obj/item/part/gun/frame/heavysniper
 	name = "Hristov frame"
