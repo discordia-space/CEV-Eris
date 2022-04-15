@@ -1,0 +1,7 @@
+author: githubuser4141
+delete-after: true
+changes:
+  - balance: Buffs RIG armour values, adds storage modules to (hopefully) every RIG,
+      buffs the mech flashlight. Makes the fugly MEO suit a bit faster.
+  - tweak: Mech drillbits can be printed from the mechfab now and the orderable exosuit
+      crate now contains all the necessary components.
