@@ -39,7 +39,7 @@
 	response_disarm = "bops"
 	response_harm   = "kicks"
 	spawn_frequency = 0//unique
-	sanity_damage = -4 // ery cute , gives people a reason to carry him
+	sanity_damage = -2 // ery cute , gives people a reason to carry him
 
 /mob/living/simple_animal/corgi/Life()
 	..()
