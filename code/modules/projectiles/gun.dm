@@ -370,6 +370,8 @@
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 
+		projectile.multiply_projectile_style_damage(style_damage_multiplier)
+
 		projectile.multiply_projectile_penetration(penetration_multiplier)
 
 		projectile.multiply_pierce_penetration(pierce_multiplier)

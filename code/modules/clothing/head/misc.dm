@@ -9,7 +9,6 @@
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 	style_coverage = COVERS_HAIR
-	style = STYLE_HATHATHAT
 
 /obj/item/clothing/head/hairflower
 	name = "hair flower pin"
@@ -55,7 +54,6 @@
 	icon_state = "hasturhood"
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
-	style = STYLE_HATHATHAT
 	style_coverage = COVERS_WHOLE_FACE
 
 /obj/item/clothing/head/nursehat
@@ -167,7 +165,6 @@
 	name = "beaver hat"
 	icon_state = "beaver_hat"
 	desc = "Soft felt makes this hat both comfortable and elegant."
-	style = STYLE_HATHATHAT
 
 /obj/item/clothing/head/boaterhat
 	name = "boater hat"
@@ -178,13 +175,11 @@
 	name = "fedora"
 	icon_state = "fedora"
 	desc = "A sharp, stylish hat."
-	style = STYLE_HATHATHAT
 
 /obj/item/clothing/head/feathertrilby
 	name = "feather trilby"
 	icon_state = "feather_trilby"
 	desc = "A sharp, stylish hat with a feather."
-	style = STYLE_HATHATHAT
 
 /obj/item/clothing/head/fez
 	name = "fez"
@@ -363,4 +358,3 @@
 		rad = 0
 	)
 	style_coverage = COVERS_WHOLE_FACE
-	style = STYLE_HATHATHAT
