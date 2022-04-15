@@ -8,6 +8,7 @@
 	armor_penetration = ARMOR_PEN_GRAZING
 	caliber = CAL_MAGNUM
 	damage_multiplier = 1.6
+	style_damage_multiplier = 1
 	penetration_multiplier = 1.6
 	recoil_buildup = 15
 	init_offset = 0
