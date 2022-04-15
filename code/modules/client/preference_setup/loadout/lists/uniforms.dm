@@ -188,5 +188,5 @@
 	path = /obj/item/clothing/under/germansuit
 
 /datum/gear/uniform/syndicate
-	display_name = "Syndicate Turtleneck"
+	display_name = "Syndicate turtleneck"
 	path = /obj/item/clothing/under/syndicate
