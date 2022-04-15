@@ -131,6 +131,6 @@
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_WOOD = 10)
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2)
 
-	serial_type = "FSA"
+	serial_type = "FS"
 
 	price_tag = 4500
