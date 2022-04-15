@@ -10,7 +10,6 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
-	style_damage_multiplier = 3
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	load_method = SINGLE_CASING
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag

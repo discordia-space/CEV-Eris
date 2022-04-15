@@ -11,7 +11,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = CAL_ROCKET
-	style_damage_multiplier = 10
+	style_damage_multiplier = 3
 	fire_sound = 'sound/effects/bang.ogg' //placeholder, needs new sound
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 5)
 	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_PLASTIC = 5, MATERIAL_SILVER = 5)

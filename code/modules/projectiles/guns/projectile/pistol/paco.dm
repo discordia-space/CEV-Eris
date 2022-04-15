@@ -10,7 +10,6 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	ammo_type = /obj/item/ammo_casing/pistol
 	caliber = CAL_PISTOL
-	style_damage_multiplier = 5
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	magazine_type = /obj/item/ammo_magazine/pistol

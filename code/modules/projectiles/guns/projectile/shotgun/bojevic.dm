@@ -20,7 +20,6 @@
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 0.8
-	style_damage_multiplier = 3
 	penetration_multiplier = 1.4 // this is not babies first gun. It's a Serb-level weapon.
 	recoil_buildup = 5 // at least somewhat controllable
 	one_hand_penalty = 20 //automatic shotgun level

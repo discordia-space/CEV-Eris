@@ -20,7 +20,6 @@
 	reload_sound = 'sound/weapons/guns/interact/hpistol_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/hpistol_cock.ogg'
 	damage_multiplier = 1.4
-	style_damage_multiplier = 5
 	penetration_multiplier = 1.4
 	recoil_buildup = 2
 

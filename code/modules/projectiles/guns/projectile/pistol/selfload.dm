@@ -19,7 +19,6 @@
 	magazine_type = /obj/item/ammo_magazine/pistol
 	rarity_value = 16
 	damage_multiplier = 1
-	style_damage_multiplier = 5
 	recoil_buildup = 2
 
 	gun_tags = list(GUN_SILENCABLE)

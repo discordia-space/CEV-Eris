@@ -13,7 +13,6 @@
 	recoil_buildup = 10
 	one_hand_penalty = 15 //full sized shotgun level
 	damage_multiplier = 0.8
-	style_damage_multiplier = 3
 	saw_off = FALSE
 
 	price_tag = 1800

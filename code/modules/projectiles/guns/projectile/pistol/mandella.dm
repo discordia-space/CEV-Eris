@@ -20,7 +20,6 @@
 	magazine_type = /obj/item/ammo_magazine/cspistol
 	proj_step_multiplier = 0.8
 	damage_multiplier = 1.6
-	style_damage_multiplier = 5
 	penetration_multiplier = 3
 	recoil_buildup = 2
 

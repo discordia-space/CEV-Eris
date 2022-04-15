@@ -14,7 +14,6 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 600
 	damage_multiplier = 1.2
-	style_damage_multiplier = 5
 	penetration_multiplier = 1.2
 	recoil_buildup = 2
 	init_firemodes = list(

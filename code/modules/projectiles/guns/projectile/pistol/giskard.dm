@@ -17,7 +17,6 @@
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 4)
 	price_tag = 400
 	damage_multiplier = 1.3
-	style_damage_multiplier = 5
 	penetration_multiplier = 0.8
 	recoil_buildup = 2
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE

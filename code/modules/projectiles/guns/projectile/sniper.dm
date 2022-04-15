@@ -4,7 +4,6 @@
 	icon = 'icons/obj/guns/projectile/heavysniper.dmi'
 	icon_state = "heavysniper"
 	item_state = "heavysniper"
-	style_damage_multiplier = 10
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK
