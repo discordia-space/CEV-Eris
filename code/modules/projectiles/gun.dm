@@ -560,10 +560,10 @@
 		return
 
 /obj/item/gun/proc/gun_brace(mob/living/user, atom/target)
-	if(braceable && user.unstack)
+	if(braceable && !user.is_busy)
 		var/atom/original_loc = user.loc
 		var/brace_direction = get_dir(user, target)
-		user.unstack = FALSE
+		user.is_busy = TRUE
 		user.facing_dir = null
 		to_chat(user, SPAN_NOTICE("You brace your weapon on \the [target]."))
 		braced = TRUE
@@ -571,9 +571,9 @@
 			sleep(2)
 		to_chat(user, SPAN_NOTICE("You stop bracing your weapon."))
 		braced = FALSE
-		user.unstack = TRUE
+		user.is_busy = FALSE
 	else
-		if(!user.unstack)
+		if(user.is_busy)
 			to_chat(user, SPAN_NOTICE("You are already bracing your weapon!"))
 		else
 			to_chat(user, SPAN_WARNING("You can\'t properly place your weapon on \the [target] because of the foregrip!"))
