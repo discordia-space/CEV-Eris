@@ -186,3 +186,7 @@
 /datum/gear/uniform/battledress_german
 	display_name = "battle dress uniform, oberth"
 	path = /obj/item/clothing/under/germansuit
+
+/datum/gear/uniform/syndicate
+	display_name = "Syndicate Turtleneck"
+	path = /obj/item/clothing/under/syndicate
