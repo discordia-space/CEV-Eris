@@ -752,7 +752,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 			lying = 0
 
 	//Temporarily moved here from the various life() procs
-	//I'm fixing stuff incrementally so this will likely find a better home.s
+	//I'm fixing stuff incrementally so this will likely find a better home.
 	//It just makes sense for now. ~Carn
 	// Fuck you Carn its been more than 6 years and people still lag from your shitty forced icon updates . SPCR -2022
 	if( update_icon )	//forces a full overlay update
