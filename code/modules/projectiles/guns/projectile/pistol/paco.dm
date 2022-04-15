@@ -25,7 +25,7 @@
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/paco = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
-	serial_type = "FSH"
+	serial_type = "FS"
 
 /obj/item/gun/projectile/paco/update_icon()
 	..()
