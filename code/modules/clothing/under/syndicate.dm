@@ -1,6 +1,6 @@
 /obj/item/clothing/under/syndicate
-	name = "tactical turtleneck"
-	desc = "It's some non-descript, slightly suspicious looking, civilian clothing."
+	name = "Syndicate Turtleneck"
+	desc = "a corporate war era ironhammer uniform, worn as standard by syndicate marines. it consists of a black turtleneck and cargo pants. there is a spot for a ID card on the turtleneck"
 	icon_state = "syndicate"
 	item_state = "bl_suit"
 	siemens_coefficient = 0.8
