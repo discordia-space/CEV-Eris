@@ -593,6 +593,8 @@ proc/is_blind(A)
 	embedded = list()
 
 /mob/proc/skill_to_evade_traps()
+	if(Master.current_runlevel != RUNLEVEL_GAME)
+		return 100
 	var/prob_evade = 0
 	var/base_prob_evade = 30
 	if(MOVING_DELIBERATELY(src))
