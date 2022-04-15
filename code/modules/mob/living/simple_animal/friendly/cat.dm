@@ -23,6 +23,7 @@
 
 	scan_range = 3//less aggressive about stealing food
 	metabolic_factor = 0.75
+	sanity_damage = -1
 	var/mob/living/simple_animal/mouse/mousetarget = null
 	seek_speed = 5
 	pass_flags = PASSTABLE
@@ -260,6 +261,7 @@
 	item_state = "cat3"
 	holder_type = /obj/item/holder/cat/fluff/bones
 	befriend_job = "Moebius Biolab Officer"
+	sanity_damage = -2
 	var/friend_name = "Erstatz Vryroxes"
 
 /mob/living/simple_animal/cat/kitten/New()
