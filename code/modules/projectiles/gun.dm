@@ -117,9 +117,9 @@
 	if(!istool(I) || user.a_intent != I_HURT)
 		return FALSE
 	if(I.get_tool_quality(QUALITY_HAMMERING) && serial_type)
-		user.visible_message(SPAN_NOTICE("[user] begins scribbeling \the [name]'s gun serial away"), SPAN_NOTICE("You begin removing the serial number from \the [name]"))
+		user.visible_message(SPAN_NOTICE("[user] begins scribbling \the [name]'s gun serial number away."), SPAN_NOTICE("You begin removing the serial number from \the [name]."))
 		if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_HAMMERING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-			user.visible_message(SPAN_DANGER("[user] removes \the [name]'s gun serial"), SPAN_NOTICE("You succesfully remove the serial number from  \the [name]"))
+			user.visible_message(SPAN_DANGER("[user] removes \the [name]'s gun serial number."), SPAN_NOTICE("You successfully remove the serial number from \the [name]."))
 			serial_type = 0
 			return FALSE
 	if(!gun_parts)
