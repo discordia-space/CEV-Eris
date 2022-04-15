@@ -734,6 +734,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/mech_ripley
 	name = "exosuit assembly crate"
 	contains = list(
+		/obj/structure/heavy_vehicle_frame,
 		/obj/item/mech_equipment/drill,
 		/obj/item/mech_equipment/clamp,
 		/obj/item/mech_equipment/light,
@@ -741,8 +742,15 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 		/obj/item/mech_component/chassis/cheap,
 		/obj/item/mech_component/manipulators/cheap,
 		/obj/item/mech_component/propulsion/cheap,
+		/obj/item/electronics/circuitboard/exosystem/utility,
+		/obj/item/robot_parts/robot_component/actuator,
+		/obj/item/robot_parts/robot_component/actuator,
+		/obj/item/robot_parts/robot_component/camera,
+		/obj/item/robot_parts/robot_component/radio,
 		/obj/item/robot_parts/robot_component/exosuit_control,
-		/obj/item/robot_parts/robot_component/armour/exosuit/plain
+		/obj/item/robot_parts/robot_component/armour/exosuit/plain,
+		/obj/item/robot_parts/robot_component/diagnosis_unit,
+		/obj/item/cell/large
 	)
 	cost = 2000
 	containertype = /obj/structure/closet/crate/secure/scisecurecrate
