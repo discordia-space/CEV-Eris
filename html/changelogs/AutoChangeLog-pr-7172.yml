@@ -1,0 +1,4 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - bugfix: benzin roaches dying to fuel they produce
