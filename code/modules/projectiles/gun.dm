@@ -616,9 +616,9 @@
 		to_chat(user, SPAN_WARNING("This gun needs to be wielded in both hands to be used most effectively."))
 
 	if(serial_type)
-		to_chat(user, SPAN_WARNING("There is a serial number on this gun , it reads [serial_type]"))
+		to_chat(user, SPAN_WARNING("There is a serial number on this gun, it reads [serial_type]."))
 	else if(initial(serial_type)) // hopefully byond also has a way to handle this at runtime!
-		to_chat(user, SPAN_DANGER("The serial is scribbled away"))
+		to_chat(user, SPAN_DANGER("The serial is scribbled away."))
 
 
 /obj/item/gun/proc/initialize_firemodes()
