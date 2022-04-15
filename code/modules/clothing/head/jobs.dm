@@ -18,7 +18,6 @@
 		slot_r_hand_str = "caphat",
 		)
 	body_parts_covered = 0
-	style = STYLE_HATHATHAT
 
 /obj/item/clothing/head/caphat/cap
 	name = "captain's cap"
