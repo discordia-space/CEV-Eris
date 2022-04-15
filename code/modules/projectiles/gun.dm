@@ -98,7 +98,6 @@
 	var/wield_delay = 0 // Gun wielding delay , generally in seconds.
 	var/wield_delay_factor = 0 // A factor that characterizes weapon size , this makes it require more vig to insta-wield this weapon or less , values below 0 reduce the vig needed and above 1 increase it
 	var/serial_type = "SM" // Self-manufactured , if there is a serial type , the gun will add a number onto its final , if none , it won;'t show on examine
-	var/serial_scribbled = FALSE // if the serial has been scribbled ,for detectives
 
 
 /obj/item/gun/wield(mob/user)
@@ -117,12 +116,11 @@
 /obj/item/gun/attackby(obj/item/I, mob/living/user, params)
 	if(!istool(I) || user.a_intent != I_HURT)
 		return FALSE
-	if(I.get_tool_quality(QUALITY_HAMMERING) && !serial_scribbled)
+	if(I.get_tool_quality(QUALITY_HAMMERING) && serial_type)
 		user.visible_message(SPAN_NOTICE("[user] begins scribbeling \the [name]'s gun serial away"), SPAN_NOTICE("You begin removing the serial number from \the [name]"))
 		if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_HAMMERING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			user.visible_message(SPAN_DANGER("[user] removes \the [name]'s gun serial"), SPAN_NOTICE("You succesfully remove the serial number from  \the [name]"))
 			serial_type = 0
-			serial_scribbled = TRUE
 			return FALSE
 	if(!gun_parts)
 		to_chat(user, SPAN_NOTICE("You can't dismantle [src] as it has no gun parts! How strange..."))
@@ -160,9 +158,7 @@
 	verbs += /obj/item/gun/proc/toggle_carry_state_verb
 
 	if(serial_type)
-		serial_type += "-[gun_serial_id]"
-		gun_serial_id++
-
+		serial_type += "-[generate_gun_serial(pick(3,4,5,6,7,8))]"
 
 	if(icon_contained)
 		if(!item_icons_cache[type])
@@ -621,7 +617,7 @@
 
 	if(serial_type)
 		to_chat(user, SPAN_WARNING("There is a serial number on this gun , it reads [serial_type]"))
-	else if(serial_scribbled)
+	else if(initial(serial_type)) // hopefully byond also has a way to handle this at runtime!
 		to_chat(user, SPAN_DANGER("The serial is scribbled away"))
 
 

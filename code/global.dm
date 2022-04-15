@@ -119,7 +119,5 @@ var/max_explosion_range = 14
 // Announcer intercom, because too much stuff creates an intercom for one message then hard del()s it.
 var/global/obj/item/device/radio/intercom/global_announcer = new(null)
 
-var/global/gun_serial_id = 485012 // incremented for each new gun . used for unique serials
-								// starts at 485012 cause ancap i guess
 
 

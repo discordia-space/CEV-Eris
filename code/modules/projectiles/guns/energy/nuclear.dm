@@ -20,7 +20,9 @@
 		BURST_2_BEAM
 		)
 
+	serial_type = "M"
 	var/lightfail = 0
+
 
 //override for failcheck behaviour
 /obj/item/gun/energy/nuclear/Process()
