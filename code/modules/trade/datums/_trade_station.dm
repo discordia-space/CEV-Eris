@@ -65,7 +65,7 @@
 
 /datum/trade_station/proc/init_src(var/turf/station_loc = null, var/force_discovered = FALSE)
 	if(name)
-		crash_with("Some retard gived trade station a name before init_src, overriding name_pool. ([type])")
+		CRASH("Some retard gived trade station a name before init_src, overriding name_pool. ([type])")
 	for(var/datum/trade_station/S in SStrade.all_stations)
 		name_pool.Remove(S.name)
 		if(!length(name_pool))
@@ -123,14 +123,10 @@
 				inventory[new_category_name] = content
 
 /datum/trade_station/proc/init_goods()
-	var/list/master_inventory_data_packet = list()
-	var/list/master_offer_data_packet = list()
 	for(var/category_name in inventory)
 		var/list/category = inventory[category_name]
 		if(islist(category))
-			var/list/master_inventory_data_content = list()
 			for(var/good_path in category)
-				// Station inventory
 				var/cost = SStrade.get_import_cost(good_path, src)
 				var/list/rand_args = list(0, 50 / max(cost/200, 1))
 				var/list/good_packet = category[good_path]
@@ -145,27 +141,13 @@
 				good_amount["[category.Find(good_path)]"] = max(0, rand(rand_args[1], rand_args[2]))
 				unique_good_count += 1
 
-				// Master inventory list
-				master_inventory_data_content.Add(good_path)
-			master_inventory_data_packet.Add(category_name)
-			master_inventory_data_packet[category_name] = master_inventory_data_content
-
-
 	for(var/offer_path in offer_types)
-		// Station offers
 		var/list/offer_content = offer_types[offer_path]
 		if(ispath(offer_path) && islist(offer_content))
 			var/offer_index = offer_types.Find(offer_path)
 			special_offers.Insert(offer_index, offer_path)
 			special_offers[offer_path] = offer_content
-	
-		// Master offer list
-		master_offer_data_packet.Add(offer_path)
-
-	SStrade.master_inventory_list.Add(name)
-	SStrade.master_inventory_list[name] = master_inventory_data_packet
-	SStrade.master_offer_list.Add(name)
-	SStrade.master_offer_list[name] = master_offer_data_packet
+			SStrade.offer_types.Add(offer_path)
 
 /datum/trade_station/proc/update_tick()
 	offer_tick()
@@ -212,7 +194,6 @@
 /datum/trade_station/proc/try_unlock_hidden_inv()
 	if(favor >= hidden_inv_threshold)
 		hidden_inv_unlocked = TRUE
-		var/list/master_inventory_data_packet = list()
 		for(var/category_name in hidden_inventory)
 			var/list/category = hidden_inventory[category_name]
 			if(istext(category_name) && islist(category))
@@ -220,9 +201,7 @@
 				hidden_inventory.Cut(category_name_index, category_name_index + 1)
 				inventory.Add(category_name)
 				inventory[category_name] = category
-				var/list/master_inventory_data_content = list()
 				for(var/good_path in category)
-					// Station inventory
 					var/cost = SStrade.get_import_cost(good_path, src)
 					var/list/rand_args = list(0, 50 / max(cost/200, 1))
 					var/list/good_packet = category[good_path]
@@ -235,12 +214,6 @@
 						amounts_of_goods[category_name] = list()
 					var/good_amount = amounts_of_goods[category_name]
 					good_amount["[category.Find(good_path)]"] = max(0, rand(rand_args[1], rand_args[2]))
-				
-					// Master inventory list
-					master_inventory_data_content.Add(good_path)
-				master_inventory_data_packet.Add(category_name)
-				master_inventory_data_packet[category_name] = master_inventory_data_content
-				SStrade.master_inventory_list[name] |= master_inventory_data_packet
 
 /datum/trade_station/proc/try_recommendation()
 	if(favor >= recommendation_threshold)
