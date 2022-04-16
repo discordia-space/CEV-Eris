@@ -1,6 +1,0 @@
-author: SirRichardFrancis
-delete-after: true
-changes:
-  - balance: maximum style value an item can have capped at 2
-  - balance: explosions with severity of 1 and 2 can not be dodged anymore
-  - balance: guns with low fire rate received style_damage increase
