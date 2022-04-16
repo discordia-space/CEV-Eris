@@ -34,8 +34,8 @@
 
 	var/construction_stage
 
-	var/maxhealth = 600
-	var/health = 600
+	var/maxhealth = 450
+	var/health = 450
 
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	climbable = TRUE
@@ -443,7 +443,7 @@
 			playsound(src, hitsound, 80, 1)
 			if(!prob(dam_prob))
 				visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I]!"))
-				playsound(src, pick(WALLHIT_SOUNDS), 100, 5)
+				playsound(loc, pick(WALLHIT_SOUNDS), 100, 5)
 				take_damage(attackforce)
 			else
 				visible_message(SPAN_WARNING("\The [user] attacks \the [src] with \the [I]!"))
@@ -452,7 +452,15 @@
 		user.do_attack_animation(src)
 		return
 
-
+/obj/structure/low_wall/attack_generic(mob/M, damage, attack_message)
+	if(damage)
+		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
+		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		M.do_attack_animation(src)
+		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		take_damage(damage*2)
+	else
+		attack_hand(M)
 
 /obj/structure/low_wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product)
 	if (QDELETED(src))

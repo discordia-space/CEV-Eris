@@ -27,6 +27,8 @@
 		list(mode_name="INCINERATE", mode_desc="A heavy armor-stripping plasma round", projectile_type=/obj/item/projectile/plasma/aoe/heat, fire_sound='sound/weapons/energy/incinerate.ogg', burst=1, fire_delay=20, charge_cost=90, icon="destroy", projectile_color = "#FFFFFF", recoil_buildup=8),
 	)
 
+	serial_type = "NT"
+
 
 /obj/item/gun/energy/plasma/mounted
 	self_recharge = TRUE

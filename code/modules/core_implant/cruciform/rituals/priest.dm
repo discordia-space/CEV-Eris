@@ -522,15 +522,15 @@
 		if(target.wearer && target.wearer.stat != DEAD)
 			return target
 
-/datum/ritual/cruciform/priest/buy_item
+/datum/ritual/cruciform/priest/acolyte/buy_item
 	name = "Order armaments"
 	phrase = "Et qui non habet, vendat tunicam suam et emat gladium."
-	desc = "Allows you to spend a point to unlock a NT disk."
+	desc = "Allows you to spend armament points to unlock a NT disk."
 	success_message = "Your prayers have been heard."
 	fail_message = "Your prayers have not been answered."
 	power = 20
 
-/datum/ritual/cruciform/priest/buy_item/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
+/datum/ritual/cruciform/priest/acolyte/buy_item/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
 	var/list/OBJS = get_front(H)
 
 	var/obj/machinery/power/eotp/EOTP = locate(/obj/machinery/power/eotp) in OBJS

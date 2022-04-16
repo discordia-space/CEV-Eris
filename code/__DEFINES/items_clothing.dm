@@ -238,7 +238,6 @@
 #define STYLE_NONE 0
 #define STYLE_LOW 1
 #define STYLE_HIGH 2
-#define STYLE_HATHATHAT 3
 
 //Style coverage
 #define COVERS_HAIR 1

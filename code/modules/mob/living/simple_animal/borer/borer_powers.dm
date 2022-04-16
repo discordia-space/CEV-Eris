@@ -115,7 +115,6 @@
 	if(sight & SEE_MOBS)
 		sight &= ~SEE_MOBS
 		to_chat(src, SPAN_NOTICE("You cannot see living being through walls for now."))
-		return
 
 	host = M
 	host.status_flags |= PASSEMOTES

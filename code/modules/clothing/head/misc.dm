@@ -9,7 +9,6 @@
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 	style_coverage = COVERS_HAIR
-	style = STYLE_HATHATHAT
 
 /obj/item/clothing/head/hairflower
 	name = "hair flower pin"
@@ -55,7 +54,6 @@
 	icon_state = "hasturhood"
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
-	style = STYLE_HATHATHAT
 	style_coverage = COVERS_WHOLE_FACE
 
 /obj/item/clothing/head/nursehat
@@ -167,7 +165,6 @@
 	name = "beaver hat"
 	icon_state = "beaver_hat"
 	desc = "Soft felt makes this hat both comfortable and elegant."
-	style = STYLE_HATHATHAT
 
 /obj/item/clothing/head/boaterhat
 	name = "boater hat"
@@ -178,13 +175,11 @@
 	name = "fedora"
 	icon_state = "fedora"
 	desc = "A sharp, stylish hat."
-	style = STYLE_HATHATHAT
 
 /obj/item/clothing/head/feathertrilby
 	name = "feather trilby"
 	icon_state = "feather_trilby"
 	desc = "A sharp, stylish hat with a feather."
-	style = STYLE_HATHATHAT
 
 /obj/item/clothing/head/fez
 	name = "fez"
@@ -278,6 +273,23 @@
 		rad = 0
 	)
 
+/obj/item/clothing/head/onestar
+	name = "One Star officer cap"
+	desc = "A fancy red and blue cap sporting the One Star insignia. It's made out of a strange material that feels like it could stop a bullet."
+	icon_state = "onestar_hat"
+	siemens_coefficient = 1
+	price_tag = 1000
+	spawn_blacklisted = TRUE
+	style = STYLE_HIGH
+	armor = list(
+		melee = 10,
+		bullet = 35,
+		energy = 35,
+		bomb = 10,
+		bio = 5,
+		rad = 5
+	)
+
 /obj/item/clothing/head/ranger
 	name = "ranger hat"
 	desc = "A rather generic sergeant hat. On second look it's actually a ranger hat."
@@ -346,4 +358,3 @@
 		rad = 0
 	)
 	style_coverage = COVERS_WHOLE_FACE
-	style = STYLE_HATHATHAT
