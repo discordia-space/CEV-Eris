@@ -1665,7 +1665,7 @@ var/list/rank_prefix = list(\
 	if(!b_type)
 		b_type = pick(GLOB.blood_types)
 
-	if(!ismonkey(src))
+	if(!isMonkey(src))
 		while(dormant_mutations.len < STARTING_MUTATIONS)
 			var/datum/mutation/M = pick(
 				45;pick(subtypesof(/datum/mutation/t0)),
