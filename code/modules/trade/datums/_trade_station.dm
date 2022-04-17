@@ -147,7 +147,7 @@
 			var/offer_index = offer_types.Find(offer_path)
 			special_offers.Insert(offer_index, offer_path)
 			special_offers[offer_path] = offer_content
-			SStrade.offer_types.Add(offer_path)
+			SStrade.offer_types.Add(offer_path)				// For blacklisting offers from exports
 
 /datum/trade_station/proc/update_tick()
 	offer_tick()

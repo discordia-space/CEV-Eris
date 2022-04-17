@@ -1,6 +1,6 @@
 /datum/trade_station/rigvider
 	name_pool = list(
-		"HTB 'Boris'" = "Hardsuit Trade Beacon 'Boris': \"Hello there, we are hardsuit salvagers. We will be around the system for some time and we have leftover stock. We can sell some off if you want them."
+		"ATB \'Boris\'" = "Aster\'s Trade Beacon \'Boris\': \"Hello there, we are hardsuit salvagers. We will be around the system for some time and we have leftover stock. We can sell some off if you want them."
 	)
 	uid = "rigs"
 	start_discovered = FALSE

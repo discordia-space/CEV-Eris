@@ -6,6 +6,8 @@
 	bad_type = /obj/item/organ
 	spawn_tags = SPAWN_TAG_ORGAN
 
+	price_tag = 200
+
 	// Strings.
 	var/surgery_name					// A special name that replaces item name in surgery messages
 	var/organ_tag = "organ"				// Unique identifier.

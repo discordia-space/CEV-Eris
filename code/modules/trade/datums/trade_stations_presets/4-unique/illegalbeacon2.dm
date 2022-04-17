@@ -1,6 +1,6 @@
 /datum/trade_station/illegaltrader2
 	name_pool = list(
-		"NSTB 'Introversion'" = "Null-Space Trade Beacon 'Introversion'. The Trade Beacon is sending an automated message. \"Uplink established. Welcome, agent.\""
+		"NSTB \'Introversion\'" = "Null-Space Trade Beacon \'Introversion\'. The Trade Beacon is sending an automated message. \"Uplink established. Welcome, agent.\""
 	)
 	uid = "illegal2"
 	start_discovered = FALSE

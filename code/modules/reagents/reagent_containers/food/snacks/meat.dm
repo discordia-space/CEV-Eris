@@ -36,35 +36,43 @@
 	bitesize = 6
 	preloaded_reagents = list("protein" = 4, "blattedin" = 8, "diplopterum" = 7)
 
+	price_tag = 100
+
 /obj/item/reagent_containers/food/snacks/meat/roachmeat/seuche
 	name = "Seuche meat"
 	desc = "A slab of sickly-green bubbling meat cut from a seuche roach. You can already taste the hepatitis. Delicious!"
 	preloaded_reagents = list("protein" = 4, "seligitillin" = 8, "diplopterum" = 6)
+	price_tag = 150
 
 /obj/item/reagent_containers/food/snacks/meat/roachmeat/panzer
 	name = "Panzer meat"
 	desc = "A slab of sickly-green bubbling meat cut from a panzer roach. Very tough, but crunchy, Delicious!"
 	preloaded_reagents = list("protein" = 8, "blattedin" = 12, "starkellin" = 15, "diplopterum" = 4)
+	price_tag = 150
 
 /obj/item/reagent_containers/food/snacks/meat/roachmeat/fuhrer
 	name = "Fuhrer meat"
 	desc = "A glorious slab of sickly-green bubbling meat cut from a fuhrer roach. it emanates an aura of dominance. Delicious!"
 	preloaded_reagents = list("protein" = 6, "seligitillin" = 6, "fuhrerole" = 12, "diplopterum" = 6)
+	price_tag = 300
 
 /obj/item/reagent_containers/food/snacks/meat/roachmeat/kaiser
 	name = "Kaiser meat"
 	desc = "A slab of sickly-green meat of a kaiser roach, bubbling with unimaginable power. Delicious!"
 	preloaded_reagents = list("protein" = 6, "blattedin" = 12, "seligitillin" = 6, "starkellin" = 15, "fuhrerole" = 4, "diplopterum" = 6, "kaiseraurum" = 16)
+	price_tag = 1000
 
 /obj/item/reagent_containers/food/snacks/meat/roachmeat/jager
 	name = "Jager meat"
 	desc = "A slab of sickly-green bubbling meat cut from a jager roach. You swear you can see it still twitching. Delicious!"
 	preloaded_reagents = list("protein" = 6, "blattedin" = 6, "gewaltine" = 8, "diplopterum" = 2)
+	price_tag = 150
 
 /obj/item/reagent_containers/food/snacks/meat/roachmeat/kraftwerk 
 	name = "Kraftwerk meat"
 	desc = "A slab of sickly-green meat cut from a kraftwerk roach, bursting with nanite activity. Delicious!"
 	preloaded_reagents = list("protein" = 6, "blattedin" = 6, "gewaltine" = 6, "uncap nanites" = 2, "nanites" = 3)
+	price_tag = 150
 
 /obj/item/reagent_containers/food/snacks/meat/spider
 	name = "Senshi meat"
@@ -74,6 +82,8 @@
 
 	bitesize = 6
 	preloaded_reagents = list("protein" = 9, "pararein" = 8)
+
+	price_tag = 150
 
 /obj/item/reagent_containers/food/snacks/meat/spider/hunter
 	name = "Sokuryou meat"
@@ -101,6 +111,8 @@
 	center_of_mass = list("x"=17, "y"=13)
 	bitesize = 6
 	preloaded_reagents = list("protein" = 8, "carpotoxin" = 8)
+
+	price_tag = 150
 
 /obj/item/reagent_containers/food/snacks/meat/bearmeat
 	name = "bear meat"

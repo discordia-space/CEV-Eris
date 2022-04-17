@@ -30,6 +30,7 @@
 	suit_type = "industrial hardsuit"
 	desc = "A heavy, powerful rig used by construction crews and mining corporations."
 	icon_state = "engineering_rig"
+	price_tag = 350
 	armor = list(
 		melee = 50,
 		bullet = 50,
@@ -230,6 +231,7 @@ Technomancer RIG
 	icon_state = "science_rig"
 	spawn_tags = SPAWN_TAG_RIG_HAZMAT
 	rarity_value = 25
+	price_tag = 350
 	armor = list(
 		melee = 30,
 		bullet = 20,

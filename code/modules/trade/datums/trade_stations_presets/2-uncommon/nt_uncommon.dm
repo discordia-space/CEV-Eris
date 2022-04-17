@@ -1,6 +1,6 @@
 /datum/trade_station/nt_uncommon
 	name_pool = list(
-		"NTV 'Hope'" = "NeoTheology Vessel 'Hope': \"Reliable, blessed and sanctified goods for the correct price.\""
+		"NTV \'Hope\'" = "NeoTheology Vessel \'Hope\': \"Reliable, blessed, and sanctified goods for the correct price.\""
 	)
 	icon_states = "nt_cruiser"
 	uid = "nt_uncommon"

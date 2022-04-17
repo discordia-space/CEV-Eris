@@ -1,6 +1,6 @@
 /datum/trade_station/fs_factory
 	name_pool = list(
-		"FSTB 'Kaida'" = "Frozen Star Trade Beacon 'Kaida'. Maybe they have an extra batch of weapons?"
+		"FSTB \'Kaida\'" = "Frozen Star Trade Beacon \'Kaida\'. Maybe they have an extra batch of weapons?"
 	)
 	uid = "fs_guns"
 	start_discovered = FALSE

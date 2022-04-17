@@ -1,6 +1,6 @@
 /datum/trade_station/mat_refinery
 	name_pool = list(
-		"RS 'Recoll'" = "Refinery Ship 'Recoll': \"Hey! We are a small refinery looking for customers. We accept all types of ores and we sell refined materials at cheap prices aswell!\""
+		"RS \'Recoll\'" = "Refinery Ship \'Recoll\': \"Hey! We are a small refinery looking for customers. We accept all types of ores and we sell refined materials at cheap prices aswell!\""
 	)
 	uid = "materials"
 	start_discovered = TRUE

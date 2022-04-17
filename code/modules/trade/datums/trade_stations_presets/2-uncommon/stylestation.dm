@@ -40,6 +40,7 @@
 		"Extra Stylish Attire" = list(
 			/obj/item/clothing/under/johnny,
 			/obj/item/clothing/under/raider,
+			/obj/item/clothing/under/onestar,
 			/obj/item/clothing/suit/storage/detective,
 			/obj/item/clothing/suit/storage/triad,
 			/obj/item/clothing/suit/storage/akira,
@@ -70,6 +71,8 @@
 		)
 	)
 	offer_types = list(
+		///obj/item/clothing/head/onestar = offer_data("One Star officer cap", 2000, 1),
+		///obj/item/clothing/suit/storage/greatcoat/onestar = offer_data("One Star officer coat", 4000, 1),
 		/datum/reagent/alcohol/changelingsting = offer_data("Changeling Sting bottle (60u)", 1500, 1),
 		/datum/reagent/alcohol/longislandicedtea = offer_data("Long Island Iced Tea bottle (60u)", 1500, 1),
 		/datum/reagent/alcohol/neurotoxin = offer_data("Neurotoxin bottle (60u)", 2500, 1),

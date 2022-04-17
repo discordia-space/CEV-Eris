@@ -81,8 +81,10 @@
 				explode()
 				return
 
+/obj/structure/reagent_dispensers/get_item_cost()
+	var/ratio = reagents.total_volume / reagents.maximum_volume
 
-
+	return ..() + round(contents_cost * ratio)
 
 //Dispensers
 /obj/structure/reagent_dispensers/watertank

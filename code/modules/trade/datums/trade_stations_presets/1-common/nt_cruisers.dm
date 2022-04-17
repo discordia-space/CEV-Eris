@@ -1,6 +1,6 @@
 /datum/trade_station/nt_cruisers
 	name_pool = list(
-		"NTV 'Faith'" = "NeoTheology Vessel 'Faith': \"The most holy purveyors of ecclesiarchic goods!\"",
+		"NTV \'Faith\'" = "NeoTheology Vessel \'Faith\': \"The most holy purveyors of ecclesiarchic goods!\"",
 	)
 	icon_states = "nt_cruiser"
 	uid = "nt_basic"

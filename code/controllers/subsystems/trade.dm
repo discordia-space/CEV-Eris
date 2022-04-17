@@ -14,8 +14,9 @@ SUBSYSTEM_DEF(trade)
 	var/list/datum/trade_station/discovered_stations = list()
 
 	// For exports
-	var/list/offer_types = list()		// List of offer datums
-	//var/list/hockable_tags = list()	// List of spawn tags of hockable items
+	var/list/offer_types = list()						// List of offer datums
+	var/list/hockable_tags = list(SPAWN_EXCELSIOR)		// List of spawn tags of hockable items
+	var/list/junk_tags = list(SPAWN_JUNK)				// List of spawn tags of junk items
 
 /datum/controller/subsystem/trade/proc/DiscoverAllTradeStations()
 	discovered_stations = all_stations.Copy()
@@ -141,14 +142,14 @@ SUBSYSTEM_DEF(trade)
 		qdel(AM)
 	return GLOB.price_cache[path]
 
-/datum/controller/subsystem/trade/proc/get_price(atom/movable/target)
+/datum/controller/subsystem/trade/proc/get_price(atom/movable/target, is_export = FALSE)
 	. = round(get_cost(target))
 
 /datum/controller/subsystem/trade/proc/get_sell_price(path, datum/trade_station/station)
 	. = round(get_new_cost(path) * station.markdown)
 
 /datum/controller/subsystem/trade/proc/get_import_cost(path, datum/trade_station/station)
-	. = station?.get_good_price(path)
+	. = station?.get_good_price(path)								// get_good_price() gets the custom price of the item, if it exists
 	if(!.)
 		. = get_new_cost(path) ? get_new_cost(path) : 100			// Should solve the issue of items without price tags
 		var/markup = 1.2
@@ -159,28 +160,15 @@ SUBSYSTEM_DEF(trade)
 // Checks item stacks amd item containers to see if they match their base states (no more selling empty first-aid kits or split item stacks as if they were full)
 // Checks reagent containers to see if they match their base state or if they match the special offer from a station
 /datum/controller/subsystem/trade/proc/check_offer_contents(item, offer_path)
-	if(!ispath(offer_path, /datum/reagent))
-		if(istype(item, /obj/machinery/portable_atmospherics/canister))			// Air canisters can be constructed for 10 steel
-			var/obj/machinery/portable_atmospherics/canister/canister = item
-			if(canister.air_contents.total_moles > 1871.7)
-				return TRUE
-			return FALSE
-
-		if(istype(item, /obj/item/stack))						// Check if item is an item stack
-			var/obj/item/stack/item_stack = item
-			if(item_stack.amount == item_stack.max_amount)
-				return TRUE										// You can only sell items when they are at max stacks
-			return FALSE
-
-		if(istype(item, /obj/item/reagent_containers/food))		// Food check (needed because contents are populated using something other than preloaded_reagents)
-			return TRUE
-
-	if(istype(item, /obj/item/reagent_containers))					// Check if item is a reagent container
+	if(istype(item, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/current_container = item
 		var/datum/reagent/target_reagent = offer_path
 		var/target_volume = 60										// Each good requested in a reagent offer is a 60u container (container type is irrelevant)
 
 		if(!ispath(offer_path, /datum/reagent))
+			if(istype(item, /obj/item/reagent_containers/food))		// Food check (needed because contents are populated using something other than preloaded_reagents)
+				return TRUE
+
 			if(istype(item, /obj/item/reagent_containers/blood))	// Blood pack check (needed because contents are populated using something other than preloaded_reagents)
 				if(current_container.reagents?.reagent_list[1]?.id == "blood" && current_container.reagents?.reagent_list[1]?.volume >= 200)
 					return TRUE
@@ -314,7 +302,7 @@ SUBSYSTEM_DEF(trade)
 			var/item_price = get_price(item)
 			var/export_multiplier = get_export_price_multiplier(item)
 			var/export_value = item_price * export_multiplier
-			
+
 			if(export_multiplier)
 				sold_str += " [item.name]"
 				cost += export_value
@@ -333,8 +321,19 @@ SUBSYSTEM_DEF(trade)
 	if(!target)
 		return NONEXPORTABLE
 	. = EXPORTABLE
-	if(list(SPAWN_TAG_JUNK) | target.spawn_tags)
+	var/list/target_spawn_tags = params2list(target?.spawn_tags)
+	var/list/target_junk_tags = target_spawn_tags & junk_tags
+	var/list/target_hockable_tags = target_spawn_tags & hockable_tags
+
+	// Junk tags override hockable tags and offer types override both
+	if(target_hockable_tags.len)
+		. = HOCKABLE				
+	if(target_junk_tags.len)
 		. = JUNK
 	for(var/offer_type in offer_types)
 		if(istype(target, offer_type))
 			return NONEXPORTABLE
+
+// The proc that is called when the price is being asked for. Use this to refer to another object if necessary.
+/atom/movable/proc/get_item_cost(export)
+	. = price_tag

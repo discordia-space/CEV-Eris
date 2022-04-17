@@ -1,6 +1,6 @@
 /datum/trade_station/fbv_hellcat
 	name_pool = list(
-		"FBV 'Hellcat'" = "\"Greetings. This is the Hellcat. We're currently escorting the Caduceus and we will be departing the system shortly alongside them. We are willing to part with our spare supplies while we're here.\""
+		"FBV \'Hellcat\'" = "\"Greetings. This is the Hellcat. We're currently escorting the Caduceus and we will be departing the system shortly alongside them. We are willing to part with our spare supplies while we're here.\""
 	)
 	icon_states = "ihs_destroyer"
 	forced_overmap_zone = list(

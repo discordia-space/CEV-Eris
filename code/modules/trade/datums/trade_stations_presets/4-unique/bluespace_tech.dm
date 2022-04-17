@@ -1,5 +1,7 @@
 /datum/trade_station/bluespace_technical
-	name_pool = list("B-42-Alpha" = "Unknown signature, bluespace traces interfere with sensors. Unable to triangulate object.")
+	name_pool = list(
+		"B-42-Alpha" = "Unknown signature, bluespace traces interfere with sensors. Unable to triangulate object."
+	)
 	uid = "bluespace"
 	start_discovered = FALSE
 	spawn_always = TRUE
@@ -17,5 +19,5 @@
 	)
 	offer_types = list(
 		/obj/item/bluespace_crystal = offer_data("bluespace crystal", 1000, 10),
-		/obj/item/device/mmi/digital/posibrain = offer_data("positronic brain", 2500, 3)
+		/obj/item/device/mmi/digital/posibrain = offer_data("positronic brain", 5000, 2)
 	)	

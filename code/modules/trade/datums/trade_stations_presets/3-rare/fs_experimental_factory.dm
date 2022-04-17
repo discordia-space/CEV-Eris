@@ -1,6 +1,6 @@
 /datum/trade_station/fs_experimental_factory
 	name_pool = list(
-		"FSTB 'Suoh'" = "Frozen Star Trade Beacon 'Suoh': \"Hello there! We are looking for beta testers of our experimental weapons and upgrades. Sign up now!\""
+		"FSTB \'Suoh\'" = "Frozen Star Trade Beacon \'Suoh\': \"Hello there! We are looking for beta testers of our experimental weapons and upgrades. Sign up now!\""
 	)
 	uid = "fs_experimental"
 	start_discovered = FALSE

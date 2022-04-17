@@ -1,6 +1,6 @@
 /datum/trade_station/McRonalds
 	name_pool = list(
-		"McTB 'Dionis'" = "'McRonalds' Trade Beacon 'Dionis'. You hope they still have Happy Meals with a toy."
+		"McTB \'Dionis\'" = "\'McRonalds\' Trade Beacon \'Dionis\'. You hope they still have Happy Meals with a toy."
 	)
 	uid = "mcronalds"
 	start_discovered = FALSE
@@ -15,9 +15,9 @@
 	recommendations_needed = 1
 	inventory = list(
 		"Burgers" = list(
-			/obj/item/reagent_containers/food/snacks/bigbiteburger = custom_good_name("Big RBurger"),
-			/obj/item/reagent_containers/food/snacks/jellyburger/cherry = custom_good_name("JellyCherry RBurger"),
-			/obj/item/reagent_containers/food/snacks/tofuburger = custom_good_name("Tofu RBurger")
+			/obj/item/reagent_containers/food/snacks/bigbiteburger = good_data("Big RBurger", list(1, 3), null),
+			/obj/item/reagent_containers/food/snacks/jellyburger/cherry = good_data("JellyCherry RBurger", list(1, 3), null),
+			/obj/item/reagent_containers/food/snacks/tofuburger = good_data("Tofu RBurger", list(1, 3), null)
 		),
 		"Pizza" = list(
 			/obj/item/pizzabox/meat = good_data("Supreme Meatlover: Pizza Alliance", list(1, 3), null),

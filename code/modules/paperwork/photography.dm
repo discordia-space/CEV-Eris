@@ -16,6 +16,7 @@
 	icon_state = "film"
 	item_state = "electropack"
 	w_class = ITEM_SIZE_TINY
+	price_tag = 10
 
 
 /********
@@ -96,7 +97,7 @@ var/global/photo_count = 0
 	item_state = "briefcase"
 	can_hold = list(/obj/item/photo)
 	matter = list(MATERIAL_BIOMATTER = 4)
-
+	price_tag = 40
 
 /*********
 * camera *
@@ -111,6 +112,7 @@ var/global/photo_count = 0
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_GLASS = 2)
+	price_tag = 25
 	var/pictures_max = 10
 	var/pictures_left = 10
 	var/on = TRUE

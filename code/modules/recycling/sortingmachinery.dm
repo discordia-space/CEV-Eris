@@ -226,6 +226,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	rarity_value = 50
+	price_tag = 20
 	var/amount = 25.0
 
 

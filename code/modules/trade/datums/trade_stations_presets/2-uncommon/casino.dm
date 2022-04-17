@@ -1,6 +1,6 @@
 /datum/trade_station/gamba
 	name_pool = list(
-		"FTB 'Solntsey'" = "Free Trade Beacon 'Solntsey': \"Try your luck with our grab bag specials!\"",
+		"FTB \'Solntsey\'" = "Free Trade Beacon \'Solntsey\': \"Try your luck with our grab bag specials!\"",
 	)
 	uid = "casino"
 	start_discovered = FALSE

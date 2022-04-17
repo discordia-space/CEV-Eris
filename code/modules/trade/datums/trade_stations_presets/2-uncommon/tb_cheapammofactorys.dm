@@ -1,7 +1,7 @@
 /datum/trade_station/tb_cheapammofactory
 	name_pool = list(
-		"ATB 'Zeus'" = "Ammunition Trade Beacon 'Zeus': \"Cheap ammunition! Almost free! If we don't have it, that means it doesn't exists or it isn't legal enough!\"",
-		"AFTB 'Hispa'" = "Ammunition Factory Trade Beacon 'Hispa': \"All ammunition in existence is here! Buy all calibers, all types! Cheap as breathing!\"",
+		"FSTB \'Zeus\'" = "Frozen Star Trade Beacon \'Zeus\: \"Cheap ammunition! Almost free! If we don't have it, that means it doesn't exists or it isn't legal enough!\"",
+		"FSTB \'Hispa\'" = "Frozen Star Trade Beacon \'Hispa\': \"All ammunition in existence is here! Buy all calibers, all types! Cheap as breathing!\"",
 	)
 	uid = "fs_ammo"
 	start_discovered = FALSE

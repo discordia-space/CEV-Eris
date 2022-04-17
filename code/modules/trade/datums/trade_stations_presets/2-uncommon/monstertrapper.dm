@@ -1,7 +1,7 @@
 // roach toxin bottles defined in module/reagents/reagent_containters/glass/bottle.dm
 /datum/trade_station/trapper
 	name_pool = list(
-		"EXT 'Armitage'" = "Exterminator 'Armitage': \"Greetings, Eris. We're in a bit of a rough spot at the moment. Got any traps to spare?\"",
+		"EXTV \'Armitage\'" = "Exterminator Vessel \'Armitage\': \"Greetings, Eris. We're in a bit of a rough spot at the moment. Got any traps to spare?\"",
 	)
 	uid = "trapper"
 	start_discovered = FALSE
