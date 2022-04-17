@@ -28,6 +28,8 @@
 	twohanded = TRUE
 	var/consume_cell = TRUE
 
+	serial_type = "OR"
+
 /obj/item/gun/energy/shrapnel/consume_next_projectile()
 	if(!cell) return null
 	if(!ispath(projectile_type)) return null

@@ -17906,6 +17906,7 @@
 /obj/item/cell/medium/high,
 /obj/item/cell/medium/high,
 /obj/item/cell/medium/high,
+/obj/landmark/IH_Armoury_Gun_Serial_Printer,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/security/warden)
 "aSz" = (
@@ -52796,7 +52797,7 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/hallway/side/bridgehallway)
 "cxm" = (
-/obj/machinery/smartfridge/drinks,
+/obj/machinery/vending/drink_showcase,
 /obj/machinery/alarm{
 	pixel_y = 26
 	},

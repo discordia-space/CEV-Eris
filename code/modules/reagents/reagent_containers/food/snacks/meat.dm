@@ -74,6 +74,11 @@
 	preloaded_reagents = list("protein" = 6, "blattedin" = 6, "gewaltine" = 6, "uncap nanites" = 2, "nanites" = 3)
 	price_tag = 150
 
+/obj/item/reagent_containers/food/snacks/meat/roachmeat/benzin
+	name = "Benzin meat"
+	desc = "A slab of sickly-green meat cut from a benzin roach. Stinks of welding fuel. Delicious!"
+	preloaded_reagents = list("protein" = 4, "blattedin" = 6, "fuel" = 30)
+
 /obj/item/reagent_containers/food/snacks/meat/spider
 	name = "Senshi meat"
 	desc = "A bloated slab of sickly-green meat cut from a warrior spider. The venom just gives it more flavor. Delicious!"

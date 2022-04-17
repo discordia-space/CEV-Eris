@@ -122,6 +122,21 @@ for reference:
 	qdel(src)
 	return
 
+/obj/structure/barricade/proc/take_damage(damage)
+	health -= damage
+	if(health <= 0)
+		dismantle()
+
+/obj/structure/barricade/attack_generic(mob/M, damage, attack_message)
+	if(damage)
+		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		M.do_attack_animation(src)
+		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
+		take_damage(damage)
+	else
+		attack_hand(M)
+
 /obj/structure/barricade/ex_act(severity)
 	switch(severity)
 		if(1)
@@ -347,3 +362,18 @@ for reference:
 			qdel(src)
 			return 1
 	return 1
+
+/obj/machinery/deployable/barrier/proc/take_damage(damage)
+	health -= damage
+	if(health <= 0)
+		dismantle()
+
+/obj/machinery/deployable/barrier/attack_generic(mob/M, damage, attack_message)
+	if(damage)
+		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		M.do_attack_animation(src)
+		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
+		take_damage(damage * 1.25)
+	else
+		attack_hand(M)

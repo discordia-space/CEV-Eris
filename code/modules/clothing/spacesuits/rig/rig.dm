@@ -55,7 +55,9 @@
 
 	// Keeps track of what this rig should spawn with.
 	var/suit_type = "hardsuit"
-	var/list/initial_modules = list()
+	var/list/initial_modules = list(
+		/obj/item/rig_module/storage //Probably isn't the best way of doing this
+		)
 	var/chest_type = /obj/item/clothing/suit/space/rig
 	var/helm_type =  /obj/item/clothing/head/space/rig
 	var/boot_type =  /obj/item/clothing/shoes/magboots/rig
