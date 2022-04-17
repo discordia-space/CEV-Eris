@@ -14,11 +14,11 @@
 	matter = list(MATERIAL_STEEL = 2)
 	var/elastic
 	var/dispenser = 0
-	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
+	var/breakouttime = 2 MINUTES
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
 	var/cuff_type = "handcuffs"
 
-/obj/item/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+/obj/item/handcuffs/attack(mob/living/carbon/C, mob/living/user)
 
 	if(!user.IsAdvancedToolUser())
 		return
@@ -52,8 +52,8 @@
 		return
 	place_handcuffs(C, user, cuff_delay)
 
-/obj/item/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user, var/delay)
-	playsound(src.loc, cuff_sound, 30, 1, -2)
+/obj/item/handcuffs/proc/place_handcuffs(mob/living/carbon/target, mob/user, delay)
+	playsound(loc, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))
@@ -94,19 +94,20 @@
 	return 1
 
 var/last_chew = 0
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
-	if (A != src) return ..()
-	if (last_chew + 26 > world.time) return
+
+/mob/living/carbon/human/RestrainedClickOn(atom/A)
+	if(A != src)
+		return ..()
+	if(last_chew + 26 > world.time)
+		return
 
 	var/mob/living/carbon/human/H = A
-	if (!H.handcuffed) return
-	if (H.a_intent != I_HURT) return
-	if (H.targeted_organ != BP_MOUTH) return
-	if (H.wear_mask) return
-	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
+	if(!H.handcuffed || H.a_intent != I_HURT || H.targeted_organ != BP_MOUTH || H.wear_mask || istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket))
+		return
 
 	var/obj/item/organ/external/O = H.organs_by_name[H.hand ? BP_L_ARM : BP_R_ARM]
-	if (!O) return
+	if(!O)
+		return
 
 	var/s = SPAN_WARNING("[H.name] chews on \his [O.name]!")
 	H.visible_message(s, SPAN_WARNING("You chew on your [O.name]!"))
@@ -123,7 +124,7 @@ var/last_chew = 0
 	desc = "Plastic, disposable zipties that can be used to restrain someone."
 	icon_state = "cuff_white"
 	matter = list(MATERIAL_PLASTIC = 2)
-	breakouttime = 700 //Deciseconds = 70s, this is higher than usual ss13 because breakout time is subtracted by 1 second for every robustness stat
+	breakouttime = 1.2 MINUTE
 	cuff_sound = 'sound/weapons/cablecuff.ogg'
 	cuff_type = "zip ties"
 	elastic = 1
@@ -132,7 +133,7 @@ var/last_chew = 0
 	name = "cable restraints"
 	desc = "Looks like some cables tied together. Could be used to tie something up."
 	icon_state = "cuff_white"
-	breakouttime = 300 //Deciseconds = 30s
+	breakouttime = 1.5 MINUTE
 	cuff_sound = 'sound/weapons/cablecuff.ogg'
 	cuff_type = "cable restraints"
 	elastic = 1
@@ -161,7 +162,7 @@ var/last_chew = 0
 /obj/item/handcuffs/cable/white
 	color = "#FFFFFF"
 
-/obj/item/handcuffs/cable/attackby(var/obj/item/I, mob/user as mob)
+/obj/item/handcuffs/cable/attackby(obj/item/I, mob/user)
 	..()
 	if(istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = I
@@ -186,10 +187,25 @@ var/last_chew = 0
 	icon_state = "tape_cross"
 	item_state = null
 	icon = 'icons/obj/bureaucracy.dmi'
-	breakouttime = 200
+	breakouttime = 20 SECONDS
 	cuff_type = "duct tape"
 
 /obj/item/handcuffs/fake
 	name = "handcuffs"
 	desc = "Fake handcuffs meant for gag purposes."
-	breakouttime = 10 //
+	breakouttime = 1 SECOND
+
+/obj/item/handcuffs/hitech
+	name = "energy cuffs"
+	desc = "For containment of augmented prisoners."
+	icon_state = "ecuffs_blue"
+	matter = list(MATERIAL_PLASTEEL = 2, MATERIAL_SILVER = 1)
+	breakouttime = 3 MINUTES
+
+/obj/item/handcuffs/hitech/emp_act(severity)
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		if(H.handcuffed && H.handcuffed == src)
+			H.drop_from_inventory(src)
+			H.handcuffed = null
+			H.update_inv_handcuffed()

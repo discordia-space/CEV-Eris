@@ -14,37 +14,40 @@
 	allowed_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 
 /obj/item/implant/freedom/trigger(emote, mob/living/carbon/source)
-	if (src.uses < 1)
-		to_chat (source, "You don't feel anything")
+	if(uses < 1)
+		to_chat(source, "You don't feel anything")
 		return
-	if (emote == src.activation_emote)
-		src.uses--
+	if(emote == activation_emote)
+		uses--
 		spawn(10 MINUTES)
-			src.uses++
+			uses++
 		to_chat(source, "You feel a faint click.")
-		if (source.handcuffed && install_organ == INSTALL_HANDS)
+		if(source.handcuffed && istype(source.handcuffed, /obj/item/handcuffs/hitech))
+			source.electrocute_act(10, source.handcuffed)
+			return
+		if(source.handcuffed && install_organ == INSTALL_HANDS)
 			var/obj/item/W = source.handcuffed
 			source.handcuffed = null
 			if(source.buckled && source.buckled.buckle_require_restraints)
 				source.buckled.unbuckle_mob()
 			source.update_inv_handcuffed()
-			if (source.client)
+			if(source.client)
 				source.client.screen -= W
-			if (W)
+			if(W)
 				W.loc = source.loc
 				dropped(source)
-				if (W)
+				if(W)
 					W.layer = initial(W.layer)
-		if (source.legcuffed && install_organ == INSTALL_FOOTS)
+		if(source.legcuffed && install_organ == INSTALL_FOOTS)
 			var/obj/item/W = source.legcuffed
 			source.legcuffed = null
 			source.update_inv_legcuffed()
-			if (source.client)
+			if(source.client)
 				source.client.screen -= W
-			if (W)
+			if(W)
 				W.loc = source.loc
 				dropped(source)
-				if (W)
+				if(W)
 					W.layer = initial(W.layer)
 
 /obj/item/implant/freedom/on_install(mob/living/carbon/source, obj/item/organ/O)
@@ -56,8 +59,8 @@
 	activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
 	uses = 1
 	if(source.mind)
-		source.mind.store_memory("Freedom matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
-	to_chat(source, "The freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.")
+		source.mind.store_memory("Freedom matter implant can be activated by using the [activation_emote] emote, <B>say *[activation_emote]</B> to attempt to activate.", 0, 0)
+	to_chat(source, "The freedom implant can be activated by using the [activation_emote] emote, <B>say *[activation_emote]</B> to attempt to activate.")
 
 /obj/item/implant/freedom/get_data()
 	var/data = {"
