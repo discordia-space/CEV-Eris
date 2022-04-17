@@ -25,7 +25,7 @@
 		leader_hud_indicator = hud_indicator
 	GLOB.current_factions.Add(src)
 
-/datum/faction/proc/add_member(var/datum/antagonist/member, var/announce = TRUE)
+/datum/faction/proc/add_member(datum/antagonist/member, announce = TRUE)
 	if(!member || !member.owner || !member.owner.current || (member in members) || !member.owner.current.client)
 		return
 	if(possible_antags.len && !(member.id in possible_antags))
@@ -36,7 +36,7 @@
 	if(announce)
 		to_chat(member.owner.current, SPAN_NOTICE("You became a member of the [name]."))
 
-	if (objectives.len)
+	if(objectives.len)
 		member.set_objectives(objectives)
 
 	member.owner.current.verbs |= verbs
@@ -44,7 +44,7 @@
 	update_members()
 	return TRUE
 
-/datum/faction/proc/add_leader(var/datum/antagonist/member, var/announce = TRUE)
+/datum/faction/proc/add_leader(datum/antagonist/member, announce = TRUE)
 	if(!member || (member in leaders) || !member.owner.current)
 		return
 
@@ -61,19 +61,19 @@
 
 
 //Randomly selects leaders from the faction members
-/datum/faction/proc/pick_leaders(var/num)
+/datum/faction/proc/pick_leaders(num)
 	var/list/candidates = members.Copy()
 
 	//Specifically check equality to zero, rather than <=
 	//This allows a value of -1 to be passed, to convert everyone into a leader since it will never reach zero
 		//Just keeps going until theres no candidates left
-	while (num != 0 && candidates.len)
+	while(num != 0 && candidates.len)
 		var/datum/antagonist/A = pick_n_take(candidates)
 		add_leader(A)
 		num--
 
 
-/datum/faction/proc/remove_leader(var/datum/antagonist/member, var/announce = TRUE)
+/datum/faction/proc/remove_leader(datum/antagonist/member, announce = TRUE)
 	if(!member || !(member in leaders) || !member.owner.current)
 		return
 
@@ -87,7 +87,7 @@
 	update_members()
 	return TRUE
 
-/datum/faction/proc/remove_member(var/datum/antagonist/member, var/announce = TRUE)
+/datum/faction/proc/remove_member(datum/antagonist/member, announce = TRUE)
 	if(!(member in members))
 		return
 
@@ -124,7 +124,7 @@
 /datum/faction/proc/create_objectives()
 	set_objectives(objectives)
 
-/datum/faction/proc/set_objectives(var/list/new_objs)
+/datum/faction/proc/set_objectives(list/new_objs)
 	objectives = new_objs
 
 	for(var/datum/antagonist/A in members)
@@ -134,12 +134,15 @@
 	if(!members.len)
 		remove_faction()
 
-/datum/faction/proc/customize(var/mob/leader)
+/datum/faction/proc/customize(mob/leader)
 
-/datum/faction/proc/communicate(var/mob/user)
+/datum/faction/proc/communicate(mob/living/carbon/human/user)
 	if(!is_member(user) || user.stat != CONSCIOUS)
 		return
 
+	if(user.handcuffed && istype(user.handcuffed, /obj/item/handcuffs/hitech))
+		user.electrocute_act(10, user.handcuffed)
+		return
 	var/message = input(user, "Type message","[name] communication")
 
 	if(!message || !is_member(user) || user.stat != CONSCIOUS) //Check the same things again, to prevent message-holding
@@ -151,15 +154,15 @@
 		to_chat(A.owner.current, text)
 
 	//ghosts
-	for (var/mob/observer/ghost/M in GLOB.dead_mob_list)	//does this include players who joined as observers as well?
-		if (!(M.client))
+	for(var/mob/observer/ghost/M in GLOB.dead_mob_list)	//does this include players who joined as observers as well?
+		if(!(M.client))
 			continue
 		if((M.antagHUD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH) || is_admin(M))
 			to_chat(M, "[text] ([ghost_follow_link(user, M)])")
 
 	log_say("[user.name]/[user.key] (REV [name]) : [message]")
 
-/datum/faction/proc/is_member(var/mob/user)
+/datum/faction/proc/is_member(mob/user)
 	for(var/datum/antagonist/A in members)
 		if(A.owner.current == user)
 			return TRUE
@@ -185,7 +188,7 @@
 
 	text += "<br>"
 
-	if (objectives.len)
+	if(objectives.len)
 		var/failed = FALSE
 		var/num = 1
 
@@ -207,7 +210,7 @@
 	return text
 /datum/faction/proc/print_success_extra() //Placeholder for extra data for print_succes proc
 	return ""
-/datum/faction/proc/get_indicator(var/datum/antagonist/A)
+/datum/faction/proc/get_indicator(datum/antagonist/A)
 	if(A in leaders)
 		return get_leader_indicator()
 
@@ -224,7 +227,7 @@
 	I.plane = ABOVE_LIGHTING_PLANE
 	return I
 
-/datum/faction/proc/add_icons(var/datum/antagonist/antag)
+/datum/faction/proc/add_icons(datum/antagonist/antag)
 	if(faction_invisible || !hud_indicator || !leader_hud_indicator || !antag.owner || !antag.owner.current || !antag.owner.current.client)
 		return
 
@@ -244,7 +247,7 @@
 		antag.owner.current.client.images |= faction_icons[member]
 		member.owner.current.client.images |= I
 
-/datum/faction/proc/remove_icons(var/datum/antagonist/antag)
+/datum/faction/proc/remove_icons(datum/antagonist/antag)
 	if(!faction_invisible || !antag.owner || !antag.owner.current || !antag.owner.current.client)
 		qdel(faction_icons[antag])
 		faction_icons.Remove(antag)
@@ -274,7 +277,7 @@
 	for(var/datum/antagonist/antag in members)
 		add_icons(antag)
 
-/datum/faction/proc/update_icons(var/datum/antagonist/A)
+/datum/faction/proc/update_icons(datum/antagonist/A)
 	remove_icons(A)
 	add_icons(A)
 
@@ -335,15 +338,15 @@
 //This returns a list of all items owned, held, worn, etc by faction members
 /datum/faction/proc/get_inventory()
 	var/list/contents = list()
-	for (var/datum/antagonist/A in members)
-		if (A.owner && A.owner.current)
+	for(var/datum/antagonist/A in members)
+		if(A.owner && A.owner.current)
 			contents.Add(A.owner.current.get_contents())
 
 	return contents
 
 
 /datum/faction/proc/greet()
-	for (var/datum/antagonist/A in members)
+	for(var/datum/antagonist/A in members)
 		A.greet()
 
 
@@ -351,6 +354,6 @@
 //This is used to disqualify them from being picked by farther objectives
 /datum/faction/proc/get_targets()
 	var/list/targets = list()
-	for (var/datum/objective/O in objectives)
+	for(var/datum/objective/O in objectives)
 		targets.Add(O.get_target())
 	return targets
