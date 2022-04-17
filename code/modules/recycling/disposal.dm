@@ -514,10 +514,10 @@
 			if(prob(75))
 				I.forceMove(src)
 				for(var/mob/M in viewers(src))
-					M.visible_message("\The [I] lands in \the [src].", 3)
+					M.visible_message("\The [I] lands in \the [src].")
 			else
 				for(var/mob/M in viewers(src))
-					M.visible_message("\The [I] bounces off of \the [src]\'s rim!", 3)
+					M.visible_message("\The [I] bounces off of \the [src]\'s rim!")
 	else
 		return ..(mover, target, height, air_group)
 
