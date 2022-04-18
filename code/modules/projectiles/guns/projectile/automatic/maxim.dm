@@ -41,6 +41,7 @@
 	wield_delay = 1 SECOND
 	wield_delay_factor = 0.9 // 90 vig
 	gun_parts = list(/obj/item/part/gun/frame/maxim = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	serial_type = "REV"
 
 /obj/item/gun/projectile/automatic/maxim/update_icon()
 	..()

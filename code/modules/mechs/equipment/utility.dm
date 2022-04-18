@@ -153,9 +153,9 @@
 	mech_layer = MECH_INTERMEDIATE_LAYER
 
 	var/on = FALSE
-	var/l_max_bright = 0.9
+	var/l_max_bright = 1.2
 	var/l_inner_range = 1
-	var/l_outer_range = 6
+	var/l_outer_range = 9
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 
 /obj/item/mech_equipment/light/attack_self(var/mob/user)

@@ -25,14 +25,15 @@
 	var/drawChargeMeter = TRUE
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
 	gun_parts = list(/obj/item/part/gun/frame/miller = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)
+	serial_type = "FS"
 
 
 /obj/item/gun/projectile/revolver/pickup(mob/user)
 	. = ..()
-	if (ishuman(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/stylish = user
 		if(stylish.style > 4)
-			style_damage_multiplier = stylish.style/4 // this is so two stylish users that both shoot each other once at full slickness
+			style_damage_multiplier = stylish.style / 4 // this is so two stylish users that both shoot each other once at full slickness
 			to_chat(user, SPAN_NOTICE("You feel more confident with a revolver in your hand.")) // ends with the more stylish being the winner, commonly known as High Noon
 		else
 			style_damage_multiplier = 1
