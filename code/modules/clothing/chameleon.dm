@@ -385,3 +385,12 @@ GLOBAL_LIST_INIT(chameleon_key_to_path, list(
 	fire_sound = initial(fire_sound)
 	fire_sound_text = initial(fire_sound)
 	projectile_type = initial(projectile_type)
+
+
+/obj/item/gun/energy/chameleon/verb/change_serials()
+	set name = "Change Serial Number"
+	set category = "Object"
+	set src in usr
+
+	var/new_serial = input(usr, "Input a new serial code", "Cancel for it to appear scribbled") as text|null
+	serial_type = new_serial

@@ -225,7 +225,7 @@
 
 //	Items - contraband
 #define SPAWN_CONTRABAND "contraband"
-#define SPAWN_CHAMELEON "CHAMELEON"
+#define SPAWN_CHAMELEON "chameleon"
 //#define SPAWN_DRUG "drug"//crused
 //#define SPAWN_PILL "pill"//crused
 
