@@ -258,6 +258,15 @@
 		Proj.on_hit(loc)
 	. = ..()
 
+/obj/machinery/hivemind_machine/attack_generic(mob/M, damage, attack_message)
+	if(damage)
+		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		M.do_attack_animation(src)
+		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
+		take_damage(damage)
+	else
+		attack_hand(M)
 
 /obj/machinery/hivemind_machine/attackby(obj/item/I, mob/user)
 	if(!(I.flags & NOBLUDGEON) && I.force)

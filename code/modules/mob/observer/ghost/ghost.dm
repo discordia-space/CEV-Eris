@@ -310,11 +310,23 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/ghost/verb/Follow(atom/A as mob|obj in view(usr.client)) ////// Follow verb in context menu
 	set category ="Ghost"
-	set name = "Follow"
+	set name = ".Follow"
 	if(following)
 		stop_following()
 	var/target = A
 	ManualFollow(target)
+
+/mob/observer/ghost/verb/follow_player()
+	set category = "Ghost"
+	set name = "Follow player"
+
+	var/list/player_controlled_mobs = list()
+
+	for(var/mob/M in sortNames(SSmobs.mob_list))
+		if(M.ckey && !isnewplayer(M))
+			player_controlled_mobs.Add(M)
+
+	ManualFollow(input("Follow and haunt a player", "Follow player") as anything in player_controlled_mobs)
 
 /mob/observer/ghost/verb/follow_mob(input in getmobs()) ////// Follow mobs on list
 	set category = "Ghost"

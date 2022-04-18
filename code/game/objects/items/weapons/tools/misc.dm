@@ -52,6 +52,50 @@
 	max_upgrades = 1
 	spawn_tags = null
 
+/obj/item/tool/multitool_improvised
+	name= "improvised multitool implant"
+	desc = "A jury-rigged implant, holding cobbled-together tools. For those who are more interested in tool carrying than scared of tetanus."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "multitool_improvised"
+	force = WEAPON_FORCE_PAINFUL
+	switched_on_force = WEAPON_FORCE_PAINFUL * 0.8
+	worksound = WORKSOUND_DRIVER_TOOL
+	flags = CONDUCT
+	switched_on_qualities = list(
+		QUALITY_CUTTING = 15,
+		QUALITY_DRILLING = 5,
+		QUALITY_SCREW_DRIVING = 15,
+		QUALITY_WIRE_CUTTING = 20,
+		QUALITY_RETRACTING = 10,
+		QUALITY_BONE_SETTING = 10,
+		QUALITY_PRYING = 10,
+		QUALITY_HAMMERING = 10,
+		QUALITY_BOLT_TURNING = 20,
+		QUALITY_SHOVELING = 25,
+		QUALITY_DIGGING = 25,
+		QUALITY_EXCAVATION = 10,
+		QUALITY_SAWING = 15,
+		QUALITY_WELDING = 15,
+		QUALITY_CAUTERIZING = 10)
+	spawn_blacklisted = TRUE
+	degradation = 1.5
+	workspeed = 0.8
+
+	max_upgrades = 3
+
+	sparks_on_use = TRUE
+	eye_hazard = FALSE
+
+	use_fuel_cost = 0.1
+	max_fuel = 30
+
+	toggleable = TRUE
+	create_hot_spot = TRUE
+	glow_color = COLOR_ORANGE
+
+	heat = 2250
+
+
 /obj/item/tool/engimplant
 	name = "Engineering Omnitool"
 	desc = "An all-in-one engineering tool implant. Convenient to use and more effective than the basics, but much less efficient than customized or more specialized tools."

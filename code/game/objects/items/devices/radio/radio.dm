@@ -502,33 +502,28 @@ var/global/list/default_medbay_channels = list(
 	// what the range is in which mobs will hear the radio
 	// returns: -1 if can't receive, range otherwise
 
-	if (wires.IsIndexCut(WIRE_RECEIVE))
+	if(!listening || !on || !freq || wires.IsIndexCut(WIRE_RECEIVE))
 		return -1
-	if(!listening)
-		return -1
+
 	if(!(0 in level))
 		var/turf/position = get_turf(src)
 		if(!position || !(position.z in level))
 			return -1
+
 	if(freq in ANTAG_FREQS)
 		if(!syndie && !merc)//Checks to see if it's allowed on that frequency, based on the encryption keys
 			return -1
-	if (!on)
-		return -1
 
-	if (!freq) //recieved on main frequency
-		if (!listening)
-			return -1
-	else
-		var/accept = (freq==frequency && listening)
-		if (!accept)
-			for (var/ch_name in channels)
-				var/datum/radio_frequency/RF = secure_radio_connections[ch_name]
-				if (RF.frequency==freq && (channels[ch_name]&FREQ_LISTENING))
-					accept = 1
-					break
+	var/can_recieve = (freq == frequency)
 
-		if (!accept)
+	if(!can_recieve)
+		for(var/i in channels)
+			var/datum/radio_frequency/RF = secure_radio_connections[i]
+			if(RF && RF.frequency == freq && (channels[i] & FREQ_LISTENING))
+				can_recieve = TRUE
+				break
+
+		if(!can_recieve)
 			return -1
 	return canhear_range
 
