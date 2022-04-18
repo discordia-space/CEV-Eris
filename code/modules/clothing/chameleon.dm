@@ -58,7 +58,7 @@ GLOBAL_LIST_INIT(chameleon_key_to_path, list(
 
 /obj/item/proc/pick_disguise(mob/user)
 	var/list/options = generate_chameleon_choices(isgun(src) ? /obj/item/gun : parent_type)
-	var/obj/item/I = input(user, "Set appearance", "Available options") as anything in options
+	var/obj/item/I = input(user, "Available options", "Set appearance") as anything in options
 	if(I)
 		disguise(options[I], usr)
 
@@ -172,8 +172,9 @@ GLOBAL_LIST_INIT(chameleon_key_to_path, list(
 
 /obj/item/clothing/under/chameleon/proc/set_loadout_slot(slot, loadout)
 	var/options = generate_chameleon_choices(GLOB.chameleon_key_to_path[slot])
-	var/obj/item/I = input("","Choose a disguise") in options
-	loadout[slot] = options[I]
+	var/obj/item/I = input("Available options", "Set appearance") in options
+	if(I)
+		loadout[slot] = options[I]
 
 
 /obj/item/clothing/under/chameleon/proc/disguise_as_loadout(mob/user, loadout)
@@ -357,8 +358,11 @@ GLOBAL_LIST_INIT(chameleon_key_to_path, list(
 
 	else if(istype(copy, /obj/item/gun/projectile))
 		var/obj/item/gun/projectile/G = new copy.type(null)
-		var/obj/item/ammo_casing/AC = new G.ammo_type(null)
-		projectile_type = AC.projectile_type
+		if(G.ammo_type)
+			var/obj/item/ammo_casing/AC = new G.ammo_type(null)
+			projectile_type = AC.projectile_type ? AC.projectile_type : initial(projectile_type)
+		else
+			projectile_type = initial(projectile_type)
 
 
 /obj/item/gun/energy/chameleon/consume_next_projectile()
@@ -392,5 +396,5 @@ GLOBAL_LIST_INIT(chameleon_key_to_path, list(
 	set category = "Object"
 	set src in usr
 
-	var/new_serial = input(usr, "Input a new serial code", "Cancel for it to appear scribbled") as text|null
+	var/new_serial = input(usr, "Cancel for it to appear scribbled", "Input a new serial code") as text|null
 	serial_type = new_serial
