@@ -17,10 +17,10 @@
 	stations_recommended = list("casino")
 	inventory = list(
 		"Disk Designs" = list(
-			/obj/item/computer_hardware/hard_drive/portable/design/tools = good_data("Asters Basic Tool Pack", list(1, 10), 200),
-			/obj/item/computer_hardware/hard_drive/portable/design/misc = good_data("Asters Miscellaneous Pack", list(1, 10), 200),
-			/obj/item/computer_hardware/hard_drive/portable/design/robustcells = good_data("Asters Robustcells", list(1, 10), 200),
-			/obj/item/computer_hardware/hard_drive/portable/design/devices = good_data("Asters Devices and Instruments", list(1, 10), 200)
+			/obj/item/computer_hardware/hard_drive/portable/design/tools = good_data("Aster\'s Basic Tool Pack", list(1, 10), 200),
+			/obj/item/computer_hardware/hard_drive/portable/design/misc = good_data("Aster\'s Miscellaneous Pack", list(1, 10), 200),
+			/obj/item/computer_hardware/hard_drive/portable/design/robustcells = good_data("Aster\'s Robustcells", list(1, 10), 200),
+			/obj/item/computer_hardware/hard_drive/portable/design/devices = good_data("Aster\'s Devices and Instruments", list(1, 10), 200)
 		),
 		"Tools and Equipment" = list(
 			/obj/item/clothing/suit/storage/hazardvest,
@@ -28,32 +28,32 @@
 			/obj/item/storage/pouch/ammo,
 			/obj/item/storage/pouch/gun_part,
 			/obj/item/storage/belt/utility,
+			/obj/item/storage/hcases/parts,
 			/obj/item/device/lighting/toggleable/flashlight,
 			/obj/item/device/lighting/toggleable/flashlight/heavy,
-			/obj/item/tool/omnitool = good_data("Asters \"Munchkin 5000\"", list(1, 3), null),
-			/obj/item/tool/crowbar,
-			/obj/item/tool/screwdriver,
-			/obj/item/tool/shovel,
-			/obj/item/tool/wirecutters,
-			/obj/item/tool/wrench,
-			/obj/item/tool/weldingtool,
-			/obj/item/tool/tape_roll
+			/obj/item/tool/omnitool = good_data("Aster\'s \"Munchkin 5000\"", list(1, 3), null)
+		),
+		"Electronics" = list(
+			/obj/item/electronics/circuitboard/artist_bench,
+			/obj/item/electronics/circuitboard/miningturret,
+			/obj/item/electronics/circuitboard/vending
 		),
 		"Aster's Cells" = list(
-			/obj/item/cell/small,
-			/obj/item/cell/small/high,
-			/obj/item/cell/small/super,
-			/obj/item/cell/medium,
-			/obj/item/cell/medium/high,
-			/obj/item/cell/medium/super,
-			/obj/item/cell/large,
-			/obj/item/cell/large/high,
-			/obj/item/cell/large/super
+			/obj/item/cell/small = custom_good_price(50),
+			/obj/item/cell/small/high = custom_good_price(100),
+			/obj/item/cell/small/super = custom_good_price(150),
+			/obj/item/cell/medium = custom_good_price(100),
+			/obj/item/cell/medium/high = custom_good_price(150),
+			/obj/item/cell/medium/super = custom_good_price(200),
+			/obj/item/cell/large = custom_good_price(200),
+			/obj/item/cell/large/high = custom_good_price(400),
+			/obj/item/cell/large/super = custom_good_price(800)
 		),
 		"Mining Gear" = list(
 			/obj/machinery/mining/deep_drill,
 			/obj/item/tool/pickaxe,
-			/obj/item/tool/pickaxe/excavation
+			/obj/item/tool/pickaxe/excavation,
+			/obj/item/tool/pickaxe/jackhammer
 		),
 		"Toys" = list(
 			/obj/item/toy/balloon = good_data("Water Balloon", list(1, 50), null),
@@ -66,20 +66,6 @@
 			/obj/item/toy/bosunwhistle,
 			/obj/item/toy/figure/vagabond,
 			/obj/item/toy/figure/roach
-		),
-		"Frozen Star Accessories & Ammunition" = list(
-			/obj/item/clothing/accessory/holster,
-			/obj/item/clothing/accessory/holster/armpit,
-			/obj/item/clothing/accessory/holster/waist,
-			/obj/item/clothing/accessory/holster/hip,
-			/obj/item/ammo_magazine/slpistol,
-			/obj/item/ammo_magazine/slpistol/rubber,
-			/obj/item/ammo_magazine/pistol,
-			/obj/item/ammo_magazine/pistol/rubber,
-			/obj/item/ammo_magazine/hpistol = custom_good_amount_range(list(-1, 3)),
-			/obj/item/ammo_magazine/hpistol/rubber = custom_good_amount_range(list(-1, 5)),
-			/obj/item/ammo_magazine/ammobox/pistol,
-			/obj/item/ammo_magazine/ammobox/pistol/rubber
 		),
 		"Bags" = list(
 			/obj/item/storage/backpack/satchel,
@@ -121,6 +107,7 @@
 			/obj/item/storage/lunchbox = good_data("Lunchbox", list(1, 10), null),
 			/obj/item/storage/lunchbox/rainbow = good_data("Rainbow Lunchbox", list(1, 10), null),
 			/obj/item/storage/lunchbox/cat = good_data("Cat Lunchbox", list(1, 10), null),
+			/obj/item/contraband/poster
 		)
 	)
 	hidden_inventory = list(

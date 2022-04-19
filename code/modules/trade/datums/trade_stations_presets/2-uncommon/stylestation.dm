@@ -1,6 +1,6 @@
 /datum/trade_station/style
 	name_pool = list(
-		"FTB 'TBD'" = "Free Trade Beacon 'TBD': TBD"
+		"FTB 'White Rabbit'" = "Free Trade Beacon 'White Rabbit': \"Go down in style!\""
 	)
 	uid = "style"
 	start_discovered = FALSE

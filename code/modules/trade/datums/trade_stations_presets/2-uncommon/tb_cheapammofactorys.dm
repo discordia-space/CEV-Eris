@@ -7,7 +7,6 @@
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS
-	markdown = 0
 	offer_limit = 20
 	base_income = 0
 	wealth = 0
@@ -74,7 +73,7 @@
 			/obj/item/ammo_magazine/ammobox/lrifle_small/rubber = custom_good_name("ammunition packet (.30 Rifle rubber)")
 		),
 		"Shotgun shells" = list(
-			/obj/item/ammo_magazine/ammobox/shotgun,
+			/obj/item/ammo_magazine/ammobox/shotgun = custom_good_name("ammunition box (.50 shells)"),
 			/obj/item/ammo_magazine/ammobox/shotgun/buckshot = custom_good_name("ammunition box (.50 pellet)"),
 			/obj/item/ammo_magazine/ammobox/shotgun/beanbags = custom_good_name("ammunition box (.50 beanbag)"),
 			/obj/item/ammo_magazine/ammobox/shotgun/blanks = custom_good_name("ammunition box (.50 blank)"),

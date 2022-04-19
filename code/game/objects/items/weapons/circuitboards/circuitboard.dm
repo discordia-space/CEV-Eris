@@ -28,7 +28,7 @@
 	throw_range = 15
 	bad_type = /obj/item/electronics/circuitboard
 
-	price_tag = 150
+	price_tag = 50		// Inepxensive to produce
 
 	var/build_path
 	var/frame_type = FRAME_DEFAULT

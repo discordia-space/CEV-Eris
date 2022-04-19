@@ -31,6 +31,7 @@
 			/obj/item/rig_module/device/anomaly_scanner = good_data("Mounted Anomaly Scanner", list(1,10), null),
 			/obj/item/rig_module/device/rcd = good_data("Mounted RCD", list(1, 10), null),
 			/obj/item/rig_module/device/healthscanner = good_data("Mounted Health Scanner", list(1, 10), null),
+			/obj/item/rig_module/modular_injector,
 			/obj/item/rig_module/ai_container,
 			/obj/item/rig_module/power_sink,
 			/obj/item/rig_module/vision/meson,
@@ -44,7 +45,6 @@
 			/obj/item/rig/light = custom_good_amount_range(list(1, 5)),
 			/obj/item/rig_module/held/shield,
 			/obj/item/rig_module/datajack,
-			/obj/item/rig_module/modular_injector,
 			/obj/item/rig_module/electrowarfare_suite,
 			/obj/item/rig_module/modular_injector/combat,
 			/obj/item/rig_module/modular_injector/medical,
@@ -52,5 +52,10 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 10000, 1)		// base price: 6282 (incl. components)
+		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 10000, 1),						// base price: 6282 (incl. components)
+		/obj/item/stock_parts/capacitor/one_star = offer_data("one star capacitor", 500, 3),
+		/obj/item/stock_parts/scanning_module/one_star = offer_data("one star scanning module", 500, 3),
+		/obj/item/stock_parts/manipulator/one_star = offer_data("one star manipulator", 500, 3),
+		/obj/item/stock_parts/micro_laser/one_star = offer_data("one star micro-laser", 500, 3),
+		/obj/item/stock_parts/matter_bin/one_star = offer_data("one star matter bin", 500, 3)
 	)

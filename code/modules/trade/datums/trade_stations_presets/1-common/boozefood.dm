@@ -1,6 +1,6 @@
 /datum/trade_station/boozefood
 	name_pool = list(
-		"ATB \'Vermouth\'" = "Aster's Trade Beacon \'Vermouth\': \"Best Drinks! Best Beverages! Ingredients for your cooks! Anything that is needed for your private bars and more!\""
+		"ATB \'Vermouth\'" = "Aster's Trade Beacon \'Vermouth\': \"Best beverages, ingredients for your cooks, and anything that is needed for your private bars and more!\""
 	)
 	uid = "commissary"
 	start_discovered = TRUE

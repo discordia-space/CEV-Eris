@@ -138,12 +138,6 @@
 	name = T_BOARD("navigation console")
 	build_path = /obj/machinery/computer/navigation
 
-/obj/item/electronics/circuitboard/ordercomp
-	name = T_BOARD("supply ordering console")
-	rarity_value = 40
-	build_path = /obj/machinery/computer/supplycomp/order
-	origin_tech = list(TECH_DATA = 2)
-
 /obj/item/electronics/circuitboard/shuttle
 	spawn_blacklisted = TRUE
 	bad_type = /obj/item/electronics/circuitboard/shuttle

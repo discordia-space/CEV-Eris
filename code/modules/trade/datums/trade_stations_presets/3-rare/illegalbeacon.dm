@@ -1,6 +1,6 @@
 /datum/trade_station/illegaltrader
 	name_pool = list(
-		"NSTB \'Arau\'" = "Null-Space Trade Beacon \'Arau\'. The Trade Beacon is sending an automated message: \"Hey, buddy. Interested in our \'legal\' goods?\""
+		"NSTB \'Arau\'" = "Null-Space Trade Beacon \'Arau\'. The Trade Beacon is sending an automated message: \"Hey, buddy. Interested in our legal goods?\""
 	)
 	uid = "illegal1"
 	start_discovered = FALSE

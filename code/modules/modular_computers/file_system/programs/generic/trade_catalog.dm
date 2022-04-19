@@ -100,11 +100,8 @@
 					if(islist(good_packet))
 						pathname = good_packet["name"] ? good_packet["name"] : pathname
 
-					var/price = SStrade.get_import_cost(path, PRG.station)
-
 					.["goods"] += list(list(
 						"name" = pathname,
-						"price" = price,
 						"amount_available" = amount,
 						"index" = index
 					))
@@ -118,7 +115,7 @@
 			var/list/offer = list(
 				"station" = PRG.station.name,
 				"name" = offer_content["name"],
-				"price" = offer_content["price"],
+				"amount" = offer_content["amount"],
 				"index" = SStrade.discovered_stations.Find(PRG.station),
 				"path" = path,
 			)

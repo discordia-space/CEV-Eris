@@ -58,7 +58,8 @@
 			/obj/item/reagent_containers/syringe,
 			/obj/item/reagent_containers/hypospray/autoinjector,
 			/obj/item/bodybag,
-			/obj/item/computer_hardware/hard_drive/portable/design
+			/obj/item/computer_hardware/hard_drive/portable/design,
+			/obj/item/storage/hcases/med
 		)
 	)
 	hidden_inventory = list(
