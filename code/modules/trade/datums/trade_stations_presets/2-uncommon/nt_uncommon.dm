@@ -50,5 +50,10 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/oddity/nt/seal = offer_data("High Inquisitor's Seal", 3200, 2)
+		///obj/item/oddity/nt/seal = offer_data("High Inquisitor's Seal", 3200, 2)
+		/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_halicon = offer_data("NeoTheology Armory - Halicon Ion Rifle", 1200, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/guns/nt/nt_counselor = offer_data("NeoTheology Armory - Councelor PDW E", 800, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/nt_lightfall = offer_data("NeoTheology Armory - Lightfall Laser Gun", 800, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_regulator = offer_data("NeoTheology Armory - .50 Regulator Shotgun", 800, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_mk58 = offer_data("NeoTheology Armory - .35 MK58 Handgun Pack", 500, 1)
 	)

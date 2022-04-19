@@ -12,7 +12,7 @@
 	wealth = 0
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
-	stations_recommended = list("trapper")
+	stations_recommended = list()
 	recommendations_needed = 1
 	inventory = list(
 		"Scientific Surplus" = list(

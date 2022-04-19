@@ -18,11 +18,11 @@
 		)
 	)
 	hidden_inventory = list(
-		"" = list(
+		"@$@#" = list(
 			/obj/item/oddity/broken_necklace = good_data("strange necklace", list(1,3), 2000)
 		)
 	)
 	offer_types = list(
-		/obj/item/bluespace_crystal = offer_data("bluespace crystal", 1000, 10),
+		/obj/item/bluespace_crystal = offer_data("bluespace crystal", 500, 10),
 		/obj/item/device/mmi/digital/posibrain = offer_data("positronic brain", 5000, 2)
 	)	
