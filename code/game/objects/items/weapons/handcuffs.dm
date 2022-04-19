@@ -200,7 +200,6 @@ var/last_chew = 0
 	desc = "For containment of augmented prisoners."
 	icon_state = "ecuffs_blue"
 	matter = list(MATERIAL_PLASTEEL = 2, MATERIAL_SILVER = 1)
-	breakouttime = 3 MINUTES
 
 /obj/item/handcuffs/hitech/emp_act(severity)
 	if(ishuman(loc))
