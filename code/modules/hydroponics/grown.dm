@@ -293,10 +293,9 @@
 	if(seed.get_trait(TRAIT_SPREAD) > 0)
 		var/turf/current_turf = get_turf(user)
 		if(!locate(/obj/machinery/portable_atmospherics/hydroponics/soil/invisible) in current_turf.contents)	// Prevents infinite plant stacking
-			to_chat(user, SPAN_NOTICE("You plant the [src.name]."))
-			new /obj/machinery/portable_atmospherics/hydroponics/soil/invisible(current_turf,src.seed)
+			to_chat(user, SPAN_NOTICE("You plant the [src]."))
+			new /obj/machinery/portable_atmospherics/hydroponics/soil/invisible(current_turf, seed)
 			qdel(src)
-		return
 
 /obj/item/reagent_containers/food/snacks/grown/pre_pickup(mob/user)
 	if(!seed)
