@@ -111,9 +111,18 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 	materials = list(
 		/obj/item/stack/material/steel = 16,
 		/obj/item/stack/material/plastic = 4,
-		/obj/item/stack/material/plasteel = 2,
+		/obj/item/stack/material/plasteel = 2
 	)
 	build_time = 5 SECONDS
+
+/datum/nt_blueprint/biomatter_upgrade
+	name = "Biomatter pump upgrade"
+	build_path = /obj/item/biomatter_transfer_pump
+	materials = list(
+		/obj/item/stack/material/gold = 5,
+		/obj/item/stack/material/silver = 10,
+		/obj/item/stack/material/glass = 5
+	)
 
 /datum/nt_blueprint/machinery
 

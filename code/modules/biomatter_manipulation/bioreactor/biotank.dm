@@ -91,15 +91,16 @@
 			to_chat(user, SPAN_WARNING("You need to stand still to clean it properly."))
 		update_icon()
 	if(istype(I, /obj/item/biomatter_transfer_pump))
-		if(contents.lne > maximum_upgrades)
+		if(contents.len > maximum_upgrades)
 			to_chat(user, SPAN_NOTICE("All the upgrade ports are taken."))
 		else
-			to_chat(user, SPAN_NOTICE("You install the [i.name] into the empty upgrade ports"))
+			to_chat(user, SPAN_NOTICE("You install the [I.name] into the empty upgrade ports"))
 			transfer_per_process += TRANSFER_GAIN_PER_PIPE
 			user.drop_from_inventory(I, src)
 	if(istype(I, /obj/item/tool))
 		var/obj/item/tool/cast = I
 		if(cast.get_tool_quality(QUALITY_BOLT_TURNING))
+			to_chat(user, SPAN_NOTICE("You begin removing a pump upgrade"))
 			if(contents.len && cast.use_tool(user, src, 10 SECONDS, QUALITY_BOLT_TURNING, 40, STAT_MEC, 100))
 				to_chat(user, SPAN_NOTICE("You remove one of the biomatter pumps from the upgrade ports"))
 				transfer_per_process -= TRANSFER_GAIN_PER_PIPE
