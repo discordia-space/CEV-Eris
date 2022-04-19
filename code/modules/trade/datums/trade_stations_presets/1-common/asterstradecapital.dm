@@ -115,28 +115,25 @@
 			/mob/living/exosuit/premade/powerloader/firefighter,
 			/mob/living/exosuit/premade/powerloader/flames_blue,
 			/mob/living/exosuit/premade/powerloader/flames_red,
-			/mob/living/exosuit/premade/light,
-			/mob/living/exosuit/premade/heavy,
-			/mob/living/exosuit/premade/combat/slayer
 		),
-		"Mech Armor" = list(
+		"Exosuits - Armor" = list(
 			/obj/item/robot_parts/robot_component/armour/exosuit/plain,
 			/obj/item/robot_parts/robot_component/armour/exosuit/ablative,
 			/obj/item/robot_parts/robot_component/armour/exosuit/combat
 		),
-		"Parts" = list(
+		"Exosuits - Parts" = list(
 			/obj/item/mech_component/chassis,
 			/obj/item/mech_component/manipulators,
 			/obj/item/mech_component/sensors,
 			/obj/item/mech_component/propulsion
 		),
-		"Soft" = list(
+		"Exosuits - Software" = list(
 			/obj/item/electronics/circuitboard/exosystem/engineering,
 			/obj/item/electronics/circuitboard/exosystem/utility,
 			/obj/item/electronics/circuitboard/exosystem/medical,
 			/obj/item/electronics/circuitboard/exosystem/weapons
 		),
-		"Equipment" = list(
+		"Exosuits - Equipment" = list(
 			/obj/item/mech_equipment/mounted_system/taser,
 			/obj/item/mech_equipment/mounted_system/taser/ion,
 			/obj/item/mech_equipment/mounted_system/taser/plasma,

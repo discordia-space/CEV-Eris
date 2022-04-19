@@ -129,11 +129,11 @@
 	)
 	hidden_inventory = list(
 		"Voidsuits" = list(
-			/obj/item/clothing/suit/space/void/mining = custom_good_amount_range(list(1, 5)),
-			/obj/item/clothing/suit/space/void/engineering = custom_good_amount_range(list(1, 5)),
-			/obj/item/clothing/suit/space/void/medical = custom_good_amount_range(list(1, 5)),
-			/obj/item/clothing/suit/space/void/security = custom_good_amount_range(list(1, 5)),
-			/obj/item/clothing/suit/space/void/hazardsuit = custom_good_amount_range(list(1, 5))
+			/obj/item/clothing/suit/space/void/mining = custom_good_price(312),
+			/obj/item/clothing/suit/space/void/engineering = custom_good_price(312),
+			/obj/item/clothing/suit/space/void/medical,
+			/obj/item/clothing/suit/space/void/security = custom_good_price(520),
+			/obj/item/clothing/suit/space/void/hazardsuit = custom_good_price(312)
 		),
 		"Oberth Attire" = list(
 			/obj/item/clothing/gloves/german,

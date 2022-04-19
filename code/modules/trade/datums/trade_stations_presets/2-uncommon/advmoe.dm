@@ -55,9 +55,4 @@
 		/obj/item/slime_extract/black = offer_data("black slime extract", 20000, 1),
 		/obj/item/slime_extract/oil = offer_data("oil slime extract", 20000, 1),
 		/obj/item/slime_extract/adamantine = offer_data("adamantine slime extract", 20000, 1)
-		// /obj/item/slime_extract/bluespace
-		// /obj/item/slime_extract/pyrite
-		// /obj/item/slime_extract/cerulean
-		// /obj/item/slime_extract/sepia
-		// /obj/item/slime_extract/rainbow
 	)
