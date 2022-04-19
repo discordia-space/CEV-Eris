@@ -14,6 +14,8 @@
 #define DIRT_LVL_HIGH 3
 
 #define WEAROUT_CHANCE 50
+#define TRANSFER_GAIN_PER_PIPE 10 // amount of reagents that are transferred per tick with the help of the upgrade
+#define TRANSFER_MAX_UPGRADES 5 // amount of maximum upgrades that a pipe can have
 
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform
@@ -24,8 +26,11 @@
 	pixel_y = -4
 	var/obj/structure/biomatter_tank/biotank
 	var/obj/canister
+	var/transfer_per_process = 10
 	var/pipes_opened = FALSE
 	var/pipes_cleanness = 100
+	// so admins can mess with it if they want really
+	var/maximum_upgrades = TRANSFER_MAX_UPGRADES
 
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/Initialize()
@@ -66,7 +71,7 @@
 	if(!MS)
 		return
 	if(biotank.canister)
-		biotank.reagents.trans_to_holder(biotank.canister.reagents, 10)
+		biotank.reagents.trans_to_holder(biotank.canister.reagents, transfer_per_process)
 
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/attackby(var/obj/item/I, var/mob/user)
@@ -85,6 +90,24 @@
 		else
 			to_chat(user, SPAN_WARNING("You need to stand still to clean it properly."))
 		update_icon()
+	if(istype(I, /obj/item/biomatter_transfer_pump))
+		if(contents.lne > maximum_upgrades)
+			to_chat(user, SPAN_NOTICE("All the upgrade ports are taken."))
+		else
+			to_chat(user, SPAN_NOTICE("You install the [i.name] into the empty upgrade ports"))
+			transfer_per_process += TRANSFER_GAIN_PER_PIPE
+			user.drop_from_inventory(I, src)
+	if(istype(I, /obj/item/tool))
+		var/obj/item/tool/cast = I
+		if(cast.get_tool_quality(QUALITY_BOLT_TURNING))
+			if(contents.len && cast.use_tool(user, src, 10 SECONDS, QUALITY_BOLT_TURNING, 40, STAT_MEC, 100))
+				to_chat(user, SPAN_NOTICE("You remove one of the biomatter pumps from the upgrade ports"))
+				transfer_per_process -= TRANSFER_GAIN_PER_PIPE
+				var/obj/item/random = pick(contents)
+				random.forceMove(get_turf(user))
+			else
+				to_chat(user, SPAN_NOTICE("There is no biomatter pump to remove"))
+
 	..()
 
 
@@ -221,6 +244,7 @@
 	platform.MS_bioreactor.metrics_screen.icon_state = initial(platform.MS_bioreactor.metrics_screen.icon_state)
 	playsound(platform.MS_bioreactor.output_port.loc, 'sound/machines/Custom_extout.ogg', 100, 1)
 	. = TRUE
+
 
 
 #undef DIRT_LVL_LOW

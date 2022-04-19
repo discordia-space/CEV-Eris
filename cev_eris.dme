@@ -1422,6 +1422,7 @@
 #include "code\modules\biomatter_manipulation\biogenerator.dm"
 #include "code\modules\biomatter_manipulation\solidifier.dm"
 #include "code\modules\biomatter_manipulation\toxic_biomass.dm"
+#include "code\modules\biomatter_manipulation\upgrades.dm"
 #include "code\modules\biomatter_manipulation\bioreactor\bioreactor.dm"
 #include "code\modules\biomatter_manipulation\bioreactor\biotank.dm"
 #include "code\modules\biomatter_manipulation\bioreactor\console.dm"
