@@ -199,7 +199,6 @@
 		start_op_time = world.time
 		patient.updatehealth()
 		if(process_note(picked_patchnotes[current_step]))
-			current_step++
 			if(current_step + 1 > picked_patchnotes.len)
 				stop()
 				scan_user(patient)
