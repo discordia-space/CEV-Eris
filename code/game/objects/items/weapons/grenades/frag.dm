@@ -22,15 +22,13 @@
 	if(!O) return
 
 	if(num_fragments)
-		var/lying = FALSE
+		var/ontop = FALSE
 		if(isturf(src.loc))
 			for(var/mob/living/M in O)
-				//lying on a frag grenade while the grenade is on the ground causes you to absorb most of the shrapnel.
-				//you will most likely be dead, but others nearby will be spared the fragments that hit you instead.
-				if(M.lying)
-					lying = TRUE
+				ontop = TRUE
+				break
 
-		if(!lying)
+		if(!ontop)
 			fragment_explosion(O, spread_range, fragment_type, num_fragments, fragment_damage, damage_step)
 		else
 			fragment_explosion(O, 0, fragment_type, num_fragments, fragment_damage, damage_step)
