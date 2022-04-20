@@ -344,10 +344,6 @@
 		H.client.screen += global_hud.druggy
 	else
 		H.see_in_dark = (H.sight == SEE_TURFS|SEE_MOBS|SEE_OBJS) ? 8 : min(darksight + H.equipment_darkness_modifier, 8)
-		if(get_active_mutation(H, MUTATION_NIGHT_VISION))
-			H.see_in_dark = max(H.see_in_dark, 7)
-			H.see_invisible = max(H.see_invisible, SEE_INVISIBLE_NOLIGHTING)
-			H.client.screen += global_hud.nvg
 
 	if(H.eye_blurry)
 		H.client.screen += global_hud.blurry

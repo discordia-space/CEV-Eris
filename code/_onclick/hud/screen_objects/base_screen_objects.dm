@@ -1307,13 +1307,17 @@ obj/screen/fire/DEADelize()
 	var/mob/living/carbon/human/H = parentmob
 	if(istype(H.glasses, /obj/item/clothing/glasses))
 		var/obj/item/clothing/glasses/G = H.glasses
-		if (G.active && G.overlay)//check here need if someone want call this func directly
+		if(G.active && G.overlay)//check here need if someone want call this func directly
 			overlays |= G.overlay
 
 	if(istype(H.wearing_rig,/obj/item/rig))
 		var/obj/item/clothing/glasses/G = H.wearing_rig.getCurrentGlasses()
-		if (G && H.wearing_rig.visor.active)
+		if(G && H.wearing_rig.visor.active)
 			overlays |= G.overlay
+	
+	if(get_active_mutation(H, MUTATION_NIGHT_VISION))
+		overlays |= global_hud.nvg
+
 
 //-----------------------toggle_invetory------------------------------
 /obj/screen/toggle_invetory
