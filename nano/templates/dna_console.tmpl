@@ -24,9 +24,16 @@
 		{{else}}
 			<tr><td>Mutations: Not found.</td></tr>
 		{{/if}}
-		<br>
-		<hr>
-		<tr><td>{{:helper.link('Save personal enzymes', null, {'save_pe' : 1})}}</td></tr>
-		<tr><td>{{:helper.link('Save mutations', null, {'save_ue' : 1})}}</td></tr>
 	</table>
 {{/if}}
+
+<br>
+<hr>
+<tr><td>{{:helper.link('Save personal enzymes', 'link', {'save_pe' : 1}, data.occupied ? null : 'disabled')}}</td></tr>
+<tr><td>{{:helper.link('Save mutations', 'circle-plus', {'save_ue' : 1}, data.occupied ? null : 'disabled')}}</td></tr>
+<tr><td>{{:helper.link('Eject disc','eject',{'eject' : 1}, data.disc_inserted ? null : 'disabled')}}</td></tr>
+
+<h2>Chrysalis Log:</h2>
+<div class='statusDisplayRecords' style='height:200px;font-size:82%;overflow-y:scroll;clear:both;'>
+	{{:data.log}}
+</div>

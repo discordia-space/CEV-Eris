@@ -1,5 +1,5 @@
 /obj/machinery/cryo_slab
-	name = "Chrysalis"
+	name = "Chrysalis Pod"
 	desc = "Stationary dna sequencer."
 	icon = 'icons/obj/eris_genetics.dmi'
 	icon_state = "cybercoffin_open"

@@ -1,28 +1,25 @@
+<b>Currently selected DNA sequence</b>:
+<table style="width:100%">
+	<tr>
+		<th>Pattern</th>
+		<th style="width:70%">Description</th>
+	</tr>
+	<tr class="candystripe">
+		<td style="background-color: #8daf6a;">{{:data.name}}</td>
+		<td style="background-color: #8daf6a;">{{:data.desc}}</td>
+	</tr>
+</table>
+
+<br>
+<hr>
+{{:helper.link('Produce imprinter', 'circle-plus', {'make_meat_cube' : 1}, data.can_print ? null : 'disabled')}}
+{{:helper.link('Produce antidot', 'circle-plus', {'make_worm_cube' : 1}, data.can_print ? null : 'disabled')}}
+{{:helper.link('Eject disc','eject',{'eject' : 1}, data.disc_inserted ? null : 'disabled')}}
+<br>
 {{if data.have_files}}
-	<b>Currently selected DNA sequence</b>:
-	<table style="width:100%">
-		<tr>
-			<th>Pattern</th>
-			<th style="width:70%">Description</th>
-		</tr>
-		<tr class="candystripe">
-			<td style="background-color: #8daf6a;">{{:data.name}}</td>
-			<td style="background-color: #8daf6a;">{{:data.desc}}</td>
-		</tr>
-	</table>
-
-	<div class="item">
-		{{:helper.link('Produce gene imprinter', 'circle-plus', {'make_meat_cube' : 1}, data.can_print ? null : 'disabled')}}
-	</div>
-
-	<div class="item">
-		{{:helper.link('Produce cleansing substrate', 'circle-plus', {'make_worm_cube' : 1}, data.can_print ? null : 'disabled')}}
-	</div>
-
-	<div align="center" style="font-size: large; font-weight: bold;">
+	<div align="center" class='item' style="font-size: large; font-weight: bold;">
 		Compatible DNA sequences:
 	</div>
-
 	<table class='wideTable'><tbody>
 		{{for data.files}}
 			<tr><td>
@@ -36,3 +33,7 @@
 	</div>
 {{/if}}
 
+<h2>Regurgitator Log:</h2>
+<div class='statusDisplayRecords' style='height:200px;font-size:82%;overflow-y:scroll;clear:both;'>
+	{{:data.log}}
+</div>

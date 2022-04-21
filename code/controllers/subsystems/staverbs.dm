@@ -168,6 +168,9 @@ SUBSYSTEM_DEF(statverbs)
 				SPAN_DANGER("[user] breaks the access encryption on [target]!"),
 				"You break the access encryption on [target]"
 			)
+			if(istype(target, /obj/machinery/dna/console))
+				var/obj/machinery/dna/D = target
+				D.on_hacked()
 		else
 			keyboardsound.stop()
 			keyboardsound = null

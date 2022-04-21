@@ -1,6 +1,6 @@
 /obj/item/electronics/circuitboard/dna_console
 	name = T_BOARD("chrysalis controller")
-	build_path = /obj/machinery/dna_console
+	build_path = /obj/machinery/dna/console
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 3, TECH_BIO = 2)
 	req_components = list(
@@ -19,7 +19,7 @@
 
 /obj/item/electronics/circuitboard/moeballs_printer
 	name = T_BOARD("regurgitator")
-	build_path = /obj/machinery/moeballs_printer
+	build_path = /obj/machinery/dna/moeballs_printer
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 3, TECH_BIO = 4)
 	req_components = list(

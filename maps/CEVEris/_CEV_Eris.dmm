@@ -49411,7 +49411,7 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/lab)
 "coc" = (
-/obj/machinery/dna_console,
+/obj/machinery/dna/console,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -91929,7 +91929,7 @@
 /turf/simulated/open,
 /area/eris/maintenance/section4deck1central)
 "emk" = (
-/obj/machinery/moeballs_printer,
+/obj/machinery/dna/moeballs_printer,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/medical/genetics)
 "emm" = (
