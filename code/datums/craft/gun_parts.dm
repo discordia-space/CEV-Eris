@@ -21,9 +21,18 @@
 	var/barrel = /obj/item/part/gun/barrel
 	var/barrel_attached = FALSE
 
-/obj/item/part/gun/frame/New(loc, junk)
+/obj/item/part/gun/frame/New(loc)
 	..()
-	if(junk)
+	var/spawn_with_preinstalled_parts = FALSE
+	if(istype(loc, /obj/structure/scrap_spawner))
+		spawn_with_preinstalled_parts = TRUE
+	else if(in_maintenance())
+		var/turf/T = get_turf(src)
+		for(var/atom/A in T.contents)
+			if(istype(A, /obj/spawner))
+				spawn_with_preinstalled_parts = TRUE
+
+	if(spawn_with_preinstalled_parts)
 		var/list/parts_list = list(pick(gripvars), mechanism, barrel)
 
 		parts_list -= pick(parts_list)
@@ -34,13 +43,17 @@
 			if(ispath(part, grip))
 				new part(src)
 				grip_attached = TRUE
-			if(ispath(part, barrel))
+			else if(part in gripvars)
+				var/variantnum = gripvars.Find(part)
+				result = resultvars[variantnum]
+				new part(src)
+				grip_attached = TRUE
+			else if(ispath(part, barrel))
 				new part(src)
 				barrel_attached = TRUE
-			if(ispath(part, mechanism))
+			else if(ispath(part, mechanism))
 				new part(src)
 				mechanism_attached = TRUE
-
 
 /obj/item/part/gun/frame/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/part/gun/grip))
@@ -86,9 +99,9 @@
 				eject_item(toremove, user)
 				if(istype(toremove, grip))
 					grip_attached = FALSE
-				if(istype(toremove, barrel))
+				else if(istype(toremove, barrel))
 					barrel_attached = FALSE
-				if(istype(toremove, mechanism))
+				else if(istype(toremove, mechanism))
 					mechanism_attached = FALSE
 
 	return ..()
