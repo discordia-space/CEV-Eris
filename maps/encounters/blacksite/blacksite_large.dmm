@@ -34,12 +34,6 @@
 	},
 /turf/space,
 /area/space)
-"ak" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "13,2"
-	},
-/turf/space,
-/area/space)
 "an" = (
 /obj/machinery/shower{
 	dir = 8
@@ -244,12 +238,6 @@
 	icon_state = "7,3"
 	},
 /area/space)
-"cl" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "6,1";
-	opacity = 0
-	},
-/area/space)
 "cm" = (
 /obj/structure/filingcabinet/filingcabinet{
 	pixel_x = 11
@@ -304,12 +292,6 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
-"cI" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "10,1";
-	opacity = 0
-	},
 /area/space)
 "cN" = (
 /obj/structure/sign/faction/one_star{
@@ -528,18 +510,6 @@
 	},
 /turf/space,
 /area/space)
-"eR" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "5,0"
-	},
-/turf/space,
-/area/space)
-"eU" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "7,0"
-	},
-/turf/space,
-/area/space)
 "eV" = (
 /turf/simulated/shuttle/wall/science{
 	opacity = 0
@@ -722,12 +692,6 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "9,14"
 	},
-/area/space)
-"hm" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "14,2"
-	},
-/turf/space,
 /area/space)
 "hn" = (
 /obj/structure/table/onestar,
@@ -1106,6 +1070,12 @@
 	icon_state = "7,14"
 	},
 /area/space)
+"lU" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "4,1"
+	},
+/turf/space,
+/area/space)
 "lV" = (
 /obj/machinery/conveyor/east{
 	id = "mining_internal"
@@ -1178,6 +1148,12 @@
 "mH" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "1,5"
+	},
+/turf/space,
+/area/space)
+"mI" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "11,0"
 	},
 /turf/space,
 /area/space)
@@ -1279,18 +1255,6 @@
 	icon_state = "6,22"
 	},
 /area/space)
-"nS" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "13,1"
-	},
-/turf/space,
-/area/space)
-"nU" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "4,1"
-	},
-/turf/space,
-/area/space)
 "nX" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "5,13"
@@ -1337,12 +1301,6 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "8,14"
 	},
-/area/space)
-"ol" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "4,2"
-	},
-/turf/space,
 /area/space)
 "or" = (
 /turf/simulated/shuttle/wall/science{
@@ -1607,6 +1565,12 @@
 	icon_state = "11,7"
 	},
 /area/space)
+"ql" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "13,1"
+	},
+/turf/space,
+/area/space)
 "qq" = (
 /obj/structure/table/onestar,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
@@ -1681,12 +1645,6 @@
 	icon_state = "10,21"
 	},
 /area/space)
-"qW" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "12,0"
-	},
-/turf/space,
-/area/space)
 "qX" = (
 /obj/structure/bed/padded,
 /obj/item/bedsheet,
@@ -1734,6 +1692,12 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "4,11"
 	},
+/area/space)
+"ri" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "9,0"
+	},
+/turf/space,
 /area/space)
 "rj" = (
 /turf/simulated/shuttle/wall/mining{
@@ -2098,6 +2062,12 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/simulated/floor/grass,
 /area/space)
+"uX" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "13,2"
+	},
+/turf/space,
+/area/space)
 "va" = (
 /obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/steel,
@@ -2200,12 +2170,6 @@
 /obj/structure/closet/onestar/tier2/medical,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
-"wd" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "10,0"
-	},
-/turf/space,
-/area/space)
 "wf" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "14,9"
@@ -2228,6 +2192,12 @@
 	id = "mining_internal"
 	},
 /turf/simulated/floor,
+/area/space)
+"wy" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "8,1";
+	opacity = 0
+	},
 /area/space)
 "wz" = (
 /obj/machinery/mineral/processing_unit_console{
@@ -2377,6 +2347,12 @@
 "yn" = (
 /obj/crawler/crawler_wallbreaker/vertical,
 /turf/simulated/wall/untinted/onestar_reinforced,
+/area/space)
+"yp" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "4,2"
+	},
+/turf/space,
 /area/space)
 "yx" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -2682,6 +2658,12 @@
 	icon_state = "7,7"
 	},
 /area/space)
+"Br" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "12,0"
+	},
+/turf/space,
+/area/space)
 "Bv" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -2765,6 +2747,12 @@
 	icon_state = "4,19"
 	},
 /area/space)
+"Cx" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "5,1"
+	},
+/turf/space,
+/area/space)
 "Cz" = (
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
@@ -2842,6 +2830,12 @@
 	icon_state = "15,7"
 	},
 /turf/space,
+/area/space)
+"DZ" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,1";
+	opacity = 0
+	},
 /area/space)
 "Ea" = (
 /turf/simulated/shuttle/wall/mining{
@@ -2991,11 +2985,11 @@
 /obj/crawler/crawler_wallbreaker,
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/space)
-"FY" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "6,0"
+"FW" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "9,1";
+	opacity = 0
 	},
-/turf/space,
 /area/space)
 "Gd" = (
 /obj/machinery/door/airlock/mining{
@@ -3032,6 +3026,12 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"Gv" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "8,0"
+	},
+/turf/space,
 /area/space)
 "Gz" = (
 /turf/simulated/shuttle/wall/mining{
@@ -3187,18 +3187,6 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "10,13"
 	},
-/area/space)
-"HX" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "7,1";
-	opacity = 0
-	},
-/area/space)
-"If" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "9,0"
-	},
-/turf/space,
 /area/space)
 "Ig" = (
 /obj/structure/shuttle_part/mining{
@@ -3488,6 +3476,12 @@
 	icon_state = "14,5"
 	},
 /area/space)
+"Mb" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "7,0"
+	},
+/turf/space,
+/area/space)
 "Md" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "3,0"
@@ -3568,6 +3562,12 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "7,7"
 	},
+/area/space)
+"MO" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "12,1"
+	},
+/turf/space,
 /area/space)
 "MV" = (
 /obj/machinery/conveyor_switch{
@@ -3722,12 +3722,6 @@
 	},
 /turf/space,
 /area/space)
-"Oq" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "5,1"
-	},
-/turf/space,
-/area/space)
 "Or" = (
 /obj/machinery/shieldwallgen/excelsior,
 /turf/simulated/floor/wood,
@@ -3832,11 +3826,11 @@
 	},
 /turf/simulated/floor/wood,
 /area/space)
-"PS" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "15,2"
+"Qb" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,1";
+	opacity = 0
 	},
-/turf/space,
 /area/space)
 "Qd" = (
 /obj/structure/shuttle_part/science{
@@ -4094,6 +4088,12 @@
 	},
 /turf/space,
 /area/space)
+"Sm" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "10,0"
+	},
+/turf/space,
+/area/space)
 "Sq" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/shuttle/floor/mining{
@@ -4139,12 +4139,6 @@
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "1,21"
 	},
-/area/space)
-"SE" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "12,1"
-	},
-/turf/space,
 /area/space)
 "SI" = (
 /obj/structure/shuttle_part/science{
@@ -4200,12 +4194,6 @@
 	icon_state = "8,23"
 	},
 /area/space)
-"ST" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "11,0"
-	},
-/turf/space,
-/area/space)
 "SY" = (
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "13,13"
@@ -4235,6 +4223,12 @@
 "Tm" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "12,15"
+	},
+/area/space)
+"Tp" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,1";
+	opacity = 0
 	},
 /area/space)
 "Ts" = (
@@ -4287,6 +4281,12 @@
 /obj/structure/salvageable/os/server,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
+"TM" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "15,2"
+	},
+/turf/space,
+/area/space)
 "TN" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -4300,11 +4300,11 @@
 	icon_state = "15,22"
 	},
 /area/space)
-"Up" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "11,1";
-	opacity = 0
+"Ue" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "14,2"
 	},
+/turf/space,
 /area/space)
 "Uu" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -4312,18 +4312,6 @@
 	},
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "8,19"
-	},
-/area/space)
-"Uw" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "8,1";
-	opacity = 0
-	},
-/area/space)
-"UF" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "9,1";
-	opacity = 0
 	},
 /area/space)
 "UH" = (
@@ -4341,6 +4329,12 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "5,16"
 	},
+/area/space)
+"UN" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "5,0"
+	},
+/turf/space,
 /area/space)
 "UR" = (
 /turf/simulated/shuttle/wall/mining{
@@ -4393,12 +4387,6 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "7,2"
 	},
-/area/space)
-"Vk" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "8,0"
-	},
-/turf/space,
 /area/space)
 "Vl" = (
 /obj/structure/shuttle_part/mining{
@@ -4718,6 +4706,12 @@
 	icon_state = "12,1"
 	},
 /area/space)
+"Zr" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "6,0"
+	},
+/turf/space,
+/area/space)
 "Zt" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "17,20"
@@ -4771,6 +4765,12 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"ZY" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,1";
+	opacity = 0
+	},
 /area/space)
 
 (1,1,1) = {"
@@ -18722,8 +18722,8 @@ tu
 dV
 HG
 JG
-ol
-nU
+yp
+lU
 aa
 aa
 aa
@@ -18945,8 +18945,8 @@ AX
 zj
 Pa
 nE
-Oq
-eR
+Cx
+UN
 aa
 aa
 aa
@@ -19167,8 +19167,8 @@ Jb
 HL
 aX
 IX
-cl
-FY
+DZ
+Zr
 aa
 aa
 aa
@@ -19389,8 +19389,8 @@ bv
 tA
 cj
 IU
-HX
-eU
+Qb
+Mb
 aa
 aa
 aa
@@ -19611,8 +19611,8 @@ zB
 fr
 mm
 HT
-Uw
-Vk
+wy
+Gv
 aa
 aa
 aa
@@ -19833,8 +19833,8 @@ Ym
 qR
 xB
 kk
-UF
-If
+FW
+ri
 aa
 aa
 aa
@@ -20055,8 +20055,8 @@ Vu
 Vt
 Mz
 Xc
-cI
-wd
+Tp
+Sm
 aa
 aa
 aa
@@ -20277,8 +20277,8 @@ yR
 re
 Tk
 wJ
-Up
-ST
+ZY
+mI
 aa
 aa
 aa
@@ -20499,8 +20499,8 @@ rM
 Iy
 Pd
 Jp
-SE
-qW
+MO
+Br
 aa
 aa
 aa
@@ -20720,8 +20720,8 @@ ef
 SO
 wm
 Tu
-ak
-nS
+uX
+ql
 aa
 aa
 aa
@@ -20942,7 +20942,7 @@ Yu
 Rs
 Mv
 VY
-hm
+Ue
 aa
 aa
 aa
@@ -21164,7 +21164,7 @@ De
 fy
 rO
 WN
-PS
+TM
 aa
 aa
 aa
