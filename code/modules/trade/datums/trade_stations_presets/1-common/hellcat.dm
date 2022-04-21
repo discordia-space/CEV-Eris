@@ -73,6 +73,10 @@
 		)
 	)
 	hidden_inventory = list(
+		"Explosive Weapons" = list(
+			/obj/item/gun/projectile/shotgun/pump/grenade/china,
+			/obj/item/ammo_casing/grenade/weak = custom_good_amount_range(list(6,9))
+		),
 		"Basic Gun Mods" = list(
 			/obj/item/gun_upgrade/barrel/forged,
 			/obj/item/gun_upgrade/mechanism/gravcharger,
