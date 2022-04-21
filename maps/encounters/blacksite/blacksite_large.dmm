@@ -3,23 +3,24 @@
 /turf/space,
 /area/space)
 "ac" = (
-/obj/spawner/structures/os,
+/obj/machinery/shower{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "ad" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "1,14"
+	icon_state = "1,16"
 	},
 /turf/space,
 /area/space)
 "ae" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "16,22"
-	},
+/obj/structure/closet/onestar/tier2/mineral/empty,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "af" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "4,15"
+	icon_state = "4,17"
 	},
 /area/space)
 "ag" = (
@@ -29,12 +30,14 @@
 /area/space)
 "ah" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "16,4"
+	icon_state = "16,6"
 	},
 /turf/space,
 /area/space)
 "an" = (
-/obj/structure/closet/onestar/tier3/medical,
+/obj/machinery/shower{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "ar" = (
@@ -42,61 +45,66 @@
 /turf/space,
 /area/space)
 "ax" = (
-/obj/structure/closet/onestar/tier2/medical,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/obj/structure/closet/onestar/tier3,
+/turf/simulated/floor/wood,
 /area/space)
 "ay" = (
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,8"
+	icon_state = "9,10"
 	},
 /area/space)
 "aA" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "1,10"
+	icon_state = "1,12"
 	},
 /turf/space,
 /area/space)
 "aC" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "4,18"
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,20"
 	},
 /area/space)
 "aE" = (
-/obj/structure/salvageable/os/implant_container{
-	name = "implant container"
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/obj/machinery/light/floor,
+/turf/simulated/floor/wood,
 /area/space)
 "aJ" = (
-/obj/structure/closet/onestar/tier2/medical,
-/obj/spawner/prothesis_one_star,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/obj/structure/bed,
+/obj/item/bedsheet/hos,
+/turf/simulated/floor/wood,
 /area/space)
 "aK" = (
 /obj/machinery/door/window/northright,
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
+"aN" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "6,0"
+	},
+/turf/space,
+/area/space)
 "aP" = (
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "3,8"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "3,10"
 	},
 /area/space)
 "aX" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "6,1";
-	opacity = 0
+	icon_state = "6,3"
 	},
 /area/space)
 "aY" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "0,21"
+	icon_state = "0,23"
 	},
 /turf/space,
 /area/space)
 "aZ" = (
-/obj/structure/closet/onestar/tier1/medical,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/obj/structure/noticeboard{
+	pixel_y = 28
+	},
+/turf/simulated/floor/wood,
 /area/space)
 "ba" = (
 /obj/structure/shuttle_part/science{
@@ -111,16 +119,18 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "bc" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,14"
+	icon_state = "9,16"
 	},
 /area/space)
 "bf" = (
+/obj/structure/table/rack,
+/obj/item/ammo_magazine/ammobox/shotgun,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "7,7"
+	icon_state = "7,9"
 	},
 /area/space)
 "bl" = (
@@ -136,10 +146,10 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "bp" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "16,23"
+/obj/item/device/radio/intercom{
+	pixel_y = 24
 	},
-/turf/space,
+/turf/simulated/floor/wood,
 /area/space)
 "bs" = (
 /obj/structure/salvageable/os/console{
@@ -148,14 +158,8 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "bv" = (
-/obj/structure/table/steel,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "7,3"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,5"
 	},
 /area/space)
 "bA" = (
@@ -176,7 +180,7 @@
 /area/space)
 "bM" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "2,7"
+	icon_state = "2,9"
 	},
 /area/space)
 "bN" = (
@@ -184,15 +188,17 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "bP" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "12,8";
-	opacity = 0
+/obj/structure/plasticflaps/mining,
+/obj/machinery/conveyor/south{
+	id = "mining_internal"
 	},
+/turf/simulated/floor,
 /area/space)
 "bS" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "6,23"
+/obj/structure/filingcabinet/chestdrawer{
+	pixel_x = 7
 	},
+/turf/simulated/floor/wood,
 /area/space)
 "bT" = (
 /obj/structure/bed/chair/custom/onestar/red{
@@ -208,7 +214,7 @@
 /area/space)
 "ca" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "2,13"
+	icon_state = "2,15"
 	},
 /turf/space,
 /area/space)
@@ -222,30 +228,33 @@
 /area/space)
 "cg" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "11,8";
-	opacity = 0
+	icon_state = "11,10"
 	},
 /area/space)
 "cj" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "7,1";
-	opacity = 0
+/obj/structure/table/steel,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,3"
 	},
 /area/space)
 "cm" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
-	frequency = 1380;
-	id_tag = "mining_shuttle_pump";
-	power_rating = 20000
+/obj/structure/filingcabinet/filingcabinet{
+	pixel_x = 11
 	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "7,22"
+/obj/structure/filingcabinet/medical,
+/obj/structure/filingcabinet/security{
+	pixel_x = -11
 	},
+/turf/simulated/floor/wood,
 /area/space)
 "ct" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "11,10"
+	icon_state = "11,12"
 	},
 /area/space)
 "cv" = (
@@ -253,11 +262,25 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "cw" = (
-/turf/simulated/floor,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "12,6"
+	},
 /area/space)
 "cy" = (
-/obj/structure/reagent_dispensers/fueltank/huge,
-/turf/simulated/floor,
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "West APC";
+	pixel_x = -28
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/table/steel,
+/obj/machinery/recharger,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "3,7"
+	},
 /area/space)
 "cz" = (
 /obj/structure/bed/chair/custom/onestar{
@@ -339,11 +362,12 @@
 /area/space)
 "dB" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "15,8"
+	icon_state = "15,10"
 	},
 /area/space)
 "dC" = (
-/obj/machinery/conveyor/east{
+/obj/landmark/machinery/output,
+/obj/machinery/conveyor/west{
 	id = "mining_internal"
 	},
 /turf/simulated/floor,
@@ -380,18 +404,17 @@
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/space)
 "dS" = (
-/obj/machinery/power/port_gen/pacman{
-	anchored = 1
+/obj/structure/table/steel,
+/obj/item/cell/large/high,
+/obj/item/cell/large/high,
+/obj/item/cell/large/high,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "3,6"
 	},
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/turf/simulated/floor,
 /area/space)
 "dV" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "4,3"
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,5"
 	},
 /area/space)
 "ea" = (
@@ -402,28 +425,25 @@
 /area/space)
 "ec" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "1,7"
+	icon_state = "1,9"
 	},
 /turf/space,
 /area/space)
 "ed" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "2,12"
+	icon_state = "2,14"
 	},
 /turf/space,
 /area/space)
 "ef" = (
-/obj/machinery/conveyor/west{
-	id = "mining_internal"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "13,7";
+	opacity = 0
 	},
-/turf/simulated/floor,
 /area/space)
 "eh" = (
-/obj/machinery/camera/network/mining{
-	dir = 1
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "10,6"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,8"
 	},
 /area/space)
 "ei" = (
@@ -434,20 +454,17 @@
 /area/space)
 "ej" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "2,8"
+	icon_state = "2,10"
 	},
 /area/space)
 "eo" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "7,8"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,10"
 	},
 /area/space)
 "eq" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "6,5"
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "6,7"
 	},
 /area/space)
 "eu" = (
@@ -455,6 +472,7 @@
 /obj/item/paper{
 	pixel_y = 7
 	},
+/obj/item/pen/chameleon,
 /turf/simulated/floor/carpet/bcarpet,
 /area/space)
 "ev" = (
@@ -464,25 +482,9 @@
 	},
 /area/space)
 "ex" = (
-/obj/structure/table/reinforced,
-/obj/item/device/t_scanner,
-/obj/item/tank/emergency_oxygen{
-	pixel_x = -8
-	},
-/obj/item/tank/emergency_oxygen{
-	pixel_x = -8
-	},
-/obj/item/clothing/mask/breath{
-	pixel_x = 4
-	},
-/obj/item/clothing/mask/breath{
-	pixel_x = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
+/obj/machinery/atmospherics/pipe/tank/air,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "13,19"
+	icon_state = "13,21"
 	},
 /area/space)
 "eI" = (
@@ -498,9 +500,12 @@
 	},
 /area/space)
 "eM" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "13,12";
-	opacity = 0
+/obj/structure/ore_box,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "13,14"
 	},
 /area/space)
 "eN" = (
@@ -521,9 +526,10 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/space)
 "fi" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "14,21"
+/obj/structure/shuttle_part/mining{
+	icon_state = "14,23"
 	},
+/turf/space,
 /area/space)
 "fj" = (
 /obj/structure/table/standard,
@@ -533,16 +539,16 @@
 	},
 /area/space)
 "fn" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "12,15"
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "12,17"
 	},
 /area/space)
 "fr" = (
-/obj/machinery/computer/shuttle_control/explore/hulk{
+/obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,2"
+	icon_state = "8,4"
 	},
 /area/space)
 "ft" = (
@@ -557,7 +563,8 @@
 /area/space)
 "fy" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "15,3"
+	icon_state = "15,5";
+	opacity = 0
 	},
 /area/space)
 "fF" = (
@@ -569,12 +576,12 @@
 /area/space)
 "fL" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "15,14"
+	icon_state = "15,16"
 	},
 /area/space)
 "fM" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "1,20"
+	icon_state = "1,22"
 	},
 /area/space)
 "fO" = (
@@ -599,16 +606,14 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "gm" = (
-/obj/machinery/atmospherics/pipe/tank/air,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "13,21"
+/obj/structure/shuttle_part/mining{
+	icon_state = "13,23"
 	},
+/turf/space,
 /area/space)
 "gn" = (
-/obj/landmark/machinery/input,
-/obj/structure/ore_box,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "10,9"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,11"
 	},
 /area/space)
 "gp" = (
@@ -624,11 +629,11 @@
 /turf/space,
 /area/space)
 "gx" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,19"
+	icon_state = "8,21"
 	},
 /area/space)
 "gB" = (
@@ -647,15 +652,16 @@
 	},
 /area/space)
 "gH" = (
-/obj/machinery/light/small,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "11,13"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,15"
 	},
 /area/space)
 "gI" = (
-/obj/structure/ore_box,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "11,14"
+	icon_state = "11,16"
 	},
 /area/space)
 "gN" = (
@@ -684,12 +690,16 @@
 /turf/space,
 /area/space)
 "hl" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,12"
+	icon_state = "9,14"
 	},
 /area/space)
 "hn" = (
 /obj/structure/table/onestar,
+/obj/item/gun/projectile/revolver/mateba,
 /turf/simulated/floor/carpet/bcarpet,
 /area/space)
 "hq" = (
@@ -700,25 +710,14 @@
 	},
 /area/space)
 "ht" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "West APC";
-	pixel_x = -28
-	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/structure/table/steel,
-/obj/machinery/recharger,
+/obj/structure/closet/secure_closet/personal/miner,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "3,7"
+	icon_state = "3,9"
 	},
 /area/space)
 "hy" = (
-/obj/structure/closet/secure_closet/personal/miner,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "4,9"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "4,11"
 	},
 /area/space)
 "hz" = (
@@ -728,8 +727,12 @@
 	},
 /area/space)
 "hC" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "10,17"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,19"
 	},
 /area/space)
 "hK" = (
@@ -740,15 +743,14 @@
 /area/space)
 "hN" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "0,19"
+	icon_state = "0,21"
 	},
 /turf/space,
 /area/space)
 "hO" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "3,15"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "3,17"
 	},
-/turf/space,
 /area/space)
 "hQ" = (
 /obj/structure/closet/onestar/tier1/special/empty,
@@ -761,15 +763,8 @@
 /turf/space,
 /area/space)
 "hT" = (
-/obj/machinery/door/airlock/mining{
-	name = "Hulk Internal Airlock";
-	req_access = list(48)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "11,19"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,21"
 	},
 /area/space)
 "hY" = (
@@ -792,27 +787,22 @@
 /area/space)
 "ir" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "4,13"
+	icon_state = "4,15"
 	},
 /area/space)
 "iu" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "1,22"
-	},
+/obj/machinery/porta_turret/excelsior,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "ix" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "16,12"
+	icon_state = "16,14"
 	},
 /turf/space,
 /area/space)
 "iz" = (
-/obj/machinery/door/airlock/mining{
-	name = "Hulk Internal Airlock";
-	req_access = list(48)
-	},
-/turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "14,22"
 	},
 /area/space)
 "iE" = (
@@ -821,22 +811,20 @@
 	},
 /area/space)
 "iL" = (
-/obj/machinery/atmospherics/pipe/tank/air,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "12,21"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "12,23"
 	},
 /area/space)
 "iO" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "0,18"
+	icon_state = "0,20"
 	},
 /turf/space,
 /area/space)
 "iU" = (
-/obj/machinery/conveyor/southwest/ccw{
-	id = "mining_internal"
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "12,13"
 	},
-/turf/simulated/floor,
 /area/space)
 "iV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -854,13 +842,17 @@
 	},
 /area/space)
 "jb" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "13,15"
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "13,17"
 	},
 /area/space)
 "jc" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "12,18"
+/obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "12,20"
 	},
 /area/space)
 "je" = (
@@ -868,23 +860,16 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "jg" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "16,8"
-	},
-/turf/space,
+/turf/simulated/floor/tiled/cafe,
 /area/space)
 "jp" = (
-/obj/structure/table/rack,
-/obj/item/clothing/suit/space/void/mining,
-/obj/item/clothing/mask/breath,
-/obj/item/device/scanner/mining,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "2,20"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "2,22"
 	},
 /area/space)
 "js" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "14,19"
+	icon_state = "14,21"
 	},
 /area/space)
 "jx" = (
@@ -893,12 +878,10 @@
 	},
 /area/space)
 "jB" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/machinery/door/airlock/multi_tile/metal{
+	dir = 2
 	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "8,22"
-	},
+/turf/simulated/floor/wood,
 /area/space)
 "jD" = (
 /turf/simulated/shuttle/wall/science{
@@ -909,8 +892,11 @@
 /turf/simulated/floor/grass,
 /area/space)
 "jN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,11"
+	icon_state = "9,13"
 	},
 /area/space)
 "jP" = (
@@ -939,14 +925,15 @@
 	},
 /area/space)
 "ka" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/camera/network/mining{
-	dir = 1
+/obj/machinery/light,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "mining_shuttle_pump";
+	power_rating = 20000
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "7,19"
+	icon_state = "7,21"
 	},
 /area/space)
 "kd" = (
@@ -957,9 +944,8 @@
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "kf" = (
-/obj/machinery/porta_turret/mining,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "14,16"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "14,18"
 	},
 /area/space)
 "kh" = (
@@ -977,10 +963,12 @@
 	},
 /area/space)
 "kk" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "9,0"
+/obj/item/modular_computer/console/preset/civilian/professional{
+	dir = 1
 	},
-/turf/space,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,2"
+	},
 /area/space)
 "kl" = (
 /turf/simulated/shuttle/wall/science{
@@ -1004,10 +992,9 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/space)
 "kJ" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "2,2"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "2,4"
 	},
-/turf/space,
 /area/space)
 "kO" = (
 /obj/structure/bed/padded,
@@ -1034,7 +1021,7 @@
 /area/space)
 "lj" = (
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,6"
+	icon_state = "9,8"
 	},
 /area/space)
 "lk" = (
@@ -1043,13 +1030,16 @@
 	},
 /area/space)
 "ll" = (
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "3,19"
+	icon_state = "3,21"
 	},
 /area/space)
 "ls" = (
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,15"
+	icon_state = "9,17"
 	},
 /area/space)
 "lw" = (
@@ -1059,6 +1049,12 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "5,14"
 	},
+/area/space)
+"lz" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "12,1"
+	},
+/turf/space,
 /area/space)
 "lB" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -1070,12 +1066,8 @@
 	},
 /area/space)
 "lC" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/universal,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "12,20"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "12,22"
 	},
 /area/space)
 "lT" = (
@@ -1091,14 +1083,10 @@
 	},
 /area/space)
 "lV" = (
-/obj/machinery/mineral/processing_unit_console{
-	pixel_x = -3;
-	pixel_y = 27
+/obj/machinery/conveyor/east{
+	id = "mining_internal"
 	},
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "13,7";
-	opacity = 0
-	},
+/turf/simulated/floor,
 /area/space)
 "lY" = (
 /obj/machinery/door/airlock/sandstone{
@@ -1113,21 +1101,14 @@
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "mm" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "8,1";
-	opacity = 0
+/obj/structure/bed/chair,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,3"
 	},
 /area/space)
 "mn" = (
-/obj/machinery/light,
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
-	frequency = 1380;
-	id_tag = "mining_shuttle_pump";
-	power_rating = 20000
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "7,21"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,23"
 	},
 /area/space)
 "mq" = (
@@ -1137,15 +1118,14 @@
 	},
 /area/space)
 "mr" = (
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "12,16"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "12,18"
 	},
 /area/space)
 "mw" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "2,15"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "2,17"
 	},
-/turf/space,
 /area/space)
 "mx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -1161,19 +1141,17 @@
 /area/space)
 "mz" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "2,11"
+	icon_state = "2,13"
 	},
 /turf/space,
 /area/space)
 "mC" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "15,23"
-	},
-/turf/space,
+/obj/structure/closet/onestar/tier2/medical,
+/turf/simulated/floor/tiled/cafe,
 /area/space)
 "mH" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "1,3"
+	icon_state = "1,5"
 	},
 /turf/space,
 /area/space)
@@ -1195,14 +1173,18 @@
 	},
 /area/space)
 "mT" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "3,2"
+/obj/machinery/power/port_gen/pacman{
+	anchored = 1
 	},
-/turf/space,
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor,
 /area/space)
 "mV" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "16,19"
+	icon_state = "16,21"
 	},
 /area/space)
 "mZ" = (
@@ -1211,12 +1193,17 @@
 /obj/item/clothing/mask/breath,
 /obj/item/device/scanner/mining,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "2,19"
+	icon_state = "2,21"
 	},
 /area/space)
 "na" = (
+/obj/structure/table/steel,
+/obj/item/tool/pickaxe,
+/obj/item/storage/belt/utility,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/tool/multitool,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "6,7"
+	icon_state = "4,9"
 	},
 /area/space)
 "ng" = (
@@ -1226,22 +1213,23 @@
 /area/space)
 "ns" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "1,17"
+	icon_state = "1,19"
 	},
 /area/space)
 "nv" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "15,22"
+/obj/structure/toilet{
+	dir = 1
 	},
+/turf/simulated/floor/tiled/cafe,
 /area/space)
 "nz" = (
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,4"
+	icon_state = "9,6"
 	},
 /area/space)
 "nE" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "5,0"
+	icon_state = "5,2"
 	},
 /turf/space,
 /area/space)
@@ -1251,8 +1239,9 @@
 	},
 /area/space)
 "nM" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "13,18"
+/obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "13,20"
 	},
 /area/space)
 "nQ" = (
@@ -1263,7 +1252,7 @@
 /area/space)
 "nR" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "6,20"
+	icon_state = "6,22"
 	},
 /area/space)
 "nX" = (
@@ -1278,7 +1267,7 @@
 /area/space)
 "ob" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "0,17"
+	icon_state = "0,19"
 	},
 /turf/space,
 /area/space)
@@ -1289,13 +1278,18 @@
 /area/space)
 "of" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "16,13"
+	icon_state = "16,15"
 	},
 /turf/space,
 /area/space)
 "og" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "4,5"
+	icon_state = "4,7"
 	},
 /area/space)
 "ok" = (
@@ -1319,9 +1313,10 @@
 	},
 /area/space)
 "oB" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "3,10"
+/obj/structure/shuttle_part/mining{
+	icon_state = "3,12"
 	},
+/turf/space,
 /area/space)
 "oC" = (
 /turf/simulated/shuttle/wall/science{
@@ -1333,7 +1328,7 @@
 	dir = 4
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,13"
+	icon_state = "8,15"
 	},
 /area/space)
 "oG" = (
@@ -1341,23 +1336,18 @@
 /turf/simulated/wall/untinted/onestar,
 /area/space)
 "oJ" = (
-/obj/machinery/door/airlock/multi_tile/metal{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "mining_shuttle_inner";
-	locked = 1;
-	name = "Hulk External Access"
-	},
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1380;
-	master_tag = "hulk_shuttle";
-	name = "interior access button";
-	pixel_x = -25
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,20"
+	icon_state = "8,22"
 	},
+/area/space)
+"oK" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "7,0"
+	},
+/turf/space,
 /area/space)
 "oN" = (
 /turf/simulated/shuttle/wall/science{
@@ -1384,13 +1374,10 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "oU" = (
-/obj/structure/table/rack,
-/obj/item/clothing/suit/space/void/mining,
-/obj/item/clothing/mask/breath,
-/obj/item/device/scanner/mining,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "2,21"
+/obj/structure/shuttle_part/mining{
+	icon_state = "2,23"
 	},
+/turf/space,
 /area/space)
 "oV" = (
 /obj/machinery/door/airlock/sandstone{
@@ -1403,18 +1390,22 @@
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/space)
 "oX" = (
-/turf/simulated/shuttle/wall/mining,
+/obj/structure/curtain/open/shower,
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/cafe,
 /area/space)
 "oY" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "17,21"
+	icon_state = "17,23"
 	},
 /turf/space,
 /area/space)
 "pe" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "7,23"
-	},
+/obj/structure/table/rack,
+/obj/spawner/tool_upgrade/rare,
+/turf/simulated/floor/wood,
 /area/space)
 "pf" = (
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
@@ -1433,7 +1424,7 @@
 /area/space)
 "pg" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "15,13"
+	icon_state = "15,15"
 	},
 /area/space)
 "pk" = (
@@ -1469,12 +1460,9 @@
 	},
 /area/space)
 "pp" = (
-/obj/machinery/conveyor_switch/oneway{
-	id = "mining_internal";
-	name = "mining conveyor"
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "11,6"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,8";
+	opacity = 0
 	},
 /area/space)
 "pw" = (
@@ -1487,9 +1475,15 @@
 /obj/structure/railing/grey,
 /turf/simulated/floor/plating/under,
 /area/space)
+"pA" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "10,0"
+	},
+/turf/space,
+/area/space)
 "pC" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "7,18"
+	icon_state = "7,20"
 	},
 /area/space)
 "pD" = (
@@ -1504,9 +1498,10 @@
 	},
 /area/space)
 "pK" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "2,10"
+/obj/structure/shuttle_part/mining{
+	icon_state = "2,12"
 	},
+/turf/space,
 /area/space)
 "pL" = (
 /obj/machinery/light/small{
@@ -1518,13 +1513,30 @@
 /area/space)
 "pR" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "0,16"
+	icon_state = "0,18"
 	},
 /turf/space,
 /area/space)
 "pS" = (
+/obj/structure/table/reinforced,
+/obj/item/device/t_scanner,
+/obj/item/tank/emergency_oxygen{
+	pixel_x = -8
+	},
+/obj/item/tank/emergency_oxygen{
+	pixel_x = -8
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = 4
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "13,17"
+	icon_state = "13,19"
 	},
 /area/space)
 "pT" = (
@@ -1538,25 +1550,20 @@
 	},
 /area/space)
 "pV" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "1,21"
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,23"
 	},
+/turf/space,
 /area/space)
 "pW" = (
-/obj/machinery/door/airlock/mining{
-	name = "Hulk Internal Airlock";
-	req_access = list(48)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "7,15"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,17"
 	},
 /area/space)
 "qd" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "4,14"
+	icon_state = "4,16";
+	opacity = 0
 	},
 /area/space)
 "qi" = (
@@ -1565,8 +1572,8 @@
 	},
 /area/space)
 "qj" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "11,5"
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "11,7"
 	},
 /area/space)
 "qq" = (
@@ -1582,34 +1589,26 @@
 	dir = 4
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "7,13"
+	icon_state = "7,15"
 	},
 /area/space)
 "qA" = (
-/obj/machinery/power/sensor{
-	long_range = 1;
-	name_tag = "Hulk Mining Barge Grid"
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
+/obj/structure/closet/secure_closet/personal/miner,
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "5,7"
+	icon_state = "4,9"
 	},
 /area/space)
 "qB" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "15,12"
+	icon_state = "15,14"
 	},
 /area/space)
 "qI" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "1,6"
+	icon_state = "1,8"
 	},
 /turf/space,
 /area/space)
@@ -1620,7 +1619,9 @@
 /turf/space,
 /area/space)
 "qM" = (
-/obj/machinery/porta_turret/excelsior,
+/obj/structure/sign/derelict2{
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "qO" = (
@@ -1631,52 +1632,47 @@
 /area/space)
 "qP" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "7,14"
+	icon_state = "7,16"
 	},
 /area/space)
 "qR" = (
-/obj/item/modular_computer/console/preset/civilian/professional{
-	dir = 1
-	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,2"
+	icon_state = "9,4"
 	},
 /area/space)
 "qV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 8;
+	frequency = 1380;
+	id_tag = "mining_shuttle_pump";
+	power_rating = 20000
 	},
-/obj/machinery/light,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "10,19"
+	icon_state = "10,21"
 	},
 /area/space)
 "qX" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
+/obj/structure/bed/padded,
+/obj/item/bedsheet,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "6,15"
+	icon_state = "6,17"
 	},
 /area/space)
 "rb" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "2,4"
+	icon_state = "2,6";
+	opacity = 0
 	},
 /area/space)
 "rc" = (
-/obj/machinery/power/terminal{
-	dir = 1
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,6"
 	},
-/obj/structure/table/rack,
-/obj/item/stack/material/plasma{
-	amount = 25
-	},
-/turf/simulated/floor,
 /area/space)
 "rd" = (
 /obj/machinery/door/airlock/multi_tile/metal/mait{
@@ -1686,8 +1682,7 @@
 /area/space)
 "re" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "11,2";
-	opacity = 0
+	icon_state = "11,4"
 	},
 /area/space)
 "rf" = (
@@ -1705,20 +1700,15 @@
 	},
 /area/space)
 "rj" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "10,13"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,15"
 	},
 /area/space)
 "rk" = (
-/obj/structure/fuel_port{
-	pixel_y = 32
+/obj/structure/shuttle_part/mining{
+	icon_state = "4,23"
 	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "4,21"
-	},
+/turf/space,
 /area/space)
 "rl" = (
 /obj/structure/sign/derelict2{
@@ -1748,8 +1738,7 @@
 /area/space)
 "rv" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "13,7";
-	opacity = 0
+	icon_state = "13,8"
 	},
 /area/space)
 "rz" = (
@@ -1768,9 +1757,8 @@
 	},
 /area/space)
 "rC" = (
-/obj/machinery/suit_storage_unit/mining,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "5,20"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "5,22"
 	},
 /area/space)
 "rE" = (
@@ -1793,17 +1781,13 @@
 	},
 /area/space)
 "rH" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "3,18"
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "3,20"
 	},
 /area/space)
 "rK" = (
-/obj/structure/table/steel,
-/obj/item/cell/large/high,
-/obj/item/cell/large/high,
-/obj/item/cell/large/high,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "3,6"
+	icon_state = "3,8"
 	},
 /area/space)
 "rL" = (
@@ -1815,8 +1799,8 @@
 	},
 /area/space)
 "rM" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "12,3"
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,9"
 	},
 /area/space)
 "rN" = (
@@ -1825,15 +1809,19 @@
 	},
 /area/space)
 "rO" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,4"
+	},
+/area/space)
+"rR" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "15,2"
+	icon_state = "5,1"
 	},
 /turf/space,
 /area/space)
 "rS" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "4,12";
-	opacity = 0
+	icon_state = "4,14"
 	},
 /area/space)
 "rX" = (
@@ -1841,12 +1829,13 @@
 	dir = 4
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "6,13"
+	icon_state = "6,15"
 	},
 /area/space)
 "rY" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "14,12"
+/obj/structure/closet/crate,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "14,14"
 	},
 /area/space)
 "sb" = (
@@ -1865,17 +1854,9 @@
 	icon_state = "5,10"
 	},
 /area/space)
-"sh" = (
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "11,7"
-	},
-/area/space)
 "sj" = (
-/obj/machinery/conveyor_switch{
-	id = "mining_internal"
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "14,13"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "14,15"
 	},
 /area/space)
 "sk" = (
@@ -1883,40 +1864,35 @@
 	icon_state = "6,10"
 	},
 /area/space)
-"sl" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "5,6"
-	},
-/area/space)
 "st" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "7,10"
+	icon_state = "7,12"
 	},
 /area/space)
 "sw" = (
-/obj/structure/table/steel,
-/obj/item/storage/box/donkpockets,
-/obj/machinery/camera/network/mining,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "10,4"
-	},
-/area/space)
-"sy" = (
-/obj/machinery/light{
+/obj/machinery/camera/network/mining{
 	dir = 1
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "10,7"
+	icon_state = "10,6"
 	},
+/area/space)
+"sy" = (
+/obj/landmark/machinery/input,
+/obj/structure/ore_box,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,9"
+	},
+/area/space)
+"sC" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "13,2"
+	},
+/turf/space,
 /area/space)
 "sD" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "15,15"
+	icon_state = "15,17"
 	},
 /area/space)
 "sE" = (
@@ -1935,17 +1911,28 @@
 	},
 /area/space)
 "sI" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,8"
+	icon_state = "8,10"
 	},
 /area/space)
 "sK" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "6,14"
+/obj/machinery/light/small{
+	dir = 4
 	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "6,16"
+	},
+/area/space)
+"sS" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "8,0"
+	},
+/turf/space,
 /area/space)
 "sW" = (
 /turf/simulated/shuttle/wall/science{
@@ -1958,14 +1945,8 @@
 	},
 /area/space)
 "tu" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/light/small,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "4,4"
+	icon_state = "4,6"
 	},
 /area/space)
 "ty" = (
@@ -1975,9 +1956,9 @@
 /area/space)
 "tA" = (
 /obj/structure/table/steel,
-/obj/item/tool/crowbar,
+/obj/machinery/microwave,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "7,2"
+	icon_state = "7,4"
 	},
 /area/space)
 "tB" = (
@@ -1986,8 +1967,9 @@
 	},
 /area/space)
 "tF" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,17"
+	icon_state = "9,19"
 	},
 /area/space)
 "tG" = (
@@ -1997,13 +1979,10 @@
 /turf/space,
 /area/space)
 "tH" = (
-/obj/structure/table/steel,
-/obj/item/tool/pickaxe,
-/obj/item/storage/belt/utility,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/tool/multitool,
+/obj/structure/bed/padded,
+/obj/item/bedsheet,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "4,9"
+	icon_state = "6,11"
 	},
 /area/space)
 "tI" = (
@@ -2013,8 +1992,8 @@
 /turf/simulated/floor/plating/under,
 /area/space)
 "tJ" = (
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "13,16"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "13,18"
 	},
 /area/space)
 "tM" = (
@@ -2048,23 +2027,19 @@
 /turf/simulated/floor/tiled/derelict/white_red_edges,
 /area/space)
 "ue" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "3,16"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "3,18"
 	},
-/turf/space,
 /area/space)
 "uo" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
+/obj/structure/dispenser,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "5,19"
+	icon_state = "5,21"
 	},
 /area/space)
 "uA" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "12,22"
-	},
+/obj/spawner/structures/os,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "uE" = (
 /turf/simulated/floor/tiled/dark/brown_platform,
@@ -2075,8 +2050,7 @@
 /area/space)
 "uG" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "2,5";
-	opacity = 0
+	icon_state = "2,7"
 	},
 /area/space)
 "uL" = (
@@ -2085,14 +2059,13 @@
 	},
 /area/space)
 "uO" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
 	},
-/obj/machinery/light{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,16"
+	icon_state = "8,18"
 	},
 /area/space)
 "uQ" = (
@@ -2106,9 +2079,8 @@
 /turf/simulated/floor/grass,
 /area/space)
 "va" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "6,4"
-	},
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/steel,
 /area/space)
 "ve" = (
 /obj/machinery/camera/network/research_outpost,
@@ -2122,24 +2094,29 @@
 	},
 /area/space)
 "vl" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "16,21"
-	},
-/area/space)
-"vo" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "2,16"
+	icon_state = "16,23"
 	},
 /turf/space,
+/area/space)
+"vo" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "2,18"
+	},
 /area/space)
 "vt" = (
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
-"vC" = (
+"vx" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "4,22"
+	icon_state = "8,1";
+	opacity = 0
 	},
+/area/space)
+"vC" = (
+/obj/structure/closet/onestar/tier3/medical,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "vD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2166,8 +2143,8 @@
 	},
 /area/space)
 "vL" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "3,17"
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "3,19"
 	},
 /area/space)
 "vM" = (
@@ -2188,59 +2165,28 @@
 /turf/space,
 /area/space)
 "vP" = (
-/obj/structure/closet/secure_closet/personal/miner,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "3,9"
+/obj/structure/shuttle_part/mining{
+	icon_state = "3,11"
 	},
+/turf/space,
 /area/space)
 "vW" = (
-/obj/machinery/door/airlock/multi_tile/metal{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "mining_shuttle_outer";
-	locked = 1;
-	name = "Hulk External Access"
-	},
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1380;
-	master_tag = "hulk_shuttle";
-	name = "exterior access button";
-	pixel_x = -25
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "8,23"
-	},
+/obj/structure/closet/onestar/tier2/medical,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "wa" = (
-/obj/machinery/mech_recharger,
-/turf/simulated/floor/tiled/dark,
-/area/space)
-"wb" = (
-/obj/machinery/airlock_sensor{
-	frequency = 1380;
-	id_tag = "mining_shuttle_sensor";
-	pixel_y = 25
-	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 8;
-	frequency = 1380;
-	id_tag = "mining_shuttle_pump";
-	power_rating = 20000
-	},
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
-	id_tag = "hulk_shuttle";
-	pixel_x = 27;
-	req_one_access = list(13,48);
-	tag_airpump = "mining_shuttle_pump";
-	tag_chamber_sensor = "mining_shuttle_sensor";
-	tag_exterior_door = "mining_shuttle_outer";
-	tag_interior_door = "mining_shuttle_inner"
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "10,22"
+	icon_state = "7,8"
 	},
+/area/space)
+"wb" = (
+/obj/structure/salvageable/os/implant_container{
+	name = "implant container"
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "wf" = (
 /obj/structure/shuttle_part/science{
@@ -2249,9 +2195,9 @@
 /turf/space,
 /area/space)
 "wg" = (
-/obj/structure/ore_box,
-/obj/landmark/machinery/input,
-/turf/simulated/floor,
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,13"
+	},
 /area/space)
 "wl" = (
 /obj/structure/shuttle_part/science{
@@ -2260,15 +2206,19 @@
 /turf/space,
 /area/space)
 "wm" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "13,2"
+/obj/machinery/conveyor/west{
+	id = "mining_internal"
 	},
-/turf/space,
+/turf/simulated/floor,
 /area/space)
 "wz" = (
-/obj/machinery/mineral/stacking_unit_console,
+/obj/machinery/mineral/processing_unit_console{
+	pixel_x = -3;
+	pixel_y = 27
+	},
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "13,5"
+	icon_state = "13,7";
+	opacity = 0
 	},
 /area/space)
 "wA" = (
@@ -2276,20 +2226,21 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "wF" = (
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "12,6"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "12,8";
+	opacity = 0
 	},
 /area/space)
 "wI" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "16,18"
+	icon_state = "16,20"
 	},
 /area/space)
 "wJ" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "11,0"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,2";
+	opacity = 0
 	},
-/turf/space,
 /area/space)
 "wM" = (
 /obj/machinery/door/window/northleft,
@@ -2303,14 +2254,12 @@
 /turf/space,
 /area/space)
 "wW" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "11,21"
-	},
+/turf/simulated/shuttle/wall/mining,
 /area/space)
 "xa" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "13,22"
-	},
+/obj/structure/closet/onestar/tier2/medical,
+/obj/spawner/prothesis_one_star,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "xb" = (
 /obj/structure/toilet{
@@ -2321,43 +2270,56 @@
 "xk" = (
 /obj/structure/table/onestar,
 /obj/item/clothing/head/onestar,
+/obj/item/stamp/chameleon{
+	pixel_x = -4;
+	pixel_y = 11
+	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/space)
 "xp" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "1,11"
+	icon_state = "1,13"
 	},
 /turf/space,
 /area/space)
 "xv" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Hulk Mining Barge";
-	charge = 1.5e+007;
-	cur_coils = 3;
-	input_attempt = 1;
-	input_level = 750000;
-	input_level_max = 750000;
-	output_attempt = 1;
-	output_level = 750000;
-	output_level_max = 750000
+/obj/machinery/power/sensor{
+	long_range = 1;
+	name_tag = "Hulk Mining Barge Grid"
 	},
-/obj/structure/cable,
-/turf/simulated/floor,
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,7"
+	},
 /area/space)
 "xz" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "15,17"
+/obj/landmark/storyevent/midgame_stash_spawn{
+	navigation = "Mining Barge comunications room, on north-east of the barge itself."
+	},
+/turf/simulated/floor/bluegrid{
+	name = "Mainframe Base"
 	},
 /area/space)
 "xA" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "2,18"
+/obj/structure/table/rack,
+/obj/item/clothing/suit/space/void/mining,
+/obj/item/clothing/mask/breath,
+/obj/item/device/scanner/mining,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "2,20"
 	},
 /area/space)
 "xB" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "9,1";
-	opacity = 0
+/obj/structure/bed/chair,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,3"
 	},
 /area/space)
 "xF" = (
@@ -2367,8 +2329,12 @@
 /turf/space,
 /area/space)
 "xI" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "11,4"
+/obj/machinery/conveyor_switch/oneway{
+	id = "mining_internal";
+	name = "mining conveyor"
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "11,6"
 	},
 /area/space)
 "xK" = (
@@ -2415,7 +2381,7 @@
 /area/space)
 "yG" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "3,12"
+	icon_state = "3,14"
 	},
 /turf/space,
 /area/space)
@@ -2423,13 +2389,12 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "yK" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait{
-	name = "Hulk Internal Airlock";
-	req_access = list(48)
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,10"
+	icon_state = "8,12"
 	},
 /area/space)
 "yM" = (
@@ -2439,14 +2404,12 @@
 	},
 /area/space)
 "yQ" = (
-/obj/landmark/machinery/input,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "10,9"
-	},
+/obj/machinery/mineral/unloading_machine,
+/turf/simulated/floor,
 /area/space)
 "yR" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "11,3"
+	icon_state = "11,5"
 	},
 /area/space)
 "yU" = (
@@ -2463,16 +2426,15 @@
 /area/space)
 "yY" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "2,3"
+	icon_state = "2,5";
+	opacity = 0
 	},
 /area/space)
 "zd" = (
-/obj/machinery/light{
-	dir = 1
+/obj/structure/shuttle_part/mining{
+	icon_state = "3,23"
 	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "3,21"
-	},
+/turf/space,
 /area/space)
 "ze" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -2483,10 +2445,18 @@
 	},
 /area/space)
 "zj" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "5,2"
+/obj/machinery/power/terminal{
+	dir = 1
 	},
-/turf/space,
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/table/rack,
+/obj/item/stack/material/plasma{
+	amount = 25
+	},
+/turf/simulated/floor,
 /area/space)
 "zp" = (
 /mob/living/simple_animal/hostile/roomba,
@@ -2499,8 +2469,8 @@
 	},
 /area/space)
 "zs" = (
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "4,20"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "4,22"
 	},
 /area/space)
 "zz" = (
@@ -2509,9 +2479,13 @@
 	},
 /area/space)
 "zB" = (
-/obj/structure/bed/chair,
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,3"
+	icon_state = "8,5"
 	},
 /area/space)
 "zC" = (
@@ -2527,8 +2501,11 @@
 /turf/space,
 /area/space)
 "zH" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "10,12"
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,14"
 	},
 /area/space)
 "zL" = (
@@ -2546,7 +2523,7 @@
 /area/space)
 "zO" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "3,11"
+	icon_state = "3,13"
 	},
 /turf/space,
 /area/space)
@@ -2557,26 +2534,20 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "zT" = (
-/obj/machinery/door/airlock/mining{
-	name = "Hulk Internal Airlock";
-	req_access = list(48)
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,21"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/shuttle/floor/mining,
 /area/space)
 "zV" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,4"
+	icon_state = "8,6"
 	},
 /area/space)
 "Ag" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "13,10"
+	icon_state = "13,12";
+	opacity = 0
 	},
 /area/space)
 "Am" = (
@@ -2584,14 +2555,14 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "Ao" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "2,9"
+/obj/structure/shuttle_part/mining{
+	icon_state = "2,11"
 	},
+/turf/space,
 /area/space)
 "Ar" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "2,6";
-	opacity = 0
+	icon_state = "2,8"
 	},
 /area/space)
 "Au" = (
@@ -2599,15 +2570,16 @@
 /turf/simulated/floor/grass,
 /area/space)
 "Ax" = (
-/obj/structure/dispenser,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "5,21"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "5,23"
 	},
 /area/space)
 "Az" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,6"
+	icon_state = "8,8"
 	},
 /area/space)
 "AL" = (
@@ -2639,22 +2611,27 @@
 	},
 /area/space)
 "AU" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "2,23"
-	},
-/turf/space,
+/obj/structure/closet/onestar/tier1/medical,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "AX" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "5,3"
+/obj/machinery/power/smes/buildable{
+	RCon_tag = "Hulk Mining Barge";
+	charge = 1.5e+007;
+	cur_coils = 3;
+	input_attempt = 1;
+	input_level = 750000;
+	input_level_max = 750000;
+	output_attempt = 1;
+	output_level = 750000;
+	output_level_max = 750000
 	},
+/obj/structure/cable,
+/turf/simulated/floor,
 /area/space)
 "Ba" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "6,16"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,18"
 	},
 /area/space)
 "Bd" = (
@@ -2664,8 +2641,14 @@
 	},
 /area/space)
 "Bh" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "7,20"
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "mining_shuttle_pump";
+	power_rating = 20000
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,22"
 	},
 /area/space)
 "Bo" = (
@@ -2693,7 +2676,7 @@
 /area/space)
 "BI" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "0,20"
+	icon_state = "0,22"
 	},
 /turf/space,
 /area/space)
@@ -2710,29 +2693,27 @@
 /turf/space,
 /area/space)
 "BN" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/closet/secure_closet/personal/miner,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "4,7"
+	icon_state = "4,9"
 	},
 /area/space)
 "BO" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "10,5"
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,7"
 	},
 /area/space)
 "BP" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "16,16"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "16,18"
 	},
-/turf/space,
 /area/space)
 "BS" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "16,3"
+	icon_state = "16,5"
 	},
 /turf/space,
 /area/space)
@@ -2742,18 +2723,26 @@
 	},
 /area/space)
 "Ct" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "11,12"
+/obj/structure/ore_box,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "11,14"
 	},
 /area/space)
 "Cu" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "2,17"
+/obj/structure/table/rack,
+/obj/item/clothing/suit/space/void/mining,
+/obj/item/clothing/mask/breath,
+/obj/item/device/scanner/mining,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "2,19"
 	},
 /area/space)
 "Cv" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "4,17"
+/obj/machinery/camera/network/mining{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,19"
 	},
 /area/space)
 "Cz" = (
@@ -2769,7 +2758,7 @@
 /area/space)
 "CE" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "1,4"
+	icon_state = "1,6"
 	},
 /turf/space,
 /area/space)
@@ -2781,7 +2770,7 @@
 /area/space)
 "CK" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "10,15"
+	icon_state = "10,17"
 	},
 /area/space)
 "CR" = (
@@ -2792,13 +2781,20 @@
 /area/space)
 "CS" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "17,22"
+	icon_state = "17,18"
+	},
+/turf/space,
+/area/space)
+"CW" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "11,0"
 	},
 /turf/space,
 /area/space)
 "De" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "15,4"
+	icon_state = "15,6";
+	opacity = 0
 	},
 /area/space)
 "Di" = (
@@ -2807,9 +2803,9 @@
 	},
 /area/space)
 "Dr" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/effect/shuttle_landmark/eris/dock/hulk,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,21"
+	icon_state = "9,23"
 	},
 /area/space)
 "Du" = (
@@ -2823,8 +2819,11 @@
 	},
 /area/space)
 "DG" = (
-/obj/machinery/mineral/stacking_machine,
-/turf/simulated/floor/tiled/dark,
+/obj/landmark/machinery/output,
+/obj/machinery/conveyor/south{
+	id = "mining_internal"
+	},
+/turf/simulated/floor,
 /area/space)
 "DR" = (
 /obj/structure/shuttle_part/science{
@@ -2832,14 +2831,26 @@
 	},
 /turf/space,
 /area/space)
+"DX" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,1";
+	opacity = 0
+	},
+/area/space)
 "Ea" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "10,8"
+	icon_state = "10,10"
 	},
 /area/space)
 "Ec" = (
 /obj/structure/catwalk,
 /turf/simulated/floor/tiled/derelict,
+/area/space)
+"Ed" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "13,1"
+	},
+/turf/space,
 /area/space)
 "Ek" = (
 /obj/structure/shuttle_part/science{
@@ -2854,23 +2865,25 @@
 /area/space)
 "Ew" = (
 /obj/structure/table/onestar,
-/obj/item/paper_bin,
+/obj/item/paper_bin{
+	pixel_y = 3
+	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/space)
 "Ez" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "16,20"
+	icon_state = "16,22"
 	},
 /area/space)
 "EG" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "3,23"
+	icon_state = "0,17"
 	},
 /turf/space,
 /area/space)
 "EH" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "13,8"
+	icon_state = "13,10"
 	},
 /area/space)
 "EL" = (
@@ -2928,8 +2941,9 @@
 	},
 /area/space)
 "Fe" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "14,15"
+/obj/machinery/mining/deep_drill,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "14,17"
 	},
 /area/space)
 "Ff" = (
@@ -2937,20 +2951,20 @@
 /turf/space,
 /area/space)
 "Fi" = (
-/obj/landmark/machinery/output,
-/obj/machinery/conveyor/southeast/ccw{
+/obj/machinery/conveyor/southwest/ccw{
 	id = "mining_internal"
 	},
 /turf/simulated/floor,
 /area/space)
 "Fo" = (
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "10,9"
+	icon_state = "12,7"
 	},
 /area/space)
 "Fu" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "5,18"
+/obj/machinery/suit_storage_unit/mining,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,20"
 	},
 /area/space)
 "Fv" = (
@@ -2963,13 +2977,20 @@
 /turf/simulated/floor/grass,
 /area/space)
 "FC" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "6,22"
+/obj/structure/shuttle_part/mining{
+	icon_state = "17,17"
 	},
+/turf/space,
+/area/space)
+"FO" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "15,2"
+	},
+/turf/space,
 /area/space)
 "FT" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "14,10"
+	icon_state = "14,12"
 	},
 /area/space)
 "FV" = (
@@ -2977,21 +2998,33 @@
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/space)
 "Gd" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
+/obj/machinery/door/airlock/mining{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "10,14"
+	icon_state = "10,16"
 	},
 /area/space)
 "Ge" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/light{
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "8,12"
+/obj/machinery/camera/network/mining{
+	dir = 4
 	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,14"
+	},
+/area/space)
+"Gh" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "4,1"
+	},
+/turf/space,
 /area/space)
 "Go" = (
 /obj/structure/table/onestar,
@@ -3008,8 +3041,7 @@
 /area/space)
 "Gz" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "15,5";
-	opacity = 0
+	icon_state = "15,7"
 	},
 /area/space)
 "GA" = (
@@ -3025,17 +3057,17 @@
 "GF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,9"
+	icon_state = "8,11"
 	},
 /area/space)
 "GJ" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "10,10"
+	icon_state = "10,12"
 	},
 /area/space)
 "GL" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "1,12"
+	icon_state = "1,14"
 	},
 /turf/space,
 /area/space)
@@ -3050,13 +3082,14 @@
 	},
 /area/space)
 "GV" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "10,23"
+/obj/structure/shuttle_part/mining{
+	icon_state = "0,16"
 	},
+/turf/space,
 /area/space)
 "GZ" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "6,21"
+	icon_state = "6,23"
 	},
 /area/space)
 "Hb" = (
@@ -3070,16 +3103,19 @@
 	},
 /area/space)
 "Hh" = (
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "4,8"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "4,10"
 	},
 /area/space)
 "Hm" = (
-/obj/structure/bed/padded,
-/obj/item/bedsheet,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "6,17"
+/obj/machinery/door/airlock/mining{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining,
 /area/space)
 "Hn" = (
 /turf/simulated/shuttle/wall/science{
@@ -3105,36 +3141,35 @@
 /turf/space,
 /area/space)
 "HD" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,16"
+	icon_state = "9,18"
 	},
 /area/space)
 "HE" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,15"
+	icon_state = "8,17"
 	},
 /area/space)
 "HG" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "4,2"
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/space,
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,4"
+	},
 /area/space)
 "HL" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "6,2";
-	opacity = 0
+	icon_state = "6,4"
 	},
 /area/space)
 "HP" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "16,5"
+	icon_state = "16,7"
 	},
 /turf/space,
 /area/space)
@@ -3144,25 +3179,30 @@
 	},
 /area/space)
 "HT" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "8,0"
+/obj/machinery/computer/shuttle_control/explore/hulk{
+	dir = 1
 	},
-/turf/space,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "8,2"
+	},
 /area/space)
 "HV" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "10,11"
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,13"
 	},
 /area/space)
 "Ig" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "17,20"
+	icon_state = "17,22"
 	},
 /turf/space,
 /area/space)
 "Il" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "15,7"
+	icon_state = "15,9"
 	},
 /area/space)
 "Ip" = (
@@ -3178,8 +3218,9 @@
 /turf/simulated/floor/wood,
 /area/space)
 "Is" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "12,12"
+/obj/structure/ore_box,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "12,14"
 	},
 /area/space)
 "Ix" = (
@@ -3201,14 +3242,11 @@
 /turf/simulated/floor,
 /area/space)
 "Iy" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "12,2"
-	},
-/turf/space,
+/turf/simulated/floor,
 /area/space)
 "IA" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "3,13"
+	icon_state = "3,15"
 	},
 /turf/space,
 /area/space)
@@ -3233,27 +3271,25 @@
 	},
 /area/space)
 "IL" = (
-/obj/structure/plasticflaps/mining,
-/obj/machinery/conveyor/south{
-	id = "mining_internal"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "12,12"
 	},
-/turf/simulated/floor,
 /area/space)
 "IN" = (
-/obj/structure/closet/crate,
+/obj/machinery/porta_turret/mining,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "14,14"
+	icon_state = "14,16"
 	},
 /area/space)
 "IR" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
-/obj/machinery/camera/network/mining{
-	dir = 4
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,14"
+	icon_state = "8,16"
 	},
 /area/space)
 "IT" = (
@@ -3263,10 +3299,11 @@
 	},
 /area/space)
 "IU" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "7,0"
+/obj/structure/table/steel,
+/obj/item/tool/crowbar,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,2"
 	},
-/turf/space,
 /area/space)
 "IV" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -3284,30 +3321,30 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "IX" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "6,0"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,2";
+	opacity = 0
 	},
-/turf/space,
 /area/space)
 "IY" = (
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "3,20"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "3,22"
 	},
 /area/space)
 "Jb" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "6,3"
+	icon_state = "6,5"
 	},
 /area/space)
 "Jp" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "12,0"
+	icon_state = "12,2"
 	},
 /turf/space,
 /area/space)
 "Ju" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "4,23"
+	icon_state = "16,13"
 	},
 /turf/space,
 /area/space)
@@ -3317,10 +3354,9 @@
 	},
 /area/space)
 "JG" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "4,1"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "4,3"
 	},
-/turf/space,
 /area/space)
 "JJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -3335,6 +3371,12 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/space)
+"JV" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,1";
+	opacity = 0
+	},
+/area/space)
 "JY" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "9,5"
@@ -3342,21 +3384,19 @@
 /area/space)
 "Kb" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "15,10"
+	icon_state = "15,12"
 	},
 /area/space)
 "Ke" = (
-/obj/structure/closet/secure_closet/personal/miner,
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/structure/bed/padded,
+/obj/item/bedsheet,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "4,9"
+	icon_state = "5,11"
 	},
 /area/space)
 "Kj" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "11,20"
+	icon_state = "11,22"
 	},
 /area/space)
 "Km" = (
@@ -3394,51 +3434,55 @@
 /area/space)
 "KP" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "1,13"
+	icon_state = "1,15"
 	},
 /turf/space,
 /area/space)
 "KQ" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "5,23"
-	},
-/area/space)
-"Lb" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "13,23"
+	icon_state = "16,12"
 	},
 /turf/space,
 /area/space)
+"Lb" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,11"
+	},
+/area/space)
 "Lk" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "4,10"
+	icon_state = "4,12";
+	opacity = 0
 	},
 /area/space)
 "Lo" = (
-/obj/structure/ore_box,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "12,14"
+	icon_state = "12,16"
 	},
 /area/space)
 "Lr" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "5,10"
+/obj/structure/table/standard,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,12"
 	},
 /area/space)
 "LL" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait{
-	name = "Hulk Internal Airlock";
-	req_access = list(48)
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,5"
+	icon_state = "8,7"
 	},
 /area/space)
 "LM" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "11,22"
+	icon_state = "5,10"
 	},
+/area/space)
+"LP" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "9,0"
+	},
+/turf/space,
 /area/space)
 "LQ" = (
 /obj/structure/bed/chair/custom/onestar/red,
@@ -3456,50 +3500,36 @@
 /turf/space,
 /area/space)
 "Mf" = (
-/obj/structure/table/rack,
-/obj/item/ammo_magazine/ammobox/shotgun,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "7,9"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,11"
 	},
 /area/space)
 "Mh" = (
-/obj/machinery/light/small{
-	dir = 4
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,14"
 	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "6,12"
-	},
-/area/space)
-"Mj" = (
-/obj/landmark/machinery/output,
-/obj/machinery/conveyor/south{
-	id = "mining_internal"
-	},
-/turf/simulated/floor,
 /area/space)
 "Ml" = (
-/obj/structure/table/standard,
-/obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "5,16"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "5,18"
 	},
 /area/space)
 "Mo" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "0,23"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,10"
 	},
-/turf/space,
 /area/space)
 "Ms" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "4,11"
+	icon_state = "4,13"
 	},
 /area/space)
 "Mv" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "14,2"
+/obj/landmark/machinery/output,
+/obj/machinery/conveyor/southwest{
+	id = "mining_internal"
 	},
-/turf/space,
+/turf/simulated/floor,
 /area/space)
 "Mw" = (
 /obj/structure/shuttle_part/science{
@@ -3508,9 +3538,14 @@
 /turf/space,
 /area/space)
 "Mz" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "10,1";
-	opacity = 0
+/obj/structure/table/steel,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,3"
 	},
 /area/space)
 "MB" = (
@@ -3526,9 +3561,8 @@
 /turf/space,
 /area/space)
 "MH" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "3,3"
-	},
+/obj/structure/reagent_dispensers/fueltank/huge,
+/turf/simulated/floor,
 /area/space)
 "MK" = (
 /turf/simulated/shuttle/wall/science{
@@ -3536,13 +3570,17 @@
 	},
 /area/space)
 "MN" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "7,5"
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,7"
 	},
 /area/space)
 "MV" = (
-/obj/machinery/mineral/unloading_machine,
-/turf/simulated/floor,
+/obj/machinery/conveyor_switch{
+	id = "mining_internal"
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "14,13"
+	},
 /area/space)
 "MZ" = (
 /obj/machinery/power/terminal{
@@ -3555,22 +3593,23 @@
 /turf/simulated/floor,
 /area/space)
 "Nb" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "2,22"
-	},
+/obj/machinery/mineral/processing_unit,
+/turf/simulated/floor/tiled/dark,
 /area/space)
 "Nd" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "1,18"
+	icon_state = "1,20"
 	},
 /area/space)
 "Ng" = (
-/obj/structure/bed/chair,
+/obj/structure/bed/chair{
+	dir = 1
+	},
 /obj/machinery/camera/network/mining{
 	dir = 4
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "5,13"
+	icon_state = "5,15"
 	},
 /area/space)
 "Nk" = (
@@ -3609,8 +3648,12 @@
 	},
 /area/space)
 "Ny" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "14,18"
+/obj/machinery/door/airlock/mining{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "cargofloor1"
 	},
 /area/space)
 "NB" = (
@@ -3636,9 +3679,11 @@
 	},
 /area/space)
 "NF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,20"
+	icon_state = "9,22"
 	},
 /area/space)
 "NR" = (
@@ -3651,26 +3696,23 @@
 /area/space)
 "Od" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "4,16";
-	opacity = 0
+	icon_state = "4,18"
 	},
 /area/space)
 "Of" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,13"
+	icon_state = "9,15"
 	},
 /area/space)
 "Oi" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "5,22"
+/obj/structure/shuttle_part/mining{
+	icon_state = "1,4"
 	},
+/turf/space,
 /area/space)
 "Ok" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "1,5"
+	icon_state = "1,7"
 	},
 /turf/space,
 /area/space)
@@ -3682,7 +3724,7 @@
 /area/space)
 "On" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "16,14"
+	icon_state = "16,16"
 	},
 /turf/space,
 /area/space)
@@ -3691,6 +3733,27 @@
 /turf/simulated/floor/wood,
 /area/space)
 "Ou" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,18"
+	},
+/area/space)
+"Oz" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "9,20"
+	},
+/area/space)
+"OB" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,20"
+	},
+/area/space)
+"OC" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "7,14"
+	},
+/area/space)
+"OJ" = (
 /obj/machinery/door/airlock/mining{
 	name = "Hulk Internal Airlock";
 	req_access = list(48)
@@ -3699,45 +3762,25 @@
 	dir = 4
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "10,16"
-	},
-/area/space)
-"Oz" = (
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "9,18"
-	},
-/area/space)
-"OB" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "10,18"
-	},
-/area/space)
-"OC" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "7,12"
-	},
-/area/space)
-"OJ" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "7,11"
+	icon_state = "7,13"
 	},
 /area/space)
 "OM" = (
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "12,7"
+/obj/landmark/machinery/output,
+/obj/machinery/conveyor/southeast/ccw{
+	id = "mining_internal"
 	},
+/turf/simulated/floor,
 /area/space)
 "Pa" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "5,1"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "5,3"
 	},
-/turf/space,
 /area/space)
 "Pd" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "12,1"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "12,3"
 	},
-/turf/space,
 /area/space)
 "Pj" = (
 /turf/simulated/shuttle/floor/science{
@@ -3760,21 +3803,16 @@
 	icon_state = "13,4"
 	},
 /area/space)
-"Pp" = (
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "4,6"
-	},
-/area/space)
 "Px" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "1,8"
+	icon_state = "1,10"
 	},
 /turf/space,
 /area/space)
 "Py" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/tank/air,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "12,19"
+	icon_state = "12,21"
 	},
 /area/space)
 "PK" = (
@@ -3783,7 +3821,15 @@
 	},
 /area/space)
 "PN" = (
-/obj/structure/filingcabinet/chestdrawer,
+/obj/structure/filingcabinet/chestdrawer{
+	pixel_x = 2
+	},
+/obj/structure/filingcabinet/filingcabinet{
+	pixel_x = -11
+	},
+/obj/structure/filingcabinet/filingcabinet{
+	pixel_x = 15
+	},
 /turf/simulated/floor/wood,
 /area/space)
 "Qd" = (
@@ -3795,12 +3841,18 @@
 "Qf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,7"
+	icon_state = "8,9"
 	},
 /area/space)
 "Qg" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "7,17"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/camera/network/mining{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "7,19"
 	},
 /area/space)
 "Qi" = (
@@ -3810,9 +3862,9 @@
 /turf/space,
 /area/space)
 "Qj" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "15,9"
-	},
+/obj/structure/ore_box,
+/obj/landmark/machinery/input,
+/turf/simulated/floor,
 /area/space)
 "Qm" = (
 /turf/simulated/shuttle/wall/science{
@@ -3820,10 +3872,11 @@
 	},
 /area/space)
 "Qp" = (
-/obj/structure/bed/padded,
-/obj/item/bedsheet,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "6,11"
+	icon_state = "6,13"
 	},
 /area/space)
 "Qr" = (
@@ -3831,10 +3884,11 @@
 /turf/simulated/floor/tiled/derelict/white_red_edges,
 /area/space)
 "Qy" = (
-/obj/structure/bed/padded,
-/obj/item/bedsheet,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "5,17"
+	icon_state = "5,19"
 	},
 /area/space)
 "QD" = (
@@ -3856,21 +3910,18 @@
 	},
 /area/space)
 "QK" = (
-/obj/structure/table/steel,
-/obj/machinery/microwave,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "7,4"
-	},
+/obj/machinery/mech_recharger,
+/turf/simulated/floor/tiled/dark,
 /area/space)
 "QO" = (
 /obj/structure/salvageable/os/implant_container,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "QT" = (
-/obj/machinery/telecomms/relay/preset/mining,
-/turf/simulated/floor/bluegrid{
-	name = "Mainframe Base"
+/obj/structure/shuttle_part/mining{
+	icon_state = "15,23"
 	},
+/turf/space,
 /area/space)
 "QY" = (
 /obj/structure/cable/yellow{
@@ -3897,9 +3948,8 @@
 	},
 /area/space)
 "Rl" = (
-/obj/machinery/mining/deep_drill,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "14,17"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "14,19"
 	},
 /area/space)
 "Rp" = (
@@ -3914,47 +3964,46 @@
 	},
 /area/space)
 "Rs" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "14,3"
-	},
+/obj/machinery/mineral/stacking_machine,
+/turf/simulated/floor/tiled/dark,
 /area/space)
 "Rt" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "1,23"
+	icon_state = "16,4"
 	},
 /turf/space,
 /area/space)
 "Ry" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "17,23"
+	icon_state = "1,3"
 	},
 /turf/space,
 /area/space)
 "Rz" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "11,18"
+	icon_state = "11,20"
 	},
 /area/space)
 "RA" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "11,11"
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "11,13"
 	},
 /area/space)
 "RE" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "12,17"
+	icon_state = "12,19"
 	},
 /area/space)
 "RG" = (
-/obj/structure/table/standard,
-/obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "5,12"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "5,14"
 	},
 /area/space)
 "RI" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "14,22"
+	icon_state = "2,3"
 	},
 /area/space)
 "RJ" = (
@@ -3963,30 +4012,38 @@
 	},
 /area/space)
 "RK" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait{
-	name = "Hulk Internal Airlock";
-	req_access = list(48)
+/obj/machinery/door/airlock/multi_tile/metal{
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "mining_shuttle_inner";
+	locked = 1;
+	name = "Hulk External Access"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "hulk_shuttle";
+	name = "interior access button";
+	pixel_x = -25
+	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,18"
+	icon_state = "8,20"
 	},
 /area/space)
 "RL" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "16,7"
+	icon_state = "16,9"
 	},
 /turf/space,
 /area/space)
 "RM" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "1,15"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "1,17"
 	},
-/turf/space,
 /area/space)
 "RO" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "3,14"
+	icon_state = "3,16"
 	},
 /turf/space,
 /area/space)
@@ -3998,7 +4055,7 @@
 /area/space)
 "RZ" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "16,6"
+	icon_state = "16,8"
 	},
 /turf/space,
 /area/space)
@@ -4009,9 +4066,8 @@
 	},
 /area/space)
 "Sd" = (
-/obj/effect/shuttle_landmark/eris/dock/hulk,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "9,23"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "3,3"
 	},
 /area/space)
 "Sh" = (
@@ -4027,19 +4083,19 @@
 /area/space)
 "Sk" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "2,14"
+	icon_state = "2,16"
 	},
 /turf/space,
 /area/space)
 "Sq" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,19"
+	icon_state = "9,21"
 	},
 /area/space)
 "Sr" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "7,16"
+	icon_state = "7,18"
 	},
 /area/space)
 "St" = (
@@ -4072,9 +4128,15 @@
 	icon_state = "14,3"
 	},
 /area/space)
+"SB" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,1";
+	opacity = 0
+	},
+/area/space)
 "SD" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "1,19"
+	icon_state = "1,21"
 	},
 /area/space)
 "SI" = (
@@ -4084,51 +4146,73 @@
 /turf/space,
 /area/space)
 "SJ" = (
-/obj/structure/bed/padded,
-/obj/item/bedsheet,
+/obj/structure/bed/chair,
+/obj/machinery/camera/network/mining{
+	dir = 4
+	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "5,11"
+	icon_state = "5,13"
 	},
 /area/space)
 "SK" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "1,9"
+	icon_state = "1,11"
 	},
 /turf/space,
 /area/space)
 "SO" = (
+/obj/machinery/mineral/stacking_unit_console,
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "13,3"
+	icon_state = "13,5"
 	},
 /area/space)
 "SP" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "15,18"
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/bluegrid{
+	name = "Mainframe Base"
 	},
 /area/space)
 "SQ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/machinery/door/airlock/multi_tile/metal{
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "mining_shuttle_outer";
+	locked = 1;
+	name = "Hulk External Access"
+	},
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "hulk_shuttle";
+	name = "exterior access button";
+	pixel_x = -25
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,21"
+	icon_state = "8,23"
 	},
 /area/space)
 "SY" = (
-/obj/landmark/machinery/output,
-/obj/machinery/conveyor/west{
-	id = "mining_internal"
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "13,13"
 	},
-/turf/simulated/floor,
+/area/space)
+"Tc" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "9,1";
+	opacity = 0
+	},
 /area/space)
 "Td" = (
+/obj/item/device/radio/beacon,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,5"
+	icon_state = "9,7"
 	},
 /area/space)
 "Tf" = (
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,10"
+	icon_state = "9,12"
 	},
 /area/space)
 "Ti" = (
@@ -4138,29 +4222,23 @@
 /area/space)
 "Tk" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "11,1";
-	opacity = 0
+	icon_state = "11,3"
 	},
 /area/space)
 "Tm" = (
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "12,13"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "12,15"
 	},
 /area/space)
 "Ts" = (
-/obj/structure/ore_box,
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "13,14"
+	icon_state = "13,16"
 	},
 /area/space)
 "Tu" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "13,1"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "13,3"
 	},
-/turf/space,
 /area/space)
 "Tv" = (
 /obj/structure/shuttle_part/science{
@@ -4169,8 +4247,11 @@
 /turf/space,
 /area/space)
 "Tw" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "6,10"
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "6,12"
 	},
 /area/space)
 "Ty" = (
@@ -4180,7 +4261,7 @@
 /area/space)
 "TA" = (
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,9"
+	icon_state = "9,11"
 	},
 /area/space)
 "TH" = (
@@ -4200,23 +4281,30 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "TN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,11"
+	icon_state = "8,13"
 	},
 /area/space)
 "TW" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/floor/bluegrid{
-	name = "Mainframe Base"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "15,22"
 	},
 /area/space)
+"Up" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "14,2"
+	},
+/turf/space,
+/area/space)
 "Uu" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "8,17"
+	icon_state = "8,19"
 	},
 /area/space)
 "UH" = (
@@ -4229,13 +4317,15 @@
 	},
 /area/space)
 "UL" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "5,14"
+/obj/structure/table/standard,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,16"
 	},
 /area/space)
 "UR" = (
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "13,13"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "13,15"
 	},
 /area/space)
 "UW" = (
@@ -4245,19 +4335,39 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/space)
 "UZ" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "10,20"
+/obj/machinery/airlock_sensor{
+	frequency = 1380;
+	id_tag = "mining_shuttle_sensor";
+	pixel_y = 25
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 8;
+	frequency = 1380;
+	id_tag = "mining_shuttle_pump";
+	power_rating = 20000
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "hulk_shuttle";
+	pixel_x = 27;
+	req_one_access = list(13,48);
+	tag_airpump = "mining_shuttle_pump";
+	tag_chamber_sensor = "mining_shuttle_sensor";
+	tag_exterior_door = "mining_shuttle_outer";
+	tag_interior_door = "mining_shuttle_inner"
+	},
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,22"
 	},
 /area/space)
 "Ve" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "16,15"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "16,17"
 	},
-/turf/space,
 /area/space)
 "Vg" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "11,15"
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "11,17"
 	},
 /area/space)
 "Vj" = (
@@ -4267,7 +4377,7 @@
 /area/space)
 "Vl" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "17,17"
+	icon_state = "17,19"
 	},
 /turf/space,
 /area/space)
@@ -4281,32 +4391,26 @@
 	},
 /area/space)
 "Vp" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "16,9"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "14,3"
 	},
-/turf/space,
 /area/space)
 "Vt" = (
 /obj/structure/table/steel,
-/obj/item/device/radio/off,
+/obj/item/storage/box/donkpockets,
+/obj/machinery/camera/network/mining,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "10,2"
+	icon_state = "10,4"
 	},
 /area/space)
 "Vu" = (
-/obj/structure/table/steel,
-/obj/item/paper_bin,
-/obj/item/pen,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "10,3"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,5"
 	},
 /area/space)
 "VD" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "15,16"
+	icon_state = "15,18"
 	},
 /area/space)
 "VF" = (
@@ -4332,7 +4436,7 @@
 /area/space)
 "VY" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "3,22"
+	icon_state = "15,3"
 	},
 /area/space)
 "Wh" = (
@@ -4341,14 +4445,14 @@
 	},
 /area/space)
 "Wn" = (
-/obj/machinery/recharge_station,
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "4,8"
+	},
 /area/space)
 "Wo" = (
-/obj/structure/shuttle_part/mining{
-	icon_state = "1,16"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "1,18"
 	},
-/turf/space,
 /area/space)
 "Wr" = (
 /turf/simulated/shuttle/floor/science{
@@ -4372,9 +4476,7 @@
 	},
 /area/space)
 "Ww" = (
-/obj/landmark/storyevent/midgame_stash_spawn{
-	navigation = "Mining Barge comunications room, on north-east of the barge itself."
-	},
+/obj/machinery/telecomms/relay/preset/mining,
 /turf/simulated/floor/bluegrid{
 	name = "Mainframe Base"
 	},
@@ -4398,7 +4500,7 @@
 /area/space)
 "WN" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "14,23"
+	icon_state = "16,3"
 	},
 /turf/space,
 /area/space)
@@ -4417,27 +4519,33 @@
 	icon_state = "5,1"
 	},
 /area/space)
-"Xc" = (
+"Xa" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "10,0"
+	icon_state = "12,0"
 	},
 /turf/space,
 /area/space)
+"Xc" = (
+/obj/structure/table/steel,
+/obj/item/device/radio/off,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,2"
+	},
+/area/space)
 "Xi" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "16,17"
+	icon_state = "16,19"
 	},
 /area/space)
 "Xj" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "0,22"
+	icon_state = "2,2"
 	},
 /turf/space,
 /area/space)
 "Xp" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "15,6";
-	opacity = 0
+	icon_state = "15,8"
 	},
 /area/space)
 "Xr" = (
@@ -4472,12 +4580,10 @@
 /turf/space,
 /area/space)
 "XQ" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
+/obj/structure/shuttle_part/mining{
+	icon_state = "3,2"
 	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "9,22"
-	},
+/turf/space,
 /area/space)
 "XR" = (
 /obj/structure/shuttle_part/science{
@@ -4492,13 +4598,15 @@
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "Ye" = (
-/obj/machinery/mineral/processing_unit,
-/turf/simulated/floor/tiled/dark,
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "14,10"
+	},
 /area/space)
 "Yg" = (
-/turf/simulated/shuttle/wall/mining{
-	icon_state = "12,23"
+/obj/structure/shuttle_part/mining{
+	icon_state = "4,2"
 	},
+/turf/space,
 /area/space)
 "Yh" = (
 /obj/structure/shuttle_part/science{
@@ -4507,11 +4615,11 @@
 /turf/space,
 /area/space)
 "Yi" = (
-/obj/machinery/camera/network/mining{
-	dir = 1
+/obj/structure/fuel_port{
+	pixel_y = 32
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "4,19"
+	icon_state = "4,21"
 	},
 /area/space)
 "Yl" = (
@@ -4520,22 +4628,25 @@
 	},
 /area/space)
 "Ym" = (
-/obj/structure/bed/chair,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,3"
+	icon_state = "9,5"
 	},
 /area/space)
 "Yu" = (
-/obj/landmark/machinery/output,
-/obj/machinery/conveyor/southwest{
-	id = "mining_internal"
+/obj/landmark/machinery/input,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "10,9"
 	},
-/turf/simulated/floor,
+/area/space)
+"Yv" = (
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "6,1";
+	opacity = 0
+	},
 /area/space)
 "Yx" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/universal,
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "13,20"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "13,22"
 	},
 /area/space)
 "YH" = (
@@ -4544,29 +4655,31 @@
 /area/space)
 "YM" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "6,18"
+	icon_state = "6,20"
 	},
 /area/space)
 "YR" = (
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "11,17"
+/obj/machinery/door/airlock/mining{
+	name = "Hulk Internal Airlock";
+	req_access = list(48)
 	},
-/area/space)
-"YS" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/obj/machinery/camera/network/mining{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "5,15"
+	icon_state = "11,19"
+	},
+/area/space)
+"YS" = (
+/obj/structure/bed/padded,
+/obj/item/bedsheet,
+/turf/simulated/shuttle/floor/mining{
+	icon_state = "5,17"
 	},
 /area/space)
 "YX" = (
-/obj/item/device/radio/beacon,
 /turf/simulated/shuttle/floor/mining{
-	icon_state = "9,7"
+	icon_state = "9,9"
 	},
 /area/space)
 "YZ" = (
@@ -4595,7 +4708,7 @@
 /area/space)
 "Zt" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "17,18"
+	icon_state = "17,20"
 	},
 /turf/space,
 /area/space)
@@ -4610,14 +4723,8 @@
 	},
 /area/space)
 "ZA" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 8;
-	frequency = 1380;
-	id_tag = "mining_shuttle_pump";
-	power_rating = 20000
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "10,21"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "10,23"
 	},
 /area/space)
 "ZB" = (
@@ -4628,7 +4735,7 @@
 /area/space)
 "ZD" = (
 /obj/structure/shuttle_part/mining{
-	icon_state = "17,19"
+	icon_state = "17,21"
 	},
 /turf/space,
 /area/space)
@@ -4639,16 +4746,19 @@
 /turf/space,
 /area/space)
 "ZJ" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/mining{
-	icon_state = "11,16"
+/turf/simulated/shuttle/wall/mining{
+	icon_state = "11,18"
 	},
 /area/space)
 "ZM" = (
 /obj/machinery/door/airlock/multi_tile/metal/mait,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"ZO" = (
+/obj/structure/shuttle_part/mining{
+	icon_state = "5,0"
+	},
+/turf/space,
 /area/space)
 "ZR" = (
 /obj/machinery/light/floor{
@@ -11861,12 +11971,12 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
+Zi
+Zi
+Zi
+Zi
+Zi
+Zi
 cb
 cb
 cb
@@ -12083,14 +12193,14 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+gV
+uA
+uA
+wb
+wb
+Zi
+gV
+gV
 cb
 cb
 cb
@@ -12305,13 +12415,13 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+gV
+xL
+xL
+xL
+xL
+bb
+yI
 gV
 gV
 gV
@@ -12527,13 +12637,13 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
 gV
-gV
+vC
+vW
+xa
+AU
+Zi
+yI
 gV
 bo
 yI
@@ -12749,12 +12859,12 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
 gV
+gV
+gV
+gV
+gV
+Zi
 yI
 zS
 yI
@@ -12971,11 +13081,11 @@ cb
 cb
 cb
 cb
-gV
-gV
-gV
-gV
-gV
+Zi
+aa
+aa
+aa
+aa
 Zi
 yI
 Zi
@@ -13193,11 +13303,11 @@ cb
 cb
 cb
 cb
-gV
-ac
-ac
-aE
-aE
+Zi
+aa
+aa
+aa
+aa
 Zi
 yI
 Zi
@@ -13415,12 +13525,12 @@ cb
 cb
 cb
 cb
-gV
-xL
-xL
-xL
-xL
-bb
+Zi
+aa
+aa
+aa
+aa
+Zi
 yI
 Zi
 bA
@@ -13637,18 +13747,18 @@ cb
 cb
 cb
 cb
-gV
-xL
-xL
-xL
-xL
 Zi
+aa
+aa
+aa
+aa
+zS
 yI
 zS
 yI
 yI
 yI
-gV
+Zi
 cb
 cb
 cb
@@ -13859,18 +13969,18 @@ cb
 cb
 cb
 cb
-gV
-an
-ax
-aJ
-aZ
+Zi
+aa
+aa
+aa
+aa
 Zi
 yI
 Zi
 bL
 cz
 bL
-gV
+Zi
 cb
 cb
 cb
@@ -14081,18 +14191,18 @@ cb
 cb
 cb
 cb
-gV
-gV
-gV
-gV
-gV
+Zi
+aa
+aa
+aa
+aa
 Zi
 zS
 Zi
 Zi
 Zi
 Zi
-gV
+Zi
 cb
 cb
 cb
@@ -14303,18 +14413,18 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+Zi
+aa
+aa
+aa
+aa
 gV
 yI
 XX
 ke
 ke
 ke
-gV
+Zi
 cb
 cb
 cb
@@ -14499,13 +14609,6 @@ cb
 cb
 cb
 cb
-gV
-gV
-gV
-gV
-gV
-gV
-gV
 cb
 cb
 cb
@@ -14530,13 +14633,20 @@ cb
 cb
 cb
 cb
+cb
+cb
+Zi
+aa
+aa
+aa
+aa
 gV
 yI
 Zi
 ES
 cC
 ke
-gV
+Zi
 cb
 cb
 cb
@@ -14721,13 +14831,6 @@ cb
 cb
 cb
 cb
-gV
-dz
-dz
-dz
-dz
-dz
-gV
 cb
 cb
 cb
@@ -14751,14 +14854,21 @@ cb
 cb
 cb
 cb
-gV
+cb
+cb
+cb
+Zi
+Zi
+Zi
+Zi
+Zi
 Zi
 zS
 Zi
 qq
 md
 oG
-gV
+Zi
 cb
 cb
 cb
@@ -14944,11 +15054,12 @@ cb
 cb
 cb
 gV
-dz
-dz
-dz
-dz
-dz
+gV
+gV
+gV
+gV
+gV
+gV
 gV
 cb
 cb
@@ -14972,15 +15083,14 @@ cb
 cb
 cb
 cb
-cb
-gV
+Zi
 YH
 yI
 bo
 yI
 yI
 Ip
-gV
+Zi
 cb
 cb
 cb
@@ -15166,11 +15276,12 @@ cb
 cb
 cb
 gV
+ax
 dz
 dz
-dz
-dz
-dz
+Ir
+jg
+mC
 gV
 cb
 cb
@@ -15194,15 +15305,14 @@ cb
 cb
 cb
 cb
-cb
-gV
+Zi
 YH
 yI
 yI
 yI
 yI
 Ip
-gV
+Zi
 cb
 cb
 cb
@@ -15388,11 +15498,12 @@ cb
 cb
 cb
 gV
+aE
 dz
 dz
-dz
-dz
-dz
+gV
+jg
+nv
 gV
 cb
 cb
@@ -15416,15 +15527,14 @@ cb
 cb
 cb
 cb
-cb
-gV
+Zi
 Go
 yI
 yI
 bN
 yI
 Xz
-gV
+Zi
 cb
 cb
 cb
@@ -15610,11 +15720,12 @@ cb
 cb
 cb
 gV
+aJ
 dz
 dz
-dz
-dz
-dz
+gV
+jg
+oX
 gV
 cb
 cb
@@ -15638,15 +15749,14 @@ cb
 cb
 cb
 cb
-cb
-gV
+Zi
 YH
 yI
 yI
 yI
 yI
 Ip
-gV
+Zi
 cb
 cb
 cb
@@ -15840,7 +15950,6 @@ gV
 gV
 gV
 gV
-gV
 cb
 cb
 cb
@@ -15861,14 +15970,15 @@ cb
 cb
 cb
 cb
-gV
+cb
+Zi
 Go
 yI
 yI
 yI
 yI
 Xz
-gV
+Zi
 cb
 cb
 cb
@@ -16055,42 +16165,42 @@ cb
 cb
 cb
 gV
-dz
+aZ
 dz
 UW
 da
 da
 dz
-Ir
-aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
 gV
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+Zi
 YH
 yI
 yI
 yI
 yI
 Ip
-gV
+Zi
 cb
 cb
 cb
@@ -16277,14 +16387,13 @@ cb
 cb
 cb
 gV
-dz
+bp
 dz
 kF
 ff
 hn
 dz
 gV
-gV
 cb
 cb
 cb
@@ -16305,14 +16414,15 @@ cb
 cb
 cb
 cb
-gV
+cb
+Zi
 YH
 yI
 yI
 yI
 yI
 Ip
-gV
+Zi
 cb
 cb
 cb
@@ -16499,7 +16609,7 @@ cb
 cb
 cb
 gV
-dz
+bS
 dz
 xk
 eu
@@ -16527,14 +16637,14 @@ cb
 cb
 cb
 cb
-gV
-gV
-gV
+Zi
+Zi
+Zi
 yI
 bV
-gV
-gV
-gV
+Zi
+Zi
+Zi
 gV
 cb
 cb
@@ -16721,7 +16831,7 @@ cb
 cb
 cb
 gV
-dz
+cm
 dz
 dz
 dz
@@ -16948,7 +17058,7 @@ dz
 dz
 dz
 dz
-dz
+pe
 gV
 cb
 cb
@@ -17390,7 +17500,7 @@ cb
 gV
 dR
 dz
-dz
+jB
 dR
 gV
 gV
@@ -17404,8 +17514,8 @@ gV
 gV
 gV
 gV
-gV
-gV
+xL
+xL
 gV
 gV
 gV
@@ -17608,14 +17718,14 @@ cb
 cb
 cb
 cb
+cb
 gV
+gV
+xL
+xL
+xL
 qM
 xL
-xL
-xL
-xL
-xL
-xL
 bb
 xL
 xL
@@ -17695,16 +17805,16 @@ cb
 cb
 cb
 cb
-Mo
-Xj
+aa
+aa
 aY
 BI
 hN
 iO
 ob
 pR
-aa
-aa
+EG
+GV
 aa
 aa
 aa
@@ -17830,9 +17940,9 @@ cb
 cb
 cb
 cb
+cb
 gV
-qM
-xL
+iu
 xL
 xL
 xL
@@ -17917,8 +18027,8 @@ cb
 cb
 cb
 cb
-Rt
-iu
+aa
+aa
 pV
 fM
 SD
@@ -17938,8 +18048,8 @@ qI
 Ok
 CE
 mH
-aa
-aa
+Oi
+Ry
 aa
 aa
 aa
@@ -18139,8 +18249,8 @@ cb
 cb
 cb
 cb
-AU
-Nb
+aa
+aa
 oU
 jp
 mZ
@@ -18161,8 +18271,8 @@ uG
 rb
 yY
 kJ
-aa
-aa
+RI
+Xj
 aa
 aa
 aa
@@ -18361,8 +18471,8 @@ cb
 cb
 cb
 cb
-EG
-VY
+aa
+aa
 zd
 IY
 ll
@@ -18383,8 +18493,8 @@ cy
 dS
 MH
 mT
-aa
-aa
+Sd
+XQ
 aa
 aa
 aa
@@ -18583,8 +18693,8 @@ cb
 cb
 cb
 cb
-Ju
-vC
+aa
+aa
 rk
 zs
 Yi
@@ -18600,14 +18710,14 @@ Lk
 hy
 Hh
 BN
-Pp
+Wn
 og
 tu
 dV
 HG
 JG
-aa
-aa
+Yg
+Gh
 aa
 aa
 aa
@@ -18801,12 +18911,12 @@ gV
 xL
 xL
 gV
-gV
-gV
 cb
 cb
-KQ
-Oi
+cb
+cb
+aa
+aa
 Ax
 rC
 uo
@@ -18820,17 +18930,17 @@ RG
 SJ
 Lr
 Ke
-Hh
+LM
 qA
-sl
+Wn
 xv
 rc
 AX
 zj
 Pa
 nE
-aa
-aa
+rR
+ZO
 aa
 aa
 aa
@@ -19022,13 +19132,13 @@ cb
 gV
 xL
 xL
-xL
-qM
 gV
 gV
 gV
-bS
-FC
+gV
+gV
+gV
+gV
 GZ
 nR
 zT
@@ -19042,7 +19152,7 @@ Mh
 Qp
 Tw
 tH
-Hh
+Mo
 na
 Wn
 eq
@@ -19051,8 +19161,8 @@ Jb
 HL
 aX
 IX
-aa
-aa
+Yv
+aN
 aa
 aa
 aa
@@ -19246,11 +19356,11 @@ xL
 xL
 xL
 xL
-gV
-gV
-gV
-pe
-cm
+xL
+xL
+xL
+xL
+xL
 mn
 Bh
 ka
@@ -19273,8 +19383,8 @@ bv
 tA
 cj
 IU
-aa
-aa
+JV
+oK
 aa
 aa
 aa
@@ -19471,8 +19581,8 @@ xL
 xL
 xL
 xL
-vW
-jB
+xL
+xL
 SQ
 oJ
 gx
@@ -19495,8 +19605,8 @@ zB
 fr
 mm
 HT
-aa
-aa
+vx
+sS
 aa
 aa
 aa
@@ -19693,8 +19803,8 @@ xL
 xL
 xL
 xL
-Sd
-XQ
+xL
+xL
 Dr
 NF
 Sq
@@ -19717,8 +19827,8 @@ Ym
 qR
 xB
 kk
-aa
-aa
+Tc
+LP
 aa
 aa
 aa
@@ -19911,12 +20021,12 @@ gV
 xL
 xL
 xL
-qM
-gV
-gV
-gV
-GV
-wb
+xL
+xL
+xL
+xL
+xL
+xL
 ZA
 UZ
 qV
@@ -19939,8 +20049,8 @@ Vu
 Vt
 Mz
 Xc
-aa
-aa
+DX
+pA
 aa
 aa
 aa
@@ -20137,8 +20247,8 @@ gV
 gV
 gV
 gV
-oX
-LM
+gV
+gV
 wW
 Kj
 hT
@@ -20151,9 +20261,9 @@ gH
 Ct
 RA
 ct
-MV
+Lb
 cg
-sh
+yQ
 pp
 qj
 xI
@@ -20161,8 +20271,8 @@ yR
 re
 Tk
 wJ
-aa
-aa
+SB
+CW
 aa
 aa
 aa
@@ -20356,11 +20466,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-Yg
-uA
+aa
+aa
+aa
+aa
+aa
 iL
 lC
 Py
@@ -20383,8 +20493,8 @@ rM
 Iy
 Pd
 Jp
-aa
-aa
+lz
+Xa
 aa
 aa
 aa
@@ -20581,8 +20691,8 @@ aa
 aa
 aa
 aa
-Lb
-xa
+aa
+aa
 gm
 Yx
 ex
@@ -20604,8 +20714,8 @@ ef
 SO
 wm
 Tu
-aa
-aa
+sC
+Ed
 aa
 aa
 aa
@@ -20803,8 +20913,8 @@ aa
 aa
 aa
 aa
-WN
-RI
+aa
+aa
 fi
 iz
 js
@@ -20819,14 +20929,14 @@ MV
 FT
 yQ
 Ye
-Mj
-yQ
+Yu
+Nb
 DG
 Yu
 Rs
 Mv
-aa
-aa
+Vp
+Up
 aa
 aa
 aa
@@ -21025,8 +21135,8 @@ aa
 aa
 aa
 aa
-mC
-nv
+aa
+aa
 QT
 TW
 Ww
@@ -21047,8 +21157,8 @@ Gz
 De
 fy
 rO
-aa
-aa
+VY
+FO
 aa
 aa
 aa
@@ -21247,8 +21357,8 @@ aa
 aa
 aa
 aa
-bp
-ae
+aa
+aa
 vl
 Ez
 mV
@@ -21259,17 +21369,17 @@ Ve
 On
 of
 ix
+Ju
+KQ
 aa
 aa
-Vp
-jg
 RL
 RZ
 HP
 ah
 BS
-aa
-aa
+Rt
+WN
 aa
 aa
 aa
@@ -21380,10 +21490,10 @@ cb
 cb
 cb
 cb
-cb
-cb
-aa
-aa
+gV
+gV
+gV
+gV
 gV
 xL
 xL
@@ -21469,15 +21579,15 @@ aa
 aa
 aa
 aa
-Ry
-CS
+aa
+aa
 oY
 Ig
 ZD
 Zt
 Vl
-aa
-aa
+CS
+FC
 aa
 aa
 aa
@@ -21602,10 +21712,10 @@ cb
 aa
 aa
 aa
-aa
 gV
-gV
-gV
+ac
+ac
+ac
 gV
 xL
 xL
@@ -21824,8 +21934,8 @@ cb
 aa
 aa
 aa
-aa
 bb
+xL
 xL
 xL
 bb
@@ -22046,10 +22156,10 @@ cb
 aa
 aa
 aa
-aa
 gV
-xL
-xL
+ae
+ae
+ae
 gV
 xL
 xL
@@ -22268,8 +22378,8 @@ cb
 aa
 aa
 aa
-aa
 bb
+xL
 xL
 xL
 bb
@@ -22490,10 +22600,10 @@ cb
 aa
 aa
 aa
-aa
 gV
-gV
-gV
+an
+an
+an
 gV
 xL
 xL
@@ -22712,10 +22822,10 @@ cb
 cb
 cb
 cb
-cb
-cb
-aa
-aa
+gV
+gV
+gV
+gV
 gV
 xL
 xL
