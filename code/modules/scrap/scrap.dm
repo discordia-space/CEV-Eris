@@ -146,7 +146,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 				true_loot_tags |= list(pickweight(rare_loot))
 			candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags - rare_loot, FALSE, 1, top_price, TRUE, list(/obj/item/stash_spawner))
 		var/loot_path = SSspawn_data.pick_spawn(candidates)
-		new loot_path(src)
+		new loot_path(src, junk = TRUE)
 		var/list/aditional_objects = SSspawn_data.all_accompanying_obj_by_path[loot_path]
 		if(islist(aditional_objects) && aditional_objects.len)
 			for(var/thing in aditional_objects)
