@@ -9,8 +9,9 @@
 	offer_limit = 10
 	base_income = 1600
 	wealth = 0
-	hidden_inv_threshold = 0
-	recommendation_threshold = 0
+	hidden_inv_threshold = 2000
+	recommendation_threshold = 4000
+	stations_recommended = list("illegal2")
 	recommendations_needed = 2
 	inventory = list(
 		"Stylish Attire" = list(

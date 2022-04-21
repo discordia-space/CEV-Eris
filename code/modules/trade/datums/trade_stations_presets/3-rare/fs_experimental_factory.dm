@@ -11,7 +11,7 @@
 	wealth = 0
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
-	recommendations_needed = 2
+	recommendations_needed = 1
 	inventory = list(
 		"Gunmods" = list(
 			/obj/item/gun_upgrade/trigger/dangerzone,

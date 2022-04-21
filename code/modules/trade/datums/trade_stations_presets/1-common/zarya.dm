@@ -61,7 +61,6 @@
 			/obj/item/electronics/circuitboard/pacman/super,
 			/obj/item/electronics/circuitboard/pacman/mrs,
 			/obj/item/electronics/circuitboard/shield_diffuser,
-			/obj/item/electronics/circuitboard/shield_generator,
 			/obj/item/electronics/circuitboard/long_range_scanner,
 			/obj/item/electronics/circuitboard/solar_control,
 			/obj/item/electronics/circuitboard/smes,
@@ -72,10 +71,7 @@
 		),
 		"Power Generation" = list(
 			/obj/item/electronics/tracker,
-			///obj/machinery/power/emitter,
 			/obj/machinery/power/rad_collector,
-			///obj/machinery/power/supermatter = custom_good_amount_range(list(1,2)),
-			///obj/machinery/the_singularitygen,
 			/obj/machinery/power/generator,
 			/obj/machinery/atmospherics/binary/circulator,
 			/obj/item/solar_assembly

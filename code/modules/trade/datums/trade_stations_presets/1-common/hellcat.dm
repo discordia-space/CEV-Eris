@@ -16,14 +16,12 @@
 	wealth = 0
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
-	stations_recommended = list("fs_guns", "fs_ammo", "style")
+	stations_recommended = list("fs_ammo", "style")
 	inventory = list(
 		"Enforce Equipment" = list(
 			/obj/item/handcuffs,
 			/obj/item/shield/riot,
-			/obj/item/melee/baton,
-			/obj/machinery/deployable/barrier,
-			/obj/machinery/shieldwallgen
+			/obj/item/melee/baton
 		),
 		"Energy Weapons" = list(
 			/obj/item/gun/energy/gun/martin,
@@ -83,8 +81,9 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/part/gun = offer_data("gun part", 100, 10),					// base price: 100, guns can be bought and broken down into 4 parts
-		/obj/item/part/armor = offer_data("armor part", 500, 8),				// base price: 300
+		/obj/item/part/gun/frame/ak47 = offer_data("AK frame", 800, 1),
+		/obj/item/part/gun/frame/boltgun  = offer_data("boltgun frame", 800, 1),
+		/obj/item/part/armor = offer_data("armor part", 500, 8),					// base price: 300
 		/obj/item/part/armor/artwork = offer_data("artistic armor part", 1000, 1),
 		/obj/item/part/gun/artwork = offer_data("artistic gun part", 1000, 1),
 	)

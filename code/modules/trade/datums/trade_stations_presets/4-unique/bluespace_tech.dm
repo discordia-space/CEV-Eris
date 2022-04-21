@@ -19,7 +19,7 @@
 	)
 	hidden_inventory = list(
 		"@$@#" = list(
-			/obj/item/oddity/broken_necklace = good_data("strange necklace", list(1,3), 2000)
+			/obj/item/oddity/broken_necklace = good_data("strange necklace", list(1,1), 2000)
 		)
 	)
 	offer_types = list(

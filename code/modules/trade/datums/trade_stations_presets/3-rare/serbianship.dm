@@ -61,9 +61,7 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/part/gun/frame/boltgun  = offer_data("boltgun frame", 800, 2),
-		/obj/item/part/gun/frame/kovacs  = offer_data("Kovacs frame", 1000, 2),
-		/obj/item/part/gun/frame/ak47  = offer_data("AK frame", 800, 2),
-		/obj/item/part/gun/frame/zoric  = offer_data("Zoric frame", 1000, 2),
-		/obj/item/part/gun/frame/pk  = offer_data("Pulemyot Kalashnikova frame", 1000, 2)
+		/obj/item/part/gun/frame/kovacs  = offer_data("Kovacs frame", 800, 2),
+		/obj/item/part/gun/frame/zoric  = offer_data("Zoric frame", 2000, 2),
+		/obj/item/part/gun/frame/pk  = offer_data("Pulemyot Kalashnikova frame", 2000, 2)
 	)

@@ -55,4 +55,6 @@
 		/obj/item/slime_extract/black = offer_data("black slime extract", 20000, 1),
 		/obj/item/slime_extract/oil = offer_data("oil slime extract", 20000, 1),
 		/obj/item/slime_extract/adamantine = offer_data("adamantine slime extract", 20000, 1)
+		/datum/reagent/toxin/slimetoxin = offer_data("mutation toxin (60u)", 10000, 1)
+		/datum/reagent/toxin/aslimetoxin = offer_data("advanced mutation toxin (60u)", 20000, 1)
 	)
