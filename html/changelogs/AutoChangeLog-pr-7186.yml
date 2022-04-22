@@ -1,0 +1,4 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - balance: Cover now only works if the target is adjacent to it
