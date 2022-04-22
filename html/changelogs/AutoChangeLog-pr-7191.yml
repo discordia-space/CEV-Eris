@@ -1,0 +1,5 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Bullets now hit mechs where you aimed them
+  - bugfix: Mechs no longer magically soak up bullets
