@@ -19,7 +19,7 @@
 		var/mob/living/L = user
 		penetration = L.armor_penetration
 
-	damage_through_armor(damage, BRUTE, attack_flag=ARMOR_MELEE, armour_pen=penetration, def_zone = pick(arms, legs , body , head))
+	damage_through_armor(damage, BRUTE, attack_flag=ARMOR_MELEE, armour_pen=penetration, def_zone=pick(arms, legs, body, head))
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
 	attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
 	visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
