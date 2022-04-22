@@ -4,13 +4,18 @@
 	icon_state = "printer_base"
 	circuit = /obj/item/electronics/circuitboard/moeballs_printer
 	var/obj/item/reagent_containers/glass/beaker/beaker
-	var/list/files[0]
 	var/index = 0
-	var/gene_cache = list(
+	var/list/files[0]
+	var/list/gene_cache = list(
 		"name" = "\[NOT SELECTED\]",
 		"desc" = "\[NOT FOUND\]",
 		"type" = "",
 		"content" = "")
+	var/list/valid_reagents = list(
+		"nutriment",
+		"protein",
+		"glucose",
+		"egg")
 
 
 /obj/machinery/dna/moeballs_printer/update_icon()
@@ -47,13 +52,12 @@
 		log_add("Nutriment source missing.")
 		return
 
-	if(beaker.reagents.get_reagent_amount("nutriment") < 15)
+	if(beaker.reagents.get_reagents_amount(valid_reagents) < 15)
 		do_flick(TRUE)
 		log_add("Insufficient nutriment amount.")
-
 		return
 
-	beaker.reagents.remove_reagent("nutriment", 15)
+	beaker.reagents.remove_reagents(valid_reagents, 15)
 	do_flick(FALSE)
 	sleep(2 SECONDS)
 	var/obj/item/moecube/C = new(loc)
@@ -147,7 +151,7 @@
 	data["can_print"] = gene_cache["content"] ? TRUE : FALSE
 	data["disc_inserted"] = usb ? TRUE : FALSE
 	data["beaker_inserted"] = beaker ? TRUE : FALSE
-	data["beaker_volume"] = beaker ? beaker.reagents.get_reagent_amount("nutriment") : 0
+	data["beaker_volume"] = beaker ? beaker.reagents.get_reagents_amount(valid_reagents) : 0
 	data["beaker_max"] = beaker ? beaker.reagents.maximum_volume : 60
 
 	// Accept everything but inactive mutation
