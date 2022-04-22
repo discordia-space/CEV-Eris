@@ -185,7 +185,9 @@
 				return
 			return
 
-		if(QUALITY_SEALING && !taped)
+		if(QUALITY_SEALING)
+			if(taped)
+				return
 			var/obj/item/tool/our_tape = I
 			if(our_tape.check_tool_effects(user, 70))
 				our_tape.consume_resources(70, user) //70 = 10.5 units of tape , normally
