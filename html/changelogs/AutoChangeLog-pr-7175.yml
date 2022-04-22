@@ -1,0 +1,5 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - bugfix: added check for existing invisible soil when planting a seed with TRAIT_SPREAD
+      > 0
