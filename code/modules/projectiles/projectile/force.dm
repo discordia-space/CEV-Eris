@@ -54,7 +54,7 @@
 	..()
 
 /obj/item/projectile/forcebolt/jet/on_hit(atom/movable/target)
-	if(istype(target))
+	if(isliving(target))
 		var/throwdir = get_dir(firer,target)
 		target.throw_at(get_edge_target_turf(target, throwdir),4,2,firer)
 	return TRUE
