@@ -102,7 +102,7 @@
 		if(cast.get_tool_quality(QUALITY_BOLT_TURNING))
 			to_chat(user, SPAN_NOTICE("You begin removing a pump upgrade"))
 			if(contents.len && cast.use_tool(user, src, 10 SECONDS, QUALITY_BOLT_TURNING, 40, STAT_MEC, 100))
-				to_chat(user, SPAN_NOTICE("You remove one of the biomatter pumps from the upgrade ports"))
+				to_chat(user, SPAN_NOTICE("You remove one of the biomatter pumps from the upgrade ports."))
 				transfer_per_process -= TRANSFER_GAIN_PER_PIPE
 				var/obj/item/random = pick(contents)
 				random.forceMove(get_turf(user))
