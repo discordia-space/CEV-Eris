@@ -107,7 +107,7 @@
 				var/obj/item/random = pick(contents)
 				random.forceMove(get_turf(user))
 			else
-				to_chat(user, SPAN_NOTICE("There is no biomatter pump to remove"))
+				to_chat(user, SPAN_NOTICE("There is no biomatter pump to remove."))
 
 	..()
 
