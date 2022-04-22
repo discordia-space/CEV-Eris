@@ -5,6 +5,7 @@
 	circuit = /obj/item/electronics/circuitboard/moeballs_printer
 	var/obj/item/reagent_containers/glass/beaker/beaker
 	var/index = 0
+	var/is_busy = FALSE
 	var/list/files[0]
 	var/list/gene_cache = list(
 		"name" = "\[NOT SELECTED\]",
@@ -27,13 +28,16 @@
 
 
 /obj/machinery/dna/moeballs_printer/proc/do_flick(is_error)
-	overlays.Cut()
-	if(is_error)
-		flick("printer_error", src)
-	else
-		flick("printer_on_[color_key]", src)
-	spawn(2 SECONDS)
-	update_icon()
+	if(!is_busy)
+		is_busy = TRUE
+		overlays.Cut()
+		if(is_error)
+			flick("printer_error", src)
+		else
+			flick("printer_on_[color_key]", src)
+		spawn(1.7 SECONDS)
+			overlays += "printer_idle_[color_key]"
+			is_busy = FALSE
 
 
 /obj/machinery/dna/moeballs_printer/try_eject_usb(mob/user)
@@ -44,7 +48,7 @@
 
 
 /obj/machinery/dna/moeballs_printer/proc/produce_cube(is_meatcube)
-	if(stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER|BROKEN) || is_busy)
 		return
 
 	if(!beaker)
@@ -59,7 +63,7 @@
 
 	beaker.reagents.remove_reagents(valid_reagents, 15)
 	do_flick(FALSE)
-	sleep(2 SECONDS)
+	sleep(1.7 SECONDS)
 	var/obj/item/moecube/C = new(loc)
 
 	if(is_meatcube)
