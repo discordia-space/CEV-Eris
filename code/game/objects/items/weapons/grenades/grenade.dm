@@ -97,3 +97,14 @@
 	walk(src, null, null)
 	..()
 	return
+
+/obj/item/grenade/fall_impact(turf/from, turf/dest)
+	..()
+	var/found = dest.contents.Find(/mob/living/carbon/human)
+	if(found)
+		var/mob/living/carbon/human/bonk = dest.contents[found]
+		bonk.apply_damage(2, BRUTE, BP_HEAD, FALSE , FALSE, src)
+		bonk.visible_message(SPAN_DANGER("[src] falls from above and bonks [bonk.name] on his head!"), SPAN_DANGER("[src] falls on your head and bounces to the side!"), "You hear something round hitting someone's head", 5)
+		var/turf/random = pick(orange(1, dest))
+		forceMove(random)
+
