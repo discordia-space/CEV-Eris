@@ -89,16 +89,17 @@
 	light_overlay = "technohelmet_light"
 	brightness_on = 4
 	armor = list(
-		melee = 35,
+		melee = 30,
 		bullet = 30,
-		energy = 40,
-		bomb = 20,
+		energy = 10,
+		bomb = 50,
 		bio = 0,
-		rad = 30
+		rad = 80
 	)//Mix between hardhat.dm armor values, helmet armor values in armor.dm, and armor values for TM void helmet in station.dm.
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 500
 	style_coverage = COVERS_WHOLE_HEAD
+	style = STYLE_NONE
 
 /obj/item/clothing/head/armor/helmet/technomancer/New()
 	. = ..()
