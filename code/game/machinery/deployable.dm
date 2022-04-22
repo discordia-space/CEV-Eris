@@ -164,11 +164,13 @@ for reference:
 
 /obj/structure/barricade/proc/check_cover(obj/item/projectile/P, turf/from)
 	if (get_dist(P.starting, loc) <= 1) //Cover won't help you if people are THIS close
-		return 1
+		return TRUE
+	if(get_dist(loc, P.trajectory.target) > 1 ) // Target turf must be adjacent for it to count as cover
+		return TRUE
 	var/valid = FALSE
 	var/distance = get_dist(P.last_interact,loc)
 	if(!P.def_zone)
-		return 1 // Emitters, or anything with no targeted bodypart will always bypass the cover
+		return TRUE // Emitters, or anything with no targeted bodypart will always bypass the cover
 	P.check_hit_zone(loc, distance)
 
 	var/targetzone = check_zone(P.def_zone)
@@ -187,8 +189,8 @@ for reference:
 		else
 			visible_message(SPAN_WARNING("[src] breaks down!"))
 			qdel(src)
-			return 1
-	return 1
+			return TRUE
+	return TRUE
 
 //Actual Deployable machinery stuff
 /obj/machinery/deployable
@@ -338,6 +340,8 @@ for reference:
 /obj/machinery/deployable/barrier/proc/check_cover(obj/item/projectile/P, turf/from)
 	if (get_dist(P.starting, loc) <= 1) //Cover won't help you if people are THIS close
 		return 1
+	if(get_dist(loc, P.trajectory.target) > 1 ) // Target turf must be adjacent for it to count as cover
+		return TRUE
 	var/valid = FALSE
 	var/distance = get_dist(P.last_interact,loc)
 	if(!P.def_zone)
