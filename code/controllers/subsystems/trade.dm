@@ -118,7 +118,7 @@ SUBSYSTEM_DEF(trade)
 				station.recommendations_needed -= 1
 				if(!station.recommendations_needed)
 					discovered_stations |= station
-					//GLOB.entered_event.register(station.overmap_location, station, station/proc/discovered)
+					GLOB.entered_event.unregister(station.overmap_location, station, /datum/trade_station/proc/discovered)
 
 //Returns cost of an existing object including contents
 /datum/controller/subsystem/trade/proc/get_cost(atom/movable/target, is_export = FALSE)
@@ -149,10 +149,8 @@ SUBSYSTEM_DEF(trade)
 	. = station?.get_good_price(path)								// get_good_price() gets the custom price of the item, if it exists
 	if(!.)
 		. = get_new_cost(path) ? get_new_cost(path) : 100			// Should solve the issue of items without price tags
-		var/markup = 1
 		if(istype(station))
-			markup = station.markup
-		. *= markup
+			. *= station.markup
 
 // Checks item stacks amd item containers to see if they match their base states (no more selling empty first-aid kits or split item stacks as if they were full)
 // Checks reagent containers to see if they match their base state or if they match the special offer from a station
@@ -275,7 +273,6 @@ SUBSYSTEM_DEF(trade)
 
 	for(var/atom/movable/AM in senderBeacon.get_objects())
 		if(isliving(AM))
-			// Add very light burn damage plus moderate hal damage for living things in the beacon area
 			var/mob/living/L = AM
 			L.apply_damages(0,5,0,0,0,5)
 			// TODO: Small chance to export players to deepmaint hive import beacon
