@@ -57,12 +57,12 @@
 
 /obj/item/projectile/bullet/rocket/hesh/detonate(atom/target)
 	fragment_explosion_angled(get_turf(src), starting, /obj/item/projectile/bullet/pellet/fragment/strong, 20)
-	explosion(get_turf(src), 0, 0, 1, 3) // Much weaker explosion, but offset by shrapnel released
+	explosion(get_turf(src), 0, 0, 1, 3, singe_impact_range = 3) // Much weaker explosion, but offset by shrapnel released
 
 /obj/item/projectile/bullet/rocket/heat
 	name = "high-explosive anti-tank rocket"
-	damage_types = list(BRUTE = 40)
-	armor_penetration = 20
+	damage_types = list(BRUTE = 20)
+	armor_penetration = 0
 	check_armour = ARMOR_BULLET
 
 /obj/item/projectile/bullet/rocket/heat/detonate(atom/target)
@@ -71,6 +71,7 @@
 	P.launch(T, def_zone)
 	if(target)
 		P.Bump(target, TRUE)
+	explosion(get_turf(src), 0, 0, 0, 3, singe_impact_range = 3) // Explosion mostly ineffective
 
 /obj/item/projectile/bullet/rocket/thermo
 	name = "thermobaric rocket"
@@ -79,8 +80,8 @@
 	check_armour = ARMOR_BULLET
 
 /obj/item/projectile/bullet/rocket/thermo/detonate(atom/target)
-	heatwave(get_turf(src), 3, 5, 100, TRUE, 30)
-	explosion(get_turf(src), 0, 0, 0, 2)
+	heatwave(get_turf(src), 3, 5, 100, TRUE, 20)
+	explosion(get_turf(src), 0, 0, 0, 5, singe_impact_range = 4)
 
 /obj/item/projectile/temp
 	name = "freeze beam"
