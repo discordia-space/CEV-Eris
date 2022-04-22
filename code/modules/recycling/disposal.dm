@@ -215,9 +215,9 @@
 
 		I.add_fingerprint(user)
 		I.forceMove(src)
-		user.visible_message("[user.name] places \the [I] into the [src].", \
+		user.visible_message("[user.name] places \the [I] into \the [src].", \
 			"You place \the [I] into the [src].")
-		playsound(src.loc, 'sound/machines/vending_drop.ogg', 100, 1)
+		playsound(loc, 'sound/machines/vending_drop.ogg', 100, 1)
 		update()
 		return
 	. = ..()
