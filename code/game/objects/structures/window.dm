@@ -146,11 +146,11 @@
 /obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
 
 	var/proj_damage = Proj.get_structure_damage()
-	if(!proj_damage) return
-
+	if(proj_damage)
+		hit(proj_damage)
 	..()
-	hit(proj_damage)
-	return
+
+	return TRUE
 
 
 /obj/structure/window/ex_act(severity)

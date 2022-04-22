@@ -517,19 +517,24 @@
 	icon_state = "old_rocketshell"
 	projectile_type = /obj/item/projectile/bullet/rocket/scrap
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASMA = 2)
-	caliber = CAL_ROCKET
 
 /obj/item/ammo_casing/rocket/hesh
 	name = "PG-7V2 HESH grenade"
 	desc = "A high-explosive squash head anti-vehicle warhead designed for the RPG-7 launcher. Has a tubular shape."
 	icon_state = "rocketshell_hesh"
 	projectile_type = /obj/item/projectile/bullet/rocket/hesh
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_PLASMA = 2)
-	caliber = CAL_ROCKET
-	maxamount = 1
-	reload_delay = 15
-	is_caseless = TRUE
-	w_class = ITEM_SIZE_NORMAL
+
+/obj/item/ammo_casing/rocket/heat
+	name = "PG-7VL HEAT grenade"
+	desc = "A high-explosive anti-tank warhead designed for the RPG-7 launcher. Has a tubular shape."
+	icon_state = "rocketshell_heat"
+	projectile_type = /obj/item/projectile/bullet/rocket/heat
+
+/obj/item/ammo_casing/rocket/thermo
+	name = "TBG-7V Thermobaric grenade"
+	desc = "A thermobaric warhead designed for the RPG-7 launcher. Has a tubular shape."
+	icon_state = "rocketshell_thermo"
+	projectile_type = /obj/item/projectile/bullet/rocket/thermo
 
 /obj/item/ammo_casing/rocket/scrap/prespawned
 	amount = 1
