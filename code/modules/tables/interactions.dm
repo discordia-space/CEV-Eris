@@ -23,7 +23,7 @@
 /obj/structure/table/proc/check_cover(obj/item/projectile/P, turf/from)
 	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return TRUE
-	if (get_dist(loc, P.trajectory.target) > 1 ) // Target turf must be adjaecet for it to count as cover
+	if(get_dist(loc, P.trajectory.target) > 1 ) // Target turf must be adjacent for it to count as cover
 		return TRUE
 	var/valid = FALSE
 	var/distance = get_dist(P.last_interact,loc)
