@@ -79,7 +79,7 @@
 	check_armour = ARMOR_BULLET
 
 /obj/item/projectile/bullet/rocket/thermo/detonate(atom/target)
-	heatwave(get_turf(src), 3, 5, 100, TRUE, 50)
+	heatwave(get_turf(src), 3, 5, 100, TRUE, 30)
 	explosion(get_turf(src), 0, 0, 0, 2)
 
 /obj/item/projectile/temp
