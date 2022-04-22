@@ -1,6 +1,6 @@
 /obj/item/biomatter_transfer_pump
 	name = "biomatter transfer pump add-on"
-	desc = "A pipe made with gold , silver and glass, created to withstand the corrosion of biomatter. It helps with pumping biomatter in canisters. It can be installed on the biomatter tank platform."
+	desc = "A pipe made with gold, silver and glass, created to withstand the corrosion of biomatter. It can be installed on the biomatter tank platform to speed up with pumping biomatter into canisters."
 	w_class = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_GOLD = 5, MATERIAL_SILVER = 10, MATERIAL_GLASS = 5)
 	force = 16 // a bulky pipe , good for smashing heretics.
