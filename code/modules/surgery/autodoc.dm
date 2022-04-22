@@ -1,12 +1,12 @@
-#define AUTODOC_DAMAGE          1
-#define AUTODOC_EMBED_OBJECT	(1 << 1)
-#define AUTODOC_FRACTURE 		(1 << 2)
-#define AUTODOC_IB				(1 << 3)
-#define AUTODOC_OPEN_WOUNDS		(1 << 4)
+#define AUTODOC_DAMAGE 1
+#define AUTODOC_EMBED_OBJECT 2
+#define AUTODOC_FRACTURE 4
+#define AUTODOC_IB 8
+#define AUTODOC_OPEN_WOUNDS 16
 
-#define AUTODOC_BLOOD			(1 << 5)
-#define AUTODOC_TOXIN			(1 << 6)
-#define AUTODOC_DIALYSIS		(1 << 7)
+#define AUTODOC_BLOOD 32
+#define AUTODOC_TOXIN 64
+#define AUTODOC_DIALYSIS 128
 #define AUTODOC_DIALYSIS_AMOUNT 5
 
 #define AUTODOC_SCAN_COST           200
@@ -161,10 +161,10 @@
 		to_chat(patient, SPAN_NOTICE("Closing wounds on the patients [external]."))
 		for(var/datum/wound/wound in external.wounds)
 			if(!wound.internal)
-				wound.bandaged = 1
-				wound.clamped = 1
-				wound.salved = 1
-				wound.disinfected = 1
+				wound.bandaged = TRUE
+				wound.clamped = TRUE
+				wound.salved = TRUE
+				wound.disinfected = TRUE
 				wound.germ_level = 0
 		patchnote.surgery_operations &= ~AUTODOC_OPEN_WOUNDS
 
@@ -186,14 +186,24 @@
 /datum/autodoc/Process()
 	if(!patient)
 		stop()
-	if(current_step > picked_patchnotes.len)
-		stop()
-		scan_user(patient)
+
+	while(!(picked_patchnotes[current_step].surgery_operations))
+		if(current_step + 1 > picked_patchnotes.len)
+			stop()
+			scan_user(patient)
+			return
+		else
+			current_step++
+
 	if(world.time > (start_op_time + processing_speed))
 		start_op_time = world.time
 		patient.updatehealth()
 		if(process_note(picked_patchnotes[current_step]))
-			current_step++
+			if(current_step + 1 > picked_patchnotes.len)
+				stop()
+				scan_user(patient)
+			else
+				current_step++
 
 /datum/autodoc/proc/fail()
 	current_step++
