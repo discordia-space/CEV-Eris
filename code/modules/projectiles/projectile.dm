@@ -397,7 +397,7 @@
 		passthrough = (A.bullet_act(src, def_zone) == PROJECTILE_CONTINUE) //backwards compatibility
 		if(isturf(A))
 			for(var/obj/O in A)
-				if(O.density == TRUE)
+				if(O.density)
 					O.bullet_act(src)
 			for(var/mob/living/M in A)
 				attack_mob(M, distance)
