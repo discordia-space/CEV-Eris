@@ -94,7 +94,7 @@
 		if(contents.len > maximum_upgrades)
 			to_chat(user, SPAN_NOTICE("All the upgrade ports are taken."))
 		else
-			to_chat(user, SPAN_NOTICE("You install the [I.name] into the empty upgrade ports"))
+			to_chat(user, SPAN_NOTICE("You install the [I.name] into the empty upgrade port."))
 			transfer_per_process += TRANSFER_GAIN_PER_PIPE
 			user.drop_from_inventory(I, src)
 	if(istype(I, /obj/item/tool))
