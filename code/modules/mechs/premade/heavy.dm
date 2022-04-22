@@ -59,8 +59,8 @@
 	exosuit_desc_string = "heavy legs"
 	desc = "Exosuit actuators struggle to move these armored legs, and they're even worse at turning."
 	icon_state = "heavy_legs"
-	move_delay = 5
-	turn_delay = 2 // Turning should be easy , moving not.
+	move_delay = 7
+	turn_delay = 4 // Turning should be easy , moving not.
 	max_damage = 200
 	power_use = 100
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 5)
