@@ -97,7 +97,7 @@
 	var/inversed_carry = FALSE
 	var/wield_delay = 0 // Gun wielding delay , generally in seconds.
 	var/wield_delay_factor = 0 // A factor that characterizes weapon size , this makes it require more vig to insta-wield this weapon or less , values below 0 reduce the vig needed and above 1 increase it
-	var/serial_type = "" // If there is a serial type, the gun will add a number onto its final, if none, it won't show on examine
+var/serial_type = "SM" // Self-manufactured , if there is a serial type , the gun will add a number onto its final , if none , it won;'t show on examine
 
 
 /obj/item/gun/wield(mob/user)
