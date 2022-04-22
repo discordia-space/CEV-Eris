@@ -1,0 +1,9 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - rscadd: chameleon gun can change it's own serial number
+  - rscdel: chameleon satchel
+  - tweak: chameleon kit comes in a chameleon backpack
+  - tweak: chameleon and handmade guns comes with no serial number
+  - bugfix: chameleon projectiles not changing appearance properly
+  - refactor: chameleon items code
