@@ -12,6 +12,7 @@
 	establish_connection()
 	. = ..()
 
+
 /obj/machinery/dna/console/New()
 	establish_connection()
 	..()
@@ -244,7 +245,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "dna_console.tmpl", "Chrysalis controller", 450, 600, state = state)
+		ui = new(user, src, ui_key, "dna_console.tmpl", "Chrysalis controller", 450, 650, state = state)
 		ui.auto_update_layout = TRUE
 		ui.set_initial_data(data)
 		ui.open()

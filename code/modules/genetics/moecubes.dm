@@ -3,6 +3,9 @@
 	desc = "Absolutely disgusting."
 	icon = 'icons/obj/eris_genetics.dmi'
 	icon_state = "wormcube"
+	layer = TOP_ITEM_LAYER // So it don't "fall" under machine that spawned it
+	spawn_blacklisted = TRUE
+	matter = list(MATERIAL_BIOMATTER = 3)
 	var/gene_type
 	var/gene_value
 

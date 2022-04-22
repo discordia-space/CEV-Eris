@@ -16,6 +16,7 @@
 	. = ..()
 	color_key = default_dna_machinery_style
 	update_icon()
+	log_add("Initialization complete.")
 
 
 /obj/machinery/dna/New()
@@ -63,9 +64,10 @@
 
 
 /obj/machinery/dna/proc/on_hacked()
-	hacked = pick("Rache Bartmoss", "Doctor Braun", "Overseer Koster", "admin")
-	log_add("Security protocols compromised.")
-	log_add("Access granted to [hacked]")
+	if(!hacked)
+		hacked = pick("Rache Bartmoss", "Doctor Braun", "Overseer Koster", "admin")
+		log_add("Security protocols compromised.")
+		log_add("Access granted to [hacked]", TRUE)
 
 
 /obj/machinery/dna/attack_hand(mob/living/carbon/human/user)

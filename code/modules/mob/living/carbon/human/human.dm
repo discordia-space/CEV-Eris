@@ -1667,10 +1667,10 @@ var/list/rank_prefix = list(\
 
 	if(!isMonkey(src))
 		while(dormant_mutations.len < STARTING_MUTATIONS)
-			var/datum/mutation/M = pick(
-				45;pick(subtypesof(/datum/mutation/t0)),
-				25;pick(subtypesof(/datum/mutation/t1)),
-				15;pick(subtypesof(/datum/mutation/t2)),
-				10;pick(subtypesof(/datum/mutation/t3)),
-				5;pick(subtypesof(/datum/mutation/t4)))
+			var/datum/mutation/M = pickweight(list(
+				pick(subtypesof(/datum/mutation/t0)) = 45,
+				pick(subtypesof(/datum/mutation/t1)) = 25,
+				pick(subtypesof(/datum/mutation/t2)) = 15,
+				pick(subtypesof(/datum/mutation/t3)) = 10,
+				pick(subtypesof(/datum/mutation/t4)) = 5))
 			dormant_mutations |= new M

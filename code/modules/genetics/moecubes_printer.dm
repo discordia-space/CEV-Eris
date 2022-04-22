@@ -3,6 +3,7 @@
 	desc = "A stationary computer."
 	icon_state = "printer_base"
 	circuit = /obj/item/electronics/circuitboard/moeballs_printer
+	var/obj/item/reagent_containers/glass/beaker/beaker
 	var/list/files[0]
 	var/index = 0
 	var/gene_cache = list(
@@ -20,8 +21,14 @@
 		overlays += state
 
 
-
-//		flick("printer_error", src)
+/obj/machinery/dna/moeballs_printer/proc/do_flick(is_error)
+	overlays.Cut()
+	if(is_error)
+		flick("printer_error", src)
+	else
+		flick("printer_on_[color_key]", src)
+	spawn(2 SECONDS)
+	update_icon()
 
 
 /obj/machinery/dna/moeballs_printer/try_eject_usb(mob/user)
@@ -32,21 +39,59 @@
 
 
 /obj/machinery/dna/moeballs_printer/proc/produce_cube(is_meatcube)
-	flick("printer_on_[color_key]", src)
-	sleep(1.5 SECONDS)
+	if(stat & (NOPOWER|BROKEN))
+		return
+
+	if(!beaker)
+		do_flick(TRUE)
+		log_add("Nutriment source missing.")
+		return
+
+	if(beaker.reagents.get_reagent_amount("nutriment") < 15)
+		do_flick(TRUE)
+		log_add("Insufficient nutriment amount.")
+
+		return
+
+	beaker.reagents.remove_reagent("nutriment", 15)
+	do_flick(FALSE)
+	sleep(2 SECONDS)
 	var/obj/item/moecube/C = new(loc)
 
 	if(is_meatcube)
 		C.gene_type = gene_cache["type"]
+		C.gene_value = gene_cache["content"]
 		C.name = "cube of twitching meat"
 		C.icon_state = "genecube"
+		log_add("Created genome imprinter for [gene_cache["name"]]")
+		if(gene_cache["type"] == "mutation")
+			var/datum/mutation/M = gene_cache["content"]
+			C.gene_value = M
+	else
+		if(gene_cache["type"] == "mutation")
+			var/datum/mutation/M = gene_cache["content"]
+			C.gene_value = M
+			log_add("Created cleansing substrate for [gene_cache["name"]]")
+		else
+			log_add("Created universal cleansing substrate.")
 
-	// gene_value here either mutation datum or null
-	if(gene_cache["type"] == "mutation")
-		var/datum/mutation/M = gene_cache["content"]
-		C.gene_value = M
-	else if(is_meatcube)
-		C.gene_value = gene_cache["content"]
+
+/obj/machinery/dna/moeballs_printer/attackby(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/reagent_containers/glass/beaker) && !beaker && insert_item(I, user))
+		beaker = I
+	..()
+
+
+/obj/machinery/dna/moeballs_printer/verb/eject_beaker()
+	set name = "Eject Reagent Container"
+	set category = "Object"
+	set src in view(1)
+	try_eject_beaker(usr)
+
+
+/obj/machinery/dna/moeballs_printer/proc/try_eject_beaker(mob/user)
+	if(eject_item(beaker, user))
+		beaker = null
 
 
 /obj/machinery/dna/moeballs_printer/Topic(href, href_list)
@@ -83,22 +128,27 @@
 		produce_cube(TRUE)
 		return TOPIC_REFRESH
 
-	if(href_list["eject"])
+	if(href_list["eject_usb"])
 		try_eject_usb(usr)
+		return TOPIC_REFRESH
+
+	if(href_list["eject_beaker"])
+		try_eject_beaker(usr)
 		return TOPIC_REFRESH
 
 
 /obj/machinery/dna/moeballs_printer/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
 	var/list/data = ui_data()
 
+	data["log"] = action_log
 	data["have_files"] = FALSE
-	data["can_print"] = gene_cache["content"] ? TRUE : FALSE
-
 	data["name"] = gene_cache["name"]
 	data["desc"] = gene_cache["desc"]
-
+	data["can_print"] = gene_cache["content"] ? TRUE : FALSE
 	data["disc_inserted"] = usb ? TRUE : FALSE
-	data["log"] = action_log
+	data["beaker_inserted"] = beaker ? TRUE : FALSE
+	data["beaker_volume"] = beaker ? beaker.reagents.get_reagent_amount("nutriment") : 0
+	data["beaker_max"] = beaker ? beaker.reagents.maximum_volume : 60
 
 	// Accept everything but inactive mutation
 	if(usb && !index)
@@ -124,7 +174,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "dna_printer.tmpl", "Gene regurgitator", 450, 600, state = state)
+		ui = new(user, src, ui_key, "dna_printer.tmpl", "Gene regurgitator", 450, 650, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(TRUE)
