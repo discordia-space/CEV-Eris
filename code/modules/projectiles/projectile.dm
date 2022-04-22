@@ -284,6 +284,19 @@
 	var/result = PROJECTILE_FORCE_MISS
 
 	if(check_hit_zone(get_turf(target_mob), distance))
+
+		if(target_mob != original)
+			var/turf/cover_loc = get_step(get_turf(target_mob), get_dir(get_turf(target_mob), starting))
+			for(var/obj/O in cover_loc)
+				if(istype(O,/obj/structure/low_wall) || istype(O,/obj/machinery/deployable/barrier) || istype(O,/obj/structure/barricade) || istype(O,/obj/structure/table))
+					if(!silenced)
+						visible_message(SPAN_NOTICE("\The [src] misses [target_mob] narrowly!"))
+					return FALSE
+			for(var/obj/structure/table/O in get_turf(target_mob))
+				if(istype(O) && O.flipped && (get_dir(get_turf(target_mob), starting) == O.dir))
+					if(!silenced)
+						visible_message(SPAN_NOTICE("\The [src] misses [target_mob] narrowly!"))
+					return FALSE
 		if(iscarbon(target_mob))
 			var/mob/living/carbon/C = target_mob
 			var/obj/item/shield/S
