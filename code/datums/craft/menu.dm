@@ -69,6 +69,10 @@
 			))
 	data["items"] = items
 
+	var/datum/asset/craftIcons = get_asset_datum(/datum/asset/simple/craft)
+	var/datum/asset/materialIcons = get_asset_datum(/datum/asset/simple/materials)
+	if (craftIcons.send(user.client) || materialIcons.send(user.client))
+		user.client.browse_queue_flush() // stall loading nanoui until assets actualy gets sent
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)

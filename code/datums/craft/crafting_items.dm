@@ -145,6 +145,11 @@
 /obj/item/craft_frame/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS)
 	var/list/data = list()
 
+	var/datum/asset/craftIcons = get_asset_datum(/datum/asset/simple/craft)
+	var/datum/asset/materialIcons = get_asset_datum(/datum/asset/simple/materials)
+	if (craftIcons.send(user.client) || materialIcons.send(user.client))
+		user.client.browse_queue_flush() // stall loading nanoui until assets actualy gets sent
+
 	var/list/listed_products = list()
 	for(var/key = 1 to view_only)
 		var/obj/item/I = items[key]

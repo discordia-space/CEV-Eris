@@ -396,39 +396,41 @@
 	for(var/D in SSresearch.all_designs)
 		var/datum/design/design = D
 
-		var/filename = sanitizeFileName("[design.build_path]")
+		var/filename = sanitizeFileName("[design.build_path].png")
 		var/icon/I = getFlatTypeIcon(design.build_path)
 		assets[filename] = I
-
-		design.ui_data["icon"] = filename
 	..()
+
+	for(var/D in SSresearch.all_designs)
+		var/datum/design/design = D
+		design.ui_data["icon"] = SSassets.transport.get_asset_url(sanitizeFileName("[design.build_path].png"))
 
 
 /datum/asset/simple/craft/register()
 	for(var/name in SScraft.categories)
 		for(var/datum/craft_recipe/CR in SScraft.categories[name])
 			if(CR.result)
-				var/filename = sanitizeFileName("[CR.result]")
+				var/filename = sanitizeFileName("[CR.result].png")
 				var/icon/I = getFlatTypeIcon(CR.result)
 				assets[filename] = I
 
 			for(var/datum/craft_step/CS in CR.steps)
 				if(CS.reqed_type)
-					var/filename = sanitizeFileName("[CS.reqed_type]")
+					var/filename = sanitizeFileName("[CS.reqed_type].png")
 					var/icon/I = getFlatTypeIcon(CS.reqed_type)
 					assets[filename] = I
 	..()
 
 /datum/asset/simple/materials/register()
 	for(var/type in subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg))
-		var/filename = sanitizeFileName("[type]")
+		var/filename = sanitizeFileName("[type].png")
 		var/icon/I = getFlatTypeIcon(type)
 		assets[filename] = I
 	..()
 
 /datum/asset/simple/tool_upgrades/register()
 	for(var/type in subtypesof(/obj/item/tool_upgrade))
-		var/filename = sanitizeFileName("[type]")
+		var/filename = sanitizeFileName("[type].png")
 		var/icon/I = getFlatTypeIcon(type)
 		assets[filename] = I
 	..()
@@ -436,7 +438,7 @@
 /datum/asset/simple/perks/register()
 	for(var/type in subtypesof(/datum/perk))
 		var/datum/perk/P = new type
-		var/filename = sanitizeFileName("[type]")
+		var/filename = sanitizeFileName("[type].png")
 		var/icon/I = icon(P.icon, P.icon_state)
 		assets[filename] = I
 	..()
@@ -461,6 +463,7 @@
 	dirs = list("news_articles/images/")
 
 /datum/asset/simple/directories
+	keep_local_name = TRUE
 	var/list/dirs = list()
 
 /datum/asset/simple/directories/register()
@@ -470,8 +473,11 @@
 		for(var/filename in filenames)
 			if(copytext(filename, length(filename)) != "/") // Ignore directories.
 				if(fexists(path + filename))
-					assets[filename] = fcopy_rsc(path + filename)
+					assets[filename] = file(path + filename)
 	..()
+
+/datum/asset/simple/images_map
+	keep_local_name = TRUE
 
 /datum/asset/simple/images_map/register()
 	var/list/mapnames = list()
