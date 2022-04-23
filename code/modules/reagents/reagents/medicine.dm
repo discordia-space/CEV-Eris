@@ -397,11 +397,19 @@
 /datum/reagent/medicine/kognim
 	name = "Kognim"
 	id = "kognim"
-	description = "This chem causes a small amount of pain on human."
+	description = "Puts the user in pain. Necessary for use of portable genome splicer."
 	taste_description = "acid"
 	reagent_state = SOLID
 	color = "#224422"
 	overdose = REAGENTS_OVERDOSE
+
+
+/datum/reagent/medicine/kognim/affect_blood(mob/living/carbon/human/H, alien, effect_multiplier)
+	if(istype(H))
+		var/obj/item/organ/external/E = pick(H.organs)
+		H.apply_damage(2, HALLOSS)
+		H.pain(E.name, 15, TRUE)
+
 
 /datum/reagent/medicine/negative_ling
 	name = "Negative Paragenetic Marker"
