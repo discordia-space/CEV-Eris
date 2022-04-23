@@ -1,7 +1,0 @@
-author: SirRichardFrancis
-delete-after: true
-changes:
-  - tweak: washing machine working time halved
-  - tweak: washing machine no longer takes corgi for a ride
-  - imageadd: washing machine sprites by Rosalimo
-  - imagedel: old washing machine sprites
