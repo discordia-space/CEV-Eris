@@ -142,6 +142,7 @@
 	new /obj/item/clothing/gloves/chameleon(src)
 	new /obj/item/clothing/mask/chameleon(src)
 	new /obj/item/clothing/glasses/chameleon(src)
+	new /obj/item/storage/backpack/satchel/chameleon(src)
 	new /obj/item/gun/energy/chameleon(src)
 	new /obj/item/device/radio/headset/chameleon(src)
 
