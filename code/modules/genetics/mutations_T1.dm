@@ -6,7 +6,7 @@
 // Minor stat buffs, equivalent of what T1 stimulators provide
 /datum/mutation/t1/stat_buff
 	name = "Mnemonic stimulation"
-	desc = "Improves abstract thinking."
+	desc = "Improves abstract thinking and ability to iteract with mechanisms."
 	buff_type = STAT_MEC
 	buff_power = STAT_LEVEL_ADEPT
 

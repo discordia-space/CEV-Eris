@@ -298,6 +298,7 @@
 	return !missing
 
 /datum/reagents/proc/get_reagents_amount(list/check_reagents)
+	. = 0 // If no matching reagents - return 0 units, not null units
 	for(var/datum/reagent/current in reagent_list)
 		if(current.id in check_reagents)
 			. += current.volume

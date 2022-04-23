@@ -35,7 +35,7 @@
 			flick("printer_error", src)
 		else
 			flick("printer_on_[color_key]", src)
-		spawn(1.7 SECONDS)
+		spawn(1.5 SECONDS)
 			overlays += "printer_idle_[color_key]"
 			is_busy = FALSE
 
@@ -45,6 +45,11 @@
 		usb = null
 		files.Cut()
 		index = 0
+		gene_cache = list(
+		"name" = "\[NOT SELECTED\]",
+		"desc" = "\[NOT FOUND\]",
+		"type" = "",
+		"content" = "")
 
 
 /obj/machinery/dna/moeballs_printer/proc/produce_cube(is_meatcube)
@@ -63,7 +68,7 @@
 
 	beaker.reagents.remove_reagents(valid_reagents, 15)
 	do_flick(FALSE)
-	sleep(1.7 SECONDS)
+	sleep(1.5 SECONDS)
 	var/obj/item/moecube/C = new(loc)
 
 	if(is_meatcube)
