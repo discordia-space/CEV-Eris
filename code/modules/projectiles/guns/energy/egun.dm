@@ -21,6 +21,7 @@
 		LETHAL,
 		WEAPON_CHARGE,
 		)
+	serial_type = "FS"
 
 /obj/item/gun/energy/gun/mounted
 	name = "mounted energy gun"
@@ -46,6 +47,8 @@
 	modifystate = null
 	suitable_cell = /obj/item/cell/small
 	cell_type = /obj/item/cell/small
+
+	serial_type = "FS"
 
 	spawn_tags = SPAWN_TAG_FS_ENERGY
 

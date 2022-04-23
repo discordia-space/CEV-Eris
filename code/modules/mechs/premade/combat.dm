@@ -92,10 +92,10 @@
 	exosuit_desc_string = "sleek hydraulic legs"
 	desc = "These combat legs are both fast and durable, thanks to a generous plasteel reinforcement and aerodynamic design."
 	icon_state = "combat_legs"
-	move_delay = 2
+	move_delay = 3
 	power_use = 20
 	matter = list(MATERIAL_STEEL = 15)
-	turn_delay = 1 // Better than light , turns fast and costs a lot
+	turn_delay = 2 // Better than light , turns fast and costs a lot
 	max_damage = 100
 	power_use = 25
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5, MATERIAL_PLASMA = 5, MATERIAL_DIAMOND = 2) // Expensive because durable.

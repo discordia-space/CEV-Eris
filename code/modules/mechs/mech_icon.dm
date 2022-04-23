@@ -47,13 +47,13 @@
 			if(use_icon_state in GLOB.mech_weapon_overlays)
 				var/color = COLOR_WHITE
 				var/decal = null
-				if(hardpoint in list(HARDPOINT_BACK, HARDPOINT_RIGHT_SHOULDER, HARDPOINT_LEFT_SHOULDER))
+				if(body && (hardpoint in list(HARDPOINT_BACK, HARDPOINT_RIGHT_SHOULDER, HARDPOINT_LEFT_SHOULDER)))
 					color = body.color
 					decal = body.decal
-				else if(hardpoint in list(HARDPOINT_RIGHT_HAND, HARDPOINT_LEFT_HAND))
+				else if(arms && (hardpoint in list(HARDPOINT_RIGHT_HAND, HARDPOINT_LEFT_HAND)))
 					color = arms.color
 					decal = arms.decal
-				else
+				else if(head)
 					color = head.color
 					decal = head.decal
 

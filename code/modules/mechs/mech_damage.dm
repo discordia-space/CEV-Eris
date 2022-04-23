@@ -19,7 +19,7 @@
 		var/mob/living/L = user
 		penetration = L.armor_penetration
 
-	damage_through_armor(damage, BRUTE, attack_flag=ARMOR_MELEE, armour_pen=penetration)
+	damage_through_armor(damage, BRUTE, attack_flag=ARMOR_MELEE, armour_pen=penetration, def_zone=pick(arms, legs, body, head))
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
 	attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
 	visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
@@ -40,36 +40,69 @@
 	return def_zone //Careful with effects, mechs shouldn't be stunned
 
 /mob/living/exosuit/getarmor(def_zone, type)
-	. = ..()
 	if(body?.armor_plate)
 		var/body_armor = body.armor_plate?.armor.getRating(type)
-		if(body_armor) . += body_armor
+		if(body_armor) return body_armor
+	return 0
 
 /mob/living/exosuit/updatehealth()
 	if(body) maxHealth = body.mech_health
 	health = maxHealth - (getFireLoss() + getBruteLoss())
 
-/mob/living/exosuit/adjustFireLoss(amount, obj/item/mech_component/MC = pick(list(arms, legs, body, head)))
-	if(MC)
-		MC.take_burn_damage(amount)
-		MC.update_health()
+/mob/living/exosuit/adjustFireLoss(amount, obj/item/mech_component/MC = null)
+	if(!MC)
+		MC = pick(list(arms, legs, body, head))
+	MC.take_burn_damage(amount)
+	MC.update_health()
 
-/mob/living/exosuit/adjustBruteLoss(amount, obj/item/mech_component/MC = pick(list(arms, legs, body, head)))
-	if(MC)
-		MC.take_brute_damage(amount)
-		MC.update_health()
+/mob/living/exosuit/adjustBruteLoss(amount, obj/item/mech_component/MC = null)
+	if(!MC)
+		MC = pick(list(arms, legs, body, head))
+	MC.take_brute_damage(amount)
+	MC.update_health()
 
 /mob/living/exosuit/proc/zoneToComponent(zone)
 	switch(zone)
-		if(BP_EYES, BP_HEAD) return head
+		if(BP_EYES, BP_HEAD, BP_MOUTH) return head
 		if(BP_L_ARM, BP_R_ARM) return arms
-		if(BP_L_LEG, BP_R_LEG) return legs
+		if(BP_L_LEG, BP_R_LEG, BP_GROIN) return legs
 		else return body
 
 
 /mob/living/exosuit/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, sharp = FALSE, edge = FALSE, obj/used_weapon = null)
-	. = ..()
+	switch(damagetype)
+		if(BRUTE)
+			adjustBruteLoss(damage, def_zone)
+			return TRUE
+		if(BURN)
+			adjustFireLoss(damage, def_zone)
+			return TRUE
 	updatehealth()
+	return FALSE
+
+/mob/living/exosuit/bullet_act(obj/item/projectile/P, var/def_zone)
+	var/hit_dir = get_dir(P.starting, src)
+	def_zone = zoneToComponent(def_zone)
+
+	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+		IgniteMob()
+	//Stun Beams
+	if(P.taser_effect)
+		qdel(P)
+		return TRUE
+
+	//Armor and damage
+	if(!P.nodamage)
+		hit_impact(P.get_structure_damage(), hit_dir)
+		for(var/damage_type in P.damage_types)
+			if(damage_type == HALLOSS)
+				continue // don't even bother
+			var/damage = P.damage_types[damage_type]
+			damage_through_armor(damage, damage_type, def_zone, P.check_armour, armour_pen = P.armor_penetration, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
+
+	P.on_hit(src, def_zone)
+	return TRUE
+
 
 /mob/living/exosuit/getFireLoss()
 	var/total = 0

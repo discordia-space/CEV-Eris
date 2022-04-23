@@ -13,7 +13,7 @@
 	caliber = CAL_LRIFLE
 	fire_delay = 8
 	damage_multiplier = 1.4
-	style_damage_multiplier = 3
+	style_damage_multiplier = 5
 	penetration_multiplier = 1.5
 	recoil_buildup = 7 // increased from the AK's/Takeshi's buildup of 1.7/1.8 because of the massive multipliers and slow firerate
 	init_offset = 2 //bayonet's effect on aim, reduced from 4
@@ -156,6 +156,7 @@
 	saw_off = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/tosshin = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/srifle/steel = 1)
 	price_tag = 1200
+	serial_type = "FS"
 
 /obj/item/part/gun/frame/tosshin
 	name = "Tosshin frame"

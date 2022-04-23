@@ -224,7 +224,10 @@
 		/datum/design/research/item/exosuit/extinguisher,
 		/datum/design/research/item/exosuit/hydraulic_clamp,
 		/datum/design/research/item/mechfab/exosuit/chassis/pod,
-		/datum/design/research/item/exosuit/weapon/plasma
+		/datum/design/research/item/exosuit/weapon/plasma,
+		/datum/design/research/item/mechfab/exosuit/drillbit/steel,
+		/datum/design/research/item/mechfab/exosuit/drillbit/plasteel,
+		/datum/design/research/item/mechfab/exosuit/drillbit/diamond
 	)
 
 /datum/technology/mech_teleporter_modules
