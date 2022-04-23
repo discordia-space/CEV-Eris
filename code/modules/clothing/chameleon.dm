@@ -294,6 +294,14 @@ GLOBAL_LIST_INIT(chameleon_key_to_path, list(
 	rarity_value = 50
 	chameleon_type = "back"
 
+/obj/item/storage/backpack/satchel/chameleon
+	name = "grey satchel"
+	icon_state = "satchel"
+	desc = "A satchel outfitted with cloaking tech. It seems to have a small dial inside, kept away from the storage."
+	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_BACKPACK_CHAMELEON
+	chameleon_type = "back"
+
 /obj/item/clothing/gloves/chameleon
 	name = "black gloves"
 	icon_state = "black"
