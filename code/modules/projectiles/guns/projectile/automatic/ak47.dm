@@ -34,6 +34,7 @@
 		BURST_5_ROUND
 		)
 	spawn_blacklisted = TRUE
+	serial_type = "REV" // revolution
 
 	var/folded = FALSE
 
@@ -70,7 +71,7 @@
 		itemstring += "_full"
 		if (ammo_magazine.mag_well == MAG_WELL_RIFLE_D)
 			iconstring += "_drum"
-		else	
+		else
 			iconstring += "[ammo_magazine? "_mag[ammo_magazine.max_ammo]": ""]"
 
 	if(wielded)
@@ -177,6 +178,7 @@
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	serial_type = "FS"
 
 
 
@@ -236,7 +238,7 @@
 //////////////////////////////////////////Makeshift//////////////////////////////////////////
 
 /obj/item/gun/projectile/automatic/ak47/makeshift
-	name = "Makeshift AR .30 \"Kalash\""
+	name = "HM AR \"Sermak\""
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 			This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
 			It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \

@@ -127,17 +127,18 @@
 	new /obj/item/clothing/suit/space/void/merc/boxed(src)
 	new /obj/item/clothing/mask/gas/syndicate(src)
 
-/obj/item/storage/box/syndie_kit/chameleon
-	name = "chameleon kit"
-	desc = "Comes with all the clothes you need to impersonate most people. Acting lessons sold seperately. Wearing the uniform will allow fot quick switching between appearances."
+/obj/item/storage/box/syndie_kit/softsuit
+	name = "boxed soft suit"
 
-/obj/item/storage/box/syndie_kit/chameleon/populate_contents()
+/obj/item/storage/box/syndie_kit/softsuit/populate_contents()
+	new /obj/item/clothing/suit/space/syndicate/uplink(src)
+	new /obj/item/clothing/head/space/syndicate/uplink(src)
+
+/obj/item/storage/backpack/chameleon/populate_contents()
 	new /obj/item/clothing/under/chameleon(src)
 	new /obj/item/clothing/head/chameleon(src)
 	new /obj/item/clothing/suit/chameleon(src)
 	new /obj/item/clothing/shoes/chameleon(src)
-	new /obj/item/storage/backpack/chameleon(src)
-	new /obj/item/storage/backpack/satchel/chameleon(src)
 	new /obj/item/clothing/gloves/chameleon(src)
 	new /obj/item/clothing/mask/chameleon(src)
 	new /obj/item/clothing/glasses/chameleon(src)

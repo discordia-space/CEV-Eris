@@ -54,7 +54,9 @@
 
 	// Keeps track of what this rig should spawn with.
 	var/suit_type = "hardsuit"
-	var/list/initial_modules = list()
+	var/list/initial_modules = list(
+		/obj/item/rig_module/storage //Probably isn't the best way of doing this
+		)
 	var/chest_type = /obj/item/clothing/suit/space/rig
 	var/helm_type =  /obj/item/clothing/head/space/rig
 	var/boot_type =  /obj/item/clothing/shoes/magboots/rig
@@ -100,6 +102,7 @@
 
 	var/emp_protection = 0
 
+	// 2022- Just so everyone knows , this doesn't get checked at all down the line. It only checks if its on the back , regardles of its value.
 	var/rig_wear_slot = slot_back //Changing this allows for rigs that are worn as a belt or a tie or something
 
 	// Wiring! How exciting.
@@ -590,6 +593,9 @@
 	else if(href_list["toggle_suit_lock"])
 		if (locked != -1)
 			locked = !locked
+
+	// Makes it so the UI instantly updates , instead of using the MC tick, way faster at high stress.
+	SSnano.update_uis(src)
 
 	usr.set_machine(src)
 	add_fingerprint(usr)

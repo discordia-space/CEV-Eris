@@ -24,4 +24,5 @@
 	)
 	twohanded = TRUE
 	wield_delay = 0
+	serial_type = "NT"
 

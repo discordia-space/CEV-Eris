@@ -17,6 +17,9 @@
 /datum/design/research/item/mechfab/exosuit/basics/radio
 	build_path = /obj/item/robot_parts/robot_component/radio
 
+/datum/design/research/item/mechfab/exosuit/basics/diagnosis_unit
+	build_path = /obj/item/robot_parts/robot_component/diagnosis_unit
+
 //Armor
 /datum/design/research/item/mechfab/exosuit/armour
 	category = "Exosuit Armor"
@@ -25,15 +28,27 @@
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/plain
 	starts_unlocked = TRUE
 
-/datum/design/research/item/mechfab/exosuit/armour/radproof
-	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/radproof
-
 /datum/design/research/item/mechfab/exosuit/armour/em
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/ablative
 
 /datum/design/research/item/mechfab/exosuit/armour/combat
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/combat
 
+//Drill bits
+/datum/design/research/item/mechfab/exosuit/drillbit
+	category = "Exosuit Drill Bits"
+
+/datum/design/research/item/mechfab/exosuit/drillbit/steel
+	build_path = /obj/item/material/drill_head/steel
+	materials = list(MATERIAL_STEEL = 6)
+
+/datum/design/research/item/mechfab/exosuit/drillbit/plasteel
+	build_path = /obj/item/material/drill_head/plasteel
+	materials = list(MATERIAL_PLASTEEL = 6)
+
+/datum/design/research/item/mechfab/exosuit/drillbit/diamond
+	build_path = /obj/item/material/drill_head/diamond
+	materials = list(MATERIAL_DIAMOND = 6)
 
 //Sensors
 /datum/design/research/item/mechfab/exosuit/sensors

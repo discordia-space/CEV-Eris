@@ -176,10 +176,10 @@
 	if ((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
 		return 1
 
-	if ((incapacitation_flags & INCAPACITATION_SOFTLYING) && (resting))
+	if ((incapacitation_flags & INCAPACITATION_SOFTLYING) && (resting || weakened))
 		return 1
 
-	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (weakened || pinned.len))
+	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && pinned.len)
 		return 1
 
 	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
@@ -718,7 +718,7 @@ Note from Nanako: 2019-02-01
 TODO: Bay Movement:
 All Canmove setting in this proc is temporary. This var should not be set from here, but from movement controllers
 */
-/mob/proc/update_lying_buckled_and_verb_status()
+/mob/proc/update_lying_buckled_and_verb_status(dropitems = FALSE)
 
 	if(!resting && cannot_stand() && can_stand_overridden())
 		lying = 0
@@ -739,7 +739,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 
 	if(lying)
 		set_density(0)
-		if(stat == UNCONSCIOUS)
+		if(stat == UNCONSCIOUS || dropitems)
 			if(l_hand) unEquip(l_hand) //we want to be able to keep items, for tactical resting and ducking behind cover
 			if(r_hand) unEquip(r_hand)
 	else
@@ -754,6 +754,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	//Temporarily moved here from the various life() procs
 	//I'm fixing stuff incrementally so this will likely find a better home.
 	//It just makes sense for now. ~Carn
+	// Fuck you Carn its been more than 6 years and people still lag from your shitty forced icon updates . SPCR -2022
 	if( update_icon )	//forces a full overlay update
 		update_icon = 0
 		regenerate_icons()
@@ -820,11 +821,11 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		update_lying_buckled_and_verb_status()
 	return
 
-/mob/proc/Weaken(amount)
+/mob/proc/Weaken(amount, dropitems = TRUE)
 	if(status_flags & CANWEAKEN)
 		facing_dir = null
 		weakened = max(max(weakened,amount),0)
-		update_lying_buckled_and_verb_status()	//updates lying, canmove and icons
+		update_lying_buckled_and_verb_status(dropitems)	//updates lying, canmove and icons
 	return
 
 /mob/proc/SetWeakened(amount)

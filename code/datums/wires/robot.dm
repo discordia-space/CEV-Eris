@@ -35,7 +35,7 @@ var/const/BORG_WIRE_CAMERA = 16
 					to_chat(R, "LawSync protocol engaged.")
 					R.show_laws()
 			else
-				if (R.lawupdate == 0 && !R.emagged)
+				if (R.lawupdate == 0 && !R.HasTrait(CYBORG_TRAIT_EMAGGED))
 					R.lawupdate = 1
 
 		if (BORG_WIRE_AI_CONTROL) //Cut the AI wire to reset AI control
@@ -58,7 +58,7 @@ var/const/BORG_WIRE_CAMERA = 16
 	var/mob/living/silicon/robot/R = holder
 	switch(index)
 		if (BORG_WIRE_AI_CONTROL) //pulse the AI wire to make the borg reselect an AI
-			if(!R.emagged)
+			if(!R.HasTrait(CYBORG_TRAIT_EMAGGED))
 				var/mob/living/silicon/ai/new_ai = select_active_ai(R)
 				R.connect_to_ai(new_ai)
 

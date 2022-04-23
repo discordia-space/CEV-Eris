@@ -21,6 +21,7 @@
 		WEAPON_CHARGE
 	)
 	twohanded = TRUE
+	serial_type = "NT"
 
 /obj/item/gun/energy/laser/mounted
 	self_recharge = TRUE

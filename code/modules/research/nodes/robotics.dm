@@ -224,7 +224,10 @@
 		/datum/design/research/item/exosuit/extinguisher,
 		/datum/design/research/item/exosuit/hydraulic_clamp,
 		/datum/design/research/item/mechfab/exosuit/chassis/pod,
-		/datum/design/research/item/exosuit/weapon/plasma
+		/datum/design/research/item/exosuit/weapon/plasma,
+		/datum/design/research/item/mechfab/exosuit/drillbit/steel,
+		/datum/design/research/item/mechfab/exosuit/drillbit/plasteel,
+		/datum/design/research/item/mechfab/exosuit/drillbit/diamond
 	)
 
 /datum/technology/mech_teleporter_modules
@@ -243,8 +246,8 @@
 	unlocks_designs = list(/datum/design/research/item/exosuit/gravity_catapult)
 
 /datum/technology/mech_util_armor
-	name = "Utility Armor"
-	desc = "Exosuit combat armor plates reinforced EM protection and radiation protection."
+	name = "EM-Shielded Exosuit Armour"
+	desc = "Exosuit combat armor plates reinforced EM protection."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.3
@@ -256,10 +259,9 @@
 		/datum/technology/mech_utility_modules
 	)
 	required_tech_levels = list()
-	cost = 2000
+	cost = 1000
 
 	unlocks_designs = list(
-			/datum/design/research/item/mechfab/exosuit/armour/radproof,
 			/datum/design/research/item/mechfab/exosuit/armour/em
 		)
 
@@ -280,7 +282,7 @@
 	cost = 2000
 
 	unlocks_designs = list(
-			/datum/design/research/circuit/exosuit/ballistics,
+			/datum/design/research/circuit/exosuit/weapons,
 			/datum/design/research/item/exosuit/taser,
 			/datum/design/research/item/exosuit/weapon/ion
 		)

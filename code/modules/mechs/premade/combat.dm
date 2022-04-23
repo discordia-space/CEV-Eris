@@ -12,7 +12,7 @@
 
 
 	material = MATERIAL_PLASTEEL
-	exosuit_color = COLOR_DARK_GUNMETAL
+	exosuit_color = COLOR_GUNMETAL
 	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/combat
 	installed_software_boards = list(
 		/obj/item/electronics/circuitboard/exosystem/weapons,
@@ -55,6 +55,7 @@
 	desc = "This standard combat chassis is reinforced with plasteel for extra durability without compromising visibility or ease of access."
 	pilot_coverage = 100
 	transparent_cabin = TRUE
+	hide_pilot = TRUE
 	exosuit_desc_string = "an armored chassis"
 	icon_state = "combat_body"
 	max_damage = 100
@@ -91,10 +92,10 @@
 	exosuit_desc_string = "sleek hydraulic legs"
 	desc = "These combat legs are both fast and durable, thanks to a generous plasteel reinforcement and aerodynamic design."
 	icon_state = "combat_legs"
-	move_delay = 2
+	move_delay = 3
 	power_use = 20
 	matter = list(MATERIAL_STEEL = 15)
-	turn_delay = 1 // Better than light , turns fast and costs a lot
+	turn_delay = 2 // Better than light , turns fast and costs a lot
 	max_damage = 100
 	power_use = 25
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5, MATERIAL_PLASMA = 5, MATERIAL_DIAMOND = 2) // Expensive because durable.

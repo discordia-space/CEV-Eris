@@ -1,5 +1,5 @@
 /obj/item/gun/projectile/automatic/luty
-	name = "handmade SMG .35 Auto \"Luty\""
+	name = "HM SMG Auto \"Luty\""
 	desc = "A dead simple open-bolt automatic firearm, easily made and easily concealed.\
 			A gun that has gone by many names, from the Grease gun to the Carlo to the Swedish K. \
 			Some designs are too good to change."
@@ -34,6 +34,7 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_WOOD = 10)
 	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/steel = 15)
+	serial_type = "" // handmde
 
 /obj/item/gun/projectile/automatic/luty/update_icon()
 	cut_overlays()
