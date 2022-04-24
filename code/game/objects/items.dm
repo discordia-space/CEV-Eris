@@ -87,7 +87,9 @@
 	var/max_upgrades = 3
 
 	var/can_use_lying = 0
-	var/chameleon_slot //if this is a chameleon item, what kind of item is it?
+
+	var/chameleon_type
+
 
 /obj/item/Initialize()
 	if(islist(armor))
@@ -96,6 +98,8 @@
 		armor = getArmor()
 	else if(!istype(armor, /datum/armor))
 		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
+	if(chameleon_type)
+		verbs.Add(/obj/item/proc/set_chameleon_appearance)
 	. = ..()
 
 /obj/item/Destroy()
@@ -127,6 +131,15 @@
 		if(3)
 			if(prob(5))
 				qdel(src)
+
+/obj/item/emp_act(severity)
+	if(chameleon_type)
+		name = initial(name)
+		desc = initial(desc)
+		icon = initial(icon)
+		icon_state = initial(icon_state)
+		update_icon()
+		update_wear_icon()
 
 /obj/item/verb/move_to_top()
 	set name = "Move To Top"
