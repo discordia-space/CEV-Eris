@@ -120,7 +120,7 @@
 		user.visible_message(SPAN_NOTICE("[user] begins scribbling \the [name]'s gun serial number away."), SPAN_NOTICE("You begin removing the serial number from \the [name]."))
 		if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_HAMMERING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			user.visible_message(SPAN_DANGER("[user] removes \the [name]'s gun serial number."), SPAN_NOTICE("You successfully remove the serial number from \the [name]."))
-			serial_type = ""
+			serial_type = null
 			return FALSE
 	if(!gun_parts)
 		to_chat(user, SPAN_NOTICE("You can't dismantle [src] as it has no gun parts! How strange..."))
@@ -619,7 +619,7 @@
 
 	if(serial_type)
 		to_chat(user, SPAN_WARNING("There is a serial number on this gun, it reads [serial_type]."))
-	else if(initial(serial_type)) // hopefully byond also has a way to handle this at runtime!
+	else if(isnull(serial_type))
 		to_chat(user, SPAN_DANGER("The serial is scribbled away."))
 
 
