@@ -311,7 +311,6 @@
 		msg_admin_attack("[key_name(assailant)] grabbed the neck of [key_name(affecting)]")
 		hud.icon_state = "kill"
 		hud.name = "choke"
-		affecting.Stun(10) //10 ticks of ensured grab
 
 	else if(state < GRAB_UPGRADING)
 		assailant.visible_message(SPAN_DANGER("[assailant] starts to tighten \his grip on [affecting]'s neck!"))
