@@ -19,6 +19,7 @@
 
 // Grab levels.
 #define GRAB_PASSIVE    1
+#define GRAB_SECURING 1.5
 #define GRAB_AGGRESSIVE 2
 #define GRAB_NECK       3
 #define GRAB_UPGRADING  4
