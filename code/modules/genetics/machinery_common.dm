@@ -78,12 +78,12 @@
 	if(hacked)
 		ui_interact(user)
 		update_icon()
-		log_add("Access granted to [hacked]", TRUE)
+		log_add("Access granted to [hacked].", TRUE)
 
 	else if(allowed(user))
 		ui_interact(user)
 		update_icon()
-		log_add("Access granted to [user.rank_prefix_name(FindNameFromID(user))]", TRUE)
+		log_add("Access granted to [user.rank_prefix_name(FindNameFromID(user))].", TRUE)
 
 	else
 		log_add("Unauthorized access attempt by [user.rank_prefix_name(FindNameFromID(user))].", TRUE)

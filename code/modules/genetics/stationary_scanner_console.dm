@@ -135,7 +135,7 @@
 		log_add("Sequencing complete, [stored_count] unique patterns recorded.")
 
 
-/obj/machinery/dna/console/proc/save_ue()
+/obj/machinery/dna/console/proc/save_ue(target_hex)
 	if(!usb)
 		log_add("ERROR: No data storage found. Sequiencing aborted.")
 		error_popup()
@@ -147,36 +147,25 @@
 
 	var/stored_count = 0
 
-	for(var/i in H.dormant_mutations)
-		var/datum/mutation/M = i
-		var/datum/computer_file/binary/animalgene/F = new
-		// Show mutation name instead of a tier_string if it have been activated previously
-		var/mut_name = M.is_active ? replacetext("[M.name]", " ", "_") : "[M.tier_string]"
-		F.filename = "AN_GENE_MUT_[M.hex]_[uppertext(mut_name)]"
-		F.gene_type = "mutation"
-		F.gene_value = M.clone()
-		if(usb.store_file(F))
-			stored_count++
-		else if(!(F in usb.stored_files))
-			log_add("ERROR: Insufficient storage space. Sequiencing aborted.")
-			error_popup()
-			break
-
-	for(var/i in H.active_mutations)
-		var/datum/mutation/M = i
-		var/datum/computer_file/binary/animalgene/F = new
-		F.filename = "AN_GENE_MUT_[M.hex]_[uppertext(replacetext("[M.name]", " ", "_"))]"
-		F.gene_type = "mutation"
-		F.gene_value = M.clone()
-		if(usb.store_file(F))
-			stored_count++
-		else if(!(F in usb.stored_files))
-			log_add("ERROR: Insufficient storage space. Sequiencing aborted.")
-			error_popup()
-			break
+	for(var/list/L in list(H.dormant_mutations, H.active_mutations))
+		for(var/i in L)
+			var/datum/mutation/M = i
+			if(!target_hex || target_hex == M.hex)
+				var/datum/computer_file/binary/animalgene/F = new
+				// Show mutation name instead of a tier_string if it have been activated previously
+				var/mut_name = M.is_active ? replacetext("[M.name]", " ", "_") : "[M.tier_string]"
+				F.filename = "AN_GENE_MUT_[M.hex]_[uppertext(mut_name)]"
+				F.gene_type = "mutation"
+				F.gene_value = M.clone()
+				if(usb.store_file(F))
+					stored_count++
+				else if(!(F in usb.stored_files))
+					log_add("ERROR: Insufficient storage space. Sequiencing aborted.")
+					error_popup()
+					break
 
 	if(stored_count)
-		log_add("Sequencing complete, [stored_count] unique patterns recorded.")
+		log_add("Sequencing complete, [stored_count] unique pattern[stored_count == 1 ? "" : "s"] recorded.")
 
 
 /obj/machinery/dna/console/Topic(href, href_list)
@@ -190,6 +179,11 @@
 	if(href_list["save_ue"])
 		save_ue()
 		return TOPIC_REFRESH
+
+	if(href_list["save_mut"])
+		save_ue(href_list["save_mut"])
+		return TOPIC_REFRESH
+
 
 	if(href_list["eject"])
 		try_eject_usb(usr)
@@ -231,12 +225,14 @@
 				var/mut_name = M.is_active ? replacetext("[M.name]", " ", "_") : ("[M.tier_string]")
 				occupant_mutations.Add(list(list(
 				"name" = "AN_GENE_MUT_[M.hex]_[uppertext(mut_name)]",
+				"hex" = M.hex,
 				"is_active" = M.is_active ? "ACTIVE" : "DORMANT")))
 
 			for(var/i in H.active_mutations)
 				var/datum/mutation/M = i
 				occupant_mutations.Add(list(list(
 				"name" = "AN_GENE_MUT_[M.hex]_[uppertext(M.tier_string)]",
+				"hex" = M.hex,
 				"is_active" = "ACTIVE")))
 
 			if(occupant_mutations.len)

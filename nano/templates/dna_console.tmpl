@@ -18,7 +18,7 @@
 			<tr><td>Mutations:</td></tr>
 			{{for data.occupant_mutations}}
 				<tr><td>
-					{{:value.name}} - {{:value.is_active}}
+					{{:helper.link('', 'circle-arrow-s', {'save_mut' : value.hex}, data.occupied ? null : 'disabled')}} {{:value.name}} - {{:value.is_active}}
 				</td></tr>
 			{{/for}}
 		{{else}}
