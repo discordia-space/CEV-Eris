@@ -254,7 +254,7 @@
 			spawn_armorpart(dice_roll,user)
 
 	if(choice)
-		user.visible_message("[user] crafts some [choice] using [src]")
+		user.visible_message("[user] finishes trying to craft some [choice] using [src]")
 	else
 		to_chat(user, "You reconsider the path of craftsmanship.")
 
@@ -482,6 +482,7 @@
 	switch(dice)
 		if(-99 to 5)	//crafting gunparts is difficult task, unlike with ammo, player can fail it completely
 			parts = 0
+			to_chat(user, SPAN_WARNING("Every step of the way you just made things worse and worse. You wasted all the materials."))
 		if(5 to 20)
 			parts = 1
 		if(20 to 35)

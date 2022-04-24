@@ -513,17 +513,17 @@
 //Technomancer armor
 /obj/item/clothing/suit/storage/vest/insulated
 	name = "insulated technomancer armor"
-	desc = "A set of armor insulated against heat and electrical shocks, shielded against radiation, and protected against energy weapon projectiles."
+	desc = "A set of armor insulated against heat and electrical shocks, shielded against radiation, and protected against blunt hits."
 	icon_state = "armor_engineering"
 	item_state = "armor_engineering"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 35,
+		melee = 30,
 		bullet = 30,
-		energy = 40,
-		bomb = 20,
+		energy = 10,
+		bomb = 50,
 		bio = 0,
-		rad = 30
+		rad = 80
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	item_flags = DRAG_AND_DROP_UNEQUIP
@@ -534,6 +534,7 @@
 	//Used ablative gear armor values and technomancer helmet/voidsuit values.
 	slowdown = LIGHT_SLOWDOWN
 	stiffness = LIGHT_STIFFNESS
+	style = STYLE_NONE
 
 /*
  * Reactive Armor

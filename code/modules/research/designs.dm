@@ -232,6 +232,6 @@ other types of metals and chemistry for reagents).
 	name = "Holographic equipment kit"
 	desc = "A kit of dangerous, high-tech equipment with changeable looks."
 	req_tech = list(TECH_COVERT = 2)
-	build_path = /obj/item/storage/box/syndie_kit/chameleon
+	build_path = /obj/item/storage/backpack/chameleon
 	sort_string = "VASBA"
 */
