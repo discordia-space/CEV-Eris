@@ -2,6 +2,7 @@
 
 #define MUTATION_BLIND				/datum/mutation/t0/blindness
 #define MUTATION_DEAF				/datum/mutation/t0/deafness
+#define MUTATION_NEARSIGHTED		/datum/mutation/t0/myopia
 
 #define MUTATION_NO_REJECT			/datum/mutation/t1/no_reject
 
@@ -21,3 +22,4 @@
 #define BLIND 0x1
 #define MUTE  0x2
 #define DEAF  0x4
+#define NEARSIGHTED  0x8

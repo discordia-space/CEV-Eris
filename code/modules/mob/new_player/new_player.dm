@@ -401,7 +401,9 @@
 	new_character.name = real_name
 	new_character.b_type = client.prefs.b_type
 	new_character.sync_organ_dna()
-//	if(client.prefs.disabilities)
+	if(client.prefs.disabilities)
+		if(client.prefs.disabilities & NEARSIGHTED)
+			new_character.add_mutation(MUTATION_NEARSIGHTED)
 
 	// Do the initial caching of the player's body icons.
 	new_character.force_update_limbs()

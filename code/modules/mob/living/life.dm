@@ -181,16 +181,12 @@
 	if(stat == DEAD)
 		return
 
-/*	if(eye_blind)
-		blind.alpha = 255
-	else
-		blind.alpha = 0
-		if (disabilities & NEARSIGHTED)
-			client.screen += global_hud.vimpaired
-		if (eye_blurry)
-			client.screen += global_hud.blurry
-		if (druggy)
-			client.screen += global_hud.druggy*/
+	if(sdisabilities & NEARSIGHTED)
+		client.screen += global_hud.vimpaired
+	if(eye_blurry)
+		client.screen += global_hud.blurry
+	if(druggy)
+		client.screen += global_hud.druggy
 	if(machine)
 		var/viewflags = machine.check_eye(src)
 		if(viewflags < 0)

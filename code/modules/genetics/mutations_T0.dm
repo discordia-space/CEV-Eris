@@ -27,3 +27,15 @@
 /datum/mutation/t0/deafness/cleanse(mob/living/carbon/user)
 	if(..())
 		user.sdisabilities -= DEAF
+
+/datum/mutation/t0/myopia
+	name = "Myopia"
+	desc = "Causes distant objects to appear blurry while close objects appear normal."
+
+/datum/mutation/t0/myopia/imprint(mob/living/carbon/user)
+	if(..())
+		user.sdisabilities |= NEARSIGHTED
+
+/datum/mutation/t0/myopia/cleanse(mob/living/carbon/user)
+	if(..())
+		user.sdisabilities -= NEARSIGHTED

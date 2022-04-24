@@ -326,14 +326,6 @@
 	user.do_attack_animation(M)
 
 	add_fingerprint(user)
-	//if((CLUMSY in user.mutations) && prob(50))
-	//	M = user
-		/*
-		to_chat(M, SPAN_WARNING("You stab yourself in the eye."))
-		M.sdisabilities |= BLIND
-		M.weakened += 4
-		M.adjustBruteLoss(10)
-		*/
 
 	if(istype(H))
 

@@ -35,12 +35,12 @@ var/global/default_dna_machinery_style
 		if(ispath(M.type, mutation_type))
 			return M
 
-// Meant to be manually called on mob for testing purposes
+
 /mob/living/carbon/human/proc/add_mutation(mutation_type)
 	var/datum/mutation/M = new mutation_type
 	M?.imprint(src)
 
-// Same, but also accepts keywords as argument
+
 /mob/living/carbon/human/proc/remove_mutation(mutation_type)
 	if(mutation_type in list("all", "active", "dormant"))
 		switch(mutation_type)
