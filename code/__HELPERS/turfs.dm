@@ -17,8 +17,7 @@
 //The old behaviour returned zero if there were any simulated atoms at all, even pipes and wires
 //Now it just finds if the tile is blocked by anything solid.
 //Edit by SCPR - 2022
-//Made it check for cables and pipes , because having pipes / cables randomly unwired because of it can be very fustrating
-//For technomancers.
+//Made it check for cables and pipes, because having pipes / cables randomly unwired because of it can be very frustrating for technomancers.
 /proc/turf_clear(turf/T)
 	if (T.density)
 		return FALSE
