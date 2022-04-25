@@ -22,7 +22,7 @@
 	if (T.density)
 		return FALSE
 	for(var/atom/A in T)
-		if(istype(A, /obj/structure/cable) || istype(A,/obj/machinery/atmospherics/pipe ))
+		if(istype(A, /obj/structure/cable) || istype(A, /obj/machinery/atmospherics/pipe))
 			return FALSE
 		if(A.density)
 			return FALSE
