@@ -102,7 +102,7 @@
 		for(var/perk in selected_option.perks)
 			var/datum/perk/P = perk
 			if(initial(P.icon))
-				dat += "<img style='vertical-align: middle;width=18px;height=18px;' src='[SSassets.transport.get_asset_url(sanitizeFileName("[design.initial(P.type)].png"))]'/>"
+				dat += "<img style='vertical-align: middle;width=18px;height=18px;' src='[SSassets.transport.get_asset_url(sanitizeFileName("[initial(P.type)].png"))]'/>"
 			dat += " [initial(P.name)]<br>"
 		dat += "<br>"
 
@@ -117,9 +117,12 @@
 
 	dat += "</td></tr></table>"
 
-	var/datum/asset/simple/perkasset = get_asset_datum(/datum/asset/simple/perks)
-	if (perkasset.send(user.client))
-		user.client.browse_queue_flush() // stall loading nanoui until assets actualy gets sent
+	var/client/C = pref.client
+
+	if (C)
+		var/datum/asset/simple/perkasset = get_asset_datum(/datum/asset/simple/perks)
+		if (perkasset.send(C))
+			C.browse_queue_flush() // stall loading nanoui until assets actualy gets sent
 
 	var/datum/browser/popup = new(preference_mob(), name, get_title(), 640, 480, src)
 	popup.set_content(dat)
