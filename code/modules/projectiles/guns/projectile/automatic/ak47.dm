@@ -98,7 +98,7 @@
 			The flexible design also fits drum magazines."
 	icon = 'icons/obj/guns/projectile/ak/krinkov.dmi'
 	w_class = ITEM_SIZE_BULKY	//small rifle, also because it's basically an smg now
-	recoil = RIFLE_RECOIL(0.7)
+	recoil = CARBINE_RECOIL(0.7)
 	damage_multiplier = 0.9 //Better control, worse damage
 	penetration_multiplier = 1.2
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
@@ -140,12 +140,12 @@
 		to_chat(user, SPAN_NOTICE("You unfold the stock on \the [src]."))
 		w_class = ITEM_SIZE_BULKY
 		folded = FALSE
-		recoil = RIFLE_RECOIL(0.7)
+		recoil = CARBINE_RECOIL(0.7)
 	else
 		to_chat(user, SPAN_NOTICE("You fold the stock on \the [src]."))
 		w_class = ITEM_SIZE_NORMAL
 		folded = TRUE
-		recoil = CARBINE_RECOIL(0.7)
+		recoil = SMG_RECOIL(0.7)
 
 	playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()

@@ -44,12 +44,6 @@
 
 	var/datum/recoil/recoil // Reference to the recoil datum in datum/recoil.dm
 
-	//TODO: remove this
-	var/recoil_buildup = 2 //How quickly recoil builds up
-	var/one_hand_penalty = 0 //The higher this number is, the more severe the accuracy penalty for shooting it one handed. 5 is a good baseline for this, but var edit it live and play with it yourself.
-	var/brace_penalty = FALSE//penalty if not braced.
-	//TODO end.
-
 	var/braced = FALSE //for gun_brace proc.
 	var/braceable = 1 //can the gun be used for gun_brace proc, modifies recoil. If the gun has foregrip mod installed, it's not braceable. Bipod mod increases value by 1.
 
