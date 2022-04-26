@@ -30,7 +30,7 @@
 
 /datum/mutation/t1/stat_buff/vigilance
 	name = "Enchanced proprioceptors"
-	desc = "Improves hand-eye coordination."
+	desc = "Improves hand-eye coordination when handling a weapon."
 	buff_type = STAT_VIG
 
 /datum/mutation/t1/stat_buff/robustness

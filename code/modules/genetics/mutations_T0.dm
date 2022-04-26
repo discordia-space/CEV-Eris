@@ -39,3 +39,42 @@
 /datum/mutation/t0/myopia/cleanse(mob/living/carbon/user)
 	if(..())
 		user.sdisabilities -= NEARSIGHTED
+
+/datum/mutation/t0/stat_debuff
+	name = "Mnemonic stimulation"
+	desc = "Improves abstract thinking and ability to iteract with mechanisms."
+	buff_type = STAT_MEC
+	buff_power = -STAT_LEVEL_BASIC
+
+/datum/mutation/t0/stat_debuff/imprint(mob/living/carbon/user)
+	if(..())
+		user.stats.addTempStat(buff_type, buff_power, INFINITY, "Mutation_[hex]_[name]")
+
+/datum/mutation/t0/stat_debuff/cleanse(mob/living/carbon/user)
+	if(..())
+		user.stats.removeTempStat(buff_type, "Mutation_[hex]_[name]")
+
+/datum/mutation/t0/stat_debuff/biology
+	name = "Tremor"
+	desc = "Involuntary twitching hand movements."
+	buff_type = STAT_BIO
+
+/datum/mutation/t0/stat_debuff/cognition
+	name = "Dementia"
+	desc = "Progressive impairments in memory and thinking."
+	buff_type = STAT_COG
+
+/datum/mutation/t0/stat_debuff/vigilance
+	name = "Ataxia"
+	desc = "Inability to judge distances or ranges of movement happens, most notably when shooting a gun."
+	buff_type = STAT_VIG
+
+/datum/mutation/t0/stat_debuff/robustness
+	name = "Muscular dystrophy"
+	desc = "Causes progressive weakness and loss of muscle mass."
+	buff_type = STAT_ROB
+
+/datum/mutation/t0/stat_debuff/toughness
+	name = "Thin skin"
+	desc = "Makes body more susceptible to damage."
+	buff_type = STAT_TGH
