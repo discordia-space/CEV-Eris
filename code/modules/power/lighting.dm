@@ -553,8 +553,8 @@
 
 		if(prot) // || (COLD_RESISTANCE in user.mutations)
 			to_chat(user, SPAN_NOTICE("You remove the light [fitting]"))
-//		else if(TK in user.mutations)
-//			to_chat(user, SPAN_NOTICE("You telekinetically remove the light [fitting]."))
+		else if(get_active_mutation(user, MUTATION_TELEKINESIS))
+			to_chat(user, SPAN_NOTICE("You telekinetically remove the light [fitting]."))
 		else
 			to_chat(user, "You try to remove the light [fitting], but it's too hot and you don't want to burn your hand.")
 			return				// if burned, don't remove the light

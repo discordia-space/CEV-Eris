@@ -631,3 +631,6 @@ proc/is_blind(A)
 	result[2] = ainvis
 
 	return result
+
+/mob/proc/set_faction(target_faction)
+	faction = target_faction ? target_faction : initial(faction)

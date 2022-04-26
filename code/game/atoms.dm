@@ -434,10 +434,10 @@ its easier to just keep the beam vertical.
 	return
 
 /atom/proc/add_fingerprint(mob/living/M, ignoregloves = FALSE)
-	if(isnull(M)) return
-	if(isAI(M)) return
-	if(isnull(M.key)) return
-	if (ishuman(M))
+	if(isnull(M) || isnull(M.key) || isAI(M))
+		return
+
+	if(ishuman(M))
 		//Add the list if it does not exist.
 		if(!fingerprintshidden)
 			fingerprintshidden = list()
@@ -446,11 +446,11 @@ its easier to just keep the beam vertical.
 		add_fibers(M)
 
 		//He has no prints!
-//		if (mFingerprints in M.mutations)
-//			if(fingerprintslast != M.key)
-//				fingerprintshidden += "(Has no fingerprints) Real name: [M.real_name], Key: [M.key]"
-//				fingerprintslast = M.key
-//			return FALSE		//Now, lets get to the dirty work.
+		if(get_active_mutation(M, MUTATION_NOPRINTS))
+			if(fingerprintslast != M.key)
+				fingerprintshidden += "(Has no fingerprints) Real name: [M.real_name], Key: [M.key]"
+				fingerprintslast = M.key
+			return FALSE		//Now, lets get to the dirty work.
 		//First, make sure their DNA makes sense.
 		var/mob/living/carbon/human/H = M
 		if(!H.fingers_trace)

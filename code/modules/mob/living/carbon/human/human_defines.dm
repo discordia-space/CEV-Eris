@@ -56,6 +56,7 @@
 	var/miming //Toggle for the mime's abilities.
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
+	var/ability_last = 0 // world.time when last proc from "Ability" tab have been used
 	var/last_dam = -1	//Used for determining if we need to process all organs or just some or even none.
 	var/list/bad_external_organs = list()// organs we check until they are good.
 

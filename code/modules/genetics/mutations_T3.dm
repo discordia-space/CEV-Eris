@@ -14,6 +14,7 @@
 	name = "Greater healing factor"
 	desc = "Significantly improves natural regeneration."
 
+
 /datum/mutation/t3/oborin
 	name = "Oborin Syndrome"
 	desc = "Removes ability to distinguishing between colors and taste."
@@ -27,10 +28,29 @@
 	if(..())
 		user.stats.removePerk(PERK_OBORIN_SYNDROME)
 
+
 /datum/mutation/t3/night_vision
 	name = "Night Vision"
 	desc = "Enhances eye sensitivity, allowing to see in the dark as if wearing night-vision goggles."
 
+
 /datum/mutation/t3/thermal_vision
 	name = "Thermal Vision"
 	desc = "Provides ability to detect heat signatures of synthetics and organics alike."
+
+
+/datum/mutation/t3/inner_fuhrer
+	name = "Inner fuhrer"
+	desc = "Gives ability to summon nearby critters."
+
+/datum/mutation/t3/inner_fuhrer/imprint(mob/living/carbon/user)
+	if(..())
+		user.verbs += /mob/living/carbon/human/proc/inner_fuhrer
+
+/datum/mutation/t3/inner_fuhrer/cleanse(mob/living/carbon/user)
+	if(..())
+		user.verbs -= /mob/living/carbon/human/proc/inner_fuhrer
+
+/datum/mutation/t3/telekinesis
+	name = "Telekinesis"
+	desc = "Ability to move or manipulate objects by thought."

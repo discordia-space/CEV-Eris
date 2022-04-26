@@ -217,7 +217,7 @@
 		data["b_type"] = H.b_type ? H.b_type : no_data
 		data["age"] = H.age ? H.age : no_data
 		data["dna_trace"] = H.dna_trace ? H.dna_trace : no_data
-		data["fingers_trace"] = H.fingers_trace ? H.fingers_trace : no_data
+		data["fingers_trace"] = get_active_mutation(H, MUTATION_NOPRINTS) ? "None" : (H.fingers_trace ? H.fingers_trace : no_data)
 
 		if(H.dormant_mutations && H.dormant_mutations)
 			for(var/i in H.dormant_mutations)

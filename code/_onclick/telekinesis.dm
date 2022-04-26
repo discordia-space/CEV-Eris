@@ -41,12 +41,10 @@ var/const/tk_maxrange = 15
 	if(user.stat || !isturf(loc))
 		return
 
-//		var/obj/item/tk_grab/O = new(src)
-//		user.put_in_active_hand(O)
-//		O.host = user
-//		O.focus_object(src)
-//	return
-
+	var/obj/item/tk_grab/O = new(src)
+	user.put_in_active_hand(O)
+	O.host = user
+	O.focus_object(src)
 
 /mob/attack_tk(mob/user)
 	return // needs more thinking about
@@ -96,23 +94,24 @@ var/const/tk_maxrange = 15
 		focus.attack_self_tk(user)
 
 /obj/item/tk_grab/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, proximity)//TODO: go over this
-	if(!target || !user)	return
-	if(last_throw+3 > world.time)	return
-	if(!host || host != user)
-		qdel(src)
+	if(!target || !user || last_throw + 3 > world.time)
 		return
-//	if(!(TK in host.mutations))
-//		qdel(src)
-//		return
+
 	if(isobj(target) && !isturf(target.loc))
+		return
+
+	if(!host || host != user || !get_active_mutation(user, MUTATION_TELEKINESIS))
+		qdel(src)
 		return
 
 	var/d = get_dist(user, target)
 	if(focus)
 		d = max(d, get_dist(user, focus)) // whichever is further
-	if (d == 0)
+
+	if(!d)
 		return
-	if (d > tk_maxrange)
+
+	if(d > tk_maxrange)
 		to_chat(user, SPAN_NOTICE("Your mind won't reach that far."))
 		return
 
@@ -140,7 +139,7 @@ var/const/tk_maxrange = 15
 	return
 
 
-/obj/item/tk_grab/proc/focus_object(var/obj/target, var/mob/living/user)
+/obj/item/tk_grab/proc/focus_object(obj/target, mob/living/user)
 	if(!isobj(target))
 		return//Cant throw non objects atm might let it do mobs later
 	if(target.anchored || !isturf(target.loc))
