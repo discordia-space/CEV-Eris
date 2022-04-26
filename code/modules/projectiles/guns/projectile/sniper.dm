@@ -18,7 +18,6 @@
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 20)
 	price_tag = 5000
-	one_hand_penalty = 10
 	zoom_factor = 2
 	twohanded = TRUE
 	darkness_view = 7

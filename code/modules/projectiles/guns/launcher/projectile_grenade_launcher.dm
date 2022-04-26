@@ -10,7 +10,7 @@
 	load_method = SINGLE_CASING
 	handle_casings = HOLD_CASINGS
 	max_shells = 5
-	recoil_buildup = 0
+	recoil = CARBINE_RECOIL(2)
 	twohanded = TRUE
 	ammo_type = /obj/item/ammo_casing/grenade
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher_fire.ogg'
@@ -67,6 +67,7 @@
 	icon_state = "Grenadelauncher_PMC"
 	item_state = "pneumatic"
 	w_class = ITEM_SIZE_HUGE
+	recoil = RIFLE_RECOIL(2)
 	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_PLASTIC = 10)
 	fire_sound = 'sound/weapons/empty.ogg'
@@ -90,7 +91,6 @@
 	icon = 'icons/obj/guns/launcher/makeshift.dmi'
 	icon_state = "makeshift"
 	item_state = "makeshift"
-	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 500
@@ -125,7 +125,7 @@
 	item_state = "china_lake"
 
 	max_shells = 3
-	recoil_buildup = 20
+	recoil = CARBINE_RECOIL(1.5)
 	ammo_type = /obj/item/ammo_casing/grenade
 
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_WOOD = 10)

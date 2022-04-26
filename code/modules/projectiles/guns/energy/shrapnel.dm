@@ -15,7 +15,6 @@
 	suitable_cell = /obj/item/cell/small
 	cell_type = /obj/item/cell/small
 	projectile_type = /obj/item/projectile/bullet/shotgun
-	one_hand_penalty = 15 //full sized shotgun level
 	fire_delay = 12 //Equivalent to a pump then fire time
 	fire_sound = 'sound/weapons/guns/fire/energy_shotgun.ogg'
 	init_firemodes = list(

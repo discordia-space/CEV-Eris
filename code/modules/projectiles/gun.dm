@@ -971,7 +971,7 @@
 
 
 /obj/item/gun/proc/generate_guntags()
-	if(one_hand_penalty)
+	if(recoil.getRating(RECOIL_BASE) < recoil.getRating(RECOIL_TWOHAND))
 		gun_tags |= GUN_GRIP
 	if(!zoom_factor && !(slot_flags & SLOT_HOLSTER))
 		gun_tags |= GUN_SCOPE

@@ -93,7 +93,6 @@
 	damage_multiplier = 0.6
 	penetration_multiplier = 0.5
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
-	one_hand_penalty = 10 //compact shotgun level
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 16)
 

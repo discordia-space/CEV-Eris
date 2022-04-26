@@ -11,27 +11,22 @@
 	name = "mounted taser carbine"
 	desc = "A dual fire mode taser system connected to the exosuit's targetting system."
 	icon_state = "mech_taser"
-	holding_type = /obj/item/gun/energy/taser/carbine/mounted/mech
+	holding_type = /obj/item/gun/energy/taser/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
 
-/obj/item/gun/energy/taser/carbine/mounted
-	bad_type = /obj/item/gun/energy/taser/carbine/mounted
-	spawn_tags = null
-
-/obj/item/gun/energy/taser/carbine/mounted/mech
-	use_external_power = TRUE
+/obj/item/gun/energy/taser/mounted/mech
 	restrict_safety = TRUE
-	self_recharge = TRUE
 	twohanded = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST * 0.5 // Pew pew pew pew pew pew pew pew pew pew
 	burst = 3
 	burst_delay = 1 // PEW PEW PEW
-	recoil_buildup = 2 // pew in all directions
+	recoil = LMG_RECOIL(1)
 	matter = list()
 	cell_type = /obj/item/cell/medium/mech
+	init_offset = 10 // Pew pew in all directions
 
 /obj/item/mech_equipment/mounted_system/taser/ion
 	name = "mounted ion rifle"

@@ -234,6 +234,6 @@
 	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
 	icon_state = "obrez_wood"
 	item_suffix  = "_wood"
-	recoil_buildup = 18
+	recoil = CARBINE_RECOIL(6.5)
 	wielded_item_state = "_doble_wood"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
