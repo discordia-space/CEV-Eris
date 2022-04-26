@@ -16,7 +16,7 @@
 
 
 /datum/mutation/t3/oborin
-	name = "Oborin Syndrome"
+	name = "Oborin syndrome"
 	desc = "Removes ability to distinguishing between colors and taste."
 	NSA_load = 0
 
@@ -30,12 +30,12 @@
 
 
 /datum/mutation/t3/night_vision
-	name = "Night Vision"
+	name = "Night vision"
 	desc = "Enhances eye sensitivity, allowing to see in the dark as if wearing night-vision goggles."
 
 
 /datum/mutation/t3/thermal_vision
-	name = "Thermal Vision"
+	name = "Thermal vision"
 	desc = "Provides ability to detect heat signatures of synthetics and organics alike."
 
 
@@ -54,3 +54,7 @@
 /datum/mutation/t3/telekinesis
 	name = "Telekinesis"
 	desc = "Ability to move or manipulate objects by thought."
+
+/datum/mutation/t3/atheist
+	name = "Clerical psi shielding"
+	desc = "Provides resistance to specific kind of psionic effects."

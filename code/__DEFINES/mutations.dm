@@ -21,8 +21,9 @@
 #define MUTATION_THERMAL_VISION		/datum/mutation/t3/thermal_vision
 #define MUTATION_INNER_FUHRER		/datum/mutation/t3/inner_fuhrer
 #define MUTATION_TELEKINESIS		/datum/mutation/t3/telekinesis
+#define MUTATION_ATHEIST			/datum/mutation/t3/atheist
 
-#define MUTATION_ATHEIST			/datum/mutation/t4/atheist
+#define MUTATION_GODBLOOD			/datum/mutation/t4/godblood
 #define MUTATION_XRAY				/datum/mutation/t4/xray
 #define MUTATION_PHAZING			/datum/mutation/t4/phazing
 #define MUTATION_MORPH				/datum/mutation/t4/morph

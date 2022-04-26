@@ -84,7 +84,7 @@
 		return
 
 	// Mutant with resistance to mind control still can use an implant, albeit not fully
-	if(get_active_mutation(target, MUTATION_ATHEIST))
+	if(get_active_mutation(target, MUTATION_GODBLOOD))
 		target.verbs.Add(/datum/faction/excelsior/proc/communicate_verb)
 		return
 
@@ -106,7 +106,7 @@
 		if(A.id == antag_id)
 			A.remove_antagonist()
 	wearer.visible_message(SPAN_DANGER("As \the [src] is removed from \the [wearer]..."))
-	if(prob(66) && !get_active_mutation(wearer, MUTATION_ATHEIST))
+	if(prob(66) && !get_active_mutation(wearer, MUTATION_GODBLOOD))
 		wearer.visible_message(SPAN_DANGER("\The [wearer]'s [part.name] violently explodes from within!"))
 		wearer.adjustBrainLoss(200)
 		part.droplimb(FALSE, DROPLIMB_BLUNT)

@@ -84,7 +84,7 @@ var/list/disciples = list()
 	var/observation_points = 200
 	if(!wearer || active)
 		return
-	if(get_active_mutation(wearer, MUTATION_ATHEIST))
+	if(get_active_mutation(wearer, MUTATION_GODBLOOD))
 		spawn(2 MINUTES)
 		for(var/mob/living/carbon/human/H in (disciples - wearer))
 			to_chat(H, SPAN_WARNING("A distand scream pierced your mind. You feel that a vile mutant sneaked among the faithful."))
@@ -134,7 +134,7 @@ var/list/disciples = list()
 
 /obj/item/implant/core_implant/cruciform/Process()
 	..()
-	if(active && round(world.time) % 5 == 0 && !get_active_mutation(wearer, MUTATION_ATHEIST))
+	if(active && round(world.time) % 5 == 0 && !get_active_mutation(wearer, MUTATION_GODBLOOD))
 		remove_cyber()
 		if(wearer.mutation_index)
 			var/datum/mutation/M = pick(wearer.active_mutations)

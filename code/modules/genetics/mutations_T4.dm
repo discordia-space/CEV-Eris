@@ -3,7 +3,7 @@
 	tier_string = "Aurelien"
 	NSA_load = 0
 
-/datum/mutation/t4/atheist
+/datum/mutation/t4/godblood
 	name = "God Blood"
 	desc = "Suppresses cruciform, allowing to have any implant or organ, as well as mutations."
 

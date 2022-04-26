@@ -56,6 +56,10 @@
 		fail("No target in front of you.", user, C)
 		return FALSE
 
+	if(get_active_mutation(T, MUTATION_ATHEIST))
+		fail("[T.name]\'s mutated flesh rejects your will.", user, C)
+		return FALSE
+
 	to_chat(T, SPAN_NOTICE("You feel slightly better as your pain eases."))
 	to_chat(user, SPAN_NOTICE("You ease the pain of [T.name]."))
 
