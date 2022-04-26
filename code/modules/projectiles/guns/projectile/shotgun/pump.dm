@@ -23,6 +23,7 @@
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/shotgun/pump/sawn
 	gun_parts = list(/obj/item/part/gun/frame/kammerer = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	serial_type = "FS"
 
 /obj/item/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)

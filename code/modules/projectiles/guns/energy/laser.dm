@@ -22,6 +22,7 @@
 	)
 	twohanded = TRUE
 	recoil = CARBINE_RECOIL(1)
+	serial_type = "NT"
 
 /obj/item/gun/energy/laser/mounted
 	self_recharge = TRUE

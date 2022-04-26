@@ -31,6 +31,7 @@
 		BURST_3_ROUND
 		)
 	gun_parts = list(/obj/item/part/gun/frame/sts35 = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	serial_type = "OR"
 
 
 /obj/item/gun/projectile/automatic/sts35/update_icon()

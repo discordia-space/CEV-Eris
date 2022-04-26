@@ -94,14 +94,12 @@
 	)
 
 /datum/craft_recipe/tool/toolimplant
-	name = "Multitool implant"
-	result = /obj/item/organ_module/active/multitool/improvised
+	name = "Improvised multitool implant"
+	result = /obj/item/organ_module/active/simple/makeshift
 	steps = list(
 		list(/obj/item/storage/toolbox, 1),
 		list(/obj/item/electronics/circuitboard, 1),
-		list(/obj/item/organ/external/robotic, 1),
 		list(/obj/item/stack/cable_coil, 5, "time" = 20),
-		list(/obj/item/tool/knife/shiv, 1),
 		list(/obj/item/tool/screwdriver/improvised, 1),
 		list(/obj/item/tool/wirecutters/improvised, 1),
 		list(/obj/item/tool/crowbar/improvised, 1),

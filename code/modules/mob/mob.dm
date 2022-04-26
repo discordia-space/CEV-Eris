@@ -176,10 +176,10 @@
 	if ((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
 		return 1
 
-	if ((incapacitation_flags & INCAPACITATION_SOFTLYING) && (resting))
+	if ((incapacitation_flags & INCAPACITATION_SOFTLYING) && (resting || weakened))
 		return 1
 
-	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (weakened || pinned.len))
+	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && pinned.len)
 		return 1
 
 	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
@@ -754,6 +754,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	//Temporarily moved here from the various life() procs
 	//I'm fixing stuff incrementally so this will likely find a better home.
 	//It just makes sense for now. ~Carn
+	// Fuck you Carn its been more than 6 years and people still lag from your shitty forced icon updates . SPCR -2022
 	if( update_icon )	//forces a full overlay update
 		update_icon = 0
 		regenerate_icons()

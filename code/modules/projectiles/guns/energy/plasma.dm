@@ -28,6 +28,8 @@
 	)
 	recoil = RIFLE_RECOIL(1)
 
+	serial_type = "NT"
+
 
 /obj/item/gun/energy/plasma/mounted
 	self_recharge = TRUE

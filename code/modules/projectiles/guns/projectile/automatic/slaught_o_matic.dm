@@ -36,6 +36,7 @@
 		FULL_AUTO_800
 		)
 	wield_delay = 0
+	serial_type = "" // so fucking cheap it doesn't even warrant having a serial
 
 /obj/item/gun/projectile/automatic/slaught_o_matic/Initialize()
 	. = ..()

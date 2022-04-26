@@ -11,14 +11,14 @@
 	origin_tech = list(TECH_COVERT = 4)
 
 /obj/item/clothing/mask/chameleon/voice/verb/Toggle_Voice_Changer()
-	set category = "Chameleon Items"
+	set category = "Object"
 	set src in usr
 
 	changer.active = !changer.active
 	to_chat(usr, "<span class='notice'>You [changer.active ? "enable" : "disable"] the voice-changing module in \the [src].</span>")
 
 /obj/item/clothing/mask/chameleon/voice/verb/Set_Voice(name as text)
-	set category = "Chameleon Items"
+	set category = "Object"
 	set src in usr
 
 	var/voice = sanitize(name, MAX_NAME_LEN)

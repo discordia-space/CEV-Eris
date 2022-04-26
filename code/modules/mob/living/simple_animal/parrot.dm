@@ -81,6 +81,8 @@
 	//Parrots are kleptomaniacs. This variable ... stores the item a parrot is holding.
 	var/obj/item/held_item = null
 
+	sanity_damage = -1
+
 
 /mob/living/simple_animal/parrot/New()
 	..()

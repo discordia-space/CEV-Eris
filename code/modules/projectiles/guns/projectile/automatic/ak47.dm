@@ -33,6 +33,7 @@
 		BURST_5_ROUND
 		)
 	spawn_blacklisted = TRUE
+	serial_type = "REV" // revolution
 
 	var/folded = FALSE
 
@@ -69,7 +70,7 @@
 		itemstring += "_full"
 		if (ammo_magazine.mag_well == MAG_WELL_RIFLE_D)
 			iconstring += "_drum"
-		else	
+		else
 			iconstring += "[ammo_magazine? "_mag[ammo_magazine.max_ammo]": ""]"
 
 	if(wielded)
@@ -176,6 +177,7 @@
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	serial_type = "FS"
 
 
 

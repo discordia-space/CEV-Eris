@@ -13,6 +13,7 @@
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/steel = 15)
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
+	serial_type = ""
 
 /obj/item/gun/projectile/revolver/handmade/attackby(obj/item/W, mob/user)
 	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
@@ -30,7 +31,7 @@
 				caliber = CAL_MAGNUM
 				fire_sound = 'sound/weapons/guns/fire/revolver_fire.ogg'
 				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .40 Magnum."))
-		else 
+		else
 			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
 			return
 	..()

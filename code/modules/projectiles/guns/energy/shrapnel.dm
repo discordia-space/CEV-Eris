@@ -29,6 +29,8 @@
 	var/consume_cell = TRUE
 	recoil = RIFLE_RECOIL(1)
 
+	serial_type = "OR"
+
 /obj/item/gun/energy/shrapnel/consume_next_projectile()
 	if(!cell) return null
 	if(!ispath(projectile_type)) return null

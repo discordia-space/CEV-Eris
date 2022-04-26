@@ -17,6 +17,7 @@
 	penetration_multiplier = 1.3
 	recoil = HANDGUN_RECOIL(1)
 	gun_parts = list(/obj/item/part/gun/frame/mk58 = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	serial_type = "NT"
 
 /obj/item/gun/projectile/mk58/update_icon()
 	..()

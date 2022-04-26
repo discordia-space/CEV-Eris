@@ -17,6 +17,8 @@
 	zoom_factor = 2
 	gun_parts = list(/obj/item/stack/material/steel = 4)
 	recoil = HANDGUN_RECOIL(1)
+	serial_type = "M"
+
 
 /obj/item/gun/energy/temperature/Initialize()
 	. = ..()

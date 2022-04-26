@@ -33,6 +33,7 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_WOOD = 10)
 	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/steel = 15)
+	serial_type = "" // handmde
 
 /obj/item/gun/projectile/automatic/luty/update_icon()
 	cut_overlays()

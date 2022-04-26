@@ -4,10 +4,12 @@
 	desc = "A cockroach egg, can be eaten with proper preparation. It seems to pulse slightly with an inner life."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "roach_egg"
-	preloaded_reagents = list("egg" = 9, "blattedin" = 3)
+	preloaded_reagents = list("egg" = 15)
 	w_class = ITEM_SIZE_TINY
 	health = 5
 	var/amount_grown = 0
+	spawn_tags = SPAWN_JUNK
+	spawn_frequency = 60
 
 /obj/item/roach_egg/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(istype(O,/obj/machinery/microwave))
@@ -28,7 +30,7 @@
 	health -= (I.force / 2)
 	healthcheck()
 
-/obj/item/roach_egg/bullet_act(var/obj/item/projectile/Proj)
+/obj/item/roach_egg/bullet_act(obj/item/projectile/Proj)
 	..()
 	health -= Proj.get_structure_damage()
 	healthcheck()
@@ -45,13 +47,23 @@
 		healthcheck()
 
 
-
-/obj/item/roach_egg/New(var/location, var/atom/parent)
+/obj/item/roach_egg/New(location, atom/parent)
 	pixel_x = rand(3,-3)
 	pixel_y = rand(3,-3)
 	START_PROCESSING(SSobj, src)
 	get_light_and_color(parent)
+	preloaded_reagents = list(pick(
+		"bicaridine",
+		"hyperzine",
+		"dermaline",
+		"dexalinp",
+		"tramadol",
+		"oxycodone",
+		"alkysine",
+		"peridaxon") = 15)
 	..()
+	color = pick(COLOR_RED, COLOR_RED, COLOR_RED, COLOR_BLUE, COLOR_YELLOW, COLOR_GREEN, COLOR_PINK, COLOR_ORANGE)
+
 
 /obj/item/roach_egg/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -62,22 +74,22 @@
 	. = ..()
 
 /obj/item/roach_egg/Process()	
-	if (isturf(src.loc) || istype(src.loc, /obj/structure/closet) || istype(src.loc, /obj/item/organ/external)) // suppresses hatching when not in a suitable loc
-		if(amount_grown >= 100)
+	if(isturf(loc) || istype(loc, /obj/structure/closet) || istype(loc, /obj/item/organ/external)) // suppresses hatching when not in a suitable loc
+		if(amount_grown >= 500)
 			var/obj/item/organ/external/O
 			if(istype(loc, /obj/item/organ/external)) // In case you want to implant some roach eggs into someone, gross!
 				O = loc
-				src.visible_message(SPAN_WARNING("A roachling makes its way out of [O.owner ? "[O.owner]\'s [O.name]" : "\the [O]"]!"))
+				visible_message(SPAN_WARNING("A roachling makes its way out of [O.owner ? "[O.owner]\'s [O.name]" : "\the [O]"]!"))
 				if(O.owner)
 					O.owner.apply_damage(1, BRUTE, O.organ_tag, used_weapon = src)
 				O.implants -= src // Remove from implants and spawn the roachling on the ground
-				src.loc = O.owner ? O.owner.loc : O.loc
+				loc = O.owner ? O.owner.loc : O.loc
 
 			var/spawn_type = /mob/living/carbon/superior_animal/roach/roachling
-			new spawn_type(src.loc, src)
+			new spawn_type(loc, src)
 			qdel(src)
 		else
-			amount_grown += rand(0,2)
+			amount_grown += rand(0,1)
 
 /obj/effect/decal/cleanable/roach_egg_remains
 	name = "roach egg remains"

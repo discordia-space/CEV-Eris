@@ -35,6 +35,8 @@
 		SEMI_AUTO_NODELAY,
 		)
 
+	serial_type = "S"
+
 
 /obj/item/part/gun/frame/c20r
 	name = "C20r frame"

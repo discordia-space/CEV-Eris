@@ -26,6 +26,7 @@
 	zoom_factor = 0.6
 	fire_delay = 6.5
 	gun_parts = list(/obj/item/part/gun/frame/kovacs = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)
+	serial_type = "SA"
 
 
 

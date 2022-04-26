@@ -21,6 +21,7 @@
 	recoil = SMG_RECOIL(0.7)
 	gun_tags = list(GUN_SILENCABLE, GUN_GILDABLE)
 	gun_parts = list(/obj/item/part/gun/frame/atreides = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
+	serial_type = "FS"
 
 	init_firemodes = list(
 		FULL_AUTO_400,

@@ -35,6 +35,7 @@
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/z8 = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)
+	serial_type = "OR"
 
 /obj/item/gun/projectile/automatic/z8/Initialize()
 	. = ..()

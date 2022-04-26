@@ -22,11 +22,13 @@
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /obj/structure/table/proc/check_cover(obj/item/projectile/P, turf/from)
 	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
-		return 1
+		return TRUE
+	if(get_dist(loc, P.trajectory.target) > 1 ) // Target turf must be adjacent for it to count as cover
+		return TRUE
 	var/valid = FALSE
 	var/distance = get_dist(P.last_interact,loc)
 	if(!P.def_zone)
-		return 1 // Emitters, or anything with no targeted bodypart will always bypass the cover
+		return TRUE // Emitters, or anything with no targeted bodypart will always bypass the cover
 	P.check_hit_zone(loc, distance)
 
 	var/targetzone = check_zone(P.def_zone)

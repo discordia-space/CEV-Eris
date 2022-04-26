@@ -35,6 +35,8 @@
 		SEMI_AUTO_NODELAY,
 		)
 
+	serial_type = "PAR-TS" // PAR top secret
+
 /obj/item/gun/projectile/automatic/dallas/update_icon()
 	..()
 	if(ammo_magazine)

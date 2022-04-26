@@ -4,7 +4,6 @@
 	icon = 'icons/obj/guns/projectile/heavysniper.dmi'
 	icon_state = "heavysniper"
 	item_state = "heavysniper"
-	damage_multiplier = 1
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK
@@ -34,6 +33,7 @@
 	wield_delay = 0
 	pierce_multiplier = 6
 	gun_parts = list(/obj/item/part/gun/frame/heavysniper = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/antim = 1)
+	serial_type = "SA"
 
 /obj/item/part/gun/frame/heavysniper
 	name = "Hristov frame"

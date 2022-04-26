@@ -17,6 +17,7 @@
 	charge_cost = 200
 	price_tag = 2500
 	recoil = HANDGUN_RECOIL(1)
+	serial_type = "S"
 
 
 /obj/item/gun/energy/crossbow/ninja

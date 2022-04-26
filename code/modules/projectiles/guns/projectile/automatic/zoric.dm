@@ -27,6 +27,7 @@
 		)
 	gun_tags = list(GUN_SILENCABLE)
 	gun_parts = list(/obj/item/part/gun/frame/zoric = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/magnum = 1)
+	serial_type = "SA"
 
 /obj/item/gun/projectile/automatic/zoric/update_icon()
 	..()

@@ -22,6 +22,7 @@
 		LETHAL,
 		WEAPON_CHARGE,
 		)
+	serial_type = "FS"
 
 /obj/item/gun/energy/gun/mounted
 	name = "mounted energy gun"
@@ -48,6 +49,8 @@
 	suitable_cell = /obj/item/cell/small
 	cell_type = /obj/item/cell/small
 	recoil = HANDGUN_RECOIL(1)
+
+	serial_type = "FS"
 
 	spawn_tags = SPAWN_TAG_FS_ENERGY
 

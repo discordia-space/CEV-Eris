@@ -15,6 +15,7 @@
 	recoil = RIFLE_RECOIL(2.4)
 	saw_off = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/regulator = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	serial_type = "NT"
 
 /obj/item/part/gun/frame/regulator
 	name = "Regulator frame"
