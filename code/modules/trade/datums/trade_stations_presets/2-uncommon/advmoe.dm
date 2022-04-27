@@ -12,7 +12,7 @@
 	wealth = 0
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
-	stations_recommended = list("trapper")
+	stations_recommended = list()
 	recommendations_needed = 1
 	inventory = list(
 		"Scientific Surplus" = list(
@@ -52,6 +52,8 @@
 		/obj/item/slime_extract/black = offer_data("black slime extract", 20000, 1),
 		/obj/item/slime_extract/oil = offer_data("oil slime extract", 20000, 1),
 		/obj/item/slime_extract/adamantine = offer_data("adamantine slime extract", 20000, 1),
+		/datum/reagent/toxin/slimetoxin = offer_data("mutation toxin (60u)", 10000, 1),
+		/datum/reagent/toxin/aslimetoxin = offer_data("advanced mutation toxin (60u)", 20000, 1),
 		/datum/reagent/nanites/uncapped/control_booster_utility = offer_data("Control Booster Utility bottle (60u)", 30000, 1),
 		/datum/reagent/nanites/uncapped/control_booster_combat = offer_data("Control Booster Combat bottle (60u)", 30000, 1)
 	)

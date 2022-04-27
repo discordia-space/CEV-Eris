@@ -1,6 +1,6 @@
 /datum/trade_station/style
 	name_pool = list(
-		"FTB 'TBD'" = "Free Trade Beacon 'TBD': TBD"
+		"FTB 'White Rabbit'" = "Free Trade Beacon 'White Rabbit': \"Go down in style!\""
 	)
 	uid = "style"
 	start_discovered = FALSE
@@ -9,8 +9,9 @@
 	offer_limit = 10
 	base_income = 1600
 	wealth = 0
-	hidden_inv_threshold = 0
-	recommendation_threshold = 0
+	hidden_inv_threshold = 2000
+	recommendation_threshold = 4000
+	stations_recommended = list("illegal2")
 	recommendations_needed = 2
 	inventory = list(
 		"Stylish Attire" = list(

@@ -1,6 +1,6 @@
 /datum/trade_station/illegaltrader
 	name_pool = list(
-		"NSTB \'Arau\'" = "Null-Space Trade Beacon \'Arau\'. The Trade Beacon is sending an automated message: \"Hey, buddy. Interested in our \'legal\' goods?\""
+		"NSTB \'Arau\'" = "Null-Space Trade Beacon \'Arau\'. The Trade Beacon is sending an automated message: \"Hey, buddy. Interested in our legal goods?\""
 	)
 	uid = "illegal1"
 	start_discovered = FALSE
@@ -12,7 +12,7 @@
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("illegal2")
-	recommendations_needed = 3
+	recommendations_needed = 2
 	inventory = list(
 		"Syndicate Gear" = list(
 			/obj/item/clothing/under/syndicate,

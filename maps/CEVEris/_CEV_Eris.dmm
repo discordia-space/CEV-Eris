@@ -52984,7 +52984,7 @@
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "cxK" = (
-/obj/machinery/computer/supplycomp,
+/obj/item/modular_computer/console/preset/trade,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -57348,7 +57348,7 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/storage/primary)
 "cIg" = (
-/obj/machinery/computer/supplycomp,
+/obj/item/modular_computer/console/preset/trade,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/command/bridge)
 "cIh" = (
@@ -78356,8 +78356,8 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "dGf" = (
-/obj/machinery/computer/supplycomp/order{
-	dir = 4
+/obj/item/modular_computer/console/preset/trade_catalog{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
@@ -99826,7 +99826,7 @@
 /turf/simulated/open,
 /area/eris/engineering/gravity_generator)
 "eEm" = (
-/obj/machinery/computer/supplycomp{
+/obj/item/modular_computer/console/preset/trade{
 	dir = 8
 	},
 /obj/machinery/button/remote/blast_door{
@@ -208560,7 +208560,7 @@ dZD
 cFX
 dXb
 ihk
-dGf
+cFX
 cGa
 vfD
 avn
@@ -209165,7 +209165,7 @@ cyG
 cxH
 cyW
 czB
-cwD
+dGf
 dGA
 dHo
 dHs

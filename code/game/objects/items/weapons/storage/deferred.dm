@@ -423,7 +423,7 @@
 	name = "research box"
 	desc = "A packaged intellectual curiosity"
 	initial_contents = list(
-		/obj/item/computer_hardware/hard_drive/portable/research_points = 1
+		/obj/item/computer_hardware/hard_drive/portable/research_points = 2
 	)
 
 // Trapper

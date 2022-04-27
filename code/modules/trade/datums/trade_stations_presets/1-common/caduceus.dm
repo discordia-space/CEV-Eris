@@ -58,7 +58,8 @@
 			/obj/item/reagent_containers/syringe,
 			/obj/item/reagent_containers/hypospray/autoinjector,
 			/obj/item/bodybag,
-			/obj/item/computer_hardware/hard_drive/portable/design
+			/obj/item/computer_hardware/hard_drive/portable/design,
+			/obj/item/storage/hcases/med
 		)
 	)
 	hidden_inventory = list(
@@ -84,5 +85,4 @@
 		/datum/reagent/stim/bouncer = offer_data("bouncer bottle (60u)", 1500, 1),
 		/datum/reagent/medicine/ossisine = offer_data("ossissine bottle (60u)", 4000, 1),
 		/datum/reagent/medicine/kyphotorin = offer_data("kyphotorin bottle (60u)", 8000, 1)
-//		/datum/reagent/toxin/slimetoxin
 	)

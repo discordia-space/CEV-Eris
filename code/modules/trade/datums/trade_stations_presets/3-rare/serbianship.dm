@@ -42,8 +42,8 @@
 			/obj/item/clothing/suit/armor/platecarrier,
 			/obj/item/clothing/head/armor/steelpot,
 			/obj/item/clothing/head/armor/faceshield/altyn/maska,
-			/obj/item/clothing/head/armor/faceshield/altyn/brown,
-			/obj/item/clothing/head/armor/faceshield/altyn/black,
+			/obj/item/clothing/head/armor/faceshield/altyn/brown = custom_good_name("brown altyn helmet"),
+			/obj/item/clothing/head/armor/faceshield/altyn/black = custom_good_name("black altyn helmet"),
 			/obj/item/clothing/mask/balaclava/tactical,
 			/obj/item/clothing/shoes/jackboots,
 			/obj/item/clothing/gloves/fingerless,
@@ -61,9 +61,7 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/part/gun/frame/boltgun  = offer_data("boltgun frame", 800, 2),
-		/obj/item/part/gun/frame/kovacs  = offer_data("Kovacs frame", 1000, 2),
-		/obj/item/part/gun/frame/ak47  = offer_data("AK frame", 800, 2),
-		/obj/item/part/gun/frame/zoric  = offer_data("Zoric frame", 1000, 2),
-		/obj/item/part/gun/frame/pk  = offer_data("Pulemyot Kalashnikova frame", 1000, 2)
+		/obj/item/part/gun/frame/kovacs  = offer_data("Kovacs frame", 800, 2),
+		/obj/item/part/gun/frame/zoric  = offer_data("Zoric frame", 2000, 2),
+		/obj/item/part/gun/frame/pk  = offer_data("Pulemyot Kalashnikova frame", 2000, 2)
 	)

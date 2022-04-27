@@ -52,6 +52,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	slot_flags = SLOT_EARS
 	attack_verb = list("burnt", "singed")
 	preloaded_reagents = list("sulfur" = 3, "potassium" = 3, "hydrazine" = 3, "carbon" = 5)
+
+	price_tag = 5
+
 	var/burnt = 0
 	var/smoketime = 5
 

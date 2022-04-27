@@ -26,7 +26,6 @@
 	var/spawn_probability = 60		// This is actually treated as a weight variable. The number isn't the actual probability that the station will spawn.
 	var/spawn_cost = 1
 	var/start_discovered = FALSE
-	var/commision = 0 				// Cost of trading more than one thing or cost for crate
 
 	var/list/forced_overmap_zone 	// list(list(minx, maxx), list(miny, maxy))
 	var/overmap_opacity = 0
@@ -34,10 +33,10 @@
 	var/list/name_pool = list()
 
 	var/markup = WHOLESALE_GOODS
-	var/markdown = 0.6				// Default markdown is 60%, remove with direct selling when the beacons can export
+
 	var/list/inventory = list()
 	var/list/offer_types = list()	// Defines special offers
-	var/list/offer_limit = 20		// For limiting sell offer quantity. 0 is no cap. Offer data packet can set a good specific cap that overrides this.
+	var/list/offer_limit = 10		// For limiting sell offer quantity. 0 is no cap. Offer data packet can set a good specific cap that overrides this.
 
 	var/list/amounts_of_goods = list()
 	var/unique_good_count = 0
@@ -128,17 +127,17 @@
 		if(islist(category))
 			for(var/good_path in category)
 				var/cost = SStrade.get_import_cost(good_path, src)
-				var/list/rand_args = list(0, 50 / max(cost/200, 1))
+				var/list/rand_args = list(1, 30 / max(cost/200, 1))
 				var/list/good_packet = category[good_path]
 				if(islist(good_packet))
 					if(islist(good_packet["amount_range"]))
 						rand_args = good_packet["amount_range"]
-				if(!islist(amounts_of_goods))
-					amounts_of_goods = list()
 				if(!islist(amounts_of_goods[category_name]))
 					amounts_of_goods[category_name] = list()
-				var/good_amount = amounts_of_goods[category_name]
-				good_amount["[category.Find(good_path)]"] = max(0, rand(rand_args[1], rand_args[2]))
+				var/content = amounts_of_goods[category_name]
+				var/good_index = "[category.Find(good_path)]"
+				var/good_quantity = max(0, rand(rand_args[1], rand_args[2]))
+				content[good_index] = good_quantity
 				unique_good_count += 1
 
 	for(var/offer_path in offer_types)
@@ -155,7 +154,7 @@
 		goods_tick()
 	else
 		initialized = TRUE
-	update_time = rand(15,25) MINUTES
+	update_time = rand(15,20) MINUTES
 	addtimer(CALLBACK(src, .proc/update_tick), update_time, TIMER_STOPPABLE)
 	update_timer_start = world.time
 
@@ -165,26 +164,44 @@
 	wealth += base_income		// Base income doesn't contribute to favor
 
 	// Restock
-	// TODO: Make this actually random.
-	// 		 Currently, items that are closer to the end of the list have a lower chance to restock because they can't restock if wealth goes to zero as a result of earlier items restocking.
 	var/starting_balance = wealth								// For calculating production budget
 	var/budget = round(starting_balance / unique_good_count)	// Don't wanna blow the whole balance on one item
+	var/list/restock_candidates = list()
+
 	for(var/category_name in inventory)
 		var/list/category = inventory[category_name]
-		if(islist(category))
-			for(var/good_path in category)
-				var/good_index = category.Find(good_path)
-				var/good_amount = get_good_amount(category_name, good_index)
-				var/chance_to_restock = (good_amount < 5) ? 100 : (good_amount > 20) ? 0 : 15		// Always restock low quantity goods, never restock well-stocked goods
-				var/roll = rand(1,100)
-				if(roll <= chance_to_restock)
-					var/cost = max(1, round(SStrade.get_import_cost(good_path, src) / 2))			// Cost of production is lower than sale price. Otherwise, it wouldn't make sense for the station to operate.
-					var/amount_to_add = rand(1, round(budget / cost))
-					if(cost * amount_to_add < wealth)												// This means the cost of the items can go over budget, but that might be alright for now.
-						set_good_amount(category_name, good_index, good_amount + amount_to_add)
-						subtract_from_wealth(amount_to_add * cost)
+		for(var/good_path in category)
+			var/good_index = category.Find(good_path)
+			var/current_amount = get_good_amount(category_name, good_index)
+			var/chance_to_restock = (current_amount < 5) ? 100 : (current_amount > 20) ? 0 : 15		// Always restock low quantity goods, never restock well-stocked goods
+			var/roll = rand(1,100)
+			if(roll <= chance_to_restock)
+				var/cost = max(1, round(SStrade.get_import_cost(good_path, src) / 2))			// Cost of production is lower than sale price. Otherwise, it wouldn't make sense for the station to operate.
+				var/amount_to_add = rand(1, round(budget / cost))
+				var/list/content = list(
+					"cat" = category_name,
+					"index" = good_index,
+					"cost" = cost,
+					"to add" = amount_to_add,
+					"current amt" = current_amount)
+				var/restock_index = restock_candidates.len + 1
+				restock_candidates.Insert(restock_index, restock_index)
+				restock_candidates[restock_index] = content
 
-	// Compare total score and unlock thresholds
+	for(var/count in 1 to 20)
+		if(!restock_candidates.len || !wealth)
+			break
+
+		var/list/good_packet = pick(restock_candidates)
+		var/candidate_index = restock_candidates.Find(good_packet)
+		var/total_cost = good_packet["cost"] * good_packet["to add"]
+		restock_candidates.Cut(candidate_index, candidate_index + 1)
+
+		if(total_cost < wealth)
+			set_good_amount(good_packet["cat"], good_packet["index"], good_packet["to add"] + good_packet["current amt"])
+			subtract_from_wealth(total_cost)
+
+	// Compare total favor and unlock thresholds
 	if(!hidden_inv_unlocked)
 		try_unlock_hidden_inv()
 
@@ -203,17 +220,18 @@
 				inventory[category_name] = category
 				for(var/good_path in category)
 					var/cost = SStrade.get_import_cost(good_path, src)
-					var/list/rand_args = list(0, 50 / max(cost/200, 1))
+					var/list/rand_args = list(1, 30 / max(cost/200, 1))
 					var/list/good_packet = category[good_path]
 					if(islist(good_packet))
 						if(islist(good_packet["amount_range"]))
 							rand_args = good_packet["amount_range"]
-					if(!islist(amounts_of_goods))
-						amounts_of_goods = list()
 					if(!islist(amounts_of_goods[category_name]))
 						amounts_of_goods[category_name] = list()
-					var/good_amount = amounts_of_goods[category_name]
-					good_amount["[category.Find(good_path)]"] = max(0, rand(rand_args[1], rand_args[2]))
+					var/content = amounts_of_goods[category_name]
+					var/good_index = "[category.Find(good_path)]"
+					var/good_quantity = max(0, rand(rand_args[1], rand_args[2]))
+					content[good_index] = good_quantity
+					unique_good_count += 1
 
 /datum/trade_station/proc/try_recommendation()
 	if(favor >= recommendation_threshold)
@@ -255,7 +273,7 @@
 	if(!isnum(income))
 		return
 	wealth += income
-	favor += income * (is_offer ? 1 : 0.5)
+	favor += income * (is_offer ? 1 : 0.125)
 
 	// Unlocks without needing to wait for update tick
 	if(!hidden_inv_unlocked)

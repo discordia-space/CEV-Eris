@@ -1,7 +1,7 @@
 // roach toxin bottles defined in module/reagents/reagent_containters/glass/bottle.dm
 /datum/trade_station/trapper
 	name_pool = list(
-		"EXTV \'Armitage\'" = "Exterminator Vessel \'Armitage\': \"Greetings, Eris. We're in a bit of a rough spot at the moment. Got any traps to spare?\"",
+		"EXTV \'Armitage\'" = "Exterminator Vessel \'Armitage\': \"Greetings, Eris. We\'re in a bit of a rough spot at the moment. Got any traps to spare?\"",
 	)
 	uid = "trapper"
 	start_discovered = FALSE
@@ -12,7 +12,6 @@
 	wealth = 0
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
-	stations_recommended = list("illegal2")
 	recommendations_needed = 2
 	inventory = list(
 		"Roach Cubes and Eggs" = list(

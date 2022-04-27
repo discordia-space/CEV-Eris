@@ -11,7 +11,7 @@
 		<div class="item" style="padding-top: 5px">
 			<div class="item">
 				<div class="itemLabel">
-					{{:data.station_name}}
+					Station:
 				</div>
 				<div class="itemContent">
 					<span class="average">{{:data.station_desc}}</span>
@@ -40,12 +40,10 @@
 					<table class='item'>
 						<tr class="bottom_bordered">
 							<td>Name
-							<td>Station Price
 							<td>Available
 						{{for data.goods}}
 							<tr>
 								<td>{{:value.name}}
-								<td>{{:value.price}}
 								<td>{{:value.amount_available}}
 						{{/for}}
 					</table>
