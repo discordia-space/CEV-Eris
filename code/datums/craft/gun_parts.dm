@@ -37,7 +37,7 @@
 
 		pick_n_take(parts_list)
 		if(prob(50))
-			parts_list -= pick(parts_list)
+			pick_n_take(parts_list)
 
 		for(var/part in parts_list)
 			if(ispath(part, grip))
