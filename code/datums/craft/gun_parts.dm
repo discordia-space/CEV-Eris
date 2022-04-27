@@ -91,9 +91,8 @@
 	if(istool(I))
 		if(I.get_tool_quality(QUALITY_SCREW_DRIVING))
 			var/list/possibles = contents.Copy()
-			possibles += "Cancel"
 			var/obj/item/part/gun/toremove = input("Which part would you like to remove?","Removing parts") in possibles
-			if(toremove == "Cancel")
+			if(!toremove)
 				return
 			if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
 				eject_item(toremove, user)
