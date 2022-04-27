@@ -35,7 +35,7 @@
 	if(spawn_with_preinstalled_parts)
 		var/list/parts_list = list(pick(gripvars), mechanism, barrel)
 
-		parts_list -= pick(parts_list)
+		pick_n_take(parts_list)
 		if(prob(50))
 			parts_list -= pick(parts_list)
 
