@@ -61,7 +61,6 @@
 
 	// Neither safe nor pleasant experience
 	H.adjustToxLoss(rand(10, 50))
-	H.adjustCloneLoss(rand(1, 10))
 	H.sanity.changeLevel(-20)
 
 	user.drop_from_inventory(src)
