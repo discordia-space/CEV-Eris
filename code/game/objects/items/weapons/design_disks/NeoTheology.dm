@@ -7,7 +7,7 @@
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/pouches
 	disk_name = "NeoTheology Armory - Pouches Pack"
-	license = 20
+	license = -1
 	designs = list(
 		/datum/design/bioprinter/leather/holster,
 		/datum/design/bioprinter/leather/holster/armpit,
@@ -30,7 +30,7 @@
 // Batteries that printed fully charged, at the cost of some biomatter or plasma being non-refundable
 /obj/item/computer_hardware/hard_drive/portable/design/nt/cells
 	disk_name = "NeoTheology Armory - Power Cells Pack"
-	license = 12
+	license = -1
 	designs = list(
 		/datum/design/bioprinter/nt_cells/large = 3,
 		/datum/design/bioprinter/nt_cells/large/plasma = 4,
@@ -310,12 +310,11 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/nt_mk58
-	disk_name = "NeoTheology Armory - .35 MK58 Handgun Pack"
+	disk_name = "NeoTheology Armory - .35 MK58c Handgun Pack"
 	icon_state = "neotheology"
 	rarity_value = 9
 	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/mk58 = 3,
 		/datum/design/autolathe/gun/mk58_wood = 3,
 		/datum/design/autolathe/ammo/magazine_pistol,
 		/datum/design/autolathe/ammo/magazine_pistol/practice = 0,

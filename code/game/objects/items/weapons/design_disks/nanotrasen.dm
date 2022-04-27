@@ -1,0 +1,33 @@
+// Nanotrasen
+/obj/item/computer_hardware/hard_drive/portable/design/oldnt
+	disk_name = "Nanotrasen Security"
+	icon_state = "nanotrasen"
+	license = -1
+
+/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_regulator/old
+	disk_name = "Nanotrasen Security - .50 Regulator Shotgun"
+		desc = "A old NanoTrasen design disk. this one is labelled Regulator 1000 Shotgun. on the back there is a warning label saying authorized personell only, its ID scanner has been burned off"
+	icon_state = "nanotrasen"
+	rarity_value = 17
+	license = 12
+	designs = list(
+		/datum/design/autolathe/gun/regulator = 3, // "NT SG \"Regulator 1000\""
+		/datum/design/autolathe/ammo/shotgun_pellet,
+		/datum/design/autolathe/ammo/shotgun,
+		/datum/design/autolathe/ammo/shotgun_beanbag,
+		/datum/design/autolathe/ammo/shotgun_blanks,
+		/datum/design/autolathe/ammo/shotgun_flash,
+		)
+
+/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_mk58/old
+	disk_name = "Nanotrasen Security - .35 MK58 Handgun Pack"
+	desc = "A old NanoTrasen design disk. this one is labelled MK58 Handgun. on the back there is a warning label saying authorized personell only, its ID scanner has been burned off"
+	icon_state = "nanotrasen"
+	rarity_value = 9
+	license = 12
+	designs = list(
+		/datum/design/autolathe/gun/mk58 = 3,
+		/datum/design/autolathe/ammo/magazine_pistol,
+		/datum/design/autolathe/ammo/magazine_pistol/practice = 0,
+		/datum/design/autolathe/ammo/magazine_pistol/rubber,
+	)

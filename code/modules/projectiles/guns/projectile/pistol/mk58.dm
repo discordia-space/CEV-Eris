@@ -32,7 +32,7 @@
 
 /obj/item/gun/projectile/mk58/wood
 	name = "NT HG .35 Auto \"Mk58-C\""
-	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary. This one has a sweet wooden grip. Uses standard .35 Auto mags."
+	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, this one is a post war reproduction by NeoTheology complete with a sweet wooden grip"
 	icon_state = "mk58_wood"
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 650
