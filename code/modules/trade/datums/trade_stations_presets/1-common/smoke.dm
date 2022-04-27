@@ -10,7 +10,7 @@
 	wealth = 0
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
-	stations_recommended = list("oddities")
+	stations_recommended = list("casino")
 	inventory = list(
 		"Tobacco" = list(
 			/obj/item/storage/fancy/cigarettes,
@@ -39,5 +39,6 @@
 		// drugs?
 	)
 	offer_types = list(
-		/obj/item/gun/projectile/revolver/artwork_revolver = offer_data("artistic revolver", 2000, 1)
+		/obj/item/gun/projectile/revolver/artwork_revolver = offer_data("artistic revolver", 2000, 1),
+		/obj/structure/artwork_statue = offer_data("artistic statue", 600, 1)
 	)

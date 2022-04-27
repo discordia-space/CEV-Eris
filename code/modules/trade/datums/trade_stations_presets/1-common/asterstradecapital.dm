@@ -20,7 +20,8 @@
 			/obj/item/computer_hardware/hard_drive/portable/design/tools = good_data("Aster\'s Basic Tool Pack", list(1, 10), 200),
 			/obj/item/computer_hardware/hard_drive/portable/design/misc = good_data("Aster\'s Miscellaneous Pack", list(1, 10), 200),
 			/obj/item/computer_hardware/hard_drive/portable/design/robustcells = good_data("Aster\'s Robustcells", list(1, 10), 200),
-			/obj/item/computer_hardware/hard_drive/portable/design/devices = good_data("Aster\'s Devices and Instruments", list(1, 10), 200)
+			/obj/item/computer_hardware/hard_drive/portable/design/devices = good_data("Aster\'s Devices and Instruments", list(1, 10), 200),
+			/obj/item/computer_hardware/hard_drive/portable/design/armor/asters = good_data("Aster\'s Enforcement Armor Pack", list(1, 10), 900)
 		),
 		"Tools and Equipment" = list(
 			/obj/item/clothing/suit/storage/hazardvest,

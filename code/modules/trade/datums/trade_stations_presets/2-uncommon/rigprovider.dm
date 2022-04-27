@@ -53,9 +53,9 @@
 	)
 	offer_types = list(
 		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 10000, 1),						// base price: 6282 (incl. components)
-		/obj/item/stock_parts/capacitor/one_star = offer_data("one star capacitor", 500, 3),
-		/obj/item/stock_parts/scanning_module/one_star = offer_data("one star scanning module", 500, 3),
-		/obj/item/stock_parts/manipulator/one_star = offer_data("one star manipulator", 500, 3),
-		/obj/item/stock_parts/micro_laser/one_star = offer_data("one star micro-laser", 500, 3),
-		/obj/item/stock_parts/matter_bin/one_star = offer_data("one star matter bin", 500, 3)
+		/obj/item/stock_parts/capacitor/one_star = offer_data("one star capacitor", 1000, 3),
+		/obj/item/stock_parts/scanning_module/one_star = offer_data("one star scanning module", 1000, 3),
+		/obj/item/stock_parts/manipulator/one_star = offer_data("one star manipulator", 1000, 3),
+		/obj/item/stock_parts/micro_laser/one_star = offer_data("one star micro-laser", 1000, 3),
+		/obj/item/stock_parts/matter_bin/one_star = offer_data("one star matter bin", 1000, 3)
 	)

@@ -18,6 +18,10 @@
 	recommendation_threshold = 4000
 	stations_recommended = list("moe_adv", "trapper")
 	inventory = list(
+		"Design Disks" = list(
+			/obj/item/computer_hardware/hard_drive/portable/design/medical = good_data("Moebius Medical Designs", list(1, 10), 400),
+			/obj/item/computer_hardware/hard_drive/portable/design/computer = good_data("Moebius Computer Parts", list(1, 10), 500)
+		),
 		"First Aid" = list(
 			/obj/item/storage/firstaid/regular,
 			/obj/item/storage/firstaid/fire,
@@ -78,11 +82,11 @@
 		/obj/item/oddity/common/healthscanner = offer_data("odd health scanner", 500, 1),
 		/obj/item/oddity/common/disk = offer_data("broken design disk", 500, 1),
 		/obj/item/oddity/common/device = offer_data("odd device", 500, 1),
-		/datum/reagent/stim/mbr = offer_data("machine binding ritual bottle (60u)", 1500, 1),
-		/datum/reagent/stim/cherrydrops = offer_data("cherry drops bottle (60u)", 1500, 1),
+		/datum/reagent/stim/mbr = offer_data("Machine Binding Ritual bottle (60u)", 1500, 1),
+		/datum/reagent/stim/cherrydrops = offer_data("Cherry Drops bottle (60u)", 1500, 1),
 		/datum/reagent/stim/pro_surgeon = offer_data("ProSurgeon bottle (60u)", 1500, 1),
-		/datum/reagent/stim/violence = offer_data("violence bottle (60u)", 1500, 1),
-		/datum/reagent/stim/bouncer = offer_data("bouncer bottle (60u)", 1500, 1),
+		/datum/reagent/stim/violence = offer_data("Violence bottle (60u)", 1500, 1),
+		/datum/reagent/stim/bouncer = offer_data("Bouncer bottle (60u)", 1500, 1),
 		/datum/reagent/medicine/ossisine = offer_data("ossissine bottle (60u)", 4000, 1),
 		/datum/reagent/medicine/kyphotorin = offer_data("kyphotorin bottle (60u)", 8000, 1)
 	)

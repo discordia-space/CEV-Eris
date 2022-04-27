@@ -27,6 +27,5 @@
 		/obj/item/coin = offer_data("metal coin", 2000, 1),						// From what I can tell, these are pretty rare
 		/obj/item/oddity/common/coin = offer_data("strange coin", 500, 1),
 		/obj/item/oddity/common/old_money = offer_data("old money", 500, 1),
-		/obj/item/oddity/artwork = offer_data("artistic oddity", 1600, 1),
-		/obj/structure/artwork_statue = offer_data("artistic statue", 600, 1)
+		/obj/item/oddity/artwork = offer_data("artistic oddity", 1600, 1)
 	)

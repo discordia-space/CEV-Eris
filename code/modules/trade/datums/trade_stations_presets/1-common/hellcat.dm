@@ -89,5 +89,5 @@
 		/obj/item/part/gun/frame/boltgun  = offer_data("boltgun frame", 800, 1),
 		/obj/item/part/armor = offer_data("armor part", 500, 8),					// base price: 300
 		/obj/item/part/armor/artwork = offer_data("artistic armor part", 1000, 1),
-		/obj/item/part/gun/artwork = offer_data("artistic gun part", 1000, 1),
+		/obj/item/part/gun/artwork = offer_data("artistic gun part", 1000, 1)
 	)
