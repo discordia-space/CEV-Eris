@@ -24,7 +24,7 @@
 
 /datum/mutation/t2/remoteobserve
 	name = "Remote observation"
-	desc = "Allows to looks through the eyes of other people."
+	desc = "Allows you to look through the eyes of other people."
 
 /datum/mutation/t2/remoteobserve/imprint(mob/living/carbon/user)
 	if(..())
@@ -37,7 +37,7 @@
 
 /datum/mutation/t2/forcespeak
 	name = "Force speak"
-	desc = "Allows to looks through the eyes of other people."
+	desc = "Allows you to force other person in line of sight to speak."
 
 /datum/mutation/t2/forcespeak/imprint(mob/living/carbon/user)
 	if(..())

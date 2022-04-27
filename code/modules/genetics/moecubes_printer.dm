@@ -3,7 +3,7 @@
 	desc = "A stationary computer."
 	icon_state = "printer_base"
 	circuit = /obj/item/electronics/circuitboard/moeballs_printer
-	var/obj/item/reagent_containers/glass/beaker/beaker
+	var/obj/item/reagent_containers/glass/beaker
 	var/index = 0
 	var/is_busy = FALSE
 	var/list/files[0]
@@ -104,6 +104,7 @@
 
 /obj/machinery/dna/moeballs_printer/proc/try_eject_beaker(mob/user)
 	if(eject_item(beaker, user))
+		beaker.update_icon()
 		beaker = null
 
 

@@ -41,8 +41,8 @@
 		user.sdisabilities -= NEARSIGHTED
 
 /datum/mutation/t0/stat_debuff
-	name = "Mnemonic stimulation"
-	desc = "Improves abstract thinking and ability to iteract with mechanisms."
+	name = "Mnemonic degradation"
+	desc = "Decreases ability to iteract with mechanisms."
 	buff_type = STAT_MEC
 	buff_power = -STAT_LEVEL_BASIC
 
