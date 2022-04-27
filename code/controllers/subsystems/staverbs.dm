@@ -147,12 +147,12 @@ SUBSYSTEM_DEF(statverbs)
 	minimal_stat  = STAT_LEVEL_ADEPT
 
 /datum/statverb/hack_console/action(mob/user, obj/machinery/target)
-	if(target.hacked == TRUE)
+	if(target.hacked)
 		user.visible_message(
 			SPAN_WARNING("[target] is already hacked!")
 		)
 		return
-	if(target.hacked == FALSE)
+	if(!target.hacked)
 		var/timer = 220 - (user.stats.getStat(STAT_COG) * 2)
 		var/datum/repeating_sound/keyboardsound = new(30, timer, 0.15, target, "keyboard", 80, 1)
 		user.visible_message(

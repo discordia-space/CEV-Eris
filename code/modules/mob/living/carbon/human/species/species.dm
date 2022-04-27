@@ -341,12 +341,12 @@
 	H.sight |= H.equipment_vision_flags
 
 	if(H.druggy)
-		H.client.screen += global_hud.druggy
+		H.client.screen |= global_hud.druggy
 	else
 		H.see_in_dark = (H.sight == SEE_TURFS|SEE_MOBS|SEE_OBJS) ? 8 : min(darksight + H.equipment_darkness_modifier, 8)
 
 	if(H.eye_blurry)
-		H.client.screen += global_hud.blurry
+		H.client.screen |= global_hud.blurry
 
 	if(H.equipment_see_invis)
 		H.see_invisible = H.equipment_see_invis
@@ -356,11 +356,11 @@
 
 	if(config.welder_vision)
 		if(H.equipment_tint_total == TINT_HEAVY)
-			H.client.screen += global_hud.darkMask
+			H.client.screen |= global_hud.darkMask
 		else if((!H.equipment_prescription && (H.sdisabilities & NEARSIGHTED)) || H.equipment_tint_total == TINT_MODERATE)
-			H.client.screen += global_hud.vimpaired
+			H.client.screen |= global_hud.vimpaired
 		else if(H.equipment_tint_total == TINT_LOW)
-			H.client.screen += global_hud.lightMask	
+			H.client.screen |= global_hud.lightMask	
 
 	for(var/overlay in H.equipment_overlays)
 		H.client.screen |= overlay

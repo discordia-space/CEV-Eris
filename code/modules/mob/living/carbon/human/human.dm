@@ -891,10 +891,11 @@ var/list/rank_prefix = list(\
 	var/list/mobs = list()
 
 	for(var/mob/living/carbon/H in SSmobs.mob_list)
-		if(H.z in GLOB.maps_data.station_levels && H.stat == CONSCIOUS)
+		if(H.ckey && H.stat == CONSCIOUS)
 			mobs += H
 
-	var/mob/target = input ("Who do you want to project your mind to ?") as mob in mobs
+	mobs -= src
+	var/mob/target = input("", "Who do you want to project your mind to?") as mob in mobs
 
 	if(target)
 		remoteview_target = target

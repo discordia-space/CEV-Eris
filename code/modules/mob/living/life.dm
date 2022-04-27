@@ -182,11 +182,11 @@
 		return
 
 	if(sdisabilities & NEARSIGHTED)
-		client.screen += global_hud.vimpaired
+		client.screen |= global_hud.vimpaired
 	if(eye_blurry)
-		client.screen += global_hud.blurry
+		client.screen |= global_hud.blurry
 	if(druggy)
-		client.screen += global_hud.druggy
+		client.screen |= global_hud.druggy
 	if(machine)
 		var/viewflags = machine.check_eye(src)
 		if(viewflags < 0)

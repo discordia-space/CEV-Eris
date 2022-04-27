@@ -63,7 +63,7 @@
 	equipment_vision_flags = 0
 	equipment_prescription = FALSE
 	equipment_darkness_modifier = 0
-//	equipment_overlays.Cut()
+	equipment_overlays.Cut()
 
 	if(istype(head, /obj/item/clothing/head))
 		add_clothing_protection(head)

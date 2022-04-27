@@ -871,9 +871,9 @@
 				embedded_flag = 0
 
 		//Ears
-//		if(sdisabilities & DEAF)	//disabled-deaf, doesn't get better on its own
-//			ear_deaf = max(ear_deaf, 1)
-		if(ear_deaf)			//deafness, heals slowly over time
+		if(sdisabilities & DEAF)	//disabled-deaf, doesn't get better on its own
+			ear_deaf = max(ear_deaf, 1)
+		else if(ear_deaf)			//deafness, heals slowly over time
 			adjustEarDamage(0,-1)
 		else if(istype(l_ear, /obj/item/clothing/ears/earmuffs) || istype(r_ear, /obj/item/clothing/ears/earmuffs))	//resting your ears with earmuffs heals ear damage faster
 			adjustEarDamage(-0.15)
@@ -1162,9 +1162,9 @@
 			isRemoteObserve = TRUE
 		else if(client.eye && istype(client.eye,/obj/structure/multiz))
 			isRemoteObserve = TRUE
-//		else if(((mRemote in mutations) || remoteviewer) && remoteview_target)
-//			if(remoteview_target.stat == CONSCIOUS)
-//				isRemoteObserve = TRUE
+		else if((get_active_mutation(src, MUTATION_REMOTESEE) || remoteviewer) && remoteview_target)
+			if(remoteview_target.stat == CONSCIOUS)
+				isRemoteObserve = TRUE
 		if(!isRemoteObserve && client && !client.adminobs && !using_scope)
 			remoteview_target = null
 			reset_view(null, FALSE)
@@ -1176,7 +1176,7 @@
 	..()
 	if(stat == DEAD)
 		return
-	
+
 	if(get_active_mutation(src, MUTATION_XRAY))
 		sight |= SEE_TURFS|SEE_OBJS|SEE_MOBS
 	else if(get_active_mutation(src, MUTATION_THERMAL_VISION))
