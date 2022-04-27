@@ -74,9 +74,15 @@
 		)
 	)
 	offer_types = list(
+		/obj/item/oddity/common/healthscanner = offer_data("odd health scanner", 500, 1),
+		/obj/item/oddity/common/disk = offer_data("broken design disk", 500, 1),
+		/obj/item/oddity/common/device = offer_data("odd device", 500, 1),
+		/datum/reagent/stim/mbr = offer_data("machine binding ritual bottle (60u)", 1500, 1),
+		/datum/reagent/stim/cherrydrops = offer_data("cherry drops bottle (60u)", 1500, 1),
+		/datum/reagent/stim/pro_surgeon = offer_data("ProSurgeon bottle (60u)", 1500, 1),
+		/datum/reagent/stim/violence = offer_data("violence bottle (60u)", 1500, 1),
+		/datum/reagent/stim/bouncer = offer_data("bouncer bottle (60u)", 1500, 1),
 		/datum/reagent/medicine/ossisine = offer_data("ossissine bottle (60u)", 4000, 1),
-		/datum/reagent/medicine/kyphotorin = offer_data("kyphotorin bottle (60u)", 8000, 1),
-		/datum/reagent/nanites/uncapped/control_booster_utility = offer_data("Control Booster Utility bottle (60u)", 30000, 1),
-		/datum/reagent/nanites/uncapped/control_booster_combat = offer_data("Control Booster Combat bottle (60u)", 30000, 1)
+		/datum/reagent/medicine/kyphotorin = offer_data("kyphotorin bottle (60u)", 8000, 1)
 //		/datum/reagent/toxin/slimetoxin
 	)

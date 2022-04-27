@@ -71,5 +71,6 @@
 		/obj/item/reagent_containers/food/snacks/seucheburger = offer_data("seuche burger", 700, 2),
 		/obj/item/reagent_containers/food/snacks/bigroachburger = offer_data("big roach burger", 2000, 2),
 		/obj/item/reagent_containers/food/snacks/fuhrerburger = offer_data("fuhrer burger", 2000, 2),
-		/obj/item/reagent_containers/food/snacks/kaiserburger = offer_data("kaiser burger", 25000, 2)
+		/datum/reagent/alcohol/changelingsting = offer_data("Changeling Sting bottle (60u)", 1500, 1),
+		/datum/reagent/alcohol/longislandicedtea = offer_data("Long Island Iced Tea bottle (60u)", 1500, 1)
 	)

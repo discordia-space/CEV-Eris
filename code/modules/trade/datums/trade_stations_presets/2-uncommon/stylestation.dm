@@ -73,9 +73,8 @@
 	offer_types = list(
 		///obj/item/clothing/head/onestar = offer_data("One Star officer cap", 2000, 1),
 		///obj/item/clothing/suit/storage/greatcoat/onestar = offer_data("One Star officer coat", 4000, 1),
-		/datum/reagent/alcohol/changelingsting = offer_data("Changeling Sting bottle (60u)", 1500, 1),
-		/datum/reagent/alcohol/longislandicedtea = offer_data("Long Island Iced Tea bottle (60u)", 1500, 1),
 		/datum/reagent/alcohol/neurotoxin = offer_data("Neurotoxin bottle (60u)", 2500, 1),
 		/datum/reagent/alcohol/hippies_delight = offer_data("Hippie's Delight bottle (60u)", 2500, 1),
-		/datum/reagent/alcohol/silencer = offer_data("Silencer bottle (60u)", 2500, 1)
+		/datum/reagent/alcohol/silencer = offer_data("Silencer bottle (60u)", 2500, 1),
+		/obj/item/reagent_containers/food/snacks/kaiserburger = offer_data("kaiser burger", 25000, 2)
 	)
