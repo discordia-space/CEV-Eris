@@ -43,7 +43,7 @@
 	set category = "Object"
 	set name = "Enter [src]"
 
-	if(usr.incapacitated())
+	if(usr.incapacitated() || !ishuman(usr))
 		return
 	if(han_solo)
 		to_chat(usr, SPAN_WARNING("[src] is already occupied!"))
@@ -70,8 +70,8 @@
 	update_icon()
 
 
-/obj/machinery/cryo_slab/proc/set_occupant(mob/living/user)
-	if(han_solo)
+/obj/machinery/cryo_slab/proc/set_occupant(mob/living/carbon/human/user)
+	if(han_solo || !istype(user))
 		return
 	add_fingerprint(user)
 	user.forceMove(src)
@@ -97,7 +97,7 @@
 
 
 /obj/machinery/cryo_slab/MouseDrop_T(mob/target, mob/user)
-	if(!ismob(target))
+	if(!ishuman(target))
 		return
 	if(han_solo)
 		to_chat(user, SPAN_WARNING("[src] is already occupied!"))

@@ -91,7 +91,7 @@
 		return
 
 	var/stored_count = 0
-
+/* Temporary disabled due to species change currently duplicatiing organs in mob
 	// Race // SPECIES_HUMAN, SPECIES_SLIME, SPECIES_MONKEY, SPECIES_GOLEM
 	var/datum/computer_file/binary/animalgene/F = new
 	F.filename = "AN_GENE_SPECIES_[uppertext(H.species.name)]"
@@ -103,9 +103,9 @@
 		log_add("ERROR: Insufficient storage space. Sequiencing aborted.")
 		error_popup()
 		return
-
+*/
 	// Blood type // GLOB.blood_types = list("A-", "A+", "B-", "B+", "AB-", "AB+", "O-", "O+")
-	F = new // Gotta do that each time or magic won't happen
+	var/datum/computer_file/binary/animalgene/F = new // Gotta do that each time or magic won't happen
 	var/blood_type = H.b_type
 	blood_type = replacetext(blood_type, "+", "_POSITIVE")
 	blood_type = replacetext(blood_type, "-", "_NEGATIVE")
