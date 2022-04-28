@@ -340,8 +340,13 @@ default behaviour is:
 
 		else if(istype(i, /obj/item/gift))
 			var/obj/item/gift/G = i
+			. += G.gift
 			if(istype(G.gift, /obj/item/storage))
 				. += get_contents(G.gift)
+
+		else if(istype(i, /obj/item/smallDelivery))
+			var/obj/item/smallDelivery/D = i
+			. += D.wrapped
 
 
 /mob/living/proc/check_contents_for(A)
