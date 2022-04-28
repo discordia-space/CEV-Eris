@@ -293,7 +293,7 @@ for reference:
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
 
-	if(air_group || (height==0) || istype(mover))
+	if(air_group || (height==0))
 		return TRUE
 
 /obj/machinery/deployable/barrier/proc/explode()
