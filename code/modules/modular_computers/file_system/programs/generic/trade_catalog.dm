@@ -2,7 +2,7 @@
 #define OFFER_SCREEN FALSE
 /datum/computer_file/program/trade_catalog
 	filename = "trade_catalog"
-	filedesc = "Aster's Trade Catalog"
+	filedesc = "Aster\'s Trade Catalog"
 	extended_desc = "Electronic handbook containing inventory information about discovered trade beacons."
 	program_icon_state = "generic"
 	program_key_state = "generic_key"
