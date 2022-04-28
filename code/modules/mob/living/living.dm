@@ -320,43 +320,29 @@ default behaviour is:
 
 
 //Recursive function to find everything a mob is holding.
-/mob/living/get_contents(var/obj/item/storage/Storage)
-	var/list/L = list()
+/mob/living/get_contents(obj/item/storage/storage)
+	. = storage ? storage.contents : contents
 
-	if(Storage) //If it called itself
-		L += Storage.return_inv()
+	for(var/i in .)
+		if(istype(i, /obj/item/storage))
+			var/obj/item/storage/S = i
+			. += get_contents(S)
 
-		//Leave this commented out, it will cause storage items to exponentially add duplicate to the list
-		//for(var/obj/item/storage/S in Storage.return_inv()) //Check for storage items
-		//	L += get_contents(S)
+		else if(istype(i, /obj/item/clothing/suit/storage))
+			var/obj/item/clothing/suit/storage/S = i
+			if(S.pockets)
+				. += get_contents(S.pockets)
 
-		for(var/obj/item/gift/G in Storage.return_inv()) //Check for gift-wrapped items
-			L += G.gift
+		else if(istype(i, /obj/item/rig))
+			var/obj/item/rig/R = i
+			if(R.storage)
+				. += get_contents(R.storage.container)
+
+		else if(istype(i, /obj/item/gift))
+			var/obj/item/gift/G = i
 			if(istype(G.gift, /obj/item/storage))
-				L += get_contents(G.gift)
+				. += get_contents(G.gift)
 
-		for(var/obj/item/smallDelivery/D in Storage.return_inv()) //Check for package wrapped items
-			L += D.wrapped
-			if(istype(D.wrapped, /obj/item/storage)) //this should never happen
-				L += get_contents(D.wrapped)
-		return L
-
-	else
-
-		L += src.contents
-		for(var/obj/item/storage/S in src.contents)	//Check for storage items
-			L += get_contents(S)
-
-		for(var/obj/item/gift/G in src.contents) //Check for gift-wrapped items
-			L += G.gift
-			if(istype(G.gift, /obj/item/storage))
-				L += get_contents(G.gift)
-
-		for(var/obj/item/smallDelivery/D in src.contents) //Check for package wrapped items
-			L += D.wrapped
-			if(istype(D.wrapped, /obj/item/storage)) //this should never happen
-				L += get_contents(D.wrapped)
-		return L
 
 /mob/living/proc/check_contents_for(A)
 	var/list/L = src.get_contents()
