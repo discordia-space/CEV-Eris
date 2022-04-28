@@ -1,6 +1,7 @@
 // Nanotrasen
 /obj/item/computer_hardware/hard_drive/portable/design/oldnt
 	disk_name = "NanoTrasen Security"
+	desc = "this shouldnt spawn, if it does i fucked up"
 	icon_state = "nanotrasen"
 	license = -1
 
@@ -61,8 +62,8 @@
 	desc = "An old NanoTrasen design disk. this one is labelled Destiny Laser Gun. on the back there is a warning label saying authorized NT personell only, its ID scanner has been burned off"
 	icon_state = "nanotrasen"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
-	rarity_value = 75
-	license = 12
+	rarity_value = 65
+	license = 9
 	designs = list(
 		/datum/design/autolathe/gun/destiny = 3, //"NT LG \"Destiny\""
 	)
