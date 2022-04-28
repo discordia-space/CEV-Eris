@@ -100,3 +100,15 @@
 		/datum/design/autolathe/ammo/smg/rubber,
 		/datum/design/autolathe/ammo/smg/practice = 0
 	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/guns/anne
+	disk_name = "Moebius Laboratories - .35 Anne machine pistol"
+	icon_state = "moebius"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
+	rarity_value = 15
+	license = 12
+	designs = list(
+		/datum/design/autolathe/gun/anne = 3, //Moebius Anne
+		/datum/design/autolathe/ammo/magazine_hpistol,
+		/datum/design/autolathe/ammo/magazine_hpistol/rubber,
+		/datum/design/autolathe/ammo/magazine_hpistol/practice = 0

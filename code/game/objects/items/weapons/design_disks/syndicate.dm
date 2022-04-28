@@ -6,9 +6,9 @@
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/c20m
 	disk_name = "Hanza Syndicate - .35 C20-r submachine gun"
-	icon_state = "moebius"
+	icon_state = "syndicate"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
-	rarity_value = 45
+	rarity_value = 40
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/c20/ = 3, //Syndicate C20-r
@@ -16,3 +16,15 @@
 		/datum/design/autolathe/ammo/smg/rubber,
 		/datum/design/autolathe/ammo/smg/practice = 0
 	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/guns/clarissa
+	disk_name = "Hanza Syndicate - .35 Clarissa machine pistol"
+	icon_state = "syndicate"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
+	rarity_value = 15
+	license = 12
+	designs = list(
+		/datum/design/autolathe/gun/anne = 3, //Moebius C20-m
+		/datum/design/autolathe/ammo/magazine_hpistol,
+		/datum/design/autolathe/ammo/magazine_hpistol/rubber,
+		/datum/design/autolathe/ammo/magazine_hpistol/practice = 0

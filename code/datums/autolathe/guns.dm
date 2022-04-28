@@ -16,8 +16,12 @@
 	build_path = /obj/item/gun/projectile/giskard
 
 /datum/design/autolathe/gun/clarissa
-	name = "FS HG .35 \"Clarissa\""
+	name = "FS MP .35 \"Clarissa\""
 	build_path = /obj/item/gun/projectile/selfload
+
+/datum/design/autolathe/gun/anne
+	name = "ML MP .35 \"Anne\""
+	build_path = /obj/item/gun/projectile/selfload/moebius
 
 /datum/design/autolathe/gun/makarov
 	name = "Excelsior .35 \"Makarov\""
