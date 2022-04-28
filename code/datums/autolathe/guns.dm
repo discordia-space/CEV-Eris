@@ -277,6 +277,10 @@
 	build_path = /obj/item/gun/energy/sniperrifle
 	factions = list(FACTION_NEOTHEOLOGY)
 
+/datum/design/autolathe/gun/shellshock
+	name = "OR ESG \"Shellshock\""
+	build_path = /obj/item/gun/energy/shrapnel
+
 // Plasma
 
 /datum/design/autolathe/gun/plasma/dominion

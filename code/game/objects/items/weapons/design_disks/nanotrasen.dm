@@ -9,7 +9,7 @@
 	disk_name = "NanoTrasen Security - .50 Regulator Shotgun"
 	desc = "A old NanoTrasen design disk. this one is labelled Regulator 1000 Shotgun. on the back there is a warning label saying authorized NT personell only, its ID scanner has been burned off"
 	icon_state = "nanotrasen"
-	rarity_value = 20
+	rarity_value = 17
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/regulator = 3, // "NT SG \"Regulator 1000\""
@@ -24,7 +24,7 @@
 	disk_name = "NanoTrasen Security - .35 MK58 Handgun Pack"
 	desc = "An old NanoTrasen design disk. this one is labelled MK58 Handgun. on the back there is a warning label saying authorized NT personell only, its ID scanner has been burned off"
 	icon_state = "nanotrasen"
-	rarity_value = 10
+	rarity_value = 9
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/mk58 = 3,
@@ -62,7 +62,7 @@
 	desc = "An old NanoTrasen design disk. this one is labelled Destiny Laser Gun. on the back there is a warning label saying authorized NT personell only, its ID scanner has been burned off"
 	icon_state = "nanotrasen"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
-	rarity_value = 65
+	rarity_value = 55
 	license = 9
 	designs = list(
 		/datum/design/autolathe/gun/destiny = 3, //"NT LG \"Destiny\""

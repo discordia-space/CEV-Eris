@@ -32,12 +32,12 @@
 	disk_name = "NeoTheology Armory - Power Cells Pack"
 	license = -1
 	designs = list(
-		/datum/design/bioprinter/nt_cells/large = 3,
-		/datum/design/bioprinter/nt_cells/large/plasma = 4,
-		/datum/design/bioprinter/nt_cells/medium = 2,
-		/datum/design/bioprinter/nt_cells/medium/plasma = 3,
+		/datum/design/bioprinter/nt_cells/large,
+		/datum/design/bioprinter/nt_cells/large/plasma,
+		/datum/design/bioprinter/nt_cells/medium,
+		/datum/design/bioprinter/nt_cells/medium/plasma,
 		/datum/design/bioprinter/nt_cells/small,
-		/datum/design/bioprinter/nt_cells/small/plasma = 2
+		/datum/design/bioprinter/nt_cells/small/plasma
 	)
 
 // Laser pistol
@@ -283,7 +283,7 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/sniperrifle = 3, //"NT MER \"Valkyrie\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/bioprinter/nt_cells/medium,
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/nt_halicon
@@ -294,7 +294,7 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/ionrifle = 3, // "NT IR \"Halicon\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/bioprinter/nt_cells/medium,
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/nt/nt_counselor
@@ -306,7 +306,7 @@
 	spawn_blacklisted = FALSE
 	designs = list(
 		/datum/design/autolathe/gun/taser = 3, // "NT SP \"Counselor\""
-		/datum/design/autolathe/cell/medium/high
+		/datum/design/bioprinter/nt_cells/medium
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/nt_mk58
@@ -324,7 +324,7 @@
 /obj/item/computer_hardware/hard_drive/portable/design/guns/nt_regulator
 	disk_name = "NeoTheology Armory - .50 Regulator Shotgun"
 	icon_state = "neotheology"
-	rarity_value = 17
+	rarity_value = 20
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/regulator = 3, // "NT SG \"Regulator 1000\""
@@ -347,7 +347,7 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/plasma/destroyer = 3, // "NT PR \"Purger\""
-		/datum/design/autolathe/cell/medium/high
+		/datum/design/bioprinter/nt_cells/medium
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/cruciform_upgrade/New()
