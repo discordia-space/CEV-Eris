@@ -241,13 +241,12 @@
 	restricted_depts = IRONHAMMER | MEDICAL | SCIENCE | CHURCH | GUILD | CIVILIAN | SERVICE
 
 /datum/category_item/setup_option/background/origin/ihmaids
-	name = "Ironhammer M.A.I.D.S Corps"
-	desc = "The Ironhammer Medical, Acquisition, Industrial Design and Security Corps are normally posted to construction work of particular importance to Ironhammer assets, such as fortifications or barracks for the garrisons on the way to the null sector, along with triage work for when an accident inevitably happens at those garrisons. \
-			At other times, they're assigned to Ironhammer security teams on exploratory missions into the null sector due to their prowess as construction specialists and medics."
+	name = "Tripwire Base"
+	desc = "Founded on a moderatly large asteroid late in the corporate war by the syndicate for the purpose of being an early warning station for attacks on syndicate core worlds. After the end of the corporate war ironhammer transformed it into a larger training camp for specialists. It teaches skills nessicary for Combat engineering, cybersecurity and combat medics. Due to an almost complete lack of terraforming, hostile environment and outdated syndicate construction tripwire is suited for teaching new recruits how to survive in deepspace conditions, but this also means morale is often low."
 
 	stat_modifiers = list(
-		STAT_ROB = -10,
-		STAT_TGH = -5,
+		STAT_ROB = 5,
+		STAT_TGH = -10,
 		STAT_BIO = 10,
 		STAT_MEC = 10,
 		STAT_VIG = -10,
