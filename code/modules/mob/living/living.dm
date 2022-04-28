@@ -338,6 +338,10 @@ default behaviour is:
 			if(R.storage)
 				. += get_contents(R.storage.container)
 
+		else if(istype(i, /obj/item/clothing/shoes))
+			var/obj/item/clothing/shoes/S = i
+			. += S.holding
+
 		else if(istype(i, /obj/item/gift))
 			var/obj/item/gift/G = i
 			. += G.gift
