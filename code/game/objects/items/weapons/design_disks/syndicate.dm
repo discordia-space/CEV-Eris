@@ -4,7 +4,7 @@
 	icon_state = "syndicate"
 	license = -1
 
-/obj/item/computer_hardware/hard_drive/portable/design/guns/c20m
+/obj/item/computer_hardware/hard_drive/portable/design/guns/c20r
 	disk_name = "Hanza Syndicate - .35 C20-r submachine gun"
 	icon_state = "syndicate"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
