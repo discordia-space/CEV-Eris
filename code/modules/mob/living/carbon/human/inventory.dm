@@ -57,8 +57,9 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 		else if(istype(i, /obj/item/rig))
 			var/obj/item/rig/R = i
-			S = R.storage?.container
-			break
+			if(R.storage)
+				S = R.storage.container
+				break
 
 	if(S && (!istype(S, /obj/item/storage/backpack) || S:worn_check()))
 		equip_to_from_bag(get_active_hand(), S)
