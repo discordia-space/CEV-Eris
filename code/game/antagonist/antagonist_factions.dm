@@ -146,7 +146,7 @@
 		return
 
 	message = capitalize(sanitize(message))
-	var/text = "<span class='revolution'>[name] member, [user]: \"[message]\"</span>"
+	var/text = "<span class='revolution'>[name] member, [user.real_name]: \"[message]\"</span>"
 	for(var/datum/antagonist/A in members)
 		to_chat(A.owner.current, text)
 
