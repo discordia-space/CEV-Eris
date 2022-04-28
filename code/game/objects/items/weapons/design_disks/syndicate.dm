@@ -24,7 +24,8 @@
 	rarity_value = 15
 	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/anne = 3, //Moebius C20-m
+		/datum/design/autolathe/gun/clarissa = 3, //Clarissa
 		/datum/design/autolathe/ammo/magazine_hpistol,
 		/datum/design/autolathe/ammo/magazine_hpistol/rubber,
 		/datum/design/autolathe/ammo/magazine_hpistol/practice = 0
+	)

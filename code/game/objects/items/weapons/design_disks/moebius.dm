@@ -112,3 +112,4 @@
 		/datum/design/autolathe/ammo/magazine_hpistol,
 		/datum/design/autolathe/ammo/magazine_hpistol/rubber,
 		/datum/design/autolathe/ammo/magazine_hpistol/practice = 0
+	)
