@@ -266,7 +266,6 @@
 #include "code\datums\category.dm"
 #include "code\datums\computerfiles.dm"
 #include "code\datums\contract.dm"
-#include "code\datums\corporations.dm"
 #include "code\datums\datacore.dm"
 #include "code\datums\datum.dm"
 #include "code\datums\datum_click_handlers.dm"
