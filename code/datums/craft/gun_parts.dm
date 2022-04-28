@@ -20,6 +20,15 @@
 	var/mechanism_attached = FALSE
 	var/barrel = /obj/item/part/gun/barrel
 	var/barrel_attached = FALSE
+	var/serial_type = ""
+
+
+/obj/item/part/gun/frame/New(loc, ...)
+	. = ..()
+	var/obj/item/gun/G = new result(null)
+	if(G.serial_type)
+		serial_type = G.serial_type
+
 
 /obj/item/part/gun/frame/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/part/gun/grip))
@@ -53,6 +62,14 @@
 			barrel_attached = TRUE
 			to_chat(user, SPAN_NOTICE("You have attached the barrel to \the [src]."))
 			return
+
+	if(I.get_tool_quality(QUALITY_HAMMERING) && serial_type)
+		user.visible_message(SPAN_NOTICE("[user] begins scribbling \the [name]'s gun serial number away."), SPAN_NOTICE("You begin removing the serial number from \the [name]."))
+		if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_HAMMERING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			user.visible_message(SPAN_DANGER("[user] removes \the [name]'s gun serial number."), SPAN_NOTICE("You successfully remove the serial number from \the [name]."))
+			serial_type = null
+			return
+
 	return ..()
 
 /obj/item/part/gun/frame/proc/handle_gripvar(obj/item/I, mob/living/user)
@@ -79,7 +96,8 @@
 	if(!barrel_attached)
 		to_chat(user, SPAN_WARNING("\the [src] does not have a barrel!"))
 		return
-	new result(T)
+	var/obj/item/gun/G = new result(T)
+	G.serial_type = serial_type
 	qdel(src)
 	return
 
@@ -98,6 +116,10 @@
 			to_chat(user, SPAN_NOTICE("\the [src] has a barrel installed."))
 		else
 			to_chat(user, SPAN_NOTICE("\the [src] does not have a barrel installed."))
+		if(serial_type)
+			to_chat(user, SPAN_WARNING("There is a serial number on the frame, it reads [serial_type]."))
+		else if(isnull(serial_type))
+			to_chat(user, SPAN_DANGER("The serial is scribbled away."))
 
 //Grips
 /obj/item/part/gun/grip
