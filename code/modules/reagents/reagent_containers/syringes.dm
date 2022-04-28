@@ -229,7 +229,7 @@
 
 	var/rounded_vol
 	if(reagents && reagents.total_volume)
-		rounded_vol = CLAMP(       round((reagents.total_volume / volume * 15),5)        , 1, 15)
+		rounded_vol = CLAMP(round((reagents.total_volume / volume * 15),5), 1, 15)
 		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "[iconstring][rounded_vol]")
 		filling_overlay.color = reagents.get_color()
 		add_overlay(filling_overlay)
