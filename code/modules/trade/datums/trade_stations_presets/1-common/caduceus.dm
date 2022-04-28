@@ -1,6 +1,6 @@
 /datum/trade_station/caduceus
 	name_pool = list(
-		"MAV \'Caduceus\'" = "Moebius Aid Vessel \'Caduceus\': \"Hello there, we are from the Old Sol Republic. We will be leaving the system shortly but we can offer you medical supplies in the mean time.\"."
+		"MAV \'Caduceus\'" = "Moebius Aid Vessel \'Caduceus\': \"Hello there, we are from the Old Sol Republic. We will be leaving the system shortly but we can offer you medical supplies in the meantime.\"."
 	)
 	icon_states = "moe_capital"
 	forced_overmap_zone = list(
