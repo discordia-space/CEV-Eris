@@ -21,7 +21,7 @@
 	disk_name = "Hanza Syndicate - .35 Clarissa machine pistol"
 	icon_state = "syndicate"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
-	rarity_value = 15
+	rarity_value = 12
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/clarissa = 3, //Clarissa
