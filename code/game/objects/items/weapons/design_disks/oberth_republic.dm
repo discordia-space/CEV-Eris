@@ -30,7 +30,7 @@
 	rarity_value = 65
 	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/sts35 = 3, // "STS"
+		/datum/design/autolathe/gun/sts35 = 3, // "OR STS"
 		/datum/design/autolathe/ammo/lrifle,
 		/datum/design/autolathe/ammo/lrifle/practice = 0,
 		/datum/design/autolathe/ammo/lrifle/rubber,
