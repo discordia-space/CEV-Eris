@@ -144,8 +144,9 @@
 
 	message = capitalize(sanitize(message))
 	var/text = "<span class='revolution'>[name] member, [user]: \"[message]\"</span>"
-	for(var/datum/antagonist/A in members)
-		to_chat(A.owner.current, text)
+	for(var/i in SSmobs.mob_list)
+		if(is_excelsior(i))
+			to_chat(i, text)
 
 	//ghosts
 	for(var/mob/observer/ghost/M in GLOB.dead_mob_list)	//does this include players who joined as observers as well?
