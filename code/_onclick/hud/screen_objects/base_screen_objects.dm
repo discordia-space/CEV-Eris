@@ -1167,9 +1167,9 @@ obj/screen/fire/DEADelize()
 //		if(!G || !G.prescription)
 //			underlays += global_hud.vimpaired
 	if (parentmob.eye_blurry)
-		underlays += global_hud.blurry
+		underlays |= global_hud.blurry
 	if (parentmob.druggy)
-		underlays += global_hud.druggy
+		underlays |= global_hud.druggy
 
 
 /obj/screen/full_1_tile_overlay
