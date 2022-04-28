@@ -296,6 +296,11 @@ for reference:
 	if(air_group || (height==0))
 		return TRUE
 
+	if(ishuman(mover))
+		var/mob/living/carbon/human/H = mover
+		if(H.checkpass(PASSTABLE) && H.stats?.getPerk(PERK_PARKOUR))
+			return TRUE
+
 /obj/machinery/deployable/barrier/proc/explode()
 
 	visible_message(SPAN_DANGER("[src] blows apart!"))
