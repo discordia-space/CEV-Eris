@@ -1,15 +1,15 @@
 // Nanotrasen
-/obj/item/computer_hardware/hard_drive/portable/design/oldnt
+/obj/item/computer_hardware/hard_drive/portable/design/nanotrasen
 	disk_name = "NanoTrasen Security"
 	desc = "this shouldnt spawn, if it does i fucked up"
 	icon_state = "nanotrasen"
 	license = -1
 
-/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_regulator/old
+/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_regulator/nanotrasen
 	disk_name = "NanoTrasen Security - .50 Regulator Shotgun"
 	desc = "A old NanoTrasen design disk. this one is labelled Regulator 1000 Shotgun. on the back there is a warning label saying authorized NT personell only, its ID scanner has been burned off"
 	icon_state = "nanotrasen"
-	rarity_value = 17
+	rarity_value = 20
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/regulator = 3, // "NT SG \"Regulator 1000\""
@@ -20,11 +20,11 @@
 		/datum/design/autolathe/ammo/shotgun_flash,
 		)
 
-/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_mk58/old
+/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_mk58/nanotrasen
 	disk_name = "NanoTrasen Security - .35 MK58 Handgun Pack"
 	desc = "An old NanoTrasen design disk. this one is labelled MK58 Handgun. on the back there is a warning label saying authorized NT personell only, its ID scanner has been burned off"
 	icon_state = "nanotrasen"
-	rarity_value = 9
+	rarity_value = 10
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/mk58 = 3,
@@ -33,7 +33,7 @@
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 	)
 
-/obj/item/computer_hardware/hard_drive/portable/design/guns/nt/nt_counselor/old
+/obj/item/computer_hardware/hard_drive/portable/design/guns/nt/nt_counselor/nanotrasen
 	disk_name = "NanoTrasen Security - Councelor PDW E"
 	desc = "An old NanoTrasen design disk. this one is labelled Counselor Disabler Pistol. on the back there is a warning label saying authorized NT personell only, its ID scanner has been burned off"
 	icon_state = "nanotrasen"
@@ -45,7 +45,7 @@
 		/datum/design/autolathe/cell/medium/high
 	)
 
-/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_valkyrie/old
+/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_valkyrie/nanotrasen
 	disk_name = "Nanotrasen Security - Valkyrie Energy Rifle"
 	desc = "An old NanoTrasen design disk. this one is labelled PROTOYPE:Project Valkyrie, on the back there is a warning label stating any non authorized NT personell in possession of this disk is to be arrested. the ID scanner has been burned off"
 	icon_state = "nanotrasen"
@@ -57,7 +57,7 @@
 		/datum/design/autolathe/cell/medium/high,
 	)
 
-/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_valkyrie/old
+/obj/item/computer_hardware/hard_drive/portable/design/guns/destiny/nanotrasen
 	disk_name = "Nanotrasen Security - Destiny Laser Pistol"
 	desc = "An old NanoTrasen design disk. this one is labelled Destiny Laser Gun. on the back there is a warning label saying authorized NT personell only, its ID scanner has been burned off"
 	icon_state = "nanotrasen"
