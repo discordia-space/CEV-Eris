@@ -624,10 +624,11 @@
 	if(one_hand_penalty)
 		to_chat(user, SPAN_WARNING("This gun needs to be wielded in both hands to be used most effectively."))
 
-	if(serial_type)
-		to_chat(user, SPAN_WARNING("There is a serial number on this gun, it reads [serial_type]."))
-	else if(isnull(serial_type))
-		to_chat(user, SPAN_DANGER("The serial is scribbled away."))
+	if(in_range(user, src) || isghost(user))
+		if(serial_type)
+			to_chat(user, SPAN_WARNING("There is a serial number on this gun, it reads [serial_type]."))
+		else if(isnull(serial_type))
+			to_chat(user, SPAN_DANGER("The serial is scribbled away."))
 
 
 /obj/item/gun/proc/initialize_firemodes()

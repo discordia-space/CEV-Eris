@@ -116,10 +116,11 @@
 			to_chat(user, SPAN_NOTICE("\the [src] has a barrel installed."))
 		else
 			to_chat(user, SPAN_NOTICE("\the [src] does not have a barrel installed."))
-		if(serial_type)
-			to_chat(user, SPAN_WARNING("There is a serial number on the frame, it reads [serial_type]."))
-		else if(isnull(serial_type))
-			to_chat(user, SPAN_DANGER("The serial is scribbled away."))
+		if(in_range(user, src) || isghost(user))
+			if(serial_type)
+				to_chat(user, SPAN_WARNING("There is a serial number on the frame, it reads [serial_type]."))
+			else if(isnull(serial_type))
+				to_chat(user, SPAN_DANGER("The serial is scribbled away."))
 
 //Grips
 /obj/item/part/gun/grip
