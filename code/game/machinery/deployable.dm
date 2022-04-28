@@ -290,16 +290,11 @@ for reference:
 		icon_state = "barrier[locked]"
 
 /obj/machinery/deployable/barrier/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
-
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
 
-	if(air_group || (height==0))
-		return 1
-	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
-	else
-		return 0
+	if(air_group || (height==0) || istype(mover))
+		return TRUE
 
 /obj/machinery/deployable/barrier/proc/explode()
 
