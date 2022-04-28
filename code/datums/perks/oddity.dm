@@ -193,8 +193,9 @@
 	for(var/mob/living/carbon/human/H in viewers(5, holder))
 		if(H.stat == DEAD || H.internal || H.stats.getPerk(PERK_TOXIC_REVENGER) || H.species.flags & NO_BREATHE)
 			continue
-		if(H.head?.item_flags & BLOCK_GAS_SMOKE_EFFECT || H.wear_mask?.item_flags & BLOCK_GAS_SMOKE_EFFECT)
+		if(H.head?.item_flags & BLOCK_GAS_SMOKE_EFFECT || H.wear_mask?.item_flags & BLOCK_GAS_SMOKE_EFFECT || BP_IS_ROBOTIC(H.get_organ(BP_CHEST)))
 			continue
+
 		H.reagents?.add_reagent("toxin", 5)
 		H.emote("cough")
 		to_chat(H, SPAN_WARNING("[holder] emits a strange smell."))
