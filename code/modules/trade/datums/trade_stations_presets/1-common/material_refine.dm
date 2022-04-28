@@ -37,6 +37,12 @@
 		)
 	)
 	offer_types = list(
+		/obj/item/tool/pickaxe/jackhammer = offer_data("jackhammer", 100, 12),
+		/obj/item/tool/pickaxe/drill = offer_data("mining drill", 100, 12),
+		/obj/item/tool/pickaxe/diamonddrill = offer_data("diamond-point mining drill", 250, 12),
+		/obj/item/tool/pickaxe/onestar = offer_data("one star pickaxe", 5000, 2),
+		/obj/item/tool/pickaxe/drill/onestar = offer_data("one star mining drill", 5000, 2),
+		/obj/item/tool/pickaxe/jackhammer/onestar = offer_data("one star jackhammer", 5000, 2),
 		/obj/item/ore/iron = offer_data("hematite", 20, 0),
 		/obj/item/ore/coal = offer_data("raw carbon", 20, 0),
 		/obj/item/ore/glass = offer_data("sand", 5, 0),

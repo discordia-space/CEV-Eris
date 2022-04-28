@@ -39,7 +39,7 @@
 			/obj/item/electronics/circuitboard/miningturret,
 			/obj/item/electronics/circuitboard/vending
 		),
-		"Aster's Cells" = list(
+		"Aster\'s Cells" = list(
 			/obj/item/cell/small = custom_good_price(50),
 			/obj/item/cell/small/high = custom_good_price(100),
 			/obj/item/cell/small/super = custom_good_price(150),
@@ -53,8 +53,7 @@
 		"Mining Gear" = list(
 			/obj/machinery/mining/deep_drill,
 			/obj/item/tool/pickaxe,
-			/obj/item/tool/pickaxe/excavation,
-			/obj/item/tool/pickaxe/jackhammer
+			/obj/item/tool/pickaxe/excavation
 		),
 		"Toys" = list(
 			/obj/item/toy/balloon = good_data("Water Balloon", list(1, 50), null),
@@ -115,41 +114,13 @@
 		"Exosuits" = list(
 			/mob/living/exosuit/premade/powerloader/firefighter,
 			/mob/living/exosuit/premade/powerloader/flames_blue,
-			/mob/living/exosuit/premade/powerloader/flames_red,
-		),
-		"Exosuits - Armor" = list(
-			/obj/item/robot_parts/robot_component/armour/exosuit/plain,
-			/obj/item/robot_parts/robot_component/armour/exosuit/ablative,
-			/obj/item/robot_parts/robot_component/armour/exosuit/combat
-		),
-		"Exosuits - Parts" = list(
-			/obj/item/mech_component/chassis,
-			/obj/item/mech_component/manipulators,
-			/obj/item/mech_component/sensors,
-			/obj/item/mech_component/propulsion
-		),
-		"Exosuits - Software" = list(
-			/obj/item/electronics/circuitboard/exosystem/engineering,
-			/obj/item/electronics/circuitboard/exosystem/utility,
-			/obj/item/electronics/circuitboard/exosystem/medical,
-			/obj/item/electronics/circuitboard/exosystem/weapons
-		),
-		"Exosuits - Equipment" = list(
-			/obj/item/mech_equipment/mounted_system/taser,
-			/obj/item/mech_equipment/mounted_system/taser/ion,
-			/obj/item/mech_equipment/mounted_system/taser/plasma,
-			/obj/item/mech_equipment/mounted_system/rcd,
-			/obj/item/mech_equipment/clamp,
-			/obj/item/mech_equipment/light,
-			/obj/item/mech_equipment/drill,
-			/obj/item/mech_equipment/mounted_system/extinguisher,
-			/obj/item/mech_equipment/sleeper
+			/mob/living/exosuit/premade/powerloader/flames_red
 		)
 	)
 	offer_types = list(
-		/obj/item/mech_component = offer_data("mech component", 120, 4),															// base price: 150
-		/obj/item/mech_equipment = offer_data("mech equipment", 160, 4),															// base price: 200
-		/obj/item/robot_parts/robot_component/armour/exosuit/plain = offer_data("exosuit armor plating", 240, 4),					// base price: 300
-		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 440, 4),		// base price: 550
-		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 800, 4)			// base price: 1000
+		/obj/item/mech_component = offer_data("mech component", 300, 4),															// base price: 150
+		/obj/item/mech_equipment = offer_data("mech equipment", 400, 4),															// base price: 200
+		/obj/item/robot_parts/robot_component/armour/exosuit/plain = offer_data("exosuit armor plating", 700, 4),					// base price: 400
+		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 700, 4),		// base price: 550
+		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 1750, 4)			// base price: 1000
 	)

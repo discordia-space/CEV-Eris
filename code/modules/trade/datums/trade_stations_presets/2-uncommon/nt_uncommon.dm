@@ -21,12 +21,10 @@
 		"Ballistic Weapons" = list(
 			/obj/item/gun/projectile/mk58,
 			/obj/item/gun/projectile/mk58/wood,
-			/obj/item/gun/projectile/shotgun/pump/regulator,
+			/obj/item/gun/projectile/shotgun/pump/regulator
 		),
 		"Melee Weapons" = list(
-			/obj/item/tool_upgrade/augment/sanctifier,
 			/obj/item/tool/sword/nt/shortsword,
-			/obj/item/tool/sword/nt/longsword,
 			/obj/item/tool/knife/dagger/nt,
 			/obj/item/shield/buckler/nt
 		)

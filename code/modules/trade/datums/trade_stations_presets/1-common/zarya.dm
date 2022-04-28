@@ -88,5 +88,5 @@
 		/obj/item/tool_upgrade/artwork_tool_mod = offer_data("artistic tool upgrade", 800, 1),
 		/obj/item/oddity/common/blueprint = offer_data("strange blueprint", 500, 1),
 		/obj/item/oddity/common/old_radio = offer_data("old radio", 500, 1),
-		/obj/item/organ/external/robotic/serbian = offer_data("serbian external prosthetic", 600, 4)	// base price: 600; roundstart item, but you'd be giving up an arm and a leg for cash
+		/obj/item/organ/external/robotic = offer_data("any external prosthetic", 400, 8)
 	)

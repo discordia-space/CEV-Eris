@@ -79,6 +79,8 @@
 	)
 	offer_types = list(
 		/obj/item/implant/core_implant/cruciform = offer_data("cruciform", 2500, 3),
-		/obj/item/book/ritual/cruciform = offer_data("Neotheology ritual book", 600, 5),		// base price: 300
+		/obj/item/book/ritual/cruciform = offer_data("Neotheology ritual book", 1800, 1),
+		/obj/item/cruciform_upgrade = offer_data("cruciform upgrade", 900, 5),
+		/obj/item/tool_upgrade/augment/sanctifier = offer_data("NT 'Sanctifier' tool blessing", 250, 8),
 		/obj/item/oddity/common/towel = offer_data("trustworthy towel", 500, 1)
 	)

@@ -24,7 +24,7 @@
 		// TODO: More stuff.
 	)
 	offer_types = list(
-		/obj/item/coin = offer_data("metal coin", 2000, 1),						// From what I can tell, these are pretty rare
+		/obj/item/coin = offer_data("metal coin", 4000, 1),						// From what I can tell, these are pretty rare
 		/obj/item/oddity/common/coin = offer_data("strange coin", 500, 1),
 		/obj/item/oddity/common/old_money = offer_data("old money", 500, 1),
 		/obj/item/oddity/artwork = offer_data("artistic oddity", 1600, 1)
