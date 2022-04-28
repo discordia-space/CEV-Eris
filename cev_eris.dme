@@ -1033,6 +1033,7 @@
 #include "code\game\objects\items\weapons\design_disks\frozen_star.dm"
 #include "code\game\objects\items\weapons\design_disks\ironhammer.dm"
 #include "code\game\objects\items\weapons\design_disks\moebius.dm"
+#include "code\game\objects\items\weapons\design_disks\nanotrasen.dm"
 #include "code\game\objects\items\weapons\design_disks\NeoTheology.dm"
 #include "code\game\objects\items\weapons\design_disks\oberth_republic.dm"
 #include "code\game\objects\items\weapons\design_disks\one_star.dm"

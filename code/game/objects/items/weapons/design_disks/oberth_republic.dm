@@ -22,3 +22,16 @@
 		/datum/design/autolathe/ammo/srifle/practice = 0,
 		/datum/design/autolathe/ammo/srifle/rubber,
 	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/guns/sts
+	disk_name = "Oberth Republic - .30 STS Assault Rifle"
+	icon_state = "black"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
+	rarity_value = 65
+	license = 12
+	designs = list(
+		/datum/design/autolathe/gun/sts35 = 3, // "STS"
+		/datum/design/autolathe/ammo/lrifle,
+		/datum/design/autolathe/ammo/lrifle/practice = 0,
+		/datum/design/autolathe/ammo/lrifle/rubber,
+	)

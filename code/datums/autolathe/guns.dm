@@ -120,6 +120,14 @@
 	name = "FS HG .35 \"Slaught-o-Matic\""
 	build_path = /obj/item/gun/projectile/automatic/slaught_o_matic
 
+/datum/design/autolathe/gun/c20
+	name = "S SMG .35 \"C20-r\""
+	build_path = /obj/item/gun/projectile/automatic/c20r
+
+/datum/design/autolathe/gun/c20/moebius
+	name = "ML SMG .35 \"C20-m\""
+	build_path = /obj/item/gun/projectile/automatic/c20r/moebius
+
 // .20 Rifles
 
 /datum/design/autolathe/gun/vintorez

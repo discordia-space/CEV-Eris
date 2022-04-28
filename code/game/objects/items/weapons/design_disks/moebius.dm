@@ -81,9 +81,22 @@
 	disk_name = "Moebius Scientifica - Z-H P Artemis Dartgun"
 	icon_state = "moebius"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
-	rarity_value = 50
+	rarity_value = 20
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/dart_gun = 3, // Z-H P Artemis"
 		/datum/design/autolathe/ammo/dart_mag,
+	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/guns/c20m
+	disk_name = "Moebius Laboratories - .35 C20-m submachine gun"
+	icon_state = "moebius"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
+	rarity_value = 35
+	license = 12
+	designs = list(
+		/datum/design/autolathe/gun/c20/moebius = 3, //Moebius C20-m
+		/datum/design/autolathe/ammo/smg,
+		/datum/design/autolathe/ammo/smg/rubber,
+		/datum/design/autolathe/ammo/smg/practice = 0
 	)
