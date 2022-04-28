@@ -55,3 +55,14 @@
 		/datum/design/autolathe/gun/sniperrifle = 3, //"NT MER \"Valkyrie\""
 		/datum/design/autolathe/cell/medium/high,
 	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_valkyrie/old
+	disk_name = "Nanotrasen Security - Destiny Laser Pistol"
+	desc = "An old NanoTrasen design disk. this one is labelled Destiny Laser Gun. on the back there is a warning label saying authorized NT personell only, its ID scanner has been burned off"
+	icon_state = "nanotrasen"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
+	rarity_value = 75
+	license = 12
+	designs = list(
+		/datum/design/autolathe/gun/destiny = 3, //"NT LG \"Destiny\""
+	)

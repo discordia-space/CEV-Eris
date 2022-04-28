@@ -238,6 +238,10 @@
 	build_path = /obj/item/gun/energy/nt_svalinn
 	factions = list(FACTION_NEOTHEOLOGY)
 
+/datum/design/autolathe/gun/destiny
+	name = "NT LG \"Destiny\""
+	build_path = /obj/item/gun/energy/captain
+
 // Energy general
 
 /datum/design/autolathe/gun/energy_crossbow
