@@ -329,6 +329,8 @@
 	matter = list(MATERIAL_STEEL = 1)
 	maxamount = 5
 
+	price_tag = 1
+
 	sprite_update_spawn = TRUE
 	sprite_max_rotate = 22
 	sprite_scale = 0.75

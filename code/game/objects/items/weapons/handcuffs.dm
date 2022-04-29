@@ -12,6 +12,7 @@
 	throw_range = 5
 	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(MATERIAL_STEEL = 2)
+	price_tag = 30
 	var/elastic
 	var/dispenser = 0
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
@@ -92,6 +93,10 @@
 	target.handcuffed = cuffs
 	target.update_inv_handcuffed()
 	return 1
+
+/obj/item/handcuffs/get_item_cost(export)
+	. = ..()
+	. += breakouttime / 20
 
 var/last_chew = 0
 /mob/living/carbon/human/RestrainedClickOn(var/atom/A)

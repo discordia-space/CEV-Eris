@@ -307,18 +307,6 @@
 	sort_string = "JDAAA"
 	category = CAT_MISC
 
-/datum/design/research/circuit/ordercomp
-	name = "supply ordering console"
-	build_path = /obj/item/electronics/circuitboard/ordercomp
-	sort_string = "KAAAA"
-	category = CAT_COMP
-
-/datum/design/research/circuit/supplycomp
-	name = "supply control console"
-	build_path = /obj/item/electronics/circuitboard/supplycomp
-	sort_string = "KAAAB"
-	category = CAT_COMP
-
 /datum/design/research/circuit/biogenerator
 	name = "biogenerator"
 	build_path = /obj/item/electronics/circuitboard/biogenerator

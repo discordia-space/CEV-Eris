@@ -22,6 +22,8 @@
 	var/list/transfer_amounts = list(REM, 1, 2)
 	var/transfer_amount = 1
 
+	price_tag = 100
+
 /obj/structure/medical_stand/New()
 	..()
 	if (spawn_type)

@@ -52,6 +52,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	slot_flags = SLOT_EARS
 	attack_verb = list("burnt", "singed")
 	preloaded_reagents = list("sulfur" = 3, "potassium" = 3, "hydrazine" = 3, "carbon" = 5)
+
+	price_tag = 5
+
 	var/burnt = 0
 	var/smoketime = 5
 
@@ -98,6 +101,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "You're not sure what this is. You should probably ahelp it."
 	body_parts_covered = 0
 	bad_type = /obj/item/clothing/mask/smokable
+	price_tag = 5
 	var/lit = 0
 	var/icon_on
 	var/icon_off
@@ -467,6 +471,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	attack_verb = list("burnt", "singed")
+	price_tag = 20
 	var/base_state
 
 /obj/item/flame/lighter/zippo
@@ -474,6 +479,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "The zippo."
 	icon_state = "zippo"
 	item_state = "zippo"
+	price_tag = 50
 
 /obj/item/flame/lighter/random
 

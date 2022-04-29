@@ -12,6 +12,7 @@
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	attack_verb = "lunched"
+	price_tag = 25
 
 	can_hold = list(
 		/obj/item/reagent_containers/food

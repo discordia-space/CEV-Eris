@@ -73,6 +73,7 @@
 	possible_transfer_amounts = list(5,10,15,25,30,60,120,300)
 	lid_icon_state = "lid_beakerbluespace"
 	spawn_blacklisted = TRUE
+	price_tag = 300
 
 /obj/item/reagent_containers/glass/beaker/bowl
 	name = "mixing bowl"

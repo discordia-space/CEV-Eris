@@ -3,7 +3,7 @@
 	icon_state = "beacon"
 	anchored = TRUE
 	density = TRUE
-	var/entropy_value = 1
+	var/entropy_value = 2
 
 /obj/machinery/trade_beacon/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
@@ -17,12 +17,14 @@
 /obj/machinery/trade_beacon/proc/activate()
 	flick("[icon_state]_active", src)
 	do_sparks(5, 0, loc)
-	bluespace_entropy(2, get_turf(src))
+	bluespace_entropy(entropy_value, get_turf(src))
 	playsound(loc, "sparks", 50, 1)
 
 /obj/machinery/trade_beacon/sending
 	name = "sending trade beacon"
 	icon_state = "beacon_sending"
+	var/export_cooldown = 180 SECONDS
+	var/export_timer_start
 
 /obj/machinery/trade_beacon/sending/Initialize()
 	. = ..()
@@ -33,7 +35,18 @@
 	return ..()
 
 /obj/machinery/trade_beacon/sending/proc/get_objects()
-	return range(2, src)
+	var/list/objects = range(2, src) - src		// So the beacon won't send itself in the list of objects
+	return objects
+
+/obj/machinery/trade_beacon/sending/proc/start_export()
+	if(!export_timer_start)
+		activate()
+		export_timer_start = world.time
+		addtimer(CALLBACK(src, .proc/reset_export_timer), export_cooldown, TIMER_STOPPABLE)
+
+/obj/machinery/trade_beacon/sending/proc/reset_export_timer()
+	activate()
+	export_timer_start = null
 
 /obj/machinery/trade_beacon/receiving
 	name = "receiving trade beacon"
