@@ -206,7 +206,7 @@
 			if("Force Reload")
 				chatOutput.loaded = FALSE
 				chatOutput.start() //this is likely to fail since it asks , but we should try it anyways so we know.
-				action = alert(src, "Goon chat is reloading.\nWait a bit and see if it's fixed.", "", "Fixed", "Nope")
+				action = alert(src, "Goon chat is reloading.\nWait a bit and see if it\'s fixed.", "", "Fixed", "Nope")
 				if(action == "Fixed")
 					log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a start()")
 				else
