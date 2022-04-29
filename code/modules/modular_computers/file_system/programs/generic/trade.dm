@@ -30,7 +30,7 @@
 /datum/computer_file/program/trade/proc/reset_shoplist()
 	RecursiveCut(shoppinglist)
 	if(station)
-		for(var/i in station.assortiment)
+		for(var/i in station.inventory)
 			shoppinglist[i] = list()
 
 /datum/computer_file/program/trade/proc/get_price_of_cart()
@@ -41,14 +41,16 @@
 			for(var/b in l)
 				. += l[b] * SStrade.get_import_cost(b, station)
 
+/datum/computer_file/program/trade
+
 /datum/computer_file/program/trade/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
 	if(href_list["PRG_goods_category"])
-		if(!choosed_category || !(choosed_category in station.assortiment))
+		if(!choosed_category || !(choosed_category in station.inventory))
 			set_choosed_category()
-		set_choosed_category((text2num(href_list["PRG_goods_category"]) <= length(station.assortiment)) ? station.assortiment[text2num(href_list["PRG_goods_category"])] : "")
+		set_choosed_category((text2num(href_list["PRG_goods_category"]) <= length(station.inventory)) ? station.inventory[text2num(href_list["PRG_goods_category"])] : "")
 		return TRUE
 
 	if(href_list["PRG_trade_screen"])
@@ -107,7 +109,7 @@
 			ind = text2num(href_list["PRG_cart_add_input"])
 		else
 			ind = text2num(href_list["PRG_cart_add"])
-		var/list/category = station.assortiment[choosed_category]
+		var/list/category = station.inventory[choosed_category]
 		if(!islist(category))
 			return
 		var/path = LAZYACCESS(category, ind)
@@ -121,7 +123,7 @@
 		return TRUE
 
 	if(href_list["PRG_cart_remove"])
-		var/list/category = station.assortiment[choosed_category]
+		var/list/category = station.inventory[choosed_category]
 		if(!islist(category))
 			return
 		var/path = LAZYACCESS(category, text2num(href_list["PRG_cart_remove"]))
@@ -149,11 +151,11 @@
 			SStrade.fulfill_offer(sending, account, station, path)
 			return TRUE
 
-		var/t2n = text2num(href_list["PRG_sell"])
-		if(isnum(t2n) && station)
-			var/path = get_2d_matrix_cell(station.assortiment, choosed_category, t2n)
-			SStrade.sell_thing(sending, account, locate(path) in SStrade.assess_offer(sending, station, path), station)
+	if(sending)
+		if(href_list["PRG_export"])
+			SStrade.export(sending)
 			return TRUE
+
 
 /datum/nano_module/program/trade
 	name = "Trading Program"
@@ -181,12 +183,19 @@
 	.["station_index"] = SStrade.discovered_stations.Find(PRG.station)
 
 	.["station_favor"] = PRG.station?.favor
-	.["station_favor_needed"] = max(PRG.station?.secret_inv_threshold, PRG.station?.recommendation_threshold)
+	.["station_favor_needed"] = max(PRG.station?.hidden_inv_threshold, PRG.station?.recommendation_threshold)
 
-	.["offer_time"] = time2text( (PRG.station?.update_time - (world.time - PRG.station?.update_timer_start)) , "mm:ss")
+	.["offer_time"] = time2text((PRG.station?.update_time - (world.time - PRG.station?.update_timer_start)), "mm:ss")
 
 	.["receiving_index"] =  SStrade.beacons_receiving.Find(PRG.receiving)
 	.["sending_index"] = SStrade.beacons_sending.Find(PRG.sending)
+
+	if(PRG.sending)
+		.["export_time_max"] = round(PRG.sending.export_cooldown / (1 SECOND))
+		.["export_time_start"] = PRG.sending.export_timer_start
+		.["export_time_elapsed"] = PRG.sending.export_timer_start ? round((world.time - PRG.sending.export_timer_start) / (1 SECOND)) : 0
+		.["export_ready"] = PRG.sending.export_timer_start ? FALSE : TRUE
+		log_debug("Export cooldown: [round(PRG.sending.export_cooldown / (1 SECOND))]. Export time elapsed: [PRG.sending.export_timer_start ? round((world.time - PRG.sending.export_timer_start) / (1 SECOND)) : 0]")
 
 	if(PRG.account)
 		.["account"] = "[PRG.account.get_name()] #[PRG.account.account_number]"
@@ -212,18 +221,17 @@
 		.["sending_list"] += list(list("id" = B.get_id(), "index" = SStrade.beacons_sending.Find(B)))
 
 	if(PRG.station)
-		if(!PRG.choosed_category || !(PRG.choosed_category in PRG.station.assortiment))
+		if(!PRG.choosed_category || !(PRG.choosed_category in PRG.station.inventory))
 			PRG.set_choosed_category()
-		.["commision"] = PRG.station.commision
-		.["current_category"] = PRG.choosed_category ? PRG.station.assortiment.Find(PRG.choosed_category) : null
+		.["current_category"] = PRG.choosed_category ? PRG.station.inventory.Find(PRG.choosed_category) : null
 		.["goods"] = list()
 		.["categories"] = list()
 		.["total"] = PRG.get_price_of_cart()
-		for(var/i in PRG.station.assortiment)
+		for(var/i in PRG.station.inventory)
 			if(istext(i))
-				.["categories"] += list(list("name" = i, "index" = PRG.station.assortiment.Find(i)))
+				.["categories"] += list(list("name" = i, "index" = PRG.station.inventory.Find(i)))
 		if(PRG.choosed_category)
-			var/list/assort = PRG.station.assortiment[PRG.choosed_category]
+			var/list/assort = PRG.station.inventory[PRG.choosed_category]
 			if(islist(assort))
 				for(var/path in assort)
 					if(!ispath(path, /atom/movable))
@@ -234,29 +242,20 @@
 
 					var/amount = PRG.station.get_good_amount(PRG.choosed_category, index)
 
-					var/amount2sell = 0
-					if(PRG.station && PRG.sending)
-						amount2sell = length(SStrade.assess_offer(PRG.sending, PRG.station, path))
 					var/pathname = initial(AM.name)
 
 					var/list/good_packet = assort[path]
 					if(islist(good_packet))
 						pathname = good_packet["name"] ? good_packet["name"] : pathname
 					var/price = SStrade.get_import_cost(path, PRG.station)
-					var/sell_price = SStrade.get_sell_price(path, PRG.station)
 
 					var/count = max(0, get_2d_matrix_cell(PRG.shoppinglist, PRG.choosed_category, path))
-
-					var/isblacklisted = ispath(path, /obj/item/storage)
 
 					.["goods"] += list(list(
 						"name" = pathname,
 						"price" = price,
 						"count" = count ? count : 0,
 						"amount_available" = amount,
-						"sell_price" = sell_price,
-						"isblacklisted" = isblacklisted,
-						"amount_available_around" = amount2sell,
 						"index" = index,
 					))
 		if(!recursiveLen(.["goods"]))
@@ -275,7 +274,7 @@
 				"path" = path,
 			)
 			if(PRG.sending)
-				offer["available"] = length(SStrade.assess_offer(PRG.sending, PRG.station, offer_path, TRUE))
+				offer["available"] = length(SStrade.assess_offer(PRG.sending, PRG.station, offer_path))
 			.["offers"] += list(offer)
 
 		if(!recursiveLen(.["offers"]))

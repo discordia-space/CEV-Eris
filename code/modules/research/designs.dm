@@ -226,6 +226,11 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/clothing/head/armor/faceshield/paramedic
 	sort_string = "VASAE"
 
+/datum/design/research/item/dna_scanner
+	name = "Portable dna sequencer"
+	build_path = /obj/item/dna_scanner
+	sort_string = "VASAF"
+
 //Why is there a science design to craft a cardboard box full of things? That is not how this works
 /*
 /datum/design/research/item/chameleon

@@ -66,6 +66,7 @@
 		if(emitter_blasts_taken > 2) // 3 blasts per tile
 			mined_ore = 1
 			GetDrilled()
+	else ..()
 
 /turf/simulated/mineral/Bumped(AM)
 	. = ..()

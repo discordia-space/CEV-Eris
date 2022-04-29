@@ -90,11 +90,11 @@
 		click_empty()
 		return
 
-	if(isliving(user))
-		var/mob/living/M = user
-		if (HULK in M.mutations)
-			to_chat(M, SPAN_WARNING("Your meaty finger is much too large for the trigger guard!"))
-			return
+//	if(isliving(user))
+//		var/mob/living/M = user
+//		if (HULK in M.mutations)
+//			to_chat(M, SPAN_WARNING("Your meaty finger is much too large for the trigger guard!"))
+//			return
 	if (!Adjacent(loc, target))
 		to_chat(user, SPAN_WARNING("You're too far away to breach that!"))
 		return
@@ -107,7 +107,7 @@
 
 
 
-	if(isliving(user))
+/*	if(isliving(user))
 		var/mob/living/M = user
 		if ((CLUMSY in M.mutations) && prob(50))
 			to_chat(user, SPAN_DANGER("[src] blows up in your face."))
@@ -115,7 +115,7 @@
 			Fire(get_turf(M))
 			del(src)
 			return
-
+*/
 	if (use_charge())
 		last_fired = world.time
 		playsound(user, fire_sound, 70, 1)

@@ -79,3 +79,19 @@
 	name = "chicken crate"
 	held_count = 5
 	held_type = /mob/living/simple_animal/chick
+
+/obj/structure/largecrate/animal/giant_spider
+	name = "Senshi Spider crate"
+	held_type = /mob/living/carbon/superior_animal/giant_spider
+
+/obj/structure/largecrate/animal/nurse_spider
+	name = "Kouchiku Spider crate"
+	held_type = /mob/living/carbon/superior_animal/giant_spider/nurse
+
+/obj/structure/largecrate/animal/hunter_spider
+	name = "Sokuryou Spider crate"
+	held_type = /mob/living/carbon/superior_animal/giant_spider/hunter
+
+/obj/structure/largecrate/animal/bluespace_roach
+	name = "Unbekannt Roach crate"
+	held_type = /mob/living/carbon/superior_animal/roach/bluespace

@@ -1,17 +1,17 @@
 /datum/trade_station/boozefood
 	name_pool = list(
-		"ATB 'Vermouth'" = "Aster's Trade Beacon 'Vermouth': \"Best Drinks! Best Beverages! Ingredients for your cooks! Anything that is needed for your private bars and more!\""
+		"ATB \'Vermouth\'" = "Aster's Trade Beacon \'Vermouth\': \"Best beverages, ingredients for your cooks, and anything that is needed for your private bars and more!\""
 	)
 	uid = "commissary"
 	start_discovered = TRUE
 	spawn_always = TRUE
-	markup = COMMON_GOODS
+	markup = WHOLESALE_GOODS
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
-	stations_recommended = list("mcronalds", "serbian")
-	assortiment = list(
+	stations_recommended = list("mcronalds", "serbian", "trapper")
+	inventory = list(
 		"Basic Ingredients" = list(
 			/obj/item/reagent_containers/food/condiment/flour,
 			/obj/item/reagent_containers/food/drinks/milk,
@@ -54,10 +54,10 @@
 			/obj/item/reagent_containers/food/drinks/carafe,
 			/obj/item/reagent_containers/food/drinks/flask/barflask,
 			/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
-			/obj/item/storage/deferred/kitchen
+			/obj/item/storage/deferred/kitchen = custom_good_price(50)
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Drinks II" = list(
 			/obj/item/reagent_containers/food/drinks/bottle/goldschlager,
 			/obj/item/reagent_containers/food/drinks/bottle/pwine,
@@ -65,8 +65,12 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/reagent_containers/food/snacks/kampferburger = offer_data("kampfer burger", 400, 3),
-		/obj/item/reagent_containers/food/snacks/panzerburger = offer_data("panzer burger", 500, 2),
-		/obj/item/reagent_containers/food/snacks/jagerburger = offer_data("jager burger", 500, 2),
-		/obj/item/reagent_containers/food/snacks/seucheburger = offer_data("seuche burger", 500, 2)
+		/obj/item/reagent_containers/food/snacks/kampferburger = offer_data("kampfer burger", 500, 3),
+		/obj/item/reagent_containers/food/snacks/panzerburger = offer_data("panzer burger", 700, 2),
+		/obj/item/reagent_containers/food/snacks/jagerburger = offer_data("jager burger", 700, 2),
+		/obj/item/reagent_containers/food/snacks/seucheburger = offer_data("seuche burger", 700, 2),
+		/obj/item/reagent_containers/food/snacks/bigroachburger = offer_data("big roach burger", 2000, 2),
+		/obj/item/reagent_containers/food/snacks/fuhrerburger = offer_data("fuhrer burger", 2000, 2),
+		/datum/reagent/alcohol/changelingsting = offer_data("Changeling Sting bottle (60u)", 1500, 1),
+		/datum/reagent/alcohol/longislandicedtea = offer_data("Long Island Iced Tea bottle (60u)", 1500, 1)		// Lemon juice bottle may need to be added to the game
 	)

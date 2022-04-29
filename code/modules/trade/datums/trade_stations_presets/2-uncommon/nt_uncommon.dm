@@ -1,36 +1,35 @@
 /datum/trade_station/nt_uncommon
 	name_pool = list(
-		"NTV 'Hope'" = "NeoTheology Vessel 'Hope': \"Reliable, blessed and sanctified goods for the correct price.\""
+		"NTV \'Hope\'" = "NeoTheology Vessel \'Hope\': \"Reliable, blessed, and sanctified goods for the correct price.\""
 	)
 	icon_states = "nt_cruiser"
 	uid = "nt_uncommon"
 	start_discovered = FALSE
 	spawn_always = TRUE
-	markup = UNCOMMON_GOODS		// Dept-specific stuff should be more expensive for guild
-	secret_inv_threshold = 2000
+	markup = COMMON_GOODS
+	base_income = 1600
+	wealth = 0
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	recommendations_needed = 1
-	assortiment = list(
+	inventory = list(
 		"Energy Weapons" = list(
 			/obj/item/gun/energy/taser,
 			/obj/item/gun/energy/nt_svalinn,
-			/obj/item/gun/energy/laser = custom_good_amount_range(list(1, 5))
+			/obj/item/gun/energy/laser = custom_good_amount_range(list(1, 3))
 		),
 		"Ballistic Weapons" = list(
 			/obj/item/gun/projectile/mk58,
 			/obj/item/gun/projectile/mk58/wood,
-			/obj/item/gun/projectile/shotgun/pump/regulator,
-			/obj/item/gun/projectile/shotgun/pump/grenade
+			/obj/item/gun/projectile/shotgun/pump/regulator
 		),
 		"Melee Weapons" = list(
-			/obj/item/tool_upgrade/augment/sanctifier,
 			/obj/item/tool/sword/nt/shortsword,
-			/obj/item/tool/sword/nt/longsword,
 			/obj/item/tool/knife/dagger/nt,
 			/obj/item/shield/buckler/nt
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Pouches" = list(
 			/obj/item/storage/pouch/small_generic,
 			/obj/item/storage/pouch/medium_generic,
@@ -49,5 +48,9 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/oddity/nt/seal = offer_data("High Inquisitor's Seal", 1600, 2)
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/triarii = offer_data("NeoTheology Armory - \"Triarii Arms\"", 2000, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/medicii = offer_data("NeoTheology Armory - \"Medicii Supplies\"", 1000, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/nt_lightfall = offer_data("NeoTheology Armory - Lightfall Laser Gun", 800, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/grenades = offer_data("NeoTheology Armory - Grenades Pack", 800, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/excruciator = offer_data("NeoTheology Armory - NT \"EXCRUCIATOR\" giga lens", 800, 1)
 	)

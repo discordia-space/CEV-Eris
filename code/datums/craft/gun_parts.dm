@@ -21,6 +21,40 @@
 	var/barrel = /obj/item/part/gun/barrel
 	var/barrel_attached = FALSE
 
+/obj/item/part/gun/frame/New(loc)
+	..()
+	var/spawn_with_preinstalled_parts = FALSE
+	if(istype(loc, /obj/structure/scrap_spawner))
+		spawn_with_preinstalled_parts = TRUE
+	else if(in_maintenance())
+		var/turf/T = get_turf(src)
+		for(var/atom/A in T.contents)
+			if(istype(A, /obj/spawner))
+				spawn_with_preinstalled_parts = TRUE
+
+	if(spawn_with_preinstalled_parts)
+		var/list/parts_list = list(pick(gripvars), mechanism, barrel)
+
+		pick_n_take(parts_list)
+		if(prob(50))
+			pick_n_take(parts_list)
+
+		for(var/part in parts_list)
+			if(ispath(part, grip))
+				new part(src)
+				grip_attached = TRUE
+			else if(part in gripvars)
+				var/variantnum = gripvars.Find(part)
+				result = resultvars[variantnum]
+				new part(src)
+				grip_attached = TRUE
+			else if(ispath(part, barrel))
+				new part(src)
+				barrel_attached = TRUE
+			else if(ispath(part, mechanism))
+				new part(src)
+				mechanism_attached = TRUE
+
 /obj/item/part/gun/frame/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/part/gun/grip))
 		if(grip_attached)
@@ -53,6 +87,22 @@
 			barrel_attached = TRUE
 			to_chat(user, SPAN_NOTICE("You have attached the barrel to \the [src]."))
 			return
+
+	if(istool(I))
+		if(I.get_tool_quality(QUALITY_SCREW_DRIVING))
+			var/list/possibles = contents.Copy()
+			var/obj/item/part/gun/toremove = input("Which part would you like to remove?","Removing parts") in possibles
+			if(!toremove)
+				return
+			if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
+				eject_item(toremove, user)
+				if(istype(toremove, grip))
+					grip_attached = FALSE
+				else if(istype(toremove, barrel))
+					barrel_attached = FALSE
+				else if(istype(toremove, mechanism))
+					mechanism_attached = FALSE
+
 	return ..()
 
 /obj/item/part/gun/frame/proc/handle_gripvar(obj/item/I, mob/living/user)

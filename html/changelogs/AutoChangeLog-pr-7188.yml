@@ -1,0 +1,5 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - tweak: gun parts can be removed from frames with a screwdriver
+  - balance: maint/trash gun frames spawn with 1-2 parts installed
