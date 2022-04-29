@@ -1,0 +1,6 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - rscadd: Thermobaric and HEAT rockets
+  - bugfix: Rockets and grenadeshells no longer duplicate forever
+  - imageadd: More rocket icons
