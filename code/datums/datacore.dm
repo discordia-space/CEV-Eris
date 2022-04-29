@@ -184,7 +184,7 @@ var/global/ManifestJSON
 		G.fields["real_rank"]	= H.mind.assigned_role
 		G.fields["rank"]		= assignment
 		G.fields["age"]			= H.age
-		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
+		G.fields["fingerprint"]	= H.fingers_trace
 		if(H.mind.initial_account)
 			G.fields["pay_account"]	= H.mind.initial_account.account_number ? H.mind.initial_account.account_number : "N/A"
 		G.fields["email"]		= H.mind.initial_email_login["login"]
@@ -197,7 +197,7 @@ var/global/ManifestJSON
 		//Medical Record
 		var/datum/data/record/M = CreateMedicalRecord(H.real_name, id)
 		M.fields["b_type"]		= H.b_type
-		M.fields["b_dna"]		= H.dna.unique_enzymes
+		M.fields["b_dna"]		= H.dna_trace
 		//M.fields["id_gender"]	= gender2text(H.identifying_gender)
 		if(H.med_record && !jobban_isbanned(H, "Records"))
 			M.fields["notes"] = H.med_record
@@ -213,13 +213,10 @@ var/global/ManifestJSON
 		L.fields["name"]		= H.real_name
 		L.fields["rank"] 		= H.mind.assigned_role
 		L.fields["age"]			= H.age
-		L.fields["fingerprint"]	= md5(H.dna.uni_identity)
+		L.fields["fingerprint"]	= H.fingers_trace
 		L.fields["sex"]			= H.gender
-		///L.fields["id_gender"]	= gender2text(H.identifying_gender)
 		L.fields["b_type"]		= H.b_type
-		L.fields["b_dna"]		= H.dna.unique_enzymes
-		L.fields["enzymes"]		= H.dna.SE // Used in respawning
-		L.fields["identity"]	= H.dna.UI // "
+		L.fields["b_dna"]		= H.dna_trace
 		L.fields["image"]		= getFlatIcon(H)	//This is god-awful
 		if(H.exploit_record && !jobban_isbanned(H, "Records"))
 			L.fields["exploit_record"] = H.exploit_record

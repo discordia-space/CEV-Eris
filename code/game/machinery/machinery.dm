@@ -122,6 +122,8 @@ Class Procs:
 
 	var/machine_integrity = 360
 
+	var/hacked = FALSE // If this machine has had its access requirements hacked or not
+
 
 /obj/machinery/Initialize(mapload, d=0)
 	. = ..()

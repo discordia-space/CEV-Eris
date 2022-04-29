@@ -228,8 +228,8 @@
 	desc = "Top-tier micro manipulations systems. Top-tier scan method. Upgraded mass spectrometry. Advaced sprayer. Machinegunlike syringe-gun."
 	tech_type = RESEARCH_BIOTECH
 
-	x = 0.6
-	y = 0.7
+	x = 0.65
+	y = 0.6
 	icon = "rapidsyringegun"
 
 	required_technologies = list(/datum/technology/improved_biotech)
@@ -245,13 +245,31 @@
 							/datum/design/research/circuit/chemical_dispenser_industrial
 							)
 
+/datum/technology/genetics
+	name = "Advanced Genetics"
+	desc = "Genome sequencing and modification."
+	tech_type = RESEARCH_BIOTECH
+
+	x = 0.8
+	y = 0.6
+	icon = "cybercoffin"
+
+	required_technologies = list(/datum/technology/advanced_biotech)
+	required_tech_levels = list()
+	cost = 1500
+
+	unlocks_designs = list(	/datum/design/research/circuit/dna_console,
+							/datum/design/research/circuit/cryo_slab,
+							/datum/design/research/circuit/moeballs_printer,
+							/datum/design/research/item/dna_scanner)
+
 /datum/technology/top_biotech
 	name = "Augmentations' Biotech"
 	desc = "Augmentations for body, this tech using almost all previous technologies."
 	tech_type = RESEARCH_BIOTECH
 
 	x = 0.7
-	y = 0.7
+	y = 0.8
 	icon = "scalpelmanager"
 
 	required_technologies = list(	/datum/technology/advanced_biotech,
@@ -278,8 +296,8 @@
 	desc = "Experimental biotechnology that explores the inner workings of sentient minds"
 	tech_type = RESEARCH_BIOTECH
 
-	x = 0.7
-	y = 0.6
+	x = 0.8
+	y = 0.8
 	icon = "mindswapper"
 
 	required_technologies = list(	/datum/technology/top_biotech)

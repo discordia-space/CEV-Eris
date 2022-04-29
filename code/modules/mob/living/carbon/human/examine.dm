@@ -182,8 +182,8 @@
 		if(locate(/obj/item/implant/carrion_spider) in src)
 			msg += SPAN_DANGER("[T.He] [T.has] a strange growth on [T.his] chest!") + "\n"
 
-	if(mSmallsize in mutations)
-		msg += "[T.He] [T.is] small halfling!\n"
+//	if(mSmallsize in mutations)
+//		msg += "[T.He] [T.is] small halfling!\n"
 
 	var/distance = get_dist(usr,src)
 	if(isghost(usr) || usr?.stat == DEAD) // ghosts can see anything

@@ -53,10 +53,10 @@
 	if (victim)
 		user_unbuckle_mob(user)
 		return
-	if (HULK in usr.mutations)
-		visible_message(SPAN_DANGER("\The [usr] destroys \the [src]!"))
-		density = FALSE
-		qdel(src)
+//	if (HULK in usr.mutations)
+//		visible_message(SPAN_DANGER("\The [usr] destroys \the [src]!"))
+//		density = FALSE
+//		qdel(src)
 
 /obj/machinery/optable/unbuckle_mob()
 	. = ..()

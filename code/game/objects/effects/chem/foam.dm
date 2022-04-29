@@ -163,14 +163,14 @@
 		qdel(src)
 
 /obj/structure/foamedmetal/attack_hand(var/mob/user)
-	if ((HULK in user.mutations) || (prob(75 - metal * 25)))
+/*	if ((HULK in user.mutations) || (prob(75 - metal * 25)))
 		user.visible_message(
 			SPAN_WARNING("[user] smashes through the foamed metal."),
 			SPAN_NOTICE("You smash through the metal foam wall.")
 		)
 		qdel(src)
-	else
-		to_chat(user, SPAN_NOTICE("You hit the metal foam but bounce off it."))
+	else	*/
+	to_chat(user, SPAN_NOTICE("You hit the metal foam but bounce off it."))
 	return
 
 /obj/structure/foamedmetal/affect_grab(var/mob/living/user, var/mob/living/target)
