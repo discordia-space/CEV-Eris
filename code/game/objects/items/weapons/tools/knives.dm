@@ -146,6 +146,7 @@
 	passive_power_cost = 0.4
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2, TECH_BLUESPACE = 4)
 	spawn_blacklisted = TRUE
+	price_tag = 400
 	var/mob/living/embedded
 	var/last_teleport
 	var/entropy_value = 3

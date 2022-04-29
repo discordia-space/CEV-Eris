@@ -17,6 +17,7 @@
 		qdel(xmas)
 
 /obj/item/toy
+	price_tag = 5
 	bad_type = /obj/item/toy
 
 /obj/item/toy/xmas_cracker

@@ -403,6 +403,7 @@
 	var/adj_sleepy = 0
 	var/adj_temp = 0
 	reagent_type = "Drink"
+	price_per_unit = 0.25
 
 /datum/reagent/drink/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustToxLoss(0.2) // Probably not a good idea; not very deadly though
@@ -1152,6 +1153,8 @@
 	glass_name = "ethanol"
 	glass_desc = "A well-known alcohol with a variety of applications."
 	reagent_type = "Alcohol"
+
+	price_per_unit = 0.5
 
 /datum/reagent/alcohol/touch_mob(mob/living/L, amount)
 	if(istype(L))

@@ -755,7 +755,6 @@
 /obj/item/storage/box/monkeycubes,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
 /obj/spawner/booze,
-/obj/item/tracker_electronics,
 /obj/item/pen/blue,
 /obj/item/pen,
 /obj/item/pen/red,
