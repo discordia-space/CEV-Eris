@@ -185,7 +185,7 @@
 			return
 		chatOutput = new /datum/chatOutput(src)
 		chatOutput.start()
-		action = alert(src, "Goon chat is reloading.\nWait a bit and see if it's fixed.", "", "Fixed", "Nope")
+		action = alert(src, "Goon chat is reloading.\nWait a bit and see if it\'s fixed.", "", "Fixed", "Nope")
 		if(action == "Fixed")
 			log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by re-creating the chatOutput datum.")
 		else
