@@ -242,7 +242,7 @@
 
 	else
 		chatOutput.start()
-		var/action = alert(src, "Manually loading Chat.\nWait a bit and see if it's fixed.", "", "Fixed", "Nope")
+		var/action = alert(src, "Manually loading Chat.\nWait a bit and see if it\'s fixed.", "", "Fixed", "Nope")
 		if(action == "Fixed")
 			log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by manually calling start()")
 		else
