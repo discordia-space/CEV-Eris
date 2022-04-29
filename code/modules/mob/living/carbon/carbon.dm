@@ -165,9 +165,6 @@
 		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
 			H.check_self_for_injuries()
-
-			if((SKELETON in H.mutations) && (!H.w_uniform) && (!H.wear_suit))
-				H.play_xylophone()
 		else if (on_fire)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			if (M.on_fire)
@@ -247,17 +244,6 @@
 
 /mob/living/carbon/proc/eyecheck()
 	return 0
-
-// ++++ROCKDTBEN++++ MOB PROCS -- Ask me before touching.
-// Stop! ... Hammertime! ~Carn
-
-/mob/living/carbon/proc/getDNA()
-	return dna
-
-/mob/living/carbon/proc/setDNA(var/datum/dna/newDNA)
-	dna = newDNA
-
-// ++++ROCKDTBEN++++ MOB PROCS //END
 
 //Throwing stuff
 /mob/proc/throw_item(atom/target)
