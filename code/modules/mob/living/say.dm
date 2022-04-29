@@ -78,10 +78,11 @@ var/list/channel_to_radio_key = new
 	var/list/returns[3]
 	var/speech_problem_flag = 0
 
-	if((HULK in mutations) && health >= 25 && length(message))
+/*	if((HULK in mutations) && health >= 25 && length(message))
 		message = "[uppertext(message)]!!!"
 		verb = pick("yells", "roars", "hollers")
 		speech_problem_flag = 1
+*/
 	if(slurring)
 		message = slur(message)
 		verb = pick("slobbers", "slurs")
@@ -161,8 +162,8 @@ var/list/channel_to_radio_key = new
 			//log_and_message_admins("[src] just tried to say cringe: [cringe]", src) //Uncomment this if you want to keep tabs on who's saying cringe words.
 			return
 
-	if(HUSK in mutations)
-		return
+//	if(HUSK in mutations)
+//		return
 
 	if(is_muzzled())
 		to_chat(src, SPAN_DANGER("You're muzzled and cannot speak!"))
@@ -350,7 +351,7 @@ var/list/channel_to_radio_key = new
 		mob/speaker = null, speech_sound, sound_vol, speech_volume)
 	if(!client)
 		return
-
+/*
 	if(sdisabilities&DEAF || ear_deaf)
 		// INNATE is the flag for audible-emote-language, so we don't want to show an "x talks but you cannot hear them" message if it's set
 		if(!language || !(language.flags & INNATE))
@@ -363,7 +364,7 @@ var/list/channel_to_radio_key = new
 					speaker_name = H.rank_prefix_name(speaker_name)
 				to_chat(src,"<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him.")
 		return
-
+*/
 	//make sure the air can transmit speech - hearer's side
 	var/turf/T = get_turf(src)
 	if(T)
@@ -404,12 +405,12 @@ var/list/channel_to_radio_key = new
 /mob/living/hear_radio(message, verb="says", datum/language/language=null, part_a, part_b, speaker = null, hard_to_hear = 0, voice_name ="")
 	if(!client)
 		return
-
+/*
 	if(sdisabilities&DEAF || ear_deaf)
 		if(prob(20))
 			to_chat(src, SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!"))
 		return
-
+*/
 	if(sleeping || stat == UNCONSCIOUS) //If unconscious or sleeping
 		hear_sleep(message)
 		return

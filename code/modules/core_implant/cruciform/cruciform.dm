@@ -84,8 +84,13 @@ var/list/disciples = list()
 	var/observation_points = 200
 	if(!wearer || active)
 		return
-	if(wearer.get_species() != SPECIES_HUMAN || is_carrion(wearer))
-		if(wearer.get_species() == "Monkey")
+	if(get_active_mutation(wearer, MUTATION_GODBLOOD))
+		spawn(2 MINUTES)
+		for(var/mob/living/carbon/human/H in (disciples - wearer))
+			to_chat(H, SPAN_WARNING("A distand scream pierced your mind. You feel that a vile mutant sneaked among the faithful."))
+			playsound(wearer.loc, 'sound/hallucinations/veryfar_noise.ogg', 55, 1)
+	else if(wearer.get_species() != SPECIES_HUMAN || is_carrion(wearer))
+		if(wearer.get_species() == SPECIES_MONKEY)
 			observation_points /= 20
 		playsound(wearer.loc, 'sound/hallucinations/wail.ogg', 55, 1)
 		wearer.gib()
@@ -129,30 +134,34 @@ var/list/disciples = list()
 
 /obj/item/implant/core_implant/cruciform/Process()
 	..()
-	if(active && round(world.time) % 5 == 0)
+	if(active && round(world.time) % 5 == 0 && !get_active_mutation(wearer, MUTATION_GODBLOOD))
 		remove_cyber()
-	if(wearer)
-		if(wearer.stat == DEAD)
-			deactivate()
+		if(wearer.mutation_index)
+			var/datum/mutation/M = pick(wearer.active_mutations)
+			M.cleanse(wearer)
+			wearer.adjustToxLoss(rand(5, 25))
+
+	if(wearer.stat == DEAD)
+		deactivate()
 
 /obj/item/implant/core_implant/cruciform/proc/transfer_soul()
 	if(!wearer || !activated)
 		return FALSE
 	var/datum/core_module/cruciform/cloning/data = get_module(CRUCIFORM_CLONING)
-	if(wearer.dna.unique_enzymes == data.dna.unique_enzymes)
+	if(wearer.dna_trace == data.dna_trace)
 		for(var/mob/M in GLOB.player_list)
 			if(M.ckey == data.ckey)
 				if(M.stat != DEAD)
 					return FALSE
 		var/datum/mind/MN = data.mind
-		if(!istype(MN, /datum/mind))
+		if(!istype(MN))
 			return
 		MN.transfer_to(wearer)
 		wearer.ckey = data.ckey
 		for(var/datum/language/L in data.languages)
 			wearer.add_language(L.name)
 		update_data()
-		if (activate())
+		if(activate())
 			return TRUE
 
 /obj/item/implant/core_implant/cruciform/proc/remove_cyber()

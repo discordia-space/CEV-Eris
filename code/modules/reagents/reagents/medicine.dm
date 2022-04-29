@@ -381,7 +381,7 @@
 	reagent_state = SOLID
 	color = "#004000"
 	overdose = REAGENTS_OVERDOSE
-
+/*
 /datum/reagent/medicine/ryetalyn/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	var/needs_update = M.mutations.len > 0
 
@@ -393,6 +393,23 @@
 	if(needs_update && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.update_mutations()
+*/
+/datum/reagent/medicine/kognim
+	name = "Kognim"
+	id = "kognim"
+	description = "Puts the user in pain. Necessary for use of portable genome splicer."
+	taste_description = "acid"
+	reagent_state = SOLID
+	color = "#224422"
+	overdose = REAGENTS_OVERDOSE
+
+
+/datum/reagent/medicine/kognim/affect_blood(mob/living/carbon/human/H, alien, effect_multiplier)
+	if(istype(H))
+		var/obj/item/organ/external/E = pick(H.organs)
+		H.apply_damage(2, HALLOSS)
+		H.pain(E.name, 15, TRUE)
+
 
 /datum/reagent/medicine/negative_ling
 	name = "Negative Paragenetic Marker"

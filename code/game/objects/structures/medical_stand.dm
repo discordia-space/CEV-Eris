@@ -421,10 +421,8 @@
 			var/mob/living/carbon/human/H = attached
 			if(!istype(H))
 				return
-			if(!H.dna)
-				return
-			if(NOCLONE in H.mutations)
-				return
+//			if(NOCLONE in H.mutations)
+//				return
 			if(H.species.flags & NO_BLOOD)
 				return
 			if(!H.should_have_process(OP_HEART))
