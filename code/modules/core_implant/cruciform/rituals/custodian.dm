@@ -16,6 +16,10 @@
 		fail("No target in front of you.", user, C)
 		return FALSE
 
+	if(get_active_mutation(T, MUTATION_ATHEIST))
+		fail("[T.name]\'s mutated flesh rejects your will.", user, C)
+		return FALSE
+
 	if(T.metabolism_effects.addiction_list.len)
 		for(var/addiction in T.metabolism_effects.addiction_list)
 			var/datum/reagent/R = addiction

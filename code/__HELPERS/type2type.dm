@@ -37,9 +37,8 @@
 	return num
 
 // Returns the hex value of a number given a value assumed to be a base-ten value
+var/global/list/hexdigits = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
 /proc/num2hex(num, padlength)
-	var/global/list/hexdigits = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
-
 	. = ""
 	while(num > 0)
 		var/hexdigit = hexdigits[(num & 0xF) + 1]

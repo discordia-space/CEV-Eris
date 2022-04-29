@@ -175,7 +175,7 @@
 /mob/living/carbon/human/proc/sync_organ_dna()
 	var/list/all_bits = internal_organs|organs
 	for(var/obj/item/organ/O in all_bits)
-		O.set_dna(dna)
+		O.set_dna(src)
 
 /mob/living/carbon/human/is_asystole()
 	if(should_have_process(OP_HEART))
@@ -221,7 +221,7 @@
 			var/obj/item/organ/external/O = organ_data.create_organ(src)
 			var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in vessel.reagent_list
 			blood_splatter(src,B,1)
-			O.set_dna(dna)
+			O.set_dna(src)
 			update_body()
 			if (show_message)
 				to_chat(src, SPAN_DANGER("With a shower of fresh blood, a new [O.name] forms."))
@@ -232,7 +232,7 @@
 			var/organ_path = organ_data["path"]
 			var/obj/item/organ/internal/O = new organ_path(src)
 			organ_data["descriptor"] = O.name
-			O.set_dna(dna)
+			O.set_dna(src)
 			update_body()
 			if(is_carrion(src) && O.organ_tag == BP_BRAIN)
 				O.vital = 0

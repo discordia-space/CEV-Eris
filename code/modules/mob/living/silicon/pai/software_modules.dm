@@ -67,9 +67,8 @@
 				var/turf/T = get_turf_or_move(P.loc)
 				for (var/mob/v in viewers(T))
 					v.show_message(SPAN_NOTICE("[M] presses \his thumb against [P]."), 3, SPAN_NOTICE("[P] makes a sharp clicking sound as it extracts DNA material from [M]."), 2)
-				var/datum/dna/dna = M.dna
-				to_chat(P, "<font color = red><h3>[M]'s UE string : [dna.unique_enzymes]</h3></font>")
-				if(dna.unique_enzymes == P.master_dna)
+				to_chat(P, "<font color = red><h3>[M]'s UE string : [M.dna_trace]</h3></font>")
+				if(M.dna_trace == P.master_dna)
 					to_chat(P, "<b>DNA is a match to stored Master DNA.</b>")
 				else
 					to_chat(P, "<b>DNA does not match stored Master DNA.</b>")

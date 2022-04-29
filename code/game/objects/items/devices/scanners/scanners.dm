@@ -16,6 +16,8 @@
 
 	suitable_cell = /obj/item/cell/small
 
+	price_tag = 100
+
 	var/scan_title
 	var/scan_data
 

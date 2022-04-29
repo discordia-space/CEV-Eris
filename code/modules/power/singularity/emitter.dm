@@ -13,6 +13,8 @@
 	use_power = NO_POWER_USE	//uses powernet power, not APC power
 	active_power_usage = 30000	//30 kW laser. I guess that means 30 kJ per shot.
 
+	price_tag = 2000
+
 	var/active = 0
 	var/powered = 0
 	var/fire_delay = 100

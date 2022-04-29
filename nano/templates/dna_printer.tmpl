@@ -1,0 +1,47 @@
+<div class="item">
+	<table style="width:100%">
+		<tr>
+			<th>Pattern</th>
+			<th style="width:70%">Description</th>
+		</tr>
+		<tr class="candystripe">
+			<td style="background-color: #8daf6a;">{{:data.name}}</td>
+			<td style="background-color: #8daf6a;">{{:data.desc}}</td>
+		</tr>
+	</table>
+	{{:helper.link('Make imprinter', 'circle-plus', {'make_meat_cube' : 1}, data.can_print ? null : 'disabled')}}
+	{{:helper.link('Make antidote', 'circle-plus', {'make_worm_cube' : 1}, null)}}
+	{{:helper.link('Eject disc','eject',{'eject_usb' : 1}, data.disc_inserted ? null : 'disabled')}}
+	{{:helper.link('Eject beaker','eject',{'eject_beaker' : 1}, data.beaker_inserted ? null : 'disabled')}}
+	<br>
+	<hr>
+	<div class="itemLabel">
+		Nutriment content:
+	</div>
+	<div class="itemContent">
+		{{:helper.displayBar(data.beaker_volume, 0, data.beaker_max, 'good', showText = data.beaker_volume + '/' + data.beaker_max)}}
+	</div>
+	<br>
+	<hr>
+	{{if data.have_files}}
+		<div align="center" class='item' style="font-size: large; font-weight: bold;">
+			Compatible DNA sequences:
+		</div>
+		<table class='wideTable'><tbody>
+			{{for data.files}}
+				<tr><td>
+				{{:value.name}} {{:helper.link('Select', null, {'cache' : value.index})}}
+				</td></tr>
+			{{/for}}
+		</tbody></table>
+	{{else}}
+		<div align="center" class='item' style="font-size: large; font-weight: bold;">
+			No valid DNA sequences.
+		</div>
+	{{/if}}
+
+	<h2>Regurgitator Log:</h2>
+	<div class='statusDisplayRecords' style='height:200px;font-size:82%;overflow-y:scroll;clear:both;'>
+		{{:data.log}}
+	</div>
+</div>

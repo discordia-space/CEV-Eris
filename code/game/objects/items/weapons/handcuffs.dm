@@ -12,6 +12,7 @@
 	throw_range = 5
 	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(MATERIAL_STEEL = 2)
+	price_tag = 30
 	var/elastic
 	var/dispenser = 0
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
@@ -23,11 +24,11 @@
 	if(!user.IsAdvancedToolUser())
 		return
 
-	if ((CLUMSY in user.mutations) && prob(50))
+/*	if ((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("Uh ... how do those things work?!"))
 		place_handcuffs(user, user)
 		return
-
+*/
 	if(C.handcuffed)
 		to_chat(user,SPAN_WARNING("\The [C] is already handcuffed."))
 		return
@@ -92,6 +93,10 @@
 	target.handcuffed = cuffs
 	target.update_inv_handcuffed()
 	return 1
+
+/obj/item/handcuffs/get_item_cost(export)
+	. = ..()
+	. += breakouttime / 20
 
 var/last_chew = 0
 /mob/living/carbon/human/RestrainedClickOn(var/atom/A)

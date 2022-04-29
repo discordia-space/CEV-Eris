@@ -17,6 +17,8 @@
 	//spawn values
 	bad_type = /obj/item/tool
 	spawn_tags = SPAWN_TAG_TOOL
+	
+	price_tag = 20
 
 	var/tool_in_use = FALSE
 
