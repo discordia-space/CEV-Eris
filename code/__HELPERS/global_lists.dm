@@ -49,7 +49,6 @@ GLOBAL_LIST_EMPTY(joblist)					//list of all jobstypes, minus borg and AI
 GLOBAL_LIST_EMPTY(all_departments)			//List of all department datums
 var/global/list/department_IDs = list(DEPARTMENT_COMMAND, DEPARTMENT_MEDICAL, DEPARTMENT_ENGINEERING,
  DEPARTMENT_SCIENCE, DEPARTMENT_SECURITY, DEPARTMENT_GUILD, DEPARTMENT_CHURCH, DEPARTMENT_CIVILIAN, DEPARTMENT_OFFSHIP)
-GLOBAL_LIST_EMPTY(global_corporations)
 
 
 GLOBAL_LIST_EMPTY(HUDdatums)
@@ -242,12 +241,6 @@ GLOBAL_LIST_EMPTY(ignore_health_alerts_from)
 	for(var/T in paths)
 		var/datum/poster/P = new T
 		GLOB.poster_designs += P
-
-	//Corporations
-	paths = subtypesof(/datum/corporation)
-	for(var/T in paths)
-		var/datum/corporation/C = new T
-		global.GLOB.global_corporations[C.name] = C
 
 	paths = subtypesof(/datum/hud)
 	for(var/T in paths)
