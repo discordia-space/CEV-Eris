@@ -223,7 +223,7 @@
 
 			if("Refresh")
 				chatOutput.showChat()
-				action = alert(src, "Goon chat is refreshing.\nWait a bit and see if it's fixed.", "", "Fixed", "Nope")
+				action = alert(src, "Goon chat is refreshing.\nWait a bit and see if it\'s fixed.", "", "Fixed", "Nope")
 				if(action == "Fixed")
 					log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a show()")
 				else
