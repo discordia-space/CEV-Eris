@@ -195,7 +195,7 @@
 				taped = TRUE
 				icon_state = "camera_taped"
 				to_chat(user, "You taped the camera.")
-				desc = "It's used to monitor rooms. It's covered with something sticky."
+				desc = "It's used to monitor rooms. Its lens is covered with sticky tape."
 				return
 
 		if(ABORT_CHECK)
