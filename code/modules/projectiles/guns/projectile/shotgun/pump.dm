@@ -18,7 +18,7 @@
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 800
-	recoil = RIFLE_RECOIL(2.8)
+	init_recoil = RIFLE_RECOIL(2.8)
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/shotgun/pump/sawn
@@ -74,7 +74,7 @@
 	price_tag = 350
 	damage_multiplier = 0.5
 	penetration_multiplier = 0.7
-	recoil = CARBINE_RECOIL(6)
+	init_recoil = CARBINE_RECOIL(6)
 	can_dual = TRUE
 	saw_off = FALSE
 	spawn_blacklisted = TRUE

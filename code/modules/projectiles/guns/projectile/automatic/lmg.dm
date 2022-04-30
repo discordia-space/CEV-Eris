@@ -21,7 +21,7 @@
 	reload_sound = 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
-	recoil = LMG_RECOIL(0.5)
+	init_recoil = LMG_RECOIL(0.5)
 	damage_multiplier = 1.3
 	penetration_multiplier = 1.3
 	twohanded = TRUE

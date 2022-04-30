@@ -9,7 +9,7 @@
 	matter = list(MATERIAL_PLASTIC = 10, MATERIAL_STEEL = 15)
 	price_tag = 250 //one of the cheapest revolvers here
 	damage_multiplier = 1.3
-	recoil = HANDGUN_RECOIL(1.2)
+	init_recoil = HANDGUN_RECOIL(1.2)
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/steel = 15)
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE

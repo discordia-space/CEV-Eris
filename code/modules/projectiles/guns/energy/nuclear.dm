@@ -19,7 +19,7 @@
 		WEAPON_NORMAL,
 		BURST_2_BEAM
 		)
-	recoil = HANDGUN_RECOIL(1)
+	init_recoil = HANDGUN_RECOIL(1)
 
 	serial_type = "M"
 	var/lightfail = 0

@@ -21,7 +21,7 @@
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	recoil = RIFLE_RECOIL(0.8)
+	init_recoil = RIFLE_RECOIL(0.8)
 	spawn_blacklisted = TRUE
 	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
@@ -98,7 +98,7 @@
 			The flexible design also fits drum magazines."
 	icon = 'icons/obj/guns/projectile/ak/krinkov.dmi'
 	w_class = ITEM_SIZE_BULKY	//small rifle, also because it's basically an smg now
-	recoil = CARBINE_RECOIL(0.7)
+	init_recoil = CARBINE_RECOIL(0.7)
 	damage_multiplier = 0.9 //Better control, worse damage
 	penetration_multiplier = 1.2
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
@@ -140,12 +140,12 @@
 		to_chat(user, SPAN_NOTICE("You unfold the stock on \the [src]."))
 		w_class = ITEM_SIZE_BULKY
 		folded = FALSE
-		recoil = CARBINE_RECOIL(0.7)
+		init_recoil = CARBINE_RECOIL(0.7)
 	else
 		to_chat(user, SPAN_NOTICE("You fold the stock on \the [src]."))
 		w_class = ITEM_SIZE_NORMAL
 		folded = TRUE
-		recoil = SMG_RECOIL(0.7)
+		init_recoil = SMG_RECOIL(0.7)
 
 	playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()
@@ -160,7 +160,7 @@
 			This cheap copy has been made to look as least militaristic as possible to be sold to as many civilian populations as possible."
 	icon = 'icons/obj/guns/projectile/ak/vipr.dmi'
 	w_class = ITEM_SIZE_HUGE
-	recoil = RIFLE_RECOIL(0.7)
+	init_recoil = RIFLE_RECOIL(0.7)
 	damage_multiplier = 1.1	//Long barrels help you get more out of a round.
 
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
@@ -224,12 +224,12 @@
 		to_chat(user, SPAN_NOTICE("You unfold the stock on \the [src]."))
 		w_class = ITEM_SIZE_HUGE
 		folded = FALSE
-		recoil = RIFLE_RECOIL(0.7)
+		init_recoil = RIFLE_RECOIL(0.7)
 	else
 		to_chat(user, SPAN_NOTICE("You fold the stock on \the [src]."))
 		w_class = ITEM_SIZE_BULKY
 		folded = TRUE
-		recoil = CARBINE_RECOIL(0.7)
+		init_recoil = CARBINE_RECOIL(0.7)
 
 	playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()
@@ -244,7 +244,7 @@
 			This crude copy shows just how forgiving the design can be."
 	icon = 'icons/obj/guns/projectile/ak/kalash.dmi'
 	w_class = ITEM_SIZE_HUGE
-	recoil = RIFLE_RECOIL(0.7)
+	init_recoil = RIFLE_RECOIL(0.7)
 	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/plasteel = 7)
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 

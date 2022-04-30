@@ -21,7 +21,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/m41_cocked.ogg'
 	damage_multiplier = 1.35
 	penetration_multiplier = 1.2
-	recoil = LMG_RECOIL(1)
+	init_recoil = LMG_RECOIL(1)
 	rarity_value = 65
 	gun_parts = list(/obj/item/part/gun = 5 ,/obj/item/stack/material/plasteel = 6)
 	wield_delay = 1 SECOND

@@ -15,7 +15,7 @@
 	damage_multiplier = 1.4
 	style_damage_multiplier = 5
 	penetration_multiplier = 1.5
-	recoil = RIFLE_RECOIL(2.8)
+	init_recoil = RIFLE_RECOIL(2.8)
 	init_offset = 4 //bayonet's effect on aim, reduced from 4
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
@@ -123,7 +123,7 @@
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
 	force = 23
-	recoil = RIFLE_RECOIL(3)
+	init_recoil = RIFLE_RECOIL(3)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
 	spawn_blacklisted = FALSE
@@ -143,7 +143,7 @@
 	caliber = CAL_SRIFLE
 	damage_multiplier = 1.6
 	penetration_multiplier = 1.7
-	recoil = RIFLE_RECOIL(3.1)
+	init_recoil = RIFLE_RECOIL(3.1)
 	init_offset = 0 //no bayonet
 	max_shells = 6
 	zoom_factor = 0.8 //vintorez level
@@ -177,7 +177,7 @@
 	slot_flags = SLOT_BACK
 	damage_multiplier = 1.2
 	penetration_multiplier = 1.3
-	recoil = RIFLE_RECOIL(3.5)
+	init_recoil = RIFLE_RECOIL(3.5)
 	max_shells = 5
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
@@ -220,7 +220,7 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	penetration_multiplier = 1.1 // short barrel means maximum velocity isn't reached
 	proj_step_multiplier = 1.2
-	recoil = CARBINE_RECOIL(6)
+	init_recoil = CARBINE_RECOIL(6)
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
 	price_tag = 600
 	attack_verb = list("struck","hit","bashed")
@@ -234,6 +234,6 @@
 	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
 	icon_state = "obrez_wood"
 	item_suffix  = "_wood"
-	recoil = CARBINE_RECOIL(6.5)
+	init_recoil = CARBINE_RECOIL(6.5)
 	wielded_item_state = "_doble_wood"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)

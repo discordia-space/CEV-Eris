@@ -29,7 +29,7 @@
 
 	wield_delay = 1 SECOND
 	wield_delay_factor = 0.1 // 10 vig
-	recoil = SMG_RECOIL(1)
+	init_recoil = SMG_RECOIL(1)
 	serial_type = "" // self made
 
 

@@ -11,7 +11,7 @@
 	price_tag = 1000
 	damage_multiplier = 1.4 //because pistol round //From havelock.dm
 	penetration_multiplier = 1.4
-	recoil = HANDGUN_RECOIL(1)
+	init_recoil = HANDGUN_RECOIL(1)
 	spawn_frequency = 0
 	serial_type = "" // artists are special and dont' care
 

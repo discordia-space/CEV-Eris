@@ -17,7 +17,7 @@
 	price_tag = 2200
 	damage_multiplier = 0.9 	 //27.2 lethal on FA, 31.2 HV damage on FA
 	penetration_multiplier = 1.5 //22.5 lethal, 30 HV //AP
-	recoil = SMG_RECOIL(0.35)
+	init_recoil = SMG_RECOIL(0.35)
 
 	twohanded = FALSE
 	gun_tags = list(GUN_SILENCABLE)

@@ -16,7 +16,7 @@
 	magazine_type = /obj/item/ammo_magazine/cspistol
 	damage_multiplier = 1.8
 	penetration_multiplier = 1.5
-	recoil = HANDGUN_RECOIL(0.8)
+	init_recoil = HANDGUN_RECOIL(0.8)
 	spawn_tags = SPAWN_TAG_GUN_OS
 	fire_sound = 'sound/weapons/guns/fire/m41_shoot.ogg'
 

@@ -16,7 +16,7 @@
 	damage_multiplier = 1.1
 	penetration_multiplier = 20
 	pierce_multiplier = 10
-	recoil = HANDGUN_RECOIL(2)
+	init_recoil = HANDGUN_RECOIL(2)
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
 	noricochet = TRUE

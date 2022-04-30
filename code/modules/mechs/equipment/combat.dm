@@ -23,7 +23,7 @@
 	charge_cost = MECH_WEAPON_POWER_COST * 0.5 // Pew pew pew pew pew pew pew pew pew pew
 	burst = 3
 	burst_delay = 1 // PEW PEW PEW
-	recoil = LMG_RECOIL(1)
+	init_recoil = LMG_RECOIL(1)
 	matter = list()
 	cell_type = /obj/item/cell/medium/mech
 	init_offset = 10 // Pew pew in all directions

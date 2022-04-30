@@ -14,7 +14,7 @@
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLATINUM = 4, MATERIAL_PLASTIC = 12)
 	price_tag = 2800
-	recoil = CARBINE_RECOIL(1)
+	init_recoil = CARBINE_RECOIL(1)
 	penetration_multiplier = 1.5
 	damage_multiplier = 1.5
 	gun_tags = list(GUN_SILENCABLE)

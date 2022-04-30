@@ -10,7 +10,7 @@
 	proj_step_multiplier = 0.8 // faster than non-shotgun bullets, slower than non-shotgun bullets with an accelerator
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
-	recoil = RIFLE_RECOIL(2.3)
+	init_recoil = RIFLE_RECOIL(2.3)
 	damage_multiplier = 0.8
 	saw_off = FALSE
 

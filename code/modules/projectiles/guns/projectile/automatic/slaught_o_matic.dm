@@ -27,7 +27,7 @@
 
 	damage_multiplier = 0.8
 	penetration_multiplier = 0.2
-	recoil = HANDGUN_RECOIL(1.6)
+	init_recoil = HANDGUN_RECOIL(1.6)
 
 	gun_tags = list(GUN_SILENCABLE)
 

@@ -19,7 +19,7 @@
 	magazine_type = /obj/item/ammo_magazine/pistol
 	rarity_value = 16
 	damage_multiplier = 1
-	recoil = HANDGUN_RECOIL(0.75)
+	init_recoil = HANDGUN_RECOIL(0.75)
 
 	gun_tags = list(GUN_SILENCABLE)
 	init_firemodes = list(

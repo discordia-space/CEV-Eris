@@ -22,7 +22,7 @@
 	reload_sound = 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
-	recoil = HMG_RECOIL(0.5)
+	init_recoil = HMG_RECOIL(0.5)
 	damage_multiplier = 1.1
 	penetration_multiplier = 1.3
 	burst_delay = 0.8

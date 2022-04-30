@@ -43,6 +43,7 @@
 	var/fire_sound_text = "gunshot"
 
 	var/datum/recoil/recoil // Reference to the recoil datum in datum/recoil.dm
+	var/list/init_recoil // For updating weapon mods
 
 	var/braced = FALSE //for gun_brace proc.
 	var/braceable = 1 //can the gun be used for gun_brace proc, modifies recoil. If the gun has foregrip mod installed, it's not braceable. Bipod mod increases value by 1.
@@ -143,9 +144,9 @@
 	..()
 
 /obj/item/gun/Initialize()
-	if(islist(recoil))
-		recoil = getRecoil(arglist(recoil))
-	else if(!recoil)
+	if(!recoil && islist(init_recoil))
+		recoil = getRecoil(arglist(init_recoil))
+	else if(!islist(init_recoil))
 		recoil = getRecoil()
 	else if(!istype(recoil, /datum/recoil))
 		error("Invalid type [recoil.type] found in .recoil during /obj Initialize()")
@@ -949,7 +950,7 @@
 	armor_penetration = initial(armor_penetration)
 	sharp = initial(sharp)
 	braced = initial(braced)
-	recoil.setList(initial(recoil))
+	recoil.setList(init_recoil)
 
 	attack_verb = list()
 	if (custom_default.len) // this override is used by the artwork_revolver for RNG gun stats

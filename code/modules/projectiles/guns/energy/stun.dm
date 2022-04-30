@@ -11,7 +11,7 @@
 	projectile_type = /obj/item/projectile/beam/stun
 	wield_delay = 0.3 SECOND
 	wield_delay_factor = 0.2 // 20 vig
-	recoil = HANDGUN_RECOIL(1)
+	init_recoil = HANDGUN_RECOIL(1)
 	serial_type = "NT"
 
 /obj/item/gun/energy/taser/mounted
@@ -41,7 +41,7 @@
 	suitable_cell = /obj/item/cell/small
 	cell_type = /obj/item/cell/small
 	projectile_type = /obj/item/projectile/energy/electrode
-	recoil = HANDGUN_RECOIL(1)
+	init_recoil = HANDGUN_RECOIL(1)
 	serial_type = "NT"
 
 /obj/item/gun/energy/stunrevolver/moebius

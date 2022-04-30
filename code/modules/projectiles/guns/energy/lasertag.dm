@@ -11,7 +11,7 @@
 	spawn_tags = SPAWN_TAG_TOY_WEAPON
 	rarity_value = 30
 	var/required_vest
-	recoil = CARBINE_RECOIL(1)
+	init_recoil = CARBINE_RECOIL(1)
 
 /obj/item/gun/energy/lasertag/special_check(mob/living/carbon/human/M)
 	if(ishuman(M))

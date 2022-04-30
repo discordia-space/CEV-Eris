@@ -125,7 +125,7 @@
 	price_tag = 5000
 	charge_cost = 5
 	fire_delay = 5
-	recoil = SMG_RECOIL(1)
+	init_recoil = SMG_RECOIL(1)
 	twohanded = FALSE
 	suitable_cell = /obj/item/cell/small
 	can_dual = TRUE
