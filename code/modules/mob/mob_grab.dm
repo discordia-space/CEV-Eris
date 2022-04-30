@@ -233,7 +233,7 @@
 /obj/item/grab/proc/upgrade_grab(delay_time, hud_icon_state_after, state_after)
 	if(!allow_upgrade)
 		return // upgrading now is not allowed!
-	delay_time = round(delay_time/8) // the sprites have eight configurations for timer
+	delay_time = round(delay_time / 8) // the sprites have eight configurations for timer
 	var/original_icon = hud.icon_state
 	var/original_loc = get_turf(assailant) // used to see if the assailant moved and thus disrupted the upgrade
 	var/original_time = world.time
@@ -241,7 +241,7 @@
 		sleep(delay_time)
 		if(QDELING(src) || !hud)
 			break // hud is null after dropped and sleep does not care so we check manually
-		if((last_action > original_time) || (!confirm()) || (get_turf(assailant) != original_loc)) // cannot do a grab attack while upgrading a grab
+		if(last_action > original_time || !confirm() || get_turf(assailant) != original_loc) // cannot do a grab attack while upgrading a grab
 			hud.icon_state = original_icon //  or move and upgrade a grab or keep upgrading it when the grab is escaped.
 			break
 		else
@@ -282,7 +282,7 @@
 		icon_state = "grabbed1"
 		hud.icon_state = "reinforce"
 		state = GRAB_SECURING
-		if(upgrade_grab(total_warmup,"reinforce_final", GRAB_AGGRESSIVE))
+		if(upgrade_grab(total_warmup, "reinforce_final", GRAB_AGGRESSIVE))
 			if(!affecting.lying)
 				assailant.visible_message(SPAN_WARNING("[assailant] has grabbed [affecting] aggressively!"))
 				affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been grabbed by [assailant.name] ([assailant.ckey])</font>"
