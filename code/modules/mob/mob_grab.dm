@@ -354,6 +354,9 @@
 	// The movment speed of assailant will be determined by the victim whatever their size or things he wears minus how strong the assailant ( ROB )
 	// New function should take the victim variables in account : size of mob, under gravity or not
 	// ROB check will start in process for the victim so the assailant can have a jump on the victim in first movement tick or some shit unless he's already grabbed
+	if(isnull(affecting))
+		return //do not upgrade a grab and drop it
+
 	var/affecting_stat = affecting.stats.getStat(STAT_ROB)	// Victim
 	var/assailant_stat = assailant.stats.getStat(STAT_ROB)	// Grabber
 	var/difference_stat = assailant_stat - affecting_stat
