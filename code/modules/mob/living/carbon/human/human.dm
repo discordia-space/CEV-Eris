@@ -838,7 +838,12 @@ var/list/rank_prefix = list(\
 		to_chat(src, SPAN_WARNING("You can't do that right now!"))
 		return
 
-	var/list/mobs_in_view = mobs_in_view(7, src)
+	var/list/mobs_in_view = list()
+	for(var/i in mobs_in_view(7, src))
+		var/mob/living/carbon/human/H = i
+		if(istype(H) && !H.stat)
+			mobs_in_view += H
+
 	if(!mobs_in_view.len)
 		to_chat(src, SPAN_NOTICE("There is no valid targets around."))
 		return
@@ -865,6 +870,7 @@ var/list/rank_prefix = list(\
 	var/list/mobs = list()
 	for(var/mob/living/carbon/C in SSmobs.mob_list)
 		mobs += C
+
 	var/mob/target = input("Who do you want to project your mind to ?") as null|anything in mobs
 	if(isnull(target))
 		return
