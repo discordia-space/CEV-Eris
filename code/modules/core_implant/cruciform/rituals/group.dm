@@ -41,7 +41,8 @@
 	if(cnt < 3 || !stat_buff)
 		to_chat(M, SPAN_NOTICE("Insufficient participants."))
 		return FALSE
-	M.stats.changeStat(stat_buff, buff_value + cnt * aditional_value)
+	if(!get_active_mutation(M, MUTATION_ATHEIST))
+		M.stats.changeStat(stat_buff, buff_value + cnt * aditional_value)
 
 /datum/ritual/group/cruciform/stat/mechanical
 	name = "Pounding Whisper"

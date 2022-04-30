@@ -400,6 +400,8 @@
 			//If that fails, leave it beside the original stack
 			S.forceMove(get_turf(src))
 
+/obj/item/stack/get_item_cost(export)
+	return amount * ..()
 
 /*
  * Recipe datum

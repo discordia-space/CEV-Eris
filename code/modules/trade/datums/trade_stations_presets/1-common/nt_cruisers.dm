@@ -1,18 +1,18 @@
 /datum/trade_station/nt_cruisers
 	name_pool = list(
-		"NTV 'Faith'" = "NeoTheology Vessel 'Faith': \"The most holy purveyors of ecclesiarchic goods!\"",
+		"NTV \'Faith\'" = "NeoTheology Vessel \'Faith\': \"The most holy purveyors of ecclesiarchic goods!\"",
 	)
 	icon_states = "nt_cruiser"
 	uid = "nt_basic"
 	start_discovered = TRUE
 	spawn_always = TRUE
-	markup = COMMON_GOODS
+	markup = WHOLESALE_GOODS
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("nt_uncommon")
-	assortiment = list(
+	inventory = list(
 		"Biomatter Products" = list(
 			/obj/item/reagent_containers/food/snacks/meat,
 			/obj/item/reagent_containers/food/drinks/milk,
@@ -35,7 +35,14 @@
 			/obj/structure/largecrate/animal/cow,
 			/obj/structure/largecrate/animal/goat,
 			/obj/structure/largecrate/animal/cat,
-			/obj/structure/largecrate/animal/chick
+			/obj/structure/largecrate/animal/chick,
+			/obj/item/reagent_containers/spray/plantbgone,
+			/obj/item/reagent_containers/glass/bottle/ammonia,
+			/obj/item/tool/hatchet,
+			/obj/item/tool/minihoe,
+			/obj/item/device/scanner/plant,
+			/obj/item/clothing/gloves/botanic_leather,
+			/obj/item/clothing/suit/apron
 		),
 		"Custodial Supply" = list(
 			/obj/item/reagent_containers/glass/bucket,
@@ -51,27 +58,29 @@
 			/obj/structure/janitorialcart
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Curious Seeds" = list(
-			/obj/item/seeds/greengrapeseed = good_data("green grape seeds", list(1,3)),
-			/obj/item/seeds/icepepperseed = good_data("ice-pepper seeds", list(1,3)),
-			/obj/item/seeds/glowberryseed = good_data("glowberry seeds", list(1,3)),
-			/obj/item/seeds/poisonberryseed = good_data("poison berry seeds", list(1,3)),
-			/obj/item/seeds/deathberryseed = good_data("death berry seeds", list(1,3)),
-			/obj/item/seeds/deathnettleseed = good_data("death nettle seeds", list(1,3)),
-			/obj/item/seeds/bloodtomatoseed = good_data("blood tomato seeds", list(1,3)),
-			/obj/item/seeds/killertomatoseed = good_data("killer tomato seeds", list(1,3)),
-			/obj/item/seeds/bluetomatoseed = good_data("blue tomato seeds", list(1,3)),
-			/obj/item/seeds/bluespacetomatoseed = good_data("blusepace tomato seeds", list(1,3)),
-			/obj/item/seeds/poisonedappleseed = good_data("poison apple seeds", list(1,3)),
-			/obj/item/seeds/goldappleseed = good_data("golden apple seeds", list(1,3)),
-			/obj/item/seeds/ambrosiadeusseed = good_data("ambrosia deus seeds", list(1,3)),
-			/obj/item/seeds/walkingmushroommycelium = good_data("walking mushroom spores", list(1,3)),
-			/obj/item/seeds/angelmycelium = good_data("destroying angel spores", list(1,3))
+			/obj/item/seeds/greengrapeseed = good_data("green grape seeds", list(1,3), null),
+			/obj/item/seeds/icepepperseed = good_data("ice-pepper seeds", list(1,3), null),
+			/obj/item/seeds/glowberryseed = good_data("glowberry seeds", list(1,3), null),
+			/obj/item/seeds/poisonberryseed = good_data("poison berry seeds", list(1,3), null),
+			/obj/item/seeds/deathberryseed = good_data("death berry seeds", list(1,3), null),
+			/obj/item/seeds/deathnettleseed = good_data("death nettle seeds", list(1,3), null),
+			/obj/item/seeds/bloodtomatoseed = good_data("blood tomato seeds", list(1,3), null),
+			/obj/item/seeds/killertomatoseed = good_data("killer tomato seeds", list(1,3), null),
+			/obj/item/seeds/bluetomatoseed = good_data("blue tomato seeds", list(1,3), null),
+			/obj/item/seeds/bluespacetomatoseed = good_data("blusepace tomato seeds", list(1,3), null),
+			/obj/item/seeds/poisonedappleseed = good_data("poison apple seeds", list(1,3), null),
+			/obj/item/seeds/goldappleseed = good_data("golden apple seeds", list(1,3), null),
+			/obj/item/seeds/ambrosiadeusseed = good_data("ambrosia deus seeds", list(1,3), null),
+			/obj/item/seeds/walkingmushroommycelium = good_data("walking mushroom spores", list(1,3), null),
+			/obj/item/seeds/angelmycelium = good_data("destroying angel spores", list(1,3), null)
 		)
 	)
 	offer_types = list(
 		/obj/item/implant/core_implant/cruciform = offer_data("cruciform", 2500, 3),
-		/obj/item/book/ritual/cruciform = offer_data("Neotheology ritual book", 600, 5),		// base price: 300
-		/obj/item/oddity/common/towel = offer_data("trustworthy towel", 800, 1)
+		/obj/item/book/ritual/cruciform = offer_data("Neotheology ritual book", 1800, 1),
+		/obj/item/cruciform_upgrade = offer_data("cruciform upgrade", 900, 5),
+		/obj/item/tool_upgrade/augment/sanctifier = offer_data("NT 'Sanctifier' tool blessing", 250, 8),
+		/obj/item/oddity/common/towel = offer_data("trustworthy towel", 500, 1)
 	)

@@ -59,7 +59,7 @@
 	if(!armed)
 		to_chat(user, "<span class='notice'>You arm [src].</span>")
 	else
-		if((CLUMSY in user.mutations)&& prob(50))
+/*		if((CLUMSY in user.mutations)&& prob(50))
 			var/which_hand = "l_hand"
 			if(!user.hand)
 				which_hand = "r_hand"
@@ -67,6 +67,7 @@
 			user.visible_message("<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>", \
 								 "<span class='warning'>You accidentally trigger [src]!</span>")
 			return
+*/
 		to_chat(user, "<span class='notice'>You disarm [src].</span>")
 	armed = !armed
 	update_icon()
@@ -74,7 +75,7 @@
 
 
 /obj/item/device/assembly/mousetrap/attack_hand(mob/living/user as mob)
-	if(armed)
+/*	if(armed)
 		if((CLUMSY in user.mutations) && prob(50))
 			var/which_hand = "l_hand"
 			if(!user.hand)
@@ -83,6 +84,7 @@
 			user.visible_message("<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>", \
 								 "<span class='warning'>You accidentally trigger [src]!</span>")
 			return
+*/
 	..()
 
 

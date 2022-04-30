@@ -1,22 +1,22 @@
 #define ERRORCODE_INVALID	1
 #define ERRORCODE_NOFUNDS	2
 
-/obj/machinery/computer/supplycomp
+/obj/machinery/computer/supplycomp		// TODO: Remove this from the game
 	name = "supply control console"
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "tech_key"
 	icon_screen = "supply"
 	light_color = COLOR_LIGHTING_ORANGE_MACHINERY
 	req_access = list(access_cargo)
-	circuit = /obj/item/electronics/circuitboard/supplycomp
+	//circuit = /obj/item/electronics/circuitboard/supplycomp
 	var/temp
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/last_viewed_group = "categories"
 	var/can_order_contraband = FALSE
 	var/requestonly = FALSE
 	var/contraband = FALSE
-	var/hacked = FALSE
 
+/*
 /obj/machinery/computer/supplycomp/attack_hand(mob/user)
 	if(!allowed(user))
 		to_chat(user, SPAN_WARNING("Access Denied."))
@@ -332,3 +332,4 @@
 	circuit = /obj/item/electronics/circuitboard/ordercomp
 	requestonly = TRUE
 	req_access = list()
+*/

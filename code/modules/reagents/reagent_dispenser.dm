@@ -81,8 +81,10 @@
 				explode()
 				return
 
-
-
+/obj/structure/reagent_dispensers/get_item_cost(export)
+	if(export)
+		return ..() + round(reagents.total_volume * 0.125)
+	return ..() + contents_cost
 
 //Dispensers
 /obj/structure/reagent_dispensers/watertank

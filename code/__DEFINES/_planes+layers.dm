@@ -116,6 +116,7 @@ What is the naming convention for planes or layers?
 #define LOW_ITEM_LAYER 2.95
 //#define OBJ_LAYER 3 //For easy recordkeeping; this is a byond define
 
+#define TOP_ITEM_LAYER 3.05
 #define CLOSED_DOOR_LAYER 3.1
 #define ABOVE_OBJ_LAYER 3.2
 #define CLOSED_FIREDOOR_LAYER 3.21

@@ -71,15 +71,10 @@
 		if(stats.getPerk(PERK_ABSOLUTE_GRAB) && a_intent == I_GRAB)
 			leap(A)
 			return
-	if(!gloves && !mutations.len) return
-	var/obj/item/clothing/gloves/G = gloves
-	if((LASER in mutations) && a_intent == I_HURT)
-		LaserEyes(A) // moved into a proc below
 
-	else if(istype(G) && G.Touch(A, 0)) // for magic gloves
-		return
-
-	else if(TK in mutations)
+//	if((LASER in mutations) && a_intent == I_HURT)
+//		LaserEyes(A) // moved into a proc below
+	if(get_active_mutation(src, MUTATION_TELEKINESIS))
 		A.attack_tk(src)
 
 /mob/living/RestrainedClickOn(var/atom/A)

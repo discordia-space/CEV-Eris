@@ -59,7 +59,7 @@
 	// Catalog stuff
 	var/appear_in_default_catalog = TRUE
 	var/reagent_type = "FIX DAT SHIT IMIDIATLY"
-	var/price_per_unit = 1 //por cargo rework
+	var/price_per_unit = 0.125
 
 /datum/reagent/proc/remove_self(amount) // Shortcut
 	holder.remove_reagent(id, amount)
