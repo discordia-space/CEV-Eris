@@ -41,6 +41,8 @@
 	anchored = FALSE
 	light_range = 4
 
+	price_tag = 10000
+
 	var/gasefficency = 0.25
 
 	var/base_icon_state = "darkmatter"

@@ -31,7 +31,7 @@
 
 /proc/price_scan_results(atom/movable/target)
 	var/list/data = list()
-	var/price = SStrade.get_export_cost(target)
+	var/price = SStrade.get_price(target)
 
 	if(price)
 		data += "<span class='notice'>Scanned [target], value: <b>[price]</b> \

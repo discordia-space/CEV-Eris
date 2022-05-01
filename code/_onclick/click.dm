@@ -36,7 +36,7 @@
 	.=..()
 
 
-/client/Click(var/atom/target, location, control, params)
+/client/Click(atom/target, location, control, params)
 	var/list/L = params2list(params) //convert params into a list
 	var/dragged = L["drag"] //grab what mouse button they are dragging with, if any.
 	if(dragged && !L[dragged]) //check to ensure they aren't using drag clicks to aimbot
@@ -50,7 +50,7 @@
 	if(!target.Click(location, control, params))
 		usr.ClickOn(target, params)
 
-/atom/DblClick(var/location, var/control, var/params)
+/atom/DblClick(location, control, params)
 	if(src)
 		usr.DblClickOn(src, params)
 
@@ -67,7 +67,7 @@
 	* item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent
 	* mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
 */
-/mob/proc/ClickOn(var/atom/A, var/params)
+/mob/proc/ClickOn(atom/A, params)
 
 	if(!can_click())
 		return
@@ -176,7 +176,7 @@
 				RangedAttack(A, params)
 	return 1
 
-/mob/proc/setClickCooldown(var/timeout)
+/mob/proc/setClickCooldown(timeout)
 	next_click = max(world.time + timeout, next_click)
 
 /mob/proc/can_click()
@@ -185,7 +185,7 @@
 	return 0
 
 // Default behavior: ignore double clicks, the second click that makes the doubleclick call already calls for a normal click
-/mob/proc/DblClickOn(var/atom/A, var/params)
+/mob/proc/DblClickOn(atom/A, params)
 	return
 
 /*
@@ -198,10 +198,10 @@
 	proximity_flag is not currently passed to attack_hand, and is instead used
 	in human click code to allow glove touches only at melee range.
 */
-/mob/proc/UnarmedAttack(var/atom/A, var/proximity_flag)
+/mob/proc/UnarmedAttack(atom/A, proximity_flag)
 	return
 
-/mob/living/UnarmedAttack(var/atom/A, var/proximity_flag)
+/mob/living/UnarmedAttack(atom/A, proximity_flag)
 	if(stat)
 		return 0
 
@@ -210,35 +210,33 @@
 /*
 	Ranged unarmed attack:
 
-	This currently is just a default for all mobs, involving
+	This currently is just a default for all mobs, involving	
 	laser eyes and telekinesis.  You could easily add exceptions
 	for things like ranged glove touches, spitting alien acid/neurotoxin,
 	animals lunging, etc.
 */
-/mob/proc/RangedAttack(var/atom/A, var/params)
-	if(!mutations.len) return
-	if((LASER in mutations) && a_intent == I_HURT)
-		LaserEyes(A) // moved into a proc below
-	else if(TK in mutations)
-		var/d = (get_dist(src, A))
-		if (d == 0)
-			return
-		if (d <= tk_maxrange)
-			A.attack_tk(src)
+/mob/proc/RangedAttack(atom/A, params)
+	if(!active_mutations.len)
+		return
+//	if((LASER in mutations) && a_intent == I_HURT)
+//		LaserEyes(A) // moved into a proc below
+	if(get_active_mutation(src, MUTATION_TELEKINESIS) && get_dist(src, A) <= tk_maxrange)
+		A.attack_tk(src)
+
 /*
 	Restrained ClickOn
 
 	Used when you are handcuffed and click things.
 	Not currently used by anything but could easily be.
 */
-/mob/proc/RestrainedClickOn(var/atom/A)
+/mob/proc/RestrainedClickOn(atom/A)
 	return
 
 /*
 	Middle click
 	Only used for swapping hands
 */
-/mob/proc/MiddleClickOn(var/atom/A)
+/mob/proc/MiddleClickOn(atom/A)
 	swap_hand()
 	return
 
@@ -247,7 +245,7 @@
 
 // In case of use break glass
 /*
-/atom/proc/MiddleClick(var/mob/M as mob)
+/atom/proc/MiddleClick(mob/M as mob)
 	return
 */
 
@@ -256,11 +254,11 @@
 	For most mobs, examine.
 	This is overridden in ai.dm
 */
-/mob/proc/ShiftClickOn(var/atom/A)
+/mob/proc/ShiftClickOn(atom/A)
 	A.ShiftClick(src)
 	return
 
-/atom/proc/ShiftClick(var/mob/user)
+/atom/proc/ShiftClick(mob/user)
 	if(user.client && user.client.eye == user)
 		user.examinate(src)
 	return
@@ -268,24 +266,24 @@
 /*
 	Control+Alt click
 */
-/mob/proc/CtrlAltClickOn(var/atom/A)
+/mob/proc/CtrlAltClickOn(atom/A)
 	A.CtrlAltClick(src)
 	return
 
-/atom/proc/CtrlAltClick(var/mob/user)
+/atom/proc/CtrlAltClick(mob/user)
 	return
 
 /*
 	Ctrl click
 	For most objects, pull
 */
-/mob/proc/CtrlClickOn(var/atom/A)
+/mob/proc/CtrlClickOn(atom/A)
 	A.CtrlClick(src)
 	return
-/atom/proc/CtrlClick(var/mob/user)
+/atom/proc/CtrlClick(mob/user)
 	return
 
-/atom/movable/CtrlClick(var/mob/user)
+/atom/movable/CtrlClick(mob/user)
 	if(Adjacent(user))
 		user.start_pulling(src)
 
@@ -293,11 +291,11 @@
 	Alt click
 	Unused except for AI
 */
-/mob/proc/AltClickOn(var/atom/A)
+/mob/proc/AltClickOn(atom/A)
 	A.AltClick(src)
 	return
 
-/atom/proc/AltClick(var/mob/user)
+/atom/proc/AltClick(mob/user)
 	var/turf/T = get_turf(src)
 	if(T && user.TurfAdjacent(T))
 		if(user.listed_turf == T)
@@ -307,18 +305,18 @@
 			user.client.statpanel = "Turf"
 	return 1
 
-/mob/proc/TurfAdjacent(var/turf/T)
+/mob/proc/TurfAdjacent(turf/T)
 	return T.AdjacentQuick(src)
 
 /*
 	Control+Shift click
 	Unused except for AI
 */
-/mob/proc/CtrlShiftClickOn(var/atom/A)
+/mob/proc/CtrlShiftClickOn(atom/A)
 	A.CtrlShiftClick(src)
 	return
 
-/atom/proc/CtrlShiftClick(var/mob/user)
+/atom/proc/CtrlShiftClick(mob/user)
 	return
 
 /*
@@ -349,7 +347,7 @@
 		to_chat(src, SPAN_WARNING("You're out of energy!  You need food!"))
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
-/atom/movable/proc/face_atom(var/atom/A)
+/atom/movable/proc/face_atom(atom/A)
 	if(!A || !x || !y || !A.x || !A.y) return
 	var/dx = A.x - x
 	var/dy = A.y - y
@@ -366,7 +364,7 @@
 		facedir(direction)
 
 
-/atom/movable/proc/facedir(var/ndir)
+/atom/movable/proc/facedir(ndir)
 	set_dir(ndir)
 	return 1
 
@@ -409,6 +407,6 @@ GLOBAL_LIST_INIT(click_catchers, create_click_catcher())
 
 	. = 1
 
-/obj/screen/click_catcher/proc/resolve(var/mob/user)
+/obj/screen/click_catcher/proc/resolve(mob/user)
 	var/turf/T = screen_loc2turf(screen_loc, get_turf(user))
 	return T

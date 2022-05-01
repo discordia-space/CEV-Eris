@@ -91,6 +91,9 @@
 
 	..(holder)
 
+	if(!species && iscarbon(holder))
+		species = holder.species
+
 	if(istype(holder))
 		sync_colour_to_human(owner)
 

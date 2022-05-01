@@ -11,6 +11,7 @@
 	w_class = ITEM_SIZE_SMALL
 	spawn_tags = SPAWN_TAG_COOKED_FOOD
 	bad_type = /obj/item/reagent_containers/food/snacks
+
 	var/bitesize = 1
 	var/bitecount = 0
 	var/trash
@@ -27,6 +28,8 @@
 	var/junk_food = FALSE //if TRUE, sanity gain per nutriment will be zero
 	var/cooked = FALSE
 	var/list/taste_tag = list(BLAND_FOOD)
+	
+	price_tag = 25
 
 /obj/item/reagent_containers/food/snacks/Initialize()
 	. = ..()
@@ -665,6 +668,7 @@
 	volume = 10
 	center_of_mass = list("x"=16, "y"=13)
 	preloaded_reagents = list("egg" = 3)
+	price_tag = 5
 
 /obj/item/reagent_containers/food/snacks/egg/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(istype(O,/obj/machinery/microwave))
@@ -1028,6 +1032,7 @@
 	preloaded_reagents = list("protein" = 4)
 	cooked = TRUE
 	taste_tag = list(INSECTS_FOOD,MEAT_FOOD)
+	price_tag = 250
 
 /obj/item/reagent_containers/food/snacks/panzerburger
 	name = "panzer burger"
@@ -1040,6 +1045,8 @@
 	preloaded_reagents = list("protein" = 8)
 	cooked = TRUE
 	taste_tag = list(INSECTS_FOOD,MEAT_FOOD)
+	price_tag = 350
+
 /obj/item/reagent_containers/food/snacks/jagerburger
 	name = "jager burger"
 	desc = "The hunter becomes the hunted"
@@ -1051,6 +1058,8 @@
 	preloaded_reagents = list("protein" = 6)
 	cooked = TRUE
 	taste_tag = list(INSECTS_FOOD,MEAT_FOOD)
+	price_tag = 350
+
 /obj/item/reagent_containers/food/snacks/seucheburger
 	name = "seuche burger"
 	desc = "The Burger that anti vaxxers love"
@@ -1062,6 +1071,8 @@
 	preloaded_reagents = list("protein" = 4)
 	cooked = TRUE
 	taste_tag = list(INSECTS_FOOD,MEAT_FOOD)
+	price_tag = 350
+
 /obj/item/reagent_containers/food/snacks/bigroachburger
 	name = "big roach burger"
 	desc = "Delicious finally some good food"
@@ -1073,6 +1084,7 @@
 	preloaded_reagents = list("protein" = 8)
 	cooked = TRUE
 	taste_tag = list(INSECTS_FOOD,MEAT_FOOD)
+	price_tag = 1000
 
 /obj/item/reagent_containers/food/snacks/fuhrerburger
 	name = "fuhrer burger"
@@ -1085,6 +1097,7 @@
 	preloaded_reagents = list("protein" = 8, "fuhrerole" = 3)
 	cooked = TRUE
 	taste_tag = list(INSECTS_FOOD,MEAT_FOOD)
+	price_tag = 1000
 
 /obj/item/reagent_containers/food/snacks/kaiserburger
 	name = "kaiser burger"
@@ -1097,6 +1110,7 @@
 	preloaded_reagents = list("protein" = 10)
 	cooked = TRUE
 	taste_tag = list(INSECTS_FOOD,MEAT_FOOD)
+	price_tag = 12500
 
 /obj/item/reagent_containers/food/snacks/roach_egg
 	name = "boiled roach egg"
@@ -1798,6 +1812,9 @@
 	bad_type = /obj/item/reagent_containers/food/snacks/roachcube
 	preloaded_reagents = list("protein" = 10, "diplopterum" = 2)
 	taste_tag = list(MEAT_FOOD)
+
+	price_tag = 150
+
 	var/roach_type
 
 /obj/item/reagent_containers/food/snacks/roachcube/on_reagent_change()
@@ -2493,6 +2510,9 @@
 
 /obj/item/reagent_containers/food/snacks/sliceable
 	w_class = ITEM_SIZE_NORMAL //Whole pizzas and cakes shouldn't fit in a pocket, you can slice them if you want to do that.
+
+/obj/item/reagent_containers/food/snacks/sliceable/get_item_cost(export)
+	. = ..() + SStrade.get_import_cost(slice_path) * slices_num
 
 /obj/item/reagent_containers/food/snacks/sliceable/meatbread
 	name = "meatbread loaf"
@@ -3234,6 +3254,9 @@
 		update_icon()
 		return
 	..()
+
+/obj/item/pizzabox/get_item_cost()
+	. = pizza?.get_item_cost()
 
 /obj/item/pizzabox/margherita
 	type_pizza = /obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita

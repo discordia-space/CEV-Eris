@@ -56,7 +56,6 @@ SUBSYSTEM_DEF(ticker)
 		syndicate_code_response = generate_code_phrase()
 
 	setup_objects()
-	setup_genetics()
 	setup_huds()
 
 	return ..()

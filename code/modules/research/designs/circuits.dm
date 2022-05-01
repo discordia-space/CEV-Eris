@@ -59,28 +59,10 @@
 	sort_string = "FACAA"
 	category = CAT_COMP
 
-/datum/design/research/circuit/scan_console
-	name = "DNA machine"
-	build_path = /obj/item/electronics/circuitboard/scan_consolenew
-	sort_string = "FAGAA"
-	category = CAT_MEDI
-
 /datum/design/research/circuit/sleeper
 	name = "Sleeper"
 	build_path = /obj/item/electronics/circuitboard/sleeper
 	sort_string = "FAGAB"
-	category = CAT_MEDI
-
-/datum/design/research/circuit/clonepod
-	name = "clone pod"
-	build_path = /obj/item/electronics/circuitboard/clonepod
-	sort_string = "FAGAE"
-	category = CAT_MEDI
-
-/datum/design/research/circuit/clonescanner
-	name = "cloning scanner"
-	build_path = /obj/item/electronics/circuitboard/clonescanner
-	sort_string = "FAGAG"
 	category = CAT_MEDI
 
 /datum/design/research/circuit/chemmaster
@@ -325,18 +307,6 @@
 	sort_string = "JDAAA"
 	category = CAT_MISC
 
-/datum/design/research/circuit/ordercomp
-	name = "supply ordering console"
-	build_path = /obj/item/electronics/circuitboard/ordercomp
-	sort_string = "KAAAA"
-	category = CAT_COMP
-
-/datum/design/research/circuit/supplycomp
-	name = "supply control console"
-	build_path = /obj/item/electronics/circuitboard/supplycomp
-	sort_string = "KAAAB"
-	category = CAT_COMP
-
 /datum/design/research/circuit/biogenerator
 	name = "biogenerator"
 	build_path = /obj/item/electronics/circuitboard/biogenerator
@@ -477,4 +447,23 @@
 	name = "experimental mind swapper"
 	build_path = /obj/item/electronics/circuitboard/mindswapper
 	sort_string = "WAAAA"
+	category = CAT_MEDI
+
+// Genetics
+/datum/design/research/circuit/dna_console
+	name = "chrysalis controller"
+	build_path = /obj/item/electronics/circuitboard/dna_console
+	sort_string = "WAAAB"
+	category = CAT_MEDI
+
+/datum/design/research/circuit/cryo_slab
+	name = "chrysalis"
+	build_path = /obj/item/electronics/circuitboard/cryo_slab
+	sort_string = "WAAAC"
+	category = CAT_MEDI
+
+/datum/design/research/circuit/moeballs_printer
+	name = "regurgitator"
+	build_path = /obj/item/electronics/circuitboard/moeballs_printer
+	sort_string = "WAAAD"
 	category = CAT_MEDI

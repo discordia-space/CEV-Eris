@@ -108,7 +108,6 @@
 		/obj/item/device/scanner/health,
 		/obj/item/device/radio/headset,
 		/obj/item/device/lighting/toggleable/flashlight,
-		/obj/item/dnainjector,
 		/obj/item/reagent_containers/blood,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/glass/beaker,

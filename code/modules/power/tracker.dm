@@ -73,8 +73,8 @@
 // Tracker Electronic
 
 /obj/item/electronics/tracker
-
 	name = "tracker electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
 	w_class = ITEM_SIZE_SMALL
+	price_tag = 120

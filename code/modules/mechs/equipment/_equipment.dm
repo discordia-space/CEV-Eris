@@ -10,6 +10,7 @@
 	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
 	rarity_value = 10
 	spawn_frequency = 10
+	price_tag = 200
 
 	var/restricted_hardpoints
 	var/mob/living/exosuit/owner
