@@ -107,7 +107,7 @@
 	var/total_harvest = harvest_speed //Ore harvest-per-tick.
 	var/found_resource = FALSE
 
-	for(var/metal in ore_types)
+	for(var/metal in shuffle(ore_types))
 
 		if(contents.len >= capacity)
 			system_error("insufficient storage space")
