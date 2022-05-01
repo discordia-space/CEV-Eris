@@ -25,7 +25,6 @@
 	var/list/special_actions
 
 	// Used by wires - unused for now
-	var/hacked = FALSE
 	var/disabled = FALSE
 	var/shocked = FALSE
 

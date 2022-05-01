@@ -57,7 +57,7 @@
 
 	//Secondly, cruciforms.
 	//This is handled seperately to account for the future possibility of non-humans having cruciforms. Like holy dogs!
-	if (is_neotheology_disciple(target))
+	if(is_neotheology_disciple(target))
 		//Cruciform blocks other implants
 		return FALSE
 
@@ -65,7 +65,7 @@
 	//Thirdly an organic check. No implanting robots
 	//Any other organic creature is fine. This allows you to implant your pets so the turrets dont shoot them
 	var/types = target.get_classification()
-	if (!(types & CLASSIFICATION_ORGANIC))
+	if(!(types & CLASSIFICATION_ORGANIC))
 		return FALSE
 
 	//Lastly the implant was ejected by cruciform, if yes the implant is broken.
@@ -81,6 +81,11 @@
 	var/datum/faction/F = get_faction_by_id(faction_id)
 
 	if(!wearer || !wearer.mind)
+		return
+
+	// Mutant with resistance to mind control still can use an implant, albeit not fully
+	if(get_active_mutation(target, MUTATION_GODBLOOD))
+		target.verbs.Add(/datum/faction/excelsior/proc/communicate_verb)
 		return
 
 	if(!F)
@@ -101,12 +106,13 @@
 		if(A.id == antag_id)
 			A.remove_antagonist()
 	wearer.visible_message(SPAN_DANGER("As \the [src] is removed from \the [wearer]..."))
-	if(prob(66))
+	if(prob(66) && !get_active_mutation(wearer, MUTATION_GODBLOOD))
 		wearer.visible_message(SPAN_DANGER("\The [wearer]'s [part.name] violently explodes from within!"))
 		wearer.adjustBrainLoss(200)
 		part.droplimb(FALSE, DROPLIMB_BLUNT)
 	else
 		wearer.visible_message(SPAN_NOTICE("Something fizzles in \the [wearer]'s [part.name], but nothing interesting happens."))
+		wearer.verbs.Remove(/datum/faction/excelsior/proc/communicate_verb)
 
 //The leader version of the implant is the one given to antags spawned by the storyteller.
 //It has no special gameplay properties and is not attainable in normal gameplay, it just exists to

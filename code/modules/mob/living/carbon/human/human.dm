@@ -12,10 +12,6 @@
 
 /mob/living/carbon/human/New(new_loc, new_species)
 
-	if(!dna)
-		dna = new /datum/dna(null)
-		// Species name is handled by set_species()
-
 	if(!species)
 		if(new_species)
 			set_species(new_species,1)
@@ -44,11 +40,9 @@
 	GLOB.human_mob_list |= src
 	..()
 
-	if(dna)
-		dna.ready_dna(src)
-		dna.real_name = real_name
-		sync_organ_dna()
+	sync_organ_dna()
 	make_blood()
+	generate_dna()
 
 	sanity = new(src)
 
@@ -294,7 +288,7 @@ var/list/rank_prefix = list(\
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when polyacided or when updating a human's name variable
 /mob/living/carbon/human/get_face_name()
 	var/obj/item/organ/external/head = get_organ(BP_HEAD)
-	if(!head || head.disfigured || head.is_stump() || !real_name || (HUSK in mutations) )	//disfigured. use id-name if possible
+	if(!head || head.disfigured || head.is_stump() || !real_name) // || (HUSK in mutations) 	//disfigured. use id-name if possible
 		return "Unknown"
 	return real_name
 
@@ -657,11 +651,6 @@ var/list/rank_prefix = list(\
 
 	return 0
 
-
-/mob/living/carbon/human/proc/check_dna()
-	dna.check_integrity(src)
-	return
-
 /mob/living/carbon/human/get_species()
 	if(!species)
 		set_species()
@@ -715,16 +704,15 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/proc/morph()
 	set name = "Morph"
-	set category = "Superpower"
+	set category = "Abilities"
 
 	if(stat!=CONSCIOUS)
 		reset_view(0)
 		remoteview_target = null
 		return
 
-	if(!(mMorph in mutations))
-		src.verbs -= /mob/living/carbon/human/proc/morph
-		return
+	// Can use ability multiple times in a row if necessary, but there is a price
+	vessel.remove_reagent("blood", 50)
 
 	var/new_facial = input("Please select facial hair color.", "Character Generation",facial_color) as color
 	if(new_facial)
@@ -783,52 +771,113 @@ var/list/rank_prefix = list(\
 		else
 			gender = FEMALE
 	regenerate_icons()
-	check_dna()
 
 	visible_message("\blue \The [src] morphs and changes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] appearance!", "\blue You change your appearance!", "\red Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!")
 
+
+/mob/living/carbon/human/proc/check_ability_cooldown(cooldown)
+	var/time_passed = world.time - ability_last
+	if(time_passed > cooldown)
+		ability_last = world.time
+		return TRUE
+	else
+		to_chat(src, SPAN_NOTICE("You can't use that yet! [cooldown / 10] seconds should pass after last ability activation. Only [time_passed / 10] seconds have passed."))
+
+
+/mob/living/carbon/human/proc/phaze_trough()
+	set name = "Phaze"
+	set category = "Abilities"
+
+	// TODO: Here and in other psionic abilities - add checks for NT obelisks,
+	// reality cores and whatever else could prevent use of said abilities -- KIROV
+
+	var/original_x = pixel_x
+	var/original_y = pixel_y
+
+	var/atom/bingo
+	var/turf/T = get_step(loc, dir)
+	if(T.density)
+		bingo = T
+	else
+		for(var/atom/i in T)
+			if(i.density)
+				bingo = i
+				break
+
+	if(bingo)
+		to_chat(src, SPAN_NOTICE("You begin to phaze trough \the [bingo]"))
+		var/target_y = 0
+		var/target_x = 0
+		switch(dir)
+			if(NORTH)
+				target_y = 32
+			if(SOUTH)
+				target_y = -32
+			if(WEST)
+				target_x = -32
+			if(EAST)
+				target_x = 32
+		animate(src, pixel_x = target_x, pixel_y = target_y, time = 15 SECONDS, easing = LINEAR_EASING, flags = ANIMATION_END_NOW)
+		if(do_after(src, 15 SECONDS, bingo))
+			forceMove(get_turf(bingo))
+
+		animate(src)
+		pixel_x = original_x
+		pixel_y = original_y
+
+
+/mob/living/carbon/human/proc/forcespeak()
+	set name = "Force Speak"
+	set category = "Abilities"
+
+	var/list/mobs_in_view = mobs_in_view(7, src)
+	if(!mobs_in_view.len)
+		to_chat(src, SPAN_NOTICE("There is no valid targets around."))
+		return
+
+	var/mob/living/carbon/human/H = input("", "Who do you want to speak as?") as null|mob in mobs_in_view
+	if(H && istype(H))
+		var/message = input("", "Say") as text|null
+		if(message)
+			log_admin("[key_name(usr)] forced [key_name(H)] to say: [message]")
+			H.say(message)
+			if(prob(70))
+				to_chat(H, SPAN_WARNING("You see [src]\'s image in your head, commanding you to speak."))
+
+
 /mob/living/carbon/human/proc/remotesay()
 	set name = "Project mind"
-	set category = "Superpower"
+	set category = "Abilities"
 
-	if(stat!=CONSCIOUS)
+	if(stat != CONSCIOUS)
 		reset_view(0)
 		remoteview_target = null
 		return
 
-	if(!(mRemotetalk in src.mutations))
-		src.verbs -= /mob/living/carbon/human/proc/remotesay
-		return
-	var/list/creatures = list()
-	for(var/mob/living/carbon/h in world)
-		creatures += h
-	var/mob/target = input("Who do you want to project your mind to ?") as null|anything in creatures
+	var/list/mobs = list()
+	for(var/mob/living/carbon/C in SSmobs.mob_list)
+		mobs += C
+	var/mob/target = input("Who do you want to project your mind to ?") as null|anything in mobs
 	if(isnull(target))
 		return
 
 	var/say = sanitize(input("What do you wish to say"))
-	if(mRemotetalk in target.mutations)
-		target.show_message("\blue You hear [src.real_name]'s voice: [say]")
+	if(get_active_mutation(target, MUTATION_REMOTESAY))
+		target.show_message("\blue You hear [real_name]'s voice: [say]")
 	else
 		target.show_message("\blue You hear a voice that seems to echo around the room: [say]")
-	usr.show_message("\blue You project your mind into [target.real_name]: [say]")
+	show_message("\blue You project your mind into [target.real_name]: [say]")
 	log_say("[key_name(usr)] sent a telepathic message to [key_name(target)]: [say]")
 	for(var/mob/observer/ghost/G in world)
 		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
 
 /mob/living/carbon/human/proc/remoteobserve()
 	set name = "Remote View"
-	set category = "Superpower"
+	set category = "Abilities"
 
-	if(stat!=CONSCIOUS)
+	if(stat != CONSCIOUS)
 		remoteview_target = null
 		reset_view(0)
-		return
-
-	if(!(mRemote in src.mutations))
-		remoteview_target = null
-		reset_view(0)
-		src.verbs -= /mob/living/carbon/human/proc/remoteobserve
 		return
 
 	if(client.eye != client.mob)
@@ -836,22 +885,77 @@ var/list/rank_prefix = list(\
 		reset_view(0)
 		return
 
-	var/list/mob/creatures = list()
+	if(!check_ability_cooldown(1 MINUTE))
+		return
 
-	for(var/mob/living/carbon/h in world)
-		var/turf/temp_turf = get_turf(h)
-		if((temp_turf.z != 1 && temp_turf.z != 5) || h.stat!=CONSCIOUS) //Not on mining or the station. Or dead
-			continue
-		creatures += h
+	var/list/mobs = list()
 
-	var/mob/target = input ("Who do you want to project your mind to ?") as mob in creatures
+	for(var/mob/living/carbon/H in SSmobs.mob_list)
+		if(H.ckey && H.stat == CONSCIOUS)
+			mobs += H
+
+	mobs -= src
+	var/mob/target = input("", "Who do you want to project your mind to?") as mob in mobs
 
 	if(target)
 		remoteview_target = target
 		reset_view(target)
+		to_chat(target, SPAN_NOTICE("You feel an odd presence in the back of your mind. A lingering sense that someone is watching you..."))
 	else
 		remoteview_target = null
 		reset_view(0)
+
+
+/mob/living/carbon/human/proc/roach_pheromones()
+	set name = "Release roach pheromones"
+	set category = "Abilities"
+
+	if(check_ability_cooldown(2 MINUTES))
+		for(var/M in mobs_in_view(7, src) - src)
+			if(isroach(M))
+				var/mob/living/carbon/superior_animal/roach/R = M
+				R.target_mob = null
+				R.set_faction(faction)
+				addtimer(CALLBACK(R, .proc/set_faction), 1 MINUTE)
+
+			else if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(!H.get_breath_from_internal() && !(H.wear_mask?.item_flags & BLOCK_GAS_SMOKE_EFFECT))
+					to_chat(H, "You feel disgusting smell coming from [src]")
+					H.sanity.changeLevel(-20)
+
+
+/mob/living/carbon/human/proc/spider_pheromones()
+	set name = "Release spider pheromones"
+	set category = "Abilities"
+
+	if(check_ability_cooldown(2 MINUTES))
+		for(var/M in mobs_in_view(7, src) - src)
+			if(istype(M, /mob/living/carbon/superior_animal/giant_spider))
+				var/mob/living/carbon/superior_animal/giant_spider/S = M
+				S.target_mob = null
+				S.set_faction(faction)
+				addtimer(CALLBACK(S, .proc/set_faction), 1 MINUTE)
+
+			else if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(!H.get_breath_from_internal() && !(H.wear_mask?.item_flags & BLOCK_GAS_SMOKE_EFFECT))
+					to_chat(H, "You feel disgusting smell coming from [src]")
+					H.sanity.changeLevel(-20)
+
+
+/mob/living/carbon/human/proc/inner_fuhrer()
+	set name = "Screech"
+	set category = "Abilities"
+
+	if(check_ability_cooldown(2 MINUTES))
+		playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
+		spawn(2)
+			playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
+		visible_message(SPAN_DANGER("[src] emits a frightening screech as you feel the ground tramble!"))
+		for(var/obj/structure/burrow/B in find_nearby_burrows(src))
+			B.distress(TRUE)
+
 
 /mob/living/carbon/human/proc/get_visible_gender()
 	if(wear_suit && wear_suit.flags_inv & HIDEJUMPSUIT && ((head && head.flags_inv & HIDEMASK) || wear_mask))
@@ -939,19 +1043,19 @@ var/list/rank_prefix = list(\
 		return 0
 	//if this blood isn't already in the list, add it
 	if(istype(M))
-		if(!blood_DNA[M.dna.unique_enzymes])
-			blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+		if(!blood_DNA[M.dna_trace])
+			blood_DNA[M.dna_trace] = M.b_type
 	hand_blood_color = blood_color
 	src.update_inv_gloves()	//handles bloody hands overlays and updating
 	verbs += /mob/living/carbon/human/proc/bloody_doodle
 	return 1 //we applied blood to the item
 
 /mob/living/carbon/human/proc/get_full_print()
-	if(!dna ||!dna.uni_identity)
+	if(!fingers_trace || get_active_mutation(src, MUTATION_NOPRINTS))
 		return
 	if(chem_effects[CE_DYNAMICFINGERS])
 		return md5(chem_effects[CE_DYNAMICFINGERS])
-	return md5(dna.uni_identity)
+	return fingers_trace
 
 /mob/living/carbon/human/clean_blood(clean_feet)
 	.=..()
@@ -1085,15 +1189,6 @@ var/list/rank_prefix = list(\
 		to_chat(usr, SPAN_WARNING("You failed to check the pulse. Try again."))
 
 /mob/living/carbon/human/proc/set_species(new_species, default_colour)
-	if(!dna)
-		if(!new_species)
-			new_species = SPECIES_HUMAN
-	else
-		if(!new_species)
-			new_species = dna.species
-		else
-			dna.species = new_species
-
 	// No more invisible screaming wheelchairs because of set_species() typos.
 	if(!all_species[new_species])
 		new_species = SPECIES_HUMAN
@@ -1258,7 +1353,7 @@ var/list/rank_prefix = list(\
 				qdel(I)
 			new organ_type(src)
 
-		if(checkprefcruciform)
+		if(checkprefcruciform && client)
 			var/datum/category_item/setup_option/core_implant/I = client.prefs.get_option("Core implant")
 			if(I.implant_type)
 				var/obj/item/implant/core_implant/C = new I.implant_type
@@ -1395,16 +1490,6 @@ var/list/rank_prefix = list(\
 		else
 			return "<font color='blue'>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
 	return ..()
-
-/mob/living/carbon/human/getDNA()
-	if(species.flags & NO_SCAN)
-		return null
-	..()
-
-/mob/living/carbon/human/setDNA()
-	if(species.flags & NO_SCAN)
-		return
-	..()
 
 /mob/living/carbon/human/has_brain()
 	if(organ_list_by_process(BP_BRAIN).len)
@@ -1646,10 +1731,10 @@ var/list/rank_prefix = list(\
 		src.show_message("My [org.name] is [status_text].",1)
 
 /mob/living/carbon/human/need_breathe()
-	if(!(mNobreath in mutations))
-		return TRUE
-	else
-		return FALSE
+//	if(!(mNobreath in mutations))
+//		return TRUE
+//	else
+	return FALSE
 
 /mob/living/carbon/human/proc/set_remoteview(var/atom/A)
 	remoteview_target = A
@@ -1691,3 +1776,17 @@ var/list/rank_prefix = list(\
 				else
 					break
 	return 1
+
+/mob/living/carbon/human/proc/generate_dna()
+	if(!b_type)
+		b_type = pick(GLOB.blood_types)
+
+	if(!isMonkey(src))
+		while(dormant_mutations.len < STARTING_MUTATIONS)
+			var/datum/mutation/M = pickweight(list(
+				pick(subtypesof(/datum/mutation/t0)) = 45,
+				pick(subtypesof(/datum/mutation/t1)) = 25,
+				pick(subtypesof(/datum/mutation/t2)) = 15,
+				pick(subtypesof(/datum/mutation/t3)) = 10,
+				pick(subtypesof(/datum/mutation/t4)) = 5))
+			dormant_mutations |= new M

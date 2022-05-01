@@ -281,8 +281,8 @@
 	var/mob/living/carbon/human/host = L
 	if(istype(host))
 		for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-			if(host != H && H.dna)
-				uni_identity = H.dna.uni_identity
+			if(host != H && H.fingers_trace)
+				host.fingers_trace = H.fingers_trace
 				return
 
 /datum/reagent/nanites/uncapped/dynamic_handprints/affect_blood(mob/living/carbon/M, alien, effect_multiplier)

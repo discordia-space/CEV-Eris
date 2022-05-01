@@ -15,6 +15,7 @@
 	spawn_blacklisted = FALSE
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_POUCH
+	price_tag = 120
 	bad_type = /obj/item/storage/pouch
 
 	var/sliding_behavior = FALSE
@@ -49,6 +50,7 @@
 	max_storage_space = DEFAULT_SMALL_STORAGE * 0.5
 	max_w_class = ITEM_SIZE_SMALL
 	rarity_value = 10
+	price_tag = 100
 
 /obj/item/storage/pouch/medium_generic
 	name = "medium generic pouch"
@@ -60,6 +62,7 @@
 	max_storage_space = DEFAULT_SMALL_STORAGE
 	max_w_class = ITEM_SIZE_NORMAL
 	rarity_value = 20
+	price_tag = 255
 
 /obj/item/storage/pouch/large_generic
 	name = "large generic pouch"
@@ -73,6 +76,7 @@
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	max_w_class = ITEM_SIZE_NORMAL
 	rarity_value = 100
+	price_tag = 410
 
 /obj/item/storage/pouch/medical_supply
 	name = "medical supply pouch"
@@ -87,7 +91,6 @@
 
 	can_hold = list(
 		/obj/item/device/scanner/health,
-		/obj/item/dnainjector,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/glass/bottle,
@@ -188,6 +191,7 @@
 	item_state = "ammo"
 	matter = list(MATERIAL_BIOMATTER = 19, MATERIAL_STEEL = 1 )
 	rarity_value = 33
+	price_tag = 200
 
 	storage_slots = 6
 	w_class = ITEM_SIZE_NORMAL
@@ -205,6 +209,7 @@
 	item_state = "flare"
 	matter = list(MATERIAL_BIOMATTER = 14, MATERIAL_STEEL = 1 )
 	rarity_value = 14
+	price_tag = 140
 
 	storage_slots = 5
 	w_class = ITEM_SIZE_NORMAL

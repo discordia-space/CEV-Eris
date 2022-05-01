@@ -161,13 +161,9 @@
 	filling_states = "100"
 	preloaded_reagents = list("coffee" = 30)
 
-/obj/item/reagent_containers/food/drinks/ice
+/obj/item/reagent_containers/food/drinks/mug/teacup/ice
 	name = "Ice Cup"
 	desc = "Careful, cold ice, do not chew."
-	icon_state = "cup"
-	center_of_mass = list("x"=15, "y"=10)
-	base_icon = "cup"
-	filling_states = "100"
 	preloaded_reagents = list("ice" = 30)
 
 /obj/item/reagent_containers/food/drinks/h_chocolate
@@ -373,7 +369,6 @@
 	icon_state = "_cup"
 	base_name = "cup"
 	base_icon = "_cup"
-	filling_states = "100"
 
 
 //tea and tea accessories
