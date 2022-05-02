@@ -87,6 +87,6 @@
 		/datum/reagent/stim/pro_surgeon = offer_data("ProSurgeon bottle (60u)", 1500, 1),
 		/datum/reagent/stim/violence = offer_data("Violence bottle (60u)", 1500, 1),
 		/datum/reagent/stim/bouncer = offer_data("Bouncer bottle (60u)", 1500, 1),
-		/datum/reagent/medicine/ossisine = offer_data("ossissine bottle (60u)", 4000, 1),
+		/datum/reagent/medicine/ossisine = offer_data("ossisine bottle (60u)", 4000, 1),
 		/datum/reagent/medicine/kyphotorin = offer_data("kyphotorin bottle (60u)", 8000, 1)
 	)
