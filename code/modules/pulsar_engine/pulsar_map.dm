@@ -49,12 +49,7 @@
 	try_move(movedir)
 	addtimer(CALLBACK(src, .proc/decay_orbit), decay_timer)
 
-/obj/effect/pulsar_ship/proc/try_move(newdir, with_malicious_intent = FALSE)
-	if(with_malicious_intent)
-		if(fuel >= fuel_movement_cost)
-			fuel -= fuel_movement_cost
-		else
-			return
+/obj/effect/pulsar_ship/proc/try_move(newdir)
 	var/turf/newloc = get_step(src, newdir)
 	if(!newloc || newloc.x > GLOB.maps_data.pulsar_size - 1 || newloc.x < 1 || newloc.y > GLOB.maps_data.pulsar_size - 1 || newloc.y < 1) // If movement outside of the map, reverse decay dir
 		Move(get_step(src, turn(newdir, 180)))
