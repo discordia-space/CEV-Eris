@@ -15,7 +15,12 @@ Used In File(s): code/modules/pulsar_engine/pulsar_consoles.dm
 		Fuel Levels:
 	</div>
 	<div class="itemContent">
-		{{:helper.displayBar(data.ship_fuel, 0, 100, 'bad', data.ship_fuel + '%')}}
+		{{if data.no_tank}}
+			{{:helper.link('Connect Fuel tank', null, {'scan_fuel' : 1},  null, null)}}
+		{{else}}
+			Movement fuel cost: {{:data.thrust_cost}}
+			{{:helper.displayBar(data.ship_fuel, 0, 100, 'bad', data.ship_fuel + '%')}}
+		{{/if}}
 	</div>
 </div>
 <div class='block'>
