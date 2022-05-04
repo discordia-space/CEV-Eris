@@ -144,8 +144,8 @@
 
 	if (src.sdisabilities & BLIND)
 		src.blinded = TRUE
-	if (src.sdisabilities & DEAF)
-		src.ear_deaf = 1
+//	if (src.sdisabilities & DEAF)
+//		src.ear_deaf = 1
 
 	if (src.eye_blurry > 0)
 		src.eye_blurry = 0

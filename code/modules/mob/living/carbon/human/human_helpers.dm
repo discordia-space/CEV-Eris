@@ -63,29 +63,37 @@
 	equipment_vision_flags = 0
 	equipment_prescription = FALSE
 	equipment_darkness_modifier = 0
-//	equipment_overlays.Cut()
+	equipment_overlays.Cut()
 
-	if(istype(src.head, /obj/item/clothing/head))
+	if(istype(head, /obj/item/clothing/head))
 		add_clothing_protection(head)
-	if(istype(src.glasses, /obj/item/clothing/glasses))
+	if(istype(glasses, /obj/item/clothing/glasses))
 		process_glasses(glasses)
-	if(istype(src.wear_mask, /obj/item/clothing/mask))
+	if(istype(wear_mask, /obj/item/clothing/mask))
 		add_clothing_protection(wear_mask)
 	if(istype(wearing_rig,/obj/item/rig))
 		process_rig(wearing_rig)
 	if(istype(using_scope,/obj/item/gun))
 		process_scope(using_scope)
+	if(get_active_mutation(src, MUTATION_NIGHT_VISION))
+		equipment_darkness_modifier += 7
+		equipment_overlays |= global_hud.nvg
+		if(HUDtech.Find("glassesoverlay"))
+			var/obj/screen/glasses_overlay/GO = HUDtech["glassesoverlay"]
+			GO.update_icon()
+		equipment_see_invis = SEE_INVISIBLE_NOLIGHTING
 
-/mob/living/carbon/human/proc/process_glasses(obj/item/clothing/glasses/G, var/forceactive)
+
+/mob/living/carbon/human/proc/process_glasses(obj/item/clothing/glasses/G, forceactive)
 	if(G && (G.active || forceactive))
 		equipment_darkness_modifier += G.darkness_view
 		equipment_vision_flags |= G.vision_flags
 		equipment_prescription = equipment_prescription || G.prescription
-//		if(G.overlay)
-//			equipment_overlays |= G.overlay
-//		if (src.HUDtech.Find("glassesoverlay"))//i process that ocerlay
-//			var/obj/screen/glasses_overlay/GO = src.HUDtech["glassesoverlay"]
-//			GO.update_icon()
+		if(G.overlay)
+			equipment_overlays |= G.overlay
+		if(HUDtech.Find("glassesoverlay"))
+			var/obj/screen/glasses_overlay/GO = HUDtech["glassesoverlay"]
+			GO.update_icon()
 		if(G.see_invisible >= 0)
 			if(equipment_see_invis)
 				equipment_see_invis = min(equipment_see_invis, G.see_invisible)

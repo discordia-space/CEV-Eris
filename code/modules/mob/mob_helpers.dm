@@ -24,9 +24,9 @@
 	return istype(species, /datum/species/monkey)
 
 proc/isdeaf(A)
-	if(isliving(A))
-		var/mob/living/M = A
-		return (M.sdisabilities & DEAF) || M.ear_deaf
+//	if(isliving(A))
+//		var/mob/living/M = A
+//		return (M.sdisabilities & DEAF) || M.ear_deaf
 	return 0
 
 /proc/hasorgans(A) // Fucking really??
@@ -631,3 +631,6 @@ proc/is_blind(A)
 	result[2] = ainvis
 
 	return result
+
+/mob/proc/set_faction(target_faction)
+	faction = target_faction ? target_faction : initial(faction)

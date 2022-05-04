@@ -19,6 +19,7 @@
 
 // Grab levels.
 #define GRAB_PASSIVE    1
+#define GRAB_SECURING 1.5
 #define GRAB_AGGRESSIVE 2
 #define GRAB_NECK       3
 #define GRAB_UPGRADING  4
@@ -210,7 +211,10 @@
 
 #define HEAT_MOBIGNITE_THRESHOLD 530 //minimum amount of heat an object needs to ignite a mob when it hits the mob
 
-#define SPECIES_HUMAN       "Human"
+#define SPECIES_HUMAN			"Human"
+#define SPECIES_SLIME			"Slime"
+#define SPECIES_MONKEY			"Monkey"
+#define SPECIES_GOLEM			"Golem"
 
 #define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 

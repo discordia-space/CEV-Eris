@@ -69,12 +69,12 @@
 			if(GRAB_PASSIVE)
 				qdel(G)
 			if(GRAB_AGGRESSIVE)
-				if(prob(60)) //same chance of breaking the grab as disarm
+				if(prob(max(60 + ((stats?.getStat(STAT_ROB)) - G.assailant?.stats.getStat(STAT_ROB) ** 0.8), 1))) // same scaling as cooldown increase and if you manage to be THAT BAD, 1% for luck
 					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s grip!</span>")
 					qdel(G)
 			if(GRAB_NECK)
-				//If the you move when grabbing someone then it's easier for them to break free. Same if the affected mob is immune to stun.
-				if (((world.time - G.assailant.l_move_time < 30 || !stunned) && prob(15)) || prob(5))
+				var/conditionsapply = (world.time - G.assailant.l_move_time < 30 || !stunned) ? 3 : 1 //If you move when grabbing someone then it's easier for them to break free. Same if the affected mob is immune to stun.
+				if(prob(conditionsapply * max(5+(((stats?.getStat(STAT_ROB)) - G.assailant.stats?.getStat(STAT_ROB)) ** 0.8), 0.5))) // 0.5% chance for mercy
 					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s headlock!</span>")
 					qdel(G)
 	if(resisting)
@@ -203,8 +203,8 @@
 		update_inv_legcuffed()
 
 /mob/living/carbon/proc/can_break_cuffs()
-	if(HULK in mutations)
-		return 1
+//	if(HULK in mutations)
+//		return 1
 	if(stats.getStat(STAT_ROB) >= STAT_LEVEL_GODLIKE)
 		return 1
 
@@ -223,8 +223,8 @@
 			SPAN_WARNING("You successfully break your [handcuffed.name].")
 			)
 
-		if(HULK in mutations)
-			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", ";NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+//		if(HULK in mutations)
+//			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", ";NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 
 
 		qdel(handcuffed)
@@ -246,8 +246,8 @@
 			SPAN_WARNING("You successfully break your legcuffs.")
 			)
 
-		if(HULK in mutations)
-			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", ";NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+//		if(HULK in mutations)
+//			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", ";NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 
 		qdel(legcuffed)
 		legcuffed = null

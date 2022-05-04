@@ -39,8 +39,6 @@
 	pass_flags = PASSTABLE
 	faction = "spiders"
 
-	price_tag = 250
-
 /mob/living/carbon/superior_animal/giant_spider/New(var/location, var/atom/parent)
 	get_light_and_color(parent)
 	..()
