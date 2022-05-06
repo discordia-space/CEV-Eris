@@ -36,7 +36,6 @@
 		)
 	)
 	hidden_inventory = list(
-		// drugs?
 		/obj/item/reagent_containers/glass/bottle/trade/psilocybin = custom_good_amount_range(list(1, 3), 100),
 		/obj/item/reagent_containers/glass/bottle/trade/impedrezene = custom_good_amount_range(list(1, 3), 100),
 		/obj/item/reagent_containers/glass/bottle/trade/cryptobiolin = custom_good_amount_range(list(1, 3), 100)
