@@ -55,7 +55,7 @@
 			/obj/item/grenade/chem_grenade/cleaner/nt_cleaner,
 			/obj/item/grenade/chem_grenade/antiweed/nt_antiweed,
 			/obj/structure/mopbucket,		
-			/obj/structure/janitorialcart
+			/obj/structure/janitorialcart,
 			/obj/item/holyvacuum
 		)
 	)
