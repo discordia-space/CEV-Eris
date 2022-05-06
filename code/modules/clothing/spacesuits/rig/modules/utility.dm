@@ -280,7 +280,7 @@
 
 	interface_name = "integrated injector"
 	//Extra bit here to help get the idea that this one can inject
-	interface_desc = "Dispenses loaded chemicals directly into the wearer's bloodstream or pacients."
+	interface_desc = "Dispenses loaded chemicals directly into the wearer\'s bloodstream or patients."
 /*
 /obj/item/rig_module/chem_dispenser
 	name = "mounted chemical dispenser"
