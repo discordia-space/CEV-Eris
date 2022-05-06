@@ -19,7 +19,6 @@ var/prison_shuttle_timeleft = 0
 	req_access = list(access_security)
 	circuit = /obj/item/electronics/circuitboard/prison_shuttle
 	var/temp
-	var/hacked = 0
 	var/allowedtocall = 0
 	var/prison_break = 0
 

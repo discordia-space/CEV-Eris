@@ -27,6 +27,7 @@
 	origin_tech = list(TECH_MATERIAL = 3)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 10) //Plasteel for the shielding
 	spawn_blacklisted = FALSE
+	price_tag = 400
 
 /obj/item/robot_parts/robot_component/armour/exosuit/ablative
 	name = "ablative exosuit armor plating"
@@ -35,6 +36,7 @@
 	origin_tech = list(TECH_MATERIAL = 3)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASMA = 5)
 	spawn_blacklisted = FALSE
+	price_tag = 550
 
 /obj/item/robot_parts/robot_component/armour/exosuit/combat
 	name = "heavy combat exosuit plating"
@@ -43,3 +45,4 @@
 	origin_tech = list(TECH_MATERIAL = 5)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_DIAMOND = 5, MATERIAL_URANIUM = 5)
 	spawn_blacklisted = FALSE
+	price_tag = 1000

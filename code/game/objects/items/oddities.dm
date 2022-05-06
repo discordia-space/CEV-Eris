@@ -18,6 +18,8 @@
 	rarity_value = 10
 	bad_type = /obj/item/oddity
 
+	price_tag = 0
+
 	//You choose what stat can be increased, and a maximum value that will be added to this stat
 	//The minimum is defined above. The value of change will be decided by random
 	var/random_stats = TRUE
@@ -50,7 +52,6 @@
 	prob_perk = 60
 	bad_type = /obj/item/oddity/common
 	spawn_blacklisted = FALSE
-	price_tag = 500
 
 /obj/item/oddity/common/blueprint
 	name = "strange blueprint"

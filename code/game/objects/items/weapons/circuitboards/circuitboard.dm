@@ -28,6 +28,8 @@
 	throw_range = 15
 	bad_type = /obj/item/electronics/circuitboard
 
+	price_tag = 50		// Inepxensive to produce
+
 	var/build_path
 	var/frame_type = FRAME_DEFAULT
 	var/board_type = "computer"
@@ -57,3 +59,9 @@
 				continue
 			listed_components += list("[req_components[placeholder]] [initial(placeholder.name)]")
 		to_chat(user, SPAN_NOTICE("Required components: [english_list(listed_components)]."))
+
+/obj/item/electronics/circuitboard/get_item_cost(export)
+	. = ..()
+	for(var/atom/movable/i in req_components)
+		if(ispath(i))
+			. += SStrade.get_new_cost(i) * log(10, price_tag / 2)

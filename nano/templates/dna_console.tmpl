@@ -1,0 +1,39 @@
+{{if !data.linked}}
+	<div align="center" style="font-size: large; font-weight: bold;">
+		Connection failed.
+	</div>
+{{else !data.occupied}}
+	<div align="center" style="font-size: large; font-weight: bold;">
+		Test subject is missing.
+	</div>
+{{else}}
+	<table>
+		<tr><td align="center">Test subject's biometric data:</td></tr>
+		<tr><td>Species:   {{:data.species}}</td></tr>
+		<tr><td>Blood type:   {{:data.b_type}}</td></tr>
+		<tr><td>Biological age:   {{:data.age}}</td></tr>
+		<tr><td>DNA signature:   {{:data.dna_trace}}</td></tr>
+		<tr><td>Fingerprint pattern:   {{:data.fingers_trace}}</td></tr>
+		{{if data.have_mutations}}
+			<tr><td>Mutations:</td></tr>
+			{{for data.occupant_mutations}}
+				<tr><td>
+					{{:helper.link('', 'circle-arrow-s', {'save_mut' : value.hex}, data.occupied ? null : 'disabled')}} {{:value.name}} - {{:value.is_active}}
+				</td></tr>
+			{{/for}}
+		{{else}}
+			<tr><td>Mutations: Not found.</td></tr>
+		{{/if}}
+	</table>
+{{/if}}
+
+<br>
+<hr>
+<tr><td>{{:helper.link('Save personal enzymes', 'link', {'save_pe' : 1}, data.occupied ? null : 'disabled')}}</td></tr>
+<tr><td>{{:helper.link('Save mutations', 'link', {'save_ue' : 1}, data.occupied ? null : 'disabled')}}</td></tr>
+<tr><td>{{:helper.link('Eject disc','eject',{'eject' : 1}, data.disc_inserted ? null : 'disabled')}}</td></tr>
+
+<h2>Chrysalis Log:</h2>
+<div class='statusDisplayRecords' style='height:200px;font-size:82%;overflow-y:scroll;clear:both;'>
+	{{:data.log}}
+</div>

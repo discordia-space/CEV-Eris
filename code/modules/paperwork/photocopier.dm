@@ -230,4 +230,5 @@
 /obj/item/device/toner
 	name = "toner cartridge"
 	icon_state = "tonercartridge"
+	price_tag = 100
 	var/toner_amount = 30
