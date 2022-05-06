@@ -23,8 +23,8 @@
 			/obj/machinery/suspension_gen
 		),
 		"Chemical Surplus" = list(
-			/obj/item/reagent_containers/glass/bottle/inaprovaline = custom_good_amount_range(list(1, 3), null),
-			/obj/item/reagent_containers/glass/bottle/antitoxin = custom_good_amount_range(list(1, 3), null),
+			/obj/item/reagent_containers/glass/bottle/inaprovaline = custom_good_amount_range(list(1, 3)),
+			/obj/item/reagent_containers/glass/bottle/antitoxin = custom_good_amount_range(list(1, 3)),
 			/obj/item/reagent_containers/glass/bottle/trade/kelotane = good_data("kelotane bottle", list(1, 3), 100),
 			/obj/item/reagent_containers/glass/bottle/trade/bicaridine = good_data("bicaridine bottle", list(1, 3), 100),
 			/obj/item/reagent_containers/glass/bottle/trade/clonexadone = good_data("clonexadone bottle", list(1, 3), 100),
