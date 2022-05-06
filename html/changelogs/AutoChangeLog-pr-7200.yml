@@ -1,0 +1,8 @@
+author: Trilbyspaceclone
+delete-after: true
+changes:
+  - balance: combat dispenser now holds 12 beakers rather then 6!  - For Rigs
+  - bugfix: Fixes medical injectors not injecting - For rigs
+  - bugfix: Fixes all dispensers and chem injectors for rigs having the same name
+      and desc in its menus - For Rigs
+  - bugfix: Fixes a indexing bug with injectors and dispensers - For Rigs
