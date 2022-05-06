@@ -1,0 +1,6 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - rscadd: radial menu for tool-gun interaction
+  - rscadd: serial numbers attached to a gun frame
+  - tweak: serial types changed to make more sense
