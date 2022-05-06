@@ -1,0 +1,4 @@
+author: Trilbyspaceclone
+delete-after: true
+changes:
+  - bugfix: Broken, broken huds no longer spawn.
