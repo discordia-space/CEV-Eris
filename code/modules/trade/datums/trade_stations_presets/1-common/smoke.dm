@@ -39,7 +39,7 @@
 		// drugs?
 		/obj/item/reagent_containers/glass/bottle/trade/psilocybin = custom_good_amount_range(list(1, 3), 100),
 		/obj/item/reagent_containers/glass/bottle/trade/impedrezene = custom_good_amount_range(list(1, 3), 100),
-		/obj/item/reagent_containers/glass/bottle/trade/psilocybin = custom_good_amount_range(list(1, 3), 100)
+		/obj/item/reagent_containers/glass/bottle/trade/cryptobiolin = custom_good_amount_range(list(1, 3), 100)
 	)
 	offer_types = list(
 		/obj/item/gun/projectile/revolver/artwork_revolver = offer_data("artistic revolver", 2000, 1),
