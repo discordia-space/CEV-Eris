@@ -179,7 +179,7 @@ var/global/list/modifications_types = list(
 /datum/body_modification/limb/prosthesis/makeshift
 	id = "prosthesis_makeshift"
 	replace_limb = /obj/item/organ/external/robotic/makeshift
-	body_parts = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_CHEST, BP_GROIN, BP_HEAD)
+	body_parts = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_CHEST, BP_GROIN)
 	icon = 'icons/mob/human_races/cyberlimbs/ghetto.dmi'
 
 /datum/body_modification/limb/mutation/New()
