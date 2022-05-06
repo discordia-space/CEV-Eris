@@ -13,18 +13,18 @@
 	stations_recommended = list("casino")
 	inventory = list(
 		"Tobacco" = list(
-			/obj/item/storage/fancy/cigarettes,
-			/obj/item/storage/fancy/cigcartons,
-			/obj/item/storage/fancy/cigarettes/dromedaryco,
-			/obj/item/storage/fancy/cigcartons/dromedaryco,
-			/obj/item/storage/fancy/cigarettes/killthroat,
-			/obj/item/storage/fancy/cigcartons/killthroat,
-			/obj/item/storage/fancy/cigarettes/homeless,
-			/obj/item/storage/fancy/cigcartons/homeless,
-			/obj/item/storage/fancy/cigar,
-			/obj/item/clothing/mask/smokable/cigarette/cigar,
-			/obj/item/clothing/mask/smokable/cigarette/cigar/cohiba,
-			/obj/item/clothing/mask/smokable/cigarette/cigar/havana
+			/obj/item/storage/fancy/cigarettes = custom_good_price(50),
+			/obj/item/storage/fancy/cigcartons = custom_good_price(400),
+			/obj/item/storage/fancy/cigarettes/dromedaryco = custom_good_price(50),
+			/obj/item/storage/fancy/cigcartons/dromedaryco = custom_good_price(400),
+			/obj/item/storage/fancy/cigarettes/killthroat = custom_good_price(50),
+			/obj/item/storage/fancy/cigcartons/killthroat = custom_good_price(400),
+			/obj/item/storage/fancy/cigarettes/homeless = custom_good_price(50),
+			/obj/item/storage/fancy/cigcartons/homeless = custom_good_price(400),
+			/obj/item/storage/fancy/cigar = custom_good_price(200),
+			/obj/item/clothing/mask/smokable/cigarette/cigar = custom_good_price(40),
+			/obj/item/clothing/mask/smokable/cigarette/cigar/cohiba = custom_good_price(100),
+			/obj/item/clothing/mask/smokable/cigarette/cigar/havana = custom_good_price(100)
 		),
 		"Paraphernalia" = list(
 			/obj/item/flame/lighter,
@@ -32,13 +32,16 @@
 			/obj/item/storage/box/matches,
 			/obj/item/clothing/mask/smokable/pipe,
 			/obj/item/clothing/mask/smokable/pipe/cobpipe,
-			/obj/item/clothing/mask/vape
+			/obj/item/clothing/mask/vape = custom_good_price(100)
 		)
 	)
 	hidden_inventory = list(
 		// drugs?
+		/obj/item/reagent_containers/glass/bottle/trade/psilocybin = custom_good_amount_range(list(1, 3)) = custom_good_price(100),
+		/obj/item/reagent_containers/glass/bottle/trade/impedrezene = custom_good_amount_range(list(1, 3)) = custom_good_price(100),
+		/obj/item/reagent_containers/glass/bottle/trade/psilocybin = custom_good_amount_range(list(1, 3)) = custom_good_price(100)
 	)
 	offer_types = list(
 		/obj/item/gun/projectile/revolver/artwork_revolver = offer_data("artistic revolver", 2000, 1),
-		/obj/structure/artwork_statue = offer_data("artistic statue", 600, 1)
+		/obj/structure/artwork_statue = offer_data("artistic statue", 3000, 1)
 	)
