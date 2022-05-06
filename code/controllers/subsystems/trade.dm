@@ -143,7 +143,7 @@ SUBSYSTEM_DEF(trade)
 	return GLOB.price_cache[path]
 
 /datum/controller/subsystem/trade/proc/get_price(atom/movable/target, is_export = FALSE)
-	. = round(get_cost(target, is_export))
+	. = round(get_cost(target, is_export) * 0.6))
 
 /datum/controller/subsystem/trade/proc/get_import_cost(path, datum/trade_station/station)
 	. = station?.get_good_price(path)								// get_good_price() gets the custom price of the item, if it exists
