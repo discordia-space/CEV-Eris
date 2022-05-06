@@ -144,7 +144,14 @@
 /obj/machinery/mining/deep_drill/attackby(obj/item/I, mob/user as mob)
 
 	if(!active)
-		if(default_deconstruction(I, user))
+		var/tool_type = I.get_tool_type(user, qualities, src)
+		if(tool_type == QUALITY_SCREW_DRIVING)
+			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
+				updateUsrDialog()
+				panel_open = !panel_open
+				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
+				update_icon()
 			return
 
 		if(default_part_replacement(I, user))
@@ -362,6 +369,10 @@
 		to_chat(user, "\The [src] shows signs of damage!")
 	else
 		to_chat(user, "\The [src] is in pristine condition.")
+
+	to_chat(user, "It holds:")
+	for(var/ore in contents)
+		to_chat(user, "- [stored_ore[ore]] [ore]")
 
 /obj/machinery/mining/deep_drill/verb/unload()
 	set name = "Unload Drill"
