@@ -226,6 +226,3 @@
 
 /obj/item/organ/external/robotic/makeshift/chest
 	default_description = /datum/organ_description/chest
-
-/obj/item/organ/external/robotic/makeshift/head
-	default_description = /datum/organ_description/head
