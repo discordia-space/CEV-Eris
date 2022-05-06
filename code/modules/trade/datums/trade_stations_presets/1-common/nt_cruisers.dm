@@ -69,7 +69,7 @@
 			/obj/item/seeds/bloodtomatoseed = good_data("blood tomato seeds", list(1,3), null),
 			/obj/item/seeds/killertomatoseed = good_data("killer tomato seeds", list(1,3), null),
 			/obj/item/seeds/bluetomatoseed = good_data("blue tomato seeds", list(1,3), null),
-			/obj/item/seeds/bluespacetomatoseed = good_data("blusepace tomato seeds", list(1,3), null),
+			/obj/item/seeds/bluespacetomatoseed = good_data("bluespace tomato seeds", list(1,3), null),
 			/obj/item/seeds/poisonedappleseed = good_data("poison apple seeds", list(1,3), null),
 			/obj/item/seeds/goldappleseed = good_data("golden apple seeds", list(1,3), null),
 			/obj/item/seeds/ambrosiadeusseed = good_data("ambrosia deus seeds", list(1,3), null),
