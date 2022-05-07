@@ -30,6 +30,7 @@
 	throw_range = 20
 	matter = list(MATERIAL_BIOMATTER = 12)
 	spawn_tags = SPAWN_TAG_ITEM_CLOWN
+	price_tag = 120
 
 /obj/item/soap/New()
 	..()

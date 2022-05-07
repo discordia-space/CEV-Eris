@@ -11,5 +11,5 @@
 	price_tag = 2500
 	projectile_type = /obj/item/projectile/energy/plasma
 	init_recoil = HANDGUN_RECOIL(1)
-	serial_type = "M"
+	serial_type = "ML"
 

@@ -35,7 +35,7 @@
 		SEMI_AUTO_NODELAY,
 		)
 
-	serial_type = "PAR-TS" // PAR top secret
+	serial_type = "PAR"
 
 /obj/item/gun/projectile/automatic/dallas/update_icon()
 	..()

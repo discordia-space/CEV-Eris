@@ -26,7 +26,7 @@
 		BURST_2_ROUND
 		)
 	gun_parts = list(/obj/item/part/gun/frame/vintorez = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)
-	serial_type = "REV"
+	serial_type = "Excelsior"
 
 /obj/item/gun/projectile/automatic/vintorez/update_icon()
 	var/iconstring = initial(icon_state)

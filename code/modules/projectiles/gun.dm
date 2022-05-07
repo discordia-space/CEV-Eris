@@ -99,7 +99,7 @@
 	var/inversed_carry = FALSE
 	var/wield_delay = 0 // Gun wielding delay , generally in seconds.
 	var/wield_delay_factor = 0 // A factor that characterizes weapon size , this makes it require more vig to insta-wield this weapon or less , values below 0 reduce the vig needed and above 1 increase it
-	var/serial_type = "SM" // Self-manufactured , if there is a serial type , the gun will add a number onto its final , if none , it won;'t show on examine
+	var/serial_type = "" // If there is a serial type, the gun will add a number that will show on examine
 
 
 /obj/item/gun/wield(mob/user)
@@ -116,32 +116,39 @@
 
 
 /obj/item/gun/attackby(obj/item/I, mob/living/user, params)
-	if(!istool(I) || user.a_intent != I_HURT)
-		return FALSE
-	if(I.get_tool_quality(QUALITY_HAMMERING) && serial_type)
-		user.visible_message(SPAN_NOTICE("[user] begins scribbling \the [name]'s gun serial number away."), SPAN_NOTICE("You begin removing the serial number from \the [name]."))
-		if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_HAMMERING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-			user.visible_message(SPAN_DANGER("[user] removes \the [name]'s gun serial number."), SPAN_NOTICE("You successfully remove the serial number from \the [name]."))
-			serial_type = null
-			return FALSE
-	if(!gun_parts)
-		to_chat(user, SPAN_NOTICE("You can't dismantle [src] as it has no gun parts! How strange..."))
-		return FALSE
-	if(I.get_tool_quality(QUALITY_BOLT_TURNING))
-		user.visible_message(SPAN_NOTICE("[user] begins breaking apart [src]."), SPAN_WARNING("You begin breaking apart [src] for gun parts."))
-		if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-			user.visible_message(SPAN_NOTICE("[user] breaks [src] apart for gun parts!"), SPAN_NOTICE("You break [src] apart for gun parts."))
-			for(var/target_item in gun_parts)
-				var/amount = gun_parts[target_item]
-				while(amount)
-					new target_item(get_turf(src))
-					amount--
-			qdel(src)
+	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, serial_type ? QUALITY_HAMMERING : null), src)
+	switch(tool_type)
+		if(QUALITY_HAMMERING)
+			user.visible_message(SPAN_NOTICE("[user] begins scribbling \the [name]'s gun serial number away."), SPAN_NOTICE("You begin removing the serial number from \the [name]."))
+			if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_HAMMERING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				user.visible_message(SPAN_DANGER("[user] removes \the [name]'s gun serial number."), SPAN_NOTICE("You successfully remove the serial number from \the [name]."))
+				serial_type = null
+				return FALSE
+
+		if(QUALITY_BOLT_TURNING)
+			if(!gun_parts)
+				to_chat(user, SPAN_NOTICE("You can't dismantle [src] as it has no gun parts! How strange..."))
+				return FALSE
+
+			user.visible_message(SPAN_NOTICE("[user] begins breaking apart [src]."), SPAN_WARNING("You begin breaking apart [src] for gun parts."))
+			if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				user.visible_message(SPAN_NOTICE("[user] breaks [src] apart for gun parts!"), SPAN_NOTICE("You break [src] apart for gun parts."))
+				for(var/target_item in gun_parts)
+					var/amount = gun_parts[target_item]
+					while(amount)
+						if(ispath(target_item, /obj/item/part/gun/frame))
+							var/obj/item/part/gun/frame/F = new target_item(get_turf(src))
+							F.serial_type = serial_type
+						else
+							new target_item(get_turf(src))
+						amount--
+				qdel(src)
+
 
 /obj/item/gun/get_item_cost(export)
 	if(export)
 		return ..() * 0.5 //Guns should be sold in the player market.
-	..()
+	. = ..()
 
 /obj/item/gun/Initialize()
 	if(!recoil && islist(init_recoil))
@@ -666,10 +673,11 @@
 	else if(recoil.getRating(RECOIL_ONEHAND) > 0.6)
 		to_chat(user, SPAN_WARNING("This gun needs to be wielded in both hands to be used most effectively."))
 
-	if(serial_type)
-		to_chat(user, SPAN_WARNING("There is a serial number on this gun, it reads [serial_type]."))
-	else if(isnull(serial_type))
-		to_chat(user, SPAN_DANGER("The serial is scribbled away."))
+	if(in_range(user, src) || isghost(user))
+		if(serial_type)
+			to_chat(user, SPAN_WARNING("There is a serial number on this gun, it reads [serial_type]."))
+		else if(isnull(serial_type))
+			to_chat(user, SPAN_DANGER("The serial is scribbled away."))
 
 
 /obj/item/gun/proc/initialize_firemodes()

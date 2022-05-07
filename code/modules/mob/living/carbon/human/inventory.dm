@@ -42,27 +42,28 @@ This saves us from having to call add_fingerprint() any time something is put in
 	else
 		to_chat(src, SPAN_NOTICE("You are not holding anything to equip or draw."))
 	return
+
+
 /mob/living/carbon/human/verb/bag_equip()
 	set name = "bag-equip"
-	set hidden = 1
+	set hidden = TRUE
 
-	var/obj/item/I = get_active_hand()
-	var/potential = src.get_inactive_hand()
-	if(!I && !src.back)
-		to_chat(src, SPAN_NOTICE("You have no storage on your back or item in hand."))
-		return
-	if(istype(src.back,/obj/item/storage))
-		var/obj/item/storage/backpack = src.back
-		if(I)
-			equip_to_from_bag(I, backpack)
-		else
-			equip_to_from_bag(null, backpack)
-	else if(istype(potential, /obj/item/storage))
-		var/obj/item/storage/pack = potential
-		if(I)
-			equip_to_from_bag(I, pack)
-		else
-			equip_to_from_bag(null, pack)
+	var/obj/item/storage/S
+
+	for(var/i in list(get_inactive_hand(), back, get_active_hand()))
+		if(istype(i, /obj/item/storage))
+			S = i
+			break
+
+		else if(istype(i, /obj/item/rig))
+			var/obj/item/rig/R = i
+			if(R.storage)
+				S = R.storage.container
+				break
+
+	if(S && (!istype(S, /obj/item/storage/backpack) || S:worn_check()))
+		equip_to_from_bag(get_active_hand(), S)
+
 
 //Puts the item into our active hand if possible. returns 1 on success.
 /mob/living/carbon/human/put_in_active_hand(var/obj/item/W)

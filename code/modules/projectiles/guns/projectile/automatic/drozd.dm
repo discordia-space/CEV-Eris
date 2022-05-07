@@ -28,7 +28,7 @@
 		)
 	gun_parts = list(/obj/item/part/gun/frame/drozd = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/magnum = 1)
 
-	serial_type = "REV"
+	serial_type = "Excelsior"
 
 /obj/item/gun/projectile/automatic/drozd/update_icon()
 	cut_overlays()

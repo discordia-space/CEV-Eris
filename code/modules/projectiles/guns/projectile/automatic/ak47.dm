@@ -33,7 +33,7 @@
 		BURST_5_ROUND
 		)
 	spawn_blacklisted = TRUE
-	serial_type = "REV" // revolution
+	serial_type = "Excelsior"
 
 	var/folded = FALSE
 
@@ -108,6 +108,8 @@
 	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
 	price_tag = 3500
+	serial_type = "SA"
+
 
 /obj/item/gun/projectile/automatic/ak47/sa/CtrlShiftClick(mob/user)
 	. = ..()
@@ -259,6 +261,8 @@
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	price_tag = 500
 	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/steel = 15)
+	serial_type = ""
+
 
 /obj/item/gun/projectile/automatic/ak47/makeshift/attackby(obj/item/W, mob/user)
 	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
