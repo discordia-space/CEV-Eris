@@ -22,16 +22,16 @@
 	one_hand_penalty = _one_hand_penalty
 	tag = RECOILID
 
+/datum/recoil/proc/setRating(_recoil_buildup = 0, _brace_penalty = 0, _one_hand_penalty = 0)
+  return getRecoil(	(isnull(_recoil_buildup)	? recoil_buildup	: _recoil_buildup)	,\
+					(isnull(_brace_penalty)		? brace_penalty		: _brace_penalty)	,\
+					(isnull(_one_hand_penalty)	? one_hand_penalty	: _one_hand_penalty))
+
 /datum/recoil/proc/modifyRating(_recoil_buildup = 0, _brace_penalty = 0, _one_hand_penalty = 0)
 	return getRecoil(recoil_buildup * _recoil_buildup, brace_penalty * _brace_penalty, one_hand_penalty * _one_hand_penalty)
 
-/datum/recoil/proc/modifyAllRatings(modifier = 0)
+/datum/recoil/proc/modifyAllRatings(modifier = 1)
 	return getRecoil(recoil_buildup * modifier, brace_penalty * modifier, one_hand_penalty * modifier) // Set to multiply due to nature of recoil
-
-/datum/recoil/proc/setRating(recoil_buildup, brace_penalty, one_hand_penalty)
-  return getRecoil((isnull(recoil_buildup) ? src.recoil_buildup : recoil_buildup),\
-				  (isnull(brace_penalty) ? src.brace_penalty : brace_penalty),\
-				  (isnull(one_hand_penalty) ? src.one_hand_penalty : one_hand_penalty))
 
 /datum/recoil/proc/getRating(rating)
 	return vars[rating]
@@ -43,11 +43,6 @@
 // Better for nanoUI data
 /datum/recoil/proc/getFancyList()
 	return list("Recoil Buildup" = recoil_buildup, "Unbraced Penalty" = brace_penalty, "Onehanding Penalty" = one_hand_penalty)
-
-/datum/recoil/proc/setList(list/varList)
-	recoil_buildup = varList[1]
-	brace_penalty = varList[2]
-	one_hand_penalty = varList[3]
 
 /datum/recoil/proc/attachRecoil(datum/recoil/AA)
 	return getRecoil(recoil_buildup+AA.recoil_buildup, brace_penalty+AA.brace_penalty, one_hand_penalty+AA.one_hand_penalty)

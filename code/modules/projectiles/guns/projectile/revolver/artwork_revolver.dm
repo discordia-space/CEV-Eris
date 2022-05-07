@@ -35,7 +35,7 @@
 	penetration_multiplier += pick(-0.2,-0.1,0,0.1,0.2)
 	custom_default["penetration_multiplier"] = penetration_multiplier
 	var/random_recoil = rand(0.8, 1.2)
-	recoil.modifyAllRatings(random_recoil)
+	recoil = recoil.modifyAllRatings(random_recoil)
 	custom_default["recoil"] = recoil
 	price_tag += rand(0, 2500)
 	. = ..()

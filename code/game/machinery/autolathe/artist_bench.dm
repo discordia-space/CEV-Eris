@@ -202,7 +202,7 @@
 			//	if("revolver")
 			//		caliber = pick(CAL_357)
 
-		R.recoil.modifyAllRatings(1+rand(-2,2)/10)
+		R.recoil = R.recoil.modifyAllRatings(1+rand(-2,2)/10)
 		R.custom_default["recoil"] = R.recoil
 
 		if(R.max_shells == 3 && (gun_pattern == "shotgun"||"rocket"))//From Timesplitters triple-firing RPG far as I know
