@@ -18,7 +18,7 @@
 
 /obj/item/ammo_kit/attack_self(mob/user)
 	var/list/items_to_spawn = make_scrap_ammo(user, src)
-	if(items_to_spawn.len)
+	if(items_to_spawn && items_to_spawn.len)
 		if(do_mob(user, src, 10 SECONDS))
 			var/location = get_turf(src)
 			for(var/i in items_to_spawn)

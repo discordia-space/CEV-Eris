@@ -113,7 +113,7 @@
 	if(!items_to_spawn.len)
 		items_to_spawn = make_scrap_ammo(user, src, productivity_bonus)
 
-	if(!items_to_spawn.len)
+	if(!items_to_spawn || !items_to_spawn.len)
 		return
 
 	update_use_power(ACTIVE_POWER_USE)
