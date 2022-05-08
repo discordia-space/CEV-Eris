@@ -7,7 +7,6 @@
 	flags = CONDUCT
 	throwforce = 1
 	w_class = ITEM_SIZE_SMALL
-	rarity_value = 10
 	spawn_tags = SPAWN_TAG_AMMO_COMMON
 
 
@@ -34,7 +33,7 @@
 
 	var/material_points = 15 + extra_material_points // 10 steel and 5 cardboard
 
-	if(user.stat)
+	if(user.stats)
 		switch(user.stats.getStat(STAT_MEC))
 			if(STAT_LEVEL_BASIC to STAT_LEVEL_ADEPT)
 				material_points += 3
@@ -92,7 +91,7 @@
 	var/user_is_choosing = TRUE
 
 	while(user_is_choosing)
-		var/items_to_spawn_string = items_to_spawn.len ? "\n" + jointext(items_to_spawn, "\n") : 0
+		var/items_to_spawn_string = items_to_spawn.len ? "\n" + jointext(items_to_spawn, "\n") : "None"
 		var/action = alert(user, "Picked items: [items_to_spawn_string]", "Material points: [material_points]", "Pick an item", "Craft picked", "Cancel")
 		switch(action)
 			if("Pick an item")
