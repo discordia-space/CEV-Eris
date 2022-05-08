@@ -9,8 +9,8 @@
 	layer = BELOW_OBJ_LAYER
 
 	var/is_working = FALSE
-	var/storage_capacity = 40
-	var/productivity_bonus = 2
+	var/storage_capacity = 20 // How many of each resource could be stored. Multiplied by matter bin rating
+	var/productivity_bonus = 2 // Sum of micro-laser and manipulator ratings, increases effectiveness of ammo crafting
 	var/list/materials_stored = list()
 	var/list/materials_compatible = list (MATERIAL_PLASTEEL, MATERIAL_STEEL, MATERIAL_PLASTIC, MATERIAL_WOOD, MATERIAL_CARDBOARD, MATERIAL_PLASMA)
 	var/list/materials_gunpart = list(MATERIAL_PLASTEEL = 5)
@@ -179,7 +179,7 @@
 	productivity_bonus = initial(productivity_bonus)
 	for(var/obj/item/stock_parts/i in component_parts)
 		if(istype(i, /obj/item/stock_parts/matter_bin))
-			storage_capacity = initial(storage_capacity) + 10 * (i.rating - 1)
+			storage_capacity = 20 * i.rating
 		else
 			productivity_bonus += i.rating
 
