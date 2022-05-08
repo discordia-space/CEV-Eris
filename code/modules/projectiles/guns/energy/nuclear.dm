@@ -20,7 +20,7 @@
 		BURST_2_BEAM
 		)
 
-	serial_type = "M"
+	serial_type = "ML"
 	var/lightfail = 0
 
 

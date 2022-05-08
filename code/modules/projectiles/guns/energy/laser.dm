@@ -123,6 +123,7 @@
 	)
 	twohanded = FALSE
 	spawn_blacklisted = TRUE//antag_item_targets
+	serial_type = "NT"
 
 /obj/item/gun/energy/lasercannon
 	name = "Prototype: laser cannon"
