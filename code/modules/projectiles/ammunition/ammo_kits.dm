@@ -83,9 +83,9 @@
 			".50 slug box (30 ammo, 15 points)" = list(15, /obj/item/ammo_magazine/ammobox/shotgun/scrap),
 			".50 pellet box (30 ammo, 15 points)" = list(15, /obj/item/ammo_magazine/ammobox/shotgun/pellet/scrap),
 			".50 beanbag box (30 ammo, 15 points)" = list(15, /obj/item/ammo_magazine/ammobox/shotgun/beanbag/scrap)),
-		CAL_70 = list(
-			".70 ammo pile (5 ammo, 5 points)" = list(5, /obj/item/ammo_casing/antim/scrap/prespawned),
-			".70 ammo box (30 ammo, 30 points)" = list(30, /obj/item/ammo_magazine/ammobox/antim/scrap)))
+		CAL_ANTIM = list(
+			".60 ammo pile (5 ammo, 5 points)" = list(5, /obj/item/ammo_casing/antim/scrap/prespawned),
+			".60 ammo box (30 ammo, 30 points)" = list(30, /obj/item/ammo_magazine/ammobox/antim/scrap)))
 
 	var/list/items_to_spawn = list()
 	var/user_is_choosing = TRUE
