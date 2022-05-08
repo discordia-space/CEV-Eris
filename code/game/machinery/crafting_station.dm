@@ -11,40 +11,40 @@
 	var/is_working = FALSE
 	var/storage_capacity = 40
 	var/productivity_bonus = 2
-	var/list/stored_materials = list()
-	var/list/accepted_material = list (MATERIAL_PLASTEEL, MATERIAL_STEEL, MATERIAL_PLASTIC, MATERIAL_WOOD, MATERIAL_CARDBOARD, MATERIAL_PLASMA)
-	var/list/needed_material_gunpart = list(MATERIAL_PLASTEEL = 5)
-	var/list/needed_material_armorpart = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 20, MATERIAL_WOOD = 20,MATERIAL_CARDBOARD = 20)
-	var/list/needed_material_ammo = list(MATERIAL_STEEL = 10, MATERIAL_CARDBOARD = 5)
-	var/list/needed_material_rocket = list(MATERIAL_PLASMA = 5, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 10)
+	var/list/materials_stored = list()
+	var/list/materials_compatible = list (MATERIAL_PLASTEEL, MATERIAL_STEEL, MATERIAL_PLASTIC, MATERIAL_WOOD, MATERIAL_CARDBOARD, MATERIAL_PLASMA)
+	var/list/materials_gunpart = list(MATERIAL_PLASTEEL = 5)
+	var/list/materials_armorpart = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 20, MATERIAL_WOOD = 20, MATERIAL_CARDBOARD = 20)
+	var/list/materials_ammo = list(MATERIAL_STEEL = 10, MATERIAL_CARDBOARD = 5)
+	var/list/materials_rocket = list(MATERIAL_PLASMA = 5, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 10)
 
 	// A vis_contents hack for materials loading animation.
 	var/tmp/obj/effect/flick_light_overlay/image_load
 
+
 /obj/machinery/craftingstation/Initialize()
 	. = ..()
-
 	image_load = new(src)
 
 
 /obj/machinery/craftingstation/examine(user)
 	. = ..()
-	var/list/craftable = list(
-		"ammunition" = needed_material_ammo,
-		"RPG shell" = needed_material_rocket,
-		"gun parts" = needed_material_gunpart,
-		"armor parts" = needed_material_armorpart)
+	var/list/craft_options = list(
+		"ammunition" = materials_ammo,
+		"RPG shell" = materials_rocket,
+		"gun parts" = materials_gunpart,
+		"armor parts" = materials_armorpart)
 
-	for(var/i in craftable)
-		var/list/required_materials = craftable[i]
+	for(var/i in craft_options)
+		var/list/required_materials = craft_options[i]
 		var/list/requirements = list()
 		for(var/material in required_materials)
 			requirements += "[required_materials[material]] [material]"
 		to_chat(user, SPAN_NOTICE("Materials required to craft [i]: [english_list(requirements)]."))
 
 	var/list/matter_count = list()
-	for(var/material in stored_materials)
-		matter_count += " [stored_materials[material]] [material]"
+	for(var/material in materials_stored)
+		matter_count += " [materials_stored[material]] [material]"
 	to_chat(user, SPAN_NOTICE("It contains: [english_list(matter_count)]."))
 
 
@@ -66,7 +66,7 @@
 		return
 
 	// Only one user can interact with the machine at the same time
-	// This is always true, but we want the proc to finish executing
+	// This is always true, but we need to wait for that proc's return
 	if(!interface(user))
 		is_working = FALSE
 		icon_state = "craft"
@@ -89,24 +89,24 @@
 
 	switch(choice)
 		if("Ammunition")
-			required_resources = needed_material_ammo
+			required_resources = materials_ammo
 
 		if("RPG shell")
-			required_resources = needed_material_rocket
+			required_resources = materials_rocket
 			items_to_spawn = list("" = /obj/item/ammo_casing/rocket/scrap/prespawned)
 
 		if("Gun parts")
-			required_resources = needed_material_gunpart
+			required_resources = materials_gunpart
 			items_to_spawn = list("" = /obj/item/part/gun)
 
 		if("Armor parts")
-			required_resources = needed_material_armorpart
+			required_resources = materials_armorpart
 			items_to_spawn = list("" = /obj/item/part/armor)
 		else
 			return
 
 	for(var/i in required_resources)
-		if(required_resources[i] > stored_materials[i])
+		if(required_resources[i] > materials_stored[i])
 			to_chat(user, SPAN_NOTICE("Not enough materials."))
 			return
 
@@ -122,10 +122,10 @@
 	if(do_mob(user, src, 5 SECONDS))
 		var/tampering_detected
 		for(var/i in required_resources)
-			if(required_resources[i] == stored_materials[i])
-				stored_materials.Remove(i)
-			else if(required_resources[i] < stored_materials[i])
-				stored_materials[i] -= required_resources[i]
+			if(required_resources[i] == materials_stored[i])
+				materials_stored.Remove(i)
+			else if(required_resources[i] < materials_stored[i])
+				materials_stored[i] -= required_resources[i]
 			else // Materials pulled out during make_scrap_ammo()
 				to_chat(user, SPAN_WARNING("Nice try, but you only wasted some materials."))
 				tampering_detected = TRUE
@@ -143,28 +143,28 @@
 	if(stat || user.stat || !Adjacent(user) || !M.matter)
 		return
 
-	var/material_used = 0
+	var/materials_used = 0
 	var/material_type = M.default_type
 
-	if(!(material_type in accepted_material))
+	if(!(material_type in materials_compatible))
 		to_chat(user, SPAN_WARNING("[src] can not hold [material_type]."))
 		return
 
-	if(stored_materials[material_type] >= storage_capacity)
+	if(materials_stored[material_type] >= storage_capacity)
 		to_chat(user, SPAN_WARNING("The [src] is full of [material_type]."))
 		return
 
-	if(stored_materials[material_type] + M.amount > storage_capacity)
-		material_used = storage_capacity - stored_materials[material_type]
+	if(materials_stored[material_type] + M.amount > storage_capacity)
+		materials_used = storage_capacity - materials_stored[material_type]
 	else
-		material_used = M.amount
+		materials_used = M.amount
 
-	stored_materials[material_type] += material_used
+	materials_stored[material_type] += materials_used
 
-	if(!M.use(material_used))
+	if(!M.use(materials_used))
 		qdel(M)
 
-	to_chat(user, SPAN_NOTICE("You add [material_used] of [M]\s to \the [src]."))
+	to_chat(user, SPAN_NOTICE("You add [materials_used] of [M]\s to \the [src]."))
 
 
 /obj/machinery/craftingstation/power_change()
@@ -185,15 +185,15 @@
 
 
 /obj/machinery/craftingstation/on_deconstruction()
-	for(var/i in stored_materials)
-		eject(i, stored_materials[i])
+	for(var/i in materials_stored)
+		eject(i, materials_stored[i])
 
 //Autolathes can eject decimal quantities of material as a shard
 /obj/machinery/craftingstation/proc/eject(material/M, amount)
 	if(!amount || !M.stack_type)
 		return
 
-	amount = min(amount, stored_materials[M])
+	amount = min(amount, materials_stored[M])
 
 	var/whole_amount = round(amount)
 	var/remainder = amount - whole_amount
@@ -226,4 +226,4 @@
 		new /obj/item/material/shard(drop_location(), M, _amount = remainder)
 
 	//The stored material gets the amount (whole+remainder) subtracted
-	stored_materials[M] -= amount
+	materials_stored[M] -= amount
