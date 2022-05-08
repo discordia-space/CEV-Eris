@@ -95,9 +95,9 @@
 		var/action = alert(user, "Picked items: [items_to_spawn_string]", "Material points: [material_points]", "Pick an item", "Craft picked", "Cancel")
 		switch(action)
 			if("Pick an item")
-				var/caliber_of_choice = input(user, "Choose a caliber.") as null|anything in array
+				var/caliber_of_choice = input(user, "Choose a caliber", "Material points: [material_points]") as null|anything in array
 				if(caliber_of_choice)
-					var/craft = input(user, "Choose a craft.") as null|anything in array[caliber_of_choice]
+					var/craft = input(user, "Choose a craft", "Material points: [material_points]") as null|anything in array[caliber_of_choice]
 					if(craft)
 						if(material_points >= array[caliber_of_choice][craft][1])
 							material_points -= array[caliber_of_choice][craft][1]
