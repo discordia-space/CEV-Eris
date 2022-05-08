@@ -22,11 +22,11 @@
 		"Atmospherics" = list(
 			/obj/item/tank/air,
 			/obj/item/tank/plasma,
-			/obj/machinery/portable_atmospherics/canister/sleeping_agent,
-			/obj/machinery/portable_atmospherics/canister/nitrogen,
-			/obj/machinery/portable_atmospherics/canister/oxygen,
-			/obj/machinery/portable_atmospherics/canister/air,
-			/obj/machinery/portable_atmospherics/canister/carbon_dioxide
+			/obj/machinery/portable_atmospherics/canister/sleeping_agent = custom_good_price(800),
+			/obj/machinery/portable_atmospherics/canister/nitrogen = custom_good_price(400),
+			/obj/machinery/portable_atmospherics/canister/oxygen = custom_good_price(400),
+			/obj/machinery/portable_atmospherics/canister/air = custom_good_price(400),
+			/obj/machinery/portable_atmospherics/canister/carbon_dioxide = custom_good_price(400)
 		),
 		"Technomancer Supplies" = list(
 			/obj/item/clothing/mask/gas,

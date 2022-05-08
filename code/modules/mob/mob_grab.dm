@@ -239,6 +239,8 @@
 	var/original_time = world.time
 	for(var/counter in 1 to 8)
 		sleep(delay_time)
+		if(QDELING(src) || !hud)
+			break // hud is null after dropped and sleep does not care so we check manually
 		if(last_action > original_time || !confirm() || get_turf(assailant) != original_loc) // cannot do a grab attack while upgrading a grab
 			hud.icon_state = original_icon //  or move and upgrade a grab or keep upgrading it when the grab is escaped.
 			break
@@ -262,7 +264,7 @@
 		return
 
 	// Adjust the grab warmup using assailant's ROB stat
-	var/assailant_stat = assailant.stats.getStat(STAT_ROB)
+	var/assailant_stat = assailant?.stats.getStat(STAT_ROB)
 	var/warmup_increase
 	if(assailant_stat > 0)
 		// Positive ROB decreases warmup, but not linearly
@@ -352,6 +354,9 @@
 	// The movment speed of assailant will be determined by the victim whatever their size or things he wears minus how strong the assailant ( ROB )
 	// New function should take the victim variables in account : size of mob, under gravity or not
 	// ROB check will start in process for the victim so the assailant can have a jump on the victim in first movement tick or some shit unless he's already grabbed
+	if(isnull(affecting))
+		return //do not upgrade a grab and drop it
+
 	var/affecting_stat = affecting.stats.getStat(STAT_ROB)	// Victim
 	var/assailant_stat = assailant.stats.getStat(STAT_ROB)	// Grabber
 	var/difference_stat = assailant_stat - affecting_stat

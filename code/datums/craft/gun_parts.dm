@@ -20,6 +20,15 @@
 	var/mechanism_attached = FALSE
 	var/barrel = /obj/item/part/gun/barrel
 	var/barrel_attached = FALSE
+	var/serial_type = ""
+
+
+/obj/item/part/gun/frame/New(loc, ...)
+	. = ..()
+	var/obj/item/gun/G = new result(null)
+	if(G.serial_type)
+		serial_type = G.serial_type
+
 
 /obj/item/part/gun/frame/New(loc)
 	..()
@@ -88,8 +97,16 @@
 			to_chat(user, SPAN_NOTICE("You have attached the barrel to \the [src]."))
 			return
 
-	if(istool(I))
-		if(I.get_tool_quality(QUALITY_SCREW_DRIVING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, serial_type ? QUALITY_HAMMERING : null), src)
+	switch(tool_type)
+		if(QUALITY_HAMMERING)
+			user.visible_message(SPAN_NOTICE("[user] begins scribbling \the [name]'s gun serial number away."), SPAN_NOTICE("You begin removing the serial number from \the [name]."))
+			if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_HAMMERING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				user.visible_message(SPAN_DANGER("[user] removes \the [name]'s gun serial number."), SPAN_NOTICE("You successfully remove the serial number from \the [name]."))
+				serial_type = null
+				return
+
+		if(QUALITY_SCREW_DRIVING)
 			var/list/possibles = contents.Copy()
 			var/obj/item/part/gun/toremove = input("Which part would you like to remove?","Removing parts") in possibles
 			if(!toremove)
@@ -129,7 +146,8 @@
 	if(!barrel_attached)
 		to_chat(user, SPAN_WARNING("\the [src] does not have a barrel!"))
 		return
-	new result(T)
+	var/obj/item/gun/G = new result(T)
+	G.serial_type = serial_type
 	qdel(src)
 	return
 
@@ -148,6 +166,11 @@
 			to_chat(user, SPAN_NOTICE("\the [src] has a barrel installed."))
 		else
 			to_chat(user, SPAN_NOTICE("\the [src] does not have a barrel installed."))
+		if(in_range(user, src) || isghost(user))
+			if(serial_type)
+				to_chat(user, SPAN_WARNING("There is a serial number on the frame, it reads [serial_type]."))
+			else if(isnull(serial_type))
+				to_chat(user, SPAN_DANGER("The serial is scribbled away."))
 
 //Grips
 /obj/item/part/gun/grip
