@@ -2502,8 +2502,8 @@
 	},
 /area/space)
 "Am" = (
-/obj/structure/salvageable/os/data,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/mob/living/simple_animal/hostile/onestar_custodian,
+/turf/simulated/floor/wood,
 /area/space)
 "Ao" = (
 /obj/structure/shuttle_part/mining{
@@ -3830,7 +3830,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/space)
 "QO" = (
-/obj/structure/salvageable/os/implant_container,
+/obj/spawner/structures/os,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "QT" = (
@@ -4193,10 +4193,6 @@
 	icon_state = "5,2"
 	},
 /area/space)
-"TJ" = (
-/obj/structure/salvageable/os/server,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/space)
 "TM" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "15,2"
@@ -4261,6 +4257,7 @@
 /obj/machinery/button{
 	pixel_x = -24
 	},
+/mob/living/simple_animal/hostile/roomba,
 /turf/simulated/floor/carpet/bcarpet,
 /area/space)
 "UZ" = (
@@ -16749,7 +16746,7 @@ cb
 gV
 cm
 dz
-dz
+Am
 dz
 dz
 dz
@@ -16793,10 +16790,10 @@ gV
 cb
 cb
 cb
+cb
+cb
 gV
-TJ
-Cz
-Cz
+QO
 Cz
 Cz
 Cz
@@ -17015,10 +17012,10 @@ ar
 cb
 cb
 cb
+cb
+cb
 gV
 QO
-Cz
-Cz
 Cz
 Cz
 Cz
@@ -17237,10 +17234,10 @@ ar
 aa
 aa
 cb
+cb
+cb
 gV
-Am
-Cz
-Cz
+QO
 Cz
 Cz
 Cz
@@ -17636,7 +17633,7 @@ cb
 cb
 cb
 gV
-gV
+xL
 xL
 xL
 xL
@@ -18080,7 +18077,7 @@ cb
 cb
 cb
 gV
-gV
+xL
 xL
 xL
 xL
@@ -18301,7 +18298,7 @@ cb
 cb
 cb
 cb
-cb
+gV
 gV
 xL
 xL
