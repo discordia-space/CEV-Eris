@@ -738,6 +738,7 @@
 /area/space)
 "hQ" = (
 /obj/structure/closet/onestar/tier1/special/empty,
+/obj/item/gun/energy/retro,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "hS" = (
