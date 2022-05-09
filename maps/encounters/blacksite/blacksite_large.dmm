@@ -100,10 +100,8 @@
 /turf/space,
 /area/space)
 "aZ" = (
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/mob/living/simple_animal/hostile/onestar_custodian,
+/turf/simulated/floor/wood,
 /area/space)
 "ba" = (
 /obj/structure/shuttle_part/science{
@@ -1986,10 +1984,8 @@
 	},
 /area/space)
 "uA" = (
-/obj/structure/sign/derelict2{
-	pixel_x = -32
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/obj/structure/sign/derelict2,
+/turf/simulated/wall/untinted/onestar_reinforced,
 /area/space)
 "uE" = (
 /turf/simulated/floor/tiled/dark/brown_platform,
@@ -2503,8 +2499,8 @@
 	},
 /area/space)
 "Am" = (
-/mob/living/simple_animal/hostile/onestar_custodian,
-/turf/simulated/floor/wood,
+/obj/spawner/structures/os,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "Ao" = (
 /obj/structure/shuttle_part/mining{
@@ -3829,10 +3825,6 @@
 "QK" = (
 /obj/machinery/mech_recharger,
 /turf/simulated/floor/tiled/dark,
-/area/space)
-"QO" = (
-/obj/spawner/structures/os,
-/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "QT" = (
 /obj/structure/shuttle_part/mining{
@@ -16538,10 +16530,10 @@ cb
 cb
 cb
 cb
-gV
-aa
-aa
-gV
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -16747,7 +16739,7 @@ cb
 gV
 cm
 dz
-Am
+aZ
 dz
 dz
 dz
@@ -16760,10 +16752,10 @@ cb
 cb
 cb
 cb
-gV
-aa
-aa
-gV
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -16794,7 +16786,7 @@ cb
 cb
 cb
 gV
-QO
+Am
 Cz
 Cz
 Cz
@@ -16982,10 +16974,10 @@ cb
 cb
 cb
 cb
-gV
-aa
-aa
-gV
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -17016,7 +17008,7 @@ cb
 cb
 cb
 gV
-QO
+Am
 Cz
 Cz
 Cz
@@ -17204,10 +17196,10 @@ cb
 cb
 cb
 cb
-gV
-xL
-xL
-gV
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -17238,7 +17230,7 @@ cb
 cb
 cb
 gV
-QO
+Am
 Cz
 Cz
 Cz
@@ -17427,8 +17419,8 @@ gV
 gV
 gV
 gV
-xL
-aZ
+gV
+gV
 gV
 gV
 gV
@@ -17638,7 +17630,7 @@ xL
 xL
 xL
 xL
-uA
+xL
 xL
 bb
 xL
@@ -17649,7 +17641,7 @@ xL
 fY
 xL
 xL
-xL
+fY
 xL
 xL
 xL
@@ -17863,7 +17855,7 @@ xL
 xL
 xL
 gV
-gV
+uA
 gV
 gV
 xL
