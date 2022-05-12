@@ -37,6 +37,7 @@
 	name = "virus dish"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-b"
+	price_tag = 300
 	var/datum/disease2/disease/virus2
 	var/growth = 0
 	var/basic_info

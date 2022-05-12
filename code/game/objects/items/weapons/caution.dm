@@ -11,6 +11,7 @@
 	attack_verb = list("warned", "cautioned", "smashed")
 	rarity_value = 5
 	spawn_tags = SPAWN_TAG_JUNK
+	price_tag = 10
 
 /obj/item/caution/cone
 	desc = "This cone is trying to warn you of something!"

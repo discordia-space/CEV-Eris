@@ -172,4 +172,13 @@
 
 /obj/item/reagent_containers/glass/bottle/trade/kaiseraurum
 	preloaded_reagents = list("kaiseraurum" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/cryptobiolin
+	preloaded_reagents = list("cryptobiolin" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/impedrezene
+	preloaded_reagents = list("impedrezene" = 60)
+
+/obj/item/reagent_containers/glass/bottle/trade/psilocybin
+	preloaded_reagents = list("psilocybin" = 60)
 // ===

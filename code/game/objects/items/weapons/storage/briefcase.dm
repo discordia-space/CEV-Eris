@@ -12,3 +12,4 @@
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 16
 	matter = list(MATERIAL_BIOMATTER = 8, MATERIAL_PLASTIC = 4)
+	price_tag = 90

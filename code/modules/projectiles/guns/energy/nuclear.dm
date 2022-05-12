@@ -21,7 +21,7 @@
 		)
 	init_recoil = HANDGUN_RECOIL(1)
 
-	serial_type = "M"
+	serial_type = "ML"
 	var/lightfail = 0
 
 
