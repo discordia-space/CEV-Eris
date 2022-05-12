@@ -549,6 +549,7 @@
 	if(params)
 		P.set_clickpoint(params)
 	var/offset = user.calculate_offset(init_offset_with_brace())
+/*
 	var/remainder = offset % 4
 	offset /= 4
 	offset = round(offset)
@@ -561,6 +562,10 @@
 			offset += roll(1,5) - 3
 		if(3)
 			offset += roll(1,7) - 4
+*/
+	offset = round(offset)
+
+	offset = roll(2, offset) - (offset * 2 + 2)
 
 	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
 
