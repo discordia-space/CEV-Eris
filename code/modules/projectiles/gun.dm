@@ -572,7 +572,7 @@
 */
 	offset = round(offset)
 
-	offset = roll(2, offset) - (offset * 2 + 2)
+	offset = roll(2, offset) - (offset + 1)
 
 	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
 
@@ -580,7 +580,7 @@
 /obj/item/gun/proc/init_offset_with_brace()
 	var/offset = init_offset
 	if(braced)
-		offset -= braceable * 6 // Bipod doubles effect
+		offset -= braceable * 3 // Bipod doubles effect
 	return offset
 
 //Suicide handling.

@@ -76,10 +76,10 @@
 
 #define VIG_OVERCHARGE_GEN 0.05
 
-#define EMBEDDED_RECOIL(x)     list(1.4*x, 0.1*x, 0*x   )
-#define HANDGUN_RECOIL(x)      list(1.2*x, 0.2*x, 0.6*x )
-#define SMG_RECOIL(x)          list(1.0*x, 0.3*x, 1.2*x )
-#define CARBINE_RECOIL(x)      list(0.8*x, 0.4*x, 1.8*x )
-#define RIFLE_RECOIL(x)        list(0.6*x, 0.5*x, 2.4*x )
-#define LMG_RECOIL(x)          list(0.4*x, 0.6*x, 3*x   )
-#define HMG_RECOIL(x)          list(0.2*x, 0.7*x, 3.6*x )
+#define EMBEDDED_RECOIL(x)     list(1.6*x, 0  *x, 0  *x )
+#define HANDGUN_RECOIL(x)      list(1.4*x, 0.1*x, 0.6*x )
+#define SMG_RECOIL(x)          list(1.2*x, 0.2*x, 1.2*x )
+#define CARBINE_RECOIL(x)      list(1  *x, 0.3*x, 1.8*x )
+#define RIFLE_RECOIL(x)        list(0.8*x, 0.4*x, 2.4*x )
+#define LMG_RECOIL(x)          list(0.6*x, 0.5*x, 3*x   )
+#define HMG_RECOIL(x)          list(0.4*x, 0.6*x, 3.6*x )
