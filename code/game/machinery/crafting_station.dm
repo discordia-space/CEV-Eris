@@ -176,7 +176,7 @@
 
 
 /obj/machinery/craftingstation/RefreshParts()
-	productivity_bonus = initial(productivity_bonus)
+	productivity_bonus = 0
 	for(var/obj/item/stock_parts/i in component_parts)
 		if(istype(i, /obj/item/stock_parts/matter_bin))
 			storage_capacity = 20 * i.rating
