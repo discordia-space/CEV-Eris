@@ -386,8 +386,8 @@
 		last_update = world.time
 
 	to_chat(user, "It holds:")
-	for(var/ore in contents)
-		to_chat(user, "- [stored_ore[ore]] [ore]")
+	for(var/obj/item/ore/O in contents)
+		to_chat(user, "- [stored_ore[O]] [O]")
 
 /obj/machinery/mining/deep_drill/verb/unload()
 	set name = "Unload Drill"
