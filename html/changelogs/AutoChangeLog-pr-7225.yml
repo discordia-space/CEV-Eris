@@ -1,8 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - tweak: Mining drill will now mine ores randomly instead of digging out vast amounts
-      of hematite and almost nothing of the other minerals
-  - rscadd: Mining drill will now display its content upon examine, just like the
-      ore box
-  - tweak: Mining drill cannot be deconstructed anymore to prevent health abuse
