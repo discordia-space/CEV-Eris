@@ -52,7 +52,7 @@ mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 		deltimer(recoil_reduction_timer)
 
 /mob/living/proc/update_cursor(var/obj/item/gun/G)
-	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES)
+	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES || !(istype(get_active_hand(), /obj/item/gun) || recoil > 0))
 		remove_cursor()
 		return
 	if(client)

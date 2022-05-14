@@ -484,45 +484,45 @@
 	update_icon()
 
 /obj/item/gun/proc/kickback(mob/living/user, obj/item/projectile/P)
-	var/base_recoil = recoil.getRating(RECOIL_BASE) * P.recoil
+	var/base_recoil = recoil.getRating(RECOIL_BASE)
 	var/brace_recoil = 0
 	var/unwielded_recoil = 0
 
 	if(!braced)
-		brace_recoil = recoil.getRating(RECOIL_TWOHAND) * P.recoil
+		brace_recoil = recoil.getRating(RECOIL_TWOHAND)
 	else if(braceable > 1)
-		base_recoil = 0.25 // With a bipod, you can negate most of your recoil
+		base_recoil /= 4 // With a bipod, you can negate most of your recoil
 
 	if(!wielded)
-		unwielded_recoil = recoil.getRating(RECOIL_ONEHAND) * P.recoil
+		unwielded_recoil = recoil.getRating(RECOIL_ONEHAND)
 
 	if(unwielded_recoil)
-		switch(unwielded_recoil)
-			if(1 to 2)
+		switch(recoil.getRating(RECOIL_ONEHAND_LEVEL))
+			if(0.6 to 0.8)
 				if(prob(25)) // Don't need to tell them every single time
 					to_chat(user, SPAN_WARNING("Your aim wavers slightly."))
-			if(2 to 4)
+			if(0.8 to 1)
 				if(prob(50))
 					to_chat(user, SPAN_WARNING("Your aim wavers as you fire \the [src] with just one hand."))
-			if(4 to 7)
+			if(1 to 1.5)
 				to_chat(user, SPAN_WARNING("You have trouble keeping \the [src] on target with just one hand."))
-			if(7 to INFINITY)
+			if(1.5 to INFINITY)
 				to_chat(user, SPAN_WARNING("You struggle to keep \the [src] on target with just one hand!"))
 
 	else if(brace_recoil)
-		switch(brace_recoil)
-			if(1 to 2)
+		switch(recoil.getRating(RECOIL_BRACE_LEVEL))
+			if(0.6 to 0.8)
 				if(prob(25))
 					to_chat(user, SPAN_WARNING("Your aim wavers slightly."))
-			if(2 to 3)
+			if(0.8 to 1)
 				if(prob(50))
 					to_chat(user, SPAN_WARNING("Your aim wavers as you fire \the [src] while carrying it."))
-			if(3 to 5)
+			if(1 to 1.2)
 				to_chat(user, SPAN_WARNING("You have trouble keeping \the [src] on target while carrying it!"))
-			if(5 to INFINITY)
+			if(1.2 to INFINITY)
 				to_chat(user, SPAN_WARNING("You struggle to keep \the [src] on target while carrying it!"))
 
-	user.handle_recoil(src, base_recoil + brace_recoil + unwielded_recoil)
+	user.handle_recoil(src, (base_recoil + brace_recoil + unwielded_recoil) * P.recoil)
 
 /obj/item/gun/proc/process_point_blank(obj/item/projectile/P, mob/user, atom/target)
 	if(!istype(P))

@@ -4,7 +4,8 @@
 #define RECOIL_BASE "recoil_buildup"
 #define RECOIL_TWOHAND "brace_penalty"
 #define RECOIL_ONEHAND "one_hand_penalty"
-
+#define RECOIL_BRACE_LEVEL "brace_penalty_level"
+#define RECOIL_ONEHAND_LEVEL "one_hand_penalty_level"
 
 /proc/getRecoil(recoil_buildup = 0, brace_penalty = 0, one_hand_penalty = 0)
 	. = locate(RECOILID)
@@ -16,10 +17,15 @@
 	var/brace_penalty
 	var/one_hand_penalty
 
+	var/brace_penalty_level
+	var/one_hand_penalty_level
+
 /datum/recoil/New(_recoil_buildup = 0, _brace_penalty = 0, _one_hand_penalty = 0)
 	recoil_buildup = _recoil_buildup
 	brace_penalty = _brace_penalty
 	one_hand_penalty = _one_hand_penalty
+	brace_penalty_level = brace_penalty / recoil_buildup
+	one_hand_penalty_level = one_hand_penalty / (recoil_buildup + brace_penalty)
 	tag = RECOILID
 
 /datum/recoil/proc/setRating(_recoil_buildup = 0, _brace_penalty = 0, _one_hand_penalty = 0)
