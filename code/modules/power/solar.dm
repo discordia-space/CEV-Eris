@@ -60,7 +60,7 @@
 /obj/machinery/power/solar/attackby(obj/item/I, mob/user)
 
 	if(QUALITY_PRYING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			var/obj/item/solar_assembly/S = locate() in src
 			if(S)
 				S.loc = src.loc
@@ -200,7 +200,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "sp_base"
 	item_state = "electropack"
-	w_class = ITEM_SIZE_BULKY // Pretty big!
+	w_class = ITEM_SIZE_HUGE // Pretty big!
 	anchored = FALSE
 	var/tracker = 0
 	var/glass_type = null
@@ -237,14 +237,14 @@
 		if(QUALITY_BOLT_TURNING)
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 				anchored = !anchored
-				user.visible_message(SPAN_NOTICE("[user] [anchored ? "un" : ""]wrenches the solar assembly into place."))
+				user.visible_message(SPAN_NOTICE("[user] [anchored ? "" : "un"]wrenches the solar assembly into place."))
 				return
 			return
 
 		if(ABORT_CHECK)
 			return
 
-	if(anchored && !isturf(loc))
+	if(anchored && isturf(loc))
 		if(istype(I, /obj/item/stack/material) && (I.get_material_name() == MATERIAL_GLASS || I.get_material_name() == MATERIAL_RGLASS))
 			var/obj/item/stack/material/S = I
 			if(S.use(2))
