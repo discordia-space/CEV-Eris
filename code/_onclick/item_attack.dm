@@ -71,7 +71,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		if(prob(10))
 			for(var/mob/living/carbon/human/H in viewers(user))
 				SEND_SIGNAL(H, SWORD_OF_TRUTH_OF_DESTRUCTION, src)
-				eotp.addObservation(200)
+				if(eotp)
+					eotp.addObservation(200)
 			qdel(src)
 		. = TRUE
 
