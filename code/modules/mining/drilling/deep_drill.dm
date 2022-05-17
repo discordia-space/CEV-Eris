@@ -19,6 +19,9 @@
 	var/max_health = 2000
 	var/health = 2000
 
+	var/last_update = 0
+	var/list/stored_ore = list()
+
 	var/active = FALSE
 	var/list/resource_field = list()
 	var/datum/golem_controller/GC
@@ -107,7 +110,7 @@
 	var/total_harvest = harvest_speed //Ore harvest-per-tick.
 	var/found_resource = FALSE
 
-	for(var/metal in ore_types)
+	for(var/metal in shuffle(ore_types))
 
 		if(contents.len >= capacity)
 			system_error("insufficient storage space")
@@ -144,7 +147,14 @@
 /obj/machinery/mining/deep_drill/attackby(obj/item/I, mob/user as mob)
 
 	if(!active)
-		if(default_deconstruction(I, user))
+		var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING), src)
+		if(tool_type == QUALITY_SCREW_DRIVING)
+			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
+				updateUsrDialog()
+				panel_open = !panel_open
+				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
+				update_icon()
 			return
 
 		if(default_part_replacement(I, user))
@@ -350,6 +360,14 @@
 			explosion(O, -1, 1, 4, 10)
 			qdel(src)
 
+/obj/machinery/mining/deep_drill/proc/update_ore_count()
+	stored_ore = list()
+	for(var/obj/item/ore/O in contents)
+		if(stored_ore[O.name])
+			stored_ore[O.name]++
+		else
+			stored_ore[O.name] = 1
+
 /obj/machinery/mining/deep_drill/examine(mob/user)
 	. = ..()
 	if(health <= 0)
@@ -362,6 +380,14 @@
 		to_chat(user, "\The [src] shows signs of damage!")
 	else
 		to_chat(user, "\The [src] is in pristine condition.")
+
+	if(world.time > last_update + 1 SECONDS)
+		update_ore_count()
+		last_update = world.time
+
+	to_chat(user, "It holds:")
+	for(var/obj/item/ore/O in contents)
+		to_chat(user, "- [stored_ore[O]] [O]")
 
 /obj/machinery/mining/deep_drill/verb/unload()
 	set name = "Unload Drill"
