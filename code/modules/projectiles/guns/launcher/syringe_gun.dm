@@ -86,7 +86,7 @@
 	var/list/darts = list()
 	var/max_darts = 1
 	var/obj/item/syringe_cartridge/next
-	serial_type = "M"
+	serial_type = "ML"
 
 /obj/item/gun/launcher/syringe/consume_next_projectile()
 	if(next)

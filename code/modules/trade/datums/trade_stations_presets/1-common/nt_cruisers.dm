@@ -14,9 +14,9 @@
 	stations_recommended = list("nt_uncommon")
 	inventory = list(
 		"Biomatter Products" = list(
-			/obj/item/reagent_containers/food/snacks/meat,
-			/obj/item/reagent_containers/food/drinks/milk,
-			/obj/item/soap/nanotrasen,
+			/obj/item/reagent_containers/food/snacks/meat = custom_good_price(100),
+			/obj/item/reagent_containers/food/drinks/milk = custom_good_price(50),
+			/obj/item/soap/nanotrasen = custom_good_price(100),
 			/obj/item/storage/pouch/medical_supply,
 			/obj/item/storage/pouch/engineering_tools,
 			/obj/item/storage/pouch/engineering_supply,
@@ -31,11 +31,11 @@
 		),
 		"Agro Supply" = list(
 			/obj/machinery/vending/hydroseeds,
-			/obj/structure/largecrate/animal/corgi,
-			/obj/structure/largecrate/animal/cow,
-			/obj/structure/largecrate/animal/goat,
-			/obj/structure/largecrate/animal/cat,
-			/obj/structure/largecrate/animal/chick,
+			/obj/structure/largecrate/animal/corgi = custom_good_price(500),
+			/obj/structure/largecrate/animal/cow = custom_good_price(1000),
+			/obj/structure/largecrate/animal/goat = custom_good_price(300),
+			/obj/structure/largecrate/animal/cat = custom_good_price(500),
+			/obj/structure/largecrate/animal/chick = custom_good_price(100),
 			/obj/item/reagent_containers/spray/plantbgone,
 			/obj/item/reagent_containers/glass/bottle/ammonia,
 			/obj/item/tool/hatchet,
@@ -55,7 +55,8 @@
 			/obj/item/grenade/chem_grenade/cleaner/nt_cleaner,
 			/obj/item/grenade/chem_grenade/antiweed/nt_antiweed,
 			/obj/structure/mopbucket,		
-			/obj/structure/janitorialcart
+			/obj/structure/janitorialcart,
+			/obj/item/holyvacuum
 		)
 	)
 	hidden_inventory = list(
@@ -69,7 +70,7 @@
 			/obj/item/seeds/bloodtomatoseed = good_data("blood tomato seeds", list(1,3), null),
 			/obj/item/seeds/killertomatoseed = good_data("killer tomato seeds", list(1,3), null),
 			/obj/item/seeds/bluetomatoseed = good_data("blue tomato seeds", list(1,3), null),
-			/obj/item/seeds/bluespacetomatoseed = good_data("blusepace tomato seeds", list(1,3), null),
+			/obj/item/seeds/bluespacetomatoseed = good_data("bluespace tomato seeds", list(1,3), null),
 			/obj/item/seeds/poisonedappleseed = good_data("poison apple seeds", list(1,3), null),
 			/obj/item/seeds/goldappleseed = good_data("golden apple seeds", list(1,3), null),
 			/obj/item/seeds/ambrosiadeusseed = good_data("ambrosia deus seeds", list(1,3), null),

@@ -1,4 +1,0 @@
-author: SirRichardFrancis
-delete-after: true
-changes:
-  - bugfix: Shift+B hotkey interactions with various storage types

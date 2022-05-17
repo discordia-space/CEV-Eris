@@ -1,6 +1,0 @@
-author: Chickenish
-delete-after: true
-changes:
-  - balance: Grabbing now takes time to upgrade aggressive and kill grabs.
-  - balance: Neck Grab no longer stuns the victim for twenty seconds.
-  - bugfix: Grab animations now line up with their effects.

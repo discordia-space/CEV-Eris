@@ -162,6 +162,15 @@
 /obj/item/organ/external/robotic/excelsior/r_leg
 	default_description = /datum/organ_description/leg/right
 
+/obj/item/organ/external/robotic/excelsior/groin
+	default_description = /datum/organ_description/groin
+
+/obj/item/organ/external/robotic/excelsior/chest
+	default_description = /datum/organ_description/chest
+
+/obj/item/organ/external/robotic/excelsior/head
+	default_description = /datum/organ_description/head
+
 /obj/item/organ/external/robotic/one_star
 	name = "One star"
 	desc = "Advanced, extremely resilient and mobile prosthetic. Inscribed with \"Made in\" followed by gibberish, must have been lost to time."
@@ -212,3 +221,8 @@
 /obj/item/organ/external/robotic/makeshift/r_leg
 	default_description = /datum/organ_description/leg/right
 
+/obj/item/organ/external/robotic/makeshift/groin
+	default_description = /datum/organ_description/groin
+
+/obj/item/organ/external/robotic/makeshift/chest
+	default_description = /datum/organ_description/chest
