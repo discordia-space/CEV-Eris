@@ -2459,7 +2459,8 @@
 	},
 /area/centcom/merc_base)
 "hg" = (
-/obj/machinery/chem_master,
+/obj/structure/table/reinforced,
+/obj/machinery/chem_heater,
 /turf/unsimulated/floor{
 	dir = 2;
 	icon_state = "dark"
@@ -2620,19 +2621,10 @@
 	},
 /area/centcom/merc_base)
 "hH" = (
+/obj/item/storage/deferred/crate/tools,
+/obj/item/storage/deferred/crate/tools,
+/obj/item/storage/deferred/crate/tools,
 /obj/structure/table/rack,
-/obj/item/storage/box/handcuffs{
-	pixel_x = 4;
-	pixel_y = 2
-	},
-/obj/item/storage/box/flashbangs,
-/obj/item/grenade/smokebomb,
-/obj/item/grenade/smokebomb,
-/obj/item/grenade/smokebomb,
-/obj/item/grenade/smokebomb,
-/obj/item/grenade/smokebomb,
-/obj/item/grenade/smokebomb,
-/obj/item/grenade/smokebomb,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -2796,12 +2788,19 @@
 	},
 /area/shuttle/mercenary)
 "iz" = (
+/obj/item/reagent_containers/syringe/large,
+/obj/item/reagent_containers/syringe/large,
+/obj/item/reagent_containers/syringe/large,
+/obj/item/reagent_containers/syringe/large,
+/obj/item/reagent_containers/syringe/large,
+/obj/item/reagent_containers/syringe/large,
+/obj/item/reagent_containers/syringe/large,
+/obj/item/reagent_containers/syringe/large,
+/obj/item/reagent_containers/syringe/large,
+/obj/item/reagent_containers/syringe/large,
+/obj/item/reagent_containers/syringe/large,
+/obj/item/reagent_containers/syringe/large,
 /obj/structure/table/rack,
-/obj/item/stack/material/plasteel/full,
-/obj/item/stack/material/steel/full,
-/obj/item/stack/material/glass/full,
-/obj/item/stack/material/wood/full,
-/obj/item/stack/material/silver/full,
 /turf/unsimulated/floor{
 	dir = 2;
 	icon_state = "dark"
@@ -2886,8 +2885,16 @@
 	},
 /area/centcom/merc_base)
 "iQ" = (
-/obj/structure/table/rack,
+/obj/item/storage/box/beakers,
+/obj/item/reagent_containers/glass/beaker/vial,
+/obj/item/reagent_containers/glass/beaker/vial,
+/obj/item/reagent_containers/glass/beaker/vial,
+/obj/item/reagent_containers/glass/beaker/vial,
+/obj/item/reagent_containers/glass/beaker/vial,
+/obj/item/reagent_containers/glass/beaker/vial,
+/obj/structure/table/reinforced,
 /turf/unsimulated/floor{
+	dir = 2;
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
@@ -2959,14 +2966,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/centcom/evac)
 "jj" = (
-/obj/structure/table/rack,
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/glass/beaker/large,
+/obj/machinery/vending/coffee,
 /turf/unsimulated/floor{
-	dir = 2;
-	icon_state = "dark"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/merc_base)
 "jk" = (
@@ -3007,15 +3010,6 @@
 	icon_state = "diagonalWall3"
 	},
 /area/shuttle/mercenary)
-"ju" = (
-/obj/structure/urinal{
-	pixel_y = 32
-	},
-/turf/unsimulated/floor{
-	dir = 2;
-	icon_state = "freezerfloor"
-	},
-/area/centcom/merc_base)
 "jv" = (
 /obj/structure/window/basic{
 	dir = 8
@@ -3124,15 +3118,11 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
-"jT" = (
-/obj/structure/table/rack,
-/turf/unsimulated/floor{
-	dir = 2;
-	icon_state = "dark"
-	},
-/area/centcom/merc_base)
 "jU" = (
-/obj/item/modular_computer/console/preset,
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
 /turf/unsimulated/floor{
 	dir = 2;
 	icon_state = "dark"
@@ -3178,18 +3168,6 @@
 /obj/structure/lattice,
 /turf/simulated/mineral,
 /area/space)
-"kb" = (
-/obj/structure/table/rack,
-/obj/item/clothing/gloves/insulated,
-/obj/item/clothing/gloves/insulated,
-/obj/item/clothing/gloves/insulated,
-/obj/item/clothing/gloves/insulated,
-/obj/item/clothing/gloves/insulated,
-/obj/item/clothing/gloves/insulated,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/centcom/merc_base)
 "ke" = (
 /obj/item/device/radio/electropack,
 /turf/simulated/shuttle/floor{
@@ -3218,12 +3196,6 @@
 /obj/structure/window/reinforced/crescent,
 /turf/space,
 /area/space)
-"ki" = (
-/obj/machinery/suit_storage_unit/merc,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/centcom/merc_base)
 "kj" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1331;
@@ -3448,9 +3420,8 @@
 	},
 /area/shuttle/mercenary)
 "kE" = (
-/obj/machinery/autolathe,
+/obj/machinery/chemical_dispenser,
 /turf/unsimulated/floor{
-	dir = 2;
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
@@ -3520,13 +3491,6 @@
 /obj/structure/table/reinforced,
 /turf/unsimulated/floor{
 	icon_state = "white"
-	},
-/area/centcom/merc_base)
-"kQ" = (
-/obj/structure/barricade,
-/turf/unsimulated/floor{
-	dir = 2;
-	icon_state = "dark"
 	},
 /area/centcom/merc_base)
 "kR" = (
@@ -3615,7 +3579,9 @@
 	},
 /area/shuttle/mercenary)
 "ld" = (
-/obj/structure/closet/secure_closet/anesthetics,
+/obj/structure/closet/secure_closet/anesthetics{
+	req_access = list(150)
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor3"
 	},
@@ -3652,15 +3618,8 @@
 	},
 /area/shuttle/mercenary)
 "lj" = (
-/obj/item/book/ritual/cruciform/priest,
-/obj/item/book/ritual/cruciform/priest,
-/obj/item/book/ritual/cruciform/priest,
-/obj/item/book/ritual/cruciform/priest,
-/obj/item/book/ritual/cruciform/priest,
-/obj/item/book/ritual/cruciform/priest,
-/obj/structure/table/rack,
+/obj/machinery/chem_master,
 /turf/unsimulated/floor{
-	dir = 2;
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
@@ -3806,11 +3765,9 @@
 	},
 /area/shuttle/mercenary)
 "lH" = (
-/obj/item/book/ritual,
-/obj/item/book/ritual,
-/obj/structure/table/rack,
+/obj/structure/table/reinforced,
+/obj/item/stack/material/steel/full,
 /turf/unsimulated/floor{
-	dir = 2;
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
@@ -3913,7 +3870,9 @@
 	},
 /area/shuttle/mercenary)
 "lZ" = (
-/obj/structure/grille,
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5187,15 +5146,6 @@
 /obj/item/card/emag,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
-"si" = (
-/obj/item/tool/knife/neotritual,
-/obj/item/tool/knife/neotritual,
-/obj/structure/table/rack,
-/turf/unsimulated/floor{
-	dir = 2;
-	icon_state = "dark"
-	},
-/area/centcom/merc_base)
 "sN" = (
 /obj/item/caution,
 /turf/unsimulated/floor{
@@ -5213,6 +5163,12 @@
 "ty" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/meds,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5353,25 +5309,14 @@
 /obj/structure/closet,
 /obj/item/tool/pickaxe/diamonddrill,
 /obj/item/tool/pickaxe/diamonddrill,
-/obj/item/storage/backpack/military,
-/obj/item/storage/backpack/military,
+/obj/item/tool/pickaxe/diamonddrill,
+/obj/item/tool/pickaxe/diamonddrill,
+/obj/item/tool/pickaxe/diamonddrill,
+/obj/item/tool/pickaxe/diamonddrill,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
-"vn" = (
-/obj/item/book/ritual/cruciform,
-/obj/item/book/ritual/cruciform,
-/obj/item/book/ritual/cruciform,
-/obj/item/book/ritual/cruciform,
-/obj/item/book/ritual/cruciform,
-/obj/item/book/ritual/cruciform,
-/obj/structure/table/rack,
-/turf/unsimulated/floor{
-	dir = 2;
-	icon_state = "dark"
-	},
-/area/centcom/merc_base)
 "vu" = (
 /obj/structure/mirror/antag{
 	pixel_y = 28
@@ -5385,17 +5330,6 @@
 /obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/shuttle/plating,
 /area/shuttle/mercenary)
-"vZ" = (
-/obj/item/tool/knife/ritual,
-/obj/item/tool/knife/ritual,
-/obj/item/tool/knife/ritual,
-/obj/item/tool/knife/ritual,
-/obj/structure/table/rack,
-/turf/unsimulated/floor{
-	dir = 2;
-	icon_state = "dark"
-	},
-/area/centcom/merc_base)
 "wd" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/item/tank/nitrogen,
@@ -5486,9 +5420,6 @@
 /turf/space,
 /area/space)
 "yF" = (
-/obj/structure/urinal{
-	pixel_y = 32
-	},
 /obj/structure/sink{
 	dir = 8;
 	icon_state = "sink";
@@ -5544,13 +5475,6 @@
 	icon_state = "floor3"
 	},
 /area/shuttle/mercenary)
-"zT" = (
-/obj/machinery/door/airlock/centcom,
-/turf/unsimulated/floor{
-	dir = 2;
-	icon_state = "dark"
-	},
-/area/centcom/merc_base)
 "zW" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/box/drinkingglasses{
@@ -5567,18 +5491,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/centcom/evac)
-"Al" = (
-/obj/structure/table/rack,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/centcom/merc_base)
 "AW" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/crate/saw,
@@ -5714,18 +5626,9 @@
 	},
 /area/centcom/raider_base)
 "Ff" = (
-/obj/structure/table/rack,
-/obj/item/storage/box/beakers,
-/obj/item/reagent_containers/glass/beaker/vial,
-/obj/item/reagent_containers/glass/beaker/vial,
-/obj/item/reagent_containers/glass/beaker/vial,
-/obj/item/reagent_containers/glass/beaker/vial,
-/obj/item/reagent_containers/glass/beaker/vial,
-/obj/item/reagent_containers/glass/beaker/vial,
-/turf/unsimulated/floor{
-	dir = 2;
-	icon_state = "dark"
-	},
+/obj/structure/lattice,
+/obj/structure/grille,
+/turf/space,
 /area/centcom/merc_base)
 "Fl" = (
 /obj/structure/closet/cabinet,
@@ -5827,7 +5730,17 @@
 /area/centcom/merc_base)
 "HQ" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/crate/tools,
+/obj/item/storage/box/handcuffs{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/item/storage/box/flashbangs,
+/obj/item/storage/box/smokes,
+/obj/item/storage/box/smokes,
+/obj/item/storage/box/smokes,
+/obj/item/storage/box/smokes,
+/obj/item/storage/box/smokes,
+/obj/item/storage/box/smokes,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -6013,6 +5926,7 @@
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/void/SCAF,
 /obj/item/storage/backpack/satchel/military,
+/obj/item/storage/backpack/military,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -6092,13 +6006,15 @@
 	},
 /area/skipjack_station/start)
 "Oz" = (
-/obj/structure/barricade,
+/obj/machinery/vending/assist,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
 "OT" = (
-/obj/machinery/chemical_dispenser,
+/obj/item/modular_computer/console/preset{
+	dir = 10
+	},
 /turf/unsimulated/floor{
 	dir = 2;
 	icon_state = "dark"
@@ -6275,17 +6191,6 @@
 	icon_state = "white"
 	},
 /area/centcom/merc_base)
-"Vl" = (
-/obj/structure/table/rack,
-/obj/item/computer_hardware/hard_drive/portable/design/tools,
-/obj/item/computer_hardware/hard_drive/portable/design/components,
-/obj/item/computer_hardware/hard_drive/portable/design/devices,
-/obj/item/computer_hardware/hard_drive/portable/design/medical,
-/turf/unsimulated/floor{
-	dir = 2;
-	icon_state = "dark"
-	},
-/area/centcom/merc_base)
 "VH" = (
 /obj/structure/table/woodentable,
 /obj/item/book/manual/nuclear,
@@ -6383,6 +6288,7 @@
 /obj/item/reagent_containers/glass/bottle/stoxin,
 /obj/item/reagent_containers/syringe,
 /obj/item/reagent_containers/syringe/spaceacillin,
+/obj/structure/table/standard,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor3"
 	},
@@ -31374,11 +31280,11 @@ aa
 hl
 hl
 hl
-hl
-hC
-hC
-hC
-hC
+hn
+aa
+aa
+aa
+aa
 gZ
 gZ
 hJ
@@ -31576,11 +31482,11 @@ hl
 hl
 hl
 hl
-gZ
-hf
-hf
-hf
-hf
+Wf
+Ff
+Ff
+Ff
+Ff
 gZ
 hJ
 hJ
@@ -31779,10 +31685,10 @@ hl
 hl
 gZ
 gZ
-hh
-hh
-hh
-hh
+hf
+hf
+hf
+hf
 gZ
 hK
 hp
@@ -32598,11 +32504,11 @@ hJ
 hJ
 hJ
 hJ
-gZ
-gZ
-ku
-gZ
-gZ
+jq
+jq
+jq
+jq
+jq
 jq
 jq
 hf
@@ -32612,9 +32518,9 @@ jb
 gZ
 hl
 hl
+hl
 aa
-aa
-aa
+hl
 aa
 aa
 aa
@@ -32800,11 +32706,11 @@ hJ
 hJ
 hJ
 hJ
-gZ
-kG
-iX
-iX
-hf
+jq
+jq
+jq
+jq
+jq
 jq
 jq
 hf
@@ -32814,10 +32720,10 @@ iB
 gZ
 hl
 hl
-aa
-aa
-aa
-aa
+hl
+hl
+hl
+hl
 aa
 aa
 aa
@@ -32991,22 +32897,22 @@ hl
 hl
 gZ
 gZ
-hh
-hh
-hh
-hh
+gZ
+gZ
+gZ
+gZ
 gZ
 hT
 ja
 rl
+jj
 hJ
 hJ
-hJ
-gZ
-HJ
-iX
-iX
-hf
+jq
+jq
+jq
+jq
+jq
 jq
 jq
 hf
@@ -33019,7 +32925,7 @@ hl
 hl
 hl
 hl
-aa
+hl
 hl
 hl
 hl
@@ -33192,6 +33098,11 @@ hl
 hl
 hl
 hl
+Wf
+Wf
+Wf
+Wf
+Wf
 gZ
 gZ
 gZ
@@ -33201,13 +33112,8 @@ gZ
 gZ
 gZ
 gZ
+ku
 gZ
-gZ
-gZ
-gZ
-hS
-iX
-ML
 gZ
 jq
 jq
@@ -33401,12 +33307,12 @@ hl
 hl
 hl
 gZ
-ZT
-Kn
-kw
-uX
-MA
-kb
+ML
+ML
+ML
+ML
+ML
+ML
 iX
 iX
 iX
@@ -33611,7 +33517,7 @@ iX
 iX
 iX
 iX
-ML
+iX
 hf
 jq
 jq
@@ -33812,15 +33718,15 @@ iX
 iX
 iX
 iX
-iX
+jq
 iX
 hf
 jq
 jq
-hf
-hf
-hf
-hf
+gZ
+gZ
+gZ
+gZ
 gZ
 hl
 hl
@@ -34011,18 +33917,18 @@ SW
 MV
 JW
 nL
-iQ
-iQ
+ty
+wf
 iX
 iX
-ML
+iX
 hf
 jq
 jq
-jq
-jq
-jq
-jq
+jG
+jL
+yF
+yF
 gZ
 hl
 hl
@@ -34217,14 +34123,14 @@ iX
 iX
 iX
 iX
-iX
+kG
 hf
 jq
 jq
-jq
-jq
-jq
-jq
+gZ
+jL
+jL
+jL
 gZ
 hl
 hl
@@ -34419,22 +34325,22 @@ iX
 iX
 iX
 iX
-ML
+HJ
 hf
 jq
 jq
 gZ
+jv
+jC
+jM
 gZ
-gZ
-jG
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
+hl
+hl
+hl
+hl
+hl
+hl
+hl
 hl
 hl
 hl
@@ -34618,25 +34524,25 @@ AW
 TZ
 BP
 XP
-iQ
+HQ
 iX
 iX
-iX
+hS
 gZ
 jq
 jq
 gZ
 jL
-yF
-jL
+QR
+iC
 gZ
-lH
-vn
-lj
-vZ
-si
-jT
-gZ
+hl
+hl
+hl
+hl
+hl
+hl
+hl
 hl
 hl
 hl
@@ -34823,22 +34729,22 @@ iX
 iX
 iX
 iX
-ML
+iX
 gZ
-jq
-jq
 gZ
-jL
-ju
-jL
 gZ
-jU
-jq
-jq
-jq
-jq
-jq
 gZ
+gZ
+gZ
+gZ
+gZ
+hl
+hl
+hl
+hl
+hl
+hl
+hl
 hl
 hl
 hl
@@ -35026,21 +34932,21 @@ iX
 iX
 iX
 iX
-hf
-jq
-jq
 gZ
-jv
-jC
-jM
-gZ
-OT
-jq
-jq
-jq
-jq
-jq
-gZ
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
 hl
 hl
 hl
@@ -35219,30 +35125,30 @@ hl
 hl
 hl
 gZ
-iX
-Al
-wf
-ty
+ZT
+Kn
+kw
+uX
 hH
-iQ
+MA
+OT
 iX
-iX
-ML
-hf
-jq
-jq
+Oz
 gZ
-jL
-QR
-iC
-gZ
-hg
-jq
-jq
-jq
-jq
-jq
-gZ
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
 hl
 hl
 hl
@@ -35421,30 +35327,30 @@ aa
 hl
 hl
 gZ
-Oz
 gZ
 gZ
 gZ
 gZ
 gZ
 gZ
+iz
+iX
+lH
 gZ
-gZ
-gZ
-jq
-jq
-gZ
-gZ
-gZ
-gZ
-gZ
-jj
-Ff
-jq
-jq
-jq
-Vl
-gZ
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
 hl
 hl
 hl
@@ -35622,31 +35528,31 @@ aa
 aa
 hl
 hl
+hl
+hl
+hl
+hl
+hl
+hl
 gZ
-iX
+jU
 lZ
-iX
-iX
-iX
-iX
-HQ
-HQ
-HQ
+iQ
 gZ
-jq
-jq
-kQ
-jq
-zT
-jq
-gZ
-jq
-jq
-jq
-jq
-jq
-iz
-gZ
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
 hl
 hl
 hl
@@ -35824,31 +35730,31 @@ aa
 hl
 hl
 hl
+hl
+hl
+hl
+hl
+hl
+hl
 gZ
-iX
-lZ
-iX
-ki
-ki
-iX
-iX
-iX
-iX
-gZ
-jq
-jq
-kQ
-jq
-gZ
-jq
-zT
-jq
-jq
-jq
-jq
-jq
+hg
 kE
+lj
 gZ
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
 hl
 hl
 hl
@@ -36026,31 +35932,31 @@ aa
 hl
 hl
 hl
+hl
+hl
+hl
+hl
+hl
+hl
 gZ
 gZ
 gZ
 gZ
 gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
 hl
 hl
 hl
