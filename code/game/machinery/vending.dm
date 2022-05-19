@@ -1059,7 +1059,6 @@
 
 	prices = list(
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 200,
-					/obj/item/gun/projectile/colt = 1000,
 					/obj/item/gun/projectile/automatic/ak47/fs = 2800,
 					/obj/item/ammo_magazine/slpistol/rubber = 100,
 					/obj/item/ammo_magazine/pistol/rubber = 150,
