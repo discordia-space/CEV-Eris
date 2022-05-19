@@ -294,6 +294,8 @@
 	var/nexttime = 0		// time for a panel to rotate of 1� in manual tracking
 	var/obj/machinery/power/tracker/connected_tracker = null
 	var/list/connected_panels = list()
+	var/icon_keyboard ="generic_key"
+	var/icon_screen ="generic"
 
 /obj/machinery/power/solar_control/drain_power()
 	return -1
@@ -350,23 +352,29 @@
 
 /obj/machinery/power/solar_control/Initialize()
 	. = ..()
+	update_icon()
 	if(!connect_to_network()) return
 	set_panels(cdir)
 
-/obj/machinery/power/solar_control/on_update_icon()
-	if(stat & BROKEN)
-		icon_state = "broken"
-		cut_overlays()
-		return
+/obj/machinery/power/solar_control/update_icon()
+	overlays.Cut()
 	if(stat & NOPOWER)
-		icon_state = "c_unpowered"
-		cut_overlays()
+		set_light(0)
+		if(icon_keyboard)
+			overlays += image(icon,"[icon_keyboard]_off")
+		update_openspace()
 		return
-	icon_state = "solar"
-	cut_overlays()
-	if(cdir > -1)
-		add_overlays(image('icons/obj/computer.dmi', "solcon-o", FLY_LAYER, angle2dir(cdir)))
-	return
+	else
+		set_light(light_range_on, light_power_on)
+
+	if(stat & BROKEN)
+		overlays += image(icon,"[icon_state]_broken")
+	else
+		overlays += image(icon,icon_screen)
+
+	if(icon_keyboard)
+		overlays += image(icon, icon_keyboard)
+	update_openspace()
 
 /obj/machinery/power/solar_control/attack_hand(mob/user)
 	if(!..())
@@ -506,6 +514,10 @@
 /obj/machinery/power/solar_control/power_change()
 	..()
 	update_icon()
+	if(stat & NOPOWER)
+		set_light(0)
+	else
+		set_light(light_range_on, light_power_on)
 
 
 /obj/machinery/power/solar_control/proc/broken()
