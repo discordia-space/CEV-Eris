@@ -78,7 +78,7 @@
 		return
 
 	if(user.a_intent != I_HURT)
-		var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING, panel_open ? QUALITY_PRYING : null), src)
+		var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING), src)
 		switch(tool_type)
 			if(QUALITY_BOLT_TURNING)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
@@ -92,12 +92,6 @@
 					panel_open = !panel_open
 					to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance panel."))
 					update_icon()
-				return
-
-			if(QUALITY_PRYING)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
-					dismantle()
 				return
 
 	if(stored_item_object || sales_paused || !user.unEquip(I))
@@ -268,7 +262,7 @@
 
 	data["budget"]			= vagabond_charity_budget
 	data["sales_paused"]	= sales_paused
-	data["access_level"]	= (user_access.Find(access_merchant) ? 2 : (user_access.Find(access_cargo)))
+	data["access_level"]	= (BITTEST(wire_flags, WIRE_ID_SCAN) ? 0 : (user_access.Find(access_merchant) ? 2 : (user_access.Find(access_cargo) ? 1 : 0)))
 	data["item_name"]		= null
 
 	if(stored_item_object)
