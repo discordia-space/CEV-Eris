@@ -1059,7 +1059,6 @@
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 200,
 					/obj/item/gun/projectile/automatic/ak47/fs = 3200,
 					/obj/item/gun/projectile/shotgun/pump/gladstone = 2000,
-					/obj/item/gun/projectile/automatic/molly = 1600,
 					/obj/item/gun/projectile/colt = 1200,
 					/obj/item/gun/projectile/revolver/deckard = 3600,
 					/obj/item/ammo_magazine/slpistol/rubber = 100,
