@@ -66,7 +66,7 @@
 	if(!MS)
 		return
 	if(biotank.canister)
-		biotank.reagents.trans_to_holder(biotank.canister.reagents, 10)
+		biotank.reagents.trans_to_holder(biotank.canister.reagents, 100)
 
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/attackby(var/obj/item/I, var/mob/user)
