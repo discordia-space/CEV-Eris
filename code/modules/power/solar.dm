@@ -294,8 +294,8 @@
 	var/nexttime = 0		// time for a panel to rotate of 1� in manual tracking
 	var/obj/machinery/power/tracker/connected_tracker = null
 	var/list/connected_panels = list()
-	var/icon_keyboard ="generic_key"
-	var/icon_screen ="generic"
+	var/icon_keyboard = "generic_key"
+	var/icon_screen = "generic"
 
 /obj/machinery/power/solar_control/drain_power()
 	return -1
@@ -368,9 +368,9 @@
 		set_light(light_range_on, light_power_on)
 
 	if(stat & BROKEN)
-		overlays += image(icon,"[icon_state]_broken")
+		overlays += image(icon," [icon_state]_broken")
 	else
-		overlays += image(icon,icon_screen)
+		overlays += image(icon, icon_screen)
 
 	if(icon_keyboard)
 		overlays += image(icon, icon_keyboard)
