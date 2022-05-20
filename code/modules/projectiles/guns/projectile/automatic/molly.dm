@@ -33,7 +33,7 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)
 
-	price_tag = 1400
+	price_tag = 1000
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	wield_delay = 0 // pistols don't get delays. X Doubt
 	gun_parts = list(/obj/item/part/gun/frame/molly = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
