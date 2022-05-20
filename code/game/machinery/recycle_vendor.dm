@@ -1,6 +1,6 @@
 /obj/machinery/recycle_vendor
-	name = "Recycling vendor"
-	desc = "A generic vending machine."
+	name = "recycling vendor"
+	desc = "Recycle today for a better tomorrow!"
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "recycle"
 	layer = BELOW_OBJ_LAYER
@@ -215,7 +215,6 @@
 	if(!BITTEST(wire_flags, WIRE_SPEAKER) && prob(1)) // Flag is set when value is not default
 		speak(pick(
 			"Bitch, don\'t you wanna start making some real fucking money?!",
-			"Recycle today for a better tomorrow!",
 			"Recycle. Everybody\'s doing it.",
 			"Recycling is the only option.",
 			"Recycling is a cool thing to do.",
