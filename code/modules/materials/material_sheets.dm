@@ -37,6 +37,13 @@
 	matter = material.get_matter()
 	update_strings()
 
+/obj/item/stack/material/get_matter()
+	. = list()
+	if(matter)
+		for(var/i in matter)
+			matter[i] = amount
+		. = matter
+
 /obj/item/stack/material/attack_self(mob/living/user)
 	user.craft_menu()
 
@@ -403,7 +410,7 @@
 	singular_name = "biomatter sheet"
 	icon_state = "sheet-biomatter"
 	default_type = MATERIAL_BIOMATTER
-	price_tag = 10
+	price_tag = 5
 	novariants = FALSE
 	var/biomatter_in_sheet = BIOMATTER_PER_SHEET // defined in solidifier.dm
 
