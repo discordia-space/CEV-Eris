@@ -105254,6 +105254,10 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark,
 /area/eris/medical/genetics)
+"umG" = (
+/obj/machinery/recycle_vendor,
+/turf/simulated/floor/tiled/steel,
+/area/eris/hallway/side/section3starboard)
 "uoJ" = (
 /obj/structure/bed/padded,
 /obj/item/bedsheet/yellow,
@@ -208704,7 +208708,7 @@ dZD
 cFX
 dXb
 ihk
-cFX
+umG
 cGa
 vfD
 avn
