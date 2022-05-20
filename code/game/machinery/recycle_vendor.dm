@@ -61,7 +61,7 @@
 	if(stat & NOPOWER || !anchored)
 		return
 
-	overlays += sales_paused || !materials_allowed.len	? "recycle_screen_red"			: "recucle_screen_green"
+	overlays += sales_paused || !materials_allowed.len	? "recycle_screen_red"			: "recycle_screen_green"
 	overlays += materials_stored.len					? "recycle_button_top_green"	: "recycle_button_top_red"
 	overlays += vagabond_charity_budget > 500			? "recycle_button_bottom_green"	: "recycle_button_bottom_red"
 
