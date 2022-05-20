@@ -17,15 +17,16 @@
 	var/brace_penalty
 	var/one_hand_penalty
 
-	var/brace_penalty_level
-	var/one_hand_penalty_level
+	var/brace_penalty_level = 0
+	var/one_hand_penalty_level = 0
 
 /datum/recoil/New(_recoil_buildup = 0, _brace_penalty = 0, _one_hand_penalty = 0)
 	recoil_buildup = _recoil_buildup
 	brace_penalty = _brace_penalty
 	one_hand_penalty = _one_hand_penalty
-	brace_penalty_level = brace_penalty / recoil_buildup
-	one_hand_penalty_level = one_hand_penalty / (recoil_buildup + brace_penalty)
+	if(recoil_buildup)
+		brace_penalty_level = brace_penalty / recoil_buildup
+		one_hand_penalty_level = one_hand_penalty / (recoil_buildup + brace_penalty)
 	tag = RECOILID
 
 /datum/recoil/proc/setRating(_recoil_buildup = 0, _brace_penalty = 0, _one_hand_penalty = 0)
