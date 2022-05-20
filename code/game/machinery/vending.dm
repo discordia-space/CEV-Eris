@@ -830,7 +830,7 @@
 
 	return
 
-/obj/machinery/vending/proc/speak(var/message)
+/obj/machinery/proc/speak(message)
 	if(stat & NOPOWER)
 		return
 
@@ -864,7 +864,7 @@
 	return
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
-/obj/machinery/vending/proc/throw_item()
+/obj/machinery/proc/throw_item()
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)
 		return 0

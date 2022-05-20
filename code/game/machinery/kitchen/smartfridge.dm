@@ -419,7 +419,7 @@
 		return 1
 	return 0
 
-/obj/machinery/smartfridge/proc/throw_item()
+/obj/machinery/smartfridge/throw_item()
 	var/obj/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)

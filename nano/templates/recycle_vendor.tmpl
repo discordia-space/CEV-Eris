@@ -1,0 +1,34 @@
+Payout budget: {{:data.budget}}
+{{if data.access_level}}
+	{{:helper.link('Set', null, {'set_budget' : 1})}}
+	{{if data.sales_paused}}
+		{{:helper.link('Unsuspend', null, {'allow_sales' : 1})}}
+	{{else}}
+		{{:helper.link('Suspend', null, {'disallow_sales' : 1})}}
+	{{/if}}
+	{{:helper.link('Eject materials', null, {'eject_materials' : 1})}}
+{{/if}}
+<br><br>
+{{if data.item_name}}
+	Inserted: {{:data.item_name}}<br><br>
+	{{:data.item_fluff}}<br><br>
+	{{:helper.link('Eject', null, {'eject_item' : 1})}}
+	{{:helper.link('Recycle', null, {'recycle_item' : 1})}}<br><br>
+{{else}}
+	<div align='center' style="font-size: large; font-weight: bold;"> Insert an item to recycle </div>
+{{/if}}
+<br><br>
+{{if data.access_level > 1}}
+	{{for data.materials}}
+		<br><br>
+		{{:value.name}}
+		{{if value.is_allowed}}
+			{{:helper.link('', 'circle-minus', {'disallow_material' : value.name})}}
+		{{else}}
+			{{:helper.link('', 'circle-plus', {'allow_material' : value.name})}}
+		{{/if}}
+		{{if value.is_stored}}
+			{{:helper.link('', 'eject', {'eject_material' : value.name})}}
+		{{/if}}
+	{{/for}}
+{{/if}}
