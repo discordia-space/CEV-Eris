@@ -77,7 +77,7 @@
 			".40 SMG magazine (empty, 25 ammo, 12 points)" = list(12, /obj/item/ammo_magazine/msmg/empty),
 			".40 ammo box (30 ammo, 15 points)" = list(15, /obj/item/ammo_magazine/ammobox/magnum/scrap)),
 		CAL_SHOTGUN = list(
-			".50 slug pile (5 ammo, 3 points)" = list(3, //obj/item/ammo_casing/shotgun/scrap/prespawned),
+			".50 slug pile (5 ammo, 3 points)" = list(3, /obj/item/ammo_casing/shotgun/scrap/prespawned),
 			".50 pellet pile (5 ammo, 3 points)" = list(3, /obj/item/ammo_casing/shotgun/pellet/scrap/prespawned),
 			".50 beanbag pile (5 ammo, 3 points)" = list(3, /obj/item/ammo_casing/shotgun/beanbag/scrap/prespawned),
 			".50 slug box (30 ammo, 15 points)" = list(15, /obj/item/ammo_magazine/ammobox/shotgun/scrap),
