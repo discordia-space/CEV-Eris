@@ -159,8 +159,8 @@
 			if(i in materials_allowed)
 				var/material/M = get_material_by_name(i)
 				var/obj/item/stack/material/S = new M.stack_type(null, stored_item_materials[i])
-				stored_item_value += S.get_item_cost()
-				stored_item_fluff += "<br>[i] - [stored_item_materials[i]] units, worth [S.get_item_cost()] credits."
+				stored_item_value += round(S.get_item_cost(), 2) / 2
+				stored_item_fluff += "<br>[i] - [stored_item_materials[i]] units, worth [round(S.get_item_cost(), 2) / 2] credits."
 			else
 				stored_item_fluff += "<br>Payouts for [i] suspended by Aster Guild representative."
 		else // Bay leftover materials
@@ -187,11 +187,12 @@
 	T.apply_to(merchants_pocket)
 
 	for(var/i in stored_item_materials)
-		if(i in materials_stored)
-			materials_stored[i] += stored_item_materials[i]
-		else
-			materials_stored.Add(i)
-			materials_stored[i] = stored_item_materials[i]
+		if(i in materials_supported)
+			if(i in materials_stored)
+				materials_stored[i] += stored_item_materials[i]
+			else
+				materials_stored.Add(i)
+				materials_stored[i] = stored_item_materials[i]
 
 	playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 50, 1)
 	spawn_money(stored_item_value, loc)
