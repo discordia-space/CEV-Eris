@@ -1,0 +1,5 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - balance: recycling vendor payouts halved
+  - bugfix: several recycling vendor bugs
