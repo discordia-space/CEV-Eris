@@ -34,7 +34,7 @@
 	path = /obj/item/deck/tarot
 
 /datum/gear/yho
-	display_name = "deck of yho cards"
+	display_name = "deck of YHO cards"
 	path = /obj/item/storage/card_holder/yho
 
 /datum/gear/holder
