@@ -40,6 +40,9 @@
 /obj/item/stack/material/attack_self(mob/living/user)
 	user.craft_menu()
 
+/obj/item/stack/material/get_material()
+	return material
+
 /obj/item/stack/material/proc/get_default_type()
 	return default_type
 
