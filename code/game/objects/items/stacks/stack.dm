@@ -185,7 +185,7 @@
 	if(matter)
 		. = matter.Copy()
 		for(var/i in .)
-			.[i] = amount
+			.[i] = .[i] * amount
 
 
 /obj/item/stack/Topic(href, href_list)
