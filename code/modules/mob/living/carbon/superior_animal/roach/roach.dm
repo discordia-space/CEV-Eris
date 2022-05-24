@@ -60,8 +60,7 @@
 	.=..()
 	if(.)
 		for (var/mob/living/carbon/superior_animal/roach/fuhrer/F in range(src,8))
-			if(!F.stat)
-				F.distress_call()
+			F.distress_call()
 
 		layer = BELOW_MOB_LAYER // Below stunned roaches
 
