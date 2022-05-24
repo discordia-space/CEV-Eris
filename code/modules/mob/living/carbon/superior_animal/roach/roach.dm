@@ -59,8 +59,9 @@
 /mob/living/carbon/superior_animal/roach/death()
 	.=..()
 	if(.)
-		for (var/mob/living/carbon/superior_animal/roach/fuhrer/F in range(src,8))
-			F.distress_call()
+		for(var/mob/living/carbon/superior_animal/roach/fuhrer/F in range(src,8))
+			if(!F.stat)
+				F.distress_call()
 
 	if(prob(3))
 		visible_message(SPAN_DANGER("\the [src] hacks up a tape!"))
