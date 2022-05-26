@@ -728,8 +728,8 @@
 
 /obj/machinery/autolathe/proc/can_print(datum/computer_file/binary/design/design_file)
 
-	if(use_oddities && !oddity)
-		return ERR_NOODDITY
+//	if(use_oddities && !oddity)
+//		return ERR_NOODDITY
 
 	if(paused)
 		return ERR_PAUSED
