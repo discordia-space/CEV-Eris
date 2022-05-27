@@ -54,6 +54,7 @@
 	var/base_spreading = 90 // higher value means better chance to hit here. derp.
 	var/spreading_step = 15
 	var/projectile_accuracy = 1
+	var/recoil = 0
 
 	//Effects
 	var/stun = 0
