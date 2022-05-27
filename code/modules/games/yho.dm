@@ -33,3 +33,4 @@
 			P.back_icon = "card_back_yho"
 			P.desc = "A [color] YHO playing card."
 			cards += P
+			
