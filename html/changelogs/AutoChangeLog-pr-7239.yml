@@ -1,0 +1,4 @@
+author: Trilbyspaceclone
+delete-after: true
+changes:
+  - bugfix: Fixes .50 scrap slugs in ammo kits giving pistol ammo
