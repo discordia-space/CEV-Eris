@@ -42,9 +42,6 @@
 	return
 
 /obj/machinery/autolathe/nanoforge/proc/compress_matter(mob/user)
-//	if(!inspiration || !inspiration.perk)
-//		to_chat(user, SPAN_WARNING("Catalyst not found."))
-//		return
 	var/compressed_amt
 	for(var/mat in stored_material)
 		compressed_amt += stored_material[mat] * matter_to_compressed[mat]
