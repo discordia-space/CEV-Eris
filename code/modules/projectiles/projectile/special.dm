@@ -4,6 +4,7 @@
 	damage_types = list(BURN = 0)
 	nodamage = TRUE
 	check_armour = ARMOR_ENERGY
+	recoil = 5
 
 /obj/item/projectile/ion/on_hit(atom/target)
 	empulse(target, 1, 1)
@@ -16,6 +17,7 @@
 	check_armour = ARMOR_BULLET
 	sharp = TRUE
 	edge = TRUE
+	recoil = 3
 
 /obj/item/projectile/bullet/gyro/on_hit(atom/target)
 	explosion(target, -1, 0, 2)
@@ -29,6 +31,7 @@
 	style_damage = 101 //single shot, incredibly powerful. If you get direct hit with this you deserve it, if you dodge the direct shot you're protected from the explosion.
 	check_armour = ARMOR_BOMB
 	penetrating = -5
+	recoil = 40
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/rocket/launch(atom/target, target_zone, x_offset, y_offset, angle_offset)
@@ -228,6 +231,7 @@
 	can_ricochet = FALSE
 	sharp = FALSE
 	embed = FALSE
+	recoil = 4
 
 /obj/item/projectile/bullet/flare/on_hit(atom/target, blocked = FALSE)
 	. = ..()
