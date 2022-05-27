@@ -92,7 +92,6 @@
 
 /obj/machinery/autolathe/nanoforge/icon_off()
 	. = ..()
-//	if(. || !inspiration)
 	if(.)
 		icon_state = initial(icon_state)
 		icon_state = "[icon_state]_off"
