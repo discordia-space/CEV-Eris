@@ -154,6 +154,10 @@
 	stored_item_fluff = "Material composition:"
 	stored_item_materials = stored_item_object.get_matter()
 
+	if(stored_item_object.contents.len)	// Storage items are too resource intensive to check (populate_contents() means we have to create new instances of every object within the initial object)
+		stored_item_fluff += "<br>ERROR Storage Item Nesting Detected."
+		return
+
 	for(var/i in stored_item_materials)
 		if(i in materials_supported)
 			if(i in materials_allowed)
@@ -179,12 +183,12 @@
 		flick("recycle_screen_red", overlays[1])
 		return
 
+	vagabond_charity_budget -= stored_item_value
+	var/datum/transaction/T = new(-stored_item_value, "", "Recycling payout for [stored_item_object.name]", src)
+	T.apply_to(merchants_pocket)
+
 	qdel(stored_item_object)
 	stored_item_object = null
-
-	vagabond_charity_budget -= stored_item_value
-	var/datum/transaction/T = new(-stored_item_value, "", "Recycling payout", src)
-	T.apply_to(merchants_pocket)
 
 	for(var/i in stored_item_materials)
 		if(i in materials_supported)
