@@ -618,7 +618,7 @@
 	result = 1
 	return
 
-/obj/item/projectile/test/launch(atom/target)
+/obj/item/projectile/test/launch(atom/target, target_zone, x_offset, y_offset, angle_offset, proj_sound, user_recoil)
 	var/turf/curloc = get_turf(src)
 	var/turf/targloc = get_turf(target)
 	if(!curloc || !targloc)
