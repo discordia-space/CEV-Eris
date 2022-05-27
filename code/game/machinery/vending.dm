@@ -1032,7 +1032,6 @@
 					/obj/item/gun/projectile/shotgun/pump/gladstone = 4,
 					/obj/item/gun/projectile/shotgun/pump = 5,
 					/obj/item/gun/projectile/automatic/slaught_o_matic = 30,
-					/obj/item/gun/projectile/automatic/ak47/fs = 4,
 					/obj/item/ammo_magazine/pistol/rubber = 20,
 					/obj/item/ammo_magazine/hpistol/rubber = 5,
 					/obj/item/ammo_magazine/slpistol/rubber = 20,
@@ -1057,7 +1056,6 @@
 
 	prices = list(
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 200,
-					/obj/item/gun/projectile/automatic/ak47/fs = 3200,
 					/obj/item/gun/projectile/shotgun/pump/gladstone = 2000,
 					/obj/item/gun/projectile/colt = 1200,
 					/obj/item/gun/projectile/revolver/deckard = 3600,
@@ -1634,6 +1632,7 @@
 					/obj/item/ammo_magazine/smg = 12,
 					/obj/item/part/armor = 30,
 					/obj/item/part/gun = 30,
+					/obj/item/gun/projectile/automatic/ak47/fs = 4,
 					/obj/item/gun/energy/retro = 4,
 					/obj/item/gun/projectile/shotgun/doublebarrel = 4,
 					/obj/item/gun/projectile/mk58  = 2,
@@ -1657,6 +1656,7 @@
 					/obj/item/ammo_magazine/smg = 400,
 					/obj/item/part/armor = 700,
 					/obj/item/part/gun = 700,
+					/obj/item/gun/projectile/automatic/ak47/fs = 3200,
 					/obj/item/gun/energy/retro = 1200,
 					/obj/item/gun/projectile/shotgun/doublebarrel = 1400,
 					/obj/item/gun/projectile/mk58  = 900,
