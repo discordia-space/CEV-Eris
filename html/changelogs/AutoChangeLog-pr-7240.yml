@@ -1,0 +1,6 @@
+author: Trilbyspaceclone
+delete-after: true
+changes:
+  - balance: recycle vendor now logs what is buy'ed
+  - bugfix: Fixed mass selling stored items recycle vendor, note this didnt give you
+      wealth for items inside nested items
