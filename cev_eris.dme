@@ -1640,6 +1640,7 @@
 #include "code\modules\games\cards.dm"
 #include "code\modules\games\spaceball_cards.dm"
 #include "code\modules\games\tarot.dm"
+#include "code\modules\games\yho.dm"
 #include "code\modules\genetics\machinery_common.dm"
 #include "code\modules\genetics\moecubes.dm"
 #include "code\modules\genetics\moecubes_printer.dm"
