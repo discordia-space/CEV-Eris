@@ -1,0 +1,10 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - refactor: recoil within guns refactored
+  - refactor: bullets determine base recoil
+  - tweak: you can now wield every gun to reduce recoil, including pistols. Bracing
+      also reduces recoil. The reduction of both scales with gun size
+  - bugfix: roaches no longer suffer from recoil
+  - balance: recoil was tweaked to feel closer to the october values, giving FA a
+      slight underhand
