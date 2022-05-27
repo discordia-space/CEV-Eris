@@ -76,7 +76,7 @@
 
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"
-	recoil_buildup = 0
+	init_recoil = HANDGUN_RECOIL(1)
 	release_force = 10
 	throw_distance = 10
 

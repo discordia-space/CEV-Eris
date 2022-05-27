@@ -37,13 +37,6 @@
 	matter = material.get_matter()
 	update_strings()
 
-/obj/item/stack/material/get_matter()
-	. = list()
-	if(matter)
-		for(var/i in matter)
-			matter[i] = amount
-		. = matter
-
 /obj/item/stack/material/attack_self(mob/living/user)
 	user.craft_menu()
 

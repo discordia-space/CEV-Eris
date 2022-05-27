@@ -7,9 +7,9 @@
 
 #define category_data(nam, listOfTags) list("name" = nam, "tags" = listOfTags)
 
-#define WHOLESALE_GOODS 0.8
-#define COMMON_GOODS 1.2
-#define UNCOMMON_GOODS 1.6
+#define WHOLESALE_GOODS 1.2
+#define COMMON_GOODS 1.5
+#define UNCOMMON_GOODS 1.8
 #define RARE_GOODS 2.0
 
 /datum/trade_station
