@@ -1,0 +1,6 @@
+author: pexel5
+delete-after: true
+changes:
+  - tweak: Moved most of the loot from the warehouse to the room with nanoforge. I
+      have slightly reduced the loot in the old warehouse. Slightly expanded the nanoforge
+      room.
