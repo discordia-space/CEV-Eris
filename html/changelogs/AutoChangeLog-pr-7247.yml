@@ -1,4 +1,0 @@
-author: SirRichardFrancis
-delete-after: true
-changes:
-  - bugfix: roaches revival limit not working
