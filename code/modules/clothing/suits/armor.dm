@@ -125,10 +125,10 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	armor = list(
-		melee = 30,
-		bullet = 40,
-		energy = 40,
-		bomb = 20,
+		melee = 20,
+		bullet = 30,
+		energy = 30,
+		bomb = 10,
 		bio = 0,
 		rad = 0
 	)
@@ -140,16 +140,25 @@
 
 /obj/item/clothing/suit/storage/greatcoat/ironhammer
 	icon_state = "greatcoat_ironhammer"
+	desc = "A greatcoat created by Ironhammer Security enhanced with a special alloy for some protection and style."
+	armor = list(
+		melee = 30,
+		bullet = 40,
+		energy = 40,
+		bomb = 20,
+		bio = 0,
+		rad = 0
+	)
 
 /obj/item/clothing/suit/storage/greatcoat/serbian_overcoat
 	name = "black serbian overcoat"
-	desc = "A black serbian overcoat with armor-weave and rank epaulettes"
+	desc = "A black serbian overcoat with armor-weave and rank epaulettes."
 	icon_state = "overcoat_black"
 	item_state = "overcoat_black"
 
 /obj/item/clothing/suit/storage/greatcoat/serbian_overcoat_brown
 	name = "brown serbian overcoat"
-	desc = "A brown serbian overcoat with armor-weave and rank epaulettes"
+	desc = "A brown serbian overcoat with armor-weave and rank epaulettes."
 	icon_state = "overcoat_brown"
 	item_state = "overcoat_brown"
 
@@ -333,8 +342,8 @@
 	icon_state = "germancoat"
 	item_state = "germancoat"
 	armor = list(
-		melee = 30,
-		bullet = 30,
+		melee = 25,
+		bullet = 25,
 		energy = 40,
 		bomb = 20,
 		bio = 0,

@@ -31,6 +31,7 @@
 	desc = "Flash-resistant goggles with inbuilt medical information."
 	icon_state = "healthhud"
 	prescription = TRUE
+	style = STYLE_LOW
 
 	New()
 		..()
@@ -71,6 +72,7 @@
 	name = "Ironhammer tactical HUD"
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
+	style = STYLE_LOW
 
 /obj/item/clothing/glasses/hud/broken
 	spawn_blacklisted = TRUE //To stop the broken huds form spawning i.g - Messes with loot spawns for a broken item

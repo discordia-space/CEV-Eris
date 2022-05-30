@@ -35,6 +35,7 @@
 			/obj/item/clothing/under/dress/white,
 			/obj/item/clothing/under/helltaker,
 			/obj/item/clothing/under/storage/tracksuit
+			/obj/item/clothing/glasses/sunglasses
 		)
 	)
 	hidden_inventory = list(
@@ -48,6 +49,7 @@
 			/obj/item/clothing/head/feathertrilby,
 			/obj/item/clothing/head/fedora,
 			/obj/item/clothing/head/skull/drip
+			/obj/item/clothing/glasses/sunglasses/big
 		),
 		"Premium Collectable Hats" = list(
 			/obj/item/clothing/head/collectable/chef,

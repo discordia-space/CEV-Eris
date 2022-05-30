@@ -73,6 +73,7 @@
 	darkness_view = -1
 	flash_protection = FLASH_PROTECTION_MINOR // does not "cover the whole eye socket", lets light leak.
 	style = STYLE_HIGH
+	price_tag = 200
 
 /obj/item/clothing/glasses/sunglasses/blindfold
 	name = "blindfold"
@@ -98,6 +99,7 @@
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
 	flash_protection = FLASH_PROTECTION_MODERATE //does cover the whole eye socket
+	price_tag = 400
 
 /obj/item/clothing/glasses/artist
 	name = "4-D Glasses"

@@ -222,9 +222,9 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
+		melee = 20,
+		bullet = 20,
+		energy = 20,
 		bomb = 0,
 		bio = 0,
 		rad = 0

@@ -442,10 +442,10 @@
 	icon_state = "triadkillers"
 	item_state = "triadkillers"
 	armor = list(
-		melee = 35,
-		bullet = 35,
-		energy = 35,
-		bomb = 15,
+		melee = 25,
+		bullet = 20,
+		energy = 15,
+		bomb = 10,
 		bio = 0,
 		rad = 0
 	)
