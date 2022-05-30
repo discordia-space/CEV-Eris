@@ -55,7 +55,7 @@
 	display_name = "Sunglasses"
 	path = /obj/item/clothing/glasses/sunglasses
 	cost = 2
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Ironhammer Gunnery Sergeant","Captain","First Officer","Quartermaster","Ironhammer Inspector")
+	allowed_roles = list("Ironhammer Operative", "Ironhammer Commander", "Ironhammer Gunnery Sergeant", "Captain", "First Officer", "Quartermaster", "Ironhammer Inspector")
 
 /datum/gear/eyes/shades/prescriptionsun
 	display_name = "Sunglasses, prescription"
