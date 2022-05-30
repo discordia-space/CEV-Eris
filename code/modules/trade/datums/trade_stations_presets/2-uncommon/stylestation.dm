@@ -48,7 +48,7 @@
 			/obj/item/clothing/suit/storage/akira,
 			/obj/item/clothing/head/feathertrilby,
 			/obj/item/clothing/head/fedora,
-			/obj/item/clothing/head/skull/drip
+			/obj/item/clothing/head/skull/drip,
 			/obj/item/clothing/glasses/sunglasses/big
 		),
 		"Premium Collectable Hats" = list(
