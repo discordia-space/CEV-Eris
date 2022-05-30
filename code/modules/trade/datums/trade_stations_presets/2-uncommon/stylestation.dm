@@ -34,7 +34,7 @@
 			/obj/item/clothing/under/dress/purple,
 			/obj/item/clothing/under/dress/white,
 			/obj/item/clothing/under/helltaker,
-			/obj/item/clothing/under/storage/tracksuit
+			/obj/item/clothing/under/storage/tracksuit,
 			/obj/item/clothing/glasses/sunglasses
 		)
 	)
