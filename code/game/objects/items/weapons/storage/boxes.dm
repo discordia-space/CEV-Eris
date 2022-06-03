@@ -174,19 +174,6 @@
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
 
-/obj/item/storage/box/injectors
-	name = "box of DNA injectors"
-	desc = "This box contains injectors it seems."
-	initial_amount = 3
-	spawn_type = /obj/item/dnainjector/h2m
-
-/obj/item/storage/box/injectors/populate_contents()
-	for(var/i in 1 to initial_amount)
-		new spawn_type(src)
-	new /obj/item/dnainjector/m2h(src)
-	new /obj/item/dnainjector/m2h(src)
-	new /obj/item/dnainjector/m2h(src)
-
 /obj/item/storage/box/shotgunammo
 	name = "box of shotgun slugs"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."

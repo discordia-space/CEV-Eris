@@ -393,7 +393,7 @@ SUBSYSTEM_DEF(job)
 		to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
 
 	//Gives glasses to the vision impaired
-	if(H.disabilities & NEARSIGHTED)
+	if(get_active_mutation(H, MUTATION_NEARSIGHTED))
 		var/equipped = H.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular(H), slot_glasses)
 		if(equipped != 1)
 			var/obj/item/clothing/glasses/G = H.glasses

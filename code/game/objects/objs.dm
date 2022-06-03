@@ -22,20 +22,6 @@
 /obj/get_fall_damage()
 	return w_class * 2
 
-/obj/examine(mob/user, distance=-1, infix, suffix)
-	..(user, distance, infix, suffix)
-	if(get_dist(user, src) <= 2)
-		if (corporation)
-			if (corporation in global.GLOB.global_corporations)
-				var/datum/corporation/C = GLOB.global_corporations[corporation]
-				to_chat(user, "<font color='[C.textcolor]'>You think this [src.name] create a \
-				<IMG CLASS=icon SRC=\ref[C.icon] ICONSTATE='[C.icon_state]'>\
-				[C.name]. [C.about]</font>")
-			else
-				to_chat(user, "You think this [src.name] create a [corporation].")
-	return distance == -1 || (get_dist(src, user) <= distance)
-
-
 /obj/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
@@ -201,7 +187,7 @@
 	GLOB.hearing_objects.Remove(src)
 
 /obj/proc/eject_item(obj/item/I, mob/living/user)
-	if(!I || !user.IsAdvancedToolUser())
+	if(!I || !user.IsAdvancedToolUser() || user.stat || !user.Adjacent(I))
 		return FALSE
 	user.put_in_hands(I)
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
@@ -212,7 +198,7 @@
 	return TRUE
 
 /obj/proc/insert_item(obj/item/I, mob/living/user)
-	if(!I || !user.unEquip(I))
+	if(!I || !istype(user) || user.stat || !user.unEquip(I))
 		return FALSE
 	I.forceMove(src)
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)

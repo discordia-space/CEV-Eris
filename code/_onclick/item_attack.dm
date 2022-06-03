@@ -71,6 +71,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		if(prob(10))
 			for(var/mob/living/carbon/human/H in viewers(user))
 				SEND_SIGNAL(H, SWORD_OF_TRUTH_OF_DESTRUCTION, src)
+				if(eotp)
+					eotp.addObservation(200)
 			qdel(src)
 		. = TRUE
 
@@ -129,7 +131,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		power *= H.damage_multiplier
-	if(HULK in user.mutations)
-		power *= 2
+//	if(HULK in user.mutations)
+//		power *= 2
 	target.hit_with_weapon(src, user, power, hit_zone)
 	return

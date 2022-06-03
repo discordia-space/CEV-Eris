@@ -54,6 +54,7 @@
 	var/base_spreading = 90 // higher value means better chance to hit here. derp.
 	var/spreading_step = 15
 	var/projectile_accuracy = 1
+	var/recoil = 0
 
 	//Effects
 	var/stun = 0
@@ -410,7 +411,8 @@
 		passthrough = (A.bullet_act(src, def_zone) == PROJECTILE_CONTINUE) //backwards compatibility
 		if(isturf(A))
 			for(var/obj/O in A)
-				O.bullet_act(src)
+				if(O.density)
+					O.bullet_act(src)
 			for(var/mob/living/M in A)
 				attack_mob(M, distance)
 

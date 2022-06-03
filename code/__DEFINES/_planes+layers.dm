@@ -67,19 +67,19 @@ What is the naming convention for planes or layers?
 //The full list of planes and layers needs ported
 #define HIDING_MOB_PLANE              -1//-16 on bay.
 
-	#define HIDING_MOB_LAYER    2.54	//-0 on bay
+#define HIDING_MOB_LAYER    2.54	//-0 on bay
 
 #define LYING_MOB_PLANE               -1 //-14 on bay// other mobs that are lying down.
 
-	#define LYING_MOB_LAYER 3.8 //0 on bay
+#define LYING_MOB_LAYER 3.8 //0 on bay
 
 #define LYING_HUMAN_PLANE             -1 //-13 on bay// humans that are lying down
 
-	#define LYING_HUMAN_LAYER 3.8 //0 on bay
+#define LYING_HUMAN_LAYER 3.8 //0 on bay
 
-	//discordia-space/CEV-Eris/issues/2051
-	#define ABOVE_LYING_MOB_LAYER 3.85 
-	#define ABOVE_LYING_HUMAN_LAYER 3.85 
+//discordia-space/CEV-Eris/issues/2051
+#define ABOVE_LYING_MOB_LAYER 3.85
+#define ABOVE_LYING_HUMAN_LAYER 3.85
 
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
 #define SPACE_LAYER 1.8
@@ -116,6 +116,7 @@ What is the naming convention for planes or layers?
 #define LOW_ITEM_LAYER 2.95
 //#define OBJ_LAYER 3 //For easy recordkeeping; this is a byond define
 
+#define TOP_ITEM_LAYER 3.05
 #define CLOSED_DOOR_LAYER 3.1
 #define ABOVE_OBJ_LAYER 3.2
 #define CLOSED_FIREDOOR_LAYER 3.21

@@ -406,6 +406,12 @@
 	result = "ryetalyn"
 	required_reagents = list("arithrazine" = 1, "carbon" = 1)
 	result_amount = 2
+
+/datum/chemical_reaction/kognim
+	result = "kognim"
+	required_reagents = list("radium" = 1, "ryetalyn" = 2, "synaptizine" = 1)
+	result_amount = 2
+
 /datum/chemical_reaction/negative_ling
 	result = "negativeling"
 	required_reagents = list("ryetalyn" = 1, "carbon" = 1)

@@ -24,10 +24,10 @@
 	if(istype(L, /mob/living/carbon/superior_animal/roach))
 		var/mob/living/carbon/superior_animal/roach/bug = L
 		if(bug.stat == DEAD)
-			if((bug.blattedin_revives_left >= 0) && prob(70))//Roaches sometimes can come back to life from healing vapors
+			if(bug.blattedin_revives_left && prob(70))//Roaches sometimes can come back to life from healing vapors
 				bug.visible_message("<b>\The [bug.name]</b> twitches as it comes back to life!")
 				blattedin_revive(bug)
 
-/datum/reagent/toxin/blattedin/proc/blattedin_revive(var/mob/living/carbon/superior_animal/roach/bug)
-	bug.blattedin_revives_left = max(0, bug.blattedin_revives_left - 1)
+/datum/reagent/toxin/blattedin/proc/blattedin_revive(mob/living/carbon/superior_animal/roach/bug)
+	bug.blattedin_revives_left--
 	bug.rejuvenate()

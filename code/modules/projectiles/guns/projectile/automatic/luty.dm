@@ -26,15 +26,14 @@
 	can_dual = 1
 	damage_multiplier = 0.7
 	penetration_multiplier = 0.9
-	recoil_buildup = 1
-	one_hand_penalty = 5 //SMG level.
+	init_recoil = SMG_RECOIL(0.6)
 	spawn_blacklisted = TRUE
 	wield_delay = 0 // No delay for this , its litteraly a junk gun
 
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_WOOD = 10)
 	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/steel = 15)
-	serial_type = "" // handmde
+
 
 /obj/item/gun/projectile/automatic/luty/update_icon()
 	cut_overlays()

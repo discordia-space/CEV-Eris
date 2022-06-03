@@ -87,6 +87,10 @@
 	hard_drive.store_file(new/datum/computer_file/program/nttransfer())
 	hard_drive.store_file(new/datum/computer_file/program/camera_monitor())
 
+// Genetics
+/obj/item/modular_computer/console/preset/genetics/install_default_programs()
+	..()
+	hard_drive.store_file(new/datum/computer_file/program/dna())
 
 // TODO: enable after baymed AI
 // Research robotics (placeholder for future)
@@ -192,6 +196,12 @@
 	..()
 	hard_drive.store_file(new /datum/computer_file/program/trade())
 	set_autorun("trade")
+
+// Trade Catalog Console
+/obj/item/modular_computer/console/preset/trade_catalog/install_default_programs()
+	..()
+	hard_drive.store_file(new /datum/computer_file/program/trade_catalog())
+	set_autorun("trade_catalog")
 
 //Dock control
 /*

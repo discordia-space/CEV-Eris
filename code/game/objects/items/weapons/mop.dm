@@ -15,6 +15,7 @@
 	matter = list(MATERIAL_PLASTIC = 3)
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	rarity_value = 10
+	price_tag = 15
 	var/mopping = 0
 	var/mopcount = 0
 

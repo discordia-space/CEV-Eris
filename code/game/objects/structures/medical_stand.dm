@@ -22,6 +22,8 @@
 	var/list/transfer_amounts = list(REM, 1, 2)
 	var/transfer_amount = 1
 
+	price_tag = 100
+
 /obj/structure/medical_stand/New()
 	..()
 	if (spawn_type)
@@ -421,10 +423,8 @@
 			var/mob/living/carbon/human/H = attached
 			if(!istype(H))
 				return
-			if(!H.dna)
-				return
-			if(NOCLONE in H.mutations)
-				return
+//			if(NOCLONE in H.mutations)
+//				return
 			if(H.species.flags & NO_BLOOD)
 				return
 			if(!H.should_have_process(OP_HEART))

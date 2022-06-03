@@ -12,8 +12,18 @@
 	tags = list(TAG_TARGETED, TAG_POSITIVE)
 
 /datum/event/shipping_error/start()
-	var/datum/supply_order/O = new /datum/supply_order(
-		SSsupply.supply_packs[pick(SSsupply.supply_packs)],
-		random_name(pick(MALE, FEMALE), species = SPECIES_HUMAN)
-	)
-	SSsupply.shoppinglist += O
+	if(SStrade.beacons_receiving.len > 0)
+		var/budget = rand(500,1000)
+		var/datum/trade_station/TS = pick(SStrade.discovered_stations)
+		var/obj/machinery/trade_beacon/receiving/R = pick(SStrade.beacons_receiving)
+		var/obj/structure/closet/crate/C = R.drop(/obj/structure/closet/crate)
+		
+		for(var/i in 1 to 20)
+			var/list/category = TS.inventory[pick(TS.inventory)]
+			var/atom/movable/AM = pick(category)
+			var/price = SStrade.get_import_cost(AM, TS)
+			if(price < budget)
+				budget -= price
+				new AM(C)
+
+		R.activate()

@@ -146,13 +146,13 @@ SUBSYSTEM_DEF(statverbs)
 	required_stat = STAT_COG
 	minimal_stat  = STAT_LEVEL_ADEPT
 
-/datum/statverb/hack_console/action(mob/user, obj/machinery/computer/rdconsole/target)
-	if(target.hacked == 1)
+/datum/statverb/hack_console/action(mob/user, obj/machinery/target)
+	if(target.hacked)
 		user.visible_message(
 			SPAN_WARNING("[target] is already hacked!")
 		)
 		return
-	if(target.hacked == 0)
+	if(!target.hacked)
 		var/timer = 220 - (user.stats.getStat(STAT_COG) * 2)
 		var/datum/repeating_sound/keyboardsound = new(30, timer, 0.15, target, "keyboard", 80, 1)
 		user.visible_message(
@@ -163,11 +163,15 @@ SUBSYSTEM_DEF(statverbs)
 			keyboardsound.stop()
 			keyboardsound = null
 			target.req_access.Cut()
-			target.hacked = 1
+			target.hacked = TRUE
 			user.visible_message(
 				SPAN_DANGER("[user] breaks the access encryption on [target]!"),
 				"You break the access encryption on [target]"
 			)
+			if(istype(target, /obj/machinery/dna))
+				var/obj/machinery/dna/D = target
+				D.hacked = FALSE
+				D.on_hacked()
 		else
 			keyboardsound.stop()
 			keyboardsound = null

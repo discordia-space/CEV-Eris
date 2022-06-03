@@ -141,7 +141,7 @@
 	desc = "An old .20 Rifle bullet casing."
 	icon_state = "srifle_c_s"
 	spent_icon = "srifle_c_s-spent"
-	shell_color = "p"
+	shell_color = "s"
 	caliber = CAL_SRIFLE
 	projectile_type = /obj/item/projectile/bullet/srifle/scrap
 
@@ -329,6 +329,8 @@
 	matter = list(MATERIAL_STEEL = 1)
 	maxamount = 5
 
+	price_tag = 1
+
 	sprite_update_spawn = TRUE
 	sprite_max_rotate = 22
 	sprite_scale = 0.75
@@ -502,6 +504,7 @@
 /obj/item/ammo_casing/rocket
 	name = "PG-7VL HE grenade"
 	desc = "A high explosive warhead designed for the RPG-7 launcher. Has a tubular shape."
+	description_info = "Relying purely on explosive power, HE shells provide the biggest boom on the best budget."
 	icon_state = "rocketshell"
 	projectile_type = /obj/item/projectile/bullet/rocket
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3, MATERIAL_PLASMA = 2)
@@ -517,19 +520,27 @@
 	icon_state = "old_rocketshell"
 	projectile_type = /obj/item/projectile/bullet/rocket/scrap
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASMA = 2)
-	caliber = CAL_ROCKET
 
 /obj/item/ammo_casing/rocket/hesh
 	name = "PG-7V2 HESH grenade"
 	desc = "A high-explosive squash head anti-vehicle warhead designed for the RPG-7 launcher. Has a tubular shape."
+	description_info = "Using its blast wave, HESH warheads heavily damage the integrity of their target, causing a large amount of shrapnel to be released behind it via spalling."
 	icon_state = "rocketshell_hesh"
 	projectile_type = /obj/item/projectile/bullet/rocket/hesh
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_PLASMA = 2)
-	caliber = CAL_ROCKET
-	maxamount = 1
-	reload_delay = 15
-	is_caseless = TRUE
-	w_class = ITEM_SIZE_NORMAL
+
+/obj/item/ammo_casing/rocket/heat
+	name = "PG-7VL HEAT grenade"
+	desc = "A high-explosive anti-tank warhead designed for the RPG-7 launcher. Has a tubular shape."
+	description_info = "On impact, releases a burst of superheated air that will penetrate through even the strongest armors, causing heavy damage."
+	icon_state = "rocketshell_heat"
+	projectile_type = /obj/item/projectile/bullet/rocket/heat
+
+/obj/item/ammo_casing/rocket/thermo
+	name = "TBG-7V Thermobaric grenade"
+	desc = "A thermobaric warhead designed for the RPG-7 launcher. Has a tubular shape."
+	description_info = "A fuel air explosive, relying on the oxygen in the air to cause a sizeable, albeit weaker explosion. The chemical mix also causes a followup heatwave effect, bypassing walls and cover."
+	icon_state = "rocketshell_thermo"
+	projectile_type = /obj/item/projectile/bullet/rocket/thermo
 
 /obj/item/ammo_casing/rocket/scrap/prespawned
 	amount = 1

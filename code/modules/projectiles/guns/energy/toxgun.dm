@@ -10,5 +10,6 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASMA = 5)
 	price_tag = 2500
 	projectile_type = /obj/item/projectile/energy/plasma
-	serial_type = "M"
+	init_recoil = HANDGUN_RECOIL(1)
+	serial_type = "ML"
 
