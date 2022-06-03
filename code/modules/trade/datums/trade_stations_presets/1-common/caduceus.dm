@@ -23,11 +23,11 @@
 			/obj/item/computer_hardware/hard_drive/portable/design/computer = good_data("Moebius Computer Parts", list(1, 10), 500)
 		),
 		"First Aid" = list(
-			/obj/item/storage/firstaid/regular,
-			/obj/item/storage/firstaid/fire,
-			/obj/item/storage/firstaid/toxin,
-			/obj/item/storage/firstaid/o2,
-			/obj/item/storage/firstaid/adv,
+			/obj/item/storage/firstaid/regular = custom_good_price(450),
+			/obj/item/storage/firstaid/fire = custom_good_price(400),
+			/obj/item/storage/firstaid/toxin = custom_good_price(400),
+			/obj/item/storage/firstaid/o2 = custom_good_price(400),
+			/obj/item/storage/firstaid/adv = custom_good_price(600),
 			/obj/item/stack/medical/bruise_pack,
 			/obj/item/stack/medical/ointment,
 			/obj/item/stack/medical/splint
@@ -87,6 +87,6 @@
 		/datum/reagent/stim/pro_surgeon = offer_data("ProSurgeon bottle (60u)", 1500, 1),
 		/datum/reagent/stim/violence = offer_data("Violence bottle (60u)", 1500, 1),
 		/datum/reagent/stim/bouncer = offer_data("Bouncer bottle (60u)", 1500, 1),
-		/datum/reagent/medicine/ossisine = offer_data("ossissine bottle (60u)", 4000, 1),
+		/datum/reagent/medicine/ossisine = offer_data("ossisine bottle (60u)", 4000, 1),
 		/datum/reagent/medicine/kyphotorin = offer_data("kyphotorin bottle (60u)", 8000, 1)
 	)

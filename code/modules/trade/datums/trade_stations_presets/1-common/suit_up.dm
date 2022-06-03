@@ -14,11 +14,11 @@
 	stations_recommended = list("rigs", "style")
 	inventory = list(
 		"Basic Space Gear" = list(
-			/obj/item/clothing/suit/space/void,
-			/obj/item/clothing/suit/space/void/atmos,
-			/obj/item/rig/eva,
-			/obj/item/tank/jetpack/oxygen,
-			/obj/item/tank/jetpack/carbondioxide,
+			/obj/item/clothing/suit/space/void = custom_good_price(200),
+			/obj/item/clothing/suit/space/void/atmos = custom_good_price(2100),
+			/obj/item/rig/eva = custom_good_price(600),
+			/obj/item/tank/jetpack/oxygen = custom_good_price(100),
+			/obj/item/tank/jetpack/carbondioxide = custom_good_price(100),
 			/obj/item/device/suit_cooling_unit
 		),
 		"Cosmetic Accesories" = list(

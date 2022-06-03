@@ -175,10 +175,10 @@
 	name = "grenadier crate"
 	desc = "A crate containing one \"Lenar\" launcher, and copious quantities of hand-propelled explosive devices."
 	icon_state = "serbcrate_deferred_black"
-	initial_contents = list(/obj/item/grenade/explosive = 5,
-	/obj/item/grenade/frag = 14,
-	/obj/item/grenade/empgrenade/low_yield = 4,
-	/obj/item/grenade/smokebomb = 8,
+	initial_contents = list(
+	/obj/item/ammo_casing/grenade/blast = 5,
+	/obj/item/ammo_casing/grenade/frag = 14,
+	/obj/item/ammo_casing/grenade/emp = 4,
 	/obj/item/gun/projectile/shotgun/pump/grenade/lenar = 1)
 
 /obj/item/storage/deferred/crate/antiarmor //change to demolitions, won't do now because will affect map
