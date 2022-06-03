@@ -79851,6 +79851,12 @@
 /obj/item/stack/material/plastic{
 	amount = 120
 	},
+/obj/item/stack/material/glass/plasmarglass{
+	amount = 120
+	},
+/obj/item/stack/material/glass/plasmarglass{
+	amount = 120
+	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/breakroom)
 "dJg" = (
