@@ -1,7 +1,0 @@
-author: ValoTheValo
-delete-after: true
-changes:
-  - tweak: Colt 1911, Molly and Gladstone moved from Billomat to FS Vendor
-  - balance: Molly Item Price reduced by 400$ to 1000 (From 1400)
-  - balance: Molly Vendor Price reduced by 800$ to 1000 (From 1800)
-  - balance: Gladstone returned to original price of 2000$

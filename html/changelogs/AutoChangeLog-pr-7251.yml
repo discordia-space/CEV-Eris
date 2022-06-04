@@ -1,7 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - balance: bullet miss chance takes size into account, vigilance hit chance bonus
-      only triggers on the target clicked on
-  - code_imp: bodypart randomization is determined when a bullet is launched, rather
-      than when the bullet reaches a target
