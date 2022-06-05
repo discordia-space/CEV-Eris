@@ -526,7 +526,10 @@
 
 
 /obj/machinery/hivemind_machine/mob_spawner/use_ability()
-	if(!GLOB.hive_data_bool["maximum_existing_mobs"] || GLOB.hive_data_float["maximum_existing_mobs"] < GLOB.hivemind_mobs.len)
+	var/total_mobs = 0
+	for(var/i in GLOB.hivemind_mobs)
+		total_mobs += GLOB.hivemind_mobs[i]
+	if(!GLOB.hive_data_bool["maximum_existing_mobs"] || GLOB.hive_data_float["maximum_existing_mobs"] > total_mobs)
 		var/obj/randomcatcher/CATCH = new /obj/randomcatcher(src)
 		var/mob/living/simple_animal/hostile/hivemind/spawned_mob = CATCH.get_item(mob_to_spawn)
 		spawned_mob.loc = loc
