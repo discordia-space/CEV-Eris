@@ -89,19 +89,19 @@ GLOBAL_VAR_INIT(hivemind_panel, new /datum/hivemind_panel)
 	<a href='?src=\ref[src];rig_gacha=1'>\[SET\]</a>"
 
 	data += "<br>Spread trough burrows: [GLOB.hive_data_bool["spread_trough_burrows"] ? "Enabled" : "Disabled"] \
-	<a href='?src=\ref[src];toggle_burrow=1'>\[toggle\]</a>"
+	<a href='?src=\ref[src];toggle_burrow=1'>\[TOGGLE\]</a>"
 
 	data += "<br>Spread on z level below: [GLOB.hive_data_bool["spread_on_lower_z_level"] ? "Enabled" : "Disabled"] \
-	<a href='?src=\ref[src];toggle_gravity_spread=1'>\[toggle\]</a>"
+	<a href='?src=\ref[src];toggle_gravity_spread=1'>\[TOGGLE\]</a>"
 
 	data += "<br>Teleport core when damaged: [GLOB.hive_data_bool["teleport_core_when_damaged"] ? "Enabled" : "Disabled"] \
-	<a href='?src=\ref[src];toggle_core_teleportation=1'>\[toggle\]</a>"
+	<a href='?src=\ref[src];toggle_core_teleportation=1'>\[TOGGLE\]</a>"
 
 	data += "<br>Allow tyrant spawn: [GLOB.hive_data_bool["allow_tyrant_spawn"] ? "Enabled" : "Disabled"] \
-	<a href='?src=\ref[src];toggle_tyrant_spawn=1'>\[toggle\]</a>"
+	<a href='?src=\ref[src];toggle_tyrant_spawn=1'>\[TOGGLE\]</a>"
 
 	data += "<br>Tyrant death kills hive: [GLOB.hive_data_bool["tyrant_death_kills_hive"] ? "Enabled" : "Disabled"] \
-	<a href='?src=\ref[src];toggle_tyrant_gameover=1'>\[toggle\]</a>"
+	<a href='?src=\ref[src];toggle_tyrant_gameover=1'>\[TOGGLE\]</a>"
 
 	data += "</td></tr></table>"
 	usr << browse(data, "window=hive_main;size=600x600")
