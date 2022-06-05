@@ -199,6 +199,15 @@ ADMIN_VERB_ADD(/client/proc/stealth, R_ADMIN, TRUE)
 		message_admins("[key_name_admin(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]", 1)
 
 
+ADMIN_VERB_ADD(/client/proc/hivemind_panel, R_FUN, TRUE)
+/client/proc/hivemind_panel()
+	set category = "Fun"
+	set name = "Hivemind Panel"
+	if(holder && GLOB.hivemind_panel)
+		var/datum/hivemind_panel/H = GLOB.hivemind_panel
+		H.main_interact()
+
+
 #define MAX_WARNS 3
 #define AUTOBANTIME 10
 
