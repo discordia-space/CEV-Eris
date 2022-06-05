@@ -647,6 +647,13 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		if(!hive_mind_ai || !hive_mind_ai.hives.len || maintenance || !GLOB.hive_data_bool["spread_trough_burrows"])
 			return
 
+		var/area/A = get_area(src)
+		if(!(A.name in GLOB.hivemind_areas))
+			if(!GLOB.hive_data_float["maximum_controlled_areas"] || GLOB.hivemind_areas.len < GLOB.hive_data_float["maximum_controlled_areas"])
+				GLOB.hivemind_areas.Add(A.name)
+			else
+				return
+
 		break_open()
 		var/obj/machinery/hivemind_machine/node/hivemind_node = pick(hive_mind_ai.hives)
 		var/obj/effect/plant/hivemind/wire = new(loc, plant)
