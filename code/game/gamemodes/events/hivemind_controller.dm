@@ -40,7 +40,7 @@ GLOBAL_VAR_INIT(hivemind_panel, new /datum/hivemind_panel)
 	for(var/i in GLOB.hivemind_mobs)
 		data += "<br>[i] - [GLOB.hivemind_mobs[i]]."
 	data += "</td></tr></table>"
-	usr << browse(data, "window=story;size=600x600")
+	usr << browse(data, "window=hive_mob;size=600x600")
 
 
 /datum/hivemind_panel/proc/area_list_interact()
@@ -48,7 +48,7 @@ GLOBAL_VAR_INIT(hivemind_panel, new /datum/hivemind_panel)
 	for(var/i in GLOB.hivemind_areas)
 		data += "<br>[i] - [GLOB.hivemind_areas[i]] wireweed."
 	data += "</td></tr></table>"
-	usr << browse(data, "window=story;size=600x600")
+	usr << browse(data, "window=hive_area;size=600x600")
 
 
 /datum/hivemind_panel/proc/main_interact()
@@ -64,12 +64,12 @@ GLOBAL_VAR_INIT(hivemind_panel, new /datum/hivemind_panel)
 		<a href='?src=\ref[src];area_list_interact=1'>\[DETAILS\]</a>"
 		data += "<br>Mobs count: [GLOB.hivemind_mobs.len] \
 		<a href='?src=\ref[src];mob_list_interact=1'>\[DETAILS\]</a>"
-		data += "<br><a href='?src=\ref[src];kill_hive=1'>\[PURGE\]</a>"
 	else
 		data += "<br>Hivemind is not active. Yet."
 		data += "<br>Name: [_name] <a href='?src=\ref[src];set_name=1'>\[SET\]</a>"
 		data += "<br>Surname: [_surname] <a href='?src=\ref[src];set_surname=1'>\[SET\]</a>"
-		data += "<br><a href='?src=\ref[src];spawn_hive=1'>\[SPAWN\]</a>"
+	data += "<br><a href='?src=\ref[src];spawn_hive=1'>\[SPAWN\]</a>"
+	data += "<br><a href='?src=\ref[src];kill_hive=1'>\[PURGE\]</a>"
 	data += "<br><a href='?src=\ref[src];really_kill_hive=1'>\[HARDCORE PURGE\]</a>"
 
 	if(GLOB.hive_data_bool["maximum_existing_mobs"])
@@ -104,7 +104,7 @@ GLOBAL_VAR_INIT(hivemind_panel, new /datum/hivemind_panel)
 	<a href='?src=\ref[src];toggle_tyrant_gameover=1'>\[toggle\]</a>"
 
 	data += "</td></tr></table>"
-	usr << browse(data, "window=story;size=600x600")
+	usr << browse(data, "window=hive_main;size=600x600")
 
 
 /datum/hivemind_panel/Topic(href,href_list)
@@ -158,8 +158,9 @@ GLOBAL_VAR_INIT(hivemind_panel, new /datum/hivemind_panel)
 			new /obj/machinery/hivemind_machine/node(wrong_place_to_be_in, _name, _surname)
 
 	if(href_list["kill_hive"])
-		hive_mind_ai.die()
-		message_admins("Hivemind purge initiated by [usr.ckey], hive mobs and structures will die out shortly.")
+		if(hive_mind_ai)
+			hive_mind_ai.die()
+			message_admins("Hivemind purge initiated by [usr.ckey], hive mobs and structures will die out shortly.")
 
 	if(href_list["really_kill_hive"])
 		message_admins("Hivemind deleted by [usr.ckey].")

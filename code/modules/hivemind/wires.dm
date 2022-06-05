@@ -100,25 +100,25 @@
 	var/area/target_area = get_area(target_turf)
 
 	// Entering the area for the first time
-	if(!(target_area in GLOB.hivemind_areas))
+	if(!(target_area.name in GLOB.hivemind_areas))
 		// If area limit is disabled (set to 0), or less than current number of occupied areas - expand and mark that area as occupied
 		if(!GLOB.hive_data_float["maximum_controlled_areas"] || GLOB.hivemind_areas.len < GLOB.hive_data_float["maximum_controlled_areas"])
-			GLOB.hivemind_areas.Add(target_area)
+			GLOB.hivemind_areas.Add(target_area.name)
 		else
 			return
 
 	// Track amount of weed in the area, so at 0 weed area would be marked as unoccupied
-	GLOB.hivemind_areas[target_area]++
+	GLOB.hivemind_areas[target_area.name]++
 
 	for(var/i in target_turf.contents)
 		if(istype(i, /obj/effect/plant) || istype(i, /obj/effect/dead_plant))
 			visible_message("[src] consumes [i]!")
 			qdel(i)
 
-	// Created on the same loc, for moving animation to play properly
+	// Created on the same loc, for move animation to play properly
 	var/obj/effect/plant/child = new type(get_turf(src), seed, src)
 	after_spread(child, target_turf)
-	// Update neighboring squares
+	// Update neighboring tiles
 	for(var/obj/effect/plant/hivemind/neighbor in range(1, target_turf))
 		neighbor.neighbors -= target_turf
 
