@@ -67,6 +67,10 @@
 	slot_flags = SLOT_BACK
 	force = WEAPON_FORCE_NORMAL
 	force_wielded_multiplier = 3.3
+	doubletact = TRUE
+	can_swing = TRUE
+	can_broad = TRUE
+	forced_broad = TRUE
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
