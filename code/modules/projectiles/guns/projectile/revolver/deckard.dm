@@ -11,7 +11,7 @@
 	price_tag = 3100 //one of most robust revolvers here
 	damage_multiplier = 1.45
 	penetration_multiplier = 1.65
-	recoil_buildup = 6
+	init_recoil = HANDGUN_RECOIL(1)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/deckard = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)
 	serial_type = "FS"

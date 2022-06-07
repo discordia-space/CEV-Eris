@@ -708,11 +708,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/ghost/MayRespawn(var/feedback = 0, var/respawn_type = 0)
 	if(!client)
-		return 0
+		return FALSE
 	if(config.antag_hud_restricted && has_enabled_antagHUD == 1)
 		if(feedback)
 			to_chat(src, "<span class='warning'>antagHUD restrictions prevent you from respawning.</span>")
-		return 0
+		return FALSE
+
+	if(!config.respawn_delay)
+		return TRUE
 
 	var/timedifference = world.time- get_death_time(respawn_type)
 	var/respawn_time = 0
@@ -722,17 +725,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		//Here we factor in bonuses added from cryosleep and similar things
 		timedifference += get_respawn_bonus()
 	else if (respawn_type == ANIMAL)
-		respawn_time = ANIMAL_SPAWN_DELAY
+		respawn_time = min(ANIMAL_SPAWN_DELAY, config.respawn_delay)
 	else if (respawn_type == MINISYNTH)
-		respawn_time = DRONE_SPAWN_DELAY
+		respawn_time = min(DRONE_SPAWN_DELAY, config.respawn_delay)
 
+	timedifference = max(timedifference, 0)
 	if(respawn_time &&  timedifference > respawn_time)
 		return TRUE
 	else
 		if(feedback)
 			var/timedifference_text = time2text(respawn_time  - timedifference,"mm:ss")
 			to_chat(src, "<span class='warning'>You must have been dead for [respawn_time / 600] minute\s to respawn. You have [timedifference_text] left.</span>")
-		return 0
+
 
 /atom/proc/extra_ghost_link()
 	return

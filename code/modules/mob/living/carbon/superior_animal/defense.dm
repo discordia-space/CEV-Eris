@@ -238,7 +238,7 @@
 
 /mob/living/carbon/superior_animal/rejuvenate()
 	density = initial(density)
-	layer = initial(layer)
+	reset_layer()
 
 	. = ..()
 
