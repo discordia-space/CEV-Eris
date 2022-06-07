@@ -23,10 +23,10 @@
 			/obj/item/computer_hardware/hard_drive/portable/design/computer = good_data("Moebius Computer Parts", list(1, 10), 500)
 		),
 		"First Aid" = list(
-			/obj/item/storage/firstaid/regular = custom_good_price(300),
-			/obj/item/storage/firstaid/fire = custom_good_price(300),
-			/obj/item/storage/firstaid/toxin = custom_good_price(300),
-			/obj/item/storage/firstaid/o2 = custom_good_price(300),
+			/obj/item/storage/firstaid/regular = custom_good_price(450),
+			/obj/item/storage/firstaid/fire = custom_good_price(400),
+			/obj/item/storage/firstaid/toxin = custom_good_price(400),
+			/obj/item/storage/firstaid/o2 = custom_good_price(400),
 			/obj/item/storage/firstaid/adv = custom_good_price(600),
 			/obj/item/stack/medical/bruise_pack,
 			/obj/item/stack/medical/ointment,

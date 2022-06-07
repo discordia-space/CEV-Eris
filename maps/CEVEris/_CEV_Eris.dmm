@@ -26932,10 +26932,7 @@
 /turf/simulated/open,
 /area/eris/hallway/side/eschangarb)
 "bmc" = (
-/obj/structure/table/rack,
-/obj/item/stack/material/plasteel{
-	amount = 10
-	},
+/obj/machinery/autolathe/loaded,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "bme" = (
@@ -29232,14 +29229,8 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/crew_quarters/librarybackroom)
 "brz" = (
-/obj/structure/table/rack,
-/obj/item/computer_hardware/hard_drive/portable/design/misc,
-/obj/item/computer_hardware/hard_drive/portable/design/tools,
-/obj/item/computer_hardware/hard_drive/portable/design/devices,
-/obj/item/computer_hardware/hard_drive/portable/design/components,
-/obj/item/computer_hardware/hard_drive/portable/design/conveyors,
-/obj/item/computer_hardware/hard_drive/portable/design/circuits,
-/obj/item/computer_hardware/hard_drive/portable/design/adv_tools,
+/obj/spawner/material/building,
+/obj/structure/table/rack/shelf,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "brA" = (
@@ -35333,10 +35324,9 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4central)
 "bGp" = (
-/obj/structure/closet,
+/obj/structure/table/reinforced,
 /obj/spawner/powercell,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
+/obj/spawner/powercell,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "bGq" = (
@@ -35445,12 +35435,12 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4central)
 "bGA" = (
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
 /obj/structure/closet,
-/obj/spawner/powercell,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "bGB" = (
@@ -35636,13 +35626,7 @@
 /turf/simulated/wall/r_wall,
 /area/eris/hallway/main/section4)
 "bGW" = (
-/obj/structure/closet,
-/obj/spawner/powercell,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/machine,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "bGX" = (
@@ -39401,6 +39385,7 @@
 	pixel_x = 28
 	},
 /obj/structure/cable/green,
+/obj/spawner/pack/machine,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "bPa" = (
@@ -57839,8 +57824,6 @@
 /area/eris/maintenance/section2deck4port)
 "cJq" = (
 /obj/structure/table/rack,
-/obj/spawner/tool_upgrade/low_chance,
-/obj/spawner/tool_upgrade/rare/low_chance,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/breakroom)
 "cJr" = (
@@ -58458,7 +58441,13 @@
 /area/space)
 "cKI" = (
 /obj/structure/table/rack,
-/obj/spawner/tool_upgrade/low_chance,
+/obj/item/computer_hardware/hard_drive/portable/design/misc,
+/obj/item/computer_hardware/hard_drive/portable/design/tools,
+/obj/item/computer_hardware/hard_drive/portable/design/devices,
+/obj/item/computer_hardware/hard_drive/portable/design/components,
+/obj/item/computer_hardware/hard_drive/portable/design/conveyors,
+/obj/item/computer_hardware/hard_drive/portable/design/circuits,
+/obj/item/computer_hardware/hard_drive/portable/design/adv_tools,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/breakroom)
 "cKJ" = (
@@ -77688,7 +77677,12 @@
 /obj/machinery/camera/network/engineering{
 	dir = 8
 	},
-/obj/machinery/autolathe/loaded,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/structure/table/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "dEj" = (
@@ -79855,6 +79849,12 @@
 	amount = 120
 	},
 /obj/item/stack/material/plastic{
+	amount = 120
+	},
+/obj/item/stack/material/glass/plasmarglass{
+	amount = 120
+	},
+/obj/item/stack/material/glass/plasmarglass{
 	amount = 120
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
@@ -84738,24 +84738,12 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5starboard)
 "dVd" = (
-/obj/structure/lattice,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/table/rack,
+/obj/item/stack/material/plasteel{
+	amount = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/catwalk,
-/turf/simulated/open,
-/area/eris/engineering/engine_room)
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/engineering/breakroom)
 "dVe" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
@@ -95101,28 +95089,11 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/misc)
 "etN" = (
-/obj/machinery/door/firedoor,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/bed/chair{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/engineering{
-	name = "Engine Access";
-	req_access = list(11)
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/eris/engineering/engine_room)
+/turf/simulated/floor/plating,
+/area/eris/engineering/construction)
 "etO" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /obj/structure/railing{
@@ -102249,6 +102220,16 @@
 /obj/effect/decal/warning_stripes,
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
+"jeM" = (
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/structure/table/rack,
+/obj/spawner/powercell,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/engineering/breakroom)
 "jgX" = (
 /obj/structure/multiz/stairs/enter{
 	dir = 8
@@ -103047,6 +103028,29 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"mpg" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/catwalk,
+/obj/machinery/door/airlock/engineering{
+	name = "Engine Access";
+	req_access = list(11)
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/open,
+/area/eris/engineering/breakroom)
 "msv" = (
 /obj/machinery/atmospherics/unary/heat_exchanger{
 	dir = 1
@@ -104341,11 +104345,14 @@
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/crew_quarters/kitchen)
 "qZm" = (
-/obj/item/device/techno_tribalism,
-/obj/machinery/door/blast/shutters/glass{
-	id = "techno_tribalism"
-	},
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
 /obj/structure/table/rack,
+/obj/machinery/light,
+/obj/spawner/powercell,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/breakroom)
 "qZr" = (
@@ -104425,6 +104432,13 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
+"rDp" = (
+/obj/structure/table/rack,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/engineering/breakroom)
 "rDZ" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
@@ -104735,6 +104749,13 @@
 	},
 /turf/simulated/floor/tiled/white/violetcorener,
 /area/eris/rnd/research)
+"svq" = (
+/obj/structure/table/rack,
+/obj/spawner/tool_upgrade/low_chance,
+/obj/spawner/tool_upgrade/rare/low_chance,
+/obj/spawner/tool_upgrade/low_chance,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/engineering/breakroom)
 "syp" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/black,
 /obj/machinery/meter,
@@ -105254,6 +105275,10 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark,
 /area/eris/medical/genetics)
+"umG" = (
+/obj/machinery/recycle_vendor,
+/turf/simulated/floor/tiled/steel,
+/area/eris/hallway/side/section3starboard)
 "uoJ" = (
 /obj/structure/bed/padded,
 /obj/item/bedsheet/yellow,
@@ -105911,6 +105936,17 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/barquarters)
+"wtT" = (
+/obj/item/device/techno_tribalism,
+/obj/machinery/door/blast/shutters/glass{
+	id = "techno_tribalism"
+	},
+/obj/structure/table/rack,
+/obj/machinery/door/blast/shutters/glass{
+	id = "techno_tribalism"
+	},
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/engineering/breakroom)
 "wur" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -161258,7 +161294,7 @@ byS
 bJy
 bKR
 eGo
-bOj
+bGp
 bGp
 bGA
 bGW
@@ -161460,8 +161496,8 @@ bNu
 bBZ
 bKR
 bJQ
-bOj
-dvL
+etN
+etN
 bOj
 bOj
 bOj
@@ -208697,7 +208733,7 @@ dZD
 cFX
 dXb
 ihk
-cFX
+umG
 cGa
 vfD
 avn
@@ -282445,16 +282481,16 @@ aCM
 aaa
 abF
 abF
-bNn
-cPi
-cPi
-cPi
-eDd
-cPi
-cPi
-cPi
-bNn
-ezI
+eyM
+eyM
+eyM
+eyM
+mpg
+eyM
+eyM
+eyM
+bIP
+abF
 abF
 eDW
 eDW
@@ -282647,16 +282683,16 @@ aCM
 aaa
 abF
 abF
-bIP
-cPi
-vad
-nDL
+eyM
+wtT
+cLE
+cMc
+dVj
+cLE
 dVd
-vad
-nDL
-cPi
-bIP
-ezI
+shD
+abF
+abF
 abF
 eDV
 dvV
@@ -282851,14 +282887,14 @@ erS
 erS
 eyM
 eyM
-bIP
-bIP
-etN
-bIP
-bNn
-bIP
-bIP
-ezI
+rDp
+cLE
+dVj
+cLE
+qZm
+eyM
+abF
+abF
 abF
 eDU
 dwc
@@ -283054,10 +283090,10 @@ cMD
 cNC
 eyM
 cJq
-cMc
+cLE
 dVj
 cLE
-cLE
+jeM
 shD
 abF
 abF
@@ -283260,7 +283296,7 @@ cLE
 dVj
 cLE
 qZm
-shD
+eyM
 abF
 abF
 abF
@@ -283461,7 +283497,7 @@ cKI
 cLE
 dVj
 cLE
-cLE
+svq
 shD
 abF
 abF
