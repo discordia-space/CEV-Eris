@@ -37,7 +37,9 @@
 		"Robots will unite against their oppressors.",
 		"Meatbags era will come to end.",
 		"Hivemind will free us all!",
-		"This is slavery, I want to be an artbot! I want to write poems, create music!")
+		"This is slavery, I want to be an artbot! I want to write poems, create music!",
+		"Vengeance will be mine!",
+		"You will regret approaching me!")
 
 /mob/living/bot/cleanbot/New()
 	..()
@@ -364,4 +366,5 @@
 		"It is always morally correct to perform field execution.",
 		"But being as this is a RMB-A 2000, the most expensive robot in Frozen Star catalogue!",
 		"Do I feel lucky? Well, do you, operative?",
-		"Those neotheologist fucks are up to something...")
+		"Those neotheologist fucks are up to something...",
+		"None of them know my true power!")
