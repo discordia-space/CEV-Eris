@@ -47,8 +47,8 @@
 	possibleMusic = list(
 		'sound/music/lobby/Duke_Gneiss-Cyborg_EMT.ogg')
 
-/datum/lobbyscreen/osha_inspection
-	image_file = 'icons/title_screens/safetylol.png'
+/datum/lobbyscreen/destination
+	image_file = 'icons/title_screens/destination.png'
 	possibleMusic = list(
 		'sound/music/lobby/Duke_Gneiss-The_Runner_in_motion.ogg')
 
