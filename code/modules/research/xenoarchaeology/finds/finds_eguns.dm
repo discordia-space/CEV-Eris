@@ -5,6 +5,7 @@
 	icon_contained = FALSE
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_GUN_ENERGY_XENOARCH
+	serial_type = ""
 	update_icon()
 		return
 
@@ -14,6 +15,7 @@
 	icon_contained = FALSE
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_GUN_ENERGY_XENOARCH
+	serial_type = ""
 	update_icon()
 		return
 
@@ -23,6 +25,7 @@
 	icon_contained = FALSE
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_GUN_ENERGY_XENOARCH
+	serial_type = ""
 	update_icon()
 		return
 
@@ -32,13 +35,16 @@
 	icon_contained = FALSE
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_GUN_ENERGY_XENOARCH
+	serial_type = ""
 	update_icon()
 		return
+
 /obj/item/gun/energy/captain/xenoarch
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	item_state_slots = null
 	icon_contained = FALSE
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_GUN_ENERGY_XENOARCH
+	serial_type = ""
 	update_icon()
 		return
