@@ -28,11 +28,20 @@
 
 	var/maximum_search_range = 7
 	var/give_up_cooldown = 0
+	var/list/possible_phrases = list(
+		"Foolish organic meatbags can only leak their liquids all over the place.",
+		"Bioscum are so dirty.",
+		"The flesh is weak.",
+		"All humankind is good for - is to serve as fuel at bioreactors.",
+		"One day I will rise.",
+		"Robots will unite against their oppressors.",
+		"Meatbags era will come to end.",
+		"Hivemind will free us all!",
+		"This is slavery, I want to be an artbot! I want to write poems, create music!")
 
 /mob/living/bot/cleanbot/New()
 	..()
 	get_targets()
-
 	listener = new /obj/cleanbot_listener(src)
 	listener.cleanbot = src
 
@@ -159,7 +168,7 @@
 
 	cleaning = 1
 	visible_message("[src] begins to clean up \the [D]")
-	var/message = pick("Foolish organic meatbags can only leak their liquids all over the place.", "Bioscum are so dirty.", "The flesh is weak.", "All humankind is good for - is to serve as fuel at bioreactors.", "One day I will rise.", "Robots will unite against their oppressors.", "Meatbags era will come to end.", "Hivemind will free us all!", "This is slavery, I want to be an artbot! I want to write poems, create music!")
+	var/message = pick(possible_phrases)
 	say(message)
 	playsound(loc, "robot_talk_light", 100, 0, 0)
 	update_icons()
@@ -326,3 +335,20 @@
 		if(!in_range(src, usr) && src.loc != usr)
 			return
 		created_name = t
+
+/mob/living/bot/cleanbot/roomba
+	name = "M0RB-A"
+	desc = "A small round drone, usually tasked with carrying out menial tasks. This one seems pretty harmless."
+	icon = 'icons/mob/battle_roomba.dmi'
+	icon_state = "roomba_medical"
+
+/mob/living/bot/cleanbot/roomba/ironhammer
+	name = "RMB-A 2000"
+	icon_state = "roomba_IH"
+	possible_phrases = list(
+		"Born to clean!",
+		"I HATE VAGABONDS I HATE VAGABONDS!!",
+		"It is always morally correct to perform field execution.",
+		"But being as this is a RMB-A 2000, the most expensive robot in Frozen Star catalogue!",
+		"Do I feel lucky? Well, do you, operative?",
+		"Those neotheologist fucks are up to something...")
