@@ -938,6 +938,12 @@
 	if(!can_use(usr, 1))
 		return TRUE
 
+	else if( href_list["reboot"] )
+		failure_timer = 0
+		update_icon()
+		update()
+		return TRUE
+
 	if(!issilicon(usr) && (locked && !emagged))
 		// Shouldn't happen, this is here to prevent href exploits
 		to_chat(usr, "You must unlock the panel to use this!")
@@ -945,11 +951,6 @@
 
 	if (href_list["lock"])
 		coverlocked = !coverlocked
-
-	else if( href_list["reboot"] )
-		failure_timer = 0
-		update_icon()
-		update()
 
 	else if (href_list["breaker"])
 		toggle_breaker()
