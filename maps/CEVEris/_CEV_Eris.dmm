@@ -12573,6 +12573,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/mob/living/bot/cleanbot/roomba/ironhammer,
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/security/prisoncells)
 "aEQ" = (
@@ -104388,6 +104389,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3port)
+"rky" = (
+/mob/living/bot/cleanbot/roomba,
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay)
 "rlT" = (
 /obj/machinery/door/blast/regular{
 	id = "scannerroom";
@@ -204665,7 +204670,7 @@ cLA
 cnP
 cpJ
 cqL
-coL
+rky
 coL
 dwH
 csm
