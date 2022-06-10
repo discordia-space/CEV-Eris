@@ -341,10 +341,23 @@
 	desc = "A small round drone, usually tasked with carrying out menial tasks. This one seems pretty harmless."
 	icon = 'icons/mob/battle_roomba.dmi'
 	icon_state = "roomba_medical"
+	botcard_access = list(access_moebius, access_maint_tunnels)
+
+/mob/living/bot/cleanbot/roomba/update_icons()
+	return
+
+/mob/living/bot/cleanbot/roomba/explode()
+	visible_message(SPAN_DANGER("[src] blows apart!"))
+	playsound(loc, "robot_talk_light", 100, 2, 0)
+	var/datum/effect/effect/system/spark_spread/S = new
+	S.set_up(3, 1, src)
+	S.start()
+	qdel(src)
 
 /mob/living/bot/cleanbot/roomba/ironhammer
 	name = "RMB-A 2000"
 	icon_state = "roomba_IH"
+	botcard_access = list(access_brig, access_maint_tunnels)
 	possible_phrases = list(
 		"Born to clean!",
 		"I HATE VAGABONDS I HATE VAGABONDS!!",
