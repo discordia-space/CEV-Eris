@@ -938,7 +938,7 @@
 	if(!can_use(usr, 1))
 		return TRUE
 
-	else if( href_list["reboot"] )
+	else if(href_list["reboot"])
 		failure_timer = 0
 		update_icon()
 		update()
