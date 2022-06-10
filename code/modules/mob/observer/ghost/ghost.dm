@@ -680,6 +680,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	updateghostsight()
 	to_chat(usr, "You [(ghostvision?"now":"no longer")] have ghost vision.")
 
+/mob/observer/ghost/verb/toggle_selfsee()
+	set name = "Toggle Self Vision"
+	set desc = "Toggles your visibility."
+	set category = "Ghost"
+	alpha = alpha ? 0 : 127
+	to_chat(usr, "You are [alpha ? "now" : "no longer"] visible.")
+
 /mob/observer/ghost/verb/toggle_darkness()
 	set name = "Toggle Darkness"
 	set category = "Ghost"
