@@ -1,5 +1,0 @@
-author: SirRichardFrancis
-delete-after: true
-changes:
-  - bugfix: ghosted players missing UI buttons
-  - bugfix: re-enter corpse verb breaking UI
