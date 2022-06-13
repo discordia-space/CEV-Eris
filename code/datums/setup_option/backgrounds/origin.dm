@@ -241,16 +241,14 @@
 	restricted_depts = IRONHAMMER | MEDICAL | SCIENCE | CHURCH | GUILD | CIVILIAN | SERVICE
 
 /datum/category_item/setup_option/background/origin/ihmaids
-	name = "Tripwire Base"
-	desc = "Founded on a moderatly large asteroid late in the corporate war by the syndicate for the purpose of being an early warning station for attacks on syndicate core worlds. After the end of the corporate war ironhammer transformed it into a larger training camp for specialists. It teaches skills nessicary for Combat engineering, cybersecurity and combat medics. Due to an almost complete lack of terraforming, hostile environment and outdated syndicate construction tripwire is suited for teaching new recruits how to survive in deepspace conditions, but this also means morale is often low."
+	name = "Tripwire Training Facility"
+	desc = "Founded on a moderatly large asteroid late in the corporate war by the syndicate for the purpose of being an early warning station for attacks on Hanza Sector. After the end of the corporate war ironhammer transformed it into a larger training camp for specialists. It teaches skills nessicary for Combat engineering, cybersecurity and combat medics. Due to an almost complete lack of terraforming, hostile environment and outdated syndicate construction tripwire is suited for teaching new recruits how to survive in deepspace conditions, but this also means morale is often low."
 
 	stat_modifiers = list(
 		STAT_ROB = 5,
 		STAT_TGH = -10,
 		STAT_BIO = 10,
 		STAT_MEC = 10,
-		STAT_VIG = -10,
-		STAT_COG = 10
+		STAT_VIG = -5,
+		STAT_COG = 5
 	)
-	restricted_jobs = list(/datum/job/captain, /datum/job/hop, /datum/job/chaplain, /datum/job/merchant, /datum/job/cmo, /datum/job/rd, /datum/job/chief_engineer)
-	restricted_depts = ENGINEERING | MEDICAL | SCIENCE | CHURCH | GUILD | CIVILIAN | SERVICE
