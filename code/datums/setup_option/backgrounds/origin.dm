@@ -242,13 +242,13 @@
 
 /datum/category_item/setup_option/background/origin/tripwire
 	name = "Tripwire Training Facility"
-	desc = "Founded on a moderatly large asteroid late in the corporate war by the syndicate for the purpose of being an early warning station for attacks on Hanza Sector. After the end of the corporate war ironhammer transformed it into a larger training camp for specialists. It teaches skills nessicary for Combat engineering, cybersecurity and combat medics. Due to an almost complete lack of terraforming, hostile environment and outdated syndicate construction tripwire is suited for teaching new recruits how to survive in deepspace conditions, but this also means morale is often low."
+	desc = "Founded on a large asteroid late in the corporate war by the syndicate for the purpose of being an early warning station for attacks on Hanza Sector. After the end of the corporate war ironhammer transformed it into a larger training camp for specialists. It teaches skills nessicary for Combat engineering, cybersecurity and combat medics. Due to an almost complete lack of terraforming, hostile environment and outdated syndicate construction tripwire is suited for teaching new recruits how to survive in deepspace conditions, but this also means morale is often low."
 
 	stat_modifiers = list(
 		STAT_ROB = -5,
 		STAT_TGH = 10,
-		STAT_BIO = 5,
-		STAT_MEC = -5,
-		STAT_VIG = 10,
+		STAT_BIO = 2,
+		STAT_MEC = 5,
+		STAT_VIG = 8,
 		STAT_COG = -10
 	)
