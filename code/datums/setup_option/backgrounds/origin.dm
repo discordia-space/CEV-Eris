@@ -150,16 +150,16 @@
 	name = "First Expeditionary Fleet"
 	desc = "A collection of old and modified colony ships, FTL capable shipyards, mobile hydroponics, and an armada of military ships. \
 			The de facto Headquarters of the Ironhammer PMC, the armada can be deployed whenever or wherever is needed for a contract, or even evacuate to deep space if necessary. \
-			It moves from planet to planet in Hanza space, and is often used by larger, being used as a giant power projector over planetary governments. \
+			It moves from planet to planet in Hanza space, and it is often used by larger corporations, being used as a giant power projector over planetary governments. \
 			For the fleet to function, a gigantic amount of manpower is required, and the armada's ships tend to be as populous as small cities, with both civilians and military personnel. \
 			Life in the Fleet is rather dull and spartan most of the time, with deep traditions of asceticism rooted in the crew of every ship. \
 			Needless to say, every planet it visits experiences a large tourism boom, growth in consumerism, and every bar and whorehouse running out of vacancy in under a day."
 
 	stat_modifiers = list(
-		STAT_ROB = 5,
+		STAT_ROB = 10,
 		STAT_TGH = 5,
 		STAT_BIO = -15,
-		STAT_MEC = 5,
+		STAT_MEC = -5,
 		STAT_VIG = 15,
 		STAT_COG = -10
 	)
@@ -245,10 +245,10 @@
 	desc = "Founded on a moderatly large asteroid late in the corporate war by the syndicate for the purpose of being an early warning station for attacks on Hanza Sector. After the end of the corporate war ironhammer transformed it into a larger training camp for specialists. It teaches skills nessicary for Combat engineering, cybersecurity and combat medics. Due to an almost complete lack of terraforming, hostile environment and outdated syndicate construction tripwire is suited for teaching new recruits how to survive in deepspace conditions, but this also means morale is often low."
 
 	stat_modifiers = list(
-		STAT_ROB = 0,
-		STAT_TGH = 0,
-		STAT_BIO = 0,
-		STAT_MEC = 0,
-		STAT_VIG = 3,
-		STAT_COG = 0
+		STAT_ROB = -5,
+		STAT_TGH = 10,
+		STAT_BIO = 5,
+		STAT_MEC = -5,
+		STAT_VIG = 10,
+		STAT_COG = -10
 	)
