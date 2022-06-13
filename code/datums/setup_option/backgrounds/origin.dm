@@ -240,15 +240,15 @@
 	restricted_jobs = list(/datum/job/captain, /datum/job/hop, /datum/job/chaplain, /datum/job/merchant, /datum/job/cmo, /datum/job/rd, /datum/job/ihc)
 	restricted_depts = IRONHAMMER | MEDICAL | SCIENCE | CHURCH | GUILD | CIVILIAN | SERVICE
 
-/datum/category_item/setup_option/background/origin/ihmaids
+/datum/category_item/setup_option/background/origin/tripwire
 	name = "Tripwire Training Facility"
 	desc = "Founded on a moderatly large asteroid late in the corporate war by the syndicate for the purpose of being an early warning station for attacks on Hanza Sector. After the end of the corporate war ironhammer transformed it into a larger training camp for specialists. It teaches skills nessicary for Combat engineering, cybersecurity and combat medics. Due to an almost complete lack of terraforming, hostile environment and outdated syndicate construction tripwire is suited for teaching new recruits how to survive in deepspace conditions, but this also means morale is often low."
 
 	stat_modifiers = list(
-		STAT_ROB = 5,
-		STAT_TGH = -10,
-		STAT_BIO = 10,
-		STAT_MEC = 10,
-		STAT_VIG = -5,
-		STAT_COG = 5
+		STAT_ROB = 0,
+		STAT_TGH = 0,
+		STAT_BIO = 0,
+		STAT_MEC = 0,
+		STAT_VIG = 3,
+		STAT_COG = 0
 	)
