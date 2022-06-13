@@ -205,6 +205,18 @@
 	to_chat(user, SPAN_NOTICE("You insert [I] into [src]."))
 	return TRUE
 
+/obj/proc/replace_item(obj/item/I_old, obj/item/I_new, mob/living/user)
+	if(!I_old || !I_new || !istype(user) || user.stat || !user.Adjacent(I_new) || !user.Adjacent(I_old) || !user.unEquip(I_new))
+		return FALSE
+	I_new.forceMove(src)
+	user.put_in_hands(I_old)
+	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
+	spawn(2)
+		playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
+	user.visible_message(
+		"[user] replaces [I_old] with [I_new] in [src].",
+		SPAN_NOTICE("You replace [I_old] with [I_new] in [src]."))
+	return TRUE
 
 //Returns the list of matter in this object
 //You can override it to customise exactly what is returned.

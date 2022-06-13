@@ -8,6 +8,7 @@
 	var/emagged = FALSE
 	var/interference = FALSE
 	var/icon/plant = null
+	var/custom_color
 	var/plant_color
 	var/glow_color
 	var/hologram_opacity = 0.85
@@ -47,7 +48,7 @@
 	if (!plant)
 		return
 
-	plant.ChangeOpacity(hologram_opacity)
+//	plant.ChangeOpacity(hologram_opacity)
 	overlays += plant
 
 /obj/structure/cyberplant/proc/change_plant(var/state)
@@ -58,18 +59,13 @@
 		return
 
 	if(!color)
-		color = pick(possible_colors)
+		color = custom_color ? custom_color : pick(possible_colors)
 
 	glow_color = color
 	plant_color = color
 	plant.ColorTone(color)
 
-	set_light(l_color=color)
-
-/obj/structure/cyberplant/attack_hand(var/mob/user)
-	if(!interference)
-		change_plant()
-		update_icon()
+	set_light(l_color = color)
 
 /obj/structure/cyberplant/attackby(obj/item/I, mob/user )
 	if(istype(I, /obj/item/card/id))
@@ -81,6 +77,14 @@
 			if(prob(10))
 				to_chat(user, "<i>You hear soft giggle</i>")
 			rollback()
+
+/obj/structure/cyberplant/attack_hand(mob/user)
+	var/color_of_choice = input("Choose a color.", "\"FluorescEnt\" configuration", custom_color) as color|null
+	custom_color = color_of_choice
+	if(!interference)
+		change_plant()
+		change_color()
+		update_icon()
 
 /obj/structure/cyberplant/proc/prepare_icon(var/state)
 	if(!state)
@@ -110,6 +114,7 @@
 		COLOR_LIGHTING_CYAN_BRIGHT
 	)
 	update_icon()
+
 /obj/structure/cyberplant/emag_act()
 	if(emagged)
 		return
@@ -135,25 +140,25 @@
 	if(!interference)
 		interference = TRUE
 		spawn(0)
-			if (QDELETED(src))
+			if(QDELETED(src))
 				return
 
 			overlays.Cut()
 			set_light(0, 0)
 			sleep(3)
-			if (QDELETED(src))
+			if(QDELETED(src))
 				return
 
 			overlays += plant
 			set_light(brightness_on, brightness_on/2)
 			sleep(3)
-			if (QDELETED(src))
+			if(QDELETED(src))
 				return
 
 			overlays -= plant
 			set_light(0, 0)
 			sleep(3)
-			if (QDELETED(src))
+			if(QDELETED(src))
 				return
 
 			change_color()
@@ -162,6 +167,6 @@
 
 			interference = FALSE
 
-/obj/structure/cyberplant/Crossed(var/mob/living/L)
-	if (istype(L))
+/obj/structure/cyberplant/Crossed(mob/living/L)
+	if(istype(L))
 		doInterference()

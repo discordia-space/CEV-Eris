@@ -21,6 +21,7 @@
 		WEAPON_CHARGE
 	)
 	twohanded = TRUE
+	init_recoil = CARBINE_RECOIL(1)
 	serial_type = "NT"
 
 /obj/item/gun/energy/laser/mounted
@@ -77,6 +78,8 @@
 	twohanded = TRUE
 	saw_off = TRUE
 	sawn = /obj/item/gun/energy/retro/sawn
+	init_recoil = CARBINE_RECOIL(1)
+	serial_type = "OS"
 
 /obj/item/gun/energy/retro/sawn
 	name = "sawn down OS LG \"Cog\""
@@ -97,6 +100,7 @@
 	twohanded = FALSE
 	saw_off = FALSE
 	spawn_blacklisted = TRUE
+	init_recoil = SMG_RECOIL(1)
 
 /obj/item/gun/energy/captain
 	name = "NT LG \"Destiny\""
@@ -123,6 +127,7 @@
 	)
 	twohanded = FALSE
 	spawn_blacklisted = TRUE//antag_item_targets
+	init_recoil = HANDGUN_RECOIL(1)
 	serial_type = "NT"
 
 /obj/item/gun/energy/lasercannon
@@ -147,6 +152,7 @@
 		WEAPON_NORMAL
 		)
 	twohanded = TRUE
+	init_recoil = LMG_RECOIL(1)
 
 /obj/item/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"
@@ -255,6 +261,7 @@
 		WEAPON_CHARGE
 		)
 	twohanded = FALSE
+	init_recoil = LMG_RECOIL(1)
 
 /obj/item/gun/energy/psychic/mindflayer
 	name = "Prototype: mind flayer"
@@ -268,6 +275,7 @@
 	price_tag = 2200
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_SILVER = 5, MATERIAL_PLASMA = 3)
 	twohanded = FALSE
+	init_recoil = HANDGUN_RECOIL(1)
 
 /obj/item/gun/energy/laser/makeshift
 	name = "makeshift laser carbine"
@@ -289,3 +297,4 @@
 		WEAPON_NORMAL
 	)
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
+	init_recoil = CARBINE_RECOIL(1)

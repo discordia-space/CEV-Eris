@@ -33,9 +33,13 @@
 	display_name = "deck of tarot cards"
 	path = /obj/item/deck/tarot
 
+/datum/gear/yho
+	display_name = "deck of YHO cards"
+	path = /obj/item/storage/card_holder/yho
+
 /datum/gear/holder
 	display_name = "card holder"
-	path = /obj/item/deck/holder
+	path = /obj/item/storage/card_holder
 
 /datum/gear/cardemon_pack
 	display_name = "Cardemon booster pack"
