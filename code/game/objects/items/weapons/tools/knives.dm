@@ -368,7 +368,6 @@
 	style_damage = 30
 
 	rarity_value = 60
-	spawn_tags = SPAWN_TAG_KNIFE
 
 /obj/item/tool/spear/plasteel
 	name = "plasteel spear"
