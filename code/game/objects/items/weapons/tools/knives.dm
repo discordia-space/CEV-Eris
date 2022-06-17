@@ -425,7 +425,7 @@
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_URANIUM = 1)
 	style_damage = 50
 
-/obj/item/tool/spear/uranium/apply_hit_effect(mob/living/target, mob/living/user, hit_zone)
+/obj/item/tool/spear/uranium/apply_hit_effect(mob/living/carbon/human/target, mob/living/user, hit_zone)
 	..()
 	if(istype(target))
 		target.apply_effect(rand(5, 10), IRRADIATE)
