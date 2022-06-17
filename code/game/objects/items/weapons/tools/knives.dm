@@ -375,11 +375,6 @@
 	icon_state = "spear_plasteel"
 	item_state = "spear_plasteel"
 	wielded_icon = "spear_plasteel_wielded"
-	flags = CONDUCT
-	sharp = TRUE
-	edge = TRUE
-	worksound = WORKSOUND_HARD_SLASH
-	w_class = ITEM_SIZE_BULKY 
 	force = WEAPON_FORCE_ROBUST 
 	throwforce = WEAPON_FORCE_BRUTAL 
 	armor_penetration = ARMOR_PEN_DEEP 
