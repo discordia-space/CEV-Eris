@@ -438,3 +438,4 @@
 	..()
 	if(istype(target))
 		target.apply_effect(rand(5, 10), IRRADIATE)
+		
