@@ -1,0 +1,4 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - tweak: resuscitator could be used 15 minutes after person's death
