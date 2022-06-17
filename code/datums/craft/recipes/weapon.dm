@@ -243,8 +243,7 @@
 		list(QUALITY_WELDING, 10, "time" = 30),
 		list(CRAFT_MATERIAL, 1, MATERIAL_URANIUM, "time" = 10),
 		list(QUALITY_WELDING, 10, "time" = 30),
-		list(QUALITY_HAMMERING, 5, 10),
-	)
+		list(QUALITY_HAMMERING, 5, 10))
 
 /datum/craft_recipe/weapon/bone
 	name = "bone club"
