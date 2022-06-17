@@ -359,11 +359,6 @@
 	icon_state = "spear_steel"
 	item_state = "spear_steel"
 	wielded_icon = "spear_steel_wielded"
-	flags = CONDUCT
-	sharp = TRUE
-	edge = TRUE
-	worksound = WORKSOUND_HARD_SLASH
-	w_class = ITEM_SIZE_BULKY //4 , it's a spear mate
 	force = WEAPON_FORCE_DANGEROUS 
 	throwforce = WEAPON_FORCE_ROBUST 
 	armor_penetration = ARMOR_PEN_DEEP 
