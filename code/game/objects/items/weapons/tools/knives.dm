@@ -378,8 +378,6 @@
 	force = WEAPON_FORCE_ROBUST 
 	throwforce = WEAPON_FORCE_BRUTAL 
 	armor_penetration = ARMOR_PEN_DEEP 
-	throw_speed = 3
-	max_upgrades = 5
 	tool_qualities = list(QUALITY_CUTTING = 15,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 10)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTEEL = 2)
 	attack_verb = list("slashed", "stabbed") 
