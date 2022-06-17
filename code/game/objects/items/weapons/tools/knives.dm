@@ -410,7 +410,6 @@
 /obj/item/tool/spear/uranium
 	name = "uranium spear"
 	desc = "A steel spear with a uranium lined spearhead. Your foes may survive the stab, but the toxin will linger."
-	icon = 'icons/obj/weapons.dmi'
 	icon_state = "spear_uranium"
 	item_state = "spear_uranium"
 	wielded_icon = "spear_uranium_wielded"
