@@ -389,11 +389,6 @@
 	icon_state = "spear_uranium"
 	item_state = "spear_uranium"
 	wielded_icon = "spear_uranium_wielded"
-	flags = CONDUCT
-	sharp = TRUE
-	edge = TRUE
-	worksound = WORKSOUND_HARD_SLASH
-	w_class = ITEM_SIZE_BULKY 
 	force = WEAPON_FORCE_DANGEROUS 
 	throwforce = WEAPON_FORCE_DANGEROUS 
 	armor_penetration = ARMOR_PEN_DEEP 
