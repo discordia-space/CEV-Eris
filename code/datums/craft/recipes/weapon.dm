@@ -230,8 +230,7 @@
 		list(/obj/item/stack/cable_coil, 2, "time" = 10),
 		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTEEL, "time" = 10),
 		list(QUALITY_WELDING, 10, "time" = 30),
-		list(QUALITY_HAMMERING, 5, 10),
-	)
+		list(QUALITY_HAMMERING, 5, 10))
 
 /datum/craft_recipe/weapon/uranium_spear
 	name = "uranium spear"
