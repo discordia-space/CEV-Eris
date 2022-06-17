@@ -1,0 +1,10 @@
+author: assortedbeads
+delete-after: true
+changes:
+  - balance: Rebalanced the damage of the old spear so it properly references our
+      damage define.
+  - imageadd: Added icons for the 4 types of spears, which show up inhand, wielded
+      and on back and suit storage
+  - code_imp: Added recipes for crafting all the spears
+  - code_imp: Put the throw speed of the new spears and the already added throwing
+      knife in line with current ranged options.
