@@ -372,7 +372,6 @@
 /obj/item/tool/spear/plasteel
 	name = "plasteel spear"
 	desc = "A carefully crafted plasteel spearhead affixed to a metal shaft, it is welded securely on and feels balanced. Show them the past still lives."
-	icon = 'icons/obj/weapons.dmi'
 	icon_state = "spear_plasteel"
 	item_state = "spear_plasteel"
 	wielded_icon = "spear_plasteel_wielded"
