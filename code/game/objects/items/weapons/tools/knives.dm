@@ -380,9 +380,6 @@
 	armor_penetration = ARMOR_PEN_DEEP 
 	tool_qualities = list(QUALITY_CUTTING = 15,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 10)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTEEL = 2)
-	attack_verb = list("slashed", "stabbed") 
-	hitsound = 'sound/weapons/melee/heavystab.ogg'
-	slot_flags = SLOT_BACK
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
 	allow_spin = FALSE
 	style_damage = 50
