@@ -356,7 +356,6 @@
 /obj/item/tool/spear/steel
 	name = "steel spear"
 	desc = "A steel spearhead welded to a crude metal shaft, made from two welded rods. It'll serve well enough."
-	icon = 'icons/obj/weapons.dmi'
 	icon_state = "spear_steel"
 	item_state = "spear_steel"
 	wielded_icon = "spear_steel_wielded"
