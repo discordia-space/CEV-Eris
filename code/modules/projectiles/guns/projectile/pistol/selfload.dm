@@ -19,7 +19,7 @@
 	magazine_type = /obj/item/ammo_magazine/pistol
 	rarity_value = 16
 	damage_multiplier = 1
-	recoil_buildup = 2
+	init_recoil = HANDGUN_RECOIL(0.75)
 
 	gun_tags = list(GUN_SILENCABLE)
 	init_firemodes = list(
@@ -66,7 +66,6 @@
 	icon = 'icons/obj/guns/projectile/makarov.dmi'
 	icon_state = "makarov"
 	damage_multiplier = 1.2
-	recoil_buildup = 3
 	price_tag = 1400
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2, TECH_COVERT = 3)
 	init_firemodes = list(
@@ -87,3 +86,4 @@
 	name = "ML HG .35 Auto \"Anne\"" // ML stands for Moebius Laboratories
 	desc = "Self-loading pistol of Syndicate design rebranded by Moebius Laboratories. Uses both standard and highcap .35 Auto mags."
 	icon = 'icons/obj/guns/projectile/clarissa_white.dmi'
+	serial_type = "ML"

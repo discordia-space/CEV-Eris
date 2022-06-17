@@ -59,9 +59,12 @@
 /mob/living/carbon/superior_animal/roach/death()
 	.=..()
 	if(.)
-		for (var/mob/living/carbon/superior_animal/roach/fuhrer/F in range(src,8))
-			F.distress_call()
+		for(var/mob/living/carbon/superior_animal/roach/fuhrer/F in range(src,8))
+			if(!F.stat)
+				F.distress_call()
 
-	if(prob(3))
-		visible_message(SPAN_DANGER("\the [src] hacks up a tape!"))
-		new /obj/item/music_tape(get_turf(src))
+		layer = BELOW_MOB_LAYER // Below stunned roaches
+
+		if(prob(3))
+			visible_message(SPAN_DANGER("\the [src] hacks up a tape!"))
+			new /obj/item/music_tape(get_turf(src))
