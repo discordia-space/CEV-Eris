@@ -169,8 +169,5 @@
 		for(var/mob/living/L in contents)
 			L.examine(user)
 
-/obj/structure/closet/body_bag/cryobag/attackby(obj/item/W, mob/user)
-	if(opened)
-		..()
-	else //Allows the bag to respond to a health analyzer by analyzing the mob inside without needing to open it.
-		..()
+/obj/structure/closet/body_bag/attackby(obj/item/W, mob/user)
+	..() // Allows to use health analyzer on the mob inside

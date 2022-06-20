@@ -155,11 +155,14 @@ Works together with spawning an observer, noted above.
 
 		//Set the respawn bonus from ghosting while in cryosleep.
 		//This is duplicated in the cryopod code for robustness. The message will not display twice
-		if (istype(loc, /obj/machinery/cryopod) && in_perfect_health())
-			if (!get_respawn_bonus("CRYOSLEEP"))
-				to_chat(src, SPAN_NOTICE("Because you ghosted from a cryopod in good health, your crew respawn time has been reduced by [CRYOPOD_SPAWN_BONUS_DESC]."))
-				src << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
-			set_respawn_bonus("CRYOSLEEP", CRYOPOD_SPAWN_BONUS)
+		if(istype(loc, /obj/machinery/cryopod) && !get_respawn_bonus("CRYOSLEEP"))
+			if(in_perfect_health())
+				to_chat(src, SPAN_NOTICE("Because you ghosted from a cryopod in good health, your crew respawn time has been reduced by [(CRYOPOD_HEALTHY_RESPAWN_BONUS)/600] minutes."))
+				set_respawn_bonus("CRYOSLEEP", CRYOPOD_HEALTHY_RESPAWN_BONUS)
+			else
+				to_chat(src, SPAN_NOTICE("Because you ghosted from a cryopod in poor health, your crew respawn time has been reduced by [(CRYOPOD_WOUNDED_RESPAWN_BONUS)/600] minutes."))
+				set_respawn_bonus("CRYOSLEEP", CRYOPOD_WOUNDED_RESPAWN_BONUS)
+			src << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
 		ghost.ckey = ckey
 		ghost.client = client
@@ -191,15 +194,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				src.client.admin_ghost()
 		else
 			response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost, you won't be able to play this round for another 30 minutes! You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", "Ghost", "Stay in body")
-		if(response != "Ghost")
-			return
-		resting = 1
-		var/turf/location = get_turf(src)
-		message_admins("[key_name_admin(usr)] has ghosted. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
-		log_game("[key_name_admin(usr)] has ghosted.")
-		var/mob/observer/ghost/ghost = ghostize(0)	//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
-		ghost.timeofdeath = world.time // Because the living mob won't have a time of death and we want the respawn timer to work properly.
-		announce_ghost_joinleave(ghost)
+		if(response == "Ghost")
+			message_admins("[key_name_admin(usr)] has ghosted. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
+			log_game("[key_name_admin(usr)] has ghosted.")
+			ghostize(0)
+			announce_ghost_joinleave(client)
 
 /mob/observer/ghost/can_use_hands()	return 0
 /mob/observer/ghost/is_active()		return 0
@@ -216,7 +215,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Re-enter Corpse"
 	if(!client)	return
-	client.destroy_UI()
 
 	if(!(mind && mind.current && can_reenter_corpse))
 		to_chat(src, "<span class='warning'>You have no body.</span>")
@@ -224,6 +222,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(mind.current.key && copytext(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients
 		to_chat(usr, "<span class='warning'>Another consciousness is in your body... it is resisting you.</span>")
 		return
+	client.destroy_UI()
 	stop_following()
 	mind.current.ajourn=0
 	mind.current.key = key
@@ -679,6 +678,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	ghostvision = !(ghostvision)
 	updateghostsight()
 	to_chat(usr, "You [(ghostvision?"now":"no longer")] have ghost vision.")
+
+/mob/observer/ghost/verb/toggle_selfsee()
+	set name = "Toggle Self Vision"
+	set desc = "Toggles your visibility."
+	set category = "Ghost"
+	alpha = alpha ? 0 : 127
+	to_chat(usr, "You are [alpha ? "now" : "no longer"] visible.")
 
 /mob/observer/ghost/verb/toggle_darkness()
 	set name = "Toggle Darkness"
