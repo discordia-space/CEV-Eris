@@ -241,8 +241,8 @@
 	restricted_depts = IRONHAMMER | MEDICAL | SCIENCE | CHURCH | GUILD | CIVILIAN | SERVICE
 
 /datum/category_item/setup_option/background/origin/tripwire
-	name = "Tripwire Network"
-	desc = "a network of hidden ships and gun emplacements on a large asteroid belt late in the corporate war by the syndicate for the purpose of being an early warning stations for attacks on Hanza Sector core worlds. After the end of the corporate war ironhammer transformed it into a large system of training camps and bases for specialists and new recruits. Due to an almost complete lack of terraforming, hostile environment and outdated syndicate construction tripwire belt is suited for teaching new recruits how to survive in deepspace conditions, but this also means morale is often low."
+	name = "Tripwire Belt"
+	desc = "a network of hidden ships, gun emplacements and listening bases on a large asteroid belt late in the corporate war by the syndicate for the purpose of being an early warning station for attacks on Hanza Sector core worlds. After the end of the corporate war ironhammer transformed it into a large system of training camps and bases for specialists and new recruits. Due to an almost complete lack of terraforming, hostile environment and outdated syndicate construction, the tripwire belt is suited for teaching new recruits how to survive in deepspace conditions, but this also means morale is often low."
 
 	stat_modifiers = list(
 		STAT_ROB = -5,
