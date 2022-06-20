@@ -199,8 +199,8 @@
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
-/datum/craft_recipe/weapon/spear
-	name = "spear"
+/datum/craft_recipe/weapon/glass_spear
+	name = "glass spear"
 	result = /obj/item/tool/spear
 	steps = list(
 		list(/obj/item/stack/rods, 2, "time" = 30),
@@ -209,6 +209,41 @@
 		list(CRAFT_MATERIAL, 1, MATERIAL_GLASS, "time" = 10),
 		list(QUALITY_HAMMERING, 5, 10),
 	)
+
+/datum/craft_recipe/weapon/steel_spear
+	name = "steel spear"
+	result = /obj/item/tool/spear/steel
+	steps = list(
+		list(/obj/item/stack/rods, 2, "time" = 30),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/stack/cable_coil, 2, "time" = 10),
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL, "time" = 10),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(QUALITY_HAMMERING, 5, 10))
+
+/datum/craft_recipe/weapon/plasteel_spear
+	name = "plasteel spear"
+	result = /obj/item/tool/spear/plasteel
+	steps = list(
+		list(/obj/item/stack/rods, 2, "time" = 30),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/stack/cable_coil, 2, "time" = 10),
+		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTEEL, "time" = 10),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(QUALITY_HAMMERING, 5, 10))
+
+/datum/craft_recipe/weapon/uranium_spear
+	name = "uranium spear"
+	result = /obj/item/tool/spear/uranium
+	steps = list(
+		list(/obj/item/stack/rods, 2, "time" = 30),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/stack/cable_coil, 2, "time" = 10),
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL, "time" = 10),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(CRAFT_MATERIAL, 1, MATERIAL_URANIUM, "time" = 10),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(QUALITY_HAMMERING, 5, 10))
 
 /datum/craft_recipe/weapon/bone
 	name = "bone club"
