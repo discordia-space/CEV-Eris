@@ -22,6 +22,7 @@
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_WEAK
 	armor_penetration = ARMOR_PEN_SHALLOW
+	throw_speed = 3
 	slot_flags = SLOT_BELT
 	//spawn values
 	rarity_value = 8
