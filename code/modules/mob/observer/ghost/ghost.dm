@@ -155,11 +155,14 @@ Works together with spawning an observer, noted above.
 
 		//Set the respawn bonus from ghosting while in cryosleep.
 		//This is duplicated in the cryopod code for robustness. The message will not display twice
-		if (istype(loc, /obj/machinery/cryopod) && in_perfect_health())
-			if (!get_respawn_bonus("CRYOSLEEP"))
-				to_chat(src, SPAN_NOTICE("Because you ghosted from a cryopod in good health, your crew respawn time has been reduced by [CRYOPOD_SPAWN_BONUS_DESC]."))
-				src << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
-			set_respawn_bonus("CRYOSLEEP", CRYOPOD_SPAWN_BONUS)
+		if(istype(loc, /obj/machinery/cryopod) && !get_respawn_bonus("CRYOSLEEP"))
+			if(in_perfect_health())
+				to_chat(src, SPAN_NOTICE("Because you ghosted from a cryopod in good health, your crew respawn time has been reduced by [(CRYOPOD_HEALTHY_RESPAWN_BONUS)/600] minutes."))
+				set_respawn_bonus("CRYOSLEEP", CRYOPOD_HEALTHY_RESPAWN_BONUS)
+			else
+				to_chat(src, SPAN_NOTICE("Because you ghosted from a cryopod in poor health, your crew respawn time has been reduced by [(CRYOPOD_WOUNDED_RESPAWN_BONUS)/600] minutes."))
+				set_respawn_bonus("CRYOSLEEP", CRYOPOD_WOUNDED_RESPAWN_BONUS)
+			src << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
 		ghost.ckey = ckey
 		ghost.client = client

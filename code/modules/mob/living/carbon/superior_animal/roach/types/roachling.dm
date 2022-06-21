@@ -6,7 +6,7 @@
 	turns_per_move = 3
 	maxHealth = 10
 	health = 10
-	move_to_delay = 3.5
+	move_to_delay = 2
 
 	melee_damage_lower = 1
 	melee_damage_upper = 3
