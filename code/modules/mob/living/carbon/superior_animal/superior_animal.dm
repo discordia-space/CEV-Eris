@@ -364,3 +364,8 @@
 
 /mob/living/carbon/superior_animal/getarmor(def_zone, type)
 	return armor.getRating(type)
+
+/mob/living/carbon/superior_animal/CanPass(atom/mover)
+	if(istype(mover, /obj/item/projectile))
+		return stat ? TRUE : FALSE
+	. = ..()
