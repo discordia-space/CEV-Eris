@@ -726,14 +726,3 @@ ADMIN_VERB_ADD(/client/proc/manage_custom_kits, R_FUN, FALSE)
 									GLOB.custom_kits -= kit_of_choice
 			else
 				groundhog_day = FALSE
-
-
-
-
-
-
-
-
-
-
-
