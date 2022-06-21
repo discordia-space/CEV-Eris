@@ -679,7 +679,7 @@ ADMIN_VERB_ADD(/client/proc/manage_custom_kits, R_FUN, FALSE)
 							var/path_of_choice
 							switch(alert(usr, "Kit would need to a storage.", "[header]", "Enter path", "Pick path", "Cancel"))
 								if("Enter path")
-									path_of_choice = text2path(input(usr, "Enter a storage item path.", "[header]") as null|text)
+									path_of_choice = text2path(input(usr, "It better be subtype of /obj/item/storage or other type of container.", "[header]") as null|text)
 								if("Pick path")
 									path_of_choice = input(usr, "Pick a storage for the kit.", "[header]") as null|anything in typesof(/obj/item/storage)
 							if(path_of_choice)
