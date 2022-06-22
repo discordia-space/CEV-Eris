@@ -247,8 +247,8 @@
 	stat_modifiers = list(
 		STAT_ROB = -5,
 		STAT_TGH = 10,
-		STAT_BIO = 2,
+		STAT_BIO = -5,
 		STAT_MEC = 5,
-		STAT_VIG = 8,
+		STAT_VIG = 10,
 		STAT_COG = -10
 	)
