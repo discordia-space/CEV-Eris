@@ -29,7 +29,7 @@ var/href_logfile
 var/station_name        = "CEV Eris"
 var/station_short       = "Eris"
 var/const/dock_name     = "NTV Faith"
-var/const/boss_name     = "Hanza Trade Union"
+var/const/boss_name     = "Hansa Trade Union"
 var/const/boss_short    = "Hanza"
 var/const/company_name  = "CEV Eris"
 var/const/company_short = "Eris"
