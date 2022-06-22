@@ -159,7 +159,7 @@
 		STAT_ROB = 10,
 		STAT_TGH = 5,
 		STAT_BIO = -15,
-		STAT_MEC = -5,
+		STAT_MEC = 0,
 		STAT_VIG = 15,
 		STAT_COG = -10
 	)
