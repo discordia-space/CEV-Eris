@@ -680,7 +680,7 @@ ADMIN_VERB_ADD(/client/proc/manage_custom_kits, R_FUN, FALSE)
 							if(isnum(perfectly_descriptive_name))
 								perfectly_descriptive_name = num2text(perfectly_descriptive_name)
 							var/path_of_choice
-							switch(alert(user, "Kit would need to a storage.", "[header]", "Enter path", "Pick path", "Cancel"))
+							switch(alert(user, "Kit would need a storage.", "[header]", "Enter path", "Pick path", "Cancel"))
 								if("Enter path")
 									path_of_choice = text2path(input(user, "It better be subtype of /obj/item/storage or other type of container.", "[header]") as null|text)
 								if("Pick path")
