@@ -1,0 +1,4 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - admin: added "manage custom kits" verb and associated functionality
