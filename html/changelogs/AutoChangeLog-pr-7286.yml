@@ -1,0 +1,6 @@
+author: ValoTheValo
+delete-after: true
+changes:
+  - rscdel: Tripping
+  - balance: reverted to old values which means no-slips work and you trip less on
+      plating
