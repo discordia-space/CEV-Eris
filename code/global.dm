@@ -28,9 +28,9 @@ var/world_qdel_log
 var/href_logfile
 var/station_name        = "CEV Eris"
 var/station_short       = "Eris"
-var/const/dock_name     = "N.A.S. Crescent"
-var/const/boss_name     = "Central Command"
-var/const/boss_short    = "Centcom"
+var/const/dock_name     = "NTV Faith"
+var/const/boss_name     = "Hansa Trade Union"
+var/const/boss_short    = "Hansa"
 var/const/company_name  = "CEV Eris"
 var/const/company_short = "Eris"
 var/game_version        = "Discordia"
