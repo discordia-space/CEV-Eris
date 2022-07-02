@@ -1,5 +1,0 @@
-author: ValoTheValo
-delete-after: true
-changes:
-  - bugfix: onestar sentinals are now in the onestar faction, they wont attack other
-      onestar robots now
