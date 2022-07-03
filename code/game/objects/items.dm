@@ -89,11 +89,8 @@
 	var/can_use_lying = 0
 
 	//Attack type vars
-	var/doubletact = FALSE
 	var/ready = FALSE
-	var/can_swing = FALSE
-	var/can_broad = FALSE
-	var/forced_broad = FALSE
+	var/attack_type = NONE
 
 	var/chameleon_type
 

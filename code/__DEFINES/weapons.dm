@@ -83,3 +83,8 @@
 #define RIFLE_RECOIL(x)        list(0.8*x, 0.4*x, 2.4*x )
 #define LMG_RECOIL(x)          list(0.6*x, 0.5*x, 3*x   )
 #define HMG_RECOIL(x)          list(0.4*x, 0.6*x, 3.6*x )
+
+#define DOUBLE_TACT 1
+#define CAN_SWING 2
+#define CAN_BROAD 4
+#define FORCED_BROAD 8

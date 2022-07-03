@@ -260,17 +260,15 @@ meteor_act
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
 		return FALSE
-
-	if(I.can_broad) //Handles broad attacks
-		if(I.forced_broad || (user.a_intent == I_DISARM) || (I.can_swing && I.wielded && (user.a_intent == I_HURT)))
-			var/L[] = BP_ALL_LIMBS
-			var/temp_zone
-			effective_force /= 3
-			L.Remove(hit_zone)
-			for(var/i = 1, i <= 2, i++)
-				temp_zone = pick(L)
-				L.Remove(temp_zone)
-				..(I, user, effective_force, temp_zone)
+//Handles broad attacks
+	if(I.attack_type & CAN_BROAD && (I.attack_type & FORCED_BROAD || (user.a_intent == I_DISARM) || (I.attack_type & CAN_SWING && I.wielded && (user.a_intent == I_HURT))))
+		var/list/L[] = BP_ALL_LIMBS
+		effective_force /= 3
+		L.Remove(hit_zone)
+		for(var/i in 1 to 2)
+			var/temp_zone = pick(L)
+			L.Remove(temp_zone)
+			..(I, user, effective_force, temp_zone)
 
 	// Handle striking to cripple.
 	if(user.a_intent == I_GRAB)

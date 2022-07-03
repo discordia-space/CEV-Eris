@@ -31,7 +31,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 //Handles double tact weapons, returns TRUE if attack is to be carried out, FALSE otherwise
 /obj/item/proc/double_tact(mob/user)
-	if(doubletact)
+	if(attack_type & DOUBLE_TACT)
 		if(!(ready))
 			user.visible_message(SPAN_DANGER("[user] raises \his [src]"))
 			ready = TRUE
@@ -67,59 +67,55 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		return 1 //Returning 1 passes an abort signal upstream
 	add_fingerprint(user)
 
-	if(ishuman(user) && !(user == A)) //Swinging
-		var/mob/living/carbon/human/H = user
-		if(can_swing)
-			if(wielded)
-				if(H.a_intent == I_HURT)
-					if(!double_tact(user))
-						return
-					var/holdinghand = user.get_inventory_slot(src)
-					var/turf/R
-					var/turf/C
-					var/turf/L
-					C = locate(A.x, A.y, A.z)
-					var/dir = get_dir(H, A)
-					switch(dir)
-						if(NORTH, SOUTH)
-							R = locate((A.x + 1), A.y, A.z)
-							L = locate((A.x - 1), A.y, A.z)
-						if(EAST)
-							R = locate(A.x, (A.y - 1), A.z)
-							L = locate(A.x, (A.y + 1), A.z)
-						if(NORTHEAST)
-							R = locate(A.x, (A.y - 1), A.z)
-							L = locate((A.x - 1), A.y, A.z)
-						if(SOUTHEAST)
-							R = locate((A.x - 1), A.y, A.z)
-							L = locate(A.x, (A.y + 1), A.z)
-						if(WEST)
-							R = locate(A.x, (A.y + 1), A.z)
-							L = locate(A.x, (A.y - 1), A.z)
-						if(NORTHWEST)
-							R = locate((A.x + 1), A.y, A.z)
-							L = locate(A.x, (A.y - 1), A.z)
-						if(SOUTHWEST)
-							R = locate(A.x, (A.y + 1), A.z)
-							L = locate((A.x + 1), A.y, A.z)
-					var/obj/effect/effect/melee/swing/S = new(locate(H.x, H.y, H.z))
-					S.dir = dir
-					user.visible_message(SPAN_DANGER("[user] swings \his [src]"))
-					playsound(loc, 'sound/effects/swoosh.ogg', 50, 1, -1)
-					if(holdinghand == slot_l_hand)
-						flick("left_swing", S)
-						tileattack(user, L, modifier = 1)
-						tileattack(user, C, modifier = 0.8)
-						tileattack(user, R, modifier = 0.6)
-						QDEL_IN(S, 20)
-						return
-					else if(holdinghand == slot_r_hand)
-						flick("right_swing", S)
-						tileattack(user, R, modifier = 1)
-						tileattack(user, C, modifier = 0.8)
-						tileattack(user, L, modifier = 0.6)
-						QDEL_IN(S, 20)
-						return
+	if(ishuman(user) && !(user == A) && (attack_type & CAN_SWING) && wielded && user.a_intent == I_HURT) //Swinging
+		if(!double_tact(user))
+			return
+		var/holdinghand = user.get_inventory_slot(src)
+		var/turf/R
+		var/turf/C
+		var/turf/L
+		C = locate(A.x, A.y, A.z)
+		var/_dir = get_dir(user, A)
+		switch(_dir)
+			if(NORTH, SOUTH)
+				R = locate((A.x + 1), A.y, A.z)
+				L = locate((A.x - 1), A.y, A.z)
+			if(EAST)
+				R = locate(A.x, (A.y - 1), A.z)
+				L = locate(A.x, (A.y + 1), A.z)
+			if(NORTHEAST)
+				R = locate(A.x, (A.y - 1), A.z)
+				L = locate((A.x - 1), A.y, A.z)
+			if(SOUTHEAST)
+				R = locate((A.x - 1), A.y, A.z)
+				L = locate(A.x, (A.y + 1), A.z)
+			if(WEST)
+				R = locate(A.x, (A.y + 1), A.z)
+				L = locate(A.x, (A.y - 1), A.z)
+			if(NORTHWEST)
+				R = locate((A.x + 1), A.y, A.z)
+				L = locate(A.x, (A.y - 1), A.z)
+			if(SOUTHWEST)
+				R = locate(A.x, (A.y + 1), A.z)
+				L = locate((A.x + 1), A.y, A.z)
+		var/obj/effect/effect/melee/swing/S = new(user.loc)
+		S.dir = _dir
+		user.visible_message(SPAN_DANGER("[user] swings \his [src]"))
+		playsound(loc, 'sound/effects/swoosh.ogg', 50, 1, -1)
+		if(holdinghand == slot_l_hand)
+			flick("left_swing", S)
+			tileattack(user, L, modifier = 1)
+			tileattack(user, C, modifier = 0.8)
+			tileattack(user, R, modifier = 0.6)
+			QDEL_IN(S, 2 SECONDS)
+			return
+		else if(holdinghand == slot_r_hand)
+			flick("right_swing", S)
+			tileattack(user, R, modifier = 1)
+			tileattack(user, C, modifier = 0.8)
+			tileattack(user, L, modifier = 0.6)
+			QDEL_IN(S, 2 SECONDS)
+			return
 
 	return A.attackby(src, user, params)
 
@@ -170,9 +166,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	var/surgery_check = can_operate(src, user)
 	if(surgery_check && do_surgery(src, user, I, surgery_check)) //Surgery
 		return TRUE
-	if(!I.double_tact(user))
-		return
-	return I.attack(src, user, user.targeted_organ)
+	if(I.double_tact(user))
+		I.attack(src, user, user.targeted_organ)
 
 //Handles AOE attacking on tiles
 /obj/item/proc/tileattack(mob/living/user, turf/targetarea, modifier = 1)
@@ -186,22 +181,23 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	for(var/obj/S in targetarea)
 		if (S.density && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal))
 			S.attackby(src, user)
-	var/list/T = new/list()
+	var/list/living_mobs = new/list()
+	var/list/dead_mobs = new/list()
 	for(var/mob/living/M in targetarea)
-		if(M.stat != DEAD)
-			T.Add(M)
-	if(T.len)
-		var/target = pick(T)
-		attack(target, user, user.targeted_organ)
+		if(M.stat == DEAD)
+			living_mobs.Add(M)
+		else
+			dead_mobs.Add(M)
+	var/target
+	if(living_mobs.len)
+		target = pick(living_mobs)
+	else if(dead_mobs.len)
+		target = pick(dead_mobs)
+	else
 		force = original_force
 		return
-	else
-		for(var/mob/living/M in targetarea)
-			T.Add(M)
-		if(T.len)
-			var/target = pick(T)
-			attack(target, user, user.targeted_organ)
-		force = original_force
+	attack(target, user, user.targeted_organ)
+	force = original_force
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
