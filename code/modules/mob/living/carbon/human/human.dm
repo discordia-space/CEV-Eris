@@ -1538,21 +1538,6 @@ var/list/rank_prefix = list(\
 	dodge_time = get_game_time()
 	confidence = FALSE
 
-/mob/living/carbon/human/trip(tripped_on, stun_duration)
-	if(buckled)
-		return FALSE
-	if(lying)
-		return FALSE // No tripping while crawling
-	stop_pulling()
-	if(tripped_on)
-		playsound(src, 'sound/effects/bang.ogg', 50, 1)
-		to_chat(src, SPAN_WARNING("You tripped over!"))
-	Weaken(stun_duration)
-	regen_slickness(-1)
-	dodge_time = get_game_time()
-	confidence = FALSE
-	return TRUE
-
 /mob/living/carbon/human/proc/undislocate()
 	set category = "Object"
 	set name = "Undislocate Joint"

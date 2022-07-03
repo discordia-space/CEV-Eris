@@ -318,21 +318,21 @@
 	rarity_value = 10
 
 /obj/item/rig_module/electrowarfare_suite/activate()
-
 	if(!..())
 		return
 
 	// This is not the best way to handle this, but I don't want it to mess with ling camo
 	var/mob/living/M = holder.wearer
-	M.digitalcamo++
+	if(M)
+		M.digitalcamo++
 
 /obj/item/rig_module/electrowarfare_suite/deactivate()
-
 	if(!..())
 		return
 
 	var/mob/living/M = holder.wearer
-	M.digitalcamo = max(0,(M.digitalcamo-1))
+	if(M)
+		M.digitalcamo = max(0,(M.digitalcamo-1))
 
 /obj/item/rig_module/power_sink
 	name = "hardsuit power sink"

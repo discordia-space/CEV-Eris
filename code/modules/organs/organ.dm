@@ -136,7 +136,7 @@
 		return
 
 	//Process infections
-	if (BP_IS_ROBOTIC(src) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
+	if(BP_IS_ROBOTIC(src) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
 		germ_level = 0
 		return
 
@@ -174,10 +174,10 @@
 	//** Handle the effects of infections
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
 
-	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
+	if(germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
 		germ_level--
 
-	if (germ_level >= INFECTION_LEVEL_ONE/2)
+	if(germ_level >= INFECTION_LEVEL_ONE/2)
 		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes
 		if(antibiotics < 5 && prob(round(germ_level/6)))
 			germ_level++
@@ -186,12 +186,12 @@
 		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
 		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
 
-	if (germ_level >= INFECTION_LEVEL_TWO)
+	if(germ_level >= INFECTION_LEVEL_TWO)
 		//spread germs
-		if (antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
+		if(parent && antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
 			parent.germ_level++
 
-		if (prob(3))	//about once every 30 seconds
+		if(prob(3))	//about once every 30 seconds
 			take_damage(1,silent=prob(30))
 
 /obj/item/organ/proc/handle_rejection()
@@ -235,12 +235,12 @@
 	if(owner)
 		antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
 
-	if (!germ_level || antibiotics < 5)
+	if(!germ_level || antibiotics < 5)
 		return
 
-	if (germ_level < INFECTION_LEVEL_ONE)
+	if(germ_level < INFECTION_LEVEL_ONE)
 		germ_level = 0	//cure instantly
-	else if (germ_level < INFECTION_LEVEL_TWO)
+	else if(germ_level < INFECTION_LEVEL_TWO)
 		germ_level -= 6	//at germ_level == 500, this should cure the infection in a minute
 	else
 		germ_level -= 2 //at germ_level == 1000, this will cure the infection in 5 minutes
@@ -275,11 +275,11 @@
 	if(!BP_IS_ROBOTIC(src))
 		return
 	switch (severity)
-		if (1)
+		if(1)
 			take_damage(12)
-		if (2)
+		if(2)
 			take_damage(6)
-		if (3)
+		if(3)
 			take_damage(3)
 
 // Gets the limb this organ is located in, if any
@@ -292,8 +292,6 @@
 
 	else if(istype(loc, /obj/item/organ/external))
 		return loc
-
-	return null
 
 
 /obj/item/organ/proc/removed(mob/living/user)

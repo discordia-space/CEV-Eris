@@ -34,7 +34,6 @@ mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 		var/mob/living/carbon/human/H = src
 		if(H.head)
 			offset += H.head.obscuration
-		offset -= CLAMP(H.stats.getStat(STAT_VIG), 0, STAT_LEVEL_PROF) * 0.1 // Up to max -6 offset
 
 	offset = round(offset)
 	offset = CLAMP(offset, 0, MAX_ACCURACY_OFFSET)

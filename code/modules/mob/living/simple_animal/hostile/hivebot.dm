@@ -11,7 +11,7 @@
 	attacktext = "clawed"
 	projectilesound = 'sound/weapons/Laser.ogg'
 	projectiletype = /obj/item/projectile/beam/drone
-	faction = "hivebot"
+	faction = "onestar"
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
