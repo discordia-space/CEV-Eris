@@ -132,7 +132,7 @@
 	access = list(
 		access_security, access_moebius, access_medspec, access_engine, access_mailsorting,
 		access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels,
-		access_external_airlocks
+		access_external_airlocks, access_brig
 	)
 
 	stat_modifiers = list(
