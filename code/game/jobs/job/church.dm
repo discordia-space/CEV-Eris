@@ -19,7 +19,7 @@
 		access_RC_announce, access_keycard_auth, access_heads, access_sec_doors, access_change_nt
 	)
 
-	wage = WAGE_PROFESSIONAL // The money of the soul is faith, and cold hard cash
+	wage = WAGE_COMMAND // The money of the soul is faith, and cold hard cash
 	department_account_access = TRUE
 	outfit_type = /decl/hierarchy/outfit/job/church/chaplain
 
