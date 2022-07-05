@@ -26,7 +26,7 @@
 	penetration_multiplier = 1.5 //15 with regular lethal ammo, 30 with HV
 	zoom_factor = 0.4
 	init_recoil = SMG_RECOIL(0.7)
-	gun_parts = list(/obj/item/part/gun/frame/c20r = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/c20 = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
 
 	gun_tags = list(GUN_SILENCABLE)
 
@@ -38,12 +38,14 @@
 	serial_type = "S"
 
 
-/obj/item/part/gun/frame/c20r
-	name = "C20r frame"
-	desc = "A C20r SMG frame. The syndicate's bread and butter."
+/obj/item/part/gun/frame/c20
+	name = "C20 frame"
+	desc = "A C20 SMG frame. The syndicate's bread and butter."
 	icon_state = "frame_syndi"
 	result = /obj/item/gun/projectile/automatic/c20r
-	grip = /obj/item/part/gun/grip/black
+	variant_grip = TRUE
+	gripvars = list(/obj/item/part/gun/grip/rubber, /obj/item/part/gun/grip/black)
+	resultvars = list(/obj/item/gun/projectile/automatic/c20r, /obj/item/gun/projectile/automatic/c20r/moebius)
 	mechanism = /obj/item/part/gun/mechanism/smg
 	barrel = /obj/item/part/gun/barrel/pistol
 
@@ -71,12 +73,5 @@
 	item_state = "c20r"
 	damage_multiplier = 1	//Not quite as good as real syndi
 	penetration_multiplier = 1.2 //12 with lethal, 24 with HV
-	gun_parts = list(/obj/item/part/gun/frame/c20r/moebius = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/c20 = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
 	serial_type = "ML"
-
-/obj/item/part/gun/frame/c20r/moebius
-	name = "C-20M frame"
-	desc = "A C-20M SMG frame. The syndicate's bread and butter, reverse-engineered."
-	icon_state = "frame_moe"
-	result = /obj/item/gun/projectile/automatic/c20r/moebius
-	spawn_blacklisted = TRUE
