@@ -44622,7 +44622,6 @@
 	},
 /obj/item/paper_bin,
 /obj/item/pen,
-/obj/spawner/gun/handmade,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/crew_quarters/clothingstorage)
 "ccH" = (
