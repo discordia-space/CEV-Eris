@@ -615,11 +615,10 @@
 	)
 
 
-/obj/item/oddity/bearmath/attack_self(mob/user)
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(alert(user,"Do you want to try and solve the equation on the scrap?","Math problems!","Yes","No") == "Yes")
-			if(H.stat_check(STAT_COG, STAT_LEVEL_ADEPT))
+/obj/item/oddity/bearmath/attack_self(mob/living/carbon/human/user)
+	if(istype(user))
+		if(alert(user, "Do you want to try and solve the equation on the scrap?", "Math problems!", "Yes", "No") == "Yes")
+			if(user.stat_check(STAT_COG, STAT_LEVEL_ADEPT))
 				if(prob(95))
 					user.visible_message(SPAN_WARNING("A bear appears out of nowhere!"), SPAN_DANGER("The equation results in a bear!"))
 					var/turf/T = get_turf(pick(oview(2, user)))
