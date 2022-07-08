@@ -1,5 +1,5 @@
 /obj/item/gun/projectile/automatic/ak47
-	name = "Excelsior .30 AKMS"
+	name = "Excelsior .30 \"Kalashnikov\""
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 		 This is a copy of an ancient semi-automatic rifle chambered for .30 Rifle. If it won't fire, percussive maintenance should get it working again. \
 		 It is known for its easy maintenance, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents. \
