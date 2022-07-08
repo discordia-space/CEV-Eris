@@ -576,8 +576,8 @@
 	rarity_value = 8
 
 /obj/item/ammo_casing/crossbow/bolt 
-	name = "Steel Bolt"
-	desc = "A steed rod worked into the shape of a crossbow bolt"
+	name = "steel bolt"
+	desc = "A steel rod worked into the shape of a crossbow bolt."
 	icon_state = "CrossbowBolt"
 	spent_icon = "CrossbowBolt"
 	caliber = CAL_CBOLT
