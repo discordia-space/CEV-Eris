@@ -40,7 +40,7 @@
 
 /obj/item/gun/projectile/mk58/army
 	name = "NT HG .35 Auto \"Mk58-M\""
-	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, that was produced by a NanoTrasen subsidiary. This is a military with a nice rubber grip and a glow sight. Uses standard .35 and high capacity magazines."
+	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, that was produced by a NanoTrasen subsidiary. This is a military model with a nice rubber grip and a glow sight. Uses standard .35 and high capacity magazines."
 	icon_state = "mk58_army"
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 8)
 	price_tag = 700
