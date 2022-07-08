@@ -19,7 +19,7 @@
 		access_RC_announce, access_keycard_auth, access_heads, access_sec_doors, access_change_nt
 	)
 
-	wage = WAGE_PROFESSIONAL // The money of the soul is faith, and cold hard cash
+	wage = WAGE_COMMAND // The money of the soul is faith, and cold hard cash
 	department_account_access = TRUE
 	outfit_type = /decl/hierarchy/outfit/job/church/chaplain
 
@@ -173,7 +173,7 @@
 	also_known_languages = list(LANGUAGE_LATIN = 100)
 	security_clearance = CLEARANCE_COMMON
 	cruciform_access = list(access_janitor, access_maint_tunnels, access_morgue, access_crematorium)
-	wage = WAGE_PROFESSIONAL // The money of the soul is faith, and cold hard cash
+	wage = WAGE_LABOUR_HAZARD // The money of the soul is faith, and cold hard cash
 	outfit_type = /decl/hierarchy/outfit/job/church/janitor
 
 	stat_modifiers = list(
