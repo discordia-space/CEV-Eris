@@ -20,7 +20,7 @@
 /obj/item/gun/projectile/shotgun/pump/regulator/army
 	name = "NT SG \"Regulator M1000\""
 	desc = "Designed for close quarters combat, the Regulator is widely regarded as a weapon of choice for repelling boarders. \
-		Some may say that it's too old, but it actually proved itself useful. this model is the military version, with durable plastic and rubber parts for a lighter gun. Can hold up to 7+1 shells in tube magazine."
+		Some may say that it's too old, but it actually proved itself useful. This is a military model with lightweight-yet-durable plastic and rubber parts. Can hold up to 7+1 shells in tube magazine."
 	icon_state = "regulator_army"
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 12)
 	price_tag = 2200
