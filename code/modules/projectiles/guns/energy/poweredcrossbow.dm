@@ -28,32 +28,6 @@
 	safety = FALSE
 	restrict_safety = TRUE
 
-/obj/item/gun/energy/poweredcrossbow/consume_next_projectile()
-	if(!cell) return null
-	if(!ispath(projectile_type)) return null
-	if(consume_cell && !cell.checked_use(charge_cost))
-		visible_message(SPAN_WARNING("\The [cell] of \the [src] burns out!"))
-		qdel(cell)
-		cell = null
-		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
-		new /obj/effect/decal/cleanable/ash(get_turf(src))
-		return new projectile_type(src)
-	else if(!consume_cell && !cell.checked_use(charge_cost))
-		return null
-	else
-		return new projectile_type(src)
-
-/obj/item/gun/energy/poweredcrossbow/attackby(obj/item/I, mob/user)
-	..()
-	if(I.has_quality(QUALITY_BOLT_TURNING))
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-			if(consume_cell)
-				consume_cell = FALSE
-				to_chat(user, SPAN_NOTICE("You secure the safety bolts, preventing the weapon from destroying empty cells for use as ammuniton."))
-			else
-				consume_cell = TRUE
-				to_chat(user, SPAN_NOTICE("You loosen the safety bolts, allowing the weapon to destroy empty cells for use as ammunition."))
-
 /obj/item/gun/energy/poweredcrossbow/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/ammo_casing/crossbow/bolt) && !bolt)
 		bolt = TRUE
