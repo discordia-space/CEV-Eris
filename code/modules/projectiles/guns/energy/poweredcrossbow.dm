@@ -1,5 +1,5 @@
 /obj/item/gun/energy/poweredcrossbow
-	name = "Powered Crossbow"
+	name = "powered crossbow"
 	desc = "An handmade crossbow linked to an attached power cell, a weapon of desperation and ingenuity."
 	icon = 'icons/obj/guns/energy/poweredcrossbow.dmi'
 	icon_state = "crossbow"
