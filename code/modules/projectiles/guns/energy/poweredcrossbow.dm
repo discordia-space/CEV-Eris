@@ -28,13 +28,6 @@
 	safety = FALSE
 	restrict_safety = TRUE
 
-/obj/item/gun/energy/poweredcrossbow/attackby(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/ammo_casing/crossbow/bolt) && !bolt)
-		bolt = TRUE
-		qdel(I)
-	else
-		..()
-
 /obj/item/gun/energy/poweredcrossbow/update_icon()
 	if(bolt)
 		icon_state = "crossbow_drawn"
@@ -48,6 +41,12 @@
 		bolt.amount = 1
 		(B.amount > 1) ? B.amount-- : qdel(B)
 	else if(!..())to_chat(user, SPAN_WARNING("The crossbow is already loaded."))
+	else
+		..()
+		
+	if(istype(I, /obj/item/ammo_casing/crossbow/bolt) && !bolt)
+		bolt = TRUE
+		qdel(I)
 	else
 		..()
 
