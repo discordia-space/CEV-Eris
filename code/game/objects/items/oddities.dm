@@ -638,8 +638,6 @@
 					sparks.start()
 					user.visible_message(SPAN_WARNING("A bunch of items appear out of nowhere!"), SPAN_DANGER("The equation results in several unique objects!"))
 					qdel(src)
-
-
 			else
 				to_chat(user, "You fail to solve the equation, did you carry the [rand(1, 9)]?")
 	else
