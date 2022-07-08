@@ -90,7 +90,7 @@
 		list(QUALITY_WELDING, 10, "time" = 30),
 		list(/obj/item/stack/cable_coil, 10, "time" = 10),
 		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTIC, "time" = 10),
-		list(QUALITY_SCREW_DRIVING, 5, 10,"time" = 3))
+		list(QUALITY_SCREW_DRIVING, 5, 10, "time" = 3))
 
 /datum/craft_recipe/gun/makeshiftlaser
 	name = "makeshift laser carbine"
