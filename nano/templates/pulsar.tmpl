@@ -23,6 +23,28 @@ Used In File(s): code/modules/pulsar_engine/pulsar_consoles.dm
 		{{/if}}
 	</div>
 </div>
+<div class="item">
+	<div class="itemLabel">
+		Shield power rerouting:
+	</div>
+	<div class="itemContent">
+	Power needed to sustain current shields: {{:data.shield_power_req}}%
+		{{if data.shield_power >= data.shield_power_req}}
+			{{:helper.displayBar(data.shield_power, 0, 100, 'medium', data.shield_power + '%')}}
+		{{else}}
+			{{:helper.displayBar(data.shield_power, 0, 100, 'bad', data.shield_power + '%')}}
+		{{/if}}
+		{{:helper.link('Set shield power', null, {'set_shield' : 1},  null, null)}}
+	</div>
+</div>
+<div class="item">
+	<div class="itemLabel">
+		Effective power produced:
+	</div>
+	<div class="itemContent">
+		{{:data.effective_power_produced}}%
+	</div>
+</div>
 <div class='block'>
 	<div class='item'>
 		<div class="itemLabel">
@@ -33,7 +55,7 @@ Used In File(s): code/modules/pulsar_engine/pulsar_consoles.dm
 			</div>
 			<div class='item'>
 				{{:helper.link('', 'triangle-1-w', { 'move' : 8 },  null , null)}}
-				{{:helper.link('', 'circle-close', { 'brake' : 1 },  null, null)}}
+				{{:helper.link('', 'circle-close', { 'honk' : 1 },  null, null)}}
 				{{:helper.link('', 'triangle-1-e', { 'move' : 4 },  null, null)}}
 			</div>
 			<div class='item'>

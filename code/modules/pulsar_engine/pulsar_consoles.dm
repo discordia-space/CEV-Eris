@@ -10,6 +10,7 @@
 	var/obj/effect/pulsar_ship/ship
 	var/obj/structure/pulsar_fuel_tank/tank
 	var/map_active
+	var/shield_power = 50
 
 /obj/machinery/pulsar/New(loc, ...)
 	. = ..()
@@ -63,7 +64,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "pulsar.tmpl", name, 390, 450)
+		ui = new(user, src, ui_key, "pulsar.tmpl", name, 550, 400)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -73,6 +74,9 @@
 	data["ship_fuel"] = round(tank?.air_contents.get_total_moles())
 	data["no_tank"] = !tank
 	data["thrust_cost"] = get_thrust_cost()
+	data["shield_power"] = shield_power
+	data["shield_power_req"] = get_required_shielding()
+	data["effective_power_produced"] = get_effective_power_porduced()
 
 	return data
 
@@ -87,6 +91,12 @@
 	else if(href_list["scan_fuel"])
 		tank = locate(/obj/structure/pulsar_fuel_tank) in range(5) //Should scan the shuttle area not range, but shuttle isn't mapped
 		SSnano.update_uis(src)
+	
+	else if(href_list["set_shield"])
+		var/target_level = input(usr, "Set shielding power", "Shield control", 50) as num
+		if(target_level < 100)
+			shield_power = max(0 , target_level)
+	SSnano.update_uis(src)
 	..()
 
 /obj/machinery/pulsar/proc/get_thrust_cost()
@@ -94,8 +104,20 @@
 		return round((1/tank.air_contents.specific_mass()) * 2) //Goes from 4 with 100% plasma up to 40+ when diluting with too much oxygen
 	return 100
 
-/obj/machinery/pulsar/proc/get_produced_power()
-	return max(0, round((GLOB.maps_data.pulsar_size - 2 * ROOT(2, abs(linked.x - ship.x) ** 2 + abs(linked.y - ship.y) ** 2)) * 100/GLOB.maps_data.pulsar_size))
+/obj/machinery/pulsar/proc/get_produced_power() //Simply based on linear distance from the pulsar
+	for(var/obj/O in get_turf(ship))
+		if(O.type in subtypesof(/obj/effect/pulsar_beam))
+			return 150
+	return max(0, round(((GLOB.maps_data.pulsar_size * ROOT(2,2)) - 2 * ROOT(2, abs(linked.x - ship.x) ** 2 + abs(linked.y - ship.y) ** 2)) * 100/(GLOB.maps_data.pulsar_size * ROOT(2,2))))
+
+/obj/machinery/pulsar/proc/get_required_shielding()
+	for(var/obj/O in get_turf(ship))
+		if(O.type in subtypesof(/obj/effect/pulsar_beam))
+			return 60
+	return max(30, 30 + (round(((GLOB.maps_data.pulsar_size * ROOT(2,2)) - 2 * ROOT(2, abs(linked.x - ship.x) ** 2 + abs(linked.y - ship.y) ** 2)) * 100/(GLOB.maps_data.pulsar_size * ROOT(2,2))) / 5))
+
+/obj/machinery/pulsar/proc/get_effective_power_porduced() //Formula comes with deminishing returns but it's rising way past 100
+	return get_produced_power() * (100 - shield_power) / 100
 
 /obj/machinery/pulsar/proc/onShipMoved()
 	SSnano.update_uis(src)

@@ -61,3 +61,8 @@
 /obj/effect/pulsar_ship/shadow
 	do_decay = FALSE
 	alpha = 255 * 0.5
+
+//Pulsar events
+
+/datum/pulsar_event
+	var/name = "parent of all pulsar events"

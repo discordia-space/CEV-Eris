@@ -108,6 +108,12 @@ SUBSYSTEM_DEF(mapping)
 		GLOB.maps_data.pulsar_star = new /obj/effect/pulsar(T)
 
 	GLOB.maps_data.sealed_levels |= GLOB.maps_data.pulsar_z
+	generate_pulsar_events()
+
+/datum/controller/subsystem/mapping/proc/generate_pulsar_events()
+	var/list/pulsar_events = list(/datum/pulsar_event)
+	message_admins("Pulsar events WIP")
+
 
 
 /datum/controller/subsystem/mapping/proc/build_overmap()
