@@ -4,15 +4,9 @@
 	icon = 'icons/obj/guns/energy/poweredcrossbow.dmi'
 	icon_state = "crossbow"
 	item_state = "crossbow"
-	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_PAINFUL
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	wielded_item_state = "_doble"
-	charge_cost = 100
-	suitable_cell = /obj/item/cell/large
-	cell_type = /obj/item/cell/large
-	projectile_type = /obj/item/projectile/bullet/bolt
 	fire_delay = 12 //Equivalent to a pump then fire time
 	fire_sound = 'sound/weapons/tablehit1.ogg'
 	init_firemodes = list(
@@ -20,8 +14,6 @@
 	price_tag = 200
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 5)
-	twohanded = FALSE
-	var/consume_cell = TRUE
 	var/obj/item/ammo_casing/crossbow/bolt/bolt
 	var/is_drawn
 	init_recoil = RIFLE_RECOIL(1)
