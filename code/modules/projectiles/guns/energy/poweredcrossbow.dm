@@ -40,7 +40,6 @@
 		bolt = new B.type()
 		bolt.amount = 1
 		(B.amount > 1) ? B.amount-- : qdel(B)
-	else if(!..())to_chat(user, SPAN_WARNING("The crossbow is already loaded."))
 	else
 		..()
 		
