@@ -29,10 +29,7 @@
 	restrict_safety = TRUE
 
 /obj/item/gun/energy/poweredcrossbow/update_icon()
-	if(bolt)
-		icon_state = "crossbow_drawn"
-	else
-		icon_state = "crossbow"
+	icon_state = bolt ? "crossbow_drawn" : "crossbow"
 
 /obj/item/gun/energy/poweredcrossbow/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/ammo_casing/crossbow/bolt) && !bolt)
