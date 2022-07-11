@@ -338,8 +338,7 @@ There are important things regarding this file:
 	step_delay = 0.75
 	style_damage = 40
 
-/obj/item/projectile/bullet/bolt/on_hit(atom/target, def_zone = null)
-    if(isliving(target) && def_zone)
-        var/mob/living/L = target
+/obj/item/projectile/bullet/bolt/on_hit(mob/living/target, def_zone = BP_CHEST)
+    if(istype(target))
         var/obj/item/stack/rods/R = new(null)
-        L.embed(R, def_zone)
+        target.embed(R, def_zone)
