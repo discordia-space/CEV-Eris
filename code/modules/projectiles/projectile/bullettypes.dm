@@ -330,12 +330,9 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/bolt
 	name = "bolt"
-	damage_types = list (BRUTE = 42)
 	armor_penetration = 20
-	penetrating = 0
 	can_ricochet = TRUE
 	recoil = 3
-	step_delay = 0.75
 	style_damage = 40
 
 /obj/item/projectile/bullet/bolt/on_hit(mob/living/target, def_zone = BP_CHEST)
