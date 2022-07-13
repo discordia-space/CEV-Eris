@@ -74,30 +74,46 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		var/turf/R
 		var/turf/C
 		var/turf/L
-		C = locate(A.x, A.y, A.z)
-		var/_dir = get_dir(user, A)
+		var/_x = A.x
+		var/_y = A.y
+		var/_z = A.z
+		var/_dir
+		if(_x == user.x && _y == user.y && _z == user.z)
+			_dir = user.dir
+			switch(_dir)
+				if(NORTH)
+					_y++
+				if(SOUTH)
+					_y--
+				if(EAST)
+					_x++
+				if(WEST)
+					_x--
+		else
+			_dir = get_dir(user, A)
+		C = locate(_x, _y, _z)
 		switch(_dir)
 			if(NORTH, SOUTH)
-				R = locate((A.x + 1), A.y, A.z)
-				L = locate((A.x - 1), A.y, A.z)
+				R = locate((_x + 1), _y, _z)
+				L = locate((_x - 1), _y, _z)
 			if(EAST)
-				R = locate(A.x, (A.y - 1), A.z)
-				L = locate(A.x, (A.y + 1), A.z)
+				R = locate(_x, (_y - 1), _z)
+				L = locate(_x, (_y + 1), _z)
 			if(NORTHEAST)
-				R = locate(A.x, (A.y - 1), A.z)
-				L = locate((A.x - 1), A.y, A.z)
+				R = locate(_x, (_y - 1), _z)
+				L = locate((_x - 1), _y, _z)
 			if(SOUTHEAST)
-				R = locate((A.x - 1), A.y, A.z)
-				L = locate(A.x, (A.y + 1), A.z)
+				R = locate((_x - 1), _y, _z)
+				L = locate(_x, (_y + 1), _z)
 			if(WEST)
-				R = locate(A.x, (A.y + 1), A.z)
-				L = locate(A.x, (A.y - 1), A.z)
+				R = locate(_x, (_y + 1), _z)
+				L = locate(_x, (_y - 1), _z)
 			if(NORTHWEST)
-				R = locate((A.x + 1), A.y, A.z)
-				L = locate(A.x, (A.y - 1), A.z)
+				R = locate((_x + 1), _y, _z)
+				L = locate(_x, (_y - 1), _z)
 			if(SOUTHWEST)
-				R = locate(A.x, (A.y + 1), A.z)
-				L = locate((A.x + 1), A.y, A.z)
+				R = locate(_x, (_y + 1), _z)
+				L = locate((_x + 1), _y, _z)
 		var/obj/effect/effect/melee/swing/S = new(user.loc)
 		S.dir = _dir
 		user.visible_message(SPAN_DANGER("[user] swings \his [src]"))
