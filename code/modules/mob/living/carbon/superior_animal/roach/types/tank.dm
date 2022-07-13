@@ -6,7 +6,7 @@
 	turns_per_move = 2
 	maxHealth = 45
 	health = 45
-	move_to_delay = 7
+	move_to_delay = 6
 	mob_size = MOB_MEDIUM
 	density = TRUE
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/panzer

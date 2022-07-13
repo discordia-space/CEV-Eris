@@ -26,7 +26,8 @@
 
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/death()
 	..()
-	delhivetech()
+	if(GLOB.hive_data_bool["tyrant_death_kills_hive"])
+		delhivetech()
 
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/proc/delhivetech()
 	var/othertyrant = 0

@@ -35,10 +35,12 @@
 
 /// Proc called when the perk is assigned to a human. Should be the first thing to be called.
 /datum/perk/proc/assign(mob/living/carbon/human/H)
-	SHOULD_CALL_PARENT(TRUE)
-	holder = H
-	RegisterSignal(holder, COMSIG_MOB_LIFE, .proc/on_process)
-	to_chat(holder, SPAN_NOTICE("[gain_text]"))
+	if(istype(H))
+		SHOULD_CALL_PARENT(TRUE)
+		holder = H
+		RegisterSignal(holder, COMSIG_MOB_LIFE, .proc/on_process)
+		to_chat(holder, SPAN_NOTICE("[gain_text]"))
+		return TRUE
 
 /// Proc called when the perk is removed from a human. Obviously, in your perks, you should call parent as the last thing you do, since it deletes the perk itself.
 /datum/perk/proc/remove()

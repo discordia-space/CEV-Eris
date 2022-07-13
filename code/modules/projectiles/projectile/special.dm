@@ -34,9 +34,9 @@
 	recoil = 40
 	can_ricochet = FALSE
 
-/obj/item/projectile/bullet/rocket/launch(atom/target, target_zone, x_offset, y_offset, angle_offset)
+/obj/item/projectile/bullet/rocket/launch(atom/target, target_zone, x_offset, y_offset, angle_offset, proj_sound, user_recoil)
 	set_light(2.5, 0.5, "#dddd00")
-	..(target, target_zone, x_offset, y_offset, angle_offset)
+	..(target, target_zone, x_offset, y_offset, angle_offset, proj_sound, user_recoil)
 
 /obj/item/projectile/bullet/rocket/on_hit(atom/target)
 	detonate(target)

@@ -79,6 +79,7 @@
 	saw_off = TRUE
 	sawn = /obj/item/gun/energy/retro/sawn
 	init_recoil = CARBINE_RECOIL(1)
+	serial_type = "OS"
 
 /obj/item/gun/energy/retro/sawn
 	name = "sawn down OS LG \"Cog\""

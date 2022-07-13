@@ -21,7 +21,7 @@
 	emote_see = list("chitters", "rubs its legs")
 	speak_chance = 5
 
-	move_to_delay = 6
+	move_to_delay = 3
 	turns_per_move = 5
 	see_in_dark = 10
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/spider
