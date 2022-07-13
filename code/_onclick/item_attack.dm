@@ -195,7 +195,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		force = original_force
 		return
 	for(var/obj/S in targetarea)
-		if (S.density && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal))
+		if (S.density && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal) && !istype(S, /obj/structure/closet))
 			S.attackby(src, user)
 	var/list/living_mobs = new/list()
 	var/list/dead_mobs = new/list()
