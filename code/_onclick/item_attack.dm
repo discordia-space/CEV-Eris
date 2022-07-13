@@ -78,6 +78,10 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		var/_y = A.y
 		var/_z = A.z
 		var/_dir
+		if(_x == 0 && _y == 0 && _z == 0) //Attacking equipped items results in them getting forwarded
+			_x = user.x
+			_y = user.y
+			_z = user.z
 		if(_x == user.x && _y == user.y && _z == user.z)
 			_dir = user.dir
 			switch(_dir)
