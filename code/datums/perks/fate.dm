@@ -169,7 +169,10 @@
 	W.AddComponent(/datum/component/inspiration, final_oddity, get_oddity_perk())
 	W.AddComponent(/datum/component/atom_sanity, 1, "") //sanity gain by area
 	W.sanity_damage -= 1 //damage by view
-	W.price_tag += rand(2500,7000)
+	if(W.price_tag <= 2000)
+		W.price_tag += rand(2500,5000)
+	else
+		W.price_tag += rand(5500,8000)
 	spawn(1)
 		holder.equip_to_storage_or_drop(W)
 
