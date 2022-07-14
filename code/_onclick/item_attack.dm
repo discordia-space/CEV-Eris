@@ -74,14 +74,18 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		var/turf/R
 		var/turf/C
 		var/turf/L
-		var/_x = A.x
-		var/_y = A.y
-		var/_z = A.z
-		var/_dir
-		if(_x == 0 && _y == 0 && _z == 0) //Attacking equipped items results in them getting forwarded
+		var/_x
+		var/_y
+		var/_z
+		if(A.x == 0 && A.y == 0 && A.z == 0) //Attacking equipped items results in them getting forwarded
 			_x = user.x
 			_y = user.y
 			_z = user.z
+		else
+			_x = A.x
+			_y = A.y
+			_z = A.z
+		var/_dir
 		if(_x == user.x && _y == user.y && _z == user.z)
 			_dir = user.dir
 			switch(_dir)
@@ -128,14 +132,18 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			tileattack(user, C, modifier = 0.8)
 			tileattack(user, R, modifier = 0.6)
 			QDEL_IN(S, 2 SECONDS)
-			return
 		else if(holdinghand == slot_r_hand)
 			flick("right_swing", S)
 			tileattack(user, R, modifier = 1)
 			tileattack(user, C, modifier = 0.8)
 			tileattack(user, L, modifier = 0.6)
 			QDEL_IN(S, 2 SECONDS)
-			return
+		if(missed_swing)
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+			user.visible_message(SPAN_DANGER("[user] misses \his swing"))
+		else
+			missed_swing = TRUE
+		return
 
 	return A.attackby(src, user, params)
 
@@ -197,10 +205,12 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		var/turf/simulated/W = targetarea
 		W.attackby(src, user)
 		force = original_force
+		missed_swing = FALSE
 		return
 	for(var/obj/S in targetarea)
 		if (S.density && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal) && !istype(S, /obj/structure/closet))
 			S.attackby(src, user)
+			missed_swing = FALSE
 	var/list/living_mobs = new/list()
 	var/list/dead_mobs = new/list()
 	for(var/mob/living/M in targetarea)
@@ -218,6 +228,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		return
 	attack(target, user, user.targeted_organ)
 	force = original_force
+	missed_swing = FALSE
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
