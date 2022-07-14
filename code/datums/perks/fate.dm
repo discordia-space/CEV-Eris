@@ -138,7 +138,7 @@
 				/obj/item/tool/sword/nt/longsword = 0.5,
 				/obj/item/tool/sword/nt/shortsword = 0.5,
 				/obj/item/tool/sword/nt/scourge = 0.1,
-				/obj/item/tool/knife/dagger/nt = 0.6,
+				/obj/item/tool/knife/dagger/nt = 0.5,
 				/obj/item/gun/energy/nt_svalinn = 0.4,
 				/obj/item/gun/energy/stunrevolver = 0.1))
 	else
@@ -149,7 +149,7 @@
 				/obj/item/tool/knife/switchblade = 0.5,
 				/obj/item/tool/sword = 0.2,
 				/obj/item/tool/sword/katana = 0.2,
-				/obj/item/tool/knife/dagger = 0.6,
+				/obj/item/tool/knife/dagger = 0.5,
 				/obj/item/gun/projectile/colt = 0.2,
 				/obj/item/gun/projectile/revolver/havelock = 0.1,
 				/obj/item/tool/knife/dagger/ceremonial = 0.4,
