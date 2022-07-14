@@ -143,6 +143,8 @@
 				/obj/item/gun/energy/stunrevolver = 0.1))
 	else
 		W = pickweight(list(
+				/obj/item/tool/hammer/mace = 0.2,
+				/obj/item/tool/hammer/mace/makeshift/baseballbat = 0.1,
 				/obj/item/tool/knife/ritual = 0.5,
 				/obj/item/tool/knife/switchblade = 0.5,
 				/obj/item/tool/sword = 0.2,
@@ -150,7 +152,7 @@
 				/obj/item/tool/knife/dagger = 0.6,
 				/obj/item/gun/projectile/colt = 0.2,
 				/obj/item/gun/projectile/revolver/havelock = 0.1,
-				/obj/item/tool/knife/dagger/ceremonial = 0.6,
+				/obj/item/tool/knife/dagger/ceremonial = 0.4,
 				/obj/item/gun/projectile/revolver = 0.4))
 	holder.sanity.valid_inspirations += W
 	W = new W(T)
