@@ -132,7 +132,7 @@
 		holder.stats.removePerk(src.type)
 		return
 	var/turf/T = get_turf(holder)
-	var/obj/item/W = null
+	var/obj/item/W
 	if(is_neotheology_disciple(holder) && prob(50))
 		W = pickweight(list(
 				/obj/item/tool/sword/nt/longsword = 0.5,
