@@ -76,6 +76,13 @@
 		list(QUALITY_HAMMERING, 10, "time" = 20)
 	)
 
+/datum/craft_recipe/weapon/crossbow_bolt
+	name = "crossbow bolt"
+	result = /obj/item/ammo_casing/crossbow/bolt
+	steps = list(
+		list(/obj/item/stack/rods, 1, "time" = 1),
+		list(QUALITY_HAMMERING, 5, 10)) 
+
 /datum/craft_recipe/weapon/knife_blade
 	name = "knife blade"
 	result = /obj/item/material/butterflyblade
@@ -88,18 +95,6 @@
 	result = /obj/item/material/butterflyhandle
 	steps = list(
 		list(CRAFT_MATERIAL, 4, MATERIAL_PLASTEEL)
-	)
-
-/datum/craft_recipe/weapon/crossbow
-	name = "crossbow"
-	result = /obj/item/gun/launcher/crossbow
-	steps = list(
-		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD), //old frame recipe
-		list(/obj/item/stack/rods, 3, "time" = 20),
-		list(QUALITY_WELDING, 10, "time" = 30),
-		list(/obj/item/stack/cable_coil, 10, "time" = 10),
-		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTIC, "time" = 10),
-		list(QUALITY_SCREW_DRIVING, 5, 10,"time" = 3)
 	)
 
 /datum/craft_recipe/weapon/teleportation_spear

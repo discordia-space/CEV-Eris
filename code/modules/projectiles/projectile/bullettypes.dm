@@ -327,3 +327,15 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 	recoil = 1 // Pop
+
+/obj/item/projectile/bullet/bolt
+	name = "bolt"
+	armor_penetration = 20
+	can_ricochet = TRUE
+	recoil = 3
+	style_damage = 40
+
+/obj/item/projectile/bullet/bolt/on_hit(mob/living/target, def_zone = BP_CHEST)
+    if(istype(target))
+        var/obj/item/stack/rods/R = new(null)
+        target.embed(R, def_zone)
