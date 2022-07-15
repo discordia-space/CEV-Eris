@@ -31,12 +31,6 @@
 		(B.amount > 1) ? B.amount-- : qdel(B)
 	else
 		..()
-		
-	if(istype(I, /obj/item/ammo_casing/crossbow/bolt) && !bolt)
-		bolt = TRUE
-		qdel(I)
-	else
-		..()
 
 /obj/item/gun/energy/poweredcrossbow/attack_hand(mob/living/user)
 	if(bolt)
