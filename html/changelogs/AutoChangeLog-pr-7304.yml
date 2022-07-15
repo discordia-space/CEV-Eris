@@ -1,0 +1,7 @@
+author: ValoTheValo
+delete-after: true
+changes:
+  - balance: Normal gun spawners are back in maintenance, same as they were before
+  - balance: sprinkled some new handmade gun spawners around maint so handmade stuff
+      is still available
+  - bugfix: fixed onestar lockers and secure closets not spawning guns
