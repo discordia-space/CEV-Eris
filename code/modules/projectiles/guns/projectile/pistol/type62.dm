@@ -12,10 +12,10 @@
     magazine_type = /obj/item/ammo_magazine/magnum
     matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLATINUM = 8, MATERIAL_PLASTIC = 4)
     can_dual = TRUE
-    slot_flags = SLOT_BELT|SLOT_HOLSTER
+    slot_flags = SLOT_BELT|SLOT_HOLSTER|SLOT_BACK
     damage_multiplier = 1.2
-    penetration_multiplier = 1.1
-    recoil = HANDGUN_RECOIL(1.0)
+    penetration_multiplier = 1.0
+    recoil = HANDGUN_RECOIL(0.9)
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/hpistol_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/hpistol_magin.ogg'

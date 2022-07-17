@@ -33,7 +33,7 @@
 	serial_type = "OS"
 
 
-/obj/item/gun/projectile/type_42/update_icon()
+/obj/item/gun/projectile/type_90/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
