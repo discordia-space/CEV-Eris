@@ -9,10 +9,11 @@
 	matter = list(MATERIAL_PLASTIC = 10, MATERIAL_STEEL = 15)
 	price_tag = 250 //one of the cheapest revolvers here
 	damage_multiplier = 1.3
-	recoil_buildup = 7
+	init_recoil = HANDGUN_RECOIL(1.2)
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/steel = 15)
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
+	serial_type = ""
 
 /obj/item/gun/projectile/revolver/handmade/attackby(obj/item/W, mob/user)
 	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
@@ -30,7 +31,7 @@
 				caliber = CAL_MAGNUM
 				fire_sound = 'sound/weapons/guns/fire/revolver_fire.ogg'
 				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .40 Magnum."))
-		else 
+		else
 			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
 			return
 	..()

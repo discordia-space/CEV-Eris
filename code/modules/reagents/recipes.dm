@@ -406,6 +406,12 @@
 	result = "ryetalyn"
 	required_reagents = list("arithrazine" = 1, "carbon" = 1)
 	result_amount = 2
+
+/datum/chemical_reaction/kognim
+	result = "kognim"
+	required_reagents = list("radium" = 1, "ryetalyn" = 2, "synaptizine" = 1)
+	result_amount = 2
+
 /datum/chemical_reaction/negative_ling
 	result = "negativeling"
 	required_reagents = list("ryetalyn" = 1, "carbon" = 1)
@@ -611,7 +617,7 @@
 
 /datum/chemical_reaction/uraniumsolidification
 	result = null
-	required_reagents = list("iron" = 5, "frostoil" = 5, "uranium" = 20)
+	required_reagents = list("aluminum" = 5, "frostoil" = 10, "uranium" = 20)
 	result_amount = 1
 
 /datum/chemical_reaction/uraniumsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)

@@ -122,6 +122,21 @@ for reference:
 	qdel(src)
 	return
 
+/obj/structure/barricade/proc/take_damage(damage)
+	health -= damage
+	if(health <= 0)
+		dismantle()
+
+/obj/structure/barricade/attack_generic(mob/M, damage, attack_message)
+	if(damage)
+		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		M.do_attack_animation(src)
+		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
+		take_damage(damage)
+	else
+		attack_hand(M)
+
 /obj/structure/barricade/ex_act(severity)
 	switch(severity)
 		if(1)
@@ -149,12 +164,12 @@ for reference:
 
 /obj/structure/barricade/proc/check_cover(obj/item/projectile/P, turf/from)
 	if (get_dist(P.starting, loc) <= 1) //Cover won't help you if people are THIS close
-		return 1
+		return TRUE
+	if(get_dist(loc, P.trajectory.target) > 1 ) // Target turf must be adjacent for it to count as cover
+		return TRUE
 	var/valid = FALSE
-	var/distance = get_dist(P.last_interact,loc)
 	if(!P.def_zone)
-		return 1 // Emitters, or anything with no targeted bodypart will always bypass the cover
-	P.check_hit_zone(loc, distance)
+		return TRUE // Emitters, or anything with no targeted bodypart will always bypass the cover
 
 	var/targetzone = check_zone(P.def_zone)
 	if (targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
@@ -172,8 +187,8 @@ for reference:
 		else
 			visible_message(SPAN_WARNING("[src] breaks down!"))
 			qdel(src)
-			return 1
-	return 1
+			return TRUE
+	return TRUE
 
 //Actual Deployable machinery stuff
 /obj/machinery/deployable
@@ -273,16 +288,16 @@ for reference:
 		icon_state = "barrier[locked]"
 
 /obj/machinery/deployable/barrier/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
-
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
 
 	if(air_group || (height==0))
-		return 1
-	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
-	else
-		return 0
+		return TRUE
+
+	if(ishuman(mover))
+		var/mob/living/carbon/human/H = mover
+		if(H.checkpass(PASSTABLE) && H.stats?.getPerk(PERK_PARKOUR))
+			return TRUE
 
 /obj/machinery/deployable/barrier/proc/explode()
 
@@ -323,11 +338,11 @@ for reference:
 /obj/machinery/deployable/barrier/proc/check_cover(obj/item/projectile/P, turf/from)
 	if (get_dist(P.starting, loc) <= 1) //Cover won't help you if people are THIS close
 		return 1
+	if(get_dist(loc, P.trajectory.target) > 1 ) // Target turf must be adjacent for it to count as cover
+		return TRUE
 	var/valid = FALSE
-	var/distance = get_dist(P.last_interact,loc)
 	if(!P.def_zone)
 		return 1 // Emitters, or anything with no targeted bodypart will always bypass the cover
-	P.check_hit_zone(loc, distance)
 
 	var/targetzone = check_zone(P.def_zone)
 	if (targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
@@ -347,3 +362,18 @@ for reference:
 			qdel(src)
 			return 1
 	return 1
+
+/obj/machinery/deployable/barrier/proc/take_damage(damage)
+	health -= damage
+	if(health <= 0)
+		dismantle()
+
+/obj/machinery/deployable/barrier/attack_generic(mob/M, damage, attack_message)
+	if(damage)
+		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		M.do_attack_animation(src)
+		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
+		take_damage(damage * 1.25)
+	else
+		attack_hand(M)

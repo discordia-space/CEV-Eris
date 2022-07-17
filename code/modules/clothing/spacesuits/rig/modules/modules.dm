@@ -16,6 +16,7 @@
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 20, MATERIAL_GLASS = 5)
 	spawn_tags = SPAWN_TAG_RIG_MODULE
 	rarity_value = 5
+	price_tag = 500
 	bad_type = /obj/item/rig_module
 
 	var/damage = 0
@@ -57,6 +58,8 @@
 	var/deactivate_string = "Deactivate"
 
 	var/list/stat_rig_module/stat_modules = new()
+
+	
 
 /obj/item/rig_module/get_cell()
 	holder = get_rig()

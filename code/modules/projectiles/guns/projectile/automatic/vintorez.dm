@@ -19,14 +19,14 @@
 	zoom_factor = 0.8 // double as IH_heavy
 	penetration_multiplier = 1.2
 	damage_multiplier = 1.2
-	recoil_buildup = 1.3
-	one_hand_penalty = 15 //automatic rifle level
+	init_recoil = RIFLE_RECOIL(0.65)
 	silenced = TRUE
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
 		BURST_2_ROUND
 		)
 	gun_parts = list(/obj/item/part/gun/frame/vintorez = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)
+	serial_type = "Excelsior"
 
 /obj/item/gun/projectile/automatic/vintorez/update_icon()
 	var/iconstring = initial(icon_state)

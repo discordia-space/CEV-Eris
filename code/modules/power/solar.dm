@@ -202,6 +202,7 @@
 	item_state = "electropack"
 	w_class = ITEM_SIZE_BULKY // Pretty big!
 	anchored = FALSE
+	price_tag = 100
 	var/tracker = 0
 	var/glass_type = null
 

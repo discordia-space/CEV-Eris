@@ -21,8 +21,7 @@
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 1.2
-	recoil_buildup = 2
-	one_hand_penalty = 15 //automatic rifle level
+	init_recoil = RIFLE_RECOIL(0.9)
 
 	gun_tags = list(GUN_SILENCABLE)
 
@@ -32,6 +31,7 @@
 		BURST_3_ROUND
 		)
 	gun_parts = list(/obj/item/part/gun/frame/sts35 = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	serial_type = "OR"
 
 
 /obj/item/gun/projectile/automatic/sts35/update_icon()

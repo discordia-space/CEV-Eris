@@ -179,6 +179,15 @@
 			for (var/obj/item/I in O)
 				qdel(I)
 
+
+/obj/item/stack/get_matter()
+	. = list()
+	if(matter)
+		. = matter.Copy()
+		for(var/i in .)
+			.[i] *= amount
+
+
 /obj/item/stack/Topic(href, href_list)
 	..()
 	if ((usr.restrained() || usr.stat || usr.get_active_hand() != src))
@@ -400,6 +409,8 @@
 			//If that fails, leave it beside the original stack
 			S.forceMove(get_turf(src))
 
+/obj/item/stack/get_item_cost(export)
+	return amount * ..()
 
 /*
  * Recipe datum

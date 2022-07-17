@@ -60,11 +60,9 @@
 	return organ_efficiency[process_define] - (organ_efficiency[process_define] * (damage / max_damage))
 
 /obj/item/organ/internal/take_damage(amount, silent)	//Deals damage to the organ itself
-	damage = between(0, src.damage + (amount * (100 / parent.limb_efficiency)), max_damage)
-	if(!(BP_IS_ROBOTIC(src)))
-		//only show this if the organ is not robotic
-		if(owner && parent && amount > 0 && !silent)
-			owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
+	damage = CLAMP(damage + amount * (100 / (parent ? parent.limb_efficiency : 100)), 0, max_damage)
+	if(!BP_IS_ROBOTIC(src) && owner && parent && amount > 0 && !silent)
+		owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
 
 /obj/item/organ/internal/proc/handle_blood()
 	if(BP_IS_ROBOTIC(src) || !owner)

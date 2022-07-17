@@ -159,12 +159,13 @@
 
 /proc/pick_disciple_global(var/mob/user, var/allow_dead = TRUE)
 	var/list/candidates = list()
-	for (var/mob/living/L in disciples)
-		if (QDELETED(L))
+	for(var/mob/living/L in disciples)
+		if(QDELETED(L))
 			continue
-		if (!allow_dead && L.stat == DEAD)
+		if(!allow_dead && L.stat == DEAD)
 			continue
-
+		if(get_active_mutation(L, MUTATION_ATHEIST))
+			continue
 		candidates += L
 
 	return input(user, "Who do you wish to target?", "Select a disciple") as null|mob in candidates

@@ -40,7 +40,9 @@
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
-	brainmob.dna = H.dna.Clone()
+	brainmob.b_type = H.b_type
+	brainmob.dna_trace = H.dna_trace
+	brainmob.fingers_trace = H.fingers_trace
 	brainmob.timeofhostdeath = H.timeofdeath
 	if(H.mind)
 		H.mind.transfer_to(brainmob)

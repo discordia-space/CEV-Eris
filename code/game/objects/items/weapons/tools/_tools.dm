@@ -17,6 +17,8 @@
 	//spawn values
 	bad_type = /obj/item/tool
 	spawn_tags = SPAWN_TAG_TOOL
+	
+	price_tag = 20
 
 	var/tool_in_use = FALSE
 
@@ -128,14 +130,14 @@
 	if(switched_on)
 		if(create_hot_spot)
 			var/turf/location = get_turf(src)
-			if (location)
+			if(location)
 				location.hotspot_expose(700, 5)
 		if(tool_in_use && sparks_on_use && !(item_flags & SILENT) && prob(50))
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 			sparks.set_up(3, 0, get_turf(src))
 			sparks.start()
 
-		if (use_fuel_cost && passive_fuel_cost)
+		if(use_fuel_cost && passive_fuel_cost)
 			if(!consume_fuel(passive_fuel_cost))
 				turn_off()
 
@@ -173,7 +175,7 @@
 		to_chat(user, SPAN_WARNING("\The [src] is broken."))
 		return
 	if(toggleable)
-		if (switched_on)
+		if(switched_on)
 			turn_off(user)
 		else
 			turn_on(user)
@@ -239,7 +241,7 @@
 	var/list/data = ui_data(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "tool_stats.tmpl", name, 650, 550, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
@@ -253,16 +255,16 @@
 
 //Damaged tools are worth less matter for recycling
 /obj/item/tool/get_matter()
-	if (!matter || !matter.len || !degradation)
+	if(!matter || !matter.len || !degradation)
 		return ..()
 
 	//If it's this broken, you get nothing
-	if (health <= 20)
+	if(health <= 20)
 		return null
 
 	var/list/tm = matter.Copy()
 	//Every point of damage reduces matter by 2% of total
-	for (var/mat in tm)
+	for(var/mat in tm)
 		tm[mat] *= health / max_health
 
 	return tm
@@ -284,7 +286,7 @@
 
 	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier, forced_sound)
 
-	if (T)
+	if(T)
 		T.tool_in_use = FALSE
 	SSnano.update_uis(src)
 	switch(result)
@@ -307,8 +309,8 @@
 	if(!has_quality(required_quality))
 		return TOOL_USE_CANCEL
 
-	if (is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
-		if (isliving(target))
+	if(is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+		if(isliving(target))
 			var/mob/living/L = target
 			L.IgniteMob()
 
@@ -331,14 +333,14 @@
 
 	//Precalculate worktime here
 	var/time_to_finish = 0
-	if (base_time)
+	if(base_time)
 		if(islist(required_stat))
 			time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getMaxStat(required_stat)
 		else
 			time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
 
 		//Workspeed var, can be improved by upgrades
-		if (T && T.workspeed > 0)
+		if(T && T.workspeed > 0)
 			time_to_finish /= T.workspeed
 		// the worse tool condition - the more time required
 		if(T && T.degradation)
@@ -358,22 +360,22 @@
 		var/volume = 70
 		var/extrarange = 0
 
-		if (T && T.item_flags & SILENT)
+		if(T && T.item_flags & SILENT)
 			volume = 3
 			extrarange = -6
-		else if (T && T.item_flags & LOUD)
+		else if(T && T.item_flags & LOUD)
 			volume = 500
 			extrarange = 10
 
 		var/soundfile
-		if (T && T.item_flags & HONKING)
+		if(T && T.item_flags & HONKING)
 			soundfile = WORKSOUND_HONK
 		else if(forced_sound)
 			soundfile = forced_sound
 		else
 			soundfile = worksound
 
-		if (sound_repeat && time_to_finish)
+		if(sound_repeat && time_to_finish)
 			//It will repeat roughly every 2.5 seconds until our tool finishes
 			toolsound = new/datum/repeating_sound(sound_repeat,time_to_finish,0.15, src, soundfile, volume, 1, extrarange)
 		else
@@ -388,28 +390,28 @@
 			to_chat(user, SPAN_WARNING("You need to stand still to finish the task properly!"))
 			target.used_now = FALSE
 			time_spent = world.time - start_time //We failed, spent only part of the time working
-			if (T)
+			if(T)
 				T.consume_resources(time_spent, user)
 				T.last_tooluse = world.time
-			if (toolsound)
+			if(toolsound)
 				//We abort the repeating sound.
 				//Stop function will delete itself too
 				toolsound.stop()
 				toolsound = null
 			return TOOL_USE_CANCEL
 		else
-			if (T)
+			if(T)
 				T.last_tooluse = world.time
 
 			target.used_now = FALSE
 
 	//If we get here the operation finished correctly, we spent the full time working
 	time_spent = time_to_finish
-	if (T)
+	if(T)
 		T.consume_resources(time_spent, user)
 
 	//Safe cleanup
-	if (toolsound)
+	if(toolsound)
 		toolsound.stop()
 		toolsound = null
 
@@ -439,15 +441,15 @@
 					to_chat(user, SPAN_DANGER("Your [src.name] is about to fall apart."))
 
 	//precision reduce failure rates
-	if (T)
+	if(T)
 		fail_chance -= T.precision
 
 	fail_chance = round(fail_chance) // Stops <1% failure chance tasks from faling. Also makes falure chance in failure message look less weird.
 
-	if (fail_chance < 0)
+	if(fail_chance < 0)
 		fail_chance = 0
 
-	if (fail_chance >= 100)
+	if(fail_chance >= 100)
 		to_chat(user, SPAN_WARNING("You failed to finish your task with [src.name]! Considering your skills and this tool, it is impossible."))
 		return TOOL_USE_FAIL
 	if(prob(fail_chance))
@@ -495,7 +497,7 @@
 	if(required_stat)
 		crit_fail_chance = crit_fail_chance - user.stats.getStat(required_stat)
 
-	if (crit_fail_chance <= 0)
+	if(crit_fail_chance <= 0)
 		return
 
 	//This list initially contains the fail types that are always valid, even for robots
@@ -517,7 +519,7 @@
 		if(ishuman(user))
 			if(canremove)
 				failtypes["drop"] = 2
-			if (sharp)
+			if(sharp)
 				failtypes["stab"] = 1
 
 			//This one is limited to humans only since robots often can't remove/replace their device cells
@@ -557,9 +559,9 @@
 			//Hit a random atom around you
 			if("swing")
 				var/list/targets = list()
-				for (var/atom/movable/AM in orange(user, 1))
+				for(var/atom/movable/AM in orange(user, 1))
 					targets.Add(AM)
-				if (!targets.len)
+				if(!targets.len)
 					return
 
 				var/newtarget = pick(targets)
@@ -618,7 +620,7 @@
 				if(user)
 					to_chat(user, SPAN_DANGER("You overload the cell in the [src]!"))
 				C.explode()
-				if (T)
+				if(T)
 					T.cell = null
 
 				update_icon()
@@ -638,12 +640,12 @@
 //As a result, it checks what qualities the tool is ever capable of having, not just those it has right now
 /obj/item/tool/proc/ever_has_quality(quality_id)
 	.=has_quality(quality_id)
-	if (!.)
-		if (quality_id in switched_on_qualities)
+	if(!.)
+		if(quality_id in switched_on_qualities)
 			return TRUE
 
 /obj/item/proc/get_tool_quality(quality_id)
-	if (tool_qualities && tool_qualities.len)
+	if(tool_qualities && tool_qualities.len)
 		return tool_qualities[quality_id]
 	return null
 
@@ -675,7 +677,7 @@
 	tool_qualities = switched_on_qualities
 	if(switched_on_hitsound)
 		hitsound = switched_on_hitsound
-	if (!isnull(switched_on_force))
+	if(!isnull(switched_on_force))
 		force = switched_on_force
 		if(wielded)
 			force *= 1.3
@@ -714,11 +716,11 @@
 
 /obj/item/tool/consume_resources(timespent, user)
 	//We will always use a minimum of 0.5 second worth of resources
-	if (timespent < 5)
+	if(timespent < 5)
 		timespent = 5
 
 	if(use_power_cost)
-		if (!cell?.checked_use(use_power_cost*timespent))
+		if(!cell?.checked_use(use_power_cost*timespent))
 			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
 			return FALSE
 
@@ -729,16 +731,16 @@
 
 	if(use_stock_cost)
 		var/scost = use_stock_cost * timespent
-		if (!allow_decimal_stock)
+		if(!allow_decimal_stock)
 			scost = round(scost, 1)
 		consume_stock(scost)
 
 	//Makeshift tools get worse with each use
-	if (degradation)
+	if(degradation)
 		adjustToolHealth(-degradation, user)
 
 //Power and fuel drain, sparks spawn
-/obj/item/tool/proc/check_tool_effects(var/mob/living/user, var/time)
+/obj/item/tool/proc/check_tool_effects(mob/living/user, time)
 
 	if(use_power_cost)
 		if(!cell || !cell.check_charge(use_power_cost*time))
@@ -750,7 +752,7 @@
 			to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
 			return FALSE
 
-	if (use_stock_cost)
+	if(use_stock_cost)
 		if(stock < (use_stock_cost*time))
 			to_chat(user, SPAN_NOTICE("There is not enough left in [src] to complete this task."))
 			return FALSE
@@ -768,22 +770,22 @@
 
 //Returns the amount of fuel in tool
 /obj/item/tool/proc/get_fuel()
-	return ( reagents ? reagents.get_reagent_amount("fuel") : 0 )
+	return (reagents ? reagents.get_reagent_amount("fuel") : 0)
 
-/obj/item/tool/proc/consume_fuel(var/volume)
-	if (get_fuel() >= volume)
+/obj/item/tool/proc/consume_fuel(volume)
+	if(get_fuel() >= volume)
 		reagents.remove_reagent("fuel", volume)
 		return TRUE
 	return FALSE
 
 
-/obj/item/tool/proc/consume_stock(var/number)
-	if (stock >= number)
+/obj/item/tool/proc/consume_stock(number)
+	if(stock >= number)
 		stock -= number
 	else
 		stock = 0
 
-	if (delete_when_empty && stock <= 0)
+	if(delete_when_empty && stock <= 0)
 		qdel(src)
 
 
@@ -816,13 +818,13 @@
 	//Now lets have each upgrade reapply its modifications
 	SEND_SIGNAL(src, COMSIG_APPVAL, src)
 
-	for (var/prefix in prefixes)
+	for(var/prefix in prefixes)
 		name = "[prefix] [name]"
 
 	health_threshold = max(0, health_threshold)
 
 	//Set the fuel volume, incase any mods altered our max fuel
-	if (reagents)
+	if(reagents)
 		reagents.maximum_volume = max_fuel
 	SSnano.update_uis(src)
 
@@ -840,33 +842,33 @@
 	if(use_fuel_cost)
 		to_chat(user, text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
 
-	if (use_stock_cost)
+	if(use_stock_cost)
 		to_chat(user, SPAN_NOTICE("it has [stock] / [max_stock] units remaining."))
 
 	//Display a bunch of stats but only if they're nondefault values
-	if (precision != 0)
+	if(precision != 0)
 		to_chat(user, "Precision: [SPAN_NOTICE("[precision]")]")
 
-	if (workspeed != 1)
+	if(workspeed != 1)
 		to_chat(user, "Work Speed: [SPAN_NOTICE("[workspeed*100]%")]")
 
-	if (item_upgrades.len)
+	if(item_upgrades.len)
 		to_chat(user, "It has the following upgrades installed:")
-		for (var/obj/item/TU in item_upgrades)
+		for(var/obj/item/TU in item_upgrades)
 			to_chat(user, SPAN_NOTICE(TU.name))
 
-	if (health)
-		if (health > max_health * 0.95)
+	if(health)
+		if(health > max_health * 0.95)
 			return
-		else if (health > max_health * 0.80)
+		else if(health > max_health * 0.80)
 			to_chat(user, "It has a few light scratches.")
-		else if (health > max_health * 0.40)
+		else if(health > max_health * 0.40)
 			to_chat(user, SPAN_NOTICE("It shows minor signs of stress and wear."))
-		else if (health > max_health * 0.20)
+		else if(health > max_health * 0.20)
 			to_chat(user, SPAN_WARNING("It looks a bit cracked and worn."))
-		else if (health > max_health * 0.10)
+		else if(health > max_health * 0.10)
 			to_chat(user, SPAN_WARNING("Whatever use this tool once had is fading fast."))
-		else if (health > max_health * 0.05)
+		else if(health > max_health * 0.05)
 			to_chat(user, SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well."))
 		else
 			to_chat(user, SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash."))
@@ -878,32 +880,47 @@
 		to_chat(user, SPAN_WARNING("\The [src] is broken."))
 		return
 	if(use_fuel_cost)
-		if(!proximity) return
-		if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weldpack)) && get_dist(src,O) <= 1 && !has_quality(QUALITY_WELDING))
+		if(!proximity)
+			return
+		if((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weldpack)) && get_dist(src,O) <= 1 && !has_quality(QUALITY_WELDING))
 			O.reagents.trans_to_obj(src, max_fuel)
 			to_chat(user, SPAN_NOTICE("[src] refueled"))
 			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
-		else if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weldpack)) && get_dist(src,O) <= 1 && has_quality(QUALITY_WELDING))
-			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
-			log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
+		else if((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weldpack)) && get_dist(src,O) <= 1 && has_quality(QUALITY_WELDING))
+			message_admins("[key_name_admin(user)] triggered an explosion with a welding tool.")
+			log_game("[key_name(user)] triggered an explosion with a welding tool.")
 			to_chat(user, SPAN_DANGER("You begin welding on the [O] and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done."))
-			var/obj/structure/reagent_dispensers/fueltank/tank = O
-			tank.explode()
+			if(istype(O, /obj/structure/reagent_dispensers/fueltank))
+				var/obj/structure/reagent_dispensers/fueltank/T = O
+				T.explode()
+			else if(istype(O, /obj/item/weldpack))
+				var/obj/item/weldpack/P = O
+				P.explode()
 			return
-		if (switched_on)
+		else if(istype(O, /mob/living/carbon/superior_animal/roach/benzin))
+			var/mob/living/carbon/superior_animal/roach/benzin/B = O
+			if(B.stat != DEAD)
+				if(has_quality(QUALITY_WELDING))
+					B.fire_act()
+				else
+					O.reagents.trans_to_obj(src, max_fuel)
+					to_chat(user, SPAN_NOTICE("[src] refueled"))
+					playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+			return
+		if(switched_on)
 			var/turf/location = get_turf(user)
 			if(isliving(O))
 				var/mob/living/L = O
 				L.IgniteMob()
-			if (istype(location, /turf))
+			if(istype(location, /turf))
 				location.hotspot_expose(700, 50, 1)
 
-	if (has_quality(QUALITY_ADHESIVE) && proximity)
+	if(has_quality(QUALITY_ADHESIVE) && proximity)
 		//Tape can be used to repair other tools
-		if (istool(O))
+		if(istool(O))
 			var/obj/item/tool/T = O
-			if (T.health)
+			if(T.health)
 				user.visible_message(SPAN_NOTICE("[user] begins repairing \the [O] with the [src]!"))
 				//Toolception!
 				if(use_tool(user, T, 60, QUALITY_ADHESIVE, FAILCHANCE_EASY, STAT_MEC))
@@ -913,10 +930,10 @@
 					refresh_upgrades()
 				return
 
-		if (stick(O, user))
+		if(stick(O, user))
 			return
 	//Triggers degradation and resource use upon attacks
-	if (!(flags & NOBLUDGEON) && (world.time - last_tooluse) > 2)
+	if(!(flags & NOBLUDGEON) && (world.time - last_tooluse) > 2)
 		consume_resources(5,user)
 
 	return ..()
@@ -930,7 +947,7 @@
 	//If the parent return value is true, then there won't be an attackby
 	//If there will be an attackby, we'll handle it there
 	//Checking the last tooluse time prevents consuming twice for a tool action
-	if (. && loc == user && (!(flags & NOBLUDGEON)) && (world.time - last_tooluse) > 2)
+	if(. && loc == user && (!(flags & NOBLUDGEON)) && (world.time - last_tooluse) > 2)
 		consume_resources(5,user)
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
@@ -969,20 +986,20 @@
 				to_chat(user, SPAN_WARNING("Your eyes are really starting to hurt. This can't be good for you!"))
 
 
-/obj/item/tool/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/tool/attack(mob/living/M, mob/living/user, target_zone)
 	if(isBroken)
 		to_chat(user, SPAN_WARNING("\The [src] is broken."))
 		return
-	if ((user.a_intent == I_HELP) && ishuman(M))
+	if((user.a_intent == I_HELP) && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.organs_by_name[user.targeted_organ]
 
-		if (!istype(S) || !BP_IS_ROBOTIC(S))
+		if(!istype(S) || !BP_IS_ROBOTIC(S))
 			return ..()
 
-		if (get_tool_type(user, list(QUALITY_WELDING), H)) //Prosthetic repair
-			if (S.brute_dam)
-				if (S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
+		if(get_tool_type(user, list(QUALITY_WELDING), H)) //Prosthetic repair
+			if(S.brute_dam)
+				if(S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
 					for(var/datum/wound/W in S.wounds)
 						if(W.internal)
 							return
@@ -997,10 +1014,10 @@
 					if(S.brute_dam)
 						to_chat(user, SPAN_WARNING("\The [S] still needs further repair."))
 					return
-				else if (S.open != 2)
+				else if(S.open != 2)
 					to_chat(user, SPAN_DANGER("The damage is far too severe to patch over externally."))
 					return 1
-			else if (S.open != 2) // For surgery.
+			else if(S.open != 2) // For surgery.
 				to_chat(user, SPAN_NOTICE("Nothing to fix!"))
 				return 1
 
@@ -1031,9 +1048,9 @@
 	if(ismob(loc))
 		var/tooloverlay
 		switch(mode)
-			if (EXCAVATE)
+			if(EXCAVATE)
 				tooloverlay = "excavate"
-			if (DIG)
+			if(DIG)
 				tooloverlay = "dig"
 		overlays += (tooloverlay)
 
@@ -1042,7 +1059,7 @@
 ****************************/
 
 //Used by adhesive tools to stick an item to stuff
-/obj/item/tool/proc/stick(var/obj/item/target, var/mob/user)
+/obj/item/tool/proc/stick(obj/item/target, mob/user)
 	return
 
 

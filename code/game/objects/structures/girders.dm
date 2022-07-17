@@ -6,7 +6,7 @@
 	layer = BELOW_OBJ_LAYER
 	matter = list(MATERIAL_STEEL = 5)
 	var/state = 0
-	var/health = 150
+	var/health = 100
 	var/cover = 50 //how much cover the girder provides against projectiles.
 	var/material/reinf_material
 	var/reinforcing = 0
@@ -15,14 +15,14 @@
 /obj/structure/girder/displaced
 	icon_state = "displaced"
 	anchored = FALSE
-	health = 50
+	health = 40
 	cover = 25
 
 //Low girders are used to build low walls
 /obj/structure/girder/low
 	name = "low wall girder"
 	matter = list(MATERIAL_STEEL = 3)
-	health = 120
+	health = 80
 	cover = 25 //how much cover the girder provides against projectiles.
 
 //Used in recycling or deconstruction
@@ -32,13 +32,15 @@
 	if(reinf_material)
 		LAZYAPLUS(., reinf_material.name, 2)
 
-/obj/structure/girder/attack_generic(var/mob/user, var/damage, var/attack_message = "smashes apart", var/wallbreaker)
-	if(!damage || !wallbreaker)
-		return 0
-	user.do_attack_animation(src)
-	visible_message(SPAN_DANGER("[user] [attack_message] the [src]!"))
-	spawn(1) dismantle(user)
-	return 1
+/obj/structure/girder/attack_generic(mob/M, damage, attack_message = "smashes apart")
+	if(damage)
+		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		M.do_attack_animation(src)
+		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
+		take_damage(damage)
+	else
+		attack_hand(M)
 
 /obj/structure/girder/bullet_act(var/obj/item/projectile/Proj)
 	//Girders only provide partial cover. There's a chance that the projectiles will just pass through. (unless you are trying to shoot the girder)
@@ -131,7 +133,7 @@
 					to_chat(user, SPAN_NOTICE("You dislodged the girder!"))
 					icon_state = "displaced"
 					anchored = FALSE
-					health = 50
+					health = 40
 					cover = 25
 					return
 			return
@@ -289,7 +291,7 @@
 
 /obj/structure/girder/proc/reinforce_girder()
 	cover = reinf_material.hardness
-	health = 500
+	health = 250
 	state = 2
 	icon_state = "reinforced"
 	reinforcing = 0
@@ -299,10 +301,11 @@
 	qdel(src)
 
 /obj/structure/girder/attack_hand(mob/user as mob)
-	if (HULK in user.mutations)
+/*	if (HULK in user.mutations)
 		visible_message(SPAN_DANGER("[user] smashes [src] apart!"))
 		dismantle()
 		return
+*/
 	return ..()
 
 /obj/structure/girder/proc/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)

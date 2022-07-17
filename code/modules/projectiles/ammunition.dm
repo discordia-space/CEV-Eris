@@ -8,6 +8,8 @@
 	throwforce = 1
 	w_class = ITEM_SIZE_TINY
 
+	price_tag = 0.2
+
 	var/leaves_residue = 1
 	var/is_caseless = FALSE
 	var/caliber = ""					//Which kind of guns it can be loaded into
@@ -179,6 +181,9 @@
 	if (!BB)
 		to_chat(user, "[(amount == 1)? "This one is" : "These ones are"] spent.")
 
+/obj/item/ammo_casing/get_item_cost(export)
+	. = round(..() * amount)
+
 //An item that holds casings and can be used to put them inside guns
 /obj/item/ammo_magazine
 	name = "magazine"
@@ -197,6 +202,7 @@
 	spawn_tags = SPAWN_TAG_AMMO
 	rarity_value = 10
 	bad_type = /obj/item/ammo_magazine
+	price_tag = 60
 
 	var/modular_sprites = TRUE // If icons with colored stripes is present. False for some legacy sprites
 	var/ammo_label // Label on the magazine. Must be a key from ammo_names or null. Received on item spawn and could be changed via hand labeler
@@ -450,3 +456,8 @@
 /obj/item/ammo_magazine/examine(mob/user)
 	..()
 	to_chat(user, "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!")
+
+/obj/item/ammo_magazine/get_item_cost(export)
+	. = ..()
+	for(var/obj/item/ammo_casing/i in stored_ammo)
+		. += i.get_item_cost(export)

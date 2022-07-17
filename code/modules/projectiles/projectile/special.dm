@@ -4,6 +4,7 @@
 	damage_types = list(BURN = 0)
 	nodamage = TRUE
 	check_armour = ARMOR_ENERGY
+	recoil = 5
 
 /obj/item/projectile/ion/on_hit(atom/target)
 	empulse(target, 1, 1)
@@ -16,6 +17,7 @@
 	check_armour = ARMOR_BULLET
 	sharp = TRUE
 	edge = TRUE
+	recoil = 3
 
 /obj/item/projectile/bullet/gyro/on_hit(atom/target)
 	explosion(target, -1, 0, 2)
@@ -29,35 +31,60 @@
 	style_damage = 101 //single shot, incredibly powerful. If you get direct hit with this you deserve it, if you dodge the direct shot you're protected from the explosion.
 	check_armour = ARMOR_BOMB
 	penetrating = -5
+	recoil = 40
+	can_ricochet = FALSE
 
-/obj/item/projectile/bullet/rocket/launch(atom/target, target_zone, x_offset, y_offset, angle_offset)
+/obj/item/projectile/bullet/rocket/launch(atom/target, target_zone, x_offset, y_offset, angle_offset, proj_sound, user_recoil)
 	set_light(2.5, 0.5, "#dddd00")
-	..(target, target_zone, x_offset, y_offset, angle_offset)
+	..(target, target_zone, x_offset, y_offset, angle_offset, proj_sound, user_recoil)
 
 /obj/item/projectile/bullet/rocket/on_hit(atom/target)
-	explosion(target, 0, 1, 2, 5)
+	detonate(target)
 	set_light(0)
 	return TRUE
+
+/obj/item/projectile/bullet/rocket/proc/detonate(atom/target)
+	explosion(get_turf(src), 0, 1, 2, 5)
 
 /obj/item/projectile/bullet/rocket/scrap
 	damage_types = list(BRUTE = 30)
 
-/obj/item/projectile/bullet/rocket/scrap/on_hit(atom/target)
+/obj/item/projectile/bullet/rocket/scrap/detonate(atom/target)
 	explosion(target, 0, 0, 1, 4, singe_impact_range = 3)
-	set_light(0)
-	return TRUE
 
 /obj/item/projectile/bullet/rocket/hesh
-	name = "high-explosive anti-tank rocket"
-	damage_types = list(BRUTE = 60)
-	armor_penetration = 100
+	name = "high-explosive squash head rocket"
+	damage_types = list(BRUTE = 80)
+	armor_penetration = 40
 	check_armour = ARMOR_BULLET
 
-/obj/item/projectile/bullet/rocket/hesh/on_hit(atom/target)
-	fragment_explosion_angled(target, starting, /obj/item/projectile/bullet/pellet/fragment/strong, 20)
-	explosion(target, 0, 0, 1, 3) // Much weaker explosion, but offset by shrapnel released
-	set_light(0)
-	return TRUE
+/obj/item/projectile/bullet/rocket/hesh/detonate(atom/target)
+	fragment_explosion_angled(get_turf(src), starting, /obj/item/projectile/bullet/pellet/fragment/strong, 20)
+	explosion(get_turf(src), 0, 0, 1, 3, singe_impact_range = 3) // Much weaker explosion, but offset by shrapnel released
+
+/obj/item/projectile/bullet/rocket/heat
+	name = "high-explosive anti-tank rocket"
+	damage_types = list(BRUTE = 20)
+	armor_penetration = 0
+	check_armour = ARMOR_BULLET
+
+/obj/item/projectile/bullet/rocket/heat/detonate(atom/target)
+	var/turf/T = get_turf_away_from_target_complex(get_turf(src), starting, 3)
+	var/obj/item/projectile/forcebolt/jet/P = new(get_turf(src))
+	P.launch(T, def_zone)
+	if(target)
+		P.Bump(target, TRUE)
+	explosion(get_turf(src), 0, 0, 0, 3, singe_impact_range = 3) // Explosion mostly ineffective
+
+/obj/item/projectile/bullet/rocket/thermo
+	name = "thermobaric rocket"
+	damage_types = list(BRUTE = 20)
+	armor_penetration = 0
+	check_armour = ARMOR_BULLET
+
+/obj/item/projectile/bullet/rocket/thermo/detonate(atom/target)
+	heatwave(get_turf(src), 3, 5, 100, TRUE, 20)
+	explosion(get_turf(src), 0, 0, 0, 5, singe_impact_range = 4)
 
 /obj/item/projectile/temp
 	name = "freeze beam"
@@ -120,13 +147,6 @@
 				H.Weaken(5)
 				for (var/mob/V in viewers(src))
 					V.show_message("\red [M] writhes in pain as \his vacuoles boil.", 3, "\red You hear the crunching of leaves.", 2)
-			if(prob(35))
-				if(prob(80))
-					randmutb(M)
-					domutcheck(M,null)
-				else
-					randmutg(M)
-					domutcheck(M,null)
 			else
 				M.adjustFireLoss(rand(5,15))
 				M.show_message("\red The radiation beam singes you!")
@@ -211,6 +231,7 @@
 	can_ricochet = FALSE
 	sharp = FALSE
 	embed = FALSE
+	recoil = 4
 
 /obj/item/projectile/bullet/flare/on_hit(atom/target, blocked = FALSE)
 	. = ..()

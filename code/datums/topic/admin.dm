@@ -894,21 +894,6 @@
 
 	usr.client.cmd_admin_robotize(H)
 
-
-/datum/admin_topic/togmutate
-	keyword = "togmutate"
-	require_perms = list(R_FUN)
-
-/datum/admin_topic/togmutate/Run(list/input)
-	var/mob/living/carbon/human/H = locate(input["togmutate"])
-	if(!istype(H))
-		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
-		return
-	var/block=text2num(input["block"])
-	usr.client.cmd_admin_toggle_block(H,block)
-	source.show_player_panel(H)
-
-
 /datum/admin_topic/adminplayeropts
 	keyword = "adminplayeropts"
 
@@ -1154,7 +1139,7 @@
 		P.stamped = new
 	P.stamped += /obj/item/stamp
 	P.overlays += stampoverlay
-	P.stamps += "<HR><i>This paper has been stamped by the Central Command Quantum Relay.</i>"
+	P.stamps += "<HR><i>This paper has been stamped by the [boss_name] Quantum Relay.</i>"
 
 	if(fax.recievefax(P))
 		to_chat(source.owner, "\blue Message reply to transmitted successfully.")

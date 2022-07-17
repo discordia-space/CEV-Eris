@@ -88,6 +88,9 @@
 
 	var/can_use_lying = 0
 
+	var/chameleon_type
+
+
 /obj/item/Initialize()
 	if(islist(armor))
 		armor = getArmor(arglist(armor))
@@ -95,6 +98,8 @@
 		armor = getArmor()
 	else if(!istype(armor, /datum/armor))
 		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
+	if(chameleon_type)
+		verbs.Add(/obj/item/proc/set_chameleon_appearance)
 	. = ..()
 
 /obj/item/Destroy()
@@ -126,6 +131,15 @@
 		if(3)
 			if(prob(5))
 				qdel(src)
+
+/obj/item/emp_act(severity)
+	if(chameleon_type)
+		name = initial(name)
+		desc = initial(desc)
+		icon = initial(icon)
+		icon_state = initial(icon_state)
+		update_icon()
+		update_wear_icon()
 
 /obj/item/verb/move_to_top()
 	set name = "Move To Top"
@@ -312,14 +326,6 @@
 	user.do_attack_animation(M)
 
 	add_fingerprint(user)
-	//if((CLUMSY in user.mutations) && prob(50))
-	//	M = user
-		/*
-		to_chat(M, SPAN_WARNING("You stab yourself in the eye."))
-		M.sdisabilities |= BLIND
-		M.weakened += 4
-		M.adjustBruteLoss(10)
-		*/
 
 	if(istype(H))
 
@@ -398,9 +404,9 @@
 
 	//if this blood isn't already in the list, add it
 	if(istype(M))
-		if(blood_DNA[M.dna.unique_enzymes])
+		if(blood_DNA[M.dna_trace])
 			return 0 //already bloodied with this blood. Cannot add more.
-		blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+		blood_DNA[M.dna_trace] = M.b_type
 	return 1 //we applied blood to the item
 
 var/global/list/items_blood_overlay_by_type = list()

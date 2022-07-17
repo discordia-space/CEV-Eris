@@ -15,7 +15,7 @@
 	price_tag = 600
 	damage_multiplier = 1.2
 	penetration_multiplier = 1.2
-	recoil_buildup = 2
+	init_recoil = HANDGUN_RECOIL(0.75)
 	init_firemodes = list(
 		list(mode_name="semiauto", mode_desc="Fire almost as fast as you can pull the trigger", burst=1, fire_delay=1.2, move_delay=null, 				icon="semi"),
 		list(mode_name="2-round bursts", mode_desc="Not quite the Mozambique method", burst=2, fire_delay=0.2, move_delay=4,    	icon="burst"),
@@ -23,6 +23,7 @@
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/olivaw = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	serial_type = "FS"
 
 /obj/item/gun/projectile/olivaw/update_icon()
 	..()

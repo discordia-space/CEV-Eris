@@ -12,6 +12,7 @@
 	hitscan = 1
 	invisibility = 101	//beam projectiles are invisible as they are rendered by the effect engine
 	style_damage = 30 //hitscan, light speed projectiles? Be glad its easier to dodge than a revolver.
+	recoil = 1 // Even less than self-propelled bullets
 
 	muzzle_type = /obj/effect/projectile/laser/muzzle
 	tracer_type = /obj/effect/projectile/laser/tracer
@@ -65,6 +66,7 @@
 	damage_types = list(BURN = 50)
 	armor_penetration = 20
 	style_damage = 60 //it's a slow firing beam weapon, this is probably fair.
+	recoil = 3
 
 	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
 	tracer_type = /obj/effect/projectile/laser_heavy/tracer
@@ -78,6 +80,7 @@
 	damage_types = list(PSY = 30)
 	armor_penetration = 100
 	style_damage = 60 //It's magic brain beams, deal with it.
+	recoil = 2
 
 	muzzle_type = /obj/effect/projectile/psychic_laser_heavy/muzzle
 	tracer_type = /obj/effect/projectile/psychic_laser_heavy/tracer
@@ -94,6 +97,7 @@
 	icon_state = "psychic_heavylaser"
 	damage_types = list(PSY = 40)
 	contractor = TRUE
+	recoil = 3
 
 	muzzle_type = /obj/effect/projectile/psychic_laser_heavy/muzzle
 	tracer_type = /obj/effect/projectile/psychic_laser_heavy/tracer
@@ -114,6 +118,7 @@
 	icon_state = "u_laser"
 	damage_types = list(BURN = 40)
 	armor_penetration = 20
+	recoil = 5 // Effectively hattons floors and walls
 
 	muzzle_type = /obj/effect/projectile/laser_pulse/muzzle
 	tracer_type = /obj/effect/projectile/laser_pulse/tracer
@@ -128,6 +133,7 @@
 	name = "emitter beam"
 	icon_state = "emitter"
 	damage_types = list(BURN = 0)
+	recoil = 0
 
 	muzzle_type = /obj/effect/projectile/emitter/muzzle
 	tracer_type = /obj/effect/projectile/emitter/tracer
@@ -192,6 +198,7 @@
 	armor_penetration = 50
 	stutter = 3
 	style_damage = 70 //it's the laser AMR.
+	recoil = 10
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle
 	tracer_type = /obj/effect/projectile/xray/tracer

@@ -9,11 +9,13 @@
 	ammo_type = /obj/item/ammo_casing/magnum/rubber
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 3100 //one of most robust revolvers here
+	fire_sound = 'sound/weapons/guns/fire/deckard_fire.ogg'
 	damage_multiplier = 1.45
 	penetration_multiplier = 1.65
-	recoil_buildup = 6
+	init_recoil = HANDGUN_RECOIL(1)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/deckard = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)
+	serial_type = "FS"
 
 /obj/item/part/gun/frame/deckard
 	name = "Deckard frame"

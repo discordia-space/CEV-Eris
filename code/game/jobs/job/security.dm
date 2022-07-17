@@ -132,7 +132,7 @@
 	access = list(
 		access_security, access_moebius, access_medspec, access_engine, access_mailsorting,
 		access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels,
-		access_external_airlocks
+		access_external_airlocks, access_brig
 	)
 
 	stat_modifiers = list(
@@ -147,6 +147,7 @@
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/audio,
+							 /datum/computer_file/program/suit_sensors,
 							 /datum/computer_file/program/camera_monitor)
 
 	description = "You are the ship's detective, here to take care of the cases that aren't always what they seem, and suspects that aren't always caught red handed or ready to confess.<br>\
@@ -179,7 +180,7 @@
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Ironhammer Commander"
+	supervisors = "the Ironhammer Commander, Ironhammer Sergeant"
 	selection_color = "#a7bbc6"
 	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_NEOHONGO = 100)
@@ -232,7 +233,7 @@
 	faction = "CEV Eris"
 	total_positions = 6
 	spawn_positions = 6
-	supervisors = "the Ironhammer Commander"
+	supervisors = "the Ironhammer Commander, Ironhammer Sergeant"
 	//alt_titles = list("Ironhammer Junior Operative")
 	selection_color = "#a7bbc6"
 	wage = WAGE_LABOUR_HAZARD

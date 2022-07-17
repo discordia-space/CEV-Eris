@@ -15,17 +15,18 @@
 	suitable_cell = /obj/item/cell/medium
 	sel_mode = 1
 	charge_cost = 15 //Gives us 40 shots per low-tier medium-sized cell
-	recoil_buildup = 3 //pulse weapons have a bit more recoil
-	one_hand_penalty = 10
 	twohanded = TRUE
 	fire_delay = 6
 	charge_cost = 15
 
 	init_firemodes = list(
-		list(mode_name="Burn", mode_desc="A relatively light plasma round", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/energy/melt.ogg', burst=1, fire_delay=6, charge_cost=15, icon="kill", projectile_color = "#0088ff", recoil_buildup=3),
-		list(mode_name="Sear", mode_desc="A three-round burst of light plasma rounds, for dealing with unruly crowds", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/energy/melt.ogg', burst=3, fire_delay=12, burst_delay=1, charge_cost=15, icon="burst", projectile_color = "#0088ff", recoil_buildup=3),
-		list(mode_name="INCINERATE", mode_desc="A heavy armor-stripping plasma round", projectile_type=/obj/item/projectile/plasma/aoe/heat, fire_sound='sound/weapons/energy/incinerate.ogg', burst=1, fire_delay=20, charge_cost=90, icon="destroy", projectile_color = "#FFFFFF", recoil_buildup=8),
+		list(mode_name="Burn", mode_desc="A relatively light plasma round", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/energy/melt.ogg', burst=1, fire_delay=6, charge_cost=15, icon="kill", projectile_color = "#0088ff"),
+		list(mode_name="Sear", mode_desc="A three-round burst of light plasma rounds, for dealing with unruly crowds", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/energy/melt.ogg', burst=3, fire_delay=12, burst_delay=1, charge_cost=15, icon="burst", projectile_color = "#0088ff"),
+		list(mode_name="INCINERATE", mode_desc="A heavy armor-stripping plasma round", projectile_type=/obj/item/projectile/plasma/aoe/heat, fire_sound='sound/weapons/energy/incinerate.ogg', burst=1, fire_delay=20, charge_cost=90, icon="destroy", projectile_color = "#FFFFFF"),
 	)
+	init_recoil = RIFLE_RECOIL(1)
+
+	serial_type = "NT"
 
 
 /obj/item/gun/energy/plasma/mounted
@@ -33,8 +34,8 @@
 	use_external_power = TRUE
 	safety = FALSE
 	twohanded = FALSE
-	one_hand_penalty = 0
 	spawn_blacklisted = TRUE
+	init_recoil = LMG_RECOIL(1)
 
 /obj/item/gun/energy/plasma/mounted/blitz
 	name = "SDF PR \"Sprengen\""
@@ -57,9 +58,10 @@
 	wield_delay_factor = 0.9 // 90 vig for instant wield
 
 	init_firemodes = list(
-		list(mode_name="DISINTEGRATE", mode_desc="Removes heresy from sight", projectile_type=/obj/item/projectile/plasma/aoe/heat/strong, fire_sound='sound/weapons/energy/incinerate.ogg', fire_delay=24, charge_cost=200, icon="destroy", projectile_color = "#ff1212", recoil_buildup=25),
-		list(mode_name="CLEANSE", mode_desc="Cleanse the filth", mode_type = /datum/firemode/automatic, projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/energy/vaporize.ogg', fire_delay=5, charge_cost=35, icon="burst", projectile_color = "#00AAFF", recoil_buildup=5),
+		list(mode_name="DISINTEGRATE", mode_desc="Removes heresy from sight", projectile_type=/obj/item/projectile/plasma/aoe/heat/strong, fire_sound='sound/weapons/energy/incinerate.ogg', fire_delay=24, charge_cost=200, icon="destroy", projectile_color = "#ff1212"),
+		list(mode_name="CLEANSE", mode_desc="Cleanse the filth", mode_type = /datum/firemode/automatic, projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/energy/vaporize.ogg', fire_delay=5, charge_cost=35, icon="burst", projectile_color = "#00AAFF"),
 	)
+	init_recoil = LMG_RECOIL(1)
 
 
 /obj/item/gun/energy/plasma/cassad
@@ -76,10 +78,10 @@
 	zoom_factor = null
 
 	init_firemodes = list(
-		list(mode_name="Melt", mode_desc="A reliable plasma round, for stripping away armor", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/energy/burn.ogg', burst=1, fire_delay=8, charge_cost=25, icon="kill", projectile_color = "#00AAFF", recoil_buildup=3),
-		list(mode_name="Pulse", mode_desc="A plasma round configured to explode violently on impact, and cause a pulse of EMP", projectile_type=/obj/item/projectile/plasma/aoe/ion, fire_sound='sound/weapons/Taser.ogg', burst=1, fire_delay=12, charge_cost=150, icon="stun", projectile_color = "#00FFFF", recoil_buildup=15)
+		list(mode_name="Melt", mode_desc="A reliable plasma round, for stripping away armor", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/energy/burn.ogg', burst=1, fire_delay=8, charge_cost=25, icon="kill", projectile_color = "#00AAFF"),
+		list(mode_name="Pulse", mode_desc="A plasma round configured to explode violently on impact, and cause a pulse of EMP", projectile_type=/obj/item/projectile/plasma/aoe/ion, fire_sound='sound/weapons/Taser.ogg', burst=1, fire_delay=12, charge_cost=150, icon="stun", projectile_color = "#00FFFF")
 	)
-
+	init_recoil = RIFLE_RECOIL(1)
 	spawn_tags = SPAWN_TAG_FS_ENERGY
 
 /obj/item/gun/energy/plasma/cassad/update_icon()
@@ -102,15 +104,13 @@
 	fire_sound = 'sound/weapons/energy/incinerate.ogg'
 	fire_delay = 8
 	charge_cost = 15
-	recoil_buildup = 5
-	one_hand_penalty = 0 // Handgun
-
+	init_recoil = HANDGUN_RECOIL(1)
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 8, MATERIAL_PLASMA = 2, MATERIAL_SILVER = 3, MATERIAL_URANIUM = 3)
 
 	init_firemodes = list(
-		list(mode_name="Low Power", mode_desc="A relatively light plasma round", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/energy/melt.ogg', burst=1, fire_delay=6, charge_cost=15, icon="kill", projectile_color = "#0088ff", recoil_buildup=5),
-		list(mode_name="High Power", mode_desc="A heavy armor-stripping plasma round", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/energy/incinerate.ogg', burst=1, fire_delay=18, charge_cost=60, icon="destroy", projectile_color = "#FFFFFF", recoil_buildup=10),
-		list(mode_name="Pulse", mode_desc="A plasma round configured to cause a small pulse of EMP", projectile_type=/obj/item/projectile/plasma/aoe/ion/light, fire_sound='sound/weapons/Taser.ogg', burst=1, fire_delay=18, charge_cost=60, icon="stun", projectile_color = "#00FFFF", recoil_buildup=20)
+		list(mode_name="Low Power", mode_desc="A relatively light plasma round", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/energy/melt.ogg', burst=1, fire_delay=6, charge_cost=15, icon="kill", projectile_color = "#0088ff"),
+		list(mode_name="High Power", mode_desc="A heavy armor-stripping plasma round", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/energy/incinerate.ogg', burst=1, fire_delay=18, charge_cost=60, icon="destroy", projectile_color = "#FFFFFF"),
+		list(mode_name="Pulse", mode_desc="A plasma round configured to cause a small pulse of EMP", projectile_type=/obj/item/projectile/plasma/aoe/ion/light, fire_sound='sound/weapons/Taser.ogg', burst=1, fire_delay=18, charge_cost=60, icon="stun", projectile_color = "#00FFFF")
 	)
 
 /obj/item/gun/energy/plasma/brigador/update_icon()

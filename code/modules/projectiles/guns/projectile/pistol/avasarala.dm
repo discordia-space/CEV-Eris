@@ -17,7 +17,7 @@
 	can_dual = TRUE
 	damage_multiplier = 1.45
 	penetration_multiplier = 1.35
-	recoil_buildup = 5
+	init_recoil = HANDGUN_RECOIL(0.9)
 
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/hpistol_magout.ogg'
@@ -28,6 +28,7 @@
 	gun_tags = list(GUN_GILDABLE)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/avasarala = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/magnum = 1)
+	serial_type = "NT"
 
 /obj/item/gun/projectile/avasarala/update_icon()
 	..()

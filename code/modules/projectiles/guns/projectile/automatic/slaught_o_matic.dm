@@ -27,8 +27,7 @@
 
 	damage_multiplier = 0.8
 	penetration_multiplier = 0.2
-	recoil_buildup = 3
-	one_hand_penalty = 5 //despite it being handgun, it's better to hold in two hands while shooting. SMG level.
+	init_recoil = HANDGUN_RECOIL(1.6)
 
 	gun_tags = list(GUN_SILENCABLE)
 
@@ -37,6 +36,7 @@
 		FULL_AUTO_800
 		)
 	wield_delay = 0
+
 
 /obj/item/gun/projectile/automatic/slaught_o_matic/Initialize()
 	. = ..()

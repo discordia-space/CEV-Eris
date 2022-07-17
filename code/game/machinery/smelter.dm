@@ -117,13 +117,7 @@
 			if(!(material in stored_material))
 				stored_material[material] = 0
 
-			var/total_material = materials[material]
-
-			if(istype(smelting,/obj/item/stack))
-				var/obj/item/stack/material/S = smelting
-				total_material *= S.get_amount()
-
-			stored_material[material] += total_material
+			stored_material[material] += materials[material]
 
 	for(var/obj/O in smelting.contents)
 		smelt_item(O)
@@ -142,15 +136,7 @@
 			if(!(material in stored_material))
 				stored_material[material] = 0
 
-			var/total_material = materials[material]
-
-			if(istype(smelting,/obj/item/stack))
-				var/obj/item/stack/material/S = smelting
-				total_material *= S.get_amount()
-
-			total_material *= scrap_multiplier
-
-			stored_material[material] += total_material
+			stored_material[material] += materials[material]
 
 	for(var/obj/O in smelting.contents)
 		smelt_scrap(O)

@@ -5,8 +5,7 @@
 	icon_state = "paper"
 
 /datum/perk/fate/paper_worm/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.sanity.positive_prob += 20
 
 /datum/perk/fate/paper_worm/remove()
@@ -21,7 +20,8 @@
 			This perk checks your highest stat, lowers it by 10 and improves all others by 4."
 
 /datum/perk/fate/freelancer/assign(mob/living/carbon/human/H)
-	..()
+	if(!..())
+		return
 	var/maxstat = -INFINITY
 	var/maxstatname
 	spawn(1)
@@ -43,8 +43,7 @@
 	icon_state = "eye" //https://game-icons.net/1x1/lorc/tear-tracks.html
 
 /datum/perk/fate/nihilist/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.sanity.positive_prob += 10
 		holder.sanity.negative_prob += 20
 
@@ -71,7 +70,8 @@
 			Beware, if you get addicted to another stimulant, you will not get rid of the addiction."
 
 /datum/perk/fate/drug_addict/assign(mob/living/carbon/human/H)
-	..()
+	if(!..() || !holder)
+		return
 	spawn(1)
 		var/turf/T = get_turf(holder)
 		var/drugtype = pick(subtypesof(/datum/reagent/stim))
@@ -96,8 +96,7 @@
 			You have a permanent alcohol addiction, which gives you a boost to combat stats while under the influence and lowers your cognition permanently."
 
 /datum/perk/fate/alcoholic/assign(mob/living/carbon/human/H)
-	..()
-	if(!(/datum/reagent/ethanol in holder.metabolism_effects.addiction_list))
+	if(..() && !(/datum/reagent/ethanol in holder.metabolism_effects.addiction_list))
 		var/datum/reagent/R = new /datum/reagent/ethanol
 		holder.metabolism_effects.addiction_list.Add(R)
 
@@ -107,8 +106,7 @@
 	desc = "Combat stats increased."
 
 /datum/perk/fate/alcoholic_active/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.stats.addTempStat(STAT_ROB, 15, INFINITY, "Fate Alcoholic")
 		holder.stats.addTempStat(STAT_TGH, 15, INFINITY, "Fate Alcoholic")
 		holder.stats.addTempStat(STAT_VIG, 15, INFINITY, "Fate Alcoholic")
@@ -127,8 +125,7 @@
 			Start with an heirloom weapon, higher chance to be on contractor contracts and removed sanity cap. Stay clear of filth and danger."
 
 /datum/perk/fate/noble/assign(mob/living/carbon/human/H)
-	..()
-	if(!holder)
+	if(!..())
 		return
 	holder.sanity.environment_cap_coeff -= 1
 	if(!holder.last_name)
@@ -171,8 +168,7 @@
 	icon_state = "rat" //https://game-icons.net/
 
 /datum/perk/fate/rat/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.sanity.max_level -= 10
 
 /datum/perk/fate/rat/remove()
@@ -188,8 +184,7 @@
 	icon_state = "knowledge" //https://game-icons.net/
 
 /datum/perk/fate/rejected_genius/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.sanity.environment_cap_coeff -= 1
 		holder.sanity.positive_prob_multiplier -= 1
 		holder.sanity.insight_passive_gain_multiplier *= 1.5
@@ -211,15 +206,21 @@
 			Your sanity pool is higher than that of others at the cost of the colors of the world."
 
 /datum/perk/fate/oborin_syndrome/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.sanity.max_level += 20
+		if(!get_active_mutation(holder, MUTATION_OBORIN))
+			var/datum/mutation/M = new MUTATION_OBORIN
+			M.imprint(holder)
 		spawn(1)
-			holder.update_client_colour() //Handle the activation of the colourblindness on the mob.
+			holder?.update_client_colour() //Handle the activation of the colourblindness on the mob.
 
 /datum/perk/fate/oborin_syndrome/remove()
 	if(holder)
 		holder.sanity.max_level -= 20
+		var/datum/mutation/M = get_active_mutation(holder, MUTATION_OBORIN)
+		M?.cleanse(holder)
+		spawn(1)
+			holder?.update_client_colour()
 	..()
 
 /datum/perk/fate/lowborn
@@ -229,8 +230,7 @@
 			You cannot be a person of authority. Additionally, you have the ability to have a name without a last name and have an increased sanity pool."
 
 /datum/perk/fate/lowborn/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.sanity.max_level += 10
 
 /datum/perk/fate/lowborn/remove()

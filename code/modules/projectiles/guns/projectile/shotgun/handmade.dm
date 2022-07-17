@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/shotgun/slidebarrel
-	name = "slide barrel shotgun"
-	desc = "Made out of trash, but rather special on its design"
+	name = "HM SG \"Ponyets\""
+	desc = "Made out of trash, but rather special on its design."
 	icon = 'icons/obj/guns/projectile/slideshotgun.dmi'
 	icon_state = "slideshotgun"
 	item_state = "slideshotgun"
@@ -14,9 +14,9 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL
-	damage_multiplier = 0.7
-	recoil_buildup = 20 //makin it a bit more than most shotguns
-	one_hand_penalty = 5 //compact shotgun level, so same as sawn off
+	damage_multiplier = 1.1
+	init_recoil = CARBINE_RECOIL(4.5)
+	style_damage_multiplier = 2
 	price_tag = 250 //cheap as they get
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE

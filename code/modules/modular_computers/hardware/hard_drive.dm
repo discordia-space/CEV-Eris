@@ -173,6 +173,7 @@
 
 	if(stored_files.len >= 999)
 		return FALSE
+
 	if(used_capacity + size > max_capacity)
 		return FALSE
 

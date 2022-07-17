@@ -11,8 +11,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL
 	damage_multiplier = 0.8 //slightly weaker due to sawn-off barrels
-	recoil_buildup = 15 //gonna have solid grip on those, point-blank shots adviced
-	one_hand_penalty = 10 //compact shotgun level
+	init_recoil = SMG_RECOIL(3) // Makes them quite small
 	twohanded = FALSE
 	saw_off = FALSE
 

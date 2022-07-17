@@ -4,13 +4,12 @@
 	icon = 'icons/obj/guns/projectile/heavysniper.dmi'
 	icon_state = "heavysniper"
 	item_state = "heavysniper"
-	damage_multiplier = 1
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_COVERT = 2)
 	caliber = CAL_ANTIM
-	recoil_buildup = 75
+	init_recoil = RIFLE_RECOIL(5)
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING
 	max_shells = 1
@@ -19,7 +18,6 @@
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 20)
 	price_tag = 5000
-	one_hand_penalty = 10
 	zoom_factor = 2
 	twohanded = TRUE
 	darkness_view = 7
@@ -34,6 +32,7 @@
 	wield_delay = 0
 	pierce_multiplier = 6
 	gun_parts = list(/obj/item/part/gun/frame/heavysniper = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/antim = 1)
+	serial_type = "SA"
 
 /obj/item/part/gun/frame/heavysniper
 	name = "Hristov frame"

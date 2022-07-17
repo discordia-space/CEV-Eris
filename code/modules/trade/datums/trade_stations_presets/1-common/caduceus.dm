@@ -1,6 +1,6 @@
 /datum/trade_station/caduceus
 	name_pool = list(
-		"MAV 'Caduceus'" = "Moebius Aid Vessel 'Caduceus': \"Hello there, we are from the Old Sol Republic. We will be leaving the system shortly but we can offer you medical supplies in the mean time.\"."
+		"MAV \'Caduceus\'" = "Moebius Aid Vessel \'Caduceus\': \"Hello there, we are from the Old Sol Republic. We will be leaving the system shortly but we can offer you medical supplies in the meantime.\"."
 	)
 	icon_states = "moe_capital"
 	forced_overmap_zone = list(
@@ -10,20 +10,24 @@
 	uid = "moe_basic"
 	start_discovered = TRUE
 	spawn_always = TRUE
-	markup = COMMON_GOODS
+	markup = WHOLESALE_GOODS
 	offer_limit = 20
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
-	stations_recommended = list("moe_adv")
-	assortiment = list(
+	stations_recommended = list("moe_adv", "trapper")
+	inventory = list(
+		"Design Disks" = list(
+			/obj/item/computer_hardware/hard_drive/portable/design/medical = good_data("Moebius Medical Designs", list(1, 10), 400),
+			/obj/item/computer_hardware/hard_drive/portable/design/computer = good_data("Moebius Computer Parts", list(1, 10), 500)
+		),
 		"First Aid" = list(
-			/obj/item/storage/firstaid/regular,
-			/obj/item/storage/firstaid/fire,
-			/obj/item/storage/firstaid/toxin,
-			/obj/item/storage/firstaid/o2,
-			/obj/item/storage/firstaid/adv,
+			/obj/item/storage/firstaid/regular = custom_good_price(450),
+			/obj/item/storage/firstaid/fire = custom_good_price(400),
+			/obj/item/storage/firstaid/toxin = custom_good_price(400),
+			/obj/item/storage/firstaid/o2 = custom_good_price(400),
+			/obj/item/storage/firstaid/adv = custom_good_price(600),
 			/obj/item/stack/medical/bruise_pack,
 			/obj/item/stack/medical/ointment,
 			/obj/item/stack/medical/splint
@@ -58,11 +62,11 @@
 			/obj/item/reagent_containers/syringe,
 			/obj/item/reagent_containers/hypospray/autoinjector,
 			/obj/item/bodybag,
-			/obj/machinery/suspension_gen,
-			/obj/item/computer_hardware/hard_drive/portable/design
+			/obj/item/computer_hardware/hard_drive/portable/design,
+			/obj/item/storage/hcases/med
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Autoinjectors" = list(
 			// Autoinjectors defined in hypospray.dm
 			/obj/item/reagent_containers/hypospray/autoinjector/antitoxin = custom_good_amount_range(list(10, 20)),
@@ -75,9 +79,14 @@
 		)
 	)
 	offer_types = list(
-		/datum/reagent/medicine/ossisine = offer_data("ossissine bottle (60u)", 2000, 1),
-		/datum/reagent/medicine/kyphotorin = offer_data("kyphotorin bottle (60u)", 4000, 1),
-		/datum/reagent/nanites/uncapped/control_booster_utility = offer_data("Control Booster Utility bottle (60u)", 30000, 1),
-		/datum/reagent/nanites/uncapped/control_booster_combat = offer_data("Control Booster Combat bottle (60u)", 30000, 1)
-//		/datum/reagent/toxin/slimetoxin
+		/obj/item/oddity/common/healthscanner = offer_data("odd health scanner", 500, 1),
+		/obj/item/oddity/common/disk = offer_data("broken design disk", 500, 1),
+		/obj/item/oddity/common/device = offer_data("odd device", 500, 1),
+		/datum/reagent/stim/mbr = offer_data("Machine Binding Ritual bottle (60u)", 1500, 1),
+		/datum/reagent/stim/cherrydrops = offer_data("Cherry Drops bottle (60u)", 1500, 1),
+		/datum/reagent/stim/pro_surgeon = offer_data("ProSurgeon bottle (60u)", 1500, 1),
+		/datum/reagent/stim/violence = offer_data("Violence bottle (60u)", 1500, 1),
+		/datum/reagent/stim/bouncer = offer_data("Bouncer bottle (60u)", 1500, 1),
+		/datum/reagent/medicine/ossisine = offer_data("ossisine bottle (60u)", 4000, 1),
+		/datum/reagent/medicine/kyphotorin = offer_data("kyphotorin bottle (60u)", 8000, 1)
 	)

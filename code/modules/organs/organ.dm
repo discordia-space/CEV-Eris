@@ -6,6 +6,8 @@
 	bad_type = /obj/item/organ
 	spawn_tags = SPAWN_TAG_ORGAN
 
+	price_tag = 200
+
 	// Strings.
 	var/surgery_name					// A special name that replaces item name in surgery messages
 	var/organ_tag = "organ"				// Unique identifier.
@@ -26,7 +28,8 @@
 	var/list/transplant_data			// Transplant match data.
 	var/list/autopsy_data = list()		// Trauma data for forensics.
 	var/list/trace_chemicals = list()	// Traces of chemicals in the organ.
-	var/datum/dna/dna
+	var/dna_trace
+	var/b_type
 	var/datum/species/species
 
 	// Damage vars.
@@ -41,7 +44,6 @@
 	if(parent || owner)
 		removed()
 
-	QDEL_NULL(dna)
 	species = null
 	STOP_PROCESSING(SSobj, src)
 
@@ -57,16 +59,13 @@
 		max_damage = min_broken_damage * 2
 
 	if(istype(holder))
-		species = all_species[SPECIES_HUMAN]
-		if(holder.dna)
-			dna = holder.dna.Clone()
-			species = all_species[dna.species]
+		species = holder.species
+		dna_trace = holder.dna_trace
+		b_type = holder.b_type
 
-			if(!blood_DNA)
-				blood_DNA = list()
-			blood_DNA[dna.unique_enzymes] = dna.b_type
-		else
-			log_debug("[src] at [loc] spawned without a proper DNA.")
+		if(!blood_DNA)
+			blood_DNA = list()
+		blood_DNA[holder.dna_trace] = holder.b_type
 
 		if(parent_organ_base)
 			replaced(holder.get_organ(parent_organ_base))
@@ -85,14 +84,15 @@
 	return ..()
 
 
-/obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
-	if(new_dna)
-		dna = new_dna.Clone()
+/obj/item/organ/proc/set_dna(mob/living/carbon/C)
+	if(istype(C))
+		dna_trace = C.dna_trace
+		b_type = C.b_type
 		if(!blood_DNA)
 			blood_DNA = list()
 		blood_DNA.Cut()
-		blood_DNA[dna.unique_enzymes] = dna.b_type
-		species = all_species[new_dna.species]
+		blood_DNA[C.dna_trace] = C.b_type
+		species = all_species[C.species]
 
 /obj/item/organ/proc/die()
 	if(BP_IS_ROBOTIC(src))
@@ -136,7 +136,7 @@
 		return
 
 	//Process infections
-	if (BP_IS_ROBOTIC(src) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
+	if(BP_IS_ROBOTIC(src) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
 		germ_level = 0
 		return
 
@@ -174,10 +174,10 @@
 	//** Handle the effects of infections
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
 
-	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
+	if(germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
 		germ_level--
 
-	if (germ_level >= INFECTION_LEVEL_ONE/2)
+	if(germ_level >= INFECTION_LEVEL_ONE/2)
 		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes
 		if(antibiotics < 5 && prob(round(germ_level/6)))
 			germ_level++
@@ -186,34 +186,33 @@
 		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
 		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
 
-	if (germ_level >= INFECTION_LEVEL_TWO)
+	if(germ_level >= INFECTION_LEVEL_TWO)
 		//spread germs
-		if (antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
+		if(parent && antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
 			parent.germ_level++
 
-		if (prob(3))	//about once every 30 seconds
+		if(prob(3))	//about once every 30 seconds
 			take_damage(1,silent=prob(30))
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
 	// immunosuppressant that changes transplant data to make it match.
-	if(dna)
-		if(!rejecting)
-			if(blood_incompatible(dna.b_type, owner.dna.b_type, species, owner.species))
-				rejecting = 1
-		else
-			rejecting++ //Rejection severity increases over time.
-			if(rejecting % 10 == 0) //Only fire every ten rejection ticks.
-				switch(rejecting)
-					if(1 to 50)
-						germ_level++
-					if(51 to 200)
-						germ_level += rand(1,2)
-					if(201 to 500)
-						germ_level += rand(2,3)
-					if(501 to INFINITY)
-						germ_level += rand(3,5)
-						owner.reagents.add_reagent("toxin", rand(1,2))
+	if(!rejecting)
+		if(blood_incompatible(b_type, owner.b_type, species, owner.species) && !get_active_mutation(owner, MUTATION_NO_REJECT))
+			rejecting = 1
+	else
+		rejecting++ //Rejection severity increases over time.
+		if(rejecting % 10 == 0) //Only fire every ten rejection ticks.
+			switch(rejecting)
+				if(1 to 50)
+					germ_level++
+				if(51 to 200)
+					germ_level += rand(1,2)
+				if(201 to 500)
+					germ_level += rand(2,3)
+				if(501 to INFINITY)
+					germ_level += rand(3,5)
+					owner.reagents.add_reagent("toxin", rand(1,2))
 
 /obj/item/organ/proc/receive_chem(chemical as obj)
 	return 0
@@ -236,12 +235,12 @@
 	if(owner)
 		antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
 
-	if (!germ_level || antibiotics < 5)
+	if(!germ_level || antibiotics < 5)
 		return
 
-	if (germ_level < INFECTION_LEVEL_ONE)
+	if(germ_level < INFECTION_LEVEL_ONE)
 		germ_level = 0	//cure instantly
-	else if (germ_level < INFECTION_LEVEL_TWO)
+	else if(germ_level < INFECTION_LEVEL_TWO)
 		germ_level -= 6	//at germ_level == 500, this should cure the infection in a minute
 	else
 		germ_level -= 2 //at germ_level == 1000, this will cure the infection in 5 minutes
@@ -276,11 +275,11 @@
 	if(!BP_IS_ROBOTIC(src))
 		return
 	switch (severity)
-		if (1)
+		if(1)
 			take_damage(12)
-		if (2)
+		if(2)
 			take_damage(6)
-		if (3)
+		if(3)
 			take_damage(3)
 
 // Gets the limb this organ is located in, if any
@@ -293,8 +292,6 @@
 
 	else if(istype(loc, /obj/item/organ/external))
 		return loc
-
-	return null
 
 
 /obj/item/organ/proc/removed(mob/living/user)
@@ -349,8 +346,8 @@
 	transplant_data = list()
 	if(!transplant_blood)
 		transplant_data["species"] =    owner.species.name
-		transplant_data["blood_type"] = owner.dna.b_type
-		transplant_data["blood_DNA"] =  owner.dna.unique_enzymes
+		transplant_data["blood_type"] = owner.b_type
+		transplant_data["blood_DNA"] =  owner.dna_trace
 	else
 		transplant_data["species"] =    transplant_blood.data["species"]
 		transplant_data["blood_type"] = transplant_blood.data["blood_type"]

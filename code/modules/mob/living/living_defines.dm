@@ -49,7 +49,7 @@
 	var/step_count = 0
 
 	var/update_slimes = 1
-	var/unstack = 1 //prevent stacking of certain actions, like resting/diving
+	var/is_busy = FALSE // Prevents stacking of certain actions, like resting and diving
 	var/silent 		// Can't talk. Value goes down every life proc.
 	var/on_fire = 0 //The "Are we on fire?" var
 	var/fire_stacks

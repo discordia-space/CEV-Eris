@@ -6,6 +6,8 @@
 	var/obj/machinery/atmospherics/portables_connector/connected_port
 	var/obj/item/tank/holding
 
+	price_tag = 200
+
 	var/volume = 0
 	var/destroyed = 0
 

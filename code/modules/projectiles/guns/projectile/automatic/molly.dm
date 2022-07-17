@@ -27,16 +27,16 @@
 	can_dual = 1
 	auto_eject = 1
 	damage_multiplier = 0.7 //good for rubber takedowns or self-defence, not so good to kill someone, you might want to use better smg
-	recoil_buildup = 1
-	one_hand_penalty = 5 //despine it being handgun, it's better to hold in two hands while shooting. SMG level.
+	init_recoil = SMG_RECOIL(0.6)
 
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)
 
-	price_tag = 1400
+	price_tag = 1000
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	wield_delay = 0 // pistols don't get delays. X Doubt
 	gun_parts = list(/obj/item/part/gun/frame/molly = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	serial_type = "FS"
 
 /obj/item/gun/projectile/automatic/molly/update_icon()
 	..()

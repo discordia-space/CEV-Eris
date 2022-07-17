@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(floating_chat_colors, list())
 
 	style = "font-family: 'Small Fonts'; -dm-text-outline: 1 black; font-size: [size]px; [style]"
 	I.maptext = "<center><span style=\"[style]\">[message]</span></center>"
-	animate(I, 1, alpha = 255, pixel_y = 16)
+	animate(I, 1, alpha = 255, pixel_y = 24)
 
 	for(var/image/old in holder.stored_chat_text)
 		animate(old, 2, pixel_y = old.pixel_y + 8)

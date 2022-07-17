@@ -19,8 +19,11 @@
 		WEAPON_NORMAL,
 		BURST_2_BEAM
 		)
+	init_recoil = HANDGUN_RECOIL(1)
 
+	serial_type = "ML"
 	var/lightfail = 0
+
 
 //override for failcheck behaviour
 /obj/item/gun/energy/nuclear/Process()

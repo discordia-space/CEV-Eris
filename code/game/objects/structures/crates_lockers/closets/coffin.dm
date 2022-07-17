@@ -25,11 +25,11 @@
 	if (occupant && occupant.is_dead())
 		var/mob/M = key2mob(occupant.mind.key)
 		//We send a message to the occupant's current mob - probably a ghost, but who knows.
-		to_chat(M, SPAN_NOTICE("Your remains have been committed to the void. Your crew respawn time has been reduced by 15 minutes."))
+		to_chat(M, SPAN_NOTICE("Your remains have been committed to the void. Your crew respawn time has been reduced by [(COFFIN_RESPAWN_BONUS)/600] minutes."))
 		M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
 		//A proper funeral for the corpse allows a faster respawn
-		M.set_respawn_bonus("CORPSE_HANDLING", 15 MINUTES)
+		M.set_respawn_bonus("CORPSE_HANDLING", COFFIN_RESPAWN_BONUS)
 
 		qdel(occupant)
 		qdel(src)

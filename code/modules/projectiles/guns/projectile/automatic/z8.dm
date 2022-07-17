@@ -19,11 +19,10 @@
 	unload_sound = 'sound/weapons/guns/interact/batrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/batrifle_cock.ogg'
-	recoil_buildup = 1
+	init_recoil = CARBINE_RECOIL(0.45)
 	penetration_multiplier = 1.1
 	damage_multiplier = 1.1
 	zoom_factor = 0.2
-	one_hand_penalty = 10 //bullpup rifle level
 	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(
@@ -36,6 +35,7 @@
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/z8 = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)
+	serial_type = "OR"
 
 /obj/item/gun/projectile/automatic/z8/Initialize()
 	. = ..()

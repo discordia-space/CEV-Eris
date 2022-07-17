@@ -23,6 +23,7 @@
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 	spawn_tags = SPAWN_TAG_RIG
 	rarity_value = 10
+	price_tag = 150
 	bad_type = /obj/item/rig //TODO: Resprite these, remove old bay leftover RIGs, add a RIG to moeb R&D, add more RIGs in general
 
 	// These values are passed on to all component pieces.
@@ -54,7 +55,9 @@
 
 	// Keeps track of what this rig should spawn with.
 	var/suit_type = "hardsuit"
-	var/list/initial_modules = list()
+	var/list/initial_modules = list(
+		/obj/item/rig_module/storage //Probably isn't the best way of doing this
+		)
 	var/chest_type = /obj/item/clothing/suit/space/rig
 	var/helm_type =  /obj/item/clothing/head/space/rig
 	var/boot_type =  /obj/item/clothing/shoes/magboots/rig

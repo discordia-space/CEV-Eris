@@ -18,9 +18,8 @@
 	price_tag = 2000
 	damage_multiplier = 1.1	 // 34 lethal on FA
 	penetration_multiplier = 0.65 // 9.75 lethal
-	recoil_buildup = 0.7
+	init_recoil = SMG_RECOIL(0.2) // Hilariously low, despite its description
 	twohanded = FALSE
-	one_hand_penalty = 5 //smg level
 
 	init_firemodes = list(
 		FULL_AUTO_300,
@@ -28,6 +27,7 @@
 		)
 	gun_tags = list(GUN_SILENCABLE)
 	gun_parts = list(/obj/item/part/gun/frame/zoric = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/magnum = 1)
+	serial_type = "SA"
 
 /obj/item/gun/projectile/automatic/zoric/update_icon()
 	..()

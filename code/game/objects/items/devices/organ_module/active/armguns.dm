@@ -9,7 +9,7 @@
 	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	ammo_type = "/obj/item/ammo_casing/pistol"
+	ammo_type = /obj/item/ammo_casing/pistol
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL|MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg
@@ -19,8 +19,7 @@
 	damage_multiplier = 0.8
 	penetration_multiplier = 0.5
 	gun_tags = list(GUN_SILENCABLE)
-	recoil_buildup = 5 // it's stuck in your fucking hand or something
-	one_hand_penalty = 1 // see the above
+	init_recoil = EMBEDDED_RECOIL(1.5)
 	spawn_blacklisted = TRUE
 
 /obj/item/organ_module/active/simple/armsmg

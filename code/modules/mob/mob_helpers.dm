@@ -24,9 +24,9 @@
 	return istype(species, /datum/species/monkey)
 
 proc/isdeaf(A)
-	if(isliving(A))
-		var/mob/living/M = A
-		return (M.sdisabilities & DEAF) || M.ear_deaf
+//	if(isliving(A))
+//		var/mob/living/M = A
+//		return (M.sdisabilities & DEAF) || M.ear_deaf
 	return 0
 
 /proc/hasorgans(A) // Fucking really??
@@ -69,13 +69,13 @@ proc/isdeaf(A)
 
 //The base miss chance for the different defence zones
 var/list/global/base_miss_chance = list(
-	BP_HEAD = 45,
-	BP_CHEST = 10,
-	BP_GROIN = 20,
-	BP_L_LEG  = 20,
-	BP_R_LEG = 20,
-	BP_L_ARM = 20,
-	BP_R_ARM = 20
+	BP_HEAD = 5,
+	BP_CHEST = 2,
+	BP_GROIN = 2,
+	BP_L_LEG  = 3,
+	BP_R_LEG = 3,
+	BP_L_ARM = 3,
+	BP_R_ARM = 3
 	)
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
@@ -631,3 +631,6 @@ proc/is_blind(A)
 	result[2] = ainvis
 
 	return result
+
+/mob/proc/set_faction(target_faction)
+	faction = target_faction ? target_faction : initial(faction)

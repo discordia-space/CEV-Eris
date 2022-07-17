@@ -24,5 +24,5 @@
 #define MOVE_INTENT_EXERTIVE   0x0002
 #define MOVE_INTENT_QUICK      0x0004
 
-#define MOVING_DELIBERATELY(X) (X.move_intent.flags & MOVE_INTENT_DELIBERATE)
-#define MOVING_QUICKLY(X) (X.move_intent.flags & MOVE_INTENT_QUICK)
+#define MOVING_DELIBERATELY(X) (X ? X.move_intent?.flags & MOVE_INTENT_DELIBERATE : TRUE)
+#define MOVING_QUICKLY(X) (X.move_intent?.flags & MOVE_INTENT_QUICK)

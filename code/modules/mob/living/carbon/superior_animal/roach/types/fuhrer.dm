@@ -12,7 +12,7 @@
 	melee_damage_upper = 25
 	armor_penetration = 20
 
-	move_to_delay = 8
+	move_to_delay = 6
 	mob_size = MOB_MEDIUM
 	extra_burrow_chance = 100
 	blattedin_revives_left = 0 //He only lives once, cuz he's huge

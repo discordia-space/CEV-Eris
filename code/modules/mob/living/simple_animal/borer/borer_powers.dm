@@ -56,10 +56,15 @@
 
 	var/mob/living/carbon/M = input(src,"Who do you wish to infest?") in null|choices
 
-	if(!M || !Adjacent(M)) return
+	if(!M || !Adjacent(M))
+		return
 
 	if(M.has_brain_worms())
 		to_chat(src, SPAN_WARNING("You cannot infest someone who is already infested!"))
+		return
+
+	if(get_active_mutation(M, MUTATION_REJECT))
+		to_chat(src, SPAN_WARNING("Host's body actively rejects you."))
 		return
 
 	if(ishuman(M))
@@ -110,7 +115,6 @@
 	if(sight & SEE_MOBS)
 		sight &= ~SEE_MOBS
 		to_chat(src, SPAN_NOTICE("You cannot see living being through walls for now."))
-		return
 
 	host = M
 	host.status_flags |= PASSEMOTES

@@ -12,6 +12,7 @@
 	w_class = ITEM_SIZE_TINY
 	var/obj/item/reagent_containers/syringe/syringe
 
+
 /obj/item/syringe_cartridge/update_icon()
 	underlays.Cut()
 	if(syringe)
@@ -75,7 +76,7 @@
 
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"
-	recoil_buildup = 0
+	init_recoil = HANDGUN_RECOIL(1)
 	release_force = 10
 	throw_distance = 10
 
@@ -85,6 +86,7 @@
 	var/list/darts = list()
 	var/max_darts = 1
 	var/obj/item/syringe_cartridge/next
+	serial_type = "ML"
 
 /obj/item/gun/launcher/syringe/consume_next_projectile()
 	if(next)

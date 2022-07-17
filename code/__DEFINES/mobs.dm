@@ -20,6 +20,7 @@
 // Grab levels.
 #define GRAB_PASSIVE    1
 #define GRAB_AGGRESSIVE 2
+#define GRAB_PRENECK 2.5
 #define GRAB_NECK       3
 #define GRAB_UPGRADING  4
 #define GRAB_KILL       5
@@ -159,11 +160,14 @@
 #define MINISYNTH	"minisynth"//Used for drones and pAIs
 
 #define ANIMAL_SPAWN_DELAY 5 MINUTES
-#define DRONE_SPAWN_DELAY  10 MINUTES
+#define DRONE_SPAWN_DELAY  5 MINUTES
 
-#define CRYOPOD_SPAWN_BONUS	20 MINUTES//Going to sleep in a cryopod takes this much off your respawn time in minutes
-#define CRYOPOD_SPAWN_BONUS_DESC	"20 minutes"	//Tells players how long they have until respawn.
-
+#define CRYOPOD_HEALTHY_RESPAWN_BONUS	25 MINUTES // Going to sleep in a cryopod in perfect health takes this much off player's respawn time
+#define CRYOPOD_WOUNDED_RESPAWN_BONUS	20 MINUTES // Less timer reduction if went to cryo with any health condition
+#define MORGUE_RESPAWN_BONUS			15 MINUTES // Low effort corpse handling
+#define BIOREACTOR_RESPAWN_BONUS		15 MINUTES // Low effort corpse handling
+#define COFFIN_RESPAWN_BONUS			25 MINUTES // High effort corpse handling
+#define COLLECTIVISED_RESPAWN_BONUS		15 MINUTES // Seize the means of respawning
 
 // Incapacitation flags, used by the mob/proc/incapacitated() proc
 #define INCAPACITATION_NONE 0
@@ -210,11 +214,14 @@
 
 #define HEAT_MOBIGNITE_THRESHOLD 530 //minimum amount of heat an object needs to ignite a mob when it hits the mob
 
-#define SPECIES_HUMAN       "Human"
+#define SPECIES_HUMAN			"Human"
+#define SPECIES_SLIME			"Slime"
+#define SPECIES_MONKEY			"Monkey"
+#define SPECIES_GOLEM			"Golem"
 
 #define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
-#define NECROZTIME 	(5 MINUTES)
+#define NECROZTIME 	(15 MINUTES)
 
 
 

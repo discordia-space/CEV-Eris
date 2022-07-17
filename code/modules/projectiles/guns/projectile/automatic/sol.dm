@@ -16,10 +16,9 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	price_tag = 2300
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	recoil_buildup = 2
+	init_recoil = CARBINE_RECOIL(1)
 	penetration_multiplier = 1.1
 	damage_multiplier = 1.15
-	one_hand_penalty = 8 //because otherwise you can shoot it one-handed in bursts and still be very accurate. One-handed recoil is now as much as it was back in the day when wielded.
 	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/plasteel = 6)
 	gun_tags = list(GUN_FA_MODDABLE)
 
@@ -30,6 +29,7 @@
 		)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/sol = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/clrifle = 1)
+	serial_type = "FS"
 
 /obj/item/gun/projectile/automatic/sol/proc/update_charge()
 	if(!ammo_magazine)

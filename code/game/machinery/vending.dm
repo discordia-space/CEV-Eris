@@ -148,7 +148,7 @@
 	var/locked = TRUE
 	var/datum/money_account/machine_vendor_account //Owner of this vendomat. Used for access.
 	var/datum/money_account/earnings_account //Money flows in and out of this account.
-	var/vendor_department = null //If set, members can manage this vendomat. earnings_account is set to the department's account automatically.
+	var/vendor_department = DEPARTMENT_GUILD //If set, members can manage this vendomat. earnings_account is set to the department's account automatically.
 	var/buying_percentage = 0 //If set, the vendomat will accept people selling items to it, and in return will give (percentage * listed item price) in cash
 	var/scan_id = 1
 	var/auto_price = TRUE //The vendomat will automatically set prices on products if their price is not specified.
@@ -814,16 +814,15 @@
 
 	//Pitch to the people!  Really sell it!
 	if(((last_slogan + slogan_delay) <= world.time) && (slogan_list.len > 0 || custom_vendor) && (!shut_up) && prob(5))
-		if(custom_vendor && product_records.len)
+		if(slogan_list.len)
+			var/slogan = pick(slogan_list)
+			speak(slogan)
+			last_slogan = world.time
+		else if(custom_vendor && product_records.len)
 			var/datum/data/vending_product/advertised = pick(product_records)
 			if(advertised)
 				var/advertisement = "[pick("Come get","Come buy","Buy","Sale on","We have")] \an [advertised.product_name], [pick("for only","only","priced at")] [advertised.price] credits![pick(" What a deal!"," Can you believe it?","")]"
 				speak(advertisement)
-				last_slogan = world.time
-		else
-			if(slogan_list.len)
-				var/slogan = pick(slogan_list)
-				speak(slogan)
 				last_slogan = world.time
 
 	if(shoot_inventory && prob(2))
@@ -831,7 +830,7 @@
 
 	return
 
-/obj/machinery/vending/proc/speak(var/message)
+/obj/machinery/proc/speak(message)
 	if(stat & NOPOWER)
 		return
 
@@ -865,7 +864,7 @@
 	return
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
-/obj/machinery/vending/proc/throw_item()
+/obj/machinery/proc/throw_item()
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)
 		return 0
@@ -934,20 +933,20 @@
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	icon_state = "boozeomat"        //////////////18 drink entities below, plus the glasses, in case someone wants to edit the number of bottles
 	icon_deny = "boozeomat-deny"
-	products = list(/obj/item/reagent_containers/food/drinks/bottle/gin = 5,/obj/item/reagent_containers/food/drinks/bottle/whiskey = 5,
-					/obj/item/reagent_containers/food/drinks/bottle/tequilla = 5,/obj/item/reagent_containers/food/drinks/bottle/vodka = 5,
-					/obj/item/reagent_containers/food/drinks/bottle/vermouth = 5,/obj/item/reagent_containers/food/drinks/bottle/rum = 5,
-					/obj/item/reagent_containers/food/drinks/bottle/wine = 5,/obj/item/reagent_containers/food/drinks/bottle/cognac = 5,
-					/obj/item/reagent_containers/food/drinks/bottle/kahlua = 5,/obj/item/reagent_containers/food/drinks/bottle/small/beer = 6,
-					/obj/item/reagent_containers/food/drinks/bottle/small/ale = 6,/obj/item/reagent_containers/food/drinks/bottle/orangejuice = 4,
-					/obj/item/reagent_containers/food/drinks/bottle/tomatojuice = 4,/obj/item/reagent_containers/food/drinks/bottle/limejuice = 4,
-					/obj/item/reagent_containers/food/drinks/bottle/cream = 4,/obj/item/reagent_containers/food/drinks/cans/tonic = 8,
+	products = list(/obj/item/reagent_containers/food/drinks/bottle/gin = 5, /obj/item/reagent_containers/food/drinks/bottle/whiskey = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/tequilla = 5, /obj/item/reagent_containers/food/drinks/bottle/vodka = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/vermouth = 5, /obj/item/reagent_containers/food/drinks/bottle/rum = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/wine = 5, /obj/item/reagent_containers/food/drinks/bottle/cognac = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/kahlua = 5, /obj/item/reagent_containers/food/drinks/bottle/small/beer = 6,
+					/obj/item/reagent_containers/food/drinks/bottle/small/ale = 6, /obj/item/reagent_containers/food/drinks/bottle/orangejuice = 4,
+					/obj/item/reagent_containers/food/drinks/bottle/tomatojuice = 4, /obj/item/reagent_containers/food/drinks/bottle/limejuice = 4,
+					/obj/item/reagent_containers/food/drinks/bottle/cream = 4, /obj/item/reagent_containers/food/drinks/cans/tonic = 8,
 					/obj/item/reagent_containers/food/drinks/bottle/cola = 5, /obj/item/reagent_containers/food/drinks/bottle/space_up = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind = 5, /obj/item/reagent_containers/food/drinks/cans/sodawater = 15,
 					/obj/item/reagent_containers/food/drinks/flask/barflask = 2, /obj/item/reagent_containers/food/drinks/flask/vacuumflask = 2,
-					/obj/item/reagent_containers/food/drinks/drinkingglass = 30,/obj/item/reagent_containers/food/drinks/ice = 9,
-					/obj/item/reagent_containers/food/drinks/bottle/melonliquor = 2,/obj/item/reagent_containers/food/drinks/bottle/bluecuracao = 2,
-					/obj/item/reagent_containers/food/drinks/bottle/absinthe = 2,/obj/item/reagent_containers/food/drinks/bottle/grenadine = 5)
+					/obj/item/reagent_containers/food/drinks/drinkingglass = 30, /obj/item/reagent_containers/food/drinks/mug/teacup/ice = 9,
+					/obj/item/reagent_containers/food/drinks/bottle/melonliquor = 2, /obj/item/reagent_containers/food/drinks/bottle/bluecuracao = 2,
+					/obj/item/reagent_containers/food/drinks/bottle/absinthe = 2, /obj/item/reagent_containers/food/drinks/bottle/grenadine = 5)
 	contraband = list(/obj/item/reagent_containers/food/drinks/tea/green = 10, /obj/item/reagent_containers/food/drinks/tea/black = 10)
 	vend_delay = 15
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
@@ -964,6 +963,22 @@
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
 	auto_price = FALSE
 
+/obj/machinery/vending/drink_showcase
+	name = "Club Cocktail Showcase"
+	desc = "A vending machine to showcase cocktails."
+	icon_state = "showcase"
+	var/icon_fill = "showcase-fill"
+	vend_delay = 15
+	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	vendor_department = DEPARTMENT_CIVILIAN
+	custom_vendor = TRUE
+	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/food/drinks, /obj/item/reagent_containers/food/condiment)
+
+/obj/machinery/vending/drink_showcase/update_icon()
+	..()
+	if(contents.len && !(stat & NOPOWER))
+		overlays += image(icon, icon_fill)
+
 /obj/machinery/vending/coffee
 	name = "Hot Drinks machine"
 	desc = "A vending machine which dispenses hot drinks."
@@ -975,7 +990,7 @@
 	vend_power_usage = 85000 //85 kJ to heat a 250 mL cup of coffee
 	products = list(/obj/item/reagent_containers/food/drinks/coffee = 25,/obj/item/reagent_containers/food/drinks/tea/black = 25,
 					/obj/item/reagent_containers/food/drinks/tea/green = 25,/obj/item/reagent_containers/food/drinks/h_chocolate = 25)
-	contraband = list(/obj/item/reagent_containers/food/drinks/ice = 10)
+	contraband = list(/obj/item/reagent_containers/food/drinks/mug/teacup/ice = 10)
 	prices = list(/obj/item/reagent_containers/food/drinks/coffee = 3, /obj/item/reagent_containers/food/drinks/tea/black = 3,
 					/obj/item/reagent_containers/food/drinks/tea/green = 3, /obj/item/reagent_containers/food/drinks/h_chocolate = 3)
 	vendor_department = DEPARTMENT_CIVILIAN
@@ -1007,11 +1022,14 @@
 					/obj/item/reagent_containers/spray/pepper = 6,
 					/obj/item/gun/projectile/olivaw = 5,
 					/obj/item/gun/projectile/giskard = 5,
+					/obj/item/gun/projectile/colt = 4,
 					/obj/item/gun/energy/gun/martin = 5,
 					/obj/item/gun/energy/gun = 5,
 					/obj/item/gun/projectile/revolver/havelock = 5,
 					/obj/item/gun/projectile/automatic/atreides = 3,
-					/obj/item/gun/projectile/shotgun/pump = 3,
+					/obj/item/gun/projectile/automatic/molly = 3,
+					/obj/item/gun/projectile/shotgun/pump/gladstone = 4,
+					/obj/item/gun/projectile/shotgun/pump = 5,
 					/obj/item/gun/projectile/automatic/slaught_o_matic = 30,
 					/obj/item/ammo_magazine/pistol/rubber = 20,
 					/obj/item/ammo_magazine/hpistol/rubber = 5,
@@ -1037,6 +1055,8 @@
 
 	prices = list(
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 200,
+					/obj/item/gun/projectile/shotgun/pump/gladstone = 2000,
+					/obj/item/gun/projectile/colt = 1200,
 					/obj/item/ammo_magazine/slpistol/rubber = 100,
 					/obj/item/ammo_magazine/pistol/rubber = 150,
 					/obj/item/ammo_magazine/hpistol = 300,
@@ -1150,7 +1170,9 @@
 	contraband = list(/obj/item/reagent_containers/pill/tox = 3,/obj/item/reagent_containers/pill/stox = 4,/obj/item/reagent_containers/pill/antitox = 6)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	auto_price = FALSE
-
+	custom_vendor = TRUE // Chemists can load it for MDs
+	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle)
+	vendor_department = DEPARTMENT_MEDICAL
 
 //This one's from bay12
 /obj/machinery/vending/plasmaresearch
@@ -1169,6 +1191,9 @@
 	light_color = COLOR_LIGHTING_GREEN_BRIGHT
 	icon_deny = "wallmed-deny"
 	product_ads = "Self-medication can be healthy!;Natural chemicals!;This stuff saves lives.;Don't you want some?;Hook it up to your veins!"
+	custom_vendor = TRUE // Chemists can load it for customers
+	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle)
+	vendor_department = DEPARTMENT_MEDICAL
 
 /obj/machinery/vending/wallmed/minor
 	products = list(
@@ -1236,7 +1261,6 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = 500,
 		/obj/item/reagent_containers/hypospray/autoinjector/drugs = 500,
 		)
-	vendor_department = DEPARTMENT_MEDICAL
 	auto_price = FALSE
 
 /obj/machinery/vending/security
@@ -1360,10 +1384,11 @@
 	/obj/item/reagent_containers/food/drinks/mug/teacup = 10)
 	contraband = list(/obj/item/material/kitchen/rollingpin = 2, /obj/item/tool/knife/butch = 2)
 	auto_price = FALSE
+	always_open = TRUE
 
 /obj/machinery/vending/sovietsoda
 	name = "BODA"
-	desc = "An old sweet water vending machine,how did this end up here?"
+	desc = "An old sweet water vending machine, how did this end up here?"
 	icon_state = "sovietsoda"
 	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
 	products = list(/obj/item/reagent_containers/food/drinks/drinkingglass/soda = 30)
@@ -1452,6 +1477,40 @@
 	contraband = list(/obj/item/implant/core_implant/cruciform = 3)
 	prices = list(/obj/item/book/ritual/cruciform = 500, /obj/item/storage/fancy/candle_box = 200, /obj/item/reagent_containers/food/drinks/bottle/ntcahors = 250,
 				/obj/item/implant/core_implant/cruciform = 1000)
+	custom_vendor = TRUE // So they can sell pouches and other printed goods, if they bother to stock them
+
+/obj/machinery/vending/theomat/proc/check_NT(mob/user)
+	var/bingo = FALSE
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(is_neotheology_disciple(H))
+			bingo = TRUE
+
+		else if(istype(H.get_active_hand(), /obj/item/clothing/accessory/cross))
+			bingo = TRUE
+
+		else if(istype(H.wear_mask, /obj/item/clothing/accessory/cross))
+			bingo = TRUE
+
+		else if(H.w_uniform && istype(H.w_uniform, /obj/item/clothing))
+			var/obj/item/clothing/C = H.w_uniform
+			for(var/obj/item/I in C.accessories)
+				if(istype(I, /obj/item/clothing/accessory/cross))
+					bingo = TRUE
+					break
+
+	if(bingo)
+		return TRUE
+	to_chat(user, SPAN_WARNING("[src] flashes a message: Unauthorized Access."))
+	return FALSE
+
+/obj/machinery/vending/theomat/vend(datum/data/vending_product/R, mob/user)
+	if(check_NT(user))
+		..()
+
+/obj/machinery/vending/theomat/try_to_buy(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
+	if(check_NT(user))
+		..()
 
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
@@ -1571,16 +1630,13 @@
 					/obj/item/ammo_magazine/smg = 12,
 					/obj/item/part/armor = 30,
 					/obj/item/part/gun = 30,
-					/obj/item/gun/projectile/automatic/ak47/fs = 4,
 					/obj/item/gun/energy/retro = 4,
 					/obj/item/gun/projectile/shotgun/doublebarrel = 4,
 					/obj/item/gun/projectile/mk58  = 2,
 					/obj/item/gun/projectile/mk58/wood = 2,
-					/obj/item/gun/projectile/colt = 4,
 					/obj/item/gun/projectile/revolver/deckard = 2,
+					/obj/item/gun/projectile/automatic/ak47/fs = 4,
 					/obj/item/gun/projectile/automatic/z8 = 4,
-					/obj/item/gun/projectile/automatic/molly = 4,
-					/obj/item/gun/projectile/shotgun/pump/gladstone = 4,
 					/obj/item/gun/projectile/shotgun/pump/regulator = 4,
 					/obj/item/storage/deferred/crate/clown_crime = 2,
 					/obj/item/storage/deferred/crate/clown_crime/wolf = 2,
@@ -1599,17 +1655,14 @@
 					/obj/item/ammo_magazine/smg = 400,
 					/obj/item/part/armor = 700,
 					/obj/item/part/gun = 700,
-					/obj/item/gun/projectile/automatic/ak47/fs = 3200,
 					/obj/item/gun/energy/retro = 1200,
 					/obj/item/gun/projectile/shotgun/doublebarrel = 1400,
 					/obj/item/gun/projectile/mk58  = 900,
 					/obj/item/gun/projectile/mk58/wood = 900,
-					/obj/item/gun/projectile/colt = 1200,
 					/obj/item/gun/projectile/mandella = 1800,
 					/obj/item/gun/projectile/revolver/deckard = 3600,
+					/obj/item/gun/projectile/automatic/ak47/fs = 3200,
 					/obj/item/gun/projectile/automatic/z8 = 3500,
-					/obj/item/gun/projectile/automatic/molly = 1700,
-					/obj/item/gun/projectile/shotgun/pump/gladstone = 2200,
 					/obj/item/gun/projectile/shotgun/pump/regulator = 2400,
 					/obj/item/storage/deferred/crate/clown_crime = 1800,
 					/obj/item/storage/deferred/crate/clown_crime/wolf = 1800,

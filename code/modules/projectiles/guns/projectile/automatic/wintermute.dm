@@ -22,8 +22,7 @@
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	zoom_factor = 0.4
-	recoil_buildup = 1.5
-	one_hand_penalty = 15 //automatic rifle level
+	init_recoil = RIFLE_RECOIL(0.7)
 	damage_multiplier = 1.15
 	gun_tags = list(GUN_SILENCABLE)
 
@@ -35,7 +34,7 @@
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/wintermute = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)
-
+	serial_type = "FS"
 
 /obj/item/gun/projectile/automatic/wintermute/update_icon()
 	..()

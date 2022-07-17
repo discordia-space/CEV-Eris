@@ -23,4 +23,6 @@
 	twohanded = FALSE
 	suitable_cell = /obj/item/cell/small
 	cell_type = /obj/item/cell/small
+	init_recoil = HANDGUN_RECOIL(1)
+	serial_type = "NT"
 

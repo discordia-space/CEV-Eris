@@ -7,6 +7,8 @@
 	dir = SOUTH
 	bad_type = /obj/item/mech_component
 
+	price_tag = 150
+
 	var/on_mech_icon = MECH_PARTS_ICON
 	var/exosuit_desc_string
 	var/total_damage = 0

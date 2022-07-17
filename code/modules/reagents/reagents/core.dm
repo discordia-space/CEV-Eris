@@ -10,6 +10,7 @@
 	glass_icon_state = "glass_red"
 	glass_name = "tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
+	affects_dead = TRUE
 	nerve_system_accumulations = 0
 
 /datum/reagent/organic/blood/initialize_data(var/newdata)

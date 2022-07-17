@@ -20,7 +20,7 @@
 	wealth = 5000					// The abstract value of the goods sold to the station via offers + base income. Represents the station's ability to produce or purchase goods.
 
 	favor = 0									// For keeping track of how much favor we have with a given station. Triggers events when certain thresholds are reached. Should always start at 0.
-	secret_inv_threshold = 2000					// Favor required to unlock secret inventory
+	hidden_inv_threshold = 2000					// Favor required to unlock secret inventory
 	recommendation_threshold = 4000				// Favor required to unlock next station(s) in the tree
 	stations_recommended = list("station_uid")	// List of stations unlocked when the recommendation threshold is reached
 	recommendations_needed = 1					// How many stations need to recommend this one before unlocking
@@ -29,11 +29,11 @@
 	// Notes: Duplicate items in the same category will cause runtimes
 	//		  Items without a price_tag variable are priced at 100 before markup/markdown
 	//		  /obj/... is the only type supported
-	assortiment = list(
+	inventory = list(
 		"Category Name"  = list(
 			/obj/item/cell/large = custom_good_name("Item name"),
 			/obj/item/cell/medium = custom_good_amount_range(list(0,3)),
-			/obj/item/cell/small = good_data("small cell", list(6, 20))
+			/obj/item/cell/small = good_data("small cell", list(6, 20), null)
 		),
 		"Next category" = list(
 			/obj/spawner/scrap/dense = good_data("random trash pile", list(5,10))
@@ -41,8 +41,8 @@
 	)
 
 	// Hidden types of items sold by the station. Unlocked when the threshold is reached.
-	// This follows the same rules as assortiments and gets appended to the assortiment list when the secret inv threshold is reached
-	secret_inventory = list(
+	// This follows the same rules as inventorys and gets appended to the inventory list when the secret inv threshold is reached
+	hidden_inventory = list(
 		"Category Name II" = list(
 			/obj/item/organ/internal/kidney = good_data("kidney", list(1,3))
 		)

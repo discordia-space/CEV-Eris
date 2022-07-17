@@ -21,8 +21,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 0.8
 	penetration_multiplier = 1.4 // this is not babies first gun. It's a Serb-level weapon.
-	recoil_buildup = 5 // at least somewhat controllable
-	one_hand_penalty = 20 //automatic shotgun level
+	init_recoil = CARBINE_RECOIL(1.1)
 
 					//while also preserving ability to shoot as fast as you can click and maintain recoil good enough
 	init_firemodes = list(
@@ -30,6 +29,7 @@
 		SEMI_AUTO_NODELAY
 		)
 	gun_parts = list(/obj/item/part/gun/frame/bojevic = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	serial_type = "SA"
 
 /obj/item/gun/projectile/shotgun/bojevic/update_icon()
 	..()
