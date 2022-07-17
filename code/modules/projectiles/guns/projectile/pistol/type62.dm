@@ -1,11 +1,12 @@
-/obj/item/gun/projectile/type_62
-    name = "OS MP .40 \"QCQ 62\"" //god forgive me
+/obj/item/gun/projectile/pistol/type_62
+    name = "OS MP .40 \"QCQ-62\"" //god forgive me
     desc = "A Compact and Powerfull Protoype Onestar PDW typically issued to high ranking officals and spies. Unweildy but extremely deadly in CQC, the perfect gun for self defense and urban warfare. \ Takes Both pistol and SMG .40 magazines "
     icon = 'icons/obj/guns/projectile/os/type_69.dmi'
     icon_state = "type_62"
     item_state = "type_62"
-    origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2)
+    origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2)
     caliber = CAL_MAGNUM
+	w_class = ITEM_SIZE_SMALL
     load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_SMG
     magazine_type = /obj/item/ammo_magazine/magnum
@@ -30,7 +31,7 @@
     spawn_blacklisted = TRUE //until loot rework
     serial_type = "OS"
 
-/obj/item/gun/projectile/type_62/update_icon()
+/obj/item/gun/projectile/pistol/type_62/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
