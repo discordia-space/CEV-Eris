@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/type_42
 	name = "OS HG .35 Auto \"Type 90\""
-	desc =	"A Highly advanced gauss pistol produced by onestar right before its collapse "
+	desc =	"A Highly advanced gauss pistol produced by onestar right before its collapse. Uses both standard and highcap .35 Auto mags."
 	icon = 'icons/obj/guns/projectile/os/type_90.dmi'
 	icon_state = "type_90"
 	item_state = "type_90"
