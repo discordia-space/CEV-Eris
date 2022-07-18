@@ -48,7 +48,10 @@
 	desc = "Chinese thermals in the shape of goggles."
 	icon_state = "onestar_thermal"
 	off_state = "onestar_thermal"
-	spawn_blacklisted = TRUE
+	darkness_view = 7
+	origin_tech = list(TECH_MAGNET = 6, TECH_COVERT = 2) //add replace with Tech_Onestar when thats done made -Valo
+	spawn_tags = SPAWN_TAG_ITEM_TECH_OS
+	spawn_blacklisted = FALSE
 
 /obj/item/clothing/glasses/powered/thermal/plain
 	toggleable = FALSE

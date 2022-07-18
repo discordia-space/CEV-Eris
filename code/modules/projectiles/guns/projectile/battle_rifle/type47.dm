@@ -20,12 +20,13 @@
 	reload_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/batrifle_cock.ogg'
 	penetration_multiplier = 1.5
-	damage_multiplier = 1.5
+	damage_multiplier = 1.4
 	gun_tags = list(GUN_SILENCABLE)
 	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/plasteel = 6)
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
-		BURST_3_ROUND
+		BURST_3_ROUND,
+		FULL_AUTO_600
 		)
 
 	spawn_blacklisted = TRUE

@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/automatic/type_17
     name = "OS AR .20 \"Type 17\""
-    desc = "An old Onestar assault rifle. A reliable, if unintuitive, design. Uses .20 Rifle magazines."
+    desc = "An older model Onestar assault rifle. A reliable, if unintuitive, design. Uses .20 Rifle magazines."
     icon = 'icons/obj/guns/projectile/os/type_17.dmi'
     icon_state = "type_17"
     item_state = "type_17"
@@ -25,7 +25,8 @@
     spawn_tags = SPAWN_TAG_GUN_OS
     init_firemodes = list(
 		BURST_3_ROUND,
-        SEMI_AUTO_NODELAY
+        SEMI_AUTO_NODELAY,
+		FULL_AUTO_400
 		)
     spawn_blacklisted = TRUE //until loot rework
 

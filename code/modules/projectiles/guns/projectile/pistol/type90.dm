@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/type_42
-	name = "OS HG .35 Auto \"Type 90\""
-	desc =	"A Highly advanced gauss pistol produced by onestar right before its collapse. Uses both standard and highcap .35 Auto mags."
+	name = "OS Type 90 HG .35 Auto \"Mozhu\"" //last emperor
+	desc =	"A Highly advanced gauss pistol produced by onestar right before its collapse. it earned its nickname \"last emperor\" from being the last general issue weapon produced by onestar Uses both standard and highcap .35 Auto mags."
 	icon = 'icons/obj/guns/projectile/os/type_90.dmi'
 	icon_state = "type_90"
 	item_state = "type_90"
@@ -16,7 +16,7 @@
 	magazine_type = /obj/item/ammo_magazine/cspistol
 	damage_multiplier = 1.8
 	penetration_multiplier = 1.5
-	init_recoil = HANDGUN_RECOIL(0.8)
+	init_recoil = HANDGUN_RECOIL(0.6)
 	spawn_tags = SPAWN_TAG_GUN_OS
 	fire_sound = 'sound/weapons/guns/fire/energy_shotgun.ogg'
 	unload_sound = 'sound/weapons/guns/interact/pistol_magout.ogg'
