@@ -669,3 +669,47 @@
 	item_state = "inflatable"
 	icon = 'icons/inventory/belt/icon.dmi'
 	slot_flags = SLOT_BELT
+
+// That one funny oinking pig.
+/obj/item/toy/rubber_pig
+	name = "rubber pig"
+	desc = "Rubber pig that oinks when squeezed"
+	icon = 'icons/obj/rubber_pig.dmi'
+	icon_state = "icon"
+	item_state = "rubber_pig"
+
+	// Oinking pig sounds
+	var/oinks = list(
+		'sound/items/oink1.ogg',
+		'sound/items/oink2.ogg',
+		'sound/items/oink3.ogg',
+		'sound/items/oink4.ogg',
+		'sound/items/oink5.ogg',
+		'sound/items/oink6.ogg'
+	)
+
+// Oink code
+/obj/item/toy/rubber_pig/proc/oink()
+	playsound(src, pick(oinks), 50, 1)
+
+/obj/item/toy/rubber_pig/proc/user_oink(mob/user)
+	user.visible_message(SPAN_NOTICE("<b>\The [user]</b> squeezes a pig. It makes loud funny oink!"), SPAN_NOTICE("You squeeze a pig. It makes loud funny oink!"))
+	oink()
+
+// All the oink situtions
+/obj/item/toy/rubber_pig/attack_self(mob/user)
+	user_oink(user)
+
+/obj/item/toy/rubber_pig/attack_hand(mob/user)
+	user_oink(user)
+
+/obj/item/toy/rubber_pig/throw_impact(atom/impact_atom)
+	src.visible_message(SPAN_NOTICE("Rubber pig oinks, as it impacts with surface."))
+	oink()
+
+// Oinker pick up
+/obj/item/toy/rubber_pig/MouseDrop(over_object, src_location, over_location)
+	..()
+	if (over_object == usr && in_range(src, usr))
+		if (!ishuman(usr)) return
+		usr.put_in_active_hand(src)
