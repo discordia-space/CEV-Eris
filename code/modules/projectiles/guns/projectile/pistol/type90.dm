@@ -1,4 +1,4 @@
-/obj/item/gun/projectile/type_90
+/obj/item/gun/projectile/pistol/type_90
 	name = "OS Type 90 HG .35 Auto \"Mozhu\"" //last emperor
 	desc =	"A Highly advanced gauss pistol produced by onestar right before its collapse. it earned its nickname \"last emperor\" from being the last general issue weapon produced by onestar Uses both standard and highcap .35 Auto mags."
 	icon = 'icons/obj/guns/projectile/os/type_90.dmi'
@@ -33,7 +33,7 @@
 	serial_type = "OS"
 
 
-/obj/item/gun/projectile/type_90/update_icon()
+/obj/item/gun/projectile/pistol/type_90/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -46,6 +46,6 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-/obj/item/gun/projectile/type_42/Initialize()
+/obj/item/gun/projectile/pistol/type_90/Initialize()
 	. = ..()
 	update_icon()

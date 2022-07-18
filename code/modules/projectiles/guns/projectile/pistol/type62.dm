@@ -48,6 +48,6 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-/obj/item/gun/projectile/type_62/Initialize()
+/obj/item/gun/projectile/pistol/type_62/Initialize()
 	. = ..()
 	update_icon()
