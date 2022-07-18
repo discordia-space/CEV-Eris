@@ -1,21 +1,21 @@
 /obj/item/gun/projectile/pistol/type_62
-    name = "OS Type 62 PDW .40 \"Nezha\"" //god forgive me, Name = Protection Deity
-    desc = "A Compact and Powerfull Protoype Onestar PDW typically issued to high ranking officals and spies. Unweildy but extremely deadly in CQC, the perfect gun for self defense and urban warfare. \ Takes Both Pistol and SMG .40 magazines "
-    icon = 'icons/obj/guns/projectile/os/type_62.dmi'
-    icon_state = "type_62"
-    item_state = "type_62"
-    origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2)
-    caliber = CAL_MAGNUM
+	name = "OS Type 62 PDW .40 \"Nezha\"" //god forgive me, Name = Protection Deity
+	desc = "A Compact and Powerfull Protoype Onestar PDW typically issued to high ranking officals and spies. Unweildy but extremely deadly in CQC, the perfect gun for self defense and urban warfare. \ Takes Both Pistol and SMG .40 magazines "
+	icon = 'icons/obj/guns/projectile/os/type_62.dmi'
+	icon_state = "type_62"
+	item_state = "type_62"
+	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2)
+	caliber = CAL_MAGNUM
 	w_class = ITEM_SIZE_SMALL
-    load_method = MAGAZINE
+	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_SMG
-    magazine_type = /obj/item/ammo_magazine/magnum
-    matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLATINUM = 8, MATERIAL_PLASTIC = 4)
-    can_dual = TRUE
-    slot_flags = SLOT_BELT|SLOT_HOLSTER|SLOT_BACK
-    damage_multiplier = 1.2
-    penetration_multiplier = 1.0
-    recoil = HANDGUN_RECOIL(0.9)
+	magazine_type = /obj/item/ammo_magazine/magnum
+	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLATINUM = 8, MATERIAL_PLASTIC = 4)
+	can_dual = TRUE
+	slot_flags = SLOT_BELT|SLOT_HOLSTER|SLOT_BACK
+	damage_multiplier = 1.2
+	penetration_multiplier = 1.0
+	recoil = HANDGUN_RECOIL(0.9)
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/hpistol_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/hpistol_magin.ogg'
