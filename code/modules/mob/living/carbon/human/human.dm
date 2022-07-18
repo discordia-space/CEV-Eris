@@ -706,7 +706,7 @@ var/list/rank_prefix = list(\
 	set name = "Morph"
 	set category = "Abilities"
 
-	if(stat!=CONSCIOUS)
+	if(stat)
 		reset_view(0)
 		remoteview_target = null
 		return
@@ -788,6 +788,10 @@ var/list/rank_prefix = list(\
 	set name = "Phaze"
 	set category = "Abilities"
 
+	if(stat)
+		to_chat(src, SPAN_WARNING("You can't do that right now!"))
+		return
+
 	// TODO: Here and in other psionic abilities - add checks for NT obelisks,
 	// reality cores and whatever else could prevent use of said abilities -- KIROV
 
@@ -830,7 +834,16 @@ var/list/rank_prefix = list(\
 	set name = "Force Speak"
 	set category = "Abilities"
 
-	var/list/mobs_in_view = mobs_in_view(7, src)
+	if(stat)
+		to_chat(src, SPAN_WARNING("You can't do that right now!"))
+		return
+
+	var/list/mobs_in_view = list()
+	for(var/i in mobs_in_view(7, src))
+		var/mob/living/carbon/human/H = i
+		if(istype(H) && !H.stat)
+			mobs_in_view += H
+
 	if(!mobs_in_view.len)
 		to_chat(src, SPAN_NOTICE("There is no valid targets around."))
 		return
@@ -849,7 +862,7 @@ var/list/rank_prefix = list(\
 	set name = "Project mind"
 	set category = "Abilities"
 
-	if(stat != CONSCIOUS)
+	if(stat)
 		reset_view(0)
 		remoteview_target = null
 		return
@@ -857,6 +870,7 @@ var/list/rank_prefix = list(\
 	var/list/mobs = list()
 	for(var/mob/living/carbon/C in SSmobs.mob_list)
 		mobs += C
+
 	var/mob/target = input("Who do you want to project your mind to ?") as null|anything in mobs
 	if(isnull(target))
 		return
@@ -875,7 +889,7 @@ var/list/rank_prefix = list(\
 	set name = "Remote View"
 	set category = "Abilities"
 
-	if(stat != CONSCIOUS)
+	if(stat)
 		remoteview_target = null
 		reset_view(0)
 		return
@@ -910,6 +924,10 @@ var/list/rank_prefix = list(\
 	set name = "Release roach pheromones"
 	set category = "Abilities"
 
+	if(stat)
+		to_chat(src, SPAN_WARNING("You can't do that right now!"))
+		return
+
 	if(check_ability_cooldown(2 MINUTES))
 		for(var/M in mobs_in_view(7, src) - src)
 			if(isroach(M))
@@ -929,6 +947,10 @@ var/list/rank_prefix = list(\
 	set name = "Release spider pheromones"
 	set category = "Abilities"
 
+	if(stat)
+		to_chat(src, SPAN_WARNING("You can't do that right now!"))
+		return
+
 	if(check_ability_cooldown(2 MINUTES))
 		for(var/M in mobs_in_view(7, src) - src)
 			if(istype(M, /mob/living/carbon/superior_animal/giant_spider))
@@ -947,6 +969,10 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/proc/inner_fuhrer()
 	set name = "Screech"
 	set category = "Abilities"
+
+	if(stat)
+		to_chat(src, SPAN_WARNING("You can't do that right now!"))
+		return
 
 	if(check_ability_cooldown(2 MINUTES))
 		playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
@@ -1511,21 +1537,6 @@ var/list/rank_prefix = list(\
 	regen_slickness(-3)
 	dodge_time = get_game_time()
 	confidence = FALSE
-
-/mob/living/carbon/human/trip(tripped_on, stun_duration)
-	if(buckled)
-		return FALSE
-	if(lying)
-		return FALSE // No tripping while crawling
-	stop_pulling()
-	if(tripped_on)
-		playsound(src, 'sound/effects/bang.ogg', 50, 1)
-		to_chat(src, SPAN_WARNING("You tripped over!"))
-	Weaken(stun_duration)
-	regen_slickness(-1)
-	dodge_time = get_game_time()
-	confidence = FALSE
-	return TRUE
 
 /mob/living/carbon/human/proc/undislocate()
 	set category = "Object"

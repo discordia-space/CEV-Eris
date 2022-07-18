@@ -5970,7 +5970,7 @@
 /area/eris/maintenance/section2deck1port)
 "aog" = (
 /obj/structure/closet/oldstyle,
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/cheap/low_chance,
 /obj/item/clothing/mask/gas/ihs,
 /obj/spawner/gun_parts/low_chance,
 /obj/spawner/gun_parts/low_chance,
@@ -6025,6 +6025,7 @@
 /area/eris/maintenance/section2deck5port)
 "aon" = (
 /obj/structure/closet/emcloset,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section2deck5port)
 "aoo" = (
@@ -10955,7 +10956,7 @@
 	input_tag = "incernator_in";
 	name = "Incernator Control";
 	output_tag = "incernator_out";
-	sensors = list("incernator_sensor" = "Tank")
+	sensors = list("incernator_sensor"="Tank")
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12227,8 +12228,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aDX" = (
-/obj/spawner/gun/handmade,
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "aDY" = (
@@ -12573,6 +12574,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/mob/living/bot/cleanbot/roomba/ironhammer,
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/security/prisoncells)
 "aEQ" = (
@@ -13047,7 +13049,7 @@
 	input_tag = "tox_in";
 	name = "Plasma Supply Control";
 	output_tag = "tox_out";
-	sensors = list("tox_sensor" = "Tank")
+	sensors = list("tox_sensor"="Tank")
 	},
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/engineering/atmos)
@@ -13537,7 +13539,7 @@
 	input_tag = "waste_in";
 	name = "Gas Mix Tank Control";
 	output_tag = "waste_out";
-	sensors = list("waste_sensor" = "Tank")
+	sensors = list("waste_sensor"="Tank")
 	},
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/engineering/atmos)
@@ -13589,7 +13591,7 @@
 	input_tag = "n2o_in";
 	name = "Nitrous Oxide Supply Control";
 	output_tag = "n2o_out";
-	sensors = list("n2o_sensor" = "Tank")
+	sensors = list("n2o_sensor"="Tank")
 	},
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/engineering/atmos)
@@ -13807,6 +13809,7 @@
 "aIu" = (
 /obj/structure/table/reinforced,
 /obj/item/hand_labeler,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section2deck4central)
 "aIv" = (
@@ -13875,7 +13878,7 @@
 	name = "Mixed Air Supply Control";
 	output_tag = "air_out";
 	pressure_setting = 2000;
-	sensors = list("air_sensor" = "Tank")
+	sensors = list("air_sensor"="Tank")
 	},
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/engineering/atmos)
@@ -13885,7 +13888,7 @@
 	input_tag = "co2_in";
 	name = "Carbon Dioxide Supply Control";
 	output_tag = "co2_out";
-	sensors = list("co2_sensor" = "Tank")
+	sensors = list("co2_sensor"="Tank")
 	},
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/engineering/atmos)
@@ -15316,7 +15319,7 @@
 	input_tag = "n2_in";
 	name = "Nitrogen Supply Control";
 	output_tag = "n2_out";
-	sensors = list("n2_sensor" = "Tank")
+	sensors = list("n2_sensor"="Tank")
 	},
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/engineering/atmos)
@@ -15343,7 +15346,7 @@
 	input_tag = "o2_in";
 	name = "Oxygen Supply Control";
 	output_tag = "o2_out";
-	sensors = list("o2_sensor" = "Tank")
+	sensors = list("o2_sensor"="Tank")
 	},
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/engineering/atmos)
@@ -15621,7 +15624,7 @@
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 1, floor 2. Maints above the dorms, behind the window on the west end of it."
 	},
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/sleep)
 "aNo" = (
@@ -16913,6 +16916,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aQg" = (
@@ -20295,6 +20299,7 @@
 "aXS" = (
 /obj/spawner/gun_parts/low_chance,
 /obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck5port)
 "aXT" = (
@@ -23098,6 +23103,7 @@
 /obj/item/contraband/poster,
 /obj/item/contraband/poster,
 /obj/structure/table/rack/shelf,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "bdl" = (
@@ -25121,7 +25127,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/rnd/anomalisolone)
 "bih" = (
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/rnd/anomalisolone)
 "bii" = (
@@ -26932,10 +26938,7 @@
 /turf/simulated/open,
 /area/eris/hallway/side/eschangarb)
 "bmc" = (
-/obj/structure/table/rack,
-/obj/item/stack/material/plasteel{
-	amount = 10
-	},
+/obj/machinery/autolathe/loaded,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "bme" = (
@@ -29158,7 +29161,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "bro" = (
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "brp" = (
@@ -29232,14 +29235,8 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/crew_quarters/librarybackroom)
 "brz" = (
-/obj/structure/table/rack,
-/obj/item/computer_hardware/hard_drive/portable/design/misc,
-/obj/item/computer_hardware/hard_drive/portable/design/tools,
-/obj/item/computer_hardware/hard_drive/portable/design/devices,
-/obj/item/computer_hardware/hard_drive/portable/design/components,
-/obj/item/computer_hardware/hard_drive/portable/design/conveyors,
-/obj/item/computer_hardware/hard_drive/portable/design/circuits,
-/obj/item/computer_hardware/hard_drive/portable/design/adv_tools,
+/obj/spawner/material/building,
+/obj/structure/table/rack/shelf,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "brA" = (
@@ -30532,7 +30529,7 @@
 	frequency = 1443;
 	level = 3;
 	name = "Distribution and Waste Monitor";
-	sensors = list("mair_in_meter" = "Mixed Air In", "air_sensor" = "Mixed Air Supply Tank", "mair_out_meter" = "Mixed Air Out", "dloop_atm_meter" = "Distribution Loop", "wloop_atm_meter" = "Waste Loop")
+	sensors = list("mair_in_meter"="Mixed Air In","air_sensor"="Mixed Air Supply Tank","mair_out_meter"="Mixed Air Out","dloop_atm_meter"="Distribution Loop","wloop_atm_meter"="Waste Loop")
 	},
 /obj/machinery/camera/network/engineering{
 	dir = 1
@@ -31763,7 +31760,7 @@
 	dir = 8;
 	frequency = 1441;
 	name = "Tank Monitor";
-	sensors = list("n2_sensor" = "Nitrogen", "o2_sensor" = "Oxygen", "co2_sensor" = "Carbon Dioxide", "tox_sensor" = "Toxins", "n2o_sensor" = "Nitrous Oxide", "waste_sensor" = "Gas Mix Tank")
+	sensors = list("n2_sensor"="Nitrogen","o2_sensor"="Oxygen","co2_sensor"="Carbon Dioxide","tox_sensor"="Toxins","n2o_sensor"="Nitrous Oxide","waste_sensor"="Gas Mix Tank")
 	},
 /obj/machinery/power/apc{
 	name = "South APC";
@@ -33061,6 +33058,7 @@
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bAQ" = (
@@ -33872,7 +33870,7 @@
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bCY" = (
@@ -33992,7 +33990,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bDr" = (
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bDs" = (
@@ -34741,7 +34739,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "bFb" = (
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck4port)
 "bFc" = (
@@ -35333,10 +35331,9 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4central)
 "bGp" = (
-/obj/structure/closet,
+/obj/structure/table/reinforced,
 /obj/spawner/powercell,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
+/obj/spawner/powercell,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "bGq" = (
@@ -35445,12 +35442,12 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4central)
 "bGA" = (
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
 /obj/structure/closet,
-/obj/spawner/powercell,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "bGB" = (
@@ -35636,13 +35633,7 @@
 /turf/simulated/wall/r_wall,
 /area/eris/hallway/main/section4)
 "bGW" = (
-/obj/structure/closet,
-/obj/spawner/powercell,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/machine,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "bGX" = (
@@ -39401,6 +39392,7 @@
 	pixel_x = 28
 	},
 /obj/structure/cable/green,
+/obj/spawner/pack/machine,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "bPa" = (
@@ -41858,6 +41850,10 @@
 /obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
+"bVt" = (
+/obj/spawner/gun/handmade,
+/turf/simulated/floor/plating/under,
+/area/eris/security/disposal)
 "bVv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -47555,7 +47551,7 @@
 	input_tag = "toxins1_in";
 	name = "Mixing Chamber 1 Monitor";
 	output_tag = "toxins1_out";
-	sensors = list("toxins_mixing_1" = "Mixing Chamber - 1")
+	sensors = list("toxins_mixing_1"="Mixing Chamber - 1")
 	},
 /turf/simulated/floor/tiled/white/techfloor_grid,
 /area/eris/rnd/mixing)
@@ -47718,7 +47714,7 @@
 	dir = 8;
 	frequency = 1430;
 	name = "Mixing Chamber Monitor";
-	sensors = list("toxins_mixing_1" = "Mixing Chamber - 1", "toxins_mixing_2" = "Mixing Chamber - 2")
+	sensors = list("toxins_mixing_1"="Mixing Chamber - 1","toxins_mixing_2"="Mixing Chamber - 2")
 	},
 /turf/simulated/floor/tiled/white/gray_perforated,
 /area/eris/rnd/mixing)
@@ -47971,7 +47967,7 @@
 	input_tag = "toxins2_in";
 	name = "Mixing Chamber 2 Monitor";
 	output_tag = "toxins2_out";
-	sensors = list("toxins_mixing_2" = "Mixing Chamber - 2")
+	sensors = list("toxins_mixing_2"="Mixing Chamber - 2")
 	},
 /turf/simulated/floor/tiled/white/techfloor_grid,
 /area/eris/rnd/mixing)
@@ -53134,7 +53130,7 @@
 /obj/item/clothing/mask/gas,
 /obj/item/tank/jetpack/carbondioxide,
 /obj/item/pinpointer,
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/engineering/post)
 "cxV" = (
@@ -53423,7 +53419,7 @@
 /area/eris/engineering/engine_room)
 "cyC" = (
 /obj/structure/catwalk,
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/open,
 /area/eris/maintenance/oldtele)
 "cyD" = (
@@ -56334,6 +56330,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck3port)
 "cFx" = (
@@ -57839,8 +57836,6 @@
 /area/eris/maintenance/section2deck4port)
 "cJq" = (
 /obj/structure/table/rack,
-/obj/spawner/tool_upgrade/low_chance,
-/obj/spawner/tool_upgrade/rare/low_chance,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/breakroom)
 "cJr" = (
@@ -58458,7 +58453,13 @@
 /area/space)
 "cKI" = (
 /obj/structure/table/rack,
-/obj/spawner/tool_upgrade/low_chance,
+/obj/item/computer_hardware/hard_drive/portable/design/misc,
+/obj/item/computer_hardware/hard_drive/portable/design/tools,
+/obj/item/computer_hardware/hard_drive/portable/design/devices,
+/obj/item/computer_hardware/hard_drive/portable/design/components,
+/obj/item/computer_hardware/hard_drive/portable/design/conveyors,
+/obj/item/computer_hardware/hard_drive/portable/design/circuits,
+/obj/item/computer_hardware/hard_drive/portable/design/adv_tools,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/breakroom)
 "cKJ" = (
@@ -59362,7 +59363,7 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section4)
 "cNe" = (
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck3port)
 "cNf" = (
@@ -69080,7 +69081,7 @@
 /area/eris/rnd/research)
 "dkc" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/normal/low_chance,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/hallway/side/atmosphericshallway)
@@ -74638,14 +74639,14 @@
 "dwO" = (
 /obj/structure/closet/oldstyle,
 /obj/effect/decal/cleanable/dirt,
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dwP" = (
 /obj/structure/closet/oldstyle,
 /obj/effect/decal/cleanable/dirt,
-/obj/spawner/gun/handmade,
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dwQ" = (
@@ -76851,7 +76852,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/normal/low_chance,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -77688,7 +77689,12 @@
 /obj/machinery/camera/network/engineering{
 	dir = 8
 	},
-/obj/machinery/autolathe/loaded,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/structure/table/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "dEj" = (
@@ -78815,7 +78821,7 @@
 /obj/structure/multiz/ladder/up,
 /obj/effect/floor_decal/rust,
 /obj/spawner/flora/low_chance,
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHi" = (
@@ -79857,6 +79863,12 @@
 /obj/item/stack/material/plastic{
 	amount = 120
 	},
+/obj/item/stack/material/glass/plasmarglass{
+	amount = 120
+	},
+/obj/item/stack/material/glass/plasmarglass{
+	amount = 120
+	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/breakroom)
 "dJg" = (
@@ -79948,7 +79960,7 @@
 	dir = 1;
 	frequency = 1441;
 	name = "Tank Monitor";
-	sensors = list("n2_sensor" = "Nitrogen", "o2_sensor" = "Oxygen", "co2_sensor" = "Carbon Dioxide", "tox_sensor" = "Toxins", "n2o_sensor" = "Nitrous Oxide", "waste_sensor" = "Gas Mix Tank")
+	sensors = list("n2_sensor"="Nitrogen","o2_sensor"="Oxygen","co2_sensor"="Carbon Dioxide","tox_sensor"="Toxins","n2o_sensor"="Nitrous Oxide","waste_sensor"="Gas Mix Tank")
 	},
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/command/exultant)
@@ -80791,7 +80803,7 @@
 	input_tag = "cooling_in";
 	name = "Engine Cooling Control";
 	output_tag = "cooling_out";
-	sensors = list("engine_sensor" = "Engine Core")
+	sensors = list("engine_sensor"="Engine Core")
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/engine_room)
@@ -81000,7 +81012,7 @@
 	input_tag = "left_propulsion_in";
 	name = "Left Propulsion Control";
 	output_tag = "left_propulsion_out";
-	sensors = list("left_propulsion_sensor" = "Tank")
+	sensors = list("left_propulsion_sensor"="Tank")
 	},
 /obj/machinery/button/ignition{
 	id = "left_prop_chamber";
@@ -81247,7 +81259,7 @@
 	input_tag = "tox_in";
 	name = "Toxin Supply Control";
 	output_tag = "tox_out";
-	sensors = list("tox_sensor" = "Tank")
+	sensors = list("tox_sensor"="Tank")
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/propulsion/left)
@@ -81456,7 +81468,7 @@
 	input_tag = "tox_in";
 	name = "Toxin Supply Control";
 	output_tag = "tox_out";
-	sensors = list("tox_sensor" = "Tank")
+	sensors = list("tox_sensor"="Tank")
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/propulsion/right)
@@ -81612,7 +81624,7 @@
 	input_tag = "right_propulsion_in";
 	name = "Right Propulsion Control";
 	output_tag = "right_propulsion_out";
-	sensors = list("right_propulsion_sensor" = "Tank")
+	sensors = list("right_propulsion_sensor"="Tank")
 	},
 /obj/machinery/button/ignition{
 	id = "right_prop_chamber";
@@ -81717,7 +81729,7 @@
 	input_tag = "o2_in";
 	name = "Oxygen Supply Control";
 	output_tag = "o2_out";
-	sensors = list("o2_sensor" = "Tank")
+	sensors = list("o2_sensor"="Tank")
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/propulsion/left)
@@ -81743,7 +81755,7 @@
 	input_tag = "o2_in";
 	name = "Oxygen Supply Control";
 	output_tag = "o2_out";
-	sensors = list("o2_sensor" = "Tank")
+	sensors = list("o2_sensor"="Tank")
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/propulsion/right)
@@ -82429,6 +82441,7 @@
 "dPg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/table/rack,
+/obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/quartermaster/office)
 "dPh" = (
@@ -83978,7 +83991,7 @@
 /area/eris/maintenance/section2deck1port)
 "dTa" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/handmade,
+/obj/spawner/gun/normal/low_chance,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
@@ -84738,24 +84751,12 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5starboard)
 "dVd" = (
-/obj/structure/lattice,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/table/rack,
+/obj/item/stack/material/plasteel{
+	amount = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/catwalk,
-/turf/simulated/open,
-/area/eris/engineering/engine_room)
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/engineering/breakroom)
 "dVe" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
@@ -95101,28 +95102,11 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/misc)
 "etN" = (
-/obj/machinery/door/firedoor,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/bed/chair{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/engineering{
-	name = "Engine Access";
-	req_access = list(11)
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/eris/engineering/engine_room)
+/turf/simulated/floor/plating,
+/area/eris/engineering/construction)
 "etO" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /obj/structure/railing{
@@ -100550,7 +100534,7 @@
 	frequency = 1443;
 	level = 3;
 	name = "Distribution and Waste Monitor";
-	sensors = list("mair_in_meter" = "Mixed Air In", "air_sensor" = "Mixed Air Supply Tank", "mair_out_meter" = "Mixed Air Out", "dloop_atm_meter" = "Distribution Loop", "wloop_atm_meter" = "Engine Waste")
+	sensors = list("mair_in_meter"="Mixed Air In","air_sensor"="Mixed Air Supply Tank","mair_out_meter"="Mixed Air Out","dloop_atm_meter"="Distribution Loop","wloop_atm_meter"="Engine Waste")
 	},
 /obj/machinery/light{
 	dir = 8
@@ -101717,6 +101701,15 @@
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/crew_quarters/janitor)
+"hkv" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/gun/handmade,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section2deck1port)
 "hlV" = (
 /obj/machinery/light{
 	dir = 8
@@ -102249,6 +102242,16 @@
 /obj/effect/decal/warning_stripes,
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
+"jeM" = (
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/structure/table/rack,
+/obj/spawner/powercell,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/engineering/breakroom)
 "jgX" = (
 /obj/structure/multiz/stairs/enter{
 	dir = 8
@@ -103047,6 +103050,29 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"mpg" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/catwalk,
+/obj/machinery/door/airlock/engineering{
+	name = "Engine Access";
+	req_access = list(11)
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/open,
+/area/eris/engineering/breakroom)
 "msv" = (
 /obj/machinery/atmospherics/unary/heat_exchanger{
 	dir = 1
@@ -103477,6 +103503,13 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics/garden)
+"nOW" = (
+/obj/structure/table/standard,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/gun/handmade,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/maintenance/section3deck1central)
 "nQs" = (
 /obj/structure/closet/crate/hydroponics,
 /obj/item/storage/bag/produce,
@@ -104164,6 +104197,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchbarracks)
+"qnc" = (
+/obj/structure/closet/oldstyle,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/ammo/ihs/low_chance,
+/obj/spawner/gun/handmade,
+/turf/simulated/floor/tiled/steel,
+/area/eris/maintenance/section1deck1central)
 "qnS" = (
 /obj/structure/closet/wall_mounted/firecloset{
 	pixel_x = -32
@@ -104261,6 +104303,10 @@
 /obj/structure/bedsheetbin,
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
+"qMe" = (
+/obj/spawner/gun/handmade,
+/turf/simulated/floor/plating,
+/area/eris/maintenance/section1deck4central)
 "qMK" = (
 /obj/machinery/light,
 /obj/structure/disposalpipe/segment{
@@ -104341,11 +104387,14 @@
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/crew_quarters/kitchen)
 "qZm" = (
-/obj/item/device/techno_tribalism,
-/obj/machinery/door/blast/shutters/glass{
-	id = "techno_tribalism"
-	},
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
 /obj/structure/table/rack,
+/obj/machinery/light,
+/obj/spawner/powercell,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/breakroom)
 "qZr" = (
@@ -104381,6 +104430,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3port)
+"rky" = (
+/mob/living/bot/cleanbot/roomba,
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay)
 "rlT" = (
 /obj/machinery/door/blast/regular{
 	id = "scannerroom";
@@ -104425,6 +104478,13 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
+"rDp" = (
+/obj/structure/table/rack,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/engineering/breakroom)
 "rDZ" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
@@ -104735,6 +104795,13 @@
 	},
 /turf/simulated/floor/tiled/white/violetcorener,
 /area/eris/rnd/research)
+"svq" = (
+/obj/structure/table/rack,
+/obj/spawner/tool_upgrade/low_chance,
+/obj/spawner/tool_upgrade/rare/low_chance,
+/obj/spawner/tool_upgrade/low_chance,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/engineering/breakroom)
 "syp" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/black,
 /obj/machinery/meter,
@@ -105254,6 +105321,10 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark,
 /area/eris/medical/genetics)
+"umG" = (
+/obj/machinery/recycle_vendor,
+/turf/simulated/floor/tiled/steel,
+/area/eris/hallway/side/section3starboard)
 "uoJ" = (
 /obj/structure/bed/padded,
 /obj/item/bedsheet/yellow,
@@ -105911,6 +105982,14 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/barquarters)
+"wtT" = (
+/obj/item/device/techno_tribalism,
+/obj/machinery/door/blast/shutters/glass{
+	id = "techno_tribalism"
+	},
+/obj/structure/table/rack,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/engineering/breakroom)
 "wur" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -105934,6 +106013,15 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
+"wxp" = (
+/obj/structure/table/rack,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/gun/handmade,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/eris/maintenance/section2deck1port)
 "wxB" = (
 /obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/plating,
@@ -120157,7 +120245,7 @@ abX
 abX
 abX
 adU
-ado
+bVt
 ado
 aeM
 afc
@@ -161265,7 +161353,7 @@ byS
 bJy
 bKR
 eGo
-bOj
+bGp
 bGp
 bGA
 bGW
@@ -161467,8 +161555,8 @@ bNu
 bBZ
 bKR
 bJQ
-bOj
-dvL
+etN
+etN
 bOj
 bOj
 bOj
@@ -165420,7 +165508,7 @@ drN
 afs
 aVH
 aVR
-aTK
+qMe
 csS
 aYS
 ban
@@ -204629,7 +204717,7 @@ cLA
 cnP
 cpJ
 cqL
-coL
+rky
 coL
 dwH
 csm
@@ -208704,7 +208792,7 @@ dZD
 cFX
 dXb
 ihk
-cFX
+umG
 cGa
 vfD
 avn
@@ -282452,16 +282540,16 @@ aCM
 aaa
 abF
 abF
-bNn
-cPi
-cPi
-cPi
-eDd
-cPi
-cPi
-cPi
-bNn
-ezI
+eyM
+eyM
+eyM
+eyM
+mpg
+eyM
+eyM
+eyM
+bIP
+abF
 abF
 eDW
 eDW
@@ -282654,16 +282742,16 @@ aCM
 aaa
 abF
 abF
-bIP
-cPi
-vad
-nDL
+eyM
+wtT
+cLE
+cMc
+dVj
+cLE
 dVd
-vad
-nDL
-cPi
-bIP
-ezI
+shD
+abF
+abF
 abF
 eDV
 dvV
@@ -282858,14 +282946,14 @@ erS
 erS
 eyM
 eyM
-bIP
-bIP
-etN
-bIP
-bNn
-bIP
-bIP
-ezI
+rDp
+cLE
+dVj
+cLE
+qZm
+eyM
+abF
+abF
 abF
 eDU
 dwc
@@ -283061,10 +283149,10 @@ cMD
 cNC
 eyM
 cJq
-cMc
+cLE
 dVj
 cLE
-cLE
+jeM
 shD
 abF
 abF
@@ -283217,7 +283305,7 @@ amO
 alb
 aof
 dPR
-dPR
+wxp
 aof
 anQ
 dAJ
@@ -283267,7 +283355,7 @@ cLE
 dVj
 cLE
 qZm
-shD
+eyM
 abF
 abF
 abF
@@ -283468,7 +283556,7 @@ cKI
 cLE
 dVj
 cLE
-cLE
+svq
 shD
 abF
 abF
@@ -284229,7 +284317,7 @@ dAG
 dQr
 dQr
 amc
-dAH
+hkv
 cpw
 ekQ
 elB
@@ -289254,7 +289342,7 @@ dFd
 doK
 doM
 doD
-bCR
+qnc
 bDa
 bDf
 dKW
@@ -293741,7 +293829,7 @@ bfv
 biw
 bfv
 epJ
-bnZ
+nOW
 bqO
 brV
 brV

@@ -120,7 +120,8 @@
 	return !pilots.len
 
 /mob/living/exosuit/get_fall_damage(var/turf/from, var/turf/dest)
-	return (from.z - dest.z > 1) ? (50 * from.z - dest.z) : 0 //Exosuits are big and heavy //but one z level can't damage them
+	//Exosuits are big and heavy, but one z level can't damage them
+	. = (from && dest) ? ((from.z - dest.z > 1) ? (50 * from.z - dest.z) : 0) : min(15, maxHealth * 0.4)
 
 /*
 /mob/living/exosuit/handle_fall_effect(var/turf/landing)

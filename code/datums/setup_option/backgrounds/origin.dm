@@ -150,16 +150,16 @@
 	name = "First Expeditionary Fleet"
 	desc = "A collection of old and modified colony ships, FTL capable shipyards, mobile hydroponics, and an armada of military ships. \
 			The de facto Headquarters of the Ironhammer PMC, the armada can be deployed whenever or wherever is needed for a contract, or even evacuate to deep space if necessary. \
-			It moves from planet to planet in Hanza space, and is often used by larger, being used as a giant power projector over planetary governments. \
+			It moves from planet to planet in Hanza space, and it is often used by larger corporations, being used as a giant power projector over planetary governments. \
 			For the fleet to function, a gigantic amount of manpower is required, and the armada's ships tend to be as populous as small cities, with both civilians and military personnel. \
 			Life in the Fleet is rather dull and spartan most of the time, with deep traditions of asceticism rooted in the crew of every ship. \
 			Needless to say, every planet it visits experiences a large tourism boom, growth in consumerism, and every bar and whorehouse running out of vacancy in under a day."
 
 	stat_modifiers = list(
-		STAT_ROB = 5,
+		STAT_ROB = 10,
 		STAT_TGH = 5,
 		STAT_BIO = -15,
-		STAT_MEC = 5,
+		STAT_MEC = 0,
 		STAT_VIG = 15,
 		STAT_COG = -10
 	)
@@ -240,18 +240,15 @@
 	restricted_jobs = list(/datum/job/captain, /datum/job/hop, /datum/job/chaplain, /datum/job/merchant, /datum/job/cmo, /datum/job/rd, /datum/job/ihc)
 	restricted_depts = IRONHAMMER | MEDICAL | SCIENCE | CHURCH | GUILD | CIVILIAN | SERVICE
 
-/datum/category_item/setup_option/background/origin/ihmaids
-	name = "Ironhammer M.A.I.D.S Corps"
-	desc = "The Ironhammer Medical, Acquisition, Industrial Design and Security Corps are normally posted to construction work of particular importance to Ironhammer assets, such as fortifications or barracks for the garrisons on the way to the null sector, along with triage work for when an accident inevitably happens at those garrisons. \
-			At other times, they're assigned to Ironhammer security teams on exploratory missions into the null sector due to their prowess as construction specialists and medics."
+/datum/category_item/setup_option/background/origin/tripwire
+	name = "Tripwire Belt"
+	desc = "A network of hidden ships, gun emplacements and listening bases placed in a large asteroid belt late in the Corporate War by the Syndicate for the purpose of being an early warning station for attacks on Hansa Sector core worlds. After the end of the corporate war Ironhammer transformed it into a large system of training camps and bases for specialists and new recruits. Due to an almost complete lack of terraforming, hostile environment and outdated syndicate construction, the Tripwire Belt is suited for teaching new recruits on how to survive in deep space conditions, but this also means morale is often low."
 
 	stat_modifiers = list(
-		STAT_ROB = -10,
-		STAT_TGH = -5,
-		STAT_BIO = 10,
-		STAT_MEC = 10,
-		STAT_VIG = -10,
-		STAT_COG = 10
+		STAT_ROB = -5,
+		STAT_TGH = 10,
+		STAT_BIO = -5,
+		STAT_MEC = 5,
+		STAT_VIG = 10,
+		STAT_COG = -10
 	)
-	restricted_jobs = list(/datum/job/captain, /datum/job/hop, /datum/job/chaplain, /datum/job/merchant, /datum/job/cmo, /datum/job/rd, /datum/job/chief_engineer)
-	restricted_depts = ENGINEERING | MEDICAL | SCIENCE | CHURCH | GUILD | CIVILIAN | SERVICE

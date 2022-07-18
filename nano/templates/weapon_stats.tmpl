@@ -51,19 +51,36 @@
 					{{:data.burst_delay}} ms
 				</div>
 		{{/if}}
-		
-		<div class="itemLabel">
-			Kickback: 
-		</div>
-			<div class="itemContent">
-				{{:helper.displayBar(data.recoil_buildup, 0, data.recoil_buildup_max, '', data.recoil_buildup)}}
-			</div>
-		
+
+		<h4>Recoil details:</h4>
+			{{if data.recoil_info.length}}
+				{{for data.recoil_info}}
+					<div class="itemLabel">
+						{{:value.name}}
+					</div>
+					<div class="itemContent">
+						{{:helper.displayBar(value.value, 0, data.total_recoil, value.value <= 0.5 ? 'good' : value.value <= 1.5 ? 'average' : 'bad', value.value + ' degrees')}}
+					</div>
+				{{/for}}
+				<br>
+			{{else}}
+				<div class="average">
+					Has no kickback.
+				</div>
+			{{/if}}
+
+		<h4>Physical details:</h4>
 		<div class="itemLabel">
 			Melee capabilities:
 		</div>
 			<div class="itemContent">
 				{{:helper.displayBar(data.force, 0, data.force_max, '', data.force)}}
+			</div>
+		<div class="itemLabel">
+			Armor penetration:
+		</div>
+			<div class="itemContent">
+				{{:helper.displayBar(data.armor_penetration, 0, 100, '', data.armor_penetration + '%')}}
 			</div>
 		
 		{{if data.caliber}}
@@ -134,6 +151,13 @@
 			</div>
 				<div class="itemContent">
 					{{:data.projectile_AP}}
+				</div>
+
+			<div class="itemLabel">
+				Recoil multiplier:
+			</div>
+				<div class="itemContent">
+					{{:data.projectile_recoil}}
 				</div>
 		</div>
 	</div>

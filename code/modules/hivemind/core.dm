@@ -32,15 +32,10 @@ var/datum/hivemind/hive_mind_ai
 	var/list/EP_price_list = list()
 
 // more names would be interesting. It's just names afterall so nothing game changing
-/datum/hivemind/New()
+/datum/hivemind/New(_name, _surname)
 	..()
-	name = pick("Von Neumann", "Lazarus", "Abattoir", "Auto-Surgeon", "NanoTrasen",
-				"NanoNurse", "Vivisector", "Ex Costa", "Apostasy", "Gnosis", "Balaam", "Ophite",
-				"Sarif", "VersaLife", "Slylandro", "SHODAN", "Pandora", "Fisto")
-
-	surname = pick("Mk I", "Mk II", "Mk III", "Mk IV", "Mk V",
-			"v0.9", "v1.0", "v1.1", "v2.0", "2418-B", "Open Beta",
-			"Pre-Release", "Commercial Release", "Closed Alpha", "Hivebuilt")
+	name	= _name		? _name		: pick(GLOB.hive_names)
+	surname	= _surname	? _surname	: pick(GLOB.hive_surnames)
 
 	var/list/all_machines = subtypesof(/obj/machinery/hivemind_machine) - /obj/machinery/hivemind_machine/node
 	//price list building

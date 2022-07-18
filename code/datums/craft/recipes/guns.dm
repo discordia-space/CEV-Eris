@@ -81,6 +81,17 @@
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
 
+/datum/craft_recipe/gun/poweredcrossbow
+	name = "powered crossbow"
+	result = /obj/item/gun/energy/poweredcrossbow
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD), //old frame recipe
+		list(/obj/item/stack/rods, 3, "time" = 20),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/stack/cable_coil, 10, "time" = 10),
+		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTIC, "time" = 10),
+		list(QUALITY_SCREW_DRIVING, 5, 10, "time" = 3))
+
 /datum/craft_recipe/gun/makeshiftlaser
 	name = "makeshift laser carbine"
 	result = /obj/item/gun/energy/laser/makeshift

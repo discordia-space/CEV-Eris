@@ -25,8 +25,7 @@
 	damage_multiplier = 1.1
 	penetration_multiplier = 1.5 //15 with regular lethal ammo, 30 with HV
 	zoom_factor = 0.4
-	recoil_buildup = 1.2
-	one_hand_penalty = 5 //smg level
+	init_recoil = SMG_RECOIL(0.7)
 	gun_parts = list(/obj/item/part/gun/frame/c20r = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
 
 	gun_tags = list(GUN_SILENCABLE)
@@ -73,6 +72,7 @@
 	damage_multiplier = 1	//Not quite as good as real syndi
 	penetration_multiplier = 1.2 //12 with lethal, 24 with HV
 	gun_parts = list(/obj/item/part/gun/frame/c20r/moebius = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
+	serial_type = "ML"
 
 /obj/item/part/gun/frame/c20r/moebius
 	name = "C-20M frame"
