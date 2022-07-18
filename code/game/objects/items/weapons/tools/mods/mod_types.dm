@@ -439,7 +439,7 @@
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
 	matter = list(MATERIAL_PLASTIC = 8, MATERIAL_URANIUM = 3)
 
-	/obj/item/tool_upgrade/refinement/gravenhancer/New()
+/obj/item/tool_upgrade/refinement/gravenhancer/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.tool_upgrades = list(
