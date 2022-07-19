@@ -678,6 +678,8 @@
 	icon_state = "icon"
 	item_state = "rubber_pig"
 
+	var/cooldown = 0.5 SECONDS
+	var/last_used = 0
 	// Oinking pig sounds
 	var/oinks = list(
 		'sound/items/oink1.ogg',
@@ -690,11 +692,14 @@
 
 // Oink code
 /obj/item/toy/rubber_pig/proc/oink()
-	playsound(src, pick(oinks), 50, 1)
+	if((last_used + cooldown) < world.time)
+		last_used = world.time
+		playsound(src, pick(oinks), 50, 1)
+		return TRUE
 
 /obj/item/toy/rubber_pig/proc/user_oink(mob/user)
-	user.visible_message(SPAN_NOTICE("<b>\The [user]</b> squeezes a pig. It makes loud funny oink!"), SPAN_NOTICE("You squeeze a pig. It makes loud funny oink!"))
-	oink()
+	if(oink())
+		user.visible_message(SPAN_NOTICE("<b>\The [user]</b> squeezes a pig. It makes loud funny oink!"), SPAN_NOTICE("You squeeze a pig. It makes loud funny oink!"))
 
 // All the oink situtions
 /obj/item/toy/rubber_pig/attack_self(mob/user)
@@ -704,12 +709,12 @@
 	user_oink(user)
 
 /obj/item/toy/rubber_pig/throw_impact(atom/impact_atom)
-	src.visible_message(SPAN_NOTICE("Rubber pig oinks, as it impacts with surface."))
+	visible_message(SPAN_NOTICE("Rubber pig oinks, as it impacts with surface."))
 	oink()
 
 // Oinker pick up
 /obj/item/toy/rubber_pig/MouseDrop(over_object, src_location, over_location)
 	..()
-	if (over_object == usr && in_range(src, usr))
-		if (!ishuman(usr)) return
-		usr.put_in_active_hand(src)
+	var/mob/living/carbon/human/user = usr
+	if(istype(user) && over_object == user && in_range(src, user))
+		user.put_in_active_hand(src)
