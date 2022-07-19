@@ -443,7 +443,8 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.tool_upgrades = list(
-	UPGRADE_PRECISION = 20,
+	UPGRADE_PRECISION = 25,
+	UPGRADE_WORKSPEED = 0.30,
 	UPGRADE_BULK = 1,
 	)
 	I.weapon_upgrades = list(
@@ -503,7 +504,6 @@
 	icon_state = "canister_holding"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 4, MATERIAL_PLATINUM = 4)
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
-	spawn_blacklisted = TRUE
 
 /obj/item/tool_upgrade/augment/holding_tank/New()
 	..()
@@ -615,7 +615,6 @@
 			A powerful AI will integrate itself into this tool with the aid of nanotechnology, and improve it in every way possible."
 	icon_state = "ai_tool"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
-	spawn_blacklisted = TRUE
 	rarity_value = 50
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
 
@@ -647,7 +646,6 @@
 	icon_state = "repair_nano"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
-	spawn_blacklisted = TRUE
 
 /obj/item/tool_upgrade/augment/repair_nano/New()
 	..()
