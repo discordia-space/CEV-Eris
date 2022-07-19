@@ -13,7 +13,7 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLATINUM = 8, MATERIAL_PLASTIC = 4)
 	can_dual = TRUE
 	slot_flags = SLOT_BELT|SLOT_HOLSTER|SLOT_BACK
-	damage_multiplier = 1.0
+	damage_multiplier = 1.1
 	penetration_multiplier = 1.0
 	init_recoil = HANDGUN_RECOIL(0.9)
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
