@@ -444,7 +444,7 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.tool_upgrades = list(
 	UPGRADE_PRECISION = 25,
-	UPGRADE_WORKSPEED = 0.30,
+	UPGRADE_WORKSPEED = 0.1,
 	UPGRADE_BULK = 1,
 	)
 	I.weapon_upgrades = list(
@@ -652,6 +652,7 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.tool_upgrades = list(
 	UPGRADE_DEGRADATION_MULT = 0.01,
+	UPGRADE_WORKSPEED = 0.2,
 	UPGRADE_HEALTH_THRESHOLD = 10
 	)
 	I.prefix = "self-healing"
