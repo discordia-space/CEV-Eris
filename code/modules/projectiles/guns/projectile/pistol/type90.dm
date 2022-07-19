@@ -14,8 +14,8 @@
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	magazine_type = /obj/item/ammo_magazine/cspistol
-	damage_multiplier = 1.6
-	penetration_multiplier = 1.5
+	damage_multiplier = 1.3
+	penetration_multiplier = 1.4
 	proj_step_multiplier = 1.4
 	init_recoil = HANDGUN_RECOIL(0.6)
 	spawn_tags = SPAWN_TAG_GUN_OS
