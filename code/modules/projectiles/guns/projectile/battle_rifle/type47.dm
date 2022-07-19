@@ -14,7 +14,7 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLATINUM = 4, MATERIAL_PLASTIC = 12)
 	price_tag = 2800
-	init_recoil = CARBINE_RECOIL(1)
+	init_recoil = CARBINE_RECOIL(0.9)
 	fire_sound = 'sound/weapons/guns/fire/batrifle_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/batrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
