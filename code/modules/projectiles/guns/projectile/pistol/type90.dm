@@ -16,6 +16,7 @@
 	magazine_type = /obj/item/ammo_magazine/cspistol
 	damage_multiplier = 1.6
 	penetration_multiplier = 1.5
+	proj_step_multiplier = 1.4
 	init_recoil = HANDGUN_RECOIL(0.6)
 	spawn_tags = SPAWN_TAG_GUN_OS
 	fire_sound = 'sound/weapons/guns/fire/energy_shotgun.ogg'
