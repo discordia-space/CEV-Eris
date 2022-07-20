@@ -673,7 +673,7 @@
 // That one funny oinking pig.
 /obj/item/toy/rubber_pig
 	name = "rubber pig"
-	desc = "Rubber pig that oinks when squeezed"
+	desc = "Rubber pig that oinks when squeezed."
 	icon = 'icons/obj/rubber_pig.dmi'
 	icon_state = "icon"
 	item_state = "rubber_pig"
