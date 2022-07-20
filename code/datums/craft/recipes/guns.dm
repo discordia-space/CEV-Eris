@@ -90,7 +90,15 @@
 		list(QUALITY_WELDING, 10, "time" = 30),
 		list(/obj/item/stack/cable_coil, 10, "time" = 10),
 		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTIC, "time" = 10),
+		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS, "time" = 20),
 		list(QUALITY_SCREW_DRIVING, 5, 10, "time" = 3))
+
+/datum/craft_recipe/gun/crossbow_bolt
+	name = "crossbow bolt"
+	result = /obj/item/ammo_casing/crossbow/bolt/prespawned
+	steps = list(
+		list(/obj/item/stack/rods, 5, "time" = 1),
+		list(QUALITY_HAMMERING, 5, 10, "time" = 10)) 
 
 /datum/craft_recipe/gun/makeshiftlaser
 	name = "makeshift laser carbine"

@@ -585,7 +585,11 @@
 	matter = list(MATERIAL_STEEL = 1)
 	is_caseless = TRUE
 	maxamount = 5
+	sharp = TRUE
 
 	sprite_update_spawn = TRUE
 	sprite_max_rotate = 32
 	sprite_scale = 1
+
+/obj/item/ammo_casing/crossbow/bolt/prespawned
+	amount = 5
