@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/pistol/type_62
 	name = "OS Type 62 PDW .40 \"Nezha\"" //god forgive me, Name = Protection Deity
-	desc = "A Compact and Powerfull Protoype Onestar PDW typically issued to high ranking officals and spies. Unweildy but extremely deadly in CQC, the perfect gun for self defense and urban warfare. \ Takes Both Pistol and SMG .40 magazines "
+	desc = "A compact and powerful prototype PDW typically issued to high ranking officials and spies. Unwieldy, but extremely deadly, this is the perfect gun for self defense and urban warfare. Takes both pistol and SMG .40 magazines."
 	icon = 'icons/obj/guns/projectile/os/type_62.dmi'
 	icon_state = "type_62"
 	item_state = "type_62"
