@@ -279,7 +279,7 @@
 	icon_state = "onestar_hat"
 	siemens_coefficient = 1
 	price_tag = 1000
-	spawn_blacklisted = TRUE //make onestar clothing/armor spawner -Valo
+	spawn_blacklisted = TRUE // TODO: make onestar clothing/armor spawner -Valo
 	style = STYLE_HIGH
 	armor = list(
 		melee = 10,
