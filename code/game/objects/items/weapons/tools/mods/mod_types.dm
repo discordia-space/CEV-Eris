@@ -443,14 +443,14 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.tool_upgrades = list(
-	UPGRADE_PRECISION = 25,
-	UPGRADE_WORKSPEED = 0.1,
-	UPGRADE_BULK = 1,
-	)
+		UPGRADE_PRECISION = 25,
+		UPGRADE_WORKSPEED = 0.1,
+		UPGRADE_BULK = 1,
+		)
 	I.weapon_upgrades = list(
-	GUN_UPGRADE_RECOIL = 0.5,
-	UPGRADE_BULK = 1,
-	)
+		GUN_UPGRADE_RECOIL = 0.5,
+		UPGRADE_BULK = 1,
+		)
 	I.prefix = "gravity-stabilized"
 
 // 		AUGMENTS: MISCELLANEOUS AND UTILITY
