@@ -10,7 +10,7 @@
 	fire_delay = 6 //Lowered to match plasma weapons
 	fire_sound = 'sound/weapons/tablehit1.ogg'
 	init_firemodes = list(
-		list(mode_name="Bolt", mode_desc="Fires a charged quarrel", projectile_type=/obj/item/projectile/bullet/bolt, charge_cost=50, icon="kill"),)
+		list(mode_name = "Bolt", mode_desc = "Fires a charged quarrel", projectile_type = /obj/item/projectile/bullet/bolt, charge_cost = 50, icon = "kill"))
 	price_tag = 200
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 5)
