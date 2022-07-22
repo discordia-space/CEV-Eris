@@ -699,7 +699,7 @@
 
 /obj/item/toy/rubber_pig/proc/user_oink(mob/user)
 	if(oink())
-		user.visible_message(SPAN_NOTICE("<b>\The [user]</b> squeezes a pig. It makes loud funny oink!"), SPAN_NOTICE("You squeeze a pig. It makes loud funny oink!"))
+		user.visible_message(SPAN_NOTICE("<b>\The [user]</b> squeezes a pig. It makes a loud funny oink!"), SPAN_NOTICE("You squeeze a pig. It makes a loud funny oink!"))
 
 // All the oink situtions
 /obj/item/toy/rubber_pig/attack_self(mob/user)
