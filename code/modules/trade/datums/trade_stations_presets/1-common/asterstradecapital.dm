@@ -65,7 +65,8 @@
 			/obj/item/toy/snappop,
 			/obj/item/toy/bosunwhistle,
 			/obj/item/toy/figure/vagabond,
-			/obj/item/toy/figure/roach
+			/obj/item/toy/figure/roach,
+			/obj/item/toy/rubber_pig = custom_good_price(99)
 		),
 		"Bags" = list(
 			/obj/item/storage/backpack/satchel,
