@@ -433,8 +433,8 @@
 
 //onestar stabilizer
 /obj/item/tool_upgrade/refinement/gravenhancer
-	name = "Onestar Microgravity Stabilizer"
-	desc = "a large strange contraption, it appears to manipulate gravity around it to make a weapon or tool more stable at the cost of a larger size"
+	name = "OneStar microgravity stabilizer"
+	desc = "A large strange contraption, it appears to manipulate gravity around it, to make a weapon or tool more stable at the cost of increasing it\'s size."
 	icon_state = "grav_enhancer"
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
 	matter = list(MATERIAL_PLASTIC = 8, MATERIAL_URANIUM = 3)
