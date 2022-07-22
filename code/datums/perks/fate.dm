@@ -132,15 +132,32 @@
 		holder.stats.removePerk(src.type)
 		return
 	var/turf/T = get_turf(holder)
-	var/obj/item/W = pickweight(list(
+	var/obj/item/W
+	if(is_neotheology_disciple(holder) && prob(50))
+		W = pickweight(list(
+				/obj/item/tool/sword/nt/longsword = 0.5,
+				/obj/item/tool/sword/nt/shortsword = 0.5,
+				/obj/item/tool/sword/nt/scourge = 0.1,
+				/obj/item/tool/knife/dagger/nt = 0.5,
+				/obj/item/gun/energy/nt_svalinn = 0.4,
+				/obj/item/gun/energy/stunrevolver = 0.1))
+	else
+		W = pickweight(list(
+				/obj/item/tool/hammer/mace = 0.2,
+				/obj/item/tool/hammer/mace/makeshift/baseballbat = 0.1,
 				/obj/item/tool/knife/ritual = 0.5,
+				/obj/item/tool/knife/switchblade = 0.5,
 				/obj/item/tool/sword = 0.2,
 				/obj/item/tool/sword/katana = 0.2,
-				/obj/item/tool/knife/dagger/ceremonial = 0.8,
+				/obj/item/tool/knife/dagger = 0.5,
+				/obj/item/gun/projectile/colt = 0.2,
+				/obj/item/gun/projectile/revolver/havelock = 0.1,
+				/obj/item/tool/knife/dagger/ceremonial = 0.4,
 				/obj/item/gun/projectile/revolver = 0.4))
 	holder.sanity.valid_inspirations += W
 	W = new W(T)
 	W.desc += " It has been inscribed with the \"[holder.last_name]\" family name."
+	W.name = "[W] of [holder.last_name]"
 	var/oddities = rand(2,4)
 	var/list/stats = ALL_STATS
 	var/list/final_oddity = list()
@@ -152,6 +169,7 @@
 	W.AddComponent(/datum/component/inspiration, final_oddity, get_oddity_perk())
 	W.AddComponent(/datum/component/atom_sanity, 1, "") //sanity gain by area
 	W.sanity_damage -= 1 //damage by view
+	W.price_tag += rand(1000, 2500)
 	spawn(1)
 		holder.equip_to_storage_or_drop(W)
 
