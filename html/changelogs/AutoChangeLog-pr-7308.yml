@@ -1,0 +1,8 @@
+author: MemedHams
+delete-after: true
+changes:
+  - rscadd: nobles who spawn as part of Neotheology now get a 50% chance of aquiring
+      a Neotheo heirloom
+  - tweak: more items for the basic heirloom pool
+  - tweak: noble heirloom names are now visibly structured "(item) of (family)"
+  - tweak: noble heirlooms are now considerably more expensive. Watch your pockets!
