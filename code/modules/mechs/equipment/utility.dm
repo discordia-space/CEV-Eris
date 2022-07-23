@@ -83,9 +83,6 @@
 					step_away(M, owner)
 					to_chat(user, "You push [target] out of the way.")
 					owner.visible_message("[owner] pushes [target] out of the way.")
-//			else if(isturf(target))
-//				if(locate(/obj/item/ore) in target)
-//					for(var/obj/item/ore/i in target)
 
 
 /obj/item/mech_equipment/clamp/attack_self(var/mob/user)
