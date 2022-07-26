@@ -111,10 +111,10 @@ SUBSYSTEM_DEF(mapping)
 	generate_pulsar_events()
 
 /datum/controller/subsystem/mapping/proc/generate_pulsar_events()
-	var/list/pulsar_events = list(/datum/pulsar_event)
-	message_admins("Pulsar events WIP")
-
-
+	var/list/pulsar_events = subtypesof(/datum/pulsar_event)
+	var/event_type = pick(pulsar_events)
+	var/datum/pulsar_event/E = new event_type
+	E.on_trigger()
 
 /datum/controller/subsystem/mapping/proc/build_overmap()
 	testing("Building overmap...")
@@ -153,8 +153,6 @@ SUBSYSTEM_DEF(mapping)
 			testing("Overmap failed to create events.")
 			return FALSE
 	return TRUE
-
-
 
 /datum/controller/subsystem/mapping/proc/load_map_templates()
 	for(var/T in subtypesof(/datum/map_template))

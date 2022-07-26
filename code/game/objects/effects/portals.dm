@@ -14,6 +14,7 @@
 	var/next_teleport
 	var/origin_turf //The last mob thing that attempted to enter this portal came from thus turf
 	var/entropy_value = 4
+	var/no_checks = FALSE //Bypasses all teleportation checks, used for admin portals and pulsar portals
 
 /obj/effect/portal/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover)) // if mover is not null, e.g. mob
@@ -89,7 +90,7 @@ var/list/portal_cache = list()
 		if(prob(failchance)) //oh dear a problem, put em in deep space
 			on_fail(M)
 		else
-			go_to_bluespace(origin_turf, entropy_value, FALSE, M, get_destination(origin_turf), 0) ///You will appear adjacent to the beacon
+			go_to_bluespace(origin_turf, entropy_value, FALSE, M, get_destination(origin_turf), 0, 1, null, null, null, null, no_checks) ///You will appear adjacent to the beacon
 			next_teleport = world.time + 3 //Tiny cooldown to prevent doubleporting
 			return TRUE
 
@@ -242,6 +243,7 @@ Perfect portal with zero fail chance and no entropy
 	desc = "A perfectly stabilized portal. It is safe to cross."
 	failchance = 0
 	entropy_value = 0
+	no_checks = TRUE
 
 /obj/effect/portal/perfect/close() // Will be called by the callback of /obj/effect/portal but will do nothing
 	return

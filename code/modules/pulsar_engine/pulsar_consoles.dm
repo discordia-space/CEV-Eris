@@ -90,6 +90,7 @@
 				ship.try_move(newdir, TRUE)
 	else if(href_list["scan_fuel"])
 		tank = locate(/obj/structure/pulsar_fuel_tank) in range(5) //Should scan the shuttle area not range, but shuttle isn't mapped
+		tank?.connected_console = src
 		SSnano.update_uis(src)
 	
 	else if(href_list["set_shield"])
@@ -129,6 +130,7 @@
 	icon_state = "plasma_map"
 	anchored = TRUE
 
+	var/obj/machinery/pulsar/connected_console //Used to handle proper qdels, couldn't find a signal for it
 	var/datum/gas_mixture/air_contents
 	var/volume = 700
 
@@ -143,6 +145,8 @@
 	. = ..()
 	if(air_contents)
 		QDEL_NULL(air_contents)
+	connected_console.tank = null
+	SSnano.update_uis(connected_console)
 
 /obj/structure/pulsar_fuel_tank/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/tank))
@@ -150,16 +154,23 @@
 		air_contents.merge(tank.return_air())
 		tank.remove_air(tank.volume)
 		to_chat(user, SPAN_NOTICE("You pump the contents of [tank] into [src]"))
+		playsound(src, 'sound/effects/spray.ogg', 50, 1, -3)
+		if(round(air_contents.get_total_moles()) > 100)
+			visible_message(SPAN_DANGER("[src] looks like it's about to explode!"))
 		if(round(air_contents.get_total_moles()) >= 125)
 			var/turf/simulated/T = get_turf(src)
 			if(!T)
 				return
 			visible_message(SPAN_DANGER("[src] explodes violently and all of the gas starts pouring out!"))
+			playsound(src, 'sound/effects/smoke.ogg', 100, 1, -3)
 			T.assume_air(air_contents)
-			playsound(T, 'sound/effects/spray.ogg', 10, 1, -3)
 			qdel(src)
 	else
-		to_chat(user, SPAN_NOTICE("You need to use portable fuel tanks to refil [src]"))
+		to_chat(user, SPAN_NOTICE("[src] can only be refiled with portable fuel tanks"))
+
+/obj/structure/pulsar_fuel_tank/attack_hand(mob/user)
+	to_chat(user, SPAN_NOTICE("[src] can only be refiled with portable fuel tanks"))
+	. = ..()
 
 /obj/structure/pulsar_fuel_tank/examine(mob/user, distance, infix, suffix)
 	. = ..()
