@@ -311,10 +311,12 @@ var/list/rummage_sound = list(\
 		if ("wood")
 			toplay = pick(footstep_wood)
 
-
 	return toplay
 
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance = 0,  ignore_walls = TRUE, zrange = 2, override_env, envdry, envwet, use_pressure = TRUE)
+
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance, ignore_walls = TRUE, \
+	zrange = 2, override_env, envdry, envwet, use_pressure = TRUE, list/language_scramble, preference_required)
+
 	if(isarea(source))
 		error("[source] is an area and is trying to make the sound: [soundin]")
 		return
@@ -330,10 +332,13 @@ var/list/rummage_sound = list(\
 	if(!ignore_walls) //these sounds don't carry through walls
 		listeners = listeners & hearers(maxdistance, turf_source)
 
-	for(var/P in listeners)
-		var/mob/M = P
-		if(!M || !M.client)
+	for(var/mob/M in listeners)
+		if(!M.client || (preference_required && (M.client.get_preference_value(preference_required) == GLOB.PREF_NO)))
 			continue
+		if(LAZYLEN(language_scramble))
+			var/datum/language/language = language_scramble[3]
+			if(!M.say_understands(null, language))
+				soundin = get_tts_scrambled(language_scramble[1], language_scramble[2], language_scramble[3])
 		var/dist = get_dist(M, turf_source)
 		if(dist <= maxdistance + 3)
 			if(dist > maxdistance)

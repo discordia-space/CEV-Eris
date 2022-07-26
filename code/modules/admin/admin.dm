@@ -156,6 +156,7 @@ ADMIN_VERB_ADD(/datum/admins/proc/show_player_panel, null, TRUE)
 			<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY)?"red":"blue"]'>PRAY</font></a> |
 			<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP)?"red":"blue"]'>ADMINHELP</font></a> |
 			<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]
+			<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_TTC]'><font color='[(muted & MUTE_TTC)?"red":"blue"]'>DEADCHAT</font></a>\]
 			(<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL)?"red":"blue"]'>toggle all</font></a>)
 		"}
 
@@ -996,6 +997,41 @@ ADMIN_VERB_ADD(/datum/admins/proc/toggleguests, R_ADMIN, FALSE)
 		to_chat(world, "<B>Guests may now enter the game.</B>")
 	log_admin("[key_name(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.")
 	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.", 1)
+
+
+ADMIN_VERB_ADD(/datum/admins/proc/toggle_tts, R_SERVER, FALSE)
+/datum/admins/proc/toggle_tts()
+	set category = "Server"
+	set name = "Toggle text-to-speech"
+
+	if(config.tts_bearer)
+		config.tts_enabled = !config.tts_enabled
+
+	message_admins("\blue [key_name_admin(usr)] set text-to-speech to [config.tts_enabled ? "On" : "Off"].", 1)
+	log_admin("[key_name(usr)] set text-to-speech to [config.tts_enabled ? "On" : "Off"].")
+
+
+ADMIN_VERB_ADD(/datum/admins/proc/toggle_tts_cache, R_SERVER, FALSE)
+/datum/admins/proc/toggle_tts_cache()
+	set category = "Server"
+	set name = "Toggle text-to-speech caching"
+
+	config.tts_cache = !config.tts_cache
+
+	message_admins("\blue [key_name_admin(usr)] set text-to-speech caching to [config.tts_cache ? "On" : "Off"].", 1)
+	log_admin("[key_name(usr)] set text-to-speech caching to [config.tts_cache ? "On" : "Off"].")
+
+
+ADMIN_VERB_ADD(/datum/admins/proc/check_tts_stat, R_SERVER, FALSE)
+/datum/admins/proc/check_tts_stat()
+	set category = "Server"
+	set name = "Print text-to-speech stats"
+
+	to_chat(usr, "Text-to-speech is globally [config.tts_enabled ? "enabled" : (config.tts_bearer ? "disabled" : "disabled and authentication data is missing")].")
+	to_chat(usr, "Total tts files wanted this round: [GLOB.tts_wanted].")
+	to_chat(usr, "Successfully generated tts files: [GLOB.tts_request_succeeded].")
+	to_chat(usr, "Failed to generate tts files: [GLOB.tts_request_failed].")
+	to_chat(usr, "Reused tts files: [GLOB.tts_reused].")
 
 
 /datum/admins/proc/output_ai_laws()

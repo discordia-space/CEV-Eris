@@ -232,7 +232,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	if(data == 1)
 
-		for (var/obj/item/device/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
+		for(var/obj/item/device/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
 			if(R.receive_range(display_freq, level) > -1)
 				radios += R
 
@@ -240,7 +240,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	else if(data == 2)
 
-		for (var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
+		for(var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
 
 			if(istype(R, /obj/item/device/radio/headset))
 				continue
@@ -253,7 +253,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	else if(data == 3)
 		for(var/antag_freq in ANTAG_FREQS)
 			var/datum/radio_frequency/antag_connection = SSradio.return_frequency(antag_freq)
-			for (var/obj/item/device/radio/R in antag_connection.devices["[RADIO_CHAT]"])
+			for(var/obj/item/device/radio/R in antag_connection.devices["[RADIO_CHAT]"])
 				if(R.receive_range(antag_freq, level) > -1)
 					radios += R
 
@@ -261,7 +261,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	else
 
-		for (var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
+		for(var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
 			if(R.receive_range(display_freq, level) > -1)
 				radios += R
 
@@ -279,7 +279,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	var/list/heard_garbled	= list() // garbled message (ie "f*c* **u, **i*er!")
 	var/list/heard_gibberish= list() // completely screwed over message (ie "F%! (O*# *#!<>&**%!")
 
-	for (var/mob/R in receive)
+	for(var/mob/R in receive)
 		SEND_SIGNAL(radio, COMSIG_MESSAGE_RECEIVED, R)
 	  /* --- Loop through the receivers and categorize them --- */
 		if(isnewplayer(R)) // we don't want new players to hear messages. rare but generates runtimes.
@@ -296,10 +296,10 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		// --- Can understand the speech ---
 
-		if (!M || R.say_understands(M))
+		if(!M || R.say_understands(M))
 
 			// - Not human or wearing a voice mask -
-			if (!M || !ishuman(M) || vmask)
+			if(!M || !ishuman(M) || vmask)
 				heard_masked += R
 
 			// - Human and not wearing voice mask -
@@ -310,7 +310,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		else
 			// - The speaker has a prespecified "voice message" to display if not understood -
-			if (vmessage)
+			if(vmessage)
 				heard_voice += R
 
 			// - Just display a garbled message -
@@ -319,7 +319,18 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 
   /* ###### Begin formatting and sending the message ###### */
-	if (length(heard_masked) || length(heard_normal) || length(heard_voice) || length(heard_garbled) || length(heard_gibberish))
+	if(length(heard_masked) || length(heard_normal) || length(heard_voice) || length(heard_garbled) || length(heard_gibberish))
+		var/seed = TTS_SEED_ANNOUNCER
+		if(M)
+			if(M.tts_seed)
+				seed = M.tts_seed
+			else if(M.gender == "male")
+				seed = TTS_SEED_DEFAULT_MALE
+			else
+				seed = TTS_SEED_DEFAULT_FEMALE
+
+		var/voice = get_tts(message, seed)
+		var/voice_scrambled = speaking ? get_tts_scrambled(message, seed, speaking) : null
 		if(text_size)
 			message = "<FONT size='[max(text_size, 1)]'>[message]</FONT>"
 
@@ -385,36 +396,59 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	  	/* --- Process all the mobs that heard a masked voice (understood) --- */
 
-		if (length(heard_masked))
-			for (var/mob/R in heard_masked)
+		if(length(heard_masked))
+			for(var/mob/R in heard_masked)
 				R.hear_radio(message,verbage, speaking, part_a, part_b, M, 0, name)
+				if(voice && (R.client?.get_preference_value("SOUND_TTS_RADIO") == GLOB.PREF_YES))
+					if(speaking && !R.say_understands(null, speaking))
+						sound_to(R, sound(voice_scrambled))
+					else
+						sound_to(R, sound(voice))
+					
 
 		/* --- Process all the mobs that heard the voice normally (understood) --- */
 
-		if (length(heard_normal))
-			for (var/mob/R in heard_normal)
+		if(length(heard_normal))
+			for(var/mob/R in heard_normal)
 				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 0, realname)
-
+				if(voice && (R.client?.get_preference_value("SOUND_TTS_RADIO") == GLOB.PREF_YES))
+					if(speaking && !R.say_understands(null, speaking))
+						sound_to(R, sound(voice_scrambled))
+					else
+						sound_to(R, sound(voice))
 		/* --- Process all the mobs that heard the voice normally (did not understand) --- */
 
-		if (length(heard_voice))
-			for (var/mob/R in heard_voice)
+		if(length(heard_voice))
+			for(var/mob/R in heard_voice)
 				R.hear_radio(message,verbage, speaking, part_a, part_b, M,0, vname)
+				if(voice && (R.client?.get_preference_value("SOUND_TTS_RADIO") == GLOB.PREF_YES))
+					if(speaking && !R.say_understands(null, speaking))
+						sound_to(R, sound(voice_scrambled))
+					else
+						sound_to(R, sound(voice))
 
 		/* --- Process all the mobs that heard a garbled voice (did not understand) --- */
 			// Displays garbled message (ie "f*c* **u, **i*er!")
 
-		if (length(heard_garbled))
-			for (var/mob/R in heard_garbled)
+		if(length(heard_garbled))
+			for(var/mob/R in heard_garbled)
 				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1, vname)
-
+				if(voice && (R.client?.get_preference_value("SOUND_TTS_RADIO") == GLOB.PREF_YES))
+					if(speaking && !R.say_understands(null, speaking))
+						sound_to(R, sound(voice_scrambled))
+					else
+						sound_to(R, sound(voice))
 
 		/* --- Complete gibberish. Usually happens when there's a compressed message --- */
 
-		if (length(heard_gibberish))
-			for (var/mob/R in heard_gibberish)
+		if(length(heard_gibberish))
+			for(var/mob/R in heard_gibberish)
 				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1)
-
+				if(voice && (R.client?.get_preference_value("SOUND_TTS_RADIO") == GLOB.PREF_YES))
+					if(speaking && !R.say_understands(null, speaking))
+						sound_to(R, sound(voice_scrambled))
+					else
+						sound_to(R, sound(voice))
 	return 1
 
 /proc/Broadcast_SimpleMessage(var/source, var/frequency, var/text, var/data, var/mob/M, var/compression, var/list/levels)
@@ -435,7 +469,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	// --- Broadcast only to intercom devices ---
 
 	if(data == 1)
-		for (var/obj/item/device/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
+		for(var/obj/item/device/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
 			var/turf/position = get_turf(R)
 			if(position && (position.z in levels))
 				receive |= R.send_hear(display_freq, position.z)
@@ -444,7 +478,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	// --- Broadcast only to intercoms and station-bounced radios ---
 
 	else if(data == 2)
-		for (var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
+		for(var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
 
 			if(istype(R, /obj/item/device/radio/headset))
 				continue
@@ -458,7 +492,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	else if(data == 3)
 		for(var/freq in ANTAG_FREQS)
 			var/datum/radio_frequency/antag_connection = SSradio.return_frequency(freq)
-			for (var/obj/item/device/radio/R in antag_connection.devices["[RADIO_CHAT]"])
+			for(var/obj/item/device/radio/R in antag_connection.devices["[RADIO_CHAT]"])
 				var/turf/position = get_turf(R)
 				if(position && (position.z in levels))
 					receive |= R.send_hear(freq)
@@ -467,7 +501,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	// --- Broadcast to ALL radio devices ---
 
 	else
-		for (var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
+		for(var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
 			var/turf/position = get_turf(R)
 			if(position && (position.z in levels))
 				receive |= R.send_hear(display_freq)
@@ -482,7 +516,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	var/list/heard_garbled	= list() // garbled message (ie "f*c* **u, **i*er!")
 	var/list/heard_gibberish= list() // completely screwed over message (ie "F%! (O*# *#!<>&**%!")
 
-	for (var/mob/R in receive)
+	for(var/mob/R in receive)
 
 	  /* --- Loop through the receivers and categorize them --- */
 		// --- Check for compression ---
@@ -493,7 +527,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		// --- Can understand the speech ---
 
-		if (R.say_understands(M))
+		if(R.say_understands(M))
 
 			heard_normal += R
 
@@ -506,7 +540,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 
   /* ###### Begin formatting and sending the message ###### */
-	if (length(heard_normal) || length(heard_garbled) || length(heard_gibberish))
+	if(length(heard_normal) || length(heard_garbled) || length(heard_gibberish))
 
 	  /* --- Some miscellaneous variables to format the string output --- */
 		var/part_a = "<span class='[frequency_span_class(display_freq)]'><span class='name'>" // goes in the actual output
@@ -561,30 +595,30 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		/* --- Process all the mobs that heard the voice normally (understood) --- */
 
-		if (length(heard_normal))
+		if(length(heard_normal))
 			var/rendered = "[part_a][source][part_b]\"[text]\"[part_c]"
 
-			for (var/mob/R in heard_normal)
+			for(var/mob/R in heard_normal)
 				R.show_message(rendered, 2)
 
 		/* --- Process all the mobs that heard a garbled voice (did not understand) --- */
 			// Displays garbled message (ie "f*c* **u, **i*er!")
 
-		if (length(heard_garbled))
+		if(length(heard_garbled))
 			var/quotedmsg = "\"[stars(text)]\""
 			var/rendered = "[part_a][source][part_b][quotedmsg][part_c]"
 
-			for (var/mob/R in heard_garbled)
+			for(var/mob/R in heard_garbled)
 				R.show_message(rendered, 2)
 
 
 		/* --- Complete gibberish. Usually happens when there's a compressed message --- */
 
-		if (length(heard_gibberish))
+		if(length(heard_gibberish))
 			var/quotedmsg = "\"[Gibberish(text, compression + 50)]\""
 			var/rendered = "[part_a][Gibberish(source, compression + 50)][part_b][quotedmsg][part_c]"
 
-			for (var/mob/R in heard_gibberish)
+			for(var/mob/R in heard_gibberish)
 				R.show_message(rendered, 2)
 
 //Use this to test if an obj can communicate with a Telecommunications Network
