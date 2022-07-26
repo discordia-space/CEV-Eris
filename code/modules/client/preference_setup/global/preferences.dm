@@ -100,6 +100,22 @@ var/list/_client_preferences_by_type
 	description ="Play ambience"
 	key = "SOUND_AMBIENCE"
 
+/datum/client_preference/play_instruments
+	description ="Play instruments"
+	key = "SOUND_INSTRUMENTS"
+
+/datum/client_preference/play_jukebox
+	description ="Play jukebox music"
+	key = "SOUND_JUKEBOX"
+
+/datum/client_preference/play_tts_local
+	description ="Play local text-to-speech"
+	key = "SOUND_TTS_LOCAL"
+
+/datum/client_preference/play_tts_radio
+	description ="Play radio text-to-speech"
+	key = "SOUND_TTS_RADIO"
+
 /datum/client_preference/play_ambiance/changed(var/mob/preference_mob, var/new_value)
 	if(new_value == GLOB.PREF_NO)
 		sound_to(preference_mob, sound(null, repeat = 0, wait = 0, volume = 0, channel = GLOB.ambience_sound_channel))
@@ -203,17 +219,9 @@ var/list/_client_preferences_by_type
 	description = "Ambient occlusion"
 	key = "AMBIENT_OCCLUSION"
 
-/datum/client_preference/play_instruments
-	description ="Play instruments"
-	key = "SOUND_INSTRUMENTS"
-
 /datum/client_preference/gun_cursor
 	description = "Enable gun crosshair"
 	key = "GUN_CURSOR"
-
-/datum/client_preference/play_jukebox
-	description ="Play jukebox music"
-	key = "SOUND_JUKEBOX"
 
 /datum/client_preference/play_jukebox/changed(var/mob/preference_mob, var/new_value)
 	if(new_value == GLOB.PREF_NO)

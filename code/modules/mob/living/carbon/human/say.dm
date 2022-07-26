@@ -43,7 +43,7 @@
 		return
 	..()
 
-/mob/living/carbon/human/say(var/message)
+/mob/living/carbon/human/say(message, datum/language/speaking)
 	if(language_blackout)
 		to_chat(src, get_language_blackout_message())
 		return FALSE
