@@ -1,0 +1,11 @@
+author: ValoTheValo
+delete-after: true
+changes:
+  - rscadd: Type 62 "Nezha" Machine Pistol
+  - rscadd: Type 90 "Mozhu" Gauss Pistol
+  - rscadd: Onestar Mircrogravity Stabilizer Tool/gunmod
+  - rscdel: Type 69 and Type 42
+  - balance: minor rebalance to onestar coat in prep for addition
+  - balance: Un Blacklist Onestar Thermals and Regenerator oxygen tank
+  - imageadd: Nezha and Mozhu Sprites
+  - imagedel: Old Type 69 and 42 Sprites
