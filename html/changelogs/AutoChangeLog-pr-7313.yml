@@ -1,0 +1,4 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - rscadd: mechs picking up ore from the floor with mounted clamp
