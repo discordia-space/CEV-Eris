@@ -1,0 +1,4 @@
+author: ValoTheValo
+delete-after: true
+changes:
+  - bugfix: onestar stuff spawning in maint (and at all)
