@@ -270,6 +270,7 @@
 	new /obj/item/tool_upgrade/productivity/ergonomic_grip(src)
 	new /obj/item/tool_upgrade/refinement/laserguide(src)
 	new /obj/item/tool_upgrade/augment/ai_tool(src)
+	new /obj/item/tool_upgrade/refinement/gravenhancer(src)
 
 /obj/item/gun_upgrade/trigger/boom
 	name = "Syndicate \"Self Destruct\" trigger"
