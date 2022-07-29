@@ -215,11 +215,11 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 **/
 
-/proc/Broadcast_Message(var/datum/radio_frequency/connection, var/mob/M,
-						var/vmask, var/vmessage, var/obj/item/device/radio/radio,
-						var/message, var/name, var/job, var/realname, var/vname,
-						var/data, var/compression, var/list/level, var/freq, var/verbage = "says",
-						var/datum/language/speaking = null, var/text_size)
+/proc/Broadcast_Message(datum/radio_frequency/connection, mob/M,
+						vmask, vmessage, obj/item/device/radio/radio,
+						message, name, job, realname, vname,
+						data, compression, list/level, freq, verbage = "says",
+						datum/language/speaking = null, text_size, use_text_to_speech = TRUE)
 
 
   /* ###### Prepare the radio connection ###### */
@@ -321,16 +321,19 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
   /* ###### Begin formatting and sending the message ###### */
 	if(length(heard_masked) || length(heard_normal) || length(heard_voice) || length(heard_garbled) || length(heard_gibberish))
 		var/seed = TTS_SEED_ANNOUNCER
-		if(M)
-			if(M.tts_seed)
-				seed = M.tts_seed
-			else if(M.gender == "male")
-				seed = TTS_SEED_DEFAULT_MALE
-			else
-				seed = TTS_SEED_DEFAULT_FEMALE
+		var/voice
+		var/voice_scrambled
 
-		var/voice = get_tts(message, seed)
-		var/voice_scrambled = speaking ? get_tts_scrambled(message, seed, speaking) : null
+		if(use_text_to_speech)
+			if(M)
+				if(M.tts_seed)
+					seed = M.tts_seed
+				else if(M.gender == "male")
+					seed = TTS_SEED_DEFAULT_MALE
+
+			voice = get_tts(message, seed)
+			voice_scrambled = speaking ? get_tts_scrambled(message, seed, speaking) : null
+
 		if(text_size)
 			message = "<FONT size='[max(text_size, 1)]'>[message]</FONT>"
 
