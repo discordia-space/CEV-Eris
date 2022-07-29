@@ -22050,7 +22050,15 @@
 /area/eris/maintenance/section1deck4central)
 "bbw" = (
 /obj/machinery/camera/network/engineering,
-/obj/spawner/junk/low_chance,
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "West APC";
+	pixel_x = -28
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/section1)
 "bbx" = (
@@ -23052,6 +23060,11 @@
 	name = "Powernet Sensor - First Second Subgrid";
 	name_tag = "First Section Subgrid"
 	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/section1)
 "bde" = (
@@ -23661,15 +23674,7 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/section1)
 "bez" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "West APC";
-	pixel_x = -28
-	},
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/machinery/space_heater,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/section1)
 "beA" = (
@@ -23692,11 +23697,6 @@
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/rnd/lab)
 "beC" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 4;
@@ -34249,7 +34249,7 @@
 	dir = 8;
 	pixel_x = 22
 	},
-/obj/spawner/flora/low_chance,
+/obj/machinery/space_heater,
 /turf/simulated/floor/tiled/steel,
 /area/eris/rnd/docking)
 "bEa" = (
@@ -35705,6 +35705,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/machinery/space_heater,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/section4)
 "bHj" = (
@@ -39740,6 +39741,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/machinery/space_heater,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/engineering)
 "bPM" = (
@@ -40163,6 +40165,7 @@
 /obj/machinery/camera/network/engineering{
 	dir = 8
 	},
+/obj/machinery/space_heater,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/engineering)
 "bQV" = (
@@ -60797,33 +60800,26 @@
 /turf/simulated/floor/tiled/dark,
 /area/eris/command/meeting_room)
 "cQW" = (
-/obj/structure/table/standard,
-/obj/item/storage/toolbox/emergency,
-/obj/item/device/radio,
-/obj/item/device/radio,
+/obj/machinery/space_heater,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section4)
 "cQX" = (
-/obj/structure/table/standard,
 /obj/structure/sign/directions/evac{
 	pixel_y = -32
 	},
-/obj/machinery/recharger,
+/obj/machinery/space_heater,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section4)
 "cQY" = (
 /obj/structure/table/standard,
-/obj/item/device/lighting/glowstick/flare,
-/obj/item/device/lighting/glowstick/flare,
-/obj/item/device/lighting/glowstick/flare,
-/obj/item/device/lighting/glowstick/flare,
-/obj/item/device/lighting/glowstick/flare,
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/structure/sign/sec4{
 	pixel_x = 32
 	},
+/obj/machinery/recharger,
+/obj/item/storage/toolbox/emergency,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section4)
 "cQZ" = (
@@ -65836,10 +65832,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
 "dcY" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/powercell,
-/obj/spawner/powercell,
+/obj/machinery/space_heater,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/section3)
 "dcZ" = (
@@ -65869,18 +65862,18 @@
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/engine_room)
 "ddb" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -22
 	},
-/obj/spawner/powercell,
-/obj/spawner/powercell,
+/obj/machinery/space_heater,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/section3)
 "ddc" = (
 /obj/structure/table/standard,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
 /obj/spawner/powercell,
 /obj/spawner/powercell,
 /obj/spawner/powercell,
@@ -65917,6 +65910,8 @@
 /area/eris/maintenance/section2deck2port)
 "ddh" = (
 /obj/structure/closet/crate,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
 /obj/spawner/powercell,
 /obj/spawner/powercell,
 /obj/spawner/powercell,
@@ -65983,6 +65978,8 @@
 /obj/spawner/material/building,
 /obj/spawner/material/building,
 /obj/spawner/material/building,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
@@ -67241,15 +67238,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4starboard)
 "dgi" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "North APC";
-	pixel_y = 28
-	},
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/machinery/space_heater,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/bridge)
 "dgj" = (
@@ -68199,12 +68188,16 @@
 /turf/simulated/floor/wood,
 /area/eris/medical/psych)
 "dii" = (
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/machinery/camera/network/engineering,
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "North APC";
+	pixel_y = 28
+	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/bridge)
 "dij" = (
@@ -81598,6 +81591,7 @@
 /area/eris/engineering/propulsion/right)
 "dMX" = (
 /obj/machinery/light/small,
+/obj/machinery/space_heater,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/medical/genetics)
 "dMY" = (
@@ -102269,6 +102263,10 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
+"jkg" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section1deck1central)
 "jkF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -104411,6 +104409,10 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/storage)
+"rab" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/eris/engineering/atmoscontrol)
 "rfp" = (
 /obj/structure/multiz/ladder,
 /turf/simulated/floor/tiled/techmaint,
@@ -104632,6 +104634,10 @@
 "rYg" = (
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/breakroom)
+"rZr" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section4deck4port)
 "saY" = (
 /obj/spawner/mob/roaches/cluster,
 /turf/simulated/floor/tiled/techmaint_cargo,
@@ -104826,6 +104832,10 @@
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/office)
+"sAR" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/medical/genetics)
 "sBi" = (
 /obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/tiled/techmaint,
@@ -104840,6 +104850,10 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/long_range_scanner)
+"sDc" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/plating,
+/area/eris/maintenance/section1deck4central)
 "sEG" = (
 /obj/structure/sign/faction/neotheology_cross,
 /turf/simulated/wall/r_wall,
@@ -105901,6 +105915,10 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section2)
+"wkR" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section1deck5central)
 "wmQ" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -129151,7 +129169,7 @@ dAp
 dzn
 dzn
 dzn
-dzn
+wkR
 alP
 amg
 amG
@@ -162754,7 +162772,7 @@ aCW
 bHZ
 bKX
 bIU
-bJp
+rab
 btR
 bve
 bIr
@@ -163150,7 +163168,7 @@ bUG
 aaa
 bqj
 bya
-bum
+rZr
 aCW
 byy
 bCe
@@ -163360,7 +163378,7 @@ aFU
 bHZ
 bKX
 bIU
-bJp
+rab
 buY
 bxS
 bIr
@@ -164373,7 +164391,7 @@ bIV
 bJr
 bHX
 aCW
-bum
+rZr
 bJh
 bKx
 bvW
@@ -164575,7 +164593,7 @@ bIW
 bJs
 bJN
 aCW
-bum
+rZr
 bJv
 bKx
 bHn
@@ -170160,7 +170178,7 @@ csS
 aLc
 cvH
 csS
-aTK
+sDc
 bcu
 csS
 bdk
@@ -287139,7 +287157,7 @@ bjR
 bjR
 bjR
 bjR
-bjR
+sAR
 efd
 efd
 efd
@@ -287718,7 +287736,7 @@ daA
 abF
 abF
 doD
-doM
+jkg
 dBX
 dpC
 dpC
