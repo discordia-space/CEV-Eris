@@ -466,6 +466,11 @@
 	icon_state = "bar"
 	sound_env = LARGE_SOFTFLOOR
 
+/area/eris/crew_quarters/barconference
+	name = "\improper Conference Room"
+	icon_state = "erisblue"
+	sound_env = LARGE_SOFTFLOOR
+
 /area/eris/crew_quarters/barbackroom
 	name = "Bar Backroom"
 	icon_state = "erisgreen"
