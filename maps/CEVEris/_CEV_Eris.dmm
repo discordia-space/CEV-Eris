@@ -7529,6 +7529,13 @@
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 2, floor 1. Medbay toilet."
 	},
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch.";
+	id = "medbay_bathroom_1";
+	name = "Privacy Button";
+	pixel_y = -22;
+	specialfunctions = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/toilet/medbay)
 "arL" = (
@@ -8692,6 +8699,13 @@
 	dir = 4
 	},
 /obj/machinery/light,
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch.";
+	id = "unisex_room_2";
+	name = "Privacy Button";
+	pixel_y = -22;
+	specialfunctions = 4
+	},
 /turf/simulated/floor/tiled/steel/bar_dance,
 /area/eris/crew_quarters/bar)
 "auA" = (
@@ -55017,6 +55031,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 27
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/barconference)
 "cCm" = (
@@ -74485,6 +74502,14 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
+"dwB" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock{
+	id_tag = "medbay_bathroom_1";
+	name = "Unisex Restrooms"
+	},
+/turf/simulated/floor/tiled/steel/cargo,
+/area/eris/crew_quarters/toilet/medbay)
 "dwC" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 1
@@ -101993,6 +102018,20 @@
 "iFm" = (
 /turf/simulated/wall,
 /area/eris/maintenance/section3deck4central)
+"iFL" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/machinery/light,
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch.";
+	id = "unisex_room_1";
+	name = "Privacy Button";
+	pixel_y = -22;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/eris/crew_quarters/bar)
 "iIc" = (
 /obj/effect/shuttle_landmark/merc/sec3east5,
 /turf/space,
@@ -102745,6 +102784,14 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
+"lpJ" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock{
+	id_tag = "unisex_room_2";
+	name = "Unisex Restrooms"
+	},
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/bar)
 "lsH" = (
 /obj/machinery/autolathe/loaded,
 /turf/simulated/floor/tiled/techmaint,
@@ -103839,6 +103886,14 @@
 	},
 /turf/simulated/floor/tiled/steel/danger,
 /area/eris/engineering/engine_room)
+"oyb" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock{
+	id_tag = "unisex_room_1";
+	name = "Unisex Restrooms"
+	},
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/bar)
 "ozX" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -106430,9 +106485,6 @@
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics/garden)
 "wqk" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27
-	},
 /obj/machinery/papershredder,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/barconference)
@@ -106519,6 +106571,25 @@
 	},
 /turf/simulated/floor/tiled/white/techfloor_grid,
 /area/eris/rnd/mixing)
+"wBz" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/landmark/storyevent/midgame_stash_spawn{
+	navigation = "Section 2, floor 1. Medbay toilet."
+	},
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch.";
+	id = "medbay_bathroom_2";
+	name = "Privacy Button";
+	pixel_y = -22;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/crew_quarters/toilet/medbay)
 "wEJ" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -106609,6 +106680,14 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
+"wYQ" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock{
+	id_tag = "medbay_bathroom_2";
+	name = "Unisex Restrooms"
+	},
+/turf/simulated/floor/tiled/steel/cargo,
+/area/eris/crew_quarters/toilet/medbay)
 "wZM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -124255,8 +124334,8 @@ aqd
 arP
 arK
 arP
-arK
-aqG
+wBz
+arO
 aaa
 aaa
 aCn
@@ -124455,9 +124534,9 @@ aqD
 arP
 apR
 arP
-apR
+dwB
 arP
-apR
+wYQ
 arO
 aaa
 aaa
@@ -165069,7 +165148,7 @@ abF
 aqV
 auz
 aqa
-auz
+iFL
 aqa
 cDy
 anJ
@@ -165269,9 +165348,9 @@ bmw
 abF
 abF
 anJ
-cDP
+lpJ
 aqa
-cDP
+oyb
 aqa
 cDP
 anJ
