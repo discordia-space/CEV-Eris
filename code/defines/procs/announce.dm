@@ -120,6 +120,6 @@ datum/announcement/proc/Log(message as text, message_title as text)
 /proc/AnnounceArrival(var/mob/living/character, var/rank, var/join_message)
 	if (join_message && SSticker.current_state == GAME_STATE_PLAYING && SSjob.ShouldCreateRecords(rank))
 		if(issilicon(character))
-			global_announcer.autosay("A new [rank] [join_message].", ANNOUNCER_NAME)
+			global_announcer.autosay("A new [rank] [join_message].", ANNOUNCER_NAME, use_text_to_speech = TRUE)
 		else
-			global_announcer.autosay("[character.real_name], [rank], [join_message].", ANNOUNCER_NAME)
+			global_announcer.autosay("[character.real_name], [rank], [join_message].", ANNOUNCER_NAME, use_text_to_speech = TRUE)

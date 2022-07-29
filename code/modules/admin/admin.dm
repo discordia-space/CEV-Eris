@@ -1006,6 +1006,11 @@ ADMIN_VERB_ADD(/datum/admins/proc/toggle_tts, R_SERVER, FALSE)
 
 	if(config.tts_bearer)
 		config.tts_enabled = !config.tts_enabled
+	else
+		to_chat(usr, "Configuration file is missing authentication data.")
+		return
+
+	to_chat(world, "<B>The text-to-speech has been globally [config.tts_enabled ? "enabled" : "disabled"]!</B>")
 
 	message_admins("\blue [key_name_admin(usr)] set text-to-speech to [config.tts_enabled ? "On" : "Off"].", 1)
 	log_admin("[key_name(usr)] set text-to-speech to [config.tts_enabled ? "On" : "Off"].")
@@ -1032,6 +1037,52 @@ ADMIN_VERB_ADD(/datum/admins/proc/check_tts_stat, R_SERVER, FALSE)
 	to_chat(usr, "Successfully generated tts files: [GLOB.tts_request_succeeded].")
 	to_chat(usr, "Failed to generate tts files: [GLOB.tts_request_failed].")
 	to_chat(usr, "Reused tts files: [GLOB.tts_reused].")
+
+
+ADMIN_VERB_ADD(/datum/admins/proc/add_tts_seed, R_FUN, FALSE)
+/datum/admins/proc/add_tts_seed()
+	set category = "Fun"
+	set name = "Add text-to-speech seed"
+
+	var/seed_name = input(usr, "Give it a name. It should not contain any spaces.", "Add text-to-speech seed") as null|text
+	if(!seed_name)
+		return
+	var/seed_value = input(usr, "Enter a seed value. No spaces.", "Add text-to-speech seed") as null|text
+	if(!seed_value)
+		return
+	var/seed_category = "any" // To be implemented, for now there is only humans who can choose, so catergory doesn't matter
+	var/seed_gender_restriction = "any"
+	var/gender = alert(usr, "Should it have gender restriction?", "Add text-to-speech seed", "Male only", "Female only", "No")
+	switch(gender)
+		if("Male only")
+			seed_gender_restriction = "male"
+		if("Female only")
+			seed_gender_restriction = "female"
+
+	if(!tts_seeds[seed_name])
+		tts_seeds += seed_name
+	tts_seeds[seed_name] = list("value" = seed_value, "category" = seed_category, "gender" = seed_gender_restriction)
+
+	call(RUST_G, "file_write")("[seed_value]", "sound/tts_cache/[seed_name]/seed.txt")
+	call(RUST_G, "file_write")("[seed_value]", "sound/tts_scrambled/[seed_name]/seed.txt")
+
+	message_admins("\blue [key_name_admin(usr)] added text-to-speech seed \"[seed_value]\", named \"[seed_name]\".", 1)
+	log_admin("[key_name(usr)] added text-to-speech seed \"[seed_value]\", named \"[seed_name]\".")
+
+
+ADMIN_VERB_ADD(/datum/admins/proc/select_tts_seed, R_FUN, FALSE)
+/datum/admins/proc/select_tts_seed()
+	set category = "Fun"
+	set name = "Select text-to-speech seed"
+
+	if(!isliving(usr))
+		to_chat(usr, "Only living mobs may have TTS.")
+		return
+
+	var/mob/living/user = usr
+	var/choice = input(user, "Pick a voice preset.") as null|anything in tts_seeds
+	if(choice)
+		user.tts_seed = choice
 
 
 /datum/admins/proc/output_ai_laws()
