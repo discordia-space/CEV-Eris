@@ -54,35 +54,7 @@ var/list/tts_seeds = list()
 				GLOB.tts_errors["[response.status_code]"]++
 			else
 				GLOB.tts_errors += "[response.status_code]"
-				var/status_code_meaning = "Error code not recognized."
-				switch(response.status_code)
-					if(400)
-						status_code_meaning = "Bad request."
-					if(401)
-						status_code_meaning = "Access Token is incorrect."
-					if(403)
-						status_code_meaning = "Forbidden."
-					if(404)
-						status_code_meaning = "Not Found."
-					if(408)
-						status_code_meaning = "Request Timeout."
-					if(429)
-						status_code_meaning = "Too Many Requests."
-					if(500)
-						status_code_meaning = "Internal Server Error."
-					if(502)
-						status_code_meaning = "Bad Gateway."
-					if(503)
-						status_code_meaning = "Service Unavailable."
-					if(504)
-						status_code_meaning = "Gateway Timeout."
-					if(508)
-						status_code_meaning = "Loop Detected."
-					if(521)
-						status_code_meaning = "Web Server Is Down."
-					if(522)
-						status_code_meaning = "Connection Timed Out."
-				GLOB.tts_errors["[response.status_code]"] = status_code_meaning
+				GLOB.tts_errors[response.status_code] = 1
 		GLOB.tts_error_raw = req._raw_response
 		fdel(.)
 		return null
@@ -116,6 +88,13 @@ var/list/tts_seeds = list()
 	var/datum/http_response/response = req.into_response()
 	if(response.status_code != 200)
 		GLOB.tts_request_failed++
+		if(response.status_code)
+			if(GLOB.tts_errors["[response.status_code]"])
+				GLOB.tts_errors["[response.status_code]"]++
+			else
+				GLOB.tts_errors += "[response.status_code]"
+				GLOB.tts_errors[response.status_code] = 1
+		GLOB.tts_error_raw = req._raw_response
 		fdel(.)
 		return ""
 	GLOB.tts_request_succeeded++
