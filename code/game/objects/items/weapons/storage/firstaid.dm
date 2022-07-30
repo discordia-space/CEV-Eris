@@ -393,6 +393,6 @@
 	name = "organ freezer"
 	icon_state = "freezer_red"
 	item_state = "medicalpack"
-	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 15)
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 15)
 	max_storage_space = DEFAULT_NORMAL_STORAGE * 1.25
 	can_hold = list(/obj/item/organ)
