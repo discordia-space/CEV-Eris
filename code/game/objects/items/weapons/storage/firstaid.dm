@@ -372,7 +372,7 @@
 	icon_state = "freezer"
 	item_state = "medicalpack"
 	max_w_class = ITEM_SIZE_NORMAL
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 15)
 	can_hold = list(/obj/item/organ, /obj/item/reagent_containers/food, /obj/item/reagent_containers/glass)
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	use_to_pickup = TRUE
@@ -393,5 +393,6 @@
 	name = "organ freezer"
 	icon_state = "freezer_red"
 	item_state = "medicalpack"
-	matter = list(MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 15)
 	max_storage_space = DEFAULT_NORMAL_STORAGE * 1.25
+	can_hold = list(/obj/item/organ)
