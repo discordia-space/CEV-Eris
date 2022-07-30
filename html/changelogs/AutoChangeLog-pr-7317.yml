@@ -1,5 +1,0 @@
-author: Trilbyspaceclone
-delete-after: true
-changes:
-  - bugfix: Debugging tool for integrated electronics now has saner values of materials
-  - bugfix: Printing integrated electronics no longer doups materals
