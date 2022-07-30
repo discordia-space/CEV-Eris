@@ -82,6 +82,7 @@ var/list/tts_seeds = list()
 						status_code_meaning = "Web Server Is Down."
 					if(522)
 						status_code_meaning = "Connection Timed Out."
+				GLOB.tts_errors["[response.status_code]"] = status_code_meaning
 		GLOB.tts_error_raw = req._raw_response
 		fdel(.)
 		return null
