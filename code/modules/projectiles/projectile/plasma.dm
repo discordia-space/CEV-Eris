@@ -8,6 +8,8 @@
 	damage_types = list(BURN = 27)
 	recoil = 4 // .20 level
 
+	style_damage = 20
+
 	muzzle_type = /obj/effect/projectile/plasma/muzzle
 	impact_type = /obj/effect/projectile/plasma/impact
 
@@ -63,7 +65,7 @@
 
 	aoe_strong = 1
 	aoe_weak = 1
-	heat_damage = 20
+	heat_damage = 33
 	emp_strength = 2
 
 	fire_stacks = FALSE
@@ -76,7 +78,7 @@
 
 	aoe_strong = 0
 	aoe_weak = 1
-	heat_damage = 20
+	heat_damage = 27
 	emp_strength = 3
 
 	fire_stacks = FALSE
@@ -84,12 +86,12 @@
 /obj/item/projectile/plasma/aoe/heat
 	name = "high-temperature plasma blast"
 	armor_penetration = 50
-	damage_types = list(BURN = 19)
+	damage_types = list(BURN = 23)
 	recoil = 12
 
 	aoe_strong = 1
 	aoe_weak = 1
-	heat_damage = 20
+	heat_damage = 33
 	emp_strength = 0
 
 	fire_stacks = TRUE
@@ -102,7 +104,7 @@
 
 	aoe_strong = 1
 	aoe_weak = 2
-	heat_damage = 30
+	heat_damage = 47
 	emp_strength = 0
 
 	fire_stacks = TRUE
