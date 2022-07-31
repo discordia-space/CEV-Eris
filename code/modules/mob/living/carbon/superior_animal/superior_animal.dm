@@ -48,6 +48,8 @@
 	var/max_air_pressure = 300 //above this, brute damage is dealt
 	var/min_bodytemperature = 200 //below this, burn damage is dealt
 	var/max_bodytemperature = 360 //above this, burn damage is dealt
+	var/ignite_bodytemperature = 380 //above this, gain firestacks
+	var/temp_damage_mult = 1 //so bigger roaches can take more temperature damage
 
 	var/deathmessage = "dies."
 	var/attacktext = "bitten"
@@ -127,7 +129,7 @@
 		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
 
 	.=..()
-	
+
 	if (mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
 		if (prob(extra_burrow_chance))
@@ -190,7 +192,19 @@
 	var/enviro_damage = (bodytemperature < min_bodytemperature) || (pressure < min_air_pressure) || (pressure > max_air_pressure)
 	if(enviro_damage) // its like this to avoid extra processing further below without using goto
 		bodytemperature += (bodytemperature - environment.temperature) * (environment.total_moles / MOLES_CELLSTANDARD) * (bodytemperature < min_bodytemperature ? 1 - heat_protection : -1 + cold_protection)
-		adjustFireLoss(bodytemperature < min_bodytemperature ? 0 : 15)
+		if(bodytemperature < min_bodytemperature)
+			var/burn_dam = 10 * temp_damage_mult
+			if(on_fire)
+				fire_stacks = 0
+				ExtinguishMob()
+				burn_dam += 40 // Temperature shock
+			adjustFireLoss(burn_dam)
+		else if (bodytemperature > max_bodytemperature)
+			if(bodytemperature > ignite_bodytemperature)
+				fire_stacks += 2
+				IgniteMob()
+			adjustFireLoss(5 * temp_damage_mult)
+			updatehealth()
 		adjustBruteLoss((pressure < min_air_pressure  || pressure > max_air_pressure) ? 0 : 6)
 		bad_environment = TRUE
 		return FALSE

@@ -125,7 +125,7 @@
 			if (prob(50))
 				Paralyse(1)
 			adjustEarDamage(15,60)
-		
+
 		if (4)
 			b_loss += 15
 			if (prob(25))
@@ -252,75 +252,6 @@
 /mob/living/carbon/superior_animal/get_heat_protection(var/temperature)
 	return heat_protection
 
-/mob/living/carbon/superior_animal/handle_environment(datum/gas_mixture/environment)
-	bad_environment = FALSE
-	if(!environment)
-		return
-
-	if (!contaminant_immunity)
-		for(var/g in environment.gas)
-			if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && environment.gas[g] > gas_data.overlay_limit[g] + 1)
-				bad_environment = TRUE
-				pl_effects()
-				break
-
-	if(istype(get_turf(src), /turf/space))
-		if (bodytemperature > 1)
-			bodytemperature = max(1,bodytemperature - 10*(1-get_cold_protection(0)))
-
-		if (min_air_pressure > 0)
-			bad_environment = TRUE
-			adjustBruteLoss(2)
-	else
-		var/loc_temp = T0C
-		var/loc_pressure = 0
-/*
-		if(istype(loc, /mob/living/exosuit))
-			var/mob/living/exosuit/M = loc
-			loc_temp =  M.return_temperature()
-			loc_pressure =  M.return_pressure()
-*/
-		if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			var/obj/machinery/atmospherics/unary/cryo_cell/M = loc
-			loc_temp = M.air_contents.temperature
-			loc_pressure = M.air_contents.return_pressure()
-		else
-			loc_temp = environment.temperature
-			loc_pressure = environment.return_pressure()
-
-		//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
-		var/temp_adj = 0
-		if(loc_temp < bodytemperature) //Place is colder than we are
-			var/thermal_protection = get_cold_protection(loc_temp) //0 to 1 value, which corresponds to the percentage of protection
-			if(thermal_protection < 1)
-				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR) //this will be negative
-		else if (loc_temp > bodytemperature) //Place is hotter than we are
-			var/thermal_protection = get_heat_protection(loc_temp) //0 to 1 value, which corresponds to the percentage of protection
-			if(thermal_protection < 1)
-				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
-
-		var/relative_density = environment.total_moles / MOLES_CELLSTANDARD
-		bodytemperature += between(BODYTEMP_COOLING_MAX, temp_adj*relative_density, BODYTEMP_HEATING_MAX)
-
-		if ((loc_pressure < min_air_pressure) || (loc_pressure > max_air_pressure))
-			bad_environment = TRUE
-			adjustBruteLoss(2)
-
-	if (overkill_dust && (getFireLoss() >= maxHealth*2))
-		if (bodytemperature >= max_bodytemperature*1.5)
-			dust()
-			return
-
-	if ((bodytemperature > max_bodytemperature) || (bodytemperature < min_bodytemperature))
-		bad_environment = TRUE
-		adjustFireLoss(5)
-		updatehealth()
-
-
-	//If we're unable to breathe, lets get out of here
-	if (can_burrow && !stat && bad_environment)
-		evacuate()
-
 /mob/living/carbon/superior_animal/handle_breath(datum/gas_mixture/breath)
 	if(status_flags & GODMODE)
 		return
@@ -354,16 +285,17 @@
 
 /mob/living/carbon/superior_animal/handle_fire(flammable_gas, turf/location)
 	// if its lower than 0 , just bring it back to 0
-	fire_stacks = fire_stacks > 0 ? min(0, ++fire_stacks) : fire_stacks
+	fire_stacks = fire_stacks > 0 ? fire_stacks - 1 : fire_stacks < 0 ? fire_stacks + 1 : fire_stacks
+
+	fire_stacks = fire_stacks == 0 ? fire_stacks : fire_stacks > 0 ? fire_stacks - 1 : fire_stacks + 1
 	// branchless programming , faster than conventional the more we avoid if checks
-	var/handling_needed = on_fire && (fire_stacks < 0 || flammable_gas < 1)
+	var/handling_needed = on_fire && (fire_stacks < 1 || flammable_gas < 1)
 	if(handling_needed)
 		ExtinguishMob() //Fire's been put out.
 		return TRUE
 	if(!on_fire)
 		return FALSE
-	adjustFireLoss(2 * bodytemperature / max_bodytemperature * (1 - heat_protection)) // scaling with how much you are over your body temp
-	bodytemperature += fire_stacks * 5 * ( 1 - heat_protection )// 5 degrees per firestack
+	adjustFireLoss(3 * temp_damage_mult)
 	if(isturf(location))
 		location.hotspot_expose( FIRESTACKS_TEMP_CONV(fire_stacks), 50, 1)
 

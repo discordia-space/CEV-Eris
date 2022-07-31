@@ -128,7 +128,7 @@
 		to_chat(src, SPAN_WARNING("You have been hit by [P]!"))
 		qdel(P)
 		return TRUE
-	
+
 	if(P.agony > 0)
 		hit_impact(P.agony, hit_dir)
 		damage_through_armor(P.agony, HALLOSS, def_zone, P.check_armour, armour_pen = P.armor_penetration, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P))
@@ -323,7 +323,7 @@
 /mob/living/proc/ExtinguishMob()
 	if(on_fire)
 		on_fire = FALSE
-		fire_stacks = 0
+		fire_stacks = max(0, fire_stacks - 3)
 		set_light(max(0, light_range - 3))
 		update_fire()
 
@@ -342,6 +342,10 @@
 	else if(fire_stacks <= 0)
 		ExtinguishMob() //Fire's been put out.
 		return 1
+
+	fire_stacks-- // The fire will slowly die out
+	fire_stacks = CLAMP(fire_stacks, -5, 5) // Limit stacks
+	take_overall_damage(burn=8, used_weapon = "Thermal Burns")
 
 	var/datum/gas_mixture/G = loc.return_air() // Check if we're standing in an oxygenless environment
 	if(G.gas["oxygen"] < 1)
