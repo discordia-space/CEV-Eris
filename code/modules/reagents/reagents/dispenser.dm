@@ -101,8 +101,6 @@
 	scannable = 1
 
 	var/druggy = 0
-	var/adj_temp = 0
-	var/targ_temp = 310
 	var/halluci = 0
 	sanity_gain_ingest = 0.5 //this defines how good eating/drinking the thing will make you feel, scales off strength and strength mod(ethanol)
 	taste_tag = list()  // list the tastes the thing got there
@@ -174,11 +172,6 @@
 
 	if(druggy != 0)
 		M.druggy = max(M.druggy, druggy)
-
-	if(adj_temp > 0 && M.bodytemperature < targ_temp) // 310 is the normal bodytemp. 310.055
-		M.bodytemperature = min(targ_temp, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
-	if(adj_temp < 0 && M.bodytemperature > targ_temp)
-		M.bodytemperature = min(targ_temp, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 
 	if(halluci)
 		M.adjust_hallucination(halluci, halluci)

@@ -145,7 +145,7 @@
 /datum/reagent/stim/bouncer/overdose(mob/living/carbon/M, alien)
 	if(prob(5 - (3 * M.stats.getMult(STAT_TGH))))
 		M.Stun(rand(1,5))
-	M.bodytemperature += TEMPERATURE_DAMAGE_COEFFICIENT
+	M.adjustHeat(CLAMP(16 / TEMPERATURE_DAMAGE_DIVISOR, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX))
 
 /datum/reagent/stim/steady
 	name = "Steady"
@@ -327,7 +327,7 @@
 /datum/reagent/stim/boxer/overdose(mob/living/carbon/M, alien)
 	if(prob(8 - (3 * M.stats.getMult(STAT_TGH))))
 		M.Stun(rand(2,5))
-	M.bodytemperature += TEMPERATURE_DAMAGE_COEFFICIENT * 1.5
+	M.adjustHeat(CLAMP(24 / TEMPERATURE_DAMAGE_DIVISOR, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX))
 
 /datum/reagent/stim/turbo
 	name = "TURBO"

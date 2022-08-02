@@ -268,11 +268,12 @@
 	taste_tag = list(TASTE_SPICY)
 
 /datum/reagent/organic/frostoil/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
+	M.adjustHeat(CLAMP((200 - M.bodytemperature) / TEMPERATURE_DAMAGE_DIVISOR * effect_multiplier, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX))
+
 	if(prob(1))
 		M.emote("shiver")
 	if(isslime(M))
-		M.bodytemperature = max(M.bodytemperature - rand(10,20), 0)
+		M.adjustHeat(CLAMP(-rand(10, 20) / TEMPERATURE_DAMAGE_DIVISOR * effect_multiplier, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX))
 	holder.remove_reagent("capsaicin", 5)
 
 /datum/reagent/organic/capsaicin
@@ -402,6 +403,7 @@
 	var/adj_drowsy = 0
 	var/adj_sleepy = 0
 	var/adj_temp = 0
+	var/targ_temp = 310
 	reagent_type = "Drink"
 	price_per_unit = 0.25
 
@@ -415,9 +417,9 @@
 	M.drowsyness = max(0, M.drowsyness + adj_drowsy)
 	M.AdjustSleeping(adj_sleepy)
 	if(adj_temp > 0 && M.bodytemperature < 310) // 310 is the normal bodytemp. 310.055
-		M.bodytemperature = min(310, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
+		M.adjustHeat(CLAMP((targ_temp - M.bodytemperature) / TEMPERATURE_DAMAGE_DIVISOR * abs(adj_temp) * effect_multiplier, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX))
 	if(adj_temp < 0 && M.bodytemperature > 310)
-		M.bodytemperature = min(310, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
+		M.adjustHeat(CLAMP((targ_temp - M.bodytemperature) / TEMPERATURE_DAMAGE_DIVISOR * abs(adj_temp) * effect_multiplier, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX))
 
 // Juices
 
@@ -1077,7 +1079,7 @@
 	sanity_gain_ingest = 0.3
 	color = "#302000"
 	nutrition = 5
-	adj_temp = 5
+	adj_temp = 1
 	taste_tag = list(TASTE_SLIMEY)
 
 /datum/reagent/drink/hell_ramen
@@ -1092,9 +1094,8 @@
 	taste_tag = list(TASTE_SLIMEY,TASTE_SPICY)
 
 /datum/reagent/drink/hell_ramen/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
-	..()
-	M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
-
+	..() // Temperature of hell according to the internet
+	M.adjustHeat(CLAMP((716 - M.bodytemperature) / TEMPERATURE_DAMAGE_DIVISOR * effect_multiplier, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX))
 /datum/reagent/drink/ice
 	name = "Ice"
 	id = "ice"
@@ -1181,10 +1182,10 @@
 	if(druggy != 0)
 		M.druggy = max(M.druggy, druggy)
 
-	if(adj_temp > 0 && M.bodytemperature < targ_temp) // 310 is the normal bodytemp. 310.055
-		M.bodytemperature = min(targ_temp, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
-	if(adj_temp < 0 && M.bodytemperature > targ_temp)
-		M.bodytemperature = min(targ_temp, M.bodytemperature - (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
+	if(adj_temp > 0 && M.bodytemperature < 310) // 310 is the normal bodytemp. 310.055
+		M.adjustHeat(CLAMP((targ_temp - M.bodytemperature) / TEMPERATURE_DAMAGE_DIVISOR * abs(adj_temp) * effect_multiplier, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX))
+	if(adj_temp < 0 && M.bodytemperature > 310)
+		M.adjustHeat(CLAMP((targ_temp - M.bodytemperature) / TEMPERATURE_DAMAGE_DIVISOR * abs(adj_temp) * effect_multiplier, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX))
 
 	if(halluci)
 		M.adjust_hallucination(halluci, halluci)
@@ -1336,7 +1337,7 @@
 	M.drowsyness = max(0, M.drowsyness - 3 * effect_multiplier)
 	M.sleeping = max(0, M.sleeping - 2 * effect_multiplier)
 	if(M.bodytemperature > 310)
-		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT) * effect_multiplier)
+		M.adjustHeat(CLAMP(273 / TEMPERATURE_DAMAGE_DIVISOR * effect_multiplier * 5, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX))
 
 /datum/reagent/alcohol/coffee/overdose(mob/living/carbon/M, alien)
 	M.make_jittery(5)
@@ -1438,7 +1439,7 @@
 	..()
 	M.drowsyness = max(0, M.drowsyness - 7 * effect_multiplier)
 	if(M.bodytemperature > 310)
-		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT) * effect_multiplier)
+		M.adjustHeat(CLAMP(273 / TEMPERATURE_DAMAGE_DIVISOR * effect_multiplier * 5, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX))
 	M.make_jittery(5 * effect_multiplier)
 	M.add_chemical_effect(CE_PULSE, 2)
 
