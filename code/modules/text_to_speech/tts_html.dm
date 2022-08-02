@@ -11,11 +11,10 @@
 
 
 /datum/http_request/proc/prepare(_method, _url, _body = "", list/_headers, _output_file)
-	headers = !length(headers) ? "" : json_encode(headers)
+	headers = LAZYLEN(_headers) ? json_encode(_headers) : ""
 	method = _method
 	url = _url
 	body = _body
-	headers = _headers
 	output_file = _output_file
 
 

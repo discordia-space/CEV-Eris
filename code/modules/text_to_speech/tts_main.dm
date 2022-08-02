@@ -54,7 +54,7 @@ var/list/tts_seeds = list()
 				GLOB.tts_errors["[response.status_code]"]++
 			else
 				GLOB.tts_errors += "[response.status_code]"
-				GLOB.tts_errors[response.status_code] = 1
+				GLOB.tts_errors["[response.status_code]"] = 1
 		GLOB.tts_error_raw = req._raw_response
 		fdel(.)
 		return null
@@ -93,7 +93,7 @@ var/list/tts_seeds = list()
 				GLOB.tts_errors["[response.status_code]"]++
 			else
 				GLOB.tts_errors += "[response.status_code]"
-				GLOB.tts_errors[response.status_code] = 1
+				GLOB.tts_errors["[response.status_code]"] = 1
 		GLOB.tts_error_raw = req._raw_response
 		fdel(.)
 		return ""
