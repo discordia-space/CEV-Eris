@@ -33,12 +33,12 @@ proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, pen
 			if(L.stat == CONSCIOUS)
 				to_chat(L, SPAN_WARNING("You feel your skin boiling!"))
 
-			if(damage.[HEAT])
-				var/heat_damage = isLight_range ? damage.[HEAT] / 2 : damage.[HEAT]
+			if(damage[HEAT])
+				var/heat_damage = isLight_range ? damage[HEAT] / 2 : damage[HEAT]
 				L.damage_through_armor(heat_damage, HEAT, attack_flag = ARMOR_ENERGY, armour_pen = penetration)
 
-			if(damage.[BURN])
-				var/burn_damage = isLight_range ? damage.[BURN] / 2 : damage.[BURN]
+			if(damage[BURN])
+				var/burn_damage = isLight_range ? damage[BURN] / 2 : damage[BURN]
 
 
 				var/organ_hit = BP_CHEST //Chest is hit first
