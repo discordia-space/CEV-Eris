@@ -15,6 +15,8 @@
 	melee_damage_lower = 7 // Slow, but big punch
 	melee_damage_upper = 16
 
+	temp_damage_mult = 3
+
 	// Armor related variables
 	armor = list(
 		melee = 60,

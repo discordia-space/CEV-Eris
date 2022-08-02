@@ -192,6 +192,10 @@
 	if (overkill_dust && (amount >= overkill_dust) && (getFireLoss() >= maxHealth*2))
 		dust()
 
+/mob/living/carbon/superior_animal/adjustHeat(var/amount)
+	amount /= insulation_divisor
+	..(amount)
+
 /mob/living/carbon/superior_animal/proc/reagr_new_targets(reagr_radius = 1)
 	var/target = findTarget()
 	for(var/mob/living/carbon/superior_animal/SA in view(reagr_radius))
@@ -284,8 +288,6 @@
 	return TRUE
 
 /mob/living/carbon/superior_animal/handle_fire(flammable_gas, turf/location)
-	// if its lower than 0 , just bring it back to 0
-	fire_stacks = fire_stacks > 0 ? fire_stacks - 1 : fire_stacks < 0 ? fire_stacks + 1 : fire_stacks
 
 	fire_stacks = fire_stacks == 0 ? fire_stacks : fire_stacks > 0 ? fire_stacks - 1 : fire_stacks + 1
 	// branchless programming , faster than conventional the more we avoid if checks

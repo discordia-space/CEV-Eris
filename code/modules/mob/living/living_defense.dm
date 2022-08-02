@@ -78,7 +78,7 @@
 	else
 		//Pain part of the damage, that simulates impact from armor absorbtion
 		//For balance purposes, it's lowered by ARMOR_HALLOS_COEFFICIENT
-		if(!(damagetype == HALLOSS ))
+		if(!(damagetype == HALLOSS ) && !(damagetype == HEAT))
 			var/agony_gamage = round( ( effective_damage * armor_effectiveness * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)) / 100))
 			adjustHalLoss(agony_gamage)
 
@@ -344,7 +344,7 @@
 		return 1
 
 	fire_stacks-- // The fire will slowly die out
-	fire_stacks = CLAMP(fire_stacks, -5, 5) // Limit stacks
+	fire_stacks = CLAMP(fire_stacks, -10, 10) // Limit stacks
 	take_overall_damage(burn=8, used_weapon = "Thermal Burns")
 
 	var/datum/gas_mixture/G = loc.return_air() // Check if we're standing in an oxygenless environment

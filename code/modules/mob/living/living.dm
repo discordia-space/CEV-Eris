@@ -298,6 +298,11 @@ default behaviour is:
 		return FALSE	//godmode
 	halloss = amount
 
+/mob/living/proc/adjustHeat(amount) // Doesn't need setHeat, aheal already cools your body to room temperature
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	bodytemperature += amount // No need for limits, let people burn and freeze
+
 /mob/living/proc/getMaxHealth()
 	return maxHealth
 

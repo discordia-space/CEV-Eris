@@ -10,6 +10,7 @@
 	meat_amount = 3
 	rarity_value = 15
 
+	temp_damage_mult = 3
 
 
 /mob/living/carbon/superior_animal/roach/benzin/Initialize(mapload)

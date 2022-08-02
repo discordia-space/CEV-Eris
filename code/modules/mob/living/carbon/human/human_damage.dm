@@ -92,6 +92,10 @@
 		heal_overall_damage(0, -amount)
 	BITSET(hud_updateflag, HEALTH_HUD)
 
+/mob/living/carbon/human/adjustHeat(var/amount)
+	amount *= species.heat_mod
+	..(amount)
+
 /mob/living/carbon/human/proc/adjustBruteLossByPart(amount, organ_name, obj/damage_source)
 	amount = amount*species.brute_mod
 	if (organ_name in organs_by_name)

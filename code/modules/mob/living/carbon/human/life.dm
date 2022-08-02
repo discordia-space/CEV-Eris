@@ -627,13 +627,13 @@
 			var/burn_dam = 0
 			switch(bodytemperature)
 				if(-INFINITY to species.cold_level_3)
-					burn_dam = COLD_DAMAGE_LEVEL_1
+					burn_dam = COLD_DAMAGE_LEVEL_3
+					fire_stacks -= 3
 				if(species.cold_level_3 to species.cold_level_2)
 					burn_dam = COLD_DAMAGE_LEVEL_2
 					fire_stacks -= 1
 				if(species.cold_level_2 to species.cold_level_1)
-					burn_dam = COLD_DAMAGE_LEVEL_3
-					fire_stacks -= 3
+					burn_dam = COLD_DAMAGE_LEVEL_1
 
 			if(bodytemperature <= species.cold_level_2)
 				if(on_fire)

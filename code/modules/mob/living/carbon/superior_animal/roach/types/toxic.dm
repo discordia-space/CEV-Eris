@@ -30,6 +30,8 @@
 		rad = 100
 	)
 
+	temp_damage_mult = 2
+
 /mob/living/carbon/superior_animal/roach/toxic/UnarmedAttack(atom/A, var/proximity)
 	. = ..()
 	if(prob(25))

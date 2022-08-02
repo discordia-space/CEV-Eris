@@ -5,7 +5,7 @@
 	hitsound_wall = 'sound/weapons/guns/misc/laser_searwall.ogg'
 	armor_penetration = 25
 	check_armour = ARMOR_ENERGY
-	damage_types = list(BURN = 27)
+	damage_types = list(BURN = 27, HEAT = 20)
 	recoil = 4 // .20 level
 
 	muzzle_type = /obj/effect/projectile/plasma/muzzle
@@ -14,20 +14,20 @@
 /obj/item/projectile/plasma/light
 	name = "light plasma bolt"
 	armor_penetration = 15
-	damage_types = list(BURN = 23)
+	damage_types = list(BURN = 23, HEAT = 10)
 	recoil = 2
 
 /obj/item/projectile/plasma/heavy
 	name = "heavy plasma bolt"
 	armor_penetration = 50
-	damage_types = list(BURN = 34)
+	damage_types = list(BURN = 34, HEAT = 30)
 	recoil = 6
 
 /obj/item/projectile/plasma/stun
 	name = "stun plasma bolt"
 	taser_effect = 1
 	agony = 30
-	damage_types = list(HALLOSS = 30,BURN = 5)
+	damage_types = list(HALLOSS = 30, BURN = 5)
 	impact_type = /obj/effect/projectile/stun/impact
 
 /obj/item/projectile/plasma/stun/heavy
@@ -42,7 +42,7 @@
 
 	var/aoe_strong = 0
 	var/aoe_weak = 0 // Should be greater or equal to strong
-	var/heat_damage = 0 // FALSE or 0 to disable
+	var/list/heat_damage = list() // Leave empty to disable
 	var/emp_strength = 0 // Divides the effects by this amount, FALSE or 0 to disable
 
 	var/fire_stacks = FALSE
@@ -50,7 +50,7 @@
 /obj/item/projectile/plasma/aoe/on_hit(atom/target)
 	if(emp_strength)
 		empulse(target, aoe_strong, aoe_weak, strength=emp_strength)
-	if(heat_damage)
+	if(heat_damage.len)
 		heatwave(target, aoe_strong, aoe_weak, heat_damage, fire_stacks, armor_penetration)
 	..()
 
@@ -58,12 +58,12 @@
 	name = "ion-plasma bolt"
 	icon_state = "ion"
 	armor_penetration = 0
-	damage_types = list(BURN = 23)
+	damage_types = list(BURN = 23, HEAT = 10)
 	recoil = 8
 
 	aoe_strong = 1
 	aoe_weak = 1
-	heat_damage = 20
+	heat_damage = list(BURN = 33, HEAT = 10)
 	emp_strength = 2
 
 	fire_stacks = FALSE
@@ -76,7 +76,7 @@
 
 	aoe_strong = 0
 	aoe_weak = 1
-	heat_damage = 20
+	heat_damage = list(BURN = 23, HEAT = 10)
 	emp_strength = 3
 
 	fire_stacks = FALSE
@@ -84,28 +84,28 @@
 /obj/item/projectile/plasma/aoe/heat
 	name = "high-temperature plasma blast"
 	armor_penetration = 50
-	damage_types = list(BURN = 19)
+	damage_types = list(BURN = 19, HEAT = 30)
 	recoil = 12
 
 	aoe_strong = 1
 	aoe_weak = 1
-	heat_damage = 20
+	heat_damage = list(BURN = 33, HEAT = 30)
 	emp_strength = 0
 
-	fire_stacks = TRUE
+	fire_stacks = 3
 
 /obj/item/projectile/plasma/aoe/heat/strong
 	name = "high-temperature plasma blast"
 	armor_penetration = 25
-	damage_types = list(BURN = 27)
+	damage_types = list(BURN = 27, HEAT = 50)
 	recoil = 18
 
 	aoe_strong = 1
 	aoe_weak = 2
-	heat_damage = 30
+	heat_damage = list(BURN = 47, HEAT = 50)
 	emp_strength = 0
 
-	fire_stacks = TRUE
+	fire_stacks = 4
 
 /obj/item/projectile/plasma/check_penetrate(var/atom/A)
 	if(istype(A, /obj/item/shield))

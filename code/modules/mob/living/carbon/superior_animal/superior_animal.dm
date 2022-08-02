@@ -47,9 +47,11 @@
 	var/min_air_pressure = 50 //below this, brute damage is dealt
 	var/max_air_pressure = 300 //above this, brute damage is dealt
 	var/min_bodytemperature = 200 //below this, burn damage is dealt
-	var/max_bodytemperature = 360 //above this, burn damage is dealt
+	var/max_bodytemperature = 350 //above this, burn damage is dealt
+	bodytemperature = 300	//cold blood
 	var/ignite_bodytemperature = 380 //above this, gain firestacks
 	var/temp_damage_mult = 1 //so bigger roaches can take more temperature damage
+	var/insulation_divisor = 1 //applied to all sources of heat damage (not the environment)
 
 	var/deathmessage = "dies."
 	var/attacktext = "bitten"
@@ -189,7 +191,7 @@
 
 /mob/living/carbon/superior_animal/proc/handle_cheap_environment(datum/gas_mixture/environment as anything)
 	var/pressure = environment.return_pressure()
-	var/enviro_damage = (bodytemperature < min_bodytemperature) || (pressure < min_air_pressure) || (pressure > max_air_pressure)
+	var/enviro_damage = (bodytemperature < min_bodytemperature ? TRUE : bodytemperature > max_bodytemperature) || (pressure < min_air_pressure) || (pressure > max_air_pressure)
 	if(enviro_damage) // its like this to avoid extra processing further below without using goto
 		bodytemperature += (bodytemperature - environment.temperature) * (environment.total_moles / MOLES_CELLSTANDARD) * (bodytemperature < min_bodytemperature ? 1 - heat_protection : -1 + cold_protection)
 		if(bodytemperature < min_bodytemperature)
