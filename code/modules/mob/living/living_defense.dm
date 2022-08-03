@@ -122,7 +122,7 @@
 			src.visible_message(SPAN_WARNING("[src] triggers their deadman's switch!"))
 			signaler.signal()
 
-	var/agony = P.damage_type[HALLOSS] ? P.damage_type[HALLOSS] : 0
+	var/agony = P.damage_types[HALLOSS] ? P.damage_types[HALLOSS] : 0
 	//Stun Beams
 	if(P.taser_effect)
 		stun_effect_act(0, agony, def_zone, P)
