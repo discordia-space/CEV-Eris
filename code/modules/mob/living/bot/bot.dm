@@ -7,6 +7,7 @@
 	universal_speak = 1
 	density = FALSE
 	bad_type = /mob/living/bot
+	tts_seed = "Robot_1"
 	var/obj/item/card/id/botcard = null
 	var/list/botcard_access = list()
 	var/on = TRUE

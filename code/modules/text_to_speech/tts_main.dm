@@ -35,12 +35,12 @@ var/list/tts_seeds = list()
 
 /proc/get_tts(message, seed = TTS_SEED_DEFAULT_MALE)
 	GLOB.tts_wanted++
-	var/text = url_encode(message)
+	var/text = rustg_url_encode(sanitize_tts_input(message))
 	. = "sound/tts_cache/[seed]/[text].ogg"
 	if(fexists(.))
 		GLOB.tts_reused++
 		return
-	var/seed_value = url_encode(tts_seeds[seed] ? tts_seeds[seed]["value"] : seed)
+	var/seed_value = rustg_url_encode(tts_seeds[seed] ? tts_seeds[seed]["value"] : seed)
 	var/api_request = "https://api.novelai.net/ai/generate-voice?text=[text]&seed=[seed_value]&voice=-1&opus=false&version=v2"
 	var/datum/http_request/req = new()
 	req.prepare(RUSTG_HTTP_METHOD_GET, api_request, "", list("authorization" = config.tts_bearer), .)
@@ -78,8 +78,8 @@ var/list/tts_seeds = list()
 	if(fexists(.))
 		GLOB.tts_reused++
 		return
-	var/text = url_encode(language.scramble(message))
-	var/seed_value = url_encode(tts_seeds[seed] ? tts_seeds[seed]["value"] : seed)
+	var/text = rustg_url_encode(sanitize_tts_input(language.scramble(message)))
+	var/seed_value = rustg_url_encode(tts_seeds[seed] ? tts_seeds[seed]["value"] : seed)
 	var/api_request = "https://api.novelai.net/ai/generate-voice?text=[text]&seed=[seed_value]&voice=-1&opus=false&version=v2"
 	var/datum/http_request/req = new()
 	req.prepare(RUSTG_HTTP_METHOD_GET, api_request, "", list("authorization" = config.tts_bearer), .)
@@ -105,14 +105,66 @@ var/list/tts_seeds = list()
 /proc/tts_cast(mob/listener, message, seed)
 	var/voice = get_tts(message, seed)
 	if(voice)
-		sound_to(listener, sound(file = voice, volume = 150))
+		playsound_tts(null, list(listener), null, voice)
 
 
 /proc/tts_broadcast(mob/speaker, message, seed, datum/language/language)
 	var/voice = get_tts(message, seed)
+	var/voice_scrambled
 	if(voice)
-		playsound(speaker, voice, 100, FALSE, language_scramble = list(message, seed, language), preference_required = "SOUND_TTS_LOCAL")
+		if(language)
+			voice_scrambled = get_tts_scrambled(message, seed, language)
+		playsound_tts(speaker, null, voice, voice_scrambled, language)
 
 
 /proc/cleanup_tts_file(file)
 	fdel(file)
+
+
+/proc/sanitize_tts_input(message)
+	// This intended to remove patters like </span> and symbols that
+	// BYOND will turn into complete mess on url encoding
+	// E.g. turning ' into %26%2339%3B, on which tts service will choke
+	// Not even attempting to player-proof, they will always find a way
+
+	var/list/output = new
+
+	var/skipping_span
+	var/character_sequence_end
+
+	var/message_byte_length = length(message)
+	var/message_symbol_length = length_char(message)
+	var/ascii_overdose = (message_byte_length != message_symbol_length) // Have to use slower procs in that case
+
+	for(var/i in 1 to (ascii_overdose ? message_symbol_length : message_byte_length))
+		var/character = (ascii_overdose ? copytext_char(message, i, i+1) : copytext(message, i, i+1))
+		// Skipping multiple characters, could be BYOND's "text entity" or <span> 
+		if(character_sequence_end)
+			if(character == character_sequence_end)
+				if(skipping_span)
+					if((ascii_overdose ? copytext_char(message, i+1, i+2) : copytext(message, i+1, i+2)) == "g") // ">" symbol/entity, aka "&gt;"
+						skipping_span = FALSE
+						character_sequence_end = ";"
+				else
+					character_sequence_end = null
+		else
+			switch(character)
+				if("'", "`", "\"", "")
+					continue
+				if("&")
+					if(findtext(message, ";", i, i+5)) // If it is an "entity", not a standalone symbol
+						var/next_character = copytext(message, i+1, i+2)
+						if(next_character)
+							if(next_character == "l") // "<" symbol/entity, aka "&lt;"
+								skipping_span = TRUE
+								character_sequence_end = "&"
+								continue
+						character_sequence_end = ";"
+					else
+						output += character
+				if("#")
+					character_sequence_end = ";"
+				else
+					output += character
+
+	. = JOINTEXT(output)

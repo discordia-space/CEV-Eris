@@ -221,7 +221,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 						data, compression, list/level, freq, verbage = "says",
 						datum/language/speaking = null, text_size, use_text_to_speech = TRUE)
 
-
   /* ###### Prepare the radio connection ###### */
 
 	var/display_freq = freq
@@ -317,14 +316,13 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			else
 				heard_garbled += R
 
-
   /* ###### Begin formatting and sending the message ###### */
 	if(length(heard_masked) || length(heard_normal) || length(heard_voice) || length(heard_garbled) || length(heard_gibberish))
 		var/seed = TTS_SEED_ANNOUNCER
 		var/voice
 		var/voice_scrambled
 
-		if(use_text_to_speech)
+		if(config.tts_enabled && use_text_to_speech)
 			if(M)
 				if(M.tts_seed)
 					seed = M.tts_seed
@@ -364,7 +362,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		var/blackbox_msg = "[part_a][name][part_blackbox_b][quotedmsg][part_c]"
 		//var/blackbox_admin_msg = "[part_a][M.name] (Real name: [M.real_name])[part_blackbox_b][quotedmsg][part_c]"
 
-
 		if(istype(blackbox))
 			switch(display_freq)
 				if(PUB_FREQ)
@@ -402,33 +399,24 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(length(heard_masked))
 			for(var/mob/R in heard_masked)
 				R.hear_radio(message,verbage, speaking, part_a, part_b, M, 0, name)
-				if(voice && (R.client?.get_preference_value("SOUND_TTS_RADIO") == GLOB.PREF_YES))
-					if(speaking && !R.say_understands(null, speaking))
-						sound_to(R, sound(voice_scrambled))
-					else
-						sound_to(R, sound(voice))
-					
+			if(voice)
+				playsound_tts(null, heard_masked, voice, voice_scrambled, speaking, is_local = FALSE)
 
 		/* --- Process all the mobs that heard the voice normally (understood) --- */
 
 		if(length(heard_normal))
 			for(var/mob/R in heard_normal)
 				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 0, realname)
-				if(voice && (R.client?.get_preference_value("SOUND_TTS_RADIO") == GLOB.PREF_YES))
-					if(speaking && !R.say_understands(null, speaking))
-						sound_to(R, sound(voice_scrambled))
-					else
-						sound_to(R, sound(voice))
+			if(voice)
+				playsound_tts(null, heard_normal, voice, voice_scrambled, speaking, is_local = FALSE)
+
 		/* --- Process all the mobs that heard the voice normally (did not understand) --- */
 
 		if(length(heard_voice))
 			for(var/mob/R in heard_voice)
 				R.hear_radio(message,verbage, speaking, part_a, part_b, M,0, vname)
-				if(voice && (R.client?.get_preference_value("SOUND_TTS_RADIO") == GLOB.PREF_YES))
-					if(speaking && !R.say_understands(null, speaking))
-						sound_to(R, sound(voice_scrambled))
-					else
-						sound_to(R, sound(voice))
+			if(voice)
+				playsound_tts(null, heard_voice, voice, voice_scrambled, speaking, is_local = FALSE)
 
 		/* --- Process all the mobs that heard a garbled voice (did not understand) --- */
 			// Displays garbled message (ie "f*c* **u, **i*er!")
@@ -436,23 +424,19 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(length(heard_garbled))
 			for(var/mob/R in heard_garbled)
 				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1, vname)
-				if(voice && (R.client?.get_preference_value("SOUND_TTS_RADIO") == GLOB.PREF_YES))
-					if(speaking && !R.say_understands(null, speaking))
-						sound_to(R, sound(voice_scrambled))
-					else
-						sound_to(R, sound(voice))
+			if(voice)
+				playsound_tts(null, heard_garbled, voice, voice_scrambled, speaking, is_local = FALSE)
 
 		/* --- Complete gibberish. Usually happens when there's a compressed message --- */
 
 		if(length(heard_gibberish))
 			for(var/mob/R in heard_gibberish)
 				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1)
-				if(voice && (R.client?.get_preference_value("SOUND_TTS_RADIO") == GLOB.PREF_YES))
-					if(speaking && !R.say_understands(null, speaking))
-						sound_to(R, sound(voice_scrambled))
-					else
-						sound_to(R, sound(voice))
-	return 1
+			if(voice)
+				playsound_tts(null, heard_gibberish, voice, voice_scrambled, speaking, is_local = FALSE)
+
+	return TRUE
+
 
 /proc/Broadcast_SimpleMessage(var/source, var/frequency, var/text, var/data, var/mob/M, var/compression, var/list/levels)
 

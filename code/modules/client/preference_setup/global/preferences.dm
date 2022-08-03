@@ -23,6 +23,16 @@ GLOBAL_VAR_CONST(PREF_HEAR, "Hear")
 GLOBAL_VAR_CONST(PREF_SILENT, "Silent")
 GLOBAL_VAR_CONST(PREF_SHORTHAND, "Shorthand")
 
+GLOBAL_VAR_CONST(PREF_0,	"0")
+GLOBAL_VAR_CONST(PREF_25,	"25")
+GLOBAL_VAR_CONST(PREF_50,	"50")
+GLOBAL_VAR_CONST(PREF_75,	"75")
+GLOBAL_VAR_CONST(PREF_100,	"100")
+GLOBAL_VAR_CONST(PREF_125,	"125")
+GLOBAL_VAR_CONST(PREF_150,	"150")
+GLOBAL_VAR_CONST(PREF_175,	"175")
+GLOBAL_VAR_CONST(PREF_200,	"200")
+
 var/list/_client_preferences
 var/list/_client_preferences_by_key
 var/list/_client_preferences_by_type
@@ -108,13 +118,17 @@ var/list/_client_preferences_by_type
 	description ="Play jukebox music"
 	key = "SOUND_JUKEBOX"
 
-/datum/client_preference/play_tts_local
+/datum/client_preference/play_local_tts
 	description ="Play local text-to-speech"
-	key = "SOUND_TTS_LOCAL"
+	key = "TTS_VOLUME_LOCAL"
+	options = list(GLOB.PREF_0, GLOB.PREF_25, GLOB.PREF_50, GLOB.PREF_75, GLOB.PREF_100, GLOB.PREF_125, GLOB.PREF_150, GLOB.PREF_175, GLOB.PREF_200)
+	default_value = GLOB.PREF_100
 
-/datum/client_preference/play_tts_radio
+/datum/client_preference/play_radio_tts
 	description ="Play radio text-to-speech"
-	key = "SOUND_TTS_RADIO"
+	key = "TTS_VOLUME_RADIO"
+	options = list(GLOB.PREF_0, GLOB.PREF_25, GLOB.PREF_50, GLOB.PREF_75, GLOB.PREF_100, GLOB.PREF_125, GLOB.PREF_150, GLOB.PREF_175, GLOB.PREF_200)
+	default_value = GLOB.PREF_100
 
 /datum/client_preference/play_ambiance/changed(var/mob/preference_mob, var/new_value)
 	if(new_value == GLOB.PREF_NO)
