@@ -304,7 +304,7 @@ default behaviour is:
 	if(amount < -40 && on_fire)
 		ExtinguishMob()
 		adjustFireLoss(TEMP_SHOCK_DAMAGE)
-	bodytemperature = max(amount,0) // No need for limits, let people burn and freeze
+	bodytemperature = max(bodytemperature + amount, 0) // No need for limits, let people burn and freeze
 
 /mob/living/proc/getMaxHealth()
 	return maxHealth

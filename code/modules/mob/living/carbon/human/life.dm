@@ -602,19 +602,21 @@
 		fire_alert = max(fire_alert, FIRE_ALERT_COLD)
 		if(status_flags & GODMODE)	return 1	//godmode
 		var/burn_dam = 0
-		switch(bodytemperature)
-			if(species.heat_level_1 to species.heat_level_2)
-				burn_dam = HEAT_DAMAGE_LEVEL_1
-			if(species.heat_level_2 to species.heat_level_3)
-				burn_dam = HEAT_DAMAGE_LEVEL_2
-				fire_stacks++
-				if(!on_fire)
-					fire_stacks++
-			if(species.heat_level_3 to INFINITY)
-				burn_dam = HEAT_DAMAGE_LEVEL_3
-				fire_stacks += 3
+
+		if(bodytemperature >= species.heat_level_3)
+			burn_dam = HEAT_DAMAGE_LEVEL_3
+			fire_stacks += 3
+
+		else if(bodytemperature >= species.heat_level_2)
+			burn_dam = HEAT_DAMAGE_LEVEL_2
+			fire_stacks++
+
+		else
+			burn_dam = HEAT_DAMAGE_LEVEL_1
+
 
 		IgniteMob() // Ignites oil or other firestacks, damage increased while on fire
+
 		if(on_fire)
 			burn_dam = burn_dam * 2
 
@@ -627,20 +629,20 @@
 
 		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			var/burn_dam = 0
-			switch(bodytemperature)
-				if(-INFINITY to species.cold_level_3)
-					burn_dam = COLD_DAMAGE_LEVEL_3
-					fire_stacks -= 3
-				if(species.cold_level_3 to species.cold_level_2)
-					burn_dam = COLD_DAMAGE_LEVEL_2
-					fire_stacks -= 1
-				if(species.cold_level_2 to species.cold_level_1)
-					burn_dam = COLD_DAMAGE_LEVEL_1
 
-			if(bodytemperature <= species.cold_level_2)
-				if(on_fire)
-					burn_dam += TEMP_SHOCK_DAMAGE // Temperature shock
+			if(bodytemperature <= species.cold_level_3)
+				burn_dam = COLD_DAMAGE_LEVEL_3
+				fire_stacks -= 3
 
+			else if(bodytemperature <= species.cold_level_2)
+				burn_dam = COLD_DAMAGE_LEVEL_2
+				fire_stacks--
+
+			else
+				burn_dam = COLD_DAMAGE_LEVEL_1
+
+			if(on_fire)
+				burn_dam += TEMP_SHOCK_DAMAGE // Temperature shock
 			ExtinguishMob()
 
 			take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
