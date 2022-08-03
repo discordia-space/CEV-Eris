@@ -1045,19 +1045,6 @@ ADMIN_VERB_ADD(/datum/admins/proc/check_tts_stat, R_SERVER, FALSE)
 		to_chat(usr, "Last raw response: [GLOB.tts_error_raw]")
 
 
-ADMIN_VERB_ADD(/datum/admins/proc/change_tts_token, R_SERVER, FALSE)
-/datum/admins/proc/change_tts_token()
-	set category = "Server"
-	set name = "Change text-to-speech token"
-
-	var/choice = input(usr, "Enter a new authenteication token:", "Hope you know what you\'re doing", null) as null|text
-	if(choice)
-		config.tts_bearer = choice
-
-	message_admins("\blue [key_name_admin(usr)] changed tts authentefication token.", 1)
-	log_admin("[key_name(usr)] changed tts authentefication token.")
-
-
 ADMIN_VERB_ADD(/datum/admins/proc/add_tts_seed, R_FUN, FALSE)
 /datum/admins/proc/add_tts_seed()
 	set category = "Fun"
