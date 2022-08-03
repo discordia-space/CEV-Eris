@@ -453,7 +453,7 @@
 	desc = "A voidsuit designed by NeoTheology with a most holy mix of biomatter and inorganic matter."
 	icon_state = "ntvoid"
 	item_state = "ntvoid"
-	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 10, MATERIAL_BIOMATTER = 35)
+	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_STEEL = 10, MATERIAL_BIOMATTER = 35)
 	slowdown = 0.3
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
