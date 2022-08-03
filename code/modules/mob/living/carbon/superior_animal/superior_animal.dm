@@ -193,7 +193,7 @@
 	var/pressure = environment.return_pressure()
 	var/enviro_damage = (bodytemperature < min_bodytemperature ? TRUE : bodytemperature > max_bodytemperature) || (pressure < min_air_pressure) || (pressure > max_air_pressure)
 	if(enviro_damage) // its like this to avoid extra processing further below without using goto
-		bodytemperature += CLAMP((bodytemperature - environment.temperature) / BODYTEMP_ROACH_DIVISOR * (environment.total_moles / MOLES_CELLSTANDARD) * (bodytemperature < environment.temperature ? 1 - heat_protection : -1 + cold_protection), BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX)
+		bodytemperature += CLAMP((bodytemperature - environment.temperature) / BODYTEMP_ROACH_DIVISOR * (environment.total_moles / MOLES_CELLSTANDARD) * -(bodytemperature < environment.temperature ? 1 - heat_protection : 1 - cold_protection), BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX)
 		if(bodytemperature < min_bodytemperature)
 			var/burn_dam = 10 * temp_damage_mult
 			if(on_fire)
