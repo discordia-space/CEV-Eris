@@ -1,5 +1,5 @@
 // Ship voidsuits
-//Engineering rig
+//Engineering void
 /obj/item/clothing/head/space/void/engineering
 	name = "Technomancer voidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has radiation shielding."
@@ -49,7 +49,7 @@
 	accompanying_object = null
 	spawn_blacklisted = TRUE
 
-//Old engineering rig
+//Old engineering void
 /obj/item/clothing/head/space/void/engineeringold
 	name = "outdated Technomancer voidsuit helmet"
 	desc = "This visor has a few more options in its shape than its more newer version."
@@ -306,7 +306,7 @@
 	price_tag = 200
 	armor = list(
 		melee = 40,
-		bullet = 55,
+		bullet = 50,
 		energy = 60,
 		bomb = 40,
 		bio = 100,
@@ -358,7 +358,7 @@
 	)
 	armor = list(
 		melee = 40,
-		bullet = 55,
+		bullet = 50,
 		energy = 60,
 		bomb = 40, //platinum price justifies bloated stats
 		bio = 100,
@@ -438,8 +438,8 @@
 	flags_inv = BLOCKHAIR
 	armor = list(
 		melee = 55,
-		bullet = 50,
-		energy = 45,
+		bullet = 45,
+		energy = 50,
 		bomb = 30,
 		bio = 100,
 		rad = 50
@@ -458,8 +458,8 @@
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
 	    melee = 55,
-		bullet = 50,
-		energy = 45,
+		bullet = 45,
+		energy = 50,
 		bomb = 30,
 		bio = 100,
 		rad = 50
