@@ -105,7 +105,7 @@ var/list/tts_seeds = list()
 /proc/tts_cast(mob/listener, message, seed)
 	var/voice = get_tts(message, seed)
 	if(voice)
-		playsound_tts(null, list(listener), null, voice)
+		playsound_tts(null, list(listener), voice)
 
 
 /proc/tts_broadcast(mob/speaker, message, seed, datum/language/language)
@@ -164,6 +164,8 @@ var/list/tts_seeds = list()
 						output += character
 				if("#")
 					character_sequence_end = ";"
+				if("<")
+					character_sequence_end = ">"
 				else
 					output += character
 
