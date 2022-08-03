@@ -439,7 +439,7 @@
 	armor = list(
 		melee = 55,
 		bullet = 45,
-		energy = 50,
+		energy = 45,
 		bomb = 30,
 		bio = 100,
 		rad = 50
@@ -459,7 +459,7 @@
 	armor = list(
 	    melee = 55,
 		bullet = 45,
-		energy = 50,
+		energy = 45,
 		bomb = 30,
 		bio = 100,
 		rad = 50
