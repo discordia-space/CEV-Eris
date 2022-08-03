@@ -12,7 +12,8 @@
 	melee_damage_upper = 25
 	armor_penetration = 20
 
-	temp_damage_mult = 5
+	temp_damage_mult = 4
+	insulation_divisor = 1
 
 	move_to_delay = 6
 	mob_size = MOB_MEDIUM

@@ -9,6 +9,7 @@
 #define BLAST	  "blast"
 #define PSY       "psy"
 #define HEAT      "heat"
+#define COLD	  "cold"
 
 #define CUT       "cut"
 #define BRUISE    "bruise"

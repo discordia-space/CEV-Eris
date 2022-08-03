@@ -48,11 +48,11 @@ proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, pen
 					L.damage_through_armor(loc_damage, BURN, organ_hit, ARMOR_ENERGY, penetration)
 					organ_hit = pickweight(list(BP_HEAD = 0.2, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG = 0.1, BP_L_LEG = 0.1))  //We determine some other body parts that should be hit
 
-			L.IgniteMob()
 			if(fire_stacks)
 				L.adjust_fire_stacks(fire_stacks)
-
+			L.IgniteMob()
 			return TRUE
+
 		if(fire_stacks)
 			T.fire_act()
 	return TRUE

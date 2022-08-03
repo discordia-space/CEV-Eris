@@ -82,24 +82,22 @@
 	armor_penetration = 0
 	check_armour = ARMOR_BULLET
 
+	var/list/heat_damage = list(BURN = 100, HEAT = 100) // Enough to ignite someone via heat
+	var/penetration = 20
+	var/heavy_range = 3
+	var/weak_range = 5
+	var/fire_stacks = 8
+
 /obj/item/projectile/bullet/rocket/thermo/detonate(atom/target)
-	heatwave(get_turf(src), 3, 5, 100, TRUE, 20)
+	heatwave(get_turf(src), heavy_range, weak_range, heat_damage, fire_stacks, penetration)
 	explosion(get_turf(src), 0, 0, 0, 5, singe_impact_range = 4)
 
 /obj/item/projectile/temp
 	name = "freeze beam"
 	icon_state = "ice_2"
-	damage_types = list(BURN = 0)
+	damage_types = list(COLD = 60)
 	nodamage = 1
 	check_armour = ARMOR_ENERGY
-	var/temperature = 300
-
-
-/obj/item/projectile/temp/on_hit(atom/target)//These two could likely check temp protection on the mob
-	if(isliving(target))
-		var/mob/M = target
-		M.bodytemperature = temperature
-	return TRUE
 
 /obj/item/projectile/meteor
 	name = "meteor"
@@ -186,8 +184,9 @@
 /obj/item/projectile/flamer_lob
 	name = "blob of fuel"
 	icon_state = "fireball"
-	damage_types = list(BURN = 20)
-	check_armour = ARMOR_MELEE
+	damage_types = list(BURN = 20, HEAT = 40)
+	check_armour = ARMOR_BIO
+	heat = 100
 	var/life = 3
 
 
@@ -214,7 +213,7 @@
 /obj/item/projectile/bullet/flare
 	name = "flare"
 	icon_state = "flare"
-	damage_types = list(BRUTE = 24)
+	damage_types = list(BRUTE = 18, BURN = 14, HEAT = 25)
 	kill_count = 16
 	armor_penetration = 0
 	step_delay = 2

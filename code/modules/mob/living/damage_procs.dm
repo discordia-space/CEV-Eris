@@ -36,13 +36,17 @@
 			adjustHeat(damage)
 			return TRUE
 
+		if(COLD)
+			adjustHeat(-damage)
+			return TRUE
+
 	flash_weak_pain()
 	updatehealth()
 
 	return TRUE
 
 
-/mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/halloss = 0, var/heat = 0, var/def_zone = null)
+/mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/halloss = 0, var/heat = 0, var/cold = 0, var/def_zone = null)
 	activate_ai()
 	if(brute)	apply_damage(brute, BRUTE, def_zone)
 	if(burn)	apply_damage(burn, BURN, def_zone)
@@ -51,6 +55,7 @@
 	if(clone)	apply_damage(clone, CLONE, def_zone)
 	if(halloss) apply_damage(halloss, HALLOSS, def_zone)
 	if(heat)	apply_damage(heat, HEAT)
+	if(cold)	apply_damage(cold, COLD)
 
 	return TRUE
 

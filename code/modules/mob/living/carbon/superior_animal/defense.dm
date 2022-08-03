@@ -298,6 +298,7 @@
 	if(!on_fire)
 		return FALSE
 	adjustFireLoss(3 * temp_damage_mult)
+	updatehealth()
 	if(isturf(location))
 		location.hotspot_expose( FIRESTACKS_TEMP_CONV(fire_stacks), 50, 1)
 

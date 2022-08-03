@@ -607,7 +607,9 @@
 				burn_dam = HEAT_DAMAGE_LEVEL_1
 			if(species.heat_level_2 to species.heat_level_3)
 				burn_dam = HEAT_DAMAGE_LEVEL_2
-				fire_stacks += 1
+				fire_stacks++
+				if(!on_fire)
+					fire_stacks++
 			if(species.heat_level_3 to INFINITY)
 				burn_dam = HEAT_DAMAGE_LEVEL_3
 				fire_stacks += 3
@@ -637,7 +639,7 @@
 
 			if(bodytemperature <= species.cold_level_2)
 				if(on_fire)
-					burn_dam += 30 // Temperature shock
+					burn_dam += TEMP_SHOCK_DAMAGE // Temperature shock
 
 			ExtinguishMob()
 

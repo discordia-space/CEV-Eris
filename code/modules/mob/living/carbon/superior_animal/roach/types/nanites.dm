@@ -20,6 +20,7 @@
 	min_air_pressure = 0
 	min_bodytemperature = 0
 	temp_damage_mult = 0.5
+	insulation_divisor = 1
 
 	spawn_tags = SPAWN_TAG_ROACH_NANITE
 	rarity_value = 22.5

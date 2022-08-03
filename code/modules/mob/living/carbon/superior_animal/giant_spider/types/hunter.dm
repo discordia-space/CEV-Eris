@@ -15,3 +15,4 @@
 	rarity_value = 75
 
 	temp_damage_mult = 3
+	insulation_divisor = 0.8

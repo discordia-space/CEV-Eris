@@ -282,7 +282,9 @@ There are important things regarding this file:
 	knockback = 0
 
 /obj/item/projectile/bullet/shotgun/incendiary
-	damage_types = list(BRUTE = 38)
+	name = "incendiary slug"
+	damage_types = list(BRUTE = 28, BURN = 28, HEAT = 40)
+	armor_penetration = 0
 	knockback = 0
 
 	var/fire_stacks = 4

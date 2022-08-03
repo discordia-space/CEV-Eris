@@ -8,6 +8,8 @@
 	maxHealth = 40
 	health = 40
 
+	insulation_divisor = 0.8
+
 	contaminant_immunity = TRUE
 
 	melee_damage_lower = 3

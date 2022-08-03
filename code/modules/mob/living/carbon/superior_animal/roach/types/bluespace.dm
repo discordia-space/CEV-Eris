@@ -16,6 +16,7 @@
 	var/chance_tele_to_random = 10
 
 	temp_damage_mult = 0.5
+	insulation_divisor = 1
 
 	// Armor related variables
 	armor = list(

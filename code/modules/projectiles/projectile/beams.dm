@@ -32,6 +32,10 @@
 		return 1
 	return 0
 
+/obj/item/projectile/beam/heat
+	name = "high-temperature laser"
+	damage_types = list(BURN = 30, HEAT = 20) // Not significant
+
 /obj/item/projectile/beam/cutter
 	name = "cutting beam"
 	icon_state = "plasmablaster"
@@ -215,3 +219,38 @@
 	muzzle_type = /obj/effect/projectile/stun/muzzle
 	tracer_type = /obj/effect/projectile/stun/tracer
 	impact_type = /obj/effect/projectile/stun/impact
+
+/obj/item/projectile/beam/heat
+	name = "heat beam"
+	icon_state = "omnilaser"
+	armor_penetration = 15
+	damage_types = list(HEAT = 85)
+
+	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
+	tracer_type = /obj/effect/projectile/laser_omni/tracer
+	impact_type = /obj/effect/projectile/laser_omni/impact
+
+/obj/item/projectile/beam/cold
+	name = "freeze beam"
+	icon_state = "xray"
+	armor_penetration = 15
+	damage_types = list(COLD = 85) // Enough to trigger temperature shock on most targets
+
+	muzzle_type = /obj/effect/projectile/xray/muzzle
+	tracer_type = /obj/effect/projectile/xray/tracer
+	impact_type = /obj/effect/projectile/xray/impact
+
+/obj/item/projectile/beam/heatwave
+	name = "heatwave beam"
+	icon_state = "heavylaser"
+	armor_penetration = 15
+	var/list/aoe_damage_types = list(BURN = 20, HEAT = 60)
+	damage_types = list(BURN = 0)
+
+	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
+	tracer_type = /obj/effect/projectile/laser_heavy/tracer
+	impact_type = /obj/effect/projectile/laser_heavy/impact
+
+/obj/item/projectile/beam/heatwave/on_hit(atom/target)
+	heatwave(target, 2, 3, aoe_damage_types, FALSE, armor_penetration)
+	..()

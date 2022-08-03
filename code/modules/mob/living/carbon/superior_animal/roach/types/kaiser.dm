@@ -26,6 +26,7 @@ Has ability of every roach.
 	armor_penetration = 40
 
 	temp_damage_mult = 10 // Still going to take 100 seconds of fire
+	insulation_divisor = 3
 
 	move_to_delay = 7
 	mob_size = MOB_GIGANTIC

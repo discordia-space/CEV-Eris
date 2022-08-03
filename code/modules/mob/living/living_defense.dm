@@ -78,7 +78,7 @@
 	else
 		//Pain part of the damage, that simulates impact from armor absorbtion
 		//For balance purposes, it's lowered by ARMOR_HALLOS_COEFFICIENT
-		if(!(damagetype == HALLOSS ) && !(damagetype == HEAT))
+		if(!(damagetype == HALLOSS ) && !(damagetype == HEAT) && !(damagetype == COLD))
 			var/agony_gamage = round( ( effective_damage * armor_effectiveness * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)) / 100))
 			adjustHalLoss(agony_gamage)
 

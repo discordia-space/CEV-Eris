@@ -12,6 +12,9 @@
 	rarity_value = 11.25
 	var/datum/reagents/gas_sac //Stores gas. Can't use the default reagents since that is now bloodstream
 
+	temp_damage_mult = 1
+	insulation_divisor = 0.4
+
 	// Armor related variables
 	armor = list(
 		melee = 0,

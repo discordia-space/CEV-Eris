@@ -193,21 +193,22 @@
 	var/pressure = environment.return_pressure()
 	var/enviro_damage = (bodytemperature < min_bodytemperature ? TRUE : bodytemperature > max_bodytemperature) || (pressure < min_air_pressure) || (pressure > max_air_pressure)
 	if(enviro_damage) // its like this to avoid extra processing further below without using goto
-		bodytemperature += (bodytemperature - environment.temperature) * (environment.total_moles / MOLES_CELLSTANDARD) * (bodytemperature < min_bodytemperature ? 1 - heat_protection : -1 + cold_protection)
+		bodytemperature += CLAMP((bodytemperature - environment.temperature) / BODYTEMP_ROACH_DIVISOR * (environment.total_moles / MOLES_CELLSTANDARD) * (bodytemperature < environment.temperature ? 1 - heat_protection : -1 + cold_protection), BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX)
 		if(bodytemperature < min_bodytemperature)
 			var/burn_dam = 10 * temp_damage_mult
 			if(on_fire)
 				fire_stacks = 0
 				ExtinguishMob()
-				burn_dam += 40 // Temperature shock
+				burn_dam += TEMP_SHOCK_DAMAGE // Temperature shock
 			adjustFireLoss(burn_dam)
 		else if (bodytemperature > max_bodytemperature)
 			if(bodytemperature > ignite_bodytemperature)
-				fire_stacks += 2
+				fire_stacks += 3 // Handle_fire happens three times as much as handle_cheap_environment
 				IgniteMob()
-			adjustFireLoss(5 * temp_damage_mult)
-			updatehealth()
+			fire_stacks += 3
+			adjustFireLoss(3 * temp_damage_mult)
 		adjustBruteLoss((pressure < min_air_pressure  || pressure > max_air_pressure) ? 0 : 6)
+		updatehealth()
 		bad_environment = TRUE
 		return FALSE
 	bad_environment = FALSE

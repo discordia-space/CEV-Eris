@@ -15,7 +15,8 @@
 	melee_damage_lower = 7 // Slow, but big punch
 	melee_damage_upper = 16
 
-	temp_damage_mult = 3
+	temp_damage_mult = 4
+	insulation_divisor = 1 // Harder to ignite, but dies fast
 
 	// Armor related variables
 	armor = list(

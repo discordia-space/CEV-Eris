@@ -12,6 +12,9 @@
 	melee_damage_upper = 13
 	armor_penetration = 20
 
+	temp_damage_mult = 1
+	insulation_divisor = 0.5
+
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/jager
 	meat_amount = 3
 	rarity_value = 11.25
@@ -25,4 +28,3 @@
 		bio = 25,
 		rad = 50
 	)
-	
