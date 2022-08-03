@@ -1,4 +1,4 @@
-// Station voidsuits
+// Ship voidsuits
 //Engineering rig
 /obj/item/clothing/head/space/void/engineering
 	name = "Technomancer voidsuit helmet"
@@ -306,7 +306,7 @@
 	price_tag = 200
 	armor = list(
 		melee = 40,
-		bullet = 50,
+		bullet = 55,
 		energy = 60,
 		bomb = 40,
 		bio = 100,
@@ -358,7 +358,7 @@
 	)
 	armor = list(
 		melee = 40,
-		bullet = 50,
+		bullet = 55,
 		energy = 60,
 		bomb = 40, //platinum price justifies bloated stats
 		bio = 100,
@@ -404,7 +404,7 @@
 		energy = 30,
 		bomb = 25,
 		bio = 100,
-		rad = 0
+		rad = 5
 	)
 	light_overlay = "helmet_light_dual"
 	siemens_coefficient = 0.8
@@ -421,7 +421,7 @@
 		energy = 30,
 		bomb = 25,
 		bio = 100,
-		rad = 0
+		rad = 5
 	)
 	siemens_coefficient = 0.8
 	helmet = /obj/item/clothing/head/space/void/riggedvoidsuit
@@ -437,9 +437,9 @@
 	action_button_name = "Toggle Helmet Light"
 	flags_inv = BLOCKHAIR
 	armor = list(
-		melee = 40,
-		bullet = 40,
-		energy = 40,
+		melee = 55,
+		bullet = 50,
+		energy = 45,
 		bomb = 30,
 		bio = 100,
 		rad = 50
@@ -453,13 +453,13 @@
 	desc = "A voidsuit designed by NeoTheology with a most holy mix of biomatter and inorganic matter."
 	icon_state = "ntvoid"
 	item_state = "ntvoid"
-	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_STEEL = 10, MATERIAL_BIOMATTER = 35)
+	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 10, MATERIAL_BIOMATTER = 35)
 	slowdown = 0.3
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-	    melee = 40,
-		bullet = 40,
-		energy = 40,
+	    melee = 55,
+		bullet = 50,
+		energy = 45,
 		bomb = 30,
 		bio = 100,
 		rad = 50
