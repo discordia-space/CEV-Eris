@@ -437,7 +437,7 @@
 	action_button_name = "Toggle Helmet Light"
 	flags_inv = BLOCKHAIR
 	armor = list(
-		melee = 55,
+		melee = 50,
 		bullet = 45,
 		energy = 45,
 		bomb = 30,
@@ -457,7 +457,7 @@
 	slowdown = 0.3
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-	    melee = 55,
+	    melee = 50,
 		bullet = 45,
 		energy = 45,
 		bomb = 30,
