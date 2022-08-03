@@ -25,8 +25,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/pistol/practice
 	name = "practice bullet"
-	damage_types = list(BRUTE = 2)
-	agony = 3
+	damage_types = list(BRUTE = 2, HALLOSS = 3)
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
@@ -35,8 +34,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/pistol/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 3)
-	agony = 25
+	damage_types = list(BRUTE = 3, HALLOSS = 25)
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
@@ -61,8 +59,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/srifle/practice
 	name = "practice bullet"
-	damage_types = list(BRUTE = 2)
-	agony = 2
+	damage_types = list(BRUTE = 2, HALLOSS = 2)
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
@@ -75,8 +72,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/srifle/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 3)
-	agony = 30
+	damage_types = list(BRUTE = 3, HALLOSS = 30)
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
@@ -97,8 +93,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/clrifle/practice
 	name = "practice bullet"
-	damage_types = list(BRUTE = 2)
-	agony = 2
+	damage_types = list(BRUTE = 2, HALLOSS = 2)
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
@@ -112,8 +107,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/clrifle/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 3)
-	agony = 22
+	damage_types = list(BRUTE = 3, HALLOSS = 22)
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
@@ -134,8 +128,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/lrifle/practice
 	name = "practice bullet"
-	damage_types = list(BRUTE = 2)
-	agony = 2
+	damage_types = list(BRUTE = 2, HALLOSS = 2)
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
@@ -148,8 +141,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/lrifle/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 3)
-	agony = 25
+	damage_types = list(BRUTE = 3, HALLOSS = 25)
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
@@ -169,8 +161,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/magnum/practice
 	name = "practice bullet"
-	damage_types = list(BRUTE = 2)
-	agony = 3
+	damage_types = list(BRUTE = 2, HALLOSS = 3)
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
@@ -183,8 +174,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/magnum/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 8)
-	agony = 32
+	damage_types = list(BRUTE = 8, HALLOSS = 32)
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
@@ -216,9 +206,8 @@ There are important things regarding this file:
 	irradiate = 200
 
 /obj/item/projectile/bullet/antim/breach
-	damage_types = list(BRUTE = 50)
+	damage_types = list(BRUTE = 50, HALLOSS = 40)
 	armor_penetration = 40
-	agony = 40
 	penetrating = -5
 	step_delay = 0.6
 	hitscan = FALSE
@@ -263,20 +252,17 @@ There are important things regarding this file:
 	name = "beanbag"
 	icon_state = "buckshot"
 	check_armour = ARMOR_BULLET //neverforget
-	damage_types = list(BRUTE = 10)
-	agony = 60
+	damage_types = list(BRUTE = 10, HALLOSS = 60)
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
 
 /obj/item/projectile/bullet/shotgun/beanbag/scrap
-	damage_types = list(BRUTE = 9)
-	agony = 55
+	damage_types = list(BRUTE = 9, HALLOSS = 55)
 
 /obj/item/projectile/bullet/shotgun/practice
 	name = "practice slug"
-	damage_types = list(BRUTE = 1)
-	agony = 5
+	damage_types = list(BRUTE = 1, HALLOSS = 5)
 	armor_penetration = 0
 	embed = FALSE
 	knockback = 0
