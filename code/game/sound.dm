@@ -314,8 +314,28 @@ var/list/rummage_sound = list(\
 	return toplay
 
 
+/proc/playsound_tts(atom/source, list/target_mobs, voice, voice_scrambled, datum/language/language, is_local = TRUE)
+	if(!LAZYLEN(target_mobs) && source)
+		target_mobs = hearers(14, source) // world.view * 2, what playsound() uses
+	for(var/mob/listener as anything in target_mobs)
+		if(!listener.client)
+			continue
+
+		var/volume = text2num(listener.client.get_preference_value((is_local ? "TTS_VOLUME_LOCAL" : "TTS_VOLUME_RADIO")))
+		if(!volume)
+			continue
+
+		var/sound/output = sound(voice_scrambled ? (listener.say_understands(null, language) ? voice : voice_scrambled) : voice)
+		output.channel = 7 // Exact value doesn't matter, as long as nothing else is using it
+		output.wait = TRUE // Don't play TTS files at the same time
+		output.volume = volume
+		output.falloff = (listener.stats?.getPerk(PERK_EAR_OF_QUICKSILVER) ? 2 : 1)
+
+		sound_to(listener, output)
+
+
 /proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance, ignore_walls = TRUE, \
-	zrange = 2, override_env, envdry, envwet, use_pressure = TRUE, list/language_scramble, preference_required)
+	zrange = 2, override_env, envdry, envwet, use_pressure = TRUE)
 
 	if(isarea(source))
 		error("[source] is an area and is trying to make the sound: [soundin]")
@@ -333,12 +353,8 @@ var/list/rummage_sound = list(\
 		listeners = listeners & hearers(maxdistance, turf_source)
 
 	for(var/mob/M in listeners)
-		if(!M.client || (preference_required && (M.client.get_preference_value(preference_required) == GLOB.PREF_NO)))
+		if(!M.client)
 			continue
-		if(LAZYLEN(language_scramble))
-			var/datum/language/language = language_scramble[3]
-			if(!M.say_understands(null, language))
-				soundin = get_tts_scrambled(language_scramble[1], language_scramble[2], language_scramble[3])
 		var/dist = get_dist(M, turf_source)
 		if(dist <= maxdistance + 3)
 			if(dist > maxdistance)
