@@ -132,26 +132,10 @@
 	)
 
 /datum/craft_recipe/clothing/accessory/saber
-	name = "Regal scabbard"
+	name = "Scabbard"
 	result = /obj/item/clothing/accessory/holster/saber
 	steps = list(
 		list(/obj/item/storage/belt/sheath, 1))
-
-/datum/craft_recipe/clothing/accessory/saber/katana
-	name = "Quickdraw scabbard"
-	result = /obj/item/clothing/accessory/holster/saber/katana
-
-/datum/craft_recipe/clothing/accessory/saber/nt
-	name = "Zealots scabbard"
-	result = /obj/item/clothing/accessory/holster/saber/nt
-
-/datum/craft_recipe/clothing/accessory/saber/nt_longsword
-	name = "Crusaders scabbard"
-	result = /obj/item/clothing/accessory/holster/saber/nt_longsword
-
-/datum/craft_recipe/clothing/accessory/saber/nt_scourge
-	name = "Penitent scabbard"
-	result = /obj/item/clothing/accessory/holster/saber/nt_penitent
 
 /datum/craft_recipe/clothing/accessory/saber/improvised
 	name = "Makeshift scabbard"

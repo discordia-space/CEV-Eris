@@ -18,7 +18,7 @@
 		return
 
 	if (LAZYLEN(can_hold))
-		if(!is_type_in_list(I,can_hold))
+		if(!is_type_in_list(I, can_hold))
 			to_chat(user, "<span class='warning'>[I] won't fit in [src]!</span>")
 			return
 
@@ -146,40 +146,40 @@
 //Sword holsters//
 
 /obj/item/clothing/accessory/holster/saber
-	name = "regal scabbard"
-	desc = "A sturdy brown leather scabbard with gold trim. It's shaped to house a saber."
+	name = "scabbard"
+	desc = "A sturdy brown leather scabbard with a gold trim, made to house a variety of swords."
 	icon_state = "sheath"
 	overlay_state = "sword"
 	slot = "utility"
-	can_hold = list(/obj/item/tool/sword/saber)
+	can_hold = list(
+		/obj/item/tool/sword/nt/shortsword,
+		/obj/item/tool/sword/nt/longsword,
+		/obj/item/tool/sword/nt/scourge,
+		/obj/item/tool/sword/nt_sword,
+		/obj/item/tool/sword/saber,
+		/obj/item/tool/sword/katana,
+		/obj/item/tool/sword/katana/nano,
+		/obj/item/tool/sword,
+		/obj/item/tool/sword/improvised)
 	price_tag = 200
 	sound_in = 'sound/effects/sheathin.ogg'
 	sound_out = 'sound/effects/sheathout.ogg'
 
 /obj/item/clothing/accessory/holster/saber/update_icon()
+	var/icon_to_set
+	for(var/obj/item/SW in contents)
+		icon_to_set = SW.icon_state
 	..()
 	cut_overlays()
 	if(contents.len)
-		add_overlay(image('icons/inventory/accessory/icon.dmi', "sheath_saber_layer"))
-
-/obj/item/clothing/accessory/holster/saber/katana
-	name = "quickdraw scabbard"
-	desc = "A sturdy brown leather scabbard with gold trim. It's shaped to house a katana."
-	icon_state = "sheath"
-	overlay_state = "sword"
-	can_hold = list(/obj/item/tool/sword/katana, /obj/item/tool/sword/katana/nano)
-
-/obj/item/clothing/accessory/holster/saber/katana/update_icon()
-	..()
-	cut_overlays()
-	if(contents.len)
-		add_overlay(image('icons/inventory/accessory/icon.dmi', "sheath_katana_layer"))
+		add_overlay(image('icons/inventory/accessory/icon.dmi', "sheath_[contents.len ? icon_to_set :"0"]"))
 
 /obj/item/clothing/accessory/holster/saber/improvised
 	name = "makeshift scabbard"
 	desc = "A sturdy metal scabbard with a rough finish. There's killing to do, draw your junkblade."
-	icon_state = "sheath_msword"
+	icon_state = "sheath_scrapsword"
 	overlay_state = "msword"
+	price_tag = 50
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	can_hold = list(/obj/item/tool/sword/improvised)
 
@@ -187,43 +187,4 @@
 	..()
 	cut_overlays()
 	if(contents.len)
-		add_overlay(image('icons/inventory/accessory/icon.dmi', "sheath_msword_layer"))
-
-/obj/item/clothing/accessory/holster/saber/nt
-	name = "zealots scabbard"
-	desc = "A sturdy brown leather scabbard with gold trim, shaped to house a shortsword. You feel a sense of purpose from it, draw your blade in service of the church."
-	icon_state = "sheath"
-	overlay_state = "sword"
-	can_hold = list(/obj/item/tool/sword/nt/shortsword)
-
-/obj/item/clothing/accessory/holster/saber/nt/update_icon()
-	..()
-	cut_overlays()
-	if(contents.len)
-		add_overlay(image('icons/inventory/accessory/icon.dmi', "sheath_nt_shortsword_layer"))
-
-/obj/item/clothing/accessory/holster/saber/nt_longsword
-	name = "crusaders scabbard"
-	desc = "A sturdy brown leather scabbard with gold trim, shaped to house holy longswords. Cast away all doubt from your mind, you have been chosen for a great task."
-	icon_state = "sheath"
-	overlay_state = "sword"
-	can_hold = list(/obj/item/tool/sword/nt/longsword, /obj/item/tool/sword/nt_sword)
-
-/obj/item/clothing/accessory/holster/saber/nt_longsword/update_icon()
-	..()
-	cut_overlays()
-	if(contents.len)
-		add_overlay(image('icons/inventory/accessory/icon.dmi', "sheath_nt_longsword_layer"))
-
-/obj/item/clothing/accessory/holster/saber/nt_penitent
-	name = "penitent scabbard"
-	desc = "A sturdy brown leather scabbard with gold trim, shaped to house a scourge. Lash the sins of the sinners away, so that they may see the light."
-	icon_state = "sheath"
-	overlay_state = "sword"
-	can_hold = list(/obj/item/tool/sword/nt/scourge)
-
-/obj/item/clothing/accessory/holster/saber/nt_penitent/update_icon()
-	..()
-	cut_overlays()
-	if(contents.len)
-		add_overlay(image('icons/inventory/accessory/icon.dmi', "sheath_nt_scourge_layer"))
+		add_overlay(image('icons/inventory/accessory/icon.dmi', "sheath_scrapsword_layer"))
