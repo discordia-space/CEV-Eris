@@ -202,3 +202,28 @@
 	if(contents.len)
 		add_overlay(image('icons/inventory/accessory/icon.dmi', "sheath_nt_shortsword_layer"))
 
+/obj/item/clothing/accessory/holster/saber/nt_longsword
+	name = "crusaders scabbard"
+	desc = "A sturdy brown leather scabbard with gold trim, shaped to house holy longswords. Cast away all doubt from your mind, you have been chosen for a great task."
+	icon_state = "sheath"
+	overlay_state = "sword"
+	can_hold = list(/obj/item/tool/sword/nt/longsword, /obj/item/tool/sword/nt_sword)
+
+/obj/item/clothing/accessory/holster/saber/nt_longsword/update_icon()
+	..()
+	cut_overlays()
+	if(contents.len)
+		add_overlay(image('icons/inventory/accessory/icon.dmi', "sheath_nt_longsword_layer"))
+
+/obj/item/clothing/accessory/holster/saber/nt_penitent
+	name = "penitent scabbard"
+	desc = "A sturdy brown leather scabbard with gold trim, shaped to house a scourge. Lash the sins of the sinners away, so that they may see the light."
+	icon_state = "sheath"
+	overlay_state = "sword"
+	can_hold = list(/obj/item/tool/sword/nt/scourge)
+
+/obj/item/clothing/accessory/holster/saber/nt_penitent/update_icon()
+	..()
+	cut_overlays()
+	if(contents.len)
+		add_overlay(image('icons/inventory/accessory/icon.dmi', "sheath_nt_scourge_layer"))
