@@ -105,7 +105,7 @@ var/list/tts_seeds = list()
 /proc/tts_cast(mob/listener, message, seed)
 	var/voice = get_tts(message, seed)
 	if(voice)
-		playsound_tts(null, list(listener), voice)
+		playsound_tts(null, list(listener), voice, null, null, TRUE)
 
 
 /proc/tts_broadcast(mob/speaker, message, seed, datum/language/language)
@@ -114,7 +114,7 @@ var/list/tts_seeds = list()
 	if(voice)
 		if(language)
 			voice_scrambled = get_tts_scrambled(message, seed, language)
-		playsound_tts(speaker, null, voice, voice_scrambled, language)
+		playsound_tts(speaker, null, voice, voice_scrambled, language, TRUE)
 
 
 /proc/cleanup_tts_file(file)
@@ -149,7 +149,7 @@ var/list/tts_seeds = list()
 					character_sequence_end = null
 		else
 			switch(character)
-				if("'", "`", "\"", "")
+				if("'", "`", "\"", "", "-", "~", ":")
 					continue
 				if("&")
 					if(findtext(message, ";", i, i+5)) // If it is an "entity", not a standalone symbol

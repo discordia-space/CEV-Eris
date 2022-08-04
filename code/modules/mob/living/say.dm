@@ -307,7 +307,21 @@ var/list/channel_to_radio_key = new
 	INVOKE_ASYNC(GLOBAL_PROC, .proc/animate_speechbubble, speech_bubble, speech_bubble_recipients, 30)
 	INVOKE_ASYNC(src, /atom/movable/proc/animate_chat, message, speaking, italics, speech_bubble_recipients, 40, verb)
 	if(config.tts_enabled && !message_mode && (!client || !BITTEST(client.prefs.muted, MUTE_TTC)))
-		INVOKE_ASYNC(GLOBAL_PROC, /proc/tts_broadcast, src, message, tts_seed, speaking)
+		//TO DO: Remove need for that damn copypasta
+		var/seed = tts_seed
+		if(istype(back, /obj/item/rig))
+			var/obj/item/rig/rig = back
+			if(rig.speech && rig.speech.voice_holder && rig.speech.voice_holder.active && rig.speech.voice_holder.voice_tts)
+				seed = rig.speech.voice_holder.voice_tts
+		else if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			for(var/obj/item/gear in list(H.wear_mask, H.wear_suit, H.head))
+				if(!gear)
+					continue
+				var/obj/item/voice_changer/changer = locate() in gear
+				if(changer && changer.active && changer.voice_tts)
+					seed = changer.voice_tts
+		INVOKE_ASYNC(GLOBAL_PROC, /proc/tts_broadcast, src, message, seed, speaking)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
