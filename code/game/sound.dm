@@ -314,19 +314,39 @@ var/list/rummage_sound = list(\
 	return toplay
 
 
-/proc/playsound_tts(atom/source, list/target_mobs, voice, voice_scrambled, datum/language/language, is_local = TRUE)
-	if(!LAZYLEN(target_mobs) && source)
-		target_mobs = hearers(14, source) // world.view * 2, what playsound() uses
+/proc/playsound_tts(mob/source, list/target_mobs, voice, voice_scrambled, datum/language/language, is_local = TRUE)
+	var/speaker_key = "npc"
+
+	if(source)
+		if(!LAZYLEN(target_mobs))
+			target_mobs = hearers(7, source) // world.view
+
+		if(istype(source) && source.ckey)
+			speaker_key = source.ckey
+
+	if(!LAZYLEN(target_mobs))
+		return
+
+	var/speaker_channel = GLOB.sound_channels.get_by_key(speaker_key)
+	if(!speaker_channel)
+		GLOB.sound_channels.request(speaker_key)
+		speaker_channel = GLOB.sound_channels.get_by_key(speaker_key)
+		if(!speaker_channel)
+			speaker_channel = 0
+
 	for(var/mob/listener as anything in target_mobs)
-		if(!listener.client)
+		if(!listener.client || listener.stat)
 			continue
 
 		var/volume = text2num(listener.client.get_preference_value((is_local ? "TTS_VOLUME_LOCAL" : "TTS_VOLUME_RADIO")))
 		if(!volume)
 			continue
 
+		if(speaker_key in listener.client.prefs.ignored_players)
+			continue
+
 		var/sound/output = sound(voice_scrambled ? (listener.say_understands(null, language) ? voice : voice_scrambled) : voice)
-		output.channel = 7 // Exact value doesn't matter, as long as nothing else is using it
+		output.channel = speaker_channel
 		output.wait = TRUE // Don't play TTS files at the same time
 		output.volume = volume
 		output.falloff = (listener.stats?.getPerk(PERK_EAR_OF_QUICKSILVER) ? 2 : 1)

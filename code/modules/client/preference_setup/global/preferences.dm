@@ -128,7 +128,7 @@ var/list/_client_preferences_by_type
 	description ="Play radio text-to-speech"
 	key = "TTS_VOLUME_RADIO"
 	options = list(GLOB.PREF_0, GLOB.PREF_25, GLOB.PREF_50, GLOB.PREF_75, GLOB.PREF_100, GLOB.PREF_125, GLOB.PREF_150, GLOB.PREF_175, GLOB.PREF_200)
-	default_value = GLOB.PREF_100
+	default_value = GLOB.PREF_75
 
 /datum/client_preference/play_ambiance/changed(var/mob/preference_mob, var/new_value)
 	if(new_value == GLOB.PREF_NO)

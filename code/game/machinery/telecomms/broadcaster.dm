@@ -326,8 +326,24 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			if(M)
 				if(M.tts_seed)
 					seed = M.tts_seed
+					if(ishuman(M))
+						var/mob/living/carbon/human/H = M
+						//TO DO: Remove need for that damn copypasta
+						if(istype(H.back, /obj/item/rig))
+							var/obj/item/rig/rig = H.back
+							if(rig.speech && rig.speech.voice_holder && rig.speech.voice_holder.active && rig.speech.voice_holder.voice_tts)
+								seed = rig.speech.voice_holder.voice_tts
+						else
+							for(var/obj/item/gear in list(H.wear_mask, H.wear_suit, H.head))
+								if(!gear)
+									continue
+								var/obj/item/voice_changer/changer = locate() in gear
+								if(changer && changer.active && changer.voice_tts)
+									seed = changer.voice_tts
 				else if(M.gender == "male")
 					seed = TTS_SEED_DEFAULT_MALE
+				else
+					seed = TTS_SEED_DEFAULT_FEMALE
 
 			voice = get_tts(message, seed)
 			voice_scrambled = speaking ? get_tts_scrambled(message, seed, speaking) : null
@@ -400,7 +416,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			for(var/mob/R in heard_masked)
 				R.hear_radio(message,verbage, speaking, part_a, part_b, M, 0, name)
 			if(voice)
-				playsound_tts(null, heard_masked, voice, voice_scrambled, speaking, is_local = FALSE)
+				playsound_tts(M, heard_masked, voice, voice_scrambled, speaking, is_local = FALSE)
 
 		/* --- Process all the mobs that heard the voice normally (understood) --- */
 
@@ -408,7 +424,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			for(var/mob/R in heard_normal)
 				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 0, realname)
 			if(voice)
-				playsound_tts(null, heard_normal, voice, voice_scrambled, speaking, is_local = FALSE)
+				playsound_tts(M, heard_normal, voice, voice_scrambled, speaking, is_local = FALSE)
 
 		/* --- Process all the mobs that heard the voice normally (did not understand) --- */
 
@@ -416,7 +432,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			for(var/mob/R in heard_voice)
 				R.hear_radio(message,verbage, speaking, part_a, part_b, M,0, vname)
 			if(voice)
-				playsound_tts(null, heard_voice, voice, voice_scrambled, speaking, is_local = FALSE)
+				playsound_tts(M, heard_voice, voice, voice_scrambled, speaking, is_local = FALSE)
 
 		/* --- Process all the mobs that heard a garbled voice (did not understand) --- */
 			// Displays garbled message (ie "f*c* **u, **i*er!")
@@ -425,7 +441,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			for(var/mob/R in heard_garbled)
 				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1, vname)
 			if(voice)
-				playsound_tts(null, heard_garbled, voice, voice_scrambled, speaking, is_local = FALSE)
+				playsound_tts(M, heard_garbled, voice, voice_scrambled, speaking, is_local = FALSE)
 
 		/* --- Complete gibberish. Usually happens when there's a compressed message --- */
 
@@ -433,7 +449,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			for(var/mob/R in heard_gibberish)
 				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1)
 			if(voice)
-				playsound_tts(null, heard_gibberish, voice, voice_scrambled, speaking, is_local = FALSE)
+				playsound_tts(M, heard_gibberish, voice, voice_scrambled, speaking, is_local = FALSE)
 
 	return TRUE
 
