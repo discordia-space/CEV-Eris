@@ -23,7 +23,7 @@
 
 	gun_tags = list(GUN_SILENCABLE)
 	init_firemodes = list(
-		SEMI_AUTO_NODELAY,
+		SEMI_AUTO_300,
 		FULL_AUTO_800
 		)
 
@@ -69,7 +69,7 @@
 	price_tag = 1400
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2, TECH_COVERT = 3)
 	init_firemodes = list(
-		SEMI_AUTO_NODELAY
+		SEMI_AUTO_300
 		)
 	gun_parts = list(/obj/item/part/gun/frame/makarov = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
 
