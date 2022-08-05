@@ -29,7 +29,7 @@
 
 	init_firemodes = list(
 		FULL_AUTO_400,
-		SEMI_AUTO_NODELAY,
+		SEMI_AUTO_300,
 		BURST_5_ROUND
 		)
 	spawn_blacklisted = TRUE
@@ -170,7 +170,7 @@
 	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(
-		SEMI_AUTO_NODELAY,
+		SEMI_AUTO_300,
 		BURST_3_ROUND,
 		BURST_5_ROUND
 	)
@@ -255,7 +255,7 @@
 	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(
-		SEMI_AUTO_NODELAY	//too poorly made for burst or automatic
+		SEMI_AUTO_300	//too poorly made for burst or automatic
 	)
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE

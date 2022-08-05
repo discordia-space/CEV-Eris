@@ -20,7 +20,7 @@
 
 	init_firemodes = list(
 		FULL_AUTO_400,
-		SEMI_AUTO_NODELAY,
+		SEMI_AUTO_300,
 		)
 
 	can_dual = 1
