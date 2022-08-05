@@ -139,7 +139,7 @@
 				++S.Discipline
 		if(dose >= MTR(effect_multiplier, CHEM_TOUCH))
 			S.visible_message(SPAN_WARNING("[S]'s flesh sizzles where the water touches it!"), SPAN_DANGER("Your flesh burns in the water!"))
-	L.adjustHeat(CLAMP((260 - L.bodytemperature) / TEMPERATURE_DAMAGE_DIVISOR * effect_multiplier, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX))
+	M.adjustHeat(CLAMP((260 - M.bodytemperature) / TEMPERATURE_DAMAGE_DIVISOR * effect_multiplier, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX))
 
 /datum/reagent/toxin/fuel
 	name = "Welding fuel"
