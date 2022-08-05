@@ -23,7 +23,7 @@
 	init_firemodes = list(
 		FULL_AUTO_600,
 		FULL_AUTO_800,
-		SEMI_AUTO_NODELAY
+		SEMI_AUTO_300
         )
 	spawn_tags = SPAWN_TAG_GUN_OS
 	price_tag = 3000

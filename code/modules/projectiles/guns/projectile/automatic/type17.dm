@@ -25,7 +25,7 @@
 	spawn_tags = SPAWN_TAG_GUN_OS
 	init_firemodes = list(
 		BURST_3_ROUND,
-        SEMI_AUTO_NODELAY,
+        SEMI_AUTO_300,
 		FULL_AUTO_400
 		)
 	spawn_blacklisted = TRUE //until loot rework
