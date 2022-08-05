@@ -7278,8 +7278,11 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/toilet/medbay)
 "arh" = (
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/eris/maintenance/section3deck5starboard)
+/obj/machinery/conveyor/west{
+	id = "bioreactor_intake"
+	},
+/turf/simulated/floor/tiled/dark/cargo,
+/area/eris/quartermaster/disposaldrop)
 "ari" = (
 /obj/structure/multiz/stairs/enter/bottom{
 	dir = 1
@@ -8589,7 +8592,7 @@
 	req_access = list(12)
 	},
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section3deck5starboard)
 "aup" = (
 /obj/structure/railing{
@@ -9031,7 +9034,7 @@
 /obj/machinery/conveyor/east{
 	id = "cargo_intake"
 	},
-/turf/simulated/floor/tiled/dark/gray_platform,
+/turf/simulated/floor/tiled/dark/danger,
 /area/eris/quartermaster/disposaldrop)
 "avA" = (
 /obj/machinery/light{
@@ -29817,7 +29820,7 @@
 /obj/machinery/conveyor/east{
 	id = "cargo_intake"
 	},
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/eris/quartermaster/disposaldrop)
 "btc" = (
 /turf/simulated/floor/tiled/dark/gray_perforated,
@@ -50041,7 +50044,7 @@
 /obj/machinery/conveyor/east{
 	id = "cargo_intake"
 	},
-/turf/simulated/floor/tiled/dark/gray_platform,
+/turf/simulated/floor/tiled/dark/danger,
 /area/eris/quartermaster/disposaldrop)
 "cpC" = (
 /turf/simulated/floor/carpet/sblucarpet,
@@ -77708,7 +77711,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/gray_platform,
+/turf/simulated/floor/tiled/dark/danger,
 /area/eris/quartermaster/disposaldrop)
 "dEd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -85148,7 +85151,7 @@
 /obj/machinery/conveyor/east{
 	id = "cargo_intake"
 	},
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/eris/quartermaster/disposaldrop)
 "dVY" = (
 /obj/structure/railing{
@@ -88968,7 +88971,7 @@
 	id = "disposal_conveyor"
 	},
 /obj/structure/plasticflaps/mining,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/eris/quartermaster/disposaldrop)
 "efw" = (
 /obj/machinery/door/firedoor,
@@ -101555,7 +101558,7 @@
 	dir = 4
 	},
 /obj/structure/plasticflaps/mining,
-/turf/simulated/floor/tiled/dark/gray_platform,
+/turf/simulated/floor/tiled/dark/danger,
 /area/eris/quartermaster/disposaldrop)
 "gNV" = (
 /obj/structure/disposalpipe/segment{
@@ -126863,7 +126866,7 @@ apn
 apn
 dfh
 aww
-bBX
+arh
 eBl
 eBl
 eBl
@@ -128067,7 +128070,7 @@ apJ
 aaa
 aaa
 apn
-arh
+atp
 avU
 aBH
 aZn
