@@ -24,7 +24,7 @@
 
 	init_firemodes = list(
 		FULL_AUTO_300,
-		SEMI_AUTO_NODELAY
+		SEMI_AUTO_300
 		)
 	gun_parts = list(/obj/item/part/gun/frame/drozd = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/magnum = 1)
 

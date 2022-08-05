@@ -8,13 +8,21 @@
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_HOLSTER
 	var/obj/item/holstered
+	var/sound_in = 'sound/effects/holsterin.ogg'
+	var/sound_out = 'sound/effects/holsterout.ogg'
+	var/list/can_hold
 
 /obj/item/clothing/accessory/holster/proc/holster(obj/item/I, mob/living/user)
 	if(holstered && istype(user))
 		to_chat(user, SPAN_WARNING("There is already \a [holstered] holstered here!"))
 		return
 
-	if (!(I.slot_flags & SLOT_HOLSTER))
+	if (LAZYLEN(can_hold))
+		if(!is_type_in_list(I, can_hold))
+			to_chat(user, SPAN_WARNING("\The [I] won\'t fit in \the [src]!"))
+			return
+
+	else if (!(I.slot_flags & SLOT_HOLSTER))
 		to_chat(user, SPAN_WARNING("[I] won't fit in [src]!"))
 		return
 
@@ -25,6 +33,8 @@
 	w_class = max(w_class, holstered.w_class)
 	user.visible_message(SPAN_NOTICE("[user] holsters \the [holstered]."), SPAN_NOTICE("You holster \the [holstered]."))
 	name = "occupied [initial(name)]"
+	playsound(user, "[sound_in]", 75, 0)
+	update_icon()
 
 /obj/item/clothing/accessory/holster/proc/clear_holster()
 	holstered = null
@@ -39,8 +49,8 @@
 	else
 		if(user.a_intent == I_HURT)
 			usr.visible_message(
-				SPAN_DANGER("[user] draws \the [holstered], ready to shoot!"),
-				SPAN_WARNING("You draw \the [holstered], ready to shoot!")
+				SPAN_DANGER("[user] draws \the [holstered], ready to fight!"),
+				SPAN_WARNING("You draw \the [holstered], ready to fight!")
 				)
 		else
 			user.visible_message(
@@ -50,6 +60,8 @@
 		if(!user.put_in_active_hand(holstered))// If your primary hand is full, draw with your offhand
 			user.put_in_inactive_hand(holstered)// Prevents guns from getting deleted with hotkeys.
 		holstered.add_fingerprint(user)
+		playsound(user, "[sound_out]", 75, 0)
+		update_icon()
 		w_class = initial(w_class)
 		clear_holster()
 
@@ -72,7 +84,7 @@
 /obj/item/clothing/accessory/holster/examine(mob/user)
 	..(user)
 	if (holstered)
-		to_chat(user, "A [holstered] is holstered here.")
+		to_chat(user, "\A [holstered] is holstered here.")
 	else
 		to_chat(user, "It is empty.")
 
@@ -109,7 +121,7 @@
 	if(!H.holstered)
 		var/obj/item/W = usr.get_active_hand()
 		if(!istype(W, /obj/item))
-			to_chat(usr, SPAN_WARNING("You need your gun equiped to holster it."))
+			to_chat(usr, SPAN_WARNING("You need your weapon equipped to holster it."))
 			return
 		H.holster(W, usr)
 	else
@@ -130,3 +142,40 @@
 	name = "hip holster"
 	desc = "A handgun holster slung low on the hip, draw pardner!"
 	icon_state = "holster_hip"
+
+//Sword holsters//
+
+/obj/item/clothing/accessory/holster/saber
+	name = "scabbard"
+	desc = "A sturdy brown leather scabbard with a gold trim, made to house a variety of swords."
+	icon_state = "sheath"
+	overlay_state = "sword"
+	slot = "utility"
+	can_hold = list(/obj/item/tool/sword)
+	price_tag = 200
+	sound_in = 'sound/effects/sheathin.ogg'
+	sound_out = 'sound/effects/sheathout.ogg'
+
+/obj/item/clothing/accessory/holster/saber/update_icon()
+	var/icon_to_set
+	for(var/obj/item/SW in contents)
+		icon_to_set = SW.icon_state
+	..()
+	cut_overlays()
+	if(contents.len)
+		add_overlay(image('icons/inventory/accessory/icon.dmi', "sheath_[contents.len ? icon_to_set :"0"]"))
+
+/obj/item/clothing/accessory/holster/saber/improvised
+	name = "makeshift scabbard"
+	desc = "A sturdy metal scabbard with a rough finish. There's killing to do, draw your junkblade."
+	icon_state = "sheath_scrapsword"
+	overlay_state = "msword"
+	price_tag = 50
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
+	can_hold = list(/obj/item/tool/sword/improvised)
+
+/obj/item/clothing/accessory/holster/saber/improvised/update_icon()
+	..()
+	cut_overlays()
+	if(contents.len)
+		add_overlay(image('icons/inventory/accessory/icon.dmi', "sheath_scrapsword_layer"))

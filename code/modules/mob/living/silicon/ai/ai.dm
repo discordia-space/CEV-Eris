@@ -371,7 +371,7 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_WIRELESS | AI_CHECK_RADIO))
 		return
 
-	announcement.Announce(input)
+	announcement.Announce(input, use_text_to_speech = TRUE)
 	message_cooldown = 1
 	spawn(600)//One minute cooldown
 		message_cooldown = 0

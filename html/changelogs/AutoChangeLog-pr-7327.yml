@@ -1,0 +1,5 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - bugfix: fixed heatwave light damage range trigger
+  - code_imp: Improved heatwave code

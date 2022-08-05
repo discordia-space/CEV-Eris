@@ -143,6 +143,7 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	projectile_type = /obj/item/projectile/beam/heavylaser
 	charge_cost = 100
+	serial_type = "ML"
 	fire_delay = 20
 	zoom_factor = 0
 	damage_multiplier = 1
@@ -249,6 +250,7 @@
 	force = WEAPON_FORCE_NORMAL
 	slot_flags = SLOT_BELT|SLOT_BACK
 	contractor = TRUE
+	serial_type = "ML"
 	pierce_multiplier = 4
 	zoom_factor = 0
 	damage_multiplier = 1

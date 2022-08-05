@@ -21,7 +21,7 @@
 	penetration_multiplier = 0.75
 	init_recoil = CARBINE_RECOIL(1.5)
 	burst_delay = null
-	fire_delay = null
+	fire_delay = 4
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	move_delay = null

@@ -197,7 +197,7 @@
  */
 /obj/machinery/vending/proc/stock(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
 	if(!user.unEquip(W))
-		return
+		return FALSE
 
 	to_chat(user, SPAN_NOTICE("You insert \the [W] in the product receptor."))
 	if(R)
@@ -206,6 +206,8 @@
 		new_inventory(W)
 
 	SSnano.update_uis(src)
+
+	return TRUE
 
 /obj/machinery/vending/proc/try_to_buy(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
 	if(!earnings_account)
@@ -979,6 +981,10 @@
 	if(contents.len && !(stat & NOPOWER))
 		overlays += image(icon, icon_fill)
 
+/obj/machinery/vending/drink_showcase/stock()
+	if(..())
+		update_icon()
+
 /obj/machinery/vending/coffee
 	name = "Hot Drinks machine"
 	desc = "A vending machine which dispenses hot drinks."
@@ -1173,6 +1179,7 @@
 	custom_vendor = TRUE // Chemists can load it for MDs
 	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle)
 	vendor_department = DEPARTMENT_MEDICAL
+	shut_up = TRUE
 
 //This one's from bay12
 /obj/machinery/vending/plasmaresearch
@@ -1504,12 +1511,8 @@
 	to_chat(user, SPAN_WARNING("[src] flashes a message: Unauthorized Access."))
 	return FALSE
 
-/obj/machinery/vending/theomat/vend(datum/data/vending_product/R, mob/user)
-	if(check_NT(user))
-		..()
-
-/obj/machinery/vending/theomat/try_to_buy(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
-	if(check_NT(user))
+/obj/machinery/vending/theomat/attackby(obj/item/I, mob/user)
+	if(I.tool_qualities || check_NT(user))
 		..()
 
 /obj/machinery/vending/powermat
@@ -1749,6 +1752,7 @@
 	name = "Custom Vendomat"
 	desc = "A custom vending machine."
 	custom_vendor = TRUE
+	vendor_department = null
 	locked = TRUE
 	can_stock = list(/obj/item)
 

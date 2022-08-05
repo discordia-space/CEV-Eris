@@ -74,6 +74,7 @@
 	fire_sound = 'sound/weapons/energy/burn.ogg'
 	charge_cost = 25
 	fire_delay = 6
+	serial_type = "FS"
 	price_tag = 3000
 	zoom_factor = null
 
@@ -104,6 +105,7 @@
 	fire_sound = 'sound/weapons/energy/incinerate.ogg'
 	fire_delay = 8
 	charge_cost = 15
+	serial_type = "ML"
 	init_recoil = HANDGUN_RECOIL(1)
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 8, MATERIAL_PLASMA = 2, MATERIAL_SILVER = 3, MATERIAL_URANIUM = 3)
 
