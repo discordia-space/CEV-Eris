@@ -1,0 +1,10 @@
+author: assortedbeads
+delete-after: true
+changes:
+  - rscadd: Added 2 new scabbards and 2 equivalent recipes to obtain them
+  - soundadd: added 4 new sounds, two for holster sheathing and unsheathing, two for
+      scabbard sheathing and unsheathing
+  - imageadd: added 4 new on-mob icons and 2 new icons
+  - spellcheck: changed the grammar of some holster text to be less guncentric, since
+      scabbards are a subtype of holsters.
+  - code_imp: ported code from Sojourn to allow holstering swords
