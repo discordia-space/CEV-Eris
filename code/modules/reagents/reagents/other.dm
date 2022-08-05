@@ -258,7 +258,7 @@
 
 /datum/reagent/other/thermite/touch_mob(mob/living/L, var/amount)
 	if(istype(L))
-		L.adjust_fire_stacks(amount / 5)
+		L.adjust_fire_stacks(amount)
 
 /datum/reagent/other/thermite/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustFireLoss(3 * 0.6)
@@ -532,7 +532,7 @@
 	color = "#cf820f"
 	metabolism = REM * 0.2
 	nerve_system_accumulations = 20
-	sanity_gain_ingest = 0.5	
+	sanity_gain_ingest = 0.5
 	taste_tag = list(TASTE_LIGHT)
 	glass_icon_state = "teaglass"
 	glass_name = "odd tea"

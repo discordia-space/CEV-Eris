@@ -1159,7 +1159,7 @@
 
 /datum/reagent/alcohol/touch_mob(mob/living/L, amount)
 	if(istype(L))
-		L.adjust_fire_stacks(amount / 15)
+		L.adjust_fire_stacks(amount / strength * strength_mod)
 
 /datum/reagent/alcohol/on_mob_add(mob/living/L)
 	..()

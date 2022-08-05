@@ -111,7 +111,7 @@
 
 /datum/reagent/toxin/plasma/touch_mob(mob/living/L, var/amount)
 	if(istype(L))
-		L.adjust_fire_stacks(amount / 5)
+		L.adjust_fire_stacks(amount / 1.5)
 
 /datum/reagent/toxin/plasma/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
 	M.take_organ_damage(0, effect_multiplier * 0.1) //being splashed directly with plasma causes minor chemical burns
