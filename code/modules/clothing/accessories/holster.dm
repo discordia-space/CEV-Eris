@@ -151,16 +151,7 @@
 	icon_state = "sheath"
 	overlay_state = "sword"
 	slot = "utility"
-	can_hold = list(
-		/obj/item/tool/sword/nt/shortsword,
-		/obj/item/tool/sword/nt/longsword,
-		/obj/item/tool/sword/nt/scourge,
-		/obj/item/tool/sword/nt_sword,
-		/obj/item/tool/sword/saber,
-		/obj/item/tool/sword/katana,
-		/obj/item/tool/sword/katana/nano,
-		/obj/item/tool/sword,
-		/obj/item/tool/sword/improvised)
+	can_hold = list(/obj/item/tool/sword)
 	price_tag = 200
 	sound_in = 'sound/effects/sheathin.ogg'
 	sound_out = 'sound/effects/sheathout.ogg'
