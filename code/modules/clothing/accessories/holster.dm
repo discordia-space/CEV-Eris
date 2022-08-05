@@ -19,7 +19,7 @@
 
 	if (LAZYLEN(can_hold))
 		if(!is_type_in_list(I, can_hold))
-			to_chat(user, "<span class='warning'>[I] won't fit in [src]!</span>")
+			to_chat(user, SPAN_WARNING("\The [I] won\'t fit in \the [src]!"))
 			return
 
 	else if (!(I.slot_flags & SLOT_HOLSTER))
