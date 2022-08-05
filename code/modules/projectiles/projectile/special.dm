@@ -256,3 +256,62 @@
 	playsound(src, 'sound/effects/flare.ogg', 100, 1)
 	new /obj/effect/effect/smoke/illumination(T, brightness=max(flash_range*3, brightness), lifetime=light_duration, color=COLOR_RED)
 
+/obj/item/projectile/reagent
+	name = "reagent"
+	icon_state = "flare"	//"icons/obj/chempuff.dmi"
+	damage_types = list(HEAT = 0)
+	nodamage = TRUE
+	check_armour = ARMOR_BIO
+	recoil = 8
+
+	var/air_time = 3 // Amount of tiles spent without touching the ground
+	var/amount_per_transfer_from_this = 10
+	var/amount_per_transfer_from_this_turf = 5
+	var/volume = 60
+
+/obj/item/projectile/reagent/Initialize()
+	create_reagents(volume)
+	. = ..() // This creates initial reagents
+
+/obj/item/projectile/reagent/on_impact()
+	reagents.trans_to(loc, volume)
+	..()
+
+/obj/item/projectile/reagent/attack_mob()
+	if(..())
+		return FALSE
+	return TRUE
+
+/obj/item/projectile/reagent/before_move()
+	air_time--
+	if(air_time <= 0)
+		reagents.trans_to_turf(get_turf(src), amount_per_transfer_from_this_turf)
+		update_amount()
+
+/obj/item/projectile/reagent/on_hit(atom/target)
+	if(isliving(target))
+		var/mob/living/L = target
+		reagents.trans_to_mob(L, L.mob_size, CHEM_TOUCH)
+		update_amount()
+
+/obj/item/projectile/reagent/proc/update_amount()
+	if(reagents.total_volume < 10)
+		on_impact(get_turf(src)) //for any final impact behaviours
+		qdel(src)
+	damage_types[HEAT] = reagents.total_volume
+
+/obj/item/projectile/reagent/hot
+
+/obj/item/projectile/reagent/hot/before_move()
+	..()
+	if(air_time <= 0)
+		var/turf/location = get_turf(src)
+		if(location)
+			location.hotspot_expose(700, 5)
+
+/obj/item/projectile/reagent/hot/on_hit(atom/target)
+	if(isliving(target))
+		var/mob/living/L = target
+		reagents.trans_to_mob(L, L.mob_size, CHEM_TOUCH)
+		L.IgniteMob()
+		update_amount()

@@ -2377,6 +2377,7 @@
 #include "code\modules\projectiles\guns\launcher.dm"
 #include "code\modules\projectiles\guns\matter.dm"
 #include "code\modules\projectiles\guns\projectile.dm"
+#include "code\modules\projectiles\guns\reagent.dm"
 #include "code\modules\projectiles\guns\energy\charge.dm"
 #include "code\modules\projectiles\guns\energy\crossbow.dm"
 #include "code\modules\projectiles\guns\energy\decloner.dm"
