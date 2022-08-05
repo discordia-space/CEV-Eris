@@ -102567,7 +102567,7 @@
 /area/eris/quartermaster/disposaldrop)
 "jFW" = (
 /obj/machinery/button/remote/blast_door{
-	id = TechnomancerShopLockdown;
+	id = "TechnomancerShopLockdown";
 	name = "Technomancer Shop Lockdown";
 	pixel_x = 22
 	},
@@ -102990,7 +102990,7 @@
 "ljI" = (
 /obj/structure/catwalk,
 /obj/machinery/button/remote/blast_door{
-	id = TechnomancerShopLockdown;
+	id = "TechnomancerShopLockdown";
 	name = "Technomancer Shop Lockdown";
 	pixel_x = 22
 	},
@@ -105079,7 +105079,7 @@
 /area/eris/medical/medbay)
 "rkA" = (
 /obj/machinery/button/remote/blast_door{
-	id = TechnomancerShopLockdown;
+	id = "TechnomancerShopLockdown";
 	name = "Technomancer Shop Lockdown";
 	pixel_x = 22
 	},
