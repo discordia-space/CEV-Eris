@@ -1207,6 +1207,11 @@
 		to_chat(usr, "<span class='notice'>The solution dissolves the ink on the book.</span>")
 	return
 
+/datum/reagent/alcohol/touch_turf(turf/T)
+	new /obj/effect/decal/cleanable/liquid_fuel(T, volume / strength * strength_mod)
+	remove_self(volume)
+	return TRUE
+
 // Basic
 
 /datum/reagent/alcohol/absinthe

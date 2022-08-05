@@ -420,6 +420,14 @@
 		if (prob(5) && environment && environment.temperature > T100C)
 			T.visible_message("<span class='warning'>The water sizzles as it lands on \the [T]!</span>")
 
+/datum/reagent/coolant/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
+	L.adjustHeat(CLAMP((200 - L.bodytemperature) / TEMPERATURE_DAMAGE_DIVISOR * effect_multiplier, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX))
+
+/datum/reagent/water/touch_mob(mob/living/L, amount)
+	if(istype(L))
+		L.adjust_fire_stacks(-amount / 2)
+		L.ExtinguishMob()
+
 /datum/reagent/other/ultraglue
 	name = "Ultra Glue"
 	id = "glue"
