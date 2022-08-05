@@ -102225,7 +102225,7 @@
 "iGg" = (
 /obj/structure/catwalk,
 /obj/machinery/button/remote/blast_door{
-	id = TechnomancerShopLockdown;
+	id = "TechnomancerShopLockdown";
 	name = "Technomancer Shop Lockdown";
 	pixel_x = 22
 	},
@@ -104057,7 +104057,7 @@
 /area/eris/neotheology/storage)
 "nXe" = (
 /obj/machinery/button/remote/blast_door{
-	id = TechnomancerShopLockdown;
+	id = "TechnomancerShopLockdown";
 	name = "Technomancer Shop Lockdown";
 	pixel_x = 22
 	},
@@ -105176,7 +105176,7 @@
 /area/eris/medical/medbay)
 "rkA" = (
 /obj/machinery/button/remote/blast_door{
-	id = TechnomancerShopLockdown;
+	id = "TechnomancerShopLockdown";
 	name = "Technomancer Shop Lockdown";
 	pixel_x = 22
 	},
