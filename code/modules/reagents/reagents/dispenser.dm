@@ -336,35 +336,64 @@
 		M.apply_damage(volume * power * 0.2, BURN)
 		return
 	var/mob/living/carbon/human/our_man = M
-		var/list/bodyparts = list(
-	BP_HEAD = HEAD,
-	BP_CHEST = UPPER_TORSO,
-	BP_GROIN = LOWER_TORSO,
-	BP_L_ARM = ARM_LEFT,
-	BP_R_ARM = ARM_RIGHT,
-	BP_L_LEG = LEG_LEFT,
-	BP_R_LEG = LEG_RIGHT,
-	)
+	var/list/bodyparts = list(HEAD,UPPER_TORSO,LOWER_TORSO,ARM_LEFT,ARM_RIGHT,LEG_LEFT,LEG_RIGHT)
+	var/list/covered_parts = list()
+	var/suit_melted = FALSE
+	var/suit_coeff = 0
+	var/units_per_bodypart = volume / 7
 
+	// suit is one layer above everything else, only item to overlap really.
+	var/obj/item/clothing/suit/wearing_suit = null
+	wearing_suit = M.contents.Find(/obj/item/clothing/suit)
+	if(wearing_suit == our_man.l_hand || wearing_suit == our_man.r_hand)
+		wearing_suit = null
+	if(wearing_suit)
+		suit_coeff = ((100 - wearing_suit.armor.bio) / 100) * (wearing_suit.health / wearing_suit.max_health)
+		for(var/bodypart in bodyparts)
+			if(wearing_suit.body_parts_covered & bodypart)
+				covered_parts.Add(bodypart)
 
-	var/unit_per_bodypart = volume / 7
-
-	for(var/obj/item/clothing/C in our_man)
-		if(l_hand == C || r_hand == C)
+	for(var/obj/item/clothing/C in our_man.contents)
+		if(our_man.l_hand == C || our_man.r_hand == C)
 			continue
-		if(C.body_parts_covered & bodyparts[bodypart])
-			if(C.unacidable)
-				continue
-			// reduce based on how much health we have reported to max health
-			var/units_needed_to_melt = (C.health / C.max_health) * meltdose
-			if(units_needed_to_melt < units_per_bodypart)
+		if(C.unacidable)
+			continue
+		if(C == wearing_suit)
+			continue
+		var/list/affected_parts = list()
+		// reduce based on how much health we have reported to max health and our bio resistance
+		var/clothing_protection_coeff = (C.health / C.max_health) * ((100 - C.armor.bio) / 100)
+		// add all affected bodyparts to a list
+		for(var/bodypart in bodyparts)
+			if(C.body_parts_covered & bodypart)
+				affected_parts.Add(bodypart)
+		// check every bodypart, if its in the covered parts(by the suit) reduce it proportional to the suits coeff / amount of parts the suit covers
+		// fully block it if its not enough to the suit in the first place.
+		for(var/affected_bodypart in affected_parts)
+			var/unit_reduction = 0
+			if(covered_parts.Find(affected_bodypart))
+				unit_reduction = (meltdose * suit_coeff) / covered_parts.len
+				if(wearing_suit.unacidable)
+					continue
+				if(units_per_bodypart < unit_reduction )
+					wearing_suit.health -= units_per_bodypart * ((100 - wearing_suit.armor.bio) / 100) * (wearing_suit.health / meltdose)
+					continue
+				suit_melted = TRUE
+			// check if its not enough to fully melt through
+			if(clothing_protection_coeff * meltdose < units_per_bodypart - unit_reduction)
 				// apply damage based on how few units we need divided by its max health
-				C.health -= units_per_bodypart * (C.max_health / meltdose)
+				C.health -= units_per_bodypart * (C.max_health / meltdose) * ((100 - C.armor.bio) / 100)
 				continue
 			else
-				C.remove_from_mob()
+				our_man.remove_from_mob(C)
+				// damage based on how much we got left.
+				our_man.apply_damage((units_per_bodypart - meltdose * clothing_protection_coeff - unit_reduction) * power * 0.4, BURN, C.body_parts_covered)
+				C.forceMove(NULLSPACE)
 				qdel(C)
-				our_man.apply_damage((units_per_bodypart - meltdose) * power * 0.4, BURN, C.body_parts_covered)
+	if(suit_melted)
+		our_man.remove_from_mob(wearing_suit)
+		wearing_suit.forceMove(NULLSPACE)
+		qdel(wearing_suit)
 
 
 	/*
@@ -432,6 +461,7 @@
 	if(istype(O, /obj/effect/plant/hivemind))
 		qdel(O)
 	if(O.unacidable)
+		return
 	if((istype(O, /obj/item) || istype(O, /obj/effect/plant)) && (volume > meltdose))
 		var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 		I.desc = "Looks like this was \an [O] some time ago."
