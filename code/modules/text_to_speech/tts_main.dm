@@ -130,6 +130,7 @@ var/list/tts_seeds = list()
 	var/list/output = new
 
 	var/skipping_span
+	var/listen_for_character
 	var/character_sequence_end
 
 	var/message_byte_length = length(message)
@@ -140,6 +141,7 @@ var/list/tts_seeds = list()
 		var/character = (ascii_overdose ? copytext_char(message, i, i+1) : copytext(message, i, i+1))
 		// Skipping multiple characters, could be BYOND's "text entity" or <span> 
 		if(character_sequence_end)
+			listen_for_character = null
 			if(character == character_sequence_end)
 				if(skipping_span)
 					if((ascii_overdose ? copytext_char(message, i+1, i+2) : copytext(message, i+1, i+2)) == "g") // ">" symbol/entity, aka "&gt;"
@@ -166,7 +168,30 @@ var/list/tts_seeds = list()
 					character_sequence_end = ";"
 				if("<")
 					character_sequence_end = ">"
+
+				// NT to NeoTheology
+				if("N")
+					listen_for_character = "T"
+					output += character
+				if("T")
+					output.Add((character == listen_for_character) ? list("e","o", "T","h","e","o","l","o","g","y") : character)
+
+				// IH to IronHammer
+				if("I")
+					listen_for_character = "H"
+					output += character
+				if("H")
+					output.Add((character == listen_for_character) ? list("r","o","n", "H","a","m","m","e","r") : character)
+
+				// ML to MoebiusLaboratories
+				if("M")
+					listen_for_character = "L"
+					output += character
+				if("L")
+					output.Add((character == listen_for_character) ? list("o","e","b","i","u","s", "L","a","b","o","r","a","t","o","r","i","e","s") : character)
+
 				else
+					listen_for_character = null
 					output += character
 
 	. = JOINTEXT(output)

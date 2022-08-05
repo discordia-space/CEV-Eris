@@ -31,7 +31,12 @@
 			if(H.real_name == voice_name)
 				matching_mob = H
 				break
-		if(matching_mob && (alert(usr, "Want to impersonate their pronunciation as well?", "Person with matching name found", "Yes", "No") == "Yes"))
+		if(!matching_mob)
+			for(var/mob/living/carbon/human/H as anything in GLOB.human_mob_list)
+				if(H.name == voice_name)
+					matching_mob = H
+					break
+		if(matching_mob && (alert(usr, "Want to impersonate their pronunciation as well?", "There is a person with matching name", "Yes", "No") == "Yes"))
 			changer.voice_tts = matching_mob.tts_seed ? matching_mob.tts_seed : (matching_mob.gender == "male" ? TTS_SEED_DEFAULT_MALE : TTS_SEED_DEFAULT_FEMALE)
 
 

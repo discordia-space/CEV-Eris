@@ -319,7 +319,7 @@ var/list/rummage_sound = list(\
 
 	if(source)
 		if(!LAZYLEN(target_mobs))
-			target_mobs = hearers(7, source) // world.view
+			target_mobs = hearers(7, get_turf(source)) // world.view
 
 		if(istype(source) && source.ckey)
 			speaker_key = source.ckey

@@ -70,7 +70,7 @@
 	if(!client)
 		return
 
-	if(findtext(message, get_cop_code()))
+	if(findtext(message, cop_code_last))
 		message = cop_code_last
 		language = null
 		if(isghost(src))
