@@ -332,6 +332,42 @@
 	M.take_organ_damage(0, (issmall(M) ? effect_multiplier * 2: effect_multiplier * power * 2))
 
 /datum/reagent/acid/affect_touch(mob/living/carbon/M, alien, effect_multiplier) // This is the most interesting
+	if(!ishuman(M))
+		M.apply_damage(volume * power * 0.2, BURN)
+		return
+	var/mob/living/carbon/human/our_man = M
+		var/list/bodyparts = list(
+	BP_HEAD = HEAD,
+	BP_CHEST = UPPER_TORSO,
+	BP_GROIN = LOWER_TORSO,
+	BP_L_ARM = ARM_LEFT,
+	BP_R_ARM = ARM_RIGHT,
+	BP_L_LEG = LEG_LEFT,
+	BP_R_LEG = LEG_RIGHT,
+	)
+
+
+	var/unit_per_bodypart = volume / 7
+
+	for(var/obj/item/clothing/C in our_man)
+		if(l_hand == C || r_hand == C)
+			continue
+		if(C.body_parts_covered & bodyparts[bodypart])
+			if(C.unacidable)
+				continue
+			// reduce based on how much health we have reported to max health
+			var/units_needed_to_melt = (C.health / C.max_health) * meltdose
+			if(units_needed_to_melt < units_per_bodypart)
+				// apply damage based on how few units we need divided by its max health
+				C.health -= units_per_bodypart * (C.max_health / meltdose)
+				continue
+			else
+				C.remove_from_mob()
+				qdel(C)
+				our_man.apply_damage((units_per_bodypart - meltdose) * power * 0.4, BURN, C.body_parts_covered)
+
+
+	/*
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.head)
@@ -390,12 +426,12 @@
 					H.status_flags |= DISFIGURED
 		else
 			M.take_organ_damage(0, volume * power * 0.1) // Balance. The damage is instant, so it's weaker. 10 units -> 5 damage, double for pacid. 120 units beaker could deal 60, but a) it's burn, which is not as dangerous, b) it's a one-use weapon, c) missing with it will splash it over the ground and d) clothes give some protection, so not everything will hit
+			*/
 
 /datum/reagent/acid/touch_obj(obj/O)
 	if(istype(O, /obj/effect/plant/hivemind))
 		qdel(O)
 	if(O.unacidable)
-		return
 	if((istype(O, /obj/item) || istype(O, /obj/effect/plant)) && (volume > meltdose))
 		var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 		I.desc = "Looks like this was \an [O] some time ago."
