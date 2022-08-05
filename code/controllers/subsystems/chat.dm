@@ -9,6 +9,7 @@ SUBSYSTEM_DEF(chat)
 
 
 /datum/controller/subsystem/chat/Initialize()
+	. = ..()
 	init_tts_directories()
 
 
