@@ -322,6 +322,11 @@ EMOJIS
 WEBHOOK_URL http://localhost:44303/webhook/en
 WEBHOOK_KEY testkey
 
+## Text-to-speech stuff ##
+#TTS_BEARER Bearer *lotsa symbols*
+#TTS_ENABLED 1
+#TTS_CACHE 1
+
 ###### IP Reputation Checking
 # Enable/disable IP reputation checking (present/nonpresent)
 #IP_REPUTATION

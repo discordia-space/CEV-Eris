@@ -190,7 +190,7 @@
 	character.gender = gender
 	character.age = age
 	character.b_type = b_type
-
+	character.tts_seed = tts_seed
 	character.h_style = h_style
 	character.f_style = f_style
 
