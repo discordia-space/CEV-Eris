@@ -43595,15 +43595,6 @@
 	},
 /turf/simulated/floor/tiled/white/techfloor_grid,
 /area/eris/rnd/mixing)
-"bZJ" = (
-/obj/structure/bed/chair/custom/bar_special{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "bZL" = (
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section2)
@@ -102573,6 +102564,12 @@
 /obj/machinery/light,
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/chapel)
+"kiY" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/eris/crew_quarters/bar)
 "kkR" = (
 /obj/item/modular_computer/console/preset/engineering/alarms{
 	dir = 4
@@ -102712,6 +102709,15 @@
 "kLT" = (
 /turf/simulated/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/clownoffice)
+"kNX" = (
+/obj/structure/bed/chair/custom/bar_special{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/bar)
 "kPU" = (
 /obj/machinery/button/remote/blast_door{
 	dir = 1;
@@ -105281,6 +105287,12 @@
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/crew_quarters/janitor)
+"sHF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/eris/crew_quarters/bar)
 "sHI" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -105494,12 +105506,6 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/eris/neotheology/office)
-"tnE" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
 "tol" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
@@ -106877,12 +106883,6 @@
 /obj/structure/closet/secure_closet/personal/patient,
 /turf/simulated/floor/tiled/dark,
 /area/eris/medical/genetics)
-"xAY" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
 "xCk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -204594,9 +204594,9 @@ evS
 kcK
 bZh
 cjQ
-xAY
+sHF
 cil
-tnE
+kiY
 dXM
 cil
 bZh
@@ -204796,9 +204796,9 @@ evT
 cil
 cil
 etc
-xAY
+sHF
 cil
-tnE
+kiY
 cil
 rXJ
 cjQ
@@ -204998,9 +204998,9 @@ cil
 ltV
 cil
 cil
-xAY
+sHF
 ltV
-bZJ
+kNX
 cil
 cil
 ewv
