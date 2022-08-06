@@ -1,5 +1,0 @@
-author: SirRichardFrancis
-delete-after: true
-changes:
-  - bugfix: ghost not hearing tts
-  - bugfix: mice and other mobs having actual voice
