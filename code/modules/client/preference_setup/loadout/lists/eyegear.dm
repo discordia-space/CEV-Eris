@@ -64,6 +64,6 @@
 /datum/gear/eyes/shades/big
 	display_name = "Sunglasses, fat"
 	path = /obj/item/clothing/glasses/sunglasses/big
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Ironhammer Gunnery Sergeant","Captain","First Officer","Quartermaster","Ironhammer Inspector")
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Ironhammer Gunnery Sergeant","Captain","First Officer","Ironhammer Inspector","Guild Merchant","Moebius Biolab Officer","Moebius Expedition Overseer","Technomancer Exultant","Club Manager","NeoTheology Preacher")
 
 

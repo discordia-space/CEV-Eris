@@ -9,8 +9,9 @@
 	w_class = ITEM_SIZE_SMALL
 	force = WEAPON_FORCE_NORMAL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
+	price_tag = 950
 	volume = 2
-	spawn_blacklisted = TRUE
+	spawn_blacklisted = TRUE //onestar spawners are broken
 	spawn_tags = SPAWN_TAG_ITEM_TECH_OS
 
 /obj/item/tank/onestar_regenerator/Initialize(mapload, ...)

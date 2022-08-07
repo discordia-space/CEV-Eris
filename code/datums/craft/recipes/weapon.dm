@@ -76,13 +76,6 @@
 		list(QUALITY_HAMMERING, 10, "time" = 20)
 	)
 
-/datum/craft_recipe/weapon/crossbow_bolt
-	name = "crossbow bolt"
-	result = /obj/item/ammo_casing/crossbow/bolt
-	steps = list(
-		list(/obj/item/stack/rods, 1, "time" = 1),
-		list(QUALITY_HAMMERING, 5, 10)) 
-
 /datum/craft_recipe/weapon/knife_blade
 	name = "knife blade"
 	result = /obj/item/material/butterflyblade

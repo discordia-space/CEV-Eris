@@ -416,20 +416,20 @@
 			update_icon()
 
 		if(i < burst)
+			next_fire_time = world.time + shoot_time
 			sleep(burst_delay)
 
 		if(!(target && target.loc))
 			target = targloc
 			pointblank = 0
-
-	//update timing
-	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-	user.set_move_cooldown(move_delay)
 	if(!twohanded && user.stats.getPerk(PERK_GUNSLINGER))
-		next_fire_time = world.time + fire_delay - fire_delay * 0.33
+		next_fire_time = world.time + fire_delay * 0.66
+		user.setClickCooldown(fire_delay * 0.66)
 	else
 		next_fire_time = world.time + fire_delay
+		user.setClickCooldown(fire_delay)
 
+	user.set_move_cooldown(move_delay)
 	if(muzzle_flash)
 		set_light(0)
 
