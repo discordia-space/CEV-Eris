@@ -4251,6 +4251,7 @@
 /area/eris/crew_quarters/sleep)
 "ajY" = (
 /obj/structure/table/standard,
+/obj/item/toy/plushie/fumo,
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/crew_quarters/sleep)
 "ajZ" = (
@@ -4777,6 +4778,11 @@
 /obj/structure/medical_stand,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
+"alq" = (
+/obj/machinery/light,
+/mob/living/simple_animal/chicken,
+/turf/simulated/floor/dirt,
+/area/eris/crew_quarters/hydroponics)
 "alr" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -6453,6 +6459,19 @@
 /obj/machinery/camera/network/second_section,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
+"apx" = (
+/obj/machinery/hologram/holopad,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/mob/living/carbon/human/monkey/punpun,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/eris/crew_quarters/barbackroom)
 "apy" = (
 /obj/machinery/atmospherics/pipe/zpipe/up,
 /obj/spawner/junk/low_chance,
@@ -102285,19 +102304,6 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/storage)
-"iXq" = (
-/mob/living/carbon/human/monkey/punpun,
-/obj/machinery/hologram/holopad,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/turf/simulated/floor/carpet/sblucarpet,
-/area/eris/crew_quarters/barbackroom)
 "iXv" = (
 /obj/effect/shuttle_landmark/merc/engine,
 /turf/space,
@@ -105178,11 +105184,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled/steel/bar_dance,
 /area/eris/crew_quarters/bar)
-"rJp" = (
-/mob/living/simple_animal/chicken,
-/obj/machinery/light,
-/turf/simulated/floor/dirt,
-/area/eris/crew_quarters/hydroponics)
 "rKM" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -124853,7 +124854,7 @@ cdK
 cft
 oDJ
 oDL
-rJp
+alq
 eBl
 uiX
 alg
@@ -203027,7 +203028,7 @@ lPw
 duI
 duI
 tch
-iXq
+apx
 ijV
 toJ
 cAS
