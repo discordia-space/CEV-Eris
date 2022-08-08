@@ -66,9 +66,9 @@
 	w_class = ITEM_SIZE_SMALL
 	body_parts_covered = FACE
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
+		melee = 2,
+		bullet = 2,
+		energy = 2,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -97,9 +97,9 @@
 	spawn_blacklisted = TRUE
 	body_parts_covered = HEAD|FACE
 	armor = list(
-		melee = 60,
-		bullet = 65,
-		energy = 60,
+		melee = 15,
+		bullet = 16,
+		energy = 15,
 		bomb = 75,
 		bio = 100,
 		rad = 30
@@ -301,7 +301,7 @@
 	price_tag = 20
 	style = STYLE_LOW
 	muffle_voice = TRUE
- 
+
 /obj/item/clothing/mask/bandana/equipped(var/mob/user, var/slot)
 	switch(slot)
 		if(slot_wear_mask) //Mask is the default for all the settings

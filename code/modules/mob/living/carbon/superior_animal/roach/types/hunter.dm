@@ -10,7 +10,7 @@
 
 	melee_damage_lower = 4
 	melee_damage_upper = 13
-	armor_penetration = 20
+	armor_divisor = ARMOR_PEN_EXTREME
 
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/jager
 	meat_amount = 3
@@ -18,11 +18,10 @@
 
 	// Armor related variables - jager jacket
 	armor = list(
-		melee = 20,
-		bullet = 10,
-		energy = 10,
+		melee = 5,
+		bullet = 2,
+		energy = 2,
 		bomb = 0,
 		bio = 25,
 		rad = 50
 	)
-	

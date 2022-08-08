@@ -8,9 +8,9 @@
 	icon_state = "security_rig"
 	suit_type = "combat hardsuit"
 	armor = list(
-		melee = 50,
-		bullet = 50,
-		energy = 50,
+		melee = 13,
+		bullet = 13,
+		energy = 13,
 		bomb = 50,
 		bio = 100,
 		rad = 50
@@ -67,9 +67,9 @@
 	desc = "A Security hardsuit designed for prolonged EVA in dangerous environments."
 	icon_state = "hazard_rig"
 	armor = list(
-		melee = 50,
-		bullet = 40,
-		energy = 40,
+		melee = 13,
+		bullet = 10,
+		energy = 10,
 		bomb = 90,
 		bio = 100,
 		rad = 100

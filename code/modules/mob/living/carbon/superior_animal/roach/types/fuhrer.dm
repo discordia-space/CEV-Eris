@@ -10,7 +10,7 @@
 
 	melee_damage_lower = 12
 	melee_damage_upper = 25
-	armor_penetration = 20
+	armor_divisor = ARMOR_PEN_MODERATE
 
 	move_to_delay = 6
 	mob_size = MOB_MEDIUM
@@ -29,9 +29,9 @@
 
 	// Armor related variables
 	armor = list(
-		melee = 40,
-		bullet = 40,
-		energy = 40,
+		melee = 10,
+		bullet = 10,
+		energy = 10,
 		bomb = 0,
 		bio = 25,
 		rad = 50

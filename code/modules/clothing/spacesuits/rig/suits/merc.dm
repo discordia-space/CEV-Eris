@@ -9,9 +9,9 @@
 	icon_state = "merc_rig"
 	suit_type = "crimson hardsuit"
 	armor = list(
-		melee = 50,
-		bullet = 60,
-		energy = 40,
+		melee = 13,
+		bullet = 15,
+		energy = 10,
 		bomb = 75,
 		bio = 100,
 		rad = 50

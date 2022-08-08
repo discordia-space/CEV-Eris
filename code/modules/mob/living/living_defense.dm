@@ -1,5 +1,5 @@
 #define ARMOR_HALLOS_COEFFICIENT 0.1
-#define ARMOR_GDR_COEFFICIENT 0.1
+
 
 //This calculation replaces old run_armor_check in favor of more complex and better system
 //If you need to do something else with armor - just use getarmor() proc and do with those numbers all you want
@@ -17,16 +17,19 @@
 	else
 		show_message(msg1, 1)
 
-/mob/living/proc/damage_through_armor(var/damage = 0, var/damagetype = BRUTE, var/def_zone, var/attack_flag = ARMOR_MELEE, var/armour_pen = 0, var/used_weapon, var/sharp = FALSE, var/edge = FALSE)
+/mob/living/proc/damage_through_armor(var/damage = 0, var/damagetype = BRUTE, var/def_zone, var/attack_flag = ARMOR_MELEE, var/armour_divisor = 1, var/used_weapon, var/sharp = FALSE, var/edge = FALSE)
 
 	if(damage == 0)
 		return FALSE
 
-	//GDR - guaranteed damage reduction. It's a value that deducted from damage before all calculations
 	var/armor = getarmor(def_zone, attack_flag)
-	var/guaranteed_damage_red = armor * ARMOR_GDR_COEFFICIENT
-	var/armor_effectiveness = max(0, ( armor - armour_pen ) )
-	var/effective_damage = damage - guaranteed_damage_red
+
+	if(!(attack_flag in list(ARMOR_MELEE, ARMOR_BULLET, ARMOR_ENERGY))) // Making sure BIO and other armor types are handled correctly
+		armor /= 5
+
+	var/effective_armor = armor / armour_divisor
+	var/effective_damage = max(damage - effective_armor, 0)
+	var/armor_effectiveness = 1 - effective_damage / damage
 	var/sanctified_attack = FALSE
 
 	if(damagetype == HALLOSS)
@@ -34,10 +37,9 @@
 
 	if(effective_damage <= 0)
 		armor_message(SPAN_NOTICE("Your armor absorbs the blow!"))
-		return FALSE
 
 	//Here we can remove edge or sharpness from the blow
-	if ( (sharp || edge) && prob ( getarmor (def_zone, attack_flag) ) )
+	if ( (sharp || edge) && prob ( armor_effectiveness ) )
 		sharp = FALSE
 		edge = FALSE
 
@@ -79,13 +81,12 @@
 		//Pain part of the damage, that simulates impact from armor absorbtion
 		//For balance purposes, it's lowered by ARMOR_HALLOS_COEFFICIENT
 		if(!(damagetype == HALLOSS ))
-			var/agony_gamage = round( ( effective_damage * armor_effectiveness * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)) / 100))
+			var/agony_gamage = round( ( min(effective_armor, damage) * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)) / 100))
 			adjustHalLoss(agony_gamage)
 
 		//Actual part of the damage that passed through armor
-		var/actual_damage = round ( ( effective_damage * ( 100 - armor_effectiveness ) ) / 100 )
-		apply_damage(actual_damage, damagetype, def_zone, sharp, edge, used_weapon)
-		if(ishuman(src) && def_zone && actual_damage >= 20)
+		apply_damage(effective_damage, damagetype, def_zone, sharp, edge, used_weapon)
+		if(ishuman(src) && def_zone && effective_damage >= 20)
 			var/mob/living/carbon/human/H = src
 			var/obj/item/organ/external/o = H.get_organ(def_zone)
 			if (o && o.status & ORGAN_SPLINTED)
@@ -93,8 +94,7 @@
 						SPAN_WARNING("Your splints break off after being hit!"))
 				o.status &= ~ORGAN_SPLINTED
 		if(sanctified_attack)
-			apply_damage(actual_damage / 2, BURN, def_zone, sharp, edge, used_weapon)
-		return actual_damage
+			apply_damage(effective_damage / 2, BURN, def_zone, sharp, edge, used_weapon)
 	return effective_damage
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
@@ -128,10 +128,10 @@
 		to_chat(src, SPAN_WARNING("You have been hit by [P]!"))
 		qdel(P)
 		return TRUE
-	
+
 	if(P.agony > 0)
 		hit_impact(P.agony, hit_dir)
-		damage_through_armor(P.agony, HALLOSS, def_zone, P.check_armour, armour_pen = P.armor_penetration, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P))
+		damage_through_armor(P.agony, HALLOSS, def_zone, P.check_armour, armour_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P))
 
 	if(P.knockback && hit_dir)
 		throw_at(get_edge_target_turf(src, hit_dir), P.knockback, P.knockback)
@@ -141,7 +141,7 @@
 		hit_impact(P.get_structure_damage(), hit_dir)
 		for(var/damage_type in P.damage_types)
 			var/damage = P.damage_types[damage_type]
-			damage_through_armor(damage, damage_type, def_zone, P.check_armour, armour_pen = P.armor_penetration, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
+			damage_through_armor(damage, damage_type, def_zone, P.check_armour, armour_divisor = P.armor_divisor, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
 
 	P.on_hit(src, def_zone)
 	return TRUE
@@ -202,7 +202,7 @@
 //		effective_force *= 2
 
 	//Apply weapon damage
-	if (damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, I.armor_penetration, used_weapon = I, sharp = is_sharp(I), edge = has_edge(I)))
+	if (damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, I.armor_divisor, used_weapon = I, sharp = is_sharp(I), edge = has_edge(I)))
 		return TRUE
 	else
 		return FALSE

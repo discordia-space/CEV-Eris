@@ -2,7 +2,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	sharp = FALSE
 	edge = FALSE
-	armor_penetration = ARMOR_PEN_HALF
+	armor_divisor = ARMOR_PEN_HALF
 	flags = NOBLOODY
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	heat = 3800
@@ -185,7 +185,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "blade"
 	force = WEAPON_FORCE_ROBUST //Normal attacks deal very high damage - about the same as wielded fire axe
-	armor_penetration = 100
+	armor_divisor = 10
 	sharp = TRUE
 	edge = TRUE
 	anchored = TRUE    // Never spawned outside of inventory, should be fine.

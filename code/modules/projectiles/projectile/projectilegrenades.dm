@@ -3,7 +3,7 @@
 	icon_state = "grenade"
 	damage_types = list(BRUTE = 5)
 	agony = 10
-	armor_penetration = 0
+	armor_divisor = 1
 	embed = FALSE
 	sharp = FALSE
 	check_armour = ARMOR_BULLET

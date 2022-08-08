@@ -331,7 +331,7 @@
 	if(weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE])
 		G.force += weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE]
 	if(weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION])
-		G.armor_penetration += weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION]
+		G.armor_divisor += weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION]
 	if(weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY])
 		G.recoil = G.recoil.modifyRating(_one_hand_penalty = weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY])
 
@@ -345,7 +345,7 @@
 
 	if(G.dna_lock_sample == "not_set") //that may look stupid, but without it previous two lines won't trigger on DNALOCK removal.
 		G.dna_compare_samples = FALSE
-	
+
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
 		G.safety = weapon_upgrades[GUN_UPGRADE_FORCESAFETY]
@@ -524,7 +524,7 @@
 			to_chat(user, SPAN_WARNING("Disables the safety toggle of the weapon."))
 		else if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == 1)
 			to_chat(user, SPAN_WARNING("Forces the safety toggle of the weapon to always be on."))
-		
+
 		if(weapon_upgrades[GUN_UPGRADE_DNALOCK] == 1)
 			to_chat(user, SPAN_WARNING("Adds a biometric scanner to the weapon."))
 
