@@ -88,6 +88,11 @@
 
 	var/can_use_lying = 0
 
+	//Attack type vars
+	var/ready = FALSE
+	var/attack_type = NONE
+	var/missed_swing = TRUE
+
 	var/chameleon_type
 
 

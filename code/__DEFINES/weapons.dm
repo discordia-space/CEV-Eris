@@ -77,6 +77,11 @@
 
 #define VIG_OVERCHARGE_GEN 0.05
 
+#define DOUBLE_TACT 1
+#define CAN_SWING 2
+#define CAN_BROAD 4
+#define FORCED_BROAD 8
+
 #define EMBEDDED_RECOIL(x)     list(1.3 *x, 0  *x, 0  *x )
 #define HANDGUN_RECOIL(x)      list(1.15*x, 0.1*x, 0.6*x )
 #define SMG_RECOIL(x)          list(1   *x, 0.2*x, 1.2*x )

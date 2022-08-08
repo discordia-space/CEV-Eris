@@ -29,6 +29,36 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /obj/item/proc/pre_attack(atom/a, mob/user, var/params)
 	return
 
+//Handles double tact weapons, returns TRUE if attack is to be carried out, FALSE otherwise
+/obj/item/proc/double_tact(mob/user)
+	if(attack_type & DOUBLE_TACT)
+		if(!(ready))
+			user.visible_message(SPAN_DANGER("[user] raises \his [src]"))
+			ready = TRUE
+			var/obj/effect/effect/melee/alerts/A = new()
+			user.vis_contents += A
+			qdel(A)
+			var/endtime = world.time + (10 SECONDS)
+			while(world.time < endtime)
+				sleep(1)
+				if(!(ready))
+					user.vis_contents -= A
+					return FALSE
+				if(!(is_equipped()))
+					ready = FALSE
+					user.vis_contents -= A
+					return FALSE
+			user.visible_message(SPAN_DANGER("[user] lowers \his [src]"))
+			ready = FALSE
+			user.vis_contents -= A
+			return FALSE
+		else
+			ready = FALSE
+			return TRUE
+	else
+		return TRUE
+
+
 //I would prefer to rename this to attack(), but that would involve touching hundreds of files.
 /obj/item/proc/resolve_attackby(atom/A, mob/user, params)
 	if(item_flags & ABSTRACT)//Abstract items cannot be interacted with. They're not real.
@@ -36,6 +66,85 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if (pre_attack(A, user, params))
 		return 1 //Returning 1 passes an abort signal upstream
 	add_fingerprint(user)
+
+	if(ishuman(user) && !(user == A) && (attack_type & CAN_SWING) && wielded && user.a_intent == I_HURT) //Swinging
+		if(!double_tact(user))
+			return
+		var/holdinghand = user.get_inventory_slot(src)
+		var/turf/R
+		var/turf/C
+		var/turf/L
+		var/_x
+		var/_y
+		var/_z
+		if(A.x == 0 && A.y == 0 && A.z == 0) //Attacking equipped items results in them getting forwarded
+			_x = user.x
+			_y = user.y
+			_z = user.z
+		else
+			_x = A.x
+			_y = A.y
+			_z = A.z
+		var/_dir
+		if(_x == user.x && _y == user.y && _z == user.z)
+			_dir = user.dir
+			switch(_dir)
+				if(NORTH)
+					_y++
+				if(SOUTH)
+					_y--
+				if(EAST)
+					_x++
+				if(WEST)
+					_x--
+		else
+			_dir = get_dir(user, A)
+		C = locate(_x, _y, _z)
+		switch(_dir)
+			if(NORTH, SOUTH)
+				R = locate((_x + 1), _y, _z)
+				L = locate((_x - 1), _y, _z)
+			if(EAST)
+				R = locate(_x, (_y - 1), _z)
+				L = locate(_x, (_y + 1), _z)
+			if(NORTHEAST)
+				R = locate(_x, (_y - 1), _z)
+				L = locate((_x - 1), _y, _z)
+			if(SOUTHEAST)
+				R = locate((_x - 1), _y, _z)
+				L = locate(_x, (_y + 1), _z)
+			if(WEST)
+				R = locate(_x, (_y + 1), _z)
+				L = locate(_x, (_y - 1), _z)
+			if(NORTHWEST)
+				R = locate((_x + 1), _y, _z)
+				L = locate(_x, (_y - 1), _z)
+			if(SOUTHWEST)
+				R = locate(_x, (_y + 1), _z)
+				L = locate((_x + 1), _y, _z)
+		var/obj/effect/effect/melee/swing/S = new(user.loc)
+		S.dir = _dir
+		user.visible_message(SPAN_DANGER("[user] swings \his [src]"))
+		playsound(loc, 'sound/effects/swoosh.ogg', 50, 1, -1)
+		if(holdinghand == slot_l_hand)
+			flick("left_swing", S)
+			tileattack(user, L, modifier = 1)
+			tileattack(user, C, modifier = 0.8)
+			tileattack(user, R, modifier = 0.6)
+			QDEL_IN(S, 2 SECONDS)
+		else if(holdinghand == slot_r_hand)
+			flick("right_swing", S)
+			tileattack(user, R, modifier = 1)
+			tileattack(user, C, modifier = 0.8)
+			tileattack(user, L, modifier = 0.6)
+			QDEL_IN(S, 2 SECONDS)
+		if(missed_swing)
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+			user.visible_message(SPAN_DANGER("[user] misses \his swing"))
+		else
+			missed_swing = TRUE
+		return
+
 	return A.attackby(src, user, params)
 
 // No comment
@@ -85,7 +194,41 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	var/surgery_check = can_operate(src, user)
 	if(surgery_check && do_surgery(src, user, I, surgery_check)) //Surgery
 		return TRUE
-	return I.attack(src, user, user.targeted_organ)
+	if(I.double_tact(user))
+		I.attack(src, user, user.targeted_organ)
+
+//Handles AOE attacking on tiles
+/obj/item/proc/tileattack(mob/living/user, turf/targetarea, modifier = 1)
+	var/original_force = force
+	force *= modifier
+	if(istype(targetarea, /turf/simulated/wall))
+		var/turf/simulated/W = targetarea
+		W.attackby(src, user)
+		force = original_force
+		missed_swing = FALSE
+		return
+	for(var/obj/S in targetarea)
+		if (S.density && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal) && !istype(S, /obj/structure/closet))
+			S.attackby(src, user)
+			missed_swing = FALSE
+	var/list/living_mobs = new/list()
+	var/list/dead_mobs = new/list()
+	for(var/mob/living/M in targetarea)
+		if(M.stat == DEAD)
+			living_mobs.Add(M)
+		else
+			dead_mobs.Add(M)
+	var/target
+	if(living_mobs.len)
+		target = pick(living_mobs)
+	else if(dead_mobs.len)
+		target = pick(dead_mobs)
+	else
+		force = original_force
+		return
+	attack(target, user, user.targeted_organ)
+	force = original_force
+	missed_swing = FALSE
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.

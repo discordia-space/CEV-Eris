@@ -30,6 +30,7 @@
 	force = 25
 	force_wielded_multiplier = 1.04
 	throwforce = WEAPON_FORCE_WEAK
+	attack_type = NONE
 	armor_penetration = ARMOR_PEN_DEEP
 	spawn_blacklisted = TRUE
 	aspects = list(SANCTIFIED)

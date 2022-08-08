@@ -50,7 +50,7 @@ meteor_act
 			organ.embed(SP)
 
 
-/mob/living/carbon/human/hit_impact(damage, dir)
+/mob/living/carbon/human/hit_impact(damage, dir, hit_zone)
 	if(incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_BUCKLED_PARTIALLY))
 		return
 	if(damage < stats.getStat(STAT_TGH))
@@ -65,9 +65,10 @@ meteor_act
 
 	var/stumbled = FALSE
 
-	if(prob(60 - stats.getStat(STAT_TGH)))
-		stumbled = TRUE
-		step(src, pick(cardinal - hit_dirs))
+	if(hit_zone in BP_LEGS)
+		if(prob(60 - stats.getStat(STAT_TGH)))
+			stumbled = TRUE
+			step(src, pick(cardinal - hit_dirs))
 
 	for(var/atom/movable/A in oview(1))
 		if(!A.Adjacent(src) || prob(50 + stats.getStat(STAT_TGH)))
@@ -259,9 +260,18 @@ meteor_act
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
 		return FALSE
+//Handles broad attacks
+	if(I.attack_type & CAN_BROAD && (I.attack_type & FORCED_BROAD || (user.a_intent == I_DISARM) || (I.attack_type & CAN_SWING && I.wielded && (user.a_intent == I_HURT))))
+		var/list/L[] = BP_ALL_LIMBS
+		effective_force /= 3
+		L.Remove(hit_zone)
+		for(var/i in 1 to 2)
+			var/temp_zone = pick(L)
+			L.Remove(temp_zone)
+			..(I, user, effective_force, temp_zone)
 
 	// Handle striking to cripple.
-	if(user.a_intent == I_DISARM)
+	if(user.a_intent == I_GRAB)
 		effective_force /= 2 //half the effective force
 		if(!..(I, user, effective_force, hit_zone))
 			return FALSE

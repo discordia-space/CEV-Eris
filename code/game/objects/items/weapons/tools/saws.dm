@@ -8,6 +8,7 @@
 	flags = CONDUCT
 	w_class = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
+	attack_type = (DOUBLE_TACT | CAN_SWING | CAN_BROAD | FORCED_BROAD)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharp = TRUE
