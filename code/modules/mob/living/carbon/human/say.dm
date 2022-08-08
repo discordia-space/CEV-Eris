@@ -183,7 +183,7 @@
 	return verb
 
 /mob/living/carbon/human/handle_speech_problems(var/message, var/verb)
-	if(silent || (sdisabilities & MUTE))
+	if(silent)
 		message = ""
 		speech_problem_flag = 1
 		to_chat(src, SPAN_WARNING("You can't speak!"))
