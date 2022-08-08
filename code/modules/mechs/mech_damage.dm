@@ -98,7 +98,7 @@
 			if(damage_type == HALLOSS)
 				continue // don't even bother
 			var/damage = P.damage_types[damage_type]
-			damage_through_armor(damage, damage_type, def_zone, P.check_armour, armour_pen = P.armor_divisor, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
+			damage_through_armor(damage, damage_type, def_zone, P.check_armour, armour_divisor = P.armor_divisor, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
 
 	P.on_hit(src, def_zone)
 	return TRUE
