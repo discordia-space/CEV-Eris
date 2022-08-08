@@ -1348,4 +1348,18 @@ var/list/FLOORITEMS = list(
 		generated_code += "[generate_single_gun_number()]" // cast to string
 	return generated_code
 
+/obj/item/clothing/proc/get_count_of_covered_limbs(mob/living/carbon/human/M)
+	if(!ishuman(M))
+		return 0
+	if(!M.contents.Find(src))
+		return 0
+	var/list/bodyparts = list(HEAD,UPPER_TORSO,LOWER_TORSO,ARM_LEFT,ARM_RIGHT,LEG_LEFT,LEG_RIGHT)
+	var/count
+
+	for(var/bodypart in bodyparts)
+		if(body_parts_covered & bodypart)
+			count++
+	return count
+
+
 

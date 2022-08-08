@@ -286,6 +286,20 @@ Proc for attack log creation, because really why not
 			return TRUE
 	return FALSE
 
+/proc/cover_zone_to_bodypart(var/coverzone)
+	var/list/bodyparts = list(
+		HEAD = BP_HEAD,
+		EYES = BP_EYES,
+		UPPER_TORSO = BP_CHEST,
+		LOWER_TORSO = BP_GROIN,
+		ARM_LEFT = BP_L_ARM,
+		ARM_RIGHT = BP_R_ARM,
+		LEG_LEFT = BP_L_LEG,
+		LEG_RIGHT = BP_R_LEG
+	)
+
+	return bodyparts[coverzone]
+
 
 /proc/is_neotheology_disciple(mob/living/L)
 	if(istype(L) && L.get_core_implant(/obj/item/implant/core_implant/cruciform))
@@ -455,3 +469,8 @@ Proc for attack log creation, because really why not
 	if(isnull(choice) || src.incapacitated() || (required_item && !GLOB.hands_state.can_use_topic(required_item,src)))
 		return null
 	return choice
+
+
+
+
+
