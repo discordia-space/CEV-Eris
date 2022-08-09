@@ -586,6 +586,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/t_scanner(src)
 	src.modules += new /obj/item/device/scanner/gas(src)
 	src.modules += new /obj/item/taperoll/engineering(src)
+	src.modules += new /obj/item/rcd/borg(src) // added from construction model , makes life less painfull for borgs.
 	src.modules += new /obj/item/gripper(src)
 	src.modules += new /obj/item/gripper/loader(src) // replaced the no_use , so they can build stuff.
 	src.modules += new /obj/item/device/lightreplacer(src)
