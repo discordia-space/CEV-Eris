@@ -73,6 +73,14 @@
 	)
 	related_stats = list(STAT_COG)
 
+/dataum/craft_recipe/trash_bag
+	name = "trash bag"
+	result = /obj/item/storage/bag/trash
+	steps = list(
+		list(CRAFT_MATERIAL,5, MATERIAL_PLASTIC),
+		list(/obj/item/stack/cable_coil, 1, "time" = 20)
+	)
+
 /datum/craft_recipe/blood_pack
 	name = "blood pack"
 	result = /obj/item/reagent_containers/blood/empty
