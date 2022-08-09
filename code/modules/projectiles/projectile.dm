@@ -113,7 +113,7 @@
 		damage_types[i] *= newmult
 
 /obj/item/projectile/add_projectile_penetration(newmult)
-	armor_divisor = initial(armor_divisor) + newmult - 1
+	armor_divisor = initial(armor_divisor) + newmult
 
 /obj/item/projectile/multiply_pierce_penetration(newmult)
 	penetrating = initial(penetrating) + newmult

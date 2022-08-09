@@ -854,7 +854,7 @@
 	data["damage_multiplier"] = damage_multiplier
 	data["pierce_multiplier"] = pierce_multiplier
 	data["ricochet_multiplier"] = ricochet_multiplier
-	data["penetration_multiplier"] = penetration_multiplier
+	data["penetration_multiplier"] = penetration_multiplier + 1
 
 	data["fire_delay"] = fire_delay //time between shot, in ms
 	data["burst"] = burst //How many shots are fired per click
@@ -929,7 +929,7 @@
 	var/list/data = list()
 	data["projectile_name"] = P.name
 	data["projectile_damage"] = (P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()
-	data["projectile_AP"] = P.armor_divisor * penetration_multiplier
+	data["projectile_AP"] = P.armor_divisor + penetration_multiplier
 	data["projectile_recoil"] = P.recoil
 	qdel(P)
 	return data

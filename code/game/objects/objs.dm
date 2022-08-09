@@ -254,7 +254,7 @@
 
 //Same for AP
 /obj/proc/add_projectile_penetration(newmult)
-	armor_divisor = initial(armor_divisor) + newmult - 1
+	armor_divisor = initial(armor_divisor) + newmult
 
 /obj/proc/multiply_projectile_style_damage(newmult)
 	style_damage = initial(style_damage) * newmult
