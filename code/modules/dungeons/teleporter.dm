@@ -161,7 +161,7 @@
 				A.activate_ai()
 
 	overlays.Add(image(icon, icon_state = "portal_failing"))
-	visible_message("The portal starts flick_lighting!")
+	visible_message("The portal starts flickering!")
 	flick_lighting = 1
 	sleep(100)
 	update_icon()
