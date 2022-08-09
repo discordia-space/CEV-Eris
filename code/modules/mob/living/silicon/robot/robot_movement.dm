@@ -29,6 +29,8 @@
 	tally += speed //This var is a placeholder
 	if(module_active && istype(module_active,/obj/item/borg/combat/mobility)) //And so is this silly check
 		tally-=1
+	if(weakened)
+		tally += weakened / 2 // flashes significantly slow robots.
 	tally /= speed_factor
 	return tally
 
