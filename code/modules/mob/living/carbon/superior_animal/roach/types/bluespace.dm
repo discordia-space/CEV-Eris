@@ -7,7 +7,7 @@
 	meat_type = /obj/item/bluespace_crystal
 	melee_damage_lower = 4
 	melee_damage_upper = 11
-	armor_divisor = 10 // Hits through armor
+	armor_divisor = ARMOR_PEN_MAX // Hits through armor
 
 	sanity_damage = 1
 	spawn_blacklisted = TRUE

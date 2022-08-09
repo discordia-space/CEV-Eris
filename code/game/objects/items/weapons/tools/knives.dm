@@ -43,7 +43,7 @@
 	item_state = "hook_knife"
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 2)
 	force = WEAPON_FORCE_DANGEROUS
-	armor_divisor = ARMOR_PEN_EXTREME //Should be countered be embedding
+	armor_divisor = ARMOR_PEN_HALF //Should be countered be embedding
 	embed_mult = 1.5 //This is designed for embedding
 	rarity_value = 5
 
@@ -118,7 +118,7 @@
 	item_state = "dagger"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2)
 	force = WEAPON_FORCE_NORMAL * 1.3
-	armor_divisor = ARMOR_PEN_HALF
+	armor_divisor = ARMOR_PEN_MASSIVE
 	rarity_value = 15
 
 /obj/item/tool/knife/dagger/ceremonial
@@ -127,7 +127,7 @@
 	icon_state = "fancydagger"
 	item_state = "fancydagger"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 1, MATERIAL_SILVER = 1)
-	armor_divisor = ARMOR_PEN_HALF
+	armor_divisor = ARMOR_PEN_MASSIVE
 	embed_mult = 0.3
 	max_upgrades = 4
 	spawn_blacklisted = TRUE

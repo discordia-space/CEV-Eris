@@ -38,7 +38,7 @@
 	icon_state = "powered_hammer"
 	item_state = "powered_hammer"
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
-	armor_divisor = ARMOR_PEN_EXTREME
+	armor_divisor = ARMOR_PEN_HALF
 	force = WEAPON_FORCE_BRUTAL
 	w_class = ITEM_SIZE_HUGE
 	tool_qualities = list(QUALITY_HAMMERING = 30)
@@ -56,7 +56,7 @@
 	item_state = "onehammer"
 	wielded_icon = "onehammer_on"
 	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
-	armor_divisor = ARMOR_PEN_EXTREME
+	armor_divisor = ARMOR_PEN_HALF
 	force= WEAPON_FORCE_BRUTAL
 	force_wielded_multiplier = 1.65
 	w_class = ITEM_SIZE_HUGE
@@ -78,7 +78,7 @@
 	icon_state = "mace"
 	item_state = "mace"
 	w_class = ITEM_SIZE_NORMAL
-	armor_divisor = ARMOR_PEN_EXTREME
+	armor_divisor = ARMOR_PEN_HALF
 	force = WEAPON_FORCE_ROBUST
 	tool_qualities = list(QUALITY_HAMMERING = 20)
 	spawn_tags = SPAWN_TAG_WEAPON
@@ -127,7 +127,7 @@
 	item_state = "chargehammer"
 	w_class = ITEM_SIZE_HUGE
 	switched_on_force = WEAPON_FORCE_BRUTAL
-	armor_divisor = ARMOR_PEN_MASSIVE
+	armor_divisor = ARMOR_PEN_EXTREME
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	switched_on_qualities = list(QUALITY_HAMMERING = 60)
 	switched_off_qualities = list(QUALITY_HAMMERING = 35)

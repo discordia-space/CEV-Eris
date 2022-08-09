@@ -16,9 +16,10 @@
 #define ARMOR_PEN_SHALLOW			1.4
 #define ARMOR_PEN_MODERATE			1.6
 #define ARMOR_PEN_DEEP				1.8
-#define ARMOR_PEN_EXTREME			2
-#define ARMOR_PEN_MASSIVE			2.5
-#define ARMOR_PEN_HALF				3
+#define ARMOR_PEN_HALF				2
+#define ARMOR_PEN_EXTREME			2.5
+#define ARMOR_PEN_MASSIVE			3
+#define ARMOR_PEN_MAX				10
 
 //Resistance values, used on floors, windows, airlocks, girders, and similar hard targets.
 //Resistance value is also used on simple animals.

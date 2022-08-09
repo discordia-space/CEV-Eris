@@ -44,7 +44,7 @@
 	icon_state = "nt_longsword"
 	item_state = "nt_longsword"
 	force = 30
-	armor_divisor = ARMOR_PEN_EXTREME
+	armor_divisor = ARMOR_PEN_HALF
 	w_class = ITEM_SIZE_HUGE
 	price_tag = 1200
 	matter = list(MATERIAL_BIOMATTER = 75, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 5, MATERIAL_DIAMOND = 1)
@@ -57,7 +57,7 @@
 	icon_state = "nt_dagger"
 	item_state = "nt_dagger"
 	force = WEAPON_FORCE_PAINFUL
-	armor_divisor = ARMOR_PEN_MASSIVE
+	armor_divisor = ARMOR_PEN_EXTREME
 	aspects = list(SANCTIFIED)
 	price_tag = 120
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 1)
@@ -79,7 +79,7 @@
 	wielded_icon = "nt_halberd_wielded"
 	force = WEAPON_FORCE_BRUTAL
 	hitsound = 'sound/weapons/melee/heavystab.ogg'
-	armor_divisor = ARMOR_PEN_HALF
+	armor_divisor = ARMOR_PEN_MASSIVE
 	max_upgrades = 1
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
@@ -93,8 +93,8 @@
 	item_state = "nt_scourge"
 	force = WEAPON_FORCE_ROBUST
 	var/force_extended = WEAPON_FORCE_PAINFUL
-	armor_divisor = ARMOR_PEN_MASSIVE
-	var/armor_divisor_extended = ARMOR_PEN_HALF
+	armor_divisor = ARMOR_PEN_EXTREME
+	var/armor_divisor_extended = ARMOR_PEN_MASSIVE
 	var/extended = FALSE
 	var/agony = 20
 	var/agony_extended = 45
@@ -158,7 +158,7 @@
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT
 	throwforce = WEAPON_FORCE_LETHAL * 1.5
-	armor_divisor = ARMOR_PEN_HALF
+	armor_divisor = ARMOR_PEN_MASSIVE
 	throw_speed = 3
 	price_tag = 450
 	allow_spin = FALSE

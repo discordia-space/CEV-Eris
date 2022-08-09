@@ -78,7 +78,7 @@
 	var/obj/item/gun/energy/psychic/holder
 	var/contractor = FALSE //Check if it's a contractor psychic beam
 	damage_types = list(PSY = 30)
-	armor_divisor = 10
+	armor_divisor = ARMOR_PEN_MAX
 	style_damage = 60 //It's magic brain beams, deal with it.
 	recoil = 2
 
