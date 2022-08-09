@@ -43,7 +43,7 @@
 /area/crawler)
 "k" = (
 /obj/structure/window/reinforced,
-/obj/machinery/computer/operating{
+/obj/structure/salvageable/os/console_broken{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/cafe,
@@ -55,6 +55,7 @@
 "m" = (
 /obj/structure/window/reinforced,
 /obj/structure/table/onestar,
+/obj/spawner/prothesis_one_star,
 /turf/simulated/floor/tiled/cafe,
 /area/crawler)
 "n" = (
@@ -63,7 +64,7 @@
 /area/crawler)
 "o" = (
 /obj/structure/window/reinforced,
-/obj/machinery/computer/operating{
+/obj/structure/salvageable/os/console_broken{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/cafe,
@@ -112,6 +113,7 @@
 "w" = (
 /obj/effect/floor_decal/industrial/outline,
 /obj/structure/table/rack,
+/obj/spawner/medical,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "x" = (
@@ -144,6 +146,23 @@
 "D" = (
 /obj/machinery/door/window/northleft,
 /turf/simulated/floor/tiled/cafe,
+/area/crawler)
+"M" = (
+/obj/structure/table/onestar,
+/obj/spawner/surgery_tool,
+/obj/spawner/surgery_tool,
+/turf/simulated/floor/tiled/cafe,
+/area/crawler)
+"S" = (
+/obj/structure/table/onestar,
+/obj/spawner/surgery_tool,
+/turf/simulated/floor/tiled/cafe,
+/area/crawler)
+"Y" = (
+/obj/effect/floor_decal/industrial/outline,
+/obj/structure/table/rack,
+/obj/spawner/medical/low_chance,
+/turf/simulated/floor/tiled/derelict,
 /area/crawler)
 
 (1,1,1) = {"
@@ -181,7 +200,7 @@ a
 "}
 (4,1,1) = {"
 a
-h
+S
 m
 j
 j
@@ -247,7 +266,7 @@ i
 "}
 (10,1,1) = {"
 a
-h
+M
 m
 j
 j
@@ -273,7 +292,7 @@ d
 o
 p
 s
-w
+Y
 z
 c
 a

@@ -21,6 +21,7 @@
 /obj/structure/table/rack/shelf,
 /obj/spawner/material/building,
 /obj/spawner/material/building,
+/obj/spawner/tool_upgrade/rare/onestar,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "aS" = (
@@ -159,6 +160,13 @@
 /obj/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
+"dh" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost,
+/obj/spawner/tool_upgrade/rare/onestar,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/outpost/blacksite/medium)
 "dk" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor/tiled/derelict,
@@ -213,6 +221,12 @@
 /obj/structure/bed/chair/custom/onestar/red,
 /obj/spawner/soda/low_chance,
 /turf/simulated/floor/tiled/dark/brown_platform,
+/area/outpost/blacksite/medium)
+"eL" = (
+/obj/structure/salvageable/os/console{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "eN" = (
 /obj/structure/table/onestar,
@@ -487,7 +501,7 @@
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/outpost/blacksite/medium)
 "kz" = (
-/obj/item/modular_computer/console,
+/obj/structure/salvageable/os/computer,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "kC" = (
@@ -681,6 +695,7 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
+/obj/spawner/prothesis_one_star,
 /turf/simulated/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "oF" = (
@@ -967,8 +982,12 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "yv" = (
-/obj/machinery/dna_scannernew,
+/obj/machinery/cryo_slab,
 /turf/simulated/floor/tiled/white/brown_platform,
+/area/outpost/blacksite/medium)
+"yz" = (
+/mob/living/simple_animal/hostile/roomba,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "yD" = (
 /obj/structure/table/rack/shelf,
@@ -1058,7 +1077,7 @@
 /area/template_noop)
 "BS" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/cheap,
+/obj/spawner/gun/normal,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "BX" = (
@@ -1278,7 +1297,7 @@
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/outpost/blacksite/medium)
 "HD" = (
-/obj/machinery/computer/scan_consolenew,
+/obj/structure/salvageable/os/computer,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/outpost/blacksite/medium)
 "HF" = (
@@ -1373,6 +1392,12 @@
 /obj/item/soap,
 /turf/simulated/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
+"Li" = (
+/obj/structure/salvageable/os/console_broken{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
 "Lq" = (
 /obj/structure/sign/derelict2{
 	pixel_x = -32
@@ -1408,6 +1433,10 @@
 /obj/item/storage/box/handcuffs,
 /obj/item/storage/box/flashbangs,
 /turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"MU" = (
+/mob/living/carbon/superior_animal/stalker,
+/turf/simulated/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "MX" = (
 /obj/spawner/junkfood/rotten/low_chance,
@@ -1938,7 +1967,7 @@ OH
 eO
 ca
 HM
-jW
+MU
 BS
 eO
 Ux
@@ -2363,7 +2392,7 @@ eO
 eO
 eO
 YZ
-YZ
+yz
 eO
 tc
 tc
@@ -2510,7 +2539,7 @@ Fs
 gW
 eO
 YZ
-Xm
+YZ
 eO
 eO
 Ls
@@ -2613,7 +2642,7 @@ eO
 ml
 oF
 da
-Ah
+Li
 tc
 tc
 Ls
@@ -2648,7 +2677,7 @@ mS
 pI
 jW
 Xc
-Ah
+Li
 jH
 VV
 dk
@@ -2663,7 +2692,7 @@ Xr
 tP
 jD
 Er
-Ah
+Li
 tc
 Ls
 Ls
@@ -2712,7 +2741,7 @@ oF
 oF
 Ul
 nz
-Ah
+eL
 tc
 Ls
 Ls
@@ -2746,7 +2775,7 @@ Fm
 jW
 pI
 et
-Ah
+Li
 jH
 mc
 Sr
@@ -2761,7 +2790,7 @@ oF
 tP
 jD
 jj
-Ah
+Li
 tc
 Ls
 Ls
@@ -2809,7 +2838,7 @@ eO
 ml
 oF
 da
-Ah
+Li
 tc
 tc
 Ls
@@ -3251,7 +3280,7 @@ jO
 jO
 jO
 eO
-qe
+dh
 Sf
 Sf
 Sf
