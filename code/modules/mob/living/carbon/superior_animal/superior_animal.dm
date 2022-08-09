@@ -127,7 +127,7 @@
 		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
 
 	.=..()
-	
+
 	if (mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
 		if (prob(extra_burrow_chance))
@@ -210,7 +210,6 @@
 	return stunned > 0 || weakened > 0 || resting || pinned.len > 0 || stat || paralysis || sleeping || (status_flags & FAKEDEATH) || buckled() > 0
 
 /mob/living/carbon/superior_animal/proc/cheap_update_lying_buckled_and_verb_status_()
-
 	if(!cheap_incapacitation_check())
 		lying = FALSE
 		canmove = TRUE
@@ -327,6 +326,7 @@
 	handle_fire(environment.gas["oxygen"], loc)
 	handle_regular_hud_updates()
 	handle_cheap_chemicals_in_body()
+	resting = (resting && client) ? TRUE : FALSE
 	if(!(ticks_processed%3))
 		// handle_status_effects() this is handled here directly to save a bit on procedure calls
 		paralysis = max(paralysis-3,0)

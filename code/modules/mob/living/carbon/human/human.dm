@@ -1586,12 +1586,11 @@ var/list/rank_prefix = list(\
 		var/turf/above = GetAbove(src)
 		if(shadow)
 			if(client.eye == shadow)
-				reset_view(0)
+				reset_view()
 				return
 			if(above.is_hole)
 				to_chat(src, SPAN_NOTICE("You look up."))
-				if(client)
-					reset_view(shadow)
+				reset_view(shadow)
 				return
 		to_chat(src, SPAN_NOTICE("You can see [above]."))
 	else

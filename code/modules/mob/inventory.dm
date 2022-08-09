@@ -133,6 +133,11 @@
 		SEND_SIGNAL(I, COMSIG_CLOTH_DROPPED, src)
 	return drop_from_inventory(I,Target)
 
+// needed so items are properly rendered below z-levels
+/atom/proc/update_visual_layer()
+	layer = initial(layer)
+	set_plane(initial(plane))
+
 //Attemps to remove an object on a mob.
 /mob/proc/remove_from_mob(var/obj/O)
 	u_equip(O)
