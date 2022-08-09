@@ -188,7 +188,7 @@
 				return
 			return
 
-		if(QUALITY_CUTTING,QUALITY_PULSING)
+		if(QUALITY_CUTTING || QUALITY_PULSING)
 			if(panel_open)
 				interact(user)
 			return

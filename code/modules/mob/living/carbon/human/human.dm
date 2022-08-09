@@ -1582,6 +1582,11 @@ var/list/rank_prefix = list(\
 	set desc = "If you want to know what's above."
 	set category = "IC"
 
+	// /mob/living/proc/handle_vision makes it so lookup doesn't work if the user has the machine var referencing something.
+	// The whole thing regarding setting and unreferencing the machine var is very poorly done, some machines never
+	// removing their own reference. (modular computers being one example.) SCPR - 2022
+	unset_machine()
+	reset_view()
 	if(!is_physically_disabled())
 		var/turf/above = GetAbove(src)
 		if(shadow)
