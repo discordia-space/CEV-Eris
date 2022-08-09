@@ -7,7 +7,7 @@ var/global/list/robot_modules = list(
 	"Medical" 		= /obj/item/robot_module/medical/general,
 	"Security" 		= /obj/item/robot_module/security/general,
 	"Engineering"	= /obj/item/robot_module/engineering/general,
-	"Construction"	= /obj/item/robot_module/engineering/construction,
+	//"Construction"	= /obj/item/robot_module/engineering/construction, commented out due to redundancy
 	"Custodial" 	= /obj/item/robot_module/custodial
 	//"Combat" 		= /obj/item/robot_module/combat,
 	)
@@ -265,9 +265,12 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/extinguisher(src)
 	src.modules += new /obj/item/tool/wrench/robotic(src)
 	src.modules += new /obj/item/tool/crowbar/robotic(src)
+	src.modules += new /obj/item/tool/screwdriver/robotic(src)
+	src.modules += new /obj/item/tool/wirecutters/robotic(src)
 	src.modules += new /obj/item/device/scanner/health(src)
 	src.modules += new /obj/item/gripper(src)
 	src.modules += new /obj/item/device/t_scanner(src)
+	src.modules += new /obj/item/soap(src)
 	src.emag = new /obj/item/melee/energy/sword(src)
 
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(10000)
@@ -341,7 +344,7 @@ var/global/list/robot_modules = list(
 	src.emag.reagents.add_reagent("pacid", 250)
 	src.emag.name = "Polyacid spray"
 
-	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(10000)
+	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(20000)
 	synths += medicine
 
 	var/obj/item/stack/nanopaste/N = new /obj/item/stack/nanopaste(src)
@@ -400,8 +403,8 @@ var/global/list/robot_modules = list(
 	subsystems = list(/datum/nano_module/crew_monitor)
 
 
-	health = 270 //Tough
-	speed_factor = 1.3 //Turbospeed!
+	health = 200 //Tough
+	speed_factor = 1.5 //Turbospeed!
 	power_efficiency = 1.2 //Good for long journeys
 
 	stat_modifiers = list(
@@ -435,7 +438,7 @@ var/global/list/robot_modules = list(
 	src.emag.reagents.add_reagent("pacid", 250)
 	src.emag.name = "Polyacid spray"
 
-	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(15000)
+	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(10000)
 	synths += medicine
 
 	var/obj/item/stack/medical/advanced/bruise_pack/B = new /obj/item/stack/medical/advanced/bruise_pack(src)
@@ -502,7 +505,7 @@ var/global/list/robot_modules = list(
 		STAT_COG = 20,
 		STAT_MEC = 40
 	)
-
+/* Removed - Too niche. Features moved to engineering
 /obj/item/robot_module/engineering/construction
 	name = "construction robot module"
 	no_slip = 1
@@ -574,6 +577,7 @@ var/global/list/robot_modules = list(
 
 	..(R)
 
+*/
 /obj/item/robot_module/engineering/general/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/meson(src)
@@ -583,7 +587,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/scanner/gas(src)
 	src.modules += new /obj/item/taperoll/engineering(src)
 	src.modules += new /obj/item/gripper(src)
-	src.modules += new /obj/item/gripper/no_use/loader(src)
+	src.modules += new /obj/item/gripper/loader(src) // replaced the no_use , so they can build stuff.
 	src.modules += new /obj/item/device/lightreplacer(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
@@ -593,16 +597,16 @@ var/global/list/robot_modules = list(
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(60000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)
-	var/datum/matter_synth/plasteel = new /datum/matter_synth/plasteel(20000)
+//	var/datum/matter_synth/plasteel = new /datum/matter_synth/plasteel(20000) commented out , they should acquire this on their own since it is tough
 	var/datum/matter_synth/wire = new /datum/matter_synth/wire(45)
-	var/datum/matter_synth/wood = new /datum/matter_synth/wood(20000)
-	var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(15000)
+//	var/datum/matter_synth/wood = new /datum/matter_synth/wood(20000)
+//	var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(15000)
 	synths += metal
 	synths += glass
-	synths += plasteel
+//	synths += plasteel
 	synths += wire
-	synths += wood
-	synths += plastic
+//	synths += wood
+//	synths += plastic
 
 	var/obj/item/matter_decompiler/MD = new /obj/item/matter_decompiler(src)
 	MD.metal = metal
@@ -633,21 +637,21 @@ var/global/list/robot_modules = list(
 	RG.synths = list(metal, glass)
 	src.modules += RG
 
-	var/obj/item/stack/material/cyborg/plasteel/PL = new (src)
-	PL.synths = list(plasteel)
-	src.modules += PL
+	//var/obj/item/stack/material/cyborg/plasteel/PL = new (src)
+	//PL.synths = list(plasteel)
+	//src.modules += PL
 
-	var/obj/item/stack/material/cyborg/wood/W = new (src)
-	W.synths = list(wood)
-	src.modules += W
+	//var/obj/item/stack/material/cyborg/wood/W = new (src)
+	//W.synths = list(wood)
+	//src.modules += W
 
-	var/obj/item/stack/material/cyborg/plastic/PS = new (src)
-	PS.synths = list(plastic)
-	src.modules += PS
+	//var/obj/item/stack/material/cyborg/plastic/PS = new (src)
+	//PS.synths = list(plastic)
+	//src.modules += PS
 
-	var/obj/item/stack/tile/wood/cyborg/FWT = new (src)
-	FWT.synths = list(wood)
-	src.modules += FWT
+	//var/obj/item/stack/tile/wood/cyborg/FWT = new (src)
+	//FWT.synths = list(wood)
+	//src.modules += FWT
 
 	..(R)
 
@@ -674,8 +678,8 @@ var/global/list/robot_modules = list(
 	can_be_pushed = 0
 	supported_upgrades = list(/obj/item/borg/upgrade/tasercooler,/obj/item/borg/upgrade/jetpack)
 
-	health = 300 //Very tanky!
-	speed_factor = 0.85 //Kinda slow
+	health = 250 //Very tanky! Toned down from 300 to 250
+	speed_factor = 1 // Decent speed , but not as fast as a person.
 	power_efficiency = 1.15 //Decent
 
 	desc = "Focused on keeping the peace and fighting off threats to the ship, the security module is a \
@@ -738,7 +742,7 @@ var/global/list/robot_modules = list(
 					"Sleek" = "sleekjanitor",
 					"Maid" = "maidbot"
 					)
-	health = 250 //Bulky
+	health = 200 //Slightly tougher to resist maintenance.
 	speed_factor = 1.0 // Normal speed, its a cleaning unit and you wouldnt choose it if you sweep floors with ultra slow movement
 	power_efficiency = 0.8 //Poor
 
@@ -886,8 +890,8 @@ var/global/list/robot_modules = list(
 					"Heavy" = "heavymine",
 					"Spider" = "spidermining"
 				)
-	health = 250 //Pretty tough
-	speed_factor = 0.9 //meh
+	health = 400 //Tougher than security models , but it faces a lot of dangers if mining rocks with the drill.
+	speed_factor = 0.7 //meh
 	power_efficiency = 1.5 //Best efficiency
 
 	stat_modifiers = list(

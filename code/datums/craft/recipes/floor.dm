@@ -318,5 +318,3 @@
 	steps = list(
 		list(/obj/item/stack/rods, 2, "time" = 10)
 	)
-
-

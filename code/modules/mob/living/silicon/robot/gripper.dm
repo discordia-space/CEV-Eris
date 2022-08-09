@@ -304,3 +304,11 @@
 	can_hold = list(
 		/obj/item/stack/material
 		)
+
+/obj/item/gripper/loader
+	name = "advanced sheet loader"
+	desc = "A advanced version of the sheet loader , can be used to creat objects of the desired material"
+	icon_state = "gripper-sheet"
+	can_hold = list(
+		/obj/item/stack/material
+	)

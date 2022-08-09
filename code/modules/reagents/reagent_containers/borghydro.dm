@@ -21,7 +21,12 @@
 	reagent_ids = list("bicaridine", "kelotane", "anti_toxin", "dexalin", "inaprovaline", "tramadol", "spaceacillin", "stoxin")
 
 /obj/item/reagent_containers/borghypo/rescue
-	reagent_ids = list("tricordrazine", "inaprovaline", "tramadol")
+	reagent_ids = list("dexalin", "inaprovaline", "paracetamol", "iron", "quickclot")
+	// dexalin - prevent dying from oxyloss
+	// iron - replenish oxy
+	// inaprov - stabilize
+	// paracetamol - prevent pain knockout ? don't think it really belongs.
+	// quickclot - stop bleeding temporarily
 
 /obj/item/reagent_containers/borghypo/New()
 	..()
