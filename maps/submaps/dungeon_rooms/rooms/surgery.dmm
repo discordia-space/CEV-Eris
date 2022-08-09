@@ -55,7 +55,6 @@
 "m" = (
 /obj/structure/window/reinforced,
 /obj/structure/table/onestar,
-/obj/spawner/prothesis_one_star,
 /turf/simulated/floor/tiled/cafe,
 /area/crawler)
 "n" = (
@@ -143,26 +142,32 @@
 /obj/structure/table/onestar,
 /turf/simulated/floor/tiled/cafe,
 /area/crawler)
+"C" = (
+/obj/structure/window/reinforced,
+/obj/structure/table/onestar,
+/obj/spawner/prothesis_one_star,
+/turf/simulated/floor/tiled/cafe,
+/area/crawler)
 "D" = (
 /obj/machinery/door/window/northleft,
 /turf/simulated/floor/tiled/cafe,
 /area/crawler)
-"M" = (
+"H" = (
 /obj/structure/table/onestar,
-/obj/spawner/surgery_tool,
-/obj/spawner/surgery_tool,
+/obj/item/tool/medmultitool,
 /turf/simulated/floor/tiled/cafe,
 /area/crawler)
-"S" = (
-/obj/structure/table/onestar,
-/obj/spawner/surgery_tool,
-/turf/simulated/floor/tiled/cafe,
-/area/crawler)
-"Y" = (
+"W" = (
 /obj/effect/floor_decal/industrial/outline,
 /obj/structure/table/rack,
 /obj/spawner/medical/low_chance,
 /turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"Y" = (
+/obj/structure/table/onestar,
+/obj/spawner/surgery_tool,
+/obj/spawner/surgery_tool,
+/turf/simulated/floor/tiled/cafe,
 /area/crawler)
 
 (1,1,1) = {"
@@ -200,7 +205,7 @@ a
 "}
 (4,1,1) = {"
 a
-S
+H
 m
 j
 j
@@ -266,8 +271,8 @@ i
 "}
 (10,1,1) = {"
 a
-M
-m
+Y
+C
 j
 j
 j
@@ -292,7 +297,7 @@ d
 o
 p
 s
-Y
+W
 z
 c
 a
