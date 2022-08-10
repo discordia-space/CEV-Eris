@@ -622,7 +622,7 @@
 	rarity_value = 50
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_OS
 	spawn_blacklisted = FALSE
-	price_tag = 1500
+	price_tag = 2500
 
 /obj/item/tool_upgrade/augment/ai_tool/New()
 	..()
