@@ -168,12 +168,7 @@
 /obj/structure/closet/onestar/tier2,
 /turf/simulated/floor/wood,
 /area/crawler)
-"E" = (
-/obj/structure/table/onestar,
-/obj/item/oddity/common/old_newspaper,
-/turf/simulated/floor/tiled/techmaint,
-/area/crawler)
-"H" = (
+"K" = (
 /obj/structure/table/rack,
 /obj/structure/sign/faction/one_star{
 	pixel_y = -32
@@ -182,7 +177,20 @@
 /obj/spawner/lathe_disk/advanced/low_chance,
 /turf/simulated/floor/wood,
 /area/crawler)
-"P" = (
+"N" = (
+/obj/structure/table/onestar,
+/obj/item/oddity/common/old_newspaper,
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"Q" = (
+/obj/structure/table/rack,
+/obj/structure/sign/faction/one_star{
+	pixel_y = -32
+	},
+/obj/spawner/science/low_chance,
+/turf/simulated/floor/wood,
+/area/crawler)
+"X" = (
 /obj/structure/window/reinforced/polarized{
 	dir = 8;
 	id = 11
@@ -190,14 +198,6 @@
 /obj/structure/sign/faction/one_star{
 	pixel_y = 32
 	},
-/turf/simulated/floor/wood,
-/area/crawler)
-"U" = (
-/obj/structure/table/rack,
-/obj/structure/sign/faction/one_star{
-	pixel_y = -32
-	},
-/obj/spawner/science/low_chance,
 /turf/simulated/floor/wood,
 /area/crawler)
 
@@ -231,7 +231,7 @@ j
 j
 d
 d
-H
+K
 a
 "}
 (4,1,1) = {"
@@ -239,7 +239,7 @@ a
 n
 j
 j
-E
+N
 p
 d
 y
@@ -291,7 +291,7 @@ B
 "}
 (9,1,1) = {"
 a
-P
+X
 h
 h
 h
@@ -319,7 +319,7 @@ k
 k
 n
 d
-U
+Q
 a
 "}
 (12,1,1) = {"

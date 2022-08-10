@@ -140,14 +140,14 @@
 /obj/crawler/crawler_wallbreaker,
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/crawler)
-"K" = (
-/obj/structure/table/onestar,
-/obj/spawner/booze/low_chance,
-/turf/simulated/floor/wood,
-/area/crawler)
-"U" = (
+"N" = (
 /obj/structure/table/onestar,
 /obj/spawner/junkfood,
+/turf/simulated/floor/wood,
+/area/crawler)
+"S" = (
+/obj/structure/table/onestar,
+/obj/spawner/booze/low_chance,
 /turf/simulated/floor/wood,
 /area/crawler)
 
@@ -253,8 +253,8 @@ F
 (10,1,1) = {"
 a
 k
-K
-U
+S
+N
 r
 C
 C

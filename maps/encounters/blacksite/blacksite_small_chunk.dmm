@@ -58,6 +58,10 @@
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/tiled/derelict/white_small_edges/airless,
 /area/outpost/blacksite/small)
+"cq" = (
+/obj/spawner/gun/normal/low_chance,
+/turf/simulated/floor/plating/under/airless,
+/area/outpost/blacksite/small)
 "cu" = (
 /obj/structure/closet/onestar/tier3,
 /turf/simulated/floor/plating/under/airless,
@@ -178,6 +182,10 @@
 "jJ" = (
 /obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/area/outpost/blacksite/small)
+"ke" = (
+/mob/living/carbon/superior_animal/stalker,
+/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
 /area/outpost/blacksite/small)
 "kj" = (
 /obj/machinery/door/window/northright{
@@ -563,10 +571,6 @@
 /obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/cafe/airless,
 /area/outpost/blacksite/small)
-"CW" = (
-/mob/living/carbon/superior_animal/stalker,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
 "CY" = (
 /turf/template_noop,
 /area/template_noop)
@@ -868,10 +872,6 @@
 /obj/structure/table/onestar,
 /obj/item/modular_computer/laptop/preset/custom_loadout/cheap,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"Vt" = (
-/obj/spawner/gun/normal/low_chance,
-/turf/simulated/floor/plating/under/airless,
 /area/outpost/blacksite/small)
 "VB" = (
 /obj/structure/satellite/science,
@@ -3636,7 +3636,7 @@ et
 ZF
 ZF
 ZF
-CW
+ke
 ZF
 ZF
 ZF
@@ -4247,7 +4247,7 @@ lZ
 lZ
 lZ
 AZ
-Vt
+cq
 CY
 CY
 CY

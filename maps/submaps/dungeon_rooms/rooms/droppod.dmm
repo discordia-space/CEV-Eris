@@ -80,7 +80,29 @@
 "r" = (
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
-"s" = (
+"u" = (
+/obj/structure/bed/chair/custom/onestar,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"v" = (
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	pixel_x = -32
+	},
+/obj/item/tank/onestar_regenerator,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"x" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"y" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"D" = (
 /obj/structure/sign/directions/evac{
 	dir = 8;
 	pixel_x = -32
@@ -90,45 +112,23 @@
 	},
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
-"t" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/plating/under,
-/area/crawler)
-"x" = (
-/obj/structure/bed/chair/custom/onestar,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"y" = (
-/obj/machinery/light/floor,
-/obj/structure/bed/chair/custom/onestar{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"I" = (
-/obj/item/remains/human,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"P" = (
-/obj/spawner/toy,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"V" = (
-/obj/structure/sign/directions/evac{
-	dir = 8;
-	pixel_x = -32
-	},
-/obj/item/tank/onestar_regenerator,
-/turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"W" = (
+"G" = (
 /obj/structure/bed/chair/custom/onestar,
 /obj/structure/sign/derelict3{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
-"Y" = (
+"R" = (
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"T" = (
+/obj/spawner/toy,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"Z" = (
+/obj/machinery/light/floor,
 /obj/structure/bed/chair/custom/onestar{
 	dir = 1
 	},
@@ -163,7 +163,7 @@ d
 a
 f
 f
-t
+y
 a
 d
 a
@@ -227,44 +227,44 @@ b
 a
 o
 p
-s
+D
 r
-V
+v
 q
 o
 b
 "}
 (10,1,1) = {"
 a
-W
-P
+G
+T
 r
 r
 r
 e
-Y
+x
 a
 "}
 (11,1,1) = {"
 a
 j
-I
+R
 r
 r
 r
 e
-y
+Z
 a
 "}
 (12,1,1) = {"
 a
+u
+e
+r
+r
+r
+e
 x
-e
-r
-r
-r
-e
-Y
 a
 "}
 (13,1,1) = {"

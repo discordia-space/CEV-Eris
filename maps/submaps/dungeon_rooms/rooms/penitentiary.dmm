@@ -128,12 +128,12 @@
 /obj/effect/window_lwall_spawn/smartspawn/onestar,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
-"M" = (
+"H" = (
 /obj/structure/table/onestar,
 /obj/item/handcuffs,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
-"S" = (
+"N" = (
 /obj/item/remains,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
@@ -168,7 +168,7 @@ r
 w
 u
 A
-S
+N
 a
 "}
 (4,1,1) = {"
@@ -196,7 +196,7 @@ b
 (6,1,1) = {"
 b
 g
-S
+N
 C
 u
 t
@@ -229,7 +229,7 @@ b
 (9,1,1) = {"
 a
 i
-M
+H
 a
 t
 u

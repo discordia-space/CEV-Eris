@@ -131,10 +131,6 @@
 /obj/machinery/light/floor,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
-"z" = (
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict,
-/area/crawler)
 "A" = (
 /obj/structure/grille,
 /turf/simulated/floor/tiled/techmaint,
@@ -148,6 +144,10 @@
 "C" = (
 /obj/crawler/crawler_wallbreaker,
 /turf/simulated/floor/bluegrid,
+/area/crawler)
+"Y" = (
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict,
 /area/crawler)
 
 (1,1,1) = {"
@@ -232,7 +232,7 @@ b
 e
 l
 p
-z
+Y
 v
 y
 v

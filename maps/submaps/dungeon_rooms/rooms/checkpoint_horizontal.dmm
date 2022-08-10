@@ -158,18 +158,18 @@
 /obj/structure/closet/onestar/tier3,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
+"N" = (
+/obj/structure/table/rack,
+/obj/spawner/gun/shotgun/low_chance,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
 "Q" = (
 /obj/structure/salvageable/os/console_broken{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
-"R" = (
-/obj/structure/table/rack,
-/obj/spawner/gun/shotgun/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/crawler)
-"U" = (
+"T" = (
 /obj/structure/sign/derelict2{
 	pixel_x = 32
 	},
@@ -216,7 +216,7 @@ d
 o
 u
 w
-U
+T
 f
 a
 "}
@@ -237,7 +237,7 @@ f
 j
 Q
 t
-R
+N
 C
 g
 b

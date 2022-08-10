@@ -204,7 +204,7 @@
 /obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/crawler)
-"W" = (
+"N" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/ore_box,
 /turf/simulated/floor/tiled/derelict,
@@ -228,7 +228,7 @@ d
 q
 q
 q
-W
+N
 F
 a
 "}
@@ -251,7 +251,7 @@ M
 q
 q
 F
-W
+N
 a
 "}
 (5,1,1) = {"

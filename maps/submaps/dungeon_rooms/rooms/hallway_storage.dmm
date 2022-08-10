@@ -160,13 +160,13 @@
 /obj/crawler/crawler_wallbreaker,
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/crawler)
-"S" = (
+"T" = (
 /obj/structure/salvageable/os/console_broken{
 	dir = 1
 	},
 /turf/simulated/floor/bluegrid,
 /area/crawler)
-"T" = (
+"Z" = (
 /obj/structure/salvageable/bliss,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
@@ -199,7 +199,7 @@ A
 n
 u
 a
-T
+Z
 n
 H
 a
@@ -289,7 +289,7 @@ y
 a
 F
 n
-S
+T
 a
 "}
 (12,1,1) = {"
