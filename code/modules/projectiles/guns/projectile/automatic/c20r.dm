@@ -63,7 +63,7 @@
 	update_icon()
 
 /obj/item/gun/projectile/automatic/c20r/moebius
-	name = "Moebius SMG .35 \"C-20M\""
+	name = "ML SMG .35 \"C-20M\""
 	desc = "The C-20M is a Moebius copy of the famous C-20r, a lightweight and robust bullpup SMG of ancient design. \
 			Famous as most used SMG by criminal organizations of various sorts. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/c20m.dmi'
