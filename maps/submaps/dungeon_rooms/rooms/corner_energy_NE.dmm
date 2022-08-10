@@ -141,6 +141,10 @@
 /obj/structure/grille,
 /turf/simulated/floor/tiled/techmaint,
 /area/crawler)
+"B" = (
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
 "C" = (
 /obj/crawler/crawler_wallbreaker,
 /turf/simulated/floor/bluegrid,
@@ -150,10 +154,6 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"G" = (
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict,
 /area/crawler)
 
 (1,1,1) = {"
@@ -194,7 +194,7 @@ a
 e
 l
 n
-G
+B
 t
 A
 k

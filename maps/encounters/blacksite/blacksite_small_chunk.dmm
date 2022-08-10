@@ -94,10 +94,6 @@
 	},
 /turf/simulated/floor/tiled/derelict/white_red_edges/airless,
 /area/outpost/blacksite/small)
-"ep" = (
-/obj/spawner/gun/normal/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
 "et" = (
 /turf/simulated/wall/untinted/onestar,
 /area/outpost/blacksite/small)
@@ -361,10 +357,6 @@
 /obj/item/device/lighting/toggleable/lamp,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
 /area/outpost/blacksite/small)
-"sI" = (
-/mob/living/carbon/superior_animal/stalker,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
 "sM" = (
 /obj/spawner/junk,
 /obj/spawner/scrap/sparse,
@@ -570,6 +562,10 @@
 	},
 /obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/cafe/airless,
+/area/outpost/blacksite/small)
+"CW" = (
+/mob/living/carbon/superior_animal/stalker,
+/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
 /area/outpost/blacksite/small)
 "CY" = (
 /turf/template_noop,
@@ -872,6 +868,10 @@
 /obj/structure/table/onestar,
 /obj/item/modular_computer/laptop/preset/custom_loadout/cheap,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/area/outpost/blacksite/small)
+"Vt" = (
+/obj/spawner/gun/normal/low_chance,
+/turf/simulated/floor/plating/under/airless,
 /area/outpost/blacksite/small)
 "VB" = (
 /obj/structure/satellite/science,
@@ -3636,7 +3636,7 @@ et
 ZF
 ZF
 ZF
-sI
+CW
 ZF
 ZF
 ZF
@@ -4247,7 +4247,7 @@ lZ
 lZ
 lZ
 AZ
-ep
+Vt
 CY
 CY
 CY

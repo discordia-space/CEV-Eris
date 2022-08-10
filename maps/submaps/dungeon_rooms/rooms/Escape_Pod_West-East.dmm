@@ -34,7 +34,7 @@
 /obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/techmaint,
 /area/crawler)
-"z" = (
+"k" = (
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
@@ -86,7 +86,7 @@ e
 (5,1,1) = {"
 e
 c
-z
+k
 e
 j
 e

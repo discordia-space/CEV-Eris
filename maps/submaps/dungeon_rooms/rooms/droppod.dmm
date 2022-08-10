@@ -80,23 +80,7 @@
 "r" = (
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
-"t" = (
-/obj/item/remains/human,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"u" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/plating/under,
-/area/crawler)
-"x" = (
-/obj/structure/bed/chair/custom/onestar,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"z" = (
-/obj/spawner/toy,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"B" = (
+"s" = (
 /obj/structure/sign/directions/evac{
 	dir = 8;
 	pixel_x = -32
@@ -106,13 +90,30 @@
 	},
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
-"G" = (
+"t" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"x" = (
+/obj/structure/bed/chair/custom/onestar,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"y" = (
+/obj/machinery/light/floor,
 /obj/structure/bed/chair/custom/onestar{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
-"L" = (
+"I" = (
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"P" = (
+/obj/spawner/toy,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"V" = (
 /obj/structure/sign/directions/evac{
 	dir = 8;
 	pixel_x = -32
@@ -120,15 +121,14 @@
 /obj/item/tank/onestar_regenerator,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
-"O" = (
+"W" = (
 /obj/structure/bed/chair/custom/onestar,
 /obj/structure/sign/derelict3{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
-"T" = (
-/obj/machinery/light/floor,
+"Y" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 1
 	},
@@ -163,7 +163,7 @@ d
 a
 f
 f
-u
+t
 a
 d
 a
@@ -227,33 +227,33 @@ b
 a
 o
 p
-B
+s
 r
-L
+V
 q
 o
 b
 "}
 (10,1,1) = {"
 a
-O
-z
+W
+P
 r
 r
 r
 e
-G
+Y
 a
 "}
 (11,1,1) = {"
 a
 j
-t
+I
 r
 r
 r
 e
-T
+y
 a
 "}
 (12,1,1) = {"
@@ -264,7 +264,7 @@ r
 r
 r
 e
-G
+Y
 a
 "}
 (13,1,1) = {"

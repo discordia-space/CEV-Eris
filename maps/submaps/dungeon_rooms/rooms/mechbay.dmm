@@ -237,27 +237,27 @@
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "T" = (
-/obj/spawner/tool/advanced/onestar/low_chance,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"U" = (
 /mob/living/carbon/superior_animal/stalker/dual,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "V" = (
 /obj/structure/table/onestar,
-/obj/spawner/pack/tech_loot/onestar,
-/turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"W" = (
-/obj/structure/table/onestar,
 /obj/spawner/tool_upgrade/rare/onestar,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
-"Z" = (
+"X" = (
 /obj/structure/table/onestar,
 /obj/spawner/tool/advanced/onestar/low_chance,
 /turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"Y" = (
+/obj/structure/table/onestar,
+/obj/spawner/pack/tech_loot/onestar,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"Z" = (
+/obj/spawner/tool/advanced/onestar/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 
 (1,1,1) = {"
@@ -298,7 +298,7 @@ a
 e
 Q
 q
-U
+T
 q
 Q
 P
@@ -312,17 +312,17 @@ q
 C
 q
 q
-Z
+X
 b
 "}
 (6,1,1) = {"
 b
-Z
-W
+X
+V
 n
 C
 y
-V
+Y
 i
 b
 "}
@@ -366,7 +366,7 @@ r
 A
 C
 J
-T
+Z
 K
 a
 "}

@@ -133,14 +133,14 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/crawler)
 "P" = (
-/obj/structure/table/rack,
-/obj/spawner/lathe_disk/advanced,
-/turf/simulated/floor/tiled/white/gray_platform,
-/area/crawler)
-"R" = (
 /obj/structure/table/reinforced,
 /obj/spawner/lathe_disk/advanced/low_chance,
 /turf/simulated/floor/tiled/dark/gray_platform,
+/area/crawler)
+"S" = (
+/obj/structure/table/rack,
+/obj/spawner/lathe_disk/advanced,
+/turf/simulated/floor/tiled/white/gray_platform,
 /area/crawler)
 
 (1,1,1) = {"
@@ -156,7 +156,7 @@ a
 "}
 (2,1,1) = {"
 a
-P
+S
 h
 m
 p
@@ -181,7 +181,7 @@ a
 o
 x
 j
-R
+P
 l
 v
 w

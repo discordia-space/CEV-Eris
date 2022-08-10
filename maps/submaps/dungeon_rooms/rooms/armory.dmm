@@ -147,7 +147,7 @@
 /obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
-"S" = (
+"J" = (
 /mob/living/carbon/superior_animal/stalker,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/crawler)
@@ -225,7 +225,7 @@ o
 b
 a
 t
-S
+J
 a
 s
 "}
