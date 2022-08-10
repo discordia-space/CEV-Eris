@@ -16,6 +16,7 @@
 	modifystate = "energystun"
 	item_modifystate = "stun"
 	init_recoil = SMG_RECOIL(1)
+	fire_delay = 3
 
 	init_firemodes = list(
 		STUNBOLT,
@@ -49,6 +50,7 @@
 	suitable_cell = /obj/item/cell/small
 	cell_type = /obj/item/cell/small
 	init_recoil = HANDGUN_RECOIL(1)
+	fire_delay = 5
 
 	serial_type = "FS"
 

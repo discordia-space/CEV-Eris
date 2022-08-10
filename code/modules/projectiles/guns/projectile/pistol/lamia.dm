@@ -21,6 +21,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/hpistol_cock.ogg'
 	damage_multiplier = 1.4
 	penetration_multiplier = 1.4
+	fire_delay = 5
 	init_recoil = HANDGUN_RECOIL(0.4)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE

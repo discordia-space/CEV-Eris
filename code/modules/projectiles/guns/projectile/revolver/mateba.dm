@@ -8,6 +8,7 @@
 	price_tag = 3000 //more op and rare than miller, hits as hard as a Miller and doesn't struggle with armor, good luck finding it
 	damage_multiplier = 1.75
 	penetration_multiplier = 1.5
+	fire_delay = 4
 	init_recoil = HANDGUN_RECOIL(1.2)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE

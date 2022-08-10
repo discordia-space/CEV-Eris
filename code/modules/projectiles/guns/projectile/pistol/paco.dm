@@ -20,6 +20,7 @@
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	damage_multiplier = 1.5
 	penetration_multiplier = 0.9
+	fire_delay = 5
 	init_recoil = HANDGUN_RECOIL(1)
 	gun_tags = list(GUN_SILENCABLE)
 

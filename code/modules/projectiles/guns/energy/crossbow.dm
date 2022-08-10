@@ -13,6 +13,7 @@
 	fire_sound = 'sound/weapons/Genhit.ogg'
 	projectile_type = /obj/item/projectile/energy/bolt
 	self_recharge = 1
+	fire_delay = 3
 	charge_meter = 0
 	charge_cost = 200
 	price_tag = 2500

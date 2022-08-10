@@ -15,6 +15,7 @@
 	price_tag = 600
 	damage_multiplier = 1.4 //because pistol round
 	penetration_multiplier = 1.4
+	fire_delay = 3
 	init_recoil = HANDGUN_RECOIL(0.6)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE

@@ -17,6 +17,7 @@
 	can_dual = TRUE
 	damage_multiplier = 1.45
 	penetration_multiplier = 1.35
+	fire_delay = 4
 	init_recoil = HANDGUN_RECOIL(0.9)
 
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'

@@ -11,7 +11,7 @@
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_LRIFLE
-	fire_delay = 8
+	fire_delay = 5
 	damage_multiplier = 1.4
 	style_damage_multiplier = 5
 	penetration_multiplier = 1.5

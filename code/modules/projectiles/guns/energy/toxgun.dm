@@ -12,4 +12,5 @@
 	projectile_type = /obj/item/projectile/energy/plasma
 	init_recoil = HANDGUN_RECOIL(1)
 	serial_type = "ML"
+	fire_delay = 5
 

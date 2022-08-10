@@ -14,6 +14,7 @@
 	can_dual = TRUE
 	zoom_factor = 0
 	damage_multiplier = 1
+	fire_delay = 4
 	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_WOOD = 4, MATERIAL_SILVER = 2)
 	price_tag = 1000
 	init_firemodes = list(

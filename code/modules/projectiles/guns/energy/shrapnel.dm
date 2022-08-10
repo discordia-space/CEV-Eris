@@ -15,7 +15,7 @@
 	suitable_cell = /obj/item/cell/small
 	cell_type = /obj/item/cell/small
 	projectile_type = /obj/item/projectile/bullet/shotgun
-	fire_delay = 12 //Equivalent to a pump then fire time
+	fire_delay = 8 //Equivalent to a pump then fire time
 	fire_sound = 'sound/weapons/guns/fire/energy_shotgun.ogg'
 	init_firemodes = list(
 		list(mode_name="Buckshot", mode_desc="Fires a buckshot synth-shell", projectile_type=/obj/item/projectile/bullet/pellet/shotgun, charge_cost=50, icon="kill"),
