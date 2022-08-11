@@ -90,7 +90,7 @@
 	set_item_state(null, back = TRUE)
 
 /obj/item/gun/energy/plasma/brigador
-	name = "Moebius PP \"Brigador\""
+	name = "ML PP \"Brigador\""
 	desc = "\"Moebius\" brand energy pistol, for personal overprotection."
 	icon = 'icons/obj/guns/energy/brigador.dmi'
 	icon_state = "brigador"
