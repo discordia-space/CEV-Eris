@@ -234,6 +234,9 @@
 /datum/reagent/metal/iron/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_BLOODRESTORE, 0.8 * effect_multiplier)
 
+/datum/reagent/metal/iron/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	M.add_chemical_effect(CE_BLOODRESTORE, 0.9 * effect_multiplier)
+
 /datum/reagent/metal/lithium
 	name = "Lithium"
 	id = "lithium"
