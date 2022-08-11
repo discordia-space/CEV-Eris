@@ -349,7 +349,6 @@
 		our_man.wear_mask,
 		our_man.w_uniform,
 	)
-	message_admins("units per bodypart at [units_per_bodypart]")
 	remove_self(volume)
 	for(var/bodypart in bodyparts)
 		var/stop_loop = FALSE
