@@ -199,7 +199,9 @@
 
 	can_hold = list(
 		/obj/item/ammo_magazine,
-		/obj/item/ammo_casing
+		/obj/item/ammo_casing,
+		/obj/item/cell/small,
+		/obj/item/cell/medium
 		)
 
 /obj/item/storage/pouch/tubular
