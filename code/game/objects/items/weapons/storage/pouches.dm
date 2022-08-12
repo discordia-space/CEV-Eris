@@ -86,8 +86,8 @@
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
-	storage_slots = null
-	max_storage_space = DEFAULT_SMALL_STORAGE
+	storage_slots = null 
+	max_storage_space = DEFAULT_SMALL_STORAGE //Medkits typically hold 5 items in them, this is pocket medkit
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
@@ -104,17 +104,18 @@
 		/obj/item/clothing/gloves/latex,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/clothing/glasses/hud/health,
+		/obj/item/stack/nanopaste
 		)
 
 /obj/item/storage/pouch/engineering_tools
 	name = "engineering tools pouch"
-	desc = "Can hold engineering tools. But only about three pieces of them."
+	desc = "A pouch for holding Engineering tools. Looks like there are pockets in it for 4 tools."
 	icon_state = "engineering_tool"
 	item_state = "engineering_tool"
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 20
 
-	storage_slots = 3
+	storage_slots = 4 
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
@@ -136,18 +137,20 @@
 		/obj/item/flame/lighter,
 		/obj/item/cell/small,
 		/obj/item/cell/medium,
-		/obj/item/gun/projectile/flare_gun
+		/obj/item/gun/projectile/flare_gun,
+		/obj/item/stack/nanopaste
 		)
 
 /obj/item/storage/pouch/engineering_supply
 	name = "engineering supply pouch"
-	desc = "Can hold engineering equipment. 12 pieces of hardware, cells, rods or cables."
+	desc = "A pouch for holding various engineering scanners, powercells and equipment."
 	icon_state = "engineering_supply"
 	item_state = "engineering_supply"
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
-	storage_slots = 12
+	storage_slots = null
+	max_storage_space = DEFAULT_NORMAL_STORAGE
 	w_class = ITEM_SIZE_NORMAL
 	max_w_class = ITEM_SIZE_NORMAL
 
@@ -168,13 +171,14 @@
 
 /obj/item/storage/pouch/engineering_material
 	name = "engineering material pouch"
-	desc = "Can hold sheets, rods and cable coil."
+	desc = "A pouch for holding sheets, rods and cable coils."
 	icon_state = "engineering_material"
 	item_state = "engineering_material"
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
-	storage_slots = 4
+	storage_slots = null
+	max_storage_space = DEFAULT_NORMAL_STORAGE * 0.6 //Enough space for 3 stacks
 	w_class = ITEM_SIZE_NORMAL
 	max_w_class = ITEM_SIZE_NORMAL
 
@@ -182,7 +186,7 @@
 		/obj/item/stack/material,
 		/obj/item/material,
 		/obj/item/stack/cable_coil,
-		/obj/item/stack/rods,
+		/obj/item/stack/rods
 		)
 
 /obj/item/storage/pouch/ammo
@@ -340,16 +344,18 @@
 
 /obj/item/storage/pouch/gun_part
 	name = "part pouch"
-	desc = "Can hold gun parts and armor parts."
+	desc = "A pouch for holding all sorts of small parts, upgrades and components."
 	icon_state = "part_pouch"
 	item_state = "part_pouch"
 	rarity_value = 33
 
-	storage_slots = 10
+	storage_slots = null
+	max_storage_space = DEFAULT_NORMAL_STORAGE * 0.8 //Actually smaller than previous but illusion of space with continuous holding space
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/part,
 		/obj/item/stock_parts,
-		/obj/item/electronics
+		/obj/item/electronics,
+		/obj/item/tool_upgrade //Now holds tool upgrades!
 		)
