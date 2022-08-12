@@ -822,6 +822,7 @@
 #include "code\game\objects\effects\decals\Cleanable\tracks.dm"
 #include "code\game\objects\effects\decals\posters\bs12.dm"
 #include "code\game\objects\effects\decals\posters\tgposters.dm"
+#include "code\game\objects\effects\map_effects\portals.dm"
 #include "code\game\objects\effects\spawners\bombspawner.dm"
 #include "code\game\objects\effects\spawners\corpsespawner.dm"
 #include "code\game\objects\effects\spawners\ghostroles.dm"
