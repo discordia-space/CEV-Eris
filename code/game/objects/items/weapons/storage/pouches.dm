@@ -80,13 +80,14 @@
 
 /obj/item/storage/pouch/medical_supply
 	name = "medical supply pouch"
-	desc = "Can hold medical equipment. But only about three pieces of it."
+	desc = "A small pouch for holding medical supplies."
 	icon_state = "medical_supply"
 	item_state = "medical_supply"
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
-	storage_slots = 4
+	storage_slots = null
+	max_storage_space = DEFAULT_SMALL_STORAGE
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
@@ -107,14 +108,14 @@
 
 /obj/item/storage/pouch/engineering_tools
 	name = "engineering tools pouch"
-	desc = "Can hold small engineering tools. But only about three pieces of them."
+	desc = "Can hold engineering tools. But only about three pieces of them."
 	icon_state = "engineering_tool"
 	item_state = "engineering_tool"
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 20
 
 	storage_slots = 3
-	max_w_class = ITEM_SIZE_SMALL
+	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/tool,
@@ -173,7 +174,7 @@
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
-	storage_slots = 2
+	storage_slots = 4
 	w_class = ITEM_SIZE_NORMAL
 	max_w_class = ITEM_SIZE_NORMAL
 
