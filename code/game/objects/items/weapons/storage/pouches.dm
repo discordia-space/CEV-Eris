@@ -204,6 +204,13 @@
 		/obj/item/cell/medium
 		)
 
+	cant_hold = list(
+		/obj/item/ammo_magazine/ammobox,
+		/obj/item/ammo_magazine/srifle/drum,
+		/obj/item/ammo_magazine/lrifle/drum,
+		/obj/item/ammo_magazine/lrifle/pk
+		)
+
 /obj/item/storage/pouch/tubular
 	name = "tubular pouch"
 	desc = "Can hold five cylindrical and small items, including but not limiting to flares, glowsticks, syringes and even hatton tubes or rockets."
