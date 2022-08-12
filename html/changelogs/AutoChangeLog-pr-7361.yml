@@ -1,0 +1,7 @@
+author: ValoTheValo
+delete-after: true
+changes:
+  - rscadd: Onestar Toolmod spawner.
+  - balance: tweaked the spawners and items found around the dungeon. should be better
+      and more fitting loot
+  - bugfix: onestar dungeon now uses onestar salvagables
