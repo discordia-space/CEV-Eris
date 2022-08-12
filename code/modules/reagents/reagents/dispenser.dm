@@ -358,13 +358,16 @@
 			if(!(C.body_parts_covered & bodypart))
 				continue
 			if(C.unacidable || C.armor.bio > 99)
+				to_chat(our_man, SPAN_DANGER("The [C.name] protects you from the acid!"))
 				stop_loop = TRUE
 				continue
 			var/melting_requirement = (C.max_health / C.health) * (1 - C.armor.bio / 100) * meltdose
 			if(melting_requirement > units_per_bodypart)
 				C.health -= (C.max_health / meltdose) * (1 - C.armor.bio / 100) * units_per_bodypart
+				to_chat(our_man, SPAN_DANGER("The [C.name] soaks in the acid , protecting you."))
 				stop_loop = TRUE
 			else
+				to_chat(our_man, SPAN_DANGER("The [C.name] melts under the action of acid."))
 				units_for_this_part -= melting_requirement
 				our_man.remove_from_mob(C)
 				C.forceMove(NULLSPACE)
@@ -377,13 +380,16 @@
 			if(!(C.body_parts_covered & bodypart))
 				continue
 			if(C.unacidable || C.armor.bio > 99)
+				to_chat(our_man, SPAN_DANGER("The [C.name] protects you from the acid!"))
 				stop_loop = TRUE
 				continue
 			var/melting_requirement = (C.max_health / C.health) * (1 - C.armor.bio / 100) * meltdose
 			if(melting_requirement > units_per_bodypart)
 				C.health -= (C.max_health / meltdose) * (1 - C.armor.bio / 100) * units_per_bodypart
+				to_chat(our_man, SPAN_DANGER("The [C.name] soaks in the acid , protecting you."))
 				stop_loop = TRUE
 			else
+				to_chat(our_man, SPAN_DANGER("The [C.name] melts under the action of acid."))
 				units_for_this_part -= melting_requirement
 				our_man.remove_from_mob(C)
 				C.forceMove(NULLSPACE)
