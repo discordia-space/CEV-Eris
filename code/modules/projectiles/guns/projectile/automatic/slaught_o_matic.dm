@@ -14,6 +14,7 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_SMG
 	auto_eject = FALSE
+	serial_type = "FS"
 	magazine_type = /obj/item/ammo_magazine/smg
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 9)
 	price_tag = 100

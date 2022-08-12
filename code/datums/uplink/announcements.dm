@@ -20,7 +20,7 @@
 	var/message = input(user, "What would you like the text of the announcement to be? Write as much as you like, The title will appear as Unknown Broadcast", "False Announcement") as text|null
 	if (!message)
 		return FALSE
-	command_announcement.Announce(message, "Unknown Broadcast")
+	command_announcement.Announce(message, "Unknown Broadcast", use_text_to_speech = TRUE)
 	return 1
 
 /datum/uplink_item/abstract/announcements/fake_crew_arrival

@@ -223,6 +223,10 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/webhook_url
 	var/webhook_key
 
+	var/tts_bearer // Token we use to talk with text-to-speech service
+	var/tts_enabled // Global switch
+	var/tts_cache // Store generated tts files and reuse them, instead of always requesting new
+
 	var/static/regex/ic_filter_regex //For the cringe filter.
 
 	var/generate_loot_data = FALSE //for loot rework
@@ -722,6 +726,14 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("webhook_url")
 					config.webhook_url = value
 
+				if("tts_bearer")
+					config.tts_bearer = value
+
+				if("tts_enabled")
+					config.tts_enabled = config.tts_bearer ? value : FALSE
+
+				if("tts_cache")
+					config.tts_cache = value
 
 				if("random_start")
 					var/list/startlist = list(

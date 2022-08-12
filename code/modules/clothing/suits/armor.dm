@@ -348,11 +348,11 @@
 	item_state = "onestar_coat"
 	style = STYLE_HIGH
 	slowdown = 0
-	spawn_blacklisted = TRUE
+	spawn_blacklisted = TRUE // TODO: make onestar clothing/armor spawner -Valo
 	price_tag = 2000
 	armor = list(
 		melee = 15,
-		bullet = 50,
+		bullet = 45,
 		energy = 45,
 		bomb = 10,
 		bio = 5,
