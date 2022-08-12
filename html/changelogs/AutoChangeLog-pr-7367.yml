@@ -1,0 +1,13 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - rscadd: Added beer keg back to club
+  - rscadd: added more scrubbers and vents to club
+  - rscadd: added more shield diffuers to junk beacon
+  - rscadd: added shield diffusers to incinerator room
+  - bugfix: fixed conference buttons with wrong id
+  - bugfix: fixed SM eject button not working
+  - bugfix: fixed bad and incomplete piping in club
+  - bugfix: fixed that one normal window in courtroom
+  - bugfix: fixed double wall and missing hull plating
+  - bugfix: more I forgot
