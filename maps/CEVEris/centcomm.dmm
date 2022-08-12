@@ -2825,7 +2825,7 @@
 /obj/machinery/shower{
 	dir = 1
 	},
-/obj/structure/plushie/fumo,
+/obj/item/toy/plushie/fumo,
 /turf/unsimulated/floor{
 	dir = 2;
 	icon_state = "freezerfloor"
