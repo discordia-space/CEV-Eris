@@ -358,7 +358,6 @@
 			if(!(C.body_parts_covered & bodypart))
 				continue
 			if(C.unacidable || C.armor.bio > 99)
-				to_chat(our_man, SPAN_DANGER("The [C.name] protects you from the acid!"))
 				stop_loop = TRUE
 				continue
 			var/melting_requirement = (C.max_health / C.health) * (1 - C.armor.bio / 100) * meltdose
