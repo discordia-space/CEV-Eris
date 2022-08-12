@@ -383,7 +383,6 @@
 			var/melting_requirement = (C.max_health / C.health) * (1 - C.armor.bio / 100) * meltdose
 			if(melting_requirement > units_per_bodypart)
 				C.health -= (C.max_health / meltdose) * (1 - C.armor.bio / 100) * units_per_bodypart
-				to_chat(our_man, SPAN_DANGER("The [C.name] soaks in the acid, protecting you."))
 				stop_loop = TRUE
 			else
 				to_chat(our_man, SPAN_DANGER("The [C.name] melts under the action of acid."))
