@@ -4251,6 +4251,7 @@
 /area/eris/crew_quarters/sleep)
 "ajY" = (
 /obj/structure/table/standard,
+/obj/item/toy/plushie/fumo,
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/crew_quarters/sleep)
 "ajZ" = (
