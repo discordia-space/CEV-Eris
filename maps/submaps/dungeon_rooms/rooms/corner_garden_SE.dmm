@@ -50,6 +50,7 @@
 /area/crawler)
 "k" = (
 /obj/structure/table/onestar,
+/obj/spawner/soda,
 /turf/simulated/floor/grass,
 /area/crawler)
 "l" = (
@@ -138,6 +139,16 @@
 "F" = (
 /obj/crawler/crawler_wallbreaker,
 /turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"N" = (
+/obj/structure/table/onestar,
+/obj/spawner/junkfood,
+/turf/simulated/floor/wood,
+/area/crawler)
+"S" = (
+/obj/structure/table/onestar,
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/wood,
 /area/crawler)
 
 (1,1,1) = {"
@@ -242,8 +253,8 @@ F
 (10,1,1) = {"
 a
 k
-s
-s
+S
+N
 r
 C
 C

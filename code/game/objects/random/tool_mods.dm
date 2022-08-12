@@ -19,3 +19,8 @@
 	name = "low chance random rare tool upgrade"
 	icon_state = "tech-red-low"
 	spawn_nothing_percentage = 75
+
+/obj/spawner/tool_upgrade/rare/onestar
+	name = "random onestar tool upgrade"
+	icon_state = "tech-red"
+	tags_to_spawn = list(SPAWN_OS_TOOL_UPGRADE)
