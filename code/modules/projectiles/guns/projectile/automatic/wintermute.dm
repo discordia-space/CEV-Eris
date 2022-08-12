@@ -40,19 +40,9 @@
 	..()
 
 	var/iconstring = initial(icon_state)
-	var/itemstring = ""
-
-	if (ammo_magazine)
-		iconstring += "_mag"
-		itemstring += "_mag"
-		if(ammo_magazine.mag_well == MAG_WELL_RIFLE_L)
-			itemstring += "_l"
-
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		iconstring += "_slide"
+	iconstring = initial(icon_state) + (ammo_magazine ? "_mag" + (ammo_magazine.mag_well == MAG_WELL_RIFLE_L ? "_l" : (ammo_magazine.mag_well == MAG_WELL_RIFLE_D ? "_d" : "")) : "")
 
 	icon_state = iconstring
-	set_item_state(itemstring)
 
 /obj/item/gun/projectile/automatic/wintermute/Initialize()
 	. = ..()

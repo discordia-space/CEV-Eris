@@ -69,12 +69,7 @@
 	..()
 
 	var/iconstring = initial(icon_state)
-
-	if (ammo_magazine)
-		iconstring += "_mag"
-
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		iconstring += "_slide"
+	iconstring = initial(icon_state) + (ammo_magazine ? "_mag" + (ammo_magazine.mag_well == MAG_WELL_RIFLE_L ? "_l" : (ammo_magazine.mag_well == MAG_WELL_RIFLE_D ? "_d" : "")) : "")
 
 	icon_state = iconstring
 
