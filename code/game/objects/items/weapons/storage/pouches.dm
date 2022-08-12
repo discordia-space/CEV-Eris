@@ -208,7 +208,8 @@
 		/obj/item/ammo_magazine/ammobox,
 		/obj/item/ammo_magazine/srifle/drum,
 		/obj/item/ammo_magazine/lrifle/drum,
-		/obj/item/ammo_magazine/lrifle/pk
+		/obj/item/ammo_magazine/lrifle/pk,
+		/obj/item/ammo_magazine/maxim
 		)
 
 /obj/item/storage/pouch/tubular

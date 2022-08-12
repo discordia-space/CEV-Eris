@@ -427,6 +427,7 @@
 	matter = list(MATERIAL_STEEL = 20)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 96
+	w_class = ITEM_SIZE_NORMAL
 	ammo_states = list(96)
 
 /obj/item/ammo_magazine/maxim/rubber
