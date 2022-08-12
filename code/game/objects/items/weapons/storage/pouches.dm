@@ -109,7 +109,7 @@
 
 /obj/item/storage/pouch/engineering_tools
 	name = "engineering tools pouch"
-	desc = "A pouch for holding Engineering tools. Looks like there are pockets in it for 4 tools."
+	desc = "A pouch for holding engineering tools. Looks like there are pockets in it for 4 tools."
 	icon_state = "engineering_tool"
 	item_state = "engineering_tool"
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
@@ -143,14 +143,14 @@
 
 /obj/item/storage/pouch/engineering_supply
 	name = "engineering supply pouch"
-	desc = "A pouch for holding various engineering scanners, powercells and equipment."
+	desc = "A pouch for holding various engineering scanners, power cells and equipment."
 	icon_state = "engineering_supply"
 	item_state = "engineering_supply"
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
 	storage_slots = null
-	max_storage_space = DEFAULT_NORMAL_STORAGE
+	max_storage_space = DEFAULT_NORMAL_STORAGE * 0.8 //Not as big as a large pouch, even though hyper-specialized
 	w_class = ITEM_SIZE_NORMAL
 	max_w_class = ITEM_SIZE_NORMAL
 
