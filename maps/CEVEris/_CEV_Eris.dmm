@@ -103820,8 +103820,11 @@
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/clownoffice)
 "nnt" = (
-/obj/machinery/holoposter,
-/turf/simulated/wall,
+/obj/spawner/pack/machine,
+/obj/machinery/holoposter{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck1central)
 "npf" = (
 /obj/structure/table/woodentable,
@@ -288073,7 +288076,7 @@ boS
 bsj
 cNH
 aRM
-eIp
+cNH
 boS
 bfe
 bvj
@@ -289690,8 +289693,8 @@ cNH
 aRM
 cNH
 cNH
+boS
 nnt
-eDS
 eEp
 eEu
 ezF
