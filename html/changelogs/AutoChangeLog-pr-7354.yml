@@ -1,5 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - bugfix: Floor lights now have sprites again
-  - spellcheck: BSDM, RIGs and other stuff no longer `flick_lights` and flickers properly

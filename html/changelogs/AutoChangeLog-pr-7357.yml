@@ -1,7 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Roaches can no longer be flipped
-  - bugfix: Multitool interactions with camera
-  - bugfix: Some items showign up through z-levels at time
-  - bugfix: Lookup not working at times

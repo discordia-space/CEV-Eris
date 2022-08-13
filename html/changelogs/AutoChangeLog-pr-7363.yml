@@ -1,5 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - balance: Acid now takes into account all worn clothing
-  - balance: Acid now melts clothing before dealing damage.
