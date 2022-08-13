@@ -417,16 +417,16 @@
 
 		if(i < burst)
 			next_fire_time = world.time + shoot_time
-			sleep(burst_delay)
+			sleep(burst_delay < 1.1 ? 1.1 : burst_delay)
 
 		if(!(target && target.loc))
 			target = targloc
 			pointblank = 0
 	if(!twohanded && user.stats.getPerk(PERK_GUNSLINGER))
-		next_fire_time = world.time + fire_delay * 0.66
+		next_fire_time = world.time + (fire_delay < 1.1 ? 1.1 : fire_delay) * 0.66
 		user.setClickCooldown(fire_delay * 0.66)
 	else
-		next_fire_time = world.time + fire_delay
+		next_fire_time = world.time + fire_delay < 1.1 ? 1.1 : fire_delay
 		user.setClickCooldown(fire_delay)
 
 	user.set_move_cooldown(move_delay)
