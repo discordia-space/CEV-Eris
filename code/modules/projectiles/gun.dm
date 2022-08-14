@@ -423,10 +423,10 @@
 			target = targloc
 			pointblank = 0
 	if(!twohanded && user.stats.getPerk(PERK_GUNSLINGER))
-		next_fire_time = world.time + (fire_delay < 1.1 ? 1.1 : fire_delay) * 0.66
+		next_fire_time = world.time + (fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : fire_delay) * 0.66
 		user.setClickCooldown(fire_delay * 0.66)
 	else
-		next_fire_time = world.time + fire_delay < 1.1 ? 1.1 : fire_delay
+		next_fire_time = world.time + fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : fire_delay
 		user.setClickCooldown(fire_delay)
 
 	user.set_move_cooldown(move_delay)
@@ -856,6 +856,7 @@
 	data["ricochet_multiplier"] = ricochet_multiplier
 	data["penetration_multiplier"] = penetration_multiplier
 
+	data["minimum_fire_delay"] = GUN_MINIMUM_FIRETIME
 	data["fire_delay"] = fire_delay //time between shot, in ms
 	data["burst"] = burst //How many shots are fired per click
 	data["burst_delay"] = burst_delay //time between shot in burst mode, in ms
@@ -893,6 +894,7 @@
 				"name" = F.name,
 				"desc" = F.desc,
 				"burst" = F.settings["burst"],
+				"minimum_fire_delay" = GUN_MINIMUM_FIRETIME,
 				"fire_delay" = F.settings["fire_delay"],
 				"move_delay" = F.settings["move_delay"],
 				)
