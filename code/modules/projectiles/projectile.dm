@@ -54,6 +54,7 @@
 	var/spreading_step = 15
 	var/projectile_accuracy = 1 // Based on vigilance, reduces random limb chance and likelihood of missing intended target
 	var/recoil = 0
+	var/wounding_mult = 1 // A multiplier on damage inflicted to and damage blocked by mobs
 
 	//Effects
 	var/stun = 0

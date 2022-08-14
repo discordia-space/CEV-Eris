@@ -17,20 +17,24 @@
 	else
 		show_message(msg1, 1)
 
-/mob/living/proc/damage_through_armor(var/damage = 0, var/damagetype = BRUTE, var/def_zone, var/attack_flag = ARMOR_MELEE, var/armour_divisor = 1, var/used_weapon, var/sharp = FALSE, var/edge = FALSE)
+/mob/living/proc/damage_through_armor(var/damage = 0, var/damagetype = BRUTE, var/def_zone, var/attack_flag = ARMOR_MELEE, var/armour_divisor = 1, var/used_weapon, var/sharp = FALSE, var/edge = FALSE, var/wounding_multiplier = 1, var/getRemainingArmor = FALSE, var/armor)
 
 	if(damage == 0)
+		if(getRemainingArmor)
+			return armor
 		return FALSE
 
-	var/armor = getarmor(def_zone, attack_flag)
-
-	if(!(attack_flag in list(ARMOR_MELEE, ARMOR_BULLET, ARMOR_ENERGY))) // Making sure BIO and other armor types are handled correctly
-		armor /= 5
+	if(isnull(armor))
+		armor = getarmor(def_zone, attack_flag)
+		if(!(attack_flag in list(ARMOR_MELEE, ARMOR_BULLET, ARMOR_ENERGY))) // Making sure BIO and other armor types are handled correctly
+			armor /= 5
 
 	var/effective_armor = armor / armour_divisor
 	var/effective_damage = max(damage - effective_armor, 0)
 	var/armor_effectiveness = 1 - effective_damage / damage
 	var/sanctified_attack = FALSE
+
+	effective_damage *= wounding_multiplier
 
 	if(damagetype == HALLOSS)
 		effective_damage = round(effective_damage * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
@@ -49,10 +53,10 @@
 		var/obj/item/I = used_weapon
 		if((is_carrion(H) || active_mutations.len) && (SANCTIFIED in I.aspects))
 			sanctified_attack = TRUE
+
 	//Feedback
 	//In order to show both target and everyone around that armor is actually working, we are going to send message for both of them
 	//Goon/tg chat should take care of spam issue on this one
-
 	if(armor_effectiveness >= 74)
 		armor_message(SPAN_NOTICE("[src] armor easily absorbs the blow!"),
 						SPAN_NOTICE("Your armor reduced the impact greatly!"))
@@ -95,6 +99,10 @@
 				o.status &= ~ORGAN_SPLINTED
 		if(sanctified_attack)
 			apply_damage(effective_damage / 2, BURN, def_zone, sharp, edge, used_weapon)
+
+	//In case there are follow-up attacks, we will need the remaining armor
+	if(getRemainingArmor)
+		return max(effective_armor - damage, 0) * armour_divisor
 	return effective_damage
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
@@ -139,9 +147,10 @@
 	//Armor and damage
 	if(!P.nodamage)
 		hit_impact(P.get_structure_damage(), hit_dir)
+		var/kept_armour
 		for(var/damage_type in P.damage_types)
 			var/damage = P.damage_types[damage_type]
-			damage_through_armor(damage, damage_type, def_zone, P.check_armour, armour_divisor = P.armor_divisor, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
+			kept_armour = damage_through_armor(damage, damage_type, def_zone, P.check_armour, armour_divisor = P.armor_divisor, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P), wounding_multiplier=P.wounding_mult, getRemainingArmor=TRUE, armor=kept_armour)
 
 	P.on_hit(src, def_zone)
 	return TRUE

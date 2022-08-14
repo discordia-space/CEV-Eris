@@ -3,11 +3,14 @@ IMPORTANT
 
 There are important things regarding this file:
 
- * Rubbers are non sharp, embed incapable objects, with subpar armor divisors. Their agony damage is generally lower than actual one
+ * Wounding multiplier is generally based on bullet width
  * The caliber amount was lowered for a reason, don't add more bloat. If you need different values, use gun vars.
- * HV exists as an antag option for better ammo.
+ * Defaultrmor divisor is 1 for shorter calibers
  * Step delays - default value is 1. Lower value makes bullet go faster, higher value makes bullet go slower.
 
+ * Rubbers are non sharp, embed incapable objects, with halved armor divisors. Their agony damage is generally lower than actual one.
+ * HV exists as an antag option for better ammo, keeps wounding multiplier and increased armor divisor.
+ * Scrap ammunition has less armor divisor and more recoil without impacting raw damage.
 */
 //Low-caliber pistols and SMGs .35
 /obj/item/projectile/bullet/pistol
@@ -25,9 +28,8 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/pistol/practice
 	name = "practice bullet"
-	damage_types = list(BRUTE = 2)
-	agony = 3
-	armor_divisor = 1
+	damage_types = list(BRUTE = 4)
+	agony = 2
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
@@ -35,14 +37,15 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/pistol/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 3)
-	agony = 25
-	armor_divisor = 0.8
+	damage_types = list(BRUTE = 12)
+	agony = 14
 	embed = FALSE
 	sharp = FALSE
+	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/pistol/scrap
-	damage_types = list(BRUTE = 23)
+	armor_divisor = 0.8
+	recoil = 3.5
 
 //Carbines and rifles
 
@@ -50,20 +53,20 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/srifle
 	name = ".20 caliber bullet"
-	damage_types = list(BRUTE = 21)
+	damage_types = list(BRUTE = 36)
 	armor_divisor = 1.5
 	penetrating = 2
 	can_ricochet = TRUE
 	recoil = 4
+	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/srifle/nomuzzle
 	muzzle_type = null
 
 /obj/item/projectile/bullet/srifle/practice
 	name = "practice bullet"
-	damage_types = list(BRUTE = 2)
-	agony = 2
-	armor_divisor = 1
+	damage_types = list(BRUTE = 4)
+	agony = 1
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
@@ -75,122 +78,123 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/srifle/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 3)
-	agony = 30
-	armor_divisor = 0.8
+	damage_types = list(BRUTE = 9)
+	agony = 9
 	embed = FALSE
 	sharp = FALSE
 
 /obj/item/projectile/bullet/srifle/scrap
-	damage_types = list(BRUTE = 18)
+	armor_divisor = 1.2
+	recoil = 5
 
 // .25 caseless rifle
 
 /obj/item/projectile/bullet/clrifle
 	name = ".25 caliber bullet"
-	damage_types = list(BRUTE = 23)
-	armor_divisor = 1.1
+	damage_types = list(BRUTE = 21)
+	armor_divisor = 1.5
 	penetrating = 2
-	sharp = TRUE
 	can_ricochet = FALSE //to reduce collateral damage and FF, since IH use it in their primary firearm
 	recoil = 3.5
 
 /obj/item/projectile/bullet/clrifle/practice
 	name = "practice bullet"
-	damage_types = list(BRUTE = 2)
+	damage_types = list(BRUTE = 3)
 	agony = 2
-	armor_divisor = 1
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/clrifle/hv
-	armor_divisor = 1.6
+	armor_divisor = 2
 	step_delay = 0.75
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/clrifle/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 3)
-	agony = 22
-	armor_divisor = 0.8
+	damage_types = list(BRUTE = 11)
+	agony = 10
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = TRUE
+	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/clrifle/scrap
-	damage_types = list(BRUTE = 20)
+	armor_divisor = 1.2
+	recoil = 4.5
 
 // .30 rifle
 
 /obj/item/projectile/bullet/lrifle
 	name = ".30 caliber bullet"
-	damage_types = list(BRUTE = 24)
-	armor_divisor = 1.2
+	damage_types = list(BRUTE = 16)
+	armor_divisor = 1.5
 	penetrating = 2
 	can_ricochet = TRUE
 	recoil = 4.5
+	wounding_mult = WOUNDING_WIDE
 
 /obj/item/projectile/bullet/lrifle/practice
 	name = "practice bullet"
-	damage_types = list(BRUTE = 2)
-	agony = 2
-	armor_divisor = 1
+	damage_types = list(BRUTE = 3)
+	agony = 3
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/lrifle/hv
-	armor_divisor = 1.7
+	armor_divisor = 2
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/lrifle/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 3)
-	agony = 25
-	armor_divisor = 0.8
+	damage_types = list(BRUTE = 8)
+	agony = 8
 	embed = FALSE
 	sharp = FALSE
+	wounding_mult = WOUNDING_NORMAL
 
 /obj/item/projectile/bullet/lrifle/scrap
-	damage_types = list(BRUTE = 21)
+	armor_divisor = 1.2
+	recoil = 5.5
 
 //Revolvers and high-caliber pistols .40
 /obj/item/projectile/bullet/magnum
 	name = " .40 caliber bullet"
-	damage_types = list(BRUTE = 31)
-	armor_divisor = 0.9
+	damage_types = list(BRUTE = 21)
+	armor_divisor = 1
 	can_ricochet = TRUE
 	penetrating = 2
 	style_damage = 40
 	recoil = 6
+	wounding_mult = WOUNDING_WIDE
 
 /obj/item/projectile/bullet/magnum/practice
 	name = "practice bullet"
-	damage_types = list(BRUTE = 2)
-	agony = 3
-	armor_divisor = 1
+	damage_types = list(BRUTE = 5)
+	agony = 4
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/magnum/hv
-	armor_divisor = 1.4
+	armor_divisor = 1.5
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/magnum/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 8)
-	agony = 32
-	armor_divisor = 0.7
+	damage_types = list(BRUTE = 10)
+	agony = 11
 	embed = FALSE
 	sharp = FALSE
+	wounding_mult = WOUNDING_NORMAL
 
 /obj/item/projectile/bullet/magnum/scrap
-	damage_types = list(BRUTE = 28)
+	armor_divisor = 0.8
+	recoil = 7
 
 //Sniper rifles .60
 /obj/item/projectile/bullet/antim
@@ -201,6 +205,7 @@ There are important things regarding this file:
 	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
 	style_damage = 70
 	recoil = 30 // Good luck shooting these from a revolver
+	wounding_mult = WOUNDING_EXTREME
 
 /obj/item/projectile/bullet/antim/emp
 	damage_types = list(BRUTE = 30)
@@ -243,31 +248,34 @@ There are important things regarding this file:
 
 
 /obj/item/projectile/bullet/antim/scrap
-	damage_types = list(BRUTE = 63)
+	armor_divisor = 1.5
+	recoil = 40
 
 //Shotguns .50
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
 	icon_state = "slug"
-	damage_types = list(BRUTE = 48)
-	armor_divisor = 0.7
+	damage_types = list(BRUTE = 25)
+	armor_divisor = 1
 	knockback = 1
 	step_delay = 1.1
 	style_damage = 25
 	recoil = 8
+	wounding_mult = WOUNDING_EXTREME
 
 /obj/item/projectile/bullet/shotgun/scrap
-	damage_types = list(BRUTE = 42)
+	armor_divisor = 0.8
+	recoil = 10
 
 /obj/item/projectile/bullet/shotgun/beanbag
 	name = "beanbag"
 	icon_state = "buckshot"
 	check_armour = ARMOR_BULLET //neverforget
 	damage_types = list(BRUTE = 10)
-	agony = 60
-	armor_divisor = 0.5
+	agony = 20
 	embed = FALSE
 	sharp = FALSE
+	wounding_mult = WOUNDING_WIDE
 
 /obj/item/projectile/bullet/shotgun/beanbag/scrap
 	damage_types = list(BRUTE = 9)
@@ -275,9 +283,8 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/shotgun/practice
 	name = "practice slug"
-	damage_types = list(BRUTE = 1)
-	agony = 5
-	armor_divisor = 1
+	damage_types = list(BRUTE = 4)
+	agony = 6
 	embed = FALSE
 	knockback = 0
 
@@ -299,20 +306,22 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
 	icon_state = "birdshot-1"
-	damage_types = list(BRUTE = 8)
-	armor_divisor = 2.5 // Lunacy
+	damage_types = list(BRUTE = 21)
+	armor_divisor = 1
 	pellets = 8
 	range_step = 1
 	spread_step = 10
 	pellet_to_knockback_ratio = 2
 	recoil = 8
+	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()
 	icon_state = "birdshot-[rand(1,4)]"
 
 /obj/item/projectile/bullet/pellet/shotgun/scrap
-	damage_types = list(BRUTE = 7)
+	armor_divisor = 1.2
+	recoil = 5
 
 //Miscellaneous
 /obj/item/projectile/bullet/blank
