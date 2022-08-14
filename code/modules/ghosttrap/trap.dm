@@ -100,7 +100,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 		if(target.key)
 			to_chat(candidate, "The target is already occupied.")
 			return
-		if(assess_candidate(candidate, target))
+		if(assess_candidate(candidate, target) && target.can_be_possessed_by(candidate, FALSE))
 			transfer_personality(candidate,target)
 		return 1
 
