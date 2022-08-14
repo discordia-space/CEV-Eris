@@ -34,7 +34,7 @@
 			Fire delay:
 		</div>
 			<div class="itemContent">
-				{{:data.fire_delay}} ms
+				{{:data.fire_delay < data.minimum_fire_delay ? data.minimum_fire_delay : data.fire_delay}} ms
 			</div>
 
 		{{if data.burst > 1}}
@@ -204,7 +204,7 @@
 							Fire delay:
 							</div>
 								<div class="itemContent">
-									{{:value.fire_delay}} ms
+									{{:value.fire_delay < value.minimum_fire_delay ? value.minimum_fire_delay : value.fire_delay}} ms
 								</div>
 						{{/if}}
 						{{if value.move_delay}}

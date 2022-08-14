@@ -98,6 +98,12 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	flags_inv = HIDEJUMPSUIT
 
+/obj/item/clothing/suit/marisa
+	name = "witch robe"
+	desc = "Magic is all about the spell power, Ze!"
+	icon_state = "marisa"
+	item_state = "marisa"
+	spawn_blacklisted = TRUE
 /*
  * Misc
  */

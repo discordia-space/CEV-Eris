@@ -147,6 +147,10 @@
 /obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
+"U" = (
+/mob/living/carbon/superior_animal/stalker,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -218,10 +222,10 @@ s
 s
 t
 o
-o
+b
 a
 t
-b
+U
 a
 s
 "}
