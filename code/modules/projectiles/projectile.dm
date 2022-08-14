@@ -64,7 +64,6 @@
 	var/stutter = 0
 	var/eyeblur = 0
 	var/drowsy = 0
-	var/agony = 0
 	var/embed = 0 // whether or not the projectile can embed itself in the mob
 	var/knockback = 0
 
@@ -125,9 +124,6 @@
 /obj/item/projectile/multiply_projectile_step_delay(newmult)
 	if(!hitscan)
 		step_delay = initial(step_delay) * newmult
-
-/obj/item/projectile/multiply_projectile_agony(newmult)
-	agony = initial(agony) * newmult
 
 /obj/item/projectile/proc/multiply_projectile_accuracy(newmult)
 	projectile_accuracy = initial(projectile_accuracy) * newmult

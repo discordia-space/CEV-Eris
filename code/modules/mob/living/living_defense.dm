@@ -130,16 +130,13 @@
 			src.visible_message(SPAN_WARNING("[src] triggers their deadman's switch!"))
 			signaler.signal()
 
+	var/agony = P.damage_types[HALLOSS] ? P.damage_types[HALLOSS] : 0
 	//Stun Beams
 	if(P.taser_effect)
-		stun_effect_act(0, P.agony, def_zone, P)
+		stun_effect_act(0, agony, def_zone, P)
 		to_chat(src, SPAN_WARNING("You have been hit by [P]!"))
 		qdel(P)
 		return TRUE
-
-	if(P.agony > 0)
-		hit_impact(P.agony, hit_dir)
-		damage_through_armor(P.agony, HALLOSS, def_zone, P.check_armour, armour_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P))
 
 	if(P.knockback && hit_dir)
 		throw_at(get_edge_target_turf(src, hit_dir), P.knockback, P.knockback)

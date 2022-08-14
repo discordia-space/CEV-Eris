@@ -1,8 +1,7 @@
 /obj/item/projectile/bullet/grenade
 	name = "grenade shell"
 	icon_state = "grenade"
-	damage_types = list(BRUTE = 5)
-	agony = 10
+	damage_types = list(BRUTE = 5, HALLOSS = 10)
 	armor_divisor = 1
 	embed = FALSE
 	sharp = FALSE
