@@ -1,5 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - bugfix: removed death rays (fullauto from tesla chip is gone because it allows
-      for 1ms killing machine)

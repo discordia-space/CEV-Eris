@@ -1,4 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - bugfix: 'Fix #7340 and #7367 conflicts'
