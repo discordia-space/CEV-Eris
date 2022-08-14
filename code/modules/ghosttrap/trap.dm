@@ -90,7 +90,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 	if(href_list["candidate"] && href_list["target"])
 		var/mob/observer/ghost/candidate = locate(href_list["candidate"]) // BYOND magic.
 		var/mob/target = locate(href_list["target"])                     // So much BYOND magic.
-		if(!target || !candidate)
+		if(!target || !candidate || !ismob(target) || !isghost(candidate))
 			return
 		if(candidate != usr)
 			return
