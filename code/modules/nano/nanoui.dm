@@ -148,7 +148,6 @@ nanoui is used to open and update nano browser uis
 			status = state
 			if (push_update || status == 0)
 				push_data(null, 1) // Update the UI, force the update in case the status is 0, data is null so that previous data is used
-
  /**
   * Update the status (visibility) of this ui based on the user's status
   *
@@ -399,7 +398,7 @@ nanoui is used to open and update nano browser uis
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<script type='text/javascript'>
-			function receiveUpdateData(jsonString)
+			function receiveUpdateDataPain(jsonString)
 			{
 				// We need both jQuery and NanoStateManager to be able to recieve data
 				// At the moment any data received before those libraries are loaded will be lost
@@ -519,8 +518,8 @@ nanoui is used to open and update nano browser uis
 	var/list/send_data = get_send_data(data)
 
 //	to_chat(user, list2json_usecache(send_data))// used for debugging //NANO DEBUG HOOK
-
-	user << output(list2params(list(strip_improper(json_encode(send_data)))),"[window_id].browser:receiveUpdateData")
+	message_admins("tried to push data")
+	user << output(list2params(list(strip_improper(json_encode(send_data)))),"[window_id].browser:receiveUpdateDataPain")
 
  /**
   * This Topic() proc is called whenever a user clicks on a link within a Nano UI
@@ -562,7 +561,6 @@ nanoui is used to open and update nano browser uis
 	if (!src_object || !user)
 		close()
 		return
-
 	if (status && (update || is_auto_updating))
 		update() // Update the UI (update_status() is called whenever a UI is updated)
 	else
