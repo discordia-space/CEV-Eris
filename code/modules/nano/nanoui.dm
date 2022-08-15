@@ -429,7 +429,8 @@ nanoui is used to open and update nano browser uis
 </html>
 	"}
 
-	spawn(2)
+	// this is a terrible fix to a terrible problem. SPCR - 2022.
+	spawn(1)
 		getting_html = FALSE
 
 	return json_stuff
@@ -525,7 +526,6 @@ nanoui is used to open and update nano browser uis
 	var/list/send_data = get_send_data(data)
 
 //	to_chat(user, list2json_usecache(send_data))// used for debugging //NANO DEBUG HOOK
-	message_admins("tried to push data")
 	user << output(list2params(list(strip_improper(json_encode(send_data)))),"[window_id].browser:receiveUpdateDataPain")
 
  /**
