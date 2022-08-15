@@ -99,7 +99,7 @@
 	var/list/jf_pool = list()  // Pool of junk fields you can choose from
 
 	var/beam_cooldown_start = 0  // Starting time of the cooldown for the progress bar
-	var/beam_cooldown_time = 5 MINUTES
+	var/beam_cooldown_time = 3 MINUTES
 	var/beam_capture_time = 20 SECONDS
 
 	var/list/preloaded_25_25 = list()  // Need to preload maps in SOUTH direction
