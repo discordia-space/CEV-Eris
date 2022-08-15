@@ -519,7 +519,8 @@ nanoui is used to open and update nano browser uis
 
 //	to_chat(user, list2json_usecache(send_data))// used for debugging //NANO DEBUG HOOK
 	message_admins("tried to push data")
-	user << output(list2params(list(strip_improper(json_encode(send_data)))),"[window_id].browser:receiveUpdateDataPain")
+	spawn(10)
+		user << output(list2params(list(strip_improper(json_encode(send_data)))),"[window_id].browser:receiveUpdateDataPain")
 
  /**
   * This Topic() proc is called whenever a user clicks on a link within a Nano UI
