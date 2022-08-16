@@ -49,6 +49,9 @@
 
 		if(prints_prosthetics)
 			O.nature = MODIFICATION_SILICON
+			if(istype(O, /obj/item/organ/internal/heart) || istype(O, /obj/item/organ/internal/liver) || istype(O, /obj/item/organ/internal/lungs) || istype(O, /obj/item/organ/internal/brain))
+				O.icon_state = "[O.icon_state]-robotic"
+			O.name = "robotic + [O.name]"
 		else if(loaded_dna)
 			visible_message("<span class='notice'>The printer injects the stored DNA into the biomass.</span>.")
 			O.transplant_data = list()
