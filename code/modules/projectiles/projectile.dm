@@ -311,6 +311,7 @@
 	var/result = PROJECTILE_FORCE_MISS
 
 	if(iscarbon(target_mob))
+		// Handheld shields
 		var/mob/living/carbon/C = target_mob
 		var/obj/item/shield/S
 		for(S in get_both_hands(C))
@@ -319,6 +320,7 @@
 				qdel(src)
 				return TRUE
 			break //Prevents shield dual-wielding
+
 //		S = C.get_equipped_item(slot_back)
 //		if(S && S.block_bullet(C, src, def_zone))
 //			on_hit(S,def_zone)

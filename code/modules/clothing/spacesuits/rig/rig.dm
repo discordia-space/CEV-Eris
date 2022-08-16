@@ -43,6 +43,10 @@
 	slowdown = HEAVY_SLOWDOWN // Very slow, but gimbal makes aim steady
 	stiffness = LIGHT_STIFFNESS
 	obscuration = LIGHT_OBSCURATION
+	var/ablative_armor = 0
+	var/ablative_max = 0
+	var/ablation = ABLATION_STANDARD
+
 
 	var/interface_path = "hardsuit.tmpl"
 	var/ai_interface_path = "hardsuit.tmpl"
@@ -196,6 +200,8 @@
 		piece.permeability_coefficient = permeability_coefficient
 		piece.unacidable = unacidable
 		if(armor) piece.armor = armor
+
+	ablative_armor = ablative_max
 
 	update_icon(1)
 
@@ -795,6 +801,30 @@
 		if(user.stunned)
 			return 1
 	return 0
+
+/obj/item/rig/block_bullet(mob/user, var/obj/item/projectile/P, def_zone)
+	if(!active || !ablative_armor)
+		return FALSE
+
+	var/ablative_stack = ablative_armor // Follow-up attacks drain this
+
+	for(var/damage_type in P.damage_types)
+		if(damage_type in list(BRUTE, BURN)) // Ablative armor affects both brute and burn damage
+			var/damage = P.damage_types[damage_type]
+			P.damage_types[damage_type] -= ablative_stack / armor_divisor
+
+			ablative_stack = max(ablative_stack - damage, 0)
+		else if(damage_type == HALLOSS)
+			P.damage_types[damage_type] -= ablative_stack / armor_divisor
+
+		if(P.damage_types[damage_type] <= 0)
+			P.damage_types -= damage_type
+
+	ablative_armor -= max(-(ablative_stack - ablative_armor) / ablation - armor.getRating(P.check_armour), 0) // Damage blocked (not halloss) reduces ablative armor, base armor protects ablative armor
+
+	if(!P.damage_types.len)
+		return TRUE
+	return FALSE
 
 /obj/item/rig/proc/take_hit(damage, source, is_emp=0)
 

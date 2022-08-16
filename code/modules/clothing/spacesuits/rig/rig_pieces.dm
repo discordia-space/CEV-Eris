@@ -50,9 +50,6 @@
 	retract_while_active = FALSE
 	spawn_tags = null
 
-/obj/item/clothing/suit/space/rig/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
-	// This is where the fun begins! Ablative armor code!
-
 //TODO: move this to modules
 /obj/item/clothing/head/space/rig/proc/prevent_track()
 	return 0
