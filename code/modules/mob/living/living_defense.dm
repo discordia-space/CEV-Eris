@@ -50,16 +50,16 @@
 			var/dmg_armor_difference // Used for agony calculation, as well as reduction in armour before follow-up attacks
 
 			if(dmg_type in list(BRUTE, BURN, TOX, BLAST)) // Some damage types do not help penetrate armor
-				if(armor)
-					dmg_armor_difference = abs(dmg - remaining_armor)
-					remaining_armor -= dmg_armor_difference
-					dmg -= dmg_armor_difference
+				if(remaining_armor)
+					dmg_armor_difference = dmg - remaining_armor
+					remaining_armor = dmg_armor_difference ? 0 : -dmg_armor_difference
+					dmg = dmg_armor_difference ? dmg_armor_difference : 0
 
 				if(remaining_ablative && dmg)
 					var/ablative_difference
-					ablative_difference = abs(dmg - remaining_ablative)
-					remaining_ablative -= dmg_armor_difference
-					dmg -= dmg_armor_difference
+					ablative_difference = dmg - remaining_ablative
+					remaining_ablative = ablative_difference ? 0 : -ablative_difference
+					dmg = ablative_difference ? ablative_difference : 0
 					dmg_armor_difference += ablative_difference
 			else
 				dmg = max(dmg - remaining_armor - remaining_ablative, 0)
