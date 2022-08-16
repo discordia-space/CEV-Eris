@@ -161,7 +161,7 @@ meteor_act
 
 	var/obj/item/rig/R = get_equipped_item(slot_back)
 	if(istype(R))
-		if(R.ablative_armor && type in list(ARMOR_MELEE, ARMOR_BULLET, ARMOR_ENERGY, ARMOR_BOMB))
+		if(R.ablative_armor && (type in list(ARMOR_MELEE, ARMOR_BULLET, ARMOR_ENERGY, ARMOR_BOMB)))
 			return R.ablative_armor
 	return FALSE
 
