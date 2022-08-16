@@ -27,7 +27,7 @@
 /obj/machinery/bioprinter/prosthetics
 	name = "prosthetics fabricator"
 	desc = "A machine that prints prosthetic organs."
-	prints_prosthetics = 1
+	prints_prosthetics = TRUE
 
 /obj/machinery/bioprinter/New()
 	..()
