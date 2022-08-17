@@ -126,7 +126,7 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 		"[test.succeeded ? TEST_OUTPUT_GREEN("PASS") : TEST_OUTPUT_RED("FAIL")]: [test_path] [duration / 10]s",
 	)
 	var/list/fail_reasons = test.fail_reasons
-	var/map_name = SSmapping.config.map_name
+	// var/map_name = SSmapping.config.map_name
 
 	for(var/reasonID in 1 to LAZYLEN(fail_reasons))
 		var/text = fail_reasons[reasonID][1]
@@ -140,7 +140,7 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 		var/annotation_text = replacetext(text, "%", "%25")
 		annotation_text = replacetext(annotation_text, "\n", "%0A")
 
-		log_world("::error file=[file],line=[line],title=[map_name]: [test_path]::[annotation_text]")
+		log_world("::error file=[file],line=[line],title=[station_name]: [test_path]::[annotation_text]")
 
 		// Normal log message
 		log_entry += "\tREASON #[reasonID]: [text] at [file]:[line]"
