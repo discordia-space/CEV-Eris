@@ -110,9 +110,9 @@
 				continue
 		if(H && H.mind && H.mind.key && H.stat == DEAD)
 			var/mob/M = key2mob(H.mind.key)
-			to_chat(M, SPAN_NOTICE("Your remains have been dissolved and reused. Your crew respawn time is reduced by 10 minutes."))
+			to_chat(M, SPAN_NOTICE("Your remains have been dissolved and reused. Your crew respawn time is reduced by [(BIOREACTOR_RESPAWN_BONUS)/600] minutes."))
 			M << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
-			M.set_respawn_bonus("CORPSE_DISSOLVING", 10 MINUTES)
+			M.set_respawn_bonus("CORPSE_DISSOLVING", BIOREACTOR_RESPAWN_BONUS)
 		
 	qdel(object)
 	//now let's add some dirt to the glass

@@ -190,6 +190,7 @@
 	new /obj/item/ammo_magazine/slmagnum/rubber(src)
 	new /obj/item/storage/pouch/pistol_holster(src)
 	new /obj/item/storage/briefcase/crimekit(src)
+	new /obj/item/storage/box/syndie_kit/spy(src)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"

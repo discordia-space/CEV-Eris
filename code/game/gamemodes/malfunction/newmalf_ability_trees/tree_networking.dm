@@ -106,7 +106,7 @@
 			announce_hack_failure(user, "quantum message relay")
 		return
 
-	command_announcement.Announce(text, title)
+	command_announcement.Announce(text, title, use_text_to_speech = TRUE)
 
 /datum/game_mode/malfunction/verb/elite_encryption_hack()
 	set category = "Software"

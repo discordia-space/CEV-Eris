@@ -17,6 +17,9 @@
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "e" = (
+/obj/machinery/door/airlock/sandstone{
+	name = "OneStar Airlock"
+	},
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "f" = (
@@ -31,6 +34,7 @@
 /area/crawler)
 "i" = (
 /obj/structure/table/onestar,
+/obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "j" = (
@@ -124,6 +128,15 @@
 /obj/effect/window_lwall_spawn/smartspawn/onestar,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
+"H" = (
+/obj/structure/table/onestar,
+/obj/item/handcuffs,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"N" = (
+/obj/item/remains,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -155,7 +168,7 @@ r
 w
 u
 A
-g
+N
 a
 "}
 (4,1,1) = {"
@@ -183,7 +196,7 @@ b
 (6,1,1) = {"
 b
 g
-g
+N
 C
 u
 t
@@ -216,7 +229,7 @@ b
 (9,1,1) = {"
 a
 i
-i
+H
 a
 t
 u

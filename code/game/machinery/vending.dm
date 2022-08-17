@@ -197,7 +197,7 @@
  */
 /obj/machinery/vending/proc/stock(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
 	if(!user.unEquip(W))
-		return
+		return FALSE
 
 	to_chat(user, SPAN_NOTICE("You insert \the [W] in the product receptor."))
 	if(R)
@@ -206,6 +206,8 @@
 		new_inventory(W)
 
 	SSnano.update_uis(src)
+
+	return TRUE
 
 /obj/machinery/vending/proc/try_to_buy(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
 	if(!earnings_account)
@@ -830,7 +832,7 @@
 
 	return
 
-/obj/machinery/vending/proc/speak(var/message)
+/obj/machinery/proc/speak(message)
 	if(stat & NOPOWER)
 		return
 
@@ -864,7 +866,7 @@
 	return
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
-/obj/machinery/vending/proc/throw_item()
+/obj/machinery/proc/throw_item()
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)
 		return 0
@@ -979,6 +981,10 @@
 	if(contents.len && !(stat & NOPOWER))
 		overlays += image(icon, icon_fill)
 
+/obj/machinery/vending/drink_showcase/stock()
+	if(..())
+		update_icon()
+
 /obj/machinery/vending/coffee
 	name = "Hot Drinks machine"
 	desc = "A vending machine which dispenses hot drinks."
@@ -1022,11 +1028,14 @@
 					/obj/item/reagent_containers/spray/pepper = 6,
 					/obj/item/gun/projectile/olivaw = 5,
 					/obj/item/gun/projectile/giskard = 5,
+					/obj/item/gun/projectile/colt = 4,
 					/obj/item/gun/energy/gun/martin = 5,
 					/obj/item/gun/energy/gun = 5,
 					/obj/item/gun/projectile/revolver/havelock = 5,
 					/obj/item/gun/projectile/automatic/atreides = 3,
-					/obj/item/gun/projectile/shotgun/pump = 3,
+					/obj/item/gun/projectile/automatic/molly = 3,
+					/obj/item/gun/projectile/shotgun/pump/gladstone = 4,
+					/obj/item/gun/projectile/shotgun/pump = 5,
 					/obj/item/gun/projectile/automatic/slaught_o_matic = 30,
 					/obj/item/ammo_magazine/pistol/rubber = 20,
 					/obj/item/ammo_magazine/hpistol/rubber = 5,
@@ -1052,6 +1061,8 @@
 
 	prices = list(
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 200,
+					/obj/item/gun/projectile/shotgun/pump/gladstone = 2000,
+					/obj/item/gun/projectile/colt = 1200,
 					/obj/item/ammo_magazine/slpistol/rubber = 100,
 					/obj/item/ammo_magazine/pistol/rubber = 150,
 					/obj/item/ammo_magazine/hpistol = 300,
@@ -1168,6 +1179,7 @@
 	custom_vendor = TRUE // Chemists can load it for MDs
 	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle)
 	vendor_department = DEPARTMENT_MEDICAL
+	shut_up = TRUE
 
 //This one's from bay12
 /obj/machinery/vending/plasmaresearch
@@ -1499,12 +1511,8 @@
 	to_chat(user, SPAN_WARNING("[src] flashes a message: Unauthorized Access."))
 	return FALSE
 
-/obj/machinery/vending/theomat/vend(datum/data/vending_product/R, mob/user)
-	if(check_NT(user))
-		..()
-
-/obj/machinery/vending/theomat/try_to_buy(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
-	if(check_NT(user))
+/obj/machinery/vending/theomat/attackby(obj/item/I, mob/user)
+	if(I.tool_qualities || check_NT(user))
 		..()
 
 /obj/machinery/vending/powermat
@@ -1625,16 +1633,13 @@
 					/obj/item/ammo_magazine/smg = 12,
 					/obj/item/part/armor = 30,
 					/obj/item/part/gun = 30,
-					/obj/item/gun/projectile/automatic/ak47/fs = 4,
 					/obj/item/gun/energy/retro = 4,
 					/obj/item/gun/projectile/shotgun/doublebarrel = 4,
 					/obj/item/gun/projectile/mk58  = 2,
 					/obj/item/gun/projectile/mk58/wood = 2,
-					/obj/item/gun/projectile/colt = 4,
 					/obj/item/gun/projectile/revolver/deckard = 2,
+					/obj/item/gun/projectile/automatic/ak47/fs = 4,
 					/obj/item/gun/projectile/automatic/z8 = 4,
-					/obj/item/gun/projectile/automatic/molly = 4,
-					/obj/item/gun/projectile/shotgun/pump/gladstone = 4,
 					/obj/item/gun/projectile/shotgun/pump/regulator = 4,
 					/obj/item/storage/deferred/crate/clown_crime = 2,
 					/obj/item/storage/deferred/crate/clown_crime/wolf = 2,
@@ -1653,17 +1658,14 @@
 					/obj/item/ammo_magazine/smg = 400,
 					/obj/item/part/armor = 700,
 					/obj/item/part/gun = 700,
-					/obj/item/gun/projectile/automatic/ak47/fs = 3200,
 					/obj/item/gun/energy/retro = 1200,
 					/obj/item/gun/projectile/shotgun/doublebarrel = 1400,
 					/obj/item/gun/projectile/mk58  = 900,
 					/obj/item/gun/projectile/mk58/wood = 900,
-					/obj/item/gun/projectile/colt = 1200,
 					/obj/item/gun/projectile/mandella = 1800,
 					/obj/item/gun/projectile/revolver/deckard = 3600,
+					/obj/item/gun/projectile/automatic/ak47/fs = 3200,
 					/obj/item/gun/projectile/automatic/z8 = 3500,
-					/obj/item/gun/projectile/automatic/molly = 1700,
-					/obj/item/gun/projectile/shotgun/pump/gladstone = 2200,
 					/obj/item/gun/projectile/shotgun/pump/regulator = 2400,
 					/obj/item/storage/deferred/crate/clown_crime = 1800,
 					/obj/item/storage/deferred/crate/clown_crime/wolf = 1800,
@@ -1750,6 +1752,7 @@
 	name = "Custom Vendomat"
 	desc = "A custom vending machine."
 	custom_vendor = TRUE
+	vendor_department = null
 	locked = TRUE
 	can_stock = list(/obj/item)
 

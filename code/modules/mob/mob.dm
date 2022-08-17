@@ -12,7 +12,7 @@
 
 	ghostize()
 	..()
-	return QDEL_HINT_HARDDEL
+	return QDEL_HINT_QUEUE
 
 /mob/proc/despawn()
 	return

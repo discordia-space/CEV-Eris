@@ -551,7 +551,6 @@
 	var/filltype = 0       // Used to determine message.
 	var/reagents_filltype = 0
 	var/total_used = 0     // Amount of material used.
-	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
 
 	var/list/total_material_gained = list()
 
@@ -577,11 +576,6 @@
 
 				var/total_material = _matter[material]
 
-				//If it's a stack, we eat multiple sheets.
-				if(istype(O, /obj/item/stack))
-					var/obj/item/stack/material/stack = O
-					total_material *= stack.get_amount()
-
 				if(stored_material[material] + total_material > storage_capacity)
 					total_material = storage_capacity - stored_material[material]
 					filltype = 1
@@ -590,7 +584,6 @@
 
 				total_material_gained[material] += total_material
 				total_used += total_material
-				mass_per_sheet += O.matter[material]
 
 		if(O.matter_reagents)
 			if(container)
@@ -623,7 +616,7 @@
 	if(istype(eating, /obj/item/stack))
 		res_load(get_material_by_name(main_material)) // Play insertion animation.
 		var/obj/item/stack/stack = eating
-		var/used_sheets = min(stack.get_amount(), round(total_used/mass_per_sheet))
+		var/used_sheets = min(stack.get_amount(), round(total_used))
 
 		to_chat(user, SPAN_NOTICE("You add [used_sheets] [main_material] [stack.singular_name]\s to \the [src]."))
 
@@ -739,8 +732,6 @@
 
 /obj/machinery/autolathe/proc/can_print(datum/computer_file/binary/design/design_file)
 
-	if(use_oddities && !oddity)
-		return ERR_NOODDITY
 
 	if(paused)
 		return ERR_PAUSED

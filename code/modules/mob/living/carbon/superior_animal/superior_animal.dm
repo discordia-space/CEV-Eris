@@ -127,7 +127,7 @@
 		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
 
 	.=..()
-	
+
 	if (mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
 		if (prob(extra_burrow_chance))
@@ -327,6 +327,7 @@
 	handle_fire(environment.gas["oxygen"], loc)
 	handle_regular_hud_updates()
 	handle_cheap_chemicals_in_body()
+	resting = (resting && client) ? TRUE : FALSE
 	if(!(ticks_processed%3))
 		// handle_status_effects() this is handled here directly to save a bit on procedure calls
 		paralysis = max(paralysis-3,0)
@@ -364,3 +365,8 @@
 
 /mob/living/carbon/superior_animal/getarmor(def_zone, type)
 	return armor.getRating(type)
+
+/mob/living/carbon/superior_animal/CanPass(atom/mover)
+	if(istype(mover, /obj/item/projectile))
+		return stat ? TRUE : FALSE
+	. = ..()

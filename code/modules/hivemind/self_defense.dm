@@ -108,7 +108,7 @@
 	var/champion_path
 	var/amount = 1
 
-	var/squad = pick("defiler", "twins", "zeus", "swarm", "tyrant")
+	var/squad = pick("defiler", "twins", "zeus", "swarm", GLOB.hive_data_bool["allow_tyrant_spawn"] ? "tyrant" : "defiler")
 	switch(squad)
 		if("defiler")
 			champion_path = /mob/living/simple_animal/hostile/hivemind/mechiver
@@ -157,7 +157,7 @@
 
 
 /datum/hivemind_sdp/emergency_jump/check_conditions()
-	if(master.health <= (hp_percent * 30))
+	if(GLOB.hive_data_bool["teleport_core_when_damaged"] && master.health <= (hp_percent * 30))
 		execute()
 		turn_off()
 

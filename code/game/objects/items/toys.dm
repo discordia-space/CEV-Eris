@@ -606,12 +606,6 @@
 	icon_state = "beepskyplushie"
 	phrase = "Ping!"
 
-/obj/structure/plushie/fumo
-	name = "Fumo"
-	desc = "A plushie of a....?."
-	icon_state = "fumoplushie"
-	phrase = "I just don't think about losing."
-
 //Small plushies.
 /obj/item/toy/plushie
 	name = "generic small plush"
@@ -651,6 +645,12 @@
 	desc = "A plushie of a fuzzy spider! It has eight legs - all the better to hug you with."
 	icon_state = "spiderplushie"
 
+/obj/item/toy/plushie/fumo
+	name = "fumo"
+	desc = "A plushie of a....?."
+	icon_state = "fumoplushie"
+	spawn_blacklisted = TRUE
+
 //Toy cult sword
 /obj/item/toy/cultsword
 	name = "foam sword"
@@ -669,3 +669,52 @@
 	item_state = "inflatable"
 	icon = 'icons/inventory/belt/icon.dmi'
 	slot_flags = SLOT_BELT
+
+// That one funny oinking pig.
+/obj/item/toy/rubber_pig
+	name = "rubber pig"
+	desc = "Rubber pig that oinks when squeezed."
+	icon = 'icons/obj/rubber_pig.dmi'
+	icon_state = "icon"
+	item_state = "rubber_pig"
+
+	var/cooldown = 0.5 SECONDS
+	var/last_used = 0
+	// Oinking pig sounds
+	var/oinks = list(
+		'sound/items/oink1.ogg',
+		'sound/items/oink2.ogg',
+		'sound/items/oink3.ogg',
+		'sound/items/oink4.ogg',
+		'sound/items/oink5.ogg',
+		'sound/items/oink6.ogg'
+	)
+
+// Oink code
+/obj/item/toy/rubber_pig/proc/oink()
+	if((last_used + cooldown) < world.time)
+		last_used = world.time
+		playsound(src, pick(oinks), 50, 1)
+		return TRUE
+
+/obj/item/toy/rubber_pig/proc/user_oink(mob/user)
+	if(oink())
+		user.visible_message(SPAN_NOTICE("<b>\The [user]</b> squeezes a pig. It makes a loud funny oink!"), SPAN_NOTICE("You squeeze a pig. It makes a loud funny oink!"))
+
+// All the oink situtions
+/obj/item/toy/rubber_pig/attack_self(mob/user)
+	user_oink(user)
+
+/obj/item/toy/rubber_pig/attack_hand(mob/user)
+	user_oink(user)
+
+/obj/item/toy/rubber_pig/throw_impact(atom/impact_atom)
+	visible_message(SPAN_NOTICE("Rubber pig oinks, as it impacts with surface."))
+	oink()
+
+// Oinker pick up
+/obj/item/toy/rubber_pig/MouseDrop(over_object, src_location, over_location)
+	..()
+	var/mob/living/carbon/human/user = usr
+	if(istype(user) && over_object == user && in_range(src, user))
+		user.put_in_active_hand(src)

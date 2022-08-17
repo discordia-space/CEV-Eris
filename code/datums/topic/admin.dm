@@ -1139,7 +1139,7 @@
 		P.stamped = new
 	P.stamped += /obj/item/stamp
 	P.overlays += stampoverlay
-	P.stamps += "<HR><i>This paper has been stamped by the Central Command Quantum Relay.</i>"
+	P.stamps += "<HR><i>This paper has been stamped by the [boss_name] Quantum Relay.</i>"
 
 	if(fax.recievefax(P))
 		to_chat(source.owner, "\blue Message reply to transmitted successfully.")

@@ -22,7 +22,6 @@
 	bad_type = /mob/living/simple_animal/hostile/hivemind
 	spawn_tags = SPAWN_TAG_MOB_HIVEMIND
 	rarity_value = 20
-
 	mob_classification = CLASSIFICATION_SYNTHETIC
 
 	var/malfunction_chance = 5
@@ -34,10 +33,14 @@
 	var/special_ability_cooldown = 0		//use ability_cooldown, don't touch this
 
 
-	New()
-		. = ..()
-		//here we change name, so design them according to this
-		name = pick("Warped ", "Altered ", "Modified ", "Upgraded ", "Abnormal ") + name
+/mob/living/simple_animal/hostile/hivemind/New()
+	. = ..()
+	tts_seed = prob(75) ? "Robot_1" : "Female_9"
+	if(!(real_name in GLOB.hivemind_mobs))
+		GLOB.hivemind_mobs.Add(real_name)
+	GLOB.hivemind_mobs[real_name]++
+	//here we change name, so design them according to this
+	name = pick("Warped ", "Altered ", "Modified ", "Upgraded ", "Abnormal ") + name
 
 //It's sets manually
 /mob/living/simple_animal/hostile/hivemind/proc/special_ability()
@@ -123,6 +126,11 @@
 		if(B)
 			B.unbuckle_mob()
 
+	if(!hive_mind_ai)
+		if(prob(5))
+			death()
+		else if(prob(15))
+			mulfunction()
 
 
 /mob/living/simple_animal/hostile/hivemind/proc/speak()
@@ -147,6 +155,9 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/death()
+	GLOB.hivemind_mobs[real_name]--
+	if(!GLOB.hivemind_mobs[real_name])
+		GLOB.hivemind_mobs.Remove(real_name)
 	if(master) //for spawnable mobs
 		master.spawned_creatures.Remove(src)
 	. = ..()

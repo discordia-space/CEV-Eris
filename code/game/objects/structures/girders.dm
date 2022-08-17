@@ -6,7 +6,7 @@
 	layer = BELOW_OBJ_LAYER
 	matter = list(MATERIAL_STEEL = 5)
 	var/state = 0
-	var/health = 150
+	var/health = 100
 	var/cover = 50 //how much cover the girder provides against projectiles.
 	var/material/reinf_material
 	var/reinforcing = 0
@@ -15,14 +15,14 @@
 /obj/structure/girder/displaced
 	icon_state = "displaced"
 	anchored = FALSE
-	health = 50
+	health = 40
 	cover = 25
 
 //Low girders are used to build low walls
 /obj/structure/girder/low
 	name = "low wall girder"
 	matter = list(MATERIAL_STEEL = 3)
-	health = 120
+	health = 80
 	cover = 25 //how much cover the girder provides against projectiles.
 
 //Used in recycling or deconstruction
@@ -133,7 +133,7 @@
 					to_chat(user, SPAN_NOTICE("You dislodged the girder!"))
 					icon_state = "displaced"
 					anchored = FALSE
-					health = 50
+					health = 40
 					cover = 25
 					return
 			return
@@ -291,7 +291,7 @@
 
 /obj/structure/girder/proc/reinforce_girder()
 	cover = reinf_material.hardness
-	health = 500
+	health = 250
 	state = 2
 	icon_state = "reinforced"
 	reinforcing = 0

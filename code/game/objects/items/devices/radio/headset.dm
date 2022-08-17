@@ -225,32 +225,20 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_church
 
-/obj/item/device/radio/headset/attackby(obj/item/W, mob/user)
-//	..()
-	user.set_machine(src)
-	if (!( istype(W, /obj/item/tool/screwdriver) || (istype(W, /obj/item/device/encryptionkey/ ))))
-		return
-
-	if(istype(W, /obj/item/tool/screwdriver))
+/obj/item/device/radio/headset/attackby(obj/item/I, mob/user)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(keyslot1 || keyslot2)
-
-
 			for(var/ch_name in channels)
 				SSradio.remove_object(src, radiochannels[ch_name])
 				secure_radio_connections[ch_name] = null
 
-
-			if(keyslot1)
-				var/turf/T = get_turf(user)
-				if(T)
+			var/turf/T = get_turf(user)
+			if(T)
+				if(keyslot1)
 					keyslot1.loc = T
 					keyslot1 = null
 
-
-
-			if(keyslot2)
-				var/turf/T = get_turf(user)
-				if(T)
+				if(keyslot2)
 					keyslot2.loc = T
 					keyslot2 = null
 
@@ -260,25 +248,22 @@
 		else
 			to_chat(user, "This headset doesn't have any encryption keys!  How useless...")
 
-	if(istype(W, /obj/item/device/encryptionkey/))
+	if(istype(I, /obj/item/device/encryptionkey))
 		if(keyslot1 && keyslot2)
 			to_chat(user, "The headset can't hold another key!")
 			return
 
 		if(!keyslot1)
 			user.drop_item()
-			W.loc = src
-			keyslot1 = W
+			I.loc = src
+			keyslot1 = I
 
 		else
 			user.drop_item()
-			W.loc = src
-			keyslot2 = W
-
+			I.loc = src
+			keyslot2 = I
 
 		recalculateChannels()
-
-	return
 
 
 /obj/item/device/radio/headset/proc/recalculateChannels(var/setDescription = 0)

@@ -1538,21 +1538,6 @@ var/list/rank_prefix = list(\
 	dodge_time = get_game_time()
 	confidence = FALSE
 
-/mob/living/carbon/human/trip(tripped_on, stun_duration)
-	if(buckled)
-		return FALSE
-	if(lying)
-		return FALSE // No tripping while crawling
-	stop_pulling()
-	if(tripped_on)
-		playsound(src, 'sound/effects/bang.ogg', 50, 1)
-		to_chat(src, SPAN_WARNING("You tripped over!"))
-	Weaken(stun_duration)
-	regen_slickness(-1)
-	dodge_time = get_game_time()
-	confidence = FALSE
-	return TRUE
-
 /mob/living/carbon/human/proc/undislocate()
 	set category = "Object"
 	set name = "Undislocate Joint"
@@ -1678,6 +1663,9 @@ var/list/rank_prefix = list(\
 	set desc = "If you want to know what's above."
 	set category = "IC"
 
+	// /mob/living/handle_vision has vision not reset if the user has the machine var referencing something
+	// which it will always have since it is very poorly handled in its dereferencing SPCR - 2022
+	machine = null
 	if(!is_physically_disabled())
 		var/turf/above = GetAbove(src)
 		if(shadow)

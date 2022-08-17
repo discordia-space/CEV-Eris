@@ -479,8 +479,8 @@
 			var/raw_choice = sanitize(input(usr, "Please enter a new name.")  as text|null, MAX_NAME_LEN)
 			if(!raw_choice)
 				return 0
-			voice_holder.voice = raw_choice
-			to_chat(usr, "<font color='blue'>You are now mimicking <B>[voice_holder.voice]</B>.</font>")
+			voice_holder.voice_name = raw_choice
+			to_chat(usr, "<font color='blue'>You are now mimicking <B>[voice_holder.voice_name]</B>.</font>")
 	return 1
 
 /obj/item/rig_module/maneuvering_jets

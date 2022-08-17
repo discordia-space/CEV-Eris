@@ -35,7 +35,7 @@
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/crawler)
 "i" = (
-/obj/structure/computerframe,
+/obj/structure/salvageable/os/computer,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/crawler)
 "j" = (
@@ -145,6 +145,10 @@
 /obj/crawler/crawler_wallbreaker,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
+"Y" = (
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -228,7 +232,7 @@ b
 e
 l
 p
-v
+Y
 v
 y
 v

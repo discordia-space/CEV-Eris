@@ -8,10 +8,17 @@
 	var/carrying_capacity = 5
 	var/list/obj/carrying = list()
 
+
 /obj/item/mech_equipment/clamp/resolve_attackby(atom/A, mob/user, click_params)
+	if(isturf(A))
+		var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in owner
+		if(ore_box)
+			for(var/obj/item/ore/i in A)
+				i.Move(ore_box)
 	if(istype(A, /obj/structure/closet) || istype(A, /obj/item/storage) || istype(A, /obj/structure/scrap_cube) && owner)
-		return 0
-	return ..()
+		return FALSE
+	. = ..()
+
 
 /obj/item/mech_equipment/clamp/afterattack(atom/target, mob/living/user, inrange, params)
 	if(!inrange) return
@@ -25,10 +32,7 @@
 		if (!inrange)
 			to_chat(user, SPAN_NOTICE("You must be adjacent to [target] to use the hydraulic clamp."))
 		else
-
-			if(istype(target, /obj))
-
-
+			if(isobj(target))
 				var/obj/O = target
 				if(O.buckled_mob)
 					return
@@ -50,7 +54,6 @@
 					to_chat(user, SPAN_WARNING("[target] is firmly secured."))
 					return
 
-
 				owner.visible_message(SPAN_NOTICE("\The [owner] begins loading \the [O]."))
 				playsound(src, 'sound/mechs/hydraulic.ogg', 50, 1)
 				if(do_after(owner, 20, O, 0, 1))
@@ -63,9 +66,8 @@
 					carrying += O
 					owner.visible_message(SPAN_NOTICE("\The [owner] loads \the [O] into its cargo compartment."))
 
-
 			//attacking - Cannot be carrying something, cause then your clamp would be full
-			else if(istype(target,/mob/living))
+			else if(isliving(target))
 				var/mob/living/M = target
 				if(user.a_intent == I_HURT)
 					admin_attack_log(user, M, "attempted to clamp [M] with [src] ", "Was subject to a clamping attempt.", ", using \a [src], attempted to clamp")
@@ -81,6 +83,7 @@
 					step_away(M, owner)
 					to_chat(user, "You push [target] out of the way.")
 					owner.visible_message("[owner] pushes [target] out of the way.")
+
 
 /obj/item/mech_equipment/clamp/attack_self(var/mob/user)
 	. = ..()

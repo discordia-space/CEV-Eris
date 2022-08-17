@@ -695,9 +695,6 @@ default behaviour is:
 /mob/living/proc/slip(var/slipped_on,stun_duration=8)
 	return FALSE
 
-/mob/living/proc/trip(tripped_on, stun_duration)
-	return FALSE
-
 //damage/heal the mob ears and adjust the deaf amount
 /mob/living/adjustEarDamage(damage, deaf)
 	ear_damage = max(0, ear_damage + damage)
@@ -713,13 +710,13 @@ default behaviour is:
 /mob/proc/can_be_possessed_by(var/mob/observer/ghost/possessor)
 	return istype(possessor) && possessor.client
 
-/mob/living/can_be_possessed_by(var/mob/observer/ghost/possessor)
+/mob/living/can_be_possessed_by(var/mob/observer/ghost/possessor, var/animal_check = TRUE)
 	if(!..())
 		return FALSE
 	if(!possession_candidate)
 		to_chat(possessor, "<span class='warning'>That animal cannot be possessed.</span>")
 		return FALSE
-	if(jobban_isbanned(possessor, "Animal"))
+	if(jobban_isbanned(possessor, "Animal") && animal_check)
 		to_chat(possessor, "<span class='warning'>You are banned from animal roles.</span>")
 		return FALSE
 	if(!possessor.MayRespawn(0 ,ANIMAL))

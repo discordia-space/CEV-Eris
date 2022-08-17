@@ -23,7 +23,7 @@
 /turf/simulated/floor/asteroid,
 /area/crawler)
 "h" = (
-/obj/machinery/computer,
+/obj/structure/salvageable/os/console_broken,
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "i" = (
