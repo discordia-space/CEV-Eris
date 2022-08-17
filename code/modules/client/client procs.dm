@@ -1,7 +1,14 @@
 	////////////
 	//SECURITY//
 	////////////
-#define UPLOAD_LIMIT		10485760	//Restricts client uploads to the server to 10MB //Boosted this thing. What's the worst that can happen?
+#define UPLOAD_LIMIT 524288 //Restricts client uploads to the server to 0.5MB
+#define UPLOAD_LIMIT_ADMIN 10485760 //Restricts admin client uploads to the server to 2.5MB //Boosted this thing to 10mb. What's the worst that can happen
+
+GLOBAL_LIST_INIT(blacklisted_builds, list(
+	"1407" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
+	"1408" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
+	"1428" = "bug causing right-click menus to show too many verbs that's been fixed in version 1429",
+	))
 
 	/*
 	When somebody clicks a link in game, this Topic is called first.
@@ -29,6 +36,33 @@
 		//del(usr)
 		return
 
+	// asset_cache
+	var/asset_cache_job
+	if(href_list["asset_cache_confirm_arrival"])
+		asset_cache_job = asset_cache_confirm_arrival(href_list["asset_cache_confirm_arrival"])
+		if (!asset_cache_job)
+			return
+
+	// // Tgui Topic middleware
+	// if(tgui_Topic(href_list))
+	// 	return
+	// if(href_list["reload_tguipanel"])
+	// 	nuke_chat()
+	// if(href_list["reload_statbrowser"])
+	// 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
+	// Log all hrefs
+	if(config && config.log_hrefs && href_logfile)
+		DIRECT_OUTPUT(href_logfile, "<small>[time2text(world.timeofday,"hh:mm")]</small>[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
+
+	//byond bug ID:2256651
+	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
+		to_chat(src, span_danger("An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)"))
+		src << browse("...", "window=asset_cache_browser")
+		return
+	if (href_list["asset_cache_preload_data"])
+		asset_cache_preload_data(href_list["asset_cache_preload_data"])
+		return
+
 	//Admin PM
 	if(href_list["priv_msg"])
 		var/client/C = locate(href_list["priv_msg"])
@@ -48,35 +82,74 @@
 		cmd_admin_irc_pm(href_list["irc_msg"])
 		return
 
-
-
-	//Logs all hrefs
-	if(config && config.log_hrefs && href_logfile)
-		to_chat(href_logfile, "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>")
-
 	switch(href_list["_src_"])
-		if("holder")	hsrc = holder
-		if("usr")		hsrc = mob
-		if("prefs")		return prefs.process_link(usr,href_list)
-		if("vars")		return view_var_Topic(href,href_list,hsrc)
-		if("chat")		return chatOutput.Topic(href, href_list)
+		if("holder")
+			hsrc = holder
+		if("usr")
+			hsrc = mob
+		if("prefs")
+			return prefs.process_link(usr,href_list)
+		if("vars")
+			return view_var_Topic(href,href_list,hsrc)
+		if("chat")
+			return chatOutput.Topic(href, href_list)
 
 	switch(href_list["action"])
 		if("openLink")
 			src << link(href_list["link"])
+	if (hsrc)
+		var/datum/real_src = hsrc
+		if(QDELETED(real_src))
+			return
 
 	..()	//redirect to hsrc.Topic()
 
-/client/proc/handle_spam_prevention(var/message, var/mute_type)
+/*
+ * Call back proc that should be checked in all paths where a client can send messages
+ *
+ * Handles checking for duplicate messages and people sending messages too fast
+ *
+ * The first checks are if you're sending too fast, this is defined as sending
+ * SPAM_TRIGGER_AUTOMUTE messages in
+ * 5 seconds, this will start supressing your messages,
+ * if you send 2* that limit, you also get muted
+ *
+ * The second checks for the same duplicate message too many times and mutes
+ * you for it
+ */
+/client/proc/handle_spam_prevention(message, mute_type)
+
+	//Increment message count
+	total_message_count += 1
+
+	//store the total to act on even after a reset
+	var/cache = total_message_count
+
+	if(total_count_reset <= world.time)
+		total_message_count = 0
+		total_count_reset = world.time + (5 SECONDS)
+
+	//If they're really going crazy, mute them
+	if(cache >= SPAM_TRIGGER_AUTOMUTE * 2)
+		total_message_count = 0
+		total_count_reset = 0
+		cmd_admin_mute(src.mob, mute_type, 1)
+		return TRUE
+
+	//Otherwise just supress the message
+	else if(cache >= SPAM_TRIGGER_AUTOMUTE)
+		return TRUE
+
+
 	if(config.automute_on && !holder && src.last_message == message)
 		src.last_message_count++
 		if(src.last_message_count >= SPAM_TRIGGER_AUTOMUTE)
-			to_chat(src, "\red You have exceeded the spam filter limit for identical messages. An auto-mute was applied.")
+			to_chat(src, span_danger("You have exceeded the spam filter limit for identical messages. An auto-mute was applied."))
 			cmd_admin_mute(src.mob, mute_type, 1)
-			return 1
+			return TRUE
 		if(src.last_message_count >= SPAM_TRIGGER_WARNING)
-			to_chat(src, "\red You are nearing the spam filter limit for identical messages.")
-			return 0
+			to_chat(src, span_danger("You are nearing the spam filter limit for identical messages."))
+			return FALSE
 	else
 		last_message = message
 		src.last_message_count = 0
@@ -84,47 +157,73 @@
 
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
 /client/AllowUpload(filename, filelength)
+	if (holder)
+		if(filelength > UPLOAD_LIMIT_ADMIN)
+			to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT_ADMIN/1024]KiB.</font>")
+			return FALSE
 	if(filelength > UPLOAD_LIMIT)
 		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB.</font>")
-		return 0
-/*	//Don't need this at the moment. But it's here if it's needed later.
-	//Helps prevent multiple files being uploaded at once. Or right after eachother.
-	var/time_to_wait = fileaccess_timer - world.time
-	if(time_to_wait > 0)
-		to_chat(src, "<font color='red'>Error: AllowUpload(): Spam prevention. Please wait [round(time_to_wait/10)] seconds.</font>")
-		return 0
-	fileaccess_timer = world.time + FTPDELAY	*/
-	return 1
+		return FALSE
+	return TRUE
 
 
 	///////////
 	//CONNECT//
 	///////////
-/client/New(TopicData)
-	dir = NORTH
-	chatOutput = new /datum/chatOutput(src)
-	TopicData = null							//Prevent calls to client.Topic from connect
 
-	if(!(connection in list("seeker", "web")))					//Invalid connection type.
+/client/New(TopicData)
+	TopicData = null //Prevent calls to client.Topic from connect
+
+	if(connection != "seeker" && connection != "web")//Invalid connection type.
 		return null
 
-	#if DM_VERSION >= 512
-	if(byond_version < config.minimum_byond_version || byond_build < config.minimum_byond_build)		//BYOND out of date.
-		to_chat(src, "You are attempting to connect with a out of date version of BYOND. Please update to the latest version at http://www.byond.com/ before trying again.")
-		del(src)
-		return
-
-	if("[byond_version].[byond_build]" in config.forbidden_versions)
-		log_and_message_admins("[ckey] Tried to connect with broken and possibly exploitable BYOND build.")
-		to_chat(src, "You are attempting to connect with a broken and possibly exploitable BYOND build. Please update to the latest version at http://www.byond.com/ before trying again.")
-		del(src)
-		return
-	#endif
-
+	// TODO: have bans handle this
 	if(!config.guests_allowed && IsGuestKey(key))
 		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
 		del(src)
 		return
+
+	clients += src
+	directory[ckey] = src
+
+	// Instantiate ~~tgui~~ goonchat panel
+	// tgui_panel = new(src)
+	chatOutput = new /datum/chatOutput(src)
+
+	var/connecting_admin = FALSE //because de-admined admins connecting should be treated like admins.
+	//Admin Authorisation
+	var/datum/admins/admin_datum = admin_datums[ckey]
+	if (!isnull(admin_datum))
+		admin_datum.associate(src)
+		connecting_admin = TRUE
+	// if(CONFIG_GET(flag/autoadmin))
+	// 	if(!GLOB.admin_datums[ckey])
+	// 		var/datum/admin_rank/autorank
+	// 		for(var/datum/admin_rank/R in GLOB.admin_ranks)
+	// 			if(R.name == CONFIG_GET(string/autoadmin_rank))
+	// 				autorank = R
+	// 				break
+	// 		if(!autorank)
+	// 			to_chat(world, "Autoadmin rank not found")
+	// 		else
+	// 			new /datum/admins(autorank, ckey)
+	// if(CONFIG_GET(flag/enable_localhost_rank) && !connecting_admin)
+	var/localhost_addresses = list("127.0.0.1", "::1")
+	if(isnull(address) || (address in localhost_addresses))
+		var/datum/admins/localhost_rank = new("!localhost!", R_HOST, ckey)
+		localhost_rank.associate(src)
+
+	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
+	prefs = SScharacter_setup.preferences_datums[ckey]
+	if(!prefs)
+		prefs = new /datum/preferences(src)
+		SScharacter_setup.preferences_datums[ckey] = prefs
+	prefs.last_ip = address				//these are gonna be used for banning
+	prefs.last_id = computer_id			//these are gonna be used for banning
+	fps = 40 //(prefs.clientfps < 0) ? RECOMMENDED_FPS /* <- recommended is 40 */: prefs.clientfps
+
+	var/full_version = "[byond_version].[byond_build ? byond_build : "xxx"]"
+	log_access("Login: [key_name(src)] from [address ? address : "localhost"]-[computer_id] || BYOND v[full_version]")
 
 	// Change the way they should download resources.
 	if(config.resource_urls)
@@ -134,32 +233,57 @@
 	to_chat(src, "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears.")
 
 
-	clients += src
-	directory[ckey] = src
 
-	//Admin Authorisation
-	holder = admin_datums[ckey]
+	. = ..() //calls mob.Login()
+	if (byond_version >= 512)
+		if (!byond_build || byond_build < 1386)
+			message_admins(span_adminnotice("[key_name(src)] has been detected as spoofing their byond version. Connection rejected."))
+			// add_system_note("Spoofed-Byond-Version", "Detected as using a spoofed byond version.")
+			// log_suspicious_login("Failed Login: [key] - Spoofed byond version")
+			qdel(src)
+
+		if (num2text(byond_build) in GLOB.blacklisted_builds)
+			log_access("Failed login: [key] - blacklisted byond version")
+			to_chat(src, span_userdanger("Your version of byond is blacklisted."))
+			to_chat(src, span_danger("Byond build [byond_build] ([byond_version].[byond_build]) has been blacklisted for the following reason: [GLOB.blacklisted_builds[num2text(byond_build)]]."))
+			to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
+			if(connecting_admin)
+				to_chat(src, "As an admin, you are being allowed to continue using this version, but please consider changing byond versions")
+			else
+				qdel(src)
+				return
+
+	// Initialize tgui panel
+	// src << browse(file('html/statbrowser.html'), "window=statbrowser")
+	// addtimer(CALLBACK(src, .proc/check_panel_loaded), 30 SECONDS)
+	// tgui_panel.initialize()
+	// Starts the chat
+	chatOutput.start()
+
+	connection_time = world.time
+	connection_realtime = world.realtime
+	connection_timeofday = world.timeofday
+	winset(src, null, "command=\".configure graphics-hwmode on\"")
+
+	/* byond err version check here (configurable) */
+
+	// if (connection == "web" && !connecting_admin)
+	// 	if (!CONFIG_GET(flag/allow_webclient))
+	// 		to_chat(src, "Web client is disabled")
+	// 		qdel(src)
+	// 		return
+	// 	if (CONFIG_GET(flag/webclient_only_byond_members) && !IsByondMember())
+	// 		to_chat(src, "Sorry, but the web client is restricted to byond members only.")
+	// 		qdel(src)
+	// 		return
+
+	if( (world.address == address || !address) && !host )
+		host = key
+		world.update_status()
+
 	if(holder)
-		admins += src
-		holder.owner = src
-
-	// Localhost connections get full admin rights and a special rank
-	else if(isnull(address) || (address in list("127.0.0.1", "::1")))
-		holder = new /datum/admins("!localhost!", R_HOST, ckey)
-		holder.associate(src)
-
-
-	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
-	prefs = SScharacter_setup.preferences_datums[ckey]
-	if(!prefs)
-		prefs = new /datum/preferences(src)
-		SScharacter_setup.preferences_datums[ckey] = prefs
-	prefs.last_ip = address				//these are gonna be used for banning
-	prefs.last_id = computer_id			//these are gonna be used for banning
-
-	. = ..()	//calls mob.Login()
-
-	chatOutput.start() // Starts the chat
+		add_admin_verbs()
+		admin_memo_show()
 
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
@@ -167,73 +291,61 @@
 		to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
 		to_chat(src, "<br>")
 
-
-	if(holder)
-		add_admin_verbs()
-		admin_memo_show()
-
-	// Forcibly enable hardware-accelerated graphics, as we need them for the lighting overlays.
-	// (but turn them off first, since sometimes BYOND doesn't turn them on properly otherwise)
-	spawn(5) // And wait a half-second, since it sounds like you can do this too fast.
-		if(src)
-			winset(src, null, "command=\".configure graphics-hwmode off\"")
-			sleep(2) // wait a bit more, possibly fixes hardware mode not re-activating right
-			winset(src, null, "command=\".configure graphics-hwmode on\"")
-
 	log_client_to_db()
 
 	send_resources()
 
 	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
-		to_chat(src, "<span class='info'>You have unread updates in the changelog.</span>")
+		to_chat(src, span_info("You have unread updates in the changelog."))
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 		if(config.aggressive_changelog)
 			src.changes()
 
+	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
+		to_chat(src, span_warning("Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you."))
+
+	//This is down here because of the browse() calls in tooltip/New()
 	if(!tooltips)
 		tooltips = new /datum/tooltip(src)
+
+	Master.UpdateTickRate()
 
 	//////////////
 	//DISCONNECT//
 	//////////////
 /client/Del()
+	if(!gc_destroyed)
+		Destroy() //Clean up signals and timers.
+	return ..()
+
+/client/Destroy()
+	clients -= src
+	directory -= ckey
+	log_access("Logout: [key_name(src)]")
 	if(holder)
 		holder.owner = null
 		admins -= src
+	QDEL_NULL(tooltips)
 	if(dbcon.IsConnected())
 		var/DBQuery/query = dbcon.NewQuery("UPDATE players SET last_seen = Now() WHERE id = [src.id]")
 		if(!query.Execute())
 			log_world("Failed to update players table for user with id [src.id]. Error message: [query.ErrorMsg()].")
-	directory -= ckey
-	clients -= src
-	return ..()
-/*
-/client/Destroy()
-	..()
+	Master.UpdateTickRate()
+	..() //Even though we're going to be hard deleted there are still some things that want to know the destroy is happening
 	return QDEL_HINT_HARDDEL_NOW
-*/
+
 /client/proc/get_registration_date()
-	// Return data:
-	// Success: "2017-07-28"
-	// Fail: null
-
-	var/http[] = world.Export("http://byond.com/members/[src.ckey]?format=text")
-	if(http)
-		var/F = file2text(http["CONTENT"])
-		if(F)
-			var/regex/R = regex("joined = \"(\\d{4})-(\\d{2})-(\\d{2})\"")
-			if(R.Find(F))
-				var/year = R.group[1]
-				var/month = R.group[2]
-				var/day = R.group[3]
-				src.registration_date = "[year]-[month]-[day]"
-				return src.registration_date
-			else
-				log_world("Failed retrieving registration date for player [src.ckey] from byond site.")
-	else
-		log_world("Failed retrieving registration date for player [src.ckey] from byond site.")
-	return null
-
+	var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
+	if(!http)
+		log_world("Failed to connect to byond member page to age check [ckey]")
+		return
+	var/F = file2text(http["CONTENT"])
+	if(F)
+		var/regex/R = regex("joined = \"(\\d{4}-\\d{2}-\\d{2})\"")
+		if(R.Find(F))
+			. = R.group[1]
+		else
+			CRASH("Age check regex failed for [src.ckey]")
 
 /client/proc/get_country()
 	// Return data:
@@ -423,9 +535,8 @@
 //checks if a client is afk
 //3000 frames = 5 minutes
 /client/proc/is_afk(duration=3000)
-	if (duration)
-		if(inactivity > duration)
-			return inactivity
+	if(inactivity > duration)
+		return inactivity
 	return FALSE
 
 
@@ -436,31 +547,38 @@
 
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_resources()
-
-	getFiles(
-		'html/search.js',
-		'html/panels.css',
-		'html/images/loading.gif',
-		'html/images/ntlogo.png',
-		'html/images/talisman.png'
-		)
+// #if (PRELOAD_RSC == 0)
+// 	var/static/next_external_rsc = 0
+// 	var/list/external_rsc_urls = CONFIG_GET(keyed_list/external_rsc_urls)
+// 	if(length(external_rsc_urls))
+// 		next_external_rsc = WRAP(next_external_rsc+1, 1, external_rsc_urls.len+1)
+// 		preload_rsc = external_rsc_urls[next_external_rsc]
+// #endif
 
 	spawn (10) //removing this spawn causes all clients to not get verbs.
+
+		//load info on what assets the client has
+		src << browse('code/modules/asset_cache/validate_assets.html', "window=asset_cache_browser")
+
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
-		var/list/priority_assets = list()
-		var/list/other_assets = list()
+		// if (CONFIG_GET(flag/asset_simple_preload))
+		addtimer(CALLBACK(SSassets.transport, /datum/asset_transport.proc/send_assets_slow, src, SSassets.transport.preload), 5 SECONDS)
 
-		for(var/asset_type in asset_datums)
-			var/datum/asset/D = asset_datums[asset_type]
-			if(D.isTrivial)
-				other_assets += D
-			else
-				priority_assets += D
+		// #if (PRELOAD_RSC == 0)
+		// for (var/name in GLOB.vox_sounds)
+		// 	var/file = GLOB.vox_sounds[name]
+		// 	Export("##action=load_rsc", file)
+		// 	stoplag()
+		// #endif
 
-		for(var/datum/asset/D in (priority_assets + other_assets))
-			D.send_slow(src)
-
+		// ???
 		send_all_cursor_icons(src)
+
+
+//Hook, override it to run code when dir changes
+//Like for /atoms, but clients are their own snowflake FUCK
+/client/proc/setDir(newdir)
+	dir = newdir
 
 /mob/proc/MayRespawn()
 	return FALSE
@@ -479,12 +597,6 @@
 	set category = "OOC"
 	if(prefs)
 		prefs.ShowChoices(usr)
-/*
-/client/proc/apply_fps(var/client_fps)
-	if(world.byond_version >= 511 && byond_version >= 511 && client_fps >= CLIENT_MIN_FPS && client_fps <= CLIENT_MAX_FPS)
-		vars["fps"] = prefs.clientfps
-
-*/
 
 // Byond seemingly calls stat, each tick.
 // Calling things each tick can get expensive real quick.

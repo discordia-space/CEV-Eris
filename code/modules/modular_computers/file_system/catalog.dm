@@ -291,7 +291,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	title = V.name
 	description = V.desc
 	thing_nature = "Atom"
-	image_path = getAtomCacheFilename(V)
+	image_path = SSassets.transport.get_asset_url(V)
 
 
 /datum/catalog_entry/atom/ui_data(mob/user, ui_key = "main")
