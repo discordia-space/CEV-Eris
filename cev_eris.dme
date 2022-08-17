@@ -2393,6 +2393,7 @@
 #include "code\modules\projectiles\guns\energy\nuclear.dm"
 #include "code\modules\projectiles\guns\energy\plasma.dm"
 #include "code\modules\projectiles\guns\energy\poweredcrossbow.dm"
+#include "code\modules\projectiles\guns\energy\rapidcrossbow.dm"
 #include "code\modules\projectiles\guns\energy\shrapnel.dm"
 #include "code\modules\projectiles\guns\energy\sniperrifle.dm"
 #include "code\modules\projectiles\guns\energy\stun.dm"
