@@ -14,10 +14,10 @@ if grep -El '^\".+\" = \(.+\)' maps/**/*.dmm;	then
     echo "ERROR: Non-TGM formatted map detected. Please convert it using Map Merger!"
     st=1
 fi;
-if grep -P '^\ttag = \"icon' maps/**/*.dmm;	then
-    echo "ERROR: tag vars from icon state generation detected in maps, please remove them."
-    st=1
-fi;
+# if grep -P '^\ttag = \"icon' maps/**/*.dmm;	then
+#     echo "ERROR: tag vars from icon state generation detected in maps, please remove them."
+#     st=1
+# fi;
 if grep -P 'step_[xy]' maps/**/*.dmm;	then
     echo "ERROR: step_x/step_y variables detected in maps, please remove them."
     st=1
@@ -58,16 +58,16 @@ fi;
 #     echo "mixed <tab><space> indentation detected"
 #     st=1
 # fi;
-nl='
-'
-nl=$'\n'
-while read f; do
-    t=$(tail -c2 "$f"; printf x); r1="${nl}$"; r2="${nl}${r1}"
-    if [[ ! ${t%x} =~ $r1 ]]; then
-        echo "file $f is missing a trailing newline"
-        st=1
-    fi;
-done < <(find . -type f -name '*.dm')
+# nl='
+# '
+# nl=$'\n'
+# while read f; do
+#     t=$(tail -c2 "$f"; printf x); r1="${nl}$"; r2="${nl}${r1}"
+#     if [[ ! ${t%x} =~ $r1 ]]; then
+#         echo "file $f is missing a trailing newline"
+#         st=1
+#     fi;
+# done < <(find . -type f -name '*.dm')
 # if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' code/**/*.dm; then
 #     echo "changed files contains proc argument starting with 'var'"
 #     st=1
