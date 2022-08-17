@@ -7,7 +7,7 @@ Call TEST_FAIL() to fail the test (You should specify a reason)
 
 You may use /New() and /Destroy() for setup/teardown respectively
 
-You can use the run_loc_bottom_left and run_loc_top_right to get turfs for testing
+You can use the run_loc_floor_bottom_left and run_loc_floor_top_right to get turfs for testing
 
 */
 
@@ -79,9 +79,9 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 /datum/unit_test/proc/allocate(type, ...)
 	var/list/arguments = args.Copy(2)
 	if (!arguments.len)
-		arguments = list(run_loc_bottom_left)
+		arguments = list(run_loc_floor_bottom_left)
 	else if (arguments[1] == null)
-		arguments[1] = run_loc_bottom_left
+		arguments[1] = run_loc_floor_bottom_left
 	var/instance = new type(arglist(arguments))
 	allocated += instance
 	return instance

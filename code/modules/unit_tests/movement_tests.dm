@@ -20,7 +20,7 @@
 
 	mover.forceMove(target)
 
-	TEST_ASSERT(crossed.enterers, "The target object was never entered..")
+	TEST_ASSERT(target.enterers, "The target object was never entered..")
 	TEST_ASSERT_EQUAL(target.enterers.len, 1, "The target object was entered multiple times, expected 1.")
 
 	qdel(mover)
