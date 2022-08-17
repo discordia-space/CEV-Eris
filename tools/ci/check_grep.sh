@@ -88,10 +88,10 @@ if grep -ni 'nanotransen' maps/**/*.dmm; then
     echo "Misspelling(s) of nanotrasen detected in maps, please remove the extra N(s)."
     st=1
 fi;
-if ls maps/*.json | grep -P "[A-Z]"; then
-    echo "Uppercase in a map json detected, these must be all lowercase."
-    st=1
-fi;
+# if ls maps/*.json | grep -P "[A-Z]"; then
+#     echo "Uppercase in a map json detected, these must be all lowercase."
+#     st=1
+# fi;
 if grep -i '/obj/effect/mapping_helpers/custom_icon' maps/**/*.dmm; then
     echo "Custom icon helper found. Please include dmis as standard assets instead for built-in maps."
     st=1
