@@ -14,7 +14,8 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL
-	damage_multiplier = 1.1
+	damage_multiplier = 1.2
+	penetration_multiplier = 0.2
 	init_recoil = CARBINE_RECOIL(4.5)
 	style_damage_multiplier = 2
 	price_tag = 250 //cheap as they get

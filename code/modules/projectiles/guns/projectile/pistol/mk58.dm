@@ -14,7 +14,7 @@
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	magazine_type = /obj/item/ammo_magazine/pistol
 	damage_multiplier = 1.3
-	penetration_multiplier = 1.3
+	penetration_multiplier = 0
 	init_recoil = HANDGUN_RECOIL(1)
 	gun_parts = list(/obj/item/part/gun/frame/mk58 = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
 	serial_type = "NT"

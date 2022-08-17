@@ -14,8 +14,8 @@
 	fire_delay = 8
 	damage_multiplier = 1.4
 	style_damage_multiplier = 5
-	penetration_multiplier = 1.5
-	init_recoil = RIFLE_RECOIL(2.2)
+	penetration_multiplier = 0
+	init_recoil = RIFLE_RECOIL(2.1)
 	init_offset = 4 //bayonet's effect on aim, reduced from 4
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER

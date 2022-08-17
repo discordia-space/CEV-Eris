@@ -19,9 +19,9 @@
 	unload_sound = 'sound/weapons/guns/interact/batrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/batrifle_cock.ogg'
-	init_recoil = CARBINE_RECOIL(0.45)
-	penetration_multiplier = 1.1
-	damage_multiplier = 1.1
+	init_recoil = CARBINE_RECOIL(0.5)
+	damage_multiplier = 1.15
+	penetration_multiplier = 0.1
 	zoom_factor = 0.2
 	gun_tags = list(GUN_FA_MODDABLE)
 
