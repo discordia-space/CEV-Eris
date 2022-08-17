@@ -377,7 +377,7 @@ nanoui is used to open and update nano browser uis
 	var/head_content = ""
 
 	for (var/filename in scripts)
-		head_content += "<script type='text/javascript' src='[filename]'></script> "
+		head_content += "<script src=[filename]></script> "
 
 	for (var/filename in stylesheets)
 		head_content += "<link rel='stylesheet' type='text/css' href='[filename]'> "
@@ -397,8 +397,9 @@ nanoui is used to open and update nano browser uis
 <html>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<script type='text/javascript'>
+		<meta http-equip="X-UA-Compatible" content="IE=edge">
+		[head_content]
+		<script>
 			function receiveUpdateDataPain(jsonString)
 			{
 				// We need both jQuery and NanoStateManager to be able to recieve data
@@ -413,7 +414,6 @@ nanoui is used to open and update nano browser uis
 				//}
 			}
 		</script>
-		[head_content]
 	</head>
 	<body scroll=auto data-template-data='[template_data_json]' data-url-parameters='[url_parameters_json]' data-initial-data='[initial_data_json]'>
 		<div id='uiLayout'>
