@@ -35,10 +35,10 @@ fi;
 #     echo "ERROR: d1/d2 cable variables detected in maps, please remove them."
 #     st=1
 # fi;
-if grep -P '^/area/.+[\{]' maps/**/*.dmm;	then
-    echo "ERROR: Vareditted /area path use detected in maps, please replace with proper paths."
-    st=1
-fi;
+# if grep -P '^/area/.+[\{]' maps/**/*.dmm;	then
+#     echo "ERROR: Vareditted /area path use detected in maps, please replace with proper paths."
+#     st=1
+# fi;
 if grep -P '\W\/turf\s*[,\){]' maps/**/*.dmm; then
     echo "ERROR: base /turf path use detected in maps, please replace with proper paths."
     st=1
@@ -96,17 +96,17 @@ if grep -i '/obj/effect/mapping_helpers/custom_icon' maps/**/*.dmm; then
     echo "Custom icon helper found. Please include dmis as standard assets instead for built-in maps."
     st=1
 fi;
-for json in maps/*.json
-do
-    map_path=$(jq -r '.map_path' $json)
-    while read map_file; do
-        filename="maps/$map_path/$map_file"
-        if [ ! -f $filename ]
-        then
-            echo "found invalid file reference to $filename in maps/$json"
-            st=1
-        fi
-    done < <(jq -r '[.map_file] | flatten | .[]' $json)
-done
+# for json in maps/*.json
+# do
+#     map_path=$(jq -r '.map_path' $json)
+#     while read map_file; do
+#         filename="maps/$map_path/$map_file"
+#         if [ ! -f $filename ]
+#         then
+#             echo "found invalid file reference to $filename in maps/$json"
+#             st=1
+#         fi
+#     done < <(jq -r '[.map_file] | flatten | .[]' $json)
+# done
 
 exit $st
