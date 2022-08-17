@@ -199,6 +199,11 @@ var/global/list/big_deepmaint_room_templates = list()
 
 
 /obj/procedural/dungenerator/deepmaint/New()
+	#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
+	log_test("Skipping deepmaint generation for unit tests")
+	return
+	#endif
+
 	while(1)
 		if(Master.current_runlevel)
 			populateDeepMaintMapLists() //It's not a hook because mapping subsystem has to intialize first
