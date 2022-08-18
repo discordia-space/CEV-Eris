@@ -9636,17 +9636,25 @@
 /turf/simulated/open,
 /area/eris/maintenance/section3deck2starboard)
 "axm" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "xenobio4";
-	name = "Containment 4 Blast Doors";
-	pixel_y = 4
+/obj/structure/closet/crate/hydroponics,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/tool/minihoe,
+/obj/item/tool/minihoe,
+/obj/item/tool/minihoe,
+/obj/item/tool/hatchet,
+/obj/item/tool/hatchet,
+/obj/item/tool/hatchet,
+/obj/item/device/scanner/plant,
+/obj/item/device/scanner/plant,
+/obj/item/device/scanner/plant,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = -22
 	},
 /turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology)
+/area/eris/rnd/xenobiology/xenoflora)
 "axn" = (
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom,
@@ -9821,10 +9829,14 @@
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/disposaldrop)
 "axP" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/machinery/light,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology)
+/area/eris/rnd/xenobiology/xenoflora)
 "axQ" = (
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk/low_chance,
@@ -26665,11 +26677,12 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck1central)
 "bln" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/black{
-	dir = 1
+/obj/structure/table/standard,
+/obj/item/device/radio/intercom{
+	pixel_y = 24
 	},
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology/xenoflora)
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/eris/quartermaster/office)
 "blo" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/multi_tile/metal/mait{
@@ -31869,6 +31882,10 @@
 /obj/machinery/camera/network/second_section{
 	dir = 4
 	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = -22
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section2)
 "bxW" = (
@@ -34529,6 +34546,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = -22
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/rnd/xenobiology)
 "bED" = (
@@ -35618,9 +35639,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4central)
 "bGQ" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/atmospherics/portables_connector,
-/turf/simulated/floor/tiled/steel,
+/obj/machinery/computer/centrifuge,
+/turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "bGR" = (
 /obj/structure/cable/green{
@@ -35674,14 +35694,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4central)
-"bGY" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/atmospherics/portables_connector,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/steel,
-/area/eris/rnd/xenobiology/xenoflora)
 "bGZ" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -35696,10 +35708,6 @@
 /obj/item/stack/material/cardboard,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section2deck1port)
-"bHc" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/turf/simulated/floor/tiled/steel,
-/area/eris/rnd/xenobiology/xenoflora)
 "bHd" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/steel/orangecorner,
@@ -45329,6 +45337,10 @@
 /area/eris/quartermaster/hangarsupply)
 "ceg" = (
 /obj/machinery/light,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/security/lobby)
 "ceh" = (
@@ -52317,7 +52329,13 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/maintenance/section2deck1starboard)
 "cvP" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/black,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/botany,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "cvQ" = (
@@ -64526,6 +64544,10 @@
 /obj/machinery/camera/network/research{
 	dir = 4
 	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = -22
+	},
 /turf/simulated/floor/tiled/white/violetcorener,
 /area/eris/rnd/xenobiology)
 "cZI" = (
@@ -69117,6 +69139,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = -22
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section3)
 "dkb" = (
@@ -70128,11 +70154,14 @@
 /turf/simulated/open,
 /area/eris/hallway/main/section2)
 "dmq" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/white/danger,
-/area/eris/rnd/xenobiology)
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "dmr" = (
 /obj/structure/bed/padded,
 /obj/item/bedsheet/blue,
@@ -70183,10 +70212,7 @@
 /turf/simulated/floor/wood,
 /area/eris/command/mbo/quarters)
 "dmx" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white/danger,
+/turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology)
 "dmy" = (
 /obj/structure/sign/atmos_air{
@@ -70270,11 +70296,12 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2starboard)
 "dmG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
+/obj/structure/window/reinforced{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/white/danger,
-/area/eris/rnd/xenobiology)
+/obj/machinery/seed_extractor,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "dmH" = (
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/tiled/techmaint,
@@ -82767,7 +82794,15 @@
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck1port)
 "dPS" = (
-/obj/machinery/hologram/holopad,
+/obj/machinery/atmospherics/binary/passive_gate{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "dPT" = (
@@ -85711,6 +85746,10 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = -22
+	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/side/section3starboard)
 "dXc" = (
@@ -86119,6 +86158,10 @@
 "dYa" = (
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section3)
@@ -86677,6 +86720,10 @@
 /area/eris/rnd/docking)
 "dZI" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "dZJ" = (
@@ -87255,19 +87302,17 @@
 /area/eris/rnd/misc_lab)
 "ebe" = (
 /obj/structure/table/standard,
-/obj/item/storage/box/syringes,
-/obj/effect/floor_decal/industrial/danger{
-	dir = 4
-	},
+/obj/item/device/scanner/plant,
+/obj/machinery/reagentgrinder/portable,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "ebf" = (
-/obj/machinery/botany/editor,
-/obj/effect/floor_decal/industrial/danger{
-	dir = 8
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = -22
 	},
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology/xenoflora)
+/turf/simulated/floor/tiled/steel,
+/area/eris/hallway/main/section2)
 "ebg" = (
 /obj/machinery/holoposter{
 	pixel_x = -32
@@ -87472,21 +87517,11 @@
 /turf/simulated/open,
 /area/eris/maintenance/section3deck2port)
 "ebH" = (
-/obj/structure/table/standard,
-/obj/item/device/lighting/toggleable/lamp,
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/effect/floor_decal/industrial/danger/corner{
-	dir = 4
-	},
+/obj/machinery/smartfridge/seeds,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "ebI" = (
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 5
-	},
-/obj/effect/floor_decal/industrial/danger{
-	dir = 1
-	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "ebJ" = (
@@ -87502,10 +87537,7 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/docking)
 "ebK" = (
-/obj/machinery/atmospherics/pipe/manifold/visible,
-/obj/effect/floor_decal/industrial/danger{
-	dir = 1
-	},
+/obj/machinery/seed_storage/xenobotany,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "ebL" = (
@@ -87660,36 +87692,27 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/eris/rnd/xenobiology)
-"eci" = (
-/obj/machinery/atmospherics/binary/pump{
-	dir = 4;
-	name = "Isolation to Waste"
-	},
-/obj/effect/floor_decal/industrial/danger/corner{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology/xenoflora)
 "ecj" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/black{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/obj/effect/floor_decal/industrial/danger/corner,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "eck" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/black{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/floor_decal/industrial/danger,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "ecl" = (
-/obj/effect/floor_decal/industrial/danger,
-/obj/machinery/atmospherics/pipe/manifold/hidden/black,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "ecm" = (
@@ -87991,13 +88014,8 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/misc_lab)
 "eda" = (
-/obj/structure/closet/crate/hydroponics,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/reagent_containers/glass/bucket,
-/obj/effect/floor_decal/industrial/danger{
-	dir = 4
-	},
+/obj/machinery/botany,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "edb" = (
@@ -88124,28 +88142,17 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/storage/primary)
 "edm" = (
-/obj/machinery/door/window/northright{
-	name = "Xenoflora Containment";
-	req_access = list(5)
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/obj/machinery/atmospherics/pipe/manifold/visible/green{
 	dir = 1
 	},
-/obj/effect/floor_decal/industrial/danger/corner{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "edn" = (
-/obj/structure/window/reinforced{
+/obj/machinery/atmospherics/portables_connector{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 5
-	},
-/obj/effect/floor_decal/industrial/danger,
-/turf/simulated/floor/tiled/white,
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/simulated/floor/tiled/steel,
 /area/eris/rnd/xenobiology/xenoflora)
 "edo" = (
 /obj/structure/shuttle_part/science{
@@ -88289,12 +88296,13 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/storage/primary)
 "edG" = (
-/obj/structure/window/reinforced{
+/obj/machinery/atmospherics/portables_connector{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/manifold/visible,
-/obj/effect/floor_decal/industrial/danger,
-/turf/simulated/floor/tiled/white,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel,
 /area/eris/rnd/xenobiology/xenoflora)
 "edH" = (
 /obj/structure/table/standard,
@@ -88303,26 +88311,27 @@
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/rnd/anomal)
 "edI" = (
+/obj/machinery/button/remote/blast_door{
+	id = "xenobio4";
+	name = "Containment 4 Blast Doors";
+	pixel_y = 4
+	},
+/obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
-	dir = 1
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 9
-	},
-/obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology/xenoflora)
+/area/eris/rnd/xenobiology)
 "edJ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/anomal)
 "edK" = (
-/obj/structure/window/reinforced{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
 	},
-/obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology/xenoflora)
+/area/eris/rnd/xenobiology)
 "edL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -91756,16 +91765,14 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck3starboard)
-"elU" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk,
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology/xenoflora)
 "elV" = (
-/obj/structure/table/standard,
-/obj/item/paper_bin,
-/obj/item/pen,
-/obj/machinery/camera/network/research,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "elW" = (
@@ -91798,37 +91805,37 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck1central)
 "ema" = (
-/obj/machinery/botany/extractor,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "emc" = (
-/obj/machinery/seed_extractor,
-/obj/machinery/camera/network/research,
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology/xenoflora)
-"emd" = (
-/obj/machinery/smartfridge,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "eme" = (
-/obj/structure/table/standard,
-/obj/machinery/reagentgrinder/portable,
-/obj/item/device/radio/intercom{
-	pixel_y = 24
+/obj/machinery/atmospherics/portables_connector,
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "emf" = (
-/obj/machinery/seed_storage/xenobotany,
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/machinery/atmospherics/unary/freezer,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "emg" = (
-/obj/machinery/vending/hydronutrients{
-	categories = 3
-	},
+/obj/machinery/atmospherics/unary/heater,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "emh" = (
@@ -92121,19 +92128,26 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/structure/table/standard,
+/obj/item/storage/box/data_disk/basic,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "emY" = (
-/obj/structure/disposalpipe/segment,
+/obj/machinery/alarm{
+	pixel_y = 26;
+	locked = 0
+	},
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "emZ" = (
-/obj/structure/bed/chair{
-	dir = 4
+/obj/structure/table/bar_special,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = -22
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology/xenoflora)
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/bar)
 "ena" = (
 /obj/structure/plasticflaps/mining,
 /obj/structure/disposalpipe/segment{
@@ -92172,12 +92186,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/universal{
 	dir = 4
 	},
+/obj/machinery/door/window,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "enf" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/black{
-	dir = 10
-	},
+/obj/machinery/botany,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "eng" = (
@@ -92188,8 +92201,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck2starboard)
 "enh" = (
-/obj/structure/table/standard,
-/obj/item/storage/toolbox/mechanical,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "eni" = (
@@ -92409,10 +92421,10 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/crew_quarters/clownoffice)
 "enM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/black{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /obj/structure/cable/green{
@@ -92420,29 +92432,20 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "enN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/black{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+	dir = 5
 	},
 /turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology/xenoflora)
+/area/eris/rnd/xenobiology)
 "enO" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/black,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
+/obj/structure/table/standard,
+/obj/item/storage/belt/utility,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "enP" = (
@@ -92471,8 +92474,8 @@
 /turf/simulated/floor/carpet,
 /area/eris/crew_quarters/sleep)
 "enT" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+/obj/machinery/atmospherics/binary/pump{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
@@ -92713,24 +92716,18 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4port)
 "eox" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/closet/secure_closet/personal/hydroponics{
+	name = "xenoflorist's locker";
+	req_access = list(5)
+	},
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "eoy" = (
-/obj/structure/closet/crate/hydroponics,
-/obj/item/plantspray/pests,
-/obj/item/reagent_containers/spray/plantbgone{
-	pixel_x = 13;
-	pixel_y = 5
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
 	},
-/obj/item/reagent_containers/spray/plantbgone{
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/spray/plantbgone{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/turf/simulated/floor/tiled/white,
+/obj/machinery/botany,
+/turf/simulated/floor/tiled/steel,
 /area/eris/rnd/xenobiology/xenoflora)
 "eoz" = (
 /turf/simulated/floor/tiled/steel/gray_perforated,
@@ -92745,27 +92742,39 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section3deck2starboard)
 "eoC" = (
-/obj/machinery/atmospherics/unary/freezer{
-	icon_state = "freezer"
+/obj/machinery/atmospherics/pipe/manifold/visible/green{
+	dir = 8
 	},
+/obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "eoD" = (
-/obj/machinery/atmospherics/unary/heater{
-	icon_state = "heater"
+/obj/structure/window/reinforced{
+	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/manifold4w/visible/green,
+/obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "eoE" = (
-/obj/machinery/atmospherics/portables_connector,
-/turf/simulated/floor/tiled/white,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/green{
+	dir = 10
+	},
+/obj/machinery/botany,
+/turf/simulated/floor/tiled/steel,
 /area/eris/rnd/xenobiology/xenoflora)
 "eoF" = (
-/obj/structure/table/standard,
-/obj/item/tool/wrench,
-/obj/item/storage/box/data_disk/basic,
+/obj/machinery/door/window/southright{
+	dir = 1;
+	icon_state = "left";
+	name = "Containment Pen";
+	req_access = list(55)
+	},
 /turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology/xenoflora)
+/area/eris/rnd/xenobiology)
 "eoG" = (
 /obj/machinery/shieldwallgen{
 	req_access = list(55)
@@ -93132,41 +93141,33 @@
 /turf/simulated/open,
 /area/eris/quartermaster/misc)
 "epB" = (
-/obj/machinery/light,
-/obj/machinery/atmospherics/portables_connector{
-	dir = 4
+/obj/machinery/botany,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = -22
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "epC" = (
 /obj/machinery/atmospherics/portables_connector{
-	dir = 8
+	dir = 4
 	},
-/obj/machinery/portable_atmospherics/hydroponics{
-	closed_system = 1;
-	name = "isolation tray"
-	},
-/turf/simulated/floor/tiled/white,
+/obj/machinery/atmospherics/pipe/simple/visible/green,
+/obj/machinery/botany,
+/turf/simulated/floor/tiled/steel,
 /area/eris/rnd/xenobiology/xenoflora)
 "epD" = (
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "epE" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology/xenoflora)
+/area/eris/rnd/xenobiology)
 "epF" = (
-/obj/machinery/light,
-/obj/item/device/radio/intercom{
-	dir = 1;
-	pixel_y = -22
-	},
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/manifold4w/visible/green,
+/obj/machinery/door/window,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "epG" = (
@@ -94824,6 +94825,10 @@
 "etr" = (
 /obj/structure/table/bar_special,
 /obj/machinery/light,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "ets" = (
@@ -96410,6 +96415,10 @@
 	},
 /obj/machinery/camera/network/third_section{
 	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
@@ -98745,8 +98754,15 @@
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/rnd/xenobiology)
 "eBM" = (
-/obj/structure/table/standard,
-/obj/item/device/scanner/plant,
+/obj/machinery/atmospherics/pipe/manifold/visible/green{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 1
+	},
+/obj/machinery/camera/network/research{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "eBN" = (
@@ -99575,13 +99591,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemstor)
-"eDO" = (
-/obj/structure/closet/secure_closet/personal/hydroponics{
-	name = "xenoflorist's locker";
-	req_access = list(5)
-	},
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology/xenoflora)
 "eDP" = (
 /obj/machinery/atmospherics/pipe/tank/air,
 /obj/structure/sign/atmos_air{
@@ -101052,6 +101061,10 @@
 /obj/item/clothing/mask/gas/monkeymask,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/clownoffice)
+"eZc" = (
+/obj/machinery/botany/editor,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "eZp" = (
 /obj/structure/table/rack,
 /obj/item/storage/toolbox/electrical,
@@ -101571,6 +101584,10 @@
 	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/crew_quarters/hydroponics/garden)
+"gKj" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "gLU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -101730,6 +101747,18 @@
 /obj/machinery/vending/cigarette,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/barconference)
+"hoi" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "hqB" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
@@ -102228,6 +102257,15 @@
 /obj/effect/shuttle_landmark/merc/sec3east5,
 /turf/space,
 /area/space)
+"iJB" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "iJH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -102244,6 +102282,16 @@
 /obj/structure/closet/random/tech,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/engineering/post)
+"iLI" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger/corner,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "iLJ" = (
 /obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled/techmaint,
@@ -102984,6 +103032,14 @@
 	},
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/eris/engineering/foyer)
+"lbw" = (
+/obj/structure/closet/crate/hydroponics,
+/obj/item/reagent_containers/glass/bottle,
+/obj/item/reagent_containers/glass/bottle,
+/obj/item/reagent_containers/glass/bottle,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "lcL" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/white/brown_platform,
@@ -103733,8 +103789,25 @@
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/engineering/engine_room)
+"mXp" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/green{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = 22
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "nab" = (
 /obj/structure/table/bar_special,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "naW" = (
@@ -104089,6 +104162,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section3deck5port)
+"odX" = (
+/obj/structure/closet/crate/hydroponics,
+/obj/item/reagent_containers/spray/plantbgone,
+/obj/item/reagent_containers/spray/plantbgone,
+/obj/item/reagent_containers/spray/plantbgone,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "oek" = (
 /obj/structure/table/woodentable,
 /obj/item/deck/cards,
@@ -104306,6 +104386,18 @@
 /obj/item/gun/projectile/automatic/lmg/tk,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
+"oEt" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/green{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "oEy" = (
 /obj/structure/sign/department/gene{
 	pixel_x = 32
@@ -104661,6 +104753,10 @@
 /obj/machinery/camera/network/third_section{
 	dir = 8
 	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = 22
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/barquarters)
 "pGF" = (
@@ -104782,6 +104878,15 @@
 	},
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
+"qfm" = (
+/obj/structure/table/rack,
+/obj/spawner/lowkeyrandom,
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = 22
+	},
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/eris/quartermaster/office)
 "qhu" = (
 /obj/structure/railing{
 	dir = 4
@@ -104978,6 +105083,11 @@
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/storage)
+"qIS" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/green,
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "qJx" = (
 /obj/structure/cyberplant,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -105699,6 +105809,13 @@
 /mob/living/carbon/human/monkey,
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
+"sLs" = (
+/obj/structure/table/bar_special,
+/obj/item/device/radio/intercom{
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/bar)
 "sMn" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/firstaid,
@@ -105864,6 +105981,15 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
+"tfE" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/green{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "tgq" = (
 /obj/machinery/button/remote/blast_door{
 	dir = 1;
@@ -106226,6 +106352,13 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
+"uiH" = (
+/obj/machinery/atmospherics/binary/pump,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "uiU" = (
 /obj/structure/table/standard,
 /obj/spawner/toolbox,
@@ -106306,6 +106439,18 @@
 	},
 /turf/space,
 /area/space)
+"uwc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "uwp" = (
 /obj/structure/table/glass,
 /obj/machinery/firealarm{
@@ -106828,6 +106973,14 @@
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/office)
+"vXR" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "vYG" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -107142,6 +107295,11 @@
 /obj/machinery/vending/style,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/crew_quarters/clothingstorage)
+"wLc" = (
+/obj/structure/table/standard,
+/obj/item/storage/box/beakers,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "wLv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/holoposter{
@@ -107149,6 +107307,10 @@
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/security/lobby)
+"wOC" = (
+/obj/machinery/vending/hydronutrients,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "wOW" = (
 /obj/structure/closet/secure_closet/medicine,
 /obj/structure/catwalk,
@@ -107329,6 +107491,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/medical/genetics)
+"xuk" = (
+/obj/structure/reagent_dispensers/watertank/huge,
+/obj/machinery/camera/network/research,
+/turf/simulated/floor/tiled/white,
+/area/eris/rnd/xenobiology/xenoflora)
 "xuA" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -205089,7 +205256,7 @@ anJ
 evS
 kcK
 bZh
-cjQ
+emZ
 sHF
 cil
 kiY
@@ -205893,7 +206060,7 @@ dFB
 eeB
 jkF
 anJ
-cjQ
+sLs
 cil
 peG
 cil
@@ -208300,7 +208467,7 @@ bxP
 bxP
 dDR
 byn
-bxP
+ebf
 byr
 byt
 bxP
@@ -210738,7 +210905,7 @@ dFq
 ctr
 ctr
 ctr
-cwv
+bln
 ctN
 ctN
 ctN
@@ -211353,7 +211520,7 @@ ctV
 ctV
 cxX
 czc
-ctm
+qfm
 cwD
 cFX
 cFX
@@ -291529,7 +291696,7 @@ cjr
 eag
 eag
 elb
-eDO
+wLc
 emX
 enM
 eox
@@ -291731,10 +291898,10 @@ cjr
 eah
 eah
 elb
-elU
-emY
-enN
-eox
+ebe
+epD
+hoi
+axm
 elb
 aaa
 dXi
@@ -291933,10 +292100,10 @@ ebi
 ebi
 ebi
 ebi
-elV
-emZ
 enO
-eoy
+epD
+hoi
+odX
 elb
 aaa
 dXi
@@ -292135,10 +292302,10 @@ ecf
 ecf
 ekr
 ebi
-ebe
-ebH
-ecj
-eda
+vXR
+ebI
+ema
+lbw
 elb
 aaa
 dXi
@@ -292337,10 +292504,10 @@ ebE
 ecg
 ebE
 ebi
-bGQ
-ebI
+xuk
+enh
 eck
-bHc
+enf
 elb
 aaa
 dXi
@@ -292539,10 +292706,10 @@ ebE
 ech
 ebE
 ebi
-bGQ
-ebK
-eck
-bHc
+eZc
+epD
+ecj
+enf
 elb
 aaa
 dXi
@@ -292741,10 +292908,10 @@ ebi
 ebi
 ebi
 ebi
-bGY
-ebK
-eck
-bHc
+bGQ
+epD
+ecj
+enf
 elb
 aaa
 abF
@@ -292943,10 +293110,10 @@ ecf
 ecf
 ekr
 ebi
-bGQ
-ebK
-eck
-bHc
+wOC
+epD
+ecj
+epB
 elb
 aaa
 aaa
@@ -293145,10 +293312,10 @@ ebE
 ecg
 ebE
 ebi
-ebf
-eci
-eck
-bHc
+ebH
+gKj
+ecl
+enf
 elb
 aaa
 aaa
@@ -293340,17 +293507,17 @@ cPg
 bER
 dhj
 eBL
-dmq
-axm
+enN
+edI
 cTr
 ebE
 ech
 ebE
 ebi
-ema
-ene
+ebK
+emc
 eck
-bHc
+eda
 elb
 aaa
 aaa
@@ -293542,20 +293709,20 @@ edd
 bEH
 dhu
 dkF
+epE
 dmx
-axP
 edd
 ebi
 ebi
 ebi
 ebi
-epD
-enf
-ecl
-bHc
+dmG
+ene
+uwc
+cvP
 elb
-elb
-elb
+aaa
+aaa
 abF
 dXi
 cNH
@@ -293744,20 +293911,20 @@ cQh
 bEO
 dhI
 dkQ
-dmG
+edK
 awe
 cTx
 ecf
 ecf
 ekr
 ebi
-emc
+elV
 dPS
-bln
-cvP
-edm
-epB
+axP
+iLI
 elb
+elb
+aaa
 aaa
 boN
 cNH
@@ -293946,20 +294113,20 @@ bEt
 bEF
 dgN
 dkR
-dgN
-dqG
+dmx
+eoF
 blc
 ebE
 ebE
 ebE
 ebi
-emd
-epD
+emY
+edm
 enT
 eoC
 edn
-epC
 elb
+aaa
 aaa
 dXi
 cNH
@@ -294156,11 +294323,11 @@ ech
 ebE
 ebi
 eme
-epD
-epD
+epF
+uiH
 eoD
 edG
-epD
+elb
 elb
 aaa
 dXi
@@ -294358,11 +294525,11 @@ ebi
 ebi
 ebi
 emf
-epD
-epD
+qIS
+eoy
 eoE
-edI
-epE
+epC
+dmq
 elb
 abF
 dXi
@@ -294560,11 +294727,11 @@ drb
 dqX
 elb
 emg
-enh
 eBM
-eoF
-edK
-epF
+mXp
+oEt
+tfE
+iJB
 elb
 abF
 aaa
