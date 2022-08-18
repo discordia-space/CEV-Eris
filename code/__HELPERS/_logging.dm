@@ -113,6 +113,9 @@
 /proc/log_qdel(text)
 	world_qdel_log << "\[[time_stamp()]] [game_id] QDEL: [text][log_end]"
 
+/proc/log_asset(text)
+	game_log("ASSET", text)
+
 //pretty print a direction bitflag, can be useful for debugging.
 /proc/print_dir(var/dir)
 	var/list/comps = list()
@@ -125,58 +128,87 @@
 
 	return english_list(comps, nothing_text="0", and_text="|", comma_text="|")
 
-//more or less a logging utility
-/proc/key_name(var/whom, var/include_link = null, var/include_name = 1, var/highlight_special_characters = 1)
+/* Helper procs for building detailed log lines */
+/proc/key_name(whom, include_link = null, include_name = TRUE, highlight_special_characters = TRUE)
 	var/mob/M
 	var/client/C
 	var/key
+	var/ckey
+	var/fallback_name
 
-	if(!whom)	return "*null*"
+	if(!whom)
+		return "*null*"
 	if(istype(whom, /client))
 		C = whom
 		M = C.mob
 		key = C.key
+		ckey = C.ckey
 	else if(ismob(whom))
 		M = whom
 		C = M.client
 		key = M.key
+		ckey = M.ckey
+	else if(istext(whom))
+		key = whom
+		ckey = ckey(whom)
+		// C = GLOB.directory[ckey]
+		// if(C)
+		// 	M = C.mob
 	else if(istype(whom, /datum/mind))
-		var/datum/mind/D = whom
-		key = D.key
-		M = D.current
-		if(D.current)
-			C = D.current.client
-	else if(istype(whom, /datum))
-		var/datum/D = whom
-		return "*invalid:[D.type]*"
-	else
-		return "*invalid*"
+		var/datum/mind/mind = whom
+		key = mind.key
+		ckey = ckey(key)
+		if(mind.current)
+			M = mind.current
+			if(M.client)
+				C = M.client
+		else
+			fallback_name = mind.name
+	else // Catch-all cases if none of the types above match
+		var/swhom = null
+
+		if(istype(whom, /atom))
+			var/atom/A = whom
+			swhom = "[A.name]"
+		else if(istype(whom, /datum))
+			swhom = "[whom]"
+
+		if(!swhom)
+			swhom = "*invalid*"
+
+		return "\[[swhom]\]"
 
 	. = ""
 
-	if(key)
-		if(include_link && C)
-			. += "<a href='?priv_msg=\ref[C]'>"
+	if(!ckey)
+		include_link = FALSE
 
-		if(C && C.holder && C.holder.fakekey && !include_name)
+	if(key)
+		if(C?.holder && C.holder.fakekey && !include_name)
+			if(include_link)
+				. += "<a href='?priv_msg=[REF(C)]'>"
 			. += "Administrator"
 		else
+			if(include_link)
+				. += "<a href='?priv_msg=[REF(ckey)]'>"
 			. += key
+		if(!C)
+			. += "\[DC\]"
 
 		if(include_link)
-			if(C)	. += "</a>"
-			else	. += " (DC)"
+			. += "</a>"
 	else
 		. += "*no key*"
 
-	if(include_name && M)
+	if(include_name)
 		var/name
-
-		if(M.real_name)
-			name = M.real_name
-		else if(M.name)
-			name = M.name
-
+		if(M)
+			if(M.real_name)
+				name += "/([M.real_name])"
+			else if(M.name)
+				name += "/([M.name])"
+		else if(fallback_name)
+			name += "/([fallback_name])"
 
 		if(include_link && is_special_character(M) && highlight_special_characters)
 			. += "/(<font color='#FFA500'>[name]</font>)" //Orange
@@ -185,8 +217,8 @@
 
 	return .
 
-/proc/key_name_admin(var/whom, var/include_name = 1)
-	return key_name(whom, 1, include_name)
+/proc/key_name_admin(whom, include_name = TRUE)
+	return key_name(whom, TRUE, include_name)
 
 // Helper procs for building detailed log lines
 /datum/proc/get_log_info_line()

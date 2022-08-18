@@ -42,7 +42,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/modular_computer/console,
+/obj/structure/salvageable/os/console_broken,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 "ai" = (
@@ -53,6 +53,7 @@
 	dir = 1
 	},
 /obj/machinery/light/floor,
+/obj/item/clothing/under/onestar,
 /obj/item/remains/human,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
@@ -173,6 +174,7 @@
 	},
 /obj/structure/table/onestar,
 /obj/item/paper_bin,
+/obj/spawner/oddities/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "aw" = (
@@ -237,8 +239,9 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/table/onestar,
-/obj/item/modular_computer/laptop,
+/obj/structure/salvageable/os/console{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "aE" = (
@@ -248,7 +251,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/modular_computer/console{
+/obj/structure/salvageable/os/console_broken{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
@@ -383,7 +386,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/modular_computer/console{
+/obj/structure/salvageable/os/console_broken{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
@@ -446,7 +449,7 @@
 /obj/item/pen,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/item/gun/projectile/handmade_pistol,
-/obj/spawner/ammo,
+/obj/item/ammo_casing/pistol/scrap,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 

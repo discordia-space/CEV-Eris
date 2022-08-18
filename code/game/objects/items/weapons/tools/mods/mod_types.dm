@@ -436,9 +436,9 @@
 	name = "OneStar microgravity stabilizer"
 	desc = "A large strange contraption, it appears to manipulate gravity around it, to make a weapon or tool more stable at the cost of increasing it\'s size."
 	icon_state = "grav_enhancer"
-	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
+	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_OS
 	matter = list(MATERIAL_PLASTIC = 8, MATERIAL_URANIUM = 3)
-	spawn_blacklisted = TRUE //Onestar Spawners are broken
+	spawn_blacklisted = FALSE
 	price_tag = 1500
 
 /obj/item/tool_upgrade/refinement/gravenhancer/New()
@@ -505,8 +505,8 @@
 	desc = "Rare relic of OneStar uses the bluetech space to store additional 600 units of fuel at the cost of degradation."
 	icon_state = "canister_holding"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 4, MATERIAL_PLATINUM = 4)
-	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
-	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_OS
+	spawn_blacklisted = FALSE
 	price_tag = 800
 
 /obj/item/tool_upgrade/augment/holding_tank/New()
@@ -620,9 +620,9 @@
 	icon_state = "ai_tool"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
 	rarity_value = 50
-	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
-	spawn_blacklisted = TRUE
-	price_tag = 1500
+	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_OS
+	spawn_blacklisted = FALSE
+	price_tag = 2500
 
 /obj/item/tool_upgrade/augment/ai_tool/New()
 	..()
@@ -651,9 +651,9 @@
 	desc = "Very rare tool mod from OneStar powered by their nanomachines. It repairs the tool while in use and makes it near unbreakable."
 	icon_state = "repair_nano"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
-	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
+	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_OS
 	price_tag = 500
-	spawn_blacklisted = TRUE //onestar spawners are broken
+	spawn_blacklisted = FALSE //onestar spawners are broken
 
 /obj/item/tool_upgrade/augment/repair_nano/New()
 	..()

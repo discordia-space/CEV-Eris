@@ -7,8 +7,7 @@
 
 	mover.forceMove(target)
 
-	if(!crossed.crossers)
-		Fail("The target object was never crossed.")
+	TEST_ASSERT(crossed.crossers, "The target object was never crossed.")
 	TEST_ASSERT_EQUAL(crossed.crossers.len, 1, "The target object was crossed multiple times, expected 1.")
 
 	qdel(target)
@@ -21,8 +20,7 @@
 
 	mover.forceMove(target)
 
-	if(!target.enterers)
-		Fail("The target object was never entered.")
+	TEST_ASSERT(target.enterers, "The target object was never entered..")
 	TEST_ASSERT_EQUAL(target.enterers.len, 1, "The target object was entered multiple times, expected 1.")
 
 	qdel(mover)
