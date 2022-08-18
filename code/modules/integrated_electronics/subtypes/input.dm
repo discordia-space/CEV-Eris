@@ -731,6 +731,8 @@
 	// fallball to prevent comms shittification and killing with constant rebuilding of the radio.
 	// im not sure why its happenning myself either, the only reason it would be happening is if the target
 	// frequency deletes itself for not having any linked devices.(but theres plenty of headsets)
+	// The main reason this always stopped engi comms is that byond always initializes one instance of every item
+	// then deletes it (i don't know why) at round-start or on world init
 	// SPCR 2022
 	if(new_frequency > PUBLIC_HIGH_FREQ || new_frequency < PUBLIC_LOW_FREQ)
 		frequency = PUBLIC_LOW_FREQ
