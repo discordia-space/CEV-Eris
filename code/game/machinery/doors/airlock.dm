@@ -1047,7 +1047,8 @@ There are 9 wires.
 		if(QUALITY_HAMMERING)
 			if(stat & NOPOWER && locked)
 				to_chat(user, SPAN_NOTICE("You start hammering the bolts into the unlocked position"))
-				if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_HARD, required_stat = STAT_ROB))
+				// long time and high chance to fail.
+				if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_VERY_HARD, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You unbolt the door"))
 					locked = FALSE
 			else
