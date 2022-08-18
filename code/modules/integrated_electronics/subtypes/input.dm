@@ -729,6 +729,9 @@
 	if(!frequency)
 		return
 	// fallball to prevent comms shittification and killing with constant rebuilding of the radio.
+	// im not sure why its happenning myself either, the only reason it would be happening is if the target
+	// frequency deletes itself for not having any linked devices.(but theres plenty of headsets)
+	// SPCR 2022
 	if(new_frequency > PUBLIC_HIGH_FREQ || new_frequency < PUBLIC_LOW_FREQ)
 		frequency = PUBLIC_LOW_FREQ
 	SSradio.remove_object(src, frequency)
