@@ -549,6 +549,6 @@
 		fail("You must be in front of the Eye of the Protector.", H, C)
 		return FALSE
 
-	eotp.ui_interact(H)
+	eotp.nano_ui_interact(H)
 	return TRUE
 

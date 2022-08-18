@@ -47,8 +47,8 @@
 /datum/nano_module/program/trade_catalog
 	name = "Trade Catalog"
 
-/datum/nano_module/program/trade_catalog/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, state = GLOB.default_state)
-	var/list/data = ui_data(user)
+/datum/nano_module/program/trade_catalog/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, state = GLOB.default_state)
+	var/list/data = nano_ui_data(user)
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "trade_catalog.tmpl", name, 640, 700, state = state)
@@ -56,7 +56,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/datum/nano_module/program/trade_catalog/ui_data()
+/datum/nano_module/program/trade_catalog/nano_ui_data()
 	. = ..()
 	var/datum/computer_file/program/trade_catalog/PRG = program
 	if(!istype(PRG))
