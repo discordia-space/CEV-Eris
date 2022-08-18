@@ -110,7 +110,7 @@
 	attack_hand(M)
 
 /obj/structure/multiz/ladder/proc/throw_through(var/obj/item/C, var/mob/throw_man)
-	if(istype(throw_man,/mob/living/carbon/human))
+	if(istype(throw_man,/mob/living/carbon/human) && throw_man.canUnEquip(C))
 		var/mob/living/carbon/human/user = throw_man
 		var/through =  istop ? "down" : "up"
 		user.visible_message(SPAN_WARNING("[user] takes position to throw [C] [through] \the [src]."),
