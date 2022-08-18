@@ -2,6 +2,7 @@
 	name = "inflatable"
 	w_class = ITEM_SIZE_SMALL
 	icon = 'icons/obj/inflatable.dmi'
+	price_tag = 40
 	var/deploy_path = null
 
 /obj/item/inflatable/attack_self(mob/user)

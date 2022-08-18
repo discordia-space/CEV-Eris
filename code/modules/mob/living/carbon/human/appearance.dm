@@ -35,7 +35,6 @@
 	regenerate_icons() //This is overkill, but we do need to update all of the clothing. Maybe there's a more precise call
 	//reset_hair()
 	//update_body()
-	//update_dna()
 	return 1
 
 /mob/living/carbon/human/proc/change_hair(var/hair_style)
@@ -135,10 +134,6 @@
 	force_update_limbs()
 	update_body()
 	return 1
-
-/mob/living/carbon/human/proc/update_dna()
-	check_dna()
-	dna.ready_dna(src)
 
 /mob/living/carbon/human/proc/generate_valid_species(var/check_whitelist = 1, var/list/whitelist = list(), var/list/blacklist = list())
 	var/list/valid_species = new()

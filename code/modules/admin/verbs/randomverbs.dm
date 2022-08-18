@@ -124,6 +124,7 @@ proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 		if(MUTE_PRAY)		mute_string = "pray"
 		if(MUTE_ADMINHELP)	mute_string = "adminhelp, admin PM and ASAY"
 		if(MUTE_DEADCHAT)	mute_string = "deadchat and DSAY"
+		if(MUTE_TTS)		mute_string = "text to speech"
 		if(MUTE_ALL)		mute_string = "everything"
 		else				return
 
@@ -344,10 +345,12 @@ ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN, FALSE)
 				break
 
 	if(record_found)//If they have a record we can determine a few things.
-		new_character.real_name = record_found.fields["name"]
-		new_character.gender = record_found.fields["sex"]
-		new_character.age = record_found.fields["age"]
-		new_character.b_type = record_found.fields["b_type"]
+		new_character.real_name		= record_found.fields["name"]
+		new_character.gender		= record_found.fields["sex"]
+		new_character.age			= record_found.fields["age"]
+		new_character.b_type		= record_found.fields["b_type"]
+		new_character.dna_trace		= record_found.fields["b_dna"]
+		new_character.fingers_trace	= record_found.fields["fingerprint"]
 	else
 		new_character.gender = pick(MALE,FEMALE)
 		var/datum/preferences/A = new()
@@ -365,21 +368,8 @@ ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN, FALSE)
 		G_found.mind.transfer_to(new_character)	//be careful when doing stuff like this! I've already checked the mind isn't in use
 	else
 		new_character.mind_initialize()
-	if(!new_character.mind.assigned_role)	new_character.mind.assigned_role = ASSISTANT_TITLE//If they somehow got a null assigned role.
-
-	//DNA
-	if(record_found)//Pull up their name from database records if they did have a mind.
-		new_character.dna = new()//Let's first give them a new DNA.
-		new_character.dna.unique_enzymes = record_found.fields["b_dna"]//Enzymes are based on real name but we'll use the record for conformity.
-
-		// I HATE BYOND.  HATE.  HATE. - N3X
-		var/list/newSE= record_found.fields["enzymes"]
-		var/list/newUI = record_found.fields["identity"]
-		new_character.dna.SE = newSE.Copy() //This is the default of enzymes so I think it's safe to go with.
-		new_character.dna.UpdateSE()
-		new_character.UpdateAppearance(newUI.Copy())//Now we configure their appearance based on their unique identity, same as with a DNA machine or somesuch.
-	else//If they have no records, we just do a random DNA for them, based on their random appearance/savefile.
-		new_character.dna.ready_dna(new_character)
+	if(!new_character.mind.assigned_role)
+		new_character.mind.assigned_role = ASSISTANT_TITLE
 
 	new_character.key = G_found.key
 
@@ -484,7 +474,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_create_centcom_report, R_ADMIN, FALSE)
 
 	switch(alert("Should this be announced to the general population?",,"Yes","No"))
 		if("Yes")
-			command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', msg_sanitized = 1);
+			command_announcement.Announce(input, customname, msg_sanitized = 1, use_text_to_speech = TRUE)
 		if("No")
 			to_chat(world, "\red New [company_name] Update available at all communication consoles.")
 			world << sound('sound/AI/commandreport.ogg')

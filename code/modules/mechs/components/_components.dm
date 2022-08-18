@@ -7,6 +7,8 @@
 	dir = SOUTH
 	bad_type = /obj/item/mech_component
 
+	price_tag = 150
+
 	var/on_mech_icon = MECH_PARTS_ICON
 	var/exosuit_desc_string
 	var/total_damage = 0
@@ -55,8 +57,13 @@
 /obj/item/mech_component/proc/update_health()
 	total_damage = brute_damage + burn_damage
 	if(total_damage > max_damage) total_damage = max_damage
+	var/prev_state = damage_state
 	damage_state = CLAMP(round((total_damage/max_damage) * 4), MECH_COMPONENT_DAMAGE_UNDAMAGED, MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
-
+	if(damage_state > prev_state)
+		if(damage_state == MECH_COMPONENT_DAMAGE_DAMAGED_BAD)
+			playsound(loc, 'sound/mechs/internaldmgalarm.ogg', 40, 1)
+		if(damage_state == MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
+			playsound(loc, 'sound/mechs/critdestr.ogg', 50)
 /obj/item/mech_component/proc/ready_to_install()
 	return TRUE
 
@@ -89,15 +96,31 @@
 	if(RC.take_damage(brute, burn))
 		QDEL_NULL(RC)
 
+/obj/item/mech_component/proc/return_diagnostics(var/mob/user)
+	to_chat(user, SPAN_NOTICE("[capitalize(name)]:"))
+	to_chat(user, SPAN_NOTICE(" - Integrity: <b>[round((((max_damage - total_damage) / max_damage)) * 100)]%</b>" ))
+
 /obj/item/mech_component/attackby(obj/item/I, mob/living/user)
 	if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_ZERO))
 		if(contents.len)
-			var/obj/item/removed = pick(contents)
+			//Filter non movables
+			var/list/valid_contents = list()
+			for(var/atom/movable/A in contents)
+				if(!A.anchored)
+					valid_contents += A
+			if(!valid_contents.len)
+				return
+			var/obj/item/removed = pick(valid_contents)
+			if(!(removed in contents))
+				return
 			if(eject_item(removed, user))
 				update_components()
 		else
 			to_chat(user, SPAN_WARNING("There is nothing to remove."))
 		return
+	if(istype(I, /obj/item/device/robotanalyzer))
+		to_chat(user, SPAN_NOTICE("Diagnostic Report for \the [src]:"))
+		return_diagnostics(user)
 	return ..()
 
 /obj/item/mech_component/proc/update_components()

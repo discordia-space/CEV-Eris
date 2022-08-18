@@ -5,7 +5,7 @@
 	. = FALSE
 	..()
 	if(config.enable_mob_sleep)
-		if(stat != DEAD)
+		if(stat != DEAD && !mind)	// Check for mind so player-driven, nonhuman mobs don't sleep
 			if(life_cycles_before_scan > 0)
 				life_cycles_before_scan--
 			else
@@ -160,12 +160,10 @@
 		eye_blurry = max(eye_blurry-1, 0)
 
 	//Ears
-	if(sdisabilities & DEAF)		//disabled-deaf, doesn't get better on its own
+	if(sdisabilities & DEAF) // Disabled-deaf, doesn't get better on its own
 		setEarDamage(-1, max(ear_deaf, 1))
-	else
-		// deafness heals slowly over time, unless ear_damage is over 100
-		if(ear_damage < 100)
-			adjustEarDamage(-0.05,-1)
+	else if(ear_damage < 100) // Deafness heals slowly over time, unless ear_damage is over 100
+		adjustEarDamage(-0.05,-1)
 
 //this handles hud updates. Calls update_vision() and handle_hud_icons()
 /mob/living/proc/handle_regular_hud_updates()
@@ -177,22 +175,18 @@
 	return 1
 
 /mob/living/proc/handle_vision()
-//	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science)
+	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science)
 	update_sight()
 
 	if(stat == DEAD)
 		return
 
-/*	if(eye_blind)
-		blind.alpha = 255
-	else
-		blind.alpha = 0
-		if (disabilities & NEARSIGHTED)
-			client.screen += global_hud.vimpaired
-		if (eye_blurry)
-			client.screen += global_hud.blurry
-		if (druggy)
-			client.screen += global_hud.druggy*/
+	if(sdisabilities & NEARSIGHTED)
+		client.screen |= global_hud.vimpaired
+	if(eye_blurry)
+		client.screen |= global_hud.blurry
+	if(druggy)
+		client.screen |= global_hud.druggy
 	if(machine)
 		var/viewflags = machine.check_eye(src)
 		if(viewflags < 0)

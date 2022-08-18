@@ -7,7 +7,6 @@
 	price_tag = 1000
 	bad_type = /obj/item/clothing/head/collectable
 	spawn_blacklisted = TRUE
-	style = STYLE_HATHATHAT//well, they are rare!
 
 /obj/item/clothing/head/collectable/petehat
 	name = "ultra rare hat"

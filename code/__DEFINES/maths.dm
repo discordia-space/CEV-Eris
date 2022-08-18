@@ -224,8 +224,18 @@ proc/n_ceil(var/num)
 	if(isnum(num))
 		return round(num)+1
 
+// Find leftmost bit using bitshifting
+proc/leftmost_bit(num)
+	var/pos = 0
+	if(num)
+		while(num > 0)
+			num >>= 1
+			pos++
+	return pos
 
 
 #define T100C 373.15 //  100.0 degrees celsius
+
+
 
 #define CELSIUS + T0C

@@ -117,13 +117,7 @@
 			if(!(material in stored_material))
 				stored_material[material] = 0
 
-			var/total_material = materials[material]
-
-			if(istype(smelting,/obj/item/stack))
-				var/obj/item/stack/material/S = smelting
-				total_material *= S.get_amount()
-
-			stored_material[material] += total_material
+			stored_material[material] += materials[material]
 
 	for(var/obj/O in smelting.contents)
 		smelt_item(O)
@@ -142,15 +136,7 @@
 			if(!(material in stored_material))
 				stored_material[material] = 0
 
-			var/total_material = materials[material]
-
-			if(istype(smelting,/obj/item/stack))
-				var/obj/item/stack/material/S = smelting
-				total_material *= S.get_amount()
-
-			total_material *= scrap_multiplier
-
-			stored_material[material] += total_material
+			stored_material[material] += materials[material]
 
 	for(var/obj/O in smelting.contents)
 		smelt_scrap(O)
@@ -201,8 +187,7 @@
 	// Sanity check: avoid an infinite loop in eject_all_material when trying to drop an invalid material
 	if(!stack_type)
 		stored_material[material] = 0
-		crash_with("Attempted to drop an invalid material: [material]")
-		return
+		CRASH("Attempted to drop an invalid material: [material]")
 
 	var/ejected_amount = min(initial(stack_type.max_amount), round(stored_material[material]), storage_capacity)
 	var/obj/item/stack/material/S = new stack_type(src, ejected_amount)

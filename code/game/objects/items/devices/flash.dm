@@ -18,10 +18,10 @@
 	var/last_used = 0 //last world.time it was used.
 
 /obj/item/device/flash/proc/clown_check(var/mob/user)
-	if(user && (CLUMSY in user.mutations) && prob(50))
-		to_chat(user, SPAN_WARNING("\The [src] slips out of your hand."))
-		user.drop_item()
-		return 0
+//	if(user && (CLUMSY in user.mutations) && prob(50))
+//		to_chat(user, SPAN_WARNING("\The [src] slips out of your hand."))
+//		user.drop_item()
+//		return 0
 	return 1
 
 /obj/item/device/flash/proc/flash_recharge()
@@ -83,14 +83,18 @@
 					if (M.HUDtech.Find("flash"))
 						flick("e_flash", M.HUDtech["flash"])
 			else
-				flashfail = 1
+				flashfail = TRUE
 
 	else if(isrobot(M))
-		M.Weaken(rand(5,10))
-		if (M.HUDtech.Find("flash"))
-			flick("e_flash", M.HUDtech["flash"])
+		var/mob/living/silicon/robot/robo = M
+		if(robo.HasTrait(CYBORG_TRAIT_FLASH_RESISTANT))
+			flashfail = TRUE
+		else
+			robo.Weaken(rand(5,10))
+			if (robo.HUDtech.Find("flash"))
+				flick("e_flash", robo.HUDtech["flash"])
 	else
-		flashfail = 1
+		flashfail = TRUE
 
 	if(isrobot(user))
 		spawn(0)

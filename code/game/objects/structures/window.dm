@@ -146,11 +146,11 @@
 /obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
 
 	var/proj_damage = Proj.get_structure_damage()
-	if(!proj_damage) return
-
+	if(proj_damage)
+		hit(proj_damage)
 	..()
-	hit(proj_damage)
-	return
+
+	return TRUE
 
 
 /obj/structure/window/ex_act(severity)
@@ -215,13 +215,13 @@
 
 /obj/structure/window/attack_hand(mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(HULK in user.mutations)
+/*	if(HULK in user.mutations)
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
 		user.visible_message(SPAN_DANGER("[user] smashes through [src]!"))
 		user.do_attack_animation(src)
 		shatter(TRUE,TRUE)
-
-	else if (usr.a_intent == I_HURT)
+*/
+	if (usr.a_intent == I_HURT)
 
 		if (ishuman(usr))
 			var/mob/living/carbon/human/H = usr

@@ -179,6 +179,15 @@
 			for (var/obj/item/I in O)
 				qdel(I)
 
+
+/obj/item/stack/get_matter()
+	. = list()
+	if(matter)
+		. = matter.Copy()
+		for(var/i in .)
+			.[i] *= amount
+
+
 /obj/item/stack/Topic(href, href_list)
 	..()
 	if ((usr.restrained() || usr.stat || usr.get_active_hand() != src))
@@ -272,6 +281,8 @@
 		if (prob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(S)
 			if(blood_DNA)
+				if(!S.blood_DNA || !istype(S.blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
+					S.blood_DNA = list()
 				S.blood_DNA |= blood_DNA
 		return transfer
 	return 0
@@ -289,13 +300,15 @@
 
 	var/orig_amount = src.amount
 	if (transfer && src.use(transfer))
-		var/obj/item/stack/newstack = new src.type(loc, transfer)
-		newstack.color = color
+		var/obj/item/stack/S = new src.type(loc, transfer)
+		S.color = color
 		if (prob(transfer/orig_amount * 100))
-			transfer_fingerprints_to(newstack)
+			transfer_fingerprints_to(S)
 			if(blood_DNA)
-				newstack.blood_DNA |= blood_DNA
-		return newstack
+				if(!S.blood_DNA || !istype(S.blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
+					S.blood_DNA = list()
+				S.blood_DNA |= blood_DNA
+		return S
 	return null
 
 /obj/item/stack/proc/get_amount()
@@ -396,6 +409,8 @@
 			//If that fails, leave it beside the original stack
 			S.forceMove(get_turf(src))
 
+/obj/item/stack/get_item_cost(export)
+	return amount * ..()
 
 /*
  * Recipe datum

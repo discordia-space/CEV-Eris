@@ -186,37 +186,16 @@
 			if(equipment_tint_total >= TINT_BLIND)	// Covered eyes, heal faster
 				eye_blurry = max(eye_blurry-2, 0)
 
-	if (disabilities & EPILEPSY)
-		if ((prob(1) && paralysis < 1))
-			to_chat(src, "\red You have a seizure!")
-			for(var/mob/O in viewers(src, null))
-				if(O == src)
-					continue
-				O.show_message(text(SPAN_DANGER("[src] starts having a seizure!")), 1)
-			Paralyse(10)
-			make_jittery(1000)
-	if (disabilities & COUGHING)
-		if ((prob(5) && paralysis <= 1))
-			drop_item()
-			spawn( 0 )
-				emote("cough")
-				return
-	if (disabilities & TOURETTES)
-		speech_problem_flag = 1
-		if ((prob(10) && paralysis <= 1))
-			Stun(10)
-			spawn( 0 )
-				switch(rand(1, 3))
-					if(1)
-						emote("twitch")
-					if(2 to 3)
-						say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")]")
-				make_jittery(100)
-				return
-	if (disabilities & NERVOUS)
-		speech_problem_flag = 1
-		if (prob(10))
-			stuttering = max(10, stuttering)
+//	if (disabilities & COUGHING)
+//		if ((prob(5) && paralysis <= 1))
+//			drop_item()
+//			spawn( 0 )
+//				emote("cough")
+//				return
+//	if (disabilities & NERVOUS)
+//		speech_problem_flag = 1
+//		if (prob(10))
+//			stuttering = max(10, stuttering)
 
 	if(stat != DEAD)
 		var/rn = rand(0, 200)
@@ -246,34 +225,56 @@
 	if(in_stasis)
 		return
 
-	if(getFireLoss())
-		if((COLD_RESISTANCE in mutations) || (prob(1)))
-			heal_organ_damage(0,1)
+	if(mutation_index)
+		if(get_active_mutation(src, MUTATION_REJECT))
+			for(var/obj/item/organ/external/limb in organs)
+				for(var/obj/thing in limb.implants)
+					if(istype(thing, /obj/item/implant))
+						var/obj/item/implant/implant = thing
+						implant.uninstall()
+						implant.malfunction = MALFUNCTION_PERMANENT
+					else
+						limb.remove_item(thing)
+					limb.take_damage(rand(15, 30))
+					visible_message(SPAN_DANGER("[thing.name] rips through [src]'s [limb.name]."),\
+					SPAN_DANGER("[thing.name] rips through your [limb.name]."))
 
-	// DNA2 - Gene processing.
-	// The HULK stuff that was here is now in the hulk gene.
-	for(var/datum/dna/gene/gene in dna_genes)
-		if(!gene.block)
-			continue
-		if(gene.is_active(src))
-			speech_problem_flag = 1
-			gene.OnMobLife(src)
+				if(BP_IS_ROBOTIC(limb))
+					visible_message(SPAN_DANGER("[src]'s [limb.name] tears off."),
+					SPAN_DANGER("Your [limb.name] tears off."))
+					limb.droplimb()
+					update_implants()
+
+		if(health != maxHealth)
+			if(get_active_mutation(src, MUTATION_GREATER_HEALING))
+				// Effects of kelotane, bicaridine (minus percentage healing) and tricordrazine
+				adjustOxyLoss(-0.6)
+				heal_organ_damage(0.6, 0.6)
+				adjustToxLoss(-0.3)
+				add_chemical_effect(CE_BLOODCLOT, 0.15)
+
+			else if(get_active_mutation(src, MUTATION_LESSER_HEALING))
+				// Effects of tricordrazine
+				adjustOxyLoss(-0.6)
+				heal_organ_damage(0.3, 0.3)
+				adjustToxLoss(-0.3)
+				add_chemical_effect(CE_BLOODCLOT, 0.1)
 
 	radiation = CLAMP(radiation,0,100)
 
-	if (radiation)
+	if(radiation)
 		var/damage = 0
 		radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 		if(prob(25))
 			damage = 1
 
-		if (radiation > 50)
+		if(radiation > 50)
 			damage = 1
 			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
 				radiation -= 5 * RADIATION_SPEED_COEFFICIENT
 				to_chat(src, SPAN_WARNING("You feel weak."))
-				Weaken(3)
+				Weaken(3, FALSE)
 				if(!lying)
 					emote("collapse")
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == SPECIES_HUMAN) //apes go bald
@@ -283,7 +284,7 @@
 					f_style = "Shaved"
 					update_hair()
 
-		if (radiation > 75)
+		if(radiation > 75)
 			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 			damage = 3
 			if(prob(5))
@@ -489,7 +490,7 @@
 	if(!species)
 		return
 	// Hot air hurts :( :(
-	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in mutations))
+	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1)) // && !(COLD_RESISTANCE in mutations)
 		var/damage = 0
 		if(breath.temperature <= species.cold_level_1)
 			if(prob(20))
@@ -641,7 +642,7 @@
 		pressure_alert = 0
 	else if(adjusted_pressure >= species.hazard_low_pressure)
 		pressure_alert = -1
-	else
+/*	else
 		if( !(COLD_RESISTANCE in mutations))
 			take_overall_damage(brute=LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
 			if(getOxyLoss() < 55) // 11 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
@@ -649,7 +650,7 @@
 			pressure_alert = -2
 		else
 			pressure_alert = -1
-
+*/
 	return
 
 /*
@@ -726,8 +727,8 @@
 	return get_thermal_protection(thermal_protection_flags)
 
 /mob/living/carbon/human/get_cold_protection(temperature)
-	if(COLD_RESISTANCE in mutations)
-		return 1 //Fully protected from the cold.
+//	if(COLD_RESISTANCE in mutations)
+//		return 1 //Fully protected from the cold.
 
 	temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
 	var/thermal_protection_flags = get_cold_protection_flags(temperature)
@@ -1161,7 +1162,7 @@
 			isRemoteObserve = TRUE
 		else if(client.eye && istype(client.eye,/obj/structure/multiz))
 			isRemoteObserve = TRUE
-		else if(((mRemote in mutations) || remoteviewer) && remoteview_target)
+		else if((get_active_mutation(src, MUTATION_REMOTESEE) || remoteviewer) && remoteview_target)
 			if(remoteview_target.stat == CONSCIOUS)
 				isRemoteObserve = TRUE
 		if(!isRemoteObserve && client && !client.adminobs && !using_scope)
@@ -1175,8 +1176,12 @@
 	..()
 	if(stat == DEAD)
 		return
-	if(XRAY in mutations)
-		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
+
+	if(get_active_mutation(src, MUTATION_XRAY))
+		sight |= SEE_TURFS|SEE_OBJS|SEE_MOBS
+	else if(get_active_mutation(src, MUTATION_THERMAL_VISION))
+		sight |= SEE_MOBS
+
 
 /mob/living/carbon/human/proc/regen_slickness(var/source_modifier = 1)
 	var/slick = TRUE

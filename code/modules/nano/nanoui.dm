@@ -97,13 +97,12 @@ nanoui is used to open and update nano browser uis
 		ref = nref
 
 	add_common_assets()
-	if(user.client)
-		var/datum/asset/assets = get_asset_datum(/datum/asset/directories/nanoui)
 
-		// Avoid opening the window if the resources are not loaded yet.
-		if(!assets.check_sent(user.client))
-			to_chat(user, "Resources are still loading. Please wait.")
-			close()
+	var/datum/asset/nanoui = get_asset_datum(/datum/asset/simple/directories/nanoui)
+	if (nanoui.send(user.client))
+		to_chat(user, span_warning("Currently sending <b>all</b> nanoui assets, please wait!"))
+		user.client.browse_queue_flush() // stall loading nanoui until assets actualy gets sent
+
 
 //Do not qdel nanouis. Use close() instead.
 /datum/nanoui/Destroy()
@@ -283,7 +282,7 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/proc/add_template(key, filename)
-	templates[key] = filename
+	templates[key] = SSassets.transport.get_asset_url(filename) // we remapped templates
 
  /**
   * Set the layout key for use in the frontend Javascript
@@ -376,10 +375,10 @@ nanoui is used to open and update nano browser uis
 	var/head_content = ""
 
 	for (var/filename in scripts)
-		head_content += "<script type='text/javascript' src='[filename]'></script> "
+		head_content += "<script type='text/javascript' src='[SSassets.transport.get_asset_url(filename)]'></script> "
 
 	for (var/filename in stylesheets)
-		head_content += "<link rel='stylesheet' type='text/css' href='[filename]'> "
+		head_content += "<link rel='stylesheet' type='text/css' href='[SSassets.transport.get_asset_url(filename)]'> "
 
 	var/template_data_json = "{}" // An empty JSON object
 	if (templates.len > 0)

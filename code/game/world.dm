@@ -74,8 +74,6 @@ var/game_id
  * All atoms in both compiled and uncompiled maps are initialized()
  */
 /world/New()
-	//enable the debugger for VSC
-	enable_auxtools_debugger()
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
@@ -143,6 +141,19 @@ var/game_id
 #endif
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
 
+/world/proc/SetupLogs()
+	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
+	if(!override_dir)
+		var/realtime = world.realtime
+		var/texttime = time2text(realtime, "YYYY/MM/DD")
+		GLOB.log_directory = "data/logs/[texttime]/round-"
+		if(game_id)
+			GLOB.log_directory += "[game_id]"
+		else
+			var/timestamp = replacetext(time_stamp(), ":", ".")
+			GLOB.log_directory += "[timestamp]"
+	else
+		GLOB.log_directory = "data/logs/[override_dir]"
 
 var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
@@ -397,7 +408,3 @@ proc/establish_db_connection()
 		return //No change required.
 
 	fps = new_value
-
-/world/Del()
-	disable_auxtools_debugger() //If we dont do this, we get phantom threads which can crash DD from memory access violations
-	..()

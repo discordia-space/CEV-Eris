@@ -348,6 +348,8 @@
 
 //Prevent the master controller from starting automatically
 #define NO_INIT_PARAMETER "no-init"
+//Force the log directory to be something specific in the data/logs folder
+#define OVERRIDE_LOG_DIRECTORY_PARAMETER "log-directory"
 
 /// Required minimum values to see reagents in a beaker
 #define HUMAN_REQ_COG_FOR_REG 35
@@ -356,3 +358,7 @@
 /// Misc atmos equations
 
 #define FIRESTACKS_TEMP_CONV(firestacks) min(5200,max(2.25*round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2), 700))
+
+#define TTS_SEED_DEFAULT_FEMALE "Female_1"
+#define TTS_SEED_DEFAULT_MALE "Male_1"
+#define TTS_SEED_ANNOUNCER "Robot_2"

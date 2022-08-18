@@ -178,10 +178,10 @@ default behaviour is:
 
 /mob/living/carbon/human/burn_skin(burn_amount)
 	//world << "DEBUG: burn_skin(), mutations=[mutations]"
-	if(mShock in mutations) //shockproof
-		return FALSE
-	if (COLD_RESISTANCE in mutations) //fireproof
-		return FALSE
+//	if(mShock in mutations) //shockproof
+//		return FALSE
+//	if (COLD_RESISTANCE in mutations) //fireproof
+//		return FALSE
 	var/divided_damage = (burn_amount)/(organs.len)
 	var/extradam = 0	//added to when organ is at max dam
 	for(var/obj/item/organ/external/affecting in organs)
@@ -610,72 +610,77 @@ default behaviour is:
 			M.UpdateFeed(src)
 
 
-
-
 /mob/living/verb/lay_down()
 	set name = "Rest"
 	set category = "IC"
 
-	if(resting && unstack)
-		unstack = FALSE
+	if(is_busy)
+		return FALSE
 
-		if(do_after(src, (src.stats.getPerk(PERK_PARKOUR) ? 0.3 SECONDS : 0.7 SECONDS), null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
+	var/mob/living/carbon/human/H = ishuman(src) ? src : null
+
+	if(resting)
+		is_busy = TRUE
+
+		if(do_after(src, (stats.getPerk(PERK_PARKOUR) ? 0.2 SECONDS : 0.4 SECONDS), null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
 			resting = FALSE
-			unstack = TRUE
-			to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
+			to_chat(src, SPAN_NOTICE("You are now getting up."))
 			update_lying_buckled_and_verb_status()
-		else
-			unstack = TRUE
+
+		is_busy = FALSE
+
+	else if(H && H.momentum_speed && !(istype(loc, /turf/space) || grabbed_by.len))
+		H.dive()
+
 	else
-		if (!resting)
-			dive()
-		else
-			to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
-			update_lying_buckled_and_verb_status()
+		resting = TRUE
+		to_chat(src, SPAN_NOTICE("You are now resting."))
+		update_lying_buckled_and_verb_status()
+
 
 /mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item == held_item)
 		return FALSE
 	return ..()
 
-mob/living/carbon/human/verb/stopSliding()
+
+/mob/living/carbon/human/verb/stopSliding()
 	set hidden = 1
 	set instant = 1
-	src.livmomentum = 0
+	livmomentum = 0
 
-/mob/living/proc/dive()
-	var/client/C = src.client
-	var/speed = movement_delay()
+
+/mob/living/carbon/human/proc/dive()
+	var/client/C = client
 	resting = TRUE
 	var/_dir = C.true_dir
-	var/_hunger = (MOB_BASE_MAX_HUNGER - nutrition)
-	if(_hunger >= 250) //Will be shown on overlay as orange nutrition
-		to_chat(src, SPAN_WARNING("You weakly slump down!")) //You fall down because the rest still procs; a huge disadvantage
-		return
-	if(ishuman(src) && !weakened && (_dir))// If true_dir = 0(src isn't moving), doesn't proc.
-		livmomentum = 5 // Set momentum value as soon as possible for stopSliding to work better
-		nutrition -= 25
-		var/mob/living/carbon/human/H = src
+
+	if(!weakened && _dir)// If true_dir = 0(src isn't moving), doesn't proc.
+		if(momentum_dir == _dir)
+			livmomentum = momentum_speed // Set momentum value as soon as possible for stopSliding to work better
 		var/range = 1 //checks for move intent; dive one tile further if on run intent
-		if (move_intent.flags & MOVE_INTENT_EXERTIVE)
-			range++
-		to_chat(H, SPAN_NOTICE("You dive onwards!"))
+
+		// Diving
+		to_chat(src, SPAN_NOTICE("You dive onwards!"))
 		pass_flags += PASSTABLE // Jump over them!
-		H.allow_spin = FALSE
-		var/is_jump = FALSE
-		if(istype(get_step(H, _dir), /turf/simulated/open))
-			is_jump = TRUE
-		H.throw_at(get_edge_target_turf(H, _dir), range + is_jump, 1)// "Diving"; if you dive over a table, your momentum is set to 0. If you dive over space, you are thrown a tile further.
+		allow_spin = FALSE
+		if(istype(get_step(src, _dir), /turf/simulated/open))
+			range++
+		if(momentum_speed > 4)
+			range++
+		throw_at(get_edge_target_turf(src, _dir), range, 1) // If you dive over a table, your momentum is set to 0. If you dive over space, you are thrown 1 tile further.
 		update_lying_buckled_and_verb_status()
 		pass_flags -= PASSTABLE // Jumpn't over them anymore!
-		H.allow_spin = TRUE
-		sleep(2)
+		allow_spin = TRUE
+
+		// Slide
+		sleep(1.5)
 		C.mloop = 1
 		while(livmomentum > 0 && C.true_dir)
-			H.Move(get_step(H.loc, _dir),dir)
-			livmomentum = (livmomentum - speed)
-			H.regen_slickness(0.25) // The longer you slide, the more stylish it is
-			sleep(world.tick_lag + 1)
+			Move(get_step(loc, _dir),dir)
+			livmomentum--
+			regen_slickness(0.25) // The longer you slide, the more stylish it is
+			sleep(world.tick_lag + 0.5)
 		C.mloop = 0
 
 /mob/living/proc/cannot_use_vents()
@@ -688,9 +693,6 @@ mob/living/carbon/human/verb/stopSliding()
 	return TRUE
 
 /mob/living/proc/slip(var/slipped_on,stun_duration=8)
-	return FALSE
-
-/mob/living/proc/trip(tripped_on, stun_duration)
 	return FALSE
 
 //damage/heal the mob ears and adjust the deaf amount
@@ -708,13 +710,13 @@ mob/living/carbon/human/verb/stopSliding()
 /mob/proc/can_be_possessed_by(var/mob/observer/ghost/possessor)
 	return istype(possessor) && possessor.client
 
-/mob/living/can_be_possessed_by(var/mob/observer/ghost/possessor)
+/mob/living/can_be_possessed_by(var/mob/observer/ghost/possessor, var/animal_check = TRUE)
 	if(!..())
 		return FALSE
 	if(!possession_candidate)
 		to_chat(possessor, "<span class='warning'>That animal cannot be possessed.</span>")
 		return FALSE
-	if(jobban_isbanned(possessor, "Animal"))
+	if(jobban_isbanned(possessor, "Animal") && animal_check)
 		to_chat(possessor, "<span class='warning'>You are banned from animal roles.</span>")
 		return FALSE
 	if(!possessor.MayRespawn(0 ,ANIMAL))
@@ -854,8 +856,14 @@ mob/living/carbon/human/verb/stopSliding()
 /mob/living/New()
 	..()
 
+	if(!real_name)
+		real_name = name
+
+	dna_trace = sha1(real_name)
+	fingers_trace = md5(real_name)
+
 	//Some mobs may need to create their stats datum farther up
-	if (!stats)
+	if(!stats)
 		stats = new /datum/stat_holder(src)
 
 	generate_static_overlay()

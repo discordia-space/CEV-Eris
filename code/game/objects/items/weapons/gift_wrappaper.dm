@@ -140,6 +140,7 @@
 	matter = list(MATERIAL_BIOMATTER = 4)
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_JUNK
+	price_tag = 20
 	var/amount = 20
 
 /obj/item/wrapping_paper/attackby(obj/item/W, mob/user)

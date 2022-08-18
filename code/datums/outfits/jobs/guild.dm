@@ -6,12 +6,13 @@
 	name = OUTFIT_JOB_NAME("Guild Merchant")
 	uniform = /obj/item/clothing/under/rank/cargotech
 	shoes = /obj/item/clothing/shoes/color/brown
-	glasses = /obj/item/clothing/glasses/sunglasses
+	glasses = /obj/item/clothing/glasses/sunglasses/big
 	suit = /obj/item/clothing/suit/storage/qm_coat
 	l_hand = /obj/item/clipboard
 	id_type = /obj/item/card/id/car
 	pda_type = /obj/item/modular_computer/pda/cargo
 	l_ear = /obj/item/device/radio/headset/heads/merchant
+	backpack_contents = list(/obj/item/gun/projectile/olivaw = 1, /obj/item/ammo_magazine/pistol/rubber = 2)
 
 /decl/hierarchy/outfit/job/cargo/cargo_tech
 	name = OUTFIT_JOB_NAME("Guild Technician")
@@ -62,6 +63,6 @@
 	backpack_overrides[/decl/backpack_outfit/satchel] = /obj/item/storage/backpack/satchel/leather
 
 
-/decl/hierarchy/outfit/job/cargo/artist/clown/post_equip(var/mob/living/carbon/human/H)
-	..()
-	H.mutations.Add(CLUMSY)
+///decl/hierarchy/outfit/job/cargo/artist/clown/post_equip(var/mob/living/carbon/human/H)
+//	..()
+//	H.mutations.Add(CLUMSY)

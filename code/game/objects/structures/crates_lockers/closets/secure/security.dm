@@ -15,8 +15,6 @@
 	new /obj/item/clothing/gloves/captain(src)
 	new /obj/item/storage/belt/sheath(src)
 	new /obj/item/tool/sword/saber(src)
-	new /obj/item/gun/projectile/avasarala(src)
-	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
@@ -39,8 +37,6 @@
 	new /obj/item/storage/box/ids( src )
 	new /obj/item/storage/belt/sheath(src)
 	new /obj/item/tool/sword/saber(src)
-	new /obj/item/gun/projectile/avasarala(src)
-	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
@@ -194,6 +190,7 @@
 	new /obj/item/ammo_magazine/slmagnum/rubber(src)
 	new /obj/item/storage/pouch/pistol_holster(src)
 	new /obj/item/storage/briefcase/crimekit(src)
+	new /obj/item/storage/box/syndie_kit/spy(src)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"

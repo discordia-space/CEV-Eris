@@ -79,9 +79,9 @@
 	GUN_UPGRADE_DAMAGE_MULT = 0.66,
 	GUN_UPGRADE_AGONY_MULT = 0.66,
 	GUN_UPGRADE_FIRE_DELAY_MULT = 0.33,
-	GUN_UPGRADE_FULLAUTO = TRUE,
 	GUN_UPGRADE_CHARGECOST = 0.5,
-	GUN_UPGRADE_FIRE_DELAY_MULT = 0.33)
+	GUN_UPGRADE_FIRE_DELAY_MULT = 0.33,
+	GUN_UPGRADE_FULLAUTO = TRUE)
 	I.req_fuel_cell = REQ_CELL
 	I.gun_loc_tag = GUN_MECHANISM
 
@@ -137,6 +137,7 @@
 	name = "Syndicate \"Gauss Coil\" barrel"
 	desc = "Make bullet pierce through wall and penetrate armors easily, but losing rate of fire and increece recoil."
 	icon_state = "Gauss"
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLATINUM = 1)
 	spawn_blacklisted = TRUE
 
 /obj/item/gun_upgrade/barrel/gauss/New()

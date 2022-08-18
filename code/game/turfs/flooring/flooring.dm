@@ -255,11 +255,12 @@ var/list/flooring_types
 	//BSTs need this or they generate tons of soundspam while flying through the ship
 	if(!ishuman(M)|| M.incorporeal_move || !has_gravity(get_turf(M)))
 		return
-	var/mob/living/carbon/human/our_trippah = M
 	if(MOVING_QUICKLY(M))
-		if(prob(50 - our_trippah.stats.getStat(STAT_COG) * 2)) // The art of calculating the vectors required to avoid tripping on the metal beams requires big quantities of brain power
-			our_trippah.adjustBruteLoss(5)
-			our_trippah.trip(src, 6)
+		if(prob(5))
+			M.adjustBruteLoss(5)
+			M.slip(null, 6)
+			playsound(M, 'sound/effects/bang.ogg', 50, 1)
+			to_chat(M, SPAN_WARNING("You tripped over!"))
 			return
 
 //============HULL PLATING=========\\

@@ -24,4 +24,5 @@
 	)
 	twohanded = TRUE
 	wield_delay = 0
-
+	init_recoil = RIFLE_RECOIL(1)
+	serial_type = "NT"

@@ -75,12 +75,7 @@
 	var/is_stack = FALSE
 
 	// If stackable, we want to multiply materials by the stack amount
-	if(istype(O, /obj/item/stack))
-		var/obj/item/stack/stack = O
-		multiplier = stack.get_amount()
-		is_stack = TRUE
-
-	else if(istype(O, /obj/item/ammo_casing))
+	if(istype(O, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/casing = O
 		multiplier = casing.amount
 		if(casing.amount > 1 || casing.maxamount > 1)
@@ -133,7 +128,6 @@
 		"id" = "[id]", "name" = name, "desc" = desc, "time" = time,
 		"category" = category, "adjust_materials" = adjust_materials
 	)
-	// nano_ui_data["icon"] is set in asset code.
 
 	if(length(materials))
 		var/list/RS = list()

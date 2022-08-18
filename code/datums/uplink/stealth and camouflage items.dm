@@ -22,8 +22,9 @@
 
 /datum/uplink_item/item/stealth_items/chameleon_kit
 	name = "Chameleon Kit"
+	desc = "Comes with all the clothes you need to impersonate most people. Acting lessons sold separately. Wearing the uniform will allow for quick switching between appearances."
 	item_cost = 5
-	path = /obj/item/storage/box/syndie_kit/chameleon
+	path = /obj/item/storage/backpack/chameleon
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/item/stealth_items/cleanup
@@ -33,9 +34,9 @@
 	path = /obj/item/storage/box/syndie_kit/cleanup_kit
 
 /datum/uplink_item/item/stealth_items/voice
-	name = "Voice Changer"
+	name = "Chameleon Voice Changer"
 	item_cost = 5
-	path = /obj/item/clothing/mask/gas/voice
+	path = /obj/item/clothing/mask/chameleon/voice
 
 /datum/uplink_item/item/stealth_items/chameleon_projector
 	name = "Chameleon-Projector"

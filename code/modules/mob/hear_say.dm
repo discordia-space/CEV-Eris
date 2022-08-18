@@ -70,7 +70,7 @@
 	if(!client)
 		return
 
-	if(findtext(message, get_cop_code()))
+	if(findtext(message, cop_code_last))
 		message = cop_code_last
 		language = null
 		if(isghost(src))
@@ -127,7 +127,7 @@
 	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 
-		if(H.wear_mask && istype(H.wear_mask, /obj/item/clothing/mask/gas/voice))
+		if(H.wear_mask && istype(H.wear_mask, /obj/item/clothing/mask/chameleon/voice))
 			changed_voice = TRUE
 			var/mob/living/carbon/human/I
 

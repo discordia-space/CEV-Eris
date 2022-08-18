@@ -23,7 +23,6 @@
 
 	// Vars for hacking
 	var/datum/wires/jukebox/wires
-	var/hacked = FALSE // Whether to show the hidden songs or not
 	var/freq = 0 // Currently no effect, will return in phase II of mediamanager.
 
 	var/loop_mode = JUKEMODE_PLAY_ONCE			// Behavior when finished playing a song
@@ -230,8 +229,8 @@
 				if(ishuman(M))
 					if(istype(M:l_ear, /obj/item/clothing/ears/earmuffs) || istype(M:r_ear, /obj/item/clothing/ears/earmuffs))
 						ear_safety += 2
-					if(HULK in M.mutations)
-						ear_safety += 1
+//					if(HULK in M.mutations)
+//						ear_safety += 1
 					if(istype(M:head, /obj/item/clothing/head/armor/helmet))
 						ear_safety += 1
 					if(M.stats.getPerk(PERK_EAR_OF_QUICKSILVER))

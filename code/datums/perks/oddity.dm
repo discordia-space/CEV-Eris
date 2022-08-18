@@ -50,8 +50,7 @@
 	icon_state = "bomb" // https://game-icons.net
 
 /datum/perk/oddity/space_asshole/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.mob_bomb_defense += 25
 		holder.falls_mod -= 0.4
 
@@ -67,8 +66,7 @@
 	icon_state = "parkour" //https://game-icons.net/1x1/delapouite/jump-across.html
 
 /datum/perk/oddity/parkour/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.mod_climb_delay -= 0.5
 
 /datum/perk/oddity/parkour/remove()
@@ -83,8 +81,7 @@
 	icon_state = "flowers" // https://game-icons.net/1x1/lorc/flowers.html
 
 /datum/perk/oddity/charming_personality/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.sanity_damage -= 2
 
 /datum/perk/oddity/charming_personality/remove()
@@ -99,8 +96,7 @@
 	icon_state = "bad_breath" // https://game-icons.net
 
 /datum/perk/oddity/horrible_deeds/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.sanity_damage += 2
 
 /datum/perk/oddity/horrible_deeds/remove()
@@ -132,8 +128,7 @@
 	icon_state = "footsteps" // https://game-icons.net
 
 /datum/perk/oddity/quiet_as_mouse/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.noise_coeff -= 0.5
 
 /datum/perk/oddity/quiet_as_mouse/remove()
@@ -161,8 +156,7 @@
 	icon_state = "muscular" // https://game-icons.net
 
 /datum/perk/oddity/ass_of_concrete/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.mob_bump_flag = HEAVY
 
 /datum/perk/oddity/ass_of_concrete/remove()
@@ -179,8 +173,8 @@
 	var/initial_time
 
 /datum/perk/oddity/toxic_revenger/assign(mob/living/carbon/human/H)
-	..()
-	initial_time = world.time
+	if(..())
+		initial_time = world.time
 
 /datum/perk/oddity/toxic_revenger/on_process()
 	if(!..())
@@ -190,16 +184,15 @@
 	if(world.time < initial_time + cooldown)
 		return
 	initial_time = world.time
-	for(var/mob/living/L in viewers(holder, 5))
-		if(!L)
+	for(var/mob/living/carbon/human/H in viewers(5, holder))
+		if(H.stat == DEAD || H.internal || H.stats.getPerk(PERK_TOXIC_REVENGER) || H.species.flags & NO_BREATHE)
 			continue
-		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
-			if(H.stat == DEAD || H.internal || H.stats.getPerk(PERK_TOXIC_REVENGER) || (H.species.flags & NO_BREATHE))
-				continue
-		L.reagents?.add_reagent("toxin", 5)
-		L.emote("cough")
-		to_chat(L, SPAN_WARNING("[holder] emits a strange smell."))
+		if(H.head?.item_flags & BLOCK_GAS_SMOKE_EFFECT || H.wear_mask?.item_flags & BLOCK_GAS_SMOKE_EFFECT || BP_IS_ROBOTIC(H.get_organ(BP_CHEST)))
+			continue
+
+		H.reagents?.add_reagent("toxin", 5)
+		H.emote("cough")
+		to_chat(H, SPAN_WARNING("[holder] emits a strange smell."))
 
 /datum/perk/oddity/absolute_grab
 	name = "Absolute Grab"
@@ -239,8 +232,8 @@
 	var/initial_time
 
 /datum/perk/nt_oddity/holy_light/assign(mob/living/carbon/human/H)
-	..()
-	initial_time = world.time
+	if(..())
+		initial_time = world.time
 
 /datum/perk/nt_oddity/holy_light/on_process()
 	if(!..())
@@ -268,8 +261,8 @@
 	var/obj/item/cell/C
 
 /datum/perk/hive_oddity/hive_born/assign(mob/living/carbon/human/H)
-	..()
-	initial_time = world.time
+	if(..())
+		initial_time = world.time
 
 /datum/perk/hive_oddity/hive_born/on_process()
 	if(!..())
@@ -418,16 +411,14 @@
 		"Chicken Nuggets",
 		"Exotic Butters",
 		"use",
-		"Commemorative Ring"
-	)
+		"Commemorative Ring")
 
 	var/cooldown = 5 SECONDS
 	var/initial_time
 
 /datum/perk/big_shot/assign(mob/living/carbon/human/H)
-	..()
-	initial_time = world.time
-	if(holder)
+	if(..())
+		initial_time = world.time
 		holder.stats.addTempStat(STAT_ROB, 20, INFINITY, "Big Shot")
 		holder.stats.addTempStat(STAT_TGH, 20, INFINITY, "Big Shot")
 		holder.stats.addTempStat(STAT_BIO, 20, INFINITY, "Big Shot")

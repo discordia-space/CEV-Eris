@@ -15,12 +15,14 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	modifystate = "energystun"
 	item_modifystate = "stun"
+	init_recoil = SMG_RECOIL(1)
 
 	init_firemodes = list(
 		STUNBOLT,
 		LETHAL,
 		WEAPON_CHARGE,
 		)
+	serial_type = "FS"
 
 /obj/item/gun/energy/gun/mounted
 	name = "mounted energy gun"
@@ -46,6 +48,9 @@
 	modifystate = null
 	suitable_cell = /obj/item/cell/small
 	cell_type = /obj/item/cell/small
+	init_recoil = HANDGUN_RECOIL(1)
+
+	serial_type = "FS"
 
 	spawn_tags = SPAWN_TAG_FS_ENERGY
 

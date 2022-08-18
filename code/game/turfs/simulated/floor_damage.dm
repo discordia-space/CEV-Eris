@@ -27,53 +27,42 @@
 	update_icon()
 
 
-/turf/simulated/floor/proc/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
-	if (is_hole)
+/turf/simulated/floor/proc/take_damage(damage = 0, damage_type = BRUTE, ignore_resistance = FALSE)
+	if(is_hole)
 		//This turf is space or an open space, it can't break, burn or be damaged
-		broken = FALSE
-		burnt = FALSE
-
 		//But we could break lattices in this tile
-		for (var/obj/structure/lattice/L in src)
-			if (damage > 75)
+		for(var/obj/structure/lattice/L in src)
+			if(damage > 75)
 				L.ex_act(1)
 		return
 
-	damage -= flooring.resistance
-	if (!damage || damage <= 0)
+	damage -= flooring ? flooring.resistance : 0
+	if(damage <= 0)
 		return
-
 
 	health -= damage
 
 	//The tile has broken!
-	if (health <= 0)
+	if(health <= 0)
 		//Leftover damage will carry over to whatever tile replaces this one
 		var/leftover = abs(health)
 		make_plating() //Destroy us and make the plating underneath
 		spawn()
-			//We'll spawn off a new stack in order to damage the next layer, incase it turns into a different turf object
-			damage_floor_at(x,y,z,leftover, damage_type, ignore_resistance)
-		return
-
-
-	else
+		//We'll spawn off a new stack in order to damage the next layer, incase it turns into a different turf object
+		damage_floor_at(x, y, z, leftover, damage_type, ignore_resistance)
+	else if(flooring)
 		//Breaking or burning overlays.
 		//A tile can have one of each type
-		var/update = FALSE
-		if (!broken && (damage_type == BRUTE || damage_type == BLAST) && health < (flooring.health * 0.75))
+		if(!broken && (damage_type == BRUTE || damage_type == BLAST) && health < (flooring.health * 0.75))
 			broken = TRUE
-			update = TRUE
+			update_icon()
 
-		if (!burnt && (damage_type == BURN || damage_type == BLAST) && health < (flooring.health * 0.75))
+		if(!burnt && (damage_type == BURN || damage_type == BLAST) && health < (flooring.health * 0.75))
 			burnt = TRUE
-			update = TRUE
-
-		if (update)
 			update_icon()
 
 
-/proc/damage_floor_at(var/x, var/y, var/z, var/damage, var/damage_type, var/ignore_resistance)
+/proc/damage_floor_at(x, y, z, damage, damage_type, ignore_resistance)
 	var/turf/simulated/floor/F = locate(x,y,z)
 	if (istype(F))
 		F.take_damage(damage, damage_type, ignore_resistance)

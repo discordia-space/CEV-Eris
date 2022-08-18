@@ -43,6 +43,7 @@
 /area/crawler)
 "m" = (
 /obj/structure/table/onestar,
+/obj/spawner/tool_upgrade/rare/onestar,
 /turf/simulated/floor/tiled/dark/danger,
 /area/crawler)
 "n" = (
@@ -65,7 +66,7 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/crawler)
 "s" = (
-/obj/item/modular_computer/console{
+/obj/structure/salvageable/os/console{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
@@ -131,6 +132,16 @@
 /obj/structure/closet/onestar/tier3,
 /turf/simulated/floor/carpet/bcarpet,
 /area/crawler)
+"L" = (
+/obj/structure/table/reinforced,
+/obj/spawner/lathe_disk/advanced/low_chance,
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/crawler)
+"P" = (
+/obj/structure/table/rack,
+/obj/spawner/lathe_disk/advanced,
+/turf/simulated/floor/tiled/white/gray_platform,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -145,7 +156,7 @@ a
 "}
 (2,1,1) = {"
 a
-c
+P
 h
 m
 p
@@ -170,7 +181,7 @@ a
 o
 x
 j
-r
+L
 l
 v
 w

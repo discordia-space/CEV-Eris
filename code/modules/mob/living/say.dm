@@ -78,10 +78,11 @@ var/list/channel_to_radio_key = new
 	var/list/returns[3]
 	var/speech_problem_flag = 0
 
-	if((HULK in mutations) && health >= 25 && length(message))
+/*	if((HULK in mutations) && health >= 25 && length(message))
 		message = "[uppertext(message)]!!!"
 		verb = pick("yells", "roars", "hollers")
 		speech_problem_flag = 1
+*/
 	if(slurring)
 		message = slur(message)
 		verb = pick("slobbers", "slurs")
@@ -161,8 +162,8 @@ var/list/channel_to_radio_key = new
 			//log_and_message_admins("[src] just tried to say cringe: [cringe]", src) //Uncomment this if you want to keep tabs on who's saying cringe words.
 			return
 
-	if(HUSK in mutations)
-		return
+//	if(HUSK in mutations)
+//		return
 
 	if(is_muzzled())
 		to_chat(src, SPAN_DANGER("You're muzzled and cannot speak!"))
@@ -293,23 +294,34 @@ var/list/channel_to_radio_key = new
 	QDEL_IN(speech_bubble, 30)
 
 	var/list/speech_bubble_recipients = list()
-	for(var/X in listening) //Again, as we're dealing with a lot of mobs, typeless gives us a tangible speed boost.
-		if(!ismob(X))
-			continue
-		var/mob/M = X
+	for(var/mob/M in listening)
 		if(M.client)
 			speech_bubble_recipients += M.client
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol, getSpeechVolume(message))
-	for(var/X in listening_falloff)
-		if(!ismob(X))
-			continue
-		var/mob/M = X
+
+	for(var/mob/M in listening_falloff)
 		if(M.client)
 			speech_bubble_recipients += M.client
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol, 1)
 
 	INVOKE_ASYNC(GLOBAL_PROC, .proc/animate_speechbubble, speech_bubble, speech_bubble_recipients, 30)
 	INVOKE_ASYNC(src, /atom/movable/proc/animate_chat, message, speaking, italics, speech_bubble_recipients, 40, verb)
+	if(config.tts_enabled && !message_mode && (!client || !BITTEST(client.prefs.muted, MUTE_TTS)) && (tts_seed || ishuman(src)))
+		//TO DO: Remove need for that damn copypasta
+		var/seed = tts_seed
+		if(istype(back, /obj/item/rig))
+			var/obj/item/rig/rig = back
+			if(rig.speech && rig.speech.voice_holder && rig.speech.voice_holder.active && rig.speech.voice_holder.voice_tts)
+				seed = rig.speech.voice_holder.voice_tts
+		else if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			for(var/obj/item/gear in list(H.wear_mask, H.wear_suit, H.head))
+				if(!gear)
+					continue
+				var/obj/item/voice_changer/changer = locate() in gear
+				if(changer && changer.active && changer.voice_tts)
+					seed = changer.voice_tts
+		INVOKE_ASYNC(GLOBAL_PROC, /proc/tts_broadcast, src, message, seed, speaking)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
@@ -350,7 +362,7 @@ var/list/channel_to_radio_key = new
 		mob/speaker = null, speech_sound, sound_vol, speech_volume)
 	if(!client)
 		return
-
+/*
 	if(sdisabilities&DEAF || ear_deaf)
 		// INNATE is the flag for audible-emote-language, so we don't want to show an "x talks but you cannot hear them" message if it's set
 		if(!language || !(language.flags & INNATE))
@@ -363,7 +375,7 @@ var/list/channel_to_radio_key = new
 					speaker_name = H.rank_prefix_name(speaker_name)
 				to_chat(src,"<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him.")
 		return
-
+*/
 	//make sure the air can transmit speech - hearer's side
 	var/turf/T = get_turf(src)
 	if(T)
@@ -404,12 +416,12 @@ var/list/channel_to_radio_key = new
 /mob/living/hear_radio(message, verb="says", datum/language/language=null, part_a, part_b, speaker = null, hard_to_hear = 0, voice_name ="")
 	if(!client)
 		return
-
+/*
 	if(sdisabilities&DEAF || ear_deaf)
 		if(prob(20))
 			to_chat(src, SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!"))
 		return
-
+*/
 	if(sleeping || stat == UNCONSCIOUS) //If unconscious or sleeping
 		hear_sleep(message)
 		return

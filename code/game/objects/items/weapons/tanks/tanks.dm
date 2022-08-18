@@ -29,6 +29,8 @@ var/list/global/tank_gauge_cache = list()
 	bad_type = /obj/item/tank
 	spawn_tags = SPAWN_TAG_TANK_GAS
 
+	price_tag = 50
+
 	var/datum/gas_mixture/air_contents
 	var/distribute_pressure = ONE_ATMOSPHERE
 	var/default_pressure = 3*ONE_ATMOSPHERE

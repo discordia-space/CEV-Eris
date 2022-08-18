@@ -15,6 +15,7 @@
 	matter = list(MATERIAL_PLASTIC = 3)
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	rarity_value = 10
+	price_tag = 15
 	var/mopping = 0
 	var/mopcount = 0
 
@@ -25,12 +26,12 @@
 	. = ..()
 	create_reagents(30)
 
-/obj/item/mop/attack_self(var/mob/user)
+/obj/item/mop/attack_self(mob/user)
 	.=..()
-	if (mopmode == MOPMODE_TILE)
+	if(mopmode == MOPMODE_TILE)
 		mopmode = MOPMODE_SWEEP
 		to_chat(user, SPAN_NOTICE("You will now clean with broad sweeping motions"))
-	else if (mopmode == MOPMODE_SWEEP)
+	else if(mopmode == MOPMODE_SWEEP)
 		mopmode = MOPMODE_TILE
 		to_chat(user, SPAN_NOTICE("You will now thoroughly clean a single tile at a time"))
 
@@ -45,7 +46,7 @@
 			return
 		spawn()
 			user.do_attack_animation(T)
-		if (mopmode == MOPMODE_TILE)
+		if(mopmode == MOPMODE_TILE)
 			//user.visible_message(SPAN_WARNING("[user] begins to clean \the [T]."))
 			user.setClickCooldown(3)
 			if(do_after(user, 30, T))
@@ -54,18 +55,18 @@
 				to_chat(user, SPAN_NOTICE("You have finished mopping!"))
 
 		//Sweep mopmode. Light and fast aoe cleaning
-		else if (mopmode == MOPMODE_SWEEP)
+		else if(mopmode == MOPMODE_SWEEP)
 
 			sweep(user, T)
 	else
 		makeWet(A, user)
 
 
-/obj/item/mop/proc/sweep(var/mob/user, var/turf/target)
+/obj/item/mop/proc/sweep(mob/user, turf/target)
 	user.setClickCooldown(sweep_time)
 	var/direction = get_dir(get_turf(src),target)
 	var/list/turfs
-	if (direction in GLOB.cardinal)
+	if(direction in GLOB.cardinal)
 		turfs = list(target, get_step(target,turn(direction, 90)), get_step(target,turn(direction, -90)))
 	else
 		turfs = list(target, get_step(target,turn(direction, 135)), get_step(target,turn(direction, -135)))
@@ -78,8 +79,8 @@
 	mopimage.alpha = 200
 	// Who can see the attack?
 	var/list/viewing = list()
-	for (var/mob/M in viewers(start))
-		if (M.client)
+	for(var/mob/M in viewers(start))
+		if(M.client)
 			viewing |= M.client
 	//flick_overlay(I, viewing, 5) // 5 ticks/half a second
 	// Scale the icon.
@@ -98,23 +99,20 @@
 		to_chat(user, SPAN_DANGER("Mopping cancelled"))
 		return
 
-	for (var/t in turfs)
-		var/turf/T = t
 
-		//Get out of the way, ankles!
-		for (var/mob/living/L in T)
-			attack(L)
-
-		if (turf_clear(T))
-			T.clean_partial(src, user, 1)
-		else if (user)
+	for(var/turf/T in turfs)
+		if(T.density)
 			//You hit a wall!
-			user.setClickCooldown(30)
-			user.set_move_cooldown(30)
 			shake_camera(user, 1, 1)
 			playsound(T,"thud", 20, 1, -3)
 			to_chat(user, SPAN_DANGER("There's not enough space for broad sweeps here!"))
-			return
+			break
+		for(var/atom/i in T)
+			if(istype(i, /mob/living))
+				attack(i, user)
+			if(i.density)
+				break
+		T.clean_partial(src, user, 1)
 
 /obj/item/mop/proc/makeWet(atom/A, mob/user)
 	if(A.is_open_container())

@@ -39,14 +39,12 @@
 //Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns 1 on success.
 //If both fail it drops it on the floor and returns 0.
 //This is probably the main one you need to know :)
-/mob/proc/put_in_hands(var/obj/item/W)
-	if(!W)
-		return FALSE
-	W.forceMove(get_turf(src))
-	W.layer = initial(W.layer)
-	W.set_plane(initial(W.plane))
-	W.dropped(usr)
-	return FALSE
+/mob/proc/put_in_hands(obj/item/W)
+	if(istype(W))
+		W.forceMove(get_turf(src))
+		W.layer = initial(W.layer)
+		W.set_plane(initial(W.plane))
+		W.dropped(usr)
 
 // Removes an item from inventory and places it in the target atom.
 // If canremove or other conditions need to be checked then use unEquip instead.

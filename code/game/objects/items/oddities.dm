@@ -18,6 +18,8 @@
 	rarity_value = 10
 	bad_type = /obj/item/oddity
 
+	price_tag = 0
+
 	//You choose what stat can be increased, and a maximum value that will be added to this stat
 	//The minimum is defined above. The value of change will be decided by random
 	var/random_stats = TRUE
@@ -50,7 +52,6 @@
 	prob_perk = 60
 	bad_type = /obj/item/oddity/common
 	spawn_blacklisted = FALSE
-	price_tag = 500
 
 /obj/item/oddity/common/blueprint
 	name = "strange blueprint"
@@ -112,13 +113,17 @@
 
 /obj/item/oddity/common/old_newspaper
 	name = "old newspaper"
-	desc = "It contains a report on some old and strange phenomenon. Maybe it's lies, maybe it's corporate experiments gone wrong."
+	desc = "It contains a report on some old and strange phenomenon. Maybe it's lies, maybe it's corporate experiments gone wrong. Wait, there are two comically obvious holes for peering through!"
 	icon_state = "old_newspaper"
 	oddity_stats = list(
 		STAT_MEC = 4,
 		STAT_COG = 4,
 		STAT_BIO = 4,
 	)
+
+/obj/item/oddity/common/old_newspaper/attack_self(mob/user)
+	zoom(8, 8)
+	..()
 
 /obj/item/oddity/common/paper_crumpled
 	name = "turn-out page"
@@ -595,3 +600,45 @@
 		user.stats.addPerk(/datum/perk/big_shot)
 		var/datum/perk/big_shot/perk = user.stats.getPerk(PERK_BIG_SHOT)
 		perk.my_mask = src
+
+
+/obj/item/oddity/bearmath
+	name = "scrap of semi-semiotics research pamphlet"
+	desc = "A piece of paper with an unfinished mathematical equation."
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "paper_words_crumpled"
+	prob_perk = 0
+	oddity_stats = list(
+		STAT_MEC = 3,
+		STAT_BIO = 3,
+		STAT_COG = 7
+	)
+
+
+/obj/item/oddity/bearmath/attack_self(mob/living/carbon/human/user)
+	if(istype(user))
+		if(alert(user, "Do you want to try and solve the equation on the scrap?", "Math problems!", "Yes", "No") == "Yes")
+			if(user.stat_check(STAT_COG, STAT_LEVEL_ADEPT))
+				if(prob(95))
+					user.visible_message(SPAN_WARNING("A bear appears out of nowhere!"), SPAN_DANGER("The equation results in a bear!"))
+					var/turf/T = get_turf(pick(oview(2, user)))
+					var/mob/living/simple_animal/hostile/bear/B = new /mob/living/simple_animal/hostile/bear(T)
+					var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+					sparks.set_up(3, 0, get_turf(B.loc))
+					sparks.start()
+					if(prob(15))
+						user.visible_message(SPAN_WARNING("The paper disintegrates!"))
+						qdel(src)
+				else
+					new /obj/spawner/oddities(get_turf(pick(oview(2, user))))
+					new /obj/spawner/oddities(get_turf(pick(oview(2, user))))
+					new /obj/spawner/oddities(get_turf(pick(oview(2, user))))
+					var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+					sparks.set_up(3, 0, get_turf(user.loc))
+					sparks.start()
+					user.visible_message(SPAN_WARNING("A bunch of items appear out of nowhere!"), SPAN_DANGER("The equation results in several unique objects!"))
+					qdel(src)
+			else
+				to_chat(user, "You fail to solve the equation, did you carry the [rand(1, 9)]?")
+	else
+		to_chat(user, "You're not smart enough to comprehend what this says.")

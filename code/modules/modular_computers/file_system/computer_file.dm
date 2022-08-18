@@ -34,3 +34,18 @@ var/global/file_uid = 0
 		temp.filename += "(Copy)"
 
 	return temp
+
+/datum/computer_file/binary/animalgene/clone(rename)
+	var/datum/computer_file/binary/animalgene/temp = new type
+	temp.unsendable = unsendable
+	temp.undeletable = undeletable
+	temp.size = size
+	temp.filetype = filetype
+	temp.filename = filename
+	temp.gene_type = gene_type
+	temp.gene_value = gene_value
+
+	if(rename)
+		temp.filename += "(Copy)"
+
+	return temp

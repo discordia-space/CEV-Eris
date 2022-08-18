@@ -58,6 +58,10 @@
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/tiled/derelict/white_small_edges/airless,
 /area/outpost/blacksite/small)
+"cq" = (
+/obj/spawner/gun/normal/low_chance,
+/turf/simulated/floor/plating/under/airless,
+/area/outpost/blacksite/small)
 "cu" = (
 /obj/structure/closet/onestar/tier3,
 /turf/simulated/floor/plating/under/airless,
@@ -178,6 +182,10 @@
 "jJ" = (
 /obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/area/outpost/blacksite/small)
+"ke" = (
+/mob/living/carbon/superior_animal/stalker,
+/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
 /area/outpost/blacksite/small)
 "kj" = (
 /obj/machinery/door/window/northright{
@@ -392,7 +400,7 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges/airless,
 /area/outpost/blacksite/small)
 "uA" = (
-/obj/structure/undies_wardrobe,
+/obj/spawner/closet/wardrobe,
 /turf/simulated/floor/wood/airless,
 /area/outpost/blacksite/small)
 "vi" = (
@@ -431,6 +439,7 @@
 /area/template_noop)
 "xw" = (
 /obj/structure/table/onestar,
+/obj/spawner/tool_upgrade/rare/onestar,
 /turf/simulated/floor/tiled/derelict/white_small_edges/airless,
 /area/outpost/blacksite/small)
 "xD" = (
@@ -3627,7 +3636,7 @@ et
 ZF
 ZF
 ZF
-ZF
+ke
 ZF
 ZF
 ZF
@@ -4238,7 +4247,7 @@ lZ
 lZ
 lZ
 AZ
-SA
+cq
 CY
 CY
 CY

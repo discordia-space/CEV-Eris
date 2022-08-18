@@ -1,8 +1,8 @@
 /obj/item/gun/projectile/automatic/c20r
-	name = "C-20r"
+	name = "S SMG .35 \"C-20r\""
 	desc = "The C-20r is a lightweight and robust bullpup SMG of ancient design, for when you REALLY need someone dead. \
 			Famous as most used SMG by criminal organizations of various sorts. Was recently reverse-engineered by Moebius \
-			almost completely from the scratch, introducing gun to the broad masses of customers. \
+			almost completely from the scratch, introducing gun to the broad masses of customers. This one however, is original. \
 			Has a '\"Scarborough Arms\" - Per falcis, per pravitas' buttstock stamp. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/cr20.dmi'
 	icon_state = "c20r"
@@ -25,16 +25,17 @@
 	damage_multiplier = 1.1
 	penetration_multiplier = 1.5 //15 with regular lethal ammo, 30 with HV
 	zoom_factor = 0.4
-	recoil_buildup = 1.2
-	one_hand_penalty = 5 //smg level
+	init_recoil = SMG_RECOIL(0.7)
 	gun_parts = list(/obj/item/part/gun/frame/c20r = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
 
 	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(
 		FULL_AUTO_400,
-		SEMI_AUTO_NODELAY,
+		SEMI_AUTO_300,
 		)
+
+	serial_type = "S"
 
 
 /obj/item/part/gun/frame/c20r
@@ -62,7 +63,7 @@
 	update_icon()
 
 /obj/item/gun/projectile/automatic/c20r/moebius
-	name = "C-20M"
+	name = "ML SMG .35 \"C-20M\""
 	desc = "The C-20M is a Moebius copy of the famous C-20r, a lightweight and robust bullpup SMG of ancient design. \
 			Famous as most used SMG by criminal organizations of various sorts. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/c20m.dmi'
@@ -71,6 +72,7 @@
 	damage_multiplier = 1	//Not quite as good as real syndi
 	penetration_multiplier = 1.2 //12 with lethal, 24 with HV
 	gun_parts = list(/obj/item/part/gun/frame/c20r/moebius = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
+	serial_type = "ML"
 
 /obj/item/part/gun/frame/c20r/moebius
 	name = "C-20M frame"

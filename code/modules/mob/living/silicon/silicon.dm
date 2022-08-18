@@ -2,6 +2,7 @@
 	gender = NEUTER
 	voice_name = "synthesized voice"
 	bad_type = /mob/living/silicon
+	tts_seed = "Robot_1"
 	var/syndicate = 0
 	var/const/MAIN_CHANNEL = "Main Frequency"
 	var/lawchannel = MAIN_CHANNEL // Default channel on which to state laws
@@ -76,10 +77,10 @@
 /mob/living/silicon/emp_act(severity)
 	switch(severity)
 		if(1)
-			take_organ_damage(0,20,emp=1)
+			take_organ_damage(0,20,emp=TRUE)
 			Stun(rand(5,10))
 		if(2)
-			take_organ_damage(0,10,emp=1)
+			take_organ_damage(0,10,emp=TRUE)
 			confused = (min(confused + 2, 30))
 //	flick("noise", flash)
 	if (HUDtech.Find("flash"))

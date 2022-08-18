@@ -23,6 +23,7 @@
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 	spawn_tags = SPAWN_TAG_RIG
 	rarity_value = 10
+	price_tag = 150
 	bad_type = /obj/item/rig //TODO: Resprite these, remove old bay leftover RIGs, add a RIG to moeb R&D, add more RIGs in general
 
 	// These values are passed on to all component pieces.
@@ -54,7 +55,9 @@
 
 	// Keeps track of what this rig should spawn with.
 	var/suit_type = "hardsuit"
-	var/list/initial_modules = list()
+	var/list/initial_modules = list(
+		/obj/item/rig_module/storage //Probably isn't the best way of doing this
+		)
 	var/chest_type = /obj/item/clothing/suit/space/rig
 	var/helm_type =  /obj/item/clothing/head/space/rig
 	var/boot_type =  /obj/item/clothing/shoes/magboots/rig
@@ -100,6 +103,7 @@
 
 	var/emp_protection = 0
 
+	// 2022- Just so everyone knows , this doesn't get checked at all down the line. It only checks if its on the back , regardles of its value.
 	var/rig_wear_slot = slot_back //Changing this allows for rigs that are worn as a belt or a tie or something
 
 	// Wiring! How exciting.
@@ -385,7 +389,7 @@
 						else
 							to_chat(wearer, SPAN_DANGER("Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit."))
 					if(offline_vision_restriction == 1)
-						to_chat(wearer, SPAN_DANGER("The suit optics flick_light and die, leaving you with restricted vision."))
+						to_chat(wearer, SPAN_DANGER("The suit optics flicker and die, leaving you with restricted vision."))
 					else if(offline_vision_restriction == 2)
 						to_chat(wearer, SPAN_DANGER("The suit optics drop out completely, drowning you in darkness."))
 		if(!offline)
@@ -590,6 +594,9 @@
 	else if(href_list["toggle_suit_lock"])
 		if (locked != -1)
 			locked = !locked
+
+	// Makes it so the UI instantly updates , instead of using the MC tick, way faster at high stress.
+	SSnano.update_uis(src)
 
 	usr.set_machine(src)
 	add_fingerprint(usr)

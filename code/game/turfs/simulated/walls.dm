@@ -214,6 +214,8 @@
 		burn(500)//TODO : fucking write these two procs not only for plasma (see plasma in materials.dm:283) ~
 	else if(istype(Proj,/obj/item/projectile/ion))
 		burn(500)
+	
+	Proj.on_hit(src)
 
 	if(Proj.can_ricochet && proj_damage != 0 && (src.x != Proj.starting.x) && (src.y != Proj.starting.y))
 		var/ricochetchance = 1
@@ -230,6 +232,7 @@
 			var/damagediff = round(proj_damage / 2 + proj_damage * ricochetchance / 200) // projectile loses up to 50% of its damage when it ricochets, depending on situation
 			Proj.damage_types[BRUTE] = round(Proj.damage_types[BRUTE] / 2 + Proj.damage_types[BRUTE] * ricochetchance / 200)
 			Proj.damage_types[BURN] = round(Proj.damage_types[BURN] / 2 + Proj.damage_types[BURN] * ricochetchance / 200)
+			Proj.def_zone = ran_zone()
 			take_damage(min(proj_damage - damagediff, 100))
 			visible_message("<span class='danger'>\The [Proj] ricochets off the surface of wall!</span>")
 			projectile_reflection(Proj)

@@ -29,11 +29,41 @@
 		"radium","water","ethanol",
 		"sugar","sacid","tungsten"
 	)
+	var/list/tiered_reagents = list(
+		1 = list(),
+		2 = list("inaprovaline","anti_toxin","kelotane"), // basic upgrade
+		3 = list("tricordrazine","spaceacillin","dermaline"), // max moebius tech
+		4 = list("blattedin", "polystem"), // excel tech
+		5 = list("carpotoxin", "bicaridine"),// one-star
+		6 = list("meralyne", "nanites") // alien
+	)
+	var/list/tiered_reagents_cost = list(
+		"inaprovaline" = 8,
+		"anti_toxin" = 8,
+		"kelotane" = 8,
+		"tricordrazine" = 8,
+		"spaceacillin" = 8,
+		"dermaline" = 8,
+		"blattedin" = 8,
+		"polystem" = 8,
+		"carpotoxin" = 10,
+		"bicaridine" = 10,
+		"meralyne" = 12,
+		"nanites" = 20
+	)
+	var/maximum_reagent_tier = 0
+	var/has_tiered_reagents = TRUE
 	var/list/hacked_reagents = list()
 	var/obj/item/reagent_containers/beaker
 
 /obj/machinery/chemical_dispenser/RefreshParts()
 	cell = locate() in component_parts
+	var/sum = 0
+	for(var/obj/item/stock_parts/item in component_parts)
+		sum += item.rating
+	sum = round(sum / 4)
+	if(sum)
+		maximum_reagent_tier = sum
 
 /obj/machinery/chemical_dispenser/proc/recharge()
 	if(stat & (BROKEN|NOPOWER)) return
@@ -79,6 +109,14 @@
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 		if(temp)
 			chemicals.Add(list(list("title" = temp.name, "id" = temp.id, "commands" = list("dispense" = temp.id)))) // list in a list because Byond merges the first list...
+	if(has_tiered_reagents)
+		for(var/index in 2 to tiered_reagents.len)
+			if(index <= maximum_reagent_tier)
+				for(var/re in tiered_reagents[index])
+					var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
+					if(temp)
+						chemicals.Add(list(list("title" = temp.name, "id" = temp.id, "commands" = list("dispense" = temp.id)))) // list in a list because Byond merges the first list...
+
 	data["chemicals"] = chemicals
 
 	if(beaker)
@@ -126,14 +164,25 @@
 		amount = CLAMP(amount, 0, 120)
 
 	if(href_list["dispense"])
-		if (dispensable_reagents.Find(href_list["dispense"]) && beaker && beaker.is_refillable())
+		if(beaker && beaker.is_refillable())
 			var/obj/item/reagent_containers/B = src.beaker
 			var/datum/reagents/R = B.reagents
 			var/space = R.maximum_volume - R.total_volume
-
-			var/added_amount = min(amount, cell.charge / chemical_dispenser_ENERGY_COST, space)
+			var/added_amount = 0
+			if (dispensable_reagents.Find(href_list["dispense"]))
+				added_amount = min(amount, cell.charge / chemical_dispenser_ENERGY_COST, space)
+				cell.use(added_amount * chemical_dispenser_ENERGY_COST)
+			// In a perfect world , we  would pass the cost through Topic() and not search lists , in reality , this is necesarry
+			// If the lists are not checked , topics can and will be exploited, becuase anyone competent can feed fake data to a HTML/JS webpage.
+			// to get any reagent that is
+			// also nanoUI is a bitch and only allows limited data feeding >:(
+			else if(tiered_reagents_cost.Find(href_list["dispense"]))
+				added_amount = min(amount, cell.charge / tiered_reagents_cost[href_list["dispense"]], space)
+				cell.use(added_amount * tiered_reagents_cost[href_list["dispense"]])
+			else
+				message_admins("[key_name(usr)] has tried to dispense a non-existant reagent [href_list["dispense"]], possible Topic() data manipulation")
+				return TRUE
 			R.add_reagent(href_list["dispense"], added_amount)
-			cell.use(added_amount * chemical_dispenser_ENERGY_COST)
 			investigate_log("dispensed [href_list["dispense"]] into [B], while being operated by [key_name(usr)]", "chemistry")
 
 	if(href_list["ejectBeaker"])
@@ -194,6 +243,7 @@
 	density = FALSE
 	dispensable_reagents = list("water","ice","coffee","cream","tea","greentea","icetea","icegreentea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","watermelonjuice")
 	hacked_reagents = list("thirteenloko","grapesoda")
+	has_tiered_reagents = FALSE
 
 /obj/machinery/chemical_dispenser/soda/attackby(obj/item/I, mob/living/user)
 	..()
@@ -231,6 +281,7 @@ obj/machinery/chemical_dispenser/soda/update_icon()
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	dispensable_reagents = list("lemon_lime","sugar","orangejuice","limejuice","sodawater","tonic","beer","kahlua","whiskey","wine","vodka","gin","rum","tequilla","vermouth","cognac","ale","mead")
 	hacked_reagents = list("goldschlager","patron","watermelonjuice","berryjuice")
+	has_tiered_reagents = FALSE
 
 /obj/machinery/chemical_dispenser/beer/attackby(obj/item/I, mob/living/user)
 	..()
@@ -264,6 +315,7 @@ obj/machinery/chemical_dispenser/soda/update_icon()
 		"vomitol","haloperidol","paroxetine","citalopram",
 		"methylphenidate"
 	)
+	has_tiered_reagents = FALSE
 
 /obj/machinery/chemical_dispenser/industrial
 	name = "industrial chem dispenser"
@@ -279,3 +331,4 @@ obj/machinery/chemical_dispenser/soda/update_icon()
 		"iron","radium","sacid",
 		"hclacid","silicon","tungsten"
 	)
+	has_tiered_reagents = FALSE

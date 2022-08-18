@@ -25,9 +25,10 @@
 	update_icon()
 
 /turf/simulated/wall/proc/fail_smash(var/mob/user)
+	playsound(src, pick(WALLHIT_SOUNDS), 50, 1)
 	to_chat(user, SPAN_DANGER("You smash against the wall!"))
 	user.do_attack_animation(src)
-	take_damage(rand(25,75))
+	take_damage(rand(15,45))
 
 /turf/simulated/wall/proc/success_smash(var/mob/user)
 	to_chat(user, SPAN_DANGER("You smash through the wall!"))
@@ -53,43 +54,40 @@
 		toggle_open(user)
 	return 0
 
-
 /turf/simulated/wall/attack_hand(var/mob/user)
 
 	radiate()
 	add_fingerprint(user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	var/rotting = (locate(/obj/effect/overlay/wallrot) in src)
-	if (HULK in user.mutations)
+/*	if (HULK in user.mutations)
 		if (rotting || !prob(material.hardness))
 			success_smash(user)
 		else
 			fail_smash(user)
 			return 1
-
+*/
 	try_touch(user, rotting)
 
-/turf/simulated/wall/attack_generic(var/mob/user, var/damage, var/attack_message, var/wallbreaker)
+
+
+/turf/simulated/wall/attack_generic(mob/M, damage, attack_message)
+	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 	radiate()
-	if(!istype(user))
+	if(!istype(M))
 		return
 
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	var/rotting = (locate(/obj/effect/overlay/wallrot) in src)
-	if(!damage || !wallbreaker)
-		try_touch(user, rotting)
-		return
+	var/rot = locate(/obj/effect/overlay/wallrot) in src
+	var/hardness = reinf_material ? max(material.hardness, reinf_material.hardness) : material.hardness
 
-	if(rotting)
-		return success_smash(user)
+	if(!damage)
+		try_touch(M, rot)
 
-	if(reinf_material)
-		if((wallbreaker == 2) || (damage >= max(material.hardness,reinf_material.hardness)))
-			return success_smash(user)
-	else if(damage >= material.hardness)
-		return success_smash(user)
-	return fail_smash(user)
+	else if(damage >= hardness)
+		return success_smash(M)
+	else
+		fail_smash(M)
 
 /turf/simulated/wall/attackby(obj/item/I, mob/user)
 
@@ -252,4 +250,4 @@
 		else
 			visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I], but it bounces off!"))
 		user.do_attack_animation(src)
-		return
+

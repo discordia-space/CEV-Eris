@@ -88,6 +88,11 @@
 	item_cost = 6
 	path = /obj/item/storage/box/syndie_kit/space
 
+/datum/uplink_item/item/tools/softsuit
+	name = "Armoured Softsuit"
+	item_cost = 3
+	path = /obj/item/storage/box/syndie_kit/softsuit
+
 /datum/uplink_item/item/tools/thermal
 	name = "Thermal Imaging Glasses"
 	item_cost = 8

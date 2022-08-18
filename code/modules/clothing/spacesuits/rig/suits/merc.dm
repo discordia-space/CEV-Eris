@@ -29,8 +29,9 @@
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/power_sink,
 		/obj/item/rig_module/electrowarfare_suite,
-		/obj/item/rig_module/chem_dispenser/combat,
-		/obj/item/rig_module/fabricator/energy_net
+		/obj/item/rig_module/modular_injector/combat,
+		/obj/item/rig_module/fabricator/energy_net,
+		/obj/item/rig_module/storage
 		)
 	stiffness = 0
 	obscuration = 0
@@ -39,5 +40,6 @@
 /obj/item/rig/merc/empty
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
-		/obj/item/rig_module/electrowarfare_suite, //might as well
+		/obj/item/rig_module/electrowarfare_suite, // might as well
+		/obj/item/rig_module/storage
 		)

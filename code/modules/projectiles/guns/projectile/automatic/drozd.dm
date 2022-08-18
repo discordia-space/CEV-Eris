@@ -17,17 +17,18 @@
 	price_tag = 2200
 	damage_multiplier = 0.9 	 //27.2 lethal on FA, 31.2 HV damage on FA
 	penetration_multiplier = 1.5 //22.5 lethal, 30 HV //AP
-	recoil_buildup = 1.2
+	init_recoil = SMG_RECOIL(0.35)
 
 	twohanded = FALSE
-	one_hand_penalty = 5 //smg level
 	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(
 		FULL_AUTO_300,
-		SEMI_AUTO_NODELAY
+		SEMI_AUTO_300
 		)
 	gun_parts = list(/obj/item/part/gun/frame/drozd = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/magnum = 1)
+
+	serial_type = "Excelsior"
 
 /obj/item/gun/projectile/automatic/drozd/update_icon()
 	cut_overlays()

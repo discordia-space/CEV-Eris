@@ -43,7 +43,7 @@
 		return
 	..()
 
-/mob/living/carbon/human/say(var/message)
+/mob/living/carbon/human/say(message, datum/language/speaking)
 	if(language_blackout)
 		to_chat(src, get_language_blackout_message())
 		return FALSE
@@ -125,8 +125,8 @@
 	if(istype(back, /obj/item/rig))
 		var/obj/item/rig/rig = back
 		// todo: fix this shit
-		if(rig.speech && rig.speech.voice_holder && rig.speech.voice_holder.active && rig.speech.voice_holder.voice)
-			voice_sub = rig.speech.voice_holder.voice
+		if(rig.speech && rig.speech.voice_holder && rig.speech.voice_holder.active && rig.speech.voice_holder.voice_name)
+			voice_sub = rig.speech.voice_holder.voice_name
 	else
 		if(mask_check && wear_mask)
 			var/obj/item/clothing/mask/mask = wear_mask
@@ -136,8 +136,8 @@
 			if(!gear)
 				continue
 			var/obj/item/voice_changer/changer = locate() in gear
-			if(changer && changer.active && changer.voice)
-				voice_sub = changer.voice
+			if(changer && changer.active && changer.voice_name)
+				voice_sub = changer.voice_name
 	if(voice_sub)
 		return voice_sub
 	if(GetSpecialVoice())
@@ -183,10 +183,11 @@
 	return verb
 
 /mob/living/carbon/human/handle_speech_problems(var/message, var/verb)
-	if(silent || (sdisabilities & MUTE))
+	if(silent)
 		message = ""
 		speech_problem_flag = 1
-	else if(istype(wear_mask, /obj/item/clothing/mask))
+		to_chat(src, SPAN_WARNING("You can't speak!"))
+	if(istype(wear_mask, /obj/item/clothing/mask))
 		var/obj/item/clothing/mask/M = wear_mask
 		if(M.voicechange)
 			message = pick(M.say_messages)

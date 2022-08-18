@@ -12,7 +12,6 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	w_class = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 1)
-	recoil_buildup = 1
 	bad_type = /obj/item/gun/projectile
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
 

@@ -109,12 +109,12 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 	var/datum/hud/hud_used
 
-	var/list/grabbed_by = list(  )
-	var/list/requests = list(  )
+	var/list/grabbed_by = list()
+	var/list/requests = list()
 
 	var/in_throw_mode = 0
 
-
+	var/tts_seed
 
 	var/targeted_organ = BP_CHEST
 
@@ -123,10 +123,19 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/can_pull_size = ITEM_SIZE_TITANIC // Maximum w_class the mob can pull.
 	var/can_pull_mobs = MOB_PULL_LARGER       // Whether or not the mob can pull other mobs.
 
-	var/datum/dna/dna //Carbon
-	var/list/active_genes=list()
-	var/list/mutations = list() //Carbon -- Doohl
-	//see: setup.dm for list of mutations
+	var/b_type // GLOB.blood_types // list("A-", "A+", "B-", "B+", "AB-", "AB+", "O-", "O+")
+	var/dna_trace // sha1(real_name)
+	var/fingers_trace // md5(real_name)
+
+	var/mutation_index = 0 // Sum of active mutation tiers, approximation of how much of a mutant this mob are
+	var/list/dormant_mutations = list()
+	var/list/active_mutations = list()
+	var/list/mutation_count_by_tier = list(
+		"0" = 0, // Nero
+		"1" = 0, // Vespasian
+		"2" = 0, // Tacitus
+		"3" = 0, // Hadrian
+		"4" = 0) // Aurelien
 
 	var/radiation = 0//Carbon
 
@@ -140,9 +149,6 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 //The last mob/living/carbon to push/drag/grab this mob (mostly used by slimes friend recognition)
 	var/mob/living/carbon/LAssailant
-
-//Wizard mode, but can be used in other modes thanks to the brand new "Give Spell" badmin button
-	var/spell/list/spell_list = list()
 
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 

@@ -6,7 +6,6 @@
 	circuit = null
 
 	var/shuttle_tag  // Used to coordinate data in shuttle controller.
-	var/hacked = 0   // Has been emagged, no access restrictions.
 
 	var/ui_template = "shuttle_control_console.tmpl"
 

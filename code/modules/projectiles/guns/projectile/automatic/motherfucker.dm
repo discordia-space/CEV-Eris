@@ -16,17 +16,17 @@
 	proj_step_multiplier = 0.8 // faster than non-shotgun bullets, slower than non-shotgun bullets with an accelerator
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 15)
 	price_tag = 300
-	recoil_buildup = 30
-	one_hand_penalty = 60 //double the LMG.
+	init_recoil = LMG_RECOIL(1)
 	burst_delay = 0
 	burst = 6
-	init_offset = 7 //awful accuracy
+	init_offset = 14 //awful accuracy
 	init_firemodes = list(
 		list(mode_name="6-round bursts", burst=6, fire_delay=null, move_delay=7, icon="burst"),
 		)
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	var/recentpumpmsg = 0
 	var/pumped = FALSE
+
 
 /obj/item/gun/projectile/automatic/motherfucker/attack_self(mob/living/user)
 	if(world.time >= recentpumpmsg + 10)

@@ -1,6 +1,6 @@
 /datum/trade_station/illegaltrader
 	name_pool = list(
-		"NSTB 'Arau'" = "Null-Space Trade Beacon 'Arau'. The Trade Beacon is sending an automated message: \"Hey, Buddie. Interested in our 'legal' goods?\""
+		"NSTB \'Arau\'" = "Null-Space Trade Beacon \'Arau\'. The Trade Beacon is sending an automated message: \"Hey, buddy. Interested in our legal goods?\""
 	)
 	uid = "illegal1"
 	start_discovered = FALSE
@@ -9,11 +9,11 @@
 	offer_limit = 20
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 2000
+	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("illegal2")
-	recommendations_needed = 3
-	assortiment = list(
+	recommendations_needed = 2
+	inventory = list(
 		"Syndicate Gear" = list(
 			/obj/item/clothing/under/syndicate,
 			/obj/item/storage/toolbox/syndicate = custom_good_amount_range(list(1, 3)),
@@ -31,7 +31,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/quickhealburn = custom_good_amount_range(list(5, 10))
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Syndicate Gear II" = list(
 			/obj/item/gun/energy/crossbow = custom_good_amount_range(list(1, 1)),
 			/obj/item/clothing/suit/space/syndicate/uplink = custom_good_amount_range(list(1, 1)),

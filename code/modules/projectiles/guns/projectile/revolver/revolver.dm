@@ -21,18 +21,19 @@
 	fire_delay = 3 //all revolvers can fire faster, but have huge recoil
 	damage_multiplier = 1.75
 	penetration_multiplier = 0.65 // Insanely powerful handcannon, but worthless against heavy armor
-	recoil_buildup = 8
+	init_recoil = HANDGUN_RECOIL(1.4)
 	var/drawChargeMeter = TRUE
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
 	gun_parts = list(/obj/item/part/gun/frame/miller = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)
+	serial_type = "FS"
 
 
 /obj/item/gun/projectile/revolver/pickup(mob/user)
 	. = ..()
-	if (ishuman(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/stylish = user
 		if(stylish.style > 4)
-			style_damage_multiplier = stylish.style/4 // this is so two stylish users that both shoot each other once at full slickness
+			style_damage_multiplier = stylish.style / 4 // this is so two stylish users that both shoot each other once at full slickness
 			to_chat(user, SPAN_NOTICE("You feel more confident with a revolver in your hand.")) // ends with the more stylish being the winner, commonly known as High Noon
 		else
 			style_damage_multiplier = 1
@@ -89,7 +90,7 @@
 	name = "Miller frame"
 	desc = "A Miller revolver frame. I hope you're feeling lucky, punk."
 	icon_state = "frame_revolver"
-	result = /obj/item/gun/projectile/revolver/mateba
+	result = /obj/item/gun/projectile/revolver
 	grip = /obj/item/part/gun/grip/rubber
 	mechanism = /obj/item/part/gun/mechanism/revolver
 	barrel = /obj/item/part/gun/barrel/magnum

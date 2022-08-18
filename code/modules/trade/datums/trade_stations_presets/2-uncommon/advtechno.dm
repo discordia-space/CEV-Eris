@@ -1,25 +1,18 @@
 /datum/trade_station/nauka
 	name_pool = list(
-		"FTB 'Nauka'" = "Free Trade Beacon 'Nauka': \"Privet, this is the trade beacon 'Nauka'.\""
+		"TTB \'Nauka\'" = "Technomancer Trade Beacon \'Nauka\': \"Privet, this is the trade beacon \'Nauka\'.\""
 	)
 	uid = "techno_adv"
 	start_discovered = FALSE
 	spawn_always = TRUE
-	markup = UNCOMMON_GOODS
+	markup = COMMON_GOODS
 	offer_limit = 20
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 2000
-	recommendation_threshold = 4000
-	stations_recommended = list("oddities", "anomalies")
+	hidden_inv_threshold = 2000
+	recommendation_threshold = 0
 	recommendations_needed = 1
-	assortiment = list(
-		"Design Disks" = list(
-			/obj/item/computer_hardware/hard_drive/portable/design/components = custom_good_name("Technomancers ARK-034 Components"),
-			/obj/item/computer_hardware/hard_drive/portable/design/adv_tools = custom_good_name("Technomancers IJIRO-451 Advanced Tools"),
-			/obj/item/computer_hardware/hard_drive/portable/design/circuits = custom_good_name("Technomancers ESPO-830 Circuits"),
-			/obj/item/computer_hardware/hard_drive/portable/design/conveyors = custom_good_name("Technomancers LAT-018 Logistics")
-		),
+	inventory = list(
 		"Reinforcement Mods" = list(
 			/obj/item/tool_upgrade/reinforcement/stick = custom_good_amount_range(list(1, 5)),
 			/obj/item/tool_upgrade/reinforcement/heatsink = custom_good_amount_range(list(1, 5)),
@@ -57,19 +50,17 @@
 			/obj/item/tool_upgrade/augment/hydraulic = custom_good_amount_range(list(1, 5))
 		)
 	)
-	secret_inventory = list(
+	hidden_inventory = list(
 		"Extra Mods" = list(
 			/obj/item/tool_upgrade/augment/dampener = custom_good_amount_range(list(1, 3)),
 			/obj/item/tool_upgrade/augment/randomizer = custom_good_amount_range(list(1, 3))
 		),
 	)
 	offer_types = list(
-		/obj/item/oddity/techno = offer_data("unknown technological part", 1600, 2),
-		/obj/item/tool/crowbar/onestar = offer_data("onestar crowbar", 1500, 3),
-		/obj/item/tool/pickaxe/onestar = offer_data("onestar pickaxe", 1500, 3),
-		/obj/item/tool/pickaxe/jackhammer/onestar = offer_data("onestar jackhammer", 1500, 3),
-		/obj/item/tool/screwdriver/combi_driver/onestar = offer_data("onestar combi driver", 2000, 3),
-		/obj/item/tool/weldingtool/onestar  = offer_data("onestar welding tool", 2000, 3),
-		/obj/item/tool_upgrade/augment/repair_nano = offer_data("repair nano", 5000, 1),
-		/obj/item/organ/external/robotic/one_star = offer_data("onestar external prosthetic", 2700, 4)			// base price: 900
+		/obj/item/oddity/techno = offer_data("unknown technological part", 3200, 2),
+		/obj/item/tool/crowbar/onestar = offer_data("one star crowbar", 5000, 3),
+		/obj/item/tool/hammer/powered_hammer/onestar_hammer = offer_data("one star sledgehammer", 5000, 3),
+		/obj/item/tool/screwdriver/combi_driver/onestar = offer_data("one star combi driver", 6500, 3),
+		/obj/item/tool/weldingtool/onestar  = offer_data("one star welding tool", 6500, 3),
+		/obj/item/organ/external/robotic/one_star = offer_data("one star external prosthetic", 5000, 4)
 	)

@@ -18,6 +18,7 @@
 	drain = 4
 	offline_vision_restriction = 1
 	rarity_value = 20
+	price_tag = 500
 	helm_type = /obj/item/clothing/head/space/rig/combat
 	stiffness = 0
 	obscuration = 0
@@ -31,7 +32,8 @@
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/power_sink,
 		/obj/item/rig_module/electrowarfare_suite,
-		/obj/item/rig_module/chem_dispenser/combat
+		/obj/item/rig_module/modular_injector/combat,
+		/obj/item/rig_module/storage
 		)
 
 //Ironhammer rig suit
@@ -86,5 +88,6 @@
 		/obj/item/rig_module/vision/sechud,
 		/obj/item/rig_module/maneuvering_jets,
 		/obj/item/rig_module/grenade_launcher,
-		/obj/item/rig_module/mounted/taser
+		/obj/item/rig_module/mounted/taser,
+		/obj/item/rig_module/storage
 		)

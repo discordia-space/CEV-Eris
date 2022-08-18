@@ -382,6 +382,23 @@ obj/item/clothing/under/genericr
 		rad = 0
 	)
 
+/obj/item/clothing/under/onestar
+	name = "One Star uniform"
+	desc = "Comfortable red silk uniform. It is emblazoned with One Star insignia on the collar. Strangely, it seems to fit you perfectly."
+	icon_state = "onestar_uniform"
+	item_state = "onestar_uniform"
+	spawn_blacklisted = TRUE // TODO: make onestar clothing/armor spawner -Valo
+	style = STYLE_HIGH
+	price_tag = 500
+	armor = list(
+		melee = 5,
+		bullet = 10,
+		energy = 10,
+		bomb = 0,
+		bio = 5,
+		rad = 5
+	)
+
 /obj/item/clothing/under/tropicalpink
 	name = "pink tropical shirt"
 	desc = "An Aster\'s Guild branded neosilk tropical shirt. This one makes you feel nostalgic."
@@ -390,7 +407,7 @@ obj/item/clothing/under/genericr
 	style = STYLE_HIGH
 
 /obj/item/clothing/under/tropicalblue
-	name = "blue tropical shirt" 
+	name = "blue tropical shirt"
 	desc = "An Aster\'s Guild branded neosilk tropical shirt. This one makes you feel out of touch."
 	icon_state = "miamivice"
 	item_state = "miamivice"

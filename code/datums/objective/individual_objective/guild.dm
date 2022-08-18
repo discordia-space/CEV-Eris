@@ -13,8 +13,8 @@
 /datum/individual_objective/repossession/assign()
 	..()
 	target = pick_faction_item(mind_holder)
-	desc = "Sold \the [target] item of other faction via cargo."
-	RegisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY, .proc/task_completed)
+	desc = "Export or sell \the [target] item of another faction via trade beacon."
+	RegisterSignal(SStrade, COMSIG_TRADE_BEACON, .proc/task_completed)
 
 /datum/individual_objective/repossession/task_completed(atom/movable/AM)
 	if(target.type == AM.type)
@@ -22,19 +22,19 @@
 
 /datum/individual_objective/repossession/completed()
 	if(completed) return
-	UnregisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY)
+	UnregisterSignal(SStrade, COMSIG_TRADE_BEACON)
 	..()
 
 /datum/individual_objective/museum
 	name = "It Belongs in a Museum"
-	desc = "Ensure that 3-4 oddities were sold via cargo."
+	desc = "Ensure that 3-4 oddities are exported or sold via trade beacon."
 	req_department = list(DEPARTMENT_GUILD)
 
 /datum/individual_objective/museum/assign()
 	..()
 	units_requested = rand(3,4)
-	desc = "Ensure that [units_requested] oddities were sold via cargo."
-	RegisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY, .proc/task_completed)
+	desc = "Ensure that [units_requested] oddities are exported or sold via trade beacon."
+	RegisterSignal(SStrade, COMSIG_TRADE_BEACON, .proc/task_completed)
 
 /datum/individual_objective/museum/task_completed(atom/movable/AM)
 	if(AM.GetComponent(/datum/component/inspiration))
@@ -42,7 +42,7 @@
 
 /datum/individual_objective/museum/completed()
 	if(completed) return
-	UnregisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY)
+	UnregisterSignal(SStrade, COMSIG_TRADE_BEACON)
 	..()
 
 /datum/individual_objective/order
@@ -82,8 +82,8 @@
 	..()
 	target = pick_candidates()
 	target = new target()
-	desc = "A friend of yours on the other side on trade teleporter is waiting for a [target]. Ensure it will be sold via cargo."
-	RegisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY, .proc/task_completed)
+	desc = "A friend of yours on the other side on trade teleporter is waiting for a [target]. Ensure it will be exported or sold via trade beacon."
+	RegisterSignal(SStrade, COMSIG_TRADE_BEACON, .proc/task_completed)
 
 /datum/individual_objective/order/task_completed(atom/movable/AM)
 	if(AM.type == target.type)
@@ -91,7 +91,7 @@
 
 /datum/individual_objective/order/completed()
 	if(completed) return
-	UnregisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY)
+	UnregisterSignal(SStrade, COMSIG_TRADE_BEACON)
 	..()
 
 /datum/individual_objective/stripping

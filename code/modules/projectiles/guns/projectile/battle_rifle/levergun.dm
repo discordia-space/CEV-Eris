@@ -8,10 +8,10 @@
 	armor_penetration = ARMOR_PEN_GRAZING
 	caliber = CAL_MAGNUM
 	damage_multiplier = 1.6
+	style_damage_multiplier = 1
 	penetration_multiplier = 1.6
-	recoil_buildup = 15
+	init_recoil = RIFLE_RECOIL(4.6)
 	init_offset = 0
-	one_hand_penalty = 15
 	max_shells = 6
 	zoom_factor = 0
 	magazine_type = /obj/item/ammo_magazine/magnum
@@ -21,6 +21,7 @@
 	spawn_blacklisted = TRUE
 	sawn = /obj/item/gun/projectile/boltgun/levergun/sawn
 	message = "lever"
+	serial_type = "FS"
 
 /obj/item/gun/projectile/boltgun/levergun/hand_spin(mob/living/carbon/caller)
 	bolt_act(caller)
@@ -31,14 +32,14 @@
 	w_class = ITEM_SIZE_NORMAL
 	proj_step_multiplier = 1.2
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
-	recoil_buildup = 20
+	init_recoil = CARBINE_RECOIL(6)
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 8, MATERIAL_PLASTEEL = 20)
-	one_hand_penalty = 10
 	item_suffix  = "_winchester_sawn"
 	wielded_item_state = "_doble_winchester_sawn"
 	saw_off = TRUE
 	can_dual = TRUE
 	twohanded = FALSE
+	serial_type = "FS"
 
 /obj/item/gun/projectile/boltgun/levergun/shotgun
 	name = "FS BR \"Sogekihei\""
@@ -53,10 +54,11 @@
 	penetration_multiplier = 1.2
 	proj_step_multiplier = 0.8
 	max_shells = 9
-	recoil_buildup = 10
+	init_recoil = RIFLE_RECOIL(2.3)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 15)
 	wielded_item_state = "_doble_shotgun"
 	sawn = /obj/item/gun/projectile/boltgun/levergun/shotgun/sawn
+	serial_type = "FS"
 
 /obj/item/gun/projectile/boltgun/levergun/shotgun/sawn
 	name = "sawn-off FS BR \"Sogekihei\""
@@ -65,9 +67,8 @@
 	proj_step_multiplier = 1.2
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	damage_multiplier = 0.7
-	recoil_buildup = 12
+	init_recoil = CARBINE_RECOIL(2.5)
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 8)
-	one_hand_penalty = 10
 	item_suffix  = "_shotgun_sawn"
 	wielded_item_state = "_doble_shotgun_sawn"
 	saw_off = TRUE

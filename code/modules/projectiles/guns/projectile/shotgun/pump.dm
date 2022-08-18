@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/shotgun/pump
 	name = "FS SG \"Kammerer\""
-	desc = "When an old Remington design meets modern materials, this is the result. A favourite weapon of militia forces throughout many worlds."
+	desc = "When an old Remington design meets modern materials, this is the result. A favourite weapon of militia forces throughout many worlds. Can hold up to 4+1 shells in its tube"
 	icon = 'icons/obj/guns/projectile/shotgun.dmi'
 	icon_state = "shotgun"
 	item_state = "shotgun"
@@ -18,12 +18,12 @@
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 800
-	recoil_buildup = 12
-	one_hand_penalty = 15 //full sized shotgun level
+	init_recoil = RIFLE_RECOIL(2.8)
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/shotgun/pump/sawn
 	gun_parts = list(/obj/item/part/gun/frame/kammerer = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	serial_type = "FS"
 
 /obj/item/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)
@@ -74,8 +74,7 @@
 	price_tag = 350
 	damage_multiplier = 0.5
 	penetration_multiplier = 0.7
-	recoil_buildup = 24 //double that of full version
-	one_hand_penalty = 20 //more than shotgun
+	init_recoil = CARBINE_RECOIL(6)
 	can_dual = TRUE
 	saw_off = FALSE
 	spawn_blacklisted = TRUE

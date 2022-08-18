@@ -5,6 +5,7 @@
 	item_state = "flashbang"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	var/banglet = 0
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_SILVER = 1)
 
 /obj/item/grenade/flashbang/prime()
 	..()
@@ -71,8 +72,8 @@
 		if(ishuman(M))
 			if(istype(M:l_ear, /obj/item/clothing/ears/earmuffs) || istype(M:r_ear, /obj/item/clothing/ears/earmuffs))
 				ear_safety += 2
-			if(HULK in M.mutations)
-				ear_safety += 1
+//			if(HULK in M.mutations)
+//				ear_safety += 1
 			if(istype(M:head, /obj/item/clothing/head/armor/helmet))
 				ear_safety += 1
 			if(M.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
