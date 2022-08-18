@@ -339,6 +339,8 @@ its easier to just keep the beam vertical.
 
 	if(desc)
 		to_chat(user, desc)
+		user.client.statpanel = "Examine"
+
 
 	if(reagents)
 		if(reagent_flags & TRANSPARENT)

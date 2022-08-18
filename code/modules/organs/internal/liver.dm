@@ -3,6 +3,7 @@
 	icon_state = "liver"
 	organ_efficiency = list(OP_LIVER = 100)
 	desc = "A vital organ that detoxifies metabolites. Among other things."
+	description_info = "Increases the metabolization rate of chemicals in both the stomach and bloodstream"
 	parent_organ_base = BP_GROIN
 	price_tag = 900
 	blood_req = 5

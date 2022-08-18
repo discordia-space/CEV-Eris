@@ -9,6 +9,8 @@
 	name = "syringe"
 	desc = "A syringe."
 	icon = 'icons/obj/syringe.dmi'
+	description_info = "Holds 15 units of reagents, can be used through voidsuits and non-thick armour"
+	description_antag = "People tend to place full trust into paramedics or doctors when they get scanned beforehand and told they're damaged, followed by a injection of what usually is healing chemicals."
 	item_state = "syringe"
 	icon_state = "0"
 	matter = list(MATERIAL_GLASS = 1, MATERIAL_STEEL = 1)
