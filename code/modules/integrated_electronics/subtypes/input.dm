@@ -681,7 +681,7 @@
 	power_draw_idle = 5
 	power_draw_per_use = 40
 	cooldown_per_use = 5
-	var/frequency = 1357
+	var/frequency = 1441
 	var/code = 30
 	var/datum/radio_frequency/radio_connection
 	var/hearing_range = 1
@@ -728,6 +728,9 @@
 /obj/item/integrated_circuit/input/signaler/proc/set_frequency(new_frequency)
 	if(!frequency)
 		return
+	// fallball to prevent comms shittification and killing with constant rebuilding of the radio.
+	if(new_frequency > PUBLIC_HIGH_FREQ || new_frequency < PUBLIC_LOW_FREQ)
+		frequency = PUBLIC_LOW_FREQ
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
