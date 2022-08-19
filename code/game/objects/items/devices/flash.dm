@@ -2,6 +2,7 @@
 	name = "flash"
 	desc = "Used for blinding and being an asshole."
 	icon_state = "flash"
+	description_info = "Can blind anyone that doesn't have welder-grade light protection"
 	item_state = "flashtool"
 	throwforce = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_SMALL

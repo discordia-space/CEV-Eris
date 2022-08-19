@@ -3,6 +3,8 @@
 	desc = "A stationary computer."
 	icon_state = "printer_base"
 	circuit = /obj/item/electronics/circuitboard/moeballs_printer
+	description_info = "Prints cubes of genetics-modifying worms. They deal toxins upon ingestion"
+	description_antag = "Can be used to give people bad genetics. They have no way of knowing what you're giving them unless its effects are obvious."
 	var/obj/item/reagent_containers/glass/beaker
 	var/index = 0
 	var/is_busy = FALSE

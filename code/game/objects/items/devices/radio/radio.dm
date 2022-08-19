@@ -758,6 +758,7 @@ var/global/list/default_medbay_channels = list(
 	name = "Random wave radio"
 	desc = "Radio that can pick up messages from secure channels, but with small chance. Provides intel about hidden loot over time. It can be repaired by oddity with mechanical aspect."
 	icon = 'icons/obj/faction_item.dmi'
+	description_antag = "If repaired enough, it also gains full access to all communication channels except binary."
 	icon_state = "random_radio"
 	item_state = "random_radio"
 	slot_flags = FALSE

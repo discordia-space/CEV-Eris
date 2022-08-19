@@ -7,6 +7,8 @@ var/global/excelsior_last_draft = 0
 /obj/machinery/complant_teleporter
 	name = "excelsior long-range teleporter"
 	desc = "A powerful teleporter that allows shipping matter in and out. Takes a long time to charge."
+	description_info = "A highly illegal teleporter. Uses huge amounts of power and will always show in the powergrid monitor"
+	description_antag = "The excelcior's main way of obtaining resources, calling reinforcements and unleashing the revolution"
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/machines/excelsior/teleporter.dmi'

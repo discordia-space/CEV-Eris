@@ -3,6 +3,7 @@
 	name = "gun"
 	desc = "A gun. It's pretty terrible, though."
 	icon = 'icons/obj/guns/projectile.dmi'
+	description_info = "Can be wielded with Shift+X to provide less recoil "
 	icon_state = "giskard_old"
 	item_state = "gun"
 	item_state_slots = list(

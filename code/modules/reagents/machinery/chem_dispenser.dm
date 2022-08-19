@@ -10,6 +10,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
 	density = TRUE
+	description_info = "Can be upgraded to unlock acces to more refined reagents."
 	anchored = TRUE
 	use_power = NO_POWER_USE // Handles power use in Process()
 	layer = BELOW_OBJ_LAYER

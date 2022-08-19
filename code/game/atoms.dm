@@ -339,6 +339,10 @@ its easier to just keep the beam vertical.
 
 	if(desc)
 		to_chat(user, desc)
+		var/pref = user.get_preference_value("SWITCHEXAMINE")
+		if(pref == GLOB.PREF_YES)
+			user.client.statpanel = "Examine"
+
 
 	if(reagents)
 		if(reagent_flags & TRANSPARENT)

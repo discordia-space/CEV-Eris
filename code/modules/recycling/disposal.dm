@@ -13,6 +13,7 @@
 	name = "disposal unit"
 	desc = "A pneumatic waste disposal unit."
 	icon = 'icons/obj/pipes/disposal.dmi'
+	description_antag = "Can be used to escape if bolted in a room, or to get rid of evidence"
 	icon_state = "disposal"
 	anchored = TRUE
 	density = TRUE

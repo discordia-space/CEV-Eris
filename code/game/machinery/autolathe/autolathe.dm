@@ -2,6 +2,7 @@
 	name = "autolathe"
 	desc = "It produces items using metal and glass."
 	icon = 'icons/obj/machines/autolathe.dmi'
+	description_info = "Can be upgraded to print faster, cheaper or hold more material. Can recycle items by trying to insert them as material"
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE

@@ -7,6 +7,8 @@ var/global/obj/machinery/power/eotp/eotp
 	desc = "He observe, he protects."
 	icon = 'icons/obj/eotp.dmi'
 	icon_state = "Eye_of_the_Protector"
+	description_info = "When miracles happen, group litanies can be commenced. Its power grows the more followers there are, and when heretics are purged"
+	description_antag = "Can be blown with C4."
 
 	density = TRUE
 	anchored = TRUE
