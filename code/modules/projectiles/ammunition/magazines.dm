@@ -443,6 +443,7 @@
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 6
+	w_class = ITEM_SIZE_TINY
 	rarity_value = 6.66
 	ammo_states = list(1, 2, 3, 4, 5, 6)
 
@@ -475,6 +476,7 @@
 	ammo_type = /obj/item/ammo_casing/magnum
 	matter = list(MATERIAL_STEEL = 3)
 	max_ammo = 6
+	w_class = ITEM_SIZE_TINY
 	spawn_tags = SPAWN_TAG_AMMO_IH
 	rarity_value = 5
 	ammo_states = list(1, 2, 3, 4, 5, 6)
