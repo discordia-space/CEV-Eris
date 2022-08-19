@@ -1,0 +1,5 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Fixed valkrie missing wielded sprites
+  - bugfix: Fixed machinery not checking for power sources when created.
