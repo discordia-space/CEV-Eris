@@ -1,0 +1,6 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - tweak: lowered by 1 makeshift ak, laser carbine and smg gun part requirements
+  - balance: rebalanced gun part recycle cost
+  - tweak: changed gun assembly require gun parts 10 -> 5
