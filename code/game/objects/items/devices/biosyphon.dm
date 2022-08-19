@@ -1,7 +1,7 @@
 /obj/item/biosyphon
 	name = "Bluespace Biosyphon"
 	desc = "Hunts on flora and fauna that sometimes populates bluespace, and use them to produce donuts endlessly. May also produce rare and powerful donuts when fed with the meat of non-bluespace fauna."
-	description_info = "Produces donuts constantly , highly valuable."
+	description_info = "Produces donuts constantly, highly valuable."
 	description_antag = "IH tends to fully trust any donut box thats put above the biospyhon. You could poison a box of donuts."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "biosyphon"
