@@ -1,0 +1,5 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - balance: z8 and kovacs can now take .20 extended
+  - bugfix: fixed wrong makeshift AK name in extended and drum mags descs
