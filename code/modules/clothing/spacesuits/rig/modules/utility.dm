@@ -117,7 +117,7 @@
 	name = "mounted modular dispenser"
 	desc = "A specialized system for inserting chemicals"
 	description_info = "You can remove beakers by using a screw. Reagent injection amount can be tweaked with a Wrench. Accepts any size of beaker"
-	description_antag = "You can saboutage this by mixing in a deadly toxin. As long as its not the majority in the solution , it won't show up in the rig."
+	description_antag = "You can sabotage this by mixing in a deadly toxin. As long as its not the majority in the solution, it won't show up in the rig."
 	icon_state = "injector"
 	usable = TRUE
 	selectable = FALSE
