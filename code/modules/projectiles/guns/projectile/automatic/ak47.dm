@@ -213,14 +213,14 @@
 
 	fold()
 
-/obj/item/gun/projectile/automatic/ak47/fs/ih/verb/quick_fold(mob/user)	//Easier to redo the proc than redo everything else
+/obj/item/gun/projectile/automatic/ak47/fs/ih/verb/quick_fold()	//Easier to redo the proc than redo everything else
 	set name = "Fold or Unfold Stock"
 	set category = "Object"
-	set src in view(1)
+	set src in usr
 
-	if(can_interact(user) == 1)
+	if(can_interact(usr) == 1)
 		return
-	fold(user)
+	fold(usr)
 
 /obj/item/gun/projectile/automatic/ak47/fs/ih/proc/fold(user)
 
