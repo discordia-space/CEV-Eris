@@ -1,7 +1,7 @@
 /obj/structure/railing
 	name = "orange railing"
 	desc = "A standard steel railing painted in copper color. Prevents stupid people from falling to their doom."
-	description_info = "Can be deconstructed by screwing and wrenching. "
+	description_info = "Can be deconstructed by screwing and wrenching."
 	description_antag = "Hopping above these leaves fingerprints. You can also grab a person and throw them over the ledge instantly."
 	icon = 'icons/obj/railing.dmi'
 	density = TRUE
