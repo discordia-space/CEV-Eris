@@ -18,7 +18,7 @@
 /obj/machinery/shield/malfai
 	name = "emergency forcefield"
 	desc = "A powerful forcefield which seems to be projected by the vessel's emergency atmosphere containment field."
-	description_antag = "This special shield is overcharged , it has double the health of a normal one and only blocks bullets."
+	description_antag = "This special shield is overcharged, it has double the health of a normal one and only blocks bullets."
 	health = 400
 
 /obj/machinery/shield/proc/check_failure()
