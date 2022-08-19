@@ -1049,7 +1049,7 @@ There are 9 wires.
 				to_chat(user, SPAN_NOTICE("You start hammering the bolts into the unlocked position"))
 				// long time and high chance to fail.
 				if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_VERY_HARD, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You unbolt the door"))
+					to_chat(user, SPAN_NOTICE("You unbolt the door."))
 					locked = FALSE
 			else
 				to_chat(user, SPAN_NOTICE("You can\'t hammer away the bolts if the door is powered or not bolted."))
