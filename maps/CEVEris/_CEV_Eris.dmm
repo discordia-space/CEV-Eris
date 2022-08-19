@@ -16191,21 +16191,21 @@
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/engineering/wastingroom)
 "aOG" = (
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section4deck5port)
+"aOH" = (
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "North APC";
 	pixel_y = 28
 	},
-/obj/structure/catwalk,
 /obj/structure/cable/green{
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
-/area/eris/maintenance/section4deck5port)
-"aOH" = (
-/obj/machinery/camera/network/engineering,
-/turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "aOI" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
@@ -122106,7 +122106,7 @@ aCR
 aNR
 aai
 aOG
-aPR
+aPS
 aCR
 aQn
 aai
@@ -122308,7 +122308,7 @@ aCR
 aai
 aai
 aOH
-aPS
+aPR
 aCR
 avu
 aai
