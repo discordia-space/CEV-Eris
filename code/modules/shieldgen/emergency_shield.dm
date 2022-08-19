@@ -4,7 +4,7 @@
 	desc = "An energy shield used to contain hull breaches."
 	icon = 'icons/effects/effects.dmi'
 	description_info = "Generates atmospheric blocking-shields when in contact with space"
-	description_antag = "The shields block bullets , but not lasers."
+	description_antag = "The shields block bullets, but not lasers."
 	icon_state = "shield-old"
 	density = TRUE
 	opacity = 0
