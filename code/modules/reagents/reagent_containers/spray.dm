@@ -149,8 +149,8 @@
 	name = "chem sprayer"
 	desc = "A utility used to spray large amounts of reagent in a given area."
 	icon = 'icons/obj/weapons.dmi'
-	description_info = "Holds 600 units , sprays 30 per use."
-	description_antag = "can be used to spray acid or lube"
+	description_info = "Holds 600 units, sprays 30 per use."
+	description_antag = "Can be used to spray acid or lube"
 	icon_state = "chemsprayer"
 	item_state = "chemsprayer"
 	throwforce = 3
