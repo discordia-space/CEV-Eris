@@ -1052,7 +1052,7 @@ There are 9 wires.
 					to_chat(user, SPAN_NOTICE("You unbolt the door"))
 					locked = FALSE
 			else
-				to_chat(user, SPAN_NOTICE("You can't hammer away the bolts if the door is powered or not bolted"))
+				to_chat(user, SPAN_NOTICE("You can\'t hammer away the bolts if the door is powered or not bolted."))
 				return
 
 
