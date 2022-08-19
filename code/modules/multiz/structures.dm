@@ -71,7 +71,7 @@
 	name = "ladder"
 	desc = "A ladder.  You can climb it up and down."
 	description_info = "You can look what is on the other side with Alt-Click. You can also fire guns at anyone near the other side when peeking. You can also throw grenades."
-	description_antag = "Don't try to place traps or slippery liquids onto the ladder's exit/entry directly , they won't work."
+	description_antag = "Don't try to place traps or slippery liquids onto the ladder's exit/entry directly, they won't work."
 	icon_state = "ladderdown"
 	var/climb_delay = 30
 
