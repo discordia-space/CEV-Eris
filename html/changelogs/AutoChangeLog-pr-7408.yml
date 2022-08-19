@@ -1,0 +1,5 @@
+author: Shazbot194
+delete-after: true
+changes:
+  - rscadd: Dynamic sprites for speedloaders
+  - tweak: Speedloaders are now Tiny
