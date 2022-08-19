@@ -16191,21 +16191,28 @@
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/engineering/wastingroom)
 "aOG" = (
-/obj/machinery/camera/network/engineering,
-/turf/simulated/floor/tiled/techmaint,
-/area/eris/maintenance/section4deck5port)
-"aOH" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "North APC";
-	pixel_y = 28
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/plating/under,
+/area/eris/maintenance/section4deck5port)
+"aOH" = (
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "aOI" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
@@ -16284,10 +16291,17 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "aOT" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table/reinforced,
-/obj/spawner/tank,
-/turf/simulated/floor/tiled/techmaint,
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "North APC";
+	pixel_y = 28
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aOU" = (
 /obj/structure/disposalpipe/up,
@@ -16717,24 +16731,10 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aPR" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/reinforced,
+/obj/spawner/tank,
+/turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "aPS" = (
 /obj/structure/catwalk,
@@ -121502,7 +121502,7 @@ aIe
 avu
 aPO
 aQe
-avu
+aPR
 aHY
 aaa
 aaa
@@ -122105,7 +122105,7 @@ aai
 aCR
 aNR
 aai
-aOG
+avu
 aPS
 aCR
 aQn
@@ -122308,7 +122308,7 @@ aCR
 aai
 aai
 aOH
-aPR
+aPS
 aCR
 avu
 aai
@@ -123116,7 +123116,7 @@ aCR
 aNR
 aai
 aOT
-aPS
+aOG
 aCR
 avu
 aKG
