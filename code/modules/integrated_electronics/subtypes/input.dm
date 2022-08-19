@@ -735,7 +735,7 @@
 	// then deletes it (i don't know why) at round-start or on world init
 	// SPCR 2022
 	if(new_frequency > PUBLIC_HIGH_FREQ || new_frequency < PUBLIC_LOW_FREQ)
-		frequency = PUBLIC_LOW_FREQ
+		frequency = 1461
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
