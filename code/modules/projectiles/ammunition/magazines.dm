@@ -439,13 +439,20 @@
 /obj/item/ammo_magazine/slpistol
 	name = "speed loader (.35 Auto)"
 	icon = 'icons/obj/ammo_speed.dmi'
-	icon_state = "slpistol"
+	icon_state = "slpistol_base"
 	caliber = CAL_PISTOL
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 6
 	rarity_value = 6.66
-	ammo_states = list(1, 2, 3, 4, 5, 6)
+	w_class = ITEM_SIZE_TINY
+
+/obj/item/ammo_magazine/slpistol/update_icon()
+	cut_overlays()
+	var/count = 0
+	for(var/obj/item/ammo_casing/AC in stored_ammo)
+		count++
+		overlays += "slpistol_[AC.shell_color]-[count]"
 
 /obj/item/ammo_magazine/slpistol/empty
 	initial_ammo = 0
@@ -471,14 +478,25 @@
 /obj/item/ammo_magazine/slmagnum
 	name = "speed loader (.40 Magnum)"
 	icon = 'icons/obj/ammo_speed.dmi'
-	icon_state = "slmagnum"
+	icon_state = "slmagnum_base"
 	caliber = CAL_MAGNUM
 	ammo_type = /obj/item/ammo_casing/magnum
 	matter = list(MATERIAL_STEEL = 3)
 	max_ammo = 6
 	spawn_tags = SPAWN_TAG_AMMO_IH
 	rarity_value = 5
-	ammo_states = list(1, 2, 3, 4, 5, 6)
+	w_class = ITEM_SIZE_TINY
+
+/obj/item/ammo_magazine/slmagnum/update_icon()
+	cut_overlays()
+	var/count = 0
+	for(var/obj/item/ammo_casing/AC in stored_ammo)
+		count++
+		overlays += "slmagnum_[AC.shell_color]-[count]"
+
+/obj/item/ammo_magazine/slmagnum/Initialize()
+	. = ..()
+	update_icon()
 
 /obj/item/ammo_magazine/slmagnum/empty
 	initial_ammo = 0
