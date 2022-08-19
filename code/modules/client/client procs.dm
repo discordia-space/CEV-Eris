@@ -535,6 +535,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 //checks if a client is afk
 //3000 frames = 5 minutes
 /client/proc/is_afk(duration=3000)
+	if(duration = 0 || duration < 1)
+		return FALSE
 	if(inactivity > duration)
 		return inactivity
 	return FALSE
