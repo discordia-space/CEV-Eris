@@ -513,6 +513,9 @@
 /obj/item/ammo_magazine/sllrifle/hv
 	ammo_type = /obj/item/ammo_casing/lrifle/hv
 
+/obj/item/ammo_magazine/sllrifle/scrap
+	ammo_type = /obj/item/ammo_casing/lrifle/scrap
+
 //////// .20 RIFLE SPEEDLOADERS ////////
 
 /obj/item/ammo_magazine/slsrifle
