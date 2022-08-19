@@ -46,8 +46,3 @@
 
 /obj/item/gun/launcher/spikethrower/update_release_force()
 	return
-
-/obj/item/gun/launcher/spikethrower/consume_next_projectile()
-	if(spikes < 1) return null
-	spikes--
-	return new /obj/item/spike(src)
