@@ -197,7 +197,7 @@
 
 /obj/item/ammo_magazine/srifle/long
 	name = "extended magazine (.20 Rifle)"
-	desc = "Extended .20 caliber magazine, holds 35 rounds. Only fits \"Vintorez\" and \"Wintermute\" and \"Kalash\"."
+	desc = "Extended .20 caliber magazine, holds 35 rounds."
 	icon_state = "srifle_long"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
@@ -230,7 +230,7 @@
 
 /obj/item/ammo_magazine/srifle/drum
 	name = "drum magazine (.20 Rifle)"
-	desc = "Heavy .20 caliber magazine, holds 60 rounds. Only fits \"Kalash\"."
+	desc = "Heavy .20 caliber magazine, holds 60 rounds. Only fits \"Sermak\"."
 	icon_state = "srifle_drum"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
@@ -377,7 +377,7 @@
 
 /obj/item/ammo_magazine/lrifle/drum
 	name = "drum magazine (.30 Rifle)"
-	desc = "Heavy .30 caliber magazine, holds 45 rounds. Only fits \"Krinkov\" and \"Kalash\"."
+	desc = "Heavy .30 caliber magazine, holds 45 rounds. Only fits \"Krinkov\" and \"Sermak\"."
 	icon_state = "lrifle_drum"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE_D

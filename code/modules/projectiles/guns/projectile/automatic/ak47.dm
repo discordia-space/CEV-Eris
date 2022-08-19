@@ -68,6 +68,8 @@
 
 	if (ammo_magazine)
 		itemstring += "_full"
+		if (ammo_magazine.mag_well == MAG_WELL_RIFLE_L)
+			iconstring += "_l"
 		if (ammo_magazine.mag_well == MAG_WELL_RIFLE_D)
 			iconstring += "_drum"
 		else
