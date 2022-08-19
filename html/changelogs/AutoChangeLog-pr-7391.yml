@@ -1,0 +1,9 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Fixes the IH AK Folding verb.
+  - bugfix: Fixed AltClicking turfs,  now it will always set your statpanel to Turf
+      tab.
+  - bugfix: Fixed farmbot pathing runtimes
+  - bugfix: Fixed being able to throw implanted/attached/undroppable items up ladders
+  - bugfix: Fixed being able to stick implanted/attached/undroppable items in pizzas.
