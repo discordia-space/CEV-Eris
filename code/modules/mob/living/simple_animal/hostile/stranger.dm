@@ -118,7 +118,7 @@
 
 /obj/item/gun/energy/plasma/stranger
 	name = "unknown plasma gun"
-	desc = "A plasma gun with unknown origins."
+	desc = "A plasma gun with unknown origins, it seems to always spark a different feeling in those inspired by it."
 	icon = 'icons/obj/guns/energy/lancer.dmi'
 	icon_state = "lancer"
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 8, MATERIAL_GOLD = 4)
