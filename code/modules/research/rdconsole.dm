@@ -42,7 +42,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	icon_keyboard = "rd_key"
 	icon_screen = "rdcomp"
 	description_info = "You can also upload any unlocked designs onto a disk."
-	description_antag = "You can delete all research data , causing a massive headache for Moebius"
+	description_antag = "You can delete all research data, causing a massive headache for Moebius"
 	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
 	circuit = /obj/item/electronics/circuitboard/rdconsole
 	var/datum/research/files								//Stores all the collected research data.
