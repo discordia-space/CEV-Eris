@@ -19713,7 +19713,7 @@
 /obj/spawner/ammo/lowcost/low_chance,
 /obj/spawner/ammo/lowcost/low_chance,
 /turf/simulated/floor/plating,
-/area/eris/engineering/atmos)
+/area/eris/maintenance/section3deck5port)
 "aWw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -20331,7 +20331,7 @@
 /obj/spawner/gun_parts/low_chance,
 /obj/spawner/gun/handmade,
 /turf/simulated/floor/plating,
-/area/eris/engineering/atmos)
+/area/eris/maintenance/section3deck5port)
 "aXT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -125723,7 +125723,7 @@ uiX
 alg
 aaa
 aaa
-aCW
+aad
 aaa
 aaa
 aaa
@@ -125924,10 +125924,10 @@ asR
 uiX
 alg
 aaa
-aCW
-aCW
-aCW
-aCW
+alg
+alg
+alg
+alg
 aaa
 aCW
 aQU
@@ -126126,10 +126126,10 @@ azl
 uiX
 alg
 abF
-aCW
+alg
 aWv
 aXS
-aCW
+alg
 aaa
 aaa
 aad
@@ -126328,10 +126328,10 @@ ceU
 uiX
 alg
 abF
-aCW
-aCW
-aCW
-aCW
+alg
+alg
+alg
+alg
 aad
 aad
 aCW
