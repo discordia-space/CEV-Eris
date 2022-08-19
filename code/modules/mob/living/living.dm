@@ -649,6 +649,11 @@ default behaviour is:
 	set instant = 1
 	livmomentum = 0
 
+/mob/living/carbon/human
+	var/last_slide
+
+#define SLIDE_DELAY 5 SECONDS
+
 
 /mob/living/carbon/human/proc/dive()
 	var/client/C = client
@@ -656,6 +661,10 @@ default behaviour is:
 	var/_dir = C.true_dir
 
 	if(!weakened && _dir)// If true_dir = 0(src isn't moving), doesn't proc.
+		if(world.time < last_slide)
+			to_chat(src, SPAN_NOTICE("Its far too early too slide again!"))
+			return
+		last_slide = world.time + SLIDE_DELAY
 		if(momentum_dir == _dir)
 			livmomentum = momentum_speed // Set momentum value as soon as possible for stopSliding to work better
 		var/range = 1 //checks for move intent; dive one tile further if on run intent
