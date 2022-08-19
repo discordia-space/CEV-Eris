@@ -151,7 +151,7 @@
 	name = "large biomatter canister"
 	icon_state = "biomatter_tank_large"
 	description_info = "Can hold 800 units"
-	description_antag = "With a beaker , raw biomatter can be pulled out. When spilled on the floor , the puddles are highly lethal to anyone without protection. Killing them in several minutes if they do not receive treatment"
+	description_antag = "With a beaker, raw biomatter can be pulled out. When spilled on the floor, the puddles are highly lethal to anyone without protection. Killing them in several minutes if they do not receive treatment"
 	volume = 800
 
 
