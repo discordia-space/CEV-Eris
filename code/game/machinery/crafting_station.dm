@@ -14,8 +14,8 @@
 	var/list/materials_stored = list()
 	var/list/materials_compatible = list (MATERIAL_PLASTEEL, MATERIAL_STEEL, MATERIAL_PLASTIC, MATERIAL_WOOD, MATERIAL_CARDBOARD, MATERIAL_PLASMA)
 	var/list/materials_gunpart = list(MATERIAL_PLASTEEL = 5)
-	var/list/materials_armorpart = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 20, MATERIAL_WOOD = 20, MATERIAL_CARDBOARD = 20)
-	var/list/materials_ammo = list(MATERIAL_STEEL = 10, MATERIAL_CARDBOARD = 5)
+	var/list/materials_armorpart = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 20)
+	var/list/materials_ammo = list(MATERIAL_STEEL = 10, MATERIAL_CARDBOARD = 1)
 	var/list/materials_rocket = list(MATERIAL_PLASMA = 5, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 10)
 
 	// A vis_contents hack for materials loading animation.
