@@ -45,6 +45,8 @@
 
 /datum/surgery_step/robotic/fix_brute/can_use(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	if(..())
+		if(organ.owner.wearing_rig)
+			return FALSE
 		if(organ.brute_dam <= 0)
 			to_chat(user, SPAN_NOTICE("The hull of [organ.get_surgery_name()] is undamaged!"))
 			return SURGERY_FAILURE
