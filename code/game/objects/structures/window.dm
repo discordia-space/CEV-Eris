@@ -21,6 +21,8 @@
 	var/silicate = 0 // number of units of silicate
 	var/no_color = FALSE //If true, don't apply a color to the base
 
+	atmos_canpass = CANPASS_PROC
+
 /obj/structure/window/can_prevent_fall()
 	return !is_fulltile()
 

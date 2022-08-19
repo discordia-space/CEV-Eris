@@ -32,6 +32,7 @@
 	var/diffused_for = 0
 	var/floorOnly = FALSE
 	var/ignoreExAct = FALSE
+	atmos_canpass = CANPASS_PROC
 	alpha = 128
 
 /obj/effect/shield/floor
