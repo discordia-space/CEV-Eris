@@ -216,13 +216,13 @@ var/global/list/modifications_types = list(
 
 /datum/body_modification/organ/assisted/create_organ(var/mob/living/carbon/holder, var/O, var/color)
 	var/obj/item/organ/I = ..(holder,O,color)
-	if(istype(I, /obj/item/organ/internal/appendix))
-		return I
 	I.nature = MODIFICATION_ASSISTED
 	I.name = "assisted [I.name]"
-	I.icon_state = "[I.icon_state]_assisted"
 	I.min_bruised_damage = 15
 	I.min_broken_damage = 35
+	if(istype(I, /obj/item/organ/internal/appendix))
+		return I
+	I.icon_state = "[I.icon_state]_assisted"
 	return I
 
 
