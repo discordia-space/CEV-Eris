@@ -102,7 +102,6 @@ nanoui is used to open and update nano browser uis
 	if (nanoui.send(user.client))
 		to_chat(user, span_warning("Currently sending <b>all</b> nanoui assets, please wait!"))
 		user.client.browse_queue_flush() // stall loading nanoui until assets actualy gets sent
-		to_chat(user, span_info("Nanoui assets have been sent completely."))
 
 
 //Do not qdel nanouis. Use close() instead.
