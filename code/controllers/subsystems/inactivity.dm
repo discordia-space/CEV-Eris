@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(inactivity)
 		client_list = clients.Copy()
 
 	// we don't ru nif we don't have a kick time
-	if(config.kick_inactive = 0)
+	if(config.kick_inactive == 0)
 		can_fire = FALSE
 		return
 
