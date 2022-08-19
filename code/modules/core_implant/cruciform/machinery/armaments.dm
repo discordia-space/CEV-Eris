@@ -118,6 +118,7 @@
 /datum/armament/item/disk/New()
 	if (desc == initial(desc))
 		var/obj/item/computer_hardware/hard_drive/portable/design/D = path
+		D.license = -1
 		var/text = initial(D.disk_name)
 		if (text)
 			desc = text
