@@ -128,6 +128,7 @@
 		"id" = "[id]", "name" = name, "desc" = desc, "time" = time,
 		"category" = category, "adjust_materials" = adjust_materials
 	)
+	// ui_data["icon"] is set in asset code.
 
 	if(length(materials))
 		var/list/RS = list()
