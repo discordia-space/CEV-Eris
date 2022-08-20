@@ -9,11 +9,6 @@ SUBSYSTEM_DEF(inactivity)
 	if (!resumed)
 		client_list = clients.Copy()
 
-	// we don't ru nif we don't have a kick time
-	if(config.kick_inactive == 0)
-		can_fire = FALSE
-		return
-
 	while(client_list.len)
 		var/client/C = client_list[client_list.len]
 		client_list.len--
