@@ -1353,9 +1353,9 @@
 
 /obj/structure/disposalpipe/trunk/Destroy()
 	// Unlink trunk and disposal so that objets are not sent to nullspace
-	if (linked)
-		var/obj/machinery/disposal/D = linked
-		D?.trunk = null
+	var/obj/machinery/disposal/D = linked
+	if (istype(D))
+		D.trunk = null
 	linked = null
 	return ..()
 
