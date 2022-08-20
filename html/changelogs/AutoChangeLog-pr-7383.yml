@@ -1,5 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - rscadd: Added new robotic  and assisted sprites for organs
-  - balance: Robotic remove item now uses bolt turning instead of clamping

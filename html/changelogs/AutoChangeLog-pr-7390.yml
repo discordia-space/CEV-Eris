@@ -1,7 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Gas overlay inconsistencies with ZAS
-  - bugfix: Fixed ZAS-zone rebuilding
-  - code_imp: Ported a new system for handling gas movement
-  - code_imp: Ported a new system for handling gas rendering

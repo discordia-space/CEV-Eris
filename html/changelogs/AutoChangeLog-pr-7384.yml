@@ -1,4 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - tweak: makes smoke not lose reagents anymore when some are transferred to a mob.

@@ -1,6 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - tweak: Examining now opens the examine tab
-  - rscadd: Added descriptions to a lot of items
-  - balance: Unpowered doors can be unbolted using a hammering tool
