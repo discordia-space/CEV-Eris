@@ -197,12 +197,7 @@ var/global/list/big_deepmaint_room_templates = list()
 /obj/procedural/dungenerator/deepmaint
 	name = "Deep Maint Gen"
 
-// Skip deepmaint. DO NOT REMOVE ELSE, it becomes unreachable
-#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
-/obj/procedural/dungenerator/deepmaint/New()
-	log_test("Skipping deepmaint generation for unit tests")
-	return
-#else
+
 /obj/procedural/dungenerator/deepmaint/New()
 	while(1)
 		if(Master.current_runlevel)
@@ -252,5 +247,4 @@ var/global/list/big_deepmaint_room_templates = list()
 		generate.populateCorridors()
 		generate.makeLadders()
 		testing("Finished procedural generation of [name]. [generate.errString(generate.out_error)] -  Z-level [z], in [(REALTIMEOFDAY - start) / 10] seconds.")
-#endif
 
