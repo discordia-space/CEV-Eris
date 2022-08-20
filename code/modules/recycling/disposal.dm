@@ -1344,19 +1344,20 @@
 	icon_state = "pipe-t"
 	var/obj/linked 	// the linked obj/machinery/disposal or obj/disposaloutlet
 
-/obj/structure/disposalpipe/trunk/New()
-	..()
+/obj/structure/disposalpipe/trunk/Initialize()
+	. = ..()
 	pipe_dir = dir
-	spawn(1)
+	
+	INVOKE_ASYNC(src, .proc/getlinked)
 		getlinked()
 
 	update()
-	return
 
 /obj/structure/disposalpipe/trunk/Destroy()
 	// Unlink trunk and disposal so that objets are not sent to nullspace
-	var/obj/machinery/disposal/D = linked
-	D.trunk = null
+	if (linked)
+		var/obj/machinery/disposal/D = linked
+		D.trunk = null
 	linked = null
 	return ..()
 
