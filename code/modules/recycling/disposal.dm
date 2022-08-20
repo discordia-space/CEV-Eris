@@ -1355,7 +1355,7 @@
 	// Unlink trunk and disposal so that objets are not sent to nullspace
 	if (linked)
 		var/obj/machinery/disposal/D = linked
-		D.trunk = null
+		D?.trunk = null
 	linked = null
 	return ..()
 
