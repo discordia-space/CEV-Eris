@@ -1,0 +1,6 @@
+author: assortedbeads
+delete-after: true
+changes:
+  - balance: RXB damage now 44 instead of 55
+  - balance: RXB ap now 27 instead of 30
+  - balance: RXB charge cost now 100 instead of 50
