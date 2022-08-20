@@ -453,11 +453,10 @@
 	dirs = list(
 		"nano/js/",
 		"nano/css/",
-		"nano/templates/",
 		"nano/images/",
+		"nano/templates/",
 		"nano/images/status_icons/",
 		"nano/images/modular_computers/",
-		"nano/images/eris/",
 	)
 
 /datum/asset/simple/directories/images_news
@@ -473,9 +472,8 @@
 		var/list/filenames = flist(path)
 		for(var/filename in filenames)
 			if(copytext(filename, length(filename)) != "/") // Ignore directories.
-				var/realpath = "[path][filename]"
-				if(fexists(realpath))
-					assets[filename] = file(realpath)
+				if(fexists(path + filename))
+					assets[filename] = file(path + filename)
 	..()
 
 /datum/asset/simple/images_map
