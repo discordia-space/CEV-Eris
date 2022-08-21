@@ -28,33 +28,34 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_pm_panel, R_ADMIN|R_MOD|R_MENTOR, FALSE)
 				targets["[T.mob.real_name](as [T.mob.name]) - [T]"] = T
 		else
 			targets["(No Mob) - [T]"] = T
-	var/list/sorted = sortList(targets)
-	var/target = input(src,"To whom shall we send a message?","Admin PM",null) in sorted|null
+	var/target = input(src,"To whom shall we send a message?","Admin PM",null) as null|anything in sortList(targets)
 	cmd_admin_pm(targets[target],null)
-
-
 
 //takes input from cmd_admin_pm_context, cmd_admin_pm_panel or /client/Topic and sends them a PM.
 //Fetching a message if needed. src is the sender and C is the target client
-
 /client/proc/cmd_admin_pm(var/client/C, var/msg = null, var/type = "PM")
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<font color='red'>Error: Private-Message: You are unable to use PM-s (muted).</font>")
+		to_chat(src, span_danger("Error: Admin-PM: You are unable to use admin PM-s (muted)."))
 		return
 
 	if(!istype(C,/client))
-		if(holder)	to_chat(src, "<font color='red'>Error: Private-Message: Client not found.</font>")
-		else		to_chat(src, "<font color='red'>Error: Private-Message: Client not found. They may have lost connection, so try using an adminhelp!</font>")
+		if(holder)
+			to_chat(src, "<font color='red'>Error: Private-Message: Client not found.</font>")
+		else
+			to_chat(src, "<font color='red'>Error: Private-Message: Client not found. They may have lost connection, so try using an adminhelp!</font>")
 		return
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
 		msg = input(src,"Message:", "Private message to [key_name(C, 0, holder ? 1 : 0)]") as text|null
 
-		if(!msg)	return
+		if(!msg)
+			return
 		if(!C)
-			if(holder)	to_chat(src, "<font color='red'>Error: Admin-PM: Client not found.</font>")
-			else		to_chat(src, "<font color='red'>Error: Private-Message: Client not found. They may have lost connection, so try using an adminhelp!</font>")
+			if(holder)
+				to_chat(src, "<font color='red'>Error: Admin-PM: Client not found.</font>")
+			else
+				to_chat(src, "<font color='red'>Error: Private-Message: Client not found. They may have lost connection, so try using an adminhelp!</font>")
 			return
 
 	if (src.handle_spam_prevention(msg,MUTE_ADMINHELP))
@@ -98,8 +99,9 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_pm_panel, R_ADMIN|R_MOD|R_MENTOR, FALSE)
 					else
 						adminhelp(reply)													//sender has left, adminhelp instead
 				return
+
+	to_chat(C, "<span class='pm'><span class='in'>" + create_text_tag("pm_in", "", C) + " <b>\[[recieve_pm_type] PM\]</b> <span class='name'>[key_name(src, TRUE, C.holder ? 1 : 0)]</span>: <span class='message linkify'>[msg]</span></span></span>")
 	to_chat(src, "<span class='pm'><span class='out'>" + create_text_tag("pm_out_alt", "PM", src) + " to <span class='name'>[get_options_bar(C, holder ? 1 : 0, holder ? 1 : 0, 1)]</span>: <span class='message linkify'>[msg]</span></span></span>")
-	to_chat(C, "<span class='pm'><span class='in'>" + create_text_tag("pm_in", "", C) + " <b>\[[recieve_pm_type] PM\]</b> <span class='name'>[get_options_bar(src, C.holder ? 1 : 0, C.holder ? 1 : 0, 1)]</span>: <span class='message linkify'>[msg]</span></span></span>")
 
 	//play the recieving admin the adminhelp sound (if they have them enabled)
 	//non-admins shouldn't be able to disable this

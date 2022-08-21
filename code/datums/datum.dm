@@ -36,6 +36,9 @@
 
 	var/signal_enabled = FALSE
 
+	/// Datum level flags
+	var/datum_flags = NONE
+
 	/// A weak reference to another datum
 	var/datum/weakref/weak_reference
 
@@ -58,9 +61,11 @@
 // This should be overridden to remove all references pointing to the object being destroyed.
 // Return the appropriate QDEL_HINT; in most cases this is QDEL_HINT_QUEUE.
 /datum/proc/Destroy(force=FALSE)
-	tag = null
 	var/list/timers = active_timers
 	active_timers = null
+	tag = null
+	datum_flags &= ~DF_USE_TAG //In case something tries to REF us
+	weak_reference = null //ensure prompt GCing of weakref.
 	for(var/thing in timers)
 		var/datum/timedevent/timer = thing
 		if (timer.spent)
