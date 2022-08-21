@@ -1,0 +1,33 @@
+<div class='notice' id='SpecialOffer'>
+	{{if data.offers}}
+		<h3>Special Offers{{if data.offer_time}} (time left: {{:data.offer_time}}){{/if}}</h3>
+		<table class='item'>
+			<tr>
+				<th>Station
+				<th>Name
+				{{if data.prg_type != "ordering"}}
+					<th>Price
+				{{/if}}
+				<th>Amount
+				{{if data.prg_type != "ordering"}}
+					<th>Send
+				{{/if}}
+			{{for data.offers}}
+				{{if value.name}}
+				<tr>
+					<td>{{:value.station}}
+					<td>{{:value.name}}
+					{{if data.prg_type != "ordering"}}
+						<td>{{:value.price}}
+					{{/if}}
+					<td>{{:(isNaN(value.available) ? '' : +value.available + '/') + value.amount}}
+					{{if data.prg_type != "ordering"}}
+						<td style="width: 0">{{:helper.link("", 'check', {'PRG_offer_fulfill' : value.index, 'PRG_offer_fulfill_path' : value.path}, (value.available >= value.amount && value.amount > 0) ? null : 'disabled')}}
+					{{/if}}
+				{{/if}}
+			{{/for}}
+		</table>
+	{{else}}
+		No offers found.
+	{{/if}}
+</div>

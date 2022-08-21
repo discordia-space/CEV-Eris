@@ -200,7 +200,7 @@
 // Trade Catalog Console
 /obj/item/modular_computer/console/preset/trade_catalog/install_default_programs()
 	..()
-	hard_drive.store_file(new /datum/computer_file/program/trade_catalog())
+	hard_drive.store_file(new /datum/computer_file/program/trade/catalog())
 	set_autorun("trade_catalog")
 
 //Dock control

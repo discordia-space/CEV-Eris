@@ -2,12 +2,14 @@
 	name_pool = list(
 		"MAV \'Caduceus\'" = "Moebius Aid Vessel \'Caduceus\': \"Hello there, we are from the Old Sol Republic. We will be leaving the system shortly but we can offer you medical supplies in the meantime.\"."
 	)
-	icon_states = "moe_capital"
 	forced_overmap_zone = list(
 		list(20, 22),
 		list(20, 25)
 	)
+	icon_states = list("moe_destroyer", "ship")
 	uid = "moe_basic"
+	tree_x = 0.42
+	tree_y = 0.9
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS

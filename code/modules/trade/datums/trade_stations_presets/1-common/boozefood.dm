@@ -2,7 +2,10 @@
 	name_pool = list(
 		"ATB \'Vermouth\'" = "Aster's Trade Beacon \'Vermouth\': \"Best beverages, ingredients for your cooks, and anything that is needed for your private bars and more!\""
 	)
+	icon_states = list("htu_station", "station")
 	uid = "commissary"
+	tree_x = 0.5
+	tree_y = 0.9
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS

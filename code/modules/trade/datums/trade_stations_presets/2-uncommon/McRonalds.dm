@@ -2,7 +2,10 @@
 	name_pool = list(
 		"McTB \'Dionis\'" = "\'McRonalds\' Trade Beacon \'Dionis\'. You hope they still have Happy Meals with a toy."
 	)
+	icon_states = list("htu_station", "station")
 	uid = "mcronalds"
+	tree_x = 0.46
+	tree_y = 0.7
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = COMMON_GOODS

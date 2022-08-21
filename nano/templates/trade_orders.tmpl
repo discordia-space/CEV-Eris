@@ -1,0 +1,137 @@
+{{if data.current_order}}
+	{{if data.account}}
+		<div class="item" style="margin: 0px 0 0 0">
+			<table class="fixed" style="width: 60%; margin-left: 20%; background: #000000; border: 1px solid #40628a">
+				<tr>
+					<td>
+						<div class="item">
+							<div class="itemLabel">
+								Requesting Account:
+							</div>
+							<div class="itemContent" style="text-align: center">
+								<span class="average">{{:data.requesting_acct}}</span>
+							</div>
+						</div>
+				<tr>
+					<td>
+						<div class="item">
+							<div class="itemLabel">
+								{{if data.requesting_acct == data.account}}
+									{{:helper.link('', 'document', {'PRG_reason' : 1})}}
+								{{/if}}
+								Reason(s) :
+							</div>
+							<div class="itemContent" style="text-align: center">
+								{{:data.reason}}
+							</div>
+						</div>
+				<tr>
+					<td>
+						<div class="item">
+							<div class="itemLabel">
+								Cost to Purchase:
+							</div>
+							<div class="itemContent" style="text-align: center">
+								{{:data.order_cost}}
+							</div>
+						</div>
+				<tr>
+					<td>
+						<div class="item">
+							<div class="itemLabel">
+								Handling Fee:
+							</div>
+							<div class="itemContent" style="text-align: center">
+								{{:data.handling_fee}}
+							</div>
+						</div>
+				<tr>
+					<td>
+						<div class="item">
+							<div class="itemLabel">
+								Contents:
+							</div>
+							<div class="itemContent" style="text-align: center">
+								<div class="link withToolTip" style="float: none">
+									View
+									<span class="ImTooltip">
+										<ul>
+											{{:data.order_contents}}
+										</ul>
+									</span>
+								</div>
+							</div>
+						</div>
+			</table>
+		</div>
+	{{/if}}
+{{/if}}
+<table class='item' style="background: #000000;border: 1px solid #40628a">
+	<tr class="bottom_bordered">
+		<td>Requesting Account
+		<td>Reason(s)
+		<td>Cost to Purchase
+		<td>Handling Fee
+		<td>Contents
+		<td>Actions
+	{{for data.order_data}}
+		<tr>
+			<td>{{:value.requesting_acct}}
+			<td class="link withToolTip">
+				View
+				<span class="ImTooltip">
+					<ul>
+						{{:value.reason}}
+					</ul>
+				</span>
+			<td>{{:value.order_cost}}
+			<td>{{:value.handling_fee}}
+			<td class="link withToolTip">
+				View
+				<span class="ImTooltip">
+					<ul>
+						{{:value.order_contents}}
+					</ul>
+				</span>
+			<td>
+				{{:helper.link("View Order", null, {'PRG_view_order' : value.id})}}
+				{{if data.is_all_access}}
+					{{:helper.link("Purchase", null, {'PRG_approve_order' : value.id})}}
+					{{:helper.link("Deny", null, {'PRG_remove_order' : value.id})}}
+				{{else}}
+					{{:helper.link("Rescind", null, {'PRG_remove_order' : value.id})}}
+				{{/if}}
+				{{:helper.link("Save", null, {'PRG_save_order' : value.id})}}
+	{{/for}}
+</table>
+<table class='item'>
+	<tr>
+		<td>
+			<div style="padding: 0 0 0 40%">
+				{{:helper.link("", 'arrowthickstop-1-w', {'PRG_page_first' : 1}, data.order_page == 1 ? 'disabled' : null)}}
+			</div>
+		<td>
+			<div style="padding: 0 0 0 40%">
+				{{:helper.link("", 'arrowthick-1-w', {'PRG_page_prev_10' : 1}, data.order_page == 1 ? 'disabled' : null)}}
+			</div>
+		<td>
+			<div style="padding: 0 0 0 40%">
+				{{:helper.link("", 'arrow-1-w', {'PRG_page_prev' : 1}, data.order_page == 1 ? 'disabled' : null)}}
+			</div>
+		<td>
+			<div style="padding: 0 0 0 40%">
+				{{:helper.link(data.order_page, null, {'PRG_page_select' : data.page_max})}}
+			</div>
+		<td>
+			<div style="padding: 0 0 0 40%">
+				{{:helper.link("", 'arrow-1-e', {'PRG_page_next' : data.page_max}, data.order_page == data.page_max ? 'disabled' : null)}}
+			</div>
+		<td>
+			<div style="padding: 0 0 0 40%">
+				{{:helper.link("", 'arrowthick-1-e', {'PRG_page_next_10' : data.page_max}, data.order_page == data.page_max ? 'disabled' : null)}}
+			</div>
+		<td>
+			<div style="padding: 0 0 0 40%">
+				{{:helper.link("", 'arrowthickstop-1-e', {'PRG_page_last' : data.page_max}, data.order_page == data.page_max ? 'disabled' : null)}}
+			</div>
+</table>

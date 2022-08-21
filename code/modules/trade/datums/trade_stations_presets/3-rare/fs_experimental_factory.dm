@@ -2,7 +2,10 @@
 	name_pool = list(
 		"FSTB \'Suoh\'" = "Frozen Star Trade Beacon \'Suoh\': \"Hello there! We are looking for beta testers of our experimental weapons and upgrades. Sign up now!\""
 	)
+	icon_states = list("htu_station", "station")
 	uid = "fs_experimental"
+	tree_x = 0.74
+	tree_y = 0.6
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = RARE_GOODS

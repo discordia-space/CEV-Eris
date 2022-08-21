@@ -1,0 +1,49 @@
+<div class='nanoMap' style='padding: 25px 50px;'>
+	{{for data.cart_stations}}
+		{{:helper.link(value.name, (data.current_cart_station == value.index ? 'carat-1-e' : null), {'PRG_cart_station': value.index}, (data.current_cart_station == value.index ? 'selected' : null))}}
+	{{empty}}
+		There are no goods in the cart.
+	{{/for}}
+	<br>
+	<hr>
+	<br>
+	{{if data.current_cart_station}}
+		{{for data.cart_categories}}
+			{{:helper.link(value.name, (data.current_cart_category == value.index ? 'folder-open' : 'folder-collapsed'), {'PRG_cart_category': value.index}, (data.current_cart_category == value.index ? 'selected' : null))}}
+		{{/for}}
+		<br><br>
+		{{if data.current_cart_category}}
+			{{if data.cart_goods}}
+				<table class='item'>
+					<tr class="bottom_bordered">
+						<td>Name
+						<td>Price
+						<td>Available in Station
+						<td>Cart
+					{{for data.cart_goods}}
+						<tr>
+							<td>{{:value.name}}
+							<td>{{:value.price}}
+							<td>{{:value.amount_available}}
+							<td>
+								{{:helper.link("", 'plus', {'PRG_cart_add' : value.index}, value.amount_available > value.count ? null : 'disabled')}}
+								{{:helper.link(value.count, null, {'PRG_cart_add_input' : value.index})}}</div>
+								{{:helper.link("", 'minus', {'PRG_cart_remove' : value.index}, value.count ? null : 'disabled')}}
+					{{/for}}
+				</table>
+			{{else}}
+				Select a category.
+			{{/if}}
+		{{/if}}
+	{{/if}}
+</div>
+Cart:<br>
+{{if data.prg_type != "ordering"}}
+	{{:helper.link(data.total, 'cart', {"PRG_receive" : 1}, data.total ? null : 'disabled')}}
+	{{:helper.link("Create Order", 'comment', {"PRG_build_order" : 1}, data.total ? null : 'disabled')}}
+{{else}}
+	{{:helper.link(data.total, 'comment', {"PRG_build_order" : 1}, data.total ? null : 'disabled')}}
+{{/if}}
+{{:helper.link("Save", 'disk', {'PRG_cart_save' : 1})}}
+{{:helper.link("Load", 'print', {'PRG_cart_load' : 1})}}
+{{:helper.link('Reset', 'trash', {'PRG_cart_reset' : 1})}}
