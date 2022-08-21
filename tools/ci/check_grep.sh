@@ -6,11 +6,14 @@ shopt -s globstar
 
 st=0
 
+# if git grep -P "\r\n"; then
+#     echo "ERROR: CRLF line endings detected. Please stop using the webeditor, and fix it using a desktop Git client."
+# 	st = 1
+# fi;
 if grep -El '^\".+\" = \(.+\)' maps/**/*.dmm;	then
     echo "ERROR: Non-TGM formatted map detected. Please convert it using Map Merger!"
     st=1
 fi;
-# todo: fixme
 # if grep -P '^\ttag = \"icon' maps/**/*.dmm;	then
 #     echo "ERROR: tag vars from icon state generation detected in maps, please remove them."
 #     st=1
@@ -28,6 +31,10 @@ fi;
 #     echo "ERROR: vareditted cables detected, please remove them."
 #     st=1
 # fi;
+# if grep -P '\td[1-2] =' maps/**/*.dmm;	then
+#     echo "ERROR: d1/d2 cable variables detected in maps, please remove them."
+#     st=1
+# fi;
 # if grep -P '^/area/.+[\{]' maps/**/*.dmm;	then
 #     echo "ERROR: Vareditted /area path use detected in maps, please replace with proper paths."
 #     st=1
@@ -36,7 +43,7 @@ if grep -P '\W\/turf\s*[,\){]' maps/**/*.dmm; then
     echo "ERROR: base /turf path use detected in maps, please replace with proper paths."
     st=1
 fi;
-# this is gonna block out the sun
+# ci todo
 # if grep -P '^/*var/' code/**/*.dm; then
 #     echo "ERROR: Unmanaged global var use detected in code, please use the helpers."
 #     st=1
@@ -61,7 +68,6 @@ fi;
 #         st=1
 #     fi;
 # done < <(find . -type f -name '*.dm')
-# todo: fixme
 # if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' code/**/*.dm; then
 #     echo "changed files contains proc argument starting with 'var'"
 #     st=1
