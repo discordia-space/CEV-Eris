@@ -69,11 +69,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if(ismob(C)) 		//Old stuff can feed-in mobs instead of clients
 			var/mob/M = C
 			C = M.client
-		if(istext(C))
 		// its a fucking ckey
+		if(istext(C))
 			C = directory[C]
 
-		testing("REF: [href_list["priv_msg"]] |C: [C] |IS KEY: [istext(C)] |IS CLIENT: [istype(C, /client)] |WAS IT A MOB? [ismob(locate(href_list["priv_msg"]))]")
 		cmd_admin_pm(C,null)
 		return
 
