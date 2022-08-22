@@ -5,7 +5,7 @@
 
 
 // Commented out due to its high unreliability (caused by the way world initialization is caused and how unreliable SSradio is itself)
-// Should be brought back once we get proper framework for checking an Area's APC and air alarms.
+// Should be brought back once we get proper framework for checking an Area's APC and air alarms. - SPCR 2022
 
 /*
 /datum/unit_test/area_contents/Run()
