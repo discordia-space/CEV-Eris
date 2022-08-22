@@ -3,6 +3,11 @@
  *  Zone checks / APC / Scrubber / Vent.
  */
 
+
+// Commented out due to its high unreliability (caused by the way world initialization is caused and how unreliable SSradio is itself)
+// Should be brought back once we get proper framework for checking an Area's APC and air alarms.
+
+/*
 /datum/unit_test/area_contents/Run()
 	var/static/list/exempt_areas = typesof(
 		/area/space, /area/skipjack_station,
@@ -23,6 +28,7 @@
 		if(A.z == 1 && !(A.type in exempt_areas))
 			TEST_ASSERT(!isnull(A.apc) || (A.type in exempt_from_apc), "[A.name]([A.type]) lacks an APC.")
 			TEST_ASSERT((A.air_scrub_info?.len && A.air_vent_info?.len) || (A.type in exempt_from_atmos), "[A.name]([A.type]) lacks an air scrubber [(!A.air_scrub_info?.len && !A.air_vent_info?.len) ? "and" : "or"] a vent.")
+*/
 
 /*
 /datum/unit_test/wire_stacking/Run()
