@@ -29,7 +29,7 @@
 			if(A.type in exempt_from_atmos)
 				continue
 			if(!(A.air_scrub_info?.len && A.air_vent_info?.len))
-				TEST_FAIL("[A.name]([A.type]) lacks an air scrubber [(!A.air_scrub_info?.len && !A.air_vent_info?.len) ? "and" : "or"] a vent.")
+				TEST_FAIL("[A.name]([A.type]) [A.air_scrub_info?.len == 0 ? "lacks a air scrubber" : ""] [A.air_vent_info?.len == 0 ? "lacks a air vent" : " "]")
 			//TEST_ASSERT((A.air_scrub_info?.len && A.air_vent_info?.len) || (A.type in exempt_from_atmos), "[A.name]([A.type]) lacks an air scrubber [(!A.air_scrub_info?.len && !A.air_vent_info?.len) ? "and" : "or"] a vent.")
 
 /*

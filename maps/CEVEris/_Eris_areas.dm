@@ -683,10 +683,6 @@
 	icon_state = "erisred"
 	area_light_color = COLOR_LIGHTING_SCI_DARK
 
-/area/eris/engineering/wastingroom
-	name = "Wasting Room"
-	icon_state = "erisred"
-
 /area/eris/engineering/techstorage
 	name = "Tools Storage"
 	icon_state = "erisred"

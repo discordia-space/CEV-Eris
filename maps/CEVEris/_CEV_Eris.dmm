@@ -60876,9 +60876,6 @@
 /obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/hallway/main/section2)
-"cQU" = (
-/turf/simulated/wall/r_wall,
-/area/eris/engineering/break_room)
 "cQV" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
@@ -207625,7 +207622,7 @@ cLV
 etf
 cgZ
 ciA
-cQU
+cLV
 cfN
 cfN
 cLV
