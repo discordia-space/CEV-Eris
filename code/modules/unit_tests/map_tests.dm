@@ -29,8 +29,8 @@
 			if(A.type in exempt_from_atmos)
 				continue
 			var/list/search = A.GetAllContents(3, FALSE)
-			var/foundScrubber = search.Find(/obj/machinery/atmospherics/unary/vent_scrubber)
-			var/foundVent = search.Find(/obj/machinery/atmospherics/binary/dp_vent_pump)
+			var/foundScrubber = search.Find(/obj/machinery/atmospherics/unary/vent_scrubber/on)
+			var/foundVent = search.Find(/obj/machinery/atmospherics/unary/vent_pump/on)
 			if(foundScrubber && foundVent)
 				continue
 			TEST_FAIL("[A.name]([A.type]) [foundScrubber ? "" : "lacks a air scrubber"] [foundVent ? "" : "lacks an air vent"]")
