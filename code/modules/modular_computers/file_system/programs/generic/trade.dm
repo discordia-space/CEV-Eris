@@ -402,7 +402,7 @@
 		if(href_list["PRG_receiving"])
 			var/list/beacons_by_id = list()
 			for(var/obj/machinery/trade_beacon/receiving/beacon in SStrade.beacons_receiving)
-				if(get_area(beacon) == get_area(computer))
+				if(get_area(beacon) == get_area(computer) || program_type == "master")
 					var/beacon_id = beacon.get_id()
 					beacons_by_id.Insert(beacon_id, beacon_id)
 					beacons_by_id[beacon_id] = beacon
@@ -413,7 +413,7 @@
 		if(href_list["PRG_sending"])
 			var/list/beacons_by_id = list()
 			for(var/obj/machinery/trade_beacon/sending/beacon in SStrade.beacons_sending)
-				if(get_area(beacon) == get_area(computer))
+				if(get_area(beacon) == get_area(computer) || program_type == "master")
 					var/beacon_id = beacon.get_id()
 					beacons_by_id.Insert(beacon_id, beacon_id)
 					beacons_by_id[beacon_id] = beacon

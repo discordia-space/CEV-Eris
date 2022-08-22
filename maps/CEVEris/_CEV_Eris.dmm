@@ -53134,7 +53134,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/item/modular_computer/console/preset/trade_catalog,
+/obj/item/modular_computer/console/preset/trade,
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/quartermaster/office)
 "cxL" = (
