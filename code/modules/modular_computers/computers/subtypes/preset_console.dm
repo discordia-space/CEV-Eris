@@ -168,7 +168,6 @@
 	hard_drive.store_file(new/datum/computer_file/program/nttransfer())
 	hard_drive.store_file(new/datum/computer_file/program/crew_manifest())
 	hard_drive.store_file(new/datum/computer_file/program/camera_monitor())
-	hard_drive.store_file(new/datum/computer_file/program/trade/order())
 
 
 // Civilian Offices

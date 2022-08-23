@@ -156,10 +156,9 @@
 
 	var/list/current_log = list()
 	var/is_all_access = FALSE
-	var/account = "[PRG.account.get_name()] #[PRG.account.account_number]"
 
 	if(PRG.account)
-		.["account"] = account
+		.["account"] = "[PRG.account.get_name()] #[PRG.account.account_number]"
 		var/dept_id = PRG.account.department_id
 		if(dept_id)
 			is_all_access = (dept_id == DEPARTMENT_GUILD) ? TRUE : FALSE
@@ -181,10 +180,12 @@
 			current_log = list()
 
 	if(!is_all_access)
+		var/list/sanitized_log = list()
 		for(var/log_entry in current_log)
 			var/list/log_data = log_entry
-			if(log_data["ordering_acct"] != account)
-				current_log -= log_entry
+			if(log_data["ordering_acct"] == PRG.account.get_name())
+				sanitized_log |= list(log_data)
+		current_log = sanitized_log
 
 	var/logs_per_page = 10
 	var/logs_to_display = logs_per_page
@@ -208,6 +209,5 @@
 #undef SHIPPING_SCREEN
 #undef EXPORT_SCREEN
 #undef OFFER_SCREEN
-#undef SALE_SCREEN
 #undef ORDER_SCREEN
 #undef SCREEN_LIST

@@ -423,7 +423,7 @@
 
 		if(account)
 			if(href_list["PRG_offer_fulfill"])
-				if(get_area(sending) != get_area(computer))
+				if(get_area(sending) != get_area(computer) && program_type != "master")
 					to_chat(usr, SPAN_WARNING("ERROR: Sending beacon is too far from \the [computer]."))
 					return
 				var/datum/trade_station/S = LAZYACCESS(SStrade.discovered_stations, text2num(href_list["PRG_offer_fulfill"]))
@@ -435,7 +435,7 @@
 				return TRUE
 
 			if(href_list["PRG_offer_fulfill_all"])
-				if(get_area(sending) != get_area(computer))
+				if(get_area(sending) != get_area(computer) && program_type != "master")
 					to_chat(usr, SPAN_WARNING("ERROR: Sending beacon is too far from \the [computer]."))
 					return
 				var/is_slaved = (program_type == "slave") ? TRUE : FALSE
@@ -447,7 +447,7 @@
 				if(!account)
 					to_chat(usr, SPAN_WARNING("ERROR: no account linked."))
 					return
-				if(get_area(receiving) != get_area(computer))
+				if(get_area(receiving) != get_area(computer) && program_type != "master")
 					to_chat(usr, SPAN_WARNING("ERROR: Receiving beacon is too far from \the [computer]."))
 					return
 				SStrade.buy(receiving, account, shoppinglist)
@@ -456,7 +456,7 @@
 
 		if(sending)
 			if(href_list["PRG_export"])
-				if(get_area(sending) != get_area(computer))
+				if(get_area(sending) != get_area(computer) && program_type != "master")
 					to_chat(usr, SPAN_WARNING("ERROR: Sending beacon is too far from \the [computer]."))
 					return
 				SStrade.export(sending)
