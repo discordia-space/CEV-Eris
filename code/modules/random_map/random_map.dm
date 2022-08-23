@@ -57,7 +57,6 @@ var/global/list/map_count = list()
 
 	// Testing needed to see how reliable this is (asynchronous calls, called during worldgen), DM ref is not optimistic
 	if(seed)
-		rand_seed(seed)
 		priority_process = 1
 
 	for(var/i = 0;i<max_attempts;i++)
