@@ -166,7 +166,7 @@
 	name = "Fourth Section Deck 2 Central Maintenance"
 	icon_state = "section4deck4central"
 
-/area/eris/maintenance/section4deck5port
+/area/eris/maintenance/section4deck5port1
 	name = "Fourth Section Deck 1 Port Maintenance"
 	icon_state = "section4deck5port"
 
