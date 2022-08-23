@@ -21,7 +21,7 @@
 
 	for(var/area/A in GLOB.map_areas)
 		if(isStationLevel(A.z) && !(A.type in exempt_areas))
-			if(A.type in exempt_from_apc)
+			if(!(A.type in exempt_from_apc))
 				if(A.apc == null)
 					TEST_FAIL("[A.name]([A.type]) lacks an APC")
 			//TEST_ASSERT((A.apc) || (A.type in exempt_from_apc), "[A.name]([A.type]) lacks an APC")
