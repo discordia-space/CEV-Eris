@@ -391,6 +391,7 @@
 	. = ..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/our_man = L
+		our_man.adjustBrainLoss(50) // brain fried!
 		if(our_man.stats.getPerk(PERK_PARTYDROPS_ATOMICTOUCH))
 			our_man.stats.removePerk(PERK_PARTYDROPS_ATOMICTOUCH)
 
@@ -438,6 +439,11 @@
 /datum/reagent/stim/menace/on_mob_delete(mob/living/L)
 	if(ishuman(L))
 		var/mob/living/carbon/human/our_man = L
+		var/obj/item/organ/internal/heart/le_boom = pick(our_man.organ_list_by_process(OP_HEART))
+		// severe heart damage
+		if(le_boom)
+			le_boom.take_damage(80, FALSE)
+		our_man.adjustHalLoss(50) // pain spike
 		if(our_man.stats.getPerk(PERK_MENACE_DEATHWISH))
 			our_man.stats.removePerk(PERK_MENACE_DEATHWISH)
 

@@ -16,7 +16,6 @@
 
 /datum/perk/chem/deathwish/remove()
 	holder.shock_resist -= 2
-	holder.setHalLoss(50)
 	holder.a_intent = I_HELP
 	..()
 
