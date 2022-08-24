@@ -278,6 +278,10 @@
 	if(state < GRAB_AGGRESSIVE)
 		if(!allow_upgrade)
 			return
+		if(affecting.stats.getPerk(PERK_MENACE_DEATHWISH))
+			affecting.visible_message(SPAN_DANGER("[affecting] breaks out of [assailant]'s grab with rage!"))
+			assailant.Weaken(2)
+			qdel(src)
 		icon_state = "grabbed1"
 		hud.icon_state = "reinforce_final"
 		state = GRAB_AGGRESSIVE
@@ -415,7 +419,11 @@
 					if(hit_zone == BP_EYES)
 						attack_eye(affecting, assailant)
 					else if(hit_zone == BP_HEAD)
-						headbutt(affecting, assailant)
+						if(user.stats.getPerk(PERK_MENACE_DEATHWISH))
+							if(!snap(affecting, assailant))
+								headbutt(affecting, assailant)
+						else
+							headbutt(affecting, assailant)
 					else if(hit_zone == BP_CHEST)
 						suplex(affecting, assailant)
 					else if(hit_zone == BP_GROIN)

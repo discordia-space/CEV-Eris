@@ -132,6 +132,31 @@
 		loc = null
 		qdel(src)
 
+/obj/item/grab/proc/snap(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
+	if(!ishuman(target))
+		return FALSE
+	// rigs && voidsuits protect from snapping
+	if(target.head)
+		if(istype(target.head, /obj/item/clothing/head/space))
+			return FALSE
+	var/obj/item/organ/external/head/snapped = target.get_organ(BP_HEAD)
+	// Already snapped
+	for(var/obj/item/organ/internal/blood_vessel/blood in snapped.contents)
+		var/all_zero = TRUE
+		if(blood.health > 0)
+			all_zero = FALSE
+		if(all_zero)
+			to_chat(attacker , "You can't snap a head twice!")
+			return FALSE
+	attacker.visible_message(SPAN_DANGER("[attacker] snaps [target]'s neck!"))
+	playsound(src,'sound/weapons/necksnap.ogg', 100, TRUE)
+	for(var/obj/item/organ/internal/blood_vessel/blood in snapped.contents)
+		blood.take_damage(200, FALSE)
+	snapped.take_damage(25, 0, 0 , 0)
+	// ouch
+	target.adjustHalLoss(30)
+	target.adjustOxyLoss(10)
+
 /obj/item/grab/proc/headbutt(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))
 		return

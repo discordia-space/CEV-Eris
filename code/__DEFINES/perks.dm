@@ -36,6 +36,9 @@
 #define PERK_SURE_STEP /datum/perk/oddity/sure_step
 #define PERK_MARKET_PROF /datum/perk/oddity/market_prof
 
+// chemical induced perks
+#define PERK_MENACE_DEATHWISH /datum/perk/chem/deathwish
+#define PERK_PARTYDROPS_ATOMICTOUCH /datum/perk/chem/atomictouch
 // NT perks
 #define PERK_HOLY_LIGHT /datum/perk/nt_oddity/holy_light
 

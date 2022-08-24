@@ -139,6 +139,8 @@
 				return
 
 			var/stat_damage = 3 + max(0, (H.stats.getStat(STAT_ROB) / 10))
+			if(H.stats.getPerk(PERK_MENACE_DEATHWISH))
+				stat_damage += 30 // super punches
 			var/limb_efficiency_multiplier = 1
 			var/block = 0
 			var/accurate = 0
@@ -189,6 +191,9 @@
 					General miss chance also depends on AGI.
 					TODO: proc for melee combat miss chances depending on organ?
 				*/
+				if(stats.getPerk(PERK_MENACE_DEATHWISH))
+					if(prob(40))
+						block = TRUE
 				if(prob(50 - H.stats.getStat(STAT_ROB)))
 					hit_zone = ran_zone(hit_zone)
 				if(prob(25 - H.stats.getStat(STAT_ROB)) && hit_zone != BP_CHEST) // Missed!
@@ -377,4 +382,4 @@
 		spawn(1)
 			qdel(rgrab)
 	return success
-  
+

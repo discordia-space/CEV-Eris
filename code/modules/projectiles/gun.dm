@@ -109,7 +109,10 @@
 		return
 	var/calculated_delay = wield_delay
 	if(ishuman(user))
-		calculated_delay = wield_delay - (wield_delay * (user.stats.getStat(STAT_VIG) / (100 * (wield_delay_factor ? wield_delay_factor : 0.01)))) // wield delay - wield_delay * user vigilance / 100 * wield_factor
+		if(user.stats.getPerk(PERK_MENACE_DEATHWISH))
+			calculated_delay = 0
+		else
+			calculated_delay = wield_delay - (wield_delay * (user.stats.getStat(STAT_VIG) / (100 * (wield_delay_factor ? wield_delay_factor : 0.01)))) // wield delay - wield_delay * user vigilance / 100 * wield_factor
 	if (calculated_delay > 0 && do_after(user, calculated_delay, immobile = FALSE))
 		..()
 	else if (calculated_delay <= 0)
@@ -300,8 +303,11 @@
 			return FALSE
 	return TRUE
 
-/obj/item/gun/proc/twohanded_check(user)
+/obj/item/gun/proc/twohanded_check(mob/living/carbon/human/user)
 	if(twohanded)
+		// STIMMMED UP
+		if(user.stats.getPerk(PERK_MENACE_DEATHWISH))
+			return TRUE
 		if(!wielded)
 			if (world.time >= recentwield + 1 SECONDS)
 				to_chat(user, SPAN_DANGER("The gun is too heavy to shoot in one hand!"))
@@ -485,6 +491,9 @@
 	update_icon()
 
 /obj/item/gun/proc/kickback(mob/living/user, obj/item/projectile/P)
+	// No kickback for stimmed up
+	if(user.stats.getPerk(PERK_MENACE_DEATHWISH))
+		return
 	var/base_recoil = recoil.getRating(RECOIL_BASE)
 	var/brace_recoil = 0
 	var/unwielded_recoil = 0

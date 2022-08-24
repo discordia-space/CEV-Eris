@@ -17,7 +17,7 @@
 	//spawn values
 	bad_type = /obj/item/tool
 	spawn_tags = SPAWN_TAG_TOOL
-	
+
 	price_tag = 20
 
 	var/tool_in_use = FALSE
@@ -325,10 +325,13 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
+		if(H.stats.getPerk(PERK_PARTYDROPS_ATOMICTOUCH))
+			instant_finish_tier = 0 // instant tooling!
 		if(H.shock_stage >= 30)
 			to_chat(user, SPAN_WARNING("Pain distracts you from your task."))
 			fail_chance += round(H.shock_stage/120 * 40)
 			base_time += round(H.shock_stage/120 * 40)
+
 
 
 	//Start time and time spent are used to calculate resource use

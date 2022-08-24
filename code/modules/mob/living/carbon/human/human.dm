@@ -326,6 +326,9 @@ var/list/rank_prefix = list(\
 	if(!def_zone)
 		def_zone = pick(BP_L_ARM, BP_R_ARM)
 
+	if(stats.getPerk(PERK_MENACE_DEATHWISH))
+		shock_damage = 5 // reduced to non-stunning amount , but still does damage
+
 	var/obj/item/organ/external/affected_organ = get_organ(check_zone(def_zone))
 	siemens_coeff *= get_siemens_coefficient_organ(affected_organ)
 
@@ -676,6 +679,9 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/vomit()
 
 	if(!check_has_mouth())
+		return
+	// till we are dead
+	if(stats.getPerk(PERK_MENACE_DEATHWISH))
 		return
 	if(stat == DEAD)
 		return

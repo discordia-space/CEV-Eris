@@ -72,6 +72,9 @@
 		return 0
 	if(species && species.flags & NO_PAIN)
 		return
+	// total pain nullification
+	if(shock_resist == 2)
+		return
 	if(status_flags & HARDCRIT)	//already in hardcrit
 		return
 

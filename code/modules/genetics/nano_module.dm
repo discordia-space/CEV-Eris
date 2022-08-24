@@ -24,6 +24,7 @@
 	var/message = ""
 	var/current_progress = 0
 	var/target_progress = 50
+	var/mob/living/carbon/human/initiator = null
 
 
 /datum/nano_module/program/dna/proc/tick()
@@ -38,6 +39,9 @@
 		return
 
 	current_progress += processing_power
+	// 4 times sppeed booost
+	if(initiator.stats.getPerk(PERK_PARTYDROPS_ATOMICTOUCH))
+		current_progress += processing_power * 3
 
 	if(current_progress >= target_progress)
 		message = "Genome isolation complete." // Whatever that is supposed to mean
@@ -80,6 +84,7 @@
 			if(entry["index"] == href_list["decode"])
 				var/datum/mutation/M = entry["content"]
 				hex = M.hex
+				initiator = usr
 				break
 
 		if(!hex)

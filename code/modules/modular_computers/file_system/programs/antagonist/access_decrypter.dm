@@ -14,6 +14,7 @@
 	var/running = FALSE
 	var/progress = 0
 	var/target_progress = 300
+	var/perk_boosted = FALSE
 	var/datum/access/target_access = null
 	var/list/restricted_access_codes = list(access_change_ids, access_network) // access codes that are not hackable due to balance reasons
 
@@ -25,6 +26,7 @@
 	running = FALSE
 	message = ""
 	progress = 0
+	perk_boosted = FALSE
 	target_access = null
 
 /datum/computer_file/program/access_decrypter/process_tick()
@@ -41,17 +43,20 @@
 		return
 
 	progress += get_speed()
+	if(perk_boosted)
+		progress *= 4 // Nerd power
 
 	if(progress >= target_progress)
-		if(prob(max(STAT_LEVEL_ADEPT - operator_skill, 0) * 3)) // Oops, wrong access
+		if(prob(max(STAT_LEVEL_ADEPT - operator_skill, 0) * 3) && !perk_boosted) // Oops, wrong access
 			var/list/valid_access_values = get_all_station_access()
 			valid_access_values -= restricted_access_codes
 			valid_access_values -= RFID.stored_card.access
 			target_access = get_access_by_id(pick(valid_access_values))
 		RFID.stored_card.access |= target_access.id
 		if(ntnet_global.intrusion_detection_enabled && !prob(get_sneak_chance()))
-			ntnet_global.add_log("IDS WARNING - Unauthorised access to primary keycode database from device: [computer.network_card.get_network_tag()]  - downloaded access codes for: [target_access.desc].")
-			ntnet_global.intrusion_detection_alarm = 1
+			if(!perk_boosted)
+				ntnet_global.add_log("IDS WARNING - Unauthorised access to primary keycode database from device: [computer.network_card.get_network_tag()]  - downloaded access codes for: [target_access.desc].")
+				ntnet_global.intrusion_detection_alarm = 1
 		var/datum/access/cloned_access = target_access
 		reset()
 		message = "Successfully decrypted and saved operational key codes. Downloaded access codes for: [cloned_access.desc]"
@@ -86,7 +91,15 @@
 
 		running = TRUE
 		operator_skill = get_operator_skill(usr, STAT_COG)
+		var/mob/living/carbon/human/sneaky = usr
+		if(sneaky.stats?.getPerk(PERK_PARTYDROPS_ATOMICTOUCH))
+			perk_boosted = TRUE
+		else
+			perk_boosted = FALSE
+
 		if(ntnet_global.intrusion_detection_enabled && !prob(get_sneak_chance()))
+			if(perk_boosted)
+				return 1 // perk saves us!
 			ntnet_global.add_log("IDS WARNING - Unauthorised access attempt to primary keycode database from device: [computer.network_card.get_network_tag()]")
 			ntnet_global.intrusion_detection_alarm = 1
 		return 1

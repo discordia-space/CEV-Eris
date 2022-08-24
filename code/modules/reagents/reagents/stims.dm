@@ -382,6 +382,17 @@
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "party_drops")
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "party_drops")
 	sanity_gain = 1
+	if(volume > 3)
+		M.stats.addPerk(PERK_PARTYDROPS_ATOMICTOUCH)
+	else if (M.stats.getPerk(PERK_PARTYDROPS_ATOMICTOUCH))
+		M.stats.removePerk(PERK_PARTYDROPS_ATOMICTOUCH)
+
+/datum/reagent/stim/party_drops/on_mob_delete(mob/living/L)
+	. = ..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/our_man = L
+		if(our_man.stats.getPerk(PERK_PARTYDROPS_ATOMICTOUCH))
+			our_man.stats.removePerk(PERK_PARTYDROPS_ATOMICTOUCH)
 
 /datum/reagent/stim/party_drops/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC, STIM_TIME, "partyDrops_w")
@@ -418,6 +429,17 @@
 	M.slurring = max(M.slurring, 30)
 	M.add_chemical_effect(CE_SPEECH_VOLUME, 4)
 	sanity_gain = 1
+	if(volume > 3)
+		M.stats.addPerk(PERK_MENACE_DEATHWISH)
+	else if (M.stats.getPerk(PERK_MENACE_DEATHWISH))
+		M.stats.removePerk(PERK_MENACE_DEATHWISH)
+		to_chat(M, SPAN_DANGER("The effects of the menace seem to wear off. You need more to regain maximum potential"))
+
+/datum/reagent/stim/menace/on_mob_delete(mob/living/L)
+	if(ishuman(L))
+		var/mob/living/carbon/human/our_man = L
+		if(our_man.stats.getPerk(PERK_MENACE_DEATHWISH))
+			our_man.stats.removePerk(PERK_MENACE_DEATHWISH)
 
 /datum/reagent/stim/menace/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, STIM_TIME, "menace_w")

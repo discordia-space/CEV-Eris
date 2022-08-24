@@ -139,6 +139,8 @@
 		view_only = round(total_items * (1 - user.stats.getMult(req_sat, 100))/2) +1 // 1 choice per 10 stat + 1
 		if(user.stats.getPerk(/datum/perk/oddity/gunsmith))
 			view_only += 3
+		if(user.stats.getPerk(PERK_PARTYDROPS_ATOMICTOUCH))
+			view_only += 7
 		ui_interact(user)
 		SSnano.update_uis(src)
 
