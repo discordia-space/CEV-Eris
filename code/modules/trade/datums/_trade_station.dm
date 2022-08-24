@@ -276,7 +276,7 @@
 	if(!isnum(income))
 		return
 	wealth += income
-	favor += income * (is_offer ? 1 : 0.125)
+	favor += income * (is_offer ? 1 : 0.25)
 
 	// Unlocks without needing to wait for update tick
 	if(!hidden_inv_unlocked)
