@@ -23,14 +23,16 @@
 	var/static_light = 0
 	var/static_environ
 
+/**
+ * Called when an area loads
+ */
 /area/New()
-	icon_state = ""
-	layer = AREA_LAYER
 	uid = ++global_uid
 	all_areas += src
 	if (ship_area)
 		ship_areas[src] = TRUE //Adds ourselves to the list of all ship areas
 
+	// Some atoms would like to use power in Initialize()
 	if(!requires_power)
 		power_light = 0
 		power_equip = 0
@@ -38,16 +40,30 @@
 
 	sanity = new(src)
 
-	..()
+	return ..()
 
+/*
+ * Initalize this area
+ *
+ * returns INITIALIZE_HINT_LATELOAD
+ */
 /area/Initialize()
-	. = ..()
+	icon_state = ""
+
 	if(!requires_power || !apc)
 		power_light = 0
 		power_equip = 0
 		power_environ = 0
-	power_change()		// all machines set to current power level, also updates lighting icon
 
+	. = ..()
+
+	return INITIALIZE_HINT_LATELOAD
+
+/**
+ * Sets machine power levels in the area
+ */
+/area/LateInitialize()
+	power_change() // all machines set to current power level, also updates icon
 
 /area/proc/get_cameras()
 	var/list/cameras = list()
