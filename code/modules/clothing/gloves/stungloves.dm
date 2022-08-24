@@ -16,6 +16,7 @@
 /obj/item/clothing/gloves/stungloves/Initialize()
 	. = ..()
 	cell = new /obj/item/cell/medium/high(src)
+	AddComponent(/datum/component/clothing_stat_affecting, list(STAT_BIO = -10)) // affects ability to do surgery
 	update_icon()
 
 /obj/item/clothing/gloves/stungloves/get_cell()

@@ -7,6 +7,11 @@
 	price_tag = 500
 	style = STYLE_HIGH
 
+/obj/item/clothing/gloves/captain/Initialize()
+	..()
+	// corporate gloves!
+	AddComponent(/datum/component/clothing_stat_affecting, list(STAT_VIG = 10, STAT_TGH = 5))
+
 /obj/item/clothing/gloves/insulated
 	desc = "These gloves will protect the wearer from electric shock."
 	name = "insulated gloves"
@@ -18,6 +23,11 @@
 	price_tag = 200
 	spawn_tags = SPAWN_TAG_GLOVES_INSULATED
 	style = STYLE_NEG_HIGH // very powergame much unstylish... literal power this time
+
+/obj/item/clothing/gloves/insulated/Initialize()
+	..()
+	// harder to aim with and do surgery . duh.
+	AddComponent(/datum/component/clothing_stat_affecting, list(STAT_VIG = -15, STAT_BIO = -15))
 
 /obj/item/clothing/gloves/insulated/cheap                          //Cheap Chinese Crap
 	desc = "These gloves are cheap copies of the coveted gloves, no way this can end badly."
@@ -46,6 +56,10 @@
 	heat_protection = ARMS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
+/obj/item/clothing/gloves/thick/Initialize()
+	..()
+	AddComponent(/datum/component/clothing_stat_affecting, list(STAT_VIG = -10, STAT_BIO = -8, STAT_MEC = 10))
+
 /obj/item/clothing/gloves/security
 	name = "security gloves"
 	desc = "Padded security gloves."
@@ -59,6 +73,10 @@
 	heat_protection = ARMS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	price_tag = 100
+
+/obj/item/clothing/gloves/security/Initialize()
+	..()
+	AddComponent(/datum/component/clothing_stat_affecting, list(STAT_BIO = -15, STAT_MEC = -5))
 
 /obj/item/clothing/gloves/security/ironhammer
 	name = "operator's gloves"
@@ -74,6 +92,11 @@
 	siemens_coefficient = 0
 	price_tag = 500
 
+/obj/item/clothing/gloves/security/tactical/Initialize()
+	..()
+	// special mercenary gloves
+	AddComponent(/datum/component/clothing_stat_affecting, list(STAT_VIG = 10, STAT_BIO = -10))
+
 /obj/item/clothing/gloves/latex
 	name = "latex gloves"
 	desc = "Sterile latex gloves."
@@ -84,6 +107,10 @@
 	permeability_coefficient = 0.01
 	germ_level = 0
 	price_tag = 50
+
+/obj/item/clothing/gloves/latex/Initialize()
+	..()
+	AddComponent(/datum/component/clothing_stat_affecting, list(STAT_BIO = 10))
 
 /obj/item/clothing/gloves/latex/nitrile
 	name = "nitrile gloves"
@@ -100,6 +127,10 @@
 	permeability_coefficient = 0.05
 	siemens_coefficient = 0.50 //thick work gloves
 	price_tag = 50
+
+/obj/item/clothing/gloves/botanic_leather/Initialize()
+	..()
+	AddComponent(/datum/component/clothing_stat_affecting, list(STAT_VIG = -5, STAT_BIO = 5, STAT_MEC = -5))
 
 /obj/item/clothing/gloves/fingerless
 	name = "fingerless gloves"
@@ -120,6 +151,11 @@
 	item_state = "germangloves"
 	armor = list(melee = 10, bullet = 0, energy = 25, bomb = 0, bio = 0, rad = 0)
 
+/obj/item/clothing/gloves/german/Initialize()
+	..()
+	// military gloves , duh
+	AddComponent(/datum/component/clothing_stat_affecting, list(STAT_VIG = 5, STAT_BIO = -10))
+
 /obj/item/clothing/gloves/knuckles
 	name = "knuckle gloves"
 	desc = "Gloves with additional reinforcment on the knuckles."
@@ -128,3 +164,8 @@
 	style = STYLE_HIGH
 	armor = list(melee = 20, bullet = 5, energy = 0, bomb = 0, bio = 0, rad = 0)
 	price_tag = 500
+
+/obj/item/clothing/gloves/knuckles/Initialize()
+	..()
+	// KNUCKLEEES!
+	AddComponent(/datum/component/clothing_stat_affecting, list(STAT_VIG = -10, STAT_ROB = 10))
