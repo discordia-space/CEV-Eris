@@ -21,8 +21,8 @@
 
 	for(var/area/A in GLOB.map_areas)
 		if((A.z in GLOB.maps_data.station_levels) && !(A.type in exempt_areas))
-			TEST_ASSERT(!isnull(A.apc) || (A.type in exempt_from_apc), "[A.name]([A.type]) lacks an APC.")
-			TEST_ASSERT((A.air_scrub_info?.len && A.air_vent_info?.len) || (A.type in exempt_from_atmos), "[A.name]([A.type]) lacks an air scrubber [(!A.air_scrub_info?.len && !A.air_vent_info?.len) ? "and" : "or"] a vent.")
+			TEST_ASSERT(!isnull(A.apc) || (A.type in exempt_from_apc), "[A.name]([A.type]) lacks an APC Z: [A.z].")
+			TEST_ASSERT((A.air_scrub_info?.len && A.air_vent_info?.len) || (A.type in exempt_from_atmos), "[A.name]([A.type]) lacks an air scrubber [(!A.air_scrub_info?.len && !A.air_vent_info?.len) ? "and" : "or"] a vent Z: [A.z].")
 
 /*
 /datum/unit_test/wire_stacking/Run()
