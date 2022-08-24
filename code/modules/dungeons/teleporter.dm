@@ -175,26 +175,15 @@
 		if (get_dist(src, O) > 8)
 			continue
 
-		var/flash_time = 8
 		if (ishuman(O))
 			var/mob/living/carbon/human/H = O
-			if(!H.eyecheck() <= 0)
-				continue
-			flash_time *= H.species.flash_mod
-			var/eye_efficiency = H.get_organ_efficiency(OP_EYES)
-			if(eye_efficiency < 2)
-				return
-			if(eye_efficiency < 50 && prob(100 - eye_efficiency  + 20))
-				if (O.HUDtech.Find("flash"))
-					flick("e_flash", O.HUDtech["flash"])
+			H.flash(8, FALSE , FALSE , FALSE, 8)
 
 		else
 			if(!O.blinded)
 				if (istype(O,/mob/living/silicon/ai))
 					return
-				if (O.HUDtech.Find("flash"))
-					flick("flash", O.HUDtech["flash"])
-		O.Weaken(flash_time)
+				O.flash(8, FALSE, FALSE ,FALSE)
 
 		sleep(1)
 

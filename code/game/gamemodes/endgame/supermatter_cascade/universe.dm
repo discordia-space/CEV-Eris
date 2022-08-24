@@ -43,8 +43,7 @@ var/global/universe_has_ended = 0
 	world << sound('sound/effects/cascade.ogg')
 
 	for(var/mob/living/M in GLOB.player_list)
-		if (M.HUDtech.Find("flash"))
-			flick("e_flash", M.HUDtech["flash"])
+		M.flash()
 
 	if(evacuation_controller.cancel_evacuation())
 		priority_announcement.Announce("The escape pod launch sequence has been aborted due to bluespace distortion.")
@@ -112,10 +111,5 @@ AUTOMATED ALERT: Link to [command_name()] lost.
 	for(var/datum/antagonist/A in GLOB.current_antags)
 		if(!isliving(A.owner.current))
 			continue
-		if(A.owner.current.stat!=2)
-			A.owner.current.Weaken(10)
-//			flick("e_flash", M.current.flash)
-			if (A.owner.current.HUDtech.Find("flash"))
-				flick("e_flash", A.owner.current.HUDtech["flash"])
 
 		A.remove_antagonist()
