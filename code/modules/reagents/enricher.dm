@@ -57,15 +57,15 @@
 			bottle.reagents.add_reagent("resuscitator", resuscitator_amount)
 			bottle.name = "resuscitator bottle"
 			resuscitator_amount = 0
-			bottle.update_icon()
 			visible_message(SPAN_NOTICE("[src] drops [bottle]."))
 			if(upgraded)
 				var/obj/item/reagent_containers/glass/bottle/plasma = new /obj/item/reagent_containers/glass/bottle(get_turf(src))
 				var/obj/item/reagent_containers/glass/bottle/carpotoxin = new /obj/item/reagent_containers/glass/bottle(get_turf(src))
 				plasma.reagents.add_reagent("plasma", resuscitator_amount * 2)
-				carpotoxin.reagents.add_reagent("carpotoxin". resuscitator_amount * 2)
+				carpotoxin.reagents.add_reagent("carpotoxin", resuscitator_amount * 2)
 				plasma.update_icon()
 				carpotoxin.update_icon()
+			resuscitator_amount = 0
 		else
 			visible_message("\The [src] beeps, \"Not enough nutriment to produce resuscitator.\".")
 	else

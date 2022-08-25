@@ -307,7 +307,6 @@
 #include "code\datums\autolathe\security.dm"
 #include "code\datums\autolathe\tools.dm"
 #include "code\datums\components\_component.dm"
-#include "code\datums\components\ai_like_control.dm"
 #include "code\datums\components\clothing_sanity_protection.dm"
 #include "code\datums\components\fabric.dm"
 #include "code\datums\craft\crafting_items.dm"

@@ -129,11 +129,11 @@
 	recalculate_buffs_for_all(FALSE)
 
 /obj/item/device/von_krabin/proc/remove_from_the_hivemind(mob/living/carbon/human/target)
-	if(!target in the_hiveminded)
+	if(!(target in the_hiveminded))
 		return FALSE
 	the_hiveminded.Remove(target)
 	krabin_linked.Remove(target)
-	for(var/stat in stat_buffs)
+	for(var/stat in stats_buff)
 		target.stats.removeTempStat(stat, "von-crabbin")
 	recalculate_buffs_for_all(TRUE)
 
@@ -175,17 +175,10 @@
 		to_chat(affected, SPAN_DANGER("Leaving the obelisks range strengtens your connection with the [src]"))
 
 
-/obj/item/device/von_krabin/attack_self()
-	if(active)
-		STOP_PROCESSING(SSobj, src)
-	else
-		START_PROCESSING(SSobj, src)
-	active = !active
-	return
-
-/obj/item/device/von_krabin/Process()
-	..()
-	if(!active)
-		return
-	var/list/mob/living/carbon/human/affected = range(area_radius, src)
-	update_icon()
+/obj/item/device/von_krabin/attack_self(mob/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/target = user
+		if(target in the_hiveminded)
+			remove_from_the_hivemind(target)
+		else if(!is_neotheology_disciple(target))
+			add_to_the_hivemind(target)

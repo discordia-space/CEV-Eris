@@ -123,10 +123,10 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 
 	currently_affected -= no_longer_affected
 	for(var/mob/living/carbon/human/mob in affected)
-		if(H in krabin_linked)
+		if(mob in krabin_linked)
 			var/obj/item/device/von_krabin/von_crabbin = locate(/obj/item/device/von_krabin) in GLOB.all_faction_items
 			if(von_crabbin)
-				von_crabbin.recalculate_buff(TRUE, H)
+				von_crabbin.recalculate_buff(TRUE, mob)
 		var/obj/item/implant/core_implant/I = mob.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(!(mob in eotp.scanned))
 			eotp.scanned |= mob

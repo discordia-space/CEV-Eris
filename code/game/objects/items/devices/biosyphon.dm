@@ -58,7 +58,7 @@
 		last_produce = world.time
 	if(donut_points >= production_cost)
 		if(touched_by_resus)
-			for(1 to 3)
+			for(var/i in 1 to 3)
 				var/atom/movable/le_syringe = new(pick(special_chems))
 				le_syringe.forceMove(get_turf(src))
 		donut_points -= production_cost
