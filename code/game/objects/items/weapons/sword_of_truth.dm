@@ -2,6 +2,7 @@
 	name = "Sword of Truth"
 	desc = "Sword made out of a unknown alloy, humming from an unknown power source."
 	icon = 'icons/obj/faction_item.dmi'
+	description_info = "Can be used to stun non-believers by using it in-hand"
 	icon_state = "nt_sword_truth"
 	item_state = "nt_sword_truth"
 	slot_flags = FALSE

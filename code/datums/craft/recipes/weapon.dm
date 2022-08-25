@@ -76,13 +76,6 @@
 		list(QUALITY_HAMMERING, 10, "time" = 20)
 	)
 
-/datum/craft_recipe/weapon/crossbow_bolt
-	name = "crossbow bolt"
-	result = /obj/item/ammo_casing/crossbow/bolt
-	steps = list(
-		list(/obj/item/stack/rods, 1, "time" = 1),
-		list(QUALITY_HAMMERING, 5, 10)) 
-
 /datum/craft_recipe/weapon/knife_blade
 	name = "knife blade"
 	result = /obj/item/material/butterflyblade
@@ -159,18 +152,6 @@
 		list(/obj/item/cell/medium/moebius/nuclear, 1),
 		list(/obj/item/stack/cable_coil, 10, "time" = 5),
 		list(QUALITY_ADHESIVE, 15, 70)
-	)
-
-/datum/craft_recipe/weapon/rxd
-	name = "RXD - Rapid Crossbow Device"
-	result = /obj/item/gun/launcher/crossbow/RCD
-	steps = list(
-		list(/obj/item/rcd, 1, "time" = 30),
-		list(QUALITY_SCREW_DRIVING, 10, 30),
-		list(QUALITY_SAWING, 10, "time" = 60),
-		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD), //same as the old crossbow frame
-		list(QUALITY_WELDING, 10, "time" = 30),
-		list(/obj/item/stack/cable_coil, 2, "time" = 10)
 	)
 
 /datum/craft_recipe/weapon/mechanical_trap

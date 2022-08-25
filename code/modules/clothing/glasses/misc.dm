@@ -66,7 +66,7 @@
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/sunglasses
-	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding reduces many flashes."
+	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Doesn't really protects from flashes, but stylish."
 	name = "sunglasses"
 	icon_state = "sun"
 	item_state = "sunglasses"

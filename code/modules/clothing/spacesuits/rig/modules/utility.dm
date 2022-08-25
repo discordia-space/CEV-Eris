@@ -116,6 +116,8 @@
 /obj/item/rig_module/modular_injector
 	name = "mounted modular dispenser"
 	desc = "A specialized system for inserting chemicals"
+	description_info = "You can remove beakers by using a screw. Reagent injection amount can be tweaked with a Wrench. Accepts any size of beaker"
+	description_antag = "You can sabotage this by mixing in a deadly toxin. As long as its not the majority in the solution, it won't show up in the rig."
 	icon_state = "injector"
 	usable = TRUE
 	selectable = FALSE
@@ -479,8 +481,8 @@
 			var/raw_choice = sanitize(input(usr, "Please enter a new name.")  as text|null, MAX_NAME_LEN)
 			if(!raw_choice)
 				return 0
-			voice_holder.voice = raw_choice
-			to_chat(usr, "<font color='blue'>You are now mimicking <B>[voice_holder.voice]</B>.</font>")
+			voice_holder.voice_name = raw_choice
+			to_chat(usr, "<font color='blue'>You are now mimicking <B>[voice_holder.voice_name]</B>.</font>")
 	return 1
 
 /obj/item/rig_module/maneuvering_jets

@@ -27,7 +27,7 @@
 /obj/machinery/bioprinter/prosthetics
 	name = "prosthetics fabricator"
 	desc = "A machine that prints prosthetic organs."
-	prints_prosthetics = 1
+	prints_prosthetics = TRUE
 
 /obj/machinery/bioprinter/New()
 	..()
@@ -49,6 +49,8 @@
 
 		if(prints_prosthetics)
 			O.nature = MODIFICATION_SILICON
+			O.icon_state = "[O.icon_state]_robotic"
+			O.name = "robotic + [O.name]"
 		else if(loaded_dna)
 			visible_message("<span class='notice'>The printer injects the stored DNA into the biomass.</span>.")
 			O.transplant_data = list()

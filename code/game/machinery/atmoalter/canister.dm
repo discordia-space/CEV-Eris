@@ -28,6 +28,7 @@
 /obj/machinery/portable_atmospherics/canister/sleeping_agent
 	name = "Canister: \[N2O]"
 	icon_state = "redws"
+	description_antag = "Causes people to sleep temporarily. Needs high concentrations for a permanent sleep"
 	canister_color = "redws"
 	can_label = 0
 

@@ -17,6 +17,8 @@
 	icon = 'icons/obj/rig_modules.dmi'
 	desc = "A back-mounted hardsuit deployment and control mechanism."
 	slot_flags = SLOT_BACK
+	description_antag = "If this rig contains a chemical dispenser, its contents can be saboutaged. They will show as another reagent as long as its the majority in the beaker. You can also insert plasma into its powercell or replace the air tank inside"
+	description_info = "A highly capable modular RIG system. Can hold modules which provide additional functionality."
 	req_one_access = list()
 	req_access = list()
 	w_class = ITEM_SIZE_BULKY
@@ -389,7 +391,7 @@
 						else
 							to_chat(wearer, SPAN_DANGER("Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit."))
 					if(offline_vision_restriction == 1)
-						to_chat(wearer, SPAN_DANGER("The suit optics flick_light and die, leaving you with restricted vision."))
+						to_chat(wearer, SPAN_DANGER("The suit optics flicker and die, leaving you with restricted vision."))
 					else if(offline_vision_restriction == 2)
 						to_chat(wearer, SPAN_DANGER("The suit optics drop out completely, drowning you in darkness."))
 		if(!offline)

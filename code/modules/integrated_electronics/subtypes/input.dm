@@ -681,7 +681,7 @@
 	power_draw_idle = 5
 	power_draw_per_use = 40
 	cooldown_per_use = 5
-	var/frequency = 1357
+	var/frequency = 1441
 	var/code = 30
 	var/datum/radio_frequency/radio_connection
 	var/hearing_range = 1
@@ -728,6 +728,14 @@
 /obj/item/integrated_circuit/input/signaler/proc/set_frequency(new_frequency)
 	if(!frequency)
 		return
+	// fallball to prevent comms shittification and killing with constant rebuilding of the radio.
+	// im not sure why its happenning myself either, the only reason it would be happening is if the target
+	// frequency deletes itself for not having any linked devices.(but theres plenty of headsets)
+	// The main reason this always stopped engi comms is that byond always initializes one instance of every item
+	// then deletes it (i don't know why) at round-start or on world init
+	// SPCR 2022
+	if(new_frequency > PUBLIC_HIGH_FREQ || new_frequency < PUBLIC_LOW_FREQ)
+		frequency = 1461
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)

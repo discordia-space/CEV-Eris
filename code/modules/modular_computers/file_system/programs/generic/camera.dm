@@ -57,7 +57,7 @@
 	all_networks = modify_networks_list(all_networks)
 
 	data["networks"] = all_networks
-
+	data["map_scalar"] = MAP_SCALAR
 	if(current_network)
 		data["cameras"] = camera_repository.cameras_in_network(current_network)
 

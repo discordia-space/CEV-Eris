@@ -79,6 +79,7 @@
 	icon_state = "box_of_doom"
 	illustration = "writing_of_doom"
 	bad_type = /obj/item/storage/box/syndie_kit
+	description_antag = "Can be folded into a non-identifiable cardboard while holding another item in the another hand."
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/box/syndie_kit/imp_freedom

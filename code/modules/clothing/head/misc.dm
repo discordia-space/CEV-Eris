@@ -196,6 +196,13 @@
 	siemens_coefficient = 2
 	style_coverage = COVERS_HAIR
 
+/obj/item/clothing/head/marisa
+	name = "witch hat"
+	desc = "Strange-looking hat-wear, makes you want to cast fireballs."
+	icon_state = "marisa"
+	style_coverage = COVERS_HAIR
+	spawn_blacklisted = TRUE
+
 /obj/item/clothing/head/chicken
 	name = "chicken suit head"
 	desc = "Bkaw!"
@@ -279,7 +286,7 @@
 	icon_state = "onestar_hat"
 	siemens_coefficient = 1
 	price_tag = 1000
-	spawn_blacklisted = TRUE
+	spawn_blacklisted = TRUE // TODO: make onestar clothing/armor spawner -Valo
 	style = STYLE_HIGH
 	armor = list(
 		melee = 10,

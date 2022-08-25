@@ -143,6 +143,7 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	projectile_type = /obj/item/projectile/beam/heavylaser
 	charge_cost = 100
+	serial_type = "ML"
 	fire_delay = 20
 	zoom_factor = 0
 	damage_multiplier = 1
@@ -238,6 +239,7 @@
 /obj/item/gun/energy/psychic/lasercannon
 	name = "Prototype: psychic laser cannon"
 	desc = "A laser cannon that attacks the minds of people, causing sanity loss and inducing mental breakdowns."
+	description_antag = "Can pierce a wall"
 	icon = 'icons/obj/guns/energy/psychiccannon.dmi'
 	icon_state = "psychic_lasercannon"
 	item_state = "psychic_lasercannon"
@@ -249,6 +251,7 @@
 	force = WEAPON_FORCE_NORMAL
 	slot_flags = SLOT_BELT|SLOT_BACK
 	contractor = TRUE
+	serial_type = "ML"
 	pierce_multiplier = 4
 	zoom_factor = 0
 	damage_multiplier = 1

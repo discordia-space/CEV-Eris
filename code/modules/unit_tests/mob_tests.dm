@@ -112,7 +112,7 @@
 			expected_msg = "To take no damage"
 
 	if(failure)
-		Fail("Failed at damage type [damtype]. Damage taken: [ending_damage] out of 5 => expected: [expected_msg] \[Overall Health:[ending_health] (Initial: [initial_health]\]")
+		TEST_FAIL("Failed at damage type [damtype]. Damage taken: [ending_damage] out of 5 => expected: [expected_msg] \[Overall Health:[ending_health] (Initial: [initial_health]\]")
 
 
 /datum/unit_test/robot_module_icons/Run()
@@ -121,7 +121,7 @@
 
 	for(var/i in robot_modules)
 		if(!(lowertext(i) in valid_states))
-			Fail("[i] does not contain a valid icon state in [icon_file]")
+			TEST_FAIL("[i] does not contain a valid icon state in [icon_file]")
 
 #undef STANDARD
 #undef ARMORED

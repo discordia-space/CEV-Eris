@@ -1,6 +1,7 @@
 /obj/item/grenade/flashbang
 	name = "FS FBG \"Serra\""
 	desc = "A \"Frozen Star\" flashbang grenade. If in any doubt - use it."
+	description_info = "Will stun anyone using thermals from double the distance for a normal person, through walls"
 	icon_state = "flashbang"
 	item_state = "flashbang"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)

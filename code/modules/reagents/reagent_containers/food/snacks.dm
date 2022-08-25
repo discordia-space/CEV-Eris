@@ -28,7 +28,7 @@
 	var/junk_food = FALSE //if TRUE, sanity gain per nutriment will be zero
 	var/cooked = FALSE
 	var/list/taste_tag = list(BLAND_FOOD)
-	
+
 	price_tag = 25
 
 /obj/item/reagent_containers/food/snacks/Initialize()
@@ -271,12 +271,9 @@
 		var/hide_item = !has_edge(W) || !can_slice_here
 
 		if (hide_item)
-			var/illegal_item = FALSE // is used to allow for checks that need type definitions
-			if (ishuman(user))
-				var/mob/living/carbon/human/attached_to = user
-				if (attached_to.is_item_attached(W)) // checks if the item is an implant
-					illegal_item = TRUE
-			if (W.w_class >= src.w_class || is_robot_module(W) || illegal_item)
+			if(!user.canUnEquip(W))
+				return
+			if (W.w_class >= src.w_class || is_robot_module(W))
 				return
 
 			to_chat(user, SPAN_WARNING("You slip \the [W] inside \the [src]."))

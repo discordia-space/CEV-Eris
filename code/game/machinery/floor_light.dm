@@ -141,7 +141,7 @@ var/list/floor_light_cache = list()
 				damaged = rand(1,4)
 			var/cache_key = "floorlight-broken[damaged]-[default_light_colour]"
 			if(!floor_light_cache[cache_key])
-				var/image/I = image("flick_light[damaged]")
+				var/image/I = image("flicker[damaged]")
 				I.color = default_light_colour
 				I.layer = ABOVE_OPEN_TURF_LAYER
 				floor_light_cache[cache_key] = I

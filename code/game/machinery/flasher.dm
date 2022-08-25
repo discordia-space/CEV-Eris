@@ -21,6 +21,7 @@
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
 	name = "portable flasher"
 	desc = "A portable flashing device. Wrench to activate and deactivate. Cannot detect slow movements."
+	description_info = "Will flash people that run"
 	icon_state = "pflash1"
 	strength = 8
 	anchored = FALSE

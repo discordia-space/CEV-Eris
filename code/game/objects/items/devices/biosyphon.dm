@@ -1,6 +1,8 @@
 /obj/item/biosyphon
 	name = "Bluespace Biosyphon"
 	desc = "Hunts on flora and fauna that sometimes populates bluespace, and use them to produce donuts endlessly. May also produce rare and powerful donuts when fed with the meat of non-bluespace fauna."
+	description_info = "Produces donuts constantly, highly valuable."
+	description_antag = "IH tends to fully trust any donut box thats put above the biospyhon. You could poison a box of donuts."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "biosyphon"
 	item_state = "biosyphon"
@@ -23,10 +25,10 @@
 	var/rare_meat_value = 200
 	var/special_donuts = list(
 		/obj/item/reagent_containers/food/snacks/donut/stat_buff/mec,
-		/obj/item/reagent_containers/food/snacks/donut/stat_buff/cog, 
-		/obj/item/reagent_containers/food/snacks/donut/stat_buff/rob, 
-		/obj/item/reagent_containers/food/snacks/donut/stat_buff/tgh, 
-		/obj/item/reagent_containers/food/snacks/donut/stat_buff/bio, 
+		/obj/item/reagent_containers/food/snacks/donut/stat_buff/cog,
+		/obj/item/reagent_containers/food/snacks/donut/stat_buff/rob,
+		/obj/item/reagent_containers/food/snacks/donut/stat_buff/tgh,
+		/obj/item/reagent_containers/food/snacks/donut/stat_buff/bio,
 		/obj/item/reagent_containers/food/snacks/donut/stat_buff/vig)
 
 /obj/item/biosyphon/Initialize()
@@ -57,7 +59,7 @@
 	if(nt_sword_attack(I, user))
 		return
 	if(istype(I, /obj/item/reagent_containers/food/snacks/meat/roachmeat/fuhrer))
-		donut_points += uncommon_meat_value 
+		donut_points += uncommon_meat_value
 		to_chat(user, "You insert [I] into the [src]. It produces a whirring noise.")
 		qdel(I)
 	else if(istype(I, /obj/item/reagent_containers/food/snacks/meat/roachmeat/kaiser))

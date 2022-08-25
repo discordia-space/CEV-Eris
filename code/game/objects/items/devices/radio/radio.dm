@@ -239,7 +239,7 @@ var/global/list/default_medbay_channels = list(
 		SSnano.update_uis(src)
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 
-/obj/item/device/radio/proc/autosay(var/message, var/from, var/channel) //BS12 EDIT
+/obj/item/device/radio/proc/autosay(message, from, channel, use_text_to_speech = FALSE)
 	var/datum/radio_frequency/connection = null
 	if(channel && channels && channels.len > 0)
 		if (channel == "department")
@@ -256,7 +256,7 @@ var/global/list/default_medbay_channels = list(
 	Broadcast_Message(connection, null,
 						0, "*garbled automated announcement*", src,
 						message, from, "Automated Announcement", from, "synthesized voice",
-						4, 0, list(0), connection.frequency, "states")
+						4, 0, list(0), connection.frequency, "states", use_text_to_speech = use_text_to_speech)
 	return
 
 // Interprets the message mode when talking into a radio, possibly returning a connection datum
@@ -758,6 +758,7 @@ var/global/list/default_medbay_channels = list(
 	name = "Random wave radio"
 	desc = "Radio that can pick up messages from secure channels, but with small chance. Provides intel about hidden loot over time. It can be repaired by oddity with mechanical aspect."
 	icon = 'icons/obj/faction_item.dmi'
+	description_antag = "If repaired enough, it also gains full access to all communication channels except binary."
 	icon_state = "random_radio"
 	item_state = "random_radio"
 	slot_flags = FALSE

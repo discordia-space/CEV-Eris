@@ -311,10 +311,52 @@ var/list/rummage_sound = list(\
 		if ("wood")
 			toplay = pick(footstep_wood)
 
-
 	return toplay
 
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance = 0,  ignore_walls = TRUE, zrange = 2, override_env, envdry, envwet, use_pressure = TRUE)
+
+/proc/playsound_tts(mob/source, list/target_mobs, voice, voice_scrambled, datum/language/language, is_local = TRUE)
+	var/speaker_key = "npc"
+
+	if(source)
+		if(!LAZYLEN(target_mobs))
+			target_mobs = hearers(7, get_turf(source)) // world.view
+
+		if(istype(source) && source.ckey)
+			speaker_key = source.ckey
+
+	if(!LAZYLEN(target_mobs))
+		return
+
+	var/speaker_channel = GLOB.sound_channels.get_by_key(speaker_key)
+	if(!speaker_channel)
+		GLOB.sound_channels.request(speaker_key)
+		speaker_channel = GLOB.sound_channels.get_by_key(speaker_key)
+		if(!speaker_channel)
+			speaker_channel = 0
+
+	for(var/mob/listener as anything in target_mobs)
+		if(listener.stat == UNCONSCIOUS || !listener.client)
+			continue
+
+		var/volume = text2num(listener.client.get_preference_value((is_local ? "TTS_VOLUME_LOCAL" : "TTS_VOLUME_RADIO")))
+		if(!volume)
+			continue
+
+		if(speaker_key in listener.client.prefs.ignored_players)
+			continue
+
+		var/sound/output = sound(voice_scrambled ? (listener.say_understands(null, language) ? voice : voice_scrambled) : voice)
+		output.channel = speaker_channel
+		output.wait = TRUE // Don't play TTS files at the same time
+		output.volume = volume
+		output.falloff = (listener.stats?.getPerk(PERK_EAR_OF_QUICKSILVER) ? 2 : 1)
+
+		sound_to(listener, output)
+
+
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance, ignore_walls = TRUE, \
+	zrange = 2, override_env, envdry, envwet, use_pressure = TRUE)
+
 	if(isarea(source))
 		error("[source] is an area and is trying to make the sound: [soundin]")
 		return
@@ -330,9 +372,8 @@ var/list/rummage_sound = list(\
 	if(!ignore_walls) //these sounds don't carry through walls
 		listeners = listeners & hearers(maxdistance, turf_source)
 
-	for(var/P in listeners)
-		var/mob/M = P
-		if(!M || !M.client)
+	for(var/mob/M in listeners)
+		if(!M.client)
 			continue
 		var/dist = get_dist(M, turf_source)
 		if(dist <= maxdistance + 3)
