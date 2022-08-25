@@ -68,12 +68,15 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			playsound(loc, I.hitsound, 50, 1, -1)
 		visible_message(SPAN_DANGER("[src] has been hit by [user] with [NT]."))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		if(prob(10))
-			for(var/mob/living/carbon/human/H in viewers(user))
-				SEND_SIGNAL(H, SWORD_OF_TRUTH_OF_DESTRUCTION, src)
-				if(eotp)
-					eotp.addObservation(200)
-			qdel(src)
+		for(var/mob/living/carbon/human/H in viewers(user))
+			SEND_SIGNAL(H, SWORD_OF_TRUTH_OF_DESTRUCTION, src)
+			if(eotp)
+				eotp.addObservation(200)
+				eotp.power_gaine *= 2
+				eotp.max_observation *= 1.25
+				eotp.armaments_rate *= 2
+				eotp.max_armaments_points *= 2
+		qdel(src)
 		. = TRUE
 
 /obj/item/attackby(obj/item/I, mob/living/user, var/params)

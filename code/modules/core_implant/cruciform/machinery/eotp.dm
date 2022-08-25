@@ -107,6 +107,9 @@ var/global/obj/machinery/power/eotp/eotp
 
 	if(world.time >= (last_power_update + power_cooldown))
 		power += power_gaine
+		for(var/mob/living/carbon/human/believer in disciples)
+			if(believer.client && ishuman(believer))
+				power++ // 1 power per disciple
 		last_power_update = world.time
 
 	if(power >= max_power)

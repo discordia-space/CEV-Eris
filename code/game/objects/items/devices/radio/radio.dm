@@ -774,6 +774,20 @@ var/global/list/default_medbay_channels = list(
 	var/cooldown = 40 MINUTES
 	var/max_cooldown = 40 MINUTES
 	var/min_cooldown = 15 MINUTES
+	var/bluespace_generating = FALSE
+	var/bluespace_cooldown = 10 MINUTES
+	var/last_bluespace = 0
+	var/bluespace_items = list(
+		25 = /obj/item/computer_hardware/hard_drive/portable/design/guns/dallas,
+		25 = /obj/item/gun/energy/plasma/stranger,
+		25 = /obj/machinery/artifact, // joy
+		5 = /obj/item/computer_hardware/hard_drive/portable/design/guns/fs_wintermute,
+		5 = /obj/item/computer_hardware/hard_drive/portable/design/excelsior/ak47,
+		5 = /datum/armament/item/disk/nt_lightfall,
+		1 = /obj/item/cell/small/hyper,
+		1 = /obj/item/cell/medium/hyper,
+		1 = /obj/item/bluespace_crystal
+	)
 	w_class = ITEM_SIZE_BULKY
 
 /obj/item/device/radio/random_radio/New()
@@ -799,6 +813,11 @@ var/global/list/default_medbay_channels = list(
 		var/obj/item/paper/stash_note = stash.spawn_note(get_turf(src))
 		visible_message(SPAN_NOTICE("[src] spits out a [stash_note]."))
 		last_produce = world.time
+	if(world.time > last_bluespace)
+		var/atom/movable/the_chosen = new(pickweight(bluespace_items, pick(5,10,25)))
+		the_chosen.forceMove(get_turf(src))
+		last_bluespace = world.time + bluespace_cooldown
+		bluespace_entropy(5, get_turf(src), TRUE)
 
 /obj/item/device/radio/random_radio/receive_range(freq, level)
 
@@ -834,6 +853,13 @@ var/global/list/default_medbay_channels = list(
 	if(nt_sword_attack(W, user))
 		return FALSE
 	user.set_machine(src)
+
+	if(istype(W, /obj/item/biosyphon))
+		user.remove_from_mob(W)
+		qdel(W)
+		name = "Bluespace random wave radio"
+		bluespace_generating = TRUE
+		to_chat(user, SPAN_NOTICE("You upgrade the [src] with bluespace technology, now it can siphon items lost in bluespace!"))
 
 	if(istype(W, /obj/item/oddity))
 		var/obj/item/oddity/D = W
