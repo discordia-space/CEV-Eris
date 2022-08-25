@@ -142,7 +142,7 @@
 /obj/structure/multiz/ladder/attack_hand(var/mob/M)
 	if (isrobot(M) && !isdrone(M))
 		var/mob/living/silicon/robot/R = M
-		climb(M, (climb_delay*6)/R.speed_factor) //Robots are not built for climbing, they should go around where possible
+		climb(M, (climb_delay*3)/R.speed_factor) //Robots are not built for climbing, they should go around where possible
 		//I'd rather make them unable to use ladders at all, but eris' labyrinthine maintenance necessitates it
 	else
 		climb(M, climb_delay)
