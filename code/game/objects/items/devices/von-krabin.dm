@@ -2,7 +2,7 @@
 	name = "Von-Krabin Stimulator"
 	desc = "Psionic stimulator that make your brain work better."
 	description_info = "This is a powerfull stimulator that links the brain of multiple people togheter , the more people are connected , the better its buffs are"
-	description_antag = "Can be destroyed with the NT sword, causes brain damage to everyone thats linked and reduces their base stats by 30"
+	description_antag = "Can be destroyed with the NT sword, causes brain damage to everyone thats linked and reducing their base stats by 30"
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "von-krabin"
 	item_state = "von-krabin"
@@ -88,6 +88,11 @@
 
 /obj/item/device/von_krabin/attack(mob/living/M, mob/living/user, target_zone)
 	if(user.a_intent == I_HELP && !is_neotheology_disciple(M))
+		if(M in the_hiveminded)
+			user.visible_message(SPAN_NOTICE("[user] begins unlinking [M]'s mind from the [src]"))
+			if(do_after(user, 5 SECONDS, M, TRUE))
+				user.visible_message(SPAN_NOTICE("[user] unlinks [M] from the [src]"))
+				remove_from_the_hivemind(M)
 		user.visible_message(SPAN_NOTICE("[user] begins linking [M]'s mind to the [src]"))
 		if(do_after(user, 5 SECONDS, M, TRUE))
 			user.visible_message(SPAN_NOTICE("[user] links [M] to the [src]"))
@@ -120,7 +125,17 @@
 		return FALSE
 	to_chat(target, SPAN_NOTICE("You link yourself with the [src], you feel the knowledge of countless minds flood you!"))
 	the_hiveminded.Add(target)
+	krabin_linked.Add(target)
 	recalculate_buffs_for_all(FALSE)
+
+/obj/item/device/von_krabin/proc/remove_from_the_hivemind(mob/living/carbon/human/target)
+	if(!target in the_hiveminded)
+		return FALSE
+	the_hiveminded.Remove(target)
+	krabin_linked.Remove(target)
+	for(var/stat in stat_buffs)
+		target.stats.removeTempStat(stat, "von-crabbin")
+	recalculate_buffs_for_all(TRUE)
 
 /obj/item/device/von_krabin/proc/recalculate_buffs_for_all(lost_follower, combat_knowledge)
 	var/linked_minds = the_hiveminded.len
@@ -138,6 +153,10 @@
 				to_chat(affected, SPAN_NOTICE("You feel the knowledge from the [src] increase as another mind links itself!"))
 
 /obj/item/device/von_krabin/proc/recalculate_buff(near_crystal, mob/living/carbon/human/affected)
+	if(!(affected in the_hiveminded))
+		for(var/stat in stats_buff)
+			affected.stats.removeTempStat(stat, "von-crabbin")
+		return FALSE
 	if(near_crystal)
 		for(var/stat in stats_buff)
 			affected.stats.removeTempStat(stat, "von-crabbin")
