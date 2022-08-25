@@ -68,7 +68,7 @@
 	name = "orange slime extract"
 	icon_state = "orange slime extract"
 	description_info = "Inject with blood to create capsaicin. Inject with plasma to trigger a fiery explosion with a 5 second delay"
-	description_antag ="The plasma fire reaction will severly burn anyone stuck in small spaces."
+	description_antag = "The plasma fire reaction will severly burn anyone stuck in small spaces."
 
 /obj/item/slime_extract/yellow
 	name = "yellow slime extract"
