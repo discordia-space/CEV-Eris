@@ -35,7 +35,7 @@
 /obj/item/device/techno_tribalism/attackby(obj/item/W, mob/user, params)
 	if(nt_sword_attack(W, user))
 		return FALSE
-	if(user.a_intent == I_HELP && W.get_tool_quality(QUALITY_SCREWDRIVING))
+	if(user.a_intent == I_HELP && W.get_tool_quality(QUALITY_SCREW_DRIVING))
 		if(internal_radio.broadcasting == FALSE)
 			to_chat(user, "You reenable the [src]'s internal radio broadcaster")
 			internal_radio.broadcasting = TRUE
