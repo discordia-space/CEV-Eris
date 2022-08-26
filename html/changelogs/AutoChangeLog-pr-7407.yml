@@ -1,0 +1,5 @@
+author: Benblu
+delete-after: true
+changes:
+  - rscadd: Stranger's gun has oddity properties and randomizes said properties.
+  - bugfix: broken necklace's description.
