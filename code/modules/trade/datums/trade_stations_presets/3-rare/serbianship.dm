@@ -3,8 +3,10 @@
 		"STF \'Kovac\'" = "Serbian Trade Freighter \'Kovac\': \"Come with money for very good stuff! You can pay with your life, even!\"",
 		"SV \'Zoric\'" = "Serbian Vessel \'Zoric\': \"For the correct price, we can sell you something... even jobs!\""
 	)
-	icon_states = "serb_frigate"
+	icon_states = list("serb_frigate", "ship")
 	uid = "serbian"
+	tree_x = 0.58
+	tree_y = 0.5
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = RARE_GOODS

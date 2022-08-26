@@ -2,7 +2,10 @@
 	name_pool = list(
 		"ATB \'Boris\'" = "Aster\'s Trade Beacon \'Boris\': \"Hello there, we are hardsuit salvagers. We will be around the system for some time and we have leftover stock. We can sell some off if you want them."
 	)
+	icon_states = list("htu_station", "station")
 	uid = "rigs"
+	tree_x = 0.66
+	tree_y = 0.7
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = COMMON_GOODS

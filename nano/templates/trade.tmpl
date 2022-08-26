@@ -1,188 +1,156 @@
 <style>
-	.right_aligned
-	{float: right;}
 	.withToolTip .ImTooltip, .withToolTipInTooltip .ImTooltipInTooltip
 	{width: auto;}
 </style>
-<table>
+<table class="fixed" style="width: 100%; background: #000000;border: 1px solid #40628a">
 	<tr>
-		{{if data.station_name}}
-			<td>{{:helper.link("Trade Station: " + data.station_name, null, {'PRG_station' : 1})}}{{:helper.link('X', null, {'PRG_station_unlink' : 1}, null, 'redButton')}}
-		{{else}}
-			<td>{{:helper.link("Trade Station", null, {'PRG_station' : 1})}}
-		{{/if}}
-	<tr>
-		<td class="link withToolTip">
-			Receiving Beacon{{if data.receiving}}: {{:data.receiving}}{{/if}}
-			<span class="ImTooltip">
-				<span class="right_aligned">{{:helper.link('X', null, {'PRG_receiving' : null}, null, 'redButton')}}</span>
-				<ul>
-					{{for data.receiving_list}}
-						<li>{{:helper.link(value.id, null, {'PRG_receiving' : value.index})}}</li>
-					{{empty}}
-						No Receiving Beacons found.
-					{{/for}}
-				</ul>
-			</span>
-		<td class="link withToolTip">
-			Sending Beacon{{if data.sending}}: {{:data.sending}}{{/if}}
-			<span class="ImTooltip">
-				<span class="right_aligned">{{:helper.link('X', null, {'PRG_sending' : null}, null, 'redButton')}}</span>
-				<ul>
-					{{for data.sending_list}}
-						<li>{{:helper.link(value.id, null, {'PRG_sending' : value.index})}}</li>
-					{{empty}}
-						No Sending Beacons found.
-					{{/for}}
-				</ul>
-			</span>
+		<td>
+			{{:helper.link(data.prg_screen ? "To Merchants" : "To Trade Screen", null, {'PRG_prg_screen' : 1})}}
+		<td>
+			{{if data.account}}
+				{{:helper.link(data.account, null, {'PRG_account' : 1})}}{{:helper.link('', 'circle-close', {'PRG_account_unlink' : 1}, null, 'redButton')}}
+			{{else}}
+				{{:helper.link("Account", 'link', {'PRG_account' : 1})}}
+			{{/if}}
+		<td>
+			<div class="item" style="margin: 0px 0 0 0">
+				<div class="itemLabel">
+						Exporter:
+				</div>
+				<div class="itemContent" style="text-align: center">
+					{{if data.export_ready}}
+						{{:helper.link("Export", 'arrowreturn-1-s', {'PRG_export' : 1}, data.export_ready && data.sending ? null : 'disabled' , null)}}
+						{{:helper.link("Fulfill", 'suitcase', {'PRG_offer_fulfill_all' : 1}, data.export_ready && data.sending ? null : 'disabled' , null)}}
+					{{else data.export_time_start}}
+						<span class="average">RECHARGING</span>
+					{{else}}
+						<span class="bad">NO SENDING BEACON FOUND</span>
+					{{/if}}
+				</div>
+			</div>
+	{{if data.prg_type == "master"}}
+		<tr>
+			<td>
+				{{if data.receiving}}
+					{{:helper.link("Receiving Beacon: " + data.receiving, null, {'PRG_receiving' : 1})}}
+				{{else}}
+					{{:helper.link("Receiving Beacon", 'link', {'PRG_receiving' : 1})}}
+				{{/if}}
+			<td>		
+				{{if data.sending}}
+					{{:helper.link("Sending Beacon: " + data.sending, null, {'PRG_sending' : 1})}}
+				{{else}}
+					{{:helper.link("Sending Beacon", 'link', {'PRG_sending' : 1})}}
+				{{/if}}
+			<td>
+				<div class="item" style="margin: 0px 0 0 0">
+					<div class="itemContent" style="width: 80%; margin-left: 10%">
+						{{if data.export_ready}}
+							{{:helper.displayBar(1, 0, 1, 'good')}}
+						{{else}}
+							{{:helper.displayBar(data.export_time_elapsed, 0, data.export_time_max, 'average')}}
+						{{/if}}
+					</div>
+				</div>
+	{{/if}}
 </table>
 <hr>
-{{:helper.link(data.tradescreen ? "To Offers" : "To Goods", null, {'PRG_trade_screen' : 1})}}
-{{if data.account}}
-	{{:helper.link(data.account, null, {'PRG_account' : 1})}}{{:helper.link('X', null, {'PRG_account_unlink' : 1}, null, 'redButton')}}
-{{else}}
-	{{:helper.link("Account Number", null, {'PRG_account' : 1})}}
-{{/if}}
-<br>
-<hr>
-{{if data.tradescreen}}
-	{{if data.station_name}}
-		<div class="item" style="padding-top: 5px">
-			<div class="item">
-				<div class="itemLabel">
-					Station:
-				</div>
-				<div class="itemContent">
-					<span class="average">{{:data.station_desc}}</span>
-				</div>
-			</div>
-		</div>
-		<div class="item" style="padding-top: 5px">
-			<div class="item">
-				<div class="itemLabel">
-					Favor:
-				</div>
-				<div class="itemContent">
-					<span class="average">{{:data.station_favor}}/{{:data.station_favor_needed}}</span>
-				</div>
-				<div class="itemContent">
-					{{:helper.displayBar(data.station_favor, 0, data.station_favor_needed, data.station_favor < 0.25 * data.station_favor_needed ? 'bad' : data.station_favor < 0.50 * data.station_favor_needed ? 'average' : 'good')}}
-				</div>
-			</div>
-		</div>
-		<div class="item" style="padding-top: 5px">
-			<div class="item">
-				<div class="itemLabel">
-					Offer Time Remaining:
-				</div>
-				<div class="itemContent">
-					<span class="average">{{:data.offer_time}}</span>
-				</div>
-			</div>
-		</div>
-		<div class='nanoMap' style='padding: 25px 50px;'>
-			{{for data.categories}}
-				{{:helper.link(value.name, (data.current_category == value.index ? 'folder-open' : 'folder-collapsed'), {'PRG_goods_category': value.index}, (data.current_category == value.index ? 'selected' : null))}}
-			{{empty}}
-				This trade station has nothing to sell.
-			{{/for}}
-			<br><br>
-			{{if data.current_category}}
-				{{if data.goods}}
-					<table class='item'>
-						<tr class="bottom_bordered">
-							<td>Name
-							<td>Price
-							<td>Available
-							<td>Cart
-						{{for data.goods}}
-							<tr>
-								<td>{{:value.name}}
-								<td>{{:value.price}}
-								<td>{{:value.amount_available}}
-								<td>
-									{{:helper.link("", 'plus', {'PRG_cart_add' : value.index}, value.amount_available > value.count ? null : 'disabled')}}
-									{{:helper.link(value.count, null, {'PRG_cart_add_input' : value.index})}}</div>
-									{{:helper.link("", 'minus', {'PRG_cart_remove' : value.index}, value.count ? null : 'disabled')}}
-						{{/for}}
-					</table>
-				{{else}}
-					Please choose category.
-				{{/if}}
-			{{/if}}
-		</div>
-		Cart:<br>
-		{{:helper.link(data.total, "cart", {"PRG_receive" : 1}, data.total ? null : 'disabled')}}{{:helper.link('Reset', 'trash', {'PRG_cart_reset' : 1})}}
-	{{else}}
-		<div class='nanoMap' style='padding: 100px 200px;'>
-			Please pick trade station.
-		</div>
-	{{/if}}
-{{else}}
-	<div class='notice' id='SpecialOffer'>
-		{{if data.offers}}
-			<h3>Special offers{{if data.offer_time}} (time left: {{:data.offer_time}}){{/if}}</h3>
-			<table class='item'>
+{{if data.prg_screen}}
+	<span class="average">Account Balance: {{:data.balance ? data.balance : "0"}} credits</span>
+	<br>
+	{{:helper.link("Goods", 'tag', {'PRG_trade_screen' : "goods"}, data.tradescreen == "goods" ? 'selected' : null)}}
+	{{:helper.link("Offers", 'suitcase', {'PRG_trade_screen' : "offers"}, data.tradescreen == "offers" ? 'selected' : null)}}
+	{{:helper.link("View Cart", 'search', {'PRG_trade_screen' : "cart"}, data.tradescreen == "cart" ? 'selected' : null)}}
+	{{:helper.link("Saved Carts", 'disk', {'PRG_trade_screen' : "saved"}, data.tradescreen == "saved" ? 'selected' : null)}}
+	{{:helper.link("Order Requests", 'comment', {'PRG_trade_screen' : "orders"}, data.tradescreen == "orders" ? 'selected' : null)}}
+	<br>
+	<hr>
+	{{if data.station_name && (data.tradescreen == "goods" || data.tradescreen == "offers")}}
+		<div class="item" style="margin: 0px 0 0 0">
+			<table class="fixed" style="width: 60%; margin-left: 20%; background: #000000; border: 1px solid #40628a">
 				<tr>
-					<th>Station
-					<th>Name
-					<th>Price
-					<th>Amount
-					<th>Send
-				{{for data.offers}}
-					{{if value.name}}
-					<tr>
-						<td>{{:value.station}}
-						<td>{{:value.name}}
-						<td>{{:value.price}}
-						<td>{{:(isNaN(value.available) ? '' : +value.available + '/') + value.amount}}
-						<td style="width: 0">{{:helper.link("", 'check', {'PRG_offer_fulfill' : value.index, 'PRG_offer_fulfill_path' : value.path}, (value.available >= value.amount && value.amount > 0) ? null : 'disabled')}}
-					{{/if}}
-				{{/for}}
+					<td>
+						<div class="item">
+							<div class="itemLabel">
+								Station:
+							</div>
+							<div class="itemContent" style="text-align: center">
+								<span class="average">{{:data.station_desc}}</span>
+							</div>
+						</div>
+				<tr>
+					<td>
+						<div class="item">
+							<div class="itemLabel">
+								Favor:
+							</div>
+							<div class="itemContent" style="text-align: center">
+								{{:helper.displayBar(data.station_favor, 0, data.station_favor_needed, data.station_favor < 0.25 * data.station_favor_needed ? 'bad' : data.station_favor < 0.50 * data.station_favor_needed ? 'average' : 'good', data.station_favor + ' / ' + data.station_favor_needed)}}
+							</div>
+						</div>
+				<tr>
+					<td>
+						<div class="item">
+							<div class="itemLabel">
+								Offer Time Remaining:
+							</div>
+							<div class="itemContent" style="text-align: center">
+								<span class="average">{{:data.offer_time}}</span>
+							</div>
+						</div>
 			</table>
-		{{else}}
-			No offers found.
-		{{/if}}
-	</div>
-{{/if}}
-<br>
-<hr>
-<div class="item" style="padding-top: 5px">
-	{{if data.sending}}
-		<div class="item">
-			<div class="itemLabel">
-				Exporter:
-			</div>
-			<div class="itemContent">
-				{{if data.export_ready}}
-					<span class="good">READY</span>
-				{{else data.export_time_start}}
-					<span class="average">RECHARGING</span>
-				{{else}}
-					<span class="bad">ERROR</span>
-				{{/if}}
-			</div>
-			<div class="itemContent">
-				{{if data.export_ready}}
-					{{:helper.displayBar(1, 0, 1, 'good')}}
-				{{else}}
-					{{:helper.displayBar(data.export_time_elapsed, 0, data.export_time_max, 'average')}}
-				{{/if}}
-			</div>
-			<div class="item">
-				{{:helper.link('Export Goods', 'arrowreturn-1-s', {'PRG_export' : 1}, data.export_ready ? null : 'disabled' , null)}}
-			</div>
-		</div>	
-	{{else}}
-		<div class="item">
-			<div class="itemLabel">
-				Exporter:
-			</div>
-			<div class="itemContent">
-					<span class="bad">NO SENDING BEACON DETECTED</span>
-			</div>
 		</div>
 	{{/if}}
-</div>
-
+	{{if data.tradescreen == "goods"}}
+		{{#def._goods}}
+	{{else data.tradescreen == "offers"}}
+		{{#def._offers}}
+	{{else data.tradescreen == "cart"}}
+		{{#def._cart}}
+	{{else data.tradescreen == "saved"}}
+		{{#def._saved}}
+	{{else data.tradescreen == "orders"}}
+		{{#def._orders}}
+	{{/if}}
+{{else}}
+	<table class ="fixed" style ="width: 100%">
+		<tr>
+			<td style="width: 70%" valign="top">
+				<div class ='nanoMap' id ='tradeTreeContainer'>
+					{{for data.tree_lines}}
+						<div style="position: absolute;border-{{:value.istop?'top':'bottom'}}: 1px solid white;border-{{:value.isright?'right':'left'}}: 1px solid white;width: {{:value.width}}%;height: {{:value.height}}%;left: {{:value.line_x}}%;bottom: {{:value.line_y}}%"></div>
+					{{/for}}
+					{{for data.trade_tree}}
+						<div style="position: absolute; left: {{:value.x}}%; bottom: {{:value.y}}%;margin-left: -20px;margin-bottom: -20px;">
+							{{:helper.link("<div class='withToolTip tradeTreeIcon icon-"+value.icon+"'><span class='ImTooltip'><img align='center' class='icon-"+value.icon+"'><br><b>"+value.name+"</b></span></div>", '', {'PRG_station' : value.id}, null, "link tradeTreeIconBox "+" "+((value.is_discovered == 1)?'tradeDiscovered':'tradeNotDiscovered')+" "+((value.id == data.station_id)?'tradeSelected':'') )}}
+						</div>
+					{{/for}}
+				</div>
+			</td>
+			<td style="width: 25%" valign="top">
+				{{if data.station_name}}
+					<b>Name</b><br>
+					{{:data.station_name}}
+					<br><br>
+					{{if !data.station_recommendations_needed}}
+						<b>Description</b><br>
+						{{:data.station_desc}}
+						<br><br>
+					{{/if}}
+					{{if data.station_favor_needed}}
+						<b>Favor</b></br>
+						{{:data.station_favor}}/{{:data.station_favor_needed}}
+						</br></br>
+					{{/if}}
+					{{if data.station_recommendations_needed}}
+						<b>Recommendations Required</b></br>
+						<span style="color:orange">{{:data.station_recommendations_needed}}</span></br>
+						</br>
+					{{/if}}
+				{{else}}
+					Select a trade station.
+				{{/if}}
+			</td>
+		</tr>
+	</table>
+{{/if}}

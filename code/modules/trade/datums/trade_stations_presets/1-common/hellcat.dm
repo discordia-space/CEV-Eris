@@ -2,12 +2,14 @@
 	name_pool = list(
 		"FBV \'Hellcat\'" = "\"Greetings. This is the Hellcat. We\'re currently escorting the Caduceus and we will be departing the system shortly alongside them. We are willing to part with our spare supplies while we\'re here.\""
 	)
-	icon_states = "ihs_destroyer"
 	forced_overmap_zone = list(
 		list(15, 20),
 		list(20, 25)
 	)
+	icon_states = list("ihs_destroyer", "ship")
 	uid = "guns_basic"
+	tree_x = 0.74
+	tree_y = 0.9
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS

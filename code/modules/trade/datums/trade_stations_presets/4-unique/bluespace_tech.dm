@@ -2,7 +2,10 @@
 	name_pool = list(
 		"B-42-Alpha" = "Unknown signature, bluespace traces interfere with sensors. Unable to triangulate object."
 	)
+	icon_states = list("htu_station", "station")
 	uid = "bluespace"
+	tree_x = 0.1
+	tree_y = 0.3
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = RARE_GOODS

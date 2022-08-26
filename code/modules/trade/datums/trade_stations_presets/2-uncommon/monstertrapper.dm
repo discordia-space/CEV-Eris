@@ -3,7 +3,10 @@
 	name_pool = list(
 		"EXTV \'Armitage\'" = "Exterminator Vessel \'Armitage\': \"Greetings, CEV Eris. We\'re in a bit of a rough spot at the moment. Got any traps to spare?\"",
 	)
+	icon_states = list("htu_destroyer", "ship")
 	uid = "trapper"
+	tree_x = 0.46
+	tree_y = 0.8
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = COMMON_GOODS

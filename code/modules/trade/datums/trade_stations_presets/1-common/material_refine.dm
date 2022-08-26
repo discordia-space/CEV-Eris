@@ -2,7 +2,10 @@
 	name_pool = list(
 		"RS \'Recoll\'" = "Refinery Ship \'Recoll\': \"We accept all types of ores and we sell refined materials at cheap prices, as well!\""
 	)
+	icon_states = list("htu_frigate", "ship")
 	uid = "materials"
+	tree_x = 0.1
+	tree_y = 0.9
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS

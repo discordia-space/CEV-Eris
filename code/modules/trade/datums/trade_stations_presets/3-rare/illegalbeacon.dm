@@ -2,7 +2,10 @@
 	name_pool = list(
 		"NSTB \'Arau\'" = "Null-Space Trade Beacon \'Arau\'. The Trade Beacon is sending an automated message: \"Hey, buddy. Interested in our legal goods?\""
 	)
+	icon_states = list("htu_station", "station")
 	uid = "illegal1"
+	tree_x = 0.62
+	tree_y = 0.6
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = RARE_GOODS

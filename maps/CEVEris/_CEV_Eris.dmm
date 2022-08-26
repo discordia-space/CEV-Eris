@@ -53131,10 +53131,10 @@
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "cxK" = (
-/obj/item/modular_computer/console/preset/trade,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/item/modular_computer/console/preset/trade,
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/quartermaster/office)
 "cxL" = (
@@ -78500,7 +78500,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "dGf" = (
-/obj/item/modular_computer/console/preset/trade_catalog{
+/obj/item/modular_computer/console/preset/trade_orders{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel,
