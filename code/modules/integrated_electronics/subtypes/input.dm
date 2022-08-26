@@ -681,7 +681,7 @@
 	power_draw_idle = 5
 	power_draw_per_use = 40
 	cooldown_per_use = 5
-	var/frequency = 1441
+	var/frequency = 1457
 	var/code = 30
 	var/datum/radio_frequency/radio_connection
 	var/hearing_range = 1
@@ -695,8 +695,6 @@
 
 /obj/item/integrated_circuit/input/signaler/Destroy()
 	SSradio.remove_object(src,frequency)
-	QDEL_NULL(radio_connection)
-	frequency = 0
 	return ..()
 
 /obj/item/integrated_circuit/input/signaler/on_data_written()
