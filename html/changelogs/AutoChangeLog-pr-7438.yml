@@ -1,0 +1,7 @@
+author: assortedbeads
+delete-after: true
+changes:
+  - rscadd: Changed the quality needed for rig removal from welding to drilling
+  - rscadd: Changed the flavour text shown to the player to reference drilling rather
+      than welding
+  - rscdel: Reverts the old PR fix
