@@ -1,0 +1,9 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - balance: Most flashes now deal eye damage
+  - balance: Fixed flashlights no letting you flash / check other people
+  - rscadd: Added special descriptin for flashlights
+  - balance: Flashbangs now bypass all protection on thermal users.
+  - bugfix: Fixed robots not getting a flash overlay
+  - bugfix: Fixed chemical flashbangs not checking for protection.
