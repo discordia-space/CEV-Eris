@@ -132,6 +132,13 @@
 #define COMSIG_MESSAGE_SENT "radio_message_sent"
 #define COMSIG_MESSAGE_RECEIVED "radio_message_received"
 
+// ABERRANT signals
+#define COMSIG_ABERRANT_INPUT "aberrant_input"
+#define COMSIG_ABERRANT_PROCESS "aberrant_process"
+#define COMSIG_ABERRANT_OUTPUT "aberrant_output"
+#define COMSIG_ABERRANT_SECONDARY "aberrant_secondary"
+#define COMSIG_ABERRANT_COOLDOWN "aberrant_cooldown"
+
 /*******Component Specific Signals*******/
 //Janitor
 
