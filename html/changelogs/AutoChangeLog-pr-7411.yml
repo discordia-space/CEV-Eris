@@ -1,0 +1,9 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - rscadd: Added .20 and .30 scrap stripper clips to crafing station
+  - tweak: tweaked .40 ammo pile and ammo packet size
+  - balance: rebalanced armor part and ammo crafting cost
+  - balance: rebalanced magazine crafting costs
+  - tweak: changed ammo packet recycle cost to avoid steel multiplication
+  - tweak: fixed wrong .25 caseless pistol mag category and name in crafting station
