@@ -272,7 +272,7 @@
 		warmup_increase = -(assailant_stat ** 0.8)
 	else
 		// Negative ROB is a flat warmup increase
-		warmup_increase = assailant_stat
+		warmup_increase = abs(assailant_stat)
 	if(affecting_stat > 0)
 		warmup_increase += affecting_stat ** 0.8
 	else
