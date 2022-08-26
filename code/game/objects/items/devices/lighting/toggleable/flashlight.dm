@@ -17,7 +17,7 @@
 	var/light_direction
 	var/lightspot_hitObstacle = FALSE
 
-	description_info = "Can be used on the eyes of other people to check for brain damage , wheter they're drugged , and if they have the x-ray mutation"
+	description_info = "Can be used on other people's eyes to check for brain damage, and if they're drugged or have the x-ray mutation"
 	description_antag = "Can be used to flash people on harm intent, provided they do not have any protection"
 
 /obj/item/device/lighting/toggleable/flashlight/Destroy()
