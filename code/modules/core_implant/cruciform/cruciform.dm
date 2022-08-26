@@ -102,7 +102,7 @@ var/list/disciples = list()
 	update_data()
 	disciples |= wearer
 	spawn()
-		alert(wearer, "You feel immortal, you are now a follower of Neotheology. Your clan-affinity now resides with NT at the top, with your departament coming second.", "New self", "Ok")
+		alert(wearer, "You feel the Grace of God's light, your doubts of the Church melting away. Your previous experiences and bonds are unharmed, yet you feel a sense of belonging to Him. Welcome to NeoTheology", "New self", "Ok")
 	var/datum/core_module/cruciform/cloning/M = get_module(CRUCIFORM_CLONING)
 	if(M)
 		M.write_wearer(wearer) //writes all needed data to cloning module
