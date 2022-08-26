@@ -118,6 +118,7 @@
 #define COMSIG_REMOVE "uninstall"
 #define COMSIG_ITEM_DROPPED	"item_dropped"					//from  /obj/item/tool/attackby(): Called to remove an upgrade
 #define COMSIG_ITEM_PICKED "item_picked"
+#define COMSIG_ODDITY_USED "used_oddity"                    //from /datum/sanity/proc/oddity_stat_up(): called to notify the used oddity it was used.
 
 // /obj/item/clothing signals
 #define COMSIG_CLOTH_DROPPED "cloths_missing"
