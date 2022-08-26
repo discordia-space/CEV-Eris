@@ -1,0 +1,4 @@
+author: LetterN
+delete-after: true
+changes:
+  - code_imp: mouse now inits using Initialize instead of New
