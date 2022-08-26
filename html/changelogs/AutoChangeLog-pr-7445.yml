@@ -1,0 +1,5 @@
+author: Wouju
+delete-after: true
+changes:
+  - imageadd: replaced old himan dead sprite with a new one (more horizontal, less
+      gnomey)
