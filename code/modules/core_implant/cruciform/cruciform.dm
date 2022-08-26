@@ -101,6 +101,7 @@ var/list/disciples = list()
 	add_module(new CRUCIFORM_COMMON)
 	update_data()
 	disciples |= wearer
+	to_chat(wearer, SPAN_NOTICE("You feel immortal, you are now a follower of Neotheology. Your clan-affinity now resides with NT at the top, with your departament coming second."))
 	var/datum/core_module/cruciform/cloning/M = get_module(CRUCIFORM_CLONING)
 	if(M)
 		M.write_wearer(wearer) //writes all needed data to cloning module
