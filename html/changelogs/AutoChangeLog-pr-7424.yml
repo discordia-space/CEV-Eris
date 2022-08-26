@@ -1,0 +1,10 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - rscadd: Added selection tree, viewable carts, cart save slots, an ordering system,
+      and a function for fulfilling all offers to the trade program
+  - rscadd: Added trade logging app
+  - tweak: Trade program supports carts with goods from multiple stations
+  - tweak: Trade orders can be done via the catalog/ordering app on the PDA (check
+      downloadable apps)
+  - balance: increased non-offer favor multiplier to 25%
