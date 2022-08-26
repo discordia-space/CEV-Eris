@@ -677,22 +677,12 @@
 	for(var/mob/living/carbon/M in viewers(world.view, location))
 		switch(get_dist(M, location))
 			if(0 to 3)
-				if(hasvar(M, "glasses"))
-					if(istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
-						continue
-
-				if (M.HUDtech.Find("flash"))
-					flick("e_flash", M.HUDtech["flash"])
-				M.Weaken(15)
+				if(M.eyecheck() <= FLASH_PROTECTION_MAJOR)
+					M.flash(15, FALSE , FALSE , FALSE)
 
 			if(4 to 5)
-				if(hasvar(M, "glasses"))
-					if(istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
-						continue
-
-				if (M.HUDtech.Find("flash"))
-					flick("e_flash", M.HUDtech["flash"])
-				M.Stun(5)
+				if(M.eyecheck() <= FLASH_PROTECTION_MAJOR)
+					M.flash(0, FALSE , FALSE , FALSE)
 
 /datum/chemical_reaction/emp_pulse
 	result = null
@@ -1093,8 +1083,7 @@
 	playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 	for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
 		if(M.eyecheck() < FLASH_PROTECTION_MODERATE)
-			if (M.HUDtech.Find("flash"))
-				flick("e_flash", M.HUDtech["flash"])
+			M.flash(0, FALSE , FALSE , FALSE, 0) // flashed by the gods or something idk
 
 	for(var/i = 1, i <= 4 + rand(1,2), i++)
 		var/chosen = pick(borks)
