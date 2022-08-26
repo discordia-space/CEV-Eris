@@ -17,6 +17,13 @@
 		list(CRAFT_MATERIAL, 1, MATERIAL_CARDBOARD)
 	)
 
+/datum/craft_recipe/clothing/accessory/cloak
+	name = "oversized poncho"
+	result = /obj/item/clothing/accessory/cloak
+	steps = list(
+		list(/obj/item/bedsheet, 1),
+		list(QUALITY_WIRE_CUTTING, 20, "time" = 30))
+
 /datum/craft_recipe/clothing/sandals
 	name = "wooden sandals"
 	result = /obj/item/clothing/shoes/sandal
