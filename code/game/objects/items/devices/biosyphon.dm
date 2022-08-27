@@ -35,7 +35,7 @@
 		/obj/item/reagent_containers/syringe/polystem,
 		/obj/item/reagent_containers/syringe/meralyne,
 		/obj/item/reagent_containers/syringe/dermaline,
-		/obj/item/reagent_containers/syringe/meralyne
+		/obj/item/reagent_containers/syringe/tramadol
 	)
 
 /obj/item/biosyphon/Initialize()
