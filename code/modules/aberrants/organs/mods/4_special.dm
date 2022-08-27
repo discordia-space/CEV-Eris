@@ -45,6 +45,7 @@
 /obj/item/modification/organ/internal/special/on_cooldown/chemical_effect
 	name = "endocrinal membrane"
 	desc = "A graftable membrane for organ tissues. Secretes hormones when the primary organ function triggers."
+	description_info = "Produces a hormone when the primary function triggers."
 
 /obj/item/modification/organ/internal/special/on_cooldown/chemical_effect/New(loc, generate_organ_stats = FALSE, predefined_modifier = null, list/chosen_special_info)
 	var/datum/component/modification/organ/on_cooldown/chemical_effect/S = AddComponent(/datum/component/modification/organ/on_cooldown/chemical_effect)
@@ -99,6 +100,7 @@
 /obj/item/modification/organ/internal/special/on_cooldown/stat_boost
 	name = "intracrinal membrane"
 	desc = "A graftable membrane for organ tissues. Secretes stimulating hormones when the primary organ function triggers."
+	description_info = "Slightly increases a stat when the primary function triggers."
 
 /obj/item/modification/organ/internal/special/on_cooldown/stat_boost/New(loc, generate_organ_stats = FALSE, predefined_modifier = null, list/chosen_special_info)
 	var/datum/component/modification/organ/on_cooldown/stat_boost/S = AddComponent(/datum/component/modification/organ/on_cooldown/stat_boost)

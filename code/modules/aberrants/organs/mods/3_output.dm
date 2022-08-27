@@ -5,6 +5,9 @@
 /obj/item/modification/organ/internal/output/reagents_blood
 	name = "hepatic organoid"
 	desc = "Functional tissue of one or more organs in graftable form. Secretes reagents into the bloodstream."
+	description_info = "Produces reagents in the bloodstream when triggered.\n\n\
+						Use a laser cutting tool to change the metabolism target or reagent type.\n\
+						Reagents can only be swapped for like reagents."
 
 /obj/item/modification/organ/internal/output/reagents_blood/New(loc, generate_organ_stats = FALSE, predefined_modifier = null, list/output_types, list/additional_output_info)
 	var/datum/component/modification/organ/output/reagents/O = AddComponent(/datum/component/modification/organ/output/reagents)
@@ -29,6 +32,9 @@
 /obj/item/modification/organ/internal/output/reagents_ingest
 	name = "gastric organoid"
 	desc = "Functional tissue of one or more organs in graftable form. Produces reagents in the stomach."
+	description_info = "Produces reagents in the stomach when triggered.\n\n\
+						Use a laser cutting tool to change the metabolism target or reagent type.\n\
+						Reagents can only be swapped for like reagents."
 
 /obj/item/modification/organ/internal/output/reagents_ingest/New(loc, generate_organ_stats = FALSE, predefined_modifier = null, list/output_types, list/additional_output_info)
 	var/datum/component/modification/organ/output/reagents/O = AddComponent(/datum/component/modification/organ/output/reagents)
@@ -53,6 +59,9 @@
 /obj/item/modification/organ/internal/output/chemical_effects
 	name = "endocrinal organoid"
 	desc = "Functional tissue of one or more organs in graftable form. Secretes hormones."
+	description_info = "Produces a hormone in the bloodstream when triggered.\n\n\
+						Use a laser cutting tool to change the hormone type.\n\
+						Hormones effects do not stack."
 
 /obj/item/modification/organ/internal/output/chemical_effects/New(loc, generate_organ_stats = FALSE, predefined_modifier = null, list/output_types, list/additional_output_info)
 	var/datum/component/modification/organ/output/chemical_effects/O = AddComponent(/datum/component/modification/organ/output/chemical_effects)
@@ -88,6 +97,8 @@
 /obj/item/modification/organ/internal/output/stat_boost
 	name = "intracrinal organoid"
 	desc = "Functional tissue of one or more organs in graftable form. Secretes stimulating hormones."
+	description_info = "Slightly increases stats when triggered.\n\n\
+						Use a laser cutting tool to change the target stat."
 
 /obj/item/modification/organ/internal/output/stat_boost/New(loc, generate_organ_stats = FALSE, predefined_modifier = null, list/output_types, list/additional_output_info)
 	var/datum/component/modification/organ/output/stat_boost/O = AddComponent(/datum/component/modification/organ/output/stat_boost)
@@ -101,7 +112,7 @@
 
 /obj/item/modification/organ/internal/output/damaging_insight_gain
 	name = "enigmatic organoid"
-	desc = "Functional tissue of one or more organs in graftable form. It's function is unknonw."
+	desc = "Functional tissue of one or more organs in graftable form. It's function is unknown."
 
 /obj/item/modification/organ/internal/output/damaging_insight_gain/New(loc, generate_organ_stats = FALSE, predefined_modifier = null, list/output_types)
 	var/datum/component/modification/organ/output/damaging_insight_gain/O = AddComponent(/datum/component/modification/organ/output/damaging_insight_gain)

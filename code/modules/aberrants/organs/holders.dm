@@ -3,6 +3,7 @@
 	icon = 'icons/obj/aberrant_organs.dmi'
 	icon_state = "organ_scaffold"
 	desc = "A collagen-based biostructure."
+	description_info = "A functionless organ with three slots for organ mods or organoids. Best used with an input, process, and output organoid to create a modular organ."
 	price_tag = 100
 	organ_efficiency = list()
 	specific_organ_size = 0.4
@@ -21,6 +22,7 @@
 	var/ruined = FALSE
 	var/ruined_name = "organ scaffold"
 	var/ruined_desc = "A collagen-based biostructure."
+	var/ruined_description_info = "A functionless organ with three slots for organ mods or organoids. Best used with an input, process, and output organoid to create a modular organ."
 	var/ruined_color = null
 
 /obj/item/organ/internal/scaffold/New()
@@ -51,7 +53,7 @@
 			organs += organ + " ([organ_efficiency[organ]]), "
 		organs = copytext(organs, 1, length(organs) - 1)
 		to_chat(user, SPAN_NOTICE("Organ tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>"))
-	if(user.stats.getStat(STAT_BIO) >= STAT_LEVEL_PROF - 10)	// Doctor starts at 50
+	if(user.stats.getStat(STAT_BIO) >= STAT_LEVEL_PROF - 10)	// Doctor can start at 50 with the right background
 		var/function_info
 		var/input_info
 		var/process_info
@@ -77,6 +79,8 @@
 
 		if(function_info)
 			to_chat(user, SPAN_NOTICE(function_info))
+	else
+		to_chat(user, SPAN_WARNING("You lack the biological knowledge required to understand its functions."))
 
 /obj/item/organ/internal/scaffold/refresh_upgrades()
 	name = initial(name)
@@ -136,6 +140,7 @@
 	ruined = TRUE
 	name = ruined_name ? ruined_name : initial(name)
 	desc = ruined_desc ? ruined_desc : initial(desc)
+	description_info = ruined_description_info ? ruined_description_info : initial(description_info)
 	color = ruined_color ? ruined_color : initial(color)
 	price_tag = 100
 	use_generated_name = TRUE
@@ -213,6 +218,7 @@
 /obj/item/organ/internal/scaffold/rare
 	name = "large organ scaffold"
 	desc = "A collagen-based biostructure. This one has room for an extra organoid."
+	description_info = "A functionless organ with four slots for organ mods or organoids. Generally, you'll want to save the fourth upgrade slot for a membrane."
 	rarity_value = 80
 	spawn_tags = SPAWN_TAG_ABERRANT_ORGAN_RARE
 	max_upgrades = 4

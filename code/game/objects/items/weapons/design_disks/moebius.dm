@@ -29,21 +29,6 @@
 
 	)
 
-/obj/item/computer_hardware/hard_drive/portable/design/medical/surgery
-	disk_name = "Moebius Standard Organs"
-	license = -1
-	designs = list(
-		/datum/design/organ/heart,
-		/datum/design/organ/lungs,
-		/datum/design/organ/kidney_left,
-		/datum/design/organ/kidney_right,
-		/datum/design/organ/liver,
-		/datum/design/organ/eyes,
-		/datum/design/organ/nerves,
-		/datum/design/organ/muscle,
-		/datum/design/organ/blood_vessel
-	)
-
 /obj/item/computer_hardware/hard_drive/portable/design/surgery
 	disk_name = "Back Alley Organs"
 	icon_state = "moebius"

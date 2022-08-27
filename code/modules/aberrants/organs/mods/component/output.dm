@@ -53,9 +53,15 @@
 			if(mode == CHEM_INGEST)
 				O.name = "gastric organoid"
 				O.desc = "Functional tissue of one or more organs in graftable form. Produces reagents in the stomach."
+				O.description_info = "Produces reagents in the stomach when triggered.\n\n\
+									Use a laser cutting tool to change the metabolism target or reagent type.\n\
+									Reagents can only be swapped for like reagents."
 			else if(mode == CHEM_BLOOD)
 				O.name = "hepatic organoid"
 				O.desc = "Functional tissue of one or more organs in graftable form. Secretes reagents into the bloodstream."
+				O.description_info = "Produces reagents in the bloodstream when triggered.\n\n\
+									Use a laser cutting tool to change the metabolism target or reagent type.\n\
+									Reagents can only be swapped for like reagents."
 
 	if(decision_adjust == "reagent")
 		for(var/output in possible_outputs)

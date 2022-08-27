@@ -74607,11 +74607,15 @@
 	},
 /obj/structure/table/standard,
 /obj/item/paper_bin{
-	pixel_x = -3;
+	pixel_x = -5;
 	pixel_y = 5
 	},
 /obj/item/pen{
-	pixel_x = -3;
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/machinery/recharger{
+	pixel_x = 8;
 	pixel_y = 6
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
@@ -106345,9 +106349,6 @@
 /area/eris/quartermaster/hangarsupply)
 "urv" = (
 /obj/structure/table/standard,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
 /obj/item/storage/box/gloves{
 	pixel_y = 3
 	},

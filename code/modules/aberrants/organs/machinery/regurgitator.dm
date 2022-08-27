@@ -184,6 +184,19 @@
 	name = "flesh cube"
 	desc = "A three-dimensional solid object bounded by six square faces, with three meeting at each vertex. This one is covered in several layers of ectodermal tissue."
 	description_info = "Recycle this in the organ fabricator to add 60 biotic substrate, which is used in lieu of biomatter to print organs."
+	// Source: https://en.wikipedia.org/wiki/Cube and https://en.wikipedia.org/wiki/Ectoderm
+	description_fluff = "Its shape is that of a regular hexahedron and is one of the five Platonic solids. It has 6 faces, 12 edges, and 8 vertices. \
+						It is also a square parallelepiped, an equilateral cuboid and a right rhombohedron a 3-zonohedron. \
+						It is a regular square prism in three orientations, and a trigonal trapezohedron in four orientations. \
+						It is dual to the octahedron. It has cubical or octahedral symmetry. \
+						It is the only convex polyhedron whose faces are all squares.\n\n\
+						The ectoderm is one of the three primary germ layers formed in early embryonic development. \
+						It is the outermost layer, and is superficial to the mesoderm (the middle layer) and endoderm (the innermost layer). \
+						It emerges and originates from the outer layer of germ cells. \
+						The word ectoderm comes from the Greek ektos meaning \"outside\", and derma meaning \"skin\". \
+						Generally speaking, the ectoderm differentiates to form epithelial and neural tissues (spinal cord, peripheral nerves and brain). \
+						This includes the skin, linings of the mouth, anus, nostrils, sweat glands, hair and nails, and tooth enamel. \
+						Other types of epithelium are derived from the endoderm."
 	icon = 'icons/obj/machines/regurgitator.dmi'
 	icon_state = "carne_cansada"
 	w_class = ITEM_SIZE_SMALL

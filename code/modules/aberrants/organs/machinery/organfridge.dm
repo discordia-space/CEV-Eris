@@ -27,19 +27,21 @@
 /obj/machinery/vending/organfridge_aberrant
 	name = "Oh My Guts!"
 	desc = "Grass-fed organic organs or your money back!"
-	icon_state = "smartfridge"
+	icon = 'icons/obj/machines/organfridge.dmi'
+	icon_state = "organfridge"
 	product_slogans = "Don\'t be heartless!;Can you stomach these prices?!;You don\'t have the guts, pal!"
 	product_ads = "Don\'t be heartless!;Can you stomach these prices?!;You don\'t have the guts, pal!"
 	spawn_tags = SPAWN_TAG_ABERRANT_VENDOR
 	spawn_frequency = 10
 	rarity_value = 40
 	vendor_department = DEPARTMENT_OFFSHIP
-	var/icon_on = "smartfridge"
-	var/icon_off = "smartfridge-off"
+	var/icon_on = "organfridge"
+	var/icon_off = "organfridge-off"
 	var/icon_panel = "organfridge-panel"
 	var/icon_fill10 = "organfridge-fill10"
 	var/icon_fill20 = "organfridge-fill20"
 	var/icon_fill30 = "organfridge-fill30"
+	var/light_colors = list("red", "yellow", "green")
 	var/contents_current
 	products = list(
 		/obj/item/organ/internal/scaffold = 3,
@@ -100,6 +102,11 @@
 
 	if(panel_open && icon_panel)
 		overlays += image(icon, icon_panel)
+	else
+		overlays += image(icon, "fridge_light-top_left-" + pick(light_colors))
+		overlays += image(icon, "fridge_light-top_right-" + pick(light_colors))
+		overlays += image(icon, "fridge_light-bottom_left-" + pick(light_colors))
+		overlays += image(icon, "fridge_light-bottom_right-" + pick(light_colors))
 
 	if(contents_current > 0)
 		if(contents_current <= 10)
