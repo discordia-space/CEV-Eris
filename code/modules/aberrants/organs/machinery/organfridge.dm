@@ -27,7 +27,7 @@
 /obj/machinery/vending/organfridge_aberrant
 	name = "Oh My Guts!"
 	desc = "Grass-fed organic organs or your money back!"
-	icon = 'icons/obj/machines/organfridge.dmi'
+	icon = 'icons/obj/machines/organ_vendor.dmi'
 	icon_state = "organfridge"
 	product_slogans = "Don\'t be heartless!;Can you stomach these prices?!;You don\'t have the guts, pal!"
 	product_ads = "Don\'t be heartless!;Can you stomach these prices?!;You don\'t have the guts, pal!"
