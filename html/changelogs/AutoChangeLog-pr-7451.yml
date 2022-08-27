@@ -1,5 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - tweak: Switch frequency of integrated circuits to 1457
-  - tweak: Modify the Destroy function of integrated circuits
