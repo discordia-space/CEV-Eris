@@ -1,34 +1,12 @@
-// Mods
-/datum/design/organ/organ_mod
-	category = "Modifications"
-	starts_unlocked = TRUE
-
-/datum/design/organ/organ_mod/capillaries
-	build_path = /obj/item/modification/organ/internal/stromal/improvement/requirements
-
-/datum/design/organ/organ_mod/durable_membrane
-	build_path = /obj/item/modification/organ/internal/stromal/improvement/durability
-
-/datum/design/organ/organ_mod/stem_cells
-	build_path = /obj/item/modification/organ/internal/stromal/improvement/efficiency
-
-/datum/design/organ/organ_mod/expander
-	build_path = /obj/item/modification/organ/internal/stromal/augment/expander
-
-/datum/design/organ/organ_mod/overclock
-	build_path = /obj/item/modification/organ/internal/stromal/augment/overclock
-
-/datum/design/organ/organ_mod/underclock
-	build_path = /obj/item/modification/organ/internal/stromal/augment/underclock
-
-/datum/design/organ/organ_mod/silencer
-	build_path = /obj/item/modification/organ/internal/stromal/augment/silencer
-
 // Organs
 /datum/design/organ/scaffold
 	category = "Aberrant"
 	build_path = /obj/item/organ/internal/scaffold
 	starts_unlocked = TRUE
+
+/datum/design/organ/scaffold/rare
+	build_path = /obj/item/organ/internal/scaffold/rare
+	starts_unlocked = FALSE
 
 /datum/design/organ/aberrant_organ
 	category = "Aberrant"
@@ -126,6 +104,33 @@
 
 /datum/design/organ/aberrant_organ/exmercenary/muscle
 	build_path = /obj/item/organ/internal/scaffold/aberrant/dependent/exmercenary/muscle
+
+
+// Mods
+/datum/design/organ/organ_mod
+	category = "Modifications"
+	starts_unlocked = TRUE
+
+/datum/design/organ/organ_mod/capillaries
+	build_path = /obj/item/modification/organ/internal/stromal/improvement/requirements
+
+/datum/design/organ/organ_mod/durable_membrane
+	build_path = /obj/item/modification/organ/internal/stromal/improvement/durability
+
+/datum/design/organ/organ_mod/stem_cells
+	build_path = /obj/item/modification/organ/internal/stromal/improvement/efficiency
+
+/datum/design/organ/organ_mod/expander
+	build_path = /obj/item/modification/organ/internal/stromal/augment/expander
+
+/datum/design/organ/organ_mod/overclock
+	build_path = /obj/item/modification/organ/internal/stromal/augment/overclock
+
+/datum/design/organ/organ_mod/underclock
+	build_path = /obj/item/modification/organ/internal/stromal/augment/underclock
+
+/datum/design/organ/organ_mod/silencer
+	build_path = /obj/item/modification/organ/internal/stromal/augment/silencer
 
 
 // Teratomas

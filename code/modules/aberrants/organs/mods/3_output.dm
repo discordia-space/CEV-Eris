@@ -59,7 +59,7 @@
 /obj/item/modification/organ/internal/output/chemical_effects
 	name = "endocrinal organoid"
 	desc = "Functional tissue of one or more organs in graftable form. Secretes hormones."
-	description_info = "Produces a hormone in the bloodstream when triggered.\n\n\
+	description_info = "Produces hormones in the bloodstream when triggered.\n\n\
 						Use a laser cutting tool to change the hormone type.\n\
 						Hormones effects do not stack."
 

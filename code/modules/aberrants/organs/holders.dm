@@ -218,7 +218,9 @@
 /obj/item/organ/internal/scaffold/rare
 	name = "large organ scaffold"
 	desc = "A collagen-based biostructure. This one has room for an extra organoid."
+	ruined_desc = "A collagen-based biostructure. This one has room for an extra organoid."
 	description_info = "A functionless organ with four slots for organ mods or organoids. Generally, you'll want to save the fourth upgrade slot for a membrane."
+	ruined_description_info = "A functionless organ with four slots for organ mods or organoids. Generally, you'll want to save the fourth upgrade slot for a membrane."
 	rarity_value = 80
 	spawn_tags = SPAWN_TAG_ABERRANT_ORGAN_RARE
 	max_upgrades = 4

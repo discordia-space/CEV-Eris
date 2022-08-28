@@ -1,34 +1,78 @@
 /obj/machinery/reagentgrinder/industrial/regurgitator
 	name = "regurgitator"
-	desc = "An abomination of meat and metal. Consumes organs, milk, and protein."
+	desc = "An abomination of meat and metal. Consumes organs and various reagents."
+	description_info = "Requires a retracting tool to open the panel and a clamping tool to disassemble.\n\n\
+						Can be upgraded by re-assembling with organs of higher efficiency and using different organ types. Try using organs related to digestion and filtration."
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/machines/regurgitator.dmi'
 	icon_state = "regurgitator"
 	reagent_flags = NO_REACT
 	circuit = /obj/item/electronics/circuitboard/regurgitator
-	limit = 25
+	limit = 10
 	nano_template = "regurgitator.tmpl"
 	sheet_reagents = list()
 	var/biomatter_counter = 0		// We don't want this to actually produce biomatter
-	var/accepted_reagents = list(
-		/datum/reagent/drink/milk,
-		/datum/reagent/organic/nutriment/protein	// should be able to take eggs since it's a child type
+	var/list/accepted_reagents = list(
+		/datum/reagent/drink/milk = 0.13,				// Internet said milk is 13% solids, 87% water
+		/datum/reagent/organic/nutriment/protein = 1
 	)
-	var/blacklisted_reagents = list(
+	var/list/blacklisted_reagents = list(
 		/datum/reagent/drink/milk/soymilk
 	)
-	var/accepted_objects = list(
+	var/list/accepted_objects = list(
 		/obj/item/organ,
-		/obj/item/modification/organ,
-		/obj/item/reagent_containers/food/snacks/meat
+		/obj/item/modification/organ
 	)
 	var/spit_target
 	var/spit_range = 2		// For var-edits
+	var/has_brain = FALSE
 
 /obj/machinery/reagentgrinder/industrial/regurgitator/Initialize()
 	. = ..()
 	spit_target = get_ranged_target_turf(src, dir, spit_range)
+
+/obj/machinery/reagentgrinder/industrial/regurgitator/InitCircuit()
+	if(!circuit)
+		return
+
+	if(ispath(circuit))
+		circuit = new circuit
+
+	if(!component_parts)
+		component_parts = list()
+	if(circuit)
+		component_parts += circuit
+
+	component_parts += new /obj/item/organ/internal/brain
+	component_parts += new /obj/item/organ/internal/stomach
+	component_parts += new /obj/item/organ/internal/liver
+	component_parts += new /obj/item/organ/internal/blood_vessel	// Doesn't do anything
+
+	RefreshParts()
+
+/obj/machinery/reagentgrinder/industrial/regurgitator/examine(mob/user)
+	..()
+	var/accepted
+	var/blacklisted
+
+	if(accepted_reagents?.len)
+		for(var/reagent in accepted_reagents)
+			var/datum/reagent/R = reagent
+			accepted += initial(R.name) + ", "
+
+	if(blacklisted_reagents?.len)
+		for(var/reagent in blacklisted_reagents)
+			var/datum/reagent/R = reagent
+			blacklisted += initial(R.name) + ", "
+
+	if(accepted)
+		accepted = copytext(accepted, 1, length(accepted) - 1)
+		to_chat(user, SPAN_NOTICE("<i>Accepts [accepted].</i>"))
+
+	if(blacklisted)
+		blacklisted = copytext(blacklisted, 1, length(blacklisted) - 1)
+		to_chat(user, SPAN_WARNING("Rejects [blacklisted]."))
 
 /obj/machinery/reagentgrinder/industrial/regurgitator/proc/check_reagents(obj/item/I, mob/user)
 	if(!I.reagents || !I.reagents.total_volume)
@@ -36,10 +80,9 @@
 	for(var/reagent in I.reagents.reagent_list)
 		var/datum/reagent/R = reagent
 		if(is_type_in_list(R, accepted_reagents))
-			if(!is_type_in_list(R, blacklisted_reagents))
-				. = TRUE	// If the container has only accepted reagents, the proc should return true
-		else
-			return FALSE	// If there is anything that can't be accepted in the container, refuse the whole thing
+			. = TRUE		// If the container has any amount of an accepted reagent, the proc will return true
+		if(is_type_in_list(R, blacklisted_reagents))
+			return FALSE	// If the container has any amount of a blacklisted reagent, the proc will immediately return false
 
 /obj/machinery/reagentgrinder/industrial/regurgitator/insert(obj/item/I, mob/user)
 	if(!istype(I))
@@ -86,19 +129,18 @@
 	if(I.reagents)
 		for(var/reagent in I.reagents.reagent_list)
 			var/datum/reagent/R = reagent
-			if(istype(R, /datum/reagent/drink/milk))
-				biomatter_counter += R.volume * 0.13	// Internet said milk is 13% solids, 87% water
-			if(istype(R, /datum/reagent/organic/nutriment/protein))
-				biomatter_counter += R.volume
+			if(!is_type_in_list(R, blacklisted_reagents) && is_type_in_list(R, accepted_reagents))
+				biomatter_counter += round(R.volume * accepted_reagents[R.type], 0.01)
 			R.remove_self(R.volume)
 		if(I.reagents.total_volume == 0)
 			holdingitems -= I
 			qdel(I)
 
 /obj/machinery/reagentgrinder/industrial/regurgitator/grind()
-	if(prob(1))
-		if(prob(1))
-			speak("You s-s-saved me... w-why?")	// If I did my calc right, this should happen once every 3 rounds
+	if(has_brain && prob(1))
+		if(prob(1))									// If I did my calc right, this should happen once every 2 hours
+			for(var/mob/O in hearers(src, null))
+				O.show_message("\icon[src] <b>\The [src]</b> says, \"You s-s-saved me... w-why?\"", 2)
 			flick("[initial(icon_state)]_spit", src)
 
 	var/obj/item/I = locate() in holdingitems
@@ -150,6 +192,66 @@
 
 	return FALSE //If got no qualities - continue base attackby proc
 
+/obj/machinery/reagentgrinder/industrial/regurgitator/RefreshParts()
+	var/liver_eff = 0
+	var/kidney_eff = 0
+	var/carrion_chem_eff = 0
+	var/stomach_eff = 0
+
+	has_brain = FALSE
+
+	for(var/component in component_parts)
+		if(!istype(component, /obj/item/organ/internal))
+			continue
+		var/obj/item/organ/internal/O = component
+		for(var/eff in O.organ_efficiency)
+			switch(eff)
+				if(OP_LIVER)
+					liver_eff += O.organ_efficiency[eff]
+				if(OP_STOMACH)
+					stomach_eff += O.organ_efficiency[eff]
+				if(OP_KIDNEYS)
+					kidney_eff += O.organ_efficiency[eff]
+				if(BP_BRAIN)
+					has_brain = TRUE
+				if(OP_CHEMICALS)		// Carrion vessel
+					carrion_chem_eff += O.organ_efficiency[eff]
+
+	if(liver_eff > 99)
+		accepted_reagents |= list(
+			/datum/reagent/toxin/diplopterum = 0.25
+		)
+	if(liver_eff > 124)
+		accepted_reagents |= list(
+			/datum/reagent/toxin/seligitillin = 0.75,
+			/datum/reagent/toxin/starkellin = 0.75,
+			/datum/reagent/toxin/gewaltine = 0.75,
+			/datum/reagent/toxin/blattedin = 0.5
+		)
+	if(liver_eff > 149)
+		accepted_reagents = list(
+			/datum/reagent/toxin/fuhrerole = 1,
+			/datum/reagent/toxin/kaiseraurum = 10
+		)
+
+	if(kidney_eff > 49)
+		accepted_reagents |= list(
+			/datum/reagent/organic/blood = 0.1		// Internet says blood is 90% water
+		)
+
+	if(carrion_chem_eff > 99)
+		accepted_reagents |= list(
+			/datum/reagent/toxin/pararein = 1,
+			/datum/reagent/toxin/aranecolmin = 2
+		)
+
+	if(stomach_eff > 99)
+		limit += 5
+	if(stomach_eff > 124)
+		limit += 5
+	if(stomach_eff > 149)
+		limit += 5
+
 /obj/machinery/reagentgrinder/industrial/regurgitator/ui_data()
 	. = ..()
 
@@ -174,9 +276,7 @@
 	origin_tech = list(TECH_BIO = 3)
 	rarity_value = 20
 	req_components = list(
-		/obj/item/stock_parts/manipulator = 1,
-		/obj/item/organ/internal/stomach = 1,
-		/obj/item/organ/internal/brain = 1
+		/obj/item/organ/internal = 4			// Build with any organ, but certain efficiencies will have different effects.
 	)
 
 // Our resource item

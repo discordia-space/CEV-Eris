@@ -53,13 +53,14 @@
 	disk_name = "Oh My Guts! Artisanal Teratomas"
 	license = 10
 	designs = list(
+		/datum/design/organ/scaffold/rare,
 		/datum/design/organ/teratoma/input/rare/reagents,
 		/datum/design/organ/teratoma/input/rare/damage,
 		/datum/design/organ/teratoma/input/rare/power_source,
 		/datum/design/organ/teratoma/output/rare/reagents_blood,
 		/datum/design/organ/teratoma/output/rare/reagents_ingest,
 		/datum/design/organ/teratoma/output/rare/chemical_effects,
-		/datum/design/organ/teratoma/output/rare/stat_boost,
+		/datum/design/organ/teratoma/output/rare/stat_boost
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/omg/simple

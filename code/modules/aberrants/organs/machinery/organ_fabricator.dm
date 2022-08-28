@@ -4,7 +4,7 @@
 	icon_state = "organ_fabricator"
 	circuit = /obj/item/electronics/circuitboard/organ_fabricator
 	build_type = ORGAN_GROWER			// Should not be able to use church disks
-	unsuitable_materials = list()		// Allows biomatter
+	unsuitable_materials = list()		// Allows biomatter to be used (reskinned as "biotic substrate")
 	storage_capacity = 360
 	have_disk = TRUE
 	have_reagents = TRUE
@@ -159,7 +159,7 @@
 	name = T_BOARD("organ fabricator")
 	build_path = /obj/machinery/autolathe/organ_fabricator
 	board_type = "machine"
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 3,
 		/obj/item/stock_parts/manipulator = 1,

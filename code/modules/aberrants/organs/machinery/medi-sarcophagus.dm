@@ -3,9 +3,11 @@
 	icon = 'icons/obj/machines/medisarcophagus.dmi'
 	icon_state = "sarcophagus_0"
 	desc = "A fancy bed with built-in injectors, a dialysis machine, and a limited health scanner. It looks like it needs to be pried open."
+	circuit = /obj/item/electronics/circuitboard/sarcophagus
 	spawn_tags = SPAWN_TAG_ABERRANT_MACHINERY
 	spawn_frequency = 10
 	rarity_value = 80
+	available_chemicals = list()
 	var/horror_occupant = null
 	var/mob_count = 1
 	var/accompanying_loot = null
@@ -18,34 +20,11 @@
 	if(!preset_direction)
 		set_dir(pick(NORTH, EAST, WEST))
 
-	available_chemicals = list("inaprovaline2" = "Synth-Inaprovaline", "anti_toxin" = "Dylovene")
-
-	if(prob(75))
-		available_chemicals |= list("paracetamol" = "Paracetamol")
-	if(prob(75))
-		available_chemicals |= list("polystem" = "Polystem")
-
-	if(prob(50))
-		available_chemicals |= pick(list(list("bicaridine" = "Bicaridine"), list("oil" = "Bicaridone"), list("mold" = "Bicarizine")))
-	if(prob(50))
-		available_chemicals |= pick(list(list("dermaline" = "Dermaline"), list("oil" = "Dermazine"), list("mold" = "Dermalyne")))
-	if(prob(50))
-		available_chemicals |= pick(list(list("tramadol" = "Tramadol"), list("oil" = "Tramadone"), list("mold" = "Tramamol")))
-	if(prob(50))
-		available_chemicals |= pick(list(list("hyronalin" = "Hyronalin"), list("oil" = "Hyronaline"), list("mold" = "Hyronalyne")))
-
-	if(prob(25))
-		available_chemicals |= pick(list(list("oxycodone" = "Oxycodone"), list("oil" = "Oxycodol"), list("mold" = "Oxycodine")))
-
-	if(prob(5))
-		available_chemicals |= pick(list(list("meralyne" = "Meralyne"), list("oil" = "Meraline"), list("mold" = "Meradine")))
-	if(prob(5))
-		available_chemicals |= pick(list(list("rezadone" = "Rezadone"), list("oil" = "Rezadine"), list("mold" = "Rezaline")))
-
-	if(prob(1))
-		available_chemicals |= list("ossisine" = "Ossisine")
-	if(prob(1))
-		available_chemicals |= list("kyphotorin" = "Kyphotorin")
+/obj/machinery/sleeper/sarcophagus/RefreshParts()
+	for(var/component in component_parts)
+		if(istype(component, /obj/item/electronics/circuitboard/sarcophagus))
+			var/obj/item/electronics/circuitboard/sarcophagus/C = component
+			available_chemicals = C.available_chemicals
 
 /obj/machinery/sleeper/sarcophagus/update_icon()
 	var/is_occupied = horror_occupant || occupant ? 1 : 0
@@ -61,15 +40,6 @@
 /obj/machinery/sleeper/sarcophagus/go_out()
 	if(horror_occupant)
 		desc = "A fancy bed with built-in injectors, a dialysis machine, and a limited health scanner."
-
-		var/list/targets = get_mobs_or_objects_in_view(1, src, TRUE, FALSE)
-		if(targets.len)
-			for(var/atom/movable/target in targets)
-				target.throw_at_random(FALSE, 3, 2)
-				if(isliving(target))
-					var/mob/living/L = target
-					L.apply_damage(5, BRUTE)
-					L.apply_damage(10, HALLOSS)
 
 		for(var/count in 1 to mob_count)
 			new horror_occupant(src.loc)
@@ -88,8 +58,16 @@
 	. = ..()
 
 /obj/machinery/sleeper/sarcophagus/attackby(obj/item/I, mob/user)
-	if(..())
+	if(default_deconstruction(I, user))
 		return
+
+	//Useability tweak for borgs
+	if (istype(I,/obj/item/gripper))
+		ui_interact(user)
+		return
+
+	..()
+
 	if(istool(I) && horror_occupant)
 		var/obj/item/tool/T = I
 		if(T.has_quality(QUALITY_PRYING))
@@ -97,6 +75,9 @@
 			if(!I.use_tool(user = user, target =  src, base_time = WORKTIME_NORMAL, required_quality = QUALITY_PRYING, fail_chance = FAILCHANCE_NORMAL, required_stat = STAT_ROB, forced_sound = WORKSOUND_EASY_CROWBAR))
 				return
 			go_out()
+
+/obj/machinery/sleeper/sarcophagus/on_deconstruction()
+	go_out()
 
 /obj/machinery/sleeper/sarcophagus/hive
 	rarity_value = 60
@@ -124,3 +105,49 @@
 		desc = "A fancy bed with built-in injectors, a dialysis machine, and a limited health scanner."
 
 	update_icon()
+
+/obj/item/electronics/circuitboard/sarcophagus
+	name = T_BOARD("medi-sarcophagus")
+	rarity_value = 80
+	build_path = /obj/machinery/sleeper/sarcophagus
+	board_type = "machine"
+	origin_tech = list(TECH_BIO = 5)
+	req_components = list(
+		/obj/item/stock_parts/scanning_module = 2,
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stock_parts/console_screen = 1,
+		/obj/item/stock_parts/micro_laser = 2,
+		/obj/item/reagent_containers/glass/beaker/large = 1
+		)
+	var/list/available_chemicals = list()
+
+// Having the chems associated with the circuit means you can deconstruct without fear of losing the configuration
+// Also, it prevents re-rolling until you get a desired chem
+/obj/item/electronics/circuitboard/sarcophagus/Initialize()
+	. = ..()
+
+	available_chemicals = list("inaprovaline2" = "Synth-Inaprovaline", "anti_toxin" = "Dylovene")
+
+	if(prob(50))
+		available_chemicals |= list("paracetamol" = "Paracetamol")
+	if(prob(50))
+		available_chemicals |= list("polystem" = "Polystem")
+
+	if(prob(25))
+		available_chemicals |= pick(list(list("bicaridine" = "Bicaridine"), list("oil" = "Bicaridone"), list("mold" = "Bicarizine")))
+	if(prob(25))
+		available_chemicals |= pick(list(list("dermaline" = "Dermaline"), list("oil" = "Dermazine"), list("mold" = "Dermalyne")))
+	if(prob(25))
+		available_chemicals |= pick(list(list("tramadol" = "Tramadol"), list("oil" = "Tramadone"), list("mold" = "Tramamol")))
+	if(prob(25))
+		available_chemicals |= pick(list(list("hyronalin" = "Hyronalin"), list("oil" = "Hyronaline"), list("mold" = "Hyronalyne")))
+
+	if(prob(5))
+		available_chemicals |= pick(list(list("oxycodone" = "Oxycodone"), list("oil" = "Oxycodol"), list("mold" = "Oxycodine")))
+	if(prob(5))
+		available_chemicals |= pick(list(list("meralyne" = "Meralyne"), list("oil" = "Meraline"), list("mold" = "Meradine")))
+
+	if(prob(1))
+		available_chemicals |= list("ossisine" = "Ossisine")
+	if(prob(1))
+		available_chemicals |= list("kyphotorin" = "Kyphotorin")

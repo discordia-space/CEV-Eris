@@ -47,7 +47,6 @@
 		/obj/item/organ/internal/scaffold = 3,
 		/obj/item/storage/freezer/medical = 5,
 		/obj/item/tool/scalpel/laser = 1,
-		///obj/item/reagent_containers/hypospray/autoinjector/genecleanser = 10,
 		/obj/item/organ/internal/scaffold/aberrant/teratoma/input = 6,
 		/obj/item/organ/internal/scaffold/aberrant/teratoma/process = 9,
 		/obj/item/organ/internal/scaffold/aberrant/teratoma/output = 6
@@ -60,9 +59,8 @@
 	)
 	prices = list(
 		/obj/item/organ/internal/scaffold = 100,
-		/obj/item/storage/freezer/medical = 25,
-		/obj/item/tool/scalpel/laser = 125,
-		///obj/item/reagent_containers/hypospray/autoinjector/genecleanser = 160,
+		/obj/item/storage/freezer/medical = 34,
+		/obj/item/tool/scalpel/laser = 16,
 		/obj/item/organ/internal/scaffold/aberrant/teratoma/input = 500,
 		/obj/item/organ/internal/scaffold/aberrant/teratoma/process = 500,
 		/obj/item/organ/internal/scaffold/aberrant/teratoma/output = 500,
@@ -157,7 +155,7 @@
 		/obj/item/organ/internal/scaffold/aberrant/damage_response = 3
 	)
 	prices = list(
-		/obj/item/storage/freezer/medical = 25,
+		/obj/item/storage/freezer/medical = 34,
 		/obj/item/organ/internal/scaffold/aberrant/scrub_toxin/blood = 1000,
 		/obj/item/organ/internal/scaffold/aberrant/scrub_toxin/ingest = 1000,
 		/obj/item/organ/internal/scaffold/aberrant/scrub_toxin/touch = 1000,
@@ -193,7 +191,7 @@
 		/obj/item/organ/internal/scaffold/aberrant/dependent/classy = 5
 	)
 	prices = list(
-		/obj/item/storage/freezer/medical = 25,
+		/obj/item/storage/freezer/medical = 34,
 		/obj/item/organ/internal/scaffold/aberrant/dependent/wifebeater/liver = 1500,
 		/obj/item/organ/internal/scaffold/aberrant/dependent/wifebeater/stomach = 1500,
 		/obj/item/organ/internal/scaffold/aberrant/dependent/wifebeater/kidney = 1500,
@@ -236,7 +234,7 @@
 		/obj/item/organ/internal/scaffold/aberrant/dependent/exmercenary = 5
 	)
 	prices = list(
-		/obj/item/storage/freezer/medical = 25,
+		/obj/item/storage/freezer/medical = 34,
 		/obj/item/organ/internal/scaffold/aberrant/dependent/mobster/blood_vessel = 750,
 		/obj/item/organ/internal/scaffold/aberrant/dependent/mobster/liver = 1500,
 		/obj/item/organ/internal/scaffold/aberrant/dependent/mobster/muscle = 750,

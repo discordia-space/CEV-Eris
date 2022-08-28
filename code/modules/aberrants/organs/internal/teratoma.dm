@@ -232,7 +232,7 @@
 	name = "gastric teratoma"
 	description_info = "A teratoma that houses a gastric organoid. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
 						Organoid information:\n\
-						Produces reagents in the bloodstream when triggered."
+						Produces reagents in the stomach when triggered."
 	req_num_outputs = 1
 	output_mod_path = /obj/item/modification/organ/internal/output/reagents_ingest
 
@@ -240,7 +240,7 @@
 	name = "endocrinal teratoma"
 	description_info = "A teratoma that houses an endocrinal organoid. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
 						Organoid information:\n\
-						Produces a hormone in the bloodstream when triggered."
+						Produces hormones in the bloodstream when triggered."
 	req_num_outputs = 1
 	output_mod_path = /obj/item/modification/organ/internal/output/chemical_effects
 
