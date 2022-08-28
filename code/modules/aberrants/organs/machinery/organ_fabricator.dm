@@ -146,7 +146,7 @@
 			continue
 
 		var/material/MAT = get_material_by_name(mtype)
-		var/material_name = MAT.display_name == MATERIAL_BIOMATTER ? "biotic substrate" : MAT.display_name		// So lore nerds don't piss their pants over biomatter being used
+		var/material_name = MAT.display_name == MATERIAL_BIOMATTER ? "biotic substrate" : MAT.display_name
 		var/list/ME = list("name" = material_name, "id" = mtype, "amount" = stored_material[mtype], "ejectable" = !!MAT.stack_type)
 
 		M.Add(list(ME))
