@@ -1,16 +1,17 @@
 /obj/item/modification/organ
+	name = "organoid"
 	bad_type = /obj/item/modification/organ
 	matter = list(MATERIAL_BIOMATTER = 5)
+	origin_tech = list(TECH_BIO = 3)	// One level higher than regular organs
 
 /obj/item/modification/organ/internal
-	name = "organoid"
 	icon = 'icons/obj/organ_mods.dmi'
 	icon_state = "organoid"
 	desc = "Functional tissue of one or more organs in graftable form."
 	spawn_tags = SPAWN_TAG_ORGAN_MOD
 	spawn_blacklisted = TRUE	// These should never spawn without a parent organ/teratoma.
 	bad_type = /obj/item/modification/organ/internal
-	price_tag = 400
+	price_tag = 200
 
 /obj/item/modification/organ/internal/New(loc, generate_organ_stats = FALSE, predefined_modifier = null)
 	..()

@@ -1,5 +1,6 @@
 /*
-*Explain this shit
+This is an adaptation of the component used for tool mods in game/objects/items/weapons/tools/mods/_upgrades.dm.
+In addition to being able to modify vars, these can apply behaviors via the trigger() proc using a signal.
 
 // Used elsewhere, do not modify
 COMSIG_IATTACK			Attacking with the item, args(target, user)				from click.dm
@@ -13,6 +14,7 @@ COMSIG_ABERRANT_INPUT
 COMSIG_ABERRANT_PROCESS
 COMSIG_ABERRANT_OUTPUT
 COMSIG_ABERRANT_COOLDOWN
+COMSIG_ABERRANT_SECONDARY
 */
 
 /datum/component/modification

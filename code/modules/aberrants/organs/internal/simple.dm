@@ -7,7 +7,7 @@
 	process_mod_path = /obj/item/modification/organ/internal/process/boost
 	output_mod_path = /obj/item/modification/organ/internal/output/chemical_effects
 	specific_input_type_pool = list(/datum/reagent/toxin)	// This should let it scrub ANY toxin
-	output_pool = ALL_HORMONES
+	output_pool = TYPE_1_HORMONES
 	output_info = list(NOT_USED)
 
 /obj/item/organ/internal/scaffold/aberrant/scrub_toxin/New()

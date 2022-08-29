@@ -45,8 +45,8 @@
 		component_parts += circuit
 
 	component_parts += new /obj/item/organ/internal/brain
-	component_parts += new /obj/item/organ/internal/stomach
-	component_parts += new /obj/item/organ/internal/liver
+	component_parts += new /obj/item/organ/internal/bone/head		// Doesn't do anything
+	component_parts += new /obj/item/organ/internal/nerve			// Doesn't do anything
 	component_parts += new /obj/item/organ/internal/blood_vessel	// Doesn't do anything
 
 	RefreshParts()
@@ -55,6 +55,14 @@
 	..()
 	var/accepted
 	var/blacklisted
+
+	if(accepted_objects?.len)
+		for(var/object in accepted_objects)
+			var/obj/O = object
+			accepted += initial(O.name) + "s, "
+
+	if(accepted)
+		accepted += "and objects with the following reagents: "
 
 	if(accepted_reagents?.len)
 		for(var/reagent in accepted_reagents)
@@ -236,7 +244,7 @@
 
 	if(kidney_eff > 49)
 		accepted_reagents |= list(
-			/datum/reagent/organic/blood = 0.1		// Internet says blood is 90% water
+			/datum/reagent/organic/blood = 0.1		// Internet says blood plasma is 10% solids, 90% water
 		)
 
 	if(carrion_chem_eff > 99)

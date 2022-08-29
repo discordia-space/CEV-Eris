@@ -58,42 +58,42 @@
 /obj/item/modification/organ/internal/special/on_cooldown/chemical_effect/bloodrestore/New(loc, generate_organ_stats = FALSE, predefined_modifier = null)
 	var/datum/component/modification/organ/on_cooldown/chemical_effect/S = AddComponent(/datum/component/modification/organ/on_cooldown/chemical_effect)
 
-	S.effect = /datum/reagent/hormone/bloodrestore
+	S.effect = pick(/datum/reagent/hormone/bloodrestore, /datum/reagent/hormone/bloodrestore/alt)
 	..()
 
 /obj/item/modification/organ/internal/special/on_cooldown/chemical_effect/bloodclot
 /obj/item/modification/organ/internal/special/on_cooldown/chemical_effect/bloodclot/New(loc, generate_organ_stats = FALSE, predefined_modifier = null)
 	var/datum/component/modification/organ/on_cooldown/chemical_effect/S = AddComponent(/datum/component/modification/organ/on_cooldown/chemical_effect)
 
-	S.effect = /datum/reagent/hormone/bloodclot
+	S.effect = pick(/datum/reagent/hormone/bloodclot, /datum/reagent/hormone/bloodclot/alt)
 	..()
 
 /obj/item/modification/organ/internal/special/on_cooldown/chemical_effect/painkiller
 /obj/item/modification/organ/internal/special/on_cooldown/chemical_effect/painkiller/New(loc, generate_organ_stats = FALSE, predefined_modifier = null)
 	var/datum/component/modification/organ/on_cooldown/chemical_effect/S = AddComponent(/datum/component/modification/organ/on_cooldown/chemical_effect)
 
-	S.effect = /datum/reagent/hormone/painkiller
+	S.effect = pick(/datum/reagent/hormone/painkiller, /datum/reagent/hormone/painkiller/alt)
 	..()
 
 /obj/item/modification/organ/internal/special/on_cooldown/chemical_effect/antitox
 /obj/item/modification/organ/internal/special/on_cooldown/chemical_effect/antitox/New(loc, generate_organ_stats = FALSE, predefined_modifier = null)
 	var/datum/component/modification/organ/on_cooldown/chemical_effect/S = AddComponent(/datum/component/modification/organ/on_cooldown/chemical_effect)
 
-	S.effect = /datum/reagent/hormone/antitox
+	S.effect = pick(/datum/reagent/hormone/antitox, /datum/reagent/hormone/antitox/alt)
 	..()
 
 /obj/item/modification/organ/internal/special/on_cooldown/chemical_effect/oxygenation
 /obj/item/modification/organ/internal/special/on_cooldown/chemical_effect/oxygenation/New(loc, generate_organ_stats = FALSE, predefined_modifier = null)
 	var/datum/component/modification/organ/on_cooldown/chemical_effect/S = AddComponent(/datum/component/modification/organ/on_cooldown/chemical_effect)
 
-	S.effect = /datum/reagent/hormone/oxygenation
+	S.effect = pick(/datum/reagent/hormone/oxygenation, /datum/reagent/hormone/oxygenation/alt)
 	..()
 
 /obj/item/modification/organ/internal/special/on_cooldown/chemical_effect/speedboost
 /obj/item/modification/organ/internal/special/on_cooldown/chemical_effect/speedboost/New(loc, generate_organ_stats = FALSE, predefined_modifier = null)
 	var/datum/component/modification/organ/on_cooldown/chemical_effect/S = AddComponent(/datum/component/modification/organ/on_cooldown/chemical_effect)
 
-	S.effect = /datum/reagent/hormone/speedboost
+	S.effect = pick(/datum/reagent/hormone/speedboost, /datum/reagent/hormone/speedboost/alt)
 	..()
 
 

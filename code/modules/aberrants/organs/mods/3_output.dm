@@ -61,7 +61,7 @@
 	desc = "Functional tissue of one or more organs in graftable form. Secretes hormones."
 	description_info = "Produces hormones in the bloodstream when triggered.\n\n\
 						Use a laser cutting tool to change the hormone type.\n\
-						Hormones effects do not stack."
+						Hormone effects of the same type do not stack."
 
 /obj/item/modification/organ/internal/output/chemical_effects/New(loc, generate_organ_stats = FALSE, predefined_modifier = null, list/output_types, list/additional_output_info)
 	var/datum/component/modification/organ/output/chemical_effects/O = AddComponent(/datum/component/modification/organ/output/chemical_effects)
@@ -75,17 +75,17 @@
 	for(var/quality in additional_output_info)
 		var/effect
 		switch(quality)
-			if(/datum/reagent/hormone/bloodrestore)
+			if(/datum/reagent/hormone/bloodrestore, /datum/reagent/hormone/bloodrestore/alt)
 				effect = "blood restoration"
-			if(/datum/reagent/hormone/bloodclot)
+			if(/datum/reagent/hormone/bloodclot, /datum/reagent/hormone/bloodclot/alt)
 				effect = "blood clotting"
-			if(/datum/reagent/hormone/painkiller)
+			if(/datum/reagent/hormone/painkiller, /datum/reagent/hormone/painkiller/alt)
 				effect = "painkiller"
-			if(/datum/reagent/hormone/antitox)
+			if(/datum/reagent/hormone/antitox, /datum/reagent/hormone/antitox/alt)
 				effect = "anti-toxin"
-			if(/datum/reagent/hormone/oxygenation)
+			if(/datum/reagent/hormone/oxygenation, /datum/reagent/hormone/oxygenation/alt)
 				effect = "oxygenation"
-			if(/datum/reagent/hormone/speedboost)
+			if(/datum/reagent/hormone/speedboost, /datum/reagent/hormone/speedboost/alt)
 				effect = "augmented agility"
 
 		new_output_qualities |= effect

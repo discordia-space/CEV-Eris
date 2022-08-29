@@ -29,8 +29,11 @@
 
 #define ALL_USABLE_POWER_SOURCES list(/obj/item/cell/small, /obj/item/cell/medium, /obj/item/cell/large, /obj/item/stack/material/plasma, /obj/item/stack/material/uranium, /obj/item/stack/material/tritium)
 
-#define ALL_HORMONES list(/datum/reagent/hormone/bloodclot, /datum/reagent/hormone/bloodrestore, /datum/reagent/hormone/painkiller,\
+#define TYPE_1_HORMONES list(/datum/reagent/hormone/bloodclot, /datum/reagent/hormone/bloodrestore, /datum/reagent/hormone/painkiller,\
 						/datum/reagent/hormone/speedboost, /datum/reagent/hormone/antitox, /datum/reagent/hormone/oxygenation)
+
+#define TYPE_2_HORMONES list(/datum/reagent/hormone/bloodclot/alt, /datum/reagent/hormone/bloodrestore/alt, /datum/reagent/hormone/painkiller/alt,\
+						/datum/reagent/hormone/speedboost/alt, /datum/reagent/hormone/antitox/alt, /datum/reagent/hormone/oxygenation/alt)
 
 // Blacklist all reagents with no name or ones that cannot be produced
 #define REAGENT_BLACKLIST list(/datum/reagent/organic, /datum/reagent/metal, /datum/reagent/drug,\

@@ -61,23 +61,27 @@
 	var/effect
 
 /datum/component/modification/organ/on_cooldown/chemical_effect/get_function_info()
+	var/datum/reagent/hormone/H
+	if(ispath(effect, /datum/reagent/hormone))
+		H = effect
+
 	var/effect_desc
 	switch(effect)
-		if(/datum/reagent/hormone/bloodrestore)
+		if(/datum/reagent/hormone/bloodrestore, /datum/reagent/hormone/bloodrestore/alt)
 			effect_desc = "blood restoration"
-		if(/datum/reagent/hormone/bloodclot)
+		if(/datum/reagent/hormone/bloodclot, /datum/reagent/hormone/bloodclot/alt)
 			effect_desc = "blood clotting"
-		if(/datum/reagent/hormone/painkiller)
+		if(/datum/reagent/hormone/painkiller, /datum/reagent/hormone/painkiller/alt)
 			effect_desc = "painkiller"
-		if(/datum/reagent/hormone/antitox)
+		if(/datum/reagent/hormone/antitox, /datum/reagent/hormone/antitox/alt)
 			effect_desc = "anti-toxin"
-		if(/datum/reagent/hormone/oxygenation)
+		if(/datum/reagent/hormone/oxygenation, /datum/reagent/hormone/oxygenation/alt)
 			effect_desc = "oxygenation"
-		if(/datum/reagent/hormone/speedboost)
+		if(/datum/reagent/hormone/speedboost, /datum/reagent/hormone/speedboost/alt)
 			effect_desc = "augmented agility"
 
 	var/description = "<span style='color:purple'>Functional information (secondary):</span> secretes a hormone"
-	description += "\n<span style='color:purple'>Effect produced:</span> [effect_desc]"
+	description += "\n<span style='color:purple'>Effect produced:</span> [effect_desc] (type ["[initial(H.hormone_type)]"])"
 
 	return description
 

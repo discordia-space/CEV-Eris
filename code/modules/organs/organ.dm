@@ -117,7 +117,15 @@
 	if(istype(loc, /obj/item/device/mmi) || istype(loc, /mob/living/simple_animal/spider_core))
 		return TRUE
 
-	if(istype(loc, /obj/structure/closet/body_bag/cryobag) || istype(loc, /obj/structure/closet/crate/freezer) || istype(loc, /obj/item/storage/freezer))
+	var/list/stasis_types = list(
+		/obj/structure/closet/body_bag/cryobag,
+		/obj/structure/closet/crate/freezer,
+		/obj/item/storage/freezer,
+		/obj/machinery/smartfridge,
+		/obj/machinery/reagentgrinder/industrial/regurgitator
+	)
+
+	if(is_type_in_list(loc, stasis_types))
 		return TRUE
 
 	return FALSE

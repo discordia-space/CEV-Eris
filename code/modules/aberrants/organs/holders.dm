@@ -7,6 +7,7 @@
 	price_tag = 100
 	organ_efficiency = list()
 	specific_organ_size = 0.4
+	origin_tech = list(TECH_BIO = 3)	// One level higher than regular organs
 	rarity_value = 60
 	spawn_tags = SPAWN_TAG_ABERRANT_ORGAN
 
@@ -37,7 +38,7 @@
 	UnregisterSignal(src, COMSIG_ABERRANT_COOLDOWN)
 
 /obj/item/organ/internal/scaffold/Process()
-	. = ..()
+	..()
 	if(owner && !on_cooldown && damage < min_broken_damage)
 		SEND_SIGNAL(src, COMSIG_ABERRANT_INPUT, src, owner)
 

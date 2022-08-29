@@ -114,23 +114,27 @@
 /datum/component/modification/organ/output/chemical_effects/get_function_info()
 	var/outputs
 	for(var/output in possible_outputs)
+		var/datum/reagent/hormone/H
+		if(ispath(output, /datum/reagent/hormone))
+			H = output
+
 		var/effect
 		switch(output)
-			if(/datum/reagent/hormone/bloodrestore)
+			if(/datum/reagent/hormone/bloodrestore, /datum/reagent/hormone/bloodrestore/alt)
 				effect = "blood restoration"
-			if(/datum/reagent/hormone/bloodclot)
+			if(/datum/reagent/hormone/bloodclot, /datum/reagent/hormone/bloodclot/alt)
 				effect = "blood clotting"
-			if(/datum/reagent/hormone/painkiller)
+			if(/datum/reagent/hormone/painkiller, /datum/reagent/hormone/painkiller/alt)
 				effect = "painkiller"
-			if(/datum/reagent/hormone/antitox)
+			if(/datum/reagent/hormone/antitox, /datum/reagent/hormone/antitox/alt)
 				effect = "anti-toxin"
-			if(/datum/reagent/hormone/oxygenation)
+			if(/datum/reagent/hormone/oxygenation, /datum/reagent/hormone/oxygenation/alt)
 				effect = "oxygenation"
-			if(/datum/reagent/hormone/speedboost)
+			if(/datum/reagent/hormone/speedboost, /datum/reagent/hormone/speedboost/alt)
 				effect = "augmented agility"
 			else
 				effect = "none"
-		outputs += "[effect], "
+		outputs += "[effect] (type ["[initial(H.hormone_type)]"]), "
 
 	outputs = copytext(outputs, 1, length(outputs) - 1)
 

@@ -31,7 +31,7 @@
 	icon_state = "organfridge"
 	product_slogans = "Don\'t be heartless!;Can you stomach these prices?!;You don\'t have the guts, pal!"
 	product_ads = "Don\'t be heartless!;Can you stomach these prices?!;You don\'t have the guts, pal!"
-	spawn_tags = SPAWN_TAG_ABERRANT_VENDOR
+	spawn_tags = SPAWN_TAG_ABERRANT_VENDOR_ORGANS
 	spawn_frequency = 10
 	rarity_value = 40
 	vendor_department = DEPARTMENT_OFFSHIP

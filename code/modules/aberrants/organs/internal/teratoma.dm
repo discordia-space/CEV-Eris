@@ -71,8 +71,6 @@
 					possible_reagent_classes |= list(REAGENTS_MEDICINE_SIMPLE)
 				else if(req_num_outputs > 2)	// > means rare
 					possible_reagent_classes |= list(REAGENTS_MEDICINE_INTERMEDIATE)
-				else
-					possible_reagent_classes |= list(REAGENTS_MEDICINE_BASIC)
 				output_pool = pick(possible_reagent_classes)
 			if(!output_info?.len)
 				for(var/i in 1 to req_num_outputs)
@@ -86,8 +84,6 @@
 					possible_reagent_classes |= list(REAGENTS_MEDICINE_SIMPLE)
 				else if(req_num_outputs > 2)	// > means rare
 					possible_reagent_classes |= list(REAGENTS_MEDICINE_INTERMEDIATE)
-				else
-					possible_reagent_classes |= list(REAGENTS_MEDICINE_BASIC)
 				output_pool = pick(possible_reagent_classes)
 			if(!output_info?.len)
 				for(var/i in 1 to req_num_outputs)
@@ -95,7 +91,11 @@
 
 		if(/obj/item/modification/organ/internal/output/chemical_effects)
 			if(!output_pool?.len)
-				output_pool = ALL_HORMONES
+				var/list/possible_hormone_types = list()
+				possible_hormone_types = list(TYPE_1_HORMONES)
+				if(req_num_outputs > 1)			// > 1 means uncommon or rare
+					possible_hormone_types |= list(TYPE_2_HORMONES)
+				output_pool = pick(possible_hormone_types)
 			for(var/i in 1 to req_num_outputs)
 				output_info += NOT_USED
 
@@ -329,13 +329,13 @@
 		)
 	switch(path)
 		if(/obj/item/modification/organ/internal/input)
-			input_mod_path = /obj/item/modification/organ/internal/input
+			input_mod_path = TRUE
 		if(/obj/item/modification/organ/internal/process)
-			process_mod_path = /obj/item/modification/organ/internal/process
+			process_mod_path = TRUE
 		if(/obj/item/modification/organ/internal/output)
-			output_mod_path = /obj/item/modification/organ/internal/output
+			output_mod_path = TRUE
 		if(/obj/item/modification/organ/internal/special)
-			special_mod_path = /obj/item/modification/organ/internal/special
+			special_mod_path = TRUE
 	..()
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/random/uncommon
@@ -351,8 +351,8 @@
 	for(var/count in 1 to 3)	// 79.6% to have at least one extra teratoma
 		if(prob(40))
 			new /obj/item/organ/internal/scaffold/aberrant/teratoma/random(src)
-	for(var/count in 1 to 3)	// 27.1% to have at least one aberrant organ
+	for(var/count in 1 to 3)	// 27.1% to have at least one uncommon teratoma
 		if(prob(10))
 			new /obj/item/organ/internal/scaffold/aberrant/teratoma/random/uncommon(src)
-	if(prob(3))
+	if(prob(5))
 		new /obj/item/organ/internal/scaffold/aberrant/teratoma/random/rare(src)
