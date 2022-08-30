@@ -10,6 +10,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
 	density = TRUE
+	description_info = "Can be upgraded to unlock acces to more refined reagents."
 	anchored = TRUE
 	use_power = NO_POWER_USE // Handles power use in Process()
 	layer = BELOW_OBJ_LAYER
@@ -241,7 +242,7 @@
 
 	accept_beaker = FALSE
 	density = FALSE
-	dispensable_reagents = list("water","ice","coffee","cream","tea","greentea","icetea","icegreentea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","watermelonjuice")
+	dispensable_reagents = list("water","ice","coffee","cream","tea","greentea","icetea","icegreentea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","lemonjuice","watermelonjuice")
 	hacked_reagents = list("thirteenloko","grapesoda")
 	has_tiered_reagents = FALSE
 
@@ -279,7 +280,7 @@ obj/machinery/chemical_dispenser/soda/update_icon()
 	accept_beaker = FALSE
 	density = FALSE
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
-	dispensable_reagents = list("lemon_lime","sugar","orangejuice","limejuice","sodawater","tonic","beer","kahlua","whiskey","wine","vodka","gin","rum","tequilla","vermouth","cognac","ale","mead")
+	dispensable_reagents = list("lemon_lime","sugar","orangejuice","limejuice","lemonjuice","sodawater","tonic","beer","kahlua","whiskey","wine","vodka","gin","rum","tequilla","vermouth","cognac","ale","mead")
 	hacked_reagents = list("goldschlager","patron","watermelonjuice","berryjuice")
 	has_tiered_reagents = FALSE
 

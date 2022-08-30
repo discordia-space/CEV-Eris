@@ -1,6 +1,8 @@
 /obj/item/reagent_containers/glass/beaker
 	name = "beaker"
 	desc = "A beaker."
+	description_info = "Can be heated using a lighter."
+	description_antag = "You can spill reagents onto people with this. Spilling acid melts clothes off, provided its in high enough doses."
 	icon_state = "beaker"
 	item_state = "beaker"
 	label_icon_state = "label_beaker"

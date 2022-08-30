@@ -103,7 +103,7 @@
 	if(object)
 		target = object
 		shooting_loop()
-		time_since_last_init = world.time + reciever.burst_delay
+		time_since_last_init = world.time + (reciever.fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : reciever.fire_delay)
 	return TRUE
 
 /datum/click_handler/fullauto/proc/shooting_loop()
@@ -113,7 +113,7 @@
 	if(target)
 		owner.mob.face_atom(target)
 		do_fire()
-		spawn(reciever.fire_delay) shooting_loop()
+		spawn(reciever.fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : reciever.fire_delay) shooting_loop()
 
 /datum/click_handler/fullauto/MouseDrag(over_object, src_location, over_location, src_control, over_control, params)
 	src_location = resolve_world_target(src_location)

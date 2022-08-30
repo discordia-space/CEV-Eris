@@ -7,6 +7,8 @@ var/global/excelsior_last_draft = 0
 /obj/machinery/complant_teleporter
 	name = "excelsior long-range teleporter"
 	desc = "A powerful teleporter that allows shipping matter in and out. Takes a long time to charge."
+	description_info = "A highly illegal teleporter. Uses huge amounts of power and will always show in the powergrid monitor"
+	description_antag = "The excelcior's main way of obtaining resources, calling reinforcements and unleashing the revolution"
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/machines/excelsior/teleporter.dmi'
@@ -128,10 +130,10 @@ var/global/excelsior_last_draft = 0
 	if(excelsior_energy < (excelsior_max_energy - energy_gain))
 		excelsior_energy += energy_gain
 		SSnano.update_uis(src)
-		use_power = ACTIVE_POWER_USE
+		set_power_use(ACTIVE_POWER_USE)
 	else
 		excelsior_energy = excelsior_max_energy
-		use_power = IDLE_POWER_USE
+		set_power_use(IDLE_POWER_USE)
 
 
 /obj/machinery/complant_teleporter/ex_act(severity)
@@ -343,6 +345,7 @@ var/global/excelsior_last_draft = 0
 	affecting.set_respawn_bonus("TELEPORTED_TO_EXCEL", COLLECTIVISED_RESPAWN_BONUS)
 	affecting << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
 	qdel(affecting)
+
 /obj/machinery/complant_teleporter/proc/request_reinforcements(var/mob/living/user)
 
 	if(excelsior_energy < reinforcements_cost)

@@ -80,7 +80,7 @@
 
 
 /datum/surgery_step/robotic/remove_item
-	required_tool_quality = QUALITY_CLAMPING
+	required_tool_quality = QUALITY_BOLT_TURNING
 
 	duration = 90
 

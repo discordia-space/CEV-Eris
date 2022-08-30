@@ -3,6 +3,8 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 /obj/machinery/door/airlock
 	name = "Airlock"
 	icon = 'icons/obj/doors/Doorint.dmi'
+	description_info = "Can be forced to remain open by leaving in a decently sized tool such as a wrench or crowbar. Can also be deconstructed by cutting all wires other than the bolt wire, welding, and then trying to crowbar it with its panel open. The bolts can be forced upwards if the door is unpowered with a hammering tool"
+	description_antag = "Can have signalers attached to the wires. Letting you get alerts whenever someone uses a door"
 	icon_state = "door_closed"
 	power_channel = STATIC_ENVIRON
 
@@ -972,7 +974,7 @@ There are 9 wires.
 		hit(user, I)
 		return
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_WELDING, p_open ? QUALITY_PULSING : null), src)
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_WELDING, p_open ? QUALITY_PULSING : null, p_open ? QUALITY_HAMMERING : null), src)
 	switch(tool_type)
 		if(QUALITY_PRYING)
 			if(!repairing)
@@ -1041,6 +1043,17 @@ There are 9 wires.
 			else
 				..()
 			return
+
+		if(QUALITY_HAMMERING)
+			if(stat & NOPOWER && locked)
+				to_chat(user, SPAN_NOTICE("You start hammering the bolts into the unlocked position"))
+				// long time and high chance to fail.
+				if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_VERY_HARD, required_stat = STAT_MEC))
+					to_chat(user, SPAN_NOTICE("You unbolt the door."))
+					locked = FALSE
+			else
+				to_chat(user, SPAN_NOTICE("You can\'t hammer away the bolts if the door is powered or not bolted."))
+				return
 
 
 		if(ABORT_CHECK)

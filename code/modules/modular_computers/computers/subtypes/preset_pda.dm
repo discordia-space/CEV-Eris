@@ -22,6 +22,7 @@
 	hard_drive.store_file(new /datum/computer_file/program/wordprocessor())
 	hard_drive.store_file(new /datum/computer_file/program/records())
 	hard_drive.store_file(new /datum/computer_file/program/bounty_board_app())
+	hard_drive.store_file(new/datum/computer_file/program/trade/order())
 	if(prob(60)) // Tax software
 		hard_drive.store_file(new /datum/computer_file/program/tax())
 	else if(prob(50)) // "Tax software"

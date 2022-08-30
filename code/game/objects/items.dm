@@ -15,8 +15,8 @@
 	var/randpixel = 6
 	var/abstract = 0
 	var/r_speed = 1
-	var/health
-	var/max_health
+	var/health = 100
+	var/max_health = 100
 	var/burn_point
 	var/burning
 	var/hitsound = 'sound/weapons/genhit1.ogg'

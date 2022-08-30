@@ -18,7 +18,7 @@
 /turf/simulated/floor/wood,
 /area/crawler)
 "f" = (
-/obj/structure/undies_wardrobe,
+/obj/structure/closet/onestar/tier3,
 /turf/simulated/floor/wood,
 /area/crawler)
 "g" = (
@@ -85,8 +85,9 @@
 /turf/simulated/floor/wood,
 /area/crawler)
 "s" = (
-/obj/structure/closet/onestar/tier3,
-/turf/simulated/floor/wood,
+/obj/structure/table/onestar,
+/obj/item/clothing/head/onestar,
+/turf/simulated/floor/carpet/bcarpet,
 /area/crawler)
 "t" = (
 /obj/machinery/door/airlock/centcom,
@@ -161,6 +162,10 @@
 	},
 /turf/simulated/floor/tiled/cafe,
 /area/crawler)
+"J" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -198,7 +203,7 @@ a
 (4,1,1) = {"
 a
 g
-s
+c
 c
 c
 a
@@ -234,7 +239,7 @@ c
 c
 C
 E
-k
+s
 c
 r
 b
@@ -289,7 +294,7 @@ l
 z
 m
 m
-m
+J
 z
 l
 a

@@ -301,3 +301,10 @@
 	name = "Makeshift prosthetic right arm"
 	result = /obj/item/organ/external/robotic/makeshift/r_arm
 
+/datum/craft_recipe/trash_bag
+	name = "trash bag"
+	result = /obj/item/storage/bag/trash
+	steps = list(
+		list(CRAFT_MATERIAL,5, MATERIAL_PLASTIC), //Thick plastic bag
+		list(/obj/item/stack/cable_coil, 1, "time" = 20) //And the draw string
+	)

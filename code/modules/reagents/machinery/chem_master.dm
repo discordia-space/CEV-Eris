@@ -5,6 +5,8 @@
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	circuit = /obj/item/electronics/circuitboard/chemmaster
+	description_info = "Can be used to make pill bottles, pills,beakers or just to separate a reagent"
+	description_antag = "Nothing prevents you from mis-labeling the pills."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
 	use_power = IDLE_POWER_USE
@@ -168,7 +170,7 @@
 						if (pillamount > max_pill_vol)
 							alert("Maximum volume supported in pills is [max_pill_vol]","Error.","Ok")
 							return
-						
+
 						count = CLAMP(count, 1, max_pill_count)
 					if("By volume")
 						amount_per_pill = input("Select the volume that single pill should contain.", "Max [R.total_volume]", 5) as num

@@ -66,6 +66,7 @@
 /obj/item/card/emag
 	desc = "A card with a magnetic strip attached to some circuitry."
 	name = "cryptographic sequencer"
+	description_antag = "This item has 10 by default. Emagging turrets turns them lethal to everyone. Emagging a door opens it and bolts it. Emagging a non-sentient robot turns them hostile. Emagging a cyborg forces them to obey you. Emagging an APC lets only you acces it."
 	icon_state = "emag"
 	item_state = "card-id"
 	origin_tech = list(TECH_MAGNET = 2, TECH_COVERT = 2)
@@ -140,7 +141,6 @@ var/const/NO_EMAG_ACT = -50
 		user << browse_rsc(side, "side.png")
 	var/datum/browser/popup = new(user, "idcard", name, 600, 250)
 	popup.set_content(dat())
-	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 	return
 

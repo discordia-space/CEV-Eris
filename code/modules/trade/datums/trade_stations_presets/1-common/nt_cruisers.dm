@@ -2,8 +2,10 @@
 	name_pool = list(
 		"NTV \'Faith\'" = "NeoTheology Vessel \'Faith\': \"The most holy purveyors of ecclesiarchic goods!\"",
 	)
-	icon_states = "nt_cruiser"
+	icon_states = list("nt_frigate", "ship")
 	uid = "nt_basic"
+	tree_x = 0.82
+	tree_y = 0.9
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS

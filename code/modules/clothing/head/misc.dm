@@ -196,6 +196,13 @@
 	siemens_coefficient = 2
 	style_coverage = COVERS_HAIR
 
+/obj/item/clothing/head/marisa
+	name = "witch hat"
+	desc = "Strange-looking hat-wear, makes you want to cast fireballs."
+	icon_state = "marisa"
+	style_coverage = COVERS_HAIR
+	spawn_blacklisted = TRUE
+
 /obj/item/clothing/head/chicken
 	name = "chicken suit head"
 	desc = "Bkaw!"

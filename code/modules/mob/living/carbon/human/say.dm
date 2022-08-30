@@ -183,9 +183,10 @@
 	return verb
 
 /mob/living/carbon/human/handle_speech_problems(var/message, var/verb)
-//	if(silent || (sdisabilities & MUTE))
-//		message = ""
-//		speech_problem_flag = 1
+	if(silent)
+		message = ""
+		speech_problem_flag = 1
+		to_chat(src, SPAN_WARNING("You can't speak!"))
 	if(istype(wear_mask, /obj/item/clothing/mask))
 		var/obj/item/clothing/mask/M = wear_mask
 		if(M.voicechange)

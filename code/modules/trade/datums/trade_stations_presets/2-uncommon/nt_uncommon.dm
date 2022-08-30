@@ -2,8 +2,10 @@
 	name_pool = list(
 		"NTV \'Hope\'" = "NeoTheology Vessel \'Hope\': \"Reliable, blessed, and sanctified goods for the correct price.\""
 	)
-	icon_states = "nt_cruiser"
+	icon_states = list("nt_cruiser", "ship")
 	uid = "nt_uncommon"
+	tree_x = 0.82
+	tree_y = 0.7
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = COMMON_GOODS

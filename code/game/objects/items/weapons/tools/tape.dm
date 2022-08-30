@@ -2,6 +2,8 @@
 	name = "duct tape"
 	desc = "The technomancer's eternal friend. Fixes just about anything, for a while at least."
 	icon = 'icons/obj/tools.dmi'
+	description_info = "Can be used for crafting or to repair tools"
+	description_antag = "Can be used to make makeshift mouthwraps and to tape cameras silently"
 	icon_state = "taperoll"
 	w_class = ITEM_SIZE_SMALL
 	tool_qualities = list(QUALITY_ADHESIVE = 30, QUALITY_SEALING = 30)

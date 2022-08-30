@@ -19,6 +19,7 @@
 	name = "\improper Emergency Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
 	icon = 'icons/obj/doors/DoorHazard.dmi'
+	description_info = "Can be deconstructed by welding closed, screwing and crowbaring the circuits out."
 	icon_state = "door_open"
 	req_one_access = list(access_atmospherics, access_engine_equip, access_medical_equip)
 	opacity = FALSE

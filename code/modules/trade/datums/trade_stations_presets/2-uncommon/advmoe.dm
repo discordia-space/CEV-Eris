@@ -2,8 +2,10 @@
 	name_pool = list(
 		"MTB \'Ningishzida\'" = "Moebius Trade Beacon \'Ningishzida\': Connection with the Moebius surplus network established."
 	)
-	icon_states = "moe_capital"
+	icon_states = list("moe_cruiser", "ship")
 	uid = "moe_adv"
+	tree_x = 0.38
+	tree_y = 0.7
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = COMMON_GOODS

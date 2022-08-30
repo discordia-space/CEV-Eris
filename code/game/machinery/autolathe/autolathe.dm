@@ -2,6 +2,7 @@
 	name = "autolathe"
 	desc = "It produces items using metal and glass."
 	icon = 'icons/obj/machines/autolathe.dmi'
+	description_info = "Can be upgraded to print faster, cheaper or hold more material. Can recycle items by trying to insert them as material"
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE
@@ -231,6 +232,10 @@
 
 /obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/list/data = ui_data(user, ui_key)
+
+	var/datum/asset/designIcons = get_asset_datum(/datum/asset/simple/design_icons)
+	if (designIcons.send(user.client))
+		user.client.browse_queue_flush() // stall loading nanoui until assets actualy gets sent
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)

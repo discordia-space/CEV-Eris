@@ -57,7 +57,7 @@
 	spent_icon = "magnum_c_l-spent"
 	shell_color = "l"
 	projectile_type = /obj/item/projectile/bullet/magnum
-	maxamount = 6
+	maxamount = 10
 
 	sprite_update_spawn = TRUE
 	sprite_max_rotate = 32

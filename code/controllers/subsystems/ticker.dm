@@ -89,7 +89,6 @@ SUBSYSTEM_DEF(ticker)
 			if(!start_immediately)
 				to_chat(world, "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds.")
 			current_state = GAME_STATE_PREGAME
-			send_assets()
 			fire()
 
 		if(GAME_STATE_PREGAME)

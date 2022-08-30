@@ -12,7 +12,7 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	mag_well = MAG_WELL_RIFLE
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L
 	magazine_type = /obj/item/ammo_magazine/srifle
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	price_tag = 2000
@@ -34,16 +34,9 @@
 	..()
 
 	var/iconstring = initial(icon_state)
-	var/itemstring = ""
-
-	if (ammo_magazine)
-		iconstring += "[ammo_magazine? "_mag": ""]"
-
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		iconstring += "_slide"
+	iconstring = initial(icon_state) + (ammo_magazine ? "_mag" + (ammo_magazine.mag_well == MAG_WELL_RIFLE_L ? "_l" : (ammo_magazine.mag_well == MAG_WELL_RIFLE_D ? "_d" : "")) : "")
 
 	icon_state = iconstring
-	set_item_state(itemstring)
 
 /obj/item/gun/projectile/kovacs/Initialize()
 	. = ..()

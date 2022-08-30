@@ -89,10 +89,10 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "s" = (
-/obj/structure/reagent_dispensers/fueltank/huge,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/liquid_fuel,
+/obj/structure/reagent_dispensers/fueltank/huge/derelict,
 /turf/simulated/floor/tiled/dark/panels,
 /area/crawler)
 "t" = (
@@ -198,7 +198,7 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "L" = (
-/obj/machinery/autolathe/mechfab,
+/obj/structure/salvageable/os/implant_container,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "M" = (
@@ -234,6 +234,29 @@
 /area/crawler)
 "S" = (
 /obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"T" = (
+/mob/living/carbon/superior_animal/stalker/dual,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"U" = (
+/obj/spawner/tool/advanced/onestar/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"V" = (
+/obj/structure/table/onestar,
+/obj/spawner/pack/tech_loot/onestar,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"X" = (
+/obj/structure/table/onestar,
+/obj/spawner/tool_upgrade/rare/onestar,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"Y" = (
+/obj/structure/table/onestar,
+/obj/spawner/tool/advanced/onestar/low_chance,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 
@@ -275,7 +298,7 @@ a
 e
 Q
 q
-S
+T
 q
 Q
 P
@@ -289,17 +312,17 @@ q
 C
 q
 q
-i
+Y
 b
 "}
 (6,1,1) = {"
 b
-i
-i
+Y
+X
 n
 C
 y
-i
+V
 i
 b
 "}
@@ -343,7 +366,7 @@ r
 A
 C
 J
-q
+U
 K
 a
 "}

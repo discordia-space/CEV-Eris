@@ -100,11 +100,23 @@
 		list(/obj/item/stack/rods, 5, "time" = 1),
 		list(QUALITY_HAMMERING, 5, 10, "time" = 10)) 
 
+/datum/craft_recipe/gun/rxd
+	name = "RXD - Rapid Crossbow Device"
+	result = /obj/item/gun/energy/rxd
+	steps = list(
+		list(/obj/item/rcd, 1, "time" = 15), //Base frame
+		list(QUALITY_SCREW_DRIVING, 10, 15), //Undo screws holding it together
+		list(QUALITY_SAWING, 10, "time" = 30), //Saw into frame to expose innards
+		list(QUALITY_PULSING, 30, "time" = 15), //Hack it so it only makes bolts, other functions ruined
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL), //Add steel to make the bow
+		list(QUALITY_WELDING, 10, "time" = 30), //Welds the steel into shape and closes frame
+		list(/obj/item/stack/cable_coil, 2, "time" = 10)) //Adds the bowstring
+
 /datum/craft_recipe/gun/makeshiftlaser
 	name = "makeshift laser carbine"
 	result = /obj/item/gun/energy/laser/makeshift
 	steps = list(
-		list(/obj/item/part/gun, 4),
+		list(/obj/item/part/gun, 3),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
@@ -117,7 +129,7 @@
 	name = "Makeshift AR .30 \"Kalash\""
 	result = /obj/item/gun/projectile/automatic/ak47/makeshift
 	steps = list(
-		list(/obj/item/part/gun, 4),
+		list(/obj/item/part/gun, 3),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
@@ -129,7 +141,7 @@
 	name = "Handmade SMG .35 Auto \"Luty\""
 	result = /obj/item/gun/projectile/automatic/luty
 	steps = list(
-		list(/obj/item/part/gun, 3),
+		list(/obj/item/part/gun, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 15, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),

@@ -53,6 +53,9 @@
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "n" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "o" = (
@@ -125,6 +128,21 @@
 /obj/spawner/gun/cheap,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
+"M" = (
+/mob/living/carbon/superior_animal/stalker/dual,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"Q" = (
+/obj/structure/table/onestar,
+/obj/item/gun/projectile/pistol/type_90,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"W" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -153,7 +171,7 @@ a
 c
 g
 g
-g
+M
 g
 g
 v
@@ -175,7 +193,7 @@ a
 d
 y
 g
-g
+y
 g
 g
 z
@@ -196,7 +214,7 @@ b
 b
 f
 a
-o
+Q
 o
 o
 a
@@ -207,9 +225,9 @@ b
 b
 g
 j
-e
-e
-e
+W
+W
+W
 s
 g
 b

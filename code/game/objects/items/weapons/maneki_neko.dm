@@ -4,6 +4,7 @@
 	icon_state = "maneki_neko"
 	item_state = "maneki_neko"
 	desc = "Costs a lot of money, this is ancient relic with no practical purpose. Feels like it's looking at you, with menacingly gaze. Fragile."
+	description_fluff = "Its said that one must be a fool to break such a valuable vase."
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_SMALL

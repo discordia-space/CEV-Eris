@@ -226,8 +226,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 				return TRUE
 
 			if(QUALITY_WELDING)
-				try_surgery_step(/datum/surgery_step/robotic/fix_brute, user, tool)
-				return TRUE
+				if(try_surgery_step(/datum/surgery_step/robotic/fix_brute, user, tool))
+					return TRUE
 
 			if(ABORT_CHECK)
 				return TRUE

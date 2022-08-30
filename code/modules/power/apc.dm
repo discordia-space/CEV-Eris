@@ -64,6 +64,8 @@
 /obj/machinery/power/apc
 	name = "area power controller"
 	desc = "A control terminal for the area electrical systems."
+	description_info = "Controls all of this area's machinery."
+	description_antag = "Can be unlocked by pulsing the lock wire. Can also be saboutaged by inserting plasma into its cell, making it blow whenever its turned on"
 
 	icon_state = "apc0"
 	anchored = TRUE
@@ -1262,7 +1264,7 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 
 /obj/machinery/power/apc/proc/set_broken()
 	// Aesthetically much better!
-	visible_message(SPAN_NOTICE("[src]'s screen flick_lights with warnings briefly!"))
+	visible_message(SPAN_NOTICE("[src]'s screen flickers with warnings briefly!"))
 	spawn(rand(2,5))
 		visible_message(SPAN_NOTICE("[src]'s screen suddenly explodes in rain of sparks and small debris!"))
 		stat |= BROKEN

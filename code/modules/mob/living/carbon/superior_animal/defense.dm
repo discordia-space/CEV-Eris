@@ -105,9 +105,7 @@
 
 /mob/living/carbon/superior_animal/ex_act(severity)
 	..()
-	if(!blinded)
-		if (HUDtech.Find("flash"))
-			flick("flash", HUDtech["flash"])
+	flash(5, FALSE ,FALSE ,FALSE)
 
 	var/bomb_defense = getarmor(null, ARMOR_BOMB)
 	var/b_loss = null
@@ -125,7 +123,7 @@
 			if (prob(50))
 				Paralyse(1)
 			adjustEarDamage(15,60)
-		
+
 		if (4)
 			b_loss += 15
 			if (prob(25))
