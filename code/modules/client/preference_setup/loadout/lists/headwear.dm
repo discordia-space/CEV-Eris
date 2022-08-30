@@ -131,15 +131,16 @@
 	cost = 2
 
 /datum/gear/head/cap/military
-	display_name = "Green Military Cap"
-	path = /obj/item/clothing/head/soft/green2soft
+    display_name = "military cap, color presets"
+    path = /obj/item/clothing/head/soft/green2soft
 
 /datum/gear/head/cap/military/New()
-	..()
-	var/battledress_serb = list(
-		"Tan"	=	/obj/item/clothing/head/soft/tan2soft
-	)
-	gear_tweaks += new /datum/gear_tweak/path(military)
+    ..()
+    var/battledress_serb = list(
+        "Green" = /obj/item/clothing/head/soft/green2soft,
+        "Tan" = /obj/item/clothing/head/soft/tan2soft
+    )
+    gear_tweaks += new /datum/gear_tweak/path(battledress_serb)
 
 /datum/gear/head/tanker_helmet/color_presets
 	display_name = "tanker helmet, color presets"

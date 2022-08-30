@@ -282,7 +282,7 @@
 
 /obj/item/clothing/head/beret/NTsec
 	name = "Old NT Beret"
-	desc = "A washed out and dusty corporate security beret from the long defunct nanotrasen."
+	desc = "A washed out and dusty corporate security beret from the long defunct NanoTrasen Corporation."
 	icon_state = "nanoberet"
 	style = STYLE_LOW
 
