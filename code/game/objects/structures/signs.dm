@@ -539,7 +539,7 @@
 	icon_state = "one_star_old"
 
 /obj/structure/sign/faction/one_star_sign
-	name = "Intact One Star Sign"
+	name = "One Star Sign"
 	desc = "One Star's all-seeing eye, an emblem of a now fallen empire. They once controlled this sector from their capital Earth. Now it's all just dust, forgotten derelicts, and automated ships."
 	icon_state = "one_star_sign"
 
@@ -552,6 +552,11 @@
 	name = "Moebius Laboratories"
 	desc = "Shady pharmaceutical and prosthetic manufacturer. Few outsiders know what happens behind the doors of their labs, and whoever knows does not live a long life."
 	icon_state = "moebius"
+
+/obj/structure/sign/faction/moebius_alt
+	name = "Moebius Laboratories"
+	desc = "Shady pharmaceutical and prosthetic manufacturer. Few outsiders know what happens behind the doors of their labs, and whoever knows does not live a long life."
+	icon_state = "moebius_alt"
 
 /obj/structure/sign/faction/neotheology
 	name = "NeoTheology"
