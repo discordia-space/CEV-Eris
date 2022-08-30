@@ -26,12 +26,12 @@
 	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Ironhammer Medical Specialist")
 
 /datum/gear/head/beret/bsec_warden
-	display_name = "beret, navy (warden)"
+	display_name = "beret, navy (Sergeant)"
 	path = /obj/item/clothing/head/beret/sec/navy/warden
 	allowed_roles = list("Ironhammer Commander","Gunnery Sergeant")
 
 /datum/gear/head/beret/bsec_hos
-	display_name = "beret, navy (hos)"
+	display_name = "beret, navy (Lieutenant)"
 	path = /obj/item/clothing/head/beret/sec/navy/hos
 	allowed_roles = list("Ironhammer Commander")
 
@@ -129,6 +129,17 @@
 	display_name = "Type-34C Semi-Enclosed Headwear"
 	path = /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
 	cost = 2
+
+/datum/gear/head/cap/military
+	display_name = "Green Military Cap"
+	path = /obj/item/clothing/head/soft/green2soft
+
+/datum/gear/head/cap/military/New()
+	..()
+	var/battledress_serb = list(
+		"Tan"	=	/obj/item/clothing/head/soft/tan2soft
+	)
+	gear_tweaks += new /datum/gear_tweak/path(military)
 
 /datum/gear/head/tanker_helmet/color_presets
 	display_name = "tanker helmet, color presets"
