@@ -429,7 +429,7 @@ obj/item/clothing/under/genericr
 
 /obj/item/clothing/under/NTSec
 	name = "Old NT Security Uniform"
-	desc = "A worn and dusty red security jumpsuit from the long defunct Nanotrasen Corporation. this uniform once signified authority, now its just a ugly set of clothes"
+	desc = "A worn and dusty red security jumpsuit from the long defunct Nanotrasen Corporation. this uniform once signified authority, now its just an ugly set of clothes"
 	icon_state = "nanosec"
 	item_state = "nanosec"
 	siemens_coefficient = 0.8

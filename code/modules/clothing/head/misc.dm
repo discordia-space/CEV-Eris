@@ -280,6 +280,12 @@
 		rad = 0
 	)
 
+/obj/item/clothing/head/beret/NTsec
+	name = "Old NT Beret"
+	desc = "A washed out and dusty corporate security beret from the long defunct nanotrasen."
+	icon_state = "nanoberet"
+	style = STYLE_LOW
+
 /obj/item/clothing/head/onestar
 	name = "One Star officer cap"
 	desc = "A fancy red and blue cap sporting the One Star insignia. It's made out of a strange material that feels like it could stop a bullet."
