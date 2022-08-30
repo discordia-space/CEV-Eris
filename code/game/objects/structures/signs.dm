@@ -529,14 +529,19 @@
 	icon_state = "ironhammer"
 
 /obj/structure/sign/faction/one_star
-	name = "One Star"
+	name = "One Star Banner"
 	desc = "One Star's all-seeing eye, a banner of a now fallen empire. They once controlled this sector from their capital Earth. Now it's all just dust, forgotten derelicts, and automated ships."
 	icon_state = "one_star"
 
 /obj/structure/sign/faction/one_star_old
-	name = "One Star"
+	name = "Tattered One Star Banner"
 	desc = "One Star's all-seeing eye, a banner of a now fallen empire. They once controlled this sector from their capital Earth. Now it's all just dust, forgotten derelicts, and automated ships."
 	icon_state = "one_star_old"
+
+/obj/structure/sign/faction/one_star_sign
+	name = "Intact One Star Sign"
+	desc = "One Star's all-seeing eye, an emblem of a now fallen empire. They once controlled this sector from their capital Earth. Now it's all just dust, forgotten derelicts, and automated ships."
+	icon_state = "one_star_sign"
 
 /obj/structure/sign/faction/frozenstar
 	name = "Frozen Star"
@@ -577,12 +582,12 @@
 	icon_state = "technomancers"
 
 /obj/structure/sign/faction/excelsior
-	name = "EXCELSIOR"
-	desc = "EXCELSIOR is a union of communist mining communities with no respect to any private property."
+	name = "Excelsior"
+	desc = "Excelsior is a union of communist mining communities with no respect to any private property."
 	icon_state = "excelsior"
 
 /obj/structure/sign/faction/excelsior_old
-	name = "EXCELSIOR"
+	name = "Excelsior"
 	desc = "EXCELSIOR is a union of communist mining communities with no respect to any private property."
 	icon_state = "excelsior-old"
 
