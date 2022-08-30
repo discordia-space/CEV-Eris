@@ -555,7 +555,7 @@
 
 /obj/structure/sign/faction/moebius_alt
 	name = "Moebius Laboratories"
-	desc = "Shady pharmaceutical and prosthetic manufacturer. Few outsiders know what happens behind the doors of their labs, and whoever knows does not live a long life."
+	desc = "Shady pharmaceutical and prosthetic manufacturer. Few outsiders know what happens behind the doors of their labs, and whoever knows does not live a long life. The sign is emblazoned with the slogan, new minds new horizons"
 	icon_state = "moebius_alt"
 
 /obj/structure/sign/faction/neotheology
