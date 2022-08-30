@@ -40,11 +40,6 @@
 	path = /obj/item/clothing/head/beret/engineering
 	allowed_roles = list(JOBS_ENGINEERING)
 
-/datum/gear/head/beret/sec
-	display_name = "beret, red (security)"
-	path = /obj/item/clothing/head/beret/sec
-	allowed_roles = list(JOBS_SECURITY)
-
 /datum/gear/head/cap/flat
 	display_name = "cap, brown-flat"
 	path = /obj/item/clothing/head/flatcap
@@ -52,16 +47,10 @@
 /datum/gear/head/cap/corp
 	display_name = "cap, corporate (Security)"
 	path = /obj/item/clothing/head/soft/sec/corp
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant", "Inspector")
 
 /datum/gear/head/cap/rainbow
 	display_name = "cap, rainbow"
 	path = /obj/item/clothing/head/soft/rainbow
-
-/datum/gear/head/cap/sec
-	display_name = "cap, security (Security)"
-	path = /obj/item/clothing/head/soft/sec
-	allowed_roles = list(JOBS_SECURITY)
 
 /datum/gear/head/cap/color_presets
 	display_name = "cap, color presets"
