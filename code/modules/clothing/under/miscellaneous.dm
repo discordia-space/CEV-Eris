@@ -427,11 +427,11 @@ obj/item/clothing/under/genericr
 	item_state = "tropicopuke"
 	style = STYLE_HIGH
 
-/obj/item/clothing/under/oldsecurity
-	name = "Old NT Security Jumpsuit"
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
-	icon_state = "security"
-	item_state = "ba_suit"
+/obj/item/clothing/under/NTSec
+	name = "Old NT Security Uniform"
+	desc = "A worn and dusty red security jumpsuit from the long defunct Nanotrasen Corporation. this uniform once signified authority, now its just a ugly set of clothes"
+	icon_state = "nanosec"
+	item_state = "nanosec"
 	siemens_coefficient = 0.8
 
 //Adminbus versions with extremly high armor, should never spawn in game
