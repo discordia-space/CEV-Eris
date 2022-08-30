@@ -427,6 +427,13 @@ obj/item/clothing/under/genericr
 	item_state = "tropicopuke"
 	style = STYLE_HIGH
 
+/obj/item/clothing/under/oldsecurity
+	name = "Old NT Security Jumpsuit"
+	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
+	icon_state = "security"
+	item_state = "ba_suit"
+	siemens_coefficient = 0.8
+
 //Adminbus versions with extremly high armor, should never spawn in game
 /obj/item/clothing/under/tuxedo/adminspawn
 	spawn_blacklisted = TRUE
