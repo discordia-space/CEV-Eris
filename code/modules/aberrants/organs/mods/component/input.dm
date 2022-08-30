@@ -228,10 +228,10 @@
 
 		accepted_inputs[accepted_inputs.Find(input)] = input_qualities[decision]
 
-/datum/component/modification/organ/input/power_source/trigger(atom/movable/holder, mob/living/carbon/owner)
+/datum/component/modification/organ/input/power_source/trigger(atom/movable/holder, mob/living/carbon/human/owner)
 	if(!holder || !owner)
 		return
-	if(owner.body_part_covered(BP_L_ARM) && owner.body_part_covered(BP_R_ARM))
+	if(!owner.get_siemens_coefficient_organ(owner.get_organ(check_zone(BP_L_ARM))) && !owner.get_siemens_coefficient_organ(owner.get_organ(check_zone(BP_R_ARM))))
 		return
 	if(!istype(holder, /obj/item/organ/internal/scaffold))
 		return

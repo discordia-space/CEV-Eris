@@ -196,5 +196,5 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/closet/wardrobe = 2,
 					/obj/spawner/scrap = 12, //Our scrap pile. This is basically just a huge spawner.
 					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
-					/obj/spawner/aberrant_machine = 10
+					/obj/spawner/aberrant_machine = 6
 				))

@@ -1,12 +1,11 @@
 /obj/item/computer_hardware/hard_drive/portable/design/omg
 	icon_state = "omg"
 	license = -1
-	rarity_value = 60
+	spawn_blacklisted = TRUE	// Deep maint only
 
 /obj/item/computer_hardware/hard_drive/portable/design/omg/basic_organ_mods
 	disk_name = "Oh My Guts! Starter Kit"
 	desc = "Data disk used to store autolathe designs. Mod your heart out!"
-	spawn_blacklisted = TRUE
 	designs = list(
 		/datum/design/organ/organ_mod/capillaries,
 		/datum/design/organ/organ_mod/durable_membrane,
@@ -19,7 +18,6 @@
 
 /obj/item/computer_hardware/hard_drive/portable/design/omg/diy_organs
 	disk_name = "Oh My Guts! DIY Organs"
-	spawn_blacklisted = TRUE
 	designs = list(
 		/datum/design/organ/scaffold,
 		/datum/design/organ/teratoma/input/reagents,
