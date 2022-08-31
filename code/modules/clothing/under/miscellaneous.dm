@@ -428,7 +428,7 @@ obj/item/clothing/under/genericr
 	style = STYLE_HIGH
 
 /obj/item/clothing/under/ntsec
-	name = "Old NT Security Uniform"
+	name = "NanoTrasen Security Uniform"
 	desc = "A worn and dusty red security jumpsuit from the long defunct Nanotrasen Corporation. this uniform once signified authority, now its just an ugly set of clothes"
 	icon_state = "nanosec"
 	item_state = "nanosec"

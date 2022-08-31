@@ -554,7 +554,7 @@
 	icon_state = "moebius"
 
 /obj/structure/sign/faction/moebius_alt
-	name = "Moebius Laboratories"
+	name = "Moebius Laboratories Sign"
 	desc = "Shady pharmaceutical and prosthetic manufacturer. Few outsiders know what happens behind the doors of their labs, and whoever knows does not live a long life. The sign is emblazoned with the slogan, new minds new horizons"
 	icon_state = "moebius_alt"
 

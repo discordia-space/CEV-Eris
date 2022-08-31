@@ -20,6 +20,11 @@
 	display_name = "beret, purple"
 	path = /obj/item/clothing/head/beret/purple
 
+/datum/gear/head/beret/ntsec
+	display_name = "beret, old NT"
+	path = /obj/item/clothing/head/beret/ntsec
+	allowed_roles = list(ASSISTANT_TITLE)
+
 /datum/gear/head/beret/bsec
 	display_name = "beret, Operative"
 	path = /obj/item/clothing/head/beret/sec/navy/officer
