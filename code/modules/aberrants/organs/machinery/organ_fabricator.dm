@@ -1,6 +1,15 @@
 /obj/machinery/autolathe/organ_fabricator
 	name = "Organ Fabricator"
 	desc = "Moebius machine for printing organs using biotic substrate."
+	description_info = "Quick Guide to Organs:\n\n\
+						Print an organ scaffold\n\
+						Print an input, process, and output teratoma\n\
+						Use a laser scalpel to remove the organoid from each teratoma\n\
+						(Optional) Use a laser scalpel on an organoid to modify its behavior\n\
+						Attach all three organoids to the scaffold\n\
+						Insert the newly crafted organ into self or another person\n\
+						OR\n\
+						Store it in the organ fridge for later use"
 	icon_state = "organ_fabricator"
 	circuit = /obj/item/electronics/circuitboard/organ_fabricator
 	build_type = ORGAN_GROWER			// Should not be able to use church disks
