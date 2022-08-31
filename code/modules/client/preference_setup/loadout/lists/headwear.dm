@@ -53,6 +53,10 @@
 	display_name = "cap, corporate security"
 	path = /obj/item/clothing/head/soft/sec/corp
 
+/datum/gear/head/cap/sec
+	display_name = "cap, old nanotrasen"
+	path = /obj/item/clothing/head/soft/sec
+
 /datum/gear/head/cap/rainbow
 	display_name = "cap, rainbow"
 	path = /obj/item/clothing/head/soft/rainbow
