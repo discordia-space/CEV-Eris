@@ -2,7 +2,7 @@
 	name = "regurgitator"
 	desc = "An abomination of meat and metal. Consumes organs and various reagents."
 	description_info = "Requires a retracting tool to open the panel and a clamping tool to disassemble.\n\n\
-						Can be upgraded by re-assembling with organs of higher efficiency and using different organ types. Try using organs related to digestion and filtration."
+						Can be upgraded by re-assembling with organs of higher efficiency and using different organ types. Try using organs related to chewing, digestion, and filtration."
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/machines/regurgitator.dmi'
@@ -12,7 +12,7 @@
 	limit = 10
 	nano_template = "regurgitator.tmpl"
 	sheet_reagents = list()
-	var/biomatter_counter = 0		// We don't want this to actually produce biomatter
+	var/biomatter_counter = 0				// We don't want this to actually produce biomatter
 	var/list/accepted_reagents = list(
 		/datum/reagent/drink/milk = 0.13,				// Internet said milk is 13% solids, 87% water
 		/datum/reagent/organic/nutriment/protein = 1
@@ -27,6 +27,8 @@
 	var/spit_target
 	var/spit_range = 2		// For var-edits
 	var/has_brain = FALSE
+	var/grind_rate = 8	//ticks
+	var/current_tick = 0
 
 /obj/machinery/reagentgrinder/industrial/regurgitator/Initialize()
 	. = ..()
@@ -151,13 +153,17 @@
 				O.show_message("\icon[src] <b>\The [src]</b> says, \"You s-s-saved me... w-why?\"", 2)
 			flick("[initial(icon_state)]_spit", src)
 
-	var/obj/item/I = locate() in holdingitems
-	if(!I)
-		return
+	if(current_tick == grind_rate)
+		var/obj/item/I = locate() in holdingitems
+		if(!I)
+			return
 
-	grind_item(I)
+		grind_item(I)
+		current_tick = 0
 
-	while(biomatter_counter >= 60)
+	current_tick += 1
+
+	while(biomatter_counter > 59)
 		bottle()
 
 	SSnano.update_uis(src)
@@ -204,7 +210,12 @@
 	var/liver_eff = 0
 	var/kidney_eff = 0
 	var/carrion_chem_eff = 0
+
+	var/muscle_eff = 0
+	var/tick_reduction = 0
+
 	var/stomach_eff = 0
+	var/capacity_mod = 0
 
 	has_brain = FALSE
 
@@ -216,14 +227,16 @@
 			switch(eff)
 				if(OP_LIVER)
 					liver_eff += O.organ_efficiency[eff]
-				if(OP_STOMACH)
-					stomach_eff += O.organ_efficiency[eff]
 				if(OP_KIDNEYS)
 					kidney_eff += O.organ_efficiency[eff]
-				if(BP_BRAIN)
-					has_brain = TRUE
 				if(OP_CHEMICALS)		// Carrion vessel
 					carrion_chem_eff += O.organ_efficiency[eff]
+				if(OP_MUSCLE)
+					muscle_eff += O.organ_efficiency[eff]
+				if(OP_STOMACH)
+					stomach_eff += O.organ_efficiency[eff]
+				if(BP_BRAIN)
+					has_brain = TRUE
 
 	if(liver_eff > 99)
 		accepted_reagents |= list(
@@ -254,11 +267,19 @@
 		)
 
 	if(stomach_eff > 99)
-		limit += 5
+		capacity_mod += 5
 	if(stomach_eff > 124)
-		limit += 5
-	if(stomach_eff > 149)
-		limit += 5
+		capacity_mod += 5
+
+	if(muscle_eff > 99)
+		tick_reduction += 1
+	if(muscle_eff > 124)
+		tick_reduction += 1
+	if(muscle_eff > 149)
+		tick_reduction += 2
+
+	limit = initial(limit) + capacity_mod
+	grind_rate = initial(grind_rate) - tick_reduction
 
 /obj/machinery/reagentgrinder/industrial/regurgitator/ui_data()
 	. = ..()

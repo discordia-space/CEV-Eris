@@ -343,11 +343,13 @@
 			var/is_input_valid = input[i]
 			if(is_input_valid)
 				var/input_multiplier = input[i]
-				organ_efficiency_mod = active_organ_efficiency_mod * organ_multiplier * input_multiplier
+				organ_efficiency_mod = active_organ_efficiency_mod.Copy()
+				for(var/process in organ_efficiency_mod)
+					organ_efficiency_mod[process] *= organ_multiplier * input_multiplier
 				blood_req_mod = active_blood_req_mod * organ_multiplier * input_multiplier
 				nutriment_req_mod = active_nutriment_req_mod * organ_multiplier * input_multiplier
 				oxygen_req_mod = active_oxygen_req_mod * organ_multiplier * input_multiplier
-				owner_verb_adds = active_owner_verb_adds * organ_multiplier * input_multiplier
+				owner_verb_adds = active_owner_verb_adds.Copy()
 
 				if(active_organ_efficiency_mod.len)
 					for(var/process in active_organ_efficiency_mod)

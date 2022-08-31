@@ -47,6 +47,8 @@
 		if(D && D.build_type == build_type)
 			files.AddDesign2Known(D)
 			ripped_categories |= D.category
+	
+	audible_message(SPAN_NOTICE("The contents of \the [disk] have been saved to \the [src]'s drive."))
 
 /obj/machinery/autolathe/organ_fabricator/insert_disk(mob/living/user, obj/item/computer_hardware/hard_drive/portable/inserted_disk)
 	. = ..()
@@ -159,7 +161,7 @@
 	name = T_BOARD("organ fabricator")
 	build_path = /obj/machinery/autolathe/organ_fabricator
 	board_type = "machine"
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 3)
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 3,
 		/obj/item/stock_parts/manipulator = 1,
