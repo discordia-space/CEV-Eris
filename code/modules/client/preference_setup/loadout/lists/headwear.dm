@@ -21,17 +21,17 @@
 	path = /obj/item/clothing/head/beret/purple
 
 /datum/gear/head/beret/bsec
-	display_name = "beret, navy"
+	display_name = "beret, Operative"
 	path = /obj/item/clothing/head/beret/sec/navy/officer
 	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Ironhammer Medical Specialist")
 
 /datum/gear/head/beret/bsec_warden
-	display_name = "beret, navy (Sergeant)"
+	display_name = "beret, Sergeant"
 	path = /obj/item/clothing/head/beret/sec/navy/warden
 	allowed_roles = list("Ironhammer Commander","Gunnery Sergeant")
 
 /datum/gear/head/beret/bsec_hos
-	display_name = "beret, navy (Lieutenant)"
+	display_name = "beret, Lieutenant"
 	path = /obj/item/clothing/head/beret/sec/navy/hos
 	allowed_roles = list("Ironhammer Commander")
 
@@ -45,7 +45,7 @@
 	path = /obj/item/clothing/head/flatcap
 
 /datum/gear/head/cap/corp
-	display_name = "cap, corporate (Security)"
+	display_name = "cap, corporate security"
 	path = /obj/item/clothing/head/soft/sec/corp
 
 /datum/gear/head/cap/rainbow
