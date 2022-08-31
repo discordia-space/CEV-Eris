@@ -427,7 +427,7 @@ obj/item/clothing/under/genericr
 	item_state = "tropicopuke"
 	style = STYLE_HIGH
 
-/obj/item/clothing/under/NTSec
+/obj/item/clothing/under/ntsec
 	name = "Old NT Security Uniform"
 	desc = "A worn and dusty red security jumpsuit from the long defunct Nanotrasen Corporation. this uniform once signified authority, now its just an ugly set of clothes"
 	icon_state = "nanosec"
