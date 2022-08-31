@@ -21,7 +21,7 @@
 	path = /obj/item/clothing/head/beret/purple
 
 /datum/gear/head/beret/ntsec
-	display_name = "beret, old NT"
+	display_name = "beret, old nanotrasen"
 	path = /obj/item/clothing/head/beret/ntsec
 	allowed_roles = list(ASSISTANT_TITLE)
 
@@ -56,6 +56,7 @@
 /datum/gear/head/cap/sec
 	display_name = "cap, old nanotrasen"
 	path = /obj/item/clothing/head/soft/sec
+	allowed_roles = list(ASSISTANT_TITLE)
 
 /datum/gear/head/cap/rainbow
 	display_name = "cap, rainbow"
