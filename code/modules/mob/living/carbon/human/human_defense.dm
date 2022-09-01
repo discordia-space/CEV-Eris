@@ -169,9 +169,10 @@ meteor_act
 /mob/living/carbon/human/damageablative(var/def_zone, var/damage_taken)
 
 	var/obj/item/rig/R = get_equipped_item(slot_back)
-	if(R && R.ablative_armor)
-		R.ablative_armor = max(R.ablative_armor - damage_taken / R.ablation, 0)
-		return TRUE
+	if(istype(R))
+		if(R.ablative_armor)
+			R.ablative_armor = max(R.ablative_armor - damage_taken / R.ablation, 0)
+			return TRUE
 	return FALSE
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.

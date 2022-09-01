@@ -112,7 +112,8 @@
 							SPAN_NOTICE("Your armor reduced the impact a little."))
 
 	// Deal damage to ablative armour based on how much was used, we multiply armour divisor back so high AP doesn't decrease damage dealt to ADR
-	damageablative(def_zone, (ablative_armor - remaining_ablative) * armour_divisor)
+	if(ablative_armor)
+		damageablative(def_zone, (ablative_armor - remaining_ablative) * armour_divisor)
 
 	return dealt_damage
 
