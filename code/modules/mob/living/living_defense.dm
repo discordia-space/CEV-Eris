@@ -19,8 +19,6 @@
 
 /mob/living/proc/damage_through_armor(var/damage = 0, var/damagetype = BRUTE, var/def_zone, var/attack_flag = ARMOR_MELEE, var/armour_divisor = 1, var/used_weapon, var/sharp = FALSE, var/edge = FALSE, var/wounding_multiplier = 1, var/list/dmg_types = list())
 
-	message_admins("Attack with [damage] and [armour_divisor] and [wounding_multiplier]")
-
 	if(damage) // If damage is defined, we add it to the list
 		if(!dmg_types[damagetype])
 			dmg_types += damagetype
@@ -36,8 +34,6 @@
 	if(!total_dmg)
 		return FALSE
 
-	message_admins("Attack with [total_dmg] and [dmg_types[1]] and [attack_flag]")
-
 	// Determine DR and ADR, armour divisor reduces it
 	var/armor = getarmor(def_zone, attack_flag) / armour_divisor
 	if(!(attack_flag in list(ARMOR_MELEE, ARMOR_BULLET, ARMOR_ENERGY))) // Making sure BIO and other armor types are handled correctly
@@ -46,8 +42,6 @@
 
 	var/remaining_armor = armor
 	var/remaining_ablative = ablative_armor
-
-	message_admins("Defense with [armor] and [ablative_armor]")
 
 	for(var/dmg_type in dmg_types)
 		var/dmg = dmg_types[dmg_type]
@@ -89,7 +83,6 @@
 						if((is_carrion(H) || active_mutations.len) && (SANCTIFIED in I.aspects))
 							apply_damage(dmg / 2, BURN, def_zone, sharp, edge, used_weapon)
 
-				message_admins("Segment with [dmg], [dmg_type] and [remaining_armor], of [sharp] and [edge]")
 				apply_damage(dmg, dmg_type, def_zone, sharp, edge, used_weapon)
 				if(ishuman(src) && def_zone && dmg >= 20)
 					var/mob/living/carbon/human/H = src
