@@ -330,12 +330,18 @@
 	switch(path)
 		if(/obj/item/modification/organ/internal/input)
 			input_mod_path = TRUE
+			req_num_outputs = 0
 		if(/obj/item/modification/organ/internal/process)
 			process_mod_path = TRUE
+			req_num_inputs = 0
+			req_num_outputs = 0
 		if(/obj/item/modification/organ/internal/output)
 			output_mod_path = TRUE
+			req_num_inputs = 0
 		if(/obj/item/modification/organ/internal/special)
 			special_mod_path = TRUE
+			req_num_inputs = 0
+			req_num_outputs = 0
 	..()
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/random/uncommon
