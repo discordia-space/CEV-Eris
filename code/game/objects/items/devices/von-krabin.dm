@@ -1,8 +1,8 @@
 /obj/item/device/von_krabin
 	name = "Von-Krabin Stimulator"
 	desc = "Psionic stimulator that make your brain work better."
-	description_info = "This is a powerfull stimulator that links the brain of multiple people togheter , the more people are connected , the better its buffs are"
-	description_antag = "Can be destroyed with the NT sword, causes brain damage to everyone thats linked and reducing their base stats by 30"
+	description_info = "This is a powerfull stimulator that links the brain of multiple people togheter , the more people are connected , the better its buffs are. \n Can be empowered even further by breaking the cruciforms of NT followers."
+	description_antag = "Can be destroyed with the NT sword, causes brain damage to everyone thats linked and reducing their base stats by 30, whilst buffing the EOTP's capabilities"
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "von-krabin"
 	item_state = "von-krabin"
