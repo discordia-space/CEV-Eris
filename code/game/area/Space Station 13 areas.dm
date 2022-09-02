@@ -379,6 +379,20 @@ area/space/atmosalert()
 
 //EXTRA
 
+/area/outpost/pulsar
+	name = "\improper Pulsar Satellite Core"
+	icon_state = "engineering"
+	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
+	ambience = list('sound/ambience/technoambient1.ogg','sound/ambience/technoambient2.ogg',
+	                'sound/ambience/technoambient3.ogg','sound/ambience/technoambient4.ogg',
+					'sound/ambience/technoambient5.ogg','sound/ambience/technoambient6.ogg')
+
+/area/outpost/pulsar/maintenance
+	name = "\improper Pulsar Satellite Maintenance"
+	icon_state = "engineering_storage"
+	area_light_color = COLOR_LIGHTING_SCI_DARK
+
 /area/asteroid					// -- TLE
 	name = "\improper Moon"
 	icon_state = "asteroid"
