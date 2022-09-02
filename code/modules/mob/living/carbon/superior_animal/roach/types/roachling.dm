@@ -12,6 +12,8 @@
 	melee_damage_upper = 3
 	spawn_blacklisted = TRUE
 
+	mob_size = MOB_SMALL * 0.8 // 8
+
 	meat_amount = 1
 
 	probability_egg_laying = 0
@@ -32,7 +34,7 @@
 					spawn_type = /mob/living/carbon/superior_animal/roach/fuhrer
 			else
 				spawn_type = /obj/spawner/mob/roaches
-			
+
 			if (ispath(spawn_type, /obj/spawner))
 				new spawn_type(src.loc, src, list("friends" = src.friends.Copy()))
 			else if(ispath(spawn_type, /mob))

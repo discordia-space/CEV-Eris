@@ -7,7 +7,7 @@
 	maxHealth = 45
 	health = 45
 	move_to_delay = 6
-	mob_size = MOB_MEDIUM
+	mob_size = MOB_SMALL * 1.5 // 15
 	density = TRUE
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/panzer
 	rarity_value = 22.5
