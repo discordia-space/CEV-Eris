@@ -3,8 +3,8 @@
 /obj/item/gripper
 	name = "magnetic gripper"
 	desc = "A simple grasping tool specialized in construction and engineering work."
-	description_info = "Can be used to remove sticky tape from cameras on help intent"
-	description_antag = "Can be used for a strong 20 brute attack on harm intent on humans"
+	description_info = "Can be used to remove sticky tape from cameras on help intent."
+	description_antag = "Can be used for a strong brute attack on humans using harm intent."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gripper"
 	spawn_tags = null
