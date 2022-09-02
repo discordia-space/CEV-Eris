@@ -186,3 +186,8 @@
 /datum/gear/uniform/battledress_german
 	display_name = "battle dress uniform, oberth"
 	path = /obj/item/clothing/under/germansuit
+
+/datum/gear/uniform/ntsec
+	display_name = "Nanotrasen security uniform"
+	path = /obj/item/clothing/under/ntsec
+	allowed_roles = list(ASSISTANT_TITLE)

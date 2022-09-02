@@ -427,6 +427,13 @@ obj/item/clothing/under/genericr
 	item_state = "tropicopuke"
 	style = STYLE_HIGH
 
+/obj/item/clothing/under/ntsec
+	name = "NanoTrasen Security Uniform"
+	desc = "A worn and dusty red security jumpsuit from the long defunct Nanotrasen Corporation. this uniform once signified authority, now its just an ugly set of clothes"
+	icon_state = "nanosec"
+	item_state = "nanosec"
+	siemens_coefficient = 0.8
+
 //Adminbus versions with extremly high armor, should never spawn in game
 /obj/item/clothing/under/tuxedo/adminspawn
 	spawn_blacklisted = TRUE
