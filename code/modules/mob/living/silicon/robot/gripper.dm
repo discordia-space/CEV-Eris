@@ -3,6 +3,8 @@
 /obj/item/gripper
 	name = "magnetic gripper"
 	desc = "A simple grasping tool specialized in construction and engineering work."
+	description_info = "Can be used to remove sticky tape from cameras on help intent."
+	description_antag = "Can be used for a strong brute attack on humans using harm intent."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gripper"
 	spawn_tags = null
@@ -158,6 +160,14 @@
 
 	if(wrapped) //Already have an item.
 		return//This is handled in /mob/living/silicon/robot/GripperClickOn
+
+	if(istype(target, /obj/machinery/camera) && user.a_intent == I_HELP)
+		var/obj/machinery/camera/cam = target
+		if(cam.taped)
+			to_chat(user, SPAN_NOTICE("You remove the tape from \the [cam] using the edge of your magnetic gripper."))
+			cam.icon_state = "camera"
+			cam.taped = 0
+			cam.set_status(1)
 
 	else if (istype(target, /obj/item/storage) && !istype(target, /obj/item/storage/pill_bottle) && !istype(target, /obj/item/storage/secure))
 		var/obj/item/storage/S = target
