@@ -288,3 +288,11 @@
 		rad = 0
 	)
 	slowdown = LIGHT_SLOWDOWN
+
+//Ponchos, Capes and Cloaks//
+
+/obj/item/clothing/accessory/cloak
+	name = "oversized poncho"
+	desc = "Meant to be worn over a voidsuit or smaller rigs. More of a fashion statement than anything else."
+	icon_state = "oversized_poncho"
+	slot_flags = SLOT_ACCESSORY_BUFFER

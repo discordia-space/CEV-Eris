@@ -2,7 +2,10 @@
 	name_pool = list(
 		"TTB \'Nauka\'" = "Technomancer Trade Beacon \'Nauka\': \"Privet, this is the trade beacon \'Nauka\'.\""
 	)
+	icon_states = list("htu_station", "station")
 	uid = "techno_adv"
+	tree_x = 0.26
+	tree_y = 0.7
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = COMMON_GOODS

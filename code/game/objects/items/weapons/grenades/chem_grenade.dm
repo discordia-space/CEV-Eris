@@ -347,6 +347,7 @@
 /obj/item/grenade/chem_grenade/teargas
 	name = "FS TGG \"Simon\""
 	desc = "Concentrated Capsaicin. Contents under pressure. Use with caution."
+	description_info = "Uneffective if the target has internals and face protection."
 	can_be_modified = FALSE
 	icon_state = "teargas"
 	item_state = "teargas"

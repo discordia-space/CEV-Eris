@@ -10,6 +10,7 @@
 	thrown_force_divisor = 1
 	origin_tech = "materials=1"
 	attack_verb = list("attacked", "stabbed", "poked")
+	description_info = "Can be used to eat like a civilized person, providing a sanity increase"
 	sharp = TRUE
 	edge = TRUE
 	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)

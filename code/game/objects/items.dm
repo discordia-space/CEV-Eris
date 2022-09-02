@@ -458,7 +458,8 @@ var/global/list/items_blood_overlay_by_type = list()
 				visible_message(SPAN_WARNING("[src] picks up, spins, and drops [grabbed]."), SPAN_WARNING("You pick up, spin, and drop [grabbed]."))
 				grabbed.external_recoil(60)
 				grabbed.Weaken(1)
-				grabbed.resting = TRUE
+				if(!ishuman(grabbed))
+					grabbed.resting = TRUE
 				grabbed.update_lying_buckled_and_verb_status()
 				unEquip(inhand_grab)
 		else

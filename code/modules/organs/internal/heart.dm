@@ -5,6 +5,7 @@
 	parent_organ_base = BP_CHEST
 	dead_icon = "heart-off"
 	desc = "A vital organ which pumps blood through the blood vessels of the circulatory system. "
+	description_info = "Increases the efficiency of reagent metabolization in blood"
 	price_tag = 1000
 	specific_organ_size = 2
 	oxygen_req = 10

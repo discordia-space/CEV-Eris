@@ -110,3 +110,8 @@
 	path = /obj/item/clothing/mask/bandana
 	slot = slot_wear_mask
 	flags = GEAR_HAS_TYPE_SELECTION
+
+/datum/gear/accessory/cloak
+	display_name = "oversized poncho"
+	path = /obj/item/clothing/accessory/cloak
+	

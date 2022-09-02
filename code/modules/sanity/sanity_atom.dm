@@ -11,7 +11,7 @@
 
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/onMoved)
 
-	onMoved(null, null, A.loc)
+	onMoved(null, A.loc)
 
 /datum/component/atom_sanity/proc/onMoved(oldloc, newloc)
 	if(isturf(oldloc))

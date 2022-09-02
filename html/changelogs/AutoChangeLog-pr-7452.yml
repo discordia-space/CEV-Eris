@@ -1,0 +1,18 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - rscadd: Added aberrant organs
+  - rscadd: Added organ lab to medbay
+  - rscadd: Added medi-sarcophagus, organ vendor, organ fabricator, regurgitator,
+      and organ fridge
+  - rscadd: Added new wiring for the new vendors
+  - rscadd: Added new deep maint spawns
+  - tweak: Cruciforms will rip your guts out
+  - tweak: Back Alley Organs require an autolathe with ORGAN_GROWER
+  - tweak: Created a new spawner for deep maint that includes the aberrant machines
+  - tweak: Organs will be in stasis when inside smartfridges and the regurgitator
+  - tweak: Deep maint cryo room has medi-sarcophagi instead of sleepers
+  - bugfix: Fixes crayon eating
+  - code_imp: Added some procs to internal organs to handle mods
+  - code_imp: Added selective recycling logic for autolathes (only used for the organ
+      fabricator)

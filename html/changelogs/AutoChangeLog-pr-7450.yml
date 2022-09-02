@@ -1,0 +1,6 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Fixed C4 not deleting girders properly
+  - balance: Reduced C4 minimum time from 5 seconds to 2
+  - balance: Reduced planting time for C4 from 5 seconds to 2.

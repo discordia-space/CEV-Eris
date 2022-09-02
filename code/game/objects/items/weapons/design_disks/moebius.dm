@@ -34,12 +34,12 @@
 	icon_state = "moebius"
 	license = 10
 	designs = list(
-		/datum/design/bioprinter/lungs,
-		/datum/design/bioprinter/heart,
-		/datum/design/bioprinter/liver,
-		/datum/design/bioprinter/nerves,
-		/datum/design/bioprinter/muscle,
-		/datum/design/bioprinter/blood_vessel
+		/datum/design/organ/back_alley/ex_lungs,
+		/datum/design/organ/back_alley/huge_heart,
+		/datum/design/organ/back_alley/big_liver,
+		/datum/design/organ/back_alley/hyper_nerves,
+		/datum/design/organ/back_alley/super_muscle,
+		/datum/design/organ/back_alley/ex_blood_vessel
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/computer

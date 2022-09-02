@@ -26,6 +26,8 @@
 	var/list/nanite_swarms = list()
 	var/max_swarms = 5
 
+	mob_size = MOB_SMALL * 1.5 // 15
+
 	// Armor related variables
 	armor = list(
 		melee = 5,

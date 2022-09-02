@@ -1,10 +1,18 @@
+#define MAP_SCALAR 2.56 // Value for scaling the locations on maps , depending on the resolution of maps in  the nanoui folder.
+// To calculate the map scalar , get the map res (old one was 1024) and the new map res (6400)
+// divide them and get their ratio (6.25)
+// divide the size of a turf/wall sprite (currently 32) by the ratio , (32/6.25 = 5.12)
+// divide the new ratio to the ratio of the new mapsize / old mapsize (only if you modified the CSS Sizes in layout_default)
+
 /* Tracking */
 /crew_sensor_modifier/tracking/process_crew_data(var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos, var/list/crew_data)
 	if(pos)
 		var/area/A = get_area(pos)
 		crew_data["area"] = sanitize(A.name)
-		crew_data["x"] = pos.x
-		crew_data["y"] = pos.y
+		crew_data["real_x"] = pos.x
+		crew_data["real_y"] = pos.y
+		crew_data["x"] = pos.x * MAP_SCALAR
+		crew_data["y"] = pos.y * MAP_SCALAR
 		crew_data["z"] = pos.z
 	return ..()
 

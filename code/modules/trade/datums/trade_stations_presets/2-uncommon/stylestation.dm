@@ -2,7 +2,10 @@
 	name_pool = list(
 		"FTB \'White Rabbit\'" = "Free Trade Beacon \'White Rabbit\': \"Go down in style!\""
 	)
+	icon_states = list("htu_station", "station")
 	uid = "style"
+	tree_x = 0.7
+	tree_y = 0.8
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS

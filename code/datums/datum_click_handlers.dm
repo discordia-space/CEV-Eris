@@ -103,7 +103,7 @@
 	if(object)
 		target = object
 		shooting_loop()
-		time_since_last_init = world.time + reciever.burst_delay
+		time_since_last_init = world.time + (reciever.fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : reciever.fire_delay)
 	return TRUE
 
 /datum/click_handler/fullauto/proc/shooting_loop()

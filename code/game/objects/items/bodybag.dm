@@ -103,6 +103,7 @@
 	name = "stasis bag"
 	desc = "A folded, non-reusable bag designed to prevent additional damage to an occupant. Especially useful if short on time or in \
 	a hostile enviroment."
+	description_info = "You can scan the patient inside by clicking the bag with an health analyzer"
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_folded"
 	origin_tech = list(TECH_BIO = 4)

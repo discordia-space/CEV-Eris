@@ -3,6 +3,7 @@
 /obj/effect/energy_field
 	name = "energy field"
 	desc = "Impenetrable field of energy, capable of blocking anything as long as it's active."
+	description_antag = "Can be disabled with the use of a diffuser or a powerfull EMP blast."
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "shield_normal"
 	anchored = TRUE

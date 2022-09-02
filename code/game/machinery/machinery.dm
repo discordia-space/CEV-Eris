@@ -133,6 +133,7 @@ Class Procs:
 		set_dir(d)
 	InitCircuit()
 	GLOB.machines += src
+	power_change()
 	START_PROCESSING(SSmachines, src)
 
 /obj/machinery/Destroy()

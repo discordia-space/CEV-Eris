@@ -70,9 +70,9 @@
 "o" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/visible{
-	tag = "icon-intact (NORTHEAST)";
+	dir = 5;
 	icon_state = "intact";
-	dir = 5
+	tag = "icon-intact (NORTHEAST)"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -88,9 +88,9 @@
 /area/deepmaint)
 "r" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
-	tag = "icon-intact (NORTHWEST)";
+	dir = 9;
 	icon_state = "intact";
-	dir = 9
+	tag = "icon-intact (NORTHWEST)"
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
@@ -114,14 +114,13 @@
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/deepmaint)
 "v" = (
-/obj/machinery/sleeper{
-	icon_state = "sleeper_0";
+/obj/machinery/sleeper/sarcophagus/random{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/deepmaint)
 "w" = (
-/obj/machinery/sleeper{
+/obj/machinery/sleeper/sarcophagus/random{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white/gray_platform,

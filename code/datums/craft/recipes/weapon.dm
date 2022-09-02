@@ -154,18 +154,6 @@
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
-/datum/craft_recipe/weapon/rxd
-	name = "RXD - Rapid Crossbow Device"
-	result = /obj/item/gun/launcher/crossbow/RCD
-	steps = list(
-		list(/obj/item/rcd, 1, "time" = 30),
-		list(QUALITY_SCREW_DRIVING, 10, 30),
-		list(QUALITY_SAWING, 10, "time" = 60),
-		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD), //same as the old crossbow frame
-		list(QUALITY_WELDING, 10, "time" = 30),
-		list(/obj/item/stack/cable_coil, 2, "time" = 10)
-	)
-
 /datum/craft_recipe/weapon/mechanical_trap
 	name = "makeshift mechanical trap"
 	result = /obj/item/beartrap/makeshift

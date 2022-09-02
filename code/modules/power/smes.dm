@@ -8,6 +8,8 @@
 /obj/machinery/power/smes
 	name = "power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
+	description_info = "Can be fast toggled with AltClick and CtrlClick"
+	description_antag = "Cutting the safety wire lets you insert SMES components when its charged, doing so will create a preety big blast"
 	icon_state = "smes"
 	density = TRUE
 	anchored = TRUE

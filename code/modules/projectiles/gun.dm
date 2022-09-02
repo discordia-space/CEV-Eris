@@ -3,6 +3,7 @@
 	name = "gun"
 	desc = "A gun. It's pretty terrible, though."
 	icon = 'icons/obj/guns/projectile.dmi'
+	description_info = "Can be wielded with Shift+X to provide less recoil "
 	icon_state = "giskard_old"
 	item_state = "gun"
 	item_state_slots = list(
@@ -908,7 +909,7 @@
 	if(item_upgrades.len)
 		data["attachments"] = list()
 		for(var/atom/A in item_upgrades)
-			data["attachments"] += list(list("name" = A.name, "icon" = getAtomCacheFilename(A)))
+			data["attachments"] += list(list("name" = A.name, "icon" = SSassets.transport.get_asset_url(A)))
 
 	return data
 

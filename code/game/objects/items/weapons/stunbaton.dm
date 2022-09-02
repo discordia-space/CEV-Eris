@@ -6,6 +6,8 @@
 	icon_state = "stunbaton"
 	item_state = "baton"
 	slot_flags = SLOT_BELT
+	description_info = "Highly effective against uninsulated people. High change to disarm when aimed at arms."
+	description_antag = "Can be saboutaged by inserting plasma into its battery cell. Upon being turned on it will blow"
 	force = WEAPON_FORCE_PAINFUL
 	sharp = FALSE
 	edge = FALSE
