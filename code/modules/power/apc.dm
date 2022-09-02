@@ -214,7 +214,7 @@
 	//if area isn't specified use current
 	if(areastring)
 		area = get_area_name(areastring)
-		if(!area)
+		if(!area && isarea(our_area))
 			area = our_area
 			stack_trace("Bad areastring path for [src], [areastring]")
 	else if(isarea(our_area) && areastring == null)
