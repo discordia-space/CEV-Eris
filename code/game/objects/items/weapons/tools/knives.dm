@@ -12,7 +12,7 @@
 	w_class = ITEM_SIZE_SMALL //2
 	force = WEAPON_FORCE_NORMAL //10
 	throwforce = WEAPON_FORCE_WEAK
-	armor_penetration = ARMOR_PEN_SHALLOW
+	armor_divisor = ARMOR_PEN_SHALLOW
 	max_upgrades = 2
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
@@ -43,7 +43,7 @@
 	item_state = "hook_knife"
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 2)
 	force = WEAPON_FORCE_DANGEROUS
-	armor_penetration = ARMOR_PEN_EXTREME //Should be countered be embedding
+	armor_divisor = ARMOR_PEN_HALF //Should be countered be embedding
 	embed_mult = 1.5 //This is designed for embedding
 	rarity_value = 5
 
@@ -61,7 +61,7 @@
 	desc = "A huge thing used for chopping and chopping up meat. This includes roaches and roach-by-products."
 	force = WEAPON_FORCE_DANGEROUS
 	throwforce = WEAPON_FORCE_NORMAL
-	armor_penetration = ARMOR_PEN_MODERATE
+	armor_divisor = ARMOR_PEN_MODERATE
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 15)
@@ -94,7 +94,7 @@
 	item_state = "knife"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2)
 	force = WEAPON_FORCE_PAINFUL
-	armor_penetration = ARMOR_PEN_MODERATE
+	armor_divisor = ARMOR_PEN_MODERATE
 	embed_mult = 0.3
 	max_upgrades = 3
 
@@ -118,7 +118,7 @@
 	item_state = "dagger"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2)
 	force = WEAPON_FORCE_NORMAL * 1.3
-	armor_penetration = ARMOR_PEN_HALF
+	armor_divisor = ARMOR_PEN_MASSIVE
 	rarity_value = 15
 
 /obj/item/tool/knife/dagger/ceremonial
@@ -127,7 +127,7 @@
 	icon_state = "fancydagger"
 	item_state = "fancydagger"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 1, MATERIAL_SILVER = 1)
-	armor_penetration = ARMOR_PEN_HALF
+	armor_divisor = ARMOR_PEN_MASSIVE
 	embed_mult = 0.3
 	max_upgrades = 4
 	spawn_blacklisted = TRUE
@@ -336,9 +336,9 @@
 	edge = TRUE
 	worksound = WORKSOUND_HARD_SLASH
 	w_class = ITEM_SIZE_BULKY //4 , it's a spear mate
-	force = WEAPON_FORCE_PAINFUL 
-	throwforce = WEAPON_FORCE_DANGEROUS 
-	armor_penetration = ARMOR_PEN_MODERATE 
+	force = WEAPON_FORCE_PAINFUL
+	throwforce = WEAPON_FORCE_DANGEROUS
+	armor_divisor = ARMOR_PEN_MODERATE
 	throw_speed = 3
 	max_upgrades = 5
 	tool_qualities = list(QUALITY_CUTTING = 10,  QUALITY_WIRE_CUTTING = 5, QUALITY_SCREW_DRIVING = 1)
@@ -359,9 +359,9 @@
 	icon_state = "spear_steel"
 	item_state = "spear_steel"
 	wielded_icon = "spear_steel_wielded"
-	force = WEAPON_FORCE_DANGEROUS 
-	throwforce = WEAPON_FORCE_ROBUST 
-	armor_penetration = ARMOR_PEN_DEEP 
+	force = WEAPON_FORCE_DANGEROUS
+	throwforce = WEAPON_FORCE_ROBUST
+	armor_divisor = ARMOR_PEN_DEEP
 	tool_qualities = list(QUALITY_CUTTING = 10,  QUALITY_WIRE_CUTTING = 5, QUALITY_SCREW_DRIVING = 5)
 	matter = list(MATERIAL_STEEL = 3)
 	structure_damage_factor = STRUCTURE_DAMAGE_WEAK
@@ -375,9 +375,9 @@
 	icon_state = "spear_plasteel"
 	item_state = "spear_plasteel"
 	wielded_icon = "spear_plasteel_wielded"
-	force = WEAPON_FORCE_ROBUST 
-	throwforce = WEAPON_FORCE_BRUTAL 
-	armor_penetration = ARMOR_PEN_DEEP 
+	force = WEAPON_FORCE_ROBUST
+	throwforce = WEAPON_FORCE_BRUTAL
+	armor_divisor = ARMOR_PEN_DEEP
 	tool_qualities = list(QUALITY_CUTTING = 15,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 10)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTEEL = 2)
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
@@ -389,9 +389,9 @@
 	icon_state = "spear_uranium"
 	item_state = "spear_uranium"
 	wielded_icon = "spear_uranium_wielded"
-	force = WEAPON_FORCE_DANGEROUS 
-	throwforce = WEAPON_FORCE_DANGEROUS 
-	armor_penetration = ARMOR_PEN_DEEP 
+	force = WEAPON_FORCE_DANGEROUS
+	throwforce = WEAPON_FORCE_DANGEROUS
+	armor_divisor = ARMOR_PEN_DEEP
 	tool_qualities = list(QUALITY_CUTTING = 10,  QUALITY_WIRE_CUTTING = 5, QUALITY_SCREW_DRIVING = 5)
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_URANIUM = 1)
 	style_damage = 50
@@ -400,4 +400,4 @@
 	..()
 	if(istype(target))
 		target.apply_effect(rand(5, 10), IRRADIATE)
-		
+

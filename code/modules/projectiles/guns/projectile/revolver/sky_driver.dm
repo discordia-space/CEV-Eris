@@ -13,10 +13,10 @@
 	max_shells = 5
 	ammo_type = /obj/item/ammo_casing/pistol
 	price_tag = 20000
-	damage_multiplier = 1.1
-	penetration_multiplier = 20
+	damage_multiplier = 1.3
+	penetration_multiplier = 9
 	pierce_multiplier = 10
-	init_recoil = HANDGUN_RECOIL(2)
+	init_recoil = HANDGUN_RECOIL(1.6)
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
 	noricochet = TRUE

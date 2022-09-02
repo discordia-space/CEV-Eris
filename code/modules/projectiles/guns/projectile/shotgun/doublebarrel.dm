@@ -16,6 +16,8 @@
 	caliber = CAL_SHOTGUN
 	init_recoil = RIFLE_RECOIL(1.7)
 	style_damage_multiplier = 2
+	damage_multiplier = 1
+	penetration_multiplier = 0.1
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1)
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'

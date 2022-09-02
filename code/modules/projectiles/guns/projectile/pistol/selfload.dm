@@ -65,7 +65,9 @@
 	desc = "Old-designed pistol of space communists. Small and easily concealable. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/makarov.dmi'
 	icon_state = "makarov"
-	damage_multiplier = 1.2
+	damage_multiplier = 1.5
+	penetration_multiplier = -0.4
+	init_recoil = HANDGUN_RECOIL(0.75)
 	price_tag = 1400
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2, TECH_COVERT = 3)
 	init_firemodes = list(

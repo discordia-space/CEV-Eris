@@ -26,8 +26,9 @@
 
 	can_dual = 1
 	auto_eject = 1
-	damage_multiplier = 0.7 //good for rubber takedowns or self-defence, not so good to kill someone, you might want to use better smg
-	init_recoil = SMG_RECOIL(0.6)
+	damage_multiplier = 0.65 //good for rubber takedowns or self-defence, not so good to kill someone, you might want to use better smg
+	penetration_multiplier = -0.2
+	init_recoil = HANDGUN_RECOIL(0.6)
 
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)

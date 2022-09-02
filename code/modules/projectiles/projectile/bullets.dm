@@ -50,26 +50,26 @@
 	var/chance = 0
 	if(istype(A, /turf/simulated/wall)) // TODO: refactor this from functional into OOP
 		var/turf/simulated/wall/W = A
-		chance = round(penetrating/2 * armor_penetration * 2 / W.material.integrity * 180)
+		chance = round(penetrating/2 * armor_divisor * 2 / W.material.integrity * 180)
 	else if(istype(A, /obj/item/shield))
 		var/obj/item/shield/S = A
-		chance = round(armor_penetration * 2 / S.shield_integrity * 180)
+		chance = round(armor_divisor * 2 / S.shield_integrity * 180)
 	else if(istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
-		chance = round(penetrating/2 * armor_penetration * 2 / D.maxhealth * 180)
+		chance = round(penetrating/2 * armor_divisor * 2 / D.maxhealth * 180)
 		if(D.glass) chance *= 2
 	else if(istype(A, /obj/structure/girder))
 		chance = 100
 	else if(istype(A, /obj/structure/low_wall))
-		chance = round(penetrating/2 * armor_penetration * 2 / 150 * 180) // hardcoded, value is same as steel wall, will have to be changed once low walls have integrity
+		chance = round(penetrating/2 * armor_divisor * 2 / 150 * 180) // hardcoded, value is same as steel wall, will have to be changed once low walls have integrity
 	else if(istype(A, /obj/structure/table))
 		var/obj/structure/table/T = A
-		chance = round(penetrating/2 * armor_penetration * 2 / T.maxhealth * 180)
+		chance = round(penetrating/2 * armor_divisor * 2 / T.maxhealth * 180)
 	else if(istype(A, /obj/structure/barricade))
 		var/obj/structure/barricade/B = A
-		chance = round(penetrating/2 * armor_penetration * 2 / B.material.integrity * 180)
+		chance = round(penetrating/2 * armor_divisor * 2 / B.material.integrity * 180)
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
-		chance = armor_penetration * penetrating/2
+		chance = armor_divisor * penetrating/2
 
 	if(prob(chance))
 		var/maintainedVelocity = min(max(20, chance), 90) / 100 //the chance to penetrate is used to calculate leftover velocity, capped at 90%

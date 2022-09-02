@@ -10,8 +10,8 @@
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 2)
 	price_tag = 2000
-	damage_multiplier = 1.15
-	penetration_multiplier = 0.9
+	damage_multiplier = 1.1
+	penetration_multiplier = -0.2
 	init_recoil = RIFLE_RECOIL(2.4)
 	saw_off = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/regulator = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
