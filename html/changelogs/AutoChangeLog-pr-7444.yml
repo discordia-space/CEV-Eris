@@ -1,0 +1,5 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - code_imp: Added the AI-like-control component , can only be applied on humans
+      , provides AI-like shortcuts to humans.
