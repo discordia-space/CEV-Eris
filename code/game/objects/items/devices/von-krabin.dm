@@ -107,10 +107,13 @@
 			// already broken
 			return ..()
 		// mental tormentation
-		user.visible_message(SPAN_DANGER("[user] begins breaking [M]'s mind using the [src]"))
+		user.visible_message(SPAN_DANGER("[user] begins breaking [M]'s link to the Eye of the protector using the [src]"))
 		if(do_after(user, 20 SECONDS, M, TRUE))
-			user.visible_message(SPAN_DANGER("[user] breaks [M]'s mind and severs their cruciform!"))
+			user.visible_message(SPAN_DANGER("[user] breaks [M]'s link to the Eye of the protector, reducing their cruciform's capabilities!"))
 			the_broken.Add(M)
+			M.Weaken(10)
+			M.adjustHalLoss(50)
+			to_chat(M, "As your link to the Eye of the protector is broken, your soul is exposed, you feel the pain of the blue depths")
 			var/obj/item/implant/core_implant/cruciform/C = M.get_core_implant(/obj/item/implant/core_implant/cruciform)
 			C.power_regen *= 0.5
 			C.righteous_life = 0
