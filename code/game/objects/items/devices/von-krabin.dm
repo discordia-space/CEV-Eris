@@ -39,7 +39,7 @@
 
 /obj/item/device/von_krabin/nt_sword_handle()
 	for(var/mob/living/carbon/human/broken_minded in the_broken)
-		to_chat(broken_minded, SPAN_NOTICE("Your connection to the faith seems to have restored to full power."))
+		to_chat(broken_minded, SPAN_NOTICE("Your connection to the faith seems to have been restored to full power."))
 		var/obj/item/implant/core_implant/cruciform/C = broken_minded.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		C.power_regen *= 2
 		C.righteous_life = 50
