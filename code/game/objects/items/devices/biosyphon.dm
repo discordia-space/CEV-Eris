@@ -75,7 +75,7 @@
 		qdel(I)
 		name = "Synthesizing bluespace biosyphon"
 		touched_by_resus = TRUE
-		to_chat(user, SPAN_NOTICE("You upgrade the [src] using the Enricher, it now produces syringes of powerfull healing chemicals every time it produces special donuts!"))
+		to_chat(user, SPAN_NOTICE("You upgrade the [src] using the Enricher, it now produces syringes of powerful healing chemicals every time it produces special donuts!"))
 	if(istype(I, /obj/item/reagent_containers/food/snacks/meat/roachmeat/fuhrer))
 		donut_points += uncommon_meat_value
 		to_chat(user, "You insert [I] into the [src]. It produces a whirring noise.")
