@@ -185,7 +185,7 @@
 				affected.stats.addTempStat(stat, round(buff_power / 2), INFINITY, "von-crabbin")
 			else
 				affected.stats.addTempStat(stat, buff_power, INFINITY, "von-crabbin")
-		to_chat(affected, SPAN_DANGER("Leaving the obelisks range strengtens your connection with the [src]"))
+		to_chat(affected, SPAN_DANGER("Leaving the obelisks range strengthens your connection with the [src]"))
 
 
 /obj/item/device/von_krabin/attack_self(mob/user)
