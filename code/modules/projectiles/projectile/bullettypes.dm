@@ -189,7 +189,7 @@ There are important things regarding this file:
 //Sniper rifles .60
 /obj/item/projectile/bullet/antim
 	name = ".60 caliber bullet"
-	damage_types = list(BRUTE = 65)
+	damage_types = list(BRUTE = 33)
 	armor_divisor = 3
 	penetrating = 2
 	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
@@ -206,12 +206,12 @@ There are important things regarding this file:
 	empulse(target, 0, 0)
 
 /obj/item/projectile/bullet/antim/uranium
-	damage_types = list(BRUTE = 60)
+	damage_types = list(BRUTE = 30)
 	armor_divisor = 5
 	irradiate = 200
 
 /obj/item/projectile/bullet/antim/breach
-	damage_types = list(BRUTE = 50, HALLOSS = 40)
+	damage_types = list(BRUTE = 25, HALLOSS = 20)
 	armor_divisor = 2
 	penetrating = -5
 	step_delay = 0.6

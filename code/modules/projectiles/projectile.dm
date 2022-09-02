@@ -110,7 +110,7 @@
 
 /obj/item/projectile/multiply_projectile_damage(newmult)
 	for(var/i in damage_types)
-		damage_types[i] *= i == HALLOSS ? newmult : 1
+		damage_types[i] *= i == HALLOSS ? 1 : newmult
 
 /obj/item/projectile/add_projectile_penetration(newmult)
 	armor_divisor = initial(armor_divisor) + newmult
