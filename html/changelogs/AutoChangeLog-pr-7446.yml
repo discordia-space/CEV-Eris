@@ -1,0 +1,5 @@
+author: assortedbeads
+delete-after: true
+changes:
+  - rscadd: Added oversized poncho sprite
+  - rscadd: Added beginning of code for future cloaks and ponchos
