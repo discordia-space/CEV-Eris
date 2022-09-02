@@ -413,34 +413,4 @@
 	name = "Advanced burn kit"
 	build_path = /obj/item/stack/medical/advanced/ointment
 
-/datum/design/bioprinter/lungs
-	name = "Long lungs"
-	materials = list(MATERIAL_BIOMATTER = 30)
-	build_path = /obj/item/organ/internal/lungs/long
-
-/datum/design/bioprinter/heart
-	name = "Five chamber heart"
-	materials = list(MATERIAL_BIOMATTER = 45)
-	build_path = /obj/item/organ/internal/heart/huge
-
-/datum/design/bioprinter/liver
-	name = "Gargantuan liver"
-	materials = list(MATERIAL_BIOMATTER = 30)
-	build_path = /obj/item/organ/internal/liver/big
-
-/datum/design/bioprinter/nerves
-	name = "Hypersensitive nerves"
-	materials = list(MATERIAL_BIOMATTER = 15, MATERIAL_GOLD = 1)
-	build_path = /obj/item/organ/internal/nerve/sensitive_nerve
-
-/datum/design/bioprinter/muscle
-	name = "Super-strength muscle"
-	materials = list(MATERIAL_BIOMATTER = 30)
-	build_path = /obj/item/organ/internal/muscle/super_muscle
-
-/datum/design/bioprinter/blood_vessel
-	name = "Extensive blood vessels"
-	materials = list(MATERIAL_BIOMATTER = 30, MATERIAL_PLASTIC = 2)
-	build_path = /obj/item/organ/internal/blood_vessel/extensive
-
 //[/MED]

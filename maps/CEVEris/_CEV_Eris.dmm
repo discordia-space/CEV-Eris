@@ -22848,14 +22848,8 @@
 /area/eris/maintenance/section2deck4central)
 "bcJ" = (
 /obj/effect/window_lwall_spawn/smartspawn,
-/obj/machinery/door/blast/shutters{
-	dir = 4;
-	id = "maint_hatch_medbay_rec";
-	layer = 3.3;
-	name = "Maintenance Hatch"
-	},
 /turf/simulated/floor/plating,
-/area/eris/medical/medbreak)
+/area/eris/medical/medbay/organs)
 "bcK" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -23590,12 +23584,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/button/remote/blast_door{
-	id = "maint_hatch_medbay_rec";
-	name = "Maintenance Hatch Control";
-	pixel_y = 24;
-	req_access = null
-	},
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/medical/medbreak)
 "bep" = (
@@ -24073,14 +24061,8 @@
 	dir = 4
 	},
 /obj/effect/window_lwall_spawn/smartspawn,
-/obj/machinery/door/blast/shutters{
-	dir = 4;
-	id = "maint_hatch_medbay_rec";
-	layer = 3.3;
-	name = "Maintenance Hatch"
-	},
 /turf/simulated/floor/plating,
-/area/eris/medical/medbreak)
+/area/eris/medical/medbay/organs)
 "bfx" = (
 /obj/structure/bed/chair,
 /turf/simulated/floor/tiled/steel/panels,
@@ -40790,8 +40772,16 @@
 /turf/simulated/floor/tiled/white/panels,
 /area/eris/rnd/scient)
 "bSD" = (
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "maint_hatch_medbay_organs2";
+	name = "Maintenance Hatch Control";
+	pixel_x = -24;
+	req_access = null
+	},
+/obj/machinery/smartfridge/secure/medbay/organs,
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/eris/medical/medbay/organs)
 "bSE" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/shovel,
@@ -40885,10 +40875,13 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3port)
 "bSW" = (
-/obj/spawner/medical/low_chance,
-/obj/spawner/medical/low_chance,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/structure/table/standard,
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = 22
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "bSX" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
@@ -41495,7 +41488,7 @@
 /area/eris/maintenance/substation/engineering)
 "bUp" = (
 /turf/simulated/wall,
-/area/eris/maintenance/section2deck3port)
+/area/eris/medical/medbay/organs)
 "bUq" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -41511,7 +41504,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/area/eris/medical/medbay/organs)
 "bUs" = (
 /obj/machinery/atm{
 	pixel_x = 32
@@ -41711,8 +41704,15 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/shutters{
+	dir = 4;
+	id = "maint_hatch_medbay_organs";
+	layer = 3.3;
+	name = "Maintenance Hatch"
+	},
+/turf/simulated/floor/plating,
+/area/eris/medical/medbay/organs)
 "bUV" = (
 /obj/structure/disposalpipe/up,
 /turf/simulated/floor/plating/under,
@@ -42761,8 +42761,8 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "bXH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -42963,8 +42963,11 @@
 "bYc" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay/organs)
 "bYf" = (
 /obj/structure/table/standard,
 /obj/item/storage/box/gloves,
@@ -43078,9 +43081,17 @@
 "bYv" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/structure/table/standard,
+/obj/machinery/autolathe/organ_fabricator/loaded{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/item/tool/scalpel/laser{
+	pixel_x = -11;
+	pixel_y = -5
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "bYw" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -43089,6 +43100,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/red{
 	dir = 6
+	},
+/obj/landmark/storyevent/midgame_stash_spawn{
+	navigation = "Section 2, floor 3. West of medbay, maint coridor behind the glass."
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
@@ -43196,6 +43210,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/red{
 	dir = 4
 	},
+/obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "bYM" = (
@@ -43225,8 +43240,15 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/shutters{
+	dir = 4;
+	id = "maint_hatch_medbay_organs2";
+	layer = 3.3;
+	name = "Maintenance Hatch"
+	},
+/turf/simulated/floor/plating,
+/area/eris/medical/medbay/organs)
 "bYT" = (
 /obj/structure/table/standard,
 /obj/item/folder/blue,
@@ -43251,8 +43273,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/reagentgrinder/industrial/regurgitator,
+/turf/simulated/floor/tiled/white/gray_platform,
+/area/eris/medical/medbay/organs)
 "bYW" = (
 /obj/landmark/join/start/triai,
 /obj/structure/cable/cyan{
@@ -43912,8 +43936,15 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/shutters{
+	dir = 4;
+	id = "maint_hatch_medbay_organs2";
+	layer = 3.3;
+	name = "Maintenance Hatch"
+	},
+/turf/simulated/floor/plating,
+/area/eris/medical/medbay/organs)
 "caJ" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -43976,8 +44007,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/effect/floor_decal/industrial/loading,
+/turf/simulated/floor/tiled/white/gray_platform,
+/area/eris/medical/medbay/organs)
 "caQ" = (
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
@@ -44829,8 +44861,18 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "East APC";
+	pixel_x = 28
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "ccX" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating/under,
@@ -45004,15 +45046,20 @@
 /turf/simulated/open,
 /area/eris/maintenance/section2deck3port)
 "cdw" = (
-/obj/spawner/firstaid/low_chance,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
-"cdx" = (
-/obj/landmark/storyevent/midgame_stash_spawn{
-	navigation = "Section 2, floor 3. West of medbay, maint coridor behind the glass."
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/shutters{
+	dir = 4;
+	id = "maint_hatch_medbay_organs2";
+	layer = 3.3;
+	name = "Maintenance Hatch"
 	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/turf/simulated/floor/plating,
+/area/eris/medical/medbay/organs)
+"cdx" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/white/gray_platform,
+/area/eris/medical/medbay/organs)
 "cdy" = (
 /obj/structure/railing,
 /obj/spawner/flora/low_chance,
@@ -46317,18 +46364,6 @@
 /area/eris/quartermaster/hangarsupply)
 "cgg" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "MedbayTotalLockdown";
-	layer = 2.6;
-	name = "Medbay Total Lockdown";
-	opacity = 0
-	},
-/obj/machinery/door/airlock/maintenance_medical{
-	name = "Operating Maintenance";
-	req_access = list(45)
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -46336,7 +46371,12 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/techmaint_cargo,
+/obj/machinery/door/airlock/glass_medical{
+	name = "Organ Laboratory";
+	req_access = list(45);
+	req_one_access = newlist()
+	},
+/turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/surgery)
 "cgh" = (
 /obj/structure/table/standard,
@@ -48110,23 +48150,10 @@
 /area/eris/engineering/engine_room)
 "ckC" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "MedbayTotalLockdown";
-	layer = 2.6;
-	name = "Medbay Total Lockdown";
-	opacity = 0
-	},
-/obj/machinery/door/airlock/maintenance_medical{
-	name = "Operating Maintenance";
-	req_access = list(45)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/eris/medical/medbay/uppercor)
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/plating,
+/area/eris/maintenance/section2deck3port)
 "ckD" = (
 /obj/structure/catwalk,
 /obj/structure/closet/crate,
@@ -48214,13 +48241,12 @@
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/mixing)
 "ckU" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/medical{
-	name = "Medical Bay";
-	req_access = list(5)
+/obj/machinery/door/airlock/maintenance_common{
+	name = "Service Maintenance";
+	req_access = list(12)
 	},
-/turf/simulated/floor/tiled/white/cargo,
-/area/eris/medical/medbay/uppercor)
+/turf/simulated/floor/tiled/dark/cargo,
+/area/eris/maintenance/section2deck3port)
 "ckV" = (
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapelritualroom)
@@ -48982,9 +49008,15 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
-/obj/machinery/camera/network/second_section,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/shutters{
+	dir = 4;
+	id = "maint_hatch_medbay_organs";
+	layer = 3.3;
+	name = "Maintenance Hatch"
+	},
+/turf/simulated/floor/plating,
+/area/eris/medical/medbay/organs)
 "cmT" = (
 /obj/structure/table/glass,
 /obj/item/storage/firstaid/surgery,
@@ -49054,10 +49086,9 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/mixing)
 "cne" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor/plating,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "cnf" = (
 /obj/structure/railing{
@@ -49196,14 +49227,6 @@
 "cnx" = (
 /obj/structure/multiz/ladder,
 /turf/simulated/floor/tiled/techmaint,
-/area/eris/maintenance/section2deck3port)
-"cny" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
 /area/eris/maintenance/section2deck3port)
 "cnz" = (
 /obj/structure/table/reinforced,
@@ -50308,14 +50331,17 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/medbay)
 "cqr" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/machinery/button/remote/blast_door{
+	id = "maint_hatch_medbay_organs";
+	name = "Maintenance Hatch Control";
+	pixel_y = 24;
+	req_access = null
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "cqs" = (
 /obj/machinery/camera/network/engineering{
 	dir = 4
@@ -50341,8 +50367,8 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "cqw" = (
 /obj/structure/multiz/stairs/enter/bottom{
 	dir = 8
@@ -50766,7 +50792,7 @@
 	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/white,
-/area/eris/medical/medbay/uppercor)
+/area/eris/medical/medbreak)
 "crt" = (
 /obj/structure/noticeboard{
 	pixel_y = 32
@@ -50811,7 +50837,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/area/eris/medical/medbay/organs)
 "crz" = (
 /obj/machinery/vending/cola,
 /obj/machinery/light{
@@ -51092,7 +51118,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/eris/medical/medbay/uppercor)
+/area/eris/medical/medbreak)
 "csg" = (
 /turf/simulated/wall/r_wall,
 /area/eris/medical/psych)
@@ -51344,7 +51370,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/eris/medical/medbay/uppercor)
+/area/eris/medical/medbreak)
 "csW" = (
 /obj/structure/multiz/stairs/active{
 	dir = 1
@@ -51502,27 +51528,28 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3port)
 "cty" = (
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "North APC";
+/obj/machinery/firealarm{
 	pixel_y = 28
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "ctz" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/structure/table/standard,
+/obj/machinery/camera/network/medbay,
+/obj/item/reagent_containers/food/drinks/milk{
+	pixel_x = -8;
+	pixel_y = 8
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/item/reagent_containers/food/drinks/mug/moe,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "ctA" = (
 /obj/item/device/radio/intercom{
 	pixel_y = 24
@@ -51713,32 +51740,26 @@
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
 "cue" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+/obj/structure/disposalpipe/junction{
+	dir = 4;
+	icon_state = "pipe-j2"
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay/organs)
 "cuf" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "cug" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -56752,10 +56773,6 @@
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/patients_rooms)
-"cGl" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
 "cGm" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 5
@@ -68300,10 +68317,16 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay/organs)
 "dim" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
@@ -68814,11 +68837,12 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "djq" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/plating,
 /area/eris/maintenance/section2deck3port)
 "djs" = (
 /obj/effect/window_lwall_spawn/smartspawn,
@@ -68842,7 +68866,6 @@
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/maintenance/section2deck2starboard)
 "dju" = (
-/obj/structure/catwalk,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -68850,8 +68873,8 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay/organs)
 "djv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -74513,7 +74536,6 @@
 /obj/structure/sign/department/eva{
 	pixel_x = -32
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/medbay/uppercor)
 "dwr" = (
@@ -74583,9 +74605,26 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/table/standard,
+/obj/item/paper_bin{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/pen{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/machinery/recharger{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "dwB" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
@@ -74858,17 +74897,14 @@
 /turf/simulated/floor/tiled/steel/danger,
 /area/eris/engineering/engine_room)
 "dxl" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass_medical{
+	name = "Organ Laboratory";
+	req_access = list(45);
+	req_one_access = newlist()
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/turf/simulated/floor/tiled/white,
-/area/eris/medical/medbay/uppercor)
+/turf/simulated/floor/tiled/white/cargo,
+/area/eris/medical/medbay/organs)
 "dxm" = (
 /obj/structure/cable/yellow,
 /obj/machinery/power/generator/anchored{
@@ -74880,12 +74916,16 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "dxo" = (
 /obj/machinery/button/remote/blast_door{
 	id = "Medical_Psych";
@@ -75837,9 +75877,26 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/command/mbo)
 "dzE" = (
-/obj/machinery/door/airlock/maintenance_common,
+/obj/machinery/door/airlock/maintenance_medical{
+	name = "Laboratory Maintenance";
+	req_access = list(45)
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/techmaint_cargo,
-/area/eris/maintenance/section2deck3port)
+/area/eris/medical/medbay/organs)
 "dzF" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -76130,29 +76187,23 @@
 /turf/simulated/wall,
 /area/eris/maintenance/section1deck5central)
 "dAq" = (
-/obj/machinery/light/small{
-	dir = 8
+/obj/structure/table/standard,
+/obj/item/storage/freezer/medical,
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -26
 	},
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "dAr" = (
-/obj/structure/railing{
+/obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay/organs)
 "dAs" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay/organs)
 "dAt" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -76162,12 +76213,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/spawner/traps/wire_splicing/low_chance,
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "dAu" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -76175,22 +76222,16 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/spawner/junk/low_chance,
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "dAv" = (
 /turf/simulated/wall/r_wall,
 /area/eris/medical/medbreak)
 "dAw" = (
-/obj/spawner/medical/low_chance,
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/structure/table/standard,
+/obj/item/reagent_containers/spray/sterilizine,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "dAx" = (
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/medbreak)
@@ -76650,15 +76691,14 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/structure/catwalk,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay/organs)
 "dBG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -76789,14 +76829,16 @@
 	sortType = list("Medbay")
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/catwalk,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay/organs)
 "dBR" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -77198,9 +77240,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/machinery/light{
-	dir = 8
-	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/medbreak)
 "dCP" = (
@@ -77355,12 +77394,14 @@
 /area/eris/medical/reception)
 "dDi" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
+/obj/machinery/light{
+	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay/organs)
 "dDj" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
@@ -98506,18 +98547,8 @@
 /turf/simulated/floor/tiled/white/gray_perforated,
 /area/eris/medical/paramedic)
 "eBq" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/machinery/camera/network/medbay,
-/obj/machinery/alarm{
-	pixel_y = 26
-	},
 /turf/simulated/floor/tiled/white,
-/area/eris/medical/medbay/uppercor)
+/area/eris/medical/medbreak)
 "eBr" = (
 /obj/structure/table/standard,
 /obj/machinery/camera/network/medbay{
@@ -101548,6 +101579,18 @@
 	},
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
+"gIO" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay/organs)
 "gJG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -101690,6 +101733,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
+"hgX" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/eris/maintenance/section2deck3port)
 "hix" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -101790,6 +101837,14 @@
 /obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4port)
+"hzo" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section2deck3port)
 "hzE" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
@@ -102263,6 +102318,15 @@
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/office)
+"iMB" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay/organs)
 "iNx" = (
 /obj/spawner/oddities/low_chance,
 /turf/simulated/floor/tiled/techmaint_cargo,
@@ -102761,6 +102825,10 @@
 /obj/machinery/camera/network/third_section,
 /turf/simulated/open,
 /area/eris/crew_quarters/bar)
+"kfP" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbreak)
 "kfX" = (
 /obj/machinery/alarm{
 	dir = 1;
@@ -103478,6 +103546,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
+"mrW" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay/organs)
 "msv" = (
 /obj/machinery/atmospherics/unary/heat_exchanger{
 	dir = 1
@@ -105107,6 +105183,9 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/storage)
+"reO" = (
+/turf/simulated/wall/r_wall,
+/area/eris/medical/medbay/organs)
 "rfp" = (
 /obj/structure/multiz/ladder,
 /turf/simulated/floor/tiled/techmaint,
@@ -105704,6 +105783,11 @@
 /obj/spawner/firstaid,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/space)
+"sMr" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay/organs)
 "sMx" = (
 /obj/machinery/shield_diffuser,
 /turf/simulated/floor/hull,
@@ -106274,6 +106358,12 @@
 /obj/item/bedsheet/yellow,
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
+"uqj" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/hull,
+/area/space)
 "uqX" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
@@ -106283,6 +106373,13 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
+"urv" = (
+/obj/structure/table/standard,
+/obj/item/storage/box/gloves{
+	pixel_y = 3
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/medbay/organs)
 "utr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -106359,6 +106456,18 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
+"uDD" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "East APC";
+	pixel_x = 28
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section2deck3port)
 "uEI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -107129,10 +107238,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
-"wGN" = (
-/obj/structure/cyberplant,
-/turf/simulated/floor/carpet/sblucarpet,
-/area/eris/medical/medbreak)
 "wHF" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/holy,
@@ -107297,6 +107402,14 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
+"xlF" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section2deck3port)
 "xoj" = (
 /obj/machinery/computer/jtb_console,
 /turf/simulated/floor/tiled/dark/gray_perforated,
@@ -201224,13 +201337,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+acR
+acR
+acR
+acR
+acR
+acR
+acR
 acR
 acR
 acR
@@ -201427,13 +201540,13 @@ acR
 acR
 acR
 acR
-acR
-acR
-acR
-acR
-acR
-acR
-acR
+bSx
+bSx
+bSx
+bSx
+bSx
+bSx
+bSx
 bSx
 bSx
 bSx
@@ -201629,13 +201742,13 @@ bXF
 bXF
 bXF
 bXF
-bXF
-bXF
-bXF
-bXF
-bXF
-bXF
-bXF
+ckC
+cne
+cne
+cne
+cne
+cne
+cne
 cne
 djp
 cnx
@@ -201832,10 +201945,10 @@ bSx
 bSx
 bSx
 bSx
+ckU
 bSx
 bSx
-bSx
-bSx
+hgX
 bSx
 bSx
 bSx
@@ -202041,8 +202154,8 @@ bYw
 bZC
 cdv
 bSx
-djq
-bSx
+uqj
+abF
 abF
 abF
 duu
@@ -202232,19 +202345,19 @@ cnc
 cmT
 cln
 cgI
-bSV
-bSV
-bSV
-bSV
-bSV
+uDD
+xlF
+xlF
+xlF
+hzo
 bPJ
 bSx
 bYL
 caF
 cdv
 bSx
-djq
-bSx
+uqj
+abF
 abF
 abF
 duu
@@ -202434,19 +202547,19 @@ cng
 cIx
 cll
 cgI
-bSx
-bSx
-bSx
-bSx
+reO
+reO
+reO
+reO
 dzE
-bSx
-bSx
+reO
+reO
 bYS
 caI
 cdw
-bSx
-djq
-bSx
+reO
+uqj
+abF
 abF
 abF
 duu
@@ -202638,17 +202751,17 @@ oTl
 coI
 cry
 bUr
-bSx
+reO
 cty
-cGl
+mrW
 dAq
 bSD
 bYV
 caP
 cdx
-bSx
-djq
-bSx
+reO
+uqj
+abF
 abF
 abF
 duu
@@ -202842,15 +202955,15 @@ cmS
 bUU
 bUp
 ctz
-cGl
-dAr
+mrW
 dAs
+dAr
 dAt
 dAu
 dAw
-bSx
-djq
-bSx
+reO
+uqj
+abF
 abF
 abF
 duu
@@ -203045,14 +203158,14 @@ dBF
 dBQ
 cue
 dil
-dil
-dil
+iMB
+gIO
 dwA
 dxn
-cGl
-dzE
-djq
-bSx
+urv
+reO
+uqj
+abF
 abF
 abF
 cmE
@@ -203247,14 +203360,14 @@ cqv
 cuf
 bXG
 bYc
-bYc
+sMr
 dDi
 bYv
 ccW
 bSW
-bSx
-cny
-bSx
+reO
+uqj
+abF
 abF
 abF
 cmE
@@ -203446,15 +203559,15 @@ dCd
 coI
 bcJ
 bfw
-cgB
-cgB
-cgB
-cpw
-ckC
-cpw
-cse
-cse
-cse
+bfw
+bfw
+bUp
+dxl
+bUp
+bUp
+reO
+reO
+reO
 dAM
 dAO
 abF
@@ -203650,13 +203763,13 @@ beo
 dBG
 dxx
 dAm
-wGN
-cpw
+cpC
+eBq
 eBq
 crs
 csf
 csV
-cse
+dAv
 bmx
 doj
 bmx
@@ -203853,9 +203966,9 @@ dBH
 dyU
 dAm
 cpC
-cpw
-cpw
-ckU
+eBq
+eBq
+chD
 dAv
 dAv
 dAv
@@ -204057,7 +204170,7 @@ dAm
 cpC
 dCO
 dDx
-cqu
+kfP
 cgB
 dEg
 dEq
@@ -244059,7 +244172,7 @@ duC
 dvj
 dvT
 dwq
-dxl
+dtr
 cse
 cIz
 cIz
