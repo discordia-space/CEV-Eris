@@ -265,13 +265,18 @@
 
 	// Adjust the grab warmup using assailant's ROB stat
 	var/assailant_stat = assailant?.stats.getStat(STAT_ROB)
+	var/affecting_stat = affecting?.stats.getStat(STAT_ROB)
 	var/warmup_increase
 	if(assailant_stat > 0)
 		// Positive ROB decreases warmup, but not linearly
 		warmup_increase = -(assailant_stat ** 0.8)
 	else
 		// Negative ROB is a flat warmup increase
-		warmup_increase = assailant_stat
+		warmup_increase = abs(assailant_stat)
+	if(affecting_stat > 0)
+		warmup_increase += affecting_stat ** 0.8
+	else
+		warmup_increase += affecting_stat ** 0.6
 
 	var/total_warmup = max(0, UPGRADE_WARMUP + round(warmup_increase))
 
