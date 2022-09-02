@@ -59,7 +59,8 @@
 	if(donut_points >= production_cost)
 		if(touched_by_resus)
 			for(var/i in 1 to 3)
-				var/atom/movable/le_syringe = new(pick(special_chems))
+				var/path = pick(special_chems)
+				var/atom/movable/le_syringe = new path()
 				le_syringe.forceMove(get_turf(src))
 		donut_points -= production_cost
 		var/specialdonut = pick(special_donuts)
@@ -74,7 +75,7 @@
 		qdel(I)
 		name = "Synthethizing bluespace biosyphon"
 		touched_by_resus = TRUE
-		to_chat(user, SPAN_NOTICE("You upgrade the [src] using the Enricher, it now produces syringes of powerfull healing chemicals!"))
+		to_chat(user, SPAN_NOTICE("You upgrade the [src] using the Enricher, it now produces syringes of powerfull healing chemicals every time it produces special donuts!"))
 	if(istype(I, /obj/item/reagent_containers/food/snacks/meat/roachmeat/fuhrer))
 		donut_points += uncommon_meat_value
 		to_chat(user, "You insert [I] into the [src]. It produces a whirring noise.")

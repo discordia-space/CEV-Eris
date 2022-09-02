@@ -21,6 +21,7 @@
 	var/area_radius = 7
 	var/list/mob/living/carbon/human/the_hiveminded = list()
 	var/list/mob/living/carbon/human/the_broken = list()
+	var/list/mob/was_notified = list()
 
 	var/buff_power = 10
 
@@ -32,8 +33,11 @@
 	GLOB.all_faction_items[src] = GLOB.department_moebius
 
 /obj/item/device/von_krabin/Destroy()
-	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
-		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
+	GLOB.moebius_faction_item_loss++
+	..()
+
+/obj/item/device/von_krabin/nt_sword_handle()
 	for(var/mob/living/carbon/human/broken_minded in the_broken)
 		to_chat(broken_minded, SPAN_NOTICE("Your connection to the faith seems to have restored to full power."))
 		var/obj/item/implant/core_implant/cruciform/C = broken_minded.get_core_implant(/obj/item/implant/core_implant/cruciform)
@@ -42,23 +46,26 @@
 		C.max_righteous_life = initial(C.max_righteous_life)
 		C.power = 100
 		if(eotp)
-			eotp.addObservation(200)
-		the_broken -= broken_minded
+			eotp.power += 10
+	the_broken = null
 	for(var/mob/living/carbon/human/hive_minded in the_hiveminded)
 		to_chat(hive_minded, SPAN_DANGER("Your connection with the [src] is cut off. The knowledge is painfully removed from you!"))
+		krabin_linked -= hive_minded
 		hive_minded.adjustBrainLoss(25)
 		hive_minded.Weaken(5, TRUE)
 		for(var/stat in stats_buff)
 			hive_minded.stats.removeTempStat(stat, "von-crabbin")
-			hive_minded.stats[stat] -= 30 // hard to adapt back to normality
+			hive_minded.stats.changeStat(stat, -30)  // hard to adapt back to normality
 		if(eotp)
-			// no more NT link obstructions
-			eotp.addObservation(200)
-			eotp.armaments_rate += 25
-			eotp.max_armaments_points += 50
-	GLOB.all_faction_items -= src
-	GLOB.moebius_faction_item_loss++
-	..()
+			eotp.power += 10
+			eotp.armaments_rate += 5
+			eotp.max_armaments_points += 5
+	the_hiveminded = null
+	if(eotp)
+		// no more NT link obstructions
+		eotp.max_power -= 20 // reduces how much is needed for things to happen
+		eotp.armaments_rate += 10
+		eotp.max_armaments_points += 50
 
 /obj/item/device/von_krabin/attackby(obj/item/I, mob/user, params)
 	if(nt_sword_attack(I, user))
@@ -80,11 +87,6 @@
 					new_felinid.changeSpecies("felinid")
 		*/
 	..()
-
-
-/obj/item/device/von_krabin/attack_hand(mob/user)
-	. = ..()
-	add_to_the_hivemind(user)
 
 /obj/item/device/von_krabin/attack(mob/living/M, mob/living/user, target_zone)
 	if(user.a_intent == I_HELP && !is_neotheology_disciple(M))
@@ -115,7 +117,7 @@
 			C.max_righteous_life *= 0.75
 			C.power = 0
 			if(eotp)
-				eotp.removeObservation(400)
+				eotp.power = 0 // reset power
 
 /obj/item/device/von_krabin/proc/add_to_the_hivemind(mob/living/carbon/human/target)
 	if(is_neotheology_disciple(target))
@@ -124,33 +126,42 @@
 	if(target in the_hiveminded)
 		return FALSE
 	to_chat(target, SPAN_NOTICE("You link yourself with the [src], you feel the knowledge of countless minds flood you!"))
-	the_hiveminded.Add(target)
-	krabin_linked.Add(target)
-	recalculate_buffs_for_all(FALSE)
+	message_admins("linked user is [target]")
+	LAZYADD(the_hiveminded, target)
+	LAZYADD(krabin_linked, target)
+	recalculate_buffs(FALSE)
 
 /obj/item/device/von_krabin/proc/remove_from_the_hivemind(mob/living/carbon/human/target)
 	if(!(target in the_hiveminded))
 		return FALSE
-	the_hiveminded.Remove(target)
-	krabin_linked.Remove(target)
+	to_chat(target,  SPAN_NOTICE("You unlink yourself from the [src], you feel the valuable knowledge seep away"))
+	the_hiveminded -= target
+	krabin_linked -= target
 	for(var/stat in stats_buff)
 		target.stats.removeTempStat(stat, "von-crabbin")
-	recalculate_buffs_for_all(TRUE)
+	recalculate_buffs(TRUE)
 
-/obj/item/device/von_krabin/proc/recalculate_buffs_for_all(lost_follower, combat_knowledge)
-	var/linked_minds = the_hiveminded.len
-	buff_power = initial(buff_power) + round(linked_minds/2) * 5 + the_broken * 5 // for every 2 followers, gain 5 more buff, for every broken NT mind add 5 more
+/obj/item/device/von_krabin/proc/notify(mob/user)
+	if(user in was_notified)
+		return FALSE
+	to_chat(user , SPAN_DANGER("Being near a obelisk reduces your connection with the [src]"))
+	LAZYADD(was_notified, user)
+
+/obj/item/device/von_krabin/proc/recalculate_buffs(lost_follower = FALSE)
+	buff_power = initial(buff_power) + round(the_hiveminded.len/2) * 5 + the_broken.len * 5 // for every 2 followers, gain 5 more buff, for every broken NT mind add 5 more
 	for(var/mob/living/carbon/human/affected in the_hiveminded)
 		for(var/stat in stats_buff)
 			affected.stats.removeTempStat(stat, "von-crabbin")
 			if(stat in acquired_buffs)
 				affected.stats.addTempStat(stat, round(buff_power / 2), INFINITY, "von-crabbin")
 			else
-				affected.stats.addTempStat(stat, buff_power, "von-crabbin")
-			if(lost_follower)
-				to_chat(affected, SPAN_NOTICE("You feel the knowledge from the [src] lessen as a linked mind is lost!"))
-			else
-				to_chat(affected, SPAN_NOTICE("You feel the knowledge from the [src] increase as another mind links itself!"))
+				affected.stats.addTempStat(stat, buff_power, INFINITY, "von-crabbin")
+		if(lost_follower)
+			to_chat(affected, SPAN_NOTICE("You feel the knowledge from the [src] lessen as a linked mind is lost!"))
+		else
+			to_chat(affected, SPAN_NOTICE("You feel the knowledge from the [src] increase as another mind links itself!"))
+
+
 
 /obj/item/device/von_krabin/proc/recalculate_buff(near_crystal, mob/living/carbon/human/affected)
 	if(!(affected in the_hiveminded))
@@ -164,14 +175,13 @@
 				affected.stats.addTempStat(stat, round(buff_power / 4), INFINITY, "von-crabbin")
 			else
 				affected.stats.addTempStat(stat, round(buff_power / 2), INFINITY, "von-crabbin")
-		to_chat(affected, SPAN_DANGER("Being near a obelisk reduces your connection with the [src]"))
 	else
 		for(var/stat in stats_buff)
 			affected.stats.removeTempStat(stat, "von-crabbin")
 			if(stat in acquired_buffs)
 				affected.stats.addTempStat(stat, round(buff_power / 2), INFINITY, "von-crabbin")
 			else
-				affected.stats.addTempStat(stat, buff_power, "von-crabbin")
+				affected.stats.addTempStat(stat, buff_power, INFINITY, "von-crabbin")
 		to_chat(affected, SPAN_DANGER("Leaving the obelisks range strengtens your connection with the [src]"))
 
 

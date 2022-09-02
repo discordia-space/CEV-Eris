@@ -56,7 +56,6 @@
 			var/obj/item/reagent_containers/glass/bottle/bottle = new /obj/item/reagent_containers/glass/bottle(get_turf(src))
 			bottle.reagents.add_reagent("resuscitator", resuscitator_amount)
 			bottle.name = "resuscitator bottle"
-			resuscitator_amount = 0
 			visible_message(SPAN_NOTICE("[src] drops [bottle]."))
 			if(upgraded)
 				var/obj/item/reagent_containers/glass/bottle/plasma = new /obj/item/reagent_containers/glass/bottle(get_turf(src))

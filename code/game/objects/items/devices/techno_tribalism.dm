@@ -24,6 +24,7 @@
 /obj/item/device/techno_tribalism/Initialize()
 	..()
 	internal_radio = new /obj/item/device/radio{channels=list("Engineering")}(src)
+	internal_radio.broadcasting = TRUE
 
 /obj/item/device/techno_tribalism/Destroy()
 	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
@@ -193,7 +194,7 @@
 
 /obj/item/device/techno_tribalism/proc/alert_technomancers()
 	if(internal_radio.broadcasting)
-		internal_radio.autosay("The [src]'s cooldown has expired. It is ready to produce another oddity", "Techno-Tribalism enforcer", "Engineering")
+		internal_radio.autosay("The [src]'s cooldown has expired. It is ready to produce another oddity", "Techno-Tribalism enforcer", "Engineering", TRUE)
 
 /obj/item/device/techno_tribalism/emp_act(severity)
 	..()
@@ -203,5 +204,5 @@
 /obj/item/device/techno_tribalism/examine(user)
 	..()
 	to_chat(user, SPAN_NOTICE("The [src] is fed by [items_count]/[max_count]."))
-	to_chat(user, SPAN_NOTICE("The remaining delay is [(world.time - (last_produce + cooldown)) / 600] Minutes"))
+	to_chat(user, SPAN_NOTICE("The remaining delay is [world.time > last_produce + cooldown ? "0" : round(abs(world.time - (last_produce + cooldown)) / 600)] Minutes"))
 	to_chat(user, SPAN_NOTICE("Its internal radio is currently [internal_radio.broadcasting ? "working normally" : "not functioning"]"))
