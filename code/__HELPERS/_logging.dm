@@ -124,7 +124,7 @@
 	log_world("## MAPPING: [text]")
 	if(skip_world_log)
 		return
-	SEND_TEXT(world.log, text)
+	log_world(text)
 
 //pretty print a direction bitflag, can be useful for debugging.
 /proc/print_dir(var/dir)
