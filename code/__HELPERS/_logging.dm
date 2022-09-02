@@ -116,6 +116,16 @@
 /proc/log_asset(text)
 	game_log("ASSET", text)
 
+/// Logging for mapping errors
+/proc/log_mapping(text, skip_world_log)
+#ifdef UNIT_TESTS
+	GLOB.unit_test_mapping_logs += text
+#endif
+	log_world("## MAPPING: [text]")
+	if(skip_world_log)
+		return
+	log_world(text)
+
 //pretty print a direction bitflag, can be useful for debugging.
 /proc/print_dir(var/dir)
 	var/list/comps = list()
