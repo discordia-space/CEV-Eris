@@ -155,8 +155,8 @@
 			if (ablative_max <= ablative_armor)
 				to_chat(user, SPAN_WARNING("There is no damage on \the [src]'s armor layers to repair."))
 
-			else if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_WELDING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
-				ablative_armor = min(ablative_armor + get_tool_quality(QUALITY_WELDING) / 2, ablative_max)
+			else if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_WELDING, FAILCHANCE_ZERO, required_stat = STAT_MEC, instant_finish_tier = INFINITY)) // no instant repairs
+				ablative_armor = min(ablative_armor + 2, ablative_max)
 				to_chat(user, SPAN_NOTICE("You repair the damage on the [src]'s armor layers."))
 				return
 
