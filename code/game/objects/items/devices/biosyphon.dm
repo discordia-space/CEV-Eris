@@ -73,7 +73,7 @@
 	if(istype(I, /obj/item/reagent_containers/enricher))
 		user.remove_from_mob(I)
 		qdel(I)
-		name = "Synthethizing bluespace biosyphon"
+		name = "Synthesizing bluespace biosyphon"
 		touched_by_resus = TRUE
 		to_chat(user, SPAN_NOTICE("You upgrade the [src] using the Enricher, it now produces syringes of powerfull healing chemicals every time it produces special donuts!"))
 	if(istype(I, /obj/item/reagent_containers/food/snacks/meat/roachmeat/fuhrer))
