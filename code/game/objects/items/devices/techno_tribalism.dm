@@ -16,6 +16,7 @@
 	var/max_count = 5
 	var/cooldown = 20 MINUTES
 	var/obj/item/device/radio/internal_radio
+	var/radio_broadcasting = TRUE
 
 /obj/item/device/techno_tribalism/New()
 	..()
@@ -24,7 +25,7 @@
 /obj/item/device/techno_tribalism/Initialize()
 	..()
 	internal_radio = new /obj/item/device/radio{channels=list("Engineering")}(src)
-	internal_radio.broadcasting = TRUE
+	radio_broadcasting = TRUE
 
 /obj/item/device/techno_tribalism/Destroy()
 	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
@@ -39,7 +40,7 @@
 	if(user.a_intent == I_HELP && W.get_tool_quality(QUALITY_SCREW_DRIVING))
 		if(internal_radio.broadcasting == FALSE)
 			to_chat(user, "You reenable the [src]'s internal radio broadcaster")
-			internal_radio.broadcasting = TRUE
+			radio_broadcasting = TRUE
 	if(user.a_intent != I_DISARM)
 		to_chat(user, "You need to be in a disarming stance to insert items into the [src]")
 		return FALSE
@@ -193,13 +194,14 @@
 		visible_message("\icon The [src] beeps, \"The [src] needs time to cooldown.\".")
 
 /obj/item/device/techno_tribalism/proc/alert_technomancers()
-	if(internal_radio.broadcasting)
+	if(radio_broadcasting)
 		internal_radio.autosay("The [src]'s cooldown has expired. It is ready to produce another oddity", "Techno-Tribalism enforcer", "Engineering", TRUE)
 
 /obj/item/device/techno_tribalism/emp_act(severity)
 	..()
 	if(severity)
-		internal_radio.broadcasting = FALSE // lets people emp to prevent broadcasting
+		// lets people emp to prevent broadcasting
+		radio_broadcasting = FALSE
 
 /obj/item/device/techno_tribalism/examine(user)
 	..()
