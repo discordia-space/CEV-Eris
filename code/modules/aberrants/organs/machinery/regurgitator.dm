@@ -93,7 +93,7 @@
 			. = TRUE		// If the container has any amount of an accepted reagent, the proc will return true
 		if(is_type_in_list(R, blacklisted_reagents))
 			return FALSE	// If the container has any amount of a blacklisted reagent, the proc will immediately return false
-
+	
 /obj/machinery/reagentgrinder/industrial/regurgitator/insert(obj/item/I, mob/user)
 	if(!istype(I))
 		return
@@ -137,14 +137,12 @@
 		break
 
 	if(I.reagents)
+		holdingitems -= I
 		for(var/reagent in I.reagents.reagent_list)
 			var/datum/reagent/R = reagent
 			if(!is_type_in_list(R, blacklisted_reagents) && is_type_in_list(R, accepted_reagents))
 				biomatter_counter += round(R.volume * accepted_reagents[R.type], 0.01)
-			R.remove_self(R.volume)
-		if(I.reagents.total_volume == 0)
-			holdingitems -= I
-			qdel(I)
+		qdel(I)
 
 /obj/machinery/reagentgrinder/industrial/regurgitator/grind()
 	if(has_brain && prob(1))
@@ -153,7 +151,7 @@
 				O.show_message("\icon[src] <b>\The [src]</b> says, \"You s-s-saved me... w-why?\"", 2)
 			flick("[initial(icon_state)]_spit", src)
 
-	if(current_tick == grind_rate)
+	if(current_tick >= grind_rate)
 		var/obj/item/I = locate() in holdingitems
 		if(!I)
 			return
@@ -163,7 +161,7 @@
 
 	current_tick += 1
 
-	while(biomatter_counter > 59)
+	while(biomatter_counter > 59.99)
 		bottle()
 
 	SSnano.update_uis(src)
