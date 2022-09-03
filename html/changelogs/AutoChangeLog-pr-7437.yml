@@ -1,5 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - balance: Grab speed also takes the affected's robustnesss into account now
-  - balance: flip-in-hand no longer forces people to rest

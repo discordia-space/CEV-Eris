@@ -1,5 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - bugfix: Fixed modded organs exploding in curciform holder's hands
-  - bugfix: Fixed a bug with mod removal when the modded organ explodes
