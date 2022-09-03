@@ -13,6 +13,7 @@
 		/area/eris/maintenance, /area/eris/storage,
 		/area/eris/engineering/atmos/storage,
 		/area/eris/engineering/construction,
+		/area/eris/engineering/post,
 		/area/eris/rnd/server)
 
 	var/static/list/exempt_from_apc = typesof(
