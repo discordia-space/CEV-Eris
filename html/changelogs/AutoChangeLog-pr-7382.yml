@@ -1,4 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Fixed autodoc shrapnel removal not working properly.

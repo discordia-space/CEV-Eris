@@ -2,7 +2,10 @@
 	name_pool = list(
 		"FTB \'Solntsey\'" = "Free Trade Beacon \'Solntsey\': \"Try your luck with our grab bag specials!\"",
 	)
+	icon_states = list("htu_station", "station")
 	uid = "casino"
+	tree_x = 0.58
+	tree_y = 0.7
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = 1

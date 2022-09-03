@@ -23,10 +23,10 @@
 
 		{{if data.penetration_multiplier != 1}}
 			<div class="itemLabel">
-				Projectile AP multiplier:
+				Projectile Armor Divisor:
 			</div>
 			<div class="itemContent">
-				{{:data.penetration_multiplier}}x
+				{{:data.penetration_multiplier}}
 			</div>
 		{{/if}}
 
@@ -80,7 +80,7 @@
 			Armor penetration:
 		</div>
 			<div class="itemContent">
-				{{:helper.displayBar(data.armor_penetration, 0, 100, '', data.armor_penetration + '%')}}
+				{{:helper.displayBar(data.armor_divisor, 0, 100, '', data.armor_divisor + '%')}}
 			</div>
 
 		{{if data.caliber}}
@@ -154,6 +154,13 @@
 				</div>
 
 			<div class="itemLabel">
+				Wound scale:
+			</div>
+				<div class="itemContent">
+					{{:data.projectile_WOUND}}
+				</div>
+
+			<div class="itemLabel">
 				Recoil multiplier:
 			</div>
 				<div class="itemContent">
@@ -188,6 +195,7 @@
 									Name:{{:value.projectile_name}}<br>
 									Overall damage: {{:value.projectile_damage}}<br>
 									Overall AP: {{:value.projectile_AP}}<br>
+									Wound scale: {{:value.projectile_WOUND}}<br>
 								</div>
 						{{/if}}
 						{{if value.burst}}

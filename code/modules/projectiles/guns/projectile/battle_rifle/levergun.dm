@@ -5,12 +5,12 @@
 	icon_state = "lever_winchester"
 	item_suffix  = "_winchester"
 	force = WEAPON_FORCE_DANGEROUS
-	armor_penetration = ARMOR_PEN_GRAZING
+	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_MAGNUM
 	damage_multiplier = 1.6
 	style_damage_multiplier = 1
-	penetration_multiplier = 1.6
-	init_recoil = RIFLE_RECOIL(4.6)
+	penetration_multiplier = 0
+	init_recoil = RIFLE_RECOIL(2)
 	init_offset = 0
 	max_shells = 6
 	zoom_factor = 0
@@ -31,6 +31,8 @@
 	icon_state = "lever_winchester_sawn"
 	w_class = ITEM_SIZE_NORMAL
 	proj_step_multiplier = 1.2
+	damage_multiplier = 1.3
+	penetration_multiplier = -0.1
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	init_recoil = CARBINE_RECOIL(6)
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 8, MATERIAL_PLASTEEL = 20)
@@ -48,10 +50,10 @@
 	icon_state = "lever_shotgun"
 	item_suffix  = "_shotgun"
 	force = WEAPON_FORCE_DANGEROUS
-	armor_penetration = ARMOR_PEN_GRAZING
+	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_SHOTGUN
-	damage_multiplier = 1.2
-	penetration_multiplier = 1.2
+	damage_multiplier = 1.1
+	penetration_multiplier = 0.3
 	proj_step_multiplier = 0.8
 	max_shells = 9
 	init_recoil = RIFLE_RECOIL(2.3)
@@ -66,8 +68,8 @@
 	w_class = ITEM_SIZE_NORMAL
 	proj_step_multiplier = 1.2
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
-	damage_multiplier = 0.7
-	init_recoil = CARBINE_RECOIL(2.5)
+	damage_multiplier = 0.8
+	init_recoil = CARBINE_RECOIL(5)
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 8)
 	item_suffix  = "_shotgun_sawn"
 	wielded_item_state = "_doble_shotgun_sawn"

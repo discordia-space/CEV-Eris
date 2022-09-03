@@ -17,8 +17,8 @@
 	var/reload = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
-	damage_multiplier = 0.75
-	penetration_multiplier = 0.75
+	damage_multiplier = 0.8
+	penetration_multiplier = 0.1
 	init_recoil = CARBINE_RECOIL(1.5)
 	burst_delay = null
 	fire_delay = 4

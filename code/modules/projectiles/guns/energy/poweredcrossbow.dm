@@ -18,6 +18,8 @@
 	var/obj/item/ammo_casing/crossbow/bolt/bolt
 	var/is_drawn
 	init_recoil = RIFLE_RECOIL(1)
+	damage_multiplier = 1
+	penetration_multiplier = 0
 	safety = FALSE
 	restrict_safety = TRUE
 
@@ -29,8 +31,8 @@
 		var/obj/item/ammo_casing/crossbow/bolt/B = I
 		bolt = new B.type()
 		bolt.amount = 1
-		if(B.amount > 1) 
-			B.amount-- 
+		if(B.amount > 1)
+			B.amount--
 			B.update_icon()
 		else
 			qdel(B)

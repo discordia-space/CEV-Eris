@@ -29,18 +29,46 @@
 				to_chat(src, "<b>WARNING:</b> It would seem that you are sharing connection or computer with another player. If you haven't done so already, please contact the staff via the Adminhelp verb to resolve this situation. Failure to do so may result in administrative action. You have been warned.")
 
 /mob/Login()
+	if(!client)
+		return FALSE
 	GLOB.player_list |= src
 	update_Login_details()
 	world.update_status()
 
-	client.images = null				//remove the images such as AIs being unable to see runes
-	client.screen = null				//remove hud items just in case
-	if(hud_used)	qdel(hud_used)		//remove the hud objects
+	client.images = list()				//remove the images such as AIs being unable to see runes
+	client.screen = list()				//remove hud items just in case
+	if(hud_used)
+		qdel(hud_used)		//remove the hud objects
 	hud_used = new /datum/hud(src)
 
 	next_move = 1
 	sight |= SEE_SELF
+
+	// YES, this is expensive
+	// YES, this calls 200k Move() calls
+	// however eris paralax is so bad that removing this breaks it
+
+	// BYOND's internal implementation of login does two things
+	// 1: Set statobj to the mob being logged into (We got this covered)
+	// 2: And I quote "If the mob has no location, place it near (1,1,1) if possible"
+	// See, near is doing an agressive amount of legwork there
+	// What it actually does is takes the area that (1,1,1) is in, and loops through all those turfs
+	// If you successfully move into one, it stops
+	// Because we want Move() to mean standard movements rather then just what byond treats it as (ALL moves)
+	// We don't allow moves from nullspace -> somewhere. This means the loop has to iterate all the turfs in (1,1,1)'s area
+	// For us, (1,1,1) is a space tile. This means roughly 200,000! calls to Move()
+	// You do not want this
 	..()
+
+	if(!client)
+		return FALSE
+
+	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
+	// the datum fires first than actual login. Do actual login first before triggering login events
+	GLOB.logged_in_event.raise_event(src)
+
+	if (key != client.key)
+		key = client.key
 
 	if(loc && !isturf(loc))
 		client.eye = loc
@@ -55,14 +83,16 @@
 	else
 		winset(client, null, "mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5")
 
-	if (client)
+	if(client)
 		if(client.UI)
 			client.UI.show()
 		else
 			client.create_UI(src.type)
+
 		add_click_catcher()
+
 		client.CAN_MOVE_DIAGONALLY = FALSE
 
-	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
-
 	update_client_colour(0)
+
+	return TRUE

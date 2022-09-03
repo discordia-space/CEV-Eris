@@ -119,6 +119,8 @@
 	var/global/list/status_overlays_equipment
 	var/global/list/status_overlays_lighting
 	var/global/list/status_overlays_environ
+	/// Offsets the object by APC_PIXEL_OFFSET (defined in apc_defines.dm) pixels in the direction we want it placed in. This allows the APC to be embedded in a wall, yet still inside an area (like mapping).
+	var/offset_old
 
 /obj/machinery/power/apc/updateDialog()
 	if (stat & (BROKEN|MAINT))
@@ -163,55 +165,96 @@
 
 	return cell.drain_power(drain_check, surge, amount)
 
-/obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
+/obj/machinery/power/apc/New(turf/loc, ndir, building=0)
 	..()
-	wires = new(src)
-
 	GLOB.apc_list += src
 
-	// offset 28 pixels in direction of dir
-	// this allows the APC to be embedded in a wall, yet still inside an area
-	if (building)
-		set_dir(ndir)
-	tdir = dir		// to fix Vars bug
-	set_dir(SOUTH)
+	wires = new(src)
 
-	pixel_x = (tdir & 3)? 0 : (tdir == 4 ? 28 : -28)
-	pixel_y = (tdir & 3)? (tdir ==1 ? 28 : -28) : 0
-	if (building==0)
-		init()
-	else
+	if(building)
 		area = get_area(src)
 		area.apc = src
 		opened = 1
 		operating = FALSE
-		name = "[area.name] APC"
+		name = "\improper [get_area_name_litteral(area, TRUE)] APC"
 		stat |= MAINT
 		update_icon()
+		addtimer(CALLBACK(src, .proc/update), 5)
+		set_dir(ndir)
+
+	switch(dir)
+		if(NORTH)
+			offset_old = pixel_y
+			pixel_y = 28
+		if(SOUTH)
+			offset_old = pixel_y
+			pixel_y = -28
+		if(EAST)
+			offset_old = pixel_x
+			pixel_x = 28
+		if(WEST)
+			offset_old = pixel_x
+			pixel_x = -28
+
+	tdir = dir		// to fix Vars bug
+
+/obj/machinery/power/apc/Initialize(mapload)
+	. = ..()
+
+	if(!mapload)
+		return
+	has_electronics = 2
+	// is starting with a power cell installed, create it and set its charge level
+	if(cell_type)
+		cell = new cell_type(src)
+		cell.charge = start_charge * cell.maxcharge / 100 // (convert percentage to actual value)
+
+	var/area/our_area = get_area(loc)
+
+	//if area isn't specified use current
+	if(areastring)
+		area = get_area_name(areastring)
+		if(!area && isarea(our_area))
+			area = our_area
+			stack_trace("Bad areastring path for [src], [areastring]")
+	else if(isarea(our_area) && areastring == null)
+		area = our_area
+
+	name = "\improper [get_area_name_litteral(area, TRUE)] APC"
+
+	if(area)
+		if(area.apc)
+			log_mapping("Duplicate APC created at [AREACOORD(src)]. Original at [AREACOORD(area.apc)].")
+		area.apc = src
+
+	update_icon()
+
+	make_terminal()
+
+	addtimer(CALLBACK(src, .proc/update), 5)
 
 /obj/machinery/power/apc/Destroy()
-	update()
-	area.apc = null
-	SEND_SIGNAL(area, COMSIG_AREA_APC_DELETED)
-	area.power_light = 0
-	area.power_equip = 0
-	area.power_environ = 0
-	area.power_change()
-	qdel(wires)
-	wires = null
-	qdel(terminal)
-	terminal = null
-	if(cell)
-		cell.forceMove(loc)
-		cell = null
+	GLOB.apc_list -= src
 
 	// Malf AI, removes the APC from AI's hacked APCs list.
 	if((hacker) && (hacker.hacked_apcs) && (src in hacker.hacked_apcs))
 		hacker.hacked_apcs -= src
+	if(area)
+		area.power_light = FALSE
+		area.power_equip = FALSE
+		area.power_environ = FALSE
+		area.power_change()
+		area.apc = null
+		SEND_SIGNAL(area, COMSIG_AREA_APC_DELETED)
 
-	GLOB.apc_list -= src
-
-	return ..()
+	if(wires)
+		QDEL_NULL(wires)
+	if(cell)
+		cell.forceMove(loc)
+		cell = null
+	if(terminal)
+		qdel(terminal)
+	. = ..()
 
 /obj/machinery/power/apc/proc/energy_fail(var/duration)
 	failure_timer = max(failure_timer, duration)
@@ -224,29 +267,6 @@
 	terminal = new/obj/machinery/power/terminal(loc)
 	terminal.set_dir(tdir)
 	terminal.master = src
-
-/obj/machinery/power/apc/proc/init()
-	has_electronics = 2 //installed and secured
-	// is starting with a power cell installed, create it and set its charge level
-	if(cell_type)
-		cell = new cell_type(src)
-		cell.charge = start_charge * cell.maxcharge / 100		// (convert percentage to actual value)
-
-	var/area/A = loc.loc
-
-	//if area isn't specified use current
-	if(isarea(A) && areastring == null)
-		area = A
-	else
-		area = get_area_name(areastring)
-	name = "[strip_improper(area.name)] APC"
-	area.apc = src
-	update_icon()
-
-	make_terminal()
-
-	spawn(5)
-		update()
 
 /obj/machinery/power/apc/examine(mob/user)
 	if(..(user, 1))

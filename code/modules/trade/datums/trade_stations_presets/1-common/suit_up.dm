@@ -2,7 +2,10 @@
 	name_pool = list(
 		"ATB \'Suit Up!\'" = "Aster\'s Trade Beacon \'Suit Up!\': \"Suits, voidsuits, and more for you, traveler!\""
 	)
+	icon_states = list("htu_station", "station")
 	uid = "suit_up"
+	tree_x = 0.66
+	tree_y = 0.9
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS

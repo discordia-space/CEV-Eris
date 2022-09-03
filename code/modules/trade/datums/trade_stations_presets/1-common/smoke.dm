@@ -2,7 +2,10 @@
 	name_pool = list(
 		"FTB \'Costaguana\'" = "Free Trade Beacon \'Costaguana\': \"Bienvenidos, weary travelers. Collect your mind while you inhale the finest synthetic tobacco in Hanza space.\"",
 	)
+	icon_states = list("htu_station", "station")
 	uid = "smoke"
+	tree_x = 0.54
+	tree_y = 0.8
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS

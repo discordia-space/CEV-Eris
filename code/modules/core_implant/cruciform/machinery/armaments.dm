@@ -107,9 +107,6 @@
 /datum/armament/item/on_purchase(mob/living/carbon/H)
 	if (path)
 		var/obj/_item = new path(get_turf(eotp))
-		if(istype(_item, /obj/item/computer_hardware/hard_drive/portable/design))
-			var/obj/item/computer_hardware/hard_drive/portable/design/f = _item
-			f.license = -1
 		eotp.visible_message(SPAN_NOTICE("The [_item.name] appears out of bluespace near the [eotp]!"))
 
 /datum/armament/item/disk

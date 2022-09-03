@@ -54,6 +54,7 @@
 	var/spreading_step = 15
 	var/projectile_accuracy = 1 // Based on vigilance, reduces random limb chance and likelihood of missing intended target
 	var/recoil = 0
+	var/wounding_mult = 1 // A multiplier on damage inflicted to and damage blocked by mobs
 
 	//Effects
 	var/stun = 0
@@ -63,7 +64,6 @@
 	var/stutter = 0
 	var/eyeblur = 0
 	var/drowsy = 0
-	var/agony = 0
 	var/embed = 0 // whether or not the projectile can embed itself in the mob
 	var/knockback = 0
 
@@ -110,10 +110,10 @@
 
 /obj/item/projectile/multiply_projectile_damage(newmult)
 	for(var/i in damage_types)
-		damage_types[i] *= newmult
+		damage_types[i] *= i == HALLOSS ? 1 : newmult
 
-/obj/item/projectile/multiply_projectile_penetration(newmult)
-	armor_penetration = initial(armor_penetration) * newmult
+/obj/item/projectile/add_projectile_penetration(newmult)
+	armor_divisor = initial(armor_divisor) + newmult
 
 /obj/item/projectile/multiply_pierce_penetration(newmult)
 	penetrating = initial(penetrating) + newmult
@@ -124,9 +124,6 @@
 /obj/item/projectile/multiply_projectile_step_delay(newmult)
 	if(!hitscan)
 		step_delay = initial(step_delay) * newmult
-
-/obj/item/projectile/multiply_projectile_agony(newmult)
-	agony = initial(agony) * newmult
 
 /obj/item/projectile/proc/multiply_projectile_accuracy(newmult)
 	projectile_accuracy = initial(projectile_accuracy) * newmult
@@ -314,6 +311,7 @@
 	var/result = PROJECTILE_FORCE_MISS
 
 	if(iscarbon(target_mob))
+		// Handheld shields
 		var/mob/living/carbon/C = target_mob
 		var/obj/item/shield/S
 		for(S in get_both_hands(C))
@@ -322,6 +320,7 @@
 				qdel(src)
 				return TRUE
 			break //Prevents shield dual-wielding
+
 //		S = C.get_equipped_item(slot_back)
 //		if(S && S.block_bullet(C, src, def_zone))
 //			on_hit(S,def_zone)

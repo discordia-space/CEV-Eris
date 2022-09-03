@@ -15,9 +15,12 @@
 /datum/trade_station
 	var/name
 	var/desc
-	var/list/icon_states = "htu_station"
+	var/list/icon_states = list("htu_station", "station")
 	var/initialized = FALSE
 	var/uid 						// Needed for unlocking via recommendations since names are selected from a pool
+
+	var/tree_x = 0.1				// Position on the trade tree map, 0 - left, 1 - right                 
+	var/tree_y = 0.1				// 0 - down, 1 - top
 
 	var/update_time = 0				// For displaying the time remaining on the UI
 	var/update_timer_start = 0		//
@@ -35,12 +38,12 @@
 	var/markup = WHOLESALE_GOODS
 
 	var/list/inventory = list()
-	var/list/offer_types = list()	// Defines special offers
-	var/list/offer_limit = 10		// For limiting sell offer quantity. 0 is no cap. Offer data packet can set a good specific cap that overrides this.
+	var/list/offer_types = list()	// Defines offers
+	var/list/offer_limit = 10		// For limiting offer quantity. 0 is no cap. Offer data packet can set a good specific cap that overrides this.
 
 	var/list/amounts_of_goods = list()
 	var/unique_good_count = 0
-	var/list/special_offers = list()	// The special offer created using the data in offer_types()
+	var/list/special_offers = list()	// The offer created using the data in offer_types()
 
 	var/base_income = 1600				// Lets stations restock without player interaction.
 	var/wealth = 0						// The abstract value of the goods sold to the station via offers + base income. Represents the station's ability to produce or purchase goods.
@@ -146,7 +149,7 @@
 			var/offer_index = offer_types.Find(offer_path)
 			special_offers.Insert(offer_index, offer_path)
 			special_offers[offer_path] = offer_content
-			SStrade.offer_types.Add(offer_path)				// For blacklisting offers from exports
+			SStrade.offer_types |= offer_path				// For blacklisting offer goods from exports
 
 /datum/trade_station/proc/update_tick()
 	offer_tick()
@@ -154,7 +157,7 @@
 		goods_tick()
 	else
 		initialized = TRUE
-	update_time = rand(15,20) MINUTES
+	update_time = rand(8,12) MINUTES
 	addtimer(CALLBACK(src, .proc/update_tick), update_time, TIMER_STOPPABLE)
 	update_timer_start = world.time
 
@@ -273,7 +276,7 @@
 	if(!isnum(income))
 		return
 	wealth += income
-	favor += income * (is_offer ? 1 : 0.125)
+	favor += income * (is_offer ? 1 : 0.25)
 
 	// Unlocks without needing to wait for update tick
 	if(!hidden_inv_unlocked)
@@ -309,7 +312,7 @@
 	overmap_object.dir = pick(rand(1,2), 4, 8)
 
 	overmap_object.name_stages = list(name, "unknown station", "unknown spatial phenomenon")
-	overmap_object.icon_stages = list(pick(icon_states), "station", "poi")
+	overmap_object.icon_stages = list(icon_states[1], icon_states[2], "poi")
 
 	if(!start_discovered)
 		GLOB.entered_event.register(overmap_location, src, .proc/discovered)

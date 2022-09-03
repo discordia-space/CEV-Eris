@@ -7,10 +7,12 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER 
 	wielded_item_state = "_doble"
+	damage_multiplier = 0.8
+	penetration_multiplier = 0.9
 	fire_delay = 6
 	fire_sound = 'sound/weapons/tablehit1.ogg'
 	init_firemodes = list(
-		list(mode_name = "Bolt", mode_desc = "Fires a flashforged quarrel", projectile_type = /obj/item/projectile/bullet/bolt, charge_cost = 50, icon = "kill"))
+		list(mode_name = "Bolt", mode_desc = "Fires a flashforged quarrel", projectile_type = /obj/item/projectile/bullet/bolt, charge_cost = 100, icon = "kill"))
 	price_tag = 2000
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASMA = 8, MATERIAL_URANIUM = 8, MATERIAL_STEEL = 2)
 	init_recoil = HANDGUN_RECOIL(1)

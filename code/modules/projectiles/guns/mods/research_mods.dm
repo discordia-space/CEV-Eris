@@ -14,7 +14,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_PEN_MULT = 1.2,
+		GUN_UPGRADE_PEN_MULT = 0.2,
 		GUN_UPGRADE_STEPDELAY_MULT = 0.8,
 		GUN_UPGRADE_FIRE_DELAY_MULT = 1.5
 		)
@@ -35,7 +35,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_PEN_MULT = 0.8,
+		GUN_UPGRADE_PEN_MULT = -0.2,
 		GUN_UPGRADE_DAMAGE_BURN = 10,
 		GUN_UPGRADE_OFFSET = 5,
 		GUN_UPGRADE_RECOIL = 1.5,
@@ -77,7 +77,6 @@
 	I.weapon_upgrades = list(
 	GUN_UPGRADE_RECOIL = 2,
 	GUN_UPGRADE_DAMAGE_MULT = 0.66,
-	GUN_UPGRADE_AGONY_MULT = 0.66,
 	GUN_UPGRADE_FIRE_DELAY_MULT = 0.33,
 	GUN_UPGRADE_CHARGECOST = 0.5,
 	GUN_UPGRADE_FIRE_DELAY_MULT = 0.33,
@@ -146,7 +145,7 @@
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_DAMAGE_BRUTE = 5,
 		GUN_UPGRADE_STEPDELAY_MULT = 0.8,
-		GUN_UPGRADE_PEN_MULT = 1.3,
+		GUN_UPGRADE_PEN_MULT = 0.3,
 		GUN_UPGRADE_PIERC_MULT = 1,
 		GUN_UPGRADE_FIRE_DELAY_MULT = 1.4,
 		GUN_UPGRADE_RECOIL = 1.4

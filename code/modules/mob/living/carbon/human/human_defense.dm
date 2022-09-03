@@ -157,6 +157,24 @@ meteor_act
 
 	return armorval
 
+/mob/living/carbon/human/getarmorablative(var/def_zone, var/type)
+
+	var/obj/item/rig/R = get_equipped_item(slot_back)
+	if(istype(R))
+		if(R.ablative_armor && (type in list(ARMOR_MELEE, ARMOR_BULLET, ARMOR_ENERGY, ARMOR_BOMB)))
+			return R.ablative_armor
+	return FALSE
+
+//Returns true if the ablative armor successfully took damage
+/mob/living/carbon/human/damageablative(var/def_zone, var/damage_taken)
+
+	var/obj/item/rig/R = get_equipped_item(slot_back)
+	if(istype(R))
+		if(R.ablative_armor)
+			R.ablative_armor = max(R.ablative_armor - damage_taken / R.ablation, 0)
+			return TRUE
+	return FALSE
+
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(obj/item/organ/external/def_zone)
 	if (!def_zone)
@@ -221,6 +239,11 @@ meteor_act
 		if(!shield) continue
 		. = shield.handle_shield(src, damage, damage_source, attacker, def_zone, attack_text)
 		if(.) return
+
+	if(istype(damage_source, /obj/item/projectile))
+		var/obj/item/rig/R = back
+		if(R)
+			R.block_bullet(src, damage_source, def_zone)
 	return 0
 
 /mob/living/carbon/human/proc/has_shield()

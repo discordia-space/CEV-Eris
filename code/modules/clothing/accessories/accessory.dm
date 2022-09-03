@@ -201,9 +201,9 @@
 	w_class = ITEM_SIZE_NORMAL
 	isRemovable = FALSE
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
+		melee = 7,
+		bullet = 7,
+		energy = 7,
 		bomb = 5,
 		bio = 0,
 		rad = 0
@@ -228,9 +228,9 @@
 	desc = "Plates from a bulletproof vest, now usable to reinforce clothes."
 	icon_state = "armor_bullet"
 	armor = list(
-		melee = 20,
-		bullet = 45,
-		energy = 20,
+		melee = 5,
+		bullet = 11,
+		energy = 5,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -247,8 +247,8 @@
 	desc = "Plates from a platecarrier, now usable to reinforce clothes."
 	icon_state = "armor_platecarrier"
 	armor = list(
-		melee = 20,
-		bullet = 40,
+		melee = 5,
+		bullet = 10,
 		energy = 0,
 		bomb = 0,
 		bio = 0,
@@ -265,9 +265,9 @@
 	desc = "Plates from riot armor, now usable to reinforce clothes."
 	icon_state = "armor_riot"
 	armor = list(
-		melee = 50,
-		bullet = 25,
-		energy = 25,
+		melee = 13,
+		bullet = 6,
+		energy = 6,
 		bomb = 15,
 		bio = 0,
 		rad = 0
@@ -280,11 +280,19 @@
 	desc = "Sheets from ablative armor, now usable to reinforce clothes. The shape somehow feels off."
 	icon_state = "armor_ablative"
 	armor = list(
-		melee = 20,
-		bullet = 20,
-		energy = 40,
+		melee = 5,
+		bullet = 5,
+		energy = 10,
 		bomb = 0,
 		bio = 0,
 		rad = 0
 	)
 	slowdown = LIGHT_SLOWDOWN
+
+//Ponchos, Capes and Cloaks//
+
+/obj/item/clothing/accessory/cloak
+	name = "oversized poncho"
+	desc = "Meant to be worn over a voidsuit or smaller rigs. More of a fashion statement than anything else."
+	icon_state = "oversized_poncho"
+	slot_flags = SLOT_ACCESSORY_BUFFER

@@ -7,15 +7,15 @@
 	item_state = "boltgun"
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_ROBUST
-	armor_penetration = ARMOR_PEN_DEEP
+	armor_divisor = ARMOR_PEN_DEEP
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_LRIFLE
 	fire_delay = 8
 	damage_multiplier = 1.4
 	style_damage_multiplier = 5
-	penetration_multiplier = 1.5
-	init_recoil = RIFLE_RECOIL(2.2)
+	penetration_multiplier = 0
+	init_recoil = RIFLE_RECOIL(2.1)
 	init_offset = 4 //bayonet's effect on aim, reduced from 4
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
@@ -139,7 +139,7 @@
 	icon_state = "arisaka_ih_scope"
 	item_suffix  = "_ih_scope"
 	force = WEAPON_FORCE_DANGEROUS // weaker than novakovic, but with a bayonet installed it will be slightly stronger
-	armor_penetration = ARMOR_PEN_GRAZING
+	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_SRIFLE
 	damage_multiplier = 1.6
 	penetration_multiplier = 1.7
@@ -216,7 +216,7 @@
 	item_state = "obrez"
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_WEAK // no bayonet
-	armor_penetration = 0
+	armor_divisor = 1
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	penetration_multiplier = 1.1 // short barrel means maximum velocity isn't reached
 	proj_step_multiplier = 1.2

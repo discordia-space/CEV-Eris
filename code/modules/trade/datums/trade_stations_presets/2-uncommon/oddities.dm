@@ -2,7 +2,10 @@
 	name_pool = list(
 		"JNK \'Garbaj\'" = "Junker \'Garbaj\': \"You wanna buy what?\"",
 	)
+	icon_states = list("htu_station", "station")
 	uid = "oddities"
+	tree_x = 0.1
+	tree_y = 0.7
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = 1

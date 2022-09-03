@@ -16,6 +16,7 @@
 	unacidable = TRUE //glass doesn't dissolve in acid
 	matter = list(MATERIAL_GLASS = 3, MATERIAL_STEEL = 2, MATERIAL_PLASMA = 5, MATERIAL_BIOMATTER = 50)
 	var/resuscitator_amount = 0
+	var/upgraded = FALSE // can be enriched with the maneki neko to also produce plasma and carpotoxin
 
 /obj/item/reagent_containers/enricher/New()
 	..()
@@ -31,6 +32,11 @@
 /obj/item/reagent_containers/enricher/attackby(obj/item/I, mob/living/user, params)
 	if(nt_sword_attack(I, user))
 		return FALSE
+	if(istype(I, /obj/item/maneki_neko))
+		user.remove_from_mob(I)
+		qdel(I)
+		to_chat(user, SPAN_NOTICE("You upgrade the [src] using the Maneki Neko, its powers now allowing the oddity to synthethize plasma and carpotoxin ontop of resuscitator!"))
+		upgraded = TRUE
 	..()
 
 /obj/item/reagent_containers/enricher/attack_self()
@@ -50,9 +56,15 @@
 			var/obj/item/reagent_containers/glass/bottle/bottle = new /obj/item/reagent_containers/glass/bottle(get_turf(src))
 			bottle.reagents.add_reagent("resuscitator", resuscitator_amount)
 			bottle.name = "resuscitator bottle"
-			resuscitator_amount = 0
-			bottle.update_icon()
 			visible_message(SPAN_NOTICE("[src] drops [bottle]."))
+			if(upgraded)
+				var/obj/item/reagent_containers/glass/bottle/plasma = new /obj/item/reagent_containers/glass/bottle(get_turf(src))
+				var/obj/item/reagent_containers/glass/bottle/carpotoxin = new /obj/item/reagent_containers/glass/bottle(get_turf(src))
+				plasma.reagents.add_reagent("plasma", resuscitator_amount * 2)
+				carpotoxin.reagents.add_reagent("carpotoxin", resuscitator_amount * 2)
+				plasma.update_icon()
+				carpotoxin.update_icon()
+			resuscitator_amount = 0
 		else
 			visible_message("\The [src] beeps, \"Not enough nutriment to produce resuscitator.\".")
 	else
