@@ -778,15 +778,15 @@ var/global/list/default_medbay_channels = list(
 	var/bluespace_cooldown = 10 MINUTES
 	var/last_bluespace = 0
 	var/bluespace_items = list(
-		25 = /obj/item/computer_hardware/hard_drive/portable/design/guns/dallas,
-		25 = /obj/item/gun/energy/plasma/stranger,
-		25 = /obj/machinery/artifact, // joy
-		5 = /obj/item/computer_hardware/hard_drive/portable/design/guns/fs_wintermute,
-		5 = /obj/item/computer_hardware/hard_drive/portable/design/excelsior/ak47,
-		5 = /datum/armament/item/disk/nt_lightfall,
-		1 = /obj/item/cell/small/hyper,
-		1 = /obj/item/cell/medium/hyper,
-		1 = /obj/item/bluespace_crystal
+		/obj/item/computer_hardware/hard_drive/portable/design/guns/dallas = 25,
+		/obj/item/gun/energy/plasma/stranger = 25,
+		/obj/machinery/artifact = 25,
+		/obj/item/computer_hardware/hard_drive/portable/design/guns/fs_wintermute = 5,
+		/obj/item/computer_hardware/hard_drive/portable/design/excelsior/ak47 = 5,
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/nt_lightfall = 5,
+		/obj/item/cell/small/hyper = 1,
+		/obj/item/cell/medium/hyper = 1,
+		/obj/item/bluespace_crystal = 1
 	)
 	w_class = ITEM_SIZE_BULKY
 
