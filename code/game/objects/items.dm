@@ -454,14 +454,45 @@ var/global/list/items_blood_overlay_by_type = list()
 					var/mob/living/carbon/human/depleted = src
 					depleted.regen_slickness(-1) // unlucky and unobservant gets the penalty
 					return
+
 			else
-				visible_message(SPAN_WARNING("[src] picks up, spins, and drops [grabbed]."), SPAN_WARNING("You pick up, spin, and drop [grabbed]."))
-				grabbed.external_recoil(60)
-				grabbed.Weaken(1)
-				if(!ishuman(grabbed))
+				if(ishuman(grabbed)) // irish whip if human(grab special), else spin and force rest
+					grabbed.external_recoil(40)
+					var/whip_dir = (get_dir(grabbed, src))
+					//force move the victim on the attacker's tile so that the whip can be executed
+					grabbed.loc = src.loc
+					//yeet
+					src.set_dir(whip_dir)
+					visible_message(SPAN_WARNING("[src] spins and hurls [grabbed] away!"), SPAN_WARNING("You spin and hurl [grabbed] away!"))
+					grabbed.update_lying_buckled_and_verb_status()
+					unEquip(inhand_grab)
+					//move grabbed for three tiles, if glass window/wall/railing encountered, proc interactions and set moves to 3
+					for(var/moves, moves>=3, moves++)
+						step_glide(grabbed, whip_dir, DELAY2GLIDESIZE(0.1 SECONDS))
+						switch(get_step(grabbed, whip_dir))
+							//low damage for walls, medium for windows, fall over for railings
+							if(/turf/simulated/wall)
+								visible_message(SPAN_WARNING("[grabbed] slams into the wall!"))
+								grabbed.damage_through_armor(15, BRUTE, BP_CHEST, ARMOR_MELEE)
+								moves = 3
+							if(/obj/structure/window)
+								visible_message(SPAN_WARNING("[grabbed] slams into the window!"))
+								grabbed.damage_through_armor(25, BRUTE, BP_CHEST, ARMOR_MELEE)
+								moves = 3
+							if(/obj/structure/railing)
+								visible_message(SPAN_WARNING("[grabbed] falls over the railing!"))
+								grabbed.forceMove(get_step(grabbed, whip_dir))
+								moves = 3
+
+					//admin messaging
+					src.attack_log += text("\[[time_stamp()]\] <font color='red'>Irish-whipped [grabbed.name] ([grabbed.ckey])</font>")
+					grabbed.attack_log += text("\[[time_stamp()]\] <font color='orange'>Irish-whipped by [src.name] ([src.ckey])</font>")
+				else
+					visible_message(SPAN_WARNING("[src] picks up, spins, and drops [grabbed]."), SPAN_WARNING("You pick up, spin, and drop [grabbed]."))
+					grabbed.Weaken(1)
 					grabbed.resting = TRUE
-				grabbed.update_lying_buckled_and_verb_status()
-				unEquip(inhand_grab)
+					grabbed.update_lying_buckled_and_verb_status()
+					unEquip(inhand_grab)
 		else
 			to_chat(src, SPAN_WARNING("You do not have a firm enough grip to forcibly spin [inhand_grab.affecting]."))
 
