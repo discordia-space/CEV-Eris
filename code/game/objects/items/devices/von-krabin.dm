@@ -129,7 +129,6 @@
 	if(target in the_hiveminded)
 		return FALSE
 	to_chat(target, SPAN_NOTICE("You link yourself with the [src], you feel the knowledge of countless minds flood you!"))
-	message_admins("linked user is [target]")
 	LAZYADD(the_hiveminded, target)
 	LAZYADD(krabin_linked, target)
 	recalculate_buffs(FALSE)
