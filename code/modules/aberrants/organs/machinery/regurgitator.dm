@@ -151,7 +151,7 @@
 				O.show_message("\icon[src] <b>\The [src]</b> says, \"You s-s-saved me... w-why?\"", 2)
 			flick("[initial(icon_state)]_spit", src)
 
-	if(current_tick == grind_rate)
+	if(current_tick >= grind_rate)
 		var/obj/item/I = locate() in holdingitems
 		if(!I)
 			return
