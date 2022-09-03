@@ -10,7 +10,7 @@
 	oxygen_req = 1
 	nutriment_req = 1
 	min_bruised_damage = 40
-	min_broken_Damage = 70
+	min_broken_damage = 70
 	var/eyes_color = "#000000"
 	var/robo_color = "#000000"
 	var/cache_key = BP_EYES
