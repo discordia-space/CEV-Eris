@@ -93,12 +93,6 @@
 			. = TRUE		// If the container has any amount of an accepted reagent, the proc will return true
 		if(is_type_in_list(R, blacklisted_reagents))
 			return FALSE	// If the container has any amount of a blacklisted reagent, the proc will immediately return false
-
-/obj/machinery/reagentgrinder/industrial/regurgitator/attackby(obj/item/I, mob/user)
-	if(default_part_replacement(I, user))
-		return
-
-	..()
 	
 /obj/machinery/reagentgrinder/industrial/regurgitator/insert(obj/item/I, mob/user)
 	if(!istype(I))
