@@ -475,18 +475,18 @@ var/global/list/items_blood_overlay_by_type = list()
 							grabbed.damage_through_armor(15, BRUTE, BP_CHEST, ARMOR_MELEE)
 							break
 						
-						else
-							for(var/obj/structure/S in get_step(grabbed, whip_dir))
-								switch(S)
-									if(/obj/structure/window)
-										visible_message(SPAN_WARNING("[grabbed] slams into the window!"))
-										grabbed.damage_through_armor(25, BRUTE, BP_CHEST, ARMOR_MELEE)
-										break
-									if(/obj/structure/railing)
-										visible_message(SPAN_WARNING("[grabbed] falls over the railing!"))
-										grabbed.forceMove(get_step(grabbed, whip_dir))
-										break
-						step_glide(grabbed, whip_dir,(DELAY2GLIDESIZE(0.1 SECONDS)))
+						for(var/obj/structure/S in get_step(grabbed, whip_dir))
+							if(istype(S, /obj/structure/window))
+								visible_message(SPAN_WARNING("[grabbed] slams into the window!"))
+								grabbed.damage_through_armor(25, BRUTE, BP_CHEST, ARMOR_MELEE)
+								moves = 3
+								break
+							if(istype(S, /obj/structure/railing))
+								visible_message(SPAN_WARNING("[grabbed] falls over the railing!"))
+								grabbed.forceMove(get_step(grabbed, whip_dir))
+								moves = 3
+								break
+						step_glide(grabbed, whip_dir,(DELAY2GLIDESIZE(0.2 SECONDS)))//very fast
 
 					//admin messaging
 					src.attack_log += text("\[[time_stamp()]\] <font color='red'>Irish-whipped [grabbed.name] ([grabbed.ckey])</font>")
