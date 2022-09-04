@@ -1,4 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - bugfix: Fixed map issues for the CI

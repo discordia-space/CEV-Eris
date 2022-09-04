@@ -1,6 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - bugfix: Fixed items getting stuck in the regurgitator
-  - bugfix: Fixed situation where regurgitator biotic substrate count would go negative
-  - bugfix: Fixed potential issue with swapping parts on the regurgitator

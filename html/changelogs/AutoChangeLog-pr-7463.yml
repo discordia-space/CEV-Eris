@@ -1,5 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Fixed shortwave radio not spawning bluespace items
-  - bugfix: Fixed organ naming having a + in the middle.
