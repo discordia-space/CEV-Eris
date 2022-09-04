@@ -459,6 +459,7 @@ var/global/list/items_blood_overlay_by_type = list()
 				if(ishuman(grabbed)) // irish whip if human(grab special), else spin and force rest
 					grabbed.external_recoil(40)
 					var/whip_dir = (get_dir(grabbed, src))
+					var/moves = 0
 					//force move the victim on the attacker's tile so that the whip can be executed
 					grabbed.loc = src.loc
 					//yeet
@@ -466,23 +467,26 @@ var/global/list/items_blood_overlay_by_type = list()
 					visible_message(SPAN_WARNING("[src] spins and hurls [grabbed] away!"), SPAN_WARNING("You spin and hurl [grabbed] away!"))
 					grabbed.update_lying_buckled_and_verb_status()
 					unEquip(inhand_grab)
-					//move grabbed for three tiles, if glass window/wall/railing encountered, proc interactions and set moves to 3
-					for(var/moves, moves>=3, moves++)
-						step_glide(grabbed, whip_dir, DELAY2GLIDESIZE(0.1 SECONDS))
-						switch(get_step(grabbed, whip_dir))
-							//low damage for walls, medium for windows, fall over for railings
-							if(/turf/simulated/wall)
-								visible_message(SPAN_WARNING("[grabbed] slams into the wall!"))
-								grabbed.damage_through_armor(15, BRUTE, BP_CHEST, ARMOR_MELEE)
-								moves = 3
-							if(/obj/structure/window)
-								visible_message(SPAN_WARNING("[grabbed] slams into the window!"))
-								grabbed.damage_through_armor(25, BRUTE, BP_CHEST, ARMOR_MELEE)
-								moves = 3
-							if(/obj/structure/railing)
-								visible_message(SPAN_WARNING("[grabbed] falls over the railing!"))
-								grabbed.forceMove(get_step(grabbed, whip_dir))
-								moves = 3
+					//move grabbed for three tiles, if glass window/wall/railing encountered, proc interactions and break
+					for(moves, moves<=3, ++moves)
+						//low damage for walls, medium for windows, fall over for railings
+						if(istype(get_step(grabbed, whip_dir), /turf/simulated/wall))
+							visible_message(SPAN_WARNING("[grabbed] slams into the wall!"))
+							grabbed.damage_through_armor(15, BRUTE, BP_CHEST, ARMOR_MELEE)
+							break
+						
+						else
+							for(var/obj/structure/S in get_step(grabbed, whip_dir))
+								switch(S)
+									if(/obj/structure/window)
+										visible_message(SPAN_WARNING("[grabbed] slams into the window!"))
+										grabbed.damage_through_armor(25, BRUTE, BP_CHEST, ARMOR_MELEE)
+										break
+									if(/obj/structure/railing)
+										visible_message(SPAN_WARNING("[grabbed] falls over the railing!"))
+										grabbed.forceMove(get_step(grabbed, whip_dir))
+										break
+						step_glide(grabbed, whip_dir,(DELAY2GLIDESIZE(0.1 SECONDS)))
 
 					//admin messaging
 					src.attack_log += text("\[[time_stamp()]\] <font color='red'>Irish-whipped [grabbed.name] ([grabbed.ckey])</font>")

@@ -682,7 +682,7 @@ var/list/rank_prefix = list(\
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/human/vomit()
+/mob/living/carbon/human/vomit(var/forced = 0)
 
 	if(!check_has_mouth())
 		return
@@ -690,26 +690,27 @@ var/list/rank_prefix = list(\
 		return
 	if(!lastpuke)
 		lastpuke = 1
-		to_chat(src, SPAN_WARNING("You feel nauseous..."))
-		spawn(150)	//15 seconds until second warning
-			to_chat(src, SPAN_WARNING("You feel like you are about to throw up!"))
-			spawn(100)	//and you have 10 more for mad dash to the bucket
-				Stun(5)
+		if(!forced)
+			to_chat(src, SPAN_WARNING("You feel nauseous..."))
+			spawn(150)	//15 seconds until second warning
+				to_chat(src, SPAN_WARNING("You feel like you are about to throw up!"))
+				sleep(100)	//and you have 10 more for mad dash to the bucket
+		Stun(5)
 
-				src.visible_message(SPAN_WARNING("[src] throws up!"),SPAN_WARNING("You throw up!"))
-				playsound(loc, 'sound/effects/splat.ogg', 50, 1)
+		src.visible_message(SPAN_WARNING("[src] throws up!"),SPAN_WARNING("You throw up!"))
+		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
 
-				var/turf/location = loc
-				if(istype(location, /turf/simulated))
-					location.add_vomit_floor(src, 1)
+		var/turf/location = loc
+		if(istype(location, /turf/simulated))
+			location.add_vomit_floor(src, 1)
 
-				adjustNutrition(-40)
-				adjustToxLoss(-3)
-				regen_slickness(-3)
-				dodge_time = get_game_time()
-				confidence = FALSE
-				spawn(350)	//wait 35 seconds before next volley
-					lastpuke = 0
+		adjustNutrition(-40)
+		adjustToxLoss(-3)
+		regen_slickness(-3)
+		dodge_time = get_game_time()
+		confidence = FALSE
+		spawn(350)	//wait 35 seconds before next volley
+			lastpuke = 0
 
 /mob/living/carbon/human/proc/morph()
 	set name = "Morph"

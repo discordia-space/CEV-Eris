@@ -400,7 +400,7 @@
 	//clicking on the victim while grabbing them
 	if(M == affecting)
 		if(ishuman(affecting))
-			var/hit_zone = assailant.targeted_organ
+			var/obj/item/organ/hit_zone = assailant.targeted_organ
 			flick(hud.icon_state, hud)
 			switch(assailant.a_intent)
 				if(I_HELP)
@@ -411,7 +411,12 @@
 						msg_admin_attack("[key_name(assailant)] Released from pin [key_name(affecting)]")
 						force_down = 0
 						return
-					inspect_organ(affecting, assailant, hit_zone)
+					if(hit_zone.status & ORGAN_BLEEDING)
+						slow_bleeding(affecting, assailant, hit_zone)
+					if(hit_zone == BP_MOUTH)
+						force_vomit(affecting, assailant)
+					else
+						inspect_organ(affecting, assailant, hit_zone)
 
 				if(I_GRAB)
 					jointlock(affecting, assailant, hit_zone)
@@ -422,9 +427,11 @@
 					else if(hit_zone == BP_HEAD)
 						headbutt(affecting, assailant)
 					else if(hit_zone == BP_CHEST)
-						suplex(affecting, assailant)
+						if(state < GRAB_NECK)
+							dropkick(affecting, assailant)
+						else suplex(affecting, assailant)
 					else if(hit_zone == BP_GROIN)
-						dropkick(affecting, assailant)
+						gut_punch(affecting, assailant)
 					else
 						dislocate(affecting, assailant, hit_zone)
 
