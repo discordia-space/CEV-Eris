@@ -1,0 +1,5 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - bugfix: Turns off sprite generation logging due it being a source of significant
+      lag
