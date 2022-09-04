@@ -102,15 +102,19 @@
 		verbs.Add(/obj/item/proc/set_chameleon_appearance)
 	. = ..()
 
-/obj/item/Destroy()
-	QDEL_NULL(hidden_uplink)
-	QDEL_NULL(blood_overlay)
-	QDEL_NULL(action)
+/obj/item/Destroy(force)
+	// This var exists as a weird proxy "owner" ref
+	// It's used in a few places. Stop using it, and optimially replace all uses please
+	master = null
 	if(ismob(loc))
 		var/mob/m = loc
 		m.u_equip(src)
 		remove_hud_actions(m)
 		loc = null
+
+	QDEL_NULL(hidden_uplink)
+	QDEL_NULL(blood_overlay)
+	QDEL_NULL(action)
 	if(hud_actions)
 		for(var/action in hud_actions)
 			qdel(action)
