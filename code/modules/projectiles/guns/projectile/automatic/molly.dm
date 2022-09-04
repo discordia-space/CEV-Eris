@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/automatic/molly
 	name = "FS MP .35 Auto \"Molly\""
-	desc = "An experimental pistol featuring a 2 and 4-round hyperburst, designed as a middle ground between SMGs and Pistols. \
+	desc = "An experimental pistol featuring a 3 and 6-round hyperburst, designed as a middle ground between SMGs and Pistols. \
 			Primarily employed in CQC scenarios or as a civilian self defence tool. \
 			Takes both highcap pistol and smg mags. Uses .35 Auto rounds."
 
