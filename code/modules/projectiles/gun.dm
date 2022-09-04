@@ -896,8 +896,8 @@
 				"desc" = F.desc,
 				"burst" = F.settings["burst"],
 				"minimum_fire_delay" = GUN_MINIMUM_FIRETIME,
-				"fire_delay" = F.settings["fire_delay"],
-				"move_delay" = F.settings["move_delay"],
+				"fire_delay" = F.settings["fire_delay"] * 5,
+				"move_delay" = F.settings["move_delay"] * 5,
 				)
 			if(F.settings["projectile_type"])
 				var/proj_path = F.settings["projectile_type"]
