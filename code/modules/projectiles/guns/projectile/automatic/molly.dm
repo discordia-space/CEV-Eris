@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/automatic/molly
 	name = "FS MP .35 Auto \"Molly\""
-	desc = "An experimental fully automatic pistol, designed as a middle ground between SMGs and Pistols. \
+	desc = "An experimental burst pistol, designed as a middle ground between SMGs and Pistols. \
 			Primarily employed in CQC scenarios or as a civilian self defence tool. \
 			Takes both highcap pistol and smg mags. Uses .35 Auto rounds."
 
@@ -20,8 +20,9 @@
 
 	gun_tags = list(GUN_SILENCABLE)
 	init_firemodes = list(
-		FULL_AUTO_400,
 		SEMI_AUTO_300,
+		BURST_3_ROUND_SMG
+		BURST_6_ROUND_SMG
 		)
 
 	can_dual = 1

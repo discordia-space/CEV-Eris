@@ -418,7 +418,7 @@
 
 		if(i < burst)
 			next_fire_time = world.time + shoot_time
-			sleep(burst_delay < 1.1 ? 1.1 : burst_delay)
+			sleep(burst_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : burst_delay)
 
 		if(!(target && target.loc))
 			target = targloc
@@ -858,9 +858,9 @@
 	data["penetration_multiplier"] = penetration_multiplier + 1
 
 	data["minimum_fire_delay"] = GUN_MINIMUM_FIRETIME
-	data["fire_delay"] = fire_delay //time between shot, in ms
+	data["fire_delay"] = fire_delay * 5 //time between shot, in ms
 	data["burst"] = burst //How many shots are fired per click
-	data["burst_delay"] = burst_delay //time between shot in burst mode, in ms
+	data["burst_delay"] = burst_delay * 5 //time between shot in burst mode, in ms
 
 	data["force"] = force
 	data["force_max"] = initial(force)*10
