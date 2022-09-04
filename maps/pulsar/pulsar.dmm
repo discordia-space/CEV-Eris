@@ -147,6 +147,12 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/outpost/pulsar/maintenance)
+"eL" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
 "eQ" = (
 /obj/spawner/pack/machine,
 /turf/simulated/floor/tiled/techmaint_panels,
@@ -335,6 +341,9 @@
 /obj/structure/sign/faction/technomancers{
 	pixel_x = 32
 	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark,
 /area/outpost/pulsar)
 "lw" = (
@@ -348,6 +357,9 @@
 "lG" = (
 /obj/structure/sign/faction/technomancers{
 	pixel_x = -32
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
 /area/outpost/pulsar)
@@ -496,6 +508,14 @@
 /obj/structure/computerframe,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/outpost/pulsar/maintenance)
+"tJ" = (
+/obj/structure/table/standard,
+/obj/spawner/material/building,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/outpost/pulsar/maintenance)
 "tM" = (
 /obj/structure/jtb_pillar,
 /turf/simulated/floor/reinforced,
@@ -618,11 +638,24 @@
 /obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
+"yx" = (
+/obj/structure/bed/padded,
+/obj/spawner/pizza/low_chance,
+/obj/item/bedsheet/yellow,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
 "yE" = (
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/outpost/pulsar/maintenance)
 "yR" = (
 /obj/spawner/traps/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"ze" = (
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "zg" = (
@@ -757,6 +790,13 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/outpost/pulsar)
+"Ct" = (
+/obj/spawner/scrap/sparse,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
 "CC" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
@@ -841,6 +881,13 @@
 "Fd" = (
 /turf/simulated/floor/plating/under/airless,
 /area/outpost/pulsar/maintenance)
+"Fm" = (
+/obj/spawner/junk/low_chance,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
 "FF" = (
 /obj/spawner/pack/tech_loot,
 /obj/spawner/junkfood/rotten/low_chance,
@@ -859,6 +906,9 @@
 /area/outpost/pulsar)
 "GD" = (
 /obj/structure/filingcabinet,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/dark,
 /area/outpost/pulsar)
 "GG" = (
@@ -935,6 +985,12 @@
 	pixel_y = -4
 	},
 /turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"Jh" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "Jq" = (
 /obj/structure/table/standard,
@@ -1066,6 +1122,13 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
+"NS" = (
+/obj/item/stool/padded,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/outpost/pulsar)
 "NY" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
@@ -1115,6 +1178,9 @@
 "PZ" = (
 /obj/structure/toilet,
 /obj/spawner/oddities/low_chance,
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/outpost/pulsar/maintenance)
 "Qe" = (
@@ -1211,6 +1277,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "SY" = (
@@ -1275,7 +1342,17 @@
 /obj/structure/sign/atmos_o2{
 	pixel_x = 32
 	},
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"Uk" = (
+/obj/spawner/junkfood/low_chance,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "Uo" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -1397,6 +1474,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
+"Xi" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/outpost/pulsar/maintenance)
 "Xs" = (
 /obj/spawner/closet/maintloot/low_chance,
 /turf/simulated/floor/tiled/techmaint,
@@ -1471,6 +1554,10 @@
 "Zq" = (
 /turf/simulated/floor/tiled/steel,
 /area/outpost/pulsar/maintenance)
+"Zv" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/dark,
+/area/outpost/pulsar)
 
 (1,1,1) = {"
 aa
@@ -17930,7 +18017,7 @@ MN
 wv
 wv
 aj
-bN
+Jh
 bN
 af
 bq
@@ -17943,7 +18030,7 @@ Pl
 aj
 uY
 bN
-hK
+Uk
 hK
 bN
 bM
@@ -18328,7 +18415,7 @@ aa
 zo
 ai
 bN
-dB
+Fm
 aj
 xl
 wv
@@ -19965,7 +20052,7 @@ lw
 dJ
 cX
 aj
-uX
+tJ
 Zq
 CH
 aj
@@ -20557,7 +20644,7 @@ GD
 Yf
 Yf
 Yf
-Yf
+Zv
 ad
 aa
 HA
@@ -20565,7 +20652,7 @@ HA
 aa
 aa
 bM
-bq
+ze
 aj
 Xe
 wT
@@ -21146,7 +21233,7 @@ aa
 He
 aA
 ac
-Cg
+Ct
 aj
 Gl
 bq
@@ -21560,7 +21647,7 @@ aa
 aa
 aa
 OB
-fn
+NS
 fn
 fn
 fl
@@ -23205,7 +23292,7 @@ Cl
 aj
 GG
 GG
-GG
+Xi
 GG
 eJ
 aa
@@ -24395,7 +24482,7 @@ TJ
 aj
 Vo
 Np
-bq
+ze
 aj
 aJ
 aJ
@@ -24586,7 +24673,7 @@ aa
 aa
 bM
 bM
-bN
+Jh
 bN
 aj
 Hy
@@ -24615,7 +24702,7 @@ aj
 dO
 dO
 aj
-bA
+yx
 dB
 bM
 aa
@@ -25813,7 +25900,7 @@ aa
 ai
 bN
 bN
-bN
+eL
 bN
 hy
 bM
