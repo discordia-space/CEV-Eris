@@ -106,6 +106,36 @@
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
 
+
+			for(var/obj/item/grab/g in get_both_hands(src)) //countering a grab
+
+				if(g.counter_timer>0) //were we grabbed by src in a span of 3 seconds?
+					if(prob(max(50 + H.stats.getStat(STAT_ROB) - stats.getStat(STAT_ROB) ** 0.7, 1))) // Harder between low rob, easier between high rob wrestlers
+						var/obj/item/grab/G = new /obj/item/grab(M, src)
+						if(!G)	//the grab will delete itself in New if affecting is anchored
+							return
+						G.state = GRAB_AGGRESSIVE
+						M.put_in_active_hand(G)
+						G.synch()
+						LAssailant = M
+						H.regen_slickness() //sick skills!
+
+						break_all_grabs(H)
+
+						H.do_attack_animation(src)
+						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+						visible_message(SPAN_DANGER("With a quick grapple, [M] reversed [src]'s grab!"))
+						src.attack_log += "\[[time_stamp()]\] <font color='orange'>Counter-grabbed by [M.name] ([M.ckey])</font>"
+						M.attack_log += "\[[time_stamp()]\] <font color='red'>Counter-grabbed [src.name] ([src.ckey])</font>"
+						msg_admin_attack("[M] countered [src]'s grab.")
+						return 1						
+
+					else //uh oh! our resist is now also on cooldown(we are dead)
+						setClickCooldown(20)
+						visible_message(SPAN_WARNING("[M] tried to counter [src]'s grab, but failed!"))
+					
+				return
+			//usual grabs
 			var/obj/item/grab/G = new /obj/item/grab(M, src)
 			if(buckled)
 				to_chat(M, SPAN_NOTICE("You cannot grab [src], \he is buckled in!"))

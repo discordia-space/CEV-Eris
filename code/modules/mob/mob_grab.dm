@@ -28,8 +28,11 @@
 	var/last_hit_zone = 0
 	var/force_down //determines if the affecting mob will be pinned to the ground
 	var/dancing //determines if assailant and affecting keep looking at each other.
-				//Basically a wrestling position
 
+	var/counter_timer = 3 SECONDS //sets to 3 seconds after being grabbed
+
+/obj/item/grab/proc/tick()
+	counter_timer--
 
 /obj/proc/affect_grab(var/mob/user, var/mob/target, var/state)
 	return FALSE
