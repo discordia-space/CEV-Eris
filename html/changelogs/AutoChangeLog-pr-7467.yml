@@ -1,4 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - bugfix: Removed worldwide check for deprecated object type
