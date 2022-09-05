@@ -23,6 +23,10 @@
 	materials = list(MATERIAL_BIOMATTER = 30)
 	build_path = /obj/item/organ/internal/liver
 
+/datum/design/organ/stomach
+	materials = list(MATERIAL_BIOMATTER = 10)
+	build_path = /obj/item/organ/internal/stomach
+
 /datum/design/organ/eyes
 	materials = list(MATERIAL_BIOMATTER = 10)
 	build_path = /obj/item/organ/internal/eyes
