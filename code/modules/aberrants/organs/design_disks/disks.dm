@@ -20,14 +20,22 @@
 	disk_name = "Oh My Guts! DIY Organs"
 	designs = list(
 		/datum/design/organ/scaffold,
-		/datum/design/organ/teratoma/input/reagents,
+		/datum/design/organ/teratoma/input/reagents_roach,
+		/datum/design/organ/teratoma/input/reagents_spider,
+		/datum/design/organ/teratoma/input/reagents_toxin,
+		/datum/design/organ/teratoma/input/reagents_edible,
+		/datum/design/organ/teratoma/input/reagents_alcohol,
+		/datum/design/organ/teratoma/input/reagents_drugs,
+		/datum/design/organ/teratoma/input/reagents_dispenser,
 		/datum/design/organ/teratoma/input/damage,
 		/datum/design/organ/teratoma/input/power_source,
 		/datum/design/organ/teratoma/process/map,
 		/datum/design/organ/teratoma/process/condense,
-		/datum/design/organ/teratoma/output/reagents_blood,
-		/datum/design/organ/teratoma/output/reagents_ingest,
-		/datum/design/organ/teratoma/output/chemical_effects,
+		/datum/design/organ/teratoma/output/reagents_blood_roach,
+		/datum/design/organ/teratoma/output/reagents_blood_drugs,
+		/datum/design/organ/teratoma/output/reagents_ingest_edible,
+		/datum/design/organ/teratoma/output/reagents_ingest_alcohol,
+		/datum/design/organ/teratoma/output/chemical_effects_type_1,
 		/datum/design/organ/teratoma/output/stat_boost
 	)
 
@@ -35,16 +43,28 @@
 	disk_name = "Oh My Guts! Bespoke Teratomas"
 	license = 10
 	designs = list(
-		/datum/design/organ/teratoma/input/uncommon/reagents,
+		/datum/design/organ/teratoma/special/chemical_effect,
+		/datum/design/organ/teratoma/special/stat_boost,
+		/datum/design/organ/teratoma/output/reagents_blood_medicine_simple,
+		/datum/design/organ/teratoma/output/chemical_effects_type_2,
+		/datum/design/organ/teratoma/input/uncommon/reagents_roach,
+		/datum/design/organ/teratoma/input/uncommon/reagents_spider,
+		/datum/design/organ/teratoma/input/uncommon/reagents_toxin,
+		/datum/design/organ/teratoma/input/uncommon/reagents_edible,
+		/datum/design/organ/teratoma/input/uncommon/reagents_alcohol,
+		/datum/design/organ/teratoma/input/uncommon/reagents_drugs,
+		/datum/design/organ/teratoma/input/uncommon/reagents_dispenser,
 		/datum/design/organ/teratoma/input/uncommon/damage,
 		/datum/design/organ/teratoma/input/uncommon/power_source,
 		/datum/design/organ/teratoma/process/boost,
-		/datum/design/organ/teratoma/output/uncommon/reagents_blood,
-		/datum/design/organ/teratoma/output/uncommon/reagents_ingest,
-		/datum/design/organ/teratoma/output/uncommon/chemical_effects,
-		/datum/design/organ/teratoma/output/uncommon/stat_boost,
-		/datum/design/organ/teratoma/special/chemical_effect,
-		/datum/design/organ/teratoma/special/stat_boost
+		/datum/design/organ/teratoma/output/uncommon/reagents_blood_roach,
+		/datum/design/organ/teratoma/output/uncommon/reagents_blood_drugs,
+		/datum/design/organ/teratoma/output/uncommon/reagents_blood_medicine_simple,
+		/datum/design/organ/teratoma/output/uncommon/reagents_ingest_edible,
+		/datum/design/organ/teratoma/output/uncommon/reagents_ingest_alcohol,
+		/datum/design/organ/teratoma/output/uncommon/chemical_effects_type_1,
+		/datum/design/organ/teratoma/output/uncommon/chemical_effects_type_2,
+		/datum/design/organ/teratoma/output/uncommon/stat_boost
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/omg/teratoma_rare
@@ -52,12 +72,24 @@
 	license = 10
 	designs = list(
 		/datum/design/organ/scaffold/rare,
-		/datum/design/organ/teratoma/input/rare/reagents,
+		/datum/design/organ/teratoma/output/reagents_blood_medicine_intermediate,
+		/datum/design/organ/teratoma/output/uncommon/reagents_blood_medicine_intermediate,
+		/datum/design/organ/teratoma/input/rare/reagents_roach,
+		///datum/design/organ/teratoma/input/rare/reagents_spider,		// Not enough spider chems in the pool
+		/datum/design/organ/teratoma/input/rare/reagents_toxin,
+		/datum/design/organ/teratoma/input/rare/reagents_edible,
+		/datum/design/organ/teratoma/input/rare/reagents_alcohol,
+		/datum/design/organ/teratoma/input/rare/reagents_drugs,
+		/datum/design/organ/teratoma/input/rare/reagents_dispenser,
 		/datum/design/organ/teratoma/input/rare/damage,
 		/datum/design/organ/teratoma/input/rare/power_source,
-		/datum/design/organ/teratoma/output/rare/reagents_blood,
-		/datum/design/organ/teratoma/output/rare/reagents_ingest,
-		/datum/design/organ/teratoma/output/rare/chemical_effects,
+		/datum/design/organ/teratoma/output/rare/reagents_blood_roach,
+		/datum/design/organ/teratoma/output/rare/reagents_blood_drugs,
+		/datum/design/organ/teratoma/output/rare/reagents_blood_medicine_intermediate,
+		/datum/design/organ/teratoma/output/rare/reagents_ingest_edible,
+		/datum/design/organ/teratoma/output/rare/reagents_ingest_alcohol,
+		/datum/design/organ/teratoma/output/rare/chemical_effects_type_1,
+		/datum/design/organ/teratoma/output/rare/chemical_effects_type_2,
 		/datum/design/organ/teratoma/output/rare/stat_boost
 	)
 
