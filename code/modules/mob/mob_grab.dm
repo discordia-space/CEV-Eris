@@ -414,14 +414,14 @@
 					else if(hit_zone == BP_MOUTH)
 						force_vomit(affecting, assailant)
 					else 
-						if(ishuman(affecting))
-							var/mob/living/carbon/human/H = affecting
-							for(hit_zone in H.get_damaged_organs(1, 0))
-								if(hit_zone.status & ORGAN_BLEEDING)
-									visible_message(SPAN_WARNING("slow_bleeding"))
-									slow_bleeding(affecting, assailant, hit_zone)
-								else
-									inspect_organ(affecting, assailant, hit_zone)
+						var/mob/living/carbon/human/H = affecting
+						var/obj/item/organ/external/o = H.get_organ(hit_zone)
+						
+						if(o.status & ORGAN_BLEEDING)
+							visible_message(SPAN_WARNING("slow_bleeding"))
+							slow_bleeding(affecting, assailant, o)
+						else
+							inspect_organ(affecting, assailant, hit_zone)
 
 				if(I_GRAB)
 					jointlock(affecting, assailant, hit_zone)

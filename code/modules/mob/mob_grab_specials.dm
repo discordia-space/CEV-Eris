@@ -43,27 +43,21 @@
 		if(!bad)
 			to_chat(user, SPAN_NOTICE("[H]'s skin is normal."))
 
-/obj/item/grab/proc/slow_bleeding(mob/living/carbon/human/H, mob/user, var/target_zone)
-	var/obj/item/organ/external/E = H.get_organ(target_zone)
+/obj/item/grab/proc/slow_bleeding(mob/living/carbon/human/H, mob/user, var/obj/item/organ/external/bodypart)
 
-	if(BP_IS_SILICON(E))
-		to_chat(user, SPAN_WARNING("[E.name] is robotic, and direct pressure cannot stop the bleeding!"))
+	if(bodypart.is_stump() || !bodypart)
+		to_chat(user, SPAN_WARNING("They are missing that limb!"))
 		return
 	else
-		if(E.is_stump() && E.parent)
-			to_chat(user, SPAN_WARNING("They are missing that limb!"))
+		visible_message(SPAN_WARNING("[user] starts putting pressure on [H]'s wounds to stop the wounds on \his [bodypart.name] from bleeding!"))
+		if(!do_mob(user, H, 50))//5 seconds
+			to_chat(user, SPAN_NOTICE("You must stand still to stop the bleeding."))
 			return
-		if(E.status & ORGAN_BLEEDING)
-			visible_message(SPAN_WARNING("[user] starts putting pressure on [H]'s wounds to stop the wounds on \his [E.name] from bleeding!"))
-			if(!do_mob(user, H, 10))
-				to_chat(user, SPAN_NOTICE("You must stand still to stop the bleeding."))
-				return
-			else
-				visible_message(SPAN_NOTICE("[user] finishes putting pressure on [H]'s wounds."))
-				for(var/datum/wound/W in E.wounds)
-					W.current_stage++
-					W.bleed_timer -= 5
-
+		else
+			visible_message(SPAN_NOTICE("[user] finishes putting pressure on [H]'s wounds."))
+			for(var/datum/wound/W in bodypart.wounds)
+				W.current_stage++
+				W.bleed_timer -= 5
 	//do not kill the grab
 
 
