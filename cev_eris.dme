@@ -2742,6 +2742,7 @@
 #include "code\modules\surgery\autodoc.dm"
 #include "code\modules\surgery\hardsuit.dm"
 #include "code\modules\surgery\internal.dm"
+#include "code\modules\surgery\mods.dm"
 #include "code\modules\surgery\old_surgery.dm"
 #include "code\modules\surgery\organic.dm"
 #include "code\modules\surgery\organic_damage.dm"
