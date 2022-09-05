@@ -115,6 +115,7 @@
 						if(!G)	//the grab will delete itself in New if affecting is anchored
 							return
 						G.state = GRAB_AGGRESSIVE
+						G.counter_timer = 0
 						M.put_in_active_hand(G)
 						G.synch()
 						LAssailant = M
