@@ -165,8 +165,8 @@
 /obj/item/grab/proc/gut_punch(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	//no check for grab levels
 	visible_message(SPAN_DANGER("[attacker] thrusts \his fist in [target]'s guts!"))
-	var/damage = max(1, (25 - target.stats.getStat(STAT_TGH) / 2))//50+ TGH = 1 dmg
-	target.damage_through_armor(damage, BRUTE, BP_GROIN, ARMOR_MELEE)
+	var/damage = max(1, (20 - target.stats.getStat(STAT_TGH) / 2))//40+ TGH = 1 dmg
+	target.damage_through_armor(damage, BRUTE, BP_GROIN, ARMOR_MELEE, wounding_multiplier = 2)
 	//vomiting goes on cd for 35 secs, which means it's impossible to spam this
 	target.vomit(TRUE)
 	//admin messaging
