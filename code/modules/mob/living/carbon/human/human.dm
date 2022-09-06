@@ -1548,60 +1548,6 @@ var/list/rank_prefix = list(\
 	dodge_time = get_game_time()
 	confidence = FALSE
 
-/mob/living/carbon/human/proc/undislocate()
-	set category = "Object"
-	set name = "Undislocate Joint"
-	set desc = "Pop a joint back into place. Extremely painful."
-	set src in view(1)
-
-	if(!isliving(usr) || !usr.can_click())
-		return
-
-	usr.setClickCooldown(20)
-
-	if(usr.stat > 0)
-		to_chat(usr, "You are unconcious and cannot do that!")
-		return
-
-	if(usr.restrained())
-		to_chat(usr, "You are restrained and cannot do that!")
-		return
-
-	var/mob/S = src
-	var/mob/U = usr
-	var/self
-	if(S == U)
-		self = 1 // Removing object from yourself.
-
-	var/list/limbs = list()
-	for(var/limb in organs_by_name)
-		var/obj/item/organ/external/current_limb = organs_by_name[limb]
-		if(current_limb && current_limb.dislocated == 2)
-			limbs |= limb
-	var/choice = input(usr,"Which joint do you wish to relocate?") as null|anything in limbs
-
-	if(!choice)
-		return
-
-	var/obj/item/organ/external/current_limb = organs_by_name[choice]
-
-	if(self)
-		to_chat(src, SPAN_WARNING("You brace yourself to relocate your [current_limb.joint]..."))
-	else
-		to_chat(U, SPAN_WARNING("You begin to relocate [S]'s [current_limb.joint]..."))
-
-	if(!do_after(U, 30, src))
-		return
-	if(!choice || !current_limb || !S || !U)
-		return
-
-	if(self)
-		to_chat(src, SPAN_DANGER("You pop your [current_limb.joint] back in!"))
-	else
-		to_chat(U, SPAN_DANGER("You pop [S]'s [current_limb.joint] back in!"))
-		to_chat(S, SPAN_DANGER("[U] pops your [current_limb.joint] back in!"))
-	current_limb.undislocate()
-
 /mob/living/carbon/human/reset_view(atom/A, update_hud = 1)
 	..()
 	if(update_hud)
@@ -1739,8 +1685,8 @@ var/list/rank_prefix = list(\
 			status += "MISSING"
 		if(org.status & ORGAN_MUTATED)
 			status += "weirdly shapen"
-		if(org.dislocated == 2)
-			status += "dislocated"
+		if(org.nerve_struck == 2)
+			status += "torpid"
 		if(org.status & ORGAN_BROKEN)
 			status += "hurts when touched"
 		if(org.status & ORGAN_DEAD)

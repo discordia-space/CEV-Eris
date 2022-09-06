@@ -78,7 +78,7 @@
 		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
 		return
 	var/obj/item/organ/external/organ = target.get_organ(check_zone(target_zone))
-	if(!organ || organ.dislocated == -1)
+	if(!organ || organ.nerve_struck == -1)
 		return
 
 	if(!do_after(attacker, 7 SECONDS, target))
@@ -207,10 +207,7 @@
 	qdel(src)
 	return
 
-/obj/item/grab/proc/dislocate(mob/living/carbon/human/target, mob/living/attacker, var/target_zone)
-	if(state < GRAB_NECK)
-		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
-		return
+/obj/item/grab/proc/nerve_strike(mob/living/carbon/human/target, mob/living/attacker, var/target_zone)
 	if(target.grab_joint(attacker, target_zone))
 		return
 

@@ -441,7 +441,7 @@
 					else if(hit_zone == BP_GROIN)
 						gut_punch(affecting, assailant)
 					else
-						dislocate(affecting, assailant, hit_zone)
+						nerve_strike(affecting, assailant, hit_zone)
 
 				if(I_DISARM)
 					pin_down(affecting, assailant)

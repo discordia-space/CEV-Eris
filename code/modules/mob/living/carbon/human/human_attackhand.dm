@@ -358,11 +358,12 @@
 	hit_impact(damage, get_step(user, src))
 	return TRUE
 
-//Used to attack a joint through grabbing
+//Used to attack a joint's nerve through grabbing, 10 seconds of crippling(depression)
 /mob/living/carbon/human/proc/grab_joint(var/mob/living/user, var/def_zone)
 	var/has_grab = 0
-	for(var/obj/item/grab/G in list(user.l_hand, user.r_hand))
-		if(G.affecting == src && G.state == GRAB_NECK)
+	var/obj/item/grab/G
+	for(G in list(user.l_hand, user.r_hand))//we do not check for grab level
+		if(G.affecting == src)
 			has_grab = 1
 			break
 
@@ -374,16 +375,27 @@
 	if(!target_zone)
 		return 0
 	var/obj/item/organ/external/organ = get_organ(check_zone(target_zone))
-	if(!organ || organ.is_dislocated() || organ.dislocated == -1)
+	if(!organ || organ.is_nerve_struck() || organ.nerve_struck == -1)
 		return 0
 
-	user.visible_message(SPAN_WARNING("[user] begins to dislocate [src]'s [organ.joint]!"))
-	if(do_after(user, 100))
-		organ.dislocate(1)
-		src.visible_message("<span class='danger'>[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!</span>")
-		playsound(user, 'sound/weapons/jointORbonebreak.ogg', 50, 1)
-		return 1
-	return 0
+	user.visible_message(SPAN_WARNING("[user] hits [src]'s [organ.joint] right in the nerve!")) //everyone knows where it is, obviously
+
+	organ.nerve_strike_add(1)
+	src.visible_message(SPAN_DANGER("[src]'s [organ.joint] [pick("jitters","convulses","stirs","shakes")] and dangles about!"), (SPAN_DANGER("\bold As [user]'s hit connects with your [organ.joint], you feel it painfully tingle before going numb!")))
+	playsound(user, 'sound/weapons/throwtap.ogg', 50, 1)
+	src.adjustHalLoss(rand(10,20))
+
+	//kill the grab
+	user.drop_from_inventory(G)
+	G.loc = null
+	qdel(G)
+
+	//admin messaging
+	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Nervestruck [src.name] ([src.ckey])</font>")
+	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Nervestruck by [user.name] ([user.ckey])</font>")
+	msg_admin_attack("[key_name(user)] nervestruck [key_name(src)] in [organ.joint]")
+
+	return 1
 
 //Breaks all grips and pulls that the mob currently has.
 /mob/living/carbon/human/proc/break_all_grabs(mob/living/carbon/user)
