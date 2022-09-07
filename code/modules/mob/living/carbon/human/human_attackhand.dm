@@ -109,7 +109,7 @@
 
 			for(var/obj/item/grab/g in get_both_hands(src)) //countering a grab
 
-				if(g.counter_timer>0) //were we grabbed by src in a span of 3 seconds?
+				if(g.counter_timer>0 && g.affecting == M) //were we grabbed by src in a span of 3 seconds?
 					if(prob(max(30 + H.stats.getStat(STAT_ROB) - stats.getStat(STAT_ROB) ** 0.7, 1))) // Harder between low rob, easier between high rob wrestlers
 						var/obj/item/grab/G = new /obj/item/grab(M, src)
 						if(!G)	//the grab will delete itself in New if affecting is anchored

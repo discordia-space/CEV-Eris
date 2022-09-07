@@ -692,9 +692,9 @@ var/list/rank_prefix = list(\
 		lastpuke = 1
 		if(!forced)
 			to_chat(src, SPAN_WARNING("You feel nauseous..."))
-			spawn(150)	//15 seconds until second warning
-				to_chat(src, SPAN_WARNING("You feel like you are about to throw up!"))
-				sleep(100)	//and you have 10 more for mad dash to the bucket
+			sleep(150)	//15 seconds until second warning
+			to_chat(src, SPAN_WARNING("You feel like you are about to throw up!"))
+			sleep(100)	//and you have 10 more for mad dash to the bucket
 		Stun(5)
 
 		src.visible_message(SPAN_WARNING("[src] throws up!"),SPAN_WARNING("You throw up!"))

@@ -31,8 +31,9 @@
 
 	var/counter_timer = 3 SECONDS //sets to 3 seconds after being grabbed
 
-/obj/item/grab/proc/tick()
+/obj/item/grab/Process()
 	counter_timer--
+	..()
 
 /obj/proc/affect_grab(var/mob/user, var/mob/target, var/state)
 	return FALSE
