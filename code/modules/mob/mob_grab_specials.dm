@@ -84,8 +84,9 @@
 	if(!do_after(attacker, 7 SECONDS, target))
 		to_chat(attacker, SPAN_WARNING("You must stand still to jointlock [target]!"))
 	else
-		visible_message(SPAN_WARNING("[attacker] [pick("bent", "twisted")] [target]'s [organ.name] into a jointlock!"))
+		visible_message(SPAN_WARNING("With a forceful twist, [attacker] bents [target]'s [organ.name] into a painful jointlock!"))
 		to_chat(target, SPAN_DANGER("You feel extreme pain!"))
+		playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
 		affecting.adjustHalLoss(rand(30, 40))
 
 /obj/item/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
@@ -147,11 +148,12 @@
 	attacker.next_move = world.time + 20 //2 seconds, also should prevent user from triggering this repeatedly
 	if(do_after(attacker, 20, progress=0) && target)
 		visible_message(SPAN_DANGER("...And falls backwards, slamming the opponent back onto the floor!"))
-		var/damage = min(65, attacker.stats.getStat(STAT_ROB) + 15)
+		target.SpinAnimation(5,1)
+		var/damage = min(80, attacker.stats.getStat(STAT_ROB) + 15) //WE ARE GONNA KILL YOU
 		target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_MELEE) //crunch
 		attacker.Weaken(2)
 		target.Stun(6)
-		playsound(loc, 'sound/weapons/pinground.ogg', 50, 1, -1)
+		playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
 		attacker.regen_slickness()
 		//admin messaging
 		attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Suplexed [target.name] ([target.ckey])</font>")
@@ -165,7 +167,7 @@
 /obj/item/grab/proc/gut_punch(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	//no check for grab levels
 	visible_message(SPAN_DANGER("[attacker] thrusts \his fist in [target]'s guts!"))
-	var/damage = max(1, (20 - target.stats.getStat(STAT_TGH) / 2))//40+ TGH = 1 dmg
+	var/damage = max(1, (10 - target.stats.getStat(STAT_TGH) / 4))//40+ TGH = 1 dmg
 	target.damage_through_armor(damage, BRUTE, BP_GROIN, ARMOR_MELEE, wounding_multiplier = 2)
 	//vomiting goes on cd for 35 secs, which means it's impossible to spam this
 	target.vomit(TRUE)
@@ -192,6 +194,7 @@
 
 	target.damage_through_armor(damage, BRUTE, BP_HEAD, ARMOR_MELEE)
 	attacker.damage_through_armor(10, BRUTE, BP_HEAD, ARMOR_MELEE)
+	target.make_dizzy(15)
 
 	if(!victim_armor && target.headcheck(BP_HEAD) && prob(damage))
 		target.apply_effect(20, PARALYZE)

@@ -421,7 +421,6 @@
 						var/obj/item/organ/external/o = H.get_organ(hit_zone)
 						
 						if(o.status & ORGAN_BLEEDING)
-							visible_message(SPAN_WARNING("slow_bleeding"))
 							slow_bleeding(affecting, assailant, o)
 						else
 							inspect_organ(affecting, assailant, hit_zone)
