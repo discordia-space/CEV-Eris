@@ -48582,6 +48582,14 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "biocounter";
+	name = "Bioengineering Counter Shutters";
+	opacity = 0
+	},
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/genetics)
 "clT" = (
@@ -71719,7 +71727,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/landmark/join/start/psychiatrist,
 /obj/machinery/camera/network/medbay{
 	dir = 1
 	},
@@ -85798,6 +85805,7 @@
 /area/eris/rnd/research)
 "dXw" = (
 /obj/structure/bed/chair/comfy/brown,
+/obj/landmark/join/start/psychiatrist,
 /turf/simulated/floor/carpet,
 /area/eris/medical/psych)
 "dXx" = (
