@@ -117,11 +117,3 @@
 	M.scanner_hidden = TRUE
 	M.prefix = "scanner-masked"
 	..()
-
-/obj/item/modification/organ/internal/stromal/parasitic
-	name = "parasitic organoid"
-	desc = ""
-
-/obj/item/modification/organ/internal/stromal/parasitic/New(loc, generate_organ_stats = TRUE, predefined_modifier = -0.15)
-	var/datum/component/modification/organ/stromal/S = AddComponent(/datum/component/modification/organ/stromal)
-	..()

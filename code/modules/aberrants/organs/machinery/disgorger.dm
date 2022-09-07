@@ -167,7 +167,7 @@
 	SSnano.update_uis(src)
 
 /obj/machinery/reagentgrinder/industrial/disgorger/bottle()
-	biomatter_counter -= 60		// Flesh cubes have 60 biomatter
+	biomatter_counter = max(biomatter_counter - 60, 0)		// Flesh cubes have 60 biomatter
 	addtimer(CALLBACK(src, .proc/spit), 1 SECONDS, TIMER_STOPPABLE)
 
 /obj/machinery/reagentgrinder/industrial/disgorger/proc/spit()
