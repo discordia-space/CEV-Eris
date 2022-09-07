@@ -43,6 +43,7 @@
 	disk_name = "Oh My Guts! Bespoke Teratomas"
 	license = 10
 	designs = list(
+		/datum/design/organ/organ_mod/parenchymal,
 		/datum/design/organ/teratoma/special/chemical_effect,
 		/datum/design/organ/teratoma/special/stat_boost,
 		/datum/design/organ/teratoma/output/reagents_blood_medicine_simple,

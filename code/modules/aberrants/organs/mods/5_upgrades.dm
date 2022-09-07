@@ -35,7 +35,7 @@
 /obj/item/modification/organ/internal/stromal/improvement/durability/New()
 	var/datum/component/modification/organ/stromal/M = AddComponent(/datum/component/modification/organ/stromal)
 
-	M.specific_organ_size_mod = 0.5
+	M.specific_organ_size_mod = 0.25
 	M.min_bruised_damage_multiplier = 0.20
 	M.min_broken_damage_multiplier = 0.20
 	M.max_damage_multiplier = 0.20
@@ -55,7 +55,7 @@
 	M.prefix = "enhanced"
 	..()
 
-// Augments modify non-stat properties or greatly improve a stat at the cost of another.
+// Augments modify organ efficiencies or other behaviors.
 /obj/item/modification/organ/internal/stromal/augment
 	name = "augment organoid"
 	desc = ""
@@ -99,7 +99,7 @@
 /obj/item/modification/organ/internal/stromal/augment/expander/New()
 	var/datum/component/modification/organ/stromal/M = AddComponent(/datum/component/modification/organ/stromal)
 
-	M.specific_organ_size_mod = 0.5
+	M.specific_organ_size_mod = 0.25
 	M.max_upgrade_mod = 2
 	M.removable = FALSE		// Not feasible to remove
 	M.prefix = "expanded"
@@ -116,4 +116,19 @@
 	M.organ_efficiency_multiplier = -0.10
 	M.scanner_hidden = TRUE
 	M.prefix = "scanner-masked"
+	..()
+
+/obj/item/modification/organ/internal/parenchymal
+	name = "parenchymal membrane"
+	desc = "A graftable membrane for organ tissues. Contains functional tissue from one or more organs."
+	description_info = "Adds/increases organ efficiencies. Size, blood, oxygen, and nutrition requirements are based on the added efficiencies."
+	icon_state = "membrane"
+
+/obj/item/modification/organ/internal/parenchymal/New(loc, generate_organ_stats = TRUE, predefined_modifier = 0.20)
+	var/datum/component/modification/organ/M = AddComponent(/datum/component/modification/organ)
+
+	M.apply_to_types = list(/obj/item/organ/internal)
+	M.examine_msg = "Can be attached to internal organs."
+	M.examine_difficulty = STAT_LEVEL_BASIC
+	M.prefix = "multi-functional"
 	..()

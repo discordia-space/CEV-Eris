@@ -49,6 +49,9 @@
 	AddComponent(/datum/component/modification/organ/on_pickup/parasitic)
 	..()
 
+/obj/item/modification/organ/internal/special/on_pickup/parasitic/update_icon()
+	return
+
 
 /obj/item/modification/organ/internal/special/on_cooldown
 

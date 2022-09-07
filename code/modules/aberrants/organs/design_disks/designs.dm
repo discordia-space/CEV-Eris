@@ -132,6 +132,9 @@
 /datum/design/organ/organ_mod/silencer
 	build_path = /obj/item/modification/organ/internal/stromal/augment/silencer
 
+/datum/design/organ/organ_mod/parenchymal
+	build_path = /obj/item/modification/organ/internal/parenchymal
+	starts_unlocked = FALSE
 
 // Teratomas
 /datum/design/organ/teratoma
