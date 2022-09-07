@@ -877,7 +877,7 @@
 	icon_state = "erisgreen"
 
 /area/eris/medical/medbay/organs
-	name = "\improper Organ Laboratory"
+	name = "\improper Visceral Research"
 	icon_state = "erisgreen"
 
 

@@ -1,16 +1,16 @@
-/obj/machinery/reagentgrinder/industrial/regurgitator
-	name = "regurgitator"
+/obj/machinery/reagentgrinder/industrial/disgorger
+	name = "disgorger"
 	desc = "An abomination of meat and metal. Consumes organs and various reagents."
 	description_info = "Requires a retracting tool to open the panel and a clamping tool to disassemble.\n\n\
 						Can be upgraded by re-assembling with organs of higher efficiency and using different organ types. Try using organs related to chewing, digestion, and filtration."
 	density = TRUE
 	anchored = TRUE
-	icon = 'icons/obj/machines/regurgitator.dmi'
-	icon_state = "regurgitator"
+	icon = 'icons/obj/machines/disgorger.dmi'
+	icon_state = "disgorger"
 	reagent_flags = NO_REACT
-	circuit = /obj/item/electronics/circuitboard/regurgitator
+	circuit = /obj/item/electronics/circuitboard/disgorger
 	limit = 10
-	nano_template = "regurgitator.tmpl"
+	nano_template = "disgorger.tmpl"
 	sheet_reagents = list()
 	var/biomatter_counter = 0				// We don't want this to actually produce biomatter
 	var/list/accepted_reagents = list(
@@ -27,14 +27,14 @@
 	var/spit_target
 	var/spit_range = 2		// For var-edits
 	var/has_brain = FALSE
-	var/grind_rate = 8	//ticks
+	var/grind_rate = 8		// ticks
 	var/current_tick = 0
 
-/obj/machinery/reagentgrinder/industrial/regurgitator/Initialize()
+/obj/machinery/reagentgrinder/industrial/disgorger/Initialize()
 	. = ..()
 	spit_target = get_ranged_target_turf(src, dir, spit_range)
 
-/obj/machinery/reagentgrinder/industrial/regurgitator/InitCircuit()
+/obj/machinery/reagentgrinder/industrial/disgorger/InitCircuit()
 	if(!circuit)
 		return
 
@@ -53,7 +53,7 @@
 
 	RefreshParts()
 
-/obj/machinery/reagentgrinder/industrial/regurgitator/examine(mob/user)
+/obj/machinery/reagentgrinder/industrial/disgorger/examine(mob/user)
 	..()
 	var/accepted
 	var/blacklisted
@@ -84,7 +84,7 @@
 		blacklisted = copytext(blacklisted, 1, length(blacklisted) - 1)
 		to_chat(user, SPAN_WARNING("Rejects [blacklisted]."))
 
-/obj/machinery/reagentgrinder/industrial/regurgitator/proc/check_reagents(obj/item/I, mob/user)
+/obj/machinery/reagentgrinder/industrial/disgorger/proc/check_reagents(obj/item/I, mob/user)
 	if(!I.reagents || !I.reagents.total_volume)
 		return FALSE
 	for(var/reagent in I.reagents.reagent_list)
@@ -94,7 +94,7 @@
 		if(is_type_in_list(R, blacklisted_reagents))
 			return FALSE	// If the container has any amount of a blacklisted reagent, the proc will immediately return false
 	
-/obj/machinery/reagentgrinder/industrial/regurgitator/insert(obj/item/I, mob/user)
+/obj/machinery/reagentgrinder/industrial/disgorger/insert(obj/item/I, mob/user)
 	if(!istype(I))
 		return
 
@@ -117,7 +117,7 @@
 	SSnano.update_uis(src)
 	return FALSE
 
-/obj/machinery/reagentgrinder/industrial/regurgitator/grind_item(obj/item/I)
+/obj/machinery/reagentgrinder/industrial/disgorger/grind_item(obj/item/I)
 	for(var/path in accepted_objects)
 		if(!istype(I, path))
 			continue
@@ -144,7 +144,7 @@
 				biomatter_counter += round(R.volume * accepted_reagents[R.type], 0.01)
 		qdel(I)
 
-/obj/machinery/reagentgrinder/industrial/regurgitator/grind()
+/obj/machinery/reagentgrinder/industrial/disgorger/grind()
 	if(has_brain && prob(1))
 		if(prob(1))									// If I did my calc right, this should happen once every 2 hours
 			for(var/mob/O in hearers(src, null))
@@ -166,17 +166,17 @@
 
 	SSnano.update_uis(src)
 
-/obj/machinery/reagentgrinder/industrial/regurgitator/bottle()
+/obj/machinery/reagentgrinder/industrial/disgorger/bottle()
 	biomatter_counter -= 60		// Flesh cubes have 60 biomatter
 	addtimer(CALLBACK(src, .proc/spit), 1 SECONDS, TIMER_STOPPABLE)
 
-/obj/machinery/reagentgrinder/industrial/regurgitator/proc/spit()
+/obj/machinery/reagentgrinder/industrial/disgorger/proc/spit()
 	flick("[initial(icon_state)]_spit", src)
 	var/obj/item/fleshcube/new_cube = new(get_turf(src))
 	new_cube.throw_at(spit_target, 3, 1)
 	
 
-/obj/machinery/reagentgrinder/industrial/regurgitator/default_deconstruction(obj/item/I, mob/user)
+/obj/machinery/reagentgrinder/industrial/disgorger/default_deconstruction(obj/item/I, mob/user)
 	var/qualities = list(QUALITY_RETRACTING)
 
 	if(panel_open && circuit)
@@ -204,7 +204,7 @@
 
 	return FALSE //If got no qualities - continue base attackby proc
 
-/obj/machinery/reagentgrinder/industrial/regurgitator/RefreshParts()
+/obj/machinery/reagentgrinder/industrial/disgorger/RefreshParts()
 	var/liver_eff = 0
 	var/kidney_eff = 0
 	var/carrion_chem_eff = 0
@@ -279,12 +279,12 @@
 	limit = initial(limit) + capacity_mod
 	grind_rate = initial(grind_rate) - tick_reduction
 
-/obj/machinery/reagentgrinder/industrial/regurgitator/ui_data()
+/obj/machinery/reagentgrinder/industrial/disgorger/ui_data()
 	. = ..()
 
 	.["biomatter_counter"] = biomatter_counter
 
-/obj/machinery/reagentgrinder/industrial/regurgitator/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+/obj/machinery/reagentgrinder/industrial/disgorger/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(!nano_template)
 		return
 
@@ -296,10 +296,10 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/obj/item/electronics/circuitboard/regurgitator
-	name = T_BOARD("regurgitator")
+/obj/item/electronics/circuitboard/disgorger
+	name = T_BOARD("disgorger")
 	board_type = "machine"
-	build_path = /obj/machinery/reagentgrinder/industrial/regurgitator
+	build_path = /obj/machinery/reagentgrinder/industrial/disgorger
 	origin_tech = list(TECH_BIO = 3)
 	rarity_value = 20
 	req_components = list(
@@ -324,7 +324,7 @@
 						Generally speaking, the ectoderm differentiates to form epithelial and neural tissues (spinal cord, peripheral nerves and brain). \
 						This includes the skin, linings of the mouth, anus, nostrils, sweat glands, hair and nails, and tooth enamel. \
 						Other types of epithelium are derived from the endoderm."
-	icon = 'icons/obj/machines/regurgitator.dmi'
+	icon = 'icons/obj/machines/disgorger.dmi'
 	icon_state = "carne_cansada"
 	w_class = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_BIOMATTER = 60)

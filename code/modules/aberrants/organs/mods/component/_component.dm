@@ -19,12 +19,12 @@
 	adjustable = FALSE
 	destroy_on_removal = FALSE 
 	removable = TRUE
-	breakable = TRUE		// Needs high Bio to remove
+	breakable = FALSE
 
 	apply_to_types = list(/obj/item/organ/internal/scaffold)
 	//blacklisted_types = list(/obj/item/organ/internal/scaffold/hive)
 
-	examine_msg = "Can be attached to organ scaffolds and abnormal organs."
+	examine_msg = "Can be attached to organ scaffolds and aberrant organs."
 	examine_stat = STAT_BIO
 	examine_difficulty = STAT_LEVEL_EXPERT
 
@@ -145,13 +145,21 @@
 		S.try_ruin()
 
 /datum/component/modification/organ/on_examine(mob/user)
+	var/using_sci_goggles = FALSE
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(istype(H.glasses, /obj/item/clothing/glasses/powered/science))
+			var/obj/item/clothing/glasses/powered/G = H.glasses
+			using_sci_goggles = G.active	// Meat vision
+
 	if(examine_msg)
 		to_chat(user, SPAN_WARNING(examine_msg))
 
 	if(adjustable)
 		to_chat(user, SPAN_WARNING("Can be adjusted with a laser cutting tool."))
 
-	if(user.stats.getStat(examine_stat) >= examine_difficulty)
+	if(using_sci_goggles || user.stats.getStat(examine_stat) >= examine_difficulty)
 		var/info = "Organoid size: [specific_organ_size_mod ? specific_organ_size_mod : "0"]"
 		info += "\nRequirements: <span style='color:red'>[blood_req_mod ? blood_req_mod : "0"]\
 								</span>/<span style='color:blue'>[oxygen_req_mod ? oxygen_req_mod : "0"]\

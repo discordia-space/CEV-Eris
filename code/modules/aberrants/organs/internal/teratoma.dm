@@ -2,10 +2,10 @@
 /obj/item/organ/internal/scaffold/aberrant/teratoma
 	name = "teratoma"
 	desc = "An abnormal growth of organ tissue."
-	description_info = "A functionless organ with space for a single organoid. Use a laser cutting tool to remove the organoid and recycle the leftover teratoma tissue in the regurgitator."
+	description_info = "A functionless organ with space for a single organoid. Use a laser cutting tool to remove the organoid and recycle the leftover teratoma tissue in the disgorger."
 	ruined_name = "ruined teratoma"
 	ruined_desc = "An abnormal growth of organ tissue. Ruined by use."
-	ruined_description_info = "Useless organ tissue. Recycle this in a regurgitator."
+	ruined_description_info = "Useless organ tissue. Recycle this in a disgorger."
 	ruined_color = "#696969"
 	icon_state = "teratoma"
 	price_tag = 200
@@ -25,8 +25,7 @@
 			process_mod_path = pick(subtypesof(/obj/item/modification/organ/internal/process))
 	else if(output_mod_path)
 		if(!ispath(output_mod_path))
-			output_mod_path = pick(subtypesof(/obj/item/modification/organ/internal/output) - /obj/item/modification/organ/internal/output/damaging_insight_gain\
-																							- /obj/item/modification/organ/internal/output/activate_organ_functions)
+			output_mod_path = pick(subtypesof(/obj/item/modification/organ/internal/output) - /obj/item/modification/organ/internal/output/activate_organ_functions)
 	else if(special_mod_path)
 		if(!ispath(special_mod_path))
 			special_mod_path = pick(subtypesof(/obj/item/modification/organ/internal/special/on_pickup) +\
@@ -104,6 +103,12 @@
 				output_pool = ALL_STATS
 			for(var/i in 1 to req_num_outputs)
 				output_info += 3
+
+		if(/obj/item/modification/organ/internal/output/damaging_insight_gain)
+			if(!output_pool?.len)
+				output_pool = list(BRUTE, BURN, TOX, OXY, CLONE, PSY)
+			for(var/i in 1 to req_num_outputs)
+				output_info += 1
 
 	..()
 

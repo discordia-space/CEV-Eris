@@ -28,11 +28,11 @@
 	exclusive_type = /obj/item/modification/organ/internal/special/on_pickup
 	trigger_signal = COMSIG_ITEM_PICKED
 
-/datum/component/modification/organ/on_pickup/try_modify()
-	return
-
 /datum/component/modification/organ/on_pickup/shock
 	var/damage = 5
+
+/datum/component/modification/organ/on_pickup/shock/try_modify()
+	return
 
 /datum/component/modification/organ/on_pickup/shock/get_function_info()
 	var/description = "<span style='color:purple'>Functional information (secondary):</span> electrocutes when touched"
@@ -48,6 +48,26 @@
 	if(isliving(owner))
 		var/mob/living/L = owner
 		L.electrocute_act(damage, parent)
+
+/datum/component/modification/organ/on_pickup/barbed
+
+/datum/component/modification/organ/on_pickup/barbed/get_function_info()
+	var/description = "<span style='color:purple'>Functional information (secondary):</span> unknown"
+	return description
+
+/datum/component/modification/organ/on_pickup/barbed/trigger(obj/item/holder, mob/owner)
+	if(!holder || !owner)
+		return
+
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		var/obj/item/organ/external/active_hand = H.get_active_hand_organ()
+		if(H.getarmor_organ(active_hand, ARMOR_MELEE))
+			if(istype(holder, /obj/item/organ/internal))
+				var/obj/item/organ/internal/I = holder
+				I.replaced(active_hand)
+				H.apply_damage(10, HALLOSS)
+				to_chat(owner, SPAN_WARNING("\The [parent] forces its way into your [active_hand.name]!"))
 
 
 /datum/component/modification/organ/on_cooldown

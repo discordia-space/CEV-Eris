@@ -3,7 +3,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
 	active_power_usage = 10000
-	req_access = list(access_research_equipment)
+	req_access = list(access_genetics)
 	density = TRUE
 	anchored = TRUE
 	var/color_key = "yellow"

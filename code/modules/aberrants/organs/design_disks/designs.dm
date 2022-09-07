@@ -252,3 +252,15 @@
 
 /datum/design/organ/teratoma/special/stat_boost
 	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/special/stat_boost
+
+
+// Machinery
+
+/datum/design/viscera
+	starts_unlocked = FALSE		// Not meant to be researched
+
+/datum/design/viscera/organ_fabricator
+	build_path = /obj/item/electronics/circuitboard/organ_fabricator
+
+/datum/design/viscera/disgorger
+	build_path = /obj/item/electronics/circuitboard/disgorger

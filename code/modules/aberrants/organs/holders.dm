@@ -44,17 +44,25 @@
 
 /obj/item/organ/internal/scaffold/examine(mob/user)
 	. = ..()
+	var/using_sci_goggles = FALSE
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(istype(H.glasses, /obj/item/clothing/glasses/powered/science))
+			var/obj/item/clothing/glasses/powered/G = H.glasses
+			using_sci_goggles = G.active	// Meat vision
+
 	if(item_upgrades.len)
 		to_chat(user, SPAN_NOTICE("Organoid grafts present ([item_upgrades.len]/[max_upgrades]). Use a laser cutting tool to remove."))
 	if(aberrant_cooldown_time > 0)
 		to_chat(user, SPAN_NOTICE("Average organ process duration: [aberrant_cooldown_time / (1 SECOND)] seconds"))
-	if(user.stats.getStat(STAT_BIO) >= STAT_LEVEL_EXPERT)
+	if(using_sci_goggles || user.stats.getStat(STAT_BIO) >= STAT_LEVEL_EXPERT)
 		var/organs
 		for(var/organ in organ_efficiency)
 			organs += organ + " ([organ_efficiency[organ]]), "
 		organs = copytext(organs, 1, length(organs) - 1)
 		to_chat(user, SPAN_NOTICE("Organ tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>"))
-	if(user.stats.getStat(STAT_BIO) >= STAT_LEVEL_PROF - 10)	// Doctor can start at 50 with the right background
+	if(using_sci_goggles || user.stats.getStat(STAT_BIO) >= STAT_LEVEL_PROF - 10)
 		var/function_info
 		var/input_info
 		var/process_info
