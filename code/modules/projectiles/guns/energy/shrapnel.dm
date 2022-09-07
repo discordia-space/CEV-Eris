@@ -56,6 +56,9 @@
 				consume_cell = TRUE
 				to_chat(user, SPAN_NOTICE("You loosen the safety bolts, allowing the weapon to destroy empty cells for use as ammunition."))
 
+/obj/item/gun/energy/shrapnel/generate_guntags()
+	gun_tags = list()
+
 /obj/item/gun/energy/shrapnel/mounted
 	name = "SDF SC \"Schrapnell\""
 	desc = "An energy-based shotgun, employing a matter fabricator to pull shotgun rounds from thin air and energy."
