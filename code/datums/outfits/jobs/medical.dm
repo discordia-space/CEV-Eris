@@ -63,4 +63,3 @@
 	l_hand = /obj/item/storage/freezer/medical
 	r_pocket = /obj/item/device/lighting/toggleable/flashlight/pen
 	belt = /obj/item/storage/belt/medical/
-	glasses = /obj/item/clothing/glasses/powered/science

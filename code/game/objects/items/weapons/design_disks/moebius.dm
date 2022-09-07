@@ -101,7 +101,7 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/medical/viscera
-	disk_name = "Moebius Scientifica - Visceral Research"
+	disk_name = "Moebius Scientifica - Viscera"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	spawn_blacklisted = TRUE	// So viscera has backups
 	license = -1
