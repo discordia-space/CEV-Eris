@@ -25,7 +25,7 @@
 			process_mod_path = pick(subtypesof(/obj/item/modification/organ/internal/process))
 	else if(output_mod_path)
 		if(!ispath(output_mod_path))
-			output_mod_path = pick(subtypesof(/obj/item/modification/organ/internal/output) - /obj/item/modification/organ/internal/output/activate_organ_functions)
+			output_mod_path = pick(subtypesof(/obj/item/modification/organ/internal/output))
 	else if(special_mod_path)
 		if(!ispath(special_mod_path))
 			special_mod_path = pick(subtypesof(/obj/item/modification/organ/internal/special/on_pickup) +\
@@ -485,15 +485,6 @@
 						Membrane information:\n\
 						Slightly increases a stat when the primary function triggers."
 	special_mod_path = /obj/item/modification/organ/internal/special/on_cooldown/stat_boost
-
-// parasitic
-/obj/item/organ/internal/scaffold/aberrant/teratoma/parasitic
-	name = "teratoma (unknown)"
-
-/obj/item/organ/internal/scaffold/aberrant/teratoma/parasitic/New()
-	var/obj/item/modification/organ/internal/stromal/parasitic/P = new (src)
-	SEND_SIGNAL(P, COMSIG_IATTACK, src)
-	..()
 
 // random
 /obj/item/organ/internal/scaffold/aberrant/teratoma/random

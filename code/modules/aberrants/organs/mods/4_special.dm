@@ -41,11 +41,12 @@
 
 
 /obj/item/modification/organ/internal/special/on_pickup/parasitic
-	name = "barbed membrane"
-	desc = "A graftable outer membrane for organ tissues. Tiny barbs populate the outer surface."
+	name = "parasitic organoid"
+	desc = "Functional tissue of one or more organs in graftable form. Requires blood, oxygen, and nutrients, but hinders bodily functions."
+	icon_state = "parasitic_organoid"
 
-/obj/item/modification/organ/internal/special/on_pickup/parasitic/New(loc, generate_organ_stats = TRUE, predefined_modifier = -0.15)
-	AddComponent(/datum/component/modification/organ/on_pickup/barbed)
+/obj/item/modification/organ/internal/special/on_pickup/parasitic/New(loc, generate_organ_stats = TRUE, predefined_modifier = -0.10)
+	AddComponent(/datum/component/modification/organ/on_pickup/parasitic)
 	..()
 
 
