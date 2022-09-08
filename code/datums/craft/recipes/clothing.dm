@@ -66,6 +66,13 @@
 		list(/obj/item/bedsheet, 1),
 		list(QUALITY_WIRE_CUTTING, 20, "time" = 30))
 
+/datum/craft_recipe/clothing/accessory/cloak/clowncho
+	name = "clown poncho"
+	result = /obj/item/clothing/accessory/cloak/clowncho
+	steps = list(
+		list(/obj/item/bedsheet, 1),
+		list(QUALITY_WIRE_CUTTING, 20, "time" = 30))
+
 /datum/craft_recipe/clothing/sandals
 	name = "wooden sandals"
 	result = /obj/item/clothing/shoes/sandal

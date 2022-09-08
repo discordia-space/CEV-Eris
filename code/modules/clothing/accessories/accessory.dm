@@ -293,25 +293,25 @@
 
 /obj/item/clothing/accessory/cloak
 	name = "oversized poncho"
-	desc = "Meant to be worn over a voidsuit or smaller rigs. More of a fashion statement than anything else."
+	desc = "Able to be worn over a voidsuit or smaller rigs. More of a fashion statement than anything else."
 	icon_state = "oversized_poncho"
 	slot_flags = SLOT_ACCESSORY_BUFFER
 
 /obj/item/clothing/accessory/cloak/ponchoblue
 	name = "blue oversized poncho"
-	desc = "Meant to be worn over a voidsuit or smaller rigs. The tactical choice."
+	desc = "Able to be worn over a voidsuit or smaller rigs. The tactical choice."
 	icon_state = "oversized_poncho_blue"
 	slot_flags = SLOT_ACCESSORY_BUFFER
 
 /obj/item/clothing/accessory/cloak/ponchored
 	name = "red oversized poncho"
-	desc = "Meant to be worn over a voidsuit or smaller rigs. Good for hiding bloodstains."
+	desc = "Able to be worn over a voidsuit or smaller rigs. Good for hiding bloodstains."
 	icon_state = "oversized_poncho_red"
 	slot_flags = SLOT_ACCESSORY_BUFFER
 
 /obj/item/clothing/accessory/cloak/ponchogreen
 	name = "green oversized poncho"
-	desc = "Meant to be worn over a voidsuit or smaller rigs. The roach guts blend right in."
+	desc = "Able to be worn over a voidsuit or smaller rigs. The roach guts blend right in."
 	icon_state = "oversized_poncho_green"
 	slot_flags = SLOT_ACCESSORY_BUFFER
 
@@ -323,13 +323,19 @@
 
 /obj/item/clothing/accessory/cloak/ponchoash
 	name = "ash oversized poncho"
-	desc = "Meant to be worn over a voidsuit or smaller rigs. Good for stalking the tunnels."
+	desc = "Able to be worn over a voidsuit or smaller rigs. Good for stalking the tunnels."
 	icon_state = "oversized_poncho_ash"
 	slot_flags = SLOT_ACCESSORY_BUFFER
 
 /obj/item/clothing/accessory/cloak/ponchowhite
 	name = "white oversized poncho"
-	desc = "Meant to be worn over a voidsuit or smaller rigs. A bold move considering how filthy the ship gets."
+	desc = "Able to be worn over a voidsuit or smaller rigs. A bold move considering how filthy the ship gets."
 	icon_state = "oversized_poncho_white"
 	slot_flags = SLOT_ACCESSORY_BUFFER
 
+/obj/item/clothing/accessory/cloak/clowncho
+	name = "clown poncho"
+	desc = "Able to be worn over a voidsuit or smaller rigs. This is certainly a choice."
+	icon_state = "clowncho"
+	slot_flags = SLOT_ACCESSORY_BUFFER
+	style = STYLE_NEG_HIGH
