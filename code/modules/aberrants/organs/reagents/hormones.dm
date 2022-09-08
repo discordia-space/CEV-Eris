@@ -29,7 +29,7 @@
 /datum/reagent/hormone/bloodclot
 	name = "thrombopoietin"		// Increases platelet (clotting stuff) production
 	id = "thrombopoietin"
-	effects = list(CE_BLOODCLOT = 0.1)
+	effects = list(CE_BLOODCLOT = 0.2)
 
 /datum/reagent/hormone/bloodclot/alt
 	name = "thromboxane"		// Produced by platelets to encourage stronger clots

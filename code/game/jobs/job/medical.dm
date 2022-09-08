@@ -262,9 +262,9 @@ Remember that you are a noncombatant. Any weapons you carry should be used for b
 	)
 
 	stat_modifiers = list(
-		STAT_BIO = 40,
-		STAT_COG = 15,		// Smarter than doctors
-		STAT_MEC = -5
+		STAT_BIO = 35,
+		STAT_COG = 20,
+		STAT_MEC = 15
 	)
 
 	perks = list(/datum/perk/selfmedicated)
@@ -276,7 +276,7 @@ Remember that you are a noncombatant. Any weapons you carry should be used for b
 
 	description = "You are a visionary. Your work lies on the bleeding edge of the medical sciences.<br>\
 					Primarily, your goal is to perfect the human form via biological enhancement. \
-					However, your medical expertise compels you to aid your fellow doctors, but only in the direst of circumstances.\
+					Your medical expertise compels you to aid your fellow doctors, but only in the direst of circumstances.\
 					<br>\
 					As a bio-engineer, you have two avenues to explore: genetics and visceral research.<br>\
 					<br>\

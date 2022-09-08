@@ -45105,7 +45105,7 @@
 	name = "Science Total Lockdown";
 	opacity = 0
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
+/obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "psych_front";
@@ -51097,7 +51097,7 @@
 /obj/structure/multiz/stairs/enter/bottom{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/medbreak)
 "csg" = (
 /obj/structure/table/rack/shelf,
@@ -51350,7 +51350,7 @@
 /obj/structure/multiz/stairs/active/bottom{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/medbreak)
 "csW" = (
 /obj/structure/multiz/stairs/active{
@@ -60839,9 +60839,6 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/hallway/main/section2)
 "cQU" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
 /turf/simulated/floor/carpet,
 /area/eris/medical/psych)
 "cQV" = (
@@ -74818,9 +74815,6 @@
 /turf/simulated/floor/tiled/white/panels,
 /area/eris/medical/medbreak)
 "dxo" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -77155,6 +77149,9 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/foyer)
 "dCT" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
 /turf/simulated/floor/carpet,
 /area/eris/medical/psych)
 "dCU" = (
@@ -77950,10 +77947,10 @@
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/medical/medbay/organs)
 "dEO" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/simulated/floor/tiled/white,
 /area/eris/medical/genetics)
 "dEP" = (
 /obj/machinery/light{
@@ -101426,6 +101423,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
+"gtb" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/genetics)
 "gwp" = (
 /obj/machinery/vending/coffee,
 /turf/simulated/floor/wood,
@@ -102337,13 +102340,6 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbreak)
-"iMF" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/personal/doctor,
-/turf/simulated/floor/tiled/white,
-/area/eris/medical/medbay/organs)
 "iNx" = (
 /obj/spawner/oddities/low_chance,
 /turf/simulated/floor/tiled/techmaint_cargo,
@@ -102397,10 +102393,10 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
@@ -102654,6 +102650,12 @@
 /obj/effect/shuttle_landmark/merc/armory,
 /turf/space,
 /area/space)
+"jBZ" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/eris/medical/psych)
 "jDi" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -102999,6 +103001,14 @@
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/crew_quarters/janitor)
+"kDX" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white/panels,
+/area/eris/medical/medbreak)
 "kEr" = (
 /obj/machinery/power/nt_obelisk,
 /turf/simulated/floor/carpet/bcarpet,
@@ -103274,6 +103284,12 @@
 /obj/item/storage/box/bodybags,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
+"lBl" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/eris/medical/psych)
 "lBX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -104834,6 +104850,12 @@
 "pHi" = (
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
+"pJc" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay/organs)
 "pJI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -105106,10 +105128,7 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/foyer)
 "qym" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/simulated/floor/tiled/white,
 /area/eris/medical/genetics)
 "qBj" = (
 /obj/structure/table/standard,
@@ -105384,7 +105403,7 @@
 /area/eris/engineering/atmos/storage)
 "rGA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
+	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -105840,9 +105859,6 @@
 /turf/simulated/wall/r_wall,
 /area/eris/crew_quarters/hydroponics/garden)
 "sFZ" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
 /obj/structure/closet/secure_closet/personal/doctor,
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/medbay/organs)
@@ -106126,6 +106142,23 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/medical/psych)
+"tlr" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/eris/medical/medbay/organs)
 "tlP" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -106196,6 +106229,9 @@
 /area/eris/medical/chemistry)
 "tti" = (
 /obj/machinery/light,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/medbay/organs)
 "ttp" = (
@@ -107261,8 +107297,11 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section3deck5port)
 "wnF" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/carpet,
 /area/eris/medical/psych)
@@ -107637,9 +107676,6 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
@@ -107647,6 +107683,9 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbay/organs)
@@ -107866,8 +107905,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbay/organs)
@@ -107879,7 +107918,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/simulated/floor/tiled/white,
 /area/eris/medical/genetics)
 "xZK" = (
 /obj/structure/multiz/stairs/active{
@@ -202984,7 +203023,7 @@ cry
 bUr
 reO
 cty
-mrW
+kDX
 dAq
 bSD
 bYV
@@ -204809,8 +204848,8 @@ cKh
 lLd
 dEj
 pcs
-hab
-dDO
+tlr
+pJc
 dAv
 uqj
 duY
@@ -205416,7 +205455,7 @@ lLd
 dAD
 pcs
 iWU
-iMF
+sFZ
 dAv
 jDi
 bmx
@@ -207032,7 +207071,7 @@ csh
 dEp
 uJz
 dAN
-dwC
+gtb
 dkl
 dYl
 abF
@@ -210650,8 +210689,8 @@ aae
 aaa
 dvn
 dfo
-pbI
-pbI
+jBZ
+lBl
 uwp
 dvn
 crN

@@ -13,7 +13,8 @@
 		/datum/design/organ/organ_mod/overclock,
 		/datum/design/organ/organ_mod/underclock,
 		/datum/design/organ/organ_mod/expander,
-		/datum/design/organ/organ_mod/silencer
+		/datum/design/organ/organ_mod/silencer,
+		/datum/design/organ/organ_mod/parenchymal
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/omg/diy_organs
@@ -43,7 +44,7 @@
 	disk_name = "Oh My Guts! Bespoke Teratomas"
 	license = 10
 	designs = list(
-		/datum/design/organ/organ_mod/parenchymal,
+		/datum/design/organ/organ_mod/parenchymal_large,
 		/datum/design/organ/teratoma/special/chemical_effect,
 		/datum/design/organ/teratoma/special/stat_boost,
 		/datum/design/organ/teratoma/output/reagents_blood_medicine_simple,

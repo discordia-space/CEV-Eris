@@ -58,8 +58,8 @@
 
 /decl/hierarchy/outfit/job/medical/bioengineer
 	name = OUTFIT_JOB_NAME("Moebius Bio-Engineer")
-	uniform = /obj/item/clothing/under/rank/medical
-	suit = /obj/item/clothing/suit/storage/toggle/labcoat
+	uniform = /obj/item/clothing/under/rank/bioengineer
+	suit = /obj/item/clothing/suit/storage/toggle/labcoat/bioengineer
 	l_hand = /obj/item/storage/freezer/medical
 	r_pocket = /obj/item/device/lighting/toggleable/flashlight/pen
 	belt = /obj/item/storage/belt/medical/
