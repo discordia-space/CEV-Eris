@@ -68344,6 +68344,10 @@
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 12;
+	pixel_y = 27
+	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/genetics)
 "dit" = (
@@ -105127,9 +105131,6 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/foyer)
 "qym" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -24
-	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/genetics)
 "qBj" = (
