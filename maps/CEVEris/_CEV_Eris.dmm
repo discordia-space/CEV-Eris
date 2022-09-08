@@ -46336,12 +46336,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/airlock/glass_medical{
-	id_tag = "";
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/medical{
 	name = "Break Room";
 	req_access = list(5)
 	},
-/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/surgery)
 "cgh" = (
@@ -46515,11 +46514,6 @@
 /area/eris/medical/medbreak)
 "cgC" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_medical{
-	name = "Visceral Research";
-	req_access = list(45);
-	req_one_access = newlist()
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
@@ -46527,6 +46521,10 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/medical{
+	name = "Visceral Research";
+	req_access = list(5)
 	},
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/medbay/organs)
@@ -68346,9 +68344,6 @@
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -24
-	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/genetics)
 "dit" = (
@@ -76932,8 +76927,7 @@
 /area/eris/medical/medbreak)
 "dCs" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_medical{
-	id_tag = "";
+/obj/machinery/door/airlock/medical{
 	name = "Break Room";
 	req_access = list(5)
 	},
@@ -77091,16 +77085,16 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbreak)
@@ -102304,16 +102298,16 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbreak)
@@ -103472,6 +103466,11 @@
 /obj/item/modular_computer/console/preset/engineering/atmos,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
+"lWf" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/eris/medical/medbay/organs)
 "lZF" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -105128,6 +105127,9 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/foyer)
 "qym" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/genetics)
 "qBj" = (
@@ -204237,7 +204239,7 @@ dyU
 dAm
 cpC
 iMb
-dDi
+dDx
 dAs
 dAv
 dAv
@@ -204439,7 +204441,7 @@ dAr
 dAr
 dAr
 dCO
-dDx
+dDi
 kfP
 lLd
 dEg
@@ -206058,7 +206060,7 @@ dCZ
 cGk
 cKs
 lLd
-lLd
+lWf
 lLd
 ffH
 lLd
