@@ -46,7 +46,9 @@
 	icon_state = "parasitic_organoid"
 
 /obj/item/modification/organ/internal/special/on_pickup/parasitic/New(loc, generate_organ_stats = TRUE, predefined_modifier = -0.10)
-	AddComponent(/datum/component/modification/organ/on_pickup/parasitic)
+	var/datum/component/modification/organ/on_pickup/parasitic/M = AddComponent(/datum/component/modification/organ/on_pickup/parasitic)
+
+	M.prefix = pick("languid", "ailing", "infirm")
 	..()
 
 /obj/item/modification/organ/internal/special/on_pickup/parasitic/update_icon()

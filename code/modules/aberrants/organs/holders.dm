@@ -97,7 +97,7 @@
 		if(function_info)
 			to_chat(user, SPAN_NOTICE(function_info))
 	else
-		to_chat(user, SPAN_WARNING("You lack the biological knowledge required to understand its functions."))
+		to_chat(user, SPAN_WARNING("You lack the biological knowledge and/or mental ability required to understand its functions."))
 
 /obj/item/organ/internal/scaffold/refresh_upgrades()
 	name = initial(name)
@@ -208,9 +208,7 @@
 
 		total_eff += organ_efficiency[organ]
 
-	if(total_eff < 0)
-		prefix = pick("languid", "ailing", "infirm") + " "
-	else if(middle.len == 1)
+	if(middle.len == 1)
 		prefix = pick("little", "small", "pygmy", "tiny") + " "
 
 	if(middle.len > 2)

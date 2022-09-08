@@ -186,4 +186,4 @@
 		if(function_info)
 			to_chat(user, SPAN_NOTICE(function_info))
 	else
-		to_chat(user, SPAN_WARNING("You lack the biological knowledge required to understand its functions."))
+		to_chat(user, SPAN_WARNING("You lack the biological knowledge and/or mental ability  required to understand its functions."))
