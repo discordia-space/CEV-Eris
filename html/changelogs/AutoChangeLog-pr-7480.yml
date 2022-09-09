@@ -1,0 +1,5 @@
+author: assortedbeads
+delete-after: true
+changes:
+  - imageadd: NT spears had the right hand mob icons the wrong way around, they're
+      fixed now
