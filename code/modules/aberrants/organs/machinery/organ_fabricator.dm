@@ -88,9 +88,11 @@
 	return design_files
 
 /obj/machinery/autolathe/organ_fabricator/ui_interact()
-	if(!categories?.len)
+	if(!islist(categories))		// Runtime occured when the categories var was 0, but the null check wasn't catching it. 
+		categories = list()		
+	if(!categories.len)
 		categories = files.design_categories_organfab
-	if(!disk && !show_category && length(categories))
+	if(!disk && !show_category && categories.len)
 		show_category = categories[1]
 	..()
 
