@@ -290,6 +290,7 @@ There are important things regarding this file:
 
 //Should do about 80 damage at 1 tile distance (adjacent), and 50 damage at 3 tiles distance.
 //Overall less damage than slugs in exchange for more damage at very close range and more embedding
+//Has a small wounding modifier due to /bullet/pellet
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
 	icon_state = "birdshot-1"
@@ -300,7 +301,6 @@ There are important things regarding this file:
 	spread_step = 10
 	pellet_to_knockback_ratio = 2
 	recoil = 8
-	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()
