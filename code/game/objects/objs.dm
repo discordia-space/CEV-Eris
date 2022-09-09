@@ -23,10 +23,8 @@
 	return w_class * 2
 
 /obj/Destroy()
-	if(!ismachinery(src))
-		STOP_PROCESSING(SSobj, src) // TODO: Have a processing bitflag to reduce on unnecessary loops through the processing lists
-	SSnano.close_uis(src)
-	. = ..()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /obj/Topic(href, href_list, var/datum/topic_state/state = GLOB.default_state)
 	if(..())
@@ -75,6 +73,10 @@
 	// Nada
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
+
+/obj/Process()
+	STOP_PROCESSING(SSobj, src)
+	return 0
 
 /obj/assume_air(datum/gas_mixture/giver)
 	if(loc)
