@@ -114,9 +114,9 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	style = STYLE_LOW
 
-/obj/item/clothing/under/sports
+/obj/item/clothing/under/wifebeater
 	name = "white tank top"
-	desc = "Sweat stains not included."
+	desc = "Beer stains not included."
 	icon_state = "sports"
 	item_state = "sports"
 
