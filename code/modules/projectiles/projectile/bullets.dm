@@ -95,7 +95,6 @@
 	var/base_spread = 90	//lower means the pellets spread more across body parts. If zero then this is considered a shrapnel explosion instead of a shrapnel cone
 	var/spread_step = 10	//higher means the pellets spread more across body parts with distance
 	var/pellet_to_knockback_ratio = 0
-	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/pellet/Bumped()
 	. = ..()
