@@ -65,7 +65,12 @@
 	//no check for grab levels
 	visible_message(SPAN_WARNING("[attacker] places a finger in [target]'s throat, trying to induce vomiting."))//ewwies
 	attacker.next_move = world.time + 10 //1 second, also should prevent user from triggering this repeatedly
-	if(do_after(attacker, 10, progress=0) && target)
+	for(var/obj/item/protection in list(target.head, target.wear_mask, target.glasses))
+		if(protection && (protection.body_parts_covered & EYES))
+			to_chat(attacker, SPAN_DANGER("You can't induce vomiting while [target]'s mouth is covered."))
+			return
+
+	if(do_after(attacker, 40, progress=0) && target)
 		//vomiting sets on cd for 35 secs, which means it's impossible to spam this
 		target.vomit(TRUE)
 		//admin messaging
@@ -128,7 +133,7 @@
 		kick_dir = turn(kick_dir, 180)
 	target.throw_at(get_edge_target_turf(target, kick_dir), 3, 1)
 	//deal damage AFTER the kick
-	var/damage = attacker.stats.getStat(STAT_ROB) / 3
+	var/damage = max(1, min(30, (attacker.stats.getStat(STAT_ROB) / 3)))
 	target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_MELEE)
 	attacker.regen_slickness()
 	//admin messaging

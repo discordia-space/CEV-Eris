@@ -477,19 +477,19 @@ var/global/list/items_blood_overlay_by_type = list()
 						
 						for(var/obj/structure/S in get_step(grabbed, whip_dir))
 							if(istype(S, /obj/structure/window))
-								visible_message(SPAN_WARNING("[grabbed] slams into the window!"))
+								visible_message(SPAN_WARNING("[grabbed] slams into \the [S]!"))
 								grabbed.damage_through_armor(25, BRUTE, BP_CHEST, ARMOR_MELEE)
 								
 								moves = 3
 								break
 							if(istype(S, /obj/structure/railing))
-								visible_message(SPAN_WARNING("[grabbed] falls over the railing!"))
+								visible_message(SPAN_WARNING("[grabbed] falls over \the [S]!"))
 								grabbed.forceMove(get_step(grabbed, whip_dir))
 
 								moves = 3
 								break
 							if(istype(S, /obj/structure/table))
-								visible_message(SPAN_WARNING("[grabbed] falls on the table!"))
+								visible_message(SPAN_WARNING("[grabbed] falls on \the [S]!"))
 								grabbed.forceMove(get_step(grabbed, whip_dir))
 								grabbed.Weaken(5)
 
