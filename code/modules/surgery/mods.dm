@@ -27,7 +27,7 @@
 /datum/surgery_step/attach_mod/begin_step(mob/living/user, obj/item/organ/internal/organ, obj/item/mod)
 	var/obj/item/organ/external/limb = organ.get_limb()
 	if(limb)
-		organ.owner_custom_pain("Someone is digging into into your [limb.name]!", 1)
+		organ.owner_custom_pain("Someone is digging into your [limb.name]!", 1)
 
 /datum/surgery_step/attach_mod/end_step(mob/living/user, obj/item/organ/internal/organ, obj/item/mod)
 	SEND_SIGNAL(mod, COMSIG_IATTACK, organ, user)
