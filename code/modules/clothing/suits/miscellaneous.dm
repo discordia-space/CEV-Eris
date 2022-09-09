@@ -483,14 +483,6 @@
 	style = STYLE_HIGH
 	price_tag = 400
 
-/obj/item/clothing/suit/storage/boxer_jacket
-	name = "boxer jacket"//Mother Russia Bleeds reference
-	desc = "Uppercut their heads off."
-	icon_state = "boxer_jacket"
-	item_state = "boxer_jacket"
-	siemens_coefficient = 0.7
-	body_parts_covered = UPPER_TORSO|ARMS
-
 /obj/item/clothing/suit/storage/puffyblue
 	name = "blue puffy coat"
 	desc = "A stylish, shiny, very blue Aster\'s Guild branded puffer coat."
