@@ -132,7 +132,6 @@
 /obj/item/projectile/proc/adjust_damages(var/list/newdamages)
 	if(!newdamages.len)
 		return
-	var/bonus =
 	for(var/damage_type in newdamages)
 		if(damage_type == IRRADIATE)
 			irradiate += newdamages[IRRADIATE]
