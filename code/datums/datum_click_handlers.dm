@@ -104,7 +104,6 @@
 	if(object)
 		target = object
 		time_since_last_shot = world.time
-		to_chat(owner.mob, "[world.tick_lag], [world.time]")
 		shooting_loop()
 		time_since_last_init = world.time + (reciever.fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : reciever.fire_delay) * min(world.tick_lag, 1)
 	return TRUE
