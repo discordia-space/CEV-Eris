@@ -66,7 +66,7 @@
 	visible_message(SPAN_WARNING("[attacker] places a finger in [target]'s throat, trying to induce vomiting."))//ewwies
 	attacker.next_move = world.time + 10 //1 second, also should prevent user from triggering this repeatedly
 	for(var/obj/item/protection in list(target.head, target.wear_mask, target.glasses))
-		if(protection && (protection.body_parts_covered & EYES))
+		if(protection && (protection.body_parts_covered & FACE))
 			to_chat(attacker, SPAN_DANGER("You can't induce vomiting while [target]'s mouth is covered."))
 			return
 
