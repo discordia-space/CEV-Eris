@@ -30,9 +30,9 @@
 
 	// Armor related variables
 	armor = list(
-		melee = 5,
-		bullet = 5,
-		energy = 10,
+		melee = 20,
+		bullet = 20,
+		energy = 40,
 		bomb = 10,
 		bio = 25,
 		rad = 100

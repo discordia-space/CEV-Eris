@@ -14,13 +14,12 @@
 
 	melee_damage_lower = 7 // Slow, but big punch
 	melee_damage_upper = 16
-	armor_divisor = ARMOR_PEN_DEEP
 
 	// Armor related variables
 	armor = list(
-		melee = 15,
-		bullet = 25,
-		energy = 10,
+		melee = 60,
+		bullet = 80,
+		energy = 40,
 		bomb = 20,
 		bio = 25,
 		rad = 50

@@ -90,7 +90,7 @@
 		)
 	allowed = list(/obj/item/reagent_containers/food/snacks/candy_corn, /obj/item/pen)
 	armor = list(
-		melee = 2,
+		melee = 10,
 		bullet = 0,
 		energy = 0,
 		bomb = 0,

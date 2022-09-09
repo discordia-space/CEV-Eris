@@ -25,7 +25,7 @@
 	// Armor related variables
 	armor = list(
 		melee = 0,
-		bullet = 5,
+		bullet = 20,
 		energy = 0,
 		bomb = 0,
 		bio = 50,

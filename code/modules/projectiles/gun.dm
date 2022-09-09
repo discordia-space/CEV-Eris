@@ -389,7 +389,7 @@
 
 		projectile.multiply_projectile_style_damage(style_damage_multiplier)
 
-		projectile.add_projectile_penetration(penetration_multiplier)
+		projectile.multiply_projectile_penetration(penetration_multiplier)
 
 		projectile.multiply_pierce_penetration(pierce_multiplier)
 
@@ -855,7 +855,7 @@
 	data["damage_multiplier"] = damage_multiplier
 	data["pierce_multiplier"] = pierce_multiplier
 	data["ricochet_multiplier"] = ricochet_multiplier
-	data["penetration_multiplier"] = penetration_multiplier + 1
+	data["penetration_multiplier"] = penetration_multiplier
 
 	data["minimum_fire_delay"] = GUN_MINIMUM_FIRETIME
 	data["fire_delay"] = fire_delay * 5 //time between shot, in ms
@@ -864,7 +864,7 @@
 
 	data["force"] = force
 	data["force_max"] = initial(force)*10
-	data["armor_divisor"] = armor_divisor
+	data["armor_penetration"] = armor_penetration
 	data["muzzle_flash"] = muzzle_flash
 
 	var/total_recoil = 0
@@ -932,8 +932,7 @@
 	var/list/data = list()
 	data["projectile_name"] = P.name
 	data["projectile_damage"] = (P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()
-	data["projectile_AP"] = P.armor_divisor + penetration_multiplier
-	data["projectile_WOUND"] = P.wounding_mult
+	data["projectile_AP"] = P.armor_penetration * penetration_multiplier
 	data["projectile_recoil"] = P.recoil
 	qdel(P)
 	return data
@@ -964,7 +963,7 @@
 	vision_flags = initial(vision_flags)
 	see_invisible_gun = initial(see_invisible_gun)
 	force = initial(force)
-	armor_divisor = initial(armor_divisor)
+	armor_penetration = initial(armor_penetration)
 	sharp = initial(sharp)
 	braced = initial(braced)
 	recoil = getRecoil(init_recoil[1], init_recoil[2], init_recoil[3])

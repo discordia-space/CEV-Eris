@@ -348,7 +348,7 @@
 	var/penetration = 0
 	if(istype(user, /mob/living))
 		var/mob/living/L = user
-		penetration = L.armor_divisor
+		penetration = L.armor_penetration
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
 	var/dam = damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE, penetration, sharp=is_sharp, edge=is_edge)
@@ -420,4 +420,4 @@
 		spawn(1)
 			qdel(rgrab)
 	return success
-
+  

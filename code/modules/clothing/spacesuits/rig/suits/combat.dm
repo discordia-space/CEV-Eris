@@ -8,15 +8,13 @@
 	icon_state = "security_rig"
 	suit_type = "combat hardsuit"
 	armor = list(
-		melee = 8,
-		bullet = 8,
-		energy = 8,
+		melee = 50,
+		bullet = 50,
+		energy = 50,
 		bomb = 50,
 		bio = 100,
 		rad = 50
 	)
-	ablative_max = 12
-
 	drain = 4
 	offline_vision_restriction = 1
 	rarity_value = 20
@@ -69,16 +67,13 @@
 	desc = "A Security hardsuit designed for prolonged EVA in dangerous environments."
 	icon_state = "hazard_rig"
 	armor = list(
-		melee = 10,
-		bullet = 7,
-		energy = 7,
+		melee = 50,
+		bullet = 40,
+		energy = 40,
 		bomb = 90,
 		bio = 100,
 		rad = 100
 	)
-	ablative_max = 8
-	ablation = ABLATION_DURABLE // Lasts longer than most rigs
-
 	drain = 4
 	offline_vision_restriction = 1
 

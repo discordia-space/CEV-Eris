@@ -356,9 +356,9 @@ obj/item/clothing/under/genericr
 	style = STYLE_HIGH
 	price_tag = 400
 	armor = list(
-		melee = 2,
-		bullet = 1,
-		energy = 1,
+		melee = 10,
+		bullet = 5,
+		energy = 5,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -380,9 +380,9 @@ obj/item/clothing/under/genericr
 	style = STYLE_HIGH
 	price_tag = 400
 	armor = list(
-		melee = 2,
-		bullet = 1,
-		energy = 1,
+		melee = 10,
+		bullet = 5,
+		energy = 5,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -397,9 +397,9 @@ obj/item/clothing/under/genericr
 	style = STYLE_HIGH
 	price_tag = 500
 	armor = list(
-		melee = 1,
-		bullet = 2,
-		energy = 2,
+		melee = 5,
+		bullet = 10,
+		energy = 10,
 		bomb = 0,
 		bio = 5,
 		rad = 5
@@ -444,9 +444,9 @@ obj/item/clothing/under/genericr
 /obj/item/clothing/under/tuxedo/adminspawn
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 15,
-		bullet = 18,
-		energy = 15,
+		melee = 60,
+		bullet = 65,
+		energy = 60,
 		bomb = 75,
 		bio = 100,
 		rad = 30
