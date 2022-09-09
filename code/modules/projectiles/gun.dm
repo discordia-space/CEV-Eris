@@ -92,7 +92,7 @@
 	var/recentwield = 0 // to prevent spammage
 	var/proj_step_multiplier = 1
 	var/proj_agony_multiplier = 1
-	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int), damage is divided for pellets
+	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int)
 	var/darkness_view = 0
 	var/vision_flags = 0
 	var/see_invisible_gun = -1

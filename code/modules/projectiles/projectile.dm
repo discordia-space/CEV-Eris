@@ -128,7 +128,6 @@
 /obj/item/projectile/proc/multiply_projectile_accuracy(newmult)
 	projectile_accuracy = initial(projectile_accuracy) * newmult
 
-// bullet/pellets redefines this
 /obj/item/projectile/proc/adjust_damages(var/list/newdamages)
 	if(!newdamages.len)
 		return
