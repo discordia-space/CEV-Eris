@@ -40,6 +40,19 @@
 	..()
 
 
+/obj/item/modification/organ/internal/special/on_pickup/parasitic
+	name = "parasitic organoid"
+	desc = "Functional tissue of one or more organs in graftable form. Requires blood, oxygen, and nutrients, but hinders bodily functions."
+	icon_state = "parasitic_organoid"
+
+/obj/item/modification/organ/internal/special/on_pickup/parasitic/New(loc, generate_organ_stats = FALSE, predefined_modifier = null)
+	AddComponent(/datum/component/modification/organ/on_pickup/parasitic)
+	..(loc, TRUE, -0.1)
+
+/obj/item/modification/organ/internal/special/on_pickup/parasitic/update_icon()
+	return
+
+
 /obj/item/modification/organ/internal/special/on_cooldown
 
 /obj/item/modification/organ/internal/special/on_cooldown/chemical_effect

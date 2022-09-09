@@ -44,22 +44,33 @@
 
 /obj/item/organ/internal/scaffold/examine(mob/user)
 	. = ..()
+	var/using_sci_goggles = FALSE
+	var/details_unlocked = FALSE
+
+	// Goggles check
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(istype(H.glasses, /obj/item/clothing/glasses/powered/science))
+			var/obj/item/clothing/glasses/powered/G = H.glasses
+			using_sci_goggles = G.active	// Meat vision
+
+	// Stat check
+	details_unlocked = (user.stats.getStat(STAT_BIO) >= STAT_LEVEL_EXPERT - 5 && user.stats.getStat(STAT_COG) >= STAT_LEVEL_BASIC - 5) ? TRUE : FALSE
+
 	if(item_upgrades.len)
 		to_chat(user, SPAN_NOTICE("Organoid grafts present ([item_upgrades.len]/[max_upgrades]). Use a laser cutting tool to remove."))
-	if(aberrant_cooldown_time > 0)
-		to_chat(user, SPAN_NOTICE("Average organ process duration: [aberrant_cooldown_time / (1 SECOND)] seconds"))
-	if(user.stats.getStat(STAT_BIO) >= STAT_LEVEL_EXPERT)
+	if(using_sci_goggles || details_unlocked)
 		var/organs
-		for(var/organ in organ_efficiency)
-			organs += organ + " ([organ_efficiency[organ]]), "
-		organs = copytext(organs, 1, length(organs) - 1)
-		to_chat(user, SPAN_NOTICE("Organ tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>"))
-	if(user.stats.getStat(STAT_BIO) >= STAT_LEVEL_PROF - 10)	// Doctor can start at 50 with the right background
+	
 		var/function_info
 		var/input_info
 		var/process_info
 		var/output_info
 		var/secondary_info
+
+		for(var/organ in organ_efficiency)
+			organs += organ + " ([organ_efficiency[organ]]), "
+		organs = copytext(organs, 1, length(organs) - 1)
 
 		for(var/mod in contents)
 			var/obj/item/modification/organ/internal/holder = mod
@@ -78,10 +89,15 @@
 						output_info + (output_info && secondary_info ? "\n" : null) +\
 						secondary_info
 
+		if(aberrant_cooldown_time > 0)
+			to_chat(user, SPAN_NOTICE("Average organ process duration: [aberrant_cooldown_time / (1 SECOND)] seconds"))
+
+		to_chat(user, SPAN_NOTICE("Organ tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>"))
+
 		if(function_info)
 			to_chat(user, SPAN_NOTICE(function_info))
 	else
-		to_chat(user, SPAN_WARNING("You lack the biological knowledge required to understand its functions."))
+		to_chat(user, SPAN_WARNING("You lack the biological knowledge and/or mental ability required to understand its functions."))
 
 /obj/item/organ/internal/scaffold/refresh_upgrades()
 	name = initial(name)
@@ -192,9 +208,7 @@
 
 		total_eff += organ_efficiency[organ]
 
-	if(total_eff < 0)
-		prefix = pick("languid", "ailing", "infirm") + " "
-	else if(middle.len == 1)
+	if(middle.len == 1)
 		prefix = pick("little", "small", "pygmy", "tiny") + " "
 
 	if(middle.len > 2)

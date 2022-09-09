@@ -80,7 +80,22 @@
 
 /obj/item/clothing/under/rank/medical
 	desc = "It's made of a special fiber that provides minor protection against biohazards. It has a cross on the chest denoting that the wearer is trained medical personnel."
-	name = "moebius  doctor's jumpsuit"
+	name = "moebius doctor's jumpsuit"
+	icon_state = "medical"
+	item_state = "medical"
+	permeability_coefficient = 0.50
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 10,
+		rad = 0
+	)
+
+/obj/item/clothing/under/rank/bioengineer
+	desc = "It's made of a special fiber that provides minor protection against biohazards. It has a bio-engineer rank stripe on it."
+	name = "moebius doctor's jumpsuit"
 	icon_state = "medical"
 	item_state = "medical"
 	permeability_coefficient = 0.50

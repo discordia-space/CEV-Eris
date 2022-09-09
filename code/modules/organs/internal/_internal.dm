@@ -105,7 +105,7 @@
 	. = ..()
 	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_BASIC)
 		to_chat(user, SPAN_NOTICE("Organ size: [specific_organ_size]"))
-	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_EXPERT)
+	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_EXPERT - 5)
 		to_chat(user, SPAN_NOTICE("Requirements: <span style='color:red'>[blood_req]</span>/<span style='color:blue'>[oxygen_req]</span>/<span style='color:orange'>[nutriment_req]</span>"))
 
 /obj/item/organ/internal/is_usable()

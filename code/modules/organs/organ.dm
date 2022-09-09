@@ -122,7 +122,8 @@
 		/obj/structure/closet/crate/freezer,
 		/obj/item/storage/freezer,
 		/obj/machinery/smartfridge,
-		/obj/machinery/reagentgrinder/industrial/regurgitator
+		/obj/machinery/reagentgrinder/industrial/disgorger,
+		/obj/machinery/vending
 	)
 
 	if(is_type_in_list(loc, stasis_types))

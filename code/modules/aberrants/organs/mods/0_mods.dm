@@ -51,6 +51,3 @@
 			O.oxygen_req_mod 				+= round(organ_stats[6] * modifier * (1 + (1 * is_parasitic)), 0.01)
 
 			probability = probability / 8
-
-	if(is_parasitic)
-		O.new_color = pick("#88af7c", "#8bb0db", "#9b59d4")

@@ -78,8 +78,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	software_on_spawn = list(/datum/computer_file/program/signaller, /datum/computer_file/program/chem_catalog)
 
 	access = list(
-		access_robotics, access_tox, access_tox_storage, access_moebius, access_maint_tunnels, access_xenobiology, access_xenoarch, access_research_equipment,
-		access_genetics
+		access_robotics, access_tox, access_tox_storage, access_moebius, access_maint_tunnels, access_xenobiology, access_xenoarch, access_research_equipment
 	)
 
 	stat_modifiers = list(
@@ -168,3 +167,40 @@ Lastly, though they're not commonly used, you have the facilities to construct m
 	name = "Moebius Roboticist"
 	icon_state = "player-purple"
 	join_tag = /datum/job/roboticist
+
+/datum/job/psychiatrist
+	title = "Moebius Psychiatrist"
+	flag = PSYCHIATRIST
+	department = DEPARTMENT_SCIENCE
+	department_flag = SCIENCE
+	faction = "CEV Eris"
+	total_positions = 1
+	spawn_positions = 1
+	wage = WAGE_PROFESSIONAL
+	supervisors = "the Moebius Expedition Overseer"
+	selection_color = "#bdb1bb"
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+
+	outfit_type = /decl/hierarchy/outfit/job/science/psychiatrist
+
+	access = list(
+		access_robotics, access_tox, access_tox_storage, access_moebius, access_maint_tunnels, access_research_equipment, access_psychiatrist
+	)
+
+	stat_modifiers = list(
+		STAT_BIO = 25,
+		STAT_COG = 15,
+		STAT_VIG = 5
+	)
+
+	perks = list(/datum/perk/selfmedicated)
+
+	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
+							/datum/computer_file/program/chem_catalog,
+							/datum/computer_file/program/camera_monitor)
+
+
+/obj/landmark/join/start/psychiatrist
+	name = "Moebius Psychiatrist"
+	icon_state = "player-purple"
+	join_tag = /datum/job/psychiatrist
