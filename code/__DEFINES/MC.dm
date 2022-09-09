@@ -18,7 +18,7 @@
 #define MC_AVG_SLOW_UP_FAST_DOWN(average, current) (average < current ? MC_AVERAGE_SLOW(average, current) : MC_AVERAGE_FAST(average, current))
 
 ///creates a running average of "things elapsed" per time period when you need to count via a smaller time period.
-///eg you want an average number of things happening per second but you measure the event every tick (50 milliseconds).
+///eg you want an average number of things happening per second but you measure the event every tick (100 milliseconds).
 ///make sure both time intervals are in the same units. doesnt work if current_duration > total_duration or if total_duration == 0
 #define MC_AVG_OVER_TIME(average, current, total_duration, current_duration) ((((total_duration) - (current_duration)) / (total_duration)) * (average) + (current))
 
