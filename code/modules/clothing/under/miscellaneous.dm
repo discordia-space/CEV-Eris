@@ -120,7 +120,6 @@
 	icon_state = "sports"
 	item_state = "sports"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-	style = STYLE_LOW
 
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"
