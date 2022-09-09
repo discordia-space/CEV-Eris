@@ -159,7 +159,7 @@
 
 	// Stat check
 	details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
-	if(examine_stat_secondary)
+	if(examine_stat_secondary && details_unlocked)
 		details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
 
 	if(examine_msg)

@@ -45,11 +45,9 @@
 	desc = "Functional tissue of one or more organs in graftable form. Requires blood, oxygen, and nutrients, but hinders bodily functions."
 	icon_state = "parasitic_organoid"
 
-/obj/item/modification/organ/internal/special/on_pickup/parasitic/New(loc, generate_organ_stats = TRUE, predefined_modifier = -0.10)
-	var/datum/component/modification/organ/on_pickup/parasitic/M = AddComponent(/datum/component/modification/organ/on_pickup/parasitic)
-
-	M.prefix = pick("languid", "ailing", "infirm")
-	..()
+/obj/item/modification/organ/internal/special/on_pickup/parasitic/New(loc, generate_organ_stats = FALSE, predefined_modifier = null)
+	AddComponent(/datum/component/modification/organ/on_pickup/parasitic)
+	..(loc, TRUE, -0.1)
 
 /obj/item/modification/organ/internal/special/on_pickup/parasitic/update_icon()
 	return

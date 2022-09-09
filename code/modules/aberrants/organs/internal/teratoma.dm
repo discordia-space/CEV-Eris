@@ -102,6 +102,12 @@
 			for(var/i in 1 to req_num_outputs)
 				output_info += 1
 
+		if(/obj/item/modification/organ/internal/output/activate_organ_functions)
+			if(!output_pool?.len)
+				output_pool = ALL_STANDARD_ORGAN_EFFICIENCIES
+			for(var/i in 1 to req_num_outputs)
+				output_info += 1
+
 	..()
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/ruin()

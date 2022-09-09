@@ -78,8 +78,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	software_on_spawn = list(/datum/computer_file/program/signaller, /datum/computer_file/program/chem_catalog)
 
 	access = list(
-		access_robotics, access_tox, access_tox_storage, access_moebius, access_maint_tunnels, access_xenobiology, access_xenoarch, access_research_equipment,
-		access_genetics
+		access_robotics, access_tox, access_tox_storage, access_moebius, access_maint_tunnels, access_xenobiology, access_xenoarch, access_research_equipment
 	)
 
 	stat_modifiers = list(
