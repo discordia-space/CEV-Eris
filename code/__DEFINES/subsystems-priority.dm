@@ -27,7 +27,7 @@ var/list/bitflags = list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096
 #define SS_PRIORITY_TICKETS	       10
 
 // SS_BACKGROUND
-#define SS_PRIORITY_OBJECTS       40	// processing_objects processing.
+#define SS_PRIORITY_OBJECTS       60	// processing_objects processing.
 #define SS_PRIORITY_PROCESSING    30	// Generic datum processor. Replaces objects processor.
 #define SS_PRIORITY_CIRCUIT       30	// Processing Circuit's ticks and all that.
 #define SS_PRIORITY_GARBAGE       25	// Garbage collection.

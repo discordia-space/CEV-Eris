@@ -114,20 +114,22 @@ var/game_id
 
 	Master.Initialize(10, FALSE)
 
+	call_restart_webhook()
+
 	#ifdef UNIT_TESTS
+	// load_unit_test_changes() // ??
 	HandleTestRun()
 	#endif
 
 	if(config.ToRban)
 		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/ToRban_autoupdate))
-
-	call_restart_webhook()
+	return
 
 /world/proc/HandleTestRun()
 	//trigger things to run the whole process
-	Master.sleep_offline_after_initializations = FALSE
+	// Master.sleep_offline_after_initializations = FALSE
+	world.sleep_offline = FALSE // iirc mc SHOULD handle this
 	SSticker.start_immediately = TRUE
-	// config hacks
 	config.empty_server_restart_time = 0
 	config.vote_autogamemode_timeleft = 0
 	// CONFIG_SET(number/round_end_countdown, 0)
@@ -135,7 +137,7 @@ var/game_id
 #ifdef UNIT_TESTS
 	cb = CALLBACK(GLOBAL_PROC, /proc/RunUnitTests)
 #else
-	cb = VARSET_CALLBACK(global, universe_has_ended, TRUE)
+	cb = VARSET_CALLBACK(global, universe_has_ended, TRUE) // yes i ended the universe.
 #endif
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
 
