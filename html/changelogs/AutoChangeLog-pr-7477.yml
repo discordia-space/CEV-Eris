@@ -1,0 +1,7 @@
+author: assortedbeads
+delete-after: true
+changes:
+  - tweak: The RXB, Powered Crossbow and Shellshock can no longer take the Giga Lens,
+      Battery Shunt and Overdrive mods
+  - tweak: The Shellshock has been given the projectile firing flag and can take mods
+      reliant on that now.
