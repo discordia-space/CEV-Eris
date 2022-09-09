@@ -103,7 +103,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/clrifle/hv
 	armor_divisor = 2
-	step_delay = 0.70
+	step_delay = 0.7
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/clrifle/rubber
