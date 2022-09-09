@@ -119,7 +119,6 @@
 	desc = "Sweat stains not included."
 	icon_state = "sports"
 	item_state = "sports"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"
