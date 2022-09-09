@@ -98,6 +98,7 @@
 			/obj/item/clothing/under/suit_jacket/red,
 			/obj/item/clothing/under/bride_white,
 			/obj/item/clothing/under/tuxedo,
+			/obj/item/clothing/under/wifebeater,
 			/obj/item/clothing/under/rank/fo_suit,
 			/obj/item/clothing/under/rank/janitor,
 			/obj/item/clothing/under/rank/hydroponics
