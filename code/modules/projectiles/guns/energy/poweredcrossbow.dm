@@ -52,3 +52,6 @@
 	if(bolt && cell.use(charge_cost))
 		. = new bolt.projectile_type
 		bolt = null
+
+/obj/item/gun/energy/poweredcrossbow/generate_guntags()
+	gun_tags = list()
