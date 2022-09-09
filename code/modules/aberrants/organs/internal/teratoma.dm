@@ -135,7 +135,7 @@
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents
 	name = "metabolic teratoma"
-	description_info = "A teratoma that houses a metabolic organoid. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
+	description_info = "A teratoma that houses a metabolic organoid. Use a laser cutting tool to remove the organoid. 35 BIO and 15 COG recommended.\n\n\
 						Organoid information:\n\
 						Requires the specified reagent(s) to be present in one of the three metabolism holders: bloodstream, ingested, or touch. \
 						When the correct reagent is in the correct holder, the reagent will be removed at a rate equal to its metabolism times \
@@ -173,7 +173,7 @@
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/input/damage
 	name = "nociceptive teratoma"
-	description_info = "A teratoma that houses a nociceptive organoid. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
+	description_info = "A teratoma that houses a nociceptive organoid. Use a laser cutting tool to remove the organoid. 35 BIO and 15 COG recommended.\n\n\
 						Organoid information:\n\
 						Requires the specified damage type(s) to be present. The process is triggered when at least one point of damage is taken \
 						(can be inflicted before attaching the organ), but no damage is healed."
@@ -181,7 +181,7 @@
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/input/power_source
 	name = "bioelectric teratoma"
-	description_info = "A teratoma that houses a bioelectric organoid. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
+	description_info = "A teratoma that houses a bioelectric organoid. Use a laser cutting tool to remove the organoid. 35 BIO and 15 COG recommended.\n\n\
 						Organoid information:\n\
 						Requries the specified power source to be held in the bare hand of the organ's owner. Any amount of charge in a cell or sheets \
 						in a stack will trigger the process, but larger cells and rarer materials will provide a slight cognition and sanity boost."
@@ -277,21 +277,21 @@
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/process/map
 	name = "tubular teratoma"
-	description_info = "A teratoma that houses a tubular organoid. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
+	description_info = "A teratoma that houses a tubular organoid. Use a laser cutting tool to remove the organoid. 35 BIO and 15 COG recommended.\n\n\
 						Organoid information:\n\
 						Maps inputs to outputs. Works for any number of inputs and outputs."
 	process_mod_path = /obj/item/modification/organ/internal/process/map
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/process/condense
 	name = "sphincter teratoma"
-	description_info = "A teratoma that houses a sphincter organoid. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
+	description_info = "A teratoma that houses a sphincter organoid. Use a laser cutting tool to remove the organoid. 35 BIO and 15 COG recommended.\n\n\
 						Organoid information:\n\
 						Maps inputs to a single output. If there are multiple outputs, it only uses the first."
 	process_mod_path = /obj/item/modification/organ/internal/process/condense
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/process/boost
 	name = "enzymal teratoma"
-	description_info = "A teratoma that houses an enzymal organoid. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
+	description_info = "A teratoma that houses an enzymal organoid. Use a laser cutting tool to remove the organoid. 35 BIO and 15 COG recommended.\n\n\
 						Organoid information:\n\
 						Maps inputs to outputs. Increases output magnitude."
 	process_mod_path = /obj/item/modification/organ/internal/process/boost
@@ -312,7 +312,7 @@
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood
 	name = "hepatic teratoma"
-	description_info = "A teratoma that houses an hepatic organoid. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
+	description_info = "A teratoma that houses an hepatic organoid. Use a laser cutting tool to remove the organoid. 35 BIO and 15 COG recommended.\n\n\
 						Organoid information:\n\
 						Produces reagents in the bloodstream when triggered."
 	req_num_outputs = 1
@@ -336,7 +336,7 @@
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest
 	name = "gastric teratoma"
-	description_info = "A teratoma that houses a gastric organoid. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
+	description_info = "A teratoma that houses a gastric organoid. Use a laser cutting tool to remove the organoid. 35 BIO and 15 COG recommended.\n\n\
 						Organoid information:\n\
 						Produces reagents in the stomach when triggered."
 	req_num_outputs = 1
@@ -352,7 +352,7 @@
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects
 	name = "endocrinal teratoma"
-	description_info = "A teratoma that houses an endocrinal organoid. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
+	description_info = "A teratoma that houses an endocrinal organoid. Use a laser cutting tool to remove the organoid. 35 BIO and 15 COG recommended.\n\n\
 						Organoid information:\n\
 						Produces hormones in the bloodstream when triggered."
 	req_num_outputs = 1
@@ -368,7 +368,7 @@
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/output/stat_boost
 	name = "intracrinal teratoma"
-	description_info = "A teratoma that houses an intracrinal organoid. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
+	description_info = "A teratoma that houses an intracrinal organoid. Use a laser cutting tool to remove the organoid. 35 BIO and 15 COG recommended.\n\n\
 						Organoid information:\n\
 						Slightly increase stats when triggered."
 	req_num_outputs = 1
@@ -480,14 +480,14 @@
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/special/chemical_effect
 	name = "pygmy endocrinal teratoma"
-	description_info = "A teratoma that houses a pygmy endocrinal membrane. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
+	description_info = "A teratoma that houses a pygmy endocrinal membrane. Use a laser cutting tool to remove the organoid. 35 BIO and 15 COG recommended.\n\n\
 						Membrane information:\n\
 						Produces a hormone when the primary function triggers."
 	special_mod_path = /obj/item/modification/organ/internal/special/on_cooldown/chemical_effect
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/special/stat_boost
 	name = "pygmy intracrinal teratoma"
-	description_info = "A teratoma that houses a pygmy intracrinal membrane. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
+	description_info = "A teratoma that houses a pygmy intracrinal membrane. Use a laser cutting tool to remove the organoid. 35 BIO and 15 COG recommended.\n\n\
 						Membrane information:\n\
 						Slightly increases a stat when the primary function triggers."
 	special_mod_path = /obj/item/modification/organ/internal/special/on_cooldown/stat_boost
