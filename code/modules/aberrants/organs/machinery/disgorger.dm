@@ -82,7 +82,7 @@
 
 	if(blacklisted)
 		blacklisted = copytext(blacklisted, 1, length(blacklisted) - 1)
-		to_chat(user, SPAN_WARNING("Rejects [blacklisted]."))
+		to_chat(user, SPAN_WARNING("Rejects objects with the following reagents: [blacklisted]."))
 
 /obj/machinery/reagentgrinder/industrial/disgorger/proc/check_reagents(obj/item/I, mob/user)
 	if(!I.reagents || !I.reagents.total_volume)
