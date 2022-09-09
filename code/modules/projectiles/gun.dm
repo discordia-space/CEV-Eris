@@ -418,7 +418,7 @@
 
 		if(i < burst)
 			next_fire_time = world.time + shoot_time
-			sleep(burst_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : burst_delay)
+			sleep(burst_delay)
 
 		if(!(target && target.loc))
 			target = targloc
