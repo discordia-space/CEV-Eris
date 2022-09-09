@@ -102,15 +102,19 @@
 		verbs.Add(/obj/item/proc/set_chameleon_appearance)
 	. = ..()
 
-/obj/item/Destroy()
-	QDEL_NULL(hidden_uplink)
-	QDEL_NULL(blood_overlay)
-	QDEL_NULL(action)
+/obj/item/Destroy(force)
+	// This var exists as a weird proxy "owner" ref
+	// It's used in a few places. Stop using it, and optimially replace all uses please
+	master = null
 	if(ismob(loc))
 		var/mob/m = loc
 		m.u_equip(src)
 		remove_hud_actions(m)
 		loc = null
+
+	QDEL_NULL(hidden_uplink)
+	QDEL_NULL(blood_overlay)
+	QDEL_NULL(action)
 	if(hud_actions)
 		for(var/action in hud_actions)
 			qdel(action)
@@ -454,14 +458,58 @@ var/global/list/items_blood_overlay_by_type = list()
 					var/mob/living/carbon/human/depleted = src
 					depleted.regen_slickness(-1) // unlucky and unobservant gets the penalty
 					return
+
 			else
-				visible_message(SPAN_WARNING("[src] picks up, spins, and drops [grabbed]."), SPAN_WARNING("You pick up, spin, and drop [grabbed]."))
-				grabbed.external_recoil(60)
-				grabbed.Weaken(1)
-				if(!ishuman(grabbed))
+				if(ishuman(grabbed)) // irish whip if human(grab special), else spin and force rest
+					grabbed.external_recoil(40)
+					var/whip_dir = (get_dir(grabbed, src))
+					var/moves = 0
+					//force move the victim on the attacker's tile so that the whip can be executed
+					grabbed.loc = src.loc
+					//yeet
+					src.set_dir(whip_dir)
+					visible_message(SPAN_WARNING("[src] spins and hurls [grabbed] away!"), SPAN_WARNING("You spin and hurl [grabbed] away!"))
+					grabbed.update_lying_buckled_and_verb_status()
+					unEquip(inhand_grab)
+					//move grabbed for three tiles, if glass window/wall/railing encountered, proc interactions and break
+					for(moves, moves<=3, ++moves)
+						//low damage for walls, medium for windows, fall over for railings
+						if(istype(get_step(grabbed, whip_dir), /turf/simulated/wall))
+							visible_message(SPAN_WARNING("[grabbed] slams into the wall!"))
+							grabbed.damage_through_armor(15, BRUTE, BP_CHEST, ARMOR_MELEE)
+							break
+						
+						for(var/obj/structure/S in get_step(grabbed, whip_dir))
+							if(istype(S, /obj/structure/window))
+								visible_message(SPAN_WARNING("[grabbed] slams into \the [S]!"))
+								grabbed.damage_through_armor(25, BRUTE, BP_CHEST, ARMOR_MELEE)
+								
+								moves = 3
+								break
+							if(istype(S, /obj/structure/railing))
+								visible_message(SPAN_WARNING("[grabbed] falls over \the [S]!"))
+								grabbed.forceMove(get_step(grabbed, whip_dir))
+
+								moves = 3
+								break
+							if(istype(S, /obj/structure/table))
+								visible_message(SPAN_WARNING("[grabbed] falls on \the [S]!"))
+								grabbed.forceMove(get_step(grabbed, whip_dir))
+								grabbed.Weaken(5)
+
+								moves = 3
+								break
+						step_glide(grabbed, whip_dir,(DELAY2GLIDESIZE(0.2 SECONDS)))//very fast
+
+					//admin messaging
+					src.attack_log += text("\[[time_stamp()]\] <font color='red'>Irish-whipped [grabbed.name] ([grabbed.ckey])</font>")
+					grabbed.attack_log += text("\[[time_stamp()]\] <font color='orange'>Irish-whipped by [src.name] ([src.ckey])</font>")
+				else
+					visible_message(SPAN_WARNING("[src] picks up, spins, and drops [grabbed]."), SPAN_WARNING("You pick up, spin, and drop [grabbed]."))
+					grabbed.Weaken(1)
 					grabbed.resting = TRUE
-				grabbed.update_lying_buckled_and_verb_status()
-				unEquip(inhand_grab)
+					grabbed.update_lying_buckled_and_verb_status()
+					unEquip(inhand_grab)
 		else
 			to_chat(src, SPAN_WARNING("You do not have a firm enough grip to forcibly spin [inhand_grab.affecting]."))
 

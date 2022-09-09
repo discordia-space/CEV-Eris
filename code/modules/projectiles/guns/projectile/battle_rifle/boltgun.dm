@@ -142,7 +142,7 @@
 	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_SRIFLE
 	damage_multiplier = 1.6
-	penetration_multiplier = 1.7
+	penetration_multiplier = 0.7
 	init_recoil = RIFLE_RECOIL(2.4)
 	init_offset = 0 //no bayonet
 	max_shells = 6
@@ -176,7 +176,7 @@
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	damage_multiplier = 1.2
-	penetration_multiplier = 1.3
+	penetration_multiplier = 0
 	init_recoil = RIFLE_RECOIL(2.6)
 	max_shells = 5
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
@@ -218,7 +218,7 @@
 	force = WEAPON_FORCE_WEAK // no bayonet
 	armor_divisor = 1
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	penetration_multiplier = 1.1 // short barrel means maximum velocity isn't reached
+	penetration_multiplier = 0 // short barrel means maximum velocity isn't reached
 	proj_step_multiplier = 1.2
 	init_recoil = CARBINE_RECOIL(4)
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
