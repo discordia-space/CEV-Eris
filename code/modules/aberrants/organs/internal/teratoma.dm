@@ -2,10 +2,10 @@
 /obj/item/organ/internal/scaffold/aberrant/teratoma
 	name = "teratoma"
 	desc = "An abnormal growth of organ tissue."
-	description_info = "A functionless organ with space for a single organoid. Use a laser cutting tool to remove the organoid and recycle the leftover teratoma tissue in the regurgitator."
+	description_info = "A functionless organ with space for a single organoid. Use a laser cutting tool to remove the organoid and recycle the leftover teratoma tissue in the disgorger."
 	ruined_name = "ruined teratoma"
 	ruined_desc = "An abnormal growth of organ tissue. Ruined by use."
-	ruined_description_info = "Useless organ tissue. Recycle this in a regurgitator."
+	ruined_description_info = "Useless organ tissue. Recycle this in a disgorger."
 	ruined_color = "#696969"
 	icon_state = "teratoma"
 	price_tag = 200
@@ -25,8 +25,7 @@
 			process_mod_path = pick(subtypesof(/obj/item/modification/organ/internal/process))
 	else if(output_mod_path)
 		if(!ispath(output_mod_path))
-			output_mod_path = pick(subtypesof(/obj/item/modification/organ/internal/output) - /obj/item/modification/organ/internal/output/damaging_insight_gain\
-																							- /obj/item/modification/organ/internal/output/activate_organ_functions)
+			output_mod_path = pick(subtypesof(/obj/item/modification/organ/internal/output))
 	else if(special_mod_path)
 		if(!ispath(special_mod_path))
 			special_mod_path = pick(subtypesof(/obj/item/modification/organ/internal/special/on_pickup) +\
@@ -55,7 +54,7 @@
 				input_mode = pick(CHEM_TOUCH, CHEM_INGEST, CHEM_BLOOD)
 			if(!specific_input_type_pool?.len)
 				var/list/possible_reagent_classes = list()
-				possible_reagent_classes |= list(REAGENTS_ROACH, REAGENTS_SPIDER)
+				possible_reagent_classes |= list(REAGENTS_ROACH, REAGENTS_SPIDER, REAGENTS_DISPENSER, REAGENTS_TOXIN)
 				if(input_mode == CHEM_INGEST)
 					possible_reagent_classes |= list(REAGENTS_EDIBLE, REAGENTS_ALCOHOL)
 				if(input_mode == CHEM_BLOOD)
@@ -66,11 +65,7 @@
 		if(/obj/item/modification/organ/internal/output/reagents_blood)
 			if(!output_pool?.len)
 				var/list/possible_reagent_classes = list()
-				possible_reagent_classes |= list(REAGENTS_DRUGS, REAGENTS_ROACH)
-				if(req_num_outputs > 1)			// > 1 means uncommon or rare
-					possible_reagent_classes |= list(REAGENTS_MEDICINE_SIMPLE)
-				else if(req_num_outputs > 2)	// > means rare
-					possible_reagent_classes |= list(REAGENTS_MEDICINE_INTERMEDIATE)
+				possible_reagent_classes |= list(REAGENTS_DRUGS, REAGENTS_ROACH, REAGENTS_MEDICINE_SIMPLE, REAGENTS_MEDICINE_INTERMEDIATE)
 				output_pool = pick(possible_reagent_classes)
 			if(!output_info?.len)
 				for(var/i in 1 to req_num_outputs)
@@ -79,11 +74,7 @@
 		if(/obj/item/modification/organ/internal/output/reagents_ingest)
 			if(!output_pool?.len)
 				var/list/possible_reagent_classes = list()
-				possible_reagent_classes |= list(REAGENTS_EDIBLE, REAGENTS_ALCOHOL, REAGENTS_ROACH)
-				if(req_num_outputs > 1)			// > 1 means uncommon or rare
-					possible_reagent_classes |= list(REAGENTS_MEDICINE_SIMPLE)
-				else if(req_num_outputs > 2)	// > means rare
-					possible_reagent_classes |= list(REAGENTS_MEDICINE_INTERMEDIATE)
+				possible_reagent_classes |= list(REAGENTS_EDIBLE, REAGENTS_ALCOHOL, REAGENTS_ROACH, REAGENTS_MEDICINE_SIMPLE, REAGENTS_MEDICINE_INTERMEDIATE)
 				output_pool = pick(possible_reagent_classes)
 			if(!output_info?.len)
 				for(var/i in 1 to req_num_outputs)
@@ -92,18 +83,30 @@
 		if(/obj/item/modification/organ/internal/output/chemical_effects)
 			if(!output_pool?.len)
 				var/list/possible_hormone_types = list()
-				possible_hormone_types = list(TYPE_1_HORMONES)
-				if(req_num_outputs > 1)			// > 1 means uncommon or rare
-					possible_hormone_types |= list(TYPE_2_HORMONES)
+				possible_hormone_types = list(TYPE_1_HORMONES, TYPE_2_HORMONES)
 				output_pool = pick(possible_hormone_types)
-			for(var/i in 1 to req_num_outputs)
-				output_info += NOT_USED
+			if(!output_info?.len)
+				for(var/i in 1 to req_num_outputs)
+					output_info += NOT_USED
 
 		if(/obj/item/modification/organ/internal/output/stat_boost)
 			if(!output_pool?.len)
 				output_pool = ALL_STATS
+			if(!output_info?.len)
+				for(var/i in 1 to req_num_outputs)
+					output_info += 3
+
+		if(/obj/item/modification/organ/internal/output/damaging_insight_gain)
+			if(!output_pool?.len)
+				output_pool = list(BRUTE, BURN, TOX, OXY, CLONE, PSY)
 			for(var/i in 1 to req_num_outputs)
-				output_info += 3
+				output_info += 1
+
+		if(/obj/item/modification/organ/internal/output/activate_organ_functions)
+			if(!output_pool?.len)
+				output_pool = ALL_STANDARD_ORGAN_EFFICIENCIES
+			for(var/i in 1 to req_num_outputs)
+				output_info += 1
 
 	..()
 
@@ -129,6 +132,7 @@
 	name = "throbbing teratoma (input)"
 	req_num_inputs = 4
 
+
 /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents
 	name = "metabolic teratoma"
 	description_info = "A teratoma that houses a metabolic organoid. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
@@ -137,6 +141,35 @@
 						When the correct reagent is in the correct holder, the reagent will be removed at a rate equal to its metabolism times \
 						the length of the organ\'s cooldown in ticks. Then, the process will trigger."
 	input_mod_path = /obj/item/modification/organ/internal/input/reagents
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/roach
+	name = "metabolic teratoma (roach)"
+	specific_input_type_pool = REAGENTS_ROACH
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/spider
+	name = "metabolic teratoma (spider)"
+	specific_input_type_pool = REAGENTS_SPIDER
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/toxin
+	name = "metabolic teratoma (toxins)"
+	specific_input_type_pool = REAGENTS_TOXIN
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/edible
+	name = "metabolic teratoma (edible)"
+	specific_input_type_pool = REAGENTS_EDIBLE
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/alcohol
+	name = "metabolic teratoma (alcohol)"
+	specific_input_type_pool = REAGENTS_ALCOHOL
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/drugs
+	name = "metabolic teratoma (drugs)"
+	specific_input_type_pool = REAGENTS_DRUGS
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/dispenser
+	name = "metabolic teratoma (chemical)"
+	specific_input_type_pool = REAGENTS_DISPENSER
+
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/input/damage
 	name = "nociceptive teratoma"
@@ -159,6 +192,34 @@
 	name = "bulging metabolic teratoma"
 	req_num_inputs = 2
 
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/uncommon/roach
+	name = "bulging metabolic teratoma (roach)"
+	specific_input_type_pool = REAGENTS_ROACH
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/uncommon/spider
+	name = "bulging metabolic teratoma (spider)"
+	specific_input_type_pool = REAGENTS_SPIDER
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/uncommon/toxin
+	name = "bulging metabolic teratoma (toxins)"
+	specific_input_type_pool = REAGENTS_TOXIN
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/uncommon/edible
+	name = "bulging metabolic teratoma (edible)"
+	specific_input_type_pool = REAGENTS_EDIBLE
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/uncommon/alcohol
+	name = "bulging metabolic teratoma (alcohol)"
+	specific_input_type_pool = REAGENTS_ALCOHOL
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/uncommon/drugs
+	name = "bulging metabolic teratoma (drugs)"
+	specific_input_type_pool = REAGENTS_DRUGS
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/uncommon/dispenser
+	name = "bulging metabolic teratoma (chemical)"
+	specific_input_type_pool = REAGENTS_DISPENSER
+
 /obj/item/organ/internal/scaffold/aberrant/teratoma/input/damage/uncommon
 	name = "bulging nociceptive teratoma"
 	req_num_inputs = 2
@@ -171,6 +232,35 @@
 /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare
 	name = "throbbing metabolic teratoma"
 	req_num_inputs = 4
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare/roach
+	name = "throbbing metabolic teratoma (roach)"
+	specific_input_type_pool = REAGENTS_ROACH
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare/spider
+	name = "throbbing metabolic teratoma (spider)"
+	specific_input_type_pool = REAGENTS_SPIDER
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare/toxin
+	name = "throbbing metabolic teratoma (toxins)"
+	specific_input_type_pool = REAGENTS_TOXIN
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare/edible
+	name = "throbbing metabolic teratoma (edible)"
+	specific_input_type_pool = REAGENTS_EDIBLE
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare/alcohol
+	name = "throbbing metabolic teratoma (alcohol)"
+	specific_input_type_pool = REAGENTS_ALCOHOL
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare/drugs
+	name = "throbbing metabolic teratoma (drugs)"
+	specific_input_type_pool = REAGENTS_DRUGS
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare/dispenser
+	name = "throbbing metabolic teratoma (chemical)"
+	specific_input_type_pool = REAGENTS_DISPENSER
+
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/input/damage/rare
 	name = "throbbing nociceptive teratoma"
@@ -228,6 +318,22 @@
 	req_num_outputs = 1
 	output_mod_path = /obj/item/modification/organ/internal/output/reagents_blood
 
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/roach
+	name = "hepatic teratoma (roach)"
+	output_pool = REAGENTS_ROACH
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/drugs
+	name = "hepatic teratoma (drugs)"
+	output_pool = REAGENTS_DRUGS
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/medicine_simple
+	name = "hepatic teratoma (medicine)"
+	output_pool = REAGENTS_MEDICINE_SIMPLE
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/medicine_intermediate
+	name = "hepatic teratoma (medicine II)"
+	output_pool = REAGENTS_MEDICINE_INTERMEDIATE
+
 /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest
 	name = "gastric teratoma"
 	description_info = "A teratoma that houses a gastric organoid. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
@@ -236,6 +342,14 @@
 	req_num_outputs = 1
 	output_mod_path = /obj/item/modification/organ/internal/output/reagents_ingest
 
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/edible
+	name = "gastric teratoma (edible)"
+	output_pool = REAGENTS_EDIBLE
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/alcohol
+	name = "gastric teratoma (alcohol)"
+	output_pool = REAGENTS_ALCOHOL
+
 /obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects
 	name = "endocrinal teratoma"
 	description_info = "A teratoma that houses an endocrinal organoid. Use a laser cutting tool to remove the organoid (50 BIO recommended).\n\n\
@@ -243,6 +357,14 @@
 						Produces hormones in the bloodstream when triggered."
 	req_num_outputs = 1
 	output_mod_path = /obj/item/modification/organ/internal/output/chemical_effects
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/type_1
+	name = "endocrinal teratoma (type 1)"
+	output_pool = TYPE_1_HORMONES
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/type_2
+	name = "endocrinal teratoma (type 2)"
+	output_pool = TYPE_2_HORMONES
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/output/stat_boost
 	name = "intracrinal teratoma"
@@ -257,13 +379,45 @@
 	name = "bulging hepatic teratoma"
 	req_num_outputs = 2
 
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/uncommon/roach
+	name = "bulging hepatic teratoma (roach)"
+	output_pool = REAGENTS_ROACH
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/uncommon/drugs
+	name = "bulging hepatic teratoma (drugs)"
+	output_pool = REAGENTS_DRUGS
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/uncommon/medicine_simple
+	name = "bulging hepatic teratoma (medicine)"
+	output_pool = REAGENTS_MEDICINE_SIMPLE
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/uncommon/medicine_intermediate
+	name = "bulging hepatic teratoma (medicine II)"
+	output_pool = REAGENTS_MEDICINE_INTERMEDIATE
+
 /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/uncommon
 	name = "bulging gastric teratoma"
 	req_num_outputs = 2
 
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/uncommon/edible
+	name = "bulging gastric teratoma (edible)"
+	output_pool = REAGENTS_EDIBLE
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/uncommon/alcohol
+	name = "bulging gastric teratoma (alcohol)"
+	output_pool = REAGENTS_ALCOHOL
+
 /obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/uncommon
 	name = "bulging endocrinal teratoma"
 	req_num_outputs = 2
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/uncommon/type_1
+	name = "bulging endocrinal teratoma (type 1)"
+	output_pool = TYPE_1_HORMONES
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/uncommon/type_2
+	name = "bulging endocrinal teratoma (type 2)"
+	output_pool = TYPE_2_HORMONES
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/output/stat_boost/uncommon
 	name = "bulging intracrinal teratoma"
@@ -274,13 +428,45 @@
 	name = "throbbing hepatic teratoma"
 	req_num_outputs = 4
 
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/rare/roach
+	name = "throbbing hepatic teratoma (roach)"
+	output_pool = REAGENTS_ROACH
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/rare/drugs
+	name = "throbbing hepatic teratoma (drugs)"
+	output_pool = REAGENTS_DRUGS
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/rare/medicine_simple
+	name = "throbbing hepatic teratoma (medicine)"
+	output_pool = REAGENTS_MEDICINE_SIMPLE
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/rare/medicine_intermediate
+	name = "throbbing hepatic teratoma (medicine II)"
+	output_pool = REAGENTS_MEDICINE_INTERMEDIATE
+
 /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/rare
 	name = "throbbing gastric teratoma"
 	req_num_outputs = 4
 
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/rare/edible
+	name = "throbbing gastric teratoma (edible)"
+	output_pool = REAGENTS_EDIBLE
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/rare/alcohol
+	name = "throbbing gastric teratoma (alcohol)"
+	output_pool = REAGENTS_ALCOHOL
+
 /obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/rare
 	name = "throbbing endocrinal teratoma"
 	req_num_outputs = 4
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/rare/type_1
+	name = "throbbing endocrinal teratoma (type 1)"
+	output_pool = TYPE_1_HORMONES
+
+/obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/rare/type_2
+	name = "throbbing endocrinal teratoma (type 2)"
+	output_pool = TYPE_2_HORMONES
 
 /obj/item/organ/internal/scaffold/aberrant/teratoma/output/stat_boost/rare
 	name = "throbbing intracrinal teratoma"
@@ -305,15 +491,6 @@
 						Membrane information:\n\
 						Slightly increases a stat when the primary function triggers."
 	special_mod_path = /obj/item/modification/organ/internal/special/on_cooldown/stat_boost
-
-// parasitic
-/obj/item/organ/internal/scaffold/aberrant/teratoma/parasitic
-	name = "teratoma (unknown)"
-
-/obj/item/organ/internal/scaffold/aberrant/teratoma/parasitic/New()
-	var/obj/item/modification/organ/internal/stromal/parasitic/P = new (src)
-	SEND_SIGNAL(P, COMSIG_IATTACK, src)
-	..()
 
 // random
 /obj/item/organ/internal/scaffold/aberrant/teratoma/random

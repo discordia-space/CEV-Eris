@@ -87,3 +87,25 @@
 		/datum/design/autolathe/gun/dart_gun = 3, // Z-H P Artemis"
 		/datum/design/autolathe/ammo/dart_mag,
 	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/medical/genetics
+	disk_name = "Moebius Scientifica - Genetics"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
+	spawn_blacklisted = TRUE	// So genetics has backups
+	license = -1
+	designs = list(
+		/datum/design/research/circuit/dna_console,
+		/datum/design/research/circuit/cryo_slab,
+		/datum/design/research/circuit/moeballs_printer,
+		/datum/design/research/item/dna_scanner
+	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/medical/viscera
+	disk_name = "Moebius Scientifica - Viscera"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
+	spawn_blacklisted = TRUE	// So viscera has backups
+	license = -1
+	designs = list(
+		/datum/design/viscera/organ_fabricator,
+		/datum/design/viscera/disgorger
+	)

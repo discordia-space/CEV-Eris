@@ -29,7 +29,7 @@
 /datum/reagent/hormone/bloodclot
 	name = "thrombopoietin"		// Increases platelet (clotting stuff) production
 	id = "thrombopoietin"
-	effects = list(CE_BLOODCLOT = 0.1)
+	effects = list(CE_BLOODCLOT = 0.2)
 
 /datum/reagent/hormone/bloodclot/alt
 	name = "thromboxane"		// Produced by platelets to encourage stronger clots
@@ -39,7 +39,7 @@
 // Blood restoration
 /datum/reagent/hormone/bloodrestore
 	name = "aldosterone"		// Increases blood volume as a result of its IRL effects
-	id = "bloodrestore_hormone"
+	id = "aldosterone"
 	effects = list(CE_BLOODRESTORE = 0.1)
 
 /datum/reagent/hormone/bloodrestore/alt
@@ -62,7 +62,7 @@
 /datum/reagent/hormone/speedboost
 	name = "osteocalcin"		// Increases energy availability in muscles among other things, probably close enough
 	id = "osteocalcin"
-	effects = list(CE_SPEEDBOOST = 0.1)
+	effects = list(CE_SPEEDBOOST = 0.15)
 
 /datum/reagent/hormone/speedboost/alt
 	name = "noradrenaline"		// Fight or flight hormone
