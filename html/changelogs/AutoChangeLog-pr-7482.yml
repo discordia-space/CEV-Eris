@@ -1,0 +1,5 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - balance: fragment damage adjusted for new armor system
+  - bugfix: fragment damage type fixed
