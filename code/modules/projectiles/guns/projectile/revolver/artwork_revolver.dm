@@ -10,7 +10,7 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 1000
 	damage_multiplier = 1.4 //because pistol round //From havelock.dm
-	penetration_multiplier = 0.2
+	penetration_multiplier = 0.4
 	init_recoil = HANDGUN_RECOIL(1)
 	spawn_frequency = 0
 	serial_type = "" // artists are special and dont' care

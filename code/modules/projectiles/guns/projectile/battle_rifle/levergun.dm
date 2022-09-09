@@ -10,7 +10,6 @@
 	damage_multiplier = 1.6
 	style_damage_multiplier = 1
 	penetration_multiplier = 0
-	proj_step_multiplier = 0.8
 	init_recoil = RIFLE_RECOIL(2)
 	init_offset = 0
 	max_shells = 6
@@ -54,7 +53,8 @@
 	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_SHOTGUN
 	damage_multiplier = 1.1
-	penetration_multiplier = 0.2
+	penetration_multiplier = 0.3
+	proj_step_multiplier = 0.8
 	max_shells = 9
 	init_recoil = RIFLE_RECOIL(2.3)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 15)
