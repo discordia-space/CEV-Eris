@@ -814,7 +814,8 @@ var/global/list/default_medbay_channels = list(
 		visible_message(SPAN_NOTICE("[src] spits out a [stash_note]."))
 		last_produce = world.time
 	if(world.time > last_bluespace)
-		var/atom/movable/the_chosen = new(pickweight(bluespace_items, pick(5,10,25)))
+		var/pathed = pickweight(bluespace_items, pick(5,10,25))
+		var/atom/movable/the_chosen = new pathed()
 		the_chosen.forceMove(get_turf(src))
 		last_bluespace = world.time + bluespace_cooldown
 		bluespace_entropy(5, get_turf(src), TRUE)
