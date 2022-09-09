@@ -112,6 +112,7 @@
 	flags = GEAR_HAS_TYPE_SELECTION
 
 /datum/gear/accessory/cloak
-	display_name = "oversized poncho"
+	display_name = "poncho selection"
 	path = /obj/item/clothing/accessory/cloak
-	
+	slot = slot_accessory_buffer
+	flags = GEAR_HAS_TYPE_SELECTION
