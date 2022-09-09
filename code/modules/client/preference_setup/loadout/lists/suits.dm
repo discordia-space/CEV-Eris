@@ -20,8 +20,7 @@
 		"Violet"		=	/obj/item/clothing/suit/storage/violet_jacket,
 		"Tunnelsnake"	=	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake,
 		"Sleek"			=	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake,
-		"Jaeger"		=	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager,
-		"Boxer"			=	/obj/item/clothing/suit/storage/boxer_jacket
+		"Jaeger"		=	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jacket)
 
