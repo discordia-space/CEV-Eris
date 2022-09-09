@@ -1,0 +1,9 @@
+author: assortedbeads
+delete-after: true
+changes:
+  - rscadd: Added 5 new colours for poncho
+  - rscadd: Adds a clown poncho
+  - rscadd: Adds relevant recipes for crafting
+  - rscadd: Adds loadout options for ponchos
+  - imageadd: added new icons for the new ponchos
+  - tweak: The clown costume now costs 1 loadout point instead of 3
