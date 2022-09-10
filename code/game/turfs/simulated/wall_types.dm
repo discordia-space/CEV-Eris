@@ -44,6 +44,11 @@
 	icon = 'icons/turf/shuttlescience.dmi'
 	icon_state = "6,18"
 
+/turf/simulated/shuttle/wall/pulsar
+	name = "Pulsar Shuttle"
+	icon = 'icons/turf/shuttlepulsar.dmi'
+	icon_state = "pulsarwall1"
+
 /obj/structure/shuttle_part //For placing them over space, if sprite covers not whole tile.
 	name = "shuttle"
 	icon = 'icons/turf/shuttle.dmi'
@@ -70,6 +75,11 @@
 	name = "Science Shuttle"
 	icon = 'icons/turf/shuttlescience.dmi'
 	icon_state = "6,18"
+
+/obj/structure/shuttle_part/pulsar
+	name = "Pulsar Shuttle"
+	icon = 'icons/turf/shuttlepulsar.dmi'
+	icon_state = "pulsarwall1"
 
 /obj/structure/shuttle_part/ex_act(severity) //Making them indestructible, like shuttle walls
     return 0
