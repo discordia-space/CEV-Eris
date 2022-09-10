@@ -1,6 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - balance: gun firerate now more accurate
-  - balance: Molly now has a burst-mode instead of FA
-  - bugfix: bugs related to firerate and gun UI
