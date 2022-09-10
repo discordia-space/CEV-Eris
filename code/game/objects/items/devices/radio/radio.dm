@@ -813,7 +813,7 @@ var/global/list/default_medbay_channels = list(
 		var/obj/item/paper/stash_note = stash.spawn_note(get_turf(src))
 		visible_message(SPAN_NOTICE("[src] spits out a [stash_note]."))
 		last_produce = world.time
-	if(world.time > last_bluespace)
+	if(world.time > last_bluespace && bluespace_generating)
 		var/pathed = pickweight(bluespace_items, pick(5,10,25))
 		var/atom/movable/the_chosen = new pathed()
 		the_chosen.forceMove(get_turf(src))
