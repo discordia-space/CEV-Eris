@@ -42,22 +42,14 @@
 				spawn_with_preinstalled_parts = TRUE
 
 	if(spawn_with_preinstalled_parts)
-		var/list/parts_list = list(pick(gripvars), mechanism, barrel)
+		var/list/parts_list = list(mechanism, barrel)
 
 		pick_n_take(parts_list)
 		if(prob(50))
 			pick_n_take(parts_list)
 
 		for(var/part in parts_list)
-			if(ispath(part, grip))
-				new part(src)
-				grip_attached = TRUE
-			else if(part in gripvars)
-				var/variantnum = gripvars.Find(part)
-				result = resultvars[variantnum]
-				new part(src)
-				grip_attached = TRUE
-			else if(ispath(part, barrel))
+			if(ispath(part, barrel))
 				new part(src)
 				barrel_attached = TRUE
 			else if(ispath(part, mechanism))
