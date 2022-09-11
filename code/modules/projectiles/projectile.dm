@@ -308,7 +308,7 @@
 	//roll to-hit
 	miss_modifier = 0
 
-	var/result = PROJECTILE_FORCE_MISS
+	var/result = PROJECTILE_CONTINUE
 
 	if(iscarbon(target_mob))
 		// Handheld shields
@@ -327,10 +327,10 @@
 //			qdel(src)
 //			return TRUE
 
-	result = target_mob.bullet_act(src, def_zone)
-
 	if(check_miss_chance(target_mob))
 		result = PROJECTILE_FORCE_MISS
+	else
+		result = target_mob.bullet_act(src, def_zone)
 
 	if(result == PROJECTILE_FORCE_MISS || result == PROJECTILE_FORCE_MISS_SILENCED)
 		if(!silenced && result == PROJECTILE_FORCE_MISS)
@@ -358,10 +358,6 @@
 			target_mob.attack_log += "\[[time_stamp()]\] <b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[target_mob]/[target_mob.ckey]</b> with <b>\a [src]</b>"
 			msg_admin_attack("UNKNOWN shot [target_mob] ([target_mob.ckey]) with \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target_mob.x];Y=[target_mob.y];Z=[target_mob.z]'>JMP</a>)")
 
-	//sometimes bullet_act() will want the projectile to continue flying
-	if (result == PROJECTILE_CONTINUE)
-		return FALSE
-
 	if(target_mob.mob_classification & CLASSIFICATION_ORGANIC)
 		var/turf/target_loca = get_turf(target_mob)
 		var/mob/living/L = target_mob
@@ -384,7 +380,10 @@
 		if(psy.contractor && result && (H.sanity.level <= 0))
 			psy.holder.reg_break(H)
 
-	return TRUE
+	if(result = PROJECTILE_STOP)
+		return TRUE
+	else
+		return FALSE
 
 /obj/item/projectile/Bump(atom/A as mob|obj|turf|area, forced = FALSE)
 	if(A == src)
