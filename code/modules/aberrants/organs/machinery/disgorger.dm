@@ -248,7 +248,7 @@
 			/datum/reagent/toxin/blattedin = 0.5
 		)
 	if(liver_eff > 149)
-		accepted_reagents = list(
+		accepted_reagents |= list(
 			/datum/reagent/toxin/fuhrerole = 1,
 			/datum/reagent/toxin/kaiseraurum = 10
 		)
