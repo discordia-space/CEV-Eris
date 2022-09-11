@@ -74,26 +74,28 @@
 		return FALSE
 
 	to_chat(user, "<b> EMERGENCY SENSOR READINGS </b>")
-	for(var/turf/simulated/card in cardinal_turfs(src))
+	for(var/possible_cardinal in cardinal)
+		var/turf/simulated/turf_sim = get_step(src, possible_cardinal)
 		var/text_to_say = "&nbsp;&nbsp" // Magic bullshit im not even gonna question from the old proc
-		var/dangerous = FALSE
-		text_to_say += "[dir2text(get_dir(src, card))] : "
-		if(card.is_wall || !card.zone)
+		text_to_say += "[uppertext(dir2text(possible_cardinal))] : "
+		if(!istype(turf_sim) || turf_sim.is_wall || !turf_sim.zone)
 			text_to_say += SPAN_NOTICE("NO DATA")
 			to_chat(user, text_to_say)
 			continue
-		if(card.zone.return_pressure() < FIREDOOR_MIN_PRESSURE)
+		var/dangerous = FALSE
+		var/datum/gas_mixture/air_data = turf_sim.zone.air
+		if(air_data.return_pressure() < FIREDOOR_MIN_PRESSURE)
 			text_to_say += SPAN_DANGER("LOW PRESSURE ")
 			dangerous = TRUE
-		if(card.zone.temperature > FIREDOOR_MAX_TEMP)
+		if(air_data.temperature > FIREDOOR_MAX_TEMP)
 			text_to_say += SPAN_DANGER("HIGH TEMPERATURE ")
 			dangerous = TRUE
-		else if(card.zone.temperature < FIREDOOR_MIN_TEMP)
+		else if(air_data.temperature < FIREDOOR_MIN_TEMP)
 			text_to_say += SPAN_DANGER("LOW TEMPERATURE ")
 			dangerous = TRUE
 		if(dangerous)
 			to_chat(user, text_to_say)
-			return
+			continue
 		text_to_say += span_green("SAFE")
 		to_chat(user, text_to_say)
 
@@ -286,21 +288,6 @@
 		if(blocked)
 			overlays += "welded"
 			do_set_light = TRUE
-		for(var/cardinals in tile_info)
-			var/target_card = text2dir(cardinals)
-			var/list/turf_data = tile_info[cardinals]
-			if(length(turf_data) && turf_data[FIREDOOR_ALERT])
-				var/our_alert_color = (turf_data[FIREDOOR_ALERT] & FIREDOOR_ALERT_HOT) ? 1 : 2
-				overlays += new/icon(icon,"alert_[ALERT_STATES[our_alert_color]]", dir=target_card)
-		/*
-		if(dir_alerts)
-			for(var/d=1;d<=4;d++)
-				var/cdir = cardinal[d]
-				for(var/i=1;i<=ALERT_STATES.len;i++)
-					if(dir_alerts[d] & (1<<(i-1)))
-						overlays += new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir)
-						do_set_light = TRUE
-		*/
 	else
 		icon_state = "door_open"
 		if(blocked)
