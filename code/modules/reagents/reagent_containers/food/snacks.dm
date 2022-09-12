@@ -1109,6 +1109,32 @@
 	taste_tag = list(INSECTS_FOOD,MEAT_FOOD)
 	price_tag = 12500
 
+/obj/item/reagent_containers/food/snacks/wormburger
+	name = "worm burger"
+	desc = "Ew, are they alive?"
+	icon_state = "wburger"
+	filling_color = "#D63C3C"
+	bitesize = 4
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_desc = list("bun" = 2, "worm" = 2)
+	nutriment_amt = 4
+	preloaded_reagents = list("protein" = 3)
+	cooked = TRUE
+	taste_tag = list(UMAMI_FOOD, INSECTS_FOOD)
+
+/obj/item/reagent_containers/food/snacks/geneburger
+	name = "flesh burger"
+	desc = "It is writhing around..."
+	icon_state = "gburger"
+	filling_color = "#D63C3C"
+	bitesize = 4
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_desc = list("bun" = 2, "slimy flesh" = 2)
+	nutriment_amt = 4
+	preloaded_reagents = list("protein" = 3)
+	cooked = TRUE
+	taste_tag = list(MEAT_FOOD, UMAMI_FOOD)
+
 /obj/item/reagent_containers/food/snacks/roach_egg
 	name = "boiled roach egg"
 	desc = "A cockroach egg that has been boiled in salted water. It no longer pulses with an inner life."

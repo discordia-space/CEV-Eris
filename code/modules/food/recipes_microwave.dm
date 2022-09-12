@@ -195,6 +195,20 @@ I said no!
 	)
 	result = /obj/item/reagent_containers/food/snacks/kaiserburger
 
+/datum/recipe/wormburger
+	items = list(
+		/obj/item/reagent_containers/food/snacks/moecube/worm,
+		/obj/item/reagent_containers/food/snacks/bun
+	)
+	result = /obj/item/reagent_containers/food/snacks/wormburger
+
+/datum/recipe/geneburger
+	items = list(
+		/obj/item/reagent_containers/food/snacks/moecube,
+		/obj/item/reagent_containers/food/snacks/bun
+	)
+	result = /obj/item/reagent_containers/food/snacks/geneburger
+
 /datum/recipe/hotdog
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bun,
