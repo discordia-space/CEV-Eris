@@ -362,7 +362,7 @@
 			if("species")
 				var/datum/species/S = gene_value
 				H.set_species(S.name)
-		to_chat(H, SPAN_DANGER("Something feels... different."))
+		to_chat(H, SPAN_DANGER("Some part of you feels wrong, like it's not you anymore."))
 	else
 		var/datum/mutation/U = gene_value ? gene_value : (H.active_mutations.len ? pick(H.active_mutations) : null)
 		U?.cleanse(H)
@@ -373,12 +373,14 @@
 
 /datum/reagent/toxin/mutagen/moeball/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(15))
-		to_chat(M, SPAN_DANGER("You feel something painful shifting within your veins!"))
+		to_chat(M, SPAN_DANGER("You feel your veins crackling and sending chills all over your skin!"))
 		M.adjustToxLoss(rand(4, 8) * effect_multiplier)
 		M.adjustOxyLoss(rand(5, 20))
 	if(dose > 3 && ishuman(M))
 		mutate(M, alien, effect_multiplier)
 		dose = dose - 3
+		if(prob(50 - M.stats.getStat(STAT_TGH)))
+			M.vomit() // It really isn't going to help
 
 /datum/reagent/toxin/mutagen/moeball/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(10))
@@ -387,6 +389,8 @@
 	if(dose > 4 && ishuman(M))
 		mutate(M, alien, effect_multiplier)
 		dose = dose - 4
+		if(prob(100 - M.stats.getStat(STAT_TGH)))
+			M.vomit()
 
 /datum/reagent/medicine/slimejelly
 	name = "Slime Jelly"
