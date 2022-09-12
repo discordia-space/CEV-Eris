@@ -240,26 +240,49 @@
 	attacker.set_dir(EAST) //face the victim
 	target.set_dir(SOUTH) //face up
 
-/obj/item/grab/proc/devour(mob/target, mob/user)
-	var/can_eat
-	var/mob/living/carbon/human/H = user
-	if(istype(H) && H.species.gluttonous && (iscarbon(target) || isanimal(target)))
-		if(H.species.gluttonous == GLUT_TINY && (target.mob_size <= MOB_TINY) && !ishuman(target)) // Anything MOB_TINY or smaller
-			can_eat = 1
-		else if(H.species.gluttonous == GLUT_SMALLER && (H.mob_size > target.mob_size)) // Anything we're larger than
-			can_eat = 1
-		else if(H.species.gluttonous == GLUT_ANYTHING) // Eat anything ever
-			can_eat = 2
+/obj/item/grab/proc/fireman_throw(mob/target, mob/user)//in short, suplex + irish whip
+	if(state < GRAB_AGGRESSIVE)//blue grab check
+		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
+		return
+	visible_message(SPAN_DANGER("[attacker] lifts [target] over the shoulders, just to drop \him behind!" ))
+	target.SpinAnimation(5,1)
+	var/fireman_dir = (get_dir(grabbed, attacker))
+	var/damage = 10
+	grabbed.update_lying_buckled_and_verb_status()
+	unEquip(src)
 
-	if(can_eat)
-		var/mob/living/carbon/attacker = user
-		user.visible_message(SPAN_DANGER("[user] is attempting to devour [target]!"))
-		if(can_eat == 2)
-			if(!do_mob(user, target, 30)) return
-		else
-			if(!do_mob(user, target, 100)) return
-		user.visible_message(SPAN_DANGER("[user] devours [target]!"))
-		admin_attack_log(attacker, target, "Devoured.", "Was devoured by.", "devoured")
-		target.loc = user
-		attacker.stomach_contents.Add(target)
-		qdel(src)
+	if(istype(get_step(attacker, fireman_dir), /turf/simulated/wall))
+		visible_message(SPAN_WARNING("[grabbed] slams into the wall!"))
+		damage = 20
+		target.loc = src.loc
+						
+	for(var/obj/structure/S in get_step(grabbed, whip_dir))
+		if(istype(S, /obj/structure/window))
+			visible_message(SPAN_WARNING("[grabbed] slams into \the [S]!"))
+			damage = 30
+
+		if(istype(S, /obj/structure/railing))
+			visible_message(SPAN_WARNING("[grabbed] falls over \the [S]!"))
+			grabbed.forceMove(get_step(grabbed, whip_dir))
+
+		if(istype(S, /obj/structure/table))
+			visible_message(SPAN_WARNING("[grabbed] falls on \the [S]!"))
+			grabbed.forceMove(get_step(grabbed, whip_dir))
+			S.take_damage(10)
+			grabbed.Weaken(5)
+			damage = 15
+
+		continue
+
+	if(!istype(get_step(attacker, fireman_dir), /turf/simulated/wall))
+		grabbed.forceMove(get_step(grabbed, fireman_dir))
+
+	target.damage_through_armor(damage, HALLOSS, BP_CHEST, ARMOR_MELEE)
+
+	target.Weaken(1)
+	playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
+	attacker.regen_slickness(0.15)//sick, but dropkick is even sicker
+
+	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Fireman-thrown [target.name] ([target.ckey])</font>")
+	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Fireman-thrown by [attacker.name] ([attacker.ckey])</font>")
+	msg_admin_attack("[key_name(attacker)] has fireman-thrown [key_name(target)]")
