@@ -174,10 +174,6 @@
 	if(organ.brute_dam <= 0)
 		to_chat(user, SPAN_NOTICE("This limb is undamaged!"))
 		return SURGERY_FAILURE
-	var/obj/item/stack/S = tool
-	if(S <= 0)
-		to_chat(user, SPAN_NOTICE("This kit has no more regenerative membranes!"))
-		return SURGERY_FAILURE
 	return TRUE
 
 /datum/surgery_step/fix_brute/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
@@ -193,8 +189,8 @@
 	)
 	if(istype(tool, /obj/item/stack/medical/advanced/bruise_pack) || istype(tool, /obj/item/stack/medical/advanced/bruise_pack/nt))
 		var/obj/item/stack/S = tool
-		S.use(1)
-	organ.heal_damage(25, 0, TRUE)
+		if(S.use(1))
+			organ.heal_damage(25, 0, TRUE)
 
 /datum/surgery_step/fix_brute/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
@@ -239,8 +235,8 @@
 	)
 	if(istype(tool, /obj/item/stack/medical/advanced/ointment) || istype(tool, /obj/item/stack/medical/advanced/ointment/nt))
 		var/obj/item/stack/S = tool
-		S.use(1)
-	organ.heal_damage(0, 25, TRUE)
+		if(S.use(1))
+			organ.heal_damage(0, 25, TRUE)
 
 /datum/surgery_step/fix_burn/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
