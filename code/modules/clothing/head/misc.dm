@@ -284,7 +284,6 @@
 	name = "Nanotrasen Security Beret"
 	desc = "A washed out and dusty corporate security beret from the long defunct NanoTrasen Corporation."
 	icon_state = "nanoberet"
-	style = STYLE_LOW
 
 /obj/item/clothing/head/onestar
 	name = "One Star officer cap"
