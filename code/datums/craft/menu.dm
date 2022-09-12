@@ -55,8 +55,8 @@
 	if(CR)
 		data["cur_item"] = list(
 			"name" = CR.name,
-			"icon" = SSassets.transport.get_asset_url("[CR.result].png"),
-			"ref"  = "\ref[CR]",
+			"icon" = SSassets.transport.get_asset_url(sanitizeFileName("[CR.result].png")),
+			"ref"  = "[REF(CR)]",
 			"desc" = CR.get_description(),
 			"batch" = CR.flags & CRAFT_BATCH
 		)
@@ -65,7 +65,7 @@
 		if((recipe.avaliableToEveryone || (recipe.type in user.mind.knownCraftRecipes)))
 			items += list(list(
 				"name" = capitalize(recipe.name),
-				"ref" = "\ref[recipe]"
+				"ref" = "[REF(recipe)]"
 			))
 	data["items"] = items
 
