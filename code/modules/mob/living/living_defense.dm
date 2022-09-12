@@ -64,7 +64,7 @@
 				dmg = max(dmg - remaining_armor - remaining_ablative, 0)
 
 			if(!(dmg_type == HALLOSS)) // Determine pain from impact
-				adjustHalLoss(used_armor * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
+				adjustHalLoss(used_armor * wounding_multiplier * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 
 			dmg_types[dmg_type] = dmg // Finally, we adjust the damage passing through
 			if(dmg)
@@ -73,8 +73,6 @@
 
 				if(dmg_type == HALLOSS)
 					dmg = round(dmg * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
-				else if(dmg_armor_difference)
-					adjustHalLoss(dmg_armor_difference * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 				if(dmg_type == BRUTE)
 
 					if ( (sharp || edge) && prob ( (1 - dmg / dmg_types[dmg_type]) * 100 ) ) // If enough of the brute damage is blocked, sharpness is lost from all followup attacks
@@ -125,11 +123,11 @@
 			var/remaining_dmg = 0
 			for(var/dmg_type in dmg_types)
 				remaining_dmg += dmg_types[dmg_type]
-			return (total_damage / 2 < remaining_dmg && remaining_dmg > 20) ? PROJECTILE_CONTINUE : PROJECTILE_STOP
+			return ((total_dmg / 2 < remaining_dmg && remaining_dmg > 20) ? PROJECTILE_CONTINUE : PROJECTILE_STOP)
 
 	if(isProjectile(used_weapon))
 		var/obj/item/projectile/P = used_weapon
-		P.damage_types = damage_types
+		P.damage_types = dmg_types
 
 	return dealt_damage
 
