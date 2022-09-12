@@ -174,6 +174,10 @@
 	if(organ.brute_dam <= 0)
 		to_chat(user, SPAN_NOTICE("This limb is undamaged!"))
 		return SURGERY_FAILURE
+	var/obj/item/stack/S = tool
+	if(S <= 0)
+		to_chat(user, SPAN_NOTICE("This kit has no more regenerative membranes!"))
+		return SURGERY_FAILURE
 	return TRUE
 
 /datum/surgery_step/fix_brute/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
