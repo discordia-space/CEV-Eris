@@ -362,6 +362,7 @@
 			if("species")
 				var/datum/species/S = gene_value
 				H.set_species(S.name)
+		to_chat(H, SPAN_DANGER("Something feels... different."))
 	else
 		var/datum/mutation/U = gene_value ? gene_value : (H.active_mutations.len ? pick(H.active_mutations) : null)
 		U?.cleanse(H)
@@ -372,9 +373,9 @@
 
 /datum/reagent/toxin/mutagen/moeball/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(15))
-		to_chat(M, SPAN_DANGER("Your insides are burning!"))
-		M.adjustToxLoss(rand(2, 6) * effect_multiplier)
-		M.adjustOxyLoss(rand(10, 20))
+		to_chat(M, SPAN_DANGER("You feel something painful shifting within your veins!"))
+		M.adjustToxLoss(rand(4, 8) * effect_multiplier)
+		M.adjustOxyLoss(rand(5, 20))
 	if(dose > 3 && ishuman(M))
 		mutate(M, alien, effect_multiplier)
 		dose = dose - 3
@@ -382,7 +383,7 @@
 /datum/reagent/toxin/mutagen/moeball/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(10))
 		to_chat(M, SPAN_DANGER("Your insides are burning!"))
-		M.adjustToxLoss(rand(1, 4) * effect_multiplier)
+		M.adjustToxLoss(rand(2, 6) * effect_multiplier)
 	if(dose > 4 && ishuman(M))
 		mutate(M, alien, effect_multiplier)
 		dose = dose - 4
