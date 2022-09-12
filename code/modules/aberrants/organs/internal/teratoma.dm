@@ -69,7 +69,7 @@
 				output_pool = pick(possible_reagent_classes)
 			if(!output_info?.len)
 				for(var/i in 1 to req_num_outputs)
-					output_info += pick(VERY_LOW_OUTPUT)
+					output_info += pick(LOW_OUTPUT)
 
 		if(/obj/item/modification/organ/internal/output/reagents_ingest)
 			if(!output_pool?.len)
@@ -78,7 +78,7 @@
 				output_pool = pick(possible_reagent_classes)
 			if(!output_info?.len)
 				for(var/i in 1 to req_num_outputs)
-					output_info += pick(VERY_LOW_OUTPUT)
+					output_info += pick(LOW_OUTPUT)
 
 		if(/obj/item/modification/organ/internal/output/chemical_effects)
 			if(!output_pool?.len)
