@@ -148,8 +148,8 @@
 /obj/item/clothing/shoes/jackboots/duty/long
 	name = "long duty jackboots"
 	desc = "A pair of slightly modified standard-issue jackboots. These reach up even higher."
-	icon_state = "duty"
-	item_state = "duty"
+	icon_state = "duty_long"
+	item_state = "duty_long"
 
 /obj/item/clothing/shoes/sneakerspurple
 	name = "purple sneakers"
