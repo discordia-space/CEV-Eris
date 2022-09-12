@@ -1,5 +1,0 @@
-author: zombiemimic
-delete-after: true
-changes:
-  - rscdel: removed grips spawning in frames
-  - bugfix: fixed debug gun spawning when assembling frames
