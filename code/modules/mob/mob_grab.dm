@@ -334,11 +334,11 @@
 			assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Strangled (kill intent) [affecting.name] ([affecting.ckey])</font>"
 			msg_admin_attack("[key_name(assailant)] strangled (kill intent) [key_name(affecting)]")
 
-			affecting.setClickCooldown(10)
 			affecting.set_dir(WEST)
 			if(iscarbon(affecting))
 				var/mob/living/carbon/C = affecting
-				C.losebreath += 1
+				if(!C.internals)
+					C.losebreath += 1
 		else
 			state = GRAB_NECK
 	update_slowdown()
