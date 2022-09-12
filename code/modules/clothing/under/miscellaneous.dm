@@ -364,6 +364,20 @@ obj/item/clothing/under/genericr
 		rad = 0
 	)
 
+/obj/item/clothing/under/jamrock_suit//Disco
+	name = "brown comfortable clothing"
+	desc = "A suit and pants that are so basic it's stylish."
+	icon_state = "jamrock_suit"
+	item_state = "jamrock_suit"
+	style = STYLE_HIGH
+
+/obj/item/clothing/under/aerostatic_suit//Elysium
+	name = "dark comfortable clothing"
+	desc = "A suit and pants that are so basic it's stylish."
+	icon_state = "aerostatic_suit"
+	item_state = "aerostatic_suit"
+	style = STYLE_HIGH
+
 /obj/item/clothing/under/storage/tracksuit
 	name = "striped tracksuit"
 	desc = "A classic style for hoodlums and bandits."

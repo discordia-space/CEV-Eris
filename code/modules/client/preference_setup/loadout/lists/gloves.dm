@@ -48,3 +48,7 @@
 /datum/gear/gloves/fingerless
 	display_name = "gloves, fingerless"
 	path = /obj/item/clothing/gloves/fingerless
+
+/datum/gear/gloves/aerostatic
+	display_name = "gloves, aerostatic"
+	path = /obj/item/clothing/gloves/aerostatic
