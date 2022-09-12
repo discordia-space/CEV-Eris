@@ -76,7 +76,9 @@
 							/datum/reagent/metal/mercury, /datum/reagent/metal/potassium, /datum/reagent/metal/radium, /datum/reagent/metal/sodium,\
 							/datum/reagent/metal/tungsten)
 
-#define REAGENTS_EDIBLE list(/datum/reagent/organic/nutriment, /datum/reagent/organic/frostoil, /datum/reagent/organic/capsaicin, /datum/reagent/drink/milk)
+#define REAGENTS_EDIBLE list(/datum/reagent/organic/nutriment, /datum/reagent/organic/frostoil, /datum/reagent/organic/capsaicin, /datum/reagent/drink/milk,\
+							/datum/reagent/other/lipozine, /datum/reagent/drink/limejuice, /datum/reagent/drink/orangejuice, /datum/reagent/drink/tomatojuice,\
+							/datum/reagent/drink/tea, /datum/reagent/drink/tea/icetea)
 
 #define REAGENTS_ALCOHOL list(/datum/reagent/alcohol/ale, /datum/reagent/alcohol/beer, /datum/reagent/alcohol/mead,\
 								/datum/reagent/alcohol/gin, /datum/reagent/alcohol/rum, /datum/reagent/alcohol/tequilla, /datum/reagent/alcohol/vermouth,\
