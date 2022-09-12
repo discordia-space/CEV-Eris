@@ -120,6 +120,12 @@
 	icon_state = "sports"
 	item_state = "sports"
 
+/obj/item/clothing/under/camopants
+	name = "camo pants"
+	desc = "Beige camo pants and a turtleneck."
+	icon_state = "camopants"
+	item_state = "camopants"
+
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"
 	desc = "Are you not entertained? Is that not why you are here?"
@@ -364,14 +370,14 @@ obj/item/clothing/under/genericr
 		rad = 0
 	)
 
-/obj/item/clothing/under/jamrock_suit//Disco
+/obj/item/clothing/under/jamrock//Disco
 	name = "brown comfortable clothing"
 	desc = "A suit and pants that are so basic it's stylish."
 	icon_state = "jamrock_suit"
 	item_state = "jamrock_suit"
 	style = STYLE_HIGH
 
-/obj/item/clothing/under/aerostatic_suit//Elysium
+/obj/item/clothing/under/aerostatic//Elysium
 	name = "dark comfortable clothing"
 	desc = "A suit and pants that are so basic it's stylish."
 	icon_state = "aerostatic_suit"

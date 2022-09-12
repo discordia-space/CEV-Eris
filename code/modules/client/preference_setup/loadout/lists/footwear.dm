@@ -67,3 +67,11 @@
 /datum/gear/shoes/sneakersred
 	display_name = "red sneakers"
 	path = /obj/item/clothing/shoes/sneakersred
+
+/datum/gear/shoes/jamrock
+	display_name = "lizardskin boots"
+	path = /obj/item/clothing/shoes/jamrock
+
+/datum/gear/shoes/aerostatic
+	display_name = "running shoes"
+	path = /obj/item/clothing/shoes/aerostatic

@@ -195,9 +195,45 @@
 	item_state = "bomber"
 	icon_open = "bomber_open"
 	icon_closed = "bomber"
+	style = STYLE_HIGH
 	body_parts_covered = UPPER_TORSO|ARMS
 	cold_protection = UPPER_TORSO|ARMS
 	min_cold_protection_temperature = T0C - 20
+	siemens_coefficient = 0.7
+
+/obj/item/clothing/suit/storage/toggle/bomber/furred
+	name = "furred bomber jacket"
+	desc = "A thick, well-worn WW2 leather bomber jacket, padded with warm fur. It's cold out in space!"
+	icon_state = "fur_bomber"
+	item_state = "fur_bomber"
+	icon_open = "fur_bomber_open"
+	icon_closed = "fur_bomber"
+
+/obj/item/clothing/suit/storage/jamrock
+	name = "disco blazer"
+	desc = "A green blazer that looks perfect for a disco party."
+	icon_state = "jamrock_blazer"
+	item_state = "jamrock_blazer"
+	style = STYLE_HIGH
+	body_parts_covered = UPPER_TORSO|ARMS
+	siemens_coefficient = 0.7
+
+/obj/item/clothing/suit/storage/aerostatic
+	name = "aerostatic bomber jacket"
+	desc = "A red bomber jacket that looks like its seen better days."
+	icon_state = "aerostatic_bomber_jacket"
+	item_state = "aerostatic_bomber_jacket"
+	style = STYLE_HIGH
+	body_parts_covered = UPPER_TORSO|ARMS
+	siemens_coefficient = 0.7
+
+/obj/item/clothing/suit/storage/khaki
+	name = "tactful jacket"
+	desc = "A khaki-colored jacket so stylishly casual you might think it sports a tactical vest."
+	icon_state = "khaki"
+	item_state = "khaki"
+	style = STYLE_HIGH
+	body_parts_covered = UPPER_TORSO|ARMS
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/storage/leather_jacket
@@ -217,6 +253,7 @@
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
+
 /obj/item/clothing/suit/storage/leather_jacket/tunnelsnake
 	name = "Sleek leather Jacket"
 	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too much. More importantly, it makes you look like a really bad boy or girl."
@@ -338,11 +375,28 @@
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
+/obj/item/clothing/suit/storage/dante//makes even the devil cry
+	name = "exterminator coat"
+	desc = "A red leather coat. You feel like there should also be a blue one."
+	icon_state = "dante"
+	item_state = "dante"
+	armor = list(
+		melee = 2,
+		bullet = 4,
+		energy = 2,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	siemens_coefficient = 0.7
+
 /obj/item/clothing/suit/storage/drive_jacket
 	name = "white jacket"
 	desc = "With the warmth of this jacket you feel like you're a real human being."
 	icon_state = "drive_jacket"
 	item_state = "drive_jacket"
+	style = STYLE_HIGH
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/violet_jacket
@@ -350,6 +404,7 @@
 	desc = "Coat that you ride like lightning, and will crash with you like thunder."
 	icon_state = "violet_jacket"
 	item_state = "violet_jacket"
+	style = STYLE_HIGH
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/bomj
@@ -489,6 +544,7 @@
 	icon_state = "boxer_jacket"
 	item_state = "boxer_jacket"
 	siemens_coefficient = 0.7
+	style = STYLE_HIGH
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/puffyblue
