@@ -301,7 +301,7 @@
 	for (var/turf/T in range(1, attacker.loc))
 		if(istype(T, /turf/simulated/wall))
 			free_space = FALSE
-		for(var/obj/structure/S in T)
+		if(T.CanPass(target, T.loc))
 			free_space = FALSE
 	if(!free_space)
 		to_chat(attacker, SPAN_WARNING("There is not enough space around you to do this."))
@@ -321,6 +321,7 @@
 			for(var/mob/living/L in get_step(target, dir))
 				visible_message(SPAN_DANGER("[target] collides with [L], pushing \him on the ground!"))
 				L.Weaken(3)
+			sleep(1)
 
 	target.throw_at(get_edge_target_turf(target, dir), 7, 2)//this is very fast, and very painful for any obstacle involved
 	target.damage_through_armor(damage, HALLOSS, armour_divisor = 2)
@@ -334,5 +335,3 @@
 	attacker.drop_from_inventory(src)
 	loc = null
 	qdel(src)
-
-
