@@ -156,7 +156,7 @@
 	desc = "An assistant's formal-wear. Why an assistant needs formal-wear is still unknown."
 	icon_state = "assistant_formal"
 	item_state = "gy_suit"
-	style = STYLE_HIGH
+	style = STYLE_LOW
 
 
 /obj/item/clothing/under/serviceoveralls
@@ -287,6 +287,13 @@ obj/item/clothing/under/genericr
 	icon_state = "tuxedo"
 	style = STYLE_HIGH
 	price_tag = 300
+
+/obj/item/clothing/under/tuxedo/cheap
+	name = "cheap tuxedo"
+	desc = "A somewhat stylish black tuxedo with a necktie. It's made out of cheap materials, and it really shows."
+	icon_state = "tuxedo"
+	style = STYLE_LOW
+	price_tag = 30
 
 //stylish vendor clothes
 /obj/item/clothing/under/white

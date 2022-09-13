@@ -195,7 +195,7 @@
 	item_state = "bomber"
 	icon_open = "bomber_open"
 	icon_closed = "bomber"
-	style = STYLE_HIGH
+	style = STYLE_LOW
 	body_parts_covered = UPPER_TORSO|ARMS
 	cold_protection = UPPER_TORSO|ARMS
 	min_cold_protection_temperature = T0C - 20
@@ -208,6 +208,15 @@
 	item_state = "fur_bomber"
 	icon_open = "fur_bomber_open"
 	icon_closed = "fur_bomber"
+
+/obj/item/clothing/suit/storage/toggle/service
+	name = "service jacket"
+	desc = "A blue service jacket with golden badges. You aren't doing any kind service for free, are you?"
+	icon_state = "service"
+	item_state = "service"
+	icon_open = "service_open"
+	icon_closed = "service"
+	style = STYLE_LOW
 
 /obj/item/clothing/suit/storage/jamrock
 	name = "disco blazer"
@@ -232,7 +241,7 @@
 	desc = "A khaki-colored jacket so stylishly casual you might think it sports a tactical vest."
 	icon_state = "khaki"
 	item_state = "khaki"
-	style = STYLE_HIGH
+	style = STYLE_LOW
 	body_parts_covered = UPPER_TORSO|ARMS
 	siemens_coefficient = 0.7
 
@@ -377,7 +386,7 @@
 
 /obj/item/clothing/suit/storage/dante//makes even the devil cry
 	name = "exterminator coat"
-	desc = "A red leather coat. You feel like there should also be a blue one."
+	desc = "A stylish red leather coat. So stylish, in fact, that it makes you want to dance."
 	icon_state = "dante"
 	item_state = "dante"
 	armor = list(
@@ -388,6 +397,7 @@
 		bio = 0,
 		rad = 0
 	)
+	style = STYLE_HIGH
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	siemens_coefficient = 0.7
 
@@ -396,7 +406,7 @@
 	desc = "With the warmth of this jacket you feel like you're a real human being."
 	icon_state = "drive_jacket"
 	item_state = "drive_jacket"
-	style = STYLE_HIGH
+	style = STYLE_LOW
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/violet_jacket
@@ -404,7 +414,7 @@
 	desc = "Coat that you ride like lightning, and will crash with you like thunder."
 	icon_state = "violet_jacket"
 	item_state = "violet_jacket"
-	style = STYLE_HIGH
+	style = STYLE_LOW
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/bomj
@@ -544,7 +554,7 @@
 	icon_state = "boxer_jacket"
 	item_state = "boxer_jacket"
 	siemens_coefficient = 0.7
-	style = STYLE_HIGH
+	style = STYLE_LOW
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/storage/puffyblue

@@ -157,24 +157,14 @@
 	gear_tweaks += new /datum/gear_tweak/path(generic)
 
 /datum/gear/uniform/tuxedo
-	display_name = "black tuxedo"
-	path = /obj/item/clothing/under/tuxedo
+	display_name = "cheap tuxedo"
+	path = /obj/item/clothing/under/tuxedo/cheap
 	cost = 2
 
 /datum/gear/uniform/security_formal
 	display_name = "formal security outfit"
 	path = /obj/item/clothing/under/security_formal
 	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Ironhammer Medical Specialist")
-	cost = 2
-
-/datum/gear/uniform/jamrock
-	display_name = "brown comfortable clothing"
-	path = /obj/item/clothing/under/jamrock
-	cost = 2
-
-/datum/gear/uniform/aerostatic
-	display_name = "dark comfortable clothing"
-	path = /obj/item/clothing/under/aerostatic
 	cost = 2
 
 /datum/gear/uniform/assistantformal

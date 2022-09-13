@@ -116,12 +116,14 @@
 	desc = "Awesome watchtower heels from green leather."
 	icon_state = "lizardskin_shoes"
 	item_state = "lizardskin_shoes"
+	style = STYLE_HIGH
 
 /obj/item/clothing/shoes/aerostatic
 	name = "aerostatic shoes"
 	desc = "A pair of running shoes. That stated, despite not making you go faster, they do look nice."
 	icon_state = "aerostatic_shoes"
 	item_state = "aerostatic_shoes"
+	style = STYLE_HIGH
 
 /obj/item/clothing/shoes/redboot
 	name = "red boots"

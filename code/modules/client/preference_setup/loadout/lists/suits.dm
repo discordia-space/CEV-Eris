@@ -16,8 +16,7 @@
 	var/jacket = list(
 		"Bomber"				=	/obj/item/clothing/suit/storage/toggle/bomber,
 		"Bomber, furred"		=	/obj/item/clothing/suit/storage/toggle/bomber/furred,
-		"Bomber, aerostatic"	=	/obj/item/clothing/suit/storage/aerostatic,
-		"Disco blazer"	=	/obj/item/clothing/suit/storage/jamrock,
+		"Service"				=	/obj/item/clothing/suit/storage/toggle/service,
 		"Tactful"		=	/obj/item/clothing/suit/storage/khaki,
 		"Leather"		=	/obj/item/clothing/suit/storage/leather_jacket,
 		"White"			=	/obj/item/clothing/suit/storage/drive_jacket,
@@ -92,11 +91,6 @@
 /datum/gear/suit/bladerunner
 	display_name = "old leather coat"
 	path = /obj/item/clothing/suit/storage/bladerunner
-	cost = 2
-
-/datum/gear/suit/dante
-	display_name = "exterminator coat"
-	path = /obj/item/clothing/suit/storage/dante
 	cost = 2
 
 /datum/gear/suit/bomj
