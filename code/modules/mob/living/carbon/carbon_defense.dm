@@ -71,12 +71,12 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 		if(!(G && G.assailant == user && G.affecting == src)) //check that we still have a grab
 			return 0
 
-		affecting.damage_through_armor(W.force, W.damtype, BP_HEAD, wounding_multiplier = 2, sharp = W.sharp, edge = W.edge, used_weapon = W)
+		damage_through_armor(W.force, W.damtype, BP_HEAD, wounding_multiplier = 2, sharp = W.sharp, edge = W.edge, used_weapon = W)
 		
 		user.visible_message(SPAN_DANGER("\The [user] cut [src]'s neck with \the [W]!"))
 
 		if(W.hitsound)
-				playsound(loc, W.hitsound, 50, 1, -1)
+			playsound(loc, W.hitsound, 50, 1, -1)
 
 		G.last_action = world.time
 		flick(G.hud.icon_state, G.hud)

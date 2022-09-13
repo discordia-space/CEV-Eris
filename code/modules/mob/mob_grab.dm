@@ -337,8 +337,7 @@
 			affecting.set_dir(WEST)
 			if(iscarbon(affecting))
 				var/mob/living/carbon/C = affecting
-				if(!C.internals)
-					C.losebreath += 1
+				C.losebreath += 1
 		else
 			state = GRAB_NECK
 	update_slowdown()
@@ -427,7 +426,10 @@
 							inspect_organ(affecting, assailant, hit_zone)
 
 				if(I_GRAB)
-					jointlock(affecting, assailant, hit_zone)
+					if(hit_zone == BP_CHEST || hit_zone == BP_GROIN)
+						swing(affecting, assailant)
+					else
+						jointlock(affecting, assailant, hit_zone)
 
 				if(I_HURT)
 					if(hit_zone == BP_EYES)

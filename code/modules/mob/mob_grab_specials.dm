@@ -240,42 +240,45 @@
 	attacker.set_dir(EAST) //face the victim
 	target.set_dir(SOUTH) //face up
 
-/obj/item/grab/proc/fireman_throw(mob/target, mob/user)//in short, suplex + irish whip
+/obj/item/grab/proc/fireman_throw(mob/living/carbon/human/target, mob/living/carbon/human/attacker)//in short, suplex + irish whip
 	if(state < GRAB_AGGRESSIVE)//blue grab check
 		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
 		return
 	visible_message(SPAN_DANGER("[attacker] lifts [target] over the shoulders, just to drop \him behind!" ))
 	target.SpinAnimation(5,1)
-	var/fireman_dir = (get_dir(grabbed, attacker))
+	var/fireman_dir = (get_dir(target, attacker))
 	var/damage = 10
-	grabbed.update_lying_buckled_and_verb_status()
-	unEquip(src)
+	target.update_lying_buckled_and_verb_status()
+	attacker.drop_from_inventory(src)
+	loc = null
+	qdel(src)
 
 	if(istype(get_step(attacker, fireman_dir), /turf/simulated/wall))
-		visible_message(SPAN_WARNING("[grabbed] slams into the wall!"))
+		visible_message(SPAN_WARNING("[target] slams into the wall!"))
 		damage = 20
 		target.loc = src.loc
 						
-	for(var/obj/structure/S in get_step(grabbed, whip_dir))
+	for(var/obj/structure/S in get_step(target, fireman_dir))
 		if(istype(S, /obj/structure/window))
-			visible_message(SPAN_WARNING("[grabbed] slams into \the [S]!"))
+			visible_message(SPAN_WARNING("[target] slams into \the [S]!"))
 			damage = 30
 
 		if(istype(S, /obj/structure/railing))
-			visible_message(SPAN_WARNING("[grabbed] falls over \the [S]!"))
-			grabbed.forceMove(get_step(grabbed, whip_dir))
+			visible_message(SPAN_WARNING("[target] falls over \the [S]!"))
+			target.forceMove(get_step(target, fireman_dir))
 
 		if(istype(S, /obj/structure/table))
-			visible_message(SPAN_WARNING("[grabbed] falls on \the [S]!"))
-			grabbed.forceMove(get_step(grabbed, whip_dir))
-			S.take_damage(10)
-			grabbed.Weaken(5)
+			visible_message(SPAN_WARNING("[target] falls on \the [S]!"))
+			target.forceMove(get_step(target, fireman_dir))
+			var/obj/structure/table/T = S
+			T.take_damage(10)
+			target.Weaken(5)
 			damage = 15
 
 		continue
 
 	if(!istype(get_step(attacker, fireman_dir), /turf/simulated/wall))
-		grabbed.forceMove(get_step(grabbed, fireman_dir))
+		target.forceMove(get_step(target, fireman_dir))
 
 	target.damage_through_armor(damage, HALLOSS, BP_CHEST, ARMOR_MELEE)
 
@@ -286,3 +289,50 @@
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Fireman-thrown [target.name] ([target.ckey])</font>")
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Fireman-thrown by [attacker.name] ([attacker.ckey])</font>")
 	msg_admin_attack("[key_name(attacker)] has fireman-thrown [key_name(target)]")
+
+/obj/item/grab/proc/swing(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
+	if(state < GRAB_NECK) //red grab check
+		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
+		return
+	if(!target.lying)
+		to_chat(attacker, SPAN_WARNING("\The [target] needs to be on the ground to do this."))
+		return
+	var/free_space = TRUE//if there are walls or structures around us, we can't do this.
+	for (var/turf/T in range(1, attacker.loc))
+		if(istype(T, /turf/simulated/wall))
+			free_space = FALSE
+		for(var/obj/structure/S in T)
+			free_space = FALSE
+	if(!free_space)
+		to_chat(attacker, SPAN_WARNING("There is not enough space around you to do this."))
+		return
+	//finally, we SWING
+	target.loc = get_step(attacker.loc, attacker.dir)//put them in front of us
+	visible_message(SPAN_DANGER("[attacker] pivots, spinning [target] around!"))
+	attacker.next_move = world.time + 70 //7 seconds; we are spinning for a long time
+	var/spin = 0
+	var/damage = 30
+	for(var/dir in attacker.dir)
+		while(spin < 7 && target)
+			step_glide(target, dir,(DELAY2GLIDESIZE(0.2 SECONDS)))//very fast
+			dir = turn(dir, 45)
+			spin++
+			damage += 5
+			for(var/mob/living/L in get_step(target, dir))
+				visible_message(SPAN_DANGER("[target] collides with [L], pushing \him on the ground!"))
+				L.Weaken(3)
+
+	target.throw_at(get_edge_target_turf(target, dir), 7, 2)//this is very fast, and very painful for any obstacle involved
+	target.damage_through_armor(damage, HALLOSS, armour_divisor = 2)
+	attacker.regen_slickness(0.4)
+
+	//admin messaging
+	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Swung [target.name] ([target.ckey])</font>")
+	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Swung by [attacker.name] ([attacker.ckey])</font>")
+	msg_admin_attack("[key_name(attacker)] has swung [key_name(target)]")
+	//kill the grab
+	attacker.drop_from_inventory(src)
+	loc = null
+	qdel(src)
+
+
