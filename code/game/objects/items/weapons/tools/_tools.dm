@@ -572,8 +572,7 @@
 				var/mob/living/carbon/human/H = user
 
 				to_chat(user, SPAN_DANGER("Your hand slips and you hit [target] with [src]!"))
-				spawn()
-					H.ClickOn(newtarget)
+				INVOKE_ASYNC(H, /mob.proc/ClickOn, newtarget)
 				return
 
 			//Throw the tool in a random direction

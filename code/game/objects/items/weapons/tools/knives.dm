@@ -98,8 +98,8 @@
 	embed_mult = 0.3
 	max_upgrades = 3
 
-/obj/item/tool/knife/tacknife/New()
-	..()
+/obj/item/tool/knife/tacknife/Initialize()
+	. = ..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_BAYONET = TRUE,

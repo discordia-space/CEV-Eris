@@ -23,7 +23,7 @@
 	current_user = null
 
 // Remove any references to avoid hard dels
-/datum/component/clothing_sanity_protection/RemoveComponent()
+/datum/component/clothing_sanity_protection/UnregisterFromParent()
 	if(current_user)
 		current_user.sanity.environment_cap_coeff /= environment_cap_buff
 		UnregisterSignal(current_user, COMSIG_CLOTH_DROPPED)
@@ -31,7 +31,3 @@
 	UnregisterSignal(parent, COMSIG_CLOTH_EQUIPPED)
 	var/atom/current_parent = parent
 	current_parent.description_info = ""
-	..()
-
-
-

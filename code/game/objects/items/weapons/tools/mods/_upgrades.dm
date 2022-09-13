@@ -19,6 +19,7 @@
 	var/destroy_on_removal = FALSE
 	//The upgrade can be applied to a tool that has any of these qualities
 	var/list/required_qualities = list()
+	/// Can you remove this tool upgrade?
 	var/removable = TRUE
 	var/breakable = TRUE //Some mods meant to be tamper-resistant and should be removed only in a hard way
 
@@ -38,12 +39,18 @@
 	var/list/req_gun_tags = list() //Define(string). Must match all to be able to install it.
 	var/list/weapon_upgrades = list() //variable name(string) -> num
 
+/datum/component/item_upgrade/Initialize(lives_left)
+	if(!isitem(parent))
+		return COMPONENT_INCOMPATIBLE
+
 /datum/component/item_upgrade/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_IATTACK, .proc/attempt_install)
 	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
 	RegisterSignal(parent, COMSIG_REMOVE, .proc/uninstall)
 
 /datum/component/item_upgrade/proc/attempt_install(atom/A, mob/living/user, params)
+	// SIGNAL_HANDLER VIOLATES COMSIG NO-BLOCKING RULE
+
 	return can_apply(A, user) && apply(A, user)
 
 /datum/component/item_upgrade/proc/can_apply(atom/A, mob/living/user)
@@ -195,6 +202,9 @@
 	return TRUE
 
 /datum/component/item_upgrade/proc/uninstall(obj/item/I, mob/living/user)
+	// SIGNAL_HANDLER VIOLATES COMSIG NO-BLOCKING RULE
+	// could make this or forceMove (violator) async
+
 	var/obj/item/P = parent
 	I.item_upgrades -= P
 	if(destroy_on_removal)
@@ -381,6 +391,7 @@
 					F.settings[i] *= weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT]
 
 /datum/component/item_upgrade/proc/on_examine(mob/user)
+	SIGNAL_HANDLER
 	if(tool_upgrades[UPGRADE_SANCTIFY])
 		to_chat(user, SPAN_NOTICE("Does additional burn damage to mutants."))
 	if (tool_upgrades[UPGRADE_PRECISION] > 0)
@@ -574,15 +585,28 @@
 		to_chat(user, english_list(req_gun_tags))
 
 /datum/component/item_upgrade/UnregisterFromParent()
-	UnregisterSignal(parent, COMSIG_IATTACK)
-	UnregisterSignal(parent, COMSIG_EXAMINE)
-	UnregisterSignal(parent, COMSIG_REMOVE)
+	UnregisterSignal(parent, list(
+		COMSIG_IATTACK,
+		COMSIG_EXAMINE,
+		COMSIG_REMOVE))
 
 /datum/component/item_upgrade/PostTransfer()
-	return COMPONENT_TRANSFER
+	if(!isitem(parent))
+		return COMPONENT_NOTRANSFER
+
 
 /datum/component/upgrade_removal
 	dupe_mode = COMPONENT_DUPE_UNIQUE
+	/// debounce so you cant spam input()
+	var/is_already_removing = FALSE
+
+/datum/component/upgrade_removal/Initialize(lives_left)
+	if(!isitem(parent))
+		return COMPONENT_INCOMPATIBLE
+
+/datum/component/item_upgrade/PostTransfer()
+	if(!isitem(parent))
+		return COMPONENT_NOTRANSFER
 
 /datum/component/upgrade_removal/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ATTACKBY, .proc/attempt_uninstall)
@@ -591,59 +615,71 @@
 	UnregisterSignal(parent, COMSIG_ATTACKBY)
 
 /datum/component/upgrade_removal/proc/attempt_uninstall(obj/item/C, mob/living/user)
-	if(!isitem(C))
-		return 0
+	SIGNAL_HANDLER
 
+	if(!isitem(C) || is_already_removing)
+		return
+
+	INVOKE_ASYNC(src, .proc/attempt_uninstall_async, C, user)
+
+/datum/component/upgrade_removal/proc/attempt_uninstall_async(obj/item/C, mob/living/user)
+	is_already_removing = TRUE
 	var/obj/item/upgrade_loc = parent
-
 	var/obj/item/tool/T //For dealing damage to the item
 
 	if(istool(upgrade_loc))
 		T = upgrade_loc
 
-	ASSERT(istype(upgrade_loc))
+	// upgrade_loc is already an item. if not then tell me how in the FUCK did it get added as a comp
 	//Removing upgrades from a tool. Very difficult, but passing the check only gets you the perfect result
 	//You can also get a lesser success (remove the upgrade but break it in the process) if you fail
 	//Using a laser guided stabilised screwdriver is recommended. Precision mods will make this easier
-	if(upgrade_loc.item_upgrades.len && C.has_quality(QUALITY_SCREW_DRIVING))
-		var/list/possibles = upgrade_loc.item_upgrades.Copy()
-		possibles += "Cancel"
-		var/obj/item/tool_upgrade/toremove = input("Which upgrade would you like to try to remove? The upgrade will probably be destroyed in the process","Removing Upgrades") in possibles
-		if(toremove == "Cancel")
-			return 1
-		var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
-		if(IU.removable == FALSE)
-			to_chat(user, SPAN_DANGER("\the [toremove] seems to be fused with the [upgrade_loc]"))
-		else
-			if(C.use_tool(user = user, target =  upgrade_loc, base_time = IU.removal_time, required_quality = QUALITY_SCREW_DRIVING, fail_chance = IU.removal_difficulty, required_stat = STAT_MEC))
-				//If you pass the check, then you manage to remove the upgrade intact
-				if(!IU.destroy_on_removal && user)
-					to_chat(user, SPAN_NOTICE("You successfully remove \the [toremove] while leaving it intact."))
-				SEND_SIGNAL(toremove, COMSIG_REMOVE, upgrade_loc)
-				upgrade_loc.refresh_upgrades()
-				return 1
-			else
-				//You failed the check, lets see what happens
-				if(IU.breakable == FALSE)
-					to_chat(user, SPAN_DANGER("You failed to remove \the [toremove]."))
-					upgrade_loc.refresh_upgrades()
-					user.update_action_buttons()
-				else if(prob(50))
-					//50% chance to break the upgrade and remove it
-					to_chat(user, SPAN_DANGER("You successfully remove \the [toremove], but destroy it in the process."))
-					SEND_SIGNAL(toremove, COMSIG_REMOVE, parent)
-					QDEL_NULL(toremove)
-					upgrade_loc.refresh_upgrades()
-					user.update_action_buttons()
-					return 1
-				else if(T && T.degradation) //Because robot tools are unbreakable
-					//otherwise, damage the host tool a bit, and give you another try
-					to_chat(user, SPAN_DANGER("You only managed to damage \the [upgrade_loc], but you can retry."))
-					T.adjustToolHealth(-(5 * T.degradation), user) // inflicting 4 times use damage
-					upgrade_loc.refresh_upgrades()
-					user.update_action_buttons()
-					return 1
-	return 0
+
+	if(!LAZYLEN(upgrade_loc.item_upgrades) || !C.has_quality(QUALITY_SCREW_DRIVING))
+		is_already_removing = FALSE
+		return
+
+	var/list/possibles = upgrade_loc.item_upgrades.Copy()
+	possibles += "Cancel"
+	var/obj/item/tool_upgrade/toremove = input("Which upgrade would you like to try to remove? The upgrade will probably be destroyed in the process","Removing Upgrades") in possibles
+	if(toremove == "Cancel")
+		is_already_removing = FALSE
+		return
+
+	var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
+	if(!IU.removable)
+		to_chat(user, SPAN_DANGER("\the [toremove] seems to be fused with the [upgrade_loc]"))
+		is_already_removing = FALSE
+		return
+
+	if(C.use_tool(user = user, target = upgrade_loc, base_time = IU.removal_time, required_quality = QUALITY_SCREW_DRIVING, fail_chance = IU.removal_difficulty, required_stat = STAT_MEC))
+		//If you pass the check, then you manage to remove the upgrade intact
+		if(!IU.destroy_on_removal && user)
+			to_chat(user, SPAN_NOTICE("You successfully remove \the [toremove] while leaving it intact."))
+		SEND_SIGNAL(toremove, COMSIG_REMOVE, upgrade_loc)
+		upgrade_loc.refresh_upgrades()
+		is_already_removing = FALSE
+		return
+	else
+		//You failed the check, lets see what happens
+		if(!IU.breakable)
+			to_chat(user, SPAN_DANGER("You failed to remove \the [toremove]."))
+			upgrade_loc.refresh_upgrades()
+			user.update_action_buttons()
+		else if(prob(50))
+			//50% chance to break the upgrade and remove it
+			to_chat(user, SPAN_DANGER("You successfully remove \the [toremove], but destroy it in the process."))
+			SEND_SIGNAL(toremove, COMSIG_REMOVE, parent)
+			QDEL_NULL(toremove)
+			upgrade_loc.refresh_upgrades()
+			user.update_action_buttons()
+		else if(T?.degradation) //Because robot tools are unbreakable
+			//otherwise, damage the host tool a bit, and give you another try
+			to_chat(user, SPAN_DANGER("You only managed to damage \the [upgrade_loc], but you can retry."))
+			T.adjustToolHealth(-(5 * T.degradation), user) // inflicting 4 times use damage
+			upgrade_loc.refresh_upgrades()
+			user.update_action_buttons()
+	is_already_removing = FALSE
 
 /obj/item/tool_upgrade
 	name = "tool upgrade"

@@ -24,7 +24,7 @@ COMSIG_ABERRANT_SECONDARY
 	var/install_start_action = "attaching"
 	var/install_success_action = "attached"
 	var/install_time = WORKTIME_FAST
-	//var/install_tool_quality = null				
+	//var/install_tool_quality = null
 	var/install_difficulty = FAILCHANCE_ZERO
 	var/install_stat = STAT_COG
 	var/install_sound = WORKSOUND_HONK
@@ -35,13 +35,13 @@ COMSIG_ABERRANT_SECONDARY
 	var/removal_stat = STAT_COG
 
 	var/mod_time = WORKTIME_FAST
-	var/mod_tool_quality = null				
+	var/mod_tool_quality = null
 	var/mod_difficulty = FAILCHANCE_ZERO
 	var/mod_stat = STAT_COG
 	var/mod_sound = WORKSOUND_HONK
 
 	var/adjustable = FALSE
-	var/destroy_on_removal = FALSE 
+	var/destroy_on_removal = FALSE
 	var/removable = TRUE
 	var/breakable = FALSE //Some mods are meant to be tamper-resistant and should be removed only in a hard way
 
@@ -71,6 +71,8 @@ COMSIG_ABERRANT_SECONDARY
 	RegisterSignal(parent, COMSIG_REMOVE, .proc/uninstall)
 
 /datum/component/modification/proc/attempt_install(atom/A, mob/living/user, params)
+	// SIGNAL_HANDLER VIOLATES COMSIG NO-BLOCKING RULE
+
 	return can_apply(A, user) && apply(A, user)
 
 /datum/component/modification/proc/can_apply(atom/A, mob/living/user)
@@ -112,7 +114,7 @@ COMSIG_ABERRANT_SECONDARY
 				if(user)
 					to_chat(user, SPAN_WARNING("\The [I] can not accept \the [parent]!"))
 				return FALSE
-	
+
 	return TRUE
 
 /datum/component/modification/proc/apply(obj/item/A, mob/living/user)
@@ -129,6 +131,7 @@ COMSIG_ABERRANT_SECONDARY
 	A.item_upgrades.Add(I)
 	RegisterSignal(A, trigger_signal, .proc/trigger)
 	RegisterSignal(A, COMSIG_APPVAL, .proc/apply_values)
+	RegisterSignal(A, COMSIG_PARENT_QDELETING, .proc/remove_signals)
 
 	var/datum/component/modification_removal/MR = A.AddComponent(/datum/component/modification_removal)
 	MR.removal_tool_quality = removal_tool_quality
@@ -137,6 +140,8 @@ COMSIG_ABERRANT_SECONDARY
 	return TRUE
 
 /datum/component/modification/proc/try_modify(obj/item/I, mob/living/user)
+	// SIGNAL_HANDLER VIOLATES COMSIG NO-BLOCKING RULE
+
 	if(user && adjustable)
 		if(!I.use_tool(user = user, target = parent, base_time = mod_time, required_quality = mod_tool_quality, fail_chance = mod_difficulty, required_stat = mod_stat, forced_sound = mod_sound))
 			return FALSE
@@ -161,6 +166,8 @@ COMSIG_ABERRANT_SECONDARY
 	return TRUE
 
 /datum/component/modification/proc/on_examine(mob/user)
+	SIGNAL_HANDLER
+
 	if(examine_msg)
 		to_chat(user, SPAN_WARNING(examine_msg))
 	if(user.stats.getStat(examine_stat) >= examine_difficulty)
@@ -172,25 +179,33 @@ COMSIG_ABERRANT_SECONDARY
 	return
 
 /datum/component/modification/proc/uninstall(obj/item/I, mob/living/user)
+	SIGNAL_HANDLER
+
 	var/obj/item/P = parent
 	I.item_upgrades -= P
 	if(destroy_on_removal)
-		UnregisterSignal(I, trigger_signal)
-		UnregisterSignal(I, COMSIG_APPVAL)
+		// gc signals it
 		qdel(P)
 		return
-	P.forceMove(get_turf(I))
-	UnregisterSignal(I, trigger_signal)
-	UnregisterSignal(I, COMSIG_APPVAL)
+
+	INVOKE_ASYNC(P, /atom/movable.proc/forceMove, get_turf(I))
+	remove_signals(I)
+
+/datum/component/modification/proc/remove_signals(obj/item/I)
+	SIGNAL_HANDLER
+
+	UnregisterSignal(I, list(COMSIG_APPVAL, trigger_signal))
 
 /datum/component/modification/UnregisterFromParent()
-	UnregisterSignal(parent, COMSIG_IATTACK)
-	UnregisterSignal(parent, COMSIG_ATTACKBY)
-	UnregisterSignal(parent, COMSIG_EXAMINE)
-	UnregisterSignal(parent, COMSIG_REMOVE)
+	UnregisterSignal(parent, list(
+		COMSIG_IATTACK,
+		COMSIG_ATTACKBY,
+		COMSIG_EXAMINE,
+		COMSIG_REMOVE))
 
 /datum/component/modification/PostTransfer()
-	return COMPONENT_TRANSFER
+	// TODO transfer code
+	return
 
 
 /datum/component/modification_removal

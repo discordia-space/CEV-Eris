@@ -86,11 +86,11 @@
 
 
 /obj/machinery/door/firedoor/Initialize(mapload)
+	. = ..()
 	if(mapload)
 		addtimer(CALLBACK(src, .proc/link_to_zas), 30 SECONDS)
 	else
 		link_to_zas()
-	. = ..()
 
 /obj/machinery/door/firedoor/proc/link_to_zas_with_update()
 	SHOULD_NOT_SLEEP(TRUE)
@@ -98,7 +98,8 @@
 	update_firedoor_data()
 
 /obj/machinery/door/firedoor/proc/link_to_zas(do_delayed)
-	SHOULD_NOT_SLEEP(TRUE)
+	SIGNAL_HANDLER
+
 	if(do_delayed && (world.time > last_time_since_link))
 		last_time_since_link = world.time + minimum_link_cooldown
 		spawn(20) link_to_zas_with_update()
@@ -107,8 +108,7 @@
 		if(!registered_zas_zones[our_cardinal])
 			continue
 		var/target_zone = registered_zas_zones[our_cardinal]
-		UnregisterSignal(target_zone , COMSIG_ZAS_TICK)
-		UnregisterSignal(target_zone, COMSIG_ZAS_DELETE)
+		UnregisterSignal(target_zone, list(COMSIG_ZAS_TICK, COMSIG_ZAS_DELETE))
 
 	for(var/turf/neighbor in cardinal_turfs(src))
 		var/cardinal = get_dir(src, neighbor)
@@ -370,7 +370,8 @@
 
 // CHECK PRESSURE
 /obj/machinery/door/firedoor/proc/update_firedoor_data()
-	SHOULD_NOT_SLEEP(TRUE)
+	SIGNAL_HANDLER
+
 	if(!density)
 		return FALSE
 
