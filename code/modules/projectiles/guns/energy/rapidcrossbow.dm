@@ -21,3 +21,6 @@
 
 /obj/item/gun/energy/rxd/update_icon()
 	icon_state = cell ? "rxb_drawn" : "rxb_empty"
+
+/obj/item/gun/energy/rxd/generate_guntags()
+	gun_tags = list()

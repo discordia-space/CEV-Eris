@@ -11,6 +11,8 @@ You can use the run_loc_floor_bottom_left and run_loc_floor_top_right to get tur
 
 */
 
+/// IMPORTANT !!! IF YOU ARE CHANGING CC CHANGE THIS TOO
+
 GLOBAL_DATUM(current_test, /datum/unit_test)
 GLOBAL_VAR_INIT(failed_any_test, FALSE)
 GLOBAL_VAR(test_log)
@@ -49,8 +51,8 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 	// run_loc_floor_bottom_left = get_turf(locate(/obj/effect/landmark/unit_test_bottom_left) in GLOB.landmarks_list)
 	// run_loc_floor_top_right = get_turf(locate(/obj/effect/landmark/unit_test_top_right) in GLOB.landmarks_list)
 
-	run_loc_floor_bottom_left = get_turf(locate(20,20,1))
-	run_loc_floor_top_right = get_turf(locate(20,21,1))
+	run_loc_floor_bottom_left = get_turf(locate(20,20,6))
+	run_loc_floor_top_right = get_turf(locate(20,21,6))
 
 	TEST_ASSERT(isturf(run_loc_floor_bottom_left), "run_loc_floor_bottom_left was not a floor ([run_loc_floor_bottom_left])")
 	TEST_ASSERT(isturf(run_loc_floor_top_right), "run_loc_floor_top_right was not a floor ([run_loc_floor_top_right])")

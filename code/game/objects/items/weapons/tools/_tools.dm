@@ -223,7 +223,7 @@
 	data["force"] = force
 	data["force_max"] = initial(force) * 10
 
-	data["armor_penetration"] = armor_penetration
+	data["armor_divisor"] = armor_divisor
 
 	data["extra_volume"] = extra_bulk
 

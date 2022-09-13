@@ -80,7 +80,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_PEN_MULT = 0.2,
+		GUN_UPGRADE_PEN_MULT = -0.5,
 		GUN_UPGRADE_PIERC_MULT = 3,
 		GUN_UPGRADE_RICO_MULT = 5,
 		GUN_UPGRADE_STEPDELAY_MULT = 0.6,
@@ -395,7 +395,7 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_OFFSET = rand(5,15),
-		GUN_UPGRADE_PEN_MULT = rand(0.8,1.2),
+		GUN_UPGRADE_PEN_MULT = rand(-0.2,0.2),
 		GUN_UPGRADE_DAMAGE_MULT = rand(0.8,1.2)
 	)
 	I.destroy_on_removal = TRUE
@@ -413,7 +413,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_PEN_MULT = rand(4,9)/10,
+		GUN_UPGRADE_PEN_MULT = -rand(0.1,0.6)/10,
 		GUN_UPGRADE_STEPDELAY_MULT = rand(10,12)/10,
 		GUN_UPGRADE_SILENCER = TRUE
 	)

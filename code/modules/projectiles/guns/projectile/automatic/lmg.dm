@@ -23,7 +23,7 @@
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
 	init_recoil = LMG_RECOIL(0.5)
 	damage_multiplier = 1.3
-	penetration_multiplier = 1.3
+	penetration_multiplier = -0.1
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
 	rarity_value = 80
@@ -120,8 +120,10 @@
 	icon_base = "tk"
 	icon_state = "tkclosed-empty"
 	item_state = "tkclosedmag"
-	damage_multiplier = 1.1
-	penetration_multiplier = 1.1 // Marginally punchier projectiles than from AKs
+	init_recoil = LMG_RECOIL(0.3)
+	damage_multiplier = 1.2
+	penetration_multiplier = -0.1
+
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/tk = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/lrifle = 1)
 	serial_type = "FS"

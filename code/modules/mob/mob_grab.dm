@@ -28,8 +28,12 @@
 	var/last_hit_zone = 0
 	var/force_down //determines if the affecting mob will be pinned to the ground
 	var/dancing //determines if assailant and affecting keep looking at each other.
-				//Basically a wrestling position
 
+	var/counter_timer = 3 SECONDS //sets to 3 seconds after being grabbed
+
+/obj/item/grab/Process()
+	counter_timer--
+	..()
 
 /obj/proc/affect_grab(var/mob/user, var/mob/target, var/state)
 	return FALSE
@@ -265,13 +269,18 @@
 
 	// Adjust the grab warmup using assailant's ROB stat
 	var/assailant_stat = assailant?.stats.getStat(STAT_ROB)
+	var/affecting_stat = affecting?.stats.getStat(STAT_ROB)
 	var/warmup_increase
 	if(assailant_stat > 0)
 		// Positive ROB decreases warmup, but not linearly
 		warmup_increase = -(assailant_stat ** 0.8)
 	else
 		// Negative ROB is a flat warmup increase
-		warmup_increase = assailant_stat
+		warmup_increase = abs(assailant_stat)
+	if(affecting_stat > 0)
+		warmup_increase += affecting_stat ** 0.8
+	else
+		warmup_increase += affecting_stat ** 0.6
 
 	var/total_warmup = max(0, UPGRADE_WARMUP + round(warmup_increase))
 
@@ -399,7 +408,7 @@
 	//clicking on the victim while grabbing them
 	if(M == affecting)
 		if(ishuman(affecting))
-			var/hit_zone = assailant.targeted_organ
+			var/obj/item/organ/external/hit_zone = assailant.targeted_organ
 			flick(hud.icon_state, hud)
 			switch(assailant.a_intent)
 				if(I_HELP)
@@ -410,7 +419,16 @@
 						msg_admin_attack("[key_name(assailant)] Released from pin [key_name(affecting)]")
 						force_down = 0
 						return
-					inspect_organ(affecting, assailant, hit_zone)
+					else if(hit_zone == BP_MOUTH)
+						force_vomit(affecting, assailant)
+					else 
+						var/mob/living/carbon/human/H = affecting
+						var/obj/item/organ/external/o = H.get_organ(hit_zone)
+						
+						if(o.status & ORGAN_BLEEDING)
+							slow_bleeding(affecting, assailant, o)
+						else
+							inspect_organ(affecting, assailant, hit_zone)
 
 				if(I_GRAB)
 					jointlock(affecting, assailant, hit_zone)
@@ -425,11 +443,13 @@
 						else
 							headbutt(affecting, assailant)
 					else if(hit_zone == BP_CHEST)
-						suplex(affecting, assailant)
+						if(state < GRAB_NECK)
+							dropkick(affecting, assailant)
+						else suplex(affecting, assailant)
 					else if(hit_zone == BP_GROIN)
-						dropkick(affecting, assailant)
+						gut_punch(affecting, assailant)
 					else
-						dislocate(affecting, assailant, hit_zone)
+						nerve_strike(affecting, assailant, hit_zone)
 
 				if(I_DISARM)
 					pin_down(affecting, assailant)

@@ -16,9 +16,9 @@
 	magazine_type = /obj/item/ammo_magazine/msmg
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 4)
 	price_tag = 2000
-	damage_multiplier = 1.1	 // 34 lethal on FA
-	penetration_multiplier = 0.65 // 9.75 lethal
-	init_recoil = SMG_RECOIL(0.2) // Hilariously low, despite its description
+	damage_multiplier = 1
+	penetration_multiplier = -0.1
+	init_recoil = SMG_RECOIL(0.9)
 	twohanded = FALSE
 
 	init_firemodes = list(

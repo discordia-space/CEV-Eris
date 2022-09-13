@@ -3,7 +3,14 @@
 	name = "captain's gloves"
 	icon_state = "captain"
 	item_state = "egloves"
-	armor = list(melee = 25, bullet = 10, energy = 25, bomb = 0, bio = 0, rad = 0)
+	armor = list(
+		melee = 6,
+		bullet = 2,
+		energy = 6,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 	price_tag = 500
 	style = STYLE_HIGH
 
@@ -12,7 +19,14 @@
 	name = "insulated gloves"
 	icon_state = "yellow"
 	item_state = "yellow"
-	armor = list(melee = 0, bullet = 0, energy = 15, bomb = 0, bio = 0, rad = 0)
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 3,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	price_tag = 200
@@ -38,7 +52,14 @@
 	item_state = "black"
 	siemens_coefficient = 0.5
 	permeability_coefficient = 0.05
-	armor = list(melee = 20, bullet = 0, energy = 20, bomb = 0, bio = 0, rad = 0)
+	armor = list(
+		melee = 5,
+		bullet = 0,
+		energy = 5,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 	price_tag = 100
 
 	cold_protection = ARMS
@@ -53,7 +74,14 @@
 	item_state = "security"
 	siemens_coefficient = 0.5
 	permeability_coefficient = 0.05
-	armor = list(melee = 25, bullet = 5, energy = 20, bomb = 0, bio = 0, rad = 0)
+	armor = list(
+		melee = 6,
+		bullet = 1,
+		energy = 5,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 	cold_protection = ARMS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = ARMS
@@ -79,7 +107,14 @@
 	desc = "Sterile latex gloves."
 	icon_state = "latex"
 	item_state = "latex"
-	armor = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 	siemens_coefficient = 1 //thin latex gloves, much more conductive than fabric gloves (basically a capacitor for AC)
 	permeability_coefficient = 0.01
 	germ_level = 0
@@ -118,7 +153,14 @@
 	desc = "Brown gloves."
 	icon_state = "germangloves"
 	item_state = "germangloves"
-	armor = list(melee = 10, bullet = 0, energy = 25, bomb = 0, bio = 0, rad = 0)
+	armor = list(
+		melee = 2,
+		bullet = 0,
+		energy = 6,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 
 /obj/item/clothing/gloves/knuckles
 	name = "knuckle gloves"
@@ -126,5 +168,12 @@
 	icon_state = "knuckles"
 	item_state = "knuckles"
 	style = STYLE_HIGH
-	armor = list(melee = 20, bullet = 5, energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(
+		melee = 4,
+		bullet = 1,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 	price_tag = 500

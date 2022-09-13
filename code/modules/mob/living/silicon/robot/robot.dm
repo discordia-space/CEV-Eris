@@ -518,7 +518,7 @@
 			var/mob/living/carbon/human/firer = Proj.firer
 			chance -= firer.stats.getStat(STAT_VIG, FALSE) / 5
 		var/obj/item/projectile/bullet/B = Proj
-		chance = max((chance - B.armor_penetration), 0)
+		chance = max((chance - B.armor_divisor), 0)
 		if(B.starting && prob(chance))
 			visible_message(SPAN_DANGER("\The [Proj.name] ricochets off [src]\'s armour!"))
 			var/multiplier = round(10 / get_dist(B.starting, src))

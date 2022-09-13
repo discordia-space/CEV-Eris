@@ -22,9 +22,9 @@
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_GLASS = 2)
 	var/up = 0
 	armor = list(
-		melee = 20,
-		bullet = 10,
-		energy = 10,
+		melee = 5,
+		bullet = 2,
+		energy = 2,
 		bomb = 0,
 		bio = 0,
 		rad = 0

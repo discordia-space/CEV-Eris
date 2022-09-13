@@ -3,7 +3,7 @@
 	icon_state = "plasma_bolt"
 	mob_hit_sound = list('sound/effects/gore/sear.ogg')
 	hitsound_wall = 'sound/weapons/guns/misc/laser_searwall.ogg'
-	armor_penetration = 25
+	armor_divisor = 2
 	check_armour = ARMOR_ENERGY
 	damage_types = list(BURN = 27)
 	recoil = 4 // .20 level
@@ -13,21 +13,20 @@
 
 /obj/item/projectile/plasma/light
 	name = "light plasma bolt"
-	armor_penetration = 15
+	armor_divisor = 2
 	damage_types = list(BURN = 23)
 	recoil = 2
 
 /obj/item/projectile/plasma/heavy
 	name = "heavy plasma bolt"
-	armor_penetration = 50
+	armor_divisor = 2
 	damage_types = list(BURN = 34)
 	recoil = 6
 
 /obj/item/projectile/plasma/stun
 	name = "stun plasma bolt"
 	taser_effect = 1
-	agony = 30
-	damage_types = list(HALLOSS = 30,BURN = 5)
+	damage_types = list(HALLOSS = 30, BURN = 5)
 	impact_type = /obj/effect/projectile/stun/impact
 
 /obj/item/projectile/plasma/stun/heavy
@@ -37,7 +36,7 @@
 /obj/item/projectile/plasma/aoe
 	name = "default plasma aoe"
 	icon_state = "ion"
-	armor_penetration = 0
+	armor_divisor = 1
 	damage_types = list(BURN = 0)
 
 	var/aoe_strong = 0
@@ -51,13 +50,13 @@
 	if(emp_strength)
 		empulse(target, aoe_strong, aoe_weak, strength=emp_strength)
 	if(heat_damage)
-		heatwave(target, aoe_strong, aoe_weak, heat_damage, fire_stacks, armor_penetration)
+		heatwave(target, aoe_strong, aoe_weak, heat_damage, fire_stacks, armor_divisor)
 	..()
 
 /obj/item/projectile/plasma/aoe/ion
 	name = "ion-plasma bolt"
 	icon_state = "ion"
-	armor_penetration = 0
+	armor_divisor = 1
 	damage_types = list(BURN = 23)
 	recoil = 8
 
@@ -70,7 +69,7 @@
 
 /obj/item/projectile/plasma/aoe/ion/light
 	name = "light ion-plasma bolt"
-	armor_penetration = 0
+	armor_divisor = 1
 	damage_types = list(BURN = 19)
 	recoil = 6
 
@@ -83,7 +82,7 @@
 
 /obj/item/projectile/plasma/aoe/heat
 	name = "high-temperature plasma blast"
-	armor_penetration = 50
+	armor_divisor = 3
 	damage_types = list(BURN = 19)
 	recoil = 12
 
@@ -96,7 +95,7 @@
 
 /obj/item/projectile/plasma/aoe/heat/strong
 	name = "high-temperature plasma blast"
-	armor_penetration = 25
+	armor_divisor = 2
 	damage_types = list(BURN = 27)
 	recoil = 18
 
@@ -110,7 +109,7 @@
 /obj/item/projectile/plasma/check_penetrate(var/atom/A)
 	if(istype(A, /obj/item/shield))
 		var/obj/item/shield/S = A
-		var/loss = min(round(armor_penetration * 2 / S.shield_integrity * 1.8), 1)
+		var/loss = min(round(armor_divisor * 2 / S.shield_integrity * 1.8), 1)
 		for(var/i in damage_types)
 			damage_types[i] *= loss
 

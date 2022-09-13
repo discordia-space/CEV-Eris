@@ -14,7 +14,7 @@
 	can_dual = TRUE
 	slot_flags = SLOT_BELT|SLOT_HOLSTER|SLOT_BACK
 	damage_multiplier = 1.1
-	penetration_multiplier = 1.0
+	penetration_multiplier = 0
 	init_recoil = HANDGUN_RECOIL(0.9)
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/hpistol_magout.ogg'

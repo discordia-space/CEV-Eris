@@ -17,7 +17,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 5)
 	price_tag = 4000
 	zoom_factor = 0.8 // double as IH_heavy
-	penetration_multiplier = 1.2
+	penetration_multiplier = 0
 	damage_multiplier = 1.2
 	init_recoil = RIFLE_RECOIL(0.65)
 	silenced = TRUE

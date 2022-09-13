@@ -2,7 +2,10 @@
 	name_pool = list(
 		"ATB \'Suit Up!\'" = "Aster\'s Trade Beacon \'Suit Up!\': \"Suits, voidsuits, and more for you, traveler!\""
 	)
+	icon_states = list("htu_station", "station")
 	uid = "suit_up"
+	tree_x = 0.66
+	tree_y = 0.9
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS
@@ -95,6 +98,7 @@
 			/obj/item/clothing/under/suit_jacket/red,
 			/obj/item/clothing/under/bride_white,
 			/obj/item/clothing/under/tuxedo,
+			/obj/item/clothing/under/wifebeater,
 			/obj/item/clothing/under/rank/fo_suit,
 			/obj/item/clothing/under/rank/janitor,
 			/obj/item/clothing/under/rank/hydroponics

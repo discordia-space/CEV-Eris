@@ -121,6 +121,7 @@
 #define COMSIG_REMOVE "uninstall"
 #define COMSIG_ITEM_DROPPED	"item_dropped"					//from  /obj/item/tool/attackby(): Called to remove an upgrade
 #define COMSIG_ITEM_PICKED "item_picked"
+#define COMSIG_ODDITY_USED "used_oddity"                    //from /datum/sanity/proc/oddity_stat_up(): called to notify the used oddity it was used.
 
 // /obj/item/clothing signals
 #define COMSIG_CLOTH_DROPPED "cloths_missing"
@@ -134,6 +135,13 @@
 // /obj/item/radio signals
 #define COMSIG_MESSAGE_SENT "radio_message_sent"
 #define COMSIG_MESSAGE_RECEIVED "radio_message_received"
+
+// ABERRANT signals
+#define COMSIG_ABERRANT_INPUT "aberrant_input"
+#define COMSIG_ABERRANT_PROCESS "aberrant_process"
+#define COMSIG_ABERRANT_OUTPUT "aberrant_output"
+#define COMSIG_ABERRANT_SECONDARY "aberrant_secondary"
+#define COMSIG_ABERRANT_COOLDOWN "aberrant_cooldown"
 
 /*******Component Specific Signals*******/
 //Janitor

@@ -20,7 +20,7 @@
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 0.8
-	penetration_multiplier = 1.4 // this is not babies first gun. It's a Serb-level weapon.
+	penetration_multiplier = 0.5 // this is not babies first gun. It's a Serb-level weapon.
 	init_recoil = CARBINE_RECOIL(1.1)
 
 					//while also preserving ability to shoot as fast as you can click and maintain recoil good enough

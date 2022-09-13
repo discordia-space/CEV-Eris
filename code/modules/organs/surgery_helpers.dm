@@ -82,11 +82,31 @@
 			"step" = /datum/surgery_step/robotic/connect_organ
 		)))
 	else
+		var/is_aberrant = istype(src, /obj/item/organ/internal/scaffold)
+		if(item_upgrades.len < max_upgrades)
+			actions_list.Add(list(list(
+				"name" = is_aberrant ? "Attach Mod/Organoid" : "Attach Mod",
+				"organ" = "\ref[src]",
+				"step" = /datum/surgery_step/attach_mod
+			)))
+		if(item_upgrades.len)
+			actions_list.Add(list(list(
+				"name" = is_aberrant ? "Remove Mod/Organoid" : "Remove Mod",
+				"organ" = "\ref[src]",
+				"step" = /datum/surgery_step/remove_mod
+			)))
+		if(is_aberrant)	// Currently, scaffolds are the only type that warrant examining in-body
+			actions_list.Add(list(list(
+				"name" = "Examine",
+				"organ" = "\ref[src]",
+				"step" = /datum/surgery_step/examine
+			)))
 		actions_list.Add(list(list(
 			"name" = (status & ORGAN_CUT_AWAY) ? "Attach" : "Separate",
 			"organ" = "\ref[src]",
 			"step" = (status & ORGAN_CUT_AWAY) ? /datum/surgery_step/attach_organ : /datum/surgery_step/detach_organ
 		)))
+
 
 	return actions_list
 

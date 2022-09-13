@@ -296,7 +296,7 @@
 
 /obj/item/electronics/ai_module/broken/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()
-	IonStorm(0)
+	IonStorm()
 	explosion(sender.loc, 1, 1, 1, 3)
 	sender.drop_from_inventory(src)
 	QDEL_NULL(src)

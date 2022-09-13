@@ -161,6 +161,10 @@
 	path = /obj/item/clothing/under/tuxedo
 	cost = 2
 
+/datum/gear/uniform/wifebeater
+	display_name = "white tank top"
+	path = /obj/item/clothing/under/wifebeater
+
 /*/datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"
 	path = /obj/item/clothing/under/dress/dress_hop
@@ -186,3 +190,8 @@
 /datum/gear/uniform/battledress_german
 	display_name = "battle dress uniform, oberth"
 	path = /obj/item/clothing/under/germansuit
+
+/datum/gear/uniform/ntsec
+	display_name = "Nanotrasen security uniform"
+	path = /obj/item/clothing/under/ntsec
+	allowed_roles = list(ASSISTANT_TITLE)

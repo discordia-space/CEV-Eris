@@ -10,7 +10,7 @@
 	var/edge = FALSE		// whether this object is more likely to dismember
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
-	var/armor_penetration = 0
+	var/armor_divisor = 1
 	var/style_damage = 30 // used for dealing damage to slickness
 	var/corporation
 	var/heat = 0
@@ -23,8 +23,10 @@
 	return w_class * 2
 
 /obj/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
+	if(!ismachinery(src))
+		STOP_PROCESSING(SSobj, src) // TODO: Have a processing bitflag to reduce on unnecessary loops through the processing lists
+	SSnano.close_uis(src)
+	. = ..()
 
 /obj/Topic(href, href_list, var/datum/topic_state/state = GLOB.default_state)
 	if(..())
@@ -73,10 +75,6 @@
 	// Nada
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
-
-/obj/Process()
-	STOP_PROCESSING(SSobj, src)
-	return 0
 
 /obj/assume_air(datum/gas_mixture/giver)
 	if(loc)
@@ -253,8 +251,8 @@
 	throwforce = initial(throwforce) * newmult
 
 //Same for AP
-/obj/proc/multiply_projectile_penetration(newmult)
-	armor_penetration = initial(armor_penetration) * newmult
+/obj/proc/add_projectile_penetration(newmult)
+	armor_divisor = initial(armor_divisor) + newmult
 
 /obj/proc/multiply_projectile_style_damage(newmult)
 	style_damage = initial(style_damage) * newmult

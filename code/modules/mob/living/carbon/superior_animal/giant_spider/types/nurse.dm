@@ -17,7 +17,7 @@
 	var/atom/cocoon_target
 	poison_type = "aranecolmin"
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/spider/nurse
-	move_to_delay = 3
+	move_to_delay = 4
 	meat_amount = 3
 	rarity_value = 75
 	var/fed = 0
