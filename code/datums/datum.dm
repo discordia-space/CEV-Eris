@@ -17,6 +17,9 @@
 	  */
 	var/gc_destroyed
 
+	/// Active timers with this datum as the target
+	var/list/active_timers
+
 	var/tmp/is_processing = FALSE
 
 	/**
