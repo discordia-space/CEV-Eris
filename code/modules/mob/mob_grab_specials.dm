@@ -248,24 +248,26 @@
 	target.SpinAnimation(5,1)
 	var/fireman_dir = (get_dir(target, attacker))
 	var/damage = 10
-	target.update_lying_buckled_and_verb_status()
+	target.loc = src.loc
 	attacker.drop_from_inventory(src)
 	loc = null
 	qdel(src)
+	target.update_lying_buckled_and_verb_status()
 
 	if(istype(get_step(attacker, fireman_dir), /turf/simulated/wall))
 		visible_message(SPAN_WARNING("[target] slams into the wall!"))
 		damage = 20
-		target.loc = src.loc
 						
 	for(var/obj/structure/S in get_step(target, fireman_dir))
 		if(istype(S, /obj/structure/window))
 			visible_message(SPAN_WARNING("[target] slams into \the [S]!"))
 			damage = 30
+			continue
 
 		if(istype(S, /obj/structure/railing))
 			visible_message(SPAN_WARNING("[target] falls over \the [S]!"))
 			target.forceMove(get_step(target, fireman_dir))
+			continue
 
 		if(istype(S, /obj/structure/table))
 			visible_message(SPAN_WARNING("[target] falls on \the [S]!"))
@@ -274,7 +276,8 @@
 			T.take_damage(10)
 			target.Weaken(5)
 			damage = 15
-
+			continue
+		target.forceMove(get_step(target, fireman_dir))
 		continue
 
 	if(!istype(get_step(attacker, fireman_dir), /turf/simulated/wall))
