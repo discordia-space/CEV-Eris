@@ -10569,7 +10569,11 @@
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "azL" = (
-/turf/simulated/floor/tiled/steel/cyancorner,
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/structure/curtain/open/shower,
+/turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/crew_quarters/fitness)
 "azM" = (
 /obj/structure/table/reinforced,
@@ -29685,6 +29689,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/catwalk,
 /turf/simulated/open,
 /area/eris/maintenance/section3deck1central)
 "bsJ" = (
@@ -30169,12 +30174,8 @@
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/virology)
 "btZ" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/open,
-/area/eris/maintenance/section3deck1central)
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/crew_quarters/fitness)
 "bua" = (
 /obj/structure/bed/chair/office/dark,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -55716,11 +55717,11 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/fitness)
 "cDM" = (
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/eris/crew_quarters/fitness)
-"cDN" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/crew_quarters/fitness)
+"cDN" = (
+/turf/simulated/floor/tiled/steel/golden,
 /area/eris/crew_quarters/fitness)
 "cDO" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
@@ -76645,11 +76646,10 @@
 /turf/simulated/floor/plating,
 /area/eris/rnd/mixing)
 "dBM" = (
-/obj/machinery/shower{
-	dir = 1
+/obj/machinery/door/airlock{
+	name = "Showers"
 	},
-/obj/structure/curtain/open/shower,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/simulated/floor/tiled/white/techfloor_grid,
 /area/eris/crew_quarters/fitness)
 "dBN" = (
 /obj/structure/sign/examroom{
@@ -100586,12 +100586,6 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/propulsion/right)
-"eHS" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/wall/r_wall,
-/area/eris/crew_quarters/fitness)
 "eHX" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -100977,10 +100971,6 @@
 /obj/item/clothing/glasses/sunglasses/blindfold,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
-"eTj" = (
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/steel,
-/area/eris/crew_quarters/fitness)
 "eWR" = (
 /obj/structure/table/rack,
 /obj/item/contraband/poster/placed{
@@ -101129,6 +101119,14 @@
 /obj/structure/cryofeed,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
+"fxY" = (
+/obj/item/soap,
+/obj/machinery/camera/network/third_section{
+	dir = 8;
+	name = "gym showers 1"
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/crew_quarters/fitness)
 "fzU" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	dir = 4
@@ -101235,6 +101233,14 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/eris/rnd/lab)
+"fRh" = (
+/obj/item/soap,
+/obj/machinery/camera/network/third_section{
+	dir = 8;
+	name = "gym showers 2"
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/crew_quarters/fitness)
 "fRY" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
@@ -102534,6 +102540,9 @@
 /obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
+"jiU" = (
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/eris/crew_quarters/fitness)
 "jjb" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -103173,9 +103182,6 @@
 /obj/structure/railing,
 /turf/simulated/open,
 /area/eris/engineering/atmos)
-"ljl" = (
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/eris/crew_quarters/fitness)
 "ljI" = (
 /obj/structure/catwalk,
 /obj/machinery/button/remote/blast_door{
@@ -104922,6 +104928,9 @@
 /obj/item/device/radio/intercom,
 /turf/simulated/wall/r_wall,
 /area/eris/neotheology/chapelritualroom)
+"pRg" = (
+/turf/simulated/floor/tiled/steel/cyancorner,
+/area/eris/crew_quarters/fitness)
 "pRL" = (
 /obj/structure/closet/secure_closet/personal/doctor,
 /obj/machinery/camera/network/medbay{
@@ -105098,14 +105107,6 @@
 /obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
-"qni" = (
-/obj/item/soap,
-/obj/machinery/camera/network/third_section{
-	dir = 8;
-	name = "gym showers 1"
-	},
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/eris/crew_quarters/fitness)
 "qnS" = (
 /obj/structure/closet/wall_mounted/firecloset{
 	pixel_x = -32
@@ -105130,12 +105131,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4port)
-"qsq" = (
-/obj/machinery/door/airlock{
-	name = "Showers"
-	},
-/turf/simulated/floor/tiled/white/techfloor_grid,
-/area/eris/crew_quarters/fitness)
 "qsK" = (
 /obj/structure/railing{
 	dir = 1
@@ -106313,6 +106308,10 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
+"tyD" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/steel,
+/area/eris/crew_quarters/fitness)
 "tzd" = (
 /obj/structure/table/woodentable,
 /obj/spawner/booze/low_chance,
@@ -107124,6 +107123,12 @@
 /obj/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck5port)
+"vJo" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/wall/r_wall,
+/area/eris/crew_quarters/fitness)
 "vJq" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
@@ -107649,9 +107654,6 @@
 	},
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
-"xhV" = (
-/turf/simulated/floor/tiled/steel/golden,
-/area/eris/crew_quarters/fitness)
 "xij" = (
 /obj/machinery/light/small,
 /obj/structure/bed/chair{
@@ -107856,14 +107858,6 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemstor)
-"xQn" = (
-/obj/item/soap,
-/obj/machinery/camera/network/third_section{
-	dir = 8;
-	name = "gym showers 2"
-	},
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/eris/crew_quarters/fitness)
 "xSp" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -244528,17 +244522,17 @@ abF
 awr
 cKw
 cDL
-eHS
-xhV
+vJo
+cDN
 cDi
-azL
-azL
-eTj
-eTj
-azL
-azL
+pRg
+pRg
+tyD
+tyD
+pRg
+pRg
 cDi
-ljl
+jiU
 awr
 eFr
 axW
@@ -244729,9 +244723,9 @@ awr
 awr
 awr
 cRH
-cDN
+cDM
 awr
-xhV
+cDN
 cDi
 cDi
 cDi
@@ -244740,7 +244734,7 @@ cDi
 cDi
 cDi
 cDi
-ljl
+jiU
 awr
 eFs
 ayl
@@ -244931,7 +244925,7 @@ awr
 cDb
 exp
 cVY
-cDN
+cDM
 awr
 cDi
 cDi
@@ -245133,9 +245127,9 @@ awr
 etJ
 cDi
 cXn
-cDN
+cDM
 awr
-xhV
+cDN
 cDi
 cDi
 cDi
@@ -245144,7 +245138,7 @@ cDi
 cDi
 cDi
 cDi
-ljl
+jiU
 awr
 axW
 axW
@@ -245335,9 +245329,9 @@ awr
 cDd
 cDi
 cXn
-cDN
+cDM
 awr
-xhV
+cDN
 cDi
 cDi
 cDi
@@ -245346,7 +245340,7 @@ cDi
 cDi
 cDi
 cDi
-ljl
+jiU
 awr
 axX
 aym
@@ -245537,17 +245531,17 @@ awr
 cDd
 cDi
 cXn
-cDN
+cDM
 awr
 awr
-qsq
+dBM
 awr
 awr
 cDi
 cDi
 awr
 awr
-qsq
+dBM
 awr
 awr
 euu
@@ -245739,18 +245733,18 @@ awr
 cDd
 cDi
 cXn
-cDN
+cDM
 awr
 awt
-cDM
-dBM
+btZ
+azL
 awr
 cDi
 cDi
 awr
 awt
-cDM
-dBM
+btZ
+azL
 awr
 axZ
 ayn
@@ -245941,18 +245935,18 @@ awr
 cDe
 cDi
 cXn
-cDN
+cDM
 awr
 awt
-cDM
-dBM
+btZ
+azL
 awr
 cDi
 cDi
 awr
 awt
-cDM
-dBM
+btZ
+azL
 awr
 aya
 ayo
@@ -246143,18 +246137,18 @@ awr
 awr
 awr
 dmI
-cDN
+cDM
 awr
 awt
-qni
-dBM
+fxY
+azL
 awr
 cDi
 cDi
 awr
 awt
-xQn
-dBM
+fRh
+azL
 awr
 eyy
 ayp
@@ -284931,14 +284925,14 @@ cNH
 aCh
 boS
 erX
-blY
-aLZ
-aLZ
-aLZ
-aLZ
+bkF
+bkF
+bkF
+bkF
+bkF
 bsI
-btZ
-aZv
+bkF
+bkF
 bkF
 boS
 boS
@@ -285133,14 +285127,14 @@ cNH
 cNH
 elC
 erX
-blY
-aLZ
-aLZ
-aLZ
-aLZ
+bkF
+bkF
+bkF
+bkF
+bkF
 bsI
-btZ
-aZv
+bkF
+bkF
 bkF
 boS
 bvj
@@ -285335,14 +285329,14 @@ mAA
 mAA
 mAA
 erX
-blY
-aLZ
-aLZ
-aLZ
-aLZ
+bkF
+bkF
+bkF
+bkF
+bkF
 bsI
-btZ
-aZv
+bkF
+bkF
 bkF
 boS
 bvj
@@ -285537,14 +285531,14 @@ eWR
 erE
 emG
 erX
-blY
-aLZ
-aLZ
-aLZ
-aLZ
+bkF
+bkF
+bkF
+bkF
+bkF
 bsI
-btZ
-aZv
+bkF
+bkF
 bkF
 boS
 bvj
@@ -285739,14 +285733,14 @@ kLT
 kLT
 emG
 erX
-blY
-aLZ
-aLZ
-aLZ
-aLZ
+bkF
+bkF
+bkF
+bkF
+bkF
 bsI
-btZ
-aZv
+bkF
+bkF
 bkF
 boS
 boS
@@ -285941,14 +285935,14 @@ kLT
 erF
 enL
 exs
-blY
-aLZ
-aLZ
-aLZ
-aLZ
+bkF
+bkF
+bkF
+bkF
+bkF
 bsI
-btZ
-aZv
+bkF
+bkF
 bkF
 boS
 aNH
@@ -286143,14 +286137,14 @@ kLT
 erG
 emG
 erX
-blY
-aLZ
-aLZ
-aLZ
-aLZ
+bkF
+bkF
+bkF
+bkF
+bkF
 bsI
-btZ
-aZv
+bkF
+bkF
 bkF
 boN
 aRM
@@ -286345,14 +286339,14 @@ erz
 erH
 emG
 erX
-blY
-aLZ
-aLZ
-aLZ
-aLZ
+bkF
+bkF
+bkF
+bkF
+bkF
 bsI
-btZ
-aZv
+bkF
+bkF
 bkF
 boN
 cNH
@@ -286547,14 +286541,14 @@ kLT
 kLT
 emG
 erX
-blY
-aLZ
-aLZ
-aLZ
-aLZ
+bkF
+bkF
+bkF
+bkF
+bkF
 bsI
-btZ
-aZv
+bkF
+bkF
 bkF
 boS
 aRM
