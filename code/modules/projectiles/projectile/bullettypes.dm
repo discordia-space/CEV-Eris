@@ -92,6 +92,7 @@ There are important things regarding this file:
 	penetrating = 2
 	can_ricochet = FALSE //to reduce collateral damage and FF, since IH use it in their primary firearm
 	recoil = 3.5
+	step_delay = 0.8 //intermediate between .20 and .30, but easy to use
 
 /obj/item/projectile/bullet/clrifle/practice
 	name = "practice bullet"
@@ -102,7 +103,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/clrifle/hv
 	armor_divisor = 2
-	step_delay = 0.75
+	step_delay = 0.7
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/clrifle/rubber
@@ -289,6 +290,7 @@ There are important things regarding this file:
 
 //Should do about 80 damage at 1 tile distance (adjacent), and 50 damage at 3 tiles distance.
 //Overall less damage than slugs in exchange for more damage at very close range and more embedding
+//Has a small wounding modifier due to /bullet/pellet
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
 	icon_state = "birdshot-1"
@@ -299,7 +301,6 @@ There are important things regarding this file:
 	spread_step = 10
 	pellet_to_knockback_ratio = 2
 	recoil = 8
-	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()

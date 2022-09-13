@@ -54,6 +54,8 @@ COMSIG_ABERRANT_SECONDARY
 	// Stat-gated details
 	var/examine_stat = STAT_COG
 	var/examine_difficulty = STAT_LEVEL_BASIC
+	var/examine_stat_secondary = null
+	var/examine_difficulty_secondary = STAT_LEVEL_BASIC
 
 	// Trigger
 	var/trigger_signal
@@ -168,9 +170,14 @@ COMSIG_ABERRANT_SECONDARY
 /datum/component/modification/proc/on_examine(mob/user)
 	SIGNAL_HANDLER
 
+	var/details_unlocked = FALSE
+	details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
+	if(examine_stat_secondary)
+		details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
+
 	if(examine_msg)
 		to_chat(user, SPAN_WARNING(examine_msg))
-	if(user.stats.getStat(examine_stat) >= examine_difficulty)
+	if(details_unlocked)
 		var/function_info = get_function_info()
 		if(function_info)
 			to_chat(user, SPAN_NOTICE(function_info))

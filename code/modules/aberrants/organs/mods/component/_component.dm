@@ -19,14 +19,16 @@
 	adjustable = FALSE
 	destroy_on_removal = FALSE 
 	removable = TRUE
-	breakable = TRUE		// Needs high Bio to remove
+	breakable = FALSE
 
 	apply_to_types = list(/obj/item/organ/internal/scaffold)
 	//blacklisted_types = list(/obj/item/organ/internal/scaffold/hive)
 
-	examine_msg = "Can be attached to organ scaffolds and abnormal organs."
+	examine_msg = "Can be attached to organ scaffolds and aberrant organs."
 	examine_stat = STAT_BIO
-	examine_difficulty = STAT_LEVEL_EXPERT
+	examine_difficulty = STAT_LEVEL_EXPERT - 5
+	examine_stat_secondary = STAT_COG
+	examine_difficulty_secondary = STAT_LEVEL_BASIC - 5
 
 	// Internal organ stuff
 	var/list/owner_verb_adds = list()
@@ -145,13 +147,28 @@
 		S.try_ruin()
 
 /datum/component/modification/organ/on_examine(mob/user)
+	var/using_sci_goggles = FALSE
+	var/details_unlocked = FALSE
+
+	// Goggles check
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(istype(H.glasses, /obj/item/clothing/glasses/powered/science))
+			var/obj/item/clothing/glasses/powered/G = H.glasses
+			using_sci_goggles = G.active	// Meat vision
+
+	// Stat check
+	details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
+	if(examine_stat_secondary && details_unlocked)
+		details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
+
 	if(examine_msg)
 		to_chat(user, SPAN_WARNING(examine_msg))
 
 	if(adjustable)
 		to_chat(user, SPAN_WARNING("Can be adjusted with a laser cutting tool."))
 
-	if(user.stats.getStat(examine_stat) >= examine_difficulty)
+	if(using_sci_goggles || details_unlocked)
 		var/info = "Organoid size: [specific_organ_size_mod ? specific_organ_size_mod : "0"]"
 		info += "\nRequirements: <span style='color:red'>[blood_req_mod ? blood_req_mod : "0"]\
 								</span>/<span style='color:blue'>[oxygen_req_mod ? oxygen_req_mod : "0"]\
@@ -169,4 +186,4 @@
 		if(function_info)
 			to_chat(user, SPAN_NOTICE(function_info))
 	else
-		to_chat(user, SPAN_WARNING("You lack the biological knowledge required to understand its functions."))
+		to_chat(user, SPAN_WARNING("You lack the biological knowledge and/or mental ability  required to understand its functions."))

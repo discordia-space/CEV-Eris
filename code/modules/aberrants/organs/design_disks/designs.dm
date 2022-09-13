@@ -132,6 +132,13 @@
 /datum/design/organ/organ_mod/silencer
 	build_path = /obj/item/modification/organ/internal/stromal/augment/silencer
 
+/datum/design/organ/organ_mod/parenchymal
+	build_path = /obj/item/modification/organ/internal/parenchymal
+
+/datum/design/organ/organ_mod/parenchymal_large
+	build_path = /obj/item/modification/organ/internal/parenchymal/large
+	starts_unlocked = FALSE
+
 
 // Teratomas
 /datum/design/organ/teratoma
@@ -143,8 +150,26 @@
 	category = "Inputs"
 	starts_unlocked = TRUE
 
-/datum/design/organ/teratoma/input/reagents
-	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents
+/datum/design/organ/teratoma/input/reagents_roach
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/roach
+
+/datum/design/organ/teratoma/input/reagents_spider
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/spider
+
+/datum/design/organ/teratoma/input/reagents_toxin
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/toxin
+
+/datum/design/organ/teratoma/input/reagents_edible
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/edible
+
+/datum/design/organ/teratoma/input/reagents_alcohol
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/alcohol
+
+/datum/design/organ/teratoma/input/reagents_drugs
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/drugs
+
+/datum/design/organ/teratoma/input/reagents_dispenser
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/dispenser
 
 /datum/design/organ/teratoma/input/damage
 	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/damage
@@ -154,10 +179,29 @@
 
 
 /datum/design/organ/teratoma/input/uncommon
+	category = "Inputs II"
 	starts_unlocked = FALSE
 
-/datum/design/organ/teratoma/input/uncommon/reagents
-	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/uncommon
+/datum/design/organ/teratoma/input/uncommon/reagents_roach
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/uncommon/roach
+
+/datum/design/organ/teratoma/input/uncommon/reagents_spider
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/uncommon/spider
+
+/datum/design/organ/teratoma/input/uncommon/reagents_toxin
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/uncommon/toxin
+
+/datum/design/organ/teratoma/input/uncommon/reagents_edible
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/uncommon/edible
+
+/datum/design/organ/teratoma/input/uncommon/reagents_alcohol
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/uncommon/alcohol
+
+/datum/design/organ/teratoma/input/uncommon/reagents_drugs
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/uncommon/drugs
+
+/datum/design/organ/teratoma/input/uncommon/reagents_dispenser
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/uncommon/dispenser
 
 /datum/design/organ/teratoma/input/uncommon/damage
 	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/damage/uncommon
@@ -167,10 +211,29 @@
 
 
 /datum/design/organ/teratoma/input/rare
+	category = "Inputs III"
 	starts_unlocked = FALSE
 
-/datum/design/organ/teratoma/input/rare/reagents
-	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare
+/datum/design/organ/teratoma/input/rare/reagents_roach
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare/roach
+
+/datum/design/organ/teratoma/input/rare/reagents_spider
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare/spider
+
+/datum/design/organ/teratoma/input/rare/reagents_toxin
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare/toxin
+
+/datum/design/organ/teratoma/input/rare/reagents_edible
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare/edible
+
+/datum/design/organ/teratoma/input/rare/reagents_alcohol
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare/alcohol
+
+/datum/design/organ/teratoma/input/rare/reagents_drugs
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare/drugs
+
+/datum/design/organ/teratoma/input/rare/reagents_dispenser
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/reagents/rare/dispenser
 
 /datum/design/organ/teratoma/input/rare/damage
 	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/input/damage/rare
@@ -198,46 +261,96 @@
 	category = "Outputs"
 	starts_unlocked = TRUE
 
-/datum/design/organ/teratoma/output/reagents_blood
-	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood
+/datum/design/organ/teratoma/output/reagents_blood_roach
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/roach
 
-/datum/design/organ/teratoma/output/reagents_ingest
-	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest
+/datum/design/organ/teratoma/output/reagents_blood_drugs
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/drugs
 
-/datum/design/organ/teratoma/output/chemical_effects
-	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects
+/datum/design/organ/teratoma/output/reagents_blood_medicine_simple
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/medicine_simple
+	starts_unlocked = FALSE
+
+/datum/design/organ/teratoma/output/reagents_blood_medicine_intermediate
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/medicine_intermediate
+	starts_unlocked = FALSE
+
+/datum/design/organ/teratoma/output/reagents_ingest_edible
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/edible
+
+/datum/design/organ/teratoma/output/reagents_ingest_alcohol
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/alcohol
+
+/datum/design/organ/teratoma/output/chemical_effects_type_1
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/type_1
+
+/datum/design/organ/teratoma/output/chemical_effects_type_2
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/type_2
+	starts_unlocked = FALSE
 
 /datum/design/organ/teratoma/output/stat_boost
 	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/stat_boost
 
 
 /datum/design/organ/teratoma/output/uncommon
+	category = "Outputs II"
 	starts_unlocked = FALSE
 
-/datum/design/organ/teratoma/output/uncommon/reagents_blood
-	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/uncommon
+/datum/design/organ/teratoma/output/uncommon/reagents_blood_roach
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/uncommon/roach
 
-/datum/design/organ/teratoma/output/uncommon/reagents_ingest
-	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/uncommon
+/datum/design/organ/teratoma/output/uncommon/reagents_blood_drugs
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/uncommon/drugs
 
-/datum/design/organ/teratoma/output/uncommon/chemical_effects
-	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/uncommon
+/datum/design/organ/teratoma/output/uncommon/reagents_blood_medicine_simple
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/uncommon/medicine_simple
+
+/datum/design/organ/teratoma/output/uncommon/reagents_blood_medicine_intermediate
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/uncommon/medicine_intermediate
+
+/datum/design/organ/teratoma/output/uncommon/reagents_ingest_edible
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/uncommon/edible
+
+/datum/design/organ/teratoma/output/uncommon/reagents_ingest_alcohol
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/uncommon/alcohol
+
+/datum/design/organ/teratoma/output/uncommon/chemical_effects_type_1
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/uncommon/type_1
+
+/datum/design/organ/teratoma/output/uncommon/chemical_effects_type_2
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/uncommon/type_2
 
 /datum/design/organ/teratoma/output/uncommon/stat_boost
 	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/stat_boost/uncommon
 
 
 /datum/design/organ/teratoma/output/rare
+	category = "Outputs III"
 	starts_unlocked = FALSE
 
-/datum/design/organ/teratoma/output/rare/reagents_blood
-	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/rare
+/datum/design/organ/teratoma/output/rare/reagents_blood_roach
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/rare/roach
 
-/datum/design/organ/teratoma/output/rare/reagents_ingest
-	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/rare
+/datum/design/organ/teratoma/output/rare/reagents_blood_drugs
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/rare/drugs
 
-/datum/design/organ/teratoma/output/rare/chemical_effects
-	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/rare
+/datum/design/organ/teratoma/output/rare/reagents_blood_medicine_simple
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/rare/medicine_simple
+
+/datum/design/organ/teratoma/output/rare/reagents_blood_medicine_intermediate
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_blood/rare/medicine_intermediate
+
+/datum/design/organ/teratoma/output/rare/reagents_ingest_edible
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/rare/edible
+
+/datum/design/organ/teratoma/output/rare/reagents_ingest_alcohol
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/reagents_ingest/rare/alcohol
+
+/datum/design/organ/teratoma/output/rare/chemical_effects_type_1
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/rare/type_1
+
+/datum/design/organ/teratoma/output/rare/chemical_effects_type_2
+	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/chemical_effects/rare/type_2
 
 /datum/design/organ/teratoma/output/rare/stat_boost
 	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/output/stat_boost/rare
@@ -252,3 +365,14 @@
 
 /datum/design/organ/teratoma/special/stat_boost
 	build_path = /obj/item/organ/internal/scaffold/aberrant/teratoma/special/stat_boost
+
+
+// Machinery
+/datum/design/viscera
+	starts_unlocked = FALSE		// Not meant to be researched
+
+/datum/design/viscera/organ_fabricator
+	build_path = /obj/item/electronics/circuitboard/organ_fabricator
+
+/datum/design/viscera/disgorger
+	build_path = /obj/item/electronics/circuitboard/disgorger

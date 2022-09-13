@@ -60,8 +60,8 @@
 	GUN_UPGRADE_RECOIL = 1.2,
 	GUN_UPGRADE_DAMAGE_MULT = 1.5,
 	GUN_UPGRADE_CHARGECOST = 3)
-	I.req_fuel_cell = REQ_CELL
 	I.gun_loc_tag = GUN_MECHANISM
+	I.req_gun_tags = list(GUN_ENERGY)
 
 // Greatly increase firerate at the cost of lower damage
 /obj/item/gun_upgrade/mechanism/overdrive
@@ -79,10 +79,9 @@
 	GUN_UPGRADE_DAMAGE_MULT = 0.66,
 	GUN_UPGRADE_FIRE_DELAY_MULT = 0.33,
 	GUN_UPGRADE_CHARGECOST = 0.5,
-	GUN_UPGRADE_FIRE_DELAY_MULT = 0.33,
 	GUN_UPGRADE_FULLAUTO = TRUE)
-	I.req_fuel_cell = REQ_CELL
 	I.gun_loc_tag = GUN_MECHANISM
+	I.req_gun_tags = list(GUN_ENERGY)
 
 // Add toxin damage to your weapon
 /obj/item/gun_upgrade/barrel/toxin_coater

@@ -95,6 +95,7 @@
 	var/base_spread = 90	//lower means the pellets spread more across body parts. If zero then this is considered a shrapnel explosion instead of a shrapnel cone
 	var/spread_step = 10	//higher means the pellets spread more across body parts with distance
 	var/pellet_to_knockback_ratio = 0
+	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/pellet/Bumped()
 	. = ..()
@@ -155,3 +156,13 @@
 			if(M.lying || !M.CanPass(src, loc)) //Bump if lying or if we would normally Bump.
 				if(Bump(M)) //Bump will make sure we don't hit a mob multiple times
 					return
+
+/obj/item/projectile/bullet/pellet/adjust_damages(var/list/newdamages)
+	if(!newdamages.len)
+		return
+	for(var/damage_type in newdamages)
+		var/bonus = pellets > 2 ? newdamages[damage_type] / pellets * 2 : newdamages[damage_type]
+		if(damage_type == IRRADIATE)
+			irradiate += bonus
+			continue
+		damage_types[damage_type] += bonus

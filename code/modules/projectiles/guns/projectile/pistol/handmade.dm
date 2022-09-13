@@ -13,8 +13,9 @@
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_WOOD = 5)
 	gun_parts = list(/obj/item/stack/material/steel = 2)
 	ammo_type = /obj/item/ammo_casing/magnum
-	damage_multiplier = 1.36
-	init_recoil = HANDGUN_RECOIL(2.5)
+	damage_multiplier = 1.35
+	penetration_multiplier = 0
+	init_recoil = HANDGUN_RECOIL(2)
 	style_damage_multiplier = 2
 	spawn_frequency = 0
 	spawn_blacklisted = FALSE

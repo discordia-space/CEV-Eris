@@ -8,31 +8,31 @@
 /datum/component/modification/organ/on_item_examine/brainloss
 	var/damage = 1
 
-/datum/component/modification/organ/on_item_examine/brainloss/get_function_info()
-	var/description = "<span style='color:purple'>Functional information (secondary):</span> causes brain damage when examined"
-	return description
-
 /datum/component/modification/organ/on_item_examine/brainloss/moderate
 	damage = 5
 
-/datum/component/modification/organ/on_item_examine/brainloss/trigger(obj/item/holder, mob/owner)
-	if(!holder || !owner)
+/datum/component/modification/organ/on_item_examine/brainloss/get_function_info()
+	var/description = "<span style='color:purple'>Functional information (secondary):</span> causes brain damage when viewed closely"
+	return description
+
+/datum/component/modification/organ/on_item_examine/brainloss/trigger(mob/user)
+	if(!user)
 		return
-	if(isliving(owner))
-		var/mob/living/L = owner	// NOTE: In this case, owner means the mob that examined the holder, not the mob the holder is attached to
+	if(ishuman(user))
+		var/mob/living/carbon/human/L = user	// NOTE: In this case, user means the mob that examined the holder, not the mob the holder is attached to
 		L.adjustBrainLoss(damage)
-		L.apply_damage(PSY, damage)
+		L.apply_damage(damage, PSY)
 
 
 /datum/component/modification/organ/on_pickup
 	exclusive_type = /obj/item/modification/organ/internal/special/on_pickup
 	trigger_signal = COMSIG_ITEM_PICKED
 
-/datum/component/modification/organ/on_pickup/try_modify()
-	return
-
 /datum/component/modification/organ/on_pickup/shock
 	var/damage = 5
+
+/datum/component/modification/organ/on_pickup/shock/try_modify()
+	return
 
 /datum/component/modification/organ/on_pickup/shock/get_function_info()
 	var/description = "<span style='color:purple'>Functional information (secondary):</span> electrocutes when touched"
@@ -48,6 +48,28 @@
 	if(isliving(owner))
 		var/mob/living/L = owner
 		L.electrocute_act(damage, parent)
+
+/datum/component/modification/organ/on_pickup/parasitic
+
+/datum/component/modification/organ/on_pickup/parasitic/get_function_info()
+	var/description = "<span style='color:purple'>Functional information (secondary):</span> attempts to implant itself into the holder"
+	return description
+
+/datum/component/modification/organ/on_pickup/parasitic/trigger(obj/item/holder, mob/owner)
+	if(!holder || !owner)
+		return
+
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		var/obj/item/organ/external/active_hand = H.get_active_hand_organ()
+		if(H.getarmor_organ(active_hand, ARMOR_MELEE) < 3 && active_hand.get_total_occupied_volume() < active_hand.max_volume)
+			if(istype(holder, /obj/item/organ/internal))
+				var/obj/item/organ/internal/I = holder
+				owner.drop_item(I)
+				I.replaced(active_hand)
+				H.apply_damage(10, HALLOSS, active_hand)
+				H.apply_damage(10, BRUTE, active_hand)
+				to_chat(owner, SPAN_WARNING("\The [holder] forces its way into your [active_hand.name]!"))
 
 
 /datum/component/modification/organ/on_cooldown

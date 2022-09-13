@@ -114,6 +114,12 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	style = STYLE_LOW
 
+/obj/item/clothing/under/wifebeater
+	name = "white tank top"
+	desc = "Beer stains not included."
+	icon_state = "sports"
+	item_state = "sports"
+
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"
 	desc = "Are you not entertained? Is that not why you are here?"
