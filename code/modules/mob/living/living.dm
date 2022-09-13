@@ -14,7 +14,6 @@
 	if (HUDtech.Find("flash"))
 		flick("e_flash", HUDtech["flash"])
 	if(duration)
-		Weaken(duration, drop_items)
 		if(doblind)
 			eye_blind += duration
 		if(doblurry)
