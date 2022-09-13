@@ -9350,10 +9350,10 @@
 /turf/simulated/wall/r_wall,
 /area/eris/crew_quarters/fitness)
 "awt" = (
-/turf/simulated/floor/reinforced{
-	name = "Holodeck Projector Floor"
-	},
-/area/holodeck/alphadeck)
+/obj/structure/curtain/open/shower,
+/obj/machinery/shower,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/crew_quarters/fitness)
 "awu" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/steel,
@@ -10569,9 +10569,8 @@
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "azL" = (
-/obj/machinery/photocopier,
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/library)
+/turf/simulated/floor/tiled/steel/cyancorner,
+/area/eris/crew_quarters/fitness)
 "azM" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
@@ -29224,7 +29223,8 @@
 "brr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/hallway/side/section3starboard)
@@ -33506,7 +33506,8 @@
 	id = "hangar_to_cargo"
 	},
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
@@ -43825,7 +43826,8 @@
 	pixel_x = 28
 	},
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -54060,7 +54062,8 @@
 /area/eris/maintenance/section3deck4central)
 "czW" = (
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /obj/machinery/alarm{
 	dir = 8;
@@ -55103,7 +55106,8 @@
 "cCm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/crew_quarters/kitchen)
@@ -55712,13 +55716,10 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/fitness)
 "cDM" = (
-/obj/structure/bed/chair,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/crew_quarters/fitness)
 "cDN" = (
-/obj/machinery/computer/HolodeckControl/Exodus{
-	dir = 8
-	},
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/fitness)
 "cDO" = (
@@ -57429,7 +57430,8 @@
 "cHY" = (
 /obj/structure/catwalk,
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
@@ -59166,7 +59168,8 @@
 	dir = 1
 	},
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /obj/machinery/firealarm{
 	pixel_y = 28
@@ -64073,10 +64076,10 @@
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
 /obj/structure/bed/chair/custom/bar_special,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "cYP" = (
@@ -69925,7 +69928,8 @@
 /area/eris/quartermaster/disposaldrop)
 "dlP" = (
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /obj/structure/bed/psych{
 	desc = "It can be a bit noisy, but still serves well.";
@@ -74829,9 +74833,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/fitness)
 "dxq" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/turf/space,
 /area/eris/crew_quarters/fitness)
 "dxr" = (
 /obj/structure/cable/green{
@@ -76643,11 +76645,11 @@
 /turf/simulated/floor/plating,
 /area/eris/rnd/mixing)
 "dBM" = (
-/obj/machinery/door/airlock/glass{
-	name = "Holodeck Door"
+/obj/machinery/shower{
+	dir = 1
 	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/steel/cargo,
+/obj/structure/curtain/open/shower,
+/turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/crew_quarters/fitness)
 "dBN" = (
 /obj/structure/sign/examroom{
@@ -87495,7 +87497,8 @@
 	dir = 9
 	},
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/fitness)
@@ -87831,7 +87834,8 @@
 	dir = 10
 	},
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/fitness)
@@ -95525,7 +95529,8 @@
 	pixel_x = 26
 	},
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics/garden)
@@ -95546,7 +95551,8 @@
 	pixel_x = 26
 	},
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/churchbooth)
@@ -95764,7 +95770,8 @@
 "evI" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /obj/machinery/alarm{
 	dir = 8;
@@ -95907,7 +95914,8 @@
 	dir = 10
 	},
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
@@ -96133,7 +96141,8 @@
 /area/eris/storage/primary)
 "ewy" = (
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section3)
@@ -96151,7 +96160,8 @@
 	dir = 8
 	},
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /obj/machinery/alarm{
 	pixel_y = 26
@@ -96390,7 +96400,8 @@
 	id = "minetocargo"
 	},
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/tiled/steel/danger,
 /area/eris/quartermaster/miningdock)
@@ -96417,7 +96428,8 @@
 /obj/item/cell/large/high,
 /obj/item/cell/large/high,
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /obj/machinery/alarm{
 	dir = 1;
@@ -96427,7 +96439,8 @@
 /area/eris/crew_quarters/pubeva)
 "exg" = (
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
@@ -96471,7 +96484,8 @@
 /area/eris/hallway/main/section2)
 "exn" = (
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section2)
@@ -96654,7 +96668,8 @@
 	dir = 10
 	},
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/carpet,
 /area/eris/quartermaster/office)
@@ -96751,7 +96766,8 @@
 "exO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section2)
@@ -96918,7 +96934,8 @@
 "eyi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /obj/item/device/radio/intercom{
 	dir = 8;
@@ -97208,7 +97225,8 @@
 /area/eris/maintenance/section3deck2starboard)
 "eyT" = (
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/tiled/white/techfloor_grid,
 /area/eris/hallway/main/section2)
@@ -97821,7 +97839,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/crew_quarters/librarybackroom)
@@ -98331,7 +98350,8 @@
 	pixel_y = -25
 	},
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
@@ -98787,7 +98807,8 @@
 /area/eris/maintenance/section3deck2starboard)
 "eCe" = (
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel/gray_perforated,
@@ -98859,7 +98880,8 @@
 "eCm" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /obj/structure/closet/secure_closet/personal/miner,
 /turf/simulated/floor/tiled/steel/gray_perforated,
@@ -100564,6 +100586,12 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/propulsion/right)
+"eHS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/wall/r_wall,
+/area/eris/crew_quarters/fitness)
 "eHX" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -100949,6 +100977,10 @@
 /obj/item/clothing/glasses/sunglasses/blindfold,
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
+"eTj" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/steel,
+/area/eris/crew_quarters/fitness)
 "eWR" = (
 /obj/structure/table/rack,
 /obj/item/contraband/poster/placed{
@@ -101595,7 +101627,8 @@
 	pixel_x = 22
 	},
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
@@ -103140,6 +103173,9 @@
 /obj/structure/railing,
 /turf/simulated/open,
 /area/eris/engineering/atmos)
+"ljl" = (
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/eris/crew_quarters/fitness)
 "ljI" = (
 /obj/structure/catwalk,
 /obj/machinery/button/remote/blast_door{
@@ -103292,7 +103328,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/table/woodentable,
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /obj/item/reagent_containers/food/drinks/mug/gold,
 /turf/simulated/floor/carpet/bcarpet,
@@ -104841,7 +104878,8 @@
 "pDD" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/machinery/camera/network/third_section{
-	dir = 8
+	dir = 8;
+	name = "gym showers 2"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/barquarters)
@@ -105060,6 +105098,14 @@
 /obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
+"qni" = (
+/obj/item/soap,
+/obj/machinery/camera/network/third_section{
+	dir = 8;
+	name = "gym showers 1"
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/crew_quarters/fitness)
 "qnS" = (
 /obj/structure/closet/wall_mounted/firecloset{
 	pixel_x = -32
@@ -105084,6 +105130,12 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4port)
+"qsq" = (
+/obj/machinery/door/airlock{
+	name = "Showers"
+	},
+/turf/simulated/floor/tiled/white/techfloor_grid,
+/area/eris/crew_quarters/fitness)
 "qsK" = (
 /obj/structure/railing{
 	dir = 1
@@ -107597,6 +107649,9 @@
 	},
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
+"xhV" = (
+/turf/simulated/floor/tiled/steel/golden,
+/area/eris/crew_quarters/fitness)
 "xij" = (
 /obj/machinery/light/small,
 /obj/structure/bed/chair{
@@ -107801,6 +107856,14 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemstor)
+"xQn" = (
+/obj/item/soap,
+/obj/machinery/camera/network/third_section{
+	dir = 8;
+	name = "gym showers 2"
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/crew_quarters/fitness)
 "xSp" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -244465,17 +244528,17 @@ abF
 awr
 cKw
 cDL
-awr
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
+eHS
+xhV
+cDi
+azL
+azL
+eTj
+eTj
+azL
+azL
+cDi
+ljl
 awr
 eFr
 axW
@@ -244666,19 +244729,19 @@ awr
 awr
 awr
 cRH
-cDM
-dxq
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-dxq
+cDN
+awr
+xhV
+cDi
+cDi
+cDi
+cDi
+cDi
+cDi
+cDi
+cDi
+ljl
+awr
 eFs
 ayl
 ayA
@@ -244868,19 +244931,19 @@ awr
 cDb
 exp
 cVY
-cDM
-dxq
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-dxq
+cDN
+awr
+cDi
+cDi
+cDi
+cDi
+cDi
+cDi
+cDi
+cDi
+cDi
+cDi
+awr
 eFt
 eFx
 eFy
@@ -245070,19 +245133,19 @@ awr
 etJ
 cDi
 cXn
-cDM
-dxq
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-dxq
+cDN
+awr
+xhV
+cDi
+cDi
+cDi
+cDi
+cDi
+cDi
+cDi
+cDi
+ljl
+awr
 axW
 axW
 eFz
@@ -245272,19 +245335,19 @@ awr
 cDd
 cDi
 cXn
-cDM
-dxq
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-dxq
+cDN
+awr
+xhV
+cDi
+cDi
+cDi
+cDi
+cDi
+cDi
+cDi
+cDi
+ljl
+awr
 axX
 aym
 eFA
@@ -245474,19 +245537,19 @@ awr
 cDd
 cDi
 cXn
-cDM
-dxq
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-dxq
+cDN
+awr
+awr
+qsq
+awr
+awr
+cDi
+cDi
+awr
+awr
+qsq
+awr
+awr
 euu
 axW
 eFD
@@ -245676,19 +245739,19 @@ awr
 cDd
 cDi
 cXn
+cDN
+awr
+awt
 cDM
-dxq
+dBM
+awr
+cDi
+cDi
+awr
 awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-dxq
+cDM
+dBM
+awr
 axZ
 ayn
 eFE
@@ -245878,24 +245941,24 @@ awr
 cDe
 cDi
 cXn
+cDN
+awr
+awt
 cDM
-dxq
+dBM
+awr
+cDi
+cDi
+awr
 awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-dxq
+cDM
+dBM
+awr
 aya
 ayo
 eqG
 axW
-azL
+ayg
 ayg
 abF
 aCM
@@ -246083,15 +246146,15 @@ dmI
 cDN
 awr
 awt
+qni
+dBM
+awr
+cDi
+cDi
+awr
 awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
-awt
+xQn
+dBM
 awr
 eyy
 ayp
@@ -246285,14 +246348,14 @@ dxp
 cDi
 awr
 awr
+awr
+awr
+awr
 dxq
 dxq
-dBM
-dxq
-dxq
-dBM
-dxq
-dxq
+awr
+awr
+awr
 awr
 awr
 dHk
