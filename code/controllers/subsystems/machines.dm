@@ -1,7 +1,6 @@
 SUBSYSTEM_DEF(machines)
 	name = "Machines"
 	init_order = INIT_ORDER_MACHINES
-	priority = SS_PRIORITY_MACHINERY
 	flags = SS_KEEP_TIMING
 	wait = 2 SECONDS
 	var/list/processing = list()
@@ -48,7 +47,7 @@ SUBSYSTEM_DEF(machines)
 			propagate_network(power_cable, power_cable.powernet)
 
 /datum/controller/subsystem/machines/stat_entry()
-	..("M:[processing.len]|PN:[powernets.len]")
+	..("M:[length(processing)]|PN:[length(powernets)]")
 
 /datum/controller/subsystem/machines/fire(resumed = FALSE)
 	if (!resumed)
