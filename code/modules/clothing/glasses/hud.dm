@@ -27,7 +27,7 @@
 			spawn(1 MINUTES)
 			malfunctioning = FALSE
 		if(2)
-			spawn(3 MINUTE)
+			spawn(3 MINUTES)
 			malfunctioning = FALSE
 
 /obj/item/clothing/glasses/hud/health
