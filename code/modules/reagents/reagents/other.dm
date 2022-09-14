@@ -448,6 +448,7 @@
 	var/temperature_change = removed_heat / reagent_property_divisor	// K
 
 	O.reagents.chem_temp -= temperature_change
+	O.reagents.handle_reactions()
 
 // Not even close to how refrigerant is used IRL, but it's just a game.
 /datum/reagent/other/coolant/refrigerant
