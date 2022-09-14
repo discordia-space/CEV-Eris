@@ -9,8 +9,6 @@
 	bad_type = /obj/item/clothing/glasses/hud
 	var/list/icon/current = list() //the current hud icons
 	var/malfunctioning = FALSE
-	var/malfunction_time
-	var/last_emp_time
 
 /obj/item/clothing/glasses/proc/process_hud(mob/M)
 	if(hud)
@@ -26,18 +24,11 @@
 	malfunctioning = TRUE
 	switch(severity)
 		if(1)
-			malfunction_time = 50
+			spawn(1 MINUTES)
+			malfunctioning = FALSE
 		if(2)
-			malfunction_time = 50
-	var/countdown = malfunction_time
-	addtimer(CALLBACK(src, .proc/repair_self), countdown, TIMER_STOPPABLE)
-
-
-/obj/item/clothing/glasses/hud/proc/repair_self()
-		malfunction_time = FALSE
-	else
-		malfunctioning = FALSE
-
+			spawn(3 MINUTE)
+			malfunctioning = FALSE
 
 /obj/item/clothing/glasses/hud/health
 	name = "Health Scanner HUD"
