@@ -8,13 +8,20 @@
 	price_tag = 200
 	bad_type = /obj/item/clothing/glasses/hud
 	var/list/icon/current = list() //the current hud icons
+	var/broken = FALSE
 
 /obj/item/clothing/glasses/proc/process_hud(mob/M)
 	if(hud)
 		hud.process_hud(M)
 
 /obj/item/clothing/glasses/hud/process_hud(mob/M)
-	return
+	if(broken)
+		process_broken_hud(M, 1)
+		return TRUE
+
+/obj/item/clothing/glasses/hud/emp_act(severity)
+	. = ..()
+	broken = TRUE
 
 /obj/item/clothing/glasses/hud/health
 	name = "Health Scanner HUD"
@@ -24,6 +31,8 @@
 
 
 /obj/item/clothing/glasses/hud/health/process_hud(mob/M)
+	if(..())
+		return
 	process_med_hud(M, 1)
 
 /obj/item/clothing/glasses/sunglasses/medhud
@@ -54,6 +63,8 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/glasses/hud/security/process_hud(mob/M)
+	if(..())
+		return
 	process_sec_hud(M, 1)
 
 /obj/item/clothing/glasses/sunglasses/sechud
@@ -87,6 +98,8 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/glasses/hud/excelsior/process_hud(mob/M)
+	if(..())
+		return
 	if(is_excelsior(M))
 		process_excel_hud(M)
 

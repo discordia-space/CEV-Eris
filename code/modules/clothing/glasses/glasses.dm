@@ -55,3 +55,8 @@
 	if(istype(Z,/obj/item/clothing/glasses/attachable_lenses))
 		var/obj/item/clothing/glasses/attachable_lenses/lenses = Z
 		lenses.handle_insertion(src, user)
+
+/obj/item/clothing/glasses/emp_act(severity)
+	. = ..()
+	if(hud)
+		hud.emp_act(severity)
