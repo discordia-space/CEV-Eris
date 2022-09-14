@@ -298,10 +298,10 @@
 
 /obj/item/electronics/circuitboard/disgorger
 	name = T_BOARD("disgorger")
+	spawn_blacklisted = TRUE
 	board_type = "machine"
 	build_path = /obj/machinery/reagentgrinder/industrial/disgorger
 	origin_tech = list(TECH_BIO = 3)
-	rarity_value = 20
 	req_components = list(
 		/obj/item/organ/internal = 4			// Build with any organ, but certain efficiencies will have different effects.
 	)

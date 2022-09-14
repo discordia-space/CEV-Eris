@@ -170,6 +170,7 @@
 
 /obj/item/electronics/circuitboard/organ_fabricator
 	name = T_BOARD("organ fabricator")
+	spawn_blacklisted = TRUE
 	build_path = /obj/machinery/autolathe/organ_fabricator
 	board_type = "machine"
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
