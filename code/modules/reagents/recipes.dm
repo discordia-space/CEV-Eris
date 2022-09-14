@@ -553,7 +553,11 @@
 	result = "coolant"
 	required_reagents = list("tungsten" = 1, "acetone" = 1, "water" = 1)
 	result_amount = 3
-	log_is_important = 1
+
+/datum/chemical_reaction/refrigerant
+	result = "refrigerant"
+	required_reagents = list("carbon" = 1, "acetone" = 1, "water" = 1)
+	result_amount = 3
 
 /datum/chemical_reaction/rezadone
 	result = "rezadone"
