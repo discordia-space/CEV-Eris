@@ -268,8 +268,8 @@ var/global/ManifestJSON
 	var/icon/front
 	var/icon/side
 	if(H)
-		front = getFlatIcon(H, SOUTH, always_use_defdir = 1)
-		side = getFlatIcon(H, WEST, always_use_defdir = 1)
+		front = getFlatIcon(H, SOUTH)
+		side = getFlatIcon(H, WEST)
 	else
 		var/mob/living/carbon/human/dummy = new()
 		front = new(get_id_photo(dummy), dir = SOUTH)
