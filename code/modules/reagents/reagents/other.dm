@@ -392,7 +392,7 @@
 /datum/reagent/other/coolant
 	name = "Coolant"
 	id = "coolant"
-	description = "Industrial coolant. Used to lower the freezing point and raises the boiling point of liquid in a system."
+	description = "Industrial coolant. Used to lower the freezing point and raise the boiling point of liquid in a system."
 	taste_description = "sourness"
 	taste_mult = 1.1
 	reagent_state = LIQUID
