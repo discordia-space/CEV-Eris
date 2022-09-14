@@ -21,6 +21,7 @@
 
 /obj/item/clothing/glasses/hud/emp_act(severity)
 	. = ..()
+
 	broken = TRUE
 
 /obj/item/clothing/glasses/hud/health
