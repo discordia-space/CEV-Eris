@@ -485,7 +485,11 @@
 	for(var/type in subtypesof(/obj/item/tool_upgrade))
 		var/filename = sanitizeFileName("[type].png")
 
-		var/atom/item = initial(type)
+		var/obj/item/item = initial(type)
+		// no.
+		if (initial(item.bad_type) == type)
+			continue
+
 		var/icon_file = initial(item.icon)
 		var/icon_state = initial(item.icon_state)
 
