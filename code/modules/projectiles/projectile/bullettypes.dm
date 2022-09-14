@@ -51,7 +51,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/srifle
 	name = ".20 caliber bullet"
-	damage_types = list(BRUTE = 36)
+	damage_types = list(BRUTE = 32)
 	armor_divisor = 1.5
 	penetrating = 2
 	can_ricochet = TRUE
