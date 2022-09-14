@@ -285,10 +285,9 @@ GLOBAL_LIST_INIT(chameleon_key_to_path, list(
 	chameleon_type = "shoes"
 
 /obj/item/storage/backpack/chameleon //functionally a satchel
-	name = "grey backpack"
-	icon_state = "backpack"
-	item_state = "backpack"
-	desc = "A backpack outfitted with cloaking tech. It seems to have a small dial inside, kept away from the storage."
+	name = "grey satchel"
+	icon_state = "satchel"
+	desc = "A satchel outfitted with cloaking tech. It seems to have a small dial inside, kept away from the storage."
 	max_storage_space = DEFAULT_HUGE_STORAGE * 0.7
 	worn_access = TRUE
 	spawn_blacklisted = TRUE
