@@ -8,20 +8,36 @@
 	price_tag = 200
 	bad_type = /obj/item/clothing/glasses/hud
 	var/list/icon/current = list() //the current hud icons
-	var/broken = FALSE
+	var/malfunctioning = FALSE
+	var/malfunction_time
+	var/last_emp_time
 
 /obj/item/clothing/glasses/proc/process_hud(mob/M)
 	if(hud)
 		hud.process_hud(M)
 
 /obj/item/clothing/glasses/hud/process_hud(mob/M)
-	if(broken)
+	if(malfunctioning)
 		process_broken_hud(M, 1)
 		return TRUE
 
 /obj/item/clothing/glasses/hud/emp_act(severity)
 	. = ..()
-	broken = TRUE
+	malfunctioning = TRUE
+	switch(severity)
+		if(1)
+			malfunction_time = 50
+		if(2)
+			malfunction_time = 50
+	var/countdown = malfunction_time
+	addtimer(CALLBACK(src, .proc/repair_self), countdown, TIMER_STOPPABLE)
+
+
+/obj/item/clothing/glasses/hud/proc/repair_self()
+		malfunction_time = FALSE
+	else
+		malfunctioning = FALSE
+
 
 /obj/item/clothing/glasses/hud/health
 	name = "Health Scanner HUD"

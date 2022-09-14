@@ -808,6 +808,9 @@
 	//possibly damage some modules
 	take_hit((100/severity_class), "electrical pulse", 1)
 
+	if(visor)// cause the visor to glitch out
+		visor.vision.glasses.emp_act(severity_class)
+
 /obj/item/rig/proc/shock(mob/user)
 	if (!user)
 		return 0
