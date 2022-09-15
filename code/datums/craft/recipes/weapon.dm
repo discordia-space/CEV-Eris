@@ -133,6 +133,17 @@
 		list(/obj/item/storage/belt, 1, "time" = 10)
 	)
 
+/datum/craft_recipe/weapon/dozershield
+	name = "bulldozer shield"
+	result = /obj/item/shield/riot/dozershield
+	steps = list (
+		list(CRAFT_MATERIAL, 6, MATERIAL_STEEL), //frame
+		list(QUALITY_WELDING, 10, 20), //weld to shape of locker
+		list(/obj/item/part/armor, 2), //place armor 
+		list(QUALITY_WELDING, 10, 20), //cut apart and spread across frame
+		list(CRAFT_MATERIAL, 15, MATERIAL_PLASTEEL), //place plasteel in thick layers
+		list(QUALITY_WELDING, 10, 20)) // weld together
+
 /datum/craft_recipe/weapon/flamethrower
 	name = "flamethrower"
 	result = /obj/item/flamethrower
