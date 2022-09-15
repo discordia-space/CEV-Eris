@@ -8337,9 +8337,6 @@
 	pixel_x = -24;
 	pixel_y = -8
 	},
-/obj/machinery/conveyor_switch/oneway{
-	id = "QMLoad2"
-	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/hangarsupply)
 "aty" = (
@@ -57536,10 +57533,7 @@
 	id = "QMLoaddoor2";
 	name = "Supply Dock Loading Door"
 	},
-/obj/machinery/conveyor/east{
-	id = "QMLoad"
-	},
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/hangarsupply)
 "cIl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -58180,12 +58174,6 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/storage/primary)
-"cJZ" = (
-/obj/machinery/conveyor/east{
-	id = "QMLoad"
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/quartermaster/hangarsupply)
 "cKa" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/closet/firecloset,
@@ -94011,10 +93999,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/machinery/conveyor/east{
-	id = "QMLoad"
-	},
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/hangarsupply)
 "erO" = (
 /obj/structure/cable/green{
@@ -96707,23 +96692,11 @@
 	id = "QMLoaddoor";
 	name = "Supply Dock Loading Door"
 	},
-/obj/machinery/conveyor/west{
-	id = "QMLoad2"
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/quartermaster/hangarsupply)
-"exL" = (
-/obj/machinery/conveyor/west{
-	id = "QMLoad2"
-	},
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/hangarsupply)
 "exM" = (
 /obj/machinery/light/small,
-/obj/machinery/conveyor/west{
-	id = "QMLoad2"
-	},
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/hangarsupply)
 "exN" = (
 /obj/structure/catwalk,
@@ -107704,9 +107677,6 @@
 "xwS" = (
 /obj/machinery/status_display/supply_display{
 	pixel_x = -32
-	},
-/obj/machinery/conveyor_switch/oneway{
-	id = "QMLoad"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/hangarsupply)
@@ -130742,11 +130712,11 @@ aBv
 aBv
 aBv
 auV
-cJZ
+ato
 fFd
 amn
 fFd
-exL
+ato
 auV
 aaa
 aaa
