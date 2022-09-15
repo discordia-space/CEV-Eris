@@ -29,7 +29,7 @@
 		if(2)
 			spawn(3 MINUTES)
 			malfunctioning = FALSE
-
+	
 /obj/item/clothing/glasses/hud/health
 	name = "Health Scanner HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
