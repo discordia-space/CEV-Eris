@@ -23,7 +23,7 @@
 	desc = "Spare part of armor."
 	icon_state = "armor_part"
 	spawn_tags = SPAWN_TAG_PART_ARMOR
-	matter = list(MATERIAL_PLASTIC = 20, MATERIAL_STEEL = 20)
+	matter = list(MATERIAL_PLASTIC = 10, MATERIAL_STEEL = 10)
 
 /obj/item/part/armor/artwork
 	desc = "This is an artistically-made armor part."
