@@ -108,7 +108,7 @@
 
 /datum/browser/proc/update()
 	if(user)
-		user << browse(content, "[window_id].browser:UpdateBrowserDataAlt")
+		user << output(content, "[window_id].browser:UpdateBrowserDataAlt")
 
 /datum/browser/proc/open(use_onclose = TRUE)
 	if(isnull(window_id)) //null check because this can potentially nuke goonchat

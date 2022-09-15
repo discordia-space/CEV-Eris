@@ -57,15 +57,6 @@
 	panel.set_content(jointext(content, "<br>"))
 	panel.update()
 
-/*
-/datum/terminal/ui_data(mob/user, ui_key)
-	var/list/data = list()
-	data["energy"] = round(excelsior_energy)
-	return data
-*/
-
-
-
 /datum/terminal/Topic(href, href_list)
 	if(..())
 		return 1
@@ -78,8 +69,7 @@
 		var/output = parse(input, usr)
 		if(QDELETED(src)) // Check for exit.
 			return TRUE
-		for(var/line in output)
-			history += line
+		history += output
 		if(length(history) > history_max_length)
 			history.Cut(1, length(history) - history_max_length + 1)
 		update_content()
