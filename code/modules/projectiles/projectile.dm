@@ -273,7 +273,7 @@
 		recoil = leftmost_bit(recoil) //LOG2 calculation
 	else
 		recoil = 0
-	distance = leftmost_bit(distance)
+	distance = distance <= 3 ? 5 - max(1,distance) : leftmost_bit(distance)
 
 	def_zone = ran_zone(def_zone, 100 - (distance + recoil) * 10)
 
@@ -282,7 +282,7 @@
 	var/hit_mod = 0
 	switch(target_mob.mob_size)
 		if(120 to INFINITY)
-
+			hit_mod = -6
 		if(80 to 120)
 			hit_mod = -4
 		if(40 to 80)

@@ -403,7 +403,7 @@
 			var/obj/item/projectile/P = projectile
 			P.adjust_damages(proj_damage_adjust)
 			P.adjust_ricochet(noricochet)
-			P.multiply_projectile_accuracy(CLAMP(user.stats.getStat(STAT_VIG), 0, STAT_LEVEL_PROF) / 8)
+			P.multiply_projectile_accuracy(CLAMP(user.stats.getStat(STAT_VIG), 1, STAT_LEVEL_PROF) / 8)
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)
@@ -533,7 +533,7 @@
 		return //dual wielding deal too much damage as it is, so no point blank for it
 
 	//default point blank multiplier
-	var/damage_mult = 1.3
+	var/accuracy_mult = 2
 
 	//determine multiplier due to the target being grabbed
 	if(ismob(target))
@@ -543,10 +543,10 @@
 			for(var/obj/item/grab/G in M.grabbed_by)
 				grabstate = max(grabstate, G.state)
 			if(grabstate >= GRAB_NECK)
-				damage_mult = 2.5
+				accuracy_mult = 4
 			else if(grabstate >= GRAB_AGGRESSIVE)
-				damage_mult = 1.5
-	P.multiply_projectile_damage(damage_mult)
+				accuracy_mult = 8
+	P.multiply_projectile_accuracy(accuracy_mult)
 
 
 //does the actual launching of the projectile
