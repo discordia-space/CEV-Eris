@@ -73,7 +73,7 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 
 		damage_through_armor(W.force, W.damtype, BP_HEAD, wounding_multiplier = 2, sharp = W.sharp, edge = W.edge, used_weapon = W)
 		
-		user.visible_message(SPAN_DANGER("\The [user] cut [src]'s neck with \the [W]!"))
+		user.visible_message(SPAN_DANGER("\The [user] cuts [src]'s neck with \the [W]!"), SPAN_DANGER("You cut [src]'s neck with \the [W]!"))
 
 		if(W.hitsound)
 			playsound(loc, W.hitsound, 50, 1, -1)
