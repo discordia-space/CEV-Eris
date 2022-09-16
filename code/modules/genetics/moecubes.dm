@@ -17,7 +17,12 @@
 	for(var/datum/reagent/toxin/mutagen/moeball/MT in reagents.reagent_list)
 		MT.gene_type = gene_type
 		MT.gene_value = gene_value
+		if(name == "cube of whirling worms")
+			MT.isWorm()
 
 /obj/item/reagent_containers/food/snacks/moecube/worm
 	name = "cube of whirling worms"
 	icon_state = "wormcube"
+
+	filling_color = "#d49b81"
+	taste_tag = list(UMAMI_FOOD, INSECTS_FOOD)

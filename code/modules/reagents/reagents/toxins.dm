@@ -313,7 +313,7 @@
 	name = "Unholy mass of still twitching meat"
 	id = "moeball"
 	description = "Will cause mutations."
-	taste_description = "slimy wriggling worms"
+	taste_description = "slimy twitching flesh"
 	taste_mult = 1.2
 	reagent_state = SOLID
 	color = "#5C4033"
@@ -321,11 +321,18 @@
 	var/gene_value
 	metabolism = REM * 2
 
+/datum/reagent/toxin/mutagen/moeball/proc/isWorm()
+	name = "Angelic mass of still twitching worms" // Do not question the name. It is in accordance to KOTMAP.
+	description = "Will remove mutations."
+	taste_description = "slimy wriggling worms"
+
 /datum/reagent/toxin/mutagen/moeball/initialize_data(list/newdata) // Called when the reagent is created.
 	if(!isnull(newdata))
 		data = newdata
 		gene_type = newdata["gene_type"]
 		gene_value = newdata["gene_value"]
+		if(!gene_type) // No mutation value means it is worms not flesh
+			isWorm()
 	return
 
 /datum/reagent/toxin/mutagen/moeball/get_data()
@@ -337,6 +344,7 @@
 		gene_type = "mutation"
 	else if(!newdata["gene_type"] || !data["gene_type"])
 		gene_type = null
+		isWorm()
 
 /datum/reagent/toxin/mutagen/moeball/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(10))
