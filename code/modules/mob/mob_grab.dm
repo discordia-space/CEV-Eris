@@ -319,7 +319,7 @@
 			msg_admin_attack("[key_name(assailant)] grabbed the neck of [key_name(affecting)]")
 			hud.icon_state = "kill"
 			hud.name = "choke"
-		else
+		else if(!isnull(src))
 			state = GRAB_AGGRESSIVE
 			hud.icon_state = "reinforce_final"
 
@@ -334,7 +334,6 @@
 			assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Strangled (kill intent) [affecting.name] ([affecting.ckey])</font>"
 			msg_admin_attack("[key_name(assailant)] strangled (kill intent) [key_name(affecting)]")
 
-			affecting.setClickCooldown(10)
 			affecting.set_dir(WEST)
 			if(iscarbon(affecting))
 				var/mob/living/carbon/C = affecting
@@ -427,7 +426,10 @@
 							inspect_organ(affecting, assailant, hit_zone)
 
 				if(I_GRAB)
-					jointlock(affecting, assailant, hit_zone)
+					if(hit_zone == BP_CHEST || hit_zone == BP_GROIN)
+						swing(affecting, assailant)
+					else
+						jointlock(affecting, assailant, hit_zone)
 
 				if(I_HURT)
 					if(hit_zone == BP_EYES)
@@ -447,8 +449,8 @@
 					pin_down(affecting, assailant)
 
 	//clicking on yourself while grabbing them
-	if(M == assailant && state >= GRAB_AGGRESSIVE)
-		devour(affecting, assailant)
+	if(M == assailant)
+		fireman_throw(affecting, assailant)
 
 /obj/item/grab/dropped()
 	loc = null
