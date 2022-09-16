@@ -45,9 +45,9 @@
 		if(31 to 45)
 			to_chat(user, "Holding this feels a little clumsy. Perhaps you should hit the gym.")
 		if(46 to 55)
-			to_chat(user, "Still a little heavy, but you feel confident in your ability to parry with this shield.")
+			to_chat(user, "A bit hefty, but you feel confident in your ability to parry with this shield.")
 		if(56 to 70)
-			to_chat(user, "The shield weight feels just right.")
+			to_chat(user, "The shield weight feels comfortable and maneuverable.")
 		if(71 to INFINITY)
 			to_chat(user, "You feel ready for a gladiator duel! Bring it on, roaches!")
 

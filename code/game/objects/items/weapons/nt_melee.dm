@@ -262,7 +262,7 @@
 
 /obj/item/shield/buckler/nt
 	name = "NT Parma"
-	desc = "A round shield adorned with a golden trim. The leather straps on the back can hold melee weapons."
+	desc = "A round shield adorned with a golden trim. The leather straps on the back can hold a melee weapon."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_buckler"
 	item_state = "nt_buckler"
