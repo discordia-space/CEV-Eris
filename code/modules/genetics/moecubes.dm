@@ -15,12 +15,14 @@
 
 /obj/item/reagent_containers/food/snacks/moecube/examine(mob/user)
 	. = ..()
-	var/obj/item/implant/core_implant/cruciform/C = user.get_core_implant(/obj/item/implant/core_implant/cruciform)
-	if(C && C.active)
-		if(name == "cube of whirling worms")
-			to_chat(user, "Looking at \the [src] gives you a sense of reassurance, it almost seems angelic.")
-		else
-			to_chat(user, "Looking at \the [src] gives you a sense of darkness, it must be unholy!")
+	if(ishuman(user))
+		var/mob/living/carbon/human/H
+		var/obj/item/implant/core_implant/cruciform/C = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
+		if(C && C.active)
+			if(name == "cube of whirling worms")
+				to_chat(user, "Looking at \the [src] gives you a sense of reassurance, it almost seems angelic.")
+			else
+				to_chat(user, "Looking at \the [src] gives you a sense of darkness, it must be unholy!")
 
 /obj/item/reagent_containers/food/snacks/moecube/proc/set_genes()
 	for(var/datum/reagent/toxin/mutagen/moeball/MT in reagents.reagent_list)

@@ -1124,9 +1124,11 @@
 
 /obj/item/reagent_containers/food/snacks/wormburger/examine(mob/user)
 	. = ..()
-	var/obj/item/implant/core_implant/cruciform/C = user.get_core_implant(/obj/item/implant/core_implant/cruciform)
-	if(C && C.active)
-		to_chat(user, "Looking at \the [src] gives you a sense of reassurance, it almost seems angelic.")
+	if(ishuman(user))
+		var/mob/living/carbon/human/H
+		var/obj/item/implant/core_implant/cruciform/C = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
+		if(C && C.active)
+			to_chat(user, "Looking at \the [src] gives you a sense of reassurance, it almost seems angelic.")
 
 /obj/item/reagent_containers/food/snacks/geneburger
 	name = "flesh burger"
@@ -1143,9 +1145,11 @@
 
 /obj/item/reagent_containers/food/snacks/geneburger/examine(mob/user)
 	. = ..()
-	var/obj/item/implant/core_implant/cruciform/C = user.get_core_implant(/obj/item/implant/core_implant/cruciform)
-	if(C && C.active)
-		to_chat(user, "Looking at \the [src] gives you a sense of darkness, it must be unholy!")
+	if(ishuman(user))
+		var/mob/living/carbon/human/H
+		var/obj/item/implant/core_implant/cruciform/C = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
+		if(C && C.active)
+			to_chat(user, "Looking at \the [src] gives you a sense of darkness, it must be unholy!")
 
 /obj/item/reagent_containers/food/snacks/roach_egg
 	name = "boiled roach egg"
