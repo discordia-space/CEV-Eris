@@ -1,0 +1,5 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - bugfix: fixed .20 scrap stripper clip icons
+  - bugfix: fixed .40 ammo packet icons
