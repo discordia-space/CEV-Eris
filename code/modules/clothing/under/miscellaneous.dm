@@ -167,6 +167,12 @@
 	item_state = "blue_blazer"
 	style = STYLE_LOW
 
+/obj/item/clothing/under/dress
+	name = "gray summerdress"
+	desc = "Gray summerdress only worn by the bravest individuals in the cold of space."
+	icon_state = "summerdress"
+	item_state = "summerdress"
+	style = STYLE_LOW
 /obj/item/clothing/under/dress/gray
 	name = "gray summerdress"
 	desc = "Gray summerdress only worn by the bravest individuals in the cold of space."
