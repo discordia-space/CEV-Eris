@@ -1,5 +1,5 @@
 // Shoelocker
-/datum/gear/shoes/
+/datum/gear/shoes
 	display_name = "workboots"
 	path = /obj/item/clothing/shoes/workboots
 	slot = slot_shoes
