@@ -30,7 +30,7 @@
 			MT.isWorm()
 
 /obj/item/reagent_containers/food/snacks/moecube/worm
-	name = ""angelic "cube of whirling worms"
+	name = "cube of whirling worms"
 	icon_state = "wormcube"
 
 	filling_color = "#d49b81"
