@@ -256,7 +256,6 @@
 	icon_state = "orange_bandana"
 	body_parts_covered = 0
 	style_coverage = COVERS_HAIR
-	
 /obj/item/clothing/head/gladiator
 	name = "gladiator helmet"
 	desc = "Ave, Imperator, morituri te salutant."
