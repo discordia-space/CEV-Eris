@@ -177,8 +177,8 @@
 		hit_impact(P.get_structure_damage(), hit_dir)
 		P.damage_types = damage_through_armor(def_zone = def_zone_hit, attack_flag = P.check_armour, armour_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P), wounding_multiplier = P.wounding_mult, dmg_types = P.damage_types, return_continuation = TRUE)
 		if(!P.damage_types.len)
-			on_impact(A)
-			qdel(A)
+			P.on_impact(src)
+			qdel(P)
 
 	P.on_hit(src, def_zone_hit)
 	return TRUE
