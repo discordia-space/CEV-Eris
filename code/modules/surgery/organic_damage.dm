@@ -183,10 +183,13 @@
 	)
 
 /datum/surgery_step/fix_brute/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
-	user.visible_message(
+	if(S.use(1))
+		user.visible_message(
 		SPAN_NOTICE("[user] finishes treating damage to [organ.get_surgery_name()] with \the [tool]."),
 		SPAN_NOTICE("You finish treating damage to [organ.get_surgery_name()] with \the [tool].")
-	)
+		)
+	else 
+		to_chat(user, SPAN_NOTICE("\The [tool] is used up."))
 	if(istype(tool, /obj/item/stack/medical/advanced/bruise_pack) || istype(tool, /obj/item/stack/medical/advanced/bruise_pack/nt))
 		var/obj/item/stack/S = tool
 		if(S.use(1))
@@ -229,10 +232,13 @@
 	)
 
 /datum/surgery_step/fix_burn/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
-	user.visible_message(
+	if(S.use(1))
+		user.visible_message(
 		SPAN_NOTICE("[user] finishes treating damage to [organ.get_surgery_name()] with \the [tool]."),
 		SPAN_NOTICE("You finish treating damage to [organ.get_surgery_name()] with \the [tool].")
-	)
+		)
+	else 
+		to_chat(user, SPAN_NOTICE("\The [tool] is used up."))
 	if(istype(tool, /obj/item/stack/medical/advanced/ointment) || istype(tool, /obj/item/stack/medical/advanced/ointment/nt))
 		var/obj/item/stack/S = tool
 		if(S.use(1))
