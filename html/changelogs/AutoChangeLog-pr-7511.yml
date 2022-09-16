@@ -1,0 +1,6 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - tweak: Allows coolant to cool reagent containers
+  - rscadd: Added refrigerant as a coolant subtype
+  - code_imp: Commented out unused coolant proc
