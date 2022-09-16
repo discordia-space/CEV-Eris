@@ -322,7 +322,7 @@
 	metabolism = REM * 2
 
 /datum/reagent/toxin/mutagen/moeball/proc/isWorm()
-	name = "Angelic mass of still twitching worms" // Do not question the name. It is in accordance to KOTMAP.
+	name = "Angelic mass of still whirling worms" // Do not question the name. It is in accordance to KOTMAP.
 	description = "Will remove mutations."
 	taste_description = "slimy wriggling worms"
 

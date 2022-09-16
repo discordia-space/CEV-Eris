@@ -1,5 +1,5 @@
 /obj/item/reagent_containers/food/snacks/moecube
-	name = "cube of twitching meat"
+	name = "unholy cube of still twitching meat"
 	desc = "Absolutely disgusting."
 	icon = 'icons/obj/eris_genetics.dmi'
 	icon_state = "genecube"
@@ -17,11 +17,11 @@
 	for(var/datum/reagent/toxin/mutagen/moeball/MT in reagents.reagent_list)
 		MT.gene_type = gene_type
 		MT.gene_value = gene_value
-		if(name == "cube of whirling worms")
+		if(name == "angelic cube of whirling worms")
 			MT.isWorm()
 
 /obj/item/reagent_containers/food/snacks/moecube/worm
-	name = "cube of whirling worms"
+	name = "angelic cube of whirling worms"
 	icon_state = "wormcube"
 
 	filling_color = "#d49b81"
