@@ -310,7 +310,7 @@
 	M.apply_effect(1 * effect_multiplier, IRRADIATE, 0)
 
 /datum/reagent/toxin/mutagen/moeball
-	name = "Unholy mass of still twitching meat"
+	name = "mass of still twitching meat"
 	id = "moeball"
 	description = "Will cause mutations."
 	taste_description = "slimy twitching flesh"
@@ -322,7 +322,7 @@
 	metabolism = REM * 2
 
 /datum/reagent/toxin/mutagen/moeball/proc/isWorm()
-	name = "Angelic mass of still whirling worms" // Do not question the name. It is in accordance to KOTMAP.
+	name = "mass of still whirling worms"
 	description = "Will remove mutations."
 	taste_description = "slimy wriggling worms"
 

@@ -1,5 +1,5 @@
 /obj/item/reagent_containers/food/snacks/moecube
-	name = "unholy cube of still twitching meat"
+	name = "cube of still twitching meat"
 	desc = "Absolutely disgusting."
 	icon = 'icons/obj/eris_genetics.dmi'
 	icon_state = "genecube"
@@ -13,15 +13,24 @@
 	bitesize = 4
 	taste_tag = list(MEAT_FOOD, UMAMI_FOOD)
 
+/obj/item/reagent_containers/food/snacks/moecube/examine(mob/user)
+	. = ..()
+	var/obj/item/implant/core_implant/cruciform/C = user.get_core_implant(/obj/item/implant/core_implant/cruciform)
+	if(C && C.active)
+		if(name == "cube of whirling worms")
+			to_chat(user, "Looking at \the [src] gives you a sense of reassurance, it almost seems angelic.")
+		else
+			to_chat(user, "Looking at \the [src] gives you a sense of darkness, it must be unholy!")
+
 /obj/item/reagent_containers/food/snacks/moecube/proc/set_genes()
 	for(var/datum/reagent/toxin/mutagen/moeball/MT in reagents.reagent_list)
 		MT.gene_type = gene_type
 		MT.gene_value = gene_value
-		if(name == "angelic cube of whirling worms")
+		if(name == "cube of whirling worms")
 			MT.isWorm()
 
 /obj/item/reagent_containers/food/snacks/moecube/worm
-	name = "angelic cube of whirling worms"
+	name = ""angelic "cube of whirling worms"
 	icon_state = "wormcube"
 
 	filling_color = "#d49b81"
