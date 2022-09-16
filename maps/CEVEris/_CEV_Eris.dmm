@@ -93995,12 +93995,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
-"erN" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/steel,
-/area/eris/quartermaster/hangarsupply)
 "erO" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -131116,7 +131110,7 @@ lGH
 vdS
 fjl
 xwS
-erN
+ato
 fFd
 atx
 fFd
