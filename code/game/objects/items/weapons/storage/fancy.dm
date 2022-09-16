@@ -265,7 +265,7 @@
 
 /obj/item/storage/fancy/cigcartons/dromedaryco
 	name = "carton of DromedaryCo cigarettes"
-	desc = "A box containing 10 packets of Dromedarycos cigarettes."
+	desc = "A box containing 10 packets of DromedaryCos cigarettes."
 	icon_state = "Dpacketcarton"
 	item_state = "Dpacketcarton"
 	item_obj = /obj/item/storage/fancy/cigarettes/dromedaryco
