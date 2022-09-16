@@ -261,7 +261,7 @@
 	icon_state = "barrel_35"
 	generic = FALSE
 	bad_type = /obj/item/part/gun/barrel
-	matter = list(MATERIAL_PLASTEEL = 8,)
+	matter = list(MATERIAL_PLASTEEL = 8)
 	price_tag = 200
 	rarity_value = 15
 
@@ -269,14 +269,14 @@
 	name = ".35 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .35 caliber."
 	icon_state = "barrel_35"
-	matter = list(MATERIAL_PLASTEEL = 4,)
+	matter = list(MATERIAL_PLASTEEL = 4)
 	price_tag = 100
 
 /obj/item/part/gun/barrel/magnum
 	name = ".40 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .40 caliber."
 	icon_state = "barrel_40"
-	matter = list(MATERIAL_PLASTEEL = 4,)
+	matter = list(MATERIAL_PLASTEEL = 4)
 	price_tag = 100
 
 /obj/item/part/gun/barrel/srifle
