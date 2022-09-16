@@ -1122,6 +1122,12 @@
 	cooked = TRUE
 	taste_tag = list(UMAMI_FOOD, INSECTS_FOOD)
 
+/obj/item/reagent_containers/food/snacks/wormburger/examine(mob/user)
+	. = ..()
+	var/obj/item/implant/core_implant/cruciform/C = user.get_core_implant(/obj/item/implant/core_implant/cruciform)
+	if(C && C.active)
+		to_chat(user, "Looking at \the [src] gives you a sense of reassurance, it almost seems angelic.")
+
 /obj/item/reagent_containers/food/snacks/geneburger
 	name = "flesh burger"
 	desc = "It is writhing around..."
@@ -1134,6 +1140,12 @@
 	preloaded_reagents = list("protein" = 3)
 	cooked = TRUE
 	taste_tag = list(MEAT_FOOD, UMAMI_FOOD)
+
+/obj/item/reagent_containers/food/snacks/geneburger/examine(mob/user)
+	. = ..()
+	var/obj/item/implant/core_implant/cruciform/C = user.get_core_implant(/obj/item/implant/core_implant/cruciform)
+	if(C && C.active)
+		to_chat(user, "Looking at \the [src] gives you a sense of darkness, it must be unholy!")
 
 /obj/item/reagent_containers/food/snacks/roach_egg
 	name = "boiled roach egg"
