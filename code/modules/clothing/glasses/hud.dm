@@ -28,7 +28,7 @@
 
 /obj/item/clothing/glasses/sunglasses/medhud
 	name = "Ironhammer medical HUD"
-	desc = "Flash-resistant goggles with inbuilt medical information."
+	desc = "Goggles with inbuilt medical information."
 	icon_state = "healthhud"
 	prescription = TRUE
 
@@ -69,7 +69,7 @@
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	name = "Ironhammer tactical HUD"
-	desc = "Flash-resistant goggles with inbuilt combat and security information."
+	desc = "Goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
 
 /obj/item/clothing/glasses/hud/broken
