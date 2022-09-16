@@ -201,7 +201,7 @@
 
 /obj/item/shield/riot/nt
 	name = "NT Scutum"
-	desc = "A saintly-looking shield. May God protect you. The leather straps on the back can hold melee weapons."
+	desc = "A saintly-looking shield. Cannot be held upright while running. The leather straps on the back can hold melee weapons."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_shield"
 	item_state = "nt_shield"
