@@ -181,10 +181,12 @@
 	var/list/final_oddity = list()
 	var/stat = pick(stats)
 	final_oddity += stat
+	final_oddity[stat] = 6
 	var/area/my_area = get_area(src)
-	var/bluespacemodifier = round(my_area.bluespace_entropy/(my_area.bluespace_hazard_threshold/4))
-	final_oddity[stat] = 6 + bluespacemodifier
-	my_area.bluespace_entropy = max(0, my_area.bluespace_entropy - (6 + bluespacemodifier))
+	if(my_area)
+		var/bluespacemodifier = round(my_area.bluespace_entropy/(my_area.bluespace_hazard_threshold/4))
+		final_oddity[stat] += bluespacemodifier
+		my_area.bluespace_entropy = max(0, my_area.bluespace_entropy - (6 + bluespacemodifier))
 	var/datum/component/inspiration/odd = GetComponent(/datum/component/inspiration)
 	odd.stats = final_oddity
 
