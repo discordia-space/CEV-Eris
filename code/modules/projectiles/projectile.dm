@@ -603,18 +603,21 @@
 	var/dmg_remaining = 0
 	for(var/dmg_type in damage_types)
 		var/dmg = damage_types[dmg_type]
-		dmg_total += dmg
+		if(!(dmg_type == HALLOSS))
+			dmg_total += dmg
 		if(dmg && amount)
 			var/dmg_armor_difference = dmg - amount
 			amount = dmg_armor_difference ? 0 : -dmg_armor_difference
 			dmg = dmg_armor_difference ? dmg_armor_difference : 0
-			dmg_remaining += dmg
+			if(!(dmg_type == HALLOSS))
+				dmg_remaining += dmg
 		if(dmg)
 			damage_types[dmg_type] = dmg
 		else
 			damage_types -= dmg_type
 	if(!damage_types.len)
 		on_impact(A)
+		qdel(A)
 
 	return dmg_remaining / dmg_total
 
