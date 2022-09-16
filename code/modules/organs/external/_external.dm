@@ -3,7 +3,7 @@
 ****************************************************/
 
 //These control the damage thresholds for the various ways of removing limbs
-#define DROPLIMB_THRESHOLD_EDGE 0.75
+#define DROPLIMB_THRESHOLD_EDGE 1.15
 #define DROPLIMB_THRESHOLD_TEAROFF 1.35
 #define DROPLIMB_THRESHOLD_DESTROY 1.5
 
