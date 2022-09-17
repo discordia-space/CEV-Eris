@@ -11,7 +11,7 @@
 	var/power_usage = 0 			// If the hardware uses extra power, change this.
 	var/enabled = TRUE				// If the hardware is turned off set this to 0.
 	var/critical = FALSE			// Prevent disabling for important component, like the HDD.
-	var/hardware_size = MODCOMP_SIZE_SMALL			// Limits which devices can contain this component. 1: Tablets/Laptops/Consoles, 2: Laptops/Consoles, 3: Consoles only
+	var/hardware_size = MODCOMP_SIZE_SMALL			// Limits which devices can contain this component.
 	var/usage_flags = PROGRAM_ALL
 	var/component_flags = list()
 
@@ -84,28 +84,34 @@
 	else if(damage)
 		to_chat(user, SPAN_NOTICE("It seems to be slightly damaged."))
 
-/obj/item/computer_hardware/drop_location()
-	return holder2 ? holder2.drop_location() : ..()
-
 // Damages the component. Contains necessary checks. Negative damage "heals" the component.
 /obj/item/computer_hardware/proc/take_damage(amount)
 	damage += round(amount) 					// We want nice rounded numbers here.
 	damage = between(0, damage, max_damage)		// Clamp the value.
 
-//Called when the component is installed or turned on
+//Called when the component turned on
 /obj/item/computer_hardware/proc/enabled()
 
-//Called when the component is uninstalled or turned off
+//Called when the component turned off
 /obj/item/computer_hardware/proc/disabled()
 
+//Called when the component is installed
 /obj/item/computer_hardware/proc/install(obj/item/modular_computer/new_home)
 	attached_computer = new_home
 
+//Called when the component is uninstalled
 /obj/item/computer_hardware/proc/uninstall(mob/living/carbon/human/uninstaller)
-	to_chat(uninstaller, SPAN_NOTICE("You remove \the [H] from \the [src]."))
-	attached_computer = null
+	if(uninstaller)
+		to_chat(uninstaller, SPAN_NOTICE("You remove \the [H] from \the [src]."))
 	if(!istype(uninstaller))
 		forceMove(get_turf(attached_computer))
-		return
+		attached_computer = null
+		return TRUE
 	if(!uninstaller.l_hand)
-	forceMove(get_turf(attached_computer))
+		uninstaller.put_in_l_hand(src)
+	else if(!uninstaller.r_hand)
+		uninstaller.put_in_r_hand(src)
+	else
+		forceMove(get_turf(attached_computer))
+	attached_computer = null
+	return TRUE

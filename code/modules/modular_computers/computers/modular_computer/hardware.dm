@@ -24,15 +24,8 @@
 	var/obj/item/computer_hardware/comp_to_uninstall = H
 	for(var/thing in comp_to_uninstall.component_flags)
 		removeFromCategory(thing, comp_to_uninstall)
-	comp_to_uninstall.uninstall()
+	comp_to_uninstall.uninstall(user)
 
-
-
-	to_chat(user, SPAN_NOTICE("You remove \the [H] from \the [src]."))
-	H.forceMove(drop_location())
-
-	if(critical)
-		to_chat(user, SPAN_DANGER("\The [src]'s screen freezes for a split second and flickers to black."))
 		shutdown_computer()
 	update_verbs()
 	update_icon()
@@ -65,6 +58,29 @@
 	if(!list_ref.len)
 		attached_components[category] = null
 	return TRUE
+
+/obj/item/modular_computer/proc/checkCriticalHardware()
+	var/list/to_check_for = getCriticalHardware()
+	for(var/thing in to_check_for)
+		if(!attached_components[thing])
+			shutdown_computer()
+			return FALSE
+		var/list/ref_list = attached_components[thing]
+		var/found_functioning = FALSE
+		for(var/obj/item/computer_hardware/hardware_piece in ref_list)
+			if(hardware_piece.health < MODCOMP_BROKEN_THRESHOLD)
+				continue
+			found_functioning = TRUE
+		if(!found_functioning)
+			shutdown_computer()
+			return FALSE
+	return TRUE
+
+
+
+/obj/item/modular_computer/proc/getCriticalHardware()
+	return list(MODCOMP_PROCESSOR, MODCOMP_HARDDRIVE)
+
 
 // Returns list of all components
 /obj/item/modular_computer/proc/get_all_components()
