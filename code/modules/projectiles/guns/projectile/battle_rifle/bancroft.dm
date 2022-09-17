@@ -5,7 +5,7 @@
 			no further if you want something that will put a kaiser down through walls."
 	icon = 'icons/obj/guns/projectile/bancroft.dmi'
 	icon_state = "bancroft"
-	item_state = "bancroft"
+	item_suffix  = "_bancroft"
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_ROBUST
 	armor_divisor = ARMOR_PEN_DEEP
