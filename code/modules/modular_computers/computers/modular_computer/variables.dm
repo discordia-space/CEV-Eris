@@ -10,10 +10,17 @@
 #define MODCOMP_SCANNER "scanner"
 #define MODCOMP_GPS "gps"
 #define MODCOMP_LIGHT "light"
+#define MODCOMP_ALL_COMPONENTS list(MODCOMP_PROCESSOR,MODCOMP_HARDDRIVE,MODCOMP_NETCARD,MODCOMP_IDSLOT,MODCOMP_PRINTER,MODCOMP_DISK,MODCOMP_AISLOT,MODCOMP_POWERPROVIDER,MODCOMP_SCANNER,MODCOMP_GPS,MODCOMP_LIGHT)
+#define MODCOMP_SIZE_SMALL 1 // PDA's
+#define MODCOMP_SIZE_MEDIUM 2 // Tablets
+#define MODCOMP_SIZE_LARGE 3 // Laptops / Computers
+#define MODCOMP_SIZE_HUGE 4 // Stationary computers
+#define MODCOMP_SIZE_GIGANTIC 5 // server-racks
+
 /obj/item/modular_computer
 	name = "Modular Computer"
 	desc = "A modular computer. You shouldn't see this."
-	description_info = "Can have its component or battery switched with a screwdriver."
+	description_info = "Can have its components or batteries switched with a screwdriver."
 	description_antag = "Can be emagged for acces to illegal applications."
 	spawn_blacklisted = TRUE
 	bad_type = /obj/item/modular_computer
@@ -53,6 +60,7 @@
 	var/max_damage = 100		// Damage level at which the computer breaks apart.
 	var/list/terminals          // List of open terminal datums.
 	var/list/obj/item/computer_hardware/attached_components = list()
+	var/component_space = 5 // our component space , each one occupies a different amount
 
 	var/modifiable = TRUE	// can't be modified or damaged if false
 

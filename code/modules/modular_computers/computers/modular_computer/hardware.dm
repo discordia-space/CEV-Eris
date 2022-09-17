@@ -1,147 +1,32 @@
 // Attempts to install the hardware into apropriate slot.
 /obj/item/modular_computer/proc/try_install_component(obj/item/H, mob/living/user)
-	var/found = FALSE
-	var/obj/item/computer_hardware/CH //if it's anything other than a battery, then we need to set its holder2 var whatever the fuck that is
-	if(istype(H, /obj/item/computer_hardware))
-		CH = H
-		if(!(CH.usage_flags & hardware_flag))
-			to_chat(user, SPAN_WARNING("This computer isn't compatible with [CH]."))
-			return
-
-	if(CH && CH.hardware_size > max_hardware_size)
-		to_chat(user, SPAN_WARNING("This component is too large for \the [src]."))
-		return
-
-	// Data disk.
-	if(istype(H, /obj/item/computer_hardware/hard_drive/portable))
-		if(portable_drive)
-			to_chat(user, SPAN_WARNING("This computer's portable drive slot is already occupied by \the [portable_drive]."))
-			return
-		found = TRUE
-		portable_drive = H
-
-	else if(istype(H, /obj/item/computer_hardware/led))
-		if(led)
-			to_chat(user, SPAN_WARNING("This computer's LED slot is already occupied by \the [led]."))
-			return
-		found = TRUE
-		led = H
-	else if(istype(H, /obj/item/computer_hardware/hard_drive))
-		if(hard_drive)
-			to_chat(user, SPAN_WARNING("This computer's hard drive slot is already occupied by \the [hard_drive]."))
-			return
-		found = TRUE
-		hard_drive = H
-	else if(istype(H, /obj/item/computer_hardware/network_card))
-		if(network_card)
-			to_chat(user, SPAN_WARNING("This computer's network card slot is already occupied by \the [network_card]."))
-			return
-		found = TRUE
-		network_card = H
-	else if(istype(H, /obj/item/computer_hardware/printer))
-		if(printer)
-			to_chat(user, SPAN_WARNING("This computer's printer slot is already occupied by \the [printer]."))
-			return
-		found = TRUE
-		printer = H
-	else if(istype(H, /obj/item/computer_hardware/card_slot))
-		if(card_slot)
-			to_chat(user, SPAN_WARNING("This computer's card slot is already occupied by \the [card_slot]."))
-			return
-		found = TRUE
-		card_slot = H
-	else if(istype(H, /obj/item/cell))
-		if(cell)
-			to_chat(user, SPAN_WARNING("This computer's battery slot is already occupied by \the [cell]."))
-			return
-		found = TRUE
-		cell = H
-	else if(istype(H, /obj/item/computer_hardware/processor_unit))
-		if(processor_unit)
-			to_chat(user, SPAN_WARNING("This computer's processor slot is already occupied by \the [processor_unit]."))
-			return
-		found = TRUE
-		processor_unit = H
-	else if(istype(H, /obj/item/computer_hardware/ai_slot))
-		if(ai_slot)
-			to_chat(user, SPAN_WARNING("This computer's intellicard slot is already occupied by \the [ai_slot]."))
-			return
-		found = TRUE
-		ai_slot = H
-	else if(istype(H, /obj/item/computer_hardware/tesla_link))
-		if(tesla_link)
-			to_chat(user, SPAN_WARNING("This computer's tesla link slot is already occupied by \the [tesla_link]."))
-			return
-		found = TRUE
-		tesla_link = H
-	else if(istype(H, /obj/item/computer_hardware/scanner))
-		if(scanner)
-			to_chat(user, SPAN_WARNING("This computer's scanner slot is already occupied by \the [scanner]."))
-			return
-		found = TRUE
-		scanner = H
-		scanner.do_after_install(user, src)
-	else if(istype(H, /obj/item/computer_hardware/gps_sensor))
-		if(gps_sensor)
-			to_chat(user, SPAN_WARNING("This computer's gps slot is already occupied by \the [gps_sensor]."))
-			return
-		found = TRUE
-		gps_sensor = H
-
-	if(!found)
-		return
-
-	if(insert_item(H, user))
-		if(CH)
-			CH.holder2 = src
-			if(CH.enabled)
-				CH.enabled()
-			if(istype(CH, /obj/item/computer_hardware/hard_drive) && enabled)
-				autorun_program(portable_drive) // Autorun malware: now in SS13!
-		update_verbs()
+	var/obj/item/computer_hardware/comp_to_install = H
+	if(!istype(comp_to_install))
+		return FALSE
+	if(getUsedSpace() + comp_to_install.hardware_size > component_space)
+		return FALSE
+	user.drop_from_inventory(comp_to_install)
+	comp_to_install.forceMove(src)
+	for(var/thing in comp_to_install.component_flags)
+		addToCategory(thing, comp_to_install)
+	comp_to_install.install(src)
+	update_verbs()
 
 // Uninstalls component.
 /obj/item/modular_computer/proc/uninstall_component(obj/item/H, mob/living/user)
-	if(!(H in get_all_components()))
-		return
+	var/found = FALSE
+	for(var/thing in contents)
+		if(thing == H)
+			found = TRUE
+			break
+	if(!found)
+		return FALSE
+	var/obj/item/computer_hardware/comp_to_uninstall = H
+	for(var/thing in comp_to_uninstall.component_flags)
+		removeFromCategory(thing, comp_to_uninstall)
+	comp_to_uninstall.uninstall()
 
-	var/critical = FALSE
-	var/obj/item/computer_hardware/to_remove //If a battery, don't try to delete the snowflake vars
 
-	if(istype(H, /obj/item/computer_hardware))
-		to_remove = H
-		critical = to_remove.critical && to_remove.enabled
-
-		if(to_remove.enabled)
-			to_remove.disabled()
-
-		to_remove.holder2 = null
-
-	if(portable_drive == H)
-		portable_drive = null
-	else if(hard_drive == H)
-		hard_drive = null
-	else if(network_card == H)
-		network_card = null
-	else if(printer == H)
-		printer = null
-	else if(card_slot == H)
-		card_slot = null
-	else if(cell == H)
-		cell = null
-	else if(processor_unit == H)
-		processor_unit = null
-	else if(ai_slot == H)
-		ai_slot = null
-	else if(tesla_link == H)
-		tesla_link = null
-	else if(gps_sensor == H)
-		gps_sensor = null
-	else if(led == H)
-		led = null
-	else if(scanner == H)
-		scanner.do_before_uninstall()
-		scanner = null
 
 	to_chat(user, SPAN_NOTICE("You remove \the [H] from \the [src]."))
 	H.forceMove(drop_location())
@@ -152,6 +37,34 @@
 	update_verbs()
 	update_icon()
 
+/obj/item/modular_computers/proc/getUsedSpace()
+	for(var/thing in MODCOMP_ALL_COMPONENTS)
+		var/list/referenced_list = attached_components[thing]
+		if(referenced_list)
+			for(var/obj/item/computer_hardware/hard_piece in referenced_list)
+				. += hard_piece.hardware_size
+
+/obj/item/modular_computer/proc/addToCategory(var/category, var/reference)
+	if(!category || !reference)
+		return FALSE
+	if(!attached_components[category])
+		attached_components[category] = list(reference)
+	else
+		var/list/list_ref = attached_components[category]
+		list_ref.Add(reference)
+	return TRUE
+
+/obj/item/modular_computer/proc/removeFromCategory(var/category, var/reference)
+	if(!category || !reference)
+		return FALSE
+	// didn't exist in the first place
+	if(!attached_components[category])
+		return TRUE
+	var/list/list_ref = attached_components[category]
+	list_ref.Remove(reference)
+	if(!list_ref.len)
+		attached_components[category] = null
+	return TRUE
 
 // Returns list of all components
 /obj/item/modular_computer/proc/get_all_components()

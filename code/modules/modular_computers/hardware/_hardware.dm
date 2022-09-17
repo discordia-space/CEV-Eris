@@ -7,17 +7,13 @@
 	spawn_tags = SPAWN_TAG_COMPUTER_HARDWERE
 	bad_type = /obj/item/computer_hardware
 	rarity_value = 25
-	var/obj/item/modular_computer/holder2
+	var/obj/item/modular_computer/attached_computer
 	var/power_usage = 0 			// If the hardware uses extra power, change this.
 	var/enabled = TRUE				// If the hardware is turned off set this to 0.
 	var/critical = FALSE			// Prevent disabling for important component, like the HDD.
-	var/hardware_size = 1			// Limits which devices can contain this component. 1: Tablets/Laptops/Consoles, 2: Laptops/Consoles, 3: Consoles only
-	var/damage = 0					// Current damage level
-	var/max_damage = 100			// Maximal damage level.
-	var/damage_malfunction = 20		// "Malfunction" threshold. When damage exceeds this value the hardware piece will semi-randomly fail and do !!FUN!! things
-	var/damage_failure = 50			// "Failure" threshold. When damage exceeds this value the hardware piece will not work at all.
-	var/malfunction_probability = 10// Chance of malfunction when the component is damaged
+	var/hardware_size = MODCOMP_SIZE_SMALL			// Limits which devices can contain this component. 1: Tablets/Laptops/Consoles, 2: Laptops/Consoles, 3: Consoles only
 	var/usage_flags = PROGRAM_ALL
+	var/component_flags = list()
 
 /obj/item/computer_hardware/attackby(obj/item/W, mob/living/user)
 	// Multitool. Runs diagnostics
@@ -101,3 +97,15 @@
 
 //Called when the component is uninstalled or turned off
 /obj/item/computer_hardware/proc/disabled()
+
+/obj/item/computer_hardware/proc/install(obj/item/modular_computer/new_home)
+	attached_computer = new_home
+
+/obj/item/computer_hardware/proc/uninstall(mob/living/carbon/human/uninstaller)
+	to_chat(uninstaller, SPAN_NOTICE("You remove \the [H] from \the [src]."))
+	attached_computer = null
+	if(!istype(uninstaller))
+		forceMove(get_turf(attached_computer))
+		return
+	if(!uninstaller.l_hand)
+	forceMove(get_turf(attached_computer))
