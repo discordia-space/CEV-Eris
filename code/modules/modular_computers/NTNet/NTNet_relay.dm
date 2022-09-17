@@ -9,9 +9,8 @@
 	icon_state = "bus"
 	anchored = TRUE
 	density = TRUE
-	var/datum/ntnet/NTNet = null // This is mostly for backwards reference and to allow varedit modifications from ingame.
-	// used for linking networks
-	var/linking_id = ""
+	// a list of connected networks
+	var/list/network_ids = list()
 	var/enabled = TRUE			// Set to 0 if the relay was turned off
 	var/dos_failure = FALSE			// Set to 1 if the relay failed due to (D)DoS attack
 	var/list/dos_sources = list()	// Backwards reference for qdel() stuff

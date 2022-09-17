@@ -16,6 +16,7 @@
 #define MODCOMP_SIZE_LARGE 3 // Laptops / Computers
 #define MODCOMP_SIZE_HUGE 4 // Stationary computers
 #define MODCOMP_SIZE_GIGANTIC 5 // server-racks
+#define MODCOMP_BROKEN_THRESHOLD 30
 
 /obj/item/modular_computer
 	name = "Modular Computer"

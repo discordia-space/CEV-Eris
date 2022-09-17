@@ -1,11 +1,15 @@
 // Attempts to install the hardware into apropriate slot.
-/obj/item/modular_computer/proc/try_install_component(obj/item/H, mob/living/user)
+/obj/item/modular_computer/proc/tryInstallComponent(obj/item/H, mob/living/user)
 	var/obj/item/computer_hardware/comp_to_install = H
 	if(!istype(comp_to_install))
 		return FALSE
 	if(getUsedSpace() + comp_to_install.hardware_size > component_space)
 		return FALSE
 	user.drop_from_inventory(comp_to_install)
+	installComponent(H)
+
+// This will always install the object into the computer
+/obj/item/modular_computer/proc/installComponent(/obj/item/computer_hardware/to_install)
 	comp_to_install.forceMove(src)
 	for(var/thing in comp_to_install.component_flags)
 		addToCategory(thing, comp_to_install)
@@ -13,7 +17,7 @@
 	update_verbs()
 
 // Uninstalls component.
-/obj/item/modular_computer/proc/uninstall_component(obj/item/H, mob/living/user)
+/obj/item/modular_computer/proc/uninstallComponent(obj/item/H, mob/living/user)
 	var/found = FALSE
 	for(var/thing in contents)
 		if(thing == H)
@@ -25,8 +29,7 @@
 	for(var/thing in comp_to_uninstall.component_flags)
 		removeFromCategory(thing, comp_to_uninstall)
 	comp_to_uninstall.uninstall(user)
-
-		shutdown_computer()
+	checkCriticalHardware()
 	update_verbs()
 	update_icon()
 
@@ -76,33 +79,32 @@
 			return FALSE
 	return TRUE
 
-
-
+// returns what this computer really needs to function , override if you want other requirements
 /obj/item/modular_computer/proc/getCriticalHardware()
 	return list(MODCOMP_PROCESSOR, MODCOMP_HARDDRIVE)
 
-
 // Returns list of all components
-/obj/item/modular_computer/proc/get_all_components()
-	var/list/all_slots = list(
-		hard_drive, processor_unit,
-		network_card, portable_drive,
-		printer, card_slot, cell,
-		ai_slot, tesla_link, scanner,
-		gps_sensor, led
-		)
+/obj/item/modular_computer/proc/getAllComponents()
+	var/list/comps = list()
+	for(var/category in attached_components)
+		var/list/list_ref = attached_components[category]
+		if(list_ref)
+			comps.Add(list_ref)
+	return comps
 
-	var/list/all_components = list()
-	for(var/slot in all_slots)
-		if(!isnull(slot))
-			all_components += slot
+// returns a list of all the components in this category
+/obj/item/modular_computer/proc/getAllFromCategory(var/category)
+	if(!attached_components[category])
+		return FALSE
+	return attached_components[category]
 
-	return all_components
-
-// Checks all hardware pieces to determine if name matches, if yes, returns the hardware piece, otherwise returns null
-/obj/item/modular_computer/proc/find_hardware_by_name(name)
-	for(var/c in get_all_components())
-		var/obj/item/component = c
-		if(component.name == name)
-			return component
-	return null
+// Returns all NTnet's that we are connected to currently
+/obj/item/modular_computer/proc/getAllConnectedNetworks()
+	var/list/net_ids = list()
+	for(var/obj/item/computer_hardware/network_card/net_card in getAllFromCategory(MODCOMP_NETCARD))
+		if(net_card.health < MODCOMP_BROKEN_THRESHOLD) // broken
+			continue
+		if(!net_card.enabled) // disabled
+			continue
+		net_ids |= net_card.network_id
+	return net_ids
