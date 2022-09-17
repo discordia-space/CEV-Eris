@@ -22,7 +22,7 @@
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTEEL = 16, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 10, MATERIAL_GLASS = 5)
 	price_tag = 900
 	zoom_factor = 0.3
-	gun_parts = list(/obj/item/part/gun/frame/bancroft = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/antim = 1)
+	gun_parts = list(/obj/item/part/gun/frame/boltgun/bancroft = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/antim = 1)
 	message = "lever"
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
