@@ -6,9 +6,9 @@
 	desc = "A clasic crimson helmet sporting clean lines and durable plating."
 	light_overlay = "helmet_light_syndi_soft"
 	armor = list(
-		melee = 35,
-		bullet = 35,
-		energy = 35,
+		melee = 8,
+		bullet = 9,
+		energy = 8,
 		bomb = 30,
 		bio = 100,
 		rad = 50
@@ -23,9 +23,9 @@
 	desc = "A clasic crimson spacesuit sporting clean lines and durable plating."
 	w_class = ITEM_SIZE_NORMAL
 	armor = list(
-		melee = 35,
-		bullet = 35,
-		energy = 35,
+		melee = 8,
+		bullet = 9,
+		energy = 8,
 		bomb = 30,
 		bio = 100,
 		rad = 50

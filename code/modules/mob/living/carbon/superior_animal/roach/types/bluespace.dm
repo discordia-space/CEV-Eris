@@ -7,7 +7,7 @@
 	meat_type = /obj/item/bluespace_crystal
 	melee_damage_lower = 4
 	melee_damage_upper = 11
-	armor_penetration = 100 // Hits through armor, only GDR helps
+	armor_divisor = ARMOR_PEN_MAX // Hits through armor
 
 	sanity_damage = 1
 	spawn_blacklisted = TRUE
@@ -19,7 +19,7 @@
 	armor = list(
 		melee = 0,
 		bullet = 0,
-		energy = 60,
+		energy = 15,
 		bomb = 0,
 		bio = 25,
 		rad = 50

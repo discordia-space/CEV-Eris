@@ -20,10 +20,12 @@
 	acceptableTargetDistance = 5
 	kept_distance = 3
 
+	mob_size = MOB_MEDIUM
+
 	// Armor related variables
 	armor = list(
 		melee = 0,
-		bullet = 20,
+		bullet = 5,
 		energy = 0,
 		bomb = 0,
 		bio = 50,

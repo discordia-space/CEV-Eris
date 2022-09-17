@@ -197,7 +197,7 @@
 
 /obj/item/ammo_magazine/srifle/long
 	name = "extended magazine (.20 Rifle)"
-	desc = "Extended .20 caliber magazine, holds 35 rounds. Only fits \"Vintorez\" and \"Wintermute\" and \"Kalash\"."
+	desc = "Extended .20 caliber magazine, holds 35 rounds."
 	icon_state = "srifle_long"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
@@ -230,7 +230,7 @@
 
 /obj/item/ammo_magazine/srifle/drum
 	name = "drum magazine (.20 Rifle)"
-	desc = "Heavy .20 caliber magazine, holds 60 rounds. Only fits \"Kalash\"."
+	desc = "Heavy .20 caliber magazine, holds 60 rounds. Only fits \"Sermak\"."
 	icon_state = "srifle_drum"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
@@ -377,7 +377,7 @@
 
 /obj/item/ammo_magazine/lrifle/drum
 	name = "drum magazine (.30 Rifle)"
-	desc = "Heavy .30 caliber magazine, holds 45 rounds. Only fits \"Krinkov\" and \"Kalash\"."
+	desc = "Heavy .30 caliber magazine, holds 45 rounds. Only fits \"Krinkov\" and \"Sermak\"."
 	icon_state = "lrifle_drum"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE_D
@@ -427,6 +427,7 @@
 	matter = list(MATERIAL_STEEL = 20)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 96
+	w_class = ITEM_SIZE_NORMAL
 	ammo_states = list(96)
 
 /obj/item/ammo_magazine/maxim/rubber
@@ -438,13 +439,20 @@
 /obj/item/ammo_magazine/slpistol
 	name = "speed loader (.35 Auto)"
 	icon = 'icons/obj/ammo_speed.dmi'
-	icon_state = "slpistol"
+	icon_state = "slpistol_base"
 	caliber = CAL_PISTOL
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 6
 	rarity_value = 6.66
-	ammo_states = list(1, 2, 3, 4, 5, 6)
+	w_class = ITEM_SIZE_TINY
+
+/obj/item/ammo_magazine/slpistol/update_icon()
+	cut_overlays()
+	var/count = 0
+	for(var/obj/item/ammo_casing/AC in stored_ammo)
+		count++
+		overlays += "slpistol_[AC.shell_color]-[count]"
 
 /obj/item/ammo_magazine/slpistol/empty
 	initial_ammo = 0
@@ -470,14 +478,25 @@
 /obj/item/ammo_magazine/slmagnum
 	name = "speed loader (.40 Magnum)"
 	icon = 'icons/obj/ammo_speed.dmi'
-	icon_state = "slmagnum"
+	icon_state = "slmagnum_base"
 	caliber = CAL_MAGNUM
 	ammo_type = /obj/item/ammo_casing/magnum
 	matter = list(MATERIAL_STEEL = 3)
 	max_ammo = 6
 	spawn_tags = SPAWN_TAG_AMMO_IH
 	rarity_value = 5
-	ammo_states = list(1, 2, 3, 4, 5, 6)
+	w_class = ITEM_SIZE_TINY
+
+/obj/item/ammo_magazine/slmagnum/update_icon()
+	cut_overlays()
+	var/count = 0
+	for(var/obj/item/ammo_casing/AC in stored_ammo)
+		count++
+		overlays += "slmagnum_[AC.shell_color]-[count]"
+
+/obj/item/ammo_magazine/slmagnum/Initialize()
+	. = ..()
+	update_icon()
 
 /obj/item/ammo_magazine/slmagnum/empty
 	initial_ammo = 0
@@ -512,6 +531,9 @@
 
 /obj/item/ammo_magazine/sllrifle/hv
 	ammo_type = /obj/item/ammo_casing/lrifle/hv
+
+/obj/item/ammo_magazine/sllrifle/scrap
+	ammo_type = /obj/item/ammo_casing/lrifle/scrap
 
 //////// .20 RIFLE SPEEDLOADERS ////////
 

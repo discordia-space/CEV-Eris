@@ -39,6 +39,8 @@ var/list/mechtoys = list(
 		/mob/living/silicon/robot/drone
 		)
 
+	atmos_canpass = CANPASS_PROC
+
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)
 	if(istype(A) && A.checkpass(PASSGLASS))
 		return prob(60)

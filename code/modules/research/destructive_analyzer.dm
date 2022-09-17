@@ -9,6 +9,8 @@ Note: Must be placed within 3 tiles of the R&D Console
 /obj/machinery/r_n_d/destructive_analyzer
 	name = "destructive analyzer"
 	icon_state = "d_analyzer"
+	description_info = "Can deconstruct items for technology points. Rare or illegal technology yields more"
+	description_antag = "The perfect device to get rid of evidence"
 	var/obj/item/loaded_item = null
 	var/decon_mod = 0
 	var/busy = FALSE

@@ -17,6 +17,62 @@
 		list(CRAFT_MATERIAL, 1, MATERIAL_CARDBOARD)
 	)
 
+/datum/craft_recipe/clothing/accessory/cloak
+	name = "oversized poncho"
+	result = /obj/item/clothing/accessory/cloak
+	steps = list(
+		list(/obj/item/bedsheet, 1),
+		list(QUALITY_WIRE_CUTTING, 20, "time" = 30))
+
+/datum/craft_recipe/clothing/accessory/cloak/ponchoblue
+	name = "blue oversized poncho"
+	result = /obj/item/clothing/accessory/cloak/ponchoblue
+	steps = list(
+		list(/obj/item/bedsheet, 1),
+		list(QUALITY_WIRE_CUTTING, 20, "time" = 30))
+
+/datum/craft_recipe/clothing/accessory/cloak/ponchored
+	name = "red oversized poncho"
+	result = /obj/item/clothing/accessory/cloak/ponchored
+	steps = list(
+		list(/obj/item/bedsheet, 1),
+		list(QUALITY_WIRE_CUTTING, 20, "time" = 30))
+
+/datum/craft_recipe/clothing/accessory/cloak/ponchogreen
+	name = "green oversized poncho"
+	result = /obj/item/clothing/accessory/cloak/ponchogreen
+	steps = list(
+		list(/obj/item/bedsheet, 1),
+		list(QUALITY_WIRE_CUTTING, 20, "time" = 30))
+
+/datum/craft_recipe/clothing/accessory/cloak/ponchopurple
+	name = "purple oversized poncho"
+	result = /obj/item/clothing/accessory/cloak/ponchopurple
+	steps = list(
+		list(/obj/item/bedsheet, 1),
+		list(QUALITY_WIRE_CUTTING, 20, "time" = 30))
+
+/datum/craft_recipe/clothing/accessory/cloak/ponchoash
+	name = "ash oversized poncho"
+	result = /obj/item/clothing/accessory/cloak/ponchoash
+	steps = list(
+		list(/obj/item/bedsheet, 1),
+		list(QUALITY_WIRE_CUTTING, 20, "time" = 30))
+
+/datum/craft_recipe/clothing/accessory/cloak/ponchowhite
+	name = "white oversized poncho"
+	result = /obj/item/clothing/accessory/cloak/ponchowhite
+	steps = list(
+		list(/obj/item/bedsheet, 1),
+		list(QUALITY_WIRE_CUTTING, 20, "time" = 30))
+
+/datum/craft_recipe/clothing/accessory/cloak/clowncho
+	name = "clown poncho"
+	result = /obj/item/clothing/accessory/cloak/clowncho
+	steps = list(
+		list(/obj/item/bedsheet, 1),
+		list(QUALITY_WIRE_CUTTING, 20, "time" = 30))
+
 /datum/craft_recipe/clothing/sandals
 	name = "wooden sandals"
 	result = /obj/item/clothing/shoes/sandal
@@ -142,8 +198,7 @@
 	result = /obj/item/clothing/accessory/holster/saber/improvised
 	steps = list (
 		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL), //steel for the frame, since 5 makes a chair I'm assuming 2 is enough for a sheath
-		list(QUALITY_ADHESIVE, 15, 70), //duct tape to line the inside of the sheath
+		list(QUALITY_ADHESIVE, 30, 70), //duct tape to line the inside of the sheath
 		list(QUALITY_WELDING, 10, "time" = 30), //weld and bend it into a decent shape
-		list(QUALITY_ADHESIVE, 15, 70), //more duct tape to line the mouth, creates a good landing pad and stops the sword from jerking around
 		list(/obj/item/stack/cable_coil, 5, "time" = 10)) //cable coil for the sheath belt, it's gotta hang on you somehow
 

@@ -7,6 +7,7 @@
 /obj/machinery/power/shield_generator
 	name = "advanced shield generator"
 	desc = "A heavy-duty shield generator and capacitor, capable of generating energy shields at large distances."
+	description_info = "Can be moved by retracting the power conduits with the appropiate right-click verb"
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "generator0"
 	density = TRUE

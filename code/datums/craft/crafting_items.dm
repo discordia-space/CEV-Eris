@@ -23,7 +23,7 @@
 	desc = "Spare part of armor."
 	icon_state = "armor_part"
 	spawn_tags = SPAWN_TAG_PART_ARMOR
-	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 5, MATERIAL_CARDBOARD = 5, MATERIAL_STEEL = 5)
+	matter = list(MATERIAL_PLASTIC = 10, MATERIAL_STEEL = 10)
 
 /obj/item/part/armor/artwork
 	desc = "This is an artistically-made armor part."
@@ -46,7 +46,7 @@
 	icon_state = "gun_part_1"
 	spawn_tags = SPAWN_TAG_GUN_PART
 	w_class = ITEM_SIZE_SMALL
-	matter = list(MATERIAL_PLASTEEL = 1.2)
+	matter = list(MATERIAL_PLASTEEL = 5)
 	var/generic = TRUE
 
 /obj/item/part/gun/Initialize()
@@ -81,7 +81,7 @@
 	var/suitable_part
 	var/view_only = 0
 	var/tags_to_spawn = list()
-	var/req_parts = 10
+	var/req_parts = 5
 	var/complete = FALSE
 	var/total_items = 20
 	var/list/items = list()

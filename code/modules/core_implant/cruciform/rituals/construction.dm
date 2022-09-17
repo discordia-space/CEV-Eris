@@ -133,7 +133,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/steel = 10,
 		/obj/item/stack/material/glass = 2,
 		/obj/item/stack/material/silver = 6,
-		/obj/item/storage/toolbox = 1
+		/obj/item/storage/toolbox/mechanical = 1
 	)
 	build_time = 5 SECONDS
 /datum/nt_blueprint/machinery/solidifier

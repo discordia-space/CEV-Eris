@@ -2,7 +2,8 @@
 /datum/admins/proc/player_panel_new()//The new one
 	if (!usr.client.holder)
 		return
-	var/dat = "<html><head><title>Admin Player Panel</title></head>"
+	log_admin("[key_name(usr)] checked the player panel.")
+	var/dat = "<html><head><meta http-equiv='X-UA-Compatible' content='IE=edge; charset=UTF-8'/><title>Player Panel</title></head>"
 
 	//javascript, the part that does most of the work~
 	dat += {"
@@ -293,7 +294,7 @@
 					<td align='center' bgcolor='[color]'>
 						<span id='notice_span[i]'></span>
 						<a id='link[i]'
-						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","--unused--","[M_key]","[M.lastKnownIP]",[is_antagonist],"\ref[M]")'
+						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","--unused--","[M_key]","[M.lastKnownIP]",[is_antagonist],"[REF(M)]")'
 						>
 						<span id='search[i]'><b>[M_name] - [M_rname] - [M_key] ([M_job])</b></span>
 						</a>

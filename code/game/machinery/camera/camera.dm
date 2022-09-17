@@ -1,6 +1,7 @@
 /obj/machinery/camera
 	name = "security camera"
 	desc = "It's used to monitor rooms."
+	description_antag = "Can be silently disabled using tape, however this will show if anyone tries to acces the camera."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "camera"
 	use_power = ACTIVE_POWER_USE

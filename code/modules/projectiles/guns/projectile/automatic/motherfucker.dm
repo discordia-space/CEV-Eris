@@ -12,7 +12,8 @@
 	load_method = SINGLE_CASING
 	handle_casings = EJECT_CASINGS
 	max_shells = 54
-	penetration_multiplier = 1.3 // and good AP
+	damage_multiplier = 1
+	penetration_multiplier = 0.3 // and good AP
 	proj_step_multiplier = 0.8 // faster than non-shotgun bullets, slower than non-shotgun bullets with an accelerator
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 15)
 	price_tag = 300

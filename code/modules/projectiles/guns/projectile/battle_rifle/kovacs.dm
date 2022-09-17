@@ -12,7 +12,7 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
-	mag_well = MAG_WELL_RIFLE
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L
 	magazine_type = /obj/item/ammo_magazine/srifle
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	price_tag = 2000
@@ -20,8 +20,8 @@
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	damage_multiplier = 1.2 //30
-	penetration_multiplier = 1.4 //35
+	damage_multiplier = 1.4
+	penetration_multiplier = 0.2
 	init_recoil = RIFLE_RECOIL(1)
 	zoom_factor = 0.6
 	fire_delay = 6.5
@@ -34,16 +34,9 @@
 	..()
 
 	var/iconstring = initial(icon_state)
-	var/itemstring = ""
-
-	if (ammo_magazine)
-		iconstring += "[ammo_magazine? "_mag": ""]"
-
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		iconstring += "_slide"
+	iconstring = initial(icon_state) + (ammo_magazine ? "_mag" + (ammo_magazine.mag_well == MAG_WELL_RIFLE_L ? "_l" : (ammo_magazine.mag_well == MAG_WELL_RIFLE_D ? "_d" : "")) : "")
 
 	icon_state = iconstring
-	set_item_state(itemstring)
 
 /obj/item/gun/projectile/kovacs/Initialize()
 	. = ..()

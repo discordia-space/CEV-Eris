@@ -24,8 +24,8 @@
 		)
 
 	can_dual = 1
-	damage_multiplier = 0.7
-	penetration_multiplier = 0.9
+	damage_multiplier = 0.8
+	penetration_multiplier = 0
 	init_recoil = SMG_RECOIL(0.6)
 	spawn_blacklisted = TRUE
 	wield_delay = 0 // No delay for this , its litteraly a junk gun

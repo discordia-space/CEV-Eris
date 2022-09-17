@@ -5273,7 +5273,6 @@
 /area/shuttle/mercenary)
 "uL" = (
 /obj/structure/table/rack,
-/obj/item/gun/launcher/crossbow,
 /obj/item/stack/rods{
 	amount = 10
 	},

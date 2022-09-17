@@ -54,6 +54,7 @@
 	var/spreading_step = 15
 	var/projectile_accuracy = 1 // Based on vigilance, reduces random limb chance and likelihood of missing intended target
 	var/recoil = 0
+	var/wounding_mult = 1 // A multiplier on damage inflicted to and damage blocked by mobs
 
 	//Effects
 	var/stun = 0
@@ -63,7 +64,6 @@
 	var/stutter = 0
 	var/eyeblur = 0
 	var/drowsy = 0
-	var/agony = 0
 	var/embed = 0 // whether or not the projectile can embed itself in the mob
 	var/knockback = 0
 
@@ -110,10 +110,10 @@
 
 /obj/item/projectile/multiply_projectile_damage(newmult)
 	for(var/i in damage_types)
-		damage_types[i] *= newmult
+		damage_types[i] *= i == HALLOSS ? 1 : newmult
 
-/obj/item/projectile/multiply_projectile_penetration(newmult)
-	armor_penetration = initial(armor_penetration) * newmult
+/obj/item/projectile/add_projectile_penetration(newmult)
+	armor_divisor = initial(armor_divisor) + newmult
 
 /obj/item/projectile/multiply_pierce_penetration(newmult)
 	penetrating = initial(penetrating) + newmult
@@ -125,12 +125,10 @@
 	if(!hitscan)
 		step_delay = initial(step_delay) * newmult
 
-/obj/item/projectile/multiply_projectile_agony(newmult)
-	agony = initial(agony) * newmult
-
 /obj/item/projectile/proc/multiply_projectile_accuracy(newmult)
 	projectile_accuracy = initial(projectile_accuracy) * newmult
 
+// bullet/pellets redefines this
 /obj/item/projectile/proc/adjust_damages(var/list/newdamages)
 	if(!newdamages.len)
 		return
@@ -313,7 +311,22 @@
 
 	var/result = PROJECTILE_FORCE_MISS
 
+	if(target_mob != original) // If mob was not clicked on / is not an NPC's target, checks if the mob is concealed by cover
+		var/turf/cover_loc = get_step(get_turf(target_mob), get_dir(get_turf(target_mob), starting))
+		for(var/obj/O in cover_loc)
+			if(istype(O,/obj/structure/low_wall) || istype(O,/obj/machinery/deployable/barrier) || istype(O,/obj/structure/barricade) || istype(O,/obj/structure/table))
+				if(!silenced)
+					visible_message(SPAN_NOTICE("\The [target_mob] ducks behind \the [O], narrowly avoiding \the [src]!"))
+				return FALSE
+		for(var/obj/structure/table/O in get_turf(target_mob))
+			if(istype(O) && O.flipped && (get_dir(get_turf(target_mob), starting) == O.dir))
+				if(!silenced)
+					visible_message(SPAN_NOTICE("\The [target_mob] ducks behind \the [O], narrowly avoiding \the [src]!"))
+				return FALSE
+
+
 	if(iscarbon(target_mob))
+		// Handheld shields
 		var/mob/living/carbon/C = target_mob
 		var/obj/item/shield/S
 		for(S in get_both_hands(C))
@@ -322,6 +335,7 @@
 				qdel(src)
 				return TRUE
 			break //Prevents shield dual-wielding
+
 //		S = C.get_equipped_item(slot_back)
 //		if(S && S.block_bullet(C, src, def_zone))
 //			on_hit(S,def_zone)

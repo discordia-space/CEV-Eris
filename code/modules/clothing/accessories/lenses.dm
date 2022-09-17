@@ -2,6 +2,7 @@
 	name = "thermal lenses"
 	desc = "Lenses for glasses, you can see red people through walls with them."
 	icon_state = "thermal_lens"
+	description_antag = "These let you see through walls, but make you highly susceptible to flashbangs."
 	body_parts_covered = FALSE
 	slot_flags = FALSE
 	see_invisible = FALSE

@@ -333,7 +333,7 @@ BLIND     // can't see anything
 	bad_type = /obj/item/clothing/gloves
 	spawn_tags = SPAWN_TAG_GLOVES
 	body_parts_covered = ARMS
-	armor = list(melee = 10, bullet = 0, energy = 15, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 2, bullet = 0, energy = 3, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
 	style = STYLE_LOW
@@ -435,7 +435,7 @@ BLIND     // can't see anything
 	spawn_tags = SPAWN_TAG_SHOES
 	bad_type = /obj/item/clothing/shoes
 
-	armor = list(melee = 10, bullet = 0, energy = 10, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 2, bullet = 0, energy = 2, bomb = 0, bio = 0, rad = 0)
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	style = STYLE_LOW

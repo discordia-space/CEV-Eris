@@ -274,6 +274,7 @@
 		if(I.perk)
 			if(owner.stats.addPerk(I.perk))
 				I.perk = null
+		SEND_SIGNAL(O, COMSIG_ODDITY_USED)
 		for(var/mob/living/carbon/human/H in viewers(owner))
 			SEND_SIGNAL(H, COMSIG_HUMAN_ODDITY_LEVEL_UP, owner, O)
 

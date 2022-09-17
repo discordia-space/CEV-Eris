@@ -17,7 +17,7 @@
 	//spawn values
 	bad_type = /obj/item/tool
 	spawn_tags = SPAWN_TAG_TOOL
-	
+
 	price_tag = 20
 
 	var/tool_in_use = FALSE
@@ -223,7 +223,7 @@
 	data["force"] = force
 	data["force_max"] = initial(force) * 10
 
-	data["armor_penetration"] = armor_penetration
+	data["armor_divisor"] = armor_divisor
 
 	data["extra_volume"] = extra_bulk
 

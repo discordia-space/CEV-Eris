@@ -16,9 +16,9 @@
 	magazine_type = /obj/item/ammo_magazine/pistol
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 4)
 	price_tag = 400
-	damage_multiplier = 1.3
-	penetration_multiplier = 0.8
-	init_recoil = HANDGUN_RECOIL(0.7)
+	damage_multiplier = 1.2
+	penetration_multiplier = 0
+	init_recoil = HANDGUN_RECOIL(1)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/giskard = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
 	serial_type = "FS"

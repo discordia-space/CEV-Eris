@@ -5,6 +5,7 @@
 	icon_state = "bsdm"
 	item_state = "bsdm"
 	max_storage_space = DEFAULT_BULKY_STORAGE
+	description_antag = "A high-capacity storage unit. Highly illegal, but stores a lot of items. Also used for sending contract items."
 	max_w_class = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_BLUESPACE = 3, TECH_COVERT = 3)
 	matter = list(MATERIAL_STEEL = 6)

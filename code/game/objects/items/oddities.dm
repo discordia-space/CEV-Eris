@@ -371,7 +371,7 @@
 	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
 		to_chat(user, SPAN_NOTICE("Has it always shone so brightly?"))
 
-	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_hazard_threshold > GLOB.bluespace_hazard_threshold*0.95)
+	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.95)
 		to_chat(user, SPAN_NOTICE("You can see an inscription in some language unknown to you."))
 
 /obj/item/oddity/broken_necklace/Destroy()
@@ -583,9 +583,9 @@
 
 
 	armor = list(
-		melee = 15,
-		bullet = 15,
-		energy = 15,
+		melee = 3,
+		bullet = 3,
+		energy = 3,
 		bomb = 15,
 		bio = 75,
 		rad = 10

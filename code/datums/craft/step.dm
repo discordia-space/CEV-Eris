@@ -6,8 +6,6 @@
 	var/reqed_material
 	var/req_amount = 0
 
-
-
 	var/time = 15
 
 	var/desc = ""
@@ -15,6 +13,9 @@
 	var/end_msg = ""
 	var/tool_name
 	var/list/craft_items = list()
+
+	/// gets set during asset init
+	var/iconfile = ""
 
 
 /datum/craft_step/New(list/params, datum/craft_recipe/parent)
@@ -77,13 +78,13 @@
 			end_msg = "%USER% applied %ITEM% to %TARGET%"
 		if(1)
 			if(reqed_material)
-				desc = "Attach [amt] [tool_name] <img style='margin-bottom:-8px' src= [sanitizeFileName("[material_stack_type(reqed_material)].png")] height=24 width=24>"
+				desc = "Attach [amt] [tool_name] <img style=\"margin-bottom:-8px\" src=\"[iconfile]\" height=\"24\" width=\"24\">"
 			else
-				desc = "Attach [tool_name] <img style='margin-bottom:-8px' src= [sanitizeFileName("[reqed_type].png")] height=24 width=24>"
+				desc = "Attach [tool_name] <img style=\"margin-bottom:-8px\" src=\"[iconfile]\" height=\"24\" width=\"24\">"
 			start_msg = "%USER% starts attaching %ITEM% to %TARGET%"
 			end_msg = "%USER% attached %ITEM% to %TARGET%"
 		else
-			desc = "Attach [amt] [tool_name] <img style='margin-bottom:-8px' src= [reqed_type ? sanitizeFileName("[reqed_type].png") : sanitizeFileName("[material_stack_type(reqed_material)].png")] height=24 width=24>"
+			desc = "Attach [amt] [tool_name] <img style=\"margin-bottom:-8px\" src=\"[iconfile]\" height=\"24\" width=\"24\">"
 			start_msg = "%USER% starts attaching %ITEM% to %TARGET%"
 			end_msg = "%USER% attached %ITEM% to %TARGET%"
 

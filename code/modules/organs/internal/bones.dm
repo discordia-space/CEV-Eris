@@ -42,6 +42,18 @@
 				"step" = /datum/surgery_step/robotic/fix_bone
 			)))
 	else
+		if(item_upgrades.len < max_upgrades)
+			actions_list.Add(list(list(
+				"name" = "Attach Mod",
+				"organ" = "\ref[src]",
+				"step" = /datum/surgery_step/attach_mod
+			)))
+		if(item_upgrades.len)
+			actions_list.Add(list(list(
+				"name" = "Remove Mod",
+				"organ" = "\ref[src]",
+				"step" = /datum/surgery_step/remove_mod
+			)))
 		actions_list.Add(list(list(
 			"name" = (parent.status & ORGAN_BROKEN) ? "Mend" : "Break",
 			"organ" = "\ref[src]",

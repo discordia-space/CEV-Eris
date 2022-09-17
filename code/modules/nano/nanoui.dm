@@ -53,6 +53,8 @@ nanoui is used to open and update nano browser uis
 	var/is_auto_updating = 0
 	// the current status/visibility of the ui
 	var/status = STATUS_INTERACTIVE
+	// are we retrieving HTML ? if so do not send data(causes whitescreen)
+	var/retrieving_html = FALSE
 
 	// Relationship between a master interface and its children. Used in update_status
 	var/datum/nanoui/master_ui
@@ -102,6 +104,7 @@ nanoui is used to open and update nano browser uis
 	if (nanoui.send(user.client))
 		to_chat(user, span_warning("Currently sending <b>all</b> nanoui assets, please wait!"))
 		user.client.browse_queue_flush() // stall loading nanoui until assets actualy gets sent
+		to_chat(user, span_info("Nanoui assets have been sent completely."))
 
 
 //Do not qdel nanouis. Use close() instead.
@@ -365,7 +368,7 @@ nanoui is used to open and update nano browser uis
   * @return string HTML for the UI
   */
 /datum/nanoui/proc/get_html()
-
+	retrieving_html = TRUE
 	// before the UI opens, add the layout files based on the layout key
 	add_stylesheet("layout_[layout_key].css")
 	add_template("layout", "layout_[layout_key].tmpl")
@@ -390,6 +393,10 @@ nanoui is used to open and update nano browser uis
 	initial_data_json = strip_improper(initial_data_json);
 
 	var/url_parameters_json = json_encode(list("src" = "\ref[src]"))
+	
+	// This prevents the so-called white screens
+	spawn(1)
+		retrieving_html = FALSE
 
 	return {"
 <!DOCTYPE html>
@@ -514,6 +521,9 @@ nanoui is used to open and update nano browser uis
 		return // Closed
 	if (status == STATUS_DISABLED && !force_push)
 		return // Cannot update UI, no visibility
+	// still retrieving code to parse , sending data would create a error the user can't close/see
+	if(retrieving_html)
+		return
 
 	var/list/send_data = get_send_data(data)
 

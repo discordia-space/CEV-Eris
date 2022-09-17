@@ -9,6 +9,6 @@
 	name = T_BOARD("receiving trade beacon")
 	build_path = /obj/machinery/trade_beacon/receiving
 
-/obj/item/electronics/circuitboard/sending_beacon
+/obj/item/electronics/circuitboard/trade_beacon/sending
 	name = T_BOARD("sending trade beacon")
 	build_path = /obj/machinery/trade_beacon/sending

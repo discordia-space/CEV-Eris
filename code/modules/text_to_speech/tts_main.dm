@@ -139,7 +139,7 @@ var/list/tts_seeds = list()
 
 	for(var/i in 1 to (ascii_overdose ? message_symbol_length : message_byte_length))
 		var/character = (ascii_overdose ? copytext_char(message, i, i+1) : copytext(message, i, i+1))
-		// Skipping multiple characters, could be BYOND's "text entity" or <span> 
+		// Skipping multiple characters, could be BYOND's "text entity" or <span>
 		if(character_sequence_end)
 			listen_for_character = null
 			if(character == character_sequence_end)

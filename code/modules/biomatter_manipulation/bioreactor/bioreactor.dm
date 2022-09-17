@@ -138,6 +138,8 @@
 /obj/structure/reagent_dispensers/biomatter
 	name = "medium biomatter canister"
 	desc = "A biomatter canister. It is used to store high amounts of biomatter."
+	description_info = "Can hold 400 units"
+	description_antag = "With a beaker, raw biomatter can be pulled out. When spilled on the floor, the puddles are highly lethal to anyone without protection. Killing them in several minutes if they do not receive treatment"
 	icon = 'icons/obj/bioreactor_misc.dmi'
 	icon_state = "biomatter_tank_medium"
 	amount_per_transfer_from_this = 50
@@ -148,6 +150,8 @@
 /obj/structure/reagent_dispensers/biomatter/large
 	name = "large biomatter canister"
 	icon_state = "biomatter_tank_large"
+	description_info = "Can hold 800 units"
+	description_antag = "With a beaker, raw biomatter can be pulled out. When spilled on the floor, the puddles are highly lethal to anyone without protection. Killing them in several minutes if they do not receive treatment"
 	volume = 800
 
 

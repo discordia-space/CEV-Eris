@@ -9,6 +9,8 @@
 	name = "syringe"
 	desc = "A syringe."
 	icon = 'icons/obj/syringe.dmi'
+	description_info = "Holds 15 units of reagents, can be used through voidsuits and non-thick armour"
+	description_antag = "People tend to place full trust into paramedics or doctors when they get scanned beforehand and told they're damaged, followed by a injection of what usually is healing chemicals."
 	item_state = "syringe"
 	icon_state = "0"
 	matter = list(MATERIAL_GLASS = 1, MATERIAL_STEEL = 1)
@@ -403,6 +405,26 @@
 	name = "syringe (hyperzine)"
 	desc = "Contains hyperzine - a long lasting muscle stimulant."
 	preloaded_reagents = list("hyperzine" = 15)
+
+/obj/item/reagent_containers/syringe/meralyne
+	name = "syringe (meralyne)"
+	desc = "Contains meralyne - a potent brute-healing medicine"
+	preloaded_reagents = list("meralyne" = 15)
+
+/obj/item/reagent_containers/syringe/tramadol
+	name = "syringe (tramadol)"
+	desc = "Contains tramadol - a general use painkiller"
+	preloaded_reagents = list("tramadol" = 15)
+
+/obj/item/reagent_containers/syringe/dermaline
+	name = "syringe (dermaline)"
+	desc = "Contains dermaline - a potent burn-salving medicine"
+	preloaded_reagents = list("dermaline" = 15)
+
+/obj/item/reagent_containers/syringe/polystem
+	name = "syringe (polystem)"
+	desc = "Contains polystem - a mild healing stimulant for surface wounds"
+	preloaded_reagents = list("polystem" = 15)
 
 /obj/item/reagent_containers/syringe/drugs
 	name = "syringe (drugs)"

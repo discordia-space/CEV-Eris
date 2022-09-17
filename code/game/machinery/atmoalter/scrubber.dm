@@ -2,6 +2,7 @@
 	name = "Portable Air Scrubber"
 
 	icon = 'icons/obj/atmos.dmi'
+	description_info = "Can be emptied by connecting onto a port and pumping the gasses out"
 	icon_state = "pscrubber:0"
 	density = TRUE
 	w_class = ITEM_SIZE_NORMAL
