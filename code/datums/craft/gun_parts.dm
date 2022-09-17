@@ -7,21 +7,28 @@
 	matter = list(MATERIAL_PLASTEEL = 4)
 	rarity_value = 10
 
+	// What gun the frame makes when it only accepts one grip
 	var/result = /obj/item/gun/projectile
 
-	var/grip = /obj/item/part/gun/grip
-	var/grip_attached = FALSE
+	// Currently installed grip
+	var/obj/item/part/gun/grip/InstalledGrip
 
-	var/variant_grip = FALSE
+	// Which grips does the frame accept?
 	var/list/gripvars = list(/obj/item/part/gun/grip/wood, /obj/item/part/gun/grip/black)
+	// What are the results (in order relative to gripvars)?
 	var/list/resultvars = list(/obj/item/gun/projectile, /obj/item/gun/energy)
 
-	var/mechanism = /obj/item/part/gun/mechanism
-	var/mechanism_attached = FALSE
-	var/barrel = /obj/item/part/gun/barrel
-	var/barrel_attached = FALSE
-	var/serial_type = ""
+	// Currently installed mechanism
+	var/obj/item/part/gun/grip/InstalledMechanism
+	// Which mechanism the frame accepts?
+	var/list/mechanismvar = /obj/item/part/gun/mechanism
 
+	// Currently installed barrel
+	var/obj/item/part/gun/barrel/InstalledBarrel
+	// Which barrels does the frame accept?
+	var/barrelvars = list(/obj/item/part/gun/barrel)
+
+	var/serial_type = ""
 
 /obj/item/part/gun/frame/New(loc, ...)
 	. = ..()
@@ -32,7 +39,7 @@
 
 /obj/item/part/gun/frame/New(loc)
 	..()
-	var/spawn_with_preinstalled_parts = FALSE
+	var/spawn_with_preinstalled_parts = TRUE
 	if(istype(loc, /obj/structure/scrap_spawner))
 		spawn_with_preinstalled_parts = TRUE
 	else if(in_maintenance())
@@ -42,52 +49,44 @@
 				spawn_with_preinstalled_parts = TRUE
 
 	if(spawn_with_preinstalled_parts)
-		var/list/parts_list = list(mechanism, barrel)
+		var/list/parts_list = list("mechanism", "barrel", "grip")
 
 		pick_n_take(parts_list)
 		if(prob(50))
 			pick_n_take(parts_list)
 
 		for(var/part in parts_list)
-			if(ispath(part, barrel))
-				new part(src)
-				barrel_attached = TRUE
-			else if(ispath(part, mechanism))
-				new part(src)
-				mechanism_attached = TRUE
+			switch(part)
+				if("mechanism")
+					InstalledMechanism = new mechanismvar(src)
+				if("barrel")
+					var/select = pick(barrelvars)
+					InstalledBarrel = new select(src)
+				if("grip")
+					var/select = pick(gripvars)
+					InstalledGrip = new select(src)
 
 /obj/item/part/gun/frame/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/part/gun/grip))
-		if(grip_attached)
+		if(InstalledGrip)
 			to_chat(user, SPAN_WARNING("[src] already has a grip attached!"))
 			return
-		else if(variant_grip) 
-			handle_gripvar(I, user)
-		else if(istype(I, grip))
-			if(insert_item(I, user))
-				grip_attached = TRUE
-				to_chat(user, SPAN_NOTICE("You have attached the grip to \the [src]."))
-				return
 		else
-			to_chat(user, SPAN_WARNING("You cannot attach this to \the [src]!"))	
+			handle_gripvar(I, user)
 
-	if(istype(I, mechanism))
-		if(mechanism_attached)
+	if(istype(I, /obj/item/part/gun/mechanism))
+		if(InstalledMechanism)
 			to_chat(user, SPAN_WARNING("[src] already has a mechanism attached!"))
 			return
-		else if(insert_item(I, user))
-			mechanism_attached = TRUE
-			to_chat(user, SPAN_NOTICE("You have attached the mechanism to \the [src]."))
-			return
+		else
+			handle_mechanismvar(I, user)
 
-	if(istype(I, barrel))
-		if(barrel_attached)
+	if(istype(I, /obj/item/part/gun/barrel))
+		if(InstalledBarrel)
 			to_chat(user, SPAN_WARNING("[src] already has a barrel attached!"))
 			return
-		else if(insert_item(I, user))
-			barrel_attached = TRUE
-			to_chat(user, SPAN_NOTICE("You have attached the barrel to \the [src]."))
-			return
+		else
+			handle_barrelvar(I, user)
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, serial_type ? QUALITY_HAMMERING : null), src)
 	switch(tool_type)
@@ -105,12 +104,12 @@
 				return
 			if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
 				eject_item(toremove, user)
-				if(istype(toremove, grip))
-					grip_attached = FALSE
-				else if(istype(toremove, barrel))
-					barrel_attached = FALSE
-				else if(istype(toremove, mechanism))
-					mechanism_attached = FALSE
+				if(istype(toremove, /obj/item/part/gun/grip))
+					InstalledGrip = null
+				else if(istype(toremove, /obj/item/part/gun/barrel))
+					InstalledBarrel = FALSE
+				else if(istype(toremove, /obj/item/part/gun/mechanism))
+					InstalledMechanism = FALSE
 
 	return ..()
 
@@ -119,23 +118,43 @@
 		var/variantnum = gripvars.Find(I.type)
 		result = resultvars[variantnum]
 		if(insert_item(I, user))
-			grip_attached = TRUE
+			InstalledGrip = I
 			to_chat(user, SPAN_NOTICE("You have attached the grip to \the [src]."))
 			return
 	else
 		to_chat(user, SPAN_WARNING("This grip does not fit!"))
 		return
 
+/obj/item/part/gun/frame/proc/handle_mechanismvar(obj/item/I, mob/living/user)
+	if(I.type == mechanismvar)
+		if(insert_item(I, user))
+			InstalledMechanism = I
+			to_chat(user, SPAN_NOTICE("You have attached the mechanism to \the [src]."))
+			return
+	else
+		to_chat(user, SPAN_WARNING("This mechanism does not fit!"))
+		return
+
+/obj/item/part/gun/frame/proc/handle_barrelvar(obj/item/I, mob/living/user)
+	if(I.type in barrelvars)
+		if(insert_item(I, user))
+			InstalledBarrel = I
+			to_chat(user, SPAN_NOTICE("You have attached the barrel to \the [src]."))
+			return
+	else
+		to_chat(user, SPAN_WARNING("This barrel does not fit!"))
+		return
+
 /obj/item/part/gun/frame/attack_self(mob/user)
 	. = ..()
 	var/turf/T = get_turf(src)
-	if(!grip_attached)
+	if(!InstalledGrip)
 		to_chat(user, SPAN_WARNING("\the [src] does not have a grip!"))
 		return
-	if(!mechanism_attached)
+	if(!InstalledMechanism)
 		to_chat(user, SPAN_WARNING("\the [src] does not have a mechanism!"))
 		return
-	if(!barrel_attached)
+	if(!InstalledBarrel)
 		to_chat(user, SPAN_WARNING("\the [src] does not have a barrel!"))
 		return
 	var/obj/item/gun/G = new result(T)
@@ -146,16 +165,16 @@
 /obj/item/part/gun/frame/examine(user, distance)
 	. = ..()
 	if(.)
-		if(grip_attached)
-			to_chat(user, SPAN_NOTICE("\the [src] has a grip installed."))
+		if(InstalledGrip)
+			to_chat(user, SPAN_NOTICE("\the [src] has \a [InstalledGrip] installed."))
 		else
 			to_chat(user, SPAN_NOTICE("\the [src] does not have a grip installed."))
-		if(mechanism_attached)
-			to_chat(user, SPAN_NOTICE("\the [src] has a mechanism installed."))
+		if(InstalledMechanism)
+			to_chat(user, SPAN_NOTICE("\the [src] has \a [InstalledMechanism] installed."))
 		else
 			to_chat(user, SPAN_NOTICE("\the [src] does not have a mechanism installed."))
-		if(barrel_attached)
-			to_chat(user, SPAN_NOTICE("\the [src] has a barrel installed."))
+		if(InstalledBarrel)
+			to_chat(user, SPAN_NOTICE("\the [src] has \a [InstalledBarrel] installed."))
 		else
 			to_chat(user, SPAN_NOTICE("\the [src] does not have a barrel installed."))
 		if(in_range(user, src) || isghost(user))

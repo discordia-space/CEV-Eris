@@ -43,9 +43,9 @@
 	desc = "A C20r SMG frame. The syndicate's bread and butter."
 	icon_state = "frame_syndi"
 	result = /obj/item/gun/projectile/automatic/c20r
-	grip = /obj/item/part/gun/grip/black
-	mechanism = /obj/item/part/gun/mechanism/smg
-	barrel = /obj/item/part/gun/barrel/pistol
+	gripvars = /obj/item/part/gun/grip/black
+	mechanismvar = /obj/item/part/gun/mechanism/smg
+	barrelvars = /obj/item/part/gun/barrel/pistol
 
 /obj/item/gun/projectile/automatic/c20r/update_icon()
 	cut_overlays()

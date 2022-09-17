@@ -71,6 +71,6 @@
 	desc = "A Molly machine pistol frame. Toeing the line between pistol and SMG."
 	icon_state = "frame_autopistol"
 	result = /obj/item/gun/projectile/automatic/molly
-	grip = /obj/item/part/gun/grip/rubber
-	mechanism = /obj/item/part/gun/mechanism/pistol
-	barrel = /obj/item/part/gun/barrel/pistol
+	gripvars = /obj/item/part/gun/grip/rubber
+	mechanismvar = /obj/item/part/gun/mechanism/pistol
+	barrelvars = /obj/item/part/gun/barrel/pistol

@@ -41,11 +41,10 @@
 	desc = "A bolt-action rifle frame. For hunting or endless trench warfare."
 	icon_state = "frame_serbrifle"
 	result = /obj/item/gun/projectile/boltgun
-	variant_grip = TRUE
 	gripvars = list(/obj/item/part/gun/grip/excel, /obj/item/part/gun/grip/wood)
 	resultvars = list(/obj/item/gun/projectile/boltgun, /obj/item/gun/projectile/boltgun/serbian)
-	mechanism = /obj/item/part/gun/mechanism/boltgun
-	barrel = /obj/item/part/gun/barrel/lrifle
+	mechanismvar = /obj/item/part/gun/mechanism/boltgun
+	barrelvars = /obj/item/part/gun/barrel/lrifle
 
 /obj/item/gun/projectile/boltgun/update_icon()
 	..()
@@ -101,7 +100,7 @@
 
 /obj/item/gun/projectile/boltgun/special_check(mob/user)
 	if(bolt_open)
-		to_chat(user, SPAN_WARNING("You can't fire [src] while the bolt is open!"))
+		to_chat(user, SPAN_WARNING("You can't fire [src] while the [message] is open!"))
 		return 0
 	return ..()
 
@@ -132,7 +131,7 @@
 	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
 
 /obj/item/gun/projectile/boltgun/fs
-	name = "FS BR .20 \"Tosshin\""
+	name = "FS BR .20 \"Kadmin\""
 	desc = "Weapon for hunting, or endless coastal warfare. \
 			A replica of an ancient bolt action known for its easy maintenance and low price. \
 			This is mounted with a scope, for ranges longer than a maintenance tunnel."
@@ -153,57 +152,51 @@
 	sharp = FALSE
 	spawn_blacklisted = TRUE
 	saw_off = FALSE
-	gun_parts = list(/obj/item/part/gun/frame/tosshin = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/srifle/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/kadmin = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/srifle/steel = 1)
 	price_tag = 1200
 	serial_type = "FS"
 
-/obj/item/part/gun/frame/tosshin
-	name = "Tosshin frame"
-	desc = "A Tosshin bolt-action rifle frame. For hunting or endless coastal warfare."
-	icon_state = "frame_excelrifle"
+/obj/item/part/gun/frame/kadmin
+	name = "Kadmin frame"
+	desc = "A Kadmin bolt-action rifle frame. For hunting or endless coastal warfare."
+	icon_state = "frame_weebrifle"
 	result = /obj/item/gun/projectile/boltgun/fs
-	grip = /obj/item/part/gun/grip/rubber
-	mechanism = /obj/item/part/gun/mechanism/boltgun
-	barrel = /obj/item/part/gun/barrel/srifle
+	gripvars = /obj/item/part/gun/grip/rubber
+	mechanismvar = /obj/item/part/gun/mechanism/boltgun
+	barrelvars = /obj/item/part/gun/barrel/srifle
 
 /obj/item/gun/projectile/boltgun/handmade
 	name = "HM BR \"Riose\""
 	desc = "A handmade bolt action rifle, made from junk and some spare parts."
 	icon_state = "boltgun_hand"
 	item_suffix = "_hand"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
+	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_hand"
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	damage_multiplier = 1.2
-	penetration_multiplier = 0
+	damage_multiplier = 1.5
+	penetration_multiplier = -0.3
 	init_recoil = RIFLE_RECOIL(2.6)
 	max_shells = 5
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	price_tag = 800
-	sharp = FALSE //no bayonet here
+	sharp = TRUE //no bayonet here
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
-	saw_off = FALSE
+	saw_off = TRUE // yeah, we are getting the ghetto sawn off too
+	sawn = /obj/item/gun/projectile/boltgun/obrez/handmade
+	gun_parts = list(/obj/item/part/gun/frame/riose = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
 
-/obj/item/gun/projectile/boltgun/handmade/attackby(obj/item/W, mob/user)
-	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
-		to_chat(user, SPAN_NOTICE("You begin to rechamber \the [src]."))
-		if(loaded.len == 0 && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			if(caliber == CAL_LRIFLE)
-				caliber = CAL_SRIFLE
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .20 Caliber."))
-			else if(caliber == CAL_SRIFLE)
-				caliber = CAL_CLRIFLE
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .25 Caseless."))
-			else if(caliber == CAL_CLRIFLE)
-				caliber = CAL_LRIFLE
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .30 Caliber."))
-		else
-			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
-			return
-	..()
+/obj/item/part/gun/frame/riose
+	name = "Riose frame"
+	desc = "A Riose bolt-action rifle frame. For hunting or endless maintenance warfare."
+	icon_state = "frame_riose"
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 4)
+	result = /obj/item/gun/projectile/boltgun/handmade
+	gripvars = /obj/item/part/gun/grip/wood
+	mechanismvar = /obj/item/part/gun/mechanism/boltgun
+	barrelvars = list(/obj/item/part/gun/barrel/srifle, /obj/item/part/gun/barrel/lrifle, /obj/item/part/gun/barrel/clrifle)
 
 //// OBREZ ////
 
@@ -236,4 +229,14 @@
 	item_suffix  = "_wood"
 	init_recoil = CARBINE_RECOIL(4.5)
 	wielded_item_state = "_doble_wood"
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
+
+/obj/item/gun/projectile/boltgun/obrez/handmade
+	name = "sawn-off HM BR \"Riose\""
+	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
+	icon_state = "obrez_hand"
+	item_suffix  = "_hand"
+	penetration_multiplier = -0.5
+	init_recoil = CARBINE_RECOIL(4.5)
+	wielded_item_state = "_doble_hand"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
