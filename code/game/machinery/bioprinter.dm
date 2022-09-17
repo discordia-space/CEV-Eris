@@ -21,7 +21,8 @@
 		OP_LUNGS =   list(/obj/item/organ/internal/lungs,  40),
 		OP_KIDNEYS = list(/obj/item/organ/internal/kidney, 20),
 		OP_EYES =    list(/obj/item/organ/internal/eyes,   30),
-		OP_LIVER =   list(/obj/item/organ/internal/liver,  50)
+		OP_LIVER =   list(/obj/item/organ/internal/liver,  50),
+		OP_STOMACH = list(/obj/item/organ/internal/stomach,  40)
 		)
 
 /obj/machinery/bioprinter/prosthetics
