@@ -3,8 +3,9 @@
 	desc = "A hefty cannon, essentially a handmade elephant gun used by hunters of dangerous game, with added bayonet. \
 			The shorter barrel does not allow it to reach the same bullet speed as antimateriel rifles, but look \
 			no further if you want something that will put a kaiser down through walls."
+	icon = 'icons/obj/guns/projectile/bancroft.dmi'
 	icon_state = "bancroft"
-	item_state  = "bancroft"
+	item_state = "bancroft"
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_ROBUST
 	armor_divisor = ARMOR_PEN_DEEP
