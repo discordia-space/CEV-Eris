@@ -10,12 +10,14 @@
 	anchored = TRUE
 	density = TRUE
 	var/datum/ntnet/NTNet = null // This is mostly for backwards reference and to allow varedit modifications from ingame.
-	var/enabled = 1				// Set to 0 if the relay was turned off
-	var/dos_failure = 0			// Set to 1 if the relay failed due to (D)DoS attack
+	// used for linking networks
+	var/linking_id = ""
+	var/enabled = TRUE			// Set to 0 if the relay was turned off
+	var/dos_failure = FALSE			// Set to 1 if the relay failed due to (D)DoS attack
 	var/list/dos_sources = list()	// Backwards reference for qdel() stuff
 
 	// Denial of Service attack variables
-	var/dos_overload = 0		// Amount of DoS "packets" in this relay's buffer
+	var/dos_overload = FALSE		// Amount of DoS "packets" in this relay's buffer
 	var/dos_capacity = 500		// Amount of DoS "packets" in buffer required to crash the relay
 	var/dos_dissipate = 1		// Amount of DoS "packets" dissipated over time.
 

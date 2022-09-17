@@ -7,6 +7,8 @@
 	var/ownerName = ""
 	var/login = ""
 	var/password = ""
+	// what network are we currently linked to ?
+	var/network_id = ""
 	var/can_login = TRUE	// Whether you can log in with this account. Set to false for system accounts
 	var/suspended = FALSE	// Whether the account is banned by the SA.
 	var/connected_clients = list()
@@ -17,12 +19,22 @@
 		stored_message.calculate_size()
 		size += stored_message.size
 
-/datum/computer_file/data/email_account/New()
-	ntnet_global.email_accounts.Add(src)
+/datum/computer_file/data/email_account/New(var/net_id)
+	if(!net_id)
+		CRASH("There was an attempt to create an email_account with an invalid net_id")
+		return
+	var/datum/ntnet/network = ntNetworkById(net_id)
+	network_id = network.netword_id
+	network.email_accounts.Add(src)
 	..()
 
 /datum/computer_file/data/email_account/Destroy()
-	ntnet_global.email_accounts.Remove(src)
+	if(network_id)
+		var/datum/ntnet/network = ntNetworkById(network_id)
+		if(!network)
+			for(var/datum/ntnet/network in nt_networks)
+				network.email_accounts.Remove(src) // don't want to have random references
+		network.email_accounts.Remove(src)
 	. = ..()
 
 /datum/computer_file/data/email_account/proc/all_emails()
@@ -30,13 +42,16 @@
 
 /datum/computer_file/data/email_account/proc/send_mail(var/recipient_address, var/datum/computer_file/data/email_message/message, var/relayed = 0)
 	var/datum/computer_file/data/email_account/recipient
-	for(var/datum/computer_file/data/email_account/account in ntnet_global.email_accounts)
+	var/datum/ntnet/network = ntNetworkById(network_id)
+	if(!network)
+		return FALSE
+	for(var/datum/computer_file/data/email_account/account in network.email_accounts)
 		if(account.login == recipient_address)
 			recipient = account
 			break
 
 	if(!istype(recipient))
-		return 0
+		return FALSE
 
 	if(!recipient.receive_mail(message, relayed))
 		return
@@ -47,7 +62,7 @@
 
 /datum/computer_file/data/email_account/proc/receive_mail(var/datum/computer_file/data/email_message/received_message, var/relayed)
 	received_message.set_timestamp()
-	if(!ntnet_global.intrusion_detection_enabled)
+	if(!network.intrusion_detection_enabled)
 		inbox.Add(received_message)
 		return 1
 	// Spam filters may occassionally let something through, or mark something as spam that isn't spam.

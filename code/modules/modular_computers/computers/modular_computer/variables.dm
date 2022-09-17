@@ -1,5 +1,15 @@
 // This is the base type that handles everything. Subtypes can be easily created by tweaking variables in this file to your liking.
-
+#define MODCOMP_PROCESSOR "processor"
+#define MODCOMP_HARDDRIVE "storage"
+#define MODCOMP_NETCARD "network"
+#define MODCOMP_IDSLOT "idslot"
+#define MODCOMP_PRINTER "printer"
+#define MODCOMP_DISK "diskslot"
+#define MODCOMP_AISLOT "aislot"
+#define MODCOMP_POWERPROVIDER "powerprovider"
+#define MODCOMP_SCANNER "scanner"
+#define MODCOMP_GPS "gps"
+#define MODCOMP_LIGHT "light"
 /obj/item/modular_computer
 	name = "Modular Computer"
 	desc = "A modular computer. You shouldn't see this."
@@ -15,8 +25,7 @@
 	var/last_battery_percent = 0							// Used for deciding if battery percentage has chandged
 	var/last_world_time = "00:00"
 	var/list/last_header_icons
-	var/computer_emagged = FALSE							// Whether the computer is emagged.
-	var/apc_powered = FALSE									// Set automatically. Whether the computer used APC power last tick.
+	var/emagged = FALSE							// Whether the computer is emagged.
 	var/base_active_power_usage = 50						// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
 	var/base_idle_power_usage = 5							// Power usage when the computer is idle and screen is off (currently only applies to laptops)
 	var/bsod = FALSE										// Error screen displayed
@@ -43,24 +52,7 @@
 	var/broken_damage = 50		// Damage level at which the computer ceases to operate
 	var/max_damage = 100		// Damage level at which the computer breaks apart.
 	var/list/terminals          // List of open terminal datums.
-
-	// Important hardware (must be installed for computer to work)
-	var/obj/item/computer_hardware/processor_unit/processor_unit				// CPU. Without it the computer won't run. Better CPUs can run more programs at once.
-	var/obj/item/computer_hardware/network_card/network_card					// Network Card component of this computer. Allows connection to NTNet
-	var/obj/item/computer_hardware/hard_drive/hard_drive						// Hard Drive component of this computer. Stores programs and files.
-
-	// Optional hardware (improves functionality, but is not critical for computer to work in most cases)
-	var/obj/item/cell/cell													// An internal power source for this computer. Can be recharged.
-	var/suitable_cell = /obj/item/cell/medium								//What type of battery do we take?
-	var/obj/item/computer_hardware/card_slot/card_slot						// ID Card slot component of this computer. Mostly for HoP modification console that needs ID slot for modification.
-	var/obj/item/computer_hardware/printer/printer							// Printer component of this computer, for your everyday paperwork needs.
-	var/obj/item/computer_hardware/hard_drive/portable/portable_drive		// Portable data storage
-	var/obj/item/computer_hardware/ai_slot/ai_slot							// AI slot, an intellicard housing that allows modifications of AIs.
-	var/obj/item/computer_hardware/tesla_link/tesla_link						// Tesla Link, Allows remote charging from nearest APC.
-	var/obj/item/computer_hardware/scanner/scanner							// One of several optional scanner attachments.
-	var/obj/item/computer_hardware/gps_sensor/gps_sensor						// GPS sensor used to track device
-	var/obj/item/computer_hardware/led/led									// Light Emitting Diode, used for flashlight functionality in PDAs
-
+	var/list/obj/item/computer_hardware/attached_components = list()
 
 	var/modifiable = TRUE	// can't be modified or damaged if false
 

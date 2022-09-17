@@ -11,6 +11,7 @@ var/global/ntnet_card_uid = 1
 	rarity_value = 8.33
 	var/identification_id			// Identification ID. Technically MAC address of this device. Can't be changed by user.
 	var/identification_string = ""	// Identification string, technically nickname seen in the network. Can be set by user.
+	var/network_id = ""
 	var/long_range = FALSE
 	var/ethernet = FALSE	// Hard-wired, therefore always on, ignores NTNet wireless checks.
 	var/datum/radio_frequency/radio_connection	// Used by signaller code
