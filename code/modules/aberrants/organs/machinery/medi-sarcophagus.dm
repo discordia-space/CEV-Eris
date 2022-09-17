@@ -63,7 +63,7 @@
 
 	//Useability tweak for borgs
 	if (istype(I,/obj/item/gripper))
-		ui_interact(user)
+		nano_ui_interact(user)
 		return
 
 	..()
