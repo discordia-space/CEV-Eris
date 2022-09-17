@@ -39,7 +39,7 @@
 
 /obj/item/part/gun/frame/New(loc)
 	..()
-	var/spawn_with_preinstalled_parts = TRUE
+	var/spawn_with_preinstalled_parts = FALSE
 	if(istype(loc, /obj/structure/scrap_spawner))
 		spawn_with_preinstalled_parts = TRUE
 	else if(in_maintenance())
