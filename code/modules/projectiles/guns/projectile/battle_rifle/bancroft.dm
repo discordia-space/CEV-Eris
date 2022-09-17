@@ -10,11 +10,13 @@
 	force = WEAPON_FORCE_ROBUST
 	armor_divisor = ARMOR_PEN_DEEP
 	slot_flags = SLOT_BACK
+	damage_multiplier = 1
+	pierce_multiplier = 2 // still a .60 gun, and AMR pierces 6 walls
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_ANTIM
 	fire_delay = 8
 	init_recoil = RIFLE_RECOIL(1)
-	init_offset = 2 //bayonet's effect on aim, reduced from 4
+	init_offset = 0 // slight tweak since massive recoil kills rof and accuracy
 	load_method = SINGLE_CASING
 	max_shells = 5
 	ammo_type = /obj/item/ammo_casing/antim
