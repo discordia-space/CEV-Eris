@@ -82,7 +82,7 @@
 
 	if(blacklisted)
 		blacklisted = copytext(blacklisted, 1, length(blacklisted) - 1)
-		to_chat(user, SPAN_WARNING("Rejects [blacklisted]."))
+		to_chat(user, SPAN_WARNING("Rejects objects with the following reagents: [blacklisted]."))
 
 /obj/machinery/reagentgrinder/industrial/disgorger/proc/check_reagents(obj/item/I, mob/user)
 	if(!I.reagents || !I.reagents.total_volume)
@@ -248,7 +248,7 @@
 			/datum/reagent/toxin/blattedin = 0.5
 		)
 	if(liver_eff > 149)
-		accepted_reagents = list(
+		accepted_reagents |= list(
 			/datum/reagent/toxin/fuhrerole = 1,
 			/datum/reagent/toxin/kaiseraurum = 10
 		)
@@ -298,10 +298,10 @@
 
 /obj/item/electronics/circuitboard/disgorger
 	name = T_BOARD("disgorger")
+	spawn_blacklisted = TRUE
 	board_type = "machine"
 	build_path = /obj/machinery/reagentgrinder/industrial/disgorger
 	origin_tech = list(TECH_BIO = 3)
-	rarity_value = 20
 	req_components = list(
 		/obj/item/organ/internal = 4			// Build with any organ, but certain efficiencies will have different effects.
 	)

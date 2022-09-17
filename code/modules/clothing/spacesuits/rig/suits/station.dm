@@ -211,6 +211,7 @@ Technomancer RIG
 	)
 
 	spawn_blacklisted = TRUE
+	slowdown = LIGHT_SLOWDOWN
 
 /obj/item/rig/techno/equipped
 	initial_modules = list(
