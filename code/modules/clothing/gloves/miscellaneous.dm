@@ -148,6 +148,18 @@
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	price_tag = 10
 
+/obj/item/clothing/gloves/aerostatic
+	name = "red designed leather gloves"
+	desc = "Elegant leather gloves without fingertips."
+	icon_state = "aerostatic_gloves"
+	item_state = "aerostatic_gloves"
+	clipped = TRUE
+	cold_protection = ARMS
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = ARMS
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+	price_tag = 10
+
 /obj/item/clothing/gloves/german
 	name = "Oberth Republic gloves"
 	desc = "Brown gloves."

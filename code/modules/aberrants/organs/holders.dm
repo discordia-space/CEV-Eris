@@ -47,15 +47,17 @@
 	var/using_sci_goggles = FALSE
 	var/details_unlocked = FALSE
 
-	// Goggles check
 	if(ishuman(user))
+		// Goggles check
 		var/mob/living/carbon/human/H = user
 		if(istype(H.glasses, /obj/item/clothing/glasses/powered/science))
 			var/obj/item/clothing/glasses/powered/G = H.glasses
 			using_sci_goggles = G.active	// Meat vision
 
-	// Stat check
-	details_unlocked = (user.stats.getStat(STAT_BIO) >= STAT_LEVEL_EXPERT - 5 && user.stats.getStat(STAT_COG) >= STAT_LEVEL_BASIC - 5) ? TRUE : FALSE
+		// Stat check
+		details_unlocked = (user.stats.getStat(STAT_BIO) >= STAT_LEVEL_EXPERT - 5 && user.stats.getStat(STAT_COG) >= STAT_LEVEL_BASIC - 5) ? TRUE : FALSE
+	else if(istype(user, /mob/observer/ghost))
+		details_unlocked = TRUE
 
 	if(item_upgrades.len)
 		to_chat(user, SPAN_NOTICE("Organoid grafts present ([item_upgrades.len]/[max_upgrades]). Use a laser cutting tool to remove."))

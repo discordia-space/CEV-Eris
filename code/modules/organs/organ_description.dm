@@ -79,7 +79,7 @@
 	default_type = /obj/item/organ/external/head
 	default_bone_type = /obj/item/organ/internal/bone/head
 
-	max_damage = 75
+	max_damage = 90
 	min_broken_damage = 60
 	vital = TRUE
 

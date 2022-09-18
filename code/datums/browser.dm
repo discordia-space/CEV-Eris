@@ -77,6 +77,8 @@
 	for (file in scripts)
 		head_content += "<script type='text/javascript' src='[SSassets.transport.get_asset_url(file)]'></script>"
 
+	head_content += "<script type='text/javascript'> function UpdateBrowserDataAlt(data){document.getElementById('theContent').innerHTML = data;}</script>"
+
 	return {"<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -87,7 +89,7 @@
 	<body scroll=auto>
 		<div class='uiWrapper'>
 			[title ? "<div class='uiTitleWrapper'><div class='uiTitle'><tt>[title]</tt></div></div>" : ""]
-			<div class='uiContent'>
+			<div class='uiContent' id="theContent">
 	"}
 //" This is here because else the rest of the file looks like a string in notepad++.
 /datum/browser/proc/get_footer()
@@ -103,6 +105,10 @@
 	[content]
 	[get_footer()]
 	"}
+
+/datum/browser/proc/update()
+	if(user)
+		user << output(content, "[window_id].browser:UpdateBrowserDataAlt")
 
 /datum/browser/proc/open(use_onclose = TRUE)
 	if(isnull(window_id)) //null check because this can potentially nuke goonchat
