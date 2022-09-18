@@ -110,7 +110,6 @@
 		else
 			return FALSE
 
-
 	if(wielded && !(attack_dir && (attack_dir & bad_arc)))
 		return TRUE
 	else if(!(attack_dir == bad_arc) && !(attack_dir == reverse_direction(shield_dir)) && !(attack_dir == (bad_arc | reverse_direction(shield_dir))))
@@ -290,6 +289,33 @@
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
 		cooldown = world.time
 
+/obj/item/shield/riot/dozershield
+	name = "bulldozer shield"
+	desc = "A crude beast of a shield hewn from slabs of metal welded to a locker door, it has been forged into a wall that stands between you and your foes."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "dozershield"
+	item_state = "dozershield"
+	flags = CONDUCT
+	slot_flags = SLOT_BACK
+	force = WEAPON_FORCE_DANGEROUS
+	throwforce = WEAPON_FORCE_DANGEROUS
+	throw_speed = 1
+	throw_range = 4
+	w_class = ITEM_SIZE_HUGE
+	origin_tech = list()
+	matter = list(MATERIAL_GLASS = 20, MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 10)
+	price_tag = 200
+	base_block_chance = 55
+	shield_difficulty = 10
+	shield_integrity = 160
+	slowdown_hold = 1
+
+/obj/item/shield/riot/dozershield/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/tool/hammer) || istype(W, /obj/item/tool/sword))
+		on_bash(W, user)
+	else
+		..()
+
 /obj/item/shield/hardsuit
 	name = "hardsuit shield"
 	desc = "A massive ballistic shield that seems impossible to wield without mechanical assist."
@@ -309,7 +335,7 @@
 	base_block_chance = 60
 	shield_difficulty = 10
 	attack_verb = list("smashed", "bashed")
-	shield_integrity = 160
+	shield_integrity = 180
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 	var/picked_by_human = FALSE
 	var/mob/living/carbon/human/picking_human
