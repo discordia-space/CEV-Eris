@@ -661,7 +661,7 @@
 	if(.)
 		if(statpanel("Status") && SSticker.current_state != GAME_STATE_PREGAME)
 			stat("Storyteller", "[master_storyteller]")
-			stat("Station Time", stationtime2text())
+			stat("Ship Time", stationtime2text())
 			stat("Round Duration", roundduration2text())
 
 		if(client.holder)

@@ -4,7 +4,7 @@
 	icon_state = "frame_olivaw"
 	generic = FALSE
 	bad_type = /obj/item/part/gun/frame
-	matter = list(MATERIAL_PLASTEEL = 4)
+	matter = list(MATERIAL_PLASTEEL = 5)
 	rarity_value = 10
 
 	// What gun the frame makes when it only accepts one grip
@@ -233,7 +233,7 @@
 	icon_state = "mechanism_pistol"
 	generic = FALSE
 	bad_type = /obj/item/part/gun/mechanism
-	matter = list(MATERIAL_PLASTEEL = 4)
+	matter = list(MATERIAL_PLASTEEL = 5)
 	price_tag = 100
 	rarity_value = 6
 
@@ -251,6 +251,7 @@
 	name = "shotgun mechanism"
 	desc = "All the bits that makes the bullet go bang, perfect for long shells."
 	icon_state = "mechanism_shotgun"
+	matter = list(MATERIAL_PLASTEEL = 10)
 
 /obj/item/part/gun/mechanism/smg
 	name = "SMG mechanism"
@@ -261,17 +262,19 @@
 	name = "bolt-action mechanism"
 	desc = "All the bits that makes the bullet go bang, slow and methodical."
 	icon_state = "mechanism_boltaction"
-	matter = list(MATERIAL_STEEL = 10)
+	matter = list(MATERIAL_STEEL = 15)
 
 /obj/item/part/gun/mechanism/autorifle
 	name = "self-loading mechanism"
 	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love."
 	icon_state = "mechanism_autorifle"
+	matter = list(MATERIAL_PLASTEEL = 10)
 
 /obj/item/part/gun/mechanism/machinegun
 	name = "machine gun mechanism"
 	desc = "All the bits that makes the bullet go bang. Now I have a machine gun, Ho, Ho, Ho."
 	icon_state = "mechanism_machinegun"
+	matter = list(MATERIAL_PLASTEEL = 15)
 	rarity_value = 8
 
 //Barrels
@@ -281,7 +284,7 @@
 	icon_state = "barrel_35"
 	generic = FALSE
 	bad_type = /obj/item/part/gun/barrel
-	matter = list(MATERIAL_PLASTEEL = 4)
+	matter = list(MATERIAL_PLASTEEL = 8)
 	price_tag = 200
 	rarity_value = 15
 	var/caliber = CAL_357
@@ -290,6 +293,7 @@
 	name = ".35 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .35 caliber."
 	icon_state = "barrel_35"
+	matter = list(MATERIAL_PLASTEEL = 4)
 	price_tag = 100
 	caliber = CAL_PISTOL
 
@@ -297,6 +301,7 @@
 	name = ".40 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .40 caliber."
 	icon_state = "barrel_40"
+	matter = list(MATERIAL_PLASTEEL = 4)
 	price_tag = 100
 	caliber = CAL_MAGNUM
 
@@ -306,7 +311,7 @@
 	icon_state = "barrel_20"
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_SRIFLE
-
+ 
 /obj/item/part/gun/barrel/srifle/steel
 	matter = list(MATERIAL_STEEL = 8)
 
@@ -316,13 +321,14 @@
 	icon_state = "barrel_25"
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_CLRIFLE
-
+ 
 /obj/item/part/gun/barrel/lrifle
 	name = ".30 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .30 caliber."
 	icon_state = "barrel_30"
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_LRIFLE
+
 
 /obj/item/part/gun/barrel/lrifle/steel
 	matter = list(MATERIAL_STEEL = 8)

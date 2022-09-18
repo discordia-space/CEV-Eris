@@ -414,7 +414,7 @@
 	)
 	var/obj/item/shrapnel = locate(/obj/item/material/shard/shrapnel) in organ.implants
 	organ.remove_item(shrapnel, user, FALSE)
-	organ.take_damage(tool.force / 0.3, 0, sharp=TRUE, edge=TRUE) //So it's a bad idea to remove shrapnel with a chainsaw
+	organ.take_damage(tool.force * 0.1, 0, sharp=TRUE) //So it's a bad idea to remove shrapnel with a chainsaw
 
 /datum/surgery_step/remove_shrapnel/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
@@ -423,7 +423,7 @@
 	)
 	var/obj/item/shrapnel = locate(/obj/item/material/shard/shrapnel) in organ.implants //will succeed regardless
 	organ.remove_item(shrapnel, user, FALSE)
-	organ.take_damage(tool.force, sharp=TRUE, edge=TRUE)
+	organ.take_damage(tool.force * 0.3, sharp=TRUE)
 
 //Cauterizing a wound to stop bleeding
 /datum/surgery_step/close_wounds
@@ -448,7 +448,7 @@
 		SPAN_NOTICE("You close the wounds on [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.stopBleeding()
-	organ.take_damage(0, tool.force / 0.3)
+	organ.take_damage(0, tool.force * 0.3)
 
 /datum/surgery_step/close_wounds/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
