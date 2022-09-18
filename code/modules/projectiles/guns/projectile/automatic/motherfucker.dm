@@ -15,7 +15,7 @@
 	damage_multiplier = 1
 	penetration_multiplier = 0.3 // and good AP
 	proj_step_multiplier = 0.8 // faster than non-shotgun bullets, slower than non-shotgun bullets with an accelerator
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 19, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 16)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 19, MATERIAL_PLASTIC = 10, MATERIAL_WOOD = 16)
 	price_tag = 300
 	init_recoil = LMG_RECOIL(1)
 	burst_delay = 0

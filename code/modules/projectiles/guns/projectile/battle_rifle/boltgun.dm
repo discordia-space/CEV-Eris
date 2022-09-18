@@ -170,7 +170,7 @@
 	desc = "A handmade bolt action rifle, made from junk and some spare parts."
 	icon_state = "boltgun_hand"
 	item_suffix = "_hand"
-	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 10)
+	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTEEL = 18, MATERIAL_WOOD = 16)
 	wielded_item_state = "_doble_hand"
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
