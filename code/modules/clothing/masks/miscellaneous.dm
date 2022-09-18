@@ -308,11 +308,13 @@
 			flags_inv = HIDEFACE
 			body_parts_covered = FACE
 			icon_state = initial(icon_state)
+			item_state = initial(item_state)
 			style_coverage = COVERS_MOUTH|COVERS_FACE
 		if(slot_head)
 			flags_inv = 0
 			body_parts_covered = HEAD
 			icon_state = "[initial(icon_state)]_up"
+			item_state = "[initial(item_state)]_up"
 			style_coverage = COVERS_HAIR
 
 	return ..()

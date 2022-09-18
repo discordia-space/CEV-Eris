@@ -369,7 +369,6 @@ nanoui is used to open and update nano browser uis
   */
 /datum/nanoui/proc/get_html()
 	retrieving_html = TRUE
-
 	// before the UI opens, add the layout files based on the layout key
 	add_stylesheet("layout_[layout_key].css")
 	add_template("layout", "layout_[layout_key].tmpl")
@@ -394,7 +393,7 @@ nanoui is used to open and update nano browser uis
 	initial_data_json = strip_improper(initial_data_json);
 
 	var/url_parameters_json = json_encode(list("src" = "\ref[src]"))
-
+	
 	// This prevents the so-called white screens
 	spawn(1)
 		retrieving_html = FALSE

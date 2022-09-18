@@ -140,7 +140,7 @@
 	..()
 	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
 	target = pick(valid_targets)
-	desc = "Ensure that [target] will not get their health slowered to [health_threshold] and below \
+	desc = "Ensure that [target] will not get their health lowered to [health_threshold] and below \
 			for [unit2time(units_requested)] minutes. Timer resets if health reaches the threshold."
 	timer = world.time
 	RegisterSignal(target, COMSIG_HUMAN_HEALTH, .proc/task_completed)
