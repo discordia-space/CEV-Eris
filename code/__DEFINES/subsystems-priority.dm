@@ -11,6 +11,7 @@ var/list/bitflags = list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096
 #define SS_PRIORITY_DEFAULT 50          // Default priority for both normal and background processes
 
 // Normal
+#define FIRE_PRIORITY_TIMER 700
 #define SS_PRIORITY_TICKER         200	// Gameticker processing.
 #define SS_PRIORITY_MOB            100	// Mob Life().
 #define SS_PRIORITY_CHAT		   100  // Chat subsystem.
