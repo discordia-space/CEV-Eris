@@ -62,6 +62,6 @@
 	desc = "An Atreides SMG frame. The king of street warfare."
 	icon_state = "frame_atreides"
 	result = /obj/item/gun/projectile/automatic/atreides
-	grip = /obj/item/part/gun/grip/rubber
-	mechanism = /obj/item/part/gun/mechanism/smg
-	barrel = /obj/item/part/gun/barrel/pistol
+	gripvars = /obj/item/part/gun/grip/rubber
+	mechanismvar = /obj/item/part/gun/mechanism/smg
+	barrelvars = /obj/item/part/gun/barrel/pistol
