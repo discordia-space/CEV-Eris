@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(misc)
 	if(!LAZYLEN(planet_size))
 		planet_size = list(world.maxx - 30 , world.maxy - 30)
 	initialize_cursors()
-	build_exoplanets()
+	// build_exoplanets()  // 18/09/2022 Commented till lag gets better overhaul
 	build_junk_field()
 	return ..()
 
