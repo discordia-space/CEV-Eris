@@ -1125,7 +1125,7 @@
 /obj/item/reagent_containers/food/snacks/wormburger/examine(mob/user)
 	. = ..()
 	if(ishuman(user))
-		var/mob/living/carbon/human/H
+		var/mob/living/carbon/human/H = user
 		var/obj/item/implant/core_implant/cruciform/C = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(C && C.active)
 			to_chat(user, "Looking at \the [src] gives you a sense of reassurance, it almost seems angelic.")
@@ -1146,7 +1146,7 @@
 /obj/item/reagent_containers/food/snacks/geneburger/examine(mob/user)
 	. = ..()
 	if(ishuman(user))
-		var/mob/living/carbon/human/H
+		var/mob/living/carbon/human/H = user
 		var/obj/item/implant/core_implant/cruciform/C = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(C && C.active)
 			to_chat(user, "Looking at \the [src] gives you a sense of darkness, it must be unholy!")
