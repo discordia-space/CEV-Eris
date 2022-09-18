@@ -22,7 +22,7 @@
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	init_recoil = RIFLE_RECOIL(0.8)
-	damage_multiplier = 1.1
+	damage_multiplier = 1
 	penetration_multiplier = 0
 	spawn_blacklisted = TRUE
 	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
@@ -103,7 +103,7 @@
 	icon = 'icons/obj/guns/projectile/ak/krinkov.dmi'
 	w_class = ITEM_SIZE_BULKY	// Small rifle, also because it's basically an smg now
 	init_recoil = CARBINE_RECOIL(0.7)
-	damage_multiplier = 1 // Better control, worse damage
+	damage_multiplier = .9 // Better control, worse damage
 	penetration_multiplier = 0.2
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 
@@ -167,7 +167,7 @@
 	icon = 'icons/obj/guns/projectile/ak/vipr.dmi'
 	w_class = ITEM_SIZE_HUGE
 	init_recoil = RIFLE_RECOIL(0.7)
-	damage_multiplier = 1
+	damage_multiplier = .9
 	penetration_multiplier = 0
 
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)

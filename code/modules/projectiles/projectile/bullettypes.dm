@@ -55,7 +55,7 @@ There are important things regarding this file:
 	armor_divisor = 1.5
 	penetrating = 2
 	can_ricochet = TRUE
-	recoil = 4
+	recoil = 3
 	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/srifle/nomuzzle
@@ -123,7 +123,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/lrifle
 	name = ".30 caliber bullet"
-	damage_types = list(BRUTE = 16)
+	damage_types = list(BRUTE = 18)
 	armor_divisor = 1.5
 	penetrating = 2
 	can_ricochet = TRUE
