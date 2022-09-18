@@ -26,7 +26,7 @@
 	// Currently installed barrel
 	var/obj/item/part/gun/barrel/InstalledBarrel
 	// Which barrels does the frame accept?
-	var/barrelvars = list(/obj/item/part/gun/barrel)
+	var/list/barrelvars = list(/obj/item/part/gun/barrel)
 
 	var/serial_type = ""
 
@@ -39,7 +39,7 @@
 
 /obj/item/part/gun/frame/New(loc)
 	..()
-	var/spawn_with_preinstalled_parts = FALSE
+	var/spawn_with_preinstalled_parts = TRUE
 	if(istype(loc, /obj/structure/scrap_spawner))
 		spawn_with_preinstalled_parts = TRUE
 	else if(in_maintenance())
@@ -159,6 +159,10 @@
 		return
 	var/obj/item/gun/G = new result(T)
 	G.serial_type = serial_type
+	if(barrelvars.len > 1 && istype(G, /obj/item/gun/projectile))
+		var/obj/item/gun/projectile/P = G
+		P.caliber = InstalledBarrel.caliber
+		G.gun_parts = list(src.type = 1, InstalledGrip.type = 1, InstalledMechanism.type = 1, InstalledBarrel.type = 1)
 	qdel(src)
 	return
 
@@ -280,24 +284,28 @@
 	matter = list(MATERIAL_PLASTEEL = 4)
 	price_tag = 200
 	rarity_value = 15
+	var/caliber = CAL_357
 
 /obj/item/part/gun/barrel/pistol
 	name = ".35 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .35 caliber."
 	icon_state = "barrel_35"
 	price_tag = 100
+	caliber = CAL_PISTOL
 
 /obj/item/part/gun/barrel/magnum
 	name = ".40 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .40 caliber."
 	icon_state = "barrel_40"
 	price_tag = 100
+	caliber = CAL_MAGNUM
 
 /obj/item/part/gun/barrel/srifle
 	name = ".20 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .20 caliber."
 	icon_state = "barrel_20"
 	matter = list(MATERIAL_PLASTEEL = 8)
+	caliber = CAL_SRIFLE
 
 /obj/item/part/gun/barrel/srifle/steel
 	matter = list(MATERIAL_STEEL = 8)
@@ -307,12 +315,14 @@
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .25 caliber."
 	icon_state = "barrel_25"
 	matter = list(MATERIAL_PLASTEEL = 8)
+	caliber = CAL_CLRIFLE
 
 /obj/item/part/gun/barrel/lrifle
 	name = ".30 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .30 caliber."
 	icon_state = "barrel_30"
 	matter = list(MATERIAL_PLASTEEL = 8)
+	caliber = CAL_LRIFLE
 
 /obj/item/part/gun/barrel/lrifle/steel
 	matter = list(MATERIAL_STEEL = 8)
@@ -322,9 +332,11 @@
 	desc = "A gun barrel, which keeps the bullet (or bullets) going in the right direction. Chambered in .50 caliber."
 	icon_state = "barrel_50"
 	matter = list(MATERIAL_PLASTEEL = 8)
+	caliber = CAL_SHOTGUN
 
 /obj/item/part/gun/barrel/antim
 	name = ".60 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .60 caliber."
 	icon_state = "barrel_60"
 	matter = list(MATERIAL_PLASTEEL = 16)
+	caliber = CAL_ANTIM
