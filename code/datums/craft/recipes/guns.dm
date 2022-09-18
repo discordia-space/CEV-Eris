@@ -97,7 +97,7 @@
 		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 15, MATERIAL_PLASTIC),
 		list(/obj/item/stock_parts/micro_laser, 4),
-		list(QUALITY_SCREW_DRIVING, 10)
+		list(QUALITY_SCREW_DRIVING, 10),
 		list(/obj/item/stock_parts/capacitor, 1),
 		list(QUALITY_SCREW_DRIVING, 10),
 		list(QUALITY_ADHESIVE, 15, 70)
