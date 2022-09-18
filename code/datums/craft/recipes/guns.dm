@@ -63,7 +63,7 @@
 
 /datum/craft_recipe/gun/slidebarrelshotgun
 	name = "slide barrel Shotgun"
-	result = /obj/item/gun/projectile/shotgun/slidebarrel
+	result = /obj/item/part/gun/frame/ponyets
 	steps = list(
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
@@ -76,7 +76,7 @@
 
 /datum/craft_recipe/gun/motherfucker
 	name = "HM Motherfucker .35 \"Punch Hole\""
-	result = /obj/item/gun/projectile/automatic/motherfucker
+	result = /obj/item/part/gun/frame/motherfucker
 	steps = list(
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
@@ -105,7 +105,7 @@
 
 /datum/craft_recipe/gun/kalash
 	name = "Makeshift AR .30 \"Kalash\""
-	result = /obj/item/gun/projectile/automatic/ak47/makeshift
+	result = /obj/item/part/gun/frame/kalash
 	steps = list(
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
@@ -120,7 +120,7 @@
 
 /datum/craft_recipe/gun/luty
 	name = "Handmade SMG .35 Auto \"Luty\""
-	result = /obj/item/gun/projectile/automatic/luty
+	result = /obj/item/part/gun/frame/luty
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
