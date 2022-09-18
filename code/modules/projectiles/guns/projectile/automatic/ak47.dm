@@ -43,13 +43,11 @@
 	name = "AK frame"
 	desc = "An AK rifle frame. The eternal firearm."
 	icon_state = "frame_ak"
-	matter = list(MATERIAL_PLASTEEL = 8)
 	result = /obj/item/gun/projectile/automatic/ak47
-	variant_grip = TRUE
 	gripvars = list(/obj/item/part/gun/grip/excel, /obj/item/part/gun/grip/serb, /obj/item/part/gun/grip/wood, /obj/item/part/gun/grip/rubber)
 	resultvars = list(/obj/item/gun/projectile/automatic/ak47, /obj/item/gun/projectile/automatic/ak47/sa, /obj/item/gun/projectile/automatic/ak47/fs, /obj/item/gun/projectile/automatic/ak47/fs/ih)
-	mechanism = /obj/item/part/gun/mechanism/autorifle
-	barrel = /obj/item/part/gun/barrel/lrifle
+	mechanismvar = /obj/item/part/gun/mechanism/autorifle
+	barrelvars = /obj/item/part/gun/barrel/lrifle
 
 /obj/item/gun/projectile/automatic/ak47/proc/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
@@ -254,10 +252,11 @@
 	icon = 'icons/obj/guns/projectile/ak/kalash.dmi'
 	w_class = ITEM_SIZE_HUGE
 	init_recoil = RIFLE_RECOIL(0.7)
+	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/plasteel = 7)
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 
 	origin_tech = list(TECH_COMBAT = 2)	//bad copies don't give good science
-	matter = list(MATERIAL_STEEL = 22, MATERIAL_PLASTEEL = 18, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 12)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	gun_tags = list(GUN_FA_MODDABLE)
 
 	damage_multiplier = 1
@@ -268,8 +267,9 @@
 	)
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
+	matter = list(MATERIAL_STEEL = 22, MATERIAL_PLASTEEL = 18, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 12)
 	price_tag = 500
-	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/steel = 15)
+	gun_parts = list(/obj/item/part/gun/frame/kalash = 1, /obj/item/part/gun/grip/wood = 1 , /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 	serial_type = ""
 
 /obj/item/part/gun/frame/kalash

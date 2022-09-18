@@ -29,10 +29,9 @@
 	init_recoil = SMG_RECOIL(0.6)
 	spawn_blacklisted = TRUE
 	wield_delay = 0 // No delay for this , its litteraly a junk gun
-
+	gun_parts = list(/obj/item/part/gun/frame/luty = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_WOOD = 10)
-	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/steel = 15)
+
 
 /obj/item/part/gun/frame/luty
 	name = "Luty frame"
@@ -60,21 +59,3 @@
 /obj/item/gun/projectile/automatic/luty/toggle_safety()
 	. = ..()
 	update_icon()
-
-/obj/item/gun/projectile/automatic/luty/attackby(obj/item/W, mob/user)
-	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
-		to_chat(user, SPAN_NOTICE("You begin to rechamber \the [src]."))
-		if(!ammo_magazine && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			if(caliber == CAL_MAGNUM)
-				caliber = CAL_PISTOL
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .35 Caliber."))
-			else if(caliber == CAL_PISTOL)
-				caliber = CAL_CLRIFLE
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .25 Caseless."))
-			else if(caliber == CAL_CLRIFLE)
-				caliber = CAL_MAGNUM
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .40 Magnum."))
-		else
-			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
-			return
-	..()

@@ -6,7 +6,7 @@
 	caliber = CAL_MAGNUM
 	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
 	max_shells = 5
-	matter = list(MATERIAL_PLASTIC = 10, MATERIAL_STEEL = 15)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 9, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 10)
 	price_tag = 250 //one of the cheapest revolvers here
 	damage_multiplier = 1.25
 	penetration_multiplier = 0.1
@@ -15,6 +15,8 @@
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	serial_type = ""
+	gun_parts = list(/obj/item/part/gun/frame/revolver_handmade = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)
+	
 
 /obj/item/part/gun/frame/revolver_handmade
 	name = "Handmade revolver frame"

@@ -16,7 +16,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	damage_multiplier = 1.2
 	penetration_multiplier = 0.2
-	init_recoil = CARBINE_RECOIL(4.5)
+	init_recoil = CARBINE_RECOIL(3.5)
 	style_damage_multiplier = 2
 	price_tag = 250 //cheap as they get
 	spawn_blacklisted = FALSE
