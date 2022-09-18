@@ -577,7 +577,8 @@ BLIND     // can't see anything
 		/obj/item/device/radio,
 		/obj/item/clothing/mask,
 		/obj/item/storage/belt/sheath,
-		/obj/item/implant/carrion_spider/holographic)
+		/obj/item/implant/carrion_spider/holographic,
+		/obj/item/shield)
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9

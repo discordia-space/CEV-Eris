@@ -39,9 +39,9 @@
 	desc = "A Hristov AMR frame. For removing chunks of man and machine alike."
 	icon_state = "frame_antimaterial"
 	result = /obj/item/gun/projectile/heavysniper
-	grip = /obj/item/part/gun/grip/serb
-	mechanism = /obj/item/part/gun/mechanism/boltgun
-	barrel = /obj/item/part/gun/barrel/antim
+	gripvars = /obj/item/part/gun/grip/serb
+	mechanismvar = /obj/item/part/gun/mechanism/boltgun
+	barrelvars = /obj/item/part/gun/barrel/antim
 
 /obj/item/gun/projectile/heavysniper/update_icon()
 	..()
