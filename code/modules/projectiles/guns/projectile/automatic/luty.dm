@@ -17,7 +17,7 @@
 	ammo_type = /obj/item/ammo_casing/pistol
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL|MAG_WELL_SMG
-
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 9, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 12)
 	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_300,
@@ -34,6 +34,15 @@
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_WOOD = 10)
 	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/steel = 15)
 
+/obj/item/part/gun/frame/luty
+	name = "Luty frame"
+	desc = "A Luty SMG. It rattles bit, but it's okay. Just dont shake it too hard."
+	icon_state = "frame_luty"
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 6)
+	result = /obj/item/gun/projectile/automatic/luty
+	gripvars = /obj/item/part/gun/grip/wood
+	mechanismvar = /obj/item/part/gun/mechanism/smg
+	barrelvars = list(/obj/item/part/gun/barrel/pistol, /obj/item/part/gun/barrel/magnum)
 
 /obj/item/gun/projectile/automatic/luty/update_icon()
 	cut_overlays()

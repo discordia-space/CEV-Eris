@@ -254,11 +254,10 @@
 	icon = 'icons/obj/guns/projectile/ak/kalash.dmi'
 	w_class = ITEM_SIZE_HUGE
 	init_recoil = RIFLE_RECOIL(0.7)
-	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/plasteel = 7)
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 
 	origin_tech = list(TECH_COMBAT = 2)	//bad copies don't give good science
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
+	matter = list(MATERIAL_STEEL = 22, MATERIAL_PLASTEEL = 18, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 12)
 	gun_tags = list(GUN_FA_MODDABLE)
 
 	damage_multiplier = 1
@@ -273,24 +272,12 @@
 	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/steel = 15)
 	serial_type = ""
 
-
-/obj/item/gun/projectile/automatic/ak47/makeshift/attackby(obj/item/W, mob/user)
-	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
-		to_chat(user, SPAN_NOTICE("You begin to rechamber \the [src]."))
-		if(!ammo_magazine && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			if(caliber == CAL_LRIFLE)
-				caliber = CAL_SRIFLE
-				mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .20 Caliber."))
-			else if(caliber == CAL_SRIFLE)
-				caliber = CAL_CLRIFLE
-				mag_well = MAG_WELL_IH
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .25 Caseless."))
-			else if(caliber == CAL_CLRIFLE)
-				caliber = CAL_LRIFLE
-				mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .30 Caliber."))
-		else
-			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
-			return
-	..()
+/obj/item/part/gun/frame/kalash
+	name = "Sermak frame"
+	desc = "A Sermak rifle frame. Cobbled together, but as good as new. Sort of."
+	icon_state = "frame_kalash"
+	matter = list(MATERIAL_STEEL = 22, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 6)
+	result = /obj/item/gun/projectile/automatic/ak47
+	gripvars = /obj/item/part/gun/grip/wood
+	mechanismvar = /obj/item/part/gun/mechanism/autorifle
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle, /obj/item/part/gun/barrel/srifle, /obj/item/part/gun/barrel/clrifle)
