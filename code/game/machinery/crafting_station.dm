@@ -141,7 +141,6 @@
 						if("Small mechanisms")
 							required_resources = materials_smechanism
 							choice = input(user) as null|anything in list("Pistol mechanism", "Revolver mechanism", "SMG mechanism")
-							to_chat(user, "first mechanism choice")
 							switch(choice)
 								if("Pistol mechanism")
 									items_to_spawn = list("" = /obj/item/part/gun/mechanism/pistol)
