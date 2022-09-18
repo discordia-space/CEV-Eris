@@ -16,7 +16,6 @@
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	serial_type = ""
 	gun_parts = list(/obj/item/part/gun/frame/revolver_handmade = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)
-	
 
 /obj/item/part/gun/frame/revolver_handmade
 	name = "Handmade revolver frame"
