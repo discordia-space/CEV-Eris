@@ -1,22 +1,4 @@
 // This is the base type that handles everything. Subtypes can be easily created by tweaking variables in this file to your liking.
-#define MODCOMP_PROCESSOR "processor"
-#define MODCOMP_HARDDRIVE "storage"
-#define MODCOMP_NETCARD "network"
-#define MODCOMP_IDSLOT "idslot"
-#define MODCOMP_PRINTER "printer"
-#define MODCOMP_DISK "diskslot"
-#define MODCOMP_AISLOT "aislot"
-#define MODCOMP_POWERPROVIDER "powerprovider"
-#define MODCOMP_SCANNER "scanner"
-#define MODCOMP_GPS "gps"
-#define MODCOMP_LIGHT "light"
-#define MODCOMP_ALL_COMPONENTS list(MODCOMP_PROCESSOR,MODCOMP_HARDDRIVE,MODCOMP_NETCARD,MODCOMP_IDSLOT,MODCOMP_PRINTER,MODCOMP_DISK,MODCOMP_AISLOT,MODCOMP_POWERPROVIDER,MODCOMP_SCANNER,MODCOMP_GPS,MODCOMP_LIGHT)
-#define MODCOMP_SIZE_SMALL 1 // PDA's
-#define MODCOMP_SIZE_MEDIUM 2 // Tablets
-#define MODCOMP_SIZE_LARGE 3 // Laptops / Computers
-#define MODCOMP_SIZE_HUGE 4 // Stationary computers
-#define MODCOMP_SIZE_GIGANTIC 5 // server-racks
-#define MODCOMP_BROKEN_THRESHOLD 30
 
 /obj/item/modular_computer
 	name = "Modular Computer"

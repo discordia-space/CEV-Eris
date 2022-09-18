@@ -13,7 +13,7 @@
 	var/critical = FALSE			// Prevent disabling for important component, like the HDD.
 	var/hardware_size = MODCOMP_SIZE_SMALL			// Limits which devices can contain this component.
 	var/usage_flags = PROGRAM_ALL
-	var/component_flags = list()
+	var/component_flags = list(MODCOMP_PROCESSOR = 1)
 
 /obj/item/computer_hardware/attackby(obj/item/W, mob/living/user)
 	// Multitool. Runs diagnostics

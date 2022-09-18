@@ -123,6 +123,9 @@
 #define COMSIG_ITEM_PICKED "item_picked"
 #define COMSIG_ODDITY_USED "used_oddity"                    //from /datum/sanity/proc/oddity_stat_up(): called to notify the used oddity it was used.
 
+// /obj/item/modular_computer signals
+#define COMSIG_PC_POWERCHANGE "pc_powerchange"
+
 // /obj/item/clothing signals
 #define COMSIG_CLOTH_DROPPED "cloths_missing"
 #define COMSIG_CLOTH_EQUIPPED "cloths_recovered"
