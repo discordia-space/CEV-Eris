@@ -25,7 +25,7 @@
 
 /obj/item/part/gun/frame/ponyets
 	name = "Ponyets frame"
-	desc = "A Ponyets. One shot, better make it count. And try not to blow your fingers off"
+	desc = "A Ponyets. One shot, better make it count. And try not to blow your fingers off."
 	icon_state = "frame_ponyets"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 6)
 	result = /obj/item/gun/projectile/shotgun/slidebarrel
