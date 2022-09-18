@@ -14,7 +14,7 @@
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL|MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg
 	auto_eject = 1
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 8, MATERIAL_WOOD = 6)
+	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	damage_multiplier = 0.8
 	penetration_multiplier = 0.5

@@ -94,7 +94,7 @@
 	penetration_multiplier = 0.5
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	spawn_blacklisted = TRUE
-	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 11)
+	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 16)
 
 /obj/item/gun/projectile/flare_gun/shotgun/update_icon()
 	..()
