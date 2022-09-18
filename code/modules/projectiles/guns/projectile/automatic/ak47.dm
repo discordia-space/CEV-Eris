@@ -276,7 +276,7 @@
 	name = "Sermak frame"
 	desc = "A Sermak rifle frame. Cobbled together, but as good as new. Sort of."
 	icon_state = "frame_kalash"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 4)
+	matter = list(MATERIAL_STEEL = 22, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 6)
 	result = /obj/item/gun/projectile/automatic/ak47
 	gripvars = /obj/item/part/gun/grip/wood
 	mechanismvar = /obj/item/part/gun/mechanism/autorifle

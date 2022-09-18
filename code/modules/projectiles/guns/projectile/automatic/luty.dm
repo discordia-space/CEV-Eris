@@ -37,7 +37,7 @@
 	name = "Luty frame"
 	desc = "A Luty SMG. It rattles bit, but it's okay. Just dont shake it too hard."
 	icon_state = "frame_luty"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 4)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 6)
 	result = /obj/item/gun/projectile/automatic/luty
 	gripvars = /obj/item/part/gun/grip/wood
 	mechanismvar = /obj/item/part/gun/mechanism/smg

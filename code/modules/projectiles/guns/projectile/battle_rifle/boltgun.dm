@@ -192,7 +192,7 @@
 	name = "Riose frame"
 	desc = "A Riose bolt-action rifle frame. For hunting or endless maintenance warfare."
 	icon_state = "frame_riose"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 4)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 10)
 	result = /obj/item/gun/projectile/boltgun/handmade
 	gripvars = /obj/item/part/gun/grip/wood
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun

@@ -33,7 +33,7 @@
 	name = "Motherfucker frame"
 	desc = "The Motherfucker. You just know someone is about to have a bad day."
 	icon_state = "frame_motherfucker"
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 5, MATERIAL_WOOD = 10)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 10, MATERIAL_PLASTIC = 10)
 	result = /obj/item/gun/projectile/automatic/motherfucker
 	gripvars = /obj/item/part/gun/grip/wood
 	mechanismvar = /obj/item/part/gun/mechanism/shotgun // its effectively a shotgun

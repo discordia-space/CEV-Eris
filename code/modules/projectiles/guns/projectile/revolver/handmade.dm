@@ -22,7 +22,7 @@
 	name = "Handmade revolver frame"
 	desc = "A handmade revolver. The second most ancient gun design, made with scrap and spit."
 	icon_state = "frame_revolver_hm"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 4)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 4)
 	result = /obj/item/gun/projectile/revolver/handmade
 	gripvars = /obj/item/part/gun/grip/wood
 	mechanismvar = /obj/item/part/gun/mechanism/revolver
