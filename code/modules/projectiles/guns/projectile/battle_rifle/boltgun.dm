@@ -75,28 +75,34 @@
 
 /obj/item/gun/projectile/boltgun/proc/bolt_act(mob/living/user)
 
-	playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
-	bolt_open = !bolt_open
-	if(bolt_open)
-		if(contents.len)
-			if(chambered)
-				to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [chambered]!"))
-				chambered.forceMove(get_turf(src))
-				loaded -= chambered
-				chambered = null
-			else
-				var/obj/item/ammo_casing/B = loaded[loaded.len]
-				to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [B]!"))
-				B.forceMove(get_turf(src))
-				loaded -= B
-		else
-			to_chat(user, SPAN_NOTICE("You work the [message] open."))
-	else
-		to_chat(user, SPAN_NOTICE("You work the [message] closed."))
-		playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltforward.ogg', 75, 1)
-		bolt_open = 0
-	add_fingerprint(user)
-	update_icon()
+    playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
+    bolt_open = !bolt_open
+    if(bolt_open)
+        if(contents.len)
+            if(chambered)
+                to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [chambered]!"))
+                chambered.forceMove(get_turf(src))
+                loaded -= chambered
+                chambered = null
+            else
+                var/obj/item/ammo_casing/B = loaded[loaded.len]
+                if(!B.is_caseless)
+                    to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [B]!"))
+                    B.forceMove(get_turf(src))
+                    loaded -= B
+                else
+                    to_chat(user, SPAN_NOTICE("You work the [message] open."))
+                    B = loaded[1]
+                    loaded -= B
+                    qdel(B)
+        else
+            to_chat(user, SPAN_NOTICE("You work the [message] open."))
+    else
+        to_chat(user, SPAN_NOTICE("You work the [message] closed."))
+        playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltforward.ogg', 75, 1)
+        bolt_open = 0
+    add_fingerprint(user)
+    update_icon()
 
 /obj/item/gun/projectile/boltgun/special_check(mob/user)
 	if(bolt_open)
