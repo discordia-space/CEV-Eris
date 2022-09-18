@@ -150,6 +150,19 @@
 		list(QUALITY_ADHESIVE, 15)
 	)
 
+/datum/craft_recipe/gun/bancroft
+	name = "Handmade .60 \"Bancroft\""
+	result = /obj/item/part/gun/frame/boltgun/bancroft
+	steps = list(
+		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, 20),
+		list(CRAFT_MATERIAL, 5, MATERIAL_GLASS),
+		list(QUALITY_BOLT_TURNING, 10),
+		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
+		list(QUALITY_HAMMERING, 10),
+		list(QUALITY_ADHESIVE, 15)
+	)
+
 /datum/craft_recipe/gun/armgun
 	name = "embedded SMG"
 	result = /obj/item/organ_module/active/simple/armsmg

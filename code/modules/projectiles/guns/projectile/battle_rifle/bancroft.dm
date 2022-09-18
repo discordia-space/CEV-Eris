@@ -22,7 +22,7 @@
 	ammo_type = /obj/item/ammo_casing/antim
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
-	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTEEL = 16, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 10, MATERIAL_GLASS = 5)
+	matter = list(MATERIAL_STEEL = 35, MATERIAL_PLASTEEL = 26, MATERIAL_WOOD = 16, MATERIAL_GLASS = 5)
 	price_tag = 900
 	zoom_factor = 0.3
 	gun_parts = list(/obj/item/part/gun/frame/boltgun/bancroft = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/antim = 1)
@@ -34,7 +34,7 @@
 	name = "Bancroft frame"
 	desc = "A Bancroft Kaiser gun. For hunting big game."
 	icon_state = "frame_bancroft"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 4)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	result = /obj/item/gun/projectile/boltgun/bancroft
 	gripvars = /obj/item/part/gun/grip/wood
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
