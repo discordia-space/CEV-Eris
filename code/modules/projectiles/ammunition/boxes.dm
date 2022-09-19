@@ -72,7 +72,7 @@
 	caliber = CAL_MAGNUM
 	ammo_type = /obj/item/ammo_casing/magnum
 	max_ammo = 50
-	ammo_states = list(30)
+	ammo_states = list(50)
 
 /obj/item/ammo_magazine/ammobox/magnum/practice
 	ammo_type = /obj/item/ammo_casing/magnum/practice

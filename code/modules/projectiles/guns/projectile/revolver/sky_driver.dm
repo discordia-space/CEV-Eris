@@ -44,7 +44,7 @@
 	desc = "A Sky Driver revolver frame. A device that can put holes in ships, let alone a person."
 	icon_state = "frame_skydriver"
 	result = /obj/item/gun/projectile/revolver/sky_driver
-	grip = /obj/item/part/gun/grip/black
-	mechanism = /obj/item/part/gun/mechanism/revolver
-	barrel = /obj/item/part/gun/barrel/pistol
+	gripvars = /obj/item/part/gun/grip/black
+	mechanismvar = /obj/item/part/gun/mechanism/revolver
+	barrelvars = /obj/item/part/gun/barrel/pistol
 	spawn_blacklisted = TRUE

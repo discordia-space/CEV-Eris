@@ -49,6 +49,6 @@
 	desc = "A Mandella pistol frame. Covertness never looked so good."
 	icon_state = "frame_mandella"
 	result = /obj/item/gun/projectile/mandella
-	grip = /obj/item/part/gun/grip/black
-	mechanism = /obj/item/part/gun/mechanism/pistol
-	barrel = /obj/item/part/gun/barrel/clrifle
+	gripvars = /obj/item/part/gun/grip/black
+	mechanismvar = /obj/item/part/gun/mechanism/pistol
+	barrelvars = /obj/item/part/gun/barrel/clrifle

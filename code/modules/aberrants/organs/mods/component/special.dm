@@ -65,7 +65,7 @@
 		if(H.getarmor_organ(active_hand, ARMOR_MELEE) < 3 && active_hand.get_total_occupied_volume() < active_hand.max_volume)
 			if(istype(holder, /obj/item/organ/internal))
 				var/obj/item/organ/internal/I = holder
-				owner.drop_item(I)
+				H.drop_item()
 				I.replaced(active_hand)
 				H.apply_damage(10, HALLOSS, active_hand)
 				H.apply_damage(10, BRUTE, active_hand)

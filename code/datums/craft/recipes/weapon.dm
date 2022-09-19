@@ -133,6 +133,17 @@
 		list(/obj/item/storage/belt, 1, "time" = 10)
 	)
 
+/datum/craft_recipe/weapon/dozershield
+	name = "bulldozer shield"
+	result = /obj/item/shield/riot/dozershield
+	steps = list (
+		list(CRAFT_MATERIAL, 6, MATERIAL_STEEL), //frame
+		list(QUALITY_WELDING, 10, 20), //weld to shape of locker
+		list(/obj/item/part/armor, 2), //place armor 
+		list(QUALITY_WELDING, 10, 20), //cut apart and spread across frame
+		list(CRAFT_MATERIAL, 15, MATERIAL_PLASTEEL), //place plasteel in thick layers
+		list(QUALITY_WELDING, 10, 20)) // weld together
+
 /datum/craft_recipe/weapon/flamethrower
 	name = "flamethrower"
 	result = /obj/item/flamethrower
@@ -250,8 +261,18 @@
 		list(QUALITY_WELDING, 10, "time" = 30),
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, "time" = 30),
-		list(/obj/item/stack/cable_coil, 2, "time" = 10)
-	  )
+		list(/obj/item/stack/cable_coil, 2, "time" = 10))
+
+/datum/craft_recipe/weapon/mace_refined
+	name = "refined mace"
+	result = /obj/item/tool/hammer/mace
+	steps = list(
+		list(/obj/item/stack/rods, 5, "time" = 15),
+		list(QUALITY_WELDING, 10, "time" = 20),
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
+		list(QUALITY_HAMMERING, 10, "time" = 20),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/stack/cable_coil, 2, "time" = 10))
 
 /datum/craft_recipe/weapon/charge_hammer
 	name = "charge hammer"

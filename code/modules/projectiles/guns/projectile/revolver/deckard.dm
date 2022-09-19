@@ -23,6 +23,6 @@
 	desc = "A Deckard revolver frame. The secret policeman's choice."
 	icon_state = "frame_thatgun"
 	result = /obj/item/gun/projectile/revolver/deckard
-	grip = /obj/item/part/gun/grip/wood
-	mechanism = /obj/item/part/gun/mechanism/revolver
-	barrel = /obj/item/part/gun/barrel/magnum
+	gripvars = /obj/item/part/gun/grip/wood
+	mechanismvar = /obj/item/part/gun/mechanism/revolver
+	barrelvars = /obj/item/part/gun/barrel/magnum

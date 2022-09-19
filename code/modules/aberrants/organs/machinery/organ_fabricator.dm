@@ -88,9 +88,11 @@
 	return design_files
 
 /obj/machinery/autolathe/organ_fabricator/ui_interact()
-	if(!categories?.len)
+	if(!islist(categories))		// Runtime occured when the categories var was 0, but the null check wasn't catching it. 
+		categories = list()		
+	if(!categories.len)
 		categories = files.design_categories_organfab
-	if(!disk && !show_category && length(categories))
+	if(!disk && !show_category && categories.len)
 		show_category = categories[1]
 	..()
 
@@ -168,6 +170,7 @@
 
 /obj/item/electronics/circuitboard/organ_fabricator
 	name = T_BOARD("organ fabricator")
+	spawn_blacklisted = TRUE
 	build_path = /obj/machinery/autolathe/organ_fabricator
 	board_type = "machine"
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
