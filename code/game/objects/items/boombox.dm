@@ -152,9 +152,9 @@
 	return 1
 
 /obj/item/media/boombox/attack_self(mob/user)
-	ui_interact(user)
+	nano_ui_interact(user)
 
-/obj/item/media/boombox/ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/media/boombox/nano_ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/title = "Boombox - Space Style"
 	var/data[0]
 
