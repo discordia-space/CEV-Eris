@@ -1,7 +1,0 @@
-author: maikilangiolo
-delete-after: true
-changes:
-  - rscadd: addedd new crafting recipies for all makeshift gun frames
-  - tweak: now makeshift guns are assembled from frames and regular gun parts
-  - balance: rebalanced ammo hardcase steel cost 20 -> 15
-  - balance: reduced flare shotgun steel cost

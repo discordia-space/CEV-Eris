@@ -1,5 +1,0 @@
-author: maikilangiolo
-delete-after: true
-changes:
-  - rscadd: Added the ability to craft gun parts in the crafting station
-  - tweak: Changed the gun assembly to print frames instea of whole guns

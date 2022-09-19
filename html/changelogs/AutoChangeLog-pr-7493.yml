@@ -1,6 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - code_imp: Made firedoors even less of a performance hit, and no longer update
-      their icons.
-  - code_imp: Brought back processing for vents and scrubbers

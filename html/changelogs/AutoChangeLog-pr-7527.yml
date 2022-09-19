@@ -1,9 +1,0 @@
-author: assortedbeads
-delete-after: true
-changes:
-  - rscadd: Added a new riot shield, the Dozer shield and an accompanying crafting
-      recipe
-  - rscadd: Adds a recipe for the non-makeshift mace
-  - tweak: You can now store your shields in your suit storage
-  - balance: Buffed the Rig hardsuits integrity
-  - imageadd: added sprites for the new shield

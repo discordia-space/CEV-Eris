@@ -1,8 +1,0 @@
-author: maikilangiolo
-delete-after: true
-changes:
-  - rscadd: added makeshift obrez
-  - rscadd: added frames for all makeshift guns so they work with frame assembly system
-  - balance: rebalanced handmade bolt action stats. good vs no armor, bad otherwise
-      (perfect for hunting maint fauna)
-  - refactor: refactored frame assembly code
