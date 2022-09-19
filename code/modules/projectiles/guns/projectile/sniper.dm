@@ -13,6 +13,7 @@
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING
 	max_shells = 1
+	damage_multiplier = 2
 	proj_step_multiplier = 0 //so the PTR isn't useless as a sniper weapon
 	ammo_type = /obj/item/ammo_casing/antim
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
