@@ -193,7 +193,7 @@ There are important things regarding this file:
 	damage_types = list(BRUTE = 18)
 	armor_divisor = 3
 	penetrating = 2
-	step_delay = 0.7
+	step_delay = 0.8
 	style_damage = 70
 	recoil = 15 // Good luck shooting these from a revolver
 	wounding_mult = WOUNDING_EXTREME
@@ -215,7 +215,6 @@ There are important things regarding this file:
 	damage_types = list(BRUTE = 16, HALLOSS = 20)
 	armor_divisor = 2
 	penetrating = -5
-	step_delay = 0.8
 	nocap_structures = TRUE
 	kill_count = 30
 
