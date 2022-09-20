@@ -2218,10 +2218,11 @@
 /turf/simulated/floor/plating/under,
 /area/eris/security/disposal)
 "afx" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/blue,
-/obj/spawner/flora/low_chance,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section1deck5central)
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section2deck3port)
 "afy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/wall,
@@ -7279,8 +7280,11 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/toilet/medbay)
 "arh" = (
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/eris/maintenance/section3deck5starboard)
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section3deck3starboard)
 "ari" = (
 /obj/structure/multiz/stairs/enter/bottom{
 	dir = 1
@@ -8587,7 +8591,7 @@
 	req_access = list(12)
 	},
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section3deck5starboard)
 "aup" = (
 /obj/structure/railing{
@@ -70834,6 +70838,9 @@
 	dir = 4
 	},
 /obj/spawner/traps/wire_splicing/low_chance,
+/obj/machinery/holoposter{
+	pixel_y = 32
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/hallway/main/section2)
 "dnM" = (
@@ -70962,6 +70969,9 @@
 	},
 /obj/structure/sign/department/eva{
 	pixel_x = -32
+	},
+/obj/machinery/light/small{
+	dir = 8
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
@@ -102049,6 +102059,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/hydroponics)
+"hSq" = (
+/obj/spawner/pack/machine,
+/turf/simulated/floor/tiled/white,
+/area/eris/maintenance/section2deck1starboard)
 "hUQ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -102893,6 +102907,10 @@
 /obj/machinery/power/long_range_scanner/hull/installed,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/long_range_scanner)
+"kbE" = (
+/obj/structure/salvageable/computer,
+/turf/simulated/floor/tiled/white,
+/area/eris/maintenance/section2deck1starboard)
 "kcF" = (
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom/low_chance,
@@ -104977,10 +104995,6 @@
 /obj/item/pen,
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/office)
-"pXW" = (
-/obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/white,
-/area/eris/maintenance/section2deck1starboard)
 "pYm" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -105123,6 +105137,13 @@
 	},
 /turf/simulated/wall,
 /area/eris/medical/medbay/uppercor)
+"qrE" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section3deck3starboard)
 "qsa" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -107328,10 +107349,6 @@
 /obj/spawner/toolbox,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/foyer)
-"wfE" = (
-/obj/structure/salvageable/computer,
-/turf/simulated/floor/tiled/white,
-/area/eris/maintenance/section2deck1starboard)
 "wgk" = (
 /obj/structure/table/woodentable,
 /obj/item/book/ritual/cruciform,
@@ -124357,7 +124374,7 @@ abH
 aeY
 afg
 adY
-afx
+adY
 adY
 agG
 agP
@@ -128645,7 +128662,7 @@ apJ
 aaa
 aaa
 apn
-arh
+atp
 avU
 aBH
 aZn
@@ -166012,7 +166029,7 @@ bpl
 bnU
 bnU
 bnU
-bmx
+bnU
 bmx
 abF
 ccU
@@ -208413,7 +208430,7 @@ abF
 aaa
 aaa
 bSx
-bSV
+afx
 chM
 cYV
 crD
@@ -209870,7 +209887,7 @@ dyI
 iwp
 dHp
 bvy
-dFw
+arh
 esV
 chY
 chY
@@ -210682,7 +210699,7 @@ dhi
 dFG
 dvd
 dFw
-dFw
+qrE
 dFw
 dFw
 dvd
@@ -296100,7 +296117,7 @@ eis
 ege
 ekw
 eld
-pXW
+hSq
 enl
 enl
 eoJ
@@ -296302,7 +296319,7 @@ dXy
 ala
 ekx
 ele
-wfE
+kbE
 enl
 enl
 eoK
