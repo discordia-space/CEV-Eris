@@ -48,6 +48,6 @@
 	desc = "A Drozd SMG frame. Workhorse of the Excelsior force."
 	icon_state = "frame_excelsmg"
 	result = /obj/item/gun/projectile/automatic/drozd
-	grip = /obj/item/part/gun/grip/excel
-	mechanism = /obj/item/part/gun/mechanism/smg
-	barrel = /obj/item/part/gun/barrel/magnum
+	gripvars = /obj/item/part/gun/grip/excel
+	mechanismvar = /obj/item/part/gun/mechanism/smg
+	barrelvars = /obj/item/part/gun/barrel/magnum

@@ -57,9 +57,9 @@
 	desc = "A Kammerer shotgun frame. A militiaman's favorite."
 	icon_state = "frame_shotgun"
 	result = /obj/item/gun/projectile/shotgun/pump
-	grip = /obj/item/part/gun/grip/wood
-	mechanism = /obj/item/part/gun/mechanism/shotgun
-	barrel = /obj/item/part/gun/barrel/shotgun
+	gripvars = /obj/item/part/gun/grip/wood
+	mechanismvar = /obj/item/part/gun/mechanism/shotgun
+	barrelvars = /obj/item/part/gun/barrel/shotgun
 
 /obj/item/gun/projectile/shotgun/pump/sawn
 	name = "sawn-off FS SG \"Kammerer\""

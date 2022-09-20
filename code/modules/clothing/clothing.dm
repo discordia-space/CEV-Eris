@@ -172,7 +172,7 @@
 
 	return english_list(body_partsL)
 
-/obj/item/clothing/ui_data()
+/obj/item/clothing/nano_ui_data()
 	var/list/data = list()
 	var/list/armorlist = armor.getList()
 	if(armorlist.len)
@@ -197,8 +197,8 @@
 	data["equip_delay"] = equip_delay
 	return data
 
-/obj/item/clothing/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
-	var/list/data = ui_data(user)
+/obj/item/clothing/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
+	var/list/data = nano_ui_data(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -209,7 +209,7 @@
 
 /obj/item/clothing/ui_action_click(mob/living/user, action_name)
 	if(action_name == "Clothing information")
-		ui_interact(user)
+		nano_ui_interact(user)
 		return TRUE
 	return ..()
 
@@ -577,7 +577,8 @@ BLIND     // can't see anything
 		/obj/item/device/radio,
 		/obj/item/clothing/mask,
 		/obj/item/storage/belt/sheath,
-		/obj/item/implant/carrion_spider/holographic)
+		/obj/item/implant/carrion_spider/holographic,
+		/obj/item/shield)
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9

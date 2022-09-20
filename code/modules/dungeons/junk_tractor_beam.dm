@@ -695,9 +695,9 @@
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
 		audible_message(SPAN_WARNING("The junk tractor beam console beeps: 'NOTICE: Critical error. No tractor beam detected.'"))
 		return
-	ui_interact(user)
+	nano_ui_interact(user)
 
-/obj/machinery/computer/jtb_console/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/jtb_console/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!jtb_gen)
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
 		audible_message(SPAN_WARNING("The junk tractor beam console beeps: 'NOTICE: Critical error. No tractor beam detected.'"))
