@@ -2218,11 +2218,11 @@
 /turf/simulated/floor/plating/under,
 /area/eris/security/disposal)
 "afx" = (
-/obj/machinery/light/small{
-	dir = 1
+/obj/machinery/conveyor/east{
+	id = "cargo_intake"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/eris/maintenance/section2deck3port)
+/area/eris/quartermaster/disposaldrop)
 "afy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/wall,
@@ -7284,7 +7284,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/eris/maintenance/section3deck3starboard)
+/area/eris/maintenance/section2deck3port)
 "ari" = (
 /obj/structure/multiz/stairs/enter/bottom{
 	dir = 1
@@ -85150,7 +85150,7 @@
 /obj/machinery/conveyor/east{
 	id = "cargo_intake"
 	},
-/turf/simulated/floor/plating/under,
+/turf/simulated/floor/tiled/techmaint,
 /area/eris/quartermaster/disposaldrop)
 "dVY" = (
 /obj/structure/railing{
@@ -101159,6 +101159,12 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"fAZ" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section3deck3starboard)
 "fBx" = (
 /obj/machinery/holomap{
 	dir = 4;
@@ -102059,10 +102065,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/hydroponics)
-"hSq" = (
-/obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/white,
-/area/eris/maintenance/section2deck1starboard)
 "hUQ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -102347,6 +102349,10 @@
 /obj/structure/closet/random/tech,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/engineering/post)
+"iLp" = (
+/obj/structure/salvageable/computer,
+/turf/simulated/floor/tiled/white,
+/area/eris/maintenance/section2deck1starboard)
 "iLJ" = (
 /obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled/techmaint,
@@ -102907,10 +102913,6 @@
 /obj/machinery/power/long_range_scanner/hull/installed,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/long_range_scanner)
-"kbE" = (
-/obj/structure/salvageable/computer,
-/turf/simulated/floor/tiled/white,
-/area/eris/maintenance/section2deck1starboard)
 "kcF" = (
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom/low_chance,
@@ -105137,13 +105139,6 @@
 	},
 /turf/simulated/wall,
 /area/eris/medical/medbay/uppercor)
-"qrE" = (
-/obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 8
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/eris/maintenance/section3deck3starboard)
 "qsa" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -107319,6 +107314,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/crew_quarters/kitchen_storage)
+"wbY" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section3deck3starboard)
 "wcb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -108139,6 +108141,10 @@
 /obj/machinery/camera/network/third_section,
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
+"yhP" = (
+/obj/spawner/pack/machine,
+/turf/simulated/floor/tiled/white,
+/area/eris/maintenance/section2deck1starboard)
 "yit" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -28
@@ -128064,7 +128070,7 @@ blT
 apn
 bsC
 dUo
-btb
+afx
 iCc
 bAs
 bCo
@@ -208430,7 +208436,7 @@ abF
 aaa
 aaa
 bSx
-afx
+arh
 chM
 cYV
 crD
@@ -209887,7 +209893,7 @@ dyI
 iwp
 dHp
 bvy
-arh
+fAZ
 esV
 chY
 chY
@@ -210699,7 +210705,7 @@ dhi
 dFG
 dvd
 dFw
-qrE
+wbY
 dFw
 dFw
 dvd
@@ -296117,7 +296123,7 @@ eis
 ege
 ekw
 eld
-hSq
+yhP
 enl
 enl
 eoJ
@@ -296319,7 +296325,7 @@ dXy
 ala
 ekx
 ele
-kbE
+iLp
 enl
 enl
 eoK
