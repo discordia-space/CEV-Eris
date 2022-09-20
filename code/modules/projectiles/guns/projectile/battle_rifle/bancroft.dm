@@ -10,6 +10,7 @@
 	force = WEAPON_FORCE_ROBUST
 	armor_divisor = ARMOR_PEN_DEEP
 	slot_flags = SLOT_BACK
+	proj_step_multiplier = 0.8
 	damage_multiplier = 1
 	pierce_multiplier = 2 // still a .60 gun, and AMR pierces 6 walls
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
