@@ -81619,7 +81619,24 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/propulsion/right)
 "dMX" = (
-/obj/effect/window_lwall_spawn/smartspawn,
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 4;
+	icon_state = "shutter0";
+	id = "chemcounter";
+	name = "Pharmacy Counter Shutters";
+	opacity = 0
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/medical/chemistry)
 "dMY" = (
@@ -91793,12 +91810,14 @@
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
+/obj/structure/salvageable/computer,
 /turf/simulated/floor/tiled/white,
 /area/eris/maintenance/section2deck1starboard)
 "emi" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
 	},
+/obj/spawner/pack/machine,
 /turf/simulated/floor/tiled/white,
 /area/eris/maintenance/section2deck1starboard)
 "emj" = (
@@ -104958,6 +104977,10 @@
 /obj/item/pen,
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/office)
+"pXW" = (
+/obj/spawner/pack/machine,
+/turf/simulated/floor/tiled/white,
+/area/eris/maintenance/section2deck1starboard)
 "pYm" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -106321,6 +106344,15 @@
 	name = "Chemistry";
 	req_access = list(33)
 	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/chemistry)
 "tAt" = (
@@ -107296,6 +107328,10 @@
 /obj/spawner/toolbox,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/foyer)
+"wfE" = (
+/obj/structure/salvageable/computer,
+/turf/simulated/floor/tiled/white,
+/area/eris/maintenance/section2deck1starboard)
 "wgk" = (
 /obj/structure/table/woodentable,
 /obj/item/book/ritual/cruciform,
@@ -213218,9 +213254,9 @@ abF
 abF
 abF
 abF
-aaa
-aaa
-aaa
+abF
+abF
+abF
 bSw
 bSJ
 bTr
@@ -213420,9 +213456,9 @@ aZK
 abF
 abF
 abF
-aad
-aad
-aad
+abF
+abF
+abF
 bSw
 bSJ
 bTr
@@ -213622,9 +213658,9 @@ aZK
 aZK
 aZK
 aZK
-aaa
-aaa
-aaa
+aad
+aad
+aad
 bSw
 bSJ
 cgx
@@ -296064,7 +296100,7 @@ eis
 ege
 ekw
 eld
-enl
+pXW
 enl
 enl
 eoJ
@@ -296266,7 +296302,7 @@ dXy
 ala
 ekx
 ele
-enl
+wfE
 enl
 enl
 eoK
