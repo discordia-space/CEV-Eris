@@ -23,6 +23,6 @@
 	desc = "A Consul revolver frame. The standard detective's choice."
 	icon_state = "frame_inspector"
 	result = /obj/item/gun/projectile/revolver/consul
-	gripvars = /obj/item/part/gun/grip/rubber
+	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/revolver
-	barrelvars = /obj/item/part/gun/barrel/magnum
+	barrelvars = list(/obj/item/part/gun/barrel/magnum)

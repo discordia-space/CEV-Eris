@@ -29,7 +29,7 @@
 	icon_state = "frame_ponyets"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 6)
 	result = /obj/item/gun/projectile/shotgun/slidebarrel
-	gripvars = /obj/item/part/gun/grip/wood
+	gripvars = list(/obj/item/part/gun/grip/wood)
 	mechanismvar = /obj/item/part/gun/mechanism/shotgun
 	barrelvars = list(/obj/item/part/gun/barrel/shotgun, /obj/item/part/gun/barrel/antim)
 

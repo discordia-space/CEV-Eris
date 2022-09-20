@@ -23,6 +23,6 @@
 	icon_state = "frame_revolver_hm"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 4)
 	result = /obj/item/gun/projectile/revolver/handmade
-	gripvars = /obj/item/part/gun/grip/wood
+	gripvars = list(/obj/item/part/gun/grip/wood)
 	mechanismvar = /obj/item/part/gun/mechanism/revolver
 	barrelvars = list(/obj/item/part/gun/barrel/magnum, /obj/item/part/gun/barrel/pistol)

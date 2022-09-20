@@ -103,9 +103,9 @@
 	desc = "A Pulemyot Kalashnikova LMG frame. A violent and beautiful spark of the past."
 	icon_state = "frame_pk"
 	result = /obj/item/gun/projectile/automatic/lmg/pk
-	gripvars = /obj/item/part/gun/grip/serb
+	gripvars = list(/obj/item/part/gun/grip/serb)
 	mechanismvar = /obj/item/part/gun/mechanism/machinegun
-	barrelvars = /obj/item/part/gun/barrel/lrifle
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle)
 
 /obj/item/gun/projectile/automatic/lmg/pk/update_icon()
 	icon_state = "[icon_base][cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
@@ -133,6 +133,6 @@
 	desc = "A Takeshi LMG frame. A fine-oiled machine of war and death."
 	icon_state = "frame_mg"
 	result = /obj/item/gun/projectile/automatic/lmg/tk
-	gripvars = /obj/item/part/gun/grip/rubber
+	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/machinegun
-	barrelvars = /obj/item/part/gun/barrel/lrifle
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle)

@@ -39,7 +39,7 @@
 	icon_state = "frame_luty"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 6)
 	result = /obj/item/gun/projectile/automatic/luty
-	gripvars = /obj/item/part/gun/grip/wood
+	gripvars = list(/obj/item/part/gun/grip/wood)
 	mechanismvar = /obj/item/part/gun/mechanism/smg
 	barrelvars = list(/obj/item/part/gun/barrel/pistol, /obj/item/part/gun/barrel/magnum)
 

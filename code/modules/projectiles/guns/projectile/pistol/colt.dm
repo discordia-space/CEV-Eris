@@ -44,6 +44,6 @@
 	desc = "A Colt pistol frame. Winner of dozens of world wars, and loser of many more guerilla wars."
 	icon_state = "frame_1911"
 	result = /obj/item/gun/projectile/colt
-	gripvars = /obj/item/part/gun/grip/wood
+	gripvars = list(/obj/item/part/gun/grip/wood)
 	mechanismvar = /obj/item/part/gun/mechanism/pistol
-	barrelvars = /obj/item/part/gun/barrel/pistol
+	barrelvars = list(/obj/item/part/gun/barrel/pistol)

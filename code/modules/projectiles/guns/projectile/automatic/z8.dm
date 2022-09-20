@@ -89,6 +89,6 @@
 	desc = "A Z8 Bulldog carbine frame. Old but gold."
 	icon_state = "frame_pug"
 	result = /obj/item/gun/projectile/automatic/z8
-	gripvars = /obj/item/part/gun/grip/black
+	gripvars = list(/obj/item/part/gun/grip/black)
 	mechanismvar = /obj/item/part/gun/mechanism/autorifle
-	barrelvars = /obj/item/part/gun/barrel/srifle
+	barrelvars = list(/obj/item/part/gun/barrel/srifle)

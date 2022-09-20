@@ -24,6 +24,6 @@
 	desc = "A Gladstone shotgun frame. Where capacity and force combine."
 	icon_state = "frame_gladstone"
 	result = /obj/item/gun/projectile/shotgun/pump/gladstone
-	gripvars = /obj/item/part/gun/grip/rubber
+	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/shotgun
-	barrelvars = /obj/item/part/gun/barrel/shotgun
+	barrelvars = list(/obj/item/part/gun/barrel/shotgun)

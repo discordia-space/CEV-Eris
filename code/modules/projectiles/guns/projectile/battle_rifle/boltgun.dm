@@ -44,7 +44,7 @@
 	gripvars = list(/obj/item/part/gun/grip/excel, /obj/item/part/gun/grip/wood)
 	resultvars = list(/obj/item/gun/projectile/boltgun, /obj/item/gun/projectile/boltgun/serbian)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
-	barrelvars = /obj/item/part/gun/barrel/lrifle
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle)
 
 /obj/item/gun/projectile/boltgun/update_icon()
 	..()
@@ -167,9 +167,9 @@
 	desc = "A Kadmin bolt-action rifle frame. For hunting or endless coastal warfare."
 	icon_state = "frame_weebrifle"
 	result = /obj/item/gun/projectile/boltgun/fs
-	gripvars = /obj/item/part/gun/grip/rubber
+	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
-	barrelvars = /obj/item/part/gun/barrel/srifle
+	barrelvars = list(/obj/item/part/gun/barrel/srifle)
 
 /obj/item/gun/projectile/boltgun/handmade
 	name = "HM BR \"Riose\""
@@ -200,7 +200,7 @@
 	icon_state = "frame_riose"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 10)
 	result = /obj/item/gun/projectile/boltgun/handmade
-	gripvars = /obj/item/part/gun/grip/wood
+	gripvars = list(/obj/item/part/gun/grip/wood)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
 	barrelvars = list(/obj/item/part/gun/barrel/srifle, /obj/item/part/gun/barrel/lrifle, /obj/item/part/gun/barrel/clrifle)
 
