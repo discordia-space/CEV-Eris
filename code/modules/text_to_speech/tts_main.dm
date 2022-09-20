@@ -6,6 +6,9 @@ GLOBAL_VAR_INIT(tts_reused, 0)
 GLOBAL_LIST_EMPTY(tts_errors)
 GLOBAL_VAR_INIT(tts_error_raw, "")
 
+GLOBAL_LIST_INIT(tts_acronyms, list(list("e","o", "T","h","e","o","l","o","g","y"),
+                                    list("r","o","n", "H","a","m","m","e","r"),
+									list("o","e","b","i","u","s", "L","a","b","o","r","a","t","o","r","i","e","s")))
 
 var/list/tts_seeds = list()
 
@@ -131,6 +134,7 @@ var/list/tts_seeds = list()
 
 	var/skipping_span
 	var/listen_for_character
+	var/listen_for_acronym
 	var/character_sequence_end
 
 	var/message_byte_length = length(message)
@@ -169,29 +173,54 @@ var/list/tts_seeds = list()
 				if("<")
 					character_sequence_end = ">"
 
+				if(" ", ".", ",", "!", "?")
+					if(listen_for_acronym)
+						output.Add(GLOB.tts_acronyms[listen_for_acronym])  // Filling NT, IH, ML
+					else if (listen_for_character)
+						output += listen_for_character  // Acronym has not been detected, placing T, H or L
+					listen_for_character = null
+					listen_for_acronym = null
+					output += character
+
 				// NT to NeoTheology
 				if("N")
 					listen_for_character = "T"
 					output += character
 				if("T")
-					output.Add((character == listen_for_character) ? list("e","o", "T","h","e","o","l","o","g","y") : character)
+					if(character == listen_for_character)
+						listen_for_acronym = 1
+					else
+						listen_for_character = null
+						listen_for_acronym = null
+						output += character
 
 				// IH to IronHammer
 				if("I")
 					listen_for_character = "H"
 					output += character
 				if("H")
-					output.Add((character == listen_for_character) ? list("r","o","n", "H","a","m","m","e","r") : character)
+					if(character == listen_for_character)
+						listen_for_acronym = 2
+					else
+						listen_for_character = null
+						listen_for_acronym = null
+						output += character
 
 				// ML to MoebiusLaboratories
 				if("M")
 					listen_for_character = "L"
 					output += character
 				if("L")
-					output.Add((character == listen_for_character) ? list("o","e","b","i","u","s", "L","a","b","o","r","a","t","o","r","i","e","s") : character)
+					if(character == listen_for_character)
+						listen_for_acronym = 3
+					else
+						listen_for_character = null
+						listen_for_acronym = null
+						output += character
 
 				else
 					listen_for_character = null
+					listen_for_acronym = null
 					output += character
 
 	. = JOINTEXT(output)
