@@ -189,7 +189,7 @@
 /obj/item/storage/box/syndie_kit/pistol/populate_contents()
 	new /obj/item/gun/projectile/mandella(src)
 	new /obj/item/ammo_magazine/cspistol(src)
-	new /obj/item/storage/pouch/pistol_holster(src)
+	new /obj/item/storage/pouch/holster(src)
 
 /obj/item/storage/box/syndie_kit/c20r
 	name = "C-20r box"

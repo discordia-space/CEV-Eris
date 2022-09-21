@@ -56,10 +56,10 @@
 			/obj/item/ammo_magazine/ammobox/shotgun = custom_good_name("ammunition box (.50 shells)"),
 			/obj/item/ammo_magazine/ammobox/shotgun/buckshot = custom_good_name("ammunition box (.50 pellet)"),
 			/obj/item/ammo_magazine/ammobox/shotgun/beanbags = custom_good_name("ammunition box (.50 beanbag)"),
-			/obj/item/clothing/accessory/holster,
-			/obj/item/clothing/accessory/holster/armpit,
-			/obj/item/clothing/accessory/holster/waist,
-			/obj/item/clothing/accessory/holster/hip,
+			/obj/item/storage/pouch/holster,
+			/obj/item/storage/pouch/holster/baton,
+			/obj/item/storage/pouch/holster/belt,
+			/obj/item/storage/pouch/holster/belt/sheath,
 			/obj/item/storage/hcases/ammo
 		),
 		"Armor" = list(

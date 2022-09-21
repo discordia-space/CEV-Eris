@@ -189,13 +189,13 @@
 
 /datum/craft_recipe/clothing/accessory/saber
 	name = "Scabbard"
-	result = /obj/item/clothing/accessory/holster/saber
+	result = /obj/item/storage/pouch/holster/belt/sheath/improvised
 	steps = list(
-		list(/obj/item/storage/belt/sheath, 1))
+		list(/obj/item/storage/pouch/holster/belt/sheath, 1))
 
 /datum/craft_recipe/clothing/accessory/saber/improvised
 	name = "Makeshift scabbard"
-	result = /obj/item/clothing/accessory/holster/saber/improvised
+	result = /obj/item/storage/pouch/holster/belt/sheath/improvised
 	steps = list (
 		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL), //steel for the frame, since 5 makes a chair I'm assuming 2 is enough for a sheath
 		list(QUALITY_ADHESIVE, 30, 70), //duct tape to line the inside of the sheath

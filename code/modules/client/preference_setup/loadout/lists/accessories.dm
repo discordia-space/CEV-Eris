@@ -69,16 +69,17 @@
 	allowed_roles = list(JOBS_SCIENCE)
 
 /datum/gear/accessory/holster
-	display_name = "holster"
-	path = /obj/item/clothing/accessory/holster/armpit
+	display_name = "holster, selection"
+	path = /obj/item/storage/pouch/holster
 	cost = 3
 
 /datum/gear/accessory/holster/New()
 	..()
 	var/ties = list(
-		"Armpit"	=	/obj/item/clothing/accessory/holster/armpit,
-		"Hip"		=	/obj/item/clothing/accessory/holster/hip,
-		"Waist"		=	/obj/item/clothing/accessory/holster/waist,
+		"Compact"	=	/obj/item/storage/pouch/holster,
+		"Baton"		=	/obj/item/storage/pouch/holster/baton,
+		"Belt"		=	/obj/item/storage/pouch/holster/belt,
+		"Sheath"	=	/obj/item/storage/pouch/holster/belt/sheath,
 	)
 	gear_tweaks += new/datum/gear_tweak/path(ties)
 

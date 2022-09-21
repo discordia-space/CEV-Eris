@@ -26,10 +26,10 @@
 			/obj/item/storage/pouch/tubular,
 			/obj/item/storage/pouch/tubular/vial,
 			/obj/item/storage/pouch/ammo,
-			/obj/item/clothing/accessory/holster,
-			/obj/item/clothing/accessory/holster/armpit,
-			/obj/item/clothing/accessory/holster/waist,
-			/obj/item/clothing/accessory/holster/hip
+			/obj/item/storage/pouch/holster,
+			/obj/item/storage/pouch/holster/baton,
+			/obj/item/storage/pouch/holster/belt,
+			/obj/item/storage/pouch/holster/belt/sheath
 		),
 		"Agro Supply" = list(
 			/obj/machinery/vending/hydroseeds,
