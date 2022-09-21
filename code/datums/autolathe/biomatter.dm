@@ -114,15 +114,15 @@
 	name = "compact holster"
 	build_path = /obj/item/storage/pouch/holster
 
-/datum/design/bioprinter/leather/holster/armpit
+/datum/design/bioprinter/leather/holster/baton
 	name = "baton holster"
 	build_path = /obj/item/storage/pouch/holster/baton
 
-/datum/design/bioprinter/leather/holster/waist
+/datum/design/bioprinter/leather/holster/belt
 	name = "belt holster"
 	build_path = /obj/item/storage/pouch/holster/belt
 
-/datum/design/bioprinter/leather/holster/hip
+/datum/design/bioprinter/leather/holster/sheath
 	name = "sheath"
 	build_path = /obj/item/storage/pouch/holster/belt/sheath
 

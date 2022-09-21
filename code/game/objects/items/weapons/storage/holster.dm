@@ -122,7 +122,7 @@
 /obj/item/storage/pouch/holster/verb/holster_verb()
 	set name = "Holster"
 	set category = "Object"
-	set src in usr
+	set src = usr.contents
 	if(!isliving(usr))
 		return
 	if(usr.stat)

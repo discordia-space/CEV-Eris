@@ -10,9 +10,9 @@
 	license = -1
 	designs = list(
 		/datum/design/bioprinter/leather/holster,
-		/datum/design/bioprinter/leather/holster/armpit,
-		/datum/design/bioprinter/leather/holster/waist,
-		/datum/design/bioprinter/leather/holster/hip,
+		/datum/design/bioprinter/leather/holster/baton,
+		/datum/design/bioprinter/leather/holster/belt,
+		/datum/design/bioprinter/leather/holster/sheath,
 		/datum/design/bioprinter/small_generic,
 		/datum/design/bioprinter/medium_generic,
 		/datum/design/bioprinter/large_generic,
@@ -255,9 +255,9 @@
 		/datum/design/bioprinter/belt/medical/emt,
 
 		/datum/design/bioprinter/leather/holster,
-		/datum/design/bioprinter/leather/holster/armpit,
-		/datum/design/bioprinter/leather/holster/waist,
-		/datum/design/bioprinter/leather/holster/hip,
+		/datum/design/bioprinter/leather/holster/baton,
+		/datum/design/bioprinter/leather/holster/belt,
+		/datum/design/bioprinter/leather/holster/sheath,
 
 		/datum/design/autolathe/device/headset_church
 	)
