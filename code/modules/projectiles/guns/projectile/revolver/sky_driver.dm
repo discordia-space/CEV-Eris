@@ -6,7 +6,7 @@
 	item_state = "sky_driver"
 	drawChargeMeter = FALSE
 	origin_tech = list(TECH_COMBAT = 10, TECH_MATERIAL = 2)
-	proj_step_multiplier = 0.8
+	proj_step_multiplier = 0.7
 	ammo_type = /obj/item/ammo_casing/pistol
 	magazine_type = /obj/item/ammo_magazine/slpistol
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
