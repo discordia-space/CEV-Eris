@@ -207,6 +207,14 @@
 	new /obj/item/gun/projectile/revolver(src)
 	new /obj/item/ammo_magazine/slmagnum(src)
 
+/obj/item/storage/box/syndie_kit/hornet
+	name = "Revolver box"
+	desc = "Revolver kit"
+
+/obj/item/storage/box/syndie_kit/revolver/populate_contents()
+	new /obj/item/gun/projectile/revolver/hornet(src)
+	new /obj/item/ammo_magazine/ammobox/srifle_small (src)
+
 /obj/item/storage/box/syndie_kit/sts35
 	name = "Assault rifle box"
 	desc = "Assault rifle kit"

@@ -2503,6 +2503,7 @@
 #include "code\modules\projectiles\guns\projectile\revolver\deckard.dm"
 #include "code\modules\projectiles\guns\projectile\revolver\handmade.dm"
 #include "code\modules\projectiles\guns\projectile\revolver\havelock.dm"
+#include "code\modules\projectiles\guns\projectile\revolver\hornet.dm"
 #include "code\modules\projectiles\guns\projectile\revolver\mateba.dm"
 #include "code\modules\projectiles\guns\projectile\revolver\revolver.dm"
 #include "code\modules\projectiles\guns\projectile\revolver\sky_driver.dm"
