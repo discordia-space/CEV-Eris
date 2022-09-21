@@ -21,12 +21,13 @@
 /obj/item/clothing/glasses/hud/emp_act(severity)
 	. = ..()
 	malfunctioning = TRUE
+	var/timer
 	switch(severity)
 		if(1)
-			addtimer(CALLBACK(src, .proc/repair_self), 1 MINUTES, TIMER_STOPPABLE)
-			to_chat(world, "le 1 minute... has been added.")
+			timer = 1 MINUTES
 		if(2)
-			addtimer(CALLBACK(src, .proc/repair_self), 3 MINUTES, TIMER_STOPPABLE)
+			timer = 3 MINUTES
+	addtimer(CALLBACK(src, .proc/repair_self), timer)
 	
 /obj/item/clothing/glasses/hud/health
 	name = "Health Scanner HUD"
