@@ -10,9 +10,8 @@
 	var/list/icon/current = list() //the current hud icons
 	var/malfunctioning = FALSE
 
-/obj/item/clothing/glasses/proc/process_hud(mob/M)
-	if(hud)
-		hud.process_hud(M)
+/obj/item/clothing/glasses/hud/proc/repair_self()
+	malfunctioning = FALSE
 
 /obj/item/clothing/glasses/hud/process_hud(mob/M)
 	if(malfunctioning)
@@ -24,11 +23,10 @@
 	malfunctioning = TRUE
 	switch(severity)
 		if(1)
-			spawn(1 MINUTES)
-			malfunctioning = FALSE
+			addtimer(CALLBACK(src, .proc/repair_self), 1 MINUTES, TIMER_STOPPABLE)
+			to_chat(world, "le 1 minute... has been added.")
 		if(2)
-			spawn(3 MINUTES)
-			malfunctioning = FALSE
+			addtimer(CALLBACK(src, .proc/repair_self), 3 MINUTES, TIMER_STOPPABLE)
 	
 /obj/item/clothing/glasses/hud/health
 	name = "Health Scanner HUD"
