@@ -151,9 +151,9 @@
 
 						if("Large mechanisms")
 							required_resources = materials_lmechanism
-							choice = input(user) as null|anything in list("Bolt-action mechanism", "Self-loading mechanism", "Shotgun mechanism")
+							choice = input(user) as null|anything in list("Manual-action mechanism", "Self-loading mechanism", "Shotgun mechanism")
 							switch(choice)
-								if("Bolt-action mechanism")
+								if("Manual-action mechanism")
 									items_to_spawn = list("" = /obj/item/part/gun/mechanism/boltgun)
 								if("Self-loading mechanism")
 									items_to_spawn = list("" = /obj/item/part/gun/mechanism/autorifle)
