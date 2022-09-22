@@ -13,13 +13,12 @@
 	proj_step_multiplier = 0.8
 	init_recoil = RIFLE_RECOIL(2)
 	init_offset = 0
-	max_shells = 6
+	max_shells = 10
 	zoom_factor = 0
 	magazine_type = /obj/item/ammo_magazine/magnum
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 15, MATERIAL_PLASTEEL = 20)
 	wielded_item_state = "_doble_winchester"
 	sharp = FALSE
-	spawn_blacklisted = TRUE
 	sawn = /obj/item/gun/projectile/boltgun/levergun/sawn
 	message = "lever"
 	serial_type = "FS"
@@ -42,6 +41,7 @@
 	saw_off = TRUE
 	can_dual = TRUE
 	twohanded = FALSE
+	spawn_blacklisted = TRUE
 	serial_type = "FS"
 
 /obj/item/gun/projectile/boltgun/levergun/shotgun
@@ -55,12 +55,11 @@
 	caliber = CAL_SHOTGUN
 	damage_multiplier = 1.1
 	penetration_multiplier = 0.2
-	max_shells = 9
+	max_shells = 7
 	init_recoil = RIFLE_RECOIL(2.3)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 15)
 	wielded_item_state = "_doble_shotgun"
 	sawn = /obj/item/gun/projectile/boltgun/levergun/shotgun/sawn
-	serial_type = "FS"
 
 /obj/item/gun/projectile/boltgun/levergun/shotgun/sawn
 	name = "sawn-off FS BR \"Sogekihei\""
@@ -76,3 +75,5 @@
 	saw_off = TRUE
 	can_dual = TRUE
 	twohanded = FALSE
+	spawn_blacklisted = TRUE
+	serial_type = "FS"
