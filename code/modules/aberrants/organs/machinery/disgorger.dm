@@ -222,6 +222,11 @@
 
 	has_brain = FALSE
 
+	// Initial doesn't work right with lists. Not an issue at the moment since it must be deconstructed to be upgraded.
+	//accepted_reagents = initial(accepted_reagents)
+	//blacklisted_reagents = initial(blacklisted_reagents)
+	//accepted_objects = initial(accepted_objects)
+
 	for(var/component in component_parts)
 		if(!istype(component, /obj/item/organ/internal))
 			continue
