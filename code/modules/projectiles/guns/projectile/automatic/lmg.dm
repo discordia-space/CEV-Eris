@@ -114,15 +114,17 @@
 
 
 /obj/item/gun/projectile/automatic/lmg/tk
-	name = "FS LMG .30 Takeshi"
+	name = "FS LMG .25 CS Takeshi"
 	desc = "The \"Takeshi LMG\" is FS's answer to PMC's needs for mass supression and meat grinding, a fine oiled machine of war and death."
 	icon = 'icons/obj/guns/projectile/tk.dmi'
+	caliber = CAL_CLRIFLE
+	magazine_type = /obj/item/ammo_magazine/ihclmg
 	icon_base = "tk"
 	icon_state = "tkclosed-empty"
 	item_state = "tkclosedmag"
 	init_recoil = LMG_RECOIL(0.3)
 	damage_multiplier = 1.2
-	penetration_multiplier = -0.1
+	penetration_multiplier = 0.3
 
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/tk = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/lrifle = 1)
@@ -135,4 +137,4 @@
 	result = /obj/item/gun/projectile/automatic/lmg/tk
 	grip = /obj/item/part/gun/grip/rubber
 	mechanism = /obj/item/part/gun/mechanism/machinegun
-	barrel = /obj/item/part/gun/barrel/lrifle
+	barrel = /obj/item/part/gun/barrel/clrifle
