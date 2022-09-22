@@ -14,11 +14,9 @@
 	sheet_reagents = list()
 	var/biomatter_counter = 0				// We don't want this to actually produce biomatter
 	var/list/accepted_reagents = list(
-		/datum/reagent/drink/milk = 0.13,				// Internet said milk is 13% solids, 87% water
 		/datum/reagent/organic/nutriment = 1
 	)
 	var/list/blacklisted_reagents = list(
-		/datum/reagent/drink/milk/soymilk
 	)
 	var/list/accepted_objects = list(
 		/obj/item/organ,
@@ -27,8 +25,9 @@
 	var/spit_target
 	var/spit_range = 2		// For var-edits
 	var/has_brain = FALSE
-	var/grind_rate = 8		// ticks
+	var/grind_rate = 8						// How many ticks between each processed item
 	var/current_tick = 0
+	var/substrate_conversion_factor = 1		// Multiplier for converting reagents/biomatter into substrate
 
 /obj/machinery/reagentgrinder/industrial/disgorger/Initialize()
 	. = ..()
@@ -118,6 +117,17 @@
 	return FALSE
 
 /obj/machinery/reagentgrinder/industrial/disgorger/grind_item(obj/item/I)
+	// Check reagents first
+	if(I.reagents)
+		holdingitems -= I
+		for(var/reagent in I.reagents.reagent_list)
+			var/datum/reagent/R = reagent
+			if(!is_type_in_list(R, blacklisted_reagents))
+				for(var/reagent_type in accepted_reagents)
+					if(istype(R, reagent_type))
+						biomatter_counter += round(R.volume * accepted_reagents[reagent_type] * substrate_conversion_factor, 0.01)
+	
+	// Check biomatter content and contained objects (depth of 2, include self)
 	for(var/path in accepted_objects)
 		if(!istype(I, path))
 			continue
@@ -126,24 +136,17 @@
 
 		var/amount_to_take
 
-		for(var/object in I.GetAllContents(includeSelf = TRUE))
+		for(var/object in I.GetAllContents(2, TRUE))
 			var/obj/item/O = object
 			if(O.matter.Find(MATERIAL_BIOMATTER))
 				amount_to_take += max(0, O.matter[MATERIAL_BIOMATTER])
 			qdel(O)
 		if(amount_to_take)
-			biomatter_counter += amount_to_take
-			return
+			biomatter_counter += round(amount_to_take * substrate_conversion_factor, 0.01)
 		break
 
-	if(I.reagents)
-		holdingitems -= I
-		for(var/reagent in I.reagents.reagent_list)
-			var/datum/reagent/R = reagent
-			if(!is_type_in_list(R, blacklisted_reagents))
-				for(var/reagent_type in accepted_reagents)
-					if(istype(R, reagent_type))
-						biomatter_counter += round(R.volume * accepted_reagents[reagent_type], 0.01)
+	// Make sure the object is qdel'd
+	if(!QDELETED(I))
 		qdel(I)
 
 /obj/machinery/reagentgrinder/industrial/disgorger/grind()
@@ -209,12 +212,13 @@
 	var/liver_eff = 0
 	var/kidney_eff = 0
 	var/carrion_chem_eff = 0
-
-	var/muscle_eff = 0
-	var/tick_reduction = 0
-
 	var/stomach_eff = 0
+	var/muscle_eff = 0
+	var/carrion_maw_eff = 0
+
 	var/capacity_mod = 0
+	var/tick_reduction = 0
+	var/conversion_mod = 0
 
 	has_brain = FALSE
 
@@ -230,10 +234,12 @@
 					kidney_eff += O.organ_efficiency[eff]
 				if(OP_CHEMICALS)		// Carrion vessel
 					carrion_chem_eff += O.organ_efficiency[eff]
-				if(OP_MUSCLE)
-					muscle_eff += O.organ_efficiency[eff]
+				if(OP_MAW)				// Carrion maw
+					carrion_maw_eff += O.organ_efficiency[eff]
 				if(OP_STOMACH)
 					stomach_eff += O.organ_efficiency[eff]
+				if(OP_MUSCLE)
+					muscle_eff += O.organ_efficiency[eff]
 				if(BP_BRAIN)
 					has_brain = TRUE
 
@@ -256,7 +262,8 @@
 
 	if(kidney_eff > 49)
 		accepted_reagents |= list(
-			/datum/reagent/organic/blood = 0.1		// Internet says blood plasma is 10% solids, 90% water
+			/datum/reagent/organic/blood = 0.1,		// Internet says blood plasma is 10% solids, 90% water
+			/datum/reagent/drink/milk = 0.13		// Internet says milk is 13% solids, 87% water
 		)
 
 	if(carrion_chem_eff > 99)
@@ -264,27 +271,14 @@
 			/datum/reagent/toxin/pararein = 1,
 			/datum/reagent/toxin/aranecolmin = 2
 		)
-		for(var/reagent in accepted_reagents)
-			accepted_reagents[reagent] = round(accepted_reagents[reagent] * 2, 0.01)
 
-	if(stomach_eff > 99)
-		capacity_mod += 5
-		for(var/reagent in accepted_reagents)
-			accepted_reagents[reagent] = round(accepted_reagents[reagent] * 2, 0.01)
-	if(stomach_eff > 124)
-		capacity_mod += 5
-		for(var/reagent in accepted_reagents)
-			accepted_reagents[reagent] = round(accepted_reagents[reagent] * 2, 0.01)
-
-	if(muscle_eff > 99)
-		tick_reduction += 2
-	if(muscle_eff > 124)
-		tick_reduction += 2
-	if(muscle_eff > 149)
-		tick_reduction += 3
+	capacity_mod = round(stomach_eff / 15, 1) 
+	tick_reduction = round(muscle_eff / 20, 1) 
+	conversion_mod = round((stomach_eff + (liver_eff * 0.25) + (kidney_eff * 0.25) + (carrion_maw_eff * 4)) / 100, 0.01)
 
 	limit = initial(limit) + capacity_mod
 	grind_rate = initial(grind_rate) - tick_reduction
+	substrate_conversion_factor = initial(substrate_conversion_factor) + conversion_mod
 
 /obj/machinery/reagentgrinder/industrial/disgorger/nano_ui_data()
 	. = ..()
