@@ -68,7 +68,7 @@
 	proj_step_multiplier = 1.1 // 1.2 with slugs
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	damage_multiplier = 1.1
-	penetration_multiplier = -0.1
+	penetration_multiplier = 0
 	init_recoil = CARBINE_RECOIL(4)
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 10)
 	item_suffix  = "_shotgun_sawn"
