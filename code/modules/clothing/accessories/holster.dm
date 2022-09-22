@@ -179,3 +179,22 @@
 	cut_overlays()
 	if(contents.len)
 		add_overlay(image('icons/inventory/accessory/icon.dmi', "sheath_scrapsword_layer"))
+
+//Axe and Mace Ring Holsters//
+
+/obj/item/clothing/accessory/holster/ring
+	name = "ring sheath"
+	desc = "A crudely constructed metal ring that hangs off your waist, useful for holding hammers and axes."
+	icon_state = "ring_sheath"
+	overlay_state = "ring_sheath"
+	slot = "utility"
+	can_hold = list(/obj/item/tool/hammer/mace, /obj/item/tool/hammer/mace/makeshift, /obj/item/tool/hammer/mace/makeshift/baseballbat/bone, /obj/item/tool/hammer/powered_hammer, /obj/item/tool/hatchet)
+	price_tag = 200
+	sound_in = 'sound/effects/sheathin.ogg'
+	sound_out = 'sound/effects/sheathout.ogg'
+
+/obj/item/clothing/accessory/holster/ring/update_icon()
+	..()
+	cut_overlays()
+	if(contents.len)
+		add_overlay(image('icons/inventory/accessory/icon.dmi', "ring_sheath"))
