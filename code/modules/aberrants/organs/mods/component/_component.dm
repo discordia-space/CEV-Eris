@@ -1,7 +1,7 @@
 /datum/component/modification/organ
 	install_time = WORKTIME_FAST
 	//install_tool_quality = null
-	install_difficulty = FAILCHANCE_HARD
+	install_difficulty = 35
 	install_stat = STAT_BIO
 	install_sound = 'sound/effects/squelch1.ogg'
 

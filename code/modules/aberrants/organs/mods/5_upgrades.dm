@@ -3,7 +3,6 @@
 	icon = 'icons/obj/organ_mods.dmi'
 	spawn_blacklisted = FALSE	// No RNG stats, no teratoma needed. Helps illustrate the gradual increase of weirdness from regular organs to the more bizarre aberrant organs.
 	bad_type = /obj/item/modification/organ/internal/stromal
-	price_tag = 200
 
 /obj/item/modification/organ/internal/stromal/update_icon()
 	return

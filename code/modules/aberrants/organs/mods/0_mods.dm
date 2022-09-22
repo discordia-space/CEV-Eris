@@ -3,6 +3,7 @@
 	bad_type = /obj/item/modification/organ
 	matter = list(MATERIAL_BIOMATTER = 5)
 	origin_tech = list(TECH_BIO = 3)	// One level higher than regular organs
+	price_tag = 25		// Biomatter is 5 credits per unit
 
 /obj/item/modification/organ/internal
 	icon = 'icons/obj/organ_mods.dmi'
@@ -11,7 +12,6 @@
 	spawn_tags = SPAWN_TAG_ORGAN_MOD
 	spawn_blacklisted = TRUE	// These should never spawn without a parent organ/teratoma.
 	bad_type = /obj/item/modification/organ/internal
-	price_tag = 200
 
 /obj/item/modification/organ/internal/New(loc, generate_organ_stats = FALSE, predefined_modifier = null)
 	..()

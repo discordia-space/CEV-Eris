@@ -15,7 +15,7 @@
 	var/biomatter_counter = 0				// We don't want this to actually produce biomatter
 	var/list/accepted_reagents = list(
 		/datum/reagent/drink/milk = 0.13,				// Internet said milk is 13% solids, 87% water
-		/datum/reagent/organic/nutriment/protein = 1
+		/datum/reagent/organic/nutriment = 1
 	)
 	var/list/blacklisted_reagents = list(
 		/datum/reagent/drink/milk/soymilk
@@ -140,8 +140,10 @@
 		holdingitems -= I
 		for(var/reagent in I.reagents.reagent_list)
 			var/datum/reagent/R = reagent
-			if(!is_type_in_list(R, blacklisted_reagents) && is_type_in_list(R, accepted_reagents))
-				biomatter_counter += round(R.volume * accepted_reagents[R.type], 0.01)
+			if(!is_type_in_list(R, blacklisted_reagents))
+				for(var/reagent_type in accepted_reagents)
+					if(istype(R, reagent_type))
+						biomatter_counter += round(R.volume * accepted_reagents[reagent_type], 0.01)
 		qdel(I)
 
 /obj/machinery/reagentgrinder/industrial/disgorger/grind()
@@ -174,7 +176,6 @@
 	flick("[initial(icon_state)]_spit", src)
 	var/obj/item/fleshcube/new_cube = new(get_turf(src))
 	new_cube.throw_at(spit_target, 3, 1)
-
 
 /obj/machinery/reagentgrinder/industrial/disgorger/default_deconstruction(obj/item/I, mob/user)
 	var/qualities = list(QUALITY_RETRACTING)
@@ -263,18 +264,24 @@
 			/datum/reagent/toxin/pararein = 1,
 			/datum/reagent/toxin/aranecolmin = 2
 		)
+		for(var/reagent in accepted_reagents)
+			accepted_reagents[reagent] = round(accepted_reagents[reagent] * 2, 0.01)
 
 	if(stomach_eff > 99)
 		capacity_mod += 5
+		for(var/reagent in accepted_reagents)
+			accepted_reagents[reagent] = round(accepted_reagents[reagent] * 2, 0.01)
 	if(stomach_eff > 124)
 		capacity_mod += 5
+		for(var/reagent in accepted_reagents)
+			accepted_reagents[reagent] = round(accepted_reagents[reagent] * 2, 0.01)
 
 	if(muscle_eff > 99)
-		tick_reduction += 1
-	if(muscle_eff > 124)
-		tick_reduction += 1
-	if(muscle_eff > 149)
 		tick_reduction += 2
+	if(muscle_eff > 124)
+		tick_reduction += 2
+	if(muscle_eff > 149)
+		tick_reduction += 3
 
 	limit = initial(limit) + capacity_mod
 	grind_rate = initial(grind_rate) - tick_reduction
