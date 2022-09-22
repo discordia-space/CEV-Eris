@@ -122,7 +122,7 @@
 //Accessory holsters
 /obj/item/clothing/accessory/holster
 	name = "concealed carry holster"
-	desc = "An inconspicious holster that can be attached to your uniform. Can only fit small handguns... Maybe something else, too."
+	desc = "An inconspicious holster that can be attached to your uniform. Can only fit small handguns and knives... Maybe something else, too."
 	icon_state = "concealed_carry"
 	slot = "utility"
 	matter = list(MATERIAL_BIOMATTER = 5)
@@ -134,24 +134,23 @@
 		/obj/item/gun/projectile/giskard,
 		/obj/item/gun/projectile/selfload,
 		/obj/item/gun/energy/gun/martin,
+		/obj/item/tool/knife,
 		/obj/item/reagent_containers/food/snacks/mushroompizzaslice,
 		/obj/item/reagent_containers/food/snacks/meatpizzaslice,
 		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice,
 		/obj/item/bananapeel
 		)
 
-/obj/item/clothing/accessory/holster/sheath
-	name = "concealed carry sheath"
-	desc = "A inconspicious sheath that can be attached to your uniform. Can only fit knives."
-	icon_state = "concealed_carry"
-	can_hold = list(
-		/obj/item/tool/knife
-		)
+/obj/item/clothing/accessory/holster/attack_hand(mob/user as mob)
+	. = ..()
+
+/obj/item/clothing/accessory/holster/attackby(obj/item/W as obj, mob/user as mob)
+	. = ..()
 
 /obj/item/clothing/accessory/holster/on_attached(obj/item/clothing/under/S, mob/user as mob)
 	..()
 
-	holster = new /obj/item/storage/internal(src)
+	holster = new /obj/item/storage/internal(S)
 	holster.storage_slots = 1
 	holster.can_hold = can_hold
 	holster.max_w_class = ITEM_SIZE_SMALL

@@ -126,6 +126,10 @@
 	name = "sheath"
 	build_path = /obj/item/storage/pouch/holster/belt/sheath
 
+/datum/design/bioprinter/leather/holster/accessory
+	name = "concealed carry holster"
+	build_path = /obj/item/clothing/accessory/holster
+
 /datum/design/bioprinter/belt
 	materials = list(MATERIAL_BIOMATTER = 30)
 

@@ -76,10 +76,11 @@
 /datum/gear/accessory/holster/New()
 	..()
 	var/ties = list(
-		"Compact"	=	/obj/item/storage/pouch/holster,
-		"Baton"		=	/obj/item/storage/pouch/holster/baton,
-		"Belt"		=	/obj/item/storage/pouch/holster/belt,
-		"Sheath"	=	/obj/item/storage/pouch/holster/belt/sheath,
+		"Compact"			=	/obj/item/storage/pouch/holster,
+		"Baton"				=	/obj/item/storage/pouch/holster/baton,
+		"Belt"				=	/obj/item/storage/pouch/holster/belt,
+		"Sheath"			=	/obj/item/storage/pouch/holster/belt/sheath,
+		"Concealed carry"	=	/obj/item/clothing/accessory/holster
 	)
 	gear_tweaks += new/datum/gear_tweak/path(ties)
 

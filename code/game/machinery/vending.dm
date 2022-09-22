@@ -1047,6 +1047,7 @@
 					/obj/item/ammo_magazine/ammobox/shotgun/blanks = 10,
 					/obj/item/storage/pouch/holster = 5,
 					/obj/item/storage/pouch/holster/baton = 5,
+					/obj/item/clothing/accessory/holster = 5,
 					/obj/item/storage/pouch/holster/belt = 5,
 					/obj/item/storage/pouch/holster/belt/sheath = 5,
 					/obj/item/ammo_magazine/slpistol = 5,
