@@ -76,4 +76,3 @@
 	can_dual = TRUE
 	twohanded = FALSE
 	spawn_blacklisted = TRUE
-	serial_type = "FS"
