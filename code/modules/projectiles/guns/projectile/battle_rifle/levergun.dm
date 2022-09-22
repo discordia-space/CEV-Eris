@@ -42,7 +42,6 @@
 	can_dual = TRUE
 	twohanded = FALSE
 	spawn_blacklisted = TRUE
-	serial_type = "FS"
 
 /obj/item/gun/projectile/boltgun/levergun/shotgun
 	name = "FS BR \"Sogekihei\""
