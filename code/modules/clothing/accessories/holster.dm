@@ -188,7 +188,7 @@
 	icon_state = "ring_sheath"
 	overlay_state = "ring_sheath"
 	slot = "utility"
-	can_hold = list(/obj/item/tool/hammer/mace, /obj/item/tool/hammer/mace/makeshift, /obj/item/tool/hammer/mace/makeshift/baseballbat/bone, /obj/item/tool/hammer/powered_hammer, /obj/item/tool/hatchet)
+	can_hold = list(/obj/item/tool/hammer/mace, /obj/item/tool/hammer/mace/makeshift, /obj/item/tool/hammer/mace/makeshift/baseballbat/bone, /obj/item/tool/hatchet)
 	price_tag = 200
 	sound_in = 'sound/effects/sheathin.ogg'
 	sound_out = 'sound/effects/sheathout.ogg'
