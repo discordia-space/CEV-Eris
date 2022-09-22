@@ -146,18 +146,23 @@
 /obj/item/clothing/accessory/holster/attackby(obj/item/W as obj, mob/user as mob)
 	. = ..()
 
-/obj/item/clothing/accessory/holster/on_attached(obj/item/clothing/under/S, mob/user as mob)
+/obj/item/clothing/accessory/holster/New()
 	..()
-
 	holster = new /obj/item/storage/internal(S)
 	holster.storage_slots = 1
 	holster.can_hold = can_hold
 	holster.max_w_class = ITEM_SIZE_SMALL
 	holster.master_item = S
 
-/obj/item/clothing/accessory/holster/on_removed(mob/user as mob)
+/obj/item/clothing/accessory/holster/Destroy()
 	QDEL_NULL(holster)
-	..()
+	. = ..()
+
+/obj/item/clothing/accessory/holster/attackby(obj/item/I, mob/user)
+	holster.attackby(I, user)
+
+/obj/item/clothing/accessory/holster/attack_hand(mob/user as mob)
+	holster.attack_hand(user)
 
 //For the holster hotkey
 //This verb is universal to any subtype of pouch/holster.
@@ -195,34 +200,32 @@
 			to_chat(H, SPAN_NOTICE("You don't have any occupied holsters."))
 
 
-/obj/item/storage/pouch/holster/attack_hand()
+/obj/item/storage/pouch/holster/attack_hand(mob/living/carbon/human/H)
 	if(contents.len)
 		var/obj/item/I = contents[contents.len]
 		if(istype(I))
-			if(usr.a_intent == I_HURT)
-				usr.visible_message(
-					SPAN_DANGER("[usr] draws \the [I], ready to fight!"),
+			if(H.a_intent == I_HURT)
+				H.visible_message(
+					SPAN_DANGER("[H] draws \the [I], ready to fight!"),
 						SPAN_WARNING("You draw \the [I], ready to fight!")
 					)
 			else
-				usr.visible_message(
-					SPAN_NOTICE("[usr] draws \the [I], pointing it at the ground."),
+				H.visible_message(
+					SPAN_NOTICE("[H] draws \the [I], pointing it at the ground."),
 					SPAN_NOTICE("You draw \the [I], pointing it at the ground.")
 					)
-			add_fingerprint(usr)
-			playsound(usr, "[src.sound_out]", 75, 0)
+			add_fingerprint(H)
+			playsound(H, "[src.sound_out]", 75, 0)
 			update_icon()
 			w_class = initial(w_class)
 			name = "[initial(name)]"
 	..()
 
 /obj/item/storage/pouch/holster/attackby(obj/item/I, mob/user)
-	add_fingerprint(usr)
-	w_class = max(w_class, src.w_class)
-	name = "occupied [initial(name)]"
-	playsound(usr, "[src.sound_in]", 75, 0)
-	update_icon()
-	..()
+	if(can_be_inserted(I))
+		add_fingerprint(user)
+		playsound(usr, "[src.sound_in]", 75, 0)
+		return handle_item_insertion(I)
 
 /obj/item/storage/pouch/holster/update_icon()
 	..()
