@@ -648,6 +648,7 @@
 /obj/item/tool_upgrade
 	name = "tool upgrade"
 	icon = 'icons/obj/tool_upgrades.dmi'
+	icon_state = "placeholder"	// Needed for UI
 	force = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_SMALL
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE

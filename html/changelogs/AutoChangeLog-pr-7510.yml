@@ -1,5 +1,0 @@
-author: Alliostra
-delete-after: true
-changes:
-  - rscadd: Added a new tip about the preference of automatically switching to the
-      examine tab

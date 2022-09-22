@@ -7,7 +7,7 @@
 	icon = 'icons/obj/machines/mining_turret.dmi'
 	desc = "A fully automated anti golem platform."
 	icon_state = "turret_legs"
-	
+
 	// Projectile variables
 	projectile = /obj/item/projectile/beam
 	eprojectile = /obj/item/projectile/beam
@@ -42,7 +42,7 @@
 /obj/machinery/porta_turret/mining/setup()
 	return
 
-/obj/machinery/porta_turret/mining/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/porta_turret/mining/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
 	data["access"] = TRUE
 	data["locked"] = locked

@@ -118,7 +118,7 @@ obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 	desc = "A generic ammo can. Can hold ammo magazines, boxes, and bullets. Alt+click to open and close."
 	icon_state = "ammo_case"
 	sticker_name = "ammo"
-	matter = list(MATERIAL_STEEL = 20)
+	matter = list(MATERIAL_STEEL = 15)
 	spawn_blacklisted = FALSE
 	rarity_value = 60
 

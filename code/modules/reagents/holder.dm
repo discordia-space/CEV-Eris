@@ -598,7 +598,7 @@
 			return X
 
 // NanoUI / TG UI data
-/datum/reagents/ui_data()
+/datum/reagents/nano_ui_data()
 	var/list/data = list()
 
 	data["total_volume"] = total_volume

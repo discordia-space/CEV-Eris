@@ -1,9 +1,0 @@
-author: Kegdo
-delete-after: true
-changes:
-  - rscadd: swing grab special
-  - rscadd: fireman grab special
-  - rscdel: vore grab special
-  - balance: throatslit damage refactored
-  - balance: neckgrab doesn't give click cooldown
-  - balance: vomit stun duration reduced from 5 to 2

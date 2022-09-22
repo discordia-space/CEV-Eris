@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(chameleon_key_to_path, list(
 			I.disguise(loadout[I.chameleon_type], user)
 
 
-/obj/item/clothing/under/chameleon/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
+/obj/item/clothing/under/chameleon/nano_ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/nano_topic_state/state)
 	var/list/data = list()
 	var/list/clothes_in_loadout = list()
 
@@ -224,7 +224,7 @@ GLOBAL_LIST_INIT(chameleon_key_to_path, list(
 	set category = "Object"
 	set src in usr.contents
 
-	ui_interact(usr)
+	nano_ui_interact(usr)
 
 
 /obj/item/clothing/under/chameleon/verb/disguise_as_loadout_1()
