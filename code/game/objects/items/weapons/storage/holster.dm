@@ -56,7 +56,9 @@
 
 	can_hold = list(
 		/obj/item/melee,
-		/obj/item/tool/crowbar
+		/obj/item/tool/crowbar,
+		/obj/item/tool/hammer/,
+		/obj/item/tool/hatchet
 		)
 
 	sliding_behavior = TRUE
