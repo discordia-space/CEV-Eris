@@ -38,7 +38,8 @@
 		/obj/item/gun/projectile/shotgun/pump/sawn,
 		/obj/item/gun/projectile/boltgun/obrez,
 		/obj/item/gun/energy/retro/sawn,
-		/obj/item/gun/projectile/automatic/luty
+		/obj/item/gun/projectile/automatic/luty,
+		// /obj/item/gun/projectile/revolver/hornet
 		)
 
 	sliding_behavior = TRUE
@@ -118,20 +119,92 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	can_hold = list(/obj/item/tool/sword/improvised)
 
+//Accessory holsters
+/obj/item/clothing/accessory/holster
+	name = "concealed carry holster"
+	desc = "An inconspicious holster that can be attached to your uniform. Can only fit small handguns... Maybe something else, too."
+	icon_state = "concealed_carry"
+	slot = "utility"
+	matter = list(MATERIAL_BIOMATTER = 5)
+	price_tag = 160
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_TAG_HOLSTER
+	var/obj/item/storage/internal/holster
+	var/list/can_hold = list(
+		/obj/item/gun/projectile/giskard,
+		/obj/item/gun/projectile/selfload,
+		/obj/item/gun/energy/gun/martin,
+		/obj/item/reagent_containers/food/snacks/mushroompizzaslice,
+		/obj/item/reagent_containers/food/snacks/meatpizzaslice,
+		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice,
+		/obj/item/bananapeel
+		)
+
+/obj/item/clothing/accessory/holster/sheath
+	name = "concealed carry sheath"
+	desc = "A inconspicious sheath that can be attached to your uniform. Can only fit knives."
+	icon_state = "concealed_carry"
+	can_hold = list(
+		/obj/item/tool/knife
+		)
+
+/obj/item/clothing/accessory/holster/on_attached(obj/item/clothing/under/S, mob/user as mob)
+	..()
+
+	holster = new /obj/item/storage/internal(src)
+	holster.storage_slots = 1
+	holster.can_hold = can_hold
+	holster.max_w_class = ITEM_SIZE_SMALL
+	holster.master_item = S
+
+/obj/item/clothing/accessory/holster/on_removed(mob/user as mob)
+	QDEL_NULL(holster)
+	..()
+
 //For the holster hotkey
+//This verb is universal to any subtype of pouch/holster.
 /obj/item/storage/pouch/holster/verb/holster_verb()
 	set name = "Holster"
 	set category = "Object"
 	set src = usr.contents
-	if(!isliving(usr))
+	if(!ishuman(usr))
 		return
 	if(usr.stat)
 		return
 
-	if(istype(usr.get_active_hand(),/obj))
-		attackby(usr.get_active_hand(), usr)
-	else
-		attack_hand(usr)//and that's it
+	var/mob/living/carbon/human/H = usr
+
+	//List of priorities for holster hotkey. Back, suit store, belt, left pocket, right pocket.
+	//Back is for future holsters, if anyone decides to add those.
+	var/list/holster_priority = list(
+	H.back,
+	H.s_store,
+	H.belt,
+	H.l_store,
+	H.r_store
+	)
+
+	for(var/i=1, i<holster_priority.len+1, ++i)
+		var/slot = holster_priority[i]
+
+		if(istype(slot, /obj/item/storage/pouch/holster))
+			var/obj/item/storage/pouch/holster/holster = slot
+
+			if(istype(usr.get_active_hand(),/obj))
+				if(holster.contents.len < holster.storage_slots)//putting items in holsters
+					holster.attackby(usr.get_active_hand(), usr)
+					break
+
+				//else
+				to_chat(usr, SPAN_NOTICE("All your holsters are occupied."))
+
+			else
+				if(holster.contents.len)//pulling items out of holsters
+					holster.attack_hand(usr)
+					break
+
+				//else
+				to_chat(usr, SPAN_NOTICE("You don't have any occupied holsters."))
 
 
 /obj/item/storage/pouch/holster/attack_hand()
