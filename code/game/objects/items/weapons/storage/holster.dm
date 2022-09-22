@@ -148,11 +148,11 @@
 
 /obj/item/clothing/accessory/holster/New()
 	..()
-	holster = new /obj/item/storage/internal(S)
+	holster = new /obj/item/storage/internal(src)
 	holster.storage_slots = 1
 	holster.can_hold = can_hold
 	holster.max_w_class = ITEM_SIZE_SMALL
-	holster.master_item = S
+	holster.master_item = src
 
 /obj/item/clothing/accessory/holster/Destroy()
 	QDEL_NULL(holster)
@@ -187,17 +187,20 @@
 	H.r_store
 	)
 
-	for(var/obj/item/storage/pouch/holster/holster in  holster_priority)
+	var/holster_handled = FALSE
+	for(var/obj/item/storage/pouch/holster/holster in holster_priority)
 		if(H.get_active_hand())
 			if(holster.contents.len < holster.storage_slots)//putting items in holsters
 				holster.attackby(H.get_active_hand(), H)
+				holster_handled = TRUE
 				break
-			to_chat(H, SPAN_NOTICE("All your holsters are occupied."))
 		else
 			if(holster.contents.len)//pulling items out of holsters
 				holster.attack_hand(H)
+				holster_handled = TRUE
 				break
-			to_chat(H, SPAN_NOTICE("You don't have any occupied holsters."))
+	if(!holster_handled)
+		to_chat(H, SPAN_NOTICE(H.get_active_hand() ? "You don't have any occupied holsters." : "All your holsters are occupied."))
 
 
 /obj/item/storage/pouch/holster/attack_hand(mob/living/carbon/human/H)
