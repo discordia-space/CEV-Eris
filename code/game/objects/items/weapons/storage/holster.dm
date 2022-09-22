@@ -68,14 +68,13 @@
 	item_state = "belt_holster"
 	rarity_value = 40
 
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BELT | SLOT_DENYPOCKET
 	price_tag = 240
 	matter = list(MATERIAL_BIOMATTER = 5)
 
 	sound_in = 'sound/effects/holsterin.ogg'
 	sound_out = 'sound/effects/holsterout.ogg'
 
-	w_class = ITEM_SIZE_BULKY
 	max_w_class = ITEM_SIZE_HUGE
 
 	storage_slots = 2
@@ -183,27 +182,17 @@
 	H.r_store
 	)
 
-	for(var/i=1, i<holster_priority.len+1, ++i)
-		var/slot = holster_priority[i]
-
-		if(istype(slot, /obj/item/storage/pouch/holster))
-			var/obj/item/storage/pouch/holster/holster = slot
-
-			if(istype(usr.get_active_hand(),/obj))
-				if(holster.contents.len < holster.storage_slots)//putting items in holsters
-					holster.attackby(usr.get_active_hand(), usr)
-					break
-
-				//else
-				to_chat(usr, SPAN_NOTICE("All your holsters are occupied."))
-
-			else
-				if(holster.contents.len)//pulling items out of holsters
-					holster.attack_hand(usr)
-					break
-
-				//else
-				to_chat(usr, SPAN_NOTICE("You don't have any occupied holsters."))
+	for(var/obj/item/storage/pouch/holster/holster in  holster_priority)
+		if(H.get_active_hand())
+			if(holster.contents.len < holster.storage_slots)//putting items in holsters
+				holster.attackby(H.get_active_hand(), H)
+				break
+			to_chat(H, SPAN_NOTICE("All your holsters are occupied."))
+		else
+			if(holster.contents.len)//pulling items out of holsters
+				holster.attack_hand(H)
+				break
+			to_chat(H, SPAN_NOTICE("You don't have any occupied holsters."))
 
 
 /obj/item/storage/pouch/holster/attack_hand()
