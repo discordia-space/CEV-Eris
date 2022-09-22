@@ -137,4 +137,4 @@
 	result = /obj/item/gun/projectile/automatic/lmg/tk
 	gripvars = /obj/item/part/gun/grip/rubber
 	mechanismvar = /obj/item/part/gun/mechanism/machinegun
-	barrel = /obj/item/part/gun/barrel/clrifle
+	barrelvars = /obj/item/part/gun/barrel/clrifle
