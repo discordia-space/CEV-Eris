@@ -75,7 +75,7 @@
 	sound_in = 'sound/effects/holsterin.ogg'
 	sound_out = 'sound/effects/holsterout.ogg'
 
-	w_class = ITEM_SIZE_NORMAL
+	w_class = ITEM_SIZE_BULKY
 	max_w_class = ITEM_SIZE_HUGE
 
 	storage_slots = 2
