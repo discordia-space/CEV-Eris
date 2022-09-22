@@ -139,5 +139,4 @@
 	mechanismvar = /obj/item/part/gun/mechanism/machinegun
 	barrelvars = /obj/item/part/gun/barrel/clrifle
 
-	barrelvars = /obj/item/part/gun/barrel/lrifle
 
