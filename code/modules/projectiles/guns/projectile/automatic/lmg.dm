@@ -136,7 +136,7 @@
 	icon_state = "frame_mg"
 	result = /obj/item/gun/projectile/automatic/lmg/tk
 	gripvars = /obj/item/part/gun/grip/rubber
-	mechanismvar = /obj/item/part/gun/mechanism/machinegun<<<<<<< master
+	mechanismvar = /obj/item/part/gun/mechanism/machinegun
 	barrelvars = /obj/item/part/gun/barrel/clrifle
 
 	barrelvars = /obj/item/part/gun/barrel/lrifle
