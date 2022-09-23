@@ -72,11 +72,12 @@
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 5)
+	proj_step_multiplier = 1.1 // becomes 1.2 with slugs, following bolt action sawn off behaviour
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet/scrap
 	price_tag = 350
-	damage_multiplier = 0.7
-	penetration_multiplier = 0.1
-	init_recoil = CARBINE_RECOIL(6)
+	damage_multiplier = 1
+	penetration_multiplier = -0.1
+	init_recoil = CARBINE_RECOIL(4) // 48 recoil -> 32, still huge
 	can_dual = TRUE
 	saw_off = FALSE
 	spawn_blacklisted = TRUE

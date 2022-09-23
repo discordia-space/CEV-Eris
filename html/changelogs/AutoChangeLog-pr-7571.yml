@@ -1,0 +1,4 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - bugfix: Fixed an issue with organ species not being set
