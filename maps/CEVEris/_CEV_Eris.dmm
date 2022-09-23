@@ -46521,6 +46521,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/medbay/organs)
 "cgD" = (
@@ -76116,6 +76121,11 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbreak)
 "dAt" = (
@@ -76629,7 +76639,6 @@
 	dir = 4
 	},
 /obj/structure/bed/chair/comfy/beige,
-/obj/landmark/join/start/doctor,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -76641,6 +76650,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/landmark/join/start/doctor,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/medical/medbreak)
 "dBH" = (
@@ -76648,7 +76658,6 @@
 	dir = 4
 	},
 /obj/structure/bed/chair/comfy/beige,
-/obj/landmark/join/start/doctor,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 8;
@@ -76660,6 +76669,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/landmark/join/start/doctor,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/medical/medbreak)
 "dBI" = (
@@ -76667,13 +76682,18 @@
 	dir = 4
 	},
 /obj/structure/bed/chair/comfy/beige,
-/obj/landmark/join/start/doctor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/landmark/join/start/doctor,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/medical/medbreak)
 "dBJ" = (
@@ -77027,6 +77047,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbreak)
 "dCu" = (
@@ -77186,6 +77211,11 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbreak)
 "dCQ" = (
@@ -77613,6 +77643,11 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbreak)
 "dDV" = (
@@ -107222,6 +107257,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbreak)
 "vyv" = (
