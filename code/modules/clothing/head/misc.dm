@@ -369,3 +369,38 @@
 		rad = 0
 	)
 	style_coverage = COVERS_WHOLE_FACE
+
+
+
+/obj/item/clothing/head/cowboy
+	name = "cowboy hat"
+	desc = "There is no sun to cover your eyes from on a spaceship, but it doesn't mean this hat is not stylish."
+	icon_state = "cowboy"
+	item_state = "cowboy"
+	style_coverage = COVERS_EYES|COVERS_HAIR
+
+/obj/item/clothing/head/cowboy/white
+	name = "white cowboy hat"
+	icon_state = "cowboy_white"
+	item_state = "cowboy_white"
+
+/obj/item/clothing/head/cowboy/black
+	name = "black cowboy hat"
+	icon_state = "cowboy_black"
+	item_state = "cowboy_black"
+
+/obj/item/clothing/head/cowboy/wide
+	name = "wide cowboy hat"
+	desc = "To call this \"wide\" is an understatement."
+	icon_state = "cowboy_wide"
+	item_state = "cowboy_wide"
+
+/obj/item/clothing/head/cowboy/wide/white
+	name = "wide white cowboy hat"
+	icon_state = "cowboy_white_wide"
+	item_state = "cowboy_white_wide"
+
+/obj/item/clothing/head/cowboy/wide/black
+	name = "wide black cowboy hat"
+	icon_state = "cowboy_black_wide"
+	item_state = "cowboy_black_wide"
