@@ -79,10 +79,14 @@
 		"Compact"			=	/obj/item/storage/pouch/holster,
 		"Baton"				=	/obj/item/storage/pouch/holster/baton,
 		"Belt"				=	/obj/item/storage/pouch/holster/belt,
-		"Sheath"			=	/obj/item/storage/pouch/holster/belt/sheath,
-		"Concealed carry"	=	/obj/item/clothing/accessory/holster
+		"Sheath"			=	/obj/item/storage/pouch/holster/belt/sheath
 	)
 	gear_tweaks += new/datum/gear_tweak/path(ties)
+
+/datum/gear/accessory/concealed_carry_holster
+	display_name = "concealed carry holster"
+	path = /obj/item/clothing/accessory/holster
+	cost = 2 //stores small guns
 
 /datum/gear/accessory/tie/blue
 	display_name = "tie, blue"

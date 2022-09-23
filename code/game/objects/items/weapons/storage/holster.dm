@@ -6,6 +6,8 @@
 	rarity_value = 60
 	price_tag = 200
 	storage_slots = 1
+	description_info = "Holsters like these can be quickly used with the \'H\' hotkey.\
+	The hotkey prioritizes holsters that are put in back, suit slot or belt slot above the ones in your pockets."
 	w_class = ITEM_SIZE_NORMAL
 	max_w_class = ITEM_SIZE_NORMAL
 	spawn_tags = SPAWN_TAG_HOLSTER
@@ -123,7 +125,7 @@
 //Accessory holsters
 /obj/item/clothing/accessory/holster
 	name = "concealed carry holster"
-	desc = "An inconspicious holster that can be attached to your uniform. Can only fit small handguns and knives... Maybe something else, too."
+	desc = "An inconspicious holster that can be attached to your uniform, right under your armpit. Can only fit small handguns and knives... Maybe something else, too."
 	icon_state = "concealed_carry"
 	slot = "utility"
 	matter = list(MATERIAL_BIOMATTER = 5)
@@ -142,11 +144,25 @@
 		/obj/item/bananapeel
 		)
 
-/obj/item/clothing/accessory/holster/attack_hand(mob/user as mob)
-	. = ..()
+/obj/item/clothing/accessory/holster/proc/handle_attack_hand(mob/user as mob)
+	return holster.handle_attack_hand(user)
 
-/obj/item/clothing/accessory/holster/attackby(obj/item/W as obj, mob/user as mob)
-	. = ..()
+/obj/item/clothing/accessory/holster/proc/handle_mousedrop(var/mob/user, var/atom/over_object)
+	return holster.handle_mousedrop(user, over_object)
+
+/obj/item/clothing/accessory/holster/MouseDrop(obj/over_object)
+	if(holster.handle_mousedrop(usr, over_object))
+		return TRUE
+	return ..()
+
+/obj/item/clothing/accessory/holster/attackby(obj/item/I, mob/user)
+	holster.attackby(I, user)
+
+/obj/item/clothing/accessory/holster/attack_hand(mob/user as mob)
+	add_fingerprint(user)
+	if(loc == has_suit)
+		holster.open(user)
+	else ..()
 
 /obj/item/clothing/accessory/holster/New()
 	..()
@@ -162,9 +178,6 @@
 
 /obj/item/clothing/accessory/holster/attackby(obj/item/I, mob/user)
 	holster.attackby(I, user)
-
-/obj/item/clothing/accessory/holster/attack_hand(mob/user as mob)
-	holster.attack_hand(user)
 
 //For the holster hotkey
 //This verb is universal to any subtype of pouch/holster.

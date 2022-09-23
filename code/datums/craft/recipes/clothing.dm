@@ -187,14 +187,8 @@
 		list(QUALITY_ADHESIVE, 15, 15)
 	)
 
-/datum/craft_recipe/clothing/accessory/saber
-	name = "Scabbard"
-	result = /obj/item/storage/pouch/holster/belt/sheath/improvised
-	steps = list(
-		list(/obj/item/storage/pouch/holster/belt/sheath, 1))
-
-/datum/craft_recipe/clothing/accessory/saber/improvised
-	name = "Makeshift scabbard"
+/datum/craft_recipe/clothing/storage/pouch/holster/belt/sheath/improvised
+	name = "Makeshift sheath"
 	result = /obj/item/storage/pouch/holster/belt/sheath/improvised
 	steps = list (
 		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL), //steel for the frame, since 5 makes a chair I'm assuming 2 is enough for a sheath
