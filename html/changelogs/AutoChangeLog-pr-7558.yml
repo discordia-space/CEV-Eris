@@ -1,0 +1,6 @@
+author: ErisMeleeEnjoyer
+delete-after: true
+changes:
+  - tweak: throatslit timer
+  - bugfix: swing grab special
+  - bugfix: fireman grab special

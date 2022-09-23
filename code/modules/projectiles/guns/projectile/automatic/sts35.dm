@@ -20,7 +20,7 @@
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	damage_multiplier = 1.2
+	damage_multiplier = 1.1
 	init_recoil = RIFLE_RECOIL(0.9)
 
 	gun_tags = list(GUN_SILENCABLE)
