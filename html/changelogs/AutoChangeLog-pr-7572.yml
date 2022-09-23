@@ -1,0 +1,21 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - balance: Organ mod installation has 100% success rate at 35 BIO
+  - balance: intracrinal organoids increase a given stat by 5, intracrinal membranes
+      increase it by 10
+  - balance: Disgorger stomach, liver, kidney efficiency affects reagent-to-substrate
+      conversion ratio, muscle efficiency better improves process speed, accepts nutriment,
+      checks reagents before biomatter content
+  - bugfix: Disgorger can handle child reagent types
+  - balance: Parenchymal mods can be adjusted
+  - balance: Parenchymal membranes have double base efficiency, but only one organ
+      type
+  - balance: Organ scaffold price reduced to 100, organ mod price reduced to 25
+  - balance: Vendor aberrant organs tweaked to have type 2 hormones and 2u reagent
+      output
+  - balance: Organ fab base and starting biotic substrate increased to 480
+  - tweak: Internal organs show efficiencies and mods at 35 BIO
+  - bugfix: Kidney efficiency mods are no longer halved
+  - bugfix: Fixed an issue where organs with new efficiencies weren't being added
+      correctly when modded during surgery

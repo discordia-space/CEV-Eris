@@ -42,7 +42,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	proj_step_multiplier = 1
 	damage_multiplier = 1.6
-	penetration_multiplier = -0.2
+	penetration_multiplier = -0.2 // all sawn off variants have less pen and more recoil, but no change in damage
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	init_recoil = CARBINE_RECOIL(5)
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 8, MATERIAL_PLASTEEL = 10)
@@ -82,7 +82,7 @@
 	name = "sawn-off FS BR \"Sogekihei\""
 	icon_state = "lever_shotgun_sawn"
 	w_class = ITEM_SIZE_NORMAL
-	proj_step_multiplier = 1.1
+	proj_step_multiplier = 1.1 // 1.2 with slugs
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	damage_multiplier = 1.1
 	penetration_multiplier = 0

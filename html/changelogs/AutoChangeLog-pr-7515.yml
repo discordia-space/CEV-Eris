@@ -1,0 +1,4 @@
+author: Alliostra
+delete-after: true
+changes:
+  - tweak: huds will now show a glitched overlay when they get EMP'd

@@ -170,3 +170,9 @@
 	desc = "A stylish, expensive pair of red sneakers."
 	icon_state = "sneakersred"
 	item_state = "sneakersred"
+
+/obj/item/clothing/shoes/spurs
+	name = "spurs"
+	desc = "A pair of leather boots with spurs. The way they jingle and jangle is quite enticing."
+	icon_state = "spurs"
+	item_state = "spurs"

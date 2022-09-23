@@ -128,7 +128,7 @@
 	var/datum/component/modification/organ/on_cooldown/stat_boost/S = AddComponent(/datum/component/modification/organ/on_cooldown/stat_boost)
 
 	S.stat = STAT_MEC
-	S.boost = 3
+	S.boost = 10
 	..()
 
 /obj/item/modification/organ/internal/special/on_cooldown/stat_boost/cognition
@@ -136,7 +136,7 @@
 	var/datum/component/modification/organ/on_cooldown/stat_boost/S = AddComponent(/datum/component/modification/organ/on_cooldown/stat_boost)
 
 	S.stat = STAT_COG
-	S.boost = 3
+	S.boost = 10
 	..()
 
 /obj/item/modification/organ/internal/special/on_cooldown/stat_boost/biology
@@ -144,7 +144,7 @@
 	var/datum/component/modification/organ/on_cooldown/stat_boost/S = AddComponent(/datum/component/modification/organ/on_cooldown/stat_boost)
 
 	S.stat = STAT_BIO
-	S.boost = 3
+	S.boost = 10
 	..()
 
 /obj/item/modification/organ/internal/special/on_cooldown/stat_boost/robustness
@@ -152,7 +152,7 @@
 	var/datum/component/modification/organ/on_cooldown/stat_boost/S = AddComponent(/datum/component/modification/organ/on_cooldown/stat_boost)
 
 	S.stat = STAT_ROB
-	S.boost = 3
+	S.boost = 10
 	..()
 
 /obj/item/modification/organ/internal/special/on_cooldown/stat_boost/toughness
@@ -160,7 +160,7 @@
 	var/datum/component/modification/organ/on_cooldown/stat_boost/S = AddComponent(/datum/component/modification/organ/on_cooldown/stat_boost)
 
 	S.stat = STAT_TGH
-	S.boost = 3
+	S.boost = 10
 	..()
 
 /obj/item/modification/organ/internal/special/on_cooldown/stat_boost/vigilance_5
@@ -168,5 +168,5 @@
 	var/datum/component/modification/organ/on_cooldown/stat_boost/S = AddComponent(/datum/component/modification/organ/on_cooldown/stat_boost)
 
 	S.stat = STAT_VIG
-	S.boost = 3
+	S.boost = 10
 	..()
