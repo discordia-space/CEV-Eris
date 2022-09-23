@@ -242,7 +242,7 @@
 	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
 	icon_state = "obrez_hand"
 	item_suffix  = "_hand"
-	penetration_multiplier = -0.5
+	penetration_multiplier = -0.2 // child of mosin obrez, not of riose
 	init_recoil = CARBINE_RECOIL(4.5)
 	wielded_item_state = "_doble_hand"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
