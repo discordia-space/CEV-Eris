@@ -1,0 +1,4 @@
+author: Mycah142
+delete-after: true
+changes:
+  - tweak: Added id_scan check to the NeoTheology vendor before it checks for cruciform.
