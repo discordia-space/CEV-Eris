@@ -27,7 +27,7 @@
 	name = "high explosive rocket"
 	icon_state = "rocket"
 	damage_types = list(BRUTE = 60)
-	armor_penetration = 20
+	armor_divisor = 1
 	style_damage = 101 //single shot, incredibly powerful. If you get direct hit with this you deserve it, if you dodge the direct shot you're protected from the explosion.
 	check_armour = ARMOR_BOMB
 	penetrating = -5
@@ -55,7 +55,7 @@
 /obj/item/projectile/bullet/rocket/hesh
 	name = "high-explosive squash head rocket"
 	damage_types = list(BRUTE = 80)
-	armor_penetration = 40
+	armor_divisor = 2
 	check_armour = ARMOR_BULLET
 
 /obj/item/projectile/bullet/rocket/hesh/detonate(atom/target)
@@ -65,7 +65,7 @@
 /obj/item/projectile/bullet/rocket/heat
 	name = "high-explosive anti-tank rocket"
 	damage_types = list(BRUTE = 20)
-	armor_penetration = 0
+	armor_divisor = 1
 	check_armour = ARMOR_BULLET
 
 /obj/item/projectile/bullet/rocket/heat/detonate(atom/target)
@@ -79,7 +79,7 @@
 /obj/item/projectile/bullet/rocket/thermo
 	name = "thermobaric rocket"
 	damage_types = list(BRUTE = 20)
-	armor_penetration = 0
+	armor_divisor = 1
 	check_armour = ARMOR_BULLET
 
 /obj/item/projectile/bullet/rocket/thermo/detonate(atom/target)
@@ -216,7 +216,7 @@
 	icon_state = "flare"
 	damage_types = list(BRUTE = 24)
 	kill_count = 16
-	armor_penetration = 0
+	armor_divisor = 1
 	step_delay = 2
 	eyeblur = 2 // bright light slightly blurs your vision
 	luminosity_range = 5

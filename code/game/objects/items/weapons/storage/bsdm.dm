@@ -17,12 +17,12 @@
 	return owner && (locate(/area/space) in view(get_turf(src)))
 
 /obj/item/storage/bsdm/attack_self(mob/user)
-	ui_interact(user)
+	nano_ui_interact(user)
 
 /obj/item/storage/bsdm/interact(mob/user)
-	ui_interact(user)
+	nano_ui_interact(user)
 
-/obj/item/storage/bsdm/ui_data(mob/user)
+/obj/item/storage/bsdm/nano_ui_data(mob/user)
 	var/list/list/data = list()
 
 	data["can_launch"] = can_launch()
@@ -41,8 +41,8 @@
 
 	return data
 
-/obj/item/storage/bsdm/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
-	var/list/data = ui_data(user)
+/obj/item/storage/bsdm/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+	var/list/data = nano_ui_data(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)

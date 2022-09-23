@@ -92,7 +92,7 @@
 	var/recentwield = 0 // to prevent spammage
 	var/proj_step_multiplier = 1
 	var/proj_agony_multiplier = 1
-	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int)
+	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int), damage is divided for pellets
 	var/darkness_view = 0
 	var/vision_flags = 0
 	var/see_invisible_gun = -1
@@ -389,7 +389,7 @@
 
 		projectile.multiply_projectile_style_damage(style_damage_multiplier)
 
-		projectile.multiply_projectile_penetration(penetration_multiplier)
+		projectile.add_projectile_penetration(penetration_multiplier)
 
 		projectile.multiply_pierce_penetration(pierce_multiplier)
 
@@ -418,7 +418,7 @@
 
 		if(i < burst)
 			next_fire_time = world.time + shoot_time
-			sleep(burst_delay < 1.1 ? 1.1 : burst_delay)
+			sleep(burst_delay)
 
 		if(!(target && target.loc))
 			target = targloc
@@ -850,21 +850,21 @@
 
 	toggle_carry_state(usr)
 
-/obj/item/gun/ui_data(mob/user)
+/obj/item/gun/nano_ui_data(mob/user)
 	var/list/data = list()
 	data["damage_multiplier"] = damage_multiplier
 	data["pierce_multiplier"] = pierce_multiplier
 	data["ricochet_multiplier"] = ricochet_multiplier
-	data["penetration_multiplier"] = penetration_multiplier
+	data["penetration_multiplier"] = penetration_multiplier + 1
 
 	data["minimum_fire_delay"] = GUN_MINIMUM_FIRETIME
-	data["fire_delay"] = fire_delay //time between shot, in ms
+	data["fire_delay"] = fire_delay * 5 //time between shot, in ms
 	data["burst"] = burst //How many shots are fired per click
-	data["burst_delay"] = burst_delay //time between shot in burst mode, in ms
+	data["burst_delay"] = burst_delay * 5 //time between shot in burst mode, in ms
 
 	data["force"] = force
 	data["force_max"] = initial(force)*10
-	data["armor_penetration"] = armor_penetration
+	data["armor_divisor"] = armor_divisor
 	data["muzzle_flash"] = muzzle_flash
 
 	var/total_recoil = 0
@@ -896,8 +896,8 @@
 				"desc" = F.desc,
 				"burst" = F.settings["burst"],
 				"minimum_fire_delay" = GUN_MINIMUM_FIRETIME,
-				"fire_delay" = F.settings["fire_delay"],
-				"move_delay" = F.settings["move_delay"],
+				"fire_delay" = F.settings["fire_delay"] * 5,
+				"move_delay" = F.settings["move_delay"] * 5,
 				)
 			if(F.settings["projectile_type"])
 				var/proj_path = F.settings["projectile_type"]
@@ -913,7 +913,7 @@
 
 	return data
 
-/obj/item/gun/Topic(href, href_list, datum/topic_state/state)
+/obj/item/gun/Topic(href, href_list, datum/nano_topic_state/state)
 	if(..(href, href_list, state))
 		return 1
 
@@ -931,8 +931,9 @@
 		return list()
 	var/list/data = list()
 	data["projectile_name"] = P.name
-	data["projectile_damage"] = (P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()
-	data["projectile_AP"] = P.armor_penetration * penetration_multiplier
+	data["projectile_damage"] = ((P.get_total_damage() * damage_multiplier) * P.wounding_mult) + get_total_damage_adjust()
+	data["projectile_AP"] = P.armor_divisor + penetration_multiplier
+	data["projectile_WOUND"] = P.wounding_mult
 	data["projectile_recoil"] = P.recoil
 	qdel(P)
 	return data
@@ -963,7 +964,7 @@
 	vision_flags = initial(vision_flags)
 	see_invisible_gun = initial(see_invisible_gun)
 	force = initial(force)
-	armor_penetration = initial(armor_penetration)
+	armor_divisor = initial(armor_divisor)
 	sharp = initial(sharp)
 	braced = initial(braced)
 	recoil = getRecoil(init_recoil[1], init_recoil[2], init_recoil[3])

@@ -406,6 +406,26 @@
 	desc = "Contains hyperzine - a long lasting muscle stimulant."
 	preloaded_reagents = list("hyperzine" = 15)
 
+/obj/item/reagent_containers/syringe/meralyne
+	name = "syringe (meralyne)"
+	desc = "Contains meralyne - a potent brute-healing medicine"
+	preloaded_reagents = list("meralyne" = 15)
+
+/obj/item/reagent_containers/syringe/tramadol
+	name = "syringe (tramadol)"
+	desc = "Contains tramadol - a general use painkiller"
+	preloaded_reagents = list("tramadol" = 15)
+
+/obj/item/reagent_containers/syringe/dermaline
+	name = "syringe (dermaline)"
+	desc = "Contains dermaline - a potent burn-salving medicine"
+	preloaded_reagents = list("dermaline" = 15)
+
+/obj/item/reagent_containers/syringe/polystem
+	name = "syringe (polystem)"
+	desc = "Contains polystem - a mild healing stimulant for surface wounds"
+	preloaded_reagents = list("polystem" = 15)
+
 /obj/item/reagent_containers/syringe/drugs
 	name = "syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."

@@ -54,6 +54,8 @@
 	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
 	var/list/suitable_materials //List that limits autolathes to eating mats only in that list.
 
+	var/list/selectively_recycled_types = list()
+
 	var/global/list/error_messages = list(
 		ERR_NOLICENSE = "Not enough license points left.",
 		ERR_NOTFOUND = "Design data not found.",
@@ -137,7 +139,7 @@
 	return data
 
 
-/obj/machinery/autolathe/ui_data()
+/obj/machinery/autolathe/nano_ui_data()
 	var/list/data = list()
 
 	data["have_disk"] = have_disk
@@ -171,12 +173,12 @@
 	for(var/d in design_list())
 		var/datum/computer_file/binary/design/design_file = d
 		if(!show_category || design_file.design.category == show_category)
-			L.Add(list(design_file.ui_data()))
+			L.Add(list(design_file.nano_ui_data()))
 	data["designs"] = L
 
 
 	if(current_file)
-		data["current"] = current_file.ui_data()
+		data["current"] = current_file.nano_ui_data()
 		data["progress"] = progress
 
 	var/list/Q = list()
@@ -185,7 +187,7 @@
 
 	for(var/i = 1; i <= queue.len; i++)
 		var/datum/computer_file/binary/design/design_file = queue[i]
-		var/list/QR = design_file.ui_data()
+		var/list/QR = design_file.nano_ui_data()
 
 		QR["ind"] = i
 
@@ -230,8 +232,8 @@
 	return data
 
 
-/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	var/list/data = ui_data(user, ui_key)
+/obj/machinery/autolathe/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+	var/list/data = nano_ui_data(user, ui_key)
 
 	var/datum/asset/designIcons = get_asset_datum(/datum/asset/simple/design_icons)
 	if (designIcons.send(user.client))
@@ -286,7 +288,7 @@
 		return
 
 	user.set_machine(src)
-	ui_interact(user)
+	nano_ui_interact(user)
 
 /obj/machinery/autolathe/proc/check_user(mob/user)
 	return TRUE
@@ -299,7 +301,7 @@
 		return TRUE
 
 	user.set_machine(src)
-	ui_interact(user)
+	nano_ui_interact(user)
 	wires.Interact(user)
 
 /obj/machinery/autolathe/Topic(href, href_list)
@@ -535,7 +537,7 @@
 	if(is_robot_module(eating))
 		return FALSE
 
-	if(!have_recycling && !istype(eating, /obj/item/stack))
+	if(!have_recycling && !(istype(eating, /obj/item/stack) || can_recycle(eating)))
 		to_chat(user, SPAN_WARNING("[src] does not support material recycling."))
 		return FALSE
 
@@ -633,6 +635,18 @@
 	else if(reagents_filltype == 2)
 		to_chat(user, SPAN_NOTICE("Some liquid flowed to the floor from \the [src]."))
 
+
+/obj/machinery/autolathe/proc/can_recycle(obj/O)
+	if(!selectively_recycled_types)
+		return FALSE
+	if(!selectively_recycled_types.len)
+		return FALSE
+
+	for(var/type in selectively_recycled_types)
+		if(istype(O, type))
+			return TRUE
+
+	return FALSE
 
 /obj/machinery/autolathe/proc/queue_design(datum/computer_file/binary/design/design_file, amount=1)
 	if(!design_file || !amount)

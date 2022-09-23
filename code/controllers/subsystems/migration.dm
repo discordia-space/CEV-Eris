@@ -71,6 +71,11 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		if (F.is_wall)
 			continue
 
+		// SPCR 2022 - added this to prevent them disconnecting pipes and cables , since , through magical means , it is impossible to find the code behind pipes being disconnected
+		// on turfs with burrows.
+		if(!turf_clear(F))
+			continue
+
 		//No stacking multiple burrows per tile
 		if (locate(/obj/structure/burrow) in F)
 			continue

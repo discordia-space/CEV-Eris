@@ -33,11 +33,6 @@
 
 //////////////////////////////////////////////////////////////////
 
-// /zone signals
-
-#define COMSIG_ZAS_TICK "z_tick"
-#define COMSIG_ZAS_DELETE "z_del"
-
 // /datum signals
 #define COMSIG_COMPONENT_ADDED "component_added"				//when a component is added to a datum: (/datum/component)
 #define COMSIG_COMPONENT_REMOVING "component_removing"			//before a component is removed from a datum because of RemoveComponent: (/datum/component)
@@ -71,6 +66,9 @@
 #define COMSIG_MOB_LIFE  "mob_life"							 //from mob/Life()
 #define COMSIG_MOB_LOGIN "mob_login"							//from mob/Login()
 #define COMSIG_MOB_DEATH "mob_death"							//from mob/death()
+#define COMSIG_SHIFTCLICK "shiftclick" // used for ai_like_control component
+#define COMSIG_CTRLCLICK "ctrlclick" // used for ai_like_control component
+#define COMSIG_ALTCLICK "altclick" // used for ai_like_control component
 
 // /mob/living signals
 #define COMSIG_LIVING_STUN_EFFECT "stun_effect_act"			 //mob/living/proc/stun_effect_act()
@@ -132,6 +130,13 @@
 // /obj/item/radio signals
 #define COMSIG_MESSAGE_SENT "radio_message_sent"
 #define COMSIG_MESSAGE_RECEIVED "radio_message_received"
+
+// ABERRANT signals
+#define COMSIG_ABERRANT_INPUT "aberrant_input"
+#define COMSIG_ABERRANT_PROCESS "aberrant_process"
+#define COMSIG_ABERRANT_OUTPUT "aberrant_output"
+#define COMSIG_ABERRANT_SECONDARY "aberrant_secondary"
+#define COMSIG_ABERRANT_COOLDOWN "aberrant_cooldown"
 
 /*******Component Specific Signals*******/
 //Janitor

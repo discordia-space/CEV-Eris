@@ -19,9 +19,9 @@
 	unload_sound = 'sound/weapons/guns/interact/batrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/batrifle_cock.ogg'
-	init_recoil = CARBINE_RECOIL(0.45)
-	penetration_multiplier = 1.1
-	damage_multiplier = 1.1
+	init_recoil = CARBINE_RECOIL(0.5)
+	damage_multiplier = 1.15
+	penetration_multiplier = 0.1
 	zoom_factor = 0.2
 	gun_tags = list(GUN_FA_MODDABLE)
 
@@ -89,6 +89,6 @@
 	desc = "A Z8 Bulldog carbine frame. Old but gold."
 	icon_state = "frame_pug"
 	result = /obj/item/gun/projectile/automatic/z8
-	grip = /obj/item/part/gun/grip/black
-	mechanism = /obj/item/part/gun/mechanism/autorifle
-	barrel = /obj/item/part/gun/barrel/srifle
+	gripvars = /obj/item/part/gun/grip/black
+	mechanismvar = /obj/item/part/gun/mechanism/autorifle
+	barrelvars = /obj/item/part/gun/barrel/srifle

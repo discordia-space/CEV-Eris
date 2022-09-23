@@ -397,49 +397,126 @@
 		var/datum/design/design = D
 
 		var/filename = sanitizeFileName("[design.build_path].png")
-		var/icon/I = getFlatTypeIcon(design.build_path)
+
+		var/atom/item = initial(design.build_path)
+		var/icon_file = initial(item.icon)
+		var/icon_state = initial(item.icon_state)
+
+		// eugh
+		if (icon_file)
+			icon_file = ""
+
+		#ifdef UNIT_TESTS
+		if(!(icon_state in icon_states(icon_file)))
+			stack_trace("design [D] with icon '[icon_file]' missing state '[icon_state]'")
+			continue
+		#endif
+		var/icon/I = icon(icon_file, icon_state, SOUTH)
+
 		assets[filename] = I
 	..()
 
 	for(var/D in SSresearch.all_designs)
 		var/datum/design/design = D
-		design.ui_data["icon"] = SSassets.transport.get_asset_url(sanitizeFileName("[design.build_path].png"))
+		design.nano_ui_data["icon"] = SSassets.transport.get_asset_url(sanitizeFileName("[design.build_path].png"))
 
+/datum/asset/simple/materials/register()
+	for(var/type in subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg))
+		var/filename = sanitizeFileName("[type].png")
+
+		var/atom/item = initial(type)
+		var/icon_file = initial(item.icon)
+		var/icon_state = initial(item.icon_state)
+		var/icon/I = icon(icon_file, icon_state, SOUTH)
+
+		assets[filename] = I
+	..()
 
 /datum/asset/simple/craft/register()
+	var/list/craftStep = list()
 	for(var/name in SScraft.categories)
 		for(var/datum/craft_recipe/CR in SScraft.categories[name])
 			if(CR.result)
 				var/filename = sanitizeFileName("[CR.result].png")
-				var/icon/I = getFlatTypeIcon(CR.result)
+
+				var/atom/item = initial(CR.result)
+				var/icon_file = initial(item.icon)
+				var/icon_state = initial(item.icon_state)
+
+				// eugh
+				if (icon_file)
+					icon_file = ""
+
+				#ifdef UNIT_TESTS
+				if(!(icon_state in icon_states(icon_file)))
+					stack_trace("crafting result [CR] with icon '[icon_file]' missing state '[icon_state]'")
+					continue
+				#endif
+				var/icon/I = icon(icon_file, icon_state, SOUTH)
+
 				assets[filename] = I
 
 			for(var/datum/craft_step/CS in CR.steps)
 				if(CS.reqed_type)
 					var/filename = sanitizeFileName("[CS.reqed_type].png")
-					var/icon/I = getFlatTypeIcon(CS.reqed_type)
+
+					var/atom/item = initial(CS.reqed_type)
+					var/icon_file = initial(item.icon)
+					var/icon_state = initial(item.icon_state)
+					#ifdef UNIT_TESTS
+					if(!(icon_state in icon_states(icon_file)))
+						// stack_trace("crafting step [CS] with icon '[icon_file]' missing state '[icon_state]'")
+						continue
+					#endif
+					var/icon/I = icon(icon_file, icon_state, SOUTH)
+
 					assets[filename] = I
+					craftStep |= CS
 	..()
 
-/datum/asset/simple/materials/register()
-	for(var/type in subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg))
-		var/filename = sanitizeFileName("[type].png")
-		var/icon/I = getFlatTypeIcon(type)
-		assets[filename] = I
-	..()
+	// this is fucked but crafting has a circular dept unfortunantly. could unfuck with tgui port
+	for(var/datum/craft_step/CS as anything in craftStep)
+		if (!CS.reqed_material && !CS.reqed_type)
+			continue
+		CS.iconfile = SSassets.transport.get_asset_url(CS.reqed_material ? sanitizeFileName("[material_stack_type(CS.reqed_material)].png") : null, assets[sanitizeFileName("[CS.reqed_type].png")])
+		CS.make_desc() // redo it
 
 /datum/asset/simple/tool_upgrades/register()
 	for(var/type in subtypesof(/obj/item/tool_upgrade))
 		var/filename = sanitizeFileName("[type].png")
-		var/icon/I = getFlatTypeIcon(type)
+
+		var/obj/item/item = initial(type)
+		// no.
+		if (initial(item.bad_type) == type)
+			continue
+
+		var/icon_file = initial(item.icon)
+		var/icon_state = initial(item.icon_state)
+
+		#ifdef UNIT_TESTS
+		if(!(icon_state in icon_states(icon_file)))
+			stack_trace("tool upgrade [type] with icon '[icon_file]' missing state '[icon_state]'")
+			continue
+		#endif
+
+		var/icon/I = icon(icon_file, icon_state, SOUTH)
 		assets[filename] = I
 	..()
 
 /datum/asset/simple/perks/register()
 	for(var/type in subtypesof(/datum/perk))
-		var/datum/perk/P = new type
 		var/filename = sanitizeFileName("[type].png")
-		var/icon/I = icon(P.icon, P.icon_state)
+
+		var/datum/perk/item = initial(type)
+		var/icon_file = initial(item.icon)
+		var/icon_state = initial(item.icon_state)
+		#ifdef UNIT_TESTS
+		if(!(icon_state in icon_states(icon_file)))
+			stack_trace("perks [type] with icon '[icon_file]' missing state '[icon_state]'")
+			continue
+		#endif
+		var/icon/I = icon(icon_file, icon_state, SOUTH)
+
 		assets[filename] = I
 	..()
 

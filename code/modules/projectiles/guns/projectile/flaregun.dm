@@ -86,15 +86,15 @@
 	return 0
 
 /obj/item/gun/projectile/flare_gun/shotgun
-	name = "reinforced flare gun"
+	name = "reinforced flare gun" // slightly worse than a DB sawn off, less recoil with one hand, more with two
 	desc = "Flare gun made of cheap plastic, repurposed to fire shotgun shells."
 	icon_state = "empty_r"
 	caliber = CAL_SHOTGUN
-	damage_multiplier = 0.6
-	penetration_multiplier = 0.5
+	damage_multiplier = 0.8
+	penetration_multiplier = 0.3
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	spawn_blacklisted = TRUE
-	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 16)
+	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 11)
 
 /obj/item/gun/projectile/flare_gun/shotgun/update_icon()
 	..()

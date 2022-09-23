@@ -149,7 +149,7 @@
 /obj/item/storage/belt/tactical
 	name = "tactical belt"
 	desc = "Can hold various military and security equipment."
-	icon_state = "tactical"
+	icon_state = "tactical_belt"
 	rarity_value = 20
 	can_hold = list(
 		/obj/item/grenade,

@@ -13,10 +13,10 @@
 	max_shells = 5
 	ammo_type = /obj/item/ammo_casing/pistol
 	price_tag = 20000
-	damage_multiplier = 1.1
-	penetration_multiplier = 20
+	damage_multiplier = 1.3
+	penetration_multiplier = 9
 	pierce_multiplier = 10
-	init_recoil = HANDGUN_RECOIL(2)
+	init_recoil = HANDGUN_RECOIL(1.6)
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
 	noricochet = TRUE
@@ -44,7 +44,7 @@
 	desc = "A Sky Driver revolver frame. A device that can put holes in ships, let alone a person."
 	icon_state = "frame_skydriver"
 	result = /obj/item/gun/projectile/revolver/sky_driver
-	grip = /obj/item/part/gun/grip/black
-	mechanism = /obj/item/part/gun/mechanism/revolver
-	barrel = /obj/item/part/gun/barrel/pistol
+	gripvars = /obj/item/part/gun/grip/black
+	mechanismvar = /obj/item/part/gun/mechanism/revolver
+	barrelvars = /obj/item/part/gun/barrel/pistol
 	spawn_blacklisted = TRUE

@@ -21,7 +21,8 @@
 		OP_LUNGS =   list(/obj/item/organ/internal/lungs,  40),
 		OP_KIDNEYS = list(/obj/item/organ/internal/kidney, 20),
 		OP_EYES =    list(/obj/item/organ/internal/eyes,   30),
-		OP_LIVER =   list(/obj/item/organ/internal/liver,  50)
+		OP_LIVER =   list(/obj/item/organ/internal/liver,  50),
+		OP_STOMACH = list(/obj/item/organ/internal/stomach,  40)
 		)
 
 /obj/machinery/bioprinter/prosthetics
@@ -50,7 +51,7 @@
 		if(prints_prosthetics)
 			O.nature = MODIFICATION_SILICON
 			O.icon_state = "[O.icon_state]_robotic"
-			O.name = "robotic + [O.name]"
+			O.name = "robotic [O.name]"
 		else if(loaded_dna)
 			visible_message("<span class='notice'>The printer injects the stored DNA into the biomass.</span>.")
 			O.transplant_data = list()

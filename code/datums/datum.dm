@@ -17,6 +17,9 @@
 	  */
 	var/gc_destroyed
 
+	/// Active timers with this datum as the target
+	var/list/active_timers
+
 	var/tmp/is_processing = FALSE
 
 	/**
@@ -107,6 +110,3 @@
 
 	return QDEL_HINT_QUEUE
 
-/datum/proc/Process()
-	set waitfor = 0
-	return PROCESS_KILL

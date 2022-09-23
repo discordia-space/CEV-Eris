@@ -221,7 +221,7 @@
 	return null
 
 // UI data used by chemical catalog
-/datum/chemical_reaction/ui_data()
+/datum/chemical_reaction/nano_ui_data()
 	var/list/dat = list()
 	if(required_reagents)
 		dat["reagents"] = list()
@@ -553,7 +553,11 @@
 	result = "coolant"
 	required_reagents = list("tungsten" = 1, "acetone" = 1, "water" = 1)
 	result_amount = 3
-	log_is_important = 1
+
+/datum/chemical_reaction/refrigerant
+	result = "refrigerant"
+	required_reagents = list("carbon" = 1, "acetone" = 1, "water" = 1)
+	result_amount = 3
 
 /datum/chemical_reaction/rezadone
 	result = "rezadone"
@@ -989,7 +993,7 @@
 /datum/chemical_reaction/slime
 	var/required = null
 
-/datum/chemical_reaction/slime/ui_data()
+/datum/chemical_reaction/slime/nano_ui_data()
 	var/list/dat = ..()
 	dat["required_object"] = required
 	return dat

@@ -5,7 +5,7 @@
 	hitsound_wall = 'sound/weapons/guns/misc/laser_searwall.ogg'
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage_types = list(BURN = 30)
-	armor_penetration = 10
+	armor_divisor = 1
 	check_armour = ARMOR_ENERGY
 	eyeblur = 4
 	var/frequency = 1
@@ -23,7 +23,7 @@
 /obj/item/projectile/beam/check_penetrate(var/atom/A)
 	if(istype(A, /obj/item/shield))
 		var/obj/item/shield/S = A
-		var/loss = min(round(armor_penetration * 2 / S.shield_integrity * 1.8), 1)
+		var/loss = min(round(armor_divisor * 2 / S.shield_integrity * 1.8), 1)
 		for(var/i in damage_types)
 			damage_types[i] *= loss
 
@@ -36,7 +36,7 @@
 	name = "cutting beam"
 	icon_state = "plasmablaster"
 	damage_types = list(BRUTE = 25)
-	armor_penetration = 20
+	armor_divisor = 1.2
 	pass_flags = PASSTABLE
 
 	muzzle_type = /obj/effect/projectile/laser/plasmacutter/muzzle
@@ -58,13 +58,13 @@
 	eyeblur = 2
 
 /obj/item/projectile/beam/midlaser
-	armor_penetration = 20
+	armor_divisor = 1.2
 
 /obj/item/projectile/beam/heavylaser
 	name = "heavy laser"
 	icon_state = "heavylaser"
 	damage_types = list(BURN = 50)
-	armor_penetration = 20
+	armor_divisor = 1
 	style_damage = 60 //it's a slow firing beam weapon, this is probably fair.
 	recoil = 3
 
@@ -78,7 +78,7 @@
 	var/obj/item/gun/energy/psychic/holder
 	var/contractor = FALSE //Check if it's a contractor psychic beam
 	damage_types = list(PSY = 30)
-	armor_penetration = 100
+	armor_divisor = ARMOR_PEN_MAX
 	style_damage = 60 //It's magic brain beams, deal with it.
 	recoil = 2
 
@@ -107,7 +107,7 @@
 	name = "xray beam"
 	icon_state = "xray"
 	damage_types = list(BURN = 25)
-	armor_penetration = 40
+	armor_divisor = 2.5
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle
 	tracer_type = /obj/effect/projectile/xray/tracer
@@ -117,7 +117,7 @@
 	name = "pulse"
 	icon_state = "u_laser"
 	damage_types = list(BURN = 40)
-	armor_penetration = 20
+	armor_divisor = 1
 	recoil = 5 // Effectively hattons floors and walls
 
 	muzzle_type = /obj/effect/projectile/laser_pulse/muzzle
@@ -195,7 +195,7 @@
 	name = "sniper beam"
 	icon_state = "xray"
 	damage_types = list(BURN = 60)
-	armor_penetration = 50
+	armor_divisor = 2
 	stutter = 3
 	style_damage = 70 //it's the laser AMR.
 	recoil = 10
@@ -209,8 +209,7 @@
 	icon_state = "stun"
 	nodamage = 1
 	taser_effect = 1
-	agony = 30
-	damage_types = list(BURN = 1)
+	damage_types = list(HALLOSS = 30)
 
 	muzzle_type = /obj/effect/projectile/stun/muzzle
 	tracer_type = /obj/effect/projectile/stun/tracer

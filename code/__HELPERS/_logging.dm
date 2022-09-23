@@ -15,6 +15,26 @@
 
 /var/global/log_end= world.system_type == UNIX ? ascii2text(13) : ""
 
+//print a warning message to world.log
+#define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [UNLINT(src)] usr: [usr].")
+/proc/warning(msg)
+	msg = "## WARNING: [msg]"
+	log_world(msg)
+
+//not an error or a warning, but worth to mention on the world log, just in case.
+#define NOTICE(MSG) notice(MSG)
+/proc/notice(msg)
+	msg = "## NOTICE: [msg]"
+	log_world(msg)
+
+
+//print a testing-mode debug message to world.log and world
+#ifdef TESTING
+#define testing(msg) log_world("## TESTING: [msg]"); to_chat(world, "## TESTING: [msg]")
+#else
+#define testing(msg)
+#endif
+
 #if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
 /proc/log_test(text)
 	// WRITE_LOG(GLOB.test_log, text)
@@ -22,17 +42,21 @@
 	SEND_TEXT(world.log, text)
 #endif
 
+#if defined(REFERENCE_DOING_IT_LIVE)
+#define log_reftracker(msg) log_harddel("## REF SEARCH [msg]")
+
+/proc/log_harddel(text)
+	log_world("## HARDDEL: [text]")
+
+#elif defined(REFERENCE_TRACKING) // Doing it locally
+#define log_reftracker(msg) log_world("## REF SEARCH [msg]")
+
+#else //Not tracking at all
+#define log_reftracker(msg)
+#endif
+
 /proc/error(msg)
 	log_world("## ERROR: [msg][log_end]")
-
-#define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [src] usr: [usr].")
-//print a warning message to world.log
-/proc/warning(msg)
-	log_world("## WARNING: [msg][log_end]")
-
-//print a testing-mode debug message to world.log
-/proc/testing(msg)
-	log_world("## TESTING: [msg][log_end]")
 
 /proc/game_log(category, text)
 	diary << "\[[time_stamp()]] [game_id] [category]: [text][log_end]"
@@ -115,6 +139,16 @@
 
 /proc/log_asset(text)
 	game_log("ASSET", text)
+
+/// Logging for mapping errors
+/proc/log_mapping(text, skip_world_log)
+#ifdef UNIT_TESTS
+	GLOB.unit_test_mapping_logs += text
+#endif
+	log_world("## MAPPING: [text]")
+	if(skip_world_log)
+		return
+	log_world(text)
 
 //pretty print a direction bitflag, can be useful for debugging.
 /proc/print_dir(var/dir)

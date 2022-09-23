@@ -92,7 +92,7 @@
 			blood_DNA = list()
 		blood_DNA.Cut()
 		blood_DNA[C.dna_trace] = C.b_type
-		species = all_species[C.species]
+		species = all_species[C.species.name]
 
 /obj/item/organ/proc/die()
 	if(BP_IS_ROBOTIC(src))
@@ -117,7 +117,16 @@
 	if(istype(loc, /obj/item/device/mmi) || istype(loc, /mob/living/simple_animal/spider_core))
 		return TRUE
 
-	if(istype(loc, /obj/structure/closet/body_bag/cryobag) || istype(loc, /obj/structure/closet/crate/freezer) || istype(loc, /obj/item/storage/freezer))
+	var/list/stasis_types = list(
+		/obj/structure/closet/body_bag/cryobag,
+		/obj/structure/closet/crate/freezer,
+		/obj/item/storage/freezer,
+		/obj/machinery/smartfridge,
+		/obj/machinery/reagentgrinder/industrial/disgorger,
+		/obj/machinery/vending
+	)
+
+	if(is_type_in_list(loc, stasis_types))
 		return TRUE
 
 	return FALSE

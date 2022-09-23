@@ -96,7 +96,7 @@
 	projectile_type = /obj/item/projectile/bullet/magnum/scrap
 
 /obj/item/ammo_casing/magnum/scrap/prespawned
-	amount = 6
+	amount = 10
 
 //// .20 ////
 

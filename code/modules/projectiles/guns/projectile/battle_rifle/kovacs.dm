@@ -20,8 +20,8 @@
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	damage_multiplier = 1.2 //30
-	penetration_multiplier = 1.4 //35
+	damage_multiplier = 1.4
+	penetration_multiplier = 0.2
 	init_recoil = RIFLE_RECOIL(1)
 	zoom_factor = 0.6
 	fire_delay = 6.5
@@ -47,6 +47,6 @@
 	desc = "A Kovacs battle rifle frame. To punch through armor with panache."
 	icon_state = "frame_kovacs"
 	result = /obj/item/gun/projectile/kovacs
-	grip = /obj/item/part/gun/grip/serb
-	mechanism = /obj/item/part/gun/mechanism/autorifle
-	barrel = /obj/item/part/gun/barrel/srifle
+	gripvars = /obj/item/part/gun/grip/serb
+	mechanismvar = /obj/item/part/gun/mechanism/autorifle
+	barrelvars = /obj/item/part/gun/barrel/srifle

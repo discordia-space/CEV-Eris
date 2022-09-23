@@ -8,6 +8,15 @@
 /*
  * Security
  */
+
+/obj/item/clothing/under/security_formal
+	name = "ironhammer formal uniform"
+	desc = "A navy blue suit. It lacks the protection of standard-issue jumpsuits, but at least you will be shooting with some style."
+	icon_state = "ih_formal"
+	item_state = "ih_formal"
+	style = STYLE_LOW
+	spawn_blacklisted = TRUE
+
 /obj/item/clothing/under/rank/warden
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for more robust protection. It has the words \"Gunnery Sergeant\" written on the shoulders."
 	name = "Gunnery Sergeant jumpsuit"
@@ -90,7 +99,7 @@
 		)
 	allowed = list(/obj/item/reagent_containers/food/snacks/candy_corn, /obj/item/pen)
 	armor = list(
-		melee = 10,
+		melee = 2,
 		bullet = 0,
 		energy = 0,
 		bomb = 0,

@@ -3,7 +3,14 @@
 	desc = "Because you really needed another excuse to punch your crewmates."
 	icon_state = "boxing"
 	item_state = "boxing"
-	armor = list(melee = 25, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(
+		melee = 6,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 
 /obj/item/clothing/gloves/boxing/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tool/wirecutters) || istype(W, /obj/item/tool/scalpel))

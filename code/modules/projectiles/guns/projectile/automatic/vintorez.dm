@@ -17,7 +17,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 5)
 	price_tag = 4000
 	zoom_factor = 0.8 // double as IH_heavy
-	penetration_multiplier = 1.2
+	penetration_multiplier = 0
 	damage_multiplier = 1.2
 	init_recoil = RIFLE_RECOIL(0.65)
 	silenced = TRUE
@@ -49,6 +49,6 @@
 	desc = "A Vintorez rifle frame. Accurate and damaging."
 	icon_state = "frame_vintorez"
 	result = /obj/item/gun/projectile/automatic/vintorez
-	grip = /obj/item/part/gun/grip/excel
-	mechanism = /obj/item/part/gun/mechanism/autorifle
-	barrel = /obj/item/part/gun/barrel/srifle
+	gripvars = /obj/item/part/gun/grip/excel
+	mechanismvar = /obj/item/part/gun/mechanism/autorifle
+	barrelvars = /obj/item/part/gun/barrel/srifle

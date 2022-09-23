@@ -124,7 +124,6 @@ Class Procs:
 /zone/proc/c_invalidate()
 	invalid = TRUE
 	SSair.remove_zone(src)
-	SEND_SIGNAL(src, COMSIG_ZAS_DELETE, TRUE)
 	#ifdef ZASDBG
 	for(var/turf/simulated/T in contents)
 		T.dbg(invalid_zone)
@@ -162,8 +161,6 @@ Class Procs:
 	for(var/connection_edge/E in edges)
 		if(E.sleeping)
 			E.recheck()
-
-	SEND_SIGNAL(src, COMSIG_ZAS_TICK, src)
 
 /zone/proc/dbg_data(mob/M)
 	to_chat(M, name)

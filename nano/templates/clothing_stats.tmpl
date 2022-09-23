@@ -8,7 +8,7 @@
 					{{:value.name}}
 				</div>
 				<div class="itemContent">
-				{{:helper.displayBar(value.value, 0, 100, value.value <= 25 ? 'bad' : value.value < 50 ? 'average' : 'good', value.value + '%')}}
+				{{:helper.displayBar(value.value, 0, 30, value.value <= 5 ? 'bad' : value.value < 10 ? 'average' : 'good', value.value)}}
 				</div>
 			{{/for}}
 			<br>

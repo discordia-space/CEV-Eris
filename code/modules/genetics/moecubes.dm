@@ -1,67 +1,39 @@
-/obj/item/moecube
-	name = "cube of whirling worms"
+/obj/item/reagent_containers/food/snacks/moecube
+	name = "cube of still twitching meat"
 	desc = "Absolutely disgusting."
 	icon = 'icons/obj/eris_genetics.dmi'
-	icon_state = "wormcube"
+	icon_state = "genecube"
 	layer = TOP_ITEM_LAYER // So it don't "fall" under machine that spawned it
 	spawn_blacklisted = TRUE
-	matter = list(MATERIAL_BIOMATTER = 3)
 	var/gene_type
 	var/gene_value
 
+	filling_color = "#5C4033"
+	preloaded_reagents = list("moeball" = 5, "protein" = 3)
+	bitesize = 4
+	taste_tag = list(MEAT_FOOD, UMAMI_FOOD)
 
-/obj/item/moecube/attack(mob/living/carbon/human/H, mob/user)
-	if(!istype(H))
-		return
+/obj/item/reagent_containers/food/snacks/moecube/examine(mob/user)
+	. = ..()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H
+		var/obj/item/implant/core_implant/cruciform/C = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
+		if(C && C.active)
+			if(name == "cube of whirling worms")
+				to_chat(user, "Looking at \the [src] gives you a sense of reassurance, it almost seems angelic.")
+			else
+				to_chat(user, "Looking at \the [src] gives you a sense of darkness, it must be unholy!")
 
-	if(!H.check_has_mouth())
-		to_chat(user, "Where do you intend to put \the [src]?")
-		return
+/obj/item/reagent_containers/food/snacks/moecube/proc/set_genes()
+	for(var/datum/reagent/toxin/mutagen/moeball/MT in reagents.reagent_list)
+		MT.gene_type = gene_type
+		MT.gene_value = gene_value
+		if(name == "cube of whirling worms")
+			MT.isWorm()
 
-	var/obj/item/thing = H.check_mouth_coverage()
+/obj/item/reagent_containers/food/snacks/moecube/worm
+	name = "cube of whirling worms"
+	icon_state = "wormcube"
 
-	if(thing)
-		to_chat(user, SPAN_WARNING("\The [thing] is in the way!"))
-		return
-
-	// Default eating messages from reagent_containers.dm, will do for now
-	if(H == user)
-		to_chat(user, SPAN_NOTICE("You eat \the [src]. It feels absolutely disgusting."))
-
-	else
-		user.visible_message(SPAN_WARNING("[user] is trying to feed [H] \the [src]!"))
-
-		if(!do_mob(user, H, 15))
-			return
-
-		user.visible_message(SPAN_WARNING("[user] has fed [H] \the [src]!"))
-
-	if(gene_type)
-		switch(gene_type)
-			if("mutation")
-				var/datum/mutation/U = gene_value
-				U.imprint(H)
-
-			if("b_type")
-				H.b_type = gene_value
-				H.fixblood()
-				H.adjustOxyLoss(rand(10, 50))
-
-			if("real_name")
-				H.real_name = gene_value
-				H.dna_trace = sha1(gene_value)
-				H.fingers_trace = md5(gene_value)
-
-			if("species")
-				var/datum/species/S = gene_value
-				H.set_species(S.name)
-	else
-		var/datum/mutation/U = gene_value ? gene_value : (H.active_mutations.len ? pick(H.active_mutations) : null)
-		U?.cleanse(H)
-
-	// Neither safe nor pleasant experience
-	H.adjustToxLoss(rand(10, 50))
-	H.sanity.changeLevel(-20)
-
-	user.drop_from_inventory(src)
-	qdel(src)
+	filling_color = "#d49b81"
+	taste_tag = list(UMAMI_FOOD, INSECTS_FOOD)
