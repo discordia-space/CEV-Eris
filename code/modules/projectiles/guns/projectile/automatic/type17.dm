@@ -21,7 +21,7 @@
 	zoom_factor = 0.6
 	init_recoil = RIFLE_RECOIL(0.8)
 	damage_multiplier = 1.3
-	penetration_multiplier = 1.6
+	penetration_multiplier = 0.6
 	spawn_tags = SPAWN_TAG_GUN_OS
 	init_firemodes = list(
 		BURST_3_ROUND,
