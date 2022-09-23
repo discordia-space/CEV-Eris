@@ -259,7 +259,7 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	gun_tags = list(GUN_FA_MODDABLE)
 
-	damage_multiplier = 1
+	damage_multiplier = 1.1
 	penetration_multiplier = 0
 
 	init_firemodes = list(
