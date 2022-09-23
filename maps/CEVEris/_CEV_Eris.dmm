@@ -69655,6 +69655,12 @@
 	name = "Moebius Biolab Officer";
 	req_access = list(40)
 	},
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "maint_hatch_medchem";
+	layer = 3.3;
+	name = "Maintenance Hatch"
+	},
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/command/mbo)
 "dlk" = (
@@ -76039,6 +76045,12 @@
 "dAj" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "maint_hatch_medchem";
+	name = "Maintenance Hatch Control";
+	pixel_y = -24;
+	req_access = newlist()
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/command/mbo)
@@ -106426,14 +106438,6 @@
 /turf/simulated/floor/carpet,
 /area/eris/crew_quarters/barconference)
 "tzQ" = (
-/obj/machinery/door/blast/shutters{
-	density = 0;
-	dir = 2;
-	icon_state = "shutter0";
-	id = "chemcounter";
-	name = "Pharmacy Counter Shutters";
-	opacity = 0
-	},
 /obj/machinery/door/airlock/medical{
 	name = "Chemistry";
 	req_access = list(33)
@@ -106447,6 +106451,12 @@
 	opacity = 0
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "maint_hatch_medchem";
+	layer = 3.3;
+	name = "Maintenance Hatch"
+	},
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/chemistry)
 "tAt" = (
