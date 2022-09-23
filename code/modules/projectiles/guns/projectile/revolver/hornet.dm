@@ -1,7 +1,7 @@
 /obj/item/gun/projectile/revolver/hornet
 	name = "OR REV .20 \"LBR-8 Hornet\""
 	desc = "An attempt by Oberth to replicate lost syndicate tech. In order to achieve satisfactory ballistic \
-			perfomance, it sports an usually long barrel and overpressurized chamber. Uses .20 rifle rounds."
+			performance, it sports an usually long barrel and overpressurized chamber. Uses .20 rifle rounds."
 	icon = 'icons/obj/guns/projectile/hornet.dmi'
 	icon_state = "hornet"
 	item_state = "hornet"
