@@ -25,7 +25,7 @@
 	name = "Hornet frame"
 	desc = "A Hornet revolver frame. Long, heavy, and hotloaded."
 	icon_state = "frame_hornet"
-	result = /obj/item/gun/projectile/revolver/hornet
+	resultvars = list(/obj/item/gun/projectile/revolver/hornet)
 	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/revolver
 	barrelvars = list(/obj/item/part/gun/barrel/srifle)
