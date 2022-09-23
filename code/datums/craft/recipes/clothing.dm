@@ -200,3 +200,11 @@
 	name = "Makeshift scabbard"
 	result = /obj/item/clothing/accessory/holster/scabbard/improvised
 
+/datum/craft_recipe/clothing/accessory/ring_sheath
+	name = "Ring sheath"
+	result = /obj/item/clothing/accessory/holster/scabbard/ring
+	steps = list (
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL), //steel for the frame, since 5 makes a chair I'm assuming 2 is enough for a sheath
+		list(QUALITY_ADHESIVE, 30, 70), //duct tape to line the inside of the ring
+		list(QUALITY_WELDING, 10, "time" = 30), //weld and bend it into a decent shape
+		list(/obj/item/stack/cable_coil, 5, "time" = 10)) //cable coil for the sheath belt, it's gotta hang on you somehow

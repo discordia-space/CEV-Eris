@@ -130,6 +130,7 @@
 	slot = "utility"
 	matter = list(MATERIAL_BIOMATTER = 5)
 	price_tag = 160
+	var/max_w_class = ITEM_SIZE_NORMAL
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_HOLSTER
 
@@ -176,6 +177,7 @@
 	icon_state = "sheath"
 	overlay_state = "sword"
 	slot = "utility"
+	max_w_class = ITEM_SIZE_HUGE
 	can_hold = list(/obj/item/tool/sword)
 	price_tag = 300
 	sound_in = 'sound/effects/sheathin.ogg'
@@ -189,6 +191,18 @@
 	price_tag = 50
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	can_hold = list(/obj/item/tool/sword/improvised)
+
+/obj/item/clothing/accessory/holster/scabbard/ring
+	name = "ring sheath"
+	desc = "A crudely constructed metal ring that hangs off your waist, useful for holding hammers, baseball bats and hatchets."
+	icon_state = "ring_sheath"
+	overlay_state = "ring_sheath"
+	max_w_class = ITEM_SIZE_BULKY
+	can_hold = list(
+		/obj/item/tool/hammer,
+		/obj/item/tool/hatchet
+		)
+	price_tag = 20
 
 /obj/item/clothing/accessory/holster/proc/handle_attack_hand(mob/user as mob)
 	return holster.handle_attack_hand(user)
@@ -215,7 +229,7 @@
 	holster = new /obj/item/storage/internal(src)
 	holster.storage_slots = 1
 	holster.can_hold = can_hold
-	holster.max_w_class = ITEM_SIZE_HUGE//for scabbards
+	holster.max_w_class = max_w_class
 	holster.master_item = src
 
 /obj/item/clothing/accessory/holster/Destroy()
