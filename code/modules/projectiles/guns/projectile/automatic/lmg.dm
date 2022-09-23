@@ -127,7 +127,7 @@
 	penetration_multiplier = 0.3
 
 	spawn_blacklisted = FALSE
-	gun_parts = list(/obj/item/part/gun/frame/tk = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/tk = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/clrifle = 1)
 	serial_type = "FS"
 
 /obj/item/part/gun/frame/tk
