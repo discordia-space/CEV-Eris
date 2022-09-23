@@ -92,7 +92,7 @@
 			blood_DNA = list()
 		blood_DNA.Cut()
 		blood_DNA[C.dna_trace] = C.b_type
-		species = all_species[C.species]
+		species = all_species[C.species.name]
 
 /obj/item/organ/proc/die()
 	if(BP_IS_ROBOTIC(src))

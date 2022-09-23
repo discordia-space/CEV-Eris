@@ -931,7 +931,7 @@
 		return list()
 	var/list/data = list()
 	data["projectile_name"] = P.name
-	data["projectile_damage"] = (P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()
+	data["projectile_damage"] = ((P.get_total_damage() * damage_multiplier) * P.wounding_mult) + get_total_damage_adjust()
 	data["projectile_AP"] = P.armor_divisor + penetration_multiplier
 	data["projectile_WOUND"] = P.wounding_mult
 	data["projectile_recoil"] = P.recoil

@@ -1,0 +1,5 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - balance: rebalanced sawn off shotguns. they trade AP, recoil and bullet speed
+      for being hand cannons
