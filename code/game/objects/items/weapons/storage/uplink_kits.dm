@@ -211,9 +211,9 @@
 	name = "Revolver box"
 	desc = "Revolver kit"
 
-/obj/item/storage/box/syndie_kit/revolver/populate_contents()
+/obj/item/storage/box/syndie_kit/hornet/populate_contents()
 	new /obj/item/gun/projectile/revolver/hornet(src)
-	new /obj/item/ammo_magazine/ammobox/srifle_small (src)
+	new /obj/item/ammo_magazine/slsrifle_rev(src)
 
 /obj/item/storage/box/syndie_kit/sts35
 	name = "Assault rifle box"
