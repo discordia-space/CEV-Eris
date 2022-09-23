@@ -13,7 +13,7 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	magazine_type = /obj/item/ammo_magazine/cspistol
+	magazine_type = /obj/item/ammo_magazine/pistol
 	damage_multiplier = 1.2
 	penetration_multiplier = 0.4
 	proj_step_multiplier = 1.4
