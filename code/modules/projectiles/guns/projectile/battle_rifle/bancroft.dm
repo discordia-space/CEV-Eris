@@ -1,7 +1,7 @@
 /obj/item/gun/projectile/boltgun/bancroft
 	name = "HM \"Bancroft\""
 	desc = "A hefty cannon, essentially a handmade elephant gun used by hunters of dangerous game, with added bayonet. \
-			The shorter barrel does not allow it to reach the same bullet speed as antimateriel rifles, but look \
+			The shorter barrel does not allow it to reach the same bullet speed as anti-materiel rifles, but look \
 			no further if you want something that will put a kaiser down through walls."
 	icon = 'icons/obj/guns/projectile/bancroft.dmi'
 	icon_state = "bancroft"
