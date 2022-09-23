@@ -28,7 +28,7 @@
 	name = "Svengali frame"
 	desc = "A Svengali lever rifle. If death is our destination this will surely bring it"
 	icon_state = "frame_winchester"
-	result = /obj/item/gun/projectile/boltgun/levergun
+	resultvars = list(/obj/item/gun/projectile/boltgun/levergun)
 	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
 	barrelvars = list(/obj/item/part/gun/barrel/magnum)
@@ -73,7 +73,7 @@
 	name = "Sogekihei frame"
 	desc = "A Sogekihei lever shotgun. You are only missing a horse."
 	icon_state = "frame_levershotgun"
-	result = /obj/item/gun/projectile/boltgun/levergun/shotgun
+	resultvars = list(/obj/item/gun/projectile/boltgun/levergun/shotgun)
 	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun // consistent with the other lever guns
 	barrelvars = list(/obj/item/part/gun/barrel/shotgun)
