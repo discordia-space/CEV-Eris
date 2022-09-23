@@ -1492,7 +1492,7 @@
 	
 		var/mob/living/carbon/human/H = user
 
-		if(scan_id == !1) //I have no idea why == 0 didn't work. It just wouldn't. But this did. I don't know why. Thanks Jeff Jefferson.
+		if(!scan_id)
 			bingo = TRUE
 
 		else if(is_neotheology_disciple(H))
