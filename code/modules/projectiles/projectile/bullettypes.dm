@@ -190,16 +190,16 @@ There are important things regarding this file:
 //Sniper rifles .60
 /obj/item/projectile/bullet/antim
 	name = ".60 caliber bullet"
-	damage_types = list(BRUTE = 33)
+	damage_types = list(BRUTE = 18)
 	armor_divisor = 3
 	penetrating = 2
-	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
+	step_delay = 0.8
 	style_damage = 70
-	recoil = 30 // Good luck shooting these from a revolver
+	recoil = 15 // Good luck shooting these from a revolver
 	wounding_mult = WOUNDING_EXTREME
 
 /obj/item/projectile/bullet/antim/emp
-	damage_types = list(BRUTE = 30)
+	damage_types = list(BRUTE = 16)
 	armor_divisor = 2
 
 /obj/item/projectile/bullet/antim/emp/on_hit(atom/target, blocked = FALSE)
@@ -207,16 +207,14 @@ There are important things regarding this file:
 	empulse(target, 0, 0)
 
 /obj/item/projectile/bullet/antim/uranium
-	damage_types = list(BRUTE = 30)
+	damage_types = list(BRUTE = 16)
 	armor_divisor = 5
 	irradiate = 200
 
 /obj/item/projectile/bullet/antim/breach
-	damage_types = list(BRUTE = 25, HALLOSS = 20)
+	damage_types = list(BRUTE = 16, HALLOSS = 20)
 	armor_divisor = 2
 	penetrating = -5
-	step_delay = 0.6
-	hitscan = FALSE
 	nocap_structures = TRUE
 	kill_count = 30
 
@@ -238,8 +236,8 @@ There are important things regarding this file:
 
 
 /obj/item/projectile/bullet/antim/scrap
-	armor_divisor = 1.5
-	recoil = 40
+	armor_divisor = 2
+	recoil = 20
 
 //Shotguns .50
 /obj/item/projectile/bullet/shotgun
