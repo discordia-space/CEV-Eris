@@ -86,15 +86,12 @@
 /datum/gear/accessory/concealed_carry_holster
 	display_name = "concealed carry holster"
 	path = /obj/item/clothing/accessory/holster
-	cost = 4
+	cost = 3
 
 /datum/gear/accessory/concealed_carry_holster
 	display_name = "scabbard"
 	path = /obj/item/clothing/accessory/holster/scabbard
-	cost = 4
-
-
-
+	cost = 3
 
 /datum/gear/accessory/tie/blue
 	display_name = "tie, blue"

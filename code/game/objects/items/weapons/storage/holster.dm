@@ -129,7 +129,7 @@
 	icon_state = "holster"
 	slot = "utility"
 	matter = list(MATERIAL_BIOMATTER = 5)
-	price_tag = 280//incentive to use pouch holsters
+	price_tag = 160
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_HOLSTER
 
@@ -226,7 +226,7 @@
 	holster.attackby(I, user)
 
 //For the holster hotkey
-//This verb is universal to any subtype of pouch/holster, including accesories.
+//This verb is universal to any subtype of pouch/holster.
 /obj/item/storage/pouch/holster/verb/holster_verb()
 	set name = "Holster"
 	set category = "Object"
@@ -246,7 +246,6 @@
 	H.belt,
 	H.l_store,
 	H.r_store,
-	H.w_uniform
 	)
 
 	var/holster_handled = FALSE
