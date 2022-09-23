@@ -1,0 +1,4 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - bugfix: fixed armor and gun UI being hard to understand or lying
