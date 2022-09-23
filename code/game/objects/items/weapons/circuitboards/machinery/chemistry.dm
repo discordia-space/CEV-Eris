@@ -33,7 +33,7 @@
 	)
 
 /obj/item/electronics/circuitboard/chemical_dispenser/industrial
-	name = T_BOARD("Industeral Chemical Dispenser")
+	name = T_BOARD("Industrial Chemical Dispenser")
 	build_path = /obj/machinery/chemical_dispenser/industrial
 
 /obj/item/electronics/circuitboard/chemical_dispenser/soda

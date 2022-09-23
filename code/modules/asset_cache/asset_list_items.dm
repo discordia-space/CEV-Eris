@@ -403,7 +403,7 @@
 
 	for(var/D in SSresearch.all_designs)
 		var/datum/design/design = D
-		design.ui_data["icon"] = SSassets.transport.get_asset_url(sanitizeFileName("[design.build_path].png"))
+		design.nano_ui_data["icon"] = SSassets.transport.get_asset_url(sanitizeFileName("[design.build_path].png"))
 
 /datum/asset/simple/materials/register()
 	for(var/type in subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg))
