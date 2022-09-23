@@ -22,7 +22,7 @@
 	name = "Deckard frame"
 	desc = "A Deckard revolver frame. The secret policeman's choice."
 	icon_state = "frame_thatgun"
-	result = /obj/item/gun/projectile/revolver/deckard
+	resultvars = list(/obj/item/gun/projectile/revolver/deckard)
 	gripvars = list(/obj/item/part/gun/grip/wood)
 	mechanismvar = /obj/item/part/gun/mechanism/revolver
 	barrelvars = list(/obj/item/part/gun/barrel/magnum)

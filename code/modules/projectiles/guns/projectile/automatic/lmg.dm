@@ -102,7 +102,7 @@
 	name = "Pulemyot Kalashnikova frame"
 	desc = "A Pulemyot Kalashnikova LMG frame. A violent and beautiful spark of the past."
 	icon_state = "frame_pk"
-	result = /obj/item/gun/projectile/automatic/lmg/pk
+	resultvars = list(/obj/item/gun/projectile/automatic/lmg/pk)
 	gripvars = list(/obj/item/part/gun/grip/serb)
 	mechanismvar = /obj/item/part/gun/mechanism/machinegun
 	barrelvars = list(/obj/item/part/gun/barrel/lrifle)
@@ -132,7 +132,7 @@
 	name = "Takeshi frame"
 	desc = "A Takeshi LMG frame. A fine-oiled machine of war and death."
 	icon_state = "frame_mg"
-	result = /obj/item/gun/projectile/automatic/lmg/tk
+	resultvars = list(/obj/item/gun/projectile/automatic/lmg/tk)
 	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/machinegun
 	barrelvars = list(/obj/item/part/gun/barrel/lrifle)

@@ -28,7 +28,7 @@
 	name = "Handmade pistol frame"
 	desc = "A handmade pistol frame. It is, without a doubt, absolute trash."
 	icon_state = "frame_pistol_hm"
-	result = /obj/item/gun/projectile/handmade_pistol
+	resultvars = list(/obj/item/gun/projectile/handmade_pistol)
 	gripvars = list(/obj/item/part/gun/grip/wood)
 	mechanismvar = /obj/item/part/gun/mechanism/pistol
 	barrelvars = list(/obj/item/part/gun/barrel/pistol)

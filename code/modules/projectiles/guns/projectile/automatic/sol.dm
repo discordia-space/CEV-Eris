@@ -52,7 +52,7 @@
 	name = "Sol frame"
 	desc = "A Sol carbine frame. Ironhammer's favorite."
 	icon_state = "frame_ihbullpup"
-	result = /obj/item/gun/projectile/automatic/sol
+	resultvars = list(/obj/item/gun/projectile/automatic/sol)
 	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/smg // guh?? ok you do you
 	barrelvars = list(/obj/item/part/gun/barrel/clrifle)

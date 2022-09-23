@@ -49,7 +49,7 @@
 	name = "Dallas frame"
 	desc = "A Dallas pulse rifle frame. Sawing aliens in twain since time immemorial."
 	icon_state = "frame_dallas"
-	result = /obj/item/gun/projectile/automatic/dallas
+	resultvars = list(/obj/item/gun/projectile/automatic/dallas)
 	gripvars = list(/obj/item/part/gun/grip/black)
 	mechanismvar = /obj/item/part/gun/mechanism/machinegun
 	barrelvars = list(/obj/item/part/gun/barrel/clrifle)

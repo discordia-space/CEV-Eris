@@ -70,7 +70,7 @@
 	name = "Molly frame"
 	desc = "A Molly machine pistol frame. Toeing the line between pistol and SMG."
 	icon_state = "frame_autopistol"
-	result = /obj/item/gun/projectile/automatic/molly
+	resultvars = list(/obj/item/gun/projectile/automatic/molly)
 	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/pistol
 	barrelvars = list(/obj/item/part/gun/barrel/pistol)

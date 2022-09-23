@@ -43,7 +43,7 @@
 	name = "Sky Driver frame"
 	desc = "A Sky Driver revolver frame. A device that can put holes in ships, let alone a person."
 	icon_state = "frame_skydriver"
-	result = /obj/item/gun/projectile/revolver/sky_driver
+	resultvars = list(/obj/item/gun/projectile/revolver/sky_driver)
 	gripvars = list(/obj/item/part/gun/grip/black)
 	mechanismvar = /obj/item/part/gun/mechanism/revolver
 	barrelvars = list(/obj/item/part/gun/barrel/pistol)

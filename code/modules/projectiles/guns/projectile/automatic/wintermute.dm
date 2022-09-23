@@ -53,7 +53,7 @@
 	name = "Wintermute frame"
 	desc = "A Wintermute assault rifle frame. The finest of the Ironhammer lineup."
 	icon_state = "frame_wintermute"
-	result = /obj/item/gun/projectile/automatic/wintermute
+	resultvars = list(/obj/item/gun/projectile/automatic/wintermute)
 	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/autorifle
 	barrelvars = list(/obj/item/part/gun/barrel/srifle)

@@ -55,7 +55,7 @@
 	name = "Clarissa frame"
 	desc = "A Clarissa pistol frame. Concealable yet anemic yet fast."
 	icon_state = "frame_clarissa"
-	result = /obj/item/gun/projectile/selfload
+	resultvars = list(/obj/item/gun/projectile/selfload)
 	gripvars = list(/obj/item/part/gun/grip/black)
 	mechanismvar = /obj/item/part/gun/mechanism/pistol
 	barrelvars = list(/obj/item/part/gun/barrel/pistol)
@@ -79,7 +79,7 @@
 	name = "Makarov frame"
 	desc = "A Makarov pistol frame. Technology may have stagnated, but effectiveness hasn't."
 	icon_state = "frame_makarov"
-	result = /obj/item/gun/projectile/selfload/makarov
+	resultvars = list(/obj/item/gun/projectile/selfload/makarov)
 	gripvars = list(/obj/item/part/gun/grip/excel)
 	mechanismvar = /obj/item/part/gun/mechanism/pistol
 	barrelvars = list(/obj/item/part/gun/barrel/pistol)
