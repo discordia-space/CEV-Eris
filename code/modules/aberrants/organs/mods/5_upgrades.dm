@@ -3,7 +3,6 @@
 	icon = 'icons/obj/organ_mods.dmi'
 	spawn_blacklisted = FALSE	// No RNG stats, no teratoma needed. Helps illustrate the gradual increase of weirdness from regular organs to the more bizarre aberrant organs.
 	bad_type = /obj/item/modification/organ/internal/stromal
-	price_tag = 200
 
 /obj/item/modification/organ/internal/stromal/update_icon()
 	return
@@ -123,17 +122,14 @@
 	desc = "A graftable membrane for organ tissues. Contains functional tissue from one or more organs."
 	description_info = "Adds/increases organ efficiencies. Size, blood, oxygen, and nutrition requirements are based on the added efficiencies."
 	icon_state = "membrane"
-	var/organ_eff_mod = 0.1
+	var/organ_eff_mod = 0.2
 
 /obj/item/modification/organ/internal/parenchymal/New(loc, generate_organ_stats = TRUE, predefined_modifier = organ_eff_mod)
-	var/datum/component/modification/organ/M = AddComponent(/datum/component/modification/organ)
+	var/datum/component/modification/organ/parenchymal/M = AddComponent(/datum/component/modification/organ/parenchymal)
 
-	M.apply_to_types = list(/obj/item/organ/internal)
-	M.examine_msg = "Can be attached to internal organs."
-	M.examine_difficulty = STAT_LEVEL_BASIC
 	M.prefix = "multi-functional"
 	..()
 
 /obj/item/modification/organ/internal/parenchymal/large
 	name = "parenchymal membrane"
-	organ_eff_mod = 0.2
+	organ_eff_mod = 0.4

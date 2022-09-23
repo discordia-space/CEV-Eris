@@ -59,20 +59,12 @@
 	else if(istype(user, /mob/observer/ghost))
 		details_unlocked = TRUE
 
-	if(item_upgrades.len)
-		to_chat(user, SPAN_NOTICE("Organoid grafts present ([item_upgrades.len]/[max_upgrades]). Use a laser cutting tool to remove."))
 	if(using_sci_goggles || details_unlocked)
-		var/organs
-	
 		var/function_info
 		var/input_info
 		var/process_info
 		var/output_info
 		var/secondary_info
-
-		for(var/organ in organ_efficiency)
-			organs += organ + " ([organ_efficiency[organ]]), "
-		organs = copytext(organs, 1, length(organs) - 1)
 
 		for(var/mod in contents)
 			var/obj/item/modification/organ/internal/holder = mod
@@ -93,8 +85,6 @@
 
 		if(aberrant_cooldown_time > 0)
 			to_chat(user, SPAN_NOTICE("Average organ process duration: [aberrant_cooldown_time / (1 SECOND)] seconds"))
-
-		to_chat(user, SPAN_NOTICE("Organ tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>"))
 
 		if(function_info)
 			to_chat(user, SPAN_NOTICE(function_info))

@@ -2,9 +2,6 @@
 	exclusive_type = /obj/item/modification/organ/internal/special/on_item_examine
 	trigger_signal = COMSIG_EXAMINE
 
-/datum/component/modification/organ/on_item_examine/try_modify()
-	return
-
 /datum/component/modification/organ/on_item_examine/brainloss
 	var/damage = 1
 
@@ -30,9 +27,6 @@
 
 /datum/component/modification/organ/on_pickup/shock
 	var/damage = 5
-
-/datum/component/modification/organ/on_pickup/shock/try_modify()
-	return
 
 /datum/component/modification/organ/on_pickup/shock/get_function_info()
 	var/description = "<span style='color:purple'>Functional information (secondary):</span> electrocutes when touched"
@@ -75,9 +69,6 @@
 /datum/component/modification/organ/on_cooldown
 	exclusive_type = /obj/item/modification/organ/internal/special/on_cooldown
 	trigger_signal = COMSIG_ABERRANT_SECONDARY
-
-/datum/component/modification/organ/on_cooldown/try_modify()
-	return
 
 /datum/component/modification/organ/on_cooldown/chemical_effect
 	var/effect
