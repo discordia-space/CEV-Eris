@@ -98,7 +98,7 @@
 				return
 
 
-/obj/machinery/chemical_dispenser/ui_data()
+/obj/machinery/chemical_dispenser/nano_ui_data()
 	var/list/data = list()
 	data["amount"] = amount
 	data["energy"] = round(cell.charge)
@@ -121,12 +121,12 @@
 	data["chemicals"] = chemicals
 
 	if(beaker)
-		data["beaker"] = beaker.reagents.ui_data()
+		data["beaker"] = beaker.reagents.nano_ui_data()
 
 	return data
 
-/obj/machinery/chemical_dispenser/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
-	var/list/data = ui_data()
+/obj/machinery/chemical_dispenser/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+	var/list/data = nano_ui_data()
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -228,7 +228,7 @@
 /obj/machinery/chemical_dispenser/attack_hand(mob/living/user)
 	if(stat & BROKEN)
 		return
-	ui_interact(user)
+	nano_ui_interact(user)
 
 /obj/machinery/chemical_dispenser/soda
 	icon_state = "soda_dispenser"

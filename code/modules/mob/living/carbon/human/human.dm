@@ -695,7 +695,7 @@ var/list/rank_prefix = list(\
 			sleep(150)	//15 seconds until second warning
 			to_chat(src, SPAN_WARNING("You feel like you are about to throw up!"))
 			sleep(100)	//and you have 10 more for mad dash to the bucket
-		Stun(5)
+		Stun(2)
 
 		src.visible_message(SPAN_WARNING("[src] throws up!"),SPAN_WARNING("You throw up!"))
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
@@ -1162,9 +1162,9 @@ var/list/rank_prefix = list(\
 	set desc		= "Browse your character sanity."
 	set category	= "IC"
 	set src			= usr
-	ui_interact(src)
+	nano_ui_interact(src)
 
-/mob/living/carbon/human/ui_data()
+/mob/living/carbon/human/nano_ui_data()
 	var/list/data = list()
 
 	data["style"] = get_total_style()
@@ -1184,8 +1184,8 @@ var/list/rank_prefix = list(\
 
 	return data
 
-/mob/living/carbon/human/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
-	var/list/data = ui_data()
+/mob/living/carbon/human/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
+	var/list/data = nano_ui_data()
 
 	ui = SSnano.try_update_ui(user, user, ui_key, ui, data, force_open)
 	if(!ui)

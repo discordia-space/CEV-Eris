@@ -150,17 +150,19 @@
 	var/using_sci_goggles = FALSE
 	var/details_unlocked = FALSE
 
-	// Goggles check
 	if(ishuman(user))
+		// Goggles check
 		var/mob/living/carbon/human/H = user
 		if(istype(H.glasses, /obj/item/clothing/glasses/powered/science))
 			var/obj/item/clothing/glasses/powered/G = H.glasses
 			using_sci_goggles = G.active	// Meat vision
 
-	// Stat check
-	details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
-	if(examine_stat_secondary && details_unlocked)
-		details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
+		// Stat check
+		details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
+		if(examine_stat_secondary && details_unlocked)
+			details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
+	else if(istype(user, /mob/observer/ghost))
+		details_unlocked = TRUE
 
 	if(examine_msg)
 		to_chat(user, SPAN_WARNING(examine_msg))

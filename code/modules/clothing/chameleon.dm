@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(chameleon_key_to_path, list(
 			I.disguise(loadout[I.chameleon_type], user)
 
 
-/obj/item/clothing/under/chameleon/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
+/obj/item/clothing/under/chameleon/nano_ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/nano_topic_state/state)
 	var/list/data = list()
 	var/list/clothes_in_loadout = list()
 
@@ -224,7 +224,7 @@ GLOBAL_LIST_INIT(chameleon_key_to_path, list(
 	set category = "Object"
 	set src in usr.contents
 
-	ui_interact(usr)
+	nano_ui_interact(usr)
 
 
 /obj/item/clothing/under/chameleon/verb/disguise_as_loadout_1()
@@ -284,11 +284,12 @@ GLOBAL_LIST_INIT(chameleon_key_to_path, list(
 	spawn_tags = SPAWN_TAG_SHOES_CHAMELEON
 	chameleon_type = "shoes"
 
-/obj/item/storage/backpack/chameleon
-	name = "grey backpack"
-	icon_state = "backpack"
-	item_state = "backpack"
-	desc = "A backpack outfitted with cloaking tech. It seems to have a small dial inside, kept away from the storage."
+/obj/item/storage/backpack/chameleon //functionally a satchel
+	name = "grey satchel"
+	icon_state = "satchel"
+	desc = "A satchel outfitted with cloaking tech. It seems to have a small dial inside, kept away from the storage."
+	max_storage_space = DEFAULT_HUGE_STORAGE * 0.7
+	worn_access = TRUE
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_BACKPACK_CHAMELEON
 	rarity_value = 50

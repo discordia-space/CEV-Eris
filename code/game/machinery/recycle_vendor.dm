@@ -116,13 +116,13 @@
 		return
 
 	wires.Interact(user)
-	ui_interact(user)
+	nano_ui_interact(user)
 
 
 /obj/machinery/recycle_vendor/AltClick(mob/user)
 	if(user.incapacitated() || user.stat || !user.Adjacent(user))
 		return
-		
+
 	eject_stored_item()
 
 
@@ -261,7 +261,7 @@
 	return TOPIC_REFRESH
 
 
-/obj/machinery/recycle_vendor/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+/obj/machinery/recycle_vendor/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	var/list/data = list()
 	var/list/user_access = user.GetAccess()
 

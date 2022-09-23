@@ -133,8 +133,6 @@
 	spawn_blacklisted = TRUE
 
 	init_firemodes = list(
-		list(mode_name="uo4E6SBeGe", mode_desc="c25F2OeGUi", burst=1, projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=5, move_delay=null, charge_cost=3, icon="stun", projectile_color = "#0000FF"),
-		list(mode_name="0sXYAJGCv4", mode_desc="yQI241FKDh", burst=1, projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=10, move_delay=null, charge_cost=6, icon="kill", projectile_color = "#FF0000"),
 		list(mode_name="XhddhrdJkJ", mode_desc="uDsfMdPQkm", burst=1, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=15, move_delay=null, charge_cost=9, icon="destroy", projectile_color = "#FFFFFF"),
 		list(mode_name="bP6hfnj3Js", mode_desc="AhG8GjobYa", burst=3, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, move_delay=4, charge_cost=11, icon="vaporize", projectile_color = "#FFFFFF")
 	)
@@ -181,10 +179,12 @@
 	var/list/final_oddity = list()
 	var/stat = pick(stats)
 	final_oddity += stat
+	final_oddity[stat] = 6
 	var/area/my_area = get_area(src)
-	var/bluespacemodifier = round(my_area.bluespace_entropy/(my_area.bluespace_hazard_threshold/4))
-	final_oddity[stat] = 6 + bluespacemodifier
-	my_area.bluespace_entropy = max(0, my_area.bluespace_entropy - (6 + bluespacemodifier))
+	if(my_area)
+		var/bluespacemodifier = round(my_area.bluespace_entropy/(my_area.bluespace_hazard_threshold/4))
+		final_oddity[stat] += bluespacemodifier
+		my_area.bluespace_entropy = max(0, my_area.bluespace_entropy - (6 + bluespacemodifier))
 	var/datum/component/inspiration/odd = GetComponent(/datum/component/inspiration)
 	odd.stats = final_oddity
 

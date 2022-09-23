@@ -56,7 +56,7 @@
 		if(D && D.build_type == build_type)
 			files.AddDesign2Known(D)
 			ripped_categories |= D.category
-	
+
 	audible_message(SPAN_NOTICE("The contents of \the [disk] have been saved to \the [src]'s drive."))
 
 /obj/machinery/autolathe/organ_fabricator/insert_disk(mob/living/user, obj/item/computer_hardware/hard_drive/portable/inserted_disk)
@@ -87,10 +87,12 @@
 
 	return design_files
 
-/obj/machinery/autolathe/organ_fabricator/ui_interact()
-	if(!categories?.len)
+/obj/machinery/autolathe/organ_fabricator/nano_ui_interact()
+	if(!islist(categories))		// Runtime occured when the categories var was 0, but the null check wasn't catching it.
+		categories = list()
+	if(!categories.len)
 		categories = files.design_categories_organfab
-	if(!disk && !show_category && length(categories))
+	if(!disk && !show_category && categories.len)
 		show_category = categories[1]
 	..()
 
@@ -111,7 +113,7 @@
 			var/choice = alert("If you deconstruct this machine, the biotic substrate inside will be destroyed. Are you sure you want to continue?", "Deconstruction Warning", "Deconstruct", "Leave it alone")
 			if(choice != "Deconstruct" || starting_loc != user.loc)
 				return
-	
+
 	// Eat cube
 	if(istype(I, /obj/item/fleshcube))
 		eat(user, I)
@@ -168,6 +170,7 @@
 
 /obj/item/electronics/circuitboard/organ_fabricator
 	name = T_BOARD("organ fabricator")
+	spawn_blacklisted = TRUE
 	build_path = /obj/machinery/autolathe/organ_fabricator
 	board_type = "machine"
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)

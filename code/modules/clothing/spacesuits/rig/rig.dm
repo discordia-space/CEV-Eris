@@ -478,7 +478,7 @@
 	cell.use(cost*10)
 	return 1
 
-/obj/item/rig/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/nano_state =GLOB.inventory_state)
+/obj/item/rig/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/nano_state =GLOB.inventory_state)
 	if(!user)
 		return
 
@@ -807,6 +807,9 @@
 
 	//possibly damage some modules
 	take_hit((100/severity_class), "electrical pulse", 1)
+
+	if(visor)// cause the visor to glitch out
+		visor.vision.glasses.emp_act(severity_class)
 
 /obj/item/rig/proc/shock(mob/user)
 	if (!user)

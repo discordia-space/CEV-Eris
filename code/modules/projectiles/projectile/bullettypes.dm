@@ -51,11 +51,11 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/srifle
 	name = ".20 caliber bullet"
-	damage_types = list(BRUTE = 36)
+	damage_types = list(BRUTE = 32)
 	armor_divisor = 1.5
 	penetrating = 2
 	can_ricochet = TRUE
-	recoil = 4
+	recoil = 3
 	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/srifle/nomuzzle
@@ -123,7 +123,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/lrifle
 	name = ".30 caliber bullet"
-	damage_types = list(BRUTE = 16)
+	damage_types = list(BRUTE = 18)
 	armor_divisor = 1.5
 	penetrating = 2
 	can_ricochet = TRUE
@@ -286,19 +286,18 @@ There are important things regarding this file:
 		M.adjust_fire_stacks(fire_stacks)
 		M.IgniteMob()
 
-//Should do about 80 damage at 1 tile distance (adjacent), and 50 damage at 3 tiles distance.
-//Overall less damage than slugs in exchange for more damage at very close range and more embedding
+//Overall less damage than slugs vs armor for more damage to unarmored
 //Has a small wounding modifier due to /bullet/pellet
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
 	icon_state = "birdshot-1"
 	damage_types = list(BRUTE = 21)
 	armor_divisor = 1
-	pellets = 8
+	pellets = 6
 	range_step = 1
 	spread_step = 10
 	pellet_to_knockback_ratio = 2
-	recoil = 8
+	recoil = 5
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()

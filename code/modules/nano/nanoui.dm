@@ -59,7 +59,7 @@ nanoui is used to open and update nano browser uis
 	// Relationship between a master interface and its children. Used in update_status
 	var/datum/nanoui/master_ui
 	var/list/datum/nanoui/children = list()
-	var/datum/topic_state/state = null
+	var/datum/nano_topic_state/state = null
 
  /**
   * Create a new nanoui instance.
@@ -75,7 +75,7 @@ nanoui is used to open and update nano browser uis
   *
   * @return /nanoui new nanoui object
   */
-/datum/nanoui/New(nuser, nsrc_object, nui_key, ntemplate_filename, ntitle = 0, nwidth = 0, nheight = 0, atom/nref, datum/nanoui/master_ui, datum/topic_state/state = GLOB.default_state)
+/datum/nanoui/New(nuser, nsrc_object, nui_key, ntemplate_filename, ntitle = 0, nwidth = 0, nheight = 0, atom/nref, datum/nanoui/master_ui, datum/nano_topic_state/state = GLOB.default_state)
 	user = nuser
 	src_object = nsrc_object
 	ui_key = nui_key
@@ -369,7 +369,6 @@ nanoui is used to open and update nano browser uis
   */
 /datum/nanoui/proc/get_html()
 	retrieving_html = TRUE
-
 	// before the UI opens, add the layout files based on the layout key
 	add_stylesheet("layout_[layout_key].css")
 	add_template("layout", "layout_[layout_key].tmpl")
@@ -394,7 +393,7 @@ nanoui is used to open and update nano browser uis
 	initial_data_json = strip_improper(initial_data_json);
 
 	var/url_parameters_json = json_encode(list("src" = "\ref[src]"))
-
+	
 	// This prevents the so-called white screens
 	spawn(1)
 		retrieving_html = FALSE
@@ -591,4 +590,4 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/proc/update(var/force_open = 0)
-	src_object.ui_interact(user, ui_key, src, force_open, master_ui, state)
+	src_object.nano_ui_interact(user, ui_key, src, force_open, master_ui, state)

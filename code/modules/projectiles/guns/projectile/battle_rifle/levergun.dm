@@ -31,15 +31,14 @@
 	name = "sawn-off FS BR .40 \"Svengali\""
 	icon_state = "lever_winchester_sawn"
 	w_class = ITEM_SIZE_NORMAL
-	proj_step_multiplier = 1.2
-	damage_multiplier = 1.3
-	penetration_multiplier = -0.1
+	proj_step_multiplier = 1
+	damage_multiplier = 1.6
+	penetration_multiplier = -0.2 // all sawn off variants have less pen and more recoil, but no change in damage
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
-	init_recoil = CARBINE_RECOIL(6)
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 8, MATERIAL_PLASTEEL = 20)
+	init_recoil = CARBINE_RECOIL(5)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 8, MATERIAL_PLASTEEL = 10)
 	item_suffix  = "_winchester_sawn"
 	wielded_item_state = "_doble_winchester_sawn"
-	saw_off = TRUE
 	can_dual = TRUE
 	twohanded = FALSE
 	serial_type = "FS"
@@ -57,7 +56,7 @@
 	penetration_multiplier = 0.2
 	max_shells = 9
 	init_recoil = RIFLE_RECOIL(2.3)
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 15)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 20)
 	wielded_item_state = "_doble_shotgun"
 	sawn = /obj/item/gun/projectile/boltgun/levergun/shotgun/sawn
 	serial_type = "FS"
@@ -66,13 +65,13 @@
 	name = "sawn-off FS BR \"Sogekihei\""
 	icon_state = "lever_shotgun_sawn"
 	w_class = ITEM_SIZE_NORMAL
-	proj_step_multiplier = 1.2
+	proj_step_multiplier = 1.1 // 1.2 with slugs
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
-	damage_multiplier = 0.8
-	init_recoil = CARBINE_RECOIL(5)
-	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 8)
+	damage_multiplier = 1.1
+	penetration_multiplier = 0
+	init_recoil = CARBINE_RECOIL(4)
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 10)
 	item_suffix  = "_shotgun_sawn"
 	wielded_item_state = "_doble_shotgun_sawn"
-	saw_off = TRUE
 	can_dual = TRUE
 	twohanded = FALSE

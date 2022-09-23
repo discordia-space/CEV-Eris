@@ -453,7 +453,7 @@ ADMIN_VERB_ADD(/client/proc/manage_silicon_laws, R_ADMIN, TRUE)
 	if(!S) return
 
 	var/datum/nano_module/law_manager/L = new(S)
-	L.ui_interact(usr, state = GLOB.admin_state)
+	L.nano_ui_interact(usr, state = GLOB.admin_state)
 	log_and_message_admins("has opened [S]'s law manager.")
 
 

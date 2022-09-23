@@ -82,7 +82,7 @@
 
 	if(blacklisted)
 		blacklisted = copytext(blacklisted, 1, length(blacklisted) - 1)
-		to_chat(user, SPAN_WARNING("Rejects [blacklisted]."))
+		to_chat(user, SPAN_WARNING("Rejects objects with the following reagents: [blacklisted]."))
 
 /obj/machinery/reagentgrinder/industrial/disgorger/proc/check_reagents(obj/item/I, mob/user)
 	if(!I.reagents || !I.reagents.total_volume)
@@ -93,7 +93,7 @@
 			. = TRUE		// If the container has any amount of an accepted reagent, the proc will return true
 		if(is_type_in_list(R, blacklisted_reagents))
 			return FALSE	// If the container has any amount of a blacklisted reagent, the proc will immediately return false
-	
+
 /obj/machinery/reagentgrinder/industrial/disgorger/insert(obj/item/I, mob/user)
 	if(!istype(I))
 		return
@@ -174,7 +174,7 @@
 	flick("[initial(icon_state)]_spit", src)
 	var/obj/item/fleshcube/new_cube = new(get_turf(src))
 	new_cube.throw_at(spit_target, 3, 1)
-	
+
 
 /obj/machinery/reagentgrinder/industrial/disgorger/default_deconstruction(obj/item/I, mob/user)
 	var/qualities = list(QUALITY_RETRACTING)
@@ -248,7 +248,7 @@
 			/datum/reagent/toxin/blattedin = 0.5
 		)
 	if(liver_eff > 149)
-		accepted_reagents = list(
+		accepted_reagents |= list(
 			/datum/reagent/toxin/fuhrerole = 1,
 			/datum/reagent/toxin/kaiseraurum = 10
 		)
@@ -279,16 +279,16 @@
 	limit = initial(limit) + capacity_mod
 	grind_rate = initial(grind_rate) - tick_reduction
 
-/obj/machinery/reagentgrinder/industrial/disgorger/ui_data()
+/obj/machinery/reagentgrinder/industrial/disgorger/nano_ui_data()
 	. = ..()
 
 	.["biomatter_counter"] = biomatter_counter
 
-/obj/machinery/reagentgrinder/industrial/disgorger/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+/obj/machinery/reagentgrinder/industrial/disgorger/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(!nano_template)
 		return
 
-	var/list/data = ui_data()
+	var/list/data = nano_ui_data()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -298,10 +298,10 @@
 
 /obj/item/electronics/circuitboard/disgorger
 	name = T_BOARD("disgorger")
+	spawn_blacklisted = TRUE
 	board_type = "machine"
 	build_path = /obj/machinery/reagentgrinder/industrial/disgorger
 	origin_tech = list(TECH_BIO = 3)
-	rarity_value = 20
 	req_components = list(
 		/obj/item/organ/internal = 4			// Build with any organ, but certain efficiencies will have different effects.
 	)
