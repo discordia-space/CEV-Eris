@@ -650,7 +650,7 @@
 		else
 			to_chat(user, SPAN_WARNING("You can\'t properly place your weapon on \the [target] because of the foregrip!"))
 
-/obj/item/gun/proc/toggle_scope(mob/living/user)
+/obj/item/gun/proc/toggle_scope(mob/living/user, switchzoom = FALSE)
 	//looking through a scope limits your periphereal vision
 	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
 	if(!zoom_factor)
@@ -659,7 +659,7 @@
 	var/zoom_offset = round(world.view * zoom_factor)
 	var/view_size = round(world.view + zoom_factor)
 
-	zoom(zoom_offset, view_size)
+	zoom(zoom_offset, view_size, switchzoom)
 	check_safety_cursor(user)
 	update_hud_actions()
 

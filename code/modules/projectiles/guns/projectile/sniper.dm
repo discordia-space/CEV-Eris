@@ -117,7 +117,7 @@
 		return 1
 	return 0
 
-/obj/item/gun/projectile/heavysniper/zoom(tileoffset, viewsize)
+/obj/item/gun/projectile/heavysniper/zoom(tileoffset, viewsize, stayzoomed = TRUE)
 	..()
 	if(zoom)
 		damage_multiplier += extra_damage_mult_scoped
