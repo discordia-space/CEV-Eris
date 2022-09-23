@@ -36,7 +36,7 @@
 	desc = "A Bancroft Kaiser gun. For hunting big game."
 	icon_state = "frame_bancroft"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
-	result = /obj/item/gun/projectile/boltgun/bancroft
+	resultvars = list(/obj/item/gun/projectile/boltgun/bancroft)
 	gripvars = list(/obj/item/part/gun/grip/wood)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
 	barrelvars = list(/obj/item/part/gun/barrel/shotgun, /obj/item/part/gun/barrel/antim)
