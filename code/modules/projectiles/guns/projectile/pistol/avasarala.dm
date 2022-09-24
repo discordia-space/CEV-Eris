@@ -54,7 +54,7 @@
 	name = "Avasarala frame"
 	desc = "An Avasarala pistol frame. Something to command respect."
 	icon_state = "frame_deagle"
-	result = /obj/item/gun/projectile/avasarala
-	gripvars = /obj/item/part/gun/grip/black
+	resultvars = list(/obj/item/gun/projectile/avasarala)
+	gripvars = list(/obj/item/part/gun/grip/black)
 	mechanismvar = /obj/item/part/gun/mechanism/pistol
-	barrelvars = /obj/item/part/gun/barrel/magnum
+	barrelvars = list(/obj/item/part/gun/barrel/magnum)
