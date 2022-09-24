@@ -101,6 +101,8 @@
 			/obj/item/storage/photo_album,
 			/obj/item/wrapping_paper,
 			/obj/item/packageWrap,
+			/obj/item/hand_labeler = custom_good_price(10),
+			/obj/item/storage/fancy/crayons = custom_good_price(6),
 			/obj/item/reagent_containers/glass/paint/red = good_data("Red Paint", list(1, 10), null),
 			/obj/item/reagent_containers/glass/paint/green = good_data("Green Paint", list(1, 10), null),
 			/obj/item/reagent_containers/glass/paint/blue = good_data("Blue Paint", list(1, 10), null),
@@ -119,9 +121,16 @@
 			/mob/living/exosuit/premade/powerloader/firefighter,
 			/mob/living/exosuit/premade/powerloader/flames_blue,
 			/mob/living/exosuit/premade/powerloader/flames_red
+		),
+		"Aster\'s Cells II" = list(
+			/obj/item/cell/small/hyper = custom_good_price(600),
+			/obj/item/cell/medium/hyper = custom_good_price(800),
+			/obj/item/cell/large/hyper = custom_good_price(1600)
 		)
 	)
 	offer_types = list(
+		/obj/item/oddity/common/old_id = offer_data("old id", 500, 1),
+		/obj/item/tool_upgrade = offer_data("tool upgrade", 200, 8),
 		/obj/item/mech_component = offer_data("mech component", 300, 4),															// base price: 150
 		/obj/item/mech_equipment = offer_data("mech equipment", 400, 4),															// base price: 200
 		/obj/item/robot_parts/robot_component/armour/exosuit/plain = offer_data("exosuit armor plating", 700, 4),					// base price: 400

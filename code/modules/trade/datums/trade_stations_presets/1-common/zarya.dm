@@ -31,14 +31,11 @@
 			/obj/machinery/portable_atmospherics/canister/air = custom_good_price(400),
 			/obj/machinery/portable_atmospherics/canister/carbon_dioxide = custom_good_price(400)
 		),
-		"Technomancer Supplies" = list(
+		"Supplies" = list(
 			/obj/item/clothing/mask/gas,
 			/obj/item/clothing/suit/storage/hazardvest,
 			/obj/item/clothing/head/hardhat,
 			/obj/item/clothing/gloves/insulated,
-			/obj/item/storage/toolbox/emergency,
-			/obj/item/storage/toolbox/mechanical,
-			/obj/item/storage/toolbox/electrical,
 			/obj/item/clothing/head/welding,
 			/obj/item/clothing/glasses/welding,
 			/obj/item/storage/belt/utility,
@@ -46,17 +43,20 @@
 			/obj/item/storage/pouch/engineering_material,
 			/obj/item/storage/pouch/engineering_tools,
 			/obj/item/storage/hcases/engi,
+			/obj/item/storage/box/lights/mixed
+		),
+		"Tools" = list(
 			/obj/item/tool/crowbar,
 			/obj/item/tool/screwdriver,
 			/obj/item/tool/shovel,
 			/obj/item/tool/wirecutters,
+			/obj/item/tool/wirecutters/pliers,
 			/obj/item/tool/wrench,
 			/obj/item/tool/weldingtool,
 			/obj/item/tool/tape_roll,
-			/obj/item/storage/briefcase/inflatable/empty,
-			/obj/item/inflatable/door,
-			/obj/item/inflatable/wall,
-			/obj/item/storage/box/lights/mixed
+			/obj/item/storage/toolbox/emergency,
+			/obj/item/storage/toolbox/mechanical,
+			/obj/item/storage/toolbox/electrical
 		),
 		"Electronics" = list(
 			/obj/item/electronics/circuitboard/pacman,
@@ -89,7 +89,14 @@
 	offer_types = list(
 		/obj/item/tool_upgrade = offer_data("tool upgrade", 200, 8),									// base price: 200
 		/obj/item/tool_upgrade/artwork_tool_mod = offer_data("artistic tool upgrade", 800, 1),
+		/obj/item/tool_upgrade/augment/randomizer = offer_data("BSL \"Randomizer\" tool polish", 1600, 2),
 		/obj/item/oddity/common/blueprint = offer_data("strange blueprint", 500, 1),
 		/obj/item/oddity/common/old_radio = offer_data("old radio", 500, 1),
-		/obj/item/organ/external/robotic = offer_data("any external prosthetic", 400, 8)
+		/obj/item/organ/external/robotic = offer_data("any external prosthetic", 400, 8),
+		/obj/item/oddity/techno = offer_data("unknown technological part", 3200, 2),
+		/obj/item/tool/crowbar/onestar = offer_data("one star crowbar", 5000, 3),
+		/obj/item/tool/hammer/powered_hammer/onestar_hammer = offer_data("one star sledgehammer", 5000, 3),
+		/obj/item/tool/screwdriver/combi_driver/onestar = offer_data("one star combi driver", 6500, 3),
+		/obj/item/tool/weldingtool/onestar  = offer_data("one star welding tool", 6500, 3),
+		/obj/item/organ/external/robotic/one_star = offer_data("one star external prosthetic", 5000, 4)
 	)

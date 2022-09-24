@@ -201,11 +201,14 @@ SUBSYSTEM_DEF(trade)
 	if(components && comp_count)
 		var/obj/item/I = item
 		var/list/item_components = I.GetComponents(/datum/component)
-		if(item_components.len)
+		if(item_components && item_components.len)
 			var/success_count = 0
-			for(var/path in item_components)
-				if(is_path_in_list(path, components))
-					++success_count
+			for(var/mod in item_components)
+				for(var/path in components)
+					if(istype(mod, path))
+						++success_count
+						if(components.len == comp_count)
+							components.Remove(path)
 			if(success_count >= comp_count)
 				return TRUE
 		return FALSE

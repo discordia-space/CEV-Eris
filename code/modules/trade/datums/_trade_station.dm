@@ -1,18 +1,3 @@
-#define good_data(nam, randList, price) list("name" = nam, "amount_range" = randList, "price" = price)
-#define custom_good_name(nam) good_data(nam, null, null)
-#define custom_good_amount_range(randList) good_data(null, randList, null)
-#define custom_good_price(price) good_data(null, null, price)
-
-#define offer_data(name, price, amount) list("name" = name, "price" = price, "amount" = amount, "components" = null, "comp_count" = null)
-#define offer_data_mods(name, price, amount, components, count) list("name" = name, "price" = price, "amount" = amount, "components" = components, "comp_count" = count)
-
-#define category_data(nam, listOfTags) list("name" = nam, "tags" = listOfTags)
-
-#define WHOLESALE_GOODS 1.2
-#define COMMON_GOODS 1.5
-#define UNCOMMON_GOODS 1.8
-#define RARE_GOODS 2.0
-
 /datum/trade_station
 	var/name
 	var/desc

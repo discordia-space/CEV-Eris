@@ -669,7 +669,7 @@
 					"path" = path,
 				)
 				if(PRG.sending)
-					offer["available"] = length(SStrade.assess_offer(PRG.sending, offer_path))
+					offer["available"] = length(SStrade.assess_offer(PRG.sending, offer_path, offer_content["components"], offer_content["comp_count"]))
 				.["offers"] += list(offer)
 
 			if(!recursiveLen(.["offers"]))
