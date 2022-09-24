@@ -41,7 +41,7 @@
 		/obj/item/gun/projectile/boltgun/obrez,
 		/obj/item/gun/energy/retro/sawn,
 		/obj/item/gun/projectile/automatic/luty,
-		// /obj/item/gun/projectile/revolver/hornet
+		/obj/item/gun/projectile/revolver/hornet
 		)
 
 	sliding_behavior = TRUE
@@ -164,7 +164,7 @@
 		/obj/item/gun/projectile/boltgun/obrez,
 		/obj/item/gun/energy/retro/sawn,
 		/obj/item/gun/projectile/automatic/luty,
-		// /obj/item/gun/projectile/revolver/hornet,
+		/obj/item/gun/projectile/revolver/hornet,
 		/obj/item/reagent_containers/food/snacks/mushroompizzaslice,
 		/obj/item/reagent_containers/food/snacks/meatpizzaslice,
 		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice,
