@@ -1,0 +1,4 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - bugfix: fixed frame crafting
