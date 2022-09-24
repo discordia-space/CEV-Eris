@@ -1,0 +1,6 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - rscadd: added new marshall .20 revolver
+  - rscdel: removed duplicate ammo var in skydriver
+  - tweak: 'tweaked skydriver: 0.2 more recoil, 30% faster bullets, short scope'
