@@ -107089,6 +107089,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/medbay/uppercor)
 "viY" = (
