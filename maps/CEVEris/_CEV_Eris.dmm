@@ -65363,24 +65363,6 @@
 	},
 /turf/space,
 /area/shuttle/mining/station)
-"dca" = (
-/obj/machinery/button/remote/blast_door{
-	id = "maint_hatch_medchem";
-	name = "Maintenance Hatch Control";
-	pixel_y = 24;
-	req_access = newlist()
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck2port)
 "dcb" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -78587,6 +78569,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/power/nt_obelisk,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
 "dGo" = (
@@ -107087,6 +107070,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/medbay/uppercor)
 "viY" = (
@@ -205728,7 +205712,7 @@ jDi
 bmx
 aaa
 cmE
-dvA
+ewb
 dFy
 mKQ
 dGn
@@ -247730,7 +247714,7 @@ dzC
 dzW
 dAd
 chl
-dca
+dbq
 dcu
 tss
 dhV
