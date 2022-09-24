@@ -4,13 +4,13 @@
 	)
 	icon_states = list("htu_station", "station")
 	uid = "oddities"
-	tree_x = 0.1
+	tree_x = 0.26
 	tree_y = 0.7
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = 1
 	base_income = 0					// Needs player interaction to replenish stock
-	wealth = -8000					//
+	wealth = -16000					//
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
 	stations_recommended = list("bluespace")

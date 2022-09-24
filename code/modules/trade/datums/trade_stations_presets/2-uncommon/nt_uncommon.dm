@@ -34,8 +34,7 @@
 	hidden_inventory = list(
 		"Pouches" = list(
 			/obj/item/storage/pouch/small_generic,
-			/obj/item/storage/pouch/medium_generic,
-			/obj/item/storage/pouch/large_generic
+			/obj/item/storage/pouch/medium_generic
 		),
 		"Neotheology Cells" = list(
 			/obj/item/cell/small/neotheology,

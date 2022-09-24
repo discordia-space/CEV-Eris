@@ -106,9 +106,6 @@
 			/obj/item/clothing/under/bride_white,
 			/obj/item/clothing/under/tuxedo,
 			/obj/item/clothing/under/wifebeater,
-			/obj/item/clothing/under/rank/fo_suit,
-			/obj/item/clothing/under/rank/janitor,
-			/obj/item/clothing/under/rank/hydroponics,
 			/obj/item/clothing/under/ntsec
 		),
 		"Suits" = list(

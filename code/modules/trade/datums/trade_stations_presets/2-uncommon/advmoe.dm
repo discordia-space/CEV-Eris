@@ -30,7 +30,7 @@
 		)
 	)
 	hidden_inventory = list(
-		"Upgraded Organs" = list(
+		"Back Alley Organs" = list(
 			/obj/item/computer_hardware/hard_drive/portable/design/surgery = good_data("back alley organs disk", list(1, 2), 2000),
 		),
 		"Autoinjectors" = list(
@@ -43,7 +43,7 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/organ/internal/scaffold = offer_data_mods("aberrant organ (input, process, output, secondary)", 1400, 2, OFFER_ABERRANT_ORGAN_PLUS, 4),
+		/obj/item/organ/internal/scaffold = offer_data_mods("aberrant organ (input, process, output, secondary)", 1400, 4, OFFER_ABERRANT_ORGAN_PLUS, 4),
 		/datum/reagent/stim/machine_spirit = offer_data("Machine Spirit bottle (60u)", 3200, 2),
 		/datum/reagent/stim/grape_drops = offer_data("Grape drops bottle (60u)", 3200, 2),
 		/datum/reagent/stim/ultra_surgeon = offer_data("UltraSurgeon bottle (60u)", 3200, 2),

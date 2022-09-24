@@ -4,7 +4,7 @@
 	)
 	icon_states = list("htu_frigate", "ship")
 	uid = "materials"
-	tree_x = 0.1
+	tree_x = 0.26
 	tree_y = 0.9
 	start_discovered = TRUE
 	spawn_always = TRUE
@@ -27,7 +27,7 @@
 		)
 	)
 	hidden_inventory = list(
-		"Refined Material Stacks" = list(
+		"Refined Materials II" = list(
 			/obj/item/stack/material/iron/full = good_data("iron ingots (x120)", list(1, 2), null),
 			/obj/item/stack/material/silver/full = good_data("silver ingots (x120)", list(1, 2), null),
 			/obj/item/stack/material/gold/full = good_data("gold ingots (x120)", list(1, 2), null),

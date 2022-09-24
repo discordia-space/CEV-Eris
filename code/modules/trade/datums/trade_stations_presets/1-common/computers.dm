@@ -13,7 +13,7 @@
 	wealth = 0
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
-	stations_recommended = list("med_adv", "engi_adv")
+	stations_recommended = list("moe_adv")
 	recommendations_needed = 0
 	inventory = list(
 		"Design Disks" = list(

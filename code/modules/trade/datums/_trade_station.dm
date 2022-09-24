@@ -116,7 +116,7 @@
 		if(islist(category))
 			for(var/good_path in category)
 				var/cost = SStrade.get_import_cost(good_path, src)
-				var/list/rand_args = list(1, 30 / max(cost/200, 1))
+				var/list/rand_args = list(5, 30 / max(cost/200, 1))
 				var/list/good_packet = category[good_path]
 				if(islist(good_packet))
 					if(islist(good_packet["amount_range"]))

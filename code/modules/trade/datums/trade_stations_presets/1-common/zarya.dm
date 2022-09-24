@@ -4,7 +4,7 @@
 	)
 	icon_states = list("htu_station", "station")
 	uid = "techno_basic"
-	tree_x = 0.26
+	tree_x = 0.1
 	tree_y = 0.9
 	start_discovered = TRUE
 	spawn_always = TRUE
@@ -14,7 +14,7 @@
 	wealth = 0
 	hidden_inv_threshold = 0
 	recommendation_threshold = 3000
-	stations_recommended = list("techno_adv")
+	stations_recommended = list()
 	inventory = list(
 		"Design Disks" = list(
 			/obj/item/computer_hardware/hard_drive/portable/design/components = good_data("Technomancers ARK-034 Components", list(5, 10), 400),
@@ -43,7 +43,8 @@
 			/obj/item/storage/pouch/engineering_material,
 			/obj/item/storage/pouch/engineering_tools,
 			/obj/item/storage/hcases/engi,
-			/obj/item/storage/box/lights/mixed
+			/obj/item/storage/box/lights/mixed,
+			/obj/item/storage/briefcase/inflatable
 		),
 		"Tools" = list(
 			/obj/item/tool/crowbar,
@@ -87,16 +88,16 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/tool_upgrade = offer_data("tool upgrade", 200, 8),									// base price: 200
 		/obj/item/tool_upgrade/artwork_tool_mod = offer_data("artistic tool upgrade", 800, 1),
 		/obj/item/tool_upgrade/augment/randomizer = offer_data("BSL \"Randomizer\" tool polish", 1600, 2),
 		/obj/item/oddity/common/blueprint = offer_data("strange blueprint", 500, 1),
 		/obj/item/oddity/common/old_radio = offer_data("old radio", 500, 1),
 		/obj/item/organ/external/robotic = offer_data("any external prosthetic", 400, 8),
-		/obj/item/oddity/techno = offer_data("unknown technological part", 3200, 2),
-		/obj/item/tool/crowbar/onestar = offer_data("one star crowbar", 5000, 3),
-		/obj/item/tool/hammer/powered_hammer/onestar_hammer = offer_data("one star sledgehammer", 5000, 3),
-		/obj/item/tool/screwdriver/combi_driver/onestar = offer_data("one star combi driver", 6500, 3),
-		/obj/item/tool/weldingtool/onestar  = offer_data("one star welding tool", 6500, 3),
-		/obj/item/organ/external/robotic/one_star = offer_data("one star external prosthetic", 5000, 4)
+		/obj/item/tool/crowbar = offer_data_mods("modified crowbar (6 upgrades)", 2400, 2, OFFER_MODDED_TOOL, 6),
+		/obj/item/tool/screwdriver = offer_data_mods("modified screwdriver (6 upgrades)", 2400, 2, OFFER_MODDED_TOOL, 6),
+		/obj/item/tool/shovel = offer_data_mods("modified shovel (6 upgrades)", 2400, 2, OFFER_MODDED_TOOL, 6),
+		/obj/item/tool/wirecutters = offer_data_mods("modified wirecutters (6 upgrades)", 2400, 2, OFFER_MODDED_TOOL, 6),
+		/obj/item/tool/wrench = offer_data_mods("modified wrench (6 upgrades)", 2400, 2, OFFER_MODDED_TOOL, 6),
+		/obj/item/tool/weldingtool = offer_data_mods("modified welding tool (6 upgrades)", 2400, 2, OFFER_MODDED_TOOL, 6),
+		/obj/item/oddity/techno = offer_data("unknown technological part", 3200, 2)
 	)

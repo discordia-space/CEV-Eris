@@ -200,10 +200,9 @@ SUBSYSTEM_DEF(trade)
 /datum/controller/subsystem/trade/proc/check_offer_contents(item, offer_path, list/components = null, comp_count = null)
 	if(components && comp_count)
 		var/obj/item/I = item
-		var/list/item_components = I.GetComponents(/datum/component)
-		if(item_components && item_components.len)
+		if(I.item_upgrades && I.item_upgrades.len)
 			var/success_count = 0
-			for(var/mod in item_components)
+			for(var/mod in I.item_upgrades)
 				for(var/path in components)
 					if(istype(mod, path))
 						++success_count

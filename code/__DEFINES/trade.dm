@@ -18,7 +18,7 @@
 #define offer_data(name, price, amount) list("name" = name, "price" = price, "amount" = amount, "components" = null, "comp_count" = null)
 #define offer_data_mods(name, price, amount, components, count) list("name" = name, "price" = price, "amount" = amount, "components" = components, "comp_count" = count)
 
-#define category_data(nam, listOfTags) list("name" = nam, "tags" = listOfTags)
+#define trade_category_data(nam, listOfTags) list("name" = nam, "tags" = listOfTags)
 
 // Good price modifiers
 #define WHOLESALE_GOODS 1.2
