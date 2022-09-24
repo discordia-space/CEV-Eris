@@ -570,6 +570,39 @@
 /obj/item/ammo_magazine/slsrifle/scrap
 	ammo_type = /obj/item/ammo_casing/srifle/scrap
 
+/obj/item/ammo_magazine/slsrifle_rev
+	name = "speed loader (.20 Rifle)"
+	icon = 'icons/obj/ammo_speed.dmi'
+	icon_state = "slsrifle_base"
+	caliber = CAL_SRIFLE
+	matter = list(MATERIAL_STEEL = 3)
+	ammo_type = /obj/item/ammo_casing/srifle
+	max_ammo = 8
+	w_class = ITEM_SIZE_TINY
+
+/obj/item/ammo_magazine/slsrifle_rev/update_icon()
+	cut_overlays()
+	var/count = 0
+	for(var/obj/item/ammo_casing/AC in stored_ammo)
+		count++
+		overlays += "slsrifle_[AC.shell_color]-[count]"
+
+/obj/item/ammo_magazine/slsrifle_rev/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/ammo_magazine/slsrifle_rev/hv
+	ammo_type = /obj/item/ammo_casing/srifle/hv
+
+/obj/item/ammo_magazine/slsrifle_rev/practice
+	ammo_type = /obj/item/ammo_casing/srifle/practice
+
+/obj/item/ammo_magazine/slsrifle_rev/rubber
+	ammo_type = /obj/item/ammo_casing/srifle/rubber
+
+/obj/item/ammo_magazine/slsrifle_rev/scrap
+	ammo_type = /obj/item/ammo_casing/srifle/scrap
+
 /// OTHER ///
 
 /obj/item/ammo_magazine/caps
