@@ -33,7 +33,14 @@
 /datum/uplink_item/item/visible_weapons/revolver
 	name = "Revolver"
 	item_cost = 7
+	antag_roles = list(ROLE_CONTRACTOR,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/storage/box/syndie_kit/revolver
+
+/datum/uplink_item/item/visible_weapons/hornet
+	name = "Revolver"
+	item_cost = 7
+	antag_roles = list(ROLE_MARSHAL)
+	path = /obj/item/storage/box/syndie_kit/hornet
 
 /datum/uplink_item/item/visible_weapons/submachinegun
 	name = "Submachine Gun"
