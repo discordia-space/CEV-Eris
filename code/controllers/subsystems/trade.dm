@@ -197,7 +197,19 @@ SUBSYSTEM_DEF(trade)
 
 // Checks item stacks and item containers to see if they match their base states (no more selling empty first-aid kits or split item stacks as if they were full)
 // Checks reagent containers to see if they match their base state or if they match the special offer from a station
-/datum/controller/subsystem/trade/proc/check_offer_contents(item, offer_path)
+/datum/controller/subsystem/trade/proc/check_offer_contents(item, offer_path, list/components = null, comp_count = null)
+	if(components && comp_count)
+		var/obj/item/I = item
+		var/list/item_components = I.GetComponents(/datum/component)
+		if(item_components.len)
+			var/success_count = 0
+			for(var/path in item_components)
+				if(is_path_in_list(path, components))
+					++success_count
+			if(success_count >= comp_count)
+				return TRUE
+		return FALSE
+
 	if(istype(item, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/current_container = item
 		var/datum/reagent/target_reagent = offer_path
@@ -228,7 +240,7 @@ SUBSYSTEM_DEF(trade)
 
 	return TRUE
 
-/datum/controller/subsystem/trade/proc/assess_offer(obj/machinery/trade_beacon/sending/beacon, offer_path)
+/datum/controller/subsystem/trade/proc/assess_offer(obj/machinery/trade_beacon/sending/beacon, offer_path, list/components = null, comp_count = null)
 	if(QDELETED(beacon))
 		return
 
@@ -237,7 +249,7 @@ SUBSYSTEM_DEF(trade)
 	for(var/atom/movable/AM in beacon.get_objects())
 		if(AM.anchored || !(istype(AM, offer_path) || ispath(offer_path, /datum/reagent)))
 			continue
-		if(!check_offer_contents(AM, offer_path))		// Check contents after we know it's the same type
+		if(!check_offer_contents(AM, offer_path, components, comp_count))		// Check contents after we know it's the same type
 			continue
 		. += AM
 
@@ -265,9 +277,9 @@ SUBSYSTEM_DEF(trade)
 	return all_offers
 
 /datum/controller/subsystem/trade/proc/fulfill_offer(obj/machinery/trade_beacon/sending/beacon, datum/money_account/account, datum/trade_station/station, offer_path, is_slaved = FALSE)
-	var/list/exported = assess_offer(beacon, offer_path)
-
 	var/list/offer_content = station.special_offers[offer_path]
+	var/list/exported = assess_offer(beacon, offer_path, offer_content["components"], offer_content["comp_count"])
+
 	var/offer_amount = text2num(offer_content["amount"])
 	var/offer_price = text2num(offer_content["price"])
 	if(!exported || length(exported) < offer_amount || !offer_amount)

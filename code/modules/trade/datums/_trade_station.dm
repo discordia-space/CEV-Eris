@@ -3,7 +3,8 @@
 #define custom_good_amount_range(randList) good_data(null, randList, null)
 #define custom_good_price(price) good_data(null, null, price)
 
-#define offer_data(name, price, amount) list("name" = name, "price" = price, "amount" = amount)
+#define offer_data(name, price, amount) list("name" = name, "price" = price, "amount" = amount, "components" = null, "comp_count" = null)
+#define offer_data_mods(name, price, amount, components, count) list("name" = name, "price" = price, "amount" = amount, "components" = components, "comp_count" = count)
 
 #define category_data(nam, listOfTags) list("name" = nam, "tags" = listOfTags)
 
@@ -332,12 +333,18 @@
 		var/name = "ERROR: no name found"	// Shouldn't see these anyway
 		var/base_price = 1					//
 		var/amount_cap = 0					//
+		var/list/components
+		var/component_count
 		if(offer_content?.len >= 3)
 			name = offer_content["name"]
 			base_price = text2num(offer_content["price"])
 			amount_cap = text2num(offer_content["amount"])
 		else
 			continue
+
+		if(offer_content?.len >= 5)
+			components = offer_content["components"]
+			component_count = offer_content["comp_count"]
 
 		var/min_amt = round(SPECIAL_OFFER_MIN_PRICE / max(1, base_price))
 		var/max_amt = round(SPECIAL_OFFER_MAX_PRICE / (max(1, base_price)))
@@ -358,7 +365,10 @@
 		var/max_price = clamp(new_amt * max(1, base_price), min_price, SPECIAL_OFFER_MAX_PRICE)
 		var/new_price = rand(min_price, max_price)
 
-		offer_content = offer_data(name, new_price, new_amt)
+		if(offer_content?.len >= 5)
+			offer_content = offer_data_mods(name, new_price, new_amt, components, component_count)
+		else
+			offer_content = offer_data(name, new_price, new_amt)
 		special_offers[offer_type] = offer_content
 
 /datum/trade_station/proc/offer_tick()
