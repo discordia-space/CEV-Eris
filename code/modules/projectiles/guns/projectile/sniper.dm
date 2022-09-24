@@ -9,10 +9,12 @@
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_COVERT = 2)
 	caliber = CAL_ANTIM
-	init_recoil = RIFLE_RECOIL(5)
+	init_recoil = LMG_RECOIL(3)
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING
 	max_shells = 1
+	damage_multiplier = 2
+	proj_step_multiplier = 0 //so the PTR isn't useless as a sniper weapon
 	ammo_type = /obj/item/ammo_casing/antim
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
@@ -38,7 +40,7 @@
 	name = "Hristov frame"
 	desc = "A Hristov AMR frame. For removing chunks of man and machine alike."
 	icon_state = "frame_antimaterial"
-	result = /obj/item/gun/projectile/heavysniper
+	resultvars = list(/obj/item/gun/projectile/heavysniper)
 	gripvars = /obj/item/part/gun/grip/serb
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
 	barrelvars = /obj/item/part/gun/barrel/antim

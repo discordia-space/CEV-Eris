@@ -1489,8 +1489,13 @@
 /obj/machinery/vending/theomat/proc/check_NT(mob/user)
 	var/bingo = FALSE
 	if(ishuman(user))
+	
 		var/mob/living/carbon/human/H = user
-		if(is_neotheology_disciple(H))
+
+		if(!scan_id)
+			bingo = TRUE
+
+		else if(is_neotheology_disciple(H))
 			bingo = TRUE
 
 		else if(istype(H.get_active_hand(), /obj/item/clothing/accessory/cross))

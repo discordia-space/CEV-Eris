@@ -253,15 +253,15 @@
 	preview_icon.Scale(48+32, 16+32)
 
 	mannequin.dir = NORTH
-	var/icon/stamp = getFlatIcon(mannequin, NORTH, always_use_defdir = 1)
+	var/icon/stamp = getFlatIcon(mannequin, NORTH)
 	preview_icon.Blend(stamp, ICON_OVERLAY, 25, 17)
 
 	mannequin.dir = WEST
-	stamp = getFlatIcon(mannequin, WEST, always_use_defdir = 1)
+	stamp = getFlatIcon(mannequin, WEST)
 	preview_icon.Blend(stamp, ICON_OVERLAY, 1, 9)
 
 	mannequin.dir = SOUTH
-	stamp = getFlatIcon(mannequin, SOUTH, always_use_defdir = 1)
+	stamp = getFlatIcon(mannequin, SOUTH)
 	preview_icon.Blend(stamp, ICON_OVERLAY, 49, 1)
 
 	preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.
