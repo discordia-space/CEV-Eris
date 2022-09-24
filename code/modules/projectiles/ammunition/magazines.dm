@@ -305,6 +305,19 @@
 	ammo_type = /obj/item/ammo_casing/clrifle/scrap
 	spawn_tags = SPAWN_AMMO_COMMON
 
+/obj/item/ammo_magazine/ihclmg
+	name = "LMG munitions box (.25 Caseless Rifle)"
+	icon_state = "pk_box"
+	modular_sprites = FALSE
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_BOX
+	caliber = CAL_CLRIFLE
+	matter = list(MATERIAL_STEEL = 16)
+	ammo_type = /obj/item/ammo_casing/clrifle
+	max_ammo = 80
+	w_class = ITEM_SIZE_NORMAL
+	ammo_states = list(15, 30, 50, 79, 80)
 ////////// .25 PISTOL //////////
 
 /obj/item/ammo_magazine/cspistol
