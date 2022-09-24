@@ -92,7 +92,7 @@ There are important things regarding this file:
 	penetrating = 2
 	can_ricochet = FALSE //to reduce collateral damage and FF, since IH use it in their primary firearm
 	recoil = 3.5
-	step_delay = 0.8 //intermediate between .20 and .30, but easy to use
+	step_delay = 0.9 //intermediate between .20 and .30, but easy to use
 
 /obj/item/projectile/bullet/clrifle/practice
 	name = "practice bullet"
