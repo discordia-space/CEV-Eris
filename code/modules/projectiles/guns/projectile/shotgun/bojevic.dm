@@ -56,7 +56,7 @@
 	name = "Bojevic frame"
 	desc = "A Bojevic shotgun frame. Specially designed to sweep streets and spaceship halls."
 	icon_state = "frame_bojevic"
-	result = /obj/item/gun/projectile/shotgun/bojevic
-	gripvars = /obj/item/part/gun/grip/serb
+	resultvars = list(/obj/item/gun/projectile/shotgun/bojevic)
+	gripvars = list(/obj/item/part/gun/grip/serb)
 	mechanismvar = /obj/item/part/gun/mechanism/autorifle // listen, its semi and full auto, not pump. makes sense
-	barrelvars = /obj/item/part/gun/barrel/shotgun
+	barrelvars = list(/obj/item/part/gun/barrel/shotgun)

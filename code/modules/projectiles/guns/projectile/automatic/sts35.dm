@@ -57,7 +57,7 @@
 	name = "STS-35 frame"
 	desc = "An STS-35 frame. The finest in kraut space magic."
 	icon_state = "frame_orrifle"
-	result = /obj/item/gun/projectile/automatic/sts35
-	gripvars = /obj/item/part/gun/grip/black
+	resultvars = list(/obj/item/gun/projectile/automatic/sts35)
+	gripvars = list(/obj/item/part/gun/grip/black)
 	mechanismvar = /obj/item/part/gun/mechanism/autorifle
-	barrelvars = /obj/item/part/gun/barrel/lrifle
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle)
