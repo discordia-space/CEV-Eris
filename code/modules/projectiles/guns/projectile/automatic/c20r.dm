@@ -42,10 +42,10 @@
 	name = "C20r frame"
 	desc = "A C20r SMG frame. The syndicate's bread and butter."
 	icon_state = "frame_syndi"
-	result = /obj/item/gun/projectile/automatic/c20r
-	gripvars = /obj/item/part/gun/grip/black
+	resultvars = list(/obj/item/gun/projectile/automatic/c20r)
+	gripvars = list(/obj/item/part/gun/grip/black)
 	mechanismvar = /obj/item/part/gun/mechanism/smg
-	barrelvars = /obj/item/part/gun/barrel/pistol
+	barrelvars = list(/obj/item/part/gun/barrel/pistol)
 
 /obj/item/gun/projectile/automatic/c20r/update_icon()
 	cut_overlays()
@@ -78,5 +78,5 @@
 	name = "C-20M frame"
 	desc = "A C-20M SMG frame. The syndicate's bread and butter, reverse-engineered."
 	icon_state = "frame_moe"
-	result = /obj/item/gun/projectile/automatic/c20r/moebius
+	resultvars = list(/obj/item/gun/projectile/automatic/c20r/moebius)
 	spawn_blacklisted = TRUE

@@ -229,7 +229,7 @@ COMSIG_ABERRANT_SECONDARY
 				return TRUE
 		var/datum/component/modification/M = toremove.GetComponent(/datum/component/modification)
 		if(M.removable == FALSE)
-			to_chat(user, SPAN_DANGER("\the [toremove] seems to be permanently attached to the [upgrade_loc]"))
+			to_chat(user, SPAN_DANGER("\The [toremove] seems to be permanently attached to the [upgrade_loc]"))
 		else
 			if(C.use_tool(user = user, target =  upgrade_loc, base_time = M.removal_time, required_quality = removal_tool_quality, fail_chance = M.removal_difficulty, required_stat = M.removal_stat))
 				// If you pass the check, then you manage to remove the upgrade intact
