@@ -63,6 +63,7 @@
 	{{:helper.link("View Cart", 'search', {'PRG_trade_screen' : "cart"}, data.tradescreen == "cart" ? 'selected' : null)}}
 	{{:helper.link("Saved Carts", 'disk', {'PRG_trade_screen' : "saved"}, data.tradescreen == "saved" ? 'selected' : null)}}
 	{{:helper.link("Order Requests", 'comment', {'PRG_trade_screen' : "orders"}, data.tradescreen == "orders" ? 'selected' : null)}}
+	{{:helper.link("Logs", 'note', {'PRG_trade_screen' : "logs"}, data.tradescreen == "logs" ? 'selected' : null)}}
 	<br>
 	<hr>
 	{{if data.station_name && (data.tradescreen == "goods" || data.tradescreen == "offers")}}
@@ -111,6 +112,8 @@
 		{{#def._saved}}
 	{{else data.tradescreen == "orders"}}
 		{{#def._orders}}
+	{{else data.tradescreen == "logs"}}
+		{{#def._logs}}
 	{{/if}}
 {{else}}
 	<table class ="fixed" style ="width: 100%">

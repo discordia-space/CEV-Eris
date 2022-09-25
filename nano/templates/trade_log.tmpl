@@ -1,12 +1,7 @@
-{{:helper.link(data.screen ? data.screen : "Trade Beacon Log", null, {'PRG_screen' : 1})}}
-{{if data.account}}
-	{{:helper.link(data.account, null, {'PRG_account' : 1})}}{{:helper.link('', 'circle-close', {'PRG_account_unlink' : 1}, null, 'redButton')}}
-{{else}}
-	{{:helper.link("Account", 'link', {'PRG_account' : 1})}}
-{{/if}}
+{{:helper.link("Select Log", null, {'PRG_log_screen' : 1})}}
 <br>
 <hr>
-{{if data.screen}}
+{{if data.log_screen}}
 	{{if data.account}}
 		<div class="item" style="margin: 0px 0 0 0">
 			<table class="fixed" style="width: 40%; margin-left: 30%; background: #000000; border: 1px solid #40628a">
@@ -17,7 +12,7 @@
 								Log:
 							</div>
 							<div class="itemContent" style="text-align: center">
-								<span class="average">{{:data.screen}}</span>
+								<span class="average">{{:data.log_screen}}</span>
 							</div>
 						</div>
 				<tr>
@@ -41,33 +36,34 @@
 			<tr>
 				<td>
 					<div style="padding: 0 0 0 40%">
-						{{:helper.link("", 'arrowthickstop-1-w', {'PRG_page_first' : 1}, data.log_page == 1 ? 'disabled' : null)}}
+						{{:helper.link("", 'arrowthickstop-1-w', {'PRG_page_first' : "logs"}, data.log_page == 1 ? 'disabled' : null)}}
 					</div>
 				<td>
 					<div style="padding: 0 0 0 40%">
-						{{:helper.link("", 'arrowthick-1-w', {'PRG_page_prev_10' : 1}, data.log_page == 1 ? 'disabled' : null)}}
+						{{:helper.link("", 'arrowthick-1-w', {'PRG_page_prev_10' : "logs"}, data.log_page == 1 ? 'disabled' : null)}}
 					</div>
 				<td>
 					<div style="padding: 0 0 0 40%">
-						{{:helper.link("", 'arrow-1-w', {'PRG_page_prev' : 1}, data.log_page == 1 ? 'disabled' : null)}}
+						{{:helper.link("", 'arrow-1-w', {'PRG_page_prev' : "logs"}, data.log_page == 1 ? 'disabled' : null)}}
 					</div>
 				<td>
 					<div style="padding: 0 0 0 40%">
-						{{:helper.link(data.log_page, null, {'PRG_page_select' : data.page_max})}}
+						{{:helper.link(data.log_page, null, {'PRG_page_select' : "logs"})}}
 					</div>
 				<td>
 					<div style="padding: 0 0 0 40%">
-						{{:helper.link("", 'arrow-1-e', {'PRG_page_next' : data.page_max}, data.log_page == data.page_max ? 'disabled' : null)}}
+						{{:helper.link("", 'arrow-1-e', {'PRG_page_next' : "logs"}, data.log_page == data.page_max ? 'disabled' : null)}}
 					</div>
 				<td>
 					<div style="padding: 0 0 0 40%">
-						{{:helper.link("", 'arrowthick-1-e', {'PRG_page_next_10' : data.page_max}, data.log_page == data.page_max ? 'disabled' : null)}}
+						{{:helper.link("", 'arrowthick-1-e', {'PRG_page_next_10' : "logs"}, data.log_page == data.page_max ? 'disabled' : null)}}
 					</div>
 				<td>
 					<div style="padding: 0 0 0 40%">
-						{{:helper.link("", 'arrowthickstop-1-e', {'PRG_page_last' : data.page_max}, data.log_page == data.page_max ? 'disabled' : null)}}
+						{{:helper.link("", 'arrowthickstop-1-e', {'PRG_page_last' : "logs"}, data.log_page == data.page_max ? 'disabled' : null)}}
 					</div>
 		</table>
+		<hr>
 		<table class='item' style="background: #000000;border: 1px solid #40628a">
 			<tr class="bottom_bordered">
 				<td>Log ID
@@ -87,43 +83,12 @@
 								{{:value.contents}}
 							</ul>
 						</span>
-					<td>{{if data.screen == "Shipping"}}-{{/if}}{{:value.total_paid}}
+					<td>{{if data.log_screen == "Shipping"}}-{{/if}}{{:value.total_paid}}
 					<td>{{:value.time}}
 					<td>
 						{{:helper.link("Standard", null, {'PRG_print' : value.id})}}
 						{{:helper.link("Internal", null, {'PRG_print_internal' : value.id})}}
 			{{/for}}
-		</table>
-		<table class='item'>
-			<tr>
-				<td>
-					<div style="padding: 0 0 0 40%">
-						{{:helper.link("", 'arrowthickstop-1-w', {'PRG_page_first' : 1}, data.log_page == 1 ? 'disabled' : null)}}
-					</div>
-				<td>
-					<div style="padding: 0 0 0 40%">
-						{{:helper.link("", 'arrowthick-1-w', {'PRG_page_prev_10' : 1}, data.log_page == 1 ? 'disabled' : null)}}
-					</div>
-				<td>
-					<div style="padding: 0 0 0 40%">
-						{{:helper.link("", 'arrow-1-w', {'PRG_page_prev' : 1}, data.log_page == 1 ? 'disabled' : null)}}
-					</div>
-				<td>
-					<div style="padding: 0 0 0 40%">
-						{{:helper.link(data.log_page, null, {'PRG_page_select' : data.page_max})}}
-					</div>
-				<td>
-					<div style="padding: 0 0 0 40%">
-						{{:helper.link("", 'arrow-1-e', {'PRG_page_next' : data.page_max}, data.log_page == data.page_max ? 'disabled' : null)}}
-					</div>
-				<td>
-					<div style="padding: 0 0 0 40%">
-						{{:helper.link("", 'arrowthick-1-e', {'PRG_page_next_10' : data.page_max}, data.log_page == data.page_max ? 'disabled' : null)}}
-					</div>
-				<td>
-					<div style="padding: 0 0 0 40%">
-						{{:helper.link("", 'arrowthickstop-1-e', {'PRG_page_last' : data.page_max}, data.log_page == data.page_max ? 'disabled' : null)}}
-					</div>
 		</table>
 	{{/if}}
 {{else}}
