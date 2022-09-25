@@ -79,7 +79,6 @@
 	)
 	offer_types = list(
 		/obj/item/organ/internal/scaffold = offer_data_mods("aberrant organ (input, process, output)", 800, 4, OFFER_ABERRANT_ORGAN, 3),
-		/obj/item/reagent_containers/food/snacks/moecube = offer_data("cube of still twitching meat", 100, 0),
 		/obj/item/oddity/common/healthscanner = offer_data("odd health scanner", 500, 1),
 		/obj/item/oddity/common/paper_omega = offer_data("collection of obscure reports", 500, 1),
 		/datum/reagent/stim/mbr = offer_data("Machine Binding Ritual bottle (60u)", 1600, 2),

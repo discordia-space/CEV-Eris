@@ -159,6 +159,38 @@ SUBSYSTEM_DEF(trade)
 			return station
 	return FALSE
 
+// Automatically sorts paths by child to parent
+/datum/controller/subsystem/trade/proc/add_to_offer_types(path)
+	if(!islist(offer_types))
+		offer_types = list()
+
+	if(!offer_types.len)
+		offer_types.Add(path)
+		offer_types[path] += 1
+		return
+
+	var/type_to_move
+	var/value_to_move
+
+	for(var/offer_type in offer_types)
+		if(path == offer_type)
+			offer_types[offer_type] += 1
+			return
+		if(ispath(path, offer_type))
+			type_to_move = offer_type
+			value_to_move = offer_types[offer_type]
+			offer_types.Remove(offer_type)
+			break
+		else if(ispath(offer_type, path))
+			break
+
+	offer_types |= path
+	offer_types[path] += 1
+
+	if(type_to_move && value_to_move)
+		offer_types.Add(type_to_move)
+		offer_types[type_to_move] = value_to_move
+
 // === PRICING ===
 
 //Returns cost of an existing object including contents
@@ -197,18 +229,19 @@ SUBSYSTEM_DEF(trade)
 
 // Checks item stacks and item containers to see if they match their base states (no more selling empty first-aid kits or split item stacks as if they were full)
 // Checks reagent containers to see if they match their base state or if they match the special offer from a station
-/datum/controller/subsystem/trade/proc/check_offer_contents(item, offer_path, list/components = null, comp_count = null)
-	if(components && comp_count)
+/datum/controller/subsystem/trade/proc/check_offer_contents(item, offer_path, list/attachments = null, attach_count = null)
+	if(attachments && attach_count)
 		var/obj/item/I = item
 		if(I.item_upgrades && I.item_upgrades.len)
 			var/success_count = 0
 			for(var/mod in I.item_upgrades)
-				for(var/path in components)
+				var/list/attachments_to_compare = attachments.Copy()
+				for(var/path in attachments_to_compare)
 					if(istype(mod, path))
 						++success_count
-						if(components.len == comp_count)
-							components.Remove(path)
-			if(success_count >= comp_count)
+						if(attachments_to_compare.len == attach_count)
+							attachments_to_compare.Remove(path)
+			if(success_count >= attach_count)
 				return TRUE
 		return FALSE
 
@@ -242,7 +275,7 @@ SUBSYSTEM_DEF(trade)
 
 	return TRUE
 
-/datum/controller/subsystem/trade/proc/assess_offer(obj/machinery/trade_beacon/sending/beacon, offer_path, list/components = null, comp_count = null)
+/datum/controller/subsystem/trade/proc/assess_offer(obj/machinery/trade_beacon/sending/beacon, offer_path, list/attachments = null, attach_count = null)
 	if(QDELETED(beacon))
 		return
 
@@ -251,7 +284,7 @@ SUBSYSTEM_DEF(trade)
 	for(var/atom/movable/AM in beacon.get_objects())
 		if(AM.anchored || !(istype(AM, offer_path) || ispath(offer_path, /datum/reagent)))
 			continue
-		if(!check_offer_contents(AM, offer_path, components, comp_count))		// Check contents after we know it's the same type
+		if(!check_offer_contents(AM, offer_path, attachments, attach_count))		// Check contents after we know it's the same type
 			continue
 		. += AM
 
@@ -280,7 +313,7 @@ SUBSYSTEM_DEF(trade)
 
 /datum/controller/subsystem/trade/proc/fulfill_offer(obj/machinery/trade_beacon/sending/beacon, datum/money_account/account, datum/trade_station/station, offer_path, is_slaved = FALSE)
 	var/list/offer_content = station.special_offers[offer_path]
-	var/list/exported = assess_offer(beacon, offer_path, offer_content["components"], offer_content["comp_count"])
+	var/list/exported = assess_offer(beacon, offer_path, offer_content["attachments"], offer_content["attach_count"])
 
 	var/offer_amount = text2num(offer_content["amount"])
 	var/offer_price = text2num(offer_content["price"])

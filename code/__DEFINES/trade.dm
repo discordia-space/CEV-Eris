@@ -15,8 +15,8 @@
 #define custom_good_amount_range(randList) good_data(null, randList, null)
 #define custom_good_price(price) good_data(null, null, price)
 
-#define offer_data(name, price, amount) list("name" = name, "price" = price, "amount" = amount, "components" = null, "comp_count" = null)
-#define offer_data_mods(name, price, amount, components, count) list("name" = name, "price" = price, "amount" = amount, "components" = components, "comp_count" = count)
+#define offer_data(name, price, amount) list("name" = name, "price" = price, "amount" = amount, "attachments" = null, "attach_count" = null)
+#define offer_data_mods(name, price, amount, attachments, count) list("name" = name, "price" = price, "amount" = amount, "attachments" = attachments, "attach_count" = count)
 
 #define trade_category_data(nam, listOfTags) list("name" = nam, "tags" = listOfTags)
 

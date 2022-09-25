@@ -135,7 +135,7 @@
 			var/offer_index = offer_types.Find(offer_path)
 			special_offers.Insert(offer_index, offer_path)
 			special_offers[offer_path] = offer_content
-			SStrade.offer_types |= offer_path				// For blacklisting offer goods from exports
+			SStrade.add_to_offer_types(offer_path)			// For blacklisting offer goods from exports
 
 /datum/trade_station/proc/update_tick()
 	offer_tick()
@@ -328,8 +328,8 @@
 			continue
 
 		if(offer_content?.len >= 5)
-			components = offer_content["components"]
-			component_count = offer_content["comp_count"]
+			components = offer_content["attachments"]
+			component_count = offer_content["attach_count"]
 
 		var/min_amt = round(SPECIAL_OFFER_MIN_PRICE / max(1, base_price))
 		var/max_amt = round(SPECIAL_OFFER_MAX_PRICE / (max(1, base_price)))
