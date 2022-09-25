@@ -11,9 +11,9 @@
 	markup = 1
 	base_income = 0					// Needs player interaction to replenish stock
 	wealth = -16000					//
-	hidden_inv_threshold = 2000
-	recommendation_threshold = 4000
-	stations_recommended = list("bluespace")
+	hidden_inv_threshold = 4000
+	recommendation_threshold = 0
+	stations_recommended = list()
 	recommendations_needed = 1
 	inventory = list(
 		"Old Junk" = list(
