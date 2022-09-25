@@ -1,5 +1,0 @@
-author: maikilangiolo
-delete-after: true
-changes:
-  - bugfix: fixed spaghetti with guns that did not specify ap multplier, the sts and
-      clarissa. whoops
