@@ -20,6 +20,10 @@
 	recommendation_threshold = 4000
 	stations_recommended = list("fs_ammo", "style")
 	inventory = list(
+		"Design Disks" = list(
+			/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo = good_data("Frozen Star Nonlethal Magazines Pack", list(1, 10), 500),
+			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = good_data("Frozen Star Lethal Magazines Pack", list(1, 10), 1000)
+		),
 		"Enforce Equipment" = list(
 			/obj/item/handcuffs,
 			/obj/item/shield/riot,
@@ -39,8 +43,6 @@
 			/obj/item/gun/projectile/shotgun/pump
 		),
 		"Ammunition and Accessories" = list(
-			/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo = good_data("Frozen Star Nonlethal Magazines Pack", list(1, 10), 500),
-			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = good_data("Frozen Star Lethal Magazines Pack", list(1, 10), 1000),
 			/obj/item/grenade/empgrenade/low_yield,
 			/obj/item/grenade/smokebomb,
 			/obj/item/grenade/flashbang,
@@ -85,7 +87,7 @@
 		/obj/item/part/armor = offer_data("armor part", 500, 8),
 		/obj/item/part/armor/artwork = offer_data("artistic armor part", 1000, 1),
 		/obj/item/part/gun/artwork = offer_data("artistic gun part", 1000, 1),
-		/obj/item/gun = offer_data_mods("modified gun (3 upgrades)", 1200, 4, OFFER_MODDED_GUN, 3),
+		/obj/item/gun = offer_data_mods("modified gun (2 upgrades)", 3200, 4, OFFER_MODDED_GUN, 2),
 		/obj/item/part/gun/frame/ak47 = offer_data("AK frame", 800, 1),
 		/obj/item/part/gun/frame/boltgun  = offer_data("boltgun frame", 800, 1),
 		/obj/item/part/gun/frame/sol = offer_data("Sol frame", 1000, 1),

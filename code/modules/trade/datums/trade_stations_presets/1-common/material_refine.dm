@@ -40,8 +40,8 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/tool/pickaxe = offer_data_mods("modified pickaxe (3 upgrades)", 1200, 2, OFFER_MODDED_TOOL, 3),
-		/obj/item/tool/shovel = offer_data_mods("modified shovel (3 upgrades)", 1200, 2, OFFER_MODDED_TOOL, 3),
+		/obj/item/tool/pickaxe = offer_data_mods("modified pickaxe (3 upgrades)", 1400, 2, OFFER_MODDED_TOOL, 3),
+		/obj/item/tool/shovel = offer_data_mods("modified shovel (3 upgrades)", 1400, 2, OFFER_MODDED_TOOL, 3),
 		/obj/item/tool/pickaxe/onestar = offer_data("one star pickaxe", 5000, 2),
 		/obj/item/tool/pickaxe/drill/onestar = offer_data("one star mining drill", 5000, 2),
 		/obj/item/tool/pickaxe/jackhammer/onestar = offer_data("one star jackhammer", 5000, 2),

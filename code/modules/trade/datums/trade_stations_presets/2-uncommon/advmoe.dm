@@ -20,8 +20,8 @@
 		"Scientific Surplus" = list(
 			/obj/item/storage/deferred/slime = good_data("slime supply box", list(1, 3), 500),
 			/obj/item/storage/deferred/xenobotany = good_data("xenobotany supply box", list(1, 3), 500),
-			/obj/item/storage/deferred/rnd = good_data("research box", list(1, 3), 5000),			// compare with export crate pricing
-			/obj/item/storage/box/monkeycubes = good_data("monkey cube box", list(1, 3), 1000),
+			/obj/item/storage/deferred/rnd = good_data("research box", list(1, 3), 5000),
+			/obj/item/storage/box/monkeycubes = good_data("monkey cube box", list(1, 3), 2000),
 			/obj/machinery/suspension_gen
 		),
 		"Chemical Surplus" = list(
@@ -43,7 +43,7 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/organ/internal/scaffold = offer_data_mods("aberrant organ (input, process, output, secondary)", 1400, 4, OFFER_ABERRANT_ORGAN_PLUS, 4),
+		/obj/item/organ/internal/scaffold = offer_data_mods("aberrant organ (input, process, output, secondary)", 2400, 4, OFFER_ABERRANT_ORGAN_PLUS, 4),
 		/datum/reagent/stim/machine_spirit = offer_data("Machine Spirit bottle (60u)", 3200, 2),
 		/datum/reagent/stim/grape_drops = offer_data("Grape drops bottle (60u)", 3200, 2),
 		/datum/reagent/stim/ultra_surgeon = offer_data("UltraSurgeon bottle (60u)", 3200, 2),

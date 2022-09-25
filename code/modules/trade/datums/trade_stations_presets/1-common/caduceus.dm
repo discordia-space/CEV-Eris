@@ -53,6 +53,12 @@
 			/obj/item/reagent_containers/blood/OPlus,
 			/obj/item/reagent_containers/blood/OMinus
 		),
+		"Machinery" = list(
+			/obj/item/electronics/circuitboard/centrifuge,
+			/obj/item/electronics/circuitboard/electrolyzer,
+			/obj/item/electronics/circuitboard/reagentgrinder,
+			/obj/item/electronics/circuitboard/industrial_grinder
+		)
 		"Misc" = list(
 			/obj/item/storage/pouch/medical_supply,
 //			/obj/item/virusdish/random,		// Spawns without an icon
@@ -78,9 +84,9 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/organ/internal/scaffold = offer_data_mods("aberrant organ (input, process, output)", 800, 4, OFFER_ABERRANT_ORGAN, 3),
 		/obj/item/oddity/common/healthscanner = offer_data("odd health scanner", 500, 1),
 		/obj/item/oddity/common/paper_omega = offer_data("collection of obscure reports", 500, 1),
+		/obj/item/organ/internal/scaffold = offer_data_mods("aberrant organ (input, process, output)", 1200, 4, OFFER_ABERRANT_ORGAN, 3),
 		/datum/reagent/stim/mbr = offer_data("Machine Binding Ritual bottle (60u)", 1600, 2),
 		/datum/reagent/stim/cherrydrops = offer_data("Cherry Drops bottle (60u)", 1600, 2),
 		/datum/reagent/stim/pro_surgeon = offer_data("ProSurgeon bottle (60u)", 1600, 2),

@@ -33,6 +33,6 @@
 		/obj/item/oddity/common/paper_crumpled = offer_data("turn-out page", 500, 1),
 		/obj/item/oddity/common/paper_bundle = offer_data("paper bundle", 500, 1),
 		/obj/item/music_tape = offer_data("music tape", 600, 4),
-		/obj/item/coin = offer_data("metal coin", 4000, 1),						// From what I can tell, these are pretty rare
-		/obj/item/oddity/artwork = offer_data("artistic oddity", 1600, 1)
+		/obj/item/oddity/artwork = offer_data("artistic oddity", 1600, 1),
+		/obj/item/coin = offer_data("metal coin", 4000, 1)						// From what I can tell, these are pretty rare
 	)

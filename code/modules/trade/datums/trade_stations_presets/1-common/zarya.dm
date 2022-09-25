@@ -13,7 +13,7 @@
 	base_income = 1600
 	wealth = 0
 	hidden_inv_threshold = 0
-	recommendation_threshold = 3000
+	recommendation_threshold = 0
 	stations_recommended = list()
 	inventory = list(
 		"Design Disks" = list(
@@ -60,15 +60,17 @@
 			/obj/item/storage/toolbox/electrical
 		),
 		"Electronics" = list(
-			/obj/item/electronics/circuitboard/pacman,
-			/obj/item/electronics/circuitboard/shield_diffuser,
-			/obj/item/electronics/circuitboard/long_range_scanner,
-			/obj/item/electronics/circuitboard/solar_control,
-			/obj/item/electronics/circuitboard/smes,
+			/obj/item/electronics/airlock,
+			/obj/item/electronics/airlock/secure,
+			/obj/item/electronics/airalarm,
+			/obj/item/electronics/firealarm,
 			/obj/item/electronics/circuitboard/apc,
-			/obj/item/electronics/circuitboard/breakerbox,
 			/obj/item/electronics/circuitboard/recharger,
-			/obj/item/electronics/circuitboard/batteryrack
+			/obj/item/electronics/circuitboard/autolathe,
+			/obj/item/electronics/circuitboard/autolathe_disk_cloner,
+			/obj/item/electronics/circuitboard/smelter,
+			/obj/item/electronics/circuitboard/sorter,
+			/obj/item/electronics/circuitboard/crafting_station
 		),
 		"Power Generation" = list(
 			/obj/item/electronics/tracker,
@@ -84,7 +86,9 @@
 			/obj/machinery/pipedispenser/disposal/orderable,
 			/obj/structure/reagent_dispensers/watertank,
 			/obj/structure/reagent_dispensers/fueltank,
-			/obj/machinery/floodlight
+			/obj/machinery/floodlight,
+			/obj/item/construct/conveyor = custom_good_price(50),
+			/obj/item/construct/conveyor_switch = custom_good_price(50)
 		)
 	)
 	offer_types = list(
@@ -93,11 +97,11 @@
 		/obj/item/oddity/common/blueprint = offer_data("strange blueprint", 500, 1),
 		/obj/item/oddity/common/old_radio = offer_data("old radio", 500, 1),
 		/obj/item/organ/external/robotic = offer_data("any external prosthetic", 400, 8),
-		/obj/item/tool/crowbar = offer_data_mods("modified crowbar (6 upgrades)", 2400, 2, OFFER_MODDED_TOOL, 6),
-		/obj/item/tool/screwdriver = offer_data_mods("modified screwdriver (6 upgrades)", 2400, 2, OFFER_MODDED_TOOL, 6),
-		/obj/item/tool/shovel = offer_data_mods("modified shovel (6 upgrades)", 2400, 2, OFFER_MODDED_TOOL, 6),
-		/obj/item/tool/wirecutters = offer_data_mods("modified wirecutters (6 upgrades)", 2400, 2, OFFER_MODDED_TOOL, 6),
-		/obj/item/tool/wrench = offer_data_mods("modified wrench (6 upgrades)", 2400, 2, OFFER_MODDED_TOOL, 6),
-		/obj/item/tool/weldingtool = offer_data_mods("modified welding tool (6 upgrades)", 2400, 2, OFFER_MODDED_TOOL, 6),
+		/obj/item/tool/crowbar = offer_data_mods("modified crowbar (6 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 6),
+		/obj/item/tool/screwdriver = offer_data_mods("modified screwdriver (6 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 6),
+		/obj/item/tool/shovel = offer_data_mods("modified shovel (6 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 6),
+		/obj/item/tool/wirecutters = offer_data_mods("modified wirecutters (6 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 6),
+		/obj/item/tool/wrench = offer_data_mods("modified wrench (6 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 6),
+		/obj/item/tool/weldingtool = offer_data_mods("modified welding tool (6 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 6),
 		/obj/item/oddity/techno = offer_data("unknown technological part", 3200, 2)
 	)

@@ -54,6 +54,6 @@
 		/obj/item/oddity/common/book_unholy = offer_data("unholy book", 500, 1),
 		/obj/item/oddity/common/book_omega = offer_data("occult book", 500, 1),
 		/obj/item/oddity/artwork = offer_data("artistic oddity", 1600, 1),
-		/obj/item/gun/projectile/revolver/artwork_revolver = offer_data("artistic revolver", 4000, 1),
-		/obj/structure/artwork_statue = offer_data("artistic statue", 3200, 1)
+		/obj/structure/artwork_statue = offer_data("artistic statue", 3200, 1),
+		/obj/item/gun/projectile/revolver/artwork_revolver = offer_data("artistic revolver", 4000, 1)
 	)

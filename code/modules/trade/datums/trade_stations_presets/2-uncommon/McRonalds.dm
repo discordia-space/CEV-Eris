@@ -5,7 +5,7 @@
 	icon_states = list("htu_station", "station")
 	uid = "mcronalds"
 	tree_x = 0.46
-	tree_y = 0.7
+	tree_y = 0.8
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = COMMON_GOODS
