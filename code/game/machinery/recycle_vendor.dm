@@ -203,6 +203,10 @@
 	flick("recycle_vend", src)
 	update_icon()
 
+	if(stored_item_value < 50 && prob(5))
+		speak("Why don't you collect tin cans next time?")
+
+
 /obj/machinery/recycle_vendor/Process()
 	if(stat & (BROKEN|NOPOWER))
 		return
