@@ -125,7 +125,7 @@
 //Accessory holsters
 /obj/item/clothing/accessory/holster
 	name = "concealed carry holster"
-	desc = "An inconspicious holster that can be attached to your uniform, right under your armpit. Can only fit handguns... And maybe something else, too."
+	desc = "An inconspicious holster that can be attached to your uniform, right under your armpit. Can fit a handgun... And maybe something else, too."
 	icon_state = "holster"
 	slot = "utility"
 	matter = list(MATERIAL_BIOMATTER = 5)
