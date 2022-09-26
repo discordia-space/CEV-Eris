@@ -723,7 +723,7 @@
 
 /obj/item/gun/proc/initialize_scope()
 	var/obj/screen/item_action/action = locate(/obj/screen/item_action/top_bar/gun/scope) in hud_actions
-	if(zoom_factors.len >=1)
+	if(zoom_factors.len >= 1)
 		if(!action)
 			action = new /obj/screen/item_action/top_bar/gun/scope
 			action.owner = src
