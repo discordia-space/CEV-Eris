@@ -55,7 +55,7 @@
 	var/dual_wielding
 	var/can_dual = FALSE // Controls whether guns can be dual-wielded (firing two at once).
 	var/active_zoom_factor = 1 //Index of currently selected zoom factor
-	var/list/zoom_factors = list() //How much to scope in when using weapon,
+	var/list/zoom_factors = list()//How much to scope in when using weapon,
 	var/list/initial_zoom_factors = list()
 
 	var/suppress_delay_warning = FALSE
@@ -160,7 +160,7 @@
 		recoil = getRecoil()
 	else if(!istype(recoil, /datum/recoil))
 		error("Invalid type [recoil.type] found in .recoil during /obj Initialize()")
-	initial_zoom_factors = zoom_factors	
+	initial_zoom_factors = zoom_factors.Copy()
 	. = ..()
 	initialize_firemodes()
 	initialize_scope()
@@ -676,17 +676,9 @@
 	active_zoom_factor++
 	if(active_zoom_factor > zoom_factors.len)
 		active_zoom_factor = 1
-	set_zoommode(active_zoom_factor)
+	refresh_upgrades()
 	toggle_scope(user, TRUE)
 
-/obj/item/gun/proc/set_zoommode(index)
-	refresh_upgrades()
-	if(index > zoom_factors.len)
-		index = 1
-	var/datum/firemode/new_mode = zoom_factors[active_zoom_factor]
-//	new_mode.update()
-//	update_hud_actions()
-	return new_mode
 
 
 /obj/item/gun/examine(mob/user)
@@ -731,7 +723,7 @@
 
 /obj/item/gun/proc/initialize_scope()
 	var/obj/screen/item_action/action = locate(/obj/screen/item_action/top_bar/gun/scope) in hud_actions
-	if(zoom_factors)
+	if(zoom_factors.len >=1)
 		if(!action)
 			action = new /obj/screen/item_action/top_bar/gun/scope
 			action.owner = src
@@ -985,7 +977,7 @@
 	restrict_safety = initial(restrict_safety)
 	dna_compare_samples = initial(dna_compare_samples)
 	rigged = initial(rigged)
-	zoom_factors = initial_zoom_factors
+	zoom_factors = initial_zoom_factors.Copy()
 	darkness_view = initial(darkness_view)
 	vision_flags = initial(vision_flags)
 	see_invisible_gun = initial(see_invisible_gun)
@@ -1018,7 +1010,7 @@
 /obj/item/gun/proc/generate_guntags()
 	if(recoil.getRating(RECOIL_BASE) < recoil.getRating(RECOIL_TWOHAND))
 		gun_tags |= GUN_GRIP
-	if(!zoom_factors && !(slot_flags & SLOT_HOLSTER))
+	if(zoom_factors.len < 1 && !(slot_flags & SLOT_HOLSTER))
 		gun_tags |= GUN_SCOPE
 	if(!sharp)
 		gun_tags |= SLOT_BAYONET

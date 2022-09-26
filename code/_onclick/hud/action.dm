@@ -15,6 +15,7 @@
 	var/name = "Generic Action"
 	var/action_type = AB_ITEM
 	var/procname
+	var/list/arguments
 	var/atom/movable/target
 	var/check_flags = 0
 	var/processing = 0
@@ -71,9 +72,14 @@
 				Activate()
 			else
 				Deactivate()
-		if(AB_GENERIC || AB_ITEM_PROC)
+		if(AB_GENERIC)
 			if(target && procname)
 				call(target, procname)(usr)
+		if(AB_ITEM_PROC)
+			if(target && procname)
+				if(!arguments)
+					arguments = usr
+				call(target, procname)(arguments)		
 	return
 
 /datum/action/proc/Activate()
@@ -136,7 +142,7 @@
 
 	overlays.Cut()
 	var/image/img
-	if(owner.action_type == AB_ITEM || owner.action_type == AB_ITEM_PROC && owner.target)
+	if((owner.action_type == AB_ITEM || owner.action_type == AB_ITEM_PROC) && owner.target)
 		var/obj/item/I = owner.target
 		img = image(I.icon, src , I.icon_state)
 	else if(owner.button_icon && owner.button_icon_state)

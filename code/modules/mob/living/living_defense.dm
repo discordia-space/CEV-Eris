@@ -411,8 +411,10 @@
 				I.action.name = I.action_button_name
 				I.action.target = I
 				if(I.action_button_proc)
-					I.action.action_type = AB_GENERIC
+					I.action.action_type = AB_ITEM_PROC
 					I.action.procname = I.action_button_proc
+					if(I.action_button_arguments)
+						I.action.arguments = I.action_button_arguments
 			I.action.Grant(src)
 	return
 

@@ -36,7 +36,8 @@
 	var/datum/action/item_action/action
 	var/action_button_name //It is also the text which gets displayed on the action button. If not set it defaults to 'Use [name]'. If it's not set, there'll be no button.
 	var/action_button_is_hands_free = 0 //If 1, bypass the restrained, lying, and stunned checks action buttons normally test for
-	var/action_button_proc //If set, when used it calls the proc of that name
+	var/action_button_proc //If set, when the button is used it calls the proc of that name
+	var/action_button_arguments //If set, hands these arguments to the proc.
 
 	//This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 	//It should be used purely for appearance. For gameplay effects caused by items covering body parts, use body_parts_covered.

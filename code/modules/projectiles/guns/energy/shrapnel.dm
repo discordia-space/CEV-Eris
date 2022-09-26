@@ -57,7 +57,7 @@
 				to_chat(user, SPAN_NOTICE("You loosen the safety bolts, allowing the weapon to destroy empty cells for use as ammunition."))
 
 /obj/item/gun/energy/shrapnel/generate_guntags()
-	gun_tags = list(GUN_PROJECTILE)
+	gun_tags = list(GUN_PROJECTILE, GUN_SCOPE, SLOT_BAYONET)
 
 /obj/item/gun/energy/shrapnel/mounted
 	name = "SDF SC \"Schrapnell\""
