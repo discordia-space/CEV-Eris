@@ -48,7 +48,7 @@
 
 /obj/item/storage/pouch/holster/baton
 	name = "baton sheath"
-	desc = "Can hold a baton, or indeed most weapon shafts."
+	desc = "Can hold a baton and most weapon shafts."
 	icon_state = "baton_holster"
 	item_state = "baton_holster"
 	rarity_value = 50
