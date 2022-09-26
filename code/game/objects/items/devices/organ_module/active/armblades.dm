@@ -6,7 +6,7 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "armblade"
 	worksound = WORKSOUND_HARD_SLASH
-	force = WEAPON_FORCE_DANGEROUS
+	force = WEAPON_FORCE_BRUTAL
 	throwforce = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("stabbed", "chopped", "cut")
