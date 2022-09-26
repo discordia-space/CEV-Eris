@@ -189,3 +189,62 @@
 		rad = 0
 	)
 	price_tag = 500
+
+/obj/item/clothing/gloves/dusters
+	name = "steel knuckle dusters"
+	desc = "More pain for them, less for you."
+	icon_state = "knuckles"
+	item_state = "knuckles"
+	var/punch_increase = 5
+	price_tag = 20
+
+/obj/item/clothing/gloves/dusters/silver
+	name = "silver knuckle dusters"
+	desc = "More pain for them, more bling for you."
+	icon_state = "knuckles_silver"
+	item_state = "knuckles_silver"
+	price_tag = 40
+	style = STYLE_HIGH
+
+/obj/item/clothing/gloves/dusters/plasteel
+	name = "plasteel knuckle dusters"
+	desc = "Hurt more than steel ones."
+	icon_state = "knuckles_plasteel"
+	item_state = "knuckles_plasteel"
+	punch_increase = 10
+	price_tag = 60
+
+/obj/item/clothing/gloves/dusters/platinum
+	name = "spiked platinum knuckle dusters"
+	desc = "Hurt like hell, and stylish as well."
+	icon_state = "knuckles_plasteel"
+	item_state = "knuckles_plasteel"
+	punch_increase = 15
+	price_tag = 120
+	style = STYLE_HIGH
+
+/obj/item/clothing/gloves/dusters/gloves
+	name = "knuckle gloves"
+	desc = "Gloves with additional reinforcment on the knuckles. \
+	These have plasteel powder sewn into the knuckles, adding more kinetic energy to your punches."
+	icon_state = "knuckles"
+	item_state = "knuckles"
+	punch_increase = 10
+	style = STYLE_HIGH
+	armor = list(
+		melee = 4,
+		bullet = 1,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	price_tag = 540
+
+/obj/item/clothing/gloves/dusters/equipped(mob/living/carbon/human/H)
+	..()
+	H.punch_damage_increase += punch_increase
+
+/obj/item/clothing/gloves/dusters/dropped(mob/living/carbon/human/H)
+	H.punch_damage_increase -= punch_increase
+	..()
