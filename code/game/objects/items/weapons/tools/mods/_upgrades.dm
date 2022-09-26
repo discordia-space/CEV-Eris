@@ -315,7 +315,8 @@
 	if(weapon_upgrades[GUN_UPGRADE_EXPLODE])
 		G.rigged = 2
 	if(weapon_upgrades[GUN_UPGRADE_ZOOM])
-		G.zoom_factor += weapon_upgrades[GUN_UPGRADE_ZOOM]
+		var/newtype = weapon_upgrades[GUN_UPGRADE_ZOOM]
+		G.zoom_factors.Add(newtype)
 		G.initialize_scope()
 		if(ismob(G.loc))
 			var/mob/user = G.loc

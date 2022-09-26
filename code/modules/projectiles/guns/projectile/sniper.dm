@@ -20,7 +20,7 @@
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 20)
 	price_tag = 5000
-	zoom_factor = 2
+	zoom_factors = list(1,2)
 	twohanded = TRUE
 	darkness_view = 7
 	see_invisible_gun = SEE_INVISIBLE_NOLIGHTING
@@ -35,6 +35,8 @@
 	pierce_multiplier = 6
 	gun_parts = list(/obj/item/part/gun/frame/heavysniper = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/antim = 1)
 	serial_type = "SA"
+	action_button_name = "Switch zoom level"
+	action_button_proc = "switch_zoom"
 
 /obj/item/part/gun/frame/heavysniper
 	name = "Hristov frame"
@@ -117,7 +119,7 @@
 		return 1
 	return 0
 
-/obj/item/gun/projectile/heavysniper/zoom(tileoffset, viewsize, stayzoomed = TRUE)
+/obj/item/gun/projectile/heavysniper/zoom(tileoffset, viewsize)
 	..()
 	if(zoom)
 		damage_multiplier += extra_damage_mult_scoped

@@ -2,6 +2,7 @@
 #define AB_SPELL 2
 #define AB_INNATE 3
 #define AB_GENERIC 4
+#define AB_ITEM_PROC 5
 
 #define AB_CHECK_RESTRAINED 1
 #define AB_CHECK_STUNNED 2
@@ -70,7 +71,7 @@
 				Activate()
 			else
 				Deactivate()
-		if(AB_GENERIC)
+		if(AB_GENERIC || AB_ITEM_PROC)
 			if(target && procname)
 				call(target, procname)(usr)
 	return
@@ -135,7 +136,7 @@
 
 	overlays.Cut()
 	var/image/img
-	if(owner.action_type == AB_ITEM && owner.target)
+	if(owner.action_type == AB_ITEM || owner.action_type == AB_ITEM_PROC && owner.target)
 		var/obj/item/I = owner.target
 		img = image(I.icon, src , I.icon_state)
 	else if(owner.button_icon && owner.button_icon_state)

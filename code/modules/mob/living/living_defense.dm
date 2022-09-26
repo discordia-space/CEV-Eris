@@ -410,6 +410,9 @@
 					I.action = new/datum/action/item_action
 				I.action.name = I.action_button_name
 				I.action.target = I
+				if(I.action_button_proc)
+					I.action.action_type = AB_GENERIC
+					I.action.procname = I.action_button_proc
 			I.action.Grant(src)
 	return
 

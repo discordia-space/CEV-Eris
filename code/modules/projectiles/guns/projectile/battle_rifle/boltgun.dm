@@ -151,7 +151,7 @@
 	init_recoil = RIFLE_RECOIL(1.8)
 	init_offset = 0 //no bayonet
 	max_shells = 6
-	zoom_factor = 0.8 //vintorez level
+	zoom_factors = list(0.8) //vintorez level
 	magazine_type = /obj/item/ammo_magazine/srifle
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
 	wielded_item_state = "_doble_ih_scope"

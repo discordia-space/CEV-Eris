@@ -36,6 +36,7 @@
 	var/datum/action/item_action/action
 	var/action_button_name //It is also the text which gets displayed on the action button. If not set it defaults to 'Use [name]'. If it's not set, there'll be no button.
 	var/action_button_is_hands_free = 0 //If 1, bypass the restrained, lying, and stunned checks action buttons normally test for
+	var/action_button_proc //If set, when used it calls the proc of that name
 
 	//This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 	//It should be used purely for appearance. For gameplay effects caused by items covering body parts, use body_parts_covered.
@@ -580,8 +581,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(WEST)
 				usr.client.pixel_x = -viewoffset
 				usr.client.pixel_y = 0
-
-		usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [name]" : "[name]"].")
+		if(!stayzoomed)
+			usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [name]" : "[name]"].")
 		var/mob/living/carbon/human/H = usr
 		H.using_scope = src
 	else

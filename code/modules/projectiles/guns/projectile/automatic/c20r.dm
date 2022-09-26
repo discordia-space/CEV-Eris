@@ -24,7 +24,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/sfrifle_cock.ogg'
 	damage_multiplier = 1
 	penetration_multiplier = 0
-	zoom_factor = 0.4
+	zoom_factors = list(0.4)
 	init_recoil = SMG_RECOIL(0.6)
 	gun_parts = list(/obj/item/part/gun/frame/c20r = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
 
