@@ -3,9 +3,6 @@
 	examine_msg = "Can be attached to internal organs."
 	examine_difficulty = STAT_LEVEL_BASIC
 
-/datum/component/modification/organ/stromal/try_modify()
-	return
-
 /datum/component/modification/organ/stromal/on_examine(mob/user)
 	var/function_info = get_function_info()
 	if(function_info)
@@ -74,3 +71,40 @@
 	function_info += "</i>"
 
 	return function_info
+
+/datum/component/modification/organ/parenchymal
+	apply_to_types = list(/obj/item/organ/internal)
+	examine_msg = "Can be attached to internal organs."
+	examine_difficulty = STAT_LEVEL_BASIC
+	adjustable = TRUE
+
+/datum/component/modification/organ/parenchymal/modify(obj/item/I, mob/living/user)
+	specific_organ_size_mod = 0
+	max_blood_storage_mod = 0
+	blood_req_mod = 0
+	nutriment_req_mod = 0
+	oxygen_req_mod = 0
+
+	var/list/possibilities = ALL_STANDARD_ORGAN_EFFICIENCIES
+
+	for(var/organ in organ_efficiency_mod)
+		if(organ_efficiency_mod.len > 1)
+			for(var/organ_eff in possibilities)
+				if(organ != organ_eff && organ_efficiency_mod.Find(organ_eff))
+					possibilities.Remove(organ_eff)
+
+		var/decision = input("Choose an organ type (current: [organ])","Adjusting Organoid") as null|anything in possibilities
+		if(!decision)
+			decision = organ
+
+		var/list/organ_stats = ALL_ORGAN_STATS[decision]
+		var/modifier = round(organ_efficiency_mod[organ] / 100, 0.01)
+
+		organ_efficiency_mod.Remove(organ)
+		organ_efficiency_mod.Add(decision)
+		organ_efficiency_mod[decision] 	= round(organ_stats[1] * modifier, 1)
+		specific_organ_size_mod 		+= round(organ_stats[2] * modifier, 0.01)
+		max_blood_storage_mod			+= round(organ_stats[3] * modifier, 1)
+		blood_req_mod 					+= round(organ_stats[4] * modifier, 0.01)
+		nutriment_req_mod 				+= round(organ_stats[5] * modifier, 0.01)
+		oxygen_req_mod 					+= round(organ_stats[6] * modifier, 0.01)

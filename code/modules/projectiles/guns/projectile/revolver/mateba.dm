@@ -18,7 +18,7 @@
 	name = "Mateba frame"
 	desc = "A Mateba revolver frame. The officer's choice."
 	icon_state = "frame_mateba"
-	result = /obj/item/gun/projectile/revolver/mateba
-	gripvars = /obj/item/part/gun/grip/rubber
+	resultvars = list(/obj/item/gun/projectile/revolver/mateba)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/revolver
-	barrelvars = /obj/item/part/gun/barrel/magnum
+	barrelvars = list(/obj/item/part/gun/barrel/magnum)
