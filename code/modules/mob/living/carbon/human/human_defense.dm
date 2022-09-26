@@ -109,7 +109,7 @@ meteor_act
 
 	switch (def_zone)
 		if(BP_L_ARM, BP_R_ARM)
-			var/obj/item/organ/external/hand = src.get_organ(def_zone)
+			var/obj/item/organ/external/hand = get_organ(def_zone)
 
 			if(hand && hand.mob_can_unequip(src) && (stun_amount || agony_amount > 10))
 				msg_admin_attack("[src.name] ([src.ckey]) was disarmed by a stun effect")
