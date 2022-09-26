@@ -26,7 +26,7 @@
 
 /obj/item/part/gun/frame/winchester
 	name = "Svengali frame"
-	desc = "A Svengali lever rifle. If death is our destination this will surely bring it"
+	desc = "A Svengali lever rifle. If death is our destination this will surely bring it."
 	icon_state = "frame_winchester"
 	resultvars = list(/obj/item/gun/projectile/boltgun/levergun)
 	gripvars = list(/obj/item/part/gun/grip/rubber)
