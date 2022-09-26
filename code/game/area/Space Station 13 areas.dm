@@ -382,7 +382,8 @@ area/space/atmosalert()
 /area/outpost/pulsar
 	name = "\improper Pulsar Satellite Core"
 	icon_state = "engineering"
-	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+//	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	requires_power = 0
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 	ambience = list('sound/ambience/technoambient1.ogg','sound/ambience/technoambient2.ogg',
 	                'sound/ambience/technoambient3.ogg','sound/ambience/technoambient4.ogg',

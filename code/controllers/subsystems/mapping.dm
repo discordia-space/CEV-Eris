@@ -31,11 +31,11 @@ SUBSYSTEM_DEF(mapping)
 			testing("Overmap already exist in GLOB.maps_data for [GLOB.maps_data.overmap_z].")
 	else
 		testing("Overmap generation disabled in config.")
-	build_pulsar()
 
 //	world.max_z_changed() // This is to set up the player z-level list, maxz hasn't actually changed (probably)
 	maploader = new()
 	load_map_templates()
+	build_pulsar()
 
 	// Generate cache of all areas in world. This cache allows world areas to be looked up on a list instead of being searched for EACH time
 	for(var/area/A in world)
@@ -73,6 +73,7 @@ SUBSYSTEM_DEF(mapping)
 	world.incrementMaxZ()
 	GLOB.maps_data.pulsar_z = world.maxz
 	add_z_level(GLOB.maps_data.pulsar_z, GLOB.maps_data.pulsar_z, 1)
+	maploader.load_map(file("maps/pulsar/pulsar.dmm"), z_offset = GLOB.maps_data.overmap_z)
 	var/list/turfs = list()
 	for (var/square in block(locate(1,1,GLOB.maps_data.pulsar_z), locate(GLOB.maps_data.pulsar_size, GLOB.maps_data.pulsar_size, GLOB.maps_data.pulsar_z)))
 		// Switch to space turf with green grid overlay

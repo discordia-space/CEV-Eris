@@ -12,12 +12,18 @@
 	var/map_active
 	var/shield_power = 50
 
-/obj/machinery/pulsar/New(loc, ...)
-	. = ..()
+/obj/machinery/pulsar/Initialize(mapload, d)
 	linked = GLOB.maps_data.pulsar_star
 	ship = locate(/obj/effect/pulsar_ship) in world
 	if(ship)
 		RegisterSignal(ship, COMSIG_MOVABLE_MOVED, .proc/onShipMoved)
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/pulsar/LateInitialize()
+	scan_for_fuel()
+	. = ..()
+	
 
 /obj/machinery/pulsar/relaymove(var/mob/user, direction)
 	if(map_active && linked)
@@ -89,9 +95,7 @@
 				var/newdir = text2num(href_list["move"])
 				ship.try_move(newdir, TRUE)
 	else if(href_list["scan_fuel"])
-		tank = locate(/obj/structure/pulsar_fuel_tank) in range(5) //Should scan the shuttle area not range, but shuttle isn't mapped
-		tank?.connected_console = src
-		SSnano.update_uis(src)
+		scan_for_fuel()
 	
 	else if(href_list["set_shield"])
 		var/target_level = input(usr, "Set shielding power", "Shield control", 50) as num
@@ -121,6 +125,11 @@
 	return get_produced_power() * (100 - shield_power) / 100
 
 /obj/machinery/pulsar/proc/onShipMoved()
+	SSnano.update_uis(src)
+
+/obj/machinery/pulsar/proc/scan_for_fuel()
+	tank = locate(/obj/structure/pulsar_fuel_tank) in get_area(src)
+	tank?.connected_console = src
 	SSnano.update_uis(src)
 
 /obj/structure/pulsar_fuel_tank
