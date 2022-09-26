@@ -39,11 +39,9 @@
 	files = new /datum/research(src)
 
 	// Remove when actual organ research is made
-	for(var/disgorger in get_area_all_atoms(get_area(src)))
-		if(istype(disgorger, /obj/machinery/reagentgrinder/industrial/disgorger))
-			var/obj/machinery/reagentgrinder/industrial/disgorger/D = disgorger
-			for(var/design in D.knowledge.known_designs)
-				files.AddDesign2Known(design)
+	for(var/obj/machinery/reagentgrinder/industrial/disgorger/D in get_area_all_atoms(get_area(src)))
+		for(var/design in D.knowledge.known_designs)
+			files.AddDesign2Known(design)
 
 /obj/machinery/autolathe/organ_fabricator/res_load()
 	if(working || paused || error)
