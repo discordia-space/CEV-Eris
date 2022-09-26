@@ -310,7 +310,7 @@
 	name = "Codespeak"
 	desc = "You know Serbian Mercenaries' code language, adapted to use in shipboarding scenarios."
 	icon_state = "codespeak_serb" // https://game-icons.net/1x1/delapouite/pocket-radio.html
-	list/codespeak_procs = list(
+	codespeak_procs = list(
 		/mob/living/carbon/human/proc/sm_codespeak_help,
 		/mob/living/carbon/human/proc/sm_codespeak_backup,
 		/mob/living/carbon/human/proc/sm_codespeak_clear,
