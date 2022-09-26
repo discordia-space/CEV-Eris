@@ -35,6 +35,7 @@
 	result = /obj/item/clothing/gloves/dusters/gold
 	steps = list(
 		list(CRAFT_MATERIAL, 3, MATERIAL_GOLD), //Grab some gold
+		list(CRAFT_MATERIAL, 3, MATERIAL_PLATINUM), //Grab some platinum as well
 		list(QUALITY_WELDING, 10, "time" = 30), //Weld it into basic form
 		list(QUALITY_HAMMERING, 15, 10) //Harden into shape
 	)
