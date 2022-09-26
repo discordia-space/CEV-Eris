@@ -29,7 +29,7 @@
 		STAT_VIG = 40,
 	)
 
-	perks = list(/PERK_SURVIVOR,
+	perks = list(PERK_SURVIVOR,
 				 PERK_CODESPEAK_COP)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
