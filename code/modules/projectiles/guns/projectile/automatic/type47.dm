@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/type_47
-	name = "OS CAR .25 CS \"Type 47\""
-	desc = "A compact assault carbine of onestar orgin."
+	name = "OS Type 47 CAR .25 CS \"Zuosui\"" //Ghost
+	desc = "A boxy carbine of onestar orgin designed for special forces. there is a giant supressor attached to it.
 	icon = 'icons/obj/guns/projectile/os/type_47.dmi'
 	icon_state = "type_47"
 	item_state = "type_47"
@@ -15,7 +15,7 @@
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLATINUM = 4, MATERIAL_PLASTIC = 12)
 	price_tag = 2800
 	init_recoil = CARBINE_RECOIL(0.9)
-	fire_sound = 'sound/weapons/guns/fire/batrifle_fire.ogg'
+	fire_sound = 'sound/weapons/Gunshot_silenced.wav'
 	unload_sound = 'sound/weapons/guns/interact/batrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/batrifle_cock.ogg'
@@ -41,10 +41,6 @@
 	if (ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
-
-	if (silenced)
-		iconstring += "_s"
-		itemstring += "_s"
 
 	icon_state = iconstring
 	set_item_state(itemstring)
