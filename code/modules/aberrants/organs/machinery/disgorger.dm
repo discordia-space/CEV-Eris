@@ -257,10 +257,8 @@
 		O.show_message("\icon[src] <b>\The [src]</b> says, \"[message]\"", 2)
 	flick("[initial(icon_state)]_spit", src)
 
-	for(var/atom in get_area_all_atoms(get_area(src)))
-		if(istype(atom, /obj/machinery/autolathe/organ_fabricator))
-			var/obj/machinery/autolathe/organ_fabricator/OF = atom
-			OF.files.AddDesign2Known(D)
+	for(var/obj/machinery/autolathe/organ_fabricator/OF in get_area_all_atoms(get_area(src)))
+		OF.files.AddDesign2Known(D)
 
 /obj/machinery/reagentgrinder/industrial/disgorger/default_deconstruction(obj/item/I, mob/user)
 	var/qualities = list(QUALITY_RETRACTING)
