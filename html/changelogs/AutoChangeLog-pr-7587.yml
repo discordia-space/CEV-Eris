@@ -1,0 +1,8 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - rscdel: removed anomalous marshal lever guns blacklist
+  - tweak: changed lever rifle ammo 6 -> 10
+  - tweak: changed lever shotgun ammo 9 -> 7
+  - bugfix: removed unnecessary FS serial vars since they were children and inherited
+      the serial already

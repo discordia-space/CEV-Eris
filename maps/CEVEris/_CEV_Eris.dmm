@@ -21128,12 +21128,6 @@
 /obj/item/ammo_magazine/magnum,
 /obj/item/ammo_magazine/magnum,
 /obj/item/ammo_magazine/magnum,
-/obj/item/ammo_magazine/lrifle/pk,
-/obj/item/ammo_magazine/lrifle/pk,
-/obj/item/ammo_magazine/lrifle/pk,
-/obj/item/ammo_magazine/lrifle/pk,
-/obj/item/ammo_magazine/lrifle/pk,
-/obj/item/ammo_magazine/lrifle/pk,
 /obj/item/ammo_magazine/ammobox/lrifle,
 /obj/item/ammo_magazine/ammobox/lrifle,
 /obj/item/ammo_magazine/lrifle,
@@ -21149,6 +21143,12 @@
 /obj/item/ammo_magazine/ammobox/shotgun,
 /obj/item/ammo_magazine/ammobox/shotgun,
 /obj/item/ammo_magazine/ammobox/shotgun,
+/obj/item/ammo_magazine/ihclmg,
+/obj/item/ammo_magazine/ihclmg,
+/obj/item/ammo_magazine/ihclmg,
+/obj/item/ammo_magazine/ihclmg,
+/obj/item/ammo_magazine/ihclmg,
+/obj/item/ammo_magazine/ihclmg,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aZC" = (
@@ -46521,6 +46521,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/medbay/organs)
 "cgD" = (
@@ -65358,24 +65363,6 @@
 	},
 /turf/space,
 /area/shuttle/mining/station)
-"dca" = (
-/obj/machinery/button/remote/blast_door{
-	id = "maint_hatch_medchem";
-	name = "Maintenance Hatch Control";
-	pixel_y = 24;
-	req_access = newlist()
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck2port)
 "dcb" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -76116,6 +76103,11 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbreak)
 "dAt" = (
@@ -76629,7 +76621,6 @@
 	dir = 4
 	},
 /obj/structure/bed/chair/comfy/beige,
-/obj/landmark/join/start/doctor,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -76641,6 +76632,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/landmark/join/start/doctor,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/medical/medbreak)
 "dBH" = (
@@ -76648,7 +76640,6 @@
 	dir = 4
 	},
 /obj/structure/bed/chair/comfy/beige,
-/obj/landmark/join/start/doctor,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 8;
@@ -76660,6 +76651,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/landmark/join/start/doctor,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/medical/medbreak)
 "dBI" = (
@@ -76667,13 +76664,18 @@
 	dir = 4
 	},
 /obj/structure/bed/chair/comfy/beige,
-/obj/landmark/join/start/doctor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/landmark/join/start/doctor,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/medical/medbreak)
 "dBJ" = (
@@ -77027,6 +77029,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbreak)
 "dCu" = (
@@ -77186,6 +77193,11 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbreak)
 "dCQ" = (
@@ -77613,6 +77625,11 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbreak)
 "dDV" = (
@@ -78552,6 +78569,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/power/nt_obelisk,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
 "dGo" = (
@@ -101919,14 +101937,6 @@
 /obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4port)
-"hzo" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/eris/maintenance/section2deck3port)
 "hzE" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
@@ -106856,18 +106866,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
-"uDD" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "East APC";
-	pixel_x = 28
-	},
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/eris/maintenance/section2deck3port)
 "uEI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -107072,6 +107070,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/medbay/uppercor)
 "viY" = (
@@ -107222,6 +107221,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbreak)
 "vyv" = (
@@ -107877,14 +107881,6 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
-"xlF" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/eris/maintenance/section2deck3port)
 "xoj" = (
 /obj/machinery/computer/jtb_console,
 /turf/simulated/floor/tiled/dark/gray_perforated,
@@ -202870,11 +202866,11 @@ cnc
 cmT
 cln
 cgI
-uDD
-xlF
-xlF
-xlF
-hzo
+bSV
+bSV
+bSV
+bSV
+bSV
 bPJ
 bSx
 bYL
@@ -205716,7 +205712,7 @@ jDi
 bmx
 aaa
 cmE
-dvA
+ewb
 dFy
 mKQ
 dGn
@@ -247718,7 +247714,7 @@ dzC
 dzW
 dAd
 chl
-dca
+dbq
 dcu
 tss
 dhV
