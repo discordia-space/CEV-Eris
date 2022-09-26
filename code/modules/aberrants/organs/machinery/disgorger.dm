@@ -31,6 +31,7 @@
 
 	// Lazy research placeholder
 	var/spits_until_unlock = 3
+	var/datum/research/knowledge
 	var/list/designs_to_unlock = list(
 		/datum/design/organ/organ_mod/parenchymal_large,
 		/datum/design/organ/teratoma/special/chemical_effect,
@@ -80,6 +81,8 @@
 /obj/machinery/reagentgrinder/industrial/disgorger/Initialize()
 	. = ..()
 	spit_target = get_ranged_target_turf(src, dir, spit_range)
+	knowledge = new /datum/research(src)
+	knowledge.known_designs = list()
 
 /obj/machinery/reagentgrinder/industrial/disgorger/InitCircuit()
 	if(!circuit)
@@ -236,6 +239,7 @@
 	spits_until_unlock = initial(spits_until_unlock)
 	var/datum/design/D = SSresearch.get_design(designs_to_unlock[1])
 	designs_to_unlock.Remove(D.type)
+	knowledge.AddDesign2Known(D)
 
 	var/message = pickweight(list(
 		"When you study and object from a distance, only its principle may be seen." = 1,									// Children of Dune
