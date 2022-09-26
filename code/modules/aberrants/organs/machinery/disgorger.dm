@@ -253,7 +253,7 @@
 		"...!" = 31
 		))
 
-	for(var/mob/O in hearers(src, null))
+	for(var/mob/O as anything in hearers(src, null))
 		O.show_message("\icon[src] <b>\The [src]</b> says, \"[message]\"", 2)
 	flick("[initial(icon_state)]_spit", src)
 
