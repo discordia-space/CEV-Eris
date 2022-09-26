@@ -9,10 +9,9 @@
 		message = serb_codes.find_message(message) ? serb_codes.find_message(message) : message
 	else
 		if(stats.getPerk(PERK_CODESPEAK_COP))
-			message = cop_codes.find_message(message) ? cop_codes.find_message(message) : message
+			message = cop_codes.find_message(message) ? "message ([cop_codes.find_message(message)])" : message
 		if(stats.getPerk(PERK_CODESPEAK_SERB))
-			message = serb_codes.find_message(message) ? serb_codes.find_message(message) : message
-	// If both perks are present, it'll unnecessarily run serbian after running ironhammer checks, but it requires having both perks, which is a very fringe case
+			message = serb_codes.find_message(message) ? "message ([serb_codes.find_message(message)])" : message
 
 	var/speaker_name = speaker.name
 	if(ishuman(speaker))
@@ -73,15 +72,14 @@
 	if(!client)
 		return
 
-	if(isghost(src))
-		message = cop_codes.find_message(message) ? cop_codes.find_message(message) : message
-		message = serb_codes.find_message(message) ? serb_codes.find_message(message) : message
-	else
-		if(stats.getPerk(PERK_CODESPEAK_COP))
-			message = cop_codes.find_message(message) ? cop_codes.find_message(message) : message
-		if(stats.getPerk(PERK_CODESPEAK_SERB))
-			message = serb_codes.find_message(message) ? serb_codes.find_message(message) : message
-	// If both perks are present, it'll unnecessarily run serbian after running ironhammer checks, but it requires having both perks, which is a very fringe case
+	if(isghost(src) || stats.getPerk(PERK_CODESPEAK_COP))
+		var/found = cop_codes.find_message_radio(message)
+		if(found)
+			message = "message ([cop_codes.find_message(message)])"
+	if(isghost(src) || stats.getPerk(PERK_CODESPEAK_SERB))
+		var/found = cop_codes.find_message_radio(message)
+		if(found)
+			message = "message ([serb_codes.find_message(message)])"
 
 	var/speaker_name = get_hear_name(speaker, hard_to_hear, voice_name)
 

@@ -30,6 +30,12 @@ proc/setup_codespeak()
 	var/message = codes[index]
 	return message
 
+// Takes code, returns meaning
+/datum/codespeak_list/proc/find_message_radio(index)
+	for(var/saved_index in codes)
+		if(findtext(index, saved_index))
+			return saved_index
+
 /mob/living/carbon/human/
 	var/codespeak_cooldown
 
