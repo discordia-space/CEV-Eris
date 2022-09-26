@@ -29,6 +29,54 @@
 	var/current_tick = 0
 	var/substrate_conversion_factor = 1		// Multiplier for converting reagents/biomatter into substrate
 
+	// Lazy research placeholder
+	var/spits_until_unlock = 3
+	var/list/designs_to_unlock = list(
+		/datum/design/organ/organ_mod/parenchymal_large,
+		/datum/design/organ/teratoma/special/chemical_effect,
+		/datum/design/organ/teratoma/special/stat_boost,
+		/datum/design/organ/teratoma/output/reagents_blood_medicine_simple,
+		/datum/design/organ/teratoma/output/chemical_effects_type_2,
+		/datum/design/organ/teratoma/input/uncommon/reagents_roach,
+		/datum/design/organ/teratoma/input/uncommon/reagents_spider,
+		/datum/design/organ/teratoma/input/uncommon/reagents_toxin,
+		/datum/design/organ/teratoma/input/uncommon/reagents_edible,
+		/datum/design/organ/teratoma/input/uncommon/reagents_alcohol,
+		/datum/design/organ/teratoma/input/uncommon/reagents_drugs,
+		/datum/design/organ/teratoma/input/uncommon/reagents_dispenser,
+		/datum/design/organ/teratoma/input/uncommon/damage,
+		/datum/design/organ/teratoma/input/uncommon/power_source,
+		/datum/design/organ/teratoma/process/boost,
+		/datum/design/organ/teratoma/output/uncommon/reagents_blood_roach,
+		/datum/design/organ/teratoma/output/uncommon/reagents_blood_drugs,
+		/datum/design/organ/teratoma/output/uncommon/reagents_blood_medicine_simple,
+		/datum/design/organ/teratoma/output/uncommon/reagents_ingest_edible,
+		/datum/design/organ/teratoma/output/uncommon/reagents_ingest_alcohol,
+		/datum/design/organ/teratoma/output/uncommon/chemical_effects_type_1,
+		/datum/design/organ/teratoma/output/uncommon/chemical_effects_type_2,
+		/datum/design/organ/teratoma/output/uncommon/stat_boost,
+		/datum/design/organ/scaffold/rare,
+		/datum/design/organ/teratoma/output/reagents_blood_medicine_intermediate,
+		/datum/design/organ/teratoma/output/uncommon/reagents_blood_medicine_intermediate,
+		/datum/design/organ/teratoma/input/rare/reagents_roach,
+		///datum/design/organ/teratoma/input/rare/reagents_spider,		// Not enough spider chems in the pool
+		/datum/design/organ/teratoma/input/rare/reagents_toxin,
+		/datum/design/organ/teratoma/input/rare/reagents_edible,
+		/datum/design/organ/teratoma/input/rare/reagents_alcohol,
+		/datum/design/organ/teratoma/input/rare/reagents_drugs,
+		/datum/design/organ/teratoma/input/rare/reagents_dispenser,
+		/datum/design/organ/teratoma/input/rare/damage,
+		/datum/design/organ/teratoma/input/rare/power_source,
+		/datum/design/organ/teratoma/output/rare/reagents_blood_roach,
+		/datum/design/organ/teratoma/output/rare/reagents_blood_drugs,
+		/datum/design/organ/teratoma/output/rare/reagents_blood_medicine_intermediate,
+		/datum/design/organ/teratoma/output/rare/reagents_ingest_edible,
+		/datum/design/organ/teratoma/output/rare/reagents_ingest_alcohol,
+		/datum/design/organ/teratoma/output/rare/chemical_effects_type_1,
+		/datum/design/organ/teratoma/output/rare/chemical_effects_type_2,
+		/datum/design/organ/teratoma/output/rare/stat_boost
+	)
+
 /obj/machinery/reagentgrinder/industrial/disgorger/Initialize()
 	. = ..()
 	spit_target = get_ranged_target_turf(src, dir, spit_range)
@@ -168,6 +216,8 @@
 
 	while(biomatter_counter > 59.99)
 		bottle()
+		if(spits_until_unlock <= 0 && designs_to_unlock.len)
+			unlock_design()
 
 	SSnano.update_uis(src)
 
@@ -179,6 +229,34 @@
 	flick("[initial(icon_state)]_spit", src)
 	var/obj/item/fleshcube/new_cube = new(get_turf(src))
 	new_cube.throw_at(spit_target, 3, 1)
+	if(has_brain)
+		--spits_until_unlock
+
+/obj/machinery/reagentgrinder/industrial/disgorger/proc/unlock_design()
+	spits_until_unlock = initial(spits_until_unlock)
+	var/datum/design/D = SSresearch.get_design(designs_to_unlock[1])
+	designs_to_unlock.Remove(D.type)
+
+	var/message = pickweight(list(
+		"When you study and object from a distance, only its principle may be seen." = 1,									// Children of Dune
+		"Knowledge is an unending adventure at the edge of uncertainty." = 1,												// 
+		"To know a thing well, know its limits; Only when pushed beyond its tolerance will its true nature be seen." = 1,	//
+		"You do not take from this universe. It grants what it will." = 1,							// Dune Messiah
+		"Belief can be manipulated. Only knowledge is dangerous." = 1,								//
+		"You can\'t stop a mental epidemic. It leaps from person to person across parsecs." = 1,	//
+		"..." = 31,
+		"...?" = 31,
+		"...!" = 31
+		))
+
+	for(var/mob/O in hearers(src, null))
+		O.show_message("\icon[src] <b>\The [src]</b> says, \"[message]\"", 2)
+	flick("[initial(icon_state)]_spit", src)
+
+	for(var/atom in get_area_all_atoms(get_area(src)))
+		if(istype(atom, /obj/machinery/autolathe/organ_fabricator))
+			var/obj/machinery/autolathe/organ_fabricator/OF = atom
+			OF.files.AddDesign2Known(D)
 
 /obj/machinery/reagentgrinder/industrial/disgorger/default_deconstruction(obj/item/I, mob/user)
 	var/qualities = list(QUALITY_RETRACTING)
