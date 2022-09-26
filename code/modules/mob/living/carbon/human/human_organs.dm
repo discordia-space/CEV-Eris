@@ -142,13 +142,9 @@
 			else if(E.is_malfunctioning())
 				switch(E.body_part)
 					if(ARM_LEFT)
-						if(!l_hand)
-							continue
-						drop_from_inventory(l_hand)
+						l_hand ? drop_from_inventory(l_hand) : continue
 					if(ARM_RIGHT)
-						if(!r_hand)
-							continue
-						drop_from_inventory(r_hand)
+						r_hand ? drop_from_inventory(r_hand) : continue
 
 				emote("pain", 1, "drops what they were holding, their [E.name] malfunctioning!")
 
