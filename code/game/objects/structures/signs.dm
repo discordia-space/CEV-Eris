@@ -598,7 +598,7 @@
 
 /obj/structure/sign/faction/serbian
 	name = "Serbian Arms"
-	desc = "Serbian Arms are the 2nd place supplier of 2nd rate firearms and killer mercenaries in the frontier. based out of pedstraza"
+	desc = "Serbian Arms are a major supplier of cheap firearms and killer mercenaries in the sector. based out of pedstraza"
 	icon_state = "serbian"
 
 /obj/structure/sign/derelict1
