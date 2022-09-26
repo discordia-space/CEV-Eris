@@ -26,8 +26,7 @@
 		),
 		"Data Disks" = list(
 			/obj/item/computer_hardware/hard_drive/portable/basic,
-			/obj/item/computer_hardware/hard_drive/portable,
-			/obj/item/computer_hardware/hard_drive/portable/advanced
+			/obj/item/computer_hardware/hard_drive/portable
 		),
 		"Hard Drives" = list(
 			/obj/item/computer_hardware/hard_drive/micro,
@@ -64,7 +63,7 @@
 		/obj/item/oddity/common/disk = offer_data("broken design disk", 500, 1),
 		/obj/item/oddity/common/device = offer_data("odd device", 500, 1),
 		/obj/item/oddity/common/old_pda = offer_data("broken pda", 500, 1),
-		/obj/item/computer_hardware/hard_drive/portable/research_points = offer_data("research data disk", 1000, 4),
+		/obj/item/computer_hardware/hard_drive/portable/research_points = offer_data("research data disk", 1000, 2),
 		/obj/item/computer_hardware/hard_drive/portable/advanced/shady = offer_data("design disk - 'warez'", 1200, 2),
 		/obj/item/computer_hardware/hard_drive/portable/advanced/nuke = offer_data("design disk - 'nuke'", 1200, 2),
 		/obj/item/stock_parts/capacitor/one_star = offer_data("one star capacitor", 1000, 3),

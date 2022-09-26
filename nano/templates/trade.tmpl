@@ -135,7 +135,7 @@
 					<b>Name</b><br>
 					{{:data.station_name}}
 					<br><br>
-					{{if !data.station_recommendations_needed}}
+					{{if data.station_recommendations_needed < 1}}
 						<b>Description</b><br>
 						{{:data.station_desc}}
 						<br><br>
@@ -145,7 +145,7 @@
 						{{:data.station_favor}}/{{:data.station_favor_needed}}
 						</br></br>
 					{{/if}}
-					{{if data.station_recommendations_needed}}
+					{{if data.station_recommendations_needed > 0}}
 						<b>Recommendations Required</b></br>
 						<span style="color:orange">{{:data.station_recommendations_needed}}</span></br>
 						</br>
