@@ -34,10 +34,10 @@
 	desc = "The Motherfucker. You just know someone is about to have a bad day."
 	icon_state = "frame_motherfucker"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 10, MATERIAL_PLASTIC = 10)
-	result = /obj/item/gun/projectile/automatic/motherfucker
-	gripvars = /obj/item/part/gun/grip/wood
+	resultvars = list(/obj/item/gun/projectile/automatic/motherfucker)
+	gripvars = list(/obj/item/part/gun/grip/wood)
 	mechanismvar = /obj/item/part/gun/mechanism/shotgun // its effectively a shotgun
-	barrelvars = /obj/item/part/gun/barrel/pistol
+	barrelvars = list(/obj/item/part/gun/barrel/pistol)
 
 /obj/item/gun/projectile/automatic/motherfucker/attack_self(mob/living/user)
 	if(world.time >= recentpumpmsg + 10)

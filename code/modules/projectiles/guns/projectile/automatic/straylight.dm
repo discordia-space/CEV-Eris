@@ -61,7 +61,7 @@
 	name = "Straylight frame"
 	desc = "A Straylight SMG frame. A rabidly fast bullet hose."
 	icon_state = "frame_ihsmg"
-	result = /obj/item/gun/projectile/automatic/straylight
-	gripvars = /obj/item/part/gun/grip/rubber
+	resultvars = list(/obj/item/gun/projectile/automatic/straylight)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/smg
-	barrelvars = /obj/item/part/gun/barrel/pistol
+	barrelvars = list(/obj/item/part/gun/barrel/pistol)
