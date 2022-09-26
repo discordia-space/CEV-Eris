@@ -156,8 +156,7 @@
 				spark_system.set_up(5, 0, src)
 				spark_system.attach(src)
 				spark_system.start()
-				spawn(10)
-					qdel(spark_system)
+				QDEL_IN(spark_system, 1 SECOND)
 
 //Handles chem traces
 /mob/living/carbon/human/proc/handle_trace_chems()
