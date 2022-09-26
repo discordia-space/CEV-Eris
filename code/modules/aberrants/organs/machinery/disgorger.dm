@@ -30,7 +30,8 @@
 	var/substrate_conversion_factor = 1		// Multiplier for converting reagents/biomatter into substrate
 
 	// Lazy research placeholder
-	var/spits_until_unlock = 3
+	var/spits_until_unlock = 4
+	var/current_spit = 0
 	var/datum/research/knowledge
 	var/list/designs_to_unlock = list(
 		/datum/design/organ/organ_mod/parenchymal_large,
@@ -219,7 +220,7 @@
 
 	while(biomatter_counter > 59.99)
 		bottle()
-		if(spits_until_unlock <= 0 && designs_to_unlock.len)
+		if(current_spit >= spits_until_unlock && designs_to_unlock.len)
 			unlock_design()
 
 	SSnano.update_uis(src)
@@ -227,16 +228,16 @@
 /obj/machinery/reagentgrinder/industrial/disgorger/bottle()
 	biomatter_counter = max(biomatter_counter - 60, 0)		// Flesh cubes have 60 biomatter
 	addtimer(CALLBACK(src, .proc/spit), 1 SECONDS, TIMER_STOPPABLE)
+	if(has_brain)
+		++current_spit
 
 /obj/machinery/reagentgrinder/industrial/disgorger/proc/spit()
 	flick("[initial(icon_state)]_spit", src)
 	var/obj/item/fleshcube/new_cube = new(get_turf(src))
 	new_cube.throw_at(spit_target, 3, 1)
-	if(has_brain)
-		--spits_until_unlock
 
 /obj/machinery/reagentgrinder/industrial/disgorger/proc/unlock_design()
-	spits_until_unlock = initial(spits_until_unlock)
+	current_spit = 0
 	var/datum/design/D = SSresearch.get_design(designs_to_unlock[1])
 	designs_to_unlock.Remove(D.type)
 	knowledge.AddDesign2Known(D)
@@ -255,7 +256,6 @@
 
 	for(var/mob/O as anything in hearers(src, null))
 		O.show_message("\icon[src] <b>\The [src]</b> says, \"[message]\"", 2)
-	flick("[initial(icon_state)]_spit", src)
 
 	for(var/obj/machinery/autolathe/organ_fabricator/OF in get_area_all_atoms(get_area(src)))
 		OF.files.AddDesign2Known(D)
@@ -295,10 +295,12 @@
 	var/stomach_eff = 0
 	var/muscle_eff = 0
 	var/carrion_maw_eff = 0
+	var/brain_eff = 0
 
 	var/capacity_mod = 0
 	var/tick_reduction = 0
 	var/conversion_mod = 0
+	var/research_mod = 0
 
 	has_brain = FALSE
 
@@ -308,6 +310,10 @@
 	//accepted_objects = initial(accepted_objects)
 
 	for(var/component in component_parts)
+		if(istype(component, /obj/item/electronics/circuitboard/disgorger))
+			var/obj/item/electronics/circuitboard/disgorger/C = component
+			if(C.designs_to_unlock.len)
+				designs_to_unlock = C.designs_to_unlock.Copy()
 		if(!istype(component, /obj/item/organ/internal))
 			continue
 		var/obj/item/organ/internal/O = component
@@ -327,6 +333,7 @@
 					muscle_eff += O.organ_efficiency[eff]
 				if(BP_BRAIN)
 					has_brain = TRUE
+					brain_eff += O.organ_efficiency[eff]
 
 	if(liver_eff > 99)
 		accepted_reagents |= list(
@@ -360,10 +367,18 @@
 	capacity_mod = round(stomach_eff / 15, 1) 
 	tick_reduction = round(muscle_eff / 20, 1) 
 	conversion_mod = round((stomach_eff + (liver_eff * 0.25) + (kidney_eff * 0.25) + (carrion_maw_eff * 4)) / 100, 0.01)
+	research_mod = clamp(round(brain_eff / 65, 1) - 1, 0, spits_until_unlock - 1)
 
 	limit = initial(limit) + capacity_mod
 	grind_rate = initial(grind_rate) - tick_reduction
 	substrate_conversion_factor = initial(substrate_conversion_factor) + conversion_mod
+	spits_until_unlock = initial(spits_until_unlock) - research_mod
+
+/obj/machinery/reagentgrinder/industrial/disgorger/on_deconstruction()
+	..()
+	var/obj/item/electronics/circuitboard/disgorger/C = locate(/obj/item/electronics/circuitboard/disgorger) in component_parts
+	if(C)
+		C.designs_to_unlock = designs_to_unlock.Copy()
 
 /obj/machinery/reagentgrinder/industrial/disgorger/nano_ui_data()
 	. = ..()
@@ -391,6 +406,7 @@
 	req_components = list(
 		/obj/item/organ/internal = 4			// Build with any organ, but certain efficiencies will have different effects.
 	)
+	var/list/designs_to_unlock = list()
 
 // Our resource item
 /obj/item/fleshcube
