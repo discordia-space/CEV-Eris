@@ -101257,7 +101257,7 @@
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "fHF" = (
-/mob/living/carbon/human/monkey/punpun,
+/obj/item/reagent_containers/food/snacks/monkeycube/punpun,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/crew_quarters/barbackroom)
 "fIs" = (
