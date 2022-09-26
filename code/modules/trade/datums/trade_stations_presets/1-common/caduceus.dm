@@ -58,7 +58,7 @@
 			/obj/item/electronics/circuitboard/electrolyzer,
 			/obj/item/electronics/circuitboard/reagentgrinder,
 			/obj/item/electronics/circuitboard/industrial_grinder
-		)
+		),
 		"Misc" = list(
 			/obj/item/storage/pouch/medical_supply,
 //			/obj/item/virusdish/random,		// Spawns without an icon
