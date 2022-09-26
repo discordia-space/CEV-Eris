@@ -1,0 +1,4 @@
+author: Hyperio
+delete-after: true
+changes:
+  - bugfix: Fix wrong icon_file check
