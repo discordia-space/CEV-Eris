@@ -85,7 +85,7 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/gun = offer_data_mods("modified gun (2 upgrades)", 3200, 4, OFFER_MODDED_GUN, 2),
+		/obj/item/gun = offer_data_mods("modified gun (2 upgrades)", 3200, 2, OFFER_MODDED_GUN, 2),
 		/obj/item/part/gun/frame/ak47 = offer_data("AK frame", 800, 1),
 		/obj/item/part/gun/frame/boltgun  = offer_data("boltgun frame", 800, 1),
 		/obj/item/part/gun/frame/sol = offer_data("Sol frame", 2000, 1),

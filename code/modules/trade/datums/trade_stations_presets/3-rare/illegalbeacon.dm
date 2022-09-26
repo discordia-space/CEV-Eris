@@ -42,9 +42,9 @@
 			/obj/item/clothing/glasses/powered/night = custom_good_amount_range(list(1, 1))
 		),
 		"Syndicate Gun Mods" = list(
-			/obj/item/gun_upgrade/barrel/gauss,
-			/obj/item/gun_upgrade/mechanism/glass_widow,
-			/obj/item/gun_upgrade/scope/killer
+			/obj/item/gun_upgrade/barrel/gauss = custom_good_price(1000),
+			/obj/item/gun_upgrade/mechanism/glass_widow = custom_good_price(1000),
+			/obj/item/gun_upgrade/scope/killer = custom_good_price(1000)
 		)
 	)
 	offer_types = list(
