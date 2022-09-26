@@ -132,17 +132,12 @@
 				drop_from_inventory(E)
 
 				if(E.limb_efficiency <= 50)
-					emote("me", 1, "drops what they were holding in their [E.name], [pick("unable to grasp it", "unable to feel it", "too weak to hold it"]!")
+					emote("me", 1, "drops what they were holding in their [E.name], [pick("unable to grasp it", "unable to feel it", "too weak to hold it")]!")
 				else
 					emote("me", 1, "[(species.flags & NO_PAIN) ? "" : pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")]drops what they were holding in their [E.name]!")
 
 			else if(E.is_malfunctioning())
-				switch(E.body_part)
-					if(ARM_LEFT)
-						l_hand ? drop_from_inventory(l_hand) : continue
-					if(ARM_RIGHT)
-						r_hand ? drop_from_inventory(r_hand) : continue
-
+				drop_from_inventory(E)
 				emote("pain", 1, "drops what they were holding, their [E.name] malfunctioning!")
 
 				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
