@@ -193,32 +193,42 @@
 /obj/item/clothing/gloves/dusters
 	name = "steel knuckle dusters"
 	desc = "More pain for them, less for you."
-	icon_state = "knuckles"
-	item_state = "knuckles"
+	description_info = "Have to be worn in your gloves slot to increase your punch damage."
+	icon_state = "dusters"
+	item_state = "dusters"
 	var/punch_increase = 5
 	price_tag = 20
 
 /obj/item/clothing/gloves/dusters/silver
 	name = "silver knuckle dusters"
 	desc = "More pain for them, more bling for you."
-	icon_state = "knuckles_silver"
-	item_state = "knuckles_silver"
+	icon_state = "dusters_silver"
+	item_state = "dusters_silver"
 	price_tag = 40
-	style = STYLE_HIGH
+	style = STYLE_LOW
 
 /obj/item/clothing/gloves/dusters/plasteel
 	name = "plasteel knuckle dusters"
-	desc = "Hurt more than steel ones."
-	icon_state = "knuckles_plasteel"
-	item_state = "knuckles_plasteel"
+	desc = "More pain for them, now doubled."
+	icon_state = "dusters_plasteel"
+	item_state = "dusters_plasteel"
 	punch_increase = 10
 	price_tag = 60
+
+/obj/item/clothing/gloves/dusters/gold
+	name = "golden knuckle dusters"
+	desc = "More pain for them, more style for you."
+	icon_state = "dusters_gold"
+	item_state = "dusters_gold"
+	punch_increase = 10
+	price_tag = 100
+	style = STYLE_HIGH
 
 /obj/item/clothing/gloves/dusters/platinum
 	name = "spiked platinum knuckle dusters"
 	desc = "Hurt like hell, and stylish as well."
-	icon_state = "knuckles_plasteel"
-	item_state = "knuckles_plasteel"
+	icon_state = "dusters_platinum"
+	item_state = "dusters_platinum"
 	punch_increase = 15
 	price_tag = 120
 	style = STYLE_HIGH
