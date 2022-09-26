@@ -48,9 +48,9 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/organ/external = offer_data("spare limbs", 250, 0)	// Dismember some monkeys
+		/obj/item/organ/external = offer_data("spare limbs", 250, 0),	// Dismember some monkeys
 		/obj/item/organ/internal/muscle = offer_data_mods("modified muscle (4 grafts)", 1000, 4, OFFER_MODDED_ORGAN, 4),
 		/obj/item/organ/internal/nerve = offer_data_mods("modified nerve (4 grafts)", 1000, 4, OFFER_MODDED_ORGAN, 4),
 		/obj/item/organ/internal/bone = offer_data_mods("modified bone (4 grafts)", 1000, 4, OFFER_MODDED_ORGAN, 4),
-		/obj/item/organ/internal/blood_vessel = offer_data_mods("modified blood vessel (4 grafts)", 1000, 4, OFFER_MODDED_ORGAN, 4),
+		/obj/item/organ/internal/blood_vessel = offer_data_mods("modified blood vessel (4 grafts)", 1000, 4, OFFER_MODDED_ORGAN, 4)
 	)
