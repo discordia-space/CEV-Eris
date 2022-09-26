@@ -13,20 +13,19 @@
 		rad = 100
 	)
 	siemens_coefficient = 0.35
-	species_restricted = list(SPECIES_HUMAN)
 	light_overlay = "helmet_light_green"
 	obscuration = LIGHT_OBSCURATION
 
 /obj/item/clothing/suit/space/void/onestar
 	name = "Onestar Voidsuit"
-	desc = "A bulky antique suit of refurbished infantry armour, retrofitted with seals and coatings to make it EVA capable but also reducing mobility."
+	desc = "A Onestar industrial voidsuit produced in large numbers "
 	icon_state = "onestar_void"
 	item_state = "onestar_void"
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-		melee = 14,
-		bullet = 14,
-		energy = 14,
+		melee = 1,
+		bullet = 13,
+		energy = 13,
 		bomb = 75,
 		bio = 100,
 		rad = 100
