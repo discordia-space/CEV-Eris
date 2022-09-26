@@ -403,7 +403,7 @@
 		var/icon_state = initial(item.icon_state)
 
 		// eugh
-		if (icon_file)
+		if (!icon_file)
 			icon_file = ""
 
 		#ifdef UNIT_TESTS
@@ -444,7 +444,7 @@
 				var/icon_state = initial(item.icon_state)
 
 				// eugh
-				if (icon_file)
+				if (!icon_file)
 					icon_file = ""
 
 				#ifdef UNIT_TESTS
