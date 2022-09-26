@@ -131,13 +131,10 @@
 				
 				drop_from_inventory(E)
 
-				var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 				if(E.limb_efficiency <= 50)
-					var/emote_2 = pick("unable to grasp it", "unable to feel it", "too weak to hold it")
-					emote("me", 1, "drops what they were holding in their [E.name], [emote_2]!")
-
+					emote("me", 1, "drops what they were holding in their [E.name], [pick("unable to grasp it", "unable to feel it", "too weak to hold it"]!")
 				else
-					emote("me", 1, "[(species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
+					emote("me", 1, "[(species.flags & NO_PAIN) ? "" : pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")]drops what they were holding in their [E.name]!")
 
 			else if(E.is_malfunctioning())
 				switch(E.body_part)
