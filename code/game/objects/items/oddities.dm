@@ -53,6 +53,8 @@
 	bad_type = /obj/item/oddity/common
 	spawn_blacklisted = FALSE
 
+
+//Single stat oddities. Starting with combat stats (ROB, TGH, and VIG)
 /obj/item/oddity/common/lighter
 	name = "rusted lighter"
 	desc = "This zippo ligher has been rusted shut. It smells faintly of sulphur and blood."
@@ -69,6 +71,7 @@
 		STAT_VIG = 9,
 	)
 
+//Single stat, work stat (BIO, COG, and MEC)
 /obj/item/oddity/common/disk
 	name = "broken design disk"
 	desc = "This disk is corrupted and completely unusable. It has a hand-drawn picture of some strange mechanism on it - looking at it for too long makes your head hurt."
@@ -77,6 +80,7 @@
 		STAT_MEC = 9,
 	)
 
+//Double stat oddities, combat.
 /obj/item/oddity/common/old_money
 	name = "old money"
 	desc = "It's not like the organization that issued this exists anymore."
@@ -115,6 +119,7 @@
 		STAT_VIG = 5,
 	)
 
+//Double stat, mixed
 /obj/item/oddity/common/photo_landscape
 	name = "alien landscape photo"
 	desc = "There is some ire about the planet in this photograph."
@@ -163,6 +168,7 @@
 	)
 	rarity_value = 23
 
+//Double stat, work
 /obj/item/oddity/common/old_pda
 	name = "broken pda"
 	desc = "An old Nanotrasen era PDA. These were issued to their employees all throughout the galaxy."
@@ -215,6 +221,7 @@
 	)
 	rarity_value = 23
 
+//Triple stat, combat
 /obj/item/oddity/common/old_knife
 	name = "old knife"
 	desc = "Is this blood older then you? You can't tell, and will never know."
@@ -246,17 +253,6 @@
 	)
 	rarity_value = 18
 
-/obj/item/oddity/common/book_omega
-	name = "occult book"
-	desc = "Most of the stories in this book seem to be the writings of madmen, but at least the stories are interesting."
-	icon_state = "book_omega"
-	oddity_stats = list(
-		STAT_BIO = 6,
-		STAT_ROB = 6,
-		STAT_VIG = 6,
-	)
-	rarity_value = 18
-
 /obj/item/oddity/common/teddy
 	name = "teddy bear"
 	desc = "He will be there for you, even in tough times."
@@ -270,7 +266,7 @@
 
 /obj/item/oddity/common/book_eyes
 	name = "observer book"
-	desc = "This book contains detailed information on unknown cyber creatures. Who did this, how is this even possible?"
+	desc = "This book contains detailed information on otherwise unknown cyber creatures. Who did this, how is this even possible?"
 	icon_state = "book_eyes"
 	oddity_stats = list(
 		STAT_ROB = 9,
@@ -279,6 +275,30 @@
 	)
 	rarity_value = 30
 
+//Triple stat, mixed
+/obj/item/oddity/common/paper_bundle
+	name = "paper bundle"
+	desc = "Somewhere there is a truth, hidden under all of this scrap."
+	icon_state = "paper_bundle"
+	oddity_stats = list(
+		STAT_BIO = 6,
+		STAT_ROB = 6,
+		STAT_VIG = 6,
+	)
+	rarity_value = 16
+
+/obj/item/oddity/common/book_omega
+	name = "occult book"
+	desc = "Most of the stories in this book seem to be the writings of madmen, but at least the stories are interesting."
+	icon_state = "book_omega"
+	oddity_stats = list(
+		STAT_BIO = 6,
+		STAT_ROB = 6,
+		STAT_VIG = 6,
+	)
+	rarity_value = 18
+
+//Triple stat, work
 /obj/item/oddity/common/old_newspaper
 	name = "old newspaper"
 	desc = "It contains a report on some old and strange phenomenon. Maybe it's lies, maybe it's corporate experiments gone wrong. Wait, there are two comically obvious holes for peering through!"
@@ -304,17 +324,6 @@
 	)
 	rarity_value = 18
 
-/obj/item/oddity/common/paper_bundle
-	name = "paper bundle"
-	desc = "Somewhere there is a truth, hidden under all of this scrap."
-	icon_state = "paper_bundle"
-	oddity_stats = list(
-		STAT_BIO = 6,
-		STAT_ROB = 6,
-		STAT_VIG = 6,
-	)
-	rarity_value = 16
-
 /obj/item/oddity/common/paper_omega
 	name = "collection of obscure reports"
 	desc = "Even the authors seem to be rather skeptical about their findings. The reports are not connected to each other, but their results are similar."
@@ -326,7 +335,7 @@
 	)
 	rarity_value = 27
 
-//Technomancer artifact generated oddity
+//Oddity generated from Technomancer's Techno-Tribalism Enforcer
 /obj/item/oddity/techno
 	name = "Unknown technological part"
 	desc = "Technological part created by Techno-Tribalism Enforcer."
@@ -336,6 +345,7 @@
 	icon_state = "techno_part[rand(1,7)]"
 	.=..()
 
+//Rare bluespace oddity.
 /obj/item/oddity/broken_necklace
 	name = "Broken necklace"
 	desc = "A broken necklace that has a blue crystal as a trinket."
