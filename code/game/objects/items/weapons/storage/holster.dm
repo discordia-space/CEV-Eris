@@ -151,6 +151,7 @@
 		/obj/item/gun/projectile/mk58,
 		/obj/item/gun/projectile/olivaw,
 		/obj/item/gun/projectile/mandella,
+		/obj/item/gun/projectile/voodoo,
 		/obj/item/gun/energy/gun,
 		/obj/item/gun/energy/chameleon,
 		/obj/item/gun/energy/captain,
