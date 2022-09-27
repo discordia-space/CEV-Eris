@@ -25,6 +25,12 @@
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_KNIFE
 
+/proc/check_backstab(mob/user, mob/victim)
+	var/attack_dir = 0
+	var/bad_arc = reverse_direction(victim.dir)
+	attack_dir = get_dir(get_turf(user), get_turf(victim))
+	if(attack_dir && (attack_dir & bad_arc))
+
 /obj/item/tool/knife/boot
 	name = "boot knife"
 	desc = "A small fixed-blade knife for putting inside a boot."
