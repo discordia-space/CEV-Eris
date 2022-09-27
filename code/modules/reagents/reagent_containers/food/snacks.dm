@@ -1814,7 +1814,7 @@
     name = "emergency companion cube"
 
 /obj/item/reagent_containers/food/snacks/monkeycube/punpun/Expand()
-    src.visible_message(SPAN_NOTICE("\The [src] expands!"))
+    visible_message(SPAN_NOTICE("\The [src] expands!"))
     var/turf/T = get_turf(src)
     if(istype(T))
         new /mob/living/carbon/human/monkey/punpun(T)
