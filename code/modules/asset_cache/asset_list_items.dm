@@ -406,11 +406,11 @@
 		if (!icon_file)
 			icon_file = ""
 
-		#ifdef UNIT_TESTS
+		/*#ifdef UNIT_TESTS
 		if(!(icon_state in icon_states(icon_file)))
 			stack_trace("design [D] with icon '[icon_file]' missing state '[icon_state]'")
 			continue
-		#endif
+		#endif*/
 		var/icon/I = icon(icon_file, icon_state, SOUTH)
 
 		assets[filename] = I
