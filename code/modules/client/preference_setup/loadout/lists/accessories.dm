@@ -69,7 +69,6 @@
 	allowed_roles = list(JOBS_SCIENCE)
 
 /datum/gear/accessory/holster
-	display_name = "holster"
 	display_name = "holster, selection"
 	path = /obj/item/storage/pouch/holster
 
