@@ -18,7 +18,7 @@
 
 /obj/item/clothing/suit/space/void/onestar
 	name = "Onestar Voidsuit"
-	desc = "A Onestar industrial voidsuit produced in large numbers "
+	desc = "A Onestar industrial voidsuit designed to be resistant to bluespace anomalies and all types of damage. hundreds of thousands of theese were produced in the dying days of onestar. but they failed to be enough to save its citizens. the sight of a skeleton lying dead in this voidsuit is not an uncommon sight in nullspace."
 	icon_state = "onestar_void"
 	item_state = "onestar_void"
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
