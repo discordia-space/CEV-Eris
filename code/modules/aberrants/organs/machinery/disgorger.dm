@@ -34,7 +34,6 @@
 	var/current_spit = 0
 	var/datum/research/knowledge
 	var/list/designs_to_unlock = list(
-		/datum/design/organ/organ_mod/parenchymal_large,
 		/datum/design/organ/teratoma/special/chemical_effect,
 		/datum/design/organ/teratoma/special/stat_boost,
 		/datum/design/organ/teratoma/output/reagents_blood_medicine_simple,
@@ -48,6 +47,7 @@
 		/datum/design/organ/teratoma/input/uncommon/reagents_dispenser,
 		/datum/design/organ/teratoma/input/uncommon/damage,
 		/datum/design/organ/teratoma/input/uncommon/power_source,
+		/datum/design/organ/organ_mod/parenchymal_large,
 		/datum/design/organ/teratoma/process/boost,
 		/datum/design/organ/teratoma/output/uncommon/reagents_blood_roach,
 		/datum/design/organ/teratoma/output/uncommon/reagents_blood_drugs,
