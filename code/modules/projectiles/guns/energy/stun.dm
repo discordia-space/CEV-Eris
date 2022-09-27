@@ -20,6 +20,7 @@
 	use_external_power = TRUE
 	safety = FALSE
 	restrict_safety = TRUE
+	spawn_tags = null
 	bad_type = /obj/item/gun/energy/taser/mounted
 
 /obj/item/gun/energy/taser/mounted/cyborg
