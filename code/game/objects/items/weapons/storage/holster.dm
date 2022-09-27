@@ -221,7 +221,11 @@
 /obj/item/clothing/accessory/holster/attack_hand(mob/user as mob)
 	add_fingerprint(user)
 	if(loc == has_suit)
-		holster.open(user)
+		if(holster.contents.len)
+			for(var/obj/item/I in contents)
+				user.put_in_hands(I)
+		else
+			holster.open(user)
 	else ..()
 
 /obj/item/clothing/accessory/holster/New()
