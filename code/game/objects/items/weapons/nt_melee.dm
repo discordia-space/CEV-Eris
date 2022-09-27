@@ -88,7 +88,7 @@
 
 /obj/item/tool/sword/nt/scourge
 	name = "NT Scourge"
-	desc = "A saintly-looking whip that can be extended for more pain."
+	desc = "A saintly-looking whip that can be extended to cause more pain at the cost of damage."
 	icon_state = "nt_scourge"
 	item_state = "nt_scourge"
 	force = WEAPON_FORCE_ROBUST
