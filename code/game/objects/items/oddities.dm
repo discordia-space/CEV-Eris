@@ -613,7 +613,7 @@
 		perk.my_mask = src
 
 //This exists.
-/obj/item/oddity/bearmath
+/obj/item/oddity/common/bearmath
 	name = "scrap of semi-semiotics research pamphlet"
 	desc = "A piece of paper with an unfinished mathematical equation."
 	icon = 'icons/obj/bureaucracy.dmi'
