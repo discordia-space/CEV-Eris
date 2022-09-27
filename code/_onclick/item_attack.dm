@@ -138,10 +138,19 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		target.IgniteMob()
 
 	var/power = force
+	var/backstabbed = FALSE
+	if(can_backstab && backstab_multiplier)
+		var/attack_dir = 0
+		var/vulnerable_dirs = target.dir
+		attack_dir = get_dir(get_turf(user), get_turf(target))
+		if((attack_dir && (attack_dir & vulnerable_dirs))||target.lying)
+			power*= backstab_multiplier
+			backstabbed = TRUE
+
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		power *= H.damage_multiplier
 //	if(HULK in user.mutations)
 //		power *= 2
-	target.hit_with_weapon(src, user, power, hit_zone)
+	target.hit_with_weapon(src, user, power, hit_zone, backstabbed)
 	return

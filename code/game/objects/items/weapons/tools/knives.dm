@@ -20,16 +20,11 @@
 	hitsound = 'sound/weapons/melee/lightstab.ogg'
 	slot_flags = SLOT_BELT
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
+	can_backstab = TRUE
 
 	//spawn values
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_KNIFE
-
-/proc/check_backstab(mob/user, mob/victim)
-	var/attack_dir = 0
-	var/bad_arc = reverse_direction(victim.dir)
-	attack_dir = get_dir(get_turf(user), get_turf(victim))
-	if(attack_dir && (attack_dir & bad_arc))
 
 /obj/item/tool/knife/boot
 	name = "boot knife"
@@ -72,6 +67,7 @@
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 15)
 	rarity_value = 5
+	can_backstab = FALSE
 
 /obj/item/tool/knife/neotritual
 	name = "NeoTheology ritual knife"
@@ -126,6 +122,7 @@
 	force = WEAPON_FORCE_NORMAL * 1.3
 	armor_divisor = ARMOR_PEN_MASSIVE
 	rarity_value = 15
+	backstab_multiplier = 2.5
 
 /obj/item/tool/knife/dagger/ceremonial
 	name = "ceremonial dagger"

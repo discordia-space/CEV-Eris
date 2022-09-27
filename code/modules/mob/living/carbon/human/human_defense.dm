@@ -267,12 +267,18 @@ meteor_act
 
 	return hit_zone
 
-/mob/living/carbon/human/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/carbon/human/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone, backstabbing)
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
 		return FALSE//should be prevented by attacked_with_item() but for sanity.
-
-	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
+//	var/attack_verb_used
+//	if(!backstabbing)
+//		attack_verb_used = I.attack_verb.len? pick(I.attack_verb) : "attacked"
+//	else
+//		attack_verb_used = "backstabbed"
+	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : backstabbing? "backstabbed" : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
+	if(backstabbing)
+		visible_message("<span class='warning'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : backstabbing? "backstabbed" : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")	
 
 	standard_weapon_hit_effects(I, user, effective_force, hit_zone)
 
