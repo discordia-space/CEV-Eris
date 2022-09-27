@@ -63,7 +63,6 @@
 		/obj/item/tool/hatchet
 		)
 
-	sliding_behavior = TRUE
 
 /obj/item/storage/pouch/holster/belt
 	name = "belt holster"
@@ -82,6 +81,21 @@
 	max_w_class = ITEM_SIZE_HUGE
 
 	storage_slots = 2
+
+/obj/item/storage/pouch/holster/belt/knife
+	name = "throwing knife rig"
+	desc = "Holds throwing knives."
+	icon_state = "knife"
+	item_state = "knife"
+	rarity_value = 69
+	price_tag = 100
+
+	storage_slots = 4
+
+	can_hold = list(
+		/obj/item/stack/thrown/throwing_knife
+		)
+
 
 //Sheath
 /obj/item/storage/pouch/holster/belt/sheath
@@ -222,8 +236,9 @@
 	add_fingerprint(user)
 	if(loc == has_suit)
 		if(holster.contents.len)
-			for(var/obj/item/I in contents)
-				user.put_in_hands(I)
+			var/obj/item/I = holster.contents[holster.contents.len]
+			if(istype(I))
+				user.put_in_active_hand(I)
 		else
 			holster.open(user)
 	else ..()
@@ -334,6 +349,12 @@
 	icon_state = "sheath_[contents.len ? icon_to_set :"0"]"
 	item_state = "sheath_[contents.len ? icon_to_set :"0"]"
 	..()
+
+/obj/item/storage/pouch/holster/belt/knife/update_icon()
+	..()
+	cut_overlays()
+	if(contents.len)
+		overlays += image('icons/inventory/pockets/icon.dmi', "knife_[contents.len]")
 
 /obj/item/storage/pouch/holster/belt/sheath/improvised/update_icon()
 	..()
