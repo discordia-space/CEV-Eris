@@ -51695,6 +51695,7 @@
 	pixel_x = -24;
 	req_access = null
 	},
+/obj/landmark/join/start/artist,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/quartermaster/artistoffice)
 "ctY" = (
