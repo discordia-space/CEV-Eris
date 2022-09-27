@@ -1,4 +1,4 @@
-//space for voidsuits found in exploration. mainly onestar
+//voidsuits found in exploration. mainly onestar
 /obj/item/clothing/head/space/void/onestar
 	name = "Onestar Voidsuit Helmet"
 	desc = "a lightweight bubble helmet providing unrestricted vision and protection from space with a light on top. the glass is plasma reinforced and could easily stop a rifle round"
