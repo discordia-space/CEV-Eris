@@ -13,7 +13,7 @@
 		rad = 100
 	)
 	siemens_coefficient = 0.35
-	light_overlay = "helmet_light_green"
+	light_overlay = "helmet_light_dual"
 	obscuration = LIGHT_OBSCURATION
 
 /obj/item/clothing/suit/space/void/onestar
@@ -25,14 +25,14 @@
 	armor = list(
 		melee = 14,
 		bullet = 14,
-		energy = 14,
+		energy = 1,
 		bomb = 75,
 		bio = 100,
 		rad = 100
 	)
 	siemens_coefficient = 0.35
 	breach_threshold = 10
-	resilience = 0.07
+	resilience = 0.05
 	helmet = /obj/item/clothing/head/space/void/onestar
 	spawn_blacklisted = TRUE
 	slowdown = MEDIUM_SLOWDOWN
