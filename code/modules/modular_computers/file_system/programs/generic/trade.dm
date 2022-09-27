@@ -484,8 +484,11 @@
 					var/beacon_id = beacon.get_id()
 					beacons_by_id.Insert(beacon_id, beacon_id)
 					beacons_by_id[beacon_id] = beacon
-			var/id = input("Select nearby receiving beacon", "Receiving Beacon", null) as null|anything in beacons_by_id
-			receiving = beacons_by_id[id]
+			if(beacons_by_id.len == 1)
+				receiving = beacons_by_id[beacons_by_id[1]]
+			else
+				var/id = input("Select nearby receiving beacon", "Receiving Beacon", null) as null|anything in beacons_by_id
+				receiving = beacons_by_id[id]
 			return TRUE
 
 		if(href_list["PRG_sending"])
@@ -495,8 +498,11 @@
 					var/beacon_id = beacon.get_id()
 					beacons_by_id.Insert(beacon_id, beacon_id)
 					beacons_by_id[beacon_id] = beacon
-			var/id = input("Select nearby sending beacon", "Sending Beacon", null) as null|anything in beacons_by_id
-			sending = beacons_by_id[id]
+			if(beacons_by_id.len == 1)
+				sending = beacons_by_id[beacons_by_id[1]]
+			else
+				var/id = input("Select nearby sending beacon", "Sending Beacon", null) as null|anything in beacons_by_id
+				sending = beacons_by_id[id]
 			return TRUE
 
 		if(account)

@@ -25,8 +25,8 @@
 			/obj/machinery/suspension_gen
 		),
 		"Chemical Surplus" = list(
-			/obj/item/reagent_containers/glass/bottle/inaprovaline = custom_good_amount_range(list(1, 3)),
-			/obj/item/reagent_containers/glass/bottle/antitoxin = custom_good_amount_range(list(1, 3))
+			/obj/item/reagent_containers/glass/bottle/inaprovaline = custom_good_amount_range(list(2, 3)),
+			/obj/item/reagent_containers/glass/bottle/antitoxin = custom_good_amount_range(list(2, 3))
 		)
 	)
 	hidden_inventory = list(
