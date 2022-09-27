@@ -1,5 +1,5 @@
 /obj/item/gun/projectile/shotgun/type21
-	name = "OS Type 21 SG \"Yaoguai\""
+	name = "OS Type 21 SG \"Yaoguai\"" //Demon
 	desc = "S"
 	icon =
 	icon_state = "bojevic"
