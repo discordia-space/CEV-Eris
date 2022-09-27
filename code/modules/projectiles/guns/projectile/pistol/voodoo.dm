@@ -43,7 +43,7 @@
 /obj/item/part/gun/frame/voodoo
 	name = "Voodoo frame"
 	desc = "A Voodoo pistol frame. Just one promotion away from officer."
-	icon_state = "frame_lamia"
+	icon_state = "frame_voodoo"
 	resultvars = list(/obj/item/gun/projectile/voodoo)
 	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/pistol
