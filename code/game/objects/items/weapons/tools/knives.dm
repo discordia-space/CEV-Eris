@@ -5,6 +5,7 @@
 	desc = "A general purpose Chef's Knife made by Asters Merchant Guild. Guaranteed to stay sharp for years to come."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "knife"
+	description_info = "Attacking targets from behind or who are prone deals extra damage."
 	flags = CONDUCT
 	sharp = TRUE
 	edge = TRUE
@@ -47,6 +48,7 @@
 	armor_divisor = ARMOR_PEN_HALF //Should be countered be embedding
 	embed_mult = 1.5 //This is designed for embedding
 	rarity_value = 5
+	can_backstab = FALSE
 
 /obj/item/tool/knife/ritual
 	name = "ritual knife"
