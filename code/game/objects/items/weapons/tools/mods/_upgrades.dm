@@ -315,7 +315,7 @@
 	if(weapon_upgrades[GUN_UPGRADE_EXPLODE])
 		G.rigged = 2
 	if(weapon_upgrades[GUN_UPGRADE_ZOOM])
-		if(G.zoom_factors.len < 1)
+		if(G.zoom_factors.len <1)
 			var/newtype = weapon_upgrades[GUN_UPGRADE_ZOOM]
 			G.zoom_factors.Add(newtype)
 			G.initialize_scope()
