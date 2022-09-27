@@ -188,8 +188,6 @@
 /obj/item/clothing/accessory/holster/knife
 	name = "throwing knife rig"
 	desc = "A rig for professionals at knife throwing."
-	icon_state = "knife"
-	slot = "utility"
 	price_tag = 100
 	storage_slots = 2
 
@@ -243,6 +241,7 @@
 
 /obj/item/clothing/accessory/holster/attackby(obj/item/I, mob/user)
 	holster.attackby(I, user)
+	playsound(user, "[src.sound_in]", 30, 0)
 
 /obj/item/clothing/accessory/holster/attack_hand(mob/user as mob)
 	add_fingerprint(user)
@@ -251,6 +250,7 @@
 			var/obj/item/I = holster.contents[holster.contents.len]
 			if(istype(I))
 				user.put_in_active_hand(I)
+				playsound(user, "[src.sound_out]", 30, 0)
 		else
 			holster.open(user)
 	else ..()

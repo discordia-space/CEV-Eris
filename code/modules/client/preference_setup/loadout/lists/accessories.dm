@@ -74,29 +74,28 @@
 
 /datum/gear/accessory/holster/New()
 	..()
-	var/ties = list(
+	var/holsters = list(
 		"Compact"				=	/obj/item/storage/pouch/holster,
 		"Baton"					=	/obj/item/storage/pouch/holster/baton,
 		"Belt"					=	/obj/item/storage/pouch/holster/belt,
-		"Throwing knife rig"	=	/obj/item/storage/pouch/holster/belt/knife,
+		"Throwing knife pouch"	=	/obj/item/storage/pouch/holster/belt/knife,
 		"Sheath"				=	/obj/item/storage/pouch/holster/belt/sheath
 	)
-	gear_tweaks += new/datum/gear_tweak/path(ties)
+	gear_tweaks += new/datum/gear_tweak/path(holsters)
 
 /datum/gear/accessory/concealed_carry_holster
-	display_name = "concealed carry holster"
+	display_name = "uniform holster, selection"
 	path = /obj/item/clothing/accessory/holster
 	cost = 3
 
-/datum/gear/accessory/concealed_carry_holster/scabbard
-	display_name = "scabbard"
-	path = /obj/item/clothing/accessory/holster/scabbard
-	cost = 3
-
-/datum/gear/accessory/concealed_carry_holster/knife
-	display_name = "throwing knife rig"
-	path = /obj/item/clothing/accessory/holster/knife
-	cost = 3
+/datum/gear/accessory/concealed_carry_holster/New()
+	..()
+	var/accs = list(
+		"Concealed carry"		=	/obj/item/clothing/accessory/holster,
+		"Scabbard"				=	/obj/item/clothing/accessory/holster/scabbard,
+		"Throwing knife rig"	=	/obj/item/clothing/accessory/holster/knife
+	)
+	gear_tweaks += new/datum/gear_tweak/path(accs)
 
 /datum/gear/accessory/tie/blue
 	display_name = "tie, blue"
