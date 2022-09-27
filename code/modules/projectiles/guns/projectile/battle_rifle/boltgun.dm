@@ -14,8 +14,8 @@
 	fire_delay = 8
 	damage_multiplier = 1.4
 	style_damage_multiplier = 5
-	penetration_multiplier = 0
-	init_recoil = RIFLE_RECOIL(2.1)
+	penetration_multiplier = 0.3
+	init_recoil = RIFLE_RECOIL(1.5)
 	init_offset = 4 //bayonet's effect on aim, reduced from 4
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
@@ -23,7 +23,7 @@
 	magazine_type = /obj/item/ammo_magazine/lrifle
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 8, MATERIAL_PLASTIC = 10)
 	price_tag = 900
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") // Considering attached bayonet
 	sharp = TRUE
@@ -34,7 +34,7 @@
 	var/bolt_open = 0
 	var/item_suffix = ""
 	var/message = "bolt"        // what message appears when cocking, eg "You work the [bolt] open, ejecting a casing!"
-	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
 /obj/item/part/gun/frame/boltgun
 	name = "bolt-action rifle frame"
@@ -44,7 +44,7 @@
 	gripvars = list(/obj/item/part/gun/grip/excel, /obj/item/part/gun/grip/wood)
 	resultvars = list(/obj/item/gun/projectile/boltgun, /obj/item/gun/projectile/boltgun/serbian)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
-	barrelvars = /obj/item/part/gun/barrel/lrifle
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle)
 
 /obj/item/gun/projectile/boltgun/update_icon()
 	..()
@@ -128,13 +128,13 @@
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
 	force = 23
-	init_recoil = RIFLE_RECOIL(2.3)
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
+	init_recoil = RIFLE_RECOIL(1.7)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 8, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/stack/material/steel = 16)
 	sawn = /obj/item/gun/projectile/boltgun/obrez/serbian
-	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
 /obj/item/gun/projectile/boltgun/fs
 	name = "FS BR .20 \"Kadmin\""
@@ -146,19 +146,19 @@
 	force = WEAPON_FORCE_DANGEROUS // weaker than novakovic, but with a bayonet installed it will be slightly stronger
 	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_SRIFLE
-	damage_multiplier = 1.6
+	damage_multiplier = 1.7
 	penetration_multiplier = 0.7
-	init_recoil = RIFLE_RECOIL(2.4)
+	init_recoil = RIFLE_RECOIL(1.8)
 	init_offset = 0 //no bayonet
 	max_shells = 6
 	zoom_factor = 0.8 //vintorez level
 	magazine_type = /obj/item/ammo_magazine/srifle
-	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
+	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTEEL = 8, MATERIAL_PLASTIC = 15)
 	wielded_item_state = "_doble_ih_scope"
 	sharp = FALSE
 	spawn_blacklisted = TRUE
 	saw_off = FALSE
-	gun_parts = list(/obj/item/part/gun/frame/kadmin = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/srifle/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/kadmin = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/srifle = 1)
 	price_tag = 1200
 	serial_type = "FS"
 
@@ -166,10 +166,10 @@
 	name = "Kadmin frame"
 	desc = "A Kadmin bolt-action rifle frame. For hunting or endless coastal warfare."
 	icon_state = "frame_weebrifle"
-	result = /obj/item/gun/projectile/boltgun/fs
-	gripvars = /obj/item/part/gun/grip/rubber
+	resultvars = list(/obj/item/gun/projectile/boltgun/fs)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
-	barrelvars = /obj/item/part/gun/barrel/srifle
+	barrelvars = list(/obj/item/part/gun/barrel/srifle)
 
 /obj/item/gun/projectile/boltgun/handmade
 	name = "HM BR \"Riose\""
@@ -182,7 +182,7 @@
 	slot_flags = SLOT_BACK
 	damage_multiplier = 1.5
 	penetration_multiplier = -0.3
-	init_recoil = RIFLE_RECOIL(2.6)
+	init_recoil = RIFLE_RECOIL(2)
 	max_shells = 5
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
@@ -192,17 +192,17 @@
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	saw_off = TRUE // yeah, we are getting the ghetto sawn off too
 	sawn = /obj/item/gun/projectile/boltgun/obrez/handmade
-	gun_parts = list(/obj/item/part/gun/frame/riose = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/riose = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
 /obj/item/part/gun/frame/riose
 	name = "Riose frame"
 	desc = "A Riose bolt-action rifle frame. For hunting or endless maintenance warfare."
 	icon_state = "frame_riose"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 10)
-	result = /obj/item/gun/projectile/boltgun/handmade
-	gripvars = /obj/item/part/gun/grip/wood
+	resultvars = list(/obj/item/gun/projectile/boltgun/handmade)
+	gripvars = list(/obj/item/part/gun/grip/wood)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
-	barrelvars = list(/obj/item/part/gun/barrel/srifle, /obj/item/part/gun/barrel/lrifle, /obj/item/part/gun/barrel/clrifle)
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle, /obj/item/part/gun/barrel/srifle, /obj/item/part/gun/barrel/clrifle)
 
 //// OBREZ ////
 
@@ -219,7 +219,7 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	penetration_multiplier = 0 // short barrel means maximum velocity isn't reached
 	proj_step_multiplier = 1.2
-	init_recoil = CARBINE_RECOIL(4)
+	init_recoil = CARBINE_RECOIL(3)
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
 	price_tag = 600
 	attack_verb = list("struck","hit","bashed")
@@ -233,7 +233,7 @@
 	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
 	icon_state = "obrez_wood"
 	item_suffix  = "_wood"
-	init_recoil = CARBINE_RECOIL(4.5)
+	init_recoil = CARBINE_RECOIL(3.3)
 	wielded_item_state = "_doble_wood"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
 
@@ -242,7 +242,7 @@
 	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
 	icon_state = "obrez_hand"
 	item_suffix  = "_hand"
-	penetration_multiplier = -0.5
+	penetration_multiplier = -0.2 // child of mosin obrez, not of riose
 	init_recoil = CARBINE_RECOIL(4.5)
 	wielded_item_state = "_doble_hand"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)

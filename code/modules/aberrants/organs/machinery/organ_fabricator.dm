@@ -14,7 +14,7 @@
 	circuit = /obj/item/electronics/circuitboard/organ_fabricator
 	build_type = ORGAN_GROWER			// Should not be able to use church disks
 	unsuitable_materials = list()		// Allows biomatter to be used (reskinned as "biotic substrate")
-	storage_capacity = 360
+	storage_capacity = 480
 	have_disk = TRUE
 	have_reagents = TRUE
 	have_recycling = FALSE
@@ -32,7 +32,7 @@
 	var/list/ripped_categories = list()		// For sanitizing categories
 
 /obj/machinery/autolathe/organ_fabricator/loaded
-	stored_material = list(MATERIAL_BIOMATTER = 360)
+	stored_material = list(MATERIAL_BIOMATTER = 480)
 
 /obj/machinery/autolathe/organ_fabricator/Initialize()
 	. = ..()

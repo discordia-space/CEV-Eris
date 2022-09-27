@@ -22,7 +22,7 @@
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	init_recoil = RIFLE_RECOIL(0.8)
-	damage_multiplier = 1.1
+	damage_multiplier = 1
 	penetration_multiplier = 0
 	spawn_blacklisted = TRUE
 	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
@@ -47,7 +47,7 @@
 	gripvars = list(/obj/item/part/gun/grip/excel, /obj/item/part/gun/grip/serb, /obj/item/part/gun/grip/wood, /obj/item/part/gun/grip/rubber)
 	resultvars = list(/obj/item/gun/projectile/automatic/ak47, /obj/item/gun/projectile/automatic/ak47/sa, /obj/item/gun/projectile/automatic/ak47/fs, /obj/item/gun/projectile/automatic/ak47/fs/ih)
 	mechanismvar = /obj/item/part/gun/mechanism/autorifle
-	barrelvars = /obj/item/part/gun/barrel/lrifle
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle)
 
 /obj/item/gun/projectile/automatic/ak47/proc/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
@@ -101,7 +101,7 @@
 	icon = 'icons/obj/guns/projectile/ak/krinkov.dmi'
 	w_class = ITEM_SIZE_BULKY	// Small rifle, also because it's basically an smg now
 	init_recoil = CARBINE_RECOIL(0.7)
-	damage_multiplier = 1 // Better control, worse damage
+	damage_multiplier = 0.9 // Better control, worse damage
 	penetration_multiplier = 0.2
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 
@@ -165,7 +165,7 @@
 	icon = 'icons/obj/guns/projectile/ak/vipr.dmi'
 	w_class = ITEM_SIZE_HUGE
 	init_recoil = RIFLE_RECOIL(0.7)
-	damage_multiplier = 1
+	damage_multiplier = 0.9 // civilian, you get what you get
 	penetration_multiplier = 0
 
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
@@ -259,7 +259,7 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	gun_tags = list(GUN_FA_MODDABLE)
 
-	damage_multiplier = 1
+	damage_multiplier = 1.1
 	penetration_multiplier = 0
 
 	init_firemodes = list(
@@ -277,8 +277,8 @@
 	desc = "A Sermak rifle frame. Cobbled together, but as good as new. Sort of."
 	icon_state = "frame_kalash"
 	matter = list(MATERIAL_STEEL = 22, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 6)
-	result = /obj/item/gun/projectile/automatic/ak47
-	gripvars = /obj/item/part/gun/grip/wood
+	resultvars = list(/obj/item/gun/projectile/automatic/ak47/makeshift)
+	gripvars = list(/obj/item/part/gun/grip/wood)
 	mechanismvar = /obj/item/part/gun/mechanism/autorifle
 	barrelvars = list(/obj/item/part/gun/barrel/lrifle, /obj/item/part/gun/barrel/srifle, /obj/item/part/gun/barrel/clrifle)
 
