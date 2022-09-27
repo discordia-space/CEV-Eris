@@ -34,7 +34,9 @@
 	use_external_power = TRUE
 	safety = FALSE
 	twohanded = FALSE
+	spawn_tags = null
 	spawn_blacklisted = TRUE
+	bad_type = /obj/item/gun/energy/plasma/mounted
 	init_recoil = LMG_RECOIL(1)
 
 /obj/item/gun/energy/plasma/mounted/blitz
@@ -42,7 +44,7 @@
 	desc = "A miniaturized plasma rifle, remounted for robotic use only."
 	icon_state = "plasma_turret"
 	charge_meter = FALSE
-	spawn_tags = null
+	bad_type = /obj/item/gun/energy/plasma/mounted/blitz
 
 /obj/item/gun/energy/plasma/destroyer
 	name = "NT PR \"Purger\""
