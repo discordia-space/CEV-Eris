@@ -83,8 +83,8 @@
 	storage_slots = 2
 
 /obj/item/storage/pouch/holster/belt/knife
-	name = "throwing knife rig"
-	desc = "Holds throwing knives."
+	name = "throwing knife pouch"
+	desc = "You can continently store and quickly access all your throwing knives from this pouch."
 	icon_state = "knife"
 	item_state = "knife"
 	rarity_value = 69
@@ -95,7 +95,6 @@
 	can_hold = list(
 		/obj/item/stack/thrown/throwing_knife
 		)
-
 
 //Sheath
 /obj/item/storage/pouch/holster/belt/sheath
@@ -147,6 +146,7 @@
 	var/max_w_class = ITEM_SIZE_NORMAL
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_HOLSTER
+	var/storage_slots = 1
 
 	var/sound_in = 'sound/effects/holsterin.ogg'
 	var/sound_out = 'sound/effects/holsterout.ogg'
@@ -183,6 +183,18 @@
 		/obj/item/reagent_containers/food/snacks/meatpizzaslice,
 		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice,
 		/obj/item/bananapeel
+		)
+
+/obj/item/clothing/accessory/holster/knife
+	name = "throwing knife rig"
+	desc = "A rig for professionals at knife throwing."
+	icon_state = "knife"
+	slot = "utility"
+	price_tag = 100
+	storage_slots = 2
+
+	can_hold = list(
+		/obj/item/stack/thrown/throwing_knife
 		)
 
 /obj/item/clothing/accessory/holster/scabbard
@@ -246,7 +258,7 @@
 /obj/item/clothing/accessory/holster/New()
 	..()
 	holster = new /obj/item/storage/internal(src)
-	holster.storage_slots = 1
+	holster.storage_slots = storage_slots
 	holster.can_hold = can_hold
 	holster.max_w_class = max_w_class
 	holster.master_item = src
