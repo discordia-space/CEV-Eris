@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/voodoo
 	name = "FS HG .40 Magnum \"Voodoo\""
-	desc = "The \"Voodoo\", a heavy pistol given to Ironhammer non-commissioned officers. \
+	desc = "The \"Voodoo\" is a heavy pistol given to Ironhammer non-commissioned officers. \
 			Renowed for its reliability and quick, two-round bursts. Uses 40 Magnum rounds."
 	icon = 'icons/obj/guns/projectile/voodoo.dmi'
 	icon_state = "voodoo"
