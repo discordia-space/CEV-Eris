@@ -1,8 +1,9 @@
 /obj/item/gun/projectile/shotgun/type21
 	name = "OS Type 21 SG \"Yaoguai\"" //Demon
-	desc = "S"
-	icon =
-	icon_state = "bojevic"
+	desc = "you may find your self. SHOTGUN" //placeholder description
+	icon = 'icons/obj/guns/projectile/os/type_21.dmi'
+	icon_state = "type_21"
+	item_state = "type_21"
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK
@@ -11,7 +12,7 @@
 	mag_well = MAG_WELL_RIFLE
 	magazine_type = /obj/item/ammo_magazine/m12
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
-	price_tag = 4000
+	price_tag = 2000
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
@@ -25,23 +26,19 @@
 		SEMI_AUTO_300
 		)
 
-/obj/item/gun/projectile/shotgun/bojevic/update_icon()
+/obj/item/gun/projectile/shotgun/type_21/update_icon()
 	..()
+
+	var/iconstring = initial(icon_state)
 	var/itemstring = ""
-	cut_overlays()
 
-	if(wielded)
-		itemstring += "_doble"
-
-	if(ammo_magazine)
-		overlays += "m12[ammo_magazine.ammo_label_string]"
+	if (ammo_magazine)
+		iconstring += "_mag"
 		itemstring += "_mag"
 
-	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		overlays += "slide"
-
+	icon_state = iconstring
 	set_item_state(itemstring)
 
-/obj/item/gun/projectile/shotgun/bojevic/Initialize()
+/obj/item/gun/projectile/shotgun/type_21/Initialize()
 	. = ..()
 	update_icon()
