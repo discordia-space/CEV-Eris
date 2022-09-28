@@ -95,6 +95,20 @@
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
+/datum/craft_recipe/gun/lasersmg
+	name = "Lasblender"
+	result = /obj/item/gun/energy/lasersmg
+	steps = list(
+		list(/obj/item/gun/projectile/automatic/atreides, 1),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(CRAFT_MATERIAL, 6, MATERIAL_PLASTEEL, "time" = 10),
+		list(/obj/item/stock_parts/subspace/crystal, 1),
+		list(/obj/item/computer_hardware/led, 1),
+		list(/obj/item/stack/cable_coil, 5, "time" = 20),
+		list(/obj/item/stock_parts/capacitor, 1, "time" = 5),
+		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS, "time" = 10),
+		list(QUALITY_ADHESIVE, 15, 70))
+
 /datum/craft_recipe/gun/kalash
 	name = "Makeshift AR .30 \"Kalash\""
 	result = /obj/item/part/gun/frame/kalash
