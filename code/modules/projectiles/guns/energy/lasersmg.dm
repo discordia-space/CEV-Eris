@@ -17,6 +17,7 @@
 	matter = list(MATERIAL_PLASTEEL = 11, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 1, MATERIAL_GLASS = 2)
 	price_tag = 1000
 	damage_multiplier = 0.35 //makeshift laser
+	penetration_multiplier = 1
 	projectile_type = /obj/item/projectile/beam
 	init_offset = 0 
 	suitable_cell = /obj/item/cell/medium
