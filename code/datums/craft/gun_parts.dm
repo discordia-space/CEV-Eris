@@ -258,12 +258,6 @@
 	desc = "All the bits that makes the bullet go bang, in a speedy package."
 	icon_state = "mechanism_smg"
 
-/obj/item/part/gun/mechanism/boltgun
-	name = "bolt-action mechanism"
-	desc = "All the bits that makes the bullet go bang, slow and methodical."
-	icon_state = "mechanism_boltaction"
-	matter = list(MATERIAL_STEEL = 15)
-
 /obj/item/part/gun/mechanism/autorifle
 	name = "self-loading mechanism"
 	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love."
@@ -274,8 +268,45 @@
 	name = "machine gun mechanism"
 	desc = "All the bits that makes the bullet go bang. Now I have a machine gun, Ho, Ho, Ho."
 	icon_state = "mechanism_machinegun"
-	matter = list(MATERIAL_PLASTEEL = 15)
+	matter = list(MATERIAL_PLASTEEL = 16)
 	rarity_value = 8
+
+// steel mechanisms
+/obj/item/part/gun/mechanism/pistol/steel
+	name = "cheap pistol mechanism"
+	desc = "All the bits that makes the bullet go bang, all in a small, convenient frame. \
+			This one does not look as high quality."
+	matter = list(MATERIAL_STEEL = 5)
+
+/obj/item/part/gun/mechanism/revolver/steel
+	name = "cheap revolver mechanism"
+	desc = "All the bits that makes the bullet go bang, rolling round and round. \
+			This one does not look as high quality."
+	matter = list(MATERIAL_STEEL = 5)
+
+/obj/item/part/gun/mechanism/shotgun/steel
+	name = "cheap shotgun mechanism"
+	desc = "All the bits that makes the bullet go bang, perfect for long shells.  \
+			This one does not look as high quality."
+	matter = list(MATERIAL_STEEL = 10)
+
+/obj/item/part/gun/mechanism/smg/steel
+	name = "cheap SMG mechanism"
+	desc = "All the bits that makes the bullet go bang, in a speedy package. \
+			This one does not look as high quality."
+	matter = list(MATERIAL_STEEL = 5)
+
+/obj/item/part/gun/mechanism/boltgun // fits better in this category despite not being a steel variant
+	name = "manual-action mechanism"
+	desc = "All the bits that makes the bullet go bang, slow and methodical."
+	icon_state = "mechanism_boltaction"
+	matter = list(MATERIAL_STEEL = 10)
+
+/obj/item/part/gun/mechanism/autorifle/steel
+	name = "cheap self-loading mechanism"
+	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love. \
+			This one does not look as high quality."
+	matter = list(MATERIAL_STEEL = 10)
 
 //Barrels
 /obj/item/part/gun/barrel
@@ -311,9 +342,6 @@
 	icon_state = "barrel_20"
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_SRIFLE
- 
-/obj/item/part/gun/barrel/srifle/steel
-	matter = list(MATERIAL_STEEL = 8)
 
 /obj/item/part/gun/barrel/clrifle
 	name = ".25 barrel"
@@ -329,10 +357,6 @@
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_LRIFLE
 
-
-/obj/item/part/gun/barrel/lrifle/steel
-	matter = list(MATERIAL_STEEL = 8)
-
 /obj/item/part/gun/barrel/shotgun
 	name = "shotgun barrel"
 	desc = "A gun barrel, which keeps the bullet (or bullets) going in the right direction. Chambered in .50 caliber."
@@ -346,3 +370,40 @@
 	icon_state = "barrel_60"
 	matter = list(MATERIAL_PLASTEEL = 16)
 	caliber = CAL_ANTIM
+
+// steel barrels
+/obj/item/part/gun/barrel/pistol/steel
+	name = "cheap .35 barrel"
+	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .35 caliber. \
+			This one does not look as high quality."
+	matter = list(MATERIAL_STEEL = 4)
+
+/obj/item/part/gun/barrel/magnum/steel
+	name = "cheap .40 barrel"
+	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .40 caliber. \
+			This one does not look as high quality."
+	matter = list(MATERIAL_STEEL = 4)
+
+/obj/item/part/gun/barrel/srifle/steel
+	name = "cheap .20 barrel"
+	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .20 caliber. \
+			 This one does not look as high quality."
+	matter = list(MATERIAL_STEEL = 8)
+
+/obj/item/part/gun/barrel/clrifle/steel
+	name = "cheap .25 barrel"
+	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .25 caliber. \
+			This one does not look as high quality."
+	matter = list(MATERIAL_STEEL = 8)
+ 
+/obj/item/part/gun/barrel/lrifle/steel
+	name = "cheap .30 barrel"
+	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .30 caliber. \
+			This one does not look as high quality."
+	matter = list(MATERIAL_STEEL = 8)
+
+/obj/item/part/gun/barrel/shotgun/steel
+	name = "cheap shotgun barrel"
+	desc = "A gun barrel, which keeps the bullet (or bullets) going in the right direction. Chambered in .50 caliber. \
+			This one does not look as high quality."
+	matter = list(MATERIAL_STEEL = 8)
