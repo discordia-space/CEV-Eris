@@ -148,7 +148,7 @@
 
 /obj/machinery/power/os_turret/attackby(obj/item/I, mob/user)
 	// If the turret is friendly, you can disassemble/unanchor it. If not, you bash it.
-	if(should_target_players)
+	if(should_target_players && !stat)
 		if(!(I.flags & NOBLUDGEON) && I.force && !(stat & BROKEN))
 			// If the turret was attacked with the intention of harming it:
 			user.do_attack_animation(src)
