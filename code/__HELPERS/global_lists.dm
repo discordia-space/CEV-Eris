@@ -68,6 +68,7 @@ var/global/list/playable_species = list(SPECIES_HUMAN)    // A list of ALL playa
 
 // Posters
 GLOBAL_LIST_EMPTY(poster_designs)
+GLOBAL_LIST_EMPTY(poster_designs_asters)
 
 // Uplinks
 var/list/obj/item/device/uplink/world_uplinks = list()
@@ -239,8 +240,14 @@ GLOBAL_LIST_EMPTY(ignore_health_alerts_from)
 	//Posters
 	paths = subtypesof(/datum/poster) - /datum/poster/wanted
 	for(var/T in paths)
-		var/datum/poster/P = new T
-		GLOB.poster_designs += P
+		var/datum/poster/poster = new T
+		GLOB.poster_designs += poster
+
+	// Aster posters
+	paths = subtypesof(/datum/poster/asters) - /datum/poster/wanted
+	for(var/T in paths)
+		var/datum/poster/asters/poster = new T
+		GLOB.poster_designs_asters += poster
 
 	paths = subtypesof(/datum/hud)
 	for(var/T in paths)

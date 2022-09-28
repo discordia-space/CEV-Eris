@@ -7,6 +7,8 @@
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	matter = list(MATERIAL_BIOMATTER = 2)
+	spawn_tags = SPAWN_TAG_ITEM
+	spawn_frequency = 3
 	var/colour = "red"
 	var/open = 0
 
@@ -81,6 +83,7 @@
 	icon_state = "purplecomb"
 	item_state = "purplecomb"
 	spawn_tags = SPAWN_ITEM_CONTRABAND
+	spawn_frequency = 8
 	rarity_value = 12.5
 
 /obj/item/haircomb/attack_self(mob/user)
