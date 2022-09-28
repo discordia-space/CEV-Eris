@@ -111,28 +111,20 @@
 	materials = list(MATERIAL_BIOMATTER = 10)
 
 /datum/design/bioprinter/leather/holster
-	name = "compact holster"
-	build_path = /obj/item/storage/pouch/holster
-
-/datum/design/bioprinter/leather/holster/baton
-	name = "baton holster"
-	build_path = /obj/item/storage/pouch/holster/baton
-
-/datum/design/bioprinter/leather/holster/belt
-	name = "belt holster"
-	build_path = /obj/item/storage/pouch/holster/belt
-
-/datum/design/bioprinter/leather/holster/sheath
-	name = "sheath"
-	build_path = /obj/item/storage/pouch/holster/belt/sheath
-
-/datum/design/bioprinter/leather/holster/accessory
-	name = "concealed carry holster"
+	name = "shoulder holster"
 	build_path = /obj/item/clothing/accessory/holster
 
-/datum/design/bioprinter/leather/holster/scabbard
-	name = "scabbard"
-	build_path = /obj/item/clothing/accessory/holster/scabbard
+/datum/design/bioprinter/leather/holster/armpit
+	name = "armpit holster"
+	build_path = /obj/item/clothing/accessory/holster/armpit
+
+/datum/design/bioprinter/leather/holster/waist
+	name = "waist holster"
+	build_path = /obj/item/clothing/accessory/holster/waist
+
+/datum/design/bioprinter/leather/holster/hip
+	name = "hip holster"
+	build_path = /obj/item/clothing/accessory/holster/hip
 
 /datum/design/bioprinter/belt
 	materials = list(MATERIAL_BIOMATTER = 30)
@@ -209,6 +201,10 @@
 //[/CLOTHES, ARMOR AND ACCESORIES]
 
 //[MISC]
+/datum/design/bioprinter/storage/sheath
+	name = "sheath"
+	build_path = /obj/item/storage/belt/sheath
+
 /datum/design/bioprinter/holyvacuum
 	name = "\"Tersus\" Vacuum Cleaner"
 	build_path = /obj/item/holyvacuum

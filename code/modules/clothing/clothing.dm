@@ -576,7 +576,7 @@ BLIND     // can't see anything
 		/obj/item/reagent_containers/spray,
 		/obj/item/device/radio,
 		/obj/item/clothing/mask,
-		/obj/item/storage/pouch/holster/belt/sheath,
+		/obj/item/storage/belt/sheath,
 		/obj/item/implant/carrion_spider/holographic,
 		/obj/item/shield)
 	slot_flags = SLOT_OCLOTHING
