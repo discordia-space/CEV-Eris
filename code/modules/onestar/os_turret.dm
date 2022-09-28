@@ -147,8 +147,18 @@
 		try_shoot(proj_start_turf)
 
 /obj/machinery/power/os_turret/attackby(obj/item/I, mob/user)
-	// If the turret is friendly, you can disassemble/unanchor it. If not, you bash it.
-	if(should_target_players && !stat)
+	var/mec_or_cog = max(user.stats.getStat(STAT_MEC), user.stats.getStat(STAT_COG))
+
+	if(mec_or_cog >= STAT_LEVEL_EXPERT)
+		to_chat(user, SPAN_WARNING("You lack the knowledge or skill to perform work on \the [src]."))
+	else
+		if(default_deconstruction(I, user))
+			return
+		if(default_part_replacement(I, user))
+			return
+
+	// If the turret is friendly, you can unanchor it. If not, you bash it.
+	if(should_target_players)
 		if(!(I.flags & NOBLUDGEON) && I.force && !(stat & BROKEN))
 			// If the turret was attacked with the intention of harming it:
 			user.do_attack_animation(src)
@@ -160,16 +170,6 @@
 				playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 			return
 	else
-		var/mec_or_cog = max(user.stats.getStat(STAT_MEC), user.stats.getStat(STAT_COG))
-
-		if(mec_or_cog >= STAT_LEVEL_EXPERT)
-			to_chat(user, SPAN_WARNING("You lack the knowledge or skill to perform work on \the [src]."))
-			return
-		if(default_deconstruction(I, user))
-			return
-		if(default_part_replacement(I, user))
-			return
-
 		var/list/usable_qualities = list(QUALITY_BOLT_TURNING)
 
 		var/tool_type = I.get_tool_type(user, usable_qualities, src)
@@ -259,10 +259,10 @@
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 5)
 	spawn_blacklisted = TRUE
 	req_components = list(
-		/obj/item/stock_parts/capacitor = 2,
-		/obj/item/stock_parts/matter_bin = 2,
-		/obj/item/stock_parts/micro_laser = 2,
-		/obj/item/stock_parts/scanning_module = 1,
+		/obj/item/stock_parts/capacitor/one_star = 2,
+		/obj/item/stock_parts/matter_bin/one_star = 2,
+		/obj/item/stock_parts/micro_laser/one_star = 2,
+		/obj/item/stock_parts/scanning_module/one_star = 1,
 		/obj/item/cell/large = 1
 	)
 	var/target_superior_mobs = FALSE
@@ -274,10 +274,10 @@
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 5)
 	spawn_blacklisted = TRUE
 	req_components = list(
-		/obj/item/stock_parts/capacitor = 2,
-		/obj/item/stock_parts/matter_bin = 2,
-		/obj/item/stock_parts/micro_laser = 2,
-		/obj/item/stock_parts/scanning_module = 1,
+		/obj/item/stock_parts/capacitor/one_star = 2,
+		/obj/item/stock_parts/matter_bin/one_star = 2,
+		/obj/item/stock_parts/micro_laser/one_star = 2,
+		/obj/item/stock_parts/scanning_module/one_star = 1,
 		/obj/item/cell/large = 1
 	)
 
