@@ -113,7 +113,7 @@
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/power/port_gen/os_generator/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/power/port_gen/os_generator/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(IsBroken() || is_circuit_fried)
 		to_chat(user, SPAN_WARNING("You can\'t operate \the [src] while it is broken."))
 		return
