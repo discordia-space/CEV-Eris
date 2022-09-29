@@ -604,7 +604,7 @@
 		rad = 50)
 	up = TRUE
 	spawn_blacklisted = TRUE
-	style = STYLE_HIGH
+	style = STYLE_NEG_HIGH
 	tint_down = TINT_NONE
 	obscuration_down = LIGHT_OBSCURATION
 	var/speaker_enabled = TRUE
