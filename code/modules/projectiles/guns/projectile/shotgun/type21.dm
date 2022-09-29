@@ -14,6 +14,7 @@
 	magazine_type = /obj/item/ammo_magazine/m12
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 2000
+	spawn_blacklisted = TRUE //until onestar rework
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
