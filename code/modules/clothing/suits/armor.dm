@@ -634,7 +634,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	spawn_blacklisted = TRUE
-	style = STYLE_HIGH
+	style = STYLE_NEG_HIGH
 	action_button_name = "Toggle Acceleration"
 	var/speed_boost_ready = TRUE
 	var/speed_boost_active = FALSE
