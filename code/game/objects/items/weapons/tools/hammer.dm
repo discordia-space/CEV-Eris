@@ -191,3 +191,11 @@
 	tool_qualities = list(QUALITY_HAMMERING = 40, QUALITY_PRYING = 1)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 2)
 	spawn_blacklisted = TRUE
+
+/obj/item/tool/hammer/dumbbell
+	name = "dumbbell"
+	desc = "To get stronger with this thing, you need to regularly train for many a month. But to hammer a nail, or crack a skull..."
+	force = WEAPON_FORCE_ROBUST
+	tool_qualities = list(QUALITY_HAMMERING = 25)
+	matter = list(MATERIAL_STEEL = 5)
+	rarity_value = 35
