@@ -18,7 +18,7 @@
 
 /obj/item/clothing/suit/space/void/onestar
 	name = "Onestar Voidsuit"
-	desc = "A Onestar industrial voidsuit designed to be resistant to bluespace anomalies and all types of damage. hundreds of thousands of theese were produced in the dying days of onestar. but they failed to be enough to save its citizens. the sight of a skeleton lying dead in this voidsuit is not an uncommon sight in nullspace. the suit is incredibly light and appears to be made out of a special fibre and lightweight matriels to allow movement of limbs in EVA while not sacrificing protection"
+	desc = "A Onestar industrial voidsuit designed to be resistant to bluespace anomalies and all types of damage. hundreds of thousands of theese were produced in the dying days of onestar. but they failed to be enough to save its citizens. the sight of a skeleton lying dead in this voidsuit is not an uncommon sight in nullspace, often horifically warped and damaged. the suit is incredibly light and appears to be made out of a special fibre and lightweight matriels to allow movement of limbs in EVA while not sacrificing protection"
 	icon_state = "onestar_void"
 	item_state = "onestar_void"
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
