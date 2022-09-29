@@ -1,0 +1,8 @@
+author: Kegdo
+delete-after: true
+changes:
+  - rscadd: belt holster
+  - rscadd: accessory holster resprite
+  - rscdel: bay12 godawful holster sprites and code
+  - tweak: holster pouches moved into one subtype for hotkey use
+  - code_imp: holster code refactor
