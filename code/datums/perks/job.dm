@@ -294,7 +294,6 @@
 		/mob/living/carbon/human/proc/codespeak_warcrime_yes_local,
 		/mob/living/carbon/human/proc/codespeak_warcrime_no_local,
 		/mob/living/carbon/human/proc/codespeak_run_local)
-	var/codetype = "IH"
 
 /datum/perk/codespeak/assign(mob/living/carbon/human/H)
 	if(..())
@@ -334,4 +333,3 @@
 		/mob/living/carbon/human/proc/sm_codespeak_stop_local,
 		/mob/living/carbon/human/proc/sm_codespeak_run_local,
 		/mob/living/carbon/human/proc/sm_codespeak_idiot_local)
-	codetype = "SM"

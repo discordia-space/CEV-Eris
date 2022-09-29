@@ -1,18 +1,27 @@
-/proc/get_cop_code()
-	var/cop_code_1 = pick("10", "20", "0", "13")
-	var/cop_code_2 = pick("1","4", "7", "8", "10", "13", "17", "21", "22", "24", "33", "40", "55", "64", "75", "88", "99")
-	var/cop_code_3 = pick("Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Sierra", "Uniform")
-	return "[cop_code_1]-[cop_code_2] [cop_code_3]"
-
 /datum/codespeak_list
 	var/list/codes = list()
+	var/codetype
+
+/datum/codespeak_list/proc/get_cop_code()
+	if(codetype == "IH")
+		var/cop_code_1 = pick("10", "20", "0", "13")
+		var/cop_code_2 = pick("1","4", "7", "8", "10", "13", "17", "21", "22", "24", "33", "42", "54", "64", "75", "88", "99")
+		var/cop_code_3 = pick("Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Sierra", "Uniform")
+		return "[cop_code_1]-[cop_code_2] [cop_code_3]"
+	else if(codetype == "SA")
+		var/cop_code_3 = pick("Anna", "Boris", "Vasily", "Grigory", "Dmitry", "Yelena", "Zhenya", "Ivan")
+		var/cop_code_1 = "[pick("1", "2", "3", "5", "7")]-"
+		var/cop_code_2 = pick("Konstatin", "Leonid", "Mikhail", "Nikolai", "Olga", "Pavel")
+		return "[cop_code_1]-[cop_code_2] [cop_code_3]"
 
 // Add new ones here
 var/global/datum/codespeak_list/cop_codes
 var/global/datum/codespeak_list/serb_codes
 proc/setup_codespeak()
 	cop_codes = new()
+	cop_codes.codetype = "IH"
 	serb_codes = new()
+	serb_codes.codetype = "SA"
 
 // Takes meaning, returns code or generates new code
 /datum/codespeak_list/proc/find_index(message)
@@ -22,6 +31,8 @@ proc/setup_codespeak()
 		return index
 	else
 		index = get_cop_code()
+		while(find_message(index))
+			index = get_cop_code()
 		codes[index] = message
 		return index
 
