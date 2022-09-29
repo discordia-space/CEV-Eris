@@ -138,7 +138,7 @@
 	data["is_maxed"] = (power_gen == max_power_gen) ? TRUE : FALSE
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "os_generator.tmpl", src.name, 500, 560)
 		ui.set_initial_data(data)
 		ui.open()
