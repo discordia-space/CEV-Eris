@@ -220,7 +220,7 @@
 			organ_rel_size[BP_GROIN]; BP_GROIN,
 			organ_rel_size[BP_L_ARM]; BP_L_ARM,
 			organ_rel_size[BP_R_ARM]; BP_R_ARM,
-			organ_rel_size[BP_L_LEG ]; BP_L_LEG,
+			organ_rel_size[BP_L_LEG]; BP_L_LEG,
 			organ_rel_size[BP_R_LEG]; BP_R_LEG,
 		)
 
