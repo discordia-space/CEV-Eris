@@ -72,7 +72,7 @@
 		power_gen += power_gen_gain_per_tick
 		power_gen = min(power_gen, max_power_gen)
 
-/obj/machinery/power/port_gen/os_generator/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/power/port_gen/os_generator/attackby(obj/item/I, mob/user)
 	var/mec_or_cog = max(user.stats.getStat(STAT_MEC), user.stats.getStat(STAT_COG))
 	if(mec_or_cog >= STAT_LEVEL_EXPERT)
 		to_chat(user, SPAN_WARNING("You lack the knowledge or skill to perform work on \the [src]."))
@@ -113,7 +113,7 @@
 		return
 	nano_ui_interact(user)
 
-/obj/machinery/power/port_gen/os_generator/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/power/port_gen/os_generator/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(IsBroken() || is_circuit_fried)
 		to_chat(user, SPAN_WARNING("You can\'t operate \the [src] while it is broken."))
 		return
@@ -138,7 +138,7 @@
 	data["is_maxed"] = (power_gen == max_power_gen) ? TRUE : FALSE
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "os_generator.tmpl", src.name, 500, 560)
 		ui.set_initial_data(data)
 		ui.open()
@@ -154,14 +154,14 @@
 				active = 1
 				update_icon()
 		if(href_list["action"] == "disable")
-			if (active)
+			if(active)
 				active = 0
 				update_icon()
 		if(href_list["action"] == "lower_power")
-			if (power_output > 1)
+			if(power_output > 1)
 				power_output--
-		if (href_list["action"] == "higher_power")
-			if (power_output < max_power_output || (emagged && power_output < round(max_power_output*2.5)))
+		if(href_list["action"] == "higher_power")
+			if(power_output < max_power_output || (emagged && power_output < round(max_power_output*2.5)))
 				power_output++
 
 /obj/item/electronics/circuitboard/os_generator
