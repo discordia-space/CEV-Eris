@@ -97,8 +97,6 @@
 	
 	if(nearest_valid_target)
 		try_shoot(nearest_valid_target)
-	
-	return
 
 /obj/machinery/power/os_turret/Destroy()
 	if(cooldown_timer_id)
