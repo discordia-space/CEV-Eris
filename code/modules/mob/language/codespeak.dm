@@ -9,10 +9,9 @@
 		var/cop_code_3 = pick("Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Sierra", "Uniform")
 		return "[cop_code_1]-[cop_code_2] [cop_code_3]"
 	else if(codetype == "SA")
-		var/cop_code_3 = pick("Anna", "Boris", "Vasily", "Grigory", "Dmitry", "Yelena", "Zhenya", "Ivan")
-		var/cop_code_1 = "[pick("1", "2", "3", "5", "7")]-"
-		var/cop_code_2 = pick("Konstatin", "Leonid", "Mikhail", "Nikolai", "Olga", "Pavel")
-		return "[cop_code_1]-[cop_code_2] [cop_code_3]"
+		var/serb_code_1 = pick("Alil-Aga", "Boris", "Cvijan", "Dimitrije", "Grigorije", "Jelena", "Vasilij", "Leonid", "Nikolaj")
+		var/serb_code_2 = pick("Srbije", "Rakija", "Cevapi", "Tito", "Artiljerija", "Budala", "Slava")
+		return "[serb_code_1]! [serb_code_2]!"
 
 // Add new ones here
 var/global/datum/codespeak_list/cop_codes
