@@ -17,12 +17,13 @@
 	stations_recommended = list("illegal2")
 	recommendations_needed = 2
 	inventory = list(
+		// TODO: Update to match TC cost. Guideline is 775 credits per TC.
 		"Syndicate Gear" = list(
 			/obj/item/clothing/under/syndicate,
 			/obj/item/storage/toolbox/syndicate = custom_good_amount_range(list(1, 3)),
 			/obj/item/clothing/suit/space/syndicate = custom_good_amount_range(list(1, 1)),
 			/obj/item/clothing/head/space/syndicate = custom_good_amount_range(list(1, 1)),
-			/obj/item/clothing/suit/space/void/merc = custom_good_amount_range(list(1, 1)),
+			/obj/item/clothing/suit/space/void/merc = custom_good_price(4650),
 			/obj/item/clothing/mask/gas/syndicate = custom_good_amount_range(list(-3, 1)),
 			/obj/item/gun/projectile/selfload = custom_good_amount_range(list(1, 1))
 		),
