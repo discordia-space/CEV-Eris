@@ -15,8 +15,8 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 2000
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
-	unload_sound = 'sound/weapons/guns/interact/hpistol_magout.ogg'
-	reload_sound = 'sound/weapons/guns/interact/hpistol_magin.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/hpistol_cock.ogg'
 	damage_multiplier = 1.0
 	penetration_multiplier = 0.5 // this is not babies first gun. It's a Serb-level weapon.
