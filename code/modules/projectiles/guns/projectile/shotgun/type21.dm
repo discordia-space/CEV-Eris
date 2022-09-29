@@ -1,12 +1,12 @@
 /obj/item/gun/projectile/shotgun/type_21
 	name = "OS Type 21 SG \"Yaoguai\"" //Demon
-	desc = "a compact shotgun fed from magazines and drums." //placeholder description
+	desc = "an early model shotgun used by onestar. its compact with a sawn down barrel and no stock. and designed for police use in megacities its recoil kicks badly but the stopping power is worth it. its fed from drum magazines"
 	icon = 'icons/obj/guns/projectile/os/type_21.dmi'
 	icon_state = "type_21"
 	item_state = "type_21"
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
-	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
+	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER //isnt fitting in holsters for some reason
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 3)
 	caliber = CAL_SHOTGUN
 	load_method = MAGAZINE
