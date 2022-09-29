@@ -238,7 +238,7 @@ GLOBAL_LIST_EMPTY(ignore_health_alerts_from)
 			whitelisted_species += S.name
 
 	//Posters
-	paths = subtypesof(/datum/poster) - /datum/poster/wanted
+	paths = subtypesof(/datum/poster) - /datum/poster/wanted - /datum/poster/asters
 	for(var/T in paths)
 		var/datum/poster/poster = new T
 		GLOB.poster_designs += poster
