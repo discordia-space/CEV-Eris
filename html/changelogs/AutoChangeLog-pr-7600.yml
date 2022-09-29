@@ -1,0 +1,6 @@
+author: Iglpigl
+delete-after: true
+changes:
+  - tweak: roundstart monkeys changed to monkey cubes, artists now spawn in office
+      always instead of only when there is one artist and floating camera in medbay
+      isolation deleted
