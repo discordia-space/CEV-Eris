@@ -129,12 +129,12 @@
 						src.attack_log += "\[[time_stamp()]\] <font color='orange'>Counter-grabbed by [M.name] ([M.ckey])</font>"
 						M.attack_log += "\[[time_stamp()]\] <font color='red'>Counter-grabbed [src.name] ([src.ckey])</font>"
 						msg_admin_attack("[M] countered [src]'s grab.")
-						return 1						
+						return 1
 
 					else //uh oh! our resist is now also on cooldown(we are dead)
 						setClickCooldown(40)
 						visible_message(SPAN_WARNING("[M] tried to counter [src]'s grab, but failed!"))
-					
+
 				return
 			//usual grabs
 			var/obj/item/grab/G = new /obj/item/grab(M, src)
@@ -334,7 +334,7 @@
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
 	return
 
-/mob/living/carbon/human/attack_generic(var/mob/user, var/damage, var/attack_message, var/wallbreaker = FALSE, var/is_sharp = FALSE, var/is_edge = FALSE)
+/mob/living/carbon/human/attack_generic(var/mob/user, var/damage, var/attack_message, var/wallbreaker = FALSE, var/is_sharp = FALSE, var/is_edge = FALSE, var/wounding = 1)
 
 	if(!damage || !istype(user))
 		return
@@ -351,7 +351,7 @@
 		penetration = L.armor_divisor
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
-	var/dam = damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE, penetration, sharp=is_sharp, edge=is_edge)
+	var/dam = damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE, penetration, sharp=is_sharp, edge=is_edge, wounding_multiplier = wounding)
 	if(dam > 0)
 		affecting.add_autopsy_data("[attack_message] by \a [user]", dam)
 	updatehealth()
