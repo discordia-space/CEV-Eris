@@ -1,0 +1,5 @@
+author: ErisMeleeEnjoyer
+delete-after: true
+changes:
+  - balance: armblade damage increased
+  - bugfix: no more embed tools being dropped
