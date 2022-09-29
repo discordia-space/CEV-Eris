@@ -1,12 +1,13 @@
-/obj/item/gun/projectile/shotgun/type21
+/obj/item/gun/projectile/shotgun/type_21
 	name = "OS Type 21 SG \"Yaoguai\"" //Demon
-	desc = "you may find your self. SHOTGUN" //placeholder description
+	desc = "you may find your self living SHOTGUN" //placeholder description
 	icon = 'icons/obj/guns/projectile/os/type_21.dmi'
 	icon_state = "type_21"
 	item_state = "type_21"
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
+	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 3)
 	caliber = CAL_SHOTGUN
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
@@ -31,9 +32,11 @@
 	var/iconstring = initial(icon_state)
 	var/itemstring = ""
 
-	if (ammo_magazine)
+	if(ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
+		if(!LAZYLEN(ammo_magazine.stored_ammo))
+			iconstring += "_empty"
 
 	icon_state = iconstring
 	set_item_state(itemstring)
