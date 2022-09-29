@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/shotgun/type_21
 	name = "OS Type 21 SG \"Yaoguai\"" //Demon
-	desc = "you may find your self living SHOTGUN" //placeholder description
+	desc = "a compact shotgun fed from magazines and drums." //placeholder description
 	icon = 'icons/obj/guns/projectile/os/type_21.dmi'
 	icon_state = "type_21"
 	item_state = "type_21"
