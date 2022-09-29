@@ -243,13 +243,13 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
 	icon_state = "slug"
-	damage_types = list(BRUTE = 25)
+	damage_types = list(BRUTE = 37.5)
 	armor_divisor = 1
 	knockback = 1
 	step_delay = 1.1
 	style_damage = 25
 	recoil = 8
-	wounding_mult = WOUNDING_EXTREME
+	wounding_mult = WOUNDING_WIDE
 
 /obj/item/projectile/bullet/shotgun/scrap
 	armor_divisor = 0.8
