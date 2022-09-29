@@ -6,7 +6,7 @@
 	item_state = "type_21"
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	caliber = CAL_SHOTGUN
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
@@ -21,7 +21,6 @@
 	penetration_multiplier = 0.5 // this is not babies first gun. It's a Serb-level weapon.
 	init_recoil = CARBINE_RECOIL(1.0)
 
-					//while also preserving ability to shoot as fast as you can click and maintain recoil good enough
 	init_firemodes = list(
 		SEMI_AUTO_300
 		)
