@@ -154,14 +154,14 @@
 				active = 1
 				update_icon()
 		if(href_list["action"] == "disable")
-			if (active)
+			if(active)
 				active = 0
 				update_icon()
 		if(href_list["action"] == "lower_power")
-			if (power_output > 1)
+			if(power_output > 1)
 				power_output--
-		if (href_list["action"] == "higher_power")
-			if (power_output < max_power_output || (emagged && power_output < round(max_power_output*2.5)))
+		if(href_list["action"] == "higher_power")
+			if(power_output < max_power_output || (emagged && power_output < round(max_power_output*2.5)))
 				power_output++
 
 /obj/item/electronics/circuitboard/os_generator
