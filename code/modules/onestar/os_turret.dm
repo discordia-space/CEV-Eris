@@ -66,9 +66,9 @@
 	var/nearest_valid_target_distance
 
 	if(should_target_players)
-		potential_targets = (GLOB.player_list & SSmobs.mob_living_by_zlevel[(get_turf(src)).z])
+		potential_targets = (GLOB.player_list & SSmobs.mob_living_by_zlevel[z])
 	else
-		potential_targets = (GLOB.superior_animal_list & SSmobs.mob_living_by_zlevel[(get_turf(src)).z])
+		potential_targets = (GLOB.superior_animal_list & SSmobs.mob_living_by_zlevel[z])
 
 	for(var/mob in potential_targets)
 		var/distance_to_target = get_dist(src, mob)
