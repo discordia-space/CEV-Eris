@@ -2508,6 +2508,7 @@
 #include "code\modules\projectiles\guns\projectile\revolver\revolver.dm"
 #include "code\modules\projectiles\guns\projectile\revolver\sky_driver.dm"
 #include "code\modules\projectiles\guns\projectile\shotgun\bojevic.dm"
+#include "code\modules\projectiles\guns\projectile\shotgun\type_21.dm"
 #include "code\modules\projectiles\guns\projectile\shotgun\bull.dm"
 #include "code\modules\projectiles\guns\projectile\shotgun\doublebarrel.dm"
 #include "code\modules\projectiles\guns\projectile\shotgun\gladstone.dm"
