@@ -20,7 +20,7 @@
 	sharp = TRUE
 	structure_damage_factor = STRUCTURE_DAMAGE_BORING //Drills and picks are made for getting through hard materials
 	//They are the best anti-structure melee weapons
-	embed_mult = 1.2 //Digs deep
+	embed_mult = 2.4 //Digs deep
 	mode = EXCAVATE //Mode should be whatever is the starting tool and off quality.
 	rarity_value = 24
 

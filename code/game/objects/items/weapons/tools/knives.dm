@@ -44,7 +44,7 @@
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 2)
 	force = WEAPON_FORCE_DANGEROUS
 	armor_divisor = ARMOR_PEN_HALF //Should be countered be embedding
-	embed_mult = 1.5 //This is designed for embedding
+	embed_mult = 3 //This is designed for embedding
 	rarity_value = 5
 
 /obj/item/tool/knife/ritual
@@ -75,14 +75,14 @@
 	item_state = "knife"
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_PLASTIC = 1)
 	force = WEAPON_FORCE_PAINFUL
-	embed_mult = 3
+	embed_mult = 6
 	max_upgrades = 3
 	spawn_blacklisted = TRUE
 
 /obj/item/tool/knife/neotritual/equipped(mob/living/H)
 	. = ..()
 	if(is_held() && is_neotheology_disciple(H))
-		embed_mult = 0.1
+		embed_mult = 0.05
 	else
 		embed_mult = initial(embed_mult)
 
@@ -95,7 +95,7 @@
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2)
 	force = WEAPON_FORCE_PAINFUL
 	armor_divisor = ARMOR_PEN_MODERATE
-	embed_mult = 0.3
+	embed_mult = 0.15
 	max_upgrades = 3
 
 /obj/item/tool/knife/tacknife/New()
@@ -128,7 +128,7 @@
 	item_state = "fancydagger"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 1, MATERIAL_SILVER = 1)
 	armor_divisor = ARMOR_PEN_MASSIVE
-	embed_mult = 0.3
+	embed_mult = 0.15
 	max_upgrades = 4
 	spawn_blacklisted = TRUE
 
@@ -139,7 +139,7 @@
 	item_state = "bluespace_dagger"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 10, MATERIAL_GOLD = 5, MATERIAL_PLASMA = 20)
 	force = WEAPON_FORCE_NORMAL+1
-	embed_mult = 25 //You WANT it to embed
+	embed_mult = 50 //You WANT it to embed
 	suitable_cell = /obj/item/cell/small
 	toggleable = TRUE
 	use_power_cost = 0.4
