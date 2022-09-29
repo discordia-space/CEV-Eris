@@ -246,7 +246,6 @@ There are important things regarding this file:
 	damage_types = list(BRUTE = 25)
 	armor_divisor = 1
 	knockback = 1
-	step_delay = 1.1
 	style_damage = 25
 	recoil = 8
 	wounding_mult = WOUNDING_EXTREME
