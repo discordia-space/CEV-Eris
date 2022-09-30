@@ -1,0 +1,4 @@
+author: Iglpigl
+delete-after: true
+changes:
+  - bugfix: artist glasses now properly show roundstart
