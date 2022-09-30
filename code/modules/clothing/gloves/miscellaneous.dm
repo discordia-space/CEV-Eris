@@ -251,10 +251,16 @@
 	)
 	price_tag = 540
 
-/obj/item/clothing/gloves/dusters/equipped(mob/living/carbon/human/H)
+/obj/item/clothing/gloves/dusters/New()
 	..()
+	RegisterSignal(src, COMSIG_CLOTH_EQUIPPED, .proc/increase_punch_damage)
+	RegisterSignal(src, COMSIG_CLOTH_DROPPED, .proc/decrease_punch_damage)
+
+/obj/item/clothing/gloves/dusters/proc/increase_punch_damage()
+	var/mob/living/carbon/human/H = usr
 	H.punch_damage_increase += punch_increase
 
-/obj/item/clothing/gloves/dusters/dropped(mob/living/carbon/human/H)
+/obj/item/clothing/gloves/dusters/proc/decrease_punch_damage()
+	var/mob/living/carbon/human/H = usr
 	H.punch_damage_increase -= punch_increase
-	..()
+	UnregisterSignal(usr, COMSIG_CLOTH_DROPPED)
