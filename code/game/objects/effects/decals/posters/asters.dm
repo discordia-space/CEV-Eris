@@ -1,13 +1,13 @@
 // Asters Guild faction posters
 /datum/poster/asters/asterite
 	name = "Voyage of The Asterites"
-	desc = {"A flourished bit of symbolism representing the first Asterite's great exodus from Humanity's origin, now posed to to inherit the stars themselves. \
-	At least, that's what the small text says."}
+	desc = "A flourished bit of symbolism representing the first Asterite's great exodus from Humanity's origin, now posed to to inherit the stars themselves. \
+	At least, that's what the small text says."
 	icon_state = "asters_asterite"
 
 /datum/poster/asters/blurb
 	name = "The Asterite's Message"
-	desc = "A poster labeling the good will and intentions of The Aster's Guild under American principles of free will and enterprise."
+	desc = "A poster labeling the good will and intentions of The Aster's Guild under Hanseatic principles of free will and enterprise."
 	icon_state = "asters_blurb"
 
 /datum/poster/asters/social_pyramid
@@ -27,14 +27,14 @@
 
 /datum/poster/asters/workplace_gaming
 	name = "Workplace Gaming"
-	desc = {"This poster wishes to remind you that in the event this reality is a virtual simulation, you will be scored on workplace output, not your paycheck. \
-	\"So lets go and highscore!\""}
+	desc = "This poster wishes to remind you that in the event this reality is a virtual simulation, you will be scored on workplace output, not your paycheck. \
+	\"So lets go and highscore!\""
 	icon_state = "asters_workplace_gaming"
 
 /datum/poster/asters/mine_ore_1
 	name = "Mine Ore"
-	desc = {"This poster wishes to remind you that an astral miner's work is what allows industry to function, and if you're among them to take pride within your work - \
-	\"but not too much!\""}
+	desc = "This poster wishes to remind you that an astral miner's work is what allows industry to function, and if you're among them to take pride within your work - \
+	\"but not too much!\""
 	icon_state = "asters_mine_ore_1"
 
 /datum/poster/asters/mine_ore_2

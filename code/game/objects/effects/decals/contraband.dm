@@ -36,7 +36,7 @@
 /obj/item/contraband/poster/asters
 	name = "rolled-up asters poster"
 	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface."
-	icon_state = "rolled_poster"
+	icon_state = "rolled_poster_asters"
 	poster_datum = "asters"
 
 /obj/item/contraband/poster/placed
