@@ -199,6 +199,14 @@
 		list(QUALITY_ADHESIVE, 15, 15)
 	)
 
+/datum/craft_recipe/clothing/holster
+	name = "throwing knife pouch"
+	result = /obj/item/clothing/accessory/holster/knife
+	steps = list (
+		list(/obj/item/storage/pouch/tubular, 1, "time" = 5),
+		list(QUALITY_WIRE_CUTTING, 10, "time" = 5)
+	)
+
 /datum/craft_recipe/clothing/sheath
 	name = "Makeshift sheath"
 	result = /obj/item/storage/pouch/holster/belt/sheath/improvised
