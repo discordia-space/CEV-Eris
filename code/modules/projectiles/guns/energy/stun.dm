@@ -20,11 +20,13 @@
 	use_external_power = TRUE
 	safety = FALSE
 	restrict_safety = TRUE
-	spawn_blacklisted = TRUE
+	spawn_tags = null
+	bad_type = /obj/item/gun/energy/taser/mounted
 
 /obj/item/gun/energy/taser/mounted/cyborg
 	name = "taser gun"
 	recharge_time = 10 //Time it takes for shots to recharge (in ticks)
+	bad_type = /obj/item/gun/energy/taser/mounted/cyborg
 
 /obj/item/gun/energy/stunrevolver
 	name = "NT SP \"Zeus\""

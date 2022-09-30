@@ -12,7 +12,7 @@
 	attack_verb = list("stabbed", "chopped", "cut")
 	armor_divisor = ARMOR_PEN_MODERATE
 	tool_qualities = list(QUALITY_CUTTING = 20)
-	spawn_blacklisted = TRUE
+	bad_type = /obj/item/tool/armblade
 
 /obj/item/organ_module/active/simple/armblade
 	name = "embedded armblade"

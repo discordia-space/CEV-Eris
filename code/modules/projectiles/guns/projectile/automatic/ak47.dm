@@ -34,7 +34,6 @@
 		SEMI_AUTO_300,
 		BURST_5_ROUND
 		)
-	spawn_blacklisted = TRUE
 	serial_type = "Excelsior"
 
 	var/folded = FALSE
