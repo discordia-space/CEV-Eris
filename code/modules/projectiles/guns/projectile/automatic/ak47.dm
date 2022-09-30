@@ -170,7 +170,7 @@
 
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
-	gun_tags = list(GUN_FA_MODDABLE)
+	gun_tags = list(GUN_FA_MODDABLE, GUN_GILDABLE)
 
 	init_firemodes = list(
 		SEMI_AUTO_300,
@@ -197,6 +197,7 @@
 	icon = 'icons/obj/guns/projectile/ak/venger.dmi'
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
+	gun_tags = list(GUN_FA_MODDABLE)
 	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 	price_tag = 2000
 	damage_multiplier = 1.1
