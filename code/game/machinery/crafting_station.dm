@@ -197,7 +197,7 @@
 								if("SMG mechanism")
 									required_resources = materials_smechanism_steel
 									items_to_spawn = list("" = /obj/item/part/gun/mechanism/smg/steel)
-								if("Manual-action")
+								if("Manual-action mechanism")
 									required_resources = materials_lmechanism_steel
 									items_to_spawn = list("" = /obj/item/part/gun/mechanism/boltgun)
 								if("Self-loading mechanism")
