@@ -91,7 +91,7 @@
 			nearest_valid_target = L
 			nearest_valid_target_distance = distance_to_target
 		else
-			if(distance_to_target > nearest_valid_target_distance)
+			if(distance_to_target < nearest_valid_target_distance)
 				nearest_valid_target = L
 				nearest_valid_target_distance = distance_to_target
 	
