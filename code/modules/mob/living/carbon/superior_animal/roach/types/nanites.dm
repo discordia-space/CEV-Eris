@@ -74,8 +74,9 @@
 	density = FALSE
 	health = 10
 	maxHealth = 10
-	melee_damage_lower = 1
-	melee_damage_upper = 2
+	melee_damage_lower = 2
+	melee_damage_upper = 4
+	armor_divisor = ARMOR_PEN_MASSIVE
 	attacktext = "cut"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	faction = "roach"
