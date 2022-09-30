@@ -1,0 +1,9 @@
+author: assortedbeads
+delete-after: true
+changes:
+  - rscadd: Added Lasblender crafting recipe to the guns section
+  - rscdel: Removed Lasblender crafting recipe from the weapons section
+  - tweak: Lasblenders description has been updated
+  - balance: Lasblender does has a 0.35 damage mod and a 1 pen mod now, up from 0.28
+      and default
+  - balance: Lasblenders initial offset is gone
