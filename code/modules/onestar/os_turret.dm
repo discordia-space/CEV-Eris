@@ -31,7 +31,7 @@
 	icon_state = "os_laser"
 	circuit = /obj/item/electronics/circuitboard/os_turret/laser
 	range = 10
-	projectile = /obj/item/projectile/beam/pulse
+	projectile = /obj/item/projectile/beam/pulsed_laser
 	number_of_shots = 3
 	time_between_shots = 0.3 SECONDS
 	cooldown_time = 2 SECONDS
@@ -290,14 +290,15 @@
 	sharp = TRUE	// Until all bullets are turned sharp by default
 	wounding_mult = WOUNDING_EXTREME
 
-/obj/item/projectile/beam/pulse
+/obj/item/projectile/beam/pulsed_laser
 	name = "pulsed beam"
 	icon_state = "beam_blue"
-	damage_types = list(BURN = 15)
+	damage_types = list(BURN = 20)
 	armor_divisor = 2
 	stutter = 3
 	style_damage = 25
 	recoil = 10
+	wounding_mult = WOUNDING_WIDE
 
 	muzzle_type = /obj/effect/projectile/laser_blue/muzzle
 	tracer_type = /obj/effect/projectile/laser_blue/tracer
