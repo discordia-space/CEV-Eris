@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/automatic/type_17
 	name = "OS AR .30 \"Type 17\"" //generic AR. i give up on trying to make this unique
-	desc = "An older model OneStar assault rifle. A reliable, if unintuitive, design. Uses .30 Rifle magazines."
+	desc = "An older model One Star assault rifle. A reliable, if unintuitive, design. Uses .30 Rifle magazines."
 	icon = 'icons/obj/guns/projectile/os/type_17.dmi'
 	icon_state = "type_17"
 	item_state = "type_17"

@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/type_47
 	name = "OS Type 47 CAR .25 CS \"Zuosui\"" //Ghost
-	desc = "A boxy carbine of OneStar orgin designed for special forces. there is a giant supressor attached to it."
+	desc = "A boxy carbine of One Star origin designed for special forces. There is a giant suppressor attached to it."
 	icon = 'icons/obj/guns/projectile/os/type_47.dmi'
 	icon_state = "type_47"
 	item_state = "type_47"
