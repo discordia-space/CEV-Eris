@@ -18,8 +18,8 @@
 	inventory = list(
 		"Basic Space Gear" = list(
 			/obj/item/clothing/suit/space/void = custom_good_price(200),
-			/obj/item/clothing/suit/space/void/atmos = custom_good_price(2100),
-			/obj/item/rig/eva = custom_good_price(600),
+			/obj/item/clothing/suit/space/void/atmos = custom_good_price(210),
+			/obj/item/rig/eva = custom_good_price(800),
 			/obj/item/tank/jetpack/oxygen = custom_good_price(100),
 			/obj/item/tank/jetpack/carbondioxide = custom_good_price(100),
 			/obj/item/device/suit_cooling_unit
@@ -50,7 +50,14 @@
 			/obj/item/clothing/head/that,
 			/obj/item/clothing/head/ushanka,
 			/obj/item/clothing/head/witchwig,
-			/obj/item/clothing/head/xenos
+			/obj/item/clothing/head/xenos,
+			/obj/item/clothing/head/beret/ntsec,
+			/obj/item/clothing/head/cowboy,
+			/obj/item/clothing/head/cowboy/white,
+			/obj/item/clothing/head/cowboy/black,
+			/obj/item/clothing/head/cowboy/wide,
+			/obj/item/clothing/head/cowboy/wide/white,
+			/obj/item/clothing/head/cowboy/wide/black
 		),
 		"Masks" = list(
 			/obj/item/clothing/mask/fakemoustache,
@@ -99,9 +106,7 @@
 			/obj/item/clothing/under/bride_white,
 			/obj/item/clothing/under/tuxedo,
 			/obj/item/clothing/under/wifebeater,
-			/obj/item/clothing/under/rank/fo_suit,
-			/obj/item/clothing/under/rank/janitor,
-			/obj/item/clothing/under/rank/hydroponics
+			/obj/item/clothing/under/ntsec
 		),
 		"Suits" = list(
 			/obj/item/clothing/suit/apron,

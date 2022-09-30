@@ -140,6 +140,20 @@
 	)
 	price_tag = 75
 
+/obj/item/clothing/head/armor/helmet/scavengerhelmet
+	name = "scavenger helmet"
+	desc = "A sturdy, handcrafted helmet. It's well balanced and sits low on your head, with padding on the inside."
+	icon_state = "scav_helmet"
+	armor = list(
+		melee = 10,
+		bullet = 9,
+		energy = 7,
+		bomb = 20,
+		bio = 0,
+		rad = 0
+	)
+	price_tag = 200
+
 /obj/item/clothing/head/armor/helmet/thunderdome
 	name = "\improper Thunderdome helmet"
 	desc = "<i>'Let the battle commence!'</i>"

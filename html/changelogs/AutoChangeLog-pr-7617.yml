@@ -1,0 +1,5 @@
+author: ErisMeleeEnjoyer
+delete-after: true
+changes:
+  - rscadd: increase force and throwforce of intact bottles
+  - tweak: bottles guaranteed to break on impact when not in help mode

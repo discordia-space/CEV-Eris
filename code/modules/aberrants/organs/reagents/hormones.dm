@@ -1,4 +1,4 @@
-// These are produced by organs. They should never appear elsewhere.
+// These are produced by organs. They should rarely appear elsewhere.
 /datum/reagent/hormone
 	name = "hormone"
 	id = "hormone"

@@ -1,6 +1,0 @@
-author: BlackCat-055
-delete-after: true
-changes:
-  - bugfix: fixed the NT not being able to copy all of appearance bug
-  - code_imp: Did some new code on the cloning machine and cruciform module to allow
-      for this

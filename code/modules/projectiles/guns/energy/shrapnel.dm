@@ -69,7 +69,7 @@
 	restrict_safety = TRUE
 	consume_cell = FALSE
 	cell_type = /obj/item/cell/small/high //Two shots
-	spawn_blacklisted = TRUE
+	bad_type = /obj/item/gun/energy/shrapnel/mounted
 	charge_cost = 50
 	twohanded = FALSE
 	init_firemodes = list(

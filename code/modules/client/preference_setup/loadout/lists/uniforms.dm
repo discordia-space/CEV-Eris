@@ -9,6 +9,10 @@
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
 
+/datum/gear/uniform/crewman
+	display_name = "jumpsuit, crewman"
+	path = /obj/item/clothing/under/rank/crewman
+
 /datum/gear/uniform/jumpsuit/rainbow
 	display_name = "jumpsuit, rainbow"
 	path = /obj/item/clothing/under/rainbow

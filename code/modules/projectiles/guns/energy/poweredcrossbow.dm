@@ -54,4 +54,4 @@
 		bolt = null
 
 /obj/item/gun/energy/poweredcrossbow/generate_guntags()
-	gun_tags = list()
+	gun_tags = list(SLOT_BAYONET)

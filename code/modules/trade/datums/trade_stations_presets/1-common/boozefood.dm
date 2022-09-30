@@ -38,6 +38,7 @@
 			/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
 			/obj/item/reagent_containers/food/drinks/bottle/tomatojuice,
 			/obj/item/reagent_containers/food/drinks/bottle/limejuice,
+			///obj/item/reagent_containers/food/drinks/bottle/lemonjuice,
 			/obj/item/reagent_containers/food/drinks/bottle/cream,
 			/obj/item/reagent_containers/food/drinks/bottle/cola,
 			/obj/item/reagent_containers/food/drinks/bottle/space_up,
@@ -68,6 +69,7 @@
 		)
 	)
 	offer_types = list(
+		/obj/item/oddity/common/old_knife = offer_data("old knife", 500, 1),
 		/obj/item/reagent_containers/food/snacks/kampferburger = offer_data("kampfer burger", 500, 3),
 		/obj/item/reagent_containers/food/snacks/panzerburger = offer_data("panzer burger", 700, 2),
 		/obj/item/reagent_containers/food/snacks/jagerburger = offer_data("jager burger", 700, 2),

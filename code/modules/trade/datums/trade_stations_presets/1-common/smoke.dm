@@ -46,6 +46,14 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/gun/projectile/revolver/artwork_revolver = offer_data("artistic revolver", 2000, 1),
-		/obj/structure/artwork_statue = offer_data("artistic statue", 3000, 1)
+		/obj/item/oddity/common/lighter = offer_data("rusted lighter", 500, 1),
+		/obj/item/oddity/common/mirror = offer_data("cracked mirror", 500, 1),
+		/obj/item/oddity/common/old_newspaper = offer_data("old newspaper", 500, 1),
+		/obj/item/oddity/common/photo_landscape = offer_data("alien landscape photo", 500, 1),
+		/obj/item/oddity/common/book_bible = offer_data("old bible", 500, 1),
+		/obj/item/oddity/common/book_unholy = offer_data("unholy book", 500, 1),
+		/obj/item/oddity/common/book_omega = offer_data("occult book", 500, 1),
+		/obj/item/oddity/artwork = offer_data("artistic oddity", 1600, 1),
+		/obj/structure/artwork_statue = offer_data("artistic statue", 3200, 1),
+		/obj/item/gun/projectile/revolver/artwork_revolver = offer_data("artistic revolver", 4000, 1)
 	)

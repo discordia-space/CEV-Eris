@@ -23,10 +23,10 @@
 	var/spawn_tags
 	var/rarity_value = 1 //min:1
 	var/spawn_frequency = 0 //min:0
-	var/accompanying_object	//path or text "obj/item,/obj/item/device"
-	var/prob_aditional_object = 100
-	var/spawn_blacklisted = FALSE
-	var/bad_type //path
+	var/accompanying_object	// path or text "obj/item,/obj/item/device". This object will spawn alongside (in turf of) the spawned atom.
+	var/prob_aditional_object = 100 // Probability for the accompanying_object to spawn.
+	var/spawn_blacklisted = FALSE // Generally for niche objects, atoms blacklisted can spawn if enabled by spawner. Examples include exoplanet loot tables you don't want spawning within the player starting area.
+	var/bad_type // Use path Ex:(bad_type = obj/item). Generally for abstract code objects, atoms with a set bad_type can never be selected by spawner. Examples include parent objects which should only exist within the code, or deployable embedded items.
 
 /atom/movable/Del()
 	if(isnull(gc_destroyed) && loc)
