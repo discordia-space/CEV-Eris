@@ -407,3 +407,4 @@
 	desc = "A gun barrel, which keeps the bullet (or bullets) going in the right direction. Chambered in .50 caliber. \
 			This one does not look as high quality."
 	matter = list(MATERIAL_STEEL = 8)
+	
