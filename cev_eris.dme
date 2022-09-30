@@ -2296,6 +2296,8 @@
 #include "code\modules\nano\modules\human_appearance.dm"
 #include "code\modules\nano\modules\law_manager.dm"
 #include "code\modules\nano\modules\nano_module.dm"
+#include "code\modules\onestar\generator.dm"
+#include "code\modules\onestar\os_turret.dm"
 #include "code\modules\organs\blood.dm"
 #include "code\modules\organs\body_modifications.dm"
 #include "code\modules\organs\organ.dm"
