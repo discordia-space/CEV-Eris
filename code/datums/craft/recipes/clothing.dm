@@ -130,6 +130,18 @@
 		list(QUALITY_WELDING, 10, 20),
 	)
 
+/datum/craft_recipe/clothing/scavengerhelmet
+	name = "Scavenger helmet"
+	result = /obj/item/clothing/head/armor/helmet/scavengerhelmet
+	steps = list(
+		list(/obj/item/part/armor, 1),
+		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTIC),
+		list(QUALITY_ADHESIVE, 15, 15),
+		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS),
+		list(QUALITY_WELDING, 10, 20),
+	)
+
 /datum/craft_recipe/clothing/scavengerarmor
 	name = "Scavenger armor"
 	result = /obj/item/clothing/suit/storage/scavengerarmor
