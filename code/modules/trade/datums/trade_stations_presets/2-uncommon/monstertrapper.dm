@@ -6,7 +6,7 @@
 	icon_states = list("htu_destroyer", "ship")
 	uid = "trapper"
 	tree_x = 0.46
-	tree_y = 0.8
+	tree_y = 0.7
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = COMMON_GOODS
@@ -48,16 +48,16 @@
 			/obj/item/reagent_containers/glass/bottle/trade/fuhrerole = good_data("fuhrerole bottle", list(1, 1), null)
 		),
 		"Spiders" = list(
-			/obj/structure/largecrate/animal/giant_spider = custom_good_amount_range(list(5, 5)),
-			/obj/structure/largecrate/animal/nurse_spider = custom_good_amount_range(list(5, 5)),
-			/obj/structure/largecrate/animal/hunter_spider = custom_good_amount_range(list(5, 5))
+			/obj/structure/largecrate/animal/giant_spider = custom_good_price(150),
+			/obj/structure/largecrate/animal/nurse_spider = custom_good_price(150),
+			/obj/structure/largecrate/animal/hunter_spider = custom_good_price(150)
 		),
 		"Bluespace Roach" = list(
-			/obj/structure/largecrate/animal/bluespace_roach = custom_good_amount_range(list(5, 10))
+			/obj/structure/largecrate/animal/bluespace_roach = custom_good_price(500)
 		)
 	)
 	offer_types = list(
 		/obj/item/mine/old = offer_data("old landmine", 1200, 0),
 		/obj/item/beartrap/makeshift = offer_data("makeshift mechanical trap", 600, 0),
-		/obj/item/device/assembly/mousetrap = offer_data("mousetrap", 200, 10)
+		/mob/living/simple_animal/hostile/hivemind = offer_data("hivemind creature (alive or dead)", 12000, 1)
 	)

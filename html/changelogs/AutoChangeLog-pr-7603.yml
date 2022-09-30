@@ -1,0 +1,7 @@
+author: Alliostra
+delete-after: true
+changes:
+  - rscadd: the valkyrie and AMR can now switch between 2 different levels of zoom
+  - tweak: increased the bonus damage AMR gets when using the scope
+  - bugfix: fixed AMR having a scope slot
+  - bugfix: fixed shellshock having no scope and bayonet slot

@@ -20,7 +20,7 @@
 	penetration_multiplier = 0.5
 	gun_tags = list(GUN_SILENCABLE)
 	init_recoil = EMBEDDED_RECOIL(1.5)
-	spawn_blacklisted = TRUE
+	bad_type = /obj/item/gun/projectile/automatic/armsmg
 
 /obj/item/organ_module/active/simple/armsmg
 	name = "embedded SMG"

@@ -46,7 +46,7 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 	faction = "golem"
 
 	deathmessage = "shatters in a pile of rubbles."
-	attacktext = "bonked"
+	attacktext = list("bonked")
 	attack_sound = 'sound/weapons/smash.ogg'
 	speak_emote = list("rattles")
 	emote_see = list("makes a deep rattling sound")

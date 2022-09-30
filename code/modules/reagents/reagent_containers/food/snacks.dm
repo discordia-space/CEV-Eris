@@ -1810,6 +1810,17 @@
 	preloaded_reagents = list("protein" = 10)
 	taste_tag = list(MEAT_FOOD,SALTY_FOOD)
 
+/obj/item/reagent_containers/food/snacks/monkeycube/punpun
+    name = "emergency companion cube"
+
+/obj/item/reagent_containers/food/snacks/monkeycube/punpun/Expand()
+    visible_message(SPAN_NOTICE("\The [src] expands!"))
+    var/turf/T = get_turf(src)
+    if(istype(T))
+        new /mob/living/carbon/human/monkey/punpun(T)
+    qdel(src)
+    return TRUE
+
 /obj/item/reagent_containers/food/snacks/monkeycube/attack_self(mob/user as mob)
 	if(wrapped)
 		Unwrap(user)

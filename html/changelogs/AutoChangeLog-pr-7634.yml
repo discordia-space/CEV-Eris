@@ -1,0 +1,5 @@
+author: budgetcommander
+delete-after: true
+changes:
+  - tweak: Reduced the burst delay on the high-delay rapid three round burst from
+      2 to 0.5

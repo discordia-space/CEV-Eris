@@ -50,7 +50,7 @@
 	var/max_bodytemperature = 360 //above this, burn damage is dealt
 
 	var/deathmessage = "dies."
-	var/attacktext = "bitten"
+	var/list/attacktext = list("bitten", "chewed", "nibbled on")
 	var/attack_sound = 'sound/weapons/spiderlunge.ogg'
 	var/attack_sound_chance = 33
 	var/attack_sound_volume = 20
@@ -62,6 +62,7 @@
 	var/melee_damage_upper = 10
 	var/melee_sharp = FALSE //whether mob attacks have sharp property
 	var/melee_edge = FALSE //whether mob attacks have edge property
+	var/wound_mult = 1
 
 	var/list/objectsInView //memoization for getObjectsInView()
 	var/viewRange = 7 //how far the mob AI can see

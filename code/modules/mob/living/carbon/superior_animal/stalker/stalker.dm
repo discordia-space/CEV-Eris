@@ -18,7 +18,7 @@
 	faction = "onestar"
 
 	deathmessage = "suddenly shuts down, its eye light switching to a dim red."
-	attacktext = "bonked"
+	attacktext = list("bonked")
 	attack_sound = 'sound/weapons/smash.ogg'
 	speak_emote = list("beeps")
 	emote_see = list("beeps repeatedly", "whirrs violently", "flashes its indicator lights", "emits a ping sound")

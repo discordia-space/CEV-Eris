@@ -1,0 +1,4 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - bugfix: hopefully fixed the last of the shitcoded frame parts (clueless)

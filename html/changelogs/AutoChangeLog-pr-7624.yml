@@ -1,0 +1,6 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - rscadd: added cheap steel gun parts to the crafting station
+  - tweak: makeshift guns and bolt guns now use cheap parts to be crafted
+  - bugfix: fixed oversight in makeshift pistol disassembly
