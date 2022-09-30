@@ -1,6 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - rscadd: Added placeholder aberrant organ research
-  - bugfix: Fixes incorrect description in durable membrane
-  - bugfix: Fixes bone bracing buff being overwritten by mods

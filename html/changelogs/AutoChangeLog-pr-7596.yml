@@ -1,7 +1,0 @@
-author: budgetcommander
-delete-after: true
-changes:
-  - rscadd: Damage against targets with 0 and 10 armour is now visible in a gun's
-      stats.
-  - rscadd: Wound value is visible again.
-  - tweak: Displayed damage is no longer changed by wound value.
