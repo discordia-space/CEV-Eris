@@ -5,6 +5,7 @@
 /obj/item/reagent_containers/food/drinks/bottle
 	amount_per_transfer_from_this = 10
 	volume = 100
+	description_info = "Thrown bottles don't break when you throw them while being on help intent."
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
 	force = 20
 	throwforce = 20
@@ -36,13 +37,21 @@
 	rag = null
 	return ..()
 
+/obj/item/reagent_containers/food/drinks/bottle/throw_at(atom/target, range, speed, thrower)
+	var/mob/H = thrower
+	if(istype(H))
+		bottle_thrower_intent = H.a_intent
+	..()
+	bottle_thrower_intent = null
+
 //when thrown on impact, bottles smash and spill their contents
 /obj/item/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, speed)
 	..()
-	if(reagents)
-		hit_atom.visible_message(SPAN_NOTICE("The contents of \the [src] splash all over [hit_atom]!"))
-		reagents.splash(hit_atom, reagents.total_volume)
-	src.smash(loc, hit_atom)
+	if(bottle_thrower_intent != I_HELP)
+		if(reagents)
+			hit_atom.visible_message(SPAN_NOTICE("The contents of \the [src] splash all over [hit_atom]!"))
+			reagents.splash(hit_atom, reagents.total_volume)
+		src.smash(loc, hit_atom)
 
 /obj/item/reagent_containers/food/drinks/bottle/proc/smash_check(distance)
 	if(!isGlass || !smash_duration)
