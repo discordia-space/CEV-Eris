@@ -355,6 +355,7 @@
 		overlays += image('icons/inventory/pockets/icon.dmi', "revolver_layer[contents.len]")
 
 /obj/item/storage/pouch/holster/belt/sheath/update_icon()
+	cut_overlays()
 	var/icon_to_set
 	for(var/obj/item/SW in contents)
 		icon_to_set = SW.icon_state
