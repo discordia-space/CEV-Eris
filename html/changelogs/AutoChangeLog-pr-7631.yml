@@ -1,5 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - balance: roaches now have wounding multipliers
-  - tweak: roaches have multiple attack messages
