@@ -406,6 +406,8 @@
 		if (!icon_file)
 			icon_file = ""
 
+		if(!(icon_state in icon_states(icon_file)))
+			continue
 		/*#ifdef UNIT_TESTS
 		if(!(icon_state in icon_states(icon_file)))
 			stack_trace("design [D] with icon '[icon_file]' missing state '[icon_state]'")
