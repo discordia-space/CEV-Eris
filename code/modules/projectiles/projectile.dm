@@ -301,7 +301,7 @@
 		hit_mod -= acc_mod //LOG2 on the projectile accuracy
 
 	// DEBUG FOR TEST
-	visible_message(SPAN_NOTICE("\The [src] had [(base_miss_chance[def_zone] + hit_mod) * 10]% chance to hit [target_mob]!"))
+	visible_message(SPAN_NOTICE("\The [src] had [(base_miss_chance[def_zone] + hit_mod) * 10]% chance to miss [target_mob]!"))
 	return prob((base_miss_chance[def_zone] + hit_mod) * 10)
 
 //Called when the projectile intercepts a mob. Returns 1 if the projectile hit the mob, 0 if it missed and should keep flying.
