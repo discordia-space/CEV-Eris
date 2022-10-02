@@ -143,7 +143,11 @@
 		/obj/item/device/radio/off,
 		/obj/item/inflatable_dispenser,
 		/obj/item/tool/crowbar,
-		/obj/item/extinguisher/mini
+		/obj/item/extinguisher/mini,
+		/obj/item/device/flash,
+		/obj/item/device/lighting/toggleable/flashlight,
+		/obj/item/gun/projectile/selfload,
+		/obj/item/modular_computer/tablet/moebius/preset
 	)
 
 /obj/item/storage/belt/tactical
