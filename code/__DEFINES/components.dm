@@ -63,6 +63,7 @@
 #define COMSIG_MOVABLE_PREMOVE "moveable_boutta_move"
 
 // /mob signals
+#define COMSIG_MOB_CREATED "mob_created" // From mob/New() , its a global signal.
 #define COMSIG_MOB_LIFE  "mob_life"							 //from mob/Life()
 #define COMSIG_MOB_LOGIN "mob_login"							//from mob/Login()
 #define COMSIG_MOB_DEATH "mob_death"							//from mob/death()
