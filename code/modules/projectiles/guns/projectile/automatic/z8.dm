@@ -22,7 +22,7 @@
 	init_recoil = CARBINE_RECOIL(0.5)
 	damage_multiplier = 1.15
 	penetration_multiplier = 0.1
-	zoom_factor = 0.2
+	zoom_factors = list(0.2)
 	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(

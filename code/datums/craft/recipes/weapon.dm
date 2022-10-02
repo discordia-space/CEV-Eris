@@ -68,10 +68,10 @@
 	)
 
 /datum/craft_recipe/weapon/throwing_knife
-	name = "throwing knife"
+	name = "throwing knives"
 	result = /obj/item/stack/thrown/throwing_knife
 	steps = list(
-		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),
 		list(QUALITY_WELDING, 10, "time" = 30),
 		list(QUALITY_HAMMERING, 10, "time" = 20)
 	)
@@ -288,21 +288,6 @@
 		list(QUALITY_SCREW_DRIVING, 10, "time" = 50), //Secure it
 		list(/obj/item/stack/cable_coil, 2, "time" = 10), //Wire it up
 		list(QUALITY_WIRE_CUTTING, 30, "time" = 50), //Fix the wires
-	)
-
-/datum/craft_recipe/weapon/lasersmg
-	name = "Lasblender"
-	result = /obj/item/gun/energy/lasersmg
-	steps = list(
-		list(/obj/item/gun/projectile/automatic/atreides, 1),
-		list(QUALITY_WELDING, 10, "time" = 30),
-		list(CRAFT_MATERIAL, 6, MATERIAL_PLASTEEL, "time" = 10),
-		list(/obj/item/stock_parts/subspace/crystal, 1),
-		list(/obj/item/computer_hardware/led, 1),
-		list(/obj/item/stack/cable_coil, 5, "time" = 20),
-		list(/obj/item/stock_parts/capacitor, 1, "time" = 5),
-		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS, "time" = 10),
-		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
 /datum/craft_recipe/weapon/gravcharger

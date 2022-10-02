@@ -34,7 +34,9 @@
 	use_external_power = TRUE
 	safety = FALSE
 	twohanded = FALSE
+	spawn_tags = null
 	spawn_blacklisted = TRUE
+	bad_type = /obj/item/gun/energy/plasma/mounted
 	init_recoil = LMG_RECOIL(1)
 
 /obj/item/gun/energy/plasma/mounted/blitz
@@ -42,7 +44,7 @@
 	desc = "A miniaturized plasma rifle, remounted for robotic use only."
 	icon_state = "plasma_turret"
 	charge_meter = FALSE
-	spawn_tags = null
+	bad_type = /obj/item/gun/energy/plasma/mounted/blitz
 
 /obj/item/gun/energy/plasma/destroyer
 	name = "NT PR \"Purger\""
@@ -76,7 +78,7 @@
 	fire_delay = 6
 	serial_type = "FS"
 	price_tag = 3000
-	zoom_factor = null
+	zoom_factors = list()
 
 	init_firemodes = list(
 		list(mode_name="Melt", mode_desc="A reliable plasma round, for stripping away armor", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/energy/burn.ogg', burst=1, fire_delay=6, charge_cost=25, icon="kill", projectile_color = "#00AAFF"),

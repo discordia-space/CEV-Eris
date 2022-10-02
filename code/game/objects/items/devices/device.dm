@@ -1,6 +1,6 @@
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
-	spawn_tags = SPAWN_TAG_DIVICE
+	spawn_tags = SPAWN_TAG_DEVICE
 	bad_type = /obj/item/device
 	var/starting_cell = TRUE
 	var/obj/item/cell/cell

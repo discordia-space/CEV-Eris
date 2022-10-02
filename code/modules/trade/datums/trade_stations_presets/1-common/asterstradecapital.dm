@@ -101,6 +101,9 @@
 			/obj/item/storage/photo_album,
 			/obj/item/wrapping_paper,
 			/obj/item/packageWrap,
+			/obj/item/storage/box = custom_good_price(5),
+			/obj/item/hand_labeler = custom_good_price(10),
+			/obj/item/storage/fancy/crayons = custom_good_price(6),
 			/obj/item/reagent_containers/glass/paint/red = good_data("Red Paint", list(1, 10), null),
 			/obj/item/reagent_containers/glass/paint/green = good_data("Green Paint", list(1, 10), null),
 			/obj/item/reagent_containers/glass/paint/blue = good_data("Blue Paint", list(1, 10), null),
@@ -119,12 +122,27 @@
 			/mob/living/exosuit/premade/powerloader/firefighter,
 			/mob/living/exosuit/premade/powerloader/flames_blue,
 			/mob/living/exosuit/premade/powerloader/flames_red
+		),
+		"Aster\'s Cells II" = list(
+			/obj/item/cell/small/hyper = custom_good_price(600),
+			/obj/item/cell/medium/hyper = custom_good_price(800),
+			/obj/item/cell/large/hyper = custom_good_price(1600)
+		),
+		"SN4-Z 2N3Z" = list(
+			/obj/item/media/boombox = custom_good_price(1000)
 		)
 	)
 	offer_types = list(
+		/obj/item/oddity/common/old_id = offer_data("old id", 500, 1),
+		/obj/item/tool_upgrade = offer_data("tool upgrade", 200, 8),
 		/obj/item/mech_component = offer_data("mech component", 300, 4),															// base price: 150
 		/obj/item/mech_equipment = offer_data("mech equipment", 400, 4),															// base price: 200
 		/obj/item/robot_parts/robot_component/armour/exosuit/plain = offer_data("exosuit armor plating", 700, 4),					// base price: 400
 		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 700, 4),		// base price: 550
-		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 1750, 4)			// base price: 1000
+		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 1750, 4),			// base price: 1000
+		/obj/item/tool/crowbar/onestar = offer_data("one star crowbar", 5000, 3),
+		/obj/item/tool/hammer/powered_hammer/onestar_hammer = offer_data("one star sledgehammer", 5000, 3),
+		/obj/item/tool/screwdriver/combi_driver/onestar = offer_data("one star combi driver", 6500, 3),
+		/obj/item/tool/weldingtool/onestar = offer_data("one star welding tool", 6500, 3),
+		/obj/item/organ/external/robotic/one_star = offer_data("one star external prosthetic", 5000, 4)
 	)
