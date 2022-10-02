@@ -27,6 +27,7 @@
 	return
 
 /mob/Initialize()
+	SEND_GLOBAL_SIGNAL(COMSIG_MOB_INITIALIZE)
 	START_PROCESSING(SSmobs, src)
 	if(stat == DEAD)
 		GLOB.dead_mob_list += src
