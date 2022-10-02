@@ -239,7 +239,7 @@
 
 /datum/sanity/proc/finish_rest()
 
-	var/rest = input("How would you like to improve your stats?","Rest complete",default) as null|anything in list(
+	var/rest = input("How would you like to improve your stats?","Rest complete",null) as null|anything in list(
 		"Internalize your recent experiences",
 		"Focus on an oddity",
 		"Convert your fulfilled insight for use in special structures"
@@ -253,9 +253,9 @@
 		var/oddity_in_posession = FALSE
 
 		for(var/obj/item/I in owner.get_contents())
-				if(is_type_in_list(I, valid_inspirations) && I.GetComponent(/datum/component/inspiration))
-					oddity_in_posession = TRUE
-					break
+			if(is_type_in_list(I, valid_inspirations) && I.GetComponent(/datum/component/inspiration))
+				oddity_in_posession = TRUE
+				break
 		
 		if(!oddity_in_posession)
 			to_chat(owner, SPAN_NOTICE("You do not have any oddities to use."))
@@ -264,8 +264,6 @@
 	switch(rest)
 
 		if("Use an oddity")
-
-			INVOKE_ASYNC(src, .proc/oddity_stat_up, resting)
 
 			var/list/inspiration_items = list()
 			for(var/obj/item/I in owner.get_contents()) //what oddities do we have?
@@ -280,7 +278,7 @@
 				GET_COMPONENT_FROM(I, /datum/component/inspiration, O) // If it's a valid inspiration, it should have this component. If not, runtime
 				var/list/L = I.calculate_statistics()
 				for(var/stat in L)
-					var/stat_up = L[stat] * multiplier
+					var/stat_up = L[stat]
 					to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
 					owner.stats.changeStat(stat, stat_up)
 				
