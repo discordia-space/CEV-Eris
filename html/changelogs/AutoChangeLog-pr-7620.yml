@@ -1,6 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - server: Comment CI sprite check for designs
-  - rscadd: Add a default build path for circuit designs
-  - rscadd: Add a check in get asset url to handle null cases
