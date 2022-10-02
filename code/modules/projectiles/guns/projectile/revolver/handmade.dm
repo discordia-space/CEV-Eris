@@ -24,5 +24,5 @@
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 4)
 	resultvars = list(/obj/item/gun/projectile/revolver/handmade)
 	gripvars = list(/obj/item/part/gun/grip/wood)
-	mechanismvar = /obj/item/part/gun/mechanism/revolver
-	barrelvars = list(/obj/item/part/gun/barrel/magnum, /obj/item/part/gun/barrel/pistol)
+	mechanismvar = /obj/item/part/gun/mechanism/revolver/steel
+	barrelvars = list(/obj/item/part/gun/barrel/magnum/steel, /obj/item/part/gun/barrel/pistol/steel)
