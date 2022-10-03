@@ -92156,7 +92156,7 @@
 	},
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12
+	pixel_x = -11
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
