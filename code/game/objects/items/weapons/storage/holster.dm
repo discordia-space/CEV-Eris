@@ -16,32 +16,7 @@
 	var/sound_out = 'sound/effects/holsterout.ogg'
 
 	can_hold = list(
-		/obj/item/gun/projectile/selfload,
-		/obj/item/gun/projectile/colt,
-		/obj/item/gun/projectile/avasarala,
-		/obj/item/gun/projectile/giskard,
-		/obj/item/gun/projectile/gyropistol,
-		/obj/item/gun/projectile/handmade_pistol,
-		/obj/item/gun/projectile/flare_gun,
-		/obj/item/gun/projectile/lamia,
-		/obj/item/gun/projectile/mk58,
-		/obj/item/gun/projectile/olivaw,
-		/obj/item/gun/projectile/mandella,
-		/obj/item/gun/energy/gun,
-		/obj/item/gun/energy/chameleon,
-		/obj/item/gun/energy/captain,
-		/obj/item/gun/energy/stunrevolver,
-		/obj/item/gun/projectile/revolver,
-		/obj/item/gun/projectile/automatic/molly,
-		/obj/item/gun/projectile/paco,
-		/obj/item/gun/projectile/shotgun/doublebarrel/sawn, //short enough to fit in
-		/obj/item/gun/launcher/syringe,
-		/obj/item/gun/energy/plasma/brigador,
-		/obj/item/gun/projectile/shotgun/pump/sawn,
-		/obj/item/gun/projectile/boltgun/obrez,
-		/obj/item/gun/energy/retro/sawn,
-		/obj/item/gun/projectile/automatic/luty,
-		/obj/item/gun/projectile/revolver/hornet
+		/obj/item/gun
 		)
 
 	sliding_behavior = TRUE
@@ -153,32 +128,7 @@
 
 	var/obj/item/storage/internal/holster
 	var/list/can_hold = list(
-		/obj/item/gun/projectile/selfload,
-		/obj/item/gun/projectile/colt,
-		/obj/item/gun/projectile/avasarala,
-		/obj/item/gun/projectile/giskard,
-		/obj/item/gun/projectile/gyropistol,
-		/obj/item/gun/projectile/handmade_pistol,
-		/obj/item/gun/projectile/flare_gun,
-		/obj/item/gun/projectile/lamia,
-		/obj/item/gun/projectile/mk58,
-		/obj/item/gun/projectile/olivaw,
-		/obj/item/gun/projectile/mandella,
-		/obj/item/gun/energy/gun,
-		/obj/item/gun/energy/chameleon,
-		/obj/item/gun/energy/captain,
-		/obj/item/gun/energy/stunrevolver,
-		/obj/item/gun/projectile/revolver,
-		/obj/item/gun/projectile/automatic/molly,
-		/obj/item/gun/projectile/paco,
-		/obj/item/gun/projectile/shotgun/doublebarrel/sawn, //short enough to fit in
-		/obj/item/gun/launcher/syringe,
-		/obj/item/gun/energy/plasma/brigador,
-		/obj/item/gun/projectile/shotgun/pump/sawn,
-		/obj/item/gun/projectile/boltgun/obrez,
-		/obj/item/gun/energy/retro/sawn,
-		/obj/item/gun/projectile/automatic/luty,
-		/obj/item/gun/projectile/revolver/hornet,
+		/obj/item/gun,
 		/obj/item/reagent_containers/food/snacks/mushroompizzaslice,
 		/obj/item/reagent_containers/food/snacks/meatpizzaslice,
 		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice,
