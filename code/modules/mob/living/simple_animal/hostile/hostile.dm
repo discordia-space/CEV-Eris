@@ -9,7 +9,6 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 	bad_type = /mob/living/simple_animal/hostile
 	var/stance = HOSTILE_STANCE_IDLE	//Used to determine behavior
 	var/mob/living/target_mob
-	var/attack_same = 0
 	var/ranged = 0
 	var/rapid = 0
 	var/projectiletype
@@ -47,7 +46,7 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 
 		if(isliving(A))
 			var/mob/living/L = A
-			if(L.faction == faction && !attack_same)
+			if(L.faction == faction)
 				continue
 			else if(L in friends)
 				continue

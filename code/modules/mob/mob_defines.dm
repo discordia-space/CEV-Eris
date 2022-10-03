@@ -142,7 +142,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/radiation = 0//Carbon
 
 	var/voice_name = "unidentifiable voice"
-
+	// set to null if you want them to be attacked by most stuff.
 	var/faction = "neutral" //Used for checking whether hostile simple animals will attack you, possibly more stuff later
 	var/captured = 0 //Functionally, should give the same effect as being buckled into a chair when true.
 

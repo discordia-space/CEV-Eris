@@ -9,7 +9,7 @@
 	var/turf/T = get_turf(src)
 	if(!T)
 		return //We're contained inside something, a locker perhaps.
-	return hearers(src, viewRange)
+	return getMobsInRangeChunked(src, viewRange, TRUE)
 
 
 	/* There was an attempt at optimization, but it was unsanitized, and was more expensive than just checking hearers.
@@ -23,9 +23,9 @@
 /mob/living/carbon/superior_animal/proc/findTarget()
 	var/list/filteredTargets = new
 
-	for(var/atom/O in getPotentialTargets())
-		if (isValidAttackTarget(O))
-			filteredTargets += O
+	for(var/mob/thing as anything in getPotentialTargets())
+		if (isValidAttackTarget(thing))
+			filteredTargets += thing
 
 	for (var/mob/living/exosuit/M in GLOB.mechas_list)
 		if ((M.z == src.z) && (get_dist(src, M) <= viewRange) && isValidAttackTarget(M))
@@ -60,16 +60,16 @@
 	target_mob = null
 	stance = HOSTILE_STANCE_IDLE
 
-/mob/living/carbon/superior_animal/proc/isValidAttackTarget(var/atom/O)
-	if (isliving(O))
-		var/mob/living/L = O
-		if((L.stat != CONSCIOUS) || (L.health <= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0)) || (!attack_same && (L.faction == src.faction)) || (L in friends))
-			return
-		return 1
-
-	if (istype(O, /mob/living/exosuit))
-		var/mob/living/exosuit/M = O
-		return isValidAttackTarget(M.pilots[1])
+/mob/living/carbon/superior_animal/proc/isValidAttackTarget(var/mob/living/L)
+	if(L.stat != CONSCIOUS)
+		return FALSE
+	if(L.health <= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0))
+		return FALSE
+	if(L.faction == src.faction)
+		return FALSE
+	if(L in friends)
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/superior_animal/proc/destroySurroundings()
 	if (prob(break_stuff_probability))

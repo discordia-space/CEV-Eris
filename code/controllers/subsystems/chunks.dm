@@ -1,7 +1,8 @@
-#define CHUNKID(x,y,size) (((x - x%size) + (y - y%size) * world.maxx) / size ** 2)
+#define CHUNKID(x,y,size) round((((x - x%size) + (y - y%size) * world.maxx) / size ** 2), 1)
 #define CHUNKSPERLEVEL(x,y,size) ((world.maxx * world.maxy) / size ** 2)
 #define CHUNKCOORDCHECK(x,y) (x > world.maxx || y > world.maxy || x < 0 || y < 0)
-
+/// This subsystem is meant for anything that should not be employing byond view() and is generally very constraining to keep track of
+/// For now it only has mobs, but it should also include sanity
 SUBSYSTEM_DEF(chunks)
 	name = "Chunks"
 	init_order = INIT_ORDER_CHUNKS
@@ -24,7 +25,6 @@ SUBSYSTEM_DEF(chunks)
 	RegisterSignal(source, COMSIG_PARENT_QDELETING, .proc/removeMob)
 	RegisterSignal(source, COMSIG_MOVABLE_MOVED, .proc/onMobMove)
 	var/list/chunk_reference = chunk_list_by_zlevel[source.z][CHUNKID(source.x, source.y, chunk_size)]
-	message_admins("added [source] to [CHUNKID(source.x, source.y, chunk_size)]")
 	chunk_reference += source
 
 /datum/controller/subsystem/chunks/proc/onMobMove(mob/source, turf/oldloc, turf/newloc)
@@ -44,35 +44,33 @@ SUBSYSTEM_DEF(chunks)
 
 
 // Get mobs in range using chunks
-/proc/getMobsInRangeChunked(atom/source, range)
+/proc/getMobsInRangeChunked(atom/source, range, aliveonly = FALSE)
 	if(!source || !range)
 		return null
-	. = list()
 	var/topX = source.x - range
 	var/topY = source.y - range
 	var/bottomX = source.x + range
 	var/bottomY = source.y + range
+	if(topX < 0)
+		topX = 1
+	if(topY < 0)
+		topY = 1
+	if(bottomX > world.maxx)
+		bottomX = world.maxx
+	if(bottomY > world.maxy)
+		bottomY = world.maxy
+	. = list()
 	var/chunksize = SSchunks.chunk_size
+	var/list/mob2check = list()
+	// we go backwards so we don't have to check for chunk validity every time
 	while(bottomY > topY)
-		bottomX = topX + range * 2
 		while(bottomX > topX)
-			. += SSchunks.chunk_list_by_zlevel[source.z][CHUNKID(bottomX, bottomY, chunksize)]
+			mob2check += SSchunks.chunk_list_by_zlevel[source.z][CHUNKID(bottomX, bottomY, chunksize)]
 			bottomX -= chunksize
+		bottomX = topX + range * 2
 		bottomY -= chunksize
-	for(var/mob/guy in .)
-		message_admins("got [guy] as part of returned mobs from the chunk proc")
-	for(var/list/ref in .)
-		for(var/mob/ler in ref)
-			message_admins("got [ler]")
-
-/mob/verb/get_mobs()
-	set name = "Getmobs"
-	set desc = "No desc"
-	set src in view(10)
-	getMobsInRangeChunked(src, 32)
-
-
-
-
-
-
+	for(var/mob/poss_mob as anything in mob2check)
+		if(get_dist(poss_mob, source) < range)
+			if(aliveonly && poss_mob.stat == DEAD)
+				continue
+			. += poss_mob

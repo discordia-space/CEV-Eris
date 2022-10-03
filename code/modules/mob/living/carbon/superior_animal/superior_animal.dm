@@ -70,7 +70,6 @@
 
 	var/stance = HOSTILE_STANCE_IDLE //current mob AI state
 	var/atom/target_mob //currently chased target
-	var/attack_same = 0 //whether mob AI should target own faction members for attacks
 	var/list/friends = list() //list of mobs to consider friends, not types
 	var/environment_smash = 1
 	var/destroy_surroundings = 1
@@ -278,17 +277,10 @@
 
 	return TRUE
 
-// Same as overridden proc but -3 instead of -1 since its 3 times less frequently envoked, if checks removed
-/mob/living/carbon/superior_animal/handle_status_effects()
-	paralysis = max(paralysis-3,0)
-	stunned = max(stunned-3,0)
-	weakened = max(weakened-3,0)
-
 /mob/living/carbon/superior_animal/proc/handle_cheap_regular_status_updates()
 	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
 	if(health <= 0 && stat != DEAD)
 		death()
-		// STOP_PROCESSING(SSmobs, src) This is handled in Superior animal Life().
 		blinded = TRUE
 		silent = FALSE
 		return TRUE
@@ -302,24 +294,6 @@
 		if(bloodstr)
 			bloodstr.metabolize()
 
-	/*
-	if(light_dam)
-		var/light_amount = 0
-		if(isturf(loc))
-			var/turf/T = loc
-			light_amount = round((T.get_lumcount()*10)-5)
-
-		if(light_amount > light_dam) //if there's enough light, start dying
-			take_overall_damage(1,1)
-		else //heal in the dark
-			heal_overall_damage(1,1)
-
-	// nutrition decrease
-	if (hunger_factor && (nutrition > 0) && (stat != DEAD))
-		nutrition = max (0, nutrition - hunger_factor)
-
-	updatehealth()
-	*/
 
 /mob/living/carbon/superior_animal/Life()
 	ticks_processed++

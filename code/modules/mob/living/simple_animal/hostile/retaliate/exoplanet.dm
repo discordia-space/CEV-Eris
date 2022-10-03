@@ -16,7 +16,7 @@
 		return
 	if(hunger > 500) //time to look for some food
 		for(var/mob/living/L in view(src, dist))
-			if(!attack_same && L.faction != faction)
+			if(L.faction != faction)
 				prey |= WEAKREF(L)
 
 /mob/living/simple_animal/hostile/retaliate/beast/Life()
