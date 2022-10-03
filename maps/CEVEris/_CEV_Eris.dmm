@@ -33489,8 +33489,7 @@
 	},
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -11
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
@@ -103620,7 +103619,7 @@
 /area/eris/medical/medbay/organs)
 "lYT" = (
 /obj/structure/sink{
-	pixel_y = 32
+	pixel_y = 26
 	},
 /turf/simulated/floor/dirt,
 /area/eris/crew_quarters/hydroponics/garden)
