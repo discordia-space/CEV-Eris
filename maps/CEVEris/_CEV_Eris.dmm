@@ -103620,7 +103620,7 @@
 /area/eris/medical/medbay/organs)
 "lYT" = (
 /obj/structure/sink{
-	pixel_y = 21
+	pixel_y = 32
 	},
 /turf/simulated/floor/dirt,
 /area/eris/crew_quarters/hydroponics/garden)
