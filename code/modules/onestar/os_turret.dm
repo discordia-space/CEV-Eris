@@ -152,7 +152,7 @@
 /obj/machinery/power/os_turret/attackby(obj/item/I, mob/user)
 	var/mec_or_cog = max(user.stats.getStat(STAT_MEC), user.stats.getStat(STAT_COG))
 
-	if(mec_or_cog >= STAT_LEVEL_EXPERT)
+	if(mec_or_cog < STAT_LEVEL_EXPERT)
 		to_chat(user, SPAN_WARNING("You lack the knowledge or skill to perform work on \the [src]."))
 	else
 		if(default_deconstruction(I, user))
