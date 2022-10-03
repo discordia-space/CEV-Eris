@@ -82,6 +82,11 @@
 			continue
 		if(L.stat == DEAD)
 			continue
+
+		if(should_target_players)
+			if(L.faction == "onestar")	// For future content or admin use
+				continue
+
 		if(L.invisibility >= INVISIBILITY_LEVEL_ONE) // Cannot see him. see_invisible is a mob-var
 			continue
 		if(!check_trajectory(L, src))	//check if we have true line of sight
@@ -237,7 +242,9 @@
 	if(returning_fire)
 		returning_fire = FALSE
 
-/obj/machinery/power/os_turret/proc/shoot(target, def_zone)
+/obj/machinery/power/os_turret/proc/shoot(atom/target, def_zone)
+	if(QDELETED(target))
+		return
 	set_dir(get_dir(src, target))
 	var/obj/item/projectile/P = new projectile(loc)
 	P.launch(target, def_zone)
@@ -252,6 +259,7 @@
 
 /obj/item/electronics/circuitboard/os_turret
 	name = T_BOARD("One Star gauss turret")
+	description_info = "When re-constructed, this turret will target roaches, spiders, and golems."
 	build_path = /obj/machinery/power/os_turret
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 5)
@@ -264,6 +272,11 @@
 		/obj/item/cell/large = 1
 	)
 	var/target_superior_mobs = FALSE
+
+/obj/item/electronics/circuitboard/os_turret/examine(user, distance)
+	. = ..()
+	if(target_superior_mobs)
+		to_chat(user, SPAN_NOTICE("When constructed, this turret will target roaches, spiders, and golems."))
 
 /obj/item/electronics/circuitboard/os_turret/laser
 	name = T_BOARD("One Star laser turret")
