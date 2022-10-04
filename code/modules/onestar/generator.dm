@@ -39,9 +39,9 @@
 	else
 		icon_state = initial(icon_state) + (active ? "_on" : null)
 
-/obj/machinery/power/port_gen/os_generator/examine(mob/living/carbon/user)
+/obj/machinery/power/port_gen/os_generator/examine(mob/living/user)
 	..(user)
-	if(!iscarbon(user) && !issilicon(user))
+	if(!istype(user))
 		return
 
 	var/mec_or_cog = max(user.stats.getStat(STAT_MEC), user.stats.getStat(STAT_COG))
