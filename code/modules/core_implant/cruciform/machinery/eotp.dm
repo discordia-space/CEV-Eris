@@ -7,6 +7,8 @@ var/global/obj/machinery/power/eotp/eotp
 	desc = "He observe, he protects."
 	icon = 'icons/obj/eotp.dmi'
 	icon_state = "Eye_of_the_Protector"
+	description_info = "When miracles happen, group litanies can be commenced. Its power grows the more followers there are, and when heretics are purged"
+	description_antag = "Can be blown with C4."
 
 	density = TRUE
 	anchored = TRUE
@@ -105,6 +107,9 @@ var/global/obj/machinery/power/eotp/eotp
 
 	if(world.time >= (last_power_update + power_cooldown))
 		power += power_gaine
+		for(var/mob/living/carbon/human/believer in disciples)
+			if(believer.client && ishuman(believer))
+				power++ // 1 power per disciple
 		last_power_update = world.time
 
 	if(power >= max_power)

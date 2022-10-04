@@ -5,8 +5,10 @@
 /obj/item/reagent_containers/food/drinks/bottle
 	amount_per_transfer_from_this = 10
 	volume = 100
+	description_info = "Thrown bottles don't break when you throw them while being on help intent."
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
-	force = 5
+	force = WEAPON_FORCE_WEAK
+	throwforce = WEAPON_FORCE_WEAK
 	rarity_value = 14
 	bad_type = /obj/item/reagent_containers/food/drinks/bottle
 	var/smash_duration = 5 //Directly relates to the 'weaken' duration. Lowered by armor (i.e. helmets)
@@ -45,14 +47,11 @@
 //when thrown on impact, bottles smash and spill their contents
 /obj/item/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, speed)
 	..()
-
-	if(bottle_thrower_intent == I_HURT)
-		var/throw_dist = get_dist(throw_source, loc)
-		if(speed >= throw_speed && smash_check(throw_dist)) //not as reliable as smashing directly
-			if(reagents)
-				hit_atom.visible_message(SPAN_NOTICE("The contents of \the [src] splash all over [hit_atom]!"))
-				reagents.splash(hit_atom, reagents.total_volume)
-			src.smash(loc, hit_atom)
+	if(bottle_thrower_intent != I_HELP)
+		if(reagents)
+			hit_atom.visible_message(SPAN_NOTICE("The contents of \the [src] splash all over [hit_atom]!"))
+			reagents.splash(hit_atom, reagents.total_volume)
+		src.smash(loc, hit_atom)
 
 /obj/item/reagent_containers/food/drinks/bottle/proc/smash_check(distance)
 	if(!isGlass || !smash_duration)

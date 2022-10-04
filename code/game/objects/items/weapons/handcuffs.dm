@@ -1,6 +1,8 @@
 /obj/item/handcuffs
 	name = "handcuffs"
 	desc = "Use this to keep prisoners in line."
+	description_info = "Can be broken out fast with enough robustness"
+	description_antag = "A freedom implants can instantly remove these on command"
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "handcuff"

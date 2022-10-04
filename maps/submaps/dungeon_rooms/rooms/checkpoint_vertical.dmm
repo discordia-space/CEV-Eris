@@ -28,9 +28,7 @@
 /area/crawler)
 "i" = (
 /obj/structure/table/onestar,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
+/obj/item/oddity/common/old_id,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/crawler)
 "j" = (
@@ -45,13 +43,13 @@
 /area/crawler)
 "m" = (
 /obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/crawler)
 "n" = (
 /obj/structure/table/onestar,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/crawler)
 "o" = (
@@ -104,7 +102,46 @@
 /area/crawler)
 "y" = (
 /obj/spawner/mob/roomba,
+/obj/structure/sign/derelict1{
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled/techmaint_cargo,
+/area/crawler)
+"E" = (
+/obj/structure/table/onestar,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/crawler)
+"F" = (
+/obj/item/storage/briefcase{
+	pixel_x = -4;
+	pixel_y = 18
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"M" = (
+/obj/structure/closet/onestar/tier2,
+/obj/spawner/firstaid/low_chance,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/crawler)
+"Q" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/sign/derelict2{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/crawler)
+"U" = (
+/obj/structure/salvageable/os/console_broken{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/crawler)
+"X" = (
+/obj/structure/salvageable/os/console_broken,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 
 (1,1,1) = {"
@@ -126,7 +163,7 @@ b
 l
 l
 l
-l
+M
 h
 "}
 (3,1,1) = {"
@@ -148,7 +185,7 @@ b
 l
 j
 w
-f
+U
 h
 "}
 (5,1,1) = {"
@@ -157,7 +194,7 @@ d
 b
 b
 b
-m
+E
 n
 b
 a
@@ -167,7 +204,7 @@ a
 e
 g
 p
-p
+Q
 v
 g
 e
@@ -181,7 +218,7 @@ b
 b
 b
 b
-d
+F
 a
 "}
 (8,1,1) = {"
@@ -208,7 +245,7 @@ a
 "}
 (10,1,1) = {"
 h
-f
+X
 u
 j
 l

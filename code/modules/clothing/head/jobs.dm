@@ -75,19 +75,19 @@
 //Security
 /obj/item/clothing/head/beret/sec/navy/officer
 	name = "Operative beret"
-	desc = "A navy blue beret with an Operative's rank emblem. For officers that are more inclined towards style than safety."
+	desc = "A navy blue beret with an Operative's rank emblem. For operatives that are more inclined towards style than safety."
 	icon_state = "beret_navy_officer"
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/beret/sec/navy/hos
 	name = "Commander beret"
-	desc = "Grey beret with a Commander's rank emblem. For officers that are more inclined towards style than safety."
+	desc = "Grey beret with a Commander's rank emblem. For commanders that are more inclined towards style than safety."
 	icon_state = "beret_navy_hos"
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/beret/sec/navy/warden
 	name = "Sergeant beret"
-	desc = "Read beret with a Sergeant's rank emblem. For officers that are more inclined towards style than safety."
+	desc = "Red beret with a Sergeant's rank emblem. For sergeants that are more inclined towards style than safety."
 	icon_state = "beret_navy_warden"
 	spawn_blacklisted = TRUE
 

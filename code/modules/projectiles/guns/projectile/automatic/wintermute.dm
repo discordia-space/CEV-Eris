@@ -21,9 +21,10 @@
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	zoom_factor = 0.4
-	init_recoil = RIFLE_RECOIL(0.7)
+	zoom_factors = list(0.4)
+	init_recoil = RIFLE_RECOIL(0.6)
 	damage_multiplier = 1.15
+	penetration_multiplier = 0
 	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(
@@ -40,19 +41,9 @@
 	..()
 
 	var/iconstring = initial(icon_state)
-	var/itemstring = ""
-
-	if (ammo_magazine)
-		iconstring += "_mag"
-		itemstring += "_mag"
-		if(ammo_magazine.mag_well == MAG_WELL_RIFLE_L)
-			itemstring += "_l"
-
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		iconstring += "_slide"
+	iconstring = initial(icon_state) + (ammo_magazine ? "_mag" + (ammo_magazine.mag_well == MAG_WELL_RIFLE_L ? "_l" : (ammo_magazine.mag_well == MAG_WELL_RIFLE_D ? "_d" : "")) : "")
 
 	icon_state = iconstring
-	set_item_state(itemstring)
 
 /obj/item/gun/projectile/automatic/wintermute/Initialize()
 	. = ..()
@@ -62,7 +53,7 @@
 	name = "Wintermute frame"
 	desc = "A Wintermute assault rifle frame. The finest of the Ironhammer lineup."
 	icon_state = "frame_wintermute"
-	result = /obj/item/gun/projectile/automatic/wintermute
-	grip = /obj/item/part/gun/grip/rubber
-	mechanism = /obj/item/part/gun/mechanism/autorifle
-	barrel = /obj/item/part/gun/barrel/srifle
+	resultvars = list(/obj/item/gun/projectile/automatic/wintermute)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
+	mechanismvar = /obj/item/part/gun/mechanism/autorifle
+	barrelvars = list(/obj/item/part/gun/barrel/srifle)

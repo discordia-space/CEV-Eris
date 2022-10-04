@@ -19,8 +19,8 @@
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m41_cocked.ogg'
-	damage_multiplier = 1.35
-	penetration_multiplier = 1.2
+	damage_multiplier = 1.3
+	penetration_multiplier = 0
 	init_recoil = LMG_RECOIL(1)
 	rarity_value = 65
 	gun_parts = list(/obj/item/part/gun = 5 ,/obj/item/stack/material/plasteel = 6)
@@ -49,8 +49,8 @@
 	name = "Dallas frame"
 	desc = "A Dallas pulse rifle frame. Sawing aliens in twain since time immemorial."
 	icon_state = "frame_dallas"
-	result = /obj/item/gun/projectile/automatic/dallas
-	grip = /obj/item/part/gun/grip/black
-	mechanism = /obj/item/part/gun/mechanism/machinegun
-	barrel = /obj/item/part/gun/barrel/clrifle
+	resultvars = list(/obj/item/gun/projectile/automatic/dallas)
+	gripvars = list(/obj/item/part/gun/grip/black)
+	mechanismvar = /obj/item/part/gun/mechanism/machinegun
+	barrelvars = list(/obj/item/part/gun/barrel/clrifle)
 	spawn_blacklisted = TRUE

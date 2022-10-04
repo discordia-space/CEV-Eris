@@ -26,11 +26,13 @@
 	var/list/nanite_swarms = list()
 	var/max_swarms = 5
 
+	mob_size = MOB_SMALL * 1.5 // 15
+
 	// Armor related variables
 	armor = list(
-		melee = 20,
-		bullet = 20,
-		energy = 40,
+		melee = 5,
+		bullet = 5,
+		energy = 10,
 		bomb = 10,
 		bio = 25,
 		rad = 100
@@ -72,8 +74,9 @@
 	density = FALSE
 	health = 10
 	maxHealth = 10
-	melee_damage_lower = 1
-	melee_damage_upper = 2
+	melee_damage_lower = 2
+	melee_damage_upper = 4
+	armor_divisor = ARMOR_PEN_MASSIVE
 	attacktext = "cut"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	faction = "roach"

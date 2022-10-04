@@ -1,3 +1,7 @@
+// SPCR 2022
+// Pay extra attention to Topic() security for anything in this code-file , everything about money_Accounts is read in HTML , printed in paper
+// and can be used for exploits if variables are not safety checked. transactions too.
+
 /datum/computer_file/program/tax
 	filename = "taxapp"
 	filedesc = "TaxQuickly 2565"
@@ -27,7 +31,7 @@
 /datum/nano_module/program/tax/Topic(href, href_list)
 	if(..())
 		return TOPIC_HANDLED
-	
+
 	// Used to call set_icon()
 	// When not logined or have an "error" popup - screen is uplink red
 	// When logined and have no popups - screen is blue
@@ -89,11 +93,12 @@
 		else
 			P.set_icon("uplink")
 		return TOPIC_REFRESH
-	
+
 	if(href_list["transfer"])
 		var/target	= text2num(input(usr,"Target account number", "Funds transfer"))
 		var/amount	= text2num(input(usr,"Amount to transfer", "Funds transfer"))
 		var/purpose	= input(usr,"Transfer purpose", "Funds transfer")
+		purpose = sanitizeSafe(purpose, 128, TRUE)
 		if(amount > account.money)
 			popup_message = "<b>An error has occurred.</b><br> Insufficient funds."
 			P.set_icon("uplink")
@@ -205,7 +210,7 @@
 			return TOPIC_REFRESH
 
 		var/datum/money_account/M = new()
-		M.owner_name = owner_name
+		M.owner_name = sanitizeSafe(owner_name, MAX_NAME_LEN, TRUE)
 		M.remote_access_pin = rand(1111, 9999)
 		M.account_number = next_account_number
 		next_account_number += rand(1,25)
@@ -215,6 +220,7 @@
 			if(!account_name)
 				account_name = owner_name
 
+			account_name = sanitizeSafe(account_name, MAX_NAME_LEN, TRUE)
 			var/datum/department/D = new()
 			D.name = account_name
 			D.id = account_name
@@ -232,12 +238,7 @@
 
 		all_money_accounts.Add(M)
 
-		var/datum/transaction/T = new()
-		T.target_name = M.get_name()
-		T.purpose = "Account creation"
-		T.date = current_date_string
-		T.time = stationtime2text()
-		T.source_terminal = account.department_id ? "[account.get_name()]" : "Asters Guild Representative [account.get_name()]"
+		var/datum/transaction/T = new(0, M.get_name(), "Account creation", account.department_id ? "[account.get_name()]" : "Asters Guild Representative [account.get_name()]", current_date_string, stationtime2text() )
 		M.transaction_log.Add(T)
 
 		charge_to_account(account.account_number, owner_name, "Account registration fee", name, registration_fee)
@@ -249,7 +250,7 @@
 	return TOPIC_HANDLED
 
 
-/datum/nano_module/program/tax/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/program/tax/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
 	var/list/data = host.initial_data()
 	data["stored_login"] = account_num ? account_num : ""
 	data["popup"] = popup

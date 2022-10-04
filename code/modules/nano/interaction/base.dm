@@ -4,14 +4,14 @@
 /datum/proc/nano_container()
 	return src
 
-/datum/proc/CanUseTopic(mob/user, datum/topic_state/state = GLOB.default_state)
+/datum/proc/CanUseTopic(mob/user, datum/nano_topic_state/state = GLOB.default_state)
 	var/datum/src_object = nano_host(TRUE)
 	return state.can_use_topic(src_object, user)
 
-/datum/topic_state/proc/href_list(var/mob/user)
+/datum/nano_topic_state/proc/href_list(var/mob/user)
 	return list()
 
-/datum/topic_state/proc/can_use_topic(var/src_object, var/mob/user)
+/datum/nano_topic_state/proc/can_use_topic(var/src_object, var/mob/user)
 	return STATUS_CLOSE
 
 /mob/proc/shared_nano_interaction()

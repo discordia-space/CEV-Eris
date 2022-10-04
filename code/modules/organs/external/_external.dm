@@ -3,7 +3,7 @@
 ****************************************************/
 
 //These control the damage thresholds for the various ways of removing limbs
-#define DROPLIMB_THRESHOLD_EDGE 0.75
+#define DROPLIMB_THRESHOLD_EDGE 1.15
 #define DROPLIMB_THRESHOLD_TEAROFF 1.35
 #define DROPLIMB_THRESHOLD_DESTROY 1.5
 
@@ -66,7 +66,7 @@
 	var/cannot_break		// Impossible to fracture.
 	var/joint = "joint"		// Descriptive string used in dislocation.
 	var/amputation_point	// Descriptive string used in amputation.
-	var/dislocated = 0		// If you target a joint, you can dislocate the limb, impairing it's usefulness and causing pain
+	var/nerve_struck = 0	// If you target a joint, you can strike the limb's nerve, impairing it's usefulness and causing pain for 10 seconds
 	var/encased				// Needs to be opened with a saw to access certain organs.
 
 	var/cavity_name = "cavity"				// Name of body part's cavity, displayed during cavity implant surgery
@@ -122,7 +122,7 @@
 
 	src.max_damage = desc.max_damage
 	src.min_broken_damage = desc.min_broken_damage
-	src.dislocated = desc.dislocated
+	src.nerve_struck = desc.nerve_struck
 	src.vital = desc.vital
 	src.cannot_amputate = desc.cannot_amputate
 
@@ -332,7 +332,7 @@
 			spawn(10)
 				qdel(spark_system)
 		. += 2
-	if(is_dislocated())
+	if(is_nerve_struck())
 		. += 1
 	if(status & ORGAN_SPLINTED)
 		. += 0.5
@@ -344,37 +344,39 @@
 
 	. += tally
 
-/obj/item/organ/external/proc/is_dislocated()
-	if(dislocated > 0)
+/obj/item/organ/external/proc/is_nerve_struck()
+	if(nerve_struck > 0)
 		return 1
 	if(parent)
-		return parent.is_dislocated()
+		return parent.is_nerve_struck()
 	return 0
 
-/obj/item/organ/external/proc/dislocate(var/primary)
-	if(dislocated != -1)
+/obj/item/organ/external/proc/nerve_strike_add(var/primary)
+	if(nerve_struck != -1)
 		if(primary)
-			dislocated = 2
+			nerve_struck = 2
 		else
-			dislocated = 1
-	owner.verbs |= /mob/living/carbon/human/proc/undislocate
-	if(children && children.len)
-		for(var/obj/item/organ/external/child in children)
-			child.dislocate()
+			nerve_struck = 1
 
-/obj/item/organ/external/proc/undislocate()
-	if(dislocated != -1)
-		dislocated = 0
 	if(children && children.len)
 		for(var/obj/item/organ/external/child in children)
-			if(child.dislocated == 1)
-				child.undislocate()
+			child.nerve_strike_add()
+
+	spawn(100)
+		nerve_strike_remove()
+
+/obj/item/organ/external/proc/nerve_strike_remove()
+	if(nerve_struck != -1)
+		nerve_struck = 0
+	if(children && children.len)
+		for(var/obj/item/organ/external/child in children)
+			if(child.nerve_struck == 1)
+				child.nerve_strike_remove()
 	if(owner)
 		owner.shock_stage += 20
 		for(var/obj/item/organ/external/limb in owner.organs)
-			if(limb.dislocated == 2)
+			if(limb.nerve_struck == 2)
 				return
-		owner.verbs -= /mob/living/carbon/human/proc/undislocate
 
 /obj/item/organ/external/proc/setBleeding()
 	if(BP_IS_ROBOTIC(src) || !owner || (owner.species.flags & NO_BLOOD))
@@ -981,7 +983,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return english_list(flavor_text)
 
 /obj/item/organ/external/is_usable()
-	return !is_dislocated() && !(status & (ORGAN_MUTATED|ORGAN_DEAD))
+	return !is_nerve_struck() && !(status & (ORGAN_MUTATED|ORGAN_DEAD))
 
 /obj/item/organ/external/proc/has_internal_bleeding()
 	for(var/datum/wound/W in wounds)

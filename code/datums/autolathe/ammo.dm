@@ -212,6 +212,10 @@
 	name = "ammo strip (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/slsrifle
 
+/datum/design/autolathe/ammo/sl_srifle
+	name = "speed loader (.20 Rifle)"
+	build_path = /obj/item/ammo_magazine/slsrifle_rev
+
 /datum/design/autolathe/ammo/sl_srifle/rubber
 	name = "ammo strip (.20 Rifle rubber)"
 	build_path = /obj/item/ammo_magazine/slsrifle/rubber

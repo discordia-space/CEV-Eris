@@ -180,6 +180,8 @@
 /area/crawler)
 "J" = (
 /obj/structure/table/onestar,
+/obj/spawner/tool_upgrade/rare/onestar,
+/obj/spawner/pack/tech_loot/low_chance,
 /turf/simulated/floor/plating,
 /area/crawler)
 "K" = (
@@ -195,11 +197,17 @@
 "L" = (
 /obj/structure/table/onestar,
 /obj/machinery/light/floor,
+/obj/spawner/pack/tech_loot/onestar,
 /turf/simulated/floor/plating,
 /area/crawler)
 "M" = (
 /obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/crawler)
+"N" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/ore_box,
+/turf/simulated/floor/tiled/derelict,
 /area/crawler)
 
 (1,1,1) = {"
@@ -220,7 +228,7 @@ d
 q
 q
 q
-F
+N
 F
 a
 "}
@@ -243,7 +251,7 @@ M
 q
 q
 F
-F
+N
 a
 "}
 (5,1,1) = {"

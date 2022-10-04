@@ -1,6 +1,8 @@
 /obj/item/biosyphon
 	name = "Bluespace Biosyphon"
 	desc = "Hunts on flora and fauna that sometimes populates bluespace, and use them to produce donuts endlessly. May also produce rare and powerful donuts when fed with the meat of non-bluespace fauna."
+	description_info = "Produces donuts constantly, highly valuable. Can be upgraded with the Molitor-Riedel Enricher to also generate syringes of healing chemicals."
+	description_antag = "IH tends to fully trust any donut box thats put above the biospyhon. You could poison a box of donuts."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "biosyphon"
 	item_state = "biosyphon"
@@ -23,11 +25,18 @@
 	var/rare_meat_value = 200
 	var/special_donuts = list(
 		/obj/item/reagent_containers/food/snacks/donut/stat_buff/mec,
-		/obj/item/reagent_containers/food/snacks/donut/stat_buff/cog, 
-		/obj/item/reagent_containers/food/snacks/donut/stat_buff/rob, 
-		/obj/item/reagent_containers/food/snacks/donut/stat_buff/tgh, 
-		/obj/item/reagent_containers/food/snacks/donut/stat_buff/bio, 
+		/obj/item/reagent_containers/food/snacks/donut/stat_buff/cog,
+		/obj/item/reagent_containers/food/snacks/donut/stat_buff/rob,
+		/obj/item/reagent_containers/food/snacks/donut/stat_buff/tgh,
+		/obj/item/reagent_containers/food/snacks/donut/stat_buff/bio,
 		/obj/item/reagent_containers/food/snacks/donut/stat_buff/vig)
+	var/touched_by_resus = FALSE
+	var/special_chems = list(
+		/obj/item/reagent_containers/syringe/polystem,
+		/obj/item/reagent_containers/syringe/meralyne,
+		/obj/item/reagent_containers/syringe/dermaline,
+		/obj/item/reagent_containers/syringe/tramadol
+	)
 
 /obj/item/biosyphon/Initialize()
 	. = ..()
@@ -48,6 +57,11 @@
 		visible_message(SPAN_NOTICE("[name] drop [D]."))
 		last_produce = world.time
 	if(donut_points >= production_cost)
+		if(touched_by_resus)
+			for(var/i in 1 to 3)
+				var/path = pick(special_chems)
+				var/atom/movable/le_syringe = new path()
+				le_syringe.forceMove(get_turf(src))
 		donut_points -= production_cost
 		var/specialdonut = pick(special_donuts)
 		var/obj/item/reagent_containers/food/snacks/donut/stat_buff/G = new specialdonut(get_turf(src))
@@ -56,8 +70,14 @@
 /obj/item/biosyphon/attackby(obj/item/I, mob/living/user, params)
 	if(nt_sword_attack(I, user))
 		return
+	if(istype(I, /obj/item/reagent_containers/enricher))
+		user.remove_from_mob(I)
+		qdel(I)
+		name = "Synthesizing bluespace biosyphon"
+		touched_by_resus = TRUE
+		to_chat(user, SPAN_NOTICE("You upgrade the [src] using the Enricher, it now produces syringes of powerful healing chemicals every time it produces special donuts!"))
 	if(istype(I, /obj/item/reagent_containers/food/snacks/meat/roachmeat/fuhrer))
-		donut_points += uncommon_meat_value 
+		donut_points += uncommon_meat_value
 		to_chat(user, "You insert [I] into the [src]. It produces a whirring noise.")
 		qdel(I)
 	else if(istype(I, /obj/item/reagent_containers/food/snacks/meat/roachmeat/kaiser))

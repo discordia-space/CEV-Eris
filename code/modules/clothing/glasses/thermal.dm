@@ -33,7 +33,7 @@
 		GUN_UPGRADE_THERMAL = TRUE
 		)
 	I.gun_loc_tag = GUN_SCOPE
-	I.req_gun_tags = list(GUN_AMR, GUN_SCOPE)
+	I.req_gun_tags = list(GUN_AMR)
 
 /obj/item/clothing/glasses/powered/thermal/syndi	//These are now a contractor item, concealed as mesons.	-Pete
 	name = "Optical Meson Scanner"

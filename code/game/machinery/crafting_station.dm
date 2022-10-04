@@ -33,7 +33,6 @@
 	. = ..()
 	image_load = new(src)
 
-
 /obj/machinery/craftingstation/examine(user)
 	. = ..()
 	var/list/matter_count_need_ammo = list()
@@ -497,6 +496,7 @@
 		new /obj/item/part/gun(get_turf(src))
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 /obj/machinery/craftingstation/proc/spawn_armorpart(dice = 0, mob/user)
 	var/parts = 0

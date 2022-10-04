@@ -25,7 +25,7 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
 	</div>
 	<div class="item">
 		<div class="itemLabelNarrow">
-			<b>Station Time</b>:
+			<b>Ship Time</b>:
 		</div>
 		<div class="itemContent">
 			<span class="average">{{:data.stationTime}}</span>
@@ -983,7 +983,7 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
 						{{for data.feed.messages}}
 							-{{:value.body}}<br>
 							{{if value.has_image}}
-								<img src='newscaster_photo_{{:data.feed.channel}}_{{:value.index}}.png' width = '180'><br>
+								<img src='tmp_photo_{{:value.index}}.png' width = '180'><br>
 								{{if value.caption}}
 									<span class="caption">{{:value.caption}}</span><br>
 								{{/if}}

@@ -3,6 +3,8 @@
 	desc = "Portable dna sequencer."
 	icon = 'icons/obj/eris_genetics.dmi'
 	icon_state = "dnascanner_standby_yellow"
+	description_info = "Needs kognim in the target's bloodstream to function"
+	description_antag = "Kognim causes a lot of pain. Can be paired with toxins or other pain inducing chemicals such as Ossisine to knock a person out faster"
 	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_SILVER = 2)
 	var/color_key = "yellow"
 	var/current_state = "standby" // opening, closing, working, no

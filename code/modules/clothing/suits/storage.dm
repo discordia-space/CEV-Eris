@@ -78,9 +78,9 @@
 	icon_state = "mchestrig"
 	item_state = "mchestrig"
 	armor = list(
-		melee = 10,
-		bullet = 5,
-		energy = 5,
+		melee = 2,
+		bullet = 2,
+		energy = 2,
 		bomb = 5,
 		bio = 0,
 		rad = 0

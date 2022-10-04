@@ -21,7 +21,7 @@
 	item_state = "homewrecker"
 	wielded_icon = "homewrecker1"
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
-	armor_penetration = ARMOR_PEN_MODERATE
+	armor_divisor = ARMOR_PEN_MODERATE
 	force = WEAPON_FORCE_PAINFUL
 	force_wielded_multiplier = 2.6
 	slot_flags = SLOT_BELT|SLOT_BACK
@@ -38,7 +38,7 @@
 	icon_state = "powered_hammer"
 	item_state = "powered_hammer"
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
-	armor_penetration = ARMOR_PEN_EXTREME
+	armor_divisor = ARMOR_PEN_HALF
 	force = WEAPON_FORCE_BRUTAL
 	w_class = ITEM_SIZE_HUGE
 	tool_qualities = list(QUALITY_HAMMERING = 30)
@@ -56,7 +56,7 @@
 	item_state = "onehammer"
 	wielded_icon = "onehammer_on"
 	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
-	armor_penetration = ARMOR_PEN_EXTREME
+	armor_divisor = ARMOR_PEN_HALF
 	force= WEAPON_FORCE_BRUTAL
 	force_wielded_multiplier = 1.65
 	w_class = ITEM_SIZE_HUGE
@@ -78,7 +78,7 @@
 	icon_state = "mace"
 	item_state = "mace"
 	w_class = ITEM_SIZE_NORMAL
-	armor_penetration = ARMOR_PEN_EXTREME
+	armor_divisor = ARMOR_PEN_HALF
 	force = WEAPON_FORCE_ROBUST
 	tool_qualities = list(QUALITY_HAMMERING = 20)
 	spawn_tags = SPAWN_TAG_WEAPON
@@ -105,7 +105,7 @@
 	wielded_icon = "woodbat1"
 	item_state = "woodbat0"
 	force = WEAPON_FORCE_DANGEROUS
-	armor_penetration = ARMOR_PEN_MODERATE
+	armor_divisor = ARMOR_PEN_MODERATE
 	attack_verb = list("smashed", "beaten", "slammed", "smacked", "struck", "battered", "bonked")
 	hitsound = 'sound/weapons/genhit3.ogg'
 	slot_flags = SLOT_BELT|SLOT_BACK
@@ -127,7 +127,7 @@
 	item_state = "chargehammer"
 	w_class = ITEM_SIZE_HUGE
 	switched_on_force = WEAPON_FORCE_BRUTAL
-	armor_penetration = ARMOR_PEN_MASSIVE
+	armor_divisor = ARMOR_PEN_EXTREME
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	switched_on_qualities = list(QUALITY_HAMMERING = 60)
 	switched_off_qualities = list(QUALITY_HAMMERING = 35)
@@ -185,7 +185,7 @@
 	item_state = "iron_hammer"
 	wielded_icon = "iron_hammer_wielded"
 	w_class = ITEM_SIZE_HUGE
-	armor_penetration = ARMOR_PEN_DEEP
+	armor_divisor = ARMOR_PEN_DEEP
 	force = WEAPON_FORCE_ROBUST
 	structure_damage_factor = STRUCTURE_DAMAGE_BORING
 	tool_qualities = list(QUALITY_HAMMERING = 40, QUALITY_PRYING = 1)

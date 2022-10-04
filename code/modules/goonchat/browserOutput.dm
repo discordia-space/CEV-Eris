@@ -1,9 +1,7 @@
 /*********************************
 For the main html chat area
 *********************************/
-
-//Precaching a bunch of shit
-GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of icons for the browser output
+GLOBAL_VAR_INIT(goonchatbasehtml, file2text('code/modules/goonchat/browserassets/html/browserOutput.html'))
 
 //On client, created on login
 /datum/chatOutput
@@ -46,10 +44,15 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if(!owner)
 		return
 
-	var/datum/asset/stuff = get_asset_datum(/datum/asset/group/goonchat)
-	stuff.send(owner)
+	var/datum/asset/group/gc = get_asset_datum(/datum/asset/group/goonchat)
 
-	owner << browse(file('code/modules/goonchat/browserassets/html/browserOutput.html'), "window=browseroutput")
+	if (gc.send(owner))
+		owner.browse_queue_flush() // stall loading html until goochant actualy gets sent
+
+	var/html = GLOB.goonchatbasehtml
+	html = replacetextEx(html, "%FONTAWESOME%", SSassets.transport.get_asset_url("font-awesome.css"))
+
+	owner << browse(html, "window=browseroutput")
 
 /datum/chatOutput/Topic(href, list/href_list)
 	if(usr.client != owner)
@@ -157,7 +160,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		if(crashy_thingy.Find(cookie))
 			log_and_message_admins("[key_name(owner)] tried to crash the server using at least 5 \"\[\" in a row. Ban them.")
 			return
-		
+
 		var/list/connData = json_decode(cookie)
 		if (connData && islist(connData) && connData.len > 0 && connData["connData"])
 			connectionHistory = connData["connData"] //lol fuck

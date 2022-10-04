@@ -79,8 +79,8 @@ body {
     top: 50%;
     left: 50%;
     margin: -512px 0 0 -512px;
-    width: 256px;
-    height: 256px;
+    width: 512px;
+    height: 512px;
     overflow: hidden;
     zoom: 4;
 }
@@ -89,8 +89,8 @@ body {
     position: absolute;
     bottom: 1px;
     left: 1px;
-    width: 256px;
-    height: 256px;
+    width: 512px;
+    height: 512px;
 }
 
 #uiMapContent {

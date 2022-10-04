@@ -92,12 +92,15 @@
 			MiddleClickOn(A)
 		return 1
 	if(modifiers["shift"])
+		SEND_SIGNAL(src, COMSIG_SHIFTCLICK, A)
 		ShiftClickOn(A)
 		return 0
 	if(modifiers["alt"]) // alt and alt-gr (rightalt)
+		SEND_SIGNAL(src, COMSIG_ALTCLICK, A)
 		AltClickOn(A)
 		return 1
 	if(modifiers["ctrl"])
+		SEND_SIGNAL(src, COMSIG_CTRLCLICK, A)
 		CtrlClickOn(A)
 		return 1
 
@@ -210,7 +213,7 @@
 /*
 	Ranged unarmed attack:
 
-	This currently is just a default for all mobs, involving	
+	This currently is just a default for all mobs, involving
 	laser eyes and telekinesis.  You could easily add exceptions
 	for things like ranged glove touches, spitting alien acid/neurotoxin,
 	animals lunging, etc.
@@ -298,11 +301,8 @@
 /atom/proc/AltClick(mob/user)
 	var/turf/T = get_turf(src)
 	if(T && user.TurfAdjacent(T))
-		if(user.listed_turf == T)
-			user.listed_turf = null
-		else
-			user.listed_turf = T
-			user.client.statpanel = "Turf"
+		user.listed_turf = T
+		user.client.statpanel = "Turf"
 	return 1
 
 /mob/proc/TurfAdjacent(turf/T)

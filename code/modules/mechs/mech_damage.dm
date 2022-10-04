@@ -17,9 +17,9 @@
 	var/penetration = 0
 	if(istype(user, /mob/living))
 		var/mob/living/L = user
-		penetration = L.armor_penetration
+		penetration = L.armor_divisor
 
-	damage_through_armor(damage, BRUTE, attack_flag=ARMOR_MELEE, armour_pen=penetration, def_zone=pick(arms, legs, body, head))
+	damage_through_armor(damage, BRUTE, attack_flag=ARMOR_MELEE, armour_divisor=penetration, def_zone=pick(arms, legs, body, head))
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
 	attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
 	visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
@@ -98,7 +98,7 @@
 			if(damage_type == HALLOSS)
 				continue // don't even bother
 			var/damage = P.damage_types[damage_type]
-			damage_through_armor(damage, damage_type, def_zone, P.check_armour, armour_pen = P.armor_penetration, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
+			damage_through_armor(damage, damage_type, def_zone, P.check_armour, armour_divisor = P.armor_divisor, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
 
 	P.on_hit(src, def_zone)
 	return TRUE

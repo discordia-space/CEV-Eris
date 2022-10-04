@@ -27,12 +27,12 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 		if(H.job == "Vagabond") // As stowaways, Vagabond do not show up on the crew manifest.
 			GLOB.all_crew_records.Remove(src)
 			return
-		photo_front = getFlatIcon(H, SOUTH, always_use_defdir = 1)
-		photo_side = getFlatIcon(H, WEST, always_use_defdir = 1)
+		photo_front = getFlatIcon(H, SOUTH)
+		photo_side = getFlatIcon(H, WEST)
 	else
 		var/mob/living/carbon/human/dummy/mannequin/dummy = new()
-		photo_front = getFlatIcon(dummy, SOUTH, always_use_defdir = 1)
-		photo_side = getFlatIcon(dummy, WEST, always_use_defdir = 1)
+		photo_front = getFlatIcon(dummy, SOUTH)
+		photo_side = getFlatIcon(dummy, WEST)
 		qdel(dummy)
 
 	// Add education, honorifics, etc.
@@ -222,8 +222,6 @@ FIELD_SHORT("Fingerprint", fingerprint, access_security, access_security)
 
 // EMPLOYMENT RECORDS
 FIELD_LONG("Employment Record", emplRecord, access_heads, access_heads)
-FIELD_SHORT("Home System", homeSystem, access_heads, access_change_ids)
-FIELD_SHORT("Faction", faction, access_heads, access_heads)
 FIELD_LONG("Qualifications", skillset, access_heads, access_heads)
 
 // ANTAG RECORDS

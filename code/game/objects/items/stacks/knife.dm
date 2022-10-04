@@ -21,7 +21,7 @@
 	w_class = ITEM_SIZE_SMALL
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_WEAK
-	armor_penetration = ARMOR_PEN_SHALLOW
+	armor_divisor = ARMOR_PEN_SHALLOW
 	throw_speed = 3
 	slot_flags = SLOT_BELT
 	//spawn values
@@ -72,13 +72,13 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/melee/lightstab.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
-	matter = list(MATERIAL_PLASTEEL = 2)
-	amount = 1
+	matter = list(MATERIAL_PLASTEEL = 1)
+	amount = 3
 	max_amount = 3
 	w_class = ITEM_SIZE_SMALL
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
-	armor_penetration = ARMOR_PEN_SHALLOW
+	armor_divisor = ARMOR_PEN_SHALLOW
 	slot_flags = SLOT_BELT
 	//spawn values
 	rarity_value = 8

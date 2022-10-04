@@ -45,18 +45,6 @@
 				return
 		M.status_flags &= ~PASSEMOTES
 
-	else if(istype(H.loc,/obj/item/clothing/accessory/holster))
-		var/obj/item/clothing/accessory/holster/holster = H.loc
-		if(holster.holstered == H)
-			holster.clear_holster()
-		to_chat(src, "<span class='warning'>You extricate yourself from \the [holster].</span>")
-		H.forceMove(get_turf(H))
-	else if(istype(H.loc,/obj/item))
-		to_chat(src, "<span class='warning'>You struggle free of \the [H.loc].</span>")
-		H.forceMove(get_turf(H))
-
-
-
 /mob/living/proc/resist_grab()
 	var/resisting = 0
 	for(var/obj/O in requests)

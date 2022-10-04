@@ -90,6 +90,7 @@
 /area/crawler)
 "s" = (
 /obj/structure/table/rack,
+/obj/spawner/gun_parts,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 "t" = (
@@ -108,8 +109,8 @@
 /area/crawler)
 "w" = (
 /obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 4
+	dir = 4;
+	icon_state = "warningcorner"
 	},
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
@@ -157,6 +158,23 @@
 /obj/structure/closet/onestar/tier3,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
+"N" = (
+/obj/structure/table/rack,
+/obj/spawner/gun/shotgun/low_chance,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"Q" = (
+/obj/structure/salvageable/os/console_broken{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"T" = (
+/obj/structure/sign/derelict2{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -198,7 +216,7 @@ d
 o
 u
 w
-d
+T
 f
 a
 "}
@@ -217,9 +235,9 @@ b
 b
 f
 j
-q
+Q
 t
-s
+N
 C
 g
 b

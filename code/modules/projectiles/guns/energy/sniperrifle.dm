@@ -16,7 +16,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 8, MATERIAL_SILVER = 9, MATERIAL_URANIUM = 6)
 	price_tag = 5000
 	cell_type = /obj/item/cell/medium
-	zoom_factor = 2
+	zoom_factors = list(1,2)
 	scoped_offset_reduction = 8
 	init_firemodes = list(
 		WEAPON_NORMAL,
@@ -26,3 +26,5 @@
 	wield_delay = 0
 	init_recoil = RIFLE_RECOIL(1)
 	serial_type = "NT"
+	action_button_name = "Switch zoom level"
+	action_button_proc = "switch_zoom"

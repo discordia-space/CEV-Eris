@@ -68,7 +68,7 @@
 /datum/access/genetics
 	id = access_genetics
 	desc = "Genetics Lab"
-	region = ACCESS_REGION_RESEARCH
+	region = ACCESS_REGION_MEDBAY
 
 /var/const/access_engine = 10
 /datum/access/engine
@@ -378,7 +378,7 @@
 /datum/access/psychiatrist
 	id = access_psychiatrist
 	desc = "Psychiatrist's Office"
-	region = ACCESS_REGION_MEDBAY
+	region = ACCESS_REGION_RESEARCH
 
 /var/const/access_xenoarch = 65
 /datum/access/xenoarch

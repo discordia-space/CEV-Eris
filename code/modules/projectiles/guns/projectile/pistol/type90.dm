@@ -8,15 +8,15 @@
 	can_dual = TRUE
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLATINUM = 4, MATERIAL_PLASTIC = 6)
-	price_tag = 2600
+	price_tag = 3900
 	caliber = CAL_PISTOL
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	magazine_type = /obj/item/ammo_magazine/cspistol
+	magazine_type = /obj/item/ammo_magazine/pistol
 	damage_multiplier = 1.2
-	penetration_multiplier = 1.4
-	proj_step_multiplier = 1.4
+	penetration_multiplier = 0.4
+	proj_step_multiplier = 0.6
 	init_recoil = HANDGUN_RECOIL(0.8)
 	spawn_tags = SPAWN_TAG_GUN_OS
 	fire_sound = 'sound/weapons/guns/fire/energy_shotgun.ogg'

@@ -35,7 +35,7 @@
 	hitsound_wall = 'sound/weapons/guns/misc/laser_searwall.ogg'
 	damage_types = list(BRUTE = 60)
 	check_armour = ARMOR_ENERGY
-	armor_penetration = 100
+	armor_divisor = ARMOR_PEN_MAX
 	var/jet_range = 3 // Max range before it dissipates
 	penetrating = 5
 	can_ricochet = FALSE

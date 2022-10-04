@@ -81,7 +81,6 @@
 
 	var/datum/browser/popup = new(user, "GPS", name, 450, min(gps_window_height, 800))
 	popup.set_content(t)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/item/device/gps/Topic(href, href_list)

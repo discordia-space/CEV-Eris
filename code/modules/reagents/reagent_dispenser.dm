@@ -117,6 +117,7 @@
 /obj/structure/reagent_dispensers/fueltank
 	name = "fuel tank"
 	desc = "A tank full of industrial welding fuel. Do not consume."
+	description_antag = "Can have an assembly with a igniter attached for detonation upon a trigger. Can also use a screwdriver to leak fuel when dragged"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
 	amount_per_transfer_from_this = 10

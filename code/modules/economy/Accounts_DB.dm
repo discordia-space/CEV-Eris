@@ -1,4 +1,6 @@
-
+// SPCR 2022
+// Pay extra attention to Topic() security for anything in this code-file , everything about money_Accounts is read in HTML , printed in paper
+// and can be used for exploits if variables are not safety checked.
 /obj/machinery/account_database
 	name = "Accounts uplink terminal"
 	desc = "Access transaction logs, account data and all kinds of other financial records."
@@ -52,9 +54,9 @@
 
 /obj/machinery/account_database/attack_hand(mob/user as mob)
 	if(stat & (NOPOWER|BROKEN)) return
-	ui_interact(user)
+	nano_ui_interact(user)
 
-/obj/machinery/account_database/ui_interact(mob/user, ui_key="main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/account_database/nano_ui_interact(mob/user, ui_key="main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	user.set_machine(src)
 
 	var/data[0]
@@ -134,6 +136,7 @@
 
 			if("finalise_create_account")
 				var/account_name = href_list["holder_name"]
+				account_name = sanitizeSafe(account_name, MAX_NAME_LEN, TRUE)
 				var/starting_funds = max(text2num(href_list["starting_funds"]), 0)
 
 				starting_funds = CLAMP(starting_funds, 0, station_account.money)	// Not authorized to put the station in debt.

@@ -28,9 +28,9 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 30,
-		bullet = 40,
-		energy = 40,
+		melee = 7,
+		bullet = 10,
+		energy = 10,
 		bomb = 20,
 		bio = 0,
 		rad = 0
@@ -91,9 +91,9 @@
 	desc = "An armored vest of dubious quality. Provides decent protection against physical damage, for a piece of crap."
 	icon_state = "armor_handmade"
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
+		melee = 7,
+		bullet = 7,
+		energy = 7,
 		bomb = 20,
 		bio = 0,
 		rad = 0
@@ -125,9 +125,9 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	armor = list(
-		melee = 30,
-		bullet = 40,
-		energy = 40,
+		melee = 7,
+		bullet = 10,
+		energy = 10,
 		bomb = 20,
 		bio = 0,
 		rad = 0
@@ -161,9 +161,9 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 30,
-		bullet = 50,
-		energy = 30,
+		melee = 7,
+		bullet = 13,
+		energy = 7,
 		bomb = 30,
 		bio = 0,
 		rad = 0
@@ -194,9 +194,9 @@
 	blood_overlay_type = "armor"
 	slowdown = 0.15
 	armor = list(
-		melee = 25,
-		bullet = 60,
-		energy = 30,
+		melee = 6,
+		bullet = 15,
+		energy = 7,
 		bomb = 20,
 		bio = 0,
 		rad = 0
@@ -239,9 +239,9 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 40,
-		bullet = 50,
-		energy = 40,
+		melee = 10,
+		bullet = 13,
+		energy = 10,
 		bomb = 20,
 		bio = 0,
 		rad = 0
@@ -289,9 +289,9 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 20,
-		bullet = 30,
-		energy = 65,
+		melee = 5,
+		bullet = 7,
+		energy = 16,
 		bomb = 10,
 		bio = 0,
 		rad = 0
@@ -306,7 +306,7 @@
 	slowdown = LIGHT_SLOWDOWN
 	stiffness = LIGHT_STIFFNESS
 	//spawn_blacklisted = TRUE//antag_item_targets-crafteable?
-/*
+
 /obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack") //TODO: Refactor this all into humandefense
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
 		var/obj/item/projectile/P = damage_source
@@ -326,16 +326,16 @@
 			P.redirect(new_x, new_y, curloc, user)
 
 			return PROJECTILE_CONTINUE // complete projectile permutation
-*/
+
 /obj/item/clothing/suit/storage/greatcoat/german_overcoat
 	name = "Oberth Republic uniform overcoat"
 	desc = "A black overcoat made out of special materials that will protect against energy projectiles. Probably surplus."
 	icon_state = "germancoat"
 	item_state = "germancoat"
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 40,
+		melee = 7,
+		bullet = 7,
+		energy = 10,
 		bomb = 20,
 		bio = 0,
 		rad = 0
@@ -351,9 +351,9 @@
 	spawn_blacklisted = TRUE // TODO: make onestar clothing/armor spawner -Valo
 	price_tag = 2000
 	armor = list(
-		melee = 15,
-		bullet = 45,
-		energy = 45,
+		melee = 3,
+		bullet = 11,
+		energy = 11,
 		bomb = 10,
 		bio = 5,
 		rad = 5
@@ -381,9 +381,9 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(
-		melee = 65, //massive slowdown justifies
-		bullet = 50,
-		energy = 40,
+		melee = 16, //massive slowdown justifies
+		bullet = 13,
+		energy = 10,
 		bomb = 30,
 		bio = 0,
 		rad = 0
@@ -418,9 +418,9 @@
 	item_state = "swat_suit"
 	flags_inv = NONE
 	armor = list(
-		melee = 75,
-		bullet = 30,
-		energy = 25,
+		melee = 20,
+		bullet = 7,
+		energy = 6,
 		bomb = 20,
 		bio = 0,
 		rad = 0
@@ -435,9 +435,9 @@
 	item_state = "swat_suit"
 	flags_inv = HIDEJUMPSUIT
 	armor = list(
-		melee = 65,
-		bullet = 50, //comparable to RIG
-		energy = 40,
+		melee = 16,
+		bullet = 13, //comparable to RIG
+		energy = 10,
 		bomb = 35,
 		bio = 0,
 		rad = 0
@@ -453,9 +453,9 @@
 	icon_state = "webvest"
 	price_tag = 250 //Normal vest is worth 200, this one is worth 250 because it also has storage space
 	armor = list( //Same stats as the standard vest only difference is that this one has storage
-		melee = 30,
-		bullet = 40,
-		energy = 40,
+		melee = 7,
+		bullet = 10,
+		energy = 10,
 		bomb = 20,
 		bio = 0,
 		rad = 0
@@ -494,10 +494,10 @@
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
 	armor = list(
-		melee = 50,
-		bullet = 50,
-		energy = 50,
-		bomb = 25,
+		melee = 12,
+		bullet = 12,
+		energy = 12,
+		bomb = 6,
 		bio = 0,
 		rad = 0
 	)
@@ -518,9 +518,9 @@
 	item_state = "armor_engineering"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 10,
+		melee = 7,
+		bullet = 7,
+		energy = 2,
 		bomb = 50,
 		bio = 0,
 		rad = 80
@@ -547,9 +547,9 @@
 	item_state = "reactiveoff"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 20,
-		bullet = 20,
-		energy = 20,
+		melee = 5,
+		bullet = 5,
+		energy = 5,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -596,9 +596,9 @@
 	item_state = "crusader_suit"
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
 	armor = list(
-		melee = 50,
-		bullet = 50,
-		energy = 50,
+		melee = 13,
+		bullet = 13,
+		energy = 13,
 		bomb = 25,
 		bio = 0,
 		rad = 0
@@ -624,9 +624,9 @@
 		MATERIAL_SILVER = 2
 		)
 	armor = list(
-		melee = 30,
-		bullet = 40,
-		energy = 40,
+		melee = 7,
+		bullet = 10,
+		energy = 10,
 		bomb = 20,
 		bio = 100,
 		rad = 50

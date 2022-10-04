@@ -16,6 +16,8 @@
 	caliber = CAL_SHOTGUN
 	init_recoil = RIFLE_RECOIL(1.7)
 	style_damage_multiplier = 2
+	damage_multiplier = 1
+	penetration_multiplier = 0.1
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1)
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
@@ -92,7 +94,7 @@
 	name = "double-barreled shotgun frame"
 	desc = "A double-barreled shotgun frame. An immortal classic of cowboys and bartenders alike."
 	icon_state = "frame_dshotgun"
-	result = /obj/item/gun/projectile/shotgun/doublebarrel
-	grip = /obj/item/part/gun/grip/wood
-	mechanism = /obj/item/part/gun/mechanism/shotgun
-	barrel = /obj/item/part/gun/barrel/shotgun
+	resultvars = list(/obj/item/gun/projectile/shotgun/doublebarrel)
+	gripvars = list(/obj/item/part/gun/grip/wood)
+	mechanismvar = /obj/item/part/gun/mechanism/shotgun
+	barrelvars = list(/obj/item/part/gun/barrel/shotgun)

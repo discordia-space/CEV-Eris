@@ -40,6 +40,8 @@
 	var/damage_smoke = FALSE
 	var/tryingToLock = FALSE // for autoclosing
 
+	atmos_canpass = CANPASS_PROC
+
 	// turf animation
 	var/atom/movable/overlay/c_animation
 

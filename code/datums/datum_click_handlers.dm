@@ -79,6 +79,7 @@
 	var/obj/item/gun/reciever // The thing we send firing signals to, spelled reciever instead of receiver for some reason
 	var/time_since_last_init // Time since last start of full auto fire , used to prevent ANGRY smashing of M1 to fire faster.
 	//Todo: Make this work with callbacks
+	var/time_since_last_shot // Keeping track of last shot to determine next one
 
 /datum/click_handler/fullauto/Click()
 	return TRUE //Doesn't work with normal clicks
@@ -102,8 +103,9 @@
 	object = resolve_world_target(object)
 	if(object)
 		target = object
+		time_since_last_shot = world.time
 		shooting_loop()
-		time_since_last_init = world.time + reciever.burst_delay
+		time_since_last_init = world.time + (reciever.fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : reciever.fire_delay) * min(world.tick_lag, 1)
 	return TRUE
 
 /datum/click_handler/fullauto/proc/shooting_loop()
@@ -112,8 +114,13 @@
 		return FALSE
 	if(target)
 		owner.mob.face_atom(target)
+
+	while(time_since_last_shot < world.time)
 		do_fire()
-		spawn(reciever.fire_delay) shooting_loop()
+		time_since_last_shot = world.time + (reciever.fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : reciever.fire_delay) * min(world.tick_lag, 1)
+
+	spawn(1)
+		shooting_loop()
 
 /datum/click_handler/fullauto/MouseDrag(over_object, src_location, over_location, src_control, over_control, params)
 	src_location = resolve_world_target(src_location)

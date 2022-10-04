@@ -20,7 +20,7 @@
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 0.8
-	penetration_multiplier = 1.4 // this is not babies first gun. It's a Serb-level weapon.
+	penetration_multiplier = 0.5 // this is not babies first gun. It's a Serb-level weapon.
 	init_recoil = CARBINE_RECOIL(1.1)
 
 					//while also preserving ability to shoot as fast as you can click and maintain recoil good enough
@@ -56,7 +56,7 @@
 	name = "Bojevic frame"
 	desc = "A Bojevic shotgun frame. Specially designed to sweep streets and spaceship halls."
 	icon_state = "frame_bojevic"
-	result = /obj/item/gun/projectile/shotgun/bojevic
-	grip = /obj/item/part/gun/grip/serb
-	mechanism = /obj/item/part/gun/mechanism/shotgun
-	barrel = /obj/item/part/gun/barrel/shotgun
+	resultvars = list(/obj/item/gun/projectile/shotgun/bojevic)
+	gripvars = list(/obj/item/part/gun/grip/serb)
+	mechanismvar = /obj/item/part/gun/mechanism/autorifle // listen, its semi and full auto, not pump. makes sense
+	barrelvars = list(/obj/item/part/gun/barrel/shotgun)
