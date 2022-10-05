@@ -44,7 +44,7 @@
 	return ..()
 
 /obj/machinery/gym/relaymove(mob/occupant)
-	if (occupant.incapacitated()) //Lost consciousness while lifting weights? Too bad, you HAVE to finish.
+	if(occupant.incapacitated()) //Lost consciousness while lifting weights? Too bad, you HAVE to finish.
 		return
 	go_out(FALSE)
 	return
