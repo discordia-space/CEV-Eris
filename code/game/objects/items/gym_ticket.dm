@@ -11,7 +11,7 @@
 	var/used = FALSE
 
 /obj/item/gym_ticket/used
-	name = "used exercise holographic ticket"
+	name = "used holographic ticket"
 	icon_state = "gym_ticket_used"
 	spawn_tags = SPAWN_TAG_JUNK
 	rarity_value = 80
