@@ -1,5 +1,5 @@
 /obj/item/gym_ticket
-	name = "exercise holographic ticket"
+	name = "holographic ticket"
 	desc = "A holographic ticket used by the Club exercise equipment."
 	description_info = "Gym structures can use rest points to permanently increase your stats. Otherwise, they only temporary increase them."
 	icon = 'icons/obj/gym_ticket.dmi'
