@@ -39,11 +39,11 @@
 			Your COGNITION stat is reduced for some time."
 	icon_state = "reason" //https://game-icons.net/1x1/lorc/brainstorm.html
 
-/datum/perk/cooldown/exertion/assign(mob/living/carbon/human/H)
+/datum/perk/cooldown/reason/assign(mob/living/carbon/human/H)
 	if(..())
 		holder.stats.addTempStat(STAT_COG, -15, INFINITY, "Dimmed reason")
 
-/datum/perk/cooldown/exertion/remove()
+/datum/perk/cooldown/reason/remove()
 	if(holder)
 		holder.stats.removeTempStat(STAT_COG, "Dimmed reason")
 	..()
