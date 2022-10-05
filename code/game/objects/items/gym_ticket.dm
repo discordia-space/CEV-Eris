@@ -19,7 +19,7 @@
 
 /obj/item/gym_ticket/proc/use()
 	if(!used)
-		name = "used exercise holographic ticket"
+		name = "used holographic ticket"
 		icon_state = "gym_ticket_used"
 		used = TRUE
 		return TRUE
