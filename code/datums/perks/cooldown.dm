@@ -43,7 +43,7 @@
 	if(..())
 		holder.stats.addTempStat(STAT_COG, -15, INFINITY, "Dimmed reason")
 
-/datum/perk/cooldown/exertion/remove()
+/datum/perk/cooldown/reason/remove()
 	if(holder)
 		holder.stats.removeTempStat(STAT_COG, "Dimmed reason")
 	..()
