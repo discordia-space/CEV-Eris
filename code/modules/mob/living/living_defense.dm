@@ -123,7 +123,8 @@
 			var/remaining_dmg = 0
 			for(var/dmg_type in dmg_types)
 				remaining_dmg += dmg_types[dmg_type]
-			return ((total_dmg / 2 < remaining_dmg && remaining_dmg > 20) ? PROJECTILE_CONTINUE : PROJECTILE_STOP)
+			return ((total_dmg / 2 < remaining_dmg && remaining_dmg > mob_size) ? PROJECTILE_CONTINUE : PROJECTILE_STOP)
+		else PROJECTILE_STOP
 
 	if(isProjectile(used_weapon))
 		var/obj/item/projectile/P = used_weapon
