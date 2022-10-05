@@ -52,7 +52,7 @@
 /obj/machinery/gym/proc/go_out(var/finished_using)
 	if(finished_using)
 
-		spawn(15)
+		spawn(1.5 SECONDS)
 			state("Thank you for using club services! Please come back soon.")
 			playsound(loc, "robot_talk_light", 100, 0, 0)
 		
