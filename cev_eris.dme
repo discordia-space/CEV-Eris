@@ -432,6 +432,7 @@
 #include "code\datums\outfits\jobs\misc.dm"
 #include "code\datums\outfits\jobs\science.dm"
 #include "code\datums\outfits\jobs\security.dm"
+#include "code\datums\perks\cooldown.dm"
 #include "code\datums\perks\fate.dm"
 #include "code\datums\perks\job.dm"
 #include "code\datums\perks\oddity.dm"

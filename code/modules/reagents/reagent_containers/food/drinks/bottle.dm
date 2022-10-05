@@ -374,6 +374,16 @@
 	isGlass = 0
 	preloaded_reagents = list("limejuice" = 100)
 
+/obj/item/reagent_containers/food/drinks/bottle/protein_shake_commercial
+	name = "Protein Shake"
+	//desc = "Smells like prion disease..."
+	desc = "The best thing to drink after a workout, tastes like apples! At least, the description on this plastic bottle says so. Smells odd..."
+	icon_state = "protein_shake_commercial"
+	item_state = "carton"
+	center_of_mass = list("x"=16, "y"=8)
+	isGlass = 0
+	preloaded_reagents = list("protein_shake_commercial" = 60)
+
 //Small bottles
 /obj/item/reagent_containers/food/drinks/bottle/small
 	volume = 50
