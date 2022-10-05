@@ -61,8 +61,6 @@
 	var/resting = 0
 	var/max_resting = 1
 
-	var/rest_points = 0
-
 	var/list/valid_inspirations = list(/obj/item/oddity)
 	var/list/desires = list()
 	var/positive_prob = 20
@@ -293,7 +291,7 @@
 			else to_chat(owner, SPAN_NOTICE("Something really buggy happened with your brain."))
 
 		if("Convert your fulfilled insight for use in special structures")
-			rest_points += 1 //yeah... that's it
+			owner.rest_points += 1 //yeah... that's it
 
 		else
 			var/list/stat_change = list()

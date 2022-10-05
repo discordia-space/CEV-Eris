@@ -93,6 +93,8 @@
 
 	var/datum/sanity/sanity
 
+	var/rest_points = 0
+
 	var/style = 0
 	var/max_style = MAX_HUMAN_STYLE
 	var/slickness = 0 // used for stylish dodging stuff, capped at style * 10
