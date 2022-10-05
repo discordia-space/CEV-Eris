@@ -28,7 +28,7 @@
 /datum/gear/head/beret/bsec
 	display_name = "beret, Operative"
 	path = /obj/item/clothing/head/beret/sec/navy/officer
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Ironhammer Medical Specialist")
+	allowed_roles = list(JOBS_SECURITY)
 
 /datum/gear/head/beret/bsec_warden
 	display_name = "beret, Sergeant"
@@ -128,7 +128,7 @@
 /datum/gear/head/cap/secfield
 	display_name = "cap, IH field"
 	path = /obj/item/clothing/head/soft/sec2soft
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Ironhammer Gunnery Sergeant", "Inspector")
+	allowed_roles = list(JOBS_SECURITY)
 
 /datum/gear/head/cap/sarge
 	display_name = "cap, IH sergeant"
