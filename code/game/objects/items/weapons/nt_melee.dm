@@ -365,3 +365,6 @@
 /obj/item/stack/thrown/nt/verutum/launchAt()
 	embed_mult = 300
 	..()
+
+/obj/item/stack/thrown/nt/verutum/full
+	amount = 3
