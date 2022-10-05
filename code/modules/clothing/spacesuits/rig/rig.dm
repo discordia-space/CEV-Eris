@@ -30,9 +30,9 @@
 
 	// These values are passed on to all component pieces.
 	armor = list(
-		melee = 7,
-		bullet = 5,
-		energy = 5,
+		melee = 9,
+		bullet = 7,
+		energy = 7,
 		bomb = 25,
 		bio = 100,
 		rad = 50
