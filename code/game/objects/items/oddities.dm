@@ -615,8 +615,8 @@
 	icon_state = "paper_words_crumpled"
 	prob_perk = 0
 	oddity_stats = list(
-		STAT_ROB = 5,
-		STAT_TGH = 5,
+		STAT_ROB = 4,
+		STAT_TGH = 4,
 		STAT_COG = 7
 	)
 
