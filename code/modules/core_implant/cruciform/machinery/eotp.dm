@@ -30,7 +30,7 @@ var/global/obj/machinery/power/eotp/eotp
 
 
 	var/list/mob/living/carbon/human/scanned = list()
-	var/max_power = 100
+	var/max_power = 120
 	var/power = 0
 	var/power_gaine = 2
 	var/max_observation = 1800
