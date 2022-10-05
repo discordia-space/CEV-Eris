@@ -35,8 +35,6 @@
 		update_icon()
 
 /obj/machinery/gym/emag_act(remaining_charges, mob/user, emag_source)
-	if(emagged)
-		return
 	emagged = TRUE
 
 /obj/machinery/gym/Destroy()
