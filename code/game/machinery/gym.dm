@@ -121,10 +121,6 @@
 			unlocked = TRUE
 			return
 
-	if(default_deconstruction(I, user))
-		return
-	if(default_part_replacement(I, user))
-		return
 	..()
 
 //Vigilance animation
