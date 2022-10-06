@@ -80,6 +80,21 @@
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil/random(src)
 
+/obj/item/storage/belt/utility/technomancer 
+	name = "technomancy tool belt"
+	desc = "Advanced tools provided by the clan."
+	icon_state = "utility"
+	spawn_blacklisted= TRUE
+
+/obj/item/storage/belt/utility/technomancer/populate_contents()
+	new /obj/item/tool/screwdriver/electric(src)
+	new /obj/item/tool/wrench/big_wrench(src)
+	new /obj/item/tool/weldingtool/advanced(src)
+	new /obj/item/tool/crowbar/pneumatic(src)
+	new /obj/item/tool/wirecutters/armature(src)
+	new /obj/item/tool/shovel/power(src)
+	new /obj/item/stack/cable_coil/random(src)
+	
 /obj/item/storage/belt/utility/neotheology
 	name = "neotheologian utility belt"
 	desc = "Waist-held holy items."
