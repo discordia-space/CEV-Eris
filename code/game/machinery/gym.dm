@@ -4,7 +4,7 @@
 	icon = 'icons/obj/machines/gym.dmi'
 	icon_state = "vigilance"
 
-	var/stat_used = STAT_VIG //STAT_TGH, STAT_ROB or STAT_VIG
+	var/stat_used = STAT_VIG //STAT_TGH, STAT_ROB, STAT_VIG, STAT_COG, STAT_MEC, STAT_BIO
 	var/mob/living/carbon/human/occupant
 	var/unlocked = FALSE
 
@@ -82,7 +82,7 @@
 		return
 
 	if(user.stats.getPerk(PERK_COOLDOWN_REASON))
-		to_chat(user, SPAN_WARNING("Your mind feels too dim to properly use this."))
+		to_chat(user, SPAN_WARNING("Your mind feels too dim to properly use this. You need to rest before you exercise again."))
 		return
 
 	if(user.stats.getPerk(PERK_COOLDOWN_EXERTION))

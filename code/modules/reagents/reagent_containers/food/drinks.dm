@@ -194,7 +194,7 @@
 			icon_state = "ramenempty"
 
 /obj/item/reagent_containers/food/drinks/energy
-	name = "Energy Drink"
+	name = "energy drink"
 	desc = "A heart attack that fits in your pocket."
 	icon_state = "energy_drink"
 	center_of_mass = list("x"=15, "y"=13)
@@ -210,7 +210,7 @@
 			icon_state = "energy_drink_whacked"
 
 /obj/item/reagent_containers/food/drinks/protein_shake
-	name = "Protein Shake"
+	name = "protein shake"
 	//desc = "Smells like prion disease..."
 	desc = "The best thing to drink after a workout, tastes like apples! At least, the description on this plastic bottle says so. Smells odd..."
 	icon_state = "protein_shake_bottle"

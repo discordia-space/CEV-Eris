@@ -1139,7 +1139,7 @@
 /datum/reagent/drink/protein_shake/commercial
 	name = "commercial protein shake"
 	id = "protein_shake_commercial"
-	description = "An \"apple-flavored\" protein shake. Typically consumed after a workout in order to aid in muscle recovery... You aren't sure this will be effective."
+	description = "An \"apple-flavored\" protein shake. Typically consumed after a workout in order to aid in muscle recovery... You aren't sure if this will be effective."
 	taste_description = "viscous slurry with bits of jelly"
 
 	glass_unique_appearance = TRUE
