@@ -1,4 +1,35 @@
 <div class="item" style="margin: 0px 0 0 0">
+	<table class='fixed' style="width: 40%; margin-left: 30%;">
+		<tr>
+			<td>
+				<div style="padding: 0 0 0 35%">
+					{{:helper.link("", 'arrowthickstop-1-w', {'PRG_page_first' : "saved"}, data.cart_page == 1 ? 'disabled' : null)}}
+				</div>
+			<td>
+				<div style="padding: 0 0 0 35%">
+					{{:helper.link("", 'arrowthick-1-w', {'PRG_page_prev_10' : "saved"}, data.cart_page == 1 ? 'disabled' : null)}}
+				</div>
+			<td>
+				<div style="padding: 0 0 0 35%">
+					{{:helper.link("", 'arrow-1-w', {'PRG_page_prev' : "saved"}, data.cart_page == 1 ? 'disabled' : null)}}
+				</div>
+			<td>
+				<div style="padding: 0 0 0 35%">
+					{{:helper.link(data.cart_page, null, {'PRG_page_select' : "saved"})}}
+				</div>
+			<td>
+				<div style="padding: 0 0 0 35%">
+					{{:helper.link("", 'arrow-1-e', {'PRG_page_next' : "saved"}, data.cart_page == data.page_max ? 'disabled' : null)}}
+				</div>
+			<td>
+				<div style="padding: 0 0 0 35%">
+					{{:helper.link("", 'arrowthick-1-e', {'PRG_page_next_10' : "saved"}, data.cart_page == data.page_max ? 'disabled' : null)}}
+				</div>
+			<td>
+				<div style="padding: 0 0 0 35%">
+					{{:helper.link("", 'arrowthickstop-1-e', {'PRG_page_last' : "saved"}, data.cart_page == data.page_max ? 'disabled' : null)}}
+				</div>
+	</table>
 	<table class="fixed" style="width: 40%; margin-left: 30%; background: #000000; border: 1px solid #40628a">
 		<tr>
 			<th><b>Saved Carts</b>
@@ -11,35 +42,4 @@
 					</div>
 		{{/for}}
 	</table>
-	<table class='fixed' style="width: 40%; margin-left: 30%;">
-	<tr>
-		<td>
-			<div style="padding: 0 0 0 35%">
-				{{:helper.link("", 'arrowthickstop-1-w', {'PRG_page_first' : "saved"}, data.cart_page == 1 ? 'disabled' : null)}}
-			</div>
-		<td>
-			<div style="padding: 0 0 0 35%">
-				{{:helper.link("", 'arrowthick-1-w', {'PRG_page_prev_10' : "saved"}, data.cart_page == 1 ? 'disabled' : null)}}
-			</div>
-		<td>
-			<div style="padding: 0 0 0 35%">
-				{{:helper.link("", 'arrow-1-w', {'PRG_page_prev' : "saved"}, data.cart_page == 1 ? 'disabled' : null)}}
-			</div>
-		<td>
-			<div style="padding: 0 0 0 35%">
-				{{:helper.link(data.cart_page, null, {'PRG_page_select' : "saved"})}}
-			</div>
-		<td>
-			<div style="padding: 0 0 0 35%">
-				{{:helper.link("", 'arrow-1-e', {'PRG_page_next' : "saved"}, data.cart_page == data.page_max ? 'disabled' : null)}}
-			</div>
-		<td>
-			<div style="padding: 0 0 0 35%">
-				{{:helper.link("", 'arrowthick-1-e', {'PRG_page_next_10' : "saved"}, data.cart_page == data.page_max ? 'disabled' : null)}}
-			</div>
-		<td>
-			<div style="padding: 0 0 0 35%">
-				{{:helper.link("", 'arrowthickstop-1-e', {'PRG_page_last' : "saved"}, data.cart_page == data.page_max ? 'disabled' : null)}}
-			</div>
-</table>
 </div>

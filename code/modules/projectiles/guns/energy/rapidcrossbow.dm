@@ -23,4 +23,4 @@
 	icon_state = cell ? "rxb_drawn" : "rxb_empty"
 
 /obj/item/gun/energy/rxd/generate_guntags()
-	gun_tags = list()
+	gun_tags = list(SLOT_BAYONET)

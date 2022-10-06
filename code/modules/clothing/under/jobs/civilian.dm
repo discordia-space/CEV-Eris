@@ -31,6 +31,12 @@
 	item_state = "lb_suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
+/obj/item/clothing/under/rank/crewman
+	desc = "A utility jumpsuit for the working spaceman."
+	name = "crewman's jumpsuit"
+	icon_state = "crewman"
+	item_state = "crewman"
+
 /obj/item/clothing/under/rank/preacher
 	desc = "Ceremonial garb of NeoTheologian preachers."
 	name = "preacher vestments"

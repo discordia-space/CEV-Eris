@@ -85,6 +85,8 @@
 	var/list/states = list("True Form" = "artist", "The clown" = "clown",
 	"The mime" = "mime", "The Feminist" = "sexyclown", "The Madman" = "joker",
 	"The Rainbow Color" = "rainbow", "The monkey" = "monkeymask", "The Owl" = "owl")
+	flags_inv = HIDEEARS|HIDEFACE
+	body_parts_covered = HEAD|FACE
 	muffle_voice = FALSE
 
 /obj/item/clothing/mask/gas/artist_hat/attack_self(mob/user)

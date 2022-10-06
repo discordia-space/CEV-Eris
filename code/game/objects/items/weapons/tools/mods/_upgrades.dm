@@ -315,8 +315,10 @@
 	if(weapon_upgrades[GUN_UPGRADE_EXPLODE])
 		G.rigged = 2
 	if(weapon_upgrades[GUN_UPGRADE_ZOOM])
-		G.zoom_factor += weapon_upgrades[GUN_UPGRADE_ZOOM]
-		G.initialize_scope()
+		if(G.zoom_factors.len <1)
+			var/newtype = weapon_upgrades[GUN_UPGRADE_ZOOM]
+			G.zoom_factors.Add(newtype)
+			G.initialize_scope()
 		if(ismob(G.loc))
 			var/mob/user = G.loc
 			user.update_action_buttons()

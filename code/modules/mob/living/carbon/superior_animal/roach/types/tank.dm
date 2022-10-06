@@ -12,9 +12,12 @@
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/panzer
 	rarity_value = 22.5
 
+	attacktext = list("slammed into", "pounded into", "crushed")
+
 	melee_damage_lower = 7 // Slow, but big punch
 	melee_damage_upper = 16
 	armor_divisor = ARMOR_PEN_DEEP
+	wound_mult = WOUNDING_NORMAL
 
 	// Armor related variables
 	armor = list(

@@ -39,11 +39,11 @@
 	if(oxygen_req_multiplier)
 		function_info += "[oxygen_req_multiplier >= 0 ? "Decreases" : "Increases"] oxygen requirement by [abs(oxygen_req_multiplier) * 100]%\n"
 	if(min_bruised_damage_multiplier)
-		function_info += "[min_bruised_damage_multiplier >= 0 ? "Decreases" : "Increases"] bruised threshold by [abs(min_bruised_damage_multiplier) * 100]%\n"
+		function_info += "[min_bruised_damage_multiplier >= 0 ? "Increases" : "Decreases"] bruised threshold by [abs(min_bruised_damage_multiplier) * 100]%\n"
 	if(min_broken_damage_multiplier)
-		function_info += "[min_broken_damage_multiplier >= 0 ? "Decreases" : "Increases"] broken threshold by [abs(min_broken_damage_multiplier) * 100]%\n"
+		function_info += "[min_broken_damage_multiplier >= 0 ? "Increases" : "Decreases"] broken threshold by [abs(min_broken_damage_multiplier) * 100]%\n"
 	if(max_damage_multiplier)
-		function_info += "[max_damage_multiplier >= 0 ? "Decreases" : "Increases"] maximum health by [abs(max_damage_multiplier) * 100]%\n"
+		function_info += "[max_damage_multiplier >= 0 ? "Increases" : "Decreases"] maximum health by [abs(max_damage_multiplier) * 100]%\n"
 
 	if(specific_organ_size_mod)
 		function_info += "[specific_organ_size_mod >= 0 ? "Increases" : "Decreases"] size by [abs(specific_organ_size_mod)]\n"
@@ -58,11 +58,11 @@
 	if(max_upgrade_mod)
 		function_info += "[max_upgrade_mod >= 0 ? "Increases" : "Decreases"] maximum upgrades by [abs(max_upgrade_mod)]\n"
 	if(min_bruised_damage_mod)
-		function_info += "[min_bruised_damage_mod >= 0 ? "Decreases" : "Increases"] bruised threshold by [abs(min_bruised_damage_mod)]\n"
+		function_info += "[min_bruised_damage_mod >= 0 ? "Increases" : "Decreases"] bruised threshold by [abs(min_bruised_damage_mod)]\n"
 	if(min_broken_damage_mod)
-		function_info += "[min_broken_damage_mod >= 0 ? "Decreases" : "Increases"] broken threshold by [abs(min_broken_damage_mod)]\n"
+		function_info += "[min_broken_damage_mod >= 0 ? "Increases" : "Decreases"] broken threshold by [abs(min_broken_damage_mod)]\n"
 	if(max_damage_mod)
-		function_info += "[max_damage_mod >= 0 ? "Decreases" : "Increases"] maximum health by [abs(max_damage_mod)]\n"
+		function_info += "[max_damage_mod >= 0 ? "Increases" : "Decreases"] maximum health by [abs(max_damage_mod)]\n"
 
 	if(scanner_hidden)
 		function_info += "Hides the organ from scanners\n"
