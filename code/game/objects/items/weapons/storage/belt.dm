@@ -81,10 +81,7 @@
 	new /obj/item/stack/cable_coil/random(src)
 
 /obj/item/storage/belt/utility/technomancer 
-	name = "technomancy tool belt"
-	desc = "Advanced tools provided by the clan."
-	icon_state = "utility"
-	spawn_blacklisted= TRUE
+	spawn_blacklisted = TRUE
 
 /obj/item/storage/belt/utility/technomancer/populate_contents()
 	new /obj/item/tool/screwdriver/electric(src)
