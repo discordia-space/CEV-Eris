@@ -1,6 +1,6 @@
 /obj/item/gym_ticket
-	name = "holographic ticket"
-	desc = "A holographic ticket used by the Club exercise equipment."
+	name = "electronic ticket"
+	desc = "An electronic ticket used by the Club exercise equipment."
 	description_info = "Gym structures can use rest points to permanently increase your stats. Otherwise, they only temporary increase them."
 	icon = 'icons/obj/gym_ticket.dmi'
 	icon_state = "gym_ticket"
@@ -11,7 +11,7 @@
 	var/used = FALSE
 
 /obj/item/gym_ticket/used
-	name = "used holographic ticket"
+	name = "used electronic ticket"
 	icon_state = "gym_ticket_used"
 	spawn_tags = SPAWN_TAG_JUNK
 	rarity_value = 80
@@ -19,7 +19,7 @@
 
 /obj/item/gym_ticket/proc/use()
 	if(!used)
-		name = "used holographic ticket"
+		name = "used electronic ticket"
 		icon_state = "gym_ticket_used"
 		used = TRUE
 		return TRUE

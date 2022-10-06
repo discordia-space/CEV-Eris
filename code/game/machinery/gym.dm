@@ -30,8 +30,9 @@
 
 	stat_used = STAT_TGH
 
-/obj/machinery/gym/Process()
-	if(stat & (NOPOWER|BROKEN))
+/obj/machinery/gym/power_change()
+	..()
+	if(stat & BROKEN)
 		update_icon()
 
 /obj/machinery/gym/emag_act(remaining_charges, mob/user, emag_source)
@@ -85,12 +86,15 @@
 
 	if(user.stats.getPerk(PERK_COOLDOWN_REASON))
 		to_chat(user, SPAN_WARNING("Your mind feels too dim to properly use this."))
+		return
 
 	if(user.stats.getPerk(PERK_COOLDOWN_EXERTION))
 		to_chat(user, SPAN_WARNING("Your muscles hurt too much use this."))
+		return
 
 	if(!unlocked && !emagged)
 		state(SPAN_WARNING("A payment ticket is required to use this machine."))
+		return
 
 	if(occupant)
 		to_chat(user, SPAN_WARNING("The machine is already occupied!"))
@@ -103,7 +107,7 @@
 
 	add_fingerprint(user)
 	update_icon()
-	sleep(150)
+	sleep(15 SECONDS)
 	
 	if(occupant)//is user still using our machine?
 		go_out(TRUE)
@@ -123,22 +127,55 @@
 		return
 	..()
 
-
-/*/obj/machinery/gym/update_icon()
+//Vigilance animation
+/obj/machinery/gym/update_icon()
 
 	cut_overlays()
 
-	icon_state = "[initial(icon_state)]"
+	icon_state = "vigilance"
 
 	if(stat & (NOPOWER|BROKEN))
-		icon_state = "[initial(icon_state)]_off"
+		icon_state = "vigilance_off"
 
 	if(occupant)
-		var/image/comrade = image(occupant.icon, occupant.icon_state)
-		comrade.overlays = occupant.overlays
-		comrade.pixel_x = 6
-		comrade.layer = 4
-		overlays += comrade
-		overlays += cover_state
+		var/image/occupant_image = image(occupant.icon, loc, occupant.icon_state, 4, NORTH)
+		occupant_image.overlays = occupant.overlays
 
-		icon_state = "[initial(icon_state)]_active" */
+		overlays += occupant_image
+
+		icon_state = "vigilance_active"
+
+//Toughness animation
+/obj/machinery/gym/toughness/update_icon()
+
+	cut_overlays()
+
+	icon_state = "toughness"
+
+	if(stat & (NOPOWER|BROKEN))
+		icon_state = "toughness_off"
+
+	if(occupant)
+		var/image/occupant_image = image(occupant.icon, loc, occupant.icon_state, 4, NORTH, 0, 8)
+		occupant_image.overlays = occupant.overlays
+
+		overlays += occupant_image
+		overlays += "toughness_overlay"
+
+//Robustness animation
+/obj/machinery/gym/robustness/update_icon()
+
+	cut_overlays()
+
+	icon_state = "robustness"
+
+	if(occupant)
+		var/image/occupant_image = image(occupant.icon, loc, occupant.icon_state, 4, SOUTH, 0, 16)
+		var/image/robustness_overlay = image(icon, "robustness_overlay")
+		robustness_overlay.layer = 4.5
+		occupant_image.overlays = occupant.overlays
+
+		overlays += occupant_image
+		overlays += robustness_overlay
+
+		icon_state = "robustness_base"

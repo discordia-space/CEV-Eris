@@ -91,5 +91,5 @@
 	icon_state = "ration_can_trash"
 
 /obj/item/trash/gym_ticket
-	name = "expired exercise holographic ticket"
+	name = "expired electronic ticket"
 	icon_state = "gym_ticket_trash"

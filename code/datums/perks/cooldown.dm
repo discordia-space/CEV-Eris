@@ -1,6 +1,7 @@
 /datum/perk/cooldown
 	var/perk_lifetime = 3 MINUTES
 	var/timestamp_start
+	gain_text = "You feel tired. Your body needs some time to recover from all this training."
 
 /datum/perk/cooldown/assign(mob/living/carbon/human/H)
 	if(..())
