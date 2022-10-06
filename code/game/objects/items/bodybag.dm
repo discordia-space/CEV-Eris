@@ -145,7 +145,7 @@
 		O.icon = src.icon
 		O.icon_state = "bodybag_used"
 		O.desc = "A used bodybag. It's nothing but trash now."
-		O.matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 2.5, , MATERIAL_SILVER = 0.25)
+		O.matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 1)
 		O.matter_reagents = list("coolant" = 20)
 		qdel(src)
 
