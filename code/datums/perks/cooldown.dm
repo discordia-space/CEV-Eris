@@ -14,7 +14,7 @@
 /datum/perk/cooldown/exertion
 	name = "Overexertion"
 	desc = "Your muscles hurt after an intense workout. \
-			Your TOUGHNESS stat is reduced for some time. \
+			Your TGH stat is reduced for some time. \
 			A protein shake might help with recovery."
 	icon_state = "exertion" //https://game-icons.net/1x1/delapouite/weight-lifting-up.html
 
@@ -37,7 +37,7 @@
 /datum/perk/cooldown/reason
 	name = "Dimmed reason"
 	desc = "Your mind had soaked up a lot of knowledge. \
-			Your COGNITION stat is reduced for some time."
+			Your COG stat is reduced for some time."
 	icon_state = "reason" //https://game-icons.net/1x1/lorc/brainstorm.html
 
 /datum/perk/cooldown/reason/assign(mob/living/carbon/human/H)

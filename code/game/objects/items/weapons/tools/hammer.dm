@@ -198,6 +198,6 @@
 	icon_state = "dumbbell"
 	item_state = "dumbbell"
 	force = WEAPON_FORCE_ROBUST
-	tool_qualities = list(QUALITY_HAMMERING = 25)
+	tool_qualities = list(QUALITY_HAMMERING = 15)
 	matter = list(MATERIAL_STEEL = 5)
 	rarity_value = 35
