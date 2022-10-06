@@ -1780,13 +1780,13 @@
 	products = list(
 		/obj/item/gym_ticket = 99,
 		/obj/item/tool/hammer/dumbbell = 10,
-		/obj/item/reagent_containers/food/drinks/protein_shake_commercial = 10
+		/obj/item/reagent_containers/food/drinks/protein_shake = 10
 		)
 
 	prices = list(
 		/obj/item/gym_ticket = 50,
 		/obj/item/tool/hammer/dumbbell = 90,
-		/obj/item/reagent_containers/food/drinks/protein_shake_commercial = 150,//a total ripoff
+		/obj/item/reagent_containers/food/drinks/protein_shake = 150,//a total ripoff
 		/obj/item/reagent_containers/food/drinks/energy = 200,
 		/obj/item/reagent_containers/syringe/paracetamol = 300,
 		/obj/item/reagent_containers/syringe/adrenaline = 350,
