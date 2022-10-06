@@ -1145,7 +1145,7 @@
 	glass_unique_appearance = TRUE
 	glass_icon_state = "protein_shake_commercial"
 	glass_name = "commercial protein shake"
-	glass_desc = "An \"apple-flavored\" protein shake. Typically consumed after a workout in order to aid in muscle recovery... You aren't sure this will be effective."
+	glass_desc = "An \"apple-flavored\" protein shake. Typically consumed after a workout in order to aid in muscle recovery... You aren't sure if this will be effective."
 
 //there is no affect_ingest since the 'muscle recovery' is handled in the perk itself
 
