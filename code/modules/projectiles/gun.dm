@@ -953,7 +953,8 @@
 	data["projectile_AP"] = P.armor_divisor + penetration_multiplier
 	data["projectile_WOUND"] = P.wounding_mult
 	data["unarmoured_damage"] = ((P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()) * P.wounding_mult
-	data["armoured_damage"] = (((P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()) - (10 / (P.armor_divisor + penetration_multiplier))) * P.wounding_mult
+	data["armoured_damage_10"] = (((P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()) - (10 / (P.armor_divisor + penetration_multiplier))) * P.wounding_mult
+	data["armoured_damage_15"] = (((P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()) - (15 / (P.armor_divisor + penetration_multiplier))) * P.wounding_mult
 	data["projectile_recoil"] = P.recoil
 	qdel(P)
 	return data
