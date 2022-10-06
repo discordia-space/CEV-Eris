@@ -107,7 +107,7 @@
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_folded"
 	origin_tech = list(TECH_BIO = 4)
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, , MATERIAL_SILVER = 0.5)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 6, MATERIAL_SILVER = 2)
 	matter_reagents = list("coolant" = 40)
 	price_tag = 250
 
