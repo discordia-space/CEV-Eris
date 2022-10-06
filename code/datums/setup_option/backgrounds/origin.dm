@@ -77,10 +77,10 @@
 	stat_modifiers = list(
 		STAT_ROB = 5,
 		STAT_TGH = 5,
-		STAT_BIO = 10,
-		STAT_MEC = 5,
+		STAT_BIO = 5,
+		STAT_MEC = -10,
 		STAT_VIG = -10,
-		STAT_COG = -10
+		STAT_COG = 10
 	)
 
 /datum/category_item/setup_option/background/origin/new_rome/apply(mob/living/carbon/human/character)
@@ -251,4 +251,19 @@
 		STAT_MEC = 5,
 		STAT_VIG = 10,
 		STAT_COG = -10
+	)
+
+/datum/category_item/setup_option/background/origin/kestrel
+	name = "Kestrel Hive"
+	desc = "A massive fleet of nomadic space stations lacking FTL, originally little more than mobile refineries and ore smelters which turned into veritable towns inhabited by hardass miners and ruthless prospectors. The Hive is constantly busy with stripping the massive asteroid fields in a system at the edge of Hansa space that is little more than barren dwarf planets and desolate gas giants. \
+	The forge-towns can produce all needed equipment on-site thanks to their massive production facilities, though often the stations struggle to support the crammed population, so air and water rationing aren't uncommon, and even gravity generator shutdowns are a common occurrence. \
+	The cluster is owned and operated by Tartarus Industrial Union, a division of the idealistic Hansa megacorp in charge of heavy industries. The workers of Kestrel Hive, real rough folk, partake in several very dangerous recreational activities, from hopping from asteroid to asteroid with just your EVA suit and a spare tank of oxygen, to rocket-fuel and pure ethanol booze, with bits of radioactive byproducts mixed in. Strongest alcohol you’ll ever find, and you need a strong drink if you want to keep your wits during the twelve-hour shifts."
+
+	stat_modifiers = list(
+		STAT_ROB = 6,
+		STAT_TGH = 5,
+		STAT_BIO = -3,
+		STAT_MEC = 9,
+		STAT_VIG = -6,
+		STAT_COG = -6
 	)

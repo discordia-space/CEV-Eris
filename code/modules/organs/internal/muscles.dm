@@ -1,6 +1,7 @@
 /obj/item/organ/internal/muscle
 	name = "muscle"
 	icon_state = "human_muscle"
+	description_info = "Increases limb efficiency, making you run faster or use tools better"
 	desc = "Rip and tear"
 	organ_efficiency = list(OP_MUSCLE = 100)
 	price_tag = 100

@@ -183,14 +183,16 @@
 	)
 
 /datum/surgery_step/fix_brute/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
-	user.visible_message(
-		SPAN_NOTICE("[user] finishes treating damage to [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You finish treating damage to [organ.get_surgery_name()] with \the [tool].")
-	)
 	if(istype(tool, /obj/item/stack/medical/advanced/bruise_pack) || istype(tool, /obj/item/stack/medical/advanced/bruise_pack/nt))
 		var/obj/item/stack/S = tool
-		S.use(1)
-	organ.heal_damage(25, 0, TRUE)
+		if(S.use(1))
+			user.visible_message(
+			SPAN_NOTICE("[user] finishes treating damage to [organ.get_surgery_name()] with \the [tool]."),
+			SPAN_NOTICE("You finish treating damage to [organ.get_surgery_name()] with \the [tool].")
+			)
+			organ.heal_damage(25, 0, TRUE)
+		else
+			to_chat(user, SPAN_NOTICE("\The [tool] is used up."))
 
 /datum/surgery_step/fix_brute/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
@@ -229,14 +231,16 @@
 	)
 
 /datum/surgery_step/fix_burn/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
-	user.visible_message(
-		SPAN_NOTICE("[user] finishes treating damage to [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You finish treating damage to [organ.get_surgery_name()] with \the [tool].")
-	)
 	if(istype(tool, /obj/item/stack/medical/advanced/ointment) || istype(tool, /obj/item/stack/medical/advanced/ointment/nt))
 		var/obj/item/stack/S = tool
-		S.use(1)
-	organ.heal_damage(0, 25, TRUE)
+		if(S.use(1))
+			user.visible_message(
+			SPAN_NOTICE("[user] finishes treating damage to [organ.get_surgery_name()] with \the [tool]."),
+			SPAN_NOTICE("You finish treating damage to [organ.get_surgery_name()] with \the [tool].")
+			)
+			organ.heal_damage(0, 25, TRUE)
+		else 
+			to_chat(user, SPAN_NOTICE("\The [tool] is used up."))
 
 /datum/surgery_step/fix_burn/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(

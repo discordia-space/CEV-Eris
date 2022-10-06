@@ -22,6 +22,8 @@
 	name = "soap"
 	desc = "A cheap bar of soap. Doesn't smell."
 	gender = PLURAL
+	description_info = "Can be used to clean clothes, microwaves and other messes"
+	description_antag = "Can throw it to delay IH if trying to escape, or to get rid of evidence"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "soap"
 	w_class = ITEM_SIZE_SMALL
@@ -141,7 +143,7 @@
 		GUN_UPGRADE_HONK = TRUE,
 		GUN_UPGRADE_RECOIL = 1.2,
 		GUN_UPGRADE_DAMAGE_MULT = 0.8,
-		GUN_UPGRADE_PEN_MULT = 0.8,
+		GUN_UPGRADE_PEN_MULT = -0.2,
 		GUN_UPGRADE_FIRE_DELAY_MULT = 1.2,
 		GUN_UPGRADE_MOVE_DELAY_MULT = 1.2,
 		GUN_UPGRADE_MUZZLEFLASH = 1.2,

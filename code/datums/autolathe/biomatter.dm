@@ -111,20 +111,36 @@
 	materials = list(MATERIAL_BIOMATTER = 10)
 
 /datum/design/bioprinter/leather/holster
-	name = "shoulder holster"
+	name = "compact holster"
+	build_path = /obj/item/storage/pouch/holster
+
+/datum/design/bioprinter/leather/holster/baton
+	name = "baton holster"
+	build_path = /obj/item/storage/pouch/holster/baton
+
+/datum/design/bioprinter/leather/holster/belt
+	name = "belt holster"
+	build_path = /obj/item/storage/pouch/holster/belt
+
+/datum/design/bioprinter/leather/holster/sheath
+	name = "sheath"
+	build_path = /obj/item/storage/pouch/holster/belt/sheath
+
+/datum/design/bioprinter/leather/holster/knife
+	name = "throwing knife pouch"
+	build_path = /obj/item/storage/pouch/holster/belt/knife
+
+/datum/design/bioprinter/leather/holster/accessory
+	name = "concealed carry holster"
 	build_path = /obj/item/clothing/accessory/holster
 
-/datum/design/bioprinter/leather/holster/armpit
-	name = "armpit holster"
-	build_path = /obj/item/clothing/accessory/holster/armpit
+/datum/design/bioprinter/leather/holster/accessory/scabbard
+	name = "scabbard"
+	build_path = /obj/item/clothing/accessory/holster/scabbard
 
-/datum/design/bioprinter/leather/holster/waist
-	name = "waist holster"
-	build_path = /obj/item/clothing/accessory/holster/waist
-
-/datum/design/bioprinter/leather/holster/hip
-	name = "hip holster"
-	build_path = /obj/item/clothing/accessory/holster/hip
+/datum/design/bioprinter/leather/holster/accessory/knife
+	name = "throwing knife rig"
+	build_path = /obj/item/clothing/accessory/holster/knife
 
 /datum/design/bioprinter/belt
 	materials = list(MATERIAL_BIOMATTER = 30)
@@ -201,10 +217,6 @@
 //[/CLOTHES, ARMOR AND ACCESORIES]
 
 //[MISC]
-/datum/design/bioprinter/storage/sheath
-	name = "sheath"
-	build_path = /obj/item/storage/belt/sheath
-
 /datum/design/bioprinter/holyvacuum
 	name = "\"Tersus\" Vacuum Cleaner"
 	build_path = /obj/item/holyvacuum
@@ -412,35 +424,5 @@
 /datum/design/bioprinter/medical/advanced/ointment
 	name = "Advanced burn kit"
 	build_path = /obj/item/stack/medical/advanced/ointment
-
-/datum/design/bioprinter/lungs
-	name = "Long lungs"
-	materials = list(MATERIAL_BIOMATTER = 30)
-	build_path = /obj/item/organ/internal/lungs/long
-
-/datum/design/bioprinter/heart
-	name = "Five chamber heart"
-	materials = list(MATERIAL_BIOMATTER = 45)
-	build_path = /obj/item/organ/internal/heart/huge
-
-/datum/design/bioprinter/liver
-	name = "Gargantuan liver"
-	materials = list(MATERIAL_BIOMATTER = 30)
-	build_path = /obj/item/organ/internal/liver/big
-
-/datum/design/bioprinter/nerves
-	name = "Hypersensitive nerves"
-	materials = list(MATERIAL_BIOMATTER = 15, MATERIAL_GOLD = 1)
-	build_path = /obj/item/organ/internal/nerve/sensitive_nerve
-
-/datum/design/bioprinter/muscle
-	name = "Super-strength muscle"
-	materials = list(MATERIAL_BIOMATTER = 30)
-	build_path = /obj/item/organ/internal/muscle/super_muscle
-
-/datum/design/bioprinter/blood_vessel
-	name = "Extensive blood vessels"
-	materials = list(MATERIAL_BIOMATTER = 30, MATERIAL_PLASTIC = 2)
-	build_path = /obj/item/organ/internal/blood_vessel/extensive
 
 //[/MED]

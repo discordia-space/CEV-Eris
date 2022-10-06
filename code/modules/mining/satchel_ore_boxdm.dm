@@ -93,6 +93,9 @@
 	for (var/obj/item/ore/O in contents)
 		contents -= O
 		O.loc = src.loc
+		O.layer = initial(O.layer)
+		O.set_plane(initial(O.plane))
+
 	to_chat(usr, "\blue You empty the ore box")
 
 	return

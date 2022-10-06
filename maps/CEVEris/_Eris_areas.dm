@@ -651,7 +651,7 @@
 	icon_state = "engineering_storage"
 	area_light_color = COLOR_LIGHTING_SCI_DARK
 
-/area/eris/engineering/break_room
+/area/eris/engineering/breakroom
 	name = "\improper Engineering Break Room"
 	icon_state = "engineering_break"
 	sound_env = MEDIUM_SOFTFLOOR
@@ -693,10 +693,6 @@
 
 /area/eris/engineering/telecommonitor
 	name = "Telecommunications Monitor Room"
-	icon_state = "erisred"
-
-/area/eris/engineering/breakroom
-	name = "Engineering Break Room"
 	icon_state = "erisred"
 
 /area/eris/engineering/freezercontrol
@@ -880,6 +876,9 @@
 	name = "Medbay Upper Coridor"
 	icon_state = "erisgreen"
 
+/area/eris/medical/medbay/organs
+	name = "\improper Visceral Research"
+	icon_state = "erisgreen"
 
 
 

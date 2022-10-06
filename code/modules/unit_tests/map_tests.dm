@@ -13,6 +13,7 @@
 		/area/eris/maintenance, /area/eris/storage,
 		/area/eris/engineering/atmos/storage,
 		/area/eris/engineering/construction,
+		/area/eris/engineering/post,
 		/area/eris/rnd/server)
 
 	var/static/list/exempt_from_apc = typesof(
@@ -20,9 +21,11 @@
 		/area/eris/medical/genetics)
 
 	for(var/area/A in GLOB.map_areas)
-		if(A.z == 1 && !(A.type in exempt_areas))
-			TEST_ASSERT(!isnull(A.apc) || (A.type in exempt_from_apc), "[A.name]([A.type]) lacks an APC.")
-			TEST_ASSERT((A.air_scrub_info?.len && A.air_vent_info?.len) || (A.type in exempt_from_atmos), "[A.name]([A.type]) lacks an air scrubber [(!A.air_scrub_info?.len && !A.air_vent_info?.len) ? "and" : "or"] a vent.")
+		if((A.z in GLOB.maps_data.station_levels) && !(A.type in exempt_areas))
+			if (isnull(A.apc) && !(A.type in exempt_from_apc))
+				TEST_FAIL("[A.name]([A.type]) lacks an APC Z: [A.z].")
+			if (!((LAZYLEN(A.air_scrub_info) && LAZYLEN(A.air_vent_info)) || (A.type in exempt_from_atmos)))
+				TEST_FAIL("[A.name]([A.type]) lacks an air scrubber [(!A.air_scrub_info?.len && !A.air_vent_info?.len) ? "and" : "or"] a vent Z: [A.z].")
 
 /*
 /datum/unit_test/wire_stacking/Run()
@@ -46,4 +49,24 @@
 
 Uncommented , replaced by GREP, doensn't full work properly
 */
+
+/// Conveys all log_mapping messages as unit test failures, as they all indicate mapping problems.
+/datum/unit_test/log_mapping
+	// Happen before all other tests, to make sure we only capture normal mapping logs.
+	priority = TEST_PRE
+
+/datum/unit_test/log_mapping/Run()
+	var/static/regex/test_areacoord_regex = regex(@"\(-?\d+,-?\d+,(-?\d+)\)")
+
+	for(var/log_entry in GLOB.unit_test_mapping_logs)
+		// Only fail if AREACOORD was conveyed, and it's a station or mining z-level.
+		// This is due to mapping errors don't have coords being impossible to diagnose as a unit test,
+		// and various ruins frequently intentionally doing non-standard things.
+		if(!test_areacoord_regex.Find(log_entry))
+			continue
+		var/z = text2num(test_areacoord_regex.group[1])
+		if(!(z in GLOB.maps_data.station_levels)) // station only
+			continue
+
+		TEST_FAIL(log_entry)
 

@@ -3,10 +3,10 @@
 #define GOLEM_HEALTH_HIGH 60
 #define GOLEM_HEALTH_ULTRA 80
 
-#define GOLEM_ARMOR_LOW 20
-#define GOLEM_ARMOR_MED 35
-#define GOLEM_ARMOR_HIGH 50
-#define GOLEM_ARMOR_ULTRA 65
+#define GOLEM_ARMOR_LOW 5
+#define GOLEM_ARMOR_MED 8
+#define GOLEM_ARMOR_HIGH 12
+#define GOLEM_ARMOR_ULTRA 18
 
 #define GOLEM_DMG_FEEBLE 5
 #define GOLEM_DMG_LOW 15
@@ -46,7 +46,7 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 	faction = "golem"
 
 	deathmessage = "shatters in a pile of rubbles."
-	attacktext = "bonked"
+	attacktext = list("bonked")
 	attack_sound = 'sound/weapons/smash.ogg'
 	speak_emote = list("rattles")
 	emote_see = list("makes a deep rattling sound")

@@ -85,6 +85,8 @@
 	var/list/states = list("True Form" = "artist", "The clown" = "clown",
 	"The mime" = "mime", "The Feminist" = "sexyclown", "The Madman" = "joker",
 	"The Rainbow Color" = "rainbow", "The monkey" = "monkeymask", "The Owl" = "owl")
+	flags_inv = HIDEEARS|HIDEFACE
+	body_parts_covered = HEAD|FACE
 	muffle_voice = FALSE
 
 /obj/item/clothing/mask/gas/artist_hat/attack_self(mob/user)
@@ -171,4 +173,12 @@
 /obj/item/clothing/mask/gas/german
 	name = "Oberth Republic gas mask"
 	icon_state = "germangasmask"
+
+/obj/item/clothing/mask/gas/joker_19
+	name = "clown wig and mask"
+	desc = "You get what you fucking deserve!"
+	icon_state = "joker_19"
+	item_state = "joker_19"
+	spawn_frequency = 0
+
 

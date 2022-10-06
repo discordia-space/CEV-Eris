@@ -1,6 +1,7 @@
 /obj/item/device/assembly/mousetrap
 	name = "mousetrap"
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
+	description_antag = "Can be used with a signaller to create backpacks that explode upon being open"
 	icon_state = "mousetrap"
 	origin_tech = list(TECH_COMBAT = 1)
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_STEEL = 1)

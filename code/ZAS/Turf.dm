@@ -1,14 +1,32 @@
+// Helper for can_safely_remove_from_zone(). Stolen from Aurora(i think)
+#define GET_ZONE_NEIGHBOURS(T, ret) \
+	ret = 0; \
+	if (T.zone) { \
+		for (var/_gzn_dir in GLOB.gzn_check) { \
+			var/turf/simulated/other = get_step(T, _gzn_dir); \
+			if (istype(other) && other.zone == T.zone) { \
+				var/block; \
+				ATMOS_CANPASS_TURF(block, other, T); \
+				if (!(block & AIR_BLOCKED)) { \
+					ret |= _gzn_dir; \
+				} \
+			} \
+		} \
+	}
+
+
 /turf/simulated/var/zone/zone
 /turf/simulated/var/open_directions
 
 /turf/var/needs_air_update = 0
 /turf/var/datum/gas_mixture/air
 
-/turf/simulated/proc/update_graphic(list/graphic_add = list(), list/graphic_remove = list())
-	for(var/I in graphic_add)
-		overlays += I
-	for(var/I in graphic_remove)
-		overlays -= I
+/turf/simulated/proc/update_graphic(list/graphic_add = null, list/graphic_remove = null)
+	if(graphic_add && graphic_add.len)
+		vis_contents += graphic_add
+	if(graphic_remove && graphic_remove.len)
+		vis_contents -= graphic_remove
+
 
 /turf/proc/update_air_properties()
 	var/block = c_airblock(src)
@@ -50,29 +68,36 @@
 	This implementation may produce false negatives but it (hopefully) will not produce any false postiives.
 */
 
+// Ported from Bay , Optimized in part by Kappu and some other guys
+
 /turf/simulated/proc/can_safely_remove_from_zone()
-	#ifdef ZLEVELS
-	return 0 //TODO generalize this to multiz.
-	#else
+	if(!zone)
+		return TRUE
 
-	if(!zone) return 1
+	var/check_dirs
+	GET_ZONE_NEIGHBOURS(src, check_dirs)
+	. = check_dirs
 
-	var/check_dirs = get_zone_neighbours(src)
-	var/unconnected_dirs = check_dirs
+	//src is only connected to the zone by a single direction, this is a safe removal.
+	if (!(. & (. - 1)))
+		return TRUE
 
-	for(var/dir in list(NORTHWEST, NORTHEAST, SOUTHEAST, SOUTHWEST))
-
+	for(var/dir in GLOB.csrfz_check)
 		//for each pair of "adjacent" cardinals (e.g. NORTH and WEST, but not NORTH and SOUTH)
 		if((dir & check_dirs) == dir)
 			//check that they are connected by the corner turf
-			var/connected_dirs = get_zone_neighbours(get_step(src, dir))
-			if(connected_dirs && (dir & turn(connected_dirs, 180)) == dir)
-				unconnected_dirs &= ~dir //they are, so unflag the cardinals in question
+			var/turf/simulated/T = get_step(src, dir)
+			if (!istype(T))
+				. &= ~dir
+				continue
+
+			var/connected_dirs
+			GET_ZONE_NEIGHBOURS(T, connected_dirs)
+			if(connected_dirs && (dir & GLOB.reverse_dir[connected_dirs]) == dir)
+				. &= ~dir //they are, so unflag the cardinals in question
 
 	//it is safe to remove src from the zone if all cardinals are connected by corner turfs
-	return !unconnected_dirs
-
-	#endif
+	. = !.
 
 //helper for can_safely_remove_from_zone()
 /turf/simulated/proc/get_zone_neighbours(turf/simulated/T)
@@ -89,7 +114,8 @@
 		c_copy_air()
 		zone = null //Easier than iterating through the list at the zone.
 
-	var/s_block = c_airblock(src)
+	var/s_block
+	ATMOS_CANPASS_TURF(s_block, src, src)
 	if(s_block & AIR_BLOCKED)
 		#ifdef ZASDBG
 		if(verbose) to_chat(world, "Self-blocked.")
@@ -99,6 +125,7 @@
 			var/zone/z = zone
 
 			if(can_safely_remove_from_zone()) //Helps normal airlocks avoid rebuilding zones all the time
+				c_copy_air()
 				z.remove(src)
 			else
 				z.rebuild()

@@ -6,9 +6,9 @@
 
 	heat_protection = HEAD
 	armor = list(
-		melee = 30,
-		bullet = 20,
-		energy = 15,
+		melee = 7,
+		bullet = 5,
+		energy = 3,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -25,9 +25,9 @@
 	item_state = "void"
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
 	armor = list(
-		melee = 30,
-		bullet = 20,
-		energy = 15,
+		melee = 7,
+		bullet = 5,
+		energy = 3,
 		bomb = 25,
 		bio = 100,
 		rad = 75

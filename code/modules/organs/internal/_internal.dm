@@ -6,7 +6,9 @@
 	max_damage = 100
 	desc = "A vital organ."
 	var/list/owner_verbs = list()
+	var/list/initial_owner_verbs = list()
 	var/list/organ_efficiency = list()	//Efficency of an organ, should become the most important variable
+	var/list/initial_organ_efficiency = list()
 	var/scanner_hidden = FALSE	//Does this organ show up on the body scanner
 	var/unique_tag	//If an organ is unique and doesn't scale off of organ processes
 	var/specific_organ_size = 1  //Space organs take up in weight calculations, unaffected by w_class for balance reasons
@@ -15,9 +17,12 @@
 	var/blood_req = 0	//How much blood an organ takes to funcion
 	var/nutriment_req = 0	//Controls passive nutriment loss
 	var/oxygen_req = 0	//If oxygen reqs are not satisfied, get debuff and brain starts taking damage
+	var/list/prefixes = list()
 
 /obj/item/organ/internal/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	..()
+	initialize_organ_efficiencies()
+	initialize_owner_verbs()
 	update_icon()
 
 /obj/item/organ/internal/Process()
@@ -100,8 +105,17 @@
 	. = ..()
 	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_BASIC)
 		to_chat(user, SPAN_NOTICE("Organ size: [specific_organ_size]"))
-	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_EXPERT)
+	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_EXPERT - 5)
+		var/organs
+		for(var/organ in organ_efficiency)
+			organs += organ + " ([organ_efficiency[organ]]), "
+		organs = copytext(organs, 1, length(organs) - 1)
+
 		to_chat(user, SPAN_NOTICE("Requirements: <span style='color:red'>[blood_req]</span>/<span style='color:blue'>[oxygen_req]</span>/<span style='color:orange'>[nutriment_req]</span>"))
+		to_chat(user, SPAN_NOTICE("Organ tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>"))
+
+		if(item_upgrades.len)
+			to_chat(user, SPAN_NOTICE("Organ grafts present ([item_upgrades.len]/[max_upgrades]). Use a laser cutting tool to remove."))
 
 /obj/item/organ/internal/is_usable()
 	return ..() && !is_broken()
@@ -147,3 +161,37 @@
 		conditions_list.Add(list(condition))
 
 	return conditions_list
+
+// Store these so we can properly restore them when installing/removing mods
+/obj/item/organ/internal/proc/initialize_organ_efficiencies()
+	for(var/organ in organ_efficiency)
+		initial_organ_efficiency.Add(organ)
+		initial_organ_efficiency[organ] = organ_efficiency[organ]
+
+/obj/item/organ/internal/proc/initialize_owner_verbs()
+	for(var/V in owner_verbs)
+		initial_owner_verbs.Add(V)
+
+/obj/item/organ/internal/refresh_upgrades()
+	name = initial(name)
+	color = initial(color)
+	max_upgrades = initial(max_upgrades)
+	prefixes = list()
+	min_bruised_damage = initial(min_bruised_damage)
+	min_broken_damage = initial(min_broken_damage)
+	max_damage = initial(max_damage)
+	owner_verbs = initial(owner_verbs)
+	organ_efficiency = initial_organ_efficiency.Copy()
+	scanner_hidden = initial(scanner_hidden)
+	unique_tag = initial(unique_tag)
+	specific_organ_size = initial(specific_organ_size)
+	max_blood_storage = initial(max_blood_storage)
+	current_blood = initial(current_blood)
+	blood_req = initial(blood_req)
+	nutriment_req = initial(nutriment_req)
+	oxygen_req = initial(oxygen_req)
+
+	SEND_SIGNAL(src, COMSIG_APPVAL, src)
+
+	for(var/prefix in prefixes)
+		name = "[prefix] [name]"

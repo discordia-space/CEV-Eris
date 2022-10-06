@@ -587,14 +587,14 @@
 			return
 
 	wires.Interact(user)
-	ui_interact(user)
+	nano_ui_interact(user)
 
 /**
  *  Display the NanoUI window for the vending machine.
  *
  *  See NanoUI documentation for details.
  */
-/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/vending/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	user.set_machine(src)
 
 	var/list/data = list()
@@ -1045,10 +1045,14 @@
 					/obj/item/ammo_magazine/ammobox/shotgun/beanbags = 10,
 					/obj/item/ammo_magazine/ammobox/shotgun/flashshells = 10,
 					/obj/item/ammo_magazine/ammobox/shotgun/blanks = 10,
+					/obj/item/storage/pouch/holster = 5,
+					/obj/item/storage/pouch/holster/baton = 5,
+					/obj/item/storage/pouch/holster/belt = 5,
+					/obj/item/storage/pouch/holster/belt/sheath = 5,
+					/obj/item/storage/pouch/holster/belt/knife = 5,
 					/obj/item/clothing/accessory/holster = 5,
-					/obj/item/clothing/accessory/holster/armpit = 5,
-					/obj/item/clothing/accessory/holster/waist = 5,
-					/obj/item/clothing/accessory/holster/hip = 5,
+					/obj/item/clothing/accessory/holster/scabbard = 5,
+					/obj/item/clothing/accessory/holster/knife = 5,
 					/obj/item/ammo_magazine/slpistol = 5,
 					/obj/item/ammo_magazine/pistol = 5,
 					/obj/item/ammo_magazine/hpistol = 5,
@@ -1489,8 +1493,13 @@
 /obj/machinery/vending/theomat/proc/check_NT(mob/user)
 	var/bingo = FALSE
 	if(ishuman(user))
+	
 		var/mob/living/carbon/human/H = user
-		if(is_neotheology_disciple(H))
+
+		if(!scan_id)
+			bingo = TRUE
+
+		else if(is_neotheology_disciple(H))
 			bingo = TRUE
 
 		else if(istype(H.get_active_hand(), /obj/item/clothing/accessory/cross))
@@ -1693,7 +1702,10 @@
 		/obj/item/clothing/head/skull = 3,
 		/obj/item/clothing/head/skull/black = 3,
 		/obj/item/clothing/shoes/redboot = 4,
+		/obj/item/clothing/shoes/aerostatic = 3,
+		/obj/item/clothing/shoes/jamrock = 3,
 		/obj/item/clothing/shoes/jackboots/longboot = 3,
+		/obj/item/clothing/under/tuxedo = 4,
 		/obj/item/clothing/under/white = 4,
 		/obj/item/clothing/under/red = 4,
 		/obj/item/clothing/under/green = 4,
@@ -1704,10 +1716,15 @@
 		/obj/item/clothing/under/helltaker = 4,
 		/obj/item/clothing/under/johnny = 3,
 		/obj/item/clothing/under/raider = 3,
+		/obj/item/clothing/under/aerostatic = 3,
+		/obj/item/clothing/under/jamrock = 3,
 		/obj/item/clothing/under/tropicalpink = 3,
 		/obj/item/clothing/under/tropicalblue = 3,
 		/obj/item/clothing/under/tropicalblack = 3,
 		/obj/item/clothing/under/tropicalgreen = 3,
+		/obj/item/clothing/suit/storage/aerostatic = 2,
+		/obj/item/clothing/suit/storage/jamrock = 2,
+		/obj/item/clothing/suit/storage/dante = 2,
 		/obj/item/clothing/suit/storage/triad = 2,
 		/obj/item/clothing/suit/storage/akira = 2,
 		/obj/item/clothing/under/storage/tracksuit = 4
@@ -1723,7 +1740,10 @@
 		/obj/item/clothing/head/skull = 450,
 		/obj/item/clothing/head/skull/black = 450,
 		/obj/item/clothing/shoes/redboot = 450,
+		/obj/item/clothing/shoes/aerostatic = 500,
+		/obj/item/clothing/shoes/jamrock = 500,
 		/obj/item/clothing/shoes/jackboots/longboot = 550,
+		/obj/item/clothing/under/tuxedo = 450,
 		/obj/item/clothing/under/white = 450,
 		/obj/item/clothing/under/red = 450,
 		/obj/item/clothing/under/green = 450,
@@ -1734,10 +1754,15 @@
 		/obj/item/clothing/under/helltaker = 450,
 		/obj/item/clothing/under/johnny = 600,
 		/obj/item/clothing/under/raider = 600,
+		/obj/item/clothing/under/jamrock = 550,
+		/obj/item/clothing/under/aerostatic = 550,
 		/obj/item/clothing/under/tropicalpink = 450,
 		/obj/item/clothing/under/tropicalblue = 450,
 		/obj/item/clothing/under/tropicalblack = 450,
 		/obj/item/clothing/under/tropicalgreen = 450,
+		/obj/item/clothing/suit/storage/aerostatic = 700,
+		/obj/item/clothing/suit/storage/jamrock = 700,
+		/obj/item/clothing/suit/storage/dante = 900,
 		/obj/item/clothing/suit/storage/triad = 1200,
 		/obj/item/clothing/suit/storage/akira = 600,
 		/obj/item/clothing/under/storage/tracksuit = 450,

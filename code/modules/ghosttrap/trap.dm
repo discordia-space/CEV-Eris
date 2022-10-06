@@ -90,7 +90,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 	if(href_list["candidate"] && href_list["target"])
 		var/mob/observer/ghost/candidate = locate(href_list["candidate"]) // BYOND magic.
 		var/mob/target = locate(href_list["target"])                     // So much BYOND magic.
-		if(!target || !candidate)
+		if(!target || !candidate || !ismob(target) || !isghost(candidate))
 			return
 		if(candidate != usr)
 			return
@@ -100,7 +100,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 		if(target.key)
 			to_chat(candidate, "The target is already occupied.")
 			return
-		if(assess_candidate(candidate, target))
+		if(assess_candidate(candidate, target) && target.can_be_possessed_by(candidate, FALSE))
 			transfer_personality(candidate,target)
 		return 1
 

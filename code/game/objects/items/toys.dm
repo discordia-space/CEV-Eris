@@ -606,12 +606,6 @@
 	icon_state = "beepskyplushie"
 	phrase = "Ping!"
 
-/obj/structure/plushie/fumo
-	name = "Fumo"
-	desc = "A plushie of a....?."
-	icon_state = "fumoplushie"
-	phrase = "I just don't think about losing."
-
 //Small plushies.
 /obj/item/toy/plushie
 	name = "generic small plush"
@@ -643,13 +637,19 @@
 
 /obj/item/toy/plushie/lizard
 	name = "lizard plush"
-	desc = "A plushie of a scaly lizard! Very controversial, after being accused as \"racist\" by some Unathi."
+	desc = "A plushie of a scaly lizard!"
 	icon_state = "lizardplushie"
 
 /obj/item/toy/plushie/spider
 	name = "spider plush"
 	desc = "A plushie of a fuzzy spider! It has eight legs - all the better to hug you with."
 	icon_state = "spiderplushie"
+
+/obj/item/toy/plushie/fumo
+	name = "fumo"
+	desc = "A plushie of a....?."
+	icon_state = "fumoplushie"
+	spawn_blacklisted = TRUE
 
 //Toy cult sword
 /obj/item/toy/cultsword

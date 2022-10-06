@@ -6,12 +6,12 @@
 	item_state = "gladstone"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	max_shells = 9 //more shells
-	penetration_multiplier = 1.3 // and good AP
 	proj_step_multiplier = 0.8 // faster than non-shotgun bullets, slower than non-shotgun bullets with an accelerator
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
 	init_recoil = RIFLE_RECOIL(2.3)
 	damage_multiplier = 0.8
+	penetration_multiplier = 0.5
 	saw_off = FALSE
 
 	price_tag = 1800
@@ -23,7 +23,7 @@
 	name = "Gladstone frame"
 	desc = "A Gladstone shotgun frame. Where capacity and force combine."
 	icon_state = "frame_gladstone"
-	result = /obj/item/gun/projectile/shotgun/pump/gladstone
-	grip = /obj/item/part/gun/grip/rubber
-	mechanism = /obj/item/part/gun/mechanism/shotgun
-	barrel = /obj/item/part/gun/barrel/shotgun
+	resultvars = list(/obj/item/gun/projectile/shotgun/pump/gladstone)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
+	mechanismvar = /obj/item/part/gun/mechanism/shotgun
+	barrelvars = list(/obj/item/part/gun/barrel/shotgun)

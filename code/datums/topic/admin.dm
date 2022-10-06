@@ -1540,7 +1540,7 @@
 						WANTED.backup_author = source.admincaster_signature                  //Submitted by
 						WANTED.is_admin_message = 1
 						news_network.wanted_issue = WANTED
-						for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
+						for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
 							NEWSCASTER.newsAlert()
 							NEWSCASTER.update_icon()
 						source.admincaster_screen = 15
@@ -1556,7 +1556,7 @@
 			var/choice = alert("Please confirm Wanted Issue removal","Network Security Handler","Confirm","Cancel")
 			if(choice=="Confirm")
 				news_network.wanted_issue = null
-				for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
+				for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
 					NEWSCASTER.update_icon()
 				source.admincaster_screen=17
 			source.access_news_network()

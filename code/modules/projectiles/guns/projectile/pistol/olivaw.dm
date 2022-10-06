@@ -14,8 +14,8 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 600
 	damage_multiplier = 1.2
-	penetration_multiplier = 1.2
-	init_recoil = HANDGUN_RECOIL(0.75)
+	penetration_multiplier = 0
+	init_recoil = HANDGUN_RECOIL(0.9)
 	init_firemodes = list(
 		list(mode_name="semiauto", mode_desc="Fire almost as fast as you can pull the trigger", burst=1, fire_delay=1.2, move_delay=null, 				icon="semi"),
 		list(mode_name="2-round bursts", mode_desc="Not quite the Mozambique method", burst=2, fire_delay=0.2, move_delay=4,    	icon="burst"),
@@ -36,7 +36,7 @@
 	name = "Olivaw frame"
 	desc = "An Olivaw pistol frame. Why shoot one bullet when you can shoot two?"
 	icon_state = "frame_olivaw"
-	result = /obj/item/gun/projectile/olivaw
-	grip = /obj/item/part/gun/grip/wood
-	mechanism = /obj/item/part/gun/mechanism/pistol
-	barrel = /obj/item/part/gun/barrel/pistol
+	resultvars = list(/obj/item/gun/projectile/olivaw)
+	gripvars = list(/obj/item/part/gun/grip/wood)
+	mechanismvar = /obj/item/part/gun/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/barrel/pistol)

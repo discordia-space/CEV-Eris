@@ -11,10 +11,11 @@
 	load_method = SINGLE_CASING
 	max_shells = 1
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_WOOD = 5)
-	gun_parts = list(/obj/item/stack/material/steel = 2)
+	gun_parts = list(/obj/item/part/gun/frame/handmade_pistol = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/pistol/steel = 1, /obj/item/part/gun/barrel/pistol/steel = 1)
 	ammo_type = /obj/item/ammo_casing/magnum
-	damage_multiplier = 1.36
-	init_recoil = HANDGUN_RECOIL(2.5)
+	damage_multiplier = 1.35
+	penetration_multiplier = 0
+	init_recoil = HANDGUN_RECOIL(2)
 	style_damage_multiplier = 2
 	spawn_frequency = 0
 	spawn_blacklisted = FALSE
@@ -22,6 +23,15 @@
 	var/chamber_open = FALSE
 	var/jammed = FALSE
 	var/jam_chance = 15
+
+/obj/item/part/gun/frame/handmade_pistol
+	name = "Handmade pistol frame"
+	desc = "A handmade pistol frame. It is, without a doubt, absolute trash."
+	icon_state = "frame_pistol_hm"
+	resultvars = list(/obj/item/gun/projectile/handmade_pistol)
+	gripvars = list(/obj/item/part/gun/grip/wood)
+	mechanismvar = /obj/item/part/gun/mechanism/pistol/steel
+	barrelvars = list(/obj/item/part/gun/barrel/pistol/steel, /obj/item/part/gun/barrel/magnum/steel)
 
 /obj/item/gun/projectile/handmade_pistol/New()
 	..()
@@ -38,27 +48,6 @@
 			to_chat(user, SPAN_DANGER("[src] is jammed!"))
 			return 0
 	return ..()
-
-/obj/item/gun/projectile/handmade_pistol/attackby(obj/item/W, mob/user)
-	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
-		to_chat(user, SPAN_NOTICE("You begin to rechamber \the [src]."))
-		if(chamber_open && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			if(caliber == CAL_MAGNUM)
-				caliber = CAL_PISTOL
-				fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .35 Caliber."))
-			else if(caliber == CAL_PISTOL)
-				caliber = CAL_CLRIFLE
-				fire_sound = 'sound/weapons/guns/fire/m41_shoot.ogg'
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .25 Caseless."))
-			else if(caliber == CAL_CLRIFLE)
-				caliber = CAL_MAGNUM
-				fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .40 Magnum."))
-		else
-			to_chat(user, SPAN_WARNING("You cannot rechamber a closed firearm!"))
-			return
-	..()
 
 /obj/item/gun/projectile/handmade_pistol/attack_self(mob/user)
 	if(!chamber_open)

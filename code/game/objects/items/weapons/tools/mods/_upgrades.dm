@@ -269,7 +269,7 @@
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS])
 		G.damage_multiplier += weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS]
 	if(weapon_upgrades[GUN_UPGRADE_PEN_MULT])
-		G.penetration_multiplier *= weapon_upgrades[GUN_UPGRADE_PEN_MULT]
+		G.penetration_multiplier += weapon_upgrades[GUN_UPGRADE_PEN_MULT]
 	if(weapon_upgrades[GUN_UPGRADE_PIERC_MULT])
 		G.pierce_multiplier += weapon_upgrades[GUN_UPGRADE_PIERC_MULT]
 	if(weapon_upgrades[GUN_UPGRADE_RICO_MULT])
@@ -315,8 +315,10 @@
 	if(weapon_upgrades[GUN_UPGRADE_EXPLODE])
 		G.rigged = 2
 	if(weapon_upgrades[GUN_UPGRADE_ZOOM])
-		G.zoom_factor += weapon_upgrades[GUN_UPGRADE_ZOOM]
-		G.initialize_scope()
+		if(G.zoom_factors.len <1)
+			var/newtype = weapon_upgrades[GUN_UPGRADE_ZOOM]
+			G.zoom_factors.Add(newtype)
+			G.initialize_scope()
 		if(ismob(G.loc))
 			var/mob/user = G.loc
 			user.update_action_buttons()
@@ -331,7 +333,7 @@
 	if(weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE])
 		G.force += weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE]
 	if(weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION])
-		G.armor_penetration += weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION]
+		G.armor_divisor += weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION]
 	if(weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY])
 		G.recoil = G.recoil.modifyRating(_one_hand_penalty = weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY])
 
@@ -345,7 +347,7 @@
 
 	if(G.dna_lock_sample == "not_set") //that may look stupid, but without it previous two lines won't trigger on DNALOCK removal.
 		G.dna_compare_samples = FALSE
-	
+
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
 		G.safety = weapon_upgrades[GUN_UPGRADE_FORCESAFETY]
@@ -357,8 +359,6 @@
 			E.overcharge_rate *= weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX]
 		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX])
 			E.overcharge_max *= weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX]
-		if(weapon_upgrades[GUN_UPGRADE_AGONY_MULT])
-			E.proj_agony_multiplier *= weapon_upgrades[GUN_UPGRADE_AGONY_MULT]
 
 	if(istype(G, /obj/item/gun/projectile))
 		var/obj/item/gun/projectile/P = G
@@ -427,7 +427,7 @@
 				to_chat(user, SPAN_WARNING("Decreases projectile damage by [abs(amount*100)]%"))
 
 		if(weapon_upgrades[GUN_UPGRADE_PEN_MULT])
-			var/amount = weapon_upgrades[GUN_UPGRADE_PEN_MULT]-1
+			var/amount = weapon_upgrades[GUN_UPGRADE_PEN_MULT]
 			if(amount > 0)
 				to_chat(user, SPAN_NOTICE("Increases projectile penetration by [amount*100]%"))
 			else
@@ -524,7 +524,7 @@
 			to_chat(user, SPAN_WARNING("Disables the safety toggle of the weapon."))
 		else if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == 1)
 			to_chat(user, SPAN_WARNING("Forces the safety toggle of the weapon to always be on."))
-		
+
 		if(weapon_upgrades[GUN_UPGRADE_DNALOCK] == 1)
 			to_chat(user, SPAN_WARNING("Adds a biometric scanner to the weapon."))
 
@@ -650,6 +650,7 @@
 /obj/item/tool_upgrade
 	name = "tool upgrade"
 	icon = 'icons/obj/tool_upgrades.dmi'
+	icon_state = "placeholder"	// Needed for UI
 	force = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_SMALL
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE

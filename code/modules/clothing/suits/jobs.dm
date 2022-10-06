@@ -12,9 +12,9 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
+		melee = 2,
+		bullet = 2,
+		energy = 2,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -28,7 +28,7 @@
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	armor = list(
-		melee = 5,
+		melee = 1,
 		bullet = 0,
 		energy = 0,
 		bomb = 0,
@@ -47,9 +47,9 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
+		melee = 2,
+		bullet = 2,
+		energy = 2,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -64,9 +64,9 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	armor = list(
-		melee = 20,
-		bullet = 20,
-		energy = 20,
+		melee = 5,
+		bullet = 5,
+		energy = 5,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -114,9 +114,9 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 20,
-		bullet = 20,
-		energy = 20,
+		melee = 5,
+		bullet = 5,
+		energy = 5,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -135,9 +135,9 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 20,
-		bullet = 10,
-		energy = 10,
+		melee = 5,
+		bullet = 2,
+		energy = 2,
 		bomb = 0,
 		bio = 50,  //same as labcoats at LEAST
 		rad = 0
@@ -153,9 +153,9 @@
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_GOLD = 5)
 	armor = list(
-		melee = 20,
-		bullet = 20,
-		energy = 20,
+		melee = 5,
+		bullet = 5,
+		energy = 5,
 		bomb = 0,
 		bio = 50,  //same as labcoats at LEAST
 		rad = 0
@@ -170,9 +170,9 @@
 	style_coverage = COVERS_CHEST|COVERS_UPPER_ARMS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
+		melee = 2,
+		bullet = 2,
+		energy = 2,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -214,17 +214,17 @@
 
 //Detective
 /obj/item/clothing/suit/storage/detective
-	name = "brown trenchcoat"
-	desc = "A rugged canvas trenchcoat, designed and created by TX Fabrication Corp. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
+	name = "Inspector's grey armored trenchcoat"
+	desc = "Grey and armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
 	icon_state = "detective"
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
+		melee = 7,
+		bullet = 5,
+		energy = 5,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -270,9 +270,9 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 30,
-		bullet = 20,
-		energy = 20,
+		melee = 7,
+		bullet = 5,
+		energy = 5,
 		bomb = 0,
 		bio = 0,
 		rad = 10
@@ -289,9 +289,9 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 	price_tag = 50
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
+		melee = 2,
+		bullet = 2,
+		energy = 2,
 		bomb = 0,
 		bio = 0,
 		rad = 0

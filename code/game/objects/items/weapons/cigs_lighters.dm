@@ -238,6 +238,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/cigarette
 	name = "cigarette"
 	desc = "A roll of tobacco and nicotine."
+	description_info = "A cheap and easy source for a constant income of Sanity. Nicotine withdrawal reduces biology knowledge however."
+	description_antag = "Can be injected with plasma or other reagents to either poison or blow when smoked."
 	icon_state = "cigoff"
 	throw_speed = 0.5
 	item_state = "cigoff"

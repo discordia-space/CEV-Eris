@@ -14,7 +14,7 @@
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	magazine_type = /obj/item/ammo_magazine/pistol
 	damage_multiplier = 1.3
-	penetration_multiplier = 1.3
+	penetration_multiplier = 0
 	init_recoil = HANDGUN_RECOIL(1)
 	gun_parts = list(/obj/item/part/gun/frame/mk58 = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
 	serial_type = "NT"
@@ -53,8 +53,7 @@
 	desc = "A MK58 pistol frame. The standard issue of the Nanotrasen Corporation."
 	icon_state = "frame_mk58"
 	result = /obj/item/gun/projectile/mk58
-	variant_grip = TRUE
 	gripvars = list(/obj/item/part/gun/grip/black, /obj/item/part/gun/grip/wood, /obj/item/part/gun/grip/rubber)
 	resultvars = list(/obj/item/gun/projectile/mk58, /obj/item/gun/projectile/mk58/wood, /obj/item/gun/projectile/mk58/army)
-	mechanism = /obj/item/part/gun/mechanism/pistol
-	barrel = /obj/item/part/gun/barrel/pistol
+	mechanismvar = /obj/item/part/gun/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/barrel/pistol)

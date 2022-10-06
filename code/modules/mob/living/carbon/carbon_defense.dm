@@ -25,7 +25,7 @@
 		weapon_edge = 0
 
 	hit_impact(effective_force, get_step(user, src))
-	damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, armour_pen = I.armor_penetration, used_weapon = I, sharp = weapon_sharp, edge = weapon_edge)
+	damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, armour_divisor = I.armor_divisor, used_weapon = I, sharp = weapon_sharp, edge = weapon_edge)
 
 /*Its entirely possible that we were gibbed or dusted by the above. Check if we still exist before
 continuing. Being gibbed or dusted has a 1.5 second delay, during which it sets the transforming var to
@@ -66,40 +66,25 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 
 	user.visible_message(SPAN_DANGER("\The [user] begins to slit [src]'s throat with \the [W]!"))
 
-	user.next_move = world.time + 20 //also should prevent user from triggering this repeatedly
-	if(!do_after(user, 20, progress=0))
-		return 0
-	if(!(G && G.assailant == user && G.affecting == src)) //check that we still have a grab
-		return 0
+	user.next_move = world.time + 50 //also should prevent user from triggering this repeatedly
+	if(!do_mob(user, src, 50, progress = 1))
+		if(!(G && G.assailant == user && G.affecting == src)) //check that we still have a grab
+			return 0
 
-	var/damage_mod = 1
-
-
-	var/total_damage = 0
-	for(var/i in 1 to 3)
-		var/damage = min(W.force * 1.5, 20) * damage_mod
-		apply_damage(damage, W.damtype, BP_HEAD, 0, sharp=W.sharp, edge=W.edge, used_weapon = W)
-		total_damage += damage
-
-	var/oxyloss = total_damage
-	if(total_damage >= 40) //threshold to make someone pass out
-		oxyloss = 60 // Brain lacks oxygen immediately, pass out
-
-	adjustOxyLoss(min(oxyloss, 100 - getOxyLoss())) //don't put them over 100 oxyloss
-
-	if(total_damage)
-		if(oxyloss >= 40)
-			user.visible_message(SPAN_DANGER("\The [user] slit [src]'s throat open with \the [W]!"))
-		else
-			user.visible_message(SPAN_DANGER("\The [user] cut [src]'s neck with \the [W]!"))
+		damage_through_armor(W.force, W.damtype, BP_HEAD, wounding_multiplier = 2, sharp = W.sharp, edge = W.edge, used_weapon = W)
+		
+		user.visible_message(SPAN_DANGER("\The [user] cuts [src]'s neck with \the [W]!"), SPAN_DANGER("You cut [src]'s neck with \the [W]!"))
 
 		if(W.hitsound)
 			playsound(loc, W.hitsound, 50, 1, -1)
 
-	G.last_action = world.time
-	flick(G.hud.icon_state, G.hud)
+		G.last_action = world.time
+		flick(G.hud.icon_state, G.hud)
 
-	user.attack_log += "\[[time_stamp()]\]<font color='red'> Knifed [name] ([ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
-	src.attack_log += "\[[time_stamp()]\]<font color='orange'> Got knifed by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
-	msg_admin_attack("[key_name(user)] knifed [key_name(src)] with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])" )
-	return 1
+		user.attack_log += "\[[time_stamp()]\]<font color='red'> Knifed [name] ([ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
+		src.attack_log += "\[[time_stamp()]\]<font color='orange'> Got knifed by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
+		msg_admin_attack("[key_name(user)] knifed [key_name(src)] with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])" )
+		return 1
+
+	else
+		return 0

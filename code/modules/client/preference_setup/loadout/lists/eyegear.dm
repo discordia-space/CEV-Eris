@@ -39,7 +39,7 @@
 /datum/gear/eyes/sciencegoggles
 	display_name = "Science Goggles"
 	path = /obj/item/clothing/glasses/powered/science
-	allowed_roles = list(JOBS_SCIENCE)
+	allowed_roles = list(JOBS_SCIENCE,"Moebius Bio-Engineer")
 
 /datum/gear/eyes/security
 	display_name = "Security HUD"

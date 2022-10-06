@@ -3,6 +3,8 @@
 	desc = "A stationary computer."
 	icon_state = "printer_base"
 	circuit = /obj/item/electronics/circuitboard/moeballs_printer
+	description_info = "Prints cubes of genetics-modifying worms. They deal toxins upon ingestion"
+	description_antag = "Can be used to give people bad genetics. They have no way of knowing what you're giving them unless its effects are obvious."
 	var/obj/item/reagent_containers/glass/beaker
 	var/index = 0
 	var/is_busy = FALSE
@@ -69,25 +71,25 @@
 	beaker.reagents.remove_reagents(valid_reagents, 15)
 	do_flick(FALSE)
 	sleep(1.5 SECONDS)
-	var/obj/item/moecube/C = new(loc)
 
 	if(is_meatcube)
+		var/obj/item/reagent_containers/food/snacks/moecube/C = new(loc)
 		C.gene_type = gene_cache["type"]
 		C.gene_value = gene_cache["content"]
-		C.name = "cube of twitching meat"
-		C.icon_state = "genecube"
 		log_add("Created genome imprinter for [gene_cache["name"]]")
 		if(gene_cache["type"] == "mutation")
 			var/datum/mutation/M = gene_cache["content"]
 			C.gene_value = M
+		C.set_genes()
 	else
+		var/obj/item/reagent_containers/food/snacks/moecube/worm/C = new(loc)
 		if(gene_cache["type"] == "mutation")
 			var/datum/mutation/M = gene_cache["content"]
 			C.gene_value = M
 			log_add("Created cleansing substrate for [gene_cache["name"]]")
 		else
 			log_add("Created universal cleansing substrate.")
-
+		C.set_genes()
 
 /obj/machinery/dna/moeballs_printer/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/reagent_containers/glass/beaker) && !beaker && insert_item(I, user))
@@ -151,8 +153,8 @@
 		return TOPIC_REFRESH
 
 
-/obj/machinery/dna/moeballs_printer/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
-	var/list/data = ui_data()
+/obj/machinery/dna/moeballs_printer/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
+	var/list/data = nano_ui_data()
 
 	data["log"] = action_log
 	data["have_files"] = FALSE

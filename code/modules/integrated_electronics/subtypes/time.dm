@@ -172,7 +172,7 @@
 	activate_pin(2)
 
 /obj/item/integrated_circuit/time/clock/station
-	name = "integrated clock (Station Time)"
+	name = "integrated clock (Ship Time)"
 	desc = "Tells you what the time is, in terms and adjusted for your local station or planet"
 
 /obj/item/integrated_circuit/time/clock/station/get_time()

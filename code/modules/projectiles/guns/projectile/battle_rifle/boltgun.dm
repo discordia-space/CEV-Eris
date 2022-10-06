@@ -7,15 +7,15 @@
 	item_state = "boltgun"
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_ROBUST
-	armor_penetration = ARMOR_PEN_DEEP
+	armor_divisor = ARMOR_PEN_DEEP
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_LRIFLE
 	fire_delay = 8
 	damage_multiplier = 1.4
 	style_damage_multiplier = 5
-	penetration_multiplier = 1.5
-	init_recoil = RIFLE_RECOIL(2.2)
+	penetration_multiplier = 0.3
+	init_recoil = RIFLE_RECOIL(1.5)
 	init_offset = 4 //bayonet's effect on aim, reduced from 4
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
@@ -23,7 +23,7 @@
 	magazine_type = /obj/item/ammo_magazine/lrifle
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 8, MATERIAL_PLASTIC = 10)
 	price_tag = 900
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") // Considering attached bayonet
 	sharp = TRUE
@@ -41,11 +41,10 @@
 	desc = "A bolt-action rifle frame. For hunting or endless trench warfare."
 	icon_state = "frame_serbrifle"
 	result = /obj/item/gun/projectile/boltgun
-	variant_grip = TRUE
 	gripvars = list(/obj/item/part/gun/grip/excel, /obj/item/part/gun/grip/wood)
 	resultvars = list(/obj/item/gun/projectile/boltgun, /obj/item/gun/projectile/boltgun/serbian)
-	mechanism = /obj/item/part/gun/mechanism/boltgun
-	barrel = /obj/item/part/gun/barrel/lrifle
+	mechanismvar = /obj/item/part/gun/mechanism/boltgun
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle/steel)
 
 /obj/item/gun/projectile/boltgun/update_icon()
 	..()
@@ -76,32 +75,38 @@
 
 /obj/item/gun/projectile/boltgun/proc/bolt_act(mob/living/user)
 
-	playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
-	bolt_open = !bolt_open
-	if(bolt_open)
-		if(contents.len)
-			if(chambered)
-				to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [chambered]!"))
-				chambered.forceMove(get_turf(src))
-				loaded -= chambered
-				chambered = null
-			else
-				var/obj/item/ammo_casing/B = loaded[loaded.len]
-				to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [B]!"))
-				B.forceMove(get_turf(src))
-				loaded -= B
-		else
-			to_chat(user, SPAN_NOTICE("You work the [message] open."))
-	else
-		to_chat(user, SPAN_NOTICE("You work the [message] closed."))
-		playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltforward.ogg', 75, 1)
-		bolt_open = 0
-	add_fingerprint(user)
-	update_icon()
+    playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
+    bolt_open = !bolt_open
+    if(bolt_open)
+        if(contents.len)
+            if(chambered)
+                to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [chambered]!"))
+                chambered.forceMove(get_turf(src))
+                loaded -= chambered
+                chambered = null
+            else
+                var/obj/item/ammo_casing/B = loaded[loaded.len]
+                if(!B.is_caseless)
+                    to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [B]!"))
+                    B.forceMove(get_turf(src))
+                    loaded -= B
+                else
+                    to_chat(user, SPAN_NOTICE("You work the [message] open."))
+                    B = loaded[1]
+                    loaded -= B
+                    qdel(B)
+        else
+            to_chat(user, SPAN_NOTICE("You work the [message] open."))
+    else
+        to_chat(user, SPAN_NOTICE("You work the [message] closed."))
+        playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltforward.ogg', 75, 1)
+        bolt_open = 0
+    add_fingerprint(user)
+    update_icon()
 
 /obj/item/gun/projectile/boltgun/special_check(mob/user)
 	if(bolt_open)
-		to_chat(user, SPAN_WARNING("You can't fire [src] while the bolt is open!"))
+		to_chat(user, SPAN_WARNING("You can't fire [src] while the [message] is open!"))
 		return 0
 	return ..()
 
@@ -123,7 +128,7 @@
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
 	force = 23
-	init_recoil = RIFLE_RECOIL(2.3)
+	init_recoil = RIFLE_RECOIL(1.7)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
 	spawn_blacklisted = FALSE
@@ -132,78 +137,72 @@
 	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
 
 /obj/item/gun/projectile/boltgun/fs
-	name = "FS BR .20 \"Tosshin\""
+	name = "FS BR .20 \"Kadmin\""
 	desc = "Weapon for hunting, or endless coastal warfare. \
 			A replica of an ancient bolt action known for its easy maintenance and low price. \
 			This is mounted with a scope, for ranges longer than a maintenance tunnel."
 	icon_state = "arisaka_ih_scope"
 	item_suffix  = "_ih_scope"
 	force = WEAPON_FORCE_DANGEROUS // weaker than novakovic, but with a bayonet installed it will be slightly stronger
-	armor_penetration = ARMOR_PEN_GRAZING
+	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_SRIFLE
-	damage_multiplier = 1.6
-	penetration_multiplier = 1.7
-	init_recoil = RIFLE_RECOIL(2.4)
+	damage_multiplier = 1.7
+	penetration_multiplier = 0.7
+	init_recoil = RIFLE_RECOIL(1.8)
 	init_offset = 0 //no bayonet
 	max_shells = 6
-	zoom_factor = 0.8 //vintorez level
+	zoom_factors = list(0.8) //vintorez level
 	magazine_type = /obj/item/ammo_magazine/srifle
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
 	wielded_item_state = "_doble_ih_scope"
 	sharp = FALSE
 	spawn_blacklisted = TRUE
 	saw_off = FALSE
-	gun_parts = list(/obj/item/part/gun/frame/tosshin = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/srifle/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/kadmin = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/srifle/steel = 1)
 	price_tag = 1200
 	serial_type = "FS"
 
-/obj/item/part/gun/frame/tosshin
-	name = "Tosshin frame"
-	desc = "A Tosshin bolt-action rifle frame. For hunting or endless coastal warfare."
-	icon_state = "frame_excelrifle"
-	result = /obj/item/gun/projectile/boltgun/fs
-	grip = /obj/item/part/gun/grip/rubber
-	mechanism = /obj/item/part/gun/mechanism/boltgun
-	barrel = /obj/item/part/gun/barrel/srifle
+/obj/item/part/gun/frame/kadmin
+	name = "Kadmin frame"
+	desc = "A Kadmin bolt-action rifle frame. For hunting or endless coastal warfare."
+	icon_state = "frame_weebrifle"
+	resultvars = list(/obj/item/gun/projectile/boltgun/fs)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
+	mechanismvar = /obj/item/part/gun/mechanism/boltgun
+	barrelvars = list(/obj/item/part/gun/barrel/srifle/steel)
 
 /obj/item/gun/projectile/boltgun/handmade
 	name = "HM BR \"Riose\""
 	desc = "A handmade bolt action rifle, made from junk and some spare parts."
 	icon_state = "boltgun_hand"
 	item_suffix = "_hand"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
+	matter = list(MATERIAL_STEEL = 25, MATERIAL_WOOD = 16)
 	wielded_item_state = "_doble_hand"
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	damage_multiplier = 1.2
-	penetration_multiplier = 1.3
-	init_recoil = RIFLE_RECOIL(2.6)
+	damage_multiplier = 1.5
+	penetration_multiplier = -0.3
+	init_recoil = RIFLE_RECOIL(2)
 	max_shells = 5
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	price_tag = 800
-	sharp = FALSE //no bayonet here
+	sharp = TRUE //no bayonet here
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
-	saw_off = FALSE
+	saw_off = TRUE // yeah, we are getting the ghetto sawn off too
+	sawn = /obj/item/gun/projectile/boltgun/obrez/handmade
+	gun_parts = list(/obj/item/part/gun/frame/riose = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
 
-/obj/item/gun/projectile/boltgun/handmade/attackby(obj/item/W, mob/user)
-	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
-		to_chat(user, SPAN_NOTICE("You begin to rechamber \the [src]."))
-		if(loaded.len == 0 && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			if(caliber == CAL_LRIFLE)
-				caliber = CAL_SRIFLE
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .20 Caliber."))
-			else if(caliber == CAL_SRIFLE)
-				caliber = CAL_CLRIFLE
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .25 Caseless."))
-			else if(caliber == CAL_CLRIFLE)
-				caliber = CAL_LRIFLE
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .30 Caliber."))
-		else
-			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
-			return
-	..()
+/obj/item/part/gun/frame/riose
+	name = "Riose frame"
+	desc = "A Riose bolt-action rifle frame. For hunting or endless maintenance warfare."
+	icon_state = "frame_riose"
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 10)
+	resultvars = list(/obj/item/gun/projectile/boltgun/handmade)
+	gripvars = list(/obj/item/part/gun/grip/wood)
+	mechanismvar = /obj/item/part/gun/mechanism/boltgun
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle/steel, /obj/item/part/gun/barrel/srifle/steel, /obj/item/part/gun/barrel/clrifle/steel)
 
 //// OBREZ ////
 
@@ -216,11 +215,11 @@
 	item_state = "obrez"
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_WEAK // no bayonet
-	armor_penetration = 0
+	armor_divisor = 1
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	penetration_multiplier = 1.1 // short barrel means maximum velocity isn't reached
+	penetration_multiplier = 0 // short barrel means maximum velocity isn't reached
 	proj_step_multiplier = 1.2
-	init_recoil = CARBINE_RECOIL(4)
+	init_recoil = CARBINE_RECOIL(3)
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
 	price_tag = 600
 	attack_verb = list("struck","hit","bashed")
@@ -234,6 +233,16 @@
 	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
 	icon_state = "obrez_wood"
 	item_suffix  = "_wood"
-	init_recoil = CARBINE_RECOIL(4.5)
+	init_recoil = CARBINE_RECOIL(3.3)
 	wielded_item_state = "_doble_wood"
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
+
+/obj/item/gun/projectile/boltgun/obrez/handmade
+	name = "sawn-off HM BR \"Riose\""
+	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
+	icon_state = "obrez_hand"
+	item_suffix  = "_hand"
+	penetration_multiplier = -0.2 // child of mosin obrez, not of riose
+	init_recoil = CARBINE_RECOIL(4.5)
+	wielded_item_state = "_doble_hand"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)

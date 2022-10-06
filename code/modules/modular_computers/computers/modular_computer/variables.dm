@@ -3,6 +3,8 @@
 /obj/item/modular_computer
 	name = "Modular Computer"
 	desc = "A modular computer. You shouldn't see this."
+	description_info = "Can have its component or battery switched with a screwdriver."
+	description_antag = "Can be emagged for acces to illegal applications."
 	spawn_blacklisted = TRUE
 	bad_type = /obj/item/modular_computer
 	var/enabled = 0											// Whether the computer is turned on.

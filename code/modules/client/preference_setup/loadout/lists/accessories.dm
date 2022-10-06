@@ -69,18 +69,33 @@
 	allowed_roles = list(JOBS_SCIENCE)
 
 /datum/gear/accessory/holster
-	display_name = "holster"
-	path = /obj/item/clothing/accessory/holster/armpit
-	cost = 3
+	display_name = "holster, selection"
+	path = /obj/item/storage/pouch/holster
 
 /datum/gear/accessory/holster/New()
 	..()
-	var/ties = list(
-		"Armpit"	=	/obj/item/clothing/accessory/holster/armpit,
-		"Hip"		=	/obj/item/clothing/accessory/holster/hip,
-		"Waist"		=	/obj/item/clothing/accessory/holster/waist,
+	var/holsters = list(
+		"Compact"				=	/obj/item/storage/pouch/holster,
+		"Baton"					=	/obj/item/storage/pouch/holster/baton,
+		"Belt"					=	/obj/item/storage/pouch/holster/belt,
+		"Throwing knife pouch"	=	/obj/item/storage/pouch/holster/belt/knife,
+		"Sheath"				=	/obj/item/storage/pouch/holster/belt/sheath
 	)
-	gear_tweaks += new/datum/gear_tweak/path(ties)
+	gear_tweaks += new/datum/gear_tweak/path(holsters)
+
+/datum/gear/accessory/concealed_carry_holster
+	display_name = "uniform holster, selection"
+	path = /obj/item/clothing/accessory/holster
+	cost = 3
+
+/datum/gear/accessory/concealed_carry_holster/New()
+	..()
+	var/accs = list(
+		"Concealed carry"		=	/obj/item/clothing/accessory/holster,
+		"Scabbard"				=	/obj/item/clothing/accessory/holster/scabbard,
+		"Throwing knife rig"	=	/obj/item/clothing/accessory/holster/knife
+	)
+	gear_tweaks += new/datum/gear_tweak/path(accs)
 
 /datum/gear/accessory/tie/blue
 	display_name = "tie, blue"
@@ -109,4 +124,10 @@
 	display_name = "bandana selection"
 	path = /obj/item/clothing/mask/bandana
 	slot = slot_wear_mask
+	flags = GEAR_HAS_TYPE_SELECTION
+
+/datum/gear/accessory/cloak
+	display_name = "poncho selection"
+	path = /obj/item/clothing/accessory/cloak
+	slot = slot_accessory_buffer
 	flags = GEAR_HAS_TYPE_SELECTION

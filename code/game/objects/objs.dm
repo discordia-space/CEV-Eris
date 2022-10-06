@@ -10,7 +10,7 @@
 	var/edge = FALSE		// whether this object is more likely to dismember
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
-	var/armor_penetration = 0
+	var/armor_divisor = 1
 	var/style_damage = 30 // used for dealing damage to slickness
 	var/corporation
 	var/heat = 0
@@ -23,10 +23,12 @@
 	return w_class * 2
 
 /obj/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
+	if(!ismachinery(src))
+		STOP_PROCESSING(SSobj, src) // TODO: Have a processing bitflag to reduce on unnecessary loops through the processing lists
+	SSnano.close_uis(src)
+	. = ..()
 
-/obj/Topic(href, href_list, var/datum/topic_state/state = GLOB.default_state)
+/obj/Topic(href, href_list, var/datum/nano_topic_state/state = GLOB.default_state)
 	if(..())
 		return 1
 
@@ -39,10 +41,10 @@
 	CouldNotUseTopic(usr)
 	return 1
 
-/obj/proc/OnTopic(mob/user, href_list, datum/topic_state/state)
+/obj/proc/OnTopic(mob/user, href_list, datum/nano_topic_state/state)
 	return TOPIC_NOACTION
 
-/obj/CanUseTopic(mob/user, datum/topic_state/state)
+/obj/CanUseTopic(mob/user, datum/nano_topic_state/state)
 	if(user.CanUseObjTopic(src))
 		return ..()
 	return STATUS_CLOSE
@@ -73,10 +75,6 @@
 	// Nada
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
-
-/obj/Process()
-	STOP_PROCESSING(SSobj, src)
-	return 0
 
 /obj/assume_air(datum/gas_mixture/giver)
 	if(loc)
@@ -135,7 +133,7 @@
 			in_use = 0
 
 /obj/attack_ghost(mob/user)
-	ui_interact(user)
+	nano_ui_interact(user)
 	..()
 
 /obj/proc/interact(mob/user)
@@ -253,8 +251,8 @@
 	throwforce = initial(throwforce) * newmult
 
 //Same for AP
-/obj/proc/multiply_projectile_penetration(newmult)
-	armor_penetration = initial(armor_penetration) * newmult
+/obj/proc/add_projectile_penetration(newmult)
+	armor_divisor = initial(armor_divisor) + newmult
 
 /obj/proc/multiply_projectile_style_damage(newmult)
 	style_damage = initial(style_damage) * newmult

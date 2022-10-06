@@ -79,6 +79,7 @@
 	icon_state = "box_of_doom"
 	illustration = "writing_of_doom"
 	bad_type = /obj/item/storage/box/syndie_kit
+	description_antag = "Can be folded into a non-identifiable cardboard while holding another item in the another hand."
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/box/syndie_kit/imp_freedom
@@ -188,7 +189,7 @@
 /obj/item/storage/box/syndie_kit/pistol/populate_contents()
 	new /obj/item/gun/projectile/mandella(src)
 	new /obj/item/ammo_magazine/cspistol(src)
-	new /obj/item/storage/pouch/pistol_holster(src)
+	new /obj/item/storage/pouch/holster(src)
 
 /obj/item/storage/box/syndie_kit/c20r
 	name = "C-20r box"
@@ -205,6 +206,14 @@
 /obj/item/storage/box/syndie_kit/revolver/populate_contents()
 	new /obj/item/gun/projectile/revolver(src)
 	new /obj/item/ammo_magazine/slmagnum(src)
+
+/obj/item/storage/box/syndie_kit/hornet
+	name = "Revolver box"
+	desc = "Revolver kit"
+
+/obj/item/storage/box/syndie_kit/hornet/populate_contents()
+	new /obj/item/gun/projectile/revolver/hornet(src)
+	new /obj/item/ammo_magazine/slsrifle_rev(src)
 
 /obj/item/storage/box/syndie_kit/sts35
 	name = "Assault rifle box"

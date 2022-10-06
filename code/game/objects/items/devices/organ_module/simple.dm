@@ -29,7 +29,7 @@
 		var/mob/M = holding.loc
 		M.drop_from_inventory(holding)
 		M.visible_message(
-			SPAN_WARNING("[M] retract \his [holding.name] into [E]."),
+			SPAN_WARNING("[M] retracts \his [holding.name] into [E]."),
 			SPAN_NOTICE("You retract your [holding.name] into [E].")
 		)
 	holding.forceMove(src)

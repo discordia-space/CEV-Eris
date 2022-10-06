@@ -1,6 +1,8 @@
 /obj/machinery/portable_atmospherics/hydroponics
 	name = "hydroponics tray"
 	icon = 'icons/obj/hydroponics_machines.dmi'
+	description_info = "The lid can be toggled to contain the atmosphere and control the luminosity"
+	description_antag = "Can be used to grow plants with lethal poison inside, like death berries"
 	icon_state = "hydrotray"
 	density = TRUE
 	anchored = TRUE

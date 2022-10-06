@@ -10,7 +10,7 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 1000
 	damage_multiplier = 1.4 //because pistol round //From havelock.dm
-	penetration_multiplier = 1.4
+	penetration_multiplier = 0.2
 	init_recoil = HANDGUN_RECOIL(1)
 	spawn_frequency = 0
 	serial_type = "" // artists are special and dont' care
@@ -34,14 +34,14 @@
 	custom_default["damage_multiplier"] = damage_multiplier
 	penetration_multiplier += pick(-0.2,-0.1,0,0.1,0.2)
 	custom_default["penetration_multiplier"] = penetration_multiplier
-	var/random_recoil = rand(0.8, 1.2)
-	recoil = recoil.modifyAllRatings(random_recoil)
 	custom_default["recoil"] = recoil
 	price_tag += rand(0, 2500)
 	. = ..()
+	var/random_recoil = rand(0.8, 1.2)
+	recoil = recoil.modifyAllRatings(random_recoil)
 
 /obj/item/gun/projectile/revolver/artwork_revolver/get_item_cost(export)
 	. = ..()
 	GET_COMPONENT(comp_sanity, /datum/component/atom_sanity)
 	. += comp_sanity.affect * 100
-	. += damage_multiplier * penetration_multiplier * 100
+	. += damage_multiplier * (1 + penetration_multiplier) * 100

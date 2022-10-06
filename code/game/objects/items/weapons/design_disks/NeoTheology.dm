@@ -7,16 +7,15 @@
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/pouches
 	disk_name = "NeoTheology Armory - Pouches Pack"
-	license = 20
+	license = -1
 	designs = list(
 		/datum/design/bioprinter/leather/holster,
-		/datum/design/bioprinter/leather/holster/armpit,
-		/datum/design/bioprinter/leather/holster/waist,
-		/datum/design/bioprinter/leather/holster/hip,
-
+		/datum/design/bioprinter/leather/holster/baton,
+		/datum/design/bioprinter/leather/holster/belt,
+		/datum/design/bioprinter/leather/holster/sheath,
 		/datum/design/bioprinter/small_generic,
-		/datum/design/bioprinter/medium_generic = 2,
-		/datum/design/bioprinter/large_generic = 3,
+		/datum/design/bioprinter/medium_generic,
+		/datum/design/bioprinter/large_generic,
 		/datum/design/bioprinter/medical_supply,
 		/datum/design/bioprinter/engineering_tools,
 		/datum/design/bioprinter/engineering_supply,
@@ -43,16 +42,16 @@
 // Laser pistol
 /obj/item/computer_hardware/hard_drive/portable/design/nt/nt_svalinn
 	disk_name = "NeoTheology Armory - NT LP \"Svalinn\""
-	license = 12
+	license = -1
 	designs = list(
-		/datum/design/autolathe/gun/nt_svalinn = 2,
+		/datum/design/autolathe/gun/nt_svalinn,
 		/datum/design/bioprinter/nt_cells/small
 	)
 
 // Javelins & bucklers, speed upgrade TODO: light armor
 /obj/item/computer_hardware/hard_drive/portable/design/nt/velite
 	disk_name = "NeoTheology Armory - \"Velite Arms\""
-	license = 12
+	license = -1
 	designs = list(
 		/datum/design/autolathe/nt/sword/nt_verutum,
 		/datum/design/autolathe/nt/shield/nt_buckler,
@@ -64,28 +63,28 @@
 	disk_name = "NeoTheology Armory - NT GL \"Protector\""
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 90
-	license = 12
+	license = -1
 	designs = list(
-		/datum/design/autolathe/gun/grenade_launcher = 6, // "NT GL \"Protector\""
+		/datum/design/autolathe/gun/grenade_launcher, // "NT GL \"Protector\""
 		/datum/design/autolathe/ammo/nt_stinger
 	)
 
 // Greatshields & greatswords, space-worthy armor, protection upgrade
 /obj/item/computer_hardware/hard_drive/portable/design/nt/principes
 	disk_name = "NeoTheology Armory - \"Principes Arms\""
-	license = 12
+	license = -1
 	designs = list(
-		/datum/design/bioprinter/storage/sheath = 0,
+		/datum/design/bioprinter/leather/holster/sheath,
 		/datum/design/autolathe/nt/sword/nt_longsword,
 		/datum/design/autolathe/nt/shield/nt_shield,
-		/datum/design/autolathe/clothing/NTvoid = 2,
+		/datum/design/autolathe/clothing/NTvoid,
 		/datum/design/autolathe/cruciform_upgrade/faiths_shield
 	)
 
 // First aid kits, TODO: proximity healing/stabilizing cruciform upgrade
 /obj/item/computer_hardware/hard_drive/portable/design/nt/medicii
 	disk_name = "NeoTheology Armory - \"Medicii Supplies\""
-	license = 12
+	license = -1
 	designs = list(
 		/datum/design/autolathe/firstaid/nt,
 		/datum/design/autolathe/cruciform_upgrade/natures_blessing
@@ -96,19 +95,19 @@
 	disk_name = "NeoTheology Armory - NT PR \"Dominion\""
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 50
-	license = 6
+	license = -1
 	spawn_blacklisted = FALSE
 	designs = list(
-		/datum/design/autolathe/gun/plasma/dominion = 3, //"NT PR \"Dominion\""
+		/datum/design/autolathe/gun/plasma/dominion, //"NT PR \"Dominion\""
 		/datum/design/bioprinter/nt_cells/medium
 	)
 
 // Heavy weapons, heavy armor
 /obj/item/computer_hardware/hard_drive/portable/design/nt/triarii
 	disk_name = "NeoTheology Armory - \"Triarii Arms\""
-	license = 12
+	license = -1
 	designs = list(
-		/datum/design/bioprinter/storage/sheath = 0,
+		/datum/design/bioprinter/leather/holster/sheath,
 		/datum/design/autolathe/nt/sword/nt_scourge,
 		/datum/design/autolathe/nt/sword/nt_halberd,
 		/datum/design/autolathe/nt/sword/nt_spear,
@@ -122,7 +121,7 @@
 	disk_name = "NeoTheology Armory - Grenades Pack"
 	license = 12
 	designs = list(
-		/datum/design/autolathe/nt/grenade/nt_heatwave = 2,
+		/datum/design/autolathe/nt/grenade/nt_heatwave,
 		/datum/design/autolathe/nt/grenade/nt_flashbang,
 		/datum/design/autolathe/nt/grenade/nt_smokebomb,
 		/datum/design/autolathe/nt/grenade/nt_heatwave
@@ -134,7 +133,7 @@
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/laser = 3, // "NT LG \"Lightfall\""
+		/datum/design/autolathe/gun/laser, // "NT LG \"Lightfall\""
 		/datum/design/bioprinter/nt_cells/medium
 	)
 
@@ -142,7 +141,7 @@
 /obj/item/computer_hardware/hard_drive/portable/design/nt/excruciator
 	disk_name = "NeoTheology Armory - NT \"EXCRUCIATOR\" giga lens"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
-	license = 4
+	license = -1
 	designs = list(
 		/datum/design/autolathe/excruciator
 	)
@@ -228,7 +227,7 @@
 	designs = list(
 		/datum/design/autolathe/nt/sword/nt_sword,
 		/datum/design/autolathe/nt/sword/nt_dagger,
-		/datum/design/bioprinter/storage/sheath,
+		/datum/design/bioprinter/leather/holster/sheath,
 		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)
 
@@ -256,9 +255,9 @@
 		/datum/design/bioprinter/belt/medical/emt,
 
 		/datum/design/bioprinter/leather/holster,
-		/datum/design/bioprinter/leather/holster/armpit,
-		/datum/design/bioprinter/leather/holster/waist,
-		/datum/design/bioprinter/leather/holster/hip,
+		/datum/design/bioprinter/leather/holster/baton,
+		/datum/design/bioprinter/leather/holster/belt,
+		/datum/design/bioprinter/leather/holster/sheath,
 
 		/datum/design/autolathe/device/headset_church
 	)
@@ -270,9 +269,9 @@
 	icon_state = "neotheology"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 50
-	license = 12
+	license = -1
 	designs = list(
-		/datum/design/autolathe/gun/energy_crossbow = 3, // "NT EC \"Nemesis\"" - self charging, no cell needed
+		/datum/design/autolathe/gun/energy_crossbow, // "NT EC \"Nemesis\"" - self charging, no cell needed
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/nt_valkyrie
@@ -280,9 +279,9 @@
 	icon_state = "neotheology"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 50
-	license = 12
+	license = -1
 	designs = list(
-		/datum/design/autolathe/gun/sniperrifle = 3, //"NT MER \"Valkyrie\""
+		/datum/design/autolathe/gun/sniperrifle, //"NT MER \"Valkyrie\""
 		/datum/design/autolathe/cell/medium/high,
 	)
 
@@ -291,9 +290,9 @@
 	icon_state = "neotheology"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 33.33
-	license = 12
+	license = -1
 	designs = list(
-		/datum/design/autolathe/gun/ionrifle = 3, // "NT IR \"Halicon\""
+		/datum/design/autolathe/gun/ionrifle, // "NT IR \"Halicon\""
 		/datum/design/autolathe/cell/medium/high,
 	)
 
@@ -302,10 +301,10 @@
 	icon_state = "neotheology"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 17
-	license = 12
+	license = -1
 	spawn_blacklisted = FALSE
 	designs = list(
-		/datum/design/autolathe/gun/taser = 3, // "NT SP \"Counselor\""
+		/datum/design/autolathe/gun/taser, // "NT SP \"Counselor\""
 		/datum/design/autolathe/cell/medium/high
 	)
 
@@ -345,9 +344,9 @@
 	icon_state = "neotheology"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 90 // LMG level
-	license = 12
+	license = -1
 	designs = list(
-		/datum/design/autolathe/gun/plasma/destroyer = 3, // "NT PR \"Purger\""
+		/datum/design/autolathe/gun/plasma/destroyer, // "NT PR \"Purger\""
 		/datum/design/autolathe/cell/medium/high
 	)
 

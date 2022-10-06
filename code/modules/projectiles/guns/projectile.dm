@@ -305,9 +305,10 @@
 			user.visible_message(SPAN_DANGER("The [src] goes off!"), SPAN_DANGER("The [src] goes off in your face!"))
 			return
 		if(saw_off && A.use_tool(user, src, WORKTIME_LONG, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			qdel(src)
-			new sawn(usr.loc)
+			var/obj/item/gun/projectile/sawnoff = new sawn(usr.loc) 
+			sawnoff.caliber = caliber
 			to_chat(user, SPAN_WARNING("You cut down the stock, barrel, and anything else nice from \the [src], ruining a perfectly good weapon."))
+			qdel(src)
 	if (!.) //Parent returns true if attackby is handled
 		load_ammo(A, user)
 
@@ -380,7 +381,7 @@
 	unload_ammo(usr)
 */
 
-/obj/item/gun/projectile/ui_data(mob/user)
+/obj/item/gun/projectile/nano_ui_data(mob/user)
 	var/list/data = ..()
 	data["caliber"] = caliber
 	data["current_ammo"] = get_ammo()

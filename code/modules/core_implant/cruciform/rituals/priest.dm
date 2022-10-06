@@ -65,43 +65,6 @@
 	phrase = "Et ne inducas nos in tentationem, sed libera nos a malo"
 */
 
-/datum/ritual/cruciform/priest/acolyte/ejection
-	name = "Deprivation"
-	phrase = "Et revertatur pulvis in terram suam unde erat et spiritus redeat ad Deum qui dedit illum"
-	desc = "This litany will command cruciform to detach from bearer, if the one bearing it is dead. You will be able to use it in scanner for Resurrection."
-
-/datum/ritual/cruciform/priest/acolyte/ejection/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
-	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform, FALSE)
-
-	if(!CI)
-		fail("There is no cruciform on this one", user, C)
-		return FALSE
-
-	if(!CI.wearer)
-		fail("Cruciform is not installed.", user, C)
-		return FALSE
-
-	var/mob/M = CI.wearer
-
-	if(ishuman(M) && M.is_dead())
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/E = H.organs_by_name[BP_CHEST]
-		E.take_damage(15)
-		H.custom_pain("You feel the cruciform ripping out of your chest!",1)
-		CI.name = "[M]'s Cruciform"
-		CI.uninstall()
-		return TRUE
-
-	else if(ismob(M) && M.is_dead()) //Cruciforms can't normally be placed on non-humans, but this is still here for sanity purposes.
-		CI.name = "[M]'s Cruciform"
-		CI.uninstall()
-		return TRUE
-
-	else
-		fail("Deprivation does not work upon the living.", user, C)
-		return FALSE
-
-
 /datum/ritual/cruciform/priest/acolyte/unupgrade
 	name = "Asacris"
 	phrase = "A caelo usque ad centrum"
@@ -549,6 +512,6 @@
 		fail("You must be in front of the Eye of the Protector.", H, C)
 		return FALSE
 
-	eotp.ui_interact(H)
+	eotp.nano_ui_interact(H)
 	return TRUE
 
