@@ -423,7 +423,7 @@
 
 /obj/item/reagent_containers/syringe/adrenaline
 	name = "syringe (adrenaline)"
-	desc = "Contains adrenaline"
+	desc = "Contains adrenaline - a natural stimulant"
 	preloaded_reagents = list("adrenaline" = 15)
 
 /obj/item/reagent_containers/syringe/dermaline

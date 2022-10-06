@@ -1,6 +1,7 @@
 /obj/machinery/gym
 	name = "Advanced Arcade Machine"
 	desc = "Links with your brain to reduce lag to minimum. Now, success really does depend only on your skill!"
+	description_info = "Exercise machines can be used to increase your stats, either permanently, by using a rest point, or temporary."
 	icon = 'icons/obj/machines/gym.dmi'
 	icon_state = "vigilance"
 
@@ -86,7 +87,7 @@
 		return
 
 	if(user.stats.getPerk(PERK_COOLDOWN_EXERTION))
-		to_chat(user, SPAN_WARNING("Your muscles hurt too much use this."))
+		to_chat(user, SPAN_WARNING("Your muscles hurt too much use this. You need to rest before you exercise again."))
 		return
 
 	if(!unlocked && !emagged)
