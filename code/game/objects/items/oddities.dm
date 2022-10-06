@@ -453,7 +453,7 @@
 
 /obj/item/oddity/nt/seal
 	name = "High Inquisitor's Seal"
-	desc = "An honorary badge given to the most devout of NeoTheologian preachers by the High Inquisitor. Such a badge is a rare sight indeed - rumor has it that the badge imbues the holder with the power of the Angels themselves."
+	desc = "An honorary badge given to the most devout of NeoTheology preachers by the High Inquisitor. Such a badge is a rare sight indeed - rumor has it that the badge imbues the holder with the power of the Angels themselves."
 	icon_state = "nt_seal"
 	oddity_stats = list(
 		STAT_COG = 12,
