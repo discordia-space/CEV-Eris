@@ -45,14 +45,11 @@
 	return ..()
 
 /obj/machinery/gym/relaymove(mob/occupant)
-	if(occupant.incapacitated()) //Lost consciousness while lifting weights? Too bad, you HAVE to finish.
-		return
-	go_out(FALSE)
-	return
+	if(!occupant.incapacitated()) //Lost consciousness while lifting weights? Too bad, you HAVE to finish.
+		go_out(FALSE)
 
-/obj/machinery/gym/proc/go_out(var/finished_using)
+/obj/machinery/gym/proc/go_out(finished_using)
 	if(finished_using)
-
 		spawn(1.5 SECONDS)
 			state("Thank you for using club services! Please come back soon.")
 			playsound(loc, "robot_talk_light", 100, 0, 0)
@@ -127,55 +124,32 @@
 		return
 	..()
 
-//Vigilance animation
-/obj/machinery/gym/update_icon()
-
+/obj/machinery/gym/update_icon() // Vigilance animation
 	cut_overlays()
-
-	icon_state = "vigilance"
-
-	if(stat & (NOPOWER|BROKEN))
-		icon_state = "vigilance_off"
-
+	icon_state = (stat & (NOPOWER|BROKEN)) ? "vigilance_off" : "vigilance"
 	if(occupant)
 		var/image/occupant_image = image(occupant.icon, loc, occupant.icon_state, 4, NORTH)
 		occupant_image.overlays = occupant.overlays
-
 		overlays += occupant_image
-
 		icon_state = "vigilance_active"
 
-//Toughness animation
-/obj/machinery/gym/toughness/update_icon()
-
+/obj/machinery/gym/toughness/update_icon() // Toughness animation
 	cut_overlays()
-
-	icon_state = "toughness"
-
-	if(stat & (NOPOWER|BROKEN))
-		icon_state = "toughness_off"
-
+	icon_state = (stat & (NOPOWER|BROKEN)) ? "toughness_off" : "toughness"
 	if(occupant)
 		var/image/occupant_image = image(occupant.icon, loc, occupant.icon_state, 4, NORTH, 0, 8)
 		occupant_image.overlays = occupant.overlays
-
 		overlays += occupant_image
 		overlays += "toughness_overlay"
 
-//Robustness animation
-/obj/machinery/gym/robustness/update_icon()
-
+/obj/machinery/gym/robustness/update_icon() // Robustness animation
 	cut_overlays()
-
 	icon_state = "robustness"
-
 	if(occupant)
 		var/image/occupant_image = image(occupant.icon, loc, occupant.icon_state, 4, SOUTH, 0, 16)
 		var/image/robustness_overlay = image(icon, "robustness_overlay")
 		robustness_overlay.layer = 4.5
 		occupant_image.overlays = occupant.overlays
-
 		overlays += occupant_image
 		overlays += robustness_overlay
-
 		icon_state = "robustness_base"
