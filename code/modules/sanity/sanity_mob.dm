@@ -247,17 +247,17 @@
 		if(owner.stats.getPerk(PERK_ARTIST))
 			to_chat(owner, SPAN_NOTICE("Your artistic mind prevents you from using an oddity."))
 			rest = "Internalize your recent experiences"
-		
-		var/oddity_in_posession = FALSE
+		else
+			var/oddity_in_posession = FALSE
 
-		for(var/obj/item/I in owner.get_contents())
-			if(is_type_in_list(I, valid_inspirations) && I.GetComponent(/datum/component/inspiration))
-				oddity_in_posession = TRUE
-				break
+			for(var/obj/item/I in owner.get_contents())
+				if(is_type_in_list(I, valid_inspirations) && I.GetComponent(/datum/component/inspiration))
+					oddity_in_posession = TRUE
+					break
 		
-		if(!oddity_in_posession)
-			to_chat(owner, SPAN_NOTICE("You do not have any oddities to use."))
-			rest = "Internalize your recent experiences"
+			if(!oddity_in_posession)
+				to_chat(owner, SPAN_NOTICE("You do not have any oddities to use."))
+				rest = "Internalize your recent experiences"
 
 	switch(rest)
 
