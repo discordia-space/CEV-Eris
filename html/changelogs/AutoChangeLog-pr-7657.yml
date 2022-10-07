@@ -1,0 +1,6 @@
+author: DiaFRAME444
+delete-after: true
+changes:
+  - balance: Oddities in maint have slightly more diverse stat layouts. You may just
+      find one that better fitting for your intended job or build.
+  - balance: Maint oddities will no longer roll 1s on their RNG stat rolls.
