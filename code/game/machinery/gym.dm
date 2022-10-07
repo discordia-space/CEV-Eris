@@ -58,7 +58,7 @@
 		if(occupant.rest_points > 0)
 			to_chat(occupant, SPAN_NOTICE("You feel yourself become stronger..."))
 			occupant.playsound_local(get_turf(occupant), 'sound/sanity/rest.ogg', 100)
-			occupant.stats.changeStat(stat_used, rand(8, 10))
+			occupant.stats.changeStat(stat_used, rand(15, 20))
 
 		else
 			to_chat(occupant, SPAN_NOTICE("You did become stronger, you think... But not permanently. Perhaps you need to rest first?"))//probably should be changed
