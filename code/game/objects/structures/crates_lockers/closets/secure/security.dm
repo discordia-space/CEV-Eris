@@ -13,13 +13,13 @@
 	new /obj/item/clothing/shoes/jackboots(src)
 	new /obj/item/device/radio/headset/heads/captain(src)
 	new /obj/item/clothing/gloves/captain(src)
-	new /obj/item/storage/belt/sheath(src)
+	new /obj/item/storage/pouch/holster/belt/sheath(src)
 	new /obj/item/tool/sword/saber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/melee/telebaton(src)
-	new /obj/item/storage/pouch/pistol_holster(src)
+	new /obj/item/storage/pouch/holster(src)
 
 /obj/structure/closet/secure_closet/reinforced/hop
 	name = "First Officer's locker"
@@ -35,13 +35,13 @@
 	new /obj/item/device/radio/headset/heads/hop(src)
 	new /obj/item/storage/box/ids(src)
 	new /obj/item/storage/box/ids( src )
-	new /obj/item/storage/belt/sheath(src)
+	new /obj/item/storage/pouch/holster/belt/sheath(src)
 	new /obj/item/tool/sword/saber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/ammo_magazine/magnum/rubber(src)
 	new /obj/item/device/flash(src)
-	new /obj/item/storage/pouch/pistol_holster(src)
+	new /obj/item/storage/pouch/holster(src)
 
 /obj/structure/closet/secure_closet/reinforced/hos
 	name = "Ironhammer Commander locker"
@@ -70,11 +70,11 @@
 	new /obj/item/cell/small/high(src)
 	new /obj/item/cell/small/high(src)
 	new /obj/item/gun/energy/gun/martin(src)
-	new /obj/item/clothing/accessory/holster/waist(src)
+	new /obj/item/clothing/accessory/holster(src)
 	new /obj/item/melee/telebaton(src)
 	new /obj/item/clothing/accessory/badge/hos(src)
-	new /obj/item/storage/pouch/pistol_holster(src)
-	new /obj/item/storage/pouch/baton_holster(src)
+	new /obj/item/storage/pouch/holster(src)
+	new /obj/item/storage/pouch/holster/baton(src)
 
 /obj/structure/closet/secure_closet/warden
 	name = "Gunnery Sergeant's locker"
@@ -105,8 +105,8 @@
 	new /obj/item/gun/projectile/automatic/sol(src)
 	new /obj/item/storage/box/holobadge(src)
 	new /obj/item/clothing/accessory/badge/warden(src)
-	new /obj/item/storage/pouch/pistol_holster(src)
-	new /obj/item/storage/pouch/baton_holster(src)
+	new /obj/item/storage/pouch/holster(src)
+	new /obj/item/storage/pouch/holster/baton(src)
 	new /obj/item/clothing/suit/armor/vest/ironhammer(src)
 
 /obj/structure/closet/secure_closet/personal/security
@@ -133,8 +133,8 @@
 	new /obj/item/ammo_magazine/pistol/rubber(src)
 	new /obj/item/ammo_magazine/pistol/rubber(src)
 	new	/obj/item/gun/projectile/paco(src)
-	new /obj/item/storage/pouch/pistol_holster(src)
-	new /obj/item/storage/pouch/baton_holster(src)
+	new /obj/item/storage/pouch/holster(src)
+	new /obj/item/storage/pouch/holster/baton(src)
 	new /obj/item/storage/ration_pack/ihr(src)
 
 /obj/structure/closet/secure_closet/medspec
@@ -155,7 +155,7 @@
 	new /obj/item/clothing/suit/storage/toggle/labcoat/medspec(src)
 	new /obj/item/ammo_magazine/smg/rubber(src)
 	new /obj/item/gun/projectile/automatic/molly(src)
-	new /obj/item/storage/pouch/pistol_holster(src)
+	new /obj/item/storage/pouch/holster(src)
 	new /obj/item/storage/briefcase/crimekit(src)
 
 /obj/structure/closet/secure_closet/detective
@@ -184,11 +184,11 @@
 	new /obj/item/cell/small/high(src)
 	new /obj/item/device/taperecorder(src)
 	new /obj/item/gun/projectile/revolver/consul(src)
-	new /obj/item/clothing/accessory/holster/armpit(src)
+	new /obj/item/clothing/accessory/holster(src)
 	new /obj/item/ammo_magazine/slmagnum/rubber(src)
 	new /obj/item/ammo_magazine/slmagnum/rubber(src)
 	new /obj/item/ammo_magazine/slmagnum/rubber(src)
-	new /obj/item/storage/pouch/pistol_holster(src)
+	new /obj/item/storage/pouch/holster(src)
 	new /obj/item/storage/briefcase/crimekit(src)
 	new /obj/item/storage/box/syndie_kit/spy(src)
 

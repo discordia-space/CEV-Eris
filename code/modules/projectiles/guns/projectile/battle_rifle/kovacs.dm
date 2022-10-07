@@ -23,7 +23,7 @@
 	damage_multiplier = 1.4
 	penetration_multiplier = 0.2
 	init_recoil = RIFLE_RECOIL(1)
-	zoom_factor = 0.6
+	zoom_factors = list(0.6)
 	fire_delay = 6.5
 	gun_parts = list(/obj/item/part/gun/frame/kovacs = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)
 	serial_type = "SA"
@@ -46,7 +46,7 @@
 	name = "Kovacs frame"
 	desc = "A Kovacs battle rifle frame. To punch through armor with panache."
 	icon_state = "frame_kovacs"
-	result = /obj/item/gun/projectile/kovacs
-	grip = /obj/item/part/gun/grip/serb
-	mechanism = /obj/item/part/gun/mechanism/autorifle
-	barrel = /obj/item/part/gun/barrel/srifle
+	resultvars = list(/obj/item/gun/projectile/kovacs)
+	gripvars = list(/obj/item/part/gun/grip/serb)
+	mechanismvar = /obj/item/part/gun/mechanism/autorifle
+	barrelvars = list(/obj/item/part/gun/barrel/srifle)

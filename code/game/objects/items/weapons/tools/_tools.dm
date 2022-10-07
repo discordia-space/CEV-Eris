@@ -184,7 +184,7 @@
 	return
 
 
-/obj/item/tool/ui_data(mob/user)
+/obj/item/tool/nano_ui_data(mob/user)
 	var/list/data = list()
 
 	if(tool_qualities)
@@ -210,7 +210,7 @@
 		data["use_power_cost_max"] = initial(use_power_cost) * 10
 
 	if(use_fuel_cost)
-		data["fuel"] = reagents ? reagents.ui_data() : null
+		data["fuel"] = reagents ? reagents.nano_ui_data() : null
 		data["max_fuel"] = max_fuel
 		data["use_fuel_cost"] = use_fuel_cost
 		data["use_fuel_cost_state"] = initial(use_fuel_cost) > use_fuel_cost ? "good" : initial(use_fuel_cost) < use_fuel_cost ? "bad" : ""
@@ -237,8 +237,8 @@
 
 	return data
 
-/obj/item/tool/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
-	var/list/data = ui_data(user)
+/obj/item/tool/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
+	var/list/data = nano_ui_data(user)
 
 	var/datum/asset/toolupgrageds = get_asset_datum(/datum/asset/simple/tool_upgrades)
 	if (toolupgrageds.send(user.client))
@@ -902,6 +902,7 @@
 				var/obj/item/weldpack/P = O
 				P.explode()
 			return
+/*
 		else if(istype(O, /mob/living/carbon/superior_animal/roach/benzin))
 			var/mob/living/carbon/superior_animal/roach/benzin/B = O
 			if(B.stat != DEAD)
@@ -912,6 +913,7 @@
 					to_chat(user, SPAN_NOTICE("[src] refueled"))
 					playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
+*/
 		if(switched_on)
 			var/turf/location = get_turf(user)
 			if(isliving(O))
@@ -1102,4 +1104,4 @@
 /obj/item/tool/ui_action_click(mob/living/user, action_name)
 	switch(action_name)
 		if("Tool information")
-			ui_interact(user)
+			nano_ui_interact(user)

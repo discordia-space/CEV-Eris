@@ -14,7 +14,7 @@
 		OP_HEART		= list(100,   2,   0,   0,   10,  10,  list("he", "ar", "t"), list()),\
 		OP_LUNGS		= list(100,   2,   50,	10,  10,  0,   list("l", "un", "gs"), list()),\
 		OP_LIVER		= list(100,   1,   25,	5,   5,   7,   list("l", "iv", "er"), list()),\
-		OP_KIDNEYS		= list(50,    1,   7.5, 1.5, 2,   2.5, list("k", "idn", "ey"), list()),\
+		OP_KIDNEYS		= list(100,   2,   15,  3,   4,   5,   list("k", "idn", "ey"), list()),\
 		OP_APPENDIX		= list(100,   0,   0,	0,   0,   0,   list("app", "end", "ix"), list()),\
 		OP_STOMACH		= list(100,   1,   25,	5,   0,   5,   list("st", "om", "ach"), list()),\
 		OP_BONE			= list(100,   1,   0,	0,   0,   0,   list("b", "on", "e"), list()),\
@@ -76,7 +76,9 @@
 							/datum/reagent/metal/mercury, /datum/reagent/metal/potassium, /datum/reagent/metal/radium, /datum/reagent/metal/sodium,\
 							/datum/reagent/metal/tungsten)
 
-#define REAGENTS_EDIBLE list(/datum/reagent/organic/nutriment, /datum/reagent/organic/frostoil, /datum/reagent/organic/capsaicin, /datum/reagent/drink/milk)
+#define REAGENTS_EDIBLE list(/datum/reagent/organic/nutriment, /datum/reagent/organic/frostoil, /datum/reagent/organic/capsaicin, /datum/reagent/drink/milk,\
+							/datum/reagent/other/lipozine, /datum/reagent/drink/limejuice, /datum/reagent/drink/orangejuice, /datum/reagent/drink/tomatojuice,\
+							/datum/reagent/drink/tea, /datum/reagent/drink/tea/icetea)
 
 #define REAGENTS_ALCOHOL list(/datum/reagent/alcohol/ale, /datum/reagent/alcohol/beer, /datum/reagent/alcohol/mead,\
 								/datum/reagent/alcohol/gin, /datum/reagent/alcohol/rum, /datum/reagent/alcohol/tequilla, /datum/reagent/alcohol/vermouth,\

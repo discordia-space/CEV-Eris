@@ -80,6 +80,18 @@
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil/random(src)
 
+/obj/item/storage/belt/utility/technomancer 
+	spawn_blacklisted = TRUE
+
+/obj/item/storage/belt/utility/technomancer/populate_contents()
+	new /obj/item/tool/screwdriver/electric(src)
+	new /obj/item/tool/wrench/big_wrench(src)
+	new /obj/item/tool/weldingtool/advanced(src)
+	new /obj/item/tool/crowbar/pneumatic(src)
+	new /obj/item/tool/wirecutters/armature(src)
+	new /obj/item/tool/shovel/power(src)
+	new /obj/item/stack/cable_coil/random(src)
+	
 /obj/item/storage/belt/utility/neotheology
 	name = "neotheologian utility belt"
 	desc = "Waist-held holy items."
@@ -149,7 +161,7 @@
 /obj/item/storage/belt/tactical
 	name = "tactical belt"
 	desc = "Can hold various military and security equipment."
-	icon_state = "tactical"
+	icon_state = "tactical_belt"
 	rarity_value = 20
 	can_hold = list(
 		/obj/item/grenade,

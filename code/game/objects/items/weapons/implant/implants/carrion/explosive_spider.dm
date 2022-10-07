@@ -13,9 +13,9 @@
 	..()
 	if(wearer)
 		wearer.apply_damage(10, BRUTE, part)
-		src.uninstall()
 		to_chat(wearer, SPAN_WARNING("You feel something moving within [part]!"))
 		visible_message(SPAN_DANGER("[src] crawls out of [wearer] and flashes brightly!"))
+		src.uninstall()
 	else
 		visible_message(SPAN_DANGER("[src] flashes brightly!"))
 	playsound(src, 'sound/voice/insect_battle_screeching.ogg', 80, 1, 5)

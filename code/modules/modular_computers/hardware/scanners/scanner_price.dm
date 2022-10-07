@@ -10,7 +10,7 @@
 		return
 	if (!scan_power_use())
 		return
-	
+
 	var/dat = price_scan_results(target)
 	if(dat && driver && driver.using_scanner)
 		if(!driver.data_buffer)
@@ -19,5 +19,4 @@
 			driver.data_buffer += "<br>[dat]"
 		if(!SSnano.update_uis(driver.NM))
 			holder2.run_program(driver.filename)
-			driver.NM.ui_interact(user)
-	
+			driver.NM.nano_ui_interact(user)

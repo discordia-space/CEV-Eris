@@ -8,10 +8,10 @@
 	force = WEAPON_FORCE_DANGEROUS
 	throwforce = WEAPON_FORCE_WEAK
 	armor_divisor = ARMOR_PEN_DEEP
-	spawn_blacklisted = TRUE
 	aspects = list(SANCTIFIED)
 	price_tag = 300
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_STEEL = 5)
+	spawn_blacklisted = TRUE
 	bad_type = /obj/item/tool/sword/nt
 
 /obj/item/tool/sword/nt/equipped(mob/living/M)
@@ -31,7 +31,6 @@
 	force_wielded_multiplier = 1.04
 	throwforce = WEAPON_FORCE_WEAK
 	armor_divisor = ARMOR_PEN_DEEP
-	spawn_blacklisted = TRUE
 	aspects = list(SANCTIFIED)
 	price_tag = 300
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_STEEL = 5)
@@ -201,7 +200,7 @@
 
 /obj/item/shield/riot/nt
 	name = "NT Scutum"
-	desc = "A saintly-looking shield. May God protect you. The leather straps on the back can hold melee weapons."
+	desc = "A saintly-looking shield. Too heavy to be held upright while running. The leather straps on the back can hold melee weapons."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_shield"
 	item_state = "nt_shield"
@@ -262,7 +261,7 @@
 
 /obj/item/shield/buckler/nt
 	name = "NT Parma"
-	desc = "A round shield adorned with a golden trim. The leather straps on the back can hold melee weapons."
+	desc = "A round shield adorned with a golden trim. The leather straps on the back can hold a melee weapon."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_buckler"
 	item_state = "nt_buckler"

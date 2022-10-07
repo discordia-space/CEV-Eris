@@ -48,7 +48,7 @@
 	name = "Zoric frame"
 	desc = "A Zoric SMG frame. Workhorse of the Excelsior force."
 	icon_state = "frame_zorik"
-	result = /obj/item/gun/projectile/automatic/zoric
-	grip = /obj/item/part/gun/grip/serb
-	mechanism = /obj/item/part/gun/mechanism/smg
-	barrel = /obj/item/part/gun/barrel/magnum
+	resultvars = list(/obj/item/gun/projectile/automatic/zoric)
+	gripvars = list(/obj/item/part/gun/grip/serb)
+	mechanismvar = /obj/item/part/gun/mechanism/smg
+	barrelvars = list(/obj/item/part/gun/barrel/magnum)

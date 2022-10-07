@@ -1,0 +1,6 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - bugfix: fixed penetrating objects
+  - bugfix: small creatures can dodge
+  - bugfix: various agony- and damage calculations

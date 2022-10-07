@@ -1,4 +1,4 @@
-// These are produced by organs. They should never appear elsewhere.
+// These are produced by organs. They should rarely appear elsewhere.
 /datum/reagent/hormone
 	name = "hormone"
 	id = "hormone"
@@ -29,7 +29,7 @@
 /datum/reagent/hormone/bloodclot
 	name = "thrombopoietin"		// Increases platelet (clotting stuff) production
 	id = "thrombopoietin"
-	effects = list(CE_BLOODCLOT = 0.2)
+	effects = list(CE_BLOODCLOT = 0.25)
 
 /datum/reagent/hormone/bloodclot/alt
 	name = "thromboxane"		// Produced by platelets to encourage stronger clots
@@ -40,7 +40,7 @@
 /datum/reagent/hormone/bloodrestore
 	name = "aldosterone"		// Increases blood volume as a result of its IRL effects
 	id = "aldosterone"
-	effects = list(CE_BLOODRESTORE = 0.1)
+	effects = list(CE_BLOODRESTORE = 0.4)
 
 /datum/reagent/hormone/bloodrestore/alt
 	name = "erythropoietin"		// Stimulates red blood cell production
@@ -51,7 +51,7 @@
 /datum/reagent/hormone/painkiller
 	name = "enkephalin"			// Regulates nociception (pain response)
 	id = "enkephalin"
-	effects = list(CE_PAINKILLER = 10)
+	effects = list(CE_PAINKILLER = 20)
 
 /datum/reagent/hormone/painkiller/alt
 	name = "endomorphin"		// Regulates nociception (pain response)
@@ -62,7 +62,7 @@
 /datum/reagent/hormone/speedboost
 	name = "osteocalcin"		// Increases energy availability in muscles among other things, probably close enough
 	id = "osteocalcin"
-	effects = list(CE_SPEEDBOOST = 0.15)
+	effects = list(CE_SPEEDBOOST = 0.25)
 
 /datum/reagent/hormone/speedboost/alt
 	name = "noradrenaline"		// Fight or flight hormone

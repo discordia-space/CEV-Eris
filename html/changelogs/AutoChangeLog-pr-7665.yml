@@ -1,0 +1,8 @@
+author: assortedbeads
+delete-after: true
+changes:
+  - rscadd: Technomancers spawn with insuls
+  - rscadd: Technomancer locker spawns with a tools pouch
+  - rscadd: Technomancer toolbelt spawns with (electric screwdriver, big wrench, advanced
+      welding tool, pneumatic crowbar, armature wirecutter, a power shovel and cable
+      coils)

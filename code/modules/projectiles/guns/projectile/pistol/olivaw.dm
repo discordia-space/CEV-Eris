@@ -36,7 +36,7 @@
 	name = "Olivaw frame"
 	desc = "An Olivaw pistol frame. Why shoot one bullet when you can shoot two?"
 	icon_state = "frame_olivaw"
-	result = /obj/item/gun/projectile/olivaw
-	grip = /obj/item/part/gun/grip/wood
-	mechanism = /obj/item/part/gun/mechanism/pistol
-	barrel = /obj/item/part/gun/barrel/pistol
+	resultvars = list(/obj/item/gun/projectile/olivaw)
+	gripvars = list(/obj/item/part/gun/grip/wood)
+	mechanismvar = /obj/item/part/gun/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/barrel/pistol)

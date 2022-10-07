@@ -1,7 +1,7 @@
 /datum/component/modification/organ
 	install_time = WORKTIME_FAST
 	//install_tool_quality = null
-	install_difficulty = FAILCHANCE_HARD
+	install_difficulty = 35
 	install_stat = STAT_BIO
 	install_sound = 'sound/effects/squelch1.ogg'
 
@@ -97,6 +97,13 @@
 				holder.organ_efficiency.Add(organ)
 				holder.organ_efficiency[organ] = round(added_efficiency, 1)
 
+		if(holder.owner && istype(holder.owner, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = holder.owner
+			for(var/process in organ_efficiency_mod)
+				if(!islist(H.internal_organs_by_efficiency[process]))
+					H.internal_organs_by_efficiency[process] = list()
+				H.internal_organs_by_efficiency[process] |= holder
+
 	if(organ_efficiency_multiplier)
 		for(var/organ in holder.organ_efficiency)
 			holder.organ_efficiency[organ] = round(holder.organ_efficiency[organ] * (1 + organ_efficiency_multiplier), 1)
@@ -150,17 +157,19 @@
 	var/using_sci_goggles = FALSE
 	var/details_unlocked = FALSE
 
-	// Goggles check
 	if(ishuman(user))
+		// Goggles check
 		var/mob/living/carbon/human/H = user
 		if(istype(H.glasses, /obj/item/clothing/glasses/powered/science))
 			var/obj/item/clothing/glasses/powered/G = H.glasses
 			using_sci_goggles = G.active	// Meat vision
 
-	// Stat check
-	details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
-	if(examine_stat_secondary && details_unlocked)
-		details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
+		// Stat check
+		details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
+		if(examine_stat_secondary && details_unlocked)
+			details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
+	else if(istype(user, /mob/observer/ghost))
+		details_unlocked = TRUE
 
 	if(examine_msg)
 		to_chat(user, SPAN_WARNING(examine_msg))

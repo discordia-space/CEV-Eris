@@ -77,10 +77,10 @@
 	stat_modifiers = list(
 		STAT_ROB = 5,
 		STAT_TGH = 5,
-		STAT_BIO = 10,
-		STAT_MEC = 5,
+		STAT_BIO = 5,
+		STAT_MEC = -10,
 		STAT_VIG = -10,
-		STAT_COG = -10
+		STAT_COG = 10
 	)
 
 /datum/category_item/setup_option/background/origin/new_rome/apply(mob/living/carbon/human/character)

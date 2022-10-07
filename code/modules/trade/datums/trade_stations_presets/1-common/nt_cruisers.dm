@@ -11,9 +11,9 @@
 	markup = WHOLESALE_GOODS
 	base_income = 1600
 	wealth = 0
-	hidden_inv_threshold = 2000
-	recommendation_threshold = 4000
-	stations_recommended = list("nt_uncommon")
+	hidden_inv_threshold = 4000
+	recommendation_threshold = 0
+	stations_recommended = list()
 	inventory = list(
 		"Biomatter Products" = list(
 			/obj/item/reagent_containers/food/snacks/meat = custom_good_price(100),
@@ -27,9 +27,10 @@
 			/obj/item/storage/pouch/tubular/vial,
 			/obj/item/storage/pouch/ammo,
 			/obj/item/clothing/accessory/holster,
-			/obj/item/clothing/accessory/holster/armpit,
-			/obj/item/clothing/accessory/holster/waist,
-			/obj/item/clothing/accessory/holster/hip
+			/obj/item/storage/pouch/holster,
+			/obj/item/storage/pouch/holster/baton,
+			/obj/item/storage/pouch/holster/belt,
+			/obj/item/storage/pouch/holster/belt/sheath
 		),
 		"Agro Supply" = list(
 			/obj/machinery/vending/hydroseeds,
@@ -62,6 +63,20 @@
 		)
 	)
 	hidden_inventory = list(
+		"Energy Weapons" = list(
+			/obj/item/gun/energy/taser,
+			/obj/item/gun/energy/nt_svalinn
+		),
+		"Ballistic Weapons" = list(
+			/obj/item/gun/projectile/mk58,
+			/obj/item/gun/projectile/mk58/wood,
+			/obj/item/gun/projectile/shotgun/pump/regulator
+		),
+		"Neotheology Cells" = list(
+			/obj/item/cell/small/neotheology,
+			/obj/item/cell/medium/neotheology,
+			/obj/item/cell/large/neotheology
+		),
 		"Curious Seeds" = list(
 			/obj/item/seeds/greengrapeseed = good_data("green grape seeds", list(1,3), null),
 			/obj/item/seeds/icepepperseed = good_data("ice-pepper seeds", list(1,3), null),
@@ -81,9 +96,14 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/implant/core_implant/cruciform = offer_data("cruciform", 2500, 3),
+		/obj/item/tool_upgrade/augment/sanctifier = offer_data("NT 'Sanctifier' tool blessing", 200, 0),
+		/obj/item/gun_upgrade/barrel/excruciator = offer_data("NT \"EXCRUCIATOR\" giga lens", 500, 0),
+		/obj/item/oddity/common/towel = offer_data("trustworthy towel", 500, 1),
+		/obj/item/cruciform_upgrade = offer_data("cruciform upgrade", 1600, 0),
 		/obj/item/book/ritual/cruciform = offer_data("Neotheology ritual book", 1800, 1),
-		/obj/item/cruciform_upgrade = offer_data("cruciform upgrade", 900, 5),
-		/obj/item/tool_upgrade/augment/sanctifier = offer_data("NT 'Sanctifier' tool blessing", 250, 8),
-		/obj/item/oddity/common/towel = offer_data("trustworthy towel", 500, 1)
+		/obj/item/implant/core_implant/cruciform = offer_data("cruciform", 2500, 3),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/medicii = offer_data("NeoTheology Armory - \"Medicii Supplies\"", 2000, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/nt_lightfall = offer_data("NeoTheology Armory - Lightfall Laser Gun", 2500, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/grenades = offer_data("NeoTheology Armory - Grenades Pack", 2500, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/triarii = offer_data("NeoTheology Armory - \"Triarii Arms\"", 8000, 1)
 	)

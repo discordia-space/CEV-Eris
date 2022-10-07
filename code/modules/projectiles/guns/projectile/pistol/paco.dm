@@ -54,7 +54,7 @@
 	name = "Paco frame"
 	desc = "A Paco pistol frame. A reliable companion in the field."
 	icon_state = "frame_paco"
-	result = /obj/item/gun/projectile/paco
-	grip = /obj/item/part/gun/grip/rubber
-	mechanism = /obj/item/part/gun/mechanism/pistol
-	barrel = /obj/item/part/gun/barrel/pistol
+	resultvars = list(/obj/item/gun/projectile/paco)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
+	mechanismvar = /obj/item/part/gun/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/barrel/pistol)

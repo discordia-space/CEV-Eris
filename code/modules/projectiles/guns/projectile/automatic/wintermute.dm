@@ -21,7 +21,7 @@
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	zoom_factor = 0.4
+	zoom_factors = list(0.4)
 	init_recoil = RIFLE_RECOIL(0.6)
 	damage_multiplier = 1.15
 	penetration_multiplier = 0
@@ -53,7 +53,7 @@
 	name = "Wintermute frame"
 	desc = "A Wintermute assault rifle frame. The finest of the Ironhammer lineup."
 	icon_state = "frame_wintermute"
-	result = /obj/item/gun/projectile/automatic/wintermute
-	grip = /obj/item/part/gun/grip/rubber
-	mechanism = /obj/item/part/gun/mechanism/autorifle
-	barrel = /obj/item/part/gun/barrel/srifle
+	resultvars = list(/obj/item/gun/projectile/automatic/wintermute)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
+	mechanismvar = /obj/item/part/gun/mechanism/autorifle
+	barrelvars = list(/obj/item/part/gun/barrel/srifle)

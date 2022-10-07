@@ -1,0 +1,6 @@
+author: DiaFRAME444
+delete-after: true
+changes:
+  - bugfix: Properly removed Armament result from the code.
+  - spellcheck: The Eye of the Protector has observed a 1st grade book on proper grammar,
+      and has adapted accordingly.

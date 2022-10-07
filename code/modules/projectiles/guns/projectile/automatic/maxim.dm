@@ -59,7 +59,7 @@
 	name = "Maxim frame"
 	desc = "A Maxim HMG frame. Whatever happens, we have got the Maxim gun and they have not."
 	icon_state = "frame_maxim"
-	result = /obj/item/gun/projectile/automatic/maxim
-	grip = /obj/item/part/gun/grip/excel
-	mechanism = /obj/item/part/gun/mechanism/machinegun
-	barrel = /obj/item/part/gun/barrel/lrifle
+	resultvars = list(/obj/item/gun/projectile/automatic/maxim)
+	gripvars = list(/obj/item/part/gun/grip/excel)
+	mechanismvar = /obj/item/part/gun/mechanism/machinegun
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle)

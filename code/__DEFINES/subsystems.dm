@@ -166,3 +166,13 @@ if(Datum.is_processing) {\
 
 /// The timer key used to know how long subsystem initialization takes
 #define SS_INIT_TIMER_KEY "ss_init"
+
+/**
+	Create a new timer and add it to the queue.
+	* Arguments:
+	* * callback the callback to call on timer finish
+	* * wait deciseconds to run the timer for
+	* * flags flags for this timer, see: code\__DEFINES\subsystems.dm
+	* * timer_subsystem the subsystem to insert this timer into
+*/
+#define addtimer(args...) _addtimer(args, file = __FILE__, line = __LINE__)

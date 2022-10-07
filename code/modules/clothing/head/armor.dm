@@ -140,6 +140,20 @@
 	)
 	price_tag = 75
 
+/obj/item/clothing/head/armor/helmet/scavengerhelmet
+	name = "scavenger helmet"
+	desc = "A sturdy, handcrafted helmet. It's well balanced and sits low on your head, with padding on the inside."
+	icon_state = "scav_helmet"
+	armor = list(
+		melee = 10,
+		bullet = 9,
+		energy = 7,
+		bomb = 20,
+		bio = 0,
+		rad = 0
+	)
+	price_tag = 200
+
 /obj/item/clothing/head/armor/helmet/thunderdome
 	name = "\improper Thunderdome helmet"
 	desc = "<i>'Let the battle commence!'</i>"
@@ -304,8 +318,8 @@
 	name = "riot helmet"
 	desc = "A helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
-	armor_up = list(melee = 30, bullet = 20, energy = 20, bomb = 20, bio = 0, rad = 0)
-	armor_down = list(melee = 40, bullet = 35, energy = 30, bomb = 35, bio = 0, rad = 0)
+	armor_up = list(melee = 7, bullet = 5, energy = 5, bomb = 20, bio = 0, rad = 0)
+	armor_down = list(melee = 10, bullet = 8, energy = 7, bomb = 35, bio = 0, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	price_tag = 150
 	matter = list(

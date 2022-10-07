@@ -6,44 +6,59 @@
 	desc = "You probably shouldn't be holding this."
 	icon = 'icons/obj/contraband.dmi'
 	force = 0
+	bad_type = /obj/item/contraband
+	spawn_tags = SPAWN_ITEM_CONTRABAND
 
 
 /obj/item/contraband/poster
 	name = "rolled-up poster"
 	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface."
+	description_info = "You can safely remove a pinned poster with a pair of wirecutters."
 	icon_state = "rolled_poster"
+	var/poster_datum = "all" // Which set of poster_designs you want used.
 	var/serial_number = 0
 	var/ruined = 0
 	var/datum/poster/design
-	rarity_value = 10
-	bad_type = /obj/item/contraband/poster
-	spawn_tags = SPAWN_ITEM_CONTRABAND
 
 /obj/item/contraband/poster/New(turf/loc, var/datum/poster/new_design = null)
-	if(!new_design)
-		design = pick(GLOB.poster_designs)
-	else
-		design = new_design
+	switch(poster_datum)
+		if ("all")
+			if(!new_design)
+				design = pick(GLOB.poster_designs)
+		if ("asters")
+			if(!new_design)
+				design = pick(GLOB.poster_designs_asters)
+		else
+			design = new_design
+
 	..(loc)
+
+/obj/item/contraband/poster/asters
+	name = "rolled-up asters poster"
+	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface."
+	icon_state = "rolled_poster_asters"
+	poster_datum = "asters"
 
 /obj/item/contraband/poster/placed
 	icon_state = "random"
 	anchored = TRUE
 	spawn_tags = null
-	New(turf/loc)
-		if(icon_state != "random")
-			for(var/datum/poster/new_design in GLOB.poster_designs)
-				if(new_design.icon_state == icon_state)
-					return ..(loc, new_design)
-		..()
-		if(iswall(loc) && !pixel_x && !pixel_y)
-			for(var/dir in cardinal)
-				if(isfloor(get_step(src, dir)))
-					switch(dir)
-						if(NORTH) pixel_y = -32
-						if(SOUTH) pixel_y = 32
-						if(EAST)  pixel_x = 32
-						if(WEST)  pixel_x = -32
+	bad_type = /obj/item/contraband/poster/placed
+
+/obj/item/contraband/poster/placed/New(turf/loc)
+	if(icon_state != "random")
+		for(var/datum/poster/new_design in GLOB.poster_designs)
+			if(new_design.icon_state == icon_state)
+				return ..(loc, new_design)
+	..()
+	if(iswall(loc) && !pixel_x && !pixel_y)
+		for(var/dir in cardinal)
+			if(isfloor(get_step(src, dir)))
+				switch(dir)
+					if(NORTH) pixel_y = -32
+					if(SOUTH) pixel_y = 32
+					if(EAST)  pixel_x = 32
+					if(WEST)  pixel_x = -32
 
 /obj/item/contraband/poster/attack_hand(mob/user)
 	if(!anchored)
@@ -142,15 +157,20 @@
 
 /datum/poster
 	// Name suffix. Poster - [name]
-	var/name=""
+	var/name = ""
 	// Description suffix
-	var/desc=""
-	var/icon_state=""
+	var/desc = ""
+	var/description_fluff = ""
+	var/icon_state = ""
 	var/icon = 'icons/obj/contraband.dmi'
 
-/datum/poster/proc/set_design(var/obj/item/contraband/poster/P)
-	P.name = "poster - [name]"
-	P.desc = desc
-	P.icon_state = icon_state
-	P.icon = icon
+/datum/poster/asters
+	description_fluff = "Appears to been produced by members of the Aster's Guild."
+
+/datum/poster/proc/set_design(var/obj/item/contraband/poster/poster)
+	poster.name = "poster - [name]"
+	poster.desc = desc
+	poster.description_fluff = description_fluff
+	poster.icon_state = icon_state
+	poster.icon = icon
 	return 1

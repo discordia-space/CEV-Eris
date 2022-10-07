@@ -83,3 +83,7 @@
 /datum/design/autolathe/container/hcase_engi
 	name = "Parts Hardcase"
 	build_path = /obj/item/storage/hcases/engi
+
+/datum/design/autolathe/bodybag/cryobag
+	name = "Stasis Bag"
+	build_path = /obj/item/bodybag/cryobag

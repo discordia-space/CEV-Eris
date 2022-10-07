@@ -22,7 +22,7 @@
 	init_recoil = CARBINE_RECOIL(0.5)
 	damage_multiplier = 1.15
 	penetration_multiplier = 0.1
-	zoom_factor = 0.2
+	zoom_factors = list(0.2)
 	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(
@@ -88,7 +88,7 @@
 	name = "Z8 Bulldog frame"
 	desc = "A Z8 Bulldog carbine frame. Old but gold."
 	icon_state = "frame_pug"
-	result = /obj/item/gun/projectile/automatic/z8
-	grip = /obj/item/part/gun/grip/black
-	mechanism = /obj/item/part/gun/mechanism/autorifle
-	barrel = /obj/item/part/gun/barrel/srifle
+	resultvars = list(/obj/item/gun/projectile/automatic/z8)
+	gripvars = list(/obj/item/part/gun/grip/black)
+	mechanismvar = /obj/item/part/gun/mechanism/autorifle
+	barrelvars = list(/obj/item/part/gun/barrel/srifle)

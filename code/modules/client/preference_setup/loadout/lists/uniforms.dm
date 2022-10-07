@@ -9,6 +9,10 @@
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
 
+/datum/gear/uniform/crewman
+	display_name = "jumpsuit, crewman"
+	path = /obj/item/clothing/under/rank/crewman
+
 /datum/gear/uniform/jumpsuit/rainbow
 	display_name = "jumpsuit, rainbow"
 	path = /obj/item/clothing/under/rainbow
@@ -157,9 +161,25 @@
 	gear_tweaks += new /datum/gear_tweak/path(generic)
 
 /datum/gear/uniform/tuxedo
-	display_name = "black tuxedo"
-	path = /obj/item/clothing/under/tuxedo
+	display_name = "cheap tuxedo"
+	path = /obj/item/clothing/under/tuxedo/cheap
 	cost = 2
+
+/datum/gear/uniform/security_formal
+	display_name = "formal security outfit"
+	path = /obj/item/clothing/under/security_formal
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Ironhammer Medical Specialist")
+	cost = 2
+
+/datum/gear/uniform/assistantformal
+	display_name = "assistant formal uniform"
+	path = /obj/item/clothing/under/assistantformal
+	cost = 2
+	allowed_roles = list(ASSISTANT_TITLE)
+
+/datum/gear/uniform/camopants
+	display_name = "turtleneck and camo pants"
+	path = /obj/item/clothing/under/camopants
 
 /datum/gear/uniform/wifebeater
 	display_name = "white tank top"

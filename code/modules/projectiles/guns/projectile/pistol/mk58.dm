@@ -53,8 +53,7 @@
 	desc = "A MK58 pistol frame. The standard issue of the Nanotrasen Corporation."
 	icon_state = "frame_mk58"
 	result = /obj/item/gun/projectile/mk58
-	variant_grip = TRUE
 	gripvars = list(/obj/item/part/gun/grip/black, /obj/item/part/gun/grip/wood, /obj/item/part/gun/grip/rubber)
 	resultvars = list(/obj/item/gun/projectile/mk58, /obj/item/gun/projectile/mk58/wood, /obj/item/gun/projectile/mk58/army)
-	mechanism = /obj/item/part/gun/mechanism/pistol
-	barrel = /obj/item/part/gun/barrel/pistol
+	mechanismvar = /obj/item/part/gun/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/barrel/pistol)

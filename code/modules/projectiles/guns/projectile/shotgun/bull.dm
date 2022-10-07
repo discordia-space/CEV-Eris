@@ -109,7 +109,7 @@
 	name = "Bull frame"
 	desc = "A Bull shotgun frame. Double-barrel and pump action, through a miracle of engineering."
 	icon_state = "frame_bull"
-	result = /obj/item/gun/projectile/shotgun/bull
-	grip = /obj/item/part/gun/grip/rubber
-	mechanism = /obj/item/part/gun/mechanism/shotgun
-	barrel = /obj/item/part/gun/barrel/shotgun
+	resultvars = list(/obj/item/gun/projectile/shotgun/bull)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
+	mechanismvar = /obj/item/part/gun/mechanism/shotgun
+	barrelvars = list(/obj/item/part/gun/barrel/shotgun)

@@ -109,16 +109,12 @@ meteor_act
 
 	switch (def_zone)
 		if(BP_L_ARM, BP_R_ARM)
-			var/c_hand
-			if (def_zone == BP_L_ARM)
-				c_hand = l_hand
-			else
-				c_hand = r_hand
+			var/obj/item/organ/external/hand = get_organ(def_zone)
 
-			if(c_hand && (stun_amount || agony_amount > 10))
+			if(hand && hand.mob_can_unequip(src) && (stun_amount || agony_amount > 10))
 				msg_admin_attack("[src.name] ([src.ckey]) was disarmed by a stun effect")
 
-				drop_from_inventory(c_hand)
+				drop_from_inventory(hand)
 				if (BP_IS_ROBOTIC(affected))
 					emote("pain", 1, "drops what they were holding, their [affected.name] malfunctioning!")
 				else

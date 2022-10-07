@@ -94,15 +94,9 @@
 		if(C)
 			stat("Cruciform", "[C.power]/[C.max_power]")
 
-/mob/living/carbon/human/flash(duration = 0, drop_items = FALSE, doblind = FALSE, doblurry = FALSE, eye_damage = 0)
+/mob/living/carbon/human/flash(duration = 0, drop_items = FALSE, doblind = FALSE, doblurry = FALSE)
 	if(blinded)
 		return
-	if(eye_damage)
-		eye_damage *= species.flash_mod // increase based on how susceptible they are
-		var/obj/item/organ/internal/eyes/E = src.random_organ_by_process(OP_EYES)
-		E.take_damage(eye_damage, FALSE)
-		if (E && E.damage >= E.min_bruised_damage)
-			to_chat(src, SPAN_DANGER("Your eyes start to burn badly!"))
 	..(duration, drop_items, doblind, doblurry)
 
 /mob/living/carbon/human/ex_act(severity, epicenter)
@@ -695,7 +689,7 @@ var/list/rank_prefix = list(\
 			sleep(150)	//15 seconds until second warning
 			to_chat(src, SPAN_WARNING("You feel like you are about to throw up!"))
 			sleep(100)	//and you have 10 more for mad dash to the bucket
-		Stun(5)
+		Stun(2)
 
 		src.visible_message(SPAN_WARNING("[src] throws up!"),SPAN_WARNING("You throw up!"))
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
@@ -1162,9 +1156,9 @@ var/list/rank_prefix = list(\
 	set desc		= "Browse your character sanity."
 	set category	= "IC"
 	set src			= usr
-	ui_interact(src)
+	nano_ui_interact(src)
 
-/mob/living/carbon/human/ui_data()
+/mob/living/carbon/human/nano_ui_data()
 	var/list/data = list()
 
 	data["style"] = get_total_style()
@@ -1184,8 +1178,8 @@ var/list/rank_prefix = list(\
 
 	return data
 
-/mob/living/carbon/human/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
-	var/list/data = ui_data()
+/mob/living/carbon/human/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
+	var/list/data = nano_ui_data()
 
 	ui = SSnano.try_update_ui(user, user, ui_key, ui, data, force_open)
 	if(!ui)

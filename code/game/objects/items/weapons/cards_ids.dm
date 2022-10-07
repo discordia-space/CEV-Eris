@@ -148,8 +148,8 @@ var/const/NO_EMAG_ACT = -50
 	name = "[src.registered_name]'s ID Card ([src.assignment])"
 
 /obj/item/card/id/proc/set_id_photo(var/mob/M)
-	front = getFlatIcon(M, SOUTH, always_use_defdir = 1)
-	side = getFlatIcon(M, WEST, always_use_defdir = 1)
+	front = getFlatIcon(M, SOUTH)
+	side = getFlatIcon(M, WEST)
 
 /mob/proc/set_id_info(var/obj/item/card/id/id_card)
 	id_card.age = 0
@@ -219,6 +219,7 @@ var/const/NO_EMAG_ACT = -50
 	item_state = "tdgreen"
 	assignment = "Synthetic"
 	spawn_tags = null
+	bad_type = /obj/item/card/id/synthetic
 
 /obj/item/card/id/synthetic/New()
 	access = get_all_station_access() + access_synth

@@ -9,22 +9,24 @@
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_COVERT = 2)
 	caliber = CAL_ANTIM
-	init_recoil = RIFLE_RECOIL(5)
+	init_recoil = LMG_RECOIL(3)
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING
 	max_shells = 1
+	damage_multiplier = 2
+	proj_step_multiplier = 0 //so the PTR isn't useless as a sniper weapon
 	ammo_type = /obj/item/ammo_casing/antim
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 20)
 	price_tag = 5000
-	zoom_factor = 2
+	zoom_factors = list(1,2)
 	twohanded = TRUE
 	darkness_view = 7
 	see_invisible_gun = SEE_INVISIBLE_NOLIGHTING
 	scoped_offset_reduction = 8
-	var/extra_damage_mult_scoped = 0.2
-	gun_tags = list(GUN_AMR, GUN_SCOPE)
+	var/extra_dam_mult_scoped_upper = 0.4
+	var/extra_dam_mult_scoped_lower = 0.2
 	rarity_value = 90
 	no_internal_mag = TRUE
 	var/bolt_open = 0
@@ -33,15 +35,17 @@
 	pierce_multiplier = 6
 	gun_parts = list(/obj/item/part/gun/frame/heavysniper = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/antim = 1)
 	serial_type = "SA"
+	action_button_name = "Switch zoom level"
+	action_button_proc = "switch_zoom"
 
 /obj/item/part/gun/frame/heavysniper
 	name = "Hristov frame"
 	desc = "A Hristov AMR frame. For removing chunks of man and machine alike."
 	icon_state = "frame_antimaterial"
-	result = /obj/item/gun/projectile/heavysniper
-	grip = /obj/item/part/gun/grip/serb
-	mechanism = /obj/item/part/gun/mechanism/boltgun
-	barrel = /obj/item/part/gun/barrel/antim
+	resultvars = list(/obj/item/gun/projectile/heavysniper)
+	gripvars = list(/obj/item/part/gun/grip/serb)
+	mechanismvar = /obj/item/part/gun/mechanism/boltgun
+	barrelvars = list(/obj/item/part/gun/barrel/antim)
 
 /obj/item/gun/projectile/heavysniper/update_icon()
 	..()
@@ -63,6 +67,10 @@
 /obj/item/gun/projectile/heavysniper/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/gun/projectile/heavysniper/generate_guntags()
+	..()
+	gun_tags |= GUN_AMR
 
 /obj/item/gun/projectile/heavysniper/attack_self(mob/user) //Someone overrode attackself for this class, soooo.
 	if(zoom)
@@ -115,9 +123,15 @@
 		return 1
 	return 0
 
-/obj/item/gun/projectile/heavysniper/zoom(tileoffset, viewsize)
+/obj/item/gun/projectile/heavysniper/zoom(tileoffset, viewsize, stayzoomed)
 	..()
+	refresh_upgrades()
 	if(zoom)
-		damage_multiplier += extra_damage_mult_scoped
-	else
-		refresh_upgrades()
+		var/currentzoom = zoom_factors[active_zoom_factor]
+		var/extra_damage
+		switch(currentzoom)
+			if(1)
+				extra_damage = extra_dam_mult_scoped_lower
+			if(2)
+				extra_damage = extra_dam_mult_scoped_upper
+		damage_multiplier += extra_damage

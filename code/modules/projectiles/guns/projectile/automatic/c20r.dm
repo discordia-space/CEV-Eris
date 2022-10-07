@@ -24,7 +24,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/sfrifle_cock.ogg'
 	damage_multiplier = 1
 	penetration_multiplier = 0
-	zoom_factor = 0.4
+	zoom_factors = list(0.4)
 	init_recoil = SMG_RECOIL(0.6)
 	gun_parts = list(/obj/item/part/gun/frame/c20r = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
 
@@ -42,10 +42,10 @@
 	name = "C20r frame"
 	desc = "A C20r SMG frame. The syndicate's bread and butter."
 	icon_state = "frame_syndi"
-	result = /obj/item/gun/projectile/automatic/c20r
-	grip = /obj/item/part/gun/grip/black
-	mechanism = /obj/item/part/gun/mechanism/smg
-	barrel = /obj/item/part/gun/barrel/pistol
+	resultvars = list(/obj/item/gun/projectile/automatic/c20r)
+	gripvars = list(/obj/item/part/gun/grip/black)
+	mechanismvar = /obj/item/part/gun/mechanism/smg
+	barrelvars = list(/obj/item/part/gun/barrel/pistol)
 
 /obj/item/gun/projectile/automatic/c20r/update_icon()
 	cut_overlays()
@@ -78,5 +78,5 @@
 	name = "C-20M frame"
 	desc = "A C-20M SMG frame. The syndicate's bread and butter, reverse-engineered."
 	icon_state = "frame_moe"
-	result = /obj/item/gun/projectile/automatic/c20r/moebius
+	resultvars = list(/obj/item/gun/projectile/automatic/c20r/moebius)
 	spawn_blacklisted = TRUE

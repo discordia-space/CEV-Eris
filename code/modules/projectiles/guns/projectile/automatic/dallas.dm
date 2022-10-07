@@ -49,8 +49,8 @@
 	name = "Dallas frame"
 	desc = "A Dallas pulse rifle frame. Sawing aliens in twain since time immemorial."
 	icon_state = "frame_dallas"
-	result = /obj/item/gun/projectile/automatic/dallas
-	grip = /obj/item/part/gun/grip/black
-	mechanism = /obj/item/part/gun/mechanism/machinegun
-	barrel = /obj/item/part/gun/barrel/clrifle
+	resultvars = list(/obj/item/gun/projectile/automatic/dallas)
+	gripvars = list(/obj/item/part/gun/grip/black)
+	mechanismvar = /obj/item/part/gun/mechanism/machinegun
+	barrelvars = list(/obj/item/part/gun/barrel/clrifle)
 	spawn_blacklisted = TRUE

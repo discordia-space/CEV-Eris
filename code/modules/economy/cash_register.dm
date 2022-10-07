@@ -410,7 +410,7 @@
 	<tr></tr>
 	<tr><td class="tx-name">Customer</td><td class="tx-data">[c_name]</td></tr>
 	<tr><td class="tx-name">Pay Method</td><td class="tx-data">[p_method]</td></tr>
-	<tr><td class="tx-name">Station Time</td><td class="tx-data">[stationtime2text()]</td></tr>
+	<tr><td class="tx-name">Ship Time</td><td class="tx-data">[stationtime2text()]</td></tr>
 	</table>
 	<table width=300>
 	"}

@@ -22,7 +22,7 @@
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	init_recoil = RIFLE_RECOIL(0.8)
-	damage_multiplier = 1.1
+	damage_multiplier = 1
 	penetration_multiplier = 0
 	spawn_blacklisted = TRUE
 	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
@@ -34,7 +34,6 @@
 		SEMI_AUTO_300,
 		BURST_5_ROUND
 		)
-	spawn_blacklisted = TRUE
 	serial_type = "Excelsior"
 
 	var/folded = FALSE
@@ -43,13 +42,11 @@
 	name = "AK frame"
 	desc = "An AK rifle frame. The eternal firearm."
 	icon_state = "frame_ak"
-	matter = list(MATERIAL_PLASTEEL = 8)
 	result = /obj/item/gun/projectile/automatic/ak47
-	variant_grip = TRUE
 	gripvars = list(/obj/item/part/gun/grip/excel, /obj/item/part/gun/grip/serb, /obj/item/part/gun/grip/wood, /obj/item/part/gun/grip/rubber)
 	resultvars = list(/obj/item/gun/projectile/automatic/ak47, /obj/item/gun/projectile/automatic/ak47/sa, /obj/item/gun/projectile/automatic/ak47/fs, /obj/item/gun/projectile/automatic/ak47/fs/ih)
-	mechanism = /obj/item/part/gun/mechanism/autorifle
-	barrel = /obj/item/part/gun/barrel/lrifle
+	mechanismvar = /obj/item/part/gun/mechanism/autorifle
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle)
 
 /obj/item/gun/projectile/automatic/ak47/proc/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
@@ -103,7 +100,7 @@
 	icon = 'icons/obj/guns/projectile/ak/krinkov.dmi'
 	w_class = ITEM_SIZE_BULKY	// Small rifle, also because it's basically an smg now
 	init_recoil = CARBINE_RECOIL(0.7)
-	damage_multiplier = 1 // Better control, worse damage
+	damage_multiplier = 0.9 // Better control, worse damage
 	penetration_multiplier = 0.2
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 
@@ -167,12 +164,12 @@
 	icon = 'icons/obj/guns/projectile/ak/vipr.dmi'
 	w_class = ITEM_SIZE_HUGE
 	init_recoil = RIFLE_RECOIL(0.7)
-	damage_multiplier = 1
+	damage_multiplier = 0.9 // civilian, you get what you get
 	penetration_multiplier = 0
 
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
-	gun_tags = list(GUN_FA_MODDABLE)
+	gun_tags = list(GUN_FA_MODDABLE, GUN_GILDABLE)
 
 	init_firemodes = list(
 		SEMI_AUTO_300,
@@ -199,6 +196,7 @@
 	icon = 'icons/obj/guns/projectile/ak/venger.dmi'
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
+	gun_tags = list(GUN_FA_MODDABLE)
 	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
 	price_tag = 2000
 	damage_multiplier = 1.1
@@ -255,13 +253,13 @@
 	w_class = ITEM_SIZE_HUGE
 	init_recoil = RIFLE_RECOIL(0.7)
 	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/plasteel = 7)
-	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_IH|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
 
 	origin_tech = list(TECH_COMBAT = 2)	//bad copies don't give good science
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	gun_tags = list(GUN_FA_MODDABLE)
 
-	damage_multiplier = 1
+	damage_multiplier = 1.1
 	penetration_multiplier = 0
 
 	init_firemodes = list(
@@ -269,28 +267,18 @@
 	)
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
+	matter = list(MATERIAL_STEEL = 22, MATERIAL_PLASTEEL = 18, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 12)
 	price_tag = 500
-	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/steel = 15)
+	gun_parts = list(/obj/item/part/gun/frame/kalash = 1, /obj/item/part/gun/grip/wood = 1 , /obj/item/part/gun/mechanism/autorifle/steel = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
 	serial_type = ""
 
+/obj/item/part/gun/frame/kalash
+	name = "Sermak frame"
+	desc = "A Sermak rifle frame. Cobbled together, but as good as new. Sort of."
+	icon_state = "frame_kalash"
+	matter = list(MATERIAL_STEEL = 22, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 6)
+	resultvars = list(/obj/item/gun/projectile/automatic/ak47/makeshift)
+	gripvars = list(/obj/item/part/gun/grip/wood)
+	mechanismvar = /obj/item/part/gun/mechanism/autorifle/steel
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle/steel, /obj/item/part/gun/barrel/srifle/steel, /obj/item/part/gun/barrel/clrifle/steel)
 
-/obj/item/gun/projectile/automatic/ak47/makeshift/attackby(obj/item/W, mob/user)
-	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
-		to_chat(user, SPAN_NOTICE("You begin to rechamber \the [src]."))
-		if(!ammo_magazine && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			if(caliber == CAL_LRIFLE)
-				caliber = CAL_SRIFLE
-				mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .20 Caliber."))
-			else if(caliber == CAL_SRIFLE)
-				caliber = CAL_CLRIFLE
-				mag_well = MAG_WELL_IH
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .25 Caseless."))
-			else if(caliber == CAL_CLRIFLE)
-				caliber = CAL_LRIFLE
-				mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .30 Caliber."))
-		else
-			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
-			return
-	..()

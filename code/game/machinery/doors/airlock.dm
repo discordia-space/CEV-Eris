@@ -647,7 +647,7 @@ There are 9 wires.
 	var/cache_string = "[wedged_item.icon]||[wedged_item.icon_state]||[wedged_item.overlays.len]||[wedged_item.underlays.len]"
 
 	if(!GLOB.wedge_icon_cache[cache_string])
-		var/icon/I = getFlatIcon(wedged_item, SOUTH, always_use_defdir = TRUE)
+		var/icon/I = getFlatIcon(wedged_item, SOUTH)
 
 		// #define COOL_LOOKING_SHIFT_USING_CROWBAR_RIGHT 14, #define COOL_LOOKING_SHIFT_USING_CROWBAR_DOWN 6 - throw a rock at me if this looks less magic.
 		I.Shift(SOUTH, 6) // These numbers I got by sticking the crowbar in and looking what will look good.
@@ -722,9 +722,9 @@ There are 9 wires.
 
 /obj/machinery/door/airlock/attack_ai(mob/user as mob)
 	if(!isblitzshell(user))
-		ui_interact(user)
+		nano_ui_interact(user)
 
-/obj/machinery/door/airlock/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+/obj/machinery/door/airlock/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state = GLOB.default_state)
 	var/data[0]
 
 	data["main_power_loss"]		= round(main_power_lost_until 	> 0 ? max(main_power_lost_until - world.time,	0) / 10 : main_power_lost_until,	1)

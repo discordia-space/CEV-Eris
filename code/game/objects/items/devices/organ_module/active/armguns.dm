@@ -14,13 +14,13 @@
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL|MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg
 	auto_eject = 1
-	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 8, MATERIAL_WOOD = 6)
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	damage_multiplier = 0.8
 	penetration_multiplier = 0.5
 	gun_tags = list(GUN_SILENCABLE)
 	init_recoil = EMBEDDED_RECOIL(1.5)
-	spawn_blacklisted = TRUE
+	bad_type = /obj/item/gun/projectile/automatic/armsmg
 
 /obj/item/organ_module/active/simple/armsmg
 	name = "embedded SMG"

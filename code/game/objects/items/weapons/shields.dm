@@ -41,13 +41,13 @@
 	. = ..()
 	switch(get_block_chance(user))
 		if(0 to 30)
-			to_chat(user, "So heavy... You feel doubtful in your ability to parry with this shield. Maybe if you changed your grip?")
+			to_chat(user, "So heavy... You feel doubtful in your ability to parry with this shield using only one hand until you grow stronger.")
 		if(31 to 45)
-			to_chat(user, "Holding this feels a little clumsy.")
+			to_chat(user, "Holding this feels a little clumsy. Perhaps if you were a bit stronger...")
 		if(46 to 55)
-			to_chat(user, "With a comfortable grip, you feel condifent in your ability to parry with this shield.")
+			to_chat(user, "A bit hefty, but you feel confident in your ability to parry with this shield.")
 		if(56 to 70)
-			to_chat(user, "The shield feels just right, you feel you can parry anything!")
+			to_chat(user, "The weight of this shield feels comfortable and maneuverable.")
 		if(71 to INFINITY)
 			to_chat(user, "You feel ready for a gladiator duel! Bring it on, roaches!")
 
@@ -109,7 +109,6 @@
 			return TRUE
 		else
 			return FALSE
-
 
 	if(wielded && !(attack_dir && (attack_dir & bad_arc)))
 		return TRUE
@@ -290,6 +289,33 @@
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
 		cooldown = world.time
 
+/obj/item/shield/riot/dozershield
+	name = "bulldozer shield"
+	desc = "A crude beast of a shield hewn from slabs of metal welded to a locker door, it has been forged into a wall that stands between you and your foes."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "dozershield"
+	item_state = "dozershield"
+	flags = CONDUCT
+	slot_flags = SLOT_BACK
+	force = WEAPON_FORCE_DANGEROUS
+	throwforce = WEAPON_FORCE_DANGEROUS
+	throw_speed = 1
+	throw_range = 4
+	w_class = ITEM_SIZE_HUGE
+	origin_tech = list()
+	matter = list(MATERIAL_GLASS = 20, MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 10)
+	price_tag = 200
+	base_block_chance = 55
+	shield_difficulty = 10
+	shield_integrity = 160
+	slowdown_hold = 1
+
+/obj/item/shield/riot/dozershield/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/tool/hammer) || istype(W, /obj/item/tool/sword))
+		on_bash(W, user)
+	else
+		..()
+
 /obj/item/shield/hardsuit
 	name = "hardsuit shield"
 	desc = "A massive ballistic shield that seems impossible to wield without mechanical assist."
@@ -309,7 +335,7 @@
 	base_block_chance = 60
 	shield_difficulty = 10
 	attack_verb = list("smashed", "bashed")
-	shield_integrity = 160
+	shield_integrity = 180
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 	var/picked_by_human = FALSE
 	var/mob/living/carbon/human/picking_human
@@ -317,7 +343,7 @@
 	var/mob/living/creator
 	var/cleanup = TRUE	// Should the shield despawn moments after being discarded by the summoner?
 	var/init_procees = TRUE
-	spawn_blacklisted = TRUE
+	bad_type = /obj/item/shield/hardsuit
 
 /obj/item/shield/hardsuit/get_protected_area(mob/user)
 	var/list/p_area = list(BP_CHEST, BP_GROIN, BP_HEAD)

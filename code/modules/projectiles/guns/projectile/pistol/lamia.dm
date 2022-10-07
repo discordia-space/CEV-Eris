@@ -39,7 +39,7 @@
 	name = "Lamia frame"
 	desc = "A Lamia pistol frame. Summary executions are never the same without it."
 	icon_state = "frame_lamia"
-	result = /obj/item/gun/projectile/lamia
-	grip = /obj/item/part/gun/grip/rubber
-	mechanism = /obj/item/part/gun/mechanism/pistol
-	barrel = /obj/item/part/gun/barrel/magnum
+	resultvars = list(/obj/item/gun/projectile/lamia)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
+	mechanismvar = /obj/item/part/gun/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/barrel/magnum)

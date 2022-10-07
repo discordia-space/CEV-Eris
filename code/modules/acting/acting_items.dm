@@ -16,7 +16,7 @@
 		active = 0
 		spawn(30)
 			new /obj/item/storage/backpack/chameleon(loc)
-			src.visible_message("\The [src] beeps, dispensing a backpack onto the floor.", "You hear a beeping sound followed by a thumping noise of some kind.")
+			src.visible_message("\The [src] beeps, dispensing a satchel onto the floor.", "You hear a beeping sound followed by a thumping noise of some kind.")
 			active = 1
 
 /obj/machinery/acting/changer

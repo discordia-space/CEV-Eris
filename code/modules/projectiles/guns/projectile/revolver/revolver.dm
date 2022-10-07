@@ -90,7 +90,7 @@
 	name = "Miller frame"
 	desc = "A Miller revolver frame. I hope you're feeling lucky, punk."
 	icon_state = "frame_revolver"
-	result = /obj/item/gun/projectile/revolver
-	grip = /obj/item/part/gun/grip/rubber
-	mechanism = /obj/item/part/gun/mechanism/revolver
-	barrel = /obj/item/part/gun/barrel/magnum
+	resultvars = list(/obj/item/gun/projectile/revolver)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
+	mechanismvar = /obj/item/part/gun/mechanism/revolver
+	barrelvars = list(/obj/item/part/gun/barrel/magnum)

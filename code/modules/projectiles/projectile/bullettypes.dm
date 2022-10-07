@@ -51,11 +51,11 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/srifle
 	name = ".20 caliber bullet"
-	damage_types = list(BRUTE = 36)
+	damage_types = list(BRUTE = 32)
 	armor_divisor = 1.5
 	penetrating = 2
 	can_ricochet = TRUE
-	recoil = 4
+	recoil = 3
 	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/srifle/nomuzzle
@@ -92,7 +92,7 @@ There are important things regarding this file:
 	penetrating = 2
 	can_ricochet = FALSE //to reduce collateral damage and FF, since IH use it in their primary firearm
 	recoil = 3.5
-	step_delay = 0.8 //intermediate between .20 and .30, but easy to use
+	step_delay = 0.9 //intermediate between .20 and .30, but easy to use
 
 /obj/item/projectile/bullet/clrifle/practice
 	name = "practice bullet"
@@ -123,7 +123,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/lrifle
 	name = ".30 caliber bullet"
-	damage_types = list(BRUTE = 16)
+	damage_types = list(BRUTE = 18)
 	armor_divisor = 1.5
 	penetrating = 2
 	can_ricochet = TRUE
@@ -190,16 +190,16 @@ There are important things regarding this file:
 //Sniper rifles .60
 /obj/item/projectile/bullet/antim
 	name = ".60 caliber bullet"
-	damage_types = list(BRUTE = 33)
+	damage_types = list(BRUTE = 18)
 	armor_divisor = 3
 	penetrating = 2
-	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
+	step_delay = 0.8
 	style_damage = 70
-	recoil = 30 // Good luck shooting these from a revolver
+	recoil = 15 // Good luck shooting these from a revolver
 	wounding_mult = WOUNDING_EXTREME
 
 /obj/item/projectile/bullet/antim/emp
-	damage_types = list(BRUTE = 30)
+	damage_types = list(BRUTE = 16)
 	armor_divisor = 2
 
 /obj/item/projectile/bullet/antim/emp/on_hit(atom/target, blocked = FALSE)
@@ -207,16 +207,14 @@ There are important things regarding this file:
 	empulse(target, 0, 0)
 
 /obj/item/projectile/bullet/antim/uranium
-	damage_types = list(BRUTE = 30)
+	damage_types = list(BRUTE = 16)
 	armor_divisor = 5
 	irradiate = 200
 
 /obj/item/projectile/bullet/antim/breach
-	damage_types = list(BRUTE = 25, HALLOSS = 20)
+	damage_types = list(BRUTE = 16, HALLOSS = 20)
 	armor_divisor = 2
 	penetrating = -5
-	step_delay = 0.6
-	hitscan = FALSE
 	nocap_structures = TRUE
 	kill_count = 30
 
@@ -238,8 +236,8 @@ There are important things regarding this file:
 
 
 /obj/item/projectile/bullet/antim/scrap
-	armor_divisor = 1.5
-	recoil = 40
+	armor_divisor = 2
+	recoil = 20
 
 //Shotguns .50
 /obj/item/projectile/bullet/shotgun
@@ -267,7 +265,8 @@ There are important things regarding this file:
 	wounding_mult = WOUNDING_WIDE
 
 /obj/item/projectile/bullet/shotgun/beanbag/scrap
-	damage_types = list(BRUTE = 9, HALLOSS = 55)
+	damage_types = list(BRUTE = 9, HALLOSS = 20)
+	recoil = 10
 
 /obj/item/projectile/bullet/shotgun/practice
 	name = "practice slug"
@@ -288,26 +287,25 @@ There are important things regarding this file:
 		M.adjust_fire_stacks(fire_stacks)
 		M.IgniteMob()
 
-//Should do about 80 damage at 1 tile distance (adjacent), and 50 damage at 3 tiles distance.
-//Overall less damage than slugs in exchange for more damage at very close range and more embedding
+//Overall less damage than slugs vs armor for more damage to unarmored
 //Has a small wounding modifier due to /bullet/pellet
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
 	icon_state = "birdshot-1"
 	damage_types = list(BRUTE = 21)
 	armor_divisor = 1
-	pellets = 8
+	pellets = 6
 	range_step = 1
 	spread_step = 10
 	pellet_to_knockback_ratio = 2
-	recoil = 8
+	recoil = 5
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()
 	icon_state = "birdshot-[rand(1,4)]"
 
 /obj/item/projectile/bullet/pellet/shotgun/scrap
-	armor_divisor = 1.2
+	armor_divisor = 0.8
 	recoil = 5
 
 //Miscellaneous

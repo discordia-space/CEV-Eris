@@ -52,12 +52,14 @@
 		CAL_SRIFLE = list(
 			".20 ammo pile (10 ammo, 3 points)" = list(3, /obj/item/ammo_casing/srifle/scrap/prespawned),
 			".20 ammo strip (5 ammo, 1 point)" = list(1, /obj/item/ammo_magazine/slsrifle/scrap),
+			".20 ammo speedloader (8 ammo, 3 points)" = list(3, /obj/item/ammo_magazine/slsrifle_rev/scrap),
 			".20 standard magazine (empty, 25 ammo, 5 points)" = list(5, /obj/item/ammo_magazine/srifle/empty),
 			".20 extended magazine (empty, 35 ammo, 7 points)" = list(7, /obj/item/ammo_magazine/srifle/long/empty),
 			".20 drum magazine (empty, 60 ammo, 15 points)" = list(15, /obj/item/ammo_magazine/srifle/drum/empty),
 			".20 ammo box (50 ammo, 15 points)" = list(15, /obj/item/ammo_magazine/ammobox/srifle_small/scrap)),
 		CAL_CLRIFLE = list(
 			".25 ammo pile (10 ammo, 3 points)" = list(3, /obj/item/ammo_casing/clrifle/scrap/prespawned),
+			".25 ammo strip (5 ammo, 1 point)" = list(1, /obj/item/ammo_magazine/slclrifle/scrap),
 			".25 pistol magazine (empty, 10 ammo, 5 points)" = list(5, /obj/item/ammo_magazine/cspistol/empty),
 			".25 standard magazine (empty, 30 ammo, 5 points)" = list(5, /obj/item/ammo_magazine/ihclrifle/empty),
 			".25 ammo box (60 ammo, 15 points)" = list(15, /obj/item/ammo_magazine/ammobox/clrifle_small/scrap)),

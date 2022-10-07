@@ -1,6 +1,6 @@
 /decl/hierarchy/outfit/job/engineering
 	hierarchy_type = /decl/hierarchy/outfit/job/engineering
-	belt = /obj/item/storage/belt/utility/full
+	belt = /obj/item/storage/belt/utility/technomancer
 	l_ear = /obj/item/device/radio/headset/headset_eng
 	shoes = /obj/item/clothing/shoes/workboots
 	gloves = /obj/item/clothing/gloves/thick
