@@ -168,7 +168,7 @@
 /datum/gear/uniform/security_formal
 	display_name = "formal security outfit"
 	path = /obj/item/clothing/under/security_formal
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Ironhammer Medical Specialist")
+	allowed_roles = list(JOBS_SECURITY)
 	cost = 2
 
 /datum/gear/uniform/assistantformal
