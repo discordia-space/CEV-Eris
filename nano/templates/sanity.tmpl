@@ -19,7 +19,7 @@
 			<div style="padding: 1px; overflow:auto;">
 					<h3> Sanity level:</h3>
 			</div>
-			{{:helper.displayBar(data.sanity, 0, data.sanity_max_level, data.sanity < 33 ? 'bad' : data.sanity > 66 ? 'good': 'average', data.sanity)}}
+			{{:helper.displayBar(data.sanity, 0, data.sanity_max_level, data.sanity < 33 ? 'bad' : data.sanity > 66 ? 'good': 'average', data.sanity ? data.sanity : "0")}}
 		</div>
 	</div>
 </div>
