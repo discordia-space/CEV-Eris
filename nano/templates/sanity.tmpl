@@ -44,7 +44,7 @@
 			<div style="padding: 1px; overflow:auto;">
 					<h3>Insight progress:</h3>
 			</div>
-			{{:helper.displayBar(data.insight, 0, 100, data.insight < 33 ? 'bad' : data.insight > 66 ? 'good': 'average', data.insight)}}
+			{{:helper.displayBar(data.insight, 0, 100, data.insight < 33 ? 'bad' : data.insight > 66 ? 'good': 'average', data.insight ? data.insight : "0")}}
 		</div>
 	</div>
 </div>
