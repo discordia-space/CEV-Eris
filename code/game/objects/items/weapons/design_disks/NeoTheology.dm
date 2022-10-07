@@ -107,7 +107,7 @@
 	disk_name = "NeoTheology Armory - \"Triarii Arms\""
 	license = 24 // Chonky disk, chonky prices
 	designs = list(
-		/datum/design/bioprinter/leather/holster/sheath,
+		/datum/design/bioprinter/leather/holster/sheath = 0,
 		/datum/design/autolathe/nt/sword/nt_scourge,
 		/datum/design/autolathe/nt/sword/nt_halberd = 2,
 		/datum/design/autolathe/nt/sword/nt_spear,
