@@ -237,6 +237,16 @@
 	name = "Third Section Starboard Hallway"
 	icon_state = "hallway3side"
 
+/area/eris/hallway/side/section3deck2starboard
+	name = "Third Section Deck 2 Starboard Hallway"
+	icon_state = "hallway3side"
+
+/area/eris/hallway/side/section3deck2port
+	name = "Third Section Deck 2 Port Hallway"
+	icon_state = "hallway3side"
+
+
+
 /area/eris/hallway/side/hydroponicshallway
 	name = "Hydroponics Hallway"
 	icon_state = "erisyellow"
