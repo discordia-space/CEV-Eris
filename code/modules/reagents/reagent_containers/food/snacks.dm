@@ -397,7 +397,7 @@
 
 /obj/item/reagent_containers/food/snacks/shokoloud
 	name = "shokolad bar"
-	desc = "A bar of dark chocolate. Strangely polarizing."
+	desc = "A bar of some waxy looking candy. Tastes like it too."
 	icon_state = "shokoloud"
 	trash = /obj/item/trash/shokoloud
 	open = FALSE
