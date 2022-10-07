@@ -68,7 +68,7 @@
 			<div style="padding: 1px; overflow:auto;">
 				<h3>Current style:</h3>
 			</div>
-			{{:helper.displayBar(data.style, data.min_style, data.max_style, data.style < 0 ? 'bad' : data.style > 10 ? 'good': 'average', data.style)}}
+			{{:helper.displayBar(data.style, data.min_style, data.max_style, data.style < 4 ? 'bad' : data.style > 9 ? 'good': 'average', data.style ? data.style : "0")}}
 		</div>
 	</div>
 </div>
