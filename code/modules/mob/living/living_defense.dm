@@ -119,15 +119,14 @@
 
 	// Returns if a projectile should continue travelling
 	if(return_continuation)
+		var/obj/item/projectile/P = used_weapon
+		P.damage_types = dmg_types
 		if(sharp)
 			var/remaining_dmg = 0
 			for(var/dmg_type in dmg_types)
 				remaining_dmg += dmg_types[dmg_type]
-			return ((total_dmg / 2 < remaining_dmg && remaining_dmg > 20) ? PROJECTILE_CONTINUE : PROJECTILE_STOP)
-
-	if(isProjectile(used_weapon))
-		var/obj/item/projectile/P = used_weapon
-		P.damage_types = dmg_types
+			return ((total_dmg / 2 < remaining_dmg && remaining_dmg > mob_size) ? PROJECTILE_CONTINUE : PROJECTILE_STOP)
+		else return PROJECTILE_STOP
 
 	return dealt_damage
 
@@ -175,13 +174,10 @@
 	//Armor and damage
 	if(!P.nodamage)
 		hit_impact(P.get_structure_damage(), hit_dir)
-		P.damage_types = damage_through_armor(def_zone = def_zone_hit, attack_flag = P.check_armour, armour_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P), wounding_multiplier = P.wounding_mult, dmg_types = P.damage_types, return_continuation = TRUE)
-		if(!P.damage_types.len)
-			P.on_impact(src)
-			qdel(P)
+		return damage_through_armor(def_zone = def_zone_hit, attack_flag = P.check_armour, armour_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P), wounding_multiplier = P.wounding_mult, dmg_types = P.damage_types, return_continuation = TRUE)
 
 	P.on_hit(src, def_zone_hit)
-	return TRUE
+	return PROJECTILE_CONTINUE
 
 //Handles the effects of "stun" weapons
 /mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon)

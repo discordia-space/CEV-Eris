@@ -5,7 +5,7 @@
 	nodamage = 0
 	check_armour = ARMOR_BULLET
 	embed = TRUE
-	sharp = FALSE
+	sharp = TRUE // Also used for checking whether this penetrates
 	hitsound_wall = "ric_sound"
 	var/mob_passthrough_check = 0
 	recoil = 5
@@ -39,13 +39,6 @@
 
 	if(istype(A, /mob/living/exosuit))
 		return 1 //exosuits have their own penetration handling
-	var/damage = damage_types[BRUTE]
-	if(ismob(A))
-		if(!mob_passthrough_check)
-			return 0
-		if(iscarbon(A))
-			damage *= 0.7
-		return 1
 
 	var/blocked_damage = 0
 	if(istype(A, /turf/simulated/wall)) // TODO: refactor this from functional into OOP
