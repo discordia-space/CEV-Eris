@@ -261,7 +261,7 @@
 
 		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
 
-		damage_through_armor(throw_damage, dtype, null, ARMOR_MELEE, 1, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
+		damage_through_armor(throw_damage, dtype, null, ARMOR_MELEE, O.armor_divisor, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
 
 		O.throwing = 0		//it hit, so stop moving
 
