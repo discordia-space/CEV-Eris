@@ -99,7 +99,7 @@
 				<div style="padding: 1px; overflow:auto;">
 					<h3>Rest progress:</h3>
 				</div>
-				{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.insight_rest > 66 ? 'good': 'average', data.insight_rest)}}
+				{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.insight_rest > 66 ? 'good': 'average', data.insight_rest ? data.insight_rest : "0")}}
 				<br>
 			{{else}}
 				Currently you don't have desires
