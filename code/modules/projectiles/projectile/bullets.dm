@@ -47,35 +47,35 @@
 			damage *= 0.7
 		return 1
 
-	var/chance = 0
+	var/blocked_damage = 0
 	if(istype(A, /turf/simulated/wall)) // TODO: refactor this from functional into OOP
 		var/turf/simulated/wall/W = A
-		chance = round(penetrating/2 * armor_divisor * 2 / W.material.integrity * 180)
+		blocked_damage = round(W.material.integrity / armor_divisor / 8)
 	else if(istype(A, /obj/item/shield))
 		var/obj/item/shield/S = A
-		chance = round(armor_divisor * 2 / S.shield_integrity * 180)
+		blocked_damage = round(S.shield_integrity / armor_divisor / 8)
 	else if(istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
-		chance = round(penetrating/2 * armor_divisor * 2 / D.maxhealth * 180)
-		if(D.glass) chance *= 2
+		blocked_damage = round(D.maxhealth / armor_divisor / 8)
+		if(D.glass) blocked_damage /= 2
 	else if(istype(A, /obj/structure/girder))
-		chance = 100
+		return TRUE
 	else if(istype(A, /obj/structure/low_wall))
-		chance = round(penetrating/2 * armor_divisor * 2 / 150 * 180) // hardcoded, value is same as steel wall, will have to be changed once low walls have integrity
+		blocked_damage = round(20 / armor_divisor) // hardcoded, value is same as steel wall, will have to be changed once low walls have integrity
 	else if(istype(A, /obj/structure/table))
 		var/obj/structure/table/T = A
-		chance = round(penetrating/2 * armor_divisor * 2 / T.maxhealth * 180)
+		blocked_damage = round(T.maxhealth / armor_divisor / 8)
 	else if(istype(A, /obj/structure/barricade))
 		var/obj/structure/barricade/B = A
-		chance = round(penetrating/2 * armor_divisor * 2 / B.material.integrity * 180)
+		blocked_damage = round(B.material.integrity / armor_divisor / 8)
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
-		chance = armor_divisor * penetrating/2
+		blocked_damage = round(20 / armor_divisor)
 
-	if(prob(chance))
-		var/maintainedVelocity = min(max(20, chance), 90) / 100 //the chance to penetrate is used to calculate leftover velocity, capped at 90%
-		for(var/i in damage_types)
-			damage_types[i] *= maintainedVelocity
-		step_delay = min(step_delay / maintainedVelocity, step_delay / 2)
+	var/percentile_blocked = block_damage(blocked_damage, A)
+	if(percentile_blocked > 0.5)
+		percentile_blocked = CLAMP(percentile_blocked, 50, 90) / 100 // calculate leftover velocity, capped between 50% and 90%
+
+		step_delay = min(step_delay / percentile_blocked, step_delay / 2)
 
 		if(A.opacity || istype(A, /obj/item/shield))
 			//display a message so that people on the other side aren't so confused

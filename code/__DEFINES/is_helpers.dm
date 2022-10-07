@@ -94,6 +94,8 @@
 
 #define ismachinery(A) (istype(A, /obj/machinery))
 
+#define isProjectile(A) (istype(A, /obj/item/projectile))
+
 #define isWrench(A) istype(A, /obj/item/tool/wrench)
 
 #define isWelder(A) istype(A, /obj/item/tool/weldingtool)

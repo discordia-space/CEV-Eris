@@ -1,4 +1,4 @@
-#define ARMOR_HALLOS_COEFFICIENT 0.1
+#define ARMOR_HALLOS_COEFFICIENT 0.4
 
 
 //This calculation replaces old run_armor_check in favor of more complex and better system
@@ -17,7 +17,7 @@
 	else
 		show_message(msg1, 1)
 
-/mob/living/proc/damage_through_armor(var/damage = 0, var/damagetype = BRUTE, var/def_zone, var/attack_flag = ARMOR_MELEE, var/armour_divisor = 1, var/used_weapon, var/sharp = FALSE, var/edge = FALSE, var/wounding_multiplier = 1, var/list/dmg_types = list())
+/mob/living/proc/damage_through_armor(var/damage = 0, var/damagetype = BRUTE, var/def_zone, var/attack_flag = ARMOR_MELEE, var/armour_divisor = 1, var/used_weapon, var/sharp = FALSE, var/edge = FALSE, var/wounding_multiplier = 1, var/list/dmg_types = list(), var/return_continuation = FALSE)
 
 	if(damage) // If damage is defined, we add it to the list
 		if(!dmg_types[damagetype])
@@ -46,31 +46,33 @@
 	for(var/dmg_type in dmg_types)
 		var/dmg = dmg_types[dmg_type]
 		if(dmg)
-			var/dmg_armor_difference // Used for agony calculation, as well as reduction in armour before follow-up attacks
+			var/used_armor = 0 // Used for agony calculation, as well as reduction in armour before follow-up attacks
 
 			if(dmg_type in list(BRUTE, BURN, TOX, BLAST)) // Some damage types do not help penetrate armor
 				if(remaining_armor)
-					dmg_armor_difference = dmg - remaining_armor
+					var/dmg_armor_difference = dmg - remaining_armor
+					used_armor += dmg_armor_difference ? dmg - dmg_armor_difference : dmg
 					remaining_armor = dmg_armor_difference ? 0 : -dmg_armor_difference
 					dmg = dmg_armor_difference ? dmg_armor_difference : 0
-
 				if(remaining_ablative && dmg)
 					var/ablative_difference
 					ablative_difference = dmg - remaining_ablative
+					used_armor += ablative_difference ? dmg - ablative_difference : dmg
 					remaining_ablative = ablative_difference ? 0 : -ablative_difference
 					dmg = ablative_difference ? ablative_difference : 0
-					dmg_armor_difference += ablative_difference
 			else
 				dmg = max(dmg - remaining_armor - remaining_ablative, 0)
 
+			if(!(dmg_type == HALLOSS)) // Determine pain from impact
+				adjustHalLoss(used_armor * wounding_multiplier * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
+
+			dmg_types[dmg_type] = dmg // Finally, we adjust the damage passing through
 			if(dmg)
 				dealt_damage += dmg
 				dmg *= dmg_type == HALLOSS ? 1 : wounding_multiplier
 
 				if(dmg_type == HALLOSS)
 					dmg = round(dmg * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
-				else if(dmg_armor_difference)
-					adjustHalLoss(dmg_armor_difference * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 				if(dmg_type == BRUTE)
 
 					if ( (sharp || edge) && prob ( (1 - dmg / dmg_types[dmg_type]) * 100 ) ) // If enough of the brute damage is blocked, sharpness is lost from all followup attacks
@@ -115,6 +117,18 @@
 	if(ablative_armor)
 		damageablative(def_zone, (ablative_armor - remaining_ablative) * armour_divisor)
 
+	// Returns if a projectile should continue travelling
+	if(return_continuation)
+		if(sharp)
+			var/remaining_dmg = 0
+			for(var/dmg_type in dmg_types)
+				remaining_dmg += dmg_types[dmg_type]
+			return ((total_dmg / 2 < remaining_dmg && remaining_dmg > 20) ? PROJECTILE_CONTINUE : PROJECTILE_STOP)
+
+	if(isProjectile(used_weapon))
+		var/obj/item/projectile/P = used_weapon
+		P.damage_types = dmg_types
+
 	return dealt_damage
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
@@ -132,7 +146,7 @@
 		return
 	shake_animation(damage)
 
-
+ // return PROJECTILE_CONTINUE if bullet should continue flying
 /mob/living/bullet_act(obj/item/projectile/P, var/def_zone_hit)
 	var/hit_dir = get_dir(P, src)
 
@@ -161,7 +175,10 @@
 	//Armor and damage
 	if(!P.nodamage)
 		hit_impact(P.get_structure_damage(), hit_dir)
-		damage_through_armor(def_zone = def_zone_hit, attack_flag = P.check_armour, armour_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P), wounding_multiplier = P.wounding_mult, dmg_types = P.damage_types)
+		P.damage_types = damage_through_armor(def_zone = def_zone_hit, attack_flag = P.check_armour, armour_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P), wounding_multiplier = P.wounding_mult, dmg_types = P.damage_types, return_continuation = TRUE)
+		if(!P.damage_types.len)
+			P.on_impact(src)
+			qdel(P)
 
 	P.on_hit(src, def_zone_hit)
 	return TRUE
