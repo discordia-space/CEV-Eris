@@ -32,8 +32,8 @@
 	icon_state = "engineering_rig"
 	price_tag = 350
 	armor = list(
-		melee = 8,
-		bullet = 8,
+		melee = 10,
+		bullet = 10,
 		energy = 0,
 		bomb = 25,
 		bio = 100,
@@ -79,9 +79,9 @@
 	desc = "A light rig for repairs and maintenance to the outside of habitats and vessels."
 	icon_state = "eva_rig"
 	armor = list(
-		melee = 7,
-		bullet = 2,
-		energy = 2,
+		melee = 9,
+		bullet = 3,
+		energy = 3,
 		bomb = 10,
 		bio = 100,
 		rad = 100
@@ -122,9 +122,9 @@ Advanced Voidsuit: Technomancer Exultant
 	icon_state = "ce_rig"
 	rarity_value = 20
 	armor = list(
-		melee = 6,
-		bullet = 6,
-		energy = 6,
+		melee = 8,
+		bullet = 8,
+		energy = 8,
 		bomb = 50,
 		bio = 100,
 		rad = 100
@@ -185,9 +185,9 @@ Technomancer RIG
 	icon_state = "techno_rig"
 	rarity_value = 20
 	armor = list(
-		melee = 6,
-		bullet = 6,
-		energy = 6,
+		melee = 8,
+		bullet = 8,
+		energy = 8,
 		bomb = 50,
 		bio = 100,
 		rad = 100
@@ -245,7 +245,7 @@ Technomancer RIG
 	armor = list(
 		melee = 0,
 		bullet = 0,
-		energy = 5,
+		energy = 8,
 		bomb = 90,
 		bio = 100,
 		rad = 100
@@ -297,8 +297,8 @@ Technomancer RIG
 	desc = "A relatively lightweight ceramic RIG suit designed for medical rescue in hazardous locations."
 	icon_state = "medical_rig"
 	armor = list(
-		melee = 2,
-		bullet = 0,
+		melee = 4,
+		bullet = 4,
 		energy = 0,
 		bomb = 50,
 		bio = 100,
@@ -316,7 +316,7 @@ Technomancer RIG
 		/obj/item/stack/medical,
 		/obj/item/roller
 	)
-	slowdown = HEAVY_SLOWDOWN * 0.5
+	slowdown = LIGHT_SLOWDOWN
 	stiffness = MEDIUM_STIFFNESS
 
 /obj/item/rig/medical/equipped
