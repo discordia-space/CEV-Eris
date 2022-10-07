@@ -52,11 +52,11 @@
 	var/level_change = 0
 
 	var/insight
-	var/max_insight = 1
+	var/max_insight = INFINITY
 	var/insight_passive_gain_multiplier = 0.5
 	var/insight_gain_multiplier = 1
 	var/insight_rest = 0
-	var/max_insight_rest = INFINITY
+	var/max_insight_rest = 1
 	var/insight_rest_gain_multiplier = 1
 	var/resting = 0
 	var/max_resting = 1
