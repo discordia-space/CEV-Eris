@@ -359,8 +359,8 @@
 	build_path = /obj/item/tool/sword/nt/spear
 
 /datum/design/autolathe/nt/sword/nt_verutum
-	name = "NT Javelin"
-	build_path = /obj/item/stack/thrown/nt/verutum
+	name = "NT Javelins (3)"
+	build_path = /obj/item/stack/thrown/nt/verutum/full
 
 /datum/design/autolathe/nt/tool_upgrade/sanctifier
 	name = "sanctifier"
