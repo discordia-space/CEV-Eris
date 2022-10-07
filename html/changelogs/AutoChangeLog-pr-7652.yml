@@ -1,0 +1,4 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - rscadd: added paramedic items to the EMT belt allowed list
