@@ -41,7 +41,10 @@
 		/obj/item/gun/projectile/boltgun/obrez,
 		/obj/item/gun/energy/retro/sawn,
 		/obj/item/gun/projectile/automatic/luty,
-		/obj/item/gun/projectile/revolver/hornet
+		/obj/item/gun/projectile/revolver/hornet,
+		/obj/item/gun/projectile/pistol/type_62,
+		/obj/item/gun/projectile/pistol/type_90,
+		/obj/item/gun/projectile/shotgun/type_21
 		)
 
 	sliding_behavior = TRUE
@@ -164,6 +167,8 @@
 		/obj/item/gun/projectile/mk58,
 		/obj/item/gun/projectile/olivaw,
 		/obj/item/gun/projectile/mandella,
+		/obj/item/gun/projectile/pistol,
+		/obj/item/gun/projectile/shotgun/type_21,
 		/obj/item/gun/energy/gun,
 		/obj/item/gun/energy/chameleon,
 		/obj/item/gun/energy/captain,
