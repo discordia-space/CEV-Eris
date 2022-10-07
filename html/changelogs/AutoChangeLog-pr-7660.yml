@@ -1,0 +1,4 @@
+author: budgetcommander
+delete-after: true
+changes:
+  - rscadd: Sanity UI now shows exact values
