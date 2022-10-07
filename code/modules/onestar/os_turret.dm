@@ -31,7 +31,7 @@
 	icon_state = "os_laser"
 	circuit = /obj/item/electronics/circuitboard/os_turret/laser
 	range = 10
-	projectile = /obj/item/projectile/beam/pulse
+	projectile = /obj/item/projectile/beam/pulsed_laser
 	number_of_shots = 3
 	time_between_shots = 0.3 SECONDS
 	cooldown_time = 2 SECONDS
@@ -82,6 +82,11 @@
 			continue
 		if(L.stat == DEAD)
 			continue
+
+		if(should_target_players)
+			if(L.faction == "onestar")	// For future content or admin use
+				continue
+
 		if(L.invisibility >= INVISIBILITY_LEVEL_ONE) // Cannot see him. see_invisible is a mob-var
 			continue
 		if(!check_trajectory(L, src))	//check if we have true line of sight
@@ -91,7 +96,7 @@
 			nearest_valid_target = L
 			nearest_valid_target_distance = distance_to_target
 		else
-			if(distance_to_target > nearest_valid_target_distance)
+			if(distance_to_target < nearest_valid_target_distance)
 				nearest_valid_target = L
 				nearest_valid_target_distance = distance_to_target
 	
@@ -147,7 +152,7 @@
 /obj/machinery/power/os_turret/attackby(obj/item/I, mob/user)
 	var/mec_or_cog = max(user.stats.getStat(STAT_MEC), user.stats.getStat(STAT_COG))
 
-	if(mec_or_cog >= STAT_LEVEL_EXPERT)
+	if(mec_or_cog < STAT_LEVEL_EXPERT)
 		to_chat(user, SPAN_WARNING("You lack the knowledge or skill to perform work on \the [src]."))
 	else
 		if(default_deconstruction(I, user))
@@ -237,7 +242,9 @@
 	if(returning_fire)
 		returning_fire = FALSE
 
-/obj/machinery/power/os_turret/proc/shoot(target, def_zone)
+/obj/machinery/power/os_turret/proc/shoot(atom/target, def_zone)
+	if(QDELETED(target))
+		return
 	set_dir(get_dir(src, target))
 	var/obj/item/projectile/P = new projectile(loc)
 	P.launch(target, def_zone)
@@ -252,6 +259,7 @@
 
 /obj/item/electronics/circuitboard/os_turret
 	name = T_BOARD("One Star gauss turret")
+	description_info = "When re-constructed, this turret will target roaches, spiders, and golems."
 	build_path = /obj/machinery/power/os_turret
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 5)
@@ -264,6 +272,11 @@
 		/obj/item/cell/large = 1
 	)
 	var/target_superior_mobs = FALSE
+
+/obj/item/electronics/circuitboard/os_turret/examine(user, distance)
+	. = ..()
+	if(target_superior_mobs)
+		to_chat(user, SPAN_NOTICE("When constructed, this turret will target roaches, spiders, and golems."))
 
 /obj/item/electronics/circuitboard/os_turret/laser
 	name = T_BOARD("One Star laser turret")
@@ -290,14 +303,15 @@
 	sharp = TRUE	// Until all bullets are turned sharp by default
 	wounding_mult = WOUNDING_EXTREME
 
-/obj/item/projectile/beam/pulse
+/obj/item/projectile/beam/pulsed_laser
 	name = "pulsed beam"
 	icon_state = "beam_blue"
-	damage_types = list(BURN = 15)
+	damage_types = list(BURN = 20)
 	armor_divisor = 2
 	stutter = 3
 	style_damage = 25
 	recoil = 10
+	wounding_mult = WOUNDING_WIDE
 
 	muzzle_type = /obj/effect/projectile/laser_blue/muzzle
 	tracer_type = /obj/effect/projectile/laser_blue/tracer
