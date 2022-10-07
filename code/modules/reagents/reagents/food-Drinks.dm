@@ -1578,6 +1578,11 @@
 	glass_center_of_mass = list("x"=17, "y"=8)
 	taste_tag = list(TASTE_SWEET,TASTE_SLIMEY)
 
+/datum/reagent/alcohol/aloe/apply_sanity_effect(mob/living/carbon/human/H, effect_multiplier)
+	if(H.getFireLoss > 0) //If the drinker has burns, Aloe soothes because Aloe Vera
+		effect_multiplier *= 2
+	..()
+
 /datum/reagent/alcohol/amasec
 	name = "Amasec"
 	id = "amasec"
