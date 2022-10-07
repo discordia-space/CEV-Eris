@@ -1,0 +1,4 @@
+author: ErisMeleeEnjoyer
+delete-after: true
+changes:
+  - bugfix: no more gun overlay on sheaths
