@@ -2533,7 +2533,7 @@
 	trash = /obj/item/trash/mre_candy
 	preloaded_reagents = list("sugar" = 3, "serotrotium" = 2)
 	open = FALSE
-	taste_tag = list(COCO_FOOD, SWEET_FOOD)
+	taste_tag = list(SWEET_FOOD)
 
 /obj/item/reagent_containers/food/snacks/proc/open(mob/user)
 	open = TRUE
