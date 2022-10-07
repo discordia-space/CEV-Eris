@@ -53,13 +53,13 @@
 
 	var/insight
 	var/max_insight = INFINITY
-	var/insight_passive_gain_multiplier = 0.5
+	var/insight_passive_gain_multiplier = 1
 	var/insight_gain_multiplier = 1
 	var/insight_rest = 0
-	var/max_insight_rest = 1
+	var/max_insight_rest = INFINITY
 	var/insight_rest_gain_multiplier = 1
 	var/resting = 0
-	var/max_resting = 1
+	var/max_resting = INFINITY
 
 	var/list/valid_inspirations = list(/obj/item/oddity)
 	var/list/desires = list()
@@ -157,12 +157,12 @@
 			if(H.sanity.level > 60)
 				moralist_factor += 0.02
 	give_insight(INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier)
-	while(insight >= 100)
+	while(resting < max_resting && insight >= 100)
 		give_resting(1)
 		if(owner.stats.getPerk(PERK_ARTIST))
-			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? " Now you need to make art. You cannot gain more insight before you do." : null]"))
+			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to make art. You cannot gain more insight before you do."]"))
 		else
-			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? " Now you need to rest and rethink your life choices." : " Your previous insight has been discarded, shifting your desires for new ones."]"))
+			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
 			pick_desires()
 			insight -= 100
 		owner.playsound_local(get_turf(owner), 'sound/sanity/psychochimes.ogg', 100)
@@ -236,72 +236,17 @@
 		finish_rest()
 
 /datum/sanity/proc/finish_rest()
+	var/list/stat_change = list()
 
-	var/rest = input("How would you like to improve your stats?","Rest complete",null) as null|anything in list(
-		"Internalize your recent experiences",
-		"Focus on an oddity",
-		"Convert your fulfilled insight for use in special structures"
-		)
+	var/stat_pool = resting * 15
+	while(stat_pool--)
+		LAZYAPLUS(stat_change, pick(ALL_STATS), 1)
 
-	if(rest == "Focus on an oddity")
-		if(owner.stats.getPerk(PERK_ARTIST))
-			to_chat(owner, SPAN_NOTICE("Your artistic mind prevents you from using an oddity."))
-			rest = "Internalize your recent experiences"
-		else
-			var/oddity_in_posession = FALSE
+	for(var/stat in stat_change)
+		owner.stats.changeStat(stat, stat_change[stat])
 
-			for(var/obj/item/I in owner.get_contents())
-				if(is_type_in_list(I, valid_inspirations) && I.GetComponent(/datum/component/inspiration))
-					oddity_in_posession = TRUE
-					break
-		
-			if(!oddity_in_posession)
-				to_chat(owner, SPAN_NOTICE("You do not have any oddities to use."))
-				rest = "Internalize your recent experiences"
-
-	switch(rest)
-
-		if("Focus on an oddity")
-
-			var/list/inspiration_items = list()
-			for(var/obj/item/I in owner.get_contents()) //what oddities do we have?
-				if(is_type_in_list(I, valid_inspirations) && I.GetComponent(/datum/component/inspiration))
-					inspiration_items += I
-			
-			if(inspiration_items.len)//should always work, but in case of bug, there is an else
-				var/obj/item/O = inspiration_items.len > 1 ? owner.client ? input(owner, "Select something to use as inspiration", "Level up") in inspiration_items : pick(inspiration_items) : inspiration_items[1]
-				if(!O)
-					return
-				
-				GET_COMPONENT_FROM(I, /datum/component/inspiration, O) // If it's a valid inspiration, it should have this component. If not, runtime
-				var/list/L = I.calculate_statistics()
-				for(var/stat in L)
-					var/stat_up = L[stat] * 2
-					to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
-					owner.stats.changeStat(stat, stat_up)
-				
-				if(I.perk)
-					if(owner.stats.addPerk(I.perk))
-						I.perk = null
-					
-				SEND_SIGNAL(O, COMSIG_ODDITY_USED)
-				for(var/mob/living/carbon/human/H in viewers(owner))
-					SEND_SIGNAL(H, COMSIG_HUMAN_ODDITY_LEVEL_UP, owner, O)
-
-			else to_chat(owner, SPAN_NOTICE("Something really buggy happened with your brain."))
-
-		if("Convert your fulfilled insight for use in special structures")
-			owner.rest_points += 1 //yeah... that's it
-
-		else
-			var/list/stat_change = list()
-
-			var/stat_pool = resting * 15
-			while(stat_pool--)
-				LAZYAPLUS(stat_change, pick(ALL_STATS), 3)
-
-			for(var/stat in stat_change)
-				owner.stats.changeStat(stat, stat_change[stat])
+	if(!owner.stats.getPerk(PERK_ARTIST))
+		INVOKE_ASYNC(src, .proc/oddity_stat_up, resting)
 
 	if(owner.stats.getPerk(PERK_ARTIST))
 		to_chat(owner, SPAN_NOTICE("You have created art and improved your stats."))
@@ -310,6 +255,28 @@
 	owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
 	owner.pick_individual_objective()
 	resting = 0
+
+/datum/sanity/proc/oddity_stat_up(multiplier)
+	var/list/inspiration_items = list()
+	for(var/obj/item/I in owner.get_contents())
+		if(is_type_in_list(I, valid_inspirations) && I.GetComponent(/datum/component/inspiration))
+			inspiration_items += I
+	if(inspiration_items.len)
+		var/obj/item/O = inspiration_items.len > 1 ? owner.client ? input(owner, "Select something to use as inspiration", "Level up") in inspiration_items : pick(inspiration_items) : inspiration_items[1]
+		if(!O)
+			return
+		GET_COMPONENT_FROM(I, /datum/component/inspiration, O) // If it's a valid inspiration, it should have this component. If not, runtime
+		var/list/L = I.calculate_statistics()
+		for(var/stat in L)
+			var/stat_up = L[stat] * multiplier
+			to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
+			owner.stats.changeStat(stat, stat_up)
+		if(I.perk)
+			if(owner.stats.addPerk(I.perk))
+				I.perk = null
+		SEND_SIGNAL(O, COMSIG_ODDITY_USED)
+		for(var/mob/living/carbon/human/H in viewers(owner))
+			SEND_SIGNAL(H, COMSIG_HUMAN_ODDITY_LEVEL_UP, owner, O)
 
 /datum/sanity/proc/onDamage(amount)
 	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))

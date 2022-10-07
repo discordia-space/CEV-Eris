@@ -1772,40 +1772,6 @@
 	contraband = list(
 		/obj/item/clothing/head/skull/drip = 1)	//drip
 
-/obj/machinery/vending/gym
-	name = "Club\'s Total Workout"
-	desc = "A Club vendor that sells exercise equipment."
-	product_slogans = "Usually no carcinogens!;Best sports!;Become the strongest!"
-	product_ads = "Strength!;Cheap!;There are contraindications, it is recommended to consult a medical specialist."
-	icon_state = "gym"
-
-	products = list(
-		/obj/item/gym_ticket = 99,
-		/obj/item/tool/hammer/dumbbell = 10,
-		/obj/item/reagent_containers/food/drinks/protein_shake = 10
-		)
-
-	prices = list(
-		/obj/item/gym_ticket = 50,
-		/obj/item/tool/hammer/dumbbell = 90,
-		/obj/item/reagent_containers/food/drinks/protein_shake = 150,//a total ripoff
-		/obj/item/reagent_containers/food/drinks/energy = 200,
-		/obj/item/reagent_containers/syringe/paracetamol = 300,
-		/obj/item/reagent_containers/syringe/adrenaline = 350,
-		/obj/item/reagent_containers/syringe/stim/steady = 400,
-		/obj/item/reagent_containers/syringe/stim/bouncer = 400,
-		/obj/item/reagent_containers/syringe/stim/violence = 400
-		)
-
-	contraband = list(
-		/obj/item/reagent_containers/food/drinks/energy = 10,
-		/obj/item/reagent_containers/syringe/paracetamol = 10,
-		/obj/item/reagent_containers/syringe/adrenaline = 10,
-		/obj/item/reagent_containers/syringe/stim/steady = 5,
-		/obj/item/reagent_containers/syringe/stim/bouncer = 5,
-		/obj/item/reagent_containers/syringe/stim/violence = 5
-		)
-	vendor_department = DEPARTMENT_CIVILIAN
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"
