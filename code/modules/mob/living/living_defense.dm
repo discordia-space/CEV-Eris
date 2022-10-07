@@ -119,16 +119,14 @@
 
 	// Returns if a projectile should continue travelling
 	if(return_continuation)
+		var/obj/item/projectile/P = used_weapon
+		P.damage_types = dmg_types
 		if(sharp)
 			var/remaining_dmg = 0
 			for(var/dmg_type in dmg_types)
 				remaining_dmg += dmg_types[dmg_type]
 			return ((total_dmg / 2 < remaining_dmg && remaining_dmg > mob_size) ? PROJECTILE_CONTINUE : PROJECTILE_STOP)
-		else PROJECTILE_STOP
-
-	if(isProjectile(used_weapon))
-		var/obj/item/projectile/P = used_weapon
-		P.damage_types = dmg_types
+		else return PROJECTILE_STOP
 
 	return dealt_damage
 
