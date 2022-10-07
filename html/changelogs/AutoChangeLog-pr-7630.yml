@@ -1,0 +1,8 @@
+author: Kegdo, INFRARED_BARON's sprites, Firefox13's mapping
+delete-after: true
+changes:
+  - rscdel: Holodeck
+  - rscadd: DA GYM
+  - rscadd: rest points
+  - rscadd: dumbbells
+  - rscdel: insight stacking
