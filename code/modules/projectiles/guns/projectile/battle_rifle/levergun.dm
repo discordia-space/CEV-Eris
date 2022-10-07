@@ -14,7 +14,7 @@
 	init_recoil = RIFLE_RECOIL(2)
 	init_offset = 0
 	max_shells = 10
-	zoom_factor = 0
+	zoom_factors = list()
 	magazine_type = /obj/item/ammo_magazine/magnum
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 15, MATERIAL_PLASTEEL = 20)
 	wielded_item_state = "_doble_winchester"

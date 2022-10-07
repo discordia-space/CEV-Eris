@@ -596,6 +596,11 @@
 	desc = "EXCELSIOR is a union of communist mining communities with no respect to any private property."
 	icon_state = "excelsior-old"
 
+/obj/structure/sign/faction/serbian
+	name = "Serbian Arms"
+	desc = "Serbian Arms are a major supplier of cheap firearms and killer mercenaries in the sector. Their centre of operations is located in Predstraza."
+	icon_state = "serbian"
+
 /obj/structure/sign/derelict1
 	name = "Old sign"
 	desc = "Technical information of some sort, shame its too worn-out to read."

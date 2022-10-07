@@ -14,7 +14,7 @@
 	price_tag = 200
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 5)
-	zoom_factor = 0.5
+	zoom_factors = list(0.5)
 	var/obj/item/ammo_casing/crossbow/bolt/bolt
 	var/is_drawn
 	init_recoil = RIFLE_RECOIL(1)
@@ -54,4 +54,4 @@
 		bolt = null
 
 /obj/item/gun/energy/poweredcrossbow/generate_guntags()
-	gun_tags = list()
+	gun_tags = list(SLOT_BAYONET)

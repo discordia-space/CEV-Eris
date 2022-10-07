@@ -65,7 +65,40 @@
 			</table>
 		</div>
 	{{/if}}
+	<hr>
 {{/if}}
+<table class='item'>
+	<tr>
+		<td>
+			<div style="padding: 0 0 0 40%">
+				{{:helper.link("", 'arrowthickstop-1-w', {'PRG_page_first' : "orders"}, data.order_page == 1 ? 'disabled' : null)}}
+			</div>
+		<td>
+			<div style="padding: 0 0 0 40%">
+				{{:helper.link("", 'arrowthick-1-w', {'PRG_page_prev_10' : "orders"}, data.order_page == 1 ? 'disabled' : null)}}
+			</div>
+		<td>
+			<div style="padding: 0 0 0 40%">
+				{{:helper.link("", 'arrow-1-w', {'PRG_page_prev' : "orders"}, data.order_page == 1 ? 'disabled' : null)}}
+			</div>
+		<td>
+			<div style="padding: 0 0 0 40%">
+				{{:helper.link(data.order_page, null, {'PRG_page_select' : "orders"})}}
+			</div>
+		<td>
+			<div style="padding: 0 0 0 40%">
+				{{:helper.link("", 'arrow-1-e', {'PRG_page_next' : "orders"}, data.order_page == data.page_max ? 'disabled' : null)}}
+			</div>
+		<td>
+			<div style="padding: 0 0 0 40%">
+				{{:helper.link("", 'arrowthick-1-e', {'PRG_page_next_10' : "orders"}, data.order_page == data.page_max ? 'disabled' : null)}}
+			</div>
+		<td>
+			<div style="padding: 0 0 0 40%">
+				{{:helper.link("", 'arrowthickstop-1-e', {'PRG_page_last' : "orders"}, data.order_page == data.page_max ? 'disabled' : null)}}
+			</div>
+</table>
+<hr>
 <table class='item' style="background: #000000;border: 1px solid #40628a">
 	<tr class="bottom_bordered">
 		<td>Requesting Account
@@ -103,35 +136,4 @@
 				{{/if}}
 				{{:helper.link("Save", null, {'PRG_save_order' : value.id})}}
 	{{/for}}
-</table>
-<table class='item'>
-	<tr>
-		<td>
-			<div style="padding: 0 0 0 40%">
-				{{:helper.link("", 'arrowthickstop-1-w', {'PRG_page_first' : 1}, data.order_page == 1 ? 'disabled' : null)}}
-			</div>
-		<td>
-			<div style="padding: 0 0 0 40%">
-				{{:helper.link("", 'arrowthick-1-w', {'PRG_page_prev_10' : 1}, data.order_page == 1 ? 'disabled' : null)}}
-			</div>
-		<td>
-			<div style="padding: 0 0 0 40%">
-				{{:helper.link("", 'arrow-1-w', {'PRG_page_prev' : 1}, data.order_page == 1 ? 'disabled' : null)}}
-			</div>
-		<td>
-			<div style="padding: 0 0 0 40%">
-				{{:helper.link(data.order_page, null, {'PRG_page_select' : data.page_max})}}
-			</div>
-		<td>
-			<div style="padding: 0 0 0 40%">
-				{{:helper.link("", 'arrow-1-e', {'PRG_page_next' : data.page_max}, data.order_page == data.page_max ? 'disabled' : null)}}
-			</div>
-		<td>
-			<div style="padding: 0 0 0 40%">
-				{{:helper.link("", 'arrowthick-1-e', {'PRG_page_next_10' : data.page_max}, data.order_page == data.page_max ? 'disabled' : null)}}
-			</div>
-		<td>
-			<div style="padding: 0 0 0 40%">
-				{{:helper.link("", 'arrowthickstop-1-e', {'PRG_page_last' : data.page_max}, data.order_page == data.page_max ? 'disabled' : null)}}
-			</div>
 </table>

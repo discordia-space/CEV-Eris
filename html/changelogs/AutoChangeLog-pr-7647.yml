@@ -1,0 +1,5 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - bugfix: fixed manual-action mechanism crafting
+  - bugfix: makeshift rev needing plasteel parts

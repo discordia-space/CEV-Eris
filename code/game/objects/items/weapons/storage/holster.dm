@@ -42,7 +42,10 @@
 		/obj/item/gun/projectile/boltgun/obrez,
 		/obj/item/gun/energy/retro/sawn,
 		/obj/item/gun/projectile/automatic/luty,
-		/obj/item/gun/projectile/revolver/hornet
+		/obj/item/gun/projectile/revolver/hornet,
+		/obj/item/gun/projectile/pistol/type_62,
+		/obj/item/gun/projectile/pistol/type_90,
+		/obj/item/gun/projectile/shotgun/type_21
 		)
 
 	sliding_behavior = TRUE
@@ -64,7 +67,6 @@
 		/obj/item/tool/hatchet
 		)
 
-	sliding_behavior = TRUE
 
 /obj/item/storage/pouch/holster/belt
 	name = "belt holster"
@@ -83,6 +85,20 @@
 	max_w_class = ITEM_SIZE_HUGE
 
 	storage_slots = 2
+
+/obj/item/storage/pouch/holster/belt/knife
+	name = "throwing knife pouch"
+	desc = "You can continently store and quickly access all your throwing knives from this pouch."
+	icon_state = "knife"
+	item_state = "knife"
+	rarity_value = 69
+	price_tag = 100
+
+	storage_slots = 4
+
+	can_hold = list(
+		/obj/item/stack/thrown/throwing_knife
+		)
 
 //Sheath
 /obj/item/storage/pouch/holster/belt/sheath
@@ -134,6 +150,7 @@
 	var/max_w_class = ITEM_SIZE_NORMAL
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_HOLSTER
+	var/storage_slots = 1
 
 	var/sound_in = 'sound/effects/holsterin.ogg'
 	var/sound_out = 'sound/effects/holsterout.ogg'
@@ -152,6 +169,8 @@
 		/obj/item/gun/projectile/olivaw,
 		/obj/item/gun/projectile/mandella,
 		/obj/item/gun/projectile/voodoo,
+		/obj/item/gun/projectile/pistol,
+		/obj/item/gun/projectile/shotgun/type_21,
 		/obj/item/gun/energy/gun,
 		/obj/item/gun/energy/chameleon,
 		/obj/item/gun/energy/captain,
@@ -171,6 +190,16 @@
 		/obj/item/reagent_containers/food/snacks/meatpizzaslice,
 		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice,
 		/obj/item/bananapeel
+		)
+
+/obj/item/clothing/accessory/holster/knife
+	name = "throwing knife rig"
+	desc = "A rig for professionals at knife throwing."
+	price_tag = 100
+	storage_slots = 2
+
+	can_hold = list(
+		/obj/item/stack/thrown/throwing_knife
 		)
 
 /obj/item/clothing/accessory/holster/scabbard
@@ -219,17 +248,24 @@
 
 /obj/item/clothing/accessory/holster/attackby(obj/item/I, mob/user)
 	holster.attackby(I, user)
+	playsound(user, "[src.sound_in]", 30, 0)
 
 /obj/item/clothing/accessory/holster/attack_hand(mob/user as mob)
 	add_fingerprint(user)
 	if(loc == has_suit)
-		holster.open(user)
+		if(holster.contents.len)
+			var/obj/item/I = holster.contents[holster.contents.len]
+			if(istype(I))
+				user.put_in_active_hand(I)
+				playsound(user, "[src.sound_out]", 30, 0)
+		else
+			holster.open(user)
 	else ..()
 
 /obj/item/clothing/accessory/holster/New()
 	..()
 	holster = new /obj/item/storage/internal(src)
-	holster.storage_slots = 1
+	holster.storage_slots = storage_slots
 	holster.can_hold = can_hold
 	holster.max_w_class = max_w_class
 	holster.master_item = src
@@ -332,6 +368,12 @@
 	icon_state = "sheath_[contents.len ? icon_to_set :"0"]"
 	item_state = "sheath_[contents.len ? icon_to_set :"0"]"
 	..()
+
+/obj/item/storage/pouch/holster/belt/knife/update_icon()
+	..()
+	cut_overlays()
+	if(contents.len)
+		overlays += image('icons/inventory/pockets/icon.dmi', "knife_[contents.len]")
 
 /obj/item/storage/pouch/holster/belt/sheath/improvised/update_icon()
 	..()

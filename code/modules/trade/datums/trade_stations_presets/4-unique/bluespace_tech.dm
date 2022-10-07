@@ -4,7 +4,7 @@
 	)
 	icon_states = list("htu_station", "station")
 	uid = "bluespace"
-	tree_x = 0.1
+	tree_x = 0.26
 	tree_y = 0.3
 	start_discovered = FALSE
 	spawn_always = TRUE

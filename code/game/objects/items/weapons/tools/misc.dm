@@ -77,7 +77,7 @@
 		QUALITY_SAWING = 15,
 		QUALITY_WELDING = 15,
 		QUALITY_CAUTERIZING = 10)
-	spawn_blacklisted = TRUE
+	bad_type = /obj/item/tool/multitool_improvised
 	degradation = 1.5
 	workspeed = 0.8
 

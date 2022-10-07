@@ -28,7 +28,7 @@
 		FULL_AUTO_400,
 		SEMI_AUTO_300
 		)
-	gun_parts = list(/obj/item/part/gun/frame/bojevic = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	gun_parts = list(/obj/item/part/gun/frame/bojevic = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/shotgun = 1)
 	serial_type = "SA"
 
 /obj/item/gun/projectile/shotgun/bojevic/update_icon()

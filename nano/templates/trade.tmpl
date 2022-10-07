@@ -63,6 +63,7 @@
 	{{:helper.link("View Cart", 'search', {'PRG_trade_screen' : "cart"}, data.tradescreen == "cart" ? 'selected' : null)}}
 	{{:helper.link("Saved Carts", 'disk', {'PRG_trade_screen' : "saved"}, data.tradescreen == "saved" ? 'selected' : null)}}
 	{{:helper.link("Order Requests", 'comment', {'PRG_trade_screen' : "orders"}, data.tradescreen == "orders" ? 'selected' : null)}}
+	{{:helper.link("Logs", 'note', {'PRG_trade_screen' : "logs"}, data.tradescreen == "logs" ? 'selected' : null)}}
 	<br>
 	<hr>
 	{{if data.station_name && (data.tradescreen == "goods" || data.tradescreen == "offers")}}
@@ -111,6 +112,8 @@
 		{{#def._saved}}
 	{{else data.tradescreen == "orders"}}
 		{{#def._orders}}
+	{{else data.tradescreen == "logs"}}
+		{{#def._logs}}
 	{{/if}}
 {{else}}
 	<table class ="fixed" style ="width: 100%">
@@ -132,7 +135,7 @@
 					<b>Name</b><br>
 					{{:data.station_name}}
 					<br><br>
-					{{if !data.station_recommendations_needed}}
+					{{if data.station_recommendations_needed < 1}}
 						<b>Description</b><br>
 						{{:data.station_desc}}
 						<br><br>
@@ -142,7 +145,7 @@
 						{{:data.station_favor}}/{{:data.station_favor_needed}}
 						</br></br>
 					{{/if}}
-					{{if data.station_recommendations_needed}}
+					{{if data.station_recommendations_needed > 0}}
 						<b>Recommendations Required</b></br>
 						<span style="color:orange">{{:data.station_recommendations_needed}}</span></br>
 						</br>

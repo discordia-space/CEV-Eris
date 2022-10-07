@@ -343,7 +343,7 @@
 	var/mob/living/creator
 	var/cleanup = TRUE	// Should the shield despawn moments after being discarded by the summoner?
 	var/init_procees = TRUE
-	spawn_blacklisted = TRUE
+	bad_type = /obj/item/shield/hardsuit
 
 /obj/item/shield/hardsuit/get_protected_area(mob/user)
 	var/list/p_area = list(BP_CHEST, BP_GROIN, BP_HEAD)

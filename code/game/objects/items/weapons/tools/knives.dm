@@ -5,6 +5,7 @@
 	desc = "A general purpose Chef's Knife made by Asters Merchant Guild. Guaranteed to stay sharp for years to come."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "knife"
+	description_info = "Could be attached to a gun"
 	flags = CONDUCT
 	sharp = TRUE
 	edge = TRUE
@@ -24,6 +25,18 @@
 	//spawn values
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_KNIFE
+
+/obj/item/tool/knife/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_BAYONET = TRUE,
+		GUN_UPGRADE_MELEEDAMAGE = 5,
+		GUN_UPGRADE_MELEEPENETRATION = ARMOR_PEN_MODERATE,
+		GUN_UPGRADE_OFFSET = 4
+		)
+	I.gun_loc_tag = GUN_UNDERBARREL
+	I.req_gun_tags = list(SLOT_BAYONET)
 
 /obj/item/tool/knife/boot
 	name = "boot knife"
@@ -97,18 +110,6 @@
 	armor_divisor = ARMOR_PEN_MODERATE
 	embed_mult = 0.3
 	max_upgrades = 3
-
-/obj/item/tool/knife/tacknife/New()
-	..()
-	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.weapon_upgrades = list(
-		GUN_UPGRADE_BAYONET = TRUE,
-		GUN_UPGRADE_MELEEDAMAGE = 5,
-		GUN_UPGRADE_MELEEPENETRATION = 15,
-		GUN_UPGRADE_OFFSET = 4
-		)
-	I.gun_loc_tag = GUN_UNDERBARREL
-	I.req_gun_tags = list(SLOT_BAYONET)
 
 /obj/item/tool/knife/dagger
 	name = "dagger"

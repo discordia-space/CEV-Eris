@@ -54,7 +54,9 @@
 	var/muzzle_flash = 3
 	var/dual_wielding
 	var/can_dual = FALSE // Controls whether guns can be dual-wielded (firing two at once).
-	var/zoom_factor = 0 //How much to scope in when using weapon
+	var/active_zoom_factor = 1 //Index of currently selected zoom factor
+	var/list/zoom_factors = list()//How much to scope in when using weapon,
+	var/list/initial_zoom_factors = list()
 
 	var/suppress_delay_warning = FALSE
 
@@ -158,6 +160,7 @@
 		recoil = getRecoil()
 	else if(!istype(recoil, /datum/recoil))
 		error("Invalid type [recoil.type] found in .recoil during /obj Initialize()")
+	initial_zoom_factors = zoom_factors.Copy()
 	. = ..()
 	initialize_firemodes()
 	initialize_scope()
@@ -650,18 +653,33 @@
 		else
 			to_chat(user, SPAN_WARNING("You can\'t properly place your weapon on \the [target] because of the foregrip!"))
 
-/obj/item/gun/proc/toggle_scope(mob/living/user)
+/obj/item/gun/proc/toggle_scope(mob/living/user, switchzoom = FALSE)
 	//looking through a scope limits your periphereal vision
 	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
-	if(!zoom_factor)
+	if(!zoom_factors)
 		zoom = FALSE
 		return
-	var/zoom_offset = round(world.view * zoom_factor)
-	var/view_size = round(world.view + zoom_factor)
+	var/tozoom = zoom_factors[active_zoom_factor]
+	var/zoom_offset = round(world.view * tozoom)
+	var/view_size = round(world.view + tozoom)
 
-	zoom(zoom_offset, view_size)
+	zoom(zoom_offset, view_size, switchzoom)
 	check_safety_cursor(user)
 	update_hud_actions()
+
+/obj/item/gun/proc/switch_zoom(mob/living/user)
+	if(!zoom_factors)
+		return null
+	if(zoom_factors.len <= 1)
+		return null
+//	update_firemode(FALSE) //Disable the old firing mode before we switch away from it
+	active_zoom_factor++
+	if(active_zoom_factor > zoom_factors.len)
+		active_zoom_factor = 1
+	refresh_upgrades()
+	toggle_scope(user, TRUE)
+
+
 
 /obj/item/gun/examine(mob/user)
 	..()
@@ -705,7 +723,7 @@
 
 /obj/item/gun/proc/initialize_scope()
 	var/obj/screen/item_action/action = locate(/obj/screen/item_action/top_bar/gun/scope) in hud_actions
-	if(zoom_factor > 0)
+	if(zoom_factors.len >= 1)
 		if(!action)
 			action = new /obj/screen/item_action/top_bar/gun/scope
 			action.owner = src
@@ -931,9 +949,12 @@
 		return list()
 	var/list/data = list()
 	data["projectile_name"] = P.name
-	data["projectile_damage"] = ((P.get_total_damage() * damage_multiplier) * P.wounding_mult) + get_total_damage_adjust()
+	data["projectile_damage"] = (P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()
 	data["projectile_AP"] = P.armor_divisor + penetration_multiplier
 	data["projectile_WOUND"] = P.wounding_mult
+	data["unarmoured_damage"] = ((P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()) * P.wounding_mult
+	data["armoured_damage_10"] = (((P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()) - (10 / (P.armor_divisor + penetration_multiplier))) * P.wounding_mult
+	data["armoured_damage_15"] = (((P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()) - (15 / (P.armor_divisor + penetration_multiplier))) * P.wounding_mult
 	data["projectile_recoil"] = P.recoil
 	qdel(P)
 	return data
@@ -959,7 +980,7 @@
 	restrict_safety = initial(restrict_safety)
 	dna_compare_samples = initial(dna_compare_samples)
 	rigged = initial(rigged)
-	zoom_factor = initial(zoom_factor)
+	zoom_factors = initial_zoom_factors.Copy()
 	darkness_view = initial(darkness_view)
 	vision_flags = initial(vision_flags)
 	see_invisible_gun = initial(see_invisible_gun)
@@ -983,7 +1004,7 @@
 
 	if(firemodes.len)
 		very_unsafe_set_firemode(sel_mode) // Reset the firemode so it gets the new changes
-
+	
 	update_icon()
 	//then update any UIs with the new stats
 	SSnano.update_uis(src)
@@ -992,7 +1013,7 @@
 /obj/item/gun/proc/generate_guntags()
 	if(recoil.getRating(RECOIL_BASE) < recoil.getRating(RECOIL_TWOHAND))
 		gun_tags |= GUN_GRIP
-	if(!zoom_factor && !(slot_flags & SLOT_HOLSTER))
+	if(zoom_factors.len < 1 && !(slot_flags & SLOT_HOLSTER))
 		gun_tags |= GUN_SCOPE
 	if(!sharp)
 		gun_tags |= SLOT_BAYONET

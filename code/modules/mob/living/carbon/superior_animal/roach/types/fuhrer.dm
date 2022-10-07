@@ -8,8 +8,8 @@
 	maxHealth = 150
 	health = 150
 
-	melee_damage_lower = 12
-	melee_damage_upper = 25
+	melee_damage_lower = 8
+	melee_damage_upper = 16
 	armor_divisor = ARMOR_PEN_MODERATE
 
 	move_to_delay = 7

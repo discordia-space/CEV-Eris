@@ -46,7 +46,7 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 	faction = "golem"
 
 	deathmessage = "shatters in a pile of rubbles."
-	attacktext = "bonked"
+	attacktext = list("bonked")
 	attack_sound = 'sound/weapons/smash.ogg'
 	speak_emote = list("rattles")
 	emote_see = list("makes a deep rattling sound")
@@ -126,11 +126,11 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 	var/turf/T = get_step_towards(src, target_mob)
 
 	if(iswall(T))  // Wall breaker attack
-		T.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
+		T.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), pick(attacktext), TRUE)
 	else
 		var/obj/structure/obstacle = locate(/obj/structure) in T
 		if(obstacle && !istype(obstacle, /obj/structure/golem_burrow))
-			obstacle.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), attacktext, TRUE)
+			obstacle.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), pick(attacktext), TRUE)
 
 /mob/living/carbon/superior_animal/golem/handle_ai()
 	// Chance to re-aggro the drill if doing nothing
