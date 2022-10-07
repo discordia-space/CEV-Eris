@@ -8,7 +8,7 @@
 		timestamp_start = world.time
 
 /datum/perk/cooldown/on_process()
-	if(!..() || ((timestamp_start + perk_lifetime) > world.time))
+	if(!..() || ((timestamp_start + perk_lifetime) < world.time))
 		remove()
 
 /datum/perk/cooldown/exertion
