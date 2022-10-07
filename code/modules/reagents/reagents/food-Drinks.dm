@@ -1878,6 +1878,11 @@
 	glass_center_of_mass = list("x"=16, "y"=2)
 	taste_tag = list(TASTE_SPICY,TASTE_DRY)
 
+/datum/reagent/alcohol/demonsblood/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(M.bodytemperature > 350)
+		M.species.burn_mod += 0.1
+
 /datum/reagent/alcohol/devilskiss
 	name = "Devils Kiss"
 	id = "devilskiss"
