@@ -53,7 +53,7 @@
 
 	var/insight
 	var/max_insight = 1
-	var/insight_passive_gain_multiplier = 1
+	var/insight_passive_gain_multiplier = 0.5
 	var/insight_gain_multiplier = 1
 	var/insight_rest = 0
 	var/max_insight_rest = INFINITY
@@ -243,7 +243,7 @@
 		"Convert your fulfilled insight for use in special structures"
 		)
 
-	if(rest == "Use an oddity")
+	if(rest == "Focus on an oddity")
 		if(owner.stats.getPerk(PERK_ARTIST))
 			to_chat(owner, SPAN_NOTICE("Your artistic mind prevents you from using an oddity."))
 			rest = "Internalize your recent experiences"
@@ -261,7 +261,7 @@
 
 	switch(rest)
 
-		if("Use an oddity")
+		if("Focus on an oddity")
 
 			var/list/inspiration_items = list()
 			for(var/obj/item/I in owner.get_contents()) //what oddities do we have?
@@ -276,7 +276,7 @@
 				GET_COMPONENT_FROM(I, /datum/component/inspiration, O) // If it's a valid inspiration, it should have this component. If not, runtime
 				var/list/L = I.calculate_statistics()
 				for(var/stat in L)
-					var/stat_up = L[stat]
+					var/stat_up = L[stat] * 2
 					to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
 					owner.stats.changeStat(stat, stat_up)
 				
@@ -298,7 +298,7 @@
 
 			var/stat_pool = resting * 15
 			while(stat_pool--)
-				LAZYAPLUS(stat_change, pick(ALL_STATS), 1)
+				LAZYAPLUS(stat_change, pick(ALL_STATS), 3)
 
 			for(var/stat in stat_change)
 				owner.stats.changeStat(stat, stat_change[stat])

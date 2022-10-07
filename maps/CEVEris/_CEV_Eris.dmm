@@ -55731,7 +55731,6 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/side/section3starboard)
 "cDL" = (
-/obj/structure/table/standard,
 /obj/structure/reagent_dispensers/watertank,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/hallway/side/section3deck2port)
@@ -101101,6 +101100,11 @@
 /obj/spawner/pack/cloth/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
+"eUU" = (
+/obj/structure/table/standard,
+/obj/spawner/soda,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/hallway/side/section3deck2port)
 "eWR" = (
 /obj/structure/table/rack,
 /obj/item/contraband/poster/placed{
@@ -102651,6 +102655,11 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
+"iMO" = (
+/obj/structure/table/standard,
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/hallway/side/section3deck2port)
 "iNx" = (
 /obj/spawner/oddities/low_chance,
 /turf/simulated/floor/tiled/techmaint_cargo,
@@ -104591,6 +104600,7 @@
 "nBk" = (
 /obj/structure/table/reinforced,
 /obj/structure/disposalpipe/segment,
+/obj/spawner/toy/figure,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/fitness)
 "nCx" = (
@@ -106642,6 +106652,11 @@
 /obj/machinery/shield_diffuser,
 /turf/simulated/floor/hull,
 /area/eris/engineering/atmos)
+"sNc" = (
+/obj/structure/table/standard,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/hallway/side/section3deck2port)
 "sNw" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
@@ -245782,7 +245797,7 @@ ybs
 cDb
 exp
 cVY
-fdQ
+iMO
 dxq
 qyZ
 uXf
@@ -245984,7 +245999,7 @@ ybs
 etJ
 vhi
 cXn
-fdQ
+eUU
 awr
 hEe
 mQJ
@@ -246590,7 +246605,7 @@ ybs
 cDd
 vhi
 cXn
-fdQ
+sNc
 dxq
 qyZ
 uXf
