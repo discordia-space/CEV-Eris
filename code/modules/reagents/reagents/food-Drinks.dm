@@ -1894,6 +1894,11 @@
 	glass_center_of_mass = list("x"=16, "y"=8)
 	taste_tag = list(TASTE_BITTER,TASTE_DRY,TASTE_SLIMEY)
 
+/datum/reagent/alcohol/devilskiss/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(M.bodytemperature > 350) //Sbiten or on fire because devil
+		M.add_chemical_effect(CE_SPEEDBOOST, 0.1) //No actual downsides outside massive body temp so the effect is weak, 1/6 of hyperzine
+
 /datum/reagent/alcohol/driestmartini
 	name = "Driest Martini"
 	id = "driestmartini"
