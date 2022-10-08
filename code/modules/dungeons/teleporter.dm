@@ -51,6 +51,7 @@
 
 /obj/rogue/teleporter/proc/dungeon_generated()
 	dungeon_is_generated = TRUE
+	UnregisterSignal(src, COMSIG_DUNGEON_GENERATED)
 
 /obj/rogue/teleporter/proc/start_teleporter_event()
 	charging = TRUE
