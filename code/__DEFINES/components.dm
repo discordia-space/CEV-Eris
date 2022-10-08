@@ -138,6 +138,10 @@
 #define COMSIG_ABERRANT_SECONDARY "aberrant_secondary"
 #define COMSIG_ABERRANT_COOLDOWN "aberrant_cooldown"
 
+// Overmap and expeditions signals
+#define COMSIG_GENERATE_DUNGEON "generate_dungeon"
+#define COMSIG_DUNGEON_GENERATED "dungeon_generated"
+
 /*******Component Specific Signals*******/
 //Janitor
 
