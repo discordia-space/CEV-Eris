@@ -1,4 +1,0 @@
-author: DiaFRAME444
-delete-after: true
-changes:
-  - balance: Fixed two cases where scrap ammo was superior to normal ammo.
