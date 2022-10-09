@@ -17,7 +17,7 @@
 	else
 		show_message(msg1, 1)
 
-/mob/living/proc/damage_through_armor(var/damage = 0, var/damagetype = BRUTE, var/def_zone, var/attack_flag = ARMOR_MELEE, var/armour_divisor = 1, var/used_weapon, var/sharp = FALSE, var/edge = FALSE, var/wounding_multiplier = 1, var/list/dmg_types = list(), var/return_continuation = FALSE)
+/mob/living/proc/damage_through_armor(damage = 0, damagetype = BRUTE, def_zone, attack_flag = ARMOR_MELEE, armor_divisor = 1, used_weapon, sharp = FALSE, edge = FALSE, wounding_multiplier = 1, list/dmg_types = list(), return_continuation = FALSE)
 
 	if(damage) // If damage is defined, we add it to the list
 		if(!dmg_types[damagetype])
@@ -35,10 +35,10 @@
 		return FALSE
 
 	// Determine DR and ADR, armour divisor reduces it
-	var/armor = getarmor(def_zone, attack_flag) / armour_divisor
+	var/armor = getarmor(def_zone, attack_flag) / armor_divisor
 	if(!(attack_flag in list(ARMOR_MELEE, ARMOR_BULLET, ARMOR_ENERGY))) // Making sure BIO and other armor types are handled correctly
 		armor /= 5
-	var/ablative_armor = getarmorablative(def_zone, attack_flag) / armour_divisor
+	var/ablative_armor = getarmorablative(def_zone, attack_flag) / armor_divisor
 
 	var/remaining_armor = armor
 	var/remaining_ablative = ablative_armor
@@ -115,7 +115,7 @@
 
 	// Deal damage to ablative armour based on how much was used, we multiply armour divisor back so high AP doesn't decrease damage dealt to ADR
 	if(ablative_armor)
-		damageablative(def_zone, (ablative_armor - remaining_ablative) * armour_divisor)
+		damageablative(def_zone, (ablative_armor - remaining_ablative) * armor_divisor)
 
 	// Returns if a projectile should continue travelling
 	if(return_continuation)
@@ -174,7 +174,7 @@
 	//Armor and damage
 	if(!P.nodamage)
 		hit_impact(P.get_structure_damage(), hit_dir)
-		return damage_through_armor(def_zone = def_zone_hit, attack_flag = P.check_armour, armour_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P), wounding_multiplier = P.wounding_mult, dmg_types = P.damage_types, return_continuation = TRUE)
+		return damage_through_armor(def_zone = def_zone_hit, attack_flag = P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P), wounding_multiplier = P.wounding_mult, dmg_types = P.damage_types, return_continuation = TRUE)
 
 	P.on_hit(src, def_zone_hit)
 	return PROJECTILE_CONTINUE
@@ -261,7 +261,7 @@
 
 		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
 
-		damage_through_armor(throw_damage, dtype, null, ARMOR_MELEE, null, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
+		damage_through_armor(throw_damage, dtype, null, ARMOR_MELEE, O.armor_divisor, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
 
 		O.throwing = 0		//it hit, so stop moving
 
