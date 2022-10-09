@@ -65,6 +65,8 @@
 				if("grip")
 					var/select = pick(gripvars)
 					InstalledGrip = new select(src)
+					var/variantnum = gripvars.Find(select)
+					result = resultvars[variantnum]
 
 /obj/item/part/gun/frame/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/part/gun/grip))
@@ -115,9 +117,9 @@
 
 /obj/item/part/gun/frame/proc/handle_gripvar(obj/item/I, mob/living/user)
 	if(I.type in gripvars)
-		var/variantnum = gripvars.Find(I.type)
-		result = resultvars[variantnum]
 		if(insert_item(I, user))
+			var/variantnum = gripvars.Find(I.type)
+			result = resultvars[variantnum]
 			InstalledGrip = I
 			to_chat(user, SPAN_NOTICE("You have attached the grip to \the [src]."))
 			return
@@ -349,7 +351,7 @@
 	icon_state = "barrel_25"
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_CLRIFLE
- 
+
 /obj/item/part/gun/barrel/lrifle
 	name = ".30 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .30 caliber."
@@ -395,7 +397,7 @@
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .25 caliber. \
 			This one does not look as high quality."
 	matter = list(MATERIAL_STEEL = 8)
- 
+
 /obj/item/part/gun/barrel/lrifle/steel
 	name = "cheap .30 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .30 caliber. \
@@ -407,4 +409,3 @@
 	desc = "A gun barrel, which keeps the bullet (or bullets) going in the right direction. Chambered in .50 caliber. \
 			This one does not look as high quality."
 	matter = list(MATERIAL_STEEL = 8)
-	
