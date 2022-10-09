@@ -635,7 +635,7 @@
 		on_impact(A)
 		qdel(A)
 
-	return dmg_remaining / dmg_total
+	return dmg_total ? (dmg_remaining / dmg_total) : 0
 
 //"Tracing" projectile
 /obj/item/projectile/test //Used to see if you can hit them.
