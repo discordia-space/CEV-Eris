@@ -43,9 +43,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if (!asset_cache_job)
 			return
 
-	// // Tgui Topic middleware
-	// if(tgui_Topic(href_list))
-	// 	return
+	// Tgui Topic middleware
+	if(tgui_Topic(href_list))
+		return
 	// if(href_list["reload_tguipanel"])
 	// 	nuke_chat()
 	// if(href_list["reload_statbrowser"])
@@ -303,7 +303,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		to_chat(src, span_info("You have unread updates in the changelog."))
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 		if(config.aggressive_changelog)
-			src.changes()
+			src.changelog()
 
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
 		to_chat(src, span_warning("Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you."))

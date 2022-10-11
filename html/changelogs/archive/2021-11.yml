@@ -1,0 +1,175 @@
+2021-11-04:
+  Humonitarian:
+  - bugfix: fixed a division by 0 when parrying melee attacks
+  SirRichardFrancis:
+  - admin: admins no longer messaged about firedoors being opened
+  - bugfix: missing sprite of artist's default jumpsuit
+2021-11-05:
+  MLGTASTICa:
+  - bugfix: Spoons not checking wheter a person can be fed and wheter the timer to
+      do so has been run
+  - bugfix: Fixed Low Yield Emp Grenades having the same effects as a normal one.
+  - rscadd: Ingested reagents metabolization now scales off your stomach , liver and
+      heart efficiency combined.
+  - rscadd: Bloodstream reagents metabolizatio now scales off your liver_eff  and
+      heart efficiency
+2021-11-06:
+  Humonitarian:
+  - balance: boltgun no longer has firedelay, limited by bolt timer instead
+  - rscadd: new FS .20 boltgun variants - Banzai!
+  - balance: makeshift and obrez boltguns buffed, obrez now have stupid high recoil
+  - soundadd: new sounds for all gun calibers
+  - soundadd: new sounds for grab-fu
+  - soundadd: new sounds for all plasma weapons
+  - soundadd: new shield sound
+  Hyperio:
+  - rscadd: Added new IH medical HUD
+  - balance: Medspec now spawns with an ERT medical belt
+  Kegdo:
+  - bugfix: fixed not being able to attack borgs with certain tools on harm intent
+  MLGTASTICa:
+  - rscadd: You can now toggle pumps on and off by alt clicking , and their pressure
+      to max by ctrl clicking
+  - balance: slips no longer hardstun
+  - balance: doors no longer hardstun , but deal much more damage (60 without melle
+      armor)
+  - bugfix: Bones can now befriend the MBO
+  SirRichardFrancis:
+  - rscadd: grenade launcher ammunition to uplink
+  - rscadd: basic grenade launcher ammunition in the armory
+  - tweak: grenade launchers use specialized ammo instead of hand grenades
+  - tweak: faction language guaranteed to be known by faction member
+  - tweak: people spawned via Last Shelter speak Latin
+  - bugfix: EMP projectile not creating EMP when hit a turret, hivemind structure
+      or simple_mob
+  - bugfix: phantom gun after crafting embedded SMG
+  - rscadd: armored version of type-34 helmet
+  - rscadd: surveillance pods, stationary version of camera MIU
+  - tweak: armory have 6 oxygen tanks instead of 2
+  - tweak: camera MIU blacklisted from spawn
+  shazbot194:
+  - rscadd: Added Hardcases
+  - bugfix: fixed AK folding stocks being foldable in bags.
+2021-11-13:
+  Alliostra:
+  - tweak: made maint fauna meat more descriptive.
+  - balance: rebalanced spiders and buffed the melee damage of most roaches slightly
+  - rscadd: nurse spiders can inject people with spider eggs sometimes
+  Humonitarian:
+  - balance: RIGs provide less bullet protection, have a chance to completely negate
+      damage instead
+  - bugfix: a file was in the wrong place
+  - balance: Heavy armor is more viable, riot suits were remade into heavy operator
+      armor
+  - bugfix: Shrapnel removal damage no longer scales with bio
+  - balance: Shrapnel removal surgery now guaranteed to remove the shrapnel even when
+      failed, but will deal increased damage
+  - tweak: reverted bolt action change
+  - balance: bolt action recoil increased
+  Hyperio:
+  - rscadd: Added Create Portals verb in Fun tab
+  - bugfix: Fixed Move Shuttle verb in Secret panel
+  Jackofashepard:
+  - bugfix: fixed ballistic gun sounds
+  Kegdo:
+  - imageadd: "added new(good) captain armor sprite(by Pr\xE8s de l'oiseau)"
+  - imagedel: deleted old(bad) captain armor sprite
+  - rscadd: It's now possible to heal limbs directly via surgery.
+  - bugfix: fixed-remixed most of the new sounds, making them sound as it was intended
+      (ballistics excluded)
+  - tweak: you can find ghetto chem tools in maintenance now
+  - bugfix: Fixed not being able to harm borgs with certain tools
+  - imageadd: "new(good) credits sprite (by Pr\xE8s de l'oiseau#2625)"
+  - imagedel: old(bad) credits sprite
+  - rscadd: now possible to use Follow verb via context menu
+  MLGTASTICa:
+  - balance: Most pistols now have their wield delay lowered and wield factor halved.
+  - balance: Doors with their maintenance panel can now be opened.
+  - bugfix: Wield factor runtiming when set at 0.
+  Omni44:
+  - rscadd: Added crafting station&appropraite circuit board
+  - tweak: tweaked some gun crafting recipes a bit
+  SirRichardFrancis:
+  - balance: excelsior turret shoot in bursts of 8
+  - bugfix: surveillance pods seeing too much
+  - admin: record trap and mine placement
+  - rscadd: preference for keeping hotkeys always on
+  - bugfix: visual glitches after z-travel animation
+  zombiemimic:
+  - rscadd: Added burst fire mode to Dominion and Cassad plasma rifles
+2021-11-19:
+  CeUvi:
+  - imageadd: new badges
+  - imagedel: bayleftover badges
+  Kegdo:
+  - bugfix: femsprite for caparmor
+  - bugfix: follow verb in ghost tab
+2021-11-20:
+  Anonmare:
+  - balance: The Moebius \"Tesla\" overdrive chip will now only reduce energy weapon
+      damage by 33% instead of 80%, charge reduction has been changed from a 85% reduction
+      to only a 50% reduction. In addition, recoil is 200% greater than normal and
+      fire delay has been increased from a 75% reduction to a 66% reduction.
+  HentaiStorm:
+  - tweak: superior animal ai
+  Humonitarian:
+  - bugfix: fixes heavy operator helmet
+  Kegdo:
+  - rscadd: most of the junk foods now need to be opened first.
+  - rscadd: new junk food, wok. Basically noodles but junk food.
+  - tweak: candy was replaced with Shokoloud chocolate bar.
+  - rscdel: syndicakes deleted.
+  - imageadd: "new junk food sprites; sprites done by Pr\xE8s de l'oiseau"
+  - imagedel: most of the bay leftover junk food sprites are sent to bay-brazil.
+  - rscadd: 'Added a new toxin: kaiseraurum. Can be obtained by grinding kaiser meat.'
+  - rscadd: 'Added a new drug: Kakerlakenbier. Works as a ghetto serotrotium, can
+      be made out of water, fuel, diplopreptum and beer.'
+  - rscadd: 'Added a new drug: Monarchenblut. Works as a ghetto serotrotium, can be
+      made out of kakerlakenbier, fuhrerole and kaiseraurum.'
+  ValoTheValo:
+  - balance: increased VIG requirement and decreased delay on RPG and LMGs
+  - rscdel: removed delay on every weapon that isn't a LMG, GL or RPG
+  Xoxeyos:
+  - spellcheck: Fixes "crafting ctation", now it's properly named to "crafting station".
+  githubuser4141:
+  - balance: fixes mechs running at full speed when EMP'd, changes costs of a few
+      mech guns, reduces the the internal mag for exosuit energy guns
+  - bugfix: fixes mech's move disruption being functionally useless, makes the immolator
+      fire in bursts
+  - balance: Adjusts drill delays, makes the onestar/hive/roach bosses unable to be
+      dragged
+  - bugfix: Fixes mechs drilling/clamping stuff from afar and getting stuck randomly.
+  - soundadd: Adds a new sound for mech punches, uses a different sound for mech clamps/drills
+  - code_imp: Ports Occulus-Eris's mech gear range check and hopefully fixes mechs
+      getting stuck on nothing.
+2021-11-27:
+  Anonmare:
+  - tweak: Moebius Laboratories have come up with a totally original name for their
+      stunrevolver design
+  Hyperio:
+  - rscdel: Removed flash resistant medhud from medspec locker
+  - tweak: Medspecs now directly spawn with their flash resistant medhud
+  - rscadd: Mining overhaul part 1
+  - rscadd: Add possibility to give sharp and edge properties to superior animals'
+      attack
+  Iglpigl:
+  - tweak: changed the amount of power to use the vapour mask fully from 500 units
+      to 200 units.
+  - tweak: Bullet blender is added to uplink for 5 tc
+  - tweak: both .35 and .40 speedloaders lethal and HV variant now come in a box of
+      2
+  Kegdo:
+  - balance: splints break and fall off after being hit, 20+ damage to break them.
+  - tweak: now lethal and HV bullet projectiles are named after it's caliber.
+  Omni44:
+  - rscadd: Added striped tracksuit and maska helmet
+  hex37:
+  - spellcheck: Fixes some variable typos for get_process_efficiency
+  - tweak: Changes the heart's blood volume equation to an identical one that is easier
+      to look at.
+  - tweak: Changes the get_tally() function to include nerve and muscle efficiency.
+      Only thing changed between this equation and the old equation is a .25 modifier
+      on muscle efficiency. So minor it won't be noticed. (it still doesn't do much)
+  - bugfix: Changed the take_damage function to account for bone efficiency when deciding
+      whether or not to fracture a bone, like it does when an organ takes internal
+      damage. This makes reinforced bones function better.
