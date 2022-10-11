@@ -459,3 +459,13 @@ Proc for attack log creation, because really why not
 /// Gets the client of the mob, allowing for mocking of the client.
 /// You only need to use this if you know you're going to be mocking clients somewhere else.
 #define GET_CLIENT(mob) (##mob.client) //  || ##mob.mock_client
+
+///Makes a call in the context of a different usr. Use sparingly
+/world/proc/push_usr(mob/user_mob, datum/callback/invoked_callback, ...)
+	var/temp = usr
+	usr = user_mob
+	if (length(args) > 2)
+		. = invoked_callback.Invoke(arglist(args.Copy(3)))
+	else
+		. = invoked_callback.Invoke()
+	usr = temp
