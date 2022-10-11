@@ -82,6 +82,17 @@
 		return
 
 	if(alert(usr,"Are you sure you want to summon Excelsior stash?","Means of Production","Yes, the time has come","No, not yet") == "Yes, the time has come")
+		F.stash_holder = H.real_name
+		var/text = "<span class='revolution'>\"Comrade [F.stash_holder] has seized the means of production!\"</span>"
+		for(var/i in SSmobs.mob_list)
+			if(is_excelsior(i))
+				to_chat(i, text)
+
+		for(var/mob/observer/ghost/M as anything in GLOB.dead_mob_list)
+			if(!M.client)
+				continue
+			if((M.antagHUD || is_admin(M))
+				to_chat(M, "[text] ([ghost_follow_link(user, M)])")
 
 		var/mob/living/carbon/human/H = usr
 
