@@ -232,9 +232,7 @@ export class Changelog extends Component {
         </p>
         <p>
           {'Some icons by '}
-          <a href="https://p.yusukekamiyamane.com/">
-            Yusuke Kamiyamane
-          </a>
+          <a href="https://p.yusukekamiyamane.com/">Yusuke Kamiyamane</a>
           {' All rights reserved. Licensed under a.'}
           <a href="https://creativecommons.org/licenses/by/3.0/">
             Creative Commons 3.0 BY license
