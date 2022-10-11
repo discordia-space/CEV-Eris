@@ -61,6 +61,9 @@
 	var/resting = 0
 	var/max_resting = 1
 
+	var/rest_timer_active = FALSE
+	var/rest_timer_time
+
 	var/list/valid_inspirations = list(/obj/item/oddity)
 	var/list/desires = list()
 	var/positive_prob = 20
@@ -104,6 +107,12 @@
 		new_value = max(0, value * insight_rest_gain_multiplier)
 	insight_rest += new_value
 
+/datum/sanity/Topic(href, href_list)
+	if(href_list["here_and_now"])
+		if(rest_timer_active) //prevent any possible exploits
+			rest_timer_active = FALSE
+			level_up()
+
 /datum/sanity/proc/onLife()
 	handle_breakdowns()
 	if(owner.stat == DEAD || owner.life_tick % life_tick_modifier || owner.in_stasis || (owner.species.lower_sanity_process && !owner.client))
@@ -118,6 +127,13 @@
 	changeLevel(max(affect  * life_tick_modifier, min((view_damage_threshold*environment_cap_coeff) - level, 0)))
 	handle_Insight()
 	handle_level()
+	if(rest_timer_active)
+		if(rest_timer_time > 0)
+			rest_timer_time -= 2 SECONDS //since OnLife() procs every 2 seconds
+		else
+			level_up()
+			rest_timer_active = FALSE
+
 	SEND_SIGNAL(owner, COMSIG_HUMAN_SANITY, level)
 
 /datum/sanity/proc/handle_view()
@@ -236,7 +252,16 @@
 		finish_rest()
 
 /datum/sanity/proc/finish_rest()
+	if(!rest_timer_active)
+		to_chat(owner, "<font color='purple'>[owner.stats.getPerk(PERK_ARTIST) ? "You have created art." : "You have rested well."]\
+					<br>Select what you wish to do with your fulfilled insight <a HREF=?src=\ref[src];here_and_now=TRUE>here and now</a> or get to safety first if you are in danger.\
+					<br>The prompt will appear in one minute.</font>")
 
+		rest_timer_active = TRUE
+		rest_timer_time = 60 SECONDS
+		owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
+
+/datum/sanity/proc/level_up()
 	var/rest = input(owner, "How would you like to improve your stats?", "Rest complete", null) in list(
 		"Internalize your recent experiences",
 		"Focus on an oddity",
@@ -303,11 +328,6 @@
 			for(var/stat in stat_change)
 				owner.stats.changeStat(stat, stat_change[stat])
 
-	if(owner.stats.getPerk(PERK_ARTIST))
-		to_chat(owner, SPAN_NOTICE("You have created art and improved your stats."))
-	else
-		to_chat(owner, SPAN_NOTICE("You have rested well and improved your stats."))
-	owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
 	owner.pick_individual_objective()
 	resting = 0
 
