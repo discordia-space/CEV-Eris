@@ -237,10 +237,10 @@
 
 /datum/sanity/proc/finish_rest()
 
-	var/rest = input("How would you like to improve your stats?","Rest complete",null) as null|anything in list(
+	var/rest = input(owner, "How would you like to improve your stats?", "Rest complete", null) in list(
 		"Internalize your recent experiences",
 		"Focus on an oddity",
-		"Convert your fulfilled insight for use in special structures"
+		"Convert your fulfilled insight for later use"
 		)
 
 	if(rest == "Focus on an oddity")
@@ -288,12 +288,12 @@
 				for(var/mob/living/carbon/human/H in viewers(owner))
 					SEND_SIGNAL(H, COMSIG_HUMAN_ODDITY_LEVEL_UP, owner, O)
 
-			else to_chat(owner, SPAN_NOTICE("Something really buggy happened with your brain."))
+			else to_chat(owner, SPAN_NOTICE("Something really buggy just happened with your brain."))
 
-		if("Convert your fulfilled insight for use in special structures")
+		if("Convert your fulfilled insight for later use")
 			owner.rest_points += 1 //yeah... that's it
 
-		else
+		else //Cancelling or internalizing
 			var/list/stat_change = list()
 
 			var/stat_pool = resting * 15

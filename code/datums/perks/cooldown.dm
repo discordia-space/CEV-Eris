@@ -9,7 +9,7 @@
 
 /datum/perk/cooldown/on_process()
 	if(!..() || ((timestamp_start + perk_lifetime) < world.time))
-		remove()
+		holder.stats.removePerk(type)
 
 /datum/perk/cooldown/exertion
 	name = "Overexertion"
