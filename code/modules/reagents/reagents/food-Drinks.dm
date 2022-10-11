@@ -1603,7 +1603,7 @@
 /datum/reagent/alcohol/amasec/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	. = ..()
 	if(M.stats.getPerk(PERK_GUNSLINGER))
-		M.stats.addTempStat(STAT_TGH, STAT_LEVEL_BASIC*effect_multiplier, STIM_TIME, "Amasec") //Improves Toughness by ~15 if Gunslinger
+		M.stats.addTempStat(STAT_TGH, STAT_LEVEL_BASIC, STIM_TIME, "Amasec") //Improves Toughness by ~15 if Gunslinger
 
 /datum/reagent/alcohol/andalusia
 	name = "Andalusia"
@@ -1744,7 +1744,7 @@
 /datum/reagent/alcohol/beepsky_smash/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	if(M.stats.getPerk(PERK_SURVIVOR))
-		M.stats.addTempStat(STAT_ROB, STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "BEEPSKY SMASH") //SMASH
+		M.stats.addTempStat(STAT_ROB, STAT_LEVEL_BASIC, STIM_TIME, "BEEPSKY SMASH") //SMASH
 	else
 		M.Stun(2) //Or get smashed
 
@@ -2096,7 +2096,7 @@
 /datum/reagent/alcohol/hooch/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	. = ..()
 	if(M.stats.getPerk(PERK_ALCOHOLIC))
-		M.add_chemical_effect(CE_PAINKILLER, 15) //Acts as Inaprovaline painkiller if alcoholic
+		M.adjustOxyLoss(-0.3 * effect_multiplier)
 
 /datum/reagent/alcohol/iced_beer
 	name = "Iced Beer"
