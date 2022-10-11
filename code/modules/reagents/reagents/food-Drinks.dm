@@ -1579,7 +1579,7 @@
 	taste_tag = list(TASTE_SWEET,TASTE_SLIMEY)
 
 /datum/reagent/alcohol/aloe/apply_sanity_effect(mob/living/carbon/human/H, effect_multiplier)
-	if(H.getFireLoss > 0) //If the drinker has burns, Aloe soothes because Aloe Vera
+	if(H.getFireLoss() > 0)
 		effect_multiplier *= 2
 	..()
 
@@ -1599,6 +1599,11 @@
 	glass_desc = "Always handy before COMBAT!!!"
 	glass_center_of_mass = list("x"=16, "y"=9)
 	taste_tag = list(TASTE_SALTY,TASTE_DRY)
+
+/datum/reagent/alcohol/amasec/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(M.stats.getPerk(PERK_GUNSLINGER))
+		M.stats.addTempStat(STAT_TGH, 3, STIM_TIME, "Amasec")
 
 /datum/reagent/alcohol/andalusia
 	name = "Andalusia"
