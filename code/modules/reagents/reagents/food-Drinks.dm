@@ -1603,7 +1603,7 @@
 /datum/reagent/alcohol/amasec/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	. = ..()
 	if(M.stats.getPerk(PERK_GUNSLINGER))
-		M.stats.addTempStat(STAT_TGH, 3, STIM_TIME, "Amasec")
+		M.stats.addTempStat(STAT_TGH, STAT_LEVEL_BASIC*effect_multiplier, STIM_TIME, "Amasec")
 
 /datum/reagent/alcohol/andalusia
 	name = "Andalusia"
@@ -2089,6 +2089,11 @@
 	glass_name = "Hooch"
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 	taste_tag = list(TASTE_BITTER,TASTE_DRY)
+
+/datum/reagent/alcohol/hooch/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(M.stats.getPerk(PERK_ALCOHOLIC))
+		M.stats.addTempStat(STAT_TGH, STAT_LEVEL_BASIC*effect_multiplier, STIM_TIME, "Hooch'ed up!") //Alternative is to effect brute_mod
 
 /datum/reagent/alcohol/iced_beer
 	name = "Iced Beer"
