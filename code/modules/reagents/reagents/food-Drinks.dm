@@ -1890,7 +1890,7 @@
 
 /datum/reagent/alcohol/demonsblood/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	. = ..()
-	if(M.bodytemperature > 350)
+	if(M.bodytemperature > 311) //Temperature for uncomfortable body temperature
 		M.species.burn_mod += 0.1
 
 /datum/reagent/alcohol/devilskiss
@@ -1911,7 +1911,7 @@
 
 /datum/reagent/alcohol/devilskiss/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	. = ..()
-	if(M.bodytemperature > 350) //Sbiten or on fire because devil
+	if(M.on_fire) //On fire because devil
 		M.add_chemical_effect(CE_SPEEDBOOST, 0.1) //No actual downsides outside massive body temp so the effect is weak, 1/6 of hyperzine
 
 /datum/reagent/alcohol/driestmartini
