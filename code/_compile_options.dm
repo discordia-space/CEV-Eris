@@ -79,3 +79,9 @@
 #define REFERENCE_TRACKING_DEBUG
 #define FIND_REF_NO_CHECK_TICK
 #endif
+
+#if !defined(CBT) && !defined(SPACEMAN_DMM)
+#warn Building with Dream Maker is no longer supported and will result in errors (tgui not exist etc...).
+#warn In order to build, run BUILD.bat in the root directory.
+#warn Consider switching to VSCode editor instead, where you can press Ctrl+Shift+B to build.
+#endif
