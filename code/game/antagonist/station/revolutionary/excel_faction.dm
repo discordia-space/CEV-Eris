@@ -105,4 +105,3 @@
 		new /obj/item/electronics/circuitboard/excelsior_teleporter(stash)
 
 		H.put_in_hands(stash)
-		F.stash_holder = H.real_name
