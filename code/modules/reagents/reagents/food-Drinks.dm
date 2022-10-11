@@ -2281,7 +2281,7 @@
 /datum/reagent/alcohol/moonshine/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	. = ..()
 	if(M.stats.getPerk(PERK_ALCOHOLIC))
-		M.heal_organ_damage(0.3 * effect_multiplier, 0.3 * effect_multiplier) //Slowly heals brute and burn like tricord
+		M.heal_organ_damage(0.3 * effect_multiplier, 0.3 * effect_multiplier) 
 
 /datum/reagent/alcohol/neurotoxin
 	name = "Neurotoxin"
