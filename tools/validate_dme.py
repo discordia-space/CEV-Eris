@@ -55,8 +55,8 @@ for code_file in glob.glob("code/**/*.dm", recursive=True):
 
     if not included:
         print(f"{dm_path} is not included")
-        print(f"::error file={code_file},line=1,title=DME Validator::File is not included")
-        fail_no_include = True
+        # print(f"::error file={code_file},line=1,title=DME Validator::File is not included")
+        # fail_no_include = True
 
 if fail_no_include:
     sys.exit(1)
