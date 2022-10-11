@@ -407,7 +407,7 @@
 
 		var/filename = sanitizeFileName("[design.build_path].png")
 
-		var/atom/item = initial(design.build_path)
+		var/atom/item = design.build_path
 		var/icon_file = initial(item.icon)
 		var/icon_state = initial(item.icon_state)
 
