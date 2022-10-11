@@ -2437,6 +2437,13 @@
 	glass_center_of_mass = list("x"=17, "y"=4)
 	taste_tag = list(TASTE_BITTER,TASTE_STRONG)
 
+/datum/reagent/alcohol/singulo/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(M.stats.getPerk(PERK_TECHNOMANCER))
+		M.AdjustWeakened(-1) 
+	else
+		M.AdjustWeakened(1) 
+
 /datum/reagent/alcohol/snowwhite
 	name = "Snow White"
 	id = "snowwhite"
