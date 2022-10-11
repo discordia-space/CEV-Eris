@@ -87,11 +87,11 @@
 	materials = list(MATERIAL_BIOMATTER = 20)
 
 /datum/design/bioprinter/belt/utility
-	name = "Neotheologian utility belt"
+	name = "Neotheology utility belt"
 	build_path = /obj/item/storage/belt/utility/neotheology
 
 /datum/design/bioprinter/belt/security
-	name = "Neotheologian tactical belt"
+	name = "Neotheology tactical belt"
 	build_path = /obj/item/storage/belt/tactical/neotheology
 
 /datum/design/bioprinter/backpack
@@ -288,7 +288,7 @@
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/firstaid/nt
-	name = "NeoTheologian Medkit"
+	name = "NeoTheology Medkit"
 	build_path = /obj/item/storage/firstaid/nt
 	factions = list(FACTION_NEOTHEOLOGY)
 
@@ -359,8 +359,8 @@
 	build_path = /obj/item/tool/sword/nt/spear
 
 /datum/design/autolathe/nt/sword/nt_verutum
-	name = "NT Javelin"
-	build_path = /obj/item/stack/thrown/nt/verutum
+	name = "NT Javelins (3)"
+	build_path = /obj/item/stack/thrown/nt/verutum/full
 
 /datum/design/autolathe/nt/tool_upgrade/sanctifier
 	name = "sanctifier"

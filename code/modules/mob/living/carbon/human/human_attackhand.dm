@@ -169,7 +169,7 @@
 				attack_generic(H,rand(1,3),"punched")
 				return
 
-			var/stat_damage = 3 + max(0, (H.stats.getStat(STAT_ROB) / 10))
+			var/stat_damage = max(0, min(15, (H.stats.getStat(STAT_ROB) / 4)))
 			var/limb_efficiency_multiplier = 1
 			var/block = 0
 			var/accurate = 0
@@ -257,11 +257,8 @@
 
 			var/real_damage = stat_damage
 			real_damage += attack.get_unarmed_damage(H)
+			real_damage += H.punch_damage_increase
 			real_damage *= damage_multiplier
-			stat_damage *= damage_multiplier
-//			if(HULK in H.mutations)
-//				real_damage *= 2 // Hulks do twice the damage
-//				stat_damage *= 2
 			real_damage = max(1, real_damage)
 
 			// Apply additional unarmed effects.

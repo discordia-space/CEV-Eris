@@ -389,7 +389,7 @@
 			// redirect the projectile
 			P.redirect(new_x, new_y, curloc, user)
 
-			return PROJECTILE_CONTINUE // complete projectile permutation
+			return PROJECTILE_FORCE_MISS_SILENCED // complete projectile permutation
 
 /obj/item/clothing/head/space/void/riggedvoidsuit
 	name = "makeshift armored Helmet"

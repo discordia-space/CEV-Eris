@@ -41,7 +41,10 @@
 		/obj/item/gun/projectile/boltgun/obrez,
 		/obj/item/gun/energy/retro/sawn,
 		/obj/item/gun/projectile/automatic/luty,
-		/obj/item/gun/projectile/revolver/hornet
+		/obj/item/gun/projectile/revolver/hornet,
+		/obj/item/gun/projectile/pistol/type_62,
+		/obj/item/gun/projectile/pistol/type_90,
+		/obj/item/gun/projectile/shotgun/type_21
 		)
 
 	sliding_behavior = TRUE
@@ -164,6 +167,8 @@
 		/obj/item/gun/projectile/mk58,
 		/obj/item/gun/projectile/olivaw,
 		/obj/item/gun/projectile/mandella,
+		/obj/item/gun/projectile/pistol,
+		/obj/item/gun/projectile/shotgun/type_21,
 		/obj/item/gun/energy/gun,
 		/obj/item/gun/energy/chameleon,
 		/obj/item/gun/energy/captain,
@@ -355,12 +360,13 @@
 		overlays += image('icons/inventory/pockets/icon.dmi', "revolver_layer[contents.len]")
 
 /obj/item/storage/pouch/holster/belt/sheath/update_icon()
+	..()
+	cut_overlays()
 	var/icon_to_set
 	for(var/obj/item/SW in contents)
 		icon_to_set = SW.icon_state
 	icon_state = "sheath_[contents.len ? icon_to_set :"0"]"
 	item_state = "sheath_[contents.len ? icon_to_set :"0"]"
-	..()
 
 /obj/item/storage/pouch/holster/belt/knife/update_icon()
 	..()

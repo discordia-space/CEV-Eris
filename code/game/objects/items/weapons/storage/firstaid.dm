@@ -189,7 +189,7 @@
 	make_exact_fit()
 
 /obj/item/storage/firstaid/nt
-	name = "NeoTheologian Medkit"
+	name = "NeoTheology medkit"
 	desc = "A medkit filled with a set of high-end trauma kits and anti-toxins."
 	icon_state = "nt_kit"
 	item_state = "nt_kit"

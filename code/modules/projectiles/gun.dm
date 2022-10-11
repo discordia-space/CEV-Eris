@@ -406,10 +406,16 @@
 			var/obj/item/projectile/P = projectile
 			P.adjust_damages(proj_damage_adjust)
 			P.adjust_ricochet(noricochet)
-			P.multiply_projectile_accuracy(CLAMP(user.stats.getStat(STAT_VIG), 0, STAT_LEVEL_PROF) / 8)
+			P.multiply_projectile_accuracy(CLAMP(user.stats.getStat(STAT_VIG), 1, STAT_LEVEL_PROF) / 8)
 
+		//shooting point blank increases accuracy
 		if(pointblank)
 			process_point_blank(projectile, user, target)
+
+		//being grabbed reduces accuracy
+		if(user.grabbed_by.len)
+			grabbed_inaccuracy(projectile, user)
+
 		if(projectile_color)
 			projectile.icon = get_proj_icon_by_color(projectile, projectile_color)
 			if(istype(projectile, /obj/item/projectile))
@@ -536,7 +542,7 @@
 		return //dual wielding deal too much damage as it is, so no point blank for it
 
 	//default point blank multiplier
-	var/damage_mult = 1.3
+	var/accuracy_mult = 2
 
 	//determine multiplier due to the target being grabbed
 	if(ismob(target))
@@ -546,11 +552,28 @@
 			for(var/obj/item/grab/G in M.grabbed_by)
 				grabstate = max(grabstate, G.state)
 			if(grabstate >= GRAB_NECK)
-				damage_mult = 2.5
+				accuracy_mult = 4
 			else if(grabstate >= GRAB_AGGRESSIVE)
-				damage_mult = 1.5
-	P.multiply_projectile_damage(damage_mult)
+				accuracy_mult = 8
 
+	P.multiply_projectile_accuracy(accuracy_mult)
+
+/obj/item/gun/proc/grabbed_inaccuracy(obj/item/projectile/P, mob/user) //TODO: make length of gun be a disadvantage
+	if(!istype(P))
+		return //default behaviour only applies to true projectiles
+
+	//default grabbed multiplier
+	var/accuracy_mult = 0.5
+
+	var/grabstate = 0
+	for(var/obj/item/grab/G in user.grabbed_by)
+		grabstate = max(grabstate, G.state)
+	if(grabstate >= GRAB_NECK)
+		accuracy_mult = 0.125
+	else if(grabstate >= GRAB_AGGRESSIVE)
+		accuracy_mult = 0.25
+
+	P.multiply_projectile_accuracy(accuracy_mult)
 
 //does the actual launching of the projectile
 /obj/item/gun/proc/process_projectile(obj/item/projectile/P, mob/living/user, atom/target, var/target_zone, var/params=null)
@@ -953,7 +976,8 @@
 	data["projectile_AP"] = P.armor_divisor + penetration_multiplier
 	data["projectile_WOUND"] = P.wounding_mult
 	data["unarmoured_damage"] = ((P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()) * P.wounding_mult
-	data["armoured_damage"] = (((P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()) - (10 / (P.armor_divisor + penetration_multiplier))) * P.wounding_mult
+	data["armoured_damage_10"] = (((P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()) - (10 / (P.armor_divisor + penetration_multiplier))) * P.wounding_mult
+	data["armoured_damage_15"] = (((P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()) - (15 / (P.armor_divisor + penetration_multiplier))) * P.wounding_mult
 	data["projectile_recoil"] = P.recoil
 	qdel(P)
 	return data

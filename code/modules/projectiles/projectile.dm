@@ -273,7 +273,7 @@
 		recoil = leftmost_bit(recoil) //LOG2 calculation
 	else
 		recoil = 0
-	distance = leftmost_bit(distance)
+	distance = distance <= 3 ? 5 - max(1,distance) : leftmost_bit(distance)
 
 	def_zone = ran_zone(def_zone, 100 - (distance + recoil) * 10)
 
@@ -282,7 +282,7 @@
 	var/hit_mod = 0
 	switch(target_mob.mob_size)
 		if(120 to INFINITY)
-
+			hit_mod = -6
 		if(80 to 120)
 			hit_mod = -4
 		if(40 to 80)
@@ -299,6 +299,7 @@
 	if(target_mob == original)
 		var/acc_mod = leftmost_bit(projectile_accuracy)
 		hit_mod -= acc_mod //LOG2 on the projectile accuracy
+
 	return prob((base_miss_chance[def_zone] + hit_mod) * 10)
 
 //Called when the projectile intercepts a mob. Returns 1 if the projectile hit the mob, 0 if it missed and should keep flying.
@@ -309,7 +310,7 @@
 	//roll to-hit
 	miss_modifier = 0
 
-	var/result = PROJECTILE_FORCE_MISS
+	var/result = PROJECTILE_CONTINUE
 
 	if(target_mob != original) // If mob was not clicked on / is not an NPC's target, checks if the mob is concealed by cover
 		var/turf/cover_loc = get_step(get_turf(target_mob), get_dir(get_turf(target_mob), starting))
@@ -342,10 +343,10 @@
 //			qdel(src)
 //			return TRUE
 
-	result = target_mob.bullet_act(src, def_zone)
-
 	if(check_miss_chance(target_mob))
 		result = PROJECTILE_FORCE_MISS
+	else
+		result = target_mob.bullet_act(src, def_zone)
 
 	if(result == PROJECTILE_FORCE_MISS || result == PROJECTILE_FORCE_MISS_SILENCED)
 		if(!silenced && result == PROJECTILE_FORCE_MISS)
@@ -373,10 +374,6 @@
 			target_mob.attack_log += "\[[time_stamp()]\] <b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[target_mob]/[target_mob.ckey]</b> with <b>\a [src]</b>"
 			msg_admin_attack("UNKNOWN shot [target_mob] ([target_mob.ckey]) with \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target_mob.x];Y=[target_mob.y];Z=[target_mob.z]'>JMP</a>)")
 
-	//sometimes bullet_act() will want the projectile to continue flying
-	if (result == PROJECTILE_CONTINUE)
-		return FALSE
-
 	if(target_mob.mob_classification & CLASSIFICATION_ORGANIC)
 		var/turf/target_loca = get_turf(target_mob)
 		var/mob/living/L = target_mob
@@ -399,7 +396,10 @@
 		if(psy.contractor && result && (H.sanity.level <= 0))
 			psy.holder.reg_break(H)
 
-	return TRUE
+	if(result == PROJECTILE_STOP)
+		return TRUE
+	else
+		return FALSE
 
 /obj/item/projectile/Bump(atom/A as mob|obj|turf|area, forced = FALSE)
 	if(A == src)
@@ -612,6 +612,30 @@
 			P.pixel_x = location.pixel_x
 			P.pixel_y = location.pixel_y
 			P.activate(P.lifetime)
+
+/obj/item/projectile/proc/block_damage(var/amount, atom/A)
+	amount /= armor_divisor
+	var/dmg_total = 0
+	var/dmg_remaining = 0
+	for(var/dmg_type in damage_types)
+		var/dmg = damage_types[dmg_type]
+		if(!(dmg_type == HALLOSS))
+			dmg_total += dmg
+		if(dmg && amount)
+			var/dmg_armor_difference = dmg - amount
+			amount = dmg_armor_difference ? 0 : -dmg_armor_difference
+			dmg = dmg_armor_difference ? dmg_armor_difference : 0
+			if(!(dmg_type == HALLOSS))
+				dmg_remaining += dmg
+		if(dmg)
+			damage_types[dmg_type] = dmg
+		else
+			damage_types -= dmg_type
+	if(!damage_types.len)
+		on_impact(A)
+		qdel(A)
+
+	return dmg_total ? (dmg_remaining / dmg_total) : 0
 
 //"Tracing" projectile
 /obj/item/projectile/test //Used to see if you can hit them.
