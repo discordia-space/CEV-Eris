@@ -1603,7 +1603,7 @@
 /datum/reagent/alcohol/amasec/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	. = ..()
 	if(M.stats.getPerk(PERK_GUNSLINGER))
-		M.stats.addTempStat(STAT_TGH, STAT_LEVEL_BASIC*effect_multiplier, STIM_TIME, "Amasec")
+		M.stats.addTempStat(STAT_TGH, STAT_LEVEL_BASIC*effect_multiplier, STIM_TIME, "Amasec") //Improves Toughness by ~15 if Gunslinger
 
 /datum/reagent/alcohol/andalusia
 	name = "Andalusia"
@@ -2093,7 +2093,7 @@
 /datum/reagent/alcohol/hooch/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	. = ..()
 	if(M.stats.getPerk(PERK_ALCOHOLIC))
-		M.stats.addTempStat(STAT_TGH, STAT_LEVEL_BASIC*effect_multiplier, STIM_TIME, "Hooch'ed up!") //Alternative is to effect brute_mod
+		M.add_chemical_effect(CE_PAINKILLER, 15) //Acts as Inaprovaline painkiller if alcoholic
 
 /datum/reagent/alcohol/iced_beer
 	name = "Iced Beer"
@@ -2274,6 +2274,11 @@
 	glass_name = "moonshine"
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 	taste_tag = list(TASTE_BITTER,TASTE_STRONG)
+
+/datum/reagent/alcohol/moonshine/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(M.stats.getPerk(PERK_ALCOHOLIC))
+		M.heal_organ_damage(0.3 * effect_multiplier, 0.3 * effect_multiplier) //Slowly heals brute and burn like tricord
 
 /datum/reagent/alcohol/neurotoxin
 	name = "Neurotoxin"
