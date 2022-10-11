@@ -81,15 +81,17 @@
 		to_chat(usr, SPAN_NOTICE("The stash has already been summoned by \"[F.stash_holder]\""))
 		return
 
-	var/mob/living/carbon/human/H = usr
+	if(alert(usr,"Are you sure you want to summon Excelsior stash?","Means of Production","Yes, the time has come","No, not yet") == "Yes, the time has come")
 
-	var/obj/item/storage/deferred/stash/sack/stash = new
+		var/mob/living/carbon/human/H = usr
 
-	new /obj/item/computer_hardware/hard_drive/portable/design(stash)
-	new /obj/item/computer_hardware/hard_drive/portable/design/excelsior/core(stash)
-	new /obj/item/computer_hardware/hard_drive/portable/design/excelsior/weapons(stash)
-	new /obj/item/electronics/circuitboard/excelsiorautolathe(stash)
-	new /obj/item/electronics/circuitboard/excelsior_teleporter(stash)
+		var/obj/item/storage/deferred/stash/sack/stash = new
 
-	H.put_in_hands(stash)
-	F.stash_holder = H.real_name
+		new /obj/item/computer_hardware/hard_drive/portable/design(stash)
+		new /obj/item/computer_hardware/hard_drive/portable/design/excelsior/core(stash)
+		new /obj/item/computer_hardware/hard_drive/portable/design/excelsior/weapons(stash)
+		new /obj/item/electronics/circuitboard/excelsiorautolathe(stash)
+		new /obj/item/electronics/circuitboard/excelsior_teleporter(stash)
+
+		H.put_in_hands(stash)
+		F.stash_holder = H.real_name
