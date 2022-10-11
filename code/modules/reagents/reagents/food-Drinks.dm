@@ -1743,7 +1743,10 @@
 
 /datum/reagent/alcohol/beepsky_smash/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
-	M.Stun(2)
+	if(M.stats.getPerk(PERK_SURVIVOR))
+		M.stats.addTempStat(STAT_ROB, STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "BEEPSKY SMASH") //SMASH
+	else
+		M.Stun(2) //Or get smashed
 
 /datum/reagent/alcohol/bilk
 	name = "Bilk"
