@@ -49,3 +49,7 @@
 #define PERK_CODESPEAK /datum/perk/codespeak
 #define PERK_TECHNOMANCER /datum/perk/inspiration
 #define PERK_CLUB /datum/perk/job/club
+
+//cooldown perks
+#define PERK_COOLDOWN_REASON /datum/perk/cooldown/reason
+#define PERK_COOLDOWN_EXERTION /datum/perk/cooldown/exertion
