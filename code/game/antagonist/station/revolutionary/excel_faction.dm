@@ -93,8 +93,8 @@
 		for(var/mob/observer/ghost/M as anything in GLOB.dead_mob_list)
 			if(!M.client)
 				continue
-			if((M.antagHUD || is_admin(M))
-				to_chat(M, "[text] ([ghost_follow_link(user, M)])")
+			if(M.antagHUD || is_admin(M))
+				to_chat(M, "[text] ([ghost_follow_link(usr, M)])")
 
 
 		var/obj/item/storage/deferred/stash/sack/stash = new
