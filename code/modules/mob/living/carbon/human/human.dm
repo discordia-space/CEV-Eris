@@ -1596,7 +1596,6 @@ var/list/rank_prefix = list(\
 		holster_found = TRUE
 		if(holster.holster_verb(src))//did it do something? If not, we ignore it
 			return
-		break
 	//no pouch holsters, anything on our uniform then?
 	if(w_uniform)
 		if(istype(w_uniform,/obj/item/clothing/under))
