@@ -396,7 +396,7 @@
 	taste_tag = list(VEGETARIAN_FOOD, VEGAN_FOOD)
 
 /obj/item/reagent_containers/food/snacks/shokoloud
-	name = "shokolad bar"
+	name = "shokoloud bar"
 	desc = "A bar of dark chocolate. Strangely polarizing."
 	icon_state = "shokoloud"
 	trash = /obj/item/trash/shokoloud
