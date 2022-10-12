@@ -81,7 +81,7 @@
 		to_chat(usr, SPAN_NOTICE("The stash has already been summoned by \"[F.stash_holder]\""))
 		return
 
-	if(alert(usr,"Are you sure you want to summon Excelsior stash?","Means of Production","Yes, the time has come","No, not yet") == "Yes, the time has come")
+	if(alert(H, "Are you sure you want to summon Excelsior stash?","Means of Production", "Yes, the time has come", "No, not yet") == "Yes, the time has come")
 		F.stash_holder = H.real_name
 		var/area/comrade_area = get_area(H)
 		var/comrade_location = initial(comrade_area.name)
