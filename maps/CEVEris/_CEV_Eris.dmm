@@ -18113,9 +18113,9 @@
 /area/eris/hallway/side/atmosphericshallway)
 "aSV" = (
 /obj/structure/table/rack,
-/obj/item/tool/hammer/IH,
-/obj/item/tool/hammer/IH,
-/obj/item/tool/hammer/IH,
+/obj/item/tool/hammer/sledgehammer/ironhammer,
+/obj/item/tool/hammer/sledgehammer/ironhammer,
+/obj/item/tool/hammer/sledgehammer/ironhammer,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
