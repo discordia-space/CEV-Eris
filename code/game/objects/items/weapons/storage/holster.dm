@@ -206,6 +206,7 @@
 		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice,
 		/obj/item/bananapeel
 		)
+	var/list/cant_hold = list()
 
 /obj/item/clothing/accessory/holster/knife
 	name = "throwing knife rig"
@@ -225,6 +226,12 @@
 	slot = "utility"
 	max_w_class = ITEM_SIZE_HUGE
 	can_hold = list(/obj/item/tool/sword)
+	cant_hold = list(
+		/obj/item/tool/knife/dagger/nt,
+		/obj/item/tool/sword/nt/halberd,
+		/obj/item/tool/sword/nt/spear
+		)
+	
 	price_tag = 300
 	sound_in = 'sound/effects/sheathin.ogg'
 	sound_out = 'sound/effects/sheathout.ogg'
@@ -282,6 +289,7 @@
 	holster = new /obj/item/storage/internal(src)
 	holster.storage_slots = storage_slots
 	holster.can_hold = can_hold
+	holster.cant_hold = cant_hold
 	holster.max_w_class = max_w_class
 	holster.master_item = src
 
@@ -292,18 +300,10 @@
 /obj/item/clothing/accessory/holster/attackby(obj/item/I, mob/user)
 	holster.attackby(I, user)
 
-//For the holster hotkey
-//This verb is universal to any subtype of pouch/holster.
-/obj/item/storage/pouch/holster/verb/holster_verb()
-	set name = "Holster"
-	set category = "Object"
-	set src = usr.contents
-	if(!ishuman(usr))
+//For the holster hotkey in human.dm
+/obj/item/storage/pouch/holster/proc/holster_verb(var/mob/living/carbon/human/H)
+	if(!istype(H))
 		return
-	if(usr.stat)
-		return
-
-	var/mob/living/carbon/human/H = usr
 
 	//List of priorities for holster hotkey. Back, suit store, belt, left pocket, right pocket.
 	//Back is for future holsters, if anyone decides to add those.
@@ -327,9 +327,12 @@
 				holster.attack_hand(H)
 				holster_handled = TRUE
 				break
+	
 	if(!holster_handled)
-		to_chat(H, SPAN_NOTICE(H.get_active_hand() ? "You don't have any occupied holsters." : "All your holsters are occupied."))
-
+		to_chat(H, SPAN_NOTICE(!H.get_active_hand() ? "You don't have any occupied pouch holsters." : "All your pouch holsters are occupied."))
+		return FALSE
+	else
+		return TRUE
 
 /obj/item/storage/pouch/holster/attack_hand(mob/living/carbon/human/H)
 	if(contents.len)
