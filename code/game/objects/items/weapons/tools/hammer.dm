@@ -40,7 +40,7 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	armor_divisor = ARMOR_PEN_MODERATE
 	force = WEAPON_FORCE_DANGEROUS
-	force_wielded_multiplier = 1.9
+	force_wielded_multiplier = 1.5
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 2)
