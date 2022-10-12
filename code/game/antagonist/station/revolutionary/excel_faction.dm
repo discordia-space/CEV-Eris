@@ -83,7 +83,9 @@
 
 	if(alert(usr,"Are you sure you want to summon Excelsior stash?","Means of Production","Yes, the time has come","No, not yet") == "Yes, the time has come")
 		F.stash_holder = H.real_name
-		var/text = "<span class='revolution'>\"Comrade [F.stash_holder] has seized the means of production!\"</span>"
+		var/area/comrade_area = get_area(H)
+		var/comrade_location = initial(comrade_area.name)
+		var/text = "<span class='revolution'>\"Comrade [H] has seized the means of production in [comrade_location]!\"</span>"
 		for(var/i in SSmobs.mob_list)
 			if(is_excelsior(i))
 				to_chat(i, text)
