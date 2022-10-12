@@ -96,7 +96,6 @@
 			if((M.antagHUD || is_admin(M))
 				to_chat(M, "[text] ([ghost_follow_link(user, M)])")
 
-		var/mob/living/carbon/human/H = usr
 
 		var/obj/item/storage/deferred/stash/sack/stash = new
 
