@@ -80,7 +80,7 @@
 	if(F.stash_holder)
 		to_chat(usr, SPAN_NOTICE("The stash has already been summoned by \"[F.stash_holder]\""))
 		return
-
+	var/mob/living/carbon/human/H = usr
 	if(alert(H, "Are you sure you want to summon Excelsior stash?","Means of Production", "Yes, the time has come", "No, not yet") == "Yes, the time has come")
 		F.stash_holder = H.real_name
 		var/area/comrade_area = get_area(H)
