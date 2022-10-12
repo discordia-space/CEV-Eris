@@ -1588,10 +1588,11 @@ var/list/rank_prefix = list(\
 	set name = "Holster"
 	set desc = "Try to access your holsters."
 	set category = "IC"
-	if(stat) return
+	if(stat)
+		return
 	var/holster_found = FALSE
 
-	for(var/obj/item/storage/pouch/holster/holster in list(back, s_store, belt, l_store, r_store,))
+	for(var/obj/item/storage/pouch/holster/holster in list(back, s_store, belt, l_store, r_store))
 	//found a pouch holster
 		holster_found = TRUE
 		if(holster.holster_verb(src))//did it do something? If not, we ignore it
@@ -1611,7 +1612,6 @@ var/list/rank_prefix = list(\
 	//nothing at all!
 	if(!holster_found)
 		to_chat(src, "<span class='notice'>You don\'t have any holsters.</span>")
-	return
 
 //generates realistic-ish pulse output based on preset levels
 /mob/living/carbon/human/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
