@@ -14,6 +14,14 @@
 	hitsound = 'sound/weapons/melee/blunthit.ogg'
 	rarity_value = 5
 
+/obj/item/tool/hammer/wield(mob/living/user)
+	screen_shake = TRUE
+	..()
+
+/obj/item/tool/hammer/unwield(mob/living/user)
+	screen_shake = FALSE
+	..()
+
 /obj/item/tool/hammer/powered_hammer //to be made into proper two-handed tool as small "powered" hammer doesn't make sense
 	name = "powered hammer"					//lacks normal sprites, both icon, item and twohanded for this
 	desc = "Used for applying excessive blunt force to a surface. Powered edition."
@@ -40,7 +48,7 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	armor_divisor = ARMOR_PEN_MODERATE
 	force = WEAPON_FORCE_DANGEROUS
-	force_wielded_multiplier = 1.5
+	force_wielded_multiplier = 1.4
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 2)
@@ -101,7 +109,7 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
 	armor_divisor = ARMOR_PEN_HALF
 	force= WEAPON_FORCE_BRUTAL
-	force_wielded_multiplier = 2
+	force_wielded_multiplier = 1.5
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLATINUM = 5, MATERIAL_DIAMOND = 5)
