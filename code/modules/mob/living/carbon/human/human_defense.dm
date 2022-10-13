@@ -255,10 +255,13 @@ meteor_act
 	//passive blocking with shields is handled differently(code is above this proc)
 	if(get_active_hand())//are we blocking with an item?
 		var/obj/item/I = get_active_hand()
-		item_size_affect = I.w_class * 5
+		if(istype(I))
+			item_size_affect = I.w_class * 5
 	else
 		stat_affect = 0.5
-	damage = (damage - (toughness * stat_affect + item_size_affect))
+	damage -= (toughness * stat_affect + item_size_affect)
+	if(damage < 0)
+		damage = -damage
 	return damage
 
 /mob/living/carbon/human/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
@@ -280,6 +283,10 @@ meteor_act
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
 		return FALSE//should be prevented by attacked_with_item() but for sanity.
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.blocking = FALSE
 
 	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
 
