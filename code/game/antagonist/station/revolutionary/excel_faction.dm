@@ -94,7 +94,7 @@
 			if(!M.client)
 				continue
 			if(M.antagHUD || is_admin(M))
-				to_chat(M, "[text] ([ghost_follow_link(usr, M)])")
+				to_chat(M, "[text] ([ghost_follow_link(H, M)])")
 
 
 		var/obj/item/storage/deferred/stash/sack/stash = new
