@@ -255,9 +255,9 @@ meteor_act
 	//passive blocking with shields is handled differently(code is above this proc)
 	if(get_active_hand())//are we blocking with an item?
 		var/obj/item/I = get_active_hand()
-		stat_affect = 0.2
 		if(istype(I))
 			item_size_affect = I.w_class * 5
+			stat_affect = 0.2
 	damage -= (toughness * stat_affect + item_size_affect)
 	return max(0, damage)
 
