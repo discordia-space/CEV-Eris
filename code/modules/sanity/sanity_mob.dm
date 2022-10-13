@@ -131,8 +131,8 @@
 		if(rest_timer_time > 0)
 			rest_timer_time -= 2 SECONDS //since OnLife() procs every 2 seconds
 		else
-			level_up()
 			rest_timer_active = FALSE
+			level_up()
 
 	SEND_SIGNAL(owner, COMSIG_HUMAN_SANITY, level)
 
@@ -174,14 +174,15 @@
 				moralist_factor += 0.02
 	give_insight(INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier)
 	while(insight >= 100)
-		give_resting(1)
-		if(owner.stats.getPerk(PERK_ARTIST))
-			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? " Now you need to make art. You cannot gain more insight before you do." : null]"))
-		else
-			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? " Now you need to rest and rethink your life choices." : " Your previous insight has been discarded, shifting your desires for new ones."]"))
-			pick_desires()
-			insight -= 100
-		owner.playsound_local(get_turf(owner), 'sound/sanity/psychochimes.ogg', 100)
+		if(!rest_timer_active)//Prevent any exploits(timer is only active for one minute tops)
+			give_resting(1)
+			if(owner.stats.getPerk(PERK_ARTIST))
+				to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? " Now you need to make art. You cannot gain more insight before you do." : null]"))
+			else
+				to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? " Now you need to rest and rethink your life choices." : " Your previous insight has been discarded, shifting your desires for new ones."]"))
+				pick_desires()
+				insight -= 100
+			owner.playsound_local(get_turf(owner), 'sound/sanity/psychochimes.ogg', 100)
 
 	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
 	hud?.update_icon()
@@ -322,7 +323,8 @@
 			var/list/stat_change = list()
 
 			var/stat_pool = resting * 15
-			while(stat_pool--)
+			while(stat_pool > 0)
+				stat_pool--
 				LAZYAPLUS(stat_change, pick(ALL_STATS), 3)
 
 			for(var/stat in stat_change)
