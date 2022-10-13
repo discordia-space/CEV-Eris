@@ -940,7 +940,6 @@ obj/screen/fire/DEADelize()
 /obj/screen/HUDblock
 	name = "block"
 	icon_state = "block_off"
-	screen_loc = "15,3"
 	layer = HUD_LAYER
 	plane = HUD_PLANE
 

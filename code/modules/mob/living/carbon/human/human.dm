@@ -1766,6 +1766,9 @@ var/list/rank_prefix = list(\
 		start_blocking()
 	else
 		stop_blocking()
+	if (HUDneed.Find("block"))
+		var/obj/screen/HUDblock/HUD = HUDneed["block"]
+		HUD.update_icon()
 
 /mob/living/carbon/human/proc/start_blocking()
 	if(blocking)//already blocking with an item somehow?
