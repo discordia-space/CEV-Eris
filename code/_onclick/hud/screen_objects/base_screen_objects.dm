@@ -937,28 +937,29 @@ obj/screen/fire/DEADelize()
 //-----------------------throw END------------------------------
 
 //-----------------------block------------------------------
-/obj/screen/HUDblock
+/obj/screen/block
 	name = "block"
 	icon_state = "block_off"
+	screen_loc = "15:-16,3"
 	layer = HUD_LAYER
 	plane = HUD_PLANE
 
-/obj/screen/HUDblock/New()
+/obj/screen/block/New()
 	..()
 	update_icon()
 
-/obj/screen/HUDblock/Click()
+/obj/screen/block/Click()
 	if(usr.client)
 		usr.client.toggle_blocking()
 		update_icon()
 
-/obj/screen/HUDblock/update_icon()
+/obj/screen/block/update_icon()
 	if(ishuman(parentmob))
 		var/mob/living/carbon/human/H = parentmob
 		if (H.blocking)
-			icon_state = "blocking_on"
+			icon_state = "block_on"
 		else
-			icon_state = "blocking_off"
+			icon_state = "block_off"
 //-----------------------block END------------------------------
 
 //-----------------------drop------------------------------
