@@ -315,8 +315,8 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_NORMAL
 	damage_multiplier = 1.1
-	charge_cost = 100 
-	fire_delay = 10 
+	charge_cost = 125 
+	fire_delay = 13 
 	price_tag = 250
 	init_firemodes = list(
 		BURST_2_BEAM
