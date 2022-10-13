@@ -19,6 +19,8 @@
 				tally += 0.5
 	if(stats.getPerk(PERK_FAST_WALKER))
 		tally -= 0.5
+	if(blocking)
+		tally += 1
 
 	var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
 	if(C && C.active)

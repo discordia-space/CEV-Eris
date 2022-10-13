@@ -149,6 +149,10 @@
 			H.do_attack_animation(src)
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
+			//our blocking was compromised!
+			if(blocking)
+				visible_message(SPAN_WARNING("[src]'s guard has been broken!"), SPAN_DANGER("Your blocking stance has been pushed through!"))
+				blocking = FALSE
 			src.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been grabbed passively by [M.name] ([M.ckey])</font>"
 			M.attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed passively [src.name] ([src.ckey])</font>"
 			msg_admin_attack("[M] grabbed passively a [src].")
@@ -261,6 +265,18 @@
 			real_damage *= damage_multiplier
 			real_damage = max(1, real_damage)
 
+			//Try to reduce damage by blocking
+			if(blocking)
+				blocking = FALSE
+				real_damage -= handle_blocking(real_damage)
+				//Tell everyone about blocking
+				H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Blocked attack of [src.name] ([src.ckey])</font>")
+				src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Attack has been blocked by [H.name] ([H.ckey])</font>")
+				visible_message(SPAN_WARNING("[src] blocks the blow!"), SPAN_DANGER("You block the blow!"))
+				//They farked up
+				if(real_damage <= 0)
+					visible_message(SPAN_DANGER("The attack has been completely negated!"))
+					return
 			// Apply additional unarmed effects.
 			attack.apply_effects(H, src, getarmor(affecting, ARMOR_MELEE), stat_damage, hit_zone)
 

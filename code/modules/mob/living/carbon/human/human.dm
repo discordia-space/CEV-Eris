@@ -1754,3 +1754,29 @@ var/list/rank_prefix = list(\
 				pick(subtypesof(/datum/mutation/t3)) = 10,
 				pick(subtypesof(/datum/mutation/t4)) = 5))
 			dormant_mutations |= new M
+
+/mob/living/carbon/human/verb/toggle_blocking()
+	set name = "Attempt blocking"
+	set desc = "Block an incoming melee attack, or lower your guard."
+	set category = "IC"
+
+	if(stat)
+		return
+	if(!blocking)
+		start_blocking()
+	else
+		stop_blocking()
+
+/mob/living/carbon/human/proc/start_blocking()
+	if(blocking)//already blocking with an item somehow?
+		return
+	blocking = TRUE
+	visible_message(SPAN_WARNING("[src] tenses up, ready to block!"))
+	return
+
+/mob/living/carbon/human/proc/stop_blocking()
+	if(!blocking)//already blockingn't with an item somehow?
+		return
+	blocking = FALSE
+	visible_message(SPAN_NOTICE("[src] lowers \his guard."))
+	return
