@@ -240,7 +240,11 @@
 	Only used for swapping hands
 */
 /mob/proc/MiddleClickOn(atom/A)
-	swap_hand()
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		H.toggle_blocking()
+	else
+		swap_hand()
 	return
 
 /mob/proc/ShiftMiddleClickOn(atom/A)
@@ -396,8 +400,12 @@ GLOBAL_LIST_INIT(click_catchers, create_click_catcher())
 /obj/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
 	if(modifiers["middle"] && istype(usr, /mob/living/carbon))
-		var/mob/living/carbon/C = usr
-		C.swap_hand()
+		if(ishuman(usr))
+			var/mob/living/carbon/human/H = usr
+			H.toggle_blocking()
+		else
+			var/mob/living/carbon/C = usr
+			C.swap_hand()
 	else
 		var/turf/T = screen_loc2turf(screen_loc, get_turf(usr))
 		if(T)
