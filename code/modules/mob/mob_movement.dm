@@ -111,12 +111,12 @@
 	else
 		return
 
-/client/verb/toggle_blocking()
+/client/verb/blocking()
 	set hidden = 1
 	if(!istype(mob, /mob/living/carbon/human))
 		return
 	if (!mob.stat && isturf(mob.loc) && !mob.restrained())
-		mob:toggle_blocking()
+		mob:blocking()
 	else
 		return
 

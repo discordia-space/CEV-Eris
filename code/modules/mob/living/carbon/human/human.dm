@@ -1755,8 +1755,8 @@ var/list/rank_prefix = list(\
 				pick(subtypesof(/datum/mutation/t4)) = 5))
 			dormant_mutations |= new M
 
-/mob/living/carbon/human/verb/toggle_blocking()
-	set name = "Attempt blocking"
+/mob/living/carbon/human/verb/blocking()
+	set name = "Blocking"
 	set desc = "Block an incoming melee attack, or lower your guard."
 	set category = "IC"
 

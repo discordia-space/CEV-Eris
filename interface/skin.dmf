@@ -620,7 +620,7 @@ macro "hotkeymode"
 		command = "quick-equip"
 	elem
 		name = "F"
-		command = "toggle_blocking"
+		command = "blocking"
 	elem
 		name = "CTRL+F"
 		command = "a-intent left"

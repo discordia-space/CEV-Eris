@@ -950,7 +950,7 @@ obj/screen/fire/DEADelize()
 
 /obj/screen/block/Click()
 	if(usr.client)
-		usr.client.toggle_blocking()
+		usr.client.blocking()
 		update_icon()
 
 /obj/screen/block/update_icon()
