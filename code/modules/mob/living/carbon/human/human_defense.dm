@@ -300,7 +300,7 @@ meteor_act
 		blocking = FALSE
 		visible_message(SPAN_WARNING("[src] blocks the blow!"), SPAN_WARNING("You block the blow!"))
 		effective_force = handle_blocking(effective_force)
-		if(effective_force = 0)
+		if(effective_force == 0)
 			visible_message(SPAN_DANGER("The attack has been completely negated!"))
 			return FALSE
 

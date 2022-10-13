@@ -278,7 +278,7 @@
 				src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Attack has been blocked by [H.name] ([H.ckey])</font>")
 				visible_message(SPAN_WARNING("[src] blocks the blow!"), SPAN_DANGER("You block the blow!"))
 				//They farked up
-				if(real_damage = 0)
+				if(real_damage == 0)
 					visible_message(SPAN_DANGER("The attack has been completely negated!"))
 					return
 			// Apply additional unarmed effects.
