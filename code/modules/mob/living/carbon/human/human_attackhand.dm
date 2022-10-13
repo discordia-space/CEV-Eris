@@ -56,6 +56,9 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/human_attacker = M
 		human_attacker.blocking = FALSE
+		if(human_attacker.HUDneed.Find("block"))
+			var/obj/screen/block/HUD = human_attacker.HUDneed["block"]
+			HUD.update_icon()
 
 	switch(M.a_intent)
 		if(I_HELP)
@@ -157,6 +160,9 @@
 			if(blocking)
 				visible_message(SPAN_WARNING("[src]'s guard has been broken!"), SPAN_DANGER("Your blocking stance has been pushed through!"))
 				blocking = FALSE
+				if(HUDneed.Find("block"))
+					var/obj/screen/block/HUD = HUDneed["block"]
+					HUD.update_icon()
 				setClickCooldown(2 SECONDS)
 			src.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been grabbed passively by [M.name] ([M.ckey])</font>"
 			M.attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed passively [src.name] ([src.ckey])</font>"
@@ -273,6 +279,9 @@
 			//Try to reduce damage by blocking
 			if(blocking)
 				blocking = FALSE
+				if(HUDneed.Find("block"))
+					var/obj/screen/block/HUD = HUDneed["block"]
+					HUD.update_icon()
 				real_damage = handle_blocking(real_damage)
 				//Tell everyone about blocking
 				H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Blocked attack of [src.name] ([src.ckey])</font>")

@@ -249,13 +249,13 @@ meteor_act
 	return FALSE
 
 /mob/living/carbon/human/proc/handle_blocking(var/damage)
-	var/stat_affect = 0.5 //increased to 0.5 if we are blocking with bare hands
+	var/stat_affect = 0.3 //lowered to 0.2 if we are blocking with an item
 	var/item_size_affect = 0 //the bigger the thing you hold is, the more damage you can block
 	var/toughness = max(1, stats.getStat(STAT_TGH))
 	//passive blocking with shields is handled differently(code is above this proc)
 	if(get_active_hand())//are we blocking with an item?
 		var/obj/item/I = get_active_hand()
-		stat_affect = 0.25
+		stat_affect = 0.2
 		if(istype(I))
 			item_size_affect = I.w_class * 5
 	damage -= (toughness * stat_affect + item_size_affect)
@@ -284,6 +284,9 @@ meteor_act
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.blocking = FALSE
+		if(H.HUDneed.Find("block"))
+			var/obj/screen/block/HUD = H.HUDneed["block"]
+			HUD.update_icon()
 
 	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
 
@@ -298,6 +301,9 @@ meteor_act
 
 	if(blocking)
 		blocking = FALSE
+		if(HUDneed.Find("block"))
+			var/obj/screen/block/HUD = HUDneed["block"]
+			HUD.update_icon()
 		visible_message(SPAN_WARNING("[src] blocks the blow!"), SPAN_WARNING("You block the blow!"))
 		effective_force = handle_blocking(effective_force)
 		if(effective_force == 0)
