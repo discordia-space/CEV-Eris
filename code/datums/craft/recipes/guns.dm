@@ -93,7 +93,21 @@
 		list(/obj/item/stock_parts/capacitor, 1),
 		list(QUALITY_SCREW_DRIVING, 10),
 		list(QUALITY_ADHESIVE, 15, 70)
-	)
+)
+
+/datum/craft_recipe/gun/makeshiftlaserpistol
+	name = "makeshift laser pistol"
+	result = /obj/item/gun/energy/laser/makeshift_pistol
+	steps = list(
+		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, 20),
+		list(CRAFT_MATERIAL, 7, MATERIAL_PLASTIC),
+		list(/obj/item/stock_parts/micro_laser, 2),
+		list(QUALITY_SCREW_DRIVING, 10),
+		list(/obj/item/stock_parts/capacitor, 1),
+		list(QUALITY_SCREW_DRIVING, 10),
+		list(QUALITY_ADHESIVE, 15, 70)
+)
 
 /datum/craft_recipe/gun/lasersmg
 	name = "Lasblender"

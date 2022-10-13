@@ -282,7 +282,7 @@
 
 /obj/item/gun/energy/laser/makeshift
 	name = "makeshift laser carbine"
-	desc = "A makeshift laser carbine, rather wastefull on its chage, but nonetheless reliable"
+	desc = "A makeshift laser carbine, rather wasteful on its charge, but nonetheless reliable"
 	icon = 'icons/obj/guns/energy/makeshift_carbine.dmi'
 	icon_state = "makeshift"
 	item_state = "makeshift"
@@ -301,3 +301,27 @@
 	)
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	init_recoil = CARBINE_RECOIL(1)
+
+/obj/item/gun/energy/laser/makeshift_pistol
+	name = "makeshift laser pistol"
+	desc = "A heavy makeshift laser pistol, trades off some power and efficiency for ease of storage and use"
+	icon = 'icons/obj/guns/energy/makeshift_pistol.dmi'
+	icon_state = "makeshiftpistol"
+	item_state = "makeshiftpistol"
+	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 7)
+	item_charge_meter = TRUE
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
+	w_class = ITEM_SIZE_NORMAL
+	force = WEAPON_FORCE_NORMAL
+	damage_multiplier = 1.1
+	charge_cost = 100 
+	fire_delay = 10 
+	price_tag = 250
+	init_firemodes = list(
+		BURST_2_BEAM
+	)
+	zoom_factors = list()
+	twohanded = FALSE
+	spawn_tags = SPAWN_TAG_GUN_HANDMADE
+	init_recoil = SMG_RECOIL(1)
