@@ -939,9 +939,10 @@ obj/screen/fire/DEADelize()
 //-----------------------block------------------------------
 /obj/screen/HUDblock
 	name = "block"
-	icon = 'icons/mob/screen/ErisStyleHolo.dmi'
 	icon_state = "block_off"
 	screen_loc = "15,3"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 
 /obj/screen/HUDblock/New()
 	..()
