@@ -1760,7 +1760,7 @@ var/list/rank_prefix = list(\
 	set desc = "Block an incoming melee attack, or lower your guard."
 	set category = "IC"
 
-	if(stat)
+	if(stat || restrained())
 		return
 	if(!blocking)
 		start_blocking()

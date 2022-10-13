@@ -936,6 +936,31 @@ obj/screen/fire/DEADelize()
 		icon_state = "act_throw_off"
 //-----------------------throw END------------------------------
 
+//-----------------------block------------------------------
+/obj/screen/HUDblock
+	name = "block"
+	icon = 'icons/mob/screen/ErisStyleHolo.dmi'
+	icon_state = "block_off"
+	screen_loc = "15,3"
+
+/obj/screen/HUDblock/New()
+	..()
+	update_icon()
+
+/obj/screen/HUDblock/Click()
+	if(usr.client)
+		usr.client.toggle_blocking()
+		update_icon()
+
+/obj/screen/HUDblock/update_icon()
+	if(ishuman(parentmob))
+		var/mob/living/carbon/human/H = parentmob
+		if (H.blocking)
+			icon_state = "blocking_on"
+		else
+			icon_state = "blocking_off"
+//-----------------------block END------------------------------
+
 //-----------------------drop------------------------------
 /obj/screen/drop
 	name = "drop"

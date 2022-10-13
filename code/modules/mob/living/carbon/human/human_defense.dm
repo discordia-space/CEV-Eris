@@ -249,20 +249,17 @@ meteor_act
 	return FALSE
 
 /mob/living/carbon/human/proc/handle_blocking(var/damage)
-	var/stat_affect = 0.25 //increased to 0.5 if we are blocking with bare hands
+	var/stat_affect = 0.5 //increased to 0.5 if we are blocking with bare hands
 	var/item_size_affect = 0 //the bigger the thing you hold is, the more damage you can block
 	var/toughness = max(1, stats.getStat(STAT_TGH))
 	//passive blocking with shields is handled differently(code is above this proc)
 	if(get_active_hand())//are we blocking with an item?
 		var/obj/item/I = get_active_hand()
+		stat_affect = 0.25
 		if(istype(I))
 			item_size_affect = I.w_class * 5
-	else
-		stat_affect = 0.5
 	damage -= (toughness * stat_affect + item_size_affect)
-	if(damage < 0)
-		damage = -damage
-	return damage
+	return max(0, damage)
 
 /mob/living/carbon/human/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
 	if(check_attack_throat(I, user))
@@ -302,8 +299,8 @@ meteor_act
 	if(blocking)
 		blocking = FALSE
 		visible_message(SPAN_WARNING("[src] blocks the blow!"), SPAN_WARNING("You block the blow!"))
-		effective_force -= handle_blocking(effective_force)
-		if(effective_force <= 0)
+		effective_force = handle_blocking(effective_force)
+		if(effective_force = 0)
 			visible_message(SPAN_DANGER("The attack has been completely negated!"))
 			return FALSE
 
