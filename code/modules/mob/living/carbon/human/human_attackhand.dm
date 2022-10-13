@@ -157,6 +157,7 @@
 			if(blocking)
 				visible_message(SPAN_WARNING("[src]'s guard has been broken!"), SPAN_DANGER("Your blocking stance has been pushed through!"))
 				blocking = FALSE
+				setClickCooldown(2 SECONDS)
 			src.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been grabbed passively by [M.name] ([M.ckey])</font>"
 			M.attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed passively [src.name] ([src.ckey])</font>"
 			msg_admin_attack("[M] grabbed passively a [src].")
