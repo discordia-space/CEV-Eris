@@ -225,12 +225,11 @@ see multiz/movement.dm for some info.
 
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
-			var/obj/item/stack/tile/floor/S = C
 			to_chat(user, SPAN_NOTICE("You start constructing underplating on the lattice."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			if(do_after(user, (40 * user.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT, src))))
 				qdel(L)
-				S.use(1)
+				M.use(1)
 				ChangeTurf(/turf/simulated/floor/plating/under)
 			return
 		else
