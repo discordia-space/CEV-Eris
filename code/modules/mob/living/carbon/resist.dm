@@ -62,7 +62,7 @@
 					qdel(G)
 			if(GRAB_NECK)
 				var/conditionsapply = (world.time - G.assailant.l_move_time < 30 || !stunned) ? 3 : 1 //If you move when grabbing someone then it's easier for them to break free. Same if the affected mob is immune to stun.
-				if(prob(conditionsapply * max(5+(((stats?.getStat(STAT_ROB)) - G.assailant.stats?.getStat(STAT_ROB)) ** 0.8), 0.5))) // 0.5% chance for mercy
+				if(prob(conditionsapply * (5 + max((stats?.getStat(STAT_ROB)) - G.assailant.stats?.getStat(STAT_ROB), 1) ** 0.8))) // 4% minimal chance
 					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s headlock!</span>")
 					qdel(G)
 	if(resisting)
