@@ -1766,15 +1766,16 @@ var/list/rank_prefix = list(\
 		start_blocking()
 	else
 		stop_blocking()
-	if (HUDneed.Find("block"))
-		var/obj/screen/block/HUD = HUDneed["block"]
-		HUD.update_icon()
 
 /mob/living/carbon/human/proc/start_blocking()
 	if(blocking)//already blocking with an item somehow?
 		return
 	blocking = TRUE
 	visible_message(SPAN_WARNING("[src] tenses up, ready to block!"))
+	if (HUDneed.Find("block"))
+		var/obj/screen/block/HUD = HUDneed["block"]
+		HUD.update_icon()
+	update_block_overlay()
 	return
 
 /mob/living/carbon/human/proc/stop_blocking()
@@ -1782,4 +1783,8 @@ var/list/rank_prefix = list(\
 		return
 	blocking = FALSE
 	visible_message(SPAN_NOTICE("[src] lowers \his guard."))
+	if (HUDneed.Find("block"))
+		var/obj/screen/block/HUD = HUDneed["block"]
+		HUD.update_icon()
+	update_block_overlay()
 	return

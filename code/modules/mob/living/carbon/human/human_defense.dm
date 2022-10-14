@@ -283,10 +283,7 @@ meteor_act
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		H.blocking = FALSE
-		if(H.HUDneed.Find("block"))
-			var/obj/screen/block/HUD = H.HUDneed["block"]
-			HUD.update_icon()
+		H.stop_blocking()
 
 	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
 
@@ -300,10 +297,7 @@ meteor_act
 		return FALSE
 
 	if(blocking)
-		blocking = FALSE
-		if(HUDneed.Find("block"))
-			var/obj/screen/block/HUD = HUDneed["block"]
-			HUD.update_icon()
+		stop_blocking()
 		visible_message(SPAN_WARNING("[src] blocks the blow!"), SPAN_WARNING("You block the blow!"))
 		effective_force = handle_blocking(effective_force)
 		if(effective_force == 0)

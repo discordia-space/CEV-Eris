@@ -133,7 +133,8 @@ Please contact me on #coderbus IRC. ~Carn x
 #define L_HAND_LAYER		25
 #define R_HAND_LAYER		26
 #define FIRE_LAYER			27		//If you're on fire
-#define TOTAL_LAYERS		27
+#define BLOCKING_LAYER		28
+#define TOTAL_LAYERS		28
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -1126,6 +1127,13 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing", "layer"=FIRE_LAYER)
 
 	if(update_icons)   update_icons()
+
+/mob/living/carbon/human/proc/update_block_overlay(var/update_icons=1)
+	overlays_standing[BLOCKING_LAYER] = null
+	if(blocking)
+		overlays_standing[BLOCKING_LAYER] = image("icon"='icons/mob/misc_overlays.dmi', "icon_state"="block", "layer"=BLOCKING_LAYER)
+
+	update_icons()
 
 /mob/living/carbon/human/proc/update_surgery(var/update_icons=1)
 	overlays_standing[SURGERY_LAYER] = null
