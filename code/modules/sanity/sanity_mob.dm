@@ -263,6 +263,7 @@
 		owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
 
 /datum/sanity/proc/level_up()
+	rest_timer_active = FALSE
 	var/rest = input(owner, "How would you like to improve your stats?", "Rest complete", null) in list(
 		"Internalize your recent experiences",
 		"Focus on an oddity",
