@@ -35,7 +35,7 @@
 	result = /obj/item/clothing/gloves/dusters/gold
 	steps = list(
 		list(CRAFT_MATERIAL, 3, MATERIAL_GOLD), //Grab some gold
-		list(CRAFT_MATERIAL, 3, MATERIAL_PLATINUM), //Grab some platinum as well
+		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL), //Grab some plasteel as well
 		list(QUALITY_WELDING, 10, "time" = 30), //Weld it into basic form
 		list(QUALITY_HAMMERING, 15, 10) //Harden into shape
 	)
@@ -54,7 +54,7 @@
 	name = "weighted knuckle gloves"
 	result = /obj/item/clothing/gloves/dusters/gloves
 	steps = list(
-		list(/obj/item/clothing/gloves/dusters, 1, "time" = 5), //Tear up the gloves
+		list(/obj/item/clothing/gloves/knuckles, 1, "time" = 5), //Tear up the gloves
 		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL), //Grab some plasteel
 		list(QUALITY_HAMMERING, 15, 10), //Harden into powder
 		list(QUALITY_HAMMERING, 15, 10), //Harden into FINE powder
