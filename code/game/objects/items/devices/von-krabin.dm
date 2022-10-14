@@ -54,6 +54,7 @@
 			hive_minded.stats.removeTempStat(stat, "von-crabbin")
 			hive_minded.stats.changeStat(stat, -30)  // hard to adapt back to normality
 	the_hiveminded = null
+	was_notified = null
 	..()
 
 /obj/item/device/von_krabin/nt_sword_handle()
