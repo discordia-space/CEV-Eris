@@ -262,6 +262,10 @@
 	name = "box magazine (.25 Caseless)"
 	build_path = /obj/item/ammo_magazine/c10x24
 
+/datum/design/autolathe/ammo/ihclmg
+	name = "LMG munition box (.25 rifle)"
+	build_path = /obj/item/ammo_magazine/ihclmg
+
 // .25 rifle, but wide
 
 /datum/design/autolathe/ammo/cspistol
@@ -379,15 +383,15 @@
 /datum/design/autolathe/ammo/fs_stinger
 	name = "FS sting shell"
 	build_path = /obj/item/ammo_casing/grenade
-	
+
 /datum/design/autolathe/ammo/nt_stinger
 	name = "NT sting shell"
 	build_path = /obj/item/ammo_casing/grenade/weak
-		
+
 /datum/design/autolathe/ammo/shell_frag
 	name = "frag shell"
 	build_path = /obj/item/ammo_casing/grenade/frag
-		
+
 /datum/design/autolathe/ammo/shell_emp
 	name = "emp shell"
 	build_path = /obj/item/ammo_casing/grenade/emp
