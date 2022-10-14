@@ -1,0 +1,6 @@
+author: Kegdo
+delete-after: true
+changes:
+  - rscadd: holster verb(hotkey) is universal for both holster types
+  - bugfix: Most holsterable guns should be holsterable now
+  - bugfix: Accessory holsters cannot hold stuff that pouch holsters can't
