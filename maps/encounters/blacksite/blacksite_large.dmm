@@ -41,7 +41,7 @@
 /turf/space,
 /area/space)
 "aF" = (
-/obj/machinery/porta_turret/excelsior,
+/obj/machinery/power/os_turret/laser,
 /turf/simulated/floor/tiled/derelict/white_red_edges,
 /area/space)
 "aG" = (
@@ -167,7 +167,7 @@
 /turf/space,
 /area/space)
 "bX" = (
-/obj/machinery/porta_turret/excelsior,
+/obj/machinery/power/os_turret,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "cb" = (
@@ -1036,6 +1036,7 @@
 /obj/machinery/shower{
 	dir = 1
 	},
+/obj/machinery/power/os_turret,
 /turf/simulated/floor/tiled/cafe,
 /area/space)
 "kE" = (
@@ -14280,7 +14281,7 @@ UU
 UU
 UU
 UU
-aF
+UU
 oC
 UU
 UU
