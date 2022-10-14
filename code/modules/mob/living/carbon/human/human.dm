@@ -1611,7 +1611,7 @@ var/list/rank_prefix = list(\
 					return
 	//nothing at all!
 	if(!holster_found)
-		to_chat(src, "<span class='notice'>You don\'t have any holsters.</span>")
+		to_chat(src, SPAN_NOTICE("You don\'t have any holsters."))
 
 //generates realistic-ish pulse output based on preset levels
 /mob/living/carbon/human/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
