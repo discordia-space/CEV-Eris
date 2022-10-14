@@ -1,0 +1,6 @@
+author: Firefox13
+delete-after: true
+changes:
+  - bugfix: Takeshi disk is now properly named
+  - bugfix: Takeshi disk now comes with .25 LMG box (its new caliber) instead of .30
+      LMG box
