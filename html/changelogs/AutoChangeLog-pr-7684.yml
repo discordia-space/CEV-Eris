@@ -1,0 +1,6 @@
+author: Kegdo
+delete-after: true
+changes:
+  - bugfix: golden dusters are made out of plasteel now, not platinum
+  - bugfix: all dusters are spawn blacklisted
+  - bugfix: weighted gloves now actually need knuckle gloves and not dusters
