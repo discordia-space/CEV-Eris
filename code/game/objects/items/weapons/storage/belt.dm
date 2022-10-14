@@ -91,7 +91,19 @@
 	new /obj/item/tool/wirecutters/armature(src)
 	new /obj/item/tool/shovel/power(src)
 	new /obj/item/stack/cable_coil/random(src)
-	
+
+/obj/item/storage/belt/utility/vagabond 
+	spawn_blacklisted = TRUE
+
+/obj/item/storage/belt/utility/vagabond/populate_contents()
+	new /obj/item/tool/screwdriver/improvised(src)
+	new /obj/item/tool/wrench/improvised(src)
+	new /obj/item/tool/weldingtool/improvised(src)
+	new /obj/item/tool/crowbar/improvised(src)
+	new /obj/item/tool/wirecutters/improvised(src)
+	new /obj/item/tool/shovel/improvised(src)
+	new /obj/item/tool/saw/improvised(src)
+
 /obj/item/storage/belt/utility/neotheology
 	name = "neotheology utility belt"
 	desc = "Waist-held holy items."

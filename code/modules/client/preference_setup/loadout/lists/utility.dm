@@ -65,3 +65,9 @@
 	display_name = "duct tape"
 	path = /obj/item/tool/tape_roll
 	cost = 3
+
+/datum/gear/utility/ducttape
+	display_name = "makeshift tools toolbelt"
+	path = /obj/item/storage/belt/utility/vagabond 
+	cost = 3
+	allowed_roles = list(ASSISTANT_TITLE)
