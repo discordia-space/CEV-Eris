@@ -1,0 +1,7 @@
+author: Kurgis
+delete-after: true
+changes:
+  - balance: Kitchen-made chocolate bars are now considered a cooked junk food.
+  - spellcheck: Eating cooked junk food will specify that it will not help you "rest"
+      instead of "grow".
+  - spellcheck: Oversight where "shokoloud" was named "shokolad".
