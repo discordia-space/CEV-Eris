@@ -377,7 +377,7 @@
 	desc = "There is no sun to cover your eyes from on a spaceship, but it doesn't mean this hat is not stylish."
 	icon_state = "cowboy"
 	item_state = "cowboy"
-	style_coverage = COVERS_EYES|COVERS_HAIR
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/cowboy/white
 	name = "white cowboy hat"
