@@ -1,0 +1,6 @@
+author: Alliostra
+delete-after: true
+changes:
+  - bugfix: you can now manually change the appearance of the voice changer again.
+  - bugfix: broken huds are now actually what they appear to be (no actual changes
+      in-game)
