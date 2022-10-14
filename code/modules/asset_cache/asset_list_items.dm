@@ -403,12 +403,12 @@
 		var/icon_state = initial(item.icon_state)
 
 		// eugh
-		if (icon_file)
+		if (!icon_file)
 			icon_file = ""
 
 		#ifdef UNIT_TESTS
 		if(!(icon_state in icon_states(icon_file)))
-			stack_trace("design [D] with icon '[icon_file]' missing state '[icon_state]'")
+			// stack_trace("design [D] with icon '[icon_file]' missing state '[icon_state]'")
 			continue
 		#endif
 		var/icon/I = icon(icon_file, icon_state, SOUTH)
@@ -444,12 +444,12 @@
 				var/icon_state = initial(item.icon_state)
 
 				// eugh
-				if (icon_file)
+				if (!icon_file)
 					icon_file = ""
 
 				#ifdef UNIT_TESTS
 				if(!(icon_state in icon_states(icon_file)))
-					stack_trace("crafting result [CR] with icon '[icon_file]' missing state '[icon_state]'")
+					// stack_trace("crafting result [CR] with icon '[icon_file]' missing state '[icon_state]'")
 					continue
 				#endif
 				var/icon/I = icon(icon_file, icon_state, SOUTH)
@@ -495,7 +495,7 @@
 
 		#ifdef UNIT_TESTS
 		if(!(icon_state in icon_states(icon_file)))
-			stack_trace("tool upgrade [type] with icon '[icon_file]' missing state '[icon_state]'")
+			// stack_trace("tool upgrade [type] with icon '[icon_file]' missing state '[icon_state]'")
 			continue
 		#endif
 
@@ -512,7 +512,7 @@
 		var/icon_state = initial(item.icon_state)
 		#ifdef UNIT_TESTS
 		if(!(icon_state in icon_states(icon_file)))
-			stack_trace("perks [type] with icon '[icon_file]' missing state '[icon_state]'")
+			//stack_trace("perks [type] with icon '[icon_file]' missing state '[icon_state]'")
 			continue
 		#endif
 		var/icon/I = icon(icon_file, icon_state, SOUTH)

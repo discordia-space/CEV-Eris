@@ -4,7 +4,7 @@
 
 /obj/machinery/neotheology/cruciformforge
 	name = "Cruciform Forge"
-	desc = "This unique piece of technology can be fed biomatter, plasteel, and gold in order to print more cruciforms. Only a select few NeoTheologian architects know how to create these machines. "
+	desc = "This unique piece of technology can be fed biomatter, plasteel, and gold in order to print more cruciforms. Only a select few NeoTheology architects know how to create these machines. "
 	icon = 'icons/obj/neotheology_machinery.dmi'
 	icon_state = "cruciforge"
 

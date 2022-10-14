@@ -129,12 +129,12 @@
 						src.attack_log += "\[[time_stamp()]\] <font color='orange'>Counter-grabbed by [M.name] ([M.ckey])</font>"
 						M.attack_log += "\[[time_stamp()]\] <font color='red'>Counter-grabbed [src.name] ([src.ckey])</font>"
 						msg_admin_attack("[M] countered [src]'s grab.")
-						return 1						
+						return 1
 
 					else //uh oh! our resist is now also on cooldown(we are dead)
 						setClickCooldown(40)
 						visible_message(SPAN_WARNING("[M] tried to counter [src]'s grab, but failed!"))
-					
+
 				return
 			//usual grabs
 			var/obj/item/grab/G = new /obj/item/grab(M, src)
@@ -169,7 +169,7 @@
 				attack_generic(H,rand(1,3),"punched")
 				return
 
-			var/stat_damage = 3 + max(0, (H.stats.getStat(STAT_ROB) / 10))
+			var/stat_damage = max(0, min(15, (H.stats.getStat(STAT_ROB) / 4)))
 			var/limb_efficiency_multiplier = 1
 			var/block = 0
 			var/accurate = 0
@@ -257,11 +257,8 @@
 
 			var/real_damage = stat_damage
 			real_damage += attack.get_unarmed_damage(H)
+			real_damage += H.punch_damage_increase
 			real_damage *= damage_multiplier
-			stat_damage *= damage_multiplier
-//			if(HULK in H.mutations)
-//				real_damage *= 2 // Hulks do twice the damage
-//				stat_damage *= 2
 			real_damage = max(1, real_damage)
 
 			// Apply additional unarmed effects.
@@ -334,7 +331,7 @@
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
 	return
 
-/mob/living/carbon/human/attack_generic(var/mob/user, var/damage, var/attack_message, var/wallbreaker = FALSE, var/is_sharp = FALSE, var/is_edge = FALSE)
+/mob/living/carbon/human/attack_generic(var/mob/user, var/damage, var/attack_message, var/wallbreaker = FALSE, var/is_sharp = FALSE, var/is_edge = FALSE, var/wounding = 1)
 
 	if(!damage || !istype(user))
 		return
@@ -351,7 +348,7 @@
 		penetration = L.armor_divisor
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
-	var/dam = damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE, penetration, sharp=is_sharp, edge=is_edge)
+	var/dam = damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE, penetration, sharp=is_sharp, edge=is_edge, wounding_multiplier = wounding)
 	if(dam > 0)
 		affecting.add_autopsy_data("[attack_message] by \a [user]", dam)
 	updatehealth()

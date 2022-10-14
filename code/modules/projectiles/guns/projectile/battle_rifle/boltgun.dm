@@ -23,7 +23,7 @@
 	magazine_type = /obj/item/ammo_magazine/lrifle
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 8, MATERIAL_PLASTIC = 10)
 	price_tag = 900
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") // Considering attached bayonet
 	sharp = TRUE
@@ -44,7 +44,7 @@
 	gripvars = list(/obj/item/part/gun/grip/excel, /obj/item/part/gun/grip/wood)
 	resultvars = list(/obj/item/gun/projectile/boltgun, /obj/item/gun/projectile/boltgun/serbian)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
-	barrelvars = /obj/item/part/gun/barrel/lrifle
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle/steel)
 
 /obj/item/gun/projectile/boltgun/update_icon()
 	..()
@@ -151,7 +151,7 @@
 	init_recoil = RIFLE_RECOIL(1.8)
 	init_offset = 0 //no bayonet
 	max_shells = 6
-	zoom_factor = 0.8 //vintorez level
+	zoom_factors = list(0.8) //vintorez level
 	magazine_type = /obj/item/ammo_magazine/srifle
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
 	wielded_item_state = "_doble_ih_scope"
@@ -166,17 +166,17 @@
 	name = "Kadmin frame"
 	desc = "A Kadmin bolt-action rifle frame. For hunting or endless coastal warfare."
 	icon_state = "frame_weebrifle"
-	result = /obj/item/gun/projectile/boltgun/fs
-	gripvars = /obj/item/part/gun/grip/rubber
+	resultvars = list(/obj/item/gun/projectile/boltgun/fs)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
-	barrelvars = /obj/item/part/gun/barrel/srifle
+	barrelvars = list(/obj/item/part/gun/barrel/srifle/steel)
 
 /obj/item/gun/projectile/boltgun/handmade
 	name = "HM BR \"Riose\""
 	desc = "A handmade bolt action rifle, made from junk and some spare parts."
 	icon_state = "boltgun_hand"
 	item_suffix = "_hand"
-	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTEEL = 18, MATERIAL_WOOD = 16)
+	matter = list(MATERIAL_STEEL = 25, MATERIAL_WOOD = 16)
 	wielded_item_state = "_doble_hand"
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
@@ -199,10 +199,10 @@
 	desc = "A Riose bolt-action rifle frame. For hunting or endless maintenance warfare."
 	icon_state = "frame_riose"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 10)
-	result = /obj/item/gun/projectile/boltgun/handmade
-	gripvars = /obj/item/part/gun/grip/wood
+	resultvars = list(/obj/item/gun/projectile/boltgun/handmade)
+	gripvars = list(/obj/item/part/gun/grip/wood)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
-	barrelvars = list(/obj/item/part/gun/barrel/srifle, /obj/item/part/gun/barrel/lrifle, /obj/item/part/gun/barrel/clrifle)
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle/steel, /obj/item/part/gun/barrel/srifle/steel, /obj/item/part/gun/barrel/clrifle/steel)
 
 //// OBREZ ////
 

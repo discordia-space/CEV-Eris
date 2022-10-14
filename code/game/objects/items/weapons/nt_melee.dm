@@ -8,10 +8,10 @@
 	force = WEAPON_FORCE_DANGEROUS
 	throwforce = WEAPON_FORCE_WEAK
 	armor_divisor = ARMOR_PEN_DEEP
-	spawn_blacklisted = TRUE
 	aspects = list(SANCTIFIED)
 	price_tag = 300
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_STEEL = 5)
+	spawn_blacklisted = TRUE
 	bad_type = /obj/item/tool/sword/nt
 
 /obj/item/tool/sword/nt/equipped(mob/living/M)
@@ -31,7 +31,6 @@
 	force_wielded_multiplier = 1.04
 	throwforce = WEAPON_FORCE_WEAK
 	armor_divisor = ARMOR_PEN_DEEP
-	spawn_blacklisted = TRUE
 	aspects = list(SANCTIFIED)
 	price_tag = 300
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_STEEL = 5)
@@ -366,3 +365,6 @@
 /obj/item/stack/thrown/nt/verutum/launchAt()
 	embed_mult = 300
 	..()
+
+/obj/item/stack/thrown/nt/verutum/full
+	amount = 3

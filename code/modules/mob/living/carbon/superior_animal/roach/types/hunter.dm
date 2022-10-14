@@ -9,8 +9,11 @@
 	move_to_delay = 2.5
 
 	melee_damage_lower = 4
-	melee_damage_upper = 13
-	armor_divisor = ARMOR_PEN_HALF
+	melee_damage_upper = 8
+	armor_divisor = ARMOR_PEN_DEEP
+	wound_mult = WOUNDING_EXTREME
+
+	attacktext = list("slashed", "rended", "diced")
 
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/jager
 	meat_amount = 3
@@ -25,4 +28,3 @@
 		bio = 25,
 		rad = 50
 	)
-  

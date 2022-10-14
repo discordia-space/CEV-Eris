@@ -7,7 +7,7 @@
 
 	var/damage = rand(melee_damage_lower, melee_damage_upper)
 
-	. = A.attack_generic(src, damage, attacktext, environment_smash, melee_sharp, melee_edge)
+	. = A.attack_generic(src, damage, pick(attacktext), environment_smash, melee_sharp, melee_edge, wound_mult)
 	if(.)
 		if (attack_sound && loc && prob(attack_sound_chance))
 			playsound(loc, attack_sound, attack_sound_volume, 1)
@@ -38,7 +38,7 @@
 					OpenFire(target_mob)
 		else
 			return
-	
+
 /mob/living/carbon/superior_animal/proc/OpenFire(target_mob)
 	var/target = target_mob
 	visible_message(SPAN_DANGER("<b>[src]</b> [fire_verb] at [target]!"), 1)

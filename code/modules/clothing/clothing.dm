@@ -195,6 +195,7 @@
 		data["cold_protection"] = body_part_coverage_to_string(cold_protection)
 		data["cold_protection_temperature"] = min_cold_protection_temperature
 	data["equip_delay"] = equip_delay
+	data["info_style"] = style
 	return data
 
 /obj/item/clothing/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
@@ -576,7 +577,7 @@ BLIND     // can't see anything
 		/obj/item/reagent_containers/spray,
 		/obj/item/device/radio,
 		/obj/item/clothing/mask,
-		/obj/item/storage/belt/sheath,
+		/obj/item/storage/pouch/holster/belt/sheath,
 		/obj/item/implant/carrion_spider/holographic,
 		/obj/item/shield)
 	slot_flags = SLOT_OCLOTHING

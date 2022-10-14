@@ -1,7 +1,7 @@
 /obj/item/gun/energy/lasersmg
 	name = "Disco Vazer \"Lasblender\""
 	desc = "This conversion of the \"Atreides\" enables it to shoot lasers. Unlike in other laser weapons, the process of creating a laser is based on a chain reaction of localized micro-explosions.\
-			While this method is charge-effective, it worsens accuracy, and the chain-reaction makes the gun always fire in bursts. \
+			While this method is charge-effective, the chain-reaction makes the gun always fire in bursts. \
 			Sometimes jokingly called the \"Disco Vazer\"."
 	icon = 'icons/obj/guns/energy/lasersmg.dmi'
 	icon_state = "lasersmg"
@@ -16,9 +16,10 @@
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_PLASTEEL = 11, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 1, MATERIAL_GLASS = 2)
 	price_tag = 1000
-	damage_multiplier = 0.28 //makeshift laser
+	damage_multiplier = 0.35 //makeshift laser
+	penetration_multiplier = 1
 	projectile_type = /obj/item/projectile/beam
-	init_offset = 7 // bad accuracy even on the first shot
+	init_offset = 0 
 	suitable_cell = /obj/item/cell/medium
 	charge_cost = 25 // 4 bursts with a 800m cell
 
