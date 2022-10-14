@@ -45,7 +45,6 @@
 		set_light(0)
 
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)
-
 	if (istype(C, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
@@ -57,39 +56,23 @@
 			ReplaceWithLattice()
 		return
 
-	if (istype(C, /obj/item/stack/tile/floor))
-		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-		if(L)
-			var/obj/item/stack/tile/floor/S = C
-			if (S.get_amount() < 1)
-				return
-			qdel(L)
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-			S.use(1)
-			ChangeTurf(/turf/simulated/floor/airless)
-			return
-		else
-			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
-			return
 	if (istype(C, /obj/item/stack/material))
 		var/obj/item/stack/material/M = C
 		var/material/mat = M.get_material()
 		if (!mat.name == MATERIAL_STEEL)
 			return
+
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
-			var/obj/item/stack/tile/S = C
-			if (S.get_amount() < 1)
-				return
-			qdel(L)
+			to_chat(user, SPAN_NOTICE("You start constructing underplating on the lattice."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-			S.use(1)
-			ChangeTurf(/turf/simulated/floor/plating/under)
+			if(do_after(user, (40 * user.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT, src))))
+				qdel(L)
+				M.use(1)
+				ChangeTurf(/turf/simulated/floor/plating/under)
 			return
 		else
 			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
-	return
-
 
 // Ported from unstable r355
 
