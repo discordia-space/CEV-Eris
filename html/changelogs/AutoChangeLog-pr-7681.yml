@@ -1,4 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - bugfix: junk frames no longer turn into debug guns

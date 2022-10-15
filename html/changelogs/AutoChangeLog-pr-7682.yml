@@ -1,5 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - imageadd: new onmob shoe sprites
-  - bugfix: aerostatic shoes now show properly.

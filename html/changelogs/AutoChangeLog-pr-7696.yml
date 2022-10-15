@@ -1,5 +1,0 @@
-author: Firefox13, SirRichardFrancis
-delete-after: true
-changes:
-  - rscadd: Added confirmation panel when summoning excelsior stash
-  - rscadd: Added notification to all excelsior members when stash is summoned

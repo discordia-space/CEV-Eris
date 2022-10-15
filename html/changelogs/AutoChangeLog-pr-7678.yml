@@ -1,4 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - server: OS dungeon generated only when teleporter is triggered

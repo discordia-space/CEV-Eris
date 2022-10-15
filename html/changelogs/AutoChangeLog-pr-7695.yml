@@ -1,5 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - rscdel: commented out two asset cache messages for the time being because they
-      bog down logs
