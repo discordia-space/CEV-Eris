@@ -1335,8 +1335,8 @@ window "rpane"
 		anchor1 = none
 		anchor2 = none
 		saved-params = "is-checked"
-		text = "Changelog"
-		command = "Changelog"
+		text = "Hwnlogchanlgo"
+		command = "Hwnlogchanlgo"
 		group = "rpanemode"
 	elem "tickets"
 		type = BUTTON

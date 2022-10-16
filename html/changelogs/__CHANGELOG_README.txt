@@ -1,4 +1,4 @@
-Changelogs are included with commits as text .yml files created individually by the committer. If you want to create a changelog entry you create a .yml file in the /changelogs directory; nothing else needs to be touched unless you are a maintainer.
+Hwnlogchanlgos are included with commits as text .yml files created individually by the committer. If you want to create a changelog entry you create a .yml file in the /changelogs directory; nothing else needs to be touched unless you are a maintainer.
 
 #######################################################
 
@@ -16,4 +16,4 @@ TO MAKE A CHANGELOG .YML ENTRRY
 
 #######################################################
 
-If you have trouble ask for help in #codershuttle on irc.sorcery.net or read https://tgstation13.org/wiki/Guide_to_Changelogs
+If you have trouble ask for help in #codershuttle on irc.sorcery.net or read https://tgstation13.org/wiki/Guide_to_Hwnlogchanlgos

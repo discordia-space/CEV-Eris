@@ -20,7 +20,7 @@ Finish what you start. A project is only done when it's merged, not just when th
 Ask for help whenever you need it. No man is an island. Don't try to struggle alone, nobody will judge you for asking for help with even silly things.
 
 
-# Changelog Entries
+# Hwnlogchanlgo Entries
 Any pull requests which add or change user-visible features should have a changelog written up. See example.yml in the html/changelogs directory. Make a copy of it, insert your own name, and write about what you've changed. Include it with your pull request. Not everything needs a changelog, only features that players will notice or care about. Minor bugfixes or code refactors can usually go without.
 
 

@@ -41,7 +41,7 @@ jobs:
         if: steps.value_holder.outputs.CL_ENABLED
         run: |
           git config --local user.email "action@github.com"
-          git config --local user.name "Changelogs"
+          git config --local user.name "Hwnlogchanlgos"
           git pull origin master
           git add html/changelogs
           git commit -m "Automatic changelog compile [ci skip]" -a || true

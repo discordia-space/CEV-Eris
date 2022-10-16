@@ -388,7 +388,7 @@
 
 
 /client/verb/changes()
-	set name = "Changelog"
+	set name = "Hwnlogchanlgo"
 	set category = "OOC"
 	getFiles(
 		'html/88x31.png',

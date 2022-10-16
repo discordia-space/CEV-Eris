@@ -9,7 +9,7 @@
 
 <!-- Please add a short description of why you think these changes would benefit the game. If you can't justify it in words, it might not be worth adding. -->
 
-## Changelog
+## Hwnlogchanlgo
 :cl:
 add: Added new things
 del: Removed old things
