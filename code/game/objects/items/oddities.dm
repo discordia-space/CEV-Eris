@@ -621,7 +621,7 @@
 	)
 
 
-/obj/item/oddity/bearmath/attack_self(mob/living/carbon/human/user)
+/obj/item/oddity/common/bearmath/attack_self(mob/living/carbon/human/user)
 	if(istype(user))
 		if(alert(user, "Do you want to try and solve the equation on the scrap?", "Math problems!", "Yes", "No") == "Yes")
 			if(user.stat_check(STAT_COG, STAT_LEVEL_ADEPT))

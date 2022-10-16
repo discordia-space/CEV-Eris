@@ -1,0 +1,4 @@
+author: Firefox13
+delete-after: true
+changes:
+  - config: 1583 BYOND build blocked from connecting due to security issues
