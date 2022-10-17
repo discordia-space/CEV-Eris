@@ -89554,7 +89554,7 @@
 "egH" = (
 /obj/machinery/door/airlock/research{
 	name = "Xenoflora Storage";
-	req_access = list(55)
+	req_one_access = list(55, 66)
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
