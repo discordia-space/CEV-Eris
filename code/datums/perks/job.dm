@@ -72,8 +72,29 @@
 	if(holder)
 		holder.metabolism_effects.nsa_threshold_base /= 1.25
 	..()
+/*
+/datum/perk/psychiatrist
+	name = "Nerve Shot"
+	desc = "Many people build natural tolerances with repeated substance use, \
+			but there is nothing natural about the systemic and targeted abuse you've performed. \
+			The negative side-effects of narcotics are lessened."
+	icon_state = "selfmedicated" // https://game-icons.net/1x1/lorc/overdose.html
 
+/datum/perk/psychiatrist/assign(mob/living/carbon/human/H)
+	if(..())
+		holder.make_dizzy(-2)
+		holder.druggy += (holder.druggy - 2)
+		holder.make_jittery(-10)
+		holder.confused += (-1)
 
+/datum/perk/psychiatrist/remove()
+	if(holder)
+		holder.make_dizzy(2)
+		holder.druggy += (holder.druggy + 2)
+		holder.make_jittery(10)
+		holder.confused += (1)
+	..()
+ */
 /datum/perk/vagabond
 	name = "Vagabond"
 	desc = "You're used to see the worst sight the world has to offer. Your mind feels more resistant. \

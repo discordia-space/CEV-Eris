@@ -49471,8 +49471,7 @@
 	dir = 1
 	},
 /obj/structure/table/woodentable,
-/obj/item/paper_bin,
-/obj/item/pen,
+/obj/item/storage/fancy/vials,
 /turf/simulated/floor/carpet,
 /area/eris/medical/psych)
 "cog" = (
@@ -60851,9 +60850,6 @@
 /obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/hallway/main/section2)
-"cQU" = (
-/turf/simulated/floor/carpet,
-/area/eris/medical/psych)
 "cQV" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
@@ -66929,8 +66925,9 @@
 "dfo" = (
 /obj/structure/closet/cabinet,
 /obj/spawner/booze,
-/obj/spawner/booze,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/spawner/contraband/low_chance,
+/obj/spawner/cloth/shoes,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
 /turf/simulated/floor/wood,
 /area/eris/medical/psych)
@@ -76945,7 +76942,9 @@
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/patients_rooms)
 "dCl" = (
-/obj/structure/table/woodentable,
+/obj/structure/bed/chair/comfy/brown,
+/obj/landmark/join/start/psychiatrist,
+/obj/item/reagent_containers/pill/floorpill,
 /turf/simulated/floor/carpet,
 /area/eris/medical/psych)
 "dCm" = (
@@ -85913,8 +85912,9 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/research)
 "dXw" = (
-/obj/structure/bed/chair/comfy/brown,
-/obj/landmark/join/start/psychiatrist,
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
+/obj/structure/closet/secure_closet/personal/psychiartist,
 /turf/simulated/floor/carpet,
 /area/eris/medical/psych)
 "dXx" = (
@@ -102777,6 +102777,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/structure/table/rack/shelf,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical_lowcost/low_chance,
+/obj/item/reagent_containers/dropper,
 /turf/simulated/floor/wood,
 /area/eris/medical/psych)
 "jDi" = (
@@ -105581,6 +105585,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
+/obj/structure/table/woodentable,
 /turf/simulated/floor/carpet,
 /area/eris/medical/psych)
 "rGT" = (
@@ -105751,6 +105756,12 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/long_range_scanner)
+"sdS" = (
+/obj/structure/table/woodentable,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/simulated/floor/carpet,
+/area/eris/medical/psych)
 "seI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -106821,6 +106832,7 @@
 	pixel_y = -28
 	},
 /obj/structure/closet/secure_closet/personal/patient,
+/obj/item/storage/pill_bottle/citalopram,
 /turf/simulated/floor/wood,
 /area/eris/medical/psych)
 "uwE" = (
@@ -210331,8 +210343,8 @@ aaa
 aaa
 dvn
 coc
+sdS
 fVZ
-cQU
 tCj
 xsu
 yit
