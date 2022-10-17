@@ -236,6 +236,7 @@
 		finish_rest()
 
 /datum/sanity/proc/finish_rest()
+	desires.Cut()
 	var/list/stat_change = list()
 
 	var/stat_pool = resting * 15
