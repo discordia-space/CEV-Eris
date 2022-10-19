@@ -229,7 +229,7 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "cQ" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/power/os_turret/laser,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "cR" = (
@@ -532,8 +532,8 @@
 /turf/simulated/mineral,
 /area/space)
 "fI" = (
-/obj/structure/bed,
 /obj/item/bedsheet/hos,
+/obj/structure/bed/padded,
 /turf/simulated/floor/wood,
 /area/space)
 "fK" = (
@@ -2325,7 +2325,9 @@
 	},
 /area/space)
 "yJ" = (
-/obj/machinery/porta_turret/excelsior,
+/obj/machinery/vending/wallmed{
+	pixel_y = 29
+	},
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "yV" = (
@@ -11836,10 +11838,10 @@ NV
 XW
 Ew
 gV
-cQ
+yJ
 Ew
 yV
-yJ
+Ew
 gV
 cb
 cb
@@ -12233,10 +12235,10 @@ cb
 cb
 cb
 XW
-aa
-aa
-aa
-aa
+RJ
+RJ
+RJ
+RJ
 XW
 Ew
 XW
@@ -12435,10 +12437,10 @@ cb
 cb
 cb
 XW
-aa
-aa
-aa
-aa
+RJ
+RJ
+RJ
+RJ
 XW
 Ew
 XW
@@ -12637,10 +12639,10 @@ cb
 cb
 cb
 XW
-aa
-aa
-aa
-aa
+RJ
+RJ
+RJ
+RJ
 XW
 Ew
 XW
@@ -12839,11 +12841,11 @@ cb
 cb
 cb
 XW
-aa
-aa
-aa
-aa
-GT
+RJ
+RJ
+RJ
+RJ
+xb
 Ew
 GT
 Ew
@@ -13041,10 +13043,10 @@ cb
 cb
 cb
 XW
-aa
-aa
-aa
-aa
+RJ
+RJ
+RJ
+RJ
 XW
 Ew
 XW
@@ -13243,10 +13245,10 @@ cb
 cb
 cb
 XW
-aa
-aa
-aa
-aa
+RJ
+RJ
+RJ
+RJ
 XW
 GT
 XW
@@ -13445,10 +13447,10 @@ cb
 cb
 cb
 XW
-aa
-aa
-aa
-aa
+RJ
+RJ
+RJ
+RJ
 gV
 Ew
 LC
@@ -13647,10 +13649,10 @@ cb
 cb
 cb
 XW
-aa
-aa
-aa
-aa
+RJ
+RJ
+RJ
+RJ
 gV
 Ew
 XW
@@ -14285,7 +14287,7 @@ UU
 oC
 UU
 UU
-UU
+aF
 Rb
 UU
 UU
