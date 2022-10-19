@@ -106,7 +106,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/Life()
 	if(stat == DEAD)
-		return FALSE
+		return
 	. = ..()
 
 	speak()
