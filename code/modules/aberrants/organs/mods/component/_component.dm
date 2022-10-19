@@ -1,19 +1,19 @@
 /datum/component/modification/organ
 	install_time = WORKTIME_FAST
 	//install_tool_quality = null
-	install_difficulty = 35
+	install_difficulty = FAILCHANCE_VERY_EASY + 5
 	install_stat = STAT_BIO
 	install_sound = 'sound/effects/squelch1.ogg'
 
 	mod_time = WORKTIME_FAST
 	mod_tool_quality = QUALITY_LASER_CUTTING			
-	mod_difficulty = FAILCHANCE_HARD
+	mod_difficulty = FAILCHANCE_HARD - 5
 	mod_stat = STAT_BIO
 	mod_sound = 'sound/effects/squelch1.ogg'
 
 	removal_time = WORKTIME_SLOW
 	removal_tool_quality = QUALITY_LASER_CUTTING
-	removal_difficulty = FAILCHANCE_CHALLENGING
+	removal_difficulty = FAILCHANCE_HARD - 5
 	removal_stat = STAT_BIO
 
 	adjustable = FALSE
@@ -157,19 +157,20 @@
 	var/using_sci_goggles = FALSE
 	var/details_unlocked = FALSE
 
-	if(ishuman(user))
+	if(istype(user, /mob/observer/ghost))
+		details_unlocked = TRUE
+	else if(user.stats)
 		// Goggles check
-		var/mob/living/carbon/human/H = user
-		if(istype(H.glasses, /obj/item/clothing/glasses/powered/science))
-			var/obj/item/clothing/glasses/powered/G = H.glasses
-			using_sci_goggles = G.active	// Meat vision
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(istype(H.glasses, /obj/item/clothing/glasses/powered/science))
+				var/obj/item/clothing/glasses/powered/G = H.glasses
+				using_sci_goggles = G.active	// Meat vision
 
 		// Stat check
 		details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
 		if(examine_stat_secondary && details_unlocked)
 			details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
-	else if(istype(user, /mob/observer/ghost))
-		details_unlocked = TRUE
 
 	if(examine_msg)
 		to_chat(user, SPAN_WARNING(examine_msg))
