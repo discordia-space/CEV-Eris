@@ -54,13 +54,13 @@
 /mob/living/carbon/superior_animal/roach/nanite/death()
 	for(var/mob/living/simple_animal/hostile/naniteswarm/NS in nanite_swarms)
 		nanite_swarms.Remove(NS)
-		NS.gib()
+		NS.death()
 	..()
 
 /mob/living/carbon/superior_animal/roach/nanite/Destroy()
 	for(var/mob/living/simple_animal/hostile/naniteswarm/NS in nanite_swarms)
 		nanite_swarms.Remove(NS)
-		NS.gib()
+		NS.death()
 	.=..()
 
 
@@ -97,13 +97,12 @@
 	..()
 	parent = nuparent
 
-/mob/living/simple_animal/hostile/naniteswarm/death(gibbed)
+/mob/living/simple_animal/hostile/naniteswarm/death()
 	..()
 	if(parent)
 		parent.nanite_swarms.Remove(src)
 	new /obj/effect/decal/cleanable/blood/oil(get_turf(src))
-	if(!gibbed)		// Parent roach gibs all child nanites on death, which qdels the nanites.
-		qdel(src)
+	qdel(src)
 
 /mob/living/simple_animal/hostile/naniteswarm/Destroy()
 	if(parent)
