@@ -384,9 +384,7 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/lobber/Life()
-	. = ..()
-
-	if(!.)
+	if(!..())
 		return
 
 	//checks if cooldown is over and is targeting mob, if so, activates special ability
@@ -555,9 +553,7 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/himan/Life()
-	. = ..()
-
-	if(!.)
+	if(!..())
 		return
 
 	//shriek
@@ -727,9 +723,7 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/mechiver/Life()
-	. = ..()
-
-	if(!.)
+	if(!..())
 		return
 
 	update_icon()
@@ -931,9 +925,7 @@
 	set_light(2, 1, COLOR_BLUE_LIGHT)
 
 /mob/living/simple_animal/hostile/hivemind/treader/Life()
-	. = ..()
-
-	if(!.)
+	if(!..())
 		return
 
 	if(maxHealth > health && world.time > special_ability_cooldown)
@@ -989,9 +981,7 @@
 /mob/living/simple_animal/hostile/hivemind/phaser/Life()
 	stop_automated_movement = TRUE
 
-	. = ..()
-
-	if(!.)
+	if(!..())
 		return
 
 	//special ability using
