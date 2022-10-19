@@ -189,6 +189,6 @@
   MLGTASTICa:
   - bugfix: FIxed an edge case in von-krabin deletion
   - bugfix: Fixed von krabin buffs being kept on deconstruction.
-2022-10-16:
+2022-10-17:
   Firefox13:
   - config: 1583 BYOND build blocked from connecting due to security issues
