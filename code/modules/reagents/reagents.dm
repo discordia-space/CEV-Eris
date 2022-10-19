@@ -52,7 +52,7 @@
 	var/heating_sound = 'sound/effects/bubbles.ogg'
 	var/list/heating_products
 
-	var/constant_metabolism = FALSE	// if metabolism factor should not change with volume or blood circulation
+	var/constant_metabolism = TRUE	// if metabolism factor should not change with volume or blood circulation
 
 	var/nerve_system_accumulations = 5 // Nerve system accumulations
 
