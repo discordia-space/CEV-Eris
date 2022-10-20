@@ -361,6 +361,10 @@
 	icon_state = "4,19"
 	},
 /area/space)
+"dN" = (
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "dO" = (
 /obj/machinery/porta_turret/excelsior,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
@@ -1990,6 +1994,13 @@
 	icon_state = "16,22"
 	},
 /area/space)
+"vi" = (
+/obj/structure/table/onestar,
+/obj/spawner/medical,
+/obj/spawner/medical,
+/obj/spawner/prothesis_one_star,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "vk" = (
 /obj/structure/closet/excavation,
 /turf/simulated/shuttle/floor/science{
@@ -2041,6 +2052,12 @@
 "vN" = (
 /obj/structure/crematorium,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"vO" = (
+/obj/structure/table/onestar,
+/obj/spawner/prothesis_one_star,
+/obj/spawner/medical,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "vQ" = (
 /obj/machinery/door/airlock/multi_tile/metal/mait{
@@ -2727,6 +2744,12 @@
 	icon_state = "1,8"
 	},
 /turf/space,
+/area/space)
+"DH" = (
+/obj/structure/table/onestar,
+/obj/spawner/medical,
+/obj/spawner/medical,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "DL" = (
 /turf/simulated/shuttle/wall/science{
@@ -3863,6 +3886,13 @@
 	opacity = 0
 	},
 /area/space)
+"QE" = (
+/obj/structure/bed/chair/custom/onestar/red,
+/obj/machinery/vending/wallmed{
+	pixel_y = 29
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "QG" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -3973,6 +4003,12 @@
 	icon_state = "11,8"
 	},
 /area/space)
+"RN" = (
+/obj/machinery/sleeper/sarcophagus/random{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "RV" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "10,19"
@@ -4038,6 +4074,7 @@
 /area/space)
 "Sw" = (
 /obj/machinery/optable,
+/obj/spawner/prothesis_one_star,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Sx" = (
@@ -4111,6 +4148,12 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "12,8"
 	},
+/area/space)
+"Ts" = (
+/obj/machinery/sleeper/sarcophagus/random{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "Tv" = (
 /obj/structure/closet/excavation,
@@ -11634,7 +11677,7 @@ RJ
 RJ
 RJ
 xb
-Ew
+kP
 gV
 gV
 gV
@@ -11841,7 +11884,7 @@ gV
 yJ
 Ew
 yV
-Ew
+kP
 gV
 cb
 cb
@@ -12235,10 +12278,10 @@ cb
 cb
 cb
 XW
-RJ
-RJ
-RJ
-RJ
+vO
+DH
+DH
+DH
 XW
 Ew
 XW
@@ -12640,9 +12683,9 @@ cb
 cb
 XW
 RJ
-RJ
-RJ
-RJ
+RN
+RN
+RN
 XW
 Ew
 XW
@@ -12842,7 +12885,7 @@ cb
 cb
 XW
 RJ
-RJ
+dN
 RJ
 RJ
 xb
@@ -13246,9 +13289,9 @@ cb
 cb
 XW
 RJ
-RJ
-RJ
-RJ
+Ts
+Ts
+Ts
 XW
 GT
 XW
@@ -13649,14 +13692,14 @@ cb
 cb
 cb
 XW
-RJ
-RJ
-RJ
-RJ
+DH
+DH
+vi
+vi
 gV
 Ew
 XW
-dO
+lO
 Yq
 lO
 XW
@@ -14663,7 +14706,7 @@ cb
 cb
 cb
 XW
-FK
+QE
 Ew
 Ew
 Ew
@@ -14890,7 +14933,7 @@ UU
 UU
 UU
 UU
-gV
+Ao
 UU
 UU
 gV
@@ -15092,7 +15135,7 @@ UU
 UU
 UU
 UU
-Ao
+UU
 UU
 UU
 Ao
@@ -15294,7 +15337,7 @@ UU
 UU
 UU
 UU
-UU
+gV
 UU
 UU
 UU
