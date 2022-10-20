@@ -102812,6 +102812,7 @@
 "jFt" = (
 /obj/machinery/door/airlock/maintenance_common,
 /obj/structure/catwalk,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "jFQ" = (
