@@ -1,0 +1,10 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - code_imp: get_process_efficiency(), organ process is only searched once
+  - code_imp: handle_blood(), OP_VESSEL is searched after we know the organ has a
+      blood requirement
+  - code_imp: Dead organs are removed from processing list
+  - code_imp: Organ stasis is only checked if there is no owner
+  - code_imp: Organ bleeding no longer checks if there is blood because remove_reagents()
+      already does so
