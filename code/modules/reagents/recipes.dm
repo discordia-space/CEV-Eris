@@ -2161,3 +2161,10 @@
 	result = "kaiserbeer"
 	required_reagents = list("fuhrerole" = 1, "kaiseraurum" = 1, "roachbeer" = 2)
 	result_amount = 2
+
+/* Other */
+
+/datum/chemical_reaction/protein_shake
+	result = "protein_shake"
+	required_reagents = list("milk" = 1, "protein" = 1)
+	result_amount = 2
