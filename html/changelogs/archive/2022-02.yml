@@ -1,0 +1,192 @@
+2022-02-05:
+  Chickenish:
+  - bugfix: Rejuv now removes modifiers from tools and guns instead of invisibly keeping
+      them
+  - bugfix: Artwork Revolvers now interact with modifiers properly
+2022-02-11:
+  Alliostra:
+  - tweak: you cannot store the NT spear inside the NT buckler anymore (not balance,
+      I swear!)
+  Kegdo:
+  - bugfix: absolute grab
+  TheShown911:
+  - rscadd: Added chaos level that can be increased by player vote, that increases
+      storyteller point generation.
+2022-02-12:
+  Alliostra:
+  - balance: bottles now always break when thrown with harm intent active
+  - bugfix: bottles can now break again when thrown with harm intent active
+  - tweak: holographic plants now shine a bit brighter.
+  - rscadd: Adds the carrion smoke spider, which works like a smoke bomb
+  - rscadd: Adds the carrion holographic spider, can be used to imitate scanned objects
+      or mobs
+  - tweak: merges the signal spider with the electric spider
+  - tweak: The carrion spider menu will now show the name of the area that a spider
+      is located in
+  - rscadd: Carrion spiders can now be assigned to groups to make them activateable
+      at the same time.
+  - tweak: the observer spider will no longer be triggered when activating all carrion
+      spiders
+  - bugfix: you can now secure water and fuel tanks to the ground and make fuel tanks
+      leak fuel again
+  - bugfix: fixes a runtime when interacting with C4 wires
+  - bugfix: the gyroscopic stabilizer can now be used as a toolmod and gunmod again.
+  Hyperio:
+  - rscadd: Mining Overhaul Part 2 (new golems types and their abilities)
+  Iglpigl:
+  - tweak: tweaked 2 rooms in maint, one has more catwalks while other is now floored.
+  - rscadd: Exclusively added a lever shotgun with high damage low AP, and a relatively
+      low ammo high power .40 lever rifle to marshal's uplink, both of which can be
+      sawn off for weaker but smaller guns that fit in holsters
+  - imageadd: Winchester and lever shotgun and their sawn-off variants
+  - tweak: armor hallos coefficient changed from 0.4 to 0.1, armor more effective
+      now
+  Pink-Chink:
+  - bugfix: fixed canister exploit in trade beacons
+  - rscadd: antag opt-out prompt
+  - tweak: excel and serb minimum candidate requirements added (3 and 2, respectively)
+  - bugfix: storyteller panel button runtime
+  - rscadd: created favor mechanic to handle unlockables
+  - tweak: unlocks are much easier to obtain
+  - rscadd: 4 new stations, all existing stations are unlockable
+  - rscdel: cybernetics station (broken)
+  - bugfix: added missing name and icon for .25 caseless ammo packet
+  Shadow-Quill:
+  - admin: Get-Server-Log will no longer stop working if the server hits midnight
+      during a round.
+  SirRichardFrancis:
+  - rscadd: gasmasks and bandanas replacing speaker name with "Unknown"
+  - bugfix: hear_say.dm runtime
+  Sparrowbird611:
+  - balance: Reduces the damage on ballistic and plasma projectiles. On average it's
+      a 20% reduction, with some tweaks up or down.
+  - balance: Increased style damage on RPG rockets and lasers.
+  - balance: gives buckshot AP to help it deal with the Eris armor system.
+  - balance: removes -0.1 damage mod on AMR. It's ammo was nerfed so it's about the
+      same.
+  hex37:
+  - bugfix: prevents players with the weakened status from being able to speed up
+      movement by diving repeatedly instead of crawling.
+  - bugfix: Causes MC to not cause a bunch of runtimes every time an admin opens it,
+      also allows subsystems to actually show for them.
+2022-02-19:
+  Alliostra:
+  - balance: lowered the time required to do something for some personal objectives
+  - bugfix: Wire panels without descriptions for wires in them will no longer runtime
+      when interacted with.
+  - rscadd: plastic flaps are now craftable and disassemblabe
+  - rscadd: adds colors to carrion group activation buttons.
+  HentaiStorm:
+  - bugfix: fix bug with invisible module
+  - imageadd: added icons for ninja RIGs
+  Humonitarian:
+  - balance: HV ammo no longer has damage buff, penetration buffed where needed
+  - balance: HV ammo is cheaper in uplink, uplink has no lethals anymore
+  - spellcheck: fixed typos
+  - balance: frags are deadlier
+  - rscadd: HESH rocket
+  - rscadd: stinger grenades
+  - balance: grenade launcher rubber shot replaced with stinger rounds in armoury
+  - bugfix: sting grenades spawning in armory
+  Hyperio:
+  - rscadd: New sprites for teargas and smoke grenades
+  - rscadd: Golem core dropped by special golems. Special golems now have a 30% chance
+      to drop a golem core upon death.
+  - balance: Cut golem HP by 60%
+  - balance: Remove melee armor of almost all golems
+  - balance: Golems now drop x2.5 more ores upon death
+  Kegdo:
+  - bugfix: jointlock
+  - tweak: progress bars for joint and dislocating
+  - balance: less pain damage on joint
+  - rscadd: sanity damage on withdrawal
+  - tweak: drug addict does not get two bottles of 60u pills now
+  - tweak: addiction fate perks have permanent addiction
+  - tweak: increased alcoholic bonus
+  - rscadd: diving consumes nutrition, if you don't have enough of it you fall down
+      on the floor and die instantly
+  - rscadd: ass of concrete deals more damage to windows
+  - rscadd: space asshole dumpster diving(literally)
+  - balance: removed titanfall, diving into windows and doors takes longer to break
+      them, damages the jumper
+  - bugfix: fixed cripples diving
+  - tweak: dive range depends on move intent
+  - bugfix: throwing knife damage
+  - tweak: brace penalty reduction for lmgs
+  - rscadd: bipod gun mod
+  - rscadd: bracing guns on low walls and tables on help intent for FAR less recoil
+  - balance: LMGs now slow you down, gain a recoil penalty if not braced, gain more
+      recoil by default
+  - tweak: stabilizing grip can be used as a foregrip on guns
+  Pink-Chink:
+  - tweak: players can opt in and out of antag candidate pools
+  Trilbyspaceclone:
+  - bugfix: Fixes swapping fire modes well shooting.
+  Wouju:
+  - balance: Pipebomb plasma cost reduced from 2 to 1 unit, and removed drilling requirement
+  - bugfix: fixed pipebomb inhand sprite when facing north
+  hex37:
+  - bugfix: fixes a niche issue in TGUI when ssatoms.old_initialized is set by another
+      process at the same time InitializeAtoms is sleeping due to lag compensation.
+  pexel5:
+  - tweak: Turned the junkblade sword over the way all swords lie.
+  - bugfix: Sheath and swords for them.
+  - bugfix: Add name for wires in rig code, to avilable hack em.
+  - bugfix: Now lanar with 6 grenades has a normal full sprite instead of a sprite
+      without grenades.
+2022-02-21:
+  Pink-Chink:
+  - rscdel: removed trash station
+2022-02-25:
+  garrulousTeamotei:
+  - rscdel: Removed Cruciforms from Preacher's locker
+2022-02-26:
+  Alliostra:
+  - balance: doubled the maximum amount of walls bullets are able to pierce and piercing
+      a wall no longer makes the bullet lose AP.
+  - balance: made AMR ammo from the uplink cheaper and increased the damage of the
+      Breacher shells
+  - balance: tripled the penetration power of the AMR
+  - balance: using a scope makes shots more accurate now
+  - tweak: the talking spider and the control spiders will no longer be triggered
+      when activating all carrion spiders.
+  - tweak: Some QOL changes to the carrion spider activation menu.
+  - bugfix: fixed a bug with zooming out
+  - balance: buffed the blight spider
+  - balance: lowered the prices of some carrion spiders
+  Humonitarian:
+  - balance: recoil recovery and recoil from running adjusted
+  - rscdel: removed extra penetration from vigilance
+  - rscadd: vigilance increases accuracy
+  - tweak: alcohol gives more sanity
+  - tweak: alcohol more lethal
+  - rscadd: lore-accurate gargleblaster
+  - balance: serb vendor vodka price increased to match increased sanity gain
+  - rscadd: NT "Hellfire" grenade
+  - balance: NT "Holy Light" grenades are weaker against the Faithful
+  - rscadd: More NT flavour descriptions
+  - bugfix: cover triggers properly
+  Hyperio:
+  - balance: Double time interval between burrows for all waves
+  - balance: Double time interval between golem spawn for all waves
+  - balance: Double drill health
+  - balance: Increased mineral multiplier
+  - bugfix: Golems no longer try to destry golem burrows in their way
+  - rscadd: Drill has three health stage. If its healths falls under 66%, you can
+      only repair it up to 66%. If it falls under 33%, you can only repair it up to
+      33%.
+  - bugfix: Fixed microwave and fire barrel secure unsecure verbs
+  - bugfix: Fixed hydroponics tray secure unsecure verbs
+  - rscadd: Added warning when trying to spawn without brain or eyes
+  - bugfix: Fixed ricochet text
+  - tweak: Remove cables and pipes from planetary ruins to reduce server load.
+  - tweak: Replace boombas by other roombas to avoid undesired roundstart explosions
+  Sparrowbird611:
+  - balance: Rebalance armor numbers. In general, lower tier armors should be more
+      valuable now, and some things that didn't seem like they should be so armored
+      were reduced.
+  - balance: Gave lasers to compensate for armor change, plasma already has enough
+      to be sustainable.
+  - balance: Removed ablative's ability to deflect projectiles, to make it less of
+      a hard counter to certain weapons.
+  - tweak: Renamed heavy armor vest to mercenary armor vest.

@@ -46,6 +46,9 @@
 #define COMSIG_GROUP_RITUAL "grup_ritual"
 #define COMSIG_TRANSATION "transation"          //from transfer_funds()
 
+/// from datum ui_act (usr, action)
+#define COMSIG_UI_ACT "COMSIG_UI_ACT"
+
 // /atom signals
 #define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
 #define COMSIG_ATOM_UPDATE_OVERLAYS "atom_update_overlays"  //update_overlays()
