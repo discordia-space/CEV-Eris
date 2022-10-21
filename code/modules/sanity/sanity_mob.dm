@@ -173,7 +173,7 @@
 			if(H.sanity.level > 60)
 				moralist_factor += 0.02
 	give_insight(INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier)
-	while(insight >= 100)
+	if(resting < max_resting && insight >= 100)
 		if(!rest_timer_active)//Prevent any exploits(timer is only active for one minute tops)
 			give_resting(1)
 			if(owner.stats.getPerk(PERK_ARTIST))
@@ -258,7 +258,8 @@
 		to_chat(owner, "<font color='purple'>[owner.stats.getPerk(PERK_ARTIST) ? "You have created art." : "You have rested well."]\
 					<br>Select what you wish to do with your fulfilled insight <a HREF=?src=\ref[src];here_and_now=TRUE>here and now</a> or get to safety first if you are in danger.\
 					<br>The prompt will appear in one minute.</font>")
-
+		if(owner.stats.getPerk(PERK_ARTIST))
+			resting = 0
 		rest_timer_active = TRUE
 		rest_timer_time = 60 SECONDS
 		owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
