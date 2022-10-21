@@ -133,16 +133,12 @@
 
 
 /obj/item/organ/Process()
-
 	if(loc != owner)
 		owner = null
 
 	//dead already, no need for more processing
 	if(status & ORGAN_DEAD)
-		return
-	// Don't process if we're in a freezer, an MMI or a stasis bag.or a freezer or something I dunno
-	if(is_in_stasis())
-		return
+		return PROCESS_KILL		// Can't bring dead organs back. Most can be printed for cheap.
 
 	//Process infections
 	if(BP_IS_ROBOTIC(src) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
@@ -150,12 +146,14 @@
 		return
 
 	if(!owner)
+		if(is_in_stasis())
+			return
 		if(reagents)
-			var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in reagents.reagent_list
-			if(B && prob(40))
+			if(prob(40))
 				reagents.remove_reagent("blood",0.1)
-				blood_splatter(src,B,1)
-		if(config.organs_decay) damage += rand(1,3)
+				blood_splatter(src, null, TRUE)
+		if(config.organs_decay)
+			damage += rand(1,3)
 		if(damage >= max_damage)
 			damage = max_damage
 		germ_level += rand(2,6)
@@ -163,7 +161,6 @@
 			germ_level += rand(2,6)
 		if(germ_level >= INFECTION_LEVEL_THREE)
 			die()
-
 	else if(owner && owner.bodytemperature >= 170)	//cryo stops germs from moving and doing their bad stuffs
 		//** Handle antibiotics and curing infections
 		handle_antibiotics()
