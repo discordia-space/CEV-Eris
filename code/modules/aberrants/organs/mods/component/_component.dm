@@ -58,7 +58,7 @@
 	var/max_upgrade_mod = null
 	var/scanner_hidden = FALSE
 
-/datum/component/modification/organ/apply(obj/item/A, mob/living/user)
+/datum/component/modification/organ/apply(obj/item/organ/O, mob/living/user)
 	. = ..()
 
 	// Mutation index checks
@@ -66,14 +66,12 @@
 	if(!.)
 		return FALSE
 
-	var/obj/item/organ/O = A
 
 	// If the organ was already modded, do nothing
-	if(!O.owner || O.item_upgrades.len > 1)
+	if(!O.owner || LAZYLEN(O.item_upgrades) > 1)
 		return FALSE
 
-	var/mob/living/carbon/human/H = O.owner
-	H.mutation_index += 1
+	O.owner.mutation_index++
 
 /datum/component/modification/organ/apply_values(obj/item/organ/internal/holder)
 	ASSERT(holder)
@@ -163,19 +161,17 @@
 	if(scanner_hidden)
 		holder.scanner_hidden = scanner_hidden
 
-/datum/component/modification/organ/uninstall(obj/item/I, mob/living/user)
+/datum/component/modification/organ/uninstall(obj/item/organ/O, mob/living/user)
 	..()
-	var/obj/item/organ/O = I
-	if(istype(I, /obj/item/organ/internal/scaffold))
-		var/obj/item/organ/internal/scaffold/S = I
+	if(istype(O, /obj/item/organ/internal/scaffold))
+		var/obj/item/organ/internal/scaffold/S = O
 		S.try_ruin()
-
+	
 	// If the organ has no owner or is still modded, do nothing
-	if(!O.owner || I.item_upgrades.len > 0)
+	if(!O.owner || LAZYLEN(O.item_upgrades))
 		return
 
-	var/mob/living/carbon/human/H = O.owner
-	H.mutation_index -= 1
+	O.owner.mutation_index--
 
 /datum/component/modification/organ/on_examine(mob/user)
 	var/using_sci_goggles = FALSE
