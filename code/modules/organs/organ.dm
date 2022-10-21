@@ -325,6 +325,9 @@
 			admin_attack_log(user, owner, "Removed a vital organ ([src])", "Had a a vital organ ([src]) removed.", "removed a vital organ ([src]) from")
 		owner.death()
 
+	if(LAZYLEN(item_upgrades))
+		owner.mutation_index--
+
 	owner = null
 	rejecting = null
 
@@ -358,6 +361,9 @@
 		transplant_data["species"] =    transplant_blood.data["species"]
 		transplant_data["blood_type"] = transplant_blood.data["blood_type"]
 		transplant_data["blood_DNA"] =  transplant_blood.data["blood_DNA"]
+
+	if(LAZYLEN(item_upgrades))
+		owner.mutation_index++
 
 /obj/item/organ/proc/heal_damage(amount)
 	return
