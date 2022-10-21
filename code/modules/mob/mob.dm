@@ -235,74 +235,42 @@
 /mob/proc/show_inv(mob/user as mob)
 	return
 
-/**
- * Examine a mob
- *
- * mob verbs are faster than object verbs. See
- * [this byond forum post](https://secure.byond.com/forum/?post=1326139&page=2#comment8198716)
- * for why this isn't atom/verb/examine()
- */
-/mob/verb/examinate(atom/examinify as mob|obj|turf in view())
+//mob verbs are faster than object verbs. See http://www.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
+/mob/verb/examinate(atom/A as mob|obj|turf in view())
 	set name = "Examine"
 	set category = "IC"
 
-	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, .proc/run_examinate, examinify))
-
-/mob/proc/run_examinate(atom/examinify)
-
 	if((is_blind(src) || usr.stat) && !isobserver(src))
 		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
-		return
+		return 1
 
-	face_atom(examinify)
+	face_atom(A)
 	var/obj/item/device/lighting/toggleable/flashlight/FL = locate() in src
-	if (FL?.on && stat != DEAD && !incapacitated())
-		FL.afterattack(examinify, src)
-	examinify.examine(src)
+	if (FL && FL.on && src.stat != DEAD && !incapacitated())
+		FL.afterattack(A,src)
+	A.examine(src)
 
-/**
- * Point at an atom
- *
- * mob verbs are faster than object verbs. See
- * [this byond forum post](https://secure.byond.com/forum/?post=1326139&page=2#comment8198716)
- * for why this isn't atom/verb/pointed()
- *
- * note: ghosts can point, this is intended
- *
- * visible_message will handle invisibility properly
- *
- * overridden here and in /mob/dead/observer for different point span classes and sanity checks
- */
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
 	set name = "Point To"
 	set category = "Object"
 
+	if(!src || !isturf(src.loc) || !(A in view(src.loc)))
+		return 0
 	if(istype(A, /obj/effect/decal/point))
-		return FALSE
+		return 0
 
-	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, .proc/_pointed, A))
-
-/// possibly delayed verb that finishes the pointing process starting in [/mob/verb/pointed()].
-/// either called immediately or in the tick after pointed() was called, as per the [DEFAULT_QUEUE_OR_CALL_VERB()] macro
-/mob/proc/_pointed(atom/pointing_at)
-	if(client && !(pointing_at in view(client.view, src)))
-		return FALSE
-
-	if(!isturf(loc))
-		return FALSE
-
-	var/turf/tile = get_turf(pointing_at)
+	var/tile = get_turf(A)
 	if (!tile)
-		return FALSE
+		return 0
 
-	var/turf/our_tile = get_turf(src)
+	var/obj/P = new /obj/effect/decal/point(tile)
+	P.invisibility = invisibility
+	P.pixel_x = A.pixel_x
+	P.pixel_y = A.pixel_y
+	QDEL_IN(P, 2 SECONDS)
 
-	var/obj/visual = new /obj/effect/decal/point(our_tile)
-	visual.invisibility = invisibility
-
-	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + pointing_at.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + pointing_at.pixel_y, time = 1.7, easing = EASE_OUT)
-	QDEL_IN(visual, 2 SECONDS)
-	return TRUE
+	face_atom(A)
+	return 1
 
 
 /mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
@@ -339,22 +307,10 @@
 				return L.container
 	return
 
-/**
- * Verb to activate the object in your held hand
- *
- * Calls attack self on the item and updates the inventory hud for hands
- */
 /mob/verb/mode()
 	set name = "Activate Held Object"
 	set category = "Object"
 	set src = usr
-
-	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, .proc/execute_mode))
-
-///proc version to finish /mob/verb/mode() execution. used in case the proc needs to be queued for the tick after its first called
-/mob/proc/execute_mode()
-	if(incapacitated())
-		return
 
 	var/obj/item/W = get_active_hand()
 	if (W)
@@ -428,6 +384,37 @@
 	src << browse('html/help.html', "window=help")
 	return
 */
+
+
+
+/client/verb/changes()
+	set name = "Changelog"
+	set category = "OOC"
+	getFiles(
+		'html/88x31.png',
+		'html/bug-minus.png',
+		'html/cross-circle.png',
+		'html/hard-hat-exclamation.png',
+		'html/image-minus.png',
+		'html/image-plus.png',
+		'html/map-pencil.png',
+		'html/music-minus.png',
+		'html/music-plus.png',
+		'html/tick-circle.png',
+		'html/wrench-screwdriver.png',
+		'html/spell-check.png',
+		'html/burn-exclamation.png',
+		'html/chevron.png',
+		'html/chevron-expand.png',
+		'html/changelog.css',
+		'html/changelog.js',
+		'html/changelog.html'
+		)
+	src << browse('html/changelog.html', "window=changes;size=675x650")
+	if(prefs.lastchangelog != changelog_hash)
+		prefs.lastchangelog = changelog_hash
+		prefs.save_preferences()
+		winset(src, "rpane.changelog", "background-color=none;font-style=;")
 
 /mob/verb/observe()
 	set name = "Observe"

@@ -48,7 +48,7 @@
 	mechanismvar = /obj/item/part/gun/mechanism/autorifle
 	barrelvars = list(/obj/item/part/gun/barrel/lrifle)
 
-/obj/item/gun/projectile/automatic/ak47/can_interact(mob/user)
+/obj/item/gun/projectile/automatic/ak47/proc/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
 		return 1
 	if(istype(loc, /obj/item/storage))
