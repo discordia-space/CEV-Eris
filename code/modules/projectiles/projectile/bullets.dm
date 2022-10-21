@@ -43,24 +43,24 @@
 	var/blocked_damage = 0
 	if(istype(A, /turf/simulated/wall)) // TODO: refactor this from functional into OOP
 		var/turf/simulated/wall/W = A
-		blocked_damage = round(W.material.integrity / armor_divisor / 8)
+		blocked_damage = round(W.material.integrity / (armor_divisor - rand(0,4)/8)) / 8
 	else if(istype(A, /obj/item/shield))
 		var/obj/item/shield/S = A
-		blocked_damage = round(S.shield_integrity / armor_divisor / 8)
+		blocked_damage = round(S.shield_integrity / (armor_divisor - rand(0,4)/8)) / 8
 	else if(istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
-		blocked_damage = round(D.maxhealth / armor_divisor / 8)
+		blocked_damage = round(D.maxhealth / (armor_divisor - rand(0,4)/8)) / 8
 		if(D.glass) blocked_damage /= 2
 	else if(istype(A, /obj/structure/girder))
 		return TRUE
 	else if(istype(A, /obj/structure/low_wall))
-		blocked_damage = round(20 / armor_divisor) // hardcoded, value is same as steel wall, will have to be changed once low walls have integrity
+		blocked_damage = round(20 / (armor_divisor - rand(0,4)/8)) / 8 // hardcoded, value is same as steel wall, will have to be changed once low walls have integrity
 	else if(istype(A, /obj/structure/table))
 		var/obj/structure/table/T = A
-		blocked_damage = round(T.maxhealth / armor_divisor / 8)
+		blocked_damage = round(T.maxhealth / (armor_divisor - rand(0,4)/8)) / 8
 	else if(istype(A, /obj/structure/barricade))
 		var/obj/structure/barricade/B = A
-		blocked_damage = round(B.material.integrity / armor_divisor / 8)
+		blocked_damage = round(B.material.integrity / (armor_divisor - rand(0,4)/8)) / 8
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
 		blocked_damage = round(20 / armor_divisor)
 
