@@ -162,16 +162,16 @@
 		holder.scanner_hidden = scanner_hidden
 
 /datum/component/modification/organ/uninstall(obj/item/organ/O, mob/living/user)
-		..()
-		if(istype(O, /obj/item/organ/internal/scaffold))
-			var/obj/item/organ/internal/scaffold/S = O
-			S.try_ruin()
+	..()
+	if(istype(O, /obj/item/organ/internal/scaffold))
+		var/obj/item/organ/internal/scaffold/S = O
+		S.try_ruin()
 	
-		// If the organ has no owner or is still modded, do nothing
-		if(!O.owner || LAZYLEN(O.item_upgrades))
-			return
-	
-		O.owner.mutation_index--
+	// If the organ has no owner or is still modded, do nothing
+	if(!O.owner || LAZYLEN(O.item_upgrades))
+		return
+
+	O.owner.mutation_index--
 
 /datum/component/modification/organ/on_examine(mob/user)
 	var/using_sci_goggles = FALSE
