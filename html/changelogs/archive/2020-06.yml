@@ -1,0 +1,234 @@
+2020-06-01:
+  Evankhell561:
+  - rscadd: Station Holomap
+  TheShown911, TonnyJest:
+  - rscadd: New mandate system for excelsiors
+  - rscdel: Old excelsior objectives
+  - tweak: Excelsior teleporters now share power and maximum power, base cost of materials
+      doubled.
+2020-06-02:
+  DarkLevel:
+  - bugfix: Blitzshell drone can now do blood extraction contracts.
+  - bugfix: Ancient teleporter will teleport exosuits as well.
+  Hyperio:
+  - rscadd: Roaches will now eat human, spider and roach corpses, leaving only gibs,
+      bones, inventory and prosthetics organs.
+  - rscadd: Fed roaches will now lay roach eggs. Roach eggs grow into roachlings which
+      grow into a random adult roach. If a roachling eats a corpse it evolves into
+      a fuhrer.
+  - tweak: Roaches and spiders now have green-brown blood and gibs
+2020-06-04:
+  DarkLevel:
+  - tweak: Objective Gripper can now rip dead peoples head.
+  - bugfix: Removing useless "return" in bsdm/pernament.
+  - bugfix: Adding check for victim head to objective gripper.
+2020-06-05:
+  FreimK:
+  - rscadd: Added Gosling related sprites to loadout
+  - bugfix: Stammering now can handle '.
+  LaMiga:
+  - bugfix: Corrected the AI greeting to clearly state spaceship instead of station.
+  - bugfix: Changed beams from brute to burn for beams weapons of a drone
+  - bugfix: Corrected other references to the ship
+  Smokingsquirrel:
+  - rscadd: new food ingredient sprites
+2020-06-06:
+  Hyperio:
+  - bugfix: Fixed runtime in who.dm
+  Smokingsquirrel:
+  - rscadd: New color variants for cyberpunk coats, long and short version
+  - rscadd: New tunnelsnake jacket in three variants.
+  - rscadd: Sprite versions to suit - icon.dmi, mob.dmi and mob_fem.dmi
+  - code_imp: Suits, Cloth, Biomatter, Loadout
+2020-06-07:
+  Kurgis:
+  - tweak: Uranium has been removed from PDA Cells, replaced by radioactive reagents.
+  MadmanMartian:
+  - rscadd: Adds a new class of energy shotgun
+  - tweak: Blitzshells now have 90 health, previously they had 35 health
+  - tweak: Blitzshells are now 20% faster
+  - tweak: Blitzshells now start with 25 telecrystals
+  - tweak: Blitzshell speed upgrade now only makes you 50% faster, previously 100%
+      faster
+  TheShown911:
+  - rscadd: Bee crate
+2020-06-08:
+  MadmanMartian:
+  - rscadd: Adds a weedkiller firemode to the NT BCR
+2020-06-10:
+  Smokingsquirrel:
+  - rscadd: New Technomancer jumpsuit
+  - rscadd: New goggles for the loadout
+  - rscadd: New meson sprites
+  - code_imp: changed jumpsuit icon names in the code to have engineers spawn with
+      those
+  - code_imp: added goggles to loadout code
+  'TheShown911, TonnyJest, MatejaTadic ':
+  - rscadd: Items can be ordered at the teleporter, including excelsior boards.
+  - rscadd: Excelsior reclaimer.
+  - rscadd: Excelsior stock prats.
+  - rscadd: Excelsior boombox.
+  - rscadd: Excelsior jumsuits.
+  - code_imp: One star stock parts buffed to accommodate new excel parts.
+  - refactor: Some teleporter code updated.
+  drexample:
+  - rscadd: Added deep maintenance.
+  - bugfix: Fixes some of the machinery breaking during submap load
+2020-06-11:
+  Smokingsquirrel:
+  - bugfix: Sleek Leather Jacket and Jaeger Jacket
+2020-06-12:
+  drexample:
+  - tweak: replaced SM crystal in deep maint with an SM shard, so it doesn't fuck
+      over people as much.
+  - bugfix: fixed deepmaint taking half an hour to generate
+  - bugfix: fixed deepmaint rooms sometimes not generating and being utterly empty
+  - bugfix: fixed deepmaint working area, now it's not overly cramped
+  - bugfix: fixed deepmaint pathfinding for building corridors and alcoves sometimes
+      leaving unusable non-interconnected areas
+  - bugfix: fixed ladders and other multiz structures incorrectly moving items pulled
+      by players
+2020-06-14:
+  TheShown911:
+  - bugfix: Excelsior boombox description
+  infraredbaron:
+  - rscdel: Removed IHS suits from random suits;
+  - rscdel: Removed rigged cells from the possible damage dealt to suits;
+2020-06-16:
+  Pariah919:
+  - balance: tactical belts fit crowbars.
+  infraredbaron:
+  - balance: removed weaken from energy dart, buffed the tox damage instead
+2020-06-17:
+  DarkLevel:
+  - rscadd: Adding new item Bluespace Biosyphon.
+  - rscadd: Adding new gun Sky Driver.
+  - rscadd: Id lock for blast doors.
+  - code_imp: Adding possibility to coding wall penetration mods for guns.
+  Kurgis:
+  - tweak: You may now select duffelbags in your character preferences.
+  MadmanMartian:
+  - bugfix: The ergonomic grip can now be attached to guns that require two hands
+      to fire accurately.
+  - balance: Boss mobs no longer fit inside lockers
+  - tweak: The kaiser roach no longer gibs on death, so you can butcher it for its
+      meat
+  drexample:
+  - bugfix: reverts a shitpost PR
+2020-06-18:
+  Trilbyspaceclone:
+  - tweak: Trash Carts now hold 3x more items and 2 more bodies inside them
+  - rscadd: New node! NV goggles for hardsuits and normal eye ware.
+  - rscadd: New sprite for the D-qel Hatter, its the D-qel hatter spite. Shocked we
+      know
+  - code_imp: The sorting no one asked for but everyone wants* - New medical tab for
+      Rnd tech that has medical items. Bluespace Snar stuff now is in Bluespace tab.
+  - rscadd: New glowstick type, undark! Its better then the leading brands
+2020-06-19:
+  Evankhell561:
+  - code_imp: The variables anchored, sharp, edge, density and can_buckle are now
+      boolean.
+  - rscadd: Fate Paper Worms
+  - rscadd: Fate Freelancer
+  - rscadd: Fate Nihilist
+  - rscadd: Fate Moralist
+  - rscadd: Fate Drug Addict
+  - rscadd: Fate Alcoholic
+  - rscadd: Fate Noble
+  - rscadd: Fate Rat
+  - rscadd: Fate Rejected Genius
+  - rscadd: Fate Oborin Syndrome
+  - rscadd: Fate Lowborn
+  - rscadd: Fate Veteran
+  - bugfix: trap logic
+  FreimK:
+  - rscadd: Added bluespace rift
+2020-06-20:
+  MadmanMartian:
+  - bugfix: Sanity no longer tanks from a single drop of blood
+  SolatK:
+  - bugfix: Jobbans fixed.
+  - bugfix: every ban have a cid
+  - bugfix: IP ban do not remembers ip if you choose no
+2020-06-21:
+  SolatK:
+  - admin: new option when you ban using PP
+  - bugfix: fixed a delayround button
+  Trexdude:
+  - rscadd: TE's hardsuit now has a cape module, and TE has a jacket
+  - rscadd: TM's now have access to heat and energy weapon-resistant armor, and helmets
+  - rscadd: Bomj coat added to loot and loadout
+  - imageadd: Added new TE and TM jumpsuit sprites from Armolitskiy and Eluxor (req.
+      by Reere)
+  - imagedel: Removed old TE and TM jumpsuit icons
+  - code_imp: Hardsuit modules now can appear on your sprite if module is set to
+2020-06-22:
+  Trexdude:
+  - rscadd: TE cape now has interface name and description
+  - tweak: TM helmet now blocks flashes, hair, and facial features and has a price
+      tag
+  - tweak: TE cape no longer appears overlayed in inventory
+  - refactor: rig modules now have an option for whether or not their overlay only
+      appears on the mob
+  Trilbyspaceclone:
+  - rscadd: Bliss console - Now can at 5% odds drop level 4 parts, *this is a legit
+      20% on a 2%*
+  - rscadd: Autolathe can now at 5% drop 3 uranium and a 1% to drop 1 diamond.
+  - rscadd: Autolathe have a 5% to drop a autolathe board
+  - rscadd: broken machine now at 5%'s can drop t3 parts
+  - rscadd: broken computer now at 5%'s can drop t3 parts
+  infraredbaron:
+  - balance: removed IHS voidsuit from random spawn
+2020-06-24:
+  Evankhell561:
+  - tweak: items created by Fates are now spawned in the backpack
+  - rscdel: Fate veteran
+  - bugfix: Fate perk visualization
+  - bugfix: Fate Perk Nihilist
+2020-06-26:
+  MadmanMartian:
+  - tweak: Cable coil sprites now have a weak alpha added to them, so they are easier
+      to click
+  - bugfix: fixes gibbed or butchered roaches from not deleting properly.
+2020-06-27:
+  DarkLevel:
+  - rscadd: Faction item/Von-Krabin Stimulator
+  - rscadd: Faction item/Molitor-Riedel Enricher
+  - bugfix: biosyphon can now spawn item while in hand
+  Evankhell561:
+  - bugfix: Fix perk oborin syndrome.
+2020-06-29:
+  Evankhell561:
+  - tweak: Humans are slower while moving in the dark.
+  - rscadd: Perk Fast Walker
+  - rscadd: Perk gunslinger
+  - rscadd: Perk terrible fate
+  - rscadd: Perk unfinished delivery
+  - rscadd: perk lungs of iron
+  - rscadd: perk blood of lead
+  - rscadd: perk space asshole
+  - rscadd: perk parkour
+  - rscadd: perk charming personality
+  - rscadd: perk horrible deeds
+  - rscadd: perk chaingun smoker
+  - rscadd: perk nightcrawler
+  - rscadd: perk fast_fingers
+  - rscadd: perk quiet as mouse
+  - rscadd: perk ear of quicksilver
+  - rscadd: perk balls of plasteel
+  - rscadd: perk junkborn
+  - rscadd: perk ass_of_concrete
+  - rscadd: perk toxic_revenger
+  - rscadd: perk absolute grab
+  - rscadd: perk sure step
+  - bugfix: smoke runtime
+  MadmanMartian:
+  - rscadd: Adds the advanced subsurface ore detector
+  - rscadd: Adds the cyborg auto repair platform. Repairs cyborgs that stand on top
+      of them.
+  - bugfix: You should no longer get duplicate food or drink desires
+  - balance: The excelsior voidsuits armor levels have been reduced to the equivalent
+      of an IH voidsuit.
+  Smokingsquirrel:
+  - rscadd: Sprite for new paramedic jumpsuit.
+  - code_imp: medsci, medical and the typical dmis

@@ -1,0 +1,96 @@
+2022-07-02:
+  SirRichardFrancis:
+  - bugfix: runtime in fate.dm
+  - bugfix: runtime in _internal.dm
+  - bugfix: runtime in Fire.dm
+  - bugfix: runtime in organ.dm
+  - bugfix: runtime in money_lotto.dm
+  - bugfix: runtime in computer.dm
+  - bugfix: runtime in mob_helpers.dm
+  - bugfix: runtime in inventory.dm
+  ValoTheValo:
+  - bugfix: onestar sentinals are now in the onestar faction, they wont attack other
+      onestar robots now
+2022-07-09:
+  SirRichardFrancis:
+  - bugfix: runtime in mech_movement.dm
+  - bugfix: runtime in floor_damage.dm
+  ValoTheValo:
+  - bugfix: Inspector can now access brig cells
+  - bugfix: Preacher gets a command wage like the rest of command
+  - bugfix: NeoTheo now actually has a funding source and wont run out of money halfway
+      through the round
+  - bugfix: IH Jobs now say supervisors correctly
+  - tweak: Inspector spawns with suit sensor monitor for enhanced detectiving
+  - balance: Janitor now has hazard pay instead of professional pay
+  - rscadd: Military Variants of the MK58 and Regulator with slightly better recoil
+      that can be made with rubber grips
+  - bugfix: Edited excel AK name to fit their naming scheme (From AKMS to Kalashnikov)
+  - bugfix: Fixed Miller frame making a Mateba
+  - tweak: Shotgun descriptions now state Capacity + 1 in the chamber
+  - imageadd: added new alternate MK58 and Gladstone Sprites
+  drexample:
+  - rscadd: A new oddity!
+2022-07-16:
+  ValoTheValo:
+  - balance: NT Cells Disk now has infinite uses
+  - bugfix: fixed MK58 Army's Description
+  - balance: Normal gun spawners are back in maintenance, same as they were before
+  - balance: sprinkled some new handmade gun spawners around maint so handmade stuff
+      is still available
+  - bugfix: fixed onestar lockers and secure closets not spawning guns
+  - soundadd: the Deckard now makes its iconic sound from Bladerunner
+2022-07-23:
+  MemedHams:
+  - rscadd: nobles who spawn as part of Neotheology now get a 50% chance of aquiring
+      a Neotheo heirloom
+  - tweak: more items for the basic heirloom pool
+  - tweak: noble heirloom names are now visibly structured "(item) of (family)"
+  - tweak: noble heirlooms are now considerably more expensive. Watch your pockets!
+  assortedbeads:
+  - tweak: Recipe for crossbow bolts moved to guns section, right under powered crossbow.
+  - tweak: Crossbow recipe edited slightly to include glass, representing a poor scope.
+  - tweak: Crossbow has a minor zoom factor now, 3 spaces when used.
+  - tweak: Bolts now embed on hit and can be extracted from kills in bolt form to
+      be used again. Prior to this they turned into metal rods on hits.
+  - tweak: Embedded bolts are sharp, dealing pain, brute and toxin like normal shrapnel
+      if you run without removing them. They can be removed via surgery or right clicking
+      to yank.
+  - tweak: Recipe for bolts costs the same, but you now spend 5 metal rods to make
+      a handful of 5 bolts rather than 5 individual bolts, less clicks on players
+      side.
+  - tweak: You now get chat messages telling you when you load or unload a bolt to/from
+      the crossbow.
+  - tweak: Remaining bolt stack sprite properly updates when loading the crossbow
+      with a single one.
+  - tweak: You now only unload a bolt from the crossbow if you interact with an empty
+      hand on a loaded crossbow you are currently holding.
+  - balance: Energy use of powered crossbow was made more efficient, 50 instead of
+      100.
+  - balance: Fire Delay of powered crossbow was lowered, 6 instead of 12.
+  - balance: Projectile damage of powered crossbow was buffed, 40 -> 55.
+  - balance: Projectile penetration of powered crossbow was buffed 20 -> 30.
+  - imageadd: Bolt projectile sprite was changed to something more fitting
+  komunre:
+  - rscadd: Rubber pig that oinks
+2022-07-30:
+  SirRichardFrancis:
+  - rscadd: more space heaters to maintenance, substations and atmos
+  - rscadd: mechs picking up ore from the floor with mounted clamp
+  Trilbyspaceclone:
+  - bugfix: Debugging tool for integrated electronics now has saner values of materials
+  - bugfix: Printing integrated electronics no longer doups materals
+  ValoTheValo:
+  - bugfix: onestar stuff spawning in maint (and at all)
+  - rscadd: Type 62 "Nezha" Machine Pistol
+  - rscadd: Type 90 "Mozhu" Gauss Pistol
+  - rscadd: Onestar Mircrogravity Stabilizer Tool/gunmod
+  - rscdel: Type 69 and Type 42
+  - balance: minor rebalance to onestar coat in prep for addition
+  - balance: Un Blacklist Onestar Thermals and Regenerator oxygen tank
+  - imageadd: Nezha and Mozhu Sprites
+  - imagedel: Old Type 69 and 42 Sprites
+  maikilangiolo:
+  - rscadd: Added two unused paper shredders to club area
+  - rscadd: Added lights to theater storage
+  - tweak: 'reworked entirety of club layout: more open, better looking.'

@@ -1,0 +1,194 @@
+2022-10-01:
+  Alliostra:
+  - rscadd: the valkyrie and AMR can now switch between 2 different levels of zoom
+  - tweak: increased the bonus damage AMR gets when using the scope
+  - bugfix: fixed AMR having a scope slot
+  - bugfix: fixed shellshock having no scope and bayonet slot
+  ErisMeleeEnjoyer:
+  - tweak: throwing knives now spawn in full stack
+  - balance: deconstructing throwing knives now gives 1 plasteel instead of 2
+  - rscadd: increase force and throwforce of intact bottles
+  - tweak: bottles guaranteed to break on impact when not in help mode
+  - rscdel: twirling instead of irish whipping on help intent
+  Humonitarian:
+  - balance: roaches now have wounding multipliers
+  - tweak: roaches have multiple attack messages
+  Iglpigl:
+  - bugfix: prosthetics examine text now works properly for all prosthetics
+  - bugfix: artist glasses now properly show roundstart
+  - rscdel: Removed two fields from the crew records console which were empty anyways
+  - bugfix: riot helmet now has normal armor values
+  - bugfix: you can now use golden paint on Vipr properly
+  Kegdo:
+  - rscadd: throwing knives rig and pouch
+  Kurgis:
+  - balance: Makeshift hande-teles and tele-spears have been moved into the spawn
+      pool.
+  Pink-Chink:
+  - rscadd: 'Added new trade offer type: modded items'
+  - tweak: Fulfilling all offers has better logic for handling child types
+  - tweak: Merged log app into main app
+  - rscdel: Removed Nauka and B-42-Alpha
+  - tweak: Suoh can recommend Introversion
+  - rscadd: Added Macro Rim
+  - tweak: Raised stock minimum to 5
+  - balance: Added a handful of offer and inventory changes
+  - rscadd: Added OS generator and turrets
+  ValoTheValo:
+  - rscadd: Type 21 Shotgun and Onestar Voidsuit
+  - balance: rebalanced the onestar rifles
+  - imageadd: Type 21 and OS Voidsuit Sprites
+  assortedbeads:
+  - rscadd: Added helmet and recipe
+  - imageadd: added helmet icons
+  - rscadd: Added Lasblender crafting recipe to the guns section
+  - rscdel: Removed Lasblender crafting recipe from the weapons section
+  - tweak: Lasblenders description has been updated
+  - balance: Lasblender does has a 0.35 damage mod and a 1 pen mod now, up from 0.28
+      and default
+  - balance: Lasblenders initial offset is gone
+  budgetcommander:
+  - tweak: Reduced the burst delay on the high-delay rapid three round burst from
+      2 to 0.5
+  - rscadd: Added a style bar to the clothing UI
+  maikilangiolo:
+  - bugfix: hopefully fixed the last of the shitcoded frame parts (clueless)
+  - rscadd: added cheap steel gun parts to the crafting station
+  - tweak: makeshift guns and bolt guns now use cheap parts to be crafted
+  - bugfix: fixed oversight in makeshift pistol disassembly
+2022-10-02:
+  Hyperio:
+  - server: Comment CI sprite check for designs
+  - rscadd: Add a default build path for circuit designs
+  - rscadd: Add a check in get asset url to handle null cases
+2022-10-08:
+  BlackCat-055:
+  - rscadd: Put stasis bag on disk
+  DiaFRAME444:
+  - bugfix: Properly removed Armament result from the code.
+  - spellcheck: The Eye of the Protector has observed a 1st grade book on proper grammar,
+      and has adapted accordingly.
+  - balance: Oddities in maint have slightly more diverse stat layouts. You may just
+      find one that better fitting for your intended job or build.
+  - balance: Maint oddities will no longer roll 1s on their RNG stat rolls.
+  - balance: Fixed two cases where scrap ammo was superior to normal ammo.
+  ErisMeleeEnjoyer:
+  - bugfix: no more gun overlay on sheaths
+  Humonitarian:
+  - bugfix: roaches no longer "list/" windows when bumping into them
+  - bugfix: fixed penetrating objects
+  - bugfix: small creatures can dodge
+  - bugfix: various agony- and damage calculations
+  - balance: NT disks have license points
+  - balance: EOTP generates more armaments and starts at a higher tech
+  Hyperio:
+  - tweak: Switch stalker position in armory dungeon room
+  Hyperioo:
+  - bugfix: Fix missing disposal pipe in medical
+  Iglpigl:
+  - spellcheck: fixed a typo regarding sanity
+  Kegdo:
+  - rscadd: knuckle dusters
+  - rscadd: weighted knuckle gloves
+  - balance: ROB stat damage increase capped, formula changed
+  - tweak: IH OP related stuff in loadout available to other IH jobs
+  Kegdo, INFRARED_BARON's sprites, Firefox13's mapping:
+  - rscdel: Holodeck
+  - rscadd: DA GYM
+  - rscadd: rest points
+  - rscadd: dumbbells
+  - rscdel: insight stacking
+  Pink-Chink:
+  - bugfix: Fixed Bojevic disassembly
+  - bugfix: Fixed OS laser turret using the wrong laser type
+  - bugfix: Fixed backwards distance prioritization
+  - bugfix: Fixed bad checks in OS machinery
+  - rscadd: Added missing UI template
+  "Pr\xE8s de l'oiseau, Kurgis":
+  - balance: Rolled-up posters should spawn around some.
+  - balance: Purple combs should appear less, leaving more space for other contraband
+      items to spawn in their place.
+  - imageadd: "Added new Aster Guild posters made by Pr\xE8s de l'oiseau."
+  - imagedel: Deleted many old baystation posters.
+  ValoTheValo:
+  - bugfix: onestar pistols fit in holsters
+  - balance: type 21 is same size as other sawed off shotguns
+  assortedbeads:
+  - rscadd: Technomancers spawn with insuls
+  - rscadd: Technomancer locker spawns with a tools pouch
+  - rscadd: Technomancer toolbelt spawns with (electric screwdriver, big wrench, advanced
+      welding tool, pneumatic crowbar, armature wirecutter, a power shovel and cable
+      coils)
+  budgetcommander:
+  - rscadd: Sanity UI now shows exact values
+  - rscadd: Added damage against 15 armour to the gun UI.
+  maikilangiolo:
+  - bugfix: fixed manual-action mechanism crafting
+  - bugfix: makeshift rev needing plasteel parts
+  - rscadd: added paramedic items to the EMT belt allowed list
+  master832:
+  - tweak: Add sink to Garden and Xenoflora Lab
+2022-10-10:
+  Humonitarian:
+  - bugfix: fixes a minor runtime related to cruciforms and moeballs
+  Hyperio:
+  - rscadd: Set default recoil for /obj/item/arrow
+  - rscadd: Add check for division by 0 in block_damage
+  SirRichardFrancis:
+  - bugfix: rare click handler runtime
+  - bugfix: some division by zero
+2022-10-15:
+  Alliostra:
+  - bugfix: you can now manually change the appearance of the voice changer again.
+  - bugfix: broken huds are now actually what they appear to be (no actual changes
+      in-game)
+  DiaFRAME444:
+  - code_imp: Removed duplicate gun DNA Lock gun mod from the code.
+  - balance: Oberth's bullet blender barrels have been buffed, and no longer nuke
+      your armor penetration and recoil.
+  - bugfix: Bearmath now works normally, hopefully.
+  Firefox13:
+  - imageadd: new onmob shoe sprites
+  - bugfix: aerostatic shoes now show properly.
+  - bugfix: Takeshi disk is now properly named
+  - bugfix: Takeshi disk now comes with .25 LMG box (its new caliber) instead of .30
+      LMG box
+  - balance: Railings cost 4 -> 2 sheets of metal
+  - balance: Catwalk cost 3 -> 2 steel rods, speed adjusted from six seconds to 2
+      at 0 MEC and instant at 40 MEC
+  - balance: Underplating -> Plating cost 2 -> 1 sheet of metal, speed adjusted from
+      0.5 seconds to 3 at 0 MEC and instant at 40 MEC
+  - balance: Lattice -> Underplating cost 4 ->1 sheet of metal, speed adjusted from
+      8 seconds to 4 at 0 MEC and instant at 40 MEC
+  - balance: most wall frame recipes default construction time is 6 seconds instead
+      9 seconds
+  - balance: You cannot get addicted to spider toxins (Pararein and Aranecolmin) anymore.
+  - rscdel: commented out two asset cache messages for the time being because they
+      bog down logs
+  Firefox13, SirRichardFrancis:
+  - rscadd: Added confirmation panel when summoning excelsior stash
+  - rscadd: Added notification to all excelsior members when stash is summoned
+  Humonitarian:
+  - bugfix: junk frames no longer turn into debug guns
+  Hyperio:
+  - server: OS dungeon generated only when teleporter is triggered
+  Kegdo:
+  - bugfix: Cowboy hats don't cover eyes(for style)
+  - bugfix: change neckgrab resist formula to kill runtime
+  - rscadd: holster verb(hotkey) is universal for both holster types
+  - bugfix: Most holsterable guns should be holsterable now
+  - bugfix: Accessory holsters cannot hold stuff that pouch holsters can't
+  - bugfix: golden dusters are made out of plasteel now, not platinum
+  - bugfix: all dusters are spawn blacklisted
+  - bugfix: weighted gloves now actually need knuckle gloves and not dusters
+  Kurgis:
+  - balance: Kitchen-made chocolate bars are now considered a cooked junk food.
+  - spellcheck: Eating cooked junk food will specify that it will not help you "rest"
+      instead of "grow".
+  - spellcheck: Oversight where "shokoloud" was named "shokolad".
+  MLGTASTICa:
+  - bugfix: FIxed an edge case in von-krabin deletion
+  - bugfix: Fixed von krabin buffs being kept on deconstruction.
+2022-10-17:
+  Firefox13:
+  - config: 1583 BYOND build blocked from connecting due to security issues
