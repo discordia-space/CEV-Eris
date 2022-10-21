@@ -181,7 +181,7 @@
 	var/using_sci_goggles = FALSE
 	var/details_unlocked = FALSE
 
-	if(istype(user, /mob/observer/ghost))
+	if(isghost(user))
 		details_unlocked = TRUE
 	else if(user.stats)
 		// Goggles check
