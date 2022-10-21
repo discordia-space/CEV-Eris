@@ -71,8 +71,7 @@
 	if(!O.owner || LAZYLEN(O.item_upgrades) > 1)
 		return FALSE
 
-	var/mob/living/carbon/human/H = O.owner
-	H.mutation_index++
+	O.owner.mutation_index++
 
 /datum/component/modification/organ/apply_values(obj/item/organ/internal/holder)
 	ASSERT(holder)
