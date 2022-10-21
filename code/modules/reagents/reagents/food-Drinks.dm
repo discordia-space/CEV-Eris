@@ -410,6 +410,7 @@
 	return
 
 /datum/reagent/drink/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	apply_sanity_effect(M, effect_multiplier)
 	M.adjustNutrition(nutrition * effect_multiplier)
 	M.dizziness = max(0, M.dizziness + adj_dizzy)
 	M.drowsyness = max(0, M.drowsyness + adj_drowsy)

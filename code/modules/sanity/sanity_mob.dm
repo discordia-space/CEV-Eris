@@ -253,6 +253,7 @@
 		finish_rest()
 
 /datum/sanity/proc/finish_rest()
+	desires.Cut()
 	if(!rest_timer_active)
 		to_chat(owner, "<font color='purple'>[owner.stats.getPerk(PERK_ARTIST) ? "You have created art." : "You have rested well."]\
 					<br>Select what you wish to do with your fulfilled insight <a HREF=?src=\ref[src];here_and_now=TRUE>here and now</a> or get to safety first if you are in danger.\
