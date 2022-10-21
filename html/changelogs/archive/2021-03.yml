@@ -1,0 +1,158 @@
+2021-03-02:
+  Alliostra:
+  - bugfix: AMR briefcase no longer spawns in maint
+2021-03-05:
+  Alliostra:
+  - rscadd: carrion organs are now extra tasty, and give 4 gene points while only
+      satisfying you once.
+  - balance: fullbody vests now slow you down
+  Evankhell561:
+  - bugfix: makeshift laser carbine sprites
+  - bugfix: Preacher no longer sends spam messages constantly.
+  - bugfix: Material requirements no longer disappear when crafting an item.
+  - bugfix: add a debug item called "under" to the blacklist
+  - tweak: the default name for jumsuit is "jumsuit"
+  - bugfix: score for converting players to the church.
+  - tweak: the trash piles are less likely to spawn a rare item.
+  - tweak: stash spawner is less frequent to find.
+  - tweak: candles now restore sanity to those who see them
+2021-03-06:
+  Alliostra:
+  - rscadd: The Marshal can now view contracts through his uplink
+  Evankhell561:
+  - tweak: the damage of the Sword of Truth increases when the crusade ritual is performed.
+2021-03-13:
+  Alliostra:
+  - rscadd: 1 Hour after the first excel conversion, the crew is informed about the
+      excel presence. This can be prevented for some time by completing mandates,
+      and will be sped up through additional conversions.
+  - rscadd: added a makeshift crafted SMG implant
+  - rscadd: added a shield implant which is sold by the zarya
+  Evankhell561:
+  - bugfix: some craft system recipes were not working.
+  - bugfix: you can no longer craft items with less materials than required.
+  - tweak: warning messages in the craft system now appear in red.
+  - tweak: Every time the EOTP performs a miracle, you can use the rituals to increase
+      stats.
+  - tweak: stat boosting rituals now permanently increase one stat by 3+2 for each
+      participant.
+  - tweak: reincarnation and Commitment can now be performed by any disciple of nt.
+  - tweak: cloning now produces cloning damage depending on who has activated the
+      cloning machine.
+  - tweak: convert score now increases every time an epiphany ritual is performed.
+  Honestly101:
+  - tweak: Neohongo IH conversion.
+  - bugfix: Latin now works
+  Hyperio:
+  - rscadd: Ticket system with Discord support
+  TheShown:
+  - rscadd: Talking spider - allows you to speak through the mouth of the host.
+  - rscadd: Spark spider - very cheap, upon activation makes sparks and dies.
+  - rscadd: Smooth spider - slippery, makes a scary sound when activated.
+  - rscadd: Blight spider - injects the host with cryptobiolin, making him confused.
+  - rscadd: Consume the flesh now lets you tear off human limbs.
+  - rscadd: Carrions can make webs with the spinneret.
+  - balance: Carrion organs cannot be detected by the medbay scanner.
+  - balance: Carrion can't eat roach meat for gene points anymore.
+  - balance: Control spiders can't be used to control humanoids or mobs with a client.
+  - balance: Control spiders do not carry over damage from the host mob the the owner.
+  - balance: Control spider gene cost reduced from 10 to 5, and chem cost reduced
+      from 40 to 25.
+  - balance: Control spider cooldown reduced from 5 to 2 minutes.
+  - bugfix: Player controled spiders and roaches now lose their AI.
+  Wouju:
+  - rscadd: New messages upon examining simple animals, Roughly telling you how much
+      damaged they are.
+  - balance: Hivemind now requires 16 players to spawn
+  - bugfix: Blitz, Serbs and Malf AI now actually check for the amount of players
+      to spawn
+2021-03-17:
+  TheShown911:
+  - rscdel: Removed bad words
+2021-03-19:
+  AlexMorgan3817:
+  - refactor: Flicks now handling by /datum/proc/flicker
+  - refactor: Icon, icon state now should handling by /atom/proc/SetIcon and SetIconState.
+  - refactor: Overlays operations refactored to procs as cut_overlays, add_overlays,
+      associate and etc.
+  Alliostra:
+  - bugfix: biomatter now deals damage based on the amount of bio protection you have,
+      instead of just not dealing damage if you had even a very tiny amount of bio
+      resist.
+2021-03-20:
+  TheShown911:
+  - rscadd: Added back robotic organs.
+  - rscadd: More organs can be modified.
+  - bugfix: Fixed FBP-s using organic organs.
+  Wouju:
+  - tweak: Hiborg and Mechiver have reduced HP. Mechiver now has some flat damage
+      resistance.
+  - balance: Removed Hivemind Tyrant's ability to teleport around.
+  - bugfix: Fixed Hivemind Bomber's explosion being 5x5 instead of 3x3
+  - rscadd: You can now examine Hivemind machines to rougly check their health
+2021-03-23:
+  Evankhell561:
+  - bugfix: Nanoforge designs do not require a license.
+  - imageadd: sprites from the scavengerarmor and riggedvoidsuit for women.
+  infraredbaron:
+  - bugfix: gibber now spawns correct meat
+  - code_imp: added isroach check
+2021-03-25:
+  MacBlaze1:
+  - tweak: Max scrubber flow rate is now 400 Liters per second
+  - tweak: vents and scrubbers now have a power rating of 12000 watts instead of 7500,
+      this should make them able to move more moles of gas
+  - tweak: scrubbers and vents now have more volume
+  - tweak: APCs and air alarms (hopefully) no longer take fire damage and break, NT
+      has now upgraded them
+2021-03-27:
+  Alliostra:
+  - tweak: you can now attach the tactical knife and the gyrostabilized grip to guns
+  - rscadd: added the makeshift bullet time generator, a craftable gunmod
+  - balance: silencers are now more silent and lower the recoil of your gun somewhat
+  - balance: nerfed the novakovic's melee damage, increased it's melee AP
+  - bugfix: attaching scopes no longer worsen your gun's accuracy
+  - bugfix: radiation-inducing gunmods now properly apply their rads
+  - balance: buffed the radiation-inducing gunmods
+  - balance: the decloner now deals significantly more rad damage
+  - balance: the plasma pistol no longer deals rad damage, but deals more tox damage
+      now
+  - bugfix: you can no longer attach the overshooter to the AMR and the double-barreled
+      shotgun
+  - balance: the Tesla chip now enables an energy gun to shoot in fullauto and makes
+      it consume much less charge per shot.
+  Evankhell561:
+  - tweak: the energy regeneration of the cruciform is much slower.
+  - tweak: Entreaty and Relief rituals ignore stuttering.
+  - tweak: common rituals have a delay of one minute after being performed.
+  - tweak: Revelation ritual always increases sanity.
+  - tweak: EOTP miracles increase the energy regeneration of the cruciform.
+  - tweak: Stat COG now increases the energy regeneration of the cruciform.
+  - rscadd: Righteous life stat bar
+  - tweak: the priest now starts with his cruciform charged to maximum energy.
+  Hyperio:
+  - bugfix: Fix shuttle travel time when moving to another sector on overmap
+  - bugfix: Fix shuttles not being able to move back to Eris
+  - rscadd: Cyborg tile stack can copy steel tiles by clicking on them for easy reconstruction
+      of damaged areas
+  - tweak: Increased overmap size from (50, 50) to (200, 200)
+  - tweak: Increased number of overmap events to keep the same density on overmap
+  - rscadd: New overmap sprites
+  - rscadd: New overmap scanning system
+  - tweak: Hulk and Vasiliy Dokuchaev have now infinite range to avoid situations
+      in which command is not active
+  - rscadd: Star at the center of the overmap
+  - rscadd: Long range scanner machinery in Section 5 to scan the area around the
+      ship on overmap
+  - rscadd: Port Planetary Exploration from Eclipse
+  - bugfix: Fix planetary ruins to be compatible with Eris' objects
+  - rscadd: New shield generator sprites + glows when turned on
+  - tweak: Landmark naming system modified to be compatible with new overmap
+  Wouju:
+  - balance: 'Hivemind Mobs now have their movement speed fixed, in order from slowest
+      to fastest: Mechiver < Bomber < Hiborg < Himan < Lobber < Stinger.  Also makes
+      the Mechiver have higher HP and Armour as to compensate for the slowness.'
+  infraredbaron:
+  - imageadd: Fitting in-hands for deagle, sky driver, colt and deckard;
+  - code_imp: Added slide code to deagle
+  - bugfix: Fixes being able to endlessly heat MRE
