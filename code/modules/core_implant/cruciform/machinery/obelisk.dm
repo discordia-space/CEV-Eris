@@ -48,7 +48,7 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 		return
 	var/list/affected = list()
 	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-		if (H.z == src.z && get_dist(src, H) <= area_radius)
+		if(H.z == z && get_dist(src, H) <= area_radius && inLineOfSight(x, y, H.x, H.y, z))
 			affected.Add(H)
 	var/list/currently_copied = currently_affected.Copy()
 	for(var/mob/living/carbon/human/H in affected)

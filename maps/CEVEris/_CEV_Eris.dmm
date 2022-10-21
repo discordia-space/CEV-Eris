@@ -78570,7 +78570,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/power/nt_obelisk,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
 "dGo" = (
@@ -106287,6 +106286,13 @@
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchbarracks)
+"tgH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/power/nt_obelisk,
+/turf/simulated/floor/tiled/dark/golden,
+/area/eris/neotheology/chapel)
 "tiH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -205709,7 +205715,7 @@ jDi
 bmx
 aaa
 cmE
-ewb
+tgH
 dFy
 mKQ
 dGn

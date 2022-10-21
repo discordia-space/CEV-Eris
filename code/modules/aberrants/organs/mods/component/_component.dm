@@ -58,6 +58,22 @@
 	var/max_upgrade_mod = null
 	var/scanner_hidden = FALSE
 
+/datum/component/modification/organ/apply(obj/item/A, mob/living/user)
+	. = ..()
+
+	// Mutation index checks
+	// If the mod failed to install, do nothing
+	if(!.)
+		return FALSE
+
+	var/obj/item/organ/O = A
+
+	// If the organ was already modded, do nothing
+	if(!O.owner || O.item_upgrades.len > 1)
+		return FALSE
+
+	var/mob/living/carbon/human/H = O.owner
+	H.mutation_index += 1
 
 /datum/component/modification/organ/apply_values(obj/item/organ/internal/holder)
 	ASSERT(holder)
@@ -149,9 +165,17 @@
 
 /datum/component/modification/organ/uninstall(obj/item/I, mob/living/user)
 	..()
+	var/obj/item/organ/O = I
 	if(istype(I, /obj/item/organ/internal/scaffold))
 		var/obj/item/organ/internal/scaffold/S = I
 		S.try_ruin()
+
+	// If the organ has no owner or is still modded, do nothing
+	if(!O.owner || I.item_upgrades.len > 0)
+		return
+
+	var/mob/living/carbon/human/H = O.owner
+	H.mutation_index -= 1
 
 /datum/component/modification/organ/on_examine(mob/user)
 	var/using_sci_goggles = FALSE
