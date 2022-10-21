@@ -102173,6 +102173,11 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
+"hGz" = (
+/obj/structure/table/standard,
+/obj/item/reagent_containers/spray/cleaner,
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/eris/medical/chemistry)
 "hHz" = (
 /obj/machinery/space_heater,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
@@ -103040,6 +103045,7 @@
 "jFt" = (
 /obj/machinery/door/airlock/maintenance_common,
 /obj/structure/catwalk,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "jFQ" = (
@@ -248429,7 +248435,7 @@ oih
 jtf
 euW
 evd
-lcL
+hGz
 dty
 aaa
 dqI
