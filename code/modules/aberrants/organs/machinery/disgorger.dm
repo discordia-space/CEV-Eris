@@ -188,8 +188,7 @@
 
 		var/amount_to_take
 
-		for(var/object in I.GetAllContents(2, TRUE))
-			var/obj/item/O = object
+		for(var/obj/item/O in I.GetAllContents(2, TRUE))
 			if(O.matter.Find(MATERIAL_BIOMATTER))
 				amount_to_take += max(0, O.matter[MATERIAL_BIOMATTER])
 			qdel(O)
