@@ -42,8 +42,8 @@
 
 	var/blocked_damage = 0
 	var/adjusted_armor_divisor = armor_divisor - rand(0,4)
-    if(!adjusted_armor_divisor)
-        adjusted_armor_divisor = 1
+	if(!adjusted_armor_divisor)
+		adjusted_armor_divisor = 1
 	if(istype(A, /turf/simulated/wall)) // TODO: refactor this from functional into OOP
 		var/turf/simulated/wall/W = A
 		blocked_damage = round(W.material.integrity / (adjusted_armor_divisor / 8)) / 8
