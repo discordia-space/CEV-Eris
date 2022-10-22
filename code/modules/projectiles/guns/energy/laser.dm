@@ -314,9 +314,9 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_NORMAL
-	damage_multiplier = 1.1
+	damage_multiplier = 0.6
 	charge_cost = 125 
-	fire_delay = 13 
+	fire_delay = 15 
 	price_tag = 250
 	init_firemodes = list(
 		BURST_2_BEAM
