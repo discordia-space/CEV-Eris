@@ -1,5 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - tweak: NT obelisks use line of sight for checking affected mobs
-  - tweak: Moved chapel obelisk back to original spot

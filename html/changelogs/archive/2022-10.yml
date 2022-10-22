@@ -192,3 +192,26 @@
 2022-10-17:
   Firefox13:
   - config: 1583 BYOND build blocked from connecting due to security issues
+2022-10-22:
+  Firefox13:
+  - balance: Acolytes now can clone people without genetic damage
+  Pink-Chink:
+  - tweak: Handheld freezer can hold organ mods
+  - bugfix: Fixed hivemind mobs processing after death
+  - tweak: NT obelisks use line of sight for checking affected mobs
+  - tweak: Moved chapel obelisk back to original spot
+  - bugfix: Added minimum amount removed for reagent metabolism
+  - code_imp: get_process_efficiency(), organ process is only searched once
+  - code_imp: handle_blood(), OP_VESSEL is searched after we know the organ has a
+      blood requirement
+  - code_imp: Dead organs are removed from processing list
+  - code_imp: Organ stasis is only checked if there is no owner
+  - code_imp: Organ bleeding no longer checks if there is blood because remove_reagents()
+      already does so
+  - tweak: Organ mod adjustment and removal have 100% success rate for base bio-engineers
+      and doctors
+  - tweak: Modded organs count toward mutation index
+  - tweak: Cruciforms also damage parent external organ when removing mods
+  - tweak: Obelisk burn thresholds changed to 5 and 10 and damage halved
+  - bugfix: Any mob with the right stats can understand aberrant organ stuff
+  - bugfix: Fixed nanite death via parent roach death

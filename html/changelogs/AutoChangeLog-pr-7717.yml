@@ -1,9 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - tweak: Organ mod adjustment and removal have 100% success rate for base bio-engineers
-      and doctors
-  - tweak: Modded organs count toward mutation index
-  - tweak: Cruciforms also damage parent external organ when removing mods
-  - tweak: Obelisk burn thresholds changed to 5 and 10 and damage halved
-  - bugfix: Any mob with the right stats can understand aberrant organ stuff
