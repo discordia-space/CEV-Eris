@@ -61,7 +61,7 @@
 	var/mob/living/carbon/human/H = owner.current
 	update_faction_score()
 	to_chat(owner,  SPAN_NOTICE("You have completed the personal objective: [name]"))
-	H.sanity.resting += insight_reward
+	H.sanity.resting += 2
 	H.sanity.finish_rest()
 
 /datum/individual_objective/proc/get_description()

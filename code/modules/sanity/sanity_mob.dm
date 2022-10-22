@@ -325,7 +325,7 @@
 		else //Cancelling or internalizing
 			var/list/stat_change = list()
 
-			var/stat_pool = resting * 15
+			var/stat_pool = 15
 			while(stat_pool > 0)
 				stat_pool--
 				LAZYAPLUS(stat_change, pick(ALL_STATS), 3)
