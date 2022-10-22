@@ -315,7 +315,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_NORMAL
 	projectile_type = /obj/item/projectile/beam
-	damage_multiplier = 0.6
+	damage_multiplier = 0.5
 	charge_cost = 125 
 	fire_delay = 15 
 	price_tag = 250
