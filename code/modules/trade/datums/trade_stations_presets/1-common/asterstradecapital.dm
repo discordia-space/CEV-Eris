@@ -45,13 +45,10 @@
 		"Aster\'s Cells" = list(
 			/obj/item/cell/small = custom_good_price(50),
 			/obj/item/cell/small/high = custom_good_price(100),
-			/obj/item/cell/small/super = custom_good_price(150),
 			/obj/item/cell/medium = custom_good_price(100),
 			/obj/item/cell/medium/high = custom_good_price(150),
-			/obj/item/cell/medium/super = custom_good_price(200),
 			/obj/item/cell/large = custom_good_price(200),
 			/obj/item/cell/large/high = custom_good_price(400),
-			/obj/item/cell/large/super = custom_good_price(800)
 		),
 		"Mining Gear" = list(
 			/obj/machinery/mining/deep_drill,
@@ -124,12 +121,18 @@
 			/mob/living/exosuit/premade/powerloader/flames_red
 		),
 		"Aster\'s Cells II" = list(
+			/obj/item/cell/small/super = custom_good_price(150),
 			/obj/item/cell/small/hyper = custom_good_price(600),
+			/obj/item/cell/medium/super = custom_good_price(200),
 			/obj/item/cell/medium/hyper = custom_good_price(800),
+			/obj/item/cell/large/super = custom_good_price(800),
 			/obj/item/cell/large/hyper = custom_good_price(1600)
 		),
 		"SN4-Z 2N3Z" = list(
 			/obj/item/media/boombox = custom_good_price(1000)
+		),
+		"Disk Designs II" = list(
+			/obj/item/computer_hardware/hard_drive/portable/design/adv_robustcells = good_data("Aster\'s Advanced Robustcells", list(1, 10), 800)
 		)
 	)
 	offer_types = list(
