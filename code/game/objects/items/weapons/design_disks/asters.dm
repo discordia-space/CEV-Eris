@@ -127,7 +127,7 @@
 	disk_name = "Asters Advanced Robustcells"
 	icon_state = "guild"
 	rarity_value = 11
-	spawn_tags = SPAWN_TAG_DESIGN_COMMON
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	license = 10
 	designs = list(
 		/datum/design/autolathe/cell/large/super,
@@ -135,5 +135,5 @@
 		/datum/design/autolathe/cell/medium/super,
 		/datum/design/autolathe/cell/medium/hyper = 2,
 		/datum/design/autolathe/cell/small/super,
-		/datum/design/autolathe/cell/small/hyper = 2,
+		/datum/design/autolathe/cell/small/hyper = 2
 	)
