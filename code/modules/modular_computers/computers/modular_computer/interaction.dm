@@ -14,7 +14,7 @@
 
 	verbs |= /obj/item/modular_computer/verb/emergency_shutdown
 
-/obj/item/modular_computer/proc/can_interact(var/mob/user)
+/obj/item/modular_computer/can_interact(mob/user)
 	if(usr.incapacitated())
 		to_chat(user, "<span class='warning'>You can't do that.</span>")
 		return FALSE

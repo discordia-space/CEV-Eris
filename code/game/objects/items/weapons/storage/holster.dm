@@ -28,6 +28,8 @@
 		/obj/item/gun/projectile/olivaw,
 		/obj/item/gun/projectile/mandella,
 		/obj/item/gun/projectile/voodoo,
+		/obj/item/gun/projectile/pistol,
+		/obj/item/gun/projectile/shotgun/type_21,
 		/obj/item/gun/energy/gun,
 		/obj/item/gun/energy/chameleon,
 		/obj/item/gun/energy/captain,
@@ -43,9 +45,18 @@
 		/obj/item/gun/energy/retro/sawn,
 		/obj/item/gun/projectile/automatic/luty,
 		/obj/item/gun/projectile/revolver/hornet,
-		/obj/item/gun/projectile/pistol/type_62,
-		/obj/item/gun/projectile/pistol/type_90,
-		/obj/item/gun/projectile/shotgun/type_21
+		/obj/item/gun/projectile/shotgun/slidebarrel,
+		/obj/item/gun/projectile/boltgun/levergun/shotgun/sawn,
+		/obj/item/gun/projectile/boltgun/levergun/sawn,
+		/obj/item/gun/projectile/automatic/slaught_o_matic,
+		/obj/item/gun/energy/rxd,
+		/obj/item/gun/energy/nuclear,
+		/obj/item/gun/energy/nt_svalinn,
+		/obj/item/gun/energy/crossbow,
+		/obj/item/reagent_containers/food/snacks/mushroompizzaslice,
+		/obj/item/reagent_containers/food/snacks/meatpizzaslice,
+		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice,
+		/obj/item/bananapeel
 		)
 
 	sliding_behavior = TRUE
@@ -186,11 +197,20 @@
 		/obj/item/gun/energy/retro/sawn,
 		/obj/item/gun/projectile/automatic/luty,
 		/obj/item/gun/projectile/revolver/hornet,
+		/obj/item/gun/projectile/shotgun/slidebarrel,
+		/obj/item/gun/projectile/boltgun/levergun/shotgun/sawn,
+		/obj/item/gun/projectile/boltgun/levergun/sawn,
+		/obj/item/gun/projectile/automatic/slaught_o_matic,
+		/obj/item/gun/energy/rxd,
+		/obj/item/gun/energy/nuclear,
+		/obj/item/gun/energy/nt_svalinn,
+		/obj/item/gun/energy/crossbow,
 		/obj/item/reagent_containers/food/snacks/mushroompizzaslice,
 		/obj/item/reagent_containers/food/snacks/meatpizzaslice,
 		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice,
 		/obj/item/bananapeel
 		)
+	var/list/cant_hold = list()
 
 /obj/item/clothing/accessory/holster/knife
 	name = "throwing knife rig"
@@ -210,6 +230,12 @@
 	slot = "utility"
 	max_w_class = ITEM_SIZE_HUGE
 	can_hold = list(/obj/item/tool/sword)
+	cant_hold = list(
+		/obj/item/tool/knife/dagger/nt,
+		/obj/item/tool/sword/nt/halberd,
+		/obj/item/tool/sword/nt/spear
+		)
+	
 	price_tag = 300
 	sound_in = 'sound/effects/sheathin.ogg'
 	sound_out = 'sound/effects/sheathout.ogg'
@@ -267,6 +293,7 @@
 	holster = new /obj/item/storage/internal(src)
 	holster.storage_slots = storage_slots
 	holster.can_hold = can_hold
+	holster.cant_hold = cant_hold
 	holster.max_w_class = max_w_class
 	holster.master_item = src
 
@@ -277,18 +304,10 @@
 /obj/item/clothing/accessory/holster/attackby(obj/item/I, mob/user)
 	holster.attackby(I, user)
 
-//For the holster hotkey
-//This verb is universal to any subtype of pouch/holster.
-/obj/item/storage/pouch/holster/verb/holster_verb()
-	set name = "Holster"
-	set category = "Object"
-	set src = usr.contents
-	if(!ishuman(usr))
+//For the holster hotkey in human.dm
+/obj/item/storage/pouch/holster/proc/holster_verb(var/mob/living/carbon/human/H)
+	if(!istype(H))
 		return
-	if(usr.stat)
-		return
-
-	var/mob/living/carbon/human/H = usr
 
 	//List of priorities for holster hotkey. Back, suit store, belt, left pocket, right pocket.
 	//Back is for future holsters, if anyone decides to add those.
@@ -312,9 +331,12 @@
 				holster.attack_hand(H)
 				holster_handled = TRUE
 				break
+	
 	if(!holster_handled)
-		to_chat(H, SPAN_NOTICE(H.get_active_hand() ? "You don't have any occupied holsters." : "All your holsters are occupied."))
-
+		to_chat(H, SPAN_NOTICE(!H.get_active_hand() ? "You don't have any occupied pouch holsters." : "All your pouch holsters are occupied."))
+		return FALSE
+	else
+		return TRUE
 
 /obj/item/storage/pouch/holster/attack_hand(mob/living/carbon/human/H)
 	if(contents.len)
@@ -362,12 +384,13 @@
 		overlays += image('icons/inventory/pockets/icon.dmi', "revolver_layer[contents.len]")
 
 /obj/item/storage/pouch/holster/belt/sheath/update_icon()
+	..()
+	cut_overlays()
 	var/icon_to_set
 	for(var/obj/item/SW in contents)
 		icon_to_set = SW.icon_state
 	icon_state = "sheath_[contents.len ? icon_to_set :"0"]"
 	item_state = "sheath_[contents.len ? icon_to_set :"0"]"
-	..()
 
 /obj/item/storage/pouch/holster/belt/knife/update_icon()
 	..()

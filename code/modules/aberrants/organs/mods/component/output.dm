@@ -11,7 +11,7 @@
 
 /datum/component/modification/organ/output/reagents/get_function_info()
 	var/metabolism = mode == CHEM_BLOOD ? "bloodstream" : "stomach"
-	
+
 	var/outputs
 	for(var/output in possible_outputs)
 		var/datum/reagent/R = output
@@ -102,7 +102,7 @@
 				var/amount_to_add = possible_outputs[output] * organ_multiplier * input_multiplier
 				RM.add_reagent(initial(output.id), amount_to_add)
 				triggered = TRUE
-	
+
 	if(triggered)
 		SEND_SIGNAL(holder, COMSIG_ABERRANT_COOLDOWN, TRUE)
 		SEND_SIGNAL(holder, COMSIG_ABERRANT_SECONDARY, holder, owner)
@@ -187,7 +187,7 @@
 				var/amount_to_add = initial(output.metabolism) * organ_multiplier * input_multiplier
 				RM.add_reagent(initial(output.id), amount_to_add)
 				triggered = TRUE
-	
+
 	if(triggered)
 		SEND_SIGNAL(holder, COMSIG_ABERRANT_COOLDOWN, TRUE)
 		SEND_SIGNAL(holder, COMSIG_ABERRANT_SECONDARY, holder, owner)
@@ -248,7 +248,7 @@
 				var/magnitude = possible_outputs[stat] * organ_multiplier * input_multiplier
 				owner.stats.addTempStat(stat, magnitude, delay, "\ref[parent]")
 				triggered = TRUE
-	
+
 	if(triggered)
 		SEND_SIGNAL(holder, COMSIG_ABERRANT_COOLDOWN, TRUE)
 		SEND_SIGNAL(holder, COMSIG_ABERRANT_SECONDARY, holder, owner)
@@ -282,8 +282,8 @@
 				H.adjustBrainLoss(damage_amount)		// Added brainloss because we're gaining insight and most damage is trivial anyway
 				H.sanity.give_insight(damage_amount)
 				triggered = TRUE
-				
-	if(triggered)			
+
+	if(triggered)
 		SEND_SIGNAL(holder, COMSIG_ABERRANT_COOLDOWN, TRUE)
 		SEND_SIGNAL(holder, COMSIG_ABERRANT_SECONDARY, holder, owner)
 
@@ -361,7 +361,7 @@
 				SEND_SIGNAL(holder, COMSIG_ABERRANT_COOLDOWN, TRUE)
 				SEND_SIGNAL(holder, COMSIG_ABERRANT_SECONDARY, holder, owner)
 				return TRUE
-	
+
 	organ_efficiency_mod = old_organ_efficiency_mod
 	blood_req_mod = old_blood_req_mod
 	nutriment_req_mod = old_nutriment_req_mod

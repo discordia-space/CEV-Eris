@@ -304,16 +304,8 @@
 /obj/item/clothing/glasses/hud/make_old(low_quality_oldification)
 	GET_COMPONENT(oldified, /datum/component/oldficator)
 	if(!oldified && prob(75) && !istype(src, /obj/item/clothing/glasses/hud/broken))
-		var/obj/item/clothing/glasses/hud/broken/brokenhud = new /obj/item/clothing/glasses/hud/broken(loc)
-		brokenhud.name = src.name
-		brokenhud.desc = src.desc
-		brokenhud.icon = src.icon
-		brokenhud.icon_state = src.icon_state
-		brokenhud.item_state = src.item_state
-		brokenhud.make_old(low_quality_oldification)
-		QDEL_NULL(src)
-	else
-		.=..()
+		malfunctioning = TRUE
+	.=..()
 
 /obj/item/clothing/glasses/make_old(low_quality_oldification)
 	.=..()

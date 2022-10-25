@@ -1,0 +1,74 @@
+2022-05-07:
+  Shadow-Quill:
+  - rscadd: Added stacked icon variants for all types of glass.
+  SirRichardFrancis:
+  - bugfix: missing check in some mutation-based abilities
+  - rscadd: radial menu for tool-gun interaction
+  - rscadd: serial numbers attached to a gun frame
+  - tweak: serial types changed to make more sense
+  - rscdel: easter eggs
+  TGCMbetcher:
+  - tweak: beacon prices have been changed
+  Trilbyspaceclone:
+  - bugfix: Broken, broken huds no longer spawn.
+  - balance: combat dispenser now holds 12 beakers rather then 6!  - For Rigs
+  - bugfix: Fixes medical injectors not injecting - For rigs
+  - bugfix: Fixes all dispensers and chem injectors for rigs having the same name
+      and desc in its menus - For Rigs
+  - bugfix: Fixes a indexing bug with injectors and dispensers - For Rigs
+  assortedbeads:
+  - imageadd: four more fbp types
+2022-05-14:
+  Chickenish:
+  - balance: Aggressive Grab is now instant and Neck Grab now has a timer again.
+  Hyperio:
+  - tweak: Mining drill will now mine ores randomly instead of digging out vast amounts
+      of hematite and almost nothing of the other minerals
+  - rscadd: Mining drill will now display its content upon examine, just like the
+      ore box
+  - tweak: Mining drill cannot be deconstructed anymore to prevent health abuse
+  SirRichardFrancis:
+  - refactor: ammo kits and crafting station
+  garrulousTeamotei:
+  - tweak: Sword of Truth adds 200 Observation upon faction oddity destruction.
+2022-05-21:
+  SirRichardFrancis:
+  - rscadd: recycling vendor
+  - bugfix: possibly fixed mobs being deleted improperly
+  TGCMbetcher:
+  - tweak: makes the biotank spit out biomatter faster
+  - tweak: halved biomatter price
+  pexel5:
+  - tweak: Remap serbian base. add some thinks.
+2022-05-22:
+  SirRichardFrancis:
+  - balance: recycling vendor payouts halved
+  - bugfix: several recycling vendor bugs
+2022-05-28:
+  Humonitarian:
+  - rscadd: Family favourite "yho" card game, avaliable from loadout
+  - tweak: card holder is now a storage item capable of holding a deck
+  - refactor: recoil within guns refactored
+  - refactor: bullets determine base recoil
+  - tweak: you can now wield every gun to reduce recoil, including pistols. Bracing
+      also reduces recoil. The reduction of both scales with gun size
+  - bugfix: roaches no longer suffer from recoil
+  - balance: recoil was tweaked to feel closer to the october values, giving FA a
+      slight underhand
+  SirRichardFrancis:
+  - bugfix: live roaches sometimes displaying below dead roaches
+  - bugfix: dead fuhrer roaches screaming
+  - bugfix: roaches revival limit not working
+  - bugfix: damage and drug overlays not going away
+  TGCMbetcher:
+  - tweak: import and export prices
+  Trilbyspaceclone:
+  - bugfix: Fixes .50 scrap slugs in ammo kits giving pistol ammo
+  - balance: recycle vendor now logs what is buy'ed
+  - bugfix: Fixed mass selling stored items recycle vendor, note this didnt give you
+      wealth for items inside nested items
+  pexel5:
+  - tweak: Moved most of the loot from the warehouse to the room with nanoforge. I
+      have slightly reduced the loot in the old warehouse. Slightly expanded the nanoforge
+      room.
+  - tweak: remove oddity requirement for nanoforge.

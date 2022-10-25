@@ -194,7 +194,7 @@
 	build_path = /obj/item/gun/projectile/automatic/lmg/pk
 
 /datum/design/autolathe/gun/lmg_tk
-	name = "FS LMG .30 \"Takeshi\""
+	name = "FS LMG .25 \"Takeshi\""
 	build_path = /obj/item/gun/projectile/automatic/lmg/tk
 
 /datum/design/autolathe/gun/grenade_launcher

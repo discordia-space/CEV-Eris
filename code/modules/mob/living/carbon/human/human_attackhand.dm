@@ -169,7 +169,7 @@
 				attack_generic(H,rand(1,3),"punched")
 				return
 
-			var/stat_damage = 3 + max(0, (H.stats.getStat(STAT_ROB) / 10))
+			var/stat_damage = max(0, min(15, (H.stats.getStat(STAT_ROB) / 4)))
 			var/limb_efficiency_multiplier = 1
 			var/block = 0
 			var/accurate = 0

@@ -40,7 +40,7 @@ meteor_act
 
 	var/check_absorb = .
 	//Shrapnel
-	if(P.can_embed() && (check_absorb < 2))
+	if(P.can_embed() && (check_absorb == PROJECTILE_STOP))
 		var/armor = getarmor_organ(organ, ARMOR_BULLET)
 		if(prob(20 + max(P.damage_types[BRUTE] - armor, -10)))
 			var/obj/item/material/shard/shrapnel/SP = new()

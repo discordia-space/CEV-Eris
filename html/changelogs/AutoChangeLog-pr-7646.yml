@@ -1,7 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - bugfix: Fixed OS laser turret using the wrong laser type
-  - bugfix: Fixed backwards distance prioritization
-  - bugfix: Fixed bad checks in OS machinery
-  - rscadd: Added missing UI template

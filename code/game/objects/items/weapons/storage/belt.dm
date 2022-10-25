@@ -93,7 +93,7 @@
 	new /obj/item/stack/cable_coil/random(src)
 	
 /obj/item/storage/belt/utility/neotheology
-	name = "neotheologian utility belt"
+	name = "neotheology utility belt"
 	desc = "Waist-held holy items."
 	icon_state = "utility_neotheology"
 	rarity_value = 20
@@ -155,7 +155,11 @@
 		/obj/item/device/radio/off,
 		/obj/item/inflatable_dispenser,
 		/obj/item/tool/crowbar,
-		/obj/item/extinguisher/mini
+		/obj/item/extinguisher/mini,
+		/obj/item/device/flash,
+		/obj/item/device/lighting/toggleable/flashlight,
+		/obj/item/gun/projectile/selfload,
+		/obj/item/modular_computer/tablet/moebius/preset
 	)
 
 /obj/item/storage/belt/tactical
@@ -196,7 +200,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/belt/tactical/neotheology
-	name = "neotheologian tactical belt"
+	name = "neotheology tactical belt"
 	desc = "Can hold various military and security equipment."
 	icon_state = "tactical_neotheology"
 	rarity_value = 40

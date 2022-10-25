@@ -189,7 +189,7 @@
 	make_exact_fit()
 
 /obj/item/storage/firstaid/nt
-	name = "NeoTheologian Medkit"
+	name = "NeoTheology medkit"
 	desc = "A medkit filled with a set of high-end trauma kits and anti-toxins."
 	icon_state = "nt_kit"
 	item_state = "nt_kit"
@@ -373,7 +373,7 @@
 	item_state = "medicalpack"
 	max_w_class = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2)
-	can_hold = list(/obj/item/organ, /obj/item/reagent_containers/food, /obj/item/reagent_containers/glass)
+	can_hold = list(/obj/item/organ, /obj/item/modification/organ, /obj/item/reagent_containers/food, /obj/item/reagent_containers/glass)
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	use_to_pickup = TRUE
 

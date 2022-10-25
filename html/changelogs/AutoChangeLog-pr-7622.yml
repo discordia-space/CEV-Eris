@@ -1,8 +1,0 @@
-author: Près de l'oiseau, Kurgis
-delete-after: true
-changes:
-  - balance: Rolled-up posters should spawn around some.
-  - balance: Purple combs should appear less, leaving more space for other contraband
-      items to spawn in their place.
-  - imageadd: Added new Aster Guild posters made by Près de l'oiseau.
-  - imagedel: Deleted many old baystation posters.

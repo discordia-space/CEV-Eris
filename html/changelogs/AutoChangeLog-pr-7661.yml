@@ -1,4 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - bugfix: roaches no longer "list/" windows when bumping into them

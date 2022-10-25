@@ -1,0 +1,261 @@
+2020-07-01:
+  Evankhell561:
+  - bugfix: sanity
+2020-07-03:
+  Carbonhell:
+  - bugfix: Only merchants with the right perk can use money as an inspiration now.
+2020-07-04:
+  Fikou:
+  - balance: removes melee/bullet/energy armor from paramedic jumpsuit and nerfs bio
+      from 30 to 10
+  Pariah919:
+  - balance: Sol has 38ish% less recoil overrall.
+2020-07-05:
+  Evankhell561:
+  - tweak: Dark slowdown is canceled by night vision.
+  - bugfix: Oborin Syndrome perk no longer remains after death.
+  - bugfix: Noble perk.
+  Smokingsquirrel:
+  - rscadd: Added new Martin Sprite
+  - rscadd: about 20 new hairstyles
+  - rscadd: corresponding sprites in .dmi
+  - rscadd: new sprite for medical voidsuit
+  - rscadd: proper english translation of fate perks and backgrounds
+2020-07-09:
+  Evankhell561:
+  - bugfix: random job preference exploit
+  - tweak: Lowborn perk makes you are blacklisted from all jobs in moebis and IH.
+  - tweak: Absolute grab perk now acts on a circular radius of 2 tiles.
+  HentaiStorm:
+  - code_imp: Add ghost validate before gulp.
+  - bugfix: Fixed an error when the autholate eject zero stack, and bug with ejected
+      icon.
+  - bugfix: Rename disk_name (Frozen Star - .35 Paco SMG -> Frozen Star - .35 Paco
+      HG) and replace ammo in designs (smg -> magazine_pistol).
+  Kurgis, WatlerJe:
+  - imageadd: New sprites for hard hats, their objects will take up a greater presence
+      now.
+  - imageadd: Workboots and hazard vests touched-up to NewStyle.
+  Smokingsquirrel:
+  - rscadd: 'Bar resupply crate:  Almost everything that is in the booze-o-mat in
+      reduced quantity , 2000 credits'
+  - rscadd: 'Cake crate: one of each possible cake sans brain cake, 2000 credits'
+  - rscadd: 'Research data crate: 2 research data discs, 5000 credits'
+  - rscadd: 'Medical resupply crate: bruise packs and ointments, 1000 credits'
+  - rscadd: 'empty disks crate: 5 empty autolathe design disks, 1000 credits'
+  - tweak: medical kit crate renamed
+  - balance: toolmod crate now costs 2000 credits and has 2 more toolmods
+  - tweak: added medical belt to MBO locker
+  - balance: replaced Tricord in the Hypospray with 40u Bicaridine
+  - bugfix: fixed the CMO female uniform sprite because it had tiddies visible
+  SolatK:
+  - rscadd: The server now have whitelist  for VPN checking.
+  - rscadd: Admins now can search players in the server DB.
+  - rscadd: server now check if a player have same ip or cid with somebody else from
+      BD and remember it FOREVER.
+  - bugfix: delayed ban kick player
+2020-07-10:
+  Evankhell561:
+  - tweak: Environmental damage for sanity has been lowered
+  - tweak: Food only increases sanity when you eating not junk food.
+  - tweak: Sanity regeneration from food now purely depends on nutrition, and not
+      calculated per bite.
+  - tweak: Breakdowns reward insight for fulfilled their objectives.
+  - rscadd: Mindwipe drug that stops breakdowns
+  - tweak: All food in trash piles have a chance to have toxins,
+  HentaiStorm:
+  - rscadd: Abble to eject sleeper occupation, when there's no electricity.
+  Pariah919:
+  - tweak: steelpot no longer blocks facial hair
+  - rscadd: Added new kitchen ~~gun~~ knife sprite
+  - rscdel: Removed old kitchen knife sprite
+  seekin4u:
+  - rscadd: "Russiano radio keys are now available. `:\u044B` `:\u044C` `:\u0440`\
+      \ `:\u0437` `:\u043D`"
+2020-07-11:
+  Smokingsquirrel:
+  - rscadd: Added new custodian jackboots to prevent slipping
+  - tweak: NeoTheo Utility belt now holds soap and space cleaner
+  - tweak: Cleansing carbine now also is carriable in the belt slot
+  - balance: Trash bag is smaller but holds less, it now fits properly into a bag
+      to carry it with you
+  - rscadd: Added uncountable new clothing options
+  - rscdel: Removed old miner jumpsuit
+  Vlad777:
+  - bugfix: Fixed creating bounties with wrong PIN.
+  - bugfix: Fixed russian letters encoding in papers and flavors.
+2020-07-12:
+  DarkLevel:
+  - rscadd: Sword of Truth
+  - rscadd: Last Shelter
+  - rscadd: Ancient Maneki Neko
+  - rscadd: Random wave radio
+  - rscadd: Techno-Tribalism Enforcer
+  - rscadd: Atomic Distillery
+  - rscadd: New perk Sommelier
+  - rscadd: Pedestal for Sword of Truth
+  - rscadd: Sheath for Sword of Truth
+  - bugfix: Clonning now saving stats
+  HentaiStorm:
+  - bugfix: Traps don't stop mech anymore.
+  Pariah919:
+  - balance: Crifle rubber ammo (ceaseless) does more agony damage.
+  Smokingsquirrel:
+  - bugfix: leisure outfit
+  - bugfix: fixed female club attire pixels
+  - bugfix: fixed NT male sports vestment
+  SpadesSlick:
+  - balance: All projectiles are 20% faster.
+  - balance: All shotguns now cost less.
+  - balance: All gun discs now have lethal ammo. All shotgun ammo can be now found
+      in gun discs. Practice ammo does not consume any license points.
+  - balance: Vendor price for guns changed for real prices for guns. Contraband removed
+      from FS vendor, and t's contents were moved to regular selection. There is less
+      lethal ammo there, however.
+  - balance: Caliber .35 received a buff, along with all non SMG guns that use it.
+      They are now much more usable.
+  - balance: Caliber .40 received minor buffs.
+  - balance: Paco damage is buffed, armor penetration lowered.
+  - balance: Lamia buffed.
+  - balance: Mandela now have huge armor penetration capabilities so you can actually
+      use it against protected targets.
+  - balance: Sol is buffed substantially, lower recoil and higher damage.
+  - balance: Decard is buffed a bit.
+  - balance: All of the gun mods now can spawn in general technical loot. They will
+      appear much more often.
+  - balance: Blitzshell gun and STS are now German produced guns.
+  - balance: STS no longer have 3 burst mode and only have 5 one, to lower the amount
+      of mods you need to cycle though.
+  Vlad777:
+  - bugfix: Fixed silicon "Show Crew Sensors" verb
+  seekin4u:
+  - bugfix: fixed stash crashes due to picture in pointer note
+2020-07-13:
+  Evankhell561:
+  - bugfix: Alcohol Perk no longer permanently increases your ROB.
+  Smokingsquirrel:
+  - balance: lowered moebius prototype cannon charge cost.
+2020-07-14:
+  Kurgis:
+  - tweak: Showers are easier to temperature adjust.
+  - bugfix: You may now open and close cisterns again.
+  Smokingsquirrel:
+  - bugfix: fix white short cyberpunk jacket
+2020-07-18:
+  DarkLevel:
+  - bugfix: Last Shelter will now work normally.
+  - bugfix: Fixing last shelter place.
+  - bugfix: Fixing random wave radio runtime errors.
+  - bugfix: Fixing Enforcer infinity stat exploit.
+  - bugfix: Fixing Maneki Neko to work more stable.
+  GrayRachnid:
+  - rscadd: Tricord to sleepers.
+  - balance: Tricord can no longer be mixed in sleepers.
+  Kurgis:
+  - bugfix: The undocumented change which broke directions to antag stashes has been
+      fixed. Additionally, image stashes will no longer keep spawning despite their
+      photos being removed.
+  - balance: Command stashes will only give personalized landmark directions to their
+      loot now, and won't ever provide exact coordinates.
+  - tweak: The Chain of Command and the "Nailstick" are now both tools, and accept
+      tool mods.
+  Smokingsquirrel:
+  - bugfix: fixed brown leisure uniform and tunnelsnake jacket icons
+2020-07-19:
+  Vlad777:
+  - rscadd: Added ability to repair mecha.
+2020-07-20:
+  ACCount:
+  - tweak: Ship navigation devices, such as PDAs, now show decks instead of Z levels
+  - balance: Robot energy guns no longer have infinite charges - they now draw charge
+      from robot's cell and take time to recharge
+  Smokingsquirrel:
+  - rscadd: Added new medical sprites
+  - code_imp: code for medical hat and shoes, added some attire to medical lockers
+2020-07-23:
+  'Fernandos33 ':
+  - tweak: Recipes for stat stimulators changed to be made easier
+  - balance: Withdraws now get sanity debuff (sanity debuff from withdrawing>> than
+      sanity gain using the drug)
+  - balance: Every stat drug will give a small sanity boost, except for hyperzine.
+  StiffRobot:
+  - balance: changes the biogenerators output_power from 200k to 500k
+2020-07-24:
+  Alliostra:
+  - rscadd: Adds the "Lasblender" a craftable laser SMG
+  Anonmare:
+  - rscadd: The Technomancer Union's ESPO-830 now contains secure airlock electronics.
+  - balance: APC/Airlock/Fire/Air alarm electronics no longer use license points on
+      the ESPO-830 disk.
+  Uvash:
+  - rscadd: Add scanning module in drill. If better - drill will have more large work
+      area.
+2020-07-25:
+  Alliostra:
+  - balance: The Blitzshell was nerfed, It's is no longer a tank and a fighter jet
+      at the same time.
+2020-07-26:
+  Voldirs:
+  - tweak: Removed fail chance for common litanies, no more stupid chat spamming to
+      get some nutrition
+2020-07-27:
+  Alliostra:
+  - balance: buffed slugs
+  - balance: buffed the gladstone, the bojevic, the shellshock, the zoric, the paco,
+      the clarissa, the lightfall, the FS AK and the avarasla
+  - balance: tweaked the regulator
+  - balance: buffed the caster
+  - balance: increased the recoil of the sol when it's not wielded
+  Kurgis:
+  - tweak: Performed some map changes, Genetics now has had their cameras removed
+      to protect proprietary knowledge, and they've been re-used to instead act as
+      cameras within Chemistry. Removed the abundance of junk piles in certain areas,
+      and fixed some maintenance areas spawning exposed to space.
+  Tea-Primoris:
+  - rscadd: New German themed outfit
+  - imageadd: New sprites from Armolitskiy
+  - tweak: Crate with outfit and individual parts of outfit will spawn randomly
+2020-07-28:
+  Kurgis:
+  - balance: Re-adjusted the Lasblender's damage values, remember to use weapon attachments
+      to increase its power.
+  Tea-Primoris:
+  - tweak: Borgs/Drones light replacer recharges faster
+  - tweak: Adjusted the speed of Serbian shuttle travel time from 7 minutes to 3.
+  fernandos13:
+  - tweak: Priest and acolyte jacket should at least protect as much as a labcoat
+      from bio damage
+2020-07-29:
+  Fernandos33:
+  - bugfix: german jackboot. now have same stats as regular jackboots (can fit knives)
+  Tea-Primoris:
+  - balance: Blitzshell nanorepair now have 5 minutes cooldown.
+  fernandos13:
+  - bugfix: mirc will now properly display boxer recipe
+2020-07-30:
+  Chatter42:
+  - tweak: it should no longer be possible to spam player-made wire splices
+  - bugfix: making splices bigger is now properly functional
+  Fernandos33:
+  - tweak: mines are now overlayed like traps
+  - balance: frag from excels mines where lowered
+  "Kurgis, Pr\xE8s de l'oiseau":
+  - rscadd: Brand new collectable figurines, winnable from the arcade as per usual.
+  - rscdel: Removed the farwa plushie, removed the unused (and broken) therapy dolls.
+  - imageadd: "Pr\xE8s de l'oiseau's new figurine sprites."
+  - imagedel: Deleted some unused objects from toys.dmi, they will not be missed.
+  Pariah919:
+  - tweak: spawning in should no longer make you stunned for as long.
+  Tea-Primoris:
+  - rscdel: Sections shutters and buttons that activates them are no more as and all
+      remote buttons on bridge.
+  fernandos13:
+  - bugfix: noexcutite now can be made again
+  soslow4u:
+  - tweak: Standing mobs can't hide behind organs anymore.
+  - bugfix: No more powder piles and chem splashes in open space.
+  - bugfix: Deconstruction of lattice, catwalk and railings would drop items under
+      your feet.
+2020-07-31:
+  soslow4u:
+  - bugfix: You are able to throw things and mobs over open space now.

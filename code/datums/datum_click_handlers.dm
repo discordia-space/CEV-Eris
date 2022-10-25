@@ -110,7 +110,7 @@
 
 /datum/click_handler/fullauto/proc/shooting_loop()
 
-	if(owner.mob.resting)
+	if(!owner || !owner.mob || owner.mob.resting)
 		return FALSE
 	if(target)
 		owner.mob.face_atom(target)
