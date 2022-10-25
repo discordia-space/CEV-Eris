@@ -47,17 +47,18 @@
 	var/using_sci_goggles = FALSE
 	var/details_unlocked = FALSE
 
-	if(ishuman(user))
+	if(isghost(user))
+		details_unlocked = TRUE
+	else if(user.stats)
 		// Goggles check
-		var/mob/living/carbon/human/H = user
-		if(istype(H.glasses, /obj/item/clothing/glasses/powered/science))
-			var/obj/item/clothing/glasses/powered/G = H.glasses
-			using_sci_goggles = G.active	// Meat vision
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H && istype(H.glasses, /obj/item/clothing/glasses/powered/science))
+				var/obj/item/clothing/glasses/powered/G = H.glasses
+				using_sci_goggles = G.active	// Meat vision
 
 		// Stat check
 		details_unlocked = (user.stats.getStat(STAT_BIO) >= STAT_LEVEL_EXPERT - 5 && user.stats.getStat(STAT_COG) >= STAT_LEVEL_BASIC - 5) ? TRUE : FALSE
-	else if(istype(user, /mob/observer/ghost))
-		details_unlocked = TRUE
 
 	if(using_sci_goggles || details_unlocked)
 		var/function_info

@@ -212,9 +212,10 @@
 	dat += "<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>"
 	dat += "<BR><A href='?src=\ref[user];mach_close=mob[name]'>Close</A>"
 
-	user << browse(dat, text("window=mob[name];size=340x540"))
-	onclose(user, "mob[name]")
-	return
+	var/datum/browser/panel = new(user, "mob[name]", "Mob", 340, 540)
+	panel.set_content(dat)
+	panel.open()
+
 
 // called when something steps onto a human
 // this handles mulebots and vehicles
@@ -1583,6 +1584,36 @@ var/list/rank_prefix = list(\
 	dodging = !dodging
 	to_chat(src, "<span class='notice'>You are now [dodging ? "dodging incoming fire" : "not dodging incoming fire"].</span>")
 	return
+
+/mob/living/carbon/human/verb/access_holster()
+	set name = "Holster"
+	set desc = "Try to access your holsters."
+	set category = "IC"
+	if(stat)
+		return
+	var/holster_found = FALSE
+
+	for(var/obj/item/storage/pouch/holster/holster in list(back, s_store, belt, l_store, r_store))
+	//found a pouch holster
+		holster_found = TRUE
+		if(holster.holster_verb(src))//did it do something? If not, we ignore it
+			return
+	//no pouch holsters, anything on our uniform then?
+	if(w_uniform)
+		if(istype(w_uniform,/obj/item/clothing/under))
+			var/obj/item/clothing/under/U = w_uniform
+			if(U.accessories.len)
+				for(var/obj/item/clothing/accessory/holster/H in U.accessories)
+					if(get_active_hand())//do we hold something?
+						H.attackby(get_active_hand(), src)
+					else
+						H.attack_hand(src)
+					holster_found = TRUE
+					return
+	//nothing at all!
+	if(!holster_found)
+		to_chat(src, SPAN_NOTICE("You don\'t have any holsters."))
+
 //generates realistic-ish pulse output based on preset levels
 /mob/living/carbon/human/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
 	var/temp = 0

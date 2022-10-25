@@ -193,7 +193,10 @@ var/savefile/Banlist
 
 	dat += "</table>"
 	dat = "<HR><B>Bans:</B> <FONT COLOR=blue>(U) = Unban , (E) = Edit Ban</FONT> - <FONT COLOR=green>([count] Bans)</FONT><HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"
-	usr << browse(dat, "window=unbanp;size=875x400")
+	
+	var/datum/browser/panel = new(usr, "unbanp", "Unban Panel", 875, 400)
+	panel.set_content(dat)
+	panel.open()
 
 //////////////////////////////////// DEBUG ////////////////////////////////////
 

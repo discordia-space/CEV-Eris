@@ -8,7 +8,7 @@
 
 	Otherwise pretty standard.
 */
-/mob/living/carbon/human/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
 
 	if(!..())
 		return
@@ -22,8 +22,71 @@
 
 	A.attack_hand(src)
 
-/atom/proc/attack_hand(mob/user as mob)
-	return
+/atom/proc/attack_hand(mob/user)
+	. = FALSE
+	// if(!(interaction_flags_atom & INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND))
+	// 	add_fingerprint(user)
+	// if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user, modifiers) & COMPONENT_CANCEL_ATTACK_CHAIN)
+	// 	. = TRUE
+	// if(interaction_flags_atom & INTERACT_ATOM_ATTACK_HAND)
+	. = _try_interact(user)
+
+//Return a non FALSE value to cancel whatever called this from propagating, if it respects it.
+/atom/proc/_try_interact(mob/user)
+	if(is_admin(user) && isghost(user)) //admin abuse
+		return interact(user)
+	if(can_interact(user))
+		return interact(user)
+	return FALSE
+
+/atom/proc/can_interact(mob/user, require_adjacent_turf = TRUE)
+	// if(!user.can_interact_with(src, interaction_flags_atom & INTERACT_ATOM_ALLOW_USER_LOCATION))
+	// 	return FALSE
+	// if((interaction_flags_atom & INTERACT_ATOM_REQUIRES_DEXTERITY) && !ISADVANCEDTOOLUSER(user))
+	// 	to_chat(user, span_warning("You don't have the dexterity to do this!"))
+	// 	return FALSE
+	// BANAID: advanced tool usrs can only interact uis
+	if(!user.IsAdvancedToolUser())
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		return FALSE
+
+	// if(!(interaction_flags_atom & INTERACT_ATOM_IGNORE_INCAPACITATED))
+	// 	var/ignore_flags = NONE
+	// 	if(interaction_flags_atom & INTERACT_ATOM_IGNORE_RESTRAINED)
+	// 		ignore_flags |= IGNORE_RESTRAINTS
+	// 	if(!(interaction_flags_atom & INTERACT_ATOM_CHECK_GRAB))
+	// 		ignore_flags |= IGNORE_GRAB
+
+	// 	if(user.incapacitated(ignore_flags))
+	// 		return FALSE
+	return TRUE
+
+/atom/ui_status(mob/user)
+	. = ..()
+	//Check if both user and atom are at the same location
+	if(!can_interact(user))
+		. = min(., UI_UPDATE)
+
+/atom/movable/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return
+	// if(!anchored && (interaction_flags_atom & INTERACT_ATOM_REQUIRES_ANCHORED))
+	// 	return FALSE
+
+/atom/proc/interact(mob/user)
+	// Eugh. Wont implement interaction_flags_atom yet so here u go.
+	add_fingerprint(user)
+	return ui_interact(user)
+
+	// if(interaction_flags_atom & INTERACT_ATOM_NO_FINGERPRINT_INTERACT)
+	// 	add_hiddenprint(user)
+	// else
+	// 	add_fingerprint(user)
+	// if(interaction_flags_atom & INTERACT_ATOM_UI_INTERACT)
+	// 	SEND_SIGNAL(src, COMSIG_ATOM_UI_INTERACT, user)
+	// 	return ui_interact(user)
+	// return FALSE
 
 /mob/living/carbon/human/RestrainedClickOn(var/atom/A)
 	return

@@ -411,9 +411,10 @@
 	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>
 	<BR><A href='?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
-	user << browse(dat, text("window=mob[];size=325x500", name))
-	onclose(user, "mob[name]")
-	return
+
+	var/datum/browser/panel = new(user, "mob[name]", "Mob", 325, 400)
+	panel.set_content(dat)
+	panel.open()
 
 /mob/living/carbon/proc/should_have_process(var/organ_check)
 	return 0

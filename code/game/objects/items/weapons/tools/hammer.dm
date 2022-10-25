@@ -228,3 +228,12 @@
 		playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 		user.throw_at(target, get_dist(target, user), 1, user)
 		T.stop()
+
+/obj/item/tool/hammer/dumbbell
+	name = "dumbbell"
+	desc = "To get stronger with this thing, you need to regularly train for many a month. But to hammer a nail, or crack a skull..."
+	icon_state = "dumbbell"
+	item_state = "dumbbell"
+	tool_qualities = list(QUALITY_HAMMERING = 15)
+	matter = list(MATERIAL_STEEL = 5)
+	rarity_value = 35

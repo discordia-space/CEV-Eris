@@ -9,14 +9,14 @@
 	name = "railing"
 	result = /obj/structure/railing
 	steps = list(
-		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/furniture/railing_grey
 	name = "grey railing"
 	result = /obj/structure/railing/grey
 	steps = list(
-		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/furniture/table
