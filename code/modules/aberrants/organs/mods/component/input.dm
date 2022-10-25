@@ -3,6 +3,7 @@
 	trigger_signal = COMSIG_ABERRANT_INPUT
 
 	var/check_mode
+	var/threshold
 	var/list/accepted_inputs = list()
 	var/list/input_qualities = list()
 
@@ -86,7 +87,7 @@
 		for(var/reagent_path in accepted_inputs)
 			var/threshold_met = FALSE
 			if(istype(R, reagent_path))
-				if(R.volume > 0)
+				if(R.volume > threshold)
 					threshold_met = TRUE
 					var/removed = R.metabolism * organ_multiplier		// Consumes reagent based on organ health and how many ticks in between organ processes
 					R.remove_self(removed)
@@ -174,7 +175,7 @@
 			if(PSY)
 				current_damage = H.sanity.max_level - H.sanity.level
 					
-		if(current_damage > 0)
+		if(current_damage > threshold)
 			threshold_met = TRUE
 
 		input += desired_damage_type
@@ -276,7 +277,7 @@
 				owner.remove_from_mob(M)
 				qdel(M)
 		
-		if(energy_supplied)
+		if(energy_supplied > threshold)
 			var/magnitude = 0
 
 			if(energy_supplied > 4999999)
