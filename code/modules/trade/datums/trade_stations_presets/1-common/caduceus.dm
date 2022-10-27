@@ -21,8 +21,7 @@
 	stations_recommended = list("moe_adv", "trapper")
 	inventory = list(
 		"Design Disks" = list(
-			/obj/item/computer_hardware/hard_drive/portable/design/medical = good_data("Moebius Medical Designs", list(1, 10), 400),
-			/obj/item/computer_hardware/hard_drive/portable/design/computer = good_data("Moebius Computer Parts", list(1, 10), 500)
+			/obj/item/computer_hardware/hard_drive/portable/design/medical = good_data("Moebius Medical Designs", list(1, 10), 400)
 		),
 		"First Aid" = list(
 			/obj/item/storage/firstaid/regular = custom_good_price(450),
@@ -54,6 +53,12 @@
 			/obj/item/reagent_containers/blood/OPlus,
 			/obj/item/reagent_containers/blood/OMinus
 		),
+		"Machinery" = list(
+			/obj/item/electronics/circuitboard/centrifuge,
+			/obj/item/electronics/circuitboard/electrolyzer,
+			/obj/item/electronics/circuitboard/reagentgrinder,
+			/obj/item/electronics/circuitboard/industrial_grinder
+		),
 		"Misc" = list(
 			/obj/item/storage/pouch/medical_supply,
 //			/obj/item/virusdish/random,		// Spawns without an icon
@@ -64,31 +69,30 @@
 			/obj/item/reagent_containers/syringe,
 			/obj/item/reagent_containers/hypospray/autoinjector,
 			/obj/item/bodybag,
-			/obj/item/computer_hardware/hard_drive/portable/basic,
+			/obj/item/reagent_containers/spray,
 			/obj/item/storage/hcases/med
 		)
 	)
 	hidden_inventory = list(
 		"Autoinjectors" = list(
 			// Autoinjectors defined in hypospray.dm
-			/obj/item/reagent_containers/hypospray/autoinjector/antitoxin = custom_good_amount_range(list(10, 20)),
-			/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = custom_good_amount_range(list(10, 20)),
-			/obj/item/reagent_containers/hypospray/autoinjector/kelotane = custom_good_amount_range(list(10, 20)),
-			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = custom_good_amount_range(list(5, 10)),
-			/obj/item/reagent_containers/hypospray/autoinjector/dexalin = custom_good_amount_range(list(10, 20)),
-			/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = custom_good_amount_range(list(10, 20)),
-			/obj/item/reagent_containers/hypospray/autoinjector/tramadol = custom_good_amount_range(list(5, 10))
+			/obj/item/reagent_containers/hypospray/autoinjector/bloodclot = custom_good_amount_range(list(10, 20)),
+			/obj/item/reagent_containers/hypospray/autoinjector/bloodrestore = custom_good_amount_range(list(10, 20)),
+			/obj/item/reagent_containers/hypospray/autoinjector/painkiller = custom_good_amount_range(list(10, 20)),
+			/obj/item/reagent_containers/hypospray/autoinjector/speedboost = custom_good_amount_range(list(10, 20)),
+			/obj/item/reagent_containers/hypospray/autoinjector/oxygenation = custom_good_amount_range(list(10, 20))
 		)
 	)
 	offer_types = list(
 		/obj/item/oddity/common/healthscanner = offer_data("odd health scanner", 500, 1),
-		/obj/item/oddity/common/disk = offer_data("broken design disk", 500, 1),
-		/obj/item/oddity/common/device = offer_data("odd device", 500, 1),
-		/datum/reagent/stim/mbr = offer_data("Machine Binding Ritual bottle (60u)", 1500, 1),
-		/datum/reagent/stim/cherrydrops = offer_data("Cherry Drops bottle (60u)", 1500, 1),
-		/datum/reagent/stim/pro_surgeon = offer_data("ProSurgeon bottle (60u)", 1500, 1),
-		/datum/reagent/stim/violence = offer_data("Violence bottle (60u)", 1500, 1),
-		/datum/reagent/stim/bouncer = offer_data("Bouncer bottle (60u)", 1500, 1),
-		/datum/reagent/medicine/ossisine = offer_data("ossisine bottle (60u)", 4000, 1),
+		/obj/item/oddity/common/paper_omega = offer_data("collection of obscure reports", 500, 1),
+		/obj/item/organ/internal/scaffold = offer_data_mods("aberrant organ (input, process, output)", 1200, 4, OFFER_ABERRANT_ORGAN, 3),
+		/datum/reagent/stim/mbr = offer_data("Machine Binding Ritual bottle (60u)", 1600, 2),
+		/datum/reagent/stim/cherrydrops = offer_data("Cherry Drops bottle (60u)", 1600, 2),
+		/datum/reagent/stim/pro_surgeon = offer_data("ProSurgeon bottle (60u)", 1600, 2),
+		/datum/reagent/stim/violence = offer_data("Violence bottle (60u)", 1600, 2),
+		/datum/reagent/stim/bouncer = offer_data("Bouncer bottle (60u)", 1600, 2),
+		/datum/reagent/stim/steady = offer_data("Steady bottle (60u)", 1600, 2),
+		/datum/reagent/medicine/ossisine = offer_data("ossissine bottle (60u)", 4000, 1),
 		/datum/reagent/medicine/kyphotorin = offer_data("kyphotorin bottle (60u)", 8000, 1)
 	)

@@ -149,7 +149,7 @@
 /area/crawler)
 "U" = (
 /mob/living/carbon/superior_animal/stalker,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 
 (1,1,1) = {"
@@ -181,7 +181,7 @@ f
 k
 a
 x
-f
+U
 A
 a
 "}
@@ -225,7 +225,7 @@ o
 b
 a
 t
-U
+b
 a
 s
 "}
@@ -269,7 +269,7 @@ f
 k
 a
 y
-f
+U
 B
 a
 "}

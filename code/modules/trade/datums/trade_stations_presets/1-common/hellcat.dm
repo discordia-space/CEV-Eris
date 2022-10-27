@@ -20,6 +20,10 @@
 	recommendation_threshold = 4000
 	stations_recommended = list("fs_ammo", "style")
 	inventory = list(
+		"Design Disks" = list(
+			/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo = good_data("Frozen Star Nonlethal Magazines Pack", list(1, 10), 500),
+			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = good_data("Frozen Star Lethal Magazines Pack", list(1, 10), 1000)
+		),
 		"Enforce Equipment" = list(
 			/obj/item/handcuffs,
 			/obj/item/shield/riot,
@@ -39,8 +43,6 @@
 			/obj/item/gun/projectile/shotgun/pump
 		),
 		"Ammunition and Accessories" = list(
-			/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo = good_data("Frozen Star Nonlethal Magazines Pack", list(1, 10), 500),
-			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = good_data("Frozen Star Lethal Magazines Pack", list(1, 10), 1000),
 			/obj/item/grenade/empgrenade/low_yield,
 			/obj/item/grenade/smokebomb,
 			/obj/item/grenade/flashbang,
@@ -57,9 +59,13 @@
 			/obj/item/ammo_magazine/ammobox/shotgun/buckshot = custom_good_name("ammunition box (.50 pellet)"),
 			/obj/item/ammo_magazine/ammobox/shotgun/beanbags = custom_good_name("ammunition box (.50 beanbag)"),
 			/obj/item/clothing/accessory/holster,
-			/obj/item/clothing/accessory/holster/armpit,
-			/obj/item/clothing/accessory/holster/waist,
-			/obj/item/clothing/accessory/holster/hip,
+			/obj/item/clothing/accessory/holster/scabbard,
+			/obj/item/clothing/accessory/holster/knife,
+			/obj/item/storage/pouch/holster,
+			/obj/item/storage/pouch/holster/baton,
+			/obj/item/storage/pouch/holster/belt,
+			/obj/item/storage/pouch/holster/belt/sheath,
+			/obj/item/storage/pouch/holster/belt/knife,
 			/obj/item/storage/hcases/ammo
 		),
 		"Armor" = list(
@@ -78,18 +84,26 @@
 		"Explosive Weapons" = list(
 			/obj/item/gun/projectile/shotgun/pump/grenade/china,
 			/obj/item/ammo_casing/grenade/weak = custom_good_amount_range(list(6,9))
-		),
-		"Basic Gun Mods" = list(
-			/obj/item/gun_upgrade/barrel/forged,
-			/obj/item/gun_upgrade/mechanism/gravcharger,
-			/obj/item/tool_upgrade/productivity/ergonomic_grip,
-			/obj/item/tool_upgrade/refinement/laserguide
 		)
 	)
 	offer_types = list(
+		/obj/item/oddity/common/photo_crime = offer_data("crime scene photo", 500, 1),
+		/obj/item/part/armor = offer_data("armor part", 500, 8),
+		/obj/item/part/armor/artwork = offer_data("artistic armor part", 1000, 1),
+		/obj/item/part/gun/artwork = offer_data("artistic gun part", 1000, 1),
+		/obj/item/gun = offer_data_mods("modified gun (3 upgrades)", 3200, 2, OFFER_MODDED_GUN, 3),
 		/obj/item/part/gun/frame/ak47 = offer_data("AK frame", 800, 1),
 		/obj/item/part/gun/frame/boltgun  = offer_data("boltgun frame", 800, 1),
-		/obj/item/part/armor = offer_data("armor part", 500, 8),					// base price: 300
-		/obj/item/part/armor/artwork = offer_data("artistic armor part", 1000, 1),
-		/obj/item/part/gun/artwork = offer_data("artistic gun part", 1000, 1)
+		/obj/item/part/gun/frame/sol = offer_data("Sol frame", 2000, 1),
+		/obj/item/part/gun/frame/straylight = offer_data("Straylight frame", 2000, 1),
+		/obj/item/part/gun/frame/wintermute = offer_data("Wintermute frame", 2000, 1),
+		/obj/item/part/gun/frame/kadmin = offer_data("Kadmin frame", 2000, 1),
+		/obj/item/part/gun/frame/bull = offer_data("Bull frame", 2000, 1),
+		/obj/item/part/gun/frame/gladstone = offer_data("Gladstone frame", 2000, 1),
+		/obj/item/part/gun/frame/tk = offer_data("Takeshi frame", 2000, 1),
+		/obj/item/part/gun/frame/lamia = offer_data("Lamia frame", 2000, 1),
+		/obj/item/part/gun/frame/molly = offer_data("Molly frame", 2000, 1),
+		/obj/item/part/gun/frame/consul = offer_data("Consul frame", 2000, 1),
+		/obj/item/part/gun/frame/deckard = offer_data("Deckard frame", 2000, 1),
+		/obj/item/part/gun/frame/mateba = offer_data("Mateba frame", 2000, 1)
 	)

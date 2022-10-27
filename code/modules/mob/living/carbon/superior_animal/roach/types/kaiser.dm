@@ -21,8 +21,8 @@ Has ability of every roach.
 
 	var/datum/reagents/gas_sac
 
-	melee_damage_lower = 20
-	melee_damage_upper = 35
+	melee_damage_lower = 13
+	melee_damage_upper = 23
 	armor_divisor = ARMOR_PEN_MODERATE
 
 	move_to_delay = 8
@@ -106,7 +106,7 @@ Has ability of every roach.
 	gas_sac.clear_reagents()
 	return TRUE
 
-/mob/living/carbon/superior_animal/roach/support/findTarget()
+/mob/living/carbon/superior_animal/roach/kaiser/findTarget()
 	. = ..()
 	if(. && gas_attack())
 		visible_emote("charges at [.] in clouds of poison!")

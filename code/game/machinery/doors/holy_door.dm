@@ -23,7 +23,6 @@
 	icon_state = "cross"
 	item_state = ""	// No inhands
 	slot_flags = SLOT_ACCESSORY_BUFFER | SLOT_MASK
-	w_class = ITEM_SIZE_NORMAL // Chonky cross
 	spawn_blacklisted = TRUE
 
 /obj/machinery/door/holy/New()

@@ -19,7 +19,7 @@
 			<div style="padding: 1px; overflow:auto;">
 					<h3> Sanity level:</h3>
 			</div>
-			{{:helper.displayBar(data.sanity, 0, data.sanity_max_level, data.sanity < 33 ? 'bad' : data.sanity > 66 ? 'good': 'average')}}
+			{{:helper.displayBar(data.sanity, 0, data.sanity_max_level, data.sanity < 33 ? 'bad' : data.sanity > 66 ? 'good': 'average', data.sanity ? data.sanity : "0")}}
 		</div>
 	</div>
 </div>
@@ -44,7 +44,7 @@
 			<div style="padding: 1px; overflow:auto;">
 					<h3>Insight progress:</h3>
 			</div>
-			{{:helper.displayBar(data.insight, 0, 100, data.insight < 33 ? 'bad' : data.insight > 66 ? 'good': 'average')}}
+			{{:helper.displayBar(data.insight, 0, 100, data.insight < 33 ? 'bad' : data.insight > 66 ? 'good': 'average', data.insight ? data.insight : "0")}}
 		</div>
 	</div>
 </div>
@@ -68,7 +68,7 @@
 			<div style="padding: 1px; overflow:auto;">
 				<h3>Current style:</h3>
 			</div>
-			{{:helper.displayBar(data.style, data.min_style, data.max_style, data.style < 0 ? 'bad' : data.style > 10 ? 'good': 'average')}}
+			{{:helper.displayBar(data.style, 0, data.max_style, data.style < 4 ? 'bad' : data.style > 9 ? 'good': 'average', data.style ? data.style : "0")}}
 		</div>
 	</div>
 </div>
@@ -99,7 +99,7 @@
 				<div style="padding: 1px; overflow:auto;">
 					<h3>Rest progress:</h3>
 				</div>
-				{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.insight_rest > 66 ? 'good': 'average')}}
+				{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.insight_rest > 66 ? 'good': 'average', data.insight_rest ? data.insight_rest : "0")}}
 				<br>
 			{{else}}
 				Currently you don't have desires
@@ -128,9 +128,9 @@
 				regeneration of your cruciform.
 			</div>
 			<div style="padding: 1px; overflow:auto;">
-				<h3>holiness:</h3>
+				<h3>Holiness:</h3>
 			</div>
-			{{:helper.displayBar(data.righteous_life, 0, 100, data.righteous_life < 33 ? 'bad' : data.righteous_life > 66 ? 'good': 'average')}}
+			{{:helper.displayBar(data.righteous_life, 0, 100, data.righteous_life < 33 ? 'bad' : data.righteous_life > 66 ? 'good': 'average', data.righteous_life ? data.righteous_life : "0")}}
 			<br>
 		</div>
 	</div>

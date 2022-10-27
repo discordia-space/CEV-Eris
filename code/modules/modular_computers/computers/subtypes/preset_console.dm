@@ -190,6 +190,7 @@
 /obj/item/modular_computer/console/preset/trade/install_default_hardware()
 	..()
 	card_slot = new/obj/item/computer_hardware/card_slot(src)
+	printer = new/obj/item/computer_hardware/printer(src)
 
 /obj/item/modular_computer/console/preset/trade/install_default_programs()
 	..()

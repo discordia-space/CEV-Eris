@@ -40,8 +40,14 @@
 		var/mutable_appearance/label = mutable_appearance(icon, label_icon)
 		add_overlay(label)
 
-
 //// Subtypes ////
+
+/obj/item/reagent_containers/glass/beaker/cryoxadone
+	preloaded_reagents = list("cryoxadone" = 30)
+	spawn_blacklisted = TRUE
+
+/obj/item/reagent_containers/glass/beaker/sulphuric
+	preloaded_reagents = list("sacid" = 60)
 
 /obj/item/reagent_containers/glass/beaker/large
 	name = "large beaker"
@@ -113,12 +119,10 @@
 	preloaded_reagents = list("kognim" = 30)
 	spawn_blacklisted = TRUE
 
-/obj/item/reagent_containers/glass/beaker/cryoxadone
-	preloaded_reagents = list("cryoxadone" = 30)
-	spawn_blacklisted = TRUE
-
-/obj/item/reagent_containers/glass/beaker/sulphuric
-	preloaded_reagents = list("sacid" = 60)
+/obj/item/reagent_containers/glass/beaker/vial/psilocybin
+	preloaded_reagents = list("psilocybin" = 30)
+	spawn_frequency = 5
+	rarity_value = 30
 
 /obj/item/reagent_containers/glass/beaker/vial/vape
 	name = "vape vial"

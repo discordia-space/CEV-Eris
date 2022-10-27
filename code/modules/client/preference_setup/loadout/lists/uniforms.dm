@@ -9,6 +9,10 @@
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
 
+/datum/gear/uniform/crewman
+	display_name = "jumpsuit, crewman"
+	path = /obj/item/clothing/under/rank/crewman
+
 /datum/gear/uniform/jumpsuit/rainbow
 	display_name = "jumpsuit, rainbow"
 	path = /obj/item/clothing/under/rainbow
@@ -63,7 +67,7 @@
 
 /datum/gear/uniform/dress
 	display_name = "dresses"
-	path = /obj/item/clothing/under/dress
+	path = /obj/item/clothing/under/dress/gray
 
 /datum/gear/uniform/dress/New()
 	..()
@@ -164,7 +168,7 @@
 /datum/gear/uniform/security_formal
 	display_name = "formal security outfit"
 	path = /obj/item/clothing/under/security_formal
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Ironhammer Medical Specialist")
+	allowed_roles = list(JOBS_SECURITY)
 	cost = 2
 
 /datum/gear/uniform/assistantformal

@@ -219,6 +219,7 @@ var/const/NO_EMAG_ACT = -50
 	item_state = "tdgreen"
 	assignment = "Synthetic"
 	spawn_tags = null
+	bad_type = /obj/item/card/id/synthetic
 
 /obj/item/card/id/synthetic/New()
 	access = get_all_station_access() + access_synth

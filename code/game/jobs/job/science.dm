@@ -184,13 +184,13 @@ Lastly, though they're not commonly used, you have the facilities to construct m
 	outfit_type = /decl/hierarchy/outfit/job/science/psychiatrist
 
 	access = list(
-		access_robotics, access_tox, access_tox_storage, access_moebius, access_maint_tunnels, access_research_equipment, access_psychiatrist
+		access_robotics, access_tox, access_tox_storage, access_moebius, access_maint_tunnels, access_research_equipment, access_psychiatrist, access_medical_equip
 	)
 
 	stat_modifiers = list(
 		STAT_BIO = 25,
 		STAT_COG = 15,
-		STAT_VIG = 5
+		STAT_VIG = 15
 	)
 
 	perks = list(/datum/perk/selfmedicated)

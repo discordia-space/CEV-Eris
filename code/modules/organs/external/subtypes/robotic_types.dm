@@ -26,19 +26,15 @@
 	bad_type = /obj/item/organ/external/robotic/frozen_star
 
 /obj/item/organ/external/robotic/frozen_star/l_arm
-	name = "\"Frozen Star\" Left Arm"
 	default_description = /datum/organ_description/arm/left
 
 /obj/item/organ/external/robotic/frozen_star/r_arm
-	name = "\"Frozen Star\" Right Arm"
 	default_description = /datum/organ_description/arm/right
 
 /obj/item/organ/external/robotic/frozen_star/l_leg
-	name = "\"Frozen Star\" Left Leg"
 	default_description = /datum/organ_description/leg/left
 
 /obj/item/organ/external/robotic/frozen_star/r_leg
-	name = "\"Frozen Star\" Right Leg"
 	default_description = /datum/organ_description/leg/right
 
 /obj/item/organ/external/robotic/technomancer
@@ -50,31 +46,24 @@
 	bad_type = /obj/item/organ/external/robotic/technomancer
 
 /obj/item/organ/external/robotic/technomancer/l_arm
-	name = "Technomancer \"Homebrew\" Left Arm"
 	default_description = /datum/organ_description/arm/left
 
 /obj/item/organ/external/robotic/technomancer/r_arm
-	name = "Technomancer \"Homebrew\" Right Arm"
 	default_description = /datum/organ_description/arm/right
 
 /obj/item/organ/external/robotic/technomancer/l_leg
-	name = "Technomancer \"Homebrew\" Left Leg"
 	default_description = /datum/organ_description/leg/left
 
 /obj/item/organ/external/robotic/technomancer/r_leg
-	name = "Technomancer \"Homebrew\" Right Leg"
 	default_description = /datum/organ_description/leg/right
 
 /obj/item/organ/external/robotic/technomancer/groin
-	name = "\"Technomancer\" Groin"
 	default_description = /datum/organ_description/groin
 
 /obj/item/organ/external/robotic/technomancer/torso
-	name = "\"Technomancer\" Torso"
 	default_description = /datum/organ_description/chest
 
 /obj/item/organ/external/robotic/technomancer/head
-	name = "\"Technomancer\" Head"
 	default_description = /datum/organ_description/head
 
 /obj/item/organ/external/robotic/moebius

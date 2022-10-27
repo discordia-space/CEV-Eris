@@ -472,7 +472,7 @@
 	icon_state = "paper_neo_crumpled"
 
 /obj/item/paper/crumpled/neo/update_icon()
-	if (icon_state == "paper_neo_crumpled_bloodied")
+	if (icon_state == "paper_neo_words_crumpled_bloodied")
 		return
 	else if (info)
 		icon_state = "paper_neo_words_crumpled"
@@ -481,7 +481,6 @@
 	return
 
 /obj/item/paper/crumpled/neo/bloody
-	icon_state = "paper_neo_crumpled_bloodied" //todo fix sprite
-	spawn_blacklisted = TRUE
+	icon_state = "paper_neo_words_crumpled_bloodied"
 
 #undef MAX_FIELDS

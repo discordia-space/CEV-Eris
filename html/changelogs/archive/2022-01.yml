@@ -1,0 +1,125 @@
+2022-01-07:
+  Ajax05:
+  - rscadd: Litanies shared between the Acolytes and the Preacher have been separated
+      into their own list.
+  Humonitarian:
+  - rscadd: rejuv clears disks
+  Iglpigl:
+  - spellcheck: back transfer is now bank transfer as it should have been
+  SirRichardFrancis:
+  - bugfix: robots being able to rest
+  Wouju:
+  - tweak: drill quality requirement for pipebomb, reduced to 5, you can now use a
+      shiv/knife/etc.
+  drexample:
+  - bugfix: Fixes missing floor decals
+2022-01-08:
+  Anonmare:
+  - tweak: Milkshakes are now a subype of milk
+  Humonitarian:
+  - rscadd: AoE EMP firemode on the cassad and purger
+  - balance: rebalanced plasma weapon firemodes and projectiles
+  Iglpigl:
+  - spellcheck: RPG shell cost now shown on examining crafting station
+  Pink-Chink:
+  - code_imp: added new functionality for trade stations, trade subsystem, and trade
+      program to allow multiple offers per station, secret inventories, a reputation-like
+      system for unlocking secret inventories, and stock replenishment
+  - rscadd: secret inventories and offers to the starting traders and Dionis
+  - rscadd: hypospray and full material sheet stack presets
+  - tweak: adjusted some station inventories for balance and to minimize overlap
+  - tweak: trade station grammar and style changes
+  Shadow-Quill:
+  - imageadd: Added an off-state for the ore smelter.
+  - tweak: Sheet stacker machine only does it's stacking animation when it releases
+      a stack of sheets.
+  SirRichardFrancis:
+  - rscadd: ammo magazine recoloring with hand labeler
+  - rscadd: verb for recoloring moebius combat helmet
+  - bugfix: compiling error
+  - bugfix: moebius not getting free money out of nowhere
+  - balance: projectiles pass trough stairs
+  ValoTheValo:
+  - bugfix: Augments menu no longer spams chat
+  greenteaguzzler:
+  - bugfix: Fixed a few mapping errors
+2022-01-15:
+  Shadow-Quill:
+  - rscadd: The ship's nuke now sets the alert level to Delta when armed, and back
+      to the original level when disarmed.
+  Sparrowbird611:
+  - tweak: Reduced the amount and type of magazines the paramedic spawns with for
+      his handgun.
+  zombiemimic:
+  - tweak: Tosshins are now scoped
+  - imageadd: added new Tosshin sprites
+2022-01-20:
+  SirRichardFrancis:
+  - bugfix: ghosts moving items on tables, racks and low walls
+2022-01-22:
+  HentaiStorm:
+  - bugfix: Fixes missing biomatter stack sprites
+  - bugfix: fix range pollinations by nurse spider
+  Humonitarian:
+  - balance: All armor and clothing now provide less slowdown, but run and gunning
+      in heavy armor reduces accuracy
+  - balance: Recoil now decreases immediately after firing, the recoil of every weapon
+      adjusted accordingly
+  - balance: Thanks to reducing the dependence on TINT, much less guns will obscure
+      your vision
+  - balance: Roaches buffed, have armour, and penetrate armour. Fear the swarm.
+  - tweak: Golems have a separate minimum and maximum damage
+  - balance: armor stacks
+  Kegdo:
+  - rscadd: handmade guns spawner
+  - balance: replace all gun spawners on Eris.dmm with handmade gun spawners
+  - tweak: unblacklisted handmade armor from spawning
+  Shadow-Quill:
+  - code_imp: Can now debug using VSC.
+  SirRichardFrancis:
+  - imageadd: bomb suit by INFRARED_BARON
+  - refactor: wires UI looks less shitty
+  - bugfix: ammo magazines having generic names when in vending machines
+  - bugfix: biosuit hiding shoes
+  TGCMbetcher:
+  - rscadd: One item to a list
+  - tweak: prices
+  - bugfix: infinite money loop
+2022-01-23:
+  Humonitarian:
+  - bugfix: roach armor runtimes fixed
+  SirRichardFrancis:
+  - rscdel: resin material
+2022-01-29:
+  Humonitarian:
+  - bugfix: Themis and Nemesis now do agony damage as intended
+  - balance: Themis and Nemesis nerfed
+  Kegdo:
+  - balance: made suplex stronger
+  - rscadd: diving, sliding, rest while moving, hold rest to move
+  - rscadd: resting hotkey - C
+  - tweak: parkour perk reduces the time it takes to stand up
+  - tweak: can't stack resting action anymore
+  Pink-Chink:
+  - rscadd: 'two new trade stations: the Armitage and the Garbaj'
+  - rscadd: added new dept-focused and loot-focused offers
+  - code_imp: created a check for item contents (reagents, reagent containers, and
+      stacks)
+  - tweak: moved offers and inventories around
+  - tweak: default markup back to 1.2
+  - tweak: spawn_blacklisted = TRUE for all items created specifically for the program
+  - tweak: price tags for oddities, spider, bluespace roaches, and scrap structures/spawners
+  - rscdel: removed HTB Boris and TCS Shipyard
+  SirRichardFrancis:
+  - rscdel: platinum solidification recipe
+  - bugfix: ammo names in vendor, this time for real
+  Sparrowbird611:
+  - tweak: The Weintraub FA Receiver can be applied to most rifles now, enabling automatic
+      fire.
+  - balance: Removed FA from the Vintorez. It now has a two round burst.
+  - balance: Slighty buffed several SMGs, they will do a little more damage now.
+  - balance: Bojevic had its recoil decreased a little bit.
+  zombiemimic:
+  - rscadd: 'Added new gun parts: Frames, Grips, Mechanisms, and Barrels'
+  - rscadd: Added new system of building guns from spare parts
+  - tweak: tweaked results of breaking down guns for parts

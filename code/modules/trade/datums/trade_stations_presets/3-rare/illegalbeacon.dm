@@ -17,12 +17,13 @@
 	stations_recommended = list("illegal2")
 	recommendations_needed = 2
 	inventory = list(
+		// TODO: Update to match TC cost. Guideline is 775 credits per TC.
 		"Syndicate Gear" = list(
 			/obj/item/clothing/under/syndicate,
 			/obj/item/storage/toolbox/syndicate = custom_good_amount_range(list(1, 3)),
 			/obj/item/clothing/suit/space/syndicate = custom_good_amount_range(list(1, 1)),
 			/obj/item/clothing/head/space/syndicate = custom_good_amount_range(list(1, 1)),
-			/obj/item/clothing/suit/space/void/merc = custom_good_amount_range(list(1, 1)),
+			/obj/item/clothing/suit/space/void/merc = custom_good_price(4650),
 			/obj/item/clothing/mask/gas/syndicate = custom_good_amount_range(list(-3, 1)),
 			/obj/item/gun/projectile/selfload = custom_good_amount_range(list(1, 1))
 		),
@@ -42,12 +43,15 @@
 			/obj/item/clothing/glasses/powered/night = custom_good_amount_range(list(1, 1))
 		),
 		"Syndicate Gun Mods" = list(
-			/obj/item/gun_upgrade/barrel/gauss,
-			/obj/item/gun_upgrade/mechanism/glass_widow,
-			/obj/item/gun_upgrade/scope/killer
+			/obj/item/gun_upgrade/barrel/gauss = custom_good_price(1000),
+			/obj/item/gun_upgrade/mechanism/glass_widow = custom_good_price(1000),
+			/obj/item/gun_upgrade/scope/killer = custom_good_price(1000)
 		)
 	)
 	offer_types = list(
-		/obj/item/organ/internal/kidney = offer_data("kidney", 800, 8),					// base price: 400
-		/obj/item/organ/internal/liver = offer_data("liver", 1800, 8)					// base price: 900
+		/obj/item/organ/external = offer_data("spare limbs", 250, 0),	// Dismember some monkeys
+		/obj/item/organ/internal/muscle = offer_data_mods("modified muscle (4 grafts)", 1000, 4, OFFER_MODDED_ORGAN, 4),
+		/obj/item/organ/internal/nerve = offer_data_mods("modified nerve (4 grafts)", 1000, 4, OFFER_MODDED_ORGAN, 4),
+		/obj/item/organ/internal/bone = offer_data_mods("modified bone (4 grafts)", 1000, 4, OFFER_MODDED_ORGAN, 4),
+		/obj/item/organ/internal/blood_vessel = offer_data_mods("modified blood vessel (4 grafts)", 1000, 4, OFFER_MODDED_ORGAN, 4)
 	)

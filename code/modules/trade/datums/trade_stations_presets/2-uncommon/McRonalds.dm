@@ -5,7 +5,7 @@
 	icon_states = list("htu_station", "station")
 	uid = "mcronalds"
 	tree_x = 0.46
-	tree_y = 0.7
+	tree_y = 0.8
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = COMMON_GOODS
@@ -45,6 +45,7 @@
 	hidden_inventory = list(
 	)
 	offer_types = list(
+		/obj/item/organ/internal/scaffold/aberrant/teratoma = offer_data("teratoma", 100, 0),
 		/obj/item/reagent_containers/food/snacks/meat/roachmeat = offer_data("roach meat", 300, 0),
 		/obj/item/reagent_containers/food/snacks/meat/spider = offer_data("spider meat", 300, 0)
 	)

@@ -1,4 +1,4 @@
-#define ARMOR_HALLOS_COEFFICIENT 0.1
+#define ARMOR_HALLOS_COEFFICIENT 0.4
 
 
 //This calculation replaces old run_armor_check in favor of more complex and better system
@@ -17,7 +17,7 @@
 	else
 		show_message(msg1, 1)
 
-/mob/living/proc/damage_through_armor(var/damage = 0, var/damagetype = BRUTE, var/def_zone, var/attack_flag = ARMOR_MELEE, var/armour_divisor = 1, var/used_weapon, var/sharp = FALSE, var/edge = FALSE, var/wounding_multiplier = 1, var/list/dmg_types = list())
+/mob/living/proc/damage_through_armor(damage = 0, damagetype = BRUTE, def_zone, attack_flag = ARMOR_MELEE, armor_divisor = 1, used_weapon, sharp = FALSE, edge = FALSE, wounding_multiplier = 1, list/dmg_types = list(), return_continuation = FALSE)
 
 	if(damage) // If damage is defined, we add it to the list
 		if(!dmg_types[damagetype])
@@ -35,10 +35,10 @@
 		return FALSE
 
 	// Determine DR and ADR, armour divisor reduces it
-	var/armor = getarmor(def_zone, attack_flag) / armour_divisor
+	var/armor = getarmor(def_zone, attack_flag) / armor_divisor
 	if(!(attack_flag in list(ARMOR_MELEE, ARMOR_BULLET, ARMOR_ENERGY))) // Making sure BIO and other armor types are handled correctly
 		armor /= 5
-	var/ablative_armor = getarmorablative(def_zone, attack_flag) / armour_divisor
+	var/ablative_armor = getarmorablative(def_zone, attack_flag) / armor_divisor
 
 	var/remaining_armor = armor
 	var/remaining_ablative = ablative_armor
@@ -46,31 +46,33 @@
 	for(var/dmg_type in dmg_types)
 		var/dmg = dmg_types[dmg_type]
 		if(dmg)
-			var/dmg_armor_difference // Used for agony calculation, as well as reduction in armour before follow-up attacks
+			var/used_armor = 0 // Used for agony calculation, as well as reduction in armour before follow-up attacks
 
 			if(dmg_type in list(BRUTE, BURN, TOX, BLAST)) // Some damage types do not help penetrate armor
 				if(remaining_armor)
-					dmg_armor_difference = dmg - remaining_armor
+					var/dmg_armor_difference = dmg - remaining_armor
+					used_armor += dmg_armor_difference ? dmg - dmg_armor_difference : dmg
 					remaining_armor = dmg_armor_difference ? 0 : -dmg_armor_difference
 					dmg = dmg_armor_difference ? dmg_armor_difference : 0
-
 				if(remaining_ablative && dmg)
 					var/ablative_difference
 					ablative_difference = dmg - remaining_ablative
+					used_armor += ablative_difference ? dmg - ablative_difference : dmg
 					remaining_ablative = ablative_difference ? 0 : -ablative_difference
 					dmg = ablative_difference ? ablative_difference : 0
-					dmg_armor_difference += ablative_difference
 			else
 				dmg = max(dmg - remaining_armor - remaining_ablative, 0)
 
+			if(!(dmg_type == HALLOSS)) // Determine pain from impact
+				adjustHalLoss(used_armor * wounding_multiplier * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
+
+			dmg_types[dmg_type] = dmg // Finally, we adjust the damage passing through
 			if(dmg)
 				dealt_damage += dmg
 				dmg *= dmg_type == HALLOSS ? 1 : wounding_multiplier
 
 				if(dmg_type == HALLOSS)
 					dmg = round(dmg * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
-				else if(dmg_armor_difference)
-					adjustHalLoss(dmg_armor_difference * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 				if(dmg_type == BRUTE)
 
 					if ( (sharp || edge) && prob ( (1 - dmg / dmg_types[dmg_type]) * 100 ) ) // If enough of the brute damage is blocked, sharpness is lost from all followup attacks
@@ -113,7 +115,18 @@
 
 	// Deal damage to ablative armour based on how much was used, we multiply armour divisor back so high AP doesn't decrease damage dealt to ADR
 	if(ablative_armor)
-		damageablative(def_zone, (ablative_armor - remaining_ablative) * armour_divisor)
+		damageablative(def_zone, (ablative_armor - remaining_ablative) * armor_divisor)
+
+	// Returns if a projectile should continue travelling
+	if(return_continuation)
+		var/obj/item/projectile/P = used_weapon
+		P.damage_types = dmg_types
+		if(sharp)
+			var/remaining_dmg = 0
+			for(var/dmg_type in dmg_types)
+				remaining_dmg += dmg_types[dmg_type]
+			return ((total_dmg / 2 < remaining_dmg && remaining_dmg > mob_size) ? PROJECTILE_CONTINUE : PROJECTILE_STOP)
+		else return PROJECTILE_STOP
 
 	return dealt_damage
 
@@ -132,7 +145,7 @@
 		return
 	shake_animation(damage)
 
-
+ // return PROJECTILE_CONTINUE if bullet should continue flying
 /mob/living/bullet_act(obj/item/projectile/P, var/def_zone_hit)
 	var/hit_dir = get_dir(P, src)
 
@@ -158,13 +171,14 @@
 	if(P.knockback && hit_dir)
 		throw_at(get_edge_target_turf(src, hit_dir), P.knockback, P.knockback)
 
+	P.on_hit(src, def_zone_hit)
+
 	//Armor and damage
 	if(!P.nodamage)
 		hit_impact(P.get_structure_damage(), hit_dir)
-		damage_through_armor(def_zone = def_zone_hit, attack_flag = P.check_armour, armour_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P), wounding_multiplier = P.wounding_mult, dmg_types = P.damage_types)
+		return damage_through_armor(def_zone = def_zone_hit, attack_flag = P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P), wounding_multiplier = P.wounding_mult, dmg_types = P.damage_types, return_continuation = TRUE)
 
-	P.on_hit(src, def_zone_hit)
-	return TRUE
+	return PROJECTILE_CONTINUE
 
 //Handles the effects of "stun" weapons
 /mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon)
@@ -248,7 +262,7 @@
 
 		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
 
-		damage_through_armor(throw_damage, dtype, null, ARMOR_MELEE, null, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
+		damage_through_armor(throw_damage, dtype, null, ARMOR_MELEE, O.armor_divisor, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
 
 		O.throwing = 0		//it hit, so stop moving
 
@@ -410,6 +424,11 @@
 					I.action = new/datum/action/item_action
 				I.action.name = I.action_button_name
 				I.action.target = I
+				if(I.action_button_proc)
+					I.action.action_type = AB_ITEM_PROC
+					I.action.procname = I.action_button_proc
+					if(I.action_button_arguments)
+						I.action.arguments = I.action_button_arguments
 			I.action.Grant(src)
 	return
 

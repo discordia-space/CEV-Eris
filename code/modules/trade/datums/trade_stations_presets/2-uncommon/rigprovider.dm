@@ -18,10 +18,10 @@
 	recommendations_needed = 1
 	inventory = list(
 		"RIGs" =  list(
-			/obj/item/rig/medical = custom_good_amount_range(list(1, 5)),
-			/obj/item/rig/hazmat = custom_good_amount_range(list(1, 5)),
-			/obj/item/rig/hazard = custom_good_amount_range(list(1, 5)),
-			/obj/item/rig/industrial = custom_good_amount_range(list(1, 5))
+			/obj/item/rig/medical = custom_good_price(1490),
+			/obj/item/rig/hazard = custom_good_price(1490),
+			/obj/item/rig/hazmat = custom_good_price(1730),
+			/obj/item/rig/industrial = custom_good_price(1730)
 		),
 		"RIG Specialized Modules" = list(
 			/obj/item/rig_module/storage = good_data("Internal Storage compartment", list(1, 10), null),
@@ -55,10 +55,16 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 10000, 1),						// base price: 6282 (incl. components)
-		/obj/item/stock_parts/capacitor/one_star = offer_data("one star capacitor", 1000, 3),
-		/obj/item/stock_parts/scanning_module/one_star = offer_data("one star scanning module", 1000, 3),
-		/obj/item/stock_parts/manipulator/one_star = offer_data("one star manipulator", 1000, 3),
-		/obj/item/stock_parts/micro_laser/one_star = offer_data("one star micro-laser", 1000, 3),
-		/obj/item/stock_parts/matter_bin/one_star = offer_data("one star matter bin", 1000, 3)
+		/obj/item/rig_module = offer_data("rig module", 500, 6),							// base price: 500
+		/obj/item/rig/eva = offer_data("EVA suit control module", 300, 2),					// base price: 1090 (incl. components)
+		/obj/item/rig/medical = offer_data("rescue suit control module", 800, 2),			// base price: 1090 (incl. components)
+		/obj/item/rig/hazard = offer_data("hazard hardsuit control module", 800, 2),		// base price: 1090 (incl. components)
+		/obj/item/rig/industrial = offer_data("industrial suit control module", 1000, 2),	// base price: 1290 (incl. components)
+		/obj/item/rig/hazmat = offer_data("AMI control module", 1000, 2),					// base price: 1290 (incl. components)
+		/obj/item/rig/combat = offer_data("combat hardsuit control module", 1500, 2),		// base price: 1590 (incl. components)
+		/obj/item/rig/techno = offer_data("technomancer suit control module", 8000, 1),
+		/obj/item/rig/combat/ironhammer = offer_data("Ironhammer hardsuit control module", 8000, 1),
+		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 10000, 1),
+		/obj/item/rig/light/stealth = offer_data("stealth suit control module", 20000, 1),
+		/obj/item/rig/light/hacker = offer_data("cybersuit control module", 10000, 1)
 	)

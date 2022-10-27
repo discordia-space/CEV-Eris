@@ -16,7 +16,7 @@
 	damage_multiplier = 1.3
 	penetration_multiplier = 9
 	pierce_multiplier = 10
-	zoom_factor = 0.4 // it has a giant scope
+	zoom_factors = list(0.4) // it has a giant scope
 	init_recoil = HANDGUN_RECOIL(1.8) // maybe it was a bit too low
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE

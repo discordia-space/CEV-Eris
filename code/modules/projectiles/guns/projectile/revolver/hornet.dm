@@ -16,7 +16,7 @@
 	price_tag = 2400 // middle ground between miller and deckard
 	damage_multiplier = 2
 	penetration_multiplier = 0.5
-	zoom_factor = 0.2 // same scope as z8
+	zoom_factors = list(0.2) // same scope as z8
 	init_recoil = HANDGUN_RECOIL(1.6)
 	gun_parts = list(/obj/item/part/gun/frame/hornet = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/srifle = 1)
 	serial_type = "OR"
