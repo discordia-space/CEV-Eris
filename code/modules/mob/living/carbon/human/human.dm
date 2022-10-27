@@ -212,9 +212,10 @@
 	dat += "<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>"
 	dat += "<BR><A href='?src=\ref[user];mach_close=mob[name]'>Close</A>"
 
-	user << browse(dat, text("window=mob[name];size=340x540"))
-	onclose(user, "mob[name]")
-	return
+	var/datum/browser/panel = new(user, "mob[name]", "Mob", 340, 540)
+	panel.set_content(dat)
+	panel.open()
+
 
 // called when something steps onto a human
 // this handles mulebots and vehicles

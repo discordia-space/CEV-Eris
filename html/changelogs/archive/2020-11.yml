@@ -1,0 +1,243 @@
+2020-11-01:
+  drexample:
+  - bugfix: Fixes drones and blitzshells annihilating the master controller (and other
+      drone health related issues)
+2020-11-05:
+  genessee596:
+  - balance: Control Spiders now control for far, far less time.
+2020-11-06:
+  Evankhell561:
+  - tweak: bluespace roaches no longer teleport when their AI is idle.
+  - tweak: You cannot get a virus while you are dead.
+  - tweak: All breakdowns end when you die.
+  TermService:
+  - rscadd: Vape mixes
+  - tweak: Reduce vape mask power use
+  genessee596:
+  - tweak: Bluespace Roaches now have a more immersive name and description.
+2020-11-07:
+  Evankhell561:
+  - tweak: the datum that generates the spawn values is now a subsystem.
+  - tweak: organs will no longer spawn in maint.
+  Firefox13:
+  - bugfix: Brigador and Svalinn can be put into holster and belt slots.
+  FrownTown:
+  - rscadd: added new statverb interaction for hacking R&D console permissions
+  - bugfix: cleaned up grammar in the remove floortile statverb
+  Garen7:
+  - rscadd: Alt clicking a body scanner will eject the occupant
+  - rscadd: Body scanners now put the name of the occupant on the output and name
+      the printed paper after the occupant
+  - spellcheck: Fixed a typo in the body scanner printout
+  MadmanMartian:
+  - bugfix: Fixes being able to dupe guns by deconstructing a turret with them installed.
+  - bugfix: Fixes some energy guns not giving the turret the correct projectile.
+  TermService:
+  - rscadd: You can lock/unlock APC and air alarm with alt-click
+  TheShown, INFRARED_BARON, TonnyJest(Suzan Trost):
+  - rscadd: Added organ processes
+  - rscadd: Added organ stacking
+  - tweak: organs can be put in any bodypart
+  - rscadd: Added organ sizes and max space
+  TheShown911:
+  - rscadd: Colt, mk58 and paco can use high cap magazines.
+  - bugfix: fixed a runtime in erismed
+  genessee596:
+  - tweak: Giant spiders now have class-specific names and descriptions.
+2020-11-10:
+  FrownTown:
+  - rscadd: 'Added new statverb: fix modular computer'
+  - rscadd: Added new "stats required" messages that are stat-dependent
+  - bugfix: Made the revelations program less janky
+  - spellcheck: Fixed some more bad grammar / spelling in staverbs.dm
+2020-11-12:
+  MadmanMartian:
+  - bugfix: Fixes NT cloning turning people into statless power husks.
+2020-11-13:
+  1glitchycent:
+  - imageadd: new icons for technomancer armor
+  MadmanMartian:
+  - rscadd: You can now examine telecomms equipment to see how much damage it has
+      taken.
+  TheShown911:
+  - rscadd: Added SA "VJP" - a modified PK fited for mechs.
+  ValoTheValo:
+  - tweak: tweaked excelsior jumpsuit cost from 100 to 50
+  kappa-sama:
+  - rscadd: Added small amounts of reagent to each masterpiece donut to provide differing
+      flavors between each donut.
+  - tweak: The description text for each of the masterpiece donuts is now more...
+      flavorful.
+2020-11-14:
+  Evankhell561:
+  - tweak: The projector chameleon now turns off automatically when the battery runs
+      out.
+  FrownTown:
+  - bugfix: fixed Excelsior mines
+  Garen7:
+  - bugfix: Fixed the stats UI not working for altyn, maska, and old riot helmets
+  - bugfix: Fixed altyn, maska, and old riot helmets sometimes not showing gear underneath
+      the helmet(and other things)
+  - refactor: Merged the altyn and old riot helmets into the same type
+  - refactor: Properly wrapped the variable tracking if the face shield was up to
+      avoid future bugs
+  - tweak: The normal baton now spawns with a medium high cell and the excelsior baton
+      now spawns with an excelsior cell
+  - bugfix: Fixed the excelsior baton glowing orange instead of cyan when on
+  - bugfix: Fixed the excelsior baton not using its turned on inhand sprite when turned
+      on
+  - bugfix: Fixed batons sometimes keeping their pulsing quality after being turned
+      off
+  - bugfix: Fixed batons and stungloves not turning off when out of power
+  - bugfix: Fixed batons and stungloves having an extra use even when out of power
+  - bugfix: Fixed baton and stunglove sprites not updating when the cell is removed
+      or added
+  - bugfix: Fixed stungloves not showing their current cell charge when examined
+  - bugfix: Fixed stungloves action button not updating
+  - admin: Added logging for stungloves in the attack logs
+  Harrivchaw:
+  - tweak: Flashbang now confuses you.
+  - tweak: Carrion explosive spider now has a delay and pops out of the victim's body
+      when it's activated
+  Hopek:
+  - rscadd: Bones now are reasonably sized when on the ground but still display full
+      detail when interacted with.
+  TheShown911:
+  - balance: Control spider duration incersed to 50-60 seconds, but if the controled
+      victim dies under mind control the spider core dies with it.
+2020-11-15:
+  Evankhell561:
+  - code_imp: fix some bug reports from the atom subsystem.
+  MadmanMartian:
+  - admin: Control spiders now tell you who is taking over who
+  MemedHams:
+  - imageadd: Added a battery panel to the excelsior baton and it now has a sprite
+      for when
+  drexample:
+  - rscadd: Ports HTML5 jukebox
+2020-11-19:
+  Armolitskiy and genessee:
+  - balance: Webbed Armor Vest now has the same armor values as the standard armor
+      vest
+  - imageadd: Webbed Armor Vest now has a more aesthetically pleasing sprite
+  CeUvi:
+  - rscadd: Randomizer to spawn with one or the other helmet
+  - tweak: Randomizer to spawn with one or the other helmet
+  - imageadd: new technomancer armor sprite and helmet sprite and the second helmet
+      sprite
+  Evankhell561:
+  - bugfix: the "makeshift mace" is now displayed in the right hand.
+  - tweak: now you can close the lid of the cigarette box.
+  - bugfix: borgs no longer spawn with a cruciform..
+  Harrivchaw:
+  - bugfix: Oxygen tank sprites are now properly placed.
+  MadmanMartian:
+  - bugfix: Airlock electronic boards now have their UI again.
+  - tweak: The virology centrifuge UI is a little more informative
+  greggbot:
+  - rscadd: The NT bioreactor room and Guild lathe now have a new disk spawn each
+  - rscadd: biofabrics for NT, and logistics for guild.
+2020-11-20:
+  MadmanMartian:
+  - balance: The bloodred voidsuit is now much rarer from maint loot.
+2020-11-21:
+  Evankhell561:
+  - rscadd: a chemical that can rejuvenate objects.
+  - refactor: oldificator code
+  - tweak: the probability of finding old items in trash piles increases to 80.
+  - tweak: the price of the items affects their spawn frequency.
+  Harrivchaw:
+  - bugfix: Dominion sprite fixed
+  soslow4u:
+  - rscadd: Two new litanies under Priest tab
+  - rscadd: 'Manifestation litany: build NT machinery and some other items with your
+      faith and raw materials.'
+  - rscadd: 'Divine Guidance litany: check construction requirements for Manifestation.'
+  - rscdel: Removed NT-related circuitboards, upgrades via RnD and ability to dismantle
+      NT machines. Be wise about your constructions
+2020-11-22:
+  genessee596:
+  - rscadd: Glue. Alternative to tape for crafting.
+2020-11-23:
+  CeUvi:
+  - bugfix: fixed a missing comma in some files
+  Evankhell561:
+  - tweak: reduce deepmaint levels to 1
+  FrownTown:
+  - bugfix: added vape vials and a few parent items to the blacklist
+  MadmanMartian:
+  - bugfix: Shrapnel is now properly removed from the body during extraction surgery.
+  - rscadd: Body scanners now show the NSA of the patient.
+  TheShown911:
+  - balance: Bones are harder to break.
+2020-11-24:
+  Evankhell561:
+  - bugfix: slowdown of the atom subsystem.
+  - tweak: items without any specific tag can no longer be spawned in maint.
+  - tweak: scraps piles no longer guarantee a rare item, instead they guarantee a
+      no junk item.
+2020-11-25:
+  TheShown911:
+  - bugfix: carrion organs you buy will not disappear if there isn't enough space.
+2020-11-27:
+  Azlan and genessee:
+  - rscadd: New spritework for Tier 1 to Tier 3 stock parts.
+  CeUvi:
+  - imageadd: changed maintclava sprite
+  - rscadd: you can adjust maintclava as well as swatclava
+  DarkLevel  - code; Armolitskiy - sprites:
+  - rscadd: NT Dagger
+  - rscadd: NT Shortsword
+  - rscadd: NT Scourge
+  - rscadd: NT Longsword
+  - rscadd: NT Halberd
+  - rscadd: NT Shield
+  - rscadd: NT 4 types grenades
+  - rscadd: tool mod Sanctifier
+  - rscdel: Sword of Truth only sheath
+  - tweak: Wielded weapon cannot stick in the wound.
+  - bugfix: grenades sprites will now update on activation.
+  - code_imp: sheath is now another storage subclass.
+  - code_imp: adding aspects to items.
+  Garen7:
+  - rscadd: Adds an excelsior hud to the excelsior voidsuit helmet which only works
+      for excelsior
+  - bugfix: Fixed negative style working like it was positive
+  - tweak: Removed faction voidsuits from maint loot
+  INFRARED_BARON and genessee:
+  - rscadd: New toolmod that has random stats when applied - can be found in maintenance
+  TheShown911:
+  - rscadd: Added 4 new organs - stomatch, mucles, nerves and blood vessels.
+  - balance: pain from brute, burn and tox damage lowered.
+  - bugfix: fixed a runtime with bones.
+2020-11-28:
+  genessee596:
+  - balance: Randomizer toolmod can now only knock up your damage by 5 points, instead
+      of the previous 20.
+  - tweak: Sanctifier toolmod now has a more descriptive description
+2020-11-29:
+  MadmanMartian:
+  - balance: The chameleon projector now requires an item have a minimum pixel count
+      to their icon.
+  - balance: The rig teleport module has been removed from the loot tables, hopefully.
+  - tweak: NT Acolyte stats have been reworked to have them be more combat and cleaning
+      oriented.
+  - balance: NT armors are no longer spaceproof. Their armor values have been buffed
+      to accomodate.
+  - balance: Robot limbs now have breakable bones
+  - balance: Robot limbs now break off or explode when they take too much brute damage
+  - rscadd: Adds a service artifact, a Bonsai tree that yields crops in exchange for
+      alcohol.
+  TheShown911:
+  - bugfix: fixed a runtime in erismed
+2020-11-30:
+  Evankhell561:
+  - bugfix: descriptions of artwork.
+  - tweak: the actor now works for the Guild.
+  - rscadd: artist bench, an autolate that allows you to create works of art.
+  - rscadd: artist outfit.
+  - tweak: The actor's office has been remodeled to be habitable.
+  - rscadd: perk artist.
+  - rscadd: works of art produced on the artist bench.
+  genessee596:
+  - rscadd: 6 new oddities can be found in maintenance

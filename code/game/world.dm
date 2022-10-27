@@ -79,7 +79,10 @@ var/game_id
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
 	diary = file("data/logs/[date_string].log")
 	diary << "[log_end]\n[log_end]\nStarting up. (ID: [game_id]) [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
-	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
+
+	// TODO: globalize me
+	var/latest_changelog = file("html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
+	changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
 
 	world_qdel_log = file("data/logs/[date_string] qdel.log")	// GC Shutdown log
 
