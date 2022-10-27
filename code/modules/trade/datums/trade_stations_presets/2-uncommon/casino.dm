@@ -2,7 +2,10 @@
 	name_pool = list(
 		"FTB \'Solntsey\'" = "Free Trade Beacon \'Solntsey\': \"Try your luck with our grab bag specials!\"",
 	)
+	icon_states = list("htu_station", "station")
 	uid = "casino"
+	tree_x = 0.58
+	tree_y = 0.7
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = 1
@@ -24,8 +27,12 @@
 		// TODO: More stuff.
 	)
 	offer_types = list(
-		/obj/item/coin = offer_data("metal coin", 4000, 1),						// From what I can tell, these are pretty rare
 		/obj/item/oddity/common/coin = offer_data("strange coin", 500, 1),
 		/obj/item/oddity/common/old_money = offer_data("old money", 500, 1),
-		/obj/item/oddity/artwork = offer_data("artistic oddity", 1600, 1)
+		/obj/item/oddity/common/teddy = offer_data("teddy bear", 500, 1),
+		/obj/item/oddity/common/paper_crumpled = offer_data("turn-out page", 500, 1),
+		/obj/item/oddity/common/paper_bundle = offer_data("paper bundle", 500, 1),
+		/obj/item/music_tape = offer_data("music tape", 600, 4),
+		/obj/item/oddity/artwork = offer_data("artistic oddity", 1600, 1),
+		/obj/item/coin = offer_data("metal coin", 4000, 1)						// From what I can tell, these are pretty rare
 	)

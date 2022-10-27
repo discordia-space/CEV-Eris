@@ -26,19 +26,15 @@
 	bad_type = /obj/item/organ/external/robotic/frozen_star
 
 /obj/item/organ/external/robotic/frozen_star/l_arm
-	name = "\"Frozen Star\" Left Arm"
 	default_description = /datum/organ_description/arm/left
 
 /obj/item/organ/external/robotic/frozen_star/r_arm
-	name = "\"Frozen Star\" Right Arm"
 	default_description = /datum/organ_description/arm/right
 
 /obj/item/organ/external/robotic/frozen_star/l_leg
-	name = "\"Frozen Star\" Left Leg"
 	default_description = /datum/organ_description/leg/left
 
 /obj/item/organ/external/robotic/frozen_star/r_leg
-	name = "\"Frozen Star\" Right Leg"
 	default_description = /datum/organ_description/leg/right
 
 /obj/item/organ/external/robotic/technomancer
@@ -50,31 +46,24 @@
 	bad_type = /obj/item/organ/external/robotic/technomancer
 
 /obj/item/organ/external/robotic/technomancer/l_arm
-	name = "Technomancer \"Homebrew\" Left Arm"
 	default_description = /datum/organ_description/arm/left
 
 /obj/item/organ/external/robotic/technomancer/r_arm
-	name = "Technomancer \"Homebrew\" Right Arm"
 	default_description = /datum/organ_description/arm/right
 
 /obj/item/organ/external/robotic/technomancer/l_leg
-	name = "Technomancer \"Homebrew\" Left Leg"
 	default_description = /datum/organ_description/leg/left
 
 /obj/item/organ/external/robotic/technomancer/r_leg
-	name = "Technomancer \"Homebrew\" Right Leg"
 	default_description = /datum/organ_description/leg/right
 
 /obj/item/organ/external/robotic/technomancer/groin
-	name = "\"Technomancer\" Groin"
 	default_description = /datum/organ_description/groin
 
 /obj/item/organ/external/robotic/technomancer/torso
-	name = "\"Technomancer\" Torso"
 	default_description = /datum/organ_description/chest
 
 /obj/item/organ/external/robotic/technomancer/head
-	name = "\"Technomancer\" Head"
 	default_description = /datum/organ_description/head
 
 /obj/item/organ/external/robotic/moebius
@@ -109,7 +98,7 @@
 /obj/item/organ/external/robotic/moebius/reinforced
 	name = "\"Moebius\" R++"
 	desc = "Reinforced purple and white prosthesis designed for space exploration and light combat."
-	armor = list(melee = 35, bullet = 35, energy = 35, bomb = 35, bio = 0, rad = 100)
+	armor = list(melee = 3, bullet = 3, energy = 3, bomb = 20, bio = 0, rad = 100)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1)
 	max_damage = 60
 	min_broken_damage = 40
@@ -142,7 +131,7 @@
 	desc = "Plasma reinforced black prosthesis designed for heavy combat."
 	force_icon = 'icons/mob/human_races/cyberlimbs/excelsior.dmi'
 	model = "excelsior"
-	armor = list(melee = 50, bullet = 50, energy = 50, bomb = 50, bio = 0, rad = 100)
+	armor = list(melee = 5, bullet = 5, energy = 5, bomb = 35, bio = 0, rad = 100)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 1, MATERIAL_PLASMA = 0.5) //Plasma needed as a material that excelsiors can't teleport in
 	max_damage = 65
 	min_broken_damage = 45
@@ -176,7 +165,7 @@
 	desc = "Advanced, extremely resilient and mobile prosthetic. Inscribed with \"Made in\" followed by gibberish, must have been lost to time."
 	force_icon = 'icons/mob/human_races/cyberlimbs/one_star.dmi'
 	model = "one_star"
-	armor = list(melee = 65, bullet = 65, energy = 65, bomb = 65, bio = 0, rad = 100)
+	armor = list(melee = 10, bullet = 10, energy = 10, bomb = 50, bio = 0, rad = 100)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 4, MATERIAL_GOLD = 2)
 	max_damage = 70
 	min_broken_damage = 45
@@ -203,7 +192,7 @@
 	name = "Makeshift"
 	desc = "Rust, rods, and bolts. A barely functional prosthetic made of whatever could be scavenged from maintenance."
 	force_icon = 'icons/mob/human_races/cyberlimbs/ghetto.dmi'
-	armor = list(melee = 10, bullet = 10, energy = 10, bomb = -5, bio = 100, rad = 100)
+	armor = list(melee = 2, bullet = 2, energy = 2, bomb = -5, bio = 100, rad = 100)
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 	min_broken_damage = 30
 	min_malfunction_damage = 15

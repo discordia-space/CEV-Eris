@@ -28,17 +28,20 @@
 /obj/item/rig/industrial
 	name = "industrial suit control module"
 	suit_type = "industrial hardsuit"
-	desc = "A heavy, powerful rig used by construction crews and mining corporations."
+	desc = "A heavy, powerful rig used by construction crews and mining corporations. The soft plating can protect the wearer from unexpected hazards, but is not reliable in prolonged combat."
 	icon_state = "engineering_rig"
 	price_tag = 350
 	armor = list(
-		melee = 50,
-		bullet = 50,
-		energy = 20,
+		melee = 10,
+		bullet = 10,
+		energy = 0,
 		bomb = 25,
 		bio = 100,
 		rad = 90
 	)
+	ablative_max = 8
+	ablation = ABLATION_SOFT
+
 	drain = 3
 	offline_slowdown = HEAVY_SLOWDOWN * 5
 	offline_vision_restriction = 2
@@ -76,9 +79,9 @@
 	desc = "A light rig for repairs and maintenance to the outside of habitats and vessels."
 	icon_state = "eva_rig"
 	armor = list(
-		melee = 30,
-		bullet = 10,
-		energy = 10,
+		melee = 9,
+		bullet = 3,
+		energy = 3,
 		bomb = 10,
 		bio = 100,
 		rad = 100
@@ -119,13 +122,15 @@ Advanced Voidsuit: Technomancer Exultant
 	icon_state = "ce_rig"
 	rarity_value = 20
 	armor = list(
-		melee = 40,
-		bullet = 40,
-		energy = 40,
+		melee = 8,
+		bullet = 8,
+		energy = 8,
 		bomb = 50,
 		bio = 100,
 		rad = 100
 	)
+	ablative_max = 10
+	ablation = ABLATION_RESILIENT
 	drain = 2
 	offline_slowdown = 0
 	offline_vision_restriction = 0
@@ -180,13 +185,15 @@ Technomancer RIG
 	icon_state = "techno_rig"
 	rarity_value = 20
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
+		melee = 8,
+		bullet = 8,
+		energy = 8,
 		bomb = 50,
 		bio = 100,
 		rad = 100
 	)
+	ablative_max = 10
+	ablation = ABLATION_DURABLE
 	drain = 3
 	offline_vision_restriction = 0
 
@@ -204,6 +211,7 @@ Technomancer RIG
 	)
 
 	spawn_blacklisted = TRUE
+	slowdown = LIGHT_SLOWDOWN
 
 /obj/item/rig/techno/equipped
 	initial_modules = list(
@@ -235,13 +243,15 @@ Technomancer RIG
 	rarity_value = 25
 	price_tag = 350
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 50,
+		melee = 0,
+		bullet = 0,
+		energy = 8,
 		bomb = 90,
 		bio = 100,
 		rad = 100
 	)
+	ablative_max = 12
+	ablation = ABLATION_EVERLASTING
 	drain = 3
 	offline_vision_restriction = 1
 
@@ -284,16 +294,18 @@ Technomancer RIG
 /obj/item/rig/medical
 	name = "rescue suit control module"
 	suit_type = "rescue hardsuit"
-	desc = "A relatively lightweight and durable RIG suit designed for medical rescue in hazardous locations."
+	desc = "A relatively lightweight ceramic RIG suit designed for medical rescue in hazardous locations."
 	icon_state = "medical_rig"
 	armor = list(
-		melee = 30,
-		bullet = 20,
-		energy = 20,
+		melee = 4,
+		bullet = 4,
+		energy = 0,
 		bomb = 50,
 		bio = 100,
 		rad = 100
 	)
+	ablative_max = 10
+	ablation = ABLATION_CERAMIC
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/space/rig/medical
@@ -304,7 +316,7 @@ Technomancer RIG
 		/obj/item/stack/medical,
 		/obj/item/roller
 	)
-	slowdown = HEAVY_SLOWDOWN * 0.5
+	slowdown = LIGHT_SLOWDOWN
 	stiffness = MEDIUM_STIFFNESS
 
 /obj/item/rig/medical/equipped

@@ -562,10 +562,8 @@
 
 	if(seed==null)
 		out_seed = rand(-65535, 65535)
-		rand_seed(out_seed)
 	else
 		out_seed = seed
-		rand_seed(seed)
 
 
 	z = corner1.z

@@ -8,6 +8,8 @@
 /obj/machinery/power/smes
 	name = "power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
+	description_info = "Can be fast toggled with AltClick and CtrlClick"
+	description_antag = "Cutting the safety wire lets you insert SMES components when its charged, doing so will create a preety big blast"
 	icon_state = "smes"
 	density = TRUE
 	anchored = TRUE
@@ -270,7 +272,7 @@
 
 /obj/machinery/power/smes/attack_hand(mob/user)
 	add_fingerprint(user)
-	ui_interact(user)
+	nano_ui_interact(user)
 
 
 /obj/machinery/power/smes/attackby(var/obj/item/I, var/mob/user)
@@ -332,7 +334,7 @@
 
 	return tool_type || 1
 
-/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/power/smes/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 
 	if(stat & BROKEN)
 		return

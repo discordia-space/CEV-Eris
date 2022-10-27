@@ -56,6 +56,9 @@
 				consume_cell = TRUE
 				to_chat(user, SPAN_NOTICE("You loosen the safety bolts, allowing the weapon to destroy empty cells for use as ammunition."))
 
+/obj/item/gun/energy/shrapnel/generate_guntags()
+	gun_tags = list(GUN_PROJECTILE, GUN_SCOPE, SLOT_BAYONET)
+
 /obj/item/gun/energy/shrapnel/mounted
 	name = "SDF SC \"Schrapnell\""
 	desc = "An energy-based shotgun, employing a matter fabricator to pull shotgun rounds from thin air and energy."
@@ -66,7 +69,7 @@
 	restrict_safety = TRUE
 	consume_cell = FALSE
 	cell_type = /obj/item/cell/small/high //Two shots
-	spawn_blacklisted = TRUE
+	bad_type = /obj/item/gun/energy/shrapnel/mounted
 	charge_cost = 50
 	twohanded = FALSE
 	init_firemodes = list(

@@ -33,11 +33,6 @@
 
 //////////////////////////////////////////////////////////////////
 
-// /zone signals
-
-#define COMSIG_ZAS_TICK "z_tick"
-#define COMSIG_ZAS_DELETE "z_del"
-
 // /datum signals
 #define COMSIG_COMPONENT_ADDED "component_added"				//when a component is added to a datum: (/datum/component)
 #define COMSIG_COMPONENT_REMOVING "component_removing"			//before a component is removed from a datum because of RemoveComponent: (/datum/component)
@@ -50,6 +45,9 @@
 #define COMSIG_RITUAL_REVELATION "revelation_ritual"
 #define COMSIG_GROUP_RITUAL "grup_ritual"
 #define COMSIG_TRANSATION "transation"          //from transfer_funds()
+
+/// from datum ui_act (usr, action)
+#define COMSIG_UI_ACT "COMSIG_UI_ACT"
 
 // /atom signals
 #define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
@@ -71,6 +69,9 @@
 #define COMSIG_MOB_LIFE  "mob_life"							 //from mob/Life()
 #define COMSIG_MOB_LOGIN "mob_login"							//from mob/Login()
 #define COMSIG_MOB_DEATH "mob_death"							//from mob/death()
+#define COMSIG_SHIFTCLICK "shiftclick" // used for ai_like_control component
+#define COMSIG_CTRLCLICK "ctrlclick" // used for ai_like_control component
+#define COMSIG_ALTCLICK "altclick" // used for ai_like_control component
 
 // /mob/living signals
 #define COMSIG_LIVING_STUN_EFFECT "stun_effect_act"			 //mob/living/proc/stun_effect_act()
@@ -118,6 +119,7 @@
 #define COMSIG_REMOVE "uninstall"
 #define COMSIG_ITEM_DROPPED	"item_dropped"					//from  /obj/item/tool/attackby(): Called to remove an upgrade
 #define COMSIG_ITEM_PICKED "item_picked"
+#define COMSIG_ODDITY_USED "used_oddity"                    //from /datum/sanity/proc/oddity_stat_up(): called to notify the used oddity it was used.
 
 // /obj/item/clothing signals
 #define COMSIG_CLOTH_DROPPED "cloths_missing"
@@ -131,6 +133,17 @@
 // /obj/item/radio signals
 #define COMSIG_MESSAGE_SENT "radio_message_sent"
 #define COMSIG_MESSAGE_RECEIVED "radio_message_received"
+
+// ABERRANT signals
+#define COMSIG_ABERRANT_INPUT "aberrant_input"
+#define COMSIG_ABERRANT_PROCESS "aberrant_process"
+#define COMSIG_ABERRANT_OUTPUT "aberrant_output"
+#define COMSIG_ABERRANT_SECONDARY "aberrant_secondary"
+#define COMSIG_ABERRANT_COOLDOWN "aberrant_cooldown"
+
+// Overmap and expeditions signals
+#define COMSIG_GENERATE_DUNGEON "generate_dungeon"
+#define COMSIG_DUNGEON_GENERATED "dungeon_generated"
 
 /*******Component Specific Signals*******/
 //Janitor

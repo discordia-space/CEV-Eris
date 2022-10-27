@@ -65,7 +65,9 @@
 /turf/simulated/floor/wood,
 /area/crawler)
 "o" = (
-/obj/effect/floor_decal/plaque,
+/obj/effect/floor_decal/plaque{
+	desc = a plauque with an insignia you cant make out and text in chineese.
+	},
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "p" = (
@@ -92,11 +94,18 @@
 /obj/structure/window/reinforced/polarized{
 	id = 11
 	},
+/obj/item/storage/briefcase{
+	pixel_x = 6
+	},
 /turf/simulated/floor/wood,
 /area/crawler)
 "s" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
+/obj/structure/window/reinforced/polarized{
+	dir = 4;
+	id = 10
+	},
+/obj/structure/sign/faction/one_star{
+	pixel_y = 32
 	},
 /turf/simulated/floor/wood,
 /area/crawler)
@@ -159,6 +168,38 @@
 /obj/structure/closet/onestar/tier2,
 /turf/simulated/floor/wood,
 /area/crawler)
+"K" = (
+/obj/structure/table/rack,
+/obj/structure/sign/faction/one_star{
+	pixel_y = -32
+	},
+/obj/spawner/contraband/low_chance,
+/obj/spawner/lathe_disk/advanced/low_chance,
+/turf/simulated/floor/wood,
+/area/crawler)
+"N" = (
+/obj/structure/table/onestar,
+/obj/item/oddity/common/old_newspaper,
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"Q" = (
+/obj/structure/table/rack,
+/obj/structure/sign/faction/one_star{
+	pixel_y = -32
+	},
+/obj/spawner/science/low_chance,
+/turf/simulated/floor/wood,
+/area/crawler)
+"X" = (
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = 11
+	},
+/obj/structure/sign/faction/one_star{
+	pixel_y = 32
+	},
+/turf/simulated/floor/wood,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -190,15 +231,15 @@ j
 j
 d
 d
-x
+K
 a
 "}
 (4,1,1) = {"
 a
-e
+n
 j
 j
-j
+N
 p
 d
 y
@@ -206,7 +247,7 @@ a
 "}
 (5,1,1) = {"
 a
-f
+s
 f
 f
 f
@@ -250,7 +291,7 @@ B
 "}
 (9,1,1) = {"
 a
-h
+X
 h
 h
 h
@@ -265,7 +306,7 @@ e
 k
 k
 k
-s
+e
 d
 A
 a
@@ -276,9 +317,9 @@ e
 k
 k
 k
-s
+n
 d
-x
+Q
 a
 "}
 (12,1,1) = {"

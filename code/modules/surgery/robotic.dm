@@ -38,7 +38,7 @@
 	)
 	organ.open = !organ.open
 	organ.diagnosed = FALSE
-	organ.ui_interact(user)
+	organ.nano_ui_interact(user)
 
 
 
@@ -80,7 +80,7 @@
 
 
 /datum/surgery_step/robotic/remove_item
-	required_tool_quality = QUALITY_CLAMPING
+	required_tool_quality = QUALITY_BOLT_TURNING
 
 	duration = 90
 

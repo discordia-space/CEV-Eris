@@ -17,11 +17,13 @@
 	magazine_type = /obj/item/ammo_magazine/smg
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2)
 	price_tag = 800
-	damage_multiplier = 0.9
-	init_recoil = SMG_RECOIL(0.7)
 	gun_tags = list(GUN_SILENCABLE, GUN_GILDABLE)
 	gun_parts = list(/obj/item/part/gun/frame/atreides = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
 	serial_type = "FS"
+
+	damage_multiplier = 0.9
+	penetration_multiplier = -0.2
+	init_recoil = SMG_RECOIL(0.4)
 
 	init_firemodes = list(
 		FULL_AUTO_400,
@@ -59,7 +61,7 @@
 	name = "Atreides frame"
 	desc = "An Atreides SMG frame. The king of street warfare."
 	icon_state = "frame_atreides"
-	result = /obj/item/gun/projectile/automatic/atreides
-	grip = /obj/item/part/gun/grip/rubber
-	mechanism = /obj/item/part/gun/mechanism/smg
-	barrel = /obj/item/part/gun/barrel/pistol
+	resultvars = list(/obj/item/gun/projectile/automatic/atreides)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
+	mechanismvar = /obj/item/part/gun/mechanism/smg
+	barrelvars = list(/obj/item/part/gun/barrel/pistol)

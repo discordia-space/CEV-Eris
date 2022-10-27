@@ -1,3 +1,9 @@
+/// SCPR 2022
+// Code regarding /datum/money_accounts and /datum/transaction tends to be old and not properly sanitize checked all the time
+// I hopefully fixed all possible attack vectors ,but if you modify any code here , please pay more attention to anything that is a string
+// and is input by the player at any time.
+
+
 /datum/money_account
 	var/owner_name = ""
 	var/account_name = "" //Some accounts have a name that is distinct from the name of the owner
@@ -43,10 +49,11 @@
 	var/time = ""
 	var/source_terminal = ""
 
+// the sanitzation is done here because theres a whole lot of places that create a new datum with unchecked values.
 /datum/transaction/New(_amount = 0, _target_name, _purpose, _source_terminal, _date = null, _time = null)
 	amount = _amount
-	target_name = _target_name
-	purpose = _purpose
+	target_name = sanitizeSafe(_target_name, MAX_NAME_LEN, TRUE)
+	purpose = sanitizeSafe(_purpose, MAX_NAME_LEN,TRUE)
 	source_terminal = _source_terminal
 
 	if(istype(_source_terminal, /atom))
@@ -86,7 +93,7 @@
 
 	//create a new account
 	var/datum/money_account/M = new()
-	M.owner_name = new_owner_name
+	M.owner_name = sanitizeSafe(new_owner_name, MAX_NAME_LEN, TRUE)
 	M.remote_access_pin = rand(1111, 9999)
 	M.money = starting_funds
 	M.employer = department
@@ -96,7 +103,7 @@
 
 	//create an entry in the account transaction log for when it was created
 	var/datum/transaction/T = new()
-	T.target_name = new_owner_name
+	T.target_name = sanitizeSafe(new_owner_name, MAX_NAME_LEN, TRUE)
 	T.purpose = "Account creation"
 	T.amount = starting_funds
 	if(!source_db)

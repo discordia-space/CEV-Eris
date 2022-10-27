@@ -13,8 +13,8 @@
 	magazine_type = /obj/item/ammo_magazine/slpistol
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 600
-	damage_multiplier = 1.4 //because pistol round
-	penetration_multiplier = 1.4
+	damage_multiplier = 1.6 //because pistol round
+	penetration_multiplier = -0.3 //essentially like a miller, less good vs armor
 	init_recoil = HANDGUN_RECOIL(0.6)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
@@ -25,7 +25,7 @@
 	name = "Havelock frame"
 	desc = "A Havelock revolver frame. Personal defense in a small package."
 	icon_state = "frame_havelock"
-	result = /obj/item/gun/projectile/revolver/havelock
-	grip = /obj/item/part/gun/grip/wood
-	mechanism = /obj/item/part/gun/mechanism/revolver
-	barrel = /obj/item/part/gun/barrel/pistol
+	resultvars = list(/obj/item/gun/projectile/revolver/havelock)
+	gripvars = list(/obj/item/part/gun/grip/wood)
+	mechanismvar = /obj/item/part/gun/mechanism/revolver
+	barrelvars = list(/obj/item/part/gun/barrel/pistol)

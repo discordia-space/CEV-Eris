@@ -1,0 +1,381 @@
+2020-08-02:
+  C4BRA:
+  - spellcheck: 3 instances of "toggle invetory" to "toggle inventory"
+  Pariah919:
+  - balance: bomb suits now have 40 bullet/melee/energy resist.
+  Tea-Primoris:
+  - bugfix: Catwalks now deconstruct properly
+  TorinoFermic:
+  - rscadd: New brand of cigarettes with a stim effect inside them.
+  - code_imp: Cleaned the code to make possible to create new packets with various
+      items preloaded instead being hardcoded inside populate_contents()
+  - rscadd: Updated vendors and guild for these cigcartons
+  - rscadd: added cartons to loot tables
+  boy2mantwicethefam:
+  - bugfix: Parkour will no longer actually increase the delay before doing parkour.
+2020-08-03:
+  Evankhell561:
+  - rscadd: 'breakdown : New Heights'
+  - rscadd: 'breakdown: Power Hungry'
+  - rscadd: 'breakdown: Desire for Chrome'
+  - rscadd: 'breakdown: Glassification.'
+  - rscadd: 'breakdown: False Nostalgy'
+  - rscadd: Insight UI.
+  - rscadd: flavor labels for food and drinks.
+  - rscadd: clothes now have "style"
+  - tweak: Obsession breakdown rework.
+  - tweak: Desires now work based on flavor labels.
+  FreimK:
+  - rscadd: Added bluespace crystal infestation event
+  Tea-Primoris:
+  - rscadd: Blitzshells now have bluespace harpoons
+  - balance: Blitzshells now can't open AI airlock control panel
+  TheShown911:
+  - bugfix: Carrions can now properly use old spiders when transitioning to a new
+      body.
+  - bugfix: Carrion maw now gives gene points instead of sometimes taking them away.
+  - bugfix: Breeding spider now works only on human bodies.
+  TheShown911, All hail Megatron, TonnyJest(Suzan Trost):
+  - rscadd: Added Carrion, a new antagonist to replace changelings
+  - rscdel: Changelings and most changeling references in code
+  - imageadd: all carrion related sprites (All hail Megatron)
+  - imageadd: nice UI backround (TonnyJest)
+  - code_imp: some organ code and rebuild_orgnas got tweaked, everything should work
+      fine
+  - code_imp: flashbang bang proc made into an item proc and can be used on more items
+  Wouju:
+  - balance: rebalanced Hivemind mobs, machines and other hivemind related gizmos.
+      Generally numbers. Should be an actual threat that can kill you now. Players
+      finally know if they killed the hivemind.
+  - spellcheck: fixed a few typos in the hivemind code (such as attack messages)
+2020-08-04:
+  Evankhell561:
+  - bugfix: the maximum value in the sanity bar is now the player's maximum sanity
+      value.
+  TheShown911:
+  - bugfix: carrion powers should not randomly disappear
+  - bugfix: breeding spider is now truly fixed
+  - bugfix: regen stasis should work on the body it was activated on
+2020-08-05:
+  Evankhell561:
+  - bugfix: hydraulic calmps and mounted sleepers only interact with adjacent objects
+      / mobs.
+  - bugfix: fix meat's taste tag
+  Tea-Primoris:
+  - bugfix: Things won't fall through catwalks on round start.
+  TheShown911:
+  - balance: Spider call now has a 5 minute cooldown, costs a bit more chem points,
+      but makes more spiders.
+  - balance: Infection spider does 33% less agony damage.
+  - balance: Breeding spider creates a bit less spiders.
+  - bugfix: Added a popup window to make sure that the player really want's to exit
+      the body as a spider core.
+  - bugfix: It should now be impossible to convert carrions to carrions.
+  - bugfix: Infection spider should stop giving you pain if it failed.
+  soslow4u:
+  - bugfix: Mobs that got thrown at open space are falling down as expected.
+2020-08-06:
+  FreimK:
+  - imageadd: New spites for bluespace crystals and bluespace dust made by Bloodpriest.
+  Hyperio:
+  - tweak: Change the evac vote to a bluespace jump vote
+  Tea-Primoris:
+  - tweak: Name and description changes of blitzshell's harpoon
+  - imageadd: New sprites of bluespace harpoons made by INFRARED_BARON.
+  TheShown911:
+  - tweak: carrion spiders can't attach to robots anymore
+  - balance: control spider has a 5 minute cooldown on each mob controled
+  - balance: control spiders can't control other carrions
+  - bugfix: 'fixes #5250'
+2020-08-07:
+  Tea-Primoris:
+  - bugfix: Lowborns manifest status fixed
+  TheShown911:
+  - bugfix: agent ID and mental imprinters should be aveliable for other antags except
+      carrion
+2020-08-08:
+  Deon-DF:
+  - bugfix: You can no longer endlessly shorten the sawn-off shotgun.
+  - bugfix: If the shotgun has attachments, you will be given a chance to cancel (yes/no)
+      to avoid destroying them.
+  Evankhell561:
+  - bugfix: Toolmods no longer erase the noble family name.
+  - tweak: traps are now a little more effective.
+  - tweak: The noise coefficient is now affected by the objects you carry with you.
+  Pariah919:
+  - rscadd: Added a chest rig that is craftable and holds four slots.
+  Tea-Primoris:
+  - admin: Admins can bypass mouse respawn time
+  - imageadd: New updated oberth coat sprites by Armolitskiy
+  TheShown911:
+  - balance: toxin bomb spider uses normal lexorin instead of lexorin plus
+  - bugfix: qdel loop in limbstumps
+2020-08-09:
+  Deon-DF:
+  - rscadd: Kaiser roach has new "dead" state sprite.
+  - rscadd: Kaiser roach has its own meat type, containing toxins from all other roaches.
+  - rscadd: New kaiserburger, same recipe as other roach burgers.
+  - balance: Kaiser roach deals 20-35 damage now.
+  - balance: Kaiser roach is a bit faster (4->6).
+  - bugfix: Kaiser roach can properly use gas cloud ability now.
+  - bugfix: Fuhrer roach burger now properly contains "fuhrerole" (there was a typo).
+  - tweak: Huge mobs cannot be stuffed into disposal bins.
+  - tweak: As a result, Kaiser roach cannot be put into disposals. It also can't be
+      flashed or slipped, for your information.
+  Firefox13:
+  - bugfix: Counselor autolathe disk now contains medium battery design instead of
+      small one.
+  Hyperio:
+  - rscadd: Added psy damage type to guns and projectiles
+  TheShown911:
+  - balance: Infection spiders cost more and take more time to convert someone while
+      dealing less damage.
+  - bugfix: spiders should take the same time to attach after surgery, as after movement.
+2020-08-10:
+  Deon-DF:
+  - imageadd: added makeshift chest rig sprites
+  - imageadd: new Fire extinguisher/mini fire extinguisher and extinguisher closet
+      sprites by WatlerJe
+  - imageadd: 6 different cosmetic variations of standard (red) fire extinguisher.
+  - imageadd: extinguisher closets show which type of extinguisher is inside when
+      closed.
+  - bugfix: Fixed the mining airlock assembly sprite, it's no longer invisible.
+  boy2mantwicethefam:
+  - rscadd: Excelsior can now dab using the *dab emote. Normal folks can do it too
+      but they don't truly know how to do it like the Excelsior do.
+2020-08-11:
+  Deon-DF:
+  - bugfix: radstorm no longer displays its overlay in deep maintenance/asteroid belt
+      (it did not damage before, but showed green overlay).
+  - bugfix: radstorm has no effect on mining shuttle
+2020-08-12:
+  Deon-DF:
+  - rscadd: Added a lot of new quotes to the farmbot.
+  - bugfix: Collecting/gathering animation no longer uses watering animation.
+  - imageadd: All farmbot sprites/animations are redone to be in line with the existing
+      water tank sprites.
+  - imageadd: added unique (black with blue tracer) bullet sprite for rubber bullets,
+      now you can differentiate lethal and rubber bullet shots.
+2020-08-13:
+  Deon-DF:
+  - bugfix: Space heaters now properly accept large cells instead of medium ones.
+  - bugfix: handcuffs breakout time is now displayed in seconds (to see correct time/work
+      right with breakout time < 1 minute).
+  Evankhell561:
+  - bugfix: sanity ui.
+  - tweak: add the label "cheese food" to various types of pizza.
+  Fernandos33:
+  - tweak: glass breakdown now don't last 5mins anymore. now it lasts only 2. and
+      happens 3times only in 20 secs intervals with 1 sec duration.
+  Firefox13:
+  - tweak: Plasma weapons are more obvious about their firing modes now, check their
+      descriptions to see the details.
+2020-08-14:
+  Firefox13:
+  - bugfix: Technomancers spawn with proper helmet now.
+  Firefox13, Jefferyjefferson:
+  - rscadd: Neon tracksuits in four colours, available NOW in your loadout!
+  Hopek:
+  - rscadd: You can now Alt-Click the all Chem dispensers to detach the beaker.
+  - rscadd: You can now Alt-click on storage containers to look inside them
+  - rscadd: You can now Alt-click on grinders to detach their beakers.
+  - rscadd: Extinguisher Cabinants can be alt clicked to open/close
+  - rscadd: Extinguisher Cabinants have a new verb. They can now be opened via the
+      right-click menu.
+  Hyperio:
+  - rscadd: Added new toolmods (engineering research node)
+  - rscadd: Added new gunmods (combat research node)
+  - rscadd: Added a mind swapping device (biotech research node)
+  - tweak: Increase water damage done to slimes
+  - rscadd: Added new bluespace storage items
+  - code_imp: Remove prefixes for new RnD gun mods
+  Pariah919:
+  - bugfix: beanbags finally. Check bullet armor.
+  Silverexperience:
+  - rscadd: Added the vapes.
+  - imageadd: added some icons and images for the vapes.
+  StiffRobot:
+  - bugfix: Makes characters with the lowborn fate unable to join as FO
+2020-08-16:
+  GrayRachnid:
+  - bugfix: Fixed the lack of hematite and carbon deposits on the asteroid.
+  SrReptile:
+  - code_imp: Blockhair added in the bandanas
+2020-08-17:
+  Alliostra:
+  - rscadd: Adds two new jumpsuits to the loadout
+  Arachnidnexus:
+  - imageadd: Adds new shoe icons.
+  Deon-DF:
+  - rscadd: Added a random name generator for maintenance shrooms.
+  - code_imp: Reorganized maintenance mushroom reagent list to be alphabetical for
+      easier reading.
+  - bugfix: Cutting the maintenance plants now gives you a choice to either sample
+      the plant (harvest 1) or sample the seed (harvest seed sample), with the radial
+      menu selection.
+  - bugfix: Sampling any maintenance plants can now be done with any tools that have
+      "cutting", "wire cutting" or "laser cutting" qualities, instead of just wirecutters
+      and scalpel.
+  Kurgis:
+  - balance: The Lasblender should perform better in-game now.
+  MadmanMartian:
+  - tweak: Glassification no longer hijacks the receiver's view, unless they are below
+      a certain sanity threshold.
+  - tweak: Glassification now only hijacks your view for a true second.
+  - admin: Added a sanity debug function, to invoke a breakdown upon somebody.
+  Nozarati:
+  - bugfix: spelling fixes for prosthetics and toolmods
+  Pariah919:
+  - rscadd: Added new sword of truth thing.
+  - tweak: Tweaked descriptions of the pedestal and sword.
+  - balance: sol and sts no longer have damage multipliers and now do 1x damage, or
+      basically base damage for their calibers. STS can now only bursts in bursts
+      of 3.
+  SolatK:
+  - balance: rebalanced formula for upgraded tool damage
+  TheShown911:
+  - rscadd: 3 new prosthetic types with armor
+  - balance: armor does not stack anymore
+  - balance: boots and gloves provide some armor now
+  - refactor: armor is now a datum
+  TorinoFermic:
+  - bugfix: Wrong tag for bandanas
+  fernandos13:
+  - rscdel: deletes the handmade in RnD xenobio
+2020-08-18:
+  Hyperio:
+  - bugfix: Fix trashbag of holding sprite update
+  Pariah919:
+  - rscadd: Added inhands to a lot of tools.
+  TorinoFermic:
+  - server: Adds the log file in data/logs for Qdel
+  fernandos13:
+  - bugfix: fixes a bug that made tunnel snake jackets look all the same, the 3 variants
+      are now visible when you are wearing it
+2020-08-20:
+  Fernandos33:
+  - tweak: you can now sample 3 times before killing the plant (no more RNG) and 4th
+      will kill it and sample one last seed
+  - bugfix: wire cutters can be used to sample from tray now
+  - bugfix: plant b gone now kills everything in Hydroponic trays
+  Hopek:
+  - rscadd: Autolathe disk eject QoL. You can now Alt-Click on any autolathe to eject
+      the design disk.
+  - tweak: The NeoTheology Cahors barrel holds less volume to give NT a chance to
+      use the extra barrels downstairs.
+  TheShown911:
+  - tweak: Dungeon exit teleporter now teleports all clostets in range as well
+2020-08-22:
+  GrayRachnid:
+  - balance: Changed the size of hypersaws and chainsaws so they can't fit in belts
+      anymore.
+2020-08-23:
+  Deon-DF:
+  - bugfix: added a "kill" option to the "sampling" radial menu for maintenance shrooms/vines
+      when using a proper cutting tool.
+  - tweak: using harm intent on maintenance shrooms/vines automatically uses the "kill"
+      option.
+  Evankhell561:
+  - tweak: now you can avoid traps even by running.
+  - tweak: walking is a bit more effective in avoiding traps.
+  - tweak: slightly improved feedback when eating.
+  - bugfix: antagonists have an extra 50% telecrystals when targeting a Noble.
+  Fernandos33:
+  - tweak: mines now anchor when deployed
+  - tweak: deployed mines can now be disarmed with multitool
+  Firefox13, Armolitsky:
+  - rscadd: Added NT LP "Svalinn", new NeoTheology brand laser pistol. Preacher, Acolytes
+      and Custodians lockers are now supplemented with one, as well as NT Energy Pack
+      comes with two laser pistols.
+  Firefox13, Jefferyjefferson:
+  - tweak: Better sprite for kitchen knife.
+  Firefox13, vekotov:
+  - tweak: The NT delegation read the litany of improvement over the solidifier. It's
+      now five times faster.
+  - tweak: The amount of biomatter produced by bioprinter and solidifier is now the
+      same.
+  GrayRachnid:
+  - rscadd: Added a new law to the AI in regards to vagabonds not being crew.
+  - tweak: gave the hammer a prying quality since it has a claw on the back
+  - rscadd: Added a window to RnD
+  Hopek:
+  - tweak: Vagabond's do not start with bank accounts so that they will have to either
+      carry their money on them or hide it somewhere.
+  - tweak: Removed vagabonds from the crew manifest as they are stowaways.
+  - bugfix: The Tray shield is now crafted exactly as stated on the recipe with a
+      single tool belt vs two.
+  - rscadd: You now spawn in with your ID already inside your PDA. Also, Moves the
+      PDA to the ID slot so you don't have to do this every single time.
+  fernandos13:
+  - bugfix: blue scarf sprite now is in the right position
+  - tweak: Increase the limit of pills created by amount to 15
+  - tweak: Add a limit to pills created by volume, also 15 pills.
+  greggbot:
+  - rscadd: Two new mech propulsion parts, ported from bay, not related to any premade
+      models - feel free to use them in your custom mechs!
+  - rscadd: Two new variables on mech parts, ported from bay, turn_delay and climb_time.
+      They affect time to turn the mech and time to climb into it respectively. Notably,
+      the light chassis now takes less time to enter, while the heavy chassis takes
+      more.
+  - tweak: Exosuit nodes on robotics research tree moved around to make more sense.
+  - balance: Many mech parts have had their stats and costs altered.
+  - code_imp: changed some paths for mech parts
+  ifromspaceGANG:
+  - bugfix: fixed incorrect ejection of bullet shells from bolt rifles
+  mattroks101:
+  - admin: Added cringe filter to stop people from saying things that break the atmosphere.
+2020-08-24:
+  Firefox13:
+  - bugfix: NT LP "Svalinn" autolathe disk has been fixed
+2020-08-25:
+  MadmanMartian:
+  - rscadd: Cleaning a voidsuit with a washing machine now cleans the attached components
+2020-08-27:
+  Hyperio:
+  - tweak: Bluespace trashbag construction is not free anymore
+  - bugfix: Fix booster and injector toolmods
+2020-08-29:
+  Deon-DF:
+  - bugfix: fixed dead cat icon in hands
+  Evankhell561:
+  - tweak: Make the Sanity ui less shitty
+  Fernandos33:
+  - bugfix: NT cloner will not check if player is trying to add more sheets than it
+      got
+  GrayRachnid:
+  - bugfix: fixed the holodeck items having the wrong plane
+  Hopek:
+  - bugfix: Vagabond's no longer show up as a blank entry on the crew records.
+  - tweak: Vagabond's no longer show up as "Unknown" in the crew Manifest.
+  Hyperio:
+  - bugfix: Fix large grenades not exploding
+  SolatK:
+  - bugfix: fix z-move animation with jetpack
+  Tea-Primoris:
+  - rscadd: Now you can climb down onto tables from z-level above by dragging yourself
+      onto openspace.
+  Vlad777:
+  - bugfix: Fixed copying stats after cloning
+2020-08-30:
+  Deon-DF:
+  - bugfix: fixed grammar/notification for rag smothering actions.
+  Fernandos33:
+  - bugfix: you can again make pills with a beaker filled with more than 60u (pills
+      themselves cannot have more than 60 tho)
+  MadmanMartian:
+  - tweak: Attempting and failing to attach mech equipment to a mech now tells you
+      why it failed to do so.
+  TheShown:
+  - bugfix: Multiple breeding spiders can't be activated on the same body anymore.
+  TooFewSecrets:
+  - balance: Captain's unique armor now has default voidsuit slowdown instead of a
+      very high slowdown value
+  smoketh:
+  - code_imp: changed and refactored /code/game/machinery/teleporter.dm
+  - code_imp: added circuitboards to /code/game/objects/items/weapons/circuitboards/machinery/research.dm
+      component pricing is equal to NSV13
+  - code_imp: added design definitions to /code/modules/research/designs/circuits.dm
+  - tweak: lowered artificial bluespace crystal cost to 5 diamond and 5 plasma
+2020-08-31:
+  Hopek:
+  - bugfix: In theory fixed the huge organ issue destroying the server

@@ -518,6 +518,8 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	color = COLOR_RED
 	desc = "A coil of power cable."
 	throwforce = WEAPON_FORCE_HARMLESS
+	description_info = "Can link between z-levels by going on the upper level and clicking the empty space, and to below, looking up and clicking the space above"
+	description_antag = "Can be used to make cable cuffs"
 	w_class = ITEM_SIZE_SMALL
 	throw_speed = 2
 	throw_range = 5

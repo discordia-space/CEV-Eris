@@ -13,6 +13,7 @@
 	name = "disposal unit"
 	desc = "A pneumatic waste disposal unit."
 	icon = 'icons/obj/pipes/disposal.dmi'
+	description_antag = "Can be used to escape if bolted in a room, or to get rid of evidence"
 	icon_state = "disposal"
 	anchored = TRUE
 	density = TRUE
@@ -1343,19 +1344,18 @@
 	icon_state = "pipe-t"
 	var/obj/linked 	// the linked obj/machinery/disposal or obj/disposaloutlet
 
-/obj/structure/disposalpipe/trunk/New()
-	..()
+/obj/structure/disposalpipe/trunk/Initialize()
+	. = ..()
 	pipe_dir = dir
-	spawn(1)
-		getlinked()
-
+	
+	INVOKE_ASYNC(src, .proc/getlinked)
 	update()
-	return
 
 /obj/structure/disposalpipe/trunk/Destroy()
 	// Unlink trunk and disposal so that objets are not sent to nullspace
 	var/obj/machinery/disposal/D = linked
-	D.trunk = null
+	if (istype(D))
+		D.trunk = null
 	linked = null
 	return ..()
 

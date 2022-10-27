@@ -65,8 +65,8 @@
 	radio_connection = SSradio.add_object(src, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/air_sensor/Initialize()
-	. = ..()
 	set_frequency(frequency)
+	. = ..()
 
 obj/machinery/air_sensor/Destroy()
 	SSradio.remove_object(src,frequency)

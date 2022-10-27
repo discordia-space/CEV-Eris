@@ -23,7 +23,7 @@
 	desc = "Spare part of armor."
 	icon_state = "armor_part"
 	spawn_tags = SPAWN_TAG_PART_ARMOR
-	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 5, MATERIAL_CARDBOARD = 5, MATERIAL_STEEL = 5)
+	matter = list(MATERIAL_PLASTIC = 10, MATERIAL_STEEL = 10)
 
 /obj/item/part/armor/artwork
 	desc = "This is an artistically-made armor part."
@@ -46,7 +46,7 @@
 	icon_state = "gun_part_1"
 	spawn_tags = SPAWN_TAG_GUN_PART
 	w_class = ITEM_SIZE_SMALL
-	matter = list(MATERIAL_PLASTEEL = 1.2)
+	matter = list(MATERIAL_PLASTEEL = 5)
 	var/generic = TRUE
 
 /obj/item/part/gun/Initialize()
@@ -81,7 +81,7 @@
 	var/suitable_part
 	var/view_only = 0
 	var/tags_to_spawn = list()
-	var/req_parts = 10
+	var/req_parts = 5
 	var/complete = FALSE
 	var/total_items = 20
 	var/list/items = list()
@@ -139,11 +139,16 @@
 		view_only = round(total_items * (1 - user.stats.getMult(req_sat, 100))/2) +1 // 1 choice per 10 stat + 1
 		if(user.stats.getPerk(/datum/perk/oddity/gunsmith))
 			view_only += 3
-		ui_interact(user)
+		nano_ui_interact(user)
 		SSnano.update_uis(src)
 
-/obj/item/craft_frame/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS)
+/obj/item/craft_frame/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = NANOUI_FOCUS)
 	var/list/data = list()
+
+	var/datum/asset/craftIcons = get_asset_datum(/datum/asset/simple/craft)
+	var/datum/asset/materialIcons = get_asset_datum(/datum/asset/simple/materials)
+	if (craftIcons.send(user.client) || materialIcons.send(user.client))
+		user.client.browse_queue_flush() // stall loading nanoui until assets actualy gets sent
 
 	var/list/listed_products = list()
 	for(var/key = 1 to view_only)

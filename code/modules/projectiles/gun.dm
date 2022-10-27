@@ -3,6 +3,7 @@
 	name = "gun"
 	desc = "A gun. It's pretty terrible, though."
 	icon = 'icons/obj/guns/projectile.dmi'
+	description_info = "Can be wielded with Shift+X to provide less recoil "
 	icon_state = "giskard_old"
 	item_state = "gun"
 	item_state_slots = list(
@@ -31,7 +32,7 @@
 	var/list/custom_default = list() // used to preserve changes to stats past refresh_upgrades proccing
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
 	var/style_damage_multiplier = 1 // multiplies style damage of projectiles fired from this gun
-	var/penetration_multiplier = 1 //Multiplies armor penetration of projectiles fired from this gun
+	var/penetration_multiplier = 0 //Sum of armor penetration of projectiles fired from this gun
 	var/pierce_multiplier = 0 //Additing wall penetration to projectiles fired from this gun
 	var/ricochet_multiplier = 1 //multiplier for how much projectiles fired from this gun can ricochet, modified by the bullet blender weapon mod
 	var/burst = 1
@@ -53,7 +54,9 @@
 	var/muzzle_flash = 3
 	var/dual_wielding
 	var/can_dual = FALSE // Controls whether guns can be dual-wielded (firing two at once).
-	var/zoom_factor = 0 //How much to scope in when using weapon
+	var/active_zoom_factor = 1 //Index of currently selected zoom factor
+	var/list/zoom_factors = list()//How much to scope in when using weapon,
+	var/list/initial_zoom_factors = list()
 
 	var/suppress_delay_warning = FALSE
 
@@ -91,7 +94,7 @@
 	var/recentwield = 0 // to prevent spammage
 	var/proj_step_multiplier = 1
 	var/proj_agony_multiplier = 1
-	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int)
+	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int), damage is divided for pellets
 	var/darkness_view = 0
 	var/vision_flags = 0
 	var/see_invisible_gun = -1
@@ -157,6 +160,7 @@
 		recoil = getRecoil()
 	else if(!istype(recoil, /datum/recoil))
 		error("Invalid type [recoil.type] found in .recoil during /obj Initialize()")
+	initial_zoom_factors = zoom_factors.Copy()
 	. = ..()
 	initialize_firemodes()
 	initialize_scope()
@@ -388,7 +392,7 @@
 
 		projectile.multiply_projectile_style_damage(style_damage_multiplier)
 
-		projectile.multiply_projectile_penetration(penetration_multiplier)
+		projectile.add_projectile_penetration(penetration_multiplier)
 
 		projectile.multiply_pierce_penetration(pierce_multiplier)
 
@@ -402,10 +406,16 @@
 			var/obj/item/projectile/P = projectile
 			P.adjust_damages(proj_damage_adjust)
 			P.adjust_ricochet(noricochet)
-			P.multiply_projectile_accuracy(CLAMP(user.stats.getStat(STAT_VIG), 0, STAT_LEVEL_PROF) / 8)
+			P.multiply_projectile_accuracy(CLAMP(user.stats.getStat(STAT_VIG), 1, STAT_LEVEL_PROF) / 8)
 
+		//shooting point blank increases accuracy
 		if(pointblank)
 			process_point_blank(projectile, user, target)
+
+		//being grabbed reduces accuracy
+		if(user.grabbed_by.len)
+			grabbed_inaccuracy(projectile, user)
+
 		if(projectile_color)
 			projectile.icon = get_proj_icon_by_color(projectile, projectile_color)
 			if(istype(projectile, /obj/item/projectile))
@@ -423,10 +433,10 @@
 			target = targloc
 			pointblank = 0
 	if(!twohanded && user.stats.getPerk(PERK_GUNSLINGER))
-		next_fire_time = world.time + fire_delay * 0.66
+		next_fire_time = world.time + (fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : fire_delay) * 0.66
 		user.setClickCooldown(fire_delay * 0.66)
 	else
-		next_fire_time = world.time + fire_delay
+		next_fire_time = world.time + fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : fire_delay
 		user.setClickCooldown(fire_delay)
 
 	user.set_move_cooldown(move_delay)
@@ -532,7 +542,7 @@
 		return //dual wielding deal too much damage as it is, so no point blank for it
 
 	//default point blank multiplier
-	var/damage_mult = 1.3
+	var/accuracy_mult = 2
 
 	//determine multiplier due to the target being grabbed
 	if(ismob(target))
@@ -542,11 +552,28 @@
 			for(var/obj/item/grab/G in M.grabbed_by)
 				grabstate = max(grabstate, G.state)
 			if(grabstate >= GRAB_NECK)
-				damage_mult = 2.5
+				accuracy_mult = 4
 			else if(grabstate >= GRAB_AGGRESSIVE)
-				damage_mult = 1.5
-	P.multiply_projectile_damage(damage_mult)
+				accuracy_mult = 8
 
+	P.multiply_projectile_accuracy(accuracy_mult)
+
+/obj/item/gun/proc/grabbed_inaccuracy(obj/item/projectile/P, mob/user) //TODO: make length of gun be a disadvantage
+	if(!istype(P))
+		return //default behaviour only applies to true projectiles
+
+	//default grabbed multiplier
+	var/accuracy_mult = 0.5
+
+	var/grabstate = 0
+	for(var/obj/item/grab/G in user.grabbed_by)
+		grabstate = max(grabstate, G.state)
+	if(grabstate >= GRAB_NECK)
+		accuracy_mult = 0.125
+	else if(grabstate >= GRAB_AGGRESSIVE)
+		accuracy_mult = 0.25
+
+	P.multiply_projectile_accuracy(accuracy_mult)
 
 //does the actual launching of the projectile
 /obj/item/gun/proc/process_projectile(obj/item/projectile/P, mob/living/user, atom/target, var/target_zone, var/params=null)
@@ -649,18 +676,33 @@
 		else
 			to_chat(user, SPAN_WARNING("You can\'t properly place your weapon on \the [target] because of the foregrip!"))
 
-/obj/item/gun/proc/toggle_scope(mob/living/user)
+/obj/item/gun/proc/toggle_scope(mob/living/user, switchzoom = FALSE)
 	//looking through a scope limits your periphereal vision
 	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
-	if(!zoom_factor)
+	if(!zoom_factors)
 		zoom = FALSE
 		return
-	var/zoom_offset = round(world.view * zoom_factor)
-	var/view_size = round(world.view + zoom_factor)
+	var/tozoom = zoom_factors[active_zoom_factor]
+	var/zoom_offset = round(world.view * tozoom)
+	var/view_size = round(world.view + tozoom)
 
-	zoom(zoom_offset, view_size)
+	zoom(zoom_offset, view_size, switchzoom)
 	check_safety_cursor(user)
 	update_hud_actions()
+
+/obj/item/gun/proc/switch_zoom(mob/living/user)
+	if(!zoom_factors)
+		return null
+	if(zoom_factors.len <= 1)
+		return null
+//	update_firemode(FALSE) //Disable the old firing mode before we switch away from it
+	active_zoom_factor++
+	if(active_zoom_factor > zoom_factors.len)
+		active_zoom_factor = 1
+	refresh_upgrades()
+	toggle_scope(user, TRUE)
+
+
 
 /obj/item/gun/examine(mob/user)
 	..()
@@ -704,7 +746,7 @@
 
 /obj/item/gun/proc/initialize_scope()
 	var/obj/screen/item_action/action = locate(/obj/screen/item_action/top_bar/gun/scope) in hud_actions
-	if(zoom_factor > 0)
+	if(zoom_factors.len >= 1)
 		if(!action)
 			action = new /obj/screen/item_action/top_bar/gun/scope
 			action.owner = src
@@ -849,20 +891,21 @@
 
 	toggle_carry_state(usr)
 
-/obj/item/gun/ui_data(mob/user)
+/obj/item/gun/nano_ui_data(mob/user)
 	var/list/data = list()
 	data["damage_multiplier"] = damage_multiplier
 	data["pierce_multiplier"] = pierce_multiplier
 	data["ricochet_multiplier"] = ricochet_multiplier
-	data["penetration_multiplier"] = penetration_multiplier
+	data["penetration_multiplier"] = penetration_multiplier + 1
 
-	data["fire_delay"] = fire_delay //time between shot, in ms
+	data["minimum_fire_delay"] = GUN_MINIMUM_FIRETIME
+	data["fire_delay"] = fire_delay * 5 //time between shot, in ms
 	data["burst"] = burst //How many shots are fired per click
-	data["burst_delay"] = burst_delay //time between shot in burst mode, in ms
+	data["burst_delay"] = burst_delay * 5 //time between shot in burst mode, in ms
 
 	data["force"] = force
 	data["force_max"] = initial(force)*10
-	data["armor_penetration"] = armor_penetration
+	data["armor_divisor"] = armor_divisor
 	data["muzzle_flash"] = muzzle_flash
 
 	var/total_recoil = 0
@@ -893,8 +936,9 @@
 				"name" = F.name,
 				"desc" = F.desc,
 				"burst" = F.settings["burst"],
-				"fire_delay" = F.settings["fire_delay"],
-				"move_delay" = F.settings["move_delay"],
+				"minimum_fire_delay" = GUN_MINIMUM_FIRETIME,
+				"fire_delay" = F.settings["fire_delay"] * 5,
+				"move_delay" = F.settings["move_delay"] * 5,
 				)
 			if(F.settings["projectile_type"])
 				var/proj_path = F.settings["projectile_type"]
@@ -906,11 +950,11 @@
 	if(item_upgrades.len)
 		data["attachments"] = list()
 		for(var/atom/A in item_upgrades)
-			data["attachments"] += list(list("name" = A.name, "icon" = getAtomCacheFilename(A)))
+			data["attachments"] += list(list("name" = A.name, "icon" = SSassets.transport.get_asset_url(A)))
 
 	return data
 
-/obj/item/gun/Topic(href, href_list, datum/topic_state/state)
+/obj/item/gun/Topic(href, href_list, datum/nano_topic_state/state)
 	if(..(href, href_list, state))
 		return 1
 
@@ -929,7 +973,11 @@
 	var/list/data = list()
 	data["projectile_name"] = P.name
 	data["projectile_damage"] = (P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()
-	data["projectile_AP"] = P.armor_penetration * penetration_multiplier
+	data["projectile_AP"] = P.armor_divisor + penetration_multiplier
+	data["projectile_WOUND"] = P.wounding_mult
+	data["unarmoured_damage"] = ((P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()) * P.wounding_mult
+	data["armoured_damage_10"] = (((P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()) - (10 / (P.armor_divisor + penetration_multiplier))) * P.wounding_mult
+	data["armoured_damage_15"] = (((P.get_total_damage() * damage_multiplier) + get_total_damage_adjust()) - (15 / (P.armor_divisor + penetration_multiplier))) * P.wounding_mult
 	data["projectile_recoil"] = P.recoil
 	qdel(P)
 	return data
@@ -955,12 +1003,12 @@
 	restrict_safety = initial(restrict_safety)
 	dna_compare_samples = initial(dna_compare_samples)
 	rigged = initial(rigged)
-	zoom_factor = initial(zoom_factor)
+	zoom_factors = initial_zoom_factors.Copy()
 	darkness_view = initial(darkness_view)
 	vision_flags = initial(vision_flags)
 	see_invisible_gun = initial(see_invisible_gun)
 	force = initial(force)
-	armor_penetration = initial(armor_penetration)
+	armor_divisor = initial(armor_divisor)
 	sharp = initial(sharp)
 	braced = initial(braced)
 	recoil = getRecoil(init_recoil[1], init_recoil[2], init_recoil[3])
@@ -979,7 +1027,7 @@
 
 	if(firemodes.len)
 		very_unsafe_set_firemode(sel_mode) // Reset the firemode so it gets the new changes
-
+	
 	update_icon()
 	//then update any UIs with the new stats
 	SSnano.update_uis(src)
@@ -988,7 +1036,7 @@
 /obj/item/gun/proc/generate_guntags()
 	if(recoil.getRating(RECOIL_BASE) < recoil.getRating(RECOIL_TWOHAND))
 		gun_tags |= GUN_GRIP
-	if(!zoom_factor && !(slot_flags & SLOT_HOLSTER))
+	if(zoom_factors.len < 1 && !(slot_flags & SLOT_HOLSTER))
 		gun_tags |= GUN_SCOPE
 	if(!sharp)
 		gun_tags |= SLOT_BAYONET

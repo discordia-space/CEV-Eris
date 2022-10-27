@@ -40,3 +40,9 @@
 /decl/hierarchy/outfit/job/science/roboticist/New()
 	..()
 	backpack_overrides.Cut()
+
+/decl/hierarchy/outfit/job/science/psychiatrist
+	name = OUTFIT_JOB_NAME("Moebius Psychiatrist")
+	uniform = /obj/item/clothing/under/rank/psych
+	belt = /obj/item/storage/belt/medical
+	l_pocket = /obj/item/reagent_containers/glass/beaker/vial/psilocybin

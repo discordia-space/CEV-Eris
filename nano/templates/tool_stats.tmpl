@@ -1,4 +1,4 @@
-<!-- 
+<!--
 
  -->
 <div class="item">
@@ -11,7 +11,7 @@
 			<div class="itemContent">
 				{{for data.tool_qualities}}
 					<div>
-						{{:value.name}}: 
+						{{:value.name}}:
 						{{:helper.displayBar(value.number, 0, 100, null, value.number)}}
 					</div>
 				{{/for}}
@@ -43,7 +43,7 @@
 		<div class="itemContent">
 			{{:helper.displayBar(data.workspeed, 0, data.workspeed_max, data.workspeed_state, data.workspeed)}}
 		</div>
-		
+
 		{{if data.use_power_cost}}
 			<h4>Power:</h4>
 			{{if data.cell_charge}}
@@ -91,12 +91,12 @@
 		<div class="itemContent">
 			{{:helper.displayBar(data.force, 0, data.force_max, '', data.force)}}
 		</div>
-	
+
 		<div class="itemLabel">
 			Armor penetration:
 		</div>
 		<div class="itemContent">
-			{{:data.armor_penetration}}
+			{{:data.armor_divisor}}
 		</div>
 
 		{{if data.extra_volume}}

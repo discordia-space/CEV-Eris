@@ -119,8 +119,8 @@
 
 /datum/uplink_item/item/ammo/magnum_hv
 	name = ".40 Magnum HV ammo packet"
-	desc = ".40 ammo packet with high velocity ammunition. Contains 30 bullets. Cheaper than buying in magazines."
-	item_cost = 4
+	desc = ".40 ammo packet with high velocity ammunition. Contains 50 bullets. Cheaper than buying in magazines."
+	item_cost = 6
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/ammo_magazine/ammobox/magnum/hv
 

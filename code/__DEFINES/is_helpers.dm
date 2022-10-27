@@ -1,5 +1,16 @@
+// simple is_type and similar inline helpers
+
+#define in_range(source, user) (get_dist(source, user) <= 1 && (get_step(source, 0)?:z) == (get_step(user, 0)?:z))
+
+/// Within given range, but not counting z-levels
+#define IN_GIVEN_RANGE(source, other, given_range) (get_dist(source, other) <= given_range && (get_step(source, 0)?:z) == (get_step(other, 0)?:z))
+
+#define isatom(A) (isloc(A))
+
+#define isdatum(thing) (istype(thing, /datum))
 
 #define isweakref(D) (istype(D, /datum/weakref))
+
 
 #define islist(A) istype(A, /list)
 
@@ -82,6 +93,8 @@
 #define isstructure(A) (istype(A, /obj/structure))
 
 #define ismachinery(A) (istype(A, /obj/machinery))
+
+#define isProjectile(A) (istype(A, /obj/item/projectile))
 
 #define isWrench(A) istype(A, /obj/item/tool/wrench)
 

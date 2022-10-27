@@ -264,8 +264,8 @@
 	update_icon()
 
 /obj/item/storage/fancy/cigcartons/dromedaryco
-	name = "carton of Dromedaryco cigarettes"
-	desc = "A box containing 10 packets of Dromedarycos cigarettes."
+	name = "carton of DromedaryCo cigarettes"
+	desc = "A box containing 10 packets of DromedaryCo cigarettes."
 	icon_state = "Dpacketcarton"
 	item_state = "Dpacketcarton"
 	item_obj = /obj/item/storage/fancy/cigarettes/dromedaryco
@@ -300,7 +300,7 @@
 	item_obj = /obj/item/clothing/mask/smokable/cigarette/cigar
 	var/open = FALSE
 
-/obj/item/storage/fancy/cigar/proc/can_interact(mob/user)
+/obj/item/storage/fancy/cigar/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
 		return 1
 	if(istype(loc, /obj/item/storage))

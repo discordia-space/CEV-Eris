@@ -7,6 +7,8 @@
 /obj/item/tool/multitool
 	name = "multitool"
 	desc = "Used for pulsing wires to test which to cut. You can use this on airlocks or APCs to try to hack them."
+	description_info = "Contrary to popular belief , you can install upgrades onto the multitool"
+	description_antag = "Can be used to brute-force any locker. It however takes time"
 	icon_state = "multitool"
 	flags = CONDUCT
 	force = WEAPON_FORCE_HARMLESS

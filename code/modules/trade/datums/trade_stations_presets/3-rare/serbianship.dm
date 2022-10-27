@@ -3,8 +3,10 @@
 		"STF \'Kovac\'" = "Serbian Trade Freighter \'Kovac\': \"Come with money for very good stuff! You can pay with your life, even!\"",
 		"SV \'Zoric\'" = "Serbian Vessel \'Zoric\': \"For the correct price, we can sell you something... even jobs!\""
 	)
-	icon_states = "serb_frigate"
+	icon_states = list("serb_frigate", "ship")
 	uid = "serbian"
+	tree_x = 0.58
+	tree_y = 0.5
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = RARE_GOODS
@@ -61,7 +63,9 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/part/gun/frame/kovacs  = offer_data("Kovacs frame", 800, 2),
-		/obj/item/part/gun/frame/zoric  = offer_data("Zoric frame", 2000, 2),
-		/obj/item/part/gun/frame/pk  = offer_data("Pulemyot Kalashnikova frame", 3000, 2)
+		/obj/item/part/gun/frame/ak47 = offer_data("AK frame", 800, 1),
+		/obj/item/part/gun/frame/kovacs = offer_data("Kovacs frame", 1400, 2),
+		/obj/item/part/gun/frame/zoric = offer_data("Zoric frame", 2000, 1),
+		/obj/item/part/gun/frame/bojevic = offer_data("Bojevic frame", 6000, 1),
+		/obj/item/part/gun/frame/pk  = offer_data("Pulemyot Kalashnikova frame", 8000, 1)
 	)

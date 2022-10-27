@@ -15,6 +15,7 @@
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "e" = (
+/obj/spawner/pack/tech_loot/onestar,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "f" = (
@@ -47,7 +48,7 @@
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "l" = (
-/obj/machinery/computer,
+/obj/structure/salvageable/os/console,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "m" = (
@@ -97,8 +98,8 @@
 /area/crawler)
 "w" = (
 /obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 4
+	dir = 4;
+	icon_state = "warningcorner"
 	},
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
@@ -112,6 +113,8 @@
 /area/crawler)
 "z" = (
 /obj/structure/table/rack,
+/obj/spawner/tool/advanced/onestar/low_chance,
+/obj/spawner/tool_upgrade/rare/onestar,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "A" = (
@@ -134,28 +137,38 @@
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/crawler)
 "E" = (
-/obj/structure/salvageable/implant_container,
+/obj/structure/salvageable/os/implant_container,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "F" = (
-/obj/structure/salvageable/server,
+/obj/structure/salvageable/os/server,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "G" = (
-/obj/structure/salvageable/machine,
+/obj/structure/salvageable/os/machine,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "H" = (
-/obj/structure/salvageable/computer,
+/obj/structure/salvageable/os/computer,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "I" = (
-/obj/structure/salvageable/data,
+/obj/structure/salvageable/os/data,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "J" = (
 /obj/crawler/crawler_wallbreaker,
 /turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"T" = (
+/obj/structure/salvageable/os/console_broken{
+	dir = 1
+	},
+/turf/simulated/floor/bluegrid,
+/area/crawler)
+"Z" = (
+/obj/structure/salvageable/bliss,
+/turf/simulated/floor/bluegrid,
 /area/crawler)
 
 (1,1,1) = {"
@@ -186,7 +199,7 @@ A
 n
 u
 a
-e
+Z
 n
 H
 a
@@ -265,7 +278,7 @@ x
 a
 E
 n
-G
+F
 a
 "}
 (11,1,1) = {"
@@ -276,7 +289,7 @@ y
 a
 F
 n
-H
+T
 a
 "}
 (12,1,1) = {"

@@ -212,6 +212,10 @@
 	name = "ammo strip (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/slsrifle
 
+/datum/design/autolathe/ammo/sl_srifle
+	name = "speed loader (.20 Rifle)"
+	build_path = /obj/item/ammo_magazine/slsrifle_rev
+
 /datum/design/autolathe/ammo/sl_srifle/rubber
 	name = "ammo strip (.20 Rifle rubber)"
 	build_path = /obj/item/ammo_magazine/slsrifle/rubber
@@ -257,6 +261,10 @@
 /datum/design/autolathe/ammo/c10x24 // Dallas speshul
 	name = "box magazine (.25 Caseless)"
 	build_path = /obj/item/ammo_magazine/c10x24
+
+/datum/design/autolathe/ammo/ihclmg
+	name = "LMG munition box (.25 rifle)"
+	build_path = /obj/item/ammo_magazine/ihclmg
 
 // .25 rifle, but wide
 
@@ -375,15 +383,15 @@
 /datum/design/autolathe/ammo/fs_stinger
 	name = "FS sting shell"
 	build_path = /obj/item/ammo_casing/grenade
-	
+
 /datum/design/autolathe/ammo/nt_stinger
 	name = "NT sting shell"
 	build_path = /obj/item/ammo_casing/grenade/weak
-		
+
 /datum/design/autolathe/ammo/shell_frag
 	name = "frag shell"
 	build_path = /obj/item/ammo_casing/grenade/frag
-		
+
 /datum/design/autolathe/ammo/shell_emp
 	name = "emp shell"
 	build_path = /obj/item/ammo_casing/grenade/emp

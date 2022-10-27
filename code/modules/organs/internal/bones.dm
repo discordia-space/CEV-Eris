@@ -42,6 +42,18 @@
 				"step" = /datum/surgery_step/robotic/fix_bone
 			)))
 	else
+		if(item_upgrades.len < max_upgrades)
+			actions_list.Add(list(list(
+				"name" = "Attach Mod",
+				"organ" = "\ref[src]",
+				"step" = /datum/surgery_step/attach_mod
+			)))
+		if(item_upgrades.len)
+			actions_list.Add(list(list(
+				"name" = "Remove Mod",
+				"organ" = "\ref[src]",
+				"step" = /datum/surgery_step/remove_mod
+			)))
 		actions_list.Add(list(list(
 			"name" = (parent.status & ORGAN_BROKEN) ? "Mend" : "Break",
 			"organ" = "\ref[src]",
@@ -73,6 +85,34 @@
 		reinforced = TRUE
 		name = "reinforced [name]"
 		icon_state = "reinforced_[icon_state]"
+
+/obj/item/organ/internal/bone/refresh_upgrades()
+	name = initial(name)
+	color = initial(color)
+	max_upgrades = initial(max_upgrades)
+	prefixes = list()
+	min_bruised_damage = initial(min_bruised_damage)
+	min_broken_damage = initial(min_broken_damage)
+	max_damage = initial(max_damage)
+	owner_verbs = initial(owner_verbs)
+	organ_efficiency = initial_organ_efficiency.Copy()
+	scanner_hidden = initial(scanner_hidden)
+	unique_tag = initial(unique_tag)
+	specific_organ_size = initial(specific_organ_size)
+	max_blood_storage = initial(max_blood_storage)
+	current_blood = initial(current_blood)
+	blood_req = initial(blood_req)
+	nutriment_req = initial(nutriment_req)
+	oxygen_req = initial(oxygen_req)
+
+	if(reinforced)
+		reinforced = FALSE
+		reinforce()
+
+	SEND_SIGNAL(src, COMSIG_APPVAL, src)
+
+	for(var/prefix in prefixes)
+		name = "[prefix] [name]"
 
 /obj/item/organ/internal/bone/chest
 	name = "ribcage"

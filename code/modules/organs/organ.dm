@@ -92,7 +92,7 @@
 			blood_DNA = list()
 		blood_DNA.Cut()
 		blood_DNA[C.dna_trace] = C.b_type
-		species = all_species[C.species]
+		species = all_species[C.species.name]
 
 /obj/item/organ/proc/die()
 	if(BP_IS_ROBOTIC(src))
@@ -117,23 +117,28 @@
 	if(istype(loc, /obj/item/device/mmi) || istype(loc, /mob/living/simple_animal/spider_core))
 		return TRUE
 
-	if(istype(loc, /obj/structure/closet/body_bag/cryobag) || istype(loc, /obj/structure/closet/crate/freezer) || istype(loc, /obj/item/storage/freezer))
+	var/list/stasis_types = list(
+		/obj/structure/closet/body_bag/cryobag,
+		/obj/structure/closet/crate/freezer,
+		/obj/item/storage/freezer,
+		/obj/machinery/smartfridge,
+		/obj/machinery/reagentgrinder/industrial/disgorger,
+		/obj/machinery/vending
+	)
+
+	if(is_type_in_list(loc, stasis_types))
 		return TRUE
 
 	return FALSE
 
 
 /obj/item/organ/Process()
-
 	if(loc != owner)
 		owner = null
 
 	//dead already, no need for more processing
 	if(status & ORGAN_DEAD)
-		return
-	// Don't process if we're in a freezer, an MMI or a stasis bag.or a freezer or something I dunno
-	if(is_in_stasis())
-		return
+		return PROCESS_KILL		// Can't bring dead organs back. Most can be printed for cheap.
 
 	//Process infections
 	if(BP_IS_ROBOTIC(src) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
@@ -141,12 +146,14 @@
 		return
 
 	if(!owner)
+		if(is_in_stasis())
+			return
 		if(reagents)
-			var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in reagents.reagent_list
-			if(B && prob(40))
+			if(prob(40))
 				reagents.remove_reagent("blood",0.1)
-				blood_splatter(src,B,1)
-		if(config.organs_decay) damage += rand(1,3)
+				blood_splatter(src, null, TRUE)
+		if(config.organs_decay)
+			damage += rand(1,3)
 		if(damage >= max_damage)
 			damage = max_damage
 		germ_level += rand(2,6)
@@ -154,7 +161,6 @@
 			germ_level += rand(2,6)
 		if(germ_level >= INFECTION_LEVEL_THREE)
 			die()
-
 	else if(owner && owner.bodytemperature >= 170)	//cryo stops germs from moving and doing their bad stuffs
 		//** Handle antibiotics and curing infections
 		handle_antibiotics()
@@ -319,6 +325,9 @@
 			admin_attack_log(user, owner, "Removed a vital organ ([src])", "Had a a vital organ ([src]) removed.", "removed a vital organ ([src]) from")
 		owner.death()
 
+	if(LAZYLEN(item_upgrades))
+		owner.mutation_index--
+
 	owner = null
 	rejecting = null
 
@@ -352,6 +361,9 @@
 		transplant_data["species"] =    transplant_blood.data["species"]
 		transplant_data["blood_type"] = transplant_blood.data["blood_type"]
 		transplant_data["blood_DNA"] =  transplant_blood.data["blood_DNA"]
+
+	if(LAZYLEN(item_upgrades))
+		owner.mutation_index++
 
 /obj/item/organ/proc/heal_damage(amount)
 	return

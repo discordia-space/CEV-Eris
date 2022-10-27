@@ -180,3 +180,21 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/closet/wardrobe = 2,
 					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))
+
+// This pack is meant to be PLACED ON MAP. Not in JUNK CODE, because it CONTAINS JUNK SPAWNER.
+// It meant to spawn any large structure, machine, or container. Contains things that should only be spawned in deep maint or dungeons.
+/obj/spawner/pack/deep_machine
+	name = "random deepmaint machine"
+	icon_state = "machine-orange"
+
+/obj/spawner/pack/deep_machine/item_to_spawn()
+	return pickweight(list(
+					/obj/spawner/structures/common = 28, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
+					/obj/spawner/closet/maintloot = 18, //That one is also important part of the maints
+					/obj/spawner/closet/tech = 6,
+					/obj/spawner/closet = 4,
+					/obj/spawner/closet/wardrobe = 2,
+					/obj/spawner/scrap = 12, //Our scrap pile. This is basically just a huge spawner.
+					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
+					/obj/spawner/aberrant_machine = 3
+				))

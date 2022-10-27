@@ -14,10 +14,12 @@
 	price_tag = 200
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 5)
-	zoom_factor = 0.5
+	zoom_factors = list(0.5)
 	var/obj/item/ammo_casing/crossbow/bolt/bolt
 	var/is_drawn
 	init_recoil = RIFLE_RECOIL(1)
+	damage_multiplier = 1
+	penetration_multiplier = 0
 	safety = FALSE
 	restrict_safety = TRUE
 
@@ -29,8 +31,8 @@
 		var/obj/item/ammo_casing/crossbow/bolt/B = I
 		bolt = new B.type()
 		bolt.amount = 1
-		if(B.amount > 1) 
-			B.amount-- 
+		if(B.amount > 1)
+			B.amount--
 			B.update_icon()
 		else
 			qdel(B)
@@ -50,3 +52,6 @@
 	if(bolt && cell.use(charge_cost))
 		. = new bolt.projectile_type
 		bolt = null
+
+/obj/item/gun/energy/poweredcrossbow/generate_guntags()
+	gun_tags = list(SLOT_BAYONET)

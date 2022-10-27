@@ -13,9 +13,9 @@
 	)
 
 	armor = list(
-		melee = 40,
-		bullet = 50,
-		energy = 55,
+		melee = 10,
+		bullet = 13,
+		energy = 14,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -74,9 +74,9 @@
 	slowdown = 0.2
 	w_class = ITEM_SIZE_NORMAL
 	armor = list(
-		melee = 40,
-		bullet = 50,
-		energy = 55,
+		melee = 10,
+		bullet = 13,
+		energy = 14,
 		bomb = 25,
 		bio = 100,
 		rad = 75

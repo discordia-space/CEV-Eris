@@ -1,7 +1,7 @@
 /mob/living/carbon/human/proc/get_suppressed_message()
 	var/static/list/messages = list(
 		"You try to do something, but your brain refuses to. ",
-		"Body is no more yours! The sentience from deep now reign.",
+		"Your body is no longer yours! The sentience from deep now reigns.",
 		"Your actions are drowning in your brain helplessly.",
 		"You have no power over your body!",
 		"The only thing under your control is your senses!"
@@ -183,9 +183,10 @@
 	return verb
 
 /mob/living/carbon/human/handle_speech_problems(var/message, var/verb)
-//	if(silent || (sdisabilities & MUTE))
-//		message = ""
-//		speech_problem_flag = 1
+	if(silent)
+		message = ""
+		speech_problem_flag = 1
+		to_chat(src, SPAN_WARNING("You can't speak!"))
 	if(istype(wear_mask, /obj/item/clothing/mask))
 		var/obj/item/clothing/mask/M = wear_mask
 		if(M.voicechange)

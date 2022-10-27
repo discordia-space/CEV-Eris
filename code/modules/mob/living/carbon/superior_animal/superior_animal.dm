@@ -54,7 +54,7 @@
 	var/insulation_divisor = 1 //applied to all sources of heat damage (not the environment)
 
 	var/deathmessage = "dies."
-	var/attacktext = "bitten"
+	var/list/attacktext = list("bitten", "chewed", "nibbled on")
 	var/attack_sound = 'sound/weapons/spiderlunge.ogg'
 	var/attack_sound_chance = 33
 	var/attack_sound_volume = 20
@@ -66,6 +66,7 @@
 	var/melee_damage_upper = 10
 	var/melee_sharp = FALSE //whether mob attacks have sharp property
 	var/melee_edge = FALSE //whether mob attacks have edge property
+	var/wound_mult = 1
 
 	var/list/objectsInView //memoization for getObjectsInView()
 	var/viewRange = 7 //how far the mob AI can see
@@ -344,6 +345,7 @@
 	handle_fire(environment.gas["oxygen"], loc)
 	handle_regular_hud_updates()
 	handle_cheap_chemicals_in_body()
+	resting = (resting && client) ? TRUE : FALSE
 	if(!(ticks_processed%3))
 		// handle_status_effects() this is handled here directly to save a bit on procedure calls
 		paralysis = max(paralysis-3,0)

@@ -18,6 +18,8 @@
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 800
+	damage_multiplier = 1
+	penetration_multiplier = 0.1
 	init_recoil = RIFLE_RECOIL(2.8)
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
 	saw_off = TRUE
@@ -54,10 +56,10 @@
 	name = "Kammerer frame"
 	desc = "A Kammerer shotgun frame. A militiaman's favorite."
 	icon_state = "frame_shotgun"
-	result = /obj/item/gun/projectile/shotgun/pump
-	grip = /obj/item/part/gun/grip/wood
-	mechanism = /obj/item/part/gun/mechanism/shotgun
-	barrel = /obj/item/part/gun/barrel/shotgun
+	resultvars = list(/obj/item/gun/projectile/shotgun/pump)
+	gripvars = list(/obj/item/part/gun/grip/wood)
+	mechanismvar = /obj/item/part/gun/mechanism/shotgun
+	barrelvars = list(/obj/item/part/gun/barrel/shotgun)
 
 /obj/item/gun/projectile/shotgun/pump/sawn
 	name = "sawn-off FS SG \"Kammerer\""
@@ -70,11 +72,12 @@
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 5)
+	proj_step_multiplier = 1.1 // becomes 1.2 with slugs, following bolt action sawn off behaviour
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet/scrap
 	price_tag = 350
-	damage_multiplier = 0.5
-	penetration_multiplier = 0.7
-	init_recoil = CARBINE_RECOIL(6)
+	damage_multiplier = 1
+	penetration_multiplier = -0.1
+	init_recoil = CARBINE_RECOIL(4) // 48 recoil -> 32, still huge
 	can_dual = TRUE
 	saw_off = FALSE
 	spawn_blacklisted = TRUE

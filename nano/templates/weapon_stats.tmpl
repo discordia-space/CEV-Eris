@@ -2,7 +2,7 @@
 	<h3>Specifications:</h3>
 	<div class="statusDisplay" style="overflow: auto;">
 		<h4>Weapon details:</h4>
-		
+
 		{{if data.damage_multiplier != 1}}
 			<div class="itemLabel">
 				Projectile damage multiplier:
@@ -11,7 +11,7 @@
 				 {{:data.damage_multiplier}}x
 			</div>
 		{{/if}}
-		
+
 		{{if data.pierce_multiplier != 0}}
 			<div class="itemLabel">
 				Projectile walls penetration:
@@ -20,32 +20,32 @@
 				{{:data.pierce_multiplier}} walls
 			</div>
 		{{/if}}
-		
+
 		{{if data.penetration_multiplier != 1}}
 			<div class="itemLabel">
-				Projectile AP multiplier: 
+				Projectile Armor Divisor:
 			</div>
 			<div class="itemContent">
-				{{:data.penetration_multiplier}}x
+				{{:data.penetration_multiplier}}
 			</div>
 		{{/if}}
-		
+
 		<div class="itemLabel">
-			Fire delay: 
+			Fire delay:
 		</div>
 			<div class="itemContent">
-				{{:data.fire_delay}} ms
+				{{:data.fire_delay < data.minimum_fire_delay ? data.minimum_fire_delay : data.fire_delay}} ms
 			</div>
-		
+
 		{{if data.burst > 1}}
 			<div class="itemLabel">
-				Rounds per burst: 
+				Rounds per burst:
 			</div>
 				<div class="itemContent">
 					{{:data.burst}} rounds
 				</div>
 			<div class="itemLabel">
-				Burst delay: 
+				Burst delay:
 			</div>
 				<div class="itemContent">
 					{{:data.burst_delay}} ms
@@ -80,25 +80,25 @@
 			Armor penetration:
 		</div>
 			<div class="itemContent">
-				{{:helper.displayBar(data.armor_penetration, 0, 100, '', data.armor_penetration + '%')}}
+				{{:helper.displayBar(data.armor_divisor, 0, 100, '', data.armor_divisor + '%')}}
 			</div>
-		
+
 		{{if data.caliber}}
 			<h4>Ammo details:</h4>
 				<div class="itemLabel">
-					Rifled caliber: 
+					Rifled caliber:
 				</div>
 					<div class="itemContent">
 						{{:data.caliber}}
 					</div>
 				<div class="itemLabel">
-					Ammo remaining: 
+					Ammo remaining:
 				</div>
 					<div class="itemContent">
 						{{:helper.displayBar(data.current_ammo, 0, data.max_shells, '', data.current_ammo)}}
 					</div>
 		{{/if}}
-		
+
 		{{if data.charge_cost}}
 			<h4>Power information:</h4>
 				{{if data.cell_charge}}
@@ -114,13 +114,13 @@
 					</div>
 				{{/if}}
 				<div class="itemLabel">
-					Power usage: 
-				</div>	
+					Power usage:
+				</div>
 					<div class="itemContent">
 						{{:data.charge_cost}}
 					</div>
 				<div class="itemLabel">
-					Shots remaining: 
+					Shots remaining:
 				</div>
 					<div class="itemContent">
 						{{:helper.displayBar(data.shots_remaining, 0, data.max_shots, '', data.shots_remaining)}}
@@ -133,24 +133,52 @@
 		<h3>Projectile Info:</h3>
 		<div class="statusDisplay" style="overflow: auto;">
 			<div class="itemLabel">
-				Name: 
+				Name:
 			</div>
 				<div class="itemContent">
 					{{:data.projectile_name}}
 				</div>
-			
+
 			<div class="itemLabel">
 				Overall damage:
 			</div>
 				<div class="itemContent">
 					{{:data.projectile_damage}}
 				</div>
-			
+
 			<div class="itemLabel">
 				Overall AP:
 			</div>
 				<div class="itemContent">
 					{{:data.projectile_AP}}
+				</div>
+
+			<div class="itemLabel">
+				Wound scale:
+			</div>
+				<div class="itemContent">
+					{{:data.projectile_WOUND}}
+				</div>
+
+			<div class="itemLabel">
+				Unarmoured Damage:
+			</div>
+				<div class="itemContent">
+					{{:data.unarmoured_damage}}
+				</div>
+
+			<div class="itemLabel">
+				Armoured (10) Damage:
+			</div>
+				<div class="itemContent">
+					{{:data.armoured_damage_10}}
+				</div>
+
+			<div class="itemLabel">
+				Armoured (15) Damage:
+			</div>
+				<div class="itemContent">
+					{{:data.armoured_damage_15}}
 				</div>
 
 			<div class="itemLabel">
@@ -162,7 +190,7 @@
 		</div>
 	</div>
 {{/if}}
-		
+
 {{if data.firemode_count}}
 	<div class="item">
 		<h3>Firemodes: {{:data.firemode_count}}</h3>
@@ -188,28 +216,29 @@
 									Name:{{:value.projectile_name}}<br>
 									Overall damage: {{:value.projectile_damage}}<br>
 									Overall AP: {{:value.projectile_AP}}<br>
+									Wound scale: {{:value.projectile_WOUND}}<br>
 								</div>
 						{{/if}}
 						{{if value.burst}}
 							<div class="itemLabel">
-							Rounds per burst: 
+							Rounds per burst:
 							</div>
 								<div class="itemContent">
 									{{:value.burst}}
 								</div>
-							
+
 						{{/if}}
 						{{if value.fire_delay}}
 							<div class="itemLabel">
-							Fire delay: 
+							Fire delay:
 							</div>
 								<div class="itemContent">
-									{{:value.fire_delay}} ms
+									{{:value.fire_delay < value.minimum_fire_delay ? value.minimum_fire_delay : value.fire_delay}} ms
 								</div>
 						{{/if}}
 						{{if value.move_delay}}
 							<div class="itemLabel">
-							Movement delay: 
+							Movement delay:
 							</div>
 								<div class="itemContent">
 									{{:value.move_delay}} ms

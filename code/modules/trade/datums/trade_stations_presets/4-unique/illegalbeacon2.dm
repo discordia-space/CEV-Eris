@@ -2,7 +2,10 @@
 	name_pool = list(
 		"NSTB \'Introversion\'" = "Null-Space Trade Beacon \'Introversion\'. The Trade Beacon is sending an automated message. \"Uplink established. Welcome, agent.\""
 	)
+	icon_states = list("htu_station", "station")
 	uid = "illegal2"
+	tree_x = 0.62
+	tree_y = 0.3
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = RARE_GOODS

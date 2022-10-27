@@ -20,7 +20,7 @@
 	style_coverage = COVERS_WHOLE_TORSO_AND_LIMBS
 	extra_allowed = list(/obj/item/extinguisher)
 	armor = list(
-		melee = 10,
+		melee = 2,
 		bullet = 0,
 		energy = 0,
 		bomb = 10,
@@ -50,7 +50,7 @@
 	armor = list(
 		melee = 0,
 		bullet = 0,
-		energy = 30,
+		energy = 7,
 		bomb = 0,
 		bio = 90,
 		rad = 100
@@ -75,7 +75,7 @@
 	armor = list(
 		melee = 0,
 		bullet = 0,
-		energy = 30,
+		energy = 7,
 		bomb = 0,
 		bio = 90,
 		rad = 100

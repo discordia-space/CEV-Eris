@@ -189,6 +189,7 @@
 	name = "magazine"
 	desc = "A magazine for some kind of gun."
 	icon_state = "place-holder-box"
+	description_info = "Can be reloaded quickly by clicking on a ammo-box of the corresponding caliber"
 	icon = 'icons/obj/ammo_mags.dmi'
 	flags = CONDUCT
 	slot_flags = SLOT_BELT

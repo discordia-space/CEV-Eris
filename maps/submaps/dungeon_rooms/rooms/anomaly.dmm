@@ -90,13 +90,9 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/crawler)
-"p" = (
-/obj/structure/inflatable/wall,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/crawler)
 "q" = (
 /obj/structure/inflatable/wall,
-/turf/space,
+/turf/simulated/floor/plating/under,
 /area/crawler)
 "r" = (
 /obj/structure/railing/grey{
@@ -198,10 +194,10 @@ a
 f
 j
 j
-p
-p
+q
+q
 u
-p
+q
 b
 "}
 (6,1,1) = {"
@@ -242,10 +238,10 @@ a
 f
 j
 j
-p
-p
+q
+q
 u
-p
+q
 b
 "}
 (10,1,1) = {"

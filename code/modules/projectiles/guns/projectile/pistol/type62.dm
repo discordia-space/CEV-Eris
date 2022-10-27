@@ -1,5 +1,5 @@
 /obj/item/gun/projectile/pistol/type_62
-	name = "OS Type 62 PDW .40 \"Nezha\"" //god forgive me, Name = Protection Deity
+	name = "OS Type 62 PDW .40 \"Nezha\"" //god forgive me i dont know chineese, Name = Protection Deity
 	desc = "A compact and powerful prototype PDW typically issued to high ranking officials and spies. Unwieldy, but extremely deadly, this is the perfect gun for self defense and urban warfare. Takes both pistol and SMG .40 magazines."
 	icon = 'icons/obj/guns/projectile/os/type_62.dmi'
 	icon_state = "type_62"
@@ -14,7 +14,7 @@
 	can_dual = TRUE
 	slot_flags = SLOT_BELT|SLOT_HOLSTER|SLOT_BACK
 	damage_multiplier = 1.1
-	penetration_multiplier = 1.0
+	penetration_multiplier = 0
 	init_recoil = HANDGUN_RECOIL(0.9)
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/hpistol_magout.ogg'

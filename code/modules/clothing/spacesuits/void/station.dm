@@ -11,9 +11,9 @@
 		slot_r_hand_str = "eng_helm",
 		)
 	armor = list(
-		melee = 35,
-		bullet = 30,
-		energy = 30,
+		melee = 8,
+		bullet = 7,
+		energy = 7,
 		bomb = 40,
 		bio = 100,
 		rad = 100
@@ -26,9 +26,9 @@
 	icon_state = "technosuit_old"
 	item_state = "technosuit_old"
 	armor = list(
-		melee = 35,
-		bullet = 30,
-		energy = 30,
+		melee = 8,
+		bullet = 7,
+		energy = 7,
 		bomb = 40,
 		bio = 100,
 		rad = 100
@@ -61,9 +61,9 @@
 		slot_r_hand_str = "eng_helm",
 		)
 	armor = list(
-		melee = 35,
-		bullet = 30,
-		energy = 30,
+		melee = 8,
+		bullet = 7,
+		energy = 7,
 		bomb = 40,
 		bio = 100,
 		rad = 100
@@ -100,9 +100,9 @@
 	icon_state = "technosuit"
 	item_state = "technosuit"
 	armor = list(
-		melee = 35,
-		bullet = 30,
-		energy = 30,
+		melee = 8,
+		bullet = 7,
+		energy = 7,
 		bomb = 40,
 		bio = 100,
 		rad = 100
@@ -134,9 +134,9 @@
 		slot_r_hand_str = "mining_helm",
 		)
 	armor = list(
-		melee = 50,
-		bullet = 40,
-		energy = 30,
+		melee = 13,
+		bullet = 10,
+		energy = 7,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -149,9 +149,9 @@
 	item_state = "miner_suit"
 	icon_state = "miner_suit"
 	armor = list(
-		melee = 50,
-		bullet = 40,
-		energy = 30,
+		melee = 13,
+		bullet = 10,
+		energy = 7,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -170,9 +170,9 @@
 		slot_r_hand_str = "medical_helm",
 		)
 	armor = list(
-		melee = 30,
-		bullet = 10,
-		energy = 40,
+		melee = 7,
+		bullet = 2,
+		energy = 10,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -190,9 +190,9 @@
 		/obj/item/roller
 	)
 	armor = list(
-		melee = 20,
-		bullet = 10,
-		energy = 35,
+		melee = 5,
+		bullet = 2,
+		energy = 8,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -217,9 +217,9 @@
 		)
 
 	armor = list(
-		melee = 35,
-		bullet = 50,
-		energy = 40,
+		melee = 8,
+		bullet = 13,
+		energy = 10,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -234,9 +234,9 @@
 	desc = "A bulky suit that protects against hazardous, low pressure environments. Sacrifices mobility for protection."
 	item_state = "ihvoidsuit"
 	armor = list(
-		melee = 35,
-		bullet = 50,
-		energy = 40,
+		melee = 8,
+		bullet = 13,
+		energy = 10,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -262,9 +262,9 @@
 		slot_r_hand_str = "atmos_helm",
 		)
 	armor = list(
-		melee = 30,
-		bullet = 10,
-		energy = 10,
+		melee = 7,
+		bullet = 2,
+		energy = 2,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -278,9 +278,9 @@
 	name = "atmos voidsuit"
 	item_state = "atmos_voidsuit"
 	armor = list(
-		melee = 30,
-		bullet = 10,
-		energy = 10,
+		melee = 7,
+		bullet = 2,
+		energy = 2,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -305,9 +305,9 @@
 	)
 	price_tag = 200
 	armor = list(
-		melee = 40,
-		bullet = 50,
-		energy = 60,
+		melee = 10,
+		bullet = 13,
+		energy = 15,
 		bomb = 40,
 		bio = 100,
 		rad = 75
@@ -357,9 +357,9 @@
 	MATERIAL_PLATINUM = 5
 	)
 	armor = list(
-		melee = 40,
-		bullet = 50,
-		energy = 60,
+		melee = 10,
+		bullet = 13,
+		energy = 15,
 		bomb = 40, //platinum price justifies bloated stats
 		bio = 100,
 		rad = 75
@@ -389,7 +389,7 @@
 			// redirect the projectile
 			P.redirect(new_x, new_y, curloc, user)
 
-			return PROJECTILE_CONTINUE // complete projectile permutation
+			return PROJECTILE_FORCE_MISS_SILENCED // complete projectile permutation
 
 /obj/item/clothing/head/space/void/riggedvoidsuit
 	name = "makeshift armored Helmet"
@@ -399,9 +399,9 @@
 	slowdown = 2
 
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
+		melee = 7,
+		bullet = 7,
+		energy = 7,
 		bomb = 25,
 		bio = 100,
 		rad = 5
@@ -416,9 +416,9 @@
 	item_state = "makeshift_void"
 	siemens_coefficient = 0.4
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
+		melee = 7,
+		bullet = 7,
+		energy = 7,
 		bomb = 25,
 		bio = 100,
 		rad = 5
@@ -437,9 +437,9 @@
 	action_button_name = "Toggle Helmet Light"
 	flags_inv = BLOCKHAIR
 	armor = list(
-		melee = 50,
-		bullet = 45,
-		energy = 45,
+		melee = 13,
+		bullet = 11,
+		energy = 12,
 		bomb = 30,
 		bio = 100,
 		rad = 50
@@ -457,9 +457,9 @@
 	slowdown = 0.3
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-	    melee = 50,
-		bullet = 45,
-		energy = 45,
+	    melee = 12,
+		bullet = 11,
+		energy = 12,
 		bomb = 30,
 		bio = 100,
 		rad = 50

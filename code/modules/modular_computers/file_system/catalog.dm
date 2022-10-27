@@ -105,7 +105,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 /datum/catalog/proc/remove_entry(var/datum/catalog_entry/entry)
 	entry_list.Remove(entry)
 
-/datum/catalog/ui_data(mob/user, ui_key = "main", var/search_value)
+/datum/catalog/nano_ui_data(mob/user, ui_key = "main", var/search_value)
 	var/list/data = list()
 	var/list/entries_data = list()
 	for(var/datum/catalog_entry/E in entry_list)
@@ -131,15 +131,15 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	if(findtext(thing_nature, value))
 		return TRUE
 
-/datum/catalog_entry/ui_data(mob/user, ui_key = "main")
+/datum/catalog_entry/nano_ui_data(mob/user, ui_key = "main")
 	var/list/data = list()
 	data["id"] = thing_type
 	data["thing_nature"] = thing_nature
 
 	return data
 
-// this used to get ui_data for list
-// usually this is shorter ui_data
+// this used to get nano_ui_data for list
+// usually this is shorter nano_ui_data
 /datum/catalog_entry/proc/catalog_ui_data(mob/user, ui_key = "main")
 	var/list/data = list()
 	data["id"] = thing_type
@@ -229,7 +229,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	if(recipes)
 		recipe_data = list()
 		for(var/datum/chemical_reaction/R in recipes)
-			recipe_data += list(R.ui_data())
+			recipe_data += list(R.nano_ui_data())
 	var/list/used_in = GLOB.chemical_reactions_list[V.id]
 	if(used_in)
 		for(var/datum/chemical_reaction/R in used_in)
@@ -249,7 +249,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	data["reagent_type"] = reagent_type
 	return data
 
-/datum/catalog_entry/reagent/ui_data(mob/user, ui_key = "main")
+/datum/catalog_entry/reagent/nano_ui_data(mob/user, ui_key = "main")
 	var/list/data = ..()
 
 	// SPECIFICTS
@@ -291,10 +291,10 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	title = V.name
 	description = V.desc
 	thing_nature = "Atom"
-	image_path = getAtomCacheFilename(V)
+	image_path = SSassets.transport.get_asset_url(V)
 
 
-/datum/catalog_entry/atom/ui_data(mob/user, ui_key = "main")
+/datum/catalog_entry/atom/nano_ui_data(mob/user, ui_key = "main")
 	var/list/data = ..()
 
 	// SPECIFICTS
@@ -358,9 +358,9 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	if(recipes)
 		recipe_data = list()
 		for(var/datum/chemical_reaction/R in recipes)
-			recipe_data += list(R.ui_data())
+			recipe_data += list(R.nano_ui_data())
 
-/datum/catalog_entry/drink/ui_data(mob/user, ui_key = "main")
+/datum/catalog_entry/drink/nano_ui_data(mob/user, ui_key = "main")
 	var/list/data = ..()
 
 	// SPECIFICTS

@@ -23,14 +23,14 @@
 	cocked_sound = 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
 	init_recoil = HMG_RECOIL(0.5)
-	damage_multiplier = 1.1
-	penetration_multiplier = 1.3
+	damage_multiplier = 1.4
+	penetration_multiplier = -0.2
 	burst_delay = 0.8
 	init_firemodes = list(
-		list(mode_name = "full auto",  mode_desc="800 rounds per minute", mode_type = /datum/firemode/automatic, fire_delay=0.8, icon="auto", damage_mult_add=-0.2, move_delay=5),
-		list(mode_name="short bursts", mode_desc="dakka", burst=5, fire_delay=null, damage_mult_add=-0.2, move_delay=5,  icon="burst"),
-		list(mode_name="long bursts", mode_desc="Dakka", burst=8, fire_delay=null, damage_mult_add=-0.2, move_delay=7,  icon="burst"),
-		list(mode_name="suppressing fire", mode_desc="DAKKA", burst=16, fire_delay=null, damage_mult_add=-0.2, move_delay=13,  icon="burst")
+		list(mode_name = "full auto",  mode_desc="800 rounds per minute", mode_type = /datum/firemode/automatic, fire_delay=2.4, icon="auto", move_delay=5),
+		list(mode_name="short bursts", mode_desc="dakka", burst=5, fire_delay=null, move_delay=5,  icon="burst"),
+		list(mode_name="long bursts", mode_desc="Dakka", burst=8, fire_delay=null, move_delay=7,  icon="burst"),
+		list(mode_name="suppressing fire", mode_desc="DAKKA", burst=16, fire_delay=null, move_delay=13,  icon="burst")
 		)
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
@@ -59,7 +59,7 @@
 	name = "Maxim frame"
 	desc = "A Maxim HMG frame. Whatever happens, we have got the Maxim gun and they have not."
 	icon_state = "frame_maxim"
-	result = /obj/item/gun/projectile/automatic/maxim
-	grip = /obj/item/part/gun/grip/excel
-	mechanism = /obj/item/part/gun/mechanism/machinegun
-	barrel = /obj/item/part/gun/barrel/lrifle
+	resultvars = list(/obj/item/gun/projectile/automatic/maxim)
+	gripvars = list(/obj/item/part/gun/grip/excel)
+	mechanismvar = /obj/item/part/gun/mechanism/machinegun
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle)

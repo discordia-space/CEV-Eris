@@ -335,7 +335,7 @@ var/list/rummage_sound = list(\
 			speaker_channel = 0
 
 	for(var/mob/listener as anything in target_mobs)
-		if(!listener.client || listener.stat)
+		if(listener.stat == UNCONSCIOUS || !listener.client)
 			continue
 
 		var/volume = text2num(listener.client.get_preference_value((is_local ? "TTS_VOLUME_LOCAL" : "TTS_VOLUME_RADIO")))

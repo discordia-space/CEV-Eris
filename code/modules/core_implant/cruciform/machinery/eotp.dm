@@ -4,9 +4,11 @@ var/global/obj/machinery/power/eotp/eotp
 
 /obj/machinery/power/eotp
 	name = "Eye of the Protector"
-	desc = "He observe, he protects."
+	desc = "He observes, he protects."
 	icon = 'icons/obj/eotp.dmi'
 	icon_state = "Eye_of_the_Protector"
+	description_info = "When miracles happen, group litanies can be commenced. Its power grows the more followers there are, and when heretics are purged"
+	description_antag = "Can be blown with C4."
 
 	density = TRUE
 	anchored = TRUE
@@ -16,7 +18,7 @@ var/global/obj/machinery/power/eotp/eotp
 	idle_power_usage = 30
 	active_power_usage = 2500
 
-	var/list/rewards = list(ARMAMENTS, ALERT, INSPIRATION, ODDITY, STAT_BUFF, MATERIAL_REWARD, ENERGY_REWARD)
+	var/list/rewards = list(ALERT, INSPIRATION, ODDITY, STAT_BUFF, MATERIAL_REWARD, ENERGY_REWARD)
 	var/list/current_rewards
 
 	var/list/materials = list(/obj/item/stack/material/gold = 60,
@@ -43,8 +45,8 @@ var/global/obj/machinery/power/eotp/eotp
 	var/last_rescan = 0
 	var/list/armaments = list()
 	var/armaments_points = 0
-	var/max_armaments_points = 100
-	var/armaments_rate = 100
+	var/max_armaments_points = 150
+	var/armaments_rate = 125
 	var/static/list/unneeded_armaments = list(/datum/armament/item/gun, /datum/armament/item, /datum/armament/item/disk)
 
 /obj/machinery/power/eotp/New()
@@ -105,6 +107,9 @@ var/global/obj/machinery/power/eotp/eotp
 
 	if(world.time >= (last_power_update + power_cooldown))
 		power += power_gaine
+		for(var/mob/living/carbon/human/believer in disciples)
+			if(believer.client && ishuman(believer))
+				power++ // 1 power per disciple
 		last_power_update = world.time
 
 	if(power >= max_power)
@@ -160,14 +165,14 @@ var/global/obj/machinery/power/eotp/eotp
 	else if(type_release == ODDITY)
 		var/oddity_reward = pick(subtypesof(/obj/item/oddity/nt))
 		var/obj/item/_item = new oddity_reward(get_turf(src))
-		visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [src]!"))
+		visible_message(SPAN_NOTICE("The [_item.name] appears out of bluespace near the [src]!"))
 		rewards -= ODDITY
 
 	else if(type_release == STAT_BUFF)
 		var/random_stat = pick(ALL_STATS)
 		for(var/mob/living/carbon/human/H in disciples)
 			if(H.stats)
-				to_chat(H, SPAN_NOTICE("You feel the gaze of [src] pierce your mind, body, and soul. You are enlightened, and gain deeper knowledge in [random_stat]; however, you can already feel this newfound knowledge beginning to slip away.."))
+				to_chat(H, SPAN_NOTICE("You feel the gaze of [src] pierce your mind, body, and soul. You are enlightened, and gain deeper knowledge in [random_stat]; however, you can already feel this newfound knowledge beginning to slip away..."))
 				H.stats.addTempStat(random_stat, stat_buff_power, 20 MINUTES, "Eye_of_the_Protector")
 
 	else if(type_release == MATERIAL_REWARD)
@@ -175,7 +180,7 @@ var/global/obj/machinery/power/eotp/eotp
 		var/reward_min_amount = materials[materials_reward]
 		var/obj/item/stack/material/_item = new materials_reward(get_turf(src))
 		_item.amount = rand(reward_min_amount, _item.max_amount)
-		visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [src]!"))
+		visible_message(SPAN_NOTICE("The [_item.name] appears out of bluespace near the [src]!"))
 
 	else if(type_release == ENERGY_REWARD)
 		for(var/mob/living/carbon/human/H in disciples)

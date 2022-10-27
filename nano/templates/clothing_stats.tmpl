@@ -8,7 +8,7 @@
 					{{:value.name}}
 				</div>
 				<div class="itemContent">
-				{{:helper.displayBar(value.value, 0, 100, value.value <= 25 ? 'bad' : value.value < 50 ? 'average' : 'good', value.value + '%')}}
+				{{:helper.displayBar(value.value, 0, 30, value.value <= 5 ? 'bad' : value.value < 10 ? 'average' : 'good', value.value)}}
 				</div>
 			{{/for}}
 			<br>
@@ -44,5 +44,10 @@
 		<div class="itemContent">
 			{{:helper.displayBar(data.equip_delay, 0, 100, data.equip_delay < 10 ? 'good' : data.equip_delay > 50 ? 'bad': 'average', data.equip_delay/10+' seconds')}}
 		</div>
+		<div class="itemLabel">
+			Style:
+		</div>
+		<div class="itemContent">
+			{{:helper.displayBar(data.info_style, -2, 2, data.info_style > 0 ? 'good' : data.info_style < 0 ? 'bad': 'average', data.info_style)}}
 	</div>
 </div>

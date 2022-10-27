@@ -21,8 +21,9 @@
 
 	var/blattedin_revives_left = 1 // how many times blattedin can get us back to life (as num for adminbus fun).
 
-	melee_damage_lower = 3
+	melee_damage_lower = 4
 	melee_damage_upper = 8
+	wound_mult = WOUNDING_WIDE
 
 	min_breath_required_type = 3
 	min_air_pressure = 15 //below this, brute damage is dealt

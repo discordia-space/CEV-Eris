@@ -5,6 +5,7 @@
 /obj/item/cell //Basic type of the cells, should't be used by itself
 	name = "power cell"
 	desc = "A rechargable electrochemical power cell."
+	description_antag = "Can be inserted with plasma to make it blow whenever power is being pulled."
 	icon = 'icons/obj/power_cells.dmi'
 	icon_state = "b_st"
 	item_state = "cell"

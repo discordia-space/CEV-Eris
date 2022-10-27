@@ -114,6 +114,18 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	style = STYLE_LOW
 
+/obj/item/clothing/under/wifebeater
+	name = "white tank top"
+	desc = "Beer stains not included."
+	icon_state = "sports"
+	item_state = "sports"
+
+/obj/item/clothing/under/camopants
+	name = "camo pants"
+	desc = "Beige camo pants and a turtleneck."
+	icon_state = "camopants"
+	item_state = "camopants"
+
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"
 	desc = "Are you not entertained? Is that not why you are here?"
@@ -144,7 +156,7 @@
 	desc = "An assistant's formal-wear. Why an assistant needs formal-wear is still unknown."
 	icon_state = "assistant_formal"
 	item_state = "gy_suit"
-	style = STYLE_HIGH
+	style = STYLE_LOW
 
 
 /obj/item/clothing/under/serviceoveralls
@@ -159,6 +171,13 @@
 	desc = "A bold but yet conservative outfit, red corduroys, navy blazer and a tie."
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
+	style = STYLE_LOW
+
+/obj/item/clothing/under/dress
+	name = "gray summerdress"
+	desc = "Gray summerdress only worn by the bravest individuals in the cold of space."
+	icon_state = "summerdress"
+	item_state = "summerdress"
 	style = STYLE_LOW
 
 /obj/item/clothing/under/dress/gray
@@ -276,6 +295,13 @@ obj/item/clothing/under/genericr
 	style = STYLE_HIGH
 	price_tag = 300
 
+/obj/item/clothing/under/tuxedo/cheap
+	name = "cheap tuxedo"
+	desc = "A somewhat stylish black tuxedo with a necktie. It's made out of cheap materials, and it really shows."
+	icon_state = "tuxedo"
+	style = STYLE_LOW
+	price_tag = 30
+
 //stylish vendor clothes
 /obj/item/clothing/under/white
 	name = "ivory white outfit"
@@ -350,13 +376,27 @@ obj/item/clothing/under/genericr
 	style = STYLE_HIGH
 	price_tag = 400
 	armor = list(
-		melee = 10,
-		bullet = 5,
-		energy = 5,
+		melee = 2,
+		bullet = 1,
+		energy = 1,
 		bomb = 0,
 		bio = 0,
 		rad = 0
 	)
+
+/obj/item/clothing/under/jamrock//Disco
+	name = "brown comfortable clothing"
+	desc = "A suit and pants that are so basic it's stylish."
+	icon_state = "jamrock_suit"
+	item_state = "jamrock_suit"
+	style = STYLE_HIGH
+
+/obj/item/clothing/under/aerostatic//Elysium
+	name = "dark comfortable clothing"
+	desc = "A suit and pants that are so basic it's stylish."
+	icon_state = "aerostatic_suit"
+	item_state = "aerostatic_suit"
+	style = STYLE_HIGH
 
 /obj/item/clothing/under/storage/tracksuit
 	name = "striped tracksuit"
@@ -374,9 +414,9 @@ obj/item/clothing/under/genericr
 	style = STYLE_HIGH
 	price_tag = 400
 	armor = list(
-		melee = 10,
-		bullet = 5,
-		energy = 5,
+		melee = 2,
+		bullet = 1,
+		energy = 1,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -391,9 +431,9 @@ obj/item/clothing/under/genericr
 	style = STYLE_HIGH
 	price_tag = 500
 	armor = list(
-		melee = 5,
-		bullet = 10,
-		energy = 10,
+		melee = 1,
+		bullet = 2,
+		energy = 2,
 		bomb = 0,
 		bio = 5,
 		rad = 5
@@ -427,13 +467,28 @@ obj/item/clothing/under/genericr
 	item_state = "tropicopuke"
 	style = STYLE_HIGH
 
+/obj/item/clothing/under/ntsec
+	name = "NanoTrasen Security Uniform"
+	desc = "A worn and dusty red security jumpsuit from the long defunct Nanotrasen Corporation. this uniform once signified authority, now its just an ugly set of clothes"
+	icon_state = "nanosec"
+	item_state = "nanosec"
+	siemens_coefficient = 0.8
+
+/obj/item/clothing/under/joker
+	name = "red suit with yellow waistcoat"
+	desc = "I mean, don\'t you have to be funny to be a comedian?"
+	icon_state = "joker"
+	item_state = "joker"
+	style = STYLE_HIGH
+	price_tag = 450
+
 //Adminbus versions with extremly high armor, should never spawn in game
 /obj/item/clothing/under/tuxedo/adminspawn
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 60,
-		bullet = 65,
-		energy = 60,
+		melee = 15,
+		bullet = 18,
+		energy = 15,
 		bomb = 75,
 		bio = 100,
 		rad = 30

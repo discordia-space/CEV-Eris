@@ -41,7 +41,7 @@
 	var/obj/machinery/camera/current_camera = null
 	var/current_network = null
 
-/datum/nano_module/camera_monitor/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, state = GLOB.default_state)
+/datum/nano_module/camera_monitor/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, state = GLOB.default_state)
 	var/list/data = host.initial_data()
 
 	data["current_camera"] = current_camera ? current_camera.nano_structure() : null
@@ -57,7 +57,7 @@
 	all_networks = modify_networks_list(all_networks)
 
 	data["networks"] = all_networks
-
+	data["map_scalar"] = MAP_SCALAR
 	if(current_network)
 		data["cameras"] = camera_repository.cameras_in_network(current_network)
 

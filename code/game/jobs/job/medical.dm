@@ -172,45 +172,6 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	icon_state = "player-green"
 	join_tag = /datum/job/chemist
 
-
-/datum/job/psychiatrist
-	title = "Moebius Psychiatrist"
-	flag = PSYCHIATRIST
-	department = DEPARTMENT_MEDICAL
-	department_flag = MEDICAL
-	faction = "CEV Eris"
-	total_positions = 1
-	spawn_positions = 1
-	wage = WAGE_PROFESSIONAL
-	supervisors = "the Moebius Biolab Officer"
-	selection_color = "#a8b69a"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
-
-	outfit_type = /decl/hierarchy/outfit/job/medical/psychiatrist
-
-	access = list(
-		access_moebius, access_medical_equip, access_morgue, access_psychiatrist
-	)
-
-	stat_modifiers = list(
-		STAT_BIO = 25,
-		STAT_COG = 15,
-		STAT_VIG = 5
-	)
-
-	perks = list(/datum/perk/selfmedicated)
-
-	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
-							/datum/computer_file/program/chem_catalog,
-							/datum/computer_file/program/camera_monitor)
-
-
-/obj/landmark/join/start/psychiatrist
-	name = "Moebius Psychiatrist"
-	icon_state = "player-green"
-	join_tag = /datum/job/psychiatrist
-
-
 /datum/job/paramedic
 	title = "Moebius Paramedic"
 	flag = PARAMEDIC
@@ -280,3 +241,59 @@ Remember that you are a noncombatant. Any weapons you carry should be used for b
 	icon_state = "player-green"
 	join_tag = /datum/job/paramedic
 
+/datum/job/bioengineer
+	title = "Moebius Bio-Engineer"
+	flag = BIOENGINEER
+	department = DEPARTMENT_MEDICAL
+	department_flag = MEDICAL
+	faction = "CEV Eris"
+	total_positions = 2
+	spawn_positions = 2
+	supervisors = "the Moebius Biolab Officer"
+	selection_color = "#a8b69a"
+	wage = WAGE_PROFESSIONAL
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+
+	outfit_type = /decl/hierarchy/outfit/job/medical/bioengineer
+
+	access = list(
+		access_moebius, access_medical_equip, access_maint_tunnels, access_morgue, access_surgery, access_chemistry, access_virology,
+		access_genetics
+	)
+
+	stat_modifiers = list(
+		STAT_BIO = 35,
+		STAT_COG = 20,
+		STAT_MEC = 15
+	)
+
+	perks = list(/datum/perk/selfmedicated)
+
+	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
+							/datum/computer_file/program/chem_catalog,
+							/datum/computer_file/program/camera_monitor)
+
+
+	description = "You are a visionary. Your work lies on the bleeding edge of the medical sciences.<br>\
+					Primarily, your goal is to perfect the human form via biological enhancement. \
+					Your medical expertise compels you to aid your fellow doctors, but only in the direst of circumstances.\
+					<br>\
+					As a bio-engineer, you have two avenues to explore: genetics and visceral research.<br>\
+					<br>\
+						-Genetics: Using the Chrysalis Pod and its associated tools to develop new and powerful mutations. <br>\
+						-Visceral Research: Creating new organs or upgrading existing ones using the organ fabricator.<br>\
+						<br>\
+					You have full access to Moebius medical facilities, and can utilize them if medical is short staffed. \
+					If there are dedicated doctors or chemists on staff, they take priority and their respective work areas belongs to them.<br>\
+					<br>\
+					Character Expectations:<br>\
+					You may be a doctor, but your research comes first.<br>\
+					While you have priority in Visceral Research and Genetics, you are expected to provide doctors with organ replacements if necessary."
+
+	loyalties = "As a medical researcher, your first loyalty is to progress. Your placement on the crew of the CEV Eris is the result of Moebius' desire for knowledge and your own morbid curiosity.<br>\
+Your second loyalty is to your career with Moebius, and to your coworkers in both branches of the corporation. Help out your scientific colleagues, and aid in their pursuit of knowledge."
+
+/obj/landmark/join/start/bioengineer
+	name = "Moebius Bio-Engineer"
+	icon_state = "player-green"
+	join_tag = /datum/job/bioengineer

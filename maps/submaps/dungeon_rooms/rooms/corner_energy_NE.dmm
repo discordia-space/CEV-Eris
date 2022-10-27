@@ -35,7 +35,7 @@
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/crawler)
 "i" = (
-/obj/structure/computerframe,
+/obj/structure/salvageable/os/computer,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/crawler)
 "j" = (
@@ -77,6 +77,9 @@
 	dir = 1
 	},
 /obj/machinery/light/floor,
+/obj/structure/sign/derelict1{
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "q" = (
@@ -148,6 +151,10 @@
 	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
+"F" = (
+/obj/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -187,7 +194,7 @@ a
 e
 l
 n
-t
+F
 t
 A
 k
