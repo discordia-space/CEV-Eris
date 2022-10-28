@@ -31,8 +31,10 @@
 //print a testing-mode debug message to world.log and world
 #ifdef TESTING
 #define testing(msg) log_world("## TESTING: [msg]"); to_chat(world, "## TESTING: [msg]")
+#define testing_variable(variable, value) (var variable = value)
 #else
 #define testing(msg)
+#define testing_variable(variable, value)
 #endif
 
 #if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
