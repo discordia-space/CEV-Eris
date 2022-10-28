@@ -22,7 +22,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/hpistol_cock.ogg'
 	damage_multiplier = 1.2
 	penetration_multiplier = 0.2
-	init_recoil = HANDGUN_RECOIL(0.6)
+	init_recoil = HANDGUN_RECOIL(0.8)
 	init_firemodes = list(
 		list(mode_name="semiauto", mode_desc="Fire almost as fast as you can pull the trigger", burst=1, fire_delay=1.2, move_delay=null, 				icon="semi"),
 		list(mode_name="2-round bursts", mode_desc="Not quite the Mozambique method", burst=2, fire_delay=0.2, move_delay=4,    	icon="burst")
