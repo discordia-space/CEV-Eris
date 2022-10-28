@@ -804,6 +804,7 @@ var/global/list/damage_icon_parts = list()
 			t_icon = get_gender_icon(gender, "belt")
 
 		standing = image(icon = t_icon, icon_state = t_state)
+		standing.color = belt.color
 
 		var/beltlayer = BELT_LAYER
 		var/otherlayer = BELT_LAYER_ALT

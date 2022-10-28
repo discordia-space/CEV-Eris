@@ -211,7 +211,7 @@
 	base_block_chance = 45
 	shield_difficulty = 40
 	item_flags = DRAG_AND_DROP_UNEQUIP
-	shield_integrity = 130
+	shield_integrity = 200
 	var/obj/item/storage/internal/container
 	var/storage_slots = 3
 	var/max_w_class = ITEM_SIZE_HUGE
@@ -272,7 +272,7 @@
 	base_block_chance = 35
 	shield_difficulty = 70
 	item_flags = DRAG_AND_DROP_UNEQUIP
-	shield_integrity = 110
+	shield_integrity = 180
 	var/obj/item/storage/internal/container
 	var/storage_slots = 1
 	var/max_w_class = ITEM_SIZE_HUGE

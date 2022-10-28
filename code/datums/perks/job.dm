@@ -73,7 +73,6 @@
 		holder.metabolism_effects.nsa_threshold_base /= 1.25
 	..()
 
-
 /datum/perk/vagabond
 	name = "Vagabond"
 	desc = "You're used to see the worst sight the world has to offer. Your mind feels more resistant. \
