@@ -52251,6 +52251,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
 	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
@@ -66091,8 +66096,13 @@
 	name = "Brig";
 	req_access = list(63)
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/steel/cargo,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "ddu" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -101996,8 +102006,13 @@
 "gSB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "gTF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -102008,7 +102023,7 @@
 "gUN" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "gWZ" = (
 /obj/structure/table/woodentable,
 /obj/machinery/firealarm{
@@ -102885,7 +102900,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "iUE" = (
 /obj/structure/cable/green{
 	d2 = 2;
@@ -103663,7 +103678,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "kJk" = (
 /obj/landmark/join/start/hydro,
 /turf/simulated/floor/wood,
@@ -105097,13 +105112,13 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "orp" = (
 /obj/structure/table/reinforced{
 	pixel_x = -5
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "oup" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -105369,7 +105384,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "oOF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -106124,7 +106139,7 @@
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "qFv" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/medical{
@@ -106394,7 +106409,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "rqg" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/item/device/radio/intercom{
@@ -106411,6 +106426,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/crew_quarters/fitness)
+"rsQ" = (
+/turf/simulated/wall/r_wall,
+/area/eris/maintenance/substation/bridge)
 "rtb" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
@@ -106461,11 +106479,11 @@
 "rEq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/wall,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "rFs" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/wall,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "rGA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -106510,6 +106528,15 @@
 /obj/machinery/light,
 /turf/simulated/floor/dirt,
 /area/eris/crew_quarters/hydroponics)
+"rKF" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/eris/maintenance/substation/bridge)
 "rKM" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -106691,12 +106718,6 @@
 /obj/machinery/optable/altar,
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/chapelritualroom)
-"sfN" = (
-/obj/machinery/door/airlock{
-	name = "Toilet"
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/side/bridgehallway)
 "sgS" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/grass,
@@ -106898,7 +106919,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "syp" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/black,
 /obj/machinery/meter,
@@ -107276,7 +107297,7 @@
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "tiH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -107443,7 +107464,7 @@
 	name = "Toilet"
 	},
 /turf/simulated/floor/tiled/steel/cargo,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "tzd" = (
 /obj/structure/table/woodentable,
 /obj/spawner/booze/low_chance,
@@ -107500,7 +107521,7 @@
 /obj/structure/table/standard,
 /obj/item/soap/deluxe,
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "tCG" = (
 /obj/machinery/camera/network/engineering,
 /turf/simulated/floor/tiled/steel/gray_platform,
@@ -107518,8 +107539,13 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
 "tFb" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "tHD" = (
 /obj/machinery/smartfridge/drying_rack,
 /turf/simulated/floor/wood,
@@ -107595,8 +107621,21 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "tRa" = (
-/turf/simulated/wall,
-/area/space)
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass_command{
+	name = "Bridge";
+	req_access = list(19)
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "CargoBooth2Lockdown";
+	layer = 2.6;
+	name = "Bridge Entrance Lockdown";
+	opacity = 0
+	},
+/turf/simulated/floor/tiled/steel/cargo,
+/area/eris/hallway/side/bridgehallway)
 "tSk" = (
 /obj/machinery/vending/cigarette,
 /turf/simulated/floor/tiled/steel/bar_light,
@@ -107896,7 +107935,7 @@
 "uwB" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/eris/hallway/side/bridgehallway)
+/area/eris/maintenance/substation/bridge)
 "uwE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -108283,8 +108322,12 @@
 	name = "East APC";
 	pixel_x = 28
 	},
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "vpg" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 5
@@ -108329,6 +108372,16 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
+"vvp" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/eris/maintenance/substation/bridge)
 "vwG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -109122,7 +109175,7 @@
 "xus" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/steel/bluecorner,
-/area/space)
+/area/eris/maintenance/substation/bridge)
 "xuA" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -253174,8 +253227,8 @@ deJ
 dfg
 eMk
 bXj
-bXD
-bXD
+tRa
+tRa
 bXj
 dhk
 cYm
@@ -253780,15 +253833,15 @@ abF
 abF
 abF
 bXj
-bXj
-bXj
-bXj
-sfN
-bXj
+rsQ
+rsQ
+rsQ
+txy
+rsQ
 uwB
 uwB
 ddt
-aae
+rsQ
 diM
 dha
 dig
@@ -253982,14 +254035,14 @@ abF
 abF
 aaa
 aaa
-aae
+rsQ
 oMF
 txy
 gUN
 rEq
 iUy
 orp
-gUN
+rKF
 rpP
 goo
 bAt
@@ -254184,14 +254237,14 @@ aaa
 aaa
 aaa
 aaa
-aae
-tRa
-tRa
+rsQ
+dek
+dek
 oqi
-tRa
+dek
 tiD
 gSB
-gSB
+vvp
 kIN
 diM
 bAu
@@ -254386,7 +254439,7 @@ aaa
 aaa
 aaa
 aaa
-aae
+rsQ
 oMF
 txy
 xus
@@ -254588,15 +254641,15 @@ aaa
 aaa
 aaa
 aaa
-aae
-aae
-aae
+rsQ
+rsQ
+rsQ
 tCn
-aae
-aae
+rsQ
+rsQ
 vpd
-aae
-aae
+rsQ
+rsQ
 diM
 dgS
 did
@@ -254792,12 +254845,12 @@ aaa
 abF
 abF
 abF
-aae
-aae
-aae
-aae
-aae
-aae
+rsQ
+rsQ
+rsQ
+rsQ
+rsQ
+rsQ
 aaa
 dey
 bAw
