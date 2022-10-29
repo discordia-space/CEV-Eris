@@ -1090,7 +1090,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "maint_hatch_ihscommander";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -2634,7 +2633,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "maint_hatch_ihsinter";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -2985,7 +2983,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "maint_hatch_maintpost";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -8238,6 +8235,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "CargoTotalLockdown";
 	layer = 2.6;
@@ -8673,7 +8671,6 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 4;
 	id = "maint_hatch_atmos";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -19026,7 +19023,6 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "maint_hatch_escapecor1";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -20354,7 +20350,6 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "maint_hatch_rnd";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -22852,10 +22847,17 @@
 "bcJ" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
-	dir = 4;
 	id = "maint_hatch_medbay_rec";
 	layer = 3.3;
 	name = "Maintenance Hatch"
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
 	},
 /turf/simulated/floor/plating,
 /area/eris/medical/medbreak)
@@ -23596,7 +23598,6 @@
 /obj/machinery/button/remote/blast_door{
 	id = "maint_hatch_medbay_rec";
 	name = "Maintenance Hatch Control";
-	pixel_x = 0;
 	pixel_y = 24;
 	req_access = null
 	},
@@ -24078,10 +24079,17 @@
 	},
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
-	dir = 4;
 	id = "maint_hatch_medbay_rec";
 	layer = 3.3;
 	name = "Maintenance Hatch"
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
 	},
 /turf/simulated/floor/plating,
 /area/eris/medical/medbreak)
@@ -26515,6 +26523,7 @@
 	req_access = list(55)
 	},
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "xenobio4";
 	name = "containment blast door"
 	},
@@ -26545,6 +26554,7 @@
 	req_access = list(55)
 	},
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "xenobio2";
 	name = "containment blast door"
 	},
@@ -27135,7 +27145,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "maint_hatch_evidstor";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -27798,7 +27807,6 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "maint_hatch_atmos2";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -28697,14 +28705,6 @@
 	name = "Mech Bay";
 	req_access = list(29)
 	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "ScienceTotalLockdown";
-	layer = 2.6;
-	name = "Science Total Lockdown";
-	opacity = 0
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -28712,6 +28712,15 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "ScienceTotalLockdown";
+	layer = 2.6;
+	name = "Science Total Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/rnd/lab)
 "bpX" = (
@@ -28811,6 +28820,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "ScienceTotalLockdown";
 	layer = 2.6;
@@ -28874,6 +28884,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "ScienceTotalLockdown";
 	layer = 2.6;
@@ -29172,16 +29183,17 @@
 	name = "Pod Bay";
 	req_access = list(5)
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "ScienceTotalLockdown";
 	layer = 2.6;
 	name = "Science Total Lockdown";
 	opacity = 0
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/podbay)
 "brk" = (
@@ -29925,6 +29937,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 2;
 	icon_state = "pdoor0";
 	id = "CargoTotalLockdown";
 	layer = 2.6;
@@ -30753,6 +30766,7 @@
 /area/eris/maintenance/junk)
 "bvD" = (
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "RDWindowsLockdown";
 	layer = 2.5;
 	name = "RND Windows Blast Door";
@@ -30767,6 +30781,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "RDWindowsLockdown";
 	layer = 2.5;
 	name = "RND Windows Blast Door";
@@ -30825,6 +30840,7 @@
 	req_access = list(5)
 	},
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "RDDoorLockdown";
 	layer = 2.6;
 	name = "RND Main Door Blast Door";
@@ -31968,15 +31984,16 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section2)
 "byj" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "RDWindowsLockdown";
 	layer = 2.5;
 	name = "RND Windows Blast Door";
 	open_layer = 2.5
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating,
 /area/eris/rnd/lab)
 "byk" = (
@@ -32671,7 +32688,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 4;
 	id = "maint_hatch_cargo_bay";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -32919,9 +32935,6 @@
 	name = "North APC";
 	pixel_y = 28
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -32929,6 +32942,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel,
 /area/turret_protected/ai_upload_foyer{
 	name = "AI Upload Foyer"
@@ -32951,9 +32965,6 @@
 	name = "AI Upload Foyer"
 	})
 "bAv" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -32963,6 +32974,7 @@
 	name = "AI Chamber turret control";
 	pixel_y = 30
 	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/floor/tiled/steel,
 /area/turret_protected/ai_upload_foyer{
 	name = "AI Upload Foyer"
@@ -34428,6 +34440,7 @@
 	req_access = list(55)
 	},
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "xenobio5";
 	name = "containment blast door"
 	},
@@ -34441,6 +34454,7 @@
 	req_access = list(55)
 	},
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "xenobio3";
 	name = "containment blast door"
 	},
@@ -34460,6 +34474,7 @@
 	req_access = list(55)
 	},
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "xenobio1";
 	name = "containment blast door"
 	},
@@ -36130,6 +36145,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "CargoTotalLockdown";
 	layer = 2.6;
@@ -37779,6 +37795,7 @@
 /area/eris/maintenance/section4deck4port)
 "bLs" = (
 /obj/machinery/door/blast/regular{
+	dir = 1;
 	id = "AICore";
 	name = "AI core maintenance hatch"
 	},
@@ -41513,12 +41530,10 @@
 "bUr" = (
 /obj/structure/disposalpipe/up{
 	dir = 4;
-	icon_state = "pipe-u";
 	tag = "icon-pipe-u (EAST)"
 	},
 /obj/machinery/atmospherics/pipe/zpipe/up{
 	dir = 4;
-	icon_state = "up";
 	tag = "icon-up (EAST)"
 	},
 /turf/simulated/floor/plating/under,
@@ -41723,9 +41738,7 @@
 	dir = 4
 	},
 /obj/structure/railing{
-	anchored = 1;
 	dir = 4;
-	icon_state = "railing0";
 	tag = "icon-railing0 (EAST)"
 	},
 /turf/simulated/floor/plating/under,
@@ -42833,15 +42846,16 @@
 /area/eris/security/inspectors_office)
 "bXO" = (
 /obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "BrigInternalLobbyLockdown";
 	layer = 2.6;
 	name = "Brig Internal Lobby Lockdown";
 	opacity = 0
 	},
-/obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/security/lobby)
 "bXP" = (
@@ -42864,18 +42878,19 @@
 /obj/machinery/door/airlock/glass_security{
 	name = "Security Lobby"
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "BrigInternalLobbyLockdown";
 	layer = 2.6;
 	name = "Brig Internal Lobby Lockdown";
 	opacity = 0
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/security/lobby)
@@ -42886,6 +42901,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "BrigInternalLobbyLockdown";
 	layer = 2.6;
@@ -42909,15 +42925,16 @@
 /area/eris/security/lobby)
 "bXV" = (
 /obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "BrigExternalLobbyLockdown";
 	layer = 2.6;
 	name = "Brig External Lobby Lockdown";
 	opacity = 0
 	},
-/obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/hallway/main/section1)
 "bXW" = (
@@ -43341,7 +43358,6 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "maint_hatch_rd";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -44502,16 +44518,16 @@
 	},
 /area/eris/hallway/main/section2)
 "ccg" = (
+/obj/effect/window_lwall_spawn/plasma,
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 4;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "SupermatterPort";
 	layer = 2.7;
 	name = "Reactor Blast Door";
 	opacity = 0
 	},
-/obj/effect/window_lwall_spawn/plasma,
 /turf/simulated/floor/plating,
 /area/eris/engineering/engine_room)
 "ccj" = (
@@ -44808,17 +44824,18 @@
 /area/eris/command/fo)
 "ccT" = (
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance_medical{
+	name = "Operating Maintenance";
+	req_access = list(45)
+	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 2;
 	icon_state = "pdoor0";
 	id = "MedbayTotalLockdown";
 	layer = 2.6;
 	name = "Medbay Total Lockdown";
 	opacity = 0
-	},
-/obj/machinery/door/airlock/maintenance_medical{
-	name = "Operating Maintenance";
-	req_access = list(45)
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/medical/surgery)
@@ -45016,7 +45033,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/railing{
 	dir = 1;
-	icon_state = "railing0";
 	tag = "icon-railing0 (NORTH)"
 	},
 /obj/structure/railing{
@@ -45107,7 +45123,6 @@
 	},
 /obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "psych_front";
 	name = "Psychology Shutters"
 	},
@@ -45131,7 +45146,6 @@
 	},
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "genetics_back";
 	name = "Research Desk Shutters"
 	},
@@ -45229,7 +45243,6 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "maint_hatch_rndservers";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -45359,6 +45372,14 @@
 "cei" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/medical/surgery)
 "cej" = (
@@ -46326,14 +46347,6 @@
 /area/eris/quartermaster/hangarsupply)
 "cgg" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "MedbayTotalLockdown";
-	layer = 2.6;
-	name = "Medbay Total Lockdown";
-	opacity = 0
-	},
 /obj/machinery/door/airlock/maintenance_medical{
 	name = "Operating Maintenance";
 	req_access = list(45)
@@ -46345,6 +46358,15 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 2;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/medical/surgery)
 "cgh" = (
@@ -46922,6 +46944,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 2;
 	icon_state = "pdoor0";
 	id = "MedbayTotalLockdown";
 	layer = 2.6;
@@ -46940,6 +46963,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 2;
 	icon_state = "pdoor0";
 	id = "MedbayTotalLockdown";
 	layer = 2.6;
@@ -48550,6 +48574,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 2;
 	icon_state = "pdoor0";
 	id = "MedbayTotalLockdown";
 	layer = 2.6;
@@ -48579,6 +48604,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 2;
 	icon_state = "pdoor0";
 	id = "MedbayTotalLockdown";
 	layer = 2.6;
@@ -48898,6 +48924,7 @@
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/regular/open{
+	dir = 2;
 	id = "MEOPrivacyShutters";
 	name = "MEO Privacy Shutters"
 	},
@@ -48994,9 +49021,7 @@
 	},
 /obj/machinery/camera/network/second_section,
 /obj/structure/railing{
-	anchored = 1;
 	dir = 4;
-	icon_state = "railing0";
 	tag = "icon-railing0 (EAST)"
 	},
 /turf/simulated/floor/plating/under,
@@ -50137,7 +50162,7 @@
 "cpN" = (
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 4;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "EngineBlast";
 	name = "Engine Monitoring Room Blast Doors";
@@ -50602,6 +50627,13 @@
 "crb" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	icon_state = "shutter0";
+	id = "RDWindowsLockdown";
+	name = "RND Windows Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/rnd/lab)
 "crc" = (
@@ -50809,7 +50841,6 @@
 "cry" = (
 /obj/machinery/atmospherics/pipe/zpipe/up{
 	dir = 4;
-	icon_state = "up";
 	tag = "icon-up (EAST)"
 	},
 /turf/simulated/floor/plating/under,
@@ -51884,13 +51915,13 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/hallway/side/bridgehallway)
 "cuy" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/hallway/side/bridgehallway)
@@ -52523,6 +52554,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 2;
 	icon_state = "pdoor0";
 	id = "CargoTotalLockdown";
 	layer = 2.6;
@@ -54056,7 +54088,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "maint_hatch_gravgen";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -54236,6 +54267,7 @@
 	name = "Conference Room"
 	},
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "ClubTotalLockdown";
 	layer = 2.6;
 	name = "Club Total Lockdown"
@@ -59802,11 +59834,12 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/engineering/engeva)
 "cOi" = (
+/obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "xenobio5";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/rnd/xenobiology)
 "cOj" = (
@@ -59942,6 +59975,7 @@
 "cOA" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "xenobio3";
 	name = "containment blast door"
 	},
@@ -59984,6 +60018,7 @@
 "cOF" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "xenobio5";
 	name = "containment blast door"
 	},
@@ -59991,11 +60026,12 @@
 /turf/simulated/floor/plating,
 /area/eris/rnd/xenobiology)
 "cOG" = (
+/obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "xenobio1";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/rnd/xenobiology)
 "cOH" = (
@@ -60178,11 +60214,12 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
 "cPg" = (
+/obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "xenobio3";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/rnd/xenobiology)
 "cPh" = (
@@ -60558,6 +60595,7 @@
 "cQh" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "xenobio1";
 	name = "containment blast door"
 	},
@@ -60612,7 +60650,6 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
-	dir = 4;
 	id = "maint_arivalpost";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -60786,6 +60823,7 @@
 	name = "Test Chamber"
 	},
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "genlab";
 	name = "containment blast door"
 	},
@@ -60913,7 +60951,6 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
-	dir = 4;
 	id = "maint_arivalpost";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -60929,11 +60966,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/eris/command/meeting_room)
 "cRc" = (
+/obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/regular/open{
+	dir = 2;
 	id = "xenobio6";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/rnd/xenobiology)
 "cRd" = (
@@ -61086,6 +61124,7 @@
 "cRv" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "xenobio4";
 	name = "containment blast door"
 	},
@@ -61366,6 +61405,7 @@
 "cSn" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular/open{
+	dir = 2;
 	id = "xenobio6";
 	name = "containment blast door"
 	},
@@ -61652,11 +61692,12 @@
 /turf/simulated/open,
 /area/eris/maintenance/section4deck3port)
 "cSX" = (
+/obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "xenobio2";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/rnd/xenobiology)
 "cSY" = (
@@ -61788,11 +61829,12 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/techstorage)
 "cTr" = (
+/obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "xenobio4";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/rnd/xenobiology)
 "cTs" = (
@@ -61848,6 +61890,7 @@
 "cTx" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "xenobio2";
 	name = "containment blast door"
 	},
@@ -62240,6 +62283,7 @@
 "cUz" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "genlab";
 	name = "containment blast door"
 	},
@@ -62247,11 +62291,12 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section2deck1starboard)
 "cUA" = (
+/obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "genlab";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section2deck1starboard)
 "cUB" = (
@@ -65439,7 +65484,6 @@
 	},
 /obj/machinery/door/blast/shutters{
 	density = 0;
-	dir = 4;
 	icon_state = "shutter0";
 	id = "chemcounter";
 	name = "Pharmacy Counter Shutters";
@@ -65756,7 +65800,6 @@
 	},
 /obj/machinery/door/blast/shutters{
 	density = 0;
-	dir = 4;
 	icon_state = "shutter0";
 	id = "chemcounter";
 	name = "Pharmacy Counter Shutters";
@@ -66042,9 +66085,13 @@
 /turf/simulated/floor/plating,
 /area/eris/hallway/side/atmosphericshallway)
 "ddt" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/obj/machinery/door/airlock/glass_security{
+	id_tag = "BrigFoyer";
+	layer = 2.8;
+	name = "Brig";
+	req_access = list(63)
+	},
+/turf/simulated/floor/tiled/steel/cargo,
 /area/space)
 "ddu" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -69696,7 +69743,6 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "maint_hatch_engbedroom";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -72156,6 +72202,7 @@
 	req_access = list(55)
 	},
 /obj/machinery/door/blast/regular/open{
+	dir = 2;
 	id = "xenobio6";
 	name = "containment blast door"
 	},
@@ -72441,7 +72488,6 @@
 	},
 /obj/machinery/door/blast/shutters{
 	density = 0;
-	dir = 4;
 	icon_state = "shutter0";
 	id = "chemcounter";
 	name = "Pharmacy Counter Shutters";
@@ -73194,6 +73240,15 @@
 	name = "Maintenance Hatch"
 	},
 /obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "ScienceTotalLockdown";
+	layer = 2.6;
+	name = "Science Total Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/rnd/research)
 "dtu" = (
@@ -73684,15 +73739,12 @@
 "duE" = (
 /obj/structure/table/standard,
 /obj/item/storage/belt/medical{
-	pixel_x = 0;
 	pixel_y = 2
 	},
 /obj/item/storage/belt/medical{
-	pixel_x = 0;
 	pixel_y = 2
 	},
 /obj/item/storage/belt/medical{
-	pixel_x = 0;
 	pixel_y = 2
 	},
 /obj/item/clothing/accessory/stethoscope,
@@ -74577,6 +74629,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 2;
 	icon_state = "pdoor0";
 	id = "CargoBooth1Lockdown";
 	layer = 2.6;
@@ -75107,6 +75160,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "ScienceTotalLockdown";
+	layer = 2.6;
+	name = "Science Total Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/rnd/docking)
 "dyd" = (
@@ -75254,6 +75315,14 @@
 	name = "interior access button";
 	pixel_y = -28;
 	req_one_access = list(13,65)
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "ScienceTotalLockdown";
+	layer = 2.6;
+	name = "Science Total Lockdown";
+	opacity = 0
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/rnd/docking)
@@ -75404,6 +75473,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 2;
 	icon_state = "pdoor0";
 	id = "CargoBooth2Lockdown";
 	layer = 2.6;
@@ -76061,7 +76131,6 @@
 "dAm" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 1;
-	icon_state = "comfychair_preview";
 	tag = "icon-comfychair (NORTH)"
 	},
 /obj/landmark/join/start/doctor,
@@ -76086,7 +76155,6 @@
 	},
 /obj/structure/railing{
 	dir = 1;
-	icon_state = "railing0";
 	tag = "icon-railing0 (NORTH)"
 	},
 /turf/simulated/floor/plating/under,
@@ -76123,9 +76191,7 @@
 	dir = 4
 	},
 /obj/structure/railing{
-	anchored = 1;
 	dir = 4;
-	icon_state = "railing0";
 	tag = "icon-railing0 (EAST)"
 	},
 /obj/spawner/traps/wire_splicing/low_chance,
@@ -76139,9 +76205,7 @@
 	dir = 4
 	},
 /obj/structure/railing{
-	anchored = 1;
 	dir = 4;
-	icon_state = "railing0";
 	tag = "icon-railing0 (EAST)"
 	},
 /obj/spawner/junk/low_chance,
@@ -76234,7 +76298,7 @@
 /area/eris/maintenance/section2deck1port)
 "dAI" = (
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/reception)
 "dAJ" = (
 /obj/spawner/scrap/dense/low_chance,
@@ -76794,7 +76858,6 @@
 	},
 /obj/machinery/door/blast/shutters{
 	density = 0;
-	dir = 4;
 	icon_state = "shutter0";
 	id = "chemcounter";
 	name = "Pharmacy Counter Shutters";
@@ -77189,15 +77252,14 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/reception)
 "dCO" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/medbreak)
@@ -80126,17 +80188,18 @@
 /area/eris/engineering/gravity_generator)
 "dJz" = (
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance_engineering{
+	name = "Engineering Maintenance";
+	req_access = list(10)
+	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 2;
 	icon_state = "pdoor0";
 	id = "EngineeringTotalLockdown";
 	layer = 2.6;
 	name = "Engineering Total Lockdown";
 	opacity = 0
-	},
-/obj/machinery/door/airlock/maintenance_engineering{
-	name = "Engineering Maintenance";
-	req_access = list(10)
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/maintenance/section4deck2port)
@@ -80454,17 +80517,18 @@
 /area/eris/hallway/main/section4)
 "dKk" = (
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass_engineering{
+	name = "Engineering";
+	req_access = list(10)
+	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 2;
 	icon_state = "pdoor0";
 	id = "EngineeringTotalLockdown";
 	layer = 2.6;
 	name = "Engineering Total Lockdown";
 	opacity = 0
-	},
-/obj/machinery/door/airlock/glass_engineering{
-	name = "Engineering";
-	req_access = list(10)
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/engineering/foyer)
@@ -80534,7 +80598,6 @@
 /obj/structure/railing,
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "EngineBlast";
 	name = "Engine Monitoring Room Blast Doors";
@@ -80989,7 +81052,6 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "EngineBlast";
 	name = "Engine Monitoring Room Blast Doors";
@@ -81007,7 +81069,6 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "EngineBlast";
 	name = "Engine Monitoring Room Blast Doors";
@@ -81021,7 +81082,6 @@
 "dLy" = (
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "EngineBlast";
 	name = "Engine Monitoring Room Blast Doors";
@@ -81285,7 +81345,6 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "EngineBlast";
 	name = "Engine Monitoring Room Blast Doors";
@@ -81298,7 +81357,6 @@
 /obj/structure/catwalk,
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "EngineBlast";
 	name = "Engine Monitoring Room Blast Doors";
@@ -81691,7 +81749,6 @@
 /obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/shutters{
 	density = 0;
-	dir = 4;
 	icon_state = "shutter0";
 	id = "chemcounter";
 	name = "Pharmacy Counter Shutters";
@@ -82579,7 +82636,6 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "EngineBlast";
 	name = "Engine Monitoring Room Blast Doors";
@@ -82756,7 +82812,6 @@
 "dPJ" = (
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "EngineBlast";
 	name = "Engine Monitoring Room Blast Doors";
@@ -83170,7 +83225,6 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "EngineBlast";
 	name = "Engine Monitoring Room Blast Doors";
@@ -86213,6 +86267,15 @@
 "dYl" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 2;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/medical/genetics)
 "dYn" = (
@@ -87286,6 +87349,14 @@
 "eaU" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section2deck1port)
 "eaV" = (
@@ -87832,6 +87903,14 @@
 "ecx" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "ScienceTotalLockdown";
+	layer = 2.6;
+	name = "Science Total Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/rnd/docking)
 "ecy" = (
@@ -89447,6 +89526,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "ScienceTotalLockdown";
 	layer = 2.6;
@@ -89506,12 +89586,19 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "maint_hatch_chemstor";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
 /obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/medical/chemstor)
 "egt" = (
@@ -94694,7 +94781,7 @@
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular/open{
-	dir = 4;
+	dir = 2;
 	id = "ClubTotalLockdown";
 	layer = 2.6;
 	name = "Club Total Lockdown"
@@ -94975,6 +95062,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "MedbayTotalLockdown";
 	layer = 2.6;
@@ -95226,7 +95314,6 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "maint_hatch_medbayisol";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -98560,14 +98647,11 @@
 /area/eris/medical/paramedic)
 "eBq" = (
 /obj/structure/railing{
-	anchored = 1;
 	dir = 4;
-	icon_state = "railing0";
 	tag = "icon-railing0 (EAST)"
 	},
 /obj/structure/railing{
 	dir = 1;
-	icon_state = "railing0";
 	tag = "icon-railing0 (NORTH)"
 	},
 /turf/simulated/floor/plating/under,
@@ -101137,6 +101221,29 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
+"fbz" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
+/turf/simulated/floor/plating,
+/area/eris/maintenance/section2deck1port)
 "fbD" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -101256,6 +101363,20 @@
 	},
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/neotheology/storage)
+"fqa" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 2;
+	icon_state = "pdoor0";
+	id = "TechnomancerShopLockdown";
+	layer = 2.6;
+	name = "Technomancer Shop Lockdown";
+	opacity = 0
+	},
+/turf/simulated/floor/plating,
+/area/eris/engineering/engeva)
 "fqH" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -101423,7 +101544,16 @@
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "fPb" = (
+/obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 1;
+	icon_state = "shutter0";
+	id = "RDWindowsLockdown";
+	name = "RND Windows Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/rnd/lab)
 "fRY" = (
@@ -101626,6 +101756,12 @@
 /obj/machinery/light,
 /turf/simulated/floor/wood,
 /area/eris/neotheology/storage)
+"goo" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/wall/r_wall,
+/area/turret_protected/ai_upload_foyer{
+	name = "AI Upload Foyer"
+	})
 "gqH" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -101857,6 +101993,11 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"gSB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/space)
 "gTF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -101864,6 +102005,10 @@
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
+"gUN" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/space)
 "gWZ" = (
 /obj/structure/table/woodentable,
 /obj/machinery/firealarm{
@@ -102588,6 +102733,22 @@
 	},
 /turf/simulated/open,
 /area/eris/engineering/foyer)
+"iHL" = (
+/obj/machinery/door/airlock/maintenance_medical{
+	name = "Medbay Maintenance";
+	req_access = list(5)
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
+/turf/simulated/floor/tiled/white/cargo,
+/area/eris/maintenance/section2deck2port)
 "iIc" = (
 /obj/effect/shuttle_landmark/merc/sec3east5,
 /turf/space,
@@ -102646,9 +102807,7 @@
 /area/eris/medical/medbay/organs)
 "iMb" = (
 /obj/structure/railing{
-	anchored = 1;
 	dir = 4;
-	icon_state = "railing0";
 	tag = "icon-railing0 (EAST)"
 	},
 /turf/simulated/floor/plating/under,
@@ -102686,6 +102845,20 @@
 	},
 /turf/simulated/open,
 /area/eris/maintenance/section3deck4central)
+"iQd" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "ScienceTotalLockdown";
+	layer = 2.6;
+	name = "Science Total Lockdown";
+	opacity = 0
+	},
+/turf/simulated/floor/plating,
+/area/eris/rnd/lab)
 "iQt" = (
 /obj/machinery/camera/motion/security,
 /turf/simulated/floor/plating,
@@ -102704,6 +102877,15 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
+"iUy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/space)
 "iUE" = (
 /obj/structure/cable/green{
 	d2 = 2;
@@ -103367,6 +103549,7 @@
 	req_access = list(28)
 	},
 /obj/machinery/door/blast/regular/open{
+	dir = 1;
 	id = "ClubTotalLockdown";
 	layer = 2.6;
 	name = "Club Total Lockdown"
@@ -103387,6 +103570,21 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
+"ktK" = (
+/obj/machinery/door/airlock/maintenance_common{
+	name = "Service Maintenance";
+	req_access = list(12)
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/eris/maintenance/section2deck1port)
 "kvL" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 4
@@ -103451,6 +103649,21 @@
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/hangarsupply)
+"kHt" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/wall/r_wall,
+/area/turret_protected/ai_upload_foyer{
+	name = "AI Upload Foyer"
+	})
+"kIN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/space)
 "kJk" = (
 /obj/landmark/join/start/hydro,
 /turf/simulated/floor/wood,
@@ -103467,6 +103680,19 @@
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
+"kOb" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 1;
+	icon_state = "shutter0";
+	id = "RDWindowsLockdown";
+	name = "RND Windows Lockdown";
+	opacity = 0
+	},
+/turf/simulated/floor/plating,
+/area/eris/rnd/lab)
 "kOE" = (
 /obj/structure/railing{
 	dir = 8
@@ -103680,6 +103906,18 @@
 /obj/structure/cyberplant,
 /turf/simulated/floor/carpet,
 /area/eris/crew_quarters/barconference)
+"lvM" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/regular/open{
+	dir = 1;
+	id = "RDWindowsLockdown";
+	layer = 2.5;
+	name = "RND Windows Blast Door";
+	open_layer = 2.5
+	},
+/turf/simulated/floor/plating,
+/area/eris/rnd/lab)
 "lwA" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -104835,11 +105073,37 @@
 /obj/structure/closet/crate,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
+"ooU" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "BrigExternalLobbyLockdown";
+	layer = 2.6;
+	name = "Brig External Lobby Lockdown";
+	opacity = 0
+	},
+/obj/effect/window_lwall_spawn/reinforced,
+/turf/simulated/floor/plating,
+/area/eris/hallway/main/section1)
 "opb" = (
 /obj/structure/railing,
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck3port)
+"oqi" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/space)
+"orp" = (
+/obj/structure/table/reinforced{
+	pixel_x = -5
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/space)
 "oup" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -105099,6 +105363,13 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
+"oMF" = (
+/obj/structure/toilet,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/space)
 "oOF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -105230,6 +105501,19 @@
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/medbay/organs)
+"pen" = (
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "SupermatterPort";
+	layer = 2.7;
+	name = "Reactor Blast Door";
+	opacity = 0
+	},
+/obj/effect/window_lwall_spawn/plasma,
+/turf/simulated/floor/plating,
+/area/eris/engineering/engine_room)
 "peB" = (
 /turf/simulated/wall/r_wall,
 /area/eris/engineering/long_range_scanner)
@@ -105285,6 +105569,18 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/hallway/side/section3starboard)
+"ptg" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	icon_state = "shutter0";
+	id = "RDWindowsLockdown";
+	name = "RND Windows Lockdown";
+	opacity = 0
+	},
+/turf/simulated/floor/plating,
+/area/eris/rnd/mixing)
 "pth" = (
 /obj/structure/table/bar_special,
 /obj/machinery/button/remote/blast_door{
@@ -105331,7 +105627,6 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "psych_front";
 	name = "Psychology Shutters"
 	},
@@ -105435,6 +105730,13 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/barquarters)
+"pFd" = (
+/obj/machinery/door/blast/shutters{
+	id = "psych_front";
+	name = "Psychology Shutters"
+	},
+/turf/simulated/wall,
+/area/eris/medical/reception)
 "pGF" = (
 /obj/structure/railing{
 	dir = 4
@@ -105517,6 +105819,15 @@
 "pXs" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "ScienceTotalLockdown";
+	layer = 2.6;
+	name = "Science Total Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/rnd/research)
 "pXQ" = (
@@ -105787,6 +106098,33 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3port)
+"qCb" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 2;
+	icon_state = "pdoor0";
+	id = "EngineeringTotalLockdown";
+	layer = 2.6;
+	name = "Engineering Total Lockdown";
+	opacity = 0
+	},
+/obj/machinery/door/airlock/maintenance_engineering{
+	name = "Engineering Maintenance";
+	req_access = list(10)
+	},
+/turf/simulated/floor/tiled/steel/cargo,
+/area/eris/maintenance/section4deck2port)
+"qFk" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_x = 3
+	},
+/obj/machinery/ai_status_display{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/space)
 "qFv" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/medical{
@@ -105856,6 +106194,14 @@
 /obj/structure/lattice,
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 1;
+	icon_state = "shutter0";
+	id = "RDWindowsLockdown";
+	name = "RND Windows Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/rnd/lab)
 "qOz" = (
@@ -106043,6 +106389,12 @@
 /obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/crew_quarters/fitness)
+"rpP" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/space)
 "rqg" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/item/device/radio/intercom{
@@ -106106,6 +106458,14 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/crew_quarters/fitness)
+"rEq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/wall,
+/area/space)
+"rFs" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/wall,
+/area/space)
 "rGA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -106179,7 +106539,6 @@
 "rNq" = (
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "EngineBlast";
 	name = "Engine Monitoring Room Blast Doors";
@@ -106332,6 +106691,12 @@
 /obj/machinery/optable/altar,
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/chapelritualroom)
+"sfN" = (
+/obj/machinery/door/airlock{
+	name = "Toilet"
+	},
+/turf/simulated/floor/tiled/steel/cargo,
+/area/eris/hallway/side/bridgehallway)
 "sgS" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/grass,
@@ -106396,6 +106761,7 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "TechnomancerShopLockdown";
 	layer = 2.6;
@@ -106527,6 +106893,12 @@
 /obj/spawner/tool_upgrade/low_chance,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/breakroom)
+"sxo" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/space)
 "syp" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/black,
 /obj/machinery/meter,
@@ -106579,6 +106951,7 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "TechnomancerShopLockdown";
 	layer = 2.6;
@@ -106889,6 +107262,21 @@
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchbarracks)
+"tiD" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/button/alternate{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/space)
 "tiH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -107030,6 +107418,32 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
+"twU" = (
+/obj/machinery/door/airlock/maintenance_common{
+	name = "Service Maintenance";
+	req_access = list(12)
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/eris/maintenance/section2deck1port)
+"txy" = (
+/obj/machinery/door/airlock{
+	name = "Toilet"
+	},
+/turf/simulated/floor/tiled/steel/cargo,
+/area/space)
 "tzd" = (
 /obj/structure/table/woodentable,
 /obj/spawner/booze/low_chance,
@@ -107078,6 +107492,15 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/medical/psych)
+"tCn" = (
+/obj/structure/mirror{
+	dir = 8;
+	pixel_x = 28
+	},
+/obj/structure/table/standard,
+/obj/item/soap/deluxe,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/space)
 "tCG" = (
 /obj/machinery/camera/network/engineering,
 /turf/simulated/floor/tiled/steel/gray_platform,
@@ -107094,6 +107517,9 @@
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
+"tFb" = (
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/space)
 "tHD" = (
 /obj/machinery/smartfridge/drying_rack,
 /turf/simulated/floor/wood,
@@ -107109,6 +107535,14 @@
 "tKP" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "ScienceTotalLockdown";
+	layer = 2.6;
+	name = "Science Total Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section2deck1starboard)
 "tLB" = (
@@ -107160,6 +107594,9 @@
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
+"tRa" = (
+/turf/simulated/wall,
+/area/space)
 "tSk" = (
 /obj/machinery/vending/cigarette,
 /turf/simulated/floor/tiled/steel/bar_light,
@@ -107211,6 +107648,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular{
 	density = 0;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "ScienceTotalLockdown";
 	layer = 2.6;
@@ -107413,9 +107851,7 @@
 /area/eris/quartermaster/hangarsupply)
 "urv" = (
 /obj/structure/railing{
-	anchored = 1;
 	dir = 4;
-	icon_state = "railing0";
 	tag = "icon-railing0 (EAST)"
 	},
 /obj/spawner/medical/low_chance,
@@ -107457,6 +107893,10 @@
 /obj/item/storage/pill_bottle/citalopram,
 /turf/simulated/floor/wood,
 /area/eris/medical/psych)
+"uwB" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/eris/hallway/side/bridgehallway)
 "uwE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -107778,7 +108218,6 @@
 	opacity = 0
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "rnddesk";
 	name = "Research Desk Shutters"
 	},
@@ -107789,6 +108228,20 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
+"vlt" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "BrigInternalLobbyLockdown";
+	layer = 2.6;
+	name = "Brig Internal Lobby Lockdown";
+	opacity = 0
+	},
+/obj/effect/window_lwall_spawn/reinforced,
+/turf/simulated/floor/plating,
+/area/eris/security/lobby)
 "vml" = (
 /obj/item/device/radio/intercom{
 	dir = 8;
@@ -107824,6 +108277,14 @@
 /obj/structure/curtain/open/shower,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/crew_quarters/fitness)
+"vpd" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "East APC";
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/space)
 "vpg" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 5
@@ -108125,6 +108586,15 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4port)
+"wdC" = (
+/obj/machinery/door/blast/regular{
+	dir = 1;
+	id = "scannerroom";
+	name = "Long Range Scanner Screen"
+	},
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/eris/engineering/long_range_scanner)
 "weP" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/toolbox,
@@ -108290,6 +108760,35 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/churchbooth)
+"wuy" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
+/turf/simulated/floor/plating,
+/area/eris/maintenance/section2deck1port)
+"wuD" = (
+/obj/machinery/door/airlock/maintenance_common{
+	name = "Service Maintenance";
+	req_access = list(12)
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/eris/maintenance/section2deck1port)
 "wwg" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -108620,12 +109119,30 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/medical/psych)
+"xus" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/space)
 "xuA" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
+"xuF" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "ScienceTotalLockdown";
+	layer = 2.6;
+	name = "Science Total Lockdown";
+	opacity = 0
+	},
+/turf/simulated/floor/plating,
+/area/eris/rnd/docking)
 "xuU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -108760,6 +109277,18 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemstor)
+"xQn" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "MedbayTotalLockdown";
+	layer = 2.6;
+	name = "Medbay Total Lockdown";
+	opacity = 0
+	},
+/turf/simulated/floor/plating,
+/area/eris/maintenance/section2deck1port)
 "xSp" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -173095,7 +173624,7 @@ bjy
 bmR
 bmh
 bng
-bvD
+lvM
 bnJ
 bkO
 bhb
@@ -202833,7 +203362,7 @@ bIP
 clp
 cLR
 cMK
-ccg
+pen
 cnM
 ccg
 cKN
@@ -203238,7 +203767,7 @@ mWv
 ltO
 clN
 cOk
-ccg
+cwj
 cOk
 cNs
 cQN
@@ -209240,7 +209769,7 @@ aaa
 aaa
 bSx
 tdA
-chM
+pFd
 cYV
 crD
 cWj
@@ -211034,7 +211563,7 @@ bWT
 bDF
 bDF
 bDF
-bXO
+vlt
 bYp
 bYq
 bYp
@@ -211644,7 +212173,7 @@ bXj
 bYp
 bYq
 bYp
-bXV
+ooU
 bwr
 bwJ
 caS
@@ -211682,7 +212211,7 @@ cqU
 crN
 crN
 cnJ
-tXm
+iQd
 abF
 abF
 aaa
@@ -212278,10 +212807,10 @@ ckh
 cjr
 clF
 clF
-crb
+kOb
 crN
 crN
-crb
+kOb
 clF
 clF
 bhb
@@ -212682,7 +213211,7 @@ ces
 clF
 clF
 clF
-qOs
+fPb
 crN
 crN
 fPb
@@ -212884,10 +213413,10 @@ ces
 clF
 clF
 clF
-crb
+kOb
 crN
 crN
-bvu
+fPb
 clF
 clF
 cmG
@@ -213086,10 +213615,10 @@ ces
 clF
 clF
 clF
-crb
+kOb
 crN
 crN
-bvu
+fPb
 clF
 clF
 cmG
@@ -213292,8 +213821,8 @@ cog
 ciE
 ciE
 mUP
-chr
-chr
+ptg
+ptg
 cto
 ctT
 cuG
@@ -243233,11 +243762,11 @@ dul
 dul
 dKP
 dLo
-cwj
+ccg
 dMG
 dKH
 dOA
-cwj
+pen
 dPB
 tdm
 dQE
@@ -243435,11 +243964,11 @@ dul
 dul
 dKP
 dLp
-cwj
+ccg
 dMH
 cPh
 dOB
-cwj
+ccg
 dPC
 dQf
 dQF
@@ -245602,7 +246131,7 @@ bdP
 dvI
 dvN
 dwu
-etA
+iHL
 dAR
 dBe
 dBo
@@ -247485,7 +248014,7 @@ dBA
 dBA
 dBA
 wsB
-sBj
+fqa
 dRL
 dRZ
 dRI
@@ -249704,7 +250233,7 @@ dyT
 dKk
 byY
 bCs
-dJz
+qCb
 dFl
 dEy
 aaa
@@ -253252,12 +253781,12 @@ abF
 abF
 bXj
 bXj
-cWD
-cWD
-cWD
-cWD
-cWD
-cWD
+bXj
+bXj
+sfN
+bXj
+uwB
+uwB
 ddt
 aae
 diM
@@ -253453,16 +253982,16 @@ abF
 abF
 aaa
 aaa
-aad
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-diM
+aae
+oMF
+txy
+gUN
+rEq
+iUy
+orp
+gUN
+rpP
+goo
 bAt
 bAx
 cCR
@@ -253655,15 +254184,15 @@ aaa
 aaa
 aaa
 aaa
-aad
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aae
+tRa
+tRa
+oqi
+tRa
+tiD
+gSB
+gSB
+kIN
 diM
 bAu
 bAy
@@ -253857,16 +254386,16 @@ aaa
 aaa
 aaa
 aaa
-aad
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-diM
+aae
+oMF
+txy
+xus
+rFs
+qFk
+tFb
+xus
+sxo
+kHt
 bAv
 bAz
 cCY
@@ -254059,15 +254588,15 @@ aaa
 aaa
 aaa
 aaa
-aad
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aae
+aae
+aae
+tCn
+aae
+aae
+vpd
+aae
+aae
 diM
 dgS
 did
@@ -254263,12 +254792,12 @@ aaa
 abF
 abF
 abF
-abF
-aaa
-aaa
-aaa
-aaa
-aaa
+aae
+aae
+aae
+aae
+aae
+aae
 aaa
 dey
 bAw
@@ -286206,7 +286735,7 @@ amk
 dNZ
 dPK
 amc
-amk
+wuy
 dNZ
 dNZ
 anQ
@@ -286408,7 +286937,7 @@ amk
 dNZ
 dPK
 amc
-amk
+wuy
 dNZ
 dNZ
 anQ
@@ -286623,8 +287152,8 @@ dNZ
 amc
 amc
 anQ
-dVL
-amk
+twU
+xQn
 alb
 alb
 abF
@@ -286812,10 +287341,10 @@ alb
 dNZ
 dPK
 dQw
-amO
+wuD
 dQr
 dQr
-amO
+wuD
 amc
 amc
 amc
@@ -287216,19 +287745,19 @@ amk
 dNZ
 dPK
 amc
-amk
+wuy
 dQr
 dQr
 anQ
 dUW
 dUW
 dUW
-amO
+ktK
 anQ
 dER
 amc
 dAH
-eaU
+fbz
 eDI
 elB
 emI
@@ -287418,7 +287947,7 @@ amk
 dNZ
 dPK
 dQw
-amk
+wuy
 dQr
 dQr
 sOb
@@ -288226,7 +288755,7 @@ amk
 dNZ
 dPK
 amc
-amk
+wuy
 dNZ
 dNZ
 anQ
@@ -288428,7 +288957,7 @@ amk
 dNZ
 eDD
 amc
-amk
+wuy
 dAF
 dAF
 anQ
@@ -295353,7 +295882,7 @@ kaS
 sbX
 oAL
 hQs
-rlT
+wdC
 aaa
 aad
 abF
@@ -297727,10 +298256,10 @@ ala
 aaa
 aaa
 aaa
-ecx
+xuF
 dyj
 dyy
-ecx
+xuF
 ejR
 eky
 elg

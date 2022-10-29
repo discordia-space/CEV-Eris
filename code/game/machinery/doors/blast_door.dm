@@ -17,8 +17,8 @@
 	open_layer = BLASTDOOR_LAYER
 	closed_layer = CLOSED_BLASTDOOR_LAYER
 	open_on_break = FALSE
-	bullet_resistance = RESISTANCE_ARMOURED
-	resistance = RESISTANCE_ARMOURED
+	bullet_resistance = RESISTANCE_HEAVILY_ARMOURED
+	resistance = RESISTANCE_VAULT
 
 	icon_state = null
 	// Icon states for different shutter types. Simply change this instead of rewriting the update_icon proc.
@@ -27,7 +27,6 @@
 	var/icon_state_closed = null
 	var/icon_state_closing = null
 
-	dir = 1
 	explosion_resistance = 25
 
 	//Most blast doors are infrequently toggled and sometimes used with regular doors anyways,
@@ -184,7 +183,7 @@
 	icon_state_closed = "pdoor1"
 	icon_state_closing = "pdoorc1"
 	icon_state = "pdoor1"
-	maxhealth = 400
+	maxhealth = 500
 	block_air_zones = 1
 
 /obj/machinery/door/blast/regular/open
@@ -200,6 +199,9 @@
 	icon_state_closed = "shutter1"
 	icon_state_closing = "shutterc1"
 	icon_state = "shutter1"
+	maxhealth = 300
+	bullet_resistance = RESISTANCE_ARMOURED
+	resistance = RESISTANCE_ARMOURED
 	layer = SHUTTER_LAYER
 	open_layer = SHUTTER_LAYER
 	closed_layer = SHUTTER_LAYER
