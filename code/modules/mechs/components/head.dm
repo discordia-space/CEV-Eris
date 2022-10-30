@@ -32,18 +32,18 @@
 	radio = locate() in src
 	camera = locate() in src
 
-/obj/item/mech_component/sensors/proc/get_sight()
+/obj/item/mech_component/sensors/proc/get_sight(powered)
 	var/flags = 0
-	if(total_damage >= 0.8 * max_damage)
+	if(total_damage >= 0.8 * max_damage || !powered)
 		flags |= BLIND
-	else if(active_sensors)
+	else if(active_sensors && powered)
 		flags |= vision_flags
 
 	return flags
 
-/obj/item/mech_component/sensors/proc/get_invisible()
+/obj/item/mech_component/sensors/proc/get_invisible(powered)
 	var/invisible = 0
-	if((total_damage <= 0.8 * max_damage) && active_sensors)
+	if((total_damage <= 0.8 * max_damage) && active_sensors && powered)
 		invisible = see_invisible
 	return invisible
 
@@ -78,3 +78,43 @@
 	else
 		to_chat(user, SPAN_WARNING(" Camera Missing or Non-functional."))
 
+/obj/item/mech_component/sensors/cheap
+	name = "simple exosuit sensors"
+	gender = PLURAL
+	exosuit_desc_string = "simple sensors"
+	desc = "A primitive set of sensors designed to provide basic visual information to the pilot."
+	max_damage = 100
+	power_use = 0
+
+/obj/item/mech_component/sensors/light
+	name = "light sensors"
+	gender = PLURAL
+	exosuit_desc_string = "advanced sensor array"
+	desc = "A series of high resolution optical sensors. They can overlay several images to give the pilot a sense of location even in total darkness."
+	icon_state = "light_head"
+	max_damage = 50
+	vision_flags = SEE_TURFS
+	see_invisible = SEE_INVISIBLE_NOLIGHTING
+	power_use = 50
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_GLASS = 4, MATERIAL_URANIUM = 2) //NVG takes uranium, so night vision sensors take uranium
+
+/obj/item/mech_component/sensors/combat
+	name = "combat sensors"
+	gender = PLURAL
+	exosuit_desc_string = "high-resolution thermal sensors"
+	desc = "High resolution thermal combat sensors, designed to locate targets even through cover or smoke."
+	icon_state = "combat_head"
+	vision_flags = SEE_MOBS
+	see_invisible = SEE_INVISIBLE_NOLIGHTING
+	max_damage = 50 //the sensors are delicate, the value of this part is in the SEE_MOBS flag anyway
+	power_use = 200
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 4, MATERIAL_GOLD = 10, MATERIAL_URANIUM = 15)
+
+/obj/item/mech_component/sensors/heavy
+	name = "heavy sensors"
+	exosuit_desc_string = "a reinforced monoeye"
+	desc = "A solitary sensor moves inside a recessed slit in the armour plates."
+	icon_state = "heavy_head"
+	max_damage = 150
+	power_use = 0
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 2, MATERIAL_PLASTEEL = 5)
