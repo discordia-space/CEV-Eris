@@ -43,6 +43,10 @@
 	if(amount > 1)
 		update_icon()
 
+/obj/item/ammo_casing/Destroy()
+	QDEL_NULL(BB)
+	return ..()
+
 //removes the projectile from the ammo casing
 /obj/item/ammo_casing/proc/expend()
 	. = BB
