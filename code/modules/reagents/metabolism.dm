@@ -9,6 +9,10 @@
 	if(istype(parent_mob))
 		parent = parent_mob
 
+/datum/reagents/metabolism/Destroy()
+	parent = null
+	return ..()
+
 /datum/reagents/metabolism/proc/metabolize()
 	expose_temperature(parent.bodytemperature, 0.25)
 
@@ -41,6 +45,13 @@
 	var/addiction_tick = 1
 	/// The final chance for an addiction to manifest is multiplied by this value before being passed to prob.
 	var/addiction_chance_multiplier = 1
+
+/datum/metabolism_effects/Destroy()
+	parent = null
+	withdrawal_list.Cut()
+	active_withdrawals.Cut()
+	addiction_list.Cut()
+	return ..()
 
 /datum/metabolism_effects/proc/adjust_nsa(value, tag)
 	if(!tag)
