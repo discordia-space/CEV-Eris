@@ -34,8 +34,12 @@
 	update_icon()
 
 /obj/item/organ/internal/scaffold/Destroy()
-	..()
 	UnregisterSignal(src, COMSIG_ABERRANT_COOLDOWN)
+	if(LAZYLEN(item_upgrades))
+		for(var/datum/mod in item_upgrades)
+			SEND_SIGNAL(mod, COMSIG_REMOVE, src)
+			qdel(mod)
+	return ..()
 
 /obj/item/organ/internal/scaffold/Process()
 	..()
