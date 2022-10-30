@@ -26,7 +26,7 @@
 		for(var/datum/component/comp in datum_components)
 			comp.RemoveComponent()
 			qdel(comp)
-	..()
+	return ..()
 
 /obj/item/modification/organ/internal/update_icon()
 	icon_state = initial(icon_state) + "-[rand(1,5)]"
