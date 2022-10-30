@@ -111,26 +111,26 @@
 	for(var/input in accepted_inputs)
 		switch(input)
 			if(BRUTE)
-				inputs += "brute, "
+				inputs += "brute ([threshold]), "
 			if(BURN)
-				inputs += "burn, "
+				inputs += "burn ([threshold]), "
 			if(TOX)
-				inputs += "toxin, "
+				inputs += "toxin ([threshold]), "
 			if(OXY)
-				inputs += "suffocation, "
+				inputs += "suffocation ([threshold]), "
 			if(CLONE)
-				inputs += "DNA degredation, "
+				inputs += "DNA degredation ([threshold]), "
 			if(HALLOSS)
-				inputs += "pain, "
+				inputs += "pain ([threshold]), "
 			if("brain")
-				inputs += "brain, "
+				inputs += "brain ([threshold]), "
 			if(PSY)
-				inputs += "sanity, "
+				inputs += "sanity ([threshold]), "
 		
 	inputs = copytext(inputs, 1, length(inputs) - 1)
 
 	var/description = "<span style='color:green'>Functional information (input):</span> injury response"
-	description += "\n<span style='color:green'>Damage types:</span> [inputs]"
+	description += "\n<span style='color:green'>Damage types (threshold):</span> [inputs]"
 
 	return description
 
