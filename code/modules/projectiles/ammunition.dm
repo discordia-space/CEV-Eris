@@ -243,6 +243,10 @@
 	get_label()
 	update_icon()
 
+/obj/item/ammo_magazine/Destroy()
+	QDEL_LIST(stored_ammo)
+	return ..()
+
 /obj/item/ammo_magazine/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
