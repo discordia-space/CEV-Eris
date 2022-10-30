@@ -11,7 +11,7 @@
 
 /datum/reagents/metabolism/Destroy()
 	parent = null
-	. = ..()
+	return ..()
 
 /datum/reagents/metabolism/proc/metabolize()
 	expose_temperature(parent.bodytemperature, 0.25)
