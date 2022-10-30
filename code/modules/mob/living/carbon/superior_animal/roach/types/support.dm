@@ -26,6 +26,10 @@
 	.=..()
 	gas_sac = new /datum/reagents(100, src)
 
+/mob/living/carbon/superior_animal/roach/support/Destroy()
+	QDEL_NULL(gas_sac)
+	return ..()
+
 /mob/living/carbon/superior_animal/roach/support/proc/gas_attack()
 	if (!gas_sac.has_reagent("blattedin", 20) || stat != CONSCIOUS)
 		return
