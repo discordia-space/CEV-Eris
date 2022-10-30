@@ -35,7 +35,7 @@
 	return description
 
 /datum/component/modification/organ/input/reagents/modify(obj/item/I, mob/living/user)
-	if(!input_qualities.len)
+	if(!LAZYLEN(input_qualities))
 		return
 
 	var/list/can_adjust = list("metabolic source", "reagent")
@@ -60,14 +60,20 @@
 		check_mode = adjustable_qualities[decision]
 
 	if(decision_adjust == "reagent")
-		var/decision = input("Choose a reagent:","Adjusting Organoid") as null|anything in input_qualities
-		if(!decision)
-			return
-
-		var/list/reagent_group = input_qualities[decision]
-
 		for(var/input in accepted_inputs)
-			var/new_reagent_input = pick(reagent_group)		// pick() allows one input type to fill muliple slots, thus enabling multiple outputs
+			var/list/possibilities = input_qualities.Copy()
+
+			if(LAZYLEN(accepted_inputs) > 1)
+				for(var/reagent in possibilities)
+					if(input != reagent && accepted_inputs.Find(reagent))
+						possibilities.Remove(reagent)
+
+			var/decision = input("Choose a reagent:","Adjusting Organoid") as null|anything in input_qualities
+			if(!decision)
+				return
+
+			var/list/new_reagent_input = input_qualities[decision]
+
 			accepted_inputs[accepted_inputs.Find(input)] = new_reagent_input
 
 /datum/component/modification/organ/input/reagents/trigger(atom/movable/holder, mob/living/carbon/owner)
@@ -128,13 +134,13 @@
 	return description
 
 /datum/component/modification/organ/input/damage/modify(obj/item/I, mob/living/user)
-	if(!input_qualities.len)
+	if(!LAZYLEN(input_qualities))
 		return
 
 	for(var/input in accepted_inputs)
 		var/list/possibilities = input_qualities.Copy()
 
-		if(accepted_inputs.len > 1)
+		if(LAZYLEN(accepted_inputs) > 1)
 			for(var/dmg_name in possibilities)
 				var/dmg_type = possibilities[dmg_name]
 				if(input != dmg_type && accepted_inputs.Find(dmg_type))
@@ -208,13 +214,13 @@
 	return description
 
 /datum/component/modification/organ/input/power_source/modify(obj/item/I, mob/living/user)
-	if(!input_qualities.len)
+	if(!LAZYLEN(input_qualities))
 		return
 
 	for(var/input in accepted_inputs)
 		var/list/possibilities = input_qualities.Copy()
 		
-		if(accepted_inputs.len > 1)
+		if(LAZYLEN(accepted_inputs) > 1)
 			for(var/source in possibilities)
 				var/source_type = possibilities[source]
 				if(input != source_type && accepted_inputs.Find(source_type))
