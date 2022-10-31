@@ -26,10 +26,9 @@
 	owner = L
 	sync_icon(L)
 
-/mob/Destroy()
-	qdel(shadow)
-	shadow = null
-	. = ..()
+/mob/shadow/Destroy()
+	owner = null
+	return ..()
 
 /mob/shadow/examine(mob/user, distance, infix, suffix)
 	return owner.examine(user, distance, infix, suffix)
