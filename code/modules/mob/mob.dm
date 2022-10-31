@@ -6,6 +6,7 @@
 	unset_machine()
 	QDEL_NULL(hud_used)
 	QDEL_NULL(parallax)
+	QDEL_NULL(shadow)
 	if(client)
 		for(var/atom/movable/AM in client.screen)
 			qdel(AM)
