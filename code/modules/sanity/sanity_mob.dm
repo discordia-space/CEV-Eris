@@ -93,10 +93,10 @@
 	RegisterSignal(owner, COMSIG_HUMAN_SAY, .proc/onSay)
 
 /datum/sanity/Destroy()
-	owner = null
-	QDEL_LIST(breakdowns)
 	UnregisterSignal(owner, COMSIG_MOB_LIFE)
 	UnregisterSignal(owner, COMSIG_HUMAN_SAY)
+	owner = null
+	QDEL_LIST(breakdowns)
 	return ..()
 
 /datum/sanity/proc/give_insight(value)
