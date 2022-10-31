@@ -20,6 +20,7 @@
 	QDEL_NULL(ingested)
 	QDEL_NULL(touching)
 	QDEL_NULL(bloodstr)
+	QDEL_NULL(vessel)
 	QDEL_LIST(internal_organs)
 	QDEL_LIST(stomach_contents)
 	QDEL_LIST(hallucinations)
