@@ -4,12 +4,12 @@
 	GLOB.living_mob_list -= src
 	GLOB.mob_list -= src
 	unset_machine()
-	qdel(hud_used)
+	QDEL_NULL(hud_used)
+	QDEL_NULL(parallax)
 	if(client)
 		for(var/atom/movable/AM in client.screen)
 			qdel(AM)
 		client.screen = list()
-
 	ghostize()
 	..()
 	return QDEL_HINT_QUEUE
