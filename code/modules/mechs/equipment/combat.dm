@@ -17,6 +17,36 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
 
+/obj/item/mech_equipment/mounted_system/shield
+	holding_type = /obj/item/shield/mounted/mech
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
+	restricted_software = list(MECH_SOFTWARE_WEAPONS)
+	matter = list(MATERIAL_PLASTEEL = 30)
+
+
+/obj/item/shield/mounted/mech
+	name = "mech shield"
+	icon = 'icons/obj/weapons.dmi'
+	flags = CONDUCT
+//	slot_flags = SLOT_BACK
+	force = WEAPON_FORCE_DANGEROUS
+	throw_speed = 0
+	throw_range = 0
+	w_class = ITEM_SIZE_HUGE
+	origin_tech = list()
+	matter = list()
+	price_tag = 500
+	base_block_chance = 65
+	shield_difficulty = 0
+	shield_integrity = 500
+	slowdown_hold = 0
+
+/obj/item/shield/riot/dozershield/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/tool/hammer) || istype(W, /obj/item/tool/sword))
+		on_bash(W, user)
+	else
+		..()
+
 /obj/item/gun/energy/taser/mounted/mech
 	restrict_safety = TRUE
 	twohanded = FALSE

@@ -32,18 +32,18 @@
 	radio = locate() in src
 	camera = locate() in src
 
-/obj/item/mech_component/sensors/proc/get_sight(powered)
+/obj/item/mech_component/sensors/proc/get_sight()
 	var/flags = 0
-	if(total_damage >= 0.8 * max_damage || !powered)
+	if(total_damage >= 0.8 * max_damage)
 		flags |= BLIND
-	else if(active_sensors && powered)
+	else if(active_sensors)
 		flags |= vision_flags
 
 	return flags
 
-/obj/item/mech_component/sensors/proc/get_invisible(powered)
+/obj/item/mech_component/sensors/proc/get_invisible()
 	var/invisible = 0
-	if((total_damage <= 0.8 * max_damage) && active_sensors && powered)
+	if((total_damage <= 0.8 * max_damage) && active_sensors)
 		invisible = see_invisible
 	return invisible
 

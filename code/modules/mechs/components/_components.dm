@@ -19,7 +19,6 @@
 	var/list/has_hardpoints = list()
 	var/decal
 	var/power_use = 0
-	var/can_strafe = TRUE
 
 /obj/item/mech_component/proc/set_colour(new_colour)
 	var/last_colour = color
@@ -123,18 +122,14 @@
 					update_components()
 			else
 				to_chat(user, SPAN_WARNING("There is nothing to remove."))
-			return
 
 		if(QUALITY_WELDING)
-			repair_brute_damage()
+			repair_brute_generic(I, user)
 			return
 
-
 	if(istype(I, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/coil = I
-		if(coil.amount < 5)
-			to_chat(user, SPAN_WARNING("You need at least 5 cable coil pieces in order to replace wiring."))
-			return TRUE
+		repair_burn_generic(I, user)
+		return
 
 	if(istype(I, /obj/item/device/robotanalyzer))
 		to_chat(user, SPAN_NOTICE("Diagnostic Report for \the [src]:"))
@@ -144,9 +139,10 @@
 /obj/item/mech_component/proc/update_components()
 	return
 
+
 /obj/item/mech_component/proc/repair_brute_generic(obj/item/I, mob/user)
 
-	if(!brute_damage)
+	if(brute_damage <= 0)
 		to_chat(user, SPAN_NOTICE("You inspect \the [src] but find nothing to weld."))
 		return
 
@@ -154,11 +150,14 @@
 		if(I.use_tool(user, src, WORKTIME_NORMAL, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			visible_message(SPAN_WARNING("\The [src] has been repaired by [user]!"),"You hear welding.")
 			repair_brute_damage(15)
+			if(total_damage < 0)
+				total_damage = 0
+				brute_damage = 0
 			return
 
 /obj/item/mech_component/proc/repair_burn_generic(obj/item/stack/cable_coil/CC, mob/user)
 
-	if(!burn_damage)
+	if(burn_damage <= 0)
 		to_chat(user, SPAN_NOTICE("You inspect /the [src]'s wiring, but can't find anything to fix."))
 		return
 
@@ -169,11 +168,22 @@
 	to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
 
 	if(do_mob(user, src, 30) && CC.use(5))
-		repair_burn_generic(15)
-		return
+		repair_burn_damage(25)
+		if(total_damage < 0)
+			total_damage = 0
+			burn_damage = 0
+		else return
 
 
-/*
-			to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
-		if(do_mob(user, src, 30) && coil.use(5))
-			mc.repair_burn_damage(15) */
+/obj/item/mech_component/proc/get_damage_string()
+	switch(damage_state)
+		if(MECH_COMPONENT_DAMAGE_UNDAMAGED)
+			return FONT_COLORED(COLOR_GREEN, "undamaged")
+		if(MECH_COMPONENT_DAMAGE_DAMAGED)
+			return FONT_COLORED(COLOR_YELLOW, "damaged")
+		if(MECH_COMPONENT_DAMAGE_DAMAGED_BAD)
+			return FONT_COLORED(COLOR_ORANGE, "badly damaged")
+		if(MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
+			return FONT_COLORED(COLOR_RED, "almost destroyed")
+	return FONT_COLORED(COLOR_RED, "destroyed")
+

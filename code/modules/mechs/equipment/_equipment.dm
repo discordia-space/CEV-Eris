@@ -19,7 +19,6 @@
 	var/active_power_use = 1 KILOWATTS // How much does it consume to perform and accomplish usage
 	var/passive_power_use = 0          // For gear that for some reason takes up power even if it's supposedly doing nothing (mech will idly consume power)
 	var/mech_layer = MECH_COCKPIT_LAYER //For the part where it's rendered as mech gear
-	var/active = FALSE //For gear that has an active state (ie, floodlights)
 
 /obj/item/mech_equipment/attack() //Generally it's not desired to be able to attack with items
 	return 0
@@ -57,14 +56,8 @@
 	canremove = FALSE
 
 /obj/item/mech_equipment/proc/uninstalled()
-	if(active)
-		deactivate()
 	owner = null
 	canremove = TRUE
-
-/obj/item/mech_equipment/proc/deactivate()
-	active = FALSE
-	return
 
 /obj/item/mech_equipment/Destroy()
 	owner = null
