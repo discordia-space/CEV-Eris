@@ -237,6 +237,10 @@
 		var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
 		if(H && istype(H))
 			H.toggled()
+
+		if(!do_after(user, body.climb_time*0.75))
+			return
+
 		if(!silent)
 			to_chat(user, SPAN_NOTICE("You open the hatch and climb out of \the [src]."))
 	else if(!silent)
@@ -333,20 +337,25 @@
 				MC.return_diagnostics(user)
 		return
 
+
 	else if(istype(I, /obj/item/stack/cable_coil))
+/*
 		var/obj/item/stack/cable_coil/coil = I
 		if(coil.amount < 5)
 			to_chat(user, SPAN_WARNING("You need at least 5 cable coil pieces in order to replace wiring."))
-			return TRUE
+			return TRUE */
 		var/obj/item/mech_component/mc = get_targeted_part(user)
 		if(!repairing_check(mc, user))
 			return TRUE
+/*
 		if(mc.burn_damage <= 0)
 			to_chat(user, SPAN_WARNING("Wiring on this part is already repaired."))
 			return TRUE
 		to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
 		if(do_mob(user, src, 30) && coil.use(5))
 			mc.repair_burn_damage(15)
+
+*/
 
 	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_WELDING, QUALITY_PRYING, QUALITY_SCREW_DRIVING)
 
@@ -386,6 +395,8 @@
 			dismantle()
 			return TRUE
 
+/*
+
 		if(QUALITY_WELDING)
 			var/obj/item/mech_component/mc = get_targeted_part(user)
 			if(!repairing_check(mc, user))
@@ -397,6 +408,8 @@
 				visible_message(SPAN_WARNING("\The [mc] has been repaired by [user]!"),"You hear welding.")
 				mc.repair_brute_damage(15)
 				return TRUE
+
+*/
 
 		if(QUALITY_PRYING)
 			var/obj/item/cell/cell = get_cell()

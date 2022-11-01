@@ -19,6 +19,7 @@
 	var/list/has_hardpoints = list()
 	var/decal
 	var/power_use = 0
+	var/can_strafe = TRUE
 
 /obj/item/mech_component/proc/set_colour(new_colour)
 	var/last_colour = color
@@ -73,6 +74,7 @@
 /obj/item/mech_component/proc/repair_burn_damage(amt)
 	take_burn_damage(-amt)
 
+
 /obj/item/mech_component/proc/take_brute_damage(amt)
 	brute_damage += amt
 	update_health()
@@ -101,23 +103,39 @@
 	to_chat(user, SPAN_NOTICE(" - Integrity: <b>[round((((max_damage - total_damage) / max_damage)) * 100)]%</b>" ))
 
 /obj/item/mech_component/attackby(obj/item/I, mob/living/user)
-	if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_ZERO))
-		if(contents.len)
-			//Filter non movables
-			var/list/valid_contents = list()
-			for(var/atom/movable/A in contents)
-				if(!A.anchored)
-					valid_contents += A
-			if(!valid_contents.len)
-				return
-			var/obj/item/removed = pick(valid_contents)
-			if(!(removed in contents))
-				return
-			if(eject_item(removed, user))
-				update_components()
-		else
-			to_chat(user, SPAN_WARNING("There is nothing to remove."))
-		return
+	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_WELDING, QUALITY_PRYING, QUALITY_SCREW_DRIVING)
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
+
+	switch(tool_type)
+		if(QUALITY_SCREW_DRIVING)
+			if(contents.len)
+				//Filter non movables
+				var/list/valid_contents = list()
+				for(var/atom/movable/A in contents)
+					if(!A.anchored)
+						valid_contents += A
+				if(!valid_contents.len)
+					return
+				var/obj/item/removed = pick(valid_contents)
+				if(!(removed in contents))
+					return
+				if(eject_item(removed, user))
+					update_components()
+			else
+				to_chat(user, SPAN_WARNING("There is nothing to remove."))
+			return
+
+		if(QUALITY_WELDING)
+			repair_brute_damage()
+			return
+
+
+	if(istype(I, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = I
+		if(coil.amount < 5)
+			to_chat(user, SPAN_WARNING("You need at least 5 cable coil pieces in order to replace wiring."))
+			return TRUE
+
 	if(istype(I, /obj/item/device/robotanalyzer))
 		to_chat(user, SPAN_NOTICE("Diagnostic Report for \the [src]:"))
 		return_diagnostics(user)
@@ -125,3 +143,37 @@
 
 /obj/item/mech_component/proc/update_components()
 	return
+
+/obj/item/mech_component/proc/repair_brute_generic(obj/item/I, mob/user)
+
+	if(!brute_damage)
+		to_chat(user, SPAN_NOTICE("You inspect \the [src] but find nothing to weld."))
+		return
+
+	if(QUALITY_WELDING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NORMAL, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+			visible_message(SPAN_WARNING("\The [src] has been repaired by [user]!"),"You hear welding.")
+			repair_brute_damage(15)
+			return
+
+/obj/item/mech_component/proc/repair_burn_generic(obj/item/stack/cable_coil/CC, mob/user)
+
+	if(!burn_damage)
+		to_chat(user, SPAN_NOTICE("You inspect /the [src]'s wiring, but can't find anything to fix."))
+		return
+
+	if(CC.amount < 5)
+		to_chat(user, SPAN_WARNING("You need at least 5 cable coil pieces in order to replace wiring."))
+		return
+
+	to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
+
+	if(do_mob(user, src, 30) && CC.use(5))
+		repair_burn_generic(15)
+		return
+
+
+/*
+			to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
+		if(do_mob(user, src, 30) && coil.use(5))
+			mc.repair_burn_damage(15) */

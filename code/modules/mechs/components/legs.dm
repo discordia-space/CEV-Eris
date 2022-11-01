@@ -57,7 +57,7 @@
 	name = "lifter exosuit legs"
 	exosuit_desc_string = "reinforced lifter legs"
 	desc = "Wide and stable, but not particularly fast."
-	max_damage = 70
+	max_damage = 95
 	move_delay = 3 // Slow and chunky
 	turn_delay = 3
 	power_use = 10
@@ -69,7 +69,7 @@
 	icon_state = "light_legs"
 	move_delay = 1.5 // Very fast
 	turn_delay = 2 // Too fast to turn at drifting speed
-	max_damage = 40
+	max_damage = 45
 	power_use = 20
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
 
@@ -79,12 +79,10 @@
 	desc = "These combat legs are both fast and durable, thanks to a generous plasteel reinforcement and aerodynamic design."
 	icon_state = "combat_legs"
 	move_delay = 3
-	power_use = 20
-	matter = list(MATERIAL_STEEL = 15)
 	turn_delay = 2 // Better than light , turns fast and costs a lot
-	max_damage = 100
+	max_damage = 125
 	power_use = 25
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5, MATERIAL_PLASMA = 5, MATERIAL_DIAMOND = 2) // Expensive because durable.
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 7, MATERIAL_DIAMOND = 2) // Expensive because durable.
 
 /obj/item/mech_component/propulsion/heavy
 	name = "heavy legs"
@@ -93,7 +91,7 @@
 	icon_state = "heavy_legs"
 	move_delay = 5
 	turn_delay = 4 // Turning should be easy , moving not.
-	max_damage = 200
+	max_damage = 250
 	power_use = 100
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 5)
 
@@ -102,8 +100,8 @@
 	exosuit_desc_string = "hydraulic quadlegs"
 	desc = "Specialized quadlegs designed to minimize time wasted reorienting the mech."
 	icon_state = "spiderlegs"
-	max_damage = 80
-	move_delay = 4
+	max_damage = 75
+	move_delay = 3
 	turn_delay = 1
 	power_use = 75
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
@@ -113,9 +111,10 @@
 	exosuit_desc_string = "armored tracks"
 	desc = "A true classic, these tracks are fast and durable, although turning with them is a nightmare."
 	icon_state = "tracks"
-	max_damage = 150
-	move_delay = 2
+	max_damage = 175
+	move_delay = 1.5
 	turn_delay = 7
 	power_use = 150
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 10)
 	mech_step_sound = 'sound/mechs/tanktread.ogg'
+	can_strafe = FALSE

@@ -49,7 +49,7 @@
 	name = "lifter exosuit arms"
 	exosuit_desc_string = "industrial lifter arms"
 	melee_damage = 15
-	max_damage = 70
+	max_damage = 90
 	power_use = 30
 	desc = "Industrial lifter arms that allow you to crudely manipulate things from the safety of your cockpit."
 
@@ -59,7 +59,7 @@
 	desc = "As flexible as they are fragile, these Vey-Med manipulators can follow a pilot's movements in close to real time."
 	melee_damage = 10
 	action_delay = 5
-	max_damage = 40
+	max_damage = 45
 	power_use = 10
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
 
@@ -70,7 +70,7 @@
 	icon_state = "combat_arms"
 	melee_damage = 45 // Whack
 	action_delay = 10
-	max_damage = 100
+	max_damage = 125
 	power_use = 50
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5, MATERIAL_PLASMA = 4, MATERIAL_DIAMOND = 2)
 
@@ -81,6 +81,6 @@
 	desc = "Designed for durability and dishing out beatings, this heavy set of manipulators can both take and dish out beatings."
 	melee_damage = 60 // You know , these things walk like a snail . Why would you even get close to this.
 	action_delay = 15
-	max_damage = 150
+	max_damage = 175
 	power_use = 60
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 10, MATERIAL_URANIUM = 5)

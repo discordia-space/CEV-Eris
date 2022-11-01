@@ -40,15 +40,15 @@
 
 /datum/design/research/item/mechfab/exosuit/drillbit/steel
 	build_path = /obj/item/material/drill_head/steel
-	materials = list(MATERIAL_STEEL = 6)
+	materials = list(MATERIAL_STEEL = 5)
 
 /datum/design/research/item/mechfab/exosuit/drillbit/plasteel
 	build_path = /obj/item/material/drill_head/plasteel
-	materials = list(MATERIAL_PLASTEEL = 6)
+	materials = list(MATERIAL_PLASTEEL = 5)
 
 /datum/design/research/item/mechfab/exosuit/drillbit/diamond
 	build_path = /obj/item/material/drill_head/diamond
-	materials = list(MATERIAL_DIAMOND = 6)
+	materials = list(MATERIAL_DIAMOND = 5)
 
 //Sensors
 /datum/design/research/item/mechfab/exosuit/sensors

@@ -208,9 +208,9 @@
 	pilot_coverage = 40
 	exosuit_desc_string = "an industrial roll cage"
 	desc = "An industrial roll cage. Absolutely useless in hazardous environments, as it isn't even sealed."
-	max_damage = 100
+	max_damage = 150
 	power_use = 0
-	climb_time = 20 //easier to hop in and close up than a full cockpit, but not specialized for it
+	climb_time = 7 // Quickest entry time cuz it's less useful in combat
 
 /obj/item/mech_component/chassis/powerloader/Initialize()
 	pilot_positions = list(
@@ -238,7 +238,7 @@
 	hide_pilot = TRUE //Sprite too small, legs clip through, so for now hide pilot
 	exosuit_desc_string = "an open and light chassis"
 	icon_state = "light_body"
-	max_damage = 30
+	max_damage = 50
 	power_use = 5
 	climb_time = 10 //gets a buff to climb_time, in exchange for being less beefy
 	has_hardpoints = list(HARDPOINT_BACK)
@@ -247,17 +247,17 @@
 /obj/item/mech_component/chassis/combat
 	name = "sealed exosuit chassis"
 	hatch_descriptor = "canopy"
-	desc = "This standard combat chassis is reinforced with plasteel for extra durability without compromising visibility or ease of access."
+	desc = "An advanced cockpit that utilises sophiscated micro-sensors to enable visibility even without a sensor suite."
 	pilot_coverage = 100
 	transparent_cabin = TRUE
 	hide_pilot = TRUE
 	exosuit_desc_string = "an armored chassis"
 	icon_state = "combat_body"
-	max_damage = 100
-	mech_health = 400 //It's not as beefy as the heavy, but it IS a combat chassis, so let's make it slightly beefier
+	max_damage = 200
+	mech_health = 500 //It's not as beefy as the heavy, but it IS a combat chassis, so let's make it slightly beefier
 	power_use = 40
 	climb_time = 25 //standard values for now to encourage use over heavy
-	matter = list(MATERIAL_STEEL = 45, MATERIAL_PLASTEEL = 10, MATERIAL_PLASMAGLASS = 5)
+	matter = list(MATERIAL_STEEL = 45, MATERIAL_PLASTEEL = 12, MATERIAL_GOLD = 4, MATERIAL_SILVER = 4)
 
 /obj/item/mech_component/chassis/heavy
 	name = "reinforced exosuit chassis"
@@ -266,11 +266,11 @@
 	pilot_coverage = 100
 	exosuit_desc_string = "a heavily armoured chassis"
 	icon_state = "heavy_body"
-	max_damage = 200
-	mech_health = 600
+	max_damage = 300
+	mech_health = 750
 	power_use = 50
 	climb_time = 35 //Takes longer to climb into, but is beefy as HELL.
-	matter = list(MATERIAL_STEEL = 50, MATERIAL_URANIUM = 15, MATERIAL_PLASTEEL = 15)
+	matter = list(MATERIAL_STEEL = 50, MATERIAL_URANIUM = 18, MATERIAL_PLASTEEL = 20)
 
 /obj/item/mech_component/chassis/pod
 	name = "spherical exosuit chassis"
@@ -279,13 +279,13 @@
 	hide_pilot = TRUE //Sprite too small, legs clip through, so for now hide pilot
 	exosuit_desc_string = "a spherical chassis"
 	icon_state = "pod_body"
-	max_damage = 100
+	max_damage = 150
 	mech_health = 350 //Default is 300, so 50 more HP then the power loader. Worse then the combat chassis as it requires sensors.
 	power_use = 5
-	climb_time = 30 // Awkward to get in/out of as it's intended for spacepod use
-	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTEEL = 5, MATERIAL_GLASS = 10)
+	climb_time = 30
+	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTEEL = 7, MATERIAL_GLASS = 12)
 	has_hardpoints = list(HARDPOINT_BACK)
-	desc = "A rugged design originally intended for light EVA crafts, this chassis has been refitted for exosuit usage. It's surprisingly durable for its cost."
+	desc = "A rugged design originally intended for S, this chassis has been refitted for exosuit usage. It's surprisingly durable for its cost."
 
 /obj/item/mech_component/chassis/pod/Initialize()
 	pilot_positions = list(
