@@ -18,6 +18,7 @@
 		if(!temp || !temp.is_usable())
 			to_chat(H, "\red You can't use your hand.")
 			return
+		H.stop_blocking()
 
 	..()
 
@@ -25,7 +26,6 @@
 	if(istype(H))
 		if(H != src && check_shields(0, null, H, H.targeted_organ, H.name))
 			H.do_attack_animation(src)
-			human_attacker.stop_blocking()
 			return 0
 
 		if(istype(H.gloves, /obj/item/clothing/gloves/boxing/hologlove))
@@ -53,10 +53,6 @@
 
 	if(iscarbon(M))
 		M.spread_disease_to(src, "Contact")
-
-	if(ishuman(M))
-		var/mob/living/carbon/human/human_attacker = M
-		human_attacker.stop_blocking()
 
 	switch(M.a_intent)
 		if(I_HELP)
