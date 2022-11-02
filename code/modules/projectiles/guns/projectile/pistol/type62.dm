@@ -28,7 +28,6 @@
 	spawn_tags = SPAWN_TAG_GUN_OS
 	price_tag = 3000
 
-	spawn_blacklisted = TRUE //until loot rework
 	serial_type = "OS"
 
 /obj/item/gun/projectile/pistol/type_62/update_icon()

@@ -29,8 +29,6 @@
 //		WEAPON_CHARGE    // charge mode on balistics doesnt work. need to make a balistic version of it -Valo
         )
 
-	spawn_blacklisted = TRUE //until loot rework
-
 	serial_type = "OS"
 
 

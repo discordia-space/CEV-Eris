@@ -58,3 +58,13 @@
 	name = "low chance random gun part"
 	icon_state = "gun-black-low"
 	spawn_nothing_percentage = 75
+
+/obj/spawner/gun/onestar
+	name = "random onestar gun"
+	icon_state = "gun-orange"
+	tags_to_spawn = list(SPAWN_GUN_OS)
+
+/obj/spawner/gun/onestar/low_chance
+	name = "random onestar gun"
+	icon_state = "gun-orange-low"
+	spawn_nothing_percentage = 75
