@@ -46,7 +46,7 @@
 					offer_name = offer_content["name"]
 					offer_price = offer_content["price"]
 					offer_amount = offer_content["amount"]
-					data += "<span class='notice'>\> Special offer available at <b>[station_name]</b>.</span>
+					data += "<span class='notice'>\> Special offer available at <b>[station_name]</b>.</span>"
 					data += "<span class='notice'>\>\> [offer_name], <b>[round(offer_price / offer_amount, 1)]</b> credits each, [offer_amount ? offer_amount : "0"] requested</span>"
 	data = jointext(data, "<br>")
 	return data
