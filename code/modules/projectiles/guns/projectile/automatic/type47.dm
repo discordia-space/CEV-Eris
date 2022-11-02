@@ -13,7 +13,7 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 3)
 	slot_flags = SLOT_BELT|SLOT_BACK
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLATINUM = 4, MATERIAL_PLASTIC = 12)
-	price_tag = 2800
+	price_tag = 2900
 	init_recoil = CARBINE_RECOIL(0.6)
 	fire_sound = 'sound/weapons/Gunshot_silenced.wav'
 	unload_sound = 'sound/weapons/guns/interact/batrifle_magout.ogg'

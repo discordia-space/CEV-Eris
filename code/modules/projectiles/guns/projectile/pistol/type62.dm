@@ -26,7 +26,7 @@
 		SEMI_AUTO_300
         )
 	spawn_tags = SPAWN_TAG_GUN_OS
-	price_tag = 3000
+	price_tag = 2700
 
 	serial_type = "OS"
 
