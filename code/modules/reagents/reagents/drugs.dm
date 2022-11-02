@@ -277,3 +277,150 @@
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
 	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
+
+// It's time to cook
+/datum/reagent/drug/crystal_dream
+	name = "Crystal Dream"
+	id = "crystal_dream"
+	description = "Synthetic bliss. The closest thing to love you'll find in this void."
+	taste_description = "bitterant with a bite"
+	color = "#8ecae6"
+	metabolism = REM * 0.5
+	constant_metabolism = TRUE	// So it doesn't get stuck in your system
+	overdose = 14.9
+	reagent_state = LIQUID
+	sanity_gain = 2
+	addiction_chance = 100
+	withdrawal_threshold = 0.1
+	nerve_system_accumulations = 80
+	var/purity = 1
+
+/datum/reagent/drug/crystal_dream/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
+	// Suffer every roach stim withdrawal at once
+	M.stats.addTempStat(STAT_MEC, -15, STIM_TIME, id)
+	M.stats.addTempStat(STAT_TGH, -70, STIM_TIME, id)
+	M.stats.addTempStat(STAT_ROB, -55, STIM_TIME, id)
+	M.stats.addTempStat(STAT_VIG, -15, STIM_TIME, id)
+
+	// Extra effects
+	M.add_chemical_effect(CE_PAINKILLER, 50 * effect_multiplier * purity)
+	M.make_jittery(10 * effect_multiplier)
+	M.hallucination(30 * effect_multiplier * purity, 30 * effect_multiplier * purity)
+	if(prob(5))
+		M.emote("me", 1, pick("twitches.", "sweats.", "shivers."))
+
+	// The danger
+	M.adjustToxLoss(1.5 * effect_multiplier * purity)
+	damage_random_internal_organ(M, 1 * effect_multiplier * purity)
+
+/datum/reagent/drug/crystal_dream/overdose(mob/living/carbon/M, alien)
+	if(!M.stats.getPerk(PERK_DREAMER) && purity > 0.991)
+		M.stats.addPerk(PERK_DREAMER)
+		to_chat(M, SPAN_NOTICE("<i>Your imagination becomes tangible.</i>"))
+
+/datum/reagent/drug/crystal_dream/withdrawal_act(mob/living/carbon/M)
+	M.stats.addTempStat(STAT_MEC, -15, STIM_TIME, id)
+	M.stats.addTempStat(STAT_TGH, -70, STIM_TIME, id)
+	M.stats.addTempStat(STAT_ROB, -55, STIM_TIME, id)
+	M.stats.addTempStat(STAT_VIG, -15, STIM_TIME, id)
+
+	M.make_jittery(10)
+	M.add_chemical_effect(CE_PULSE, 3)
+
+	M.adjustToxLoss(3 * purity)
+	damage_random_internal_organ(M, 2 * purity)
+	if(prob(5))
+		M.emote("me", 1, pick("twitches spastically.", "sweats profusely.", "shivers violently."))
+
+/datum/reagent/drug/crystal_dream/proc/damage_random_internal_organ(mob/living/carbon/M, damage_amount)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/organ_process = pick(OP_HEART, OP_LIVER, OP_LUNGS, OP_KIDNEYS, OP_BLOOD_VESSEL)
+		var/obj/item/organ/internal/I = H.random_organ_by_process(organ_process)
+		if(istype(I))
+			I.take_damage(damage_amount, TRUE)
+
+/datum/reagent/drug/crystal_dream/white
+	name = "White Crystal Dream"
+	id = "white_crystal_dream"
+	description = "Liquid glass. Pure scante."
+	color = "#d3d3d3"
+	sanity_gain = 2
+	purity = 0.8
+
+/datum/reagent/drug/crystal_dream/yellow
+	name = "Yellow Crystal Dream"
+	id = "yellow_crystal_dream"
+	description = "Low-quality product. Also known as Dreamer's Piss."
+	color = "#e6d68e"
+	sanity_gain = 1
+	purity = 0.4
+
+// Spider heroin
+/datum/reagent/drug/paroin
+	name = "Paroin"
+	id = "paroin"
+	description = "A fertile concoction of spider ichor."
+	taste_description = "sludge"
+	reagent_state = LIQUID
+	color = "#421d04"
+	metabolism = REM * 0.5
+	constant_metabolism = TRUE	// So it doesn't get stuck in your system
+	overdose = 14.9
+	sanity_gain = 2
+	addiction_chance = 100
+	withdrawal_threshold = 0.1
+	nerve_system_accumulations = 80
+
+/datum/reagent/drug/paroin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
+	// Suffer every negative spider venom stat effect at once
+	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC, STIM_TIME, id)
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, id)
+
+	// Extra effects
+	M.hallucination(45 * effect_multiplier, 45 * effect_multiplier)
+	M.add_chemical_effect(CE_PULSE, -1)
+	M.add_chemical_effect(CE_SPEEDBOOST, -2)
+	M.drowsyness = max(M.drowsyness, 20 * effect_multiplier)
+	M.confused = max(M.confused, 10 * effect_multiplier)
+	if(prob(5))
+		M.emote("me", 1, pick("chitters.", "chatters.", "shivers."))
+
+	// The danger
+	M.adjustToxLoss(0.5 * effect_multiplier)
+	grow_egg(M, 1)
+
+/datum/reagent/drug/paroin/overdose(mob/living/carbon/M, alien)
+	// The reward
+	if(!M.stats.getPerk(PERK_EIGHTH_EYE))
+		M.stats.addPerk(PERK_EIGHTH_EYE)
+		to_chat(M, SPAN_NOTICE("<i>Your eighth eye opens.</i>"))
+	
+	grow_egg(M, 100)
+
+/datum/reagent/drug/paroin/withdrawal_act(mob/living/carbon/M)
+	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC, STIM_TIME, id)
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, id)
+
+	M.hallucination(60, 60)
+	M.add_chemical_effect(CE_PULSE, -2)
+	M.add_chemical_effect(CE_SPEEDBOOST, -4)
+	M.drowsyness = max(M.drowsyness, 5)
+	M.confused = max(M.confused, 10)
+
+	M.adjustToxLoss(2)
+	grow_egg(M, 1)
+
+/datum/reagent/drug/paroin/proc/grow_egg(mob/living/carbon/M, chance)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(prob(chance))
+			var/obj/item/organ/external/O = safepick(H.organs)
+			if(O && !BP_IS_ROBOTIC(O))
+				to_chat(H, SPAN_WARNING("You feel something twitching inside of your [O.name]!"))
+				var/obj/effect/spider/eggcluster/minor/S = new()
+				S.loc = O
+				O.implants += S
+				O.take_damage(10, 0, TRUE)
