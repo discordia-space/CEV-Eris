@@ -73,6 +73,7 @@
 /area/crawler)
 "t" = (
 /obj/structure/closet/cabinet,
+/obj/spawner/cloth/onestar/low_chance,
 /turf/simulated/floor/carpet/bcarpet,
 /area/crawler)
 "u" = (

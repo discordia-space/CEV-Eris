@@ -133,6 +133,7 @@
 /area/crawler)
 "x" = (
 /obj/structure/table/rack,
+/obj/spawner/cloth/onestar/low_chance,
 /turf/simulated/floor/wood,
 /area/crawler)
 "y" = (
@@ -175,6 +176,11 @@
 	},
 /obj/spawner/contraband/low_chance,
 /obj/spawner/lathe_disk/advanced/low_chance,
+/turf/simulated/floor/wood,
+/area/crawler)
+"L" = (
+/obj/structure/table/onestar,
+/obj/spawner/gun/onestar/low_chance,
 /turf/simulated/floor/wood,
 /area/crawler)
 "N" = (
@@ -314,7 +320,7 @@ a
 (11,1,1) = {"
 a
 e
-k
+L
 k
 k
 n
