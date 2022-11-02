@@ -45,6 +45,9 @@
 					var/offer_price = offer_content["price"]
 					var/offer_amount = offer_content["amount"]
 					data += "<span class='notice'>\> Special offer available at <b>[station_name]</b>.</span>"
-					data += "<span class='notice'>\>\> [offer_name], <b>[round(offer_price / offer_amount, 1)][CREDITS]</b> each, [offer_amount ? offer_amount : "0"] requested</span>"
+					if(offer_amount)
+						data += "<span class='notice'>\>\> [offer_name], <b>[round(offer_price / offer_amount, 1)][CREDITS]</b> each, [offer_amount] requested</span>"
+					else
+						data += "<span class='notice'>\>\> [offer_name], awaiting new contract</span>"
 	data = jointext(data, "<br>")
 	return data

@@ -202,8 +202,11 @@
 						var/list/offer_content = TS.special_offers[path]
 						var/offer_price = offer_content["price"]
 						var/offer_amount = offer_content["amount"]
-						offer_message += "[TS.name] ([round(offer_price / offer_amount, 1)][CREDITS] per item), "
-			
+						if(offer_amount)
+							offer_message += "[TS.name] ([round(offer_price / offer_amount, 1)][CREDITS] each, [offer_amount] requested), "
+						else
+							offer_message += "[TS.name] (offer fulfilled, awaiting new contract), "
+
 			if(has_offers)
 				offer_message = copytext(offer_message, 1, LAZYLEN(offer_message) - 1)
 				to_chat(user, SPAN_NOTICE(offer_message))
