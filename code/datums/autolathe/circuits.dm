@@ -109,3 +109,7 @@
 /datum/design/autolathe/circuit/autolathe_excelsior
 	name = "excelsior autoforge"
 	build_path = /obj/item/electronics/circuitboard/excelsiorautolathe
+
+/datum/design/autolathe/circuit/tracker
+	name = "tracker electronics"
+	build_path = /obj/item/electronics/tracker
