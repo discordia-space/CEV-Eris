@@ -1772,7 +1772,7 @@ var/list/rank_prefix = list(\
 		return
 	blocking = TRUE
 	visible_message(SPAN_WARNING("[src] tenses up, ready to block!"))
-	if (HUDneed.Find("block"))
+	if(HUDneed.Find("block"))
 		var/obj/screen/block/HUD = HUDneed["block"]
 		HUD.update_icon()
 	update_block_overlay()
@@ -1783,7 +1783,7 @@ var/list/rank_prefix = list(\
 		return
 	blocking = FALSE
 	visible_message(SPAN_NOTICE("[src] lowers \his guard."))
-	if (HUDneed.Find("block"))
+	if(HUDneed.Find("block"))
 		var/obj/screen/block/HUD = HUDneed["block"]
 		HUD.update_icon()
 	update_block_overlay()

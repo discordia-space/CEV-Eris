@@ -956,7 +956,7 @@ obj/screen/fire/DEADelize()
 /obj/screen/block/update_icon()
 	if(ishuman(parentmob))//always true, but just in case
 		var/mob/living/carbon/human/H = parentmob
-		if (H.blocking)
+		if(H.blocking)
 			icon_state = "block_on"
 		else
 			icon_state = "block_off"

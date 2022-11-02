@@ -115,7 +115,7 @@
 	set hidden = 1
 	if(!istype(mob, /mob/living/carbon/human))
 		return
-	if (!mob.stat && isturf(mob.loc) && !mob.restrained())
+	if(!mob.stat && isturf(mob.loc) && !mob.restrained())
 		mob:blocking()
 	else
 		return
