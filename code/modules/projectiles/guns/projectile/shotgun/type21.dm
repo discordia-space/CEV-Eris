@@ -13,7 +13,7 @@
 	mag_well = MAG_WELL_RIFLE
 	magazine_type = /obj/item/ammo_magazine/m12
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
-	price_tag = 2000
+	price_tag = 3300
 	spawn_tags = SPAWN_TAG_GUN_OS
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'

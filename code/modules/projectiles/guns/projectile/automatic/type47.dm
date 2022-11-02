@@ -30,7 +30,6 @@
 		FULL_AUTO_400
 		)
 
-	spawn_blacklisted = TRUE
 	serial_type = "OS"
 
 /obj/item/gun/projectile/type_47/update_icon()
