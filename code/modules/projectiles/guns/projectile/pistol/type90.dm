@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/pistol/type_90
 	name = "OS Type 90 HG .35 Auto \"Mozhu\"" //last emperor
-	desc = "Highly advanced gauss pistol manufactured by the Alliance right before it\'s collapse. Uses both standard and high capacity .35 Auto magazines."
+	desc = "Highly advanced gauss pistol manufactured by One Star right before it\'s collapse. Uses both standard and high capacity .35 Auto magazines."
 	icon = 'icons/obj/guns/projectile/os/type_90.dmi'
 	icon_state = "type_90"
 	item_state = "type_90"
