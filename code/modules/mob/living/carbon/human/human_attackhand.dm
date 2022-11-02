@@ -25,6 +25,7 @@
 	if(istype(H))
 		if(H != src && check_shields(0, null, H, H.targeted_organ, H.name))
 			H.do_attack_animation(src)
+			human_attacker.stop_blocking()
 			return 0
 
 		if(istype(H.gloves, /obj/item/clothing/gloves/boxing/hologlove))
