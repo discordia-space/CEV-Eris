@@ -34,6 +34,6 @@
 	breach_threshold = 10
 	resilience = 0.05
 	helmet = /obj/item/clothing/head/space/void/onestar
-	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_CLOTHING_OS
 	slowdown = MEDIUM_SLOWDOWN
 	stiffness = LIGHT_STIFFNESS
