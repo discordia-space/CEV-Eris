@@ -890,6 +890,8 @@ default behaviour is:
 		update_z(T.z)
 
 /mob/living/Destroy()
+	if(registered_z)
+		SSmobs.mob_living_by_zlevel[registered_z] -= src	// STOP_PROCESSING() doesn't remove the mob from this list
 	qdel(stats)
 	stats = null
 	return ..()

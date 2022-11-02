@@ -43,6 +43,10 @@
 	if(amount > 1)
 		update_icon()
 
+/obj/item/ammo_casing/Destroy()
+	QDEL_NULL(BB)
+	return ..()
+
 //removes the projectile from the ammo casing
 /obj/item/ammo_casing/proc/expend()
 	. = BB
@@ -238,6 +242,11 @@
 			stored_ammo += new ammo_type(src)
 	get_label()
 	update_icon()
+
+/obj/item/ammo_magazine/Destroy()
+	QDEL_LIST(contents)		// Normally, we don't want to do this, but this is an exception
+	QDEL_LIST(stored_ammo)
+	return ..()
 
 /obj/item/ammo_magazine/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/ammo_casing))
