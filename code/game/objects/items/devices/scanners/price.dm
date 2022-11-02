@@ -32,21 +32,19 @@
 /proc/price_scan_results(atom/movable/target)
 	var/list/data = list()
 	var/price = SStrade.get_price(target) * SStrade.get_export_price_multiplier(target)
-	var/station_name
-	var/offer_name
-	var/offer_price
-	var/offer_amount
-	data += "<span class='notice'>Scanned [target], value: <b>[price ? price : "0"]</b> credits[target.contents.len ? " (contents included)" : ""]."
+
+	data += "<span class='notice'>Scanned [target], export value: <b>[price ? price : "0"][CREDITS]</b>[target.contents.len ? " (contents included)" : ""]."
+
 	if(!price)
 		for(var/datum/trade_station/TS in SStrade.discovered_stations)
 			for(var/path in TS.special_offers)
 				if(istype(target, path))
-					station_name = TS.name
+					var/station_name = TS.name
 					var/list/offer_content = TS.special_offers[path]
-					offer_name = offer_content["name"]
-					offer_price = offer_content["price"]
-					offer_amount = offer_content["amount"]
+					var/offer_name = offer_content["name"]
+					var/offer_price = offer_content["price"]
+					var/offer_amount = offer_content["amount"]
 					data += "<span class='notice'>\> Special offer available at <b>[station_name]</b>.</span>"
-					data += "<span class='notice'>\>\> [offer_name], <b>[round(offer_price / offer_amount, 1)]</b> credits each, [offer_amount ? offer_amount : "0"] requested</span>"
+					data += "<span class='notice'>\>\> [offer_name], <b>[round(offer_price / offer_amount, 1)][CREDITS]</b> each, [offer_amount ? offer_amount : "0"] requested</span>"
 	data = jointext(data, "<br>")
 	return data

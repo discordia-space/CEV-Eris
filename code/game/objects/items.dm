@@ -186,23 +186,27 @@
 	for(var/Q in tool_qualities)
 		message += "\n<blue>It possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
 
+	. = ..(user, distance, "", message)
+
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.stats.getPerk(PERK_MARKET_PROF))
-			message += SPAN_NOTICE("\nThis item cost: [get_item_cost()][CREDITS]")
+			to_chat(user,SPAN_NOTICE("Export value: [get_item_cost() * SStrade.get_export_price_multiplier(src)][CREDITS]"))
 
-			var/offer_message = "\nThis item is requested at: "
+			var/offer_message = "This item is requested at: "
 			var/has_offers = FALSE
 			for(var/datum/trade_station/TS in SStrade.discovered_stations)
 				for(var/path in TS.special_offers)
 					if(istype(src, path))
 						has_offers = TRUE
-						offer_message += "[TS.name], "
+						var/list/offer_content = TS.special_offers[path]
+						var/offer_price = offer_content["price"]
+						var/offer_amount = offer_content["amount"]
+						offer_message += "[TS.name] ([round(offer_price / offer_amount, 1)][CREDITS] per item), "
 			
 			if(has_offers)
 				offer_message = copytext(offer_message, 1, LAZYLEN(offer_message) - 1)
-				message += SPAN_NOTICE(offer_message)
-	return ..(user, distance, "", message)
+				to_chat(user, SPAN_NOTICE(offer_message))
 
 /obj/item/attack_hand(mob/user as mob)
 	if(pre_pickup(user))
