@@ -191,6 +191,17 @@
 		if(H.stats.getPerk(PERK_MARKET_PROF))
 			message += SPAN_NOTICE("\nThis item cost: [get_item_cost()][CREDITS]")
 
+			var/offer_message = "\nThis item is requested at: "
+			var/has_offers = FALSE
+			for(var/datum/trade_station/TS in SStrade.discovered_stations)
+				for(var/path in TS.special_offers)
+					if(istype(src, path))
+						has_offers = TRUE
+						offer_message += "[TS.name], "
+			
+			if(has_offers)
+				offer_message = copytext(offer_message, 1, LAZYLEN(offer_message) - 1)
+				message += SPAN_NOTICE(offer_message)
 	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)
