@@ -21,7 +21,7 @@
 	name = "mounted taser carbine"
 	desc = "A dual fire mode taser system connected to the exosuit's targetting system."
 	icon_state = "mech_taser"
-	holding_type = /obj/item/gun/energy/mech_energy/taser/mounted/mech
+	holding_type = /obj/item/gun/energy/taser/mech_energy/mounted/mech
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
 
@@ -29,7 +29,7 @@
 	name = "mounted ion rifle"
 	desc = "An exosuit-mounted ion rifle. Handle with care."
 	icon_state = "mech_ionrifle"
-	holding_type = /obj/item/gun/energy/mech_energy/ionrifle/mounted/mech
+	holding_type = /obj/item/gun/energy/ionrifle/mech_energy/mounted/mech
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 
@@ -37,7 +37,7 @@
 	name = "\improper CH-PS \"Immolator\" laser"
 	desc = "An exosuit-mounted laser rifle. Handle with care."
 	icon_state = "mech_lasercarbine"
-	holding_type = /obj/item/gun/energy/mech_energy/laser/mounted/mech
+	holding_type = /obj/item/gun/energy/laser/mech_energy/mounted/mech
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 
@@ -45,7 +45,7 @@
 	name = "mounted plasma cutter"
 	desc = "An industrial plasma cutter mounted onto the chassis of the mech. "
 	icon_state = "mech_plasma"
-	holding_type = /obj/item/gun/energy/mech_energy/plasmacutter/mounted/mech
+	holding_type = /obj/item/gun/energy/plasmacutter/mech_energy/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_PLASMA = 4, TECH_ENGINEERING = 6, TECH_COMBAT = 3)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 5)
@@ -55,22 +55,22 @@
 	name = "short cannon"
 	desc = "A weapon for combat exosuits. It lobs low-velocity cannon rounds."
 	icon_state = "mecha_gauss"
-	holding_type = /obj/item/gun/energy/mech_energy/cannon/mounted/mech
+	holding_type = /obj/item/gun/energy/cannon/mech_energy/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
 	matter = list(MATERIAL_STEEL = 30, MATERIAL_PLASTEEL = 30)
 
 /obj/item/mech_equipment/mounted_system/energy/flamer
 	name = "ballistic flamer"
-	desc = "A weapon for combat exosuits. It lobs blobs of burning material."
+	desc = "A weapon for combat exosuits. It lobs globs of burning material."
 	icon_state = "mecha_flamer_lit"
-	holding_type = /obj/item/gun/energy/mech_energy/flamer/mounted/mech
+	holding_type = /obj/item/gun/energy/flamer/mech_energy/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASMA = 10) // It's not very good // TODO: Port CM flamers
 
 ///
-#warn TODO: fix mech headlights, fix mech-welder intaction runtime, do something w/ flamer, do something w/ mech ballistics, mech exit time
+#warn TODO: fix mech headlights, fix mech-welder intaction runtime, do something w/ flamer, do something w/ mech ballistics, mech exit time, mech jetpack,
 obj/item/gun/energy/mech_energy
 	use_external_power = TRUE
 	restrict_safety = TRUE
@@ -82,70 +82,71 @@ obj/item/gun/energy/mech_energy
 
 ///
 
-/obj/item/gun/energy/mech_energy/flamer/mounted/mech
+/obj/item/gun/energy/flamer/mech_energy/mounted/mech
 	name = "flamer"
 	desc = "A ballistic weapon that's been modified to lob polymer casings filled with a sticky substance that ignites regardless of environmental factors."
 	fire_sound = 'sound/weapons/guns/misc/mech_rifle.ogg'
 	projectile_type = /obj/item/projectile/flamer_lob
 	charge_cost = MECH_WEAPON_POWER_COST * 1.5
 
-/obj/item/gun/energy/mech_energy/flamer/mounted
-	bad_type = /obj/item/gun/energy/mech_energy/flamer/mounted
+/obj/item/gun/energy/flamer/mech_energy/mech_energy/mounted
+	bad_type = /obj/item/gun/energy/flamer/mech_energy/mounted
 	spawn_tags = null
 
-/obj/item/gun/energy/mech_energy/cannon/mounted/mech
+
+/obj/item/gun/energy/cannon/mech_energy/mounted/mech
 	name = "cannon"
 	desc = "An authentic cannon from the late 1700s, modified to fit on a mech. On closer inspection the tube contains a miniaturized gauss accelerator.."
 	fire_sound = 'sound/weapons/guns/misc/mech_rifle.ogg'
 	projectile_type = /obj/item/projectile/bullet/cannon
 	charge_cost = MECH_WEAPON_POWER_COST * 1.7
 
-/obj/item/gun/energy/mech_energy/cannon/mounted
-	bad_type = /obj/item/gun/energy/mech_energy/cannon/mounted
+/obj/item/gun/energy/cannon/mech_energy/mech_energy/mounted
+	bad_type = /obj/item/gun/energy/cannon/mech_energy/mounted
 	spawn_tags = null
 
 
-/obj/item/gun/energy/mech_energy/taser/mounted/mech
+/obj/item/gun/energy/taser/mech_energy/mounted/mech
 	charge_cost = MECH_WEAPON_POWER_COST * 0.5 // Pew pew pew pew pew pew pew pew pew pew
 	burst = 3
 	burst_delay = 1 // PEW PEW PEW
 	init_recoil = LMG_RECOIL(1)
 	init_offset = 10 // Pew pew in all directions
 
-/obj/item/gun/energy/mech_energy/taser/mounted
-	bad_type = /obj/item/gun/energy/mech_energy/taser/mounted
+/obj/item/gun/energy/taser/mech_energy/mounted
+	bad_type = /obj/item/gun/energy/taser/mech_energy/mounted
 	spawn_tags = null
 
 
-/obj/item/gun/energy/mech_energy/ionrifle/mounted/mech
+/obj/item/gun/energy/ionrifle/mech_energy/mounted/mech
 	charge_cost = MECH_WEAPON_POWER_COST * 0.75
 
-/obj/item/gun/energy/mech_energy/ionrifle/mounted
-	bad_type = /obj/item/gun/energy/mech_energy/ionrifle/mounted
+/obj/item/gun/energy/ionrifle/mech_energy/mounted
+	bad_type = /obj/item/gun/energy/ionrifle/mech_energy/mounted
 	spawn_tags = null
 
 
-/obj/item/gun/energy/mech_energy/laser/mounted/mech
+/obj/item/gun/energy/laser/mech_energy/mounted/mech
 	name = "\improper CH-PS \"Immolator\" laser"
 	charge_cost = MECH_WEAPON_POWER_COST
 	burst = 2
 	init_firemodes = list()
 	burst_delay = 1.5
 
-/obj/item/gun/energy/laser/mounted
-	bad_type = /obj/item/gun/energy/mech_energy/laser/mounted/mech
+/obj/item/gun/energy/laser/mech_energy/mounted
+	bad_type = /obj/item/gun/energy/laser/mech_energy/mounted/mech
 	spawn_tags = null
 
 
-/obj/item/gun/energy/mech_energy/plasmacutter/mounted/mech
+/obj/item/gun/energy/plasmacutter/mech_energy/mounted/mech
 	charge_cost = MECH_WEAPON_POWER_COST * 1.5
 	projectile_type = /obj/item/projectile/beam/cutter
 
-/obj/item/gun/energy/plasmacutter
-	bad_type = /obj/item/gun/energy/mech_energy/plasmacutter
+/obj/item/gun/energy/plasmacutter/mech_energy/
+	bad_type = /obj/item/gun/energy/plasmacutter/mech_energy/
 
-/obj/item/gun/energy/plasmacutter/mounted
-	bad_type = /obj/item/gun/energy/mech_energy/plasmacutter/mounted
+/obj/item/gun/energy/plasmacutter/mech_energy/mounted
+	bad_type = /obj/item/gun/energy/plasmacutter/mech_energy/mounted
 	spawn_tags = null
 
 
@@ -215,7 +216,7 @@ obj/item/gun/energy/mech_energy
 	name = "missile rack"
 	desc = "The SRM-8 missile rack is loaded with explosive missiles."
 	icon_state = "mech_missile_pod"
-	holding_type = /obj/item/gun/energy/mech_energy/missile/mounted/mech
+	holding_type = /obj/item/gun/energy/missile/mech_energy/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_BACK, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 20, MATERIAL_PLASMA = 15)
 
@@ -225,19 +226,19 @@ obj/item/gun/energy/mech_energy
 	name = "frag grenade launcher"
 	desc = "The SGL-6FR grenade launcher is designed to launch primed fragmentation grenades."
 	icon_state = "mech_gl"
-	holding_type = /obj/item/gun/energy/mech_energy/launcher/frag/mounted/mech
+	holding_type = /obj/item/gun/energy/launcher/frag/mech_energy/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 
 /obj/item/mech_equipment/mounted_system/launcher/grenadesting
 	name = "stingball launcher"
 	desc = "The SGL-6FL grenade launcher is designated to launch primed stingballs."
 	icon_state = "mech_glst"
-	holding_type = /obj/item/gun/energy/mech_energy/launcher/sting/mounted/mech
+	holding_type = /obj/item/gun/energy/launcher/sting/mech_energy/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 
 /////
 
-/obj/item/gun/energy/mech_energy/missile/mounted/mech
+/obj/item/gun/energy/missile/mounted/mech
 	name = "missile rack"
 	desc = "A large crate containing energy-produced missiles, ready to launch."
 	fire_sound = 'sound/weapons/guns/misc/mech_mortar.ogg'
@@ -245,12 +246,12 @@ obj/item/gun/energy/mech_energy
 	charge_cost = MECH_WEAPON_POWER_COST * 3
 
 /obj/item/gun/energy/missile/mounted
-	bad_type = /obj/item/gun/energy/missile/mounted
+	bad_type = /obj/item/gun/energy/missile/mech_energy/mounted
 	spawn_tags = null
 
 /////
 
-/obj/item/gun/energy/mech_energy/launcher/frag/mounted/mech
+/obj/item/gun/energy/launcher/frag/mounted/mech
 	name = "grenade launcher"
 	desc = "A sealed, maintenance-free crate of freshly energized fragmentation grenades, ready to be used."
 	fire_sound = 'sound/weapons/guns/misc/mech_mortar.ogg'
@@ -258,12 +259,12 @@ obj/item/gun/energy/mech_energy
 	charge_cost = MECH_WEAPON_POWER_COST * 2.5
 
 
-/obj/item/gun/energy/mech_energy/launcher/frag/mounted
-	bad_type = /obj/item/gun/energy/mech_energy/launcher/frag/mounted
+/obj/item/gun/energy/launcher/frag/mounted
+	bad_type = /obj/item/gun/energy/launcher/frag/mech_energy/mounted
 	spawn_tags = null
 
 
-/obj/item/gun/energy/mech_energy/launcher/sting/mounted/mech
+/obj/item/gun/energy/launcher/sting/mounted/mech
 	name = "grenade launcher"
 	desc = "A sealed, maintenance-free crate of freshly energized stinger grenades, ready to be used."
 	fire_sound = 'sound/weapons/guns/misc/mech_mortar.ogg'
@@ -271,6 +272,6 @@ obj/item/gun/energy/mech_energy
 	charge_cost = MECH_WEAPON_POWER_COST * 2
 
 
-/obj/item/gun/energy/mech_energy/launcher/sting/mounted
-	bad_type = /obj/item/gun/energy/mech_energy/launcher/sting/mounted
+/obj/item/gun/energy/launcher/sting/mounted
+	bad_type = /obj/item/gun/energy/launcher/sting/mech_energy/mounted
 	spawn_tags = null
