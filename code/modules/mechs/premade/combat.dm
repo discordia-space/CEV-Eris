@@ -15,12 +15,11 @@
 	exosuit_color = COLOR_GUNMETAL
 	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/combat
 	installed_software_boards = list(
-		/obj/item/electronics/circuitboard/exosystem/weapons,
-		/obj/item/electronics/circuitboard/exosystem/advweapons
+		/obj/item/electronics/circuitboard/exosystem/weapons
 	)
 	installed_systems = list(
-		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/mounted_system/taser,
-		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/taser/ion,
+		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/mounted_system/energy/taser,
+		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/energy/ion,
 		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
 	)
 
@@ -32,7 +31,7 @@
 	exosuit_color = "#5a6934"
 	decal = "stripes"
 	installed_systems = list(
-		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/mounted_system/taser/laser,
-		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/taser/ion,
+		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/mounted_system/energy/laser,
+		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/energy/ion,
 		HARDPOINT_HEAD = /obj/item/mech_equipment/light
 	)

@@ -11,11 +11,10 @@
 	head = /obj/item/mech_component/sensors/heavy
 	body = /obj/item/mech_component/chassis/heavy
 	installed_software_boards = list(
-		/obj/item/electronics/circuitboard/exosystem/weapons,
-		/obj/item/electronics/circuitboard/exosystem/advweapons
+		/obj/item/electronics/circuitboard/exosystem/weapons
 	)
 	installed_systems = list(
-		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/mounted_system/taser,
-		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/taser/ion,
+		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/mounted_system/energy/taser,
+		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/energy/ion,
 		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
 	)
