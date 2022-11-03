@@ -224,6 +224,10 @@
 /obj/spawner/junk,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
 /area/outpost/blacksite/small)
+"lG" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/plating/under/airless,
+/area/outpost/blacksite/small)
 "lM" = (
 /obj/machinery/light_construct{
 	dir = 8
@@ -717,6 +721,11 @@
 /obj/spawner/scrap/low_chance,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
 /area/outpost/blacksite/small)
+"Lc" = (
+/obj/structure/table/onestar,
+/obj/spawner/tool_upgrade/rare/onestar,
+/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/area/outpost/blacksite/small)
 "Lm" = (
 /obj/structure/table/onestar,
 /obj/item/tool/screwdriver/combi_driver/onestar,
@@ -785,11 +794,6 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"OX" = (
-/obj/structure/table/onestar,
-/obj/spawner/tool_upgrade/rare/onestar,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
 /area/outpost/blacksite/small)
 "OY" = (
 /obj/structure/window/reinforced{
@@ -3331,7 +3335,7 @@ et
 po
 vO
 Ib
-SA
+lG
 Pp
 "}
 (52,1,1) = {"
@@ -3449,7 +3453,7 @@ ZF
 AS
 fv
 JN
-OX
+Lc
 ZF
 BT
 et
@@ -4521,7 +4525,7 @@ jJ
 ZQ
 SA
 SA
-SA
+lG
 CY
 CY
 CY
