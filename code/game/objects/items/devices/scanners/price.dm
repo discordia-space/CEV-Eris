@@ -33,7 +33,7 @@
 	var/list/data = list()
 	var/price = SStrade.get_price(target) * SStrade.get_export_price_multiplier(target)
 
-	data += "<span class='notice'>Scanned [target], export value: <b>[price ? price : "0"][CREDITS]</b>[target.contents.len ? " (contents included)" : ""]."
+	data += SPAN_NOTICE("Scanned [target], export value: <b>[price ? price : "0"][CREDITS]</b>[target.contents.len ? " (contents included)" : ""].")
 
 	if(!price)
 		for(var/datum/trade_station/TS in SStrade.discovered_stations)
@@ -44,10 +44,10 @@
 					var/offer_name = offer_content["name"]
 					var/offer_price = offer_content["price"]
 					var/offer_amount = offer_content["amount"]
-					data += "<span class='notice'>\> Special offer available at <b>[station_name]</b>.</span>"
+					data += SPAN_NOTICE("\> Special offer available at <b>[station_name]</b>.")
 					if(offer_amount)
-						data += "<span class='notice'>\>\> [offer_name], <b>[round(offer_price / offer_amount, 1)][CREDITS]</b> each, [offer_amount] requested</span>"
+						data += SPAN_NOTICE("\>\> [offer_name], <b>[round(offer_price / offer_amount, 1)][CREDITS]</b> each, [offer_amount] requested.")
 					else
-						data += "<span class='notice'>\>\> [offer_name], awaiting new contract</span>"
+						data += SPAN_NOTICE("\>\> [offer_name], awaiting new contract.")
 	data = jointext(data, "<br>")
 	return data
