@@ -343,6 +343,9 @@
 	if(owner.emp_damage >= EMP_STRAFE_DISABLE)
 		to_chat(usr, SPAN_WARNING("Error: Coordination systems are unable to synchronize. Contact an authorised exo-electrician immediately."))
 		return
+	if(owner.legs.can_strafe == FALSE)
+		to_chat(usr, SPAN_WARNING("Error: This propulsion system doesn't support synchronization!"))
+		return
 	owner.strafing = ..()
 	to_chat(usr, SPAN_NOTICE("Strafing [owner.strafing ? "enabled" : "disabled"]."))
 
