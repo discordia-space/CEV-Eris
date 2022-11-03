@@ -294,8 +294,8 @@
 	style = STYLE_HIGH
 	armor = list(
 		melee = 2,
-		bullet = 8,
-		energy = 8,
+		bullet = 10,
+		energy = 10,
 		bomb = 10,
 		bio = 5,
 		rad = 5

@@ -352,8 +352,8 @@
 	price_tag = 2000
 	armor = list(
 		melee = 3,
-		bullet = 11,
-		energy = 11,
+		bullet = 12,
+		energy = 12,
 		bomb = 10,
 		bio = 5,
 		rad = 5
