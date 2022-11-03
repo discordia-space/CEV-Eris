@@ -412,6 +412,7 @@
 "uA" = (
 /obj/structure/closet/onestar/tier1/normal,
 /obj/spawner/cloth/onestar/low_chance,
+/obj/spawner/cloth/onestar/low_chance,
 /turf/simulated/floor/wood/airless,
 /area/outpost/blacksite/small)
 "vi" = (
@@ -785,6 +786,11 @@
 	},
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
 /area/outpost/blacksite/small)
+"OX" = (
+/obj/structure/table/onestar,
+/obj/spawner/tool_upgrade/rare/onestar,
+/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/area/outpost/blacksite/small)
 "OY" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -849,7 +855,7 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges/airless,
 /area/outpost/blacksite/small)
 "RE" = (
-/obj/spawner/scrap/sparse,
+/obj/spawner/tool_upgrade/rare/onestar,
 /turf/simulated/floor/tiled/derelict/white_red_edges/airless,
 /area/outpost/blacksite/small)
 "RL" = (
@@ -3414,7 +3420,7 @@ CY
 lZ
 mO
 et
-uA
+ge
 xS
 kl
 SA
@@ -3443,7 +3449,7 @@ ZF
 AS
 fv
 JN
-JN
+OX
 ZF
 BT
 et
