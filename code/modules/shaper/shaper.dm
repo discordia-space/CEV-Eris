@@ -6,7 +6,7 @@
 	var/list/stored_material = list()
 	var/power_source = null
 
-/*
+
 /obj/machinery/shaper/attackby(obj/item/W, mob/user)
 	var/obj/item/stack/material/M = W
 	if(istype(M) && M.material.name == MATERIAL_COMPRESSED)
@@ -16,7 +16,8 @@
 			playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src]</span>.")
 
-*/
+/obj/machinery/shaper/connecttoglasses
+
 
 /obj/item/clothing/glasses/shaper
 	name = "Optical Meson Scanner"
@@ -28,7 +29,7 @@
 	action_button_name = "Test"
 	action_button_proc = "togglebuildmode"
 
-/obj/item/clothing/glasses/shaper/proc/togglebuildmode(mob/M)
+/obj/item/clothing/glasses/shaper/proc/toggleshapermode(mob/M)
 	if(M.client)
 		if(M.client.buildmode)
 			log_admin("[key_name(usr)] has left build mode.")
