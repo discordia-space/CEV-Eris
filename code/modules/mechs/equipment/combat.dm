@@ -7,129 +7,152 @@
 		return C.charge/C.maxcharge
 	return null
 
-/obj/item/mech_equipment/mounted_system/taser
+/obj/item/mech_equipment/mounted_system/energy
+	name = "energy thing"
+	desc = "You shouldn't be seeing this."
+	icon_state = "mecha_taser"
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
+	restricted_software = list(MECH_SOFTWARE_WEAPONS)
+	matter = list()
+	origin_tech = list()
+
+
+/obj/item/mech_equipment/mounted_system/energy/taser
 	name = "mounted taser carbine"
 	desc = "A dual fire mode taser system connected to the exosuit's targetting system."
 	icon_state = "mech_taser"
-	holding_type = /obj/item/gun/energy/taser/mounted/mech
+	holding_type = /obj/item/gun/energy/mechenergy/taser/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
 
-/obj/item/mech_equipment/mounted_system/shield
-	holding_type = /obj/item/shield/mounted/mech
-	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
-	restricted_software = list(MECH_SOFTWARE_WEAPONS)
-	matter = list(MATERIAL_PLASTEEL = 30)
-
-
-/obj/item/shield/mounted/mech
-	name = "mech shield"
-	icon = 'icons/obj/weapons.dmi'
-	flags = CONDUCT
-//	slot_flags = SLOT_BACK
-	force = WEAPON_FORCE_DANGEROUS
-	throw_speed = 0
-	throw_range = 0
-	w_class = ITEM_SIZE_HUGE
-	origin_tech = list()
-	matter = list()
-	price_tag = 500
-	base_block_chance = 65
-	shield_difficulty = 0
-	shield_integrity = 500
-	slowdown_hold = 0
-
-/obj/item/shield/riot/dozershield/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/hammer) || istype(W, /obj/item/tool/sword))
-		on_bash(W, user)
-	else
-		..()
-
-/obj/item/gun/energy/taser/mounted/mech
-	restrict_safety = TRUE
-	twohanded = FALSE
-	charge_cost = MECH_WEAPON_POWER_COST * 0.5 // Pew pew pew pew pew pew pew pew pew pew
-	burst = 3
-	burst_delay = 1 // PEW PEW PEW
-	init_recoil = LMG_RECOIL(1)
-	matter = list()
-	cell_type = /obj/item/cell/medium/mech
-	init_offset = 10 // Pew pew in all directions
-
-/obj/item/mech_equipment/mounted_system/taser/ion
+/obj/item/mech_equipment/mounted_system/energy/ion
 	name = "mounted ion rifle"
 	desc = "An exosuit-mounted ion rifle. Handle with care."
 	icon_state = "mech_ionrifle"
-	holding_type = /obj/item/gun/energy/ionrifle/mounted/mech
+	holding_type = /obj/item/gun/energy/mechenergy/ionrifle/mounted/mech
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 
-/obj/item/gun/energy/ionrifle/mounted
-	bad_type = /obj/item/gun/energy/ionrifle/mounted
-	spawn_tags = null
-
-/obj/item/gun/energy/ionrifle/mounted/mech
-	use_external_power = TRUE
-	restrict_safety = TRUE
-	self_recharge = TRUE
-	twohanded = FALSE
-	charge_cost = MECH_WEAPON_POWER_COST * 0.75
-	cell_type = /obj/item/cell/medium/mech
-	matter = list()
-
-/obj/item/mech_equipment/mounted_system/taser/laser
+/obj/item/mech_equipment/mounted_system/energy/laser
 	name = "\improper CH-PS \"Immolator\" laser"
 	desc = "An exosuit-mounted laser rifle. Handle with care."
 	icon_state = "mech_lasercarbine"
-	holding_type = /obj/item/gun/energy/laser/mounted/mech
+	holding_type = /obj/item/gun/energy/mechenergy/laser/mounted/mech
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 
-/obj/item/gun/energy/laser/mounted
-	bad_type = /obj/item/gun/energy/laser/mounted/mech
-	spawn_tags = null
-
-/obj/item/gun/energy/laser/mounted/mech
-	name = "\improper CH-PS \"Immolator\" laser"
-	use_external_power = TRUE
-	restrict_safety = TRUE
-	self_recharge = TRUE
-	twohanded = FALSE
-	charge_cost = MECH_WEAPON_POWER_COST
-	burst = 2
-	init_firemodes = list()
-	burst_delay = 1.5
-	matter = list()
-	cell_type = /obj/item/cell/medium/mech
-
-/obj/item/mech_equipment/mounted_system/taser/plasma
+/obj/item/mech_equipment/mounted_system/energy/plasma
 	name = "mounted plasma cutter"
 	desc = "An industrial plasma cutter mounted onto the chassis of the mech. "
 	icon_state = "mech_plasma" //TODO: Make a new sprite that doesn't get sec called on you.
-	holding_type = /obj/item/gun/energy/plasmacutter/mounted/mech
+	holding_type = /obj/item/gun/energy/mechenergy/plasmacutter/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_PLASMA = 4, TECH_ENGINEERING = 6, TECH_COMBAT = 3)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 5)
 	spawn_blacklisted = TRUE
 
-/obj/item/gun/energy/plasmacutter
-	bad_type = /obj/item/gun/energy/plasmacutter
+/obj/item/mech_equipment/mounted_system/energy/cannon
+	name = "short cannon"
+	desc = "A weapon for combat exosuits. It lobs low-velocity cannon rounds."
+	icon_state = "mecha_gauss"
+	holding_type = /obj/item/gun/energy/mechenergy/cannon/mounted/mech
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
+	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
+	matter = list(MATERIAL_STEEL = 30, MATERIAL_PLASTEEL = 30)
 
-/obj/item/gun/energy/plasmacutter/mounted
-	bad_type = /obj/item/gun/energy/plasmacutter/mounted
-	spawn_tags = null
+/obj/item/mech_equipment/mounted_system/energy/flamer
+	name = "ballistic flamer"
+	desc = "A weapon for combat exosuits. It lobs blobs of a substance somewhere between Greek fire and napalm."
+	icon_state = "mecha_flamer"
+	holding_type = /obj/item/gun/energy/mechenergy/flamer/mounted/mech
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
+	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
+	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASMA = 15)
 
-/obj/item/gun/energy/plasmacutter/mounted/mech
+///
+
+obj/item/gun/energy/mechenergy
 	use_external_power = TRUE
 	restrict_safety = TRUE
-	twohanded = FALSE
 	self_recharge = TRUE
+	twohanded = FALSE
+	fire_delay = 0
+	cell_type = /obj/item/cell/medium/mech
+	matter = list()
+
+///
+
+/obj/item/gun/energy/mechenergy/flamer/mounted/mech
+	name = "flamer"
+	desc = "A ballistic weapon that's been modified to lob polymer casings filled with a sticky substance that ignites regardless of environmental factors."
+	fire_sound = 'sound/weapons/guns/misc/mech_rifle.ogg'
+	projectile_type = /obj/item/projectile/flamer_lob
+	charge_cost = MECH_WEAPON_POWER_COST * 1.5
+	burst = 2
+	burst_delay = 2
+	init_offset = 5
+
+/obj/item/gun/energy/mechenergy/flamer/mounted
+	bad_type = /obj/item/gun/energy/mechenergy/flamer/mounted
+	spawn_tags = null
+
+/obj/item/gun/energy/mechenergy/cannon/mounted/mech
+	name = "cannon"
+	desc = "An authentic cannon from the late 1700s, modified to fit on a mech. On closer inspection the tube contains a miniaturized gauss accelerator.."
+	fire_sound = 'sound/weapons/guns/misc/mech_rifle.ogg'
+	projectile_type = /obj/item/projectile/bullet/cannon
+	charge_cost = MECH_WEAPON_POWER_COST * 1.7
+
+/obj/item/gun/energy/mechenergy/cannon/mounted
+	bad_type = /obj/item/gun/energy/mechenergy/cannon/mounted
+	spawn_tags = null
+
+
+/obj/item/gun/energy/mechenergy/taser/mounted/mech
+	charge_cost = MECH_WEAPON_POWER_COST * 0.5 // Pew pew pew pew pew pew pew pew pew pew
+	burst = 3
+	burst_delay = 1 // PEW PEW PEW
+	init_recoil = LMG_RECOIL(1)
+	init_offset = 10 // Pew pew in all directions
+
+/obj/item/gun/energy/mechenergy/taser/mounted
+	bad_type = /obj/item/gun/energy/mechenergy/taser/mounted
+	spawn_tags = null
+
+
+/obj/item/gun/energy/mechenergy/ionrifle/mounted/mech
+	charge_cost = MECH_WEAPON_POWER_COST * 0.75
+
+/obj/item/gun/energy/mechenergy/ionrifle/mounted
+	bad_type = /obj/item/gun/energy/mechenergy/ionrifle/mounted
+	spawn_tags = null
+
+
+/obj/item/gun/energy/mechenergy/laser/mounted/mech
+	name = "\improper CH-PS \"Immolator\" laser"
+	charge_cost = MECH_WEAPON_POWER_COST
+	burst = 2
+	init_firemodes = list()
+	burst_delay = 1.5
+
+/obj/item/gun/energy/laser/mounted
+	bad_type = /obj/item/gun/energy/mechenergy/laser/mounted/mech
+	spawn_tags = null
+
+
+/obj/item/gun/energy/mechenergy/plasmacutter/mounted/mech
 	charge_cost = MECH_WEAPON_POWER_COST * 1.5
 	projectile_type = /obj/item/projectile/beam/cutter
-	matter = list()
-	cell_type = /obj/item/cell/medium/mech
+
+/obj/item/gun/energy/plasmacutter
+	bad_type = /obj/item/gun/energy/mechenergy/plasmacutter
+
+/obj/item/gun/energy/plasmacutter/mounted
+	bad_type = /obj/item/gun/energy/mechenergy/plasmacutter/mounted
+	spawn_tags = null
+
 
 /obj/item/gun/projectile/get_hardpoint_maptext()
 	return "[get_ammo()]/[ammo_magazine.max_ammo]"
@@ -162,7 +185,7 @@
 	restrict_safety = TRUE
 	twohanded = FALSE
 	init_firemodes = list(
-		list(mode_name="spit fire",  burst=5, burst_delay=0.8, move_delay=5, one_hand_penalty=15, icon="burst")
+		list(mode_name="spit fire",  burst=5, burst_delay=0.8, fire_delay=0, move_delay=5, one_hand_penalty=0, icon="burst")
 		)
 	spawn_tags = null
 	matter = list()
@@ -188,3 +211,71 @@
 			playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 100, 1)
 		spawn(2)
 			playsound(src.loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, 1)
+
+
+
+/*Launchers*/
+
+/obj/item/mech_equipment/mounted_system/launcher/missile
+	name = "missile rack"
+	desc = "The SRM-8 missile rack is loaded with explosive missiles."
+	icon_state = "mech_missile_pod"
+	holding_type = /obj/item/gun/energy/mechenergy/missile/mounted/mech
+	restricted_hardpoints = list(HARDPOINT_BACK, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 20, MATERIAL_PLASMA = 15)
+
+/////
+
+/obj/item/mech_equipment/mounted_system/launcher/grenadefrag
+	name = "frag grenade launcher"
+	desc = "The SGL-6FR grenade launcher is designed to launch primed fragmentation grenades."
+	icon_state = "mech_gl"
+	holding_type = /obj/item/gun/energy/mechenergy/launcher/frag/mounted/mech
+	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
+
+/obj/item/mech_equipment/mounted_system/launcher/grenadesting
+	name = "stingball launcher"
+	desc = "The SGL-6FL grenade launcher is designated to launch primed stingballs."
+	icon_state = "mech_glst"
+	holding_type = /obj/item/gun/energy/mechenergy/launcher/sting/mounted/mech
+	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
+
+/////
+
+/obj/item/gun/energy/mechenergy/missile/mounted/mech
+	name = "missile rack"
+	desc = "A large crate containing energy-produced missiles, ready to launch."
+	fire_sound = 'sound/weapons/guns/misc/mech_mortar.ogg'
+	projectile_type = /obj/item/projectile/bullet/rocket/mech
+	charge_cost = MECH_WEAPON_POWER_COST * 3
+
+/obj/item/gun/energy/missile/mounted
+	bad_type = /obj/item/gun/energy/missile/mounted
+	spawn_tags = null
+
+/////
+
+/obj/item/gun/energy/mechenergy/launcher/frag/mounted/mech
+	name = "grenade launcher"
+	desc = "A sealed, maintenance-free crate of freshly energized fragmentation grenades, ready to be used."
+	fire_sound = 'sound/weapons/guns/misc/mech_mortar.ogg'
+	projectile_type = /obj/item/projectile/bullet/grenade/frag
+	charge_cost = MECH_WEAPON_POWER_COST * 2.5
+
+
+/obj/item/gun/energy/mechenergy/launcher/frag/mounted
+	bad_type = /obj/item/gun/energy/mechenergy/launcher/frag/mounted
+	spawn_tags = null
+
+
+/obj/item/gun/energy/mechenergy/launcher/sting/mounted/mech
+	name = "grenade launcher"
+	desc = "A sealed, maintenance-free crate of freshly energized stinger grenades, ready to be used."
+	fire_sound = 'sound/weapons/guns/misc/mech_mortar.ogg'
+	projectile_type = /obj/item/projectile/bullet/grenade/frag/sting
+	charge_cost = MECH_WEAPON_POWER_COST * 2
+
+
+/obj/item/gun/energy/mechenergy/launcher/sting/mounted
+	bad_type = /obj/item/gun/energy/mechenergy/launcher/sting/mounted
+	spawn_tags = null
