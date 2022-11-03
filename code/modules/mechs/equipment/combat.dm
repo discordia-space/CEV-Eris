@@ -166,7 +166,7 @@
 /obj/item/mech_equipment/mounted_system/energy/flamer
 	name = "ballistic flamer"
 	desc = "A weapon for combat exosuits. It lobs globs of burning material."
-	icon_state = "mecha_flamer_lit"
+	icon_state = "mech_flamer"
 	holding_type = /obj/item/gun/energy/flamer/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
