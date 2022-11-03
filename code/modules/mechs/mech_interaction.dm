@@ -333,22 +333,7 @@
 				MC.return_diagnostics(user)
 		return
 
-	else if(istype(I, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/coil = I
-		if(coil.amount < 5)
-			to_chat(user, SPAN_WARNING("You need at least 5 cable coil pieces in order to replace wiring."))
-			return TRUE
-		var/obj/item/mech_component/mc = get_targeted_part(user)
-		if(!repairing_check(mc, user))
-			return TRUE
-		if(mc.burn_damage <= 0)
-			to_chat(user, SPAN_WARNING("Wiring on this part is already repaired."))
-			return TRUE
-		to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
-		if(do_mob(user, src, 30) && coil.use(5))
-			mc.repair_burn_damage(15)
-
-	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_WELDING, QUALITY_PRYING, QUALITY_SCREW_DRIVING)
+	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_PRYING, QUALITY_SCREW_DRIVING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
@@ -386,18 +371,6 @@
 			dismantle()
 			return TRUE
 
-		if(QUALITY_WELDING)
-			var/obj/item/mech_component/mc = get_targeted_part(user)
-			if(!repairing_check(mc, user))
-				return TRUE
-			if(mc.brute_damage <= 0)
-				to_chat(user, SPAN_WARNING("Brute damage on this part is already repaired."))
-				return TRUE
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-				visible_message(SPAN_WARNING("\The [mc] has been repaired by [user]!"),"You hear welding.")
-				mc.repair_brute_damage(15)
-				return TRUE
-
 		if(QUALITY_PRYING)
 			var/obj/item/cell/cell = get_cell()
 			if(cell)
@@ -408,7 +381,6 @@
 			if(do_mob(user, src, 30) && cell == body.cell && body.eject_item(cell, user))
 				body.cell = null
 				return
-
 
 		if(QUALITY_SCREW_DRIVING)
 			if(length(body.computer?.contents))
@@ -425,39 +397,6 @@
 			return
 
 
-/*
-/mob/living/exosuit/MouseDrop(atom/over_object)
-	var/mob/living/carbon/human/user = usr
-
-	// Clickdragging, either onto a mob or into inventory hand
-	if(istype(user) && user.Adjacent(src) && (over_object == user || istype(over_object, /obj/screen/inventory/hand)))
-		// Ejecting exosuit power cell
-		var/obj/item/cell/cell = get_cell()
-		if(cell)
-			if(!maintenance_protocols)
-				to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))
-				return
-
-			to_chat(user, SPAN_NOTICE("You start removing [cell] from \the [src]."))
-			if(do_mob(user, src, 30) && cell == body.cell && body.eject_item(cell, user))
-				body.cell = null
-
-		// Removing software boards
-		else if(length(body.computer?.contents))
-			if(!maintenance_protocols)
-				to_chat(user, SPAN_WARNING("The software upload bay is locked while maintenance protocols are disabled."))
-				return
-
-			var/obj/item/board = body.computer.contents[length(body.computer.contents)]
-			to_chat(user, SPAN_NOTICE("You start removing [board] from \the [src]."))
-			if(do_mob(user, src, 30) && (board in body.computer) && body.computer?.eject_item(board, user))
-				body.computer.update_software()
-
-		return
-
-	return ..()
-
-*/
 /mob/living/exosuit/attack_hand(mob/living/user)
 	// Drag the pilot out if possible.
 	if(user.a_intent == I_HURT)
