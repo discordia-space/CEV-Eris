@@ -6,6 +6,15 @@
 	var/list/stored_material = list()
 	var/power_source = null
 
+//This uses M56 code from Colonial Marines 13
+/obj/item/device/shaper
+	name = "\improper Shaper Device"
+	desc = "A disassembled version of the Shaper Device, capable of being stored in a briefcase for ease of movement."
+	w_class = SIZE_HUGE
+	flags_equip_slot = SLOT_BACK
+	icon = 'icons/turf/whiskeyoutpost.dmi'
+	icon_state = "M56D_gun_e"
+	var/stored_matter = 0
 
 /obj/machinery/shaper/attackby(obj/item/W, mob/user)
 	var/obj/item/stack/material/M = W
@@ -18,6 +27,52 @@
 
 /obj/machinery/shaper/connecttoglasses
 
+/obj/item/device/m56d_gun/attack_self(mob/user)
+	..()
+
+	if(!ishuman(user))
+		return
+	if(user.z == GLOB.interior_manager.interior_z)
+		to_chat(usr, SPAN_WARNING("It's too cramped in here to deploy \a [src]."))
+		return
+	var/turf/T = get_turf(usr)
+	var/fail = FALSE
+	if(T.density)
+		fail = TRUE
+	else
+		for(var/obj/X in T.contents - src)
+			if(X.density && !(X.flags_atom & ON_BORDER))
+				fail = TRUE
+				break
+			if(istype(X, /obj/structure/machinery/defenses))
+				fail = TRUE
+				break
+			else if(istype(X, /obj/structure/window))
+				fail = TRUE
+				break
+			else if(istype(X, /obj/structure/windoor_assembly))
+				fail = TRUE
+				break
+			else if(istype(X, /obj/structure/machinery/door))
+				fail = TRUE
+				break
+	if(fail)
+		to_chat(usr, SPAN_WARNING("You can't deploy \the [src] here, something is in the way."))
+		return
+
+
+	if(!do_after(user, 1 SECONDS, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+		return
+
+	var/obj/structure/machinery/m56d_post/M = new /obj/structure/machinery/m56d_post(user.loc)
+	M.setDir(user.dir) // Make sure we face the right direction
+	M.gun_rounds = src.rounds //Inherit the amount of ammo we had.
+	M.gun_mounted = TRUE
+	M.anchored = TRUE
+	M.update_icon()
+	M.set_name_label(name_label)
+	to_chat(user, SPAN_NOTICE("You deploy \the [src]."))
+	qdel(src)
 
 /obj/item/clothing/glasses/shaper
 	name = "Optical Meson Scanner"
