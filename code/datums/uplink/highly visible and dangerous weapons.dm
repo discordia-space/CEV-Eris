@@ -25,9 +25,10 @@
 	path = /obj/item/storage/box/syndie_kit/pistol
 
 /datum/uplink_item/item/visible_weapons/riggedlaser
-	name = "Exosuit 'Immolator' Energy Weapon"
+	name = "Exosuit (APLU) Rigged Laser"
 	item_cost = 4
-	path = /obj/item/mech_equipment/mounted_system/energy/laser
+	path = /obj/item/mech_equipment/mounted_system/taser/laser
+
 
 /datum/uplink_item/item/visible_weapons/revolver
 	name = "Revolver"

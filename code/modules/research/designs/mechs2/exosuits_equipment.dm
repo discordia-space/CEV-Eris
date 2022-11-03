@@ -25,19 +25,19 @@
 //COMBAT
 /datum/design/research/item/exosuit/taser
 	name = "mounted taser"
-	build_path = /obj/item/mech_equipment/mounted_system/energy/taser
+	build_path = /obj/item/mech_equipment/mounted_system/taser
 
 /datum/design/research/item/exosuit/weapon/plasma
 	name = "mounted plasma cutter"
-	build_path = /obj/item/mech_equipment/mounted_system/energy/plasma
+	build_path = /obj/item/mech_equipment/mounted_system/taser/plasma
 
 /datum/design/research/item/exosuit/weapon/ion
 	name = "mounted ion rifle"
-	build_path = /obj/item/mech_equipment/mounted_system/energy/ion
+	build_path = /obj/item/mech_equipment/mounted_system/taser/ion
 
 /datum/design/research/item/exosuit/weapon/laser
 	name = "mounted laser gun"
-	build_path = /obj/item/mech_equipment/mounted_system/energy/laser
+	build_path = /obj/item/mech_equipment/mounted_system/taser/laser
 
 /datum/design/research/item/exosuit/weapon/pk
 	name = "mounted rigged PK"

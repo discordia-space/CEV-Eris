@@ -119,11 +119,11 @@
 /mob/living/exosuit/emp_act(severity)
 	var/emp_resist = 1 + getarmor(null, ARMOR_ENERGY)
 
-	if(emp_resist >= 30)
+	if(emp_resist >= 50)
 		for(var/mob/living/m in pilots)
 			to_chat(m, SPAN_NOTICE("The electromagnetic pulse fails to penetrate your Faraday shielding!"))
 		return
-	else if(emp_resist < 30)
+	else if(emp_resist < 50)
 		for(var/mob/living/m in pilots)
 			to_chat(m, SPAN_NOTICE("The electromagnetic pulse penetrates your shielding, causing damage!"))
 

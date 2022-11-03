@@ -245,8 +245,6 @@
 // the thing below allow using SPANning in datum definition, the above can't.
 #define SPAN(class, X) "<span class='" + ##class + "'>" + ##X + "</span>"
 
-#define FONT_COLORED(color, text) "<font color='[color]'>[text]</font>"
-
 #define text_starts_with(text, start) (copytext(text, 1, length(start) + 1) == start)
 
 #define attack_animation(A) if(istype(A)) A.do_attack_animation(src)
