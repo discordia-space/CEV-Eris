@@ -73,7 +73,6 @@
 /obj/item/mech_component/proc/repair_burn_damage(amt)
 	take_burn_damage(-amt)
 
-
 /obj/item/mech_component/proc/take_brute_damage(amt)
 	brute_damage += amt
 	update_health()
@@ -146,6 +145,10 @@
 		to_chat(user, SPAN_NOTICE("You inspect \the [src] but find nothing to weld."))
 		return
 
+	if(total_damage >= max_damage)
+		to_chat(user, SPAN_WARNING("This part is too damaged to be repaired with a welder!"))
+		return
+
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			visible_message(SPAN_WARNING("\The [src] has been repaired by [user]!"),"You hear welding.")
@@ -163,6 +166,10 @@
 
 	if(CC.amount < 5)
 		to_chat(user, SPAN_WARNING("You need at least 5 cable coil pieces in order to replace wiring."))
+		return
+
+	if(total_damage >= max_damage)
+		to_chat(user, SPAN_WARNING("This part is too damaged to be re-wired!"))
 		return
 
 	to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
