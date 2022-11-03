@@ -256,3 +256,39 @@
 	playsound(src, 'sound/effects/flare.ogg', 100, 1)
 	new /obj/effect/effect/smoke/illumination(T, brightness=max(flash_range*3, brightness), lifetime=light_duration, color=COLOR_RED)
 
+/////Start of Exosuit Stuff/////
+
+//*Individual Rounds*//
+
+/obj/item/projectile/bullet/cannon
+	name = "cannon round"
+	icon_state = "cannon"
+	damage_types = list(BRUTE = 90)
+	armor_divisor = 1.25
+	style_damage = 70
+	recoil = 0
+	step_delay = 1.8
+
+/obj/item/projectile/bullet/rocket/mech
+	name = "mass-produced rocket"
+	icon_state = "rocket"
+	damage_types = list(BRUTE = 15)
+	armor_divisor = 1
+	style_damage = 100
+	check_armour = ARMOR_BOMB
+	penetrating = -5
+	recoil = 0
+	can_ricochet = FALSE
+
+//*Magazines*//
+
+/obj/item/ammo_magazine/lrifle/pk/mech
+	name = "LMG munitions box (.30 Rifle, Exosuit)"
+	matter = list()
+	spawn_blacklisted = TRUE
+	bad_type = /obj/item/ammo_magazine/lrifle/pk/mech
+
+/obj/item/ammo_magazine/lrifle/pk/empty
+	initial_ammo = 0
+
+/////End of Exosuit Stuff/////
