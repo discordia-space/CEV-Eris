@@ -3,13 +3,35 @@ GLOBAL_VAR_INIT(tts_request_failed, 0)
 GLOBAL_VAR_INIT(tts_request_succeeded, 0)
 GLOBAL_VAR_INIT(tts_reused, 0)
 
+GLOBAL_VAR(tts_bearer) // Token we use to talk with text-to-speech service
+
 GLOBAL_LIST_EMPTY(tts_errors)
 GLOBAL_VAR_INIT(tts_error_raw, "")
 
 
 var/list/tts_seeds = list()
 
-/proc/init_tts_directories()
+/proc/initialize_text_to_speech()
+	if(!config.tts_key)
+		return
+
+	var/datum/http_request/request = new()
+	var/payload = json_encode(list("key" = "[config.tts_key]"))
+	var/header = list("content-type" = "application/json; charset=utf-8", "content-length" = "223")
+	request.prepare(RUSTG_HTTP_METHOD_POST, "https://api.novelai.net/user/login", payload, header)
+	request.begin_async()
+	UNTIL(request.is_complete())
+	var/datum/http_response/response = request.into_response()
+	if(response.errored)
+		NOTICE("TTS failed to recieve authentication token. [response.error]")
+	else
+		var/list/decoded_body = json_decode(response.body)
+		if(decoded_body["accessToken"])
+			GLOB.tts_bearer = "Bearer [decoded_body["accessToken"]]"
+			NOTICE("TTS recieved authentication token.")
+		else
+			NOTICE("TTS failed to recieve authentication token. [response.error]")
+
 	if(!fexists("config/tts_seeds.txt"))
 		return
 
@@ -43,7 +65,7 @@ var/list/tts_seeds = list()
 	var/seed_value = rustg_url_encode(tts_seeds[seed] ? tts_seeds[seed]["value"] : seed)
 	var/api_request = "https://api.novelai.net/ai/generate-voice?text=[text]&seed=[seed_value]&voice=-1&opus=false&version=v2"
 	var/datum/http_request/req = new()
-	req.prepare(RUSTG_HTTP_METHOD_GET, api_request, "", list("authorization" = config.tts_bearer), .)
+	req.prepare(RUSTG_HTTP_METHOD_GET, api_request, "", list("authorization" = GLOB.tts_bearer), .)
 	req.begin_async()
 	UNTIL(req.is_complete())
 	var/datum/http_response/response = req.into_response()
@@ -82,7 +104,7 @@ var/list/tts_seeds = list()
 	var/seed_value = rustg_url_encode(tts_seeds[seed] ? tts_seeds[seed]["value"] : seed)
 	var/api_request = "https://api.novelai.net/ai/generate-voice?text=[text]&seed=[seed_value]&voice=-1&opus=false&version=v2"
 	var/datum/http_request/req = new()
-	req.prepare(RUSTG_HTTP_METHOD_GET, api_request, "", list("authorization" = config.tts_bearer), .)
+	req.prepare(RUSTG_HTTP_METHOD_GET, api_request, "", list("authorization" = GLOB.tts_bearer), .)
 	req.begin_async()
 	UNTIL(req.is_complete())
 	var/datum/http_response/response = req.into_response()
