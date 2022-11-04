@@ -14,7 +14,7 @@
 #define CREDITS "&cent;"
 #define CREDS "&cent;"
 
-
+#define DEPARTMENT_HIGHCOMMAND "High Command"
 #define DEPARTMENT_COMMAND	"Command"
 #define DEPARTMENT_MEDICAL	"Medical"
 #define DEPARTMENT_ENGINEERING	"Engineering"

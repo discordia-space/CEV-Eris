@@ -8,8 +8,8 @@ SUBSYSTEM_DEF(economy)
 	init_order = INIT_ORDER_LATELOAD
 
 	wait = 300 //Ticks once per 30 seconds
-	var/payday_interval = 1 HOURS
-	var/next_payday = 1 HOURS
+	var/payday_interval = 0.5 HOURS
+	var/next_payday = 0.5 HOURS
 
 /datum/controller/subsystem/economy/Initialize()
 	.=..()
@@ -61,7 +61,7 @@ SUBSYSTEM_DEF(economy)
 	for(var/datum/money_account/A in personal_accounts)
 		if(!A.employer)
 			continue
-		
+
 		var/amount_to_pay = A.debt + A.wage
 		if(amount_to_pay <= 0)
 			continue

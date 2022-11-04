@@ -1,3 +1,4 @@
+GLOBAL_LIST_INIT(department_highcommand, list(DEPARTMENT_HIGHCOMMAND))
 GLOBAL_LIST_INIT(department_command, list(DEPARTMENT_COMMAND))
 GLOBAL_LIST_INIT(department_security, list(DEPARTMENT_SECURITY))
 GLOBAL_LIST_INIT(department_moebius, list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL))
@@ -16,6 +17,7 @@ var/const/MISC              =(1<<6)
 var/const/SERVICE           =(1<<7)
 var/const/GUILD             =(1<<8)
 var/const/CHURCH           	=(1<<9)
+var/const/HIGHCOMMAND       =(1<<10)
 
 var/const/ENGSEC			=(1<<0)
 

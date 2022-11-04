@@ -33,6 +33,14 @@
 /*************
 	Command
 **************/
+/datum/department/highcommand
+	name = "CEV Eris High Command"
+	id = DEPARTMENT_HIGHCOMMAND
+	/*
+	Ghost Account for Wages.
+	*/
+	account_initial_balance = 5000000
+
 /datum/department/command
 	name = "CEV Eris Command"
 	id = DEPARTMENT_COMMAND
@@ -44,28 +52,29 @@
 	In future, we will implement largescale missions and research contracts to earn money, and then set it
 	to a much lower starting value
 	*/
-	account_initial_balance = 2000000
-
+	account_initial_balance = 50000
+	budget_base = 5000
+	funding_source = DEPARTMENT_HIGHCOMMAND
 
 /*************
 	Retainers
 **************/
 //These departments are paid out of ship funding
+
 /datum/department/ironhammer
 	name = "Ironhammer Mercenary Company"
 	id = DEPARTMENT_SECURITY
-	funding_source = DEPARTMENT_COMMAND
+	funding_source = DEPARTMENT_HIGHCOMMAND
 
 /datum/department/technomancers
 	name = "Technomancer League"
 	id = DEPARTMENT_ENGINEERING
-	funding_source = DEPARTMENT_COMMAND
+	funding_source = DEPARTMENT_HIGHCOMMAND
 
 /datum/department/civilian
 	name = "CEV Eris Civilian"
 	id = DEPARTMENT_CIVILIAN
-	funding_source = DEPARTMENT_COMMAND
-
+	funding_source = DEPARTMENT_HIGHCOMMAND
 
 /******************
 	Benefactors
@@ -74,18 +83,17 @@
 /datum/department/moebius_medical
 	name = "Moebius Corp: Medical Division"
 	id = DEPARTMENT_MEDICAL
-	funding_source = "Moebius Corp."
+	funding_source = DEPARTMENT_HIGHCOMMAND
 
 /datum/department/moebius_research
 	name = "Moebius Corp: Research Division"
 	id = DEPARTMENT_SCIENCE
-	funding_source = "Moebius Corp."
+	funding_source = DEPARTMENT_HIGHCOMMAND
 
 /datum/department/church
 	name = "Church of NeoTheology"
 	id = DEPARTMENT_CHURCH
-	funding_source = "Church of NeoTheology"
-
+	funding_source = DEPARTMENT_HIGHCOMMAND
 
 /******************
 	Independant
