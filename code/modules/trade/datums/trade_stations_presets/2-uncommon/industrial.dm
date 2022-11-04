@@ -10,8 +10,8 @@
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS
 	offer_limit = 20
-	base_income = 1600
-	wealth = 3200
+	base_income = 800
+	wealth = 0
 	hidden_inv_threshold = 0
 	recommendation_threshold = 0
 	stations_recommended = list()
@@ -35,7 +35,7 @@
 	)
 	offer_types = list(
 		/datum/reagent/drug/paroin = offer_data("paroin (60u)", 2500, 4),
-		/datum/reagent/drug/crystal_dream = offer_data("crystal dream (60u)", 7500, 4),
+		/datum/reagent/drug/crystal_dream = offer_data("Crystal Dream (60u)", 7500, 4),
 		/datum/reagent/alcohol/roachbeer = offer_data("Kakerlakenbier (60u)", 2500, 2),
 		/datum/reagent/alcohol/kaiserbeer = offer_data("Monarchenblut (60u)", 50000, 1)
 	)
