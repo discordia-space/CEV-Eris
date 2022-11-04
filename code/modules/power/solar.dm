@@ -274,7 +274,7 @@
 			tracker = 1
 			user.drop_item()
 			qdel(I)
-			playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
+			playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
 			user.visible_message(SPAN_NOTICE("[user] inserts the electronics into the solar assembly."))
 			return
 	..()
