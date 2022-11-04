@@ -630,7 +630,7 @@
 	I.tool_upgrades = list(
 	UPGRADE_POWERCOST_MULT = 1.20,
 	UPGRADE_PRECISION = 14,
-	UPGRADE_WORKSPEED = 14,
+	UPGRADE_WORKSPEED = 7,
 	UPGRADE_HEALTH_THRESHOLD = -10,
 	)
 	I.prefix = "intelligent"
