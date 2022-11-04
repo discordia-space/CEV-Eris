@@ -263,12 +263,12 @@
 /obj/item/projectile/bullet/cannon
 	name = "cannon round"
 	icon_state = "cannon"
-	damage_types = list(BRUTE = 80)
+	damage_types = list(BRUTE = 85)
 	armor_divisor = 0.75 // Not designed to pierce armor
 	style_damage = 70
 	recoil = 0
 	step_delay = 1.8
-	wounding_mult = 2
+	wounding_mult = 1
 
 /obj/item/projectile/bullet/rocket/mech
 	name = "mass-produced rocket"
