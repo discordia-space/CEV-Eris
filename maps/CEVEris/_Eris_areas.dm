@@ -287,6 +287,14 @@
 	name = "\improper Bridge"
 	icon_state = "bridge"
 
+/area/eris/command/bridge/checkpoint
+	name = "\improper Bridge Checkpoint"
+	icon_state = "bridge_chk"
+
+/area/eris/command/bridge/storage
+	name = "\improper Bridge Storage"
+	icon_state = "bridge_storage"
+
 /area/eris/command/meeting_room
 	name = "\improper Heads of Staff Meeting Room"
 	icon_state = "bridge"

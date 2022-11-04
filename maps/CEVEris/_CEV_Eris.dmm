@@ -42027,16 +42027,17 @@
 /area/eris/security/lobby)
 "bVA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/blast/regular{
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	bullet_resistance = 25;
 	density = 0;
-	dir = 1;
-	icon_state = "pdoor0";
+	dir = 2;
+	icon_state = "shutter0";
 	id = "BrigInternalAccessDoors";
-	layer = 2.6;
-	name = "Brig Internal Access Lockdown";
+	name = "Brig Internal Lockdown";
 	opacity = 0
 	},
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/eris/security/lobby)
 "bVB" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
@@ -50714,7 +50715,7 @@
 	name = "RND Windows Lockdown";
 	opacity = 0
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/eris/rnd/lab)
 "crc" = (
 /obj/structure/disposalpipe/up{
@@ -51894,7 +51895,12 @@
 	name = "Bridge Entrance Lockdown";
 	opacity = 0
 	},
-/turf/simulated/floor/tiled/steel/bluecorner,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass_command{
+	name = "Bridge";
+	req_access = list(19)
+	},
+/turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/side/bridgehallway)
 "cul" = (
 /obj/structure/extinguisher_cabinet{
@@ -55095,7 +55101,7 @@
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
-/area/eris/maintenance/section1deck2central)
+/area/eris/command/bridge/storage)
 "cBT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -55147,7 +55153,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/eris/maintenance/section1deck2central)
+/area/eris/command/bridge/storage)
 "cCa" = (
 /obj/structure/disposalpipe/down{
 	dir = 8
@@ -55416,7 +55422,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/eris/maintenance/section1deck2central)
+/area/eris/command/bridge/storage)
 "cCD" = (
 /obj/structure/table/rack,
 /obj/spawner/rations,
@@ -55437,7 +55443,7 @@
 "cCF" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/simulated/floor/tiled/techmaint,
-/area/eris/maintenance/section1deck2central)
+/area/eris/command/bridge/storage)
 "cCG" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -55481,7 +55487,7 @@
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
 /turf/simulated/floor/tiled/techmaint,
-/area/eris/maintenance/section1deck2central)
+/area/eris/command/bridge/storage)
 "cCM" = (
 /obj/structure/railing{
 	dir = 1
@@ -57290,7 +57296,7 @@
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /turf/simulated/floor/tiled/techmaint,
-/area/eris/maintenance/section1deck2central)
+/area/eris/command/bridge/storage)
 "cHe" = (
 /obj/structure/multiz/ladder/up,
 /obj/structure/catwalk,
@@ -64024,7 +64030,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel,
-/area/eris/maintenance/section1deck2central)
+/area/eris/command/bridge/storage)
 "cYn" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
@@ -68190,7 +68196,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/plating/under,
-/area/eris/maintenance/section1deck2central)
+/area/eris/command/bridge/storage)
 "dhH" = (
 /obj/structure/catwalk,
 /obj/structure/cable/green{
@@ -68199,7 +68205,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating/under,
-/area/eris/maintenance/section1deck2central)
+/area/eris/command/bridge/storage)
 "dhI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -68389,7 +68395,7 @@
 /obj/structure/cable/green,
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under,
-/area/eris/maintenance/section1deck2central)
+/area/eris/command/bridge/storage)
 "dig" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_command{
@@ -100922,6 +100928,9 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/barquarters)
+"eIb" = (
+/turf/simulated/wall/r_wall,
+/area/eris/command/bridge/storage)
 "eIo" = (
 /turf/simulated/wall,
 /area/eris/engineering/propulsion/right)
@@ -101676,7 +101685,7 @@
 	name = "RND Windows Lockdown";
 	opacity = 0
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/eris/rnd/lab)
 "fRY" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -102505,16 +102514,17 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/blast/regular{
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	bullet_resistance = 25;
 	density = 0;
-	dir = 1;
-	icon_state = "pdoor0";
+	dir = 2;
+	icon_state = "shutter0";
 	id = "BrigInternalAccessDoors";
-	layer = 2.6;
-	name = "Brig Internal Access Lockdown";
+	name = "Brig Internal Lockdown";
 	opacity = 0
 	},
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/eris/security/lobby)
 "hHz" = (
 /obj/machinery/space_heater,
@@ -102739,16 +102749,17 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "iig" = (
-/obj/machinery/door/blast/regular{
+/obj/machinery/door/blast/shutters{
+	bullet_resistance = 25;
 	density = 0;
-	dir = 1;
-	icon_state = "pdoor0";
+	dir = 2;
+	icon_state = "shutter0";
 	id = "BrigInternalAccessDoors";
-	layer = 2.6;
-	name = "Brig Internal Access Lockdown";
+	name = "Brig Internal Lockdown";
 	opacity = 0
 	},
-/turf/simulated/floor/tiled/steel/bluecorner,
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/eris/security/lobby)
 "ijf" = (
 /obj/structure/table/rack,
@@ -103868,7 +103879,7 @@
 /obj/machinery/power/apc/super{
 	pixel_y = 28
 	},
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/side/bridgehallway)
 "kEr" = (
 /obj/machinery/power/nt_obelisk,
@@ -103946,7 +103957,7 @@
 	name = "RND Windows Lockdown";
 	opacity = 0
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/eris/rnd/lab)
 "kOE" = (
 /obj/structure/railing{
@@ -105269,7 +105280,7 @@
 "oau" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/side/bridgehallway)
 "obk" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -105660,7 +105671,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/side/bridgehallway)
 "oOF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -105871,7 +105882,7 @@
 	name = "RND Windows Lockdown";
 	opacity = 0
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/eris/rnd/mixing)
 "pth" = (
 /obj/structure/table/bar_special,
@@ -106504,7 +106515,7 @@
 	name = "RND Windows Lockdown";
 	opacity = 0
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/eris/rnd/lab)
 "qOz" = (
 /obj/structure/cyberplant,
@@ -106691,11 +106702,14 @@
 /obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/crew_quarters/fitness)
+"ror" = (
+/turf/simulated/wall,
+/area/eris/command/bridge/storage)
 "rpP" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
-/obj/machinery/light{
+/obj/machinery/light/small{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
@@ -108255,7 +108269,7 @@
 	req_access = list(19)
 	},
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/side/bridgehallway)
 "uwE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -108652,7 +108666,7 @@
 /obj/item/handcuffs,
 /obj/item/tool/tape_roll,
 /obj/item/tool/crowbar,
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/side/bridgehallway)
 "vpg" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
@@ -252969,11 +252983,11 @@ dfy
 bXj
 dge
 dge
-bPe
+eIb
 cCL
 cBZ
 cCC
-bPe
+eIb
 dbF
 dbF
 cWD
@@ -253171,11 +253185,11 @@ dfz
 bXj
 bAr
 bAr
-bPe
+eIb
 cBS
 dhG
 die
-bPe
+eIb
 dbF
 dbF
 cWD
@@ -253373,11 +253387,11 @@ dfA
 bXj
 csZ
 ctW
-bPe
+eIb
 cHd
 dhH
 cCF
-bPe
+eIb
 dbF
 dbF
 cWD
@@ -253573,12 +253587,12 @@ deJ
 dfg
 eMk
 bXj
-bXD
-bXD
+ctW
+ctW
 bXj
-cxZ
+ror
 cYm
-cxZ
+ror
 bXj
 cWD
 cWD
