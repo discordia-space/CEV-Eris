@@ -65,7 +65,8 @@
 		"Drinks II" = list(
 			/obj/item/reagent_containers/food/drinks/bottle/goldschlager = custom_good_price(100),
 			/obj/item/reagent_containers/food/drinks/bottle/pwine = custom_good_price(100),
-			/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing = custom_good_price(100)
+			/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing = custom_good_price(100),
+			/obj/structure/reagent_dispensers/beerkeg
 		)
 	)
 	offer_types = list(

@@ -14,7 +14,7 @@
 	wealth = 0
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
-	stations_recommended = list("oddities")
+	stations_recommended = list("industrial")
 	inventory = list(
 		"Refined Materials" = list(
 			/obj/item/stack/material/plastic/full = good_data("plastic sheets (x120)", list(3, 5), null),

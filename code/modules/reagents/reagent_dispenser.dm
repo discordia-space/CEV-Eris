@@ -28,6 +28,10 @@
 	var/turf/T = get_turf(src)
 	T?.levelupdate()
 
+/obj/structure/reagent_dispensers/Destroy()
+	QDEL_NULL(reagents)
+	return ..()
+
 /obj/structure/reagent_dispensers/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/device/spy_bug))
 		user.drop_item()
@@ -398,3 +402,28 @@
 		for(var/I in reagents.reagent_list)
 			var/datum/reagent/R = I
 			to_chat(user, "<span class='notice'>[R.volume] units of [R.name]</span>")
+
+// Trade presets
+
+/obj/structure/reagent_dispensers/bidon/diploptillin
+	starting_reagent = "diploptillin"
+	contents_cost = 300
+
+/obj/structure/reagent_dispensers/bidon/gewalkellin
+	starting_reagent = "gewalkellin"
+	contents_cost = 300
+
+/obj/structure/reagent_dispensers/bidon/aranecolmic_acid_hydrazide
+	starting_reagent = "aranecolmic_acid_hydrazide"
+	contents_cost = 300
+
+/obj/structure/reagent_dispensers/bidon/cleaner
+	starting_reagent = "cleaner"
+	contents_cost = 150
+
+/obj/structure/reagent_dispensers/coolanttank/refrigerant
+	name = "refrigerant tank"
+	desc = "A tank of industrial refrigerant."
+	volume = 1000
+	starting_reagent = "refrigerant"
+	contents_cost = 250

@@ -860,3 +860,112 @@
 	. = ..()
 	if(prob(20 * effect_multiplier))
 		M.vomit()
+
+// It's time to cook
+/datum/reagent/toxin/diploptillin
+	name = "Diploptillin"
+	id = "diploptillin"
+	description = "A precursor for Crystal Dream. Mildly toxic."
+	taste_description = "sludge and plague"
+	color = "#67866e"
+	reagent_state = LIQUID
+	strength = 0.2
+
+/datum/reagent/toxin/gewalkellin_salt
+	name = "Gewaltinazine Salt"
+	id = "gewalkellin_salt"
+	description = "An intermediate salt that forms during the process of creating Gewaltinazine."
+	taste_description = "raw meat and metal"
+	color = "#a263c7"
+	reagent_state = LIQUID
+	strength = 0.2
+
+/datum/reagent/toxin/gewalkellin_slurry
+	name = "Gewaltinazine Slurry"
+	id = "gewalkellin_slurry"
+	description = "A useless slurry."
+	taste_description = "copper"
+	color = "#a263c7"
+	reagent_state = LIQUID
+	strength = 0.6
+
+/datum/reagent/toxin/gewalkellin
+	name = "Gewaltinazine"
+	id = "gewalkellin"
+	description = "A precursor for Crystal Dream. Mildly toxic."
+	taste_description = "sweet, coppery meat"
+	color = "#a683bb"
+	reagent_state = LIQUID
+	strength = 0.4
+
+/datum/reagent/toxin/gold_crystal_dream
+	name = "Gold Crystal Dream"
+	id = "gold_crystal_dream"
+	description = "A solution of partially reacted Crystal Dream."
+	taste_description = "bitingly bitter"
+	color = "#b18637"
+	reagent_state = LIQUID
+	strength = 1
+
+/datum/reagent/toxin/red_tar
+	name = "Red Tar"
+	id = "red_tar"
+	description = "The dreaded red tar."
+	taste_description = "disappointing"
+	color = "#b13737"
+	reagent_state = LIQUID
+	strength = 5
+
+/datum/reagent/toxin/black_crystal_dream
+	name = "Black Crystal Dream"
+	id = "black_crystal_dream"
+	description = "A solution of reacted Crystal Dream."
+	taste_description = "bitingly bitter"
+	color = "#000000"
+	reagent_state = LIQUID
+	strength = 1
+
+/datum/reagent/toxin/brown_crystal_dream
+	name = "Brown Crystal Dream"
+	id = "brown_crystal_dream"
+	description = "A solution of mostly reacted Crystal Dream."
+	taste_description = "bitingly bitter"
+	color = "#47270b"
+	reagent_state = LIQUID
+	strength = 1
+
+/datum/reagent/toxin/aranecolimc_acid
+	name = "Aranecolmic Acid"
+	id = "aranecolmic_acid"
+	description = "An intermediate precursor to paroin."
+	taste_description = "viscous sludge"
+	reagent_state = LIQUID
+	color = "#241d19"
+	strength = 0.1
+
+/datum/reagent/toxin/aranecolimc_acid_hyrdazide
+	name = "Aranecolmic Acid Hydrazide"
+	id = "aranecolmic_acid_hydrazide"
+	description = "An intermediate precursor to paroin."
+	taste_description = "sweet metal and viscous sludge"
+	reagent_state = LIQUID
+	color = "#251a13"
+	strength = 0.2
+
+/datum/reagent/toxin/aranecolimc_acid_pyrazole
+	name = "Aranecolmic Acid Pyrazole"
+	id = "aranecolmic_acid_pyrazole"
+	description = "A precursor to paroin."
+	taste_description = "sweet, metallic alcohol and viscous sludge"
+	reagent_state = LIQUID
+	color = "#24150b"
+	strength = 0.3
+
+/datum/reagent/toxin/aranecolimc_ooze
+	name = "Aranecolmic Ooze"
+	id = "aranecolmic_ooze"
+	description = "A useless sludge. Results from a failed attempt at manufacturing paroin."
+	taste_description = "disappointing sludge"
+	reagent_state = LIQUID
+	color = "#221e1b"
+	strength = 0.5

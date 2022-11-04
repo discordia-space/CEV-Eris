@@ -2168,3 +2168,173 @@
 	result = "protein_shake"
 	required_reagents = list("milk" = 1, "protein" = 1)
 	result_amount = 2
+
+/* Drugs */
+
+// Roach meth - Crystal Dream
+// This one has a lot of steps
+// Precursor chem 1
+/datum/chemical_reaction/diploptillin
+	result = "diploptillin"
+	required_reagents = list("diplopterum" = 1, "seligitillin" = 1)
+	catalysts = list("blattedin" = 5)
+	byproducts = list("water" = 1)
+	result_amount = 1
+
+// Precursor chem 2
+/datum/chemical_reaction/gewalkellin_salt
+	result = "gewalkellin_salt"
+	required_reagents = list("gewaltine" = 1, "starkellin" = 1)
+	catalysts = list("blattedin" = 5)
+	maximum_temperature = INFINITY
+	minimum_temperature = 373
+	byproducts = list("water" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/gewalkellin_slurry
+	result = "gewalkellin_slurry"
+	required_reagents = list("gewalkellin_salt" = 1)
+	maximum_temperature = 406
+	minimum_temperature = 374
+	result_amount = 1
+	supports_decomposition_by_electrolysis = FALSE
+
+/datum/chemical_reaction/gewalkellin
+	result = "gewalkellin"
+	required_reagents = list("gewalkellin_salt" = 1)
+	maximum_temperature = 411
+	minimum_temperature = 407
+	result_amount = 1
+
+/datum/chemical_reaction/gewalkellin_slurry/alt
+	maximum_temperature = INFINITY
+	minimum_temperature = 412
+
+// First step -- Mix the precursors
+/datum/chemical_reaction/red_tar		// If you make this, you blew it. You can decompose and continue the recipe to make Crystal Dream, but this will only yield half.
+	result = "red_tar"
+	required_reagents = list("diploptillin" = 1, "gewalkellin" = 2)
+	inhibitors = list("water" = 1)
+	maximum_temperature = 394
+	minimum_temperature = 359
+	result_amount = 0.5					// Lose product when you make this
+
+/datum/chemical_reaction/gold_crystal_dream
+	result = "gold_crystal_dream"
+	required_reagents = list("diploptillin" = 1, "gewalkellin" = 2)
+	inhibitors = list("water" = 1)
+	maximum_temperature = 396
+	minimum_temperature = 395
+	result_amount = 1
+
+/datum/chemical_reaction/failed_crystal_dream
+	result = null
+	required_reagents = list("diploptillin" = 1, "gewalkellin" = 2)
+	inhibitors = list("water" = 1)
+	maximum_temperature = INFINITY
+	minimum_temperature = 397
+
+/datum/chemical_reaction/failed_crystal_dream/on_reaction(datum/reagents/holder, created_volume)
+	// Adapted from water + potassium
+	var/datum/effect/effect/system/reagents_explosion/e = new()
+	e.set_up(round(created_volume/50, 1), holder.my_atom, TRUE, round(created_volume/100, 1)) // 600/50 = 12 , slightly weaker than water + postassium.
+	if(isliving(holder.my_atom))
+		e.amount *= 0.5
+		var/mob/living/L = holder.my_atom
+		if(L.stat != DEAD)
+			if(e.amount >= 6)
+				L.gib()
+			e.amount *= 1.5
+	e.start()
+	holder.clear_reagents()
+	return
+
+// Second step -- Distill the solution
+/datum/chemical_reaction/black_crystal_dream
+	result = "black_crystal_dream"
+	required_reagents = list("gold_crystal_dream" = 1)
+	catalysts = list("sugar" = 5, "fuhrerole" = 5)
+	maximum_temperature = 372
+	minimum_temperature = 347
+	result_amount = 1
+	reaction_rate = REACTION_RATE(0.2)
+
+/datum/chemical_reaction/brown_crystal_dream
+	result = "brown_crystal_dream"
+	required_reagents = list("black_crystal_dream" = 1)
+	catalysts = list("sugar" = 5, "fuhrerole" = 5)
+	maximum_temperature = INFINITY
+	minimum_temperature = 373
+	result_amount = 1
+	reaction_rate = REACTION_RATE(0.2)
+
+// Final step -- Dream
+/datum/chemical_reaction/failed_crystal_dream/alt_2
+	required_reagents = list("brown_crystal_dream" = 1)
+	inhibitors = list()
+	maximum_temperature = 331
+	minimum_temperature = 320
+
+/datum/chemical_reaction/failed_crystal_dream/alt_3
+	required_reagents = list("brown_crystal_dream" = 1)
+	inhibitors = list()
+	maximum_temperature = 394
+	minimum_temperature = 374
+
+/datum/chemical_reaction/failed_crystal_dream/alt_4
+	required_reagents = list("brown_crystal_dream" = 1)
+	inhibitors = list()
+	maximum_temperature = 409
+	minimum_temperature = 410
+
+/datum/chemical_reaction/crystal_dream			// THE GOAL
+	result = "crystal_dream"
+	required_reagents = list("brown_crystal_dream" = 1)
+	maximum_temperature = 421
+	minimum_temperature = 420
+	result_amount = 1
+	reaction_rate = REACTION_RATE(0.2)
+	supports_decomposition_by_electrolysis = FALSE
+
+/datum/chemical_reaction/crystal_dream/white
+	result = "white_crystal_dream"
+	maximum_temperature = 433
+	minimum_temperature = 432
+
+/datum/chemical_reaction/crystal_dream/yellow
+	result = "yellow_crystal_dream"
+	maximum_temperature = INFINITY
+	minimum_temperature = 434
+
+// Spider heroin - Paroin
+/datum/chemical_reaction/aranecolmic_acid
+	result = "aranecolmic_acid"
+	required_reagents = list("aranecolmin" = 1)
+	maximum_temperature = 150
+	minimum_temperature = 140
+	result_amount = 1
+	byproducts = list("water" = 1)
+
+/datum/chemical_reaction/aranecolmic_acid_hydrazide
+	result = "aranecolmic_acid_hydrazide"
+	required_reagents = list("aranecolmic_acid" = 1)
+	catalysts = list("hydrazine" = 5)
+	inhibitors = list("water" = 1)
+	minimum_temperature = 200
+	result_amount = 1
+
+/datum/chemical_reaction/aranecolmic_ooze
+	result = "aranecolmic_ooze"
+	required_reagents = list("aranecolmic_acid" = 1, "water" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/aranecolmic_acid_pyrazole
+	result = "aranecolmic_acid_pyrazole"
+	required_reagents = list("aranecolmic_acid_hydrazide" = 1, "ethanol" = 1, "hclacid" = 1)
+	maximum_temperature = 170
+	result_amount = 1
+
+/datum/chemical_reaction/paroin
+	result = "paroin"
+	required_reagents = list("aranecolmic_acid_pyrazole" = 1, "pararein" = 1)
+	result_amount = 1

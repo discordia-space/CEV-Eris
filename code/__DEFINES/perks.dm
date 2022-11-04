@@ -54,3 +54,7 @@
 //cooldown perks
 #define PERK_COOLDOWN_REASON /datum/perk/cooldown/reason
 #define PERK_COOLDOWN_EXERTION /datum/perk/cooldown/exertion
+
+// drug perks
+#define PERK_DREAMER /datum/perk/dreamer
+#define PERK_EIGHTH_EYE /datum/perk/eighth_eye
