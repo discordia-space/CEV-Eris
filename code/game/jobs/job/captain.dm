@@ -13,8 +13,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	supervisors = "your heart and wisdom"
 	selection_color = "#ccccff"
 	req_admin_notify = 1
-	wage = WAGE_NONE //The captain doesn't get paid, he's the one who does the paying
-	//The ship account is his, and he's free to draw as much salary as he likes
+	wage = WAGE_CAPTAIN //The Captain collects taxes/dividends to his ship budget and personal account.
+	//The ship account is his, and he's free to draw as much additional salary as he likes
 
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 20)
 
