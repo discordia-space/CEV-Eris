@@ -224,10 +224,6 @@
 /obj/spawner/junk,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
 /area/outpost/blacksite/small)
-"lG" = (
-/mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
 "lM" = (
 /obj/machinery/light_construct{
 	dir = 8
@@ -435,6 +431,11 @@
 /obj/structure/table/onestar,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
 /area/outpost/blacksite/small)
+"vH" = (
+/obj/structure/table/rack,
+/obj/spawner/gun/normal,
+/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/area/outpost/blacksite/small)
 "vO" = (
 /obj/structure/closet/onestar/tier3,
 /obj/spawner/cloth/onestar/low_chance,
@@ -595,7 +596,6 @@
 /obj/item/tool/screwdriver/combi_driver/onestar,
 /obj/item/tool/crowbar/onestar,
 /obj/spawner/prothesis_one_star,
-/obj/spawner/prothesis_one_star,
 /obj/spawner/medical,
 /obj/item/tool/medmultitool,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
@@ -717,20 +717,19 @@
 /obj/spawner/scrap/sparse,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
 /area/outpost/blacksite/small)
-"KX" = (
-/obj/spawner/scrap/low_chance,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"Lc" = (
+"KH" = (
 /obj/structure/table/onestar,
 /obj/spawner/tool_upgrade/rare/onestar,
 /turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/area/outpost/blacksite/small)
+"KX" = (
+/obj/spawner/scrap/low_chance,
+/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
 /area/outpost/blacksite/small)
 "Lm" = (
 /obj/structure/table/onestar,
 /obj/item/tool/screwdriver/combi_driver/onestar,
 /obj/item/tool/crowbar/onestar,
-/obj/spawner/prothesis_one_star,
 /obj/spawner/prothesis_one_star,
 /obj/spawner/medical,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
@@ -878,6 +877,10 @@
 /obj/structure/table/onestar,
 /obj/structure/salvageable/personal,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/area/outpost/blacksite/small)
+"SQ" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/plating/under/airless,
 /area/outpost/blacksite/small)
 "Tc" = (
 /obj/spawner/mob/roomba,
@@ -3335,7 +3338,7 @@ et
 po
 vO
 Ib
-lG
+SQ
 Pp
 "}
 (52,1,1) = {"
@@ -3453,7 +3456,7 @@ ZF
 AS
 fv
 JN
-Lc
+KH
 ZF
 BT
 et
@@ -4525,7 +4528,7 @@ jJ
 ZQ
 SA
 SA
-lG
+SQ
 CY
 CY
 CY
@@ -4660,7 +4663,7 @@ In
 lZ
 rx
 pg
-li
+vH
 lZ
 oM
 rI
