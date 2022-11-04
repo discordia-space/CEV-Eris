@@ -210,7 +210,7 @@
 	desc = "An industrial roll cage. Absolutely useless in hazardous environments, as it isn't even sealed."
 	max_damage = 150
 	power_use = 0
-	climb_time = 7 // Quickest entry time cuz it's less useful in combat
+	climb_time = 7 // Quickest entry because it's unsealed
 
 /obj/item/mech_component/chassis/powerloader/Initialize()
 	pilot_positions = list(
@@ -238,7 +238,7 @@
 	hide_pilot = TRUE //Sprite too small, legs clip through, so for now hide pilot
 	exosuit_desc_string = "an open and light chassis"
 	icon_state = "light_body"
-	max_damage = 50
+	max_damage = 75
 	power_use = 5
 	climb_time = 10 //gets a buff to climb_time, in exchange for being less beefy
 	has_hardpoints = list(HARDPOINT_BACK)
@@ -247,7 +247,7 @@
 /obj/item/mech_component/chassis/combat
 	name = "sealed exosuit chassis"
 	hatch_descriptor = "canopy"
-	desc = "An advanced cockpit that utilises sophiscated micro-sensors to enable visibility even without a sensor suite."
+	desc = "An advanced cockpit that utilises sophisticated fiber optic sensors to enable outside visibility without additional hardware."
 	pilot_coverage = 100
 	transparent_cabin = TRUE
 	hide_pilot = TRUE
@@ -270,42 +270,4 @@
 	mech_health = 750
 	power_use = 50
 	climb_time = 35 //Takes longer to climb into, but is beefy as HELL.
-	matter = list(MATERIAL_STEEL = 50, MATERIAL_URANIUM = 18, MATERIAL_PLASTEEL = 20)
-
-/obj/item/mech_component/chassis/pod
-	name = "spherical exosuit chassis"
-	hatch_descriptor = "hatch"
-	pilot_coverage = 100
-	hide_pilot = TRUE //Sprite too small, legs clip through, so for now hide pilot
-	exosuit_desc_string = "a spherical chassis"
-	icon_state = "pod_body"
-	max_damage = 150
-	mech_health = 350 //Default is 300, so 50 more HP then the power loader. Worse then the combat chassis as it requires sensors.
-	power_use = 5
-	climb_time = 30
-	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTEEL = 7, MATERIAL_GLASS = 12)
-	has_hardpoints = list(HARDPOINT_BACK)
-	desc = "A rugged design originally intended for S, this chassis has been refitted for exosuit usage. It's surprisingly durable for its cost."
-
-/obj/item/mech_component/chassis/pod/Initialize()
-	pilot_positions = list(
-		list(
-			"[NORTH]" = list("x" = 8,  "y" = 4),
-			"[SOUTH]" = list("x" = 8,  "y" = 4),
-			"[EAST]"  = list("x" = 12,  "y" = 4),
-			"[WEST]"  = list("x" = 4,  "y" = 4)
-		),
-		list(
-			"[NORTH]" = list("x" = 8,  "y" = 8),
-			"[SOUTH]" = list("x" = 8,  "y" = 8),
-			"[EAST]"  = list("x" = 10,  "y" = 8),
-			"[WEST]"  = list("x" = 6, "y" = 8)
-		),
-		list(
-			"[NORTH]" = list("x" = 8,  "y" = 12),
-			"[SOUTH]" = list("x" = 8,  "y" = 12),
-			"[EAST]"  = list("x" = 10,  "y" = 12),
-			"[WEST]"  = list("x" = 6, "y" = 12)
-		)
-	)
-	. = ..()
+	matter = list(MATERIAL_STEEL = 50, MATERIAL_URANIUM = 20, MATERIAL_PLASTEEL = 20)

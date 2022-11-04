@@ -94,28 +94,4 @@
 	turn_delay = 4 // Turning should be easy , moving not.
 	max_damage = 250
 	power_use = 100
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 5)
-
-/obj/item/mech_component/propulsion/quad
-	name = "quadlegs"
-	exosuit_desc_string = "hydraulic quadlegs"
-	desc = "Specialized quadlegs designed to minimize time wasted reorienting the mech."
-	icon_state = "spiderlegs"
-	max_damage = 75
-	move_delay = 3
-	turn_delay = 1
-	power_use = 75
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
-
-/obj/item/mech_component/propulsion/tracks
-	name = "tracks"
-	exosuit_desc_string = "armored tracks"
-	desc = "A true classic, these tracks are fast and durable, although turning with them is a nightmare."
-	icon_state = "tracks"
-	max_damage = 175
-	move_delay = 1.5
-	turn_delay = 7
-	power_use = 150
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 10)
-	mech_step_sound = 'sound/mechs/tanktread.ogg'
-	can_strafe = FALSE
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 8)

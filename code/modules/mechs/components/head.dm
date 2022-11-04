@@ -117,4 +117,4 @@
 	icon_state = "heavy_head"
 	max_damage = 175
 	power_use = 0
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 5, MATERIAL_URANIUM = 4)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 8, MATERIAL_URANIUM = 6)

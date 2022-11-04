@@ -258,16 +258,17 @@
 
 /////Start of Exosuit Stuff/////
 
-//*Individual Rounds*//
+//*Individual Projectiles*//
 
 /obj/item/projectile/bullet/cannon
 	name = "cannon round"
 	icon_state = "cannon"
-	damage_types = list(BRUTE = 90)
-	armor_divisor = 1.25
+	damage_types = list(BRUTE = 80)
+	armor_divisor = 0.75 // Not designed to pierce armor
 	style_damage = 70
 	recoil = 0
 	step_delay = 1.8
+	wounding_mult = 2
 
 /obj/item/projectile/bullet/rocket/mech
 	name = "mass-produced rocket"
@@ -279,16 +280,5 @@
 	penetrating = -5
 	recoil = 0
 	can_ricochet = FALSE
-
-//*Magazines*//
-
-/obj/item/ammo_magazine/lrifle/pk/mech
-	name = "LMG munitions box (.30 Rifle, Exosuit)"
-	matter = list()
-	spawn_blacklisted = TRUE
-	bad_type = /obj/item/ammo_magazine/lrifle/pk/mech
-
-/obj/item/ammo_magazine/lrifle/pk/empty
-	initial_ammo = 0
 
 /////End of Exosuit Stuff/////
