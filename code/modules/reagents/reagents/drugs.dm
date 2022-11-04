@@ -289,13 +289,13 @@
 	constant_metabolism = TRUE	// So it doesn't get stuck in your system
 	overdose = 14.9
 	reagent_state = LIQUID
-	sanity_gain = 2
+	sanity_gain = 3
 	addiction_chance = 100
 	withdrawal_threshold = 0.1
 	nerve_system_accumulations = 80
 	var/purity = 1
 
-/datum/reagent/drug/crystal_dream/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+/datum/reagent/drug/crystal_dream/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	// Suffer every roach stim withdrawal at once
 	M.stats.addTempStat(STAT_MEC, -15, STIM_TIME, id)
@@ -373,7 +373,7 @@
 	withdrawal_threshold = 0.1
 	nerve_system_accumulations = 80
 
-/datum/reagent/drug/paroin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+/datum/reagent/drug/paroin/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	// Suffer every negative spider venom stat effect at once
 	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC, STIM_TIME, id)
@@ -383,8 +383,7 @@
 	M.hallucination(45 * effect_multiplier, 45 * effect_multiplier)
 	M.add_chemical_effect(CE_PULSE, -1)
 	M.add_chemical_effect(CE_SPEEDBOOST, -2)
-	M.drowsyness = max(M.drowsyness, 20 * effect_multiplier)
-	M.confused = max(M.confused, 10 * effect_multiplier)
+	M.confused = max(M.confused, 20 * effect_multiplier)
 	if(prob(5))
 		M.emote("me", 1, pick("chitters.", "chatters.", "shivers."))
 
@@ -408,7 +407,7 @@
 	M.add_chemical_effect(CE_PULSE, -2)
 	M.add_chemical_effect(CE_SPEEDBOOST, -4)
 	M.drowsyness = max(M.drowsyness, 5)
-	M.confused = max(M.confused, 10)
+	M.confused = max(M.confused, 20)
 
 	M.adjustToxLoss(2)
 	grow_egg(M, 1)
