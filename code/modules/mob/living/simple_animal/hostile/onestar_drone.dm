@@ -30,6 +30,11 @@
 	var/screen_type = "os" //if someone decides to make the drones for something aside from OS and have different desgins
 	var/tool = "laser"
 	var/tooltype = "os"
+	var/list/components = list(/obj/item/stock_parts/capacitor/one_star,
+								/obj/item/stock_parts/scanning_module/one_star,
+								/obj/item/stock_parts/manipulator/one_star,
+								/obj/item/stock_parts/micro_laser/one_star,
+								/obj/item/stock_parts/matter_bin/one_star)
 
 /mob/living/simple_animal/hostile/onestar_custodian/New()
 	. = ..()
@@ -61,6 +66,9 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
+	if(prob(20))
+		var/components_reward = pick(components)
+		new components_reward(get_turf(src))
 	qdel(src)
 	return
 

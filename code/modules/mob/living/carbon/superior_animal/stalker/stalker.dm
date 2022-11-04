@@ -61,6 +61,12 @@
 	acceptableTargetDistance = 6
 	kept_distance = 3
 
+	var/list/components = list(/obj/item/stock_parts/capacitor/one_star,
+								/obj/item/stock_parts/scanning_module/one_star,
+								/obj/item/stock_parts/manipulator/one_star,
+								/obj/item/stock_parts/micro_laser/one_star,
+								/obj/item/stock_parts/matter_bin/one_star)
+
 /mob/living/carbon/superior_animal/stalker/dual
 	name = "OneStar Stalker Mk2"
 	desc = "A ruthless patrol borg that defends OneStar facilities. This one is an upgraded version with a dual minigun, don\'t stand in front of it for too long."
@@ -75,3 +81,23 @@
 	..()
 	pixel_x = 0
 	pixel_y = 0
+
+/mob/living/carbon/superior_animal/stalker/attackby(var/obj/item/O, var/mob/user)
+	if(istype(O, /obj/item/gripper))
+		return ..(O, user)
+
+	else if(istype(O, /obj/item/reagent_containers) || istype(O, /obj/item/stack/medical))
+		..()
+
+	else if(stat == DEAD)
+		if(QUALITY_PRYING in O.tool_qualities)
+			if(O.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_HARD, required_stat = STAT_MEC))
+				new /obj/item/stack/material/steel/random(src.loc)
+				new /obj/item/stack/material/plasteel/random(src.loc)
+				new /obj/item/stack/cable_coil(src.loc)
+				for(var/i = 1, i <= 2 + rand(0,2), i++)
+					var/components_reward = pick(components)
+					new components_reward(get_turf(src))
+				qdel(src)
+	else
+		O.attack(src, user, user.targeted_organ)
