@@ -81,8 +81,8 @@
 			broken()
 		else
 			new /obj/item/material/shard(src.loc)
-			new /obj/item/stack/rods(src.loc)
-			new /obj/item/stack/rods(src.loc)
+			new /obj/item/stack/rods(loc)
+			new /obj/item/stack/rods(loc)
 			qdel(src)
 			return
 	return
