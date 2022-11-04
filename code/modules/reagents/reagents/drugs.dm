@@ -282,7 +282,7 @@
 /datum/reagent/drug/crystal_dream
 	name = "Crystal Dream"
 	id = "crystal_dream"
-	description = "Synthetic bliss. The closest thing to love you'll find in this void."
+	description = "Synthetic bliss."
 	taste_description = "bitterant with a bite"
 	color = "#8ecae6"
 	metabolism = REM * 0.5
