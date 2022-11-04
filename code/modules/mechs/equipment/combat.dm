@@ -239,6 +239,7 @@
 	holding_type = /obj/item/gun/energy/launcher/frag/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 20, MATERIAL_PLASMA = 10)
 
 /obj/item/gun/energy/launcher/frag/mounted/mech
 	name = "grenade launcher"
@@ -268,6 +269,7 @@
 	holding_type = /obj/item/gun/energy/launcher/sting/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 20, MATERIAL_PLASMA = 10)
 
 /obj/item/gun/energy/launcher/sting/mounted/mech
 	name = "grenade launcher"
