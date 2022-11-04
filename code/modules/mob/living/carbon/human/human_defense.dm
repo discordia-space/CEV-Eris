@@ -321,6 +321,9 @@ meteor_act
 		if(!((I.flags & NOBLOODY)||(I.item_flags & NOBLOODY)))
 			I.add_blood(src)
 
+		if(I.screen_shake && prob(70))
+			shake_camera(src, 0.5, 1)
+
 		if(prob(33 + I.sharp * 10))
 			var/turf/location = loc
 			if(istype(location, /turf/simulated))
