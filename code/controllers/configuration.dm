@@ -223,7 +223,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/webhook_url
 	var/webhook_key
 
-	var/tts_bearer // Token we use to talk with text-to-speech service
+	var/tts_key // Login and password that we use to generate tts_bearer
 	var/tts_enabled // Global switch
 	var/tts_cache // Store generated tts files and reuse them, instead of always requesting new
 
@@ -726,11 +726,11 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("webhook_url")
 					config.webhook_url = value
 
-				if("tts_bearer")
-					config.tts_bearer = value
+				if("tts_key")
+					config.tts_key = value
 
 				if("tts_enabled")
-					config.tts_enabled = config.tts_bearer ? value : FALSE
+					config.tts_enabled = config.tts_key ? value : FALSE
 
 				if("tts_cache")
 					config.tts_cache = value
