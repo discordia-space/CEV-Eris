@@ -247,7 +247,7 @@
 		if(ABORT_CHECK)
 			return
 
-	if(istype(I, /obj/item/stack/material) && (I.get_material_name() == MATERIAL_GLASS || I.get_material_name() == MATERIAL_RGLASS))
+	if(istype(I, /obj/item/stack/material/glass))
 		if(!anchored)
 			to_chat(user, span_warning("You need to secure the assembly before you can add glass."))
 			return
