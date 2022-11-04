@@ -251,8 +251,7 @@
 		if(!anchored)
 			to_chat(user, span_warning("You need to secure the assembly before you can add glass."))
 			return
-		var/turf/solarturf = get_turf(src)
-		if(locate(/obj/machinery/power/solar) in solarturf)
+		if(locate(/obj/machinery/power/solar) in get_turf(src))
 			to_chat(user, span_warning("A solar panel is already assembled here."))
 			return
 		var/obj/item/stack/material/S = I
