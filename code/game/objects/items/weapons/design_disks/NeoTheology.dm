@@ -125,7 +125,7 @@
 		/datum/design/autolathe/nt/grenade/nt_flashbang,
 		/datum/design/autolathe/nt/grenade/nt_smokebomb,
 		/datum/design/autolathe/ammo/shell_heatwave,
-		/datum/design/autolathe/ammo/nt_stinger
+		/datum/design/autolathe/ammo/nt_stinger,
 		/datum/design/autolathe/cruciform_upgrade/martyr_gift
 	)
 
@@ -175,8 +175,7 @@
 		/datum/design/autolathe/gun/nt_sprayer,
 		/datum/design/autolathe/device/grenade/nt_cleaner,
 		/datum/design/autolathe/device/grenade/nt_weedkiller,
-
-		/datum/design/bioprinter/holyvacuum
+		/datum/design/bioprinter/holyvacuum,
 		/datum/design/autolathe/cruciform_upgrade/cleansing_presence
 
 	)
