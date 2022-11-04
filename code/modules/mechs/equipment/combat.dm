@@ -192,13 +192,24 @@
 
 /////
 
+/obj/item/mech_equipment/mounted_system/launcher
+	name = "launcher thing"
+	desc = "You shouldn't be seeing this."
+	icon_state = "mech_missile_pod"
+	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
+	restricted_software = list(MECH_SOFTWARE_WEAPONS)
+	matter = list()
+	origin_tech = list()
+
+/////
+
 /obj/item/mech_equipment/mounted_system/launcher/missile
 	name = "missile rack"
 	desc = "The SRM-8 missile rack is loaded with explosive missiles."
 	icon_state = "mech_missile_pod"
 	holding_type = /obj/item/gun/energy/missile/mounted/mech
-	restricted_hardpoints = list(HARDPOINT_BACK, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 20, MATERIAL_PLASMA = 15)
+	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
 
 /obj/item/gun/energy/missile/mounted/mech
 	name = "missile rack"
@@ -227,6 +238,7 @@
 	icon_state = "mech_gl"
 	holding_type = /obj/item/gun/energy/launcher/frag/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
+	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
 
 /obj/item/gun/energy/launcher/frag/mounted/mech
 	name = "grenade launcher"
@@ -255,6 +267,7 @@
 	icon_state = "mech_glst"
 	holding_type = /obj/item/gun/energy/launcher/sting/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
+	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
 
 /obj/item/gun/energy/launcher/sting/mounted/mech
 	name = "grenade launcher"

@@ -302,7 +302,11 @@
 
 	unlocks_designs = list(
 			/datum/design/research/item/exosuit/weapon/laser,
-			/datum/design/research/item/exosuit/weapon/pk
+			/datum/design/research/item/exosuit/weapon/pk,
+			/datum/design/research/item/exosuit/weapon/cannon,
+			/datum/design/research/item/exosuit/weapon/missile,
+			/datum/design/research/item/exosuit/weapon/frag,
+			/datum/design/research/item/exosuit/weapon/stingball
 		)
 
 //AI BRANCH_________________________________________________________________________________________________________________________________________________

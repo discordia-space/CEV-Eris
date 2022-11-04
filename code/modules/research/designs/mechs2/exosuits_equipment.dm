@@ -43,6 +43,22 @@
 	name = "mounted rigged PK"
 	build_path = /obj/item/mech_equipment/mounted_system/ballistic/pk
 
+/datum/design/research/item/exosuit/weapon/cannon
+	name = "mounted cannon"
+	build_path = /obj/item/mech_equipment/mounted_system/energy/cannon
+
+/datum/design/research/item/exosuit/weapon/missile
+	name = "missile rack"
+	build_path = /obj/item/mech_equipment/mounted_system/launcher/missile
+
+/datum/design/research/item/exosuit/weapon/frag
+	name = "fragmentation launcher"
+	build_path = /obj/item/mech_equipment/mounted_system/launcher/grenadefrag
+
+/datum/design/research/item/exosuit/weapon/stingball
+	name = "stingball launcher"
+	build_path = /obj/item/mech_equipment/mounted_system/launcher/grenadesting
+
 //UTILITY
 /datum/design/research/item/exosuit/hydraulic_clamp
 	name = "hydraulic clamp"
