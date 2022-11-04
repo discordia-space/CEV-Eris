@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(chat)
 
 /datum/controller/subsystem/chat/Initialize()
 	. = ..()
-	initialize_text_to_speech()
+	init_tts_directories()
 
 
 /datum/controller/subsystem/chat/fire()
