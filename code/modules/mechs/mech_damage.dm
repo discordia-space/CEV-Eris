@@ -52,12 +52,16 @@
 /mob/living/exosuit/adjustFireLoss(amount, obj/item/mech_component/MC = null)
 	if(!MC)
 		MC = pick(list(arms, legs, body, head))
+	if(amount < 1)
+		return FALSE
 	MC.take_burn_damage(amount)
 	MC.update_health()
 
 /mob/living/exosuit/adjustBruteLoss(amount, obj/item/mech_component/MC = null)
 	if(!MC)
 		MC = pick(list(arms, legs, body, head))
+	if(amount < 1)
+		return FALSE
 	MC.take_brute_damage(amount)
 	MC.update_health()
 

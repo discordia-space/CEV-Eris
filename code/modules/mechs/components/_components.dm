@@ -56,7 +56,9 @@
 
 /obj/item/mech_component/proc/update_health()
 	total_damage = brute_damage + burn_damage
-	if(total_damage > max_damage) total_damage = max_damage
+//	if(total_damage > max_damage) //total_damage = max_damage
+	if(total_damage < (max_damage - max_damage)) // Bandaid fix for mechs overhealing
+		total_damage = 0
 	var/prev_state = damage_state
 	damage_state = CLAMP(round((total_damage/max_damage) * 4), MECH_COMPONENT_DAMAGE_UNDAMAGED, MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
 	if(damage_state > prev_state)
@@ -67,27 +69,33 @@
 /obj/item/mech_component/proc/ready_to_install()
 	return TRUE
 
+
 /obj/item/mech_component/proc/repair_brute_damage(amt)
 	take_brute_damage(-amt)
+	if(total_damage <= 0)
+		return
 
 /obj/item/mech_component/proc/repair_burn_damage(amt)
 	take_burn_damage(-amt)
+	if(total_damage <= 0)
+		return
+
 
 /obj/item/mech_component/proc/take_brute_damage(amt)
 	brute_damage += amt
 	update_health()
 	if(total_damage == max_damage)
 		take_component_damage(amt,0)
-	if(amt <= 1)
-		take_component_damage(amt,0)
+	if(amt < 1)
+		return
 
 /obj/item/mech_component/proc/take_burn_damage(amt)
 	burn_damage += amt
 	update_health()
 	if(total_damage == max_damage)
 		take_component_damage(0,amt)
-	if(amt <= 1)
-		take_component_damage(amt,0)
+	if(amt < 1)
+		return
 
 /obj/item/mech_component/proc/take_component_damage(brute, burn)
 	var/list/damageable_components = list()
