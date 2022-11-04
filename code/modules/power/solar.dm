@@ -258,7 +258,7 @@
 		var/obj/item/stack/material/S = I
 		if(S.use(2))
 			glass_type = S.type
-			playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
+			playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
 			user.visible_message(span_notice("[user] places the glass on the solar assembly."), span_notice("You place the glass on the solar assembly."))
 			if(tracker)
 				new /obj/machinery/power/tracker(get_turf(src), src)
