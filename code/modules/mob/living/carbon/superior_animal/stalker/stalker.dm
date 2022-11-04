@@ -61,11 +61,6 @@
 	acceptableTargetDistance = 6
 	kept_distance = 3
 
-	var/list/components = list(/obj/item/stock_parts/capacitor/one_star,
-								/obj/item/stock_parts/scanning_module/one_star,
-								/obj/item/stock_parts/manipulator/one_star,
-								/obj/item/stock_parts/micro_laser/one_star,
-								/obj/item/stock_parts/matter_bin/one_star)
 
 /mob/living/carbon/superior_animal/stalker/dual
 	name = "OneStar Stalker Mk2"
@@ -96,8 +91,8 @@
 				new /obj/item/stack/material/plasteel/random(src.loc)
 				new /obj/item/stack/cable_coil(src.loc)
 				for(var/i = 1, i <= 2 + rand(0,2), i++)
-					var/components_reward = pick(components)
-					new components_reward(get_turf(src))
+					var/list/os_components_reward = pick(os_components)
+					new os_components_reward(get_turf(src))
 				qdel(src)
 	else
 		O.attack(src, user, user.targeted_organ)
