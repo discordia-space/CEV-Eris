@@ -204,7 +204,7 @@
 	w_class = ITEM_SIZE_BULKY // Pretty big!
 	anchored = FALSE
 	price_tag = 100
-	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 2,MATERIAL_SILVER = 1)
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 2, MATERIAL_SILVER = 1)
 	var/tracker = 0
 	var/glass_type = null
 
