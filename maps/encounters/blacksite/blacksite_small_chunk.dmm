@@ -431,15 +431,15 @@
 /obj/structure/table/onestar,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
 /area/outpost/blacksite/small)
-"vH" = (
-/obj/structure/table/rack,
-/obj/spawner/gun/normal,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
-/area/outpost/blacksite/small)
 "vO" = (
 /obj/structure/closet/onestar/tier3,
 /obj/spawner/cloth/onestar/low_chance,
 /turf/simulated/floor/wood/airless,
+/area/outpost/blacksite/small)
+"vT" = (
+/obj/structure/table/onestar,
+/obj/spawner/tool_upgrade/rare/onestar,
+/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
 /area/outpost/blacksite/small)
 "wu" = (
 /obj/structure/bed/chair/office/dark{
@@ -717,10 +717,9 @@
 /obj/spawner/scrap/sparse,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
 /area/outpost/blacksite/small)
-"KH" = (
-/obj/structure/table/onestar,
-/obj/spawner/tool_upgrade/rare/onestar,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+"KP" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/plating/under/airless,
 /area/outpost/blacksite/small)
 "KX" = (
 /obj/spawner/scrap/low_chance,
@@ -778,6 +777,11 @@
 /obj/structure/window/reinforced,
 /obj/structure/table/onestar,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/area/outpost/blacksite/small)
+"NN" = (
+/obj/structure/table/rack,
+/obj/spawner/gun/normal,
+/turf/simulated/floor/tiled/dark/brown_perforated/airless,
 /area/outpost/blacksite/small)
 "NO" = (
 /obj/spawner/scrap/sparse,
@@ -877,10 +881,6 @@
 /obj/structure/table/onestar,
 /obj/structure/salvageable/personal,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"SQ" = (
-/mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/plating/under/airless,
 /area/outpost/blacksite/small)
 "Tc" = (
 /obj/spawner/mob/roomba,
@@ -3338,7 +3338,7 @@ et
 po
 vO
 Ib
-SQ
+KP
 Pp
 "}
 (52,1,1) = {"
@@ -3456,7 +3456,7 @@ ZF
 AS
 fv
 JN
-KH
+vT
 ZF
 BT
 et
@@ -4528,7 +4528,7 @@ jJ
 ZQ
 SA
 SA
-SQ
+KP
 CY
 CY
 CY
@@ -4663,7 +4663,7 @@ In
 lZ
 rx
 pg
-vH
+NN
 lZ
 oM
 rI
