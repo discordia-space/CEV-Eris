@@ -2293,7 +2293,7 @@
 	maximum_temperature = 421
 	minimum_temperature = 420
 	result_amount = 1
-	reaction_rate = REACTION_RATE(0.05)
+	reaction_rate = REACTION_RATE(0.2)
 	supports_decomposition_by_electrolysis = FALSE
 
 /datum/chemical_reaction/crystal_dream/white
