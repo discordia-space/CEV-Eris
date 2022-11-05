@@ -23,6 +23,7 @@
 	damage_multiplier = 1.2
 	penetration_multiplier = 0.4
 	spawn_tags = SPAWN_TAG_GUN_OS
+	spawn_blacklisted = TRUE
 	init_firemodes = list(
 		SEMI_AUTO_300,
 		BURST_3_ROUND,

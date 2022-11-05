@@ -349,6 +349,7 @@
 	style = STYLE_HIGH
 	slowdown = 0
 	spawn_tags = SPAWN_TAG_CLOTHING_OS
+	spawn_blacklisted = TRUE
 	price_tag = 2000
 	armor = list(
 		melee = 3,

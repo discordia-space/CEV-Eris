@@ -19,6 +19,7 @@
 	proj_step_multiplier = 0.6
 	init_recoil = HANDGUN_RECOIL(0.8)
 	spawn_tags = SPAWN_TAG_GUN_OS
+	spawn_blacklisted = TRUE
 	fire_sound = 'sound/weapons/guns/fire/energy_shotgun.ogg'
 	unload_sound = 'sound/weapons/guns/interact/pistol_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/pistol_magin.ogg'

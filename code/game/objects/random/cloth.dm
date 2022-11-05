@@ -153,6 +153,7 @@
 	name = "random One Star clothing"
 	desc = "This is a random One Star armor."
 	icon_state = "armor-orange"
+	allow_blacklist = TRUE
 	tags_to_spawn = list(SPAWN_CLOTHING_OS)
 
 /obj/spawner/cloth/onestar/low_chance
