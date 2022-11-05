@@ -291,6 +291,7 @@
 	siemens_coefficient = 1
 	price_tag = 1000
 	spawn_tags = SPAWN_TAG_CLOTHING_OS
+	spawn_blacklisted = TRUE
 	style = STYLE_HIGH
 	armor = list(
 		melee = 2,

@@ -62,6 +62,7 @@
 /obj/spawner/gun/onestar
 	name = "random One Star gun"
 	icon_state = "gun-orange"
+	allow_blacklist = TRUE
 	tags_to_spawn = list(SPAWN_GUN_OS)
 
 /obj/spawner/gun/onestar/low_chance

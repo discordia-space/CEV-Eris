@@ -22,6 +22,7 @@
 	penetration_multiplier = 0.2
 	damage_multiplier = 1.2
 	spawn_tags = SPAWN_TAG_GUN_OS
+	spawn_blacklisted = TRUE
 	gun_tags = list(GUN_SILENCABLE)
 	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/plasteel = 6)
 	init_firemodes = list(

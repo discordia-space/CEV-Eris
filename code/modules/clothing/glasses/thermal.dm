@@ -51,6 +51,7 @@
 	darkness_view = 7
 	origin_tech = list(TECH_MAGNET = 6, TECH_COVERT = 2) //add replace with Tech_Onestar when thats done made -Valo
 	spawn_tags = SPAWN_TAG_TECH_OS
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/glasses/powered/thermal/plain
 	toggleable = FALSE
