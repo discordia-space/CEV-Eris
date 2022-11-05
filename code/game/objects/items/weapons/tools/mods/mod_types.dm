@@ -621,7 +621,7 @@
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
 	rarity_value = 50
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_OS
-	spawn_blacklisted = FALSE
+	spawn_blacklisted = TRUE
 	price_tag = 2500
 
 /obj/item/tool_upgrade/augment/ai_tool/New()
