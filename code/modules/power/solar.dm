@@ -249,7 +249,7 @@
 
 	if(istype(I, /obj/item/stack/material/glass))
 		if(!anchored)
-			to_chat(user, span_warning("You need to secure the assembly before you can add glass."))
+			to_chat(user, SPAN_WARNING("You need to secure the assembly before you can add glass."))
 			return
 		if(locate(/obj/machinery/power/solar) in get_turf(src))
 			to_chat(user, SPAN_WARNING("A solar panel is already assembled here."))
