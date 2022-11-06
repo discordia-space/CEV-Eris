@@ -1,4 +1,4 @@
-#define ARMOR_HALLOS_COEFFICIENT 0.15
+#define ARMOR_HALLOS_COEFFICIENT 0.175
 
 
 //This calculation replaces old run_armor_check in favor of more complex and better system
