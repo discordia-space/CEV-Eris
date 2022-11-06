@@ -252,7 +252,7 @@
 			to_chat(user, span_warning("You need to secure the assembly before you can add glass."))
 			return
 		if(locate(/obj/machinery/power/solar) in get_turf(src))
-			to_chat(user, span_warning("A solar panel is already assembled here."))
+			to_chat(user, SPAN_WARNING("A solar panel is already assembled here."))
 			return
 		var/obj/item/stack/material/S = I
 		if(S.use(2))
