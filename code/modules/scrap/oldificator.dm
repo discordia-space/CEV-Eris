@@ -11,6 +11,12 @@
 		var/obj/item/I = parent
 		armor = I.armor.getList()
 
+/datum/component/oldficator/Destroy()
+	old_obj = null
+	LAZYCLEARLIST(armor)
+	LAZYCLEARLIST(all_vars)
+	return ..()
+
 /datum/component/oldficator/proc/make_young()
 	for(var/V in all_vars)
 		if(istype(parent.vars[V], /datum) || ismob(parent.vars[V]) || isHUDobj(parent.vars[V]) || isobj(parent.vars[V]))
