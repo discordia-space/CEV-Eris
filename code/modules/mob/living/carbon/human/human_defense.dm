@@ -248,6 +248,19 @@ meteor_act
 		return shield
 	return FALSE
 
+/mob/living/carbon/human/proc/handle_blocking(var/damage)
+	var/stat_affect = 0.3 //lowered to 0.2 if we are blocking with an item
+	var/item_size_affect = 0 //the bigger the thing you hold is, the more damage you can block
+	var/toughness = max(1, stats.getStat(STAT_TGH))
+	//passive blocking with shields is handled differently(code is above this proc)
+	if(get_active_hand())//are we blocking with an item?
+		var/obj/item/I = get_active_hand()
+		if(istype(I))
+			item_size_affect = I.w_class * 5
+			stat_affect = 0.2
+	damage -= (toughness * stat_affect + item_size_affect)
+	return max(0, damage)
+
 /mob/living/carbon/human/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
 	if(check_attack_throat(I, user))
 		return null
@@ -268,6 +281,10 @@ meteor_act
 	if(!affecting)
 		return FALSE//should be prevented by attacked_with_item() but for sanity.
 
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.stop_blocking()
+
 	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
 
 	standard_weapon_hit_effects(I, user, effective_force, hit_zone)
@@ -278,6 +295,14 @@ meteor_act
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
 		return FALSE
+
+	if(blocking)
+		stop_blocking()
+		visible_message(SPAN_WARNING("[src] blocks the blow!"), SPAN_WARNING("You block the blow!"))
+		effective_force = handle_blocking(effective_force)
+		if(effective_force == 0)
+			visible_message(SPAN_DANGER("The attack has been completely negated!"))
+			return FALSE
 
 	// Handle striking to cripple.
 	if(user.a_intent == I_DISARM)
@@ -295,6 +320,9 @@ meteor_act
 		//Apply blood
 		if(!((I.flags & NOBLOODY)||(I.item_flags & NOBLOODY)))
 			I.add_blood(src)
+
+		if(I.screen_shake && prob(70))
+			shake_camera(src, 0.5, 1)
 
 		if(prob(33 + I.sharp * 10))
 			var/turf/location = loc

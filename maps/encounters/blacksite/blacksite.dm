@@ -97,10 +97,15 @@
 	var/x_corner
 	var/y_corner
 	var/datum/map_template/chunk_template
+	var/is_loaded = FALSE
 
 /obj/effect/shuttle_landmark/blacksite/trigger_landmark()
+	if(is_loaded)
+		return
+
 	var/turf/T = get_turf(locate(x_corner, y_corner, z))  // Bottom left corner turf
 	load_chunk(T, chunk_template, SOUTH)  // Load chunk
+	is_loaded = TRUE
 
 	// Wake up all mobs because roombas are spawning in stasis
 	for(var/mob/living/A in SSmobs.mob_living_by_zlevel[z])

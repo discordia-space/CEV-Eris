@@ -59,7 +59,7 @@ They generally give more random result and can provide more divercity in spawn.
 	icon_state = "tool-red"
 	desc = "This is a random technical loot."
 	allow_blacklist = TRUE
-	tags_to_spawn = list(SPAWN_ITEM_TECH_OS)
+	tags_to_spawn = list(SPAWN_TECH_OS)
 
 //This will be spawned in rare closets
 /obj/spawner/pack/gun_loot

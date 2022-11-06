@@ -23,6 +23,8 @@
 	var/worksound
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 
+	var/screen_shake = FALSE //If a weapon can shake the victim's camera on hit.
+
 	var/obj/item/master
 	var/list/origin_tech = list()	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
@@ -186,12 +188,30 @@
 	for(var/Q in tool_qualities)
 		message += "\n<blue>It possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
 
+	. = ..(user, distance, "", message)
+
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.stats.getPerk(PERK_MARKET_PROF))
-			message += SPAN_NOTICE("\nThis item cost: [get_item_cost()][CREDITS]")
+			to_chat(user,SPAN_NOTICE("Export value: [get_item_cost() * SStrade.get_export_price_multiplier(src)][CREDITS]"))
 
-	return ..(user, distance, "", message)
+			var/offer_message = "This item is requested at: "
+			var/has_offers = FALSE
+			for(var/datum/trade_station/TS in SStrade.discovered_stations)
+				for(var/path in TS.special_offers)
+					if(istype(src, path))
+						has_offers = TRUE
+						var/list/offer_content = TS.special_offers[path]
+						var/offer_price = offer_content["price"]
+						var/offer_amount = offer_content["amount"]
+						if(offer_amount)
+							offer_message += "[TS.name] ([round(offer_price / offer_amount, 1)][CREDITS] each, [offer_amount] requested), "
+						else
+							offer_message += "[TS.name] (offer fulfilled, awaiting new contract), "
+
+			if(has_offers)
+				offer_message = copytext(offer_message, 1, LAZYLEN(offer_message) - 1)
+				to_chat(user, SPAN_NOTICE(offer_message))
 
 /obj/item/attack_hand(mob/user as mob)
 	if(pre_pickup(user))
