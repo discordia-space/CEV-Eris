@@ -264,7 +264,7 @@
 			else
 				new /obj/machinery/power/solar(get_turf(src), src)
 		else
-			to_chat(user, span_warning("You need two sheets of glass to put them into a solar panel!"))
+			to_chat(user, SPAN_WARNING("You need two sheets of glass to put them into a solar panel!"))
 			return
 		return TRUE
 
