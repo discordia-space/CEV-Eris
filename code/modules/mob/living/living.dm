@@ -892,8 +892,8 @@ default behaviour is:
 /mob/living/Destroy()
 	if(registered_z)
 		SSmobs.mob_living_by_zlevel[registered_z] -= src	// STOP_PROCESSING() doesn't remove the mob from this list
-	qdel(stats)
-	stats = null
+	QDEL_NULL(stats)
+	QDEL_NULL(static_overlay)
 	return ..()
 
 /mob/living/proc/vomit()
