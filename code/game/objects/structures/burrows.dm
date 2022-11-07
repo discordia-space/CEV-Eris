@@ -107,9 +107,9 @@
 		if (a.loc == src)
 			a.forceMove(loc)
 	population = list()
-	plantspread_burrows = list()	// Other burrows will still hold a reference to this burrow after it qdels
+	plantspread_burrows = list()	// Other burrows may still hold a reference to this burrow after it qdels
 	plant = null
-	.=..()
+	return ..()
 
 //This is called from the migration subsystem. It scans for nearby creatures
 //Any kind of simple or superior animal is valid, all of them are treated as population for this burrow
