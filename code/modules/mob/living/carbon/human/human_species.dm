@@ -12,7 +12,6 @@
 	. = ..()
 	STOP_PROCESSING(SSmobs, src)
 	GLOB.human_mob_list -= src
-	disciples -= src	// Should stop mannequins from showing up in litany lists
 	delete_inventory()
 
 /mob/living/carbon/human/dummy/mannequin/fully_replace_character_name(var/oldname, var/newname)
