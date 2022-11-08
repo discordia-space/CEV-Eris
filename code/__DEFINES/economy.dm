@@ -1,6 +1,6 @@
 //Defines for wages, prices, and money related things
 
-//Hourly wage defines
+//Half hourly wage defines
 #define WAGE_NONE			0	//Unpaid. Assistant, captain, and those who sell things
 #define WAGE_LABOUR_DUMB	225 //Dumb jobs anyone can do. Janitor, actor, cargotech, etc
 #define WAGE_LABOUR			300 //The standard wage that most people get
