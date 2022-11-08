@@ -109,7 +109,7 @@
 		return
 
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
-		if(istype(I, /obj/item/reagent_containers/spray/cleaner) || istype(I, /obj/item/soap) || istype(I, /obj/item/reagent_containers/glass/rag)) // If they're trying to clean it then let them
+		if(istype(I, /obj/item/soap) || istype(I, /obj/item/reagent_containers/glass/rag)) // If they're trying to clean it then let them
 			user.visible_message( \
 				SPAN_NOTICE("\The [user] starts to clean the [src]."), \
 				SPAN_NOTICE("You start to clean the [src].") \
