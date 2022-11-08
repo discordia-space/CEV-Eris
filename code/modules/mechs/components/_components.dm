@@ -56,9 +56,7 @@
 
 /obj/item/mech_component/proc/update_health()
 	total_damage = brute_damage + burn_damage
-//	if(total_damage > max_damage) //total_damage = max_damage
-	if(total_damage < (max_damage - max_damage)) // Bandaid fix for mechs overhealing
-		total_damage = 0
+	if(total_damage > max_damage) total_damage = max_damage
 	var/prev_state = damage_state
 	damage_state = CLAMP(round((total_damage/max_damage) * 4), MECH_COMPONENT_DAMAGE_UNDAMAGED, MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
 	if(damage_state > prev_state)
@@ -66,35 +64,33 @@
 			playsound(loc, 'sound/mechs/internaldmgalarm.ogg', 40, 1)
 		if(damage_state == MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
 			playsound(loc, 'sound/mechs/critdestr.ogg', 50)
+
 /obj/item/mech_component/proc/ready_to_install()
 	return TRUE
 
 
 /obj/item/mech_component/proc/repair_brute_damage(amt)
-	take_brute_damage(-amt)
-	if(total_damage <= 0)
-		return
+	if (brute_damage > 0)
+		amt = clamp(amt, 0, brute_damage)
+		take_brute_damage(-amt)
 
 /obj/item/mech_component/proc/repair_burn_damage(amt)
-	take_burn_damage(-amt)
-	if(total_damage <= 0)
-		return
-
+	if (burn_damage > 0)
+		amt = clamp(amt, 0, burn_damage)
+		take_burn_damage(-amt)
 
 /obj/item/mech_component/proc/take_brute_damage(amt)
 	brute_damage += amt
 	update_health()
-	if(total_damage == max_damage)
+	if(total_damage >= max_damage)
 		take_component_damage(amt,0)
-	if(amt < 1)
 		return
 
 /obj/item/mech_component/proc/take_burn_damage(amt)
 	burn_damage += amt
 	update_health()
-	if(total_damage == max_damage)
+	if(total_damage >= max_damage)
 		take_component_damage(0,amt)
-	if(amt < 1)
 		return
 
 /obj/item/mech_component/proc/take_component_damage(brute, burn)
@@ -152,6 +148,7 @@
 
 
 /obj/item/mech_component/proc/repair_brute_generic(obj/item/I, mob/user)
+	var/weld_amt = round(max(0, 10, 5 + user.stats.getStat(STAT_MEC) / 3))
 
 	if(brute_damage <= 0)
 		to_chat(user, SPAN_NOTICE("You inspect \the [src] but find nothing to weld."))
@@ -162,15 +159,13 @@
 		return
 
 	if(QUALITY_WELDING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NORMAL, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			visible_message(SPAN_WARNING("\The [src] has been repaired by [user]!"),"You hear welding.")
-			repair_brute_damage(15)
-			if(total_damage < 0)
-				total_damage = 0
-				brute_damage = 0
+			repair_brute_damage(weld_amt)
 			return
 
 /obj/item/mech_component/proc/repair_burn_generic(obj/item/stack/cable_coil/CC, mob/user)
+	var/wire_amt = round(max(10, 5 + user.stats.getStat(STAT_MEC) / 3))
 
 	if(burn_damage <= 0)
 		to_chat(user, SPAN_NOTICE("You inspect /the [src]'s wiring, but can't find anything to fix."))
@@ -187,11 +182,8 @@
 	to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
 
 	if(do_mob(user, src, 30) && CC.use(5))
-		repair_burn_damage(25)
-		if(total_damage < 0)
-			total_damage = 0
-			burn_damage = 0
-		else return
+		repair_burn_damage(wire_amt)
+		return
 
 
 /obj/item/mech_component/proc/get_damage_string()
