@@ -50,7 +50,7 @@ meteor_act
 			organ.embed(SP)
 
 
-/mob/living/carbon/human/hit_impact(damage, dir)
+/mob/living/carbon/human/hit_impact(damage, dir, hit_zone)
 	if(incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_BUCKLED_PARTIALLY))
 		return
 	if(damage < stats.getStat(STAT_TGH))
@@ -65,9 +65,10 @@ meteor_act
 
 	var/stumbled = FALSE
 
-	if(prob(60 - stats.getStat(STAT_TGH)))
-		stumbled = TRUE
-		step(src, pick(cardinal - hit_dirs))
+	if(hit_zone in BP_LEGS)
+		if(prob(60 - stats.getStat(STAT_TGH)))
+			stumbled = TRUE
+			step(src, pick(cardinal - hit_dirs))
 
 	for(var/atom/movable/A in oview(1))
 		if(!A.Adjacent(src) || prob(50 + stats.getStat(STAT_TGH)))
@@ -304,8 +305,18 @@ meteor_act
 			visible_message(SPAN_DANGER("The attack has been completely negated!"))
 			return FALSE
 
+	//If not blocked, handle broad strike attacks
+	if((I.sharp && I.edge && user.a_intent == I_DISARM) || I.forced_broad_strike)
+		var/list/L[] = BP_ALL_LIMBS
+		effective_force /= 3
+		L.Remove(hit_zone)
+		for(var/i in 1 to 2)
+			var/temp_zone = pick(L)
+			L.Remove(temp_zone)
+			..(I, user, effective_force, temp_zone)
+
 	// Handle striking to cripple.
-	if(user.a_intent == I_DISARM)
+	if(user.a_intent == I_HELP)
 		effective_force /= 2 //half the effective force
 		if(!..(I, user, effective_force, hit_zone))
 			return FALSE

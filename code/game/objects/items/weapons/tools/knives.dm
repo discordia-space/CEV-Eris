@@ -335,6 +335,7 @@
 	flags = CONDUCT
 	sharp = TRUE
 	edge = TRUE
+	hit_range = 2
 	worksound = WORKSOUND_HARD_SLASH
 	w_class = ITEM_SIZE_BULKY //4 , it's a spear mate
 	force = WEAPON_FORCE_PAINFUL
