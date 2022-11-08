@@ -117,7 +117,8 @@
 		loc = null
 
 	QDEL_NULL(hidden_uplink)
-	LAZYREMOVE(items_blood_overlay_by_type[type], blood_overlay)
+	if(blood_overlay)
+		LAZYREMOVE(items_blood_overlay_by_type[type], blood_overlay)
 	QDEL_NULL(blood_overlay)
 	QDEL_NULL(action)
 	if(hud_actions)
