@@ -132,14 +132,14 @@
 
 /////
 
-/obj/item/mech_equipment/mounted_system/energy/cannon // TODO: Make bang gun actually go bang not pew?
+/obj/item/mech_equipment/mounted_system/energy/cannon // TODO: Convert these into ballistics
 	name = "short cannon"
 	desc = "A weapon for combat exosuits. It lobs low-velocity cannon rounds."
 	icon_state = "mecha_gauss"
 	holding_type = /obj/item/gun/energy/cannon/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
-	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
-	matter = list(MATERIAL_STEEL = 30, MATERIAL_PLASTEEL = 30)
+	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3, TECH_ENGINEERING = 4)
+	matter = list(MATERIAL_STEEL = 40, MATERIAL_PLASTEEL = 35)
 
 /obj/item/gun/energy/cannon/mounted/mech
 	name = "cannon"
@@ -209,7 +209,7 @@
 	icon_state = "mech_missile_pod"
 	holding_type = /obj/item/gun/energy/missile/mounted/mech
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 20, MATERIAL_PLASMA = 15)
-	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
+	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3, TECH_ENGINEERING = 3)
 
 /obj/item/gun/energy/missile/mounted/mech
 	name = "missile rack"
@@ -239,7 +239,7 @@
 	holding_type = /obj/item/gun/energy/launcher/frag/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 20, MATERIAL_PLASMA = 10)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 10, MATERIAL_PLASMA = 10)
 
 /obj/item/gun/energy/launcher/frag/mounted/mech
 	name = "grenade launcher"
@@ -269,7 +269,7 @@
 	holding_type = /obj/item/gun/energy/launcher/sting/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 20, MATERIAL_PLASMA = 10)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 10, MATERIAL_PLASMA = 10)
 
 /obj/item/gun/energy/launcher/sting/mounted/mech
 	name = "grenade launcher"
