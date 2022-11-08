@@ -306,7 +306,7 @@ meteor_act
 			return FALSE
 
 	//If not blocked, handle broad strike attacks
-	if((I.sharp && I.edge && user.a_intent == I_DISARM) || I.forced_broad_strike)
+	if(((I.sharp && I.edge && user.a_intent == I_DISARM) || I.forced_broad_strike) && (!istype(I, /obj/item/tool/sword/nt/spear) || !istype(I, /obj/item/tele_spear) || !istype(I, /obj/item/tool/spear)))
 		var/list/L[] = BP_ALL_LIMBS
 		effective_force /= 3
 		L.Remove(hit_zone)
