@@ -162,7 +162,8 @@
 	throw_speed = 3
 	price_tag = 450
 	allow_spin = FALSE
-	hit_range = 2
+	extended_reach = TRUE
+	forced_turned_off_broad_strike = TRUE
 	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_PLASTEEL = 10) // More expensive, high-end spear
 	style_damage = 50
 

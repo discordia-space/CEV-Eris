@@ -107,6 +107,65 @@
 				{{:data.extra_volume}}u
 			</div>
 		{{/if}}
+
+		<h4>Unique properties:</h4>
+
+		{{if extended_reach}}
+			<div class="itemLabel">
+				Range on wield:
+			</div>
+			<div class="itemContent">
+				2 tile radius
+			</div>
+		{{/if}}
+
+		{{if data.w_class > 2}}
+			<div class="itemLabel">
+				Harm intent and wielded:
+			</div>
+			<div class="itemContent">
+				Swing
+			</div>
+		{{/if}}
+
+		{{if screen_shake}}
+			<div class="itemLabel">
+				Hit effects on wield:
+			</div>
+			<div class="itemContent">
+				Screen shake
+			</div>
+		{{/if}}
+
+		{{if push_attack}}
+			<div class="itemLabel">
+				Attacking groin on disarm intent:
+			</div>
+			<div class="itemContent">
+				Push target one tile away
+			</div>
+		{{/if}}
+
+		{{if data.sharp && data.edge && !forced_turned_off_broad_strike}}
+			{{if data.forced_broad_strike}}
+				<div class="itemLabel">
+					<span class='red'>Forced broad strike</span>
+				</div>
+			{{else}}
+				<div class="itemLabel">
+					Disarm intent:
+				</div>
+				<div class="itemContent">
+					Broad strike
+				</div>
+			{{/if}}
+		{{/if}}
+
+		{{if data.w_class > 3}} 
+			<div class="itemLabel">
+				<span class='red'>Double tact</span>
+			</div>
+		{{/if}}
 	</div>
 </div>
 

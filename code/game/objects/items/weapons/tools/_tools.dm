@@ -229,6 +229,13 @@
 
 	data["upgrades_max"] = max_upgrades
 
+	data["forced_turned_off_broad_strike"] = forced_turned_off_broad_strike
+	data["extended_reach"] = extended_reach
+	data["forced_broad_strike"] = forced_broad_strike
+	data["screen_shake"] = screen_shake
+	data["push_attack"] = push_attack
+	data["w_class"] = w_class
+
 	// it could be done with catalog using one line but whatever
 	if(item_upgrades.len)
 		data["attachments"] = list()

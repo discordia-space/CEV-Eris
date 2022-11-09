@@ -37,7 +37,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		return 1 //Returning 1 passes an abort signal upstream
 	add_fingerprint(user)
 	if(ishuman(user) && !(user == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT)
-		swing(src, user, params)
+		swing_attack(src, user, params)
 		return 1 //Swinging calls its own attacks
 	return A.attackby(src, user, params)
 
@@ -71,7 +71,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		return TRUE
 
 
-/obj/item/proc/swing(atom/A, mob/user, params)
+/obj/item/proc/swing_attack(atom/A, mob/user, params)
 	if(!double_tact(user))
 		return
 	var/holdinghand = user.get_inventory_slot(src)
