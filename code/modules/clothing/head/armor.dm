@@ -565,7 +565,7 @@
 	desc = "Protects the head from damage while you are in the exoskeleton."
 	icon_state = "tanker_helmet"
 	item_flags = THICKMATERIAL
-	flags_inv = HIDEEARS|BLOCKHAIR
+	flags_inv = HIDEEARS|BLOCKHEADHAIR
 	siemens_coefficient = 1
 	armor = list(
 		melee = 4,
