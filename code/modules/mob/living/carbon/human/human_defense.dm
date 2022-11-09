@@ -229,8 +229,6 @@ meteor_act
 	return max(0, damage)
 
 /mob/living/carbon/human/proc/grab_redirect_attack(var/obj/item/grab/G, var/mob/living/grabbed, var/mob/living/carbon/human/attacker, var/obj/item/I)
-	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Redirected attack of [attacker.name] ([attacker.ckey]) at [grabbed.name] ([grabbed.ckey])</font>")
-	attacker.attack_log += text("\[[time_stamp()]\] <font color='orange'>Attack has been redirected by [src.name] ([src.ckey]) at [grabbed.name] ([grabbed.ckey])</font>")
 	visible_message(SPAN_DANGER("[src] redirects the blow at [grabbed]!"), SPAN_DANGER("You redirect the blow at [grabbed]!"))
 	//check what we are being hit with, a hand(I is null), or an item?
 	if(istype(I, /obj/item))
@@ -287,7 +285,7 @@ meteor_act
 		if(istype(get_active_hand(), /obj/item/grab))//we are blocking with a human shield! We redirect the attack. You know, because grab doesn't exist as an item.
 			var/obj/item/grab/G = get_active_hand()
 			var/mob/living/grabbed = G.throw_held()
-			grab_redirect_attack(G, grabbed, user)
+			grab_redirect_attack(G, grabbed, user, I)
 			return FALSE
 		else
 			stop_blocking()
