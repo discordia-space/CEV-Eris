@@ -49,7 +49,7 @@
 	build_path = /obj/item/reagent_containers/spray
 
 /datum/design/autolathe/container/chemthrower
-	name = "Asters Chemthrower"
+	name = "AG CT \"Chemthrower\""
 	build_path = /obj/item/gun/reagent
 
 /datum/design/autolathe/container/pill_bottle

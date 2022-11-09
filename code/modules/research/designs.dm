@@ -118,7 +118,7 @@ other types of metals and chemistry for reagents).
 	sort_string = "MBBAA"
 
 /datum/design/research/item/advanced_chemthrower
-	name = "Advanced Chemthrower"
+	name = "ML CT \"LiquiSprayer\""
 	desc = "A handheld liquid dispenser with multiple firemodes."
 	build_path = /obj/item/gun/reagent/moebius
 	category = "Medical"

@@ -1,6 +1,6 @@
 /obj/item/gun/reagent
-	name = "chemthrower"
-	desc = "A handheld liquid dispenser."
+	name = "AG CT \"Chemthrower\""
+	desc = "A handheld liquid dispenser. Design by Asters Guild."
 	icon = 'icons/obj/guns/launcher/chemical.dmi'
 	icon_state = "chemthrower"
 	item_state = "chemthrower"
@@ -123,7 +123,7 @@
 
 
 /obj/item/gun/reagent/flame
-	name = "ignited chemthrower"
+	name = "modified AG CT \"Chemthrower\""
 	desc = "A handheld liquid dispenser. Has an igniter loosely taped on the front."
 	icon_state = "ignited_chemthrower"
 	slot_flags = SLOT_BACK
@@ -141,7 +141,7 @@
 
 
 /obj/item/gun/reagent/moebius
-	name = "advanced chemthrower"
+	name = "ML CT \"LiquiSprayer\""
 	desc = "A handheld liquid dispenser in a sleek white color. Has multiple firemodes."
 	icon = 'icons/obj/guns/launcher/chemical_advanced.dmi'
 	slot_flags = SLOT_BACK
