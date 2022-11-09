@@ -236,8 +236,11 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
-/obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, params)
-	return
+/obj/item/proc/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity, params)
+	if((!proximity && !ismob(A)) || !wielded || !extended_reach)//extended reach is only for mobs when you wield the spear
+		return
+	if(get_dist(user.loc, A.loc) < 3)
+		resolve_attackby(A, user, params)
 
 //I would prefer to rename this attack_as_weapon(), but that would involve touching hundreds of files.
 /obj/item/proc/attack(mob/living/M, mob/living/user, target_zone)

@@ -115,7 +115,7 @@
 				Range on wield:
 			</div>
 			<div class="itemContent">
-				2 tile radius
+				2 tile radius (Swing excluded)
 			</div>
 		{{/if}}
 
@@ -139,18 +139,16 @@
 
 		{{if data.push_attack}}
 			<div class="itemLabel">
-				Attacking groin on disarm intent:
+				Aiming groin on disarm intent:
 			</div>
 			<div class="itemContent">
 				Push target one tile away
 			</div>
 		{{/if}}
 
-		{{if data.sharp && data.edge && !forced_turned_off_broad_strike}}
+		{{if data.sharp && data.edge}}
 			{{if data.forced_broad_strike}}
-				<div class="itemLabel">
-					<span class='red'>Forced broad strike</span>
-				</div>
+				<h5>Forced broad strike</h5>
 			{{else}}
 				<div class="itemLabel">
 					Disarm intent:
@@ -162,9 +160,7 @@
 		{{/if}}
 
 		{{if data.w_class > 3}} 
-			<div class="itemLabel">
-				<span class='red'>Double tact</span>
-			</div>
+			<h5>Double tact</h5>
 		{{/if}}
 	</div>
 </div>
