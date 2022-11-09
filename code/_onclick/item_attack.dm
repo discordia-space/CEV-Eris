@@ -36,7 +36,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if (pre_attack(A, user, params))
 		return 1 //Returning 1 passes an abort signal upstream
 	add_fingerprint(user)
-	if(ishuman(user) && !(user == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT)
+	if(ishuman(user) && !(user == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun))
 		swing_attack(src, user, params)
 		return 1 //Swinging calls its own attacks
 	return A.attackby(src, user, params)
