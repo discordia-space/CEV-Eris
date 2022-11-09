@@ -215,7 +215,7 @@
 	name = "missile rack"
 	desc = "A large crate containing energy-produced missiles, ready to launch."
 	fire_sound = 'sound/weapons/guns/misc/mech_mortar.ogg'
-	projectile_type = /obj/item/projectile/bullet/rocket/mech
+	projectile_type = /obj/item/projectile/energy/flash/mechrocket
 	charge_cost = MECH_WEAPON_POWER_COST * 3
 
 	use_external_power = TRUE

@@ -270,15 +270,19 @@
 	step_delay = 1.8
 	wounding_mult = 1
 
-/obj/item/projectile/bullet/rocket/mech
-	name = "mass-produced rocket"
-	icon_state = "rocket"
-	damage_types = list(BRUTE = 15)
+/obj/item/projectile/energy/flash/mechrocket
+	name = "concussion rocket"
+	icon_state = "rocket_shock"
+	damage_types = list(BRUTE = 30, HALLOSS = 90)
 	armor_divisor = 1
 	style_damage = 100
-	check_armour = ARMOR_BOMB
+	check_armour = ARMOR_MELEE
 	penetrating = -5
 	recoil = 0
-	can_ricochet = FALSE
+	can_ricochet = TRUE
+	knockback = 1
+
+/obj/item/projectile/bullet/rocket/mech/detonate(atom/target)
+	explosion(get_turf(src), 0, 0, 5, 7)
 
 /////End of Exosuit Stuff/////
