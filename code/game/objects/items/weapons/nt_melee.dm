@@ -82,7 +82,8 @@
 	max_upgrades = 1
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	hit_range = 2
+	extended_reach = TRUE
+	forced_broad_strike = TRUE
 	price_tag = 600
 	matter = list(MATERIAL_BIOMATTER = 80, MATERIAL_STEEL = 8, MATERIAL_WOOD = 10, MATERIAL_PLASTEEL = 2)
 
