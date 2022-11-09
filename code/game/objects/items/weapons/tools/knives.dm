@@ -336,6 +336,7 @@
 	sharp = TRUE
 	edge = TRUE
 	extended_reach = TRUE
+	push_attack = TRUE
 	forced_turned_off_broad_strike = TRUE
 	worksound = WORKSOUND_HARD_SLASH
 	w_class = ITEM_SIZE_BULKY //4 , it's a spear mate

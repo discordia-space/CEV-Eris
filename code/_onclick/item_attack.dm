@@ -143,7 +143,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			tileattack(user, C, modifier = 0.8)
 			tileattack(user, L, modifier = 0.6)
 			QDEL_IN(S, 2 SECONDS)
-	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 /atom/proc/attackby(obj/item/W, mob/user, params)
 	return
