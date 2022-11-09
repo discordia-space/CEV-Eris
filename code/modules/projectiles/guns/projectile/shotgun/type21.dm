@@ -6,15 +6,16 @@
 	item_state = "type_21"
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL
-	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER //isnt fitting in holsters for some reason
+	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 3)
 	caliber = CAL_SHOTGUN
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
 	magazine_type = /obj/item/ammo_magazine/m12
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
-	price_tag = 2000
-	spawn_blacklisted = TRUE //until onestar rework
+	price_tag = 3300
+	spawn_tags = SPAWN_TAG_GUN_OS
+	spawn_blacklisted = TRUE
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'

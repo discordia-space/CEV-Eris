@@ -2,25 +2,29 @@
 
 proc/Intoxicated(phrase)
 	phrase = html_decode(phrase)
-	var/leng=length(phrase)
-	var/counter=length(phrase)
-	var/newphrase=""
-	var/newletter=""
-	while(counter>=1)
-		newletter=copytext(phrase,(leng-counter)+1,(leng-counter)+2)
-		if(rand(1,3)==3)
-			if(lowertext(newletter)=="o")	newletter="u"
-			if(lowertext(newletter)=="s")	newletter="ch"
-			if(lowertext(newletter)=="a")	newletter="ah"
-			if(lowertext(newletter)=="c")	newletter="k"
-		switch(rand(1,7))
-			if(1,3,5,8)	newletter="[lowertext(newletter)]"
-			if(2,4,6,15)	newletter="[uppertext(newletter)]"
-			if(7)	newletter+="'"
-			//if(9,10)	newletter="<b>[newletter]</b>"
-			//if(11,12)	newletter="<big>[newletter]</big>"
-			//if(13)	newletter="<small>[newletter]</small>"
-		newphrase+="[newletter]";counter-=1
+	var/leng = LAZYLEN(phrase)
+	var/counter = LAZYLEN(phrase)
+	var/newphrase = ""
+	var/newletter = ""
+	while(counter >= 1)
+		newletter=copytext(phrase, (leng-counter)+1, (leng-counter)+2)
+		if(rand(1,3) == 3)
+			if(lowertext(newletter)=="o")
+				newletter="u"
+			if(lowertext(newletter)=="s")
+				newletter="ch"
+			if(lowertext(newletter)=="a")
+				newletter="ah"
+			if(lowertext(newletter)=="c")
+				newletter="k"
+		switch(rand(1, 7))
+			if(1,3,5)
+				newletter="[lowertext(newletter)]"
+			if(2,4,6)
+				newletter="[uppertext(newletter)]"
+			if(7)
+				newletter+="'"
+		newphrase += "[newletter]"; counter--
 	return newphrase
 
 proc/NewStutter(phrase,stunned)

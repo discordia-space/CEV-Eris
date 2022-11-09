@@ -218,10 +218,10 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	#ifdef UNIT_TESTS
 	FinishTestRun()
-	return
+	#else
+	..()
 	#endif
 
-	..()
 
 /hook/startup/proc/loadMode()
 	world.load_storyteller()
