@@ -14,13 +14,16 @@
 	if((brute <= 0) && (burn <= 0))
 		return 0
 
-	// High brute damage or sharp objects may damage internal organs
-	if(internal_organs && (brute_dam >= max_damage || (((sharp && brute >= 5) || brute >= 10) && prob(5))))
-		// Damage an internal organ
-		if(internal_organs && internal_organs.len)
-			var/obj/item/organ/internal/I = pick(internal_organs)
-			I.take_damage(brute / 2)
+	// High damage or sharp objects may damage internal organs
+	if(internal_organs && internal_organs.len)
+		var/obj/item/organ/internal/I = pick(internal_organs)
+		if((brute_dam >= max_damage || (((sharp && brute >= 10) || brute >= 20) && prob(5))))
+			I.take_damage(brute / 2, FALSE, BRUTE, sharp, edge)
 			brute -= brute / 2
+		if((burn_dam >= max_damage || (burn >= 20 && prob(5))))
+			I.take_damage(burn / 4, FALSE, BURN, FALSE, FALSE)
+			burn -= burn / 4
+			
 	var/bone_efficiency = owner.get_specific_organ_efficiency(OP_BONE, organ_tag)
 	if(brute_dam > (min_broken_damage * (bone_efficiency / 100)) && prob(brute_dam + brute))
 		fracture()
@@ -31,7 +34,7 @@
 	if(used_weapon)
 		add_autopsy_data("[used_weapon]", brute + burn)
 
-	var/can_cut = (prob(brute*2 || sharp) && !BP_IS_ROBOTIC(src))
+	var/can_cut = ((prob(brute*2) || sharp) && !BP_IS_ROBOTIC(src))
 
 	// If the limbs can break, make sure we don't exceed the maximum damage a limb can take before breaking
 	// Non-vital organs are limited to max_damage. You can't kill someone by bludeonging their arm all the way to 200 -- you can

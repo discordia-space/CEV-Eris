@@ -70,7 +70,7 @@
 	difficulty = 0
 
 /datum/surgery_step/examine/tool_quality(obj/item/tool)
-	return 100		// Don't need no tool
+	return 120		// Don't need no tool
 
 /datum/surgery_step/examine/can_use(mob/living/user, obj/item/organ/organ, obj/item/tool, target)
 	return TRUE

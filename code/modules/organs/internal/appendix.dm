@@ -22,7 +22,7 @@
 			owner.emote("me",1,"winces slightly.")
 		if(inflamed > 200)
 			if(prob(3))
-				take_damage(0.1)
+				take_damage(10)
 				owner.emote("me",1,"winces painfully.")
 				owner.adjustToxLoss(1)
 		if(inflamed > 400)

@@ -57,7 +57,7 @@
 
 /datum/craft_recipe/bone_braces
 	name = "bone braces"
-	result = /obj/item/bone_brace
+	result = /obj/item/modification/organ/internal/electromechanical/bone_braces
 	steps = list(
 		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),
 		list(QUALITY_WELDING, 20, 50),

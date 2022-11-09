@@ -134,7 +134,20 @@
 #define COMSIG_MESSAGE_SENT "radio_message_sent"
 #define COMSIG_MESSAGE_RECEIVED "radio_message_received"
 
-// ABERRANT signals
+// Internal organ signals
+#define COMSIG_I_ORGAN_REFRESH "internal_organ_refresh_upgrades"   // Move to external when external mods are made
+#define COMSIG_I_ORGAN_ADD_WOUND "add_internal_wound"
+#define COMSIG_I_ORGAN_REMOVE_WOUND "remove_internal_wound"
+#define COMSIG_I_ORGAN_WOUND_COUNT "count_internal_wounds"
+
+// Internal wound signals
+#define COMSIG_WOUND_EFFECTS "wound_effects"
+#define COMSIG_WOUND_FLAGS_ADD "wound_flags_add"
+#define COMSIG_WOUND_FLAGS_REMOVE "wound_flags_remove"
+#define COMSIG_WOUND_DAMAGE "wound_damage"
+#define COMSIG_WOUND_AUTODOC "wound_autodoc"
+
+// Aberrant signals
 #define COMSIG_ABERRANT_INPUT "aberrant_input"
 #define COMSIG_ABERRANT_PROCESS "aberrant_process"
 #define COMSIG_ABERRANT_OUTPUT "aberrant_output"

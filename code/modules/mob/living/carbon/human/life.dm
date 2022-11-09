@@ -70,7 +70,7 @@
 
 		//Organs and blood
 		handle_organs()
-		process_internal_ograns()
+		process_internal_organs()
 		handle_blood()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 

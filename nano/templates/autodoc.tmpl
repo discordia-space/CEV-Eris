@@ -35,17 +35,16 @@
 		{{if value.internal}}
 			<div class="itemLabel"><b>{{:value.name}}</b></div>
 			<div class="itemContent" style="color:red"><b>Organ damage: {{:helper.round(value.inner_damage)}}</b></div><br>
-			{{:helper.link('Fix internal damage', value.damage_picked?'check':null, {'toggle' : 'damage', 'id':value.id}, (value.damage && !data.active)  ? null:'disabled')}}
+			{{:helper.link('Treat Internal Damage', value.damage_picked?'check':null, {'toggle' : 'internal_wound', 'id':value.id}, (value.damage && !data.active)  ? null:'disabled')}}
 		{{else}}
 			<div class="itemLabel"><b>{{:value.name}}</b></div>
 			<div class="itemContent">
 				<b style="color:red">Brute damage: {{:helper.round(value.brute_damage)}} </b>
 				<b style="color:orange">Burn damage: {{:helper.round(value.burn_damage)}} </b>
 			</div><br>
-			{{:helper.link('Fix damage',		value.damage_picked?'check':null,	{'toggle':'damage',	 'id':value.id},    (value.damage && !data.active)?		null:'disabled')}}
-			{{:helper.link('Close wounds',		value.wound_picked?'check':null,	{'toggle':'wound',	 'id':value.id},    (value.wound && !data.active)?		null:'disabled')}}
-			{{:helper.link('Close IB',			value.ib_picked?'check':null,		{'toggle':'ib',		 'id':value.id},    (value.ib && !data.active)?			null:'disabled')}}
-			{{:helper.link('Shrapnel removal',	value.shrapnel_picked?'check':null,	{'toggle':'shrapnel','id':value.id},    (value.shrapnel && !data.active)?	null:'disabled')}}
+			{{:helper.link('Fix Damage',		value.damage_picked?'check':null,	{'toggle':'damage',	 'id':value.id},    (value.damage && !data.active)?		null:'disabled')}}
+			{{:helper.link('Close Wounds',		value.wound_picked?'check':null,	{'toggle':'wound',	 'id':value.id},    (value.wound && !data.active)?		null:'disabled')}}
+			{{:helper.link('Shrapnel Removal',	value.shrapnel_picked?'check':null,	{'toggle':'shrapnel','id':value.id},    (value.shrapnel && !data.active)?	null:'disabled')}}
 			{{:helper.link('Mend Fracture',		value.fracture_picked?'check':null,	{'toggle':'fracture','id':value.id},    (value.fracture && !data.active)?	null:'disabled')}}
 		{{/if}}
 	</div>

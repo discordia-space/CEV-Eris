@@ -315,36 +315,33 @@
 			if(BP_IS_ROBOTIC(I))
 				internal_wounds += "Prosthetic"
 	
-			var/obj/item/organ/internal/bone/B = I
-			if(istype(B))
-				if(B.parent.status & ORGAN_BROKEN)
-					internal_wounds += "[B.broken_description]"
-	
-			switch (I.germ_level)
-				if (0 to INFECTION_LEVEL_ONE - 1) //in the case of no infection, do nothing.
-				if (1 to INFECTION_LEVEL_ONE + 200)
-					internal_wounds += "Mild Infection"
-				if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-					internal_wounds += "Mild Infection+"
-				if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-					internal_wounds += "Mild Infection++"
-				if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
-					internal_wounds += "Acute Infection"
-				if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-					internal_wounds += "Acute Infection+"
-				if (INFECTION_LEVEL_TWO + 300 to INFINITY)
-					internal_wounds += "Acute Infection++"
 			if(I.rejecting)
 				internal_wounds += "being rejected"
-			if (I.damage || internal_wounds.len)
+
+			var/list/internal_wound_comps = I.GetComponents(/datum/component/internal_wound)
+			var/total_brute_and_misc_damage = 0
+			var/total_burn_damage = 0
+
+			for(var/datum/component/internal_wound/IW in internal_wound_comps)
+				var/severity = IW.severity
+				internal_wounds += "[IW.name] ([severity]/[IW.severity_max])"
+				if(istype(IW, /datum/component/internal_wound/organic/burn) || istype(IW, /datum/component/internal_wound/robotic/emp_burn))
+					total_burn_damage += severity
+				else
+					total_brute_and_misc_damage += severity
+
+			// Format internal wounds
+			var/internal_wounds_details
+			if(internal_wounds.len)
+				internal_wounds_details = jointext(internal_wounds, ",<br>")
+				internal_wounds_details = copytext(internal_wounds_details, 1, LAZYLEN(internal_wounds_details) - 5)
+
+			if(internal_wounds_details)
 				significant = TRUE
 				dat += "<tr>"
-				dat += "<td>[I.name]</td><td>N/A</td><td>[I.damage]</td><td>[other_wounds.len ? jointext(other_wounds, ":") : "None"]</td><td></td>"
+				dat += "<td>[I.name]</td><td>[total_burn_damage]</td><td>[total_brute_and_misc_damage]</td><td>[internal_wounds_details ? internal_wounds_details : "None"]</td><td></td>"
 				dat += "</tr>"
 
-		for(var/datum/wound/W in e.wounds) if(W.internal)
-			other_wounds += "Internal bleeding"
-			break
 		if(e.organ_tag == BP_CHEST && occ["lung_ruptured"])
 			other_wounds += "Lung ruptured"
 		if(e.status & ORGAN_SPLINTED)

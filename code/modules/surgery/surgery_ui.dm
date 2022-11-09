@@ -113,6 +113,29 @@
 		contents_list.Add(list(implant_data))
 
 	data["contents"] = contents_list
+
+	// For diagnostics on an internal object
+	if(!internal_organs.Find(selected_internal_object))
+		selected_internal_object = null
+
+	data["viewing_internal"] = selected_internal_object ? TRUE : FALSE
+
+	if(selected_internal_object)
+		var/obj/item/organ/internal/I
+		if(istype(selected_internal_object, /obj/item/organ/internal))
+			I = selected_internal_object
+
+			data["diag_name"] = I.name
+			data["diag_max_damage"] = I.max_damage
+			data["diag_damage"] = I.damage
+			data["diag_health"] = I.max_damage - I.damage
+			data["diag_examine"] = /datum/surgery_step/examine
+			data["diag_wounds"] = I.get_wounds()
+			data["diag_mods"] = I.get_mods()
+			data["diag_ref"] = "\ref[I]"
+			data["diag_attach"] = /datum/surgery_step/attach_mod
+			data["diag_remove"] = /datum/surgery_step/remove_mod
+
 	return data
 
 
@@ -188,4 +211,20 @@
 					else
 						to_chat(user, SPAN_WARNING("You failed to remove any shrapnel from [get_surgery_name()]!"))
 
+			return TRUE
+
+		if("treat_wound")
+			var/mob/living/user = usr
+			var/obj/item/I = user.get_active_hand()
+
+			if(!user || !I)
+				return
+
+			var/datum/wound = locate(href_list["wound"])
+			if(wound)
+				SEND_SIGNAL(wound, COMSIG_ATTACKBY, I, user)
+			return TRUE
+
+		if("view")
+			selected_internal_object = locate(href_list["view"])
 			return TRUE

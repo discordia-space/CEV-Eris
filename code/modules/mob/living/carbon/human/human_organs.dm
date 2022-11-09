@@ -47,9 +47,9 @@
 			if (!lying && !buckled && world.time - l_move_time < 15)
 			//Moving around with fractured ribs won't do you any good
 				if (E.is_broken() && E.internal_organs && E.internal_organs.len && prob(15))
-					var/obj/item/organ/I = pick(E.internal_organs)
+					var/obj/item/organ/internal/I = pick(E.internal_organs)
 					custom_pain("You feel broken bones moving in your [E.name]!", 1)
-					I.take_damage(rand(3,5))
+					I.take_damage(rand(6,10), FALSE, BRUTE, TRUE, TRUE)
 
 				//Moving makes open wounds get infected much faster
 				if (E.wounds.len)

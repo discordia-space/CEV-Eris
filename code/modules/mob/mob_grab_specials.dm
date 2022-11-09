@@ -10,10 +10,19 @@
 	user.visible_message(SPAN_NOTICE("[user] starts inspecting [affecting]'s [E.name] carefully."))
 	if(!do_mob(user,H, 10))
 		to_chat(user, SPAN_NOTICE("You must stand still to inspect [E] for wounds."))
-	else if(E.wounds.len)
-		to_chat(user, SPAN_WARNING("You find [E.get_wounds_desc()]"))
 	else
-		to_chat(user, SPAN_NOTICE("You find no visible wounds."))
+		var/wound_found = FALSE
+
+		if(E.wounds.len)
+			to_chat(user, SPAN_WARNING("You find [E.get_wounds_desc()]"))
+			wound_found = TRUE
+	
+		if(E.number_internal_wounds)
+			to_chat(user, SPAN_WARNING("You find evidence of one or more internal injuries."))
+			wound_found = TRUE
+
+		if(!wound_found)
+			to_chat(user, SPAN_NOTICE("You find no visible wounds."))
 	if(locate(/obj/item/material/shard/shrapnel) in E.implants)
 		to_chat(user, SPAN_WARNING("There is what appears to be shrapnel embedded within [affecting]'s [E.name]."))
 

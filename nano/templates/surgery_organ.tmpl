@@ -7,6 +7,7 @@
 				<h3>{{:organ.name.toTitleCase()}}</h3>
 			</header>
 			<div style ='float: left; height: 32px; width: 32px; margin: 4px' class='statusDisplayItem'><img src= {{:organ.icon_data}} height=32 width=32></div>
+			{{:helper.link('Mods/Wounds', null, {'command' : 'view', 'view' : organ.ref}, null, 'floatRight')}}
 			<article>
 				{{if data.diagnosed}}
 					{{if organ.show_oxy}}
@@ -28,14 +29,17 @@
 						<span class="label">Blood:</span>
 						<div class="content">{{:helper.displayBar(organ.stored_blood, 0, organ.max_blood, 'bad', organ.stored_blood + " / " + organ.max_blood)}}</div>
 					</section>
-					{{/if}}			
+					{{/if}}
+				{{/if}}
+			</article>
+			<article>
+				{{if data.diagnosed}}
 					{{if organ.processes.length}}
-							<div class="display">
-							{{for organ.processes}}
-							<span class="label">{{:value.title}}:</span>
-							<div class="content">{{:value.efficiency}}</div>
-							{{/for}}
+						<section>
+							<div class="display" style="width: 96%">
+								<div class="item">Organ types (efficiency): <span style="color: pink">{{:organ.processes}}</span></div>
 							</div>
+						</section>
 					{{/if}}
 					{{for organ.conditions :condition:condition_i}}
 					<section>
@@ -64,71 +68,133 @@
 			{{:helper.link('Insert', null, {'command' : 'step', 'step' : data.insert_step})}}
 		{{/if}}
 	</div>
-	<div class="item" style="display: table-cell; vertical-align: top; width: auto">
-		<div class="display">
-			<header><h3>Diagnostics</h3></header> 
-			<article>
-				{{if data.diagnosed}}
-					<section>
-						<span class="label">Health:</span>
-						{{data.damage = data.brute_dam + data.burn_dam;}}
-						{{data.health = Math.round((data.max_damage - data.damage) * 10) / 10;}}
-						{{data.brute_dam = Math.round(data.brute_dam * 10) / 10;}}
-						{{data.burn_dam = Math.round(data.burn_dam * 10) / 10;}}
-						{{data.limb_efficiency = Math.round(data.limb_efficiency * 10) / 10;}}
-						<div class="content">{{:helper.displayBar(data.health, 0, data.max_damage, (data.damage > (data.max_damage / 2)) ? 'bad' : 'good', data.health + " / " + data.max_damage)}}</div>
-					</section>
-					<section>
-						<span class="label">Brute:</span>
-						<div class="content">{{:helper.displayBar(data.brute_dam, 0, data.max_damage, 'bad', data.brute_dam + "")}}</div>
-					</section>
-					<section>
-						<span class="label">Burn:</span>
-						<div class="content">{{:helper.displayBar(data.burn_dam, 0, data.max_damage, 'bad', data.burn_dam + "")}}</div>
-					</section>
-					<section>
-						<span class="label">Efficiency:</span>
-						<div class="content">
-							<div style="color:green">{{:data.limb_efficiency}}</div>
-						</div>
-					</section>
-				{{else}}
-					<section>{{:helper.link('Diagnose', null, {'command' : 'diagnose'})}}</section> 
-				{{/if}}
-			</article>
-		</div>
-		<div class="display">
-			<header><h3>Volume</h3></header>
-			<article>
-				<section>
-					<span class="label">Occupied space:</span>
-					{{if data.occupied_volume > data.max_volume}}
-						<div class="content">
-							<div style="color:red">{{:data.occupied_volume}}/{{:data.max_volume}}</div>
-						</div>
-					{{else}}
-						<div class="content">
-							<div style="color:green">{{:data.occupied_volume}}/{{:data.max_volume}}</div>
-						</div>
+	{{if data.viewing_internal}}
+		<div class="item" style="display: table-cell; vertical-align: top; width: auto">
+			<div class="display">
+				<article>
+					<div class="content">{{:helper.link('Return to External Diagnostics', 'arrowreturn-1-w', {'command' : 'view', 'view' : null})}}</div>
+				</article>
+			</div>
+			<div class="display">
+				<header><h3>Diagnostics - {{:data.diag_name.toTitleCase()}}</h3></header>
+				<article>
+					{{if data.diagnosed}}
+						<section>
+							<span class="label">Health:</span>
+							<div class="content">{{:helper.displayBar(data.diag_health, 0, data.diag_max_damage, (data.diag_damage > (data.diag_max_damage / 2)) ? 'bad' : 'good', data.diag_health + " / " + data.diag_max_damage)}}</div>	
+						</section>
 					{{/if}}
-				</section>
-				{{if data.shrapnel}}
-					<section>{{:helper.link('Remove shrapnel', null, {'command' : 'remove_shrapnel'})}}</section>
+				</article>
+				<article>
+					<div class="content">{{:helper.link("Examine", null, {'command' : 'step', 'step' : data.diag_examine, 'organ' : data.diag_ref,}, organ.open ? null : 'disabled')}}</div>
+				</article>
+			</div>
+			<div class="display">
+				<header><h3>Modifications</h3></header>
+				<article>
+					<div class="nanoMap">
+						{{if data.diag_mods}}
+							{{for data.diag_mods :mod:mod_i}}
+								<div class="item">{{:mod.name}}</div>
+							{{/for}}
+						{{/if}}
+					</div>
+					<div class="content">{{:helper.link("Attach", null, {'command' : 'step', 'step' : data.diag_attach, 'organ' : data.diag_ref,}, organ.open ? null : 'disabled')}}</div>
+					<div class="content">{{:helper.link("Remove", null, {'command' : 'step', 'step' : data.diag_remove, 'organ' : data.diag_ref,}, organ.open ? null : 'disabled')}}</div>
+				</article>
+			</div>
+			<div class="display">
+				<header><h3>Wounds</h3></header>
+				{{if data.diag_wounds}}
+					<article>
+						{{for data.diag_wounds :wound:wound_i}}
+							<div class="nanoMap">
+								<div class="item">
+									<div class="itemLabel">Type:</div>
+									<div class="itemContent">{{:wound.name}}</div>
+								</div>
+								<div class="item">
+									<div class="itemLabel">Severity:</div>
+									<div class="itemContent">{{:wound.severity}} / {{:wound.severity_max}}</div>
+								</div>
+								<div class="item">
+									<div class="itemLabel">Treatments:</div>
+									<div class="itemContent">{{:wound.treatments}}</div>
+								</div>
+								<div class="content">{{:helper.link('Treat', null, {'command' : 'treat_wound', 'wound' : wound.wound})}}</div>
+							</div>
+						{{/for}}
+					</article>
 				{{/if}}
-			</article>
+			</div>
 		</div>
-		{{if data.diagnosed && data.conditions.length}}
-		<div class="display">
-			<header><h3>Conditions</h3></header>
-			<article>
-				{{for data.conditions :condition:condition_i}}
-				<section>
-					<span class="label">{{:condition.name}}:</span>
-					<div class="content">{{:helper.link(condition.fix_name, null, {'command' : 'step', 'step' : condition.step, 'organ' : condition.organ})}}</div>
-				</section>
-				{{/for}}
-			</article>
+	{{else}}
+		<div class="item" style="display: table-cell; vertical-align: top; width: auto">
+			<div class="display">
+				<header><h3>Diagnostics</h3></header> 
+				<article>
+					{{if data.diagnosed}}
+						<section>
+							<span class="label">Health:</span>
+							{{data.damage = data.brute_dam + data.burn_dam;}}
+							{{data.health = Math.round((data.max_damage - data.damage) * 10) / 10;}}
+							{{data.brute_dam = Math.round(data.brute_dam * 10) / 10;}}
+							{{data.burn_dam = Math.round(data.burn_dam * 10) / 10;}}
+							{{data.limb_efficiency = Math.round(data.limb_efficiency * 10) / 10;}}
+							<div class="content">{{:helper.displayBar(data.health, 0, data.max_damage, (data.damage > (data.max_damage / 2)) ? 'bad' : 'good', data.health + " / " + data.max_damage)}}</div>
+						</section>
+						<section>
+							<span class="label">Brute:</span>
+							<div class="content">{{:helper.displayBar(data.brute_dam, 0, data.max_damage, 'bad', data.brute_dam + "")}}</div>
+						</section>
+						<section>
+							<span class="label">Burn:</span>
+							<div class="content">{{:helper.displayBar(data.burn_dam, 0, data.max_damage, 'bad', data.burn_dam + "")}}</div>
+						</section>
+						<section>
+							<span class="label">Efficiency:</span>
+							<div class="content">
+								<div style="color:green">{{:data.limb_efficiency}}</div>
+							</div>
+						</section>
+					{{else}}
+						<section>{{:helper.link('Diagnose', null, {'command' : 'diagnose'})}}</section> 
+					{{/if}}
+				</article>
+			</div>
+			<div class="display">
+				<header><h3>Volume</h3></header>
+				<article>
+					<section>
+						<span class="label">Occupied space:</span>
+						{{if data.occupied_volume > data.max_volume}}
+							<div class="content">
+								<div style="color:red">{{:data.occupied_volume}}/{{:data.max_volume}}</div>
+							</div>
+						{{else}}
+							<div class="content">
+								<div style="color:green">{{:data.occupied_volume}}/{{:data.max_volume}}</div>
+							</div>
+						{{/if}}
+					</section>
+					{{if data.shrapnel}}
+						<section>{{:helper.link('Remove shrapnel', null, {'command' : 'remove_shrapnel'})}}</section>
+					{{/if}}
+				</article>
+			</div>
+			{{if data.diagnosed && data.conditions.length}}
+			<div class="display">
+				<header><h3>Conditions</h3></header>
+				<article>
+					{{for data.conditions :condition:condition_i}}
+					<section>
+						<span class="label">{{:condition.name}}:</span>
+						<div class="content">{{:helper.link(condition.fix_name, null, {'command' : 'step', 'step' : condition.step, 'organ' : condition.organ})}}</div>
+					</section>
+					{{/for}}
+				</article>
+			</div>
+			{{/if}}
 		</div>
-		{{/if}}
-	</div>
+	{{/if}}
 </div>

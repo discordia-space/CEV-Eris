@@ -153,7 +153,7 @@
 				reagents.remove_reagent("blood",0.1)
 				blood_splatter(src, null, TRUE)
 		if(config.organs_decay)
-			damage += rand(1,3)
+			take_damage(rand(1,3), TRUE, TOX)
 		if(damage >= max_damage)
 			damage = max_damage
 		germ_level += rand(2,6)
@@ -178,14 +178,17 @@
 
 /obj/item/organ/proc/handle_germ_effects()
 	//** Handle the effects of infections
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = 0
+
+	if(CE_ANTIBIOTIC in owner.chem_effects)
+		antibiotics = owner.chem_effects[CE_ANTIBIOTIC]
 
 	if(germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
 		germ_level--
 
 	if(germ_level >= INFECTION_LEVEL_ONE/2)
 		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes
-		if(antibiotics < 5 && prob(round(germ_level/6)))
+		if(antibiotics < 4 && prob(round(germ_level/6)))
 			germ_level++
 
 	if(germ_level >= INFECTION_LEVEL_ONE)
@@ -194,11 +197,8 @@
 
 	if(germ_level >= INFECTION_LEVEL_TWO)
 		//spread germs
-		if(parent && antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
+		if(parent && antibiotics < 4 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
 			parent.germ_level++
-
-		if(prob(3))	//about once every 30 seconds
-			take_damage(1,silent=prob(30))
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
@@ -238,8 +238,9 @@
 //Germs
 /obj/item/organ/proc/handle_antibiotics()
 	var/antibiotics = 0
-	if(owner)
-		antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+
+	if(owner && (CE_ANTIBIOTIC in owner.chem_effects))
+		antibiotics = owner.chem_effects[CE_ANTIBIOTIC]
 
 	if(!germ_level || antibiotics < 5)
 		return
