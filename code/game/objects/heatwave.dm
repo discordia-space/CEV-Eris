@@ -37,7 +37,7 @@ proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, pen
 
 			if(damage[HEAT])
 				var/heat_damage = isLight_range ? damage[HEAT] / 2 : damage[HEAT]
-				L.damage_through_armor(heat_damage, HEAT, attack_flag = ARMOR_ENERGY, armour_pen = penetration)
+				L.damage_through_armor(heat_damage, HEAT, attack_flag = ARMOR_ENERGY, armor_divisor = penetration)
 
 			if(damage[BURN])
 				var/burn_damage = isLight_range ? damage[BURN] / 2 : damage[BURN]
