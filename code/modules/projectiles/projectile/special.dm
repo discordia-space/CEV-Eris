@@ -321,9 +321,9 @@
 	damage_types = list(HEAT = 0)
 	nodamage = TRUE
 	check_armour = ARMOR_BIO
-	recoil = 8
+	recoil = 16
 
-	var/air_time = 3 // Amount of tiles spent without touching the ground
-	var/amount_per_transfer_from_this = 12
-	var/amount_per_transfer_from_this_turf = 6
-	var/volume = 120
+	air_time = 3 // Amount of tiles spent without touching the ground
+	amount_per_transfer_from_this = 12
+	amount_per_transfer_from_this_turf = 6
+	volume = 120
