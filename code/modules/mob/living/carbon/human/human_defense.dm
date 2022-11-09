@@ -233,7 +233,7 @@ meteor_act
 	var/mob/living/carbon/human/grabbed = G.affecting
 	visible_message(SPAN_DANGER("[src] redirects the blow at [grabbed]!"), SPAN_DANGER("You redirect the blow at [grabbed]!"))
 	//check what we are being hit with, a hand(I is null), or an item?
-	//quickly turn blocking on and off to prevent looping
+	//quickly turn blocking off and on to prevent looping(since we are attacking again)
 	blocking = FALSE
 	if(istype(I, /obj/item))
 		grabbed.attackby(I, attacker)
