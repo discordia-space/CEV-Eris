@@ -228,13 +228,18 @@ meteor_act
 	damage -= (toughness * stat_affect + item_size_affect)
 	return max(0, damage)
 
-/mob/living/carbon/human/proc/grab_redirect_attack(var/obj/item/grab/G, var/mob/living/grabbed, var/mob/living/carbon/human/attacker, var/obj/item/I)
+/mob/living/carbon/human/proc/grab_redirect_attack(var/obj/item/grab/G, var/obj/item/I)
+	var/mob/living/carbon/human/attacker = G.assailant
+	var/mob/living/carbon/human/grabbed = G.affecting
 	visible_message(SPAN_DANGER("[src] redirects the blow at [grabbed]!"), SPAN_DANGER("You redirect the blow at [grabbed]!"))
 	//check what we are being hit with, a hand(I is null), or an item?
+	//quickly turn blocking on and off to prevent looping
+	blocking = FALSE
 	if(istype(I, /obj/item))
 		grabbed.attackby(I, attacker)
 	else
 		attacker.attack_hand(grabbed)//and now it's not our problems
+	blocking = TRUE
 	//change our block state depending on grab level
 	if(G.state < GRAB_NECK)
 		return //block remains active
@@ -243,6 +248,8 @@ meteor_act
 		return //block is turned off
 	else
 		stop_blocking()
+		attacker.drop_from_inventory(G)
+		G.loc = null
 		qdel(G)
 		return //block is turned off, grab is GONE
 
@@ -284,8 +291,7 @@ meteor_act
 	if(blocking)
 		if(istype(get_active_hand(), /obj/item/grab))//we are blocking with a human shield! We redirect the attack. You know, because grab doesn't exist as an item.
 			var/obj/item/grab/G = get_active_hand()
-			var/mob/living/grabbed = G.throw_held()
-			grab_redirect_attack(G, grabbed, user, I)
+			grab_redirect_attack(G, I)
 			return FALSE
 		else
 			stop_blocking()
