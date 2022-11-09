@@ -13,7 +13,7 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 3)
 	slot_flags = SLOT_BELT|SLOT_BACK
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLATINUM = 4, MATERIAL_PLASTIC = 12)
-	price_tag = 2800
+	price_tag = 2900
 	init_recoil = CARBINE_RECOIL(0.6)
 	fire_sound = 'sound/weapons/Gunshot_silenced.wav'
 	unload_sound = 'sound/weapons/guns/interact/batrifle_magout.ogg'
@@ -21,6 +21,8 @@
 	cocked_sound = 'sound/weapons/guns/interact/batrifle_cock.ogg'
 	penetration_multiplier = 0.2
 	damage_multiplier = 1.2
+	spawn_tags = SPAWN_TAG_GUN_OS
+	spawn_blacklisted = TRUE
 	gun_tags = list(GUN_SILENCABLE)
 	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/plasteel = 6)
 	init_firemodes = list(
@@ -29,7 +31,6 @@
 		FULL_AUTO_400
 		)
 
-	spawn_blacklisted = TRUE
 	serial_type = "OS"
 
 /obj/item/gun/projectile/type_47/update_icon()

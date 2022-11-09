@@ -94,7 +94,7 @@
 /obj/structure/table/rack,
 /obj/spawner/gun/normal,
 /obj/spawner/gun/normal,
-/obj/spawner/gun/cheap,
+/obj/spawner/gun/onestar/low_chance,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "v" = (
@@ -104,14 +104,7 @@
 /obj/machinery/door/window/northright,
 /obj/structure/table/rack,
 /obj/spawner/gun/shotgun,
-/obj/spawner/gun/normal,
-/obj/spawner/gun/cheap,
-/turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"w" = (
-/obj/structure/table/onestar,
-/obj/spawner/gun/normal,
-/obj/spawner/gun/cheap,
+/obj/spawner/gun/onestar,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "x" = (
@@ -124,9 +117,17 @@
 /area/crawler)
 "z" = (
 /obj/structure/table/onestar,
-/obj/spawner/gun/energy_cheap,
-/obj/spawner/gun/cheap,
+/obj/spawner/gun/onestar,
 /turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"C" = (
+/mob/living/carbon/superior_animal/stalker,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"G" = (
+/obj/structure/table/onestar,
+/obj/spawner/gun/onestar/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "M" = (
 /mob/living/carbon/superior_animal/stalker/dual,
@@ -170,9 +171,9 @@ a
 a
 c
 g
-g
 M
 g
+C
 g
 v
 a
@@ -185,7 +186,7 @@ g
 g
 g
 y
-w
+z
 a
 "}
 (5,1,1) = {"
@@ -215,7 +216,7 @@ b
 f
 a
 Q
-o
+G
 o
 a
 f
