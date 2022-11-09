@@ -99,6 +99,7 @@
 							/datum/design/research/circuit/chemical_dispenser_soda,
 							/datum/design/research/circuit/chem_heater,
 							/datum/design/research/item/makeshift_centrifuge,
+							/datum/design/research/item/advanced_chemthrower,
 							/datum/design/research/structure/bidon,
 							/datum/design/research/structure/bidonadv
 							)

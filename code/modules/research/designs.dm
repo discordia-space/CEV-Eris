@@ -117,6 +117,13 @@ other types of metals and chemistry for reagents).
 	category = "Medical"
 	sort_string = "MBBAA"
 
+/datum/design/research/item/advanced_chemthrower
+	name = "Advanced Chemthrower"
+	desc = "A handheld liquid dispenser with multiple firemodes."
+	build_path = /obj/item/gun/reagent/moebius
+	category = "Medical"
+	sort_string = "MBBAA"
+
 /datum/design/research/item/light_replacer
 	name = "light replacer"
 	desc = "A device to automatically replace lights. Refill with working lightbulbs."
@@ -215,7 +222,7 @@ other types of metals and chemistry for reagents).
 	name = "Moebius combat voidsuit"
 	build_path = /obj/item/clothing/suit/space/void/science
 	sort_string = "VASAC"
- 
+
 /datum/design/research/item/paramedic_armor
 	name = "Moebius paramedic armor"
 	build_path = /obj/item/clothing/suit/armor/paramedic

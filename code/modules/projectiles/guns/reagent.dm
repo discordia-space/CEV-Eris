@@ -1,9 +1,9 @@
 /obj/item/gun/reagent
 	name = "chemthrower"
 	desc = "A handheld liquid dispenser."
-	icon = 'icons/obj/guns/launcher/pneumatic.dmi'
-	icon_state = "pneumatic"
-	item_state = "pneumatic"
+	icon = 'icons/obj/guns/launcher/chemical.dmi'
+	icon_state = "chemthrower"
+	item_state = "chemthrower"
 	slot_flags = SLOT_BACK
 	w_class = ITEM_SIZE_BULKY
 	fire_sound_text = "a loud swhoosh of flowing liquid"
@@ -12,12 +12,11 @@
 	rarity_value = 10//no price tag, high rarity
 
 	init_firemodes = list(
-		list(mode_name="Throw", mode_desc="Throws a ball of liquid", fire_delay=6),
-		list(mode_name="Stream", mode_desc="Steady stream of liquid", mode_type = /datum/firemode/automatic, fire_delay=2),
+		list(mode_name="Throw", mode_desc="Throws a ball of liquid", fire_delay=6)
 	)
 
 	var/list/beakers = list() //All containers inside the gun.
-	var/max_beakers = 4
+	var/max_beakers = 3
 	var/projectile_type = /obj/item/projectile/reagent
 
 	var/beaker_type = /obj/item/reagent_containers/glass/beaker
@@ -124,9 +123,9 @@
 
 
 /obj/item/gun/reagent/flame
-	name = "chemthrower"
-	desc = "A handheld liquid dispenser."
-	icon = 'icons/obj/guns/launcher/pneumatic.dmi'
+	name = "ignited chemthrower"
+	desc = "A handheld liquid dispenser. Has an igniter loosely taped on the front."
+	icon_state = "ignited_chemthrower"
 	slot_flags = SLOT_BACK
 	w_class = ITEM_SIZE_HUGE
 	fire_sound_text = "a loud swhoosh of flowing liquid"
@@ -134,9 +133,35 @@
 	fire_sound = 'sound/weapons/tablehit1.ogg'
 	rarity_value = 10//no price tag, high rarity
 
-	max_beakers = 4
 	projectile_type = /obj/item/projectile/reagent/hot
 
 /obj/item/gun/reagent/flame/fill_liquid(var/obj/item/projectile/reagent/LiquidProjectile)
 	..()
 	LiquidProjectile.damage_types[HEAT] = LiquidProjectile.reagents.total_volume
+
+
+/obj/item/gun/reagent/moebius
+	name = "advanced chemthrower"
+	desc = "A handheld liquid dispenser in a sleek white color. Has multiple firemodes."
+	icon = 'icons/obj/guns/launcher/chemical_advanced.dmi'
+	slot_flags = SLOT_BACK
+	w_class = ITEM_SIZE_HUGE
+	fire_sound_text = "a loud swhoosh of flowing liquid"
+	fire_delay = 6
+	fire_sound = 'sound/weapons/tablehit1.ogg'
+	rarity_value = 10//no price tag, high rarity
+
+	projectile_type = /obj/item/projectile/reagent/hot
+	max_beakers = 6
+
+	init_firemodes = list(
+		list(mode_name="Throw", mode_desc="Throws a ball of liquid", fire_delay=6, projectile_type = /obj/item/projectile/reagent),
+		list(mode_name="Stream", mode_desc="Steady stream of liquid", mode_type = /datum/firemode/automatic, fire_delay=2, projectile_type = /obj/item/projectile/reagent),
+		list(mode_name="Fireball", mode_desc="Throws a ball of superheated liquid", fire_delay=6, projectile_type = /obj/item/projectile/reagent/hot),
+		list(mode_name="Firestream", mode_desc="Steady stream of superheated liquid", mode_type = /datum/firemode/automatic, fire_delay=2, projectile_type = /obj/item/projectile/reagent/hot),
+	)
+
+/obj/item/gun/reagent/moebius/fill_liquid(var/obj/item/projectile/reagent/LiquidProjectile)
+	..()
+	if(projectile_type == /obj/item/projectile/reagent/hot)
+		LiquidProjectile.damage_types[HEAT] = LiquidProjectile.reagents.total_volume
