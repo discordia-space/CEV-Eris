@@ -228,6 +228,26 @@ meteor_act
 	damage -= (toughness * stat_affect + item_size_affect)
 	return max(0, damage)
 
+/mob/living/carbon/human/proc/grab_redirect_attack(var/obj/item/grab/G, var/mob/living/grabbed, var/mob/living/carbon/human/attacker, var/obj/item/I)
+	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Redirected attack of [attacker.name] ([attacker.ckey]) at [grabbed.name] ([grabbed.ckey])</font>")
+	attacker.attack_log += text("\[[time_stamp()]\] <font color='orange'>Attack has been redirected by [src.name] ([src.ckey]) at [grabbed.name] ([grabbed.ckey])</font>")
+	visible_message(SPAN_DANGER("[src] redirects the blow at [grabbed]!"), SPAN_DANGER("You redirect the blow at [grabbed]!"))
+	//check what we are being hit with, a hand(I is null), or an item?
+	if(istype(I, /obj/item))
+		grabbed.attackby(I, attacker)
+	else
+		attacker.attack_hand(grabbed)//and now it's not our problems
+	//change our block state depending on grab level
+	if(G.state < GRAB_NECK)
+		return //block remains active
+	else if(G.state < GRAB_AGGRESSIVE)
+		stop_blocking()
+		return //block is turned off
+	else
+		stop_blocking()
+		qdel(G)
+		return //block is turned off, grab is GONE
+
 /mob/living/carbon/human/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
 	if(check_attack_throat(I, user))
 		return null
@@ -264,12 +284,20 @@ meteor_act
 		return FALSE
 
 	if(blocking)
-		stop_blocking()
-		visible_message(SPAN_WARNING("[src] blocks the blow!"), SPAN_WARNING("You block the blow!"))
-		effective_force = handle_blocking(effective_force)
-		if(effective_force == 0)
-			visible_message(SPAN_DANGER("The attack has been completely negated!"))
+		if(istype(get_active_hand(), /obj/item/grab))//we are blocking with a human shield! We redirect the attack. You know, because grab doesn't exist as an item.
+			var/obj/item/grab/G = get_active_hand()
+			var/mob/living/grabbed = G.throw_held()
+			grab_redirect_attack(G, grabbed, user)
 			return FALSE
+		else
+			stop_blocking()
+			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Blocked attack of [user.name] ([user.ckey])</font>")
+			user.attack_log += text("\[[time_stamp()]\] <font color='orange'>Attack has been blocked by [src.name] ([src.ckey])</font>")
+			visible_message(SPAN_WARNING("[src] blocks the blow!"), SPAN_WARNING("You block the blow!"))
+			effective_force = handle_blocking(effective_force)
+			if(effective_force == 0)
+				visible_message(SPAN_DANGER("The attack has been completely negated!"))
+				return FALSE
 
 	//If not blocked, handle broad strike attacks
 	if(((I.sharp && I.edge && user.a_intent == I_DISARM) || I.forced_broad_strike) && (!istype(I, /obj/item/tool/sword/nt/spear) || !istype(I, /obj/item/tele_spear) || !istype(I, /obj/item/tool/spear)))
