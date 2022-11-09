@@ -159,6 +159,7 @@
 		list(mode_name="Stream", mode_desc="Steady stream of liquid", mode_type = /datum/firemode/automatic, fire_delay=2, projectile_type = /obj/item/projectile/reagent),
 		list(mode_name="Fireball", mode_desc="Throws a ball of superheated liquid", fire_delay=6, projectile_type = /obj/item/projectile/reagent/hot),
 		list(mode_name="Firestream", mode_desc="Steady stream of superheated liquid", mode_type = /datum/firemode/automatic, fire_delay=2, projectile_type = /obj/item/projectile/reagent/hot),
+		list(mode_name="Catapult", mode_desc="Throws a significantly larger ball of liquid", fire_delay=18, projectile_type = /obj/item/projectile/reagent/large),
 	)
 
 /obj/item/gun/reagent/moebius/fill_liquid(var/obj/item/projectile/reagent/LiquidProjectile)

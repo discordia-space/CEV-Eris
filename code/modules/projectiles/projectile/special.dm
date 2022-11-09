@@ -314,3 +314,16 @@
 		reagents.trans_to_mob(L, L.mob_size, CHEM_TOUCH)
 		L.IgniteMob()
 		update_amount()
+
+/obj/item/projectile/reagent/large
+	name = "reagent"
+	icon_state = "flare"	//"icons/obj/chempuff.dmi"
+	damage_types = list(HEAT = 0)
+	nodamage = TRUE
+	check_armour = ARMOR_BIO
+	recoil = 8
+
+	var/air_time = 3 // Amount of tiles spent without touching the ground
+	var/amount_per_transfer_from_this = 12
+	var/amount_per_transfer_from_this_turf = 6
+	var/volume = 120
