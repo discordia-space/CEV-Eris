@@ -48,7 +48,7 @@ proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, pen
 				while (burn_damage > 0)
 					burn_damage -= loc_damage = rand(1, burn_damage)
 					L.damage_through_armor(loc_damage, BURN, organ_hit, ARMOR_ENERGY, penetration)
-					organ_hit = ran_zone(  //We determine some other body parts that should be hit
+					organ_hit = ran_zone()  //We determine some other body parts that should be hit
 
 			if(fire_stacks)
 				L.adjust_fire_stacks(fire_stacks)

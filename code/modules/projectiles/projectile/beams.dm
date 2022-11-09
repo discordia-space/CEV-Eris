@@ -220,7 +220,7 @@
 /obj/item/projectile/beam/heat
 	name = "heat beam"
 	icon_state = "omnilaser"
-	armor_penetration = 15
+	armor_divisor = 0.5
 	damage_types = list(HEAT = 85)
 
 	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
@@ -230,7 +230,7 @@
 /obj/item/projectile/beam/cold
 	name = "freeze beam"
 	icon_state = "xray"
-	armor_penetration = 15
+	armor_divisor = 0.5
 	damage_types = list(COLD = 85) // Enough to trigger temperature shock on most targets
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle
@@ -240,7 +240,7 @@
 /obj/item/projectile/beam/heatwave
 	name = "heatwave beam"
 	icon_state = "heavylaser"
-	armor_penetration = 15
+	armor_divisor = 1
 	var/list/aoe_damage_types = list(BURN = 20, HEAT = 60)
 	damage_types = list(BURN = 0)
 
@@ -249,5 +249,5 @@
 	impact_type = /obj/effect/projectile/laser_heavy/impact
 
 /obj/item/projectile/beam/heatwave/on_hit(atom/target)
-	heatwave(target, 2, 3, aoe_damage_types, FALSE, armor_penetration)
+	heatwave(target, 2, 3, aoe_damage_types, FALSE, armor_divisor)
 	..()
