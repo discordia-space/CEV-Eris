@@ -229,7 +229,6 @@
 
 	data["upgrades_max"] = max_upgrades
 
-	data["forced_turned_off_broad_strike"] = forced_turned_off_broad_strike
 	data["extended_reach"] = extended_reach
 	data["forced_broad_strike"] = forced_broad_strike
 	data["screen_shake"] = screen_shake

@@ -63,10 +63,11 @@ meteor_act
 	var/r_dir = reverse_dir[dir]
 	var/hit_dirs = (r_dir in cardinal) ? r_dir : list(r_dir & NORTH|SOUTH, r_dir & EAST|WEST)
 
-	if(hit_zone in BP_LEGS)
+	if(hit_zone == BP_R_LEG || hit_zone == BP_L_LEG)
 		if(prob(60 - stats.getStat(STAT_TGH)))
 			step(src, pick(cardinal - hit_dirs))
 			visible_message(SPAN_WARNING("[src] stumbles around."))
+			return //sometimes the attacked stumlbes twice or thrice, so here's a fix
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 
@@ -282,8 +283,8 @@ meteor_act
 			..(I, user, effective_force, temp_zone)
 
 	//Push attacks
-	if(hit_zone in BP_GROIN && I.wielded && I.push_attack)
-		step(src, get_step(user, src))
+	if(hit_zone == BP_GROIN && I.push_attack && user.a_intent == I_DISARM)
+		step_glide(src, get_dir(user, src), DELAY2GLIDESIZE(0.4 SECONDS))
 		visible_message(SPAN_WARNING("[src] is pushed away by the attack!"))
 
 	// Handle striking to cripple.

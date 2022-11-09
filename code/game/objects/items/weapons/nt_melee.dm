@@ -165,7 +165,6 @@
 	allow_spin = FALSE
 	extended_reach = TRUE
 	push_attack = TRUE
-	forced_turned_off_broad_strike = TRUE
 	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_PLASTEEL = 10) // More expensive, high-end spear
 	style_damage = 50
 

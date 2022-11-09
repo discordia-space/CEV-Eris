@@ -150,7 +150,6 @@
 	rarity_value = 100
 	extended_reach = TRUE
 	push_attack = TRUE
-	forced_turned_off_broad_strike = TRUE
 	spawn_tags = SPAWN_TAG_KNIFE // This is definately a knife if you're willing to argue semantics for hours.
 	var/entropy_value = 1 //for bluespace entropy
 
