@@ -12,6 +12,8 @@
 
 /datum/stat_holder/Destroy()
 	holder = null
+	QDEL_LIST(perks)
+	QDEL_LIST(perk_stats)
 	return ..()
 
 /datum/stat_holder/proc/check_for_shared_perk(ability_bitflag)

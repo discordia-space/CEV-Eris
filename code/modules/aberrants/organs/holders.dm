@@ -34,8 +34,12 @@
 	update_icon()
 
 /obj/item/organ/internal/scaffold/Destroy()
-	..()
 	UnregisterSignal(src, COMSIG_ABERRANT_COOLDOWN)
+	if(LAZYLEN(item_upgrades))
+		for(var/datum/mod in item_upgrades)
+			SEND_SIGNAL(mod, COMSIG_REMOVE, src)
+			qdel(mod)
+	return ..()
 
 /obj/item/organ/internal/scaffold/Process()
 	..()
@@ -249,6 +253,7 @@
 	var/base_input_type = null
 	var/list/specific_input_type_pool = list()
 	var/input_mode = null
+	var/input_threshold = 0
 	var/list/process_info = list()
 	var/should_process_have_organ_stats = TRUE
 	var/list/output_pool = list()
@@ -296,7 +301,7 @@
 
 	var/obj/item/modification/organ/internal/input/I
 	if(ispath(input_mod_path, /obj/item/modification/organ/internal/input))
-		I = new input_mod_path(src, FALSE, null, input_info, input_mode, additional_input_info)
+		I = new input_mod_path(src, FALSE, null, input_info, input_mode, input_threshold, additional_input_info)
 
 	var/obj/item/modification/organ/internal/process/P
 	if(ispath(process_mod_path, /obj/item/modification/organ/internal/process))
