@@ -753,7 +753,7 @@
 	},
 /area/space)
 "hY" = (
-/obj/structure/sign/derelict2{
+/obj/structure/sign/faction/one_star_sign{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/derelict/red_white_edges,
@@ -1111,6 +1111,10 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "3,6"
 	},
+/area/space)
+"lk" = (
+/mob/living/carbon/superior_animal/stalker,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "lw" = (
 /obj/structure/shuttle_part/mining{
@@ -1608,10 +1612,6 @@
 /obj/machinery/mineral/unloading_machine,
 /turf/simulated/floor,
 /area/space)
-"rg" = (
-/mob/living/carbon/superior_animal/stalker,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
 "rj" = (
 /obj/machinery/shower{
 	dir = 4
@@ -1727,6 +1727,10 @@
 	icon_state = "9,6"
 	},
 /area/space)
+"sK" = (
+/mob/living/carbon/superior_animal/stalker,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "sL" = (
 /obj/structure/table/rack,
 /obj/spawner/tool_upgrade/rare,
@@ -1817,12 +1821,6 @@
 "tG" = (
 /obj/machinery/light/floor,
 /turf/simulated/floor/wood,
-/area/space)
-"tK" = (
-/obj/structure/sign/faction/one_star{
-	pixel_x = 32
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "tU" = (
 /obj/structure/shuttle_part/mining{
@@ -2519,6 +2517,12 @@
 	icon_state = "3,19"
 	},
 /area/space)
+"Bu" = (
+/obj/structure/sign/faction/one_star{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "Bw" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "5,22"
@@ -3110,6 +3114,15 @@
 	},
 /turf/space,
 /area/space)
+"HK" = (
+/obj/machinery/light/floor{
+	dir = 4
+	},
+/obj/structure/sign/faction/one_star{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "HL" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -3244,15 +3257,6 @@
 /obj/item/stack/medical/advanced/bruise_pack,
 /obj/item/reagent_containers/spray/sterilizine,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
-"Jk" = (
-/obj/machinery/light/floor{
-	dir = 4
-	},
-/obj/structure/sign/faction/one_star{
-	pixel_x = 32
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "Jl" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -3516,10 +3520,6 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "9,20"
 	},
-/area/space)
-"LX" = (
-/mob/living/carbon/superior_animal/stalker,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Ma" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
@@ -13746,7 +13746,7 @@ RJ
 RJ
 RJ
 RJ
-rg
+lk
 RJ
 RJ
 RJ
@@ -13757,7 +13757,7 @@ RJ
 RJ
 RJ
 RJ
-rg
+lk
 RJ
 RJ
 RJ
@@ -14532,7 +14532,7 @@ cb
 XW
 bj
 Ew
-LX
+sK
 kP
 Ew
 Wd
@@ -16941,10 +16941,10 @@ dB
 RJ
 RJ
 RJ
-Jk
+HK
 RJ
 RJ
-tK
+Bu
 dB
 RJ
 GB
