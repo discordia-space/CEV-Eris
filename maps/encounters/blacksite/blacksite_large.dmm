@@ -141,10 +141,8 @@
 /turf/simulated/floor/wood,
 /area/space)
 "bN" = (
-/obj/structure/sign/faction/one_star{
-	pixel_x = 32
-	},
-/turf/space,
+/obj/structure/salvageable/os/server,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "bP" = (
 /obj/machinery/conveyor_switch/oneway{
@@ -154,6 +152,15 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "11,6"
 	},
+/area/space)
+"bQ" = (
+/obj/structure/table/onestar,
+/obj/item/handcuffs,
+/obj/item/clothing/glasses/sunglasses/blindfold{
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/muzzle,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "bR" = (
 /obj/structure/shuttle_part/mining{
@@ -612,16 +619,8 @@
 	},
 /area/space)
 "gD" = (
-/obj/structure/sign/faction/one_star{
-	pixel_x = -32
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
-"gE" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,2"
-	},
-/turf/space,
+/obj/structure/salvageable/os/machine,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "gF" = (
 /turf/simulated/shuttle/wall/mining{
@@ -646,7 +645,7 @@
 /area/space)
 "gX" = (
 /obj/structure/sign/faction/one_star{
-	pixel_x = -32
+	pixel_x = 32
 	},
 /turf/space,
 /area/space)
@@ -727,10 +726,9 @@
 /turf/space,
 /area/space)
 "hM" = (
-/obj/machinery/light/floor{
-	dir = 8
+/obj/structure/sign/faction/one_star{
+	pixel_x = -32
 	},
-/mob/living/carbon/superior_animal/stalker/dual,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "hN" = (
@@ -892,6 +890,12 @@
 	},
 /turf/space,
 /area/space)
+"iT" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "1,4"
+	},
+/turf/space,
+/area/space)
 "iX" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "10,15"
@@ -941,6 +945,12 @@
 	},
 /turf/space,
 /area/space)
+"jC" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "1,1"
+	},
+/turf/space,
+/area/space)
 "jM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -983,6 +993,12 @@
 	icon_state = "11,8";
 	opacity = 0
 	},
+/area/space)
+"kh" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "1,5"
+	},
+/turf/space,
 /area/space)
 "ki" = (
 /turf/simulated/shuttle/wall/mining{
@@ -1169,11 +1185,10 @@
 	},
 /area/space)
 "mh" = (
-/obj/machinery/light/floor{
+/obj/structure/salvageable/os/console_broken{
 	dir = 4
 	},
-/mob/living/carbon/superior_animal/stalker/dual,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "mi" = (
 /obj/structure/table/steel,
@@ -1185,6 +1200,12 @@
 "mk" = (
 /obj/machinery/mineral/processing_unit,
 /turf/simulated/floor/tiled/dark,
+/area/space)
+"mm" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "1,3"
+	},
+/turf/space,
 /area/space)
 "mp" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
@@ -1661,7 +1682,10 @@
 /turf/simulated/floor/grass,
 /area/space)
 "sm" = (
-/turf/simulated/floor/tiled/white/brown_perforated,
+/obj/structure/sign/faction/one_star{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "sB" = (
 /turf/simulated/shuttle/wall/mining{
@@ -1772,12 +1796,6 @@
 	},
 /turf/space,
 /area/space)
-"tw" = (
-/obj/structure/bed/chair/custom/onestar/red{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
 "tz" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
@@ -1786,10 +1804,10 @@
 	},
 /area/space)
 "tB" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "7,21"
+/obj/machinery/power/os_turret{
+	dir = 4
 	},
-/turf/space,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "tD" = (
 /obj/structure/shuttle_part/science{
@@ -2000,10 +2018,11 @@
 	},
 /area/space)
 "vt" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "6,20"
+/obj/machinery/light/floor{
+	dir = 8
 	},
-/turf/space,
+/mob/living/carbon/superior_animal/stalker/dual,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "vy" = (
 /turf/simulated/shuttle/wall/mining{
@@ -2032,10 +2051,11 @@
 	},
 /area/space)
 "vN" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "6,19"
+/obj/machinery/light/floor{
+	dir = 4
 	},
-/turf/space,
+/mob/living/carbon/superior_animal/stalker/dual,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "vO" = (
 /obj/structure/table/onestar,
@@ -2054,13 +2074,11 @@
 	},
 /area/space)
 "vR" = (
-/turf/simulated/shuttle/wall/science{
-	opacity = 0
-	},
+/turf/simulated/floor/tiled/white/brown_perforated,
 /area/space)
 "vS" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "4,17"
+	icon_state = "7,21"
 	},
 /turf/space,
 /area/space)
@@ -2097,9 +2115,10 @@
 	},
 /area/space)
 "wl" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,16"
+/obj/structure/shuttle_part/science{
+	icon_state = "6,20"
 	},
+/turf/space,
 /area/space)
 "wm" = (
 /turf/simulated/shuttle/wall/mining{
@@ -2180,9 +2199,10 @@
 /turf/simulated/floor,
 /area/space)
 "wM" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,15"
+/obj/structure/shuttle_part/science{
+	icon_state = "6,19"
 	},
+/turf/space,
 /area/space)
 "wQ" = (
 /turf/simulated/shuttle/wall/mining{
@@ -2275,15 +2295,20 @@
 	},
 /turf/space,
 /area/space)
+"xS" = (
+/obj/spawner/mob/spiders/low_chance,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
 "xV" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "4,14"
+	opacity = 0
 	},
 /area/space)
 "xW" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,13"
+/obj/structure/shuttle_part/science{
+	icon_state = "4,17"
 	},
+/turf/space,
 /area/space)
 "xZ" = (
 /obj/machinery/light/small,
@@ -2513,16 +2538,8 @@
 	},
 /area/space)
 "BD" = (
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1380;
-	master_tag = "vasiliy_dokuchaev_shuttle";
-	name = "exterior access button";
-	pixel_y = 25;
-	req_one_access = list(13,65)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "4,12"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,16"
 	},
 /area/space)
 "BJ" = (
@@ -2746,17 +2763,8 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "DL" = (
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2;
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "research_shuttle_outer";
-	locked = 1;
-	name = "Vasiliy Dokuchaev External Access";
-	req_access = list(13)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "4,11"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,15"
 	},
 /area/space)
 "DV" = (
@@ -2765,11 +2773,9 @@
 	},
 /area/space)
 "Ef" = (
-/obj/effect/floor_decal/industrial/danger,
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,14"
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "Eh" = (
 /obj/machinery/mining/deep_drill,
@@ -2945,8 +2951,9 @@
 /turf/space,
 /area/space)
 "Gr" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,13"
+	},
 /area/space)
 "Gu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
@@ -2986,10 +2993,6 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "6,13"
 	},
-/area/space)
-"GV" = (
-/obj/structure/crematorium,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "GW" = (
 /turf/simulated/shuttle/wall/science{
@@ -3078,8 +3081,17 @@
 	},
 /area/space)
 "HI" = (
-/obj/effect/floor_decal/industrial/danger,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "vasiliy_dokuchaev_shuttle";
+	name = "exterior access button";
+	pixel_y = 25;
+	req_one_access = list(13,65)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "4,12"
+	},
 /area/space)
 "HJ" = (
 /obj/structure/shuttle_part/science{
@@ -3157,6 +3169,11 @@
 	},
 /turf/space,
 /area/space)
+"In" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "5,2"
+	},
+/area/space)
 "Iq" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "14,15"
@@ -3183,18 +3200,22 @@
 	},
 /area/space)
 "IA" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,10"
+/obj/machinery/door/airlock/multi_tile/metal{
+	dir = 2;
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "research_shuttle_outer";
+	locked = 1;
+	name = "Vasiliy Dokuchaev External Access";
+	req_access = list(13)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "4,11"
 	},
 /area/space)
 "IB" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "11,10"
-	},
-/area/space)
-"ID" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "5,2"
 	},
 /area/space)
 "II" = (
@@ -3300,8 +3321,11 @@
 	},
 /area/space)
 "JB" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "JC" = (
 /obj/structure/shuttle_part/science{
@@ -3452,10 +3476,6 @@
 	icon_state = "0,22"
 	},
 /turf/space,
-/area/space)
-"Ll" = (
-/obj/spawner/mob/spiders/low_chance,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "Ls" = (
 /turf/simulated/shuttle/wall/mining{
@@ -3680,9 +3700,13 @@
 	},
 /turf/space,
 /area/space)
+"NH" = (
+/obj/structure/crematorium,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
 "NM" = (
-/obj/machinery/door/airlock/vault,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "NQ" = (
 /obj/structure/shuttle_part/science{
@@ -3743,10 +3767,8 @@
 	},
 /area/space)
 "Or" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "2,9"
-	},
-/turf/space,
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "Ov" = (
 /turf/simulated/shuttle/wall/mining{
@@ -3861,15 +3883,6 @@
 /obj/item/reagent_containers/syringe,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
-"Qi" = (
-/obj/structure/table/onestar,
-/obj/item/handcuffs,
-/obj/item/clothing/glasses/sunglasses/blindfold{
-	pixel_y = 6
-	},
-/obj/item/clothing/mask/muzzle,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
 "Qm" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "2,5";
@@ -3904,6 +3917,7 @@
 /obj/item/cell/medium/excelsior,
 /obj/item/cell/medium/excelsior,
 /obj/item/cell/medium/excelsior,
+/obj/spawner/gun/onestar/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "Qv" = (
@@ -3937,12 +3951,6 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "5,3"
 	},
-/area/space)
-"QK" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,1"
-	},
-/turf/space,
 /area/space)
 "QL" = (
 /obj/structure/salvageable/os/console,
@@ -3992,8 +4000,9 @@
 /turf/simulated/floor/grass,
 /area/space)
 "Ri" = (
-/obj/structure/bed,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,10"
+	},
 /area/space)
 "Rj" = (
 /turf/simulated/shuttle/wall/science{
@@ -4043,10 +4052,14 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "RV" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,8"
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/space)
+"RW" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 1
 	},
-/turf/space,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "RY" = (
 /obj/item/tool/pickaxe/excavation,
@@ -4108,6 +4121,12 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "10,22"
 	},
+/area/space)
+"Sq" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "1,2"
+	},
+/turf/space,
 /area/space)
 "Sw" = (
 /obj/machinery/optable,
@@ -4292,15 +4311,19 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "Ul" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,7"
-	},
-/turf/space,
+/obj/machinery/door/airlock/vault,
+/turf/simulated/floor/tiled/dark/brown_platform,
 /area/space)
 "Un" = (
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "13,16"
 	},
+/area/space)
+"Us" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "1,0"
+	},
+/turf/space,
 /area/space)
 "Uw" = (
 /obj/machinery/mineral/stacking_unit_console,
@@ -4360,7 +4383,7 @@
 /area/space)
 "UR" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "1,6"
+	icon_state = "2,9"
 	},
 /turf/space,
 /area/space)
@@ -4368,10 +4391,8 @@
 /turf/simulated/floor/tiled/derelict/white_red_edges,
 /area/space)
 "UW" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,5"
-	},
-/turf/space,
+/obj/structure/bed,
+/turf/simulated/floor/tiled/dark/brown_platform,
 /area/space)
 "Vi" = (
 /obj/structure/shuttle_part/mining{
@@ -4389,7 +4410,7 @@
 /area/space)
 "Vs" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "1,4"
+	icon_state = "1,8"
 	},
 /turf/space,
 /area/space)
@@ -4491,6 +4512,12 @@
 	icon_state = "11,15"
 	},
 /area/space)
+"WA" = (
+/obj/machinery/button/crematorium{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
 "WD" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "3,15"
@@ -4540,7 +4567,7 @@
 /area/space)
 "Xt" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "1,3"
+	icon_state = "1,7"
 	},
 /turf/space,
 /area/space)
@@ -4600,10 +4627,10 @@
 	},
 /area/space)
 "Yj" = (
-/obj/machinery/button/crematorium{
-	pixel_y = 32
+/obj/structure/shuttle_part/science{
+	icon_state = "1,6"
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/space,
 /area/space)
 "Yk" = (
 /turf/simulated/shuttle/wall/science{
@@ -4660,12 +4687,6 @@
 "YB" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "1,13"
-	},
-/turf/space,
-/area/space)
-"YE" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,0"
 	},
 /turf/space,
 /area/space)
@@ -11334,8 +11355,8 @@ XW
 XW
 XW
 XW
-cb
-cb
+gV
+XW
 cb
 cb
 cb
@@ -11536,8 +11557,8 @@ ym
 ea
 ea
 XW
-gV
-gV
+tB
+XW
 cb
 cb
 cb
@@ -11738,7 +11759,7 @@ RJ
 RJ
 RJ
 Vv
-kP
+Ew
 gV
 gV
 gV
@@ -13000,9 +13021,9 @@ cb
 cb
 cb
 cb
-aa
-aa
-aa
+cb
+cb
+cb
 cb
 cb
 cb
@@ -13190,8 +13211,8 @@ ww
 Ab
 gV
 gV
-JB
-Ri
+RV
+UW
 gV
 cb
 cb
@@ -13202,9 +13223,9 @@ gV
 gV
 gV
 gV
-aa
-aa
-aa
+cb
+cb
+cb
 cb
 cb
 cb
@@ -13391,8 +13412,8 @@ ho
 ho
 ho
 ho
-Ef
-NM
+JB
+Ul
 TY
 gV
 cb
@@ -13402,11 +13423,11 @@ gV
 lO
 lO
 lO
-Ll
+xS
 gV
-aa
-aa
-aa
+cb
+cb
+cb
 cb
 cb
 cb
@@ -13556,7 +13577,7 @@ RJ
 RJ
 RJ
 gV
-Ew
+kP
 Vv
 lO
 lO
@@ -13604,11 +13625,11 @@ gV
 lO
 lO
 lO
-Qi
+bQ
 gV
-aa
-aa
-aa
+cb
+cb
+cb
 cb
 cb
 cb
@@ -13795,7 +13816,7 @@ RJ
 lk
 RJ
 RJ
-Gr
+NM
 LC
 lO
 lO
@@ -13806,11 +13827,11 @@ LC
 lO
 lO
 lO
-tw
+RW
 gV
-aa
-aa
-aa
+cb
+cb
+cb
 cb
 cb
 cb
@@ -14005,14 +14026,14 @@ gV
 gV
 gV
 gV
-Yj
+WA
 lO
 lO
 Qf
 gV
-aa
-aa
-aa
+cb
+cb
+cb
 cb
 cb
 cb
@@ -14199,22 +14220,22 @@ RJ
 RJ
 RJ
 RJ
-HI
-NM
+Or
+Ul
 TY
 gV
 cb
 cb
 cb
 gV
-GV
+NH
 lO
 lO
 lO
 gV
-aa
-aa
-aa
+cb
+cb
+cb
 cb
 cb
 cb
@@ -14403,7 +14424,7 @@ UU
 UU
 aF
 gV
-Ri
+UW
 gV
 cb
 cb
@@ -14414,9 +14435,9 @@ gV
 gV
 gV
 gV
-aa
-aa
-aa
+cb
+cb
+cb
 cb
 cb
 cb
@@ -14591,7 +14612,7 @@ iM
 NZ
 gV
 vd
-sm
+vR
 Hj
 vd
 gV
@@ -14616,9 +14637,9 @@ cb
 cb
 cb
 cb
-aa
-aa
-aa
+cb
+cb
+cb
 cb
 cb
 cb
@@ -15560,7 +15581,7 @@ cb
 cb
 aa
 aa
-bN
+gX
 aa
 aa
 cb
@@ -16409,7 +16430,7 @@ gV
 gV
 gV
 gV
-sm
+vR
 Hj
 gV
 gV
@@ -16570,7 +16591,7 @@ RJ
 RJ
 Am
 RJ
-gD
+hM
 RJ
 Am
 RJ
@@ -16602,7 +16623,7 @@ Am
 RJ
 RJ
 RJ
-hM
+vt
 RJ
 RJ
 RJ
@@ -17006,7 +17027,7 @@ dB
 RJ
 RJ
 RJ
-mh
+vN
 RJ
 RJ
 RJ
@@ -17227,7 +17248,7 @@ NZ
 gV
 gV
 gV
-sm
+vR
 Hj
 gV
 gV
@@ -17239,7 +17260,7 @@ gV
 gV
 RJ
 RJ
-sm
+vR
 RJ
 RJ
 RJ
@@ -18590,14 +18611,14 @@ aa
 cb
 cb
 XW
-aa
-aa
-gX
-aa
-aa
-gX
-aa
-aa
+mh
+EF
+sm
+EF
+EF
+sm
+EF
+EF
 XW
 cb
 cb
@@ -18791,16 +18812,16 @@ aa
 cb
 cb
 XW
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+bN
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
 XW
 cb
 cb
@@ -18993,16 +19014,16 @@ Zk
 Zk
 Zk
 XW
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+gD
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
 XW
 cb
 cb
@@ -19195,16 +19216,16 @@ aa
 cb
 cb
 XW
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
 XW
 cb
 cb
@@ -19251,15 +19272,15 @@ RJ
 RJ
 gV
 aa
-RV
-Ul
-UR
-UW
 Vs
 Xt
-gE
-QK
-YE
+Yj
+kh
+iT
+mm
+Sq
+jC
+Us
 aa
 aa
 aa
@@ -19397,16 +19418,16 @@ aa
 cb
 cb
 XW
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
 XW
 cb
 cb
@@ -19452,7 +19473,7 @@ gV
 RJ
 RJ
 gV
-Or
+UR
 Gq
 Jx
 bg
@@ -19599,16 +19620,16 @@ aa
 cb
 cb
 XW
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
 XW
 cb
 cb
@@ -19801,16 +19822,16 @@ Zk
 Zk
 Zk
 XW
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
 XW
 cb
 cb
@@ -19848,14 +19869,14 @@ aa
 aa
 aa
 aa
-vS
-wl
-wM
-xV
 xW
 BD
 DL
+Ef
+Gr
+HI
 IA
+Ri
 xo
 bH
 AH
@@ -20003,16 +20024,16 @@ aa
 cb
 cb
 XW
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
 XW
 cb
 cb
@@ -20065,7 +20086,7 @@ SR
 BJ
 Cn
 QG
-ID
+In
 Rj
 Mw
 aa
@@ -20206,14 +20227,14 @@ aa
 cb
 cb
 XW
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
 XW
 cb
 cb
@@ -20249,9 +20270,9 @@ aa
 aa
 aa
 aa
-vt
-vN
-vR
+wl
+wM
+xV
 CH
 RG
 VQ
@@ -20450,7 +20471,7 @@ aa
 aa
 aa
 aa
-tB
+vS
 xQ
 mx
 uX
