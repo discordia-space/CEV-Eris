@@ -87,11 +87,12 @@
 		rad = 0
 	)
 	can_hold_knife = TRUE
-	style = STYLE_NEG_HIGH
+	style = STYLE_NEG_LOW
 
 /obj/item/clothing/shoes/artist_shoes
 	name = "Pointy Shoes"
 	desc = "They're actually quite comfortable."
 	icon_state = "artist"
 	item_state = "artist_shoes"
+	style = STYLE_HIGH
 	spawn_frequency = 0
