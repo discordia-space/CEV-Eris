@@ -239,8 +239,11 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /obj/item/proc/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity, params)
 	if((!proximity && !ismob(A)) || !wielded || !extended_reach)//extended reach is only for mobs when you wield the spear
 		return
-	if(get_dist(user.loc, A.loc) < 3)
-		resolve_attackby(A, user, params)
+	if(get_dist(user.loc, A.loc) < 3)//okay, we are in reach, now we need to check if there is anything dense in our path
+		var/turf/T = get_step(user.loc, get_dir(user, A))
+		if(T.Enter(user))
+			resolve_attackby(A, user, params)
+	return
 
 //I would prefer to rename this attack_as_weapon(), but that would involve touching hundreds of files.
 /obj/item/proc/attack(mob/living/M, mob/living/user, target_zone)
