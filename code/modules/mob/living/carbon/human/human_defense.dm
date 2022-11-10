@@ -228,8 +228,7 @@ meteor_act
 	damage -= (toughness * stat_affect + item_size_affect)
 	return max(0, damage)
 
-/mob/living/carbon/human/proc/grab_redirect_attack(var/obj/item/grab/G, var/obj/item/I)
-	var/mob/living/carbon/human/attacker = G.assailant
+/mob/living/carbon/human/proc/grab_redirect_attack(var/mob/living/carbon/human/attacker, var/obj/item/grab/G, var/obj/item/I)
 	var/mob/living/carbon/human/grabbed = G.affecting
 	visible_message(SPAN_DANGER("[src] redirects the blow at [grabbed]!"), SPAN_DANGER("You redirect the blow at [grabbed]!"))
 	//check what we are being hit with, a hand(I is null), or an item?
@@ -238,17 +237,17 @@ meteor_act
 	if(istype(I, /obj/item))
 		grabbed.attackby(I, attacker)
 	else
-		attacker.attack_hand(grabbed)//and now it's not our problems
+		grabbed.attack_hand(attacker)//and now it's not our problems
 	blocking = TRUE
 	//change our block state depending on grab level
-	if(G.state < GRAB_NECK)
+	if(G.state >= GRAB_NECK)
 		return //block remains active
-	else if(G.state < GRAB_AGGRESSIVE)
+	else if(G.state >= GRAB_AGGRESSIVE)
 		stop_blocking()
 		return //block is turned off
 	else
 		stop_blocking()
-		attacker.drop_from_inventory(G)
+		drop_from_inventory(G)
 		G.loc = null
 		qdel(G)
 		return //block is turned off, grab is GONE

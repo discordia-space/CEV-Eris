@@ -221,7 +221,7 @@
 			if(blocking)
 				if(istype(get_active_hand(), /obj/item/grab))//we are blocking with a human shield! We redirect the attack. You know, because grab doesn't exist as an item.
 					var/obj/item/grab/G = get_active_hand()
-					grab_redirect_attack(G)
+					grab_redirect_attack(M, G)
 					return
 				else
 					stop_blocking()
