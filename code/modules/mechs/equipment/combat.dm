@@ -11,6 +11,7 @@
 	name = "energy thing"
 	desc = "You shouldn't be seeing this."
 	icon_state = "mecha_taser"
+	bad_type = /obj/item/mech_equipment/mounted_system/energy
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
 	matter = list()
