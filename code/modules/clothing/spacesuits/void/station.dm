@@ -429,7 +429,7 @@
 
 //NT
 
-/obj/item/clothing/head/space/void/NTvoid
+/obj/item/clothing/head/space/void/ntvoid
 	name = "neotheology voidsuit helmet"
 	desc = "A voidsuit helmet designed by NeoTheology with a most holy mix of biomatter and inorganic matter."
 	icon_state = "ntvoidhelmet"
@@ -448,7 +448,7 @@
 	species_restricted = list(SPECIES_HUMAN)
 	light_overlay = "helmet_light"
 
-/obj/item/clothing/suit/space/void/NTvoid
+/obj/item/clothing/suit/space/void/ntvoid
 	name = "neotheology voidsuit"
 	desc = "A voidsuit designed by NeoTheology with a most holy mix of biomatter and inorganic matter."
 	icon_state = "ntvoid"
@@ -468,6 +468,6 @@
 	breach_threshold = 10
 	resilience = 0.07
 	species_restricted = list(SPECIES_HUMAN)
-	helmet = /obj/item/clothing/head/space/void/NTvoid
+	helmet = /obj/item/clothing/head/space/void/ntvoid
 	spawn_blacklisted = TRUE
 	slowdown = LIGHT_SLOWDOWN

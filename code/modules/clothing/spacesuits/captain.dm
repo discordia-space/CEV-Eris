@@ -13,6 +13,7 @@
 		rad = 50
 	)
 	siemens_coefficient = 0.7
+	style = STYLE_NONE
 
 /obj/item/clothing/suit/space/captain
 	name = "Captain's armor"
@@ -28,4 +29,6 @@
 		rad = 50
 	)
 	siemens_coefficient = 0.7
+	breach_threshold = 6
 	stiffness = MEDIUM_STIFFNESS
+	style = STYLE_NONE

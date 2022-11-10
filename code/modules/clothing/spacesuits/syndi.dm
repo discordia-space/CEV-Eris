@@ -15,6 +15,7 @@
 	)
 	siemens_coefficient = 0.4
 	spawn_blacklisted = TRUE
+	style = STYLE_LOW
 
 /obj/item/clothing/suit/space/syndicate
 	name = "red space suit"
@@ -36,7 +37,8 @@
 	spawn_blacklisted = TRUE
 	accompanying_object = /obj/item/clothing/head/space/syndicate
 	slowdown = LIGHT_SLOWDOWN
-	stiffness = HEAVY_STIFFNESS
+	stiffness = LIGHT_STIFFNESS
+	style = STYLE_NONE
 
 ///////////////////////Black Market//////////////////////////////
 
@@ -45,6 +47,7 @@
 	icon_state = "syndicate_tan"
 	item_state = "syndi_helm_tan"
 	desc = "A knockoff tan helmet sporting clean lines and durable plating."
+	style = STYLE_NONE
 
 /obj/item/clothing/suit/space/syndicate/uplink
 	name = "tan space suit"
@@ -52,4 +55,3 @@
 	item_state = "space_suit_syndicate_tan"
 	desc = "A knockoff tan spacesuit sporting clean lines and durable plating."
 	accompanying_object = /obj/item/clothing/head/space/syndicate/uplink
-

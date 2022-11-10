@@ -10,7 +10,7 @@
 
 /obj/item/clothing/suit/space
 	bad_type = /obj/item/clothing/suit/space
-	var/can_breach = 1                      // Set to 0 to disregard all breaching.
+	var/can_breach = TRUE                      // Set to FALSE to disregard all breaching.
 	var/list/breaches = list()              // Breach datum container.
 	var/resilience = 0.1                    // Multiplier that turns damage into breach class. 1 is 100% of damage to breach, 0.1 is 10%. 0.2 -> 50 brute/burn damage to cause 10 breach damage
 	var/breach_threshold = 3                // Min attack damage before a breach is possible. Damage is subtracted by this amount, it determines the "hardness" of the suit.

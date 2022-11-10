@@ -37,7 +37,7 @@
 	action_button_name = "Toggle Helmet"
 	breach_threshold = 5
 	resilience = 0.09
-	can_breach = 1
+	can_breach = TRUE
 	spawn_tags = SPAWN_TAG_VOID_SUIT
 	accompanying_object = /obj/item/clothing/shoes/magboots
 	slowdown = MEDIUM_SLOWDOWN

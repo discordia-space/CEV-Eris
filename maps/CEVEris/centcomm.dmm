@@ -5923,7 +5923,7 @@
 /area/shuttle/mercenary)
 "ML" = (
 /obj/structure/table/rack,
-/obj/item/clothing/suit/space/void/SCAF,
+/obj/item/clothing/suit/space/void/scaf,
 /obj/item/storage/backpack/satchel/military,
 /obj/item/storage/backpack/military,
 /turf/unsimulated/floor{

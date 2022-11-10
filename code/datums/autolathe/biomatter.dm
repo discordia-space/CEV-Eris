@@ -394,7 +394,7 @@
 
 /datum/design/autolathe/clothing/NTvoid
 	name = "neotheology voidsuit"
-	build_path = /obj/item/clothing/suit/space/void/NTvoid
+	build_path = /obj/item/clothing/suit/space/void/ntvoid
 	factions = list(FACTION_NEOTHEOLOGY)
 
 //[MED]

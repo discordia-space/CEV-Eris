@@ -1,7 +1,7 @@
 /obj/item/clothing/head/space/void/excelsior
 	rarity_value = 49.7222
 
-/obj/item/clothing/head/space/void/SCAF
+/obj/item/clothing/head/space/void/scaf
 	rarity_value = 63.6111
 
 /obj/item/clothing/head/space/void/merc
@@ -293,7 +293,7 @@
 /obj/item/clothing/suit/space/void/excelsior
 	rarity_value = 49.7222
 
-/obj/item/clothing/suit/space/void/SCAF
+/obj/item/clothing/suit/space/void/scaf
 	rarity_value = 63.6111
 
 /obj/item/clothing/suit/space/void/merc

@@ -7,7 +7,7 @@
 		slot_l_hand_str = "wiz_helm",
 		slot_r_hand_str = "wiz_helm",
 		)
-	unacidable = 1 //No longer shall our kind be foiled by lone chemists with spray bottles!
+	unacidable = TRUE //No longer shall our kind be foiled by lone chemists with spray bottles!
 	armor = list(
 		melee = 10,
 		bullet = 10,
@@ -23,8 +23,7 @@
 	name = "gem-encrusted voidsuit"
 	desc = "A bizarre gem-encrusted suit that radiates strange energy readings."
 	item_state = "wiz_voidsuit"
-	slowdown = 1
-	unacidable = 1
+	unacidable = TRUE
 	armor = list(
 		melee = 10,
 		bullet = 10,

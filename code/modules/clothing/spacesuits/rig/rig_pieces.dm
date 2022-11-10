@@ -45,7 +45,7 @@
 	slowdown = 0
 	breach_threshold = 5
 	resilience = 0.087
-	can_breach = 1
+	can_breach = TRUE
 	supporting_limbs = list()
 	retract_while_active = FALSE
 	spawn_tags = null

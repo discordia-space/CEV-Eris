@@ -26,7 +26,7 @@
 /decl/hierarchy/outfit/antagonist/mercenary/equipped
 	name = "Serbian Mercenary combat gear"
 
-	suit = /obj/item/clothing/suit/space/void/SCAF
+	suit = /obj/item/clothing/suit/space/void/scaf
 	suit_store = /obj/item/tank/jetpack/oxygen
 	back = /obj/item/storage/backpack/military
 

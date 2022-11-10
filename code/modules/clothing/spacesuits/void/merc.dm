@@ -1,4 +1,4 @@
-/obj/item/clothing/head/space/void/SCAF
+/obj/item/clothing/head/space/void/scaf
 	name = "SCAF helmet"
 	desc = "A thick airtight helmet designed for planetside warfare retrofitted with seals to act like normal space suit helmet."
 	icon_state = "scaf"
@@ -17,7 +17,7 @@
 	light_overlay = "helmet_light_green"
 	obscuration = MEDIUM_OBSCURATION
 
-/obj/item/clothing/suit/space/void/SCAF
+/obj/item/clothing/suit/space/void/scaf
 	name = "SCAF suit"
 	desc = "A bulky antique suit of refurbished infantry armour, retrofitted with seals and coatings to make it EVA capable but also reducing mobility."
 	icon_state = "scaf"
@@ -36,7 +36,7 @@
 	resilience = 0.07
 	species_restricted = list(SPECIES_HUMAN)
 	supporting_limbs = list()
-	helmet = /obj/item/clothing/head/space/void/SCAF
+	helmet = /obj/item/clothing/head/space/void/scaf
 	spawn_blacklisted = TRUE
 	slowdown = MEDIUM_SLOWDOWN * 1.5
 	stiffness = MEDIUM_STIFFNESS
@@ -61,6 +61,7 @@
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_ihs"
 	obscuration = 0
+	style = STYLE_NEG_LOW
 
 /obj/item/clothing/head/space/void/merc/update_icon()
 	..()
@@ -89,6 +90,7 @@
 	species_restricted = list(SPECIES_HUMAN)
 	helmet = /obj/item/clothing/head/space/void/merc
 	stiffness = MEDIUM_STIFFNESS
+	style = STYLE_NEG_LOW
 
 /obj/item/clothing/suit/space/void/merc/equipped
 	spawn_blacklisted = TRUE
