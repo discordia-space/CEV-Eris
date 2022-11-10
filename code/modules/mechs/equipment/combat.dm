@@ -197,6 +197,7 @@
 	name = "launcher thing"
 	desc = "You shouldn't be seeing this."
 	icon_state = "mech_missile_pod"
+	bad_type = /obj/item/mech_equipment/mounted_system/launcher
 	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
 	matter = list()
