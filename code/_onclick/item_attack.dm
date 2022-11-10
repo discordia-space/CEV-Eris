@@ -43,7 +43,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 //Returns TRUE if attack is to be carried out, FALSE otherwise.
 /obj/item/proc/double_tact(mob/user)
-	if(w_class >= ITEM_SIZE_BULKY)
+	if(w_class >= ITEM_SIZE_BULKY && !abstract)//grabs have colossal w_class. You can't raise something that does not exist.
 		if(!(ready))
 			user.visible_message(SPAN_DANGER("[user] raises \his [src]!"))
 			ready = TRUE
