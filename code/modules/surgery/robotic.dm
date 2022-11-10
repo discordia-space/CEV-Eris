@@ -4,6 +4,9 @@
 	inflict_agony = 0 // Robotic organs can't feel pain anyway
 
 /datum/surgery_step/robotic/can_use(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+	if(organ.organ_tag == BP_BRAIN)
+		return TRUE
+	
 	return BP_IS_ROBOTIC(organ)
 
 // Robotic organs are intended to be assembled and disassembled, making them far easier to work with.
