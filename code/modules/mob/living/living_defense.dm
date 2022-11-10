@@ -121,9 +121,9 @@
 	if(attack_flag == ARMOR_MELEE && ishuman(src) && isitem(used_weapon))
 		var/mob/living/carbon/human/H = src
 		var/obj/item/I = used_weapon
-		var/toughness_val = H.stats.getStat(STAT_TGH)*1.5
+		var/toughness_val = H.stats.getStat(STAT_TGH)
 
-		if(dealt_damage > 10 && prob((dealt_damage - toughness_val * (sharp && edge ? 1 : 2) * (I.w_class < ITEM_SIZE_BULKY ? 1 : 2))))
+		if(dealt_damage > 10 && prob((dealt_damage - toughness_val * (sharp && edge ? 1 : 0.5) * (I.w_class < ITEM_SIZE_BULKY ? 1 : 0.5))))
 			for(var/obj/item/grab/G in get_both_hands(H))
 				visible_message(SPAN_NOTICE("[H]'s grab has been weakened!"), SPAN_WARNING("Your grab has been weakened!"))
 				G.state--
