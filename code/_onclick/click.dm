@@ -166,9 +166,9 @@
 				var/resolved = (SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL(A, COMSIG_ATTACKBY, W, src, params))
 				if(!resolved && A && W)
 					if(W.double_tact(src))
-						W.resolve_attackby(A, src, params)
-				else
-					W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
+						resolved = W.resolve_attackby(A, src, params)
+					if(!resolved)
+						W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
 			else
 				if(ismob(A)) // No instant mob attacking
 					setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
