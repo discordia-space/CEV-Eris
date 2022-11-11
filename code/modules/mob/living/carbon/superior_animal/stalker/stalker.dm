@@ -62,7 +62,7 @@
 	kept_distance = 3
 
 /mob/living/carbon/superior_animal/stalker/death()
-	..()
+	. = ..()
 	visible_message("[src] blows apart!")
 	new /obj/effect/decal/cleanable/blood/gibs/robot(loc)
 	do_sparks(3, TRUE, src)
