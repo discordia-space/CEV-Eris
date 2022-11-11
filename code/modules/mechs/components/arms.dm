@@ -57,7 +57,7 @@
 /obj/item/mech_component/manipulators/light
 	name = "light arms"
 	exosuit_desc_string = "lightweight, segmented manipulators"
-	desc = "As flexible as they are fragile, these Vey-Med manipulators can follow a pilot's movements in close to real time."
+	desc = "As flexible as they are fragile, these manipulators can follow a pilot's movements in close to real time."
 	icon_state = "light_arms"
 	melee_damage = 10
 	action_delay = 5
