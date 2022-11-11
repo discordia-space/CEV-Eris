@@ -44,7 +44,7 @@
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 2)
 	force = WEAPON_FORCE_DANGEROUS
 	armor_divisor = ARMOR_PEN_HALF //Should be countered be embedding
-	embed_mult = 3 //This is designed for embedding
+	embed_mult = 1.5 //This is designed for embedding
 	rarity_value = 5
 
 /obj/item/tool/knife/ritual

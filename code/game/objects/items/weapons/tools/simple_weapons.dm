@@ -70,7 +70,7 @@
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
-	embed_mult = 2 //Axes cut deep, and their hooked shape catches on things
+	embed_mult = 1.5 //Axes cut deep, and their hooked shape catches on things
 	rarity_value = 48
 
 /obj/item/tool/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity)
