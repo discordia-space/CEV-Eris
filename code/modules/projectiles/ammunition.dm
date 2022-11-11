@@ -44,6 +44,7 @@
 		update_icon()
 
 /obj/item/ammo_casing/Destroy()
+	make_young()
 	QDEL_NULL(BB)
 	return ..()
 
@@ -244,6 +245,7 @@
 	update_icon()
 
 /obj/item/ammo_magazine/Destroy()
+	make_young()
 	QDEL_LIST(contents)		// Normally, we don't want to do this, but this is an exception
 	QDEL_LIST(stored_ammo)
 	return ..()
