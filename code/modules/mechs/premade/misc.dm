@@ -35,7 +35,7 @@
 	climb_time = 30
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTEEL = 7, MATERIAL_GLASS = 12)
 	has_hardpoints = list(HARDPOINT_BACK)
-	desc = "A rugged design originally intended for S, this chassis has been refitted for exosuit usage. It's surprisingly durable for its cost."
+	desc = "A rugged design originally intended for space pods, this chassis has been refitted for exosuit usage. It's relatively spacious interior allows it to carry up to 3 pilots."
 
 /obj/item/mech_component/chassis/pod/Initialize()
 	pilot_positions = list(
