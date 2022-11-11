@@ -44,7 +44,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 //Returns TRUE if attack is to be carried out, FALSE otherwise.
 /obj/item/proc/double_tact(mob/user)
 	if(w_class >= ITEM_SIZE_BULKY && !abstract && !istype(src, /obj/item/gun))//grabs have colossal w_class. You can't raise something that does not exist.
-		if(!(ready))						//guns have the point blank privilage
+		if(!(ready))						//guns have the point blank privilege
 			user.visible_message(SPAN_DANGER("[user] raises \his [src]!"))
 			ready = TRUE
 			var/obj/effect/effect/melee/alert/A = new()
@@ -72,8 +72,6 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 
 /obj/item/proc/swing_attack(atom/A, mob/user, params)
-	if(!double_tact(user))
-		return
 	var/holdinghand = user.get_inventory_slot(src)
 	var/turf/R
 	var/turf/C
@@ -201,8 +199,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	var/surgery_check = can_operate(src, user)
 	if(surgery_check && do_surgery(src, user, I, surgery_check)) //Surgery
 		return TRUE
-	if(I.double_tact(user))
-		I.attack(src, user, user.targeted_organ)
+	else
+		return I.attack(src, user, user.targeted_organ)
 
 //Area of effect attacks (swinging)
 /obj/item/proc/tileattack(mob/living/user, turf/targetarea, modifier = 1)
