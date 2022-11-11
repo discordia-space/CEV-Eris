@@ -1271,6 +1271,8 @@ var/list/rank_prefix = list(\
 	update_client_colour(0)
 
 	spawn(0)
+		if(QDELETED(src))	// Needed because mannequins will continue this proc and runtime after being qdel'd
+			return
 		regenerate_icons()
 		if(vessel.total_volume < species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
