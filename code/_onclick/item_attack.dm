@@ -36,6 +36,10 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if (pre_attack(A, user, params))
 		return 1 //Returning 1 passes an abort signal upstream
 	add_fingerprint(user)
+	if(ishuman(user))//monkeys can use items, unfortunately
+		var/mob/living/carbon/human/H = user
+		if(H.blocking)
+			H.stop_blocking()
 	if(ishuman(user) && !(user == A) && !(user.loc == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/simulated/wall))
 		swing_attack(src, user, params)
 		return 1 //Swinging calls its own attacks
