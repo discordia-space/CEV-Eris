@@ -63,12 +63,10 @@
 
 /mob/living/carbon/superior_animal/stalker/death()
 	..()
-	visible_message("<b>[src]</b> blows apart!")
+	visible_message("[src] blows apart!")
 	new /obj/effect/decal/cleanable/blood/gibs/robot(loc)
 	do_sparks(3, TRUE, src)
 	qdel(src)
-	return
-
 
 /mob/living/carbon/superior_animal/stalker/dual
 	name = "OneStar Stalker Mk2"
