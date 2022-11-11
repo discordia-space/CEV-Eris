@@ -263,8 +263,8 @@
 /obj/item/projectile/bullet/cannon
 	name = "cannon round"
 	icon_state = "cannon"
-	damage_types = list(BRUTE = 85)
-	armor_divisor = 0.75 // Not designed to pierce armor
+	damage_types = list(BRUTE = 75)
+	armor_divisor = 0.8 // Not designed to pierce armor
 	style_damage = 70
 	recoil = 0
 	step_delay = 1.8
@@ -273,7 +273,7 @@
 /obj/item/projectile/energy/flash/mechrocket
 	name = "concussion rocket"
 	icon_state = "rocket_shock"
-	damage_types = list(BRUTE = 30, HALLOSS = 90)
+	damage_types = list(BRUTE = 30, HALLOSS = 60) // stun rocket until a game-breaking runtime is fixed with RPGs
 	armor_divisor = 1
 	style_damage = 100
 	check_armour = ARMOR_MELEE
