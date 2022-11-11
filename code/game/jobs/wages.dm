@@ -2,7 +2,7 @@
 /datum/job/proc/one_time_payment(var/custom_factor = 1)
 	if (initial_balance != -1)
 		return round (initial_balance * rand(14, 17) / 10)
-	return round(wage * rand(15, 35) / 10)
+	return round(wage * rand(30, 70) / 10)
 
 
 //How much is this user getting paid?
