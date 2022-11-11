@@ -207,7 +207,7 @@
 
 /obj/item/mech_equipment/mounted_system/launcher/missile
 	name = "missile rack"
-	desc = "The SRM-8 missile rack is loaded with explosive missiles."
+	desc = "The SRM-8 missile rack is loaded with concussion missiles."
 	icon_state = "mech_missile_pod"
 	holding_type = /obj/item/gun/energy/missile/mounted/mech
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 15, MATERIAL_PLASMA = 15, MATERIAL_GOLD = 4, MATERIAL_SILVER = 5 )
@@ -215,7 +215,7 @@
 
 /obj/item/gun/energy/missile/mounted/mech
 	name = "missile rack"
-	desc = "A large crate containing energy-produced missiles, ready to launch."
+	desc = "A rack containing a small energy-to-matter fabricator and four tubes for launching less-then-lethal concussion missiles."
 	fire_sound = 'sound/weapons/guns/misc/mech_mortar.ogg'
 	projectile_type = /obj/item/projectile/energy/flash/mechrocket
 	charge_cost = MECH_WEAPON_POWER_COST * 3
@@ -248,7 +248,7 @@
 	desc = "A sealed, maintenance-free crate of freshly energized fragmentation grenades, ready to be used."
 	fire_sound = 'sound/weapons/guns/misc/mech_mortar.ogg'
 	projectile_type = /obj/item/projectile/bullet/grenade/frag
-	charge_cost = MECH_WEAPON_POWER_COST * 2.5
+	charge_cost = MECH_WEAPON_POWER_COST * 2.75
 
 	use_external_power = TRUE
 	restrict_safety = TRUE
@@ -278,7 +278,7 @@
 	desc = "A sealed, maintenance-free crate of freshly energized stinger grenades, ready to be used."
 	fire_sound = 'sound/weapons/guns/misc/mech_mortar.ogg'
 	projectile_type = /obj/item/projectile/bullet/grenade/frag/sting
-	charge_cost = MECH_WEAPON_POWER_COST * 2
+	charge_cost = MECH_WEAPON_POWER_COST * 2.75
 
 	use_external_power = TRUE
 	restrict_safety = TRUE
