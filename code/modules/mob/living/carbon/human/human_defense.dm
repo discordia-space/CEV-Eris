@@ -305,7 +305,7 @@ meteor_act
 	//If not blocked, handle broad strike attacks
 	if(((I.sharp && I.edge && user.a_intent == I_DISARM) || I.forced_broad_strike) && (!istype(I, /obj/item/tool/sword/nt/spear) || !istype(I, /obj/item/tele_spear) || !istype(I, /obj/item/tool/spear)))
 		var/list/L[] = BP_ALL_LIMBS
-		effective_force /= 3
+		effective_force /= 2.7
 		L.Remove(hit_zone)
 		for(var/i in 1 to 2)
 			var/temp_zone = pick(L)
@@ -319,7 +319,6 @@ meteor_act
 
 	// Handle striking to cripple.
 	if(user.a_intent == I_HELP)
-		effective_force /= 2 //half the effective force
 		if(!..(I, user, effective_force, hit_zone))
 			return FALSE
 
