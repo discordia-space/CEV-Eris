@@ -23,7 +23,14 @@
 	var/worksound
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 
-	var/screen_shake = FALSE //If a weapon can shake the victim's camera on hit.
+	//The cool stuff for melee
+	var/screen_shake = FALSE 		//If a weapon can shake the victim's camera on hit.
+	var/forced_broad_strike = FALSE //If a weapon is forced to always perform broad strikes.
+	var/extended_reach = FALSE		//Wielded spears can hit alive things one tile further.
+	var/ready = FALSE				//All weapons that are ITEM_SIZE_BULKY or bigger have double tact, meaning you have to click twice.
+	var/push_attack = FALSE			//Hammers and spears can push the victim away on hit when you aim groin.
+	//Why are we using vars instead of defines or anything else?
+	//Because we need them to be shown in the tool info UI.
 
 	var/obj/item/master
 	var/list/origin_tech = list()	//Used by R&D to determine what research bonuses it grants.

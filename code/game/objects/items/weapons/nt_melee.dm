@@ -82,6 +82,8 @@
 	max_upgrades = 1
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
+	extended_reach = TRUE
+	forced_broad_strike = TRUE
 	price_tag = 600
 	matter = list(MATERIAL_BIOMATTER = 80, MATERIAL_STEEL = 8, MATERIAL_WOOD = 10, MATERIAL_PLASTEEL = 2)
 
@@ -161,6 +163,8 @@
 	throw_speed = 3
 	price_tag = 450
 	allow_spin = FALSE
+	extended_reach = TRUE
+	push_attack = TRUE
 	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_PLASTEEL = 10) // More expensive, high-end spear
 	style_damage = 50
 
