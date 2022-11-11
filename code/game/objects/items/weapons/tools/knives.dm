@@ -95,7 +95,7 @@
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2)
 	force = WEAPON_FORCE_PAINFUL
 	armor_divisor = ARMOR_PEN_MODERATE
-	embed_mult = 0.15
+	embed_mult = 0.6
 	max_upgrades = 3
 
 /obj/item/tool/knife/tacknife/New()
@@ -128,7 +128,7 @@
 	item_state = "fancydagger"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 1, MATERIAL_SILVER = 1)
 	armor_divisor = ARMOR_PEN_MASSIVE
-	embed_mult = 0.15
+	embed_mult = 0.6
 	max_upgrades = 4
 	spawn_blacklisted = TRUE
 
