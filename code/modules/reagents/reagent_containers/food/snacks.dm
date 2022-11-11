@@ -2105,6 +2105,7 @@
 /obj/item/reagent_containers/food/snacks/jelliedtoast/slime
 	preloaded_reagents = list("slimejelly" = 5)
 	taste_tag = list(UMAMI_FOOD)
+
 /obj/item/reagent_containers/food/snacks/jellyburger
 	name = "jelly burger"
 	desc = "Culinary curiousity or undiscovered delight?"
@@ -2114,6 +2115,7 @@
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_desc = list("buns" = 5)
 	nutriment_amt = 5
+	cooked = TRUE
 	taste_tag = list(UMAMI_FOOD)
 
 /obj/item/reagent_containers/food/snacks/jellyburger/slime
@@ -2122,6 +2124,7 @@
 /obj/item/reagent_containers/food/snacks/jellyburger/cherry
 	preloaded_reagents = list("cherryjelly" = 5)
 	taste_tag = list(UMAMI_FOOD)
+
 /obj/item/reagent_containers/food/snacks/milosoup
 	name = "milosoup"
 	desc = "The universe's best soup! Yum!"
@@ -2310,6 +2313,7 @@
 	center_of_mass = list("x"=16, "y"=8)
 	nutriment_desc = list("bread" = 2)
 	nutriment_amt = 2
+	cooked = TRUE
 	taste_tag = list(BLAND_FOOD,UMAMI_FOOD)
 
 /obj/item/reagent_containers/food/snacks/jellysandwich/slime
@@ -2617,6 +2621,7 @@
 	nutriment_amt = 2
 	nutriment_desc = list("bread" = 2)
 	preloaded_reagents = list("protein" = 4)
+	cooked = TRUE
 	taste_tag = list(MEAT_FOOD,FLOURY_FOOD)
 
 
@@ -2723,6 +2728,7 @@
 	bitesize = 2
 	center_of_mass = list("x"=16, "y"=12)
 	preloaded_reagents = list("protein" = 5, "nutriment" = 1, "alkysine" = 2)
+	cooked = TRUE
 	taste_tag = list(MEAT_FOOD,SWEET_FOOD)
 
 /obj/item/reagent_containers/food/snacks/sliceable/cheesecake
@@ -2917,6 +2923,7 @@
 	bitesize = 2
 	center_of_mass = list("x"=16, "y"=14)
 	preloaded_reagents = list("nutriment" = 4, "sprinkles" = 2)
+	cooked = TRUE
 	taste_tag = list(SWEET_FOOD)
 
 /obj/item/reagent_containers/food/snacks/sliceable/bread
@@ -2941,6 +2948,7 @@
 	nutriment_amt = 1
 	bitesize = 2
 	center_of_mass = list("x"=16, "y"=4)
+	cooked = FALSE
 	taste_tag = list(BLAND_FOOD,FLOURY_FOOD)
 
 /obj/item/reagent_containers/food/snacks/sliceable/creamcheesebread

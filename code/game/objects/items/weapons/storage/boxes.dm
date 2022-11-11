@@ -761,10 +761,11 @@
 /obj/item/storage/box/happy_meal/New()
 	. = ..()
 	var/list/things2spawn = list(
-		/obj/item/reagent_containers/food/snacks/sliceable/plaincake,
-		/obj/item/reagent_containers/food/snacks/sliceable/chocolatecake,
+		/obj/item/reagent_containers/food/snacks/creamcheesebreadslice,
+		/obj/item/reagent_containers/food/snacks/applecakeslice,
 		/obj/item/reagent_containers/food/snacks/bigbiteburger,
-		/obj/item/reagent_containers/food/snacks/fishandchips
+		/obj/item/reagent_containers/food/snacks/fishandchips,
+		/obj/spawner/soda
 	)
 /*someday...
 	if(prob(1))
