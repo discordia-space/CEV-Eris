@@ -64,10 +64,8 @@
 /mob/living/carbon/superior_animal/stalker/death()
 	..()
 	visible_message("<b>[src]</b> blows apart!")
-	new /obj/effect/decal/cleanable/blood/gibs/robot(src.loc)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-	s.set_up(3, 1, src)
-	s.start()
+	new /obj/effect/decal/cleanable/blood/gibs/robot(loc)
+	do_sparks(3, TRUE, src)
 	qdel(src)
 	return
 
