@@ -305,7 +305,7 @@ meteor_act
 	//If not blocked, handle broad strike attacks
 	if(((I.sharp && I.edge && user.a_intent == I_DISARM) || I.forced_broad_strike) && (!istype(I, /obj/item/tool/sword/nt/spear) || !istype(I, /obj/item/tele_spear) || !istype(I, /obj/item/tool/spear)))
 		var/list/L[] = BP_ALL_LIMBS
-		effective_force /= 2.7
+		effective_force /= 3
 		L.Remove(hit_zone)
 		for(var/i in 1 to 2)
 			var/temp_zone = pick(L)
@@ -323,9 +323,10 @@ meteor_act
 			return FALSE
 
 		attack_joint(affecting, I) //but can dislocate(strike nerve) joints
+
 	else if(!..())
 		return FALSE
-
+		
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
 		forcesay(hit_appends)	//forcesay checks stat already
 		//Apply blood

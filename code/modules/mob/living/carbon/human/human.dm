@@ -1572,13 +1572,13 @@ var/list/rank_prefix = list(\
 	return ..()
 
 /mob/living/carbon/human/verb/pull_punches()
-	set name = "Pull Punches"
+	set name = "Pull Attacks"
 	set desc = "Try not to hurt them."
 	set category = "IC"
 
 	if(stat) return
-	pulling_punches = !pulling_punches
-	to_chat(src, "<span class='notice'>You are now [pulling_punches ? "pulling your punches" : "not pulling your punches"].</span>")
+	pulling_attacks = !pulling_attacks
+	to_chat(src, "<span class='notice'>You are now [pulling_attacks ? "pulling your attacks" : "not pulling your attacks"].</span>")
 	return
 
 /mob/living/carbon/human/verb/toggle_dodging()
