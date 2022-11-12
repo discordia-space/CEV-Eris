@@ -94,7 +94,7 @@
 	if(can_spread)
 		if(severity == spread_threshold)
 			var/list/internal_organs_sans_parent = H.internal_organs.Copy() - O
-			var/next_organ = pick(internal_organs_sans_parent)
+			var/obj/item/organ/next_organ = pick(internal_organs_sans_parent)
 			SEND_SIGNAL(next_organ, COMSIG_I_ORGAN_ADD_WOUND, type)
 
 	if(!severity)
