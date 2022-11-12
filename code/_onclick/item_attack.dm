@@ -40,15 +40,15 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		var/mob/living/carbon/human/H = user
 		if(H.blocking)
 			H.stop_blocking()
-	if(ishuman(user) && !(user == A) && !(user.loc == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/simulated/wall))
+	if(ishuman(user) && !(user == A) && !(user.loc == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/simulated/wall) && A.loc != user)
 		swing_attack(src, user, params)
 		return 1 //Swinging calls its own attacks
 	return A.attackby(src, user, params)
 
 //Returns TRUE if attack is to be carried out, FALSE otherwise.
-/obj/item/proc/double_tact(mob/user, atom/atom_target)//putting stuff in your backpack, or something else on your person?
-	if(atom_target.loc == user)
-		return TRUE
+/obj/item/proc/double_tact(mob/user, atom/atom_target)
+	if(atom_target.loc == user)//putting stuff in your backpack, or something else on your person?
+		return TRUE //regular bags won't even be able to hold items this big, but who knows
 	if(w_class >= ITEM_SIZE_BULKY && !abstract && !istype(src, /obj/item/gun))//grabs have colossal w_class. You can't raise something that does not exist.
 		if(!(ready))						//guns have the point blank privilege
 			user.visible_message(SPAN_DANGER("[user] raises \his [src]!"))
