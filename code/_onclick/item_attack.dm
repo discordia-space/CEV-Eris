@@ -46,7 +46,9 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	return A.attackby(src, user, params)
 
 //Returns TRUE if attack is to be carried out, FALSE otherwise.
-/obj/item/proc/double_tact(mob/user)
+/obj/item/proc/double_tact(mob/user, atom/atom_target)//putting stuff in your backpack, or something else on your person?
+	if(atom_target.loc == user)
+		return TRUE
 	if(w_class >= ITEM_SIZE_BULKY && !abstract && !istype(src, /obj/item/gun))//grabs have colossal w_class. You can't raise something that does not exist.
 		if(!(ready))						//guns have the point blank privilege
 			user.visible_message(SPAN_DANGER("[user] raises \his [src]!"))
