@@ -1,19 +1,17 @@
 /datum/component/internal_wound/organic
+	dupe_mode = COMPONENT_DUPE_UNIQUE
 	diagnosis_stat = STAT_BIO
 	diagnosis_difficulty = STAT_LEVEL_ADEPT
 	can_progress = TRUE
 	wound_nature = MODIFICATION_ORGANIC
 
-// TODO
-// Bone wounds, brain wounds
-
 // Blunt
 /datum/component/internal_wound/organic/blunt
 	name = "rupture"
-	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 1)
+	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 2)
 	treatments_tool = list(QUALITY_CAUTERIZING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_BLOODCLOT = 0.55)	// Tricordrazine/polystem + bicaridine + meralyne OR quickclot OD
-	severity = 1
+	severity = 0
 	severity_max = 2
 	hal_damage = 0.5
 
@@ -32,10 +30,10 @@
 // Sharp
 /datum/component/internal_wound/organic/sharp
 	name = "perforation"
-	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 1)
+	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 2)
 	treatments_tool = list(QUALITY_CAUTERIZING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_BLOODCLOT = 0.85)	// Any brute heal chem + quickclot OD
-	severity = 1
+	severity = 0
 	severity_max = 2
 	next_wound = /datum/component/internal_wound/organic/swelling
 	hal_damage = 0.5
@@ -55,10 +53,10 @@
 // Edge
 /datum/component/internal_wound/organic/edge
 	name = "laceration"
-	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 1)
+	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 2)
 	treatments_tool = list(QUALITY_CAUTERIZING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_BLOODCLOT = 0.85)	// Any brute heal chem + quickclot OD
-	severity = 1
+	severity = 0
 	severity_max = 2
 	next_wound = /datum/component/internal_wound/organic/swelling
 	hal_damage = 0.5
@@ -78,7 +76,7 @@
 // Burn
 /datum/component/internal_wound/organic/burn
 	name = "scorched tissue"
-	treatments_item = list(/obj/item/stack/medical/advanced/ointment = 1)
+	treatments_item = list(/obj/item/stack/medical/advanced/ointment = 2)
 	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_STABLE = 1)	// Inaprov will only keep it from killing you
 	scar = /datum/component/internal_wound/organic/damaged_tissue
@@ -104,7 +102,7 @@
 	next_wound = /datum/component/internal_wound/infection
 	tox_damage = 0.25
 
-// Tox/chem OD
+// Tox/chem OD/atmos
 /datum/component/internal_wound/organic/poisoning
 	name = "toxin accumulation"
 	treatments_chem = list(CE_PURGER = 3)	// No anti-tox cure, poisoning can occur as a result of too much anti-tox
@@ -115,6 +113,26 @@
 
 /datum/component/internal_wound/organic/poisoning/chem
 	name = "chemical poisoning"
+
+// Clone/radiation
+/datum/component/internal_wound/organic/radiation
+	name = "benign tumor"
+	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
+	treatments_chem = list(CE_ONCOCIDAL = 1)
+	severity = 1
+	severity_max = 1
+	hal_damage = 0.25
+	tox_damage = 0.25
+	status_flag = ORGAN_MUTATED
+
+/datum/component/internal_wound/organic/radiation/malignant
+	name = "malignant tumor"
+	treatments_tool = list()
+	treatments_chem = list(CE_ONCOCIDAL = 2)
+	severity = 0
+	severity_max = 10
+	can_spread = TRUE
+	spread_threshold = 8
 
 // Secondary wounds
 /datum/component/internal_wound/organic/swelling

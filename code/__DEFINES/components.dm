@@ -135,7 +135,9 @@
 #define COMSIG_MESSAGE_RECEIVED "radio_message_received"
 
 // Internal organ signals
-#define COMSIG_I_ORGAN_REFRESH "internal_organ_refresh_upgrades"   // Move to external when external mods are made
+#define COMSIG_I_ORGAN_REFRESH_SELF "internal_organ_self_refresh"
+#define COMSIG_I_ORGAN_REFRESH_PARENT "internal_organ_parent_refresh"
+#define COMSIG_I_ORGAN_APPLY "internal_organ_apply_modifiers"
 #define COMSIG_I_ORGAN_ADD_WOUND "add_internal_wound"
 #define COMSIG_I_ORGAN_REMOVE_WOUND "remove_internal_wound"
 #define COMSIG_I_ORGAN_WOUND_COUNT "count_internal_wounds"

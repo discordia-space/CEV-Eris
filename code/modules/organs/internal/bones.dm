@@ -20,7 +20,8 @@
 	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
 	var/list/possible_wounds = list()
 
-	var/total_damage = amount * (100 / (parent ? parent.limb_efficiency : 100))
+	var/pierce_divisor = 1 + sharp + edge					// Armor divisor, but for meat
+	var/total_damage = amount - ((parent ? parent.limb_efficiency : 100) / 10) / pierce_divisor
 	var/wound_count = max(0, round(total_damage / 10, 1))	// Every 10 points of damage is a wound
 
 	if((!is_organic && !is_robotic) || !wound_count)
@@ -64,34 +65,6 @@
 
 	if(!BP_IS_ROBOTIC(src) && owner && parent && amount > 0 && !silent)
 		owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
-
-/obj/item/organ/internal/bone/refresh_upgrades()
-	name = initial(name)
-	color = initial(color)
-	max_upgrades = initial(max_upgrades)
-	prefixes = list()
-	min_bruised_damage = initial(min_bruised_damage)
-	min_broken_damage = initial(min_broken_damage)
-	max_damage = initial(max_damage)
-	owner_verbs = initial(owner_verbs)
-	organ_efficiency = initial_organ_efficiency.Copy()
-	scanner_hidden = initial(scanner_hidden)
-	unique_tag = initial(unique_tag)
-	specific_organ_size = initial(specific_organ_size)
-	max_blood_storage = initial(max_blood_storage)
-	current_blood = initial(current_blood)
-	blood_req = initial(blood_req)
-	nutriment_req = initial(nutriment_req)
-	oxygen_req = initial(oxygen_req)
-
-	if(reinforced)
-		reinforced = FALSE
-		reinforce()
-
-	SEND_SIGNAL(src, COMSIG_APPVAL, src)
-
-	for(var/prefix in prefixes)
-		name = "[prefix] [name]"
 
 /obj/item/organ/internal/bone/chest
 	name = "ribcage"

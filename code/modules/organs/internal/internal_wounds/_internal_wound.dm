@@ -14,9 +14,9 @@
 	var/severity_max = 2				// How far the wound can progress, default is 2
 
 	var/can_progress = FALSE			// Whether the wound can progress or not
-	var/datum/component/next_wound						// If defined, applies a wound of this type when severity is at max
+	var/datum/component/next_wound		// If defined, applies a wound of this type when severity is at max
 	var/progression_threshold = 150		// How many ticks until the wound progresses, default is 5 minutes
-	var/current_tick					// Current tick towards progression
+	var/current_progression_tick		// Current tick towards progression
 
 	var/can_spread = FALSE				// Whether the wound can spread throughout the body or not
 	var/spread_threshold = 0			// Severity at which the wound spreads a single time
@@ -27,9 +27,13 @@
 	var/hal_damage
 	var/oxy_damage
 	var/tox_damage
-	var/clone_damage
-	var/psy_damage		// Not the same as sanity damage
-	var/radiation_damage
+	var/clone_damage		// This is fairly dangerous as it can cause more wounds. Use with caution.
+	var/psy_damage			// Not the same as sanity damage, but does deal sanity damage
+
+	// Additional effects
+	var/can_hallucinate = FALSE			// Will this wound cause hallucinations?
+	var/ticks_per_hallucination = 60	// 2 minutes
+	var/current_hallucination_tick
 
 	// Organ adjustments - preferably used for more severe wounds
 	var/specific_organ_size_multiplier = null
@@ -53,6 +57,8 @@
 	RegisterSignal(src, COMSIG_ATTACKBY, .proc/apply_tool)
 
 /datum/component/internal_wound/UnregisterFromParent()
+	remove_flags()
+
 	UnregisterSignal(parent, COMSIG_WOUND_EFFECTS)
 	UnregisterSignal(parent, COMSIG_WOUND_FLAGS_ADD)
 	UnregisterSignal(parent, COMSIG_WOUND_FLAGS_REMOVE)
@@ -67,9 +73,9 @@
 
 	// Doesn't need to be inside someone to get worse
 	if(can_progress)
-		++current_tick
-		if(current_tick >= progression_threshold)
-			current_tick = 0
+		++current_progression_tick
+		if(current_progression_tick >= progression_threshold)
+			current_progression_tick = 0
 			progress()
 
 	if(!H)
@@ -78,7 +84,7 @@
 	// Chemical treatment handling
 	var/is_treated = FALSE
 	var/list/owner_ce = H.chem_effects
-	if(owner_ce && owner_ce.len)
+	if(owner_ce && LAZYLEN(owner_ce))
 		for(var/chem_effect in owner_ce)
 			is_treated = try_treatment(TREATMENT_CHEM, chem_effect, owner_ce[chem_effect])
 	if(is_treated)
@@ -88,18 +94,34 @@
 	if(can_spread)
 		if(severity == spread_threshold)
 			var/list/internal_organs_sans_parent = H.internal_organs.Copy() - O
-			var/obj/item/organ/next_organ = pick(internal_organs_sans_parent)
+			var/next_organ = pick(internal_organs_sans_parent)
 			SEND_SIGNAL(next_organ, COMSIG_I_ORGAN_ADD_WOUND, type)
 
+	if(!severity)
+		return
+
 	// Deal damage
-	if(E)
+	if(E && (tox_damage || oxy_damage || clone_damage || hal_damage))
 		H.apply_damages(null, null, tox_damage * severity, oxy_damage * severity, clone_damage * severity, hal_damage * severity, E)
 
 	if(psy_damage)
 		H.apply_damage(psy_damage * severity, PSY)
 
-	if(radiation_damage)
-		H.radiation += radiation_damage
+	// Apply effects
+	if(can_hallucinate)
+		++current_hallucination_tick
+		if(current_hallucination_tick >= ticks_per_hallucination && H.sanity)
+			var/num = rand(1,4)
+			switch(num)
+				if(1)
+					H.sanity.effect_emote()
+				if(2)
+					H.sanity.effect_quote()
+				if(3)
+					H.sanity.effect_sound()
+				if(4)
+					H.sanity.effect_hallucination()
+			current_hallucination_tick = 0
 
 /datum/component/internal_wound/proc/progress()
 	if(!can_progress)
@@ -113,7 +135,7 @@
 			var/chosen_wound_type = pick(typesof(next_wound))
 			SEND_SIGNAL(parent, COMSIG_I_ORGAN_ADD_WOUND, chosen_wound_type)
 
-	SEND_SIGNAL(parent, COMSIG_I_ORGAN_REFRESH)
+	SEND_SIGNAL(parent, COMSIG_I_ORGAN_REFRESH_SELF)
 
 /datum/component/internal_wound/proc/apply_tool(obj/item/I, mob/user)
 	var/success = FALSE
@@ -178,15 +200,15 @@
 	var/obj/item/organ/internal/O = parent
 
 	if(specific_organ_size_multiplier)
-		O.specific_organ_size *= 1 - round(specific_organ_size_multiplier, 0.01)
+		O.specific_organ_size *= 1 + round(specific_organ_size_multiplier, 0.01)
 	if(max_blood_storage_multiplier)
-		O.max_blood_storage *= 1 + round(max_blood_storage_multiplier, 0.01)
+		O.max_blood_storage *= 1 - round(max_blood_storage_multiplier, 0.01)
 	if(blood_req_multiplier)
-		O.blood_req *= 1 - round(blood_req_multiplier, 0.01)
+		O.blood_req *= 1 + round(blood_req_multiplier, 0.01)
 	if(nutriment_req_multiplier)
-		O.nutriment_req *= 1 - round(nutriment_req_multiplier, 0.01)
+		O.nutriment_req *= 1 + round(nutriment_req_multiplier, 0.01)
 	if(oxygen_req_multiplier)
-		O.oxygen_req *= 1 - round(oxygen_req_multiplier, 0.01)
+		O.oxygen_req *= 1 + round(oxygen_req_multiplier, 0.01)
 
 /datum/component/internal_wound/proc/apply_flags()
 	var/obj/item/organ/internal/O = parent

@@ -29,7 +29,7 @@
 		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
 			sponge.take_damage(amount)
-			brainloss = sponge.damage
+			brainloss = initial(sponge.health) - sponge.health
 		else
 			setBrainLoss(200)
 	else
@@ -41,8 +41,8 @@
 	if(species && species.has_process[BP_BRAIN])
 		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
-			sponge.damage = min(max(amount, 0),(maxHealth*2))
-			brainloss = sponge.damage
+			sponge.health = min(max(amount, 0),(maxHealth*2))
+			brainloss = initial(sponge.health) - sponge.health
 		else
 			brainloss = 200
 	else
@@ -353,6 +353,8 @@ This function restores all organs.
 	//Handle PSY damage
 	if(damagetype == PSY)
 		sanity.onPsyDamage(damage)
+		var/obj/item/organ/brain = random_organ_by_process[BP_BRAIN]
+		brain.take_damage(damage / 3, FALSE, PSY)
 		return 1
 
 	//Handle other types of damage

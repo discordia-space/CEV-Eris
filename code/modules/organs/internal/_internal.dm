@@ -21,25 +21,20 @@
 	var/oxygen_req = 0	//If oxygen reqs are not satisfied, get debuff and brain starts taking damage
 	var/list/prefixes = list()
 
-	// Internal
-	var/signals_registered = FALSE		// Needs to exist because mobs don't get their tags until after organs are created. Tags are needed to register signals.
-
-/obj/item/organ/internal/New(mob/living/carbon/human/holder, datum/organ_description/OD)
-	..()
+/obj/item/organ/internal/Initialize()
+	. = ..()
 	initialize_organ_efficiencies()
 	initialize_owner_verbs()
 	update_icon()
+	RegisterSignal(src, COMSIG_I_ORGAN_ADD_WOUND, .proc/add_wound)
+	RegisterSignal(src, COMSIG_I_ORGAN_REMOVE_WOUND, .proc/remove_wound)
+	RegisterSignal(src, COMSIG_I_ORGAN_REFRESH_SELF, .proc/refresh_upgrades)
+	if(parent)
+		RegisterSignal(parent, COMSIG_I_ORGAN_WOUND_COUNT, .proc/wound_count, TRUE)
+		RegisterSignal(parent, COMSIG_I_ORGAN_REFRESH_PARENT, .proc/refresh_organ_stats, TRUE)
+		RegisterSignal(parent, COMSIG_I_ORGAN_APPLY, .proc/apply_modifiers, TRUE)
 
 /obj/item/organ/internal/Process()
-	// Needs to exist because mobs don't get their tags until after organs are created. Tags are needed to register signals.
-	if(!signals_registered)
-		RegisterSignal(src, COMSIG_I_ORGAN_ADD_WOUND, .proc/add_wound)
-		RegisterSignal(src, COMSIG_I_ORGAN_REMOVE_WOUND, .proc/remove_wound)
-		RegisterSignal(src, COMSIG_I_ORGAN_REFRESH, .proc/refresh_upgrades)
-		if(parent)
-			RegisterSignal(parent, COMSIG_I_ORGAN_WOUND_COUNT, .proc/wound_count)
-		signals_registered = TRUE
-
 	refresh_damage()	// Death check is in the parent proc
 	..()
 	handle_blood()
@@ -57,13 +52,17 @@
 	item_upgrades.Cut()
 	UnregisterSignal(src, COMSIG_I_ORGAN_ADD_WOUND)
 	UnregisterSignal(src, COMSIG_I_ORGAN_REMOVE_WOUND)
-	UnregisterSignal(src, COMSIG_I_ORGAN_REFRESH)
+	UnregisterSignal(src, COMSIG_I_ORGAN_REFRESH_SELF)
 	if(parent)
 		UnregisterSignal(parent, COMSIG_I_ORGAN_WOUND_COUNT)
+		UnregisterSignal(parent, COMSIG_I_ORGAN_REFRESH_PARENT)
+		UnregisterSignal(parent, COMSIG_I_ORGAN_APPLY)
 	..()
 
 /obj/item/organ/internal/removed()
 	UnregisterSignal(parent, COMSIG_I_ORGAN_WOUND_COUNT)
+	UnregisterSignal(parent, COMSIG_I_ORGAN_REFRESH_PARENT)
+	UnregisterSignal(parent, COMSIG_I_ORGAN_APPLY)
 	SEND_SIGNAL(src, COMSIG_WOUND_FLAGS_REMOVE)
 	..()
 
@@ -86,7 +85,9 @@
 /obj/item/organ/internal/replaced(obj/item/organ/external/affected)
 	..()
 	parent.internal_organs |= src
-	RegisterSignal(parent, COMSIG_I_ORGAN_WOUND_COUNT, .proc/wound_count)
+	RegisterSignal(parent, COMSIG_I_ORGAN_WOUND_COUNT, .proc/wound_count, TRUE)
+	RegisterSignal(parent, COMSIG_I_ORGAN_REFRESH_PARENT, .proc/refresh_organ_stats, TRUE)
+	RegisterSignal(parent, COMSIG_I_ORGAN_APPLY, .proc/apply_modifiers, TRUE)
 	SEND_SIGNAL(src, COMSIG_WOUND_FLAGS_ADD)
 
 /obj/item/organ/internal/replaced_mob(mob/living/carbon/human/target)
@@ -113,7 +114,8 @@
 	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
 	var/list/possible_wounds = list()
 
-	var/total_damage = amount * (100 / (parent ? parent.limb_efficiency : 100))
+	var/pierce_divisor = 1 + sharp + edge					// Armor divisor, but for meat
+	var/total_damage = amount - ((parent ? parent.limb_efficiency : 100) / 10) / pierce_divisor
 	var/wound_count = max(0, round(total_damage / 10, 1))	// Every 10 points of damage is a wound
 
 	if((!is_organic && !is_robotic) || !wound_count)
@@ -147,6 +149,15 @@
 				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/poisoning))
 			if(is_robotic)
 				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/robotic/build_up))
+		if(CLONE)
+			if(is_organic)
+				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/radiation))
+		if(IRRADIATE)	// Effect type, not damage type. Still usable here.
+			if(is_organic)
+				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/radiation))
+			if(is_robotic)
+				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/robotic/emp_burn))		// Radiation can fry electronics
+
 
 	if(is_organic)
 		LAZYREMOVE(possible_wounds, GetComponents(/datum/component/internal_wound/organic))	// Organic wounds don't stack
@@ -303,6 +314,18 @@
 	return actions_list
 // End of the bone zone
 
+// Mutations
+/obj/item/organ/internal/proc/unmutate()
+	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
+
+	if(!is_organic)
+		return
+
+	var/list/wounds = GetComponents(/datum/component/internal_wound/organic/radiation)
+
+	for(var/datum/component/wound in wounds)
+		remove_wound(wound)
+
 /obj/item/organ/internal/proc/get_wounds()
 	var/list/wound_list = GetComponents(/datum/component/internal_wound)
 	var/list/wound_data = list()
@@ -315,7 +338,11 @@
 
 			// Make treatments into a string for the UI
 			for(var/treatment in treatments)
-				treatment_info += "[treatment] ([num2text(treatments[treatment])]), "
+				var/name = treatment
+				if(ispath(treatment))
+					var/atom/movable/AM = treatment
+					name = initial(AM.name)
+				treatment_info += "[name] ([num2text(treatments[treatment])]), "
 			
 			if(length(treatment_info))
 				treatment_info = copytext(treatment_info, 1, length(treatment_info) - 1)
@@ -351,6 +378,10 @@
 	initial_owner_verbs = owner_verbs.Copy()
 
 /obj/item/organ/internal/refresh_upgrades()
+	refresh_organ_stats()
+	apply_modifiers()
+
+/obj/item/organ/internal/proc/refresh_organ_stats()
 	name = initial(name)
 	color = initial(color)
 	max_upgrades = initial(max_upgrades)
@@ -370,8 +401,7 @@
 	oxygen_req = initial(oxygen_req)
 	SEND_SIGNAL(src, COMSIG_WOUND_FLAGS_REMOVE)
 
-	// Should split this into two procs due to the flags overwriting each other
-
+/obj/item/organ/internal/proc/apply_modifiers()
 	SEND_SIGNAL(src, COMSIG_WOUND_EFFECTS)
 	SEND_SIGNAL(src, COMSIG_APPVAL, src)
 	SEND_SIGNAL(src, COMSIG_WOUND_FLAGS_ADD)

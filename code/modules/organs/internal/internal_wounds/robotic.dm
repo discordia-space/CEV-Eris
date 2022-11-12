@@ -8,7 +8,7 @@
 // Blunt
 /datum/component/internal_wound/robotic/blunt
 	name = "mechanical malfunction"
-	treatments_item = list(/obj/item/stack/nanopaste = 1)
+	treatments_item = list(/obj/item/stack/nanopaste = 2)
 	treatments_tool = list(QUALITY_HAMMERING = FAILCHANCE_NORMAL)	// Nanopaste will be allowed as treatment via surgery steps
 	scar = /datum/component/internal_wound/robotic/deformation
 	severity = 2
@@ -23,7 +23,7 @@
 // Sharp
 /datum/component/internal_wound/robotic/sharp
 	name = "perforation"
-	treatments_item = list(/obj/item/stack/nanopaste = 1)
+	treatments_item = list(/obj/item/stack/nanopaste = 2)
 	treatments_tool = list(QUALITY_SEALING = FAILCHANCE_NORMAL)	// Nanopaste will be allowed as treatment via surgery steps
 	severity = 2
 	hal_damage = 0.25
@@ -38,7 +38,7 @@
 // Edge
 /datum/component/internal_wound/robotic/edge
 	name = "electrical short"
-	treatments_item = list(/obj/item/stack/cable_coil = 1)
+	treatments_item = list(/obj/item/stack/cable_coil = 5)
 	treatments_tool = list(QUALITY_CLAMPING = FAILCHANCE_NORMAL)	// Wiring will be allowed as treatment via surgery steps
 	severity = 2
 	hal_damage = 0.25
@@ -52,14 +52,14 @@
 // EMP/burn wounds
 /datum/component/internal_wound/robotic/emp_burn
 	name = "electrical malfunction"
-	treatments_item = list(/obj/item/stack/cable_coil = 1)
+	treatments_item = list(/obj/item/stack/cable_coil = 5)
 	treatments_tool = list(QUALITY_PULSING = FAILCHANCE_NORMAL)
 	severity = 2
 	hal_damage = 0.25
 
 /datum/component/internal_wound/robotic/emp_burn/overheat
 	name = "overheating component"
-	treatments_item = list(/obj/item/stack/cable_coil = 1)
+	treatments_item = list(/obj/item/stack/cable_coil = 5)
 	treatments_tool = list(QUALITY_PULSING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_MECH_COOLING = 2)
 
@@ -85,7 +85,8 @@
 	name = "rust"
 
 /datum/component/internal_wound/robotic/deformation
+	dupe_mode = COMPONENT_DUPE_UNIQUE
 	name = "plastic deformation"
 	treatments_tool = list(QUALITY_WELDING = FAILCHANCE_NORMAL)
-	severity = 1
-	hal_damage = 1
+	severity = 4
+	hal_damage = 0.5

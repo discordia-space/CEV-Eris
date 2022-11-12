@@ -631,6 +631,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/proc/update_wounds()
 	number_internal_wounds = 0
 	severity_internal_wounds = 0
+	SEND_SIGNAL(src, COMSIG_I_ORGAN_REFRESH_PARENT)
+	SEND_SIGNAL(src, COMSIG_I_ORGAN_APPLY)
 	SEND_SIGNAL(src, COMSIG_I_ORGAN_WOUND_COUNT)
 
 	if(BP_IS_ROBOTIC(src)) //Robotic limbs don't heal or get worse.
@@ -854,18 +856,25 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return TRUE
 
 /obj/item/organ/external/proc/get_bone()
-	var/obj/item/organ/internal/bone = pick(owner.internal_organs_by_efficiency[OP_BONE])
+	var/obj/item/organ/internal/bone = pick(owner.internal_organs_by_efficiency[OP_BONE] & internal_organs)
 	return bone
 
 /obj/item/organ/external/proc/mutate()
 	if(BP_IS_ROBOTIC(src))
 		return
-	status |= ORGAN_MUTATED
-	if(owner) owner.update_body()
+	var/obj/item/organ/internal/I = pick(internal_organs)
+	if(I)
+		I.take_damage(15, TRUE, CLONE)
+	if(owner)
+		owner.update_body()
 
 /obj/item/organ/external/proc/unmutate()
-	status &= ~ORGAN_MUTATED
-	if(owner) owner.update_body()
+	if(BP_IS_ROBOTIC(src))
+		return
+	for(var/obj/item/organ/internal/I in internal_organs)
+		I.unmutate()
+	if(owner)
+		owner.update_body()
 
 /obj/item/organ/external/proc/get_damage()	//returns total damage
 	return max(brute_dam + burn_dam - perma_injury, perma_injury)	//could use max_damage?

@@ -147,7 +147,7 @@
 	matter = list(MATERIAL_PLASTEEL = 3)
 	price_tag = 90
 
-/obj/item/modification/organ/internal/electromechanical/New()
+/obj/item/modification/organ/internal/electromechanical/bone_braces/New()
 	var/datum/component/modification/organ/M = AddComponent(/datum/component/modification/organ)
 
 	M.apply_to_types = list(/obj/item/organ/internal/bone)

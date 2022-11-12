@@ -1,6 +1,5 @@
 /obj/item/organ/internal/brain
 	name = "brain"
-	health = 400 //They need to live awhile longer than other organs. Is this even used by organ code anymore?
 	desc = "A piece of juicy meat found in a person's head."
 	organ_efficiency = list(BP_BRAIN = 100)
 	parent_organ_base = BP_HEAD
@@ -20,20 +19,39 @@
 	max_blood_storage = 80
 	oxygen_req = 8
 	nutriment_req = 6
+	health = 100
 	var/mob/living/carbon/brain/brainmob = null
+	var/timer_id
 
 /obj/item/organ/internal/brain/New()
 	..()
 	health = config.default_brain_health
-	spawn(5)
-		if(brainmob && brainmob.client)
-			brainmob.client.screen.len = null //clear the hud
+	timer_id = addtimer(CALLBACK(src, .proc/clear_hud), 5, TIMER_STOPPABLE)
 
 /obj/item/organ/internal/brain/Destroy()
+	if(timer_id)
+		deltimer(timer_id)
 	if(brainmob)
 		qdel(brainmob)
 		brainmob = null
 	. = ..()
+
+/obj/item/organ/internal/brain/take_damage(amount, silent, damage_type = null, sharp = FALSE, edge = FALSE)	//Deals damage to the organ itself
+	if(!damage_type)
+		return
+
+	var/pierce_divisor = 1 + sharp + edge					// Armor divisor, but for meat
+	health -= amount - ((parent ? parent.limb_efficiency : 100) / 10) / pierce_divisor
+
+	if(health < 0)
+		var/wound_damage = -health
+		health = 0
+		..(wound_damage, silent, damage_type, sharp, edge)
+
+/obj/item/organ/internal/brain/proc/clear_hud()
+	if(brainmob && brainmob.client)
+		brainmob.client.screen.len = null //clear the hud
+	timer_id = null
 
 /obj/item/organ/internal/brain/proc/transfer_identity(mob/living/carbon/H)
 	name = "\the [H]'s [initial(src.name)]"
