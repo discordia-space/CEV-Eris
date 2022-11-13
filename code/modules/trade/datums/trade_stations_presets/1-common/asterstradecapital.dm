@@ -144,7 +144,7 @@
 		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 700, 4),		// base price: 550
 		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 1750, 4),			// base price: 1000
 		/obj/item/tool/crowbar/onestar = offer_data("one star crowbar", 5000, 3),
-		/obj/item/tool/hammer/powered_hammer/onestar_hammer = offer_data("one star sledgehammer", 5000, 3),
+		/obj/item/tool/hammer/sledgehammer/onestar = offer_data("one star sledgehammer", 5000, 3),
 		/obj/item/tool/screwdriver/combi_driver/onestar = offer_data("one star combi driver", 6500, 3),
 		/obj/item/tool/weldingtool/onestar = offer_data("one star welding tool", 6500, 3),
 		/obj/item/organ/external/robotic/one_star = offer_data("one star external prosthetic", 5000, 4)

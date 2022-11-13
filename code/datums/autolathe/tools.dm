@@ -61,6 +61,12 @@
 /datum/design/autolathe/tool/powered_hammer
 	build_path = /obj/item/tool/hammer/powered_hammer
 
+/datum/design/autolathe/tool/sledgehammer
+	build_path = /obj/item/tool/hammer/sledgehammer
+
+/datum/design/autolathe/tool/sledgehammer_advanced
+	build_path = /obj/item/tool/hammer/sledgehammer/advanced
+
 /datum/design/autolathe/tool/big_wrench
 	build_path = /obj/item/tool/wrench/big_wrench
 

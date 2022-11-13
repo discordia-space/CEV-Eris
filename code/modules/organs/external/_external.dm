@@ -345,11 +345,11 @@
 	. += tally
 
 /obj/item/organ/external/proc/is_nerve_struck()
-	if(nerve_struck > 0)
-		return 1
+	if(nerve_struck == 2)
+		return TRUE
 	if(parent)
 		return parent.is_nerve_struck()
-	return 0
+	return FALSE
 
 /obj/item/organ/external/proc/nerve_strike_add(var/primary)
 	if(nerve_struck != -1)

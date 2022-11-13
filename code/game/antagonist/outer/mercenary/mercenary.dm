@@ -29,7 +29,7 @@
 		STAT_MEC = 20
 	)
 
-	perks = list(PERK_SURVIVOR)
+	perks = list(PERK_SURVIVOR, PERK_CODESPEAK_SERB)
 
 /datum/antagonist/mercenary/equip()
 	var/mob/living/L = owner.current
