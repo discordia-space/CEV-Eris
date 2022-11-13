@@ -1811,7 +1811,7 @@
 	name = "Eugene's Plant Genes"
 	desc = "A vendor selling data disks with individual plant genes."
 	product_slogans = "Keep your plants on!;Get back to your roots!;Don't leaf me!"
-	product_ads = "Seed for yourself!;Green!;Only genetically modified!"
+	product_ads = "Seed for yourself!;Green!;OMG! Only Modified Genetically!"
 	icon_state = "seeds"
 	vendor_department = DEPARTMENT_OFFSHIP
 	products = list(
@@ -1819,7 +1819,8 @@
 		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_high = 2,
 		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_high = 2,
 		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_fast = 2,
-		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/no_nutrients_water = 2
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/no_nutrients_water = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/psilocybin = 2
 		)
 	contraband = list(
 		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_max = 2,
@@ -1828,15 +1829,16 @@
 		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_faster = 2
 		)
 	prices = list(
-		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_high = 1000,
-		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_high = 1000,
-		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_high = 1000,
-		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_fast = 1000,
-		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/no_nutrients_water = 1000,
-		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_max = 1000,
-		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_max = 1000,
-		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_max = 1000,
-		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_faster = 1000
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_high = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_high = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_high = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_fast = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/no_nutrients_water = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/psilocybin = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_max = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_max = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_max = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_faster = 500
 		)
 
 /obj/machinery/vending/plant_gene/Initialize()
@@ -1850,7 +1852,7 @@
 		COLOR_LIGHTING_CYAN_DARK\
 		)
 	set_light(1.4, 1, light_color)
-
+	earnings_account = department_accounts[vendor_department]	// Weirdness with offship account demands this
 	wires = new /datum/wires/vending/intermediate(src)
 
 /obj/machinery/vending/custom

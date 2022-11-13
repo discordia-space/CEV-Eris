@@ -33,7 +33,7 @@
 
 	store_file(preloaded_gene)
 
-	disk_name = "[plant_name] #[plant_id], [trait_info]"
+	disk_name = "[plant_name] #[plant_id] ([trait_info])"
 	. = ..()
 
 // BIOCHEMISTRY
@@ -53,18 +53,29 @@
 	trait_info = "potency: 200"
 	preset_values = list(TRAIT_POTENCY = 200)
 
-// Not actually under biochemistry
-/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/immutable
-	trait_info = "immutable"
-	preset_values = list(TRAIT_IMMUTABLE = 1)
+/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/psilocybin
+	trait_info = "psilocybin-producing"
+	preset_values = list(TRAIT_CHEMS = list("psilocybin" = list(5,4)))
 
-/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/mutable
-	trait_info = "mutable"
-	preset_values = list(TRAIT_IMMUTABLE = 0)
+/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/mutagen
+	trait_info = "mutagen-producing"
+	preset_values = list(TRAIT_CHEMS = list("mutagen" = list(3,5)))
 
-/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/highly_mutable
-	trait_info = "highly mutable"
-	preset_values = list(TRAIT_IMMUTABLE = -1)
+/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/cleaner
+	trait_info = "cleaner-producing"
+	preset_values = list(TRAIT_CHEMS = list("cleaner" = list(3,5)))
+
+/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/eznutrient
+	trait_info = "E-Z-nutrient-producing"
+	preset_values = list(TRAIT_CHEMS = list("eznutrient" = list(3,5)))
+
+/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/left4zed
+	trait_info = "Left 4 Zed-producing"
+	preset_values = list(TRAIT_CHEMS = list("left4zed" = list(3,5)))
+
+/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/robustharvest
+	trait_info = "Robust Harvest-producing"
+	preset_values = list(TRAIT_CHEMS = list("robustharvest" = list(3,5)))
 
 // ATMOSPHERE
 /obj/item/computer_hardware/hard_drive/portable/plantgene/atmos
@@ -179,6 +190,10 @@
 	trait_info = "spreading: 1"
 	preset_values = list(TRAIT_SPREAD = 1)
 
+/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/vine_spreading
+	trait_info = "spreading: 2"
+	preset_values = list(TRAIT_SPREAD = 2)
+
 /obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/not_spreading
 	trait_info = "spreading: 0"
 	preset_values = list(TRAIT_SPREAD = 0)
@@ -288,3 +303,28 @@
 /obj/item/computer_hardware/hard_drive/portable/plantgene/pigment/purple_dark
 	trait_info = "light color: purple, dark"
 	preset_values = list(TRAIT_BIOLUM_COLOUR = COLOR_LIGHTING_PURPLE_DARK)
+
+// SPECIAL
+/obj/item/computer_hardware/hard_drive/portable/plantgene/special
+	preset_genetype = GENE_SPECIAL
+	bad_type = /obj/item/computer_hardware/hard_drive/portable/plantgene/special
+
+/obj/item/computer_hardware/hard_drive/portable/plantgene/special/immutable
+	trait_info = "immutable"
+	preset_values = list(TRAIT_IMMUTABLE = 1)
+
+/obj/item/computer_hardware/hard_drive/portable/plantgene/special/mutable
+	trait_info = "mutable"
+	preset_values = list(TRAIT_IMMUTABLE = 0)
+
+/obj/item/computer_hardware/hard_drive/portable/plantgene/special/highly_mutable
+	trait_info = "highly mutable"
+	preset_values = list(TRAIT_IMMUTABLE = -1)
+
+/obj/item/computer_hardware/hard_drive/portable/plantgene/special/chem_sprayer
+	trait_info = "chemical sprayer"
+	preset_values = list(TRAIT_CHEM_SPRAYER = 1)
+
+/obj/item/computer_hardware/hard_drive/portable/plantgene/special/no_chem_sprayer
+	trait_info = "non-sprayer"
+	preset_values = list(TRAIT_CHEM_SPRAYER = 0)
