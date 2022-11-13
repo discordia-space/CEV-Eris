@@ -468,8 +468,8 @@
 		var/SA_pp = (breath.gas["sleeping_agent"] / breath.total_moles) * breath_pressure
 		if(SA_pp > SA_para_min)		// Enough to make us paralysed for a bit
 			Paralyse(3)	// 3 gives them one second to wake up and run away a bit!
-			if(SA_pp > SA_sleep_min)	// Enough to make us sleep as well
-				Sleeping(5)
+		/*	if(SA_pp > SA_sleep_min)	// Enough to make us sleep as well
+				Sleeping(5)*/
 		else if(SA_pp > 0.15)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
 			if(prob(20))
 				emote(pick("giggle", "laugh"))
