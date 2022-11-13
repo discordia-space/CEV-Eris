@@ -398,8 +398,8 @@ meteor_act
 							playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 							return TRUE
 						if(I.wielded && !recoil >= 80)
-								playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-								return TRUE
+							playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+							return TRUE
 						unEquip(I)
 						visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
