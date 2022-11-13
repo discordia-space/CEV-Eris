@@ -1819,8 +1819,7 @@
 		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_high = 2,
 		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_high = 2,
 		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_fast = 2,
-		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_nutrients_false = 2,
-		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_water_false = 2
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/no_nutrients_water = 2
 		)
 	contraband = list(
 		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_max = 2,
@@ -1833,8 +1832,7 @@
 		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_high = 1000,
 		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_high = 1000,
 		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_fast = 1000,
-		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_nutrients_false = 1000,
-		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_water_false = 1000,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/no_nutrients_water = 1000,
 		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_max = 1000,
 		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_max = 1000,
 		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_max = 1000,
