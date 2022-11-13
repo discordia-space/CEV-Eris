@@ -1,0 +1,86 @@
+/datum/trade_station/botany
+	name_pool = list(
+		"MTB \'Arbor\'" = "Moebius Trade Beacon \'Arbor\': Connection with the Moebius botanical research network established."
+	)
+	icon_states = list("moe_capital", "ship")
+	uid = "botany"
+	tree_x = 0.38
+	tree_y = 0.5
+	start_discovered = FALSE
+	spawn_always = TRUE
+	markup = WHOLESALE_GOODS
+	offer_limit = 10
+	base_income = 1600
+	wealth = 0
+	hidden_inv_threshold = 3000
+	recommendation_threshold = 0
+	stations_recommended = list()
+	recommendations_needed = 1
+	inventory = list(
+		"Biochemistry" = list(
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency = custom_good_name("gene disk: potency (50)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/immutable = custom_good_name("gene disk: immutable"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/mutable = custom_good_name("gene disk: mutable"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/highly_mutable = custom_good_name("gene disk: highly mutable")
+		),
+		"Atmosphere/Environment" = list(
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/atmos/low_kpa_tolerance = custom_good_name("gene disk: low pressure tolerance (40 kPa)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/atmos/high_kpa_tolerance = custom_good_name("gene disk: high pressure tolerance (160 kPa)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/atmos/heat_tolerance  = custom_good_name("gene disk: heat tolerance (70 K)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/environment/ideal_heat = custom_good_name("gene disk: ideal heat (273 K)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/environment/light_tolerance = custom_good_name("gene disk: light tolerance (10)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/environment/ideal_light = custom_good_name("gene disk: ideal light (10)")
+		),
+		"Hardiness" = list(
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/hardiness/toxins_tolerance = custom_good_name("gene disk: toxin tolerance (7)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/hardiness/pest_tolerance = custom_good_name("gene disk: pest tolerance (7)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/hardiness/weed_tolerance = custom_good_name("gene disk: weed tolerance (7)")
+		),
+		"Vigour" = list(
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield = custom_good_name("gene disk: yield (7)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production = custom_good_name("gene disk: production (8)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation = custom_good_name("gene disk: maturation (8)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/spreading = custom_good_name("gene disk: spreading (1)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/not_spreading = custom_good_name("gene disk: non-spreading")
+		),
+		"Output" = list(
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/output/power_producer = custom_good_name("gene disk: battery"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/output/not_power_producer = custom_good_name("gene disk: non-battery"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/output/bioluminescent_off = custom_good_name("gene disk: bioluminescence (off)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/output/bioluminescent_dimmer = custom_good_name("gene disk: bioluminescence (1)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/output/bioluminescent_dim = custom_good_name("gene disk: bioluminescence (2)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/output/bioluminescent_normal = custom_good_name("gene disk: bioluminescence (3)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/output/bioluminescent_bright = custom_good_name("gene disk: bioluminescence (4)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/output/bioluminescent_brighter = custom_good_name("gene disk: bioluminescence (5)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/pigment/red = custom_good_name("gene disk: light color (red, bright)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/pigment/orange = custom_good_name("gene disk: light color (orange, bright)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/pigment/green = custom_good_name("gene disk: light color (green, bright)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/pigment/cyan = custom_good_name("gene disk: light color (cyan, bright)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/pigment/blue = custom_good_name("gene disk: light color (blue, bright)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/pigment/purple = custom_good_name("gene disk: light color (purple, bright)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/pigment/red_dark = custom_good_name("gene disk: light color (red, dark)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/pigment/orange_dark = custom_good_name("gene disk: light color (orange, dark)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/pigment/green_dark = custom_good_name("gene disk: light color (green, dark)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/pigment/cyan_dark = custom_good_name("gene disk: light color (cyan, dark)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/pigment/blue_dark = custom_good_name("gene disk: light color (blue, dark)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/pigment/purple_dark = custom_good_name("gene disk: light color (purple, dark)")
+		)
+	)
+	hidden_inventory = list(
+		"Rare Genes" = list(
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_high = custom_good_name("gene disk: potency (100)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_nutrients_false = custom_good_name("gene disk: no nutrients"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_nutrients = custom_good_name("gene disk: requires nutrients"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_water_false = custom_good_name("gene disk: no water"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_water = custom_good_name("gene disk: requires water"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_high = custom_good_name("gene disk: yield (10)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_high = custom_good_name("gene disk: production (5)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_fast = custom_good_name("gene disk: maturation (5)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/structure/repeat_harvest = custom_good_name("gene disk: repeatable harvest"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/structure/single_harvest = custom_good_name("gene disk: single harvest")
+		)
+	)
+	offer_types = list(
+		/obj/item/tool/minihoe = offer_data_mods("modified minihoe (3 upgrades)", 1400, 2, OFFER_MODDED_TOOL, 3),
+		/obj/item/tool/hatchet = offer_data_mods("modified hatchet (3 upgrades)", 1400, 2, OFFER_MODDED_TOOL, 3)
+	)

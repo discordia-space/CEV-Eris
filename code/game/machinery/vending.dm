@@ -1807,6 +1807,54 @@
 		)
 	vendor_department = DEPARTMENT_CIVILIAN
 
+/obj/machinery/vending/plant_gene
+	name = "Eugene's Plant Genes"
+	desc = "A vendor selling data disks with individual plant genes."
+	product_slogans = "Keep your plants on!;Get back to your roots!;Don't leaf me!"
+	product_ads = "Seed for yourself!;Green!;Only genetically modified!"
+	icon_state = "seeds"
+	vendor_department = DEPARTMENT_OFFSHIP
+	products = list(
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_high = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_high = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_high = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_fast = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_nutrients_false = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_water_false = 2
+		)
+	contraband = list(
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_max = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_max = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_max = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_faster = 2
+		)
+	prices = list(
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_high = 1000,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_high = 1000,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_high = 1000,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_fast = 1000,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_nutrients_false = 1000,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_water_false = 1000,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_max = 1000,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_max = 1000,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_max = 1000,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_faster = 1000
+		)
+
+/obj/machinery/vending/plant_gene/Initialize()
+	. = ..()
+	var/light_color = pick(\
+		COLOR_LIGHTING_RED_DARK,\
+		COLOR_LIGHTING_BLUE_DARK,\
+		COLOR_LIGHTING_GREEN_DARK,\
+		COLOR_LIGHTING_ORANGE_DARK,\
+		COLOR_LIGHTING_PURPLE_DARK,\
+		COLOR_LIGHTING_CYAN_DARK\
+		)
+	set_light(1.4, 1, light_color)
+
+	wires = new /datum/wires/vending/intermediate(src)
+
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"
 	desc = "A custom vending machine."
