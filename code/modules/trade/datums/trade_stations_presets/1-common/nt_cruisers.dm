@@ -11,9 +11,9 @@
 	markup = WHOLESALE_GOODS
 	base_income = 1600
 	wealth = 0
-	hidden_inv_threshold = 4000
-	recommendation_threshold = 0
-	stations_recommended = list()
+	hidden_inv_threshold = 3000
+	recommendation_threshold = 4000
+	stations_recommended = list("botany")
 	inventory = list(
 		"Biomatter Products" = list(
 			/obj/item/reagent_containers/food/snacks/meat = custom_good_price(100),

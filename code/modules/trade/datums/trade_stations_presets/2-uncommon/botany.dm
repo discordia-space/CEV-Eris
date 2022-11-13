@@ -15,7 +15,7 @@
 	hidden_inv_threshold = 3000
 	recommendation_threshold = 0
 	stations_recommended = list()
-	recommendations_needed = 1
+	recommendations_needed = 2
 	inventory = list(
 		"Biochemistry" = list(
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency = custom_good_name("gene disk: potency (50)"),
@@ -36,12 +36,14 @@
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/hardiness/pest_tolerance = custom_good_name("gene disk: pest tolerance (7)"),
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/hardiness/weed_tolerance = custom_good_name("gene disk: weed tolerance (7)")
 		),
-		"Vigour" = list(
-			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield = custom_good_name("gene disk: yield (7)"),
-			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production = custom_good_name("gene disk: production (8)"),
-			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation = custom_good_name("gene disk: maturation (8)"),
+		"Vigour/Structure" = list(
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield = custom_good_name("gene disk: yield (5)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production = custom_good_name("gene disk: production (5)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation = custom_good_name("gene disk: maturation (5)"),
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/spreading = custom_good_name("gene disk: spreading (1)"),
-			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/not_spreading = custom_good_name("gene disk: non-spreading")
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/not_spreading = custom_good_name("gene disk: non-spreading"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/structure/repeat_harvest = custom_good_name("gene disk: repeatable harvest"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/structure/single_harvest = custom_good_name("gene disk: single harvest")
 		),
 		"Output" = list(
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/output/power_producer = custom_good_name("gene disk: battery"),
@@ -69,15 +71,13 @@
 	hidden_inventory = list(
 		"Rare Genes" = list(
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_high = custom_good_name("gene disk: potency (100)"),
-			/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_nutrients_false = custom_good_name("gene disk: no nutrients"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/no_nutrients_water = custom_good_name("gene disk: no nutrients/water"),
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_nutrients = custom_good_name("gene disk: requires nutrients"),
-			/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_water_false = custom_good_name("gene disk: no water"),
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_water = custom_good_name("gene disk: requires water"),
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_high = custom_good_name("gene disk: yield (10)"),
-			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_high = custom_good_name("gene disk: production (5)"),
-			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_fast = custom_good_name("gene disk: maturation (5)"),
-			/obj/item/computer_hardware/hard_drive/portable/plantgene/structure/repeat_harvest = custom_good_name("gene disk: repeatable harvest"),
-			/obj/item/computer_hardware/hard_drive/portable/plantgene/structure/single_harvest = custom_good_name("gene disk: single harvest")
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_high = custom_good_name("gene disk: production (3)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_fast = custom_good_name("gene disk: maturation (3)"),
+
 		)
 	)
 	offer_types = list(

@@ -31,7 +31,9 @@
 
 	preloaded_gene.update_name()
 
-	disk_name += " ([plant_name] #[plant_id], [trait_info])"
+	store_file(preloaded_gene)
+
+	disk_name = "[plant_name] #[plant_id], [trait_info]"
 	. = ..()
 
 // BIOCHEMISTRY
@@ -120,17 +122,13 @@
 	preset_genetype = GENE_METABOLISM
 	bad_type = /obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism
 
-/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_nutrients_false
-	trait_info = "requires nutrients: FALSE"
-	preset_values = list(TRAIT_REQUIRES_NUTRIENTS = 0)
+/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/no_nutrients_water
+	trait_info = "requires nutrients/water: FALSE"
+	preset_values = list(TRAIT_REQUIRES_NUTRIENTS = 0, TRAIT_REQUIRES_WATER = 0)
 
 /obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_nutrients
 	trait_info = "requires nutrients: TRUE"
 	preset_values = list(TRAIT_REQUIRES_NUTRIENTS = 1)
-
-/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_water_false
-	trait_info = "requires water: FALSE"
-	preset_values = list(TRAIT_REQUIRES_WATER = 0)
 
 /obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_water
 	trait_info = "requires water: TRUE"
@@ -142,12 +140,12 @@
 	bad_type = /obj/item/computer_hardware/hard_drive/portable/plantgene/vigour
 
 /obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield
-	trait_info = "yield: 7"
-	preset_values = list(TRAIT_YIELD = 7)
+	trait_info = "yield: 5"
+	preset_values = list(TRAIT_YIELD = 5)
 
 /obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_high
-	trait_info = "yield: 12"
-	preset_values = list(TRAIT_YIELD = 12)
+	trait_info = "yield: 10"
+	preset_values = list(TRAIT_YIELD = 10)
 
 /obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_max
 	trait_info = "yield: 15"
@@ -155,27 +153,27 @@
 
 /obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production
 	trait_info = "production: 8"
-	preset_values = list(TRAIT_PRODUCTION = 8)
+	preset_values = list(TRAIT_PRODUCTION = 5)
 
 /obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_high
 	trait_info = "production: 5"
-	preset_values = list(TRAIT_PRODUCTION = 5)
+	preset_values = list(TRAIT_PRODUCTION = 3)
 
 /obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_max
 	trait_info = "production: 3"
-	preset_values = list(TRAIT_PRODUCTION = 3)
+	preset_values = list(TRAIT_PRODUCTION = 1)
 
 /obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation
 	trait_info = "maturation: 8"
-	preset_values = list(TRAIT_MATURATION = 8)
+	preset_values = list(TRAIT_MATURATION = 5)
 
 /obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_fast
 	trait_info = "maturation: 5"
-	preset_values = list(TRAIT_MATURATION = 5)
+	preset_values = list(TRAIT_MATURATION = 3)
 
 /obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_faster
 	trait_info = "maturation: 3"
-	preset_values = list(TRAIT_MATURATION = 3)
+	preset_values = list(TRAIT_MATURATION = 1)
 
 /obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/spreading
 	trait_info = "spreading: 1"
