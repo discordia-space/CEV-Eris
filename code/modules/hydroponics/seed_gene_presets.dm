@@ -166,6 +166,31 @@
 	trait_info = "requires water: TRUE"
 	preset_values = list(TRAIT_REQUIRES_WATER = 1)
 
+// DIET
+/obj/item/computer_hardware/hard_drive/portable/plantgene/diet
+	preset_genetype = GENE_DIET
+	bad_type = /obj/item/computer_hardware/hard_drive/portable/plantgene/diet
+
+/obj/item/computer_hardware/hard_drive/portable/plantgene/diet/carnivorous
+	disk_name = "plant gene disk - carnivorous"
+	trait_info = "carnivorous"
+	preset_values = list(TRAIT_CARNIVOROUS = 1)
+
+/obj/item/computer_hardware/hard_drive/portable/plantgene/diet/noncarnivorous
+	disk_name = "plant gene disk - non-carnivorous"
+	trait_info = "non-carnivorous"
+	preset_values = list(TRAIT_CARNIVOROUS = 0)
+
+/obj/item/computer_hardware/hard_drive/portable/plantgene/diet/parasitic
+	disk_name = "plant gene disk - parasitic"
+	trait_info = "parasitic"
+	preset_values = list(TRAIT_PARASITE = 1)
+
+/obj/item/computer_hardware/hard_drive/portable/plantgene/diet/nonparasitic
+	disk_name = "plant gene disk - non-parasitic"
+	trait_info = "non-parasitic"
+	preset_values = list(TRAIT_PARASITE = 0)
+
 // VIGOUR
 /obj/item/computer_hardware/hard_drive/portable/plantgene/vigour
 	preset_genetype = GENE_VIGOUR
@@ -230,6 +255,16 @@
 	disk_name = "plant gene disk - spreading: 0"
 	trait_info = "spreading: 0"
 	preset_values = list(TRAIT_SPREAD = 0)
+
+/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/wall_hugger
+	disk_name = "plant gene disk - wall growth"
+	trait_info = "wall growth"
+	preset_values = list(TRAIT_WALL_HUGGER = 1)
+
+/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/non_wall_hugger
+	disk_name = "plant gene disk - no wall growth"
+	trait_info = "no wall growth"
+	preset_values = list(TRAIT_WALL_HUGGER = 0)
 
 // STRUCTURE
 /obj/item/computer_hardware/hard_drive/portable/plantgene/structure

@@ -50,6 +50,8 @@
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/not_spreading = custom_good_name("plant gene disk: non-spreading"),
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/spreading = custom_good_name("plant gene disk: spreading (1)"),
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/vine_spreading = custom_good_name("plant gene disk: spreading (2)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/wall_hugger = custom_good_name("plant gene disk: wall growth"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/non_wall_hugger = custom_good_name("plant gene disk: no wall growth"),
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/structure/repeat_harvest = custom_good_name("plant gene disk: repeatable harvest"),
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/structure/single_harvest = custom_good_name("plant gene disk: single harvest")
 		),
@@ -84,7 +86,11 @@
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/requires_water = custom_good_name("plant gene disk: requires water"),
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_high = custom_good_name("plant gene disk: yield (10)"),
 			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_high = custom_good_name("plant gene disk: production (3)"),
-			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_fast = custom_good_name("plant gene disk: maturation (3)")
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_fast = custom_good_name("plant gene disk: maturation (3)"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/diet/carnivorous = custom_good_name("plant gene disk: carnivorous"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/diet/noncarnivorous = custom_good_name("plant gene disk: non-carnivorous"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/diet/parasitic = custom_good_name("plant gene disk: parasitic"),
+			/obj/item/computer_hardware/hard_drive/portable/plantgene/diet/nonparasitic = custom_good_name("plant gene disk: non-parasitic")
 		)
 	)
 	offer_types = list(
