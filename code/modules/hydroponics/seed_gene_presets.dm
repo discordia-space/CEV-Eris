@@ -236,7 +236,7 @@
 	preset_values = list(TRAIT_BIOLUM = 5)
 
 // PIGMENT
-/obj/item/computer_hardware/hard_drive/portable/plantgene/pigmet
+/obj/item/computer_hardware/hard_drive/portable/plantgene/pigment
 	preset_genetype = GENE_PIGMENT
 	bad_type = /obj/item/computer_hardware/hard_drive/portable/plantgene/pigment
 
