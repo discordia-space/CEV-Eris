@@ -4,7 +4,7 @@
 	)
 	icon_states = list("nt_frigate", "ship")
 	uid = "nt_basic"
-	tree_x = 0.82
+	tree_x = 0.26
 	tree_y = 0.9
 	start_discovered = TRUE
 	spawn_always = TRUE

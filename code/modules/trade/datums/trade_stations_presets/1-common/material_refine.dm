@@ -4,7 +4,7 @@
 	)
 	icon_states = list("htu_frigate", "ship")
 	uid = "materials"
-	tree_x = 0.26
+	tree_x = 0.18
 	tree_y = 0.9
 	start_discovered = TRUE
 	spawn_always = TRUE

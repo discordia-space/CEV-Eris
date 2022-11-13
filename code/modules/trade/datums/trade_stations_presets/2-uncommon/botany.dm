@@ -4,8 +4,8 @@
 	)
 	icon_states = list("moe_capital", "ship")
 	uid = "botany"
-	tree_x = 0.38
-	tree_y = 0.5
+	tree_x = 0.34
+	tree_y = 0.6
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS
