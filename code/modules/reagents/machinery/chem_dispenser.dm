@@ -242,7 +242,7 @@
 
 	accept_beaker = FALSE
 	density = FALSE
-	dispensable_reagents = list("water","ice","coffee","cream","tea","greentea","icetea","icegreentea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","lemonjuice","watermelonjuice")
+	dispensable_reagents = list("water","ice","coffee","cream","tea","greentea","icetea","icegreentea","cola","spacemountainwind","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","lemonjuice","watermelonjuice")
 	hacked_reagents = list("thirteenloko","grapesoda")
 	has_tiered_reagents = FALSE
 
