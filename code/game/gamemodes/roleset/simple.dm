@@ -87,7 +87,8 @@
 	id = "malf"
 	name = "malfunctioning AI"
 	role_id = ROLE_MALFUNCTION
-	req_crew = 15
+	req_crew = 20
+	ocurrences_max = 1
 
 
 /datum/storyevent/roleset/marshal
