@@ -82,13 +82,13 @@
 
 
 
-
+/*
 /datum/storyevent/roleset/malf
 	id = "malf"
 	name = "malfunctioning AI"
 	role_id = ROLE_MALFUNCTION
 	req_crew = 15
-
+*/
 
 /datum/storyevent/roleset/marshal
 	id = "marshal"
