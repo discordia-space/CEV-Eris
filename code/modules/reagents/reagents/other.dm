@@ -437,7 +437,7 @@
 		var/organ_process = pick(OP_LIVER, OP_LUNGS, OP_KIDNEYS, OP_BLOOD_VESSEL, OP_STOMACH)
 		var/obj/item/organ/internal/I = H.random_organ_by_process(organ_process)
 		if(istype(I))
-			I.take_damage(rand(1,15), FALSE, TOX)
+			I.take_damage(dose/2, FALSE, TOX)
 
 // This was created to give people a way to cool reagents without needing a chem heater. Use it in a sprayer.
 /datum/reagent/other/coolant/touch_obj(obj/O, amount)

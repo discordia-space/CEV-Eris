@@ -29,7 +29,7 @@
 	reagent_type = "Metal"
 
 /datum/reagent/metal/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_MECH_REPAIR, 0.1)	// Makes metals useful and stackable for FBPs
+	M.add_chemical_effect(CE_MECH_REPAIR, 0.05)	// Makes metals useful and stackable for FBPs
 
 /datum/reagent/metal/aluminum
 	name = "Aluminum"
@@ -465,7 +465,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/heart/L = H.random_organ_by_process(OP_HEART)
 		if(istype(L))
-			L.take_damage(rand(1,15), FALSE, TOX)
+			L.take_damage(dose/4, FALSE, TOX)
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
 

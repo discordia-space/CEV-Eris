@@ -46,10 +46,10 @@
 	var/obj/item/organ/internal/nerve/user_nerve = user.random_organ_by_process(OP_NERVE)
 	if(!user_muscle)
 		return FALSE
-	user_muscle.take_damage(rand(1,15), FALSE, TOX)
+	user_muscle.take_damage(dose/3, FALSE, TOX)
 	if(!user_nerve)
 		return FALSE
-	user_nerve.take_damage(rand(1,15), FALSE, TOX)
+	user_nerve.take_damage(dose/3, FALSE, TOX)
 	if(prob(3))
 		to_chat(user, span_danger("Your muscles ache with agonizing pain!"))
 		user.Weaken(2)
@@ -123,7 +123,7 @@
 	var/obj/item/organ/internal/blood_vessel/user_vessel = user.random_organ_by_process(OP_BLOOD_VESSEL)
 	if(!user_vessel)
 		return FALSE
-	user_vessel.take_damage(rand(1,15), FALSE, TOX)
+	user_vessel.take_damage(dose/3, FALSE, TOX)
 	if(prob(1))
 		to_chat(user, "You feel a sharp pain in your chest.")
 
@@ -181,7 +181,7 @@
 	var/obj/item/organ/internal/liver/user_liver = user.random_organ_by_process(OP_LIVER)
 	if(!user_liver)
 		return FALSE
-	user_liver.take_damage(rand(1,15), FALSE, TOX)
+	user_liver.take_damage(dose/3, FALSE, TOX)
 	// For those special people
 	if(volume > 300 && prob(10))
 		var/obj/item/organ/internal/blood_vessel/user_vessel = user.random_organ_by_process(OP_BLOOD_VESSEL)
@@ -642,7 +642,7 @@
 	M.add_chemical_effect(CE_BLOODCLOT, 0.25)
 
 /datum/reagent/medicine/quickclot/overdose(mob/living/carbon/M, alien)
-	M.add_chemical_effect(CE_BLOODCLOT, 0.5)
+	M.add_chemical_effect(CE_BLOODCLOT, 0.25)
 
 /datum/reagent/medicine/ossisine
 	name = "Ossisine"

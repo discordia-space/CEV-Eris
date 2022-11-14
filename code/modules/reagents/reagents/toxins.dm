@@ -80,7 +80,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
 		if(istype(L))
-			L.take_damage(rand(5,20), FALSE, TOX)
+			L.take_damage(dose/2, FALSE, TOX)
 	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_ADEPT, STIM_TIME, "carpotoxin")
 
 /datum/reagent/toxin/carpotoxin/withdrawal_act(mob/living/carbon/M)
@@ -631,7 +631,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
 		if(istype(L))
-			L.take_damage(rand(5,20), FALSE, TOX)
+			L.take_damage(dose/2, FALSE, TOX)
 	if(issmall(M))
 		M.adjustToxLoss(strength * 2)
 	else
@@ -669,10 +669,10 @@
 	var/mob/living/carbon/human/H = M
 	var/obj/item/organ/internal/heart/S = H.random_organ_by_process(OP_HEART)
 	if(istype(S))
-		S.take_damage(rand(5,20), FALSE, TOX)
+		S.take_damage(dose/2, FALSE, TOX)
 	var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
 	if(istype(L))
-		L.take_damage(rand(5,20), FALSE, TOX)
+		L.take_damage(dose/2, FALSE, TOX)
 
 /datum/reagent/toxin/starkellin
 	name = "Starkellin"

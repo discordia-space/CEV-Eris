@@ -314,7 +314,7 @@
 /datum/reagent/nanites/fbp/repair/overdose(mob/living/carbon/M, alien)
 	if(!..())
 		return
-	M.add_chemical_effect(CE_MECH_REPAIR, 0.95)
+	M.add_chemical_effect(CE_MECH_REPAIR, 0.25)
 	
 /* Uncomment when CE_MECH_REPLENISH has a use
 // "Blood" restore

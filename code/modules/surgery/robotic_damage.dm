@@ -34,7 +34,7 @@
 		SPAN_WARNING("[user]'s hand slips, damaging the mechanisms of [organ.get_surgery_name()] with [tool]!"),
 		SPAN_WARNING("Your hand slips, damaging the mechanisms of [organ.get_surgery_name()] with [tool]!")
 	)
-	organ.take_damage(rand(3,5), 0)
+	organ.take_damage(rand(5,15), 0)
 
 
 

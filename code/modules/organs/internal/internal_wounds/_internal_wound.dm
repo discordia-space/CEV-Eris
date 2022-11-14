@@ -84,10 +84,15 @@
 
 	// Chemical treatment handling
 	var/is_treated = FALSE
-	var/list/owner_ce = H.chem_effects
+	var/list/owner_ce = H.chem_effects.Copy()
 	if(owner_ce && LAZYLEN(owner_ce))
 		for(var/chem_effect in owner_ce)
-			is_treated = try_treatment(TREATMENT_CHEM, chem_effect, owner_ce[chem_effect])
+			var/to_remove = try_treatment(TREATMENT_CHEM, chem_effect, owner_ce[chem_effect])
+			if(to_remove > 0)	// Negative value means not enough, 0 means failed treatment
+				H.chem_effects[chem_effect] -= to_remove
+				is_treated = TRUE
+				break
+
 	if(is_treated)
 		return
 
