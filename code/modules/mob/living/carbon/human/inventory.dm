@@ -452,6 +452,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 		style_factor += 1 // if we're not wearing any glasses we look stylish
 	if (gloves && !(suit_coverage & COVERS_FOREARMS))
 		style_factor += gloves.get_style()
+	else
+		style_factor -= 1 // if we're not hiding fingerprints we're definitely stylish
 	if (w_uniform && !((gloves || suit_coverage & COVERS_FOREARMS) && (shoes || suit_coverage & COVERS_FORELEGS) && (suit_coverage & (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS)) == (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS))) // if suit_coverage AND three flags equals those three flags, then it means it has those three flags.
 		style_factor += w_uniform.get_style()
 	if (shoes && !(suit_coverage & COVERS_FORELEGS))
