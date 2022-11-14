@@ -210,10 +210,10 @@
 	)
 	matter = list(
 		MATERIAL_STEEL = 8,
-		MATERIAL_PLASTEEL = 1,
+		MATERIAL_PLASTEEL = 1
 	)
 	slowdown = LIGHT_SLOWDOWN
-	stiffness = LIGHT_STIFFNESS
+	stiffness = 0
 
 /obj/item/clothing/accessory/armor/on_attached()
 	..()
@@ -237,10 +237,10 @@
 	)
 	matter = list(
 		MATERIAL_STEEL = 10,
-		MATERIAL_PLASTEEL = 3,
+		MATERIAL_PLASTEEL = 3
 	)
 	slowdown = LIGHT_SLOWDOWN
-	stiffness = MEDIUM_STIFFNESS
+	stiffness = LIGHT_STIFFNESS
 
 /obj/item/clothing/accessory/armor/platecarrier
 	name = "platecarrier armor plates"
@@ -256,9 +256,8 @@
 	)
 	matter = list(
 		MATERIAL_STEEL = 10,
-		MATERIAL_PLASTEEL = 3,
+		MATERIAL_PLASTEEL = 3
 	)
-	slowdown = LIGHT_SLOWDOWN
 
 /obj/item/clothing/accessory/armor/riot
 	name = "padded armor plates"
@@ -287,7 +286,7 @@
 		bio = 0,
 		rad = 0
 	)
-	slowdown = LIGHT_SLOWDOWN
+	stiffness = LIGHT_STIFFNESS
 
 //Ponchos, Capes and Cloaks//
 
