@@ -230,7 +230,7 @@
 		O.parent.status &= ~status_flag
 
 /datum/component/internal_wound/proc/apply_damage()
-	if(!can_damage)
+	if(!can_damage_organ)
 		return
 
 	var/obj/item/organ/internal/O = parent
