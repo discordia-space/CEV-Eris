@@ -59,10 +59,11 @@
 #define CE_ONCOCIDAL        "anticancer"
 
 // Chem effects for robotic/assisted organs
-#define CE_MECH_STABLE 		"coolant"
-#define CE_MECH_COOLING 	"refrigerant"
+#define CE_MECH_STABLE 		"cooling"
 #define CE_MECH_ACID 		"acid"
-#define CE_MECH_LUBE		"lubrication"
+#define CE_MECH_LUBE		"lubrication"       // Unused
+#define CE_MECH_REPAIR 		"nanite repair"     // Repair damage
+#define CE_MECH_REPLENISH 	"nanite replenish"  // Replenish fluid, unused
 
 // Reagent specific heat is not yet implemented, this is here for compatibility reasons
 #define SPECIFIC_HEAT_DEFAULT			200

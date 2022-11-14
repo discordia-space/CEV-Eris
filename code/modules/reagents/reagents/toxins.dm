@@ -270,7 +270,6 @@
 	power = 10
 	meltdose = 4
 
-
 /datum/reagent/toxin/lexorin
 	name = "Lexorin"
 	id = "lexorin"

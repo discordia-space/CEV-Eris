@@ -400,6 +400,10 @@
 	var/reagent_property_coeff = 2796	// 0.7857 * 3559, the density (kg/L) and specific heat (J/(kg K)) of 50:50 propylene glycol water
 	var/latent_heat = 600			// Arbitrarily chosen amount. Just needs to be worse than refrigerant.
 
+/datum/reagent/other/coolant/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	var/cooling_coeff = round(latent_heat / 1000, 0.1)
+	M.add_chemical_effect(CE_MECH_STABLE, cooling_coeff)
+
 /*		Proc was removed because of griefing
 #define COOLANT_LATENT_HEAT 19000
 /datum/reagent/other/coolant/touch_turf(var/turf/simulated/T)

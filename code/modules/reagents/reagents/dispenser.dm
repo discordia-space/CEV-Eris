@@ -28,6 +28,9 @@
 /datum/reagent/metal
 	reagent_type = "Metal"
 
+/datum/reagent/metal/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	M.add_chemical_effect(CE_MECH_REPAIR, 0.1)	// Makes metals useful and stackable for FBPs
+
 /datum/reagent/metal/aluminum
 	name = "Aluminum"
 	id = "aluminum"
@@ -230,8 +233,8 @@
 	reagent_state = SOLID
 	color = "#353535"
 
-
 /datum/reagent/metal/iron/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	..()
 	M.add_chemical_effect(CE_BLOODRESTORE, 0.8 * effect_multiplier)
 
 /datum/reagent/metal/lithium
@@ -327,6 +330,9 @@
 	reagent_type = "Acid"
 	var/power = 5
 	var/meltdose = 10 // How much is needed to melt
+
+/datum/reagent/acid/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	M.add_chemical_effect(CE_MECH_ACID, 0.2 * power)
 
 /datum/reagent/acid/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.take_organ_damage(0, (issmall(M) ? effect_multiplier * 2: effect_multiplier * power * 2))

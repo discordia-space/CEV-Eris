@@ -10,6 +10,7 @@
 	name = "mechanical malfunction"
 	treatments_item = list(/obj/item/stack/nanopaste = 2)
 	treatments_tool = list(QUALITY_HAMMERING = FAILCHANCE_NORMAL)	// Nanopaste will be allowed as treatment via surgery steps
+	treatments_chem = list(CE_MECH_REPAIR = 0.55)		// repair nanites + 3 metals
 	scar = /datum/component/internal_wound/robotic/deformation
 	severity = 2
 	hal_damage = 0.25
@@ -25,6 +26,7 @@
 	name = "perforation"
 	treatments_item = list(/obj/item/stack/nanopaste = 2)
 	treatments_tool = list(QUALITY_SEALING = FAILCHANCE_NORMAL)	// Nanopaste will be allowed as treatment via surgery steps
+	treatments_chem = list(CE_MECH_REPAIR = 0.85)		// repair nanites + 6 metals
 	severity = 2
 	hal_damage = 0.25
 	tox_damage = 0.25	// Fluid leak
@@ -40,6 +42,7 @@
 	name = "electrical short"
 	treatments_item = list(/obj/item/stack/cable_coil = 5)
 	treatments_tool = list(QUALITY_CLAMPING = FAILCHANCE_NORMAL)	// Wiring will be allowed as treatment via surgery steps
+	treatments_chem = list(CE_MECH_REPAIR = 0.85)
 	severity = 2
 	hal_damage = 0.25
 
@@ -54,6 +57,7 @@
 	name = "electrical malfunction"
 	treatments_item = list(/obj/item/stack/cable_coil = 5)
 	treatments_tool = list(QUALITY_PULSING = FAILCHANCE_NORMAL)
+	treatments_chem = list(CE_MECH_REPAIR = 1)		// repair nanites + 8 metals
 	severity = 2
 	hal_damage = 0.25
 
@@ -61,12 +65,13 @@
 	name = "overheating component"
 	treatments_item = list(/obj/item/stack/cable_coil = 5)
 	treatments_tool = list(QUALITY_PULSING = FAILCHANCE_NORMAL)
-	treatments_chem = list(CE_MECH_COOLING = 2)
+	treatments_chem = list(CE_MECH_STABLE = 1.5)	// refrigerant
 
 // Tox
 /datum/component/internal_wound/robotic/build_up
 	name = "clogged filter"
 	treatments_tool = list(QUALITY_PRYING = FAILCHANCE_NORMAL)	// Pop it out and replace the filter
+	treatments_chem = list(CE_MECH_ACID = 1)		// sulphiric acid
 	severity = 1
 	tox_damage = 0.25
 
@@ -76,8 +81,8 @@
 // Other wounds
 /datum/component/internal_wound/robotic/corrosion
 	name = "corrosion"
-	treatments_chem = list(CE_MECH_ACID = 1)
-	scar = /datum/component/internal_wound/robotic/deformation
+	treatments_chem = list(CE_MECH_ACID = 1.6)	// sulphiric + hydrochloric acid or poly acid
+	scar = /datum/component/internal_wound/robotic/blunt	// Cleaning corrosion involves removing material
 	severity = 2
 	tox_damage = 0.25
 
@@ -88,5 +93,6 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	name = "plastic deformation"
 	treatments_tool = list(QUALITY_WELDING = FAILCHANCE_NORMAL)
+	treatments_chem = list(CE_MECH_REPAIR = 2)	// repair nanobot OD + 8 metals
 	severity = 4
 	hal_damage = 0.5

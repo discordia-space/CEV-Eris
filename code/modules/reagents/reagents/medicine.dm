@@ -461,6 +461,7 @@
 
 /datum/reagent/medicine/hyronalin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.radiation = max(M.radiation - (3 * effect_multiplier), 0)
+	M.add_chemical_effect(CE_ONCOCIDAL, 1)
 
 /datum/reagent/medicine/arithrazine
 	name = "Arithrazine"
@@ -477,6 +478,7 @@
 	M.adjustToxLoss(-(1 + (M.getToxLoss() * 0.05)) * effect_multiplier)
 	if(prob(60))
 		M.take_organ_damage(0.4 * effect_multiplier, 0)
+	M.add_chemical_effect(CE_ONCOCIDAL, 1)
 
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"

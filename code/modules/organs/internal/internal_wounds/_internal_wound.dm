@@ -12,6 +12,7 @@
 
 	var/severity						// How much the wound contributes to internal organ damage
 	var/severity_max = 2				// How far the wound can progress, default is 2
+	var/can_damage_organ = TRUE			// Does wound severity damage the parent organ?
 
 	var/can_progress = FALSE			// Whether the wound can progress or not
 	var/datum/component/next_wound		// If defined, applies a wound of this type when severity is at max
@@ -229,6 +230,9 @@
 		O.parent.status &= ~status_flag
 
 /datum/component/internal_wound/proc/apply_damage()
+	if(!can_damage)
+		return
+
 	var/obj/item/organ/internal/O = parent
 
 	if(severity)
