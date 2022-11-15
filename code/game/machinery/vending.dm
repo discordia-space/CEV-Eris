@@ -369,7 +369,8 @@
 			if(istype(I, alt_currency_path))
 				paid = pay_with_item(I, user)
 			else
-				to_chat(user, SPAN_WARNING("This vending machine does not accept \the [I] as currency."))
+				var/atom/movable/AM = alt_currency_path
+				to_chat(user, SPAN_WARNING("This vending machine only accepts [initial(AM.name)] as currency."))
 			handled = TRUE
 		else
 			if(ID) //for IDs and PDAs and wallets with IDs
