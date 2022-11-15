@@ -580,7 +580,7 @@
 /obj/item/tool_upgrade/augment/hammer_addon
 	name = "Platsteel surface"
 	icon_state = "hammer_addon"
-	desc = "An hammer reinforcement made of platsteel, a hardier material for ."
+	desc = "An tool reinforcement made of platsteel, a sturdier material fit for hammering."
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_STEEL = 2)
 	rarity_value = 30
 
