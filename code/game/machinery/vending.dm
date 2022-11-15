@@ -367,7 +367,7 @@
 
 		if(alt_currency_path)
 			if(istype(I, alt_currency_path))
-				paid = pay_with_item(I)
+				paid = pay_with_item(I, user)
 			else
 				to_chat(user, SPAN_WARNING("This vending machine does not accept \the [I] as currency."))
 			handled = TRUE
@@ -569,7 +569,7 @@
 		return 1
 
 // Pay with an alternative currency
-/obj/machinery/vending/proc/pay_with_item(obj/item/I)
+/obj/machinery/vending/proc/pay_with_item(obj/item/I, mob/user)
 	var/should_qdel = TRUE
 	var/amount_to_spend = currently_vending.price
 
@@ -582,7 +582,7 @@
 			to_chat(user, SPAN_WARNING("\icon[I] That is not enough money."))
 			return FALSE
 
-	visible_message(SPAN_NOTICE("\The [user] inserts ["[amount_to_spend]"] [I.name] into \the [parent]."))
+	visible_message(SPAN_NOTICE("\The [user] inserts ["[amount_to_spend]"] [I.name] into \the [src]."))
 
 	if(should_qdel)
 		user.drop_from_inventory(I)
