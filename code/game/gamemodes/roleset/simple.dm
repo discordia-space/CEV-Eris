@@ -89,7 +89,7 @@
 	role_id = ROLE_MALFUNCTION
 	req_crew = 20
 	ocurrences_max = 1
-
+	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE)
 
 /datum/storyevent/roleset/marshal
 	id = "marshal"
