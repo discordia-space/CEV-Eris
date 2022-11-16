@@ -388,7 +388,7 @@ meteor_act
 
 				if("winded")
 					visible_message(SPAN_WARNING("[src] is winded!"), SPAN_DANGER("You feel disoriented!"))
-					confused = max(src.confused, 2)
+					confused = max(confused, 2)
 					external_recoil(40)
 					var/obj/item/I = get_active_hand()
 					var/mob/living/carbon/M = user
