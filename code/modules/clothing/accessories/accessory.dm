@@ -213,7 +213,6 @@
 		MATERIAL_PLASTEEL = 1
 	)
 	slowdown = LIGHT_SLOWDOWN
-	stiffness = 0
 
 /obj/item/clothing/accessory/armor/on_attached()
 	..()
