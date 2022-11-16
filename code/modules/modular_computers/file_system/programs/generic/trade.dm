@@ -198,25 +198,16 @@
 		return TRUE
 
 	if(href_list["PRG_account"])
-		var/card_check = computer?.card_slot?.stored_card?.associated_account_number
-		var/acc_num = card_check
-		var/acc_pin
-		var/datum/money_account/A
+		var/acc_num = input("Enter account number", "Account linking", computer?.card_slot?.stored_card?.associated_account_number) as num|null
+		if(!acc_num)
+			return
 
-		// Does not check if the user of the card is the owner of the card. Don't lose your ID.
-		if(!card_check)
-			acc_num = input("Enter account number", "Account linking") as num|null
-			if(!acc_num)
-				return
+		var/acc_pin = input("Enter PIN", "Account linking") as num|null
+		if(!acc_pin)
+			return
 
-			acc_pin = input("Enter PIN", "Account linking") as num|null
-			if(!acc_pin)
-				return
-
-			A = attempt_account_access(acc_num, acc_pin, card_check ? 2 : 1, TRUE)
-		else
-			A = get_account(card_check)
-
+		var/card_check = computer?.card_slot?.stored_card?.associated_account_number == acc_num
+		var/datum/money_account/A = attempt_account_access(acc_num, acc_pin, card_check ? 2 : 1, TRUE)
 		if(!A)
 			to_chat(usr, SPAN_WARNING("Unable to link account: access denied."))
 			return
