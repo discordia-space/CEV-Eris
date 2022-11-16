@@ -944,6 +944,13 @@
 	},
 /turf/space,
 /area/space)
+"jo" = (
+/obj/structure/salvageable/os/console{
+	dir = 8;
+	pixel_x = 2
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
 "jp" = (
 /obj/machinery/mineral/stacking_machine,
 /turf/simulated/floor/tiled/dark,
@@ -1311,6 +1318,13 @@
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "15,3"
 	},
+/area/space)
+"nH" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4;
+	pixel_x = 9
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "nI" = (
 /turf/simulated/shuttle/wall/science{
@@ -1731,8 +1745,7 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "sL" = (
-/obj/structure/table/rack,
-/obj/spawner/tool_upgrade/rare,
+/obj/machinery/photocopier,
 /turf/simulated/floor/wood,
 /area/space)
 "sM" = (
@@ -1813,8 +1826,8 @@
 	},
 /area/space)
 "tB" = (
-/mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/obj/structure/table/onestar,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "tD" = (
 /obj/structure/shuttle_part/science{
@@ -2024,6 +2037,12 @@
 	opacity = 0
 	},
 /area/space)
+"vt" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
 "vy" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "6,5"
@@ -2049,6 +2068,10 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "5,16"
 	},
+/area/space)
+"vN" = (
+/mob/living/simple_animal/hostile/roomba/boomba,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "vO" = (
 /obj/structure/table/onestar,
@@ -2348,6 +2371,10 @@
 	icon_state = "13,12";
 	opacity = 0
 	},
+/area/space)
+"ys" = (
+/obj/machinery/newscaster/security_unit/directional/north,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "yy" = (
 /turf/simulated/shuttle/wall/mining{
@@ -2739,6 +2766,13 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "10,19"
 	},
+/area/space)
+"DA" = (
+/obj/structure/sign/faction/one_star{
+	pixel_x = -32
+	},
+/obj/structure/salvageable/os/machine,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "DE" = (
 /turf/simulated/shuttle/wall/mining{
@@ -3449,6 +3483,12 @@
 	icon_state = "2,23"
 	},
 /turf/space,
+/area/space)
+"KV" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "KX" = (
 /obj/structure/bed/padded,
@@ -12563,7 +12603,7 @@ RJ
 RJ
 RJ
 XW
-tB
+vN
 XW
 RD
 Sw
@@ -18206,7 +18246,7 @@ cb
 cb
 cb
 gV
-RJ
+ys
 RJ
 gV
 cb
@@ -18612,8 +18652,8 @@ EF
 sm
 EF
 EF
-sm
-EF
+DA
+KV
 XW
 XW
 cb
@@ -18809,7 +18849,7 @@ cb
 cb
 XW
 bN
-EF
+KV
 EF
 EF
 EF
@@ -19826,7 +19866,7 @@ EF
 EF
 EF
 EF
-EF
+nH
 XW
 cb
 cb
@@ -20023,12 +20063,12 @@ XW
 EF
 EF
 EF
+tB
+mh
+tB
 EF
 EF
-EF
-EF
-EF
-EF
+jo
 XW
 cb
 cb
@@ -20225,8 +20265,8 @@ XW
 XW
 EF
 EF
-EF
-EF
+tB
+vt
 EF
 EF
 EF
@@ -20829,7 +20869,7 @@ aa
 aa
 aa
 aa
-cb
+aa
 cb
 cb
 cb
