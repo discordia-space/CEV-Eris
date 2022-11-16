@@ -53,6 +53,7 @@
 	if(!disk)
 		return
 	if(!istype(disk, /obj/item/computer_hardware/hard_drive/portable/design/omg))
+		audible_message(SPAN_WARNING("Invalid disk."))
 		return
 
 	for(var/design_file in disk.find_files_by_type(/datum/computer_file/binary/design))
