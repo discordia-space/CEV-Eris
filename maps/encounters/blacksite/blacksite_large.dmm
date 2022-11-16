@@ -16,6 +16,17 @@
 	icon_state = "16,17"
 	},
 /area/space)
+"ai" = (
+/obj/structure/table/onestar,
+/obj/item/reagent_containers/glass/bottle/cyanide{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/glass/bottle/stoxin{
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/syringe,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
 "am" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
@@ -154,13 +165,11 @@
 	},
 /area/space)
 "bQ" = (
-/obj/structure/table/onestar,
-/obj/item/handcuffs,
-/obj/item/clothing/glasses/sunglasses/blindfold{
-	pixel_y = 6
+/obj/structure/sign/faction/one_star{
+	pixel_y = 32
 	},
-/obj/item/clothing/mask/muzzle,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/mob/living/carbon/superior_animal/stalker/dual,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "bR" = (
 /obj/structure/shuttle_part/mining{
@@ -2283,6 +2292,12 @@
 	icon_state = "9,14"
 	},
 /area/space)
+"xM" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
 "xP" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "12,2"
@@ -2296,8 +2311,9 @@
 /turf/space,
 /area/space)
 "xS" = (
-/obj/spawner/mob/spiders/low_chance,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/obj/structure/bed,
+/mob/living/simple_animal/hostile/roomba/boomba,
+/turf/simulated/floor/tiled/dark/brown_platform,
 /area/space)
 "xV" = (
 /turf/simulated/shuttle/wall/science{
@@ -3351,7 +3367,8 @@
 /area/space)
 "JL" = (
 /obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2
+	dir = 2;
+	name = "Commander Yang's Office"
 	},
 /turf/simulated/floor/wood,
 /area/space)
@@ -3701,7 +3718,9 @@
 /turf/space,
 /area/space)
 "NH" = (
-/obj/structure/crematorium,
+/obj/machinery/button/crematorium{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "NM" = (
@@ -3873,14 +3892,7 @@
 	},
 /area/space)
 "Qf" = (
-/obj/structure/table/onestar,
-/obj/item/reagent_containers/glass/bottle/cyanide{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/glass/bottle/stoxin{
-	pixel_x = -5
-	},
-/obj/item/reagent_containers/syringe,
+/obj/structure/crematorium,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "Qm" = (
@@ -4056,9 +4068,7 @@
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/space)
 "RW" = (
-/obj/structure/bed/chair/custom/onestar/red{
-	dir = 1
-	},
+/obj/spawner/mob/spiders/low_chance,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "RY" = (
@@ -4513,9 +4523,12 @@
 	},
 /area/space)
 "WA" = (
-/obj/machinery/button/crematorium{
-	pixel_y = 32
+/obj/structure/table/onestar,
+/obj/item/handcuffs,
+/obj/item/clothing/glasses/sunglasses/blindfold{
+	pixel_y = 6
 	},
+/obj/item/clothing/mask/muzzle,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "WD" = (
@@ -12600,10 +12613,10 @@ gV
 gV
 gV
 gV
-gV
-gV
-gV
-gV
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -12802,10 +12815,10 @@ Ui
 Lb
 Ui
 gV
-Ui
-Lb
-Ui
-gV
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -13004,10 +13017,10 @@ EF
 EF
 EF
 gV
-EF
-EF
-EF
-gV
+cb
+cb
+cb
+cb
 cb
 gV
 gV
@@ -13190,7 +13203,7 @@ cb
 cb
 cb
 gV
-NZ
+Ab
 ww
 Ab
 gV
@@ -13206,9 +13219,9 @@ NZ
 ww
 Ab
 gV
-NZ
-ww
-Ab
+gV
+gV
+gV
 gV
 gV
 RV
@@ -13216,13 +13229,13 @@ UW
 gV
 cb
 cb
+gV
+gV
+gV
+gV
+gV
+gV
 cb
-gV
-gV
-gV
-gV
-gV
-gV
 cb
 cb
 cb
@@ -13418,13 +13431,13 @@ TY
 gV
 cb
 cb
+gV
+lO
+lO
+lO
+RW
+gV
 cb
-gV
-lO
-lO
-lO
-xS
-gV
 cb
 cb
 cb
@@ -13621,12 +13634,12 @@ gV
 gV
 gV
 gV
+lO
+lO
+lO
+WA
 gV
-lO
-lO
-lO
-bQ
-gV
+cb
 cb
 cb
 cb
@@ -13822,13 +13835,13 @@ lO
 lO
 lO
 lO
-lO
 LC
 lO
 lO
 lO
-RW
+xM
 gV
+cb
 cb
 cb
 cb
@@ -14025,12 +14038,12 @@ gV
 gV
 gV
 gV
-gV
-WA
+NH
 lO
 lO
-Qf
+ai
 gV
+cb
 cb
 cb
 cb
@@ -14226,13 +14239,13 @@ TY
 gV
 cb
 cb
+gV
+Qf
+lO
+lO
+lO
+gV
 cb
-gV
-NH
-lO
-lO
-lO
-gV
 cb
 cb
 cb
@@ -14412,7 +14425,7 @@ UU
 oC
 UU
 UU
-aF
+UU
 Rb
 UU
 UU
@@ -14424,17 +14437,17 @@ UU
 UU
 aF
 gV
-UW
+xS
 gV
 cb
 cb
+gV
+gV
+gV
+gV
+gV
+gV
 cb
-gV
-gV
-gV
-gV
-gV
-gV
 cb
 cb
 cb
@@ -16597,15 +16610,15 @@ Am
 RJ
 RJ
 RJ
-Am
+Vv
+RJ
+RJ
+Vv
 RJ
 GB
 Am
 RJ
-RJ
-Am
-RJ
-RJ
+GB
 Am
 Vv
 RJ
@@ -16799,19 +16812,19 @@ RJ
 RJ
 RJ
 RJ
+gV
+hz
+gV
+gV
+bQ
+RJ
 RJ
 GB
 RJ
 RJ
-RJ
-RJ
-nx
-RJ
-RJ
-RJ
 gV
 RJ
-RJ
+nx
 gV
 RJ
 RJ
@@ -17001,15 +17014,15 @@ HK
 RJ
 RJ
 Bu
-dB
+Vv
+RJ
+RJ
+Vv
 RJ
 GB
 dB
 RJ
-RJ
-dB
-RJ
-RJ
+GB
 dB
 Vv
 RJ
