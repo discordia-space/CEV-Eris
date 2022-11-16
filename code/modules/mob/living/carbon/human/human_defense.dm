@@ -391,7 +391,7 @@ meteor_act
 					confused = max(src.confused, 2)
 					external_recoil(40)
 					var/obj/item/I = get_active_hand()
-					mob/living/carbon/M = user
+					var/mob/living/carbon/M = user
 					if(recoil >= 60 && I)
 						if(istype(I, /obj/item/grab))
 							break_all_grabs(M) //See about breaking grips or pulls
