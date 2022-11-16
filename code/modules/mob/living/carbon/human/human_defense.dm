@@ -390,17 +390,17 @@ meteor_act
 					visible_message(SPAN_WARNING("[src] is winded!"), SPAN_DANGER("You feel disoriented!"))
 					confused = max(confused, 2)
 					external_recoil(40)
-					var/obj/item/I = get_active_hand()
+					var/obj/item/item_in_active_hand = get_active_hand()
 					var/mob/living/carbon/M = user
-					if(recoil >= 60 && I)
-						if(istype(I, /obj/item/grab))
+					if(recoil >= 60 && item_in_active_hand)
+						if(istype(item_in_active_hand, /obj/item/grab))
 							break_all_grabs(M) //See about breaking grips or pulls
 							playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 							return TRUE
-						if(I.wielded && !recoil >= 80)
+						if(item_in_active_hand.wielded && !recoil >= 80)
 							playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 							return TRUE
-						unEquip(I)
+						unEquip(item_in_active_hand)
 						visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						return TRUE
