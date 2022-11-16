@@ -7,6 +7,7 @@
 	w_class = ITEM_SIZE_SMALL
 	worksound = WORKSOUND_HAMMER
 	flags = CONDUCT
+	push_attack = TRUE
 	origin_tech = list(TECH_ENGINEERING = 1)
 	tool_qualities = list(QUALITY_HAMMERING = 20, QUALITY_PRYING = 10)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_WOOD = 2)

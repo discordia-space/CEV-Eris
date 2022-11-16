@@ -196,6 +196,7 @@
 	hud_actions += action
 
 /obj/item/gun/Destroy()
+	make_young()
 	for(var/i in firemodes)
 		if(!islist(i))
 			qdel(i)

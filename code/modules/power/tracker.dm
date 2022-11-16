@@ -60,7 +60,7 @@
 /obj/machinery/power/tracker/attackby(obj/item/I, mob/user)
 
 	if(QUALITY_PRYING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			var/obj/item/solar_assembly/S = locate() in src
 			if(S)
 				S.loc = src.loc
@@ -74,7 +74,9 @@
 
 /obj/item/electronics/tracker
 	name = "tracker electronics"
+	desc = "A board that serves to turn a solar panel into a sun tracker."
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 2)
 	w_class = ITEM_SIZE_SMALL
 	price_tag = 120

@@ -58,13 +58,13 @@
 
 
 /obj/machinery/power/solar/attackby(obj/item/I, mob/user)
-
 	if(QUALITY_PRYING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			var/obj/item/solar_assembly/S = locate() in src
 			if(S)
 				S.loc = src.loc
 				S.give_glass()
+			playsound(src.loc, 'sound/items/Crowbar.ogg', 50, TRUE)
 			user.visible_message(SPAN_NOTICE("[user] takes the glass off the solar panel."))
 			qdel(src)
 		return
@@ -81,7 +81,8 @@
 			broken()
 		else
 			new /obj/item/material/shard(src.loc)
-			new /obj/item/material/shard(src.loc)
+			new /obj/item/stack/rods(loc)
+			new /obj/item/stack/rods(loc)
 			qdel(src)
 			return
 	return
@@ -203,6 +204,7 @@
 	w_class = ITEM_SIZE_BULKY // Pretty big!
 	anchored = FALSE
 	price_tag = 100
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 5, MATERIAL_SILVER = 1)
 	var/tracker = 0
 	var/glass_type = null
 
@@ -245,27 +247,33 @@
 		if(ABORT_CHECK)
 			return
 
-	if(anchored && !isturf(loc))
-		if(istype(I, /obj/item/stack/material) && (I.get_material_name() == MATERIAL_GLASS || I.get_material_name() == MATERIAL_RGLASS))
-			var/obj/item/stack/material/S = I
-			if(S.use(2))
-				glass_type = I.type
-				playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-				user.visible_message(SPAN_NOTICE("[user] places the glass on the solar assembly."))
-				if(tracker)
-					new /obj/machinery/power/tracker(get_turf(src), src)
-				else
-					new /obj/machinery/power/solar(get_turf(src), src)
-			else
-				to_chat(user, SPAN_WARNING("You need two sheets of glass to put them into a solar panel."))
-				return
+	if(istype(I, /obj/item/stack/material/glass))
+		if(!anchored)
+			to_chat(user, SPAN_WARNING("You need to secure the assembly before you can add glass."))
 			return
+		if(locate(/obj/machinery/power/solar) in get_turf(src))
+			to_chat(user, SPAN_WARNING("A solar panel is already assembled here."))
+			return
+		var/obj/item/stack/material/S = I
+		if(S.use(2))
+			glass_type = S.type
+			playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
+			user.visible_message(SPAN_NOTICE("[user] places the glass on the solar assembly."), SPAN_NOTICE("You place the glass on the solar assembly."))
+			if(tracker)
+				new /obj/machinery/power/tracker(get_turf(src), src)
+			else
+				new /obj/machinery/power/solar(get_turf(src), src)
+		else
+			to_chat(user, SPAN_WARNING("You need two sheets of glass to put them into a solar panel!"))
+			return
+		return TRUE
 
 	if(!tracker)
 		if(istype(I, /obj/item/electronics/tracker))
 			tracker = 1
 			user.drop_item()
 			qdel(I)
+			playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
 			user.visible_message(SPAN_NOTICE("[user] inserts the electronics into the solar assembly."))
 			return
 	..()
@@ -278,11 +286,13 @@
 	name = "solar panel control"
 	desc = "A controller for solar panel arrays."
 	icon = 'icons/obj/computer.dmi'
-	icon_state = "solar"
+	icon_state = "computer"
 	anchored = TRUE
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 250
+	var/icon_screen = "solar_screen"
+	var/icon_keyboard = "power_key"
 	var/light_range_on = 1.5
 	var/light_power_on = 3
 	var/id = 0
@@ -355,19 +365,24 @@
 	set_panels(cdir)
 
 /obj/machinery/power/solar_control/update_icon()
-	if(stat & BROKEN)
-		icon_state = "broken"
-		overlays.Cut()
-		return
-	if(stat & NOPOWER)
-		icon_state = "c_unpowered"
-		overlays.Cut()
-		return
-	icon_state = "solar"
 	overlays.Cut()
-	if(cdir > -1)
-		overlays += image('icons/obj/computer.dmi', "solcon-o", FLY_LAYER, angle2dir(cdir))
-	return
+	if(stat & NOPOWER)
+		set_light(0)
+		if(icon_keyboard)
+			overlays += image(icon,"[icon_keyboard]_off")
+		update_openspace()
+		return
+	else
+		set_light(light_range_on, light_power_on)
+
+	if(stat & BROKEN)
+		overlays += image(icon,"[icon_state]_broken")
+	else
+		overlays += image(icon,icon_screen)
+
+	if(icon_keyboard)
+		overlays += image(icon, icon_keyboard)
+	update_openspace()
 
 /obj/machinery/power/solar_control/attack_hand(mob/user)
 	if(!..())
