@@ -128,7 +128,7 @@
 
 		if(E.mob_can_unequip(src))
 			if(E.is_broken() || E.is_nerve_struck() || E.limb_efficiency <= 50)
-				
+
 				drop_from_inventory(E)
 
 				if(E.limb_efficiency <= 50)
@@ -221,7 +221,7 @@
 	else
 		if(organ_type in BP_ALL_LIMBS)
 			var/obj/item/organ/external/O = E
-			if (heal && (O.damage > 0 || O.status & (ORGAN_BROKEN) || O.has_internal_bleeding()))
+			if (heal && (O.damage > 0 || O.status & (ORGAN_BROKEN)))
 				O.status &= ~ORGAN_BROKEN
 				for(var/datum/wound/W in O.wounds)
 					if(W.internal)

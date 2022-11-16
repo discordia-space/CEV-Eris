@@ -58,8 +58,6 @@
 	RegisterSignal(src, COMSIG_ATTACKBY, .proc/apply_tool)
 
 /datum/component/internal_wound/UnregisterFromParent()
-	remove_flags()
-
 	UnregisterSignal(parent, COMSIG_WOUND_EFFECTS)
 	UnregisterSignal(parent, COMSIG_WOUND_FLAGS_ADD)
 	UnregisterSignal(parent, COMSIG_WOUND_FLAGS_REMOVE)
@@ -230,7 +228,7 @@
 
 	if(!O.parent)
 		return
-	
+
 	if(status_flag)
 		O.parent.status &= ~status_flag
 

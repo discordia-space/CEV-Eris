@@ -498,6 +498,10 @@
 	if(dose > 9)
 		M.add_chemical_effect(CE_ANTIBIOTIC, 2)
 
+/datum/reagent/medicine/spaceacillin/overdose(mob/living/carbon/M, alien)
+	. = ..()
+	M.add_chemical_effect(CE_ANTIBIOTIC, 4)
+
 /datum/reagent/medicine/sterilizine
 	name = "Sterilizine"
 	id = "sterilizine"

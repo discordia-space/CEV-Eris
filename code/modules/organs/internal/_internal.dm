@@ -29,10 +29,6 @@
 	RegisterSignal(src, COMSIG_I_ORGAN_ADD_WOUND, .proc/add_wound)
 	RegisterSignal(src, COMSIG_I_ORGAN_REMOVE_WOUND, .proc/remove_wound)
 	RegisterSignal(src, COMSIG_I_ORGAN_REFRESH_SELF, .proc/refresh_upgrades)
-	if(parent)
-		RegisterSignal(parent, COMSIG_I_ORGAN_WOUND_COUNT, .proc/wound_count, TRUE)
-		RegisterSignal(parent, COMSIG_I_ORGAN_REFRESH_PARENT, .proc/refresh_organ_stats, TRUE)
-		RegisterSignal(parent, COMSIG_I_ORGAN_APPLY, .proc/apply_modifiers, TRUE)
 
 /obj/item/organ/internal/Process()
 	refresh_damage()	// Death check is in the parent proc
@@ -53,10 +49,6 @@
 	UnregisterSignal(src, COMSIG_I_ORGAN_ADD_WOUND)
 	UnregisterSignal(src, COMSIG_I_ORGAN_REMOVE_WOUND)
 	UnregisterSignal(src, COMSIG_I_ORGAN_REFRESH_SELF)
-	if(parent)
-		UnregisterSignal(parent, COMSIG_I_ORGAN_WOUND_COUNT)
-		UnregisterSignal(parent, COMSIG_I_ORGAN_REFRESH_PARENT)
-		UnregisterSignal(parent, COMSIG_I_ORGAN_APPLY)
 	..()
 
 /obj/item/organ/internal/removed()
@@ -158,14 +150,13 @@
 			if(is_robotic)
 				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/robotic/emp_burn))		// Radiation can fry electronics
 
-
 	if(is_organic)
 		LAZYREMOVE(possible_wounds, GetComponents(/datum/component/internal_wound/organic))	// Organic wounds don't stack
 
 	if(LAZYLEN(possible_wounds))
 		for(var/i in 1 to wound_count)
 			var/choice = pick(possible_wounds)
-			add_wound(choice)	
+			add_wound(choice)
 			if(ispath(choice, /datum/component/internal_wound/organic))
 				LAZYREMOVE(possible_wounds, choice)
 			if(!LAZYLEN(possible_wounds))
@@ -193,7 +184,7 @@
 					break
 			if(BV)
 				BV.current_blood = max(BV.current_blood - blood_req, 0)
-			if(BV?.current_blood == 0)	//When all blood from the organ and blood vessel is lost, 
+			if(BV?.current_blood == 0)	//When all blood from the organ and blood vessel is lost,
 				add_wound(/datum/component/internal_wound/organic/blood_loss)
 
 		return
@@ -270,7 +261,7 @@
 			)
 			if(owner.species && !(owner.species.flags & NO_PAIN))
 				owner.emote("scream")
-		
+
 			// Fractures have a chance of getting you out of restraints
 			if(prob(25))
 				parent.release_restraints()
@@ -330,7 +321,7 @@
 	var/list/wound_list = GetComponents(/datum/component/internal_wound)
 	var/list/wound_data = list()
 
-	if(wound_list && LAZYLEN(wound_list) && wound_list[1])	// GetComponents with no components returns a list with a null element 
+	if(wound_list && LAZYLEN(wound_list) && wound_list[1])	// GetComponents with no components returns a list with a null element
 		for(var/wound in wound_list)
 			var/datum/component/internal_wound/IW = wound
 			var/treatment_info = ""
@@ -343,7 +334,7 @@
 					var/atom/movable/AM = treatment
 					name = initial(AM.name)
 				treatment_info += "[name] ([num2text(treatments[treatment])]), "
-			
+
 			if(length(treatment_info))
 				treatment_info = copytext(treatment_info, 1, length(treatment_info) - 1)
 
@@ -426,8 +417,9 @@
 	if(!wound)
 		return
 	SSinternal_wounds.processing -= wound	// We don't use STOP_PROCESSING because we don't use START_PROCESSING
-	qdel(wound)
-	refresh_upgrades()
+	refresh_organ_stats()	// Split like this because we need to remove flags,
+	qdel(wound)				// remove the wound (which may apply a new flag),
+	apply_modifiers()		// and re-apply existing flags
 
 /obj/item/organ/internal/proc/wound_count()
 	if(!parent)
