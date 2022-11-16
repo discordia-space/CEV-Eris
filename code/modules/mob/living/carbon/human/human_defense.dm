@@ -273,7 +273,7 @@ meteor_act
 		return FALSE//should be prevented by attacked_with_item() but for sanity.
 
 	if(user.a_intent == I_HELP)
-		visible_message(SPAN_DANGER("[src] has been [pick("lightly poked", "tapped")] in the [affecting.name] with [I.name] by [user]!"))
+		visible_message(SPAN_WARNING("[src] has been [pick("lightly poked", "tapped")] in the [affecting.name] with [I.name] by [user]!"))
 		return FALSE
 
 	if(ishuman(user))
