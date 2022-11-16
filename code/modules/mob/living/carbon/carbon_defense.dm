@@ -44,7 +44,6 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 		//The user's robustness stat adds to the threshold, allowing you to use more powerful weapons without embedding risk
 		embed_threshold += user.stats.getStat(STAT_ROB)
 		var/embed_chance = (damage*I.embed_mult - embed_threshold)/2
-		to_chat(world, "[embed_chance]")
 		if(embed_chance > 0 && prob(embed_chance))
 			src.embed(I, hit_zone)
 
