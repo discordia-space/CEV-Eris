@@ -219,16 +219,21 @@
 
 			//Try to reduce damage by blocking
 			if(blocking)
-				stop_blocking()
-				real_damage = handle_blocking(real_damage)
-				//Tell everyone about blocking
-				H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Blocked attack of [src.name] ([src.ckey])</font>")
-				src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Attack has been blocked by [H.name] ([H.ckey])</font>")
-				visible_message(SPAN_WARNING("[src] blocks the blow!"), SPAN_DANGER("You block the blow!"))
-				//They farked up
-				if(real_damage == 0)
-					visible_message(SPAN_DANGER("The attack has been completely negated!"))
+				if(istype(get_active_hand(), /obj/item/grab))//we are blocking with a human shield! We redirect the attack. You know, because grab doesn't exist as an item.
+					var/obj/item/grab/G = get_active_hand()
+					grab_redirect_attack(M, G)
 					return
+				else
+					stop_blocking()
+					real_damage = handle_blocking(real_damage)
+					//Tell everyone about blocking
+					src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Blocked attack of [H.name] ([H.ckey])</font>")
+					H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Attack has been blocked by [src.name] ([src.ckey])</font>")
+					visible_message(SPAN_WARNING("[src] blocks the blow!"), SPAN_DANGER("You block the blow!"))
+					//They farked up
+					if(real_damage == 0)
+						visible_message(SPAN_DANGER("The attack has been completely negated!"))
+						return
 			// Apply additional unarmed effects.
 			attack.apply_effects(H, src, getarmor(affecting, ARMOR_MELEE), stat_damage, hit_zone)
 

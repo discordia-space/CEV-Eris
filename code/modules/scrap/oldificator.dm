@@ -11,6 +11,12 @@
 		var/obj/item/I = parent
 		armor = I.armor.getList()
 
+/datum/component/oldficator/Destroy()
+	old_obj = null
+	LAZYCLEARLIST(armor)
+	LAZYCLEARLIST(all_vars)
+	return ..()
+
 /datum/component/oldficator/proc/make_young()
 	for(var/V in all_vars)
 		if(istype(parent.vars[V], /datum) || ismob(parent.vars[V]) || isHUDobj(parent.vars[V]) || isobj(parent.vars[V]))
@@ -181,6 +187,8 @@
 /obj/item/reagent_containers/food/snacks/liquidfood/make_old(low_quality_oldification)
 	return
 
+// This was causing roundstart hard dels
+/*
 /obj/item/ammo_magazine/make_old(low_quality_oldification)
 	var/del_count = rand(0, stored_ammo.len)
 	if(low_quality_oldification)
@@ -191,6 +199,7 @@
 		stored_ammo -= removed_item
 		QDEL_NULL(removed_item)
 	..()
+*/
 
 /obj/item/cell/make_old(low_quality_oldification)
 	.=..()
