@@ -124,8 +124,8 @@
 		eat(user, I)
 		return
 
-	// Reject stack
-	if(istype(I, /obj/item/stack))
+	// Reject biomatter
+	if(istype(I, /obj/item/stack/material/biomatter))
 		to_chat(user, SPAN_NOTICE("You don't see a way to insert \the [I] into \the [src]."))
 		return
 
