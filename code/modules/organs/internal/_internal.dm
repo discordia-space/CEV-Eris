@@ -34,7 +34,6 @@
 	refresh_damage()	// Death check is in the parent proc
 	..()
 	handle_blood()
-	handle_regeneration()
 
 /obj/item/organ/internal/Destroy()
 	for(var/datum/component/comp as anything in GetComponents(/datum/component))
@@ -186,9 +185,6 @@
 		return
 
 	current_blood = min(current_blood + blood_req, max_blood_storage)
-
-/obj/item/organ/internal/proc/handle_regeneration()
-	return
 
 /obj/item/organ/internal/examine(mob/user)
 	. = ..()
