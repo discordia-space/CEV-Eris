@@ -159,7 +159,7 @@
 	//Note that a vendor can always accept restocks of things it has had in the past. This is in addition to that
 	var/no_criminals = FALSE //If true, the machine asks if you're wanted by security when you try to order.
 
-	var/alt_currency_path	// If set, this vending machine will only take items of the given path as currency
+	var/alt_currency_path	// If set, this machine will only take items of the given path as currency.
 
 /obj/machinery/vending/New()
 	..()
