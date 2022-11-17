@@ -37,12 +37,8 @@
 	handle_regeneration()
 
 /obj/item/organ/internal/Destroy()
-	var/list/organ_components = GetComponents(/datum/component)
-	for(var/datum/component/comp in organ_components)
-		if(istype(comp, /datum/component/internal_wound))
-			remove_wound(comp)
-		else
-			qdel(comp)
+	for(var/datum/component/comp as anything in GetComponents(/datum/component))
+		istype(comp, /datum/component/internal_wound) ? remove_wound(comp) : qdel(comp)
 	for(var/mod in item_upgrades)
 		qdel(mod)
 	item_upgrades.Cut()
@@ -307,43 +303,36 @@
 
 // Mutations
 /obj/item/organ/internal/proc/unmutate()
-	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
-
-	if(!is_organic)
+	if(!BP_IS_ORGANIC(src) || !BP_IS_ASSISTED(src))
 		return
 
-	var/list/wounds = GetComponents(/datum/component/internal_wound/organic/radiation)
-
-	for(var/datum/component/wound in wounds)
+	for(var/wound in GetComponents(/datum/component/internal_wound/organic/radiation))
 		remove_wound(wound)
 
 /obj/item/organ/internal/proc/get_wounds()
-	var/list/wound_list = GetComponents(/datum/component/internal_wound)
 	var/list/wound_data = list()
 
-	if(wound_list && LAZYLEN(wound_list) && wound_list[1])	// GetComponents with no components returns a list with a null element
-		for(var/wound in wound_list)
-			var/datum/component/internal_wound/IW = wound
-			var/treatment_info = ""
-			var/list/treatments = IW.treatments_item + IW.treatments_tool + IW.treatments_chem
+	for(var/datum/component/internal_wound/IW in GetComponents(/datum/component/internal_wound))
+		var/treatment_info = ""
+		var/list/treatments = IW.treatments_item + IW.treatments_tool + IW.treatments_chem
 
-			// Make treatments into a string for the UI
-			for(var/treatment in treatments)
-				var/name = treatment
-				if(ispath(treatment))
-					var/atom/movable/AM = treatment
-					name = initial(AM.name)
-				treatment_info += "[name] ([num2text(treatments[treatment])]), "
+		// Make treatments into a string for the UI
+		for(var/treatment in treatments)
+			var/name = treatment
+			if(ispath(treatment))
+				var/atom/movable/AM = treatment
+				name = initial(AM.name)
+			treatment_info += "[name] ([num2text(treatments[treatment])]), "
 
-			if(length(treatment_info))
-				treatment_info = copytext(treatment_info, 1, length(treatment_info) - 1)
+		if(length(treatment_info))
+			treatment_info = copytext(treatment_info, 1, length(treatment_info) - 1)
 
-			wound_data += list(list(
-				"name" = IW.name,
-				"severity" = IW.severity,
-				"severity_max" = IW.severity_max,
-				"treatments" = treatment_info,
-				"wound" = "\ref[IW]"
+		wound_data += list(list(
+			"name" = IW.name,
+			"severity" = IW.severity,
+			"severity_max" = IW.severity_max,
+			"treatments" = treatment_info,
+			"wound" = "\ref[IW]"
 			))
 
 	return wound_data
@@ -351,13 +340,11 @@
 /obj/item/organ/internal/proc/get_mods()
 	var/list/mod_data = list()
 
-	if(item_upgrades && LAZYLEN(item_upgrades))
-		for(var/mod in item_upgrades)
-			var/obj/item/modification/M = mod
+	for(var/atom/M as anything in item_upgrades)
 
-			mod_data += list(list(
-				"name" = M.name
-			))
+		mod_data += list(list(
+			"name" = M.name
+		))
 
 	return mod_data
 
@@ -404,8 +391,7 @@
 	damage = initial(damage)
 	SEND_SIGNAL(src, COMSIG_WOUND_DAMAGE)
 
-/obj/item/organ/internal/proc/add_wound(datum/component/new_wound)
-	var/datum/component/internal_wound/IW = new_wound
+/obj/item/organ/internal/proc/add_wound(datum/component/internal_wound/IW)
 	if(!IW || initial(IW.wound_nature) != nature)
 		return
 

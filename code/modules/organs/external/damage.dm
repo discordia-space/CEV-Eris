@@ -15,7 +15,7 @@
 		return 0
 
 	// High damage or sharp objects may damage internal organs
-	if(internal_organs && internal_organs.len)
+	if(internal_organs && LAZYLEN(internal_organs))
 		var/obj/item/organ/internal/I = pick(internal_organs)
 		if((brute_dam >= max_damage || (((sharp && brute >= 10) || brute >= 20) && prob(5))))
 			I.take_damage(brute / 2, FALSE, BRUTE, sharp, edge)
