@@ -126,7 +126,7 @@
 /obj/item/computer_hardware/hard_drive/portable/design/adv_robustcells
 	disk_name = "Asters Advanced Robustcells"
 	icon_state = "guild"
-	rarity_value = 11
+	rarity_value = 22
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	license = 10
 	designs = list(
