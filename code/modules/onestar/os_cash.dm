@@ -62,10 +62,10 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 
-	var/obj/item/stack/os_cash/bundle = new (user.loc)
-	bundle.amount = count
-	bundle.update_icon()
-	user.put_in_hands(bundle)
+	var/obj/item/stack/os_cash/coin_stack = new (user.loc)
+	coin_stack.amount = count
+	coin_stack.update_icon()
+	user.put_in_hands(coin_stack)
 	update_icon()
 
 /obj/item/stack/os_cash/random
