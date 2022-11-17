@@ -58,8 +58,8 @@
 /turf/space,
 /area/space)
 "aF" = (
-/obj/machinery/power/os_turret/laser,
-/turf/simulated/floor/tiled/derelict/white_red_edges,
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "aG" = (
 /turf/simulated/shuttle/wall/mining{
@@ -71,6 +71,10 @@
 	icon_state = "11,17"
 	},
 /turf/space,
+/area/space)
+"aL" = (
+/obj/structure/salvageable/os/computer,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "aN" = (
 /turf/simulated/shuttle/floor/mining{
@@ -127,6 +131,13 @@
 	icon_state = "17,20"
 	},
 /turf/space,
+/area/space)
+"bv" = (
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/space)
+"bw" = (
+/obj/machinery/vending/organfridge_aberrant,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "bE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -206,6 +217,12 @@
 	icon_state = "7,11"
 	},
 /area/space)
+"cj" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
 "ck" = (
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "9,11"
@@ -219,6 +236,11 @@
 "cu" = (
 /obj/structure/flora/ausbushes/genericbush,
 /turf/simulated/floor/grass,
+/area/space)
+"cz" = (
+/obj/structure/table/onestar,
+/obj/spawner/medical,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "cA" = (
 /turf/simulated/shuttle/floor/mining{
@@ -248,6 +270,9 @@
 /area/space)
 "cQ" = (
 /obj/machinery/power/os_turret/laser,
+/obj/structure/sign/nosmoking_2{
+	pixel_x = -28
+	},
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "cR" = (
@@ -300,6 +325,10 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "4,7"
 	},
+/area/space)
+"dp" = (
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/dark/brown_platform,
 /area/space)
 "dq" = (
 /obj/structure/shuttle_part/science{
@@ -839,6 +868,10 @@
 	icon_state = "7,5"
 	},
 /area/space)
+"iw" = (
+/obj/machinery/light/floor/built,
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/space)
 "iA" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "9,0"
@@ -924,6 +957,11 @@
 	icon_state = "6,15"
 	},
 /area/space)
+"jb" = (
+/obj/structure/table/onestar,
+/obj/spawner/gun/onestar/low_chance,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
 "jc" = (
 /obj/machinery/power/port_gen/pacman{
 	anchored = 1
@@ -973,6 +1011,10 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "8,21"
 	},
+/area/space)
+"jR" = (
+/obj/structure/salvageable/bliss,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "jT" = (
 /turf/simulated/shuttle/wall/science{
@@ -1154,6 +1196,12 @@
 	icon_state = "2,13"
 	},
 /turf/space,
+/area/space)
+"lz" = (
+/obj/structure/sign/derelict2{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "lF" = (
 /turf/simulated/shuttle/wall/mining{
@@ -1428,6 +1476,12 @@
 /obj/landmark/machinery/input,
 /turf/simulated/floor,
 /area/space)
+"pi" = (
+/obj/structure/sign/derelict1{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
 "pq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/science{
@@ -1595,7 +1649,7 @@
 /area/space)
 "qM" = (
 /obj/machinery/newscaster/security_unit/directional/north,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/space)
 "qQ" = (
 /turf/simulated/shuttle/wall/mining{
@@ -1737,8 +1791,10 @@
 	},
 /area/space)
 "sK" = (
-/mob/living/carbon/superior_animal/stalker,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "sL" = (
 /obj/machinery/photocopier,
@@ -1835,6 +1891,13 @@
 /obj/machinery/light/floor,
 /turf/simulated/floor/wood,
 /area/space)
+"tO" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4;
+	pixel_x = 9
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
 "tU" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "2,2"
@@ -1895,7 +1958,9 @@
 	},
 /area/space)
 "up" = (
-/mob/living/simple_animal/hostile/hivebot/range,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "uq" = (
@@ -2117,6 +2182,13 @@
 	icon_state = "11,16"
 	},
 /area/space)
+"wg" = (
+/obj/structure/table/onestar,
+/obj/machinery/photocopier/faxmachine{
+	pixel_y = 3
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
 "wh" = (
 /obj/structure/filingcabinet/chestdrawer{
 	pixel_x = 7
@@ -2284,6 +2356,10 @@
 	},
 /turf/space,
 /area/space)
+"xw" = (
+/obj/structure/closet/onestar/tier2/special,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
 "xz" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "15,23"
@@ -2376,6 +2452,10 @@
 	icon_state = "2,17"
 	},
 /area/space)
+"yE" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/plating,
+/area/space)
 "yJ" = (
 /obj/machinery/vending/wallmed{
 	pixel_y = 29
@@ -2413,6 +2493,12 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "12,5"
 	},
+/area/space)
+"zG" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "zL" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -2722,6 +2808,10 @@
 	icon_state = "0,23"
 	},
 /turf/space,
+/area/space)
+"Di" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "Dj" = (
 /turf/simulated/shuttle/wall/mining{
@@ -3247,6 +3337,12 @@
 	icon_state = "11,10"
 	},
 /area/space)
+"IE" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "II" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "4,2"
@@ -3385,6 +3481,13 @@
 	},
 /turf/simulated/floor/wood,
 /area/space)
+"JM" = (
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = 22
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
 "JT" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "13,1"
@@ -3458,9 +3561,8 @@
 	},
 /area/space)
 "KB" = (
-/obj/structure/bed/chair/custom/onestar{
-	dir = 4;
-	pixel_x = 9
+/obj/structure/sign/faction/one_star{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
@@ -3642,6 +3744,10 @@
 "MI" = (
 /obj/effect/window_lwall_spawn/smartspawn/onestar,
 /turf/simulated/wall/untinted/onestar_reinforced,
+/area/space)
+"MK" = (
+/obj/structure/bed/chair/custom/onestar/red,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "MQ" = (
 /obj/structure/shuttle_part/mining{
@@ -4041,6 +4147,11 @@
 	icon_state = "5,1"
 	},
 /area/space)
+"Rn" = (
+/obj/structure/table/onestar,
+/obj/item/oddity/common/blueprint,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
 "Ru" = (
 /obj/machinery/atmospherics/pipe/tank/air,
 /turf/simulated/shuttle/floor/mining{
@@ -4241,6 +4352,11 @@
 	},
 /turf/space,
 /area/space)
+"Tp" = (
+/mob/living/simple_animal/hostile/roomba,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "Ts" = (
 /obj/machinery/sleeper/sarcophagus/random{
 	dir = 8
@@ -4265,6 +4381,10 @@
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "2,10"
 	},
+/area/space)
+"TJ" = (
+/obj/structure/closet/body_bag,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "TM" = (
 /obj/structure/cable/yellow{
@@ -4455,6 +4575,13 @@
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/space)
+"Vw" = (
+/obj/structure/salvageable/os/console{
+	dir = 8;
+	pixel_x = 2
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
 "VB" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "4,1"
@@ -4466,6 +4593,17 @@
 	icon_state = "4,23"
 	},
 /turf/space,
+/area/space)
+"VG" = (
+/obj/structure/table/onestar,
+/obj/item/paper_bin{
+	pixel_y = 3
+	},
+/obj/item/stamp/chameleon,
+/obj/item/pen/chameleon{
+	pixel_y = 8
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "VH" = (
 /obj/machinery/power/sensor{
@@ -4557,10 +4695,7 @@
 /turf/space,
 /area/space)
 "WO" = (
-/obj/structure/salvageable/os/console{
-	dir = 8;
-	pixel_x = 2
-	},
+/obj/structure/salvageable/os/data,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "WR" = (
@@ -4615,6 +4750,10 @@
 	icon_state = "14,8"
 	},
 /turf/space,
+/area/space)
+"Xx" = (
+/obj/machinery/photocopier,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "XJ" = (
 /obj/structure/table/reinforced,
@@ -4813,6 +4952,12 @@
 	icon_state = "15,7"
 	},
 /turf/space,
+/area/space)
+"ZK" = (
+/obj/machinery/light/floor/built{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/space)
 "ZM" = (
 /turf/simulated/shuttle/wall/mining{
@@ -11793,7 +11938,7 @@ cb
 cb
 cb
 gV
-RJ
+TJ
 RJ
 RJ
 RJ
@@ -12400,9 +12545,9 @@ cb
 cb
 XW
 vO
+cz
 DH
-DH
-DH
+cz
 XW
 Ew
 XW
@@ -13453,7 +13598,7 @@ ho
 ho
 JB
 Ul
-TY
+dp
 gV
 cb
 cb
@@ -13814,8 +13959,8 @@ cb
 cb
 XW
 DH
-DH
-vi
+cz
+cz
 vi
 gV
 Ew
@@ -14461,7 +14606,7 @@ UU
 UU
 UU
 UU
-aF
+UU
 gV
 xS
 gV
@@ -14627,7 +14772,7 @@ cb
 XW
 bj
 Ew
-sK
+Ew
 kP
 Ew
 Wd
@@ -16042,7 +16187,7 @@ cb
 cb
 gV
 lO
-lO
+Di
 gV
 aa
 aa
@@ -16617,14 +16762,14 @@ cb
 cb
 cb
 gV
-RJ
+Am
 RJ
 RJ
 RJ
 RJ
 Vv
 RJ
-RJ
+sK
 Vv
 RJ
 RJ
@@ -16638,7 +16783,7 @@ RJ
 RJ
 Vv
 RJ
-RJ
+sK
 Vv
 RJ
 lk
@@ -16823,7 +16968,7 @@ bX
 RJ
 RJ
 RJ
-RJ
+aF
 gV
 hz
 gV
@@ -16832,7 +16977,7 @@ RJ
 RJ
 RJ
 RJ
-RJ
+GB
 RJ
 RJ
 RJ
@@ -16849,8 +16994,8 @@ RJ
 RJ
 RJ
 gV
-RJ
-nx
+IE
+Tp
 gV
 RJ
 RJ
@@ -17021,14 +17166,14 @@ cb
 cb
 cb
 gV
-RJ
+dB
 RJ
 RJ
 RJ
 RJ
 Vv
 RJ
-RJ
+up
 Vv
 RJ
 RJ
@@ -17042,7 +17187,7 @@ RJ
 Bu
 Vv
 RJ
-RJ
+up
 Vv
 RJ
 lk
@@ -17084,10 +17229,10 @@ RJ
 RJ
 RJ
 RJ
+dB
 RJ
 RJ
-RJ
-RJ
+dB
 RJ
 RJ
 RJ
@@ -17441,8 +17586,8 @@ aa
 aa
 Zk
 gV
-RJ
-RJ
+bv
+bv
 gV
 Zk
 aa
@@ -17643,9 +17788,9 @@ aa
 aa
 Zk
 gV
-RJ
-RJ
-gV
+bv
+bv
+yE
 Zk
 aa
 aa
@@ -17845,8 +17990,8 @@ aa
 aa
 Zk
 gV
-RJ
-RJ
+ZK
+iw
 gV
 Zk
 aa
@@ -18047,11 +18192,11 @@ aa
 cb
 cb
 gV
-RJ
-RJ
+bv
+bv
 gV
 cb
-aa
+cb
 aa
 aa
 aa
@@ -18250,11 +18395,11 @@ cb
 cb
 gV
 qM
-RJ
+bv
 gV
 cb
 cb
-aa
+cb
 aa
 aa
 aa
@@ -18456,8 +18601,8 @@ Vv
 XW
 XW
 XW
+XW
 cb
-aa
 aa
 aa
 aa
@@ -18514,7 +18659,7 @@ cb
 cb
 gV
 RJ
-up
+RJ
 RJ
 RJ
 RJ
@@ -18657,10 +18802,10 @@ EF
 EF
 BK
 au
+lz
 XW
 XW
 cb
-aa
 aa
 aa
 aa
@@ -18860,10 +19005,10 @@ EF
 EF
 EF
 EF
+VG
 XW
 cb
 cb
-aa
 aa
 aa
 aa
@@ -19057,15 +19202,15 @@ gD
 EF
 EF
 EF
+bw
 EF
 EF
 EF
-EF
-EF
+MK
+tB
 XW
 cb
 cb
-aa
 aa
 aa
 aa
@@ -19255,19 +19400,19 @@ aa
 cb
 cb
 XW
+KB
 EF
 EF
 EF
+zG
+zG
 EF
 EF
 EF
-EF
-EF
-EF
+wg
 XW
 cb
 cb
-aa
 aa
 aa
 aa
@@ -19452,24 +19597,24 @@ RJ
 NZ
 aa
 aa
-aa
+gZ
 aa
 cb
 cb
 XW
+WO
 EF
 EF
+MK
+Rn
+tB
+cj
 EF
 EF
-EF
-EF
-EF
-EF
-EF
+Xx
 XW
 cb
 cb
-aa
 aa
 aa
 aa
@@ -19659,19 +19804,19 @@ aa
 cb
 cb
 XW
+aL
+au
 EF
-EF
-EF
-EF
-EF
-EF
+MK
+tB
+jb
+cj
 EF
 EF
 EF
 XW
 cb
 cb
-aa
 aa
 aa
 aa
@@ -19861,6 +20006,7 @@ Zk
 Zk
 Zk
 XW
+jR
 EF
 EF
 EF
@@ -19869,7 +20015,7 @@ EF
 EF
 EF
 EF
-KB
+tO
 XW
 cb
 cb
@@ -19899,8 +20045,7 @@ aa
 aa
 aa
 aa
-aa
-aa
+gZ
 aa
 aa
 aa
@@ -20071,11 +20216,11 @@ mh
 tB
 EF
 EF
-WO
+EF
+Vw
 XW
 cb
 cb
-aa
 aa
 aa
 aa
@@ -20132,7 +20277,7 @@ aa
 aa
 aa
 aa
-aa
+gZ
 aa
 aa
 aa
@@ -20266,17 +20411,17 @@ aa
 cb
 XW
 XW
-EF
+xw
 EF
 tB
 vt
+JM
 EF
-EF
+pi
 EF
 XW
 XW
 cb
-aa
 aa
 aa
 aa
@@ -20463,7 +20608,7 @@ gV
 cb
 aa
 aa
-aa
+gZ
 aa
 aa
 cb
@@ -20476,8 +20621,8 @@ XW
 XW
 XW
 XW
+XW
 cb
-aa
 aa
 aa
 aa
@@ -20678,7 +20823,7 @@ cb
 cb
 cb
 cb
-aa
+cb
 aa
 aa
 aa
@@ -21274,7 +21419,7 @@ aa
 aa
 aa
 aa
-aa
+gZ
 aa
 aa
 aa
