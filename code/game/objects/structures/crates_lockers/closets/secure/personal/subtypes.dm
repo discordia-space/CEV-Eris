@@ -34,5 +34,5 @@
 	dense_when_open = TRUE
 	bad_type = /obj/structure/closet/secure_closet/personal/trade	// Snowflake crate for trade orders
 
-/obj/structure/closet/secure_closet/personal/populate_contents()
+/obj/structure/closet/secure_closet/personal/trade/populate_contents()
 	return
