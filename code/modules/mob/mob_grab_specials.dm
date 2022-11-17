@@ -281,7 +281,7 @@
 	for (var/turf/T in range(1, attacker.loc))
 		if(istype(T, /turf/simulated/wall))
 			free_space = FALSE
-		if(!T.CanPass(attacker, T))
+		if(!T.Enter(attacker))
 			free_space = FALSE
 	if(!free_space)
 		to_chat(attacker, SPAN_WARNING("There is not enough space around you to do this."))

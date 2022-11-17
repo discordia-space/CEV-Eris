@@ -46,6 +46,8 @@
 
 //Resets blood data
 /mob/living/carbon/human/proc/fixblood()
+	if(QDELETED(src))	// Needed because mannequins will continue this proc and runtime after being qdel'd
+		return
 	for(var/datum/reagent/organic/blood/B in vessel.reagent_list)
 		if(B.id == "blood")
 			var/data = list("donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=dna_trace,"blood_colour"= species.blood_color,"blood_type"=b_type,	\

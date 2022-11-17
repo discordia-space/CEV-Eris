@@ -61,7 +61,7 @@
 		/datum/design/organ/teratoma/output/reagents_blood_medicine_intermediate,
 		/datum/design/organ/teratoma/output/uncommon/reagents_blood_medicine_intermediate,
 		/datum/design/organ/teratoma/input/rare/reagents_roach,
-		///datum/design/organ/teratoma/input/rare/reagents_spider,		// Not enough spider chems in the pool
+		//datum/design/organ/teratoma/input/rare/reagents_spider,		// Not enough spider chems in the pool
 		/datum/design/organ/teratoma/input/rare/reagents_toxin,
 		/datum/design/organ/teratoma/input/rare/reagents_edible,
 		/datum/design/organ/teratoma/input/rare/reagents_alcohol,
@@ -188,8 +188,7 @@
 
 		var/amount_to_take
 
-		for(var/object in I.GetAllContents(2, TRUE))
-			var/obj/item/O = object
+		for(var/obj/item/O in I.GetAllContents(2, TRUE))
 			if(O.matter.Find(MATERIAL_BIOMATTER))
 				amount_to_take += max(0, O.matter[MATERIAL_BIOMATTER])
 			qdel(O)
@@ -304,11 +303,6 @@
 
 	has_brain = FALSE
 
-	// Initial doesn't work right with lists. Not an issue at the moment since it must be deconstructed to be upgraded.
-	//accepted_reagents = initial(accepted_reagents)
-	//blacklisted_reagents = initial(blacklisted_reagents)
-	//accepted_objects = initial(accepted_objects)
-
 	for(var/component in component_parts)
 		if(istype(component, /obj/item/electronics/circuitboard/disgorger))
 			var/obj/item/electronics/circuitboard/disgorger/C = component
@@ -336,33 +330,33 @@
 					brain_eff += O.organ_efficiency[eff]
 
 	if(liver_eff > 99)
-		accepted_reagents |= list(
+		LAZYADD(accepted_reagents, list(
 			/datum/reagent/toxin/diplopterum = 0.25
-		)
+		))
 	if(liver_eff > 124)
-		accepted_reagents |= list(
+		LAZYADD(accepted_reagents, list(
 			/datum/reagent/toxin/seligitillin = 0.75,
 			/datum/reagent/toxin/starkellin = 0.75,
 			/datum/reagent/toxin/gewaltine = 0.75,
 			/datum/reagent/toxin/blattedin = 0.5
-		)
+		))
 	if(liver_eff > 149)
-		accepted_reagents |= list(
+		LAZYADD(accepted_reagents, list(
 			/datum/reagent/toxin/fuhrerole = 1,
 			/datum/reagent/toxin/kaiseraurum = 10
-		)
+		))
 
 	if(kidney_eff > 49)
-		accepted_reagents |= list(
+		LAZYADD(accepted_reagents, list(
 			/datum/reagent/organic/blood = 0.1,		// Internet says blood plasma is 10% solids, 90% water
 			/datum/reagent/drink/milk = 0.13		// Internet says milk is 13% solids, 87% water
-		)
+		))
 
 	if(carrion_chem_eff > 99)
-		accepted_reagents |= list(
+		LAZYADD(accepted_reagents, list(
 			/datum/reagent/toxin/pararein = 1,
 			/datum/reagent/toxin/aranecolmin = 2
-		)
+		))
 
 	capacity_mod = round(stomach_eff / 15, 1) 
 	tick_reduction = round(muscle_eff / 20, 1) 

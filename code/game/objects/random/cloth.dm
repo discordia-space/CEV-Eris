@@ -148,3 +148,15 @@
 	desc = "This is a random holster."
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
+
+/obj/spawner/cloth/onestar
+	name = "random One Star clothing"
+	desc = "This is a random One Star armor."
+	icon_state = "armor-orange"
+	allow_blacklist = TRUE
+	tags_to_spawn = list(SPAWN_CLOTHING_OS)
+
+/obj/spawner/cloth/onestar/low_chance
+	name = "low chance random One Star clothing"
+	icon_state = "armor-orange-low"
+	spawn_nothing_percentage = 60
