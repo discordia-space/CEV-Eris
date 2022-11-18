@@ -1578,7 +1578,7 @@ var/list/rank_prefix = list(\
 
 	if(stat) return
 	holding_back = !holding_back
-	to_chat(src, "<span class='notice'>You are now [holding_back ? "holding back your attacks" : "not holding back your attacks"].</span>")
+	to_chat(src, SPAN_NOTICE("You are now [holding_back ? "holding back your attacks" : "not holding back your attacks"]."))
 	return
 
 /mob/living/carbon/human/verb/toggle_dodging()
