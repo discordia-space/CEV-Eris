@@ -272,6 +272,10 @@ meteor_act
 	if(!affecting)
 		return FALSE//should be prevented by attacked_with_item() but for sanity.
 
+	if(user.a_intent == I_HELP)
+		visible_message(SPAN_WARNING("[src] has been [pick("lightly poked", "tapped")] in the [affecting.name] with [I.name] by [user]!"))
+		return FALSE
+
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.stop_blocking()
@@ -316,14 +320,6 @@ meteor_act
 	if(hit_zone == BP_GROIN && I.push_attack && user.a_intent == I_DISARM)
 		step_glide(src, get_dir(user, src), DELAY2GLIDESIZE(0.4 SECONDS))
 		visible_message(SPAN_WARNING("[src] is pushed away by the attack!"))
-
-	// Handle striking to cripple.
-	if(user.a_intent == I_HELP)
-		if(!..(I, user, effective_force, hit_zone))
-			return FALSE
-
-		attack_joint(affecting, I) //but can dislocate(strike nerve) joints
-
 	else if(!..())
 		return FALSE
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
