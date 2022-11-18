@@ -326,7 +326,6 @@ meteor_act
 
 	else if(!..())
 		return FALSE
-		
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
 		forcesay(hit_appends)	//forcesay checks stat already
 		//Apply blood
