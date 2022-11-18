@@ -46,34 +46,35 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	return A.attackby(src, user, params)
 
 //Returns TRUE if attack is to be carried out, FALSE otherwise.
-/obj/item/proc/double_tact(mob/user, atom/atom_target)
-	if(user.a_intent == I_HELP)//no damage on help intent, no need for raising
-		return TRUE
+/obj/item/proc/double_tact(mob/user, atom/atom_target, adjacent)
 	if(atom_target.loc == user)//putting stuff in your backpack, or something else on your person?
 		return TRUE //regular bags won't even be able to hold items this big, but who knows
-	if(w_class >= ITEM_SIZE_BULKY && !abstract && !istype(src, /obj/item/gun))//grabs have colossal w_class. You can't raise something that does not exist.
-		if(!(ready))						//guns have the point blank privilege
-			user.visible_message(SPAN_DANGER("[user] raises [src]!"))
-			ready = TRUE
-			var/obj/effect/effect/melee/alert/A = new()
-			user.vis_contents += A
-			qdel(A)
-			var/unready_time = world.time + (10 SECONDS)
-			while(world.time < unready_time)
-				sleep(1)
-				if(!(ready))
-					user.vis_contents -= A
-					return FALSE
-				if(!(is_equipped()))
-					ready = FALSE
-					user.vis_contents -= A
-					return FALSE
-			user.visible_message(SPAN_NOTICE("[user] lowers \his [src]."))
-			ready = FALSE
-			user.vis_contents -= A
-			return FALSE
+	if(w_class >= ITEM_SIZE_BULKY && !abstract && !istype(src, /obj/item/gun) && !no_double_tact)//grabs have colossal w_class. You can't raise something that does not exist.
+		if(!adjacent||istype(atom_target, /turf)||istype(atom_target, /mob || user.a_intent == I_HURT))//guns have the point blank privilege
+			if(!ready)
+				user.visible_message(SPAN_DANGER("[user] raises [src]!"))
+				ready = TRUE
+				var/obj/effect/effect/melee/alert/A = new()
+				user.vis_contents += A
+				qdel(A)
+				var/unready_time = world.time + (10 SECONDS)
+				while(world.time < unready_time)
+					sleep(1)
+					if(!(ready))
+						user.vis_contents -= A
+						return FALSE
+					if(!(is_equipped()))
+						ready = FALSE
+						user.vis_contents -= A
+						return FALSE
+				user.visible_message(SPAN_NOTICE("[user] lowers \his [src]."))
+				ready = FALSE
+				user.vis_contents -= A
+				return FALSE
+			else
+				ready = FALSE
+				return TRUE
 		else
-			ready = FALSE
 			return TRUE
 	else
 		return TRUE
