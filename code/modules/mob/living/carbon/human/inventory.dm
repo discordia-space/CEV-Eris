@@ -436,7 +436,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		head_coverage = worn_hat.style_coverage
 		style_factor += worn_hat.get_style()
 	else if(!head)
-		style_factor++ 1 // if we're not wearing anything on our head we look stylish, bald people rise up
+		style_factor++ // if we're not wearing anything on our head we look stylish, bald people rise up
 	if (!(head_coverage & COVERS_WHOLE_FACE) && istype(wear_mask, /obj/item/clothing)) // is it hidden, and if not is it a mask?
 		var/obj/item/clothing/mask/worn_mask = wear_mask
 		head_coverage |= worn_mask.style_coverage
