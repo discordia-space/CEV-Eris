@@ -463,7 +463,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if (back)
 		style_factor += back.get_style() // back and belt can't be covered
 	else if(!back)
-		style_factor++ 1 // if we don't have anything on our back we look stylish by since literally no backpacks give or take style bonus isn't big
+		style_factor++ // if we don't have anything on our back we look stylish by since literally no backpacks give or take style bonus isn't big
 	if (belt)
 		style_factor += belt.get_style()
 
