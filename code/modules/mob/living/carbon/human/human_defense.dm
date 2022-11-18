@@ -320,10 +320,8 @@ meteor_act
 	if(hit_zone == BP_GROIN && I.push_attack && user.a_intent == I_DISARM)
 		step_glide(src, get_dir(user, src), DELAY2GLIDESIZE(0.4 SECONDS))
 		visible_message(SPAN_WARNING("[src] is pushed away by the attack!"))
-
 	else if(!..())
 		return FALSE
-
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
 		forcesay(hit_appends)	//forcesay checks stat already
 		//Apply blood
