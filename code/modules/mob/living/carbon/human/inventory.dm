@@ -459,7 +459,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if (shoes && !(suit_coverage & COVERS_FORELEGS))
 		style_factor += shoes.get_style()
 	else if(!shoes)
-		style_factor-- 1 // if we're not wearing shoes we're definitely not stylish
+		style_factor-- // if we're not wearing shoes we're definitely not stylish
 	if (back)
 		style_factor += back.get_style() // back and belt can't be covered
 	else if(!back)
