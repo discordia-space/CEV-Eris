@@ -319,14 +319,13 @@ meteor_act
 
 	// Handle striking to cripple.
 	if(user.a_intent == I_HELP)
-		effective_force /= 2 //half the effective force
 		if(!..(I, user, effective_force, hit_zone))
 			return FALSE
 
 		attack_joint(affecting, I) //but can dislocate(strike nerve) joints
+
 	else if(!..())
 		return FALSE
-
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
 		forcesay(hit_appends)	//forcesay checks stat already
 		//Apply blood
