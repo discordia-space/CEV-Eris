@@ -14,7 +14,7 @@
 	edge = TRUE
 	forced_broad_strike = TRUE
 	tool_qualities = list(QUALITY_SAWING = 30, QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 20)
-	embed_mult = 1 //Serrated blades catch on bone more easily
+	embed_mult = 1.3 //Serrated blades catch on bone more easily
 
 /obj/item/tool/saw/improvised //tier 1
 	name = "choppa"
