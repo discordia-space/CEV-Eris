@@ -320,6 +320,7 @@
 	var/gene_type
 	var/gene_value
 	metabolism = REM * 2
+	scannable = TRUE
 
 /datum/reagent/toxin/mutagen/moeball/proc/isWorm()
 	name = "mass of still whirling worms"

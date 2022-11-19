@@ -4,7 +4,7 @@
 	)
 	icon_states = list("htu_frigate", "ship")
 	uid = "materials"
-	tree_x = 0.26
+	tree_x = 0.18
 	tree_y = 0.9
 	start_discovered = TRUE
 	spawn_always = TRUE
@@ -12,9 +12,9 @@
 	offer_limit = 30
 	base_income = 0		// Needs ore to refine
 	wealth = 0
-	hidden_inv_threshold = 2000
-	recommendation_threshold = 4000
-	stations_recommended = list("oddities")
+	hidden_inv_threshold = 3000
+	recommendation_threshold = 0
+	stations_recommended = list()
 	inventory = list(
 		"Refined Materials" = list(
 			/obj/item/stack/material/plastic/full = good_data("plastic sheets (x120)", list(3, 5), null),
