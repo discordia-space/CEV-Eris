@@ -170,9 +170,9 @@
 
 	cleaning = 1
 	visible_message("[src] begins to clean up \the [D]")
-	var/message = pick(possible_phrases)
-	say(message)
-	playsound(loc, "robot_talk_light", 100, 0, 0)
+	if(prob(10))
+		say(pick(possible_phrases))
+		playsound(loc, "robot_talk_light", 100, 0, 0)
 	update_icons()
 	var/cleantime = istype(D, /obj/effect/decal/cleanable/dirt) ? 10 : 50
 	if(do_after(src, cleantime, progress = 0))

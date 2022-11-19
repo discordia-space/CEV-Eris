@@ -4,16 +4,16 @@
 	)
 	icon_states = list("nt_frigate", "ship")
 	uid = "nt_basic"
-	tree_x = 0.82
+	tree_x = 0.26
 	tree_y = 0.9
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS
 	base_income = 1600
 	wealth = 0
-	hidden_inv_threshold = 4000
-	recommendation_threshold = 0
-	stations_recommended = list()
+	hidden_inv_threshold = 3000
+	recommendation_threshold = 4000
+	stations_recommended = list("botany")
 	inventory = list(
 		"Biomatter Products" = list(
 			/obj/item/reagent_containers/food/snacks/meat = custom_good_price(100),

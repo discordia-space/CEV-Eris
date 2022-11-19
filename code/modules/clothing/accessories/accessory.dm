@@ -210,17 +210,16 @@
 	)
 	matter = list(
 		MATERIAL_STEEL = 8,
-		MATERIAL_PLASTEEL = 1,
+		MATERIAL_PLASTEEL = 1
 	)
-	slowdown = 0
-	stiffness = LIGHT_STIFFNESS
+	slowdown = LIGHT_SLOWDOWN
 
 /obj/item/clothing/accessory/armor/on_attached()
 	..()
 	has_suit.armor = armor
 	has_suit.style -= 2
-	has_suit.slowdown = slowdown
-	has_suit.stiffness = stiffness
+	has_suit.slowdown += slowdown
+	has_suit.stiffness += stiffness
 	has_suit.body_parts_covered = UPPER_TORSO|LOWER_TORSO // Tears up the clothes
 
 /obj/item/clothing/accessory/armor/bullet
@@ -237,10 +236,10 @@
 	)
 	matter = list(
 		MATERIAL_STEEL = 10,
-		MATERIAL_PLASTEEL = 3,
+		MATERIAL_PLASTEEL = 3
 	)
 	slowdown = LIGHT_SLOWDOWN
-	stiffness = MEDIUM_STIFFNESS
+	stiffness = LIGHT_STIFFNESS
 
 /obj/item/clothing/accessory/armor/platecarrier
 	name = "platecarrier armor plates"
@@ -256,9 +255,8 @@
 	)
 	matter = list(
 		MATERIAL_STEEL = 10,
-		MATERIAL_PLASTEEL = 3,
+		MATERIAL_PLASTEEL = 3
 	)
-	slowdown = LIGHT_SLOWDOWN
 
 /obj/item/clothing/accessory/armor/riot
 	name = "padded armor plates"
@@ -287,7 +285,7 @@
 		bio = 0,
 		rad = 0
 	)
-	slowdown = LIGHT_SLOWDOWN
+	stiffness = LIGHT_STIFFNESS
 
 //Ponchos, Capes and Cloaks//
 
