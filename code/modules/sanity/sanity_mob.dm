@@ -93,9 +93,6 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 	owner = H
 	level = max_level
 	insight = rand(0, 30)
-	insight_passive_gain_multiplier = 0.5 * GLOB.GLOBAL_INSIGHT_MOD //set them here so mod variables could initialize
-	insight_gain_multiplier = 1 * GLOB.GLOBAL_INSIGHT_MOD
-	insight_rest_gain_multiplier = 1 * GLOB.GLOBAL_INSIGHT_MOD
 	RegisterSignal(owner, COMSIG_MOB_LIFE, .proc/onLife)
 	RegisterSignal(owner, COMSIG_HUMAN_SAY, .proc/onSay)
 
@@ -109,7 +106,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 /datum/sanity/proc/give_insight(value)
 	var/new_value = value
 	if(value > 0)
-		new_value = max(0, value * insight_gain_multiplier)
+		new_value = max(0, value * insight_gain_multiplier * GLOB.GLOBAL_INSIGHT_MOD)
 	insight = min(insight + new_value, max_insight)
 
 /datum/sanity/proc/give_resting(value)
@@ -118,7 +115,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 /datum/sanity/proc/give_insight_rest(value)
 	var/new_value = value
 	if(value > 0)
-		new_value = max(0, value * insight_rest_gain_multiplier)
+		new_value = max(0, value * insight_rest_gain_multiplier * GLOB.GLOBAL_INSIGHT_MOD)
 	insight_rest += new_value
 
 /datum/sanity/Topic(href, href_list)
@@ -186,7 +183,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 		for(var/mob/living/carbon/human/H in view(owner))
 			if(H.sanity.level > 60)
 				moralist_factor += 0.02
-	give_insight(INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier)
+	give_insight(INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier * GLOB.GLOBAL_INSIGHT_MOD)
 	if(resting < max_resting && insight >= 100)
 		if(!rest_timer_active)//Prevent any exploits(timer is only active for one minute tops)
 			give_resting(1)

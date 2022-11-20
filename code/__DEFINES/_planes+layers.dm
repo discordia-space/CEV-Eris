@@ -54,7 +54,9 @@ What is the naming convention for planes or layers?
 #define CLICKCATCHER_PLANE -99
 
 #define PLANE_SPACE -95
-#define PLANE_SPACE_PARALLAX -80
+#define PLANE_SPACE_PARALLAX_BACKGROUND -80
+#define PLANE_SPACE_PARALLAX_FAR -75
+#define PLANE_SPACE_PARALLAX_CLOSE -70
 
 #define OPENSPACE_PLANE -10
 #define OVER_OPENSPACE_PLANE -8

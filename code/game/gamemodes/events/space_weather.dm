@@ -17,6 +17,8 @@
 
 /datum/event/bluespace_storm/announce()
 	command_announcement.Announce("The scanners have detected a bluespace storm near the ship. Bluespace distortions are likely to happen while it lasts.", "Bluespace Storm")
+	for(var/mob/M in GLOB.player_list) //update parallax on those events that have it. You'll see this a lot.
+		M.parallax.update()
 
 /datum/event/bluespace_storm/end()
 	command_announcement.Announce("The bluespace storm has ended.", "Bluespace Storm")
@@ -37,7 +39,7 @@
 
 /datum/event/ion_blizzard
 	startWhen = 1
-	announceWhen = 1
+	announceWhen = 3
 	endWhen = 350
 
 /datum/event/ion_blizzard/setup()
@@ -67,8 +69,8 @@
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
 
 /datum/event/photon_vortex
-	startWhen = 2
-	announceWhen = 1
+	startWhen = 1
+	announceWhen = 2
 	endWhen = 350
 
 /datum/event/photon_vortex/setup()
@@ -110,8 +112,8 @@
 	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE)
 
 /datum/event/harmonic_feedback
-	startWhen = 5
-	announceWhen = 1
+	startWhen = 1
+	announceWhen = 3
 	endWhen = 350
 
 /datum/event/harmonic_feedback/setup()
@@ -132,13 +134,13 @@
 	name = "micro debris field"
 	weight = 0.9
 	parallel = FALSE
-	event_type = /datum/event/dust
+	event_type = /datum/event/micro_debris
 	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
 	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE)
 
 /datum/event/micro_debris
-	startWhen	= 2
-	announceWhen = 1
+	startWhen	= 1
+	announceWhen = 2
 	endWhen		= 60
 	var/list/debris_types = list(
 		/obj/effect/meteor/dust/glass=40,\
@@ -149,12 +151,14 @@
 
 /datum/event/micro_debris/announce()
 	command_announcement.Announce("The ship is now passing through a micro debris field.", "Micro Debris Field Alert")
+	for(var/mob/M in GLOB.player_list)
+		M.parallax.update()
 
 /datum/event/micro_debris/end()
 	command_announcement.Announce("The ship has now passed through the micro debris field.", "Micro Debris Field Notice")
 
 /datum/event/micro_debris/tick()
-	if(prob(60))
+	if(prob(30))
 		for(var/i in 0 to rand(1,3))
 			spawn_debris(pickweight(debris_types), pick(cardinal), pick(GLOB.maps_data.station_levels))
 
@@ -176,8 +180,8 @@
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
 
 /datum/event/graveyard
-	startWhen = 2
-	announceWhen = 1
+	startWhen = 1
+	announceWhen = 3
 	endWhen = 350
 
 /datum/event/graveyard/setup()
@@ -224,8 +228,8 @@
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
 
 /datum/event/nebula
-	startWhen = 2
-	announceWhen = 1
+	startWhen = 1
+	announceWhen = 3
 	endWhen = 350
 
 /datum/event/nebula/setup()
@@ -251,8 +255,8 @@
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
 
 /datum/event/interphase
-	startWhen = 2
-	announceWhen = 1
+	startWhen = 1
+	announceWhen = 3
 	endWhen = 350
 
 /datum/event/interphase/setup()
@@ -281,4 +285,4 @@
 		qdel(ghost)
 
 /datum/event/interphase/end()
-	command_announcement.Announce("The bluespace interphase has stabilized itself.", "Bluespace Interphase")
+	command_announcement.Announce("The bluespace interphase stabilized itself.", "Bluespace Interphase")
