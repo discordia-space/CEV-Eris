@@ -162,11 +162,12 @@
 			spawn_debris(debris, start_side, target_zlevel)
 			return
 
-/proc/spawn_debris(var/obj/effect/meteor/dust/debris, var/start_side, var/zlevel)
+/datum/event/micro_debris/proc/spawn_debris(var/obj/effect/meteor/dust/debris, var/start_side, var/zlevel)
 	var/turf/start_turf = spaceDebrisStartLoc(start_side, zlevel)
 	var/turf/destination = spaceDebrisFinishLoc(start_side, zlevel)
 	var/obj/effect/meteor/M = new debris(start_turf)
 	M.dest = destination
-	spawn(0)
-		walk_towards(M, M.dest, 1)
+	walk_towards(M, M.dest, 1)
 	return
+
+
