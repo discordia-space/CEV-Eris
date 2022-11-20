@@ -290,7 +290,7 @@
 				if(is_type_in_list(I, valid_inspirations) && I.GetComponent(/datum/component/inspiration))
 					oddity_in_posession = TRUE
 					break
-		
+
 			if(!oddity_in_posession)
 				to_chat(owner, SPAN_NOTICE("You do not have any oddities to use."))
 				rest = "Internalize your recent experiences"
@@ -303,23 +303,23 @@
 			for(var/obj/item/I in owner.get_contents()) //what oddities do we have?
 				if(is_type_in_list(I, valid_inspirations) && I.GetComponent(/datum/component/inspiration))
 					inspiration_items += I
-			
+
 			if(inspiration_items.len)//should always work, but in case of bug, there is an else
 				var/obj/item/O = inspiration_items.len > 1 ? owner.client ? input(owner, "Select something to use as inspiration", "Level up") in inspiration_items : pick(inspiration_items) : inspiration_items[1]
 				if(!O)
 					return
-				
+
 				GET_COMPONENT_FROM(I, /datum/component/inspiration, O) // If it's a valid inspiration, it should have this component. If not, runtime
 				var/list/L = I.calculate_statistics()
 				for(var/stat in L)
 					var/stat_up = L[stat] * 2
 					to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
 					owner.stats.changeStat(stat, stat_up)
-				
+
 				if(I.perk)
 					if(owner.stats.addPerk(I.perk))
 						I.perk = null
-					
+
 				SEND_SIGNAL(O, COMSIG_ODDITY_USED)
 				for(var/mob/living/carbon/human/H in viewers(owner))
 					SEND_SIGNAL(H, COMSIG_HUMAN_ODDITY_LEVEL_UP, owner, O)
@@ -363,6 +363,44 @@
 					penalty *= -1
 				if(75 to 100)
 					penalty *= 0
+		//extra stuff if same departament
+		var/mob/living/carbon/human/fellow_human = M
+		if(GetDepartment(fellow_human) == GetDepartment(owner))
+			var/list/ownerAntag = owner.mind?.antagonist
+			var/list/deadAntag = fellow_human?.mind.antagonist
+			// these 3 are loners , so they don't count for any buffs
+			if(!(ownerAntag & list(/datum/antagonist/carrion, /datum/antagonist/contractor, /datum/antagonist/marshal)))
+				// team based antagonists, // same antagonist list length and same antagonist datums , so they count (or a inquisitor who still cares about fellow believers)
+				var/effect_prob = rand(1, 100)
+				if(ownerAntag & list(/datum/antagonist/excelsior, /datum/antagonist/mercenary, /datum/antagonist/inquisitor) && (deadAntag & ownerAntag).len == ownerAntag.len || ownerAntag & list(/datum/antagonist/inquisitor))
+					// Better ones for antagonists because they are often outnumbered
+					switch(effect_prob)
+						if(1 to 25)
+							to_chat(owner, SPAN_DANGER("Seeing the death of [M] floods your mind with rage!"))
+							owner.stats.addTempStat(STAT_TGH, 30, 5 MINUTES, "DeathRage")
+							owner.adjustHalLoss(-5)
+						if(25 to 50)
+							to_chat(owner, SPAN_DANGER("Vengeance. Vengeance. Vengeance for [M]"))
+							owner.stats.addTempStat(STAT_VIG, 25, 5 MINUTES, "DeathRage")
+							owner.stats.addTempStat(STAT_TGH, 20, 2 MINUTES, "DeathRage")
+						if(50 to 75)
+							owner.adjustHalLoss(-25)
+						if(75 to 100)
+							owner.stats.addTempStat(STAT_ROB, 20, 5 MINUTES, "DeathRage")
+				else if(!deadAntag.len)
+					switch(effect_prob)
+						if(1 to 25)
+							to_chat(owner, SPAN_DANGER("Seeing the death of [M] floods your mind with rage!"))
+							owner.stats.addTempStat(STAT_TGH, 15, 5 MINUTES, "DeathRage")
+						if(25 to 50)
+							to_chat(owner, SPAN_DANGER("Vengeance. Vengeance. Vengeance for [M]"))
+							owner.stats.addTempStat(STAT_VIG, 15, 5 MINUTES, "DeathRage")
+							owner.stats.addTempStat(STAT_TGH, 10, 2 MINUTES, "DeathRage")
+						if(50 to 75)
+							owner.adjustHalLoss(-15)
+						if(75 to 100)
+							owner.stats.addTempStat(STAT_ROB, 5, 5 MINUTES, "DeathRage")
+
 		if(M.stats.getPerk(PERK_TERRIBLE_FATE) && prob(100-owner.stats.getStat(STAT_VIG)))
 			setLevel(0)
 		else
