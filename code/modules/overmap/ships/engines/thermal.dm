@@ -107,7 +107,7 @@
 	if(T)
 		T.assume_air(removed)
 		// if its 1000k hot
-		new/obj/effect/engine_exhaust(T, exhaust_dir, air_contents.temperature >= 1000)
+		new/obj/effect/engine_exhaust(T, exhaust_dir, air_contents.temperature >= 1000, (range > 1))
 		for(var/i=1,i < range,i++)
 			T = get_step(T,exhaust_dir)
 			if(!T)
