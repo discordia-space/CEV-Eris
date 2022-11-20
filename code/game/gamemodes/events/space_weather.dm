@@ -75,13 +75,14 @@
 	endWhen = rand(300, 600)
 
 /datum/event/photon_vortex/start()
-	for(var/obj/item/device/lighting/L in ship_areas)
+	for(var/obj/item/device/lighting/L in world)
 		L.brightness_on = L.brightness_on / 3
 		L.update_icon()
-	for(var/obj/machinery/light/l in ship_areas)
-		l.brightness_range = l.brightness_range / 3
-		l.brightness_power = l.brightness_power / 2
-		l.update()
+	for(var/area/area as anything in ship_areas)
+		for(var/obj/machinery/light/l in ship_areas)
+			l.brightness_range = l.brightness_range / 3
+			l.brightness_power = l.brightness_power / 2
+			l.update()
 
 /datum/event/photon_vortex/announce()
 	command_announcement.Announce("A photon vortex anomaly has been detected near the ship. All photon-emitting machinery gives much less light.", "Photon Vortex Anomaly")
@@ -89,10 +90,11 @@
 /datum/event/photon_vortex/end()
 	command_announcement.Announce("The photon vortex anomaly has moved away from the ship.", "Photon Vortex Anomaly")
 
+	for(var/obj/item/device/lighting/L in world)
+		L.brightness_on = initial(L.brightness_on)
+		L.update_icon()
+
 	for(var/area/area as anything in ship_areas)
-		for(var/obj/item/device/lighting/L in area)
-			L.brightness_on = initial(L.brightness_on)
-			L.update_icon()
 		for(var/obj/machinery/light/l in ship_areas)
 			l.brightness_range = initial(l.brightness_range)
 			l.brightness_power = initial(l.brightness_power)
@@ -186,8 +188,7 @@
 
 /datum/event/graveyard/start()
 	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-		H.sanity.sanity_damage_modifier = H.sanity.sanity_damage_modifier * 1.5
-		H.sanity.sanity_view_damage_modifier = H.sanity.sanity_view_damage_modifier * 1.5
+		GLOB.GLOBAL_SANITY_MOD = 1.5
 
 /datum/event/graveyard/announce()
 	command_announcement.Announce("Drifting wrecks of a space station have been detected near the ship. Telecommunication systems are not responsible for any strain on the crew's psychological wellbeing.", "Space Graveyard")
@@ -212,13 +213,11 @@
 
 		global_announcer.autosay(pick(message_list), "Emergency Broadcast")
 	else if(prob(1)) //sekrit stuf
-		global_announcer.autosay("Man, all those people really suck. Just don't get hit and beat everything until it goes horizontal.", "Emergency Broadcast")
+		global_announcer.autosay("Man, all those people really suck. Just don't get hit and beat everything until it dies.", "Emergency Broadcast")
 
 /datum/event/graveyard/end()
 	command_announcement.Announce("The station wrecks have moved away from the ship.", "Space Graveyard")
-	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-		H.sanity.sanity_damage_modifier = initial(H.sanity.sanity_damage_modifier)
-		H.sanity.sanity_view_damage_modifier = initial(H.sanity.sanity_view_damage_modifier)
+	GLOB.GLOBAL_SANITY_MOD = 1
 
 /datum/storyevent/nebula
 	id = "nebula"
@@ -238,15 +237,11 @@
 	endWhen = rand(400, 700)
 
 /datum/event/nebula/start()
-	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-		H.sanity.insight_gain_multiplier = H.sanity.insight_gain_multiplier / 2
-		H.sanity.insight_rest_gain_multiplier = H.sanity.insight_rest_gain_multiplier / 2
+	GLOB.GLOBAL_INSIGHT_MOD = 0.5
 
 /datum/event/nebula/announce()
 	command_announcement.Announce("Uncharacteristically high concentrations of dark matter from a nearby nebula currently envelops the ship. Crew might experience certain issues with their mental wellbeing.", "Dark Matter Nebula")
 
 /datum/event/nebula/end()
 	command_announcement.Announce("The dark matter nebula has moved away from the ship.", "Dark Matter Nebula")
-	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-		H.sanity.insight_gain_multiplier = initial(H.sanity.insight_gain_multiplier)
-		H.sanity.insight_rest_gain_multiplier = initial(H.sanity.insight_rest_gain_multiplier)
+	GLOB.GLOBAL_INSIGHT_MOD = 1
