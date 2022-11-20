@@ -1,23 +1,19 @@
 #define SANITY_PASSIVE_GAIN 0.2
 
-#define SANITY_DAMAGE_MOD 0.6
-
-#define SANITY_VIEW_DAMAGE_MOD 0.4
-
 // Damage received from unpleasant stuff in view
-#define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_VIEW_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
+#define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * sanity_view_damage_modifier * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
 
 // Damage received from body damage
-#define SANITY_DAMAGE_HURT(damage, vig) (min((damage) / 5 * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX), 60))
+#define SANITY_DAMAGE_HURT(damage, vig) (min((damage) / 5 * sanity_damage_modifier * (1.2 - (vig) / STAT_LEVEL_MAX), 60))
 
 // Damage received from shock
-#define SANITY_DAMAGE_SHOCK(shock, vig) ((shock) / 50 * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX))
+#define SANITY_DAMAGE_SHOCK(shock, vig) ((shock) / 50 * sanity_damage_modifier * (1.2 - (vig) / STAT_LEVEL_MAX))
 
 // Damage received from psy effects
-#define SANITY_DAMAGE_PSY(damage, vig) (damage * SANITY_DAMAGE_MOD * (2 - (vig) / STAT_LEVEL_MAX))
+#define SANITY_DAMAGE_PSY(damage, vig) (damage * sanity_damage_modifier * (2 - (vig) / STAT_LEVEL_MAX))
 
 // Damage received from seeing someone die
-#define SANITY_DAMAGE_DEATH(vig) (10 * SANITY_DAMAGE_MOD * (1 - (vig) / STAT_LEVEL_MAX))
+#define SANITY_DAMAGE_DEATH(vig) (10 * sanity_damage_modifier * (1 - (vig) / STAT_LEVEL_MAX))
 
 #define SANITY_GAIN_SMOKE 0.05 // A full cig restores 300 times that
 #define SANITY_GAIN_SAY 1
@@ -60,6 +56,9 @@
 	var/insight_rest_gain_multiplier = 1
 	var/resting = 0
 	var/max_resting = 1
+
+	var/sanity_damage_modifier = 0.6
+	var/sanity_view_damage_modifier = 0.4
 
 	var/rest_timer_active = FALSE
 	var/rest_timer_time

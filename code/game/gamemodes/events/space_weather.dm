@@ -49,15 +49,13 @@
 /datum/event/ion_blizzard/end()
 	command_announcement.Announce("The ion blizzard has ended.", "Ion Blizzard")
 
-/datum/event/ion_blizzard/tick()
-	if(prob(2)) //don't check every single light every single tick jesus christ
+/datum/event/ion_blizzard/tick() //get random ship area and do things to all light in there
+	if(prob(10)) //don't check every single light every single tick jesus christ
 		for(var/obj/machinery/light/L in random_ship_area())
 			L.broken()
-			return
 	else if(prob(80))
 		for(var/obj/machinery/light/L in random_ship_area())
 			L.flick_light(rand(2,5))
-			return
 
 /datum/storyevent/photon_vortex
 	id = "photon vortex"
@@ -91,13 +89,14 @@
 /datum/event/photon_vortex/end()
 	command_announcement.Announce("The photon vortex anomaly has moved away from the ship.", "Photon Vortex Anomaly")
 
-	for(var/obj/item/device/lighting/L in ship_areas)
-		L.brightness_on = initial(L.brightness_on)
-		L.update_icon()
-	for(var/obj/machinery/light/l in ship_areas)
-		l.brightness_range = initial(l.brightness_range)
-		l.brightness_power = initial(l.brightness_power)
-		l.update()
+	for(var/area/area as anything in ship_areas)
+		for(var/obj/item/device/lighting/L in area)
+			L.brightness_on = initial(L.brightness_on)
+			L.update_icon()
+		for(var/obj/machinery/light/l in ship_areas)
+			l.brightness_range = initial(l.brightness_range)
+			l.brightness_power = initial(l.brightness_power)
+			l.update()
 
 /datum/storyevent/harmonic_feedback
 	id = "harmonic feedback surge"
@@ -130,7 +129,8 @@
 	id = "micro debris"
 	name = "micro debris field"
 	weight = 0.9
-	event_type =/datum/event/dust
+	parallel = FALSE
+	event_type = /datum/event/dust
 	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
 	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE)
 
@@ -167,4 +167,86 @@
 	walk_towards(M, M.dest, 1)
 	return
 
+/datum/storyevent/graveyard
+	id = "graveyard"
+	name = "Space Graveryard"
+	weight = 0.6
+	parallel = FALSE
+	event_type = /datum/event/graveyard
+	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	tags = list(TAG_SCARY, TAG_NEGATIVE)
 
+/datum/event/graveyard
+	startWhen = 2
+	announceWhen = 1
+	endWhen = 350
+
+/datum/event/graveyard/setup()
+	endWhen = rand(300, 600)
+
+/datum/event/graveyard/start()
+	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+		H.sanity.sanity_damage_modifier = H.sanity.sanity_damage_modifier * 1.5
+		H.sanity.sanity_view_damage_modifier = H.sanity.sanity_view_damage_modifier * 1.5
+
+/datum/event/graveyard/announce()
+	command_announcement.Announce("Drifting wrecks of a space station have been detected near the ship. Telecommunication systems are not responsible for any strain on the crew's psychological wellbeing.", "Space Graveyard")
+
+/datum/event/graveyard/tick()
+	if(prob(5)) //random broadcasts
+		var/message = ""
+		message += pick("They are ", "He is ", "All of them are ", "I'm ", "We are ")
+		message += pick("going to die... ", "about to turn into those spider mutants... ", "being forcefully converted into commies... ")
+		message += pick("Run while you still can.", "Help!", "Angels bless our souls...", "It's... too late.")
+
+		global_announcer.autosay(msg, "Emergency Broadcast")
+	else if(prob(5)) //predetermined broadcasts
+		var/message_list = list(
+			"Blessed Angels, guide us to safety!",
+			"Comrades, we have captured the last survivors on this wreck. Expecting extraction at-",
+			"Whoever hears this, RUN WHILE YOU STILL CAN!",
+			"We are barely managing to keep this place safe. Please, whoever recieves this signal, pick us up at-",
+			"Our food and water supplies are going to run out soon. We have money. Just help us, anyone, please...",
+			"Security is... All gone. With medical bay soon to follow. These abominations know nothing but hunger, consumed most of our crew, and yet they remain unsatiated... Do not try to help in any way. This station is a lost cause."
+		)
+
+		global_announcer.autosay(pick(message_list), "Emergency Broadcast")
+	else if(prob(1)) //sekrit stuf
+		global_announcer.autosay("Man, all those people really suck. Just don't get hit and beat everything until it goes horizontal.", "Emergency Broadcast")
+
+/datum/event/graveyard/end()
+	command_announcement.Announce("The station wrecks have moved away from the ship.", "Space Graveyard")
+	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+		H.sanity.sanity_damage_modifier = initial(H.sanity.sanity_damage_modifier)
+		H.sanity.sanity_view_damage_modifier = initial(H.sanity.sanity_view_damage_modifier)
+
+/datum/storyevent/nebula
+	id = "nebula"
+	name = "Dark matter nebula"
+	weight = 0.8
+	parallel = FALSE
+	event_type = /datum/event/nebula
+	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	tags = list(TAG_SCARY, TAG_NEGATIVE)
+
+/datum/event/nebula
+	startWhen = 2
+	announceWhen = 1
+	endWhen = 350
+
+/datum/event/nebula/setup()
+	endWhen = rand(400, 700)
+
+/datum/event/nebula/start()
+	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+		H.sanity.insight_gain_multiplier = H.sanity.insight_gain_multiplier / 2
+		H.sanity.insight_rest_gain_multiplier = H.sanity.insight_rest_gain_multiplier / 2
+
+/datum/event/nebula/announce()
+	command_announcement.Announce("Uncharacteristically high concentrations of dark matter from a nearby nebula currently envelops the ship. Crew might experience certain issues with their mental wellbeing.", "Dark Matter Nebula")
+
+/datum/event/nebula/end()
+	command_announcement.Announce("The dark matter nebula has moved away from the ship.", "Dark Matter Nebula")
+	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+		H.sanity.insight_gain_multiplier = initial(H.sanity.insight_gain_multiplier)
+		H.sanity.insight_rest_gain_multiplier = initial(H.sanity.insight_rest_gain_multiplier)
