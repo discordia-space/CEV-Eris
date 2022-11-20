@@ -383,23 +383,26 @@
 				if(hit(I.force*I.structure_damage_factor*2) && health <= 10)
 					set_anchored(FALSE)
 					step(src, get_dir(user, src))
+				..()
 				return
 			// excavation and drilling, guaranteed to do damage.
 			if(QUALITY_DRILLING)
 				hit(I.force*I.structure_damage_factor)
+				..()
 				return
 			if(QUALITY_EXCAVATION)
 				hit(I.force*I.structure_damage_factor)
+				..()
 				return
 			if(QUALITY_DIGGING)
 				hit(I.force*I.structure_damage_factor)
+				..()
 				return
 			else
 				// everything else kinda sucks
 				hit(I.force*I.structure_damage_factor*0.25)
+				..()
 				return
-		..()
-	return
 
 /obj/structure/window/proc/hit(damage, sound_effect = TRUE, ignore_resistance = FALSE)
 	damage = take_damage(damage, TRUE, ignore_resistance)
