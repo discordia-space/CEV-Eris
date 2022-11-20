@@ -374,14 +374,30 @@
 
 	else
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		if(I.damtype == BRUTE || I.damtype == BURN)
-			user.do_attack_animation(src)
-			hit(I.force*I.structure_damage_factor)
-			if(health <= 7)
-				set_anchored(FALSE)
-				step(src, get_dir(user, src))
-		else
-			playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
+		user.do_attack_animation(src)
+		playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
+		var/tool_type = I.get_tool_type(user, usable_qualities, src)
+		switch(tool_type)
+			// hammers are perfect for breaking windows , and will be less likely to get you hurt
+			if(QUALITY_HAMMERING)
+				if(hit(I.force*I.structure_damage_factor*2) && health <= 10)
+					set_anchored(FALSE)
+					step(src, get_dir(user, src))
+				return
+			// excavation and drilling, guaranteed to do damage.
+			if(QUALITY_DRILLING)
+				hit(I.force*I.structure_damage_factor)
+				return
+			if(QUALITY_EXCAVATION)
+				hit(I.force*I.structure_damage_factor)
+				return
+			if(QUALITY_DIGGING)
+				hit(I.force*I.structure_damage_factor)
+				return
+			else
+				// everything else kinda sucks
+				hit(I.force*I.structure_damage_factor*0.25)
+				return
 		..()
 	return
 
