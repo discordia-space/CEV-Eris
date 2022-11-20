@@ -431,6 +431,7 @@
 
 /obj/effect/meteor/dust/glass
 	name = "glass shard"
+	meteordrop = /obj/item/material/shard
 
 /obj/effect/meteor/dust/rods
 	name = "steel rod"
