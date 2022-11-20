@@ -194,8 +194,7 @@
 
 /datum/event/graveyard/tick()
 	if(prob(5)) //random broadcasts
-		var/message = ""
-		message += pick("They are ", "He is ", "All of them are ", "I'm ", "We are ")
+		var/message = pick("They are ", "He is ", "All of them are ", "I'm ", "We are ")
 		message += pick("going to die... ", "about to turn into those spider mutants... ", "being forcefully converted into commies... ")
 		message += pick("Run while you still can.", "Help!", "Angels bless our souls...", "It's... too late.")
 
