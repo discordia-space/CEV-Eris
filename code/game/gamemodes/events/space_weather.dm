@@ -155,11 +155,8 @@
 
 /datum/event/micro_debris/tick()
 	if(prob(60))
-		var/debris = pickweight(debris_types)
-		var/start_side = pick(cardinal)
-		var/target_zlevel = pick(GLOB.maps_data.station_levels)
 		for(var/i in 0 to rand(1,3))
-			spawn_debris(debris, start_side, target_zlevel)
+			spawn_debris(pickweight(debris_types), pick(cardinal), pick(GLOB.maps_data.station_levels))
 
 /datum/event/micro_debris/proc/spawn_debris(debris, start_side, zlevel)
 	var/turf/start_turf = spaceDebrisStartLoc(start_side, zlevel)
@@ -187,8 +184,7 @@
 	endWhen = rand(300, 600)
 
 /datum/event/graveyard/start()
-	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-		GLOB.GLOBAL_SANITY_MOD = 1.5
+	GLOB.GLOBAL_SANITY_MOD = 1.5
 
 /datum/event/graveyard/announce()
 	command_announcement.Announce("Drifting wrecks of a space station have been detected near the ship. Telecommunication systems are not responsible for any strain on the crew's psychological wellbeing.", "Space Graveyard")
@@ -244,3 +240,45 @@
 /datum/event/nebula/end()
 	command_announcement.Announce("The dark matter nebula has moved away from the ship.", "Dark Matter Nebula")
 	GLOB.GLOBAL_INSIGHT_MOD = 1
+
+/datum/storyevent/interphase
+	id = "bluespace interphase"
+	name = "Bluespace Interphase"
+	weight = 0.5
+	parallel = FALSE
+	event_type = /datum/event/interphase
+	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
+	tags = list(TAG_SCARY, TAG_NEGATIVE)
+
+/datum/event/interphase
+	startWhen = 2
+	announceWhen = 1
+	endWhen = 350
+
+/datum/event/interphase/setup()
+	endWhen = rand(300, 600)
+
+/datum/event/interphase/announce()
+	command_announcement.Announce("The fabric of bluespace has begun to break up, allowing an overlap of parallel universes on different dimensional planes. There is no additional data.", "Bluespace Interphase")
+
+/datum/event/interphase/tick()
+	if(prob(15))
+		var/list/servers = list()
+		for(var/obj/machinery/telecomms/server/S in telecomms_list)
+			if(S.network == "eris") //yep, only for eris so that non-eris servers don't get involved(duh!)
+				servers += S
+		var/obj/machinery/telecomms/server/chosen_server = pick(servers)
+		var/datum/comm_log_entry/C = pick(chosen_server.log_entries)
+		if(C)
+			global_announcer.autosay(C.parameters["name"], C.parameters["message"])
+	if(prob(5)) //spooky bluspess ghost
+		var/target = pick(GLOB.human_mob_list)
+		var/mob/living/carbon/human/ghost = new target(spaceDebrisStartLoc(pick(cardinal), pick(GLOB.maps_data.station_levels)))
+		ghost.incorporeal_move = TRUE
+		ghost.ReplaceMovementHandler(/datum/movement_handler/mob/incorporeal)
+		walk_towards(ghost, target, 1)
+		sleep(30)
+		qdel(ghost)
+
+/datum/event/interphase/end()
+	command_announcement.Announce("The bluespace interphase has stabilized itself.", "Bluespace Interphase")
