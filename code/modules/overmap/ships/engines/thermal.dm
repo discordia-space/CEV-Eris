@@ -51,7 +51,6 @@
 	var/datum/ship_engine/gas_thruster/controller
 	var/thrust_limit = 1	//Value between 1 and 0 to limit the resulting thrust
 	var/moles_per_burn = 5
-	var/list/obj/effect/engine_exhaust/propeller_trail = list()
 	atmos_canpass = CANPASS_NEVER
 
 /obj/machinery/atmospherics/unary/engine/Initialize()
