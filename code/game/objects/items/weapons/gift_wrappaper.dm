@@ -127,7 +127,7 @@
 	icon_state = "c_tube"
 	throwforce = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_SMALL
-	throw_speed = 4
+	throw_speed = 0.2
 	throw_range = 5
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_JUNK

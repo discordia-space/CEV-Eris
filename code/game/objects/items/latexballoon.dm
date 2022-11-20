@@ -6,7 +6,7 @@
 	force = 0
 	throwforce = 0
 	w_class = ITEM_SIZE_SMALL
-	throw_speed = 1
+	throw_speed = 0.5
 	throw_range = 15
 	var/state
 	var/datum/gas_mixture/air_contents = null

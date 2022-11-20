@@ -11,7 +11,7 @@
 	w_class = ITEM_SIZE_SMALL
 	specific_organ_size = 2
 	throwforce = 1
-	throw_speed = 3
+	throw_speed = 0.3
 	throw_range = 5
 	origin_tech = list(TECH_BIO = 3)
 	attack_verb = list("attacked", "slapped", "whacked")

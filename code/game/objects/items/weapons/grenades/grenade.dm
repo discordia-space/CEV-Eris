@@ -6,7 +6,7 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "grenade"
 	item_state = "grenade"
-	throw_speed = 4
+	throw_speed = 0.2
 	throw_range = 20
 	flags = CONDUCT
 	slot_flags = SLOT_BELT|SLOT_MASK

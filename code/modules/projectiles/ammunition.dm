@@ -202,7 +202,7 @@
 	matter = list(MATERIAL_STEEL = 2)
 	throwforce = 5
 	w_class = ITEM_SIZE_SMALL
-	throw_speed = 4
+	throw_speed = 0.8
 	throw_range = 10
 
 	spawn_tags = SPAWN_TAG_AMMO

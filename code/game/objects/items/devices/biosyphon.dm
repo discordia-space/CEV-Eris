@@ -9,7 +9,7 @@
 	w_class = ITEM_SIZE_BULKY
 	flags = CONDUCT
 	throwforce = WEAPON_FORCE_PAINFUL
-	throw_speed = 1
+	throw_speed = 0.3
 	throw_range = 2
 	price_tag = 20000
 	origin_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 8, TECH_POWER = 7)

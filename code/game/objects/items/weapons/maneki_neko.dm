@@ -9,7 +9,7 @@
 	force = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_WEAK
-	throw_speed = 3
+	throw_speed = 0.4
 	throw_range = 15
 	price_tag = 20000
 	origin_tech = list(TECH_MATERIAL = 10)

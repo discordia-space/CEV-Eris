@@ -5,7 +5,7 @@
 	item_state = "holowarrant"
 	throwforce = 5
 	w_class = ITEM_SIZE_SMALL
-	throw_speed = 4
+	throw_speed = 0.2
 	throw_range = 10
 	slot_flags = SLOT_BELT
 	req_access = list(list(access_heads, access_security))

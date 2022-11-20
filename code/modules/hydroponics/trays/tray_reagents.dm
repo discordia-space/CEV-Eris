@@ -6,7 +6,7 @@
 	slot_flags = SLOT_BELT
 	throwforce = 4
 	w_class = ITEM_SIZE_SMALL
-	throw_speed = 2
+	throw_speed = 0.6
 	throw_range = 10
 	spawn_tags = SPAWN_TAG_ITEM_BOTANICAL
 	bad_type = /obj/item/plantspray

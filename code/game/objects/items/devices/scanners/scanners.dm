@@ -7,7 +7,7 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
-	throw_speed = 3
+	throw_speed = 0.7
 	throw_range = 7
 
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)

@@ -32,7 +32,7 @@ var/global/list/default_medbay_channels = list(
 	item_state = "walkietalkie"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	throw_speed = 2
+	throw_speed = 0.3
 	throw_range = 9
 	w_class = ITEM_SIZE_SMALL
 

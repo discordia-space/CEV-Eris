@@ -18,7 +18,7 @@
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = 0
 	w_class = ITEM_SIZE_TINY
-	throw_speed = 7
+	throw_speed = 0.4
 	throw_range = 15
 	matter = list(MATERIAL_STEEL = 1)
 	spawn_tags = SPAWN_TAG_JUNK

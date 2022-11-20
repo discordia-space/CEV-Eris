@@ -7,7 +7,7 @@
 	w_class = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTIC = 1)
 	throwforce = WEAPON_FORCE_HARMLESS
-	throw_speed = 3
+	throw_speed = 0.3
 	throw_range = 10
 	origin_tech = list(TECH_MAGNET = 1)
 

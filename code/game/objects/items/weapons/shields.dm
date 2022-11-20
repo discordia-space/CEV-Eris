@@ -142,7 +142,7 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_PAINFUL
-	throw_speed = 2
+	throw_speed = 0.6
 	throw_range = 6
 	w_class = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_MATERIAL = 2)
@@ -198,7 +198,7 @@
 	slot_flags = SLOT_BACK
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_PAINFUL
-	throw_speed = 1
+	throw_speed = 0.9
 	throw_range = 4
 	w_class = ITEM_SIZE_HUGE
 	origin_tech = list(TECH_MATERIAL = 2)
@@ -299,7 +299,7 @@
 	slot_flags = SLOT_BACK
 	force = WEAPON_FORCE_DANGEROUS
 	throwforce = WEAPON_FORCE_DANGEROUS
-	throw_speed = 1
+	throw_speed = 0.9
 	throw_range = 4
 	w_class = ITEM_SIZE_HUGE
 	origin_tech = list()
@@ -408,7 +408,7 @@
 	icon_state = "buckler"
 	item_state = "buckler"
 	flags = null
-	throw_speed = 2
+	throw_speed = 1
 	throw_range = 6
 	matter = list(MATERIAL_STEEL = 6)
 	base_block_chance = 35
@@ -427,7 +427,7 @@
 	icon_state = "tray_shield"
 	item_state = "tray_shield"
 	flags = CONDUCT
-	throw_speed = 2
+	throw_speed = 1
 	throw_range = 4
 	matter = list(MATERIAL_STEEL = 4)
 	base_block_chance = 40

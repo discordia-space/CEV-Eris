@@ -4,7 +4,7 @@
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
 	icon_state = "health"
 	item_state = "analyzer"
-	throw_speed = 5
+	throw_speed = 0.8
 	throw_range = 10
 
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)

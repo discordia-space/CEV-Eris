@@ -6,7 +6,7 @@
 	throwforce = 0
 	w_class = ITEM_SIZE_SMALL
 	item_flags = DRAG_AND_DROP_UNEQUIP
-	throw_speed = 3
+	throw_speed = 0.3
 	throw_range = 10
 	spawn_tags = SPAWN_TAG_ITEM
 	var/obj/item/pen/haspen		//The stored pen.

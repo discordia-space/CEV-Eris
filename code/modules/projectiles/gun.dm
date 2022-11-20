@@ -17,7 +17,7 @@
 	matter = list(MATERIAL_STEEL = 6)
 	w_class = ITEM_SIZE_NORMAL
 	throwforce = 5
-	throw_speed = 4
+	throw_speed = 0.7
 	throw_range = 5
 	force = WEAPON_FORCE_WEAK
 	origin_tech = list(TECH_COMBAT = 1)
@@ -1028,7 +1028,7 @@
 
 	if(firemodes.len)
 		very_unsafe_set_firemode(sel_mode) // Reset the firemode so it gets the new changes
-	
+
 	update_icon()
 	//then update any UIs with the new stats
 	SSnano.update_uis(src)

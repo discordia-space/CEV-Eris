@@ -123,7 +123,7 @@
 	icon_state = "m_st"
 	w_class = ITEM_SIZE_SMALL
 	force = WEAPON_FORCE_HARMLESS
-	throw_speed = 5
+	throw_speed = 0.2
 	throw_range = 7
 	maxcharge = CELL_MEDIUM_BASE_CHARGE//600
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 2)
@@ -222,7 +222,7 @@
 	icon_state = "s_st"
 	w_class = ITEM_SIZE_TINY
 	force = WEAPON_FORCE_HARMLESS
-	throw_speed = 5
+	throw_speed = 0.2
 	throw_range = 7
 	maxcharge = CELL_SMALL_BASE_CHARGE//100
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1)
@@ -333,7 +333,7 @@
 	icon_state = "s_st"
 	w_class = ITEM_SIZE_TINY
 	force = WEAPON_FORCE_HARMLESS
-	throw_speed = 5
+	throw_speed = 0.2
 	throw_range = 7
 	origin_tech = list(TECH_POWER = 1)
 	matter = list(MATERIAL_STEEL = 1)  //some cost just in case you manage to get this in a disk or something

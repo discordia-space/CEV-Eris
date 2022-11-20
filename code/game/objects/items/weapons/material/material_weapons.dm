@@ -5,7 +5,7 @@
 	health = 10
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	gender = NEUTER
-	throw_speed = 3
+	throw_speed = 1
 	throw_range = 7
 	w_class = ITEM_SIZE_NORMAL
 	sharp = FALSE

@@ -5,7 +5,7 @@
 	icon_state = "caution"
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
-	throw_speed = 1
+	throw_speed = 0.8
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("warned", "cautioned", "smashed")

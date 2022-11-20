@@ -6,7 +6,7 @@
 	flags = CONDUCT | PROXMOVE
 	throwforce = 5
 	w_class = ITEM_SIZE_SMALL
-	throw_speed = 3
+	throw_speed = 0.3
 	throw_range = 10
 
 	var/secured = FALSE

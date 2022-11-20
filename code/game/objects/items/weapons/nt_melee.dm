@@ -160,7 +160,7 @@
 	slot_flags = SLOT_BACK | SLOT_BELT
 	throwforce = WEAPON_FORCE_LETHAL * 1.5
 	armor_divisor = ARMOR_PEN_MASSIVE
-	throw_speed = 3
+	throw_speed = 0.3
 	price_tag = 450
 	allow_spin = FALSE
 	extended_reach = TRUE
@@ -360,7 +360,7 @@
 	slot_flags = SLOT_BACK | SLOT_BELT
 	throwforce = WEAPON_FORCE_LETHAL
 	armor_divisor = ARMOR_PEN_DEEP
-	throw_speed = 3
+	throw_speed = 0.3
 	price_tag = 150
 	allow_spin = FALSE
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 5) // Easy to mass-produce and arm the faithful

@@ -11,7 +11,7 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
-	throw_speed = 1
+	throw_speed = 0.6
 	throw_range = 4
 
 	origin_tech = list(TECH_MAGNET = 2, TECH_MATERIAL = 2)

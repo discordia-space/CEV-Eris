@@ -9,7 +9,7 @@
 	var/throwing = 0
 	var/thrower
 	var/turf/throw_source
-	var/throw_speed = 2
+	var/throw_speed = 1
 	var/throw_range = 7
 	var/moved_recently = 0
 	var/mob/pulledby
@@ -147,9 +147,11 @@
 				if(A.density && !A.throwpass)	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop movement
 					src.throw_impact(A,speed)
 
-/atom/movable/proc/throw_at(atom/target, range, speed, thrower)
+/atom/movable/proc/throw_at(atom/target, range, delayPerMove, thrower)
 	if(!target || !src)	return 0
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
+	// speed is just turfs per second (10 if the delay is 0.1 ms)
+	var/speed = 1 / delayPerMove
 
 	set_dir(pick(cardinal))
 	src.throwing = 1
@@ -177,7 +179,6 @@
 	else
 		dy = SOUTH
 	var/dist_travelled = 0
-	var/dist_since_sleep = 0
 	var/area/a = get_area(src.loc)
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
@@ -189,13 +190,12 @@
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
 				src.Move(step)
+
 				hit_check(speed)
+				set_glide_size(DELAY2GLIDESIZE(delayPerMove), 0 , INFINITY)
 				error += dist_x
 				dist_travelled++
-				dist_since_sleep++
-				if(dist_since_sleep >= speed)
-					dist_since_sleep = 0
-					sleep(1)
+				sleep(delayPerMove)
 			else
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
@@ -204,10 +204,7 @@
 				hit_check(speed)
 				error -= dist_y
 				dist_travelled++
-				dist_since_sleep++
-				if(dist_since_sleep >= speed)
-					dist_since_sleep = 0
-					sleep(1)
+				sleep(delayPerMove)
 			a = get_area(src.loc)
 	else
 		var/error = dist_y/2 - dist_x
@@ -221,10 +218,7 @@
 				hit_check(speed)
 				error += dist_y
 				dist_travelled++
-				dist_since_sleep++
-				if(dist_since_sleep >= speed)
-					dist_since_sleep = 0
-					sleep(1)
+				sleep(delayPerMove)
 			else
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
@@ -233,10 +227,7 @@
 				hit_check(speed)
 				error -= dist_x
 				dist_travelled++
-				dist_since_sleep++
-				if(dist_since_sleep >= speed)
-					dist_since_sleep = 0
-					sleep(1)
+				sleep(delayPerMove)
 
 			a = get_area(src.loc)
 
@@ -248,7 +239,7 @@
 	var/turf/new_loc = get_turf(src)
 	if(new_loc)
 		if(isobj(src))
-			src.throw_impact(new_loc,speed)
+			src.throw_impact(new_loc, speed)
 		new_loc.Entered(src)
 
 //Overlays

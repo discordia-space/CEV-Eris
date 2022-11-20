@@ -11,7 +11,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 	slot_flags = SLOT_BELT
 	item_state = "electronic"
 	throwforce = WEAPON_FORCE_HARMLESS
-	throw_speed = 1
+	throw_speed = 0.3
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_COVERT = 4, TECH_MAGNET = 4)

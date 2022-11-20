@@ -10,7 +10,7 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_PAINFUL
-	throw_speed = 1
+	throw_speed = 0.8
 	throw_range = 5
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2) //Redundant values that yer free ta' change later.

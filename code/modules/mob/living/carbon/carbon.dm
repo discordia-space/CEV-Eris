@@ -284,13 +284,18 @@
 			var/turf/end_T = get_turf(target)
 			if(start_T && end_T)
 				var/mob/M = item
+				var/CalcThrowSpeed = src.stats.getStat(STAT_ROB, FALSE) < 0 ? 1 : src.stats.getStat(STAT_ROB, FALSE)
+				CalcThrowSpeed = round(100 / CalcThrowSpeed) / 10
+				CalcThrowSpeed = clamp(CalcThrowSpeed, 0.1 , 1) // this is  10ths of a second per movement delay
+				var/CalcThrowRange = clamp(1,13 - CalcThrowSpeed * 10 - M.mob_size/10,13)
+
 				var/start_T_descriptor = "<font color='#6b5d00'>tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)]</font>"
 				var/end_T_descriptor = "<font color='#6b4400'>tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]</font>"
 
 				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been thrown by [usr.name] ([usr.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
 				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
 				msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
-				item.throw_at(target, item.throw_range, item.throw_speed, src)
+				item.throw_at(target, CalcThrowRange, CalcThrowSpeed, src)
 				return
 
 	//Grab processing has a chance of returning null

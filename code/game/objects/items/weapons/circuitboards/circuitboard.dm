@@ -24,7 +24,7 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
-	throw_speed = 3
+	throw_speed = 0.3
 	throw_range = 15
 	bad_type = /obj/item/electronics/circuitboard
 

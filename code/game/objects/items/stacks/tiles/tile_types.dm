@@ -16,7 +16,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_WEAK
-	throw_speed = 3
+	throw_speed = 0.5
 	throw_range = 7
 	max_amount = 60
 

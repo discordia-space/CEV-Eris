@@ -2,7 +2,7 @@
 	name = "slime scanner"
 	icon_state = "adv_spectrometer"
 	item_state = "analyzer"
-	throw_speed = 3
+	throw_speed = 0.7
 	throw_range = 7
 
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)

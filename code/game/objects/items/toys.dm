@@ -18,7 +18,7 @@
 
 /obj/item/toy
 	throwforce = NONE
-	throw_speed = 4
+	throw_speed = 0.1
 	throw_range = 20
 	force = NONE
 

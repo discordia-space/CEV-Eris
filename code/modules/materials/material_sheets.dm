@@ -4,7 +4,7 @@
 	throwforce = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_NORMAL
 	icon = 'icons/obj/stack/material.dmi'
-	throw_speed = 3
+	throw_speed = 1
 	throw_range = 3
 	max_amount = 120
 	bad_type = /obj/item/stack/material

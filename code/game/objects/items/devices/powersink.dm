@@ -8,7 +8,7 @@
 	w_class = ITEM_SIZE_BULKY
 	flags = CONDUCT
 	throwforce = WEAPON_FORCE_PAINFUL
-	throw_speed = 1
+	throw_speed = 0.5
 	throw_range = 2
 	spawn_blacklisted = TRUE
 

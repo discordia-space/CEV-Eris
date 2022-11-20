@@ -8,7 +8,7 @@
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	flags = CONDUCT
 	throwforce = WEAPON_FORCE_HARMLESS
-	throw_speed = 4
+	throw_speed = 0.3
 	throw_range = 20
 
 	var/emagged = 0

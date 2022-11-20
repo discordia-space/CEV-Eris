@@ -5,7 +5,7 @@
 	amount = 5
 	max_amount = 5
 	w_class = ITEM_SIZE_SMALL
-	throw_speed = 4
+	throw_speed = 0.6
 	throw_range = 20
 	price_tag = 10
 	spawn_tags = SPAWN_TAG_MEDICINE

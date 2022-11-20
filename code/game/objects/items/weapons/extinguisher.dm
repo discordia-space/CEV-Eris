@@ -9,7 +9,7 @@
 	reagent_flags = AMOUNT_VISIBLE
 	throwforce = WEAPON_FORCE_DANGEROUS
 	w_class = ITEM_SIZE_NORMAL
-	throw_speed = 2
+	throw_speed = 0.3
 	throw_range = 10
 	force = WEAPON_FORCE_DANGEROUS
 	matter = list(MATERIAL_STEEL = 3)

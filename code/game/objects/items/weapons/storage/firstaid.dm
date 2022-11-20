@@ -12,7 +12,7 @@
 	name = "first-aid kit"
 	desc = "An emergency medical kit for those serious boo-boos."
 	icon_state = "firstaid"
-	throw_speed = 2
+	throw_speed = 0.4
 	throw_range = 8
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_FIRSTAID

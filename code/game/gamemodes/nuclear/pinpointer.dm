@@ -6,7 +6,7 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_SMALL
 	item_state = "electronic"
-	throw_speed = 4
+	throw_speed = 2
 	throw_range = 20
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	//spawn_blacklisted = TRUE//antag_item_targets??

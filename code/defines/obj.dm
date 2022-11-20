@@ -89,7 +89,7 @@
 	w_class = ITEM_SIZE_BULKY
 	force = 0
 	throwforce = 0
-	throw_speed = 1
+	throw_speed = 0.5
 	throw_range = 20
 	flags = CONDUCT
 

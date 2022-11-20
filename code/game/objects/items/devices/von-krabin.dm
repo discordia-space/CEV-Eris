@@ -9,7 +9,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throwforce = WEAPON_FORCE_HARMLESS
-	throw_speed = 1
+	throw_speed = 0.6
 	throw_range = 5
 	price_tag = 20000
 	w_class = ITEM_SIZE_NORMAL

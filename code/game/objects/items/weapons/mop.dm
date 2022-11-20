@@ -8,7 +8,7 @@
 	icon_state = "mop"
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
-	throw_speed = 5
+	throw_speed = 0.2
 	throw_range = 10
 	w_class = ITEM_SIZE_NORMAL
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")

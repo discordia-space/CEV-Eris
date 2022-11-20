@@ -6,7 +6,7 @@
 	item_state = "stamp"
 	throwforce = 0
 	w_class = ITEM_SIZE_TINY
-	throw_speed = 7
+	throw_speed = 0.4
 	throw_range = 15
 	matter = list(MATERIAL_PLASTIC = 1)
 	attack_verb = list("stamped")

@@ -16,7 +16,7 @@ AI MODULES
 	force = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_WEAK
-	throw_speed = 3
+	throw_speed = 0.6
 	throw_range = 15
 	origin_tech = list(TECH_DATA = 3)
 	matter = list(MATERIAL_GLASS = 2, MATERIAL_GOLD = 1)

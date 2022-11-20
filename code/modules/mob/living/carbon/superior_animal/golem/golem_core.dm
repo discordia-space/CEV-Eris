@@ -9,7 +9,7 @@
 	icon_state = "golem_core"
 	w_class = ITEM_SIZE_SMALL
 	throwforce = 0
-	throw_speed = 4
+	throw_speed = 0.25
 	throw_range = 20
 	origin_tech = list(TECH_BIO = 2)
 	matter = list(MATERIAL_BIOMATTER = 5)
@@ -34,7 +34,7 @@
 	if(!do_mob(user, M, 2 SECOND))
 		to_chat(user, SPAN_NOTICE("You must stand still to apply \the [src]."))
 		return TRUE
-	
+
 	// Heal the target
 	M.adjustBruteLoss(-GOLEM_CORE_HEAL)
 	M.adjustFireLoss(-GOLEM_CORE_HEAL)

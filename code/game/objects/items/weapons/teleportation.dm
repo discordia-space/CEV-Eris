@@ -14,7 +14,7 @@
 	item_state = "electronic"
 	throwforce = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_SMALL
-	throw_speed = 3
+	throw_speed = 0.3
 	throw_range = 5
 	origin_tech = list(TECH_MAGNET = 1, TECH_BLUESPACE = 3)
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1, MATERIAL_SILVER = 1, MATERIAL_URANIUM = 1)

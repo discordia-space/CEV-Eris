@@ -7,7 +7,7 @@
 	force = 1
 	w_class = ITEM_SIZE_TINY
 	throwforce = 0
-	throw_speed = 3
+	throw_speed = 0.3
 	throw_range = 6
 	origin_tech = list(TECH_BIO = 4)
 	reagent_flags = REFILLABLE | DRAINABLE | AMOUNT_VISIBLE

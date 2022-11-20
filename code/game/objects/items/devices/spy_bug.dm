@@ -12,7 +12,7 @@
 	slot_flags = SLOT_EARS
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_range = 15
-	throw_speed = 3
+	throw_speed = 0.5
 
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1, TECH_COVERT = 3)
 	spawn_blacklisted = TRUE

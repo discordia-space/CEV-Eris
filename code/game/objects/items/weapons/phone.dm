@@ -6,7 +6,7 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
-	throw_speed = 1
+	throw_speed = 0.9
 	throw_range = 4
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("called", "rang")

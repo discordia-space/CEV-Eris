@@ -9,7 +9,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
-	throw_speed = 5
+	throw_speed = 0.9
 	throw_range = 20
 	matter = list(MATERIAL_STEEL = 1)
 	max_amount = 60

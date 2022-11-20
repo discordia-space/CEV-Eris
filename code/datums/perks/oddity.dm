@@ -152,7 +152,8 @@
 	name = "Ass of Concrete"
 	desc = "Years of training your body made you a hulk of a person. No more pushing around. \
 			Nobody can move past you, even on help intent. You won\'t slip in gravity. \
-			You deal more damage to windows when you dive into them."
+			You deal more damage to windows when you dive into them and suffer less from being thrown \
+			or smashed into them"
 	icon_state = "muscular" // https://game-icons.net
 
 /datum/perk/oddity/ass_of_concrete/assign(mob/living/carbon/human/H)

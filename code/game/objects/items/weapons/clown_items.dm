@@ -28,7 +28,7 @@
 	icon_state = "soap"
 	w_class = ITEM_SIZE_SMALL
 	throwforce = 0
-	throw_speed = 4
+	throw_speed = 0.3
 	throw_range = 20
 	matter = list(MATERIAL_BIOMATTER = 12)
 	spawn_tags = SPAWN_TAG_ITEM_CLOWN
@@ -129,7 +129,7 @@
 	item_state = "bike_horn"
 	throwforce = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_SMALL
-	throw_speed = 3
+	throw_speed = 0.2
 	throw_range = 15
 	matter = list(MATERIAL_PLASTIC = 5)
 	attack_verb = list("HONKED")

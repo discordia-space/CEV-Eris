@@ -5,7 +5,7 @@
 	icon_state = "vacuum"
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
-	throw_speed = 5
+	throw_speed = 0.4
 	throw_range = 3
 	w_class = ITEM_SIZE_BULKY
 	attack_verb = list("bashed", "bludgeoned", "whacked")
@@ -89,7 +89,7 @@
 	icon_state = "filth-biomatter"
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
-	throw_speed = 5
+	throw_speed = 0.3
 	throw_range = 6
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("bashed", "bludgeoned", "whacked")

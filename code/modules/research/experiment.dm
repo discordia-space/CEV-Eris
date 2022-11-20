@@ -227,7 +227,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	slot_flags = SLOT_BELT
 	throwforce = 3
 	w_class = ITEM_SIZE_SMALL
-	throw_speed = 5
+	throw_speed = 0.2
 	throw_range = 10
 	matter = list(MATERIAL_STEEL = 5)
 	origin_tech = list(TECH_ENGINEERING = 1, TECH_BIO = 1)

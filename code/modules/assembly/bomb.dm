@@ -4,7 +4,7 @@
 	item_state = "assembly"
 	throwforce = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_NORMAL
-	throw_speed = 2
+	throw_speed = 0.5
 	throw_range = 4
 	flags = CONDUCT | PROXMOVE
 	spawn_frequency = 0

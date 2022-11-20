@@ -12,7 +12,7 @@
 	origin_tech = list(TECH_POWER = 1)
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
-	throw_speed = 3
+	throw_speed = 0.3
 	throw_range = 5
 	w_class = ITEM_SIZE_NORMAL
 	//Spawn_values

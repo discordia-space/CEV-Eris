@@ -37,7 +37,7 @@
 	item_state = "corncob"
 	w_class = ITEM_SIZE_SMALL
 	throwforce = 0
-	throw_speed = 4
+	throw_speed = 0.6
 	throw_range = 20
 	spawn_tags = SPAWN_TAG_JUNK
 
@@ -57,6 +57,6 @@
 	item_state = "banana_peel"
 	w_class = ITEM_SIZE_SMALL
 	throwforce = 0
-	throw_speed = 4
+	throw_speed = 0.6
 	throw_range = 20
 	spawn_tags = SPAWN_TAG_JUNK_CLOWN

@@ -6,7 +6,7 @@
 	item_state = "flashtool"
 	throwforce = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_SMALL
-	throw_speed = 4
+	throw_speed = 0.3
 	throw_range = 10
 	price_tag = 300
 	flags = CONDUCT
