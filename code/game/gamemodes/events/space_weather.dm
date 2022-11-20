@@ -199,7 +199,7 @@
 		message += pick("going to die... ", "about to turn into those spider mutants... ", "being forcefully converted into commies... ")
 		message += pick("Run while you still can.", "Help!", "Angels bless our souls...", "It's... too late.")
 
-		global_announcer.autosay(msg, "Emergency Broadcast")
+		global_announcer.autosay(message, "Emergency Broadcast")
 	else if(prob(5)) //predetermined broadcasts
 		var/message_list = list(
 			"Blessed Angels, guide us to safety!",
