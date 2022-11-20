@@ -938,6 +938,16 @@ Checks if a list has the same entries and values as an element of big.
 
 	return TRUE
 
+/proc/compareListOrderless(list/first,list/second)
+	if(!islist(first) || !islist(second))
+		return FALSE
+	if(length(first) != length(second))
+		return FALSE
+	var/list/temp = first & second
+	if(length(temp) == length(first))
+		return TRUE
+	return FALSE
+
 /proc/try_json_decode(t)
 	. = list()
 	if(istext(t))

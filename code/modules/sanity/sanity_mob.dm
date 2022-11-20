@@ -349,61 +349,66 @@
 /datum/sanity/proc/onPsyDamage(amount)
 	changeLevel(-SANITY_DAMAGE_PSY(amount, owner.stats.getStat(STAT_VIG)))
 
-/datum/sanity/proc/onSeeDeath(mob/M)
-	if(ishuman(M))
-		var/penalty = -SANITY_DAMAGE_DEATH(owner.stats.getStat(STAT_VIG))
-		if(owner.stats.getPerk(PERK_NIHILIST))
-			var/effect_prob = rand(1, 100)
-			switch(effect_prob)
-				if(1 to 25)
-					M.stats.addTempStat(STAT_COG, 5, INFINITY, "Fate Nihilist")
-				if(25 to 50)
-					M.stats.removeTempStat(STAT_COG, "Fate Nihilist")
-				if(50 to 75)
-					penalty *= -1
-				if(75 to 100)
-					penalty *= 0
-		//extra stuff if same departament
-		var/mob/living/carbon/human/fellow_human = M
-		var/list/ownerAntag = owner.mind?.antagonist
-		var/list/deadAntag = fellow_human?.mind.antagonist
-		// part of same departament or  both excels (since they are the only teambased antag with differing departaments)
-		if(GetDepartment(owner) != "Unassigned")
-		if(GetDepartment(fellow_human) == GetDepartment(owner) || (ownerAntag & list(/datum/antagonist/excelsior) && deadAntag & list(/datum/antagonist/excelsior)))
-			// these 3 are loners , so they don't count for any buffs
-			if(!(ownerAntag & list(/datum/antagonist/carrion, /datum/antagonist/contractor, /datum/antagonist/marshal)))
-				// team based antagonists, // same antagonist list length and same antagonist datums , so they count (or a inquisitor who still cares about fellow believers)
-				var/effect_prob = rand(1, 100)
-				if(ownerAntag & list(/datum/antagonist/excelsior, /datum/antagonist/mercenary, /datum/antagonist/inquisitor) && (deadAntag & ownerAntag).len == ownerAntag.len || ownerAntag & list(/datum/antagonist/inquisitor))
-					// Better ones for antagonists because they are often outnumbered
-					// Its a good idea to not tell them if they received any effects to avoid antag detection by these
-					switch(effect_prob)
-						if(1 to 25)
-							owner.stats.addTempStat(STAT_TGH, 30, 5 MINUTES, "DeathRage")
-							owner.adjustHalLoss(-5)
-						if(25 to 50)
-							owner.stats.addTempStat(STAT_VIG, 25, 5 MINUTES, "DeathRage")
-							owner.stats.addTempStat(STAT_TGH, 20, 2 MINUTES, "DeathRage")
-						if(50 to 75)
-							owner.adjustHalLoss(-25)
-						if(75 to 100)
-							owner.stats.addTempStat(STAT_ROB, 20, 5 MINUTES, "DeathRage")
-				else if(!deadAntag.len)
-					switch(effect_prob)
-						if(1 to 25)
-							owner.stats.addTempStat(STAT_TGH, 15, 5 MINUTES, "DeathRage")
-						if(25 to 50)
-							owner.stats.addTempStat(STAT_VIG, 15, 5 MINUTES, "DeathRage")
-							owner.stats.addTempStat(STAT_TGH, 10, 2 MINUTES, "DeathRage")
-						if(50 to 75)
-							owner.adjustHalLoss(-15)
-						if(75 to 100)
-							owner.stats.addTempStat(STAT_ROB, 10, 5 MINUTES, "DeathRage")
 
-		if(M.stats.getPerk(PERK_TERRIBLE_FATE) && prob(100-owner.stats.getStat(STAT_VIG)))
-			setLevel(0)
-		else
-			changeLevel(penalty*death_view_multiplier)
+#define TEAM_ANTAGONISTS list(/datum/antagonist/excelsior, /datum/antagonist/mercenary, /datum/antagonist/inquisitor)
+#define LONE_ANTAGONISTS list(/datum/antagonist/carrion, /datum/antagonist/contractor, /datum/antagonist/marshal)
+
+/datum/sanity/proc/onSeeDeath(mob/living/carbon/human/M)
+	if(!istype(M))
+		return
+	var/penalty = -SANITY_DAMAGE_DEATH(owner.stats.getStat(STAT_VIG))
+	if(owner.stats.getPerk(PERK_NIHILIST))
+		var/effect_prob = rand(1, 100)
+		switch(effect_prob)
+			if(1 to 25)
+				M.stats.addTempStat(STAT_COG, 5, INFINITY, "Fate Nihilist")
+			if(25 to 50)
+				M.stats.removeTempStat(STAT_COG, "Fate Nihilist")
+			if(50 to 75)
+				penalty *= -1
+			if(75 to 100)
+				penalty *= 0
+		//extra stuff if same departament
+	var/mob/living/carbon/human/fellow_human = M
+	var/list/ownerAntag = owner.mind?.antagonist
+	var/list/deadAntag = fellow_human?.mind.antagonist
+	// part of same departament or  both excels (since they are the only teambased antag with differing departaments)
+	if(GetDepartment(fellow_human) == GetDepartment(owner) && GetDepartment(owner) != "Unassigned" || (compareListOrderless(ownerAntag, TEAM_ANTAGONISTS) && compareListOrderless(ownerAntag,deadAntag)))
+		// these ones are loners , so they don't really count
+		if(!compareListOrderless(ownerAntag, LONE_ANTAGONISTS))
+			// team based antagonists get better buffs ,since the struggle is clear
+			var/effect_prob = rand(1, 100)
+			if(compareListOrderless(ownerAntag, TEAM_ANTAGONISTS) && compareListOrderless(ownerAntag, deadAntag))
+				// Better ones for antagonists because they are often outnumbered
+				// Its a good idea to not tell them if they received any effects to avoid antag detection by these
+				switch(effect_prob)
+					if(1 to 25)
+						owner.stats.addTempStat(STAT_TGH, 30, 5 MINUTES, "DeathRage")
+						owner.adjustHalLoss(-5)
+					if(25 to 50)
+						owner.stats.addTempStat(STAT_VIG, 25, 5 MINUTES, "DeathRage")
+						owner.stats.addTempStat(STAT_TGH, 20, 2 MINUTES, "DeathRage")
+					if(50 to 75)
+						owner.adjustHalLoss(-25)
+					if(75 to 100)
+						owner.stats.addTempStat(STAT_ROB, 20, 5 MINUTES, "DeathRage")
+			// not a team antagonist and lets hope they are not a filthy contractor
+			else if(!deadAntag.len)
+				switch(effect_prob)
+					if(1 to 25)
+						owner.stats.addTempStat(STAT_TGH, 15, 5 MINUTES, "DeathRage")
+					if(25 to 50)
+						owner.stats.addTempStat(STAT_VIG, 15, 5 MINUTES, "DeathRage")
+						owner.stats.addTempStat(STAT_TGH, 10, 2 MINUTES, "DeathRage")
+					if(50 to 75)
+						owner.adjustHalLoss(-15)
+					if(75 to 100)
+						owner.stats.addTempStat(STAT_ROB, 10, 5 MINUTES, "DeathRage")
+
+	if(M.stats.getPerk(PERK_TERRIBLE_FATE) && prob(100-owner.stats.getStat(STAT_VIG)))
+		setLevel(0)
+	else
+		changeLevel(penalty*death_view_multiplier)
 
 /datum/sanity/proc/onShock(amount)
 	changeLevel(-SANITY_DAMAGE_SHOCK(amount, owner.stats.getStat(STAT_VIG)))
