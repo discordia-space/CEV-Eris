@@ -48,5 +48,9 @@
 
 	var/mob/living/L = A
 	if(istype(L) && L.reagents)
-		L.reagents.add_reagent(poison_type, poison_per_bite)
+		var/armorCheck =  L.getarmor(NULL , ARMOR_BIO)// gets us the average
+		if(!armorCheck)
+			L.reagents.add_reagent(poison_type, poison_per_bite)
+		else if(armorCheck < BIO_MOB_INJECTION_THRESHOLD)
+			L.reagents.add_reagent(poison_type, round(poison_per_bite * (1 - armorCheck/100)))
 
