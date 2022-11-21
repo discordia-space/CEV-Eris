@@ -87,7 +87,7 @@
 		if(has_access(list(), req_one_access, ID.GetAccess()))
 			toggle_lock(user)
 		else
-			to_chat(user, SPAN_NOTICE("Insufficient access"))
+			to_chat(user, SPAN_NOTICE("You try to unlock the cabinet, but nothing happens."))
 	if(istype(O, /obj/item/tool/fireaxe))
 		if(open)
 			if(fireaxe)
