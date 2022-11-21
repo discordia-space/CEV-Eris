@@ -12,16 +12,6 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	anchored = TRUE
 	var/mob/owner
 
-/obj/parallax/far
-	icon_state = ""
-	speed = 1
-	plane = PLANE_SPACE_PARALLAX_FAR
-
-/obj/parallax/close
-	icon_state = ""
-	speed = 1.4
-	plane = PLANE_SPACE_PARALLAX_CLOSE
-
 /obj/parallax/New(mob/M)
 	owner = M
 	owner.parallax += src
@@ -37,104 +27,46 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	if(!owner || !owner.client)
 		return
 	overlays.Cut()
+	icon_state = GLOB.random_parallax
 	var/turf/T = get_turf(owner.client.eye)
-	screen_loc = "CENTER:[-224-(T&&T.x)],CENTER:[-224-(T&&T.y)]"
-
+	var/image/far
+	var/image/close
 	//And now we change depending on what is happening in processing events
 	for(var/datum/event/E in SSevent.active_events)
 		switch(E.storyevent.id)
 			if("bluespace interphase")
-				icon_state = "micro_debris"
+				icon_state = "space_empty"
 			if("graveyard")
-				icon_state = "micro_debris"
+				icon_state = "space_empty"
 			if("bluespace storm")
-				icon_state = "micro_debris"
+				icon_state = "space_empty"
 			if("ion blizzard")
-				icon_state = "micro_debris"
+				icon_state = "space_empty"
 			if("photon vortex")
-				icon_state = "micro_debris"
+				icon_state = "space_empty"
 			if("micro debris")
-				icon_state = "micro_debris"
+				icon_state = "space_empty"
+				far = image("icon"='icons/parallax.dmi', "icon_state"="micro_debris_far", "layer"=1)
+				close = image("icon"='icons/parallax.dmi', "icon_state"="micro_debris_close", "layer"=2)
 			if("nebula")
-				icon_state = "micro_debris"
+				icon_state = "space_empty"
 			else
-				icon_state = "micro_debris"
-		continue //Only one event changes our state
-
-
-		// USE OVERLAYS FOR THIS!!!!!!
-
-
-		overlays_standing[BLOCKING_LAYER] = image("icon"='icons/mob/misc_overlays.dmi', "icon_state"="block", "layer"=BLOCKING_LAYER)
-
-
-
-
-
-	var/client/C = mymob.client
-	if(!C)
-		return
-	var/turf/posobj = get_turf(C.eye)
-	if(!posobj)
-		return
-	var/area/areaobj = posobj.loc
-
-
-	C.previous_turf = posobj
-
-	for(var/thing in C.parallax_layers)
-		var/atom/movable/screen/parallax_layer/L = thing
-		L.update_status(mymob)
-		if (L.view_sized != C.view)
-			L.update_o(C.view)
-
-		var/change_x
-		var/change_y
-
-		if(L.absolute)
-			var/new_offset_x = -(posobj.x - SSparallax.planet_x_offset) * L.speed
-			var/new_offset_y = -(posobj.y - SSparallax.planet_y_offset) * L.speed
-			change_x = new_offset_x - L.offset_x
-			change_y = new_offset_y - L.offset_y
-			L.offset_x = new_offset_x
-			L.offset_y = new_offset_y
-		else
-			change_x = offset_x * L.speed
-			L.offset_x -= change_x
-			change_y = offset_y * L.speed
-			L.offset_y -= change_y
-
-			if(L.offset_x > 240)
-				L.offset_x -= 480
-			if(L.offset_x < -240)
-				L.offset_x += 480
-			if(L.offset_y > 240)
-				L.offset_y -= 480
-			if(L.offset_y < -240)
-				L.offset_y += 480
-
-		if(L.smooth_movement && !areaobj.parallax_movedir && (offset_x || offset_y))
-			L.transform = matrix(1, 0, offset_x*L.speed, 0, 1, offset_y*L.speed)
-			animate(L, transform=matrix(), time = SSparallax.wait, flags = ANIMATION_PARALLEL)
-
-		L.screen_loc = "CENTER-7:[round(L.offset_x,1)],CENTER-7:[round(L.offset_y,1)]"
-
-
-
-
-
-
-
-
-
-
-
-
+				icon_state = GLOB.random_parallax
+		continue //Only one event changes our state, priority should be from up to down if there are multiple
+	if(far)
+		far.pixel_x = (T&&T.x) * 0.4
+		far.pixel_y = (T&&T.y) * 0.4
+	if(close)
+		close.pixel_x = (T&&T.x) * 0.9
+		close.pixel_y = (T&&T.y) * 0.9
+	overlays += close
+	overlays += far
+	screen_loc = "CENTER:[-224-(T&&T.x)],CENTER:[-224-(T&&T.y)]"
 	var/view = owner.client.view
-	var/matrix/M = matrix() //create matrix for transformation
-	if(view != world.view) //Not bigger than world view. We don't need transforming
-		var/toscale = view //How many extra tiles we need to fill with parallax. EG. Their view is 8. World view is 7. So one extra tile is needed.
-		switch(view) //If you change these values, I need to know! ~Kmc
+	var/matrix/M = matrix()	//create matrix for transformation
+	if(view != world.view)	//Not bigger than world view. We don't need transforming
+		var/toscale = view	//How many extra tiles we need to fill with parallax. EG. Their view is 8. World view is 7. So one extra tile is needed.
+		switch(view)
 			if(8)
 				toscale = 1.2
 			if(9)
