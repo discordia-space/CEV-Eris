@@ -5,17 +5,14 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	icon_state = "space0"
 	name = "parallax"
 	mouse_opacity = 0
-	blend_mode = BLEND_MULTIPLY
+	blend_mode = BLEND_OVERLAY
 	plane = PLANE_SPACE_PARALLAX
-	var/speed = 0.6
-//	invisibility = 101
 	anchored = TRUE
 	var/mob/owner
 
 /obj/parallax/New(mob/M)
 	owner = M
 	owner.parallax += src
-	icon_state = GLOB.random_parallax
 	update()
 	..(null)
 
@@ -46,22 +43,22 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 				icon_state = "space_empty"
 			if("micro debris")
 				icon_state = "space_empty"
-				far = image("icon"='icons/parallax.dmi', "icon_state"="micro_debris_far", "layer"=1)
-				close = image("icon"='icons/parallax.dmi', "icon_state"="micro_debris_close", "layer"=2)
+				far = image("icon"='icons/parallax.dmi', "icon_state"="micro_debris_far")
+				close = image("icon"='icons/parallax.dmi', "icon_state"="micro_debris_close")
 			if("nebula")
 				icon_state = "space_empty"
 			else
 				icon_state = GLOB.random_parallax
 		continue //Only one event changes our state, priority should be from up to down if there are multiple
 	if(far)
-		far.pixel_x = (T&&T.x) * 0.4
-		far.pixel_y = (T&&T.y) * 0.4
+		far.pixel_x = T.x * 0.4
+		far.pixel_y = T.y * 0.4
 	if(close)
-		close.pixel_x = (T&&T.x) * 0.9
-		close.pixel_y = (T&&T.y) * 0.9
+		close.pixel_x = T.x * 0.9
+		close.pixel_y = T.y * 0.9
 	overlays += close
 	overlays += far
-	screen_loc = "CENTER:[-224-(T&&T.x)],CENTER:[-224-(T&&T.y)]"
+	screen_loc = "CENTER:[-224-T.x],CENTER:[-224-T.y]"
 	var/view = owner.client.view
 	var/matrix/M = matrix()	//create matrix for transformation
 	if(view != world.view)	//Not bigger than world view. We don't need transforming
@@ -84,15 +81,9 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 			if(128)
 				toscale = 4
 		M.Scale(toscale)
-		src.transform = M
 	else
 		M.Scale(1)
-		src.transform = M
-
-
-
-
-
+	src.transform = M
 
 /obj/parallax/update_plane()
 	return

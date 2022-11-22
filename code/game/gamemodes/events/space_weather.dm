@@ -17,8 +17,6 @@
 
 /datum/event/bluespace_storm/announce()
 	command_announcement.Announce("The scanners have detected a bluespace storm near the ship. Bluespace distortions are likely to happen while it lasts.", "Bluespace Storm")
-	for(var/mob/M in GLOB.player_list) //update parallax on those events that have it. You'll see this a lot.
-		M.parallax.update()
 
 /datum/event/bluespace_storm/end()
 	command_announcement.Announce("The bluespace storm has ended.", "Bluespace Storm")
@@ -151,8 +149,6 @@
 
 /datum/event/micro_debris/announce()
 	command_announcement.Announce("The ship is now passing through a micro debris field.", "Micro Debris Field Alert")
-	for(var/mob/M in GLOB.player_list)
-		M.parallax.update()
 
 /datum/event/micro_debris/end()
 	command_announcement.Announce("The ship has now passed through the micro debris field.", "Micro Debris Field Notice")
