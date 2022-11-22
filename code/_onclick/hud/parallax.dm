@@ -43,8 +43,8 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 				icon_state = "space_empty"
 			if("micro debris")
 				icon_state = "space_empty"
-				far = image("icon"='icons/parallax.dmi', "icon_state"="micro_debris_far")
-				close = image("icon"='icons/parallax.dmi', "icon_state"="micro_debris_close")
+				close = image("icon"='icons/parallax.dmi', "icon_state"="micro_debris_close", "layer"=-1)
+				far = image("icon"='icons/parallax.dmi', "icon_state"="micro_debris_far", "layer"=-2)
 			if("nebula")
 				icon_state = "space_empty"
 			else
