@@ -216,6 +216,13 @@ avoid code duplication. This includes items that may sometimes act as a standard
 //Area of effect attacks (swinging)
 /obj/item/proc/tileattack(mob/living/user, turf/targetarea, modifier = 1)
 	var/original_force = force
+	var/original_unwielded_force = force
+	if(!wielded)
+		return
+	if(force_wielded_multiplier)
+		original_unwielded_force = force/force_wielded_multiplier
+	else
+		original_unwielded_force = force/1.3	
 	force *= modifier
 	if(istype(targetarea, /turf/simulated/wall))
 		var/turf/simulated/W = targetarea
@@ -241,7 +248,12 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		force = original_force
 		return
 	attack(target, user, user.targeted_organ)
-	force = original_force
+	if(wielded)
+		force = original_force
+	else
+		force = original_unwielded_force
+// modifying force after calling attack() here is a bad idea, as the force can be changed by means of embedding in a target, which leads to unwielding a weapon.
+//This code replicates the damage reduction caused by unwielding something, but it will likely cause problems elsewhere.
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
