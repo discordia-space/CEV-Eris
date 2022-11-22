@@ -246,11 +246,14 @@
 			add_wound(choice)
 
 		if(owner)
+			playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
+
 			owner.visible_message(
 				SPAN_DANGER("You hear a loud cracking sound coming from \the [owner]."),
 				SPAN_DANGER("Something feels like it shattered in your [name]"),
 				SPAN_DANGER("You hear a sickening crack.")
 			)
+
 			if(owner.species && !(owner.species.flags & NO_PAIN))
 				owner.emote("scream")
 
