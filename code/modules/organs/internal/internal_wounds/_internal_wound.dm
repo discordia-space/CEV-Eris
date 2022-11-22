@@ -83,13 +83,12 @@
 	// Chemical treatment handling
 	var/is_treated = FALSE
 	var/list/owner_ce = H.chem_effects.Copy()
-	if(owner_ce && LAZYLEN(owner_ce))
-		for(var/chem_effect in owner_ce)
-			var/to_remove = try_treatment(TREATMENT_CHEM, chem_effect, owner_ce[chem_effect])
-			if(to_remove > 0)	// Negative value means not enough, 0 means failed treatment
-				H.chem_effects[chem_effect] -= to_remove
-				is_treated = TRUE
-				break
+	for(var/chem_effect in owner_ce)
+		var/to_remove = try_treatment(TREATMENT_CHEM, chem_effect, owner_ce[chem_effect])
+		if(to_remove > 0)	// Negative value means not enough, 0 means failed treatment
+			H.chem_effects[chem_effect] -= to_remove
+			is_treated = TRUE
+			break
 
 	if(is_treated)
 		return
@@ -144,7 +143,7 @@
 /datum/component/internal_wound/proc/apply_tool(obj/item/I, mob/user)
 	var/success = FALSE
 
-	if(!I.tool_qualities || !I.tool_qualities.len)
+	if(!I.tool_qualities || !LAZYLEN(I.tool_qualities))
 		if(istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			var/to_remove = try_treatment(TREATMENT_ITEM, S.type, S.amount, TRUE)
