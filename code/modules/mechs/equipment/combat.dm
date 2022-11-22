@@ -132,7 +132,7 @@
 	restrict_safety = TRUE
 	twohanded = FALSE
 	init_firemodes = list(
-		list(mode_name="spit fire",  burst=5, burst_delay=0.8, move_delay=5, one_hand_penalty=15, icon="burst")
+		list(mode_name="spit fire",  burst=5, burst_delay=1.1, move_delay=5, one_hand_penalty=15, icon="burst")
 		)
 	spawn_tags = null
 	matter = list()
