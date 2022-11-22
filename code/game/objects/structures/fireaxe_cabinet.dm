@@ -10,7 +10,7 @@
 	var/unlocked
 	var/shattered
 	var/obj/item/tool/fireaxe/fireaxe
-	req_one_access = list(access_moebius, access_heads)
+	req_one_access = list(access_moebius, access_heads, access_engine)
 
 /obj/structure/fireaxecabinet/attack_generic(var/mob/user, var/damage, var/attack_verb, var/wallbreaker)
 	attack_animation(user)
