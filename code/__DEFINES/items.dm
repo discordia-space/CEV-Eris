@@ -32,7 +32,7 @@
 #define UPGRADE_ITEMFLAGPLUS "item_flag_add"
 
 // Weapon minimum fire_delay
-#define GUN_MINIMUM_FIRETIME 1.1 // 110 MS , ~9 shots per second.
+#define GUN_MINIMUM_FIRETIME world.tick_lag // 25 MS , ~40 shots per second.
 
 //Weapon upgrade defines
 
