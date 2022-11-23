@@ -948,8 +948,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	else if (open)
 		wound_descriptors["an incision"] = 1
 	for(var/datum/wound/W in wounds)
-		if(!open)
-			continue
 		var/this_wound_desc = W.desc
 
 		if(W.damage_type == BURN && W.salved)
