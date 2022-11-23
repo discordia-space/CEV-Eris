@@ -111,8 +111,10 @@
 			T = get_step(T,exhaust_dir)
 			if(!T)
 				break
-			sleep(0.5)
-			new/obj/effect/engine_exhaust(T, exhaust_dir, air_contents.temperature >= 1000, (i != range - 1))
+			addtimer(CALLBACK(src, .proc/extend_plume, T, exhaust_dir, air_contents.temperature >= 1000, i != range - 1), i * 0.5, TIMER_UNIQUE)
+
+/obj/machinery/atmospherics/unary/engine/proc/extend_plume(turf/T, exhaust_dir, is_flame, is_midsection)
+	new/obj/effect/engine_exhaust(T, exhaust_dir, is_flame, is_midsection)
 
 /obj/machinery/atmospherics/unary/engine/proc/calculate_thrust(datum/gas_mixture/propellant, used_part = 1)
 	return round(sqrt(propellant.get_mass() * used_part * air_contents.return_pressure()/100),0.1)
