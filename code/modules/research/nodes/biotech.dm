@@ -288,7 +288,9 @@
 							/datum/design/research/item/mechfab/prosthesis_moebius/l_arm,
 							/datum/design/research/item/mechfab/prosthesis_moebius/r_leg,
 							/datum/design/research/item/mechfab/prosthesis_moebius/l_leg,
-							/datum/design/research/item/mechfab/prosthesis_moebius/groin
+							/datum/design/research/item/mechfab/prosthesis_moebius/groin,
+							/datum/design/research/item/mechfab/prosthesis_moebius/torso,
+							/datum/design/research/item/mechfab/prosthesis_moebius/head
 							)
 
 /datum/technology/mind_biotech

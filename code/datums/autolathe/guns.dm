@@ -180,7 +180,7 @@
 	build_path = /obj/item/gun/projectile/automatic/ak47/sa
 
 /datum/design/autolathe/gun/sts35
-	name = "OR SDF .30 \"STS-35\""
+	name = "OR BR .30 \"STS-35\""
 	build_path = /obj/item/gun/projectile/automatic/sts35
 
 // Heavy

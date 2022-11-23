@@ -76,6 +76,9 @@
 	name = "crafting station"
 	build_path = /obj/item/electronics/circuitboard/crafting_station
 
+/datum/design/autolathe/circuit/tracker
+	name = "tracker electronics"
+	build_path = /obj/item/electronics/tracker
 
 //Exelsior ciruits
 /datum/design/autolathe/circuit/shieldgen_excelsior
