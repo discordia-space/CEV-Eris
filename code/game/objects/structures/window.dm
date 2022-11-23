@@ -252,7 +252,7 @@
 /obj/structure/window/affect_grab(mob/living/user, mob/living/target, state)
 	target.do_attack_animation(src, FALSE) //This is to visually create the appearance of the victim being bashed against the window
 	// so they don't insta spam it
-	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	//So we pass false on the use_item flag so it doesn't look like they hit the window with something
 	// clamped between 3 times and a third of the effects
 	// it takes the grabber's rob , adds 1 so it can't be 0
@@ -269,7 +269,7 @@
 	else if(grabberRob < 0 && targetTgh > 0)
 		grabberRob = abs(grabberRob)
 		targetTgh += grabberRob
-	var/skillRatio = clamp(abs(grabberRob  / targetTgh) , 0.3 , 3)
+	var/skillRatio = clamp(grabberRob  / targetTgh , 0.3 , 3)
 	var/toughTarget = target.stats.getPerk(PERK_ASS_OF_CONCRETE) ? TRUE : FALSE
 	switch(state)
 		if(GRAB_PASSIVE)
@@ -286,13 +286,12 @@
 			if(skillRatio > 2 && !(target.weakened || toughTarget))
 				visible_message(SPAN_DANGER("<big>[target] gets staggered by [user]'s smash against \the [src]!</big>"))
 				target.Weaken(1)
-			target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * 1.5, 12 SECONDS, "window_smash")
+			target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * 1.5, toughTarget ? 6 SECONDS : 12 SECONDS, "window_smash")
 			// at most 60 without armor , 23 with 15 melle armor
 			target.damage_through_armor(round(20 * skillRatio * health/maxhealth / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.4)
 			hit(round(target.mob_size * skillRatio * 1.5 * (toughTarget ? 2 : 1) / windowResistance))
 		if(GRAB_NECK)
 			visible_message(SPAN_DANGER("<big>[user] crushes [target] against \the [src]!</big>"))
-			target.Weaken(5)
 			// even the toughest get stunned from this , but they get way less
 			// at most 90 damage without armor, 40 with 15 melle armor
 			target.Weaken(round(3 * skillRatio / (toughTarget ? 3 : 1)))
@@ -321,11 +320,11 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	// being super tough has its perks!
 	if(!M.stats.getPerk(PERK_ASS_OF_CONCRETE))
 		var/victimToughness = M.stats.getStat(STAT_TGH, FALSE)
+		victimToughness = victimToughness ? victimToughness : 1
 		var/windowResistance = resistance ? resistance : 1
 		var/healthRatio = health/maxhealth
-		victimToughness = victimToughness ? victimToughness : 1
 		// you shall suffer for being negative on toughness , it becomes negative so it cancels the negative toughness
-		var/toughnessDivisor = victimToughness > 0 ? 100 : -(100 + victimToughness)
+		var/toughnessDivisor = victimToughness > 0 ? 100 : -(100 - victimToughness)
 		// if you less tougher and less sized than the window itself and its health , you are more likely to suffer more
 		if(victimToughness * M.mob_size / toughnessDivisor < windowResistance * healthRatio)
 			M.adjustHalLoss(5)
