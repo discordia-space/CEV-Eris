@@ -146,24 +146,17 @@
 	if(!I.tool_qualities || !LAZYLEN(I.tool_qualities))
 		if(istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
-			var/to_remove = try_treatment(TREATMENT_ITEM, S.type, S.amount, TRUE)
+			var/to_remove = try_treatment(I, user, TREATMENT_ITEM, S.type, S.amount)
 			if(to_remove > 0 && to_remove < S.amount)
-				S.amount -= to_remove
+				S.use(to_remove)
 				success = TRUE
 			else if(user)
 				to_chat(user, SPAN_WARNING("You failed to treat the [name] with \the [I]. Not enough charges."))
 				return
 		else
-			success = try_treatment(TREATMENT_ITEM, I.type, null, TRUE)
-	else
-		for(var/tool_quality in I.tool_qualities)
-			var/quality_and_stat_level = I.tool_qualities[tool_quality] + user.stats.getStat(diagnosis_stat)
-			if(try_treatment(TREATMENT_TOOL, tool_quality, quality_and_stat_level, TRUE))
-				success = TRUE
-				break
-		if(user && !success)
-			to_chat(user, SPAN_WARNING("You failed to treat the [name] with \the [I]. Incorrect tool quality."))
-			return
+			success = try_treatment(I, user, TREATMENT_ITEM, I.type, null)
+	else if(try_treatment(I, user, TREATMENT_TOOL))
+		success = TRUE
 
 	if(user)
 		if(success)
@@ -171,7 +164,7 @@
 		else
 			to_chat(user, SPAN_WARNING("You cannot treat the [name] with \the [I]."))
 
-/datum/component/internal_wound/proc/try_treatment(treatment_type, type, magnitude, used_tool = FALSE)
+/datum/component/internal_wound/proc/try_treatment(obj/item/I, mob/user, treatment_type, type, magnitude)
 	var/list/treatments
 
 	switch(treatment_type)
@@ -185,6 +178,13 @@
 			return FALSE
 
 	if(treatments.Find(type))
+		var/used_tool = FALSE
+		if(treatment_type != TREATMENT_CHEM)
+			var/treatment_quality = TREATMENT_TOOL ? type : null
+			var/treatment_difficulty = TREATMENT_TOOL ? treatments[type] : 0
+			if(!I.use_tool(user = user, target = parent, base_time = WORKTIME_NORMAL, required_quality = treatment_quality, fail_chance = treatment_difficulty, required_stat = diagnosis_stat))
+				return FALSE
+			used_tool = TRUE
 		if(magnitude >= treatments[type])
 			treatment(used_tool)
 			return treatments[type] ? treatments[type] : TRUE

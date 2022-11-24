@@ -21,9 +21,9 @@
 			I.take_damage(brute / 2, FALSE, BRUTE, sharp, edge)
 			brute -= brute / 2
 		if((burn_dam >= max_damage || (burn >= 20 && prob(5))))
-			I.take_damage(burn / 4, FALSE, BURN, FALSE, FALSE)
-			burn -= burn / 4
-			
+			I.take_damage(burn / 2, FALSE, BURN, FALSE, FALSE)
+			burn -= burn / 2
+
 	var/bone_efficiency = owner.get_specific_organ_efficiency(OP_BONE, organ_tag)
 	if(brute_dam > (min_broken_damage * (bone_efficiency / 100)) && prob(brute_dam + brute))
 		fracture()
