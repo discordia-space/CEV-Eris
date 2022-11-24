@@ -2,7 +2,7 @@
 // .25 handguns
 
 /datum/design/autolathe/gun/mandella
-	name = "OR HG .25 Auto \"Mandella\""
+	name = "OR HG .25 CS \"Mandella\""
 	build_path = /obj/item/gun/projectile/mandella
 
 // .35 handguns
@@ -22,6 +22,10 @@
 /datum/design/autolathe/gun/makarov
 	name = "Excelsior .35 \"Makarov\""
 	build_path = /obj/item/gun/projectile/selfload/makarov
+
+/datum/design/autolathe/gun/paco
+	name = "FS HG .35 \"Paco\""
+	build_path = /obj/item/gun/projectile/paco
 
 /datum/design/autolathe/gun/mk58
 	name = "NT HG .35 \"Mk58\""
@@ -109,10 +113,6 @@
 /datum/design/autolathe/gun/atreides
 	name = "FS SMG .35 \"Atreides\""
 	build_path = /obj/item/gun/projectile/automatic/atreides
-
-/datum/design/autolathe/gun/paco
-	name = "FS HG .35 \"Paco\""
-	build_path = /obj/item/gun/projectile/paco
 
 /datum/design/autolathe/gun/straylight
 	name = "FS SMG .35 \"Straylight\""
