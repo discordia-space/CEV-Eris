@@ -710,10 +710,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (open && !clamped)
 		src.setBleeding()
 
-	//Bone fractures
-	if(should_fracture())
-		fracture()
-
 	SSnano.update_uis(src)
 
 //Returns 1 if damage_state changed
@@ -841,9 +837,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 		bone.fracture()
 
 /obj/item/organ/external/proc/mend_fracture()
-	if(should_fracture())
-		return FALSE	//will just immediately fracture again
-
 	for(var/obj/item/organ/internal/bone in owner.internal_organs_by_efficiency[OP_BONE])
 		bone.mend()
 	return TRUE

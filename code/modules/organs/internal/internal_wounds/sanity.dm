@@ -10,5 +10,5 @@
 	severity = 1
 	severity_max = 1
 	can_damage_organ = FALSE
-	psy_damage = 0.5
+	psy_damage = 0.2
 	can_hallucinate = TRUE

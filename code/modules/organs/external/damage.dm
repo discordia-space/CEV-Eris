@@ -25,7 +25,7 @@
 			burn -= burn / 2
 
 	var/bone_efficiency = owner.get_specific_organ_efficiency(OP_BONE, organ_tag)
-	if(brute_dam > (min_broken_damage * (bone_efficiency / 100)) && prob(brute_dam + brute))
+	if(should_fracture() && prob(brute_dam + brute))
 		fracture()
 
 	if(status & ORGAN_BROKEN && prob(40) && brute)

@@ -102,8 +102,8 @@
 	var/list/possible_wounds = list()
 
 	var/pierce_divisor = 1 + sharp + edge				// Armor divisor placeholder
-	var/total_damage = amount - ((parent ? parent.limb_efficiency : 100) / 20) / pierce_divisor
-	var/wound_count = max(0, round(total_damage / 5))	// Every 5 points of damage is a wound
+	var/total_damage = amount - ((parent ? parent.limb_efficiency : 100) / 25) / pierce_divisor
+	var/wound_count = max(0, round(total_damage / 7))	// Every 10 points of damage is a wound
 
 	if((!is_organic && !is_robotic) || !wound_count)
 		return
