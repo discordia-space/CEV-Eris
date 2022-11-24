@@ -332,14 +332,13 @@
 
 			// Format internal wounds
 			var/internal_wounds_details
-			if(internal_wounds.len)
+			if(LAZYLEN(internal_wounds))
 				internal_wounds_details = jointext(internal_wounds, ",<br>")
-				internal_wounds_details = copytext(internal_wounds_details, 1, LAZYLEN(internal_wounds_details) - 5)
 
 			if(internal_wounds_details)
 				significant = TRUE
 				dat += "<tr>"
-				dat += "<td>[I.name]</td><td>[total_burn_damage]</td><td>[total_brute_and_misc_damage]</td><td>[internal_wounds_details ? internal_wounds_details : "None"]</td><td></td>"
+				dat += "<td>[I.name],<br><i>[e.name]</i></td><td>[total_burn_damage]</td><td>[total_brute_and_misc_damage]</td><td>[internal_wounds_details ? internal_wounds_details : "None"]</td><td></td>"
 				dat += "</tr>"
 
 		if(e.organ_tag == BP_CHEST && occ["lung_ruptured"])

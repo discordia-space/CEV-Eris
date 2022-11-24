@@ -200,11 +200,11 @@
 			if(!internal_wound_severity)
 				continue
 			if(internal_wound_severity < 3)
-				dat += text(SPAN_WARNING("Light internal damage detected. Advanced scanner required for location. Treatment recommended."))
+				dat += text(SPAN_WARNING("Light internal damage detected in \the [e]. Advanced scanner required for location. Treatment recommended."))
 			else if(internal_wound_severity < 7)
-				dat += text(SPAN_WARNING("Moderate internal damage detected. Advanced scanner required for location. Treatment recommended."))
+				dat += text(SPAN_WARNING("Moderate internal damage detected \the [e]. Advanced scanner required for location. Treatment recommended."))
 			else
-				dat += text(SPAN_WARNING("Severe internal damage detected. Advanced scanner required for location. Immediate treatment recommended."))
+				dat += text(SPAN_WARNING("Severe internal damage detected \the [e]. Advanced scanner required for location. Immediate treatment recommended."))
 
 		if(H.vessel)
 			var/blood_volume = H.vessel.get_reagent_amount("blood")
