@@ -51,7 +51,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		return TRUE
 	if(atom_target.loc == user)//putting stuff in your backpack, or something else on your person?
 		return TRUE //regular bags won't even be able to hold items this big, but who knows
-	if(w_class >= ITEM_SIZE_BULKY && !abstract && !istype(src, /obj/item/gun))//grabs have colossal w_class. You can't raise something that does not exist.
+	if(w_class >= ITEM_SIZE_BULKY && !abstract && !istype(src, /obj/item/gun) && !no_double_tact)//grabs have colossal w_class. You can't raise something that does not exist.
 		if(!(ready))						//guns have the point blank privilege
 			user.visible_message(SPAN_DANGER("[user] raises [src]!"))
 			ready = TRUE
