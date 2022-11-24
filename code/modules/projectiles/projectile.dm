@@ -91,6 +91,12 @@
 	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
 										//  have to be recreated multiple times
 
+/obj/item/projectile/Destroy()
+	firer = null
+	original = null
+	starting = null
+	LAZYCLEARLIST(permutated)
+	return ..()
 
 /obj/item/projectile/is_hot()
 	if (damage_types[BURN])
