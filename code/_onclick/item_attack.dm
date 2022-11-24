@@ -42,6 +42,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			H.stop_blocking()
 	if(ishuman(user) && !(user == A) && !(user.loc == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/simulated/wall) && A.loc != user)
 		swing_attack(src, user, params)
+		if(istype(A, /turf/simulated/floor)) // shitty hack so you can attack floors while wielding a large weapon
+			return A.attackby(src, user, params)
 		return 1 //Swinging calls its own attacks
 	return A.attackby(src, user, params)
 
@@ -140,15 +142,15 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	switch(holdinghand)
 		if(slot_l_hand)
 			flick("left_swing", S)
-			tileattack(user, L, modifier = 1)
+			tileattack(user, L, modifier = 0.6)
 			tileattack(user, C, modifier = 0.8)
-			tileattack(user, R, modifier = 0.6)
+			tileattack(user, R, modifier = 1)
 			QDEL_IN(S, 2 SECONDS)
 		if(slot_r_hand)
 			flick("right_swing", S)
-			tileattack(user, R, modifier = 1)
+			tileattack(user, R, modifier = 0.6)
 			tileattack(user, C, modifier = 0.8)
-			tileattack(user, L, modifier = 0.6)
+			tileattack(user, L, modifier = 1)
 			QDEL_IN(S, 2 SECONDS)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
@@ -213,7 +215,10 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 //Area of effect attacks (swinging)
 /obj/item/proc/tileattack(mob/living/user, turf/targetarea, modifier = 1)
+	if(!wielded)
+		return
 	var/original_force = force
+	var/original_unwielded_force = force_wielded_multiplier ? force / force_wielded_multiplier : force / 1.3	
 	force *= modifier
 	if(istype(targetarea, /turf/simulated/wall))
 		var/turf/simulated/W = targetarea
@@ -239,7 +244,9 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		force = original_force
 		return
 	attack(target, user, user.targeted_organ)
-	force = original_force
+	force = wielded ? original_force : round(original_unwielded_force, 1)
+// modifying force after calling attack() here is a bad idea, as the force can be changed by means of embedding in a target, which leads to unwielding a weapon.
+//This code replicates the damage reduction caused by unwielding something, but it will likely cause problems elsewhere.
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
