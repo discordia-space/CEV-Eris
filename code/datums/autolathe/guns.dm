@@ -29,8 +29,13 @@
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/mk58_wood
-	name = "NT HG .35 \"Mk58\""
+	name = "NT HG .35 \"Mk58c\""
 	build_path = /obj/item/gun/projectile/mk58/wood
+	factions = list(FACTION_NEOTHEOLOGY)
+
+/datum/design/autolathe/gun/mk58_army
+	name = "NT HG .35 \"Mk58m\""
+	build_path = /obj/item/gun/projectile/mk58/army
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/colt
@@ -80,6 +85,11 @@
 /datum/design/autolathe/gun/regulator
 	name = "NT SG \"Regulator 1000\""
 	build_path = /obj/item/gun/projectile/shotgun/pump/regulator
+	factions = list(FACTION_NEOTHEOLOGY)
+
+/datum/design/autolathe/gun/regulator/army
+	name = "NT SG \"Regulator M1000\""
+	build_path = /obj/item/gun/projectile/shotgun/pump/regulator/army
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/gladstone
@@ -164,7 +174,7 @@
 	build_path = /obj/item/gun/projectile/boltgun/fs
 
 /datum/design/autolathe/gun/ak47
-	name = "Excelsior .30 AK-47"
+	name = "Excelsior .30 Kalashnikov"
 	build_path = /obj/item/gun/projectile/automatic/ak47
 
 /datum/design/autolathe/gun/ak47_fs
@@ -180,7 +190,7 @@
 	build_path = /obj/item/gun/projectile/automatic/ak47/sa
 
 /datum/design/autolathe/gun/sts35
-	name = "OR BR .30 \"STS-35\""
+	name = "OR SDF AR .30 \"STS-35\""
 	build_path = /obj/item/gun/projectile/automatic/sts35
 
 // Heavy
