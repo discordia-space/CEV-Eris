@@ -331,7 +331,7 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/regulator = 3, // "NT SG \"Regulator 1000\""
-		/datum/design/autolathe/gun/regulator/army, = 3, //army version//
+		/datum/design/autolathe/gun/regulator/army = 3, //army version//
 		/datum/design/autolathe/ammo/shotgun_pellet,
 		/datum/design/autolathe/ammo/shotgun,
 		/datum/design/autolathe/ammo/shotgun_beanbag,
