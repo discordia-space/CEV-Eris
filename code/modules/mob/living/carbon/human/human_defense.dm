@@ -272,6 +272,10 @@ meteor_act
 	if(!affecting)
 		return FALSE//should be prevented by attacked_with_item() but for sanity.
 
+	if(user.a_intent == I_HELP)
+		visible_message(SPAN_WARNING("[src] has been [pick("lightly poked", "tapped")] in the [affecting.name] with [I.name] by [user]!"))
+		return FALSE
+
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.stop_blocking()
