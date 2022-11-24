@@ -10,6 +10,7 @@
 	var/unlocked
 	var/shattered
 	var/obj/item/tool/fireaxe/fireaxe
+	req_one_access = list(access_moebius, access_heads, access_engine)
 
 /obj/structure/fireaxecabinet/attack_generic(var/mob/user, var/damage, var/attack_verb, var/wallbreaker)
 	attack_animation(user)
@@ -81,7 +82,12 @@
 	if(istype(O, /obj/item/tool/multitool))
 		toggle_lock(user)
 		return
-
+	if(istype(O, /obj/item/card/id))	
+		var/obj/item/card/id/ID = O
+		if(has_access(list(), req_one_access, ID.GetAccess()))
+			toggle_lock(user)
+		else
+			to_chat(user, SPAN_NOTICE("You try to unlock the cabinet, but nothing happens."))
 	if(istype(O, /obj/item/tool/fireaxe))
 		if(open)
 			if(fireaxe)
