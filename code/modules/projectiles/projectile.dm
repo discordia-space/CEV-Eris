@@ -96,6 +96,8 @@
 	original = null
 	starting = null
 	LAZYCLEARLIST(permutated)
+	QDEL_NULL(trajectory)
+	QDEL_NULL(location)
 	return ..()
 
 /obj/item/projectile/is_hot()
