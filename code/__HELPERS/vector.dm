@@ -23,13 +23,13 @@ return_angle()
 	Returns the direction (angle in degrees) the object is travelling in.
 
              (N)
-             90°
+             90ï¿½
               ^
               |
-  (W) 180° <--+--> 0° (E)
+  (W) 180ï¿½ <--+--> 0ï¿½ (E)
               |
               v
-             -90°
+             -90ï¿½
              (S)
 
 return_hypotenuse()
@@ -51,6 +51,11 @@ return_location()
 	var/loc_z = 0	// loc z is in world space coordinates (i.e. z level) - we don't care about measuring pixels for this
 	var/offset_x = 0	// distance to increment each step
 	var/offset_y = 0
+
+/datum/plot_vector/Destroy()
+	source = null
+	target = null
+	return ..()
 
 /datum/plot_vector/proc/setup(var/turf/S, var/turf/T, var/xo = 0, var/yo = 0, var/angle_offset=0)
 	source = S
@@ -136,6 +141,10 @@ return_turf()
 	var/turf/loc
 	var/pixel_x
 	var/pixel_y
+
+/datum/vector_loc/Destroy()
+	loc = null
+	return ..()
 
 /datum/vector_loc/proc/return_turf()
 	return loc
