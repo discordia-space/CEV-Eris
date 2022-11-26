@@ -200,11 +200,12 @@ var/world_topic_spam_protect_time = world.timeofday
 	qdel(src) //shut it down
 
 /world/Reboot(reason = 0, fast_track = FALSE)
-	/* spawn(0)
-		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
-	 */
-	if (reason || fast_track) //special reboot, do none of the normal stuff
-		if (usr)
+	if(!config.tts_cache)
+		for(var/i in GLOB.tts_death_row)
+			fdel(i)
+
+	if(reason || fast_track) //special reboot, do none of the normal stuff
+		if(usr)
 			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
 			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
 		to_chat(world, "<span class='boldannounce'>Rebooting World immediately due to host request.</span>")

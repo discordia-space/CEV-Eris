@@ -244,12 +244,9 @@ var/list/channel_to_radio_key = new
 
 	//handle nonverbal and sign languages here
 	if(speaking)
-		if(speaking.flags&NONVERBAL)
+		if(speaking.flags&(NONVERBAL|SIGNLANG))
 			if(prob(30))
 				src.custom_emote(1, "[pick(speaking.signlang_verb)].")
-
-		if(speaking.flags&SIGNLANG)
-			return say_signlang(message, pick(speaking.signlang_verb), speaking)
 
 	var/list/listening = list()
 	var/list/listening_obj = list()

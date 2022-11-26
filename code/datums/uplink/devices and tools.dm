@@ -169,7 +169,7 @@
 	name = "Blue Space Direct Mail Unit"
 	item_cost = 1
 	path = /obj/item/storage/bsdm
-	antag_roles = ROLES_CONTRACT
+	antag_roles = ROLES_CONTRACT_COMPLETE
 
 /datum/uplink_item/item/tools/bsdm/can_view(obj/item/device/uplink/U)
 	return ..() && (U.bsdm_time > world.time)
@@ -184,7 +184,7 @@
 	name = "Blue Space Direct Mail Unit"
 	item_cost = 0
 	path = /obj/item/storage/bsdm
-	antag_roles = ROLES_CONTRACT
+	antag_roles = ROLES_CONTRACT_COMPLETE
 
 /datum/uplink_item/item/tools/bsdm_free/can_view(obj/item/device/uplink/U)
 	return ..() && (U.bsdm_time <= world.time)
