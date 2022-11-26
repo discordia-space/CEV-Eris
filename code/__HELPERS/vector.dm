@@ -52,11 +52,6 @@ return_location()
 	var/offset_x = 0	// distance to increment each step
 	var/offset_y = 0
 
-/datum/plot_vector/Destroy()
-	source = null
-	target = null
-	return ..()
-
 /datum/plot_vector/proc/setup(var/turf/S, var/turf/T, var/xo = 0, var/yo = 0, var/angle_offset=0)
 	source = S
 	target = T
@@ -141,10 +136,6 @@ return_turf()
 	var/turf/loc
 	var/pixel_x
 	var/pixel_y
-
-/datum/vector_loc/Destroy()
-	loc = null
-	return ..()
 
 /datum/vector_loc/proc/return_turf()
 	return loc
