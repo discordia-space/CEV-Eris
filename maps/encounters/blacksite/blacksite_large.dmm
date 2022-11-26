@@ -221,6 +221,11 @@
 /obj/structure/flora/ausbushes/genericbush,
 /turf/simulated/floor/grass,
 /area/space)
+"cv" = (
+/obj/structure/bed,
+/mob/living/simple_animal/hostile/roomba/boomba,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/space)
 "cA" = (
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "9,9"
@@ -444,12 +449,6 @@
 	},
 /turf/space,
 /area/space)
-"ey" = (
-/obj/machinery/button/crematorium{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
 "eA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -471,6 +470,10 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "8,3"
 	},
+/area/space)
+"eG" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "eL" = (
 /obj/structure/table/steel,
@@ -1183,17 +1186,6 @@
 	},
 /turf/space,
 /area/space)
-"lC" = (
-/obj/structure/table/onestar,
-/obj/item/reagent_containers/glass/bottle/cyanide{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/glass/bottle/stoxin{
-	pixel_x = -5
-	},
-/obj/item/reagent_containers/syringe,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
 "lF" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "3,3"
@@ -1283,10 +1275,6 @@
 	icon_state = "11,22"
 	},
 /area/space)
-"mD" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/wall/untinted/onestar_reinforced,
-/area/space)
 "mG" = (
 /obj/machinery/door/airlock/multi_tile/metal/mait{
 	dir = 1
@@ -1350,6 +1338,17 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "4,9"
 	},
+/area/space)
+"nr" = (
+/obj/structure/table/onestar,
+/obj/item/reagent_containers/glass/bottle/cyanide{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/glass/bottle/stoxin{
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/syringe,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "ns" = (
 /obj/machinery/door/airlock/sandstone{
@@ -1676,6 +1675,10 @@
 /obj/machinery/mineral/unloading_machine,
 /turf/simulated/floor,
 /area/space)
+"rg" = (
+/obj/spawner/mob/spiders/low_chance,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
 "rj" = (
 /obj/machinery/shower{
 	dir = 4
@@ -1722,6 +1725,12 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "6,4"
 	},
+/area/space)
+"rP" = (
+/obj/machinery/button/crematorium{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "rQ" = (
 /turf/simulated/shuttle/floor/mining{
@@ -1876,10 +1885,6 @@
 	icon_state = "13,9"
 	},
 /turf/space,
-/area/space)
-"tw" = (
-/obj/effect/floor_decal/industrial/danger,
-/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "tz" = (
 /obj/structure/table/standard,
@@ -2185,10 +2190,6 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "11,16"
 	},
-/area/space)
-"we" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "wh" = (
 /obj/structure/filingcabinet/chestdrawer{
@@ -2505,6 +2506,12 @@
 	icon_state = "13,12"
 	},
 /turf/space,
+/area/space)
+"zT" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "zY" = (
 /obj/structure/bed/chair{
@@ -2921,6 +2928,13 @@
 	},
 /turf/space,
 /area/space)
+"Eq" = (
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
 "Es" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2975,11 +2989,9 @@
 /obj/structure/cable/yellow,
 /turf/simulated/floor,
 /area/space)
-"EP" = (
-/obj/structure/bed/chair/custom/onestar/red{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+"Fa" = (
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "Fb" = (
 /turf/simulated/shuttle/wall/mining{
@@ -3175,11 +3187,6 @@
 /obj/structure/table/onestar,
 /obj/spawner/medical,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
-"Hp" = (
-/obj/structure/bed,
-/mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/tiled/dark/brown_platform,
 /area/space)
 "Hq" = (
 /obj/machinery/light/small{
@@ -3516,6 +3523,15 @@
 	},
 /turf/space,
 /area/space)
+"JU" = (
+/obj/structure/table/onestar,
+/obj/item/handcuffs,
+/obj/item/clothing/glasses/sunglasses/blindfold{
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/muzzle,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
 "JW" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -3539,10 +3555,6 @@
 	icon_state = "15,5"
 	},
 /turf/space,
-/area/space)
-"Kg" = (
-/obj/structure/crematorium,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "Kj" = (
 /turf/simulated/shuttle/floor/mining{
@@ -3619,15 +3631,6 @@
 	icon_state = "2,23"
 	},
 /turf/space,
-/area/space)
-"KV" = (
-/obj/structure/table/onestar,
-/obj/item/handcuffs,
-/obj/item/clothing/glasses/sunglasses/blindfold{
-	pixel_y = 6
-	},
-/obj/item/clothing/mask/muzzle,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "KX" = (
 /obj/structure/bed/padded,
@@ -3899,10 +3902,6 @@
 	icon_state = "15,8"
 	},
 /turf/space,
-/area/space)
-"NR" = (
-/obj/spawner/mob/spiders/low_chance,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "NV" = (
 /obj/structure/closet/onestar/tier1/medical,
@@ -4741,6 +4740,10 @@
 /obj/structure/salvageable/os/data,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
+"WQ" = (
+/obj/structure/crematorium,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
 "WR" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "16,4"
@@ -4750,13 +4753,6 @@
 "WS" = (
 /mob/living/carbon/superior_animal/stalker/dual,
 /turf/simulated/floor/tiled/derelict/white_red_edges,
-/area/space)
-"WW" = (
-/obj/effect/floor_decal/industrial/danger,
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "WY" = (
 /obj/structure/bed/chair{
@@ -4928,6 +4924,10 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "3,7"
 	},
+/area/space)
+"YJ" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/wall/untinted/onestar_reinforced,
 /area/space)
 "YM" = (
 /obj/machinery/atmospherics/pipe/tank/air,
@@ -13460,7 +13460,7 @@ gV
 gV
 gV
 gV
-mD
+YJ
 RV
 gV
 cb
@@ -13661,7 +13661,7 @@ ho
 ho
 ho
 ho
-WW
+Eq
 Or
 Ul
 gV
@@ -13671,7 +13671,7 @@ gV
 lO
 lO
 lO
-NR
+rg
 gV
 cb
 cb
@@ -13873,7 +13873,7 @@ gV
 lO
 lO
 lO
-KV
+JU
 gV
 cb
 cb
@@ -14065,7 +14065,7 @@ RJ
 RJ
 lk
 RJ
-we
+eG
 LC
 lO
 lO
@@ -14075,7 +14075,7 @@ LC
 lO
 lO
 lO
-EP
+zT
 gV
 cb
 cb
@@ -14274,10 +14274,10 @@ gV
 gV
 gV
 gV
-ey
+rP
 lO
 lO
-lC
+nr
 gV
 cb
 cb
@@ -14469,14 +14469,14 @@ RJ
 RJ
 RJ
 RJ
-tw
+Fa
 Or
 TY
 gV
 cb
 cb
 gV
-Kg
+WQ
 lO
 lO
 lO
@@ -14673,7 +14673,7 @@ UU
 UU
 UU
 gV
-Hp
+cv
 gV
 cb
 cb
