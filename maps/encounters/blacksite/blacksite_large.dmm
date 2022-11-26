@@ -17,15 +17,8 @@
 	},
 /area/space)
 "ai" = (
-/obj/structure/table/onestar,
-/obj/item/reagent_containers/glass/bottle/cyanide{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/glass/bottle/stoxin{
-	pixel_x = -5
-	},
-/obj/item/reagent_containers/syringe,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/obj/structure/bed/padded,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "am" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -133,6 +126,7 @@
 	dir = 8;
 	pixel_x = 22
 	},
+/obj/structure/salvageable/os/data,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "bE" = (
@@ -254,7 +248,9 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "cQ" = (
-/obj/machinery/power/os_turret/laser,
+/obj/machinery/power/os_turret/laser{
+	dir = 4
+	},
 /obj/structure/sign/nosmoking_2{
 	pixel_x = -28
 	},
@@ -448,6 +444,12 @@
 	},
 /turf/space,
 /area/space)
+"ey" = (
+/obj/machinery/button/crematorium{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
 "eA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -638,9 +640,10 @@
 /turf/simulated/floor,
 /area/space)
 "gB" = (
-/obj/structure/table/onestar,
-/obj/item/oddity/common/blueprint,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "gC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -674,10 +677,9 @@
 	},
 /area/space)
 "gX" = (
-/obj/structure/sign/faction/one_star{
-	pixel_x = 32
-	},
-/turf/space,
+/obj/structure/bed/padded,
+/obj/spawner/gun/onestar/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "gZ" = (
 /mob/living/simple_animal/hostile/hivebot/range,
@@ -1181,6 +1183,17 @@
 	},
 /turf/space,
 /area/space)
+"lC" = (
+/obj/structure/table/onestar,
+/obj/item/reagent_containers/glass/bottle/cyanide{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/glass/bottle/stoxin{
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/syringe,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
 "lF" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "3,3"
@@ -1270,6 +1283,10 @@
 	icon_state = "11,22"
 	},
 /area/space)
+"mD" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/space)
 "mG" = (
 /obj/machinery/door/airlock/multi_tile/metal/mait{
 	dir = 1
@@ -1313,6 +1330,10 @@
 /obj/structure/bed/chair/custom/onestar{
 	dir = 4;
 	pixel_x = 9
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = -24
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
@@ -1856,6 +1877,10 @@
 	},
 /turf/space,
 /area/space)
+"tw" = (
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
 "tz" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
@@ -2078,11 +2103,11 @@
 	},
 /area/space)
 "vt" = (
-/obj/structure/bed/chair/custom/onestar/red{
-	dir = 8
-	},
 /obj/structure/sign/faction/one_star{
 	pixel_x = 32
+	},
+/obj/structure/salvageable/os/console_broken{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
@@ -2160,6 +2185,10 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "11,16"
 	},
+/area/space)
+"we" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "wh" = (
 /obj/structure/filingcabinet/chestdrawer{
@@ -2347,10 +2376,9 @@
 	},
 /area/space)
 "xM" = (
-/obj/structure/bed/chair/custom/onestar/red{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/obj/structure/bed/padded,
+/obj/spawner/cloth/onestar,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "xP" = (
 /obj/structure/shuttle_part/mining{
@@ -2365,9 +2393,11 @@
 /turf/space,
 /area/space)
 "xS" = (
-/obj/structure/bed,
-/mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/obj/structure/closet/onestar/tier2/medical/empty,
+/obj/spawner/cloth/onestar/low_chance,
+/obj/spawner/cloth/onestar/low_chance,
+/obj/spawner/cloth/onestar,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "xV" = (
 /turf/simulated/shuttle/wall/science{
@@ -2524,9 +2554,11 @@
 	},
 /area/space)
 "AF" = (
-/obj/structure/table/onestar,
-/obj/spawner/gun/onestar/low_chance,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/obj/structure/closet/onestar/tier2/medical/empty,
+/obj/spawner/cloth/onestar/low_chance,
+/obj/spawner/cloth/onestar/low_chance,
+/obj/spawner/cloth/holster,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "AH" = (
 /turf/simulated/shuttle/wall/science{
@@ -2858,10 +2890,10 @@
 	},
 /area/space)
 "DQ" = (
-/obj/structure/bed/chair/custom/onestar/red{
+/obj/structure/salvageable/os/console{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "DV" = (
 /turf/simulated/shuttle/wall/science{
@@ -2942,6 +2974,12 @@
 	},
 /obj/structure/cable/yellow,
 /turf/simulated/floor,
+/area/space)
+"EP" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "Fb" = (
 /turf/simulated/shuttle/wall/mining{
@@ -3137,6 +3175,11 @@
 /obj/structure/table/onestar,
 /obj/spawner/medical,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"Hp" = (
+/obj/structure/bed,
+/mob/living/simple_animal/hostile/roomba/boomba,
+/turf/simulated/floor/tiled/dark/brown_platform,
 /area/space)
 "Hq" = (
 /obj/machinery/light/small{
@@ -3438,13 +3481,6 @@
 	icon_state = "15,14"
 	},
 /area/space)
-"JB" = (
-/obj/effect/floor_decal/industrial/danger,
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/space)
 "JC" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "14,0"
@@ -3503,6 +3539,10 @@
 	icon_state = "15,5"
 	},
 /turf/space,
+/area/space)
+"Kg" = (
+/obj/structure/crematorium,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "Kj" = (
 /turf/simulated/shuttle/floor/mining{
@@ -3579,6 +3619,15 @@
 	icon_state = "2,23"
 	},
 /turf/space,
+/area/space)
+"KV" = (
+/obj/structure/table/onestar,
+/obj/item/handcuffs,
+/obj/item/clothing/glasses/sunglasses/blindfold{
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/muzzle,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "KX" = (
 /obj/structure/bed/padded,
@@ -3832,13 +3881,17 @@
 /turf/space,
 /area/space)
 "NH" = (
-/obj/machinery/button/crematorium{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/obj/structure/closet/onestar/tier2/medical/empty,
+/obj/spawner/cloth/onestar/low_chance,
+/obj/spawner/cloth/onestar/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "NM" = (
-/obj/effect/floor_decal/industrial/warning,
+/obj/structure/closet/onestar/tier2/medical/empty,
+/obj/spawner/cloth/onestar/low_chance,
+/obj/spawner/cloth/onestar/low_chance,
+/obj/spawner/cloth/onestar,
+/obj/spawner/cloth/helmet/low_chance,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "NQ" = (
@@ -3846,6 +3899,10 @@
 	icon_state = "15,8"
 	},
 /turf/space,
+/area/space)
+"NR" = (
+/obj/spawner/mob/spiders/low_chance,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "NV" = (
 /obj/structure/closet/onestar/tier1/medical,
@@ -3900,8 +3957,8 @@
 	},
 /area/space)
 "Or" = (
-/obj/effect/floor_decal/industrial/danger,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/obj/machinery/door/airlock/vault,
+/turf/simulated/floor/tiled/dark/brown_platform,
 /area/space)
 "Ov" = (
 /turf/simulated/shuttle/wall/mining{
@@ -4016,7 +4073,9 @@
 	},
 /area/space)
 "Qf" = (
-/obj/structure/crematorium,
+/obj/machinery/power/os_turret/laser{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "Qh" = (
@@ -4192,12 +4251,12 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "RV" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/obj/structure/bed,
+/turf/simulated/floor/tiled/dark/brown_platform,
 /area/space)
 "RW" = (
-/obj/spawner/mob/spiders/low_chance,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/obj/structure/salvageable/os/implant_container,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "RY" = (
 /obj/item/tool/pickaxe/excavation,
@@ -4456,7 +4515,7 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "Ul" = (
-/obj/machinery/door/airlock/vault,
+/obj/item/remains/human,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/space)
 "Un" = (
@@ -4536,8 +4595,10 @@
 /turf/simulated/floor/tiled/derelict/white_red_edges,
 /area/space)
 "UW" = (
-/obj/structure/bed,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/obj/machinery/door/airlock/sandstone{
+	name = "Command Center Airlock"
+	},
+/turf/simulated/floor/tiled/white/brown_perforated,
 /area/space)
 "Vi" = (
 /obj/structure/shuttle_part/mining{
@@ -4661,13 +4722,10 @@
 	},
 /area/space)
 "WA" = (
-/obj/structure/table/onestar,
-/obj/item/handcuffs,
-/obj/item/clothing/glasses/sunglasses/blindfold{
-	pixel_y = 6
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4
 	},
-/obj/item/clothing/mask/muzzle,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "WD" = (
 /obj/structure/shuttle_part/mining{
@@ -4676,10 +4734,8 @@
 /turf/space,
 /area/space)
 "WE" = (
-/obj/structure/bed/chair/custom/onestar/red{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/obj/structure/salvageable/os/computer,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "WO" = (
 /obj/structure/salvageable/os/data,
@@ -4692,8 +4748,15 @@
 /turf/space,
 /area/space)
 "WS" = (
-/mob/living/carbon/superior_animal/stalker,
+/mob/living/carbon/superior_animal/stalker/dual,
 /turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/space)
+"WW" = (
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "WY" = (
 /obj/structure/bed/chair{
@@ -4799,8 +4862,14 @@
 	},
 /area/space)
 "Yl" = (
-/obj/item/remains/human,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/obj/structure/bed/chair/custom/onestar{
+	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = 22
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "Ym" = (
 /obj/structure/shuttle_part/mining{
@@ -4953,6 +5022,7 @@
 /obj/structure/sign/derelict1{
 	pixel_x = 32
 	},
+/obj/structure/salvageable/os/computer,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "ZM" = (
@@ -12321,14 +12391,14 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+XW
+XW
+XW
+XW
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -12523,14 +12593,14 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+ai
+xS
+ai
+XW
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -12725,14 +12795,14 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+RJ
+RJ
+RJ
+xb
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -12927,14 +12997,14 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+ai
+AF
+ai
+XW
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -13129,14 +13199,14 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+XW
+XW
+XW
+XW
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -13188,10 +13258,10 @@ cb
 cb
 cb
 cb
+gV
+gV
+gV
 cb
-gV
-gV
-gV
 cb
 cb
 cb
@@ -13331,14 +13401,14 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+gX
+NH
+ai
+XW
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -13390,9 +13460,8 @@ gV
 gV
 gV
 gV
-gV
+mD
 RV
-UW
 gV
 cb
 cb
@@ -13402,6 +13471,7 @@ gV
 gV
 gV
 gV
+cb
 cb
 cb
 cb
@@ -13533,14 +13603,14 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+RJ
+RJ
+RJ
+xb
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -13591,10 +13661,9 @@ ho
 ho
 ho
 ho
-ho
-JB
+WW
+Or
 Ul
-Yl
 gV
 cb
 cb
@@ -13602,8 +13671,9 @@ gV
 lO
 lO
 lO
-RW
+NR
 gV
+cb
 cb
 cb
 cb
@@ -13735,14 +13805,14 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+ai
+xS
+ai
+XW
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -13794,7 +13864,6 @@ RJ
 RJ
 RJ
 RJ
-RJ
 gV
 gV
 gV
@@ -13804,8 +13873,9 @@ gV
 lO
 lO
 lO
-WA
+KV
 gV
+cb
 cb
 cb
 cb
@@ -13937,14 +14007,14 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+XW
+XW
+XW
+XW
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -13995,8 +14065,7 @@ RJ
 RJ
 lk
 RJ
-RJ
-NM
+we
 LC
 lO
 lO
@@ -14006,8 +14075,9 @@ LC
 lO
 lO
 lO
-xM
+EP
 gV
+cb
 cb
 cb
 cb
@@ -14139,14 +14209,14 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+xM
+NM
+ai
+XW
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -14198,18 +14268,18 @@ RJ
 RJ
 RJ
 RJ
-RJ
 gV
 gV
 gV
 gV
 gV
 gV
-NH
+ey
 lO
 lO
-ai
+lC
 gV
+cb
 cb
 cb
 cb
@@ -14341,14 +14411,14 @@ gV
 gV
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+RJ
+RJ
+RJ
+xb
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -14399,19 +14469,19 @@ RJ
 RJ
 RJ
 RJ
-RJ
+tw
 Or
-Ul
 TY
 gV
 cb
 cb
 gV
-Qf
+Kg
 lO
 lO
 lO
 gV
+cb
 cb
 cb
 cb
@@ -14543,14 +14613,14 @@ pD
 gV
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+ai
+NH
+ai
+XW
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -14602,9 +14672,8 @@ UU
 UU
 UU
 UU
-UU
 gV
-xS
+Hp
 gV
 cb
 cb
@@ -14614,6 +14683,7 @@ gV
 gV
 gV
 gV
+cb
 cb
 cb
 cb
@@ -14745,14 +14815,14 @@ Cj
 gV
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+XW
+XW
+XW
+XW
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -14807,7 +14877,7 @@ gV
 gV
 gV
 gV
-gV
+cb
 cb
 cb
 cb
@@ -14947,14 +15017,14 @@ kD
 gV
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+ai
+NH
+ai
+XW
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -15149,14 +15219,14 @@ gV
 gV
 gV
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+RJ
+RJ
+RJ
+xb
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -15351,14 +15421,14 @@ Gd
 Mf
 gV
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+ai
+xS
+ai
+XW
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -15553,14 +15623,14 @@ Ks
 Mf
 gV
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+XW
+XW
+XW
+XW
+RJ
+RJ
+RJ
 cb
 cb
 cb
@@ -15756,14 +15826,14 @@ Mf
 gV
 cb
 cb
+aa
+aa
+aa
+xb
+RJ
+Bu
+RJ
 cb
-cb
-cb
-aa
-aa
-gX
-aa
-aa
 cb
 cb
 cb
@@ -15958,9 +16028,9 @@ Mf
 gV
 cb
 cb
-cb
-cb
-cb
+aa
+aa
+aa
 gV
 Vv
 gV
@@ -16160,9 +16230,9 @@ sL
 gV
 cb
 fz
-cb
-cb
-cb
+aa
+aa
+aa
 gV
 RJ
 gV
@@ -16362,9 +16432,9 @@ gV
 gV
 cb
 cb
-cb
-cb
-cb
+aa
+aa
+aa
 gV
 RJ
 gV
@@ -16969,7 +17039,7 @@ gV
 hz
 gV
 gV
-RJ
+bX
 RJ
 RJ
 RJ
@@ -17380,8 +17450,8 @@ gV
 gV
 gV
 gV
-Vv
-Vv
+UW
+UW
 gV
 gV
 gV
@@ -19399,10 +19469,10 @@ XW
 KB
 EF
 EF
-EF
+Qf
 DQ
-DQ
-EF
+WE
+af
 EF
 EF
 TC
@@ -19601,10 +19671,10 @@ XW
 WO
 EF
 EF
-Wi
+af
 gB
-tB
-WE
+lO
+af
 EF
 EF
 OY
@@ -19803,10 +19873,10 @@ XW
 YW
 au
 EF
-Wi
-tB
-AF
-WE
+lO
+lO
+lO
+lO
 EF
 EF
 EF
@@ -20207,9 +20277,9 @@ XW
 EF
 EF
 EF
-tB
-mh
-tB
+EF
+WA
+EF
 EF
 EF
 EF
@@ -20409,12 +20479,12 @@ XW
 XW
 Cd
 EF
-tB
+RW
 vt
 bC
 EF
 ZA
-EF
+Yl
 XW
 XW
 cb
