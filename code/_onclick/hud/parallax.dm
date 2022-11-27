@@ -5,7 +5,7 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	icon_state = "space0"
 	name = "parallax"
 	mouse_opacity = 0
-	blend_mode = BLEND_OVERLAY
+	blend_mode = BLEND_MULTIPLY
 	plane = PLANE_SPACE_PARALLAX
 	anchored = TRUE
 	var/mob/owner
@@ -23,47 +23,45 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 /obj/parallax/proc/update() //This proc updates your parallax (duh). If your view has been altered by binoculars, admin fuckery, and so on. We need to make the space bigger by applying a matrix transform to it. This is hardcoded for now.
 	if(!owner || !owner.client)
 		return
-	overlays.Cut()
-	icon_state = GLOB.random_parallax
 	var/turf/T = get_turf(owner.client.eye)
-	var/image/far
-	var/image/close
+	if(!T)
+		return
+	screen_loc = "CENTER:[-224-T.x],CENTER:[-224-T.y]"
+	var/new_icon_state	= GLOB.random_parallax
+	var/icon/far		= null
+	var/icon/close		= null
 	//And now we change depending on what is happening in processing events
 	for(var/datum/event/E in SSevent.active_events)
 		switch(E.storyevent.id)
 			if("bluespace interphase")
-				icon_state = "space_empty"
+				new_icon_state = "space_empty"
 			if("graveyard")
-				icon_state = "space_empty"
+				new_icon_state = "space_empty"
 			if("bluespace storm")
-				icon_state = "space_empty"
+				new_icon_state = "space_empty"
 			if("ion blizzard")
-				icon_state = "space_empty"
+				new_icon_state = "space_empty"
 			if("photon vortex")
-				icon_state = "space_empty"
+				new_icon_state = "space_empty"
 			if("micro debris")
-				icon_state = "space_empty"
-				close = image("icon"='icons/parallax.dmi', "icon_state"="micro_debris_close", "layer"=-1)
-				far = image("icon"='icons/parallax.dmi', "icon_state"="micro_debris_far", "layer"=-2)
+				new_icon_state = "space_empty"
+				close = icon('icons/parallax.dmi', "micro_debris_close")
+				far = icon('icons/parallax.dmi', "micro_debris_far")
 			if("nebula")
-				icon_state = "space_empty"
+				new_icon_state = "space_empty"
 			else
 				icon_state = GLOB.random_parallax
 		continue //Only one event changes our state, priority should be from up to down if there are multiple
-	if(far)
-		far.pixel_x = T.x * 0.4
-		far.pixel_y = T.y * 0.4
-	if(close)
-		close.pixel_x = T.x * 0.9
-		close.pixel_y = T.y * 0.9
-	overlays += close
-	overlays += far
-	screen_loc = "CENTER:[-224-T.x],CENTER:[-224-T.y]"
-	var/view = owner.client.view
+	var/icon/I = new('icons/parallax.dmi', new_icon_state)
+	if(far != null)
+		I.Blend(far, ICON_OVERLAY, T.x * 0.5, T.y * 0,5)
+	if(close != null)
+		I.Blend(close, ICON_OVERLAY, T.x * 0.9, T.y * 0.9)
+	icon = I
 	var/matrix/M = matrix()	//create matrix for transformation
-	if(view != world.view)	//Not bigger than world view. We don't need transforming
-		var/toscale = view	//How many extra tiles we need to fill with parallax. EG. Their view is 8. World view is 7. So one extra tile is needed.
-		switch(view)
+	if(owner.client.view != world.view)	//Not bigger than world view. We don't need transforming
+		var/toscale = owner.client.view	//How many extra tiles we need to fill with parallax. EG. Their view is 8. World view is 7. So one extra tile is needed.
+		switch(owner.client.view)
 			if(8)
 				toscale = 1.2
 			if(9)
