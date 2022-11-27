@@ -34,21 +34,21 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	for(var/datum/event/E in SSevent.active_events)
 		switch(E.storyevent.id)
 			if("bluespace interphase")
-				new_icon_state = "space_empty"
+				new_icon_state = "bluespace_interphase"
 			if("graveyard")
-				new_icon_state = "space_empty"
+				new_icon_state = "graveyard"
 			if("bluespace storm")
-				new_icon_state = "space_empty"
+				new_icon_state = "bluespace_storm"
 			if("ion blizzard")
-				new_icon_state = "space_empty"
+				new_icon_state = "ion_blizzard"
 			if("photon vortex")
-				new_icon_state = "space_empty"
+				new_icon_state = "photon_vortex"
 			if("micro debris")
-				new_icon_state = "space_empty"
+				new_icon_state = "micro_debris_background"
 				close = icon('icons/parallax.dmi', "micro_debris_close")
 				far = icon('icons/parallax.dmi', "micro_debris_far")
 			if("nebula")
-				new_icon_state = "space_empty"
+				new_icon_state = "nebula"
 			else
 				icon_state = GLOB.random_parallax
 		continue //Only one event changes our state, priority should be from up to down if there are multiple

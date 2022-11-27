@@ -235,7 +235,7 @@
 	GLOB.GLOBAL_INSIGHT_MOD = 0.5
 
 /datum/event/nebula/announce()
-	command_announcement.Announce("Uncharacteristically high concentrations of dark matter from a nearby nebula currently envelops the ship. Crew might experience certain issues with their mental wellbeing.", "Dark Matter Nebula")
+	command_announcement.Announce("Uncharacteristically high concentrations of dark matter from a nearby nebula currently envelop the ship. Crew might experience certain issues with their mental wellbeing.", "Dark Matter Nebula")
 
 /datum/event/nebula/end()
 	command_announcement.Announce("The dark matter nebula has moved away from the ship.", "Dark Matter Nebula")
