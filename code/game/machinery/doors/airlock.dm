@@ -429,7 +429,7 @@ There are 9 wires.
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
 	if(!issilicon(user) && isElectrified())
-		if(!last_zap || last_zap > (world.time + 1 SECOND))
+		if(!last_zap || (last_zap + 1 SECOND) < world.time)
 			if(shock(user, 100))
 				last_zap = world.time
 			return FALSE
