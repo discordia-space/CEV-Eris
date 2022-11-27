@@ -83,9 +83,9 @@
 						var/mob/living/carbon/human/H = src
 						var/obj/item/I = used_weapon
 						if((is_carrion(H) || active_mutations.len) && (SANCTIFIED in I.aspects))
-							apply_damage(dmg / 2, BURN, def_zone, sharp, edge, used_weapon)
+							apply_damage(dmg / 2, BURN, def_zone, armor_divisor, wounding_multiplier, sharp, edge, used_weapon)
 
-				apply_damage(dmg, dmg_type, def_zone, sharp, edge, used_weapon)
+				apply_damage(dmg, dmg_type, def_zone, armor_divisor, wounding_multiplier, sharp, edge, used_weapon)
 				if(ishuman(src) && def_zone && dmg >= 20)
 					var/mob/living/carbon/human/H = src
 					var/obj/item/organ/external/o = H.get_organ(def_zone)

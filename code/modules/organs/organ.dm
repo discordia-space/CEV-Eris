@@ -259,12 +259,8 @@
 	W.time_inflicted = world.time
 
 //Note: external organs have their own version of this proc
-/obj/item/organ/proc/take_damage(amount, var/silent=0)
-	if(BP_IS_ROBOTIC(src))
-		src.damage = between(0, src.damage + (amount * 0.8), max_damage)
-	else
-		src.damage = between(0, src.damage + amount, max_damage)
-
+/obj/item/organ/proc/take_damage(amount, damage_type, armor_divisor = 1, wounding_multiplier = 1, silent)
+	if(!BP_IS_ROBOTIC(src))
 		//only show this if the organ is not robotic
 		if(owner && parent && amount > 0 && !silent)
 			owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)

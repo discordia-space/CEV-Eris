@@ -346,7 +346,7 @@ This function restores all organs.
 		zone = BP_HEAD
 	return organs_by_name[zone]
 
-/mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone, sharp = FALSE, edge = FALSE, obj/used_weapon)
+/mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone, armor_divisor = 1, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, obj/used_weapon, armor_divisor)
 
 	//visible_message("Hit debug. [damage] | [damagetype] | [def_zone] | [blocked] | [sharp] | [used_weapon]")
 
@@ -354,8 +354,8 @@ This function restores all organs.
 	if(damagetype == PSY)
 		sanity.onPsyDamage(damage)
 		var/obj/item/organ/brain = random_organ_by_process(BP_BRAIN)
-		brain.take_damage(damage / 3, FALSE, PSY)
-		return 1
+		brain.take_damage(damage, PSY, armor_divisor)
+		return TRUE
 
 	//Handle other types of damage
 	if(damagetype != BRUTE && damagetype != BURN)
@@ -365,7 +365,7 @@ This function restores all organs.
 
 		..(damage, damagetype, def_zone)
 		sanity.onDamage(damage)
-		return 1
+		return TRUE
 
 	//Handle BRUTE and BURN damage
 	handle_suit_punctures(damagetype, damage, def_zone)
@@ -376,20 +376,19 @@ This function restores all organs.
 	else
 		if(!def_zone)	def_zone = ran_zone(def_zone)
 		organ = get_organ(check_zone(def_zone))
-	if(!organ)	return 0
+
+	if(!organ)
+		return FALSE
 
 	switch(damagetype)
 		if(BRUTE)
-			damageoverlaytemp = 20
 			damage = damage*species.brute_mod
-			if(organ.take_damage(damage, 0, sharp, edge, used_weapon))
-				UpdateDamageIcon()
 		if(BURN)
-			damageoverlaytemp = 20
 			damage = damage*species.burn_mod
-			if(organ.take_damage(0, damage, sharp, edge, used_weapon))
-				UpdateDamageIcon()
 
+	damageoverlaytemp = 20
+	if(organ.take_damage(damage, 0, armor_divisor, wounding_multiplier, sharp, edge, used_weapon))
+		UpdateDamageIcon()
 	sanity.onDamage(damage)
 
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().

@@ -92,8 +92,8 @@
 	var/organ_eff = organ_efficiency[process_define]
 	return organ_eff - (organ_eff * (damage / max_damage))
 
-/obj/item/organ/internal/take_damage(amount, silent, damage_type = null, sharp = FALSE, edge = FALSE)	//Deals damage to the organ itself
-	if(!damage_type)
+/obj/item/organ/internal/take_damage(amount, damage_type = null, armor_divisor = 1, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)	//Deals damage to the organ itself
+	if(!damage_type || armor_divisor <= 0)
 		return
 
 	// Determine possible wounds based on nature and damage type
@@ -101,9 +101,7 @@
 	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
 	var/list/possible_wounds = list()
 
-	var/pierce_divisor = 1 + sharp + edge				// Armor divisor placeholder
-	var/total_damage = amount - ((parent ? parent.limb_efficiency : 100) / 25) / pierce_divisor
-	var/wound_count = max(0, round(total_damage / 7))	// Every 10 points of damage is a wound
+	var/wound_count = max(0, round((amount * wounding_multiplier) / (5 / armor_divisor)))	// At base values, every 5 points of damage is 1 wound
 
 	if((!is_organic && !is_robotic) || !wound_count)
 		return

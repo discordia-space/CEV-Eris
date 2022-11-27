@@ -8,27 +8,21 @@
 	Returns
 	standard 0 if fail
 */
-/mob/living/proc/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/sharp = FALSE, var/edge = FALSE, var/used_weapon = null)
+/mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, armor_divisor = 1, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, used_weapon = null)
 	activate_ai()
 	switch(damagetype)
-
 		if(BRUTE)
 			adjustBruteLoss(damage)
-
 		if(BURN)
 //			if(COLD_RESISTANCE in mutations)
 //				damage = 0
 			adjustFireLoss(damage)
-
 		if(TOX)
 			adjustToxLoss(damage)
-
 		if(OXY)
 			adjustOxyLoss(damage)
-
 		if(CLONE)
 			adjustCloneLoss(damage)
-
 		if(HALLOSS)
 			adjustHalLoss(damage)
 
