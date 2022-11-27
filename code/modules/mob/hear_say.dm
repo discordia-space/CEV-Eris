@@ -73,7 +73,7 @@
 		if(found)
 			message = "[message] ([found])"
 	if(isghost(src) || stats.getPerk(PERK_CODESPEAK_SERB))
-		var/found = cop_codes.find_message_radio(message)
+		var/found = serb_codes.find_message_radio(message)
 		if(found)
 			message = "[message] ([found])"
 
