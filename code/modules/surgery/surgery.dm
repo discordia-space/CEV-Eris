@@ -176,10 +176,6 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 				else if(affected.organ_tag == BP_R_ARM)
 					held_item = H.r_hand
 
-				if(held_item)
-					to_chat(user, SPAN_WARNING("You cannot operate on your [affected.name] while holding [held_item] in it!"))
-					return TRUE
-
 			if(affected.do_surgery(user, tool, surgery_status))
 				return TRUE
 
