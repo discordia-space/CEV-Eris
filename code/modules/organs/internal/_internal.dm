@@ -92,19 +92,38 @@
 	var/organ_eff = organ_efficiency[process_define]
 	return organ_eff - (organ_eff * (damage / max_damage))
 
-/obj/item/organ/internal/take_damage(amount, damage_type = null, armor_divisor = 1, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)	//Deals damage to the organ itself
-	if(!damage_type || armor_divisor <= 0)
+/obj/item/organ/internal/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)	//Deals damage to the organ itself
+	if(!damage_type || status & ORGAN_DEAD)
 		return
 
 	// Determine possible wounds based on nature and damage type
 	var/is_robotic = BP_IS_ROBOTIC(src) || BP_IS_ASSISTED(src)
 	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
-	var/list/possible_wounds = list()
 
-	var/wound_count = max(0, round((amount * wounding_multiplier) / (5 / armor_divisor)))	// At base values, every 5 points of damage is 1 wound
+	var/wound_count = max(0, round((amount * wounding_multiplier) / 5))	// At base values, every 5 points of damage is 1 wound
 
 	if((!is_organic && !is_robotic) || !wound_count)
 		return
+
+	var/list/possible_wounds = get_possible_wounds(damage_type, is_robotic, is_organic)
+
+	if(is_organic)
+		LAZYREMOVE(possible_wounds, GetComponents(/datum/component/internal_wound/organic))	// Organic wounds don't stack
+
+	if(LAZYLEN(possible_wounds))
+		for(var/i in 1 to wound_count)
+			var/choice = pick(possible_wounds)
+			add_wound(choice)
+			if(ispath(choice, /datum/component/internal_wound/organic))
+				LAZYREMOVE(possible_wounds, choice)
+			if(!LAZYLEN(possible_wounds))
+				break
+
+	if(!BP_IS_ROBOTIC(src) && owner && parent && amount > 0 && !silent)
+		owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
+
+/obj/item/organ/internal/proc/get_possible_wounds(damage_type, is_robotic, is_organic)
+	var/list/possible_wounds = list()
 
 	switch(damage_type)
 		if(BRUTE)
@@ -137,26 +156,16 @@
 		if(CLONE)
 			if(is_organic)
 				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/radiation))
+		if(PSY)
+			if(LAZYACCESS(organ_efficiency, OP_EYES) || LAZYACCESS(organ_efficiency, BP_BRAIN))
+				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/sanity))
 		if(IRRADIATE)	// Effect type, not damage type. Still usable here.
 			if(is_organic)
 				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/radiation))
 			if(is_robotic)
 				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/robotic/emp_burn))		// Radiation can fry electronics
-
-	if(is_organic)
-		LAZYREMOVE(possible_wounds, GetComponents(/datum/component/internal_wound/organic))	// Organic wounds don't stack
-
-	if(LAZYLEN(possible_wounds))
-		for(var/i in 1 to wound_count)
-			var/choice = pick(possible_wounds)
-			add_wound(choice)
-			if(ispath(choice, /datum/component/internal_wound/organic))
-				LAZYREMOVE(possible_wounds, choice)
-			if(!LAZYLEN(possible_wounds))
-				break
-
-	if(!BP_IS_ROBOTIC(src) && owner && parent && amount > 0 && !silent)
-		owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
+	
+	return possible_wounds
 
 /obj/item/organ/internal/proc/handle_blood()
 	if(BP_IS_ROBOTIC(src) || !owner)
@@ -211,11 +220,11 @@
 		return
 	switch(severity)
 		if(1)
-			take_damage(18, FALSE, BURN)
+			take_damage(18, BURN)
 		if(2)
-			take_damage(12, FALSE, BURN)
+			take_damage(12, BURN)
 		if(3)
-			take_damage(6, FALSE, BURN)
+			take_damage(6, BURN)
 
 // Is body part open for most surgerical operations?
 /obj/item/organ/internal/is_open()
@@ -389,19 +398,19 @@
 	SEND_SIGNAL(src, COMSIG_WOUND_DAMAGE)
 
 /obj/item/organ/internal/proc/add_wound(datum/component/internal_wound/IW)
-	if(!IW || initial(IW.wound_nature) != nature)
+	if(!IW || initial(IW.wound_nature) != nature || status & ORGAN_DEAD)
 		return
 
 	var/datum/component/internal_wound/to_add = AddComponent(IW)
-	SSinternal_wounds.processing += to_add		// We don't use START_PROCESSING because it doesn't allow for multiple subsystems
+	START_PROCESSING(SSinternal_wounds, to_add)
 	refresh_upgrades()
 
 /obj/item/organ/internal/proc/remove_wound(datum/component/wound)
 	if(!wound)
 		return
-	SSinternal_wounds.processing -= wound	// We don't use STOP_PROCESSING because we don't use START_PROCESSING
+	STOP_PROCESSING(SSinternal_wounds, wound)
 	refresh_organ_stats()	// Split like this because we need to remove flags,
-	qdel(wound)				// remove the wound (which may apply a new flag),
+	qdel(wound)				// remove the wound (which may apply a flag that shouldn't be there anymore),
 	apply_modifiers()		// and re-apply existing flags
 
 /obj/item/organ/internal/proc/wound_count()

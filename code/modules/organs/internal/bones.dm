@@ -11,21 +11,8 @@
     . = ..()
     src.transform *= 0.5 // this little trick makes bone size small while keeping detail level of 32x32 bones.
 
-/obj/item/organ/internal/bone/take_damage(amount, silent, damage_type = null, sharp = FALSE, edge = FALSE)	//Deals damage to the organ itself
-	if(!damage_type)
-		return
-
-	// Determine possible wounds based on nature and damage type
-	var/is_robotic = BP_IS_ROBOTIC(src) || BP_IS_ASSISTED(src)
-	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
+/obj/item/organ/internal/bone/get_possible_wounds(damage_type, is_robotic, is_organic)
 	var/list/possible_wounds = list()
-
-	var/pierce_divisor = 1 + sharp + edge					// Armor divisor, but for meat
-	var/total_damage = amount - ((parent ? parent.limb_efficiency : 100) / 10) / pierce_divisor
-	var/wound_count = max(0, round(total_damage / 10))	// Every 10 points of damage is a wound
-
-	if((!is_organic && !is_robotic) || !wound_count)
-		return
 
 	switch(damage_type)
 		if(BRUTE)
@@ -51,20 +38,7 @@
 			if(is_robotic)
 				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/robotic/emp_burn))
 
-	if(is_organic)
-		LAZYREMOVE(possible_wounds, GetComponents(/datum/component/internal_wound/organic))	// Organic wounds don't stack
-
-	if(LAZYLEN(possible_wounds))
-		for(var/i in 1 to wound_count)
-			var/choice = pick(possible_wounds)
-			add_wound(choice)	
-			if(ispath(choice, /datum/component/internal_wound/organic))
-				LAZYREMOVE(possible_wounds, choice)
-			if(!LAZYLEN(possible_wounds))
-				break
-
-	if(!BP_IS_ROBOTIC(src) && owner && parent && amount > 0 && !silent)
-		owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
+	return possible_wounds
 
 /obj/item/organ/internal/bone/chest
 	name = "ribcage"

@@ -347,62 +347,57 @@ This function restores all organs.
 	return organs_by_name[zone]
 
 /mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone, armor_divisor = 1, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, obj/used_weapon, armor_divisor)
-
 	//visible_message("Hit debug. [damage] | [damagetype] | [def_zone] | [blocked] | [sharp] | [used_weapon]")
 
-	//Handle PSY damage
-	if(damagetype == PSY)
-		sanity.onPsyDamage(damage)
-		var/obj/item/organ/brain = random_organ_by_process(BP_BRAIN)
-		brain.take_damage(damage, PSY, armor_divisor)
-		return TRUE
-
 	//Handle other types of damage
-	if(damagetype != BRUTE && damagetype != BURN)
+	if(damagetype != BRUTE || damagetype != BURN)
 		if(damagetype == HALLOSS && !(species && (species.flags & NO_PAIN)))
-			if (!stat && (damage > 25 && prob(20)) || (damage > 50 && prob(60)))
+			if(!stat && (damage > 25 && prob(20)) || (damage > 50 && prob(60)))
 				emote("scream")
 
-		..(damage, damagetype, def_zone)
-		sanity.onDamage(damage)
-		return TRUE
+		if(damagetype == PSY)
+			sanity.onPsyDamage(damage)
+			var/obj/item/organ/brain = random_organ_by_process(BP_BRAIN)
+			brain.take_damage(damage, PSY, armor_divisor, wounding_multiplier)
+			return TRUE
 
-	//Handle BRUTE and BURN damage
-	handle_suit_punctures(damagetype, damage, def_zone)
+		. = ..(damage, damagetype, def_zone)
+	else	//Handle BRUTE and BURN damage
+		handle_suit_punctures(damagetype, damage, def_zone)
+
+		switch(damagetype)
+			if(BRUTE)
+				damage = damage*species.brute_mod
+			if(BURN)
+				damage = damage*species.burn_mod
 
 	var/obj/item/organ/external/organ
 	if(isorgan(def_zone))
 		organ = def_zone
 	else
-		if(!def_zone)	def_zone = ran_zone(def_zone)
+		if(!def_zone)
+			def_zone = ran_zone(def_zone)
 		organ = get_organ(check_zone(def_zone))
 
 	if(!organ)
 		return FALSE
 
-	switch(damagetype)
-		if(BRUTE)
-			damage = damage*species.brute_mod
-		if(BURN)
-			damage = damage*species.burn_mod
-
 	damageoverlaytemp = 20
-	if(organ.take_damage(damage, 0, armor_divisor, wounding_multiplier, sharp, edge, used_weapon))
+	if(organ.take_damage(damage, damagetype, armor_divisor, wounding_multiplier, sharp, edge, used_weapon))
 		UpdateDamageIcon()
 	sanity.onDamage(damage)
 
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
 	updatehealth()
 	BITSET(hud_updateflag, HEALTH_HUD)
-	return 1
+	return TRUE
 
 
 //Falling procs
 /mob/living/carbon/human/get_fall_damage(var/turf/from, var/turf/dest)
 	var/damage = 15 * falls_mod
 
-	if (from && dest)
+	if(from && dest)
 		damage *= abs(from.z - dest.z)
 
 	return damage
-

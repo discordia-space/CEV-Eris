@@ -84,7 +84,7 @@
 
 	var/toxin_strength = chem_effects[CE_ALCOHOL_TOXIC] + chem_effects[CE_TOXIN]
 	if(toxin_strength)
-		liver.take_damage(16 * toxin_strength, FALSE, TOX)
+		liver.take_damage(8 * toxin_strength, TOX)
 
 	//Blood regeneration if there is some space
 	regenerate_blood(0.1 + chem_effects[CE_BLOODRESTORE])

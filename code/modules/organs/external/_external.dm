@@ -281,12 +281,12 @@
 	if(!BP_IS_ROBOTIC(src))
 		return
 	switch (severity)
-		if (1)
-			take_damage(10)
-		if (2)
-			take_damage(5)
-		if (3)
-			take_damage(2)
+		if(1)
+			take_damage(20, BURN)
+		if(2)
+			take_damage(10, BURN)
+		if(3)
+			take_damage(5, BURN)
 
 /obj/item/organ/external/attack_self(var/mob/user)
 	if(!contents.len)
@@ -850,7 +850,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 	var/obj/item/organ/internal/I = pick(internal_organs)
 	if(I)
-		I.take_damage(15, TRUE, CLONE)
+		I.take_damage(15, CLONE, silent = TRUE)
 	if(owner)
 		owner.update_body()
 

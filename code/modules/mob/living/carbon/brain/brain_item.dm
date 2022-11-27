@@ -36,17 +36,16 @@
 		brainmob = null
 	. = ..()
 
-/obj/item/organ/internal/brain/take_damage(amount, silent, damage_type = null, sharp = FALSE, edge = FALSE)	//Deals damage to the organ itself
-	if(!damage_type)
+/obj/item/organ/internal/brain/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)
+	if(!damage_type || status & ORGAN_DEAD)
 		return
 
-	var/pierce_divisor = 1 + sharp + edge					// Armor divisor, but for meat
-	health -= amount - ((parent ? parent.limb_efficiency : 100) / 10) / pierce_divisor
+	health -= amount
 
 	if(health < 0)
 		var/wound_damage = -health
 		health = 0
-		..(wound_damage, silent, damage_type, sharp, edge)
+		..(wound_damage, damage_type, wounding_multiplier, sharp, edge, silent)
 
 /obj/item/organ/internal/brain/proc/clear_hud()
 	if(brainmob && brainmob.client)

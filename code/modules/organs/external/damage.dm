@@ -18,22 +18,17 @@
 	// High damage is transferred to internal organs
 	if(internal_organs && LAZYLEN(internal_organs))
 		var/obj/item/organ/internal/I = pick(internal_organs)
-		var/will_damage_internal = FALSE
-		var/damage_transfer_divisor = 2
+		var/transferred_damage_amount
 		switch(damage_type)
 			if(BRUTE)
-				if(brute_dam >= max_damage)
-					will_damage_internal = TRUE
+				transferred_damage_amount = (amount - (max_damage - brute_dam) / armor_divisor) / 2
 			if(BURN)
-				if(burn_dam >= max_damage)
-					will_damage_internal = TRUE
+				transferred_damage_amount = (amount - (max_damage - burn_dam) / armor_divisor) / 2
 			else
-				will_damage_internal = TRUE		// PSY, CLONE, TOX, and OXY are special
-				damage_transfer_divisor = 1		// All damage is transferred to the internal organ
+				transferred_damage_amount = amount	// PSY, CLONE, TOX, and OXY are special
 
-		if(will_damage_internal)
-			var/transferred_damage_amount = amount / damage_transfer_divisor
-			I.take_damage(transferred_damage_amount, damage_type, armor_divisor, wounding_multiplier, sharp, edge, FALSE)
+		if(transferred_damage_amount > 0)
+			I.take_damage(transferred_damage_amount, damage_type, wounding_multiplier, sharp, edge, FALSE)
 			amount -= transferred_damage_amount
 
 	if(amount <= 0)

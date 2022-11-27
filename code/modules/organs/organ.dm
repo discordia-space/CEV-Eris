@@ -138,6 +138,8 @@
 
 	//dead already, no need for more processing
 	if(status & ORGAN_DEAD)
+		for(var/internal_wound in GetComponents(/datum/component/internal_wound))
+			STOP_PROCESSING(SSinternal_wounds, internal_wound)
 		return PROCESS_KILL		// Can't bring dead organs back. Most can be printed for cheap.
 
 	//Process infections
@@ -259,7 +261,7 @@
 	W.time_inflicted = world.time
 
 //Note: external organs have their own version of this proc
-/obj/item/organ/proc/take_damage(amount, damage_type, armor_divisor = 1, wounding_multiplier = 1, silent)
+/obj/item/organ/proc/take_damage(amount, damage_type, wounding_multiplier = 1, silent)
 	if(!BP_IS_ROBOTIC(src))
 		//only show this if the organ is not robotic
 		if(owner && parent && amount > 0 && !silent)
@@ -273,11 +275,11 @@
 		return
 	switch (severity)
 		if(1)
-			take_damage(12)
+			take_damage(12, BURN)
 		if(2)
-			take_damage(6)
+			take_damage(6, BURN)
 		if(3)
-			take_damage(3)
+			take_damage(3, BURN)
 
 // Gets the limb this organ is located in, if any
 /obj/item/organ/proc/get_limb()

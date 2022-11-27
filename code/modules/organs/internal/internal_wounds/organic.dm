@@ -121,7 +121,7 @@
 	treatments_chem = list(CE_ONCOCIDAL = 1)
 	severity = 1
 	severity_max = 1
-	hal_damage = 0.2
+	hal_damage = 0.1
 	tox_damage = 0.1
 	status_flag = ORGAN_MUTATED
 
