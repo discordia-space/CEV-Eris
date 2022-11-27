@@ -209,7 +209,7 @@
 
 	if (agony_amount && armor_coefficient)
 
-		apply_damage(agony_amount * armor_coefficient, HALLOSS, def_zone, 0, used_weapon)
+		apply_damage(agony_amount * armor_coefficient, HALLOSS, def_zone, FALSE, FALSE, FALSE, used_weapon)
 		apply_effect(STUTTER, agony_amount * armor_coefficient)
 		apply_effect(EYE_BLUR, agony_amount * armor_coefficient)
 
