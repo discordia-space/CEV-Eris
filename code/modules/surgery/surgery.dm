@@ -164,20 +164,10 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-
 		affected = H.get_organ(zone)
-		if(affected)
-			// Self-surgery sanity check: no operating on your right arm with a tool held in your right hand
-			if(M == user)
-				var/obj/item/held_item
-				if(affected.organ_tag == BP_L_ARM)
-					held_item = H.l_hand
 
-				else if(affected.organ_tag == BP_R_ARM)
-					held_item = H.r_hand
-
-			if(affected.do_surgery(user, tool, surgery_status))
-				return TRUE
+		if(affected && affected.do_surgery(user, tool, surgery_status))
+			return TRUE
 
 	// Invoke legacy surgery code
 	if(!do_old_surgery(M, user, tool))
