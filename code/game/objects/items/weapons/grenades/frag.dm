@@ -73,7 +73,7 @@
 	spread_range = 7
 
 /obj/item/grenade/frag/white_phosphorous
-	name = "SA WPG \"Geneva\""
+	name = "SA WPG \"Sabac \""
 	desc = "A modernized Incendiary grenade hailing popular use within technomancer tribes and Mercnary assualt teams. use this on unruly crowds."
 	icon_state = "white_phos"
 	item_state = "fraggrenade"
