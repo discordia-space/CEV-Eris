@@ -73,9 +73,9 @@
 	spread_range = 7
 
 /obj/item/grenade/frag/white_phosphorous
-	name = "TML WPG \"Geneva\""
+	name = "SA WPG \"Geneva\""
 	desc = "A modernized Incendiary hailing popular use within technomancer tribes and Mercnary assualt teams. use this on unruly crowds."
-	icon_state = "sting_ih"
+	icon_state = "white_pho"
 	item_state = "fraggrenade"
 	fragment_type = /obj/item/projectile/ember
 	var/datum/effect/effect/system/smoke_spread/white_phosphorous/smoke
