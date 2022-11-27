@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	autoclose = 1
 	var/assembly_type = /obj/structure/door_assembly
 	var/mineral
-	var/justzap = 0
+	var/last_zap // Timestamp
 	var/safe = 1
 	normalspeed = 1
 	var/obj/item/electronics/airlock/electronics
