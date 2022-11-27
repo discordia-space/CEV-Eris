@@ -255,16 +255,3 @@
 	new /obj/effect/decal/cleanable/ash(src.loc)
 	playsound(src, 'sound/effects/flare.ogg', 100, 1)
 	new /obj/effect/effect/smoke/illumination(T, brightness=max(flash_range*3, brightness), lifetime=light_duration, color=COLOR_RED)
-
-
-/obj/item/projectile/ember
-    name = "phosphorous ember"
-    icon_state = "ember_white"
-
-/obj/item/projectile/ember/on_hit(atom/target)
-    var/datum/effect/effect/system/smoke_spread/white_phosphorous/S = new /datum/effect/effect/system/smoke_spread/white_phosphorous
-    S.attach(get_turf(src))
-    S.set_up(1, 0, location)
-    S.start()
-    return TRUE
-

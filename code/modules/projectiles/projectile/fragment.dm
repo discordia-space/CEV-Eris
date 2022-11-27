@@ -38,3 +38,18 @@
 	embed = 0
 	damage_types = list(BRUTE = 30)
 	check_armour = ARMOR_BOMB
+
+/obj/item/projectile/bullet/pellet/fragment/ember
+    name = "phosphorous ember"
+    icon_state = "ember_white"
+    damage_types = list(BURN = 5)
+    check_armour = ARMOR_ENERGY
+    embed = 0
+    pellets = 1
+    range_step = 5
+
+/obj/item/projectile/bullet/pellet/fragment/ember/on_hit(atom/target)
+    var/datum/effect/effect/system/smoke_spread/white_phosphorous/S = new /datum/effect/effect/system/smoke_spread/white_phosphorous
+    S.set_up(1, 0, get_turf(src))
+    S.start()
+    return TRUE
