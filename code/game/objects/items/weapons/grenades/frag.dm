@@ -75,7 +75,7 @@
 /obj/item/grenade/frag/white_phosphorous
 	name = "SA WPG \"Geneva\""
 	desc = "A modernized Incendiary hailing popular use within technomancer tribes and Mercnary assualt teams. use this on unruly crowds."
-	icon_state = "white_pho"
+	icon_state = "white_phos"
 	item_state = "fraggrenade"
 	fragment_type = /obj/item/projectile/ember
 	var/datum/effect/effect/system/smoke_spread/white_phosphorous/smoke
@@ -88,14 +88,9 @@
 /obj/item/grenade/frag/white_phosphorous/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 50, 1, -3)
 	smoke.set_up(5, 0, usr.loc)
-	spawn(0)
-		smoke.start()
-		sleep(10)
-		smoke.start()
-		sleep(10)
-		smoke.start()
-		sleep(10)
-		smoke.start()
+	smoke.set_up(5, 0, get_turf(loc))
+	smoke.start()
+	..()
 
 /obj/item/grenade/frag/white_phosphorous/New()
 	..()
