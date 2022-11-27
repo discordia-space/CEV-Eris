@@ -87,7 +87,6 @@
 
 /obj/item/grenade/frag/white_phosphorous/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 50, 1, -3)
-	smoke.set_up(5, 0, usr.loc)
 	smoke.set_up(5, 0, get_turf(loc))
 	smoke.start()
 	..()
