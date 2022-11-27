@@ -74,7 +74,7 @@
 
 /obj/item/grenade/frag/white_phosphorous
 	name = "SA WPG \"Geneva\""
-	desc = "A modernized Incendiary hailing popular use within technomancer tribes and Mercnary assualt teams. use this on unruly crowds."
+	desc = "A modernized incendiary hailing popular use within assault troops of all kinds. Use with care, highly flammable."
 	icon_state = "white_phos"
 	item_state = "fraggrenade"
 	fragment_type = /obj/item/projectile/bullet/pellet/fragment/ember
