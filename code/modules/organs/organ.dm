@@ -40,6 +40,8 @@
 
 	var/death_time						// limits organ self recovery
 
+	var/current_tick					// For processing
+
 /obj/item/organ/Destroy()
 	if(parent || owner)
 		removed()
@@ -147,27 +149,32 @@
 		germ_level = 0
 		return
 
-	if(!owner)
-		if(is_in_stasis())
-			return
-		if(reagents)
-			if(prob(40))
-				reagents.remove_reagent("blood",0.1)
-				blood_splatter(src, null, TRUE)
-		if(config.organs_decay)
-			germ_level += rand(2,6)
-		if(damage >= max_damage)
-			damage = max_damage
-		germ_level += rand(2,6)
-		if(germ_level >= INFECTION_LEVEL_TWO)
-			germ_level += rand(2,6)
-		if(germ_level >= INFECTION_LEVEL_THREE)
-			die()
-	else if(owner && owner.bodytemperature >= 170)	//cryo stops germs from moving and doing their bad stuffs
-		//** Handle antibiotics and curing infections
-		handle_antibiotics()
-		handle_rejection()
-		handle_germ_effects()
+	// These are fairly costly considering how many organs get processed each tick and there is no need for these to be constantly updated
+	current_tick++
+	if(current_tick == 5)
+		if(!owner)
+			if(is_in_stasis())
+				return
+			if(reagents)
+				var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in reagents.reagent_list
+				if(B && prob(40))
+					reagents.remove_reagent("blood",0.5)
+					blood_splatter(src,B,1)
+			if(config.organs_decay)
+				germ_level += rand(10,30)
+			if(damage >= max_damage)
+				damage = max_damage
+			germ_level += rand(10,30)
+			if(germ_level >= INFECTION_LEVEL_TWO)
+				germ_level += rand(10,30)
+			if(germ_level >= INFECTION_LEVEL_THREE)
+				die()
+		else if(owner && owner.bodytemperature >= 170)	//cryo stops germs from moving and doing their bad stuffs
+			//** Handle antibiotics and curing infections
+			handle_antibiotics()
+			handle_rejection()
+			handle_germ_effects()
+		current_tick = 0
 
 	//check if we've hit max_damage
 	if(damage >= max_damage)
@@ -183,12 +190,12 @@
 	var/antibiotics = LAZYACCESS(owner.chem_effects, CE_ANTIBIOTIC)
 
 	if(germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
-		germ_level--
+		germ_level -= 5
 
 	if(germ_level >= INFECTION_LEVEL_ONE/2)
 		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes
 		if(antibiotics < 4 && prob(round(germ_level/6)))
-			germ_level++
+			germ_level += 5
 
 	if(germ_level >= INFECTION_LEVEL_ONE)
 		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
@@ -197,7 +204,7 @@
 	if(germ_level >= INFECTION_LEVEL_TWO)
 		//spread germs
 		if(parent && antibiotics < 4 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
-			parent.germ_level++
+			parent.germ_level += 5
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
@@ -210,14 +217,14 @@
 		if(rejecting % 10 == 0) //Only fire every ten rejection ticks.
 			switch(rejecting)
 				if(1 to 50)
-					germ_level++
+					germ_level += 5
 				if(51 to 200)
-					germ_level += rand(1,2)
+					germ_level += rand(5,10)
 				if(201 to 500)
-					germ_level += rand(2,3)
+					germ_level += rand(10,15)
 				if(501 to INFINITY)
-					germ_level += rand(3,5)
-					owner.reagents.add_reagent("toxin", rand(1,2))
+					germ_level += rand(15,25)
+					owner.reagents.add_reagent("toxin", rand(5,10))
 
 /obj/item/organ/proc/receive_chem(chemical as obj)
 	return 0
@@ -244,9 +251,9 @@
 	if(germ_level < INFECTION_LEVEL_ONE)
 		germ_level = 0	//cure instantly
 	else if(germ_level < INFECTION_LEVEL_TWO)
-		germ_level -= 6	//at germ_level == 500, this should cure the infection in a minute
+		germ_level -= 30	//at germ_level == 500, this should cure the infection in a minute
 	else
-		germ_level -= 2 //at germ_level == 1000, this will cure the infection in 5 minutes
+		germ_level -= 10 	//at germ_level == 1000, this will cure the infection in 5 minutes
 
 //Adds autopsy data for used_weapon.
 /obj/item/organ/proc/add_autopsy_data(var/used_weapon, var/damage)
