@@ -347,7 +347,7 @@ obj/item/clothing/under/genericr
 
 /obj/item/clothing/under/aerostatic//Elysium
 	name = "dark comfortable clothing"
-	desc = "A suit and pants that are so basic it's stylish."
+	desc = "A tan shirt and brown pants that are rather basic."
 	icon_state = "aerostatic_suit"
 	item_state = "aerostatic_suit"
 
