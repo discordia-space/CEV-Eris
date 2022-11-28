@@ -341,7 +341,7 @@ obj/item/clothing/under/genericr
 
 /obj/item/clothing/under/jamrock//Disco
 	name = "brown comfortable clothing"
-	desc = "A suit and pants that are so basic it's stylish."
+	desc = "A white satin shirt that can really catch the light and flare-cut trousers."
 	icon_state = "jamrock_suit"
 	item_state = "jamrock_suit"
 
