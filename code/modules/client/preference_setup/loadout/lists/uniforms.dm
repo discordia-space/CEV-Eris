@@ -165,7 +165,7 @@
 /datum/gear/uniform/tuxedo
 	display_name = "tuxedo"
 	path = /obj/item/clothing/under/tuxedo
-	cost = 2
+	cost = 1
 
 /datum/gear/uniform/security_formal
 	display_name = "formal security outfit"
