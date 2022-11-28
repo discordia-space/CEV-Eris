@@ -274,7 +274,6 @@ obj/item/clothing/under/genericr
 	name = "tuxedo"
 	desc = "A very stylish black tuxedo with a necktie. Must have for all crime-boys."
 	icon_state = "tuxedo"
-	price_tag = 300
 
 //stylish vendor clothes
 /obj/item/clothing/under/white
@@ -282,49 +281,42 @@ obj/item/clothing/under/genericr
 	desc = "White suit, white pants and a white tie."
 	icon_state = "suit_white"
 	item_state = "suit_white"
-	price_tag = 300
 
 /obj/item/clothing/under/red
 	name = "blood red outfit"
 	desc = "Red suit, red pants and a red tie."
 	icon_state = "suit_red"
 	item_state = "suit_red"
-	price_tag = 300
 
 /obj/item/clothing/under/green
 	name = "questionable outfit"//Riddler reference, you probably knew that
 	desc = "Green suit, green pants and a green tie. Quite a riddle to solve."
 	icon_state = "riddler"
 	item_state = "riddler"
-	price_tag = 300
 
 /obj/item/clothing/under/grey
 	name = "ash grey outfit"
 	desc = "Grey suit, grey pants and a grey tie."
 	icon_state = "suit_grey"
 	item_state = "suit_grey"
-	price_tag = 300
 
 /obj/item/clothing/under/black
 	name = "charcoal black outfit"
 	desc = "Black suit, black pants and a black tie."
 	icon_state = "suit_black"
 	item_state = "suit_black"
-	price_tag = 300
 
 /obj/item/clothing/under/dress/purple
 	name = "black and purple dress"
 	desc = "A black and purple dress, quite stylish"
 	icon_state = "black_purple"
 	item_state = "black_purple"
-	price_tag = 300
 
 /obj/item/clothing/under/dress/white
 	name = "white and yellow dress"
 	desc = "A white and yellow dress, quite stylish"
 	icon_state = "white_yellow"
 	item_state = "white_yellow"
-	price_tag = 300
 
 
 /obj/item/clothing/under/helltaker
@@ -332,14 +324,12 @@ obj/item/clothing/under/genericr
 	desc = "A red shirt with a black tie and black pants. Stylish enough to impress the devil."
 	icon_state = "helltaker"
 	item_state = "helltaker"
-	price_tag = 300
 
 /obj/item/clothing/under/johnny
 	name = "rockerboy outfit"//Cyberpunk 2077, Johnny Silverhand's outfit
 	desc = "A padded vest with brown leather pants. Never stop fightin'"
 	icon_state = "johnny"
 	item_state = "johnny"
-	price_tag = 400
 	armor = list(
 		melee = 2,
 		bullet = 1,
@@ -366,14 +356,12 @@ obj/item/clothing/under/genericr
 	desc = "A classic style for hoodlums and bandits."
 	icon_state = "tracksuit"
 	item_state = "tracksuit"
-	price_tag = 300
 
 /obj/item/clothing/under/raider
 	name = "leather outfit"
 	desc = "A rather resistant, generic leather outfit. Smells like waste"
 	icon_state = "raider"
 	item_state = "raider"
-	price_tag = 400
 	armor = list(
 		melee = 2,
 		bullet = 1,
@@ -390,7 +378,6 @@ obj/item/clothing/under/genericr
 	item_state = "onestar_uniform"
 	spawn_tags = SPAWN_TAG_CLOTHING_OS
 	spawn_blacklisted = TRUE
-	price_tag = 500
 	armor = list(
 		melee = 1,
 		bullet = 2,
@@ -436,7 +423,6 @@ obj/item/clothing/under/genericr
 	desc = "I mean, don\'t you have to be funny to be a comedian?"
 	icon_state = "joker"
 	item_state = "joker"
-	price_tag = 450
 
 //Adminbus versions with extremly high armor, should never spawn in game
 /obj/item/clothing/under/tuxedo/adminspawn
