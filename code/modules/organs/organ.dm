@@ -138,8 +138,8 @@
 
 	//dead already, no need for more processing
 	if(status & ORGAN_DEAD)
-		for(var/internal_wound in GetComponents(/datum/component/internal_wound))
-			STOP_PROCESSING(SSinternal_wounds, internal_wound)
+		for(var/datum/component/internal_wound/IW in GetComponents(/datum/component/internal_wound))
+			STOP_PROCESSING(SSinternal_wounds, IW)
 		return PROCESS_KILL		// Can't bring dead organs back. Most can be printed for cheap.
 
 	//Process infections
