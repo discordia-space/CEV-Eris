@@ -639,7 +639,7 @@
 			damage_types -= dmg_type
 	if(!damage_types.len)
 		on_impact(A)
-		qdel(A)
+		qdel(src)
 
 	return dmg_total ? (dmg_remaining / dmg_total) : 0
 
