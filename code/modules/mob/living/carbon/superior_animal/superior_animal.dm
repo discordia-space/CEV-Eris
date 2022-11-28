@@ -136,7 +136,10 @@
 
 /mob/living/carbon/superior_animal/Destroy()
 	GLOB.superior_animal_list -= src
-	. = ..()
+	target_mob = null
+	LAZYCLEARLIST(objectsInView)
+	LAZYCLEARLIST(friends)
+	return ..()
 
 /mob/living/carbon/superior_animal/u_equip(obj/item/W)
 	return

@@ -43,4 +43,6 @@
 
 /decl/hierarchy/outfit/job/science/psychiatrist
 	name = OUTFIT_JOB_NAME("Moebius Psychiatrist")
-	belt = /obj/item/storage/belt/medical/
+	uniform = /obj/item/clothing/under/rank/psych
+	belt = /obj/item/storage/belt/medical
+	l_pocket = /obj/item/reagent_containers/glass/beaker/vial/psilocybin

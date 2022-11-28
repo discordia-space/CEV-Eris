@@ -648,8 +648,14 @@
 /obj/item/toy/plushie/fumo
 	name = "fumo"
 	desc = "A plushie of a....?."
-	icon_state = "fumoplushie"
+	icon_state = "fumoplushie_marisa"
 	spawn_blacklisted = TRUE
+
+/obj/item/toy/plushie/fumo/astolfo
+	icon_state = "fumoplushie_astolfo"
+
+/obj/item/toy/plushie/fumo/cirno
+	icon_state = "fumoplushie_cirno"
 
 //Toy cult sword
 /obj/item/toy/cultsword

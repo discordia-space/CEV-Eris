@@ -102,7 +102,7 @@
 /obj/item/tool/sword/nt_sword/equipped(mob/living/M)
 	. = ..()
 	if(is_held() && is_neotheology_disciple(M))
-		embed_mult = 0.1
+		embed_mult = 0.2
 	else
 		embed_mult = initial(embed_mult)
 

@@ -1110,7 +1110,7 @@
 					/obj/item/reagent_containers/food/drinks/cans/iced_tea = 10, /obj/item/reagent_containers/food/drinks/cans/grape_juice = 10)
 	contraband = list(/obj/item/reagent_containers/food/drinks/cans/thirteenloko = 5, /obj/item/reagent_containers/food/snacks/liquidfood = 6)
 	prices = list(/obj/item/reagent_containers/food/drinks/cans/cola = 30,/obj/item/reagent_containers/food/drinks/cans/space_mountain_wind = 30,
-					/obj/item/reagent_containers/food/drinks/cans/dr_gibb = 1000,/obj/item/reagent_containers/food/drinks/cans/starkist = 30,
+					/obj/item/reagent_containers/food/drinks/cans/dr_gibb = 30,/obj/item/reagent_containers/food/drinks/cans/starkist = 30,
 					/obj/item/reagent_containers/food/drinks/cans/waterbottle = 32,/obj/item/reagent_containers/food/drinks/cans/space_up = 30,
 					/obj/item/reagent_containers/food/drinks/cans/iced_tea = 30,/obj/item/reagent_containers/food/drinks/cans/grape_juice = 30,
 					/obj/item/reagent_containers/food/drinks/cans/thirteenloko = 50, /obj/item/reagent_containers/food/snacks/liquidfood = 60)
@@ -1493,7 +1493,7 @@
 /obj/machinery/vending/theomat/proc/check_NT(mob/user)
 	var/bingo = FALSE
 	if(ishuman(user))
-	
+
 		var/mob/living/carbon/human/H = user
 
 		if(!scan_id)
@@ -1646,6 +1646,7 @@
 					/obj/item/gun/projectile/shotgun/doublebarrel = 4,
 					/obj/item/gun/projectile/mk58  = 2,
 					/obj/item/gun/projectile/mk58/wood = 2,
+					/obj/item/gun/projectile/mk58/army = 1,
 					/obj/item/gun/projectile/revolver/deckard = 2,
 					/obj/item/gun/projectile/automatic/ak47/fs = 4,
 					/obj/item/gun/projectile/automatic/z8 = 4,
@@ -1671,6 +1672,7 @@
 					/obj/item/gun/projectile/shotgun/doublebarrel = 1400,
 					/obj/item/gun/projectile/mk58  = 900,
 					/obj/item/gun/projectile/mk58/wood = 900,
+					/obj/item/gun/projectile/mk58/army = 950,
 					/obj/item/gun/projectile/mandella = 1800,
 					/obj/item/gun/projectile/revolver/deckard = 3600,
 					/obj/item/gun/projectile/automatic/ak47/fs = 3200,
@@ -1772,6 +1774,88 @@
 	contraband = list(
 		/obj/item/clothing/head/skull/drip = 1)	//drip
 
+/obj/machinery/vending/gym
+	name = "Club\'s Total Workout"
+	desc = "A Club vendor that sells exercise equipment."
+	product_slogans = "Usually no carcinogens!;Best sports!;Become the strongest!"
+	product_ads = "Strength!;Cheap!;There are contraindications, it is recommended to consult a medical specialist."
+	icon_state = "gym"
+
+	products = list(
+		/obj/item/gym_ticket = 99,
+		/obj/item/tool/hammer/dumbbell = 10,
+		/obj/item/reagent_containers/food/drinks/protein_shake = 10
+		)
+
+	prices = list(
+		/obj/item/gym_ticket = 50,
+		/obj/item/tool/hammer/dumbbell = 90,
+		/obj/item/reagent_containers/food/drinks/protein_shake = 150,//a total ripoff
+		/obj/item/reagent_containers/food/drinks/energy = 200,
+		/obj/item/reagent_containers/syringe/paracetamol = 300,
+		/obj/item/reagent_containers/syringe/adrenaline = 350,
+		/obj/item/reagent_containers/syringe/stim/steady = 400,
+		/obj/item/reagent_containers/syringe/stim/bouncer = 400,
+		/obj/item/reagent_containers/syringe/stim/violence = 400
+		)
+
+	contraband = list(
+		/obj/item/reagent_containers/food/drinks/energy = 10,
+		/obj/item/reagent_containers/syringe/paracetamol = 10,
+		/obj/item/reagent_containers/syringe/adrenaline = 10,
+		/obj/item/reagent_containers/syringe/stim/steady = 5,
+		/obj/item/reagent_containers/syringe/stim/bouncer = 5,
+		/obj/item/reagent_containers/syringe/stim/violence = 5
+		)
+	vendor_department = DEPARTMENT_CIVILIAN
+
+/obj/machinery/vending/plant_gene
+	name = "Eugene's Plant Genes"
+	desc = "A vendor selling data disks with individual plant genes."
+	product_slogans = "Keep your plants on!;Get back to your roots!;Don't leaf me!"
+	product_ads = "Seed for yourself!;Green!;OMG! Only Modified Genetically!"
+	icon_state = "seeds"
+	vendor_department = DEPARTMENT_OFFSHIP
+	products = list(
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_high = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_high = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_high = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_fast = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/no_nutrients_water = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/psilocybin = 2
+		)
+	contraband = list(
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_max = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_max = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_max = 2,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_faster = 2
+		)
+	prices = list(
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_high = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_high = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_high = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_fast = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/metabolism/no_nutrients_water = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/psilocybin = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/biochemistry/potency_max = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/yield_max = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/production_max = 500,
+		/obj/item/computer_hardware/hard_drive/portable/plantgene/vigour/maturation_faster = 500
+		)
+
+/obj/machinery/vending/plant_gene/Initialize()
+	. = ..()
+	var/light_color = pick(\
+		COLOR_LIGHTING_RED_DARK,\
+		COLOR_LIGHTING_BLUE_DARK,\
+		COLOR_LIGHTING_GREEN_DARK,\
+		COLOR_LIGHTING_ORANGE_DARK,\
+		COLOR_LIGHTING_PURPLE_DARK,\
+		COLOR_LIGHTING_CYAN_DARK\
+		)
+	set_light(1.4, 1, light_color)
+	earnings_account = department_accounts[vendor_department]	// Weirdness with offship account demands this
+	wires = new /datum/wires/vending/intermediate(src)
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"

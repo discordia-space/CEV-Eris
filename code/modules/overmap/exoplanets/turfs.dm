@@ -185,24 +185,17 @@
 
 	if (istype(C, /obj/item/stack/material))
 		var/obj/item/stack/material/M = C
-
 		var/material/mat = M.get_material()
 		if (!mat.name == MATERIAL_STEEL)
-
 			return
 
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-
 		if(L)
-			var/obj/item/stack/tile/floor/S = C
-			if (S.get_amount() < 4)
-				return
-
 			to_chat(user, SPAN_NOTICE("You start constructing underplating on the lattice."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-			if(do_after(user,80, src))
+			if(do_after(user, (40 * user.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT, src))))
 				qdel(L)
-				S.use(4)
+				M.use(1)
 				ChangeTurf(/turf/simulated/floor/plating/under)
 			return
 		else

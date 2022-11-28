@@ -24,7 +24,7 @@
 		weapon_sharp = 0
 		weapon_edge = 0
 
-	hit_impact(effective_force, get_step(user, src))
+	hit_impact(effective_force, get_step(user, src), hit_zone)
 	damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, armor_divisor = I.armor_divisor, used_weapon = I, sharp = weapon_sharp, edge = weapon_edge)
 
 /*Its entirely possible that we were gibbed or dusted by the above. Check if we still exist before
@@ -43,8 +43,8 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 
 		//The user's robustness stat adds to the threshold, allowing you to use more powerful weapons without embedding risk
 		embed_threshold += user.stats.getStat(STAT_ROB)
-		var/embed_chance = (damage - embed_threshold)*I.embed_mult
-		if (embed_chance > 0 && prob(embed_chance))
+		var/embed_chance = (damage*I.embed_mult - embed_threshold)/2
+		if(embed_chance > 0 && prob(embed_chance))
 			src.embed(I, hit_zone)
 
 	return TRUE

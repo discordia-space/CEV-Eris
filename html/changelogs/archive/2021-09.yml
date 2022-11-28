@@ -1,0 +1,130 @@
+2021-09-04:
+  AlexMorgan3817:
+  - code_imp: Compiling not failing if you have to old version of byond, now it will
+      just warn you about this.
+  Hyperio:
+  - rscadd: Added new planetary ruins
+  - bugfix: Fixed issue with shield in research area
+  MLGTASTICa:
+  - bugfix: Temp gun not applying temperature onto its projectiles
+  - bugfix: Temp gun giving gun parts
+  - code_imp: Gun handlers using sleep
+  - bugfix: The storyteller refusing to storytell
+  SirRichardFrancis:
+  - rscadd: chameleon headset
+  - rscdel: assassin's dagger
+  - tweak: a lot of uplink changes
+  - bugfix: typos in uplink
+  SugarBone:
+  - bugfix: fixed object items having no sound on hit
+  - bugfix: the user no longer hits the turret while using appropriate tools on help
+      intent
+  - code_imp: the user will now hit the turret on every intent except HELP
+  - imageadd: added new icons for sommelier, artist, holy light and exotic inspiration
+  - balance: prevents inorganic eyes from removing the colorblindness effect of Oborin
+  pexel5:
+  - rscadd: Engi tape in personal engi lockers.
+  zombiemimic:
+  - rscadd: Added Scrapyard map
+  - rscadd: Added shuttle that goes from scrapyard to the Eris
+  - rscadd: Added more mapping things for the Scrapyard
+2021-09-11:
+  Chickenish:
+  - balance: roachless forgotten closets now contain gun parts instead of guns.
+  HentaiStorm:
+  - bugfix: loot spawn error
+  - rscdel: Rename phoron reference
+  - bugfix: Allows you to see orange and sleeping gas
+  Hyperio:
+  - rscadd: Added a sink in hydroponics and IH barrack
+  MLGTASTICa:
+  - bugfix: Fixed holstered weapons with the auto-firemode breaking upon being unholstered
+  - tweak: Gibbing roaches now makes 3 splatters instead of 5.
+  - bugfix: Clothing sanity component from  improperly destroying
+  - bugfix: Holsters deleting guns when pulled out into a occupied hand
+  - rscadd: Added the sanity_damage_reduction component for clothing
+  - rscadd: Made balaclavas and any subtype of gasmasks reduce sanity damage fron
+      environment by 60%
+  - bugfix: Clothing signals not working as expected.
+  SirRichardFrancis:
+  - rscadd: shoes and bags designs to NT bio-fabric disc
+  - rscadd: spare IDs box in preacher locker
+  - rscdel: bay leftover designs from NT bio-fabric disc
+  - tweak: replaced generic cells in NT lockers with NT-manufactured cells
+  - tweak: NT tactical belt now can hold svalinn.
+  SugarBone:
+  - bugfix: enables falling through an open space after a change in gravity
+  githubuser4141:
+  - rscadd: Adds a function plasma cutter for Exosuits, a hitscan 'laser' that does
+      25 brute damage w/ 10 AP. Isn't a true laser and gets blocked by windows.
+  - balance: See above/below, also changed the plasma cutter recipe to require plasteel
+      instead of uranium. Removes the 33% chance for the Mech Clamp's melee to miss
+      completely.
+  - bugfix: Fixes the Exosuit drills having 2 durability and fixes the Exosuit plasma
+      cutter not firing. Credit to Occulus-Eris for the fixes!
+  - imageadd: Ports Baystation plasma cutter beam sprites
+  - code_imp: Adds a plasma cutter for exosuits, buffs it to be slightly competitive
+      with Eris weapons, fixes Exosuit drills breaking instantly on use
+2021-09-17:
+  MLGTASTICa:
+  - bugfix: Fixed 2 recurring CI failures (Wires test and modules)
+2021-09-18:
+  '<!--add: Added new things':
+  - server: something server ops should know-->
+  - tweak: tramadol from traitor's surgery kit got replaced with oxycodone
+  FulminatingGold:
+  - tweak: automatics accept silencers
+  HentaiStorm:
+  - bugfix: fix unavailable trade program in cargo
+  - rscadd: Added perk 'parkour' ability to walk around low walls and railings
+  Humonitarian:
+  - tweak: Suits now take armbands and decors, but can't take armor; under clothes
+      now take armor
+  - balance: Scavenger armor
+  - code_imp: Moved the code for headlamps from /obj/item/clothing/head to /obj/item/clothing
+  Hyperio:
+  - refactor: Refactor del_event function and global list for ships
+  - rscadd: Add AI controlled maintenance drone
+  MLGTASTICa:
+  - bugfix: Fixed doors processing
+  - bugfix: Fixed movement letting you walk on thin air
+  - bugfix: Fixed guns receiving a super slow firerate on their enabled firemode  when
+      upgraded
+  - rscadd: Climbing ontop of structures (low walls , tables  and railings) leaves
+      your fingerprints on them
+  - bugfix: Radios now take your fingerprints when you use them
+  SirRichardFrancis:
+  - tweak: colors of drinks
+  - bugfix: invisible grenadine syrup bottle
+  - imageadd: soda bottles, mugs and glasses by CeUvi
+  - imagedel: old soda bottles, mugs and glasses
+  garrulousTeamotei:
+  - rscdel: Compressed Matter Item
+  - tweak: Allowed RCD, RCD Bow, and RSF to use Compressed Matter Stack
+  - tweak: Changed Roundstart Compressed Matter Item With Compressed Matter Stack
+  - tweak: Changed RCD Crate Compressed Matter Item With Compressed Matter Stack
+  - tweak: Compressed Matter Stack given a price of 30
+  pexel5:
+  - tweak: Removed the license limit from the logistics disk
+  zombiemimic:
+  - bugfix: fixed roundstart runtime caused by ghost role code
+  - tweak: tweaked door health
+2021-09-19:
+  MLGTASTICa:
+  - bugfix: Pistols runtiming on refresh_upgrades() due to having no firemodes.
+2021-09-25:
+  Iglpigl:
+  - tweak: tweaked rockets so they cant penetrate walls anymore
+  MLGTASTICa:
+  - balance: roaches and spiders can no longer be put into cryotubes
+  - code_imp: reworked how roaches and spiders are handled to lag less
+  - code_imp: Increased maptick CPU to prevent screen freezes
+  - code_imp: reworked the AI activation for roaches and spiders to be less laggy
+  Smiruk:
+  - rscadd: Added a flare gun. "How do you like your flesh cooked?"
+  - bugfix: Fixed some Guild's Random Wave Radio typos
+2021-09-27:
+  MLGTASTICa:
+  - bugfix: The technomancer exultant has given a very angry complaint to Hansa after
+      their last shipment of airlock circuits were malfunctioning , the issue has
+      been remedied and all doors now close as expected.
