@@ -850,7 +850,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 	var/obj/item/organ/internal/I = pick(internal_organs)
 	if(I)
-		I.take_damage(15, CLONE, silent = TRUE)
+		I.take_damage(8, CLONE, silent = TRUE)
 	if(owner)
 		owner.update_body()
 

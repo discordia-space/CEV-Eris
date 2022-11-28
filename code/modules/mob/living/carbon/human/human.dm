@@ -1149,9 +1149,9 @@ var/list/rank_prefix = list(\
 						SPAN_WARNING("A spike of pain jolts your [organ.name] as you bump [O] inside."), \
 						SPAN_WARNING("Your hasty movement jostles [O] in your [organ.name] painfully."))
 					to_chat(src, msg)
-				organ.take_damage(rand(1,3), 0, 0)
+				organ.take_damage(3, BRUTE)
 				if(organ.setBleeding())
-					src.adjustToxLoss(rand(1,3))
+					organ.take_damage(3, TOX)
 
 /mob/living/carbon/human/verb/browse_sanity()
 	set name		= "Show sanity"

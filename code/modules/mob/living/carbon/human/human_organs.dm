@@ -49,7 +49,7 @@
 				if (E.is_broken() && E.internal_organs && E.internal_organs.len && prob(15))
 					var/obj/item/organ/internal/I = pick(E.internal_organs)
 					custom_pain("You feel broken bones moving in your [E.name]!", 1)
-					I.take_damage(rand(6,10), FALSE, BRUTE, TRUE, TRUE)
+					I.take_damage(rand(6,10), BRUTE, sharp = TRUE, edge = TRUE)
 
 				//Moving makes open wounds get infected much faster
 				if (E.wounds.len)

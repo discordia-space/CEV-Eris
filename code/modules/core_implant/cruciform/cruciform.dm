@@ -201,7 +201,7 @@ var/list/disciples = list()
 			for(var/mod in I.item_upgrades)
 				var/atom/movable/AM = mod
 				SEND_SIGNAL(AM, COMSIG_REMOVE, I)
-				I.take_damage(rand(6,12), FALSE, BRUTE)
+				I.take_damage(rand(6,12), BRUTE)
 				if(I.parent)
 					I.parent.take_damage(rand(2,5))
 				wearer.visible_message(SPAN_NOTICE("<b>\The [AM]</b> rips through \the [wearer]'s flesh."), SPAN_NOTICE("<b>\The [AM]</b> rips through your flesh. Your [I.name] hurts."))

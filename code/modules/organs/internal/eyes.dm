@@ -39,7 +39,7 @@
 		return
 	eyes_color = owner.eyes_color
 
-/obj/item/organ/internal/eyes/take_damage(amount, silent = FALSE, damage_type = BRUTE)
+/obj/item/organ/internal/eyes/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)
 	var/oldbroken = is_broken()
 	..()
 	if(is_broken() && !oldbroken && owner && !owner.stat)
