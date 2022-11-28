@@ -1493,7 +1493,7 @@
 /obj/machinery/vending/theomat/proc/check_NT(mob/user)
 	var/bingo = FALSE
 	if(ishuman(user))
-	
+
 		var/mob/living/carbon/human/H = user
 
 		if(!scan_id)
@@ -1743,23 +1743,23 @@
 		/obj/item/clothing/shoes/aerostatic = 500,
 		/obj/item/clothing/shoes/jamrock = 500,
 		/obj/item/clothing/shoes/jackboots/longboot = 550,
-		/obj/item/clothing/under/tuxedo = 450,
-		/obj/item/clothing/under/white = 450,
-		/obj/item/clothing/under/red = 450,
-		/obj/item/clothing/under/green = 450,
-		/obj/item/clothing/under/grey = 450,
-		/obj/item/clothing/under/black = 450,
-		/obj/item/clothing/under/dress/purple = 450,
-		/obj/item/clothing/under/dress/white = 450,
-		/obj/item/clothing/under/helltaker = 450,
-		/obj/item/clothing/under/johnny = 600,
-		/obj/item/clothing/under/raider = 600,
-		/obj/item/clothing/under/jamrock = 550,
-		/obj/item/clothing/under/aerostatic = 550,
-		/obj/item/clothing/under/tropicalpink = 450,
-		/obj/item/clothing/under/tropicalblue = 450,
-		/obj/item/clothing/under/tropicalblack = 450,
-		/obj/item/clothing/under/tropicalgreen = 450,
+		/obj/item/clothing/under/tuxedo = 100,
+		/obj/item/clothing/under/white = 100,
+		/obj/item/clothing/under/red = 100,
+		/obj/item/clothing/under/green = 100,
+		/obj/item/clothing/under/grey = 100,
+		/obj/item/clothing/under/black = 100,
+		/obj/item/clothing/under/dress/purple = 100,
+		/obj/item/clothing/under/dress/white = 100,
+		/obj/item/clothing/under/helltaker = 100,
+		/obj/item/clothing/under/johnny = 100,
+		/obj/item/clothing/under/raider = 100,
+		/obj/item/clothing/under/jamrock = 100,
+		/obj/item/clothing/under/aerostatic = 100,
+		/obj/item/clothing/under/tropicalpink = 100,
+		/obj/item/clothing/under/tropicalblue = 100,
+		/obj/item/clothing/under/tropicalblack = 100,
+		/obj/item/clothing/under/tropicalgreen = 100,
 		/obj/item/clothing/suit/storage/aerostatic = 700,
 		/obj/item/clothing/suit/storage/jamrock = 700,
 		/obj/item/clothing/suit/storage/dante = 900,
@@ -1807,6 +1807,5 @@
 	var/choice = sanitize(input("What do you want to name your Vendomat? You can rename it again later.", "Vendomat Renaming", name) as text|null, MAX_NAME_LEN)
 	if(choice)
 		SetName(choice)
-
 
 #undef CUSTOM_VENDOMAT_MODELS
