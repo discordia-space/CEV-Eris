@@ -149,9 +149,9 @@
 		germ_level = 0
 		return
 
-	// These are fairly costly considering how many organs get processed each tick and there is no need for these to be constantly updated
+	// These are fairly costly considering how many organs get processed each tick and there is no need for these to be updated every 2 secs
 	current_tick++
-	if(current_tick == 5)
+	if(current_tick >= 5)	// Updating every 5 ticks to reduce load, adjust as needed
 		if(!owner)
 			if(is_in_stasis())
 				return
