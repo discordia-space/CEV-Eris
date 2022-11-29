@@ -1676,7 +1676,7 @@
 					/obj/item/gun/projectile/mk58  = 900,
 					/obj/item/gun/projectile/mk58/wood = 900,
 					/obj/item/gun/projectile/mk58/army = 950,
-          /obj/item/gun/projectile/voodoo = 2400,
+					/obj/item/gun/projectile/voodoo = 2400,
 					/obj/item/gun/projectile/mandella = 3700
 					/obj/item/gun/projectile/revolver/deckard = 3600,
 					/obj/item/gun/projectile/automatic/ak47/fs = 3200,
