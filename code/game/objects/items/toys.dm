@@ -724,3 +724,85 @@
 	var/mob/living/carbon/human/user = usr
 	if(istype(user) && over_object == user && in_range(src, user))
 		user.put_in_active_hand(src)
+
+/obj/item/toy/card
+	name = "collectible card"
+	desc = "A collectible trading card."
+	icon = 'icons/obj/card.dmi'
+	icon_state = "card"
+	w_class = ITEM_SIZE_TINY
+	price_tag = 10
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_TRADING_CARD
+	spawn_blacklisted = TRUE
+
+/obj/item/toy/card/Initialize()
+	. = ..()
+	transform *= 0.5
+
+/obj/item/toy/card/attack_self(mob/user)
+	return
+
+/obj/item/toy/card/monkey
+	name = "monkey card"
+
+/obj/item/toy/card/monkey/Initialize()
+	. = ..()
+	var/card = max(rand(1,14) - 10, 1)
+	var/monkey = max(rand(1,14) - 10, 1)
+	var/suit = max(rand(1,30) - 20, 0)
+	var/helmet = max(rand(1,51) - 40, 0)
+	var/hat = max(rand(1,30) - 20, 0)
+	var/glasses = max(rand(1,30) - 20, 0)
+
+	icon_state = "card-[card]"
+
+	overlays += "monkey-[monkey]"
+
+	price_tag *= (card * monkey)
+
+	if(suit)
+		overlays += "suit-[suit]"
+		price_tag *= 2 + (0.25 * suit)
+
+	if(!helmet)
+		if(glasses)
+			overlays += "glasses-[glasses]"
+			price_tag *= 2 + (0.25 * glasses)
+		if(hat)
+			overlays += "hat-[hat]"
+			price_tag *= 4 + (0.25 * hat)
+	else
+		overlays += "helmet-[helmet]"
+		price_tag *= 8 + (0.25 * helmet)
+
+	name = initial(name) + " #[card][monkey][suit][helmet][hat][glasses]"
+
+/obj/item/toy/card/iriska
+	name = "iriska card"
+	price_tag = 100
+	rarity_value = 25
+
+/obj/item/toy/card/iriska/Initialize()
+	. = ..()
+	var/card = max(rand(1,14) - 10, 1)
+	var/hat = max(rand(1,30) - 20, 0)
+	var/glasses = max(rand(1,30) - 20, 0)
+
+	icon_state = "card-[card]"
+
+	overlays += "iriska"
+
+	price_tag *= card
+
+	if(glasses)
+		overlays += "glasses-[glasses]"
+		price_tag *= 2 + (0.25 * glasses)
+
+	if(hat)
+		if(hat == 2 || hat == 4)	// Iriska doesn't look good with 2 and 4
+			hat--
+		overlays += "hat-[hat]"
+		price_tag *= 4 + (0.25 * hat)
+
+	name = initial(name) + " #[card][hat][glasses]"

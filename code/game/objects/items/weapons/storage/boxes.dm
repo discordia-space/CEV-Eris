@@ -765,7 +765,8 @@
 		/obj/item/reagent_containers/food/snacks/applecakeslice,
 		/obj/item/reagent_containers/food/snacks/bigbiteburger,
 		/obj/item/reagent_containers/food/snacks/fishandchips,
-		/obj/spawner/soda
+		/obj/spawner/soda,
+		/obj/spawner/toy/card
 	)
 /*someday...
 	if(prob(1))
