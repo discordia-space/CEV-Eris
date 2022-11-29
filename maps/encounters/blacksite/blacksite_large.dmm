@@ -1186,6 +1186,12 @@
 	},
 /turf/space,
 /area/space)
+"lx" = (
+/obj/machinery/light/floor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "lF" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "3,3"
@@ -16889,10 +16895,10 @@ RJ
 RJ
 RJ
 RJ
+Am
 RJ
 RJ
-RJ
-RJ
+Am
 RJ
 RJ
 RJ
@@ -17087,7 +17093,7 @@ XW
 RJ
 RJ
 XW
-RJ
+lx
 RJ
 nx
 RJ
@@ -17295,10 +17301,10 @@ RJ
 RJ
 RJ
 RJ
-dB
 RJ
 RJ
-dB
+RJ
+RJ
 RJ
 RJ
 RJ
