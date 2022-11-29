@@ -11,7 +11,7 @@
 
 ## Testing
 
-<!-- Describe the tests you ran with your addition. It is recommended to add images, videos and step-by-step explanations of conducted test. -->
+<!-- Describe the tests you ran with your addition. It is recommended to add images, videos and step-by-step explanations of conducted testing. -->
 
 ## Changelog
 :cl:
