@@ -21,7 +21,7 @@
 	id_type = /obj/item/card/id/cmo
 	pda_type = /obj/item/modular_computer/pda/heads/cmo
 	belt = /obj/item/storage/belt/medical/
-	backpack_contents = list(/obj/item/gun/projectile/selfload/moebius = 1, /obj/item/ammo_magazine/pistol/rubber = 2)
+	backpack_contents = list(/obj/item/gun/projectile/dartgun = 1, /obj/item/ammo_magazine/chemdart = 6, /obj/item/reagent_containers/glass/beaker/vial/random/toxin = 1)
 
 /decl/hierarchy/outfit/job/medical/doctor
 	name = OUTFIT_JOB_NAME("Moebius Doctor")
