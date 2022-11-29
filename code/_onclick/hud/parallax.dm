@@ -36,9 +36,13 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 			if("bluespace interphase")
 				new_icon_state = "bluespace_interphase"
 			if("graveyard")
-				new_icon_state = "graveyard"
+				new_icon_state = "graveyard_background"
+				close = icon('icons/parallax.dmi', "graveyard_close")
+				far = icon('icons/parallax.dmi', "graveyard_far")
 			if("bluespace storm")
-				new_icon_state = "bluespace_storm"
+				new_icon_state = "bluespace_storm_background"
+				close = icon('icons/parallax.dmi', "bluespace_storm_close")
+				far = icon('icons/parallax.dmi', "bluespace_storm_far")
 			if("ion blizzard")
 				new_icon_state = "ion_blizzard"
 			if("photon vortex")
