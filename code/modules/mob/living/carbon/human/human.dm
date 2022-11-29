@@ -56,6 +56,9 @@
 	for(var/organ in organs)
 		qdel(organ)
 	organs.Cut()
+
+	QDEL_NULL(sanity)
+
 	return ..()
 
 /mob/living/carbon/human/Stat()
@@ -690,7 +693,7 @@ var/list/rank_prefix = list(\
 			sleep(150)	//15 seconds until second warning
 			to_chat(src, SPAN_WARNING("You feel like you are about to throw up!"))
 			sleep(100)	//and you have 10 more for mad dash to the bucket
-		Stun(2)
+		Stun(3)
 
 		src.visible_message(SPAN_WARNING("[src] throws up!"),SPAN_WARNING("You throw up!"))
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
@@ -1268,6 +1271,8 @@ var/list/rank_prefix = list(\
 	update_client_colour(0)
 
 	spawn(0)
+		if(QDELETED(src))	// Needed because mannequins will continue this proc and runtime after being qdel'd
+			return
 		regenerate_icons()
 		if(vessel.total_volume < species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
@@ -1567,13 +1572,13 @@ var/list/rank_prefix = list(\
 	return ..()
 
 /mob/living/carbon/human/verb/pull_punches()
-	set name = "Pull Punches"
+	set name = "Hold your attacks back"
 	set desc = "Try not to hurt them."
 	set category = "IC"
 
 	if(stat) return
-	pulling_punches = !pulling_punches
-	to_chat(src, "<span class='notice'>You are now [pulling_punches ? "pulling your punches" : "not pulling your punches"].</span>")
+	holding_back = !holding_back
+	to_chat(src, SPAN_NOTICE("You are now [holding_back ? "holding back your attacks" : "not holding back your attacks"]."))
 	return
 
 /mob/living/carbon/human/verb/toggle_dodging()
@@ -1785,3 +1790,37 @@ var/list/rank_prefix = list(\
 				pick(subtypesof(/datum/mutation/t3)) = 10,
 				pick(subtypesof(/datum/mutation/t4)) = 5))
 			dormant_mutations |= new M
+
+/mob/living/carbon/human/verb/blocking()
+	set name = "Blocking"
+	set desc = "Block an incoming melee attack, or lower your guard."
+	set category = "IC"
+
+	if(stat || restrained())
+		return
+	if(!blocking)
+		start_blocking()
+	else
+		stop_blocking()
+
+/mob/living/carbon/human/proc/start_blocking()
+	if(blocking)//already blocking with an item somehow?
+		return
+	blocking = TRUE
+	visible_message(SPAN_WARNING("[src] tenses up, ready to block!"))
+	if(HUDneed.Find("block"))
+		var/obj/screen/block/HUD = HUDneed["block"]
+		HUD.update_icon()
+	update_block_overlay()
+	return
+
+/mob/living/carbon/human/proc/stop_blocking()
+	if(!blocking)//already blockingn't with an item somehow?
+		return
+	blocking = FALSE
+	visible_message(SPAN_NOTICE("[src] lowers \his guard."))
+	if(HUDneed.Find("block"))
+		var/obj/screen/block/HUD = HUDneed["block"]
+		HUD.update_icon()
+	update_block_overlay()
+	return

@@ -125,7 +125,8 @@
 		/datum/design/autolathe/nt/grenade/nt_flashbang,
 		/datum/design/autolathe/nt/grenade/nt_smokebomb,
 		/datum/design/autolathe/ammo/shell_heatwave,
-		/datum/design/autolathe/ammo/nt_stinger
+		/datum/design/autolathe/ammo/nt_stinger,
+		/datum/design/autolathe/cruciform_upgrade/martyr_gift
 	)
 
 // Laser rifle
@@ -174,8 +175,8 @@
 		/datum/design/autolathe/gun/nt_sprayer,
 		/datum/design/autolathe/device/grenade/nt_cleaner,
 		/datum/design/autolathe/device/grenade/nt_weedkiller,
-
-		/datum/design/bioprinter/holyvacuum
+		/datum/design/bioprinter/holyvacuum,
+		/datum/design/autolathe/cruciform_upgrade/cleansing_presence
 
 	)
 
@@ -317,6 +318,7 @@
 	designs = list(
 		/datum/design/autolathe/gun/mk58 = 3,
 		/datum/design/autolathe/gun/mk58_wood = 3,
+		/datum/design/autolathe/gun/mk58_army = 3,
 		/datum/design/autolathe/ammo/magazine_pistol,
 		/datum/design/autolathe/ammo/magazine_pistol/practice = 0,
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
@@ -329,6 +331,7 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/regulator = 3, // "NT SG \"Regulator 1000\""
+		/datum/design/autolathe/gun/regulator/army = 3, //army version//
 		/datum/design/autolathe/ammo/shotgun_pellet,
 		/datum/design/autolathe/ammo/shotgun,
 		/datum/design/autolathe/ammo/shotgun_beanbag,

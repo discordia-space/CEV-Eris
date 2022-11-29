@@ -121,7 +121,9 @@
 /datum/gear/uniform/scrubs/color_presets/New()
 	..()
 	var/jumpsuit = list(
-		"Green"			=	/obj/item/clothing/under/rank/medical/green,
+		"green"			=	/obj/item/clothing/under/rank/medical/green,
+		"purple"		=	/obj/item/clothing/under/rank/medical/purple,
+		"blue"			=	/obj/item/clothing/under/rank/medical/blue
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jumpsuit)
 

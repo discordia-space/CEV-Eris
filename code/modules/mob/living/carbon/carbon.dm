@@ -15,9 +15,12 @@
 		germ_level++
 
 /mob/living/carbon/Destroy()
-	qdel(ingested)
-	qdel(touching)
-	// We don't qdel(bloodstr) because it's the same as qdel(reagents)
+	QDEL_NULL(metabolism_effects)
+	reagents = null
+	QDEL_NULL(ingested)
+	QDEL_NULL(touching)
+	QDEL_NULL(bloodstr)
+	QDEL_NULL(vessel)
 	QDEL_LIST(internal_organs)
 	QDEL_LIST(stomach_contents)
 	QDEL_LIST(hallucinations)

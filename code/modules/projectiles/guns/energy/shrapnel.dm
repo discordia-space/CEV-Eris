@@ -1,5 +1,5 @@
 /obj/item/gun/energy/shrapnel
-	name = "OR SDF \"Shellshock\" energy shotgun"
+	name = "OR ESG \"Shellshock\" energy shotgun"
 	desc = "An Oberth Republic Self Defence Force design, this mat-fab shotgun tends to burn through cells with use. The matter contained in empty cells can be converted directly into ammunition as well, if the safety bolts are loosened."
 	icon = 'icons/obj/guns/energy/shrapnel.dmi'
 	icon_state = "eshotgun"

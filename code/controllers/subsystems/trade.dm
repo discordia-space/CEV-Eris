@@ -439,15 +439,20 @@ SUBSYSTEM_DEF(trade)
 	for(var/path in category)
 		. += get_import_cost(path, station) * category[path]
 
-/datum/controller/subsystem/trade/proc/buy(obj/machinery/trade_beacon/receiving/senderBeacon, datum/money_account/account, list/shopList)
+/datum/controller/subsystem/trade/proc/buy(obj/machinery/trade_beacon/receiving/senderBeacon, datum/money_account/account, list/shopList, is_order = FALSE, buyer_name = null)
 	if(QDELETED(senderBeacon) || !istype(senderBeacon) || !account || !recursiveLen(shopList))
 		return
 
-	var/obj/structure/closet/crate/C
+	var/obj/structure/closet/secure_closet/personal/trade/C
 	var/count_of_all = collect_counts_from(shopList)
 	var/price_for_all = collect_price_for_list(shopList)
 	if(isnum(count_of_all) && count_of_all > 1)
-		C = senderBeacon.drop(/obj/structure/closet/crate)
+		C = senderBeacon.drop(/obj/structure/closet/secure_closet/personal/trade)
+		if(is_order)
+			C.locked = TRUE
+			C.registered_name = buyer_name
+			C.name = "[initial(C.name)] ([C.registered_name])"
+			C.update_icon()
 	if(price_for_all && get_account_credits(account) < price_for_all)
 		return
 
@@ -490,19 +495,23 @@ SUBSYSTEM_DEF(trade)
 	charge_to_account(account.account_number, account.get_name(), "Purchase", "Trade Network", price_for_all)
 
 /datum/controller/subsystem/trade/proc/export(obj/machinery/trade_beacon/sending/senderBeacon)
-	if(QDELETED(senderBeacon) || !istype(senderBeacon))
+	if(QDELETED(senderBeacon))
 		return
 
 	var/invoice_contents_info
+	var/export_count = 0
 	var/cost = 0
 
 	for(var/atom/movable/AM in senderBeacon.get_objects())
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
-			H.apply_damage(5, BURN)
+			H.apply_damage(15, BURN)
 			continue
 
-		var/list/contents_incl_self = AM.GetAllContents(5, TRUE)
+		var/list/contents_incl_self = AM.GetAllContents(3, TRUE)
+
+		if(is_path_in_list(/mob/living/carbon/human, contents_incl_self))
+			continue
 
 		// We go backwards, so it'll be innermost objects sold first
 		for(var/atom/movable/item in reverseRange(contents_incl_self))
@@ -515,8 +524,13 @@ SUBSYSTEM_DEF(trade)
 				cost += export_value
 				SEND_SIGNAL(src, COMSIG_TRADE_BEACON, item)
 				qdel(item)
-			else
+				++export_count
+			else if(item != AM)
 				item.forceMove(get_turf(AM))		// Should be the same tile
+
+		// The max is a soft cap
+		if(export_count > EXPORT_COUNT_MAXIMUM)
+			break
 	
 	senderBeacon.start_export()
 	var/datum/money_account/guild_account = department_accounts[DEPARTMENT_GUILD]
@@ -601,7 +615,7 @@ SUBSYSTEM_DEF(trade)
 		var/total_cost = order["cost"] + order["fee"]
 		var/is_requestor_master = (requesting_account == master_account) ? TRUE : FALSE
 
-		buy(beacon, master_account, shopping_list)
+		buy(beacon, master_account, shopping_list, !is_requestor_master, requesting_account.owner_name)
 		if(!is_requestor_master)
 			transfer_funds(requesting_account, master_account, "Order Request", null, total_cost)
 		create_log_entry("Order", requesting_account.get_name(), viewable_contents, total_cost)
