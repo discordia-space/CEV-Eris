@@ -31,6 +31,7 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	var/icon/far		= null
 	var/icon/close		= null
 	//And now we change depending on what is happening in processing events
+	//DO NOTE: THESE ARE ALL PARALLEL SO THEY WILL NOT RUN SIMULTANEOUSLY UNLESS ADMINBUSE HAPPENS AND FUCKS SPRITES OVER
 	for(var/datum/event/E in SSevent.active_events)
 		switch(E.storyevent.id)
 			if("bluespace interphase")
@@ -44,7 +45,9 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 				close = icon('icons/parallax.dmi', "bluespace_storm_close")
 				far = icon('icons/parallax.dmi', "bluespace_storm_far")
 			if("ion blizzard")
-				new_icon_state = "ion_blizzard"
+				new_icon_state = "ion_blizzard_background"
+				far = icon('icons/parallax.dmi', "ion_blizzard_far")
+				//no close layer here
 			if("photon vortex")
 				new_icon_state = "photon_vortex"
 			if("micro debris")

@@ -1,3 +1,4 @@
+//NOTE: THESE ARE ALL PARALLEL SO THEY WILL NOT RUN SIMULTANEOUSLY
 /datum/storyevent/bluespace_storm
 	id = "bluespace storm"
 	name = "Bluespace storm"
@@ -76,12 +77,12 @@
 
 /datum/event/photon_vortex/start()
 	for(var/obj/item/device/lighting/L in world)
-		L.brightness_on = L.brightness_on / 3
+		L.brightness_on = L.brightness_on / 5
 		L.update_icon()
 	for(var/area/area as anything in ship_areas)
 		for(var/obj/machinery/light/l in ship_areas)
-			l.brightness_range = l.brightness_range / 3
-			l.brightness_power = l.brightness_power / 2
+			l.brightness_range = l.brightness_range / 6
+			l.brightness_power = l.brightness_power / 5
 			l.update()
 
 /datum/event/photon_vortex/announce()
@@ -192,7 +193,7 @@
 /datum/event/graveyard/tick()
 	if(prob(5)) //random broadcasts
 		var/message = pick("They are ", "He is ", "All of them are ", "I'm ", "We are ")
-		message += pick("going to die... ", "about to turn into those spider mutants... ", "being forcefully converted into commies... ")
+		message += pick("going to die... ", "about to turn into those spider mutants... ", "being forcefully converted... ")
 		message += pick("Run while you still can.", "Help!", "Angels bless our souls...", "It's... too late.")
 
 		global_announcer.autosay(message, "Emergency Broadcast")
@@ -247,7 +248,7 @@
 	weight = 0.5
 	parallel = FALSE
 	event_type = /datum/event/interphase
-	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
+	event_pools = list(EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE, EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
 
 /datum/event/interphase
