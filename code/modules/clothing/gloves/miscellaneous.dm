@@ -117,7 +117,6 @@
 	)
 	siemens_coefficient = 1 //thin latex gloves, much more conductive than fabric gloves (basically a capacitor for AC)
 	permeability_coefficient = 0.01
-	germ_level = 0
 	price_tag = 50
 
 /obj/item/clothing/gloves/latex/nitrile

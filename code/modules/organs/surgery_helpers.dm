@@ -1,19 +1,3 @@
-
-// Spread germs from surgeon to the organ
-/obj/item/organ/proc/spread_germs_from(mob/living/carbon/human/user, obj/item/tool)
-	if(!istype(user)) // Robots and such are considered sterile
-		return
-
-	var/new_germ_level = user.germ_level
-	if(user.gloves)
-		new_germ_level = user.gloves.germ_level
-
-	if(tool)
-		new_germ_level = max(new_germ_level, tool.germ_level)
-
-	germ_level = max(germ_level, new_germ_level) //as funny as scrubbing microbes out with clean gloves is - no.
-
-
 // Get a name to be displayed in surgery messages
 /obj/item/organ/proc/get_surgery_name()
 	if(!owner)	// Loose organ shows its own name only

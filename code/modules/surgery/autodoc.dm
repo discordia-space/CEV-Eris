@@ -153,8 +153,6 @@
 			wound.bandaged = TRUE
 			wound.clamped = TRUE
 			wound.salved = TRUE
-			wound.disinfected = TRUE
-			wound.germ_level = 0
 		patchnote.surgery_operations &= ~AUTODOC_OPEN_WOUNDS
 
 	else if(patchnote.surgery_operations & AUTODOC_FRACTURE)

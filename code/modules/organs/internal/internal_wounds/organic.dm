@@ -82,7 +82,7 @@
 	scar = /datum/component/internal_wound/organic/damaged_tissue
 	severity = 0
 	severity_max = 3
-	next_wound = /datum/component/internal_wound/infection
+	next_wound = /datum/component/internal_wound/organic/infection
 	tox_damage = 0.1
 
 /datum/component/internal_wound/organic/damaged_tissue
@@ -99,7 +99,7 @@
 	scar = /datum/component/internal_wound/organic/damaged_tissue
 	severity = 0
 	severity_max = 3
-	next_wound = /datum/component/internal_wound/infection
+	next_wound = /datum/component/internal_wound/organic/infection
 	tox_damage = 0.1
 
 // Tox/chem OD/atmos
@@ -141,7 +141,7 @@
 	treatments_chem = list(CE_ANTIBIOTIC = 3) // 5u Spaceacillin or spaceacillin + dylovene
 	severity = 0
 	severity_max = 2
-	next_wound = /datum/component/internal_wound/infection
+	next_wound = /datum/component/internal_wound/organic/infection
 	hal_damage = 0.2
 	tox_damage = 0.1
 	specific_organ_size_multiplier = 0.2
@@ -158,7 +158,7 @@
 	progression_threshold = 9	// Kills the organ in approx. 3 minutes
 
 // Infection 2.0. This will spread to every organ in your body if untreated. Progresses until death.
-/datum/component/internal_wound/infection
+/datum/component/internal_wound/organic/infection
 	name = "infection"
 	treatments_chem = list(CE_ANTIBIOTIC = 5)	// 10u Spaceacillin or 5u spaceacillin + dylovene
 	severity = 0

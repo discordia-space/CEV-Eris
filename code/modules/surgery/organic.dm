@@ -105,7 +105,6 @@
 		SPAN_NOTICE("You cauterize the incision on [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.open = 0
-	organ.germ_level = 0
 	organ.diagnosed = FALSE
 
 /datum/surgery_step/cauterize/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)

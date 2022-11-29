@@ -51,12 +51,6 @@
 					custom_pain("You feel broken bones moving in your [E.name]!", 1)
 					I.take_damage(rand(6,10), BRUTE, sharp = TRUE, edge = TRUE)
 
-				//Moving makes open wounds get infected much faster
-				if (E.wounds.len)
-					for(var/datum/wound/W in E.wounds)
-						if (W.infection_check())
-							W.germ_level += 1
-
 /mob/living/carbon/human/proc/handle_stance()
 	// Don't need to process any of this if they aren't standing anyways
 	// unless their stance is damaged, and we want to check if they should stay down

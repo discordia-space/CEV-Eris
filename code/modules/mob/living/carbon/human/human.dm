@@ -994,12 +994,6 @@ var/list/rank_prefix = list(\
 		return NEUTER
 	return gender
 
-/mob/living/carbon/human/proc/increase_germ_level(n)
-	if(gloves)
-		gloves.germ_level += n
-	else
-		germ_level += n
-
 /mob/living/carbon/human/revive()
 
 	if(species && !(species.flags & NO_BLOOD))
@@ -1038,38 +1032,6 @@ var/list/rank_prefix = list(\
 		src.custom_pain("You feel a stabbing pain in your chest!", 1)
 		L.bruise()
 
-/*
-/mob/living/carbon/human/verb/simulate()
-	set name = "sim"
-	set background = 1
-
-	var/damage = input("Wound damage","Wound damage") as num
-
-	var/germs = 0
-	var/tdamage = 0
-	var/ticks = 0
-	while(germs < 2501 && ticks < 100000 && round(damage/10)*20)
-		log_misc("VIRUS TESTING: [ticks] : germs [germs] tdamage [tdamage] prob [round(damage/10)*20]")
-		ticks++
-		if(prob(round(damage/10)*20))
-			germs++
-		if(germs == 100)
-			to_chat(world, "Reached stage 1 in [ticks] ticks")
-		if(germs > 100)
-			if(prob(10))
-				damage++
-				germs++
-		if(germs == 1000)
-			to_chat(world, "Reached stage 2 in [ticks] ticks")
-		if(germs > 1000)
-			damage++
-			germs++
-		if(germs == 2500)
-			to_chat(world, "Reached stage 3 in [ticks] ticks")
-	to_chat(world, "Mob took [tdamage] tox damage")
-*/
-//returns 1 if made bloody, returns 0 otherwise
-
 /mob/living/carbon/human/add_blood(mob/living/carbon/human/M)
 	if(!..())
 		return 0
@@ -1095,12 +1057,10 @@ var/list/rank_prefix = list(\
 	if(gloves)
 		if(gloves.clean_blood())
 			update_inv_gloves()
-		gloves.germ_level = 0
 	else
 		if(bloody_hands)
 			bloody_hands = 0
 			update_inv_gloves()
-		germ_level = 0
 
 	gunshot_residue = null
 

@@ -512,17 +512,14 @@
 	touch_met = 5
 
 /datum/reagent/medicine/sterilizine/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
-	M.germ_level -= min(effect_multiplier * 2, M.germ_level)
 	for(var/obj/item/I in M.contents)
 		I.was_bloodied = null
 	M.was_bloodied = null
 
 /datum/reagent/medicine/sterilizine/touch_obj(var/obj/O)
-	O.germ_level -= min(volume*20, O.germ_level)
 	O.was_bloodied = null
 
 /datum/reagent/medicine/sterilizine/touch_turf(var/turf/T)
-	T.germ_level -= min(volume*20, T.germ_level)
 	for(var/obj/item/I in T.contents)
 		I.was_bloodied = null
 	for(var/obj/effect/decal/cleanable/blood/B in T)

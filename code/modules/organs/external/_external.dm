@@ -404,7 +404,6 @@ This function completely restores a damaged organ to perfect condition.
 	perma_injury = 0
 	brute_dam = 0
 	burn_dam = 0
-	germ_level = 0
 	wounds.Cut()
 	number_wounds = 0
 
@@ -488,8 +487,6 @@ This function completely restores a damaged organ to perfect condition.
 		return TRUE
 	else
 		last_dam = brute_dam + burn_dam
-	if(germ_level)
-		return TRUE
 	return FALSE
 
 /obj/item/organ/external/Process()
@@ -505,9 +502,6 @@ This function completely restores a damaged organ to perfect condition.
 				trace_chemicals[chemID] = trace_chemicals[chemID] - 1
 				if(trace_chemicals[chemID] <= 0)
 					trace_chemicals.Remove(chemID)
-
-		//Infections
-		update_germs()
 
 	else
 		..()
@@ -526,107 +520,7 @@ This function completely restores a damaged organ to perfect condition.
 			droplimb(FALSE, DROPLIMB_BLUNT)
 			owner?.gib() //In theory if droplimb is succesfull, the organ will have no owner and gib() should only get called if droplimb fails(Like on the upper body)
 
-//Updating germ levels. Handles organ germ levels and necrosis.
-/*
-The INFECTION_LEVEL values defined in setup.dm control the time it takes to reach the different
-infection levels. Since infection growth is exponential, you can adjust the time it takes to get
-from one germ_level to another using the rough formula:
-
-desired_germ_level = initial_germ_level*e^(desired_time_in_seconds/1000)
-
-So if I wanted it to take an average of 15 minutes to get from level one (100) to level two
-I would set INFECTION_LEVEL_TWO to 100*e^(15*60/1000) = 245. Note that this is the average time,
-the actual time is dependent on RNG.
-
-INFECTION_LEVEL_ONE		below this germ level nothing happens, and the infection doesn't grow
-INFECTION_LEVEL_TWO		above this germ level the infection will start to spread to internal and adjacent organs
-INFECTION_LEVEL_THREE	above this germ level the player will take additional toxin damage per second, and will die in minutes without
-						antitox. also, above this germ level you will need to overdose on spaceacillin to reduce the germ_level.
-
-Note that amputating the affected organ does in fact remove the infection from the player's body.
-*/
-/obj/item/organ/external/proc/update_germs()
-
-	//Robotic limbs shouldn't be infected, nor should nonexistant limbs.
-	if(BP_IS_ROBOTIC(src) || (owner.species && owner.species.flags & IS_PLANT))
-		germ_level = 0
-		return
-
-	if(owner.bodytemperature >= 170)	//cryo stops germs from moving and doing their bad stuffs
-		//** Syncing germ levels with external wounds
-		handle_germ_sync()
-
-		//** Handle antibiotics and curing infections
-		handle_antibiotics()
-
-		//** Handle the effects of infections
-		handle_germ_effects()
-
-/obj/item/organ/external/proc/handle_germ_sync()
-	var/antibiotics = LAZYACCESS(owner.chem_effects, CE_ANTIBIOTIC)
-	for(var/datum/wound/W in wounds)
-		//Open wounds can become infected
-		if (owner.germ_level > W.germ_level && W.infection_check())
-			W.germ_level++
-
-	if(antibiotics < 4)
-		for(var/datum/wound/W in wounds)
-			//Infected wounds raise the organ's germ level
-			if(W.germ_level > germ_level)
-				germ_level++
-				break	//limit increase to a maximum of one per second
-
-/obj/item/organ/external/handle_germ_effects()
-	if(germ_level < INFECTION_LEVEL_TWO)
-		return ..()
-
-	var/antibiotics = LAZYACCESS(owner.chem_effects, CE_ANTIBIOTIC)
-
-	if(germ_level >= INFECTION_LEVEL_TWO)
-		//spread the infection to internal organs
-		//make internal organs become infected one at a time instead of all at once
-		var/obj/item/organ/internal/target_organ = null
-		for(var/obj/item/organ/internal/I in internal_organs)
-			//once the organ reaches whatever we can give it, or level two, switch to a different one
-			if(I.germ_level > 0 && I.germ_level < min(germ_level, INFECTION_LEVEL_TWO))
-				//choose the organ with the highest germ_level
-				if(!target_organ || I.germ_level > target_organ.germ_level)
-					target_organ = I
-
-		if(!target_organ)
-			//figure out which organs we can spread germs to and pick one at random
-			var/list/candidate_organs = list()
-			for(var/obj/item/organ/internal/I in internal_organs)
-				if(I.germ_level < germ_level)
-					candidate_organs |= I
-			if(candidate_organs.len)
-				target_organ = pick(candidate_organs)
-
-		if(target_organ)
-			target_organ.germ_level++
-
-		//spread the infection to child and parent organs
-		if(children)
-			for(var/obj/item/organ/external/child in children)
-				if(child.germ_level < germ_level && !BP_IS_ROBOTIC(src))
-					if(child.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
-						child.germ_level++
-
-		if(parent)
-			if(parent.germ_level < germ_level && !BP_IS_ROBOTIC(src))
-				if(parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
-					parent.germ_level++
-
-	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 9)	//overdosing is necessary to stop severe infections
-		if (!(status & ORGAN_DEAD))
-			status |= ORGAN_DEAD
-			to_chat(owner, SPAN_NOTICE("You can't feel your [name] anymore..."))
-			owner.update_body(1)
-
-		germ_level++
-		owner.adjustToxLoss(1)
-
-//Updating wounds. Handles wound natural I had some free spachealing, internal bleedings and infections
+//Updating wounds. Handles wound natural I had some free spachealing, internal bleedings
 /obj/item/organ/external/proc/update_wounds()
 	number_internal_wounds = 0
 	severity_internal_wounds = 0
@@ -670,11 +564,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 		// making it look prettier on scanners
 		heal_amt = round(heal_amt,0.1)
 		W.heal_damage(heal_amt)
-
-		// Salving also helps against infection
-		if(W.germ_level > 0 && W.salved && prob(2))
-			W.disinfected = 1
-			W.germ_level = 0
 
 	// sync the organ's damage with its wounds
 	src.update_damages()
@@ -783,13 +672,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 			return FALSE
 	return TRUE
 
-// checks if all wounds on the organ are disinfected
-/obj/item/organ/external/proc/is_disinfected()
-	for(var/datum/wound/W in wounds)
-		if(!W.disinfected)
-			return FALSE
-	return TRUE
-
 /obj/item/organ/external/proc/bandage()
 	var/rval = 0
 	stopBleeding()
@@ -803,14 +685,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	for(var/datum/wound/W in wounds)
 		rval |= !W.salved
 		W.salved = 1
-	return rval
-
-/obj/item/organ/external/proc/disinfect()
-	var/rval = 0
-	for(var/datum/wound/W in wounds)
-		rval |= !W.disinfected
-		W.disinfected = 1
-		W.germ_level = 0
 	return rval
 
 /obj/item/organ/external/proc/clamp_wounds()
@@ -864,12 +738,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /obj/item/organ/external/proc/get_damage()	//returns total damage
 	return max(brute_dam + burn_dam - perma_injury, perma_injury)	//could use max_damage?
-
-/obj/item/organ/external/proc/has_infected_wound()
-	for(var/datum/wound/W in wounds)
-		if(W.germ_level > INFECTION_LEVEL_ONE)
-			return TRUE
-	return FALSE
 
 // Robotic limbs malfunction - handled by subtype
 /obj/item/organ/external/proc/is_malfunctioning()
@@ -950,11 +818,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 			this_wound_desc = "bleeding [this_wound_desc]"
 		else if(W.bandaged)
 			this_wound_desc = "bandaged [this_wound_desc]"
-
-		if(W.germ_level > 600)
-			this_wound_desc = "badly infected [this_wound_desc]"
-		else if(W.germ_level > 330)
-			this_wound_desc = "lightly infected [this_wound_desc]"
 
 		if(wound_descriptors[this_wound_desc])
 			wound_descriptors[this_wound_desc] += W.amount

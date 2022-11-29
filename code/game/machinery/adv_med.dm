@@ -354,22 +354,6 @@
 		if(e.open)
 			other_wounds += "Open"
 
-		switch (e.germ_level)
-			if (0 to INFECTION_LEVEL_ONE - 1) //in the case of no infection, do nothing.
-			if (INFECTION_LEVEL_ONE to INFECTION_LEVEL_ONE + 200)
-				other_wounds += "Mild Infection"
-			if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-				other_wounds += "Mild Infection+"
-			if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-				other_wounds += "Mild Infection++"
-			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
-				other_wounds += "Acute Infection"
-			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-				other_wounds += "Acute Infection+"
-			if (INFECTION_LEVEL_TWO + 300 to INFECTION_LEVEL_TWO + 400)
-				other_wounds += "Acute Infection++"
-			if (INFECTION_LEVEL_THREE to INFINITY)
-				other_wounds += "Septic"
 		if(e.rejecting)
 			other_wounds += "being rejected"
 		if (e.implants.len)

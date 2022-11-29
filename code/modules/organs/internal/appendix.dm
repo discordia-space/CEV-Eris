@@ -27,7 +27,6 @@
 				owner.adjustToxLoss(1)
 		if(inflamed > 400)
 			if(prob(1))
-				germ_level += rand(2,6)
 				if (owner.nutrition > 100)
 					owner.vomit()
 				else

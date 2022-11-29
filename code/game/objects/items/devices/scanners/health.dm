@@ -184,8 +184,6 @@
 						dat += SPAN_WARNING("Unsecured fracture in subject [E.get_bone()]. Splinting recommended for transport.")
 					else
 						foundUnlocatedFracture = TRUE
-			if(E.has_infected_wound())
-				dat += SPAN_WARNING("Infected wound detected in subject [E]. Disinfection recommended.")
 
 		if(foundUnlocatedFracture)
 			dat += SPAN_WARNING("Bone fractures detected. Advanced scanner required for location.")
