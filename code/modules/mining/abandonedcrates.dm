@@ -112,7 +112,7 @@
 			new/obj/item/clothing/head/beret(src)
 			new/obj/item/pen/crayon/mime(src)
 			new/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing(src)
-		if(97)
+		if(95 to 97)
 			new/obj/item/melee/energy/sword(src)
 		if(98)
 			new/obj/item/storage/belt/champion(src)
