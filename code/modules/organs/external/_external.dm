@@ -716,8 +716,10 @@ This function completely restores a damaged organ to perfect condition.
 	return TRUE
 
 /obj/item/organ/external/proc/get_bone()
-	var/obj/item/organ/internal/bone = pick(owner.internal_organs_by_efficiency[OP_BONE] & internal_organs)
-	return bone
+	var/list/list_of_bones = owner.internal_organs_by_efficiency[OP_BONE] & internal_organs
+	if(LAZYLEN(list_of_bones))
+		var/obj/item/organ/internal/bone = pick(list_of_bones)
+		return bone
 
 /obj/item/organ/external/proc/mutate()
 	if(BP_IS_ROBOTIC(src))

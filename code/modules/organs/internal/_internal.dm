@@ -158,7 +158,10 @@
 				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/radiation))
 		if(PSY)
 			if(LAZYACCESS(organ_efficiency, OP_EYES) || LAZYACCESS(organ_efficiency, BP_BRAIN))
-				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/sanity))
+				if(is_organic)
+					LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/sanity))
+				if(is_robotic)
+					LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/robotic/sanity))
 		if(IRRADIATE)	// Effect type, not damage type. Still usable here.
 			if(is_organic)
 				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/radiation))

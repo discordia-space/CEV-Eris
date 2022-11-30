@@ -1,6 +1,7 @@
 // Blunt
 /datum/component/internal_wound/organic/bone_blunt
 	name = "skeletal bruising"
+	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 2)
 	treatments_tool = list(QUALITY_SEALING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_BONE_MEND = 1)
 	severity = 0
@@ -22,6 +23,7 @@
 // Sharp
 /datum/component/internal_wound/organic/bone_sharp
 	name = "perforation"
+	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 2)
 	treatments_tool = list(QUALITY_SEALING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_BONE_MEND = 1)
 	severity = 0
@@ -44,6 +46,7 @@
 // Edge
 /datum/component/internal_wound/organic/bone_edge
 	name = "laceration"
+	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 2)
 	treatments_tool = list(QUALITY_SEALING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_BONE_MEND = 1)
 	severity = 0
