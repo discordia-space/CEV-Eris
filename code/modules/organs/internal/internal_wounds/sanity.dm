@@ -12,6 +12,7 @@
 	can_hallucinate = TRUE
 
 /datum/component/internal_wound/robotic/sanity
+	dupe_mode = COMPONENT_DUPE_UNIQUE
 	name = "anomalous voltage accumulation"
 	treatments_chem = list(CE_MIND = 2)
 	diagnosis_stat = STAT_COG
