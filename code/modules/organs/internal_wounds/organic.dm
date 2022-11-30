@@ -83,7 +83,7 @@
 	severity = 0
 	severity_max = 3
 	next_wound = /datum/component/internal_wound/organic/infection
-	tox_damage = 0.1
+	hal_damage = 0.1
 
 /datum/component/internal_wound/organic/damaged_tissue
 	name = "damaged tissue"
@@ -100,7 +100,7 @@
 	severity = 0
 	severity_max = 3
 	next_wound = /datum/component/internal_wound/organic/infection
-	tox_damage = 0.1
+	hal_damage = 0.1
 
 // Tox/chem OD/atmos
 /datum/component/internal_wound/organic/poisoning
@@ -108,8 +108,7 @@
 	treatments_chem = list(CE_PURGER = 3)	// No anti-tox cure, poisoning can occur as a result of too much anti-tox
 	severity = 0
 	severity_max = 5
-	hal_damage = 0.2
-	tox_damage = 0.1
+	hal_damage = 0.1
 
 /datum/component/internal_wound/organic/poisoning/chem
 	name = "chemical poisoning"
@@ -122,7 +121,6 @@
 	severity = 1
 	severity_max = 1
 	hal_damage = 0.1
-	tox_damage = 0.1
 	status_flag = ORGAN_MUTATED
 
 /datum/component/internal_wound/organic/radiation/malignant
@@ -142,8 +140,7 @@
 	severity = 0
 	severity_max = 2
 	next_wound = /datum/component/internal_wound/organic/infection
-	hal_damage = 0.2
-	tox_damage = 0.1
+	hal_damage = 0.1
 	specific_organ_size_multiplier = 0.2
 
 /datum/component/internal_wound/organic/swelling/abcess
@@ -164,7 +161,6 @@
 	severity = 0
 	severity_max = 10
 	progression_threshold = 150
-	hal_damage = 0.2
-	tox_damage = 0.2
+	hal_damage = 0.1
 	can_spread = TRUE
 	spread_threshold = 4

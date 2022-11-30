@@ -26,9 +26,6 @@
 
 	// Damage applied to mob each process tick
 	var/hal_damage
-	var/oxy_damage
-	var/tox_damage
-	var/clone_damage		// This is fairly dangerous as it can cause more wounds. Use with caution.
 	var/psy_damage			// Not the same as sanity damage, but does deal sanity damage
 
 	// Additional effects
@@ -70,16 +67,19 @@
 	var/obj/item/organ/external/E = parent ? O.parent : null
 	var/mob/living/carbon/human/H = parent ? O.owner : null
 
-	if(!parent || O.status & ORGAN_DEAD || !H || H.stat & DEAD)
+	// Don't process when the parent limb or owner is dead. Organs don't process in corpses and won't die from wounds.
+	if(!parent || O.status & ORGAN_DEAD || (E && E.status & ORGAN_DEAD) || (H && H.stat & DEAD))
 		SSinternal_wounds.processing -= src
 		return
 
-	// Don't progress when the parent or owner is dead. Organs don't process in corpses and can't die from wounds.
 	if(can_progress)
 		++current_progression_tick
 		if(current_progression_tick >= progression_threshold)
 			current_progression_tick = 0
 			progress()
+
+	if(!H)
+		return
 
 	// Chemical treatment handling
 	var/is_treated = FALSE
@@ -106,8 +106,8 @@
 		return
 
 	// Deal damage
-	if(E && (tox_damage || oxy_damage || clone_damage || hal_damage))
-		H.apply_damages(null, null, tox_damage * severity, oxy_damage * severity, clone_damage * severity, hal_damage * severity, E)
+	if(E && hal_damage)
+		H.apply_damage(hal_damage * severity, HALLOSS, E)
 
 	if(psy_damage)
 		H.apply_damage(psy_damage * severity, PSY)
