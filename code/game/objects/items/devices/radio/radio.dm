@@ -783,7 +783,6 @@ var/global/list/default_medbay_channels = list(
 	var/bluespace_items = list(
 		/obj/item/computer_hardware/hard_drive/portable/design/guns/dallas = 25,
 		/obj/item/gun/energy/plasma/stranger = 25,
-		/obj/machinery/artifact = 25,
 		/obj/item/computer_hardware/hard_drive/portable/design/guns/fs_wintermute = 5,
 		/obj/item/computer_hardware/hard_drive/portable/design/excelsior/ak47 = 5,
 		/obj/item/computer_hardware/hard_drive/portable/design/nt/nt_lightfall = 5,
