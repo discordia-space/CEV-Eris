@@ -222,9 +222,11 @@
 /turf/simulated/floor/grass,
 /area/space)
 "cv" = (
-/obj/structure/bed,
-/mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/obj/machinery/power/os_turret,
+/obj/structure/sign/faction/one_star_sign{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "cA" = (
 /turf/simulated/shuttle/floor/mining{
@@ -472,8 +474,10 @@
 	},
 /area/space)
 "eG" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/obj/structure/sign/faction/one_star{
+	pixel_x = 32
+	},
+/turf/simulated/mineral,
 /area/space)
 "eL" = (
 /obj/structure/table/steel,
@@ -680,10 +684,8 @@
 	},
 /area/space)
 "gX" = (
-/obj/structure/sign/faction/one_star{
-	pixel_x = 32
-	},
-/turf/simulated/mineral,
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "gZ" = (
 /mob/living/simple_animal/hostile/hivebot/range,
@@ -1341,15 +1343,7 @@
 	},
 /area/space)
 "nr" = (
-/obj/structure/table/onestar,
-/obj/item/reagent_containers/glass/bottle/cyanide{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/glass/bottle/stoxin{
-	pixel_x = -5
-	},
-/obj/item/reagent_containers/syringe,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/simulated/mineral/random/high_chance,
 /area/space)
 "ns" = (
 /obj/machinery/door/airlock/sandstone{
@@ -1677,8 +1671,10 @@
 /turf/simulated/floor,
 /area/space)
 "rg" = (
-/obj/spawner/mob/spiders/low_chance,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/obj/machinery/light/floor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "rj" = (
 /obj/machinery/shower{
@@ -1728,10 +1724,11 @@
 	},
 /area/space)
 "rP" = (
-/obj/machinery/button/crematorium{
-	pixel_y = 32
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "rQ" = (
 /turf/simulated/shuttle/floor/mining{
@@ -2378,9 +2375,7 @@
 	},
 /area/space)
 "xM" = (
-/obj/machinery/light/floor{
-	dir = 1
-	},
+/obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "xP" = (
@@ -2394,6 +2389,10 @@
 	icon_state = "7,20"
 	},
 /turf/space,
+/area/space)
+"xS" = (
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "xV" = (
 /turf/simulated/shuttle/wall/science{
@@ -2503,10 +2502,8 @@
 /turf/space,
 /area/space)
 "zT" = (
-/obj/structure/bed/chair/custom/onestar/red{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/wall/untinted/onestar_reinforced,
 /area/space)
 "zY" = (
 /obj/structure/bed/chair{
@@ -2554,6 +2551,11 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "12,13"
 	},
+/area/space)
+"AF" = (
+/obj/structure/bed,
+/mob/living/simple_animal/hostile/roomba/boomba,
+/turf/simulated/floor/tiled/dark/brown_platform,
 /area/space)
 "AH" = (
 /turf/simulated/shuttle/wall/science{
@@ -2916,13 +2918,6 @@
 	},
 /turf/space,
 /area/space)
-"Eq" = (
-/obj/effect/floor_decal/industrial/danger,
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/space)
 "Es" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2978,8 +2973,8 @@
 /turf/simulated/floor,
 /area/space)
 "Fa" = (
-/obj/effect/floor_decal/industrial/danger,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/obj/machinery/door/airlock/vault,
+/turf/simulated/floor/tiled/dark/brown_platform,
 /area/space)
 "Fb" = (
 /turf/simulated/shuttle/wall/mining{
@@ -3512,12 +3507,9 @@
 /turf/space,
 /area/space)
 "JU" = (
-/obj/structure/table/onestar,
-/obj/item/handcuffs,
-/obj/item/clothing/glasses/sunglasses/blindfold{
-	pixel_y = 6
+/obj/machinery/button/crematorium{
+	pixel_y = 32
 	},
-/obj/item/clothing/mask/muzzle,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "JW" = (
@@ -3871,6 +3863,14 @@
 	},
 /turf/space,
 /area/space)
+"NH" = (
+/obj/structure/crematorium,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
+"NM" = (
+/obj/spawner/mob/spiders/low_chance,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
 "NQ" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "15,8"
@@ -3930,7 +3930,7 @@
 	},
 /area/space)
 "Or" = (
-/obj/machinery/door/airlock/vault,
+/obj/item/remains/human,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/space)
 "Ov" = (
@@ -4224,8 +4224,13 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "RV" = (
-/obj/structure/bed,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/obj/structure/table/onestar,
+/obj/item/handcuffs,
+/obj/item/clothing/glasses/sunglasses/blindfold{
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/muzzle,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "RW" = (
 /obj/structure/salvageable/os/implant_container,
@@ -4488,8 +4493,10 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "Ul" = (
-/obj/item/remains/human,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "Un" = (
 /turf/simulated/shuttle/floor/mining{
@@ -4715,7 +4722,14 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "WQ" = (
-/obj/structure/crematorium,
+/obj/structure/table/onestar,
+/obj/item/reagent_containers/glass/bottle/cyanide{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/glass/bottle/stoxin{
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/syringe,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "WR" = (
@@ -4900,8 +4914,8 @@
 	},
 /area/space)
 "YJ" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/obj/structure/bed,
+/turf/simulated/floor/tiled/dark/brown_platform,
 /area/space)
 "YM" = (
 /obj/machinery/atmospherics/pipe/tank/air,
@@ -11370,14 +11384,14 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+nr
+nr
+nr
+nr
+nr
+nr
+nr
+nr
 cb
 cb
 cb
@@ -11572,16 +11586,16 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 XW
 XW
 XW
 XW
 XW
-cb
-cb
-cb
+nr
+nr
+nr
 cb
 cb
 cb
@@ -11774,7 +11788,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 gV
 ym
 ym
@@ -11783,12 +11797,12 @@ ea
 XW
 XW
 XW
-cb
-cb
-cb
-cb
-cb
-cb
+nr
+nr
+nr
+nr
+nr
+nr
 cb
 cb
 cb
@@ -11976,7 +11990,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 gV
 Ed
 RJ
@@ -11990,7 +12004,7 @@ gV
 gV
 gV
 gV
-cb
+nr
 cb
 cb
 cb
@@ -12178,7 +12192,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 gV
 wW
 pg
@@ -12192,7 +12206,7 @@ Ew
 yV
 kP
 gV
-cb
+nr
 cb
 cb
 cb
@@ -12380,7 +12394,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 gV
 gV
 gV
@@ -12394,7 +12408,7 @@ Ew
 Ew
 Ew
 gV
-cb
+nr
 cb
 cb
 cb
@@ -12582,7 +12596,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 vO
 Ho
@@ -12596,7 +12610,7 @@ Ew
 cm
 kQ
 gV
-cb
+nr
 cb
 cb
 cb
@@ -12784,7 +12798,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 RJ
 RJ
@@ -12798,7 +12812,7 @@ Sw
 Jg
 gV
 gV
-cb
+nr
 cb
 cb
 cb
@@ -12986,7 +13000,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 RJ
 RN
@@ -12999,8 +13013,8 @@ Iw
 Iw
 Iw
 gV
-cb
-cb
+nr
+nr
 cb
 cb
 cb
@@ -13188,7 +13202,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 RJ
 dN
@@ -13201,7 +13215,7 @@ Ew
 Ew
 Ew
 XW
-cb
+nr
 cb
 cb
 cb
@@ -13231,10 +13245,10 @@ gV
 cb
 cb
 cb
+gV
+gV
+gV
 cb
-gV
-gV
-gV
 cb
 cb
 cb
@@ -13390,7 +13404,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 RJ
 RJ
@@ -13403,7 +13417,7 @@ IO
 Hg
 IO
 XW
-cb
+nr
 cb
 cb
 cb
@@ -13433,18 +13447,18 @@ gV
 gV
 gV
 gV
-gV
+zT
 YJ
-RV
+gV
+cb
+gV
+gV
+gV
+gV
+gV
 gV
 cb
 cb
-gV
-gV
-gV
-gV
-gV
-gV
 cb
 cb
 cb
@@ -13592,7 +13606,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 RJ
 Ts
@@ -13605,7 +13619,7 @@ XW
 XW
 XW
 XW
-cb
+nr
 cb
 cb
 cb
@@ -13634,19 +13648,19 @@ ho
 ho
 ho
 ho
-ho
-Eq
+rP
+Fa
 Or
-Ul
+gV
+cb
+gV
+lO
+lO
+lO
+NM
 gV
 cb
 cb
-gV
-lO
-lO
-lO
-rg
-gV
 cb
 cb
 cb
@@ -13794,7 +13808,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 RJ
 RJ
@@ -13807,7 +13821,7 @@ lO
 lO
 lO
 XW
-cb
+nr
 cb
 cb
 cb
@@ -13837,8 +13851,6 @@ RJ
 RJ
 RJ
 RJ
-RJ
-gV
 gV
 gV
 gV
@@ -13847,8 +13859,10 @@ gV
 lO
 lO
 lO
-JU
+RV
 gV
+cb
+cb
 cb
 cb
 cb
@@ -13996,7 +14010,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 DH
 Ho
@@ -14009,7 +14023,7 @@ lO
 Yq
 lO
 XW
-cb
+nr
 cb
 cb
 cb
@@ -14038,19 +14052,19 @@ RJ
 RJ
 RJ
 lk
-RJ
-eG
+xM
 LC
 lO
 lO
 lO
-lO
 LC
 lO
 lO
 lO
-zT
+Ul
 gV
+cb
+cb
 cb
 cb
 cb
@@ -14198,7 +14212,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 XW
 XW
@@ -14211,48 +14225,48 @@ af
 BU
 dx
 XW
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-gV
-RJ
-RJ
-RJ
-RJ
-RJ
-RJ
-RJ
-RJ
-RJ
-RJ
-RJ
-RJ
-RJ
-RJ
-RJ
-RJ
-RJ
-RJ
-RJ
-RJ
-gV
-gV
-gV
-gV
-gV
-gV
-rP
-lO
-lO
 nr
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 gV
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+gV
+gV
+gV
+gV
+gV
+JU
+lO
+lO
+WQ
+gV
+cb
+cb
 cb
 cb
 cb
@@ -14400,11 +14414,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+nr
+nr
+nr
+nr
+nr
 XW
 FK
 Ew
@@ -14413,7 +14427,7 @@ Ew
 Ew
 MX
 XW
-cb
+nr
 cb
 cb
 cb
@@ -14442,19 +14456,19 @@ RJ
 RJ
 RJ
 RJ
-RJ
+xS
 Fa
-Or
 TY
 gV
 cb
+gV
+NH
+lO
+lO
+lO
+gV
 cb
-gV
-WQ
-lO
-lO
-lO
-gV
+cb
 cb
 cb
 cb
@@ -14606,7 +14620,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 FK
 Ew
@@ -14615,7 +14629,7 @@ Ew
 Ew
 MX
 XW
-cb
+nr
 cb
 cb
 cb
@@ -14645,11 +14659,9 @@ UU
 UU
 UU
 UU
-UU
 gV
-cv
+AF
 gV
-cb
 cb
 gV
 gV
@@ -14657,6 +14669,8 @@ gV
 gV
 gV
 gV
+cb
+cb
 cb
 cb
 cb
@@ -14808,7 +14822,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 bj
 Ew
@@ -14817,7 +14831,7 @@ kP
 Ew
 Wd
 XW
-cb
+nr
 cb
 cb
 cb
@@ -14850,7 +14864,7 @@ gV
 gV
 gV
 gV
-gV
+cb
 cb
 cb
 cb
@@ -15010,7 +15024,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 QE
 Ew
@@ -15019,7 +15033,7 @@ Ew
 Ew
 MX
 XW
-cb
+nr
 cb
 cb
 cb
@@ -15212,7 +15226,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 bj
 Ew
@@ -15221,7 +15235,7 @@ Ew
 Ew
 Wd
 XW
-cb
+nr
 cb
 cb
 cb
@@ -15414,7 +15428,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 FK
 Ew
@@ -15423,7 +15437,7 @@ Ew
 Ew
 MX
 XW
-cb
+nr
 cb
 cb
 cb
@@ -15616,7 +15630,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 FK
 Ew
@@ -15625,8 +15639,8 @@ Ew
 Ew
 MX
 XW
-cb
-cb
+nr
+nr
 cb
 cb
 cb
@@ -15805,7 +15819,7 @@ cb
 cb
 cb
 cb
-gX
+eG
 cb
 cb
 cb
@@ -15818,7 +15832,7 @@ cb
 cb
 cb
 cb
-cb
+nr
 XW
 XW
 XW
@@ -15828,7 +15842,7 @@ XW
 XW
 XW
 gV
-cb
+nr
 cb
 gV
 cb
@@ -16021,13 +16035,13 @@ cb
 cb
 gV
 cb
-cb
-cb
+nr
+nr
 gV
 hY
 lO
 gV
-cb
+nr
 aa
 Zk
 aa
@@ -16209,7 +16223,7 @@ cb
 cb
 gV
 RJ
-gV
+gX
 RJ
 gV
 cb
@@ -16223,8 +16237,8 @@ aa
 aa
 Zk
 aa
-cb
-cb
+nr
+nr
 gV
 lO
 Qh
@@ -16411,7 +16425,7 @@ cb
 cb
 gV
 RJ
-gV
+gX
 RJ
 gV
 cb
@@ -16426,7 +16440,7 @@ aa
 Zk
 aa
 aa
-cb
+nr
 gV
 lO
 lO
@@ -16809,7 +16823,7 @@ RJ
 RJ
 Vv
 RJ
-sK
+RJ
 Vv
 RJ
 RJ
@@ -17010,10 +17024,10 @@ RJ
 RJ
 aF
 gV
-hz
+KH
+RJ
 gV
-gV
-bX
+cv
 RJ
 RJ
 RJ
@@ -17061,7 +17075,7 @@ XW
 RJ
 RJ
 XW
-xM
+rg
 RJ
 nx
 RJ
@@ -17213,7 +17227,7 @@ RJ
 RJ
 Vv
 RJ
-up
+RJ
 Vv
 RJ
 RJ
