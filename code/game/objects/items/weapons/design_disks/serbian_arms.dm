@@ -76,6 +76,6 @@
 	rarity_value = 80
 	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/kovacs = 3, // "SA BR .20 \"Kovacs\""
+		/datum/design/autolathe/gun/kovacs = 3, // "SA BR .30 \"Kovacs\""
 		/datum/design/autolathe/ammo/lrifle
 	)
