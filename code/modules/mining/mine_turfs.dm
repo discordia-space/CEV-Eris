@@ -165,25 +165,6 @@
 
 					excavation_level += excavation_amount
 
-					//archaeo overlays
-					if(!archaeo_overlay && finds && finds.len)
-						var/datum/find/F = finds[1]
-						if(F.excavation_required <= excavation_level + F.view_range)
-							archaeo_overlay = "overlay_archaeo[rand(1,3)]"
-							overlays += archaeo_overlay
-
-					//there's got to be a better way to do this
-					var/update_excav_overlay = 0
-					if(excavation_level >= 75)
-						if(excavation_level - excavation_amount < 75)
-							update_excav_overlay = 1
-					else if(excavation_level >= 50)
-						if(excavation_level - excavation_amount < 50)
-							update_excav_overlay = 1
-					else if(excavation_level >= 25)
-						if(excavation_level - excavation_amount < 25)
-							update_excav_overlay = 1
-
 					//update overlays displaying excavation level
 					if( !(excav_overlay && excavation_level > 0) || update_excav_overlay )
 						var/excav_quadrant = round(excavation_level / 25) + 1
@@ -222,8 +203,6 @@
 						if( excavation_level > 0 || prob(15) )
 							//boulder with an artifact inside
 							B = new(src)
-							if(artifact_find)
-								B.artifact_find = artifact_find
 						else
 							artifact_debris(1)
 					else if(prob(15))
@@ -238,24 +217,6 @@
 
 		if(ABORT_CHECK)
 			return
-
-	if (istype(I, /obj/item/device/core_sampler))
-		geologic_data.UpdateNearbyArtifactInfo(src)
-		var/obj/item/device/core_sampler/C = I
-		C.sample_item(src, user)
-		return
-
-	if (istype(I, /obj/item/device/depth_scanner))
-		var/obj/item/device/depth_scanner/C = I
-		C.scan_atom(user, src)
-		return
-
-	if (istype(I, /obj/item/device/measuring_tape))
-		var/obj/item/device/measuring_tape/P = I
-		user.visible_message(SPAN_NOTICE("\The [user] extends [P] towards [src]."),SPAN_NOTICE("You extend [P] towards [src]."))
-		if(do_after(user,25, src))
-			to_chat(user, SPAN_NOTICE("\icon[P] [src] has been excavated to a depth of [2*excavation_level]cm."))
-		return
 
 	else
 		return ..()
@@ -291,72 +252,6 @@
 		N.overlay_detail = "asteroid[rand(0,9)]"
 		N.updateMineralOverlays(1)
 
-/turf/simulated/mineral/proc/excavate_find(var/prob_clean = 0, var/datum/find/F)
-	//with skill and luck, players can cleanly extract finds
-	//otherwise, they come out inside a chunk of rock
-	var/obj/item/X
-	if(prob_clean)
-		X = new /obj/item/archaeological_find(src, F.find_type)
-	else
-		X = new /obj/item/ore/strangerock(src, inside_item_type = F.find_type)
-		geologic_data.UpdateNearbyArtifactInfo(src)
-		X:geologic_data = geologic_data
-
-	//some find types delete the /obj/item/archaeological_find and replace it with something else, this handles when that happens
-	//yuck
-	var/display_name = "something"
-	if(!X)
-		X = last_find
-	if(X)
-		display_name = X.name
-
-	//many finds are ancient and thus very delicate - luckily there is a specialised energy suspension field which protects them when they're being extracted
-	if(prob(F.prob_delicate))
-		var/obj/effect/suspension_field/S = locate() in src
-		if(!S || S.field_type != get_responsive_reagent(F.find_type))
-			if(X)
-				visible_message("\red<b>[pick("[display_name] crumbles away into dust","[display_name] breaks apart")].</b>")
-				qdel(X)
-
-	finds.Remove(F)
-
-
-/turf/simulated/mineral/proc/artifact_debris(var/severity = 0)
-	//cael's patented random limited drop componentized loot system!
-	//sky's patented not-fucking-retarded overhaul!
-
-	//Give a random amount of loot from 1 to 3 or 5, varying on severity.
-	for(var/j in 1 to rand(1, 3 + max(min(severity, 1), 0) * 2))
-		switch(rand(1,7))
-			if(1)
-				var/obj/item/stack/rods/R = new(src)
-				R.amount = rand(5,25)
-
-			if(2)
-				var/obj/item/stack/material/plasteel/R = new(src)
-				R.amount = rand(5,25)
-
-			if(3)
-				var/obj/item/stack/material/steel/R = new(src)
-				R.amount = rand(5,25)
-
-			if(4)
-				var/obj/item/stack/material/plasteel/R = new(src)
-				R.amount = rand(5,25)
-
-			if(5)
-				var/quantity = rand(1,3)
-				for(var/i=0, i<quantity, i++)
-					new /obj/item/material/shard(src)
-
-			if(6)
-				var/quantity = rand(1,3)
-				for(var/i=0, i<quantity, i++)
-					new /obj/item/material/shard/plasma(src)
-
-			if(7)
-				var/obj/item/stack/material/uranium/R = new(src)
-				R.amount = rand(5,25)
 
 /turf/simulated/mineral/random
 	name = "Mineral deposit"
