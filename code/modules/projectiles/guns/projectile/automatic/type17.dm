@@ -25,9 +25,9 @@
 	spawn_tags = SPAWN_TAG_GUN_OS
 	spawn_blacklisted = TRUE
 	init_firemodes = list(
-		SEMI_AUTO_300,
+		SEMI_AUTO_150,
 		BURST_3_ROUND,
-		FULL_AUTO_400
+		FULL_AUTO_200
 		)
 
 	gun_tags = list(GUN_SILENCABLE)

@@ -25,7 +25,7 @@
 	init_recoil = CARBINE_RECOIL(1.0)
 
 	init_firemodes = list(
-		SEMI_AUTO_300
+		SEMI_AUTO_150
 		)
 
 /obj/item/gun/projectile/shotgun/type_21/update_icon()

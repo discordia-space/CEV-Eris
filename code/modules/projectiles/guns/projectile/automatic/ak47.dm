@@ -30,8 +30,8 @@
 	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(
-		FULL_AUTO_400,
-		SEMI_AUTO_300,
+		FULL_AUTO_200,
+		SEMI_AUTO_150,
 		BURST_5_ROUND
 		)
 	serial_type = "Excelsior"
@@ -172,7 +172,7 @@
 	gun_tags = list(GUN_FA_MODDABLE, GUN_GILDABLE)
 
 	init_firemodes = list(
-		SEMI_AUTO_300,
+		SEMI_AUTO_150,
 		BURST_3_ROUND,
 		BURST_5_ROUND
 	)
@@ -263,7 +263,7 @@
 	penetration_multiplier = 0
 
 	init_firemodes = list(
-		SEMI_AUTO_300	//too poorly made for burst or automatic
+		SEMI_AUTO_150	//too poorly made for burst or automatic
 	)
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
