@@ -186,6 +186,42 @@
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
+/datum/craft_recipe/weapon/staff
+	name = "makeshift staff"
+	result = /obj/item/tool/hammer/staff
+	steps = list(
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1)
+	)
+
+/datum/craft_recipe/weapon/staff
+	name = "makeshift halberd"
+	result = /obj/item/tool/spear/makeshift_halberd
+	steps = list(
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1),
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
+		list(QUALITY_HAMMERING, 10, "time" = 10),
+		list(QUALITY_ADHESIVE, 10, "time" = 5)
+	)
+
+/datum/craft_recipe/weapon/chainsword
+	name = "chainsword"
+	result = /obj/item/tool/saw/chain/sword
+	steps = list(
+		list(/obj/item/tool/saw/chain, 1), //get a saw to mutilate
+		list(QUALITY_SCREW_DRIVING, 10, "time" = 5), //open up the panel
+		list(QUALITY_WIRE_CUTTING, 10, "time" = 5), //cut out those pointless red thingies, what's gonna happen anyway?
+		list(QUALITY_HAMMERING, 10, "time" = 10), //reform it into something holdable
+		list(QUALITY_ADHESIVE, 10, "time" = 5) //pray it works
+	)
+
 /datum/craft_recipe/weapon/glass_spear
 	name = "glass spear"
 	result = /obj/item/tool/spear

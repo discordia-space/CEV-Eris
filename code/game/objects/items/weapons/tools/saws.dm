@@ -73,6 +73,21 @@
 	rarity_value = 96
 	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
+/obj/item/tool/saw/chain/sword
+	name = "chainsword"
+	desc = "A chainsaw repurposed to be used as a weapon. Its raw power was sacrificed for light weight. Rev it up!"
+	icon_state = "chainsword"
+	force = WEAPON_FORCE_ROBUST
+	armor_divisor = ARMOR_PEN_GRAZING
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 1)
+	tool_qualities = list(QUALITY_SAWING = 5, QUALITY_CUTTING = 10) //made into a weapon, not a tool
+	w_class = ITEM_SIZE_NORMAL
+	max_upgrades = 2
+	use_fuel_cost = 1
+	max_fuel = 40
+	rarity_value = 85
+	spawn_tags = SPAWN_SWORD
+
 /obj/item/tool/saw/hyper //tier 4, focusing on damage, cell variant
 	name = "TM hypersaw"
 	desc = "This eco-friendly chainsaw will Rip and Tear until it is done."
