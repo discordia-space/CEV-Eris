@@ -268,7 +268,7 @@
 	command_announcement.Announce("The fabric of bluespace has begun to break up, allowing an overlap of parallel universes on different dimensional planes. There is no additional data.", "Bluespace Interphase")
 
 /datum/event/interphase/tick()
-	if(prob(5))
+	if(prob(3))
 		var/list/servers = list()
 		for(var/obj/machinery/telecomms/server/S in telecomms_list)
 			if(S.network == "eris" && S.log_entries.len != 0) //yep, only for eris so that non-eris servers don't get involved(duh!)
@@ -277,27 +277,19 @@
 			var/obj/machinery/telecomms/server/chosen_server = pick(servers)
 			var/datum/comm_log_entry/C = pick(chosen_server.log_entries)
 			global_announcer.autosay(C.parameters["message"], C.parameters["name"])
-	if(prob(99)) //spooky bluspess ghost
-		var/victims = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list)
+	if(prob(10)) //spooky bluspess ghost
+		var/area/location = random_ship_area()
 		var/mob/living/carbon/human/to_copy = pick(GLOB.human_mob_list)
-		var/mob/living/carbon/human/target = pick(victims)
-		var/mob/living/carbon/human/ghost = new(to_copy.loc, to_copy.z)
-		ghost.name = to_copy.name
+		var/mob/ghost = new(location.random_space())
 		ghost.icon = to_copy.icon
 		ghost.icon_state = to_copy.icon_state
-		ghost.desc = to_copy.desc
 		ghost.dir = to_copy.dir
 		ghost.appearance = to_copy.appearance
-		ghost.gender = to_copy.gender
-		ghost.incorporeal_move = TRUE
+		ghost.mouse_opacity = 0
 		ghost.density = 0
-		ghost.anchored = TRUE  // no pulling
-		ghost.mob_size = MOB_HUGE // no locking in lockers
-		ghost.status_flags = GODMODE // and no bitches
-		ghost.ReplaceMovementHandler(/datum/movement_handler/mob/incorporeal)
-		walk_towards(ghost, target, 1)
 		sleep(20)
-		qdel(ghost)
+		if(ghost)//no idea how it could be gone in 20 seconds but gamers will find a way
+			qdel(ghost)
 
 /datum/event/interphase/end()
 	command_announcement.Announce("The bluespace interphase stabilized itself.", "Bluespace Interphase")
