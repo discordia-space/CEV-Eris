@@ -728,7 +728,7 @@
 /obj/item/toy/card
 	name = "collectible card"
 	desc = "A collectible trading card."
-	icon = 'icons/obj/card.dmi'
+	icon = 'icons/obj/nft.dmi'
 	icon_state = "card"
 	w_class = ITEM_SIZE_TINY
 	price_tag = 10
@@ -741,7 +741,18 @@
 	transform *= 0.5
 
 /obj/item/toy/card/attack_self(mob/user)
-	return
+	nano_ui_interact(user)
+
+/obj/item/toy/card/nano_ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/nano_topic_state/state)
+	. = ..()
+	var/list/data = list()
+	data["icon_source"] = SSassets.transport.get_asset_url(name)
+
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "card_icon.tmpl", name, 200, 200)
+		ui.set_initial_data(data)
+		ui.open()
 
 /obj/item/toy/card/monkey
 	name = "monkey card"
@@ -797,7 +808,7 @@
 
 	if(glasses)
 		overlays += "glasses-[glasses]"
-		price_tag *= 2 + (0.25 * glasses)
+		price_tag *= 4 + (0.25 * glasses)
 
 	if(hat)
 		if(hat == 2 || hat == 4)	// Iriska doesn't look good with 2 and 4
