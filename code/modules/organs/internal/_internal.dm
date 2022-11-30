@@ -3,9 +3,9 @@
 	origin_tech = list(TECH_BIO = 2)
 	bad_type = /obj/item/organ/internal
 	spawn_tags = SPAWN_TAG_ORGAN_INTERNAL
-	max_damage = 10
-	min_bruised_damage = 2
-	min_broken_damage = 4
+	max_damage = 12
+	min_bruised_damage = 3
+	min_broken_damage = 5
 	desc = "A vital organ."
 	var/list/owner_verbs = list()
 	var/list/initial_owner_verbs = list()
@@ -105,7 +105,7 @@
 	if((!is_organic && !is_robotic) || !wound_count)
 		return
 
-	var/list/possible_wounds = get_possible_wounds(damage_type, is_robotic, is_organic)
+	var/list/possible_wounds = get_possible_wounds(damage_type, is_robotic, is_organic, sharp, edge)
 
 	if(is_organic)
 		LAZYREMOVE(possible_wounds, GetComponents(/datum/component/internal_wound/organic))	// Organic wounds don't stack
@@ -122,7 +122,7 @@
 	if(!BP_IS_ROBOTIC(src) && owner && parent && amount > 0 && !silent)
 		owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
 
-/obj/item/organ/internal/proc/get_possible_wounds(damage_type, is_robotic, is_organic)
+/obj/item/organ/internal/proc/get_possible_wounds(damage_type, is_robotic, is_organic, sharp, edge)
 	var/list/possible_wounds = list()
 
 	switch(damage_type)

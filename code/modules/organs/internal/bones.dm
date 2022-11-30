@@ -5,13 +5,15 @@
 	organ_efficiency = list(OP_BONE = 100)
 	price_tag = 100
 	force = WEAPON_FORCE_NORMAL
-	max_damage = 10
+	max_damage = 14
+	min_bruised_damage = 4
+	min_broken_damage = 6
 
 /obj/item/organ/internal/bone/Initialize()
     . = ..()
     src.transform *= 0.5 // this little trick makes bone size small while keeping detail level of 32x32 bones.
 
-/obj/item/organ/internal/bone/get_possible_wounds(damage_type, is_robotic, is_organic)
+/obj/item/organ/internal/bone/get_possible_wounds(damage_type, is_robotic, is_organic, sharp, edge)
 	var/list/possible_wounds = list()
 
 	switch(damage_type)

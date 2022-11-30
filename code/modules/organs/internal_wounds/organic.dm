@@ -163,6 +163,7 @@
 	treatments_chem = list(CE_ANTIBIOTIC = 5)	// 10u Spaceacillin or 5u spaceacillin + dylovene
 	severity = 0
 	severity_max = 10
+	progression_threshold = 150
 	hal_damage = 0.2
 	tox_damage = 0.2
 	can_spread = TRUE

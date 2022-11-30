@@ -70,19 +70,16 @@
 	var/obj/item/organ/external/E = parent ? O.parent : null
 	var/mob/living/carbon/human/H = parent ? O.owner : null
 
-	if(!parent || O.status & ORGAN_DEAD)
+	if(!parent || O.status & ORGAN_DEAD || !H || H.stat & DEAD)
 		SSinternal_wounds.processing -= src
 		return
 
-	// Doesn't need to be inside someone to get worse
+	// Don't progress when the parent or owner is dead. Organs don't process in corpses and can't die from wounds.
 	if(can_progress)
 		++current_progression_tick
 		if(current_progression_tick >= progression_threshold)
 			current_progression_tick = 0
 			progress()
-
-	if(!H)
-		return
 
 	// Chemical treatment handling
 	var/is_treated = FALSE
