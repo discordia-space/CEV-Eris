@@ -100,7 +100,7 @@
 	var/is_robotic = BP_IS_ROBOTIC(src) || BP_IS_ASSISTED(src)
 	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
 
-	var/wound_count = max(0, round((amount * wounding_multiplier) / 5))	// At base values, every 5 points of damage is 1 wound
+	var/wound_count = max(0, round((amount * wounding_multiplier) / 8))	// At base values, every 8 points of damage is 1 wound
 
 	if((!is_organic && !is_robotic) || !wound_count)
 		return
