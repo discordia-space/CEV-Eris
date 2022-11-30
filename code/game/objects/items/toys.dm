@@ -735,6 +735,7 @@
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_TRADING_CARD
 	spawn_blacklisted = TRUE
+	bad_type = /obj/item/toy/card
 
 /obj/item/toy/card/Initialize()
 	. = ..()
@@ -746,7 +747,7 @@
 /obj/item/toy/card/nano_ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/nano_topic_state/state)
 	. = ..()
 	var/list/data = list()
-	data["icon_source"] = SSassets.transport.get_asset_url(name)
+	data["icon_source"] = "[SSassets.transport.get_asset_url(name)].png"
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
