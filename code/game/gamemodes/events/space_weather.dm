@@ -1,6 +1,6 @@
 //NOTE: THESE ARE ALL PARALLEL SO THEY WILL NOT RUN SIMULTANEOUSLY
 /datum/storyevent/bluespace_storm
-	id = "bluespace storm"
+	id = "bluespace_storm"
 	name = "Bluespace storm"
 	weight = 0.8
 	event_type = /datum/event/bluespace_storm
@@ -28,7 +28,7 @@
 		bluespace_distorsion(A.random_space())
 
 /datum/storyevent/ion_blizzard
-	id = "ion blizzard"
+	id = "ion_blizzard"
 	name = "Ion blizzard"
 	weight = 0.9
 	event_type = /datum/event/ion_blizzard
@@ -59,7 +59,7 @@
 			L.flick_light(rand(2,5))
 
 /datum/storyevent/photon_vortex
-	id = "photon vortex"
+	id = "photon_vortex"
 	name = "Photon vortex"
 	weight = 0.9
 	event_type = /datum/event/photon_vortex
@@ -107,7 +107,7 @@
 			l.update()
 
 /datum/storyevent/harmonic_feedback
-	id = "harmonic feedback surge"
+	id = "harmonic_feedback_surge"
 	name = "Harmonic feedback surge anomaly"
 	weight = 0.5
 	event_type = /datum/event/harmonic_feedback
@@ -134,7 +134,7 @@
 		G.take_damage(10, SHIELD_DAMTYPE_EM)
 
 /datum/storyevent/micro_debris
-	id = "micro debris"
+	id = "micro_debris"
 	name = "micro debris field"
 	weight = 0.9
 	parallel = FALSE
@@ -248,7 +248,7 @@
 	GLOB.GLOBAL_INSIGHT_MOD = 1
 
 /datum/storyevent/interphase
-	id = "bluespace interphase"
+	id = "bluespace_interphase"
 	name = "Bluespace Interphase"
 	weight = 0.5
 	parallel = FALSE
@@ -268,21 +268,27 @@
 	command_announcement.Announce("The fabric of bluespace has begun to break up, allowing an overlap of parallel universes on different dimensional planes. There is no additional data.", "Bluespace Interphase")
 
 /datum/event/interphase/tick()
-	if(prob(15))
+	if(prob(5))
 		var/list/servers = list()
 		for(var/obj/machinery/telecomms/server/S in telecomms_list)
-			if(S.network == "eris" && S.log_entries != list()) //yep, only for eris so that non-eris servers don't get involved(duh!)
+			if(S.network == "eris" && S.log_entries.len != 0) //yep, only for eris so that non-eris servers don't get involved(duh!)
 				servers += S								//also checks if there are any log entries (not an empty list)
-		var/obj/machinery/telecomms/server/chosen_server = pick(servers)
-		var/datum/comm_log_entry/C = pick(chosen_server.log_entries)
-		if(C)
+		if(servers.len != 0)
+			var/obj/machinery/telecomms/server/chosen_server = pick(servers)
+			var/datum/comm_log_entry/C = pick(chosen_server.log_entries)
 			global_announcer.autosay(C.parameters["message"], C.parameters["name"])
-	if(prob(5)) //spooky bluspess ghost
+	if(prob(99)) //spooky bluspess ghost
 		var/victims = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list)
-		var/mob/to_copy = pick(GLOB.human_mob_list)
-		var/target = pick(victims)
-		var/mob/living/carbon/human/ghost = new(spaceDebrisStartLoc(pick(cardinal), pick(GLOB.maps_data.station_levels)))
+		var/mob/living/carbon/human/to_copy = pick(GLOB.human_mob_list)
+		var/mob/living/carbon/human/target = pick(victims)
+		var/mob/living/carbon/human/ghost = new(to_copy.loc, to_copy.z)
+		ghost.name = to_copy.name
+		ghost.icon = to_copy.icon
+		ghost.icon_state = to_copy.icon_state
+		ghost.desc = to_copy.desc
+		ghost.dir = to_copy.dir
 		ghost.appearance = to_copy.appearance
+		ghost.gender = to_copy.gender
 		ghost.incorporeal_move = TRUE
 		ghost.density = 0
 		ghost.anchored = TRUE  // no pulling
