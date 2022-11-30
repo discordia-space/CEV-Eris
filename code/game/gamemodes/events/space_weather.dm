@@ -73,16 +73,19 @@
 	endWhen = 350
 
 /datum/event/photon_vortex/setup()
-	endWhen = rand(300, 600)
+	endWhen = rand(300, 800)
 
 /datum/event/photon_vortex/start()
 	for(var/obj/item/device/lighting/L in world)
-		L.brightness_on = L.brightness_on / 5
+		L.brightness_on = L.brightness_on / 4
 		L.update_icon()
 	for(var/area/area as anything in ship_areas)
-		for(var/obj/machinery/light/l in ship_areas)
-			l.brightness_range = l.brightness_range / 6
-			l.brightness_power = l.brightness_power / 5
+		for(var/obj/structure/cyberplant/c in area)
+			c.brightness_on = c.brightness_on / 2
+			c.doInterference()
+		for(var/obj/machinery/light/l in area)
+			l.brightness_range = l.brightness_range / 3
+			l.brightness_power = l.brightness_power / 2
 			l.update()
 
 /datum/event/photon_vortex/announce()
@@ -94,9 +97,11 @@
 	for(var/obj/item/device/lighting/L in world)
 		L.brightness_on = initial(L.brightness_on)
 		L.update_icon()
-
 	for(var/area/area as anything in ship_areas)
-		for(var/obj/machinery/light/l in ship_areas)
+		for(var/obj/structure/cyberplant/c in area)
+			c.brightness_on = initial(c.brightness_on)
+			c.doInterference()
+		for(var/obj/machinery/light/l in area)
 			l.brightness_range = initial(l.brightness_range)
 			l.brightness_power = initial(l.brightness_power)
 			l.update()
@@ -266,19 +271,26 @@
 	if(prob(15))
 		var/list/servers = list()
 		for(var/obj/machinery/telecomms/server/S in telecomms_list)
-			if(S.network == "eris") //yep, only for eris so that non-eris servers don't get involved(duh!)
-				servers += S
+			if(S.network == "eris" && S.log_entries != list()) //yep, only for eris so that non-eris servers don't get involved(duh!)
+				servers += S								//also checks if there are any log entries (not an empty list)
 		var/obj/machinery/telecomms/server/chosen_server = pick(servers)
 		var/datum/comm_log_entry/C = pick(chosen_server.log_entries)
 		if(C)
-			global_announcer.autosay(C.parameters["name"], C.parameters["message"])
+			global_announcer.autosay(C.parameters["message"], C.parameters["name"])
 	if(prob(5)) //spooky bluspess ghost
-		var/target = pick(GLOB.human_mob_list)
-		var/mob/living/carbon/human/ghost = new target(spaceDebrisStartLoc(pick(cardinal), pick(GLOB.maps_data.station_levels)))
+		var/victims = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list)
+		var/mob/to_copy = pick(GLOB.human_mob_list)
+		var/target = pick(victims)
+		var/mob/living/carbon/human/ghost = new(spaceDebrisStartLoc(pick(cardinal), pick(GLOB.maps_data.station_levels)))
+		ghost.appearance = to_copy.appearance
 		ghost.incorporeal_move = TRUE
+		ghost.density = 0
+		ghost.anchored = TRUE  // no pulling
+		ghost.mob_size = MOB_HUGE // no locking in lockers
+		ghost.status_flags = GODMODE // and no bitches
 		ghost.ReplaceMovementHandler(/datum/movement_handler/mob/incorporeal)
 		walk_towards(ghost, target, 1)
-		sleep(30)
+		sleep(20)
 		qdel(ghost)
 
 /datum/event/interphase/end()
