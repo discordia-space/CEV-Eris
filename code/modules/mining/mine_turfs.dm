@@ -128,98 +128,34 @@
 				to_chat(user, SPAN_NOTICE("You start exacavating [src]."))
 				if(I.use_tool(user, src, WORKTIME_SLOW, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_COG))
 					to_chat(user, SPAN_NOTICE("You finish exacavating [src]."))
-					if(finds && finds.len)
-						var/datum/find/F = finds[1]
-						if(round(excavation_level + excavation_amount) == F.excavation_required)
-							//Chance to extract any items here perfectly, otherwise just pull them out along with the rock surrounding them
-							if(excavation_level + excavation_amount > F.excavation_required)
-								//if you can get slightly over, perfect extraction
-								excavate_find(100, F)
-							else
-								excavate_find(80, F)
-
-						else if(excavation_level + excavation_amount > F.excavation_required - F.clearance_range)
-							//just pull the surrounding rock out
-							excavate_find(0, F)
 
 					if(excavation_level + excavation_amount >= 100 )
 						//if players have been excavating this turf, leave some rocky debris behind
-						var/obj/structure/boulder/B
-						if(artifact_find)
-							if( excavation_level > 0 || prob(15) )
-								//boulder with an artifact inside
-								B = new(src)
-								if(artifact_find)
-									B.artifact_find = artifact_find
-							else
-								artifact_debris(1)
-						else if(prob(15))
-							//empty boulder
-							B = new(src)
-
-						if(B)
-							GetDrilled(0)
-						else
-							GetDrilled(1)
-						return
+						new /obj/structure/boulder
+						GetDrilled(0)
 
 					excavation_level += excavation_amount
-
-					//update overlays displaying excavation level
-					if( !(excav_overlay && excavation_level > 0) || update_excav_overlay )
-						var/excav_quadrant = round(excavation_level / 25) + 1
-						excav_overlay = "overlay_excv[excav_quadrant]_[rand(1,3)]"
-						overlays += excav_overlay
 
 					//drop some rocks
 					next_rock += excavation_amount * 10
 					while(next_rock > 100)
 						next_rock -= 100
 						var/obj/item/ore/O = new(src)
-						geologic_data.UpdateNearbyArtifactInfo(src)
-						O.geologic_data = geologic_data
 				return
 			return
 
 		if(QUALITY_DIGGING)
-			var/fail_message
-			if(finds && finds.len)
-				//Chance to destroy / extract any finds here
-				fail_message = ". <b>[pick("There is a crunching noise [I] collides with some different rock.","Part of the rock face crumbles away.","Something breaks under [I].")]</b>"
-			to_chat(user, SPAN_NOTICE("You start digging the [src]. [fail_message ? fail_message : ""]"))
+			to_chat(user, SPAN_NOTICE("You start digging the [src]."))
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
 				to_chat(user, SPAN_NOTICE("You finish digging the [src]."))
-				if(fail_message && prob(90))
-					if(prob(25))
-						excavate_find(5, finds[1])
-					else if(prob(50))
-						finds.Remove(finds[1])
-						if(prob(50))
-							artifact_debris()
-				var/obj/structure/boulder/B
-				if(excavation_level)
-					//if players have been excavating this turf, leave some rocky debris behind
-					if(artifact_find)
-						if( excavation_level > 0 || prob(15) )
-							//boulder with an artifact inside
-							B = new(src)
-						else
-							artifact_debris(1)
-					else if(prob(15))
-						//empty boulder
-						B = new(src)
-				if(B)
+				if(prob(15))
+					new /obj/structure/boulder(src)
 					GetDrilled(0)
-				else
-					GetDrilled(1)
-				return
 			return
-
 		if(ABORT_CHECK)
 			return
-
-	else
-		return ..()
+		else
+			return ..()
 
 /turf/simulated/mineral/proc/clear_ore_effects()
 	for(var/obj/effect/mineral/M in contents)
@@ -228,13 +164,6 @@
 /turf/simulated/mineral/proc/DropMineral()
 	if(!mineral)
 		return
-
-	clear_ore_effects()
-	var/obj/item/ore/O = new mineral.ore (src)
-	if(istype(O) && geologic_data)
-		geologic_data.UpdateNearbyArtifactInfo(src)
-		O.geologic_data = geologic_data
-	return O
 
 /turf/simulated/mineral/proc/GetDrilled(var/artifact_fail = 0)
 	//var/destroyed = 0 //used for breaking strange rocks

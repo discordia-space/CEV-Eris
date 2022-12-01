@@ -105,8 +105,7 @@
 	required_technologies = list(/datum/technology/basic_bluespace)
 	cost = 800
 
-	unlocks_designs = list(	/datum/design/research/item/ano_scanner,
-							/datum/design/research/item/beacon_locator,
+	unlocks_designs = list(	/datum/design/research/item/beacon_locator,
 							/datum/design/research/item/gps
 							)
 
@@ -201,7 +200,7 @@
 							/datum/design/research/item/trashbag_holding,
 							/datum/design/research/item/oresatchel_holding
 						    )
-	
+
 /*
 /datum/technology/bluespace_rped
 	name = "Bluespace RPED"
