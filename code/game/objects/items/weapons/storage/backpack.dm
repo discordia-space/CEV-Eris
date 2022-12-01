@@ -87,7 +87,9 @@
 
 /obj/item/storage/backpack/holding/New()
 	..()
-	bluespace_entropy(6, get_turf(src))
+	if(!istype(src, /obj/item/storage/backpack/holding/bst)) //so admins don't cause unnecessary chaos...
+		bluespace_entropy(6, get_turf(src))
+		message_admins("entropy")
 
 /obj/item/storage/backpack/holding/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/storage/backpack/holding))
