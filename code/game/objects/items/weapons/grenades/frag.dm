@@ -78,12 +78,12 @@
 	icon_state = "white_phos"
 	item_state = "fraggrenade"
 	fragment_type = /obj/item/projectile/bullet/pellet/fragment/ember
-	var/datum/effect/effect/system/smoke_spread/white_phosphorous/smoke
 	num_fragments = 10
 	fragment_damage = 5
 	blast_radius = 0
 	damage_step = 5
 	spread_range = 7
+	var/datum/effect/effect/system/smoke_spread/white_phosphorous/smoke
 
 /obj/item/grenade/frag/white_phosphorous/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 50, 1, -3)
