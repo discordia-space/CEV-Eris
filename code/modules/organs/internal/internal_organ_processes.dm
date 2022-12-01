@@ -82,9 +82,9 @@
 		// this will filter some toxins out of owners body
 		adjustToxLoss(-(liver_efficiency * 0.001))
 
-	var/toxin_strength = chem_effects[CE_ALCOHOL_TOXIC] + chem_effects[CE_TOXIN]
+	var/toxin_strength = chem_effects[CE_ALCOHOL_TOXIC] + chem_effects[CE_TOXIN] - (liver_efficiency / 100)
 	if(toxin_strength)
-		liver.take_damage(8 * toxin_strength, TOX)
+		liver.take_damage(4 * toxin_strength, TOX)
 
 	//Blood regeneration if there is some space
 	regenerate_blood(0.1 + chem_effects[CE_BLOODRESTORE])

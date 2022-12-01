@@ -661,7 +661,7 @@
 	M.add_chemical_effect(CE_BONE_MEND, 1)
 
 /datum/reagent/medicine/ossisine/overdose(mob/living/carbon/M, alien)
-	M.adjustCloneLoss(3)
+	M.adjustCloneLoss(2)
 	M.add_chemical_effect(CE_BONE_MEND, 1)
 
 /datum/reagent/medicine/noexcutite

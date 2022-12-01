@@ -11,7 +11,7 @@
 	var/diagnosis_difficulty			// basic - 25, adv - 40
 
 	var/severity						// How much the wound contributes to internal organ damage
-	var/severity_max = 2				// How far the wound can progress, default is 2
+	var/severity_max = 3				// How far the wound can progress, default is 2
 	var/can_damage_organ = TRUE			// Does wound severity damage the parent organ?
 
 	var/can_progress = FALSE			// Whether the wound can progress or not
@@ -54,6 +54,8 @@
 	// Surgery
 	RegisterSignal(src, COMSIG_ATTACKBY, .proc/apply_tool)
 
+	START_PROCESSING(SSinternal_wounds, src)
+
 /datum/component/internal_wound/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_WOUND_EFFECTS)
 	UnregisterSignal(parent, COMSIG_WOUND_FLAGS_ADD)
@@ -61,6 +63,9 @@
 	UnregisterSignal(parent, COMSIG_WOUND_DAMAGE)
 	UnregisterSignal(parent, COMSIG_WOUND_AUTODOC)
 	UnregisterSignal(src, COMSIG_ATTACKBY)
+
+	if(LAZYACCESS(SSinternal_wounds.processing, src))
+		STOP_PROCESSING(SSinternal_wounds, src)
 
 /datum/component/internal_wound/Process(delta_time)
 	var/obj/item/organ/O = parent
@@ -86,7 +91,7 @@
 	var/list/owner_ce = H.chem_effects
 	for(var/chem_effect in owner_ce)
 		var/to_remove = LAZYACCESS(treatments_chem, chem_effect)
-		if(owner_ce[chem_effect] >= to_remove)
+		if(to_remove && owner_ce[chem_effect] >= to_remove)
 			owner_ce[chem_effect] -= to_remove
 			is_treated = TRUE
 			treatment(FALSE)
@@ -110,7 +115,7 @@
 		H.apply_damage(hal_damage * severity, HALLOSS, E)
 
 	if(psy_damage)
-		H.apply_damage(psy_damage * severity, PSY)
+		H.sanity.onPsyDamage(psy_damage * severity)
 
 	// Apply effects
 	if(can_hallucinate)
@@ -137,13 +142,23 @@
 	else
 		can_progress = FALSE
 		if(next_wound && ispath(next_wound, /datum/component))
-			var/chosen_wound_type = pick(typesof(next_wound))
+			var/chosen_wound_type = pick(subtypesof(next_wound))
 			SEND_SIGNAL(parent, COMSIG_I_ORGAN_ADD_WOUND, chosen_wound_type)
 
 	SEND_SIGNAL(parent, COMSIG_I_ORGAN_REFRESH_SELF)
 
 /datum/component/internal_wound/proc/apply_tool(obj/item/I, mob/user)
 	var/success = FALSE
+
+	if(istype(I, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/S = I
+		if(S.mode == 1)		// SYRINGE_INJECT = 1
+			var/obj/item/organ/O = parent
+			if(O.owner)
+				S.afterattack(O.owner, user, TRUE)
+			return
+		else
+			to_chat(user, SPAN_WARNING("You cannot draw blood like this."))
 
 	if(!I.tool_qualities || !LAZYLEN(I.tool_qualities))
 		var/charges_needed = LAZYACCESS(treatments_item, I.type)
@@ -178,7 +193,7 @@
 		can_progress = initial(can_progress)	// If it was turned off by reaching the max, turn it on again.
 	else
 		if(!used_autodoc && scar && ispath(scar, /datum/component))
-			SEND_SIGNAL(parent, COMSIG_I_ORGAN_ADD_WOUND, scar)
+			SEND_SIGNAL(parent, COMSIG_I_ORGAN_ADD_WOUND, pick(subtypesof(scar)))
 		SEND_SIGNAL(parent, COMSIG_I_ORGAN_REMOVE_WOUND, src)
 
 /datum/component/internal_wound/proc/apply_effects()

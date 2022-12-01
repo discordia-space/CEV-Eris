@@ -130,43 +130,43 @@
 			if(!edge)
 				if(sharp)
 					if(is_organic)
-						LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/sharp))
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/sharp))
 					if(is_robotic)
-						LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/robotic/sharp))
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/sharp))
 				else
 					if(is_organic)
-						LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/blunt))
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/blunt))
 					if(is_robotic)
-						LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/robotic/blunt))
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/blunt))
 			else
 				if(is_organic)
-					LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/edge))
+					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/edge))
 				if(is_robotic)
-					LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/robotic/edge))
+					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/edge))
 		if(BURN)
 			if(is_organic)
-				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/burn))
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/burn))
 			if(is_robotic)
-				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/robotic/emp_burn))
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/emp_burn))
 		if(TOX)
 			if(is_organic)
-				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/poisoning))
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/poisoning))
 			if(is_robotic)
-				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/robotic/build_up))
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/build_up))
 		if(CLONE)
 			if(is_organic)
-				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/radiation))
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/radiation))
 		if(PSY)
 			if(LAZYACCESS(organ_efficiency, OP_EYES) || LAZYACCESS(organ_efficiency, BP_BRAIN))
 				if(is_organic)
-					LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/sanity))
+					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/sanity))
 				if(is_robotic)
-					LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/robotic/sanity))
+					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/sanity))
 		if(IRRADIATE)	// Effect type, not damage type. Still usable here.
 			if(is_organic)
-				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/radiation))
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/radiation))
 			if(is_robotic)
-				LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/robotic/emp_burn))		// Radiation can fry electronics
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/emp_burn))		// Radiation can fry electronics
 	
 	return possible_wounds
 
@@ -190,7 +190,7 @@
 			if(BV)
 				BV.current_blood = max(BV.current_blood - blood_req, 0)
 			if(BV?.current_blood == 0)	//When all blood from the organ and blood vessel is lost,
-				add_wound(/datum/component/internal_wound/organic/blood_loss)
+				add_wound(/datum/component/internal_wound/organic/oxy/blood_loss)
 
 		return
 
@@ -247,9 +247,9 @@
 		var/list/possible_wounds = list()
 
 		if(is_organic)
-			LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/organic/bone_fracture))
+			LAZYADD(possible_wounds, /datum/component/internal_wound/organic/bone_fracture)
 		if(is_robotic)
-			LAZYADD(possible_wounds, typesof(/datum/component/internal_wound/robotic/deformation))
+			LAZYADD(possible_wounds, /datum/component/internal_wound/robotic/deformation)
 
 		if(LAZYLEN(possible_wounds))
 			var/choice = pick(possible_wounds)
@@ -397,21 +397,21 @@
 		name = "[prefix] [name]"
 
 /obj/item/organ/internal/proc/refresh_damage()
+	if(status & ORGAN_DEAD)
+		damage = max_damage
+		return
 	damage = initial(damage)
 	SEND_SIGNAL(src, COMSIG_WOUND_DAMAGE)
 
 /obj/item/organ/internal/proc/add_wound(datum/component/internal_wound/IW)
 	if(!IW || initial(IW.wound_nature) != nature || status & ORGAN_DEAD)
 		return
-
-	var/datum/component/internal_wound/to_add = AddComponent(IW)
-	START_PROCESSING(SSinternal_wounds, to_add)
+	AddComponent(IW)
 	refresh_upgrades()
 
 /obj/item/organ/internal/proc/remove_wound(datum/component/wound)
 	if(!wound)
 		return
-	STOP_PROCESSING(SSinternal_wounds, wound)
 	refresh_organ_stats()	// Split like this because we need to remove flags,
 	qdel(wound)				// remove the wound (which may apply a flag that shouldn't be there anymore),
 	apply_modifiers()		// and re-apply existing flags

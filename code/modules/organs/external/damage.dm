@@ -24,12 +24,14 @@
 				transferred_damage_amount = (amount - (max_damage - brute_dam) / armor_divisor) / 2
 			if(BURN)
 				transferred_damage_amount = (amount - (max_damage - burn_dam) / armor_divisor) / 2
+			if(HALLOSS)
+				transferred_damage_amount = 0
 			else
 				transferred_damage_amount = amount	// PSY, CLONE, TOX, and OXY are special
 
 		if(transferred_damage_amount > 0)
 			I.take_damage(transferred_damage_amount, damage_type, wounding_multiplier, sharp, edge, FALSE)
-			amount -= transferred_damage_amount
+			amount -= min(transferred_damage_amount, amount * 0.75)
 
 	if(amount <= 0)
 		return FALSE
