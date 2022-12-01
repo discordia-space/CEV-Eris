@@ -31,7 +31,6 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	var/icon/far		= null
 	var/icon/close		= null
 	//And now we change depending on what is happening in processing events
-	//DO NOTE: THESE ARE ALL PARALLEL SO THEY WILL NOT RUN SIMULTANEOUSLY UNLESS ADMINBUSE HAPPENS AND FUCKS SPRITES OVER
 	for(var/datum/event/E in SSevent.active_events)
 		switch(E.storyevent.id)
 			if("bluespace interphase")

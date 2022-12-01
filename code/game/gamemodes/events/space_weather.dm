@@ -1,4 +1,3 @@
-//NOTE: THESE ARE ALL PARALLEL SO THEY WILL NOT RUN SIMULTANEOUSLY
 /datum/storyevent/bluespace_storm
 	id = "bluespace_storm"
 	name = "Bluespace storm"
@@ -23,7 +22,7 @@
 	command_announcement.Announce("The bluespace storm has ended.", "Bluespace Storm")
 
 /datum/event/bluespace_storm/tick()
-	if(prob(2))
+	if(prob(1))
 		var/area/A = random_ship_area(filter_maintenance = TRUE, filter_critical = TRUE)
 		bluespace_distorsion(A.random_space())
 
@@ -196,19 +195,21 @@
 	command_announcement.Announce("Drifting wrecks of a space station have been detected near the ship. Telecommunication systems are not responsible for any strain on the crew's psychological wellbeing.", "Space Graveyard")
 
 /datum/event/graveyard/tick()
-	if(prob(5)) //random broadcasts
+	if(prob(2)) //random broadcasts
 		var/message = pick("They are ", "He is ", "All of them are ", "I'm ", "We are ")
 		message += pick("going to die... ", "about to turn into those spider mutants... ", "being forcefully converted... ")
 		message += pick("Run while you still can.", "Help!", "Angels bless our souls...", "It's... too late.")
 
 		global_announcer.autosay(message, "Emergency Broadcast")
-	else if(prob(5)) //predetermined broadcasts
+	else if(prob(2)) //predetermined broadcasts
 		var/message_list = list(
 			"Blessed Angels, guide us to safety!",
 			"Comrades, we have captured the last survivors on this wreck. Expecting extraction at-",
 			"Whoever hears this, RUN WHILE YOU STILL CAN!",
 			"We are barely managing to keep this place safe. Please, whoever recieves this signal, pick us up at-",
 			"Our food and water supplies are going to run out soon. We have money. Just help us, anyone, please...",
+			"TO ANYONE STILL LOYAL LEFT, WE MAKE OUR FINAL STAND IN THE CONTROL ROOM.",
+			"Weld the vents, Weld The Vents, WELD THE VENTS!!"
 			"Security is... All gone. With medical bay soon to follow. These abominations know nothing but hunger, consumed most of our crew, and yet they remain unsatiated... Do not try to help in any way. This station is a lost cause."
 		)
 
