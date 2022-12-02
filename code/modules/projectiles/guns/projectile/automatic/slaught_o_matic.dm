@@ -33,8 +33,8 @@
 	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(
-		FULL_AUTO_300,
-		FULL_AUTO_800
+		FULL_AUTO_150,
+		FULL_AUTO_400
 		)
 	wield_delay = 0
 

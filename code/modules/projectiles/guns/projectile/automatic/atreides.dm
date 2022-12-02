@@ -26,8 +26,8 @@
 	init_recoil = SMG_RECOIL(0.4)
 
 	init_firemodes = list(
-		FULL_AUTO_400,
-		SEMI_AUTO_300,
+		FULL_AUTO_200,
+		SEMI_AUTO_150,
 		)
 
 /obj/item/gun/projectile/automatic/atreides/update_icon()

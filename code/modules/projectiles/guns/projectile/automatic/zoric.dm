@@ -22,8 +22,8 @@
 	twohanded = FALSE
 
 	init_firemodes = list(
-		FULL_AUTO_300,
-		SEMI_AUTO_300,
+		FULL_AUTO_150,
+		SEMI_AUTO_150,
 		)
 	gun_tags = list(GUN_SILENCABLE)
 	gun_parts = list(/obj/item/part/gun/frame/zoric = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/magnum = 1)

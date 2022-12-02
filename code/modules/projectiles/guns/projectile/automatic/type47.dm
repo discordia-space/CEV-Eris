@@ -26,9 +26,9 @@
 	gun_tags = list(GUN_SILENCABLE)
 	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/plasteel = 6)
 	init_firemodes = list(
-		SEMI_AUTO_300,
+		SEMI_AUTO_150,
 		BURST_3_ROUND,
-		FULL_AUTO_400
+		FULL_AUTO_200
 		)
 
 	serial_type = "OS"

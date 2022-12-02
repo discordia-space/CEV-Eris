@@ -31,8 +31,8 @@
 	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(
-		FULL_AUTO_400,
-		SEMI_AUTO_300,
+		FULL_AUTO_200,
+		SEMI_AUTO_150,
 		)
 
 	serial_type = "PAR"

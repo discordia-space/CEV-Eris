@@ -19,13 +19,13 @@
 	damage_multiplier = 0.35 //makeshift laser
 	penetration_multiplier = 1
 	projectile_type = /obj/item/projectile/beam
-	init_offset = 0 
+	init_offset = 0
 	suitable_cell = /obj/item/cell/medium
 	charge_cost = 25 // 4 bursts with a 800m cell
 
 	init_firemodes = list(
 		BURST_8_ROUND,
-		FULL_AUTO_300
+		FULL_AUTO_150
 		)
 
 	wield_delay = 1 SECOND

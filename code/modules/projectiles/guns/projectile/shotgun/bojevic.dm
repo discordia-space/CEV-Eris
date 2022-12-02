@@ -25,8 +25,8 @@
 
 					//while also preserving ability to shoot as fast as you can click and maintain recoil good enough
 	init_firemodes = list(
-		FULL_AUTO_400,
-		SEMI_AUTO_300
+		FULL_AUTO_200,
+		SEMI_AUTO_150
 		)
 	gun_parts = list(/obj/item/part/gun/frame/bojevic = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/shotgun = 1)
 	serial_type = "SA"
