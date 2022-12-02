@@ -30,18 +30,18 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	//And now we change depending on what is happening in processing events
 	for(var/datum/event/E in SSevent.active_events)
 		switch(E.storyevent.id)
-			if("bluespace interphase")
+			if("bluespace_interphase")
 				icon_state = "bluespace_interphase"
 			if("graveyard")
 				icon_state = "graveyard"
-			if("bluespace storm")
+			if("bluespace_storm")
 				icon_state = "bluespace_storm"
-			if("ion blizzard")
+			if("ion_blizzard")
 				icon_state = "ion_blizzard"
 				//no close layer here
-			if("photon vortex")
+			if("photon_vortex")
 				icon_state = "photon_vortex"
-			if("micro debris")
+			if("micro_debris")
 				icon_state = "micro_debris"
 			if("nebula")
 				icon_state = "nebula"
