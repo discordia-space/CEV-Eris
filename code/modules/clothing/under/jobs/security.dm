@@ -14,7 +14,6 @@
 	desc = "A navy blue suit. It lacks the protection of standard-issue jumpsuits, but at least you will be shooting with some style."
 	icon_state = "ih_formal"
 	item_state = "ih_formal"
-	style = STYLE_LOW
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/under/rank/warden

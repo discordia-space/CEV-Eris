@@ -610,6 +610,7 @@ BLIND     // can't see anything
 	slot_flags = SLOT_ICLOTHING
 	w_class = ITEM_SIZE_NORMAL
 	spawn_tags = SPAWN_TAG_CLOTHING_UNDER
+	style = STYLE_LOW
 	bad_type = /obj/item/clothing/under
 	var/has_sensor = 1 //For the crew computer 2 = unable to change mode
 	var/sensor_mode = 0
