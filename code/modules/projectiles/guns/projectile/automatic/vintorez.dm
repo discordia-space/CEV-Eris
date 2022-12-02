@@ -1,7 +1,7 @@
 /obj/item/gun/projectile/automatic/vintorez
 	name = "Excelsior .20 \"Vintorez\""
 	desc = "This gun is a copy of a design from a country that no longer exists. It is still highly prized for its armor piercing capabilities. \
-			The design was made to be able to fit long magazine alongside the standard ones."
+			The design was made to be able to fit long magazine alongside the standard ones. Uses .20 Rifle rounds."
 	icon = 'icons/obj/guns/projectile/vintorez.dmi'
 	icon_state = "vintorez"
 	item_state = "vintorez"
@@ -17,8 +17,8 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 5)
 	price_tag = 4000
 	zoom_factors = list(0.8) // double as IH_heavy
-	penetration_multiplier = 0
-	damage_multiplier = 1.2
+	penetration_multiplier = 0.2
+	damage_multiplier = 1.5
 	init_recoil = RIFLE_RECOIL(0.65)
 	silenced = TRUE
 	init_firemodes = list(
