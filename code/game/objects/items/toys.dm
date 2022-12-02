@@ -741,6 +741,8 @@
 /obj/item/toy/card/Initialize()
 	. = ..()
 	transform *= 0.5
+	pixel_x = rand(-8,8)
+	pixel_y = rand(-8,8)
 
 /obj/item/toy/card/attack_self(mob/user)
 	if(is_small)
