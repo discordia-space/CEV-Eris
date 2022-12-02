@@ -110,17 +110,18 @@
 
 /datum/click_handler/fullauto/proc/shooting_loop()
 
-	if(!owner || !owner.mob || owner.mob.resting)
-		return FALSE
-	if(target)
+	while(target)
+		if(!owner || !owner.mob || owner.mob.resting)
+			return FALSE
+
 		owner.mob.face_atom(target)
 
-	while(time_since_last_shot < world.time)
-		do_fire()
-		time_since_last_shot = world.time + (reciever.fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : reciever.fire_delay) * min(world.tick_lag, 1)
+		while(time_since_last_shot < world.time) // Check if we are missing any bullets
+			do_fire()
+			time_since_last_shot += (reciever.fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : reciever.fire_delay) // Add the bullet's firedelay to last shot timer
 
-	spawn(1)
-		shooting_loop()
+		sleep(1) // Sleep without adjusting for FPS, same firerate but at 600+ RPM bullets are sometimes fired in pairs. Going higher has no gameplay effects
+//		sleep(world.tick_lag) // Sleep, adjusted for FPS, at 2400+ RPM bullets are sometimes fired in pairs. Cannot go any higher than this
 
 /datum/click_handler/fullauto/MouseDrag(over_object, src_location, over_location, src_control, over_control, params)
 	src_location = resolve_world_target(src_location)
