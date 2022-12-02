@@ -105,9 +105,7 @@
 	required_technologies = list(/datum/technology/basic_bluespace)
 	cost = 800
 
-	unlocks_designs = list(	/datum/design/research/item/beacon_locator,
-							/datum/design/research/item/gps
-							)
+	unlocks_designs = list(/datum/design/research/item/gps)
 
 /datum/technology/bluespace_shield
 	name = "Bluespace Shields"
