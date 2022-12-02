@@ -26,7 +26,7 @@
 	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(
-		SEMI_AUTO_150,
+		SEMI_AUTO_300,
 		BURST_3_ROUND,
 		list(mode_name="fire grenades", mode_desc="Unlocks the underbarrel grenade launcher", burst=null, fire_delay=null, move_delay=null,  icon="grenade", use_launcher=1)
 		)

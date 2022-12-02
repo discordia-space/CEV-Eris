@@ -25,7 +25,7 @@
 	reload_sound = 'sound/weapons/guns/interact/pistol_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/pistol_cock.ogg'
 	init_firemodes = list(
-        SEMI_AUTO_150,
+        SEMI_AUTO_300,
 		BURST_3_ROUND_DAMAGE
 //		WEAPON_CHARGE    // charge mode on balistics doesnt work. need to make a balistic version of it -Valo
         )

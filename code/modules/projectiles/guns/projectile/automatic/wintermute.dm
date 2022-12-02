@@ -28,9 +28,9 @@
 	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(
-		SEMI_AUTO_150,
+		SEMI_AUTO_300,
 		BURST_3_ROUND,
-		FULL_AUTO_200
+		FULL_AUTO_400
 		)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
