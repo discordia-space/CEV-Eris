@@ -28,7 +28,7 @@
 	var/forced_broad_strike = FALSE //If a weapon is forced to always perform broad strikes.
 	var/extended_reach = FALSE		//Wielded spears can hit alive things one tile further.
 	var/ready = FALSE				//All weapons that are ITEM_SIZE_BULKY or bigger have double tact, meaning you have to click twice.
-
+	var/no_double_tact = FALSE		//for when you,  for some inconceivable reason, want a bulky item to not have double tact	
 	var/push_attack = FALSE			//Hammers and spears can push the victim away on hit when you aim groin.
 	//Why are we using vars instead of defines or anything else?
 	//Because we need them to be shown in the tool info UI.
