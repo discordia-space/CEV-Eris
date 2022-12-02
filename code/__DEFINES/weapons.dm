@@ -31,6 +31,7 @@
 //Resistance value is also used on simple animals.
 //Reduces the damage they take by flat amounts
 #define RESISTANCE_NONE 				0
+#define RESISTANCE_FLIMSY				2
 #define RESISTANCE_FRAGILE 				4
 #define RESISTANCE_AVERAGE 				8
 #define RESISTANCE_IMPROVED 			12

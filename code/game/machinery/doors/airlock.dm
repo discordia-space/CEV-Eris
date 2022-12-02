@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	autoclose = 1
 	var/assembly_type = /obj/structure/door_assembly
 	var/mineral
-	var/justzap = 0
+	var/last_zap // Timestamp
 	var/safe = 1
 	normalspeed = 1
 	var/obj/item/electronics/airlock/electronics
@@ -428,23 +428,11 @@ There are 9 wires.
 
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
-	if(!issilicon(usr))
-		if(src.isElectrified())
-			if(!src.justzap)
-				if(src.shock(user, 100))
-					src.justzap = 1
-					spawn (10)
-						src.justzap = 0
-					return FALSE
-			else /*if(src.justzap)*/
-				return FALSE
-		else if(prob(10) && src.operating == 0)
-			var/mob/living/carbon/C = user
-			if(istype(C) && C.hallucination_power > 25)
-				to_chat(user, "<span class='danger'>You feel a powerful shock course through your body!</span>")
-				user.adjustHalLoss(10)
-				user.Stun(10)
-				return FALSE
+	if(!issilicon(user) && isElectrified())
+		if(!last_zap || (last_zap + 1 SECOND) < world.time)
+			if(shock(user, 100))
+				last_zap = world.time
+			return FALSE
 	..()
 
 /obj/machinery/door/airlock/proc/isElectrified()

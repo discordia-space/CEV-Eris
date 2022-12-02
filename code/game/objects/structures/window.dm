@@ -8,7 +8,7 @@
 	anchored = TRUE
 	flags = ON_BORDER
 	var/maxhealth = 20
-	var/resistance = RESISTANCE_NONE	//Incoming damage is reduced by this flat amount before being subtracted from health. Defines found in code\__defines\weapons.dm
+	var/resistance = RESISTANCE_FLIMSY	//Incoming damage is reduced by this flat amount before being subtracted from health. Defines found in code\__defines\weapons.dm
 	var/maximal_heat = T0C + 100 		// Maximal heat before this window begins taking damage from fire
 	var/damage_per_fire_tick = 2 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
 	var/health
@@ -205,10 +205,9 @@
 		var/obj/item/I = AM
 		tforce = I.throwforce
 	if(reinf) tforce *= 0.25
-	if(health - tforce <= 7 && !reinf)
+	if(hit(tforce) && health <= 7 && !reinf)
 		set_anchored(FALSE)
 		step(src, get_dir(AM, src))
-	hit(tforce)
 	mount_check()
 
 /obj/structure/window/attack_tk(mob/user as mob)
@@ -292,12 +291,11 @@
 
 	var/tforce = (M.stats.getPerk(PERK_ASS_OF_CONCRETE) ? 60 : 15)
 	if(reinf) tforce *= 0.25
-	if(health - tforce <= 7 && !reinf)
+	if(hit(tforce) && health <= 7 && !reinf)
 		set_anchored(FALSE)
 		step(src, direction)
 		if(M.stats.getPerk(PERK_ASS_OF_CONCRETE)) //if your ass is heavy and the window is not reinforced, you are moved on the tile where it was
 			M.forceMove(get_step(M.loc, direction), direction)
-	hit(tforce)
 	mount_check()
 
 /obj/structure/window/attackby(obj/item/I, mob/user)
@@ -389,6 +387,7 @@
 	damage = take_damage(damage, TRUE, ignore_resistance)
 	if(sound_effect && loc) // If the window was shattered and, thus, nullspaced, don't try to play hit sound
 		playsound(loc, 'sound/effects/glasshit.ogg', damage*4.5, 1, damage*0.6, damage*0.6) //The harder the hit, the louder and farther travelling the sound
+	return damage
 
 
 /obj/structure/window/proc/rotate()
@@ -544,7 +543,7 @@
 	maximal_heat = T0C + 200	// Was 100. Spaceship windows surely surpass coffee pots.
 	damage_per_fire_tick = 3	// Was 2. Made weaker than rglass per tick.
 	maxhealth = 15
-	resistance = RESISTANCE_NONE
+	resistance = RESISTANCE_FLIMSY
 
 /obj/structure/window/basic/full
 	dir = SOUTH|EAST
@@ -552,7 +551,7 @@
 	icon_state = "fwindow"
 	alpha = 120
 	maxhealth = 40
-	resistance = RESISTANCE_NONE
+	resistance = RESISTANCE_FLIMSY
 	flags = null
 
 /obj/structure/window/plasmabasic
