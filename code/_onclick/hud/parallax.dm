@@ -27,43 +27,27 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	if(!T)
 		return
 	screen_loc = "CENTER:[-224-T.x],CENTER:[-224-T.y]"
-	var/new_icon_state	= GLOB.random_parallax
-	var/icon/far		= null
-	var/icon/close		= null
 	//And now we change depending on what is happening in processing events
 	for(var/datum/event/E in SSevent.active_events)
 		switch(E.storyevent.id)
 			if("bluespace interphase")
-				new_icon_state = "bluespace_interphase"
+				icon_state = "bluespace_interphase"
 			if("graveyard")
-				new_icon_state = "graveyard_background"
-				close = icon('icons/parallax.dmi', "graveyard_close")
-				far = icon('icons/parallax.dmi', "graveyard_far")
+				icon_state = "graveyard"
 			if("bluespace storm")
-				new_icon_state = "bluespace_storm_background"
-				close = icon('icons/parallax.dmi', "bluespace_storm_close")
-				far = icon('icons/parallax.dmi', "bluespace_storm_far")
+				icon_state = "bluespace_storm"
 			if("ion blizzard")
-				new_icon_state = "ion_blizzard_background"
-				far = icon('icons/parallax.dmi', "ion_blizzard_far")
+				icon_state = "ion_blizzard"
 				//no close layer here
 			if("photon vortex")
-				new_icon_state = "photon_vortex"
+				icon_state = "photon_vortex"
 			if("micro debris")
-				new_icon_state = "micro_debris_background"
-				close = icon('icons/parallax.dmi', "micro_debris_close")
-				far = icon('icons/parallax.dmi', "micro_debris_far")
+				icon_state = "micro_debris"
 			if("nebula")
-				new_icon_state = "nebula"
+				icon_state = "nebula"
 			else
 				icon_state = GLOB.random_parallax
 		continue //Only one event changes our state, priority should be from up to down if there are multiple
-	var/icon/I = new('icons/parallax.dmi', new_icon_state)
-	if(far != null)
-		I.Blend(far, ICON_OVERLAY, T.x * 0.5, T.y * 0,5)
-	if(close != null)
-		I.Blend(close, ICON_OVERLAY, T.x * 0.9, T.y * 0.9)
-	icon = I
 	var/matrix/M = matrix()	//create matrix for transformation
 	if(owner.client.view != world.view)	//Not bigger than world view. We don't need transforming
 		var/toscale = owner.client.view	//How many extra tiles we need to fill with parallax. EG. Their view is 8. World view is 7. So one extra tile is needed.
@@ -87,7 +71,7 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 		M.Scale(toscale)
 	else
 		M.Scale(1)
-	src.transform = M
+	transform = M
 
 /obj/parallax/update_plane()
 	return
