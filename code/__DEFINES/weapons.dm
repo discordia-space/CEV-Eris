@@ -55,12 +55,12 @@
 #define STRUCTURE_DAMAGE_DESTRUCTIVE 	3
 
 //Quick defines for fire modes
-#define FULL_AUTO_150		list(mode_name = "full auto",  mode_desc = "150 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 4  , icon="auto")
-#define FULL_AUTO_200		list(mode_name = "full auto",  mode_desc = "200 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 3, icon="auto")
-#define FULL_AUTO_300		list(mode_name = "full auto",  mode_desc = "300 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 2  , icon="auto")
-#define FULL_AUTO_400		list(mode_name = "fuller auto",  mode_desc = "400 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 1.6, icon="auto")
+#define FULL_AUTO_300		list(mode_name = "full auto",  mode_desc = "300 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 4  , icon="auto")
+#define FULL_AUTO_400		list(mode_name = "full auto",  mode_desc = "400 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 3, icon="auto")
+#define FULL_AUTO_600		list(mode_name = "full auto",  mode_desc = "600 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 2  , icon="auto")
+#define FULL_AUTO_800		list(mode_name = "fuller auto",  mode_desc = "800 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 1.6, icon="auto")
 
-#define SEMI_AUTO_150	list(mode_name = "semiauto",  mode_desc = "Fire as fast as you can pull the trigger", burst=1, fire_delay=4, move_delay=null, icon="semi")
+#define SEMI_AUTO_300	list(mode_name = "semiauto",  mode_desc = "Fire as fast as you can pull the trigger", burst=1, fire_delay=4, move_delay=null, icon="semi")
 
 //Cog firemode
 #define BURST_2_BEAM		list(mode_name="2-beam bursts", mode_desc = "Short, controlled bursts", burst=2, fire_delay=null, move_delay=2, icon="burst")

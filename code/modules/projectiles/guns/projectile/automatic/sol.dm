@@ -23,7 +23,7 @@
 	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(
-		SEMI_AUTO_150,
+		SEMI_AUTO_300,
 		BURST_3_ROUND,
 		BURST_3_ROUND_RAPID
 		)

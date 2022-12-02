@@ -21,9 +21,9 @@
 	reload_sound = 'sound/weapons/guns/interact/hpistol_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/rifle_boltforward.ogg'
 	init_firemodes = list(
-		FULL_AUTO_300,
-		FULL_AUTO_400,
-		SEMI_AUTO_150
+		FULL_AUTO_600,
+		FULL_AUTO_800,
+		SEMI_AUTO_300
         )
 	spawn_tags = SPAWN_TAG_GUN_OS
 	spawn_blacklisted = TRUE
