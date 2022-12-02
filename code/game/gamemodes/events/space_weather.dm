@@ -195,27 +195,30 @@
 	command_announcement.Announce("Drifting wrecks of a space station have been detected near the ship. Telecommunication systems are not responsible for any strain on the crew's psychological wellbeing.", "Space Graveyard")
 
 /datum/event/graveyard/tick()
-	if(prob(2)) //random broadcasts
-		var/message = pick("They are ", "He is ", "All of them are ", "I'm ", "We are ")
-		message += pick("going to die... ", "about to turn into those spider mutants... ", "being forcefully converted... ")
-		message += pick("Run while you still can.", "Help!", "Angels bless our souls...", "It's... too late.")
+	if(prob(2))
+		switch(rand(1,3))
+			if(1) //random broadcasts
+				var/message = pick("They are ", "He is ", "All of them are ", "I'm ", "We are ")
+				message += pick("going to die... ", "about to turn into those spider mutants... ", "being forcefully converted... ")
+				message += pick("Run while you still can.", "Help!", "Angels bless our souls...", "It's... too late.")
 
-		global_announcer.autosay(message, "Emergency Broadcast")
-	else if(prob(2)) //predetermined broadcasts
-		var/message_list = list(
-			"Blessed Angels, guide us to safety!",
-			"Comrades, we have captured the last survivors on this wreck. Expecting extraction at-",
-			"Whoever hears this, RUN WHILE YOU STILL CAN!",
-			"We are barely managing to keep this place safe. Please, whoever recieves this signal, pick us up at-",
-			"Our food and water supplies are going to run out soon. We have money. Just help us, anyone, please...",
-			"TO ANYONE STILL LOYAL LEFT, WE MAKE OUR FINAL STAND IN THE CONTROL ROOM.",
-			"Weld the vents, Weld The Vents, WELD THE VENTS!!",
-			"Security is... All gone. With medical bay soon to follow. These abominations know nothing but hunger, consumed most of our crew, and yet they remain unsatiated... Do not try to help in any way. This station is a lost cause."
-		)
+				global_announcer.autosay(message, "Emergency Broadcast")
+			if(2) //predetermined broadcasts
+				var/message_list = list(
+					"Blessed Angels, guide us to safety!",
+					"Comrades, we have captured the last survivors on this wreck. Expecting extraction at-",
+					"Whoever hears this, RUN WHILE YOU STILL CAN!",
+					"We are barely managing to keep this place safe. Please, whoever recieves this signal, pick us up at-",
+					"Our food and water supplies are going to run out soon. We have money. Just help us, anyone, please...",
+					"TO ANYONE STILL LOYAL LEFT, WE MAKE OUR FINAL STAND IN THE CONTROL ROOM.",
+					"Weld the vents. Weld The vents! WELD THE VENTS!!",
+					"Security is... All gone. With medical bay soon to follow. These abominations know nothing but hunger, consumed most of our crew, and yet they remain unsatiated... Do not try to help in any way. This station is a lost cause."
+				)
 
-		global_announcer.autosay(pick(message_list), "Emergency Broadcast")
-	else if(prob(1)) //sekrit stuf
-		global_announcer.autosay("Man, all those people really suck. Just don't get hit and beat everything until it dies.", "Emergency Broadcast")
+				global_announcer.autosay(pick(message_list), "Emergency Broadcast")
+			if(3) //sekrit stuf
+				if(prob(50))
+					global_announcer.autosay("Man, all those people really suck. Just don't get hit and beat everything until it dies.", "Emergency Broadcast")
 
 /datum/event/graveyard/end()
 	command_announcement.Announce("The station wrecks have moved away from the ship.", "Space Graveyard")
