@@ -121,6 +121,10 @@
 	},
 /turf/space,
 /area/space)
+"bp" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "bC" = (
 /obj/item/device/radio/intercom{
 	dir = 8;
@@ -211,6 +215,11 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "9,11"
 	},
+/area/space)
+"cl" = (
+/obj/structure/table/onestar,
+/obj/item/book/manual/anomaly_spectroscopy,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "cm" = (
 /obj/structure/table/onestar,
@@ -474,10 +483,12 @@
 	},
 /area/space)
 "eG" = (
-/obj/structure/sign/faction/one_star{
-	pixel_x = 32
+/obj/item/clothing/under/onestar,
+/obj/item/remains/human{
+	desc = "placeholder until skeleton bodies are added";
+	name = "Colonel Yang"
 	},
-/turf/simulated/mineral,
+/turf/simulated/floor/tiled/cafe,
 /area/space)
 "eL" = (
 /obj/structure/table/steel,
@@ -560,8 +571,10 @@
 	},
 /area/space)
 "fz" = (
-/obj/item/book/manual/anomaly_spectroscopy,
-/turf/simulated/mineral,
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "fA" = (
 /obj/effect/shuttle_landmark/blacksite/large/nav1,
@@ -584,6 +597,12 @@
 /area/space)
 "fR" = (
 /obj/machinery/shower{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"fS" = (
+/obj/structure/bed/chair/custom/onestar{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
@@ -1102,6 +1121,12 @@
 	icon_state = "7,12"
 	},
 /area/space)
+"kx" = (
+/obj/structure/sign/faction/one_star{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "kD" = (
 /obj/structure/curtain/open/shower,
 /obj/machinery/shower{
@@ -1233,6 +1258,10 @@
 	icon_state = "10,18"
 	},
 /area/space)
+"mg" = (
+/obj/structure/bed/padded,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "mh" = (
 /obj/structure/salvageable/os/console_broken{
 	dir = 4
@@ -1277,6 +1306,10 @@
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "11,22"
 	},
+/area/space)
+"mA" = (
+/obj/structure/bed/chair/custom/onestar,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "mG" = (
 /obj/machinery/door/airlock/multi_tile/metal/mait{
@@ -1682,6 +1715,13 @@
 	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
+"rk" = (
+/obj/machinery/vending/snack,
+/obj/structure/sign/derelict2{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "rl" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "3,6"
@@ -1982,6 +2022,10 @@
 	},
 /turf/space,
 /area/space)
+"uB" = (
+/obj/machinery/vending/snack,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "uC" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "5,10"
@@ -2173,6 +2217,10 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "12,12"
 	},
+/area/space)
+"vW" = (
+/obj/structure/closet/onestar/tier1/normal,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "vY" = (
 /obj/landmark/machinery/output,
@@ -2612,6 +2660,12 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "7,15"
 	},
+/area/space)
+"AY" = (
+/obj/structure/cryofeed{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "Be" = (
 /turf/simulated/shuttle/wall/mining{
@@ -3112,6 +3166,12 @@
 	},
 /turf/space,
 /area/space)
+"Gz" = (
+/obj/structure/cryopod_spawner{
+	pixel_y = -2
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "GA" = (
 /obj/structure/flora/ausbushes/pointybush,
 /turf/simulated/floor/grass,
@@ -3125,6 +3185,10 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "5,11"
 	},
+/area/space)
+"GO" = (
+/obj/structure/table/onestar,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "GQ" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -3496,7 +3560,7 @@
 "JL" = (
 /obj/machinery/door/airlock/multi_tile/metal{
 	dir = 2;
-	name = "Commander Yang's Office"
+	name = "Colonel Yang's Office"
 	},
 /turf/simulated/floor/wood,
 /area/space)
@@ -4098,6 +4162,13 @@
 	},
 /turf/space,
 /area/space)
+"Qx" = (
+/obj/structure/table/onestar,
+/obj/structure/sign/derelict3{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "QA" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "11,2"
@@ -4181,6 +4252,13 @@
 	icon_state = "5,1"
 	},
 /area/space)
+"Rl" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 4;
+	pixel_x = 9
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "Ru" = (
 /obj/machinery/atmospherics/pipe/tank/air,
 /turf/simulated/shuttle/floor/mining{
@@ -4220,6 +4298,12 @@
 "RN" = (
 /obj/machinery/sleeper/sarcophagus/random{
 	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"RQ" = (
+/obj/structure/sign/derelict1{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
@@ -4742,6 +4826,10 @@
 /mob/living/carbon/superior_animal/stalker/dual,
 /turf/simulated/floor/tiled/derelict/white_red_edges,
 /area/space)
+"WW" = (
+/obj/structure/closet/onestar/tier2,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "WY" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -4916,6 +5004,10 @@
 "YJ" = (
 /obj/structure/bed,
 /turf/simulated/floor/tiled/dark/brown_platform,
+/area/space)
+"YK" = (
+/obj/structure/cyberplant,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "YM" = (
 /obj/machinery/atmospherics/pipe/tank/air,
@@ -12791,12 +12883,12 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+XW
+XW
+XW
+XW
+XW
 cb
 nr
 XW
@@ -12990,15 +13082,15 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+RJ
+RJ
+RJ
+XW
+mg
+mg
+mg
+GO
+XW
 cb
 nr
 XW
@@ -13184,23 +13276,23 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+XW
+XW
+XW
+XW
+XW
+XW
+XW
+RJ
+RJ
+RJ
+xb
+RJ
+RJ
+RJ
+fS
+XW
 cb
 nr
 XW
@@ -13386,23 +13478,23 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+RJ
+fz
+fz
+fz
+fz
+fz
+XW
+RJ
+RJ
+RJ
+XW
+WW
+WW
+WW
+YK
+XW
 cb
 nr
 XW
@@ -13588,23 +13680,23 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+RQ
+GO
+GO
+GO
+GO
+GO
+XW
+RJ
+RJ
+RJ
+XW
+XW
+XW
+XW
+XW
+XW
 cb
 nr
 XW
@@ -13790,23 +13882,23 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+RJ
+fS
+fS
+fS
+fS
+fS
+XW
+RJ
+RJ
+RJ
+XW
+mg
+mg
+mg
+vW
+XW
 cb
 nr
 XW
@@ -13992,23 +14084,23 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+RJ
+fz
+fz
+fz
+fz
+fz
+XW
+RJ
+RJ
+RJ
+xb
+RJ
+RJ
+RJ
+RJ
+XW
 cb
 nr
 XW
@@ -14194,23 +14286,23 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+RJ
+GO
+GO
+GO
+GO
+GO
+XW
+RJ
+RJ
+RJ
+XW
+vW
+vW
+mA
+GO
+XW
 cb
 nr
 XW
@@ -14397,22 +14489,22 @@ gV
 gV
 gV
 gV
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+RJ
+fS
+fS
+fS
+fS
+fS
+XW
+RJ
+RJ
+RJ
+XW
+XW
+XW
+XW
+XW
+XW
 cb
 nr
 nr
@@ -14599,22 +14691,22 @@ jX
 rI
 pD
 gV
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+RJ
+RJ
+Rl
+Rl
+Rl
+Rl
+XW
+RJ
+RJ
+RJ
+XW
+mg
+mg
+mg
+mg
+XW
 cb
 cb
 cb
@@ -14801,22 +14893,22 @@ gV
 rI
 Cj
 gV
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+RJ
+RJ
+GO
+cl
+GO
+Qx
+XW
+RJ
+RJ
+RJ
+xb
+RJ
+RJ
+RJ
+RJ
+XW
 cb
 cb
 cb
@@ -15000,25 +15092,25 @@ fI
 Mf
 Pk
 gV
-rI
+eG
 kD
 gV
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+RJ
+RJ
+fS
+fS
+fS
+fS
+XW
+RJ
+RJ
+RJ
+XW
+vW
+vW
+vW
+vW
+XW
 cb
 cb
 cb
@@ -15206,21 +15298,21 @@ gV
 gV
 gV
 gV
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+RJ
+RJ
+RJ
+RJ
+RJ
+XW
+kx
+RJ
+RJ
+XW
+XW
+XW
+XW
+XW
+XW
 cb
 cb
 cb
@@ -15408,21 +15500,21 @@ nV
 Gd
 Mf
 gV
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+RJ
+RJ
+RJ
+RJ
+RJ
+bp
+RJ
+RJ
+RJ
+XW
+AY
+AY
+AY
+AY
+XW
 cb
 cb
 cb
@@ -15610,21 +15702,21 @@ rZ
 Ks
 Mf
 gV
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+XW
+Gz
+Gz
+Gz
+Gz
+XW
 cb
 cb
 cb
@@ -15812,21 +15904,21 @@ sY
 CD
 Mf
 gV
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-eG
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+uB
+uB
+rk
+uB
+uB
+XW
+RJ
+Bu
+RJ
+xb
+RJ
+RJ
+RJ
+RJ
+XW
 cb
 cb
 cb
@@ -16014,21 +16106,21 @@ Mf
 Mf
 Mf
 gV
-cb
-cb
-cb
-cb
-cb
+gV
+gV
+gV
+gV
+gV
 gV
 Vv
 gV
 Vv
 gV
-cb
-cb
-cb
-cb
-cb
+XW
+XW
+XW
+XW
+XW
 cb
 cb
 cb
@@ -16217,7 +16309,7 @@ Mf
 sL
 gV
 cb
-fz
+cb
 cb
 cb
 cb
