@@ -272,16 +272,16 @@
 	command_announcement.Announce("The fabric of bluespace has begun to break up, allowing an overlap of parallel universes on different dimensional planes. There is no additional data.", "Bluespace Interphase")
 
 /datum/event/interphase/tick()
-	if(prob(3))
+	if(prob(1))
 		var/list/servers = list()
 		for(var/obj/machinery/telecomms/server/S in telecomms_list)
-			if(S.network == "eris" && S.log_entries.len != 0) //yep, only for eris so that non-eris servers don't get involved(duh!)
+			if(S.network == "eris" && LAZYLEN(S.log_entries)) //yep, only for eris so that non-eris servers don't get involved(duh!)
 				servers += S								//also checks if there are any log entries (not an empty list)
-		if(servers.len != 0)
+		if(LAZYLEN(servers))
 			var/obj/machinery/telecomms/server/chosen_server = pick(servers)
 			var/datum/comm_log_entry/C = pick(chosen_server.log_entries)
 			global_announcer.autosay(C.parameters["message"], C.parameters["name"])
-	if(prob(10)) //spooky bluspess ghost
+	if(prob(5)) //spooky bluspess ghost
 		var/area/location = random_ship_area()
 		var/mob/living/carbon/human/to_copy = pick(GLOB.human_mob_list)
 		var/mob/ghost = new(location.random_space())
@@ -291,9 +291,11 @@
 		ghost.appearance = to_copy.appearance
 		ghost.mouse_opacity = 0
 		ghost.density = 0
-		sleep(20)
-		if(ghost)//no idea how it could be gone in 20 seconds but gamers will find a way
-			qdel(ghost)
+		addtimer(CALLBACK(src, .proc/delete_ghost, ghost), 2 SECONDS, TIMER_STOPPABLE)
+
+/datum/event/interphase/proc/delete_ghost(mob/ghost)
+	if(!QDELETED(ghost))	//no idea how it could be gone in 20 seconds but gamers will find a way
+		qdel(ghost)
 
 /datum/event/interphase/end()
 	command_announcement.Announce("The bluespace interphase stabilized itself.", "Bluespace Interphase")
