@@ -209,7 +209,7 @@
 			"We are barely managing to keep this place safe. Please, whoever recieves this signal, pick us up at-",
 			"Our food and water supplies are going to run out soon. We have money. Just help us, anyone, please...",
 			"TO ANYONE STILL LOYAL LEFT, WE MAKE OUR FINAL STAND IN THE CONTROL ROOM.",
-			"Weld the vents, Weld The Vents, WELD THE VENTS!!"
+			"Weld the vents, Weld The Vents, WELD THE VENTS!!",
 			"Security is... All gone. With medical bay soon to follow. These abominations know nothing but hunger, consumed most of our crew, and yet they remain unsatiated... Do not try to help in any way. This station is a lost cause."
 		)
 
