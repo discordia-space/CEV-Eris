@@ -1,8 +1,12 @@
+GLOBAL_VAR_INIT(GLOBAL_SANITY_MOD, 1)
+
+GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
+
 #define SANITY_PASSIVE_GAIN 0.2
 
-#define SANITY_DAMAGE_MOD 0.6
+#define SANITY_DAMAGE_MOD (0.6 * GLOB.GLOBAL_SANITY_MOD)
 
-#define SANITY_VIEW_DAMAGE_MOD 0.4
+#define SANITY_VIEW_DAMAGE_MOD (0.4 * GLOB.GLOBAL_SANITY_MOD)
 
 // Damage received from unpleasant stuff in view
 #define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_VIEW_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
@@ -55,9 +59,9 @@
 	var/max_insight = INFINITY
 	var/insight_passive_gain_multiplier = 0.5
 	var/insight_gain_multiplier = 1
+	var/insight_rest_gain_multiplier = 1
 	var/insight_rest = 0
 	var/max_insight_rest = 1
-	var/insight_rest_gain_multiplier = 1
 	var/resting = 0
 	var/max_resting = 1
 
@@ -102,7 +106,7 @@
 /datum/sanity/proc/give_insight(value)
 	var/new_value = value
 	if(value > 0)
-		new_value = max(0, value * insight_gain_multiplier)
+		new_value = max(0, value * insight_gain_multiplier * GLOB.GLOBAL_INSIGHT_MOD)
 	insight = min(insight + new_value, max_insight)
 
 /datum/sanity/proc/give_resting(value)
@@ -111,7 +115,7 @@
 /datum/sanity/proc/give_insight_rest(value)
 	var/new_value = value
 	if(value > 0)
-		new_value = max(0, value * insight_rest_gain_multiplier)
+		new_value = max(0, value * insight_rest_gain_multiplier * GLOB.GLOBAL_INSIGHT_MOD)
 	insight_rest += new_value
 
 /datum/sanity/Topic(href, href_list)
@@ -179,7 +183,7 @@
 		for(var/mob/living/carbon/human/H in view(owner))
 			if(H.sanity.level > 60)
 				moralist_factor += 0.02
-	give_insight(INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier)
+	give_insight(INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier * GLOB.GLOBAL_INSIGHT_MOD)
 	if(resting < max_resting && insight >= 100)
 		if(!rest_timer_active)//Prevent any exploits(timer is only active for one minute tops)
 			give_resting(1)

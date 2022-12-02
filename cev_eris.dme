@@ -592,6 +592,7 @@
 #include "code\game\gamemodes\events\radiation_storm.dm"
 #include "code\game\gamemodes\events\rogue_drones.dm"
 #include "code\game\gamemodes\events\shipping_error.dm"
+#include "code\game\gamemodes\events\space_weather.dm"
 #include "code\game\gamemodes\events\spacevine.dm"
 #include "code\game\gamemodes\events\spider_infestation.dm"
 #include "code\game\gamemodes\events\supply_pod.dm"
