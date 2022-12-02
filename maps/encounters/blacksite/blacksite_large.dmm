@@ -216,11 +216,6 @@
 	icon_state = "9,11"
 	},
 /area/space)
-"cl" = (
-/obj/structure/table/onestar,
-/obj/item/book/manual/anomaly_spectroscopy,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
 "cm" = (
 /obj/structure/table/onestar,
 /obj/item/tool/medmultitool,
@@ -1027,6 +1022,11 @@
 	icon_state = "8,21"
 	},
 /area/space)
+"jS" = (
+/obj/structure/table/onestar,
+/obj/item/book/manual/anomaly_spectroscopy,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "jT" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "2,1"
@@ -1712,13 +1712,6 @@
 "rj" = (
 /obj/machinery/shower{
 	dir = 4
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
-"rk" = (
-/obj/machinery/vending/snack,
-/obj/structure/sign/derelict2{
-	pixel_x = 32
 	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
@@ -2529,6 +2522,13 @@
 	opacity = 0
 	},
 /area/space)
+"zg" = (
+/obj/structure/table/onestar,
+/obj/structure/sign/derelict3{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "zj" = (
 /obj/machinery/camera/network/research_outpost,
 /turf/simulated/shuttle/floor/science{
@@ -2660,12 +2660,6 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "7,15"
 	},
-/area/space)
-"AY" = (
-/obj/structure/cryofeed{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "Be" = (
 /turf/simulated/shuttle/wall/mining{
@@ -2998,6 +2992,13 @@
 	icon_state = "10,5"
 	},
 /area/space)
+"EA" = (
+/obj/machinery/vending/snack,
+/obj/structure/sign/derelict2{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "EB" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -3165,12 +3166,6 @@
 	icon_state = "1,12"
 	},
 /turf/space,
-/area/space)
-"Gz" = (
-/obj/structure/cryopod_spawner{
-	pixel_y = -2
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "GA" = (
 /obj/structure/flora/ausbushes/pointybush,
@@ -4008,6 +4003,12 @@
 	icon_state = "12,4"
 	},
 /area/space)
+"OB" = (
+/obj/structure/cryopod_spawner{
+	pixel_y = -2
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "OC" = (
 /obj/landmark/machinery/output,
 /obj/machinery/conveyor/west{
@@ -4161,13 +4162,6 @@
 	icon_state = "11,0"
 	},
 /turf/space,
-/area/space)
-"Qx" = (
-/obj/structure/table/onestar,
-/obj/structure/sign/derelict3{
-	pixel_y = -32
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "QA" = (
 /turf/simulated/shuttle/wall/science{
@@ -4411,6 +4405,12 @@
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "4,17"
 	},
+/area/space)
+"SA" = (
+/obj/structure/cryofeed{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "SB" = (
 /obj/structure/dispenser/oxygen,
@@ -14896,9 +14896,9 @@ gV
 RJ
 RJ
 GO
-cl
+jS
 GO
-Qx
+zg
 XW
 RJ
 RJ
@@ -15510,10 +15510,10 @@ RJ
 RJ
 RJ
 XW
-AY
-AY
-AY
-AY
+SA
+SA
+SA
+SA
 XW
 cb
 cb
@@ -15712,10 +15712,10 @@ RJ
 RJ
 RJ
 XW
-Gz
-Gz
-Gz
-Gz
+OB
+OB
+OB
+OB
 XW
 cb
 cb
@@ -15906,7 +15906,7 @@ Mf
 gV
 uB
 uB
-rk
+EA
 uB
 uB
 XW
