@@ -9,7 +9,7 @@
       gun's burst_delay
   - bugfix: Guns are no longer hard locked to a 4 MS fire_delay.
   - balance: Bull shotgun now has a fire_delay of 2 MS.
-  - balance: SEMI_AUTO_NODELAY has been changed to SEMI_AUTO_150, with a firerate
+  - balance: SEMI_AUTO_NODELAY has been changed to SEMI_AUTO_300, with a firerate
       delay of 2 MS
   SirRichardFrancis:
   - rscadd: text-to-speech
