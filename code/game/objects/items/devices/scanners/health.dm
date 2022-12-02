@@ -194,12 +194,12 @@
 			for(var/datum/wound/W in e.wounds) if(W.internal)
 				dat += text(SPAN_WARNING("Internal bleeding detected. Advanced scanner required for location."))
 				break
-			var/internal_wound_severity = e.number_internal_wounds
+			var/internal_wound_severity = e.severity_internal_wounds
 			if(!internal_wound_severity)
 				continue
-			if(internal_wound_severity < 3)
+			if(internal_wound_severity < 5)
 				dat += text(SPAN_WARNING("Light internal damage detected in \the [e]. Advanced scanner required for location. Treatment recommended."))
-			else if(internal_wound_severity < 7)
+			else if(internal_wound_severity < 9)
 				dat += text(SPAN_WARNING("Moderate internal damage detected \the [e]. Advanced scanner required for location. Treatment recommended."))
 			else
 				dat += text(SPAN_WARNING("Severe internal damage detected \the [e]. Advanced scanner required for location. Immediate treatment recommended."))

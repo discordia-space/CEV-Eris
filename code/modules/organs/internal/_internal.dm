@@ -357,6 +357,11 @@
 
 	return mod_data
 
+/obj/item/organ/internal/rejuvenate()
+	refresh_organ_stats()
+	QDEL_LIST(GetComponents(/datum/component/internal_wound))
+	apply_modifiers()
+
 // Store these so we can properly restore them when installing/removing mods
 /obj/item/organ/internal/proc/initialize_organ_efficiencies()
 	initial_organ_efficiency = organ_efficiency.Copy()
