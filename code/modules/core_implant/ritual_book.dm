@@ -18,6 +18,31 @@
 		), rand(40,80), 1)
 	interact(H)
 
+/obj/item/book/ritual/proc/burnbible(obj/item/I, mob/user)
+	var/class = "warning"
+
+	user.visible_message("<span class='[class]'>[user] holds \the [I] up to \the [src], it looks like \he's trying to burn it!</span>", \
+	"<span class='[class]'>You hold \the [I] up to \the [src], burning it slowly.</span>") //Optimize to make louder to cruciforms
+
+	spawn(100) //Optimize to progress bar
+		if(get_dist(src, user) < 2 && user.get_active_hand() == I)
+			user.visible_message("<span class='[class]'>[user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
+			"<span class='[class]'>You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
+
+			if(user.get_inactive_hand() == src)
+				user.drop_from_inventory(src)
+
+			new /obj/effect/decal/cleanable/ash(src.loc)
+			qdel(src)
+
+		else
+			to_chat(user, "\red You must hold \the [I] steady to burn \the [src].")
+
+/obj/item/book/ritual/attackby(obj/item/I, mob/user)
+    if(isflamesource(I))
+        burnbible(I, user)
+        return
+
 /obj/item/book/ritual/nano_ui_data(mob/user)
 	var/obj/item/implant/core_implant/cruciform/CI
 	if(isliving(user))
