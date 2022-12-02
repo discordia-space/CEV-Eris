@@ -404,3 +404,17 @@
 	if(istype(target))
 		target.apply_effect(rand(5, 10), IRRADIATE)
 
+/obj/item/tool/spear/makeshift_halberd
+	name = "makeshift halberd"
+	desc = "Slap a heavy blade on some rods duct-taped together and call it a day."
+	icon_state = "makeshift_halberd"
+	item_state = "makeshift_halberd"
+	wielded_icon = "makeshift_halberd_wielded"
+	force = WEAPON_FORCE_ROBUST
+	throwforce = WEAPON_FORCE_NORMAL
+	armor_divisor = ARMOR_PEN_SHALLOW
+	tool_qualities = list(QUALITY_CUTTING = 10)
+	matter = list(MATERIAL_STEEL = 5)
+	forced_broad_strike = TRUE
+	rarity_value = 90
+	degradation = 3

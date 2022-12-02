@@ -238,3 +238,20 @@
 	tool_qualities = list(QUALITY_HAMMERING = 15)
 	matter = list(MATERIAL_STEEL = 5)
 	rarity_value = 35
+
+/obj/item/tool/hammer/staff
+	name = "makeshift staff"
+	desc = "Three rods, some duct tape and a lot of bloodlust give you this. Its size helps greatly with blocking melee attacks and reaching far."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "staff"
+	item_state = "staff"
+	wielded_icon = "staff_wielded"
+	tool_qualities = list(QUALITY_HAMMERING = 5)
+	matter = list(MATERIAL_STEEL = 3)
+	extended_reach = TRUE
+	rarity_value = 70
+	max_upgrades = 3
+	armor_divisor = ARMOR_PEN_GRAZING //blunt force trauma strong
+	force = WEAPON_FORCE_PAINFUL
+	force_wielded_multiplier = 1.3
+	w_class = ITEM_SIZE_HUGE
