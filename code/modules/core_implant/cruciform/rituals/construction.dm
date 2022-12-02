@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 		fail("There is no mistake to remove here.",user,C,targets)
 		return
 
-	user.visible_message(SPAN_NOTICE("You see as [user] places one hand upon their cruciform, and the other stretched forward."),SPAN_NOTICE("You take back what is, returning it to what was."))
+	user.visible_message(SPAN_NOTICE("[user] places one hand on their chest, and the other stretched forward."),SPAN_NOTICE("You take back what is, returning it to what was."))
 
 	var/obj/effect/overlay/nt_construction/effect = new(target_turf, 5 SECONDS)
 
