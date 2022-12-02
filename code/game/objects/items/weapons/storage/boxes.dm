@@ -781,6 +781,6 @@
 	if(prob(1))
 		things2spawn += /obj/item/clothing/head/kitty
 */
-	things2spawn += pick(subtypesof(/obj/item/toy/plushie) + subtypesof(/obj/item/toy/figure))
+	things2spawn += pick(/obj/spawner/toy/figure, /obj/spawner/toy/plushie, /obj/spawner/toy/card)
 	for(var/path in things2spawn)
 		new path(src)
