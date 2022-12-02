@@ -128,7 +128,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 			scrap = new scrap(target_turf)
 
 	effect.success()
-	user.visible_message(SPAN_NOTICE("DING FRIES ARE DONE"),SPAN_NOTICE("WOULD YOU LIKE AN APPLE PIE WITH THAAAAAT"))
+	user.visible_message(SPAN_NOTICE("Clanking of parts hit the floor as [user] finishes their prayer and the machine falls apart."),SPAN_NOTICE("Collect the evidence, and begin to atone."))
 
 	qdel(reclaimed)
 
