@@ -197,7 +197,7 @@
 		list(/obj/item/stack/rods, 1)
 	)
 
-/datum/craft_recipe/weapon/staff
+/datum/craft_recipe/weapon/halberd
 	name = "makeshift halberd"
 	result = /obj/item/tool/spear/makeshift_halberd
 	steps = list(
