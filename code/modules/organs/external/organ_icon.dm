@@ -77,7 +77,7 @@ var/global/list/limb_icon_cache = list()
 	if(!species)
 		species = owner.species
 
-	if(owner.species.has_process[OP_EYES])
+	if(owner.species.has_process[OP_EYES] && species.appearance_flags & HAS_EYE_COLOR)
 		for(var/obj/item/organ/internal/eyes/eyes in owner.organ_list_by_process(OP_EYES))
 			mob_icon.Blend(eyes.get_icon(), ICON_OVERLAY)
 
