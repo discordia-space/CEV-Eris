@@ -89,6 +89,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 	name = "Uproot"
 	phrase = "Dominus dedit, Dominus abstulit."
 	desc = "Mistakes are to be a lesson, but first we must correct it by deconstructing its form."
+	power = 40
 
 /datum/ritual/cruciform/priest/acolyte/deconstruction/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C, list/targets)
 	if(!GLOB.nt_constructs) //Makes sure the list we curated earlier actually exists
@@ -99,6 +100,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 	var/loot //Variable to be defined later as materials resulting from deconstruction
 	var/turf/target_turf = get_step(user,user.dir) //Gets the turf in front of the user
 	
+	//Find the NT Structure in front of the player
 	for(reclaimed in target_turf) 
 		if(reclaimed.type in GLOB.nt_constructs)
 			loot = GLOB.nt_constructs[reclaimed.type]
@@ -117,6 +119,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 		effect.failure()
 		return
 	
+	//Lets spawn and drop the materials resulting from deconstruction
 	for(var/obj/scrap as anything in loot)
 		if(ispath(scrap, /obj/item/stack))
 			var/obj/item/stack/mat = new scrap(target_turf)
