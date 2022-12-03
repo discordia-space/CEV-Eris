@@ -501,7 +501,7 @@
 	return sanitize(jointext(split_phrase," "))
 
 /datum/perk/njoy
-	name = "Njoy(Active)"
+	name = "Njoy (Active)"
 	desc = "The benefits of njoy are coursing through you."
 	icon_state = "cheerful"  //https://game-icons.net/1x1/lorc/cheerful.html
 
