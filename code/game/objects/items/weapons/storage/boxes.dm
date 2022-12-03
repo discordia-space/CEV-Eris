@@ -776,7 +776,7 @@
 		new path(src)
 
 /obj/item/storage/box/njoy/red
-	name = "Red njoy packet"
+	name = "red njoy packet"
 	desc = "Packet full of red njoy pills."
 	illustration = null
 	icon_state = "packet_njoy_red"
