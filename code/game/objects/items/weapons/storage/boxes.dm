@@ -776,7 +776,7 @@
 		new path(src)
 
 /obj/item/storage/box/njoy/red
-	name = "red njoy packet"
+	name = "red Njoy packet"
 	desc = "Packet full of red njoy pills."
 	illustration = null
 	icon_state = "packet_njoy_red"
@@ -792,7 +792,7 @@
 	new /obj/item/storage/pill_bottle/njoy/red(src)
 
 /obj/item/storage/box/njoy/blue
-	name = "blue njoy packet"
+	name = "blue Njoy packet"
 	desc = "Packet full of blue njoy pills."
 	illustration = null
 	icon_state = "packet_njoy_blue"
@@ -808,7 +808,7 @@
 	new /obj/item/storage/pill_bottle/njoy/blue(src)
 
 /obj/item/storage/box/njoy/green
-	name = "green njoy packet"
+	name = "green Njoy packet"
 	desc = "Packet full of green njoy pills."
 	illustration = null
 	icon_state = "packet_njoy_green"
