@@ -142,10 +142,9 @@
 	name = "warped skeletal remains"
 	species = SPECIES_SKELETON
 	corpseuniform = /obj/item/clothing/under/onestar
-	corpsesuit = /obj/item/clothing/suit/space/void/onestar
+	corpsesuit = /obj/item/clothing/suit/space/void/onestar		// Helmet won't spawn pre-equipped, but it's there
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpseradio = /obj/item/device/radio/headset
-	corpsehelmet = /obj/item/clothing/head/space/void/onestar
 	//corpseid = TRUE
 	//corpseidjob = list("Therapist", "Private Security", "Master Chef", "Researcher", "Market Analyst", "Colonist")
 
