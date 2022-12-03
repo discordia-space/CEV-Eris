@@ -44,7 +44,7 @@ proc/setup_codespeak()
 /datum/codespeak_list/proc/find_message_radio(index)
 	for(var/saved_index in codes)
 		if(findtext(index, saved_index))
-			return saved_index
+			return codes[saved_index]
 
 /mob/living/carbon/human/
 	var/codespeak_cooldown
