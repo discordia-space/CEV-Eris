@@ -499,3 +499,21 @@
 		split_phrase[index] = word
 
 	return sanitize(jointext(split_phrase," "))
+
+/datum/perk/njoy
+	name = "Njoy(Active)"
+	desc = "The benefits of njoy are coursing through you."
+	icon_state = "cheerful"  //https://game-icons.net/1x1/lorc/cheerful.html
+
+/datum/perk/njoy/assign(mob/living/carbon/human/H)
+	if(..())
+		holder.sanity.positive_prob *= 0.25
+		holder.sanity.negative_prob *= 0.25
+		holder.sanity.insight_gain_multiplier *= 0.5
+
+/datum/perk/njoy/remove()
+	if(holder)
+		holder.sanity.positive_prob *= 4
+		holder.sanity.negative_prob *= 4
+		holder.sanity.insight_gain_multiplier *= 2
+	..()

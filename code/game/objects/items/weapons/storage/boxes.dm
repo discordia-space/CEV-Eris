@@ -774,3 +774,52 @@
 	things2spawn += pick(subtypesof(/obj/item/toy/plushie) + subtypesof(/obj/item/toy/figure))
 	for(var/path in things2spawn)
 		new path(src)
+
+/obj/item/storage/box/njoy/red
+	name = "Red njoy packet"
+	desc = "Packet full of red njoy pills"
+	illustration = null
+	icon_state = "packet_njoy_red"
+	item_state = "packet_njoy_red"
+
+/obj/item/storage/box/njoy/red/New()
+	. = ..()
+/obj/item/storage/box/njoy/red/populate_contents()
+	for(var/i in 1 to initial_amount)
+	new /obj/item/storage/pill_bottle/njoy/red(src)
+	new /obj/item/storage/pill_bottle/njoy/red(src)
+	new /obj/item/storage/pill_bottle/njoy/red(src)
+	new /obj/item/storage/pill_bottle/njoy/red(src)
+
+/obj/item/storage/box/njoy/blue
+	name = "Blue njoy packet"
+	desc = "Packet full of blue njoy pills"
+	illustration = null
+	icon_state = "packet_njoy_blue"
+	item_state = "packet_njoy_blue"
+
+/obj/item/storage/box/njoy/blue/New()
+	. = ..()
+/obj/item/storage/box/njoy/blue/populate_contents()
+	for(var/i in 1 to initial_amount)
+	new /obj/item/storage/pill_bottle/njoy/blue(src)
+	new /obj/item/storage/pill_bottle/njoy/blue(src)
+	new /obj/item/storage/pill_bottle/njoy/blue(src)
+	new /obj/item/storage/pill_bottle/njoy/blue(src)
+
+/obj/item/storage/box/njoy/green
+	name = "Green njoy packet"
+	desc = "Packet full of green njoy pills"
+	illustration = null
+	icon_state = "packet_njoy_green"
+	item_state = "packet_njoy_green"
+
+/obj/item/storage/box/njoy/green/New()
+	. = ..()
+/obj/item/storage/box/njoy/green/populate_contents()
+	for(var/i in 1 to initial_amount)
+	new /obj/item/storage/pill_bottle/njoy/green(src)
+	new /obj/item/storage/pill_bottle/njoy/green(src)
+	new /obj/item/storage/pill_bottle/njoy/green(src)
+	new /obj/item/storage/pill_bottle/njoy/green(src)
+
