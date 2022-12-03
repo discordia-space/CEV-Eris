@@ -502,8 +502,11 @@
 
 /datum/perk/njoy
 	name = "Njoy (Active)"
-	desc = "The benefits of njoy are coursing through you."
+	desc = "Your mind can focus on what is real, just like when you get rid of a painful earring."
 	icon_state = "cheerful"  //https://game-icons.net/1x1/lorc/cheerful.html
+
+	gain_text = "Your mind feels much more clear now."
+	lose_text = "You feel the shadows once more."
 
 /datum/perk/njoy/assign(mob/living/carbon/human/H)
 	if(..())
