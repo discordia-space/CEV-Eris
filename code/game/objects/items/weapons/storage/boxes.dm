@@ -289,6 +289,11 @@
 	initial_amount = 7
 	spawn_type = /obj/item/grenade/frag/white_phosphorous
 
+/obj/item/storage/box/phosphorous/populate_contents()
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+
+
 /obj/item/storage/box/flashbangs/uplink_item
 	name = "Box of flashbangs"
 	desc = "A box containing 5 antipersonnel flashbang grenades.<br> WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use."
