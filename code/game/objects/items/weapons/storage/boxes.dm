@@ -777,7 +777,7 @@
 
 /obj/item/storage/box/njoy/red
 	name = "Red njoy packet"
-	desc = "Packet full of red njoy pills"
+	desc = "Packet full of red njoy pills."
 	illustration = null
 	icon_state = "packet_njoy_red"
 	item_state = "packet_njoy_red"
@@ -793,7 +793,7 @@
 
 /obj/item/storage/box/njoy/blue
 	name = "Blue njoy packet"
-	desc = "Packet full of blue njoy pills"
+	desc = "Packet full of blue njoy pills."
 	illustration = null
 	icon_state = "packet_njoy_blue"
 	item_state = "packet_njoy_blue"
@@ -809,7 +809,7 @@
 
 /obj/item/storage/box/njoy/green
 	name = "Green njoy packet"
-	desc = "Packet full of green njoy pills"
+	desc = "Packet full of green njoy pills."
 	illustration = null
 	icon_state = "packet_njoy_green"
 	item_state = "packet_njoy_green"
