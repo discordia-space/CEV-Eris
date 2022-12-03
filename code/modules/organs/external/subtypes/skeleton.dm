@@ -3,7 +3,7 @@
 	has_muscles = FALSE
 	has_nerves = FALSE
 
-/obj/item/organ/external/skeletal/head
+/obj/item/organ/external/skeletal/chest
 	default_description = /datum/organ_description/chest
 
 /obj/item/organ/external/skeletal/groin
