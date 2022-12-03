@@ -792,7 +792,7 @@
 	new /obj/item/storage/pill_bottle/njoy/red(src)
 
 /obj/item/storage/box/njoy/blue
-	name = "Blue njoy packet"
+	name = "blue njoy packet"
 	desc = "Packet full of blue njoy pills."
 	illustration = null
 	icon_state = "packet_njoy_blue"
