@@ -1992,6 +1992,7 @@
 #include "code\modules\mob\living\carbon\human\species\species_hud.dm"
 #include "code\modules\mob\living\carbon\human\species\station\golem.dm"
 #include "code\modules\mob\living\carbon\human\species\station\monkey.dm"
+#include "code\modules\mob\living\carbon\human\species\station\skeleton.dm"
 #include "code\modules\mob\living\carbon\human\species\station\slime.dm"
 #include "code\modules\mob\living\carbon\human\species\station\station.dm"
 #include "code\modules\mob\living\carbon\slime\death.dm"

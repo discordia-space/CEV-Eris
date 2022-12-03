@@ -16,3 +16,15 @@
 
 /mob/living/carbon/human/dummy/mannequin/fully_replace_character_name(var/oldname, var/newname)
 	..(newname = "[newname] (mannequin)")
+
+/mob/living/carbon/human/skeleton
+	real_name = "skeletal remains"
+	icon_state = "skeleton"
+
+/mob/living/carbon/human/skeleton/New(new_loc)
+	..(new_loc, SPECIES_SKELETON)
+	STOP_PROCESSING(SSmobs, src)
+	death(FALSE)
+
+// Delete gibbed limb if bone was removed
+// Remove the blood vessels, nerves, and muscles from the limbs
