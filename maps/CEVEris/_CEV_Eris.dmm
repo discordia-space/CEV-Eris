@@ -44230,7 +44230,7 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/button/remote/blast_door{
-	id = "First Officer Line Access";
+	id = "firstofficer_access";
 	name = "First Officer Line Access";
 	pixel_x = -26
 	},
