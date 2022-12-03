@@ -13,12 +13,9 @@
 	max_age = 359	// OS disappeared in 2291, CEV Eris launched 2642. This means the skeleton of a child of 8 years would be 359 years old.
 
 	eyes = null
-	blood_color = null
+	blood_color = "#EDE7DF"	// Workaround for bleeding, pretend it's bone dust or something
 	flesh_color = null
-	blood_volume = 0
-
-	default_language = null
-	language = null
+	blood_volume = -1	// 0 causes runtimes elsewhere
 
 	language = null
 	default_language = null
@@ -30,6 +27,9 @@
 	death_message = null
 
 	meat_type = null
+	gibber_type = null
+	single_gib_type = null
+	remains_type = null
 
 	lower_sanity_process = FALSE
 

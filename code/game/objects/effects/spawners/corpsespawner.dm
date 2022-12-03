@@ -45,6 +45,7 @@
 	for(var/obj/item/organ/O in M.internal_organs)	// Kills the mob and all internal organs
 		O.die()
 
+	STOP_PROCESSING(SSmobs, src)
 	M.death(0)										// Just in case the mob doesn't die
 	M.pulse = PULSE_NONE							// Because killing a mob and its organs doesn't stop its pulse
 
@@ -57,6 +58,9 @@
 		M.change_skin_tone(skintone)
 	else
 		M.change_skin_tone(rand(-200,-15))
+
+	if(M.species.min_age && M.species.max_age)
+		M.age = rand(M.species.min_age, M.species.max_age)
 
 	if(corpseuniform)
 		M.equip_to_slot_or_del(new corpseuniform(M), slot_w_uniform)

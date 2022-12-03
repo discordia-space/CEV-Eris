@@ -18,7 +18,6 @@
 	..(newname = "[newname] (mannequin)")
 
 /mob/living/carbon/human/skeleton
-	real_name = "skeletal remains"
 	icon_state = "skeleton"
 
 /mob/living/carbon/human/skeleton/New(new_loc)

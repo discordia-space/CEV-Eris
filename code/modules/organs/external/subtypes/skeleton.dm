@@ -1,7 +1,5 @@
 /obj/item/organ/external/skeletal
-	has_blood_vessels = FALSE
-	has_muscles = FALSE
-	has_nerves = FALSE
+	generation_flags = ORGAN_HAS_BONES
 
 /obj/item/organ/external/skeletal/chest
 	default_description = /datum/organ_description/chest

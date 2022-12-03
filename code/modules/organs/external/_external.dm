@@ -82,11 +82,7 @@
 	var/default_description
 
 	// Generation behavior
-	// These will be turned into one flag var after Erismed 4
-	var/has_bones = TRUE
-	var/has_blood_vessels = TRUE
-	var/has_muscles = TRUE
-	var/has_nerves = TRUE
+	var/generation_flags = ORGAN_HAS_BONES | ORGAN_HAS_BLOOD_VESSELS | ORGAN_HAS_MUSCLES | ORGAN_HAS_NERVES
 
 /obj/item/organ/external/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	if(OD)
@@ -215,13 +211,13 @@
 /obj/item/organ/external/proc/make_base_internal_organs()
 	if(is_stump(src))
 		return
-	if(has_bones)
+	if(generation_flags & ORGAN_HAS_BONES)
 		make_bones()
-	if(has_nerves)
+	if(generation_flags & ORGAN_HAS_NERVES)
 		make_nerves()
-	if(has_muscles)
+	if(generation_flags & ORGAN_HAS_MUSCLES)
 		make_muscles()
-	if(has_blood_vessels)
+	if(generation_flags & ORGAN_HAS_BLOOD_VESSELS)
 		make_blood_vessels()
 
 /obj/item/organ/external/proc/make_bones()
