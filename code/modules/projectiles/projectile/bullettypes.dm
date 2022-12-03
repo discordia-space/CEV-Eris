@@ -51,7 +51,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/srifle
 	name = ".20 caliber bullet"
-	damage_types = list(BRUTE = 32)
+	damage_types = list(BRUTE = 34)
 	armor_divisor = 1.5
 	penetrating = 2
 	can_ricochet = TRUE
@@ -265,7 +265,8 @@ There are important things regarding this file:
 	wounding_mult = WOUNDING_WIDE
 
 /obj/item/projectile/bullet/shotgun/beanbag/scrap
-	damage_types = list(BRUTE = 9, HALLOSS = 55)
+	damage_types = list(BRUTE = 9, HALLOSS = 20)
+	recoil = 10
 
 /obj/item/projectile/bullet/shotgun/practice
 	name = "practice slug"
@@ -304,7 +305,7 @@ There are important things regarding this file:
 	icon_state = "birdshot-[rand(1,4)]"
 
 /obj/item/projectile/bullet/pellet/shotgun/scrap
-	armor_divisor = 1.2
+	armor_divisor = 0.8
 	recoil = 5
 
 //Miscellaneous

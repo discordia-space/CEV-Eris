@@ -60,6 +60,8 @@
 	var/last_dam = -1	//Used for determining if we need to process all organs or just some or even none.
 	var/list/bad_external_organs = list()// organs we check until they are good.
 
+	var/punch_damage_increase = 0 // increases... punch damage... can be affected by clothing or implants.
+
 	var/xylophone = 0 //For the spoooooooky xylophone cooldown
 
 	var/mob/remoteview_target
@@ -67,7 +69,8 @@
 	var/hand_blood_color
 
 	var/gunshot_residue
-	var/pulling_punches // Are you trying not to hurt your opponent?
+	var/holding_back // Are you trying not to hurt your opponent?
+	var/blocking = FALSE //ready to block melee attacks?
 	var/dodging = TRUE // are you dodging those shots?
 
 	mob_bump_flag = HUMAN
@@ -92,6 +95,8 @@
 	mob_classification = CLASSIFICATION_ORGANIC | CLASSIFICATION_HUMANOID
 
 	var/datum/sanity/sanity
+
+	var/rest_points = 0
 
 	var/style = 0
 	var/max_style = MAX_HUMAN_STYLE

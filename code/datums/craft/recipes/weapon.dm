@@ -178,12 +178,37 @@
 
 /datum/craft_recipe/weapon/homewrecker
 	name = "homewrecker"
-	result = /obj/item/tool/hammer/homewrecker
+	result = /obj/item/tool/hammer/sledgehammer/improvised
 	steps = list(
 		list(/obj/item/stack/rods, 5, "time" = 30),
 		list(QUALITY_WELDING, 10, "time" = 30),
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 		list(QUALITY_ADHESIVE, 15, 70)
+	)
+
+/datum/craft_recipe/weapon/staff
+	name = "makeshift staff"
+	result = /obj/item/tool/hammer/staff
+	steps = list(
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1)
+	)
+
+/datum/craft_recipe/weapon/halberd
+	name = "makeshift halberd"
+	result = /obj/item/tool/spear/makeshift_halberd
+	steps = list(
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1),
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
+		list(QUALITY_HAMMERING, 10, "time" = 10),
+		list(QUALITY_ADHESIVE, 10, "time" = 5)
 	)
 
 /datum/craft_recipe/weapon/glass_spear
@@ -278,7 +303,7 @@
 	name = "charge hammer"
 	result = /obj/item/tool/hammer/charge
 	steps = list(
-		list(/obj/item/tool/hammer/homewrecker, 1, "time" = 120), //Get a homewrecker
+		list(/obj/item/tool/hammer/sledgehammer/improvised, 1, "time" = 120), //Get a homewrecker
 		list(CRAFT_MATERIAL, 4, MATERIAL_PLASTEEL), //Shore it up with some plasteel
 		list(QUALITY_WELDING, 10, "time" = 30), //Weld the plasteel to the head
 		list(/obj/item/rocket_engine, 1, "time" = 30),	//Attach a rocket engine

@@ -438,7 +438,7 @@
 	icon_state = "grav_enhancer"
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_OS
 	matter = list(MATERIAL_PLASTIC = 8, MATERIAL_URANIUM = 3)
-	spawn_blacklisted = FALSE
+	spawn_blacklisted = TRUE
 	price_tag = 1500
 
 /obj/item/tool_upgrade/refinement/gravenhancer/New()
@@ -506,7 +506,7 @@
 	icon_state = "canister_holding"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 4, MATERIAL_PLATINUM = 4)
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_OS
-	spawn_blacklisted = FALSE
+	spawn_blacklisted = TRUE
 	price_tag = 800
 
 /obj/item/tool_upgrade/augment/holding_tank/New()
@@ -621,7 +621,7 @@
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
 	rarity_value = 50
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_OS
-	spawn_blacklisted = FALSE
+	spawn_blacklisted = TRUE
 	price_tag = 2500
 
 /obj/item/tool_upgrade/augment/ai_tool/New()
@@ -630,7 +630,7 @@
 	I.tool_upgrades = list(
 	UPGRADE_POWERCOST_MULT = 1.20,
 	UPGRADE_PRECISION = 14,
-	UPGRADE_WORKSPEED = 14,
+	UPGRADE_WORKSPEED = 7,
 	UPGRADE_HEALTH_THRESHOLD = -10,
 	)
 	I.prefix = "intelligent"
@@ -653,7 +653,7 @@
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_OS
 	price_tag = 500
-	spawn_blacklisted = FALSE //onestar spawners are broken
+	spawn_blacklisted = TRUE
 
 /obj/item/tool_upgrade/augment/repair_nano/New()
 	..()

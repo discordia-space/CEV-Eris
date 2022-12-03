@@ -416,6 +416,16 @@
 	desc = "Contains tramadol - a general use painkiller"
 	preloaded_reagents = list("tramadol" = 15)
 
+/obj/item/reagent_containers/syringe/paracetamol
+	name = "syringe (paracetamol)"
+	desc = "Contains paracetamol - a mild painkiller"
+	preloaded_reagents = list("paracetamol" = 15)
+
+/obj/item/reagent_containers/syringe/adrenaline
+	name = "syringe (adrenaline)"
+	desc = "Contains adrenaline - a natural stimulant"
+	preloaded_reagents = list("adrenaline" = 15)
+
 /obj/item/reagent_containers/syringe/dermaline
 	name = "syringe (dermaline)"
 	desc = "Contains dermaline - a potent burn-salving medicine"

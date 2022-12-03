@@ -16,7 +16,7 @@
 /obj/item/reagent_containers/food/snacks/moecube/examine(mob/user)
 	. = ..()
 	if(ishuman(user))
-		var/mob/living/carbon/human/H
+		var/mob/living/carbon/human/H = user
 		var/obj/item/implant/core_implant/cruciform/C = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(C && C.active)
 			if(name == "cube of whirling worms")

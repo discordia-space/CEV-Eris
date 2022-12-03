@@ -5,7 +5,7 @@
 	icon_state = "handmade_revolver"
 	caliber = CAL_MAGNUM
 	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
-	max_shells = 5
+	max_shells = 6
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 10)
 	price_tag = 250 //one of the cheapest revolvers here
 	damage_multiplier = 1.25
@@ -24,5 +24,5 @@
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 4)
 	resultvars = list(/obj/item/gun/projectile/revolver/handmade)
 	gripvars = list(/obj/item/part/gun/grip/wood)
-	mechanismvar = /obj/item/part/gun/mechanism/revolver
-	barrelvars = list(/obj/item/part/gun/barrel/magnum, /obj/item/part/gun/barrel/pistol)
+	mechanismvar = /obj/item/part/gun/mechanism/revolver/steel
+	barrelvars = list(/obj/item/part/gun/barrel/magnum/steel, /obj/item/part/gun/barrel/pistol/steel)

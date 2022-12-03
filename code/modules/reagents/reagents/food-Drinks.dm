@@ -410,6 +410,7 @@
 	return
 
 /datum/reagent/drink/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	apply_sanity_effect(M, effect_multiplier)
 	M.adjustNutrition(nutrition * effect_multiplier)
 	M.dizziness = max(0, M.dizziness + adj_dizzy)
 	M.drowsyness = max(0, M.drowsyness + adj_drowsy)
@@ -995,7 +996,7 @@
 	color = "#200000"
 	adj_drowsy = -6
 	adj_temp = -5
-	taste_tag = list(TASTE_SOUR,TASTE_BITTER,TASTE_SWEET,TASTE_STRONG, TASTE_LIGHT, TASTE_BUBBLY, TASTE_SPICY, TASTE_SALTY)
+	taste_tag = list(TASTE_SPICY, TASTE_BUBBLY)
 
 	glass_unique_appearance = TRUE
 	glass_icon_state = "dr_gibb_glass"
@@ -1123,6 +1124,31 @@
 	glass_icon_state = "nothing"
 	glass_name = "nothing"
 	glass_desc = "Absolutely nothing."
+
+/datum/reagent/drink/protein_shake
+	name = "protein shake"
+	id = "protein_shake"
+	description = "Pure protein. Typically consumed after a workout in order to aid in muscle recovery."
+	taste_description = "strength"
+	sanity_gain_ingest = 0 //Your muscles recover, but not your mind
+
+	glass_unique_appearance = TRUE
+	glass_icon_state = "protein_shake"
+	glass_name = "protein shake"
+	glass_desc = "Pure protein. Typically consumed after a workout in order to aid in muscle recovery."
+
+/datum/reagent/drink/protein_shake/commercial
+	name = "commercial protein shake"
+	id = "protein_shake_commercial"
+	description = "An \"apple-flavored\" protein shake. Typically consumed after a workout in order to aid in muscle recovery... You aren't sure if this will be effective."
+	taste_description = "viscous slurry with bits of jelly"
+
+	glass_unique_appearance = TRUE
+	glass_icon_state = "protein_shake_commercial"
+	glass_name = "commercial protein shake"
+	glass_desc = "An \"apple-flavored\" protein shake. Typically consumed after a workout in order to aid in muscle recovery... You aren't sure if this will be effective."
+
+//there is no affect_ingest since the 'muscle recovery' is handled in the perk itself
 
 /* Alcohol */
 

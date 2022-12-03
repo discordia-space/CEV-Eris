@@ -144,6 +144,7 @@
 		for(var/j = 1 to mags)
 			if(prob(50))
 				new /obj/item/ammo_magazine/magnum/scrap(user.loc)
+
 			else
 				new /obj/item/ammo_magazine/msmg/scrap(user.loc)
 

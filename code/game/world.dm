@@ -79,7 +79,10 @@ var/game_id
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
 	diary = file("data/logs/[date_string].log")
 	diary << "[log_end]\n[log_end]\nStarting up. (ID: [game_id]) [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
-	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
+
+	// TODO: globalize me
+	var/latest_changelog = file("html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
+	changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
 
 	world_qdel_log = file("data/logs/[date_string] qdel.log")	// GC Shutdown log
 
@@ -197,11 +200,12 @@ var/world_topic_spam_protect_time = world.timeofday
 	qdel(src) //shut it down
 
 /world/Reboot(reason = 0, fast_track = FALSE)
-	/* spawn(0)
-		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
-	 */
-	if (reason || fast_track) //special reboot, do none of the normal stuff
-		if (usr)
+	if(!config.tts_cache)
+		for(var/i in GLOB.tts_death_row)
+			fdel(i)
+
+	if(reason || fast_track) //special reboot, do none of the normal stuff
+		if(usr)
 			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
 			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
 		to_chat(world, "<span class='boldannounce'>Rebooting World immediately due to host request.</span>")
@@ -215,10 +219,10 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	#ifdef UNIT_TESTS
 	FinishTestRun()
-	return
+	#else
+	..()
 	#endif
 
-	..()
 
 /hook/startup/proc/loadMode()
 	world.load_storyteller()

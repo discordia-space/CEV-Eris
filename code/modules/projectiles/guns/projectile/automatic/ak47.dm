@@ -48,7 +48,7 @@
 	mechanismvar = /obj/item/part/gun/mechanism/autorifle
 	barrelvars = list(/obj/item/part/gun/barrel/lrifle)
 
-/obj/item/gun/projectile/automatic/ak47/proc/can_interact(mob/user)
+/obj/item/gun/projectile/automatic/ak47/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
 		return 1
 	if(istype(loc, /obj/item/storage))
@@ -253,7 +253,7 @@
 	w_class = ITEM_SIZE_HUGE
 	init_recoil = RIFLE_RECOIL(0.7)
 	gun_parts = list(/obj/item/part/gun = 3 ,/obj/item/stack/material/plasteel = 7)
-	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_IH|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
 
 	origin_tech = list(TECH_COMBAT = 2)	//bad copies don't give good science
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)

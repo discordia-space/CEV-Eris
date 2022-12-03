@@ -1,0 +1,246 @@
+2021-10-02:
+  CeUvi:
+  - imageadd: old wood is back
+  - imagedel: shittencummen wood is no more
+  CeUvi, WalterJe:
+  - imageadd: updated some glasses and reagent filling states
+  Humonitarian:
+  - bugfix: Replaced broken cutlet cutting code with sliceable code
+  - tweak: Biogenerator can print egg boxes
+  - tweak: Roach eggs contain 9 units of eggyolk and 3 units of blattedin
+  MLGTASTICa:
+  - balance: Medical pouch can hold now 4 items
+  - balance: Vial pouch can no longer hold grenades and rpgs (tubular untouched) but
+      now it can hold 10 vials and small cells and other misc small items
+  - balance: Explosions no longer forcefully paralyze
+  - bugfix: Fixed AI Eye not properly updating when moving up or down a z-level
+  - bugfix: Fixed Roaches and Spiders still running a life-tick after dying.
+  - bugfix: Fixed random wave radio letting you stack the same oddity
+  - bugfix: Fixed door cycling not working properly
+  - balance: Seeing reagents inside beakers now requires scanning goggles , 35 cognition
+      or 50 biology
+  - balance: Tripping can no longer be prevented by anything slip-preventing
+  - balance: Trip chance is now 50% , and gets lowered by cognition stat
+  - code_imp: Added bitflag handling for perks that share a common ability
+  - balance: Buffed chemist perk and made the chemist perk also give the ability to
+      see reagents
+  - balance: Tripping no longer hardstuns , instead if weakens.
+  SirRichardFrancis:
+  - tweak: bolt rifles eject ammo when bolt is worked, spent or not
+  - rscadd: shrapnel removal button in surgery UI
+  - rscdel: meat spike craft recipe
+  drexample:
+  - refactor: Made server 514 ready and replaced ticklag with FPS in a few places
+  - refactor: Replaced our air subsystem with TauCeti's air.
+  - rscadd: Adds a new wearable oddity - A Big Shot Mask. It will greatly boost your
+      stats and provide strong protection (for a mask, at least), but at a steep price!
+      (doubles as a gas mask too!)
+  garrulousTeamotei:
+  - tweak: Biomatter max_amount changed from 60 to 120
+  - tweak: Sanctifier added to Sword of Truth
+  - bugfix: Sanctifier works against Carrions
+2021-10-09:
+  Alliostra:
+  - tweak: the biosyphon can now be fed maint fauna meat to produce masterpiece donuts.
+  - balance: monkey internal organs no longer grant carrions gene points.
+  - tweak: carrion organs now grant more gene points when consumed
+  - balance: readds meatspike crafting, meatspikes no longer delete people, and assorted
+      updates to meatspikes.
+  Another Nanako (aka KIROV):
+  - bugfix: fixed phantom mags
+  - bugfix: fixed reloading revolver with one hand
+  Bloodpriest:
+  - imageadd: 'visual update and fixes for some NT machines: reader; biocan; clonepod.'
+  Humonitarian:
+  - tweak: Lots of style vendor price changes
+  - balance: Triadkiller number of pockets increased, value reduced
+  - tweak: Armor plates can be worn on suits once more
+  - refactor: Greatcoats refactored from suit/armor to suit/storage
+  - refactor: Platecarrier refactored from armor/bulletproof/serbian to armor/platecarrier
+  - tweak: regular armor plates now only take 1 armor part
+  - rscadd: Platecarrier, ablative and riot armor plates
+  - imageadd: Platecarrier, ablative and riot armor plate icons added
+  - rscadd: loads of ambient sounds
+  - balance: the uplink implant is hidden from advanced medical scanners
+  - code_imp: implants now have a scannable variable, medical scanners look for it
+      before declaring a found bodypart.
+  - balance: freedom implant uses cooldown instead of charges
+  Hyperio:
+  - bugfix: Fixed job ban panel
+  - rscadd: Overmap extension part 2
+  MLGTASTICa:
+  - balance: PK munitions box are now normal sized
+  - balance: Ammo pouches can now only fit 6 mags instead of 9
+  - bugfix: Some style mistake in AI code
+  - balance: Detectives can now swab syringes or beakers for the DNA of the blood
+      inside
+  - balance: Thermal lenses no longer provide NV
+  - code_imp: Lense code is now a whole lot more modular and easy to add onto
+  - rscadd: Stock part rating scaling to the excel autodoc
+  - bugfix: Fixed autodoc not always ejecting people on moving.
+  - bugfix: Mech related runtime
+  - balance: Leg turn rate drastically lowered on all mech legs
+  - balance: Leg move delay lowered on all mech legs
+  - balance: Mech carbine buffed to use less power , fire in 3 shot bursts and be
+      slightly innacurate
+  - balance: Ion carbine modified to use less power
+  - balance: Laser carbine modified to use less power , fires in 2 shot bursts
+  - balance: Made combat exosuit legs more expensive by adding plasma and diamond
+      to their recipe.
+  - code_imp: Redone how premade mechs are handled and their air
+  - balance: Made the mounted PK use 5 bullets per burst instead of 15 , move delay
+      adjusted from 15 to 5.
+  - balance: Explosions now knock people back
+  - bugfix: Robots runtiming whenever trying to look up or down a ladder.
+  Shazbot194:
+  - rscadd: Added a var for shells color
+  - tweak: Tweaks the M12 to show the correct next shell.
+  - tweak: Updates M12 sprite
+  SirRichardFrancis:
+  - bugfix: broken radio again
+  - rscadd: old techomancer helmet to engineering lockers
+  - bugfix: custom codespeak phrases is no more
+  - rscadd: biomatter doors
+  - rscadd: litanies for interaction with biomatter doors
+  - imageadd: neotheologian doors and cross accessory
+  - bugfix: missing tau cross sprites
+2021-10-16:
+  CeUvi:
+  - imageadd: resprited neotheo mug
+  - rscadd: Added webbed armor in Operative's and Sarge's lockers
+  - rscadd: Added Ironhammer turtlenecks in Operative's and Sarge's lockers
+  - bugfix: fixed a few invisible hammers
+  Fiftyllama:
+  - tweak: tweaked how guild profit scores are calculated
+  HentaiStorm:
+  - rscadd: screen grain by sanity level
+  Humonitarian:
+  - balance: Piercing walls now uses armor penetration, inconsistent penetration results
+      in loss of momentum
+  - balance: Shields have been reworked, becoming a lot more consistent, stronger
+      against smaller arms fire, but much less effective against high-end firearms.
+  - tweak: Shields now only protect particular bodyparts, depending on how they are
+      held
+  - tweak: Shield's protective arc was reworked, it now depends on which hand is holding
+      it
+  Hyperio:
+  - rscdel: Removed cables from JTB and overmap chunks
+  MLGTASTICa:
+  - balance: Blast doors no longer open upon being broken
+  - balance: Blast doors now have a very high resistance against ballisitics, by 20.
+  - balance: All doors now reduce damage from bullets by 4
+  - balance: High security doors now cost 10 plasteel , but are far tougher against
+      ballistics.
+  - bugfix: Fixed huds for versions past 514.16
+  - rscadd: Added a verb to toggle walk or run . Not binded , has to be macroed ,
+      verb is change-move-intent.
+  SirRichardFrancis:
+  - bugfix: tau cross spawns in trash no more
+  githubuser4141:
+  - rscadd: Ports tank sounds from Aurora, Ports the mech pod chassis from Baystation
+  - tweak: Rebelanced/Buffed exosuit armor, moved the plasma cutter from Adv. Exo-Weapons
+      to Utility modules in Research, rebalanced mech-fab costs (see above)
+  - balance: Rebalanced mech armor, mech melee, mech-fab costs, adds a new chassis
+      type
+  - soundadd: Ports a tank tread sound from Aurora
+  - rscadd: Adds a steel/glass walkway above RnD, now with 99% more firelocks!
+  - rscdel: Removes the exposed catwalk above RnD
+  - tweak: Added R-Windows to xenobiology, exterior MoeSci windows, and the server
+      room, reshuffles the base RnD area for (hopefully) more convenience.
+  komunre:
+  - bugfix: tape could be applied to any door
+2021-10-17:
+  Hyperio:
+  - bugfix: Fix disposal sending items to nullspace
+2021-10-18:
+  MLGTASTICa:
+  - bugfix: Fixed doors
+2021-10-23:
+  CeUvi:
+  - imageadd: added some iriska holy doors
+  - imagedel: deleted some piss holy doors
+  Humonitarian:
+  - balance: recoil now decreases progressively, instead of all at once
+  Hyperio:
+  - tweak: Expand disposal cargo area to encompass the belts
+  - bugfix: Fix biomatter sorter output directions
+  INFRARED_BARON:
+  - imageadd: New sprites for lasers
+  Iglpigl:
+  - rscdel: Steal research contract has been removed.
+  - tweak: Blacklists all expect generic armor disks, the armors in them can still
+      be acquired with other means like junking, guild, etc.
+  MLGTASTICa:
+  - bugfix: fixed necro roaches
+  - bugfix: fixed kraftwerks evacuating in space
+  SirRichardFrancis:
+  - tweak: organ removal on robotic limb require "clamping" instead of "prying" tool
+      quality
+  - refactor: itsy bitsy code tweak
+  - code_imp: added missing check for loot spawner
+  - bugfix: NT doors having same sound for closing and opening
+  - rscadd: job prefixes for MBO and MEO
+  - tweak: nt doors react to turf click
+  - rscdel: mentions of ".35 special"
+2021-10-25:
+  CeUvi:
+  - imageadd: underwear
+  WalterJe:
+  - imageadd: emitter
+2021-10-27:
+  Anonmare:
+  - balance: The Type 42 now has 1.8x damage and 1.5xAP - this makes it actually better
+      than a Paco now.
+  Doster-d:
+  - tweak: removed cost multiplier from IC assembly in protolathe.
+  Iglpigl:
+  - spellcheck: Uplink units description in character setup is now correct.
+  - tweak: Aural Dampener is now also in the carrion uplink
+2021-10-29:
+  Hyperio:
+  - rscadd: Add Skill Issue autoresponse
+2021-10-30:
+  HentaiStorm:
+  - bugfix: fixed vote Close button and white window
+  Humonitarian:
+  - rscadd: Added a new Oberth brand gunmod. Accessible through RNG and adminbus
+  - code_imp: Added some bullet/gun variables
+  - balance: Most shields were buffed
+  - tweak: Tactical shield (riot) renamed to ballistic shield
+  - balance: Ballistic shields no longer fit in backpacks
+  - balance: Riot-size shields now provide partial protection to the legs, buckler-size
+      provide partial protection to the head and groin (50% chance to activate as
+      opposed to 100%)
+  - rscadd: Compact Ironhammer tactical shield, three spawn in armory
+  - rscadd: Ironhammer shield module for hardsuits, one spawns in armory
+  - rscadd: NT parma shield, printable from the basic melee design disk
+  - balance: Shields no longer take penetration value into account. Gauss coil barrels
+      are still effective however, as they signficantly increase AP
+  - imageadd: Sprites for the Parma and Tactical shields done by CeUvi
+  - tweak: NT spears are now repaired with a hammer
+  - bugfix: Buckler and Trayshield sprites were fixed
+  - balance: Shields now give extra melee block chance depending on Robustness. Lighter
+      and smaller shields generally benefit more, at the cost of lower starting levels
+  - bugfix: Medical scanners no longer show NULL results
+  Hyperio:
+  - bugfix: Fix Malf AI Roll when using AI drone or joining after roundstart
+  MLGTASTICa:
+  - bugfix: Crazy buckshot knockback
+  - balance: Reduced overall agony from limb damage by 10%
+  - balance: NVG Helmet glasses now require powercells to operate
+  - balance: Automatter nanoforge is now 40% more efficient on materials and prints
+      twice as fast, and stores twice as much.
+  SirRichardFrancis:
+  - tweak: flare gun no longer breaks
+  - tweak: flare projectile now 50% faster
+  - tweak: reinforced flare gun's description
+  - bugfix: flare gun and AMR counting spent casing twice when examined
+  - bugfix: flare gun's sprites not working properly
+  - imageadd: flare gun sprites by INFRARED_BARON
+  drexample:
+  - rscadd: Roaches drop festive items!
+  githubuser4141:
+  - balance: Mechs aren't EMP proof anymore and mechs can use their onboard air now.
+  - bugfix: Fixes mechs not being affected by EMPs, missing their pre-spawned armor
+      and missing a UI button
+  - code_imp: Slightly changed how EMPs damage mechs

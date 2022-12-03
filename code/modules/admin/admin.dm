@@ -1004,10 +1004,10 @@ ADMIN_VERB_ADD(/datum/admins/proc/toggle_tts, R_SERVER, FALSE)
 	set category = "Server"
 	set name = "Toggle text-to-speech"
 
-	if(config.tts_bearer)
+	if(GLOB.tts_bearer)
 		config.tts_enabled = !config.tts_enabled
 	else
-		to_chat(usr, "Configuration file is missing authentication data.")
+		to_chat(usr, "Configuration file [config.tts_key ? "contains invalid" : "is missing"] authentication key.")
 		return
 
 	to_chat(world, "<B>The text-to-speech has been globally [config.tts_enabled ? "enabled" : "disabled"]!</B>")
@@ -1032,11 +1032,12 @@ ADMIN_VERB_ADD(/datum/admins/proc/check_tts_stat, R_SERVER, FALSE)
 	set category = "Server"
 	set name = "Print text-to-speech stats"
 
-	to_chat(usr, "Text-to-speech is globally [config.tts_enabled ? "enabled" : (config.tts_bearer ? "disabled" : "disabled and authentication data is missing")]")
+	to_chat(usr, "Text-to-speech is globally [config.tts_enabled ? "enabled" : (GLOB.tts_bearer ? "disabled" : "disabled and authentication data is missing")]")
 	to_chat(usr, "Total tts files wanted this round: [GLOB.tts_wanted]")
 	to_chat(usr, "Successfully generated tts files: [GLOB.tts_request_succeeded]")
 	to_chat(usr, "Failed to generate tts files: [GLOB.tts_request_failed]")
 	to_chat(usr, "Reused tts files: [GLOB.tts_reused]")
+	to_chat(usr, "Files waiting to be deleted: [LAZYLEN(GLOB.tts_death_row)]")
 	if(LAZYLEN(GLOB.tts_errors))
 		to_chat(usr, "Following errors occured:")
 		for(var/i in GLOB.tts_errors)

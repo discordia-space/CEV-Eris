@@ -84,7 +84,7 @@
 	var/obj/item/organ/external/organ = target.get_organ(check_zone(target_zone))
 	if(!organ || organ.nerve_struck == -1)
 		return
-
+	visible_message(SPAN_WARNING("[attacker] tries to put [target]'s [organ.name] into a jointlock."))
 	if(!do_after(attacker, 7 SECONDS, target))
 		to_chat(attacker, SPAN_WARNING("You must stand still to jointlock [target]!"))
 	else
@@ -281,7 +281,7 @@
 	for (var/turf/T in range(1, attacker.loc))
 		if(istype(T, /turf/simulated/wall))
 			free_space = FALSE
-		if(!T.CanPass(attacker, T))
+		if(!T.Enter(attacker))
 			free_space = FALSE
 	if(!free_space)
 		to_chat(attacker, SPAN_WARNING("There is not enough space around you to do this."))
@@ -308,7 +308,7 @@
 		sleep(1)
 
 	target.throw_at(get_edge_target_turf(target, dir), 7, 2)//this is very fast, and very painful for any obstacle involved
-	target.damage_through_armor(damage, HALLOSS, armour_divisor = 2)
+	target.damage_through_armor(damage, HALLOSS, armor_divisor = 2)
 	attacker.regen_slickness(0.4)
 
 	//admin messaging

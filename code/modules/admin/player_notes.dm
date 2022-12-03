@@ -5,8 +5,9 @@
 #define NOTESFILE "data/player_notes.sav"	//where the player notes are saved
 
 datum/admins/proc/notes_show(var/ckey)
-	usr << browse("<head><title>Player Notes</title></head><body>[notes_gethtml(ckey)]</body>","window=player_notes;size=700x400")
-
+	var/datum/browser/panel = new(usr, "player_notes", "Player Notes", 700, 400)
+	panel.set_content(notes_gethtml(ckey))
+	panel.open()
 
 datum/admins/proc/notes_gethtml(var/ckey)
 	var/savefile/notesfile = new(NOTESFILE)

@@ -229,6 +229,14 @@
 
 	data["upgrades_max"] = max_upgrades
 
+	data["edge"] = edge
+	data["sharp"] = sharp
+	data["extended_reach"] = extended_reach
+	data["forced_broad_strike"] = forced_broad_strike
+	data["screen_shake"] = screen_shake
+	data["push_attack"] = push_attack
+	data["w_class"] = w_class
+
 	// it could be done with catalog using one line but whatever
 	if(item_upgrades.len)
 		data["attachments"] = list()
@@ -1090,7 +1098,8 @@
 							QUALITY_SHOVELING = 100,
 							QUALITY_DIGGING = 100,
 							QUALITY_EXCAVATION = 100,
-							QUALITY_CUTTING = 100)
+							QUALITY_CUTTING = 100,
+							QUALITY_HAMMERING = 100)
 
 #undef ADDITIONAL_TIME_LOWHEALTH
 

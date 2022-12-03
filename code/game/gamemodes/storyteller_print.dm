@@ -149,7 +149,9 @@
 
 	data += "</div>"
 
-	usr << browse(data,"window=story;size=600x600")
+	var/datum/browser/panel = new(usr, "story", "Story", 600, 600)
+	panel.set_content(data)
+	panel.open()
 
 /datum/storyteller/proc/storyteller_panel_extra()
 	return ""

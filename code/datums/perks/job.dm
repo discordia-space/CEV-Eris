@@ -73,7 +73,6 @@
 		holder.metabolism_effects.nsa_threshold_base /= 1.25
 	..()
 
-
 /datum/perk/vagabond
 	name = "Vagabond"
 	desc = "You're used to see the worst sight the world has to offer. Your mind feels more resistant. \
@@ -304,3 +303,32 @@
 	if(holder)
 		holder.verbs -= codespeak_procs
 	..()
+
+/datum/perk/codespeak/serbian
+	name = "Codespeak"
+	desc = "You know Serbian Mercenaries' code language, adapted to use in shipboarding scenarios."
+	icon_state = "codespeak_serb" // https://game-icons.net/1x1/delapouite/pocket-radio.html
+	codespeak_procs = list(
+		/mob/living/carbon/human/proc/sm_codespeak_help,
+		/mob/living/carbon/human/proc/sm_codespeak_backup,
+		/mob/living/carbon/human/proc/sm_codespeak_clear,
+		/mob/living/carbon/human/proc/sm_codespeak_dead_merc,
+		/mob/living/carbon/human/proc/sm_codespeak_wounded_merc,
+		/mob/living/carbon/human/proc/sm_codespeak_target,
+		/mob/living/carbon/human/proc/sm_codespeak_status,
+		/mob/living/carbon/human/proc/sm_codespeak_shutup,
+		/mob/living/carbon/human/proc/sm_codespeak_understood,
+		/mob/living/carbon/human/proc/sm_codespeak_yes,
+		/mob/living/carbon/human/proc/sm_codespeak_no,
+		/mob/living/carbon/human/proc/sm_codespeak_what,
+		/mob/living/carbon/human/proc/sm_codespeak_captured,
+		/mob/living/carbon/human/proc/sm_codespeak_escaped,
+		/mob/living/carbon/human/proc/sm_codespeak_understood_local,
+		/mob/living/carbon/human/proc/sm_codespeak_yes_local,
+		/mob/living/carbon/human/proc/sm_codespeak_no_local,
+		/mob/living/carbon/human/proc/sm_codespeak_engage_local,
+		/mob/living/carbon/human/proc/sm_codespeak_hold_local,
+		/mob/living/carbon/human/proc/sm_codespeak_go_local,
+		/mob/living/carbon/human/proc/sm_codespeak_stop_local,
+		/mob/living/carbon/human/proc/sm_codespeak_run_local,
+		/mob/living/carbon/human/proc/sm_codespeak_idiot_local)

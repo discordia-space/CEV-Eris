@@ -582,5 +582,6 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)
 	if(!title) return 0
 	var/datum/job/job = GetJob(title)
-	if(!job || job == "Vagabond") return 0
+	if(!job || job == ASSISTANT_TITLE)
+		return FALSE
 	return job.create_record

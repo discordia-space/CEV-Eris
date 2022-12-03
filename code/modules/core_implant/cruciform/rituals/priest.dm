@@ -306,13 +306,6 @@
 
 	return FALSE
 
-/datum/ritual/cruciform/priest/offering/call_for_arms
-	name = "Call for arms"
-	phrase = "Pater da mihi fortitudinem cladem ad malum."
-	desc = "Ask the Eye of the Protector to give you weapons to fight evil. You must offer 40 metal, 20 plasteel and 150 biomatter."
-	req_offerings = list(/obj/item/stack/material/plasteel = 20, /obj/item/stack/material/steel = 40, /obj/item/stack/material/biomatter = 150)
-	miracles = list(ARMAMENTS)
-
 /datum/ritual/cruciform/priest/offering/divine_intervention
 	name = "Divine intervention"
 	phrase = "Auxilium instaurarent domum tuam."
