@@ -365,7 +365,7 @@
 
 /obj/item/storage/pill_bottle/njoy/red
 	name = "bottle of red Njoy pills"
-	desc = "Contains pills used to slow down negative breakdowns."
+	desc = "Contains pills used to stop all breakdowns."
 	icon_state = "bottle_njoy_red"
 	pill_type = /obj/item/reagent_containers/pill/suppressital/
 
@@ -375,7 +375,7 @@
 
 /obj/item/storage/pill_bottle/njoy/green
 	name = "bottle of green Njoy pills"
-	desc = "Contains pills used to slow down negative breakdowns."
+	desc = "Contains pills used to stop all breakdowns."
 	icon_state = "bottle_njoy_green"
 	pill_type = /obj/item/reagent_containers/pill/suppressital/green
 
@@ -385,7 +385,7 @@
 
 /obj/item/storage/pill_bottle/njoy/blue
 	name = "bottle of blue Njoy pills"
-	desc = "Contains pills used to slow down negative breakdowns."
+	desc = "Contains pills used to stop all breakdowns."
 	icon_state = "bottle_njoy_blue"
 	pill_type = /obj/item/reagent_containers/pill/suppressital/blue
 

@@ -135,7 +135,7 @@
 
 /obj/item/reagent_containers/pill/suppressital
 	name = "Njoy red pill"
-	desc = "Reduces negative breakdown chances."
+	desc = "Stops all breakdowns."
 	icon_state = "pill_njoy_red"
 	preloaded_reagents = list("suppressital" = 15)
 /obj/item/reagent_containers/pill/suppressital/blue

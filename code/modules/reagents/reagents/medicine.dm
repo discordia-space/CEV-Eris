@@ -864,7 +864,7 @@
 /datum/reagent/medicine/suppressital
 	name = "Suppressital"
 	id = "suppressital"
-	description = "Medication designed to make negative breakdowns less likely."
+	description = "Medication designed to make breakdowns impossible to happen."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#001aff"
