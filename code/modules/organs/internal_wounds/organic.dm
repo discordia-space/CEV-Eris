@@ -12,7 +12,7 @@
 	treatments_chem = list(CE_BLOODCLOT = 0.55)	// Tricordrazine/polystem + bicaridine + meralyne OR quickclot OD + any brute heal
 	severity = 0
 	severity_max = 3
-	hal_damage = 0.2
+	hal_damage = IWOUND_MEDIUM_DAMAGE
 
 /datum/component/internal_wound/organic/blunt/rupture
 	name = "rupture"
@@ -37,7 +37,7 @@
 	severity = 0
 	severity_max = 3
 	next_wound = /datum/component/internal_wound/organic/swelling
-	hal_damage = 0.2
+	hal_damage = IWOUND_MEDIUM_DAMAGE
 
 /datum/component/internal_wound/organic/sharp/perforation
 	name = "perforation"
@@ -62,7 +62,7 @@
 	severity = 0
 	severity_max = 3
 	next_wound = /datum/component/internal_wound/organic/swelling
-	hal_damage = 0.2
+	hal_damage = IWOUND_MEDIUM_DAMAGE
 
 /datum/component/internal_wound/organic/edge/laceration
 	name = "laceration"
@@ -88,7 +88,7 @@
 	severity = 0
 	severity_max = 3
 	next_wound = /datum/component/internal_wound/organic/infection
-	hal_damage = 0.1
+	hal_damage = IWOUND_MEDIUM_DAMAGE
 
 /datum/component/internal_wound/organic/burn/scorch
 	name = "scorched tissue"
@@ -121,7 +121,7 @@
 	severity = 0
 	severity_max = 3
 	next_wound = /datum/component/internal_wound/organic/infection
-	hal_damage = 0.1
+	hal_damage = IWOUND_LIGHT_DAMAGE
 
 /datum/component/internal_wound/organic/necrosis/dying
 	name = "necrotizing tissue"
@@ -130,8 +130,8 @@
 /datum/component/internal_wound/organic/poisoning
 	treatments_chem = list(CE_PURGER = 3)	// No anti-tox cure, poisoning can occur as a result of too much anti-tox
 	severity = 0
-	severity_max = 6
-	hal_damage = 0.1
+	severity_max = IORGAN_MAX_HEALTH / 2
+	hal_damage = IWOUND_LIGHT_DAMAGE
 
 /datum/component/internal_wound/organic/poisoning/toxin
 	name = "toxin accumulation"
@@ -145,7 +145,7 @@
 	treatments_chem = list(CE_ONCOCIDAL = 1)
 	severity = 1
 	severity_max = 1
-	hal_damage = 0.1
+	hal_damage = IWOUND_LIGHT_DAMAGE
 	status_flag = ORGAN_MUTATED
 
 /datum/component/internal_wound/organic/radiation/benign
@@ -156,9 +156,9 @@
 	treatments_tool = list()
 	treatments_chem = list(CE_ONCOCIDAL = 2)
 	severity = 0
-	severity_max = 12
+	severity_max = IORGAN_MAX_HEALTH	// Will kill any organ
 	can_spread = TRUE
-	spread_threshold = 8
+	spread_threshold = IORGAN_SMALL_HEALTH	// This will spread at the same moment it kills a small organ
 
 // Secondary wounds
 /datum/component/internal_wound/organic/swelling
@@ -167,7 +167,7 @@
 	severity = 0
 	severity_max = 3
 	next_wound = /datum/component/internal_wound/organic/infection
-	hal_damage = 0.1
+	hal_damage = IWOUND_LIGHT_DAMAGE
 	specific_organ_size_multiplier = 0.2
 
 /datum/component/internal_wound/organic/swelling/normal
@@ -181,7 +181,7 @@
 	name = "blood loss"
 	treatments_chem = list(CE_OXYGENATED = 2, CE_BLOODRESTORE = 1)	// Dex+ treats, but it will come back if you don't get blood
 	severity = 0
-	severity_max = 12
+	severity_max = IORGAN_MAX_HEALTH
 	progression_threshold = 9	// Kills the organ in approx. 3 minutes
 
 /datum/component/internal_wound/organic/oxy/blood_loss
@@ -191,11 +191,10 @@
 /datum/component/internal_wound/organic/infection
 	treatments_chem = list(CE_ANTIBIOTIC = 5)	// 10u Spaceacillin or 5u spaceacillin + dylovene
 	severity = 0
-	severity_max = 12
-	progression_threshold = 120
-	hal_damage = 0.1
+	severity_max = IORGAN_MAX_HEALTH
+	hal_damage = IWOUND_LIGHT_DAMAGE
 	can_spread = TRUE
-	spread_threshold = 6
+	spread_threshold = IORGAN_SMALL_HEALTH
 
 /datum/component/internal_wound/organic/infection/standard
 	name = "infection"

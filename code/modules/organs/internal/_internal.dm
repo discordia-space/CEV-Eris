@@ -3,7 +3,7 @@
 	origin_tech = list(TECH_BIO = 2)
 	bad_type = /obj/item/organ/internal
 	spawn_tags = SPAWN_TAG_ORGAN_INTERNAL
-	max_damage = 12
+	max_damage = IORGAN_STANDARD_HEALTH
 	min_bruised_damage = 3
 	min_broken_damage = 5
 	desc = "A vital organ."
@@ -167,7 +167,7 @@
 				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/radiation))
 			if(is_robotic)
 				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/emp_burn))		// Radiation can fry electronics
-	
+
 	return possible_wounds
 
 /obj/item/organ/internal/proc/handle_blood()

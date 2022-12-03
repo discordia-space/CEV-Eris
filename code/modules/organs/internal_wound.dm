@@ -10,14 +10,14 @@
 	var/diagnosis_stat					// BIO for organic, MEC for robotic
 	var/diagnosis_difficulty			// basic - 25, adv - 40
 
-	var/severity						// How much the wound contributes to internal organ damage
+	var/severity = 0					// How much the wound contributes to internal organ damage
 	var/severity_max = 3				// How far the wound can progress, default is 2
 	var/can_damage_organ = TRUE			// Does wound severity damage the parent organ?
 
-	var/can_progress = FALSE			// Whether the wound can progress or not
-	var/datum/component/next_wound		// If defined, applies a wound of this type when severity is at max
-	var/progression_threshold = 90		// How many ticks until the wound progresses, default is 3 minutes
-	var/current_progression_tick		// Current tick towards progression
+	var/can_progress = FALSE						// Whether the wound can progress or not
+	var/datum/component/next_wound					// If defined, applies a wound of this type when severity is at max
+	var/progression_threshold = IWOUND_3_MINUTES	// How many ticks until the wound progresses, default is 3 minutes
+	var/current_progression_tick					// Current tick towards progression
 
 	var/can_spread = FALSE				// Whether the wound can spread throughout the body or not
 	var/spread_threshold = 0			// Severity at which the wound spreads a single time
@@ -30,7 +30,7 @@
 
 	// Additional effects
 	var/can_hallucinate = FALSE			// Will this wound cause hallucinations?
-	var/ticks_per_hallucination = 60	// 2 minutes
+	var/ticks_per_hallucination = IWOUND_2_MINUTES
 	var/current_hallucination_tick
 
 	// Organ adjustments - preferably used for more severe wounds

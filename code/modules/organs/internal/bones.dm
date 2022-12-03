@@ -5,7 +5,7 @@
 	organ_efficiency = list(OP_BONE = 100)
 	price_tag = 100
 	force = WEAPON_FORCE_NORMAL
-	max_damage = 14
+	max_damage = IORGAN_SKELETAL_HEALTH
 	min_bruised_damage = 4
 	min_broken_damage = 6
 

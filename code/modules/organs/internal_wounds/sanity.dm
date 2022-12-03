@@ -7,7 +7,7 @@
 	severity = 1
 	severity_max = 1
 	can_damage_organ = FALSE
-	psy_damage = 0.2
+	psy_damage = IWOUND_MEDIUM_DAMAGE
 	can_hallucinate = TRUE
 
 /datum/component/internal_wound/organic/sanity/twitch
@@ -23,7 +23,7 @@
 	severity = 1
 	severity_max = 1
 	can_damage_organ = FALSE
-	psy_damage = 0.2
+	psy_damage = IWOUND_MEDIUM_DAMAGE
 	can_hallucinate = TRUE
 
 /datum/component/internal_wound/robotic/sanity/volt

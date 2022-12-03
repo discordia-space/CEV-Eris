@@ -5,7 +5,7 @@
 	treatments_chem = list(CE_BONE_MEND = 1)
 	severity = 0
 	severity_max = 3
-	hal_damage = 0.1
+	hal_damage = IWOUND_LIGHT_DAMAGE
 
 /datum/component/internal_wound/organic/bone_blunt/bruise
 	name = "skeletal bruising"
@@ -30,7 +30,7 @@
 	severity = 0
 	severity_max = 3
 	next_wound = /datum/component/internal_wound/organic/swelling
-	hal_damage = 0.1
+	hal_damage = IWOUND_LIGHT_DAMAGE
 
 /datum/component/internal_wound/organic/bone_sharp/perforation
 	name = "perforation"
@@ -54,7 +54,7 @@
 	treatments_chem = list(CE_BONE_MEND = 1)
 	severity = 0
 	severity_max = 3
-	hal_damage = 0.1
+	hal_damage = IWOUND_LIGHT_DAMAGE
 
 /datum/component/internal_wound/organic/bone_edge/laceration
 	name = "laceration"
@@ -78,5 +78,5 @@
 	treatments_chem = list(CE_BONE_MEND = 2)
 	severity = 4
 	severity_max = 4
-	hal_damage = 0.1
+	hal_damage = IWOUND_MEDIUM_DAMAGE
 	status_flag = ORGAN_BROKEN
