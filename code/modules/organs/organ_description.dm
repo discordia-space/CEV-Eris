@@ -196,3 +196,48 @@
 	min_broken_damage = 15
 	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable
+
+////SKELETON////
+/datum/organ_description/chest/skeletal
+	name = "ribcage"
+	max_damage = 20
+	min_broken_damage = 5
+	max_volume = 1
+	default_type = /obj/item/organ/external/skeletal/chest
+
+/datum/organ_description/groin/skeletal
+	name = "pelvis"
+	max_damage = 20
+	min_broken_damage = 5
+	max_volume = 1
+	default_type = /obj/item/organ/external/skeletal/groin
+
+/datum/organ_description/head/skeletal
+	max_damage = 20
+	min_broken_damage = 5
+	max_volume = 1
+	default_type = /obj/item/organ/external/skeletal/head
+
+/datum/organ_description/arm/left/skeletal
+	max_damage = 20
+	min_broken_damage = 5
+	max_volume = 1
+	default_type = /obj/item/organ/external/skeletal
+
+/datum/organ_description/arm/right/skeletal
+	max_damage = 20
+	min_broken_damage = 5
+	max_volume = 1
+	default_type = /obj/item/organ/external/skeletal
+
+/datum/organ_description/leg/left/skeletal
+	max_damage = 20
+	min_broken_damage = 5
+	max_volume = 1
+	default_type = /obj/item/organ/external/skeletal
+
+/datum/organ_description/leg/right/skeletal
+	max_damage = 20
+	min_broken_damage = 5
+	max_volume = 1
+	default_type = /obj/item/organ/external/skeletal

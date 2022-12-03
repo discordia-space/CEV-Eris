@@ -25,6 +25,3 @@
 	..(new_loc, SPECIES_SKELETON)
 	STOP_PROCESSING(SSmobs, src)
 	death(FALSE)
-
-// Delete gibbed limb if bone was removed
-// Remove the blood vessels, nerves, and muscles from the limbs

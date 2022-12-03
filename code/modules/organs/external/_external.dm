@@ -81,6 +81,13 @@
 	// Used for spawned robotic organs
 	var/default_description
 
+	// Generation behavior
+	// These will be turned into one flag var after Erismed 4
+	var/has_bones = TRUE
+	var/has_blood_vessels = TRUE
+	var/has_muscles = TRUE
+	var/has_nerves = TRUE
+
 /obj/item/organ/external/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	if(OD)
 		set_description(OD)
@@ -208,10 +215,14 @@
 /obj/item/organ/external/proc/make_base_internal_organs()
 	if(is_stump(src))
 		return
-	make_bones()
-	make_nerves()
-	make_muscles()
-	make_blood_vessels()
+	if(has_bones)
+		make_bones()
+	if(has_nerves)
+		make_nerves()
+	if(has_muscles)
+		make_muscles()
+	if(has_blood_vessels)
+		make_blood_vessels()
 
 /obj/item/organ/external/proc/make_bones()
 	if(default_bone_type)
@@ -1080,4 +1091,3 @@ Note that amputating the affected organ does in fact remove the infection from t
 			user.sanity_damage += 5*((user.nutrition ? user.nutrition : 1)/user.max_nutrition)
 			to_chat(user, SPAN_NOTICE("You feel your [species.name]ity dismantling as you butcher the [src]")) // Human-ity , Monkey-ity , Slime-Ity
 	qdel(src)
-	
