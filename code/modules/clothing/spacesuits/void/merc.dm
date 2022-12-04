@@ -61,7 +61,6 @@
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_ihs"
 	obscuration = 0
-	style = STYLE_NEG_LOW
 
 /obj/item/clothing/head/space/void/merc/update_icon()
 	..()
@@ -90,7 +89,6 @@
 	species_restricted = list(SPECIES_HUMAN)
 	helmet = /obj/item/clothing/head/space/void/merc
 	stiffness = MEDIUM_STIFFNESS
-	style = STYLE_NEG_LOW
 
 /obj/item/clothing/suit/space/void/merc/equipped
 	spawn_blacklisted = TRUE
