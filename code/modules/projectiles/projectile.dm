@@ -511,7 +511,7 @@
 		pixel_x = location.pixel_x
 		pixel_y = location.pixel_y
 
-		if(!bumped && !isturf(original))
+		if(!bumped && !isturf(original) && !QDELETED(original))
 			if(loc == get_turf(original))
 				if(!(original in permutated))
 					if(Bump(original))
