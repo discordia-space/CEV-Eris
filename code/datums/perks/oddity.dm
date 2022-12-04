@@ -516,7 +516,7 @@
 
 /datum/perk/njoy/remove()
 	if(holder)
-		holder.sanity.positive_prob += 1
-		holder.sanity.negative_prob += 1
+		holder.sanity.positive_prob += 20
+		holder.sanity.negative_prob += 20
 		holder.sanity.insight_gain_multiplier *= 2
 	..()
