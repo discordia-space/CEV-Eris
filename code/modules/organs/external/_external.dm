@@ -259,6 +259,8 @@
 		limb_efficiency = limb_efficiency / 2
 		return
 	limb_efficiency = (limb_efficiency + owner.get_specific_organ_efficiency(OP_BLOOD_VESSEL, organ_tag)) / 3
+	if(status & ORGAN_MUTATED)
+		limb_efficiency /= 2
 
 /obj/item/organ/external/proc/update_bionics_hud()
 	switch(organ_tag)
@@ -843,7 +845,7 @@ This function completely restores a damaged organ to perfect condition.
 		return english_list(flavor_text)
 
 /obj/item/organ/external/is_usable()
-	return !is_nerve_struck() && !(status & (ORGAN_MUTATED|ORGAN_DEAD))
+	return !is_nerve_struck() && !(status & (ORGAN_DEAD))
 
 /obj/item/organ/external/drop_location()
 	if(owner)

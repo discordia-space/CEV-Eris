@@ -330,4 +330,4 @@
 	return TRUE
 
 /obj/item/organ/proc/is_usable()
-	return !(status & (ORGAN_CUT_AWAY|ORGAN_MUTATED|ORGAN_DEAD))
+	return !(status & (ORGAN_CUT_AWAY|ORGAN_DEAD))
