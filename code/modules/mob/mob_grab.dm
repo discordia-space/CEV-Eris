@@ -319,7 +319,7 @@
 			msg_admin_attack("[key_name(assailant)] grabbed the neck of [key_name(affecting)]")
 			hud.icon_state = "kill"
 			hud.name = "choke"
-		else if(!isnull(src))
+		else if(!QDELETED(src))
 			state = GRAB_AGGRESSIVE
 			hud.icon_state = "reinforce_final"
 
