@@ -162,12 +162,27 @@
 	price_tag = 1200
 	serial_type = "FS"
 
+/obj/item/gun/projectile/boltgun/fs/civilian
+	name = "FS BR .20 \"Arasaka\""
+	desc = "Weapon for hunting, or endless coastal warfare. \
+			A replica of a replica, this simple, low-cost bolt-action rifle offers superb armor-piercing short of anti-materiel rounds. \
+			This is mounted with a short scope, for ranges mildly longer than a maintenance tunnel."
+	icon_state = "arisaka_civilian"
+	item_suffix  = "_civilian"
+	init_recoil = RIFLE_RECOIL(1.9)
+	zoom_factors = list(0.5) //like the xbow
+	wielded_item_state = "_doble_arisaka"
+	spawn_blacklisted = FALSE
+	gun_parts = list(/obj/item/part/gun/frame/kadmin = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/srifle/steel = 1)
+	price_tag = 1000
+
 /obj/item/part/gun/frame/kadmin
 	name = "Kadmin frame"
 	desc = "A Kadmin bolt-action rifle frame. For hunting or endless coastal warfare."
 	icon_state = "frame_weebrifle"
-	resultvars = list(/obj/item/gun/projectile/boltgun/fs)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
+	result = /obj/item/gun/projectile/boltgun/fs
+	gripvars = list(/obj/item/part/gun/grip/rubber, /obj/item/part/gun/grip/wood)
+	resultvars = list(/obj/item/gun/projectile/boltgun/fs, /obj/item/gun/projectile/boltgun/fs/civilian)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
 	barrelvars = list(/obj/item/part/gun/barrel/srifle/steel)
 
