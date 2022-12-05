@@ -169,7 +169,7 @@
 			This is mounted with a short scope, for ranges mildly longer than a maintenance tunnel."
 	icon_state = "arisaka_civilian"
 	item_suffix  = "_civilian"
-	init_recoil = RIFLE_RECOIL(1.9)
+	init_recoil = RIFLE_RECOIL(2)
 	zoom_factors = list(0.5) //like the xbow
 	wielded_item_state = "_doble_arisaka"
 	spawn_blacklisted = FALSE
