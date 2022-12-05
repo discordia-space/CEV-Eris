@@ -1,7 +1,7 @@
 /datum/species/skeleton
 	name = SPECIES_SKELETON
 	name_plural = "skeletal remains"
-	blurb = "A human of the skeletal variety."	// Could use a neat OS lore bit here
+	blurb = "They look like human remains. Some poor soul expired here, a million miles from home."
 
 	icobase = 'icons/mob/human_races/r_skeleton.dmi'
 	deform = 'icons/mob/human_races/r_skeleton.dmi'
@@ -13,7 +13,7 @@
 	max_age = 359	// OS disappeared in 2291, CEV Eris launched 2642. This means the skeleton of a child of 8 years would be 359 years old.
 
 	eyes = null
-	blood_color = "#EDE7DF"	// Workaround for bleeding, pretend it's bone dust or something
+	blood_color = null//"#EDE7DF"	// Workaround for bleeding, pretend it's bone dust or something
 	flesh_color = null
 	blood_volume = -1	// 0 causes runtimes elsewhere
 
