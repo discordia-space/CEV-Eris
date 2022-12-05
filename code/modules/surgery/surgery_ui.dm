@@ -15,8 +15,9 @@
 	var/list/data = nano_ui_data(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "surgery_organ.tmpl", name, 550, 400)
+		ui.add_template("_internal", "surgery_internal.tmpl")
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -24,103 +25,14 @@
 /obj/item/organ/external/nano_ui_data(mob/user)
 	var/list/data = list()
 
-	data["status"] = get_status_data()
-
-	data["max_damage"] = max_damage
-	data["brute_dam"] = brute_dam
-	data["burn_dam"] = burn_dam
-
-	data["limb_efficiency"] = limb_efficiency
-	data["occupied_volume"] = get_total_occupied_volume()
-	data["max_volume"] = max_volume
-
-	data["conditions"] = get_conditions()
 	data["diagnosed"] = diagnosed
-	data["shrapnel"] = shrapnel_check()
-
-	if(owner)
-		data["owner_oxyloss"] = owner.getOxyLoss()
-		data["owner_oxymax"] = 100 - owner.total_oxygen_req
-		if(!cannot_amputate)
-			data["amputate_step"] = BP_IS_ROBOTIC(src) ? /datum/surgery_step/robotic/amputate : /datum/surgery_step/amputate
-
-	data["insert_step"] = BP_IS_ROBOTIC(src) ? /datum/surgery_step/insert_item/robotic : /datum/surgery_step/insert_item
-
-	var/list/contents_list = list()
-
-	for(var/obj/item/organ/internal/organ in internal_organs)
-		var/list/organ_data = list()
-
-		organ_data["name"] = organ.name
-		organ_data["ref"] = "\ref[organ]"
-		organ_data["open"] = organ.is_open()
-
-		var/icon/ic = new(organ.icon, organ.icon_state)
-		usr << browse_rsc(ic, "[organ.icon_state].png")	//Contvers the icon to a PNG so it can be used in the UI
-		organ_data["icon_data"] = "[organ.icon_state].png"
-
-		organ_data["damage"] = organ.damage
-		organ_data["max_damage"] = organ.max_damage
-		organ_data["status"] = organ.get_status_data()
-		organ_data["conditions"] = organ.get_conditions()
-
-		organ_data["stored_blood"] = organ.current_blood
-		organ_data["max_blood"] = organ.max_blood_storage
-		if(BP_BRAIN in organ.organ_efficiency)
-			organ_data["show_oxy"] = TRUE
-		organ_data["processes"] = organ.get_process_data()
-
-		var/list/actions_list = list()
-		if(can_remove_item(organ))
-			actions_list.Add(list(list(
-					"name" = "Extract",
-					"target" = "\ref[organ]",
-					"step" = BP_IS_ROBOTIC(organ) ? /datum/surgery_step/robotic/remove_item : /datum/surgery_step/remove_item
-				)))
-		actions_list.Add(organ.get_actions())
-		organ_data["actions"] = actions_list
-
-		contents_list.Add(list(organ_data))
-
-	for(var/i in implants)
-		var/atom/movable/implant = i
-		if(QDELETED(implant))
-			implants -= implant
-			continue
-
-		var/list/implant_data = list()
-
-		implant_data["name"] = implant.name
-		implant_data["ref"] = "\ref[implant]"
-		implant_data["open"] = TRUE
-		var/icon/ic = new(implant.icon, implant.icon_state)
-		usr << browse_rsc(ic, "[implant.icon_state].png")	//Contvers the icon to a PNG so it can be used in the UI
-		implant_data["icon_data"] = "[implant.icon_state].png"
-		implant_data["processes"] = list()
-
-		var/list/actions_list = list()
-		if(can_remove_item(implant))
-			var/list/remove_action = list(
-				"name" = "Extract",
-				"target" = "\ref[implant]",
-				"step" = BP_IS_ROBOTIC(src) ? /datum/surgery_step/robotic/remove_item : /datum/surgery_step/remove_item
-			)
-
-			actions_list.Add(list(remove_action))
-
-		implant_data["actions"] = actions_list
-
-		contents_list.Add(list(implant_data))
-
-	data["contents"] = contents_list
 
 	// For diagnostics on an internal object
-	if(!internal_organs.Find(selected_internal_object))
-		selected_internal_object = null
-
 	data["viewing_internal"] = selected_internal_object ? TRUE : FALSE
 
-	if(istype(selected_internal_object, /obj/item/organ/internal))
+	if(selected_internal_object)
+		if(!LAZYFIND(internal_organs, selected_internal_object))
+			selected_internal_object = null
 		var/obj/item/organ/internal/I = selected_internal_object
 		data["diag_name"] = I.name
 		data["diag_max_damage"] = I.max_damage
@@ -132,6 +44,101 @@
 		data["diag_ref"] = "\ref[I]"
 		data["diag_attach"] = /datum/surgery_step/attach_mod
 		data["diag_remove"] = /datum/surgery_step/remove_mod
+		data["diag_open"] = I.is_open()
+	else
+		data["status"] = get_status_data()
+
+		data["max_damage"] = max_damage
+		data["brute_dam"] = brute_dam
+		data["burn_dam"] = burn_dam
+
+		data["limb_efficiency"] = limb_efficiency
+		data["occupied_volume"] = get_total_occupied_volume()
+		data["max_volume"] = max_volume
+
+		data["conditions"] = get_conditions()
+		data["shrapnel"] = shrapnel_check()
+
+		if(owner)
+			data["owner_oxyloss"] = owner.getOxyLoss()
+			data["owner_oxymax"] = 100 - owner.total_oxygen_req
+			if(!cannot_amputate)
+				data["amputate_step"] = BP_IS_ROBOTIC(src) ? /datum/surgery_step/robotic/amputate : /datum/surgery_step/amputate
+
+		data["insert_step"] = BP_IS_ROBOTIC(src) ? /datum/surgery_step/insert_item/robotic : /datum/surgery_step/insert_item
+
+		var/list/contents_list = list()
+
+		for(var/obj/item/organ/internal/organ in internal_organs)
+			var/list/organ_data = list()
+
+			organ_data["name"] = organ.name
+			organ_data["ref"] = "\ref[organ]"
+			organ_data["open"] = organ.is_open()
+
+			var/icon/ic = new(organ.icon, organ.icon_state)
+			usr << browse_rsc(ic, "[organ.icon_state].png")	//Contvers the icon to a PNG so it can be used in the UI
+			organ_data["icon_data"] = "[organ.icon_state].png"
+
+			organ_data["damage"] = organ.damage
+			organ_data["max_damage"] = organ.max_damage
+			organ_data["wound_count"] = LAZYLEN(organ.GetComponents(/datum/component/internal_wound))
+			if(istype(organ, /obj/item/organ/internal/brain))
+				var/obj/item/organ/internal/brain/B = organ
+				organ_data["brain_health"] = B.health
+				organ_data["brain_health_max"] = initial(B.health)
+			organ_data["status"] = organ.get_status_data()
+			organ_data["conditions"] = organ.get_conditions()
+
+			organ_data["stored_blood"] = organ.current_blood
+			organ_data["max_blood"] = organ.max_blood_storage
+			if(BP_BRAIN in organ.organ_efficiency)
+				organ_data["show_oxy"] = TRUE
+			organ_data["processes"] = organ.get_process_data()
+
+			var/list/actions_list = list()
+			if(can_remove_item(organ))
+				actions_list.Add(list(list(
+						"name" = "Extract",
+						"target" = "\ref[organ]",
+						"step" = BP_IS_ROBOTIC(organ) ? /datum/surgery_step/robotic/remove_item : /datum/surgery_step/remove_item
+					)))
+			actions_list.Add(organ.get_actions())
+			organ_data["actions"] = actions_list
+
+			contents_list.Add(list(organ_data))
+
+		for(var/i in implants)
+			var/atom/movable/implant = i
+			if(QDELETED(implant))
+				implants -= implant
+				continue
+
+			var/list/implant_data = list()
+
+			implant_data["name"] = implant.name
+			implant_data["ref"] = "\ref[implant]"
+			implant_data["open"] = TRUE
+			var/icon/ic = new(implant.icon, implant.icon_state)
+			usr << browse_rsc(ic, "[implant.icon_state].png")	//Contvers the icon to a PNG so it can be used in the UI
+			implant_data["icon_data"] = "[implant.icon_state].png"
+			implant_data["processes"] = list()
+
+			var/list/actions_list = list()
+			if(can_remove_item(implant))
+				var/list/remove_action = list(
+					"name" = "Extract",
+					"target" = "\ref[implant]",
+					"step" = BP_IS_ROBOTIC(src) ? /datum/surgery_step/robotic/remove_item : /datum/surgery_step/remove_item
+				)
+
+				actions_list.Add(list(remove_action))
+
+			implant_data["actions"] = actions_list
+
+			contents_list.Add(list(implant_data))
+
+		data["contents"] = contents_list
 
 	return data
 
