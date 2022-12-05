@@ -45,11 +45,12 @@
 
 /datum/component/internal_wound/RegisterWithParent()
 	// Internal organ parent
-	RegisterSignal(parent, COMSIG_WOUND_EFFECTS, .proc/apply_effects)
-	RegisterSignal(parent, COMSIG_WOUND_FLAGS_ADD, .proc/apply_flags)
-	RegisterSignal(parent, COMSIG_WOUND_FLAGS_REMOVE, .proc/remove_flags)
-	RegisterSignal(parent, COMSIG_WOUND_DAMAGE, .proc/apply_damage)
-	RegisterSignal(parent, COMSIG_WOUND_AUTODOC, .proc/treatment)
+	RegisterSignal(parent, COMSIG_IWOUND_EFFECTS, .proc/apply_effects)
+	RegisterSignal(parent, COMSIG_IWOUND_LIMB_EFFECTS, .proc/apply_limb_effects)
+	RegisterSignal(parent, COMSIG_IWOUND_FLAGS_ADD, .proc/apply_flags)
+	RegisterSignal(parent, COMSIG_IWOUND_FLAGS_REMOVE, .proc/remove_flags)
+	RegisterSignal(parent, COMSIG_IWOUND_DAMAGE, .proc/apply_damage)
+	RegisterSignal(parent, COMSIG_IWOUND_TREAT, .proc/treatment)
 
 	// Surgery
 	RegisterSignal(src, COMSIG_ATTACKBY, .proc/apply_tool)
@@ -57,11 +58,12 @@
 	START_PROCESSING(SSinternal_wounds, src)
 
 /datum/component/internal_wound/UnregisterFromParent()
-	UnregisterSignal(parent, COMSIG_WOUND_EFFECTS)
-	UnregisterSignal(parent, COMSIG_WOUND_FLAGS_ADD)
-	UnregisterSignal(parent, COMSIG_WOUND_FLAGS_REMOVE)
-	UnregisterSignal(parent, COMSIG_WOUND_DAMAGE)
-	UnregisterSignal(parent, COMSIG_WOUND_AUTODOC)
+	UnregisterSignal(parent, COMSIG_IWOUND_EFFECTS)
+	UnregisterSignal(parent, COMSIG_IWOUND_LIMB_EFFECTS)
+	UnregisterSignal(parent, COMSIG_IWOUND_FLAGS_ADD)
+	UnregisterSignal(parent, COMSIG_IWOUND_FLAGS_REMOVE)
+	UnregisterSignal(parent, COMSIG_IWOUND_DAMAGE)
+	UnregisterSignal(parent, COMSIG_IWOUND_TREAT)
 	UnregisterSignal(src, COMSIG_ATTACKBY)
 
 	if(LAZYACCESS(SSinternal_wounds.processing, src))
@@ -105,15 +107,9 @@
 		if(severity == spread_threshold)
 			var/list/internal_organs_sans_parent = H.internal_organs.Copy() - O
 			var/obj/item/organ/next_organ = pick(internal_organs_sans_parent)
-			SEND_SIGNAL(next_organ, COMSIG_I_ORGAN_ADD_WOUND, type)
+			SEND_SIGNAL(next_organ, COMSIG_IORGAN_ADD_WOUND, type)
 
-	if(!severity)
-		return
-
-	// Deal damage
-	if(E && hal_damage)
-		H.apply_damage(hal_damage * severity, HALLOSS, E)
-
+	// Deal damage - halloss is handled in shock.dm
 	if(psy_damage)
 		H.sanity.onPsyDamage(psy_damage * severity)
 
@@ -143,9 +139,9 @@
 		can_progress = FALSE
 		if(next_wound && ispath(next_wound, /datum/component))
 			var/chosen_wound_type = pick(subtypesof(next_wound))
-			SEND_SIGNAL(parent, COMSIG_I_ORGAN_ADD_WOUND, chosen_wound_type)
+			SEND_SIGNAL(parent, COMSIG_IORGAN_ADD_WOUND, chosen_wound_type)
 
-	SEND_SIGNAL(parent, COMSIG_I_ORGAN_REFRESH_SELF)
+	SEND_SIGNAL(parent, COMSIG_IORGAN_REFRESH_SELF)
 
 /datum/component/internal_wound/proc/apply_tool(obj/item/I, mob/user)
 	var/success = FALSE
@@ -193,8 +189,8 @@
 		can_progress = initial(can_progress)	// If it was turned off by reaching the max, turn it on again.
 	else
 		if(!used_autodoc && scar && ispath(scar, /datum/component))
-			SEND_SIGNAL(parent, COMSIG_I_ORGAN_ADD_WOUND, pick(subtypesof(scar)))
-		SEND_SIGNAL(parent, COMSIG_I_ORGAN_REMOVE_WOUND, src)
+			SEND_SIGNAL(parent, COMSIG_IORGAN_ADD_WOUND, pick(subtypesof(scar)))
+		SEND_SIGNAL(parent, COMSIG_IORGAN_REMOVE_WOUND, src)
 
 /datum/component/internal_wound/proc/apply_effects()
 	var/obj/item/organ/internal/O = parent
@@ -209,6 +205,15 @@
 		O.nutriment_req *= 1 + round(nutriment_req_multiplier, 0.01)
 	if(oxygen_req_multiplier)
 		O.oxygen_req *= 1 + round(oxygen_req_multiplier, 0.01)
+
+/datum/component/internal_wound/proc/apply_limb_effects()
+	var/obj/item/organ/internal/O = parent
+
+	if(!O.parent)
+		return
+
+	if(hal_damage)
+		O.parent.internal_wound_hal_dam += hal_damage * severity
 
 /datum/component/internal_wound/proc/apply_flags()
 	var/obj/item/organ/internal/O = parent

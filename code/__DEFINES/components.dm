@@ -135,19 +135,20 @@
 #define COMSIG_MESSAGE_RECEIVED "radio_message_received"
 
 // Internal organ signals
-#define COMSIG_I_ORGAN_REFRESH_SELF "internal_organ_self_refresh"
-#define COMSIG_I_ORGAN_REFRESH_PARENT "internal_organ_parent_refresh"
-#define COMSIG_I_ORGAN_APPLY "internal_organ_apply_modifiers"
-#define COMSIG_I_ORGAN_ADD_WOUND "add_internal_wound"
-#define COMSIG_I_ORGAN_REMOVE_WOUND "remove_internal_wound"
-#define COMSIG_I_ORGAN_WOUND_COUNT "count_internal_wounds"
+#define COMSIG_IORGAN_REFRESH_SELF "internal_organ_self_refresh"
+#define COMSIG_IORGAN_REFRESH_PARENT "internal_organ_parent_refresh"
+#define COMSIG_IORGAN_APPLY "internal_organ_apply_modifiers"
+#define COMSIG_IORGAN_ADD_WOUND "add_internal_wound"
+#define COMSIG_IORGAN_REMOVE_WOUND "remove_internal_wound"
+#define COMSIG_IORGAN_WOUND_COUNT "count_internal_wounds"
 
 // Internal wound signals
-#define COMSIG_WOUND_EFFECTS "wound_effects"
-#define COMSIG_WOUND_FLAGS_ADD "wound_flags_add"
-#define COMSIG_WOUND_FLAGS_REMOVE "wound_flags_remove"
-#define COMSIG_WOUND_DAMAGE "wound_damage"
-#define COMSIG_WOUND_AUTODOC "wound_autodoc"
+#define COMSIG_IWOUND_EFFECTS "internal_wound_effects"
+#define COMSIG_IWOUND_LIMB_EFFECTS "internal_wound_limb_effects"
+#define COMSIG_IWOUND_FLAGS_ADD "internal_wound_flags_add"
+#define COMSIG_IWOUND_FLAGS_REMOVE "internal_wound_flags_remove"
+#define COMSIG_IWOUND_DAMAGE "internal_wound_damage"
+#define COMSIG_IWOUND_TREAT "internal_wound_autodoc"
 
 // Aberrant signals
 #define COMSIG_ABERRANT_INPUT "aberrant_input"

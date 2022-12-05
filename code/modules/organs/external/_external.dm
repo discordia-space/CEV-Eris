@@ -47,6 +47,7 @@
 	var/number_wounds = 0				// number of wounds, which is NOT wounds.len!
 	var/number_internal_wounds = 0		// Number of internal wounds
 	var/severity_internal_wounds = 0	// Total damage from internal wounds
+	var/internal_wound_hal_dam = 0		// Total pain from internal wounds
 	var/list/children = list()			// Sub-limbs.
 	var/list/internal_organs = list()	// Internal organs of this body part
 	var/default_bone_type
@@ -526,9 +527,10 @@ This function completely restores a damaged organ to perfect condition.
 /obj/item/organ/external/proc/update_wounds()
 	number_internal_wounds = 0
 	severity_internal_wounds = 0
-	SEND_SIGNAL(src, COMSIG_I_ORGAN_REFRESH_PARENT)
-	SEND_SIGNAL(src, COMSIG_I_ORGAN_APPLY)
-	SEND_SIGNAL(src, COMSIG_I_ORGAN_WOUND_COUNT)
+	internal_wound_hal_dam = 0
+	SEND_SIGNAL(src, COMSIG_IORGAN_REFRESH_PARENT)
+	SEND_SIGNAL(src, COMSIG_IORGAN_APPLY)
+	SEND_SIGNAL(src, COMSIG_IORGAN_WOUND_COUNT)
 
 	if(BP_IS_ROBOTIC(src)) //Robotic limbs don't heal or get worse.
 		for(var/datum/wound/W in wounds) //Repaired wounds disappear though

@@ -26,9 +26,9 @@
 	initialize_organ_efficiencies()
 	initialize_owner_verbs()
 	update_icon()
-	RegisterSignal(src, COMSIG_I_ORGAN_ADD_WOUND, .proc/add_wound)
-	RegisterSignal(src, COMSIG_I_ORGAN_REMOVE_WOUND, .proc/remove_wound)
-	RegisterSignal(src, COMSIG_I_ORGAN_REFRESH_SELF, .proc/refresh_upgrades)
+	RegisterSignal(src, COMSIG_IORGAN_ADD_WOUND, .proc/add_wound)
+	RegisterSignal(src, COMSIG_IORGAN_REMOVE_WOUND, .proc/remove_wound)
+	RegisterSignal(src, COMSIG_IORGAN_REFRESH_SELF, .proc/refresh_upgrades)
 
 /obj/item/organ/internal/Process()
 	refresh_damage()	// Death check is in the parent proc
@@ -41,16 +41,16 @@
 	for(var/mod in item_upgrades)
 		qdel(mod)
 	item_upgrades.Cut()
-	UnregisterSignal(src, COMSIG_I_ORGAN_ADD_WOUND)
-	UnregisterSignal(src, COMSIG_I_ORGAN_REMOVE_WOUND)
-	UnregisterSignal(src, COMSIG_I_ORGAN_REFRESH_SELF)
+	UnregisterSignal(src, COMSIG_IORGAN_ADD_WOUND)
+	UnregisterSignal(src, COMSIG_IORGAN_REMOVE_WOUND)
+	UnregisterSignal(src, COMSIG_IORGAN_REFRESH_SELF)
 	..()
 
 /obj/item/organ/internal/removed()
-	UnregisterSignal(parent, COMSIG_I_ORGAN_WOUND_COUNT)
-	UnregisterSignal(parent, COMSIG_I_ORGAN_REFRESH_PARENT)
-	UnregisterSignal(parent, COMSIG_I_ORGAN_APPLY)
-	SEND_SIGNAL(src, COMSIG_WOUND_FLAGS_REMOVE)
+	UnregisterSignal(parent, COMSIG_IORGAN_WOUND_COUNT)
+	UnregisterSignal(parent, COMSIG_IORGAN_REFRESH_PARENT)
+	UnregisterSignal(parent, COMSIG_IORGAN_APPLY)
+	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_REMOVE)
 	..()
 
 /obj/item/organ/internal/removed_mob()
@@ -72,10 +72,10 @@
 /obj/item/organ/internal/replaced(obj/item/organ/external/affected)
 	..()
 	parent.internal_organs |= src
-	RegisterSignal(parent, COMSIG_I_ORGAN_WOUND_COUNT, .proc/wound_count, TRUE)
-	RegisterSignal(parent, COMSIG_I_ORGAN_REFRESH_PARENT, .proc/refresh_organ_stats, TRUE)
-	RegisterSignal(parent, COMSIG_I_ORGAN_APPLY, .proc/apply_modifiers, TRUE)
-	SEND_SIGNAL(src, COMSIG_WOUND_FLAGS_ADD)
+	RegisterSignal(parent, COMSIG_IORGAN_WOUND_COUNT, .proc/wound_count, TRUE)
+	RegisterSignal(parent, COMSIG_IORGAN_REFRESH_PARENT, .proc/refresh_organ_stats, TRUE)
+	RegisterSignal(parent, COMSIG_IORGAN_APPLY, .proc/apply_modifiers, TRUE)
+	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_ADD)
 
 /obj/item/organ/internal/replaced_mob(mob/living/carbon/human/target)
 	..()
@@ -96,34 +96,30 @@
 	if(!damage_type || status & ORGAN_DEAD)
 		return
 
-	// Determine possible wounds based on nature and damage type
-	var/is_robotic = BP_IS_ROBOTIC(src) || BP_IS_ASSISTED(src)
-	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
-
 	var/wound_count = max(0, round((amount * wounding_multiplier) / 8))	// At base values, every 8 points of damage is 1 wound
 
-	if((!is_organic && !is_robotic) || !wound_count)
+	if(!wound_count)
 		return
 
-	var/list/possible_wounds = get_possible_wounds(damage_type, is_robotic, is_organic, sharp, edge)
-
-	if(is_organic)
-		LAZYREMOVE(possible_wounds, GetComponents(/datum/component/internal_wound/organic))	// Organic wounds don't stack
+	var/list/possible_wounds = get_possible_wounds(damage_type, sharp, edge)
 
 	if(LAZYLEN(possible_wounds))
 		for(var/i in 1 to wound_count)
 			var/choice = pick(possible_wounds)
 			add_wound(choice)
-			if(ispath(choice, /datum/component/internal_wound/organic))
-				LAZYREMOVE(possible_wounds, choice)
+			LAZYREMOVE(possible_wounds, choice)
 			if(!LAZYLEN(possible_wounds))
 				break
 
 	if(!BP_IS_ROBOTIC(src) && owner && parent && amount > 0 && !silent)
 		owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
 
-/obj/item/organ/internal/proc/get_possible_wounds(damage_type, is_robotic, is_organic, sharp, edge)
+/obj/item/organ/internal/proc/get_possible_wounds(damage_type, sharp, edge)
 	var/list/possible_wounds = list()
+		
+	// Determine possible wounds based on nature and damage type
+	var/is_robotic = BP_IS_ROBOTIC(src)
+	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
 
 	switch(damage_type)
 		if(BRUTE)
@@ -162,11 +158,8 @@
 					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/sanity))
 				if(is_robotic)
 					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/sanity))
-		if(IRRADIATE)	// Effect type, not damage type. Still usable here.
-			if(is_organic)
-				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/radiation))
-			if(is_robotic)
-				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/emp_burn))		// Radiation can fry electronics
+
+	LAZYREMOVE(possible_wounds, GetComponents(/datum/component/internal_wound))	// Wounds of the same type don't stack
 
 	return possible_wounds
 
@@ -391,12 +384,13 @@
 	blood_req = initial(blood_req)
 	nutriment_req = initial(nutriment_req)
 	oxygen_req = initial(oxygen_req)
-	SEND_SIGNAL(src, COMSIG_WOUND_FLAGS_REMOVE)
+	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_REMOVE)
 
 /obj/item/organ/internal/proc/apply_modifiers()
-	SEND_SIGNAL(src, COMSIG_WOUND_EFFECTS)
+	SEND_SIGNAL(src, COMSIG_IWOUND_EFFECTS)
+	SEND_SIGNAL(src, COMSIG_IWOUND_LIMB_EFFECTS)
 	SEND_SIGNAL(src, COMSIG_APPVAL, src)
-	SEND_SIGNAL(src, COMSIG_WOUND_FLAGS_ADD)
+	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_ADD)
 
 	for(var/prefix in prefixes)
 		name = "[prefix] [name]"
@@ -406,7 +400,7 @@
 		damage = max_damage
 		return
 	damage = initial(damage)
-	SEND_SIGNAL(src, COMSIG_WOUND_DAMAGE)
+	SEND_SIGNAL(src, COMSIG_IWOUND_DAMAGE)
 
 /obj/item/organ/internal/proc/add_wound(datum/component/internal_wound/IW)
 	if(!IW || initial(IW.wound_nature) != nature || status & ORGAN_DEAD)

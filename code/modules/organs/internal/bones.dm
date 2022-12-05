@@ -13,8 +13,12 @@
     . = ..()
     src.transform *= 0.5 // this little trick makes bone size small while keeping detail level of 32x32 bones.
 
-/obj/item/organ/internal/bone/get_possible_wounds(damage_type, is_robotic, is_organic, sharp, edge)
+/obj/item/organ/internal/bone/get_possible_wounds(damage_type, sharp, edge)
 	var/list/possible_wounds = list()
+		
+	// Determine possible wounds based on nature and damage type
+	var/is_robotic = BP_IS_ROBOTIC(src)
+	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
 
 	switch(damage_type)
 		if(BRUTE)
@@ -39,6 +43,8 @@
 				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/burn))
 			if(is_robotic)
 				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/emp_burn))
+
+	LAZYREMOVE(possible_wounds, GetComponents(/datum/component/internal_wound))	// Wounds of the same type don't stack
 
 	return possible_wounds
 

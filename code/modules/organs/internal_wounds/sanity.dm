@@ -14,7 +14,6 @@
 	name = "twitching tissue"
 
 /datum/component/internal_wound/robotic/sanity
-	dupe_mode = COMPONENT_DUPE_UNIQUE
 	treatments_chem = list(CE_MIND = 2)
 	diagnosis_stat = STAT_COG
 	diagnosis_difficulty = STAT_LEVEL_EXPERT

@@ -1,8 +1,6 @@
 /datum/component/internal_wound/organic
-	dupe_mode = COMPONENT_DUPE_UNIQUE
 	diagnosis_stat = STAT_BIO
 	diagnosis_difficulty = STAT_LEVEL_ADEPT
-	can_progress = TRUE
 	wound_nature = MODIFICATION_ORGANIC
 
 // Blunt

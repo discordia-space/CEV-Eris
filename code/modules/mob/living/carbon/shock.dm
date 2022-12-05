@@ -29,10 +29,10 @@
 		hard_crit_threshold += 20
 
 	. = 						\
-	0.9	* get_limb_damage() + 	\
-	0.6	* getOxyLoss() + 		\
-	0.5	* getToxLoss() + 		\
-	1.5	* getCloneLoss()
+	0.8	* get_limb_damage() + 	\
+	0.6	* oxyloss + 			\
+	0.5	* toxloss + 			\
+	1.5	* cloneloss
 
 
 	//Constant Pain above 80% of the crit treshold gets converted to dynamic pain (hallos)
@@ -53,6 +53,7 @@
 	for(var/obj/item/organ/external/organ in organs)
 		. += organ.burn_dam
 		. += organ.brute_dam
+		. += organ.internal_wound_hal_dam
 		if(organ && (organ.is_broken() || (!BP_IS_ROBOTIC(organ) && organ.open)))
 			. += 25
 		. *= max((get_specific_organ_efficiency(OP_NERVE, organ.organ_tag)/100), 0.5)
