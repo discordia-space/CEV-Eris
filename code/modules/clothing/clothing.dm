@@ -195,7 +195,6 @@
 		data["cold_protection"] = body_part_coverage_to_string(cold_protection)
 		data["cold_protection_temperature"] = min_cold_protection_temperature
 	data["equip_delay"] = equip_delay
-	data["info_style"] = style
 	return data
 
 /obj/item/clothing/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
