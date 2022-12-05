@@ -352,7 +352,8 @@
 
 /obj/item/organ/internal/rejuvenate()
 	refresh_organ_stats()
-	QDEL_LIST(GetComponents(/datum/component/internal_wound))
+	for(var/datum/component/comp as anything in GetComponents(/datum/component))
+		istype(comp, /datum/component/internal_wound) ? remove_wound(comp) : qdel(comp)
 	apply_modifiers()
 
 // Store these so we can properly restore them when installing/removing mods
