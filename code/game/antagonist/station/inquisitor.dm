@@ -10,7 +10,6 @@
 		/datum/objective/brig = 15,
 		/datum/objective/harm = 15,
 		/datum/objective/steal = 30,
-		/datum/objective/baptize = 30,
 	)
 
 	survive_objective = /datum/objective/escape
