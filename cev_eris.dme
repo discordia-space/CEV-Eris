@@ -2315,7 +2315,7 @@
 #include "code\modules\onestar\os_turret.dm"
 #include "code\modules\organs\blood.dm"
 #include "code\modules\organs\body_modifications.dm"
-#include "code\modules\organs\internal_wound.dm"
+#include "code\modules\organs\internal_wounds\_internal_wound.dm"
 #include "code\modules\organs\internal_wounds\bone.dm"
 #include "code\modules\organs\internal_wounds\organic.dm"
 #include "code\modules\organs\internal_wounds\robotic.dm"
