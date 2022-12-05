@@ -21,7 +21,6 @@
 #define COLOR_PINK             "#ff00ff"
 #define COLOR_ORANGE           "#ff9900"
 #define COLOR_YELLOW           "#ffff00"
-#define COLOR_FLOORTILE_GRAY   "#8D8B8B"
 #define COLOR_GRAY             "#808080"
 #define COLOR_RED_GRAY         "#aa5f61"
 #define COLOR_BROWN            "#b19664"
