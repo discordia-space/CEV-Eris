@@ -2466,6 +2466,7 @@
 #include "code\modules\projectiles\guns\projectile\pistol\selfload.dm"
 #include "code\modules\projectiles\guns\projectile\pistol\type62.dm"
 #include "code\modules\projectiles\guns\projectile\pistol\type90.dm"
+#include "code\modules\projectiles\guns\projectile\pistol\voodoo.dm"
 #include "code\modules\projectiles\guns\projectile\revolver\artwork_revolver.dm"
 #include "code\modules\projectiles\guns\projectile\revolver\capgun.dm"
 #include "code\modules\projectiles\guns\projectile\revolver\consul.dm"
