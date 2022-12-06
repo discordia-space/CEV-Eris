@@ -165,6 +165,9 @@
 /turf/simulated/mineral/proc/DropMineral()
 	if(!mineral)
 		return
+	clear_ore_effects()
+	var/obj/item/ore/O = new mineral.ore (src)
+	return O
 
 /turf/simulated/mineral/proc/GetDrilled(var/artifact_fail = 0)
 	//var/destroyed = 0 //used for breaking strange rocks
