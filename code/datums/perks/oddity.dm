@@ -510,8 +510,6 @@
 
 /datum/perk/njoy/assign(mob/living/carbon/human/H)
 	if(..())
-		holder.sanity.positive_prob *= 0
-		holder.sanity.negative_prob *= 0
 		holder.sanity.insight_gain_multiplier *= 0.5
 
 /datum/perk/njoy/remove()
