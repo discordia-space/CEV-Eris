@@ -451,7 +451,7 @@
 			S.reg_break(owner)
 
 	var/list/possible_results
-	if((prob(positive_prob) && positive_prob_multiplier > 0 || positive_breakdown)&& !owner.stats.getPerk(PERK_NJOY))
+	if((prob(positive_prob) && positive_prob_multiplier > 0 || positive_breakdown) && !owner.stats.getPerk(PERK_NJOY))
 		possible_results = subtypesof(/datum/breakdown/positive)
 	else if(prob(negative_prob) && !owner.stats.getPerk(PERK_NJOY))
 		possible_results = subtypesof(/datum/breakdown/negative)
