@@ -132,7 +132,6 @@
 					if(excavation_level + excavation_amount >= 100 )
 						//if players have been excavating this turf, leave some rocky debris behind
 						new /obj/structure/boulder
-						GetDrilled(0)
 
 					excavation_level += excavation_amount
 
@@ -141,6 +140,8 @@
 					while(next_rock > 100)
 						next_rock -= 100
 						var/obj/item/ore/O = new(src)
+
+					GetDrilled(0)
 				return
 			return
 
@@ -150,7 +151,7 @@
 				to_chat(user, SPAN_NOTICE("You finish digging the [src]."))
 				if(prob(15))
 					new /obj/structure/boulder(src)
-					GetDrilled(0)
+				GetDrilled(0)
 			return
 		if(ABORT_CHECK)
 			return
