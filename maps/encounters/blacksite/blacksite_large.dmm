@@ -2722,6 +2722,13 @@
 	},
 /turf/space,
 /area/space)
+"BR" = (
+/obj/structure/table/onestar,
+/obj/structure/sign/faction/one_star_sign{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "BS" = (
 /obj/structure/dispenser,
 /turf/simulated/shuttle/floor/mining{
@@ -3180,6 +3187,13 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "5,11"
 	},
+/area/space)
+"GM" = (
+/obj/structure/closet/onestar/tier2,
+/obj/structure/sign/faction/excelsior_old{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "GO" = (
 /obj/structure/table/onestar,
@@ -4007,7 +4021,7 @@
 /obj/structure/cryopod_spawner{
 	pixel_y = -2
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "OC" = (
 /obj/landmark/machinery/output,
@@ -4410,7 +4424,7 @@
 /obj/structure/cryofeed{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "SB" = (
 /obj/structure/dispenser/oxygen,
@@ -4801,6 +4815,12 @@
 /obj/structure/salvageable/os/computer,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
+"WG" = (
+/obj/structure/sign/faction/one_star{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "WO" = (
 /obj/structure/salvageable/os/data,
 /turf/simulated/floor/tiled/dark/brown_perforated,
@@ -5091,6 +5111,12 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "10,16"
 	},
+/area/space)
+"Zs" = (
+/obj/structure/sign/faction/one_star{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "Zt" = (
 /obj/structure/shuttle_part/science{
@@ -13082,14 +13108,14 @@ cb
 cb
 cb
 cb
-RJ
+cb
 RJ
 RJ
 XW
 mg
 mg
 mg
-GO
+BR
 XW
 cb
 nr
@@ -13491,7 +13517,7 @@ RJ
 RJ
 XW
 WW
-WW
+GM
 WW
 YK
 XW
@@ -14907,7 +14933,7 @@ xb
 RJ
 RJ
 RJ
-RJ
+WG
 XW
 cb
 cb
@@ -15914,10 +15940,10 @@ RJ
 Bu
 RJ
 xb
-RJ
-RJ
-RJ
-RJ
+EF
+EF
+EF
+Zs
 XW
 cb
 cb
