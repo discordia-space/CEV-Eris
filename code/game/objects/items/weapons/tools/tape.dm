@@ -38,6 +38,12 @@
 	rarity_value = 24
 	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
+/obj/item/tool/tape_roll/fiber/medical
+	name = "osseous tape"
+	desc = "A roll of flexible adhesive bioadaptive tape. Used for sealing minor damage to bones."
+	tool_qualities = list(QUALITY_ADHESIVE = 30, QUALITY_SEALING = 30)
+	spawn_blacklisted = TRUE	// Don't want these spawning
+
 /obj/item/tool/tape_roll/glue
 	name = "superglue"
 	desc = "A bucket of milky white fluid. Can be used to stick things together, but unlike tape, it cannot be used to seal things."
