@@ -68809,9 +68809,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/junction/yjunction{
-	dir = 8
-	},
+/obj/structure/disposalpipe/junction,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "djv" = (
@@ -103507,17 +103505,6 @@
 	},
 /turf/simulated/open,
 /area/eris/hallway/main/section3)
-"kPN" = (
-/obj/machinery/atmospherics/pipe/zpipe/up{
-	dir = 4;
-	icon_state = "up";
-	tag = "icon-up (EAST)"
-	},
-/obj/structure/disposalpipe/up{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
 "kPU" = (
 /obj/machinery/button/remote/blast_door{
 	dir = 1;
@@ -106621,19 +106608,6 @@
 /obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5port)
-"sBj" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "TechnomancerShopLockdown";
-	layer = 2.6;
-	name = "Technomancer Shop Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/plating,
-/area/eris/engineering/engeva)
 "sBN" = (
 /obj/structure/table/standard,
 /obj/item/cell/large/high,
@@ -106766,10 +106740,16 @@
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/neotheology/churchbarracks)
 "sOb" = (
-/obj/spawner/pack/machine,
-/obj/structure/catwalk,
-/turf/simulated/open,
-/area/eris/maintenance/section2deck1port)
+/obj/machinery/atmospherics/pipe/zpipe/up{
+	dir = 4;
+	icon_state = "up";
+	tag = "icon-up (EAST)"
+	},
+/obj/structure/disposalpipe/up{
+	dir = 4
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section2deck3port)
 "sOh" = (
 /obj/structure/closet/coffin,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
@@ -107098,7 +107078,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
-	id = "maint_hatch_medchsem";
+	id = "maint_hatch_medchem";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
@@ -204006,7 +203986,7 @@ cnj
 cIx
 oTl
 coI
-kPN
+sOb
 cry
 bSx
 cty
@@ -247296,7 +247276,7 @@ kjj
 xHX
 uxO
 qyl
-sBj
+dRV
 dRK
 dRY
 dRI
@@ -247498,7 +247478,7 @@ dBA
 dBA
 dBA
 wsB
-sBj
+dRV
 dRL
 dRZ
 dRI
@@ -247700,7 +247680,7 @@ dBA
 vYG
 rkA
 weP
-sBj
+dRV
 dRL
 dRZ
 dRI
@@ -287434,7 +287414,7 @@ dQw
 amk
 dQr
 dQr
-sOb
+dER
 dUW
 dTT
 alG
