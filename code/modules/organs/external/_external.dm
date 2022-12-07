@@ -9,7 +9,7 @@
 
 /obj/item/organ/external
 	name = "external"
-	min_broken_damage = 30
+	min_broken_damage = 40
 	max_damage = 0
 	dir = SOUTH
 	layer = BELOW_MOB_LAYER

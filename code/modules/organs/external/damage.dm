@@ -15,19 +15,22 @@
 		if(BURN)
 			amount = round(amount * burn_mod, 0.1)
 
-	// High damage is transferred to internal organs
-	if(internal_organs && LAZYLEN(internal_organs))
+	// High damage is transferred to internal organs. Chest and head must be broken before transferring.
+	if(LAZYLEN(internal_organs))
+		var/can_transfer = FALSE	// Only applies to brute and burn
+		if((organ_tag != BP_CHEST || organ_tag != BP_HEAD) || status & ORGAN_BROKEN)
+			can_transfer = TRUE
 		var/obj/item/organ/internal/I = pick(internal_organs)
 		var/transferred_damage_amount
 		switch(damage_type)
 			if(BRUTE)
-				transferred_damage_amount = (amount - (max_damage - brute_dam) / armor_divisor) / 2
+				transferred_damage_amount = can_transfer ? (amount - (max_damage - brute_dam) / armor_divisor) / 2 : 0
 			if(BURN)
-				transferred_damage_amount = (amount - (max_damage - burn_dam) / armor_divisor) / 2
+				transferred_damage_amount = can_transfer ? (amount - (max_damage - burn_dam) / armor_divisor) / 2 : 0
 			if(HALLOSS)
 				transferred_damage_amount = 0
 			else
-				transferred_damage_amount = amount	// PSY, CLONE, TOX, and OXY are special
+				transferred_damage_amount = amount
 
 		if(transferred_damage_amount > 0)
 			I.take_damage(transferred_damage_amount, damage_type, wounding_multiplier, sharp, edge, FALSE)
@@ -42,7 +45,7 @@
 	// Brute-specific behavior
 	var/can_cut = FALSE
 	if(damage_type == BRUTE)
-		if(should_fracture() && prob(brute_dam + amount))
+		if(should_fracture())
 			fracture()
 
 		if(status & ORGAN_BROKEN && prob(40))
