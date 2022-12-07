@@ -160,6 +160,8 @@
 		if(config.organs_decay)
 			if(prob(5))
 				take_damage(12, TOX)	// Will cause toxin accumulation wounds
+	else
+		handle_rejection()
 
 /obj/item/organ/examine(mob/user)
 	..(user)
