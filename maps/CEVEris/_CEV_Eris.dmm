@@ -41514,18 +41514,17 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section1)
 "bUr" = (
-/obj/structure/disposalpipe/up{
-	dir = 4;
-	icon_state = "pipe-u";
-	tag = "icon-pipe-u (EAST)"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/zpipe/up{
-	dir = 4;
-	icon_state = "up";
-	tag = "icon-up (EAST)"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/machinery/atm{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/dark/golden,
+/area/eris/hallway/side/section3port)
 "bUs" = (
 /obj/machinery/atm{
 	pixel_x = 32
@@ -41727,9 +41726,6 @@
 	dir = 4;
 	icon_state = "railing0";
 	tag = "icon-railing0 (EAST)"
-	},
-/obj/structure/disposalpipe/junction{
-	dir = 8
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
@@ -49018,8 +49014,7 @@
 	tag = "icon-railing0 (EAST)"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+	dir = 4
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
@@ -65448,14 +65443,6 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
-/obj/machinery/door/blast/shutters{
-	density = 0;
-	dir = 4;
-	icon_state = "shutter0";
-	id = "chemcounter";
-	name = "Pharmacy Counter Shutters";
-	opacity = 0
-	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section2deck2port)
 "dch" = (
@@ -65763,14 +65750,6 @@
 	id = "MedbayTotalLockdown";
 	layer = 2.6;
 	name = "Medbay Total Lockdown";
-	opacity = 0
-	},
-/obj/machinery/door/blast/shutters{
-	density = 0;
-	dir = 4;
-	icon_state = "shutter0";
-	id = "chemcounter";
-	name = "Pharmacy Counter Shutters";
 	opacity = 0
 	},
 /turf/simulated/floor/plating,
@@ -68830,9 +68809,8 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/junction/yjunction{
+	dir = 8
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
@@ -69662,7 +69640,7 @@
 	},
 /obj/machinery/door/blast/shutters{
 	dir = 2;
-	id = "maint_hatch_medchem";
+	id = "maint_hatch_mbo";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
@@ -76045,7 +76023,7 @@
 	dir = 1
 	},
 /obj/machinery/button/remote/blast_door{
-	id = "maint_hatch_medchem";
+	id = "maint_hatch_mbo";
 	name = "Maintenance Hatch Control";
 	pixel_y = -24;
 	req_access = newlist()
@@ -76609,10 +76587,6 @@
 /turf/simulated/open,
 /area/eris/engineering/foyer)
 "dBF" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
 /obj/structure/cable/green{
 	d1 = 2;
 	d2 = 4;
@@ -76625,6 +76599,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "dBG" = (
@@ -95621,12 +95596,10 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "evf" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/chemical_dispenser,
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/eris/medical/chemistry)
+/obj/structure/table/standard,
+/obj/item/device/eftpos,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/quartermaster/storage)
 "evg" = (
 /obj/structure/table/standard,
 /obj/item/storage/box/syringes{
@@ -101866,6 +101839,9 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "gTF" = (
@@ -103531,6 +103507,17 @@
 	},
 /turf/simulated/open,
 /area/eris/hallway/main/section3)
+"kPN" = (
+/obj/machinery/atmospherics/pipe/zpipe/up{
+	dir = 4;
+	icon_state = "up";
+	tag = "icon-up (EAST)"
+	},
+/obj/structure/disposalpipe/up{
+	dir = 4
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section2deck3port)
 "kPU" = (
 /obj/machinery/button/remote/blast_door{
 	dir = 1;
@@ -106457,13 +106444,10 @@
 	pixel_x = 3
 	},
 /obj/effect/window_lwall_spawn/smartspawn,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
+/obj/machinery/door/blast/shutters{
+	dir = 2;
 	id = "TechnomancerShopLockdown";
-	layer = 2.6;
-	name = "Technomancer Shop Lockdown";
-	opacity = 0
+	name = "Technomancer Shop Lockdown"
 	},
 /turf/simulated/floor/plating,
 /area/eris/engineering/foyer)
@@ -106784,7 +106768,7 @@
 "sOb" = (
 /obj/spawner/pack/machine,
 /obj/structure/catwalk,
-/turf/space,
+/turf/simulated/open,
 /area/eris/maintenance/section2deck1port)
 "sOh" = (
 /obj/structure/closet/coffin,
@@ -107114,7 +107098,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
-	id = "maint_hatch_medchem";
+	id = "maint_hatch_medchsem";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
@@ -204022,8 +204006,8 @@ cnj
 cIx
 oTl
 coI
+kPN
 cry
-bUr
 bSx
 cty
 mrW
@@ -207296,8 +207280,8 @@ cBr
 cBr
 olz
 cAS
-vrQ
-vrQ
+cGj
+cGR
 cCO
 cBO
 cFs
@@ -207681,7 +207665,7 @@ xZV
 vcS
 dFB
 eeB
-dJu
+bUr
 anJ
 etm
 oXn
@@ -213544,7 +213528,7 @@ cgO
 cgO
 evU
 cie
-cwI
+evf
 cyb
 cyb
 cyb
@@ -247668,7 +247652,7 @@ dvs
 lcL
 gQw
 ucx
-evf
+dpF
 dte
 aaa
 aaa
