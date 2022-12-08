@@ -24,3 +24,4 @@
 	..(new_loc, SPECIES_SKELETON)
 	STOP_PROCESSING(SSmobs, src)
 	death(FALSE)
+	GLOB.human_mob_list -= src
