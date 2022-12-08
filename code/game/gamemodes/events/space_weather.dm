@@ -281,7 +281,7 @@
 			var/obj/machinery/telecomms/server/chosen_server = pick(servers)
 			var/datum/comm_log_entry/C = pick(chosen_server.log_entries)
 			global_announcer.autosay(C.parameters["message"], C.parameters["name"])
-	if(prob(5)) //spooky bluspess ghost
+	if(prob(5) && LAZYLEN(GLOB.human_mob_list)) //spooky bluspess ghost
 		var/area/location = random_ship_area()
 		var/mob/living/carbon/human/to_copy = pick(GLOB.human_mob_list)
 		var/mob/ghost = new(location.random_space())
