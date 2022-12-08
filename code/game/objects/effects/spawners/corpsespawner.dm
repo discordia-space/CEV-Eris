@@ -9,6 +9,9 @@
 	icon_state = "player-black"
 	var/mobname
 	var/skintone				// Needs to be a negative number
+	var/min_age
+	var/max_age
+	//var/gender				// Built-in byond variable
 	var/corpseuniform			// Set this to an object path to have the slot filled with said object on the corpse.
 	var/corpsesuit
 	var/corpseshoes
@@ -42,12 +45,16 @@
 	for(var/count in 1 to injury_level)
 		M.take_overall_damage(30,10)
 
-	for(var/obj/item/organ/O in M.internal_organs)	// Kills the mob and all internal organs
+	// Kill the mob
+	M.death(FALSE)
+	for(var/obj/item/organ/O in M.internal_organs)
 		O.die()
-
 	STOP_PROCESSING(SSmobs, src)
-	M.death(0)										// Just in case the mob doesn't die
-	M.pulse = PULSE_NONE							// Because killing a mob and its organs doesn't stop its pulse
+	M.pulse = PULSE_NONE			// Because killing a mob and its organs doesn't stop its pulse
+	GLOB.human_mob_list -= M
+
+	gender = pick(MALE, FEMALE)
+	M.gender = gender
 
 	if(mobname)
 		M.real_name = mobname
@@ -59,7 +66,9 @@
 	else
 		M.change_skin_tone(rand(-200,-15))
 
-	if(M.species.min_age && M.species.max_age)
+	if(min_age && max_age)
+		M.age = rand(min_age, max_age)
+	else if(M.species.min_age && M.species.max_age)
 		M.age = rand(M.species.min_age, M.species.max_age)
 
 	if(corpseuniform)
@@ -106,6 +115,7 @@
 		M.set_id_info(W)
 		M.equip_to_slot_or_del(W, slot_wear_id)
 
+// Eris corpses
 /obj/landmark/corpse/hobo
 	name = "Hobo"
 	corpseuniform = /obj/item/clothing/under/turtleneck
@@ -130,6 +140,8 @@
 /obj/landmark/corpse/one_star
 	name = "twisted skeletal remains"
 	species = SPECIES_SKELETON
+	min_age = 359	// OS disappeared in 2291, CEV Eris launched 2642. This means the skeleton of a child of 8 years would be 359 years old.
+	max_age = 499	// Oldest skeleton is of a person of 140 years. Implies OS managed to extend life expectancy via technology. Revise according to lore.
 	corpseuniform = /obj/item/clothing/under/onestar
 	corpsesuit = /obj/item/clothing/suit/storage/greatcoat/onestar
 	corpseshoes = /obj/item/clothing/shoes/jackboots
@@ -138,9 +150,8 @@
 	//corpseid = TRUE
 	//corpseidjob = list("Therapist", "Private Security", "Master Chef", "Researcher", "Market Analyst", "Colonist")
 
-/obj/landmark/corpse/one_star_void
+/obj/landmark/corpse/one_star/void
 	name = "warped skeletal remains"
-	species = SPECIES_SKELETON
 	corpseuniform = /obj/item/clothing/under/onestar
 	corpsesuit = /obj/item/clothing/suit/space/void/onestar		// Helmet won't spawn pre-equipped, but it's there
 	corpseshoes = /obj/item/clothing/shoes/jackboots

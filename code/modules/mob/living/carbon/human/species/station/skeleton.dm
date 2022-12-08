@@ -9,8 +9,8 @@
 	damage_mask = null
 	blood_mask = null
 
-	min_age = 499	// Oldest skeleton is of a person of 140 years. Implies OS managed to extend life expectancy via technology. Revise according to lore.
-	max_age = 359	// OS disappeared in 2291, CEV Eris launched 2642. This means the skeleton of a child of 8 years would be 359 years old.
+	min_age = 18
+	max_age = 110
 
 	eyes = null
 	blood_color = null//"#EDE7DF"	// Workaround for bleeding, pretend it's bone dust or something
