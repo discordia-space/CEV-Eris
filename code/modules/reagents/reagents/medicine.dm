@@ -861,3 +861,21 @@
 /datum/reagent/medicine/vomitol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(10 * effect_multiplier))
 		M.vomit()
+
+/datum/reagent/medicine/suppressital
+	name = "Suppressital"
+	id = "suppressital"
+	description = "Medication designed to make breakdowns impossible to happen."
+	taste_description = "bitterness"
+	reagent_state = LIQUID
+	color = "#001aff"
+	overdose = REAGENTS_OVERDOSE
+
+/datum/reagent/medicine/suppressital/affect_ingest/(mob/living/carbon/M)
+	if(!M.stats.getPerk(PERK_NJOY))
+		M.stats.addPerk(PERK_NJOY)
+
+/datum/reagent/medicine/suppressital/on_mob_delete(mob/living/M)
+	..()
+	M.stats.removePerk(PERK_NJOY)
+

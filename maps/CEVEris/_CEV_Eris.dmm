@@ -41514,18 +41514,17 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section1)
 "bUr" = (
-/obj/structure/disposalpipe/up{
-	dir = 4;
-	icon_state = "pipe-u";
-	tag = "icon-pipe-u (EAST)"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/zpipe/up{
-	dir = 4;
-	icon_state = "up";
-	tag = "icon-up (EAST)"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/obj/machinery/atm{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/dark/golden,
+/area/eris/hallway/side/section3port)
 "bUs" = (
 /obj/machinery/atm{
 	pixel_x = 32
@@ -41727,9 +41726,6 @@
 	dir = 4;
 	icon_state = "railing0";
 	tag = "icon-railing0 (EAST)"
-	},
-/obj/structure/disposalpipe/junction{
-	dir = 8
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
@@ -49018,8 +49014,7 @@
 	tag = "icon-railing0 (EAST)"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+	dir = 4
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
@@ -65448,14 +65443,6 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
-/obj/machinery/door/blast/shutters{
-	density = 0;
-	dir = 4;
-	icon_state = "shutter0";
-	id = "chemcounter";
-	name = "Pharmacy Counter Shutters";
-	opacity = 0
-	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section2deck2port)
 "dch" = (
@@ -65763,14 +65750,6 @@
 	id = "MedbayTotalLockdown";
 	layer = 2.6;
 	name = "Medbay Total Lockdown";
-	opacity = 0
-	},
-/obj/machinery/door/blast/shutters{
-	density = 0;
-	dir = 4;
-	icon_state = "shutter0";
-	id = "chemcounter";
-	name = "Pharmacy Counter Shutters";
 	opacity = 0
 	},
 /turf/simulated/floor/plating,
@@ -68830,10 +68809,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
+/obj/structure/disposalpipe/junction,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "djv" = (
@@ -69662,7 +69638,7 @@
 	},
 /obj/machinery/door/blast/shutters{
 	dir = 2;
-	id = "maint_hatch_medchem";
+	id = "maint_hatch_mbo";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
@@ -76045,7 +76021,7 @@
 	dir = 1
 	},
 /obj/machinery/button/remote/blast_door{
-	id = "maint_hatch_medchem";
+	id = "maint_hatch_mbo";
 	name = "Maintenance Hatch Control";
 	pixel_y = -24;
 	req_access = newlist()
@@ -76609,10 +76585,6 @@
 /turf/simulated/open,
 /area/eris/engineering/foyer)
 "dBF" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
 /obj/structure/cable/green{
 	d1 = 2;
 	d2 = 4;
@@ -76625,6 +76597,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "dBG" = (
@@ -85147,6 +85120,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/item/storage/box/njoy/green,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
 "dVO" = (
@@ -95621,12 +95595,10 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "evf" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/chemical_dispenser,
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/eris/medical/chemistry)
+/obj/structure/table/standard,
+/obj/item/device/eftpos,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/quartermaster/storage)
 "evg" = (
 /obj/structure/table/standard,
 /obj/item/storage/box/syringes{
@@ -101866,6 +101838,9 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "gTF" = (
@@ -104489,6 +104464,13 @@
 	},
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/crew_quarters/barbackroom)
+"njq" = (
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/structure/table/rack/shelf,
+/obj/item/storage/box/njoy/red,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/medical/chemstor)
 "njW" = (
 /obj/machinery/camera/network/third_section{
 	dir = 8
@@ -106189,6 +106171,9 @@
 	dir = 6
 	},
 /obj/structure/table/woodentable,
+/obj/item/storage/pill_bottle/njoy/blue,
+/obj/item/storage/pill_bottle/njoy/green,
+/obj/item/storage/pill_bottle/njoy/red,
 /turf/simulated/floor/carpet,
 /area/eris/medical/psych)
 "rGT" = (
@@ -106457,13 +106442,10 @@
 	pixel_x = 3
 	},
 /obj/effect/window_lwall_spawn/smartspawn,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
+/obj/machinery/door/blast/shutters{
+	dir = 2;
 	id = "TechnomancerShopLockdown";
-	layer = 2.6;
-	name = "Technomancer Shop Lockdown";
-	opacity = 0
+	name = "Technomancer Shop Lockdown"
 	},
 /turf/simulated/floor/plating,
 /area/eris/engineering/foyer)
@@ -106637,19 +106619,6 @@
 /obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5port)
-"sBj" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "TechnomancerShopLockdown";
-	layer = 2.6;
-	name = "Technomancer Shop Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/plating,
-/area/eris/engineering/engeva)
 "sBN" = (
 /obj/structure/table/standard,
 /obj/item/cell/large/high,
@@ -106782,10 +106751,16 @@
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/neotheology/churchbarracks)
 "sOb" = (
-/obj/spawner/pack/machine,
-/obj/structure/catwalk,
-/turf/space,
-/area/eris/maintenance/section2deck1port)
+/obj/machinery/atmospherics/pipe/zpipe/up{
+	dir = 4;
+	icon_state = "up";
+	tag = "icon-up (EAST)"
+	},
+/obj/structure/disposalpipe/up{
+	dir = 4
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section2deck3port)
 "sOh" = (
 /obj/structure/closet/coffin,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
@@ -108504,6 +108479,7 @@
 	dir = 8;
 	pixel_x = -28
 	},
+/obj/item/storage/box/njoy/blue,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
 "wYQ" = (
@@ -204022,8 +203998,8 @@ cnj
 cIx
 oTl
 coI
+sOb
 cry
-bUr
 bSx
 cty
 mrW
@@ -207296,8 +207272,8 @@ cBr
 cBr
 olz
 cAS
-vrQ
-vrQ
+cGj
+cGR
 cCO
 cBO
 cFs
@@ -207681,7 +207657,7 @@ xZV
 vcS
 dFB
 eeB
-dJu
+bUr
 anJ
 etm
 oXn
@@ -213544,7 +213520,7 @@ cgO
 cgO
 evU
 cie
-cwI
+evf
 cyb
 cyb
 cyb
@@ -247312,7 +247288,7 @@ kjj
 xHX
 uxO
 qyl
-sBj
+dRV
 dRK
 dRY
 dRI
@@ -247514,7 +247490,7 @@ dBA
 dBA
 dBA
 wsB
-sBj
+dRV
 dRL
 dRZ
 dRI
@@ -247668,7 +247644,7 @@ dvs
 lcL
 gQw
 ucx
-evf
+dpF
 dte
 aaa
 aaa
@@ -247716,7 +247692,7 @@ dBA
 vYG
 rkA
 weP
-sBj
+dRV
 dRL
 dRZ
 dRI
@@ -287450,7 +287426,7 @@ dQw
 amk
 dQr
 dQr
-sOb
+dER
 dUW
 dTT
 alG
@@ -288470,7 +288446,7 @@ kmV
 egQ
 wXf
 dQb
-dRa
+njq
 uYg
 dSB
 xuA

@@ -85,6 +85,9 @@
 	// Used for spawned robotic organs
 	var/default_description
 
+	// Generation behavior
+	var/generation_flags = ORGAN_HAS_BONES | ORGAN_HAS_BLOOD_VESSELS | ORGAN_HAS_MUSCLES | ORGAN_HAS_NERVES
+
 /obj/item/organ/external/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	if(OD)
 		set_description(OD)
@@ -212,10 +215,14 @@
 /obj/item/organ/external/proc/make_base_internal_organs()
 	if(is_stump(src))
 		return
-	make_bones()
-	make_nerves()
-	make_muscles()
-	make_blood_vessels()
+	if(generation_flags & ORGAN_HAS_BONES)
+		make_bones()
+	if(generation_flags & ORGAN_HAS_NERVES)
+		make_nerves()
+	if(generation_flags & ORGAN_HAS_MUSCLES)
+		make_muscles()
+	if(generation_flags & ORGAN_HAS_BLOOD_VESSELS)
+		make_blood_vessels()
 
 /obj/item/organ/external/proc/make_bones()
 	if(default_bone_type)

@@ -159,3 +159,9 @@
 #define IWOUND_3_MINUTES 90
 #define IWOUND_4_MINUTES 120
 #define IWOUND_5_MINUTES 150
+
+// Organ generation
+#define ORGAN_HAS_BONES			(1<<0)
+#define ORGAN_HAS_BLOOD_VESSELS	(1<<1)
+#define ORGAN_HAS_NERVES		(1<<2)
+#define ORGAN_HAS_MUSCLES		(1<<3)

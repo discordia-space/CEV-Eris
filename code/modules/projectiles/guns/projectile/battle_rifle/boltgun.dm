@@ -152,6 +152,7 @@
 	init_offset = 0 //no bayonet
 	max_shells = 6
 	zoom_factors = list(0.8) //vintorez level
+	proj_step_multiplier = 0.8 //high pressure and long barrel
 	magazine_type = /obj/item/ammo_magazine/srifle
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
 	wielded_item_state = "_doble_ih_scope"
