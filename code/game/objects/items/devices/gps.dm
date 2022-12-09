@@ -135,5 +135,3 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "measuring"
 	w_class = ITEM_SIZE_SMALL
-
-//todo: dig site tape
