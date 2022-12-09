@@ -312,6 +312,14 @@ default behaviour is:
 		return FALSE	//godmode
 	halloss = amount
 
+/mob/living/proc/adjustHeat(amount) // Doesn't need setHeat, aheal already cools your body to room temperature
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	if(amount < -40 && on_fire)
+		ExtinguishMob()
+		adjustFireLoss(TEMP_SHOCK_DAMAGE)
+	bodytemperature = max(bodytemperature + amount, 0) // No need for limits, let people burn and freeze
+
 /mob/living/proc/getMaxHealth()
 	return maxHealth
 

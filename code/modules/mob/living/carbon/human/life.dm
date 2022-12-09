@@ -2,18 +2,18 @@
 #define HUMAN_MAX_OXYLOSS 1 //Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
 #define HUMAN_CRIT_MAX_OXYLOSS ( 2 / 6) //The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s. There are 50HP to get through, so (1/6)*last_tick_duration per second. Breaths however only happen every 4 ticks. last_tick_duration = ~2.0 on average
 
-#define HEAT_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 360.15k safety point
-#define HEAT_DAMAGE_LEVEL_2 4 //Amount of damage applied when your body temperature passes the 400K point
-#define HEAT_DAMAGE_LEVEL_3 8 //Amount of damage applied when your body temperature passes the 1000K point
+#define HEAT_DAMAGE_LEVEL_1 1 //Amount of damage applied when your body temperature just passes the 360.15k safety point
+#define HEAT_DAMAGE_LEVEL_2 2 //Amount of damage applied when your body temperature passes the 400K point
+#define HEAT_DAMAGE_LEVEL_3 3 //Amount of damage applied when your body temperature passes the 1000K point
 
 #define COLD_DAMAGE_LEVEL_1 0.5 //Amount of damage applied when your body temperature just passes the 260.15k safety point
 #define COLD_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when your body temperature passes the 200K point
 #define COLD_DAMAGE_LEVEL_3 3 //Amount of damage applied when your body temperature passes the 120K point
 
 //Note that gas heat damage is only applied once every FOUR ticks.
-#define HEAT_GAS_DAMAGE_LEVEL_1 2 //Amount of damage applied when the current breath's temperature just passes the 360.15k safety point
-#define HEAT_GAS_DAMAGE_LEVEL_2 4 //Amount of damage applied when the current breath's temperature passes the 400K point
-#define HEAT_GAS_DAMAGE_LEVEL_3 8 //Amount of damage applied when the current breath's temperature passes the 1000K point
+#define HEAT_GAS_DAMAGE_LEVEL_1 1 //Amount of damage applied when the current breath's temperature just passes the 360.15k safety point
+#define HEAT_GAS_DAMAGE_LEVEL_2 2 //Amount of damage applied when the current breath's temperature passes the 400K point
+#define HEAT_GAS_DAMAGE_LEVEL_3 3 //Amount of damage applied when the current breath's temperature passes the 1000K point
 
 #define COLD_GAS_DAMAGE_LEVEL_1 0.5 //Amount of damage applied when the current breath's temperature just passes the 260.15k safety point
 #define COLD_GAS_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when the current breath's temperature passes the 200K point
@@ -602,13 +602,24 @@
 		fire_alert = max(fire_alert, FIRE_ALERT_COLD)
 		if(status_flags & GODMODE)	return 1	//godmode
 		var/burn_dam = 0
-		switch(bodytemperature)
-			if(species.heat_level_1 to species.heat_level_2)
-				burn_dam = HEAT_DAMAGE_LEVEL_1
-			if(species.heat_level_2 to species.heat_level_3)
-				burn_dam = HEAT_DAMAGE_LEVEL_2
-			if(species.heat_level_3 to INFINITY)
-				burn_dam = HEAT_DAMAGE_LEVEL_3
+
+		if(bodytemperature >= species.heat_level_3)
+			burn_dam = HEAT_DAMAGE_LEVEL_3
+			fire_stacks += 3
+
+		else if(bodytemperature >= species.heat_level_2)
+			burn_dam = HEAT_DAMAGE_LEVEL_2
+			fire_stacks++
+
+		else
+			burn_dam = HEAT_DAMAGE_LEVEL_1
+
+
+		IgniteMob() // Ignites oil or other firestacks, damage increased while on fire
+
+		if(on_fire)
+			burn_dam = burn_dam * 2
+
 		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
 		fire_alert = max(fire_alert, FIRE_ALERT_HOT)
 
@@ -618,13 +629,22 @@
 
 		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			var/burn_dam = 0
-			switch(bodytemperature)
-				if(-INFINITY to species.cold_level_3)
-					burn_dam = COLD_DAMAGE_LEVEL_1
-				if(species.cold_level_3 to species.cold_level_2)
-					burn_dam = COLD_DAMAGE_LEVEL_2
-				if(species.cold_level_2 to species.cold_level_1)
-					burn_dam = COLD_DAMAGE_LEVEL_3
+
+			if(bodytemperature <= species.cold_level_3)
+				burn_dam = COLD_DAMAGE_LEVEL_3
+				fire_stacks -= 3
+
+			else if(bodytemperature <= species.cold_level_2)
+				burn_dam = COLD_DAMAGE_LEVEL_2
+				fire_stacks--
+
+			else
+				burn_dam = COLD_DAMAGE_LEVEL_1
+
+			if(on_fire)
+				burn_dam += TEMP_SHOCK_DAMAGE // Temperature shock
+			ExtinguishMob()
+
 			take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
 			fire_alert = max(fire_alert, FIRE_ALERT_COLD)
 
@@ -679,8 +699,6 @@
 
 	if (abs(body_temperature_difference) < 0.5)
 		return //fuck this precision
-	if (on_fire)
-		return //too busy for pesky metabolic regulation
 
 	if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
 		if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
@@ -1120,16 +1138,6 @@
 	if(..())
 		speech_problem_flag = 1
 	return stuttering
-
-/mob/living/carbon/human/handle_fire()
-	if(..())
-		return
-
-	var/burn_temperature = fire_burn_temperature()
-	var/thermal_protection = get_heat_protection(burn_temperature)
-
-	if (thermal_protection < 1 && bodytemperature < burn_temperature)
-		bodytemperature += round(BODYTEMP_HEATING_MAX*(1-thermal_protection), 1)
 
 /mob/living/carbon/human/rejuvenate()
 	sanity.setLevel(sanity.max_level)

@@ -27,6 +27,8 @@
 
 	min_breath_required_type = 3
 	min_air_pressure = 15 //below this, brute damage is dealt
+	temp_damage_mult = 0.5
+	insulation_divisor = 0.2
 
 	faction = "roach"
 	pass_flags = PASSTABLE

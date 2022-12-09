@@ -19,6 +19,9 @@
 	armor_divisor = ARMOR_PEN_DEEP
 	wound_mult = WOUNDING_NORMAL
 
+	temp_damage_mult = 4
+	insulation_divisor = 1 // Harder to ignite, but dies fast
+
 	// Armor related variables
 	armor = list(
 		melee = 15,

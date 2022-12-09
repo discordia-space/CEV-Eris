@@ -13,3 +13,6 @@
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/spider/hunter
 	meat_amount = 4
 	rarity_value = 75
+
+	temp_damage_mult = 3
+	insulation_divisor = 0.8

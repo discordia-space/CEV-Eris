@@ -36,11 +36,11 @@
 
 /obj/item/projectile/bullet/grenade/heatwave
 	name = "heatwave shell"
-	var/heat_damage = 40
+	var/list/heat_damage = list(BURN = 47, HEAT = 80) // Enough to ignite someone via heat
 	var/penetration = 10
 	var/heavy_range = 1
 	var/weak_range = 3
-	var/fire_stacks = TRUE
+	var/fire_stacks = 6
 
 /obj/item/projectile/bullet/grenade/heatwave/grenade_effect(target)
     heatwave(target, heavy_range, weak_range, heat_damage, fire_stacks, penetration)

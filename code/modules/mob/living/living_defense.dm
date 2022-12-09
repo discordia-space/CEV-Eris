@@ -63,13 +63,13 @@
 			else
 				dmg = max(dmg - remaining_armor - remaining_ablative, 0)
 
-			if(!(dmg_type == HALLOSS)) // Determine pain from impact
+			if(!(damagetype == HALLOSS ) && !(damagetype == HEAT) && !(damagetype == COLD)) // Determine pain from impact
 				adjustHalLoss(used_armor * wounding_multiplier * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 
 			dmg_types[dmg_type] = dmg // Finally, we adjust the damage passing through
 			if(dmg)
 				dealt_damage += dmg
-				dmg *= dmg_type == HALLOSS ? 1 : wounding_multiplier
+				dmg *= dmg_type == BRUTE ? wounding_multiplier : 1
 
 				if(dmg_type == HALLOSS)
 					dmg = round(dmg * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
@@ -368,7 +368,7 @@
 /mob/living/proc/ExtinguishMob()
 	if(on_fire)
 		on_fire = FALSE
-		fire_stacks = 0
+		fire_stacks = max(0, fire_stacks - 3)
 		set_light(max(0, light_range - 3))
 		update_fire()
 
@@ -387,6 +387,10 @@
 	else if(fire_stacks <= 0)
 		ExtinguishMob() //Fire's been put out.
 		return 1
+
+	fire_stacks-- // The fire will slowly die out
+	fire_stacks = CLAMP(fire_stacks, -10, 10) // Limit stacks
+	take_overall_damage(burn=8, used_weapon = "Thermal Burns")
 
 	var/datum/gas_mixture/G = loc.return_air() // Check if we're standing in an oxygenless environment
 	if(G.gas["oxygen"] < 1)

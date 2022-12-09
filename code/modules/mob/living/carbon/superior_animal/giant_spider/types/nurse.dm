@@ -23,6 +23,9 @@
 	var/fed = 0
 	var/egg_inject_chance = 4
 
+	temp_damage_mult = 2
+	insulation_divisor = 0.6
+
 /mob/living/carbon/superior_animal/giant_spider/nurse/UnarmedAttack()
 	..()
 	if(ishuman(target_mob))

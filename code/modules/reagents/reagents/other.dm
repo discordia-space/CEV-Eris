@@ -258,7 +258,7 @@
 
 /datum/reagent/other/thermite/touch_mob(mob/living/L, var/amount)
 	if(istype(L))
-		L.adjust_fire_stacks(amount / 5)
+		L.adjust_fire_stacks(amount)
 
 /datum/reagent/other/thermite/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustFireLoss(3 * 0.6)
@@ -460,6 +460,14 @@
 	reagent_property_coeff = 1496	// 1.21 * 1236, denstiy and specific heat of R22 refrigerant.
 	latent_heat = 1900				// Roughly a tenth of water's latent heat from core.dm
 
+/datum/reagent/coolant/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
+	M.adjustHeat(CLAMP((200 - M.bodytemperature) / TEMPERATURE_DAMAGE_DIVISOR * effect_multiplier, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX))
+
+/datum/reagent/water/touch_mob(mob/living/L, amount)
+	if(istype(L))
+		L.adjust_fire_stacks(-amount / 2)
+		L.ExtinguishMob()
+
 /datum/reagent/other/ultraglue
 	name = "Ultra Glue"
 	id = "glue"
@@ -572,7 +580,7 @@
 	color = "#cf820f"
 	metabolism = REM * 0.2
 	nerve_system_accumulations = 20
-	sanity_gain_ingest = 0.5	
+	sanity_gain_ingest = 0.5
 	taste_tag = list(TASTE_LIGHT)
 	glass_icon_state = "teaglass"
 	glass_name = "odd tea"

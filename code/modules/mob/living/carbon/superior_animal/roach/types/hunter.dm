@@ -15,6 +15,9 @@
 
 	attacktext = list("slashed", "rended", "diced")
 
+	temp_damage_mult = 1
+	insulation_divisor = 0.5
+
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/jager
 	meat_amount = 3
 	rarity_value = 11.25

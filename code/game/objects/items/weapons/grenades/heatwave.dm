@@ -5,11 +5,11 @@
     item_state = "grenade"
     matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASMA = 4)
 
-    var/heavy_range = 2
-    var/weak_range = 3
+    var/heavy_range = 3
+    var/weak_range = 4
     var/flash_range = 10
-    var/heat_damage = 90
-    var/fire_stacks = TRUE
+    var/list/heat_damage = list(BURN = 60, HEAT = 120) // Less firestacks and burn damage, but significantly higher heat and radius
+    var/fire_stacks = 6
     var/penetration = 0
 
 
@@ -34,7 +34,8 @@
     icon_state = "frag_nt"
     item_state = "fraggrenade_nt"
     heavy_range = 2
-    weak_range = 4
-    heat_damage = 90
+    weak_range = 3
+    heat_damage = list(BURN = 87, HEAT = 60)
+    fire_stacks = 10
     penetration = 25
     matter = list(MATERIAL_BIOMATTER = 30, MATERIAL_PLASMA = 5)

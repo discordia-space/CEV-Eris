@@ -70,6 +70,7 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 	max_air_pressure = 10000 //above this, brute damage is dealt
 	min_bodytemperature = 0 //below this, burn damage is dealt
 	max_bodytemperature = 10000 //above this, burn damage is dealt
+	temp_damage_mult = 0
 
 	// Damage multiplier when destroying surroundings
 	var/surrounds_mult = 0.5

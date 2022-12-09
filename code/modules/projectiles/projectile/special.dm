@@ -82,24 +82,22 @@
 	armor_divisor = 1
 	check_armour = ARMOR_BULLET
 
+	var/list/heat_damage = list(BURN = 100, HEAT = 100) // Enough to ignite someone via heat
+	var/penetration = 20
+	var/heavy_range = 3
+	var/weak_range = 5
+	var/fire_stacks = 8
+
 /obj/item/projectile/bullet/rocket/thermo/detonate(atom/target)
-	heatwave(get_turf(src), 3, 5, 100, TRUE, 20)
+	heatwave(get_turf(src), heavy_range, weak_range, heat_damage, fire_stacks, penetration)
 	explosion(get_turf(src), 0, 0, 0, 5, singe_impact_range = 4)
 
 /obj/item/projectile/temp
 	name = "freeze beam"
 	icon_state = "ice_2"
-	damage_types = list(BURN = 0)
+	damage_types = list(COLD = 60)
 	nodamage = 1
 	check_armour = ARMOR_ENERGY
-	var/temperature = 300
-
-
-/obj/item/projectile/temp/on_hit(atom/target)//These two could likely check temp protection on the mob
-	if(isliving(target))
-		var/mob/M = target
-		M.bodytemperature = temperature
-	return TRUE
 
 /obj/item/projectile/meteor
 	name = "meteor"
@@ -186,8 +184,9 @@
 /obj/item/projectile/flamer_lob
 	name = "blob of fuel"
 	icon_state = "fireball"
-	damage_types = list(BURN = 20)
-	check_armour = ARMOR_MELEE
+	damage_types = list(BURN = 20, HEAT = 40)
+	check_armour = ARMOR_BIO
+	heat = 100
 	var/life = 3
 
 
@@ -214,7 +213,7 @@
 /obj/item/projectile/bullet/flare
 	name = "flare"
 	icon_state = "flare"
-	damage_types = list(BRUTE = 24)
+	damage_types = list(BRUTE = 18, BURN = 14, HEAT = 25)
 	kill_count = 16
 	armor_divisor = 1
 	step_delay = 2
@@ -256,3 +255,75 @@
 	playsound(src, 'sound/effects/flare.ogg', 100, 1)
 	new /obj/effect/effect/smoke/illumination(T, brightness=max(flash_range*3, brightness), lifetime=light_duration, color=COLOR_RED)
 
+/obj/item/projectile/reagent
+	name = "reagent"
+	icon_state = "flare"	//"icons/obj/chempuff.dmi"
+	damage_types = list(HEAT = 0)
+	nodamage = TRUE
+	check_armour = ARMOR_BIO
+	recoil = 8
+
+	var/air_time = 3 // Amount of tiles spent without touching the ground
+	var/amount_per_transfer_from_this = 10
+	var/amount_per_transfer_from_this_turf = 5
+	var/volume = 60
+
+/obj/item/projectile/reagent/Initialize()
+	create_reagents(volume)
+	. = ..() // This creates initial reagents
+
+/obj/item/projectile/reagent/on_impact()
+	reagents.trans_to(loc, volume)
+	..()
+
+/obj/item/projectile/reagent/attack_mob()
+	if(..())
+		return FALSE
+	return TRUE
+
+/obj/item/projectile/reagent/before_move()
+	air_time--
+	if(air_time <= 0)
+		reagents.trans_to_turf(get_turf(src), amount_per_transfer_from_this_turf)
+		update_amount()
+
+/obj/item/projectile/reagent/on_hit(atom/target)
+	if(isliving(target))
+		var/mob/living/L = target
+		reagents.trans_to_mob(L, L.mob_size, CHEM_TOUCH)
+		update_amount()
+
+/obj/item/projectile/reagent/proc/update_amount()
+	if(reagents.total_volume < 10)
+		on_impact(get_turf(src)) //for any final impact behaviours
+		qdel(src)
+	damage_types[HEAT] = reagents.total_volume
+
+/obj/item/projectile/reagent/hot
+
+/obj/item/projectile/reagent/hot/before_move()
+	..()
+	if(air_time <= 0)
+		var/turf/location = get_turf(src)
+		if(location)
+			location.hotspot_expose(700, 5)
+
+/obj/item/projectile/reagent/hot/on_hit(atom/target)
+	if(isliving(target))
+		var/mob/living/L = target
+		reagents.trans_to_mob(L, L.mob_size, CHEM_TOUCH)
+		L.IgniteMob()
+		update_amount()
+
+/obj/item/projectile/reagent/large
+	name = "reagent"
+	icon_state = "flare"	//"icons/obj/chempuff.dmi"
+	damage_types = list(HEAT = 0)
+	nodamage = TRUE
+	check_armour = ARMOR_BIO
+	recoil = 16
+
+	air_time = 3 // Amount of tiles spent without touching the ground
+	amount_per_transfer_from_this = 12
+	amount_per_transfer_from_this_turf = 6
+	volume = 120

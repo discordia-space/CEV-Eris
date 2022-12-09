@@ -91,6 +91,7 @@
 		/datum/design/autolathe/device/destTagger,
 		/datum/design/autolathe/device/export_scanner,
 		/datum/design/autolathe/device/implanter,
+		/datum/design/autolathe/container/chemthrower = 2,
 		/datum/design/autolathe/device/hand_labeler,
 		/datum/design/research/item/light_replacer,
 		/datum/design/autolathe/sec/hailer,

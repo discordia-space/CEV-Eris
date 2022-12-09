@@ -17,29 +17,44 @@ proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, pen
 		light_range = heavy_range
 
 	for(var/atom/T in range(light_range, epicenter))
-		if(fire_stacks)
-			T.fire_act()
+
 		if(istype(T, /mob/living))
 			var/mob/living/L = T
 			playsound(L, 'sound/effects/gore/sear.ogg', 40, 1)
 
-			var/burn_damage = 0
-
 			var/distance = get_dist(epicenter, L)
+
+			var/isLight_range = FALSE
 			if(distance < 0)
 				distance = 0
-			if(distance <= heavy_range)
-				burn_damage = damage
-			else
-				burn_damage = damage * 0.5
 
-			if(burn_damage && L.stat == CONSCIOUS)
+			if(!distance <= heavy_range)
+				isLight_range = TRUE
+
+
+			if(L.stat == CONSCIOUS)
 				to_chat(L, SPAN_WARNING("You feel your skin boiling!"))
 
-			var/organ_hit = BP_CHEST //Chest is hit first
-			var/loc_damage
-			while (burn_damage > 0)
-				burn_damage -= loc_damage = rand(1, burn_damage)
-				L.damage_through_armor(loc_damage, BURN, organ_hit, ARMOR_ENERGY, penetration)
-				organ_hit = ran_zone()  //We determine next body parts that should be hit
-	return 1
+			if(damage[HEAT])
+				var/heat_damage = isLight_range ? damage[HEAT] / 2 : damage[HEAT]
+				L.damage_through_armor(heat_damage, HEAT, attack_flag = ARMOR_ENERGY, armor_divisor = penetration)
+
+			if(damage[BURN])
+				var/burn_damage = isLight_range ? damage[BURN] / 2 : damage[BURN]
+
+
+				var/organ_hit = BP_CHEST //Chest is hit first
+				var/loc_damage
+				while (burn_damage > 0)
+					burn_damage -= loc_damage = rand(1, burn_damage)
+					L.damage_through_armor(loc_damage, BURN, organ_hit, ARMOR_ENERGY, penetration)
+					organ_hit = ran_zone()  //We determine some other body parts that should be hit
+
+			if(fire_stacks)
+				L.adjust_fire_stacks(fire_stacks)
+			L.IgniteMob()
+			return TRUE
+
+		if(fire_stacks)
+			T.fire_act()
+	return TRUE
