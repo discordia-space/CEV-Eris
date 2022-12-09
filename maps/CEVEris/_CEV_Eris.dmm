@@ -85147,6 +85147,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/item/storage/box/njoy/green,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
 "dVO" = (
@@ -104489,6 +104490,13 @@
 	},
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/crew_quarters/barbackroom)
+"njq" = (
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/structure/table/rack/shelf,
+/obj/item/storage/box/njoy/red,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/medical/chemstor)
 "njW" = (
 /obj/machinery/camera/network/third_section{
 	dir = 8
@@ -106189,6 +106197,9 @@
 	dir = 6
 	},
 /obj/structure/table/woodentable,
+/obj/item/storage/pill_bottle/njoy/blue,
+/obj/item/storage/pill_bottle/njoy/green,
+/obj/item/storage/pill_bottle/njoy/red,
 /turf/simulated/floor/carpet,
 /area/eris/medical/psych)
 "rGT" = (
@@ -108504,6 +108515,7 @@
 	dir = 8;
 	pixel_x = -28
 	},
+/obj/item/storage/box/njoy/blue,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
 "wYQ" = (
@@ -288470,7 +288482,7 @@ kmV
 egQ
 wXf
 dQb
-dRa
+njq
 uYg
 dSB
 xuA
