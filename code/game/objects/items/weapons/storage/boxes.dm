@@ -784,12 +784,11 @@
 
 /obj/item/storage/box/njoy/red/New()
 	. = ..()
+
 /obj/item/storage/box/njoy/red/populate_contents()
 	for(var/i in 1 to initial_amount)
-	new /obj/item/storage/pill_bottle/njoy/red(src)
-	new /obj/item/storage/pill_bottle/njoy/red(src)
-	new /obj/item/storage/pill_bottle/njoy/red(src)
-	new /obj/item/storage/pill_bottle/njoy/red(src)
+		new /obj/item/storage/pill_bottle/njoy/red(src)
+
 
 /obj/item/storage/box/njoy/blue
 	name = "blue Njoy packet"
