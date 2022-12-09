@@ -280,7 +280,7 @@
 	if(affecting_stat > 0)
 		warmup_increase += affecting_stat ** 0.8
 	else
-		warmup_increase += affecting_stat ** 0.6
+		warmup_increase -= abs(affecting_stat) ** 0.6
 
 	var/total_warmup = max(0, UPGRADE_WARMUP + round(warmup_increase))
 
