@@ -1638,7 +1638,6 @@
 	products = list(
 					/obj/item/ammo_magazine/lrifle = 12,
 					/obj/item/ammo_magazine/hpistol = 12,
-					/obj/item/ammo_magazine/magnum = 12,
 					/obj/item/ammo_magazine/srifle = 12,
 					/obj/item/ammo_magazine/smg = 12,
 					/obj/item/part/armor = 30,
@@ -1649,7 +1648,6 @@
 					/obj/item/gun/projectile/mk58/wood = 2,
 					/obj/item/gun/projectile/mk58/army = 1,
 					/obj/item/gun/projectile/revolver/deckard = 2,
-					/obj/item/gun/projectile/voodoo = 4,
 					/obj/item/gun/projectile/automatic/ak47/fs = 4,
 					/obj/item/gun/projectile/automatic/z8 = 4,
 					/obj/item/gun/projectile/shotgun/pump/regulator = 4,
@@ -1661,11 +1659,10 @@
 	contraband = list(
 					/obj/item/gun/projectile/mandella = 4,
 					/obj/item/ammo_magazine/cspistol = 12,
-					/obj/item/gun_upgrade/cosmetic/gold = 5)
+					/obj/item/computer_hardware/hard_drive/portable/design/guns/scaramanga = 1)
 	prices = list(
 					/obj/item/ammo_magazine/lrifle = 400,
 					/obj/item/ammo_magazine/hpistol = 300,
-					/obj/item/ammo_magazine/magnum = 400,
 					/obj/item/ammo_magazine/cspistol = 400,
 					/obj/item/ammo_magazine/srifle = 300,
 					/obj/item/ammo_magazine/smg = 400,
@@ -1676,8 +1673,7 @@
 					/obj/item/gun/projectile/mk58  = 900,
 					/obj/item/gun/projectile/mk58/wood = 900,
 					/obj/item/gun/projectile/mk58/army = 950,
-					/obj/item/gun/projectile/voodoo = 2400,
-					/obj/item/gun/projectile/mandella = 3700,
+					/obj/item/gun/projectile/mandella = 1800,
 					/obj/item/gun/projectile/revolver/deckard = 3600,
 					/obj/item/gun/projectile/automatic/ak47/fs = 3200,
 					/obj/item/gun/projectile/automatic/z8 = 3500,
@@ -1686,7 +1682,7 @@
 					/obj/item/storage/deferred/crate/clown_crime/wolf = 1800,
 					/obj/item/storage/deferred/crate/clown_crime/hoxton = 1800,
 					/obj/item/storage/deferred/crate/clown_crime/chains = 1800,
-					/obj/item/computer_hardware/hard_drive/portable/design/guns/scaramanga = 2000
+					/obj/item/computer_hardware/hard_drive/portable/design/guns/scaramanga = 7000
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_OFFSHIP
