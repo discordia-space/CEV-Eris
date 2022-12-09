@@ -578,9 +578,12 @@
 		var/obj/item/stack/S = I
 		if(S.amount >= amount_to_spend)
 			S.use(amount_to_spend)
-			should_qdel = FALSE		// Don't qdel a stack with remaining charges
+			if(S.amount)
+				should_qdel = FALSE		// Don't qdel a stack with remaining charges
 		else
 			to_chat(user, SPAN_WARNING("\icon[I] That is not enough money."))
+			return FALSE
+	else
 			return FALSE
 
 	visible_message(SPAN_NOTICE("\The [user] inserts ["[amount_to_spend]"] [I.name] into \the [src]."))
