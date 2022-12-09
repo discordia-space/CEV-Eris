@@ -25,6 +25,7 @@
 
 	if(!armor_divisor)
 		armor_divisor = 1
+		log_debug("[used_weapon] applied damage to [name] with an armor divisor of 0")
 
 	var/total_dmg = 0
 	var/dealt_damage = 0
