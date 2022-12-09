@@ -217,7 +217,7 @@
 
 				global_announcer.autosay(pick(message_list), "Emergency Broadcast")
 			if(3) //sekrit stuf
-				if(prob(50))
+				if(prob(2))
 					global_announcer.autosay("Man, all those people really suck. Just don't get hit and beat everything until it dies.", "Emergency Broadcast")
 
 /datum/event/graveyard/end()
