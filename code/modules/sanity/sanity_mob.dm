@@ -192,7 +192,6 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 			else
 				to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? " Now you need to rest and rethink your life choices." : " Your previous insight has been discarded, shifting your desires for new ones."]"))
 				pick_desires()
-				insight -= 100
 			owner.playsound_local(get_turf(owner), 'sound/sanity/psychochimes.ogg', 100)
 
 	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
@@ -269,8 +268,6 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 		to_chat(owner, "<font color='purple'>[owner.stats.getPerk(PERK_ARTIST) ? "You have created art." : "You have rested well."]\
 					<br>Select what you wish to do with your fulfilled insight <a HREF=?src=\ref[src];here_and_now=TRUE>here and now</a> or get to safety first if you are in danger.\
 					<br>The prompt will appear in one minute.</font>")
-		if(owner.stats.getPerk(PERK_ARTIST))
-			resting = 0
 		rest_timer_active = TRUE
 		rest_timer_time = 60 SECONDS
 		owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
@@ -346,6 +343,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 
 	owner.pick_individual_objective()
 	resting = 0
+	insight = 0
 
 /datum/sanity/proc/onDamage(amount)
 	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))
