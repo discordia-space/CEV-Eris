@@ -317,3 +317,12 @@
 		list(CRAFT_MATERIAL,5, MATERIAL_PLASTIC), //Thick plastic bag
 		list(/obj/item/stack/cable_coil, 1, "time" = 20) //And the draw string
 	)
+
+/datum/craft_recipe/console_screen
+	name = "console screen"
+	result = /obj/item/stock_parts/console_screen
+	steps = list(
+		list(CRAFT_MATERIAL, 3, MATERIAL_GLASS),
+		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTIC)
+	)
+	related_stats = list(STAT_MEC)
