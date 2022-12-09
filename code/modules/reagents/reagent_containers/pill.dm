@@ -138,9 +138,11 @@
 	desc = "Stops all breakdowns."
 	icon_state = "pill_njoy_red"
 	preloaded_reagents = list("suppressital" = 15)
+
 /obj/item/reagent_containers/pill/suppressital/blue
 	name = "Njoy blue pill"
 	icon_state = "pill_njoy_blue"
+
 /obj/item/reagent_containers/pill/suppressital/green
 	name = "Njoy green pill"
 	icon_state = "pill_njoy_green"
