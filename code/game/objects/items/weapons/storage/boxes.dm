@@ -816,10 +816,9 @@
 
 /obj/item/storage/box/njoy/green/New()
 	. = ..()
+
 /obj/item/storage/box/njoy/green/populate_contents()
 	for(var/i in 1 to initial_amount)
-	new /obj/item/storage/pill_bottle/njoy/green(src)
-	new /obj/item/storage/pill_bottle/njoy/green(src)
-	new /obj/item/storage/pill_bottle/njoy/green(src)
-	new /obj/item/storage/pill_bottle/njoy/green(src)
+		new /obj/item/storage/pill_bottle/njoy/green(src)
+
 
