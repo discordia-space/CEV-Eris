@@ -800,12 +800,11 @@
 
 /obj/item/storage/box/njoy/blue/New()
 	. = ..()
+
 /obj/item/storage/box/njoy/blue/populate_contents()
 	for(var/i in 1 to initial_amount)
-	new /obj/item/storage/pill_bottle/njoy/blue(src)
-	new /obj/item/storage/pill_bottle/njoy/blue(src)
-	new /obj/item/storage/pill_bottle/njoy/blue(src)
-	new /obj/item/storage/pill_bottle/njoy/blue(src)
+		new /obj/item/storage/pill_bottle/njoy/blue(src)
+
 
 /obj/item/storage/box/njoy/green
 	name = "green Njoy packet"
