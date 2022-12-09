@@ -1598,7 +1598,7 @@
 					/obj/item/storage/deferred/crate/uniform_flak  = 2,
 					/obj/item/storage/deferred/crate/uniform_light = 2,
 					/obj/item/gun/projectile/kovacs = 2,
-					/obj/item/ammo_magazine/srifle = 6,
+					/obj/item/ammo_magazine/lrifle = 6,
 					/obj/item/gun/projectile/boltgun/serbian = 10,
 					/obj/item/ammo_magazine/sllrifle = 20,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 30,
@@ -1638,6 +1638,7 @@
 	products = list(
 					/obj/item/ammo_magazine/lrifle = 12,
 					/obj/item/ammo_magazine/hpistol = 12,
+					/obj/item/ammo_magazine/magnum = 12,
 					/obj/item/ammo_magazine/srifle = 12,
 					/obj/item/ammo_magazine/smg = 12,
 					/obj/item/part/armor = 30,
@@ -1646,7 +1647,9 @@
 					/obj/item/gun/projectile/shotgun/doublebarrel = 4,
 					/obj/item/gun/projectile/mk58  = 2,
 					/obj/item/gun/projectile/mk58/wood = 2,
+					/obj/item/gun/projectile/mk58/army = 1,
 					/obj/item/gun/projectile/revolver/deckard = 2,
+					/obj/item/gun/projectile/voodoo = 4,
 					/obj/item/gun/projectile/automatic/ak47/fs = 4,
 					/obj/item/gun/projectile/automatic/z8 = 4,
 					/obj/item/gun/projectile/shotgun/pump/regulator = 4,
@@ -1658,10 +1661,11 @@
 	contraband = list(
 					/obj/item/gun/projectile/mandella = 4,
 					/obj/item/ammo_magazine/cspistol = 12,
-					/obj/item/computer_hardware/hard_drive/portable/design/guns/scaramanga = 1)
+					/obj/item/gun_upgrade/cosmetic/gold = 5)
 	prices = list(
 					/obj/item/ammo_magazine/lrifle = 400,
 					/obj/item/ammo_magazine/hpistol = 300,
+					/obj/item/ammo_magazine/magnum = 400,
 					/obj/item/ammo_magazine/cspistol = 400,
 					/obj/item/ammo_magazine/srifle = 300,
 					/obj/item/ammo_magazine/smg = 400,
@@ -1671,7 +1675,9 @@
 					/obj/item/gun/projectile/shotgun/doublebarrel = 1400,
 					/obj/item/gun/projectile/mk58  = 900,
 					/obj/item/gun/projectile/mk58/wood = 900,
-					/obj/item/gun/projectile/mandella = 1800,
+					/obj/item/gun/projectile/mk58/army = 950,
+					/obj/item/gun/projectile/voodoo = 2400,
+					/obj/item/gun/projectile/mandella = 3700,
 					/obj/item/gun/projectile/revolver/deckard = 3600,
 					/obj/item/gun/projectile/automatic/ak47/fs = 3200,
 					/obj/item/gun/projectile/automatic/z8 = 3500,
@@ -1680,7 +1686,7 @@
 					/obj/item/storage/deferred/crate/clown_crime/wolf = 1800,
 					/obj/item/storage/deferred/crate/clown_crime/hoxton = 1800,
 					/obj/item/storage/deferred/crate/clown_crime/chains = 1800,
-					/obj/item/computer_hardware/hard_drive/portable/design/guns/scaramanga = 7000
+					/obj/item/computer_hardware/hard_drive/portable/design/guns/scaramanga = 2000
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_OFFSHIP
@@ -1743,23 +1749,23 @@
 		/obj/item/clothing/shoes/aerostatic = 500,
 		/obj/item/clothing/shoes/jamrock = 500,
 		/obj/item/clothing/shoes/jackboots/longboot = 550,
-		/obj/item/clothing/under/tuxedo = 450,
-		/obj/item/clothing/under/white = 450,
-		/obj/item/clothing/under/red = 450,
-		/obj/item/clothing/under/green = 450,
-		/obj/item/clothing/under/grey = 450,
-		/obj/item/clothing/under/black = 450,
-		/obj/item/clothing/under/dress/purple = 450,
-		/obj/item/clothing/under/dress/white = 450,
-		/obj/item/clothing/under/helltaker = 450,
-		/obj/item/clothing/under/johnny = 600,
-		/obj/item/clothing/under/raider = 600,
-		/obj/item/clothing/under/jamrock = 550,
-		/obj/item/clothing/under/aerostatic = 550,
-		/obj/item/clothing/under/tropicalpink = 450,
-		/obj/item/clothing/under/tropicalblue = 450,
-		/obj/item/clothing/under/tropicalblack = 450,
-		/obj/item/clothing/under/tropicalgreen = 450,
+		/obj/item/clothing/under/tuxedo = 100,
+		/obj/item/clothing/under/white = 100,
+		/obj/item/clothing/under/red = 100,
+		/obj/item/clothing/under/green = 100,
+		/obj/item/clothing/under/grey = 100,
+		/obj/item/clothing/under/black = 100,
+		/obj/item/clothing/under/dress/purple = 100,
+		/obj/item/clothing/under/dress/white = 100,
+		/obj/item/clothing/under/helltaker = 100,
+		/obj/item/clothing/under/johnny = 100,
+		/obj/item/clothing/under/raider = 100,
+		/obj/item/clothing/under/jamrock = 100,
+		/obj/item/clothing/under/aerostatic = 100,
+		/obj/item/clothing/under/tropicalpink = 100,
+		/obj/item/clothing/under/tropicalblue = 100,
+		/obj/item/clothing/under/tropicalblack = 100,
+		/obj/item/clothing/under/tropicalgreen = 100,
 		/obj/item/clothing/suit/storage/aerostatic = 700,
 		/obj/item/clothing/suit/storage/jamrock = 700,
 		/obj/item/clothing/suit/storage/dante = 900,
@@ -1889,6 +1895,5 @@
 	var/choice = sanitize(input("What do you want to name your Vendomat? You can rename it again later.", "Vendomat Renaming", name) as text|null, MAX_NAME_LEN)
 	if(choice)
 		SetName(choice)
-
 
 #undef CUSTOM_VENDOMAT_MODELS

@@ -53,8 +53,6 @@ SUBSYSTEM_DEF(research)
 		else
 			WARNING("Unknown tech_type '[tech.tech_type]' in technology '[tech.name]'")
 
-	generate_integrated_circuit_designs()
-
 	research_initialized = TRUE
 	for(var/i in research_files_to_init)
 		initialize_research_datum(i)
@@ -65,21 +63,6 @@ SUBSYSTEM_DEF(research)
 
 	return ..()
 
-
-/datum/controller/subsystem/research/proc/generate_integrated_circuit_designs()
-	for(var/circ_path in SScircuit.cached_components)
-		var/obj/item/integrated_circuit/IC = SScircuit.cached_components[circ_path]
-		if(!(IC.spawn_flags & IC_SPAWN_RESEARCH))
-			continue
-		var/datum/design/design = new /datum/design/research/circuit(src)
-		design.name = "Custom circuitry \[[IC.category_text]\] ([IC.name])"
-		design.id = "ic-[lowertext(IC.name)]"
-		design.build_path = IC.type
-
-		design.AssembleDesignInfo()
-
-
-		all_designs += design
 
 /datum/controller/subsystem/research/proc/initialize_design_file(datum/computer_file/binary/design/design_file)
 	// If designs are already generated, initialized right away.

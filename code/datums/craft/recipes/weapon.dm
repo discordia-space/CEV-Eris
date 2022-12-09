@@ -186,6 +186,31 @@
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
+/datum/craft_recipe/weapon/staff
+	name = "makeshift staff"
+	result = /obj/item/tool/hammer/staff
+	steps = list(
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1)
+	)
+
+/datum/craft_recipe/weapon/halberd
+	name = "makeshift halberd"
+	result = /obj/item/tool/spear/makeshift_halberd
+	steps = list(
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1),
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
+		list(QUALITY_HAMMERING, 10, "time" = 10),
+		list(QUALITY_ADHESIVE, 10, "time" = 5)
+	)
+
 /datum/craft_recipe/weapon/glass_spear
 	name = "glass spear"
 	result = /obj/item/tool/spear

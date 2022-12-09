@@ -38,7 +38,7 @@
 				take_damage(I.force*I.structure_damage_factor, I.damtype)
 			else
 				visible_message(SPAN_DANGER("[user] ineffectually hits [src] with [I]"))
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.75) //This longer cooldown helps promote skill in melee combat by punishing misclicks a bit
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) 
 			return TRUE
 
 	for(var/atom/movable/A in src)

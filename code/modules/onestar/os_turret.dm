@@ -16,13 +16,14 @@
 
 	// Shooting
 	var/obj/item/projectile/projectile = /obj/item/projectile/bullet/gauss
+	var/shot_sound = 'sound/weapons/guns/fire/energy_shotgun.ogg'
 	var/number_of_shots = 5
 	var/time_between_shots = 0.5 SECONDS
 	var/list/shot_timer_ids = list()
 	var/cooldown_time = null
 
 	// Internal
-	var/emp_cooldown = 4 SECONDS
+	var/emp_cooldown = 8 SECONDS
 	var/emp_timer_id
 	var/on_cooldown = FALSE
 	var/cooldown_timer_id
@@ -32,6 +33,7 @@
 	circuit = /obj/item/electronics/circuitboard/os_turret/laser
 	range = 10
 	projectile = /obj/item/projectile/beam/pulsed_laser
+	shot_sound = 'sound/weapons/Laser.ogg'
 	number_of_shots = 3
 	time_between_shots = 0.3 SECONDS
 	cooldown_time = 2 SECONDS
@@ -201,8 +203,10 @@
 
 /obj/machinery/power/os_turret/proc/take_damage(amount)
 	machine_integrity = max(machine_integrity - amount, 0)
-	if(machine_integrity <= 0)
+	if(!machine_integrity)
 		stat |= BROKEN
+	else if(prob(50))
+		do_sparks(1, 0, loc)
 	return amount
 
 /obj/machinery/power/os_turret/proc/try_shoot(target)
@@ -248,6 +252,7 @@
 	set_dir(get_dir(src, target))
 	var/obj/item/projectile/P = new projectile(loc)
 	P.launch(target, def_zone)
+	playsound(src, shot_sound, 60, 1)
 
 /obj/machinery/power/os_turret/proc/cooldown()
 	on_cooldown = FALSE

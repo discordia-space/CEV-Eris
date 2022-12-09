@@ -288,7 +288,7 @@
 	weakened = max(weakened-3,0)
 
 /mob/living/carbon/superior_animal/proc/handle_cheap_regular_status_updates()
-	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
+	health = maxHealth - oxyloss - toxloss - fireloss - bruteloss - cloneloss - halloss
 	if(health <= 0 && stat != DEAD)
 		death()
 		// STOP_PROCESSING(SSmobs, src) This is handled in Superior animal Life().

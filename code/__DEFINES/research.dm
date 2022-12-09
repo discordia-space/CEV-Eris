@@ -1,5 +1,3 @@
-#define SHEET_MATERIAL_AMOUNT 1
-
 #define TECH_MATERIAL "materials"
 #define TECH_ENGINEERING "engineering"
 #define TECH_PLASMA "plasmatech"
