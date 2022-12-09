@@ -159,6 +159,8 @@
 	//Note that a vendor can always accept restocks of things it has had in the past. This is in addition to that
 	var/no_criminals = FALSE //If true, the machine asks if you're wanted by security when you try to order.
 
+	var/alt_currency_path	// If set, this machine will only take items of the given path as currency.
+
 /obj/machinery/vending/New()
 	..()
 	wires = new(src)
@@ -326,13 +328,11 @@
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING, QUALITY_WELDING), src)
 	switch(tool_type)
-
 		if(QUALITY_BOLT_TURNING)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				to_chat(user, SPAN_NOTICE("You [anchored? "un" : ""]secured \the [src]!"))
 				anchored = !anchored
 			return
-
 		if(QUALITY_SCREW_DRIVING)
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
@@ -343,7 +343,6 @@
 					overlays += image(icon, "[icon_type]-panel")
 				SSnano.update_uis(src)
 			return
-
 		if(QUALITY_WELDING)
 			if(custom_vendor)
 				if(!panel_open)
@@ -357,32 +356,39 @@
 							O.forceMove(loc)
 					new /obj/item/electronics/circuitboard/vending(loc)
 					qdel(src)
-
 		if(ABORT_CHECK)
 			return
 
 	var/obj/item/card/id/ID = I.GetIdCard()
 
 	if(currently_vending && earnings_account && !earnings_account.suspended)
-		var/paid = 0
-		var/handled = 0
+		var/paid = FALSE
+		var/handled = FALSE
 
-		if(ID) //for IDs and PDAs and wallets with IDs
-			paid = pay_with_card(ID,I)
-			handled = 1
-			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
-		else if(istype(I, /obj/item/spacecash/ewallet))
-			var/obj/item/spacecash/ewallet/C = I
-			paid = pay_with_ewallet(C)
-			handled = 1
-			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
-		else if(istype(I, /obj/item/spacecash/bundle))
-			var/obj/item/spacecash/bundle/C = I
-			paid = pay_with_cash(C)
-			handled = 1
+		if(alt_currency_path)
+			if(istype(I, alt_currency_path))
+				paid = pay_with_item(I, user)
+			else
+				var/atom/movable/AM = alt_currency_path
+				to_chat(user, SPAN_WARNING("This vending machine only accepts [initial(AM.name)] as currency."))
+			handled = TRUE
+		else
+			if(ID) //for IDs and PDAs and wallets with IDs
+				paid = pay_with_card(ID,I)
+				handled = TRUE
+				playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
+			else if(istype(I, /obj/item/spacecash/ewallet))
+				var/obj/item/spacecash/ewallet/C = I
+				paid = pay_with_ewallet(C)
+				handled = TRUE
+				playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
+			else if(istype(I, /obj/item/spacecash/bundle))
+				var/obj/item/spacecash/bundle/C = I
+				paid = pay_with_cash(C)
+				handled = TRUE
 
 		if(paid)
-			vend(currently_vending, usr)
+			vend(currently_vending, user)
 			return
 		else if(handled)
 			SSnano.update_uis(src)
@@ -395,14 +401,13 @@
 			status_message = "Error: Unable to access account. Please contact technical support if problem persists."
 			status_error = 1
 			SSnano.update_uis(src)
-			return 0
+			return
 
 		if(user_account.suspended)
 			status_message = "Unable to access account: account suspended."
 			status_error = 1
 			SSnano.update_uis(src)
-			return 0
-
+			return
 
 		if(machine_vendor_account == user_account || !machine_vendor_account || vendor_department)
 			if(vendor_department)
@@ -417,20 +422,20 @@
 					status_message = "Error: You are not authorized to manage this Vendomat."
 				SSnano.update_uis(src)
 				return
+
 			// Enter PIN, so you can't loot a vending machine with only the owner's ID card (as long as they increased the sec level)
 			if(user_account.security_level != 0)
 				var/attempt_pin = input("Enter pin code", "Vendor transaction") as num | null
 				user_account = attempt_account_access(ID.associated_account_number, attempt_pin, 2)
-
 				if(!user_account)
 					status_message = "Unable to access account: incorrect credentials."
 					status_error = 1
 					SSnano.update_uis(src)
-					return 0
+					return
+
 			if(!machine_vendor_account)
 				machine_vendor_account = user_account
 				earnings_account = user_account
-
 			locked = !locked
 			status_error = 0
 			status_message = "Owner confirmed. Vendor has been [locked ? "" : "un"]locked."
@@ -442,7 +447,6 @@
 	if(I && istype(I, /obj/item/spacecash))
 		attack_hand(user)
 		return
-
 	else if((QUALITY_CUTTING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities) || (QUALITY_PULSING in I.tool_qualities))
 		if(panel_open)
 			attack_hand(user)
@@ -455,7 +459,6 @@
 		to_chat(user, SPAN_NOTICE("You insert \the [I] into \the [src]."))
 		SSnano.update_uis(src)
 		return
-
 	else if(istype(I, /obj/item/device/spy_bug))
 		user.drop_item()
 		I.loc = get_turf(src)
@@ -464,16 +467,16 @@
 		if(I.type == R.product_path && I.name == R.product_name)
 			if(!locked || always_open || (panel_open && !custom_vendor))
 				stock(I, R, user)
-				return 1
+				return TRUE
 			else if(custom_vendor)
 				try_to_buy(I, R, user)
-				return 1
+				return TRUE
 
 	for(var/a in can_stock)
 		if(istype(I, a))
 			if(!locked || always_open || !custom_vendor)
 				stock(I, null, user)
-				return 1
+				return TRUE
 	..()
 
 /**
@@ -565,6 +568,31 @@
 		// owner made them
 		credit_purchase(customer_account.owner_name)
 		return 1
+
+// Pay with an alternative currency
+/obj/machinery/vending/proc/pay_with_item(obj/item/I, mob/user)
+	var/should_qdel = TRUE
+	var/amount_to_spend = currently_vending.price
+
+	if(istype(I, /obj/item/stack))
+		var/obj/item/stack/S = I
+		if(S.amount >= amount_to_spend)
+			S.use(amount_to_spend)
+			if(S.amount)
+				should_qdel = FALSE		// Don't qdel a stack with remaining charges
+		else
+			to_chat(user, SPAN_WARNING("\icon[I] That is not enough money."))
+			return FALSE
+	else
+		return FALSE
+
+	visible_message(SPAN_NOTICE("\The [user] inserts ["[amount_to_spend]"] [I.name] into \the [src]."))
+
+	if(should_qdel)
+		user.drop_from_inventory(I)
+		qdel(I)
+
+	return TRUE
 
 /**
  *  Add money for current purchase to the vendor account.
