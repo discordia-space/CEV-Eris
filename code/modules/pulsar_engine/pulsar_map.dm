@@ -33,25 +33,28 @@
 	desc = "The orbit target for the satellite"
 	icon = 'icons/obj/overmap.dmi'
 	icon_state = "ihs_capital_g"
-	var/obj/effect/pulsar_ship/shadow
-	var/do_decay = TRUE
+	var/obj/effect/shadow
 	var/decay_timer = 5 MINUTES
 	var/fuel = 100
 	var/fuel_movement_cost = 5
 	var/crash_timer_id
+	var/overcharge_timer_id
 	var/obj/item/device/radio/radio
 	var/datum/event/pulsar_rad_storm/storm
+	var/datum/event/pulsar_overcharge/overcharge //Should have made it a subsystem by now, huh?
 
 /obj/effect/pulsar_ship/New()
 	. = ..()
-	if(do_decay)
-		addtimer(CALLBACK(src, .proc/decay_orbit), decay_timer)
-		radio = new /obj/item/device/radio{channels=list("Engineering")}(src)
+	addtimer(CALLBACK(src, .proc/decay_orbit), decay_timer)
+	radio = new /obj/item/device/radio{channels=list("Engineering")}(src)
 	
 /obj/effect/pulsar_ship/Destroy()
 	. = ..()
-	if(radio)
-		qdel(radio)
+	qdel(radio)
+	storm.endWhen = 1
+	storm = null
+	overcharge.endWhen = 1
+	overcharge = null
 
 /obj/effect/pulsar_ship/proc/decay_orbit()
 	var/movedir = pick(NORTH, SOUTH, EAST, WEST)
@@ -73,8 +76,8 @@
 			if(O.type == /obj/effect/pulsar_beam)
 				beam_collision = TRUE
 				if(!crash_timer_id)
-					radio.autosay("WARNING: COLLISION WITH RADIATION BEAMS IMMINENT! ETA: 3 MINUTES!", "Pulsar Monitor", "Engineering")
-					crash_timer_id = addtimer(CALLBACK(src, .proc/crash_into_beam), 3 MINUTES, TIMER_STOPPABLE)
+					radio.autosay("WARNING: COLLISION WITH RADIATION BEAMS IMMINENT! ETA: 3 MINUTES!", "Pulsar Monitor", "Engineering", TRUE)
+					crash_timer_id = addtimer(CALLBACK(src, .proc/crash_into_beam), 15 SECONDS, TIMER_STOPPABLE)
 		if(!beam_collision)
 			if(crash_timer_id)
 				deltimer(crash_timer_id)
@@ -89,6 +92,26 @@
 			storm = new()
 			storm.Initialize()
 
-/obj/effect/pulsar_ship/shadow
-	do_decay = FALSE
+/obj/effect/pulsar_ship/proc/try_overcharge(start = TRUE)
+	if(start)
+		if(!overcharge_timer_id)
+			radio.autosay("WARNING: PULSAR OVERCHARGE IMMINENT! ETA: 3 MINUTES!", "Pulsar Monitor", "Engineering", TRUE)
+			overcharge_timer_id = addtimer(CALLBACK(src, .proc/overcharge), 15 SECONDS, TIMER_STOPPABLE)
+	else 
+		if(overcharge_timer_id)
+			deltimer(overcharge_timer_id)
+			overcharge_timer_id = null	
+		if(overcharge)
+			overcharge.endWhen = 1
+			overcharge = null
+
+/obj/effect/pulsar_ship/proc/overcharge()
+	overcharge = new()
+	overcharge.Initialize()
+
+/obj/effect/pulsar_ship_shadow
+	name = "Technomancer satellite orbit"
+	desc = "The orbit target for the satellite"
+	icon = 'icons/obj/overmap.dmi'
+	icon_state = "ihs_capital_g"
 	alpha = 255 * 0.5

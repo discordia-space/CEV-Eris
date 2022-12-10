@@ -1,4 +1,6 @@
-/obj/machinery/pulsar
+#define PULSAR_100_POWER 400000
+
+/obj/machinery/pulsar //Not meant to be destroyed, snowflake object for control, lots of things hold refs to it so it would harddel
 	name = "pulsar starmap"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer"
@@ -14,7 +16,7 @@
 
 /obj/machinery/pulsar/Initialize(mapload, d)
 	linked = GLOB.maps_data.pulsar_star
-	ship = locate(/obj/effect/pulsar_ship) in world
+	ship = locate(/obj/effect/pulsar_ship) in get_area(linked)
 	if(ship)
 		RegisterSignal(ship, COMSIG_MOVABLE_MOVED, .proc/onShipMoved)
 	..()
@@ -32,6 +34,10 @@
 
 /obj/machinery/pulsar/Process()
 	SSnano.update_uis(src)
+	if(shield_power < get_required_shielding())
+		ship.try_overcharge(TRUE)
+	else
+		ship.try_overcharge(FALSE)
 
 /obj/machinery/pulsar/power_change()
 	..()
@@ -94,6 +100,7 @@
 				tank.air_contents.remove(thrust_cost)
 				var/newdir = text2num(href_list["move"])
 				ship.try_move(newdir, TRUE)
+
 	else if(href_list["scan_fuel"])
 		scan_for_fuel()
 	
@@ -101,6 +108,7 @@
 		var/target_level = input(usr, "Set shielding power", "Shield control", 50) as num
 		if(target_level < 100)
 			shield_power = max(0 , target_level)
+
 	SSnano.update_uis(src)
 	..()
 
@@ -131,6 +139,77 @@
 	tank = locate(/obj/structure/pulsar_fuel_tank) in get_area(src)
 	tank?.connected_console = src
 	SSnano.update_uis(src)
+
+/obj/machinery/power/pulsar_power_bridge //Only holds ref to the console and its area, used to get power from it, or disconnect the ship.
+	name = "pulsar power bridge"
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "computer"
+	density = TRUE
+	anchored = TRUE
+	layer = BELOW_OBJ_LAYER
+	var/obj/machinery/pulsar/pulsar_console
+	var/area/console_area
+
+/obj/machinery/power/pulsar_power_bridge/Initialize(mapload, d)
+	connect_to_network()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/power/pulsar_power_bridge/LateInitialize()
+	. = ..()
+	pulsar_console = locate() in world //I can get away with it once, right?
+	if(pulsar_console)
+		console_area = get_area(pulsar_console) //Area stored so reconnections are cheaper.
+
+/obj/machinery/power/pulsar_power_bridge/Process()
+	if(powernet && pulsar_console)
+		add_avail(PULSAR_100_POWER * pulsar_console.get_effective_power_porduced())
+	. = ..()
+
+/obj/machinery/power/pulsar_power_bridge/power_change()
+	..()
+	SSnano.update_uis(src)
+
+/obj/machinery/power/pulsar_power_bridge/attack_hand(mob/user)
+	. = ..()
+	ui_interact(user)
+
+/obj/machinery/power/pulsar_power_bridge/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
+	. = ..()
+	if(stat & (BROKEN|NOPOWER)) return
+	if(user.stat || user.restrained()) return
+
+	var/list/data = ui_data()
+
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "pulsar_power_bridge.tmpl", name, 550, 400)
+		ui.set_initial_data(data)
+		ui.open()
+
+/obj/machinery/power/pulsar_power_bridge/ui_data()
+	var/list/data = list()
+	data["pulsar_connected"] = FALSE
+	if(pulsar_console)
+		data["pulsar_connected"] = TRUE
+		data["power_percentage"] = pulsar_console.get_effective_power_porduced()
+		data["power_produced"] = PULSAR_100_POWER * pulsar_console.get_effective_power_porduced()
+
+	return data
+
+/obj/machinery/power/pulsar_power_bridge/Topic(href, href_list, datum/topic_state/state)
+	if(href_list["disconnect"])
+		pulsar_console = null
+	else if(href_list["reconnect"])
+		pulsar_console = locate() in console_area
+	SSnano.update_uis(src)
+
+/obj/machinery/power/pulsar_power_bridge/examine(mob/user, distance, infix, suffix)
+	..(user)
+	to_chat(user, "\The [src] appears to be producing [PULSAR_100_POWER * pulsar_console.get_effective_power_porduced()] W.")
+
+/obj/machinery/power/pulsar_power_bridge/Destroy()
+	pulsar_console = null
+	. = ..()
 
 /obj/structure/pulsar_fuel_tank
 	name = "pulsar fuel tank"
@@ -186,3 +265,5 @@
 	to_chat(user, "Fuel: [round(air_contents.get_total_moles())]/100")
 	if(round(air_contents.get_total_moles()) >= 100)
 		to_chat(user, SPAN_DANGER("It looks like its about to burst!"))
+
+#undef PULSAR_100_POWER

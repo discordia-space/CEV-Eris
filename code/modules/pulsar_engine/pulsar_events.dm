@@ -1,7 +1,7 @@
 //Pulsar events
 
 /datum/pulsar_event
-	var/name = "parent of all pulsar events"
+	//Base parent for pulsar events
 
 /datum/pulsar_event/proc/check_tile(tile)
 	var/turf/T = tile
@@ -10,8 +10,9 @@
 	var/list/banned_objects = list(/obj/effect/pulsar)
 	banned_objects += typesof(/obj/effect/pulsar_beam)
 	banned_objects += typesof(/obj/effect/pulsar_ship)
-	for(var/O in T)
-		if(O in banned_objects)
+	banned_objects += typesof(/obj/effect/portal)
+	for(var/atom/A in range(1, T))
+		if(A.type in banned_objects)
 			return FALSE
 	return TRUE
 
@@ -27,12 +28,11 @@
 	return
 
 /datum/pulsar_event/pulsar_portals
-	name = "pulsar portals"
 
 /datum/pulsar_event/pulsar_portals/on_trigger()
 	var/turf/portal_1_turf = get_valid_tile()
-	var/turf/portal_2_turf = get_valid_tile()
 	var/obj/effect/portal/perfect/portal_1 = new /obj/effect/portal/perfect(portal_1_turf)
+	var/turf/portal_2_turf = get_valid_tile()
 	var/obj/effect/portal/perfect/portal_2 = new /obj/effect/portal/perfect(portal_2_turf)
 	portal_1.set_target(portal_2_turf)
 	portal_2.set_target(portal_1_turf)
@@ -85,5 +85,53 @@
 	. = ..()
 	for(var/datum/weather/rad_storm/R in SSweather.processing)
 		R.wind_down()
-	command_announcement.Announce("The sattelite has passed the radiation beams. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
+	command_announcement.Announce("The pulsar sattelite has passed the radiation beams. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
 	revoke_maint_all_access()
+
+#define PULAR_RIFT_COOLDOWN 3 MINUTES
+/datum/event/pulsar_overcharge
+	startWhen = 5
+	announceWhen = 1
+	endWhen = INFINITY // YEA.  Again.
+	var/last_rift_spawn = - PULAR_RIFT_COOLDOWN
+	var/list/pulsar_rifts = list()
+
+/datum/event/pulsar_overcharge/announce()
+	command_announcement.Announce("The pulsar sattelite has been overloaded with power, expect excess energy to be dumped onto your vessel, ебать.", "Technomancer Pulsar Monitor")
+
+/datum/event/pulsar_overcharge/tick()
+	. = ..()
+	if(world.time > last_rift_spawn + PULAR_RIFT_COOLDOWN)
+		spwawn_new_rift_wave(rand(4,6))
+		last_rift_spawn = world.time
+		command_announcement.Announce("Another wave of energy has been dumbed on your vessel.", "Technomancer Pulsar Monitor")
+
+	for(var/obj/effect/rift in pulsar_rifts)
+		projectile_explosion(get_turf(rift), 10, /obj/item/projectile/beam/emitter, rand(5, 10), list(BURN = 100))
+	
+
+/datum/event/pulsar_overcharge/proc/spwawn_new_rift_wave(amount)
+	for(var/i in 1 to amount)
+		var/area/A = random_ship_area(FALSE, TRUE, TRUE)
+		var/turf/T = A.random_space()
+		if(!T)
+			//We somehow failed to find a turf, decrement i so we get another go
+			i--
+			continue
+		var/obj/effect/pulsar_rift/p = new(T)
+		pulsar_rifts |= p
+	
+
+/datum/event/pulsar_overcharge/end()
+	for(var/obj/effect/pulsar_rift/p in pulsar_rifts)
+		pulsar_rifts -= p
+		qdel(p)
+	command_announcement.Announce("Pulsar sattelite energy levels stabilized.", "Technomancer Pulsar Monitor")
+	. = ..()
+
+/obj/effect/pulsar_rift
+	name = "Pulsar rift"
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "wormhole"
+	anchored = TRUE
+

@@ -101,7 +101,7 @@ SUBSYSTEM_DEF(mapping)
 	var/turf/shadow_loc = locate(round((GLOB.maps_data.pulsar_size)/2 - (GLOB.maps_data.pulsar_size)/4), round((GLOB.maps_data.pulsar_size)/2 + (GLOB.maps_data.pulsar_size)/4), GLOB.maps_data.pulsar_z)
 
 	var/obj/effect/pulsar_ship/ship = new /obj/effect/pulsar_ship(satellite_loc)
-	var/newshadow = new /obj/effect/pulsar_ship/shadow(shadow_loc)
+	var/newshadow = new /obj/effect/pulsar_ship_shadow(shadow_loc)
 	ship.shadow = newshadow
 
 	if (!GLOB.maps_data.pulsar_star)

@@ -610,6 +610,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
+"xa" = (
+/obj/effect/map_effect/portal/line/side_a{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced,
+/area/outpost/pulsar)
 "xl" = (
 /obj/structure/table/rack,
 /obj/spawner/pack/tech_loot/low_chance,
@@ -1044,6 +1050,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/outpost/pulsar/maintenance)
+"LI" = (
+/obj/structure/pulsar_fuel_tank,
+/turf/simulated/wall/r_wall,
+/area/outpost/pulsar)
 "LW" = (
 /obj/machinery/door/airlock/maintenance_engineering{
 	icon_state = "door_locked";
@@ -1093,6 +1103,17 @@
 /obj/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
+"Nd" = (
+/obj/effect/map_effect/portal/master/side_a{
+	portal_id = "pulsar";
+	dir = 8
+	},
+/turf/simulated/floor/reinforced,
+/area/outpost/pulsar)
+"Nf" = (
+/obj/machinery/pulsar,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/outpost/pulsar)
 "Nh" = (
 /obj/machinery/atmospherics/unary/engine{
 	dir = 4
@@ -1168,6 +1189,10 @@
 /area/outpost/pulsar)
 "PC" = (
 /turf/simulated/floor/reinforced,
+/area/outpost/pulsar)
+"PM" = (
+/obj/structure/pulsar_fuel_tank,
+/turf/simulated/floor/tiled/dark,
 /area/outpost/pulsar)
 "PR" = (
 /obj/structure/bed/chair{
@@ -20238,7 +20263,7 @@ aa
 OB
 OB
 oe
-oe
+Nf
 oe
 OB
 OB
@@ -20846,7 +20871,7 @@ jC
 Ue
 kT
 Pw
-Yf
+PM
 ad
 HA
 HA
@@ -21047,7 +21072,7 @@ ad
 ad
 ad
 Yy
-ad
+LI
 ad
 ad
 aa
@@ -23266,11 +23291,11 @@ bM
 aa
 aa
 ad
-PC
-PC
-PC
-PC
-PC
+Nd
+xa
+xa
+xa
+xa
 ad
 aa
 aa
