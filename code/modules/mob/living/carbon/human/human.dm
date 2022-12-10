@@ -693,7 +693,6 @@ var/list/rank_prefix = list(\
 			sleep(150)	//15 seconds until second warning
 			to_chat(src, SPAN_WARNING("You feel like you are about to throw up!"))
 			sleep(100)	//and you have 10 more for mad dash to the bucket
-		Stun(3)
 
 		src.visible_message(SPAN_WARNING("[src] throws up!"),SPAN_WARNING("You throw up!"))
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)

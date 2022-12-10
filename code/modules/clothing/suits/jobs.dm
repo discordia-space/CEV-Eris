@@ -204,7 +204,7 @@
 
 //Chef
 /obj/item/clothing/suit/chef/classic
-	name = "A classic chef's apron."
+	name = "classic chef's apron."
 	desc = "A basic, dull, white chef's apron."
 	icon_state = "apronchef"
 	item_state = "apronchef"
@@ -214,10 +214,10 @@
 
 //Detective
 /obj/item/clothing/suit/storage/detective
-	name = "Inspector's grey armored trenchcoat"
-	desc = "Grey and armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
-	icon_state = "detective"
-	item_state = "det_suit"
+	name = "inspector's grey armored trenchcoat"
+	desc = "Grey armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
+	icon_state = "detective_gray"
+	item_state = "detective_gray"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
@@ -233,12 +233,17 @@
 	price_tag = 250
 	style = STYLE_HIGH
 
-/obj/item/clothing/suit/storage/detective/ironhammer
-	name = "Inspector's armored trenchcoat"
-	desc = "Brown and armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
-	icon_state = "insp_coat"
-	item_state = "insp_coat"
-	blood_overlay_type = "coat"
+/obj/item/clothing/suit/storage/detective/brown
+	name = "inspector's brown armored trenchcoat"
+	desc = "Brown armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
+	icon_state = "detective_brown"
+	item_state = "detective_brown"
+
+/obj/item/clothing/suit/storage/detective/black
+	name = "inspector's black armored trenchcoat"
+	desc = "Black armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
+	icon_state = "detective_black"
+	item_state = "detective_black"
 
 //Engineering
 /obj/item/clothing/suit/storage/hazardvest

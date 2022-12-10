@@ -263,6 +263,15 @@
 		list(QUALITY_CUTTING, 10, 10)
 	)
 	related_stats = list(STAT_COG)
+
+/datum/craft_recipe/rolling_pin
+	name = "Rolling pin"
+	result = /obj/item/material/kitchen/rollingpin
+	steps = list(
+		list(CRAFT_MATERIAL, 2, MATERIAL_WOOD, "time" = 0), //get a nice piece of wood
+		list(QUALITY_CUTTING, 10, 10) // and cut it into a nice shape
+	)
+
 /datum/craft_recipe/makeshift_leg
 	name = "Makeshift prosthetic left leg"
 	result = /obj/item/organ/external/robotic/makeshift/l_leg
@@ -308,3 +317,12 @@
 		list(CRAFT_MATERIAL,5, MATERIAL_PLASTIC), //Thick plastic bag
 		list(/obj/item/stack/cable_coil, 1, "time" = 20) //And the draw string
 	)
+
+/datum/craft_recipe/console_screen
+	name = "console screen"
+	result = /obj/item/stock_parts/console_screen
+	steps = list(
+		list(CRAFT_MATERIAL, 3, MATERIAL_GLASS),
+		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTIC)
+	)
+	related_stats = list(STAT_MEC)

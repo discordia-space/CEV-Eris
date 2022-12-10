@@ -78,9 +78,6 @@ About the Holder:
 		get_data(var/id)
 			Returns get_data() of the reagent.
 
-		get_reagents()
-			Returns a string containing all reagent ids and volumes, e.g. "carbon(4),nittrogen(5)".
-
 		remove_any(var/amount = 1)
 			Removes up to [amount] of reagents from [src]. Returns actual amount removed.
 
@@ -105,10 +102,10 @@ About the Holder:
 			Calls each reagent's touch_obj(target).
 
 		trans_to(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0)
-			The general proc for applying reagents to things externally (as opposed to directly injected into the contents). 
+			The general proc for applying reagents to things externally (as opposed to directly injected into the contents).
 			It first calls touch, then the appropriate trans_to_*() or splash_mob().
 			If for some reason you want touch effects to be bypassed (e.g. injecting stuff directly into a reagent container or person), call the appropriate trans_to_*() proc.
-			
+
 			Calls touch() before checking the type of [target], calling splash_mob(target, amount), trans_to_turf(target, amount, multiplier, copy), or trans_to_obj(target, amount, multiplier, copy).
 
 		trans_id_to(var/atom/target, var/id, var/amount = 1)

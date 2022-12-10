@@ -70,12 +70,12 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/sa_br
-	disk_name = "Serbian Arms - .20 Kovacs"
+	disk_name = "Serbian Arms - .30 Kovacs"
 	icon_state = "serbian"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 80
 	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/kovacs = 3, // "SA BR .20 \"Kovacs\""
-		/datum/design/autolathe/ammo/srifle
+		/datum/design/autolathe/gun/kovacs = 3, // "SA BR .30 \"Kovacs\""
+		/datum/design/autolathe/ammo/lrifle
 	)

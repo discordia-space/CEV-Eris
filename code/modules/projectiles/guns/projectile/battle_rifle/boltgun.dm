@@ -146,12 +146,13 @@
 	force = WEAPON_FORCE_DANGEROUS // weaker than novakovic, but with a bayonet installed it will be slightly stronger
 	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_SRIFLE
-	damage_multiplier = 1.7
-	penetration_multiplier = 0.7
+	damage_multiplier = 1.8
+	penetration_multiplier = 1
 	init_recoil = RIFLE_RECOIL(1.8)
 	init_offset = 0 //no bayonet
 	max_shells = 6
 	zoom_factors = list(0.8) //vintorez level
+	proj_step_multiplier = 0.8 //high pressure and long barrel
 	magazine_type = /obj/item/ammo_magazine/srifle
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
 	wielded_item_state = "_doble_ih_scope"

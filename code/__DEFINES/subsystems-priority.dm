@@ -22,7 +22,6 @@ var/list/bitflags = list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096
 #define SS_PRIORITY_ALARM          20	// Alarm processing.
 #define SS_PRIORITY_EVENT          20	// Event processing.
 #define SS_PRIORITY_SHUTTLE        20	// Shuttle movement.
-#define SS_PRIORITY_CIRCUIT_COMP   20	// Processing circuit component do_work.
 #define SS_PRIORITY_AIRFLOW        15	// Object movement from ZAS airflow.
 #define SS_PRIORITY_INACTIVITY     10	// Idle kicking.
 #define SS_PRIORITY_SUPPLY         10	// Supply point accumulation.
@@ -32,7 +31,6 @@ var/list/bitflags = list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096
 // SS_BACKGROUND
 #define SS_PRIORITY_OBJECTS       40	// processing_objects processing.
 #define SS_PRIORITY_PROCESSING    30	// Generic datum processor. Replaces objects processor.
-#define SS_PRIORITY_CIRCUIT       30	// Processing Circuit's ticks and all that.
 #define SS_PRIORITY_GARBAGE       25	// Garbage collection.
 #define SS_PRIORITY_VINES         25	// Spreading vine effects.
 #define SS_PRIORITY_TURF          20	// Radioactive walls/blob.

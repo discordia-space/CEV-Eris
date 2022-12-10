@@ -1,7 +1,7 @@
 /datum/design/research/circuit
 	build_type = IMPRINTER
 	chemicals = list("silicon" = 5)
-	build_path = /obj/item/integrated_circuit
+	build_path = /obj/item/electronics/circuitboard
 
 /datum/design/research/circuit/AssembleDesignName(atom/temp_atom)
 	..()

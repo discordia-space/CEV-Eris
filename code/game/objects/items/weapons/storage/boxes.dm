@@ -280,6 +280,20 @@
 	initial_amount = 7
 	spawn_type = /obj/item/grenade/flashbang
 
+/obj/item/storage/box/phosphorous
+	name = "box of white phosphorous grenades"
+	desc = "A box containing 7 antipersonnel incendiary  grenades.<br> WARNING: These devices are extremely dangerous and can cause severe burns and fires."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	initial_amount = 7
+	spawn_type = /obj/item/grenade/frag/white_phosphorous
+
+/obj/item/storage/box/phosphorous/populate_contents()
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+
+
 /obj/item/storage/box/flashbangs/uplink_item
 	name = "Box of flashbangs"
 	desc = "A box containing 5 antipersonnel flashbang grenades.<br> WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use."
@@ -292,6 +306,7 @@
 /obj/item/storage/box/flashbangs/populate_contents()
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
+
 
 /obj/item/storage/box/teargas
 	name = "box of pepperspray grenades"
@@ -771,6 +786,52 @@
 	if(prob(1))
 		things2spawn += /obj/item/clothing/head/kitty
 */
-	things2spawn += pick(subtypesof(/obj/item/toy/plushie) + subtypesof(/obj/item/toy/figure))
+	things2spawn += pick(/obj/spawner/toy/figure, /obj/spawner/toy/plushie, /obj/spawner/toy/card)
 	for(var/path in things2spawn)
 		new path(src)
+
+/obj/item/storage/box/njoy/red
+	name = "red Njoy packet"
+	desc = "Packet full of red njoy pills."
+	illustration = null
+	icon_state = "packet_njoy_red"
+	item_state = "packet_njoy_red"
+
+/obj/item/storage/box/njoy/red/New()
+	. = ..()
+
+/obj/item/storage/box/njoy/red/populate_contents()
+	for(var/i in 1 to initial_amount)
+		new /obj/item/storage/pill_bottle/njoy/red(src)
+
+
+/obj/item/storage/box/njoy/blue
+	name = "blue Njoy packet"
+	desc = "Packet full of blue njoy pills."
+	illustration = null
+	icon_state = "packet_njoy_blue"
+	item_state = "packet_njoy_blue"
+
+/obj/item/storage/box/njoy/blue/New()
+	. = ..()
+
+/obj/item/storage/box/njoy/blue/populate_contents()
+	for(var/i in 1 to initial_amount)
+		new /obj/item/storage/pill_bottle/njoy/blue(src)
+
+
+/obj/item/storage/box/njoy/green
+	name = "green Njoy packet"
+	desc = "Packet full of green njoy pills."
+	illustration = null
+	icon_state = "packet_njoy_green"
+	item_state = "packet_njoy_green"
+
+/obj/item/storage/box/njoy/green/New()
+	. = ..()
+
+/obj/item/storage/box/njoy/green/populate_contents()
+	for(var/i in 1 to initial_amount)
+		new /obj/item/storage/pill_bottle/njoy/green(src)
+
+
