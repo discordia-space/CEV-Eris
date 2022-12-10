@@ -1,4 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - bugfix: Low frequency messages are actually low frequency

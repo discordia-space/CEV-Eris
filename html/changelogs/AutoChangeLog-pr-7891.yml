@@ -1,7 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - rscadd: Added skeleton species
-  - rscadd: Added hobo, Excelsior, and One Star corpse spawner presets
-  - tweak: Updated corpse spawner features to allow for more varied corpses
-  - tweak: Added checks for null blood color in blood overlay and blood splatter procs

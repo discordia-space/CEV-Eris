@@ -1,5 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - bugfix: Fixed full auto click handler not being removed when a zoomed gun was
-      dropped

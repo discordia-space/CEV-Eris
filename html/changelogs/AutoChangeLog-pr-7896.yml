@@ -1,5 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - tweak: Gave airflow an AD of 1
-  - bugfix: AD defaults to 1 if 0 is passed to damage_through_armor()

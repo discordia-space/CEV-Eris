@@ -1,4 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - bugfix: Fixed Bump() runtime where a qdeleted objected was bumped
