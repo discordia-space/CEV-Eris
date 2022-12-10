@@ -66,9 +66,9 @@
 		user.set_machine(src)
 		user.reset_view(linked)
 		user.client.view = "[GLOB.maps_data.pulsar_size + 1]x[GLOB.maps_data.pulsar_size + 1]"
-	ui_interact(user)
+	nano_ui_interact(user)
 
-/obj/machinery/pulsar/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+/obj/machinery/pulsar/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(stat & (BROKEN|NOPOWER)) return
 	if(user.stat || user.restrained()) return
 
@@ -92,7 +92,7 @@
 
 	return data
 
-/obj/machinery/pulsar/Topic(href, href_list, datum/topic_state/state)
+/obj/machinery/pulsar/Topic(href, href_list)
 	if(href_list["move"])
 		if(tank)
 			var/thrust_cost = get_thrust_cost()
@@ -171,9 +171,9 @@
 
 /obj/machinery/power/pulsar_power_bridge/attack_hand(mob/user)
 	. = ..()
-	ui_interact(user)
+	nano_ui_interact(user)
 
-/obj/machinery/power/pulsar_power_bridge/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
+/obj/machinery/power/pulsar_power_bridge/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	. = ..()
 	if(stat & (BROKEN|NOPOWER)) return
 	if(user.stat || user.restrained()) return
@@ -196,7 +196,7 @@
 
 	return data
 
-/obj/machinery/power/pulsar_power_bridge/Topic(href, href_list, datum/topic_state/state)
+/obj/machinery/power/pulsar_power_bridge/Topic(href, href_list)
 	if(href_list["disconnect"])
 		pulsar_console = null
 	else if(href_list["reconnect"])
