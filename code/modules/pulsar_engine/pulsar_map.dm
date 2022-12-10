@@ -77,7 +77,7 @@
 				beam_collision = TRUE
 				if(!crash_timer_id)
 					radio.autosay("WARNING: COLLISION WITH RADIATION BEAMS IMMINENT! ETA: 3 MINUTES!", "Pulsar Monitor", "Engineering", TRUE)
-					crash_timer_id = addtimer(CALLBACK(src, .proc/crash_into_beam), 15 SECONDS, TIMER_STOPPABLE)
+					crash_timer_id = addtimer(CALLBACK(src, .proc/crash_into_beam), 15 SECONDS, TIMER_STOPPABLE) //15 seconds so debuging is easier
 		if(!beam_collision)
 			if(crash_timer_id)
 				deltimer(crash_timer_id)
@@ -96,7 +96,7 @@
 	if(start)
 		if(!overcharge_timer_id)
 			radio.autosay("WARNING: PULSAR OVERCHARGE IMMINENT! ETA: 3 MINUTES!", "Pulsar Monitor", "Engineering", TRUE)
-			overcharge_timer_id = addtimer(CALLBACK(src, .proc/overcharge), 15 SECONDS, TIMER_STOPPABLE)
+			overcharge_timer_id = addtimer(CALLBACK(src, .proc/overcharge), 15 SECONDS, TIMER_STOPPABLE)	//15 seconds so debuging is easier
 	else 
 		if(overcharge_timer_id)
 			deltimer(overcharge_timer_id)
