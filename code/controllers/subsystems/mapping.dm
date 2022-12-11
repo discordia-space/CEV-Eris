@@ -112,7 +112,8 @@ SUBSYSTEM_DEF(mapping)
 	generate_pulsar_events()
 
 /datum/controller/subsystem/mapping/proc/generate_pulsar_events()
-	var/datum/pulsar_event/event = new pick(subtypesof(/datum/pulsar_event))
+	var/event_type = pick(subtypesof(/datum/pulsar_event))
+	var/datum/pulsar_event/event = new event_type
 	event.on_trigger()
 
 /datum/controller/subsystem/mapping/proc/build_overmap()
