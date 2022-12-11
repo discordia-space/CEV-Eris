@@ -27,34 +27,29 @@
 	. = ..()
 	
 
-/obj/machinery/pulsar/relaymove(var/mob/user, direction)
+/obj/machinery/pulsar/relaymove(mob/user, direction)
 	if(map_active && linked)
 		linked.relaymove(user,direction)
-		return 1
+		return TRUE
 
 /obj/machinery/pulsar/Process()
 	SSnano.update_uis(src)
-	if(shield_power < get_required_shielding())
-		ship.try_overcharge(TRUE)
-	else
-		ship.try_overcharge(FALSE)
+	ship.try_overcharge(shield_power < get_required_shielding() ? TRUE : FALSE)
 
 /obj/machinery/pulsar/power_change()
 	..()
 	SSnano.update_uis(src)
 
 
-/obj/machinery/pulsar/check_eye(var/mob/user as mob)
-	if (isAI(user))
+/obj/machinery/pulsar/check_eye(mob/user)
+	if(isAI(user))
 		user.unset_machine()
-		if (map_active)
+		if(map_active)
 			user.reset_view(user.eyeobj)
-		return 0
-	if (!map_active || (get_dist(user, src) > 1) || user.blinded || !linked )
+	if(!map_active || (get_dist(user, src) > 1) || user.blinded || !linked )
 		user.unset_machine()
 		map_active = 0
 		return -1
-	return 0
 
 /obj/machinery/pulsar/attack_hand(mob/user)
 	if(stat & (NOPOWER|BROKEN))
@@ -68,14 +63,15 @@
 		user.client.view = "[GLOB.maps_data.pulsar_size + 1]x[GLOB.maps_data.pulsar_size + 1]"
 	nano_ui_interact(user)
 
-/obj/machinery/pulsar/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	if(stat & (BROKEN|NOPOWER)) return
-	if(user.stat || user.restrained()) return
+/obj/machinery/pulsar/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+	if(stat & (BROKEN|NOPOWER))
+		return
+	if(user.stat || user.restrained())
+		return
 
 	var/list/data = ui_data()
-
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "pulsar.tmpl", name, 550, 400)
 		ui.set_initial_data(data)
 		ui.open()
@@ -173,13 +169,14 @@
 	. = ..()
 	nano_ui_interact(user)
 
-/obj/machinery/power/pulsar_power_bridge/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/power/pulsar_power_bridge/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	. = ..()
-	if(stat & (BROKEN|NOPOWER)) return
-	if(user.stat || user.restrained()) return
+	if(stat & (BROKEN|NOPOWER))
+		return
+	if(user.stat || user.restrained())
+		return
 
 	var/list/data = ui_data()
-
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "pulsar_power_bridge.tmpl", name, 550, 400)

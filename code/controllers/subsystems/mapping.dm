@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(mapping)
 	add_z_level(GLOB.maps_data.pulsar_z, GLOB.maps_data.pulsar_z, 1)
 	maploader.load_map(file("maps/pulsar/pulsar.dmm"), z_offset = GLOB.maps_data.overmap_z)
 	var/list/turfs = list()
-	for (var/square in block(locate(1,1,GLOB.maps_data.pulsar_z), locate(GLOB.maps_data.pulsar_size, GLOB.maps_data.pulsar_size, GLOB.maps_data.pulsar_z)))
+	for(var/square in block(locate(1, 1, GLOB.maps_data.pulsar_z), locate(GLOB.maps_data.pulsar_size, GLOB.maps_data.pulsar_size, GLOB.maps_data.pulsar_z)))
 		// Switch to space turf with green grid overlay
 		var/turf/space/T = square
 		T.name = "[T.x]-[T.y]"
@@ -87,7 +87,7 @@ SUBSYSTEM_DEF(mapping)
 	var/area/pulsar/A = new
 	A.contents.Add(turfs)
 
-	for (var/i = 1 to GLOB.maps_data.pulsar_size)
+	for(var/i in 1 to GLOB.maps_data.pulsar_size)
 		var/turf/beam_loc = locate(i, i, GLOB.maps_data.pulsar_z)
 		new /obj/effect/pulsar_beam(beam_loc)
 
@@ -97,25 +97,23 @@ SUBSYSTEM_DEF(mapping)
 		var/turf/beam_left = locate(i - 1, i, GLOB.maps_data.pulsar_z)
 		new /obj/effect/pulsar_beam/dl(beam_left)
 
-	var/turf/satellite_loc = locate(round((GLOB.maps_data.pulsar_size)/2 + (GLOB.maps_data.pulsar_size)/4),round((GLOB.maps_data.pulsar_size)/2 - (GLOB.maps_data.pulsar_size)/4),GLOB.maps_data.pulsar_z)
+	var/turf/satellite_loc = locate(round((GLOB.maps_data.pulsar_size)/2 + (GLOB.maps_data.pulsar_size)/4), round((GLOB.maps_data.pulsar_size)/2 - (GLOB.maps_data.pulsar_size)/4), GLOB.maps_data.pulsar_z)
 	var/turf/shadow_loc = locate(round((GLOB.maps_data.pulsar_size)/2 - (GLOB.maps_data.pulsar_size)/4), round((GLOB.maps_data.pulsar_size)/2 + (GLOB.maps_data.pulsar_size)/4), GLOB.maps_data.pulsar_z)
 
 	var/obj/effect/pulsar_ship/ship = new /obj/effect/pulsar_ship(satellite_loc)
 	var/newshadow = new /obj/effect/pulsar_ship_shadow(shadow_loc)
 	ship.shadow = newshadow
 
-	if (!GLOB.maps_data.pulsar_star)
-		var/turf/T = locate(round((GLOB.maps_data.pulsar_size - 1)/2),round((GLOB.maps_data.pulsar_size - 1)/2),GLOB.maps_data.pulsar_z)
+	if(!GLOB.maps_data.pulsar_star)
+		var/turf/T = locate(round((GLOB.maps_data.pulsar_size - 1)/2), round((GLOB.maps_data.pulsar_size - 1)/2), GLOB.maps_data.pulsar_z)
 		GLOB.maps_data.pulsar_star = new /obj/effect/pulsar(T)
 
 	GLOB.maps_data.sealed_levels |= GLOB.maps_data.pulsar_z
 	generate_pulsar_events()
 
 /datum/controller/subsystem/mapping/proc/generate_pulsar_events()
-	var/list/pulsar_events = subtypesof(/datum/pulsar_event)
-	var/event_type = pick(pulsar_events)
-	var/datum/pulsar_event/E = new event_type
-	E.on_trigger()
+	var/datum/pulsar_event/event = new pick(subtypesof(/datum/pulsar_event))
+	event.on_trigger()
 
 /datum/controller/subsystem/mapping/proc/build_overmap()
 	testing("Building overmap...")

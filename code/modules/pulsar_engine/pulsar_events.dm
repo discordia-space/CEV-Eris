@@ -77,9 +77,9 @@
 
 		if(ishuman(C))
 			var/mob/living/carbon/human/H = C
-			H.apply_effect((rand(15,30)),IRRADIATE)
+			H.apply_effect((rand(15,30)), IRRADIATE)
 			if(prob(4))
-				H.apply_effect((rand(20,60)),IRRADIATE)
+				H.apply_effect((rand(20,60)), IRRADIATE)
 
 /datum/event/pulsar_rad_storm/end()
 	. = ..()
@@ -106,7 +106,7 @@
 		last_rift_spawn = world.time
 		command_announcement.Announce("Another wave of energy has been dumbed on your vessel.", "Technomancer Pulsar Monitor")
 
-	for(var/obj/effect/rift in pulsar_rifts)
+	for(var/obj/effect/rift as anything in pulsar_rifts)
 		projectile_explosion(get_turf(rift), 10, /obj/item/projectile/beam/emitter, rand(5, 10), list(BURN = 100))
 	
 
@@ -123,7 +123,7 @@
 	
 
 /datum/event/pulsar_overcharge/end()
-	for(var/obj/effect/pulsar_rift/p in pulsar_rifts)
+	for(var/obj/effect/pulsar_rift/p as anything in pulsar_rifts)
 		pulsar_rifts -= p
 		qdel(p)
 	command_announcement.Announce("Pulsar sattelite energy levels stabilized.", "Technomancer Pulsar Monitor")

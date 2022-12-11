@@ -154,8 +154,8 @@ proc/fragment_explosion_angled(atom/epicenter, turf/origin , projectile_type, pr
 		pew_thingie.launch(pick(hittable_turfs))
 
 //Generic proc for spread of any projectile type.
-proc/projectile_explosion(var/turf/epicenter, var/range, var/p_type, var/p_amount = 10, var/list/p_damage = list())
-    if(!isturf(epicenter))
+proc/projectile_explosion(turf/epicenter, range, p_type, p_amount = 10, list/p_damage = list())
+    if(!istype(epicenter))
         epicenter = get_turf(epicenter)
 
     if(!epicenter || !p_type)

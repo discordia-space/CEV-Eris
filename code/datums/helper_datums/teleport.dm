@@ -1,5 +1,5 @@
 //wrapper
-/proc/do_teleport(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, no_checks = FALSE)
+/proc/do_teleport(ateleatom, adestination, aprecision = 0, afteleport = 1, aeffectin, aeffectout, asoundin, asoundout, no_checks = FALSE)
 	new /datum/teleport/instant/science(arglist(args))
 	return
 
@@ -15,7 +15,7 @@
 	var/no_checks = FALSE //Bypasses all teleportation checks, used for admin portals and pulsar portals
 
 
-/datum/teleport/New(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, no_checks = FALSE)
+/datum/teleport/New(ateleatom, adestination, aprecision = 0, afteleport = 1, aeffectin, aeffectout, asoundin, asoundout, no_checks = FALSE)
 	..()
 	if(!initTeleport(arglist(args)))
 		return 0
@@ -75,7 +75,7 @@
 
 //optional
 /datum/teleport/proc/setChecks(_no_checks = FALSE)
-	src.no_checks = _no_checks
+	no_checks = _no_checks
 
 //placeholder
 /datum/teleport/proc/teleportChecks()
@@ -130,13 +130,13 @@
 	return 1
 
 /datum/teleport/proc/teleport()
-	if(teleportChecks() || no_checks)
+	if(no_checks || teleportChecks())
 		return doTeleport()
 	return 0
 
 /datum/teleport/instant //teleports when datum is created
 
-/datum/teleport/instant/New(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, no_checks = FALSE)
+/datum/teleport/instant/New(ateleatom, adestination, aprecision = 0, afteleport = 1, aeffectin, aeffectout, asoundin, asoundout, no_checks = FALSE)
 	if(..())
 		teleport()
 	return
