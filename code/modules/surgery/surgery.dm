@@ -164,30 +164,16 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-
 		affected = H.get_organ(zone)
-		if(affected)
-			// Self-surgery sanity check: no operating on your right arm with a tool held in your right hand
-			if(M == user)
-				var/obj/item/held_item
-				if(affected.organ_tag == BP_L_ARM)
-					held_item = H.l_hand
 
-				else if(affected.organ_tag == BP_R_ARM)
-					held_item = H.r_hand
-
-				if(held_item)
-					to_chat(user, SPAN_WARNING("You cannot operate on your [affected.name] while holding [held_item] in it!"))
-					return TRUE
-
-			if(affected.do_surgery(user, tool, surgery_status))
-				return TRUE
+		if(affected && affected.do_surgery(user, tool, surgery_status))
+			return TRUE
 
 	// Invoke legacy surgery code
 	if(!do_old_surgery(M, user, tool))
 		if(affected && affected.open && tool && tool.tool_qualities)
 			// Open or update surgery UI
-			affected.ui_interact(user)
+			affected.nano_ui_interact(user)
 
 			to_chat(user, SPAN_WARNING("You can't see any useful way to use [tool] on [M]."))
 			return 1 //Prevents attacking the patient when trying to do surgery
@@ -200,7 +186,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 /obj/item/organ/external/do_surgery(mob/living/user, obj/item/tool, var/surgery_status = CAN_OPERATE_ALL)
 	if(!tool)
 		if(is_open())
-			ui_interact(user)
+			nano_ui_interact(user)
 			return TRUE
 		return FALSE
 	var/list/possible_steps
@@ -226,8 +212,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 				return TRUE
 
 			if(QUALITY_WELDING)
-				try_surgery_step(/datum/surgery_step/robotic/fix_brute, user, tool)
-				return TRUE
+				if(try_surgery_step(/datum/surgery_step/robotic/fix_brute, user, tool))
+					return TRUE
 
 			if(ABORT_CHECK)
 				return TRUE

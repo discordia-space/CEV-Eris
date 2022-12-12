@@ -11,6 +11,12 @@
 		var/obj/item/I = parent
 		armor = I.armor.getList()
 
+/datum/component/oldficator/Destroy()
+	old_obj = null
+	LAZYCLEARLIST(armor)
+	LAZYCLEARLIST(all_vars)
+	return ..()
+
 /datum/component/oldficator/proc/make_young()
 	for(var/V in all_vars)
 		if(istype(parent.vars[V], /datum) || ismob(parent.vars[V]) || isHUDobj(parent.vars[V]) || isobj(parent.vars[V]))
@@ -181,6 +187,8 @@
 /obj/item/reagent_containers/food/snacks/liquidfood/make_old(low_quality_oldification)
 	return
 
+// This was causing roundstart hard dels
+/*
 /obj/item/ammo_magazine/make_old(low_quality_oldification)
 	var/del_count = rand(0, stored_ammo.len)
 	if(low_quality_oldification)
@@ -191,6 +199,7 @@
 		stored_ammo -= removed_item
 		QDEL_NULL(removed_item)
 	..()
+*/
 
 /obj/item/cell/make_old(low_quality_oldification)
 	.=..()
@@ -296,7 +305,7 @@
 
 /obj/item/electronics/ai_module/broken/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()
-	IonStorm(0)
+	IonStorm()
 	explosion(sender.loc, 1, 1, 1, 3)
 	sender.drop_from_inventory(src)
 	QDEL_NULL(src)
@@ -304,16 +313,8 @@
 /obj/item/clothing/glasses/hud/make_old(low_quality_oldification)
 	GET_COMPONENT(oldified, /datum/component/oldficator)
 	if(!oldified && prob(75) && !istype(src, /obj/item/clothing/glasses/hud/broken))
-		var/obj/item/clothing/glasses/hud/broken/brokenhud = new /obj/item/clothing/glasses/hud/broken(loc)
-		brokenhud.name = src.name
-		brokenhud.desc = src.desc
-		brokenhud.icon = src.icon
-		brokenhud.icon_state = src.icon_state
-		brokenhud.item_state = src.item_state
-		brokenhud.make_old(low_quality_oldification)
-		QDEL_NULL(src)
-	else
-		.=..()
+		malfunctioning = TRUE
+	.=..()
 
 /obj/item/clothing/glasses/make_old(low_quality_oldification)
 	.=..()

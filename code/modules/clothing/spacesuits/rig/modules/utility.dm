@@ -114,8 +114,10 @@
 	return 1
 
 /obj/item/rig_module/modular_injector
-	name = "mounted modular injector"
+	name = "mounted modular dispenser"
 	desc = "A specialized system for inserting chemicals"
+	description_info = "You can remove beakers by using a screw. Reagent injection amount can be tweaked with a Wrench. Accepts any size of beaker"
+	description_antag = "You can sabotage this by mixing in a deadly toxin. As long as its not the majority in the solution, it won't show up in the rig."
 	icon_state = "injector"
 	usable = TRUE
 	selectable = FALSE
@@ -124,8 +126,8 @@
 
 	engage_string = "Inject"
 
-	interface_name = "integrated injector"
-	interface_desc = "A chemical injector"
+	interface_name = "integrated dispenser"
+	interface_desc = "A chemical dispenser"
 	var/list/beakers = list()
 	var/max_beakers = 5
 	var/injection_amount = 5
@@ -144,6 +146,13 @@
 			var/obj/item/reagent_containers/beaker = new btype(src)
 			beaker.reagents.add_reagent(bdata[2], bdata[3])
 			accepts_item(beaker, null , TRUE)
+	//We need to do this to index are beakers
+	rebuild_charges()
+
+/obj/item/rig_module/modular_injector/New()
+	..()
+	//We need to do this to index are beakers
+	rebuild_charges()
 
 // Rebuilds charges , sad but necesarry due to how rig UI's get its data
 /obj/item/rig_module/modular_injector/proc/rebuild_charges()
@@ -241,10 +250,10 @@
 	return TRUE
 
 /obj/item/rig_module/modular_injector/combat
-	name = "mounted combat injector"
+	name = "mounted combat dispenser"
 	desc = "A specialized system for inserting chemicals meant for combat"
 	max_injection_amount = 30
-	max_beakers = 6
+	max_beakers = 12 //So you have a reason to get this over a medical one or default
 	initial_beakers = list(
 		list(/obj/item/reagent_containers/glass/beaker/large, "hyperzine", 60),
 		list(/obj/item/reagent_containers/glass/beaker/large, "tramadol", 60),
@@ -252,11 +261,17 @@
 		list(/obj/item/reagent_containers/glass/beaker/large, "tricordrazine", 60)
 	)
 
+	interface_name = "integrated combat dispenser"
+	interface_desc = "A chemical combat dispenser"
+
 /obj/item/rig_module/modular_injector/medical
 	name = "mounted medical injector"
 	desc = "A specialized system for inserting chemicals to pacients"
 	max_injection_amount = 60
 	max_beakers = 6
+	usable = FALSE
+	selectable = TRUE
+	disruptive = TRUE
 	initial_beakers = list(
 		list(/obj/item/reagent_containers/glass/beaker/large, "bicaridine", 60),
 		list(/obj/item/reagent_containers/glass/beaker/large, "inaprovaline",60),
@@ -264,6 +279,10 @@
 		list(/obj/item/reagent_containers/glass/beaker/large, "anti_toxin", 60),
 		list(/obj/item/reagent_containers/glass/beaker/large, "spaceacillin", 60)
 	)
+
+	interface_name = "integrated injector"
+	//Extra bit here to help get the idea that this one can inject
+	interface_desc = "Dispenses loaded chemicals directly into the wearer\'s bloodstream or patients."
 /*
 /obj/item/rig_module/chem_dispenser
 	name = "mounted chemical dispenser"
@@ -462,8 +481,8 @@
 			var/raw_choice = sanitize(input(usr, "Please enter a new name.")  as text|null, MAX_NAME_LEN)
 			if(!raw_choice)
 				return 0
-			voice_holder.voice = raw_choice
-			to_chat(usr, "<font color='blue'>You are now mimicking <B>[voice_holder.voice]</B>.</font>")
+			voice_holder.voice_name = raw_choice
+			to_chat(usr, "<font color='blue'>You are now mimicking <B>[voice_holder.voice_name]</B>.</font>")
 	return 1
 
 /obj/item/rig_module/maneuvering_jets
@@ -573,7 +592,7 @@
 	if(autodoc_processor.active)
 		autodoc_processor.stop()
 	autodoc_processor.set_patient(holder.wearer)
-	ui_interact(usr)
+	nano_ui_interact(usr)
 	return 1
 /obj/item/rig_module/autodoc/Topic(href, href_list)
 	return autodoc_processor.Topic(href, href_list)
@@ -593,8 +612,8 @@
 		passive_power_cost = 0
 		wearer_loc = null
 
-/obj/item/rig_module/autodoc/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state = GLOB.deep_inventory_state)
-	autodoc_processor.ui_interact(user, ui_key, ui, force_open, state = GLOB.deep_inventory_state)
+/obj/item/rig_module/autodoc/nano_ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/nano_topic_state/state = GLOB.deep_inventory_state)
+	autodoc_processor.nano_ui_interact(user, ui_key, ui, force_open, state = GLOB.deep_inventory_state)
 /obj/item/rig_module/autodoc/activate()
 	return
 /obj/item/rig_module/autodoc/deactivate()

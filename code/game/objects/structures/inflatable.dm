@@ -20,6 +20,7 @@
 	name = "inflatable wall"
 	desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
 	icon_state = "folded_wall"
+	atmos_canpass = CANPASS_NEVER
 	deploy_path = /obj/structure/inflatable/wall
 
 /obj/item/inflatable/door/
@@ -36,6 +37,8 @@
 	opacity = 0
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "wall"
+
+	atmos_canpass = CANPASS_DENSITY
 
 	var/undeploy_path = null
 	var/health = 50

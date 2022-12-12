@@ -1,6 +1,6 @@
 // Suit slot
 /datum/gear/suit
-	display_name = "apron, blue"
+	display_name = "apron, yellow"
 	path = /obj/item/clothing/suit/apron
 	slot = slot_wear_suit
 	sort_category = "Suits and Overwear"
@@ -9,18 +9,22 @@
 /datum/gear/suit/jacket
 	display_name = "jacket"
 	path = /obj/item/clothing/suit/storage/toggle/bomber
-	cost = 2 //higher price because it has some armor value
+	cost = 2 //higher price because it has some armor value or style
 
 /datum/gear/suit/jacket/New()
 	..()
 	var/jacket = list(
-		"Bomber"		=	/obj/item/clothing/suit/storage/toggle/bomber,
+		"Bomber"				=	/obj/item/clothing/suit/storage/toggle/bomber,
+		"Bomber, furred"		=	/obj/item/clothing/suit/storage/toggle/bomber/furred,
+		"Service"				=	/obj/item/clothing/suit/storage/toggle/service,
+		"Tactful"		=	/obj/item/clothing/suit/storage/khaki,
 		"Leather"		=	/obj/item/clothing/suit/storage/leather_jacket,
 		"White"			=	/obj/item/clothing/suit/storage/drive_jacket,
 		"Violet"		=	/obj/item/clothing/suit/storage/violet_jacket,
 		"Tunnelsnake"	=	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake,
 		"Sleek"			=	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake,
-		"Jaeger"		=	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager
+		"Jaeger"		=	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager,
+		"Boxer"			=	/obj/item/clothing/suit/storage/boxer_jacket
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jacket)
 

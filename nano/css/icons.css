@@ -314,3 +314,19 @@
     background-position: -112px -128px;
 }
 
+/* 32 Pixel versions for the upscaled map */
+
+.mapIcon32 {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-image: url(uiIcons16Green.png);
+    background-position: -144px -96px;
+    background-repeat: no-repeat;
+    zoom: 0.25;
+    margin-left: -1px;
+    /*margin-bottom: -1px;*/
+}
+.mapIcon32.dead {
+    background-image: url(uiIcons16Red.png);
+}

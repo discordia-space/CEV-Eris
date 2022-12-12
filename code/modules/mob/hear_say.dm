@@ -4,12 +4,10 @@
 	if(!client)
 		return
 
-	if(message == get_cop_code())
-		language = null
-		if(isghost(src))
-			message = "[message] ([cop_code_meaning])"
-		else if(stats.getPerk(/datum/perk/codespeak))
-			message = "[message] ([cop_code_meaning])"
+	if(isghost(src) || stats.getPerk(PERK_CODESPEAK_COP))
+		message = cop_codes.find_message(message) ? "[message] ([cop_codes.find_message(message)])" : message
+	if(isghost(src) || stats.getPerk(PERK_CODESPEAK_SERB))
+		message = serb_codes.find_message(message) ? "[message] ([serb_codes.find_message(message)])" : message
 
 	var/speaker_name = speaker.name
 	if(ishuman(speaker))
@@ -56,7 +54,7 @@
 	if(speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
 		var/turf/source = speaker ? get_turf(speaker) : get_turf(src)
 		src.playsound_local(source, speech_sound, sound_vol, 1)
-			
+
 /mob/proc/on_hear_say(var/message)
 	to_chat(src, message)
 
@@ -70,13 +68,14 @@
 	if(!client)
 		return
 
-	if(findtext(message, get_cop_code()))
-		message = cop_code_last
-		language = null
-		if(isghost(src))
-			message = "[message] ([cop_code_meaning])"
-		else if(stats.getPerk(/datum/perk/codespeak))
-			message = "[message] ([cop_code_meaning])"
+	if(isghost(src) || stats.getPerk(PERK_CODESPEAK_COP))
+		var/found = cop_codes.find_message_radio(message)
+		if(found)
+			message = "[message] ([found])"
+	if(isghost(src) || stats.getPerk(PERK_CODESPEAK_SERB))
+		var/found = serb_codes.find_message_radio(message)
+		if(found)
+			message = "[message] ([found])"
 
 	var/speaker_name = get_hear_name(speaker, hard_to_hear, voice_name)
 

@@ -18,13 +18,6 @@
 	var/sqltext = dbcon.Quote(t);
 	return copytext(sqltext, 2, length(sqltext));//Quote() adds quotes around input, we already do that
 
-/proc/generateRandomString(length)
-	. = list()
-	for(var/a in 1 to length)
-		var/letter = rand(33,126)
-		. += ascii2text(letter)
-	. = jointext(., null)
-
 /*
  * Text sanitization
  */
@@ -163,6 +156,19 @@
 //Old variant. Haven't dared to replace in some places.
 /proc/sanitize_old(var/t, var/list/repl_chars = list("\n"="#", "\t"="#"))
 	return html_encode(replace_characters(t, repl_chars))
+
+//Removes a few problematic characters
+/proc/sanitize_simple(t,list/repl_chars = list("\n"="#","\t"="#"))
+	for(var/char in repl_chars)
+		var/index = findtext(t, char)
+		while(index)
+			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index + length(char))
+			index = findtext(t, char, index + length(char))
+	return t
+
+/proc/sanitize_filename(t)
+	return sanitize_simple(t, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))
+
 
 /*
  * Text searches
@@ -365,7 +371,7 @@ proc/TextPreview(var/string, var/len=40)
 /proc/create_text_tag(var/tagname, var/tagdesc = tagname, var/client/C = null)
 	if(!(C && C.get_preference_value(/datum/client_preference/chat_tags) == GLOB.PREF_SHOW))
 		return tagdesc
-	return icon2html(icon(text_tag_icons, tagname), world, realsize=TRUE)
+	return icon2html(icon(text_tag_icons, tagname), world)
 
 /proc/contains_az09(var/input)
 	for(var/i=1, i<=length(input), i++)

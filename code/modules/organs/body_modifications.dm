@@ -148,11 +148,13 @@ var/global/list/modifications_types = list(
 /datum/body_modification/limb/prosthesis/asters
 	id = "prosthesis_asters"
 	replace_limb = /obj/item/organ/external/robotic/asters
+	body_parts = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_CHEST, BP_GROIN, BP_HEAD)
 	icon = 'icons/mob/human_races/cyberlimbs/asters.dmi'
 
 /datum/body_modification/limb/prosthesis/serbian
 	id = "prosthesis_serbian"
 	replace_limb = /obj/item/organ/external/robotic/serbian
+	body_parts = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_CHEST, BP_GROIN, BP_HEAD)
 	icon = 'icons/mob/human_races/cyberlimbs/serbian.dmi'
 
 /datum/body_modification/limb/prosthesis/frozen_star
@@ -177,6 +179,7 @@ var/global/list/modifications_types = list(
 /datum/body_modification/limb/prosthesis/makeshift
 	id = "prosthesis_makeshift"
 	replace_limb = /obj/item/organ/external/robotic/makeshift
+	body_parts = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_CHEST, BP_GROIN)
 	icon = 'icons/mob/human_races/cyberlimbs/ghetto.dmi'
 
 /datum/body_modification/limb/mutation/New()
@@ -214,8 +217,12 @@ var/global/list/modifications_types = list(
 /datum/body_modification/organ/assisted/create_organ(var/mob/living/carbon/holder, var/O, var/color)
 	var/obj/item/organ/I = ..(holder,O,color)
 	I.nature = MODIFICATION_ASSISTED
+	I.name = "assisted [I.name]"
 	I.min_bruised_damage = 15
 	I.min_broken_damage = 35
+	if(istype(I, /obj/item/organ/internal/appendix))
+		return I
+	I.icon_state = "[I.icon_state]_assisted"
 	return I
 
 
@@ -231,9 +238,15 @@ var/global/list/modifications_types = list(
 /datum/body_modification/organ/robotize_organ/create_organ(var/mob/living/carbon/holder, O, color)
 	var/obj/item/organ/I = ..(holder,O,color)
 	I.nature = MODIFICATION_SILICON
+	if(istype(I, /obj/item/organ/internal/appendix))
+		return null
 	if(istype(I, /obj/item/organ/internal/eyes))
 		var/obj/item/organ/internal/eyes/E = I
 		E.robo_color = iscolor(color) ? color : "#FFFFFF"
+	I.name = "robotic [I.name]"
+	I.icon_state = "[I.icon_state]_robotic"
+	//else // Pointless , doesn't show up in surgery UI
+	//	I.color = "#808080"
 	return I
 
 ////Eyes////

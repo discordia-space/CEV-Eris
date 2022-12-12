@@ -24,7 +24,7 @@
 		to_chat(usr, "Your module is not installed in a hardsuit.")
 		return
 
-	module.holder.ui_interact(usr, nano_state = GLOB.contained_state)
+	module.holder.nano_ui_interact(usr, nano_state = GLOB.contained_state)
 
 /obj/item/rig_module/ai_container
 	name = "IIS module"
@@ -147,7 +147,7 @@
 	if(!target)
 		if(ai_card)
 			if(istype(ai_card,/obj/item/device/aicard))
-				ai_card.ui_interact(H, state =GLOB.deep_inventory_state)
+				ai_card.nano_ui_interact(H, state =GLOB.deep_inventory_state)
 			else
 				eject_ai(H)
 		update_verb_holder()
@@ -318,21 +318,21 @@
 	rarity_value = 10
 
 /obj/item/rig_module/electrowarfare_suite/activate()
-
 	if(!..())
 		return
 
 	// This is not the best way to handle this, but I don't want it to mess with ling camo
 	var/mob/living/M = holder.wearer
-	M.digitalcamo++
+	if(M)
+		M.digitalcamo++
 
 /obj/item/rig_module/electrowarfare_suite/deactivate()
-
 	if(!..())
 		return
 
 	var/mob/living/M = holder.wearer
-	M.digitalcamo = max(0,(M.digitalcamo-1))
+	if(M)
+		M.digitalcamo = max(0,(M.digitalcamo-1))
 
 /obj/item/rig_module/power_sink
 	name = "hardsuit power sink"

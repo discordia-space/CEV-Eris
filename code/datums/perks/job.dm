@@ -5,8 +5,7 @@
 	icon_state = "survivor" // https://game-icons.net/1x1/lorc/one-eyed.html
 
 /datum/perk/survivor/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.sanity.death_view_multiplier *= 0.5
 
 /datum/perk/survivor/remove()
@@ -48,8 +47,7 @@
 	icon_state = "selfmedicated" // https://game-icons.net/1x1/lorc/overdose.html
 
 /datum/perk/selfmedicated/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.metabolism_effects.addiction_chance_multiplier = 0.5
 		holder.metabolism_effects.nsa_threshold_base += 10
 
@@ -66,8 +64,7 @@
 	perk_shared_ability = PERK_SHARED_SEE_REAGENTS
 
 /datum/perk/selfmedicated/chemist/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.metabolism_effects.nsa_threshold_base *= 1.25
 
 // Added on top , removed first
@@ -76,7 +73,6 @@
 		holder.metabolism_effects.nsa_threshold_base /= 1.25
 	..()
 
-
 /datum/perk/vagabond
 	name = "Vagabond"
 	desc = "You're used to see the worst sight the world has to offer. Your mind feels more resistant. \
@@ -84,8 +80,7 @@
 	icon_state = "vagabond" // https://game-icons.net/1x1/lorc/eye-shield.html
 
 /datum/perk/vagabond/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.sanity.view_damage_threshold += 20
 
 /datum/perk/vagabond/remove()
@@ -100,8 +95,7 @@
 	icon_state = "merchant" // https://game-icons.net/1x1/lorc/cash.html and https://game-icons.net/1x1/delapouite/graduate-cap.html slapped on https://game-icons.net/1x1/lorc/trade.html
 
 /datum/perk/merchant/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.sanity.valid_inspirations += /obj/item/spacecash/bundle
 
 /datum/perk/merchant/remove()
@@ -122,8 +116,7 @@
 	icon_state = "deepconnection" // https://game-icons.net/1x1/quoting/card-pickup.html
 
 /datum/perk/deep_connection/assign(mob/living/carbon/human/H)
-	..()
-	if(!holder)
+	if(!..())
 		return
 	var/list/choices = list(CHOICE_RAREOBJ)
 	if(GLOB.various_antag_contracts.len)
@@ -178,8 +171,7 @@
 	icon_state = "sanityboost" // https://game-icons.net/1x1/lorc/templar-eye.html
 
 /datum/perk/active_sanityboost/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.sanity.sanity_passive_gain_multiplier *= 1.5
 
 /datum/perk/active_sanityboost/remove()
@@ -198,8 +190,7 @@
 	icon_state = "inspiration_active" // https://game-icons.net/1x1/lorc/enlightenment.html
 
 /datum/perk/active_inspiration/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.stats.addTempStat(STAT_COG, 5, INFINITY, "Exotic Inspiration")
 		holder.stats.addTempStat(STAT_MEC, 10, INFINITY, "Exotic Inspiration")
 
@@ -222,8 +213,7 @@
 	icon_state = "neat" // https://game-icons.net/1x1/delapouite/broom.html
 
 /datum/perk/neat/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.sanity.view_damage_threshold += 20
 
 /datum/perk/neat/remove()
@@ -249,8 +239,7 @@
 	icon_state = "inspiration"
 
 /datum/perk/job/club/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.sanity_damage -= 2
 
 /datum/perk/job/club/remove()
@@ -303,12 +292,10 @@
 		/mob/living/carbon/human/proc/codespeak_idiot_local,
 		/mob/living/carbon/human/proc/codespeak_warcrime_yes_local,
 		/mob/living/carbon/human/proc/codespeak_warcrime_no_local,
-		/mob/living/carbon/human/proc/codespeak_run_local
-		)
+		/mob/living/carbon/human/proc/codespeak_run_local)
 
 /datum/perk/codespeak/assign(mob/living/carbon/human/H)
-	..()
-	if(holder)
+	if(..())
 		holder.verbs += codespeak_procs
 
 
@@ -316,3 +303,32 @@
 	if(holder)
 		holder.verbs -= codespeak_procs
 	..()
+
+/datum/perk/codespeak/serbian
+	name = "Codespeak"
+	desc = "You know Serbian Mercenaries' code language, adapted to use in shipboarding scenarios."
+	icon_state = "codespeak_serb" // https://game-icons.net/1x1/delapouite/pocket-radio.html
+	codespeak_procs = list(
+		/mob/living/carbon/human/proc/sm_codespeak_help,
+		/mob/living/carbon/human/proc/sm_codespeak_backup,
+		/mob/living/carbon/human/proc/sm_codespeak_clear,
+		/mob/living/carbon/human/proc/sm_codespeak_dead_merc,
+		/mob/living/carbon/human/proc/sm_codespeak_wounded_merc,
+		/mob/living/carbon/human/proc/sm_codespeak_target,
+		/mob/living/carbon/human/proc/sm_codespeak_status,
+		/mob/living/carbon/human/proc/sm_codespeak_shutup,
+		/mob/living/carbon/human/proc/sm_codespeak_understood,
+		/mob/living/carbon/human/proc/sm_codespeak_yes,
+		/mob/living/carbon/human/proc/sm_codespeak_no,
+		/mob/living/carbon/human/proc/sm_codespeak_what,
+		/mob/living/carbon/human/proc/sm_codespeak_captured,
+		/mob/living/carbon/human/proc/sm_codespeak_escaped,
+		/mob/living/carbon/human/proc/sm_codespeak_understood_local,
+		/mob/living/carbon/human/proc/sm_codespeak_yes_local,
+		/mob/living/carbon/human/proc/sm_codespeak_no_local,
+		/mob/living/carbon/human/proc/sm_codespeak_engage_local,
+		/mob/living/carbon/human/proc/sm_codespeak_hold_local,
+		/mob/living/carbon/human/proc/sm_codespeak_go_local,
+		/mob/living/carbon/human/proc/sm_codespeak_stop_local,
+		/mob/living/carbon/human/proc/sm_codespeak_run_local,
+		/mob/living/carbon/human/proc/sm_codespeak_idiot_local)

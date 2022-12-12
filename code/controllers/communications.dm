@@ -96,6 +96,7 @@ On the map:
 1451 for toxin lab access
 1453 for engineering access
 1455 for AI access
+1461 for circuits
 */
 
 var/const/RADIO_LOW_FREQ	= 1200

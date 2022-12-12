@@ -2,7 +2,10 @@
 	name_pool = list(
 		"McTB \'Dionis\'" = "\'McRonalds\' Trade Beacon \'Dionis\'. You hope they still have Happy Meals with a toy."
 	)
+	icon_states = list("htu_station", "station")
 	uid = "mcronalds"
+	tree_x = 0.46
+	tree_y = 0.8
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = COMMON_GOODS
@@ -26,13 +29,12 @@
 			/obj/item/pizzabox/margherita = good_data("PizzeR: autoTomato", list(1, 3), 400)
 		),
 		"Cakes" = list(
-			/obj/item/reagent_containers/food/snacks/sliceable/plaincake = good_data("Vanilla", list(1, 3), 300),
-			/obj/item/reagent_containers/food/snacks/sliceable/chocolatecake = good_data("Chocola", list(1, 3), 300),
-			/obj/item/reagent_containers/food/snacks/sliceable/carrotcake = good_data("carrot cake", list(1, 3), 300),
-			/obj/item/reagent_containers/food/snacks/sliceable/cheesecake = good_data("cheese cake", list(1, 3), 300),
-			/obj/item/reagent_containers/food/snacks/sliceable/orangecake = good_data("orange cake", list(1, 3), 300),
-			/obj/item/reagent_containers/food/snacks/sliceable/limecake = good_data("lime cake", list(1, 3), 300),
-			/obj/item/reagent_containers/food/snacks/sliceable/lemoncake = good_data("lemon cake", list(1, 3), 300)
+			/obj/item/reagent_containers/food/snacks/plaincakeslice = good_data("Vanilla", list(3, 5), 300),
+			/obj/item/reagent_containers/food/snacks/chocolatecakeslice = good_data("Chocola", list(3, 5), 300),
+			/obj/item/reagent_containers/food/snacks/carrotcakeslice = good_data("carrot cake", list(3, 5), 300),
+			/obj/item/reagent_containers/food/snacks/cheesecakeslice = good_data("cheese cake", list(3, 5), 300),
+			/obj/item/reagent_containers/food/snacks/limecakeslice = good_data("lime cake", list(3, 5), 300),
+			/obj/item/reagent_containers/food/snacks/lemoncakeslice = good_data("lemon cake", list(3, 5), 300)
 		),
 		"Misc" = list(
 			/obj/item/reagent_containers/food/snacks/fishandchips = custom_good_name("Fishps"),
@@ -42,6 +44,7 @@
 	hidden_inventory = list(
 	)
 	offer_types = list(
+		/obj/item/organ/internal/scaffold/aberrant/teratoma = offer_data("teratoma", 100, 0),
 		/obj/item/reagent_containers/food/snacks/meat/roachmeat = offer_data("roach meat", 300, 0),
 		/obj/item/reagent_containers/food/snacks/meat/spider = offer_data("spider meat", 300, 0)
 	)

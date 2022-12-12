@@ -45,12 +45,6 @@
 	backpack_overrides[/decl/backpack_outfit/backsport]     = /obj/item/storage/backpack/sport/orange;
 	backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/storage/backpack/satchel/orange/chemist;
 
-/decl/hierarchy/outfit/job/medical/psychiatrist
-	name = OUTFIT_JOB_NAME("Moebius Psychiatrist")
-	uniform = /obj/item/clothing/under/rank/psych
-	suit = /obj/item/clothing/suit/storage/toggle/labcoat
-	belt = /obj/item/storage/belt/medical/
-
 /decl/hierarchy/outfit/job/medical/paramedic
 	name = OUTFIT_JOB_NAME("Moebius Paramedic")
 	head = /obj/item/clothing/head/armor/faceshield/paramedic
@@ -61,3 +55,11 @@
 	belt = /obj/item/storage/belt/medical/emt
 	backpack_contents = list(/obj/item/gun/projectile/selfload/moebius = 1, /obj/item/ammo_magazine/pistol/rubber = 1, /obj/item/modular_computer/tablet/moebius/preset = 1)
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
+
+/decl/hierarchy/outfit/job/medical/bioengineer
+	name = OUTFIT_JOB_NAME("Moebius Bio-Engineer")
+	uniform = /obj/item/clothing/under/rank/bioengineer
+	suit = /obj/item/clothing/suit/storage/toggle/labcoat/bioengineer
+	l_hand = /obj/item/storage/freezer/medical
+	r_pocket = /obj/item/device/lighting/toggleable/flashlight/pen
+	belt = /obj/item/storage/belt/medical/

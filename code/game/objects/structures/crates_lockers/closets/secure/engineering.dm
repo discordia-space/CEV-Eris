@@ -89,3 +89,4 @@
 	new /obj/item/clothing/head/armor/helmet/technomancer(src)
 	new /obj/item/clothing/suit/storage/vest/insulated(src)
 	new /obj/item/clothing/head/armor/helmet/technomancer_old(src)
+	new /obj/item/storage/pouch/engineering_tools (src)

@@ -237,6 +237,16 @@
 	name = "Third Section Starboard Hallway"
 	icon_state = "hallway3side"
 
+/area/eris/hallway/side/section3deck2starboard
+	name = "Third Section Deck 2 Starboard Hallway"
+	icon_state = "hallway3side"
+
+/area/eris/hallway/side/section3deck2port
+	name = "Third Section Deck 2 Port Hallway"
+	icon_state = "hallway3side"
+
+
+
 /area/eris/hallway/side/hydroponicshallway
 	name = "Hydroponics Hallway"
 	icon_state = "erisyellow"
@@ -466,6 +476,11 @@
 	icon_state = "bar"
 	sound_env = LARGE_SOFTFLOOR
 
+/area/eris/crew_quarters/barconference
+	name = "\improper Conference Room"
+	icon_state = "erisblue"
+	sound_env = LARGE_SOFTFLOOR
+
 /area/eris/crew_quarters/barbackroom
 	name = "Bar Backroom"
 	icon_state = "erisgreen"
@@ -646,7 +661,7 @@
 	icon_state = "engineering_storage"
 	area_light_color = COLOR_LIGHTING_SCI_DARK
 
-/area/eris/engineering/break_room
+/area/eris/engineering/breakroom
 	name = "\improper Engineering Break Room"
 	icon_state = "engineering_break"
 	sound_env = MEDIUM_SOFTFLOOR
@@ -688,10 +703,6 @@
 
 /area/eris/engineering/telecommonitor
 	name = "Telecommunications Monitor Room"
-	icon_state = "erisred"
-
-/area/eris/engineering/breakroom
-	name = "Engineering Break Room"
 	icon_state = "erisred"
 
 /area/eris/engineering/freezercontrol
@@ -875,6 +886,9 @@
 	name = "Medbay Upper Coridor"
 	icon_state = "erisgreen"
 
+/area/eris/medical/medbay/organs
+	name = "\improper Visceral Research"
+	icon_state = "erisgreen"
 
 
 

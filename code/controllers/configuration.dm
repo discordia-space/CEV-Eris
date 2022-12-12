@@ -223,13 +223,15 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/webhook_url
 	var/webhook_key
 
+	var/tts_key // Login and password that we use to generate tts_bearer
+	var/tts_enabled // Global switch
+	var/tts_cache // Store generated tts files and reuse them, instead of always requesting new
+
 	var/static/regex/ic_filter_regex //For the cringe filter.
 
 	var/generate_loot_data = FALSE //for loot rework
 
 	var/profiler_permission = R_DEBUG | R_SERVER
-
-	var/allow_ic_printing = TRUE
 
 /datum/configuration/New()
 	fill_storyevents_list()
@@ -369,9 +371,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if ("vote_delay")
 					config.vote_delay = text2num(value)
-
-				if ("disable_ic_printing")
-					config.allow_ic_printing = FALSE
 
 				if ("vote_period")
 					config.vote_period = text2num(value)
@@ -722,6 +721,14 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("webhook_url")
 					config.webhook_url = value
 
+				if("tts_key")
+					config.tts_key = value
+
+				if("tts_enabled")
+					config.tts_enabled = config.tts_key ? value : FALSE
+
+				if("tts_cache")
+					config.tts_cache = value
 
 				if("random_start")
 					var/list/startlist = list(

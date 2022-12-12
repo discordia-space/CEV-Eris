@@ -187,3 +187,43 @@
 	name = "autoinjector (burn-aid)"
 	preloaded_reagents = list("kelotane" = 1.25, "dermaline" = 1.25, "tricordrazine" = 1.25, "polystem" = 1.25)
 	price_tag = 100
+
+/obj/item/reagent_containers/hypospray/autoinjector/bloodclot
+	name = "autoinjector (blood clotting, type 1)"
+	preloaded_reagents = list("thrombopoietin" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/bloodclot_alt
+	name = "autoinjector (blood clotting, type 2)"
+	preloaded_reagents = list("thromboxane" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/bloodrestore
+	name = "autoinjector (blood restoration, type 1)"
+	preloaded_reagents = list("aldosterone" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/bloodrestore_alt
+	name = "autoinjector (blood restoration, type 2)"
+	preloaded_reagents = list("erythropoietin" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/painkiller
+	name = "autoinjector (painkiller, type 1)"
+	preloaded_reagents = list("enkephalin" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/painkiller_alt
+	name = "autoinjector (painkiller, type 2)"
+	preloaded_reagents = list("endomorphin" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/speedboost
+	name = "autoinjector (agility, type 1)"
+	preloaded_reagents = list("osteocalcin" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/speedboost_alt
+	name = "autoinjector (agility, type 2)"
+	preloaded_reagents = list("noradrenaline" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/oxygenation
+	name = "autoinjector (oxygenation, type 1)"
+	preloaded_reagents = list("dexterone" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/oxygenation_alt
+	name = "autoinjector (oxygenation, type 2)"
+	preloaded_reagents = list("vasotriene" = 5)

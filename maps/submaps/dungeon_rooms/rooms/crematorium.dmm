@@ -82,6 +82,7 @@
 "s" = (
 /obj/machinery/light/floor,
 /obj/structure/closet/body_bag,
+/obj/item/remains/human,
 /turf/simulated/floor/tiled/white,
 /area/crawler)
 "t" = (
@@ -96,6 +97,7 @@
 /area/crawler)
 "w" = (
 /obj/structure/closet/cabinet,
+/obj/spawner/prothesis_one_star,
 /turf/simulated/floor/tiled/white,
 /area/crawler)
 "x" = (
@@ -109,6 +111,7 @@
 "z" = (
 /obj/structure/table/onestar,
 /obj/structure/window/reinforced,
+/obj/spawner/surgery_tool/low_chance,
 /turf/simulated/floor/tiled/white,
 /area/crawler)
 "B" = (

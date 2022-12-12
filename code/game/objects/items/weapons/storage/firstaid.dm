@@ -189,7 +189,7 @@
 	make_exact_fit()
 
 /obj/item/storage/firstaid/nt
-	name = "NeoTheologian Medkit"
+	name = "NeoTheology medkit"
 	desc = "A medkit filled with a set of high-end trauma kits and anti-toxins."
 	icon_state = "nt_kit"
 	item_state = "nt_kit"
@@ -363,6 +363,36 @@
 	for(var/i in 1 to initial_amt)
 		new pill_type(src)
 
+/obj/item/storage/pill_bottle/njoy/red
+	name = "bottle of red Njoy pills"
+	desc = "Contains pills used to stop all breakdowns."
+	icon_state = "bottle_njoy_red"
+	pill_type = /obj/item/reagent_containers/pill/suppressital/
+
+/obj/item/storage/pill_bottle/njoy/red/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+/obj/item/storage/pill_bottle/njoy/green
+	name = "bottle of green Njoy pills"
+	desc = "Contains pills used to stop all breakdowns."
+	icon_state = "bottle_njoy_green"
+	pill_type = /obj/item/reagent_containers/pill/suppressital/green
+
+/obj/item/storage/pill_bottle/njoy/green/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+/obj/item/storage/pill_bottle/njoy/blue
+	name = "bottle of blue Njoy pills"
+	desc = "Contains pills used to stop all breakdowns."
+	icon_state = "bottle_njoy_blue"
+	pill_type = /obj/item/reagent_containers/pill/suppressital/blue
+
+/obj/item/storage/pill_bottle/njoy/blue/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
 /*
  * Portable Freezers
  */
@@ -373,7 +403,7 @@
 	item_state = "medicalpack"
 	max_w_class = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2)
-	can_hold = list(/obj/item/organ, /obj/item/reagent_containers/food, /obj/item/reagent_containers/glass)
+	can_hold = list(/obj/item/organ, /obj/item/modification/organ, /obj/item/reagent_containers/food, /obj/item/reagent_containers/glass)
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	use_to_pickup = TRUE
 

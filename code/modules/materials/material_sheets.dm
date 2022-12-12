@@ -356,6 +356,7 @@
 	icon_state = "sheet-glass"
 	default_type = MATERIAL_GLASS
 	price_tag = 2
+	novariants = FALSE
 
 /obj/item/stack/material/glass/random
 	rand_min = 3
@@ -370,6 +371,7 @@
 	name = "reinforced glass"
 	icon_state = "sheet-rglass"
 	default_type = MATERIAL_RGLASS
+	novariants = FALSE
 
 /obj/item/stack/material/glass/plasmaglass
 	name = "borosilicate glass"
@@ -378,6 +380,7 @@
 	icon_state = "sheet-plasmaglass"
 	default_type = MATERIAL_PLASMAGLASS
 	price_tag = 10
+	novariants = FALSE
 
 /obj/item/stack/material/glass/plasmaglass/random
 	rand_min = 3
@@ -392,6 +395,7 @@
 	icon_state = "sheet-plasmarglass"
 	default_type = MATERIAL_RPLASMAGLASS
 	price_tag = 12
+	novariants = FALSE
 
 /obj/item/stack/material/biomatter
 	name = "biomatter"
@@ -399,7 +403,7 @@
 	singular_name = "biomatter sheet"
 	icon_state = "sheet-biomatter"
 	default_type = MATERIAL_BIOMATTER
-	price_tag = 10
+	price_tag = 5
 	novariants = FALSE
 	var/biomatter_in_sheet = BIOMATTER_PER_SHEET // defined in solidifier.dm
 

@@ -5,6 +5,7 @@
 	icon_state = "bsdm"
 	item_state = "bsdm"
 	max_storage_space = DEFAULT_BULKY_STORAGE
+	description_antag = "A high-capacity storage unit. Highly illegal, but stores a lot of items. Also used for sending contract items."
 	max_w_class = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_BLUESPACE = 3, TECH_COVERT = 3)
 	matter = list(MATERIAL_STEEL = 6)
@@ -16,12 +17,12 @@
 	return owner && (locate(/area/space) in view(get_turf(src)))
 
 /obj/item/storage/bsdm/attack_self(mob/user)
-	ui_interact(user)
+	nano_ui_interact(user)
 
 /obj/item/storage/bsdm/interact(mob/user)
-	ui_interact(user)
+	nano_ui_interact(user)
 
-/obj/item/storage/bsdm/ui_data(mob/user)
+/obj/item/storage/bsdm/nano_ui_data(mob/user)
 	var/list/list/data = list()
 
 	data["can_launch"] = can_launch()
@@ -40,8 +41,8 @@
 
 	return data
 
-/obj/item/storage/bsdm/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
-	var/list/data = ui_data(user)
+/obj/item/storage/bsdm/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+	var/list/data = nano_ui_data(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -64,7 +65,7 @@
 		QDEL_LIST(contents)
 		if(del_on_send)
 			if(ismob(loc))
-				to_chat(loc, SPAN_NOTICE("[src] flick_lights away in a brief flash of light."))
+				to_chat(loc, SPAN_NOTICE("[src] flickers away in a brief flash of light."))
 			qdel(src)
 
 	else if(href_list["owner"])

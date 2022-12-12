@@ -7,6 +7,7 @@
 	w_class = ITEM_SIZE_SMALL
 	worksound = WORKSOUND_HAMMER
 	flags = CONDUCT
+	push_attack = TRUE
 	origin_tech = list(TECH_ENGINEERING = 1)
 	tool_qualities = list(QUALITY_HAMMERING = 20, QUALITY_PRYING = 10)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_WOOD = 2)
@@ -14,23 +15,13 @@
 	hitsound = 'sound/weapons/melee/blunthit.ogg'
 	rarity_value = 5
 
-/obj/item/tool/hammer/homewrecker
-	name = "homewrecker"
-	desc = "A large steel chunk welded to a long handle which resembles a sledgehammer. Extremely heavy."
-	icon_state = "homewrecker0"
-	item_state = "homewrecker"
-	wielded_icon = "homewrecker1"
-	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
-	armor_penetration = ARMOR_PEN_MODERATE
-	force = WEAPON_FORCE_PAINFUL
-	force_wielded_multiplier = 2.6
-	slot_flags = SLOT_BELT|SLOT_BACK
-	w_class = ITEM_SIZE_HUGE
-	tool_qualities = list(QUALITY_HAMMERING = 15)
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1)
-	max_upgrades = 5
-	spawn_tags = SPAWN_TAG_JUNKTOOL
-	rarity_value = 32
+/obj/item/tool/hammer/wield(mob/living/user)
+	screen_shake = TRUE
+	..()
+
+/obj/item/tool/hammer/unwield(mob/living/user)
+	screen_shake = FALSE
+	..()
 
 /obj/item/tool/hammer/powered_hammer //to be made into proper two-handed tool as small "powered" hammer doesn't make sense
 	name = "powered hammer"					//lacks normal sprites, both icon, item and twohanded for this
@@ -38,7 +29,7 @@
 	icon_state = "powered_hammer"
 	item_state = "powered_hammer"
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
-	armor_penetration = ARMOR_PEN_EXTREME
+	armor_divisor = ARMOR_PEN_HALF
 	force = WEAPON_FORCE_BRUTAL
 	w_class = ITEM_SIZE_HUGE
 	tool_qualities = list(QUALITY_HAMMERING = 30)
@@ -49,20 +40,82 @@
 	max_upgrades = 4
 	rarity_value = 24
 
-/obj/item/tool/hammer/powered_hammer/onestar_hammer
+/obj/item/tool/hammer/sledgehammer
+	name = "sledgehammer"
+	desc = "With this in your hands, every problem looks like a nail."
+	icon_state = "sledgehammer"
+	item_state = "sledgehammer"
+	wielded_icon = "sledgehammer_wielded"
+	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
+	armor_divisor = ARMOR_PEN_MODERATE
+	force = WEAPON_FORCE_DANGEROUS
+	force_wielded_multiplier = 1.4
+	w_class = ITEM_SIZE_HUGE
+	slot_flags = SLOT_BACK
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 2)
+	tool_qualities = list(QUALITY_HAMMERING = 30)
+	max_upgrades = 2
+	rarity_value = 2
+
+/obj/item/tool/hammer/sledgehammer/advanced
+	name = "advanced sledgehammer"
+	desc = "Used for applying excessive blunt force to a problem, now with even more force."
+	icon_state = "sledgehammer_advanced"
+	item_state = "sledgehammer_advanced"
+	wielded_icon = "sledgehammer_advanced_wielded"
+	structure_damage_factor = STRUCTURE_DAMAGE_POWERFUL
+	armor_divisor = ARMOR_PEN_HALF
+	force = WEAPON_FORCE_ROBUST
+	tool_qualities = list(QUALITY_HAMMERING = 40)
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 3)
+	max_upgrades = 3
+	spawn_blacklisted = TRUE
+
+/obj/item/tool/hammer/sledgehammer/improvised
+	name = "homewrecker"
+	desc = "A large steel chunk welded to a long handle which resembles a sledgehammer. Extremely heavy."
+	icon_state = "homewrecker0"
+	item_state = "homewrecker"
+	wielded_icon = "homewrecker1"
+	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
+	armor_divisor = ARMOR_PEN_SHALLOW
+	force = WEAPON_FORCE_PAINFUL
+	slot_flags = SLOT_BELT|SLOT_BACK
+	tool_qualities = list(QUALITY_HAMMERING = 15)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1)
+	max_upgrades = 3
+	spawn_tags = SPAWN_TAG_JUNKTOOL
+	rarity_value = 32
+
+/obj/item/tool/hammer/sledgehammer/ironhammer //triple hammer!
+	name = "FS \"Ironhammer\" Breaching Hammer"
+	desc = "A modified sledgehammer produced by Frozen Star for Ironhammer forces. This tool can take down standard walls and if the user is strong enough, reinforced walls."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "iron_hammer"
+	item_state = "iron_hammer"
+	wielded_icon = "iron_hammer_wielded"
+	armor_divisor = ARMOR_PEN_HALF
+	force = WEAPON_FORCE_ROBUST
+	structure_damage_factor = STRUCTURE_DAMAGE_POWERFUL
+	tool_qualities = list(QUALITY_HAMMERING = 40, QUALITY_PRYING = 1)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 2)
+	spawn_blacklisted = TRUE
+
+/obj/item/tool/hammer/sledgehammer/onestar
 	name = "One Star sledgehammer"
 	desc = "A sledgehammer model produced by One Star, used for applying immeasurable blunt force to anything in your way. Capable of breaching even the toughtest obstacles, and cracking the most resilient skulls."
 	icon_state = "onehammer"
 	item_state = "onehammer"
 	wielded_icon = "onehammer_on"
 	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
-	armor_penetration = ARMOR_PEN_EXTREME
+	armor_divisor = ARMOR_PEN_HALF
 	force= WEAPON_FORCE_BRUTAL
-	force_wielded_multiplier = 1.65
+	force_wielded_multiplier = 1.5
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLATINUM = 5, MATERIAL_DIAMOND = 5)
 	tool_qualities = list(QUALITY_HAMMERING = 50)
+	suitable_cell = /obj/item/cell/medium
 	degradation = 0.6
 	use_power_cost = 1.5
 	workspeed = 1.5
@@ -78,7 +131,7 @@
 	icon_state = "mace"
 	item_state = "mace"
 	w_class = ITEM_SIZE_NORMAL
-	armor_penetration = ARMOR_PEN_EXTREME
+	armor_divisor = ARMOR_PEN_HALF
 	force = WEAPON_FORCE_ROBUST
 	tool_qualities = list(QUALITY_HAMMERING = 20)
 	spawn_tags = SPAWN_TAG_WEAPON
@@ -105,7 +158,7 @@
 	wielded_icon = "woodbat1"
 	item_state = "woodbat0"
 	force = WEAPON_FORCE_DANGEROUS
-	armor_penetration = ARMOR_PEN_MODERATE
+	armor_divisor = ARMOR_PEN_MODERATE
 	attack_verb = list("smashed", "beaten", "slammed", "smacked", "struck", "battered", "bonked")
 	hitsound = 'sound/weapons/genhit3.ogg'
 	slot_flags = SLOT_BELT|SLOT_BACK
@@ -127,7 +180,7 @@
 	item_state = "chargehammer"
 	w_class = ITEM_SIZE_HUGE
 	switched_on_force = WEAPON_FORCE_BRUTAL
-	armor_penetration = ARMOR_PEN_MASSIVE
+	armor_divisor = ARMOR_PEN_EXTREME
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	switched_on_qualities = list(QUALITY_HAMMERING = 60)
 	switched_off_qualities = list(QUALITY_HAMMERING = 35)
@@ -177,17 +230,28 @@
 		user.throw_at(target, get_dist(target, user), 1, user)
 		T.stop()
 
-/obj/item/tool/hammer/IH
-	name = "FS \"Ironhammer\" Breaching Hammer"
-	desc = "A modified sledgehammer produced by Frozen Star for Ironhammer forces. This tool can take down standard walls and if the user is strong enough, reinforced walls."
+/obj/item/tool/hammer/dumbbell
+	name = "dumbbell"
+	desc = "To get stronger with this thing, you need to regularly train for many a month. But to hammer a nail, or crack a skull..."
+	icon_state = "dumbbell"
+	item_state = "dumbbell"
+	tool_qualities = list(QUALITY_HAMMERING = 15)
+	matter = list(MATERIAL_STEEL = 5)
+	rarity_value = 35
+
+/obj/item/tool/hammer/staff
+	name = "makeshift staff"
+	desc = "Three rods, some duct tape and a lot of bloodlust give you this. Its size helps greatly with blocking melee attacks and reaching far."
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "iron_hammer"
-	item_state = "iron_hammer"
-	wielded_icon = "iron_hammer_wielded"
+	icon_state = "staff"
+	item_state = "staff"
+	wielded_icon = "staff_wielded"
+	tool_qualities = list(QUALITY_HAMMERING = 5)
+	matter = list(MATERIAL_STEEL = 3)
+	extended_reach = TRUE
+	rarity_value = 70
+	max_upgrades = 3
+	armor_divisor = ARMOR_PEN_GRAZING //blunt force trauma strong
+	force = WEAPON_FORCE_PAINFUL
+	force_wielded_multiplier = 1.3
 	w_class = ITEM_SIZE_HUGE
-	armor_penetration = ARMOR_PEN_DEEP
-	force = WEAPON_FORCE_ROBUST
-	structure_damage_factor = STRUCTURE_DAMAGE_BORING
-	tool_qualities = list(QUALITY_HAMMERING = 40, QUALITY_PRYING = 1)
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 2)
-	spawn_blacklisted = TRUE

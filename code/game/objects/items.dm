@@ -15,13 +15,23 @@
 	var/randpixel = 6
 	var/abstract = 0
 	var/r_speed = 1
-	var/health
-	var/max_health
+	var/health = 100
+	var/max_health = 100
 	var/burn_point
 	var/burning
 	var/hitsound = 'sound/weapons/genhit1.ogg'
 	var/worksound
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
+
+	//The cool stuff for melee
+	var/screen_shake = FALSE 		//If a weapon can shake the victim's camera on hit.
+	var/forced_broad_strike = FALSE //If a weapon is forced to always perform broad strikes.
+	var/extended_reach = FALSE		//Wielded spears can hit alive things one tile further.
+	var/ready = FALSE				//All weapons that are ITEM_SIZE_BULKY or bigger have double tact, meaning you have to click twice.
+	var/no_double_tact = FALSE		//for when you,  for some inconceivable reason, want a bulky item to not have double tact	
+	var/push_attack = FALSE			//Hammers and spears can push the victim away on hit when you aim groin.
+	//Why are we using vars instead of defines or anything else?
+	//Because we need them to be shown in the tool info UI.
 
 	var/obj/item/master
 	var/list/origin_tech = list()	//Used by R&D to determine what research bonuses it grants.
@@ -36,6 +46,8 @@
 	var/datum/action/item_action/action
 	var/action_button_name //It is also the text which gets displayed on the action button. If not set it defaults to 'Use [name]'. If it's not set, there'll be no button.
 	var/action_button_is_hands_free = 0 //If 1, bypass the restrained, lying, and stunned checks action buttons normally test for
+	var/action_button_proc //If set, when the button is used it calls the proc of that name
+	var/action_button_arguments //If set, hands these arguments to the proc.
 
 	//This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 	//It should be used purely for appearance. For gameplay effects caused by items covering body parts, use body_parts_covered.
@@ -78,7 +90,7 @@
 
 	//Damage vars
 	var/force = 0	//How much damage the weapon deals
-	var/embed_mult = 0.5 //Multiplier for the chance of embedding in mobs. Set to zero to completely disable embedding
+	var/embed_mult = 1 //Multiplier for the chance of embedding in mobs. Set to zero to completely disable embedding
 	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
 	//Does not affect damage dealt to mobs
 	var/style = STYLE_NONE // how much using this item increases your style
@@ -102,15 +114,21 @@
 		verbs.Add(/obj/item/proc/set_chameleon_appearance)
 	. = ..()
 
-/obj/item/Destroy()
-	QDEL_NULL(hidden_uplink)
-	QDEL_NULL(blood_overlay)
-	QDEL_NULL(action)
+/obj/item/Destroy(force)
+	// This var exists as a weird proxy "owner" ref
+	// It's used in a few places. Stop using it, and optimially replace all uses please
+	master = null
 	if(ismob(loc))
 		var/mob/m = loc
 		m.u_equip(src)
 		remove_hud_actions(m)
 		loc = null
+
+	QDEL_NULL(hidden_uplink)
+	if(blood_overlay && items_blood_overlay_by_type[type] == blood_overlay)
+		LAZYREMOVE(items_blood_overlay_by_type, type)
+	QDEL_NULL(blood_overlay)
+	QDEL_NULL(action)
 	if(hud_actions)
 		for(var/action in hud_actions)
 			qdel(action)
@@ -180,12 +198,30 @@
 	for(var/Q in tool_qualities)
 		message += "\n<blue>It possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
 
+	. = ..(user, distance, "", message)
+
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.stats.getPerk(PERK_MARKET_PROF))
-			message += SPAN_NOTICE("\nThis item cost: [get_item_cost()][CREDITS]")
+			to_chat(user,SPAN_NOTICE("Export value: [get_item_cost() * SStrade.get_export_price_multiplier(src)][CREDITS]"))
 
-	return ..(user, distance, "", message)
+			var/offer_message = "This item is requested at: "
+			var/has_offers = FALSE
+			for(var/datum/trade_station/TS in SStrade.discovered_stations)
+				for(var/path in TS.special_offers)
+					if(istype(src, path))
+						has_offers = TRUE
+						var/list/offer_content = TS.special_offers[path]
+						var/offer_price = offer_content["price"]
+						var/offer_amount = offer_content["amount"]
+						if(offer_amount)
+							offer_message += "[TS.name] ([round(offer_price / offer_amount, 1)][CREDITS] each, [offer_amount] requested), "
+						else
+							offer_message += "[TS.name] (offer fulfilled, awaiting new contract), "
+
+			if(has_offers)
+				offer_message = copytext(offer_message, 1, LAZYLEN(offer_message) - 1)
+				to_chat(user, SPAN_NOTICE(offer_message))
 
 /obj/item/attack_hand(mob/user as mob)
 	if(pre_pickup(user))
@@ -445,22 +481,65 @@ var/global/list/items_blood_overlay_by_type = list()
 	if (istype(I, /obj/item/grab)) // a grab signifies that it's another mob that should be spun
 		var/obj/item/grab/inhand_grab = I
 		var/mob/living/grabbed = inhand_grab.throw_held()
-		if (a_intent == I_HELP && inhand_grab.affecting.a_intent == I_HELP) // this doesn't use grabbed to allow passive twirl
-			visible_message(SPAN_NOTICE("[src] twirls [inhand_grab.affecting]."), SPAN_NOTICE("You twirl [inhand_grab.affecting]."))
-		else if (grabbed)
+		if (grabbed)
 			if (grabbed.stats.getPerk(PERK_ASS_OF_CONCRETE))
 				visible_message(SPAN_WARNING("[src] tries to pick up [grabbed], and fails!"))
 				if (ishuman(src))
 					var/mob/living/carbon/human/depleted = src
 					depleted.regen_slickness(-1) // unlucky and unobservant gets the penalty
 					return
+
 			else
-				visible_message(SPAN_WARNING("[src] picks up, spins, and drops [grabbed]."), SPAN_WARNING("You pick up, spin, and drop [grabbed]."))
-				grabbed.external_recoil(60)
-				grabbed.Weaken(1)
-				grabbed.resting = TRUE
-				grabbed.update_lying_buckled_and_verb_status()
-				unEquip(inhand_grab)
+				if(ishuman(grabbed)) // irish whip if human(grab special), else spin and force rest
+					grabbed.external_recoil(40)
+					var/whip_dir = (get_dir(grabbed, src))
+					var/moves = 0
+					//force move the victim on the attacker's tile so that the whip can be executed
+					grabbed.loc = src.loc
+					//yeet
+					src.set_dir(whip_dir)
+					visible_message(SPAN_WARNING("[src] spins and hurls [grabbed] away!"), SPAN_WARNING("You spin and hurl [grabbed] away!"))
+					grabbed.update_lying_buckled_and_verb_status()
+					unEquip(inhand_grab)
+					//move grabbed for three tiles, if glass window/wall/railing encountered, proc interactions and break
+					for(moves, moves<=3, ++moves)
+						//low damage for walls, medium for windows, fall over for railings
+						if(istype(get_step(grabbed, whip_dir), /turf/simulated/wall))
+							visible_message(SPAN_WARNING("[grabbed] slams into the wall!"))
+							grabbed.damage_through_armor(15, BRUTE, BP_CHEST, ARMOR_MELEE)
+							break
+						
+						for(var/obj/structure/S in get_step(grabbed, whip_dir))
+							if(istype(S, /obj/structure/window))
+								visible_message(SPAN_WARNING("[grabbed] slams into \the [S]!"))
+								grabbed.damage_through_armor(25, BRUTE, BP_CHEST, ARMOR_MELEE)
+								
+								moves = 3
+								break
+							if(istype(S, /obj/structure/railing))
+								visible_message(SPAN_WARNING("[grabbed] falls over \the [S]!"))
+								grabbed.forceMove(get_step(grabbed, whip_dir))
+
+								moves = 3
+								break
+							if(istype(S, /obj/structure/table))
+								visible_message(SPAN_WARNING("[grabbed] falls on \the [S]!"))
+								grabbed.forceMove(get_step(grabbed, whip_dir))
+								grabbed.Weaken(5)
+
+								moves = 3
+								break
+						step_glide(grabbed, whip_dir,(DELAY2GLIDESIZE(0.2 SECONDS)))//very fast
+
+					//admin messaging
+					src.attack_log += text("\[[time_stamp()]\] <font color='red'>Irish-whipped [grabbed.name] ([grabbed.ckey])</font>")
+					grabbed.attack_log += text("\[[time_stamp()]\] <font color='orange'>Irish-whipped by [src.name] ([src.ckey])</font>")
+				else
+					visible_message(SPAN_WARNING("[src] picks up, spins, and drops [grabbed]."), SPAN_WARNING("You pick up, spin, and drop [grabbed]."))
+					grabbed.Weaken(1)
+					grabbed.resting = TRUE
+					grabbed.update_lying_buckled_and_verb_status()
+					unEquip(inhand_grab)
 		else
 			to_chat(src, SPAN_WARNING("You do not have a firm enough grip to forcibly spin [inhand_grab.affecting]."))
 
@@ -486,7 +565,7 @@ modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
 //Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
-/obj/item/proc/zoom(tileoffset = 14,viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+/obj/item/proc/zoom(tileoffset = 14,viewsize = 9, stayzoomed = FALSE) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	if(!usr)
 		return
 
@@ -509,7 +588,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(usr, "You are too distracted to look through the [devicename]. Perhaps if it was in your active hand you could look through it.")
 		cannotzoom = 1
 
-	if(!zoom && !cannotzoom)
+	if((!zoom && !cannotzoom)|stayzoomed)
 		//if(usr.hud_used.hud_shown)
 			//usr.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
 		usr.client.view = viewsize
@@ -531,8 +610,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(WEST)
 				usr.client.pixel_x = -viewoffset
 				usr.client.pixel_y = 0
-
-		usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [name]" : "[name]"].")
+		if(!stayzoomed)
+			usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [name]" : "[name]"].")
 		var/mob/living/carbon/human/H = usr
 		H.using_scope = src
 	else

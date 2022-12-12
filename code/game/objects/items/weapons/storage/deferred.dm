@@ -71,7 +71,7 @@
 /obj/item/storage/deferred/pouches
 	name = "uniform modification kit"
 	desc = "A box full of hard-wearing pouches designed for easy attachment to clothing and armor. Good for carrying extra ammo or tools in the field."
-	initial_contents = list(/obj/spawner/pouch = 8, /obj/item/storage/pouch/pistol_holster = 1)
+	initial_contents = list(/obj/spawner/pouch = 8, /obj/item/storage/pouch/holster = 1)
 	//One guaranteed holster and plenty of randoms
 
 /obj/item/storage/deferred/comms
@@ -169,16 +169,16 @@
 	desc = "A crate containing six \"Kovacs\" battle rifles, and plenty of mags."
 	icon_state = "serbcrate_deferred_green"
 	initial_contents = list(/obj/item/gun/projectile/kovacs = 6,
-	/obj/item/ammo_magazine/srifle = 18)
+	/obj/item/ammo_magazine/lrifle = 18)
 
 /obj/item/storage/deferred/crate/grenadier
 	name = "grenadier crate"
 	desc = "A crate containing one \"Lenar\" launcher, and copious quantities of hand-propelled explosive devices."
 	icon_state = "serbcrate_deferred_black"
-	initial_contents = list(/obj/item/grenade/explosive = 5,
-	/obj/item/grenade/frag = 14,
-	/obj/item/grenade/empgrenade/low_yield = 4,
-	/obj/item/grenade/smokebomb = 8,
+	initial_contents = list(
+	/obj/item/ammo_casing/grenade/blast = 5,
+	/obj/item/ammo_casing/grenade/frag = 14,
+	/obj/item/ammo_casing/grenade/emp = 4,
 	/obj/item/gun/projectile/shotgun/pump/grenade/lenar = 1)
 
 /obj/item/storage/deferred/crate/antiarmor //change to demolitions, won't do now because will affect map

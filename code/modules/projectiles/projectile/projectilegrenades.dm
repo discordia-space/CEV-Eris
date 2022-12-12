@@ -1,13 +1,13 @@
 /obj/item/projectile/bullet/grenade
 	name = "grenade shell"
 	icon_state = "grenade"
-	damage_types = list(BRUTE = 5)
-	agony = 10
-	armor_penetration = 0
+	damage_types = list(BRUTE = 5, HALLOSS = 10)
+	armor_divisor = 1
 	embed = FALSE
 	sharp = FALSE
 	check_armour = ARMOR_BULLET
 	step_delay = 1.2
+	recoil = 7 // Unlike shotgun shells, this one doesn't rely on velocity, but payload instead
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/grenade/Move()	//Makes grenade shells cause their effect when they arrive at their target turf

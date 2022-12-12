@@ -57,7 +57,7 @@
 	spent_icon = "magnum_c_l-spent"
 	shell_color = "l"
 	projectile_type = /obj/item/projectile/bullet/magnum
-	maxamount = 6
+	maxamount = 10
 
 	sprite_update_spawn = TRUE
 	sprite_max_rotate = 32
@@ -96,7 +96,7 @@
 	projectile_type = /obj/item/projectile/bullet/magnum/scrap
 
 /obj/item/ammo_casing/magnum/scrap/prespawned
-	amount = 6
+	amount = 10
 
 //// .20 ////
 
@@ -141,7 +141,7 @@
 	desc = "An old .20 Rifle bullet casing."
 	icon_state = "srifle_c_s"
 	spent_icon = "srifle_c_s-spent"
-	shell_color = "p"
+	shell_color = "s"
 	caliber = CAL_SRIFLE
 	projectile_type = /obj/item/projectile/bullet/srifle/scrap
 
@@ -574,3 +574,22 @@
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASMA = 1)
 	matter_reagents = list("phosphorus" = 3)
 	rarity_value = 8
+
+/obj/item/ammo_casing/crossbow/bolt 
+	name = "steel bolt"
+	desc = "A steel rod worked into the shape of a crossbow bolt."
+	icon_state = "CrossbowBolt"
+	spent_icon = "CrossbowBolt"
+	caliber = CAL_CBOLT
+	projectile_type = /obj/item/projectile/bullet/bolt
+	matter = list(MATERIAL_STEEL = 1)
+	is_caseless = TRUE
+	maxamount = 5
+	sharp = TRUE
+
+	sprite_update_spawn = TRUE
+	sprite_max_rotate = 32
+	sprite_scale = 1
+
+/obj/item/ammo_casing/crossbow/bolt/prespawned
+	amount = 5

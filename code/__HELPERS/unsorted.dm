@@ -7,14 +7,6 @@
 //Checks if all high bits in req_mask are set in bitfield
 #define BIT_TEST_ALL(bitfield, req_mask) ((~(bitfield) & (req_mask)) == 0)
 
-/// isnum() returns TRUE for NaN. Also, NaN != NaN. Checkmate, BYOND.
-#define isnan(x) ( (x) != (x) )
-
-#define isinf(x) (isnum((x)) && (((x) == text2num("inf")) || ((x) == text2num("-inf"))))
-
-/// NaN isn't a number, damn it. Infinity is a problem too.
-#define isnum_safe(x) ( isnum((x)) && !isnan((x)) && !isinf((x)) )
-
 //Inverts the colour of an HTML string
 /proc/invertHTML(HTMLstring)
 	if(!istext(HTMLstring))
@@ -1296,18 +1288,20 @@ var/list/FLOORITEMS = list(
 /proc/pass(...)
 	return
 
-// \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
-// If it ever becomes necesary to get a more performant REF(), this lies here in wait
-// #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
+/**
+ * \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
+ * If it ever becomes necesary to get a more performant REF(), this lies here in wait
+ * #define REF(thing) (thing && isdatum(thing) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
+**/
 /proc/REF(input)
-	// if(istype(input, /datum))
-	// 	var/datum/thing = input
-	// 	if(thing.datum_flags & DF_USE_TAG)
-	// 		if(!thing.tag)
-	// 			stack_trace("A ref was requested of an object with DF_USE_TAG set but no tag: [thing]")
-	// 			thing.datum_flags &= ~DF_USE_TAG
-	// 		else
-	// 			return "\[[url_encode(thing.tag)]\]"
+	if(isdatum(input))
+		var/datum/thing = input
+		if(thing.datum_flags & DF_USE_TAG)
+			if(!thing.tag)
+				stack_trace("A ref was requested of an object with DF_USE_TAG set but no tag: [thing]")
+				thing.datum_flags &= ~DF_USE_TAG
+			else
+				return "\[[url_encode(thing.tag)]\]"
 	return "\ref[input]"
 
 // Makes a call in the context of a different usr

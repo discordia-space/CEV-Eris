@@ -87,7 +87,8 @@
 
 /obj/item/storage/backpack/holding/New()
 	..()
-	bluespace_entropy(6, get_turf(src))
+	if(!istype(src, /obj/item/storage/backpack/holding/bst)) //so admins don't cause unnecessary chaos...
+		bluespace_entropy(6, get_turf(src))
 
 /obj/item/storage/backpack/holding/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/storage/backpack/holding))
@@ -323,8 +324,10 @@
 
 /obj/item/storage/backpack/satchel/leather
 	name = "leather satchel"
-	desc = "A fancy satchel made with fine leather."
+	desc = "A fancy satchel made with fine leather. While fancy, it has less storage space than most other satchels."
 	icon_state = "satchel_leather"
+	max_storage_space = DEFAULT_HUGE_STORAGE * 0.5 // 20 instead of 28
+	style = STYLE_LOW // Sacrificing storage space is stylish
 
 /obj/item/storage/backpack/satchel/leather/withwallet
 	rarity_value = 4.16

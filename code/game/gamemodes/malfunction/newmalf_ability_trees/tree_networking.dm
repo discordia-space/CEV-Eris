@@ -32,7 +32,7 @@
 
 /datum/malf_research_ability/networking/system_override
 	ability = new/datum/game_mode/malfunction/verb/system_override()
-	price = 2750
+	price = 2000
 	name = "System Override"
 
 // END RESEARCH DATUMS
@@ -106,7 +106,7 @@
 			announce_hack_failure(user, "quantum message relay")
 		return
 
-	command_announcement.Announce(text, title)
+	command_announcement.Announce(text, title, use_text_to_speech = TRUE)
 
 /datum/game_mode/malfunction/verb/elite_encryption_hack()
 	set category = "Software"
@@ -138,7 +138,7 @@
 	set desc = "500 CPU - Begins hacking into the ship's primary firewall, quickly overtaking remaining APC systems. When completed grants access to the ship's self-destruct mechanism. Network administrators will probably notice this."
 	var/price = 500
 	var/mob/living/silicon/ai/user = usr
-	if (alert(user, "Begin system override? This cannot be stopped once started. The network administrators will probably notice this.", "System Override:", "Yes", "No") != "Yes")
+	if (alert(user, "Begin system override? This cannot be stopped once started, and the network monitor will announce this action.", "System Override:", "Yes", "No") != "Yes")
 		return
 	if (!ability_prechecks(user, price) || !ability_pay(user, price) || user.system_override)
 		if(user.system_override)
@@ -152,34 +152,26 @@
 			continue
 		remaining_apcs += A
 
-	var/duration = (remaining_apcs.len * 100)	// Calculates duration for announcing system
+	var/duration = (remaining_apcs.len * 30)	// Calculates duration for announcing system
 	if(duration > 3000)							// Two types of announcements. Short hacks trigger immediate warnings. Long hacks are more "progressive".
 		spawn(0)
-			sleep(duration/5)
+			sleep(duration/3)
 			if(!user || user.stat == DEAD)
 				return
-			command_announcement.Announce("Caution, [station_name]. We have detected abnormal behaviour in your network. It seems someone is trying to hack your electronic systems. We will update you when we have more information.", "Network Monitoring")
-			sleep(duration/5)
+			command_announcement.Announce("Caution, [station_short]. Abnormal behaviour detected in network, initiating troubleshoot for more information.", "Network Monitoring")
+			sleep(duration/3)
 			if(!user || user.stat == DEAD)
 				return
-			command_announcement.Announce("We started tracing the intruder. Whoever is doing this, they seem to be on the ship itself. We suggest checking all network control terminals. We will keep you updated on the situation.", "Network Monitoring")
-			sleep(duration/5)
-			if(!user || user.stat == DEAD)
-				return
-			command_announcement.Announce("This is highly abnormal and somewhat concerning. The intruder is too fast, he is evading our traces. No man could be this fast...", "Network Monitoring")
-			sleep(duration/5)
-			if(!user || user.stat == DEAD)
-				return
-			command_announcement.Announce("We have traced the intrude#, it seem& t( e yo3r AI s7stem, it &# *#ck@ng th$ sel$ destru$t mechani&m, stop i# bef*@!)$#&&@@  <CONNECTION LOST>", "Network Monitoring")
+			command_announcement.Announce("Troubleshoot complet#, it seem& t( e yo3r AI s7stem, it &# *#ck@ng th$ sel$ destru$t mechani&m, unplug i# bef*@!)$#&&@@", "Network Monitoring")
 	else
-		command_announcement.Announce("We have detected a strong brute-force attack on your firewall which seems to be originating from your AI system. It already controls almost the whole network, and the only thing that's preventing it from accessing the self-destruct is this firewall. You don't have much time before it succeeds.", "Network Monitoring")
+		command_announcement.Announce("Detected brute-force attack on network firewall originating from AI system. Control over majority of whole network compromised, firewall for Self-Destruct Control in threat. Success of hostile intrusion likely, eliminate origin immediately.", "Network Monitoring")
 	to_chat(user, "## BEGINNING SYSTEM OVERRIDE.")
 	to_chat(user, "## ESTIMATED DURATION: [round((duration+300)/600)] MINUTES")
 	user.hacking = 1
 	user.system_override = 1
-	// Now actually begin the hack. Each APC takes 10 seconds.
+	// Now actually begin the hack. Each APC takes 3 seconds.
 	for(var/obj/machinery/power/apc/A in shuffle(remaining_apcs))
-		sleep(100)
+		sleep(30)
 		if(!user || user.stat == DEAD)
 			return
 		if(!A || !istype(A) || A.aidisabled)
@@ -197,7 +189,7 @@
 
 
 	to_chat(user, "## PRIMARY FIREWALL BYPASSED. YOU NOW HAVE FULL SYSTEM CONTROL.")
-	command_announcement.Announce("Our system administrators just reported that we've been locked out from your control network. Whoever did this now has full access to the ship's systems.", "Network Administration Center")
+	command_announcement.Announce("System administrator is no longer able to access control network, control of ship's systems has been unilaterally compromised. Unidentified user now expressing kernel access to the ship's systems.", "Network Monitoring")
 	user.hack_can_fail = 0
 	user.hacking = 0
 	user.system_override = 2

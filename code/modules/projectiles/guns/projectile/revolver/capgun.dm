@@ -12,3 +12,4 @@
 	price_tag = 200
 	spawn_tags = SPAWN_TAG_ITEM_TOY
 	spawn_blacklisted = TRUE
+	init_recoil = HANDGUN_RECOIL(1)

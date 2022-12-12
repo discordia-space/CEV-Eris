@@ -244,12 +244,9 @@ var/list/channel_to_radio_key = new
 
 	//handle nonverbal and sign languages here
 	if(speaking)
-		if(speaking.flags&NONVERBAL)
+		if(speaking.flags&(NONVERBAL|SIGNLANG))
 			if(prob(30))
 				src.custom_emote(1, "[pick(speaking.signlang_verb)].")
-
-		if(speaking.flags&SIGNLANG)
-			return say_signlang(message, pick(speaking.signlang_verb), speaking)
 
 	var/list/listening = list()
 	var/list/listening_obj = list()
@@ -294,23 +291,34 @@ var/list/channel_to_radio_key = new
 	QDEL_IN(speech_bubble, 30)
 
 	var/list/speech_bubble_recipients = list()
-	for(var/X in listening) //Again, as we're dealing with a lot of mobs, typeless gives us a tangible speed boost.
-		if(!ismob(X))
-			continue
-		var/mob/M = X
+	for(var/mob/M in listening)
 		if(M.client)
 			speech_bubble_recipients += M.client
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol, getSpeechVolume(message))
-	for(var/X in listening_falloff)
-		if(!ismob(X))
-			continue
-		var/mob/M = X
+
+	for(var/mob/M in listening_falloff)
 		if(M.client)
 			speech_bubble_recipients += M.client
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol, 1)
 
 	INVOKE_ASYNC(GLOBAL_PROC, .proc/animate_speechbubble, speech_bubble, speech_bubble_recipients, 30)
 	INVOKE_ASYNC(src, /atom/movable/proc/animate_chat, message, speaking, italics, speech_bubble_recipients, 40, verb)
+	if(config.tts_enabled && !message_mode && (!client || !BITTEST(client.prefs.muted, MUTE_TTS)) && (tts_seed || ishuman(src)))
+		//TO DO: Remove need for that damn copypasta
+		var/seed = tts_seed
+		if(istype(back, /obj/item/rig))
+			var/obj/item/rig/rig = back
+			if(rig.speech && rig.speech.voice_holder && rig.speech.voice_holder.active && rig.speech.voice_holder.voice_tts)
+				seed = rig.speech.voice_holder.voice_tts
+		else if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			for(var/obj/item/gear in list(H.wear_mask, H.wear_suit, H.head))
+				if(!gear)
+					continue
+				var/obj/item/voice_changer/changer = locate() in gear
+				if(changer && changer.active && changer.voice_tts)
+					seed = changer.voice_tts
+		INVOKE_ASYNC(GLOBAL_PROC, /proc/tts_broadcast, src, message, seed, speaking)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)

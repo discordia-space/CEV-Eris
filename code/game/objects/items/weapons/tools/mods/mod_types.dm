@@ -347,7 +347,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_PEN_MULT = 0.6,
+		GUN_UPGRADE_PEN_MULT = -0.3,
 		GUN_UPGRADE_ONEHANDPENALTY = 0.3
 		)
 	I.gun_loc_tag = GUN_GRIP
@@ -431,6 +431,30 @@
 	I.required_qualities = list(QUALITY_CUTTING,QUALITY_WIRE_CUTTING, QUALITY_SCREW_DRIVING, QUALITY_WELDING,QUALITY_PULSING, QUALITY_CLAMPING, QUALITY_CAUTERIZING, QUALITY_BONE_SETTING, QUALITY_LASER_CUTTING)
 	I.prefix = "vibration-compensated"
 
+//onestar stabilizer
+/obj/item/tool_upgrade/refinement/gravenhancer
+	name = "OneStar microgravity stabilizer"
+	desc = "A large strange contraption, it appears to manipulate gravity around it, to make a weapon or tool more stable at the cost of increasing it\'s size."
+	icon_state = "grav_enhancer"
+	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_OS
+	matter = list(MATERIAL_PLASTIC = 8, MATERIAL_URANIUM = 3)
+	spawn_blacklisted = TRUE
+	price_tag = 1500
+
+/obj/item/tool_upgrade/refinement/gravenhancer/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.tool_upgrades = list(
+		UPGRADE_PRECISION = 25,
+		UPGRADE_WORKSPEED = 0.1,
+		UPGRADE_BULK = 1,
+		)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_RECOIL = 0.5,
+		UPGRADE_BULK = 1,
+		)
+	I.prefix = "gravity-stabilized"
+
 // 		AUGMENTS: MISCELLANEOUS AND UTILITY
 //------------------------------------------------
 
@@ -481,8 +505,9 @@
 	desc = "Rare relic of OneStar uses the bluetech space to store additional 600 units of fuel at the cost of degradation."
 	icon_state = "canister_holding"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 4, MATERIAL_PLATINUM = 4)
-	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
+	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_OS
 	spawn_blacklisted = TRUE
+	price_tag = 800
 
 /obj/item/tool_upgrade/augment/holding_tank/New()
 	..()
@@ -590,13 +615,14 @@
 
 /obj/item/tool_upgrade/augment/ai_tool
 	name = "Nanointegrated AI"
-	desc = "A forgotten One Star tech. Due to its unique installation method of \"slapping it hard enough onto anything should do the trick\", it is highly sought after. \
+	desc = "A forgotten OneStar tech. Due to its unique installation method of \"slapping it hard enough onto anything should do the trick\", it is highly sought after. \
 			A powerful AI will integrate itself into this tool with the aid of nanotechnology, and improve it in every way possible."
 	icon_state = "ai_tool"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
-	spawn_blacklisted = TRUE
 	rarity_value = 50
-	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
+	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_OS
+	spawn_blacklisted = TRUE
+	price_tag = 2500
 
 /obj/item/tool_upgrade/augment/ai_tool/New()
 	..()
@@ -604,7 +630,7 @@
 	I.tool_upgrades = list(
 	UPGRADE_POWERCOST_MULT = 1.20,
 	UPGRADE_PRECISION = 14,
-	UPGRADE_WORKSPEED = 14,
+	UPGRADE_WORKSPEED = 7,
 	UPGRADE_HEALTH_THRESHOLD = -10,
 	)
 	I.prefix = "intelligent"
@@ -612,7 +638,7 @@
 	I.weapon_upgrades = list(
 	GUN_UPGRADE_RECOIL = 0.8,
 	GUN_UPGRADE_DAMAGE_MULT = 1.2,
-	GUN_UPGRADE_PEN_MULT = 1.2,
+	GUN_UPGRADE_PEN_MULT = 0.2,
 	GUN_UPGRADE_FIRE_DELAY_MULT = 0.8,
 	GUN_UPGRADE_MOVE_DELAY_MULT = 0.8,
 	GUN_UPGRADE_MUZZLEFLASH = 0.8,
@@ -625,7 +651,8 @@
 	desc = "Very rare tool mod from OneStar powered by their nanomachines. It repairs the tool while in use and makes it near unbreakable."
 	icon_state = "repair_nano"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
-	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
+	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_OS
+	price_tag = 500
 	spawn_blacklisted = TRUE
 
 /obj/item/tool_upgrade/augment/repair_nano/New()
@@ -633,6 +660,7 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.tool_upgrades = list(
 	UPGRADE_DEGRADATION_MULT = 0.01,
+	UPGRADE_WORKSPEED = 0.2,
 	UPGRADE_HEALTH_THRESHOLD = 10
 	)
 	I.prefix = "self-healing"

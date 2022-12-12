@@ -31,7 +31,8 @@
 //flags
 #define UPGRADE_ITEMFLAGPLUS "item_flag_add"
 
-
+// Weapon minimum fire_delay
+#define GUN_MINIMUM_FIRETIME 1.1 // 110 MS , ~9 shots per second.
 
 //Weapon upgrade defines
 
@@ -49,7 +50,6 @@
 #define GUN_UPGRADE_OVERCHARGE_MAX "overcharge_max_mult"
 #define GUN_UPGRADE_OVERCHARGE_RATE "overcharge_rate_mult"
 #define GUN_UPGRADE_ONEHANDPENALTY "onehandpenalty_mult"
-#define GUN_UPGRADE_AGONY_MULT "agony_mult"
 
 //Int additive
 #define GUN_UPGRADE_DAMAGEMOD_PLUS "damage_plus"
@@ -115,6 +115,7 @@
 					/obj/spawner/oddities = 8,\
 					/obj/spawner/material/resources/rare = 3,\
 					/obj/spawner/tool/advanced = 5,\
+					/obj/spawner/gun/normal = 3,\
 					/obj/spawner/lathe_disk/advanced = 2,\
 					/obj/item/cell/small/moebius/nuclear = 1,\
 					/obj/item/cell/medium/moebius/hyper = 1,\

@@ -12,9 +12,9 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
+		melee = 2,
+		bullet = 2,
+		energy = 2,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -28,7 +28,7 @@
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	armor = list(
-		melee = 5,
+		melee = 1,
 		bullet = 0,
 		energy = 0,
 		bomb = 0,
@@ -47,9 +47,9 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
+		melee = 2,
+		bullet = 2,
+		energy = 2,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -64,9 +64,9 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	armor = list(
-		melee = 20,
-		bullet = 20,
-		energy = 20,
+		melee = 5,
+		bullet = 5,
+		energy = 5,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -76,7 +76,7 @@
 //Botanist
 /obj/item/clothing/suit/apron
 	name = "apron"
-	desc = "A basic blue apron."
+	desc = "A basic yellow apron."
 	icon_state = "apron"
 	item_state = "apron"
 	blood_overlay_type = "armor"
@@ -114,9 +114,9 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 20,
-		bullet = 20,
-		energy = 20,
+		melee = 5,
+		bullet = 5,
+		energy = 5,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -135,9 +135,9 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 20,
-		bullet = 10,
-		energy = 10,
+		melee = 5,
+		bullet = 2,
+		energy = 2,
 		bomb = 0,
 		bio = 50,  //same as labcoats at LEAST
 		rad = 0
@@ -153,9 +153,9 @@
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_GOLD = 5)
 	armor = list(
-		melee = 20,
-		bullet = 20,
-		energy = 20,
+		melee = 5,
+		bullet = 5,
+		energy = 5,
 		bomb = 0,
 		bio = 50,  //same as labcoats at LEAST
 		rad = 0
@@ -170,9 +170,9 @@
 	style_coverage = COVERS_CHEST|COVERS_UPPER_ARMS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
+		melee = 2,
+		bullet = 2,
+		energy = 2,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -204,7 +204,7 @@
 
 //Chef
 /obj/item/clothing/suit/chef/classic
-	name = "A classic chef's apron."
+	name = "classic chef's apron."
 	desc = "A basic, dull, white chef's apron."
 	icon_state = "apronchef"
 	item_state = "apronchef"
@@ -214,17 +214,17 @@
 
 //Detective
 /obj/item/clothing/suit/storage/detective
-	name = "brown trenchcoat"
-	desc = "A rugged canvas trenchcoat, designed and created by TX Fabrication Corp. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
-	icon_state = "detective"
-	item_state = "det_suit"
+	name = "inspector's grey armored trenchcoat"
+	desc = "Grey armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
+	icon_state = "detective_gray"
+	item_state = "detective_gray"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
+		melee = 7,
+		bullet = 5,
+		energy = 5,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -233,12 +233,17 @@
 	price_tag = 250
 	style = STYLE_HIGH
 
-/obj/item/clothing/suit/storage/detective/ironhammer
-	name = "Inspector's armored trenchcoat"
-	desc = "Brown and armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
-	icon_state = "insp_coat"
-	item_state = "insp_coat"
-	blood_overlay_type = "coat"
+/obj/item/clothing/suit/storage/detective/brown
+	name = "inspector's brown armored trenchcoat"
+	desc = "Brown armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
+	icon_state = "detective_brown"
+	item_state = "detective_brown"
+
+/obj/item/clothing/suit/storage/detective/black
+	name = "inspector's black armored trenchcoat"
+	desc = "Black armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
+	icon_state = "detective_black"
+	item_state = "detective_black"
 
 //Engineering
 /obj/item/clothing/suit/storage/hazardvest
@@ -270,9 +275,9 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 30,
-		bullet = 20,
-		energy = 20,
+		melee = 7,
+		bullet = 5,
+		energy = 5,
 		bomb = 0,
 		bio = 0,
 		rad = 10
@@ -289,9 +294,9 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 	price_tag = 50
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
+		melee = 2,
+		bullet = 2,
+		energy = 2,
 		bomb = 0,
 		bio = 0,
 		rad = 0

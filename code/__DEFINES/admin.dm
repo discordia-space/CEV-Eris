@@ -6,6 +6,7 @@
 #define MUTE_PRAY (1<<2)
 #define MUTE_ADMINHELP (1<<3)
 #define MUTE_DEADCHAT (1<<4)
+#define MUTE_TTS (1<<5)
 #define MUTE_ALL (~0)
 
 // Number of identical messages required to get the spam-prevention auto-mute thing to trigger warnings and automutes.
@@ -45,3 +46,25 @@
 #define ADMIN_VV(atom) "(<a href='?_src_=vars;Vars=[REF(atom)]'>VV</a>)"
 #define ADMIN_SM(user) "(<a href='?_src_=holder;subtlemessage=[REF(user)]'>SM</a>)"
 #define ADMIN_TP(user) "(<a href='?_src_=holder;traitor=[REF(user)]'>TP</a>)"
+
+#define ADMIN_JMP(src) "(<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)"
+#define COORD(src) "[src ? src.Admin_Coordinates_Readable() : "nonexistent location"]"
+#define AREACOORD(src) "[src ? src.Admin_Coordinates_Readable(TRUE) : "nonexistent location"]"
+
+/atom/proc/Admin_Coordinates_Readable(area_name, admin_jump_ref)
+	var/turf/T = Safe_COORD_Location()
+	return T ? "[area_name ? "[get_area_name_litteral(T, TRUE)] " : " "]([T.x],[T.y],[T.z])[admin_jump_ref ? " [ADMIN_JMP(T)]" : ""]" : "nonexistent location"
+
+/atom/proc/Safe_COORD_Location()
+	var/atom/A = drop_location()
+	if(!A)
+		return //not a valid atom.
+	var/turf/T = get_step(A, 0) //resolve where the thing is.
+	if(!T) //incase it's inside a valid drop container, inside another container. ie if a mech picked up a closet and has it inside it's internal storage.
+		var/atom/last_try = A.loc?.drop_location() //one last try, otherwise fuck it.
+		if(last_try)
+			T = get_step(last_try, 0)
+	return T
+
+/turf/Safe_COORD_Location()
+	return src

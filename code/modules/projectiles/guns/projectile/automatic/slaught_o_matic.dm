@@ -14,6 +14,7 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_SMG
 	auto_eject = FALSE
+	serial_type = "FS"
 	magazine_type = /obj/item/ammo_magazine/smg
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 9)
 	price_tag = 100
@@ -26,9 +27,8 @@
 	var/choosen_color = ""
 
 	damage_multiplier = 0.8
-	penetration_multiplier = 0.2
-	recoil_buildup = 3
-	one_hand_penalty = 5 //despite it being handgun, it's better to hold in two hands while shooting. SMG level.
+	penetration_multiplier = -0.2
+	init_recoil = HANDGUN_RECOIL(1.6)
 
 	gun_tags = list(GUN_SILENCABLE)
 
@@ -37,7 +37,7 @@
 		FULL_AUTO_800
 		)
 	wield_delay = 0
-	serial_type = "" // so fucking cheap it doesn't even warrant having a serial
+
 
 /obj/item/gun/projectile/automatic/slaught_o_matic/Initialize()
 	. = ..()

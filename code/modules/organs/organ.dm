@@ -92,7 +92,7 @@
 			blood_DNA = list()
 		blood_DNA.Cut()
 		blood_DNA[C.dna_trace] = C.b_type
-		species = all_species[C.species]
+		species = all_species[C.species.name]
 
 /obj/item/organ/proc/die()
 	if(BP_IS_ROBOTIC(src))
@@ -117,36 +117,43 @@
 	if(istype(loc, /obj/item/device/mmi) || istype(loc, /mob/living/simple_animal/spider_core))
 		return TRUE
 
-	if(istype(loc, /obj/structure/closet/body_bag/cryobag) || istype(loc, /obj/structure/closet/crate/freezer) || istype(loc, /obj/item/storage/freezer))
+	var/list/stasis_types = list(
+		/obj/structure/closet/body_bag/cryobag,
+		/obj/structure/closet/crate/freezer,
+		/obj/item/storage/freezer,
+		/obj/machinery/smartfridge,
+		/obj/machinery/reagentgrinder/industrial/disgorger,
+		/obj/machinery/vending
+	)
+
+	if(is_type_in_list(loc, stasis_types))
 		return TRUE
 
 	return FALSE
 
 
 /obj/item/organ/Process()
-
 	if(loc != owner)
 		owner = null
 
 	//dead already, no need for more processing
 	if(status & ORGAN_DEAD)
-		return
-	// Don't process if we're in a freezer, an MMI or a stasis bag.or a freezer or something I dunno
-	if(is_in_stasis())
-		return
+		return PROCESS_KILL		// Can't bring dead organs back. Most can be printed for cheap.
 
 	//Process infections
-	if (BP_IS_ROBOTIC(src) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
+	if(BP_IS_ROBOTIC(src) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
 		germ_level = 0
 		return
 
 	if(!owner)
+		if(is_in_stasis())
+			return
 		if(reagents)
-			var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in reagents.reagent_list
-			if(B && prob(40))
+			if(prob(40))
 				reagents.remove_reagent("blood",0.1)
-				blood_splatter(src,B,1)
-		if(config.organs_decay) damage += rand(1,3)
+				blood_splatter(src, null, TRUE)
+		if(config.organs_decay)
+			damage += rand(1,3)
 		if(damage >= max_damage)
 			damage = max_damage
 		germ_level += rand(2,6)
@@ -154,7 +161,6 @@
 			germ_level += rand(2,6)
 		if(germ_level >= INFECTION_LEVEL_THREE)
 			die()
-
 	else if(owner && owner.bodytemperature >= 170)	//cryo stops germs from moving and doing their bad stuffs
 		//** Handle antibiotics and curing infections
 		handle_antibiotics()
@@ -174,10 +180,10 @@
 	//** Handle the effects of infections
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
 
-	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
+	if(germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
 		germ_level--
 
-	if (germ_level >= INFECTION_LEVEL_ONE/2)
+	if(germ_level >= INFECTION_LEVEL_ONE/2)
 		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes
 		if(antibiotics < 5 && prob(round(germ_level/6)))
 			germ_level++
@@ -186,12 +192,12 @@
 		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
 		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
 
-	if (germ_level >= INFECTION_LEVEL_TWO)
+	if(germ_level >= INFECTION_LEVEL_TWO)
 		//spread germs
-		if (antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
+		if(parent && antibiotics < 5 && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
 			parent.germ_level++
 
-		if (prob(3))	//about once every 30 seconds
+		if(prob(3))	//about once every 30 seconds
 			take_damage(1,silent=prob(30))
 
 /obj/item/organ/proc/handle_rejection()
@@ -235,12 +241,12 @@
 	if(owner)
 		antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
 
-	if (!germ_level || antibiotics < 5)
+	if(!germ_level || antibiotics < 5)
 		return
 
-	if (germ_level < INFECTION_LEVEL_ONE)
+	if(germ_level < INFECTION_LEVEL_ONE)
 		germ_level = 0	//cure instantly
-	else if (germ_level < INFECTION_LEVEL_TWO)
+	else if(germ_level < INFECTION_LEVEL_TWO)
 		germ_level -= 6	//at germ_level == 500, this should cure the infection in a minute
 	else
 		germ_level -= 2 //at germ_level == 1000, this will cure the infection in 5 minutes
@@ -275,11 +281,11 @@
 	if(!BP_IS_ROBOTIC(src))
 		return
 	switch (severity)
-		if (1)
+		if(1)
 			take_damage(12)
-		if (2)
+		if(2)
 			take_damage(6)
-		if (3)
+		if(3)
 			take_damage(3)
 
 // Gets the limb this organ is located in, if any
@@ -292,8 +298,6 @@
 
 	else if(istype(loc, /obj/item/organ/external))
 		return loc
-
-	return null
 
 
 /obj/item/organ/proc/removed(mob/living/user)
@@ -320,6 +324,9 @@
 		if(user)
 			admin_attack_log(user, owner, "Removed a vital organ ([src])", "Had a a vital organ ([src]) removed.", "removed a vital organ ([src]) from")
 		owner.death()
+
+	if(LAZYLEN(item_upgrades))
+		owner.mutation_index--
 
 	owner = null
 	rejecting = null
@@ -354,6 +361,9 @@
 		transplant_data["species"] =    transplant_blood.data["species"]
 		transplant_data["blood_type"] = transplant_blood.data["blood_type"]
 		transplant_data["blood_DNA"] =  transplant_blood.data["blood_DNA"]
+
+	if(LAZYLEN(item_upgrades))
+		owner.mutation_index++
 
 /obj/item/organ/proc/heal_damage(amount)
 	return

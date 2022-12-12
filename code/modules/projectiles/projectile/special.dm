@@ -4,6 +4,7 @@
 	damage_types = list(BURN = 0)
 	nodamage = TRUE
 	check_armour = ARMOR_ENERGY
+	recoil = 5
 
 /obj/item/projectile/ion/on_hit(atom/target)
 	empulse(target, 1, 1)
@@ -16,6 +17,7 @@
 	check_armour = ARMOR_BULLET
 	sharp = TRUE
 	edge = TRUE
+	recoil = 3
 
 /obj/item/projectile/bullet/gyro/on_hit(atom/target)
 	explosion(target, -1, 0, 2)
@@ -25,15 +27,16 @@
 	name = "high explosive rocket"
 	icon_state = "rocket"
 	damage_types = list(BRUTE = 60)
-	armor_penetration = 20
+	armor_divisor = 1
 	style_damage = 101 //single shot, incredibly powerful. If you get direct hit with this you deserve it, if you dodge the direct shot you're protected from the explosion.
 	check_armour = ARMOR_BOMB
 	penetrating = -5
+	recoil = 40
 	can_ricochet = FALSE
 
-/obj/item/projectile/bullet/rocket/launch(atom/target, target_zone, x_offset, y_offset, angle_offset)
+/obj/item/projectile/bullet/rocket/launch(atom/target, target_zone, x_offset, y_offset, angle_offset, proj_sound, user_recoil)
 	set_light(2.5, 0.5, "#dddd00")
-	..(target, target_zone, x_offset, y_offset, angle_offset)
+	..(target, target_zone, x_offset, y_offset, angle_offset, proj_sound, user_recoil)
 
 /obj/item/projectile/bullet/rocket/on_hit(atom/target)
 	detonate(target)
@@ -52,7 +55,7 @@
 /obj/item/projectile/bullet/rocket/hesh
 	name = "high-explosive squash head rocket"
 	damage_types = list(BRUTE = 80)
-	armor_penetration = 40
+	armor_divisor = 2
 	check_armour = ARMOR_BULLET
 
 /obj/item/projectile/bullet/rocket/hesh/detonate(atom/target)
@@ -62,7 +65,7 @@
 /obj/item/projectile/bullet/rocket/heat
 	name = "high-explosive anti-tank rocket"
 	damage_types = list(BRUTE = 20)
-	armor_penetration = 0
+	armor_divisor = 1
 	check_armour = ARMOR_BULLET
 
 /obj/item/projectile/bullet/rocket/heat/detonate(atom/target)
@@ -76,7 +79,7 @@
 /obj/item/projectile/bullet/rocket/thermo
 	name = "thermobaric rocket"
 	damage_types = list(BRUTE = 20)
-	armor_penetration = 0
+	armor_divisor = 1
 	check_armour = ARMOR_BULLET
 
 /obj/item/projectile/bullet/rocket/thermo/detonate(atom/target)
@@ -213,7 +216,7 @@
 	icon_state = "flare"
 	damage_types = list(BRUTE = 24)
 	kill_count = 16
-	armor_penetration = 0
+	armor_divisor = 1
 	step_delay = 2
 	eyeblur = 2 // bright light slightly blurs your vision
 	luminosity_range = 5
@@ -228,6 +231,7 @@
 	can_ricochet = FALSE
 	sharp = FALSE
 	embed = FALSE
+	recoil = 4
 
 /obj/item/projectile/bullet/flare/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -245,8 +249,7 @@
 	//blind adjacent people with enhanced vision
 	for (var/mob/living/carbon/M in viewers(T, flash_range))
 		if(M.eyecheck() < FLASH_PROTECTION_NONE)
-			if (M.HUDtech.Find("flash"))
-				flick("e_flash", M.HUDtech["flash"])
+			M.flash(0, FALSE , FALSE , FALSE)
 
 	src.visible_message(SPAN_WARNING("\The [src] explodes in a bright light!"))
 	new /obj/effect/decal/cleanable/ash(src.loc)

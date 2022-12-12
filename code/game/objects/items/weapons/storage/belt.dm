@@ -80,8 +80,20 @@
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil/random(src)
 
+/obj/item/storage/belt/utility/technomancer 
+	spawn_blacklisted = TRUE
+
+/obj/item/storage/belt/utility/technomancer/populate_contents()
+	new /obj/item/tool/screwdriver/electric(src)
+	new /obj/item/tool/wrench/big_wrench(src)
+	new /obj/item/tool/weldingtool/advanced(src)
+	new /obj/item/tool/crowbar/pneumatic(src)
+	new /obj/item/tool/wirecutters/armature(src)
+	new /obj/item/tool/shovel/power(src)
+	new /obj/item/stack/cable_coil/random(src)
+	
 /obj/item/storage/belt/utility/neotheology
-	name = "neotheologian utility belt"
+	name = "neotheology utility belt"
 	desc = "Waist-held holy items."
 	icon_state = "utility_neotheology"
 	rarity_value = 20
@@ -143,13 +155,17 @@
 		/obj/item/device/radio/off,
 		/obj/item/inflatable_dispenser,
 		/obj/item/tool/crowbar,
-		/obj/item/extinguisher/mini
+		/obj/item/extinguisher/mini,
+		/obj/item/device/flash,
+		/obj/item/device/lighting/toggleable/flashlight,
+		/obj/item/gun/projectile/selfload,
+		/obj/item/modular_computer/tablet/moebius/preset
 	)
 
 /obj/item/storage/belt/tactical
 	name = "tactical belt"
 	desc = "Can hold various military and security equipment."
-	icon_state = "tactical"
+	icon_state = "tactical_belt"
 	rarity_value = 20
 	can_hold = list(
 		/obj/item/grenade,
@@ -184,7 +200,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/belt/tactical/neotheology
-	name = "neotheologian tactical belt"
+	name = "neotheology tactical belt"
 	desc = "Can hold various military and security equipment."
 	icon_state = "tactical_neotheology"
 	rarity_value = 40

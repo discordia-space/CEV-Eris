@@ -436,7 +436,7 @@
 	if(!ishuman(parentmob))
 		return FALSE
 	var/mob/living/carbon/human/H = parentmob
-	H.ui_interact(H)
+	H.nano_ui_interact(H)
 	return	TRUE
 
 //--------------------------------------------------sanity end---------------------------------------------------------
@@ -935,6 +935,32 @@ obj/screen/fire/DEADelize()
 	else
 		icon_state = "act_throw_off"
 //-----------------------throw END------------------------------
+
+//-----------------------block------------------------------
+/obj/screen/block
+	name = "block"
+	icon_state = "block_off"
+	screen_loc = "15:-16,3"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+
+/obj/screen/block/New()
+	..()
+	update_icon()
+
+/obj/screen/block/Click()
+	if(usr.client)
+		usr.client.blocking()
+		update_icon()
+
+/obj/screen/block/update_icon()
+	if(ishuman(parentmob))//always true, but just in case
+		var/mob/living/carbon/human/H = parentmob
+		if(H.blocking)
+			icon_state = "block_on"
+		else
+			icon_state = "block_off"
+//-----------------------block END------------------------------
 
 //-----------------------drop------------------------------
 /obj/screen/drop

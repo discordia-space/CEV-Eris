@@ -3,7 +3,7 @@
 ****************************************************/
 
 //These control the damage thresholds for the various ways of removing limbs
-#define DROPLIMB_THRESHOLD_EDGE 0.75
+#define DROPLIMB_THRESHOLD_EDGE 1.15
 #define DROPLIMB_THRESHOLD_TEAROFF 1.35
 #define DROPLIMB_THRESHOLD_DESTROY 1.5
 
@@ -66,7 +66,7 @@
 	var/cannot_break		// Impossible to fracture.
 	var/joint = "joint"		// Descriptive string used in dislocation.
 	var/amputation_point	// Descriptive string used in amputation.
-	var/dislocated = 0		// If you target a joint, you can dislocate the limb, impairing it's usefulness and causing pain
+	var/nerve_struck = 0	// If you target a joint, you can strike the limb's nerve, impairing it's usefulness and causing pain for 10 seconds
 	var/encased				// Needs to be opened with a saw to access certain organs.
 
 	var/cavity_name = "cavity"				// Name of body part's cavity, displayed during cavity implant surgery
@@ -80,6 +80,9 @@
 
 	// Used for spawned robotic organs
 	var/default_description
+
+	// Generation behavior
+	var/generation_flags = ORGAN_HAS_BONES | ORGAN_HAS_BLOOD_VESSELS | ORGAN_HAS_MUSCLES | ORGAN_HAS_NERVES
 
 /obj/item/organ/external/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	if(OD)
@@ -122,7 +125,7 @@
 
 	src.max_damage = desc.max_damage
 	src.min_broken_damage = desc.min_broken_damage
-	src.dislocated = desc.dislocated
+	src.nerve_struck = desc.nerve_struck
 	src.vital = desc.vital
 	src.cannot_amputate = desc.cannot_amputate
 
@@ -208,10 +211,14 @@
 /obj/item/organ/external/proc/make_base_internal_organs()
 	if(is_stump(src))
 		return
-	make_bones()
-	make_nerves()
-	make_muscles()
-	make_blood_vessels()
+	if(generation_flags & ORGAN_HAS_BONES)
+		make_bones()
+	if(generation_flags & ORGAN_HAS_NERVES)
+		make_nerves()
+	if(generation_flags & ORGAN_HAS_MUSCLES)
+		make_muscles()
+	if(generation_flags & ORGAN_HAS_BLOOD_VESSELS)
+		make_blood_vessels()
 
 /obj/item/organ/external/proc/make_bones()
 	if(default_bone_type)
@@ -332,7 +339,7 @@
 			spawn(10)
 				qdel(spark_system)
 		. += 2
-	if(is_dislocated())
+	if(is_nerve_struck())
 		. += 1
 	if(status & ORGAN_SPLINTED)
 		. += 0.5
@@ -344,37 +351,39 @@
 
 	. += tally
 
-/obj/item/organ/external/proc/is_dislocated()
-	if(dislocated > 0)
-		return 1
+/obj/item/organ/external/proc/is_nerve_struck()
+	if(nerve_struck == 2)
+		return TRUE
 	if(parent)
-		return parent.is_dislocated()
-	return 0
+		return parent.is_nerve_struck()
+	return FALSE
 
-/obj/item/organ/external/proc/dislocate(var/primary)
-	if(dislocated != -1)
+/obj/item/organ/external/proc/nerve_strike_add(var/primary)
+	if(nerve_struck != -1)
 		if(primary)
-			dislocated = 2
+			nerve_struck = 2
 		else
-			dislocated = 1
-	owner.verbs |= /mob/living/carbon/human/proc/undislocate
-	if(children && children.len)
-		for(var/obj/item/organ/external/child in children)
-			child.dislocate()
+			nerve_struck = 1
 
-/obj/item/organ/external/proc/undislocate()
-	if(dislocated != -1)
-		dislocated = 0
 	if(children && children.len)
 		for(var/obj/item/organ/external/child in children)
-			if(child.dislocated == 1)
-				child.undislocate()
+			child.nerve_strike_add()
+
+	spawn(100)
+		nerve_strike_remove()
+
+/obj/item/organ/external/proc/nerve_strike_remove()
+	if(nerve_struck != -1)
+		nerve_struck = 0
+	if(children && children.len)
+		for(var/obj/item/organ/external/child in children)
+			if(child.nerve_struck == 1)
+				child.nerve_strike_remove()
 	if(owner)
 		owner.shock_stage += 20
 		for(var/obj/item/organ/external/limb in owner.organs)
-			if(limb.dislocated == 2)
+			if(limb.nerve_struck == 2)
 				return
-		owner.verbs -= /mob/living/carbon/human/proc/undislocate
 
 /obj/item/organ/external/proc/setBleeding()
 	if(BP_IS_ROBOTIC(src) || !owner || (owner.species.flags & NO_BLOOD))
@@ -981,7 +990,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return english_list(flavor_text)
 
 /obj/item/organ/external/is_usable()
-	return !is_dislocated() && !(status & (ORGAN_MUTATED|ORGAN_DEAD))
+	return !is_nerve_struck() && !(status & (ORGAN_MUTATED|ORGAN_DEAD))
 
 /obj/item/organ/external/proc/has_internal_bleeding()
 	for(var/datum/wound/W in wounds)
@@ -1078,4 +1087,3 @@ Note that amputating the affected organ does in fact remove the infection from t
 			user.sanity_damage += 5*((user.nutrition ? user.nutrition : 1)/user.max_nutrition)
 			to_chat(user, SPAN_NOTICE("You feel your [species.name]ity dismantling as you butcher the [src]")) // Human-ity , Monkey-ity , Slime-Ity
 	qdel(src)
-	

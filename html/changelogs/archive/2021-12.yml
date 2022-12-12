@@ -1,0 +1,223 @@
+2021-12-04:
+  Anonmare:
+  - balance: Mateba damage modifier changed from 1.35x to 1.75x. Good luck ever finding
+      it though.
+  CeUvi:
+  - imageadd: breathmask
+  - bugfix: nvg bp helmet side states offset
+  - bugfix: nvg bp helmet making masks invisible
+  - imageadd: ih bp helmte
+  - imageadd: bloodpacks
+  Humonitarian:
+  - balance: tables and low walls protect the leg instead of having a random chance
+      to eat bullets
+  - refactor: refactored the targeting check of bullets that updates the targeted
+      limb when hitting a mob
+  - balance: resting now doesn't force you to drop items
+  - balance: you can manage your inventory while resting, but not use them to interact
+      with the world
+  - bugfix: temporarily removed shields on the back from proccing
+  Hyperio:
+  - bugfix: Fix crafting station exploit
+  Kegdo:
+  - bugfix: infection spiders don't work in prosthetic limbs
+  - rscadd: throwing knives. Can spawn in maint plus be crafted. dmg from knives scales
+      DIRECTLY from user ROB stat. Soft capped at ~27. 10 dmg with 0 ROB
+  - tweak: change a bit the thrown_damage formula
+  - bugfix: smoke should be inhaled properly now. Maybe.
+  - rscdel: scrapyard forever gone
+  - tweak: blood loss now weakens instead of paralyses(hardstun)
+  - rscdel: removed abundant cleanup of atom/var/reagents.
+  - tweak: all wires in machinery are randomised now.
+  - rscadd: you can now examine(MEC >= 40) wires to figure out what each does.
+  - tweak: Tell player if they face dir, change face dir hotkey from ALT+DIR to ALT+CTRL+DIR
+  - rscadd: Added upgraded versions of muscles, nerves, blood vessesl, heart and liver
+      in the back alley organs disk.  Sprites done by SPCR/MLGTASTICa
+  - tweak: descriptions for organic vital organs.
+  - balance: you don't get desires to smoke/use drugs if you are addicted to them
+  - tweak: AI law 4 expanded to include personnel authorized to tamper with its equipment(FO.
+      TE. MEO. Cap)
+  - imageadd: serbian overcoat resprtite by Armolitsky
+  SirRichardFrancis:
+  - imageadd: sprites for syringes, implants, implanter and implantcases by INFRARED_BARON
+  - bugfix: runtime related to drinking glasses
+  Stolen from Tau Ceti(WatlerJe and the Gang), CeUvi, Kegdo:
+  - imageadd: Water and welder fuel tanks resprite -  smol tanks by WatlerJe, big
+      tanks by CeUvi
+  - imageadd: A fuckathonatonobig resprite of drinks, more unique glass states, all
+      set to true manually
+  - imageadd: Fireaxe in hand, item, on back resprite
+  - imageadd: Flamethrower total resprite
+  - imageadd: Atmos cans, pumps and scrubbers resprite
+  - imageadd: Autopsy scanner resprite
+  - imageadd: Candles resprite
+  - imageadd: Lamps resprite
+  - imageadd: probably something else
+  - imageadd: cigar case and cigars
+  - rscadd: cigar case can be opened and closed, needs to be opened to access cigs,
+      storage capacity reduced from 7 to 6 (sprite reasons not nerfing I swear)
+  TGCMbetcher:
+  - rscadd: gold and uranium can now be solidified
+  Xoxeyos:
+  - spellcheck: Typo fix for Test Subject Beta-149's name.
+  greenteaguzzler:
+  - tweak: research data disks get new titles
+  - spellcheck: fixed a few typos in secdocs.dm
+  - spellcheck: made descriptions more consistent
+  - tweak: welding tool hitsound
+  hex37:
+  - bugfix: Chems with a constant metabolism, like stims, now drain from the blood
+      of humans.
+2021-12-06:
+  SirRichardFrancis:
+  - rscadd: paramedic armor
+  - rscadd: paramedic's tablet with tracking feature
+  - tweak: Monitoring program now report actual health stats
+  - tweak: research tree expanded with paramedic's update content
+2021-12-11:
+  ACCount12:
+  - balance: Reduces face shield vision obstruction for paramedic helmet
+  Anonmare:
+  - balance: Oxycodyne once again has the same metabolic rate as the rest of the painkillers
+      and has 10 more pain relief, putting it on the same level as ParaTram (but still
+      takes 20 more NSA).
+  Kegdo:
+  - rscadd: mold toxin. Mold deals sanity damage and a little bit of toxin damage.
+  - tweak: vomitol in trash foods is replaced with mold.
+  - balance: dodging melee attacks and thrown items scales off ROB
+  - rscdel: bay leftover get_zone proc
+  - bugfix: missing buckled mobs with thrown items
+  - bugfix: division by zero in throwing knives code
+  - tweak: autopsy scanning error formula changed to BIO_STAT * 4
+  - bugfix: cheesie honkers trash sprite
+  - balance: Alcholic reagents give in general much more sanity based off their strength
+  - balance: serotrotium insight gain increased to 3
+  - rscadd: suplex. Aim chest, neck grab, harm intent. Damage - (ROB/2)+15
+  - rscadd: dropkick. Aim groin, aggro grab, harm intent. Damage - (ROB/3)
+  - spellcheck: fixed a few typos in eye attack and neck grabbing texts.
+  - code_imp: Click catchers are invisible now. One is right behind your back.
+  MLGTASTICa:
+  - code_imp: Optimized roaches again
+  SirRichardFrancis:
+  - rscadd: expanded hospital a little
+  Wouju:
+  - tweak: Reality Complicator is a item that can be picked up once more, reduced
+      its cooldown by 10 minutes aswell.
+  - rscadd: Added new engineering pouch, can only hold sheets, rods and cable coil.
+  - rscadd: Added new Hivemind mob no one asked for. Treader spits weakened goo and
+      can heal allies, along with itself.
+  - tweak: tweaked lobber attack text incase it actually attacks
+  hex37:
+  - bugfix: Fix punching that was computed with the target's hand instead of the attacker's
+      hand
+  koghs:
+  - tweak: Added material cost to toolboxes, throwing knives, suit cooling unit, increased
+      OS LG "Cog" melee damage, added ability to put appropriate oddities into wallet.
+2021-12-17:
+  Wouju:
+  - tweak: Moved gun assembly craft recipe to the "guns" category from "misc"
+2021-12-18:
+  Anonmare:
+  - rscadd: The AI can now speak the languages of the crew (except the ones that it
+      would not logically be able to).
+  - tweak: Capascin provide nutrition, on par with soy sauce. Some nutriments are
+      now more pleasing than others.
+  - balance: Drinks now provide sanity benefit. Salt and pepper are *ever so* slightly
+      good for your sanity now. Poisonberry juice and wine is 4x better for sanity
+      as their counterparts, if you're willing to bear the side effects.
+  Hatterhat:
+  - bugfix: Crafting stations should now, theoretically, drop their loaded materials
+      when deconstructed.
+  - bugfix: Hydraulic circuits have returned to increasing tool speed, and not coating
+      tools in plasma.
+  HentaiStorm:
+  - imageadd: added missing watterbottle icons
+  - rscadd: Add halberd back icon
+  Humonitarian:
+  - balance: tables and low walls protect the leg instead of having a random chance
+      to eat bullets
+  - refactor: refactored the targeting check of bullets that updates the targeted
+      limb when hitting a mob
+  - balance: resting now doesn't force you to drop items
+  - balance: you can manage your inventory while resting, but not use them to interact
+      with the world
+  Iglpigl:
+  - spellcheck: origin descriptions that give you a language say so now so you don't
+      need to guess
+  - rscadd: Adds old rockets to the things you can build on the crafting station;
+      Re-added AMR and RPG revolvers with correct numbers
+  - rscdel: Removed plastic cap revolver from possible revolvers artist can make
+  - tweak: tweaked recoil, damage, AP, one hand penalty of all artist revolvers to
+      take into account recoil rework and other variable changes that happened in
+      the meantime
+  - spellcheck: Fixes minor spelling mistake when crafting station was full, also
+      makes normal RPG ammo description more organic
+  Kegdo:
+  - rscadd: new(good) material sprites(drawn by CeUvi)
+  - rscdel: old(bad) material sprites
+  Kegdo and Humonitarian:
+  - rscadd: disarm deals recoil, scales off of ROB from both the attacker and target,
+      wielding matters
+  Kurgis:
+  - tweak: Some materials will form regular-looking walls now.
+  - tweak: Removed Jester and Warrior causing natural maintenance to crew area migrations
+      due to problems with implementation.
+  - balance: Burrow migrations will trigger one minute more often. Migrations now
+      only take twenty seconds now as well, beware maintenance burrows from now on
+      as there may be little warning.
+  - balance: The Warrior will now be more aggressive in spawning more moderately severe
+      events than before, such as infestation events. Blitzshell and Serbians have
+      also been weighted to be somewhat more common than other antagonist choices
+      with this storyteller.
+  MLGTASTICa:
+  - code_imp: Optimized firedoors to no longer process
+  - balance: Firedoors no longer give as much data about the other sides
+  - bugfix: Broken engineering multitool interactions.
+  - balance: People with brain damage have a high change to headbutt airlocks.
+  Pink-Chink:
+  - bugfix: changed "spaceacilin" to "spaceacillin"
+  greenteaguzzler:
+  - rscadd: Added a lightswitch that can change the color of lights
+  - tweak: Cyberplants now glow less
+2021-12-25:
+  Ajax05:
+  - rscadd: Job prefix for NeoTheology Preacher
+  Armolitskiy:
+  - imageadd: 3 new artist revolver states added
+  Humonitarian:
+  - refactor: alcohol was refactored, now involves putting ethanol in the bloodstream
+  - tweak: cahors is halal
+  - bugfix: a large number of typos were fixed
+  - bugfix: lots of withdrawals fixed, including nicotine
+  - tweak: various withdrawal and Toxin tweaks
+  Jamini:
+  - bugfix: Holsters no longer devour guns
+  SirRichardFrancis:
+  - tweak: paramedic armor's constant 0.3 speed boost replaced with 0.5, that can
+      be active for 30 seconds and have a cooldown of 5 minutes
+  - rscadd: up-to-date taxquickly app, allows for account creation and salary management.
+  - rscadd: bugs
+  - refactor: reworked "payday"
+  - bugfix: pre-spawned mines missing blink animation
+  - rscadd: mute/unmute button to paramedic tablet's interface
+  - bugfix: synthetic heart no longer trigger suit sensors
+  TGCMbetcher:
+  - rscadd: solidification for most metals via botany
+  Wouju:
+  - rscadd: Added a craftable pipebomb
+  - rscadd: Added new sprite for hivemind Turret, its animated now
+  - rscdel: Reverts some changes from "Hivemind Pop requirement and actually making
+      said requirement work"
+  - tweak: Mechiver HP reduced to 500 from 600, Hivewire spread chance increased to
+      95 from 85,
+  - balance: reduced announcement time to 60 seconds, also hivemind has also a check
+      to only spawn in APC containing rooms, wont do much since every room has an
+      APC.
+  - bugfix: Hivewires cant be killed via plantbgone anymore, acid can now kill wires
+      by being sprayed on
+  - spellcheck: Decapitalized the goo
+  greenteaguzzler:
+  - tweak: Catwalk smoothing
+  - bugfix: energy shield's icon
+  - bugfix: Fixed some missing floor icons
+  - bugfix: Fixed infinite gulp down

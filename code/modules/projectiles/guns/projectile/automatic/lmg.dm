@@ -21,16 +21,14 @@
 	reload_sound = 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
-	recoil_buildup = 1 // Large size allows better than average control
+	init_recoil = LMG_RECOIL(0.5)
 	damage_multiplier = 1.3
-	penetration_multiplier = 1.3
+	penetration_multiplier = -0.1
 	twohanded = TRUE
-	one_hand_penalty = 30 // You're not Stallone. LMG level.
 	spawn_blacklisted = TRUE
 	rarity_value = 80
 	slowdown_hold = 0.5
-	brace_penalty = 2 // Not easy to fire in hand
-	init_offset = 3 // Countered by bracing it
+	init_offset = 10 // Countered by bracing it
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/plasteel = 4)
 
 	init_firemodes = list(
@@ -104,10 +102,10 @@
 	name = "Pulemyot Kalashnikova frame"
 	desc = "A Pulemyot Kalashnikova LMG frame. A violent and beautiful spark of the past."
 	icon_state = "frame_pk"
-	result = /obj/item/gun/projectile/automatic/lmg/pk
-	grip = /obj/item/part/gun/grip/serb
-	mechanism = /obj/item/part/gun/mechanism/machinegun
-	barrel = /obj/item/part/gun/barrel/lrifle
+	resultvars = list(/obj/item/gun/projectile/automatic/lmg/pk)
+	gripvars = list(/obj/item/part/gun/grip/serb)
+	mechanismvar = /obj/item/part/gun/mechanism/machinegun
+	barrelvars = list(/obj/item/part/gun/barrel/lrifle)
 
 /obj/item/gun/projectile/automatic/lmg/pk/update_icon()
 	icon_state = "[icon_base][cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
@@ -116,24 +114,27 @@
 
 
 /obj/item/gun/projectile/automatic/lmg/tk
-	name = "FS LMG .30 Takeshi"
+	name = "FS LMG .25 CS Takeshi"
 	desc = "The \"Takeshi LMG\" is FS's answer to PMC's needs for mass supression and meat grinding, a fine oiled machine of war and death."
 	icon = 'icons/obj/guns/projectile/tk.dmi'
+	caliber = CAL_CLRIFLE
+	magazine_type = /obj/item/ammo_magazine/ihclmg
 	icon_base = "tk"
 	icon_state = "tkclosed-empty"
 	item_state = "tkclosedmag"
-	recoil_buildup = 0.8 // More tacticool than the other LMGs
-	damage_multiplier = 1.1
-	penetration_multiplier = 1.1 // Marginally punchier projectiles than from AKs
+	init_recoil = LMG_RECOIL(0.3)
+	damage_multiplier = 1.2
+	penetration_multiplier = 0.3
+
 	spawn_blacklisted = FALSE
-	gun_parts = list(/obj/item/part/gun/frame/tk = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/tk = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/clrifle = 1)
 	serial_type = "FS"
 
 /obj/item/part/gun/frame/tk
 	name = "Takeshi frame"
 	desc = "A Takeshi LMG frame. A fine-oiled machine of war and death."
 	icon_state = "frame_mg"
-	result = /obj/item/gun/projectile/automatic/lmg/tk
-	grip = /obj/item/part/gun/grip/rubber
-	mechanism = /obj/item/part/gun/mechanism/machinegun
-	barrel = /obj/item/part/gun/barrel/lrifle
+	resultvars = list(/obj/item/gun/projectile/automatic/lmg/tk)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
+	mechanismvar = /obj/item/part/gun/mechanism/machinegun
+	barrelvars = list(/obj/item/part/gun/barrel/clrifle)

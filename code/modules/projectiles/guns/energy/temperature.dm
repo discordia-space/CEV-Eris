@@ -14,9 +14,10 @@
 	matter = list(MATERIAL_STEEL = 20)
 	price_tag = 1500
 	projectile_type = /obj/item/projectile/temp
-	zoom_factor = 2
+	zoom_factors = list(2)
 	gun_parts = list(/obj/item/stack/material/steel = 4)
-	serial_type = "M"
+	init_recoil = HANDGUN_RECOIL(1)
+	serial_type = "ML"
 
 
 /obj/item/gun/energy/temperature/Initialize()

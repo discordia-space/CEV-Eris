@@ -197,7 +197,7 @@
 
 /obj/item/ammo_magazine/srifle/long
 	name = "extended magazine (.20 Rifle)"
-	desc = "Extended .20 caliber magazine, holds 35 rounds. Only fits \"Vintorez\" and \"Wintermute\" and \"Kalash\"."
+	desc = "Extended .20 caliber magazine, holds 35 rounds."
 	icon_state = "srifle_long"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
@@ -230,7 +230,7 @@
 
 /obj/item/ammo_magazine/srifle/drum
 	name = "drum magazine (.20 Rifle)"
-	desc = "Heavy .20 caliber magazine, holds 60 rounds. Only fits \"Kalash\"."
+	desc = "Heavy .20 caliber magazine, holds 60 rounds. Only fits \"Sermak\"."
 	icon_state = "srifle_drum"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
@@ -305,6 +305,19 @@
 	ammo_type = /obj/item/ammo_casing/clrifle/scrap
 	spawn_tags = SPAWN_AMMO_COMMON
 
+/obj/item/ammo_magazine/ihclmg
+	name = "LMG munitions box (.25 Caseless Rifle)"
+	icon_state = "pk_box"
+	modular_sprites = FALSE
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_BOX
+	caliber = CAL_CLRIFLE
+	matter = list(MATERIAL_STEEL = 16)
+	ammo_type = /obj/item/ammo_casing/clrifle
+	max_ammo = 80
+	w_class = ITEM_SIZE_NORMAL
+	ammo_states = list(15, 30, 50, 79, 80)
 ////////// .25 PISTOL //////////
 
 /obj/item/ammo_magazine/cspistol
@@ -377,7 +390,7 @@
 
 /obj/item/ammo_magazine/lrifle/drum
 	name = "drum magazine (.30 Rifle)"
-	desc = "Heavy .30 caliber magazine, holds 45 rounds. Only fits \"Krinkov\" and \"Kalash\"."
+	desc = "Heavy .30 caliber magazine, holds 45 rounds. Only fits \"Krinkov\" and \"Sermak\"."
 	icon_state = "lrifle_drum"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE_D
@@ -427,6 +440,7 @@
 	matter = list(MATERIAL_STEEL = 20)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 96
+	w_class = ITEM_SIZE_NORMAL
 	ammo_states = list(96)
 
 /obj/item/ammo_magazine/maxim/rubber
@@ -438,13 +452,20 @@
 /obj/item/ammo_magazine/slpistol
 	name = "speed loader (.35 Auto)"
 	icon = 'icons/obj/ammo_speed.dmi'
-	icon_state = "slpistol"
+	icon_state = "slpistol_base"
 	caliber = CAL_PISTOL
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 6
 	rarity_value = 6.66
-	ammo_states = list(1, 2, 3, 4, 5, 6)
+	w_class = ITEM_SIZE_TINY
+
+/obj/item/ammo_magazine/slpistol/update_icon()
+	cut_overlays()
+	var/count = 0
+	for(var/obj/item/ammo_casing/AC in stored_ammo)
+		count++
+		overlays += "slpistol_[AC.shell_color]-[count]"
 
 /obj/item/ammo_magazine/slpistol/empty
 	initial_ammo = 0
@@ -470,14 +491,25 @@
 /obj/item/ammo_magazine/slmagnum
 	name = "speed loader (.40 Magnum)"
 	icon = 'icons/obj/ammo_speed.dmi'
-	icon_state = "slmagnum"
+	icon_state = "slmagnum_base"
 	caliber = CAL_MAGNUM
 	ammo_type = /obj/item/ammo_casing/magnum
 	matter = list(MATERIAL_STEEL = 3)
 	max_ammo = 6
 	spawn_tags = SPAWN_TAG_AMMO_IH
 	rarity_value = 5
-	ammo_states = list(1, 2, 3, 4, 5, 6)
+	w_class = ITEM_SIZE_TINY
+
+/obj/item/ammo_magazine/slmagnum/update_icon()
+	cut_overlays()
+	var/count = 0
+	for(var/obj/item/ammo_casing/AC in stored_ammo)
+		count++
+		overlays += "slmagnum_[AC.shell_color]-[count]"
+
+/obj/item/ammo_magazine/slmagnum/Initialize()
+	. = ..()
+	update_icon()
 
 /obj/item/ammo_magazine/slmagnum/empty
 	initial_ammo = 0
@@ -513,6 +545,9 @@
 /obj/item/ammo_magazine/sllrifle/hv
 	ammo_type = /obj/item/ammo_casing/lrifle/hv
 
+/obj/item/ammo_magazine/sllrifle/scrap
+	ammo_type = /obj/item/ammo_casing/lrifle/scrap
+
 //////// .20 RIFLE SPEEDLOADERS ////////
 
 /obj/item/ammo_magazine/slsrifle
@@ -522,7 +557,7 @@
 	caliber = CAL_SRIFLE
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/srifle
-	max_ammo = 5
+	max_ammo = 6
 	w_class = ITEM_SIZE_TINY
 
 /obj/item/ammo_magazine/slsrifle/update_icon()
@@ -547,6 +582,73 @@
 
 /obj/item/ammo_magazine/slsrifle/scrap
 	ammo_type = /obj/item/ammo_casing/srifle/scrap
+
+/obj/item/ammo_magazine/slsrifle_rev
+	name = "speed loader (.20 Rifle)"
+	icon = 'icons/obj/ammo_speed.dmi'
+	icon_state = "slsrifle_base"
+	caliber = CAL_SRIFLE
+	matter = list(MATERIAL_STEEL = 3)
+	ammo_type = /obj/item/ammo_casing/srifle
+	max_ammo = 8
+	w_class = ITEM_SIZE_TINY
+
+/obj/item/ammo_magazine/slsrifle_rev/update_icon()
+	cut_overlays()
+	var/count = 0
+	for(var/obj/item/ammo_casing/AC in stored_ammo)
+		count++
+		overlays += "slsrifle_[AC.shell_color]-[count]"
+
+/obj/item/ammo_magazine/slsrifle_rev/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/ammo_magazine/slsrifle_rev/hv
+	ammo_type = /obj/item/ammo_casing/srifle/hv
+
+/obj/item/ammo_magazine/slsrifle_rev/practice
+	ammo_type = /obj/item/ammo_casing/srifle/practice
+
+/obj/item/ammo_magazine/slsrifle_rev/rubber
+	ammo_type = /obj/item/ammo_casing/srifle/rubber
+
+/obj/item/ammo_magazine/slsrifle_rev/scrap
+	ammo_type = /obj/item/ammo_casing/srifle/scrap
+
+//////// .25 RIFLE SPEEDLOADERS ////////
+/obj/item/ammo_magazine/slclrifle
+	name = "ammo strip (.25 Rifle)"
+	icon = 'icons/obj/ammo_speed.dmi'
+	icon_state = "clrifle_base"
+	caliber = CAL_CLRIFLE
+	matter = list(MATERIAL_STEEL = 3)
+	ammo_type = /obj/item/ammo_casing/clrifle
+	max_ammo = 5
+	w_class = ITEM_SIZE_TINY
+
+/obj/item/ammo_magazine/slclrifle/update_icon()
+	cut_overlays()
+	var/count = 0
+	for(var/obj/item/ammo_casing/AC in stored_ammo)
+		count++
+		overlays += "clrifle_[AC.shell_color]-[count]"
+
+/obj/item/ammo_magazine/slclrifle/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/ammo_magazine/slclrifle/hv
+	ammo_type = /obj/item/ammo_casing/clrifle/hv
+
+/obj/item/ammo_magazine/slclrifle/practice
+	ammo_type = /obj/item/ammo_casing/clrifle/practice
+
+/obj/item/ammo_magazine/slclrifle/rubber
+	ammo_type = /obj/item/ammo_casing/clrifle/rubber
+
+/obj/item/ammo_magazine/slclrifle/scrap
+	ammo_type = /obj/item/ammo_casing/clrifle/scrap
 
 /// OTHER ///
 

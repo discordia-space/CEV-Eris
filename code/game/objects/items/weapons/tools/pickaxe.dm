@@ -4,7 +4,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	force = WEAPON_FORCE_DANGEROUS
-	armor_penetration = ARMOR_PEN_EXTREME // It's a pickaxe. It's destined to poke holes in things, even armor.
+	armor_divisor = ARMOR_PEN_HALF // It's a pickaxe. It's destined to poke holes in things, even armor.
 	throwforce = WEAPON_FORCE_NORMAL
 	icon_state = "pickaxe"
 	item_state = "pickaxe"
@@ -18,7 +18,7 @@
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	hitsound = 'sound/weapons/melee/heavystab.ogg'
 	sharp = TRUE
-	structure_damage_factor = STRUCTURE_DAMAGE_BORING //Drills and picks are made for getting through hard materials
+	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE //Drills and picks are made for getting through hard materials
 	//They are the best anti-structure melee weapons
 	embed_mult = 1.2 //Digs deep
 	mode = EXCAVATE //Mode should be whatever is the starting tool and off quality.

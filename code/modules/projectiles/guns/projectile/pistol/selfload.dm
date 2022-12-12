@@ -19,11 +19,12 @@
 	magazine_type = /obj/item/ammo_magazine/pistol
 	rarity_value = 16
 	damage_multiplier = 1
-	recoil_buildup = 2
+	penetration_multiplier = 0
+	init_recoil = HANDGUN_RECOIL(0.75)
 
 	gun_tags = list(GUN_SILENCABLE)
 	init_firemodes = list(
-		SEMI_AUTO_NODELAY,
+		SEMI_AUTO_300,
 		FULL_AUTO_800
 		)
 
@@ -55,22 +56,23 @@
 	name = "Clarissa frame"
 	desc = "A Clarissa pistol frame. Concealable yet anemic yet fast."
 	icon_state = "frame_clarissa"
-	result = /obj/item/gun/projectile/selfload
-	grip = /obj/item/part/gun/grip/black
-	mechanism = /obj/item/part/gun/mechanism/pistol
-	barrel = /obj/item/part/gun/barrel/pistol
+	resultvars = list(/obj/item/gun/projectile/selfload)
+	gripvars = list(/obj/item/part/gun/grip/black)
+	mechanismvar = /obj/item/part/gun/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/barrel/pistol)
 
 /obj/item/gun/projectile/selfload/makarov
 	name = "Excelsior .35 Auto \"Makarov\""
 	desc = "Old-designed pistol of space communists. Small and easily concealable. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/makarov.dmi'
 	icon_state = "makarov"
-	damage_multiplier = 1.2
-	recoil_buildup = 3
+	damage_multiplier = 1.5
+	penetration_multiplier = -0.4
+	init_recoil = HANDGUN_RECOIL(0.75)
 	price_tag = 1400
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2, TECH_COVERT = 3)
 	init_firemodes = list(
-		SEMI_AUTO_NODELAY
+		SEMI_AUTO_300
 		)
 	gun_parts = list(/obj/item/part/gun/frame/makarov = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
 
@@ -78,12 +80,13 @@
 	name = "Makarov frame"
 	desc = "A Makarov pistol frame. Technology may have stagnated, but effectiveness hasn't."
 	icon_state = "frame_makarov"
-	result = /obj/item/gun/projectile/selfload/makarov
-	grip = /obj/item/part/gun/grip/excel
-	mechanism = /obj/item/part/gun/mechanism/pistol
-	barrel = /obj/item/part/gun/barrel/pistol
+	resultvars = list(/obj/item/gun/projectile/selfload/makarov)
+	gripvars = list(/obj/item/part/gun/grip/excel)
+	mechanismvar = /obj/item/part/gun/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/barrel/pistol)
 
 /obj/item/gun/projectile/selfload/moebius
 	name = "ML HG .35 Auto \"Anne\"" // ML stands for Moebius Laboratories
 	desc = "Self-loading pistol of Syndicate design rebranded by Moebius Laboratories. Uses both standard and highcap .35 Auto mags."
 	icon = 'icons/obj/guns/projectile/clarissa_white.dmi'
+	serial_type = "ML"

@@ -103,9 +103,9 @@ var/global/list/default_medbay_channels = list(
 	if(b_stat)
 		wires.Interact(user)
 
-	return ui_interact(user)
+	return nano_ui_interact(user)
 
-/obj/item/device/radio/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/device/radio/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data["mic_status"] = broadcasting
@@ -239,7 +239,7 @@ var/global/list/default_medbay_channels = list(
 		SSnano.update_uis(src)
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 
-/obj/item/device/radio/proc/autosay(var/message, var/from, var/channel) //BS12 EDIT
+/obj/item/device/radio/proc/autosay(message, from, channel, use_text_to_speech = FALSE)
 	var/datum/radio_frequency/connection = null
 	if(channel && channels && channels.len > 0)
 		if (channel == "department")
@@ -256,7 +256,7 @@ var/global/list/default_medbay_channels = list(
 	Broadcast_Message(connection, null,
 						0, "*garbled automated announcement*", src,
 						message, from, "Automated Announcement", from, "synthesized voice",
-						4, 0, list(0), connection.frequency, "states")
+						4, 0, list(0), connection.frequency, "states", use_text_to_speech = use_text_to_speech)
 	return
 
 // Interprets the message mode when talking into a radio, possibly returning a connection datum
@@ -280,6 +280,9 @@ var/global/list/default_medbay_channels = list(
 	if(!on) return 0 // the device has to be on
 	//  Fix for permacell radios, but kinda eh about actually fixing them.
 	if(!M || !message) return 0
+
+	if(speaking && (speaking.flags & (NONVERBAL|SIGNLANG))) // so we don't speak sign language over radio
+		return 0
 
 	//  Uncommenting this. To the above comment:
 	// 	The permacell radios aren't suppose to be able to transmit, this isn't a bug and this "fix" is just making radio wires useless. -Giacom
@@ -701,7 +704,7 @@ var/global/list/default_medbay_channels = list(
 
 	. = ..()
 
-/obj/item/device/radio/borg/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/device/radio/borg/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data["mic_status"] = broadcasting
@@ -758,6 +761,7 @@ var/global/list/default_medbay_channels = list(
 	name = "Random wave radio"
 	desc = "Radio that can pick up messages from secure channels, but with small chance. Provides intel about hidden loot over time. It can be repaired by oddity with mechanical aspect."
 	icon = 'icons/obj/faction_item.dmi'
+	description_antag = "If repaired enough, it also gains full access to all communication channels except binary. Can also be upgraded with the bluespace Biosyphon to siphon special bluespace items."
 	icon_state = "random_radio"
 	item_state = "random_radio"
 	slot_flags = FALSE
@@ -773,6 +777,20 @@ var/global/list/default_medbay_channels = list(
 	var/cooldown = 40 MINUTES
 	var/max_cooldown = 40 MINUTES
 	var/min_cooldown = 15 MINUTES
+	var/bluespace_generating = FALSE
+	var/bluespace_cooldown = 10 MINUTES
+	var/last_bluespace = 0
+	var/bluespace_items = list(
+		/obj/item/computer_hardware/hard_drive/portable/design/guns/dallas = 25,
+		/obj/item/gun/energy/plasma/stranger = 25,
+		/obj/machinery/artifact = 25,
+		/obj/item/computer_hardware/hard_drive/portable/design/guns/fs_wintermute = 5,
+		/obj/item/computer_hardware/hard_drive/portable/design/excelsior/ak47 = 5,
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/nt_lightfall = 5,
+		/obj/item/cell/small/hyper = 1,
+		/obj/item/cell/medium/hyper = 1,
+		/obj/item/bluespace_crystal = 1
+	)
 	w_class = ITEM_SIZE_BULKY
 
 /obj/item/device/radio/random_radio/New()
@@ -798,6 +816,12 @@ var/global/list/default_medbay_channels = list(
 		var/obj/item/paper/stash_note = stash.spawn_note(get_turf(src))
 		visible_message(SPAN_NOTICE("[src] spits out a [stash_note]."))
 		last_produce = world.time
+	if(world.time > last_bluespace && bluespace_generating)
+		var/pathed = pickweight(bluespace_items, pick(5,10,25))
+		var/atom/movable/the_chosen = new pathed()
+		the_chosen.forceMove(get_turf(src))
+		last_bluespace = world.time + bluespace_cooldown
+		bluespace_entropy(5, get_turf(src), TRUE)
 
 /obj/item/device/radio/random_radio/receive_range(freq, level)
 
@@ -833,6 +857,13 @@ var/global/list/default_medbay_channels = list(
 	if(nt_sword_attack(W, user))
 		return FALSE
 	user.set_machine(src)
+
+	if(istype(W, /obj/item/biosyphon))
+		user.remove_from_mob(W)
+		qdel(W)
+		name = "Bluespace random wave radio"
+		bluespace_generating = TRUE
+		to_chat(user, SPAN_NOTICE("You upgrade the [src] with bluespace technology, now it can siphon items lost in bluespace!"))
 
 	if(istype(W, /obj/item/oddity))
 		var/obj/item/oddity/D = W

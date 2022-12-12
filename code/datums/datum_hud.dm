@@ -105,11 +105,12 @@
 		"flash"      = list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH-1 to EAST+1,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
 		"pain"       = list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH-1 to EAST+1,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
 		"drugeffect" = list("type" = /obj/screen/drugoverlay,         "loc" = "WEST,SOUTH-1 to EAST+1,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
-
 		"damageoverlay"  = list("type" = /obj/screen/damageoverlay,   "loc" = "1,1:-32", "icon" =  'icons/mob/screen1_full.dmi'),
 		"glassesoverlay" = list("type" = /obj/screen/glasses_overlay, "loc" = "1,1:-32", "icon_state" = "blank"),
 	)
 
+	/* !!!! IF YOU WANT TO ADD A VERB TO THIS - ADD ITS NAME TO code\modules\mob\living\carbon\human\species\species_hud.dm 
+	PLEASE DON'T REPEAT MY MISTAKES, I'VE WASTED HOURS OF MY LIFE ON THIS - Kegdo 2022*/
 	HUDneed = list(
 //status
 	"nutrition"          = list("type" = /obj/screen/nutrition,         "loc" = "EAST+1:1,BOTTOM+3:25",   "minloc" = "RIGHT:1,5:26",  "background" = "back17"),
@@ -123,13 +124,14 @@
 	"toxin"              = list("type" = /obj/screen/toxin,             "loc" = "EAST+1:16,BOTTOM+7:15",  "minloc" = "RIGHT:16,9:12", "background" = "back18"),
 	"internal"           = list("type" = /obj/screen/internal,          "loc" = "EAST+1,BOTTOM+8:-2",     "minloc" = "RIGHT,10:-5",   "background" = "back15"),
 //corner buttons
-	"jump"               = list("type" = /obj/screen/jump,              "loc" = "EAST+1,BOTTOM+1:-6", "minloc" = "RIGHT,3:-6",   "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back17-1"),
+	//"jump"               = list("type" = /obj/screen/jump,              "loc" = "EAST+1,BOTTOM+1:-6", "minloc" = "RIGHT,3:-6",   "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back17-1"),
 	"look up"            = list("type" = /obj/screen/look_up,           "loc" = "EAST,BOTTOM+1:13",   "minloc" = "RIGHT-1,2:13", "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back17-1"),
 	"throw"              = list("type" = /obj/screen/HUDthrow,          "loc" = "EAST+1,BOTTOM+1:13", "minloc" = "RIGHT,2:13",   "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back17-1"),
 	"pull"               = list("type" = /obj/screen/pull,              "loc" = "EAST-1,BOTTOM+1:13", "minloc" = "RIGHT-2,2:13", "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back17-1"),
 	"drop"               = list("type" = /obj/screen/drop,              "loc" = "EAST+1,BOTTOM+1",    "minloc" = "RIGHT,2",      "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back17-1"),
 	"resist"             = list("type" = /obj/screen/resist,            "loc" = "EAST-1,BOTTOM+1",    "minloc" = "RIGHT-2,2",    "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back17-1"),
 	"rest"               = list("type" = /obj/screen/rest,              "loc" = "EAST,BOTTOM+1",      "minloc" = "RIGHT-1,2",    "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back17-1"),
+	"block"              = list("type" = /obj/screen/block,             "loc" = "EAST+1,BOTTOM+1:26", "minloc" = "RIGHT,3:-6", "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back17-1"),
 	"move intent"        = list("type" = /obj/screen/mov_intent,        "loc" = "EAST,BOTTOM",        "minloc" = "RIGHT-1,1",    "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back1"),
 	"implant bionics"    = list("type" = /obj/screen/implant_bionics,   "loc" = "EAST-2,BOTTOM-1",    "minloc" = "12,1",         "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back13"),
 	"craft menu"         = list("type" = /obj/screen/craft_menu,        "loc" = "EAST-2:16,BOTTOM",   "minloc" = "12:16,1",      "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back13"),
@@ -230,8 +232,8 @@
 
 
 	HUDoverlays = list(
-		"flash" 		=  list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
-		"blind" 		=  list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+		"flash" 		=  list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+		"blind" 		=  list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
 		"glassesoverlay" = list("type" = /obj/screen/silicon/glasses_overlay, "loc" = "1,1", )
 	)
 

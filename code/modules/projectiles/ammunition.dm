@@ -43,6 +43,11 @@
 	if(amount > 1)
 		update_icon()
 
+/obj/item/ammo_casing/Destroy()
+	make_young()
+	QDEL_NULL(BB)
+	return ..()
+
 //removes the projectile from the ammo casing
 /obj/item/ammo_casing/proc/expend()
 	. = BB
@@ -189,6 +194,7 @@
 	name = "magazine"
 	desc = "A magazine for some kind of gun."
 	icon_state = "place-holder-box"
+	description_info = "Can be reloaded quickly by clicking on a ammo-box of the corresponding caliber"
 	icon = 'icons/obj/ammo_mags.dmi'
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -237,6 +243,12 @@
 			stored_ammo += new ammo_type(src)
 	get_label()
 	update_icon()
+
+/obj/item/ammo_magazine/Destroy()
+	make_young()
+	QDEL_LIST(contents)		// Normally, we don't want to do this, but this is an exception
+	QDEL_LIST(stored_ammo)
+	return ..()
 
 /obj/item/ammo_magazine/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/ammo_casing))

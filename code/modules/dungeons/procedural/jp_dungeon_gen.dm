@@ -562,10 +562,8 @@
 
 	if(seed==null)
 		out_seed = rand(-65535, 65535)
-		rand_seed(out_seed)
 	else
 		out_seed = seed
-		rand_seed(seed)
 
 
 	z = corner1.z
@@ -1273,10 +1271,12 @@ the arms of the plus sign - there are only four.
 
 
 /obj/procedural/jp_DungeonRoom/preexist/square/submap/finalise()
-	if(border.len < 1)
-		testing("ROOM [my_map.name] HAS NO BORDERS! at [centre.x], [centre.y]!")
 	if(my_map)
 		my_map.load(centre, centered = TRUE, orientation = SOUTH, post_init = 1)
 	else
 		gen.out_error = gen.ERROR_NO_SUBMAPS
 
+#ifdef TESTING
+	if(!LAZYLEN(border))
+		testing("ROOM [my_map.name] HAS NO BORDERS! at [centre.x], [centre.y]!")
+#endif

@@ -124,6 +124,7 @@ proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 		if(MUTE_PRAY)		mute_string = "pray"
 		if(MUTE_ADMINHELP)	mute_string = "adminhelp, admin PM and ASAY"
 		if(MUTE_DEADCHAT)	mute_string = "deadchat and DSAY"
+		if(MUTE_TTS)		mute_string = "text to speech"
 		if(MUTE_ALL)		mute_string = "everything"
 		else				return
 
@@ -164,7 +165,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_add_random_ai_law, R_FUN, FALSE)
 	if(show_log == "Yes")
 		command_announcement.Announce("Ion storm detected near the ship. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 
-	IonStorm(0)
+	IonStorm()
 
 
 /*
@@ -473,7 +474,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_create_centcom_report, R_ADMIN, FALSE)
 
 	switch(alert("Should this be announced to the general population?",,"Yes","No"))
 		if("Yes")
-			command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', msg_sanitized = 1);
+			command_announcement.Announce(input, customname, msg_sanitized = 1, use_text_to_speech = TRUE)
 		if("No")
 			to_chat(world, "\red New [company_name] Update available at all communication consoles.")
 			world << sound('sound/AI/commandreport.ogg')

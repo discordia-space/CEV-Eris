@@ -9,10 +9,24 @@
 	icon = 'icons/obj/playing_cards.dmi'
 	var/list/cards = list()
 
-/obj/item/deck/holder
+/obj/item/storage/card_holder
 	name = "card box"
 	desc = "A small leather case to show how classy you are compared to everyone else."
 	icon_state = "card_holder"
+	icon = 'icons/obj/playing_cards.dmi'
+	w_class = ITEM_SIZE_SMALL
+	can_hold = list(/obj/item/deck)
+	allow_quick_gather = TRUE
+	use_to_pickup = TRUE
+	matter = list(MATERIAL_CARDBOARD = 1)
+	max_storage_space = 2
+	rarity_value = 20
+	spawn_tags = SPAWN_TAG_ITEM_TOY
+	var/deck_type
+
+/obj/item/storage/card_holder/populate_contents()
+	if(deck_type)
+		new deck_type(src)
 
 /obj/item/deck/cards
 	name = "deck of cards"

@@ -11,7 +11,7 @@
 	force = WEAPON_FORCE_NORMAL
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 5)
-	zoom_factor = 0.5
+	zoom_factors = list(0.5)
 	damage_multiplier = 1.3
 	charge_cost = 50
 	price_tag = 2500
@@ -21,6 +21,7 @@
 		WEAPON_CHARGE
 	)
 	twohanded = TRUE
+	init_recoil = CARBINE_RECOIL(1)
 	serial_type = "NT"
 
 /obj/item/gun/energy/laser/mounted
@@ -29,7 +30,7 @@
 	safety = FALSE
 	restrict_safety = TRUE
 	twohanded = FALSE
-	zoom_factor = 0
+	zoom_factors = list()
 	damage_multiplier = 1
 	charge_cost = 100
 	spawn_blacklisted = TRUE
@@ -39,7 +40,7 @@
 	desc = "A miniaturized laser rifle, remounted for robotic use only."
 	icon_state = "laser_turret"
 	charge_meter = FALSE
-	zoom_factor = 0
+	zoom_factors = list()
 	damage_multiplier = 1
 	charge_cost = 100
 	spawn_tags = null
@@ -50,7 +51,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 2)
 	price_tag = 1000
 	projectile_type = /obj/item/projectile/beam/practice
-	zoom_factor = 0
+	zoom_factors = list()
 
 /obj/item/gun/energy/retro
 	name = "OS LG \"Cog\""
@@ -66,7 +67,7 @@
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 15, MATERIAL_GLASS = 5)
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
-	zoom_factor = 0
+	zoom_factors = list()
 	damage_multiplier = 1
 	charge_cost = 100
 	price_tag = 750
@@ -77,6 +78,8 @@
 	twohanded = TRUE
 	saw_off = TRUE
 	sawn = /obj/item/gun/energy/retro/sawn
+	init_recoil = CARBINE_RECOIL(1)
+	serial_type = "OS"
 
 /obj/item/gun/energy/retro/sawn
 	name = "sawn down OS LG \"Cog\""
@@ -88,7 +91,7 @@
 	slot_flags = SLOT_BACK|SLOT_HOLSTER
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 10, MATERIAL_GLASS = 5)
 	damage_multiplier = 0.8
-	penetration_multiplier = 0.8
+	penetration_multiplier = -0.2
 	charge_cost = 125
 	price_tag = 400
 	init_firemodes = list(
@@ -97,6 +100,7 @@
 	twohanded = FALSE
 	saw_off = FALSE
 	spawn_blacklisted = TRUE
+	init_recoil = SMG_RECOIL(1)
 
 /obj/item/gun/energy/captain
 	name = "NT LG \"Destiny\""
@@ -111,7 +115,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	projectile_type = /obj/item/projectile/beam/midlaser
-	zoom_factor = 0
+	zoom_factors = list()
 	damage_multiplier = 1.2
 	origin_tech = null
 	self_recharge = TRUE
@@ -123,6 +127,8 @@
 	)
 	twohanded = FALSE
 	spawn_blacklisted = TRUE//antag_item_targets
+	init_recoil = HANDGUN_RECOIL(1)
+	serial_type = "NT"
 
 /obj/item/gun/energy/lasercannon
 	name = "Prototype: laser cannon"
@@ -137,8 +143,9 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 	projectile_type = /obj/item/projectile/beam/heavylaser
 	charge_cost = 100
+	serial_type = "ML"
 	fire_delay = 20
-	zoom_factor = 0
+	zoom_factors = list()
 	damage_multiplier = 1
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_SILVER = 4, MATERIAL_URANIUM = 1)
 	price_tag = 3000
@@ -146,6 +153,7 @@
 		WEAPON_NORMAL
 		)
 	twohanded = TRUE
+	init_recoil = LMG_RECOIL(1)
 
 /obj/item/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"
@@ -155,7 +163,7 @@
 	safety = FALSE
 	restrict_safety = TRUE
 	twohanded = FALSE
-	zoom_factor = 0
+	zoom_factors = list()
 	damage_multiplier = 1
 	charge_cost = 300
 	spawn_blacklisted = TRUE
@@ -231,6 +239,7 @@
 /obj/item/gun/energy/psychic/lasercannon
 	name = "Prototype: psychic laser cannon"
 	desc = "A laser cannon that attacks the minds of people, causing sanity loss and inducing mental breakdowns."
+	description_antag = "Can pierce a wall"
 	icon = 'icons/obj/guns/energy/psychiccannon.dmi'
 	icon_state = "psychic_lasercannon"
 	item_state = "psychic_lasercannon"
@@ -242,8 +251,9 @@
 	force = WEAPON_FORCE_NORMAL
 	slot_flags = SLOT_BELT|SLOT_BACK
 	contractor = TRUE
+	serial_type = "ML"
 	pierce_multiplier = 4
-	zoom_factor = 0
+	zoom_factors = list()
 	damage_multiplier = 1
 	charge_cost = 50
 	fire_delay = 20
@@ -254,6 +264,7 @@
 		WEAPON_CHARGE
 		)
 	twohanded = FALSE
+	init_recoil = LMG_RECOIL(1)
 
 /obj/item/gun/energy/psychic/mindflayer
 	name = "Prototype: mind flayer"
@@ -267,10 +278,11 @@
 	price_tag = 2200
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_SILVER = 5, MATERIAL_PLASMA = 3)
 	twohanded = FALSE
+	init_recoil = HANDGUN_RECOIL(1)
 
 /obj/item/gun/energy/laser/makeshift
 	name = "makeshift laser carbine"
-	desc = "A makeshift laser carbine, rather wastefull on its chage, but nonetheless reliable"
+	desc = "A makeshift laser carbine, rather wasteful on its charge, but nonetheless reliable"
 	icon = 'icons/obj/guns/energy/makeshift_carbine.dmi'
 	icon_state = "makeshift"
 	item_state = "makeshift"
@@ -280,7 +292,7 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_NORMAL
-	zoom_factor = 0
+	zoom_factors = list()
 	charge_cost = 100 //worst lightfall
 	fire_delay = 10 //ditto
 	price_tag = 500
@@ -288,3 +300,29 @@
 		WEAPON_NORMAL
 	)
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
+	init_recoil = CARBINE_RECOIL(1)
+
+/obj/item/gun/energy/laser/makeshift_pistol
+	name = "makeshift laser pistol"
+	desc = "A heavy makeshift laser pistol, trades off some power and efficiency for ease of storage and use"
+	icon = 'icons/obj/guns/energy/makeshift_pistol.dmi'
+	icon_state = "makeshiftpistol"
+	item_state = "makeshiftpistol"
+	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 7)
+	item_charge_meter = TRUE
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
+	w_class = ITEM_SIZE_NORMAL
+	force = WEAPON_FORCE_NORMAL
+	projectile_type = /obj/item/projectile/beam
+	damage_multiplier = 0.5
+	charge_cost = 125 
+	fire_delay = 15 
+	price_tag = 250
+	init_firemodes = list(
+		BURST_2_BEAM
+	)
+	zoom_factors = list()
+	twohanded = FALSE
+	spawn_tags = SPAWN_TAG_GUN_HANDMADE
+	init_recoil = SMG_RECOIL(1)

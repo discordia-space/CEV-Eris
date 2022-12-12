@@ -15,21 +15,20 @@
 	magazine_type = /obj/item/ammo_magazine/msmg
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4)
 	price_tag = 2200
-	damage_multiplier = 0.9 	 //27.2 lethal on FA, 31.2 HV damage on FA
-	penetration_multiplier = 1.5 //22.5 lethal, 30 HV //AP
-	recoil_buildup = 1.2
+	damage_multiplier = 0.9
+	penetration_multiplier = 0.5
+	init_recoil = SMG_RECOIL(0.7)
 
 	twohanded = FALSE
-	one_hand_penalty = 5 //smg level
 	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(
 		FULL_AUTO_300,
-		SEMI_AUTO_NODELAY
+		SEMI_AUTO_300
 		)
 	gun_parts = list(/obj/item/part/gun/frame/drozd = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/magnum = 1)
 
-	serial_type = "REV"
+	serial_type = "Excelsior"
 
 /obj/item/gun/projectile/automatic/drozd/update_icon()
 	cut_overlays()
@@ -48,7 +47,7 @@
 	name = "Drozd frame"
 	desc = "A Drozd SMG frame. Workhorse of the Excelsior force."
 	icon_state = "frame_excelsmg"
-	result = /obj/item/gun/projectile/automatic/drozd
-	grip = /obj/item/part/gun/grip/excel
-	mechanism = /obj/item/part/gun/mechanism/smg
-	barrel = /obj/item/part/gun/barrel/magnum
+	resultvars = list(/obj/item/gun/projectile/automatic/drozd)
+	gripvars = list(/obj/item/part/gun/grip/excel)
+	mechanismvar = /obj/item/part/gun/mechanism/smg
+	barrelvars = list(/obj/item/part/gun/barrel/magnum)

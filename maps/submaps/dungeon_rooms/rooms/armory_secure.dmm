@@ -11,7 +11,7 @@
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "d" = (
-/obj/machinery/porta_turret/One_star,
+/obj/machinery/power/os_turret/laser,
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "e" = (
@@ -62,7 +62,6 @@
 /area/crawler)
 "n" = (
 /obj/spawner/mob/roomba,
- /obj/spawner/contraband,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 "o" = (
@@ -77,6 +76,7 @@
 /obj/spawner/gun/energy_cheap,
 /obj/spawner/gun/shotgun,
 /obj/spawner/contraband,
+/obj/spawner/gun/onestar/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "q" = (

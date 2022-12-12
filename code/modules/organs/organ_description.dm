@@ -9,7 +9,7 @@
 
 	var/max_damage = 0
 	var/min_broken_damage = 30
-	var/dislocated = 0
+	var/nerve_struck = 0 // can only activate on natural arms/legs
 	var/vital = FALSE
 	var/cannot_amputate = FALSE
 
@@ -38,7 +38,7 @@
 
 	max_damage = 100
 	min_broken_damage = 60
-	dislocated = -1
+	nerve_struck = -1
 	vital = TRUE
 	cannot_amputate = TRUE
 
@@ -61,7 +61,7 @@
 
 	max_damage = 100
 	min_broken_damage = 60
-	dislocated = -1
+	nerve_struck = -1
 
 	w_class = ITEM_SIZE_BULKY
 	max_volume = ITEM_SIZE_COLOSSAL
@@ -79,7 +79,7 @@
 	default_type = /obj/item/organ/external/head
 	default_bone_type = /obj/item/organ/internal/bone/head
 
-	max_damage = 75
+	max_damage = 90
 	min_broken_damage = 60
 	vital = TRUE
 
@@ -196,3 +196,48 @@
 	min_broken_damage = 15
 	max_volume = 3
 	default_type = /obj/item/organ/external/unbreakable
+
+////SKELETON////
+/datum/organ_description/chest/skeletal
+	name = "ribcage"
+	max_damage = 20
+	min_broken_damage = 5
+	max_volume = 1
+	default_type = /obj/item/organ/external/skeletal/chest
+
+/datum/organ_description/groin/skeletal
+	name = "pelvis"
+	max_damage = 20
+	min_broken_damage = 5
+	max_volume = 1
+	default_type = /obj/item/organ/external/skeletal/groin
+
+/datum/organ_description/head/skeletal
+	max_damage = 20
+	min_broken_damage = 5
+	max_volume = 1
+	default_type = /obj/item/organ/external/skeletal/head
+
+/datum/organ_description/arm/left/skeletal
+	max_damage = 20
+	min_broken_damage = 5
+	max_volume = 1
+	default_type = /obj/item/organ/external/skeletal
+
+/datum/organ_description/arm/right/skeletal
+	max_damage = 20
+	min_broken_damage = 5
+	max_volume = 1
+	default_type = /obj/item/organ/external/skeletal
+
+/datum/organ_description/leg/left/skeletal
+	max_damage = 20
+	min_broken_damage = 5
+	max_volume = 1
+	default_type = /obj/item/organ/external/skeletal
+
+/datum/organ_description/leg/right/skeletal
+	max_damage = 20
+	min_broken_damage = 5
+	max_volume = 1
+	default_type = /obj/item/organ/external/skeletal

@@ -80,11 +80,11 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_PEN_MULT = 0.2,
+		GUN_UPGRADE_PEN_MULT = -0.2,
 		GUN_UPGRADE_PIERC_MULT = 3,
 		GUN_UPGRADE_RICO_MULT = 5,
 		GUN_UPGRADE_STEPDELAY_MULT = 0.6,
-		GUN_UPGRADE_RECOIL = 1.4
+		GUN_UPGRADE_RECOIL = 1.2
 		)
 	I.gun_loc_tag = GUN_BARREL
 	I.req_gun_tags = list(GUN_PROJECTILE)
@@ -150,24 +150,6 @@
 	name = "Frozen Star \"DNA lock\" Trigger"
 	desc = "There are many guns, but that one will be yours. Prevents others from using weapon with this trigger."
 	matter = list(MATERIAL_PLASTEEL = 2, MATERIAL_DIAMOND = 1)
-	icon_state = "DNA_lock"
-	rarity_value = 15
-
-/obj/item/gun_upgrade/trigger/dnalock/New()
-	..()
-	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.weapon_upgrades = list(
-		GUN_UPGRADE_DNALOCK = TRUE
-		)
-	I.removal_time *= 10
-	I.gun_loc_tag = GUN_TRIGGER
-	I.breakable = FALSE
-	I.removal_difficulty = FAILCHANCE_VERY_HARD
-
-/obj/item/gun_upgrade/trigger/dnalock
-	name = "Frozen Star \"DNA lock\" Trigger"
-	desc = "There are many guns, but that one will be yours. Prevents others from using weapon with this trigger."
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_DIAMOND = 1)
 	icon_state = "DNA_lock"
 	rarity_value = 15
 
@@ -270,6 +252,7 @@
 	new /obj/item/tool_upgrade/productivity/ergonomic_grip(src)
 	new /obj/item/tool_upgrade/refinement/laserguide(src)
 	new /obj/item/tool_upgrade/augment/ai_tool(src)
+	new /obj/item/tool_upgrade/refinement/gravenhancer(src)
 
 /obj/item/gun_upgrade/trigger/boom
 	name = "Syndicate \"Self Destruct\" trigger"
@@ -394,7 +377,7 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_OFFSET = rand(5,15),
-		GUN_UPGRADE_PEN_MULT = rand(0.8,1.2),
+		GUN_UPGRADE_PEN_MULT = rand(-0.2,0.2),
 		GUN_UPGRADE_DAMAGE_MULT = rand(0.8,1.2)
 	)
 	I.destroy_on_removal = TRUE
@@ -412,7 +395,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_PEN_MULT = rand(4,9)/10,
+		GUN_UPGRADE_PEN_MULT = -rand(0.1,0.6)/10,
 		GUN_UPGRADE_STEPDELAY_MULT = rand(10,12)/10,
 		GUN_UPGRADE_SILENCER = TRUE
 	)

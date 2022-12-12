@@ -47,6 +47,8 @@ atom/proc/c_airblock(turf/other)
 	return (AIR_BLOCKED*!CanPass(null, other, 0, 0))|(ZONE_BLOCKED*!CanPass(null, other, 1.5, 1))
 
 
+
+
 turf/c_airblock(turf/other)
 	#ifdef ZASDBG
 	ASSERT(isturf(other))
@@ -68,3 +70,6 @@ turf/c_airblock(turf/other)
 		result |= M.c_airblock(other)
 		if(result == BLOCKED) return BLOCKED
 	return result
+
+/atom/movable
+	var/atmos_canpass = CANPASS_ALWAYS

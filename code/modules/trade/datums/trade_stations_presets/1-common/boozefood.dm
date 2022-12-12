@@ -2,7 +2,10 @@
 	name_pool = list(
 		"ATB \'Vermouth\'" = "Aster's Trade Beacon \'Vermouth\': \"Best beverages, ingredients for your cooks, and anything that is needed for your private bars and more!\""
 	)
+	icon_states = list("htu_station", "station")
 	uid = "commissary"
+	tree_x = 0.5
+	tree_y = 0.9
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS
@@ -13,37 +16,38 @@
 	stations_recommended = list("mcronalds", "serbian", "trapper")
 	inventory = list(
 		"Basic Ingredients" = list(
-			/obj/item/reagent_containers/food/condiment/flour,
-			/obj/item/reagent_containers/food/drinks/milk,
-			/obj/item/storage/fancy/egg_box,
-			/obj/item/reagent_containers/food/snacks/tofu,
-			/obj/item/reagent_containers/food/snacks/meat,
-			/obj/item/reagent_containers/food/condiment/enzyme
+			/obj/item/reagent_containers/food/condiment/flour = custom_good_price(50),
+			/obj/item/reagent_containers/food/drinks/milk = custom_good_price(50),
+			/obj/item/storage/fancy/egg_box = custom_good_price(100),
+			/obj/item/reagent_containers/food/snacks/tofu = custom_good_price(50),
+			/obj/item/reagent_containers/food/snacks/meat = custom_good_price(100),
+			/obj/item/reagent_containers/food/condiment/enzyme = custom_good_price(80)
 		),
 		"Drinks" = list(
-			/obj/item/reagent_containers/food/drinks/bottle/gin,
-			/obj/item/reagent_containers/food/drinks/bottle/whiskey,
-			/obj/item/reagent_containers/food/drinks/bottle/tequilla,
-			/obj/item/reagent_containers/food/drinks/bottle/vodka,
-			/obj/item/reagent_containers/food/drinks/bottle/vermouth,
-			/obj/item/reagent_containers/food/drinks/bottle/rum,
-			/obj/item/reagent_containers/food/drinks/bottle/wine,
-			/obj/item/reagent_containers/food/drinks/bottle/cognac,
-			/obj/item/reagent_containers/food/drinks/bottle/kahlua,
-			/obj/item/reagent_containers/food/drinks/bottle/small/beer,
-			/obj/item/reagent_containers/food/drinks/bottle/small/ale,
+			/obj/item/reagent_containers/food/drinks/bottle/gin = custom_good_price(100), 
+			/obj/item/reagent_containers/food/drinks/bottle/whiskey = custom_good_price(100),
+			/obj/item/reagent_containers/food/drinks/bottle/tequilla = custom_good_price(100),
+			/obj/item/reagent_containers/food/drinks/bottle/vodka = custom_good_price(100),
+			/obj/item/reagent_containers/food/drinks/bottle/vermouth = custom_good_price(100),
+			/obj/item/reagent_containers/food/drinks/bottle/rum = custom_good_price(100),
+			/obj/item/reagent_containers/food/drinks/bottle/wine = custom_good_price(100),
+			/obj/item/reagent_containers/food/drinks/bottle/cognac = custom_good_price(100),
+			/obj/item/reagent_containers/food/drinks/bottle/kahlua = custom_good_price(100),
+			/obj/item/reagent_containers/food/drinks/bottle/small/beer = custom_good_price(50),
+			/obj/item/reagent_containers/food/drinks/bottle/small/ale = custom_good_price(50),
 			/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
 			/obj/item/reagent_containers/food/drinks/bottle/tomatojuice,
 			/obj/item/reagent_containers/food/drinks/bottle/limejuice,
+			///obj/item/reagent_containers/food/drinks/bottle/lemonjuice,
 			/obj/item/reagent_containers/food/drinks/bottle/cream,
 			/obj/item/reagent_containers/food/drinks/bottle/cola,
 			/obj/item/reagent_containers/food/drinks/bottle/space_up,
 			/obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind,
-			/obj/item/reagent_containers/food/drinks/bottle/bluecuracao,
+			/obj/item/reagent_containers/food/drinks/bottle/bluecuracao = custom_good_price(100),
 			/obj/item/reagent_containers/food/drinks/bottle/grenadine,
-			/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
-			/obj/item/reagent_containers/food/drinks/bottle/absinthe,
-			/obj/item/reagent_containers/food/drinks/cans/dr_gibb,
+			/obj/item/reagent_containers/food/drinks/bottle/melonliquor = custom_good_price(100),
+			/obj/item/reagent_containers/food/drinks/bottle/absinthe = custom_good_price(100),
+			/obj/item/reagent_containers/food/drinks/cans/dr_gibb = custom_good_price(100),
 			/obj/item/reagent_containers/food/drinks/cans/sodawater,
 			/obj/item/reagent_containers/food/drinks/cans/tonic
 		),
@@ -59,12 +63,13 @@
 	)
 	hidden_inventory = list(
 		"Drinks II" = list(
-			/obj/item/reagent_containers/food/drinks/bottle/goldschlager,
-			/obj/item/reagent_containers/food/drinks/bottle/pwine,
-			/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing
+			/obj/item/reagent_containers/food/drinks/bottle/goldschlager = custom_good_price(100),
+			/obj/item/reagent_containers/food/drinks/bottle/pwine = custom_good_price(100),
+			/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing = custom_good_price(100)
 		)
 	)
 	offer_types = list(
+		/obj/item/oddity/common/old_knife = offer_data("old knife", 500, 1),
 		/obj/item/reagent_containers/food/snacks/kampferburger = offer_data("kampfer burger", 500, 3),
 		/obj/item/reagent_containers/food/snacks/panzerburger = offer_data("panzer burger", 700, 2),
 		/obj/item/reagent_containers/food/snacks/jagerburger = offer_data("jager burger", 700, 2),

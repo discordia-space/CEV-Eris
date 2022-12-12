@@ -53,6 +53,9 @@
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "n" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "o" = (
@@ -91,7 +94,7 @@
 /obj/structure/table/rack,
 /obj/spawner/gun/normal,
 /obj/spawner/gun/normal,
-/obj/spawner/gun/cheap,
+/obj/spawner/gun/onestar/low_chance,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "v" = (
@@ -101,14 +104,7 @@
 /obj/machinery/door/window/northright,
 /obj/structure/table/rack,
 /obj/spawner/gun/shotgun,
-/obj/spawner/gun/normal,
-/obj/spawner/gun/cheap,
-/turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"w" = (
-/obj/structure/table/onestar,
-/obj/spawner/gun/normal,
-/obj/spawner/gun/cheap,
+/obj/spawner/gun/onestar,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "x" = (
@@ -121,8 +117,31 @@
 /area/crawler)
 "z" = (
 /obj/structure/table/onestar,
-/obj/spawner/gun/energy_cheap,
-/obj/spawner/gun/cheap,
+/obj/spawner/gun/onestar,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"C" = (
+/mob/living/carbon/superior_animal/stalker,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"G" = (
+/obj/structure/table/onestar,
+/obj/spawner/gun/onestar/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"M" = (
+/mob/living/carbon/superior_animal/stalker/dual,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"Q" = (
+/obj/structure/table/onestar,
+/obj/item/gun/projectile/pistol/type_90,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"W" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 
@@ -152,9 +171,9 @@ a
 a
 c
 g
+M
 g
-g
-g
+C
 g
 v
 a
@@ -167,7 +186,7 @@ g
 g
 g
 y
-w
+z
 a
 "}
 (5,1,1) = {"
@@ -175,7 +194,7 @@ a
 d
 y
 g
-g
+y
 g
 g
 z
@@ -196,8 +215,8 @@ b
 b
 f
 a
-o
-o
+Q
+G
 o
 a
 f
@@ -207,9 +226,9 @@ b
 b
 g
 j
-e
-e
-e
+W
+W
+W
 s
 g
 b

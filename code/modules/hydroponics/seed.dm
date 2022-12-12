@@ -19,7 +19,7 @@
 /datum/computer_file/binary/plantgene/proc/update_name()
 	filename = "PL_GENE_[plant_controller.gene_tag_masks[genetype]]_[genesource_uid]"
 
-/datum/computer_file/binary/plantgene/ui_data()
+/datum/computer_file/binary/plantgene/nano_ui_data()
 	var/list/data = list(
 		"filename" = filename,
 		"source" = genesource,
@@ -98,7 +98,7 @@
 		update_growth_stages()
 
 /datum/seed/proc/get_trait(trait)
-	return traits["[trait]"]
+	return traits[trait]
 
 /datum/seed/proc/get_trash_type()
 	return trash_type
@@ -107,7 +107,7 @@
 	if(!isnull(degrade)) nval *= degrade
 	if(!isnull(ubound))  nval = min(nval,ubound)
 	if(!isnull(lbound))  nval = max(nval,lbound)
-	traits["[trait]"] =  nval
+	traits[trait] =  nval
 
 /datum/seed/proc/create_spores(turf/T)
 	if(!T)
@@ -608,7 +608,7 @@
 
 			if(!chems) chems = list()
 
-			var/list/gene_value = gene.values["[TRAIT_CHEMS]"]
+			var/list/gene_value = gene.values[TRAIT_CHEMS]
 			for(var/rid in gene_value)
 
 				var/list/gene_chem = gene_value[rid]
@@ -626,26 +626,26 @@
 					else
 						chems[rid][i] = gene_chem[i]
 
-			var/list/new_gasses = gene.values["[TRAIT_EXUDE_GASSES]"]
+			var/list/new_gasses = gene.values[TRAIT_EXUDE_GASSES]
 			if(islist(new_gasses))
 				if(!exude_gasses) exude_gasses = list()
 				exude_gasses |= new_gasses
 				for(var/gas in exude_gasses)
 					exude_gasses[gas] = max(1,round(exude_gasses[gas]*0.8))
 
-			gene.values["[TRAIT_EXUDE_GASSES]"] = null
-			gene.values["[TRAIT_CHEMS]"] = null
+			gene.values[TRAIT_EXUDE_GASSES] = null
+			gene.values[TRAIT_CHEMS] = null
 
 		if(GENE_DIET)
-			var/list/new_gasses = gene.values["[TRAIT_CONSUME_GASSES]"]
+			var/list/new_gasses = gene.values[TRAIT_CONSUME_GASSES]
 			consume_gasses |= new_gasses
-			gene.values["[TRAIT_CONSUME_GASSES]"] = null
+			gene.values[TRAIT_CONSUME_GASSES] = null
 		if(GENE_METABOLISM)
 			has_mob_product = gene.values["mob_product"]
 			gene.values["mob_product"] = null
 
 	for(var/trait in gene.values)
-		set_trait(trait,gene.values["[trait]"])
+		set_trait(trait,gene.values[trait])
 
 	update_growth_stages()
 
@@ -667,8 +667,8 @@
 
 	switch(genetype)
 		if(GENE_BIOCHEMISTRY)
-			P.values["[TRAIT_CHEMS]"] =        chems
-			P.values["[TRAIT_EXUDE_GASSES]"] = exude_gasses
+			P.values[TRAIT_CHEMS] =        chems
+			P.values[TRAIT_EXUDE_GASSES] = exude_gasses
 			traits_to_copy = list(TRAIT_POTENCY)
 		if(GENE_OUTPUT)
 			traits_to_copy = list(TRAIT_PRODUCES_POWER,TRAIT_BIOLUM)
@@ -682,7 +682,7 @@
 		if(GENE_VIGOUR)
 			traits_to_copy = list(TRAIT_PRODUCTION,TRAIT_MATURATION,TRAIT_YIELD,TRAIT_SPREAD,TRAIT_WALL_HUGGER)
 		if(GENE_DIET)
-			P.values["[TRAIT_CONSUME_GASSES]"] = consume_gasses
+			P.values[TRAIT_CONSUME_GASSES] = consume_gasses
 			traits_to_copy = list(TRAIT_CARNIVOROUS,TRAIT_PARASITE,TRAIT_NUTRIENT_CONSUMPTION,TRAIT_WATER_CONSUMPTION)
 		if(GENE_ENVIRONMENT)
 			traits_to_copy = list(TRAIT_IDEAL_HEAT,TRAIT_IDEAL_LIGHT,TRAIT_LIGHT_TOLERANCE)
@@ -696,7 +696,7 @@
 			traits_to_copy = list(TRAIT_TELEPORTING)
 
 	for(var/trait in traits_to_copy)
-		P.values["[trait]"] = get_trait(trait)
+		P.values[trait] = get_trait(trait)
 	return P
 
 //Place the plant products at the feet of the user.

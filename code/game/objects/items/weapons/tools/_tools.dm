@@ -17,7 +17,7 @@
 	//spawn values
 	bad_type = /obj/item/tool
 	spawn_tags = SPAWN_TAG_TOOL
-	
+
 	price_tag = 20
 
 	var/tool_in_use = FALSE
@@ -184,7 +184,7 @@
 	return
 
 
-/obj/item/tool/ui_data(mob/user)
+/obj/item/tool/nano_ui_data(mob/user)
 	var/list/data = list()
 
 	if(tool_qualities)
@@ -210,7 +210,7 @@
 		data["use_power_cost_max"] = initial(use_power_cost) * 10
 
 	if(use_fuel_cost)
-		data["fuel"] = reagents ? reagents.ui_data() : null
+		data["fuel"] = reagents ? reagents.nano_ui_data() : null
 		data["max_fuel"] = max_fuel
 		data["use_fuel_cost"] = use_fuel_cost
 		data["use_fuel_cost_state"] = initial(use_fuel_cost) > use_fuel_cost ? "good" : initial(use_fuel_cost) < use_fuel_cost ? "bad" : ""
@@ -223,22 +223,34 @@
 	data["force"] = force
 	data["force_max"] = initial(force) * 10
 
-	data["armor_penetration"] = armor_penetration
+	data["armor_divisor"] = armor_divisor
 
 	data["extra_volume"] = extra_bulk
 
 	data["upgrades_max"] = max_upgrades
 
+	data["edge"] = edge
+	data["sharp"] = sharp
+	data["extended_reach"] = extended_reach
+	data["forced_broad_strike"] = forced_broad_strike
+	data["screen_shake"] = screen_shake
+	data["push_attack"] = push_attack
+	data["w_class"] = w_class
+
 	// it could be done with catalog using one line but whatever
 	if(item_upgrades.len)
 		data["attachments"] = list()
 		for(var/atom/A in item_upgrades)
-			data["attachments"] += list(list("name" = A.name, "icon" = getAtomCacheFilename(A)))
+			data["attachments"] += list(list("name" = A.name, "icon" = SSassets.transport.get_asset_url(name)))
 
 	return data
 
-/obj/item/tool/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
-	var/list/data = ui_data(user)
+/obj/item/tool/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
+	var/list/data = nano_ui_data(user)
+
+	var/datum/asset/toolupgrageds = get_asset_datum(/datum/asset/simple/tool_upgrades)
+	if (toolupgrageds.send(user.client))
+		user.client.browse_queue_flush() // stall loading nanoui until assets actualy gets sent
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -898,6 +910,7 @@
 				var/obj/item/weldpack/P = O
 				P.explode()
 			return
+/*
 		else if(istype(O, /mob/living/carbon/superior_animal/roach/benzin))
 			var/mob/living/carbon/superior_animal/roach/benzin/B = O
 			if(B.stat != DEAD)
@@ -908,6 +921,7 @@
 					to_chat(user, SPAN_NOTICE("[src] refueled"))
 					playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
+*/
 		if(switched_on)
 			var/turf/location = get_turf(user)
 			if(isliving(O))
@@ -1084,7 +1098,8 @@
 							QUALITY_SHOVELING = 100,
 							QUALITY_DIGGING = 100,
 							QUALITY_EXCAVATION = 100,
-							QUALITY_CUTTING = 100)
+							QUALITY_CUTTING = 100,
+							QUALITY_HAMMERING = 100)
 
 #undef ADDITIONAL_TIME_LOWHEALTH
 
@@ -1098,4 +1113,4 @@
 /obj/item/tool/ui_action_click(mob/living/user, action_name)
 	switch(action_name)
 		if("Tool information")
-			ui_interact(user)
+			nano_ui_interact(user)

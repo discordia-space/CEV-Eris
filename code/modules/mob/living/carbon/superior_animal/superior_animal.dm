@@ -50,7 +50,7 @@
 	var/max_bodytemperature = 360 //above this, burn damage is dealt
 
 	var/deathmessage = "dies."
-	var/attacktext = "bitten"
+	var/list/attacktext = list("bitten", "chewed", "nibbled on")
 	var/attack_sound = 'sound/weapons/spiderlunge.ogg'
 	var/attack_sound_chance = 33
 	var/attack_sound_volume = 20
@@ -62,6 +62,7 @@
 	var/melee_damage_upper = 10
 	var/melee_sharp = FALSE //whether mob attacks have sharp property
 	var/melee_edge = FALSE //whether mob attacks have edge property
+	var/wound_mult = 1
 
 	var/list/objectsInView //memoization for getObjectsInView()
 	var/viewRange = 7 //how far the mob AI can see
@@ -127,7 +128,7 @@
 		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
 
 	.=..()
-	
+
 	if (mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
 		if (prob(extra_burrow_chance))
@@ -135,7 +136,10 @@
 
 /mob/living/carbon/superior_animal/Destroy()
 	GLOB.superior_animal_list -= src
-	. = ..()
+	target_mob = null
+	LAZYCLEARLIST(objectsInView)
+	LAZYCLEARLIST(friends)
+	return ..()
 
 /mob/living/carbon/superior_animal/u_equip(obj/item/W)
 	return
@@ -284,7 +288,7 @@
 	weakened = max(weakened-3,0)
 
 /mob/living/carbon/superior_animal/proc/handle_cheap_regular_status_updates()
-	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
+	health = maxHealth - oxyloss - toxloss - fireloss - bruteloss - cloneloss - halloss
 	if(health <= 0 && stat != DEAD)
 		death()
 		// STOP_PROCESSING(SSmobs, src) This is handled in Superior animal Life().
@@ -327,6 +331,7 @@
 	handle_fire(environment.gas["oxygen"], loc)
 	handle_regular_hud_updates()
 	handle_cheap_chemicals_in_body()
+	resting = (resting && client) ? TRUE : FALSE
 	if(!(ticks_processed%3))
 		// handle_status_effects() this is handled here directly to save a bit on procedure calls
 		paralysis = max(paralysis-3,0)
@@ -364,3 +369,8 @@
 
 /mob/living/carbon/superior_animal/getarmor(def_zone, type)
 	return armor.getRating(type)
+
+/mob/living/carbon/superior_animal/CanPass(atom/mover)
+	if(istype(mover, /obj/item/projectile))
+		return stat ? TRUE : FALSE
+	. = ..()

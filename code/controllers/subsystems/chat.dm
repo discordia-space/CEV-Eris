@@ -8,6 +8,11 @@ SUBSYSTEM_DEF(chat)
 	var/list/payload = list()
 
 
+/datum/controller/subsystem/chat/Initialize()
+	. = ..()
+	initialize_text_to_speech()
+
+
 /datum/controller/subsystem/chat/fire()
 	for(var/i in payload)
 		var/client/C = i

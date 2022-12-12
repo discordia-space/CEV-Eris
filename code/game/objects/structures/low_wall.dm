@@ -44,6 +44,7 @@
 /obj/structure/low_wall/onestar
 	wall_color = "#FFFFFF"
 	icon_state = "onestar"
+	name = "One Star low wall"
 
 
 
@@ -156,11 +157,9 @@
 	if(get_dist(loc, P.trajectory.target) > 1 ) // Target turf must be adjacent for it to count as cover
 		return TRUE
 	var/valid = FALSE
-	var/distance = get_dist(P.last_interact,loc)
 
 	if(!P.def_zone)
 		return 1 // Emitters, or anything with no targeted bodypart will always bypass the cover
-	P.check_hit_zone(loc, distance)
 	var/targetzone = check_zone(P.def_zone)
 	if (targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
 		valid = TRUE //The lower body is always concealed

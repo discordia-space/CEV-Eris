@@ -172,9 +172,9 @@
 	alpha = 255
 
 	switch(dir)
-		if(SOUTH || NORTH)
+		if(SOUTH, NORTH)
 			initialize_directions = SOUTH|NORTH
-		if(EAST || WEST)
+		if(EAST, WEST)
 			initialize_directions = EAST|WEST
 		if(NORTHEAST)
 			initialize_directions = NORTH|EAST
@@ -1166,6 +1166,7 @@
 
 /obj/machinery/atmospherics/pipe/tank/plasma
 	name = "Pressure Tank (Plasma)"
+	description_antag = "Will blind people if they do not wear face-covering gear"
 	icon_state = "plasma_map"
 
 /obj/machinery/atmospherics/pipe/tank/plasma/New()

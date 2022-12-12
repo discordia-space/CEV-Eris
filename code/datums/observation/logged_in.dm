@@ -11,11 +11,3 @@ GLOBAL_DATUM_INIT(logged_in_event, /decl/observ/logged_in, new)
 /decl/observ/logged_in
 	name = "Logged In"
 	expected_type = /mob
-
-/*****************
-* Login Handling *
-*****************/
-
-/mob/Login()
-	..()
-	GLOB.logged_in_event.raise_event(src)

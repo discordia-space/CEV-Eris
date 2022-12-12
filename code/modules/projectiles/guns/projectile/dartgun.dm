@@ -42,7 +42,7 @@
 	ammo_states = list(1, 2, 3, 4, 5)
 
 /obj/item/gun/projectile/dartgun
-	name = "Z-H P Artemis"
+	name = "Z-H P \"Artemis\""
 	desc = "Zeng-Hu Pharmaceutical's entry into the arms market, the Z-H P Artemis is a gas-powered dart gun capable of delivering chemical cocktails swiftly across short distances."
 	icon = 'icons/obj/guns/projectile/dartgun.dmi'
 	icon_state = "dartgun-empty"
@@ -51,7 +51,7 @@
 	fire_sound_text = "a metallic click"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 	gun_parts = list(/obj/item/stack/material/steel = 15 ,/obj/item/stack/material/plastic = 2)
-	recoil_buildup = 0
+	init_recoil = SMG_RECOIL(1)
 	silenced = TRUE
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/chemdart

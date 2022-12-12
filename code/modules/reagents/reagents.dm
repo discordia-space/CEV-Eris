@@ -83,7 +83,7 @@
 				removed = CLAMP(metabolism * volume/(overdose/2) * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
 			else
 				removed = CLAMP(metabolism * volume/(REAGENTS_OVERDOSE/2) * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
-	removed = round(removed, 0.01)
+	removed = max(round(removed, 0.01), 0.05)
 	removed = min(removed, volume)
 
 	return removed
@@ -107,7 +107,7 @@
 				removed = CLAMP(metabolism * volume/(overdose/2) * consumer.get_blood_circulation()/100 * calculated_buff, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
 			else
 				removed = CLAMP(metabolism * volume/(REAGENTS_OVERDOSE/2) * consumer.get_blood_circulation()/100 * calculated_buff, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
-	removed = round(removed, 0.01)
+	removed = max(round(removed, 0.01), 0.05)
 	removed = min(removed, volume)
 
 	return removed

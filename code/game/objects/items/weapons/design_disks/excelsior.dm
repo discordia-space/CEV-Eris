@@ -29,6 +29,7 @@
 		/datum/design/autolathe/part/igniter,						//regular parts
 		/datum/design/autolathe/part/signaler,
 		/datum/design/autolathe/part/sensor_prox,
+		/datum/design/autolathe/part/consolescreen,
 		/datum/design/autolathe/cell/large/excelsior,				//power cells
 		/datum/design/autolathe/cell/medium/excelsior,
 		/datum/design/autolathe/cell/small/excelsior,
@@ -36,6 +37,9 @@
 		/datum/design/autolathe/prosthesis/excelsior/r_arm,
 		/datum/design/autolathe/prosthesis/excelsior/l_leg,
 		/datum/design/autolathe/prosthesis/excelsior/r_leg,
+		/datum/design/autolathe/prosthesis/excelsior/groin,
+		/datum/design/autolathe/prosthesis/excelsior/chest,
+		/datum/design/autolathe/prosthesis/excelsior/head,
 		/datum/design/autolathe/device/implanter,					//misc
 		/datum/design/autolathe/device/propaganda_chip,
 		/datum/design/autolathe/container/ammocan_excel

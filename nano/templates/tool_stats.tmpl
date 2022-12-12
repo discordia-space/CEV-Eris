@@ -1,4 +1,4 @@
-<!-- 
+<!--
 
  -->
 <div class="item">
@@ -11,7 +11,7 @@
 			<div class="itemContent">
 				{{for data.tool_qualities}}
 					<div>
-						{{:value.name}}: 
+						{{:value.name}}:
 						{{:helper.displayBar(value.number, 0, 100, null, value.number)}}
 					</div>
 				{{/for}}
@@ -43,7 +43,7 @@
 		<div class="itemContent">
 			{{:helper.displayBar(data.workspeed, 0, data.workspeed_max, data.workspeed_state, data.workspeed)}}
 		</div>
-		
+
 		{{if data.use_power_cost}}
 			<h4>Power:</h4>
 			{{if data.cell_charge}}
@@ -91,12 +91,12 @@
 		<div class="itemContent">
 			{{:helper.displayBar(data.force, 0, data.force_max, '', data.force)}}
 		</div>
-	
+
 		<div class="itemLabel">
 			Armor penetration:
 		</div>
 		<div class="itemContent">
-			{{:data.armor_penetration}}
+			{{:data.armor_divisor}}
 		</div>
 
 		{{if data.extra_volume}}
@@ -106,6 +106,61 @@
 			<div class="itemContent">
 				{{:data.extra_volume}}u
 			</div>
+		{{/if}}
+
+		<h4>Unique properties:</h4>
+
+		{{if data.extended_reach}}
+			<div class="itemLabel">
+				Range on wield:
+			</div>
+			<div class="itemContent">
+				2 tile radius (Swing excluded)
+			</div>
+		{{/if}}
+
+		{{if data.w_class > 2}}
+			<div class="itemLabel">
+				Harm intent and wielded:
+			</div>
+			<div class="itemContent">
+				Swing
+			</div>
+		{{/if}}
+
+		{{if data.screen_shake}}
+			<div class="itemLabel">
+				Hit effects on wield:
+			</div>
+			<div class="itemContent">
+				Screen shake
+			</div>
+		{{/if}}
+
+		{{if data.push_attack}}
+			<div class="itemLabel">
+				Aiming groin on disarm intent:
+			</div>
+			<div class="itemContent">
+				Push target one tile away
+			</div>
+		{{/if}}
+
+		{{if data.sharp && data.edge}}
+			{{if data.forced_broad_strike}}
+				<h5>Forced broad strike</h5>
+			{{else}}
+				<div class="itemLabel">
+					Disarm intent:
+				</div>
+				<div class="itemContent">
+					Broad strike
+				</div>
+			{{/if}}
+		{{/if}}
+
+		{{if data.w_class > 3}} 
+			<h5>Double tact</h5>
 		{{/if}}
 	</div>
 </div>

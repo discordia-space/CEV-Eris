@@ -18,7 +18,10 @@
 /turf/simulated/floor/wood,
 /area/crawler)
 "f" = (
-/obj/structure/undies_wardrobe,
+/obj/structure/closet/onestar/tier3,
+/obj/spawner/cloth/onestar,
+/obj/spawner/cloth/onestar/low_chance,
+/obj/spawner/cloth/onestar/low_chance,
 /turf/simulated/floor/wood,
 /area/crawler)
 "g" = (
@@ -72,6 +75,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/spawner/gun/onestar,
 /turf/simulated/floor/wood,
 /area/crawler)
 "r" = (
@@ -82,11 +86,13 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/spawner/gun/onestar/low_chance,
 /turf/simulated/floor/wood,
 /area/crawler)
 "s" = (
-/obj/structure/closet/onestar/tier3,
-/turf/simulated/floor/wood,
+/obj/structure/table/onestar,
+/obj/item/clothing/head/onestar,
+/turf/simulated/floor/carpet/bcarpet,
 /area/crawler)
 "t" = (
 /obj/machinery/door/airlock/centcom,
@@ -161,6 +167,21 @@
 	},
 /turf/simulated/floor/tiled/cafe,
 /area/crawler)
+"J" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"Y" = (
+/obj/structure/table/rack,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/spawner/gun/onestar/low_chance,
+/turf/simulated/floor/wood,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -198,7 +219,7 @@ a
 (4,1,1) = {"
 a
 g
-s
+c
 c
 c
 a
@@ -234,7 +255,7 @@ c
 c
 C
 E
-k
+s
 c
 r
 b
@@ -247,7 +268,7 @@ k
 k
 k
 c
-q
+Y
 b
 "}
 (9,1,1) = {"
@@ -289,7 +310,7 @@ l
 z
 m
 m
-m
+J
 z
 l
 a

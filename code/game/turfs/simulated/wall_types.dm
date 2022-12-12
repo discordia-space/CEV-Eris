@@ -1,5 +1,6 @@
 /turf/simulated/wall/r_wall
 	icon_state = "rgeneric"
+	description_info = "Can be deconstructed by following these steps \n Use a cutting tool on the wall \n Use a screw-driving tool on the wall \n Use a welder \n Use a wrench \n Use a welder \n Pry off the outer shell"
 
 /turf/simulated/wall/r_wall/New(var/newloc)
 	..(newloc, MATERIAL_PLASTEEL, MATERIAL_PLASTEEL) //3strong

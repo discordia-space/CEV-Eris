@@ -48,11 +48,27 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 		return
 	var/list/affected = list()
 	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-		if (H.z == src.z && get_dist(src, H) <= area_radius)
+		if(H.z == z && get_dist(src, H) <= area_radius && inLineOfSight(x, y, H.x, H.y, z))
 			affected.Add(H)
+	var/list/currently_copied = currently_affected.Copy()
+	for(var/mob/living/carbon/human/H in affected)
+		if(H in krabin_linked)
+			var/obj/item/device/von_krabin/von_crabbin = locate(/obj/item/device/von_krabin) in GLOB.all_faction_items
+			if(von_crabbin)
+				currently_affected.Add(H)
+				von_crabbin.recalculate_buff(TRUE, H)
+				von_crabbin.notify(H)
+	currently_copied -= affected
+	for(var/mob/living/carbon/human/H in currently_copied)
+		if(H in krabin_linked)
+			var/obj/item/device/von_krabin/von_crabbin = locate(/obj/item/device/von_krabin) in GLOB.all_faction_items
+			if(von_crabbin)
+				currently_affected.Remove(H)
+				von_crabbin.recalculate_buff(FALSE, H)
+				von_crabbin.was_notified -= H
+
+
 	active = check_for_faithful(affected)
-
-
 
 	if(force_active > 0)
 		active = TRUE
@@ -115,6 +131,8 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 	for(var/i in no_longer_affected)
 		var/mob/living/carbon/human/H = i
 		H.stats.removePerk(/datum/perk/active_sanityboost)
+
+
 	currently_affected -= no_longer_affected
 	for(var/mob/living/carbon/human/mob in affected)
 		var/obj/item/implant/core_implant/I = mob.get_core_implant(/obj/item/implant/core_implant/cruciform)
@@ -122,11 +140,12 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 			eotp.scanned |= mob
 			if(I && I.active && I.wearer)
 				eotp.addObservation(20)
-			else if(mob.mutation_index > 2 && !get_active_mutation(mob, MUTATION_ATHEIST) && !get_active_mutation(mob, MUTATION_GODBLOOD))
-				mob.adjustFireLoss(mob.mutation_index)
+			else if(mob.mutation_index > 4 && !get_active_mutation(mob, MUTATION_ATHEIST) && !get_active_mutation(mob, MUTATION_GODBLOOD))
+				var/mutation_damage = mob.mutation_index / 2
+				mob.adjustFireLoss(mutation_damage)
 				eotp.removeObservation(15)
-				if(mob.mutation_index > 5)
-					mob.adjustFireLoss(mob.mutation_index * 2)
+				if(mob.mutation_index > 9)
+					mob.adjustFireLoss(mutation_damage * 2)
 					mob.sanity.changeLevel(-1)
 				if(prob(10))
 					to_chat(mob, SPAN_WARNING("You feel uncomfortable being around [src]."))

@@ -15,8 +15,8 @@
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_WOOD = 8, MATERIAL_SILVER = 10)
 	price_tag = 3000
 	projectile_type = /obj/item/projectile/ion
-	one_hand_penalty = 5
 	twohanded = TRUE
+	init_recoil = LMG_RECOIL(1)
 	serial_type = "NT"
 
 /obj/item/gun/energy/ionrifle/emp_act(severity)

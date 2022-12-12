@@ -138,13 +138,27 @@
 /area/crawler)
 "A" = (
 /obj/structure/table/rack,
-/obj/spawner/gun/shotgun,
+/obj/spawner/gun/onestar,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "B" = (
 /obj/structure/table/rack,
 /obj/spawner/gun/shotgun/low_chance,
-/obj/spawner/gun/energy_cheap/low_chance,
+/obj/spawner/gun/onestar/low_chance,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"L" = (
+/obj/structure/table/onestar,
+/obj/spawner/gun/onestar/low_chance,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"U" = (
+/mob/living/carbon/superior_animal/stalker,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"X" = (
+/obj/structure/table/onestar,
+/obj/spawner/gun/onestar,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 
@@ -163,9 +177,9 @@ a
 a
 c
 f
-k
+L
 a
-w
+A
 p
 w
 a
@@ -174,10 +188,10 @@ a
 a
 d
 f
-k
+L
 a
 x
-f
+U
 A
 a
 "}
@@ -185,7 +199,7 @@ a
 a
 u
 f
-k
+L
 a
 a
 q
@@ -218,7 +232,7 @@ s
 s
 t
 o
-o
+b
 a
 t
 b
@@ -262,10 +276,10 @@ a
 a
 v
 f
-k
+L
 a
 y
-f
+U
 B
 a
 "}
@@ -273,7 +287,7 @@ a
 a
 c
 f
-k
+X
 a
 z
 r

@@ -47,7 +47,7 @@
 	w_class = ITEM_SIZE_SMALL
 	sharp = TRUE
 	edge = TRUE
-	armor_penetration = ARMOR_PEN_SHALLOW
+	armor_divisor = ARMOR_PEN_SHALLOW
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -61,16 +61,16 @@
 	wielded_icon = "fireaxe1"
 	sharp = TRUE
 	edge = TRUE
-	armor_penetration = ARMOR_PEN_MODERATE
+	armor_divisor = ARMOR_PEN_DEEP
 	tool_qualities = list(QUALITY_CUTTING = 10, QUALITY_PRYING = 20)
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	force = WEAPON_FORCE_NORMAL
-	force_wielded_multiplier = 3.3
+	force_wielded_multiplier = 3.4
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
-	embed_mult = 1 //Axes cut deep, and their hooked shape catches on things
+	embed_mult = 1.2 //Axes cut deep, and their hooked shape catches on things
 	rarity_value = 48
 
 /obj/item/tool/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity)
@@ -128,7 +128,7 @@
 	slot_flags = SLOT_BELT | SLOT_BACK
 	worksound = WORKSOUND_HARD_SLASH
 	force = WEAPON_FORCE_ROBUST
-	armor_penetration = ARMOR_PEN_DEEP
+	armor_divisor = ARMOR_PEN_DEEP
 
 	throwforce = WEAPON_FORCE_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -147,7 +147,7 @@
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_WOOD = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 1)
 	slot_flags = SLOT_BELT
 	force = WEAPON_FORCE_BRUTAL
-	armor_penetration = ARMOR_PEN_MODERATE
+	armor_divisor = ARMOR_PEN_MODERATE
 	spawn_blacklisted = TRUE
 	price_tag = 10000
 
@@ -156,7 +156,7 @@
 	desc = "Hack and slash!"
 	icon_state = "msword"
 	item_state = "msword"
-	armor_penetration = ARMOR_PEN_MODERATE
+	armor_divisor = ARMOR_PEN_MODERATE
 	tool_qualities = list(QUALITY_CUTTING = 15) // a little better than the regular swords.
 	degradation = 1.5 //not quite as sturdy as a normal weapon
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
@@ -170,7 +170,7 @@
 	item_state = "katana"
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
 	force = WEAPON_FORCE_DANGEROUS * 1.5
-	armor_penetration = ARMOR_PEN_MODERATE
+	armor_divisor = ARMOR_PEN_MODERATE
 	rarity_value = 35
 
 /obj/item/tool/sword/katana/nano

@@ -1,0 +1,145 @@
+2021-07-02:
+  Herbaon:
+  - bugfix: fixed zombiepowder permanent paralysis
+  Hyperio:
+  - bugfix: Fix glitched power cables in guild lobby
+  drexample:
+  - rscdel: Redundant fluid subsystem
+2021-07-03:
+  Chickenish:
+  - refactor: refactored some body scanner code, this should also make it look cleaner.
+  Code - Wouju, Sprites - InfraredBaron:
+  - rscadd: Added new stylish clothing in a stylish vendor in a stylish place
+  - imageadd: added new stylish icons for stylish clothes that are contained within
+      a stylish vendor
+  Hyperio:
+  - rscadd: Add style vendor to Eris map
+  Sparrowbird611:
+  - rscadd: Adds the mindflayer to the moebius research printer, in place of the nuclear
+      laser. It can still rarely be found in maintenance.
+  Wouju:
+  - bugfix: fixed some new jumpsuits not showing up properly
+  zombiemimic:
+  - rscadd: Added Onestar Guns
+2021-07-10:
+  Chickenish:
+  - rscadd: You can now reinforce railings, which means that they block projectiles
+      and roaches, along with some extra health.
+  - rscadd: a roach's friend can now wrangle them for uneventful transport.
+  - rscadd: Gestrahlte roaches are now ranged attackers, and their bile is radioactive.
+  - rscadd: grown up roachlings and nanoroach swarms now inherit their friends lists.
+  - rscdel: Roaches no longer spawn roach cubes with their presence, sorry.
+  - tweak: roaches no longer bite you immediately after you get the message that they
+      hesitate.
+  - balance: roaches now lay more eggs, except for when they ate a roachling or kampfer
+      corpse, then just one.
+  - balance: roaches now take much less time to eat roaches or spiders.
+  - bugfix: roaches no longer try to lay all the eggs at once.
+  - bugfix: roach eggs now fit in containers.
+  - imageadd: added reinforced railing icons.
+  - spellcheck: Limb examination used to say "unusaly pale" for oxyloss, now it says
+      "unusually pale".
+  - refactor: refactored a bit of roach code, along with changing an atom/New() override
+      to init_light().
+  Firefox13:
+  - bugfix: Clothing from style vendor now appears on females
+  - bugfix: Chest rig now appears on females
+  - rscdel: All old bio suits were replaced by default bio suit. There were no differences
+      at all except the sprites.
+  - bugfix: Scavenger armor now covers arms and legs as intended
+  - tweak: Scavenger armor is now scavenger armor
+  Jackofashepard:
+  - tweak: mead now uses honey instead of sugar
+  TheShown911:
+  - rscadd: added new IH background
+  zombiemimic:
+  - rscadd: Added improvised multitool implant
+  - rscadd: Added armor plates accessory
+2021-07-16:
+  AlexMorgan3817:
+  - bugfix: Now markup of prices in trade stations is real.
+2021-07-17:
+  Alliostra:
+  - rscadd: Added the NT pilum, printable from the general melee disk
+  - tweak: reworked the scourge to have a weak agony-inducing mode and a strong armor-piercing
+      mode.
+  - balance: rebalanced most NT melee weapons
+  - tweak: the NT shield can no store some NT melee weapons.
+  - tweak: the sheath now fits onto the suit slot.
+  - tweak: NT weapons are less likely to embed when used by someone with a cruciform
+  - tweak: the Sword of truth special attack now causes a stat decrease for some time.
+  - tweak: the NT belts can now hold more NT-related items
+  - bugfix: the fireaxe and hammers will now properly factor in toolmods into their
+      damage calculation.
+  Chickenish:
+  - tweak: Body Scanners now display organs before the applicable limb and damaged
+      organs will make the limb it's in be shown.
+  Herbaon:
+  - rscadd: Added more trade stations/beacons, making exploration and roundstart beacons
+      more useful.
+  - bugfix: fixes placeholder text in stations.
+  zombiemimic:
+  - rscadd: Added Asters Enforcement armor pack
+  - rscadd: Added gold paint and scaramanga disk
+  - code_imp: reformatted some contraband in vendors
+  - rscadd: Added ghost roles
+  - rscadd: Added prison hulk, in which prisoners must escape their prison ship's
+      wreck
+2021-07-18:
+  drexample:
+  - rscdel: Removed prison hulk
+2021-07-23:
+  Wouju:
+  - bugfix: fixed hiveborn perk showing up on non-hivecore oddities
+  zombiemimic:
+  - rscadd: Added more cigarettes to cigarette vendor
+  - rscadd: gave lit cigarettes/cigars cauterizing quality
+2021-07-24:
+  Chickenish:
+  - refactor: refactored some body scanner code, this should also make it look cleaner.
+  - rscdel: 'code: obj/item/weapon is gone.'
+  - config: gitignore now has ./tools/ instead of tools/
+  Code - Wouju, Sprites - InfraredBaron:
+  - rscadd: Added new stylish clothing in a stylish vendor in a stylish place
+  - imageadd: added new stylish icons for stylish clothes that are contained within
+      a stylish vendor
+  Hatterhat:
+  - rscadd: The ore processing console now has a button that lets you set how many
+      sheets it can process per processing cycle. Maximum 60 sheets per tick.
+  Hyperio:
+  - rscadd: Add style vendor to Eris map
+  SirRichardFrancis:
+  - rscadd: Biocoded trigger gunmod
+  - tweak: Cop Lock now cannot be removed instantly
+  - imageadd: sprite for dna lock trigger, same as danger zone, but blue
+  - rscadd: two types of NT-branded cells, that cannot be recharged
+  - imageadd: sprites for neoteo cells
+  Sparrowbird611:
+  - rscadd: Adds the mindflayer to the moebius research printer, in place of the nuclear
+      laser. It can still rarely be found in maintenance.
+  Wouju:
+  - bugfix: fixed some new jumpsuits not showing up properly
+  sl0w3st:
+  - bugfix: Fix for handheld shields
+  zombiemimic:
+  - rscadd: Added Onestar Guns
+2021-07-30:
+  Medcar:
+  - bugfix: Fixed the wrong visor down sprite for asters riot helmet
+2021-07-31:
+  SirRichardFrancis:
+  - rscadd: Iriska the cat
+  - bugfix: Bones should no longer hiss in dead chat
+  - imageadd: Iriska sprites by Bloodpriest
+  - bugfix: empty disk no longer appearing in EOTP
+  - bugfix: Iriska curse
+  Wouju:
+  - tweak: tweaked Von-Krabin Stimulator stat increase to 15 (from 5)
+  zombiemimic:
+  - rscadd: Added scrap magazines
+  - rscadd: added shotgun shell boxes
+  - rscadd: ammo kits are now craftable
+  - tweak: ammo kits now create magazines
+  - rscadd: added Colt, Spider Rose, Double Barrel, and Regulator to vendors
+  - tweak: tweaked prices for Colt, Boltgun, Spider Rose, Martin, Molly, Clarissa,
+      Cog, Havelock, and MK58

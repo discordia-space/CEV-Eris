@@ -97,6 +97,9 @@
 //Lets remove ourselves from the global list and cleanup any held references
 /obj/structure/burrow/Destroy()
 	GLOB.all_burrows.Remove(src)
+	populated_burrows -= src
+	unpopulated_burrows -= src
+	distressed_burrows -= src
 	target = null
 	recieving = null
 	//Eject any mobs that tunnelled through us
@@ -104,9 +107,9 @@
 		if (a.loc == src)
 			a.forceMove(loc)
 	population = list()
-	plantspread_burrows = list()
+	plantspread_burrows = list()	// Other burrows may still hold a reference to this burrow after it qdels
 	plant = null
-	.=..()
+	return ..()
 
 //This is called from the migration subsystem. It scans for nearby creatures
 //Any kind of simple or superior animal is valid, all of them are treated as population for this burrow
@@ -644,8 +647,15 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		if(locate(/obj/effect/plant) in loc)
 			return
 
-		if(!hive_mind_ai || !hive_mind_ai.hives.len || maintenance)
+		if(!hive_mind_ai || !hive_mind_ai.hives.len || maintenance || !GLOB.hive_data_bool["spread_trough_burrows"])
 			return
+
+		var/area/A = get_area(src)
+		if(!(A.name in GLOB.hivemind_areas))
+			if(!GLOB.hive_data_float["maximum_controlled_areas"] || GLOB.hivemind_areas.len < GLOB.hive_data_float["maximum_controlled_areas"])
+				GLOB.hivemind_areas.Add(A.name)
+			else
+				return
 
 		break_open()
 		var/obj/machinery/hivemind_machine/node/hivemind_node = pick(hive_mind_ai.hives)

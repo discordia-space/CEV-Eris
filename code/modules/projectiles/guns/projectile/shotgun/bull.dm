@@ -1,7 +1,7 @@
 /obj/item/gun/projectile/shotgun/bull
 	name = "FS SG \"Bull\""
 	desc = "A \"Frozen Star\" double-barreled pump-action shotgun. Marvel of engineering, this gun is often used by Ironhammer tactical units. \
-			Due to shorter than usual barrels, damage are somewhat lower and recoil kicks slightly harder, but possibility to fire two barrels at once overshadows all bad design flaws."
+			Due to shorter than usual barrels, damage are somewhat lower and recoil kicks slightly harder, but possibility to fire two barrels at once overshadows all bad design flaws. Can hold up to 7+2 shells."
 	icon = 'icons/obj/guns/projectile/bull.dmi'
 	icon_state = "bull"
 	item_state = "bull"
@@ -17,12 +17,11 @@
 	var/reload = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
-	damage_multiplier = 0.75
-	penetration_multiplier = 0.75
-	recoil_buildup = 7
-	one_hand_penalty = 10 //compact shotgun level
+	damage_multiplier = 0.8
+	penetration_multiplier = 0.1
+	init_recoil = CARBINE_RECOIL(1.5)
 	burst_delay = null
-	fire_delay = null
+	fire_delay = 4
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	move_delay = null
@@ -110,7 +109,7 @@
 	name = "Bull frame"
 	desc = "A Bull shotgun frame. Double-barrel and pump action, through a miracle of engineering."
 	icon_state = "frame_bull"
-	result = /obj/item/gun/projectile/shotgun/bull
-	grip = /obj/item/part/gun/grip/rubber
-	mechanism = /obj/item/part/gun/mechanism/shotgun
-	barrel = /obj/item/part/gun/barrel/shotgun
+	resultvars = list(/obj/item/gun/projectile/shotgun/bull)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
+	mechanismvar = /obj/item/part/gun/mechanism/shotgun
+	barrelvars = list(/obj/item/part/gun/barrel/shotgun)

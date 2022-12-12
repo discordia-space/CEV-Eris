@@ -2,21 +2,23 @@
 	name_pool = list(
 		"NTV \'Faith\'" = "NeoTheology Vessel \'Faith\': \"The most holy purveyors of ecclesiarchic goods!\"",
 	)
-	icon_states = "nt_cruiser"
+	icon_states = list("nt_frigate", "ship")
 	uid = "nt_basic"
+	tree_x = 0.26
+	tree_y = 0.9
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = WHOLESALE_GOODS
 	base_income = 1600
 	wealth = 0
-	hidden_inv_threshold = 2000
+	hidden_inv_threshold = 3000
 	recommendation_threshold = 4000
-	stations_recommended = list("nt_uncommon")
+	stations_recommended = list("botany")
 	inventory = list(
 		"Biomatter Products" = list(
-			/obj/item/reagent_containers/food/snacks/meat,
-			/obj/item/reagent_containers/food/drinks/milk,
-			/obj/item/soap/nanotrasen,
+			/obj/item/reagent_containers/food/snacks/meat = custom_good_price(100),
+			/obj/item/reagent_containers/food/drinks/milk = custom_good_price(50),
+			/obj/item/soap/nanotrasen = custom_good_price(100),
 			/obj/item/storage/pouch/medical_supply,
 			/obj/item/storage/pouch/engineering_tools,
 			/obj/item/storage/pouch/engineering_supply,
@@ -25,17 +27,18 @@
 			/obj/item/storage/pouch/tubular/vial,
 			/obj/item/storage/pouch/ammo,
 			/obj/item/clothing/accessory/holster,
-			/obj/item/clothing/accessory/holster/armpit,
-			/obj/item/clothing/accessory/holster/waist,
-			/obj/item/clothing/accessory/holster/hip
+			/obj/item/storage/pouch/holster,
+			/obj/item/storage/pouch/holster/baton,
+			/obj/item/storage/pouch/holster/belt,
+			/obj/item/storage/pouch/holster/belt/sheath
 		),
 		"Agro Supply" = list(
 			/obj/machinery/vending/hydroseeds,
-			/obj/structure/largecrate/animal/corgi,
-			/obj/structure/largecrate/animal/cow,
-			/obj/structure/largecrate/animal/goat,
-			/obj/structure/largecrate/animal/cat,
-			/obj/structure/largecrate/animal/chick,
+			/obj/structure/largecrate/animal/corgi = custom_good_price(500),
+			/obj/structure/largecrate/animal/cow = custom_good_price(1000),
+			/obj/structure/largecrate/animal/goat = custom_good_price(300),
+			/obj/structure/largecrate/animal/cat = custom_good_price(500),
+			/obj/structure/largecrate/animal/chick = custom_good_price(100),
 			/obj/item/reagent_containers/spray/plantbgone,
 			/obj/item/reagent_containers/glass/bottle/ammonia,
 			/obj/item/tool/hatchet,
@@ -55,10 +58,25 @@
 			/obj/item/grenade/chem_grenade/cleaner/nt_cleaner,
 			/obj/item/grenade/chem_grenade/antiweed/nt_antiweed,
 			/obj/structure/mopbucket,		
-			/obj/structure/janitorialcart
+			/obj/structure/janitorialcart,
+			/obj/item/holyvacuum
 		)
 	)
 	hidden_inventory = list(
+		"Energy Weapons" = list(
+			/obj/item/gun/energy/taser,
+			/obj/item/gun/energy/nt_svalinn
+		),
+		"Ballistic Weapons" = list(
+			/obj/item/gun/projectile/mk58,
+			/obj/item/gun/projectile/mk58/wood,
+			/obj/item/gun/projectile/shotgun/pump/regulator
+		),
+		"Neotheology Cells" = list(
+			/obj/item/cell/small/neotheology,
+			/obj/item/cell/medium/neotheology,
+			/obj/item/cell/large/neotheology
+		),
 		"Curious Seeds" = list(
 			/obj/item/seeds/greengrapeseed = good_data("green grape seeds", list(1,3), null),
 			/obj/item/seeds/icepepperseed = good_data("ice-pepper seeds", list(1,3), null),
@@ -69,7 +87,7 @@
 			/obj/item/seeds/bloodtomatoseed = good_data("blood tomato seeds", list(1,3), null),
 			/obj/item/seeds/killertomatoseed = good_data("killer tomato seeds", list(1,3), null),
 			/obj/item/seeds/bluetomatoseed = good_data("blue tomato seeds", list(1,3), null),
-			/obj/item/seeds/bluespacetomatoseed = good_data("blusepace tomato seeds", list(1,3), null),
+			/obj/item/seeds/bluespacetomatoseed = good_data("bluespace tomato seeds", list(1,3), null),
 			/obj/item/seeds/poisonedappleseed = good_data("poison apple seeds", list(1,3), null),
 			/obj/item/seeds/goldappleseed = good_data("golden apple seeds", list(1,3), null),
 			/obj/item/seeds/ambrosiadeusseed = good_data("ambrosia deus seeds", list(1,3), null),
@@ -78,9 +96,14 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/implant/core_implant/cruciform = offer_data("cruciform", 2500, 3),
+		/obj/item/tool_upgrade/augment/sanctifier = offer_data("NT 'Sanctifier' tool blessing", 200, 0),
+		/obj/item/gun_upgrade/barrel/excruciator = offer_data("NT \"EXCRUCIATOR\" giga lens", 500, 0),
+		/obj/item/oddity/common/towel = offer_data("trustworthy towel", 500, 1),
+		/obj/item/cruciform_upgrade = offer_data("cruciform upgrade", 1600, 0),
 		/obj/item/book/ritual/cruciform = offer_data("Neotheology ritual book", 1800, 1),
-		/obj/item/cruciform_upgrade = offer_data("cruciform upgrade", 900, 5),
-		/obj/item/tool_upgrade/augment/sanctifier = offer_data("NT 'Sanctifier' tool blessing", 250, 8),
-		/obj/item/oddity/common/towel = offer_data("trustworthy towel", 500, 1)
+		/obj/item/implant/core_implant/cruciform = offer_data("cruciform", 2500, 3),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/medicii = offer_data("NeoTheology Armory - \"Medicii Supplies\"", 2000, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/nt_lightfall = offer_data("NeoTheology Armory - Lightfall Laser Gun", 2500, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/grenades = offer_data("NeoTheology Armory - Grenades Pack", 2500, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/triarii = offer_data("NeoTheology Armory - \"Triarii Arms\"", 8000, 1)
 	)

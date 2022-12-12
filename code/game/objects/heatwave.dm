@@ -1,4 +1,4 @@
-proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, penetration, log=FALSE)
+proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, penetration = 1, log=FALSE)
 	if(!epicenter) return
 
 	if(!istype(epicenter, /turf))
@@ -15,8 +15,8 @@ proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, pen
 
 	if(heavy_range > light_range)
 		light_range = heavy_range
-	
-	for(var/atom/T in range(heavy_range, epicenter))
+
+	for(var/atom/T in range(light_range, epicenter))
 		if(fire_stacks)
 			T.fire_act()
 		if(istype(T, /mob/living))
@@ -30,7 +30,7 @@ proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, pen
 				distance = 0
 			if(distance <= heavy_range)
 				burn_damage = damage
-			else if(distance <= light_range)
+			else
 				burn_damage = damage * 0.5
 
 			if(burn_damage && L.stat == CONSCIOUS)
@@ -41,5 +41,5 @@ proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, pen
 			while (burn_damage > 0)
 				burn_damage -= loc_damage = rand(1, burn_damage)
 				L.damage_through_armor(loc_damage, BURN, organ_hit, ARMOR_ENERGY, penetration)
-				organ_hit = pickweight(list(BP_HEAD = 0.2, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG = 0.1, BP_L_LEG = 0.1))  //We determine some other body parts that should be hit
+				organ_hit = ran_zone()  //We determine next body parts that should be hit
 	return 1

@@ -258,13 +258,7 @@
 					linked_account.money += transaction_amount
 
 					// Create log entry in client's account
-					var/datum/transaction/T = new()
-					T.target_name = "[linked_account.owner_name]"
-					T.purpose = transaction_purpose
-					T.amount = "([transaction_amount])"
-					T.source_terminal = machine_id
-					T.date = current_date_string
-					T.time = stationtime2text()
+					var/datum/transaction/T = new(transaction_amount, linked_account.owner_name, transaction_purpose, machine_id, current_date_string, stationtime2text())
 					D.transaction_log.Add(T)
 
 					// Create log entry in owner's account
@@ -306,13 +300,7 @@
 			linked_account.money += transaction_amount
 
 			// Create log entry in owner's account
-			var/datum/transaction/T = new()
-			T.target_name = E.owner_name
-			T.purpose = transaction_purpose
-			T.amount = "[transaction_amount]"
-			T.source_terminal = machine_id
-			T.date = current_date_string
-			T.time = stationtime2text()
+			var/datum/transaction/T = new(transaction_amount, E.owner_name, transaction_purpose, machine_id, current_date_string, stationtime2text())
 			linked_account.transaction_log.Add(T)
 
 			// Save log
@@ -422,7 +410,7 @@
 	<tr></tr>
 	<tr><td class="tx-name">Customer</td><td class="tx-data">[c_name]</td></tr>
 	<tr><td class="tx-name">Pay Method</td><td class="tx-data">[p_method]</td></tr>
-	<tr><td class="tx-name">Station Time</td><td class="tx-data">[stationtime2text()]</td></tr>
+	<tr><td class="tx-name">Ship Time</td><td class="tx-data">[stationtime2text()]</td></tr>
 	</table>
 	<table width=300>
 	"}

@@ -9,6 +9,10 @@
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
 
+/datum/gear/uniform/crewman
+	display_name = "jumpsuit, crewman"
+	path = /obj/item/clothing/under/rank/crewman
+
 /datum/gear/uniform/jumpsuit/rainbow
 	display_name = "jumpsuit, rainbow"
 	path = /obj/item/clothing/under/rainbow
@@ -63,7 +67,7 @@
 
 /datum/gear/uniform/dress
 	display_name = "dresses"
-	path = /obj/item/clothing/under/dress
+	path = /obj/item/clothing/under/dress/gray
 
 /datum/gear/uniform/dress/New()
 	..()
@@ -117,7 +121,9 @@
 /datum/gear/uniform/scrubs/color_presets/New()
 	..()
 	var/jumpsuit = list(
-		"Green"			=	/obj/item/clothing/under/rank/medical/green,
+		"green"			=	/obj/item/clothing/under/rank/medical/green,
+		"purple"		=	/obj/item/clothing/under/rank/medical/purple,
+		"blue"			=	/obj/item/clothing/under/rank/medical/blue
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jumpsuit)
 
@@ -157,9 +163,29 @@
 	gear_tweaks += new /datum/gear_tweak/path(generic)
 
 /datum/gear/uniform/tuxedo
-	display_name = "black tuxedo"
+	display_name = "tuxedo"
 	path = /obj/item/clothing/under/tuxedo
+	cost = 1
+
+/datum/gear/uniform/security_formal
+	display_name = "formal security outfit"
+	path = /obj/item/clothing/under/security_formal
+	allowed_roles = list(JOBS_SECURITY)
 	cost = 2
+
+/datum/gear/uniform/assistantformal
+	display_name = "assistant formal uniform"
+	path = /obj/item/clothing/under/assistantformal
+	cost = 2
+	allowed_roles = list(ASSISTANT_TITLE)
+
+/datum/gear/uniform/camopants
+	display_name = "turtleneck and camo pants"
+	path = /obj/item/clothing/under/camopants
+
+/datum/gear/uniform/wifebeater
+	display_name = "white tank top"
+	path = /obj/item/clothing/under/wifebeater
 
 /*/datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"
@@ -186,3 +212,8 @@
 /datum/gear/uniform/battledress_german
 	display_name = "battle dress uniform, oberth"
 	path = /obj/item/clothing/under/germansuit
+
+/datum/gear/uniform/ntsec
+	display_name = "Nanotrasen security uniform"
+	path = /obj/item/clothing/under/ntsec
+	allowed_roles = list(ASSISTANT_TITLE)

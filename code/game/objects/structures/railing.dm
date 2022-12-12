@@ -1,6 +1,8 @@
 /obj/structure/railing
 	name = "orange railing"
 	desc = "A standard steel railing painted in copper color. Prevents stupid people from falling to their doom."
+	description_info = "Can be deconstructed by screwing and wrenching."
+	description_antag = "Hopping above these leaves fingerprints. You can also grab a person and throw them over the ledge instantly."
 	icon = 'icons/obj/railing.dmi'
 	density = TRUE
 	throwpass = TRUE
@@ -9,7 +11,7 @@
 	anchored = TRUE
 	flags = ON_BORDER
 	icon_state = "railing0"
-	matter = list(MATERIAL_STEEL = 4)
+	matter = list(MATERIAL_STEEL = 2)
 	var/broken = 0
 	var/health=70
 	var/maxhealth=70

@@ -92,12 +92,15 @@
 			MiddleClickOn(A)
 		return 1
 	if(modifiers["shift"])
+		SEND_SIGNAL(src, COMSIG_SHIFTCLICK, A)
 		ShiftClickOn(A)
 		return 0
 	if(modifiers["alt"]) // alt and alt-gr (rightalt)
+		SEND_SIGNAL(src, COMSIG_ALTCLICK, A)
 		AltClickOn(A)
 		return 1
 	if(modifiers["ctrl"])
+		SEND_SIGNAL(src, COMSIG_CTRLCLICK, A)
 		CtrlClickOn(A)
 		return 1
 
@@ -157,12 +160,16 @@
 	// A is a turf or is on a turf, or in something on a turf (pen in a box); but not something in something on a turf (pen in a box in a backpack)
 	sdepth = A.storage_depth_turf()
 	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
-		if(A.Adjacent(src)) // see adjacent.dm
+		var/adjacent = A.Adjacent(src)
+		if(adjacent) // see adjacent.dm
 			if(W)
 				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
-				var/resolved = (SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL(A, COMSIG_ATTACKBY, W, src, params)) || W.resolve_attackby(A, src, params)
+				var/resolved = (SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL(A, COMSIG_ATTACKBY, W, src, params))
 				if(!resolved && A && W)
-					W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
+					if(W.double_tact(src, A, adjacent))
+						resolved = W.resolve_attackby(A, src, params)
+					if(!resolved)
+						W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
 			else
 				if(ismob(A)) // No instant mob attacking
 					setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -170,7 +177,8 @@
 			return
 		else // non-adjacent click
 			if(W)
-				W.afterattack(A, src, 0, params) // 0: not Adjacent
+				if(W.double_tact(src, A))
+					W.afterattack(A, src, 0, params) // 0: not Adjacent
 			else
 				setClickCooldown(DEFAULT_ATTACK_COOLDOWN) // no ranged spam
 				RangedAttack(A, params)
@@ -210,7 +218,7 @@
 /*
 	Ranged unarmed attack:
 
-	This currently is just a default for all mobs, involving	
+	This currently is just a default for all mobs, involving
 	laser eyes and telekinesis.  You could easily add exceptions
 	for things like ranged glove touches, spitting alien acid/neurotoxin,
 	animals lunging, etc.
@@ -298,11 +306,8 @@
 /atom/proc/AltClick(mob/user)
 	var/turf/T = get_turf(src)
 	if(T && user.TurfAdjacent(T))
-		if(user.listed_turf == T)
-			user.listed_turf = null
-		else
-			user.listed_turf = T
-			user.client.statpanel = "Turf"
+		user.listed_turf = T
+		user.client.statpanel = "Turf"
 	return 1
 
 /mob/proc/TurfAdjacent(turf/T)

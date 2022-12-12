@@ -17,9 +17,8 @@
 /area/crawler)
 "f" = (
 /obj/structure/lattice,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/turf/space,
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/plating/under,
 /area/crawler)
 "g" = (
 /obj/crawler/crawler_wallbreaker/vertical,
@@ -34,6 +33,7 @@
 /area/crawler)
 "j" = (
 /obj/machinery/light/floor,
+/obj/structure/bed/chair/custom/onestar,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "k" = (
@@ -80,6 +80,60 @@
 "r" = (
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
+"u" = (
+/obj/structure/bed/chair/custom/onestar,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"v" = (
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	pixel_x = -32
+	},
+/obj/item/tank/onestar_regenerator,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"x" = (
+/obj/structure/bed/chair/custom/onestar{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"y" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"D" = (
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	pixel_x = -32
+	},
+/obj/structure/salvageable/os/console_broken{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"G" = (
+/obj/structure/bed/chair/custom/onestar,
+/obj/structure/sign/derelict3{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"R" = (
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"T" = (
+/obj/spawner/toy,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"Z" = (
+/obj/machinery/light/floor,
+/obj/structure/bed/chair/custom/onestar{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
 
 (1,1,1) = {"
 a
@@ -109,7 +163,7 @@ d
 a
 f
 f
-f
+y
 a
 d
 a
@@ -162,9 +216,9 @@ b
 b
 d
 a
-f
+a
 m
-f
+a
 a
 d
 b
@@ -173,44 +227,44 @@ b
 a
 o
 p
+D
 r
-r
-r
+v
 q
 o
 b
 "}
 (10,1,1) = {"
 a
-e
-e
+G
+T
 r
 r
 r
 e
-e
+x
 a
 "}
 (11,1,1) = {"
 a
 j
-e
+R
 r
 r
 r
 e
-j
+Z
 a
 "}
 (12,1,1) = {"
 a
-e
+u
 e
 r
 r
 r
 e
-e
+x
 a
 "}
 (13,1,1) = {"

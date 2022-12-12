@@ -59,7 +59,7 @@ They generally give more random result and can provide more divercity in spawn.
 	icon_state = "tool-red"
 	desc = "This is a random technical loot."
 	allow_blacklist = TRUE
-	tags_to_spawn = list(SPAWN_ITEM_TECH_OS)
+	tags_to_spawn = list(SPAWN_TECH_OS)
 
 //This will be spawned in rare closets
 /obj/spawner/pack/gun_loot
@@ -69,7 +69,10 @@ They generally give more random result and can provide more divercity in spawn.
 
 /obj/spawner/pack/gun_loot/item_to_spawn()
 	return pickweight(list(
-					/obj/spawner/gun/handmade = 6,
+					/obj/spawner/gun/cheap = 8,
+					/obj/spawner/gun/normal = 3,
+					/obj/spawner/gun/energy_cheap = 6,
+					/obj/spawner/gun/shotgun = 5,
 					/obj/spawner/knife = 6,
 					/obj/spawner/ammo = 15,
 					/obj/spawner/ammo/shotgun = 15,
@@ -176,4 +179,22 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/closet = 2,
 					/obj/spawner/closet/wardrobe = 2,
 					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
+				))
+
+// This pack is meant to be PLACED ON MAP. Not in JUNK CODE, because it CONTAINS JUNK SPAWNER.
+// It meant to spawn any large structure, machine, or container. Contains things that should only be spawned in deep maint or dungeons.
+/obj/spawner/pack/deep_machine
+	name = "random deepmaint machine"
+	icon_state = "machine-orange"
+
+/obj/spawner/pack/deep_machine/item_to_spawn()
+	return pickweight(list(
+					/obj/spawner/structures/common = 28, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
+					/obj/spawner/closet/maintloot = 18, //That one is also important part of the maints
+					/obj/spawner/closet/tech = 6,
+					/obj/spawner/closet = 4,
+					/obj/spawner/closet/wardrobe = 2,
+					/obj/spawner/scrap = 12, //Our scrap pile. This is basically just a huge spawner.
+					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
+					/obj/spawner/aberrant_machine = 3
 				))

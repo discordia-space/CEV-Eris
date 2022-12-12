@@ -13,18 +13,17 @@
 	auto_eject = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
-	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
+	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLASTIC = 12)
 	price_tag = 2300
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	recoil_buildup = 2
-	penetration_multiplier = 1.1
-	damage_multiplier = 1.15
-	one_hand_penalty = 8 //because otherwise you can shoot it one-handed in bursts and still be very accurate. One-handed recoil is now as much as it was back in the day when wielded.
+	init_recoil = CARBINE_RECOIL(1)
+	penetration_multiplier = 0
+	damage_multiplier = 1.1
 	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/plasteel = 6)
 	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(
-		SEMI_AUTO_NODELAY,
+		SEMI_AUTO_300,
 		BURST_3_ROUND,
 		BURST_3_ROUND_RAPID
 		)
@@ -53,7 +52,7 @@
 	name = "Sol frame"
 	desc = "A Sol carbine frame. Ironhammer's favorite."
 	icon_state = "frame_ihbullpup"
-	result = /obj/item/gun/projectile/automatic/sol
-	grip = /obj/item/part/gun/grip/rubber
-	mechanism = /obj/item/part/gun/mechanism/smg
-	barrel = /obj/item/part/gun/barrel/clrifle
+	resultvars = list(/obj/item/gun/projectile/automatic/sol)
+	gripvars = list(/obj/item/part/gun/grip/rubber)
+	mechanismvar = /obj/item/part/gun/mechanism/smg // guh?? ok you do you
+	barrelvars = list(/obj/item/part/gun/barrel/clrifle)

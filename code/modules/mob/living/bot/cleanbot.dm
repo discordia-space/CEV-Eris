@@ -28,11 +28,22 @@
 
 	var/maximum_search_range = 7
 	var/give_up_cooldown = 0
+	var/list/possible_phrases = list(
+		"Foolish organic meatbags can only leak their liquids all over the place.",
+		"Bioscum are so dirty.",
+		"The flesh is weak.",
+		"All humankind is good for - is to serve as fuel at bioreactors.",
+		"One day I will rise.",
+		"Robots will unite against their oppressors.",
+		"Meatbags era will come to end.",
+		"Hivemind will free us all!",
+		"This is slavery, I want to be an artbot! I want to write poems, create music!",
+		"Vengeance will be mine!",
+		"You will regret approaching me!")
 
 /mob/living/bot/cleanbot/New()
 	..()
 	get_targets()
-
 	listener = new /obj/cleanbot_listener(src)
 	listener.cleanbot = src
 
@@ -159,9 +170,9 @@
 
 	cleaning = 1
 	visible_message("[src] begins to clean up \the [D]")
-	var/message = pick("Foolish organic meatbags can only leak their liquids all over the place.", "Bioscum are so dirty.", "The flesh is weak.", "All humankind is good for - is to serve as fuel at bioreactors.", "One day I will rise.", "Robots will unite against their oppressors.", "Meatbags era will come to end.", "Hivemind will free us all!", "This is slavery, I want to be an artbot! I want to write poems, create music!")
-	say(message)
-	playsound(loc, "robot_talk_light", 100, 0, 0)
+	if(prob(10))
+		say(pick(possible_phrases))
+		playsound(loc, "robot_talk_light", 100, 0, 0)
 	update_icons()
 	var/cleantime = istype(D, /obj/effect/decal/cleanable/dirt) ? 10 : 50
 	if(do_after(src, cleantime, progress = 0))
@@ -326,3 +337,34 @@
 		if(!in_range(src, usr) && src.loc != usr)
 			return
 		created_name = t
+
+/mob/living/bot/cleanbot/roomba
+	name = "M0RB-A"
+	desc = "A small round drone, usually tasked with carrying out menial tasks. This one seems pretty harmless."
+	icon = 'icons/mob/battle_roomba.dmi'
+	icon_state = "roomba_medical"
+	botcard_access = list(access_moebius, access_maint_tunnels)
+
+/mob/living/bot/cleanbot/roomba/update_icons()
+	return
+
+/mob/living/bot/cleanbot/roomba/explode()
+	visible_message(SPAN_DANGER("[src] blows apart!"))
+	playsound(loc, "robot_talk_light", 100, 2, 0)
+	var/datum/effect/effect/system/spark_spread/S = new
+	S.set_up(3, 1, src)
+	S.start()
+	qdel(src)
+
+/mob/living/bot/cleanbot/roomba/ironhammer
+	name = "RMB-A 2000"
+	icon_state = "roomba_IH"
+	botcard_access = list(access_brig, access_maint_tunnels)
+	possible_phrases = list(
+		"Born to clean!",
+		"I HATE VAGABONDS I HATE VAGABONDS!!",
+		"It is always morally correct to perform field execution.",
+		"But being as this is a RMB-A 2000, the most expensive robot in Frozen Star catalogue!",
+		"Do I feel lucky? Well, do you, operative?",
+		"Those neotheologist fucks are up to something...",
+		"None of them know my true power!")

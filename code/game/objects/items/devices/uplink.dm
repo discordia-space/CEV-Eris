@@ -116,7 +116,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 /*
 	NANO UI FOR UPLINK WOOP WOOP
 */
-/obj/item/device/uplink/hidden/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/device/uplink/hidden/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/title = "Remote Uplink"
 	var/data[0]
 	var/list/implants_in_list = list()
@@ -139,8 +139,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	data["welcome"] = welcome
 	data["crystals"] = uses
 	data["menu"] = nanoui_menu
-	data["has_contracts"] = uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY)\
-	                                     : !!length(owner_roles & ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY)
+	data["has_contracts"] = uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT_VIEW)\
+	                                     : !!length(owner_roles & ROLES_CONTRACT_VIEW)
 	data += nanoui_data
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -156,7 +156,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 // Interaction code. Gathers a list of items purchasable from the paren't uplink and displays it. It also adds a lock button.
 /obj/item/device/uplink/interact(mob/user)
-	ui_interact(user)
+	nano_ui_interact(user)
 
 // The purchasing code.
 /obj/item/device/uplink/hidden/Topic(href, href_list)
@@ -252,7 +252,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 				nanoui_data["exploit_exists"] = 1
 				break
-	else if(nanoui_menu == 3 && (uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY) : !!length(owner_roles & ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY)))
+	else if(nanoui_menu == 3 && (uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT_VIEW) : !!length(owner_roles & ROLES_CONTRACT_VIEW)))
 		var/list/available_contracts = list()
 		var/list/completed_contracts = list()
 		for(var/datum/antag_contract/C in GLOB.various_antag_contracts)

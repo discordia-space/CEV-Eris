@@ -46,3 +46,9 @@
 
 /tipsAndTricks/gameplay/cuffHardsuit
     tipText = "People in RIG/Hardsuits need to be cuffed using zipties or cable cuffs. Normal cuffs are not large enough to cover their gauntlets."
+
+/tipsAndTricks/gameplay/examinetab
+    tipText = "Automatically switching to the examine tab upon examining something can be disabled in your preferences."
+
+/tipsAndTricks/gameplay/nudestyle
+    tipText = "You do not have to cover yourself from ears to toes to look stylish - not wearing anything on your head, eyes, gloves or back looks cool enough."

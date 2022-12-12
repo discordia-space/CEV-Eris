@@ -71,4 +71,5 @@
 		if(!C.stat)
 			var/turf/T = get_turf(C)
 			if(istype(T, /turf/space))
+				spawned_carp.Remove(C)
 				qdel(C)

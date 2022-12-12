@@ -10,8 +10,8 @@
 
 	contaminant_immunity = TRUE
 
-	melee_damage_lower = 3
-	melee_damage_upper = 7 //Weaker than hunter
+	melee_damage_lower = 5
+	melee_damage_upper = 9 // Lacks penetration and wounding multiplier compared to hunter
 	rarity_value = 22.5
 
 	ranged = 1
@@ -20,10 +20,12 @@
 	acceptableTargetDistance = 5
 	kept_distance = 3
 
+	mob_size = MOB_MEDIUM
+
 	// Armor related variables
 	armor = list(
 		melee = 0,
-		bullet = 20,
+		bullet = 5,
 		energy = 0,
 		bomb = 0,
 		bio = 50,

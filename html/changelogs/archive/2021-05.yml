@@ -1,0 +1,331 @@
+2021-05-01:
+  Alliostra:
+  - tweak: AMR can now use default, depleted uranium(irradiatino), EMP, breaching
+      ammo and comes with in-built NVG scope that can be upgraded with thermal glasses
+      to have thermal vision too
+  - bugfix: radiation-inducing gunmods now properly induce their radiation.
+  Evankhell561:
+  - bugfix: the energy regeneration of the cruciform no longer increases excessively
+      due to a high COG value.
+  Hyperio:
+  - rscadd: Add Tersus vacuum cleaner
+  - rscadd: Inject gold slime extract with blood to get roach cubes
+  - balance: Remove ladder and stairs cheese with slipping items, traps, mines and
+      wet floors
+  - rscdel: Remove biomatter pipes from NT bioreactor room
+  INFRARED_BARON, Firefox13:
+  - rscdel: Excavation suit
+  - rscadd: New moebius hazard suit which spawns everywhere where old excavation suit
+      spawned
+  - rscadd: New hazard suit which spawns in maintenance
+  Jackofashepard:
+  - rscadd: Added IH AK to IH armour along with magazines to their crate for it. 4
+      AKs and 9 mags.
+  - rscdel: Replaced old surplus sols in the armoury case. 4 sols removed.
+  - rscdel: Removed floor stun from disarm intent and melee
+  MLGTASTICa:
+  - balance: Water/Pot bombs have been extremly toned down.
+  Sparrowbird611:
+  - tweak: Tools can now be stored in the suit slot.
+  Wouju:
+  - rscadd: Added craftable spear via the craft menu. Sprite was modified by me but
+      originally made by CeUvI
+2021-05-08:
+  ? ''
+  : - rscadd: Ability to butcher dead bodies and cut-off limbs for meat.
+    - rscadd: Reworked kitchen ustensil sprites (Mre-spoon , spoon , fork , cleaver,
+        knife , butching knife) made by CeuVi
+  CeUvi:
+  - rscadd: Officer's saber to Captain's and FO's lockers
+  - rscadd: New coat for captain
+  - tweak: Made sheath a belt subtype, so you can use "switch belt layer" verb on
+      it
+  - tweak: made captain spawn with his new coat and jackboots
+  - imageadd: New sprites for captain
+  - imagedel: Old sprites for captain
+  CeUvi, SPCR/MLGSTATICa:
+  - rscadd: Added new tactical reload (empty gun -> click on mag -> loaded gun)
+  DarkLevel - code; CeUvi - sprites.:
+  - rscadd: IH "Tactical Breaching Hammer"
+  - balance: Rebalancing wall smashing mechanic. Make it more depends on stats of
+      the user and item.
+  Evankhell561:
+  - tweak: Reduces the maximum "lowkeyrandom" spawner  price
+  - bugfix: cruciform energy
+  - tweak: reduces the energy cost of the offerings to 10
+  - tweak: doubles the energy regeneration coming from the obelisks.
+  - tweak: the energy regeneration miracle further increases energy regeneration.
+  Jackofashepard:
+  - bugfix: fixed takeshi onsuit sprite.
+  - rscadd: Maint food now contains a variety of chemicals.
+  - tweak: Maint food is rarer.
+  - rscdel: Removed wield requirement to pump shotgun.
+  - tweak: Decreased nutrition from sugar and added OD effects, most notably minor
+      heart damage.
+  - tweak: tweaked wintermute recoil to 1.5 and damage multiplier to 1.15
+  - bugfix: fixed chems getting added to maint food.
+  MLGTASTICa:
+  - rscadd: You can now shoot people adjacenet to ladders you look through from above/elow
+  - balance: Ossisine now deals pain instead of paralyzing and has 100% chance to
+      fix a bone break.
+  - rscadd: Added the ability to break apart guns for their parts and salvage.
+  - code_imp: added signals for APC power change, and APC deletion for areas.
+  - refactor: refactored intercom code to not process and instead use signals
+  - bugfix: fixed  get_tally runtiming and not calculating speed properly
+  - bugfix: fixed slimes missing their bodyparts
+  - bugfix: fixed organs and bodyparts duplicating when set_species is called on a
+      human
+  - bugfix: fixed MMI's not working and not registering brains properly.
+  - code_imp: get_organ_efficiency and get_specific_organ_efficiency now return 1
+      if the efficiency is 0
+  - bugfix: Borer abilities buggging out
+  - bugfix: Borers instantly dying everytime they fuse with a body!
+  TheShown, Alliostra:
+  - balance: Paincrit has been reworked
+  - balance: Pain has been reworked with dynamic and constant pain
+  - balance: Bleedout side effects have been nerfed
+  - balance: Aiming on where your bullets hit based on where you click on the sprite
+      has been removed, and has been replaced with accuracy based on VIG and distance
+  - balance: Internal organ HP has been buffed to a base of 100
+  TheShown911:
+  - balance: items printed in an autolathe have various negative effects applied to
+      them.
+  Wouju:
+  - rscadd: Added new loadout item, costs 3 points and contains clown clothing along
+      with a bikehorn, clown stamp and a banana peel. PDA and actual sense of humor
+      not included!
+2021-05-10:
+  TheShown911:
+  - balance: slowdown from pain is lowered.
+  - bugfix: shock stage should now increase properly.
+2021-05-14:
+  CeUvi:
+  - tweak: Adds prying quality to IH Breaching Hammer
+  - imageadd: new FO sprites
+  - imageadd: new .40 mags sprites
+  CeUvi and dev mentors:
+  - tweak: you need to WALK to get armor and block chance from riot and NT shields
+  - imageadd: walking and running states for shields
+  Hyperio:
+  - rscadd: Add Junk Tractor Beam feature (junk field generation, JTB console, JTB
+      chunk system, affinity system, asteroid generation)
+  - bugfix: Prevents runtime in add_underlay function
+  - admin: Re enable autoresponse in ticket system
+  Jackofashepard:
+  - bugfix: vanishing AMR sprite no longer vanishes.
+  - rscadd: Added kovacs to serb base and vendor.
+  - imageadd: kovacs
+  - rscadd: Added var that enables irremovable gun mods
+  - tweak: faulty gun mod values, higher chance of faulty gun mod
+  - balance: rebalanced faulty gun mods, no longer removable
+  MLGTASTICa:
+  - balance: Flashbangs now affect thermal users through walls
+  - code_imp: Signals added for various common actions so that contribution is easier.
+  Wouju:
+  - bugfix: fixed cap gloves and jumpsuit description to match their sprites
+  - rscadd: Added new railings to engineering, the captain decided spending 50 years
+      in court claiming that lack of railings does not violate OSHA was not worth
+      it.
+  - bugfix: fixed an O2 canister appearing in engineering and that weird wire connection
+      in NT bioreactor maint
+  - rscdel: Vagabonds stole trade beacon railings
+  - balance: rebalanced the technomancer helmet and insulated armour (now called insulated
+      technomancer helmet/armour) to have the same stats.  Not sure how this will
+      look in the ingame change log. " melee = 35, bullet = 25, energy = 40, bomb
+      = 20, bio = 0, rad = 30 "
+  - tweak: reduced light bulb range and power
+  thedarkcrusader:
+  - bugfix: chem and tracking implants now show up if you leave the brig
+  zombiemimic:
+  - rscadd: Added .35 speedloader to FS .35 Civilian Pack
+  - rscadd: Added Bill Trustworthy's Discount Firearms and Enterprising Detritus,
+      a gun vendor, now with hacking enabled
+  - rscdel: Removed Gladstone shotgun from FS vendor and moved it to Bill Trustworthy's
+2021-05-15:
+  Firefox13:
+  - tweak: Some crafty vagabond stole the Billomat. It's somewhere in second section
+      now.
+  MLGTASTICa:
+  - balance: Rebalanced the emp damage taken by robotic organs and limbs, they now
+      take on the average twice as much damage.
+  - bugfix: fixed the clothing drop signal being called on nulls.
+2021-05-17:
+  Firefox13:
+  - bugfix: Coolant tank runtime
+2021-05-21:
+  AgentMA1:
+  - rscdel: Removed Parapen from this ship
+  CeUvi:
+  - imageadd: added new fez sprets
+  - imagedel: deleted old fez sprets
+  Evankhell561:
+  - bugfix: nanoforge now consumes disk license points.
+  - tweak: The Divine Blessing ritual now reduces the stats of the performer.
+  - tweak: Junk Tractor Beam now increases bluespace entropy.
+  - tweak: The bluespace gift has a different description for different levels of
+      bluespace entropy.
+  - tweak: the Cruciform sense no longer includes the ritual performer.
+  Firefox13:
+  - bugfix: Fixed ballistic night vision goggles appearing outside of tactical ballistic
+      helmet
+  Herbaon:
+  - bugfix: RnD Shutters at roundstart are properly closed now.
+  Hyperio:
+  - refactor: Shield handling with signals
+  - rscadd: Add Tersus vacuum cleaner to custodian closet
+  Jackofashepard:
+  - tweak: kovacs price from 2000 to 3000 and amount available from 5 to 2.
+  Krysonism's sprites:
+  - imageadd: Changed food item sprites
+  MLGTASTICa:
+  - bugfix: gun scope runtime.
+  Sparrowbird611:
+  - balance: Humans don't have shared HP between all limbs and groin, making them
+      safer to shoot for non-lethal takedowns. Aim for the chest or head to kill.
+  - balance: Removes slowdown from damage. It is now based only on limb efficiency
+      and pain.
+  TheShown911:
+  - balance: speed of which shock stage goes to regular damage increased
+  - balance: internal organs no longer take nutrition to heal
+  WalterJe:
+  - imageadd: slems
+  Wouju:
+  - bugfix: The Electro-magnetic-feuro-nanite field of the propaganda chip and spy
+      sensor has been realligned and repaired using neural-hyper-reflected-laser-connections,
+      as such you can now properly deconstruct them for research using the destructive
+      analyzer's solaris-mind-based-nano-manipulation.
+  - bugfix: Another kneejerk PR, spider's are now arachnids
+2021-05-22:
+  AgentMA1:
+  - rscadd: PK and dallas ammo to uplink, nanopaste, ammo strips for mosin/novak,
+      HV and normal, at the prize of 2 and 1 Tcs respectively
+  - rscdel: deleted clerical kit,
+  - tweak: HV SMG prize changed to 4, .35 Pistol ammo prize changed to 1, HV 35 pistol
+      ammo changed to 2, magnum SL changed to 3, HV magnum SL changed to 4,reduced
+      in 1 the prize in both .25 ammo mags, HV and normal. .25 mandella ammo changed
+      prize to 2. .35 ammo packet prize goes to 4. Shipside announcement prize changed
+      to 1, fake crew announcement changed to 6, fake rad storm announcement changed
+      to 4,fake serb announcement changed to 3.Hacked AI module prize reduced to 7,mind
+      fryer to 2.Combat medkit changes to 6 Tcs, but the bica goes out and meralyne
+      comes instead, raw nanites go to 2, uncapped nanites to 3,random stims box to
+      5, added nanopaste to uplink too for 3 tcs.
+  CeUvi:
+  - rscadd: lootbags (you can even start a round with one)
+  - imageadd: lootbag sprites
+  - tweak: payday stuff prices
+  CeUvi, WalterJe:
+  - imageadd: payday masks
+  - imageadd: payday tuxedo
+  - rscadd: tuxedo to loadout
+  Evankhell561:
+  - tweak: the ritual of offerings and the ritual of divine blessing are now exclusive
+      to the preacher.
+  - tweak: the ritual of revelation now allows the target to be scanned by EOTP again.
+  - tweak: righteous life bar fills up faster.
+  - rscadd: the artist bench can now produce parts of guns and armor.
+  Firefox13:
+  - balance: Lamia recoil have been lowered from 5 to 2.
+  Herbaon:
+  - bugfix: pods can launch again.
+  Jackofashepard:
+  - tweak: longer fire delay, more recoil, less damage and penetration.
+  MLGTASTICa:
+  - bugfix: Floors runtiming
+  Shazbot194:
+  - bugfix: fixed big ammo sprite issue
+  - bugfix: Caseless ammo is now always caseless
+  - rscadd: Added new sprites for syndicate softsuits, as well as an uplink version.
+  Sparrowbird611:
+  - rscadd: Adds splints to the medical lobby vendor for 200$.
+  - rscadd: Splints now have a chance to spawn inside maintenance medical closets.
+  - rscadd: 2 cryobags spawn in the minipharma vendor
+  - tweak: Increased the number of splints in the minipharma vendor.
+  - balance: Splints fit on every body part, instead of just the limbs.
+  - balance: Adjusts the EMP damage dealt to FBPs. They are weaker now, but still
+      capable of causing severe damage to internal and external machinery.
+  - balance: Makes it so limbs and groin don't count towards death. They still inflict
+      pain though.
+  TheShown911:
+  - bugfix: advanced trauma kits and bandages can't be stacked anymore, don't try
+      or you are gonna waste kits.
+  Wouju:
+  - tweak: The Neotheology Church on the CEV Eris has gotten a proper education now!
+      Atleast for New Rome standards. Their cognitive capabilities have been increased
+      by 10, whatever that means.
+  - balance: Olivaw recoil reduced to 3.5 and havelock to 3
+  bigpep:
+  - rscadd: You can now toss items a floor above yourself! Heavier objects take longer
+      to throw, slightly altered by your strength.
+  zombiemimic:
+  - rscadd: Holsters in loadout are no longer job locked
+  - tweak: tweaked holster's loadout cost
+  - rscadd: added battle dress to loadout, for larpers
+  - rscadd: added cigarettes to loadout, for my chainsmokers out there
+  - rscadd: added oberth beret and gloves (the republic lives)
+  - rscadd: ERP is now in loadout
+  - rscadd: balls crushed hard enough to map kitchen storage again
+  - rscadd: club worker has maint access
+  - rscadd: Vagabonds have put their brain cell (singular) together and discovered
+      how to make fire, and how to put it into a barrel
+  - rscdel: removed the microwave breaking
+  - rscadd: Added Slaught-o-Matic disk
+  - rscadd: Slaught-o-Matic disk now in disk vendor
+  - spellcheck: fixed a few typos in code
+2021-05-23:
+  Jackofashepard:
+  - tweak: Also upped rarity
+  - rscadd: Toggle to light barrel
+  - tweak: barrel stays lit
+2021-05-24:
+  Jackofashepard:
+  - bugfix: lack of sanitation in robo names
+2021-05-26:
+  HerBaon:
+  - rscadd: FO & Captain spawn with Sunglasses that have a integrated SecHUD.
+  - rscadd: FO spawn with their respective hat and the name now references him.
+  - rscadd: Captain spawn with their respective gloves.
+2021-05-29:
+  Chickenish:
+  - bugfix: fixes helm runtime on starting server with overmap disabled.
+  Evankhell561:
+  - bugfix: acolytes can build through rituals.
+  - bugfix: acolytes may perform the epiphany ritual.
+  - tweak: offering rituals now increase the energy of the EOTP
+  - tweak: increases the energy cost of offering rituals
+  - tweak: reduces the energy regeneration of the preachers.
+  - tweak: the divine blessing ritual now costs energy.
+  Hatterhat:
+  - bugfix: Roaches now actually have their 70% chance to revive if they have blattedin
+      injected into their corpses.
+  MLGTASTICa:
+  - bugfix: Fixed being able to put RIGS inside Themselves , causing them to disspear.
+  NotRosalimofromEris:
+  - balance: Bees when pollinizing now also affects plants making these have better
+      yield overtime.
+  - imageadd: new sprites for beekeeping structures.
+  - imagedel: deleted old beekeping sprites.
+  Shazbot194:
+  - tweak: New Moebius R&D pallate.
+  - rscdel: Removed Wasp and Brushmaster
+  - tweak: All AKs have had their sprites updated
+  - tweak: Ctrl+Shft+click now folds AK stocks.
+  Sparrowbird611:
+  - rscadd: Added maintenance access to all moebius roles.
+  - rscadd: added the dominion and counselor to the EOTP spawn pool.
+  - tweak: The explosive disk was removed from the NT grenade pack. It was moved into
+      its own grenade pack, with a limit of two grenades.
+  - tweak: tweaked the EOTP disks. The crusader and voidsuit disk were merged together
+      into the armor and voidsuit disk, and all melee disks and the shield disk from
+      the EOTP were merged into the advanced melee disk.
+  - balance: nerfed the crusader armor's melee and bomb armor slightly, decreased
+      its slowdown, and nerfed NT shield slightly.
+  TheShown911:
+  - rscadd: Added adminbus payday items with SCAF stats.
+  Wouju:
+  - rscadd: Replaced clothing in bill's vendor with 4 crates filled with clown accesories
+  - rscadd: Added new snack, a boiled roach egg, 5 parts water, 1 roach egg. Shove
+      it all into a microwave/fire barrel at max heat
+  - tweak: roach egg is now a tiny sized item that can be picked up
+  - rscadd: When the hive is destroyed all the machinery is destroyed aswell, what
+      about the little guys? A group of hive mobs have been left behind deep within
+      the ship.

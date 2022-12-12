@@ -11,6 +11,7 @@
 	name = "bed"
 	desc = "This is used to lie in, sleep in or strap on."
 	icon = 'icons/obj/furniture.dmi'
+	description_info = "Can be used as a support to climb up by looking up and clicking on a free tile that is not blocked by a railing"
 	icon_state = "bed"
 	anchored = TRUE
 	can_buckle = TRUE

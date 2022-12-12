@@ -46,6 +46,12 @@
 #define PERK_ARTIST /datum/perk/job/artist
 #define PERK_SURVIVOR /datum/perk/survivor
 #define PERK_VAGABOND /datum/perk/vagabond
-#define PERK_CODESPEAK /datum/perk/codespeak
+#define PERK_CODESPEAK_COP /datum/perk/codespeak
+#define PERK_CODESPEAK_SERB /datum/perk/codespeak/serbian
 #define PERK_TECHNOMANCER /datum/perk/inspiration
 #define PERK_CLUB /datum/perk/job/club
+
+//cooldown perks
+#define PERK_COOLDOWN_REASON /datum/perk/cooldown/reason
+#define PERK_COOLDOWN_EXERTION /datum/perk/cooldown/exertion
+#define PERK_NJOY /datum/perk/njoy

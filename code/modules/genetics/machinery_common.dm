@@ -3,7 +3,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
 	active_power_usage = 10000
-	req_access = list(access_research_equipment)
+	req_access = list(access_genetics)
 	density = TRUE
 	anchored = TRUE
 	var/color_key = "yellow"
@@ -76,12 +76,12 @@
 		return
 
 	if(hacked)
-		ui_interact(user)
+		nano_ui_interact(user)
 		update_icon()
 		log_add("Access granted to [hacked].", TRUE)
 
 	else if(allowed(user))
-		ui_interact(user)
+		nano_ui_interact(user)
 		update_icon()
 		log_add("Access granted to [user.rank_prefix_name(FindNameFromID(user))].", TRUE)
 

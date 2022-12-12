@@ -2,6 +2,7 @@
 	gender = NEUTER
 	voice_name = "synthesized voice"
 	bad_type = /mob/living/silicon
+	tts_seed = "Robot_1"
 	var/syndicate = 0
 	var/const/MAIN_CHANNEL = "Main Frequency"
 	var/lawchannel = MAIN_CHANNEL // Default channel on which to state laws
@@ -82,8 +83,7 @@
 			take_organ_damage(0,10,emp=TRUE)
 			confused = (min(confused + 2, 30))
 //	flick("noise", flash)
-	if (HUDtech.Find("flash"))
-		flick("noise", HUDtech["flash"])
+	flash(0, FALSE , FALSE , FALSE)
 	to_chat(src, SPAN_DANGER("<B>*BZZZT*</B>"))
 	to_chat(src, SPAN_DANGER("Warning: Electromagnetic pulse detected."))
 	..()
@@ -250,9 +250,7 @@
 	return 1
 
 /mob/living/silicon/ex_act(severity)
-	if(!blinded)
-		if (HUDtech.Find("flash"))
-			flick("flash", HUDtech["flash"])
+	flash(0, FALSE, FALSE, FALSE)
 
 	switch(severity)
 		if(1)

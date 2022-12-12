@@ -66,6 +66,7 @@
 	name = "syringe gun"
 	desc = "A spring-loaded rifle designed to fire syringes to incapacitate unruly patients from a distance."
 	icon = 'icons/obj/guns/launcher/syringegun.dmi'
+	description_info = "Won't penetrate thick materials"
 	icon_state = "syringegun"
 	item_state = "syringegun"
 	w_class = ITEM_SIZE_NORMAL
@@ -76,7 +77,7 @@
 
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"
-	recoil_buildup = 0
+	init_recoil = HANDGUN_RECOIL(1)
 	release_force = 10
 	throw_distance = 10
 
@@ -86,7 +87,7 @@
 	var/list/darts = list()
 	var/max_darts = 1
 	var/obj/item/syringe_cartridge/next
-	serial_type = "M"
+	serial_type = "ML"
 
 /obj/item/gun/launcher/syringe/consume_next_projectile()
 	if(next)
@@ -141,6 +142,7 @@
 	name = "syringe gun revolver"
 	desc = "A modification of the syringe gun design, using a rotating cylinder to store up to five syringes. The spring still needs to be drawn between shots."
 	icon = 'icons/obj/guns/launcher/rapidsyringegun.dmi'
+	description_info = "Won't penetrate thick materials"
 	icon_state = "rapidsyringegun"
 	item_state = "rapidsyringegun"
 	max_darts = 5

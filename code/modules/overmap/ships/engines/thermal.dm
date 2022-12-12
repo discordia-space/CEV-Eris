@@ -51,6 +51,7 @@
 	var/datum/ship_engine/gas_thruster/controller
 	var/thrust_limit = 1	//Value between 1 and 0 to limit the resulting thrust
 	var/moles_per_burn = 5
+	atmos_canpass = CANPASS_NEVER
 
 /obj/machinery/atmospherics/unary/engine/Initialize()
 	. = ..()
@@ -98,12 +99,22 @@
 	if(!removed)
 		return 0
 	. = calculate_thrust(removed)
-	playsound(loc, 'sound/machines/thruster.ogg', 100 * thrust_limit, 0, world.view * 4, 0.1)
+	playsound(get_turf(src), 'sound/machines/thruster.ogg', 100 * thrust_limit, 0, world.view * 4, 0.1)
 	var/exhaust_dir = reverse_direction(dir)
 	var/turf/T = get_step(src,exhaust_dir)
+	var/range = clamp(round(.), 1, 8)
 	if(T)
 		T.assume_air(removed)
-		new/obj/effect/engine_exhaust(T, exhaust_dir, air_contents.check_combustability() && air_contents.temperature >= PLASMA_MINIMUM_BURN_TEMPERATURE)
+		// if its 1000k hot
+		new/obj/effect/engine_exhaust(T, exhaust_dir, air_contents.temperature >= 1000, (range > 1))
+		for(var/i=1,i < range,i++)
+			T = get_step(T,exhaust_dir)
+			if(!T)
+				break
+			addtimer(CALLBACK(src, .proc/extend_plume, T, exhaust_dir, air_contents.temperature >= 1000, i != range - 1), i * 0.5, TIMER_UNIQUE)
+
+/obj/machinery/atmospherics/unary/engine/proc/extend_plume(turf/T, exhaust_dir, is_flame, is_midsection)
+	new/obj/effect/engine_exhaust(T, exhaust_dir, is_flame, is_midsection)
 
 /obj/machinery/atmospherics/unary/engine/proc/calculate_thrust(datum/gas_mixture/propellant, used_part = 1)
 	return round(sqrt(propellant.get_mass() * used_part * air_contents.return_pressure()/100),0.1)
@@ -116,10 +127,13 @@
 	light_color = COLOR_LIGHTING_ORANGE_BRIGHT
 	anchored = TRUE
 
-/obj/effect/engine_exhaust/New(var/turf/nloc, var/ndir, var/flame)
+/obj/effect/engine_exhaust/New(var/turf/nloc, var/ndir, var/flame, var/midsect)
 	..(nloc)
 	if(flame)
-		icon_state = "exhaust"
+		if(midsect)
+			icon_state = "exhaust_mid"
+		else
+			icon_state = "exhaust"
 		nloc.hotspot_expose(1000,125)
 		set_light(5, 2)
 	set_dir(ndir)

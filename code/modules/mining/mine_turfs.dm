@@ -297,10 +297,7 @@
 				if(prob(50))
 					M.adjustBruteLoss(5)
 			else
-				if (M.HUDtech.Find("flash"))
-					flick("flash", M.HUDtech["flash"])
-				if(prob(50))
-					M.Stun(5)
+				M.flash(10, TRUE, TRUE , TRUE, 10)
 			M.apply_effect(25, IRRADIATE)
 
 	//Add some rubble,  you did just clear out a big chunk of rock.

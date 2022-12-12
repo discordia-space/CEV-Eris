@@ -21,8 +21,9 @@
 
 	var/blattedin_revives_left = 1 // how many times blattedin can get us back to life (as num for adminbus fun).
 
-	melee_damage_lower = 3
+	melee_damage_lower = 4
 	melee_damage_upper = 8
+	wound_mult = WOUNDING_WIDE
 
 	min_breath_required_type = 3
 	min_air_pressure = 15 //below this, brute damage is dealt
@@ -55,13 +56,21 @@
 		bio = 25,
 		rad = 50
 	)
+
+/mob/living/carbon/superior_animal/roach/Destroy()
+	eat_target = null
+	return ..()
+
 //When roaches die near a leader, the leader may call for reinforcements
 /mob/living/carbon/superior_animal/roach/death()
 	.=..()
 	if(.)
-		for (var/mob/living/carbon/superior_animal/roach/fuhrer/F in range(src,8))
-			F.distress_call()
+		for(var/mob/living/carbon/superior_animal/roach/fuhrer/F in range(src,8))
+			if(!F.stat)
+				F.distress_call()
 
-	if(prob(3))
-		visible_message(SPAN_DANGER("\the [src] hacks up a tape!"))
-		new /obj/item/music_tape(get_turf(src))
+		layer = BELOW_MOB_LAYER // Below stunned roaches
+
+		if(prob(3))
+			visible_message(SPAN_DANGER("\the [src] hacks up a tape!"))
+			new /obj/item/music_tape(get_turf(src))

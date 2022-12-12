@@ -1,0 +1,16 @@
+{{:helper.meatMode()}}
+<div class="statusDisplay" style="min-height: 180px;">
+	<div class="itemLabelWide" style="width: 100%">
+		Biotic substrate stored: {{if data.biomatter_counter}}{{:data.biomatter_counter}}{{else}}0{{/if}} / 60
+	</div>
+	<br><hr>
+	<div class='item'>
+		{{for data.contents}}
+			<span class='highlight'>{{:value}}</span><br>
+		{{empty}}
+			<span class="average"><i>
+				No objects present
+			</i></span>
+		{{/for}}
+	</div>
+</div>

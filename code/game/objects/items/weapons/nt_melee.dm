@@ -7,17 +7,17 @@
 	item_state = "nt_shortsword"
 	force = WEAPON_FORCE_DANGEROUS
 	throwforce = WEAPON_FORCE_WEAK
-	armor_penetration = ARMOR_PEN_DEEP
-	spawn_blacklisted = TRUE
+	armor_divisor = ARMOR_PEN_DEEP
 	aspects = list(SANCTIFIED)
 	price_tag = 300
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_STEEL = 5)
+	spawn_blacklisted = TRUE
 	bad_type = /obj/item/tool/sword/nt
 
 /obj/item/tool/sword/nt/equipped(mob/living/M)
 	..()
 	if(is_held() && is_neotheology_disciple(M))
-		embed_mult = 0.1
+		embed_mult = 0.05
 	else
 		embed_mult = initial(embed_mult)
 
@@ -30,8 +30,7 @@
 	force = 25
 	force_wielded_multiplier = 1.04
 	throwforce = WEAPON_FORCE_WEAK
-	armor_penetration = ARMOR_PEN_DEEP
-	spawn_blacklisted = TRUE
+	armor_divisor = ARMOR_PEN_DEEP
 	aspects = list(SANCTIFIED)
 	price_tag = 300
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_STEEL = 5)
@@ -44,7 +43,7 @@
 	icon_state = "nt_longsword"
 	item_state = "nt_longsword"
 	force = 30
-	armor_penetration = ARMOR_PEN_EXTREME
+	armor_divisor = ARMOR_PEN_HALF
 	w_class = ITEM_SIZE_HUGE
 	price_tag = 1200
 	matter = list(MATERIAL_BIOMATTER = 75, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 5, MATERIAL_DIAMOND = 1)
@@ -57,7 +56,7 @@
 	icon_state = "nt_dagger"
 	item_state = "nt_dagger"
 	force = WEAPON_FORCE_PAINFUL
-	armor_penetration = ARMOR_PEN_MASSIVE
+	armor_divisor = ARMOR_PEN_EXTREME
 	aspects = list(SANCTIFIED)
 	price_tag = 120
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 1)
@@ -66,7 +65,7 @@
 /obj/item/tool/knife/dagger/nt/equipped(mob/living/H)
 	..()
 	if(is_held() && is_neotheology_disciple(H))
-		embed_mult = 0.1
+		embed_mult = 0.2
 	else
 		embed_mult = initial(embed_mult)
 
@@ -79,10 +78,12 @@
 	wielded_icon = "nt_halberd_wielded"
 	force = WEAPON_FORCE_BRUTAL
 	hitsound = 'sound/weapons/melee/heavystab.ogg'
-	armor_penetration = ARMOR_PEN_HALF
+	armor_divisor = ARMOR_PEN_MASSIVE
 	max_upgrades = 1
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
+	extended_reach = TRUE
+	forced_broad_strike = TRUE
 	price_tag = 600
 	matter = list(MATERIAL_BIOMATTER = 80, MATERIAL_STEEL = 8, MATERIAL_WOOD = 10, MATERIAL_PLASTEEL = 2)
 
@@ -93,8 +94,8 @@
 	item_state = "nt_scourge"
 	force = WEAPON_FORCE_ROBUST
 	var/force_extended = WEAPON_FORCE_PAINFUL
-	armor_penetration = ARMOR_PEN_MASSIVE
-	var/armor_penetration_extended = ARMOR_PEN_HALF
+	armor_divisor = ARMOR_PEN_EXTREME
+	var/armor_divisor_extended = ARMOR_PEN_MASSIVE
 	var/extended = FALSE
 	var/agony = 20
 	var/agony_extended = 45
@@ -115,7 +116,7 @@
 /obj/item/tool/sword/nt/scourge/proc/extend()
 	extended = TRUE
 	force += (force_extended - initial(force))
-	armor_penetration += (armor_penetration_extended - initial(armor_penetration))
+	armor_divisor += (armor_divisor_extended - initial(armor_divisor))
 	agony += (agony_extended - initial(agony))
 	slot_flags = null
 	w_class = ITEM_SIZE_HUGE
@@ -126,7 +127,7 @@
 	w_class = initial(w_class)
 	agony = initial(agony)
 	slot_flags = initial(slot_flags)
-	armor_penetration = initial(armor_penetration)
+	armor_divisor += (initial(armor_divisor) - armor_divisor_extended)
 	refresh_upgrades() //it's also sets all to default
 	update_icon()
 
@@ -158,22 +159,24 @@
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT
 	throwforce = WEAPON_FORCE_LETHAL * 1.5
-	armor_penetration = ARMOR_PEN_HALF
+	armor_divisor = ARMOR_PEN_MASSIVE
 	throw_speed = 3
 	price_tag = 450
 	allow_spin = FALSE
+	extended_reach = TRUE
+	push_attack = TRUE
 	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_PLASTEEL = 10) // More expensive, high-end spear
 	style_damage = 50
 
 /obj/item/tool/sword/nt/spear/equipped(mob/living/W)
 	..()
 	if(is_held() && is_neotheology_disciple(W))
-		embed_mult = 0.1
+		embed_mult = 0.2
 	else
 		embed_mult = initial(embed_mult)
 
 /obj/item/tool/sword/nt/spear/dropped(mob/living/W)
-	embed_mult = 300
+	embed_mult = 600
 	..()
 
 /obj/item/tool/sword/nt/spear/throw_impact(atom/hit_atom, speed)
@@ -201,7 +204,7 @@
 
 /obj/item/shield/riot/nt
 	name = "NT Scutum"
-	desc = "A saintly-looking shield. May God protect you. The leather straps on the back can hold melee weapons."
+	desc = "A saintly-looking shield. Too heavy to be held upright while running. The leather straps on the back can hold melee weapons."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_shield"
 	item_state = "nt_shield"
@@ -212,7 +215,7 @@
 	base_block_chance = 45
 	shield_difficulty = 40
 	item_flags = DRAG_AND_DROP_UNEQUIP
-	shield_integrity = 130
+	shield_integrity = 200
 	var/obj/item/storage/internal/container
 	var/storage_slots = 3
 	var/max_w_class = ITEM_SIZE_HUGE
@@ -262,7 +265,7 @@
 
 /obj/item/shield/buckler/nt
 	name = "NT Parma"
-	desc = "A round shield adorned with a golden trim. The leather straps on the back can hold melee weapons."
+	desc = "A round shield adorned with a golden trim. The leather straps on the back can hold a melee weapon."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_buckler"
 	item_state = "nt_buckler"
@@ -273,7 +276,7 @@
 	base_block_chance = 35
 	shield_difficulty = 70
 	item_flags = DRAG_AND_DROP_UNEQUIP
-	shield_integrity = 110
+	shield_integrity = 180
 	var/obj/item/storage/internal/container
 	var/storage_slots = 1
 	var/max_w_class = ITEM_SIZE_HUGE
@@ -328,7 +331,7 @@
 	item_state = "nt_shortsword"
 	force = WEAPON_FORCE_DANGEROUS
 	throwforce = WEAPON_FORCE_WEAK
-	armor_penetration = ARMOR_PEN_DEEP
+	armor_divisor = ARMOR_PEN_DEEP
 	spawn_blacklisted = TRUE
 	aspects = list(SANCTIFIED)
 	price_tag = 300
@@ -338,7 +341,7 @@
 /obj/item/stack/thrown/nt/equipped(mob/living/M)
 	..()
 	if(is_held() && is_neotheology_disciple(M))
-		embed_mult = 0.1
+		embed_mult = 0.2
 	else
 		embed_mult = initial(embed_mult)
 
@@ -356,7 +359,7 @@
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT
 	throwforce = WEAPON_FORCE_LETHAL
-	armor_penetration = ARMOR_PEN_DEEP
+	armor_divisor = ARMOR_PEN_DEEP
 	throw_speed = 3
 	price_tag = 150
 	allow_spin = FALSE
@@ -364,5 +367,8 @@
 	style_damage = 30
 
 /obj/item/stack/thrown/nt/verutum/launchAt()
-	embed_mult = 300
+	embed_mult = 600
 	..()
+
+/obj/item/stack/thrown/nt/verutum/full
+	amount = 3

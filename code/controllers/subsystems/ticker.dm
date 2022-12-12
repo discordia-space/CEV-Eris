@@ -89,7 +89,6 @@ SUBSYSTEM_DEF(ticker)
 			if(!start_immediately)
 				to_chat(world, "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds.")
 			current_state = GAME_STATE_PREGAME
-			send_assets()
 			fire()
 
 		if(GAME_STATE_PREGAME)
@@ -264,7 +263,7 @@ SUBSYSTEM_DEF(ticker)
 		N.new_player_panel_proc()
 
 	CHECK_TICK
-
+	setup_codespeak()
 	generate_contracts(min(6 + round(minds.len / 5), 12))
 	generate_excel_contracts(min(6 + round(minds.len / 5), 12))
 	excel_check()

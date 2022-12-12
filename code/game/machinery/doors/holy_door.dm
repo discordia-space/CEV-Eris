@@ -23,7 +23,6 @@
 	icon_state = "cross"
 	item_state = ""	// No inhands
 	slot_flags = SLOT_ACCESSORY_BUFFER | SLOT_MASK
-	w_class = ITEM_SIZE_NORMAL // Chonky cross
 	spawn_blacklisted = TRUE
 
 /obj/machinery/door/holy/New()
@@ -404,7 +403,7 @@
 	var/cache_string = "[wedged_item.icon]||[wedged_item.icon_state]||[wedged_item.overlays.len]||[wedged_item.underlays.len]"
 
 	if(!GLOB.wedge_icon_cache[cache_string])
-		var/icon/I = getFlatIcon(wedged_item, SOUTH, always_use_defdir = TRUE)
+		var/icon/I = getFlatIcon(wedged_item, SOUTH)
 
 		I.Shift(SOUTH, 6)
 		I.Shift(EAST, 14)

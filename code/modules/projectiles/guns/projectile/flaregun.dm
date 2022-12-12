@@ -16,7 +16,7 @@
 	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 4)
 	gun_parts = list(/obj/item/stack/material/plastic = 4)
 	ammo_type = /obj/item/ammo_casing/flare
-	recoil_buildup = 20
+	init_recoil = HANDGUN_RECOIL(2.5)
 	rarity_value = 9
 	no_internal_mag = TRUE
 	var/bolt_open = FALSE
@@ -86,16 +86,15 @@
 	return 0
 
 /obj/item/gun/projectile/flare_gun/shotgun
-	name = "reinforced flare gun"
+	name = "reinforced flare gun" // slightly worse than a DB sawn off, less recoil with one hand, more with two
 	desc = "Flare gun made of cheap plastic, repurposed to fire shotgun shells."
 	icon_state = "empty_r"
 	caliber = CAL_SHOTGUN
-	damage_multiplier = 0.6
-	penetration_multiplier = 0.5
+	damage_multiplier = 0.8
+	penetration_multiplier = 0.3
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
-	one_hand_penalty = 10 //compact shotgun level
 	spawn_blacklisted = TRUE
-	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 16)
+	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 11)
 
 /obj/item/gun/projectile/flare_gun/shotgun/update_icon()
 	..()

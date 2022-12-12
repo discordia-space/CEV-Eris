@@ -50,7 +50,7 @@
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/crawler)
 "l" = (
-/obj/structure/computerframe,
+/obj/machinery/power/port_gen/os_generator,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/crawler)
 "m" = (

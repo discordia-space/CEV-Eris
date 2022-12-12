@@ -19,14 +19,12 @@
 	mag_well = MAG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/cspistol
 	proj_step_multiplier = 0.8
-	damage_multiplier = 1.6
-	penetration_multiplier = 3
-	recoil_buildup = 2
+	damage_multiplier = 1.7
+	penetration_multiplier = 0.8
+	init_recoil = HANDGUN_RECOIL(0.6)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/mandella = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/clrifle = 1)
-
-	serial_type = "" // stealth pistol for stealth operatives , never meant to have a serial.
 
 
 /obj/item/gun/projectile/mandella/update_icon()
@@ -50,7 +48,7 @@
 	name = "Mandella frame"
 	desc = "A Mandella pistol frame. Covertness never looked so good."
 	icon_state = "frame_mandella"
-	result = /obj/item/gun/projectile/mandella
-	grip = /obj/item/part/gun/grip/black
-	mechanism = /obj/item/part/gun/mechanism/pistol
-	barrel = /obj/item/part/gun/barrel/clrifle
+	resultvars = list(/obj/item/gun/projectile/mandella)
+	gripvars = list(/obj/item/part/gun/grip/black)
+	mechanismvar = /obj/item/part/gun/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/barrel/clrifle)

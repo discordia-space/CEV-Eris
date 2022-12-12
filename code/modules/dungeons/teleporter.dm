@@ -21,6 +21,8 @@
 	var/turfs_around = list()
 	var/victims_to_teleport = list()
 	var/obj/crawler/spawnpoint/target
+	var/obj/crawler/map_maker/dungeon_generator
+	var/dungeon_is_generated = FALSE
 	anchored = TRUE
 	unacidable = 1
 	density = TRUE
@@ -31,9 +33,13 @@
 
 /obj/rogue/teleporter/attack_hand(mob/user)
 	if(!charge)
-		target = locate(/obj/crawler/spawnpoint)
-		if(target)
+		dungeon_generator = locate(/obj/crawler/map_maker)
+		if(dungeon_generator)
 			to_chat(user, "You activate the teleporter. A strange rumbling fills the area around you.")
+			// Listen to signal for when the generation will be finished
+			RegisterSignal(src, COMSIG_DUNGEON_GENERATED, .proc/dungeon_generated)
+			// Generate the dungeon while mobs are spawning to attack the teleporter
+			SEND_SIGNAL(dungeon_generator, COMSIG_GENERATE_DUNGEON, src)
 			start_teleporter_event()
 		else
 			to_chat(user, "Nothing seems to happen.")
@@ -42,6 +48,10 @@
 			to_chat(user, "The portal looks too unstable to pass through!")
 		else
 			to_chat(user, "The teleporter needs time to charge.")
+
+/obj/rogue/teleporter/proc/dungeon_generated()
+	dungeon_is_generated = TRUE
+	UnregisterSignal(src, COMSIG_DUNGEON_GENERATED)
 
 /obj/rogue/teleporter/proc/start_teleporter_event()
 	charging = TRUE
@@ -58,7 +68,18 @@
 			summon_mobs()
 		sleep(5)
 
-	end_teleporter_event()
+	var/start_waiting = world.time
+	while(!dungeon_is_generated && (world.time - start_waiting < 3 MINUTES))
+		sleep(10 SECONDS)
+
+	target = locate(/obj/crawler/spawnpoint)
+	if(!dungeon_is_generated || !target)
+		// Something wrong happened and dungeon was not properly generated
+		admin_notice("Failed to generate the OneStar dungeon - Warn coders.")
+		visible_message(SPAN_WARNING("The teleporter malfunctions and explodes in a shower of sparks!"))
+		destroy_teleporter()
+	else
+		end_teleporter_event()
 
 /obj/rogue/teleporter/proc/summon_mobs()
 	var/max_mobs = 3
@@ -118,6 +139,9 @@
 	for(var/mob/living/M in victims_to_teleport)
 		go_to_bluespace(get_turf(src), 3, FALSE, M, get_turf(target))
 
+	destroy_teleporter()
+
+/obj/rogue/teleporter/proc/destroy_teleporter()
 	new /obj/structure/scrap_spawner/science/large(src.loc)
 
 	sleep(2)
@@ -161,7 +185,7 @@
 				A.activate_ai()
 
 	overlays.Add(image(icon, icon_state = "portal_failing"))
-	visible_message("The portal starts flick_lighting!")
+	visible_message("The portal starts flickering!")
 	flick_lighting = 1
 	sleep(100)
 	update_icon()
@@ -175,26 +199,15 @@
 		if (get_dist(src, O) > 8)
 			continue
 
-		var/flash_time = 8
 		if (ishuman(O))
 			var/mob/living/carbon/human/H = O
-			if(!H.eyecheck() <= 0)
-				continue
-			flash_time *= H.species.flash_mod
-			var/eye_efficiency = H.get_organ_efficiency(OP_EYES)
-			if(eye_efficiency < 2)
-				return
-			if(eye_efficiency < 50 && prob(100 - eye_efficiency  + 20))
-				if (O.HUDtech.Find("flash"))
-					flick("e_flash", O.HUDtech["flash"])
+			H.flash(8, FALSE , FALSE , FALSE, 8)
 
 		else
 			if(!O.blinded)
 				if (istype(O,/mob/living/silicon/ai))
 					return
-				if (O.HUDtech.Find("flash"))
-					flick("flash", O.HUDtech["flash"])
-		O.Weaken(flash_time)
+				O.flash(8, FALSE, FALSE ,FALSE)
 
 		sleep(1)
 

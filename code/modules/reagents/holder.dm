@@ -66,6 +66,7 @@
 	reagent_list = null
 	if(my_atom && my_atom.reagents == src)
 		my_atom.reagents = null
+	my_atom = null
 
 /* Internal procs */
 
@@ -585,12 +586,6 @@
 		var/amt = list_reagents[r_id]
 		add_reagent(r_id, amt, data)
 
-/datum/reagents/proc/get_reagents()
-	. = list()
-	for(var/datum/reagent/current in reagent_list)
-		. += "[current.name] ([current.volume])"
-	return english_list(., "EMPTY", "", ", ", ", ")
-
 /proc/get_chem_id(chem_name)
 	for(var/X in GLOB.chemical_reagents_list)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[X]
@@ -598,7 +593,7 @@
 			return X
 
 // NanoUI / TG UI data
-/datum/reagents/ui_data()
+/datum/reagents/nano_ui_data()
 	var/list/data = list()
 
 	data["total_volume"] = total_volume
