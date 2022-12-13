@@ -1523,7 +1523,7 @@
 
 /obj/machinery/vending/theomat/attackby(obj/item/I, mob/user)
 	if(I.tool_qualities || check_NT(user))
-		..()
+		..(I, user)
 
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
