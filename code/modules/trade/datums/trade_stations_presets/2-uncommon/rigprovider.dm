@@ -46,6 +46,7 @@
 	hidden_inventory = list(
 		"RIGs II" =  list(
 			/obj/item/rig/light = custom_good_amount_range(list(1, 5)),
+			/obj/item/rig/combat = custom_good_amount_range(list(1, 5)),
 			/obj/item/rig_module/held/shield,
 			/obj/item/rig_module/datajack,
 			/obj/item/rig_module/electrowarfare_suite,
