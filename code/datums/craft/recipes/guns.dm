@@ -14,7 +14,7 @@
 	)
 
 /datum/craft_recipe/gun/handmaderevolver
-	name = "HM Rev \"Cartel\""
+	name = "HM REV \"Cartel\""
 	result = /obj/item/gun/projectile/revolver/handmade
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
@@ -95,7 +95,7 @@
 )
 
 /datum/craft_recipe/gun/lasersmg
-	name = "Lasblender"
+	name = "HM Disco Vazer \"Lasblender\""
 	result = /obj/item/gun/energy/lasersmg
 	steps = list(
 		list(/obj/item/gun/projectile/automatic/atreides, 1),
@@ -109,7 +109,7 @@
 		list(QUALITY_ADHESIVE, 15, 70))
 
 /datum/craft_recipe/gun/kalash
-	name = "HM AR \"Kalash\""
+	name = "HM AR \"Sermak\""
 	result = /obj/item/gun/projectile/automatic/ak47/makeshift
 	steps = list(
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
