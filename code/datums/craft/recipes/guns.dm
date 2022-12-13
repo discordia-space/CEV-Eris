@@ -4,7 +4,7 @@
 	related_stats = list(STAT_MEC)
 
 /datum/craft_recipe/gun/pistol
-	name = "HM HG \"Bubba"\"
+	name = "HM HG \"Bubba\""
 	result = /obj/item/gun/projectile/handmade_pistol
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
@@ -14,7 +14,7 @@
 	)
 
 /datum/craft_recipe/gun/handmaderevolver
-	name = "HM Rev \"Cartel"\"
+	name = "HM Rev \"Cartel\""
 	result = /obj/item/gun/projectile/revolver/handmade
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
@@ -35,7 +35,7 @@
 	)
 
 /datum/craft_recipe/gun/makeshiftgl
-	name = "HM GL \"Civil Disobedience"\"
+	name = "HM GL \"Civil Disobedience\""
 	result = /obj/item/gun/projectile/shotgun/pump/grenade/makeshift
 	steps = list(
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
@@ -47,7 +47,7 @@
 	)
 
 /datum/craft_recipe/gun/slidebarrelshotgun
-	name = "HM SG \"Ponyets"\"
+	name = "HM SG \"Ponyets\""
 	result = /obj/item/gun/projectile/shotgun/slidebarrel
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
@@ -71,7 +71,7 @@
 	)
 
 /datum/craft_recipe/gun/makeshiftlaser
-	name = "HM LG \"Retina Burn"\"
+	name = "HM LG \"Retina Burn\""
 	result = /obj/item/gun/energy/laser/makeshift
 	steps = list(
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
@@ -83,7 +83,7 @@
 )
 
 /datum/craft_recipe/gun/makeshiftlaserpistol
-	name = "HM LG \"Scorcher"\"
+	name = "HM LG \"Scorcher\""
 	result = /obj/item/gun/energy/laser/makeshift_pistol
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
