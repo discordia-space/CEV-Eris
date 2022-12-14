@@ -16,7 +16,7 @@
 
 	var/can_progress = FALSE						// Whether the wound can progress or not
 	var/datum/component/next_wound					// If defined, applies a wound of this type when severity is at max
-	var/progression_threshold = IWOUND_4_MINUTES	// How many ticks until the wound progresses, default is 3 minutes
+	var/progression_threshold = IWOUND_2_MINUTES	// How many ticks until the wound progresses, default is 2 minutes
 	var/current_progression_tick					// Current tick towards progression
 
 	var/can_spread = FALSE				// Whether the wound can spread throughout the body or not
