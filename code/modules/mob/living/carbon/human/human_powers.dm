@@ -1,60 +1,13 @@
 // These should all be procs, you can add them to humans/subspecies by
 // species.dm's inherent_verbs ~ Z
 
-/mob/living/carbon/human/proc/tackle()
-	set category = "Abilities"
-	set name = "Tackle"
-	set desc = "Tackle someone down."
-
-	if(last_special > world.time)
-		return
-
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		to_chat(src, "You cannot tackle someone in your current state.")
-		return
-
-	var/list/choices = list()
-	for(var/mob/living/M in view(1,src))
-		if(!issilicon(M) && Adjacent(M))
-			choices += M
-	choices -= src
-
-	var/mob/living/T = input(src,"Who do you wish to tackle?") as null|anything in choices
-
-	if(!T || !src || src.stat) return
-
-	if(!Adjacent(T)) return
-
-	if(last_special > world.time)
-		return
-
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		to_chat(src, "You cannot tackle in your current state.")
-		return
-
-	last_special = world.time + 50
-
-	var/failed
-	if(prob(75))
-		T.Weaken(rand(0.5,3))
-	else
-		src.Weaken(rand(2,4))
-		failed = 1
-
-	mob_playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
-	if(failed)
-		src.Weaken(rand(2,4))
-
-	for(var/mob/O in viewers(src, null))
-		if ((O.client && !( O.blinded )))
-			O.show_message(text("\red <B>[] [failed ? "tried to tackle" : "has tackled"] down []!</B>", src, T), 1)
 
 /mob/living/carbon/human/proc/leap(mob/living/carbon/human/T)
 	if(last_special > world.time)
 		return
-	if(!T || !src || src.stat) 
+	if(!T || !src || src.stat)
 		return
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || hasStatusEffect(T, SE_PARALYZED) || hasStatusEffect(T, SE_STUNNED) || hasStatusEffect(T, SE_WEAKENED) || lying || restrained() || buckled)
 		to_chat(src, "You cannot lunge in your current state.")
 		return
 

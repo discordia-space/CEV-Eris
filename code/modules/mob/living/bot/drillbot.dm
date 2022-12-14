@@ -46,9 +46,9 @@
 	if(health <= 0)
 		death()
 		return
-	weakened = 0
-	stunned = 0
-	paralysis = 0
+	removeStatusEffect(src, SE_WEAKENED)
+	removeStatusEffect(src, SE_STUNNED)
+	removeStatusEffect(src, SE_PARALYZED)
 	for(var/mob/living/carbon/human/H in view(3, src))
 		if(get_dist(src, H) >= 1)
 			UnarmedAttack(H)
@@ -80,9 +80,9 @@
 	if(health <= 0)
 		death()
 		return
-	weakened = 0
-	stunned = 0
-	paralysis = 0
+	removeStatusEffect(src, SE_WEAKENED)
+	removeStatusEffect(src, SE_STUNNED)
+	removeStatusEffect(src, SE_PARALYZED)
 	for(var/turf/simulated/floor/asteroid/AST in view(3, src))
 		if(get_dist(src, AST) >= 1)
 			UnarmedAttack(AST)

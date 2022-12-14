@@ -78,7 +78,6 @@
 	// human/handle_regular_status_updates() needs a cleanup, as blindness should be handled in handle_disabilities()
 	if(handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
 		handle_disabilities() // eye, ear, brain damages
-		handle_status_effects() //all special effects, stunned, weakened, jitteryness, hallucination, sleeping, etc
 
 	handle_actions()
 
@@ -136,19 +135,6 @@
 			stat = CONSCIOUS
 		return 1
 
-//this updates all special effects: stunned, sleeping, weakened, druggy, stuttering, etc..
-/mob/living/proc/handle_status_effects()
-	if(paralysis)
-		paralysis = max(paralysis-1,0)
-	if(stunned)
-		stunned = max(stunned-1,0)
-		if(!stunned)
-			update_icons()
-
-	if(weakened)
-		weakened = max(weakened-1,0)
-		if(!weakened)
-			update_icons()
 
 /mob/living/proc/handle_disabilities()
 	//Eyes

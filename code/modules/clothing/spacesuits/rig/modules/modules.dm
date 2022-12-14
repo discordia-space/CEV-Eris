@@ -59,7 +59,7 @@
 
 	var/list/stat_rig_module/stat_modules = new()
 
-	
+
 
 /obj/item/rig_module/get_cell()
 	holder = get_rig()
@@ -191,8 +191,7 @@
 	if(!holder || holder.canremove)
 		to_chat(usr, SPAN_WARNING("The suit is not initialized."))
 		return 0
-
-	if(holder.wearer.lying || holder.wearer.stat || holder.wearer.stunned || holder.wearer.paralysis || holder.wearer.weakened)
+	if(holder.wearer.lying || holder.wearer.stat || hasStatusEffect(holder.wearer , SE_STUNNED) || hasStatusEffect(holder.wearer, SE_PARALYZED) || hasStatusEffect(holder.wearer, SE_WEAKENED))
 		to_chat(usr, SPAN_WARNING("You cannot use the suit in this state."))
 		return 0
 

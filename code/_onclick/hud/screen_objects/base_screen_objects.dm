@@ -119,7 +119,7 @@
 	if(!usr.can_click())
 		return
 
-	if(usr.stat || usr.restrained() || usr.stunned || usr.weakened)
+	if(usr.stat || usr.restrained() || hasStatusEffect(usr, SE_STUNNED) || hasStatusEffect(usr, SE_WEAKENED))
 		return TRUE
 
 	if(!(owner in usr))
@@ -263,7 +263,7 @@
 /obj/screen/storage/Click()
 	if(!usr.can_click())
 		return TRUE
-	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
+	if(usr.stat || hasStatusEffect(usr, SE_PARALYZED) || hasStatusEffect(usr, SE_STUNNED) || hasStatusEffect(usr, SE_WEAKENED))
 		return TRUE
 	if(master)
 		var/obj/item/I = usr.get_active_hand()
@@ -290,7 +290,7 @@
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
 	// We don't even know if it's a middle click
 	if(!usr.can_click()) return TRUE
-	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened) return TRUE
+	if(usr.stat || usr.restrained() || hasStatusEffect(usr, SE_STUNNED) || hasStatusEffect(usr, SE_WEAKENED)) return TRUE
 	switch(name)
 		if("hand") usr:swap_hand()
 		else usr.attack_ui(slot_id)
@@ -1341,7 +1341,7 @@ obj/screen/fire/DEADelize()
 		var/obj/item/clothing/glasses/G = H.wearing_rig.getCurrentGlasses()
 		if(G && H.wearing_rig.visor.active)
 			overlays |= G.overlay
-	
+
 	if(get_active_mutation(H, MUTATION_NIGHT_VISION))
 		overlays |= global_hud.nvg
 

@@ -104,7 +104,7 @@
 		CtrlClickOn(A)
 		return 1
 
-	if(stat || paralysis || stunned || weakened)
+	if(stat || hasStatusEffect(src, SE_PARALYZED) || hasStatusEffect(src, SE_STUNNED) || hasStatusEffect(src, SE_WEAKENED))
 		return
 
 	face_atom(A) // change direction to face what you clicked on

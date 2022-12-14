@@ -112,19 +112,13 @@
 		src.lying = 1
 		src.blinded = TRUE
 	else
-		if (src.paralysis || src.stunned || src.weakened || (status_flags && FAKEDEATH)) //Stunned etc.
-			if (src.stunned > 0)
-				AdjustStunned(-1)
-				src.stat = 0
-			if (src.weakened > 0)
-				AdjustWeakened(-1)
+		if(hasStatusEffect(src, SE_PARALYZED) || hasStatusEffect(src, SE_STUNNED) || hasStatusEffect(src, SE_WEAKENED)|| (status_flags && FAKEDEATH)) //Stunned etc.
+			stat = 0
+			if(hasStatusEffect(src, SE_WEAKENED))
 				src.lying = 0
-				src.stat = 0
-			if (src.paralysis > 0)
-				AdjustParalysis(-1)
+			if (hasStatusEffect(src, SE_PARALYZED))
 				src.blinded = FALSE
 				src.lying = 0
-				src.stat = 0
 
 		else
 			src.lying = 0

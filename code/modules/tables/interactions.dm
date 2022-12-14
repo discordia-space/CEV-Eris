@@ -3,7 +3,7 @@
 	if(isliving(mover))
 		var/mob/living/L = mover
 		L.livmomentum = 0
-		if(L.weakened)
+		if(hasStatusEffect(L,SE_WEAKENED))
 			return 1
 	if(air_group || (height==0)) return 1
 	if(istype(mover,/obj/item/projectile))

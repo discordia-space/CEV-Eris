@@ -160,9 +160,9 @@
 		var/target_loc = target.loc
 		var/msg
 		for (var/mob/V in viewers(usr))
-			if(target == user && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
+			if(target == user && !user.stat && !hasStatusEffect(user, SE_WEAKENED) && !hasStatusEffect(user, SE_STUNNED) && !hasStatusEffect(user, SE_PARALYZED))
 				V.show_message("[usr] starts climbing into the disposal.", 3)
-			if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
+			if(target != user && !user.restrained() && !user.stat && !hasStatusEffect(user, SE_WEAKENED) && !hasStatusEffect(user,SE_STUNNED) && !hasStatusEffect(user, SE_PARALYZED))
 				if(target.anchored) return
 				V.show_message("[usr] starts stuffing [target.name] into the disposal.", 3)
 
@@ -175,7 +175,7 @@
 												// must be awake, not stunned or whatever
 			msg = "[user.name] climbs into the [src]."
 			to_chat(user, "You climb into the [src].")
-		else if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
+		else if(target != user && !user.restrained() && !user.stat && !hasStatusEffect(user, SE_WEAKENED) && !hasStatusEffect(user,SE_STUNNED) && !hasStatusEffect(user, SE_PARALYZED))
 			msg = "[user.name] stuffs [target.name] into the [src]!"
 			to_chat(user, "You stuff [target.name] into the [src]!")
 
@@ -1347,7 +1347,7 @@
 /obj/structure/disposalpipe/trunk/Initialize()
 	. = ..()
 	pipe_dir = dir
-	
+
 	INVOKE_ASYNC(src, .proc/getlinked)
 	update()
 

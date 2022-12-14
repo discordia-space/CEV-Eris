@@ -189,7 +189,6 @@
 			health = maxHealth
 
 		handle_stunned()
-		handle_weakened()
 		handle_paralysed()
 		handle_supernatural()
 

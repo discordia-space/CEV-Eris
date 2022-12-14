@@ -203,7 +203,7 @@
 	if (user.restrained() || user.buckled)
 		to_chat(user, SPAN_NOTICE("You need your hands and legs free for this."))
 		return 0
-	if (user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)
+	if (user.stat || hasStatusEffect(user, SE_PARALYZED) || user.sleeping || user.lying || hasStatusEffect(user, SE_WEAKENED))
 		return 0
 	if (issilicon(user))
 		to_chat(user, SPAN_NOTICE("You need hands for this."))

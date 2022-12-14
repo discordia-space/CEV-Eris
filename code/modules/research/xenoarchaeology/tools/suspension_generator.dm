@@ -45,14 +45,14 @@
 
 	if(field_type == "carbon")
 		for(var/mob/living/carbon/M in T)
-			M.weakened = max(M.weakened, 3)
+			addStatusEffect(M, SE_WEAKENED, 6 SECONDS)
 			power_draw += power_use
 			if(prob(5))
 				to_chat(M, SPAN_NOTICE(pick("You feel tingly.","You feel like floating.","It is hard to speak.","You can barely move.")))
 
 	if(field_type == "iron")
 		for(var/mob/living/silicon/M in T)
-			M.weakened = max(M.weakened, 3)
+			addStatusEffect(M, SE_WEAKENED, 6 SECONDS)
 			power_draw += power_use
 			if(prob(5))
 				to_chat(M, SPAN_NOTICE(pick("You feel tingly.","You feel like floating.","It is hard to speak.","You can barely move.")))
@@ -64,7 +64,7 @@
 		I.forceMove(suspension_field)
 
 	for(var/mob/living/simple_animal/M in T)
-		M.weakened = max(M.weakened, 3)
+		addStatusEffect(M, SE_WEAKENED, 6 SECONDS)
 		power_draw += power_use
 		if(prob(5))
 			to_chat(M, SPAN_NOTICE(pick("You feel tingly.","You feel like floating.","It is hard to speak.","You can barely move.")))
@@ -224,15 +224,15 @@
 	switch(field_type)
 		if("carbon")
 			for(var/mob/living/carbon/M in T)
-				M.weakened += 5
+				addStatusEffect(M, SE_WEAKENED, 10 SECONDS)
 				M.visible_message(SPAN_NOTICE("[M] begins to float in the air!"), "You feel tingly and light, but it is difficult to move.")
 		if("iron")
 			for(var/mob/living/silicon/M in T)
-				M.weakened += 5
+				addStatusEffect(M, SE_WEAKENED, 10 SECONDS)
 				M.visible_message(SPAN_NOTICE("[M] begins to float in the air!"), "You feel tingly and light, but it is difficult to move.")
 
 	for(var/mob/living/simple_animal/M in T)
-		M.weakened += 5
+		addStatusEffect(M, SE_WEAKENED, 10 SECONDS)
 		M.visible_message(SPAN_NOTICE("[M] begins to float in the air!"), "You feel tingly and light, but it is difficult to move.")
 
 	suspension_field = new(T)
@@ -260,7 +260,7 @@
 
 	for(var/mob/M in T)
 		to_chat(M, SPAN_NOTICE("You no longer feel like floating."))
-		M.weakened = min(M.weakened, 3)
+		addStatusEffect(M, SE_WEAKENED, 6 SECONDS)
 
 	src.visible_message(SPAN_NOTICE("[src] deactivates with a gentle shudder."))
 	QDEL_NULL(suspension_field)

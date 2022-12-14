@@ -300,7 +300,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		return 0
 
 	var/mob/M = loc
-	if(M.stat || M.restrained() || M.paralysis || M.stunned || M.weakened)
+	if(M.stat || M.restrained() || hasStatusEffect(M, SE_PARALYZED) || hasStatusEffect(M, SE_STUNNED) || hasStatusEffect(M, SE_WEAKENED))
 		return 0
 	if((src in M.contents) || ( istype(loc, /turf) && in_range(src, M) ))
 		return 1

@@ -489,7 +489,7 @@
 		return
 	if(O.loc == user)
 		return
-	if(user.restrained() || user.stat || user.weakened || user.stunned || user.paralysis)
+	if(user.stat || user.restrained() || hasStatusEffect(user, SE_PARALYZED) || hasStatusEffect(user, SE_STUNNED) || hasStatusEffect(user, SE_WEAKENED))
 		return
 	if((!( istype(O, /atom/movable) ) || O.anchored || !Adjacent(user) || !Adjacent(O) || !user.Adjacent(O) || user.contents.Find(src)))
 		return

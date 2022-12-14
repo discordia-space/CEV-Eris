@@ -669,7 +669,7 @@ default behaviour is:
 	resting = TRUE
 	var/_dir = C.true_dir
 
-	if(!weakened && _dir)// If true_dir = 0(src isn't moving), doesn't proc.
+	if(!hasStatusEffect(src, SE_WEAKENED) && _dir)// If true_dir = 0(src isn't moving), doesn't proc.
 		if(momentum_dir == _dir)
 			livmomentum = momentum_speed // Set momentum value as soon as possible for stopSliding to work better
 		var/range = 1 //checks for move intent; dive one tile further if on run intent

@@ -37,9 +37,9 @@
 	if(health <= 0)
 		death()
 		return
-	weakened = 0
-	stunned = 0
-	paralysis = 0
+	removeStatusEffect(src, SE_WEAKENED)
+	removeStatusEffect(src, SE_STUNNED)
+	removeStatusEffect(src, SE_PARALYZED)
 
 /mob/living/bot/updatehealth()
 	if(status_flags & GODMODE)

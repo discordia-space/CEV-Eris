@@ -5,7 +5,7 @@
 	if(!stat && can_click())
 		setClickCooldown(1)//only 1/10th of a second so no macros spamming
 		resist_grab()
-		if(!weakened)
+		if(!hasStatusEffect(src, SE_WEAKENED))
 			process_resist()
 
 /mob/living/proc/process_resist()

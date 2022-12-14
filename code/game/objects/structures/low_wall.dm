@@ -110,7 +110,7 @@
 		return 1
 	if(isliving(mover))
 		var/mob/living/L = mover
-		if(L.weakened)
+		if(hasStatusEffect(L, SE_WEAKENED))
 			return 1
 	return ..()
 

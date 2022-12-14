@@ -157,7 +157,7 @@
 	if ((drowsyness > 0) && !MOVING_DELIBERATELY(src))
 		. += 6
 	if(lying) //Crawling, it's slower
-		. += 14 + (weakened)
+		. += 14 + (getStatusEffectDuration(src, weakened) / (2 SECONDS))
 	. += move_intent.move_delay
 
 
@@ -182,16 +182,16 @@
 	return incapacitated(INCAPACITATION_DISABLED)
 
 /mob/proc/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
-	if ((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
+	if ((incapacitation_flags & INCAPACITATION_STUNNED) && hasStatusEffect(src, SE_STUNNED))
 		return 1
 
-	if ((incapacitation_flags & INCAPACITATION_SOFTLYING) && (resting || weakened))
+	if ((incapacitation_flags & INCAPACITATION_SOFTLYING) && (resting || hasStatusEffect(src, SE_WEAKENED)))
 		return 1
 
 	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && pinned.len)
 		return 1
 
-	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
+	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || hasStatusEffect(src, SE_PARALYZED) || sleeping || (status_flags & FAKEDEATH)))
 		return 1
 
 	if((incapacitation_flags & INCAPACITATION_RESTRAINED) && restrained())
@@ -846,21 +846,18 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 /mob/proc/Weaken(amount, dropitems = TRUE)
 	if(status_flags & CANWEAKEN)
 		facing_dir = null
-		weakened = max(max(weakened,amount),0)
-		update_lying_buckled_and_verb_status(dropitems)	//updates lying, canmove and icons
-	return
+		addStatusEffect(src, SE_WEAKENED, max(amount, getStatusEffectDuration(src, SE_WEAKENED)))
 
 /mob/proc/SetWeakened(amount)
 	if(status_flags & CANWEAKEN)
-		weakened = max(amount,0)
-		update_lying_buckled_and_verb_status()	//updates lying, canmove and icons
-	return
+		var/datum/statusEffect/effect = getStatusEffect(src, SE_WEAKENED)
+		effect.startingTime = world.time
+		effect.duration = amount
 
 /mob/proc/AdjustWeakened(amount)
 	if(status_flags & CANWEAKEN)
-		weakened = max(weakened + amount,0)
-		update_lying_buckled_and_verb_status()	//updates lying, canmove and icons
-	return
+		var/datum/statusEffect/effect = getStatusEffect(src, SE_WEAKENED)
+		effect.duration = effect.duration + amount
 
 /mob/proc/Paralyse(amount)
 	if(status_flags & CANPARALYSE)
@@ -1033,7 +1030,6 @@ mob/proc/yank_out_object()
 
 /mob/living/proc/handle_statuses()
 	handle_stunned()
-	handle_weakened()
 	handle_stuttering()
 	handle_silent()
 	handle_drugged()
@@ -1044,11 +1040,6 @@ mob/proc/yank_out_object()
 	if(stunned)
 		AdjustStunned(-1)
 	return stunned
-
-/mob/living/proc/handle_weakened()
-	if(weakened)
-		weakened = max(weakened-1,0)	//before you get mad Rockdtben: I done this so update_lying_buckled_and_verb_status isn't called multiple times
-	return weakened
 
 /mob/living/proc/handle_stuttering()
 	if(stuttering)

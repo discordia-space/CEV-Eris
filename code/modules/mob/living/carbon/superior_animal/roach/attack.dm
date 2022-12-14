@@ -9,7 +9,7 @@
 			if(istype(howdoitameahorseinminecraft))
 				if(try_tame(H, howdoitameahorseinminecraft))
 					return FALSE //If they manage to tame the roach, stop the attack
-		if(istype(L) && !L.weakened && prob(5))
+		if(istype(L) && !hasStatusEffect(L, SE_WEAKENED) && prob(5))
 			if(H && H.has_shield())
 				L.visible_message(SPAN_DANGER("\the [src] tried to knocks down \the [L]! But [L] blocks \the [src] attack!"))
 			else

@@ -343,7 +343,7 @@
 
 
 /obj/structure/bed/chair/janicart/relaymove(mob/user, direction)
-	if(user.stat || user.stunned || user.weakened || user.paralysis)
+	if(user.stat || user.restrained() || hasStatusEffect(user, SE_PARALYZED) || hasStatusEffect(user, SE_STUNNED) || hasStatusEffect(user, SE_WEAKENED))
 		unbuckle_mob()
 	if(istype(user.l_hand, /obj/item/key) || istype(user.r_hand, /obj/item/key))
 		step(src, direction)

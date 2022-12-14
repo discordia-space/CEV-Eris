@@ -32,7 +32,7 @@
 		CtrlClickOn(A)
 		return
 
-	if(stat || lockcharge || weakened || stunned || paralysis)
+	if(stat || lockcharge || hasStatusEffect(src, SE_WEAKENED) || hasStatusEffect(src, SE_STUNNED) || hasStatusEffect(src, SE_PARALYZED))
 		return
 
 

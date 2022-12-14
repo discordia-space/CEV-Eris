@@ -100,7 +100,7 @@ var/list/custom_table_appearance = list(
 /obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(isliving(mover))
 		var/mob/living/L = mover
-		if(L.weakened)
+		if(hasStatusEffect(L, SE_WEAKENED))
 			return 1
 	return ..()
 

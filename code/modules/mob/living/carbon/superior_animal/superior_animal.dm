@@ -281,11 +281,7 @@
 
 	return TRUE
 
-// Same as overridden proc but -3 instead of -1 since its 3 times less frequently envoked, if checks removed
-/mob/living/carbon/superior_animal/handle_status_effects()
-	paralysis = max(paralysis-3,0)
-	stunned = max(stunned-3,0)
-	weakened = max(weakened-3,0)
+
 
 /mob/living/carbon/superior_animal/proc/handle_cheap_regular_status_updates()
 	health = maxHealth - oxyloss - toxloss - fireloss - bruteloss - cloneloss - halloss
@@ -333,10 +329,6 @@
 	handle_cheap_chemicals_in_body()
 	resting = (resting && client) ? TRUE : FALSE
 	if(!(ticks_processed%3))
-		// handle_status_effects() this is handled here directly to save a bit on procedure calls
-		paralysis = max(paralysis-3,0)
-		stunned = max(stunned-3,0)
-		weakened = max(weakened-3,0)
 		cheap_update_lying_buckled_and_verb_status_()
 		var/datum/gas_mixture/breath = environment.remove_volume(BREATH_VOLUME)
 		handle_cheap_breath(breath)

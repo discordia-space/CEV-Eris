@@ -14,7 +14,6 @@
 
 		verbs |= /mob/living/carbon/human/proc/commune
 		verbs |= /mob/living/carbon/human/proc/psychic_whisper
-		verbs |= /mob/living/carbon/human/proc/tackle
 		verbs |= /mob/living/carbon/proc/spawn_larvae
 		verbs |= /mob/living/carbon/proc/talk_host
 
@@ -36,7 +35,7 @@
 	if(B.host_brain.ckey)
 		text = input("What would you like to say?", "Speak to captive host", null, null)
 		text = capitalize(sanitize(text))
-		if(!text) 
+		if(!text)
 			return
 		log_say("Borer said to its host [text]")
 

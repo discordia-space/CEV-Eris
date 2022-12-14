@@ -17,7 +17,7 @@
 			C.apply_effect(25 * weakness, IRRADIATE)
 			C.adjustNutrition(-min(50 * weakness, C.nutrition))
 			C.make_dizzy(6 * weakness)
-			C.weakened += 6 * weakness
+			addStatusEffect(C, SE_WEAKENED, 12 SECONDS)
 
 /datum/artifact_effect/hurt/DoEffectAura()
 	if(holder)

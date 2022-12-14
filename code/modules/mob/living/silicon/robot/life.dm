@@ -93,14 +93,9 @@
 
 
 	if (src.stat != 2) //Alive.
-		if (src.paralysis || src.stunned || !src.has_power || src.weakened) //Stunned etc.
+		if (hasStatusEffect(src, SE_PARALYZED) || hasStatusEffect(src, SE_STUNNED) || !src.has_power || hasStatusEffect(src, SE_WEAKENED)) //Stunned etc.
 			src.stat = 1
-			if (src.weakened > 0)
-				AdjustWeakened(-1)
-			if (src.stunned > 0)
-				AdjustStunned(-1)
-			if (src.paralysis > 0)
-				AdjustParalysis(-1)
+			if (hasStatusEffect(src, SE_PARALYZED))
 				src.blinded = TRUE
 			else
 				src.blinded = FALSE
