@@ -30,7 +30,7 @@
 
 	// Additional effects
 	var/can_hallucinate = FALSE			// Will this wound cause hallucinations?
-	var/ticks_per_hallucination = IWOUND_2_MINUTES
+	var/ticks_per_hallucination = IWOUND_1_MINUTES
 	var/current_hallucination_tick
 
 	// Organ adjustments - preferably used for more severe wounds
