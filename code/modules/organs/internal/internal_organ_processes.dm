@@ -68,23 +68,23 @@
 			adjustToxLoss(1)
 
 /mob/living/carbon/human/proc/liver_process()
-
-	var/liver_efficiency = get_organ_efficiency(OP_LIVER)
+	var/liver_efficiency = get_organ_efficiency(OP_LIVER) + (chem_effects[CE_ANTITOX] * 33)
 	var/obj/item/organ/internal/liver = random_organ_by_process(OP_LIVER)
+	var/alcohol_strength = chem_effects[CE_ALCOHOL]
+	var/alcohol_toxic_strength = chem_effects[CE_ALCOHOL_TOXIC]
+	var/toxin_strength = chem_effects[CE_TOXIN]
 
-	if(chem_effects[CE_ANTITOX])
-		liver_efficiency += chem_effects[CE_ANTITOX] * 33
 	// If you're not filtering well, you're in trouble. Ammonia buildup to toxic levels and damage from alcohol
 	if(liver_efficiency < 66)
-		if(chem_effects[CE_ALCOHOL])
-			adjustToxLoss(0.5 * max(2 - (liver_efficiency * 0.01), 0) * (chem_effects[CE_ALCOHOL_TOXIC] + 0.5 * chem_effects[CE_ALCOHOL]))
-	else if(!chem_effects[CE_ALCOHOL] && !chem_effects[CE_TOXIN] && !radiation) // Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxloss.
+		if(alcohol_strength)
+			adjustToxLoss(0.5 * max(2 - (liver_efficiency * 0.01), 0) * (alcohol_toxic_strength + 0.5 * alcohol_strength))
+	else if(!alcohol_strength && !toxin_strength && !radiation) // Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxloss.
 		// this will filter some toxins out of owners body
 		adjustToxLoss(-(liver_efficiency * 0.001))
 
-	var/toxin_strength = chem_effects[CE_ALCOHOL_TOXIC] + chem_effects[CE_TOXIN] - (liver_efficiency / 100)
-	if(toxin_strength)
-		liver.take_damage(4 * toxin_strength, TOX)
+	var/liver_damage = (alcohol_toxic_strength * 7) + (toxin_strength * 9) - (liver_efficiency / 100)
+	if(liver_damage > 0)
+		liver.take_damage(liver_damage, TOX)
 
 	//Blood regeneration if there is some space
 	regenerate_blood(0.1 + chem_effects[CE_BLOODRESTORE])
