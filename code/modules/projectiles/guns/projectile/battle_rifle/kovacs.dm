@@ -32,8 +32,11 @@
 
 /obj/item/gun/projectile/kovacs/update_icon()
 	..()
+
 	var/iconstring = initial(icon_state)
 	iconstring = initial(icon_state) + (ammo_magazine ? "_mag" + (ammo_magazine.mag_well == MAG_WELL_RIFLE_L ? "_l" : (ammo_magazine.mag_well == MAG_WELL_RIFLE_D ? "_d" : "")) : "")
+
+	icon_state = iconstring
 
 /obj/item/gun/projectile/kovacs/Initialize()
 	. = ..()
