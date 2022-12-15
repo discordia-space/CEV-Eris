@@ -1632,7 +1632,7 @@
 					/obj/item/storage/deferred/crate/uniform_flak  = 2,
 					/obj/item/storage/deferred/crate/uniform_light = 2,
 					/obj/item/gun/projectile/kovacs = 2,
-					/obj/item/ammo_magazine/lrifle = 6,
+					/obj/item/ammo_magazine/srifle = 6,
 					/obj/item/gun/projectile/boltgun/serbian = 10,
 					/obj/item/ammo_magazine/sllrifle = 20,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 30,
