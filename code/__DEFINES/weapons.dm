@@ -22,7 +22,11 @@
 #define ARMOR_PEN_MAX				10
 
 //Wounding Multiplier: Increases damage taken, applied after armor.
+
+#define WOUNDING_TRIVIAL			0.1
+#define WOUNDING_TINY				0.25
 #define WOUNDING_SMALL				0.5
+#define WOUNDING_INTERMEDIATE		0.75
 #define WOUNDING_NORMAL				1
 #define WOUNDING_WIDE				1.5
 #define WOUNDING_EXTREME			2
