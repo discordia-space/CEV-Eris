@@ -330,6 +330,7 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/implant/freedom = 20,
 		/obj/item/implant/tracking = 30,
 		/obj/item/implant/chem = 30,
+		/obj/item/stock_parts/matter_bin/one_star = 60,
 		/obj/item/organ/external/robotic/l_arm = 20,
 		/obj/item/organ/external/robotic/r_arm = 20,
 		/obj/item/organ/external/robotic/l_leg = 20,
