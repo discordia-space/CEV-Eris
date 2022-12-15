@@ -32,19 +32,8 @@
 
 /obj/item/gun/projectile/kovacs/update_icon()
 	..()
-
 	var/iconstring = initial(icon_state)
-	var/itemstring = ""
-
-	if (ammo_magazine)
-		iconstring += "_mag"
-		itemstring += "_mag"
-
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		iconstring += "_slide"
-
-	icon_state = iconstring
-	set_item_state(itemstring)
+	iconstring = initial(icon_state) + (ammo_magazine ? "_mag" + (ammo_magazine.mag_well == MAG_WELL_RIFLE_L ? "_l" : (ammo_magazine.mag_well == MAG_WELL_RIFLE_D ? "_d" : "")) : "")
 
 /obj/item/gun/projectile/kovacs/Initialize()
 	. = ..()
