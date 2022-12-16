@@ -1484,9 +1484,9 @@
 	product_ads = "Praise!;Pray!;Obey!"
 	icon_state = "teomat"
 	vendor_department = DEPARTMENT_CHURCH
-	products = list(/obj/item/book/ritual/cruciform = 10, /obj/item/storage/fancy/candle_box = 10, /obj/item/reagent_containers/food/drinks/bottle/ntcahors = 20)
+	products = list(/obj/item/book/ritual/cruciform = 10, /obj/item/storage/fancy/candle_box = 10, /obj/item/reagent_containers/food/drinks/bottle/ntcahors = 20, /obj/machinery/portable_atmospherics/hydroponics = 60)
 	contraband = list(/obj/item/implant/core_implant/cruciform = 3)
-	prices = list(/obj/item/book/ritual/cruciform = 500, /obj/item/storage/fancy/candle_box = 200, /obj/item/reagent_containers/food/drinks/bottle/ntcahors = 250,
+	prices = list(/obj/item/book/ritual/cruciform = 500, /obj/item/storage/fancy/candle_box = 200, /obj/item/reagent_containers/food/drinks/bottle/ntcahors = 250, /obj/machinery/portable_atmospherics/hydroponics = 100,
 				/obj/item/implant/core_implant/cruciform = 1000)
 	custom_vendor = TRUE // So they can sell pouches and other printed goods, if they bother to stock them
 
