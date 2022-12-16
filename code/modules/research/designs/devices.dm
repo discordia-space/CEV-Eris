@@ -1,17 +1,3 @@
-/datum/design/research/item/ano_scanner
-	name = "Alden-Saraspova counter"
-	desc = "Aids in triangulation of exotic particles."
-	build_path = /obj/item/device/ano_scanner
-	category = CAT_MINING
-	sort_string = "VDAAA"
-
-/datum/design/research/item/beacon_locator
-	name = "Beacon Locator"
-	desc = "Used to scan and locate signals on a particular frequency according."
-	build_path = /obj/item/device/beacon_locator
-	category = "Telecoms | Bluespace"
-	sort_string = "VDAAB"
-
 /datum/design/research/item/gps
 	name = "Relay Positioning Device"
 	desc = "Triangulates the approximate co-ordinates."
