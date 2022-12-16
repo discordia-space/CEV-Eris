@@ -177,7 +177,7 @@
 	desc = "A handmade bolt action rifle, made from junk and some spare parts."
 	icon_state = "boltgun_hand"
 	item_suffix = "_hand"
-	matter = list(MATERIAL_STEEL = 25, MATERIAL_WOOD = 16)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
 	wielded_item_state = "_doble_hand"
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
@@ -199,7 +199,7 @@
 	name = "Riose frame"
 	desc = "A Riose bolt-action rifle frame. For hunting or endless maintenance warfare."
 	icon_state = "frame_riose"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 10)
+	matter = list(MATERIAL_STEEL = 5)
 	resultvars = list(/obj/item/gun/projectile/boltgun/handmade)
 	gripvars = list(/obj/item/part/gun/grip/wood)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun

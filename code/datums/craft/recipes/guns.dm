@@ -4,25 +4,19 @@
 	related_stats = list(STAT_MEC)
 
 /datum/craft_recipe/gun/pistol
-	name = "Handmade gun"
-	result = /obj/item/part/gun/frame/handmade_pistol
+	name = "HM HG \"Bubba\""
+	result = /obj/item/gun/projectile/handmade_pistol
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, 20),
-		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC),
-		list(QUALITY_ADHESIVE, 15, 70),
-		list(CRAFT_MATERIAL, 4, MATERIAL_WOOD),
-		list(QUALITY_HAMMERING, 10),
+		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
 /datum/craft_recipe/gun/handmaderevolver
-	name = "Handmade Revolver"
-	result = /obj/item/part/gun/frame/revolver_handmade
+	name = "HM REV \"Cartel\""
+	result = /obj/item/gun/projectile/revolver/handmade
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, 20),
-		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC),
 		list(QUALITY_SCREW_DRIVING, 15, 70),
 		list(CRAFT_MATERIAL, 4, MATERIAL_WOOD),
 		list(QUALITY_HAMMERING, 10),
@@ -30,23 +24,21 @@
 	)
 
 /datum/craft_recipe/gun/handmaderifle
-	name = "Handmade bolt action rifle"
-	result = /obj/item/part/gun/frame/riose
+	name = "HM BR \"Riose\""
+	result = /obj/item/gun/projectile/boltgun/handmade
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
 		list(QUALITY_HAMMERING, 10),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
 /datum/craft_recipe/gun/makeshiftgl
-	name = "makeshift grenade launcher"
+	name = "HM GL \"Civil Disobedience\""
 	result = /obj/item/gun/projectile/shotgun/pump/grenade/makeshift
 	steps = list(
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
-		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC),
 		list(QUALITY_SCREW_DRIVING, 10),
 		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
 		list(QUALITY_HAMMERING, 10),
@@ -54,12 +46,10 @@
 	)
 
 /datum/craft_recipe/gun/slidebarrelshotgun
-	name = "slide barrel Shotgun"
-	result = /obj/item/part/gun/frame/ponyets
+	name = "HM SG \"Ponyets\""
+	result = /obj/item/gun/projectile/shotgun/slidebarrel
 	steps = list(
-		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, 20),
-		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC),
+		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 		list(QUALITY_SCREW_DRIVING, 10),
 		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD),
 		list(QUALITY_HAMMERING, 10),
@@ -68,13 +58,11 @@
 
 /datum/craft_recipe/gun/motherfucker
 	name = "HM Motherfucker .35 \"Punch Hole\""
-	result = /obj/item/part/gun/frame/motherfucker
+	result = /obj/item/gun/projectile/automatic/motherfucker
 	steps = list(
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTEEL),
 		list(QUALITY_WELDING, 10, 20),
-		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC),
 		list(QUALITY_SCREW_DRIVING, 10),
 		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
 		list(QUALITY_HAMMERING, 10),
@@ -82,35 +70,31 @@
 	)
 
 /datum/craft_recipe/gun/makeshiftlaser
-	name = "makeshift laser carbine"
+	name = "HM LG \"Retina Burn\""
 	result = /obj/item/gun/energy/laser/makeshift
 	steps = list(
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 15, MATERIAL_PLASTIC),
-		list(/obj/item/stock_parts/micro_laser, 4),
 		list(QUALITY_SCREW_DRIVING, 10),
-		list(/obj/item/stock_parts/capacitor, 1),
-		list(QUALITY_SCREW_DRIVING, 10),
+		list(CRAFT_MATERIAL, 5, MATERIAL_SILVER),
 		list(QUALITY_ADHESIVE, 15, 70)
 )
 
 /datum/craft_recipe/gun/makeshiftlaserpistol
-	name = "makeshift laser pistol"
+	name = "HM LG \"Scorcher\""
 	result = /obj/item/gun/energy/laser/makeshift_pistol
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 7, MATERIAL_PLASTIC),
-		list(/obj/item/stock_parts/micro_laser, 2),
-		list(QUALITY_SCREW_DRIVING, 10),
-		list(/obj/item/stock_parts/capacitor, 1),
+		list(CRAFT_MATERIAL, 2, MATERIAL_SILVER),
 		list(QUALITY_SCREW_DRIVING, 10),
 		list(QUALITY_ADHESIVE, 15, 70)
 )
 
 /datum/craft_recipe/gun/lasersmg
-	name = "Lasblender"
+	name = "HM Disco Vazer \"Lasblender\""
 	result = /obj/item/gun/energy/lasersmg
 	steps = list(
 		list(/obj/item/gun/projectile/automatic/atreides, 1),
@@ -124,35 +108,29 @@
 		list(QUALITY_ADHESIVE, 15, 70))
 
 /datum/craft_recipe/gun/kalash
-	name = "Makeshift AR .30 \"Kalash\""
-	result = /obj/item/part/gun/frame/kalash
+	name = "HM AR \"Sermak\""
+	result = /obj/item/gun/projectile/automatic/ak47/makeshift
 	steps = list(
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
-		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC),
+		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC),
 		list(QUALITY_SCREW_DRIVING, 10),
-		list(/obj/item/stack/rods, 2, "time" = 10),
-		list(QUALITY_HAMMERING, 10),
-		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD),
-		list(QUALITY_HAMMERING, 10),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
 /datum/craft_recipe/gun/luty
-	name = "Handmade SMG .35 Auto \"Luty\""
-	result = /obj/item/part/gun/frame/luty
+	name = "HM SMG .35 Auto \"Luty\""
+	result = /obj/item/gun/projectile/automatic/luty
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
 		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC),
 		list(QUALITY_SCREW_DRIVING, 10),
-		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD),
-		list(QUALITY_HAMMERING, 10),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
 /datum/craft_recipe/gun/armgun
-	name = "embedded SMG"
+	name = "Embedded SMG"
 	result = /obj/item/organ_module/active/simple/armsmg
 	steps = list(
 		list(/obj/item/part/gun/frame/luty, 1),
@@ -166,7 +144,7 @@
 	)
 
 /datum/craft_recipe/gun/poweredcrossbow
-	name = "powered crossbow"
+	name = "Powered crossbow"
 	result = /obj/item/gun/energy/poweredcrossbow
 	steps = list(
 		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD), //old frame recipe
