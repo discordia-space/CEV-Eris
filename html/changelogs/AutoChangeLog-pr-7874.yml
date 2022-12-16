@@ -1,0 +1,6 @@
+author: Alliostra
+delete-after: true
+changes:
+  - bugfix: loudmouth grenades no longer turn invisible
+  - tweak: loudmouth grenades use metal sheets instead of a hailer in their recipe
+      now.
