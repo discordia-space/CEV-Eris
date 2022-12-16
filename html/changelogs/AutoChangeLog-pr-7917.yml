@@ -1,0 +1,7 @@
+author: driecg36
+delete-after: true
+changes:
+  - rscadd: New names for the already existing guns.
+  - tweak: Homogenized gun names in the crafting window for better organization/consistency.
+  - balance: Handmade guns are much easier and faster to craft.
+  - spellcheck: Gun Description typos.
