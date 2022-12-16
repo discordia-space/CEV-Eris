@@ -1,6 +1,6 @@
 /obj/machinery/power/os_turret
 	name = "One Star Gauss turret"
-	desc = "A OneStar made turret with a mounted QJZ-295 gauss machinegun" //A turret of the One Star variety.
+	desc = "A One Star made turret with a mounted QJZ-295 gauss machinegun." //A turret of the One Star variety.
 	icon = 'icons/obj/machines/one_star/machines.dmi'
 	icon_state = "os_gauss"
 	circuit = /obj/item/electronics/circuitboard/os_turret
