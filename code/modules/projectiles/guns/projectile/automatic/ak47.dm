@@ -269,7 +269,7 @@
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 5)
 	price_tag = 500
-	gun_parts = list(/obj/item/part/gun/frame/kalash = 1, /obj/item/part/gun/grip/plastic = 1 , /obj/item/part/gun/mechanism/autorifle/steel = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/kalash = 1, /obj/item/part/gun/grip/black = 1 , /obj/item/part/gun/mechanism/autorifle/steel = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
 	serial_type = ""
 
 /obj/item/part/gun/frame/kalash
@@ -278,7 +278,7 @@
 	icon_state = "frame_kalash"
 	matter = list(MATERIAL_STEEL = 10)
 	resultvars = list(/obj/item/gun/projectile/automatic/ak47/makeshift)
-	gripvars = list(/obj/item/part/gun/grip/plastic)
+	gripvars = list(/obj/item/part/gun/grip/black)
 	mechanismvar = /obj/item/part/gun/mechanism/autorifle/steel
 	barrelvars = list(/obj/item/part/gun/barrel/lrifle/steel, /obj/item/part/gun/barrel/srifle/steel, /obj/item/part/gun/barrel/clrifle/steel)
 
