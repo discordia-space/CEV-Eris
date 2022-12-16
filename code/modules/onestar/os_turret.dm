@@ -29,7 +29,7 @@
 	var/cooldown_timer_id
 
 /obj/machinery/power/os_turret/laser
-	name = "One Star Laser Turret"
+	name = "One Star laser turret"
 	icon_state = "os_laser"
 	desc = "A One Star made turret with a mounted QJZ-958 laser machinegun." //A turret of the One Star variety.
 	circuit = /obj/item/electronics/circuitboard/os_turret/laser
