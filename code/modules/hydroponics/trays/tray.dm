@@ -636,3 +636,8 @@
 	closed_system = !closed_system
 	to_chat(user, "You [closed_system ? "close" : "open"] the tray's lid.")
 	update_icon()
+
+/obj/item/electronics/circuitboard/hydroponics
+	name = "Circuit board (hydroponics tray)"
+	build_path = /obj/machinery/portable_atmospherics/hydroponics
+	origin_tech = list(TECH_DATA = 3)
