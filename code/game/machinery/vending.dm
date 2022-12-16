@@ -1209,7 +1209,7 @@
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	auto_price = FALSE
 	custom_vendor = TRUE // Chemists can load it for MDs
-	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle)
+	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle, /obj/item/reagent_containers/food/snacks/moecube, /obj/item/organ/internal)
 	vendor_department = DEPARTMENT_MEDICAL
 	shut_up = TRUE
 
@@ -1231,7 +1231,7 @@
 	icon_deny = "wallmed-deny"
 	product_ads = "Self-medication can be healthy!;Natural chemicals!;This stuff saves lives.;Don't you want some?;Hook it up to your veins!"
 	custom_vendor = TRUE // Chemists can load it for customers
-	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle)
+	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle, /obj/item/reagent_containers/food/snacks/moecube, /obj/item/organ/internal)
 	vendor_department = DEPARTMENT_MEDICAL
 
 /obj/machinery/vending/wallmed/minor
@@ -1523,6 +1523,7 @@
 	prices = list(/obj/item/book/ritual/cruciform = 500, /obj/item/storage/fancy/candle_box = 200, /obj/item/reagent_containers/food/drinks/bottle/ntcahors = 250,
 				/obj/item/implant/core_implant/cruciform = 1000)
 	custom_vendor = TRUE // So they can sell pouches and other printed goods, if they bother to stock them
+	can_stock = list(/obj/item)
 
 /obj/machinery/vending/theomat/proc/check_NT(mob/user)
 	var/bingo = FALSE
@@ -1556,7 +1557,7 @@
 
 /obj/machinery/vending/theomat/attackby(obj/item/I, mob/user)
 	if(I.tool_qualities || check_NT(user))
-		..()
+		..(I, user)
 
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
