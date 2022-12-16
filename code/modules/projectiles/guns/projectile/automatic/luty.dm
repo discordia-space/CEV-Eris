@@ -17,7 +17,7 @@
 	ammo_type = /obj/item/ammo_casing/pistol
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL|MAG_WELL_SMG
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC 5)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
 	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_300,
