@@ -1,7 +1,7 @@
 // Using stacks since /obj/item/spacecash has no support for different currencies. Shit code, but cash-handling will need a rework to support alt currencies.
 /obj/item/stack/os_cash
-	name = "One Star coin"
-	desc = "Some coins of the One Star variety."
+	name = "OneStar Yuan"
+	desc = "Offical OneStar Yuan coins, used across the ancient empire. should work in any holovendors that you come across"
 	icon = 'icons/obj/os_cash.dmi'
 	icon_state = "oscash"
 	w_class = ITEM_SIZE_TINY
