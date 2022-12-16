@@ -31,7 +31,7 @@
 /obj/machinery/power/os_turret/laser
 	name = "One Star Laser Turret"
 	icon_state = "os_laser"
-	desc = "A OneStar made turret with a mounted burst laser" //A turret of the One Star variety.
+	desc = "A One Star made turret with a mounted QJZ-958 laser machinegun." //A turret of the One Star variety.
 	circuit = /obj/item/electronics/circuitboard/os_turret/laser
 	range = 10
 	projectile = /obj/item/projectile/beam/pulsed_laser
