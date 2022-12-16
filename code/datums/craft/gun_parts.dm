@@ -187,6 +187,12 @@
 			else if(isnull(serial_type))
 				to_chat(user, SPAN_DANGER("The serial is scribbled away."))
 
+//Modular
+
+/obj/item/part/gun/frame/modular
+//Pretty empty rn
+
+
 //Grips
 /obj/item/part/gun/grip
 	name = "generic grip"
@@ -349,7 +355,7 @@
 	icon_state = "barrel_25"
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_CLRIFLE
- 
+
 /obj/item/part/gun/barrel/lrifle
 	name = ".30 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .30 caliber."
@@ -395,7 +401,7 @@
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .25 caliber. \
 			This one does not look as high quality."
 	matter = list(MATERIAL_STEEL = 8)
- 
+
 /obj/item/part/gun/barrel/lrifle/steel
 	name = "cheap .30 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .30 caliber. \
@@ -407,4 +413,3 @@
 	desc = "A gun barrel, which keeps the bullet (or bullets) going in the right direction. Chambered in .50 caliber. \
 			This one does not look as high quality."
 	matter = list(MATERIAL_STEEL = 8)
-	
