@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(statusEffects)
 
 /datum/controller/subsystem/statusEffects/Initialize()
 	for(var/datum/statusEffect/effect as anything in subtypesof(/datum/statusEffect))
-		GLOB.globalEffects[effect.identifier] = effect
+		GLOB.globalEffects[initial(effect.identifier)] = effect
 
 /datum/controller/subsystem/statusEffects/fire(resumed=FALSE)
 	for(var/mob/affectedMob as anything in affectedMobs)
@@ -35,7 +35,8 @@ proc/addStatusEffect(mob/target, effectType, duration)
 		CRASH("Attempt to create statusEffect with a duration below 1 : [duration]")
 	if(!GLOB.globalEffects[effectType])
 		CRASH("Invalid effectType received : [effectType]")
-	var/datum/statusEffect/createdEffect = new GLOB.globalEffects[effectType]
+	var/datum/statusEffect/createdEffect = GLOB.globalEffects[effectType]
+	createdEffect = new createdEffect()
 	if(!(createdEffect.flags & SE_FLAG_UNIQUE ))
 		if(SSstatusEffects.affectedMobs[target])
 			var/list/l = SSstatusEffects.affectedMobs[target]
@@ -50,11 +51,10 @@ proc/addStatusEffect(mob/target, effectType, duration)
 	createdEffect.duration = duration
 	createdEffect.mobReference = WEAKREF(target)
 	createdEffect.onStart()
-	if(SSstatusEffects.affectedMobs[target])
+	if(length(SSstatusEffects.affectedMobs[target]))
 		SSstatusEffects.affectedMobs[target] += createdEffect
 	else
-		SSstatusEffects.affectedMobs += target
-		SSstatusEffects.affectedMobs[target] += createdEffect
+		SSstatusEffects.affectedMobs[target] += list(createdEffect)
 	return TRUE
 
 proc/removeStatusEffect(mob/target, effectType)
