@@ -40,16 +40,6 @@
 	pref.spawnpoint         = sanitize_inlist(pref.spawnpoint, get_late_spawntypes(), initial(pref.spawnpoint))
 	pref.be_random_name     = sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
 
-	// This is a bit noodly. If pref.cultural_info[TAG_CULTURE] is null, then we haven't finished loading/sanitizing, which means we might purge
-	// numbers or w/e from someone's name by comparing them to the map default. So we just don't bother sanitizing at this point otherwise.
-	/*
-	if(pref.cultural_info[TAG_CULTURE])
-		var/decl/cultural_info/check = SSculture.get_culture(pref.cultural_info[TAG_CULTURE])
-		if(check)
-			pref.real_name = check.sanitize_name(pref.real_name, pref.species)
-			if(!pref.real_name)
-				pref.real_name = random_name(pref.gender, pref.species)
-	*/
 /datum/category_item/player_setup_item/physical/basic/content()
 	. = list()
 	. += "<b>First name:</b> "
@@ -108,7 +98,7 @@
 	else if(href_list["random_name"])
 		pref.real_first_name = random_first_name(pref.gender, pref.species)
 		pref.real_last_name = random_last_name(pref.gender, pref.species)
-		pref.real_name = pref.real_first_name + " " + pref.real_last_name 
+		pref.real_name = pref.real_first_name + " " + pref.real_last_name
 		return TOPIC_REFRESH
 
 	else if(href_list["always_random_name"])
