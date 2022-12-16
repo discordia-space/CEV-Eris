@@ -417,7 +417,7 @@ obj/structure/salvageable/bliss/Initialize()
 	)
 
 /obj/structure/salvageable/os/power  //todo:make a system to directly repair to a generator
-	name = "Broken Generator"
+	name = "Broken generator"
 	desc = "a onestar cold fusion reactor, this one seems mostly broken. the circuitboard looks intact."
 	icon_state = "generator_broken"
 	rarity_value = 80
