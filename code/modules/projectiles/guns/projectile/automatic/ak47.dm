@@ -256,7 +256,7 @@
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_IH|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
 
 	origin_tech = list(TECH_COMBAT = 2)	//bad copies don't give good science
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 5)
 	gun_tags = list(GUN_FA_MODDABLE)
 
 	damage_multiplier = 1.1
