@@ -328,7 +328,7 @@
 	name = "health"
 	desc = "Not your actual health, but an estimate of how much pain you feel.\
 	<br>Experience too much of it, and you will lose consciousness.\
-	<br>Pain tolerance scales with your toughness."
+	<br>Pain tolerance scales with your Toughness."
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "health0"
 	screen_loc = "15,7"
@@ -384,7 +384,7 @@
 	desc = "Soundness of your mind. Not keeping it in check may result in a breakdown.\
 	<br>Damaged by feeling pain, as well as seeing grime and gore;\
 	soothed by taking drugs, drinking, eating decent food and talking, preferably in a clean place with fellow humans around.\
-	<br>Sanity damage scales with your vigilance."
+	<br>Sanity damage scales with your Vigilance."
 	icon_state = "blank"
 
 /obj/screen/sanity/New()
@@ -458,8 +458,9 @@
 //--------------------------------------------------nsa---------------------------------------------------------
 /obj/screen/nsa
 	name = "nsa"
-	desc = "Neural System Accumulation is a variable, that shows how many augmentations, mutations and chemicals you can handle.\
-	<br>Going beyond your body's limits may have consequences. NSA scales with your cognition stat."
+	desc = "Neural System Accumulation depicts strain your body is experiencing.\
+	<br>It is increased by chemicals and mutations.\
+	<br>Going beyond your body's limits has negative consequences. NSA limit scales with your Cognition."
 	icon_state = "blank"
 
 /obj/screen/nsa/New()
@@ -553,7 +554,8 @@
 /obj/screen/bodytemp
 	name = "bodytemp"
 	desc = "Temperature of your body. Affected by environment, health and ingested chemicals.\
-	<br>Fever might be a sign of untreated infection."
+	<br>Fever might be a sign of untreated infection.\
+	<br>You are slowed down if your body temperature is low enough."
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "blank"
 	screen_loc = "15,8"
