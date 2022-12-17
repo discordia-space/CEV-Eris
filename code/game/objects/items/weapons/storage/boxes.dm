@@ -32,7 +32,7 @@
 		playsound(loc, pick('sound/effects/creatures/nibble1.ogg', 'sound/effects/creatures/nibble2.ogg'), 50, 1, 2)
 		shake_animation()
 		var/damage_amount = user.mob_size ? user.mob_size : MOB_MINISCULE
-		addtimer(CALLBACK(src, .proc/handle_generic_damage, damage_amount), 0.5 SECONDS)
+		addtimer(CALLBACK(src, .proc/handle_generic_damage, user, damage_amount), 0.5 SECONDS)
 
 /obj/item/storage/box/proc/handle_generic_damage(mob/user, severity)
 	if(QDELETED(src))
@@ -166,13 +166,7 @@
 	prespawned_content_amount = 3
 	prespawned_content_type = /obj/item/ammo_casing/antim/prespawned
 	spawn_tags = SPAWN_TAG_AMMO
-/*
-/obj/item/storage/box/sniperammo/populate_contents()
-	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
-	for(var/obj/item/ammo_casing/temp_casing in src)
-		temp_casing.update_icon() // TODO: See is that is needed
-*/
+
 /obj/item/storage/box/sniperammo/emp
 	name = "box of .60 \"Blackout\" Anti Material shells"
 	desc = "It has a picture of a gun and several warning symbols on the front, among them is a symbol you're not quite able to make sense of.<br>WARNING: Live EMP ammunition. Misuse may result in serious injury or death."
@@ -219,7 +213,7 @@
 	prespawned_content_type = /obj/item/grenade/frag/white_phosphorous
 
 /obj/item/storage/box/flashbangs/uplink_item
-	name = "Box of flashbangs"
+	name = "box of flashbangs"
 	desc = "A box containing 5 antipersonnel flashbang grenades.<br> WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use."
 	icon_state = "box_security"
 	illustration = "flashbang"
