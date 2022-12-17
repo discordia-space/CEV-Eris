@@ -136,17 +136,10 @@
 	..()
 	hard_drive.store_file(new /datum/computer_file/program/drink_catalog())
 
-
-// PDA box
 /obj/item/storage/box/PDAs
 	name = "box of spare PDAs"
 	desc = "A box of spare PDA microcomputers."
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pdabox"
-
-/obj/item/storage/box/PDAs/populate_contents()
-	new /obj/item/modular_computer/pda(src)
-	new /obj/item/modular_computer/pda(src)
-	new /obj/item/modular_computer/pda(src)
-	new /obj/item/modular_computer/pda(src)
-	new /obj/item/modular_computer/pda(src)
+	prespawned_content_amount = 5
+	prespawned_content_type = /obj/item/modular_computer/pda

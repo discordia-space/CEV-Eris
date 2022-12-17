@@ -1277,7 +1277,7 @@
 		/obj/item/implantcase/death_alarm = 2,
 		/obj/item/implanter = 2,
 		/obj/item/stack/medical/splint = 6,
-		/obj/item/storage/pill_bottle/njoy/red = 3,
+		/obj/item/storage/pill_bottle/njoy = 3,
 		/obj/item/storage/pill_bottle/njoy/blue = 3,
 		/obj/item/storage/pill_bottle/njoy/green = 3
 		)
@@ -1302,7 +1302,7 @@
 
 		/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = 500,
 		/obj/item/reagent_containers/hypospray/autoinjector/drugs = 500,
-		/obj/item/storage/pill_bottle/njoy/red = 300,
+		/obj/item/storage/pill_bottle/njoy = 300,
 		/obj/item/storage/pill_bottle/njoy/blue = 300,
 		/obj/item/storage/pill_bottle/njoy/green = 300
 		)
