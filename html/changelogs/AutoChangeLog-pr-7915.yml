@@ -1,6 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - tweak: Moebius MicroMed and MiniPharma vendors can now hold genetic cubes and
-      organs
-  - bugfix: Theomat can now be stocked with new items, and actually accepts payment

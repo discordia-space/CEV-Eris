@@ -1,7 +1,0 @@
-author: ValoTheValo
-delete-after: true
-changes:
-  - rscadd: Added a salvageable broken One Star generator
-  - balance: changed drops for salvaged onestar machines
-  - imageadd: directional sprites for broken onestar machines
-  - tweak: added flavor text to some onestar machines and items

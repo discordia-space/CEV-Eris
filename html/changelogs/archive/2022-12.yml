@@ -34,3 +34,34 @@
   - bugfix: Weather-related CI fail
   maikilangiolo:
   - tweak: Kadmin has slightly faster bullets
+2022-12-17:
+  Alliostra:
+  - bugfix: loudmouth grenades no longer turn invisible
+  - tweak: loudmouth grenades use metal sheets instead of a hailer in their recipe
+      now.
+  Chickenish:
+  - code_imp: removed some old inactive baycode
+  Humonitarian:
+  - tweak: Moebius MicroMed and MiniPharma vendors can now hold genetic cubes and
+      organs
+  - bugfix: Theomat can now be stocked with new items, and actually accepts payment
+  ValoTheValo:
+  - rscadd: Added a salvageable broken One Star generator
+  - balance: changed drops for salvaged onestar machines
+  - imageadd: directional sprites for broken onestar machines
+  - tweak: added flavor text to some onestar machines and items
+  - imageadd: added new magazine sprites to the wintermute and vintorez
+  assortedbeads:
+  - rscadd: Adds the Combat Hardsuit to the contraband section of the Boris Station
+  - imageadd: replaces all the sprites of the old combat hardsuit
+  driecg36:
+  - rscadd: New names for the already existing guns.
+  - tweak: Homogenized gun names in the crafting window for better organization/consistency.
+  - balance: Handmade guns are much easier and faster to craft.
+  - spellcheck: Gun Description typos.
+  maikilangiolo:
+  - rscadd: added a civilian version of the Kadmin to Bill's vendor
+  sgtmind:
+  - rscdel: Removed xenoarcheology
+  the-og-gear:
+  - bugfix: Stowing borg modules no longer leaves the inventory slot highlighted

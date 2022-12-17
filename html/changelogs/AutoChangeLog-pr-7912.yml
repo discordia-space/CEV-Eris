@@ -1,4 +1,0 @@
-author: the-og-gear
-delete-after: true
-changes:
-  - bugfix: Stowing borg modules no longer leaves the inventory slot highlighted
