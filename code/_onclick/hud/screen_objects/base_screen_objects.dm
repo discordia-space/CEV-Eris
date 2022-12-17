@@ -382,9 +382,9 @@
 /obj/screen/sanity
 	name = "sanity"
 	desc = "Soundness of your mind. Not keeping it in check may result in a breakdown.\
-	<br>Damaged by feeling pain, as well as seeing grime and gore;\
+	<br>Damaged by feeling pain, as well as seeing grime and gore; \
 	soothed by taking drugs, drinking, eating decent food and talking, preferably in a clean place with fellow humans around.\
-	<br>Sanity damage scales with your Vigilance."
+	<br>Sanity damage scales with your Vigilance. Left-click eye icon to see your current sanity, insight and style."
 	icon_state = "blank"
 
 /obj/screen/sanity/New()
