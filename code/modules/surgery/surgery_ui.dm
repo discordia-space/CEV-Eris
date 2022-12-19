@@ -33,6 +33,7 @@
 	if(selected_internal_object)
 		if(!LAZYFIND(internal_organs, selected_internal_object))
 			selected_internal_object = null
+			return
 		var/obj/item/organ/internal/I = selected_internal_object
 		data["diag_name"] = I.name
 		data["diag_max_damage"] = I.max_damage
@@ -45,6 +46,8 @@
 		data["diag_attach"] = /datum/surgery_step/attach_mod
 		data["diag_remove"] = /datum/surgery_step/remove_mod
 		data["diag_open"] = I.is_open()
+		data["diag_stored_blood"] = I.current_blood
+		data["diag_max_blood"] = I.max_blood_storage
 	else
 		data["status"] = get_status_data()
 

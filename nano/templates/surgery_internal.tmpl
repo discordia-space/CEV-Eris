@@ -39,6 +39,12 @@
 						<span class="label">Health:</span>
 						<div class="content">{{:helper.displayBar(data.diag_health, 0, data.diag_max_damage, (data.diag_damage > (data.diag_max_damage / 2)) ? 'bad' : 'good', data.diag_health + " / " + data.diag_max_damage)}}</div>	
 					</section>
+					{{if data.diag_max_blood}}
+						<section>
+							<span class="label">Blood:</span>
+							<div class="content">{{:helper.displayBar(data.diag_stored_blood, 0, data.diag_max_blood, 'bad', data.diag_stored_blood + " / " + data.diag_max_blood)}}</div>
+						</section>
+					{{/if}}
 				{{/if}}
 			</article>
 			<article>

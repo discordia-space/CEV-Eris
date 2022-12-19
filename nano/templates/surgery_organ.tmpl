@@ -16,7 +16,7 @@
 							{{if organ.wound_count}}
 								<section>
 									<span class="label">Wounds:</span>
-									<div class="content">{{organ.wound_count}}</div>
+									<div class="content"><span style="color: orange">{{:organ.wound_count}}</span></div>
 								</section>
 							{{/if}}
 							{{if organ.show_oxy}}
@@ -27,12 +27,6 @@
 								</section>
 							{{/if}}
 							{{if organ.max_damage}}
-								{{if organ.brain_health}}
-									<section>
-										<span class="label">Integrity:</span>
-										<div class="content">{{:helper.displayBar(organ.brain_health, 0, organ.brain_health_max, !organ.brain_health ? 'good' : 'bad', organ.brain_health + " / " + organ.brain_health_max)}}</div>
-									</section>
-								{{/if}}
 								<section>
 									<span class="label">Health:</span>
 									{{organ.health = Math.round((organ.max_damage - organ.damage) * 10) / 10;}}
@@ -40,10 +34,10 @@
 								</section>
 							{{/if}}
 							{{if organ.max_blood}}
-							<section>
-								<span class="label">Blood:</span>
-								<div class="content">{{:helper.displayBar(organ.stored_blood, 0, organ.max_blood, 'bad', organ.stored_blood + " / " + organ.max_blood)}}</div>
-							</section>
+								<section>
+									<span class="label">Blood:</span>
+									<div class="content">{{:helper.displayBar(organ.stored_blood, 0, organ.max_blood, 'bad', organ.stored_blood + " / " + organ.max_blood)}}</div>
+								</section>
 							{{/if}}
 						{{/if}}
 					</article>

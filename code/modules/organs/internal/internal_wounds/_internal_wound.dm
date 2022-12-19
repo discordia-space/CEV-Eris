@@ -14,7 +14,8 @@
 	var/severity_max = 3				// How far the wound can progress, default is 2
 	var/can_damage_organ = TRUE			// Does wound severity damage the parent organ?
 
-	var/can_progress = FALSE						// Whether the wound can progress or not
+	var/can_progress = TRUE							// Whether the wound can progress or not
+	var/progress_during_death = FALSE				// Will the wound progress while the organ is dead?
 	var/datum/component/next_wound					// If defined, applies a wound of this type when severity is at max
 	var/progression_threshold = IWOUND_2_MINUTES	// How many ticks until the wound progresses, default is 2 minutes
 	var/current_progression_tick					// Current tick towards progression
@@ -75,7 +76,7 @@
 	var/mob/living/carbon/human/H = parent ? O.owner : null
 
 	// Don't process when the parent limb or owner is dead. Organs don't process in corpses and won't die from wounds.
-	if(!parent || O.status & ORGAN_DEAD || (E && E.status & ORGAN_DEAD) || (H && H.stat & DEAD))
+	if((!parent || O.status & ORGAN_DEAD || (E && E.status & ORGAN_DEAD) || (H && H.stat & DEAD)) && !progress_during_death)
 		SSinternal_wounds.processing -= src
 		return
 
@@ -137,6 +138,7 @@
 		++severity
 	else
 		can_progress = FALSE
+		progress_during_death = FALSE	// Lets us remove the wound from processing
 		if(next_wound && ispath(next_wound, /datum/component))
 			var/chosen_wound_type = pick(subtypesof(next_wound))
 			SEND_SIGNAL(parent, COMSIG_IORGAN_ADD_WOUND, chosen_wound_type)
