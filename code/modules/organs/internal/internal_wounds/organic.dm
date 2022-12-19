@@ -164,7 +164,6 @@
 	treatments_chem = list(CE_ANTIBIOTIC = 3) // 5u Spaceacillin or spaceacillin + dylovene
 	severity = 0
 	severity_max = 3
-	progress_during_death = TRUE	// Dead organs will spread the infection
 	next_wound = /datum/component/internal_wound/organic/infection
 	hal_damage = IWOUND_LIGHT_DAMAGE
 	specific_organ_size_multiplier = 0.2
@@ -191,6 +190,7 @@
 	treatments_chem = list(CE_ANTIBIOTIC = 5)	// 10u Spaceacillin or 5u spaceacillin + dylovene
 	severity = 0
 	severity_max = IORGAN_MAX_HEALTH
+	progress_during_death = TRUE	// Dead organs will spread the infection
 	hal_damage = IWOUND_LIGHT_DAMAGE
 	can_spread = TRUE
 	spread_threshold = IORGAN_SMALL_HEALTH

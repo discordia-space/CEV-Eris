@@ -29,7 +29,6 @@
 	treatments_chem = list(CE_BONE_MEND = 1)
 	severity = 0
 	severity_max = 3
-	next_wound = /datum/component/internal_wound/organic/swelling
 	hal_damage = IWOUND_LIGHT_DAMAGE
 
 /datum/component/internal_wound/organic/bone_sharp/perforation
