@@ -2,7 +2,7 @@ SUBSYSTEM_DEF(statusEffects)
 	name = "Status effects"
 	flags = SS_TICKER
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
-	wait = 1
+	wait = 5
 	var/list/mob/affectedMobs = list()
 
 /datum/controller/subsystem/statusEffects/Initialize()
@@ -35,18 +35,21 @@ proc/addStatusEffect(mob/target, effectType, duration)
 		CRASH("Attempt to create statusEffect with a duration below 1 : [duration]")
 	if(!GLOB.globalEffects[effectType])
 		CRASH("Invalid effectType received : [effectType]")
-	var/datum/statusEffect/createdEffect = GLOB.globalEffects[effectType]
-	createdEffect = new createdEffect()
+	var/ef_type = GLOB.globalEffects[effectType]
+	var/datum/statusEffect/createdEffect = new ef_type()
 	if(!(createdEffect.flags & SE_FLAG_UNIQUE ))
-		if(SSstatusEffects.affectedMobs[target])
+		if(length(SSstatusEffects.affectedMobs[target]))
 			var/list/l = SSstatusEffects.affectedMobs[target]
 			var/pos = l.Find(createdEffect)
-			var/datum/statusEffect/existingEffect = SSstatusEffects.affectedMobs[target][pos]
-			if(!(existingEffect.duration + existingEffect.startingTime > world.time + duration))
-				existingEffect.startingTime = world.time
-				existingEffect.duration = duration
-			return TRUE
+			if(pos)
+				var/datum/statusEffect/existingEffect = SSstatusEffects.affectedMobs[target][pos]
+				if(!(existingEffect.duration + existingEffect.startingTime > world.time + duration))
+					message_admins("Extended [effectType] onto [target] with  a duration of [duration] ")
+					existingEffect.startingTime = world.time
+					existingEffect.duration = duration
+				return TRUE
 
+	message_admins("Created [effectType] onto [target] with  a duration of [duration] ")
 	createdEffect.startingTime = world.time
 	createdEffect.duration = duration
 	createdEffect.mobReference = WEAKREF(target)
@@ -132,6 +135,11 @@ proc/getStatusEffect(mob/target, effectType)
 
 /datum/statusEffect/weakened
 	identifier = SE_WEAKENED
+
+/datum/statusEffect/weakened/onStart()
+	var/mob/owner = mobReference.resolve()
+	if(owner)
+		owner.update_lying_buckled_and_verb_status()
 
 /datum/statusEffect/weakened/onFinish()
 	var/mob/owner =  mobReference.resolve()
