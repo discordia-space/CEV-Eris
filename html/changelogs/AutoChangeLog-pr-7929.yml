@@ -1,0 +1,4 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - rscadd: Added description for several HUD elements.
