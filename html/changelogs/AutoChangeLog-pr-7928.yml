@@ -1,0 +1,4 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - rscdel: Removed silly text line from stun breakdown.
