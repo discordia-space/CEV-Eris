@@ -1,0 +1,7 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - bugfix: Fixed nameless and empty Njoy bottles appearing.
+  - bugfix: Fixed Njoy packets spawning empty
+  - spellcheck: Changed few box names to lowercase
+  - refactor: Partial storage code optimization
