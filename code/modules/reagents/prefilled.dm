@@ -16,12 +16,8 @@
 /obj/item/storage/box/solution_trays
 	name = "solution tray box"
 	icon_state = "solution_trays"
-	initial_amount = 7
-	spawn_type = /obj/item/reagent_containers/glass/solution_tray
-
-/obj/item/storage/box/solution_trays/populate_contents()
-	for(var/i in 1 to initial_amount)
-		new spawn_type(src)
+	prespawned_content_amount = 7
+	prespawned_content_type = /obj/item/reagent_containers/glass/solution_tray
 
 /obj/item/reagent_containers/glass/beaker/tungsten
 	name = "beaker (tungsten)"

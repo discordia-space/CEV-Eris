@@ -26,7 +26,7 @@
 	new /obj/item/storage/fancy/candle_box(src)
 	new /obj/item/storage/fancy/candle_box(src)
 	new /obj/item/deck/tarot(src)
-	new /obj/item/storage/box/headset/church
+	new /obj/item/storage/box/headset_church(src)
 	new /obj/item/tool/knife/neotritual(src)
 	new /obj/item/tool/sword/nt/longsword(src)
 	new /obj/item/tool/knife/dagger/nt(src)

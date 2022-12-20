@@ -104414,7 +104414,7 @@
 /obj/spawner/medical/low_chance,
 /obj/spawner/medical/low_chance,
 /obj/structure/table/rack/shelf,
-/obj/item/storage/box/njoy/red,
+/obj/item/storage/box/njoy,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
 "njW" = (
@@ -106119,7 +106119,7 @@
 /obj/structure/table/woodentable,
 /obj/item/storage/pill_bottle/njoy/blue,
 /obj/item/storage/pill_bottle/njoy/green,
-/obj/item/storage/pill_bottle/njoy/red,
+/obj/item/storage/pill_bottle/njoy,
 /turf/simulated/floor/carpet,
 /area/eris/medical/psych)
 "rGT" = (
