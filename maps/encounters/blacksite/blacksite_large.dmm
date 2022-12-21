@@ -2862,6 +2862,13 @@
 	icon_state = "11,16"
 	},
 /area/space)
+"CZ" = (
+/obj/structure/closet/onestar/tier2/mineral/empty,
+/obj/structure/sign/faction/one_star{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "Dc" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "0,23"
@@ -4865,6 +4872,12 @@
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "7,18"
 	},
+/area/space)
+"Xf" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "Xi" = (
 /obj/structure/shuttle_part/mining{
@@ -19557,10 +19570,10 @@ cb
 cb
 cb
 cb
-cb
+XW
 Zk
 Zk
-gV
+NZ
 RJ
 RJ
 RJ
@@ -19762,7 +19775,7 @@ cb
 cb
 aa
 aa
-gV
+NZ
 RJ
 RJ
 RJ
@@ -19961,10 +19974,10 @@ cb
 cb
 cb
 cb
-cb
+XW
 Zk
 Zk
-gV
+NZ
 RJ
 RJ
 RJ
@@ -20359,11 +20372,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+XW
+XW
+RJ
+Xf
+XW
 gV
 gV
 gV
@@ -20561,11 +20574,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-aa
-aa
-aa
+XW
+hM
+RJ
+RJ
+RJ
 gV
 rj
 rj
@@ -20763,11 +20776,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-aa
-aa
-aa
+xb
+RJ
+RJ
+RJ
+RJ
 xb
 RJ
 RJ
@@ -20965,17 +20978,17 @@ cb
 cb
 cb
 cb
-cb
-cb
-aa
-aa
-aa
 gV
-nh
-nh
-nh
-gV
+kx
 RJ
+RJ
+RJ
+gV
+CZ
+nh
+nh
+gV
+kx
 RJ
 RJ
 gV
@@ -21167,11 +21180,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-aa
-aa
-aa
+xb
+RJ
+RJ
+RJ
+RJ
 xb
 RJ
 RJ
@@ -21369,11 +21382,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-aa
-aa
-aa
+XW
+Bu
+RJ
+RJ
+RJ
 gV
 fR
 fR
@@ -21571,11 +21584,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+XW
+XW
+RJ
+Xf
+XW
 gV
 gV
 gV
@@ -22187,9 +22200,9 @@ cb
 cb
 aa
 gV
-aa
-aa
-aa
+RJ
+RJ
+RJ
 gV
 aa
 aa
@@ -22388,11 +22401,11 @@ cb
 cb
 cb
 aa
-aa
-aa
-aa
-aa
-aa
+gV
+Vv
+gV
+Vv
+gV
 aa
 aa
 aa
@@ -22590,11 +22603,11 @@ cb
 cb
 cb
 aa
-aa
-aa
-aa
-aa
-aa
+gV
+RJ
+gV
+RJ
+gV
 aa
 aa
 aa
@@ -22792,11 +22805,11 @@ cb
 cb
 cb
 aa
-aa
-aa
-aa
-aa
-aa
+gV
+RJ
+gV
+RJ
+gV
 aa
 aa
 aa
@@ -22994,11 +23007,11 @@ cb
 cb
 cb
 aa
-aa
-aa
-aa
-aa
-aa
+gV
+Vv
+gV
+Vv
+gV
 aa
 aa
 aa
@@ -23196,11 +23209,11 @@ cb
 cb
 cb
 aa
-aa
-aa
-aa
-aa
-aa
+gV
+RJ
+RJ
+RJ
+gV
 aa
 aa
 aa
@@ -23398,10 +23411,10 @@ cb
 cb
 cb
 aa
-aa
-aa
-aa
-aa
+gV
+RJ
+RJ
+Zk
 aa
 aa
 aa
@@ -23600,9 +23613,9 @@ cb
 cb
 cb
 aa
-aa
-aa
-aa
+gV
+Zk
+Zk
 aa
 aa
 aa
@@ -23803,7 +23816,7 @@ cb
 cb
 aa
 aa
-aa
+Zk
 aa
 aa
 aa
