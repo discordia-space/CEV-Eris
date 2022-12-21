@@ -248,6 +248,12 @@
 	..()
 	M.druggy = max(M.druggy, 2)
 
+/datum/reagent/medicine/paracetamol/holy
+	id = "angelsbalm"
+	overdose = REAGENTS_OVERDOSE * 3
+	scannable = 0
+	nerve_system_accumulations = 0
+
 /datum/reagent/medicine/tramadol
 	name = "Tramadol"
 	id = "tramadol"
@@ -270,12 +276,6 @@
 	M.add_chemical_effect(CE_SPEEDBOOST, -1)
 	if(prob(3 - (2 * M.stats.getMult(STAT_TGH))))
 		M.Stun(3)
-
-/datum/reagent/medicine/tramadol/holy
-	id = "holytramadol"
-	overdose = REAGENTS_OVERDOSE * 5
-	scannable = 0
-	nerve_system_accumulations = 0
 
 /datum/reagent/medicine/oxycodone
 	name = "Oxycodone"

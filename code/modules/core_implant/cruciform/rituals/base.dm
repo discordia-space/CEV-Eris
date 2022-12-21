@@ -23,9 +23,7 @@
 	ignore_stuttering = TRUE
 
 /datum/ritual/cruciform/base/relief/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C)
-	var/datum/reagents/R = new /datum/reagents(15, null)
-	R.add_reagent("holytramadol", 15)
-	R.trans_to_mob(H, 15, CHEM_BLOOD)
+	H.reagents.add_reagent("angelsbalm", 15)
 	return TRUE
 
 
