@@ -23,8 +23,9 @@
 	ignore_stuttering = TRUE
 
 /datum/ritual/cruciform/base/relief/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C)
-	H.add_chemical_effect(CE_PAINKILLER, 50)
-	set_personal_cooldown(H)
+	var/datum/reagents/R = new /datum/reagents(15, null)
+	R.add_reagent("holytramadol", 15)
+	R.trans_to_mob(H, 15, CHEM_BLOOD)
 	return TRUE
 
 
