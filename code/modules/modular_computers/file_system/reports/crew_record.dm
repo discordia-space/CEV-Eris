@@ -35,19 +35,6 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 		photo_side = getFlatIcon(dummy, WEST)
 		qdel(dummy)
 
-	// Add education, honorifics, etc.
-	/*
-	var/formal_name = "Unset"
-	if(H)
-		formal_name = H.real_name
-		if(H.client && H.client.prefs)
-			for(var/culturetag in H.client.prefs.cultural_info)
-				var/decl/cultural_info/culture = SSculture.get_culture(H.client.prefs.cultural_info[culturetag])
-				if(H.char_rank && H.char_rank.name_short)
-					formal_name = "[formal_name][culture.get_formal_name_suffix()]"
-				else
-					formal_name = "[culture.get_formal_name_prefix()][formal_name][culture.get_formal_name_suffix()]"
-	*/
 	// Generic record
 	set_name(H ? H.real_name : "")
 	set_department(H ? GetDepartment(H) : "Unset")
@@ -59,8 +46,6 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	set_email((H && H.mind) ? H.mind.initial_email_login["login"] : "none")
 	set_account((H && H.mind) ? H.mind.initial_account.account_number : "000000")
 
-	// TODO: enable after baymed
-	//set_species(H ? H.get_species() : SPECIES_HUMAN)
 
 	set_species(SPECIES_HUMAN)
 	//set_branch(H ? (H.char_branch && H.char_branch.name) : "None")
@@ -83,18 +68,10 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 			employment_record = html_decode(H.gen_record)
 		if(H.client && H.client.prefs)
 			var/list/qualifications
-	/*		for(var/culturetag in H.client.prefs.cultural_info)
-				var/decl/cultural_info/culture = SSculture.get_culture(H.client.prefs.cultural_info[culturetag])
-				var/extra_note = culture.get_qualifications()
-				if(extra_note)
-					LAZYADD(qualifications, extra_note)*/
 			if(LAZYLEN(qualifications))
 				employment_record = "[employment_record ? "[employment_record]\[br\]" : ""][jointext(qualifications, "\[br\]>")]"
 	set_emplRecord(employment_record)
 
-	// Misc cultural info.
-	//set_homeSystem(H ? html_decode(H.get_cultural_value(TAG_HOMEWORLD)) : "Unset")
-	//set_faction(H ? html_decode(H.get_cultural_value(TAG_FACTION)) : "Unset")
 
 	if(H)
 		var/stats = list()

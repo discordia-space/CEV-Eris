@@ -499,3 +499,20 @@
 		split_phrase[index] = word
 
 	return sanitize(jointext(split_phrase," "))
+
+/datum/perk/njoy
+	name = "Njoy (Active)"
+	desc = "Your mind can focus on what is real, just like when you get rid of a painful earring."
+	icon_state = "cheerful"  //https://game-icons.net/1x1/lorc/cheerful.html
+
+	gain_text = "Your mind feels much clearer now."
+	lose_text = "You feel the shadows once more."
+
+/datum/perk/njoy/assign(mob/living/carbon/human/H)
+	if(..())
+		holder.sanity.insight_gain_multiplier *= 0.5
+
+/datum/perk/njoy/remove()
+	if(holder)
+		holder.sanity.insight_gain_multiplier *= 2
+	..()

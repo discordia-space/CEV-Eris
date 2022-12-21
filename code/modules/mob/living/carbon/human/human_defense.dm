@@ -321,21 +321,24 @@ meteor_act
 		return FALSE
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
 		forcesay(hit_appends)	//forcesay checks stat already
-		//Apply blood
-		if(!((I.flags & NOBLOODY)||(I.item_flags & NOBLOODY)))
-			I.add_blood(src)
+
 		//Apply screenshake
 		if(I.screen_shake && prob(70))
 			shake_camera(src, 0.5, 1)
-		//All this is copypasta'd from projectile code. Basically there's a cool splat animation when someone gets hit by something.
-		var/splatter_dir = dir
+
 		var/turf/target_location = get_turf(src)
-		splatter_dir = get_dir(user, target_location)
-		target_location = get_step(target_location, splatter_dir)
-		var/blood_color = "#C80000"
-		blood_color = src.species.blood_color
-		new /obj/effect/overlay/temp/dir_setting/bloodsplatter(src.loc, splatter_dir, blood_color)
-		target_location.add_blood(src)
+
+		// Blood splatter
+		var/blood_color = species.blood_color
+		if(blood_color)
+			//Apply blood
+			if(!((I.flags & NOBLOODY)||(I.item_flags & NOBLOODY)))
+				I.add_blood(src)
+			var/splatter_dir = dir
+			splatter_dir = get_dir(user, target_location)
+			target_location = get_step(target_location, splatter_dir)
+			new /obj/effect/overlay/temp/dir_setting/bloodsplatter(loc, splatter_dir, blood_color)
+			target_location.add_blood(src)
 
 		//Intervention attacks
 		if(prob(max(5, min(30, 30 - stats.getStat(STAT_TGH)/2.5)))) //This is hell. 30% is default chance, 5% is minimum which is met at 80 TGH.
@@ -349,34 +352,36 @@ meteor_act
 			var/intervention_type = pick("out of breath", "bloodstains")
 			switch(intervention_type)
 				if("bloodstains")
-					var/turf/location = loc
-					if(istype(location, /turf/simulated))
-						location.add_blood(src)
-					if(ishuman(user))
-						var/mob/living/carbon/human/H = user
-						if(get_dist(H, src) <= 1) //people with TK won't get smeared with blood
-							H.bloody_body(src)
-							H.bloody_hands(src)
+					if(blood_color)
+						var/turf/location = loc
+						if(istype(location, /turf/simulated))
+							location.add_blood(src)
+						if(ishuman(user))
+							var/mob/living/carbon/human/H = user
+							if(get_dist(H, src) <= 1) //people with TK won't get smeared with blood
+								H.bloody_body(src)
+								H.bloody_hands(src)
 
-						if(prob(40))
-							if(wear_mask)
-								wear_mask.add_blood(src)
-								update_inv_wear_mask(0)
-							if(head)
-								head.add_blood(src)
-								update_inv_head(0)
-							if(glasses)
-								glasses.add_blood(src)
-								update_inv_glasses(0)
-						else
-							bloody_body(src)
-					visible_message(SPAN_WARNING("Blood stains [src]'s clothes!"), SPAN_DANGER("Blood seeps through your clothes and your heart skips a beat!"))
-					sanity.changeLevel(-5)
+							if(prob(40))
+								if(wear_mask)
+									wear_mask.add_blood(src)
+									update_inv_wear_mask(0)
+								if(head)
+									head.add_blood(src)
+									update_inv_head(0)
+								if(glasses)
+									glasses.add_blood(src)
+									update_inv_glasses(0)
+							else
+								bloody_body(src)
+						visible_message(SPAN_WARNING("Blood stains [src]'s clothes!"), SPAN_DANGER("Blood seeps through your clothes and your heart skips a beat!"))
+						sanity.changeLevel(-5)
 
 				if("out of breath")
-					visible_message(SPAN_WARNING("[src] gasps in pain!"), SPAN_DANGER("Pain jolts through your nerves!"))
-					adjustOxyLoss(10)
-					adjustHalLoss(5)
+					if(!stat)
+						visible_message(SPAN_WARNING("[src] gasps in pain!"), SPAN_DANGER("Pain jolts through your nerves!"))
+						adjustOxyLoss(10)
+						adjustHalLoss(5)
 
 
 	return TRUE

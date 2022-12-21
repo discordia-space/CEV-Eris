@@ -280,7 +280,7 @@
 	if(affecting_stat > 0)
 		warmup_increase += affecting_stat ** 0.8
 	else
-		warmup_increase += affecting_stat ** 0.6
+		warmup_increase -= abs(affecting_stat) ** 0.6
 
 	var/total_warmup = max(0, UPGRADE_WARMUP + round(warmup_increase))
 
@@ -319,7 +319,7 @@
 			msg_admin_attack("[key_name(assailant)] grabbed the neck of [key_name(affecting)]")
 			hud.icon_state = "kill"
 			hud.name = "choke"
-		else if(!isnull(src))
+		else if(!QDELETED(src))
 			state = GRAB_AGGRESSIVE
 			hud.icon_state = "reinforce_final"
 

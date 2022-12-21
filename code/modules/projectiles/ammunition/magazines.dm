@@ -557,7 +557,7 @@
 	caliber = CAL_SRIFLE
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/srifle
-	max_ammo = 5
+	max_ammo = 6
 	w_class = ITEM_SIZE_TINY
 
 /obj/item/ammo_magazine/slsrifle/update_icon()

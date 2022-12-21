@@ -228,20 +228,19 @@ the value of stock parts increases with the rating.
 		else if(ispath(path, /obj/item/storage))
 			if(ispath(path, /obj/item/storage/box))
 				var/obj/item/storage/box/B = path
-				if(initial(B.initial_amount) > 0 && initial(B.spawn_type))
-					. += initial(B.initial_amount) * get_spawn_price(initial(B.spawn_type))
+				if(initial(B.prespawned_content_amount) > 0 && initial(B.prespawned_content_type))
+					. += initial(B.prespawned_content_amount) * get_spawn_price(initial(B.prespawned_content_type))
 			else if(ispath(path, /obj/item/storage/fancy))
 				var/obj/item/storage/fancy/F = path
 				if(initial(F.item_obj) && initial(F.storage_slots))
 					. += initial(F.storage_slots) * get_spawn_price(initial(F.item_obj))
 			else if(ispath(path, /obj/item/storage/pill_bottle))
 				var/obj/item/storage/pill_bottle/PB = path
-				if(initial(PB.initial_amt) && initial(PB.pill_type))
-					. += initial(PB.initial_amt) * get_spawn_price(initial(PB.pill_type))
+				if(initial(PB.prespawned_content_amount) && initial(PB.prespawned_content_type))
+					. += initial(PB.prespawned_content_amount) * get_spawn_price(initial(PB.prespawned_content_type))
 			else if(ispath(path, /obj/item/storage/firstaid))
 				var/obj/item/storage/firstaid/F = path
-				if(!initial(F.empty))
-					. += initial(F.initial_amount) * get_spawn_price(initial(F.spawn_type))
+				. += initial(F.prespawned_content_amount) * get_spawn_price(initial(F.prespawned_content_type))
 		else if(ispath(path, /obj/item/clothing))
 			var/obj/item/clothing/C = path
 			. += 5 * initial(C.style)
