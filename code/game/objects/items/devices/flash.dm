@@ -74,7 +74,7 @@
 		if(M.stat!=DEAD)
 			var/mob/living/carbon/C = M
 			var/safety = C.eyecheck()
-			var/flash_strength = 10 - (10*safety) // FLASH_PROTECTION_MINOR halves it, FLASH_PROTECTION_REDUCED doubles it.
+			var/flash_strength = 5 SECONDS - (10*safety) SECONDS // FLASH_PROTECTION_MINOR halves it, FLASH_PROTECTION_REDUCED doubles it.
 			if(flash_strength > 0)
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M

@@ -188,7 +188,7 @@
 
 			return
 		else if (bullets == 0)
-			user.Weaken(5)
+			user.Weaken(10 SECONDS)
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message(SPAN_WARNING("\The [user] realized they were out of ammo and starting scrounging for some!"), 1)
 
@@ -212,7 +212,7 @@
 			for(var/mob/O in viewers(M, null))
 				if (O.client)
 					O.show_message(SPAN_DANGER("\The [user] casually lines up a shot with [M]'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!"), 1, SPAN_WARNING("You hear someone fall"), 2)
-			user.Weaken(5)
+			user.Weaken(10 SECONDS)
 		return
 
 /obj/item/toy/ammo/crossbow

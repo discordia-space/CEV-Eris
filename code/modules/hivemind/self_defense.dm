@@ -71,7 +71,7 @@
 	var/list/targets = mobs_in_view(attack_range, master)
 	for(var/mob/living/victim in targets)
 		if(victim.stat == CONSCIOUS && victim.faction != HIVE_FACTION)
-			victim.Weaken(5)
+			victim.Weaken(10 SECONDS)
 			step_away(victim, master)
 			victim.damage_through_armor(10, BURN, BP_HEAD, ARMOR_ENERGY)
 
@@ -146,7 +146,7 @@
 			places_to_spawn -= spawn_loc
 	playsound(master, 'sound/effects/teleport.ogg', 80, 1)
 	champion.say(pick("You shall be destroyed!", "Fear me!", "Face me!", "You have lived for far too long!", "Die vermin!", "Fight me insect!", "There is no escape!"))
-	
+
 
 //EMERGENCY JUMP
 //Teleports master to new location

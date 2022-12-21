@@ -268,7 +268,7 @@
 		to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
 		return FALSE
 	target.forceMove(src.loc)
-	target.Weaken(5)
+	target.Weaken(10 SECONDS)
 	visible_message(SPAN_WARNING("[user] dunks [target] into the [src]!"))
 	return TRUE
 

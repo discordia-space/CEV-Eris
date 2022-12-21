@@ -113,7 +113,7 @@
 		)
 		SEND_SIGNAL(src, COMSIG_CARBON_ELECTROCTE)
 		Stun(10)//This should work for now, more is really silly and makes you lay there forever
-		Weaken(10)
+		Weaken(20 SECONDS)
 	else
 		src.visible_message(
 			"\red [src] was mildly shocked by the [source].", \

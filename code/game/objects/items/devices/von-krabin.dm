@@ -49,7 +49,7 @@
 		to_chat(hive_minded, SPAN_DANGER("Your connection with the [src] is cut off. The knowledge is painfully removed from you!"))
 		krabin_linked -= hive_minded
 		hive_minded.adjustBrainLoss(25)
-		hive_minded.Weaken(5, TRUE)
+		hive_minded.Weaken(10 SECONDS, TRUE)
 		for(var/stat in stats_buff)
 			hive_minded.stats.removeTempStat(stat, "von-crabbin")
 			hive_minded.stats.changeStat(stat, -30)  // hard to adapt back to normality
@@ -113,7 +113,7 @@
 		if(do_after(user, 20 SECONDS, M, TRUE))
 			user.visible_message(SPAN_DANGER("[user] breaks [M]'s link to the Eye of the protector, reducing their cruciform's capabilities!"))
 			the_broken.Add(M)
-			M.Weaken(10)
+			M.Weaken(20 SECONDS)
 			M.adjustHalLoss(50)
 			to_chat(M, "As your link to the Eye of the protector is broken, your soul is exposed, you feel the pain of the blue depths.")
 			var/obj/item/implant/core_implant/cruciform/C = M.get_core_implant(/obj/item/implant/core_implant/cruciform)

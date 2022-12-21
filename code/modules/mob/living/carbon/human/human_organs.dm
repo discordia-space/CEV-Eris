@@ -95,7 +95,7 @@
 			if(species && !(species.flags & NO_PAIN))
 				emote("scream")
 			custom_emote(1, "collapses!")
-		Weaken(5) //can't emote while weakened, apparently.
+		Weaken(10 SECONDS) //can't emote while weakened, apparently.
 
 /mob/living/carbon/human/proc/handle_grasp()
 	if(!l_hand && !r_hand)
@@ -128,7 +128,7 @@
 
 		if(E.mob_can_unequip(src))
 			if(E.is_broken() || E.limb_efficiency <= 50)
-				
+
 				drop_from_inventory(E)
 
 				if(E.limb_efficiency <= 50)

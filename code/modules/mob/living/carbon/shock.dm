@@ -118,12 +118,12 @@
 		if(shock_stage == 100) emote("me",1,"'s body becomes limp.")
 		if (prob(2))
 			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
-			Weaken(10)
+			Weaken(20 SECONDS)
 
 	if(shock_stage >= 120)
 		if (prob(5))
 			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
-			Weaken(10)
+			Weaken(20 SECONDS)
 
 	if(shock_stage >= hard_crit_threshold)
 		enter_hard_crit()

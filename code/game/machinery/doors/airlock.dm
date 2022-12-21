@@ -855,7 +855,7 @@ There are 9 wires.
 			if(!istype(H.head, /obj/item/clothing/head/armor/helmet))
 				visible_message(SPAN_WARNING("[user] headbutts the airlock."))
 				var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
-				H.Weaken(5)
+				H.Weaken(10 SECONDS)
 				if(affecting.take_damage(10, 0))
 					H.UpdateDamageIcon()
 			else

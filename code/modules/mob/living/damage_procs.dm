@@ -141,5 +141,5 @@
 	if (damage > 0)
 		take_overall_damage(damage)
 		playsound(src, pick(punch_sound), 100, 1, 10)
-		Weaken(4)
+		Weaken(8 SECONDS)
 		updatehealth()

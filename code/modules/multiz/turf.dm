@@ -185,7 +185,7 @@ see multiz/movement.dm for some info.
 			if(M == mover)
 				continue
 			if(M.getarmor(BP_HEAD, ARMOR_MELEE) < fall_damage || ismob(mover))
-				M.Weaken(10)
+				M.Weaken(20 SECONDS)
 			if(fall_damage >= FALL_GIB_DAMAGE)
 				M.gib()
 			else

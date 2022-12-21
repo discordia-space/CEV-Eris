@@ -240,7 +240,7 @@
 				M.sleeping = 0
 				M.stuttering += 20
 				M.adjustEarDamage(0,30)
-				M.Weaken(3)
+				M.Weaken(6 SECONDS)
 				if(prob(30))
 					M.Stun(10)
 					M.Paralyse(4)

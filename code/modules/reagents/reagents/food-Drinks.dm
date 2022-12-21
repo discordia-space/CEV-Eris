@@ -371,7 +371,7 @@
 		if(prob(25))
 			M.custom_emote(2, "[pick("coughs!","coughs hysterically!","splutters!")]")
 		M.Stun(5)
-		M.Weaken(5)
+		M.Weaken(10 SECONDS)
 
 /datum/reagent/organic/capsaicin/condensed/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	if(ishuman(M))
@@ -2296,7 +2296,7 @@
 
 /datum/reagent/alcohol/neurotoxin/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
-	M.Weaken(3 * effect_multiplier)
+	M.Weaken(3 * effect_multiplier SECONDS)
 	M.add_chemical_effect(CE_PULSE, -1)
 
 /datum/reagent/alcohol/patron

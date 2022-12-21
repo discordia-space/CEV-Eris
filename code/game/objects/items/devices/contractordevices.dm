@@ -41,7 +41,7 @@ effective or pretty fucking useless.
 		spawn()
 			if(prob(50))
 
-				M.Weaken(rand(10,20))
+				M.Weaken(rand(10,20) SECONDS)
 				if(prob(25))
 					M.Stun(rand(5,10))
 				to_chat(M, SPAN_DANGER("You feel a tremendous, paralyzing wave flood your mind."))

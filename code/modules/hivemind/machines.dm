@@ -646,12 +646,12 @@
 	var/mob/living/carbon/human/H = target
 	if(istype(H))
 		if(prob(90 - H.stats.getStat(STAT_VIG)))
-			H.Weaken(6)
+			H.Weaken(12 SECONDS)
 			to_chat(H, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
 		else
 			to_chat(H, SPAN_NOTICE("A terrible howl tears through your mind, but you refuse to listen to it!"))
 	else
-		target.Weaken(6)
+		target.Weaken(12 SECONDS)
 		to_chat(target, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
 
 

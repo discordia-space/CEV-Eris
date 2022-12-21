@@ -176,7 +176,7 @@
 /obj/structure/foamedmetal/affect_grab(var/mob/living/user, var/mob/living/target)
 	target.forceMove(src.loc)
 	visible_message(SPAN_WARNING("[user] smashes [target] through the foamed metal wall."))
-	target.Weaken(5)
+	target.Weaken(10 SECONDS)
 	qdel(src)
 	return TRUE
 

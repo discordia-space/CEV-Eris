@@ -414,7 +414,7 @@
 	host.updatehealth()
 	host.make_jittery(100)
 	host.Stun(10)
-	host.Weaken(10)
+	host.Weaken(20 SECONDS)
 	host.Paralyse(10)
 	host.restore_blood()
 	host.fixblood()

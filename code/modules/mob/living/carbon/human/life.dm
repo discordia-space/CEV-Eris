@@ -217,7 +217,7 @@
 					Paralyse(10)
 				else if(!lying)
 					to_chat(src, SPAN_DANGER("Your legs won't respond properly, you fall down!"))
-					Weaken(10)
+					Weaken(20 SECONDS)
 
 
 
@@ -274,7 +274,7 @@
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
 				radiation -= 5 * RADIATION_SPEED_COEFFICIENT
 				to_chat(src, SPAN_WARNING("You feel weak."))
-				Weaken(3, FALSE)
+				Weaken(6 SECONDS, FALSE)
 				if(!lying)
 					emote("collapse")
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == SPECIES_HUMAN) //apes go bald

@@ -423,7 +423,7 @@
 		if(ORION_TRAIL_FLUX)
 			if(iscarbon(usr) && prob(75))
 				var/mob/living/carbon/M = usr
-				M.Weaken(3)
+				M.Weaken(6 SECONDS)
 				src.visible_message("A sudden gust of powerful wind slams \the [M] into the floor!", "You hear a large fwooshing sound, followed by a bang.")
 				M.take_organ_damage(10)
 			else

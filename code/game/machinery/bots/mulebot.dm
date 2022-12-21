@@ -718,7 +718,7 @@
 				src.visible_message(SPAN_WARNING("[src] knocks over [M]!"))
 				M.stop_pulling()
 				M.Stun(8)
-				M.Weaken(5)
+				M.Weaken(10 SECONDS)
 				M.lying = 1
 	..()
 

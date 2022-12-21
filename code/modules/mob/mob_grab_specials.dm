@@ -125,8 +125,8 @@
 	if(target.lying)
 		return
 	visible_message(SPAN_DANGER("[attacker] dropkicks [target], pushing \him onwards!"))
-	attacker.Weaken(2)
-	target.Weaken(6) //the target will fly over tables, railings, etc.
+	attacker.Weaken(4 SECONDS)
+	target.Weaken(12 SECONDS) //the target will fly over tables, railings, etc.
 	var/kick_dir = get_dir(attacker, target)
 	if(attacker.loc == target.loc) // if we are on the same tile(e.g. neck grab), turn the direction to still push them away
 		kick_dir = turn(kick_dir, 180)
@@ -155,7 +155,7 @@
 		target.SpinAnimation(5,1)
 		var/damage = min(80, attacker.stats.getStat(STAT_ROB) + 15) //WE ARE GONNA KILL YOU
 		target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_MELEE) //crunch
-		attacker.Weaken(2)
+		attacker.Weaken(4 SECONDS)
 		target.Stun(6)
 		playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
 		attacker.regen_slickness()
@@ -234,7 +234,7 @@
 /obj/item/grab/proc/apply_pinning(mob/target, mob/attacker)
 	playsound(loc, 'sound/weapons/pinground.ogg', 50, 1, -1)
 	force_down = 1
-	target.Weaken(3)
+	target.Weaken(6 SECONDS)
 	target.lying = 1
 	step_to(attacker, target)
 	attacker.set_dir(EAST) //face the victim
@@ -262,7 +262,7 @@
 
 	target.damage_through_armor(damage, HALLOSS, BP_CHEST, ARMOR_MELEE)
 
-	target.Weaken(1)
+	target.Weaken(2 SECONDS)
 	playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
 	attacker.regen_slickness(0.15)//sick, but a dropkick is even sicker
 
@@ -303,7 +303,7 @@
 		damage += 5
 		for(var/mob/living/L in get_step(target, dir))
 			visible_message(SPAN_DANGER("[target] collides with [L], pushing \him on the ground!"))
-			L.Weaken(4)
+			L.Weaken(8 SECONDS)
 		attacker.set_dir(dir)
 		sleep(1)
 

@@ -166,7 +166,7 @@
 			to_chat(M, SPAN_NOTICE("You slipped on the [name]!"))
 			playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 			M.Stun(8)
-			M.Weaken(5)
+			M.Weaken(10 SECONDS)
 			seed.thrown_at(src,M)
 			sleep(-1)
 			if(src) qdel(src)

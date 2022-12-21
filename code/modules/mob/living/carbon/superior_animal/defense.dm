@@ -71,10 +71,10 @@
 			return 1
 
 		if (I_DISARM)
-			if (!weakened && prob(30))
+			if (!hasStatusEffect(src, SE_WEAKENED) && prob(30))
 				M.visible_message("\red [M] has shoved \the [src]")
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				Weaken(3)
+				Weaken(6 SECONDS)
 
 				return 1
 			else

@@ -116,7 +116,7 @@
 	var/mob/living/L = .
 	if(istype(L))
 		if(prob(15))
-			L.Weaken(2)
+			L.Weaken(4 SECONDS)
 			L.visible_message(SPAN_DANGER("\the [src] knocks down \the [L]!"))
 
 //
@@ -190,5 +190,5 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 		var/mob/living/L = .
 		if(istype(L))
 			if(prob(15))
-				L.Weaken(1)
+				L.Weaken(2 SECONDS)
 				L.visible_message(SPAN_DANGER("\the [src] knocks down \the [L]!"))

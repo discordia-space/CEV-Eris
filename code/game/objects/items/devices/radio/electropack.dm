@@ -98,8 +98,7 @@
 		s.set_up(3, 1, M)
 		s.start()
 
-		M.Weaken(10)
-
+		M.Weaken(20 SECONDS)
 	if(master && wires & 1)
 		master.receive_signal()
 	return

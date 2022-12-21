@@ -13,7 +13,7 @@
 			if(H && H.has_shield())
 				L.visible_message(SPAN_DANGER("\the [src] tried to knocks down \the [L]! But [L] blocks \the [src] attack!"))
 			else
-				L.Weaken(3)
+				L.Weaken(6 SECONDS)
 				L.visible_message(SPAN_DANGER("\the [src] knocks down \the [L]!"))
 
 	. = ..()

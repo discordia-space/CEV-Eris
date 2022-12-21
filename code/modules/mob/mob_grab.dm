@@ -147,7 +147,7 @@
 			if(affecting.loc != assailant.loc)
 				force_down = 0
 			else
-				affecting.Weaken(2)
+				affecting.Weaken(4 SECONDS)
 
 	if(state >= GRAB_NECK)
 		affecting.Stun(3)
@@ -159,7 +159,7 @@
 		if(iscarbon(affecting))
 			var/mob/living/carbon/C = affecting
 			C.apply_effect(STUTTER, 5) //It will hamper your voice, being choked and all.
-			C.Weaken(5)	//Should keep you down unless you get help.
+			C.Weaken(10 SECONDS)	//Should keep you down unless you get help.
 			C.losebreath = max(C.losebreath + 2, 3)
 
 	update_slowdown()
@@ -416,10 +416,10 @@
 						return
 					else if(hit_zone == BP_MOUTH)
 						force_vomit(affecting, assailant)
-					else 
+					else
 						var/mob/living/carbon/human/H = affecting
 						var/obj/item/organ/external/o = H.get_organ(hit_zone)
-						
+
 						if(o.status & ORGAN_BLEEDING)
 							slow_bleeding(affecting, assailant, o)
 						else

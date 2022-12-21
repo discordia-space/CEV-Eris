@@ -424,7 +424,7 @@
 			var/mob/living/carbon/human/H = A
 			if(!H.lying)
 				to_chat(H, SPAN_DANGER("A strong gravitational force slams you to the ground!"))
-				H.Weaken(20)
+				H.Weaken(40 SECONDS)
 
 
 /obj/machinery/power/supermatter/GotoAirflowDest(n) //Supermatter not pushed around by airflow

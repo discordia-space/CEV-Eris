@@ -205,7 +205,7 @@
 	var/body_part = pick(BP_HEAD, BP_CHEST, BP_GROIN)
 	visible_message(SPAN_DANGER("[M] slams against \the [src]!"))
 	if(prob(30))
-		M.Weaken(1)
+		M.Weaken(2 SECONDS)
 	M.damage_through_armor(rand(5,8), BRUTE, body_part, ARMOR_MELEE)
 	take_damage(M.mob_size)
 

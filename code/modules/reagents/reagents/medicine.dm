@@ -52,7 +52,7 @@
 	user_nerve.take_damage(round(volume/6))
 	if(prob(3))
 		to_chat(user, span_danger("Your muscles ache with agonizing pain!"))
-		user.Weaken(2)
+		user.Weaken(4 SECONDS)
 	if(volume > 100 && prob(1))
 		var/obj/item/organ/internal/heart/user_heart = user.random_organ_by_process(OP_HEART)
 		if(!user_heart || BP_IS_ROBOTIC(user_heart))
@@ -836,7 +836,7 @@
 		M.eye_blurry = max(M.eye_blurry, 10)
 	else if(effective_dose < 3)
 		if(prob(50))
-			M.Weaken(2)
+			M.Weaken(4 SECONDS)
 		M.drowsyness = max(M.drowsyness, 20)
 	else
 		M.sleeping = max(M.sleeping, 20)

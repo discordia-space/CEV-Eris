@@ -153,14 +153,14 @@
 
 /obj/structure/proc/structure_shaken()
 	for(var/mob/living/M in climbers)
-		M.Weaken(1)
+		M.Weaken(2 SECONDS)
 		to_chat(M, SPAN_DANGER("You topple as you are shaken off \the [src]!"))
 		climbers.Cut(1,2)
 
 	for(var/mob/living/M in get_turf(src))
 		if(M.lying) return //No spamming this on people.
 
-		M.Weaken(3)
+		M.Weaken(6 SECONDS)
 		to_chat(M, SPAN_DANGER("You topple as \the [src] moves under you!"))
 
 		if(prob(25))

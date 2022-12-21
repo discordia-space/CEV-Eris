@@ -234,7 +234,7 @@
 	if(!.)
 		return FALSE
 	if(init_update())
-		holder.owner.Weaken(3)
+		holder.owner.Weaken(6 SECONDS)
 		holder.owner.Stun(3)
 		if(prob(50))
 			holder.owner.emote("scream")

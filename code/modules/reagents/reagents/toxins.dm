@@ -158,7 +158,7 @@
 			if(H.losebreath >= 10)
 				H.losebreath = max(10, H.losebreath - 10)
 			H.adjustOxyLoss(2)
-			H.Weaken(10)
+			H.Weaken(20 SECONDS)
 		M.add_chemical_effect(CE_NOPULSE, 1)
 
 
@@ -180,7 +180,7 @@
 			if(H.losebreath >= 10)
 				H.losebreath = max(10, M.losebreath-10)
 			H.adjustOxyLoss(2)
-			H.Weaken(10)
+			H.Weaken(20 SECONDS)
 		M.add_chemical_effect(CE_NOPULSE, 1)
 
 /datum/reagent/toxin/zombiepowder
@@ -197,7 +197,7 @@
 	..()
 	M.status_flags |= FAKEDEATH
 	M.adjustOxyLoss(0.6 * effect_multiplier)
-	M.Weaken(10)
+	M.Weaken(20 SECONDS)
 	M.silent = max(M.silent, 10)
 	M.timeofdeath = world.time
 	M.add_chemical_effect(CE_NOPULSE, 1)
@@ -442,7 +442,7 @@
 		M.eye_blurry = max(M.eye_blurry, 10)
 	else if(effective_dose < 5)
 		if(prob(50))
-			M.Weaken(2)
+			M.Weaken(4 SECONDS)
 		M.drowsyness = max(M.drowsyness, 20)
 	else
 		M.sleeping = max(M.sleeping, 20)
@@ -468,7 +468,7 @@
 		M.confused += 2
 		M.drowsyness += 2
 	else if(effective_dose < 2)
-		M.Weaken(30)
+		M.Weaken(60 SECONDS)
 		M.eye_blurry = max(M.eye_blurry, 10)
 	else
 		M.sleeping = max(M.sleeping, 30)

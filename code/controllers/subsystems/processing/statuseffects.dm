@@ -10,25 +10,27 @@ SUBSYSTEM_DEF(statusEffects)
 		GLOB.globalEffects[initial(effect.identifier)] = effect
 
 /datum/controller/subsystem/statusEffects/fire(resumed=FALSE)
-	for(var/mob/affectedMob as anything in affectedMobs)
-		for(var/datum/statusEffect/effect as anything in affectedMobs[affectedMob])
-			if(!effect.mobReference.resolve())
-				affectedMobs[affectedMob] -= effect
-				qdel(effect)
-				if(!length(affectedMobs[affectedMob]))
-					affectedMobs -= affectedMob
-			if((effect.startingTime + effect.duration) < world.time)
-				affectedMobs[affectedMob] -= effect
-				effect.onFinish()
-				qdel(effect)
-				if(!length(affectedMobs[affectedMob]))
-					affectedMobs -= affectedMob
-				continue
-			effect.doEffect()
+	for(var/mobReference as anything in affectedMobs)
+		if(!locate(mobReference))
+			for(var/effect as anything in affectedMobs[mobReference])
+				QDEL_NULL(effect)
+			affectedMobs[mobReference] = null
+			affectedMobs -= mobReference
+		else
+			for(var/datum/statusEffect/effect as anything in affectedMobs[mobReference])
+				if((effect.startingTime + effect.duration) < world.time)
+					affectedMobs[mobReference] -= effect
+					effect.onFinish()
+					qdel(effect)
+					if(!length(affectedMobs[mobReference]))
+						affectedMobs -= mobReference
+						break
+					continue
+				effect.doEffect()
 
 // Adds a status effect , if theres already a effect but the new one is gonna last longer the original one gets extended
 proc/addStatusEffect(mob/target, effectType, duration)
-	if(!target || target.gc_destroyed)
+	if(QDELETED(target))
 		return FALSE
 	// Not bad per say , but we shouldn't be using this subsystem for this scenario
 	if(duration < 1)
@@ -38,69 +40,68 @@ proc/addStatusEffect(mob/target, effectType, duration)
 	var/ef_type = GLOB.globalEffects[effectType]
 	var/datum/statusEffect/createdEffect = new ef_type()
 	if(!(createdEffect.flags & SE_FLAG_UNIQUE ))
-		if(length(SSstatusEffects.affectedMobs[target]))
-			var/list/l = SSstatusEffects.affectedMobs[target]
-			var/pos = l.Find(createdEffect)
-			if(pos)
-				var/datum/statusEffect/existingEffect = SSstatusEffects.affectedMobs[target][pos]
-				if(!(existingEffect.duration + existingEffect.startingTime > world.time + duration))
-					message_admins("Extended [effectType] onto [target] with  a duration of [duration] ")
+		if(length(SSstatusEffects.affectedMobs[ref(target)]))
+			var/datum/statusEffect/existingEffect = locate(ef_type) in SSstatusEffects.affectedMobs[ref(target)]
+			if(existingEffect)
+				if(existingEffect.duration + existingEffect.startingTime < world.time + duration)
 					existingEffect.startingTime = world.time
 					existingEffect.duration = duration
 				return TRUE
 
-	message_admins("Created [effectType] onto [target] with  a duration of [duration] ")
 	createdEffect.startingTime = world.time
 	createdEffect.duration = duration
-	createdEffect.mobReference = WEAKREF(target)
-	createdEffect.onStart()
-	if(length(SSstatusEffects.affectedMobs[target]))
-		SSstatusEffects.affectedMobs[target] += createdEffect
+	createdEffect.mobReference = ref(target)
+	if(length(SSstatusEffects.affectedMobs[ref(target)]))
+		SSstatusEffects.affectedMobs[ref(target)] += createdEffect
 	else
-		SSstatusEffects.affectedMobs[target] += list(createdEffect)
+		SSstatusEffects.affectedMobs[ref(target)] += list(createdEffect)
+	createdEffect.onStart()
 	return TRUE
 
 proc/removeStatusEffect(mob/target, effectType)
-	if(!target || target.gc_destroyed)
+	if(QDELETED(target))
 		return 0
 	if(!effectType)
 		return 0
-	if(SSstatusEffects.affectedMobs[target])
-		for(var/datum/statusEffect/effect as anything in SSstatusEffects.affectedMobs[target])
-			if(effect.identifier == effectType)
-				// guarantees removal on next tick
-				effect.duration = -1
+	for(var/datum/statusEffect/effect as anything in SSstatusEffects.affectedMobs[ref(target)])
+		if(effect.identifier == effectType)
+			// guarantees removal on next tick
+			effect.duration = -1
 
 proc/hasStatusEffect(mob/target, effectType)
-	if(!target || target.gc_destroyed)
+	if(QDELETED(target))
 		return FALSE
 	if(!effectType)
 		return FALSE
-	if(SSstatusEffects.affectedMobs[target])
-		for(var/datum/statusEffect/effect as anything in SSstatusEffects.affectedMobs[target])
-			if(effect.identifier == effectType)
-				return TRUE
+	for(var/datum/statusEffect/effect as anything in SSstatusEffects.affectedMobs[ref(target)])
+		if(effect.identifier == effectType)
+			return TRUE
 	return FALSE
 
 proc/getStatusEffectDuration(mob/target, effectType)
-	if(!target || target.gc_destroyed)
+	. = 0
+	if(QDELETED(target))
 		return 0
 	if(!effectType)
 		return 0
-	if(SSstatusEffects.affectedMobs[target])
-		for(var/datum/statusEffect/effect as anything in SSstatusEffects.affectedMobs[target])
-			return effect.duration + effect.startingTime - world.time
-	return 0
+	for(var/datum/statusEffect/effect as anything in SSstatusEffects.affectedMobs[ref(target)])
+		if(effect.identifier == effectType)
+			if(effect.flags & SE_FLAG_UNIQUE)
+				if(. < effect.duration + effect.startingTime - world.time)
+					. = effect.duration + effect.startingTime - world.time
+				else
+					return effect.duration + effect.startingTime - world.time
+	return .
 
 // expect a list if its a unique effect
 proc/getStatusEffect(mob/target, effectType)
 	var/list/return_list = list()
-	if(!target || target.gc_destroyed)
+	if(QDELETED(target))
 		return FALSE
 	if(!effectType)
 		return FALSE
 	if(SSstatusEffects.affectedMobs[target])
-		for(var/datum/statusEffect/effect as anything in SSstatusEffects.affectedMobs[target])
+		for(var/datum/statusEffect/effect as anything in SSstatusEffects.affectedMobs[ref(target)])
 			if(effect.identifier == effectType)
 				if(!(effect.flags & SE_FLAG_UNIQUE))
 					return effect
@@ -118,7 +119,7 @@ proc/getStatusEffect(mob/target, effectType)
 	// Flags for defining extra behaviour
 	var/flags
 	// Mob reference , a weak one to not prevent deletions
-	var/datum/weakref/mobReference
+	var/mobReference = null
 
 
 // Called for every tick
@@ -137,20 +138,22 @@ proc/getStatusEffect(mob/target, effectType)
 	identifier = SE_WEAKENED
 
 /datum/statusEffect/weakened/onStart()
-	var/mob/owner = mobReference.resolve()
+	var/mob/owner = locate(mobReference)
 	if(owner)
 		owner.update_lying_buckled_and_verb_status()
+		owner.updateicon()
 
 /datum/statusEffect/weakened/onFinish()
-	var/mob/owner =  mobReference.resolve()
+	var/mob/owner = locate(mobReference)
 	if(owner)
 		owner.update_lying_buckled_and_verb_status()	//updates lying, canmove and icons
+		owner.updateicon()
 
 /datum/statusEffect/stunned
 	identifier = SE_STUNNED
 
 /datum/statusEffect/stunned/onFinish()
-	var/mob/owner =  mobReference.resolve()
+	var/mob/owner = locate(mobReference)
 	if(owner)
 		owner.update_icon()
 /datum/statusEffect/paralyzed

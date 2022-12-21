@@ -16,7 +16,7 @@ mob/proc/airflow_stun()
 		return 0
 	if(!lying)
 		to_chat(src, SPAN_WARNING("The sudden rush of air knocks you over!"))
-	Weaken(3) // Nerfed from 5
+	Weaken(6 SECONDS) // Nerfed from 5
 	last_airflow_stun = world.time
 
 mob/living/silicon/airflow_stun()
@@ -205,7 +205,7 @@ mob/airflow_hit(atom/A)
 		M.show_message(SPAN_DANGER("\The [src] slams into \a [A]!"),1,SPAN_DANGER("You hear a loud slam!"),2)
 	playsound(src.loc, "smash.ogg", 25, 1, -1)
 	var/weak_amt = istype(A,/obj/item) ? A:w_class : rand(ITEM_SIZE_TINY,ITEM_SIZE_HUGE) //Heheheh
-	Weaken(weak_amt)
+	Weaken(weak_amt SECONDS )
 	. = ..()
 
 obj/airflow_hit(atom/A)

@@ -116,7 +116,7 @@
 		throw_at(target_turf, throw_distance, 5)
 		not_slick = FALSE // only explosions that fling you can be survived with slickness
 	if(slickness < (9-(2*severity)) * 10)
-		Weaken(severity) // If they don't get knocked out , weaken them for a bit.
+		Weaken(severity SECONDS) // If they don't get knocked out , weaken them for a bit.
 		not_slick = TRUE // if you don't have enough slickness, you can't safely ride the boom
 	else
 		slickness -= (9-(2*severity)) * 10 // awesome feats aren't something you can do constantly.

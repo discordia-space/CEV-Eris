@@ -59,7 +59,7 @@
 
 /datum/ritual/cruciform/crusader/flash/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
 	if(prob(100 - user.stats.getStat(STAT_VIG)))
-		user.Weaken(10)
+		user.Weaken(20 SECONDS)
 		to_chat(user, SPAN_WARNING("The flux of psy-energy knocks over you!"))
 	else
 		to_chat(user, SPAN_NOTICE("The flux of psy-energy washed your mind, but you managed to keep focused!"))
@@ -71,7 +71,7 @@
 				to_chat(victim, SPAN_NOTICE("You don't even flinch as the flux of psy-energy passes through you!"))
 			else if(prob(100 - victim.stats.getStat(STAT_VIG)))
 				to_chat(victim, SPAN_WARNING("You feel that your knees bends!"))
-				victim.Weaken(5)
+				victim.Weaken(10 SECONDS)
 			else
 				to_chat(victim, SPAN_NOTICE("Your legs feel numb, but you managed to stay on your feet!"))
 	set_personal_cooldown(user)

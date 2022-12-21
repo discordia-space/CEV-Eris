@@ -169,7 +169,7 @@
 	if (!get_destination())
 		to_chat(M, SPAN_NOTICE("There is nothing in that direction."))
 		return FALSE
-	
+
 	if(ismob(M))
 		var/mob/O = M
 		if(O.resting)
@@ -307,5 +307,5 @@
 	var/turf/target = pick(spaces)
 	M.Move(target)
 	if (ismob(M))
-		mob.Weaken(2)
+		mob.Weaken(4 SECONDS)
 	to_chat(mob, SPAN_DANGER("You lose control and slip into freefall"))

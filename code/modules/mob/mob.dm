@@ -157,7 +157,7 @@
 	if ((drowsyness > 0) && !MOVING_DELIBERATELY(src))
 		. += 6
 	if(lying) //Crawling, it's slower
-		. += 14 + (getStatusEffectDuration(src, weakened) / (2 SECONDS))
+		. += 14 + (getStatusEffectDuration(src, SE_WEAKENED) / (2 SECONDS))
 	. += move_intent.move_delay
 
 
@@ -741,7 +741,6 @@ TODO: Bay Movement:
 All Canmove setting in this proc is temporary. This var should not be set from here, but from movement controllers
 */
 /mob/proc/update_lying_buckled_and_verb_status(dropitems = FALSE)
-
 	if(!resting && cannot_stand() && can_stand_overridden())
 		lying = 0
 		canmove = TRUE //TODO: Remove this
@@ -847,6 +846,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	if(status_flags & CANWEAKEN)
 		facing_dir = null
 		addStatusEffect(src, SE_WEAKENED, max(amount, getStatusEffectDuration(src, SE_WEAKENED)))
+
 
 /mob/proc/SetWeakened(amount)
 	if(status_flags & CANWEAKEN)

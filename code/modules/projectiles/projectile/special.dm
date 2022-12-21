@@ -144,7 +144,7 @@
 		if((H.species.flags & IS_PLANT) && (H.nutrition < 500))
 			if(prob(15))
 				H.apply_effect((rand(30,80)),IRRADIATE)
-				H.Weaken(5)
+				H.Weaken(10 SECONDS)
 				for (var/mob/V in viewers(src))
 					V.show_message("\red [M] writhes in pain as \his vacuoles boil.", 3, "\red You hear the crunching of leaves.", 2)
 			else

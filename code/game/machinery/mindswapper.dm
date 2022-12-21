@@ -101,7 +101,7 @@
 	// Knock out all candidates
 	for(var/mob/living/M in swapBoddies)
 		M.Stun(2)
-		M.Weaken(10)
+		M.Weaken(3 SECONDS)
 
 	visible_message(SPAN_DANGER("You hear a loud electrical crack before the mind swapper shuts down."))
 	update_icon()

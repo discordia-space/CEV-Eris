@@ -157,7 +157,7 @@
 		eye_blurry = max(eye_blurry,6)
 		adjustOxyLoss(1)
 		if(prob(15))
-			Weaken(rand(1,3))
+			Weaken(rand(1,3) SECONDS)
 			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
 
 	else if(blood_volume < blood_safe)
@@ -192,7 +192,7 @@
 
 	if(internal_oxygen < total_oxygen_req)
 		if(prob(1))
-			Weaken(1.5 SECONDS)
+			Weaken(3 SECONDS)
 			visible_message(SPAN_WARNING("[src] falls to the ground and starts hyperventilating!."), SPAN_DANGER("AIR! I NEED MORE AIR!"))
 			var/i
 			for(i = 1; i <= 5; i++)	//gasps 5 times

@@ -104,7 +104,7 @@
 	if(state < GRAB_AGGRESSIVE || target.loc==src.loc)
 		if(user.a_intent == I_HURT)
 			if(prob(15))
-				target.Weaken(5)
+				target.Weaken(10 SECONDS)
 			if (ishuman(target))
 				var/mob/living/carbon/human/depleted = target
 				depleted.regen_slickness(-1)
@@ -144,7 +144,7 @@
 			var/mob/living/carbon/human/stylish = user
 			stylish.regen_slickness()
 		target.forceMove(loc)
-		target.Weaken(5)
+		target.Weaken(10 SECONDS)
 		visible_message(SPAN_DANGER("[user] puts [target] on \the [src]."))
 		target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been put on \the [src] by [user.name] ([user.ckey])</font>"
 		user.attack_log += "\[[time_stamp()]\] <font color='red'>Puts [target.name] ([target.ckey] on \the [src])</font>"

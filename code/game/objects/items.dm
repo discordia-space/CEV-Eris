@@ -28,7 +28,7 @@
 	var/forced_broad_strike = FALSE //If a weapon is forced to always perform broad strikes.
 	var/extended_reach = FALSE		//Wielded spears can hit alive things one tile further.
 	var/ready = FALSE				//All weapons that are ITEM_SIZE_BULKY or bigger have double tact, meaning you have to click twice.
-	var/no_double_tact = FALSE		//for when you,  for some inconceivable reason, want a bulky item to not have double tact	
+	var/no_double_tact = FALSE		//for when you,  for some inconceivable reason, want a bulky item to not have double tact
 	var/push_attack = FALSE			//Hammers and spears can push the victim away on hit when you aim groin.
 	//Why are we using vars instead of defines or anything else?
 	//Because we need them to be shown in the tool info UI.
@@ -392,7 +392,7 @@
 					M.drop_item()
 				M.eye_blurry += 10
 				M.Paralyse(1)
-				M.Weaken(4)
+				M.Weaken(8 SECONDS)
 			if(eyes.damage >= eyes.min_broken_damage)
 				if(M.stat != 2)
 					to_chat(M, SPAN_WARNING("You go blind!"))
@@ -508,12 +508,12 @@ var/global/list/items_blood_overlay_by_type = list()
 							visible_message(SPAN_WARNING("[grabbed] slams into the wall!"))
 							grabbed.damage_through_armor(15, BRUTE, BP_CHEST, ARMOR_MELEE)
 							break
-						
+
 						for(var/obj/structure/S in get_step(grabbed, whip_dir))
 							if(istype(S, /obj/structure/window))
 								visible_message(SPAN_WARNING("[grabbed] slams into \the [S]!"))
 								grabbed.damage_through_armor(25, BRUTE, BP_CHEST, ARMOR_MELEE)
-								
+
 								moves = 3
 								break
 							if(istype(S, /obj/structure/railing))
@@ -525,7 +525,7 @@ var/global/list/items_blood_overlay_by_type = list()
 							if(istype(S, /obj/structure/table))
 								visible_message(SPAN_WARNING("[grabbed] falls on \the [S]!"))
 								grabbed.forceMove(get_step(grabbed, whip_dir))
-								grabbed.Weaken(5)
+								grabbed.Weaken(10 SECONDS)
 
 								moves = 3
 								break
@@ -536,7 +536,7 @@ var/global/list/items_blood_overlay_by_type = list()
 					grabbed.attack_log += text("\[[time_stamp()]\] <font color='orange'>Irish-whipped by [src.name] ([src.ckey])</font>")
 				else
 					visible_message(SPAN_WARNING("[src] picks up, spins, and drops [grabbed]."), SPAN_WARNING("You pick up, spin, and drop [grabbed]."))
-					grabbed.Weaken(1)
+					grabbed.Weaken(2 SECONDS)
 					grabbed.resting = TRUE
 					grabbed.update_lying_buckled_and_verb_status()
 					unEquip(inhand_grab)

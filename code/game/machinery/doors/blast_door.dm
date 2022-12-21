@@ -210,6 +210,6 @@
 			var/mob/living/carbon/human/H = L
 			H.adjustBruteLoss(DOOR_CRUSH_DAMAGE)
 			H.emote("scream")
-			H.Weaken(5)
+			H.Weaken(10 SECONDS)
 		else //for simple_animals & borgs
 			L.adjustBruteLoss(DOOR_CRUSH_DAMAGE)

@@ -169,7 +169,7 @@
 						H.UpdateDamageIcon()
 					H.updatehealth()
 					if(!(H.species.flags & NO_PAIN))
-						H.Weaken(3)
+						H.Weaken(6 SECONDS)
 					return
 				check -= picked
 			return

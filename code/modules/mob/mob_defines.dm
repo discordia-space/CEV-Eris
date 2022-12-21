@@ -179,7 +179,6 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 	var/paralysis = 0
 	var/stunned = 0
-	var/weakened = 0
 	var/drowsyness = 0//Carbon
 
 	var/memory = ""

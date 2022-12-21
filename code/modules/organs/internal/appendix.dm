@@ -32,11 +32,11 @@
 					owner.vomit()
 				else
 					to_chat(owner, SPAN_DANGER("You gag as you want to throw up, but there's nothing in your stomach!"))
-					owner.Weaken(10)
+					owner.Weaken(20 SECONDS)
 		if(inflamed > 600)
 			if(prob(1))
 				to_chat(owner, SPAN_DANGER("Your abdomen is a world of pain!"))
-				owner.Weaken(10)
+				owner.Weaken(20 SECONDS)
 				owner.adjustToxLoss(25)
 				removed()
 				qdel(src)

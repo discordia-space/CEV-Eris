@@ -265,12 +265,12 @@
 		if(GRAB_AGGRESSIVE)
 			visible_message(SPAN_DANGER("[user] bashes [target] against \the [src]!"))
 			if(prob(30))
-				target.Weaken(1)
+				target.Weaken(2 SECONDS)
 			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
 			hit(15)
 		if(GRAB_NECK)
 			visible_message(SPAN_DANGER("<big>[user] crushes [target] against \the [src]!</big>"))
-			target.Weaken(5)
+			target.Weaken(10 SECONDS)
 			target.damage_through_armor(12, BRUTE, BP_HEAD, ARMOR_MELEE)
 			hit(20)
 	admin_attack_log(user, target,
@@ -286,7 +286,7 @@
 	var/direction = get_dir(M, src)
 	visible_message(SPAN_DANGER("[M] slams against \the [src]!"))
 	if(prob(30))
-		M.Weaken(1)
+		M.Weaken(2 SECONDS)
 	M.damage_through_armor(rand(7,10), BRUTE, body_part, ARMOR_MELEE)
 
 	var/tforce = (M.stats.getPerk(PERK_ASS_OF_CONCRETE) ? 60 : 15)

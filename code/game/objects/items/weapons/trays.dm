@@ -133,7 +133,7 @@
 		else
 			M.take_organ_damage(8)
 			if(prob(30))
-				M.Weaken(2)
+				M.Weaken(4 SECONDS)
 				return
 			return
 

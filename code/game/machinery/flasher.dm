@@ -86,20 +86,20 @@
 			var/mob/living/carbon/human/H = O
 			if(!H.eyecheck() <= 0)
 				continue
-			O.flash(strength, FALSE , TRUE , TRUE , 10)
+			O.flash(strength SECONDS, FALSE , TRUE , TRUE , 10)
 		else
 			if(isrobot(O))
 				var/mob/living/silicon/robot/robo = O
 				if(robo.HasTrait(CYBORG_TRAIT_FLASH_RESISTANT))
 					continue
 				else
-					robo.flash(strength, FALSE, FALSE , FALSE)
+					robo.flash(strength SECONDS, FALSE, FALSE , FALSE)
 					continue
 			else
 				if (istype(O,/mob/living/silicon/ai))
 					return
 				O.flash(strength , FALSE, FALSE ,FALSE)
-			O.Weaken(flash_time)
+			O.Weaken(flash_time SECONDS)
 
 
 /obj/machinery/flasher/emp_act(severity)

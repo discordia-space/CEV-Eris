@@ -496,7 +496,7 @@
 /mob/living/simple_animal/hostile/hivemind/hiborg/proc/stun_with_claw()
 	if(isliving(target_mob))
 		var/mob/living/victim = target_mob
-		victim.Weaken(5) //decent-length stun
+		victim.Weaken(10 SECONDS) //decent-length stun
 		src.visible_message(SPAN_WARNING("[src] pins [victim] to the floor with its claw!"))
 		if(!client && prob(speak_chance))
 			say(pick("Hold still, child! It is time to dream!",
@@ -615,7 +615,7 @@
 			if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) && istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
 				continue
 
-		victim.Weaken(4)
+		victim.Weaken(8 SECONDS)
 		to_chat(victim, SPAN_WARNING("You hear loud and terrible scream!"))
 	special_ability_cooldown = world.time + ability_cooldown
 
@@ -634,7 +634,7 @@
 	var/mob/living/L = target_mob
 	if(L)
 		L.attack_generic(src, rand(15, 25)) //stealth attack
-		L.Weaken(6)
+		L.Weaken(12 SECONDS)
 		visible_emote("suddenly heals its wounds and grabs [L] by the legs, forcing them down onto the floor!") //Nanomachines son!
 		var/msg = pick("MORE! I'M NOT DONE YET!", "MORE PAIN!", "THE DREAMS OVERTAKE ME!", "GOD, YES! HURT ME!")
 		say(msg)
@@ -1083,7 +1083,7 @@
 		if(L != src)
 			visible_message("<b>[src]</b> land on <b>[L]</b>!")
 			playsound(place, 'sound/effects/ghost2.ogg', 70, 1)
-			L.Weaken(3)
+			L.Weaken(6 SECONDS)
 
 
 /mob/living/simple_animal/hostile/hivemind/phaser/special_ability()

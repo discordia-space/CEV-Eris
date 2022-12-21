@@ -31,7 +31,6 @@
 
 	SetStunned(min(stunned, 30))
 	SetParalysis(min(paralysis, 30))
-	SetWeakened(min(weakened, 20))
 	sleeping = 0
 	adjustBruteLoss(0)
 	adjustToxLoss(0)
@@ -86,7 +85,7 @@
 		src.sleeping--
 
 	if(src.resting)
-		Weaken(5)
+		Weaken(10 SECONDS)
 
 	if(health < HEALTH_THRESHOLD_DEAD && src.stat != 2) //die only once
 		death()
@@ -264,7 +263,7 @@
 			weaponlock_time = 120
 
 /mob/living/silicon/robot/update_lying_buckled_and_verb_status()
-	if(paralysis || stunned || weakened || buckled || lockcharge || !is_component_functioning("actuator")) canmove = FALSE
+	if(paralysis || stunned || hasStatusEffect(src, SE_WEAKENED) || buckled || lockcharge || !is_component_functioning("actuator")) canmove = FALSE
 	else canmove = TRUE
 	return canmove
 

@@ -232,7 +232,7 @@
 	if (state < GRAB_AGGRESSIVE)
 		if(user.a_intent == I_HURT)
 			if(prob(15))
-				target.Weaken(5)
+				target.Weaken(10 SECONDS)
 			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
 			take_damage(8)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
@@ -248,7 +248,7 @@
 			target.forceMove(get_step(src, src.dir))
 		else
 			target.forceMove(get_turf(src))
-		target.Weaken(5)
+		target.Weaken(10 SECONDS)
 		visible_message(SPAN_DANGER("[user] throws [target] over \the [src]!"))
 		target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been throwed by [user.name] ([user.ckey] over \the [src])</font>"
 		user.attack_log += "\[[time_stamp()]\] <font color='red'>Throwed [target.name] ([target.ckey] over \the [src])</font>"

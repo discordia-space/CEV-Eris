@@ -230,7 +230,7 @@
 	set category = "pAI Commands"
 	set name = "Unfold Chassis"
 
-	if(stat || sleeping || paralysis || weakened)
+	if(stat || sleeping || paralysis || hasStatusEffect(src, SE_WEAKENED))
 		return
 
 	if(src.loc != card)
@@ -271,7 +271,7 @@
 	set category = "pAI Commands"
 	set name = "Collapse Chassis"
 
-	if(stat || sleeping || paralysis || weakened)
+	if(stat || sleeping || paralysis || hasStatusEffect(src, SE_WEAKENED))
 		return
 
 	if(src.loc == card)

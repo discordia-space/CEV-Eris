@@ -37,7 +37,7 @@
 				var/hazard_protection = victim.getarmor(null, ARMOR_BIO)
 				var/damage = CLONE_DAMAGE_PER_TICK - (CLONE_DAMAGE_PER_TICK * (hazard_protection/100))
 				victim.apply_damage(damage, CLONE, used_weapon = "Biological")
-				
+
 				if(prob(10))
 					playsound(loc, 'sound/effects/bubbles.ogg', 45, 1)
 				if(victim.health <= -victim.maxHealth)
@@ -113,7 +113,7 @@
 			to_chat(M, SPAN_NOTICE("Your remains have been dissolved and reused. Your crew respawn time is reduced by [(BIOREACTOR_RESPAWN_BONUS)/600] minutes."))
 			M << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
 			M.set_respawn_bonus("CORPSE_DISSOLVING", BIOREACTOR_RESPAWN_BONUS)
-		
+
 	qdel(object)
 	//now let's add some dirt to the glass
 	for(var/obj/structure/window/reinforced/bioreactor/glass in loc)
@@ -267,7 +267,7 @@
 					user.forceMove(get_step(src, user.dir))
 			else
 				to_chat(user, SPAN_WARNING("You slipped!"))
-				user.Weaken(1)
+				user.Weaken(2 SECONDS)
 	else
 		to_chat(user, SPAN_NOTICE("You try to push \the [victim] over \the [src]"))
 		to_chat(victim, SPAN_WARNING("\The [user] is trying to push you over \the [src]!"))

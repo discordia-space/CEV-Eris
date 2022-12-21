@@ -153,7 +153,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
-			M.Weaken(5)
+			M.Weaken(10 SECONDS)
 	return 1
 
 /obj/item/projectile/beam/lastertag/red
@@ -168,7 +168,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
-			M.Weaken(5)
+			M.Weaken(10 SECONDS)
 	return 1
 
 /obj/item/projectile/beam/lastertag/omni//A laser tag bolt that stuns EVERYONE
@@ -186,7 +186,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		if((istype(M.wear_suit, /obj/item/clothing/suit/bluetag))||(istype(M.wear_suit, /obj/item/clothing/suit/redtag)))
-			M.Weaken(5)
+			M.Weaken(10 SECONDS)
 	return 1
 
 /obj/item/projectile/beam/sniper

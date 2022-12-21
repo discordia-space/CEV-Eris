@@ -209,7 +209,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 					H.reagents.add_reagent("toxin", pick(prob(50);0,prob(50);5,prob(10);10,prob(1);25))
 					H.updatehealth()
 					if(!(H.species.flags & NO_PAIN))
-						H.Weaken(3)
+						H.Weaken(6 SECONDS)
 					return
 				check -= picked
 

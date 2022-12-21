@@ -12,7 +12,7 @@
 		var/susceptibility = GetAnomalySusceptibility(C)
 		if(prob(susceptibility * 100))
 			to_chat(C, "\red A powerful force overwhelms your consciousness.")
-			C.Weaken(rand(1,10) * susceptibility)
+			C.Weaken(rand(1,10) * susceptibility SECONDS)
 			C.stuttering += 30 * susceptibility
 			C.Stun(rand(1,10) * susceptibility)
 
@@ -23,7 +23,7 @@
 			var/susceptibility = GetAnomalySusceptibility(C)
 			if(prob(10 * susceptibility))
 				to_chat(C, "\red Your body goes numb for a moment.")
-				C.Weaken(2)
+				C.Weaken(4 SECONDS)
 				C.stuttering += 2
 				if(prob(10))
 					C.Stun(1)
