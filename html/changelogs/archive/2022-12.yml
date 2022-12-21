@@ -65,3 +65,12 @@
   - rscdel: Removed xenoarcheology
   the-og-gear:
   - bugfix: Stowing borg modules no longer leaves the inventory slot highlighted
+2022-12-21:
+  SirRichardFrancis:
+  - bugfix: Makarov's serial number mentioning incorrect manufacturer.
+  - bugfix: Fixed nameless and empty Njoy bottles appearing.
+  - bugfix: Fixed Njoy packets spawning empty
+  - spellcheck: Changed few box names to lowercase
+  - refactor: Partial storage code optimization
+  - rscdel: Removed silly text line from stun breakdown.
+  - rscadd: Added description for several HUD elements.
