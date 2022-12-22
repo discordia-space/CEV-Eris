@@ -81,6 +81,13 @@
 /mob/living/simple_animal/borer/roundstart
 	roundstart = TRUE
 
+/mob/living/simple_animal/borer/Destroy()
+	if(ishuman(host))
+		var/mob/living/carbon/human/H = host
+		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
+		head.implants.Remove(src) // This should be safe.
+	return ..()
+
 /mob/living/simple_animal/borer/Login()
 	..()
 	if(!roundstart && mind && !mind.antagonist.len)
