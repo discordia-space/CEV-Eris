@@ -124,17 +124,47 @@
 /datum/component/internal_wound/organic/necrosis/dying
 	name = "necrotizing tissue"
 
-// Tox/chem OD/atmos
+// Tox (toxins)
 /datum/component/internal_wound/organic/poisoning
+	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 1)
+	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
+	treatments_chem = list(CE_ANTITOX = 1)
+	severity = 0
+	severity_max = 2
+	hal_damage = IWOUND_LIGHT_DAMAGE
+
+/datum/component/internal_wound/organic/poisoning/pustule
+	name = "pustule"
+
+/datum/component/internal_wound/organic/poisoning/swelling
+	name = "light swelling"
+	specific_organ_size_multiplier = 0.20
+
+/datum/component/internal_wound/organic/poisoning/poisoning
+	name = "minor poisoning"
+	blood_req_multiplier = 0.25
+	nutriment_req_multiplier = 0.25
+	oxygen_req_multiplier = 0.25
+
+/datum/component/internal_wound/organic/poisoning/accumulation
+	name = "foreign accumulation"
+	hal_damage = IWOUND_MEDIUM_DAMAGE
+
+// Tox (OD/atmos)
+/datum/component/internal_wound/organic/heavy_poisoning
 	treatments_chem = list(CE_PURGER = 3)	// No anti-tox cure, poisoning can occur as a result of too much anti-tox
 	severity = 0
 	severity_max = IORGAN_MAX_HEALTH / 2
-	hal_damage = IWOUND_LIGHT_DAMAGE
+	hal_damage = IWOUND_MEDIUM_DAMAGE
+	specific_organ_size_multiplier = 0.50
+	blood_req_multiplier = 0.50
+	nutriment_req_multiplier = 0.50
+	oxygen_req_multiplier = 0.50
 
-/datum/component/internal_wound/organic/poisoning/toxin
+/datum/component/internal_wound/organic/heavy_poisoning/toxin
 	name = "toxin accumulation"
 
-/datum/component/internal_wound/organic/poisoning/chem
+/datum/component/internal_wound/organic/heavy_poisoning/chem
 	name = "chemical poisoning"
 
 // Clone/radiation

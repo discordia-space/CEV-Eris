@@ -123,10 +123,7 @@
 	var/obj/item/organ/internal/blood_vessel/user_vessel = user.random_organ_by_process(OP_BLOOD_VESSEL)
 	if(!user_vessel)
 		return FALSE
-	user_vessel.take_damage(dose/3, FALSE, TOX)
-	if(prob(1))
-		to_chat(user, "You feel a sharp pain in your chest.")
-
+	create_overdose_wound(user_vessel, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"

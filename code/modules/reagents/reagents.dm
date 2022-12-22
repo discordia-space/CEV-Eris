@@ -197,6 +197,17 @@
 	M.adjustToxLoss(REM)
 	return
 
+/datum/reagent/proc/create_overdose_wound(obj/item/organ/internal/I, datum/component/internal_wound/base_type, wound_descriptor = "poisoning")
+	if(!istype(I))
+		return
+
+	var/wound_path = pick(subtypesof(base_type))
+	var/datum/component/internal_wound/new_wound = new wound_path
+	new_wound.name = "[name] [wound_descriptor]"
+	I.add_wound(new_wound)
+	if(BP_IS_ORGANIC(I))
+		to_chat(user, "You feel a sharp pain in your [I.parent.name].")
+
 /datum/reagent/proc/initialize_data(newdata) // Called when the reagent is created.
 	if(!isnull(newdata))
 		data = newdata

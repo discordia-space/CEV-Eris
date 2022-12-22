@@ -6,7 +6,6 @@
 	withdrawal_threshold = 20
 	withdrawal_rate = REM * 1.5
 
-
 /datum/reagent/stim/mbr
 	name = "Machine binding ritual"
 	id = "machine binding ritual"
@@ -35,8 +34,7 @@
 	if(ishuman(M) && prob(80 - (30 * M.stats.getMult(STAT_TGH))))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
-		if(istype(L))
-			L.take_damage(dose/2, FALSE, TOX)
+		create_overdose_wound(L, /datum/component/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/stim/cherrydrops
 	name = "Cherry Drops"
@@ -174,8 +172,7 @@
 	if(ishuman(M) && prob(80 - (30 * M.stats.getMult(STAT_TGH))))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/heart/L = H.random_organ_by_process(OP_HEART)
-		if(istype(L))
-			L.take_damage(dose/2, FALSE, TOX)
+		create_overdose_wound(L, /datum/component/internal_wound/organic/heavy_poisoning)
 	M.add_chemical_effect(CE_SPEEDBOOST, -1)
 
 /datum/reagent/stim/machine_spirit
@@ -208,8 +205,7 @@
 	if(ishuman(M) && prob(80 - (30 * M.stats.getMult(STAT_TGH))))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
-		if(istype(L))
-			L.take_damage(dose/2, FALSE, TOX)
+		create_overdose_wound(L, /datum/component/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/stim/grape_drops
 	name = "Grape Drops"
@@ -357,8 +353,7 @@
 	if(ishuman(M) && (prob(80 - (30 * M.stats.getMult(STAT_TGH)))))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/heart/L = H.random_organ_by_process(OP_HEART)
-		if(istype(L))
-			L.take_damage(dose/2, FALSE, TOX)
+		create_overdose_wound(L, /datum/component/internal_wound/organic/heavy_poisoning)
 	M.add_chemical_effect(CE_SPEEDBOOST, -1)
 	if(prob(5 - (2 * M.stats.getMult(STAT_TGH))))
 		M.paralysis = max(M.paralysis, 20)

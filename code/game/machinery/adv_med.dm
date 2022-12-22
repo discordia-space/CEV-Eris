@@ -298,7 +298,7 @@
 	dat += "<th>Organ</th>"
 	dat += "<th>Burn Damage</th>"
 	dat += "<th>Brute Damage</th>"
-	dat += "<th>Other Wounds</th>"
+	dat += "<th>Status</th>"
 	dat += "</tr>"
 
 	for(var/obj/item/organ/external/e in occ["external_organs"])
@@ -315,20 +315,24 @@
 			if(BP_IS_ROBOTIC(I))
 				internal_wounds += "Prosthetic"
 	
-			if(I.rejecting)
-				internal_wounds += "being rejected"
-
-			var/list/internal_wound_comps = I.GetComponents(/datum/component/internal_wound)
 			var/total_brute_and_misc_damage = 0
 			var/total_burn_damage = 0
 
-			for(var/datum/component/internal_wound/IW in internal_wound_comps)
-				var/severity = IW.severity
-				internal_wounds += "[IW.name] ([severity]/[IW.severity_max])"
-				if(istype(IW, /datum/component/internal_wound/organic/burn) || istype(IW, /datum/component/internal_wound/robotic/emp_burn))
-					total_burn_damage += severity
-				else
-					total_brute_and_misc_damage += severity
+			if(I.status & ORGAN_DEAD)
+				internal_wounds += "<font color='red'>Dead</font>"
+			else
+				if(I.rejecting)
+					internal_wounds += "being rejected"
+
+				var/list/internal_wound_comps = I.GetComponents(/datum/component/internal_wound)
+
+				for(var/datum/component/internal_wound/IW in internal_wound_comps)
+					var/severity = IW.severity
+					internal_wounds += "[IW.name] ([severity]/[IW.severity_max])"
+					if(istype(IW, /datum/component/internal_wound/organic/burn) || istype(IW, /datum/component/internal_wound/robotic/emp_burn))
+						total_burn_damage += severity
+					else
+						total_brute_and_misc_damage += severity
 
 			// Format internal wounds
 			var/internal_wounds_details
