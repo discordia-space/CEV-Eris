@@ -4,7 +4,10 @@
 // Higher priority also means a larger share of a given tick before sleep checks.
 
 // SS_TICKER
-// < none >
+// SStimer
+// SSverbmanager
+// SSlightning
+// SSstatusEffects
 
 var/list/bitflags = list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768)
 
@@ -13,6 +16,7 @@ var/list/bitflags = list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096
 // Normal
 #define FIRE_PRIORITY_DELAYED_VERBS 950
 #define FIRE_PRIORITY_TIMER 700
+#define FIRE_PRIORITY_STATUSEFFECTS 210 // Status effect processing
 #define SS_PRIORITY_TICKER         200	// Gameticker processing.
 #define FIRE_PRIORITY_TGUI 110
 #define SS_PRIORITY_MOB            100	// Mob Life().

@@ -1,8 +1,10 @@
 SUBSYSTEM_DEF(statusEffects)
 	name = "Status effects"
 	flags = SS_TICKER
-	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
-	wait = 5
+	priority = FIRE_PRIORITY_STATUSEFFECTS
+	init_order = INIT_ORDER_STATUSEFFECTS
+	runlevels = RUNLEVEL_GAME
+	wait = 20
 	var/list/mob/affectedMobs = list()
 
 /datum/controller/subsystem/statusEffects/Initialize()
