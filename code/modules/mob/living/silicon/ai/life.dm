@@ -29,7 +29,6 @@
 			aiRestorePowerRoutine = 0 // Necessary if AI activated it's APU AFTER losing primary power.
 			adjustOxyLoss(-1)
 
-		handle_stunned()	// Handle EMP-stun
 		lying = 0			// Handle lying down
 
 		malf_process()

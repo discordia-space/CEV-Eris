@@ -98,7 +98,7 @@
 		if(electrocute_mob(user, C, src, hands = using_hands))
 			if(C.powernet)
 				C.powernet.trigger_warning()
-			if(user.stunned)
+			if(hasStatusEffect(user, SE_STUNNED))
 				to_chat(user, SPAN_WARNING("You got electrocuted by wire splicing!"))
 				return TRUE
 

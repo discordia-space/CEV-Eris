@@ -290,7 +290,7 @@
 
 			if(temp_apc && temp_apc.terminal && temp_apc.terminal.powernet)
 				temp_apc.terminal.powernet.trigger_warning()
-		if(user.stunned)
+		if(hasStatusEffect(user, SE_STUNNED))
 			return 1
 	return 0
 

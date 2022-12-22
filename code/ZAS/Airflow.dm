@@ -235,7 +235,7 @@ mob/living/carbon/human/airflow_hit(atom/A)
 
 	if(airflow_speed > 10)
 		Paralyse(round(airflow_speed * vsc.airflow_stun))
-		Stun(paralysis + 3)
+		Stun(getStatusEffectDuration(src, SE_PARALYZED) + 3 SECONDS)
 	else
 		Stun(round(airflow_speed * vsc.airflow_stun/2))
 	. = ..()

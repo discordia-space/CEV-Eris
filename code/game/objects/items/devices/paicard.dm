@@ -11,8 +11,8 @@
 	var/looking_for_personality = 0
 	var/mob/living/silicon/pai/pai
 
-/obj/item/device/paicard/relaymove(var/mob/user, var/direction)
-	if(user.stat || user.stunned)
+/obj/item/device/paicard/relaymove(mob/user, direction)
+	if(user.stat || hasStatusEffect(user, SE_STUNNED))
 		return
 	var/obj/item/rig/rig = src.get_rig()
 	if(istype(rig))

@@ -361,7 +361,7 @@
 			L.take_damage(7, 0)
 	M.add_chemical_effect(CE_SPEEDBOOST, -1)
 	if(prob(5 - (2 * M.stats.getMult(STAT_TGH))))
-		M.paralysis = max(M.paralysis, 20)
+		addStatusEffect(M, SE_PARALYZED, 40 SECONDS)
 
 /datum/reagent/stim/party_drops
 	name = "Party Drops"
@@ -432,4 +432,4 @@
 	M.slurring = max(M.slurring, 50)
 	M.apply_effect(3, STUTTER)
 	if(prob(6))
-		M.paralysis = max(M.paralysis, 20)
+		addStatusEffect(M, SE_PARALYZED, 40 SECONDS)

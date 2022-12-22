@@ -1245,11 +1245,11 @@ ADMIN_VERB_ADD(/datum/admins/proc/paralyze_mob, R_ADMIN, FALSE)
 	var/msg
 
 	if(check_rights(R_ADMIN))
-		if (H.paralysis == 0)
-			H.paralysis = 8000
+		if (!hasStatusEffect(H, SE_PARALYZED))
+			addStatusEffect(H, SE_PARALYZED, 69696969 SECONDS)
 			msg = "has paralyzed [key_name(H)]."
 		else
-			H.paralysis = 0
+			removeStatusEffect(H, SE_PARALYZED)
 			msg = "has unparalyzed [key_name(H)]."
 		log_and_message_admins(msg)
 

@@ -145,8 +145,8 @@
 		carded_ai.show_message(rendered, type)
 	..()
 
-/obj/item/device/aicard/relaymove(var/mob/user, var/direction)
-	if(user.stat || user.stunned)
+/obj/item/device/aicard/relaymove(mob/user, direction)
+	if(user.stat || hasStatusEffect(user, SE_STUNNED))
 		return
 	var/obj/item/rig/rig = src.get_rig()
 	if(istype(rig))

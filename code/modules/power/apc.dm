@@ -532,7 +532,7 @@
 						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 						s.set_up(5, 1, src)
 						s.start()
-						if(usr.stunned)
+						if(hasStatusEffect(usr, SE_STUNNED))
 							return
 					new /obj/item/stack/cable_coil(loc,10)
 					to_chat(user, SPAN_NOTICE("You remove the cables and dismantle the power terminal."))
@@ -641,7 +641,7 @@
 					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 					s.set_up(5, 1, src)
 					s.start()
-					if(user.stunned)
+					if(hasStatusEffect(user, SE_STUNNED))
 						return
 				C.use(10)
 				user.visible_message(\

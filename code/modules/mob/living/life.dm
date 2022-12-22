@@ -127,7 +127,7 @@
 /mob/living/proc/handle_regular_status_updates()
 	updatehealth()
 	if(stat != DEAD)
-		if(paralysis)
+		if(hasStatusEffect(src, SE_PARALYZED))
 			stat = UNCONSCIOUS
 		else if (status_flags & FAKEDEATH)
 			stat = UNCONSCIOUS

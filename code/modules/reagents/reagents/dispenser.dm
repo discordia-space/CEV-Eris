@@ -159,7 +159,7 @@
 		M.drowsyness = max(M.drowsyness, 20)
 
 	if(drunkenness >= 8) // Pass out
-		M.paralysis = max(M.paralysis, 20)
+		addStatusEffect(M, SE_PARALYZED, 40 SECONDS)
 		M.sleeping  = max(M.sleeping, 30)
 
 	metabolism = REM * (0.25 + dose * 0.05) // For the sake of better balancing between alcohol strengths

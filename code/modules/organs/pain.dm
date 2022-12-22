@@ -21,8 +21,9 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 	if(world.time < next_pain_time && !force)
 		return
 	if(amount > 10 && ishuman(src))
-		if(src:paralysis)
-			src:paralysis = max(0, src:paralysis-round(amount/10))
+		if(hasStatusEffect(src, SE_PARALYZED))
+			var/calculated_duration = getStatusEffectDuration(src, SE_PARALYZED) - round(amount)
+			addStatusEffect(src, SE_PARALYZED, calculated_duration)
 	if(amount > 50 && prob(amount / 5))
 		src:drop_item()
 	var/msg

@@ -838,13 +838,10 @@
 		if(hallucination_power)
 			handle_hallucinations()
 
-		if(paralysis || sleeping)
+		if(hasStatusEffect(src, SE_PARALYZED) || sleeping)
 			blinded = TRUE
 			stat = UNCONSCIOUS
 			adjustHalLoss(-3)
-
-		if(paralysis)
-			AdjustParalysis(-1)
 
 		else if(sleeping)
 			speech_problem_flag = 1
@@ -890,6 +887,8 @@
 
 		//Other
 		handle_statuses()
+		if(hasStatusEffect(src, SE_STUNNED))
+			speech_problem_flag = TRUE
 
 		if (drowsyness)
 			drowsyness--
@@ -1107,14 +1106,6 @@
 	if(..())
 		speech_problem_flag = 1
 	return slurring
-
-/mob/living/carbon/human/handle_stunned()
-	if(species.flags & NO_PAIN)
-		stunned = 0
-		return 0
-	if(..())
-		speech_problem_flag = 1
-	return stunned
 
 /mob/living/carbon/human/handle_stuttering()
 	if(..())

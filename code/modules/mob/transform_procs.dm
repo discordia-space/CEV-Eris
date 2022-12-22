@@ -3,7 +3,7 @@
 		return
 	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	canmove = 0
-	stunned = 1
+	addStatusEffect(src, SE_STUNNED, 5 SECONDS)
 	icon = null
 	invisibility = 101
 	var/atom/movable/overlay/animation = new /atom/movable/overlay( loc )
@@ -17,7 +17,6 @@
 	//animation = null
 
 	DEL_TRANSFORMATION_MOVEMENT_HANDLER(src)
-	stunned = 0
 
 	update_lying_buckled_and_verb_status()
 	invisibility = initial(invisibility)

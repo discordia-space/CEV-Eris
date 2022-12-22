@@ -188,7 +188,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 //Attempting to resist out of a beartrap will be counted as using your hand on the trap.
 /obj/item/beartrap/resist_buckle(mob/user)
-	if (user == buckled_mob && !user.stunned)
+	if (user == buckled_mob && !hasStatusEffect(user, SE_STUNNED))
 		//We check stunned here, and a failure stuns the victim. This prevents someone from just spam-resisting and instantly killing themselves
 		if (user.client)
 			attack_hand(user)

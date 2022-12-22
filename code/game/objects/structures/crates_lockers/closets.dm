@@ -192,7 +192,7 @@
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(5, 1, src)
 			s.start()
-			if(user.stunned)
+			if(hasStatusEffect(user, SE_STUNNED))
 				return FALSE
 
 	playsound(loc, open_sound, 100, 1, -3)

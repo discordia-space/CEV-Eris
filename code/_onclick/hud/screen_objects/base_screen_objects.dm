@@ -768,7 +768,7 @@ obj/screen/fire/DEADelize()
 //	if("internal")
 	if(iscarbon(parentmob))
 		var/mob/living/carbon/C = parentmob
-		if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
+		if(!C.stat && !getStatusEffect(C, SE_STUNNED) && !getStatusEffect(C, SE_PARALYZED) && !C.restrained())
 			if(C.internal)
 				C.internal = null
 				to_chat(C, SPAN_NOTICE("No longer running on internals."))

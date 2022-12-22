@@ -79,7 +79,7 @@
 			if(target && procname)
 				if(!arguments)
 					arguments = usr
-				call(target, procname)(arguments)		
+				call(target, procname)(arguments)
 	return
 
 /datum/action/proc/Activate()
@@ -104,7 +104,7 @@
 		if(owner.restrained())
 			return 0
 	if(check_flags & AB_CHECK_STUNNED)
-		if(owner.stunned)
+		if(hasStatusEffect(owner,  SE_STUNNED))
 			return 0
 	if(check_flags & AB_CHECK_LYING)
 		if(owner.lying)

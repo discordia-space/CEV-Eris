@@ -21,7 +21,7 @@ mob/living/carbon/proc/dream()
 		for(var/i = rand(1,4),i > 0, i--)
 			to_chat(src, "\blue <i>... [pick(dreams)] ...</i>")
 			sleep(rand(40,70))
-			if(paralysis <= 0)
+			if(!hasStatusEffect(src, SE_PARALYZED))
 				dreaming = 0
 				return
 		dreaming = 0

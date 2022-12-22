@@ -129,7 +129,7 @@
 	return
 
 /obj/item/device/mmi/relaymove(var/mob/user, var/direction)
-	if(user.stat || user.stunned)
+	if(user.stat || hasStatusEffect(user, SE_STUNNED))
 		return
 	var/obj/item/rig/rig = src.get_rig()
 	if(rig)

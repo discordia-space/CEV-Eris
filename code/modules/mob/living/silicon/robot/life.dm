@@ -29,9 +29,9 @@
 
 /mob/living/silicon/robot/proc/clamp_values()
 
-	SetStunned(min(stunned, 30))
-	SetParalysis(min(paralysis, 30))
-	sleeping = 0
+	SetStunned(min(getStatusEffectDuration(src, SE_STUNNED), 30 SECONDS))
+	SetParalysis(min(getStatusEffectDuration(src, SE_PARALYZED), 30 SECONDS))
+	sleeping = FALSE
 	adjustBruteLoss(0)
 	adjustToxLoss(0)
 	adjustOxyLoss(0)
@@ -263,7 +263,7 @@
 			weaponlock_time = 120
 
 /mob/living/silicon/robot/update_lying_buckled_and_verb_status()
-	if(paralysis || stunned || hasStatusEffect(src, SE_WEAKENED) || buckled || lockcharge || !is_component_functioning("actuator")) canmove = FALSE
+	if(hasStatusEffect(src, SE_PARALYZED) || hasStatusEffect(src, SE_STUNNED) || hasStatusEffect(src, SE_WEAKENED) || buckled || lockcharge || !is_component_functioning("actuator")) canmove = FALSE
 	else canmove = TRUE
 	return canmove
 

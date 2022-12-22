@@ -148,7 +148,7 @@
 			return // we got this one already
 		//We send a message to the occupant's current mob - probably a ghost, but who knows.
 		to_chat(M, SPAN_NOTICE("Your remains have been collected and properly stored. Your crew respawn time is reduced by [(MORGUE_RESPAWN_BONUS)/600] minutes."))
-		
+
 		M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
 		M.set_respawn_bonus("CORPSE_HANDLING", MORGUE_RESPAWN_BONUS)
@@ -271,7 +271,7 @@
 		return
 	if (!ismob(O) && !istype(O, /obj/structure/closet/body_bag))
 		return
-	if (!ismob(user) || user.stat || user.lying || user.stunned)
+	if (!ismob(user) || user.stat || user.lying || hasStatusEffect(user, SE_STUNNED))
 		return
 	O.forceMove(loc)
 	if (user != O)
@@ -505,7 +505,7 @@
 		return
 	if (!ismob(O) && !istype(O, /obj/structure/closet/body_bag))
 		return
-	if (!ismob(user) || user.stat || user.lying || user.stunned)
+	if (!ismob(user) || user.stat || user.lying ||  hasStatusEffect(user, SE_STUNNED))
 		return
 	O.forceMove(loc)
 	if (user != O)

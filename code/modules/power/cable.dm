@@ -260,7 +260,7 @@ var/list/possible_cable_coil_colours = list(
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, src)
 		s.start()
-		if(usr.stunned)
+		if(hasStatusEffect(usr, SE_STUNNED))
 			return 1
 	return 0
 
@@ -643,7 +643,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	set category = "Object"
 	var/mob/M = usr
 
-	if(ishuman(M) && !M.restrained() && !M.stat && !M.paralysis && ! M.stunned)
+	if(ishuman(M) && !M.restrained() && !M.stat && !hasStatusEffect(M, SE_PARALYZED) && !hasStatusEffect(M, SE_STUNNED))
 		if(!istype(usr.loc,/turf)) return
 		if(src.amount <= 14)
 			to_chat(usr, "\red You need at least 15 lengths to make restraints!")

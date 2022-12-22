@@ -177,8 +177,6 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 	var/mob_size = MOB_MEDIUM
 
-	var/paralysis = 0
-	var/stunned = 0
 	var/drowsyness = 0//Carbon
 
 	var/memory = ""

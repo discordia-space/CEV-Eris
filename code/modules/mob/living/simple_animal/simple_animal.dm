@@ -188,8 +188,6 @@
 		if(health > maxHealth)
 			health = maxHealth
 
-		handle_stunned()
-		handle_paralysed()
 		handle_supernatural()
 
 		process_food()

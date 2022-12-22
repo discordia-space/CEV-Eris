@@ -146,14 +146,12 @@
 		silent = 0
 	else
 		updatehealth() // updatehealth calls death if health <= 0
-		handle_stunned()
 		if(health <= 0)
 			blinded = TRUE
 			silent = 0
 			return 1
 
-		if(paralysis && paralysis > 0)
-			handle_paralysed()
+		if(hasStatusEffect(src, SE_PARALYZED))
 			blinded = TRUE
 			stat = UNCONSCIOUS
 			if(halloss > 0)

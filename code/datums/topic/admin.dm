@@ -1204,11 +1204,11 @@
 	var/mob/M = locate(input["paralyze"])
 
 	var/msg
-	if (M.paralysis == 0)
-		M.paralysis = 8000
+	if (!hasStatusEffect(M, SE_PARALYZED))
+		addStatusEffect(M, SE_PARALYZED, 69696969 SECONDS)
 		msg = "has paralyzed [key_name(M)]."
 	else
-		M.paralysis = 0
+		removeStatusEffect(M, SE_PARALYZED)
 		msg = "has unparalyzed [key_name(M)]."
 		log_and_message_admins(msg)
 

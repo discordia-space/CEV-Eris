@@ -588,7 +588,7 @@
 		return 0
 
 	if(href_list["toggle_piece"])
-		if(ishuman(usr) && (usr.stat || usr.stunned || usr.lying))
+		if(ishuman(usr) && (usr.stat ||  hasStatusEffect(usr, SE_STUNNED) || usr.lying))
 			return 0
 		toggle_piece(href_list["toggle_piece"], usr)
 	else if(href_list["toggle_seals"])
@@ -676,7 +676,7 @@
 	if(!istype(wearer) || !wearer.back == src)
 		return
 
-	if(initiator == wearer && (usr && (usr.stat||usr.paralysis||usr.stunned))) // If the initiator isn't wearing the suit it's probably an AI.
+	if(initiator == wearer && (usr && (usr.stat|| hasStatusEffect(usr, SE_PARALYZED)|| hasStatusEffect(usr, SE_STUNNED)))) // If the initiator isn't wearing the suit it's probably an AI.
 		return
 
 	var/obj/item/check_slot
@@ -813,13 +813,13 @@
 
 /obj/item/rig/proc/shock(mob/user)
 	if (!user)
-		return 0
+		return FALSE
 
 	if (electrocute_mob(user, cell, src)) //electrocute_mob() handles removing charge from the cell, no need to do that here.
 		spark_system.start()
-		if(user.stunned)
-			return 1
-	return 0
+		if( hasStatusEffect(user, SE_STUNNED))
+			return TRUE
+	return FALSE
 
 /obj/item/rig/block_bullet(mob/user, var/obj/item/projectile/P, def_zone)
 	if(!active || !ablative_armor)
