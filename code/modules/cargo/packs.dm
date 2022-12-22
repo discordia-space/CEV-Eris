@@ -1001,13 +1001,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "body bags crate"
 	group = "Medical / Science"
 
-/datum/supply_pack/suspension_gen
-	name = "Suspension Field Generetor Crate"
-	cost = 2500
-	contains = list(/obj/machinery/suspension_gen)
-	containertype = /obj/structure/closet/crate/secure/scisecurecrate
-	crate_name = "Suspension Field Generetor Crate"
-	group = "Medical / Science"
 
 /datum/supply_pack/floodlight
 	name = "Emergency Floodlight Crate"

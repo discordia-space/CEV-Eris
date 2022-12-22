@@ -29278,7 +29278,6 @@
 /area/eris/crew_quarters/librarybackroom)
 "brx" = (
 /obj/structure/table/woodentable,
-/obj/item/talkingcrystal,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/crew_quarters/librarybackroom)
 "bry" = (
@@ -34359,11 +34358,6 @@
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/command/teleporter)
 "bEj" = (
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "isolation_one";
-	dir = 8;
-	pixel_x = 22
-	},
 /obj/machinery/atmospherics/unary/vent_scrubber{
 	dir = 8
 	},
@@ -34399,11 +34393,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/rnd/anomalisoltwo)
 "bEm" = (
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "isolation_two";
-	dir = 8;
-	pixel_x = 22
-	},
 /obj/machinery/atmospherics/unary/vent_scrubber{
 	dir = 8
 	},
@@ -34417,7 +34406,6 @@
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/command/teleporter)
 "bEo" = (
-/obj/machinery/artifact_scanpad,
 /turf/simulated/floor/tiled/steel,
 /area/eris/rnd/anomal)
 "bEp" = (
@@ -34478,7 +34466,6 @@
 /turf/simulated/floor/plating,
 /area/turret_protected/ai)
 "bEv" = (
-/obj/machinery/artifact_harvester,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -34698,10 +34685,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/engineering/atmos)
-"bEU" = (
-/obj/machinery/radiocarbon_spectrometer,
-/turf/simulated/floor/tiled/steel,
-/area/eris/rnd/anomal)
 "bEV" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/simulated/floor/bluegrid{
@@ -68674,22 +68657,6 @@
 /area/eris/maintenance/section1deck2central)
 "dji" = (
 /obj/structure/table/standard,
-/obj/item/anobattery{
-	pixel_x = -6;
-	pixel_y = 2
-	},
-/obj/item/anobattery{
-	pixel_x = -2;
-	pixel_y = -2
-	},
-/obj/item/anobattery{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/anobattery{
-	pixel_x = 6;
-	pixel_y = 6
-	},
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/rnd/anomal)
 "djj" = (
@@ -69798,11 +69765,6 @@
 /area/eris/command/captain)
 "dlB" = (
 /obj/structure/table/standard,
-/obj/item/anodevice{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/anodevice,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -82323,7 +82285,6 @@
 /area/eris/engineering/engine_room)
 "dOC" = (
 /obj/structure/table/standard,
-/obj/item/book/manual/excavation,
 /obj/item/book/manual/nuclear,
 /obj/item/book/manual/chef_recipes,
 /obj/spawner/lowkeyrandom/low_chance,
@@ -87288,11 +87249,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/anomalisolone)
 "eaY" = (
-/obj/machinery/artifact_scanpad,
-/turf/simulated/floor/tiled/dark,
-/area/eris/rnd/anomalisolone)
-"eaZ" = (
-/obj/machinery/artifact_analyser,
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/anomalisolone)
 "eba" = (
@@ -87301,15 +87257,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/anomalisoltwo)
 "ebb" = (
-/obj/machinery/artifact_scanpad,
-/turf/simulated/floor/tiled/dark,
-/area/eris/rnd/anomalisoltwo)
-"ebc" = (
-/obj/machinery/artifact_analyser,
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/anomalisoltwo)
 "ebd" = (
-/obj/machinery/radiocarbon_spectrometer,
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/misc_lab)
 "ebe" = (
@@ -91104,7 +91054,6 @@
 	},
 /area/shuttle/research/station)
 "ejV" = (
-/obj/structure/closet/excavation,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "5,9"
 	},
@@ -91359,7 +91308,6 @@
 	},
 /area/shuttle/research/station)
 "ekC" = (
-/obj/structure/closet/excavation,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "5,8"
 	},
@@ -91593,7 +91541,6 @@
 	},
 /area/shuttle/research/station)
 "elk" = (
-/obj/structure/closet/excavation,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "5,7"
 	},
@@ -92372,7 +92319,6 @@
 	},
 /area/shuttle/research/station)
 "enx" = (
-/obj/machinery/suspension_gen,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "11,5"
 	},
@@ -104468,7 +104414,7 @@
 /obj/spawner/medical/low_chance,
 /obj/spawner/medical/low_chance,
 /obj/structure/table/rack/shelf,
-/obj/item/storage/box/njoy/red,
+/obj/item/storage/box/njoy,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
 "njW" = (
@@ -106173,7 +106119,7 @@
 /obj/structure/table/woodentable,
 /obj/item/storage/pill_bottle/njoy/blue,
 /obj/item/storage/pill_bottle/njoy/green,
-/obj/item/storage/pill_bottle/njoy/red,
+/obj/item/storage/pill_bottle/njoy,
 /turf/simulated/floor/carpet,
 /area/eris/medical/psych)
 "rGT" = (
@@ -290256,7 +290202,7 @@ dZL
 ect
 bEo
 bEv
-bEU
+bEo
 ect
 ega
 edP
@@ -290856,7 +290802,7 @@ aaa
 dZL
 bih
 dZL
-eaZ
+eaY
 ebv
 bEj
 dYv
@@ -291664,7 +291610,7 @@ abF
 dZL
 biF
 eax
-ebc
+ebb
 eby
 bEm
 dYX

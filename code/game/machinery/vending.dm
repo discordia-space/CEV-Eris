@@ -1209,7 +1209,7 @@
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	auto_price = FALSE
 	custom_vendor = TRUE // Chemists can load it for MDs
-	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle)
+	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle, /obj/item/reagent_containers/food/snacks/moecube, /obj/item/organ/internal)
 	vendor_department = DEPARTMENT_MEDICAL
 	shut_up = TRUE
 
@@ -1231,7 +1231,7 @@
 	icon_deny = "wallmed-deny"
 	product_ads = "Self-medication can be healthy!;Natural chemicals!;This stuff saves lives.;Don't you want some?;Hook it up to your veins!"
 	custom_vendor = TRUE // Chemists can load it for customers
-	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle)
+	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle, /obj/item/reagent_containers/food/snacks/moecube, /obj/item/organ/internal)
 	vendor_department = DEPARTMENT_MEDICAL
 
 /obj/machinery/vending/wallmed/minor
@@ -1277,7 +1277,7 @@
 		/obj/item/implantcase/death_alarm = 2,
 		/obj/item/implanter = 2,
 		/obj/item/stack/medical/splint = 6,
-		/obj/item/storage/pill_bottle/njoy/red = 3,
+		/obj/item/storage/pill_bottle/njoy = 3,
 		/obj/item/storage/pill_bottle/njoy/blue = 3,
 		/obj/item/storage/pill_bottle/njoy/green = 3
 		)
@@ -1302,7 +1302,7 @@
 
 		/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = 500,
 		/obj/item/reagent_containers/hypospray/autoinjector/drugs = 500,
-		/obj/item/storage/pill_bottle/njoy/red = 300,
+		/obj/item/storage/pill_bottle/njoy = 300,
 		/obj/item/storage/pill_bottle/njoy/blue = 300,
 		/obj/item/storage/pill_bottle/njoy/green = 300
 		)
@@ -1523,6 +1523,7 @@
 	prices = list(/obj/item/book/ritual/cruciform = 500, /obj/item/storage/fancy/candle_box = 200, /obj/item/reagent_containers/food/drinks/bottle/ntcahors = 250,
 				/obj/item/implant/core_implant/cruciform = 1000)
 	custom_vendor = TRUE // So they can sell pouches and other printed goods, if they bother to stock them
+	can_stock = list(/obj/item)
 
 /obj/machinery/vending/theomat/proc/check_NT(mob/user)
 	var/bingo = FALSE
@@ -1556,7 +1557,7 @@
 
 /obj/machinery/vending/theomat/attackby(obj/item/I, mob/user)
 	if(I.tool_qualities || check_NT(user))
-		..()
+		..(I, user)
 
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
@@ -1672,8 +1673,8 @@
 	products = list(
 					/obj/item/ammo_magazine/lrifle = 12,
 					/obj/item/ammo_magazine/hpistol = 12,
-					/obj/item/ammo_magazine/magnum = 12,
 					/obj/item/ammo_magazine/srifle = 12,
+					/obj/item/ammo_magazine/slsrifle = 12,
 					/obj/item/ammo_magazine/smg = 12,
 					/obj/item/part/armor = 30,
 					/obj/item/part/gun = 30,
@@ -1683,10 +1684,10 @@
 					/obj/item/gun/projectile/mk58/wood = 2,
 					/obj/item/gun/projectile/mk58/army = 1,
 					/obj/item/gun/projectile/revolver/deckard = 2,
-					/obj/item/gun/projectile/voodoo = 4,
 					/obj/item/gun/projectile/automatic/ak47/fs = 4,
 					/obj/item/gun/projectile/automatic/z8 = 4,
 					/obj/item/gun/projectile/shotgun/pump/regulator = 4,
+					/obj/item/gun/projectile/boltgun/fs/civilian = 4,
 					/obj/item/storage/deferred/crate/clown_crime = 2,
 					/obj/item/storage/deferred/crate/clown_crime/wolf = 2,
 					/obj/item/storage/deferred/crate/clown_crime/hoxton = 2,
@@ -1695,13 +1696,13 @@
 	contraband = list(
 					/obj/item/gun/projectile/mandella = 4,
 					/obj/item/ammo_magazine/cspistol = 12,
-					/obj/item/gun_upgrade/cosmetic/gold = 5)
+					/obj/item/computer_hardware/hard_drive/portable/design/guns/scaramanga = 1)
 	prices = list(
 					/obj/item/ammo_magazine/lrifle = 400,
 					/obj/item/ammo_magazine/hpistol = 300,
-					/obj/item/ammo_magazine/magnum = 400,
 					/obj/item/ammo_magazine/cspistol = 400,
 					/obj/item/ammo_magazine/srifle = 300,
+					/obj/item/ammo_magazine/slsrifle = 200,
 					/obj/item/ammo_magazine/smg = 400,
 					/obj/item/part/armor = 700,
 					/obj/item/part/gun = 700,
@@ -1710,17 +1711,17 @@
 					/obj/item/gun/projectile/mk58  = 900,
 					/obj/item/gun/projectile/mk58/wood = 900,
 					/obj/item/gun/projectile/mk58/army = 950,
-					/obj/item/gun/projectile/voodoo = 2400,
-					/obj/item/gun/projectile/mandella = 3700,
+					/obj/item/gun/projectile/mandella = 1800,
 					/obj/item/gun/projectile/revolver/deckard = 3600,
 					/obj/item/gun/projectile/automatic/ak47/fs = 3200,
 					/obj/item/gun/projectile/automatic/z8 = 3500,
 					/obj/item/gun/projectile/shotgun/pump/regulator = 2400,
+					/obj/item/gun/projectile/boltgun/fs/civilian = 2000,
 					/obj/item/storage/deferred/crate/clown_crime = 1800,
 					/obj/item/storage/deferred/crate/clown_crime/wolf = 1800,
 					/obj/item/storage/deferred/crate/clown_crime/hoxton = 1800,
 					/obj/item/storage/deferred/crate/clown_crime/chains = 1800,
-					/obj/item/computer_hardware/hard_drive/portable/design/guns/scaramanga = 2000
+					/obj/item/computer_hardware/hard_drive/portable/design/guns/scaramanga = 7000
 					)
 	idle_power_usage = 211
 	vendor_department = DEPARTMENT_OFFSHIP
