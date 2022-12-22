@@ -145,12 +145,6 @@
 	icon_state = "7,8"
 	},
 /area/space)
-"bF" = (
-/obj/structure/salvageable/os/computer{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
 "bH" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "4,8"
@@ -816,6 +810,12 @@
 	icon_state = "12,3"
 	},
 /area/space)
+"hT" = (
+/obj/structure/salvageable/os/computer{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "hV" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "12,11"
@@ -1022,6 +1022,12 @@
 	icon_state = "8,21"
 	},
 /area/space)
+"jP" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/space)
 "jS" = (
 /obj/structure/railing/grey{
 	dir = 8
@@ -1152,6 +1158,15 @@
 	icon_state = "11,6"
 	},
 /area/space)
+"kG" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/structure/sign/derelict3{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "kJ" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "10,20"
@@ -1258,12 +1273,6 @@
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "10,18"
 	},
-/area/space)
-"me" = (
-/obj/structure/sign/faction/one_star_old{
-	pixel_x = 32
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "mg" = (
 /obj/structure/bed/padded,
@@ -1382,9 +1391,13 @@
 	icon_state = "4,9"
 	},
 /area/space)
-"no" = (
-/obj/spawner/gun/onestar,
-/turf/simulated/floor/tiled/cafe,
+"nk" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict,
 /area/space)
 "nr" = (
 /turf/simulated/mineral/random/high_chance,
@@ -1415,12 +1428,6 @@
 	icon_state = "7,2"
 	},
 /area/space)
-"nK" = (
-/obj/structure/sign/derelict2{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
 "nV" = (
 /obj/item/device/radio/intercom{
 	dir = 4;
@@ -1450,6 +1457,12 @@
 	icon_state = "3,12"
 	},
 /turf/space,
+/area/space)
+"op" = (
+/obj/structure/salvageable/os/console_broken{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "or" = (
 /turf/simulated/shuttle/wall/mining{
@@ -1531,6 +1544,12 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "8,5"
 	},
+/area/space)
+"pu" = (
+/obj/structure/salvageable/os/server{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "pv" = (
 /turf/simulated/shuttle/wall/science{
@@ -1737,12 +1756,6 @@
 	icon_state = "3,6"
 	},
 /area/space)
-"rm" = (
-/obj/structure/salvageable/os/server{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
 "rq" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "4,14"
@@ -1780,15 +1793,6 @@
 	icon_state = "6,4"
 	},
 /area/space)
-"rO" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/obj/structure/sign/derelict1{
-	pixel_x = -32
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
 "rP" = (
 /obj/effect/floor_decal/industrial/danger,
 /obj/effect/floor_decal/industrial/warning{
@@ -1800,6 +1804,15 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "9,15"
 	},
+/area/space)
+"rS" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/structure/sign/derelict1{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "rT" = (
 /obj/machinery/light,
@@ -2059,12 +2072,6 @@
 	icon_state = "5,10"
 	},
 /area/space)
-"uE" = (
-/obj/structure/salvageable/os/machine{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
 "uF" = (
 /obj/structure/table/steel,
 /obj/item/storage/box/donkpockets,
@@ -2116,14 +2123,6 @@
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "12,3"
 	},
-/area/space)
-"uO" = (
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/obj/effect/floor_decal/industrial/warning,
-/obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
 /area/space)
 "uS" = (
 /turf/simulated/shuttle/wall/science{
@@ -2198,6 +2197,11 @@
 /obj/structure/salvageable/os/console_broken{
 	dir = 8
 	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"vx" = (
+/obj/structure/table/onestar,
+/obj/spawner/gun/onestar/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "vy" = (
@@ -2384,12 +2388,6 @@
 	},
 /turf/space,
 /area/space)
-"wO" = (
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/derelict,
-/area/space)
 "wQ" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "2,3"
@@ -2460,6 +2458,11 @@
 	icon_state = "15,23"
 	},
 /turf/space,
+/area/space)
+"xA" = (
+/obj/structure/table/onestar,
+/obj/spawner/tool_upgrade/rare/onestar,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "xH" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -2539,6 +2542,12 @@
 	opacity = 0
 	},
 /area/space)
+"ys" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "yy" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "2,17"
@@ -2569,11 +2578,6 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "2,21"
 	},
-/area/space)
-"zb" = (
-/obj/structure/table/onestar,
-/obj/spawner/gun/onestar/low_chance,
-/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "zc" = (
 /turf/simulated/shuttle/wall/science{
@@ -2633,6 +2637,13 @@
 "Am" = (
 /obj/machinery/light/floor{
 	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
+"As" = (
+/obj/machinery/light/floor,
+/obj/structure/sign/derelict1{
+	pixel_y = -32
 	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
@@ -2707,6 +2718,12 @@
 	icon_state = "17,21"
 	},
 /turf/space,
+/area/space)
+"AW" = (
+/obj/structure/salvageable/os/machine{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "AX" = (
 /obj/machinery/door/airlock/mining{
@@ -3011,6 +3028,12 @@
 	icon_state = "14,7"
 	},
 /area/space)
+"Ec" = (
+/obj/structure/sign/faction/one_star_old{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "Ed" = (
 /obj/structure/closet/body_bag,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
@@ -3092,6 +3115,10 @@
 	},
 /obj/structure/cable/yellow,
 /turf/simulated/floor,
+/area/space)
+"EQ" = (
+/obj/spawner/gun/onestar,
+/turf/simulated/floor/tiled/cafe,
 /area/space)
 "EW" = (
 /obj/machinery/door/airlock/multi_tile/metal/mait{
@@ -3187,6 +3214,14 @@
 "Gb" = (
 /obj/machinery/door/airlock/multi_tile/metal/mait,
 /turf/simulated/floor/tiled/white/brown_perforated,
+/area/space)
+"Gc" = (
+/obj/machinery/door/airlock/sandstone{
+	icon_state = "door_locked";
+	locked = 1;
+	name = "OneStar Airlock"
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "Gd" = (
 /obj/structure/sign/faction/one_star{
@@ -3769,12 +3804,6 @@
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
-"Lc" = (
-/obj/structure/salvageable/os/console_broken{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
 "Lh" = (
 /obj/machinery/door/airlock/mining{
 	name = "Hulk Internal Airlock";
@@ -3789,6 +3818,13 @@
 	icon_state = "0,22"
 	},
 /turf/space,
+/area/space)
+"Lr" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 8
+	},
+/obj/spawner/tool_upgrade/rare/onestar,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "Ls" = (
 /turf/simulated/shuttle/wall/mining{
@@ -4021,10 +4057,6 @@
 /obj/structure/crematorium,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
-"NL" = (
-/obj/structure/grille,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
 "NM" = (
 /obj/spawner/mob/spiders/low_chance,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
@@ -4064,15 +4096,6 @@
 	pixel_y = 11
 	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/space)
-"Od" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/structure/sign/derelict3{
-	pixel_x = 32
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "Of" = (
 /obj/structure/cable/yellow{
@@ -4361,6 +4384,10 @@
 	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
+"Rp" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/derelict,
+/area/space)
 "Ru" = (
 /obj/machinery/atmospherics/pipe/tank/air,
 /turf/simulated/shuttle/floor/mining{
@@ -4605,16 +4632,14 @@
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
+"TD" = (
+/obj/structure/grille,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "TF" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "2,10"
 	},
-/area/space)
-"TG" = (
-/obj/structure/bed/chair/custom/onestar/red{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "TM" = (
 /obj/structure/cable/yellow{
@@ -4712,13 +4737,6 @@
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "13,5"
 	},
-/area/space)
-"Uz" = (
-/obj/machinery/light/floor,
-/obj/structure/sign/derelict1{
-	pixel_y = -32
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "UB" = (
 /turf/simulated/shuttle/wall/mining{
@@ -4827,14 +4845,6 @@
 	icon_state = "4,23"
 	},
 /turf/space,
-/area/space)
-"VF" = (
-/obj/machinery/light/floor,
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/derelict,
 /area/space)
 "VH" = (
 /obj/machinery/power/sensor{
@@ -5010,6 +5020,12 @@
 	},
 /turf/space,
 /area/space)
+"XF" = (
+/obj/structure/sign/derelict2{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "XJ" = (
 /obj/structure/table/reinforced,
 /obj/item/device/t_scanner,
@@ -5047,6 +5063,14 @@
 /area/space)
 "XW" = (
 /turf/simulated/wall/untinted/onestar,
+/area/space)
+"Yd" = (
+/obj/machinery/light/floor,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/derelict,
 /area/space)
 "Yi" = (
 /obj/item/tool/pickaxe/excavation,
@@ -5247,10 +5271,6 @@
 	},
 /obj/structure/salvageable/os/computer,
 /turf/simulated/floor/tiled/dark/brown_perforated,
-/area/space)
-"ZB" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/derelict,
 /area/space)
 "ZM" = (
 /turf/simulated/shuttle/wall/mining{
@@ -15037,7 +15057,7 @@ tG
 Mf
 Mf
 gV
-no
+EQ
 Cj
 gV
 RJ
@@ -19067,10 +19087,10 @@ cb
 cb
 cb
 XW
-bF
-uE
-rm
-Lc
+hT
+AW
+pu
+op
 XW
 cb
 cb
@@ -19270,9 +19290,9 @@ cb
 cb
 XW
 rg
-TG
-TG
-Uz
+ys
+Lr
+As
 XW
 cb
 cb
@@ -19673,7 +19693,7 @@ cb
 cb
 cb
 XW
-nK
+XF
 GI
 GI
 RJ
@@ -19699,7 +19719,7 @@ EF
 Qf
 DQ
 WE
-af
+xA
 EF
 EF
 TC
@@ -19874,7 +19894,7 @@ gV
 gV
 gV
 gV
-XW
+gV
 RJ
 RJ
 RJ
@@ -20070,13 +20090,13 @@ RJ
 RJ
 RJ
 RJ
-NL
+TD
 RJ
 RJ
 RJ
 RJ
 RJ
-XW
+gV
 rg
 GI
 GI
@@ -20271,14 +20291,14 @@ jS
 jS
 jS
 jS
-VF
+Yd
 gV
 RJ
 RJ
 RJ
 RJ
 RJ
-XW
+gV
 RJ
 RJ
 RJ
@@ -20473,14 +20493,14 @@ Ni
 aZ
 aZ
 aZ
-ZB
-zb
+Rp
+vx
 EF
 EF
 EF
 EF
 EF
-XW
+gV
 dx
 RJ
 EW
@@ -20675,21 +20695,21 @@ aZ
 aZ
 aZ
 aZ
-ZB
+Rp
 tB
 EF
 EF
 EF
 EF
 EF
-XW
+gV
 RJ
 RJ
 RJ
 RJ
 gV
 rj
-rO
+rS
 rj
 gV
 RJ
@@ -20877,14 +20897,14 @@ Ni
 aZ
 aZ
 aZ
-ZB
-zb
+Rp
+vx
 EF
 EF
 EF
 EF
 EF
-xb
+Gc
 RJ
 RJ
 RJ
@@ -21075,11 +21095,11 @@ cb
 cb
 cb
 cb
-wO
-wO
-wO
-wO
-uO
+jP
+jP
+jP
+jP
+nk
 gV
 EF
 EF
@@ -21282,13 +21302,13 @@ RJ
 RJ
 RJ
 RJ
-NL
+TD
 EF
 EF
 EF
 EF
 EF
-xb
+Gc
 RJ
 RJ
 RJ
@@ -21478,7 +21498,7 @@ cb
 cb
 cb
 cb
-cb
+gV
 gV
 gV
 gV
@@ -21490,14 +21510,14 @@ EF
 EF
 EF
 EF
-XW
+gV
 RJ
 RJ
 RJ
 RJ
 gV
 fR
-Od
+kG
 fR
 gV
 RJ
@@ -21680,19 +21700,19 @@ cb
 cb
 cb
 cb
-cb
+gV
 EF
 EF
 EF
 EF
 EF
-cb
+gV
 EF
 EF
 EF
 EF
 EF
-XW
+gV
 XW
 XW
 XW
@@ -21882,13 +21902,13 @@ cb
 cb
 cb
 cb
-cb
+gV
 EF
 EF
 EF
 EF
 EF
-EF
+ww
 EF
 EF
 EF
@@ -22084,13 +22104,13 @@ cb
 cb
 cb
 cb
-cb
+gV
 EF
 EF
 EF
 EF
 EF
-cb
+gV
 EF
 EF
 EF
@@ -22286,13 +22306,13 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
+gV
+gV
+gV
+gV
 EF
 EF
-cb
+gV
 EF
 EF
 EF
@@ -22309,7 +22329,7 @@ cb
 aa
 gV
 RJ
-me
+Ec
 RJ
 gV
 aa
@@ -22491,10 +22511,10 @@ cb
 cb
 cb
 cb
-cb
+gV
 EF
 EF
-cb
+gV
 EF
 EF
 EF
@@ -22693,10 +22713,10 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
+gV
+gV
+gV
+gV
 EF
 EF
 EF
