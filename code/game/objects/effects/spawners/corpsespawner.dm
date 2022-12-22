@@ -66,7 +66,10 @@
 	if(skintone)
 		M.change_skin_tone(skintone)
 	else
-		M.change_skin_tone(rand(-200,-15))
+		if(prob(80))	// If I don't do this, we're going to have a bunch of black corpses everywhere
+			M.change_skin_tone(rand(-80,-15))
+		else
+			M.change_skin_tone(rand(-200,-81))
 
 	if(min_age && max_age)
 		M.age = rand(min_age, max_age)
