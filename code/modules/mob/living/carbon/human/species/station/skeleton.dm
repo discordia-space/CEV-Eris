@@ -58,6 +58,3 @@
 		)
 
 	spawn_flags = IS_RESTRICTED
-
-/datum/species/skeleton/get_random_name()
-	return "skeletal remains"
