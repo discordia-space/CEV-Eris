@@ -478,11 +478,7 @@
 	},
 /area/space)
 "eG" = (
-/obj/item/clothing/under/onestar,
-/obj/item/remains/human{
-	desc = "placeholder until skeleton bodies are added";
-	name = "Colonel Yang"
-	},
+/obj/landmark/corpse/one_star,
 /turf/simulated/floor/tiled/cafe,
 /area/space)
 "eL" = (
@@ -689,6 +685,10 @@
 "gL" = (
 /turf/simulated/floor/grass,
 /area/space)
+"gT" = (
+/obj/spawner/gun/onestar,
+/turf/simulated/floor/tiled/cafe,
+/area/space)
 "gV" = (
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/space)
@@ -724,7 +724,6 @@
 	},
 /area/space)
 "hh" = (
-/obj/machinery/suspension_gen,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "11,5"
 	},
@@ -1023,8 +1022,9 @@
 	},
 /area/space)
 "jS" = (
-/obj/structure/table/onestar,
-/obj/item/book/manual/anomaly_spectroscopy,
+/obj/structure/salvageable/os/computer{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "jT" = (
@@ -1203,6 +1203,15 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "4,6"
 	},
+/area/space)
+"lj" = (
+/obj/structure/sign/faction/one_star{
+	pixel_y = 32
+	},
+/obj/machinery/light/floor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "lk" = (
 /mob/living/carbon/superior_animal/stalker,
@@ -1731,6 +1740,15 @@
 	icon_state = "9,3"
 	},
 /area/space)
+"rv" = (
+/obj/machinery/light/floor{
+	dir = 1
+	},
+/obj/structure/sign/derelict2{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "rD" = (
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/void/mining,
@@ -1741,6 +1759,7 @@
 	},
 /area/space)
 "rI" = (
+/obj/item/beartrap/makeshift/armed,
 /turf/simulated/floor/tiled/cafe,
 /area/space)
 "rM" = (
@@ -2167,6 +2186,13 @@
 	},
 /turf/space,
 /area/space)
+"vH" = (
+/obj/machinery/light/floor,
+/obj/structure/sign/derelict1{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "vI" = (
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "4,8"
@@ -2241,7 +2267,6 @@
 /turf/simulated/floor/plating,
 /area/space)
 "wk" = (
-/obj/structure/closet/excavation,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "5,9"
 	},
@@ -3071,7 +3096,6 @@
 /turf/simulated/floor,
 /area/space)
 "Fl" = (
-/obj/structure/closet/excavation,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "5,7"
 	},
@@ -3122,7 +3146,6 @@
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "FZ" = (
-/obj/structure/closet/excavation,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "5,8"
 	},
@@ -3132,6 +3155,9 @@
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/space)
 "Gd" = (
+/obj/structure/sign/faction/one_star{
+	pixel_x = -32
+	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/space)
 "Gm" = (
@@ -3195,6 +3221,7 @@
 	},
 /area/space)
 "GI" = (
+/obj/structure/salvageable/os/power,
 /turf/simulated/floor/tiled/white/danger,
 /area/space)
 "GM" = (
@@ -3467,6 +3494,12 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"IS" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "IU" = (
 /obj/structure/shuttle_part/science{
@@ -4228,6 +4261,12 @@
 	icon_state = "12,6"
 	},
 /area/space)
+"QU" = (
+/obj/structure/salvageable/os/machine{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "QW" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "10,11"
@@ -4290,8 +4329,8 @@
 	},
 /area/space)
 "Ry" = (
-/obj/structure/noticeboard/anomaly{
-	pixel_y = 32
+/obj/structure/noticeboard{
+	pixel_y = 29
 	},
 /turf/simulated/floor/wood,
 /area/space)
@@ -4700,6 +4739,12 @@
 	},
 /turf/space,
 /area/space)
+"Vl" = (
+/obj/structure/salvageable/os/server{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "Vp" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -4881,6 +4926,12 @@
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "7,18"
 	},
+/area/space)
+"Xh" = (
+/obj/structure/salvageable/os/console_broken{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "Xi" = (
 /obj/structure/shuttle_part/mining{
@@ -14932,13 +14983,13 @@ tG
 Mf
 Mf
 gV
-rI
+gT
 Cj
 gV
 RJ
 RJ
 GO
-jS
+GO
 GO
 zg
 XW
@@ -16978,31 +17029,31 @@ lk
 Am
 RJ
 RJ
-Am
-Vv
-RJ
 RJ
 Vv
 RJ
 RJ
-Am
+Vv
 RJ
 RJ
 Am
 RJ
 RJ
-Am
 RJ
 RJ
 RJ
 Am
+RJ
+RJ
+RJ
+RJ
 RJ
 lk
 RJ
 Am
 RJ
 RJ
-Am
+RJ
 Vv
 RJ
 RJ
@@ -17185,7 +17236,7 @@ gV
 KH
 Ze
 gV
-RJ
+rg
 RJ
 lk
 RJ
@@ -17204,7 +17255,7 @@ RJ
 RJ
 RJ
 RJ
-RJ
+aF
 XW
 RJ
 RJ
@@ -17382,31 +17433,31 @@ lk
 dB
 RJ
 RJ
-dB
-Vv
-RJ
 RJ
 Vv
 RJ
 RJ
-dB
-RJ
-RJ
-dB
-RJ
-RJ
-dB
-RJ
+Vv
 RJ
 RJ
 dB
 RJ
 RJ
 RJ
-dB
 RJ
 RJ
 dB
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+dB
+RJ
+RJ
+RJ
 Vv
 RJ
 RJ
@@ -18759,12 +18810,12 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+XW
+XW
+XW
+XW
+XW
 cb
 cb
 cb
@@ -18961,12 +19012,12 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+jS
+QU
+Vl
+Xh
+XW
 cb
 cb
 cb
@@ -19163,12 +19214,12 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
+XW
+rg
+IS
+IS
+vH
+XW
 cb
 cb
 cb
@@ -19365,12 +19416,12 @@ cb
 cb
 cb
 cb
-cb
+XW
 RJ
 RJ
 RJ
 RJ
-RJ
+XW
 cb
 cb
 aa
@@ -19567,12 +19618,12 @@ cb
 cb
 cb
 cb
-cb
-RJ
+XW
+rv
 GI
 GI
-GI
-RJ
+aF
+XW
 XW
 Zk
 Zk
@@ -19769,12 +19820,12 @@ cb
 cb
 cb
 cb
-cb
+XW
 RJ
 RJ
 RJ
 RJ
-RJ
+XW
 cb
 aa
 aa
@@ -19971,12 +20022,12 @@ cb
 cb
 cb
 cb
-cb
-RJ
+XW
+rg
 GI
 GI
-GI
-RJ
+aF
+XW
 XW
 Zk
 Zk
@@ -20173,12 +20224,12 @@ cb
 cb
 cb
 cb
-cb
+XW
 RJ
 RJ
 RJ
 RJ
-RJ
+XW
 cb
 aa
 aa
@@ -20982,10 +21033,10 @@ aa
 aa
 aa
 gV
-kx
+lj
 RJ
 RJ
-RJ
+aF
 gV
 Ni
 nh
