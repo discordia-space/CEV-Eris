@@ -79,7 +79,7 @@
 		)
 
 /mob/living/simple_animal/borer/roundstart
-	roundstart = 1
+	roundstart = TRUE
 
 /mob/living/simple_animal/borer/Login()
 	..()
@@ -120,18 +120,6 @@
 	verbs -= abilities_standalone
 	verbs -= abilities_in_host
 	host?.verbs -= abilities_in_control
-
-	// Borer gets host abilities before actually getting inside the host
-	// Workaround for a BYOND bug: http://www.byond.com/forum/post/1833666
-	/*if(force_host)
-		if(ishuman(host))
-			verbs += abilities_in_host
-			return
-		for(var/ability in abilities_in_host)
-			if(istype(ability, /mob/living/carbon/human))
-				continue
-			verbs += ability
-		return*/
 
 	// Re-grant some of the abilities, depending on the situation
 	if(!host)
@@ -214,11 +202,6 @@
 
 	if(!host || !controlling) return
 
-	if(ishuman(host))
-		var/mob/living/carbon/human/H = host
-		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
-		head.implants -= src
-
 	controlling = FALSE
 
 	host.remove_language(LANGUAGE_CORTICAL)
@@ -265,7 +248,12 @@
 	if(host.mind)
 		clear_antagonist_type(host.mind, ROLE_BORER)
 
-	src.loc = get_turf(host)
+	if(ishuman(host))
+		var/mob/living/carbon/human/H = host
+		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
+		head.implants.Remove(src)
+
+	loc = get_turf(host)
 
 	reset_view(null)
 	machine = null
@@ -273,8 +261,7 @@
 	host.reset_view(null)
 	host.machine = null
 
-	var/mob/living/H = host
-	H.status_flags &= ~PASSEMOTES
+	host.status_flags &= ~PASSEMOTES
 	host = null
 	update_abilities()
 
@@ -359,3 +346,4 @@
 		else
 			//sight = initial(sight)
 			see_in_dark = initial(see_in_dark)
+
