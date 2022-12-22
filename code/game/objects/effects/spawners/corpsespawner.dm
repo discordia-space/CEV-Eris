@@ -38,7 +38,7 @@
 /obj/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
 
-	if(gender == NUETER)
+	if(gender == NEUTER)
 		gender = pick(MALE, FEMALE)
 	M.gender = gender
 
