@@ -270,9 +270,9 @@
 	name = "Loudmouth grenade"
 	result = /obj/item/grenade/sonic
 	steps = list(
-		list(/obj/item/device/hailer, 1, "time" = 20),
-		list(/obj/item/stack/cable_coil, 3, "time" = 20),
 		list(/obj/item/cell/large, 1, "time" = 20),
+		list(CRAFT_MATERIAL, 1, MATERIAL_PLASTEEL),
+		list(/obj/item/stack/cable_coil, 3, "time" = 20),
 		list(QUALITY_PULSING, 30, "time" = 50),
 		list(QUALITY_ADHESIVE, 30, "time" = 30),
 		list(QUALITY_SCREW_DRIVING, 10, "time" = 20)

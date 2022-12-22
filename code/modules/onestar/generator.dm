@@ -1,6 +1,7 @@
 /obj/machinery/power/port_gen/os_generator
-	name = "fusion microgenerator"
+	name = "One Star fusion microgenerator"
 	icon = 'icons/obj/machines/one_star/machines.dmi'
+	desc = "A One Star cold fusion reactor capable of providing endless power. It looks like it will take someone very smart to get it running again." //todo:make a system to directly repair a generator without deconning
 	icon_state = "generator"
 	circuit = /obj/item/electronics/circuitboard/os_generator
 	power_gen = 0						// Watts output per power_output level

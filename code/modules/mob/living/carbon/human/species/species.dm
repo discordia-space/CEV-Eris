@@ -39,7 +39,7 @@
 	var/min_age = 17
 	var/max_age = 70
 
-	// Language/culture vars.
+	// Language vars.
 	var/default_language = LANGUAGE_COMMON   // Default language is used when 'say' is used without modifiers.
 	var/language = LANGUAGE_COMMON           // Default racial language, if any.
 	var/list/secondary_langs = list()        // The names of secondary languages that are available to this species.
@@ -355,7 +355,7 @@
 		else if((!H.equipment_prescription && (H.sdisabilities & NEARSIGHTED)) || H.equipment_tint_total == TINT_MODERATE)
 			H.client.screen |= global_hud.vimpaired
 		else if(H.equipment_tint_total == TINT_LOW)
-			H.client.screen |= global_hud.lightMask	
+			H.client.screen |= global_hud.lightMask
 
 	for(var/overlay in H.equipment_overlays)
 		H.client.screen |= overlay
