@@ -2862,13 +2862,6 @@
 	icon_state = "11,16"
 	},
 /area/space)
-"CZ" = (
-/obj/structure/closet/onestar/tier2/mineral/empty,
-/obj/structure/sign/faction/one_star{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/space)
 "Dc" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "0,23"
@@ -3041,6 +3034,12 @@
 /obj/structure/cable/yellow,
 /turf/simulated/floor,
 /area/space)
+"EW" = (
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/space)
 "Fa" = (
 /obj/machinery/door/airlock/vault,
 /turf/simulated/floor/tiled/dark/brown_platform,
@@ -3194,6 +3193,9 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "5,11"
 	},
+/area/space)
+"GI" = (
+/turf/simulated/floor/tiled/white/danger,
 /area/space)
 "GM" = (
 /obj/structure/closet/onestar/tier2,
@@ -3906,6 +3908,13 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "8,16"
 	},
+/area/space)
+"Ni" = (
+/obj/structure/closet/onestar/tier2/mineral/empty,
+/obj/structure/sign/faction/one_star{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "Np" = (
 /obj/structure/shuttle_part/mining{
@@ -4872,12 +4881,6 @@
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "7,18"
 	},
-/area/space)
-"Xf" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "Xi" = (
 /obj/structure/shuttle_part/mining{
@@ -19363,11 +19366,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+RJ
+RJ
+RJ
+RJ
+RJ
 cb
 cb
 aa
@@ -19565,11 +19568,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+RJ
+GI
+GI
+GI
+RJ
 XW
 Zk
 Zk
@@ -19767,11 +19770,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+RJ
+RJ
+RJ
+RJ
+RJ
 cb
 aa
 aa
@@ -19969,11 +19972,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+RJ
+GI
+GI
+GI
+RJ
 XW
 Zk
 Zk
@@ -20171,11 +20174,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+RJ
+RJ
+RJ
+RJ
+RJ
 cb
 aa
 aa
@@ -20367,15 +20370,15 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
 XW
 XW
 RJ
-Xf
+EW
 XW
 gV
 gV
@@ -20569,11 +20572,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
 XW
 hM
 RJ
@@ -20771,11 +20774,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
 xb
 RJ
 RJ
@@ -20973,18 +20976,18 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
 gV
 kx
 RJ
 RJ
 RJ
 gV
-CZ
+Ni
 nh
 nh
 gV
@@ -21175,11 +21178,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
 xb
 RJ
 RJ
@@ -21377,11 +21380,11 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
 XW
 Bu
 RJ
@@ -21579,15 +21582,15 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
 XW
 XW
-RJ
-Xf
+XW
+XW
 XW
 gV
 gV
