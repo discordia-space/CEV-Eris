@@ -1,0 +1,7 @@
+author: assortedbeads
+delete-after: true
+changes:
+  - rscadd: Added a makeshift battle axe weapon
+  - rscadd: Adds a makeshift battle axe crafting recipe
+  - imageadd: adds sprites for the makeshift battle axe
+  - imageadd: edits the sprite for the sledgehammer (right hand) to remove stray pixels
