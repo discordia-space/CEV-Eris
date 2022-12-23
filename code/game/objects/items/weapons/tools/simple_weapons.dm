@@ -71,7 +71,7 @@
 	edge = TRUE
 	attack_verb = list("chopped", "torn", "cut", "cleaved", "slashed")
 	hitsound = 'sound/weapons/melee/heavystab.ogg'
-	tool_qualities = list(QUALITY_CUTTING = 20)
+	tool_qualities = list(QUALITY_CUTTING = 10)
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	embed_mult = 1.1
 	degradation = 1.5 //not quite as sturdy as a normal weapon
