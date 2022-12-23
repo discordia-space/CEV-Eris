@@ -76,15 +76,16 @@
 	var/mob/living/carbon/human/H = parent ? O.owner : null
 
 	// Don't process when the parent limb or owner is dead. Organs don't process in corpses and won't die from wounds.
-	if((!parent || O.status & ORGAN_DEAD || (E && E.status & ORGAN_DEAD) || (H && H.stat & DEAD)) && !progress_during_death)
-		SSinternal_wounds.processing -= src
-		return
+	if((!parent || O.status & ORGAN_DEAD) && !progress_during_death)
+		return PROCESS_KILL
 
 	if(can_progress)
 		++current_progression_tick
 		if(current_progression_tick >= progression_threshold)
 			current_progression_tick = 0
 			progress()
+			if(H)
+				H.custom_pain("Something inside your [E.name] hurts a lot.", 0)
 
 	if(!H)
 		return

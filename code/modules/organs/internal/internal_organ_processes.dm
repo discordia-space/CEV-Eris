@@ -82,7 +82,7 @@
 		// this will filter some toxins out of owners body
 		adjustToxLoss(-(liver_efficiency * 0.001))
 
-	var/liver_damage = (alcohol_toxic_strength * 7) + (toxin_strength * 9) - (liver_efficiency / 100)
+	var/liver_damage = alcohol_toxic_strength + toxin_strength - (liver_efficiency / 100)
 	if(liver_damage > 0)
 		liver.take_damage(liver_damage, TOX)
 

@@ -156,7 +156,7 @@
 	//	M.eye_blurry = max(M.eye_blurry, 10)
 
 	if(drunkenness >= 5) // Toxic dose, at least 15 ethanol required
-		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity * drunkenness / 5)
+		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity * drunkenness)
 
 	if(drunkenness >= 6) // Drowsyness - periodically falling asleep
 		M.drowsyness = max(M.drowsyness, 20)

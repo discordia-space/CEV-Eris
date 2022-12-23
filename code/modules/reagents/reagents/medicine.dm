@@ -121,9 +121,7 @@
 
 /datum/reagent/medicine/dylovene/overdose(mob/living/carbon/human/user, alien)
 	var/obj/item/organ/internal/blood_vessel/user_vessel = user.random_organ_by_process(OP_BLOOD_VESSEL)
-	if(!user_vessel)
-		return FALSE
-	create_overdose_wound(user_vessel, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+	create_overdose_wound(user_vessel, user, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"

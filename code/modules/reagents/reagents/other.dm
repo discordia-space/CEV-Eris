@@ -430,7 +430,6 @@
 
 /datum/reagent/other/coolant/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustToxLoss(1)
-	M.add_chemical_effect(CE_TOXIN, 1)
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M

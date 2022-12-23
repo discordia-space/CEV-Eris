@@ -94,7 +94,7 @@
 		species = all_species[C.species.name]
 
 /obj/item/organ/proc/die()
-	if(BP_IS_ROBOTIC(src))
+	if(BP_IS_ROBOTIC(src) || status & ORGAN_DEAD)
 		return
 	damage = max_damage
 	status |= ORGAN_DEAD
@@ -141,9 +141,6 @@
 
 	//dead already, no need for more processing
 	if(status & ORGAN_DEAD)
-		for(var/datum/component/internal_wound/IW in GetComponents(/datum/component/internal_wound))
-			if(LAZYACCESS(SSinternal_wounds.processing, IW))
-				STOP_PROCESSING(SSinternal_wounds, IW)
 		return PROCESS_KILL		// Can't bring dead organs back. Most can be printed for cheap.
 
 	if(BP_IS_ROBOTIC(src))

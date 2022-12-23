@@ -530,15 +530,18 @@ This function completely restores a damaged organ to perfect condition.
 			droplimb(FALSE, DROPLIMB_BLUNT)
 			owner?.gib() //In theory if droplimb is succesfull, the organ will have no owner and gib() should only get called if droplimb fails(Like on the upper body)
 
-//Updating wounds. Handles wound natural I had some free spachealing, internal bleedings
+/// Handles internal and external wound effects
 /obj/item/organ/external/proc/update_wounds()
+	// Internal wound handling
 	number_internal_wounds = 0
 	severity_internal_wounds = 0
 	internal_wound_hal_dam = 0
+
 	SEND_SIGNAL(src, COMSIG_IORGAN_REFRESH_PARENT)
 	SEND_SIGNAL(src, COMSIG_IORGAN_APPLY)
 	SEND_SIGNAL(src, COMSIG_IORGAN_WOUND_COUNT)
 
+	// External wound handling
 	if(BP_IS_ROBOTIC(src)) //Robotic limbs don't heal or get worse.
 		for(var/datum/wound/W in wounds) //Repaired wounds disappear though
 			if(W.damage <= 0)        //and they disappear right away

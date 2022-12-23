@@ -227,3 +227,16 @@
 
 /datum/component/internal_wound/organic/infection/standard
 	name = "infection"
+
+/datum/component/internal_wound/organic/permanent
+	name = "scar tissue"
+	treatments_item = list()	// No way to treat without an autodoc
+	treatments_tool = list()
+	treatments_chem = list()
+	severity = 2
+	severity_max = 2
+	can_progress = FALSE
+	hal_damage = IWOUND_MEDIUM_DAMAGE
+
+/datum/component/internal_wound/organic/permanent/nondamage
+	hal_damage = 0

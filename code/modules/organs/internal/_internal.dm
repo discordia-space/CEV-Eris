@@ -108,9 +108,8 @@
 			LAZYREMOVE(possible_wounds, choice)
 			if(!LAZYLEN(possible_wounds))
 				break
-
-	if(!BP_IS_ROBOTIC(src) && owner && parent && amount > 0 && !silent)
-		owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
+		
+		owner.custom_pain("Something inside your [parent.name] hurts a lot.", 0)		// Let em know they're hurting
 
 /obj/item/organ/internal/proc/get_possible_wounds(damage_type, sharp, edge)
 	var/list/possible_wounds = list()
@@ -157,7 +156,10 @@
 				if(is_robotic)
 					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/sanity))
 
-	LAZYREMOVE(possible_wounds, GetComponents(/datum/component/internal_wound))	// Wounds of the same type don't stack
+	// Wounds of the same type don't stack
+	for(var/path in possible_wounds)
+		if(GetComponent(path))
+			possible_wounds -= path
 
 	return possible_wounds
 
@@ -400,6 +402,8 @@
 		return
 	damage = initial(damage)
 	SEND_SIGNAL(src, COMSIG_IWOUND_DAMAGE)
+	if(damage >= max_damage)
+		die()
 
 /obj/item/organ/internal/proc/add_wound(datum/component/internal_wound/IW)
 	if(!IW || initial(IW.wound_nature) != nature || status & ORGAN_DEAD)

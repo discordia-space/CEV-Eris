@@ -9,7 +9,7 @@
 	reagent_state = LIQUID
 	color = "#CF3600"
 	metabolism = REM * 0.05 // 0.01 by default. They last a while and slowly kill you.
-	var/strength = 0.05 // How much damage it deals per unit
+	var/strength = 0.1		// Base CE_TOXIN magnitude, multiplied by effect multiplier
 	var/sanityloss = 0
 	reagent_type = "Toxin"
 
@@ -22,7 +22,7 @@
 		if(sanityloss && ishuman(M))
 			var/mob/living/carbon/human/H = M
 			H.sanity.onToxin(src, effect_multiplier)
-	M.add_chemical_effect(CE_TOXIN, 1 + effect_multiplier * strength)
+		M.add_chemical_effect(CE_TOXIN, multi * strength * 10)
 
 /datum/reagent/toxin/overdose(mob/living/carbon/M, alien)
 	if(strength)
