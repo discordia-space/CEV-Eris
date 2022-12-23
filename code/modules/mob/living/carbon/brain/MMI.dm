@@ -21,7 +21,7 @@
 /obj/item/device/mmi
 	name = "man-machine interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
-	description_info = "Brains can be inserted by clicking on it. Brains can be removed by swiping a ID with roboticist acces and clicking with an empty hand."
+	description_info = "Brains can be inserted by clicking on it. Brains can be removed by swiping a ID with roboticist access and clicking with an empty hand."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "mmi_empty"
 	w_class = ITEM_SIZE_NORMAL
