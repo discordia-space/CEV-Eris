@@ -55,7 +55,7 @@
 
 /obj/item/tool/makeshiftaxe
 	name = "makeshift axe"
-	desc = "A heavy plasteel blade affixed to a welded metal shaft, for close up carnage"
+	desc = "A heavy plasteel blade affixed to a welded metal shaft, for close up carnage."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "makeshift_axe"
 	item_state = "makeshift_axe"
