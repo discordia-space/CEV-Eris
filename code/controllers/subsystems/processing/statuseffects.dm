@@ -103,12 +103,11 @@ proc/getStatusEffect(mob/target, effectType)
 		return FALSE
 	if(!effectType)
 		return FALSE
-	if(SSstatusEffects.affectedMobs[target])
-		for(var/datum/statusEffect/effect as anything in SSstatusEffects.affectedMobs[ref(target)])
-			if(effect.identifier == effectType)
-				if(!(effect.flags & SE_FLAG_UNIQUE))
-					return effect
-				return_list.Add(effect)
+	for(var/datum/statusEffect/effect as anything in SSstatusEffects.affectedMobs[ref(target)])
+		if(effect.identifier == effectType)
+			if(!(effect.flags & SE_FLAG_UNIQUE))
+				return effect
+			return_list.Add(effect)
 	return return_list
 
 
