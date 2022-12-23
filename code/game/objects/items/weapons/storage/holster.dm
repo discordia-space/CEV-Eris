@@ -255,7 +255,8 @@
 	max_w_class = ITEM_SIZE_BULKY
 	can_hold = list(
 		/obj/item/tool/hammer,
-		/obj/item/tool/hatchet
+		/obj/item/tool/hatchet,
+		/obj/item/tool/makeshiftaxe
 		)
 	price_tag = 20
 
