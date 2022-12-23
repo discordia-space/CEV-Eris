@@ -60,7 +60,7 @@
 	icon_state = "makeshift_axe"
 	item_state = "makeshift_axe"
 	wielded_icon = "makeshift_axe_wielded"
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 1)
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3)
 	worksound = WORKSOUND_HARD_SLASH
 	force = WEAPON_FORCE_DANGEROUS
 	throwforce = WEAPON_FORCE_NORMAL
