@@ -371,7 +371,6 @@
 #include "code\datums\objective\absorb.dm"
 #include "code\datums\objective\assassinate.dm"
 #include "code\datums\objective\assassinate_marshal.dm"
-#include "code\datums\objective\baptize.dm"
 #include "code\datums\objective\blitzshell.dm"
 #include "code\datums\objective\block.dm"
 #include "code\datums\objective\borer.dm"
