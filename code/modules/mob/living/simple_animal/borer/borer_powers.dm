@@ -1,3 +1,5 @@
+#define DEFAULT_INFESTATION_DELAY 2.5 SECONDS
+
 /mob/living/simple_animal/borer/proc/release_host()
 	set category = "Abilities"
 	set name = "Release Host"
@@ -56,7 +58,8 @@
 
 	var/mob/living/carbon/M = input(src,"Who do you wish to infest?") in null|choices
 
-	if(!M || !Adjacent(M))
+	// non carbons disabled due to not working.
+	if(!M || !Adjacent(M) || !iscarbon(M))
 		return
 
 	if(M.has_brain_worms())
@@ -73,6 +76,7 @@
 		var/obj/item/organ/external/E = H.organs_by_name[BP_HEAD]
 		if(!E || E.is_stump())
 			to_chat(src, SPAN_WARNING("\The [H] does not have a head!"))
+			return // Causes wonky behavior, although it does work in some cases.
 
 		if(!H.species.has_process[BP_BRAIN])
 			to_chat(src, SPAN_WARNING("\The [H] does not seem to have an ear canal to breach."))
@@ -85,7 +89,7 @@
 	to_chat(M, "Something slimy begins probing at the opening of your ear canal...")
 	to_chat(src, SPAN_DANGER("You slither up [M] and begin probing at their ear canal..."))
 
-	var/infestation_delay = 2.5 SECONDS
+	var/infestation_delay = DEFAULT_INFESTATION_DELAY
 
 	// It's harder for a borer to infest NTs
 	if(is_neotheology_disciple(M))

@@ -28,10 +28,9 @@
 	hunger_enabled = FALSE
 	pass_flags = PASSTABLE
 	universal_understand = 1
-	//holder_type = /obj/item/holder/borer //Theres no inhand sprites for holding borers, it turns you into a pink square
-	var/borer_level = 0                           // Level of borer.
-	var/borer_exp = 0                             // Borer experience.
-	var/last_request
+
+	var/borer_level = 0
+	var/borer_exp = 0
 	var/used_dominate
 	var/max_chemicals = 50					// Max chemicals produce without a host
 	var/max_chemicals_inhost = 250          // Max chemicals produce within a host
@@ -79,7 +78,7 @@
 		)
 
 /mob/living/simple_animal/borer/roundstart
-	roundstart = 1
+	roundstart = TRUE
 
 /mob/living/simple_animal/borer/Login()
 	..()
@@ -121,18 +120,6 @@
 	verbs -= abilities_in_host
 	host?.verbs -= abilities_in_control
 
-	// Borer gets host abilities before actually getting inside the host
-	// Workaround for a BYOND bug: http://www.byond.com/forum/post/1833666
-	/*if(force_host)
-		if(ishuman(host))
-			verbs += abilities_in_host
-			return
-		for(var/ability in abilities_in_host)
-			if(istype(ability, /mob/living/carbon/human))
-				continue
-			verbs += ability
-		return*/
-
 	// Re-grant some of the abilities, depending on the situation
 	if(!host)
 		verbs += abilities_standalone
@@ -149,20 +136,19 @@
 /mob/living/simple_animal/borer/proc/get_borer_control()
 	return (host && controlling) ? host : src
 
-/mob/living/simple_animal/borer/Life()
-	..()
-
+/mob/living/simple_animal/borer/proc/handle_outer_chemical_regen()
 	if((chemicals < max_chemicals) && !invisibility)
 		chemicals++
 
-	if(invisibility)
+/mob/living/simple_animal/borer/proc/handle_invisibility()
+	if(invisibility == TRUE)
+		chemicals -= 1
 		if(chemicals <= 2)
 			invisible()
 			chemicals = 0
-		else
-			chemicals -= 1
 
-	if(host && !stat && !(host.stat == 2))
+/mob/living/simple_animal/borer/proc/process_host()
+	if(host && !stat && host.stat != DEAD)
 		// Regenerate if within a host
 		if(health < maxHealth)
 			adjustBruteLoss(-1)
@@ -183,16 +169,30 @@
 			if(docile)
 				to_chat(host, SPAN_DANGER("You are feeling far too docile to continue controlling your host..."))
 				host.release_control()
-				return
-
+				return FALSE
+			if(!host.stat)
+				host.release_control()
 			if(prob(5))
 				host.adjustBrainLoss(0.1)
-
 			if(prob(host.brainloss/20))
 				host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_s","gasp"))]")
+	return TRUE
 
-	for(var/mob/living/L in view(7)) //Sucks to put this here, but otherwise mobs will ignore them
-		L.try_activate_ai()
+/mob/living/simple_animal/borer/Life()
+	..()
+
+	handle_outer_chemical_regen()
+
+	handle_invisibility()
+
+	// Keep at the end
+	process_host()
+
+
+	// Should reduce some of the lag. The reason for this should be found.
+	if(mind.key && !host)
+		for(var/mob/living/L in view(7)) //Sucks to put this here, but otherwise mobs will ignore them
+			L.try_activate_ai()
 
 /mob/living/simple_animal/borer/Stat()
 	. = ..()
@@ -213,11 +213,6 @@
 /mob/living/simple_animal/borer/proc/detatch()
 
 	if(!host || !controlling) return
-
-	if(ishuman(host))
-		var/mob/living/carbon/human/H = host
-		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
-		head.implants -= src
 
 	controlling = FALSE
 
@@ -265,7 +260,12 @@
 	if(host.mind)
 		clear_antagonist_type(host.mind, ROLE_BORER)
 
-	src.loc = get_turf(host)
+	if(ishuman(host))
+		var/mob/living/carbon/human/H = host
+		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
+		head.implants.Remove(src)
+
+	loc = get_turf(host)
 
 	reset_view(null)
 	machine = null
@@ -273,8 +273,7 @@
 	host.reset_view(null)
 	host.machine = null
 
-	var/mob/living/H = host
-	H.status_flags &= ~PASSEMOTES
+	host.status_flags &= ~PASSEMOTES
 	host = null
 	update_abilities()
 
@@ -349,6 +348,8 @@
 	if(invisibility)
 		alpha = 255
 		invisibility = 0
+	if(controlling)
+		verbs -= abilities_in_host
 
 /mob/living/simple_animal/borer/update_sight()
 	if(stat == DEAD || eyeobj)
@@ -359,3 +360,4 @@
 		else
 			//sight = initial(sight)
 			see_in_dark = initial(see_in_dark)
+
