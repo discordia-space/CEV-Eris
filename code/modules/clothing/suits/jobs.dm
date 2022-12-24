@@ -144,6 +144,24 @@
 		rad = 0
 	)
 
+/obj/item/clothing/suit/storage/neotheology_jacket
+	name = "black acolyte jacket"
+	desc = "A long black jacket. Dark, stylish, and authoritarian."
+	icon_state = "chaplain_hoodie"
+	item_state = "chaplain_hoodie"
+	blood_overlay_type = "coat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
+	spawn_blacklisted = TRUE
+	armor = list(
+		melee = 5,
+		bullet = 2,
+		energy = 2,
+		bomb = 0,
+		bio = 50,  //same as labcoats at LEAST
+		rad = 0
+	)
+
 /obj/item/clothing/suit/storage/neotheology_coat
 	name = "preacher coat"
 	desc = "A snugly fitting, lightly armoured brown coat."
