@@ -1,5 +1,5 @@
 /mob/living/carbon/superior_animal/elf
-	name = "arsonistic elf"
+	name = "fueltide elf"
 	desc = "Jingle bells, fuel smells,\
 			<br>Vagas gonna burn,\
 			<br>Sentinels of maint tunnels,\
