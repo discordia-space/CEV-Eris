@@ -128,8 +128,8 @@
 	icon_state = "medcap"
 	item_state = "medcap"
 
-/obj/item/clothing/head/soft/science
-	name = "moebius research cap"
-	desc = "Cap worn by moebius research personnel."
-	icon_state = "scicap"
-	item_state = "scicap"
+///obj/item/clothing/head/soft/science
+	//name = "moebius research cap"
+	//desc = "Cap worn by moebius research personnel."
+	//icon_state = "scicap"
+	//item_state = "scicap"
