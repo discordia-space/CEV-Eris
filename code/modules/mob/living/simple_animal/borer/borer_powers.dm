@@ -678,3 +678,5 @@
 
 		to_chat(H, SPAN_WARNING("Your nose begins to bleed..."))
 		H.drip_blood(1)
+
+#undef DEFAULT_INFESTATION_DELAY

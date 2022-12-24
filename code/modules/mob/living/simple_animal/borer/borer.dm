@@ -190,7 +190,7 @@
 
 
 	// Should reduce some of the lag. The reason for this should be found.
-	if(mind.key && !host)
+	if(!host)
 		for(var/mob/living/L in view(7)) //Sucks to put this here, but otherwise mobs will ignore them
 			L.try_activate_ai()
 
@@ -350,6 +350,8 @@
 		invisibility = 0
 	if(controlling)
 		verbs -= abilities_in_host
+	if(host)
+		leave_host()
 
 /mob/living/simple_animal/borer/update_sight()
 	if(stat == DEAD || eyeobj)
