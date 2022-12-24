@@ -1,0 +1,4 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - code_imp: Re-organized corpse spawning code
