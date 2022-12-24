@@ -17,7 +17,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/under/rank/warden
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for more robust protection. It has\"Gunnery Sergeant\" rank pins on the shoulders."
+	desc = "the uniform worn by Ironhammer Sergeants, the sight of it is often followed by shouting. It has\"Gunnery Sergeant\" rank pins on the shoulders."
 	name = "Gunnery Sergeant jumpsuit"
 	icon_state = "warden"
 	item_state = "r_suit"
@@ -37,14 +37,14 @@
 
 /obj/item/clothing/under/rank/security
 	name = "Ironhammer Operative's jumpsuit"
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
+	desc = "The standard issue uniform of Ironhammer grunts all over the sector."
 	icon_state = "security"
 	item_state = "ba_suit"
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/under/rank/security/turtleneck
 	name = "Ironhammer Operative's turtleneck"
-	desc = "Military style turtleneck, made of a slightly sturdier material than standard jumpsuits, to allow for robust protection"
+	desc = "Same as the standard ironhammer uniform but with a sleek black military style sweater. best used in cold enviroments"
 	icon_state = "securityrturtle"
 
 /obj/item/clothing/under/rank/security/skirt
@@ -55,7 +55,7 @@
 
 /obj/item/clothing/under/rank/medspec
 	name = "Medical Specialist's jumpsuit"
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection. It has\"Specialist\" rank pins on the shoulders."
+	desc = "an ironhammer uniform modified for use by medics. with a white shirt and medical insignia. It has\"Specialist\" rank pins on the shoulders."
 	icon_state = "medspec"
 	item_state = "ba_suit"
 	siemens_coefficient = 0.8
@@ -121,7 +121,7 @@
  * Ironhammer Commander
  */
 /obj/item/clothing/under/rank/ih_commander
-	desc = "A jumpsuit worn by those few with the dedication to achieve the position of \"Ironhammer Commander\"."
+	desc = "the uniform of an ironhammer officers on the field to distinguish themselves from the grunts. it has \"Leiutennant\" rank pins on the shoulder"
 	name = "Ironhammer Commander's jumpsuit"
 	icon_state = "hos"
 	item_state = "r_suit"
@@ -135,7 +135,7 @@
 
 /obj/item/clothing/head/HoS
 	name = "Ironhammer Commander Hat"
-	desc = "The hat of the Ironhammer Commander. For showing the officers who's in charge."
+	desc = "The hat of the Ironhammer Commander. For showing the enlisted who's in charge."
 	icon_state = "hoshat"
 	body_parts_covered = NONE
 	siemens_coefficient = 0.8
@@ -145,7 +145,7 @@
  */
 /obj/item/clothing/under/rank/cadet
 	name = "Ironhammer Cadet's jumpskirt"
-	desc = "A sailor's uniform used for cadets in training, though more frequently in acts of hazing."
+	desc = "A sailor's uniform used for cadets in training, though more frequently in acts of hazing. standard issue of the very defunct M.A.I.D.S Unit"
 	icon_state = "cadet"
 	item_state = "cadet"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
