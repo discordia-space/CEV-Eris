@@ -89,7 +89,7 @@
 		/obj/item/weedkiller
 	)
 
-//Civillian
+//Club
 /obj/item/clothing/suit/storage/toggle/club
 	name = "Manager's jacket"
 	desc = "A well tailored and rich jacket of the club manager"
