@@ -1,7 +1,7 @@
 /*
  * Contains:
  *		Security
- *		Detective
+ *		Inspector
  *		Ironhammer Commander
  */
 
@@ -11,13 +11,13 @@
 
 /obj/item/clothing/under/security_formal
 	name = "ironhammer formal uniform"
-	desc = "A navy blue suit. It lacks the protection of standard-issue jumpsuits, but at least you will be shooting with some style."
+	desc = "A navy blue suit. often used by ironhammer bodyguards, for shooting with style."
 	icon_state = "ih_formal"
 	item_state = "ih_formal"
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/under/rank/warden
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for more robust protection. It has the words \"Gunnery Sergeant\" written on the shoulders."
+	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for more robust protection. It has\"Gunnery Sergeant\" rank pins on the shoulders."
 	name = "Gunnery Sergeant jumpsuit"
 	icon_state = "warden"
 	item_state = "r_suit"
@@ -25,12 +25,12 @@
 
 /obj/item/clothing/under/rank/warden/skirt
 	name = "Gunnery Sergeant jumpskirt"
-	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for more robust protection. It has the words \"Gunnery Sergeant\" written on the shoulders."
+	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for more robust protection. It has\"Gunnery Sergeant\" rank pins on the shoulders.""
 	icon_state = "warden_skirt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
-/obj/item/clothing/head/warden
-	name = "Gunnery Sergeant hat"
+/obj/item/clothing/head/warden //legacy security hat
+	name = "warden hat"
 	desc = "A special helmet issued to the Warden of a securiy force."
 	icon_state = "policehelm"
 	body_parts_covered = NONE
@@ -55,23 +55,23 @@
 
 /obj/item/clothing/under/rank/medspec
 	name = "Medical Specialist's jumpsuit"
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection. It has the words \"Medical Specialist\" written on the shoulders."
+	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection. It has\"Specialist\" rank pins on the shoulders."
 	icon_state = "medspec"
 	item_state = "ba_suit"
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/under/rank/medspec/skirt
 	name = "Medical Specialist's jumpskirt"
-	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for robust protection. It has the words \"Medical Specialist\" written on the shoulders."
+	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for robust protection. It has\"Specialist\" rank pins on the shoulders."
 	icon_state = "medspec_skirt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /*
- * Detective
+ * Inspector
  */
 /obj/item/clothing/under/rank/inspector
 	name = "inspector's suit"
-	desc = "Casual turtleneck and jeans, civilian clothes of Ironhammer Inspector."
+	desc = "fancy dress shirt, slacks and tie, fancy civilian clothes of Ironhammer Inspector."
 	icon_state = "insp_under"
 	item_state = "insp_under"
 	siemens_coefficient = 0.8
@@ -141,7 +141,7 @@
 	siemens_coefficient = 0.8
 
 /*
- * Navy uniforms
+ * "Navy" uniforms
  */
 /obj/item/clothing/under/rank/cadet
 	name = "Ironhammer Cadet's jumpskirt"

@@ -2,7 +2,7 @@
  * Job related
  */
 
-//Assistant
+//vagabond
 /obj/item/clothing/suit/storage/ass_jacket
 	name = "assistant jacket"
 	desc = "Practical and comfortable jacket. It seems have a little protection from physical harm."
@@ -20,6 +20,7 @@
 		rad = 0
 	)
 
+//Guild Artist
 /obj/item/clothing/suit/artist
 	name = "Complicated Vest"
 	desc = "The tubes don't even do anything."
@@ -55,7 +56,7 @@
 		rad = 0
 	)
 
-//Quartermaster
+//Merchant
 /obj/item/clothing/suit/storage/qm_coat
 	name = "guild merchant coat"
 	desc = "An ideal choice for a smuggler. This coat seems have good impact resistance, and is made from resistant and expensive materials."
@@ -124,7 +125,7 @@
 	price_tag = 5000
 	style = STYLE_HIGH
 
-//Chaplain
+//NeoTheology
 /obj/item/clothing/suit/storage/neotheology_jacket
 	name = "acolyte jacket"
 	desc = "A long jacket. Dark, stylish, and authoritarian."
@@ -212,7 +213,7 @@
 	body_parts_covered = 0
 	spawn_blacklisted = TRUE
 
-//Detective
+//Inspector
 /obj/item/clothing/suit/storage/detective
 	name = "inspector's grey armored trenchcoat"
 	desc = "Grey armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
@@ -245,7 +246,7 @@
 	icon_state = "detective_black"
 	item_state = "detective_black"
 
-//Engineering
+//Technomancers
 /obj/item/clothing/suit/storage/hazardvest
 	name = "hazard vest"
 	desc = "A high-visibility vest used in work zones."
@@ -265,7 +266,7 @@
 	icon_state = "hazard_black"
 	item_state = "hazard_black"
 
-//Chief Engineer/Technomancer Exultant
+//Technomancer Exultant
 /obj/item/clothing/suit/storage/te_coat
 	name = "exultant coat"
 	desc = "A sturdy and proud crimson coat. Lightly armored, with some protection against radiation."
