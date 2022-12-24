@@ -16,17 +16,27 @@
 
 
 /mob/living/carbon/superior_animal/elf/bullet_act(obj/item/projectile/P, def_zone)
+	if(QDELETED(src))
+		return
 	if(prob(25))
 		death()
 	else
 		. = ..()
 
+
 /mob/living/carbon/superior_animal/elf/fire_act()
-	if(prob(15))
+	if(!QDELETED(src) && prob(15))
 		death()
+
 
 /mob/living/carbon/superior_animal/elf/skill_to_evade_traps()
 	return 100
+
+
+/mob/living/carbon/superior_animal/elf/gib()
+	if(!QDELETED(src))
+		death()
+
 
 /mob/living/carbon/superior_animal/elf/death()
 	if(prob(20))
