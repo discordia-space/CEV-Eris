@@ -74,3 +74,9 @@
   - refactor: Partial storage code optimization
   - rscdel: Removed silly text line from stun breakdown.
   - rscadd: Added description for several HUD elements.
+2022-12-24:
+  assortedbeads:
+  - rscadd: Added a makeshift battle axe weapon
+  - rscadd: Adds a makeshift battle axe crafting recipe
+  - imageadd: adds sprites for the makeshift battle axe
+  - imageadd: edits the sprite for the sledgehammer (right hand) to remove stray pixels

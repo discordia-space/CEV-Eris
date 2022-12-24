@@ -248,6 +248,12 @@
 	..()
 	M.druggy = max(M.druggy, 2)
 
+/datum/reagent/medicine/paracetamol/holy
+	id = "angelsbalm"
+	overdose = REAGENTS_OVERDOSE * 3
+	scannable = 0
+	nerve_system_accumulations = 0
+
 /datum/reagent/medicine/tramadol
 	name = "Tramadol"
 	id = "tramadol"
