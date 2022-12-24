@@ -127,6 +127,18 @@
 	verbs -= abilities_standalone
 	verbs -= abilities_in_host
 	host?.verbs -= abilities_in_control
+	
+	// Borer gets host abilities before actually getting inside the host
+	// Workaround for a BYOND bug: http://www.byond.com/forum/post/1833666
+	/*if(force_host)
+		if(ishuman(host))
+			verbs += abilities_in_host
+			return
+		for(var/ability in abilities_in_host)
+			if(istype(ability, /mob/living/carbon/human))
+				continue
+			verbs += ability
+		return*/
 
 	// Re-grant some of the abilities, depending on the situation
 	if(!host)
