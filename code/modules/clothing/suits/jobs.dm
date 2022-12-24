@@ -147,8 +147,8 @@
 /obj/item/clothing/suit/storage/neotheology_jacket
 	name = "black acolyte jacket"
 	desc = "A long black jacket. Dark, stylish, and authoritarian."
-	icon_state = "chaplain_hoodie"
-	item_state = "chaplain_hoodie"
+	icon_state = "chaplain_hoodie_old"
+	item_state = "chaplain_hoodie_old"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
