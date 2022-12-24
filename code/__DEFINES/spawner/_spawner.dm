@@ -581,8 +581,6 @@
 
 #define SPAWN_TAG_SPIDER SPAWN_TAG_MOB_HOSTILE+";"+SPAWN_SPIDER
 
-#define SPAWN_ELF "elf"
-
 //EFFECTS
 #define SPAWN_FLORA "flora"
 

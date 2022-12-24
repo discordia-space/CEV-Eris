@@ -7,8 +7,6 @@
 
 	var/cardinal_turfs = T.CardinalTurfs()
 
-	if(prob(3))
-		new /mob/living/carbon/superior_animal/elf(T)
 	if(prob(2))
 		var/path = junk()
 		new path(T)
