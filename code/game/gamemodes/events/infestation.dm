@@ -8,8 +8,8 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 	id = "infestation"
 	name = "infestation"
 
-	weight = 2
-	//Since it's a large pool of content, infestation has twice the weight of other events
+	weight = 4
+	//Since it's a large pool of content, infestation has twice the weight of other events // What about FOUR times, huh?
 
 	event_type = /datum/event/infestation
 	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE*1.2,
@@ -26,6 +26,7 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 #define INFESTATION_ROACHES "large insects"
 #define INFESTATION_HIVEBOTS "ancient synthetics"
 #define INFESTATION_SLIMES "slimes"
+#define INFESTATION_ELVES "elves"
 
 /datum/event/infestation
 	startWhen = 1
@@ -41,20 +42,13 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 	var/infestation_time = 3 MINUTES
 	var/list/chosen_mob_classification = list()
 	var/list/possible_mobs_mundane = list(
-		INFESTATION_MICE = 17,
-		INFESTATION_SPIDERLINGS = 8,
+		INFESTATION_ELVES = 8
 	)
-
 	var/possible_mobs_moderate = list(
-		INFESTATION_SPACE_BATS = 10,
-		INFESTATION_SPIDERS = 7,//This is a combination of spiderlings and adult spiders
-		INFESTATION_ROACHES = 7
+		INFESTATION_ELVES = 16
 	)
-
 	var/possible_mobs_major = list(
-		INFESTATION_SPIDERS = 8,
-		INFESTATION_HIVEBOTS = 6,
-		INFESTATION_SLIMES = 5
+		INFESTATION_ELVES = 32
 	)
 
 /datum/event/infestation/setup()
@@ -164,6 +158,10 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 			event_name = "Giant Roach Infestation"
 			chosen_verb = "have burrowed into"
 			chosen_mob_classification += /obj/spawner/mob/roaches
+		if(INFESTATION_ELVES)
+			event_name = "Arsonistic Elves Infestation"
+			chosen_verb = "have invaded"
+			chosen_mob_classification = list(/obj/spawner/mob/elves)
 
 	//Chance for identification to fail even for normal mobs, to frustrate metagamers
 	if (prob(15))
