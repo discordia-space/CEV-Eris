@@ -537,6 +537,28 @@
 	stiffness = LIGHT_STIFFNESS
 	style = STYLE_NONE
 
+/obj/item/clothing/suit/storage/vest/insulated
+	name = "reinforced technomancer armor"
+	desc = "Technomancer League's ballistic armor, less protective against industrial hazards but better in a fight"
+	icon_state = "armor_engineering_old"
+	item_state = "armor_engineering_old"
+	blood_overlay_type = "armor"
+	armor = list(
+		melee = 8,
+		bullet = 12,
+		energy = 7,
+		bomb = 40,
+		bio = 0,
+		rad = 10
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	item_flags = DRAG_AND_DROP_UNEQUIP
+	siemens_coefficient = 0.5
+	price_tag = 600
+	slowdown = LIGHT_SLOWDOWN
+	stiffness = LIGHT_STIFFNESS
+	style = STYLE_NONE
+
 /*
  * Reactive Armor
  */
