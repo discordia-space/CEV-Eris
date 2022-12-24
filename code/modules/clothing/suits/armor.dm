@@ -504,7 +504,7 @@
 	)
 
 /obj/item/clothing/suit/storage/vest/merc/full
-	name = "full heavy armor vest"
+	name = "full mercenary armor vest"
 	desc = "A high-quality armor vest in a fetching tan. This one is webbed, and has kneepads and shoulderpads for extra coverage."
 	icon_state = "mercwebvest_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
