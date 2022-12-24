@@ -28,18 +28,19 @@
 	hunger_enabled = FALSE
 	pass_flags = PASSTABLE
 	universal_understand = 1
+	faction = "borers"
 
 	var/borer_level = 0
 	var/borer_exp = 0
-	var/used_dominate
-	var/max_chemicals = 50					// Max chemicals produce without a host
-	var/max_chemicals_inhost = 250          // Max chemicals produce within a host
+	var/used_dominate						// Time of last domination use for cooldown.
+	var/max_chemicals = 50					// Max chemicals produce without a host.
+	var/max_chemicals_inhost = 250          // Max chemicals produce within a host.
 	var/chemicals = 50                      // Chemicals used for reproduction and spitting neurotoxin.
 	var/mob/living/carbon/human/host        // Human host for the brain worm.
 	var/truename                            // Name used for brainworm-speak.
 	var/mob/living/captive_brain/host_brain // Used for swapping control of the body back and forth.
 	var/controlling = FALSE					// Used in human death check.
-	var/docile = 0                          // Sugar can stop borers from acting.
+	var/docile = FALSE                      // Sugar can stop borers from acting.
 	var/has_reproduced
 	var/roundstart
 
@@ -144,7 +145,7 @@
 	if(invisibility == TRUE)
 		chemicals -= 1
 		if(chemicals <= 2)
-			invisible()
+			invisible() // Disable invisibility
 			chemicals = 0
 
 /mob/living/simple_animal/borer/proc/process_host()
@@ -187,12 +188,6 @@
 
 	// Keep at the end
 	process_host()
-
-
-	// Should reduce some of the lag. The reason for this should be found.
-	if(!host)
-		for(var/mob/living/L in view(7)) //Sucks to put this here, but otherwise mobs will ignore them
-			L.try_activate_ai()
 
 /mob/living/simple_animal/borer/Stat()
 	. = ..()
@@ -350,6 +345,7 @@
 		invisibility = 0
 	if(controlling)
 		verbs -= abilities_in_host
+		detatch()
 	if(host)
 		leave_host()
 

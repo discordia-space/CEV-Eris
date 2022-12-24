@@ -16,8 +16,6 @@
 		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
 		return
 
-	if(!host || !src) return
-
 	to_chat(src, SPAN_NOTICE("You begin disconnecting from [host]'s synapses and prodding at their internal ear canal."))
 
 	if(!host.stat)
@@ -125,12 +123,6 @@
 	update_abilities()
 	spawn(1) /// Wait for abilities to update THEN move them in due to the afore-mentioned bug.
 		forceMove(host)
-	//Update their contractor status.
-	/*if(host.mind && src.mind)
-		var/list/L = get_player_antags(src.mind, ROLE_BORER)
-		var/datum/antagonist/borer/borer
-		if(L.len)
-			borer = L[1]*/
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
@@ -142,31 +134,6 @@
 				var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
 				head.implants += src
 
-/*
-/mob/living/simple_animal/borer/verb/devour_brain()
-	set category = "Abilities"
-	set name = "Devour Brain"
-	set desc = "Take permanent control of a dead host."
-
-	if(!host)
-		to_chat(src, "You are not inside a host body.")
-		return
-
-	if(host.stat != 2)
-		to_chat(src, "Your host is still alive.")
-		return
-
-	if(stat)
-		to_chat(src, "You cannot do that in your current state.")
-
-	if(docile)
-		to_chat(src, "\blue You are feeling far too docile to do that.")
-		return
-
-
-	to_chat(src, "<span class = 'danger'>It only takes a few moments to render the dead host brain down into a nutrient-rich slurry...</span>")
-	replace_brain()
-*/
 
 // BRAIN WORM ZOMBIES AAAAH.
 /mob/living/simple_animal/borer/proc/replace_brain()
@@ -267,7 +234,7 @@
 	set name = "Paralyze Victim"
 	set desc = "Freeze the limbs of a potential host with supernatural fear."
 
-	if(src.stat)
+	if(stat)
 		return
 
 	if(world.time - used_dominate < 150)
@@ -299,7 +266,7 @@
 		to_chat(src, SPAN_WARNING("You cannot use that ability again so soon."))
 		return
 
-	if(!M || !(M in view(1, get_turf(src)))) return
+	if(!M || !Adjacent(M)) return
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -538,8 +505,6 @@
 		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
 		return
 
-	if(!host || !src) return
-
 	var/message = input("", "say (text)") as text
 	host.say(message)
 
@@ -559,8 +524,6 @@
 		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
 		return
 
-	if(!host || !src) return
-
 	var/message = input("", "whisper (text)") as text
 	host.whisper(message)
 
@@ -569,7 +532,7 @@
 	set name = "Invisibility"
 	set desc = "Become invisible for living being."
 
-	if(src.stat)
+	if(stat)
 		return
 
 	if(world.time - used_dominate < 150)
@@ -595,22 +558,20 @@
 /mob/living/simple_animal/borer/proc/biograde()
 	set category = "Abilities"
 	set name = "Biograde Vision"
-	set desc = "Make you see living being throug walls."
+	set desc = "Lets you see living beings through walls."
 
-	if(src.stat)
+	if(stat)
 		return
 
 	if(host)
-		to_chat(src, "\red <B>You cannot do this inside a host.</B>")
+		to_chat(src, SPAN_WARNING("You cannot do this inside a host."))
 		return
 
 	if(sight & SEE_MOBS)
 		sight &= ~SEE_MOBS
-		to_chat(src, SPAN_NOTICE("You cannot see living being throug walls for now."))
 		return
 	else
 		sight |= SEE_MOBS
-		to_chat(src, SPAN_NOTICE("You can now sen living being throug walls."))
 		return
 
 /mob/living/simple_animal/borer/proc/reproduce()
@@ -618,7 +579,7 @@
 	set name = "Reproduce"
 	set desc = "Spawn several young."
 
-	if(src.stat)
+	if(stat)
 		return
 
 	if(!host)
@@ -629,7 +590,7 @@
 		to_chat(host, "\red <B>Your host twitches and quivers as you rapidly excrete a larva from your sluglike body.</B>")
 		visible_message("\red <B>[host.name] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!</B>")
 		chemicals -= 100
-		has_reproduced = 1
+		has_reproduced = TRUE
 		borer_add_exp(10)
 
 		new /obj/effect/decal/cleanable/vomit(get_turf(host))
@@ -666,7 +627,7 @@
 
 	var/mob/M = targets[target]
 
-	if(isghost(M) || M.stat == DEAD)
+	if(M.stat == DEAD)
 		to_chat(src, "Not even you can speak to the dead.")
 		return
 
