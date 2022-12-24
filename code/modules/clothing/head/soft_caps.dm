@@ -123,7 +123,13 @@
 // M O E B I U S //
 
 /obj/item/clothing/head/soft/medical
-	name = "medical cap"
+	name = "moebius medical cap"
 	desc = "Cap worn by moebius medical personnel, usually outside spacecraft."
 	icon_state = "medcap"
 	item_state = "medcap"
+
+/obj/item/clothing/head/soft/science
+	name = "moebius research cap"
+	desc = "Cap worn by moebius research personnel."
+	icon_state = "scicap"
+	item_state = "scicap"

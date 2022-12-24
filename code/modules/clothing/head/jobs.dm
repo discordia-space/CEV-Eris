@@ -90,6 +90,12 @@
 	icon_state = "beret_navy_warden"
 	spawn_blacklisted = TRUE
 
+/obj/item/clothing/head/beret/purple
+	name = "Purple beret"
+	desc = "A stylish, if purple, beret."
+	icon_state = "beret_purple"
+	spawn_blacklisted = TRUE
+
 /obj/item/clothing/head/beret/engineering
 	name = "Technomancer beret"
 	desc = "A beret with the Technomancer leauge insignia emblazoned on it. For engineers that are more inclined towards style than safety."
@@ -104,9 +110,9 @@
 	spawn_frequency = 0
 
 //Moebius
-/obj/item/clothing/head/beret/purple
-	name = "Moebius beret"
-	desc = "A stylish, if purple, beret."
+/obj/item/clothing/head/beret/moebius
+	name = "Moebius Laboratories beret"
+	desc = "a purple beret emblazoned with the Moebius Laboratories logo"
 	icon_state = "beret_purple"
 	spawn_blacklisted = TRUE
 
