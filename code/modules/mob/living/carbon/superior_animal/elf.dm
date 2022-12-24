@@ -25,6 +25,8 @@
 	if(prob(15))
 		death()
 
+/mob/living/carbon/superior_animal/elf/skill_to_evade_traps()
+	return 100
 
 /mob/living/carbon/superior_animal/elf/death()
 	if(prob(20))
