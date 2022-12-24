@@ -181,7 +181,7 @@
 	)
 
 /obj/item/clothing/suit/storage/neotheosports
-	name = "neotheology sports jacket"
+	name = "Neotheology sports jacket"
 	desc = "NeoTheology styled sports jacket to keep the faithful always on their feet."
 	icon_state = "nt_sportsjacket"
 	item_state = "nt_sportsjacket"
