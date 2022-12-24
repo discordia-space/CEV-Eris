@@ -23,6 +23,31 @@
 	add_fingerprint(user)
 	interact(user)
 
+/obj/machinery/mineral/processing_unit_console/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Processor")
+		ui.open()
+
+/obj/machinery/mineral/processing_unit_console/ui_data(mob/user)
+	var/list/data = list()
+	data["materials_data"] = list()
+	for(var/ore in ore_data)
+		var/list/ore_list = list()
+		ore_list["name"] = ore
+		ore_list["current_action"] = machine.ores_processing[ore]
+		data["materials_data"] += ore_list
+	data["alloy_data"] = list()
+	for(var/datum/alloy/alloy in machine.alloy_data)
+		var/list/alloy_list = list()
+		alloy_list["name"] = alloy.name
+		alloy_list["creating"] = TRUE
+		data["alloy_data"] += alloy_list
+	return data
+
+/obj/machinery/mineral/proccesing_unit_console/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+
 /obj/machinery/mineral/processing_unit_console/interact(mob/user)
 
 	if(..())
@@ -32,6 +57,8 @@
 		to_chat(user, "\red Access denied.")
 		return
 
+	ui_interact(user)
+	/*
 	user.set_machine(src)
 
 	var/dat = "<h1>Ore processor console</h1>"
@@ -64,8 +91,10 @@
 	user << browse(dat, "window=processor_console;size=400x500")
 	onclose(user, "processor_console")
 	return
+	*/
 
 /obj/machinery/mineral/processing_unit_console/Topic(href, href_list)
+	/*
 	if(..())
 		return 1
 	usr.set_machine(src)
@@ -100,6 +129,7 @@
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	src.updateUsrDialog()
+	*/
 
 
 /**********************Mineral processing unit**************************/
