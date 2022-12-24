@@ -170,7 +170,7 @@
 				to_chat(host, SPAN_DANGER("You are feeling far too docile to continue controlling your host..."))
 				host.release_control()
 				return FALSE
-			if(!host.stat)
+			if(host.stat == DEAD)
 				host.release_control()
 			if(prob(5))
 				host.adjustBrainLoss(0.1)
