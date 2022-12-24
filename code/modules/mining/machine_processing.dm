@@ -36,13 +36,13 @@
 		var/list/ore_list = list()
 		ore_list["name"] = ore
 		ore_list["current_action"] = machine.ores_processing[ore]
-		data["materials_data"] += ore_list
+		data["materials_data"] += list(ore_list)
 	data["alloy_data"] = list()
 	for(var/datum/alloy/alloy in machine.alloy_data)
 		var/list/alloy_list = list()
 		alloy_list["name"] = alloy.name
 		alloy_list["creating"] = TRUE
-		data["alloy_data"] += alloy_list
+		data["alloy_data"] += list(alloy_list)
 	return data
 
 /obj/machinery/mineral/proccesing_unit_console/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
