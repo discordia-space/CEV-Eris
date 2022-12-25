@@ -2,17 +2,6 @@ import { useBackend } from '../backend';
 import { Box, Button, Flex, Knob, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
-function getActionType(input){
-  if(input == 0)
-    return "Storing";
-  if(input == 1)
-    return "Smelting";
-  if(input == 2)
-    return "Alloying";
-  if(input == 3)
-    return "Compressing";
-}
-
 export const Processor = (props, context) => {
   const { act, data } = useBackend(context);
   // Extract `health` and `color` variables from the `data` object.
@@ -28,7 +17,7 @@ export const Processor = (props, context) => {
     <Window resizable>
       <Window.Content scrollable>
         <Flex
-          frex-wrap = "wrap"
+          frex-wrap="wrap"
           >
         <Flex.Item>
         <Button
@@ -64,7 +53,7 @@ export const Processor = (props, context) => {
             <LabeledList.Item
               key={material.name}
               label={material.name}
-              buttons = {
+              buttons={
                 <Button
                 key={material.name}
                 content={material.current_action_string}
@@ -86,17 +75,17 @@ export const Processor = (props, context) => {
             <LabeledList.Item
               key={alloy.name}
               label={alloy.name}
-              buttons = {
+              buttons={
               <Button
                     key={alloy.name}
                     content={alloy.name}
-                    selected = {alloy.name == currently_alloying}
+                    selected={alloy.name == currently_alloying}
                     onClick={() =>
                       act('set_alloying', {
                         id: alloy.name,
                       })
                     }>
-                </Button>}>
+              </Button>}>
             </LabeledList.Item>
           ))}
           </LabeledList>
