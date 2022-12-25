@@ -193,8 +193,7 @@
 		list(/obj/item/stack/rods, 1),
 		list(QUALITY_ADHESIVE, 10, "time" = 5),
 		list(/obj/item/stack/rods, 1),
-		list(QUALITY_ADHESIVE, 10, "time" = 5),
-		list(/obj/item/stack/rods, 1)
+		list(QUALITY_ADHESIVE, 10, "time" = 5)
 	)
 
 
@@ -217,7 +216,6 @@
 		list(QUALITY_ADHESIVE, 10, "time" = 5),
 		list(/obj/item/stack/rods, 1),
 		list(QUALITY_ADHESIVE, 10, "time" = 5),
-		list(/obj/item/stack/rods, 1),
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 		list(QUALITY_HAMMERING, 10, "time" = 10),
 		list(QUALITY_ADHESIVE, 10, "time" = 5)
@@ -295,10 +293,9 @@
 	result = /obj/item/tool/hammer/mace/makeshift
 	steps = list(
 		list(/obj/item/stack/rods, 5, "time" = 15),
-		list(QUALITY_WELDING, 10, "time" = 30),
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, "time" = 30),
-		list(/obj/item/stack/cable_coil, 2, "time" = 10))
+		list(QUALITY_WELDING, 10, "time" = 30)
+)
 
 /datum/craft_recipe/weapon/mace_refined
 	name = "refined mace"
