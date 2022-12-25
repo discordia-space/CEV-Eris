@@ -28,7 +28,7 @@
 	ore_input = 2
 	requires = list(
 		ORE_CARBON = 1,
-		ONE_IRON = 1
+		ORE_IRON = 1
 		)
 	product = /obj/item/stack/material/steel
 

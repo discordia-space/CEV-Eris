@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Flex, Knob, LabeledList, Section } from '../components';
+import { Box, Button, Flex, Knob, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 function getActionType(input){
@@ -23,7 +23,8 @@ export const Processor = (props, context) => {
     running,
     sheet_rate,
   } = data;
-  return (
+  return data.machine ? (
+
     <Window resizable>
       <Window.Content scrollable>
         <Flex
@@ -36,8 +37,7 @@ export const Processor = (props, context) => {
             act('set_running')
           }>
         </Button>
-        Melting Rate
-        <br></br>
+        <Box>
         <Knob
           size={2}
           minValue={5}
@@ -53,7 +53,9 @@ export const Processor = (props, context) => {
                 sheets: value,
               })
           }>
-        </Knob>
+        </Knob> <br></br>
+        Melting Rate
+        </Box>
         </Flex.Item>
         <Flex.Item>
         <Section title="Loaded Materials">
@@ -73,6 +75,7 @@ export const Processor = (props, context) => {
                   })}>
                 </Button>
               }>
+              {material.amount}
             </LabeledList.Item>
           ))}
           </LabeledList>
@@ -102,5 +105,15 @@ export const Processor = (props, context) => {
         </Flex>
       </Window.Content>
     </Window>
-  );
+    // Incase theres no machine
+  ) : (<Window resizable>
+    No machine linked! There must be a material processor within 3 tiles for the wireless link to connect.
+    <Button
+      content="Attempt linking"
+      onClick={()=>
+        act('machine_link')
+      }>
+      </Button>
+  </Window>
+    );
 };

@@ -36,6 +36,9 @@
 
 /obj/machinery/mineral/processing_unit_console/ui_data(mob/user)
 	var/list/data = list()
+	data["machine"] = !!machine
+	if(!machine)
+		return data
 	data["materials_data"] = list()
 	for(var/ore in ore_data)
 		var/list/ore_list = list()
@@ -43,6 +46,7 @@
 		ore_list["name"] = ore_thing.display_name
 		ore_list["id"] = ore
 		ore_list["current_action"] = machine.ores_processing[ore]
+		ore_list["amount"] = machine.ores_stored[ore]
 		switch(machine.ores_processing[ore])
 			if(ORE_STORING)
 				ore_list["current_action_string"] = "Storing"
@@ -88,6 +92,12 @@
 	if(action == "set_rate")
 		machine.sheets_per_tick = params["sheets"]
 		return TRUE
+	if(action == "machine_link")
+		machine = locate(/obj/machinery/mineral/processing_unit) in range(3, src)
+		if (machine)
+			machine.console = src
+		return TRUE
+
 
 
 /obj/machinery/mineral/processing_unit_console/interact(mob/user)
@@ -205,6 +215,7 @@
 			while(sheet_amount)
 				new product.stack_type(get_step(src, output_dir))
 				sheet_amount--
+				ores_stored[ore]--
 		if(ores_processing[ore] == ORE_COMPRESSING && stored_ore_data.compresses_to)
 			if(ores_stored[ore] < 2)
 				continue
@@ -215,5 +226,6 @@
 			while(sheet_amount)
 				new product.stack_type(get_step(src, output_dir))
 				sheet_amount--
+				ores_stored[ore] -= 2
 	return
 
