@@ -19,6 +19,8 @@ export const Processor = (props, context) => {
   const {
     materials_data = [],
     alloy_data = [],
+    currently_alloying,
+
   } = data;
   return (
     <Window resizable>
@@ -32,11 +34,11 @@ export const Processor = (props, context) => {
               buttons = {
                 <Button
                 key={material.name}
-                content={getActionType(material.current_action)}
+                content={material.current_action_string}
                 onClick={() =>
                   act('set_smelting', {
                     id: material.name,
-                    action: material.current_action + 1,
+                    action_type: material.current_action + 1,
                   })}>
                 </Button>
               }>
@@ -49,11 +51,12 @@ export const Processor = (props, context) => {
           {alloy_data.map(alloy => (
             <LabeledList.Item
               key={alloy.name}
-              label={alloy.creating}
+              label={alloy.name}
               buttons = {
               <Button
                     key={alloy.name}
                     content={alloy.name}
+                    selected = {alloy.name == currently_alloying}
                     onClick={() =>
                       act('set_alloying', {
                         id: alloy.name,

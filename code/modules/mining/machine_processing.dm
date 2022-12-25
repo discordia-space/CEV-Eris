@@ -36,6 +36,15 @@
 		var/list/ore_list = list()
 		ore_list["name"] = ore
 		ore_list["current_action"] = machine.ores_processing[ore]
+		switch(machine.ores_processing[ore])
+			if(0)
+				ore_list["current_action_string"] = "Storing"
+			if(1)
+				ore_list["current_action_string"] = "Smelting"
+			if(2)
+				ore_list["current_action_string"] = "Compressing"
+			if(3)
+				ore_list["current_action_string"] = "Alloying"
 		data["materials_data"] += list(ore_list)
 	data["alloy_data"] = list()
 	for(var/datum/alloy/alloy in machine.alloy_data)
@@ -43,6 +52,7 @@
 		alloy_list["name"] = alloy.name
 		alloy_list["creating"] = TRUE
 		data["alloy_data"] += list(alloy_list)
+	data["currently_alloying"] = machine.selected_alloy
 	return data
 
 /obj/machinery/mineral/processing_unit_console/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -52,7 +62,13 @@
 		var/target_name = params["id"]
 		for(var/datum/alloy/the_alloy in machine.alloy_data)
 			if(target_name == the_alloy.name)
-				message_admins("Succesfully tried to change the alloying to [target_name]")
+				machine.selected_alloy = the_alloy
+	if(action == "set_smelting")
+		var/target_material = params["id"]
+		var/processing_type = params["action_type"]
+		if(processing_type > 3)
+			processing_type = 0
+		machine.ores_processing[target_material] = processing_type
 
 
 /obj/machinery/mineral/processing_unit_console/interact(mob/user)
@@ -149,11 +165,13 @@
 	density = TRUE
 	anchored = TRUE
 	light_range = 3
+
 	var/obj/machinery/mineral/console = null
 	var/sheets_per_tick = 10
 	var/list/ores_processing
 	var/list/ores_stored
 	var/static/list/alloy_data
+	var/datum/alloy/selected_alloy = null
 	var/active = 0
 	var/input_dir = 0
 	var/output_dir = 0
