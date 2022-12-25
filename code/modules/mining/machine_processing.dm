@@ -45,8 +45,15 @@
 		data["alloy_data"] += list(alloy_list)
 	return data
 
-/obj/machinery/mineral/proccesing_unit_console/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	. = ..()
+/obj/machinery/mineral/processing_unit_console/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	if(..())
+		return
+	if(action == "set_alloying")
+		var/target_name = params["id"]
+		for(var/datum/alloy/the_alloy in machine.alloy_data)
+			if(target_name == the_alloy.name)
+				message_admins("Succesfully tried to change the alloying to [target_name]")
+
 
 /obj/machinery/mineral/processing_unit_console/interact(mob/user)
 

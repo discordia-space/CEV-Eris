@@ -2,6 +2,17 @@ import { useBackend } from '../backend';
 import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
+function getActionType(input){
+  if(input == 0)
+    return "Storing";
+  if(input == 1)
+    return "Smelting";
+  if(input == 2)
+    return "Alloying";
+  if(input == 3)
+    return "Compressing";
+}
+
 export const Processor = (props, context) => {
   const { act, data } = useBackend(context);
   // Extract `health` and `color` variables from the `data` object.
@@ -17,7 +28,18 @@ export const Processor = (props, context) => {
           {materials_data.map(material => (
             <LabeledList.Item
               key={material.name}
-              label={material.current_action}>
+              label={material.name}
+              buttons = {
+                <Button
+                key={material.name}
+                content={getActionType(material.current_action)}
+                onClick={() =>
+                  act('set_smelting', {
+                    id: material.name,
+                    action: material.current_action + 1,
+                  })}>
+                </Button>
+              }>
             </LabeledList.Item>
           ))}
           </LabeledList>
@@ -27,7 +49,17 @@ export const Processor = (props, context) => {
           {alloy_data.map(alloy => (
             <LabeledList.Item
               key={alloy.name}
-              label={alloy.creating}>
+              label={alloy.creating}
+              buttons = {
+              <Button
+                    key={alloy.name}
+                    content={alloy.name}
+                    onClick={() =>
+                      act('set_alloying', {
+                        id: alloy.name,
+                      })
+                    }>
+                </Button>}>
             </LabeledList.Item>
           ))}
           </LabeledList>
