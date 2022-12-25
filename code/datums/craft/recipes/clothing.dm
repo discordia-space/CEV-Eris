@@ -151,7 +151,7 @@
 	name = "Makeshift fullbody armor vest"
 	result = /obj/item/clothing/suit/armor/vest/handmade/full
 	steps = list(
-		list(/obj/item/clothing/suit/armor/vest/handmade, 1, "time" = 30),
+		list(/obj/item/clothing/under, 1),
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
