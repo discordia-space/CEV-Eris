@@ -20,7 +20,6 @@ export const Processor = (props, context) => {
     materials_data = [],
     alloy_data = [],
     currently_alloying,
-
   } = data;
   return (
     <Window resizable>
@@ -37,7 +36,7 @@ export const Processor = (props, context) => {
                 content={material.current_action_string}
                 onClick={() =>
                   act('set_smelting', {
-                    id: material.name,
+                    id: material.id,
                     action_type: material.current_action + 1,
                   })}>
                 </Button>

@@ -1,3 +1,8 @@
+#define ORE_STORING 0
+#define ORE_SMELTING 1
+#define ORE_COMPRESSING 2
+#define ORE_ALLOYING 3
+
 /**********************Mineral processing unit console**************************/
 
 /obj/machinery/mineral/processing_unit_console
@@ -34,16 +39,18 @@
 	data["materials_data"] = list()
 	for(var/ore in ore_data)
 		var/list/ore_list = list()
-		ore_list["name"] = ore
+		var/ore/ore_thing = ore_data[ore]
+		ore_list["name"] = ore_thing.display_name
+		ore_list["id"] = ore
 		ore_list["current_action"] = machine.ores_processing[ore]
 		switch(machine.ores_processing[ore])
-			if(0)
+			if(ORE_STORING)
 				ore_list["current_action_string"] = "Storing"
-			if(1)
+			if(ORE_SMELTING)
 				ore_list["current_action_string"] = "Smelting"
-			if(2)
+			if(ORE_COMPRESSING)
 				ore_list["current_action_string"] = "Compressing"
-			if(3)
+			if(ORE_ALLOYING)
 				ore_list["current_action_string"] = "Alloying"
 		data["materials_data"] += list(ore_list)
 	data["alloy_data"] = list()
@@ -63,97 +70,23 @@
 		for(var/datum/alloy/the_alloy in machine.alloy_data)
 			if(target_name == the_alloy.name)
 				machine.selected_alloy = the_alloy
+		return TRUE
 	if(action == "set_smelting")
 		var/target_material = params["id"]
 		var/processing_type = params["action_type"]
-		if(processing_type > 3)
-			processing_type = 0
+		if(processing_type > ORE_ALLOYING)
+			processing_type = ORE_STORING
 		machine.ores_processing[target_material] = processing_type
+		return TRUE
 
 
 /obj/machinery/mineral/processing_unit_console/interact(mob/user)
-
 	if(..())
 		return
-
 	if(!allowed(user))
 		to_chat(user, "\red Access denied.")
 		return
-
 	ui_interact(user)
-	/*
-	user.set_machine(src)
-
-	var/dat = "<h1>Ore processor console</h1>"
-	dat += "Currently processing <A href='?src=\ref[src];change_sheetspertick=1'>[machine.sheets_per_tick]</a> sheets per processing cycle."
-	dat += "<hr><table>"
-
-	for(var/ore in machine.ores_processing)
-
-		if(!machine.ores_stored[ore] && !show_all_ores) continue
-		var/ore/O = ore_data[ore]
-		if(!O) continue
-		dat += "<tr><td width = 40><b>[capitalize(O.display_name)]</b></td><td width = 30>[machine.ores_stored[ore]]</td><td width = 100>"
-		if(machine.ores_processing[ore])
-			switch(machine.ores_processing[ore])
-				if(0)
-					dat += "<font color='red'>not processing</font>"
-				if(1)
-					dat += "<font color='orange'>smelting</font>"
-				if(2)
-					dat += "<font color='blue'>compressing</font>"
-				if(3)
-					dat += "<font color='gray'>alloying</font>"
-		else
-			dat += "<font color='red'>not processing</font>"
-		dat += ".</td><td width = 30><a href='?src=\ref[src];toggle_smelting=[ore]'>\[change\]</a></td></tr>"
-
-	dat += "</table><hr>"
-	dat += "Currently displaying [show_all_ores ? "all ore types" : "only available ore types"]. <A href='?src=\ref[src];toggle_ores=1'>\[[show_all_ores ? "show less" : "show more"]\]</a></br>"
-	dat += "The ore processor is currently <A href='?src=\ref[src];toggle_power=1'>[(machine.active ? "<font color='green'>processing</font>" : "<font color='red'>disabled</font>")]</a>."
-	user << browse(dat, "window=processor_console;size=400x500")
-	onclose(user, "processor_console")
-	return
-	*/
-
-/obj/machinery/mineral/processing_unit_console/Topic(href, href_list)
-	/*
-	if(..())
-		return 1
-	usr.set_machine(src)
-
-	if(href_list["change_sheetspertick"])
-		var/spt_value = input(usr, "How many sheets do you want to process per cycle? (max 60, default 10)", "Material Processing Rate", 10) as null|num
-		if(!isnum(spt_value))
-			return
-		spt_value = clamp(spt_value, 1, 60)
-		var/area/refinery_area = get_area(src)
-		for(var/obj/machinery/mineral/unloading_machine/unloader in refinery_area.contents)
-			unloader.unload_amt = spt_value
-		machine.sheets_per_tick = spt_value
-	if(href_list["toggle_smelting"])
-		var/choice = input("What setting do you wish to use for processing [href_list["toggle_smelting"]]?") as null|anything in list("Smelting","Compressing","Alloying","Nothing")
-		if(!choice) return
-
-		switch(choice)
-			if("Nothing") choice = 0
-			if("Smelting") choice = 1
-			if("Compressing") choice = 2
-			if("Alloying") choice = 3
-
-		machine.ores_processing[href_list["toggle_smelting"]] = choice
-
-	if(href_list["toggle_power"])
-		machine.active = !machine.active
-		machine.update_icon()
-
-	if(href_list["toggle_ores"])
-		show_all_ores = !show_all_ores
-
-	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
-	src.updateUsrDialog()
-	*/
-
 
 /**********************Mineral processing unit**************************/
 
@@ -212,94 +145,62 @@
 
 	if(!output_dir || !input_dir)
 		return
-
-	var/list/tick_alloys = list()
-
 	//Grab some more ore to process this tick.
 	for(var/obj/item/ore/O in get_step(src, input_dir))
 		if(!isnull(ores_stored[O.material]))
 			ores_stored[O.material]++
 		qdel(O)
-
 	if(!active)
 		return
-
 	//Process our stored ores and spit out sheets.
-	var/sheets = 0
-	for(var/metal in ores_stored)
-
-		if(sheets >= sheets_per_tick) break
-
-		if(ores_stored[metal] > 0 && ores_processing[metal] != 0)
-
-			var/ore/O = ore_data[metal]
-
-			if(!O) continue
-
-			if(ores_processing[metal] == 3 && O.alloy) //Alloying.
-
-				for(var/datum/alloy/A in alloy_data)
-
-					if(A.metaltag in tick_alloys)
-						continue
-
-					tick_alloys += A.metaltag
-					var/enough_metal
-
-					if(!isnull(A.requires[metal]) && ores_stored[metal] >= A.requires[metal]) //We have enough of our first metal, we're off to a good start.
-
-						enough_metal = 1
-
-						for(var/needs_metal in A.requires)
-							//Check if we're alloying the needed metal and have it stored.
-							if(ores_processing[needs_metal] != 3 || ores_stored[needs_metal] < A.requires[needs_metal])
-								enough_metal = 0
-								break
-
-					if(!enough_metal)
-						continue
-					else
-						var/total
-						for(var/needs_metal in A.requires)
-							ores_stored[needs_metal] -= A.requires[needs_metal]
-							total += A.requires[needs_metal]
-							total = max(1,round(total*A.product_mod)) //Always get at least one sheet.
-							sheets += total-1
-
-						for(var/i=0,i<total,i++)
-							new A.product(get_step(src, output_dir))
-
-			else if(ores_processing[metal] == 2 && O.compresses_to) //Compressing.
-
-				var/can_make = CLAMP(ores_stored[metal],0,sheets_per_tick-sheets)
-				if(can_make%2>0) can_make--
-
-				var/material/M = get_material_by_name(O.compresses_to)
-
-				if(!istype(M) || !can_make || ores_stored[metal] < 1)
-					continue
-
-				for(var/i=0,i<can_make,i+=2)
-					ores_stored[metal]-=2
-					sheets+=2
-					new M.stack_type(get_step(src, output_dir))
-
-			else if(ores_processing[metal] == 1 && O.smelts_to) //Smelting.
-
-				var/can_make = CLAMP(ores_stored[metal],0,sheets_per_tick-sheets)
-
-				var/material/M = get_material_by_name(O.smelts_to)
-				if(!istype(M) || !can_make || ores_stored[metal] < 1)
-					continue
-
-				for(var/i=0,i<can_make,i++)
-					ores_stored[metal]--
-					sheets++
-					new M.stack_type(get_step(src, output_dir))
-			else
-				ores_stored[metal]--
-				sheets++
-				new /obj/item/ore/slag(get_step(src, output_dir))
-		else
+	var/sheets_to_process = sheets_per_tick
+	// So it doesn't get changed mid-process and leads to funny glitches / dupings by switching it mid-process
+	var/datum/alloy/cur_alloy = selected_alloy
+	var/produced_sheets = 0
+	while(sheets_to_process && cur_alloy)
+		var/valid = TRUE
+		for(var/required_ore in cur_alloy.requires)
+			if(ores_processing[required_ore] != ORE_ALLOYING)
+				valid = FALSE
+				break
+			if(ores_stored[required_ore] < cur_alloy.requires[required_ore])
+				valid = FALSE
+				break
+		if(!valid)
+			break
+		for(var/required_ore in cur_alloy.requires)
+			ores_stored[required_ore] -= cur_alloy.requires[required_ore]
+		produced_sheets += cur_alloy.product_mod * cur_alloy.ore_input
+		sheets_to_process--
+	sheets_to_process = sheets_per_tick - round(produced_sheets)
+	while(round(produced_sheets))
+		new cur_alloy.product(get_step(src, output_dir))
+	for(var/ore in ores_processing)
+		if(sheets_to_process < 1)
+			break
+		if(ores_processing[ore] == ORE_ALLOYING)
 			continue
-	console.updateUsrDialog()
+		if(ores_processing[ore] == ORE_STORING)
+			continue
+		/// Would've named this ore_data , but it gives infinite cross reference ( and also conflicts with the global version)
+		var/ore/stored_ore_data = ore_data[ore]
+		if(ores_processing[ore] == ORE_SMELTING && stored_ore_data.smelts_to)
+			if(ores_stored[ore] < 1)
+				continue
+			var/sheet_amount = min(round(ores_stored[ore]), sheets_per_tick)
+			sheet_amount = min(sheet_amount, sheets_to_process)
+			sheets_to_process -= sheet_amount
+			while(sheet_amount)
+				new stored_ore_data.smelts_to(get_step(src, output_dir))
+				sheet_amount--
+		if(ores_processing[ore] == ORE_COMPRESSING && stored_ore_data.compresses_to)
+			if(ores_stored[ore] < 2)
+				continue
+			var/sheet_amount = min(round(ores_stored[ore] / 2), round(sheets_per_tick / 2))
+			sheet_amount = min(sheet_amount, sheets_to_process)
+			sheets_to_process -= sheet_amount
+			while(sheet_amount)
+				new stored_ore_data.compresses_to(get_step(src, output_dir))
+				sheet_amount--
+	return
+
