@@ -42,7 +42,8 @@ export const Processor = (props, context) => {
                 sheets: value,
               })
           }>
-        </Knob> <br></br>
+        </Knob>
+        <br></br>
         Melting Rate
         </Box>
         </Flex.Item>
@@ -57,7 +58,7 @@ export const Processor = (props, context) => {
                 <Button
                 key={material.name}
                 content={material.current_action_string}
-                onClick={() =>
+                onClick={ () =>
                   act('set_smelting', {
                     id: material.id,
                     action_type: material.current_action + 1,
@@ -67,7 +68,7 @@ export const Processor = (props, context) => {
               {material.amount}
             </LabeledList.Item>
           ))}
-          </LabeledList>
+         </LabeledList>
         </Section>
         <Section title="Alloy Menu">
          <LabeledList>
@@ -79,7 +80,7 @@ export const Processor = (props, context) => {
               <Button
                     key={alloy.name}
                     content={alloy.name}
-                    selected={alloy.name == currently_alloying}
+                    selected={alloy.name === currently_alloying}
                     onClick={() =>
                       act('set_alloying', {
                         id: alloy.name,
@@ -99,7 +100,7 @@ export const Processor = (props, context) => {
     No machine linked! There must be a material processor within 3 tiles for the wireless link to connect.
     <Button
       content="Attempt linking"
-      onClick={()=>
+      onClick={ () =>
         act('machine_link')
       }>
       </Button>
