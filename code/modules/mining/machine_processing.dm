@@ -60,6 +60,8 @@
 		alloy_list["creating"] = TRUE
 		data["alloy_data"] += list(alloy_list)
 	data["currently_alloying"] = machine.selected_alloy
+	data["running"] = machine.active
+	data["sheet_rate"] = machine.sheets_per_tick
 	return data
 
 /obj/machinery/mineral/processing_unit_console/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -70,6 +72,8 @@
 		for(var/datum/alloy/the_alloy in machine.alloy_data)
 			if(target_name == the_alloy.name)
 				machine.selected_alloy = the_alloy
+				for(var/required in machine.selected_alloy.requires)
+					machine.ores_processing[required] = ORE_ALLOYING
 		return TRUE
 	if(action == "set_smelting")
 		var/target_material = params["id"]
@@ -77,6 +81,12 @@
 		if(processing_type > ORE_ALLOYING)
 			processing_type = ORE_STORING
 		machine.ores_processing[target_material] = processing_type
+		return TRUE
+	if(action == "set_running")
+		machine.active = !(machine.active)
+		return TRUE
+	if(action == "set_rate")
+		machine.sheets_per_tick = params["sheets"]
 		return TRUE
 
 
@@ -173,8 +183,9 @@
 		produced_sheets += cur_alloy.product_mod * cur_alloy.ore_input
 		sheets_to_process--
 	sheets_to_process = sheets_per_tick - round(produced_sheets)
-	while(round(produced_sheets))
+	while(round(produced_sheets) > 0)
 		new cur_alloy.product(get_step(src, output_dir))
+		produced_sheets--
 	for(var/ore in ores_processing)
 		if(sheets_to_process < 1)
 			break
@@ -190,8 +201,9 @@
 			var/sheet_amount = min(round(ores_stored[ore]), sheets_per_tick)
 			sheet_amount = min(sheet_amount, sheets_to_process)
 			sheets_to_process -= sheet_amount
+			var/material/product = get_material_by_name(stored_ore_data.smelts_to)
 			while(sheet_amount)
-				new stored_ore_data.smelts_to(get_step(src, output_dir))
+				new product.stack_type(get_step(src, output_dir))
 				sheet_amount--
 		if(ores_processing[ore] == ORE_COMPRESSING && stored_ore_data.compresses_to)
 			if(ores_stored[ore] < 2)
@@ -199,8 +211,9 @@
 			var/sheet_amount = min(round(ores_stored[ore] / 2), round(sheets_per_tick / 2))
 			sheet_amount = min(sheet_amount, sheets_to_process)
 			sheets_to_process -= sheet_amount
+			var/material/product = get_material_by_name(stored_ore_data.compresses_to)
 			while(sheet_amount)
-				new stored_ore_data.compresses_to(get_step(src, output_dir))
+				new product.stack_type(get_step(src, output_dir))
 				sheet_amount--
 	return
 

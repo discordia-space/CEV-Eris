@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, LabeledList, Section } from '../components';
+import { Button, Flex, Knob, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 function getActionType(input){
@@ -20,10 +20,42 @@ export const Processor = (props, context) => {
     materials_data = [],
     alloy_data = [],
     currently_alloying,
+    running,
+    sheet_rate,
   } = data;
   return (
     <Window resizable>
       <Window.Content scrollable>
+        <Flex
+          frex-wrap = "wrap"
+          >
+        <Flex.Item>
+        <Button
+          content={running ? "TURN OFF" : "TURN ON"}
+          onClick={() =>
+            act('set_running')
+          }>
+        </Button>
+        Melting Rate
+        <br></br>
+        <Knob
+          size={2}
+          minValue={5}
+          maxValue={30}
+          value={5}
+          unit="Sheets"
+          fillValue={sheet_rate}
+          content="Smelting rate"
+          step={1}
+          stepPixelSize={1}
+          onDrag={(e, value) =>
+              act('set_rate', {
+                sheets: value,
+              })
+          }>
+        </Knob>
+        </Flex.Item>
+        <Flex.Item>
         <Section title="Loaded Materials">
          <LabeledList>
           {materials_data.map(material => (
@@ -66,6 +98,8 @@ export const Processor = (props, context) => {
           ))}
           </LabeledList>
         </Section>
+        </Flex.Item>
+        </Flex>
       </Window.Content>
     </Window>
   );
