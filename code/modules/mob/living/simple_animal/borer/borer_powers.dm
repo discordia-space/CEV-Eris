@@ -302,6 +302,10 @@
 		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
 		return
 
+	if(host.stat == DEAD)
+		to_chat(src, SPAN_WARNING("You can't control a dead host."))
+		return
+
 	to_chat(src, SPAN_NOTICE("You begin delicately adjusting your connection to the host brain..."))
 
 	spawn(100+(host.brainloss*5))

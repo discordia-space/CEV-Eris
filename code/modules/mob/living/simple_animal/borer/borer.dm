@@ -149,10 +149,10 @@
 			chemicals = 0
 
 /mob/living/simple_animal/borer/proc/host_death()
+	to_chat(host, SPAN_DANGER("You feel your control over your host suddenly stop."))
 	update_abilities()
 	spawn(1)
 		detatch()
-	to_chat(src, SPAN_DANGER("You feel your control over your host cease."))
 
 /mob/living/simple_animal/borer/proc/process_host()
 	if(host && !stat)
@@ -173,8 +173,6 @@
 			chemicals += level + 1
 
 		if(controlling)
-			if(host.stat == DEAD)
-				host_death()
 			if(docile)
 				to_chat(host, SPAN_DANGER("You are feeling far too docile to continue controlling your host..."))
 				host.release_control()
