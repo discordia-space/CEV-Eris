@@ -137,19 +137,25 @@
 /mob/living/simple_animal/borer/proc/get_borer_control()
 	return (host && controlling) ? host : src
 
-/mob/living/simple_animal/borer/proc/handle_outer_chemical_regen()
+/mob/living/simple_animal/borer/proc/process_outer_chemical_regen()
 	if((chemicals < max_chemicals) && !invisibility)
 		chemicals++
 
-/mob/living/simple_animal/borer/proc/handle_invisibility()
+/mob/living/simple_animal/borer/proc/process_invisibility()
 	if(invisibility == TRUE)
 		chemicals -= 1
 		if(chemicals <= 2)
 			invisible() // Disable invisibility
 			chemicals = 0
 
+/mob/living/simple_animal/borer/proc/host_death()
+	update_abilities()
+	spawn(1)
+		detatch()
+	to_chat(src, SPAN_DANGER("You feel your control over your host cease."))
+
 /mob/living/simple_animal/borer/proc/process_host()
-	if(host && !stat && host.stat != DEAD)
+	if(host && !stat)
 		// Regenerate if within a host
 		if(health < maxHealth)
 			adjustBruteLoss(-1)
@@ -167,12 +173,12 @@
 			chemicals += level + 1
 
 		if(controlling)
+			if(host.stat == DEAD)
+				host_death()
 			if(docile)
 				to_chat(host, SPAN_DANGER("You are feeling far too docile to continue controlling your host..."))
 				host.release_control()
 				return FALSE
-			if(host.stat == DEAD)
-				host.release_control()
 			if(prob(5))
 				host.adjustBrainLoss(0.1)
 			if(prob(host.brainloss/20))
@@ -182,9 +188,9 @@
 /mob/living/simple_animal/borer/Life()
 	..()
 
-	handle_outer_chemical_regen()
+	process_outer_chemical_regen()
 
-	handle_invisibility()
+	process_invisibility()
 
 	// Keep at the end
 	process_host()
@@ -272,6 +278,7 @@
 	host = null
 	update_abilities()
 
+
 //Procs for grabbing players.
 /mob/living/simple_animal/borer/proc/request_player()
 	var/datum/ghosttrap/G = get_ghost_trap("cortical borer")
@@ -343,10 +350,8 @@
 	if(invisibility)
 		alpha = 255
 		invisibility = 0
-	if(controlling)
-		verbs -= abilities_in_host
+	if(controlling || host)
 		detatch()
-	if(host)
 		leave_host()
 
 /mob/living/simple_animal/borer/update_sight()

@@ -134,7 +134,6 @@
 				var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
 				head.implants += src
 
-
 // BRAIN WORM ZOMBIES AAAAH.
 /mob/living/simple_animal/borer/proc/replace_brain()
 
