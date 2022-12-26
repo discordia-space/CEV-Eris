@@ -120,9 +120,6 @@
 			/mob/living/exosuit/premade/powerloader/flames_blue,
 			/mob/living/exosuit/premade/powerloader/flames_red
 		),
-		"Disk Designs II" = list(
-			/obj/item/computer_hardware/hard_drive/portable/design/adv_robustcells = good_data("Aster\'s Advanced Robustcells", list(1, 3), 1000)
-		),
 		"Aster\'s Cells II" = list(
 			/obj/item/cell/small/super = custom_good_price(150),
 			/obj/item/cell/small/hyper = custom_good_price(600),
