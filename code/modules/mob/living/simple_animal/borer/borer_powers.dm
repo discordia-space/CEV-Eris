@@ -57,7 +57,7 @@
 	var/mob/living/carbon/M = input(src,"Who do you wish to infest?") in null|choices
 
 	// non-humanoids disabled due to not working.
-	if(!M || !Adjacent(M) || !ishuman(M))
+	if(!M || !Adjacent(M) || !iscarbon(M))
 		return
 
 	if(M.has_brain_worms())
