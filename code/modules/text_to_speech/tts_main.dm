@@ -5,6 +5,9 @@ GLOBAL_VAR_INIT(tts_reused, 0)
 
 GLOBAL_VAR(tts_bearer) // Token we use to talk with text-to-speech service
 
+// Paths to sounds files that are soon to be deleted, keeping track
+// in case we need to get rid of them immediately, e.g. when server restarts
+GLOBAL_LIST_EMPTY(tts_death_row)
 GLOBAL_LIST_EMPTY(tts_errors)
 GLOBAL_VAR_INIT(tts_error_raw, "")
 
@@ -82,6 +85,7 @@ var/list/tts_seeds = list()
 		return null
 	GLOB.tts_request_succeeded++
 	if(!config.tts_cache)
+		GLOB.tts_death_row += .
 		addtimer(CALLBACK(GLOBAL_PROC, /proc/cleanup_tts_file, .), 20 SECONDS)
 
 
@@ -121,6 +125,7 @@ var/list/tts_seeds = list()
 		return ""
 	GLOB.tts_request_succeeded++
 	if(!config.tts_cache)
+		GLOB.tts_death_row += .
 		addtimer(CALLBACK(GLOBAL_PROC, /proc/cleanup_tts_file, .), 20 SECONDS)
 
 
@@ -140,6 +145,7 @@ var/list/tts_seeds = list()
 
 
 /proc/cleanup_tts_file(file)
+	GLOB.tts_death_row -= .
 	fdel(file)
 
 

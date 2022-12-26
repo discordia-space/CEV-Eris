@@ -867,8 +867,8 @@
 	update_firemode()
 
 /obj/item/gun/dropped(mob/user)
-	.=..()
 	update_firemode(FALSE)
+	.=..()
 
 /obj/item/gun/swapped_from()
 	.=..()
@@ -1028,7 +1028,7 @@
 
 	if(firemodes.len)
 		very_unsafe_set_firemode(sel_mode) // Reset the firemode so it gets the new changes
-	
+
 	update_icon()
 	//then update any UIs with the new stats
 	SSnano.update_uis(src)

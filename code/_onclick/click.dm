@@ -160,12 +160,13 @@
 	// A is a turf or is on a turf, or in something on a turf (pen in a box); but not something in something on a turf (pen in a box in a backpack)
 	sdepth = A.storage_depth_turf()
 	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
-		if(A.Adjacent(src)) // see adjacent.dm
+		var/adjacent = A.Adjacent(src)
+		if(adjacent) // see adjacent.dm
 			if(W)
 				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
 				var/resolved = (SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL(A, COMSIG_ATTACKBY, W, src, params))
 				if(!resolved && A && W)
-					if(W.double_tact(src, A))
+					if(W.double_tact(src, A, adjacent))
 						resolved = W.resolve_attackby(A, src, params)
 					if(!resolved)
 						W.afterattack(A, src, 1, params) // 1: clicking something Adjacent

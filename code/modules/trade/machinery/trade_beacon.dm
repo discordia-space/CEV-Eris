@@ -71,7 +71,7 @@
 		return FALSE
 	activate()
 	var/turf/simulated/floor/pickfloor = pick(floor)
-	if(ispath(drop_type, /obj/structure/closet/crate))
+	if(ispath(drop_type, /obj/structure/closet))
 		var/mob/living/carbon/human/dude = locate(/mob/living/carbon/human) in pickfloor
 		if(dude)
 			dude.damage_through_armor(30)

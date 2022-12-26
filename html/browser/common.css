@@ -8,26 +8,6 @@ body
 	line-height: 170%;
 }
 
-.statusDisplayItem {
-    background: #000000;
-    color: #ffffff;
-    border: 1px solid #40628a;
-    padding: 1px;
-    margin: 0px 4px;
-	overflow: hidden;
-}
-
-.danger
-{
-	color: #ff0000;	
-	font-weight: bold;
-}
-.warning
-{
-	color: #ff0000;	
-	font-style: italic;
-}
-
 hr
 {
 	background-color: #40628a;
@@ -74,31 +54,6 @@ a.white:hover, a.red:hover
 {
 	color: #ffffff;
 	background: #40628a;
-}
-
-a.gold, a.gold:link, a.gold:visited, a.gold:active
-{
-	color: #ffa600;
-	background: #000000;
-	border-color: #ffa600;
-}
-
-a.gold:hover
-{
-	color: #40628a;
-	background: #ffffff;
-}
-
-a.gray, a.gray:link, a.gray:visited, a.gray:active
-{
-	color: #ffffff;
-	background: #696969;
-}
-
-a.gray:hover
-{
-	color: #40628a;
-	background: #ffffff;
 }
 
 .linkOn, a.linkOn:link, a.linkOn:visited, a.linkOn:active, a.linkOn:hover
@@ -372,12 +327,6 @@ div.notice
 	border: 1px solid #40628a;
 	padding: 4px;
 	margin: 3px 0;
-}
-
-.bigIcon
-{
-	width: 64px;
-	height: 64px;
 }
 
 .roleDescription

@@ -53,6 +53,32 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	tool_qualities = list(QUALITY_CUTTING = 20)
 
+/obj/item/tool/makeshiftaxe
+	name = "makeshift axe"
+	desc = "A heavy plasteel blade affixed to a welded metal shaft, for close up carnage."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "makeshift_axe"
+	item_state = "makeshift_axe"
+	wielded_icon = "makeshift_axe_wielded"
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3)
+	worksound = WORKSOUND_HARD_SLASH
+	force = WEAPON_FORCE_DANGEROUS
+	throwforce = WEAPON_FORCE_NORMAL
+	armor_divisor = ARMOR_PEN_MODERATE
+	w_class = ITEM_SIZE_NORMAL
+	slot_flags = SLOT_BACK
+	sharp = TRUE
+	edge = TRUE
+	attack_verb = list("chopped", "torn", "cut", "cleaved", "slashed")
+	hitsound = 'sound/weapons/melee/heavystab.ogg'
+	tool_qualities = list(QUALITY_CUTTING = 10)
+	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
+	embed_mult = 1.1
+	degradation = 1.5 //not quite as sturdy as a normal weapon
+	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	rarity_value = 60
+	spawn_tags = SPAWN_TAG_JUNKTOOL
+
 /obj/item/tool/fireaxe
 	name = "fire axe"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
@@ -61,16 +87,16 @@
 	wielded_icon = "fireaxe1"
 	sharp = TRUE
 	edge = TRUE
-	armor_divisor = ARMOR_PEN_MODERATE
+	armor_divisor = ARMOR_PEN_DEEP
 	tool_qualities = list(QUALITY_CUTTING = 10, QUALITY_PRYING = 20)
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	force = WEAPON_FORCE_NORMAL
-	force_wielded_multiplier = 3.3
+	force_wielded_multiplier = 3.4
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
-	embed_mult = 1 //Axes cut deep, and their hooked shape catches on things
+	embed_mult = 1.2 //Axes cut deep, and their hooked shape catches on things
 	rarity_value = 48
 
 /obj/item/tool/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity)

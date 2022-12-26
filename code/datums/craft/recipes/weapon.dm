@@ -186,6 +186,43 @@
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
+/datum/craft_recipe/weapon/staff
+	name = "makeshift staff"
+	result = /obj/item/tool/hammer/staff
+	steps = list(
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1)
+	)
+
+
+/datum/craft_recipe/weapon/battleaxe
+	name = "makeshift axe"
+	result = /obj/item/tool/makeshiftaxe
+	steps = list(
+		list(/obj/item/stack/rods, 3), //get three rods for the shaft
+		list(QUALITY_WELDING, 10, "time" = 10), //weld them togething into a shaft
+		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL), //get some plasteel
+		list(QUALITY_HAMMERING, 10, "time" = 10), //hammer it into a chopping shape and jam the rods into the hole
+		list(QUALITY_WELDING, 10, "time" = 10), //weld it together so it doesnt fly off
+		list(QUALITY_ADHESIVE, 10, "time" = 5) // tape the shaft for better grip
+	)
+/datum/craft_recipe/weapon/halberd
+	name = "makeshift halberd"
+	result = /obj/item/tool/spear/makeshift_halberd
+	steps = list(
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1),
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
+		list(QUALITY_HAMMERING, 10, "time" = 10),
+		list(QUALITY_ADHESIVE, 10, "time" = 5)
+	)
+
 /datum/craft_recipe/weapon/glass_spear
 	name = "glass spear"
 	result = /obj/item/tool/spear
@@ -245,9 +282,9 @@
 	name = "Loudmouth grenade"
 	result = /obj/item/grenade/sonic
 	steps = list(
-		list(/obj/item/device/hailer, 1, "time" = 20),
-		list(/obj/item/stack/cable_coil, 3, "time" = 20),
 		list(/obj/item/cell/large, 1, "time" = 20),
+		list(CRAFT_MATERIAL, 1, MATERIAL_PLASTEEL),
+		list(/obj/item/stack/cable_coil, 3, "time" = 20),
 		list(QUALITY_PULSING, 30, "time" = 50),
 		list(QUALITY_ADHESIVE, 30, "time" = 30),
 		list(QUALITY_SCREW_DRIVING, 10, "time" = 20)

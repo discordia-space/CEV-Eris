@@ -18,12 +18,14 @@
 		show_message(msg1, 1)
 
 /mob/living/proc/damage_through_armor(damage = 0, damagetype = BRUTE, def_zone, attack_flag = ARMOR_MELEE, armor_divisor = 1, used_weapon, sharp = FALSE, edge = FALSE, wounding_multiplier = 1, list/dmg_types = list(), return_continuation = FALSE)
-
 	if(damage) // If damage is defined, we add it to the list
 		if(!dmg_types[damagetype])
 			dmg_types += damagetype
 		dmg_types[damagetype] += damage
 
+	if(!armor_divisor)
+		armor_divisor = 1
+		log_debug("[used_weapon] applied damage to [name] with an armor divisor of 0")
 
 	var/total_dmg = 0
 	var/dealt_damage = 0

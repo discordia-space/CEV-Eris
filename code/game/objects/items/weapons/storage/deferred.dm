@@ -169,7 +169,7 @@
 	desc = "A crate containing six \"Kovacs\" battle rifles, and plenty of mags."
 	icon_state = "serbcrate_deferred_green"
 	initial_contents = list(/obj/item/gun/projectile/kovacs = 6,
-	/obj/item/ammo_magazine/srifle = 18)
+	/obj/item/ammo_magazine/lrifle = 18)
 
 /obj/item/storage/deferred/crate/grenadier
 	name = "grenadier crate"

@@ -42,36 +42,41 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			H.stop_blocking()
 	if(ishuman(user) && !(user == A) && !(user.loc == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/simulated/wall) && A.loc != user)
 		swing_attack(src, user, params)
+		if(istype(A, /turf/simulated/floor)) // shitty hack so you can attack floors while wielding a large weapon
+			return A.attackby(src, user, params)
 		return 1 //Swinging calls its own attacks
 	return A.attackby(src, user, params)
 
 //Returns TRUE if attack is to be carried out, FALSE otherwise.
-/obj/item/proc/double_tact(mob/user, atom/atom_target)
+/obj/item/proc/double_tact(mob/user, atom/atom_target, adjacent)
 	if(atom_target.loc == user)//putting stuff in your backpack, or something else on your person?
 		return TRUE //regular bags won't even be able to hold items this big, but who knows
-	if(w_class >= ITEM_SIZE_BULKY && !abstract && !istype(src, /obj/item/gun))//grabs have colossal w_class. You can't raise something that does not exist.
-		if(!(ready))						//guns have the point blank privilege
-			user.visible_message(SPAN_DANGER("[user] raises \his [src]!"))
-			ready = TRUE
-			var/obj/effect/effect/melee/alert/A = new()
-			user.vis_contents += A
-			qdel(A)
-			var/unready_time = world.time + (10 SECONDS)
-			while(world.time < unready_time)
-				sleep(1)
-				if(!(ready))
-					user.vis_contents -= A
-					return FALSE
-				if(!(is_equipped()))
-					ready = FALSE
-					user.vis_contents -= A
-					return FALSE
-			user.visible_message(SPAN_NOTICE("[user] lowers \his [src]."))
-			ready = FALSE
-			user.vis_contents -= A
-			return FALSE
+	if(w_class >= ITEM_SIZE_BULKY && !abstract && !istype(src, /obj/item/gun) && !no_double_tact)//grabs have colossal w_class. You can't raise something that does not exist.
+		if(!adjacent || istype(atom_target, /turf) || istype(atom_target, /mob) || user.a_intent == I_HURT)//guns have the point blank privilege
+			if(!ready)
+				user.visible_message(SPAN_DANGER("[user] raises [src]!"))
+				ready = TRUE
+				var/obj/effect/effect/melee/alert/A = new()
+				user.vis_contents += A
+				qdel(A)
+				var/unready_time = world.time + (10 SECONDS)
+				while(world.time < unready_time)
+					sleep(1)
+					if(!(ready))
+						user.vis_contents -= A
+						return FALSE
+					if(!(is_equipped()))
+						ready = FALSE
+						user.vis_contents -= A
+						return FALSE
+				user.visible_message(SPAN_NOTICE("[user] lowers \his [src]."))
+				ready = FALSE
+				user.vis_contents -= A
+				return FALSE
+			else
+				ready = FALSE
+				return TRUE
 		else
-			ready = FALSE
 			return TRUE
 	else
 		return TRUE
@@ -137,15 +142,15 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	switch(holdinghand)
 		if(slot_l_hand)
 			flick("left_swing", S)
-			tileattack(user, L, modifier = 1)
+			tileattack(user, L, modifier = 0.6)
 			tileattack(user, C, modifier = 0.8)
-			tileattack(user, R, modifier = 0.6)
+			tileattack(user, R, modifier = 1)
 			QDEL_IN(S, 2 SECONDS)
 		if(slot_r_hand)
 			flick("right_swing", S)
-			tileattack(user, R, modifier = 1)
+			tileattack(user, R, modifier = 0.6)
 			tileattack(user, C, modifier = 0.8)
-			tileattack(user, L, modifier = 0.6)
+			tileattack(user, L, modifier = 1)
 			QDEL_IN(S, 2 SECONDS)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
@@ -210,7 +215,10 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 //Area of effect attacks (swinging)
 /obj/item/proc/tileattack(mob/living/user, turf/targetarea, modifier = 1)
+	if(!wielded)
+		return
 	var/original_force = force
+	var/original_unwielded_force = force_wielded_multiplier ? force / force_wielded_multiplier : force / 1.3	
 	force *= modifier
 	if(istype(targetarea, /turf/simulated/wall))
 		var/turf/simulated/W = targetarea
@@ -236,7 +244,9 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		force = original_force
 		return
 	attack(target, user, user.targeted_organ)
-	force = original_force
+	force = wielded ? original_force : round(original_unwielded_force, 1)
+// modifying force after calling attack() here is a bad idea, as the force can be changed by means of embedding in a target, which leads to unwielding a weapon.
+//This code replicates the damage reduction caused by unwielding something, but it will likely cause problems elsewhere.
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
@@ -288,6 +298,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		power *= H.damage_multiplier
+		if(H.holding_back)
+			power /= 2
 //	if(HULK in user.mutations)
 //		power *= 2
 	target.hit_with_weapon(src, user, power, hit_zone)

@@ -68,15 +68,14 @@
 	var/list/category_list = list()
 	var/list/inventory_list = list()
 
-	shoppinglist |= station								// Add the station reference to the shopping list if it doesn't already exist
+	LAZYDISTINCTADD(shoppinglist, station)				// Add the station reference to the shopping list if it doesn't already exist
 
 	if(!islist(shoppinglist[station]))					// If nothing has been added under this station, create an empty list
 		shoppinglist[station] = list()
-	else												// Else, make the category list point to the current station's category list
-		category_list = shoppinglist[station]
 
-	category_list |= chosen_category					// Add the category to the shopping list if it doesn't already exist
-	
+	category_list = shoppinglist[station]				// Make the category list point to the current station's category list
+	LAZYDISTINCTADD(category_list, chosen_category)		// Add the category to the shopping list if it doesn't already exist
+
 	if(!islist(category_list[chosen_category]))			// If nothing has been added under this category, create an empty list
 		category_list[chosen_category] = list()
 
@@ -90,12 +89,13 @@
 	for(var/station in shoppinglist)
 		category_list = shoppinglist[station]
 		for(var/category in category_list)
-			if(!length(category_list[category]))
+			if(!LAZYLEN(category_list[category]))
 				category_list -= category
-		if(!category_list.len)
+		if(!LAZYLEN(category_list))
 			shoppinglist -= station
+			cart_station_index = null
 
-	if(!shoppinglist.len)
+	if(!LAZYLEN(shoppinglist))
 		cart_category_index = null
 		cart_station_index = null
 
@@ -103,19 +103,19 @@
 	if(!path)
 		return
 	var/list/inventory_list = open_shop_list()		// Get reference to inventory list
-	inventory_list |= path
-	inventory_list[path] += amount
+	LAZYDISTINCTADD(inventory_list, path)
+	LAZYAPLUS(inventory_list, path, amount)
 
 	if(inventory_list[path] > limit)
-		inventory_list[path] = limit
+		LAZYSET(inventory_list, path, limit)
 
 /datum/computer_file/program/trade/proc/remove_from_shop_list(path, amount)
 	var/list/inventory_list = open_shop_list()		// Get reference to inventory list
 	if(inventory_list.Find(path))					// If path exists, subtract from amount
-		inventory_list[path] -= amount
+		inventory_list[path] -= amount					// Not using LAZYAMINUS() because we only want to sanitize the whole list if the path is removed
 		if(inventory_list[path] < 1)				// If amount is less than 1, remove from list
 			inventory_list -= path
-			sanitize_shop_list()						// Don't need to sanitize every time, just when we're removing a path from the list
+			sanitize_shop_list()					// Don't need to sanitize every time, just when we're removing a path from the list
 
 /datum/computer_file/program/trade/proc/reset_shop_list()
 	shoppinglist = list()
@@ -138,13 +138,13 @@
 		var/list/categories_copy = categories.Copy()
 		for(var/category in categories)
 			var/list/goods = categories[category]
-			categories_copy[category] = goods.Copy()
-		list_to_save[station] = categories_copy
+			LAZYSET(categories_copy, category, goods.Copy())
+		LAZYSET(list_to_save, station, categories_copy)
 
 	var/list_name = name ? name : "Saved Cart #[++saved_cart_id]"
 
-	saved_shopping_lists |= list_name
-	saved_shopping_lists[list_name] = list_to_save
+	LAZYDISTINCTADD(saved_shopping_lists, list_name)
+	LAZYSET(saved_shopping_lists, list_name, list_to_save)
 
 /datum/computer_file/program/trade/proc/load_shop_list(name)
 	if(!saved_shopping_lists.Find(name))
@@ -159,8 +159,8 @@
 		var/list/categories_copy = categories.Copy()
 		for(var/category in categories)
 			var/list/goods = categories[category]
-			categories_copy[category] = goods.Copy()
-		list_to_load[station] = categories_copy
+			LAZYSET(categories_copy, category, goods.Copy())
+		LAZYSET(list_to_load, station, categories_copy)
 
 	return list_to_load.Copy()
 
@@ -647,27 +647,31 @@
 		for(var/station in SStrade.all_stations)
 			var/datum/trade_station/TS = station
 			var/is_discovered = (locate(TS) in SStrade.discovered_stations) ? TRUE : FALSE
+			var/ts_tree_x = round(TS.tree_x*100)
+			var/ts_tree_y = round(TS.tree_y*100)
 			var/list/trade_tree_data = list(
 				"id" =				"[TS.uid]",
 				"name" =			"[TS.name]",
 				"description" =		"[TS.desc]",
 				"is_discovered" =	"[is_discovered]",
-				"x" =				round(TS.tree_x*100),
-				"y" =				round(TS.tree_y*100),
+				"x" =				ts_tree_x,
+				"y" =				ts_tree_y,
 				"icon" =			"[TS.overmap_object.icon_stages[2 - is_discovered]]"
 			)
-			trade_tree += list(trade_tree_data)
+			LAZYADD(trade_tree, list(trade_tree_data))
 
-			if(TS.stations_recommended.len)
+			if(LAZYLEN(TS.stations_recommended))
 				for(var/id in TS.stations_recommended)
 					if(!istext(id))
 						break
 					var/datum/trade_station/RS = SStrade.get_station_by_uid(id)
 					if(RS)
-						var/line_x = (min(round(RS.tree_x*100), round(TS.tree_x*100)))
-						var/line_y = (min(round(RS.tree_y*100), round(TS.tree_y*100)))
-						var/width = (abs(round(RS.tree_x*100) - round(TS.tree_x*100)))
-						var/height = (abs(round(RS.tree_y*100) - round(TS.tree_y*100)))
+						var/rs_tree_x = round(RS.tree_x*100)
+						var/rs_tree_y = round(RS.tree_y*100)
+						var/line_x = (min(rs_tree_x, ts_tree_x))
+						var/line_y = (min(rs_tree_y, ts_tree_y))
+						var/width = (abs(rs_tree_x - ts_tree_x))
+						var/height = (abs(rs_tree_y - ts_tree_y))
 
 						var/istop = FALSE
 						if(RS.tree_y > TS.tree_y)
@@ -684,7 +688,7 @@
 							"istop" =            istop,
 							"isright" =          isright,
 						)
-						line_list += list(line_data)
+						LAZYADD(line_list, list(line_data))
 
 		.["trade_tree"] = trade_tree
 		.["tree_lines"] = line_list

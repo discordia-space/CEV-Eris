@@ -29,6 +29,7 @@
 		/datum/design/autolathe/part/igniter,						//regular parts
 		/datum/design/autolathe/part/signaler,
 		/datum/design/autolathe/part/sensor_prox,
+		/datum/design/autolathe/part/consolescreen,
 		/datum/design/autolathe/cell/large/excelsior,				//power cells
 		/datum/design/autolathe/cell/medium/excelsior,
 		/datum/design/autolathe/cell/small/excelsior,

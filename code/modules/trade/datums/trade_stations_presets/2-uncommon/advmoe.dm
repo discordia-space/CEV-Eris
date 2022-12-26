@@ -5,7 +5,7 @@
 	icon_states = list("moe_cruiser", "ship")
 	uid = "moe_adv"
 	tree_x = 0.38
-	tree_y = 0.7
+	tree_y = 0.8
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = COMMON_GOODS
@@ -21,8 +21,7 @@
 			/obj/item/storage/deferred/slime = good_data("slime supply box", list(1, 3), 500),
 			/obj/item/storage/deferred/xenobotany = good_data("xenobotany supply box", list(1, 3), 500),
 			/obj/item/storage/deferred/rnd = good_data("research box", list(1, 3), 5000),
-			/obj/item/storage/box/monkeycubes = good_data("monkey cube box", list(1, 3), 2000),
-			/obj/machinery/suspension_gen
+			/obj/item/storage/box/monkeycubes = good_data("monkey cube box", list(1, 3), 2000)
 		),
 		"Chemical Surplus" = list(
 			/obj/item/reagent_containers/glass/bottle/inaprovaline = custom_good_amount_range(list(2, 3)),

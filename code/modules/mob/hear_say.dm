@@ -71,11 +71,11 @@
 	if(isghost(src) || stats.getPerk(PERK_CODESPEAK_COP))
 		var/found = cop_codes.find_message_radio(message)
 		if(found)
-			message = "[message] ([cop_codes.find_message(message)])"
+			message = "[message] ([found])"
 	if(isghost(src) || stats.getPerk(PERK_CODESPEAK_SERB))
-		var/found = cop_codes.find_message_radio(message)
+		var/found = serb_codes.find_message_radio(message)
 		if(found)
-			message = "[message] ([serb_codes.find_message(message)])"
+			message = "[message] ([found])"
 
 	var/speaker_name = get_hear_name(speaker, hard_to_hear, voice_name)
 

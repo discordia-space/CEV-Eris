@@ -51,6 +51,8 @@
 		module_state_3:loc = module
 		module_state_3 = null
 		//inv3.icon_state = "inv3"
+	for(var/obj/screen/inv as anything in HUDinventory)
+		inv.update_icon()
 	update_robot_modules_display()
 	updateicon()
 

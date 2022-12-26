@@ -22,6 +22,8 @@
 	var/collection_mode = TRUE //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle" //sound played when used. null for no sound.
 	var/is_tray_hidden = FALSE //hides from even t-rays
+	var/prespawned_content_amount // Number of items storage should initially contain
+	var/prespawned_content_type // Type of items storage should contain, takes effect if variable above is at least 1
 
 /obj/item/storage/New()
 	can_hold |= can_hold_extra
@@ -549,7 +551,9 @@
 
 // Override in subtypes
 /obj/item/storage/proc/populate_contents()
-	return
+	if(prespawned_content_type && prespawned_content_amount)
+		for(var/i in 1 to prespawned_content_amount)
+			new prespawned_content_type(src)
 
 /obj/item/storage/emp_act(severity)
 	if(!isliving(loc))

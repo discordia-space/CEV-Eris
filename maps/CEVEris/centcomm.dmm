@@ -3427,6 +3427,7 @@
 /area/centcom/merc_base)
 "kG" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/item/storage/box/phosphorous,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5453,6 +5454,14 @@
 	icon_state = "freezerfloor"
 	},
 /area/centcom/raider_base)
+"zt" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/item/storage/box/phosphorous,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/centcom/merc_base)
 "zv" = (
 /obj/structure/table/rack,
 /obj/item/gun/energy/sniperrifle,
@@ -5700,6 +5709,13 @@
 	icon_state = "wood"
 	},
 /area/wizard_station)
+"Ho" = (
+/obj/item/storage/box/phosphorous,
+/turf/unsimulated/floor{
+	dir = 2;
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
 "Hs" = (
 /obj/structure/table/woodentable,
 /obj/item/dice/d20,
@@ -5740,6 +5756,11 @@
 /obj/item/storage/box/smokes,
 /obj/item/storage/box/smokes,
 /obj/item/storage/box/smokes,
+/obj/item/storage/box/phosphorous,
+/obj/item/storage/box/phosphorous,
+/obj/item/storage/box/phosphorous,
+/obj/item/storage/box/phosphorous,
+/obj/item/storage/box/phosphorous,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -32913,7 +32934,7 @@ jq
 jq
 jq
 jq
-jq
+Ho
 hf
 mO
 iB
@@ -33921,7 +33942,7 @@ wf
 iX
 iX
 iX
-hf
+zt
 jq
 jq
 jG

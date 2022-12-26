@@ -439,15 +439,20 @@ SUBSYSTEM_DEF(trade)
 	for(var/path in category)
 		. += get_import_cost(path, station) * category[path]
 
-/datum/controller/subsystem/trade/proc/buy(obj/machinery/trade_beacon/receiving/senderBeacon, datum/money_account/account, list/shopList)
+/datum/controller/subsystem/trade/proc/buy(obj/machinery/trade_beacon/receiving/senderBeacon, datum/money_account/account, list/shopList, is_order = FALSE, buyer_name = null)
 	if(QDELETED(senderBeacon) || !istype(senderBeacon) || !account || !recursiveLen(shopList))
 		return
 
-	var/obj/structure/closet/crate/C
+	var/obj/structure/closet/secure_closet/personal/trade/C
 	var/count_of_all = collect_counts_from(shopList)
 	var/price_for_all = collect_price_for_list(shopList)
 	if(isnum(count_of_all) && count_of_all > 1)
-		C = senderBeacon.drop(/obj/structure/closet/crate)
+		C = senderBeacon.drop(/obj/structure/closet/secure_closet/personal/trade)
+		if(is_order)
+			C.locked = TRUE
+			C.registered_name = buyer_name
+			C.name = "[initial(C.name)] ([C.registered_name])"
+			C.update_icon()
 	if(price_for_all && get_account_credits(account) < price_for_all)
 		return
 
@@ -610,7 +615,7 @@ SUBSYSTEM_DEF(trade)
 		var/total_cost = order["cost"] + order["fee"]
 		var/is_requestor_master = (requesting_account == master_account) ? TRUE : FALSE
 
-		buy(beacon, master_account, shopping_list)
+		buy(beacon, master_account, shopping_list, !is_requestor_master, requesting_account.owner_name)
 		if(!is_requestor_master)
 			transfer_funds(requesting_account, master_account, "Order Request", null, total_cost)
 		create_log_entry("Order", requesting_account.get_name(), viewable_contents, total_cost)

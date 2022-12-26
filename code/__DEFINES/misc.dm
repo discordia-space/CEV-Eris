@@ -242,8 +242,6 @@
 #define SPAN_WARNING(text) "<span class='warning'>[text]</span>"
 #define SPAN_DANGER(text)  "<span class='danger'>[text]</span>"
 #define span(class, text) ("<span class='[class]'>[text]</span>")
-// the thing below allow using SPANning in datum definition, the above can't.
-#define SPAN(class, X) "<span class='" + ##class + "'>" + ##X + "</span>"
 
 #define text_starts_with(text, start) (copytext(text, 1, length(start) + 1) == start)
 

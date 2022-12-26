@@ -163,9 +163,9 @@
 	gear_tweaks += new /datum/gear_tweak/path(generic)
 
 /datum/gear/uniform/tuxedo
-	display_name = "cheap tuxedo"
-	path = /obj/item/clothing/under/tuxedo/cheap
-	cost = 2
+	display_name = "tuxedo"
+	path = /obj/item/clothing/under/tuxedo
+	cost = 1
 
 /datum/gear/uniform/security_formal
 	display_name = "formal security outfit"

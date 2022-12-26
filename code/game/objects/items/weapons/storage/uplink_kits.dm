@@ -2,19 +2,17 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/box/syndicate/populate_contents()
-	switch (pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "guns" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, /*"lordsingulo" = 1,*/ "smoothoperator" = 1)))
+	switch(pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "guns" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, "smoothoperator" = 1)))
 		if("bloodyspai")
 			new /obj/item/clothing/under/chameleon(src)
 			new /obj/item/clothing/mask/chameleon/voice(src)
 			new /obj/item/card/id/syndicate(src)
 			new /obj/item/clothing/shoes/syndigaloshes(src)
-			return
 
 		if("stealth")
 			new /obj/item/gun/energy/crossbow(src)
 			new /obj/item/pen/reagent/paralysis(src)
 			new /obj/item/device/chameleon(src)
-			return
 
 		if("screwed")
 			new /obj/effect/spawner/newbomb/timer/syndicate(src)
@@ -24,7 +22,6 @@
 			new /obj/item/clothing/head/space/syndicate/uplink(src)
 			new /obj/item/clothing/mask/gas/syndicate(src)
 			new /obj/item/tank/emergency_oxygen/double(src)
-			return
 
 		if("guns")
 			new /obj/item/gun/projectile/revolver(src)
@@ -32,83 +29,61 @@
 			new /obj/item/card/emag(src)
 			new /obj/item/plastique(src)
 			new /obj/item/plastique(src)
-			return
 
 		if("murder")
 			new /obj/item/melee/energy/sword(src)
 			new /obj/item/clothing/glasses/powered/thermal/syndi(src)
 			new /obj/item/card/emag(src)
 			new /obj/item/clothing/shoes/syndigaloshes(src)
-			return
 
 		if("freedom")
 			var/obj/item/implanter/O = new /obj/item/implanter(src)
 			O.implant = new /obj/item/implant/freedom(O)
 			var/obj/item/implanter/U = new /obj/item/implanter(src)
 			U.implant = new /obj/item/implant/uplink(U)
-			return
 
 		if("hacker")
 			new /obj/item/device/encryptionkey/syndicate(src)
 			new /obj/item/electronics/ai_module/syndicate(src)
 			new /obj/item/card/emag(src)
 			new /obj/item/device/encryptionkey/binary(src)
-			return
 
-/*			if("lordsingulo")
-			new /obj/item/device/radio/beacon/syndicate(src)
-			new /obj/item/clothing/suit/space/syndicate/uplink(src)
-			new /obj/item/clothing/head/space/syndicate/uplink(src)
-			new /obj/item/clothing/mask/gas/syndicate(src)
-			new /obj/item/tank/emergency_oxygen/double(src)
-			new /obj/item/card/emag(src)
-			return
-*/
 		if("smoothoperator")
 			new /obj/item/storage/box/syndie_kit/pistol(src)
 			new /obj/item/storage/bag/trash(src)
 			new /obj/item/soap/syndie(src)
 			new /obj/item/bodybag(src)
 			new /obj/item/clothing/shoes/reinforced(src)
-			return
 
 /obj/item/storage/box/syndie_kit
-	name = "box"
 	desc = "A sleek, sturdy box. This one is using state of the art folding to hold more inside!"
 	max_storage_space = DEFAULT_NORMAL_STORAGE //bigger so they hold their gear!
 	icon_state = "box_of_doom"
 	illustration = "writing_of_doom"
 	bad_type = /obj/item/storage/box/syndie_kit
+	prespawned_content_amount = 1
 	description_antag = "Can be folded into a non-identifiable cardboard while holding another item in the another hand."
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/box/syndie_kit/imp_freedom
 	name = "boxed freedom implant (with injector)"
 	desc = "A box with freedom implant inside. Install it in your hand or leg, chose emote. You can remove instantly handcuffs or legcuffs with your emotion. Have a small amount of uses."
-
-/obj/item/storage/box/syndie_kit/imp_freedom/populate_contents()
-	new /obj/item/implanter/freedom(src)
+	prespawned_content_type = /obj/item/implanter/freedom
 
 /obj/item/storage/box/syndie_kit/imp_compress
 	name = "box (C)"
 	desc = "A box with compressed implanter inside. Choose an item with this implant, install it inside you and choose emote to activate it. Take your chosen item whenever you want by your chosen emotion. One use."
-
-/obj/item/storage/box/syndie_kit/imp_compress/populate_contents()
-	new /obj/item/implanter/compressed(src)
+	prespawned_content_type = /obj/item/implanter/compressed
 
 /obj/item/storage/box/syndie_kit/imp_explosive
 	name = "box (E)"
 	desc = "A box with explosive implant inside. When you use it on yours enemy, you can choose three ways to use it: destroy limb, destroy your enemy or make a small explosion. Activation by phrase you choose too. One use."
-
-/obj/item/storage/box/syndie_kit/imp_explosive/populate_contents()
-	new /obj/item/implanter/explosive(src)
+	prespawned_content_type = /obj/item/implanter/explosive
 
 /obj/item/storage/box/syndie_kit/imp_spying
 	name = "box (S)"
 	desc = "A box with spying implanter inside. Implant your contract target with it and wait 1 minute for the confirmation."
-
-/obj/item/storage/box/syndie_kit/imp_spying/populate_contents()
-	new /obj/item/implanter/spying(src)
+	prespawned_content_type = /obj/item/implanter/spying
 
 /obj/item/storage/box/syndie_kit/imp_uplink
 	name = "boxed uplink implant (with injector)"
@@ -200,7 +175,7 @@
 	new /obj/item/ammo_magazine/smg(src)
 
 /obj/item/storage/box/syndie_kit/revolver
-	name = "Revolver box"
+	name = "revolver box"
 	desc = "Revolver kit"
 
 /obj/item/storage/box/syndie_kit/revolver/populate_contents()
@@ -208,7 +183,7 @@
 	new /obj/item/ammo_magazine/slmagnum(src)
 
 /obj/item/storage/box/syndie_kit/hornet
-	name = "Revolver box"
+	name = "revolver box"
 	desc = "Revolver kit"
 
 /obj/item/storage/box/syndie_kit/hornet/populate_contents()
@@ -216,7 +191,7 @@
 	new /obj/item/ammo_magazine/slsrifle_rev(src)
 
 /obj/item/storage/box/syndie_kit/sts35
-	name = "Assault rifle box"
+	name = "assault rifle box"
 	desc = "Assault rifle kit"
 	icon_state = "box_of_doom_big"
 	w_class = ITEM_SIZE_HUGE
@@ -246,7 +221,7 @@
 	new /obj/item/ammo_casing/shotgun/prespawned(src)
 
  /obj/item/storage/box/syndie_kit/pug
-	name = "Pug box"
+	name = "pug box"
 	desc = "Pug kit with one M12 buckshot mag"
 	icon_state = "box_of_doom_big"
 	w_class = ITEM_SIZE_HUGE
@@ -316,12 +291,12 @@
 
 	new /obj/item/flame/lighter/zippo(src)
 
-/proc/fill_cigarre_package(var/obj/item/storage/fancy/cigarettes/C, var/list/reagents)
+/proc/fill_cigarre_package(obj/item/storage/fancy/cigarettes/C, list/reagents)
 	for(var/reagent in reagents)
 		C.reagents.add_reagent(reagent, reagents[reagent] * C.storage_slots)
 
 /obj/item/storage/box/syndie_kit/ewar_voice
-	name = "Electrowarfare and Voice Synthesiser kit"
+	name = "electrowarfare and voice synthesiser kit"
 	desc = "Kit for confounding organic and synthetic entities alike."
 
 /obj/item/storage/box/syndie_kit/ewar_voice/populate_contents()
@@ -330,29 +305,14 @@
 
 /obj/item/storage/box/syndie_kit/spy_sensor
 	name = "sensor kit"
-
-/obj/item/storage/box/syndie_kit/spy_sensor/populate_contents()
-	new /obj/item/device/spy_sensor(src)
-	new /obj/item/device/spy_sensor(src)
-	new /obj/item/device/spy_sensor(src)
-	new /obj/item/device/spy_sensor(src)
-
+	prespawned_content_amount = 4
+	prespawned_content_type = /obj/item/device/spy_sensor
 
 /obj/item/storage/secure/briefcase/money
 	name = "secure briefcase"
 	desc = "A large briefcase with a digital locking system."
-
-/obj/item/storage/secure/briefcase/money/populate_contents()
-	new /obj/item/spacecash/bundle/c1000(src)
-	new /obj/item/spacecash/bundle/c1000(src)
-	new /obj/item/spacecash/bundle/c1000(src)
-	new /obj/item/spacecash/bundle/c1000(src)
-	new /obj/item/spacecash/bundle/c1000(src)
-	new /obj/item/spacecash/bundle/c1000(src)
-	new /obj/item/spacecash/bundle/c1000(src)
-	new /obj/item/spacecash/bundle/c1000(src)
-	new /obj/item/spacecash/bundle/c1000(src)
-	new /obj/item/spacecash/bundle/c1000(src)
+	prespawned_content_amount = 10
+	prespawned_content_type = /obj/item/spacecash/bundle/c1000
 
 /obj/item/storage/box/syndie_kit/randomstim
 	name = "5 Random Stims Kit"
@@ -369,9 +329,7 @@
 	desc = "Pickle."
 	icon_state = "box_of_doom_big"
 	w_class = ITEM_SIZE_HUGE
-
-/obj/item/storage/box/syndie_kit/pickle/populate_contents()
-	new /obj/item/reagent_containers/food/snacks/pickle(src)
+	prespawned_content_type = /obj/item/reagent_containers/food/snacks/pickle
 
 /obj/item/storage/box/syndie_kit/gentleman_kit
 	name = "\improper Gentleman's Kit"
@@ -391,44 +349,50 @@
 	new /obj/item/grenade/chem_grenade/cleaner(src)
 	new /obj/item/reagent_containers/spray/cleaner(src)
 
-/obj/item/storage/box/syndie_kit/slmagnum/populate_contents()
-	new /obj/item/ammo_magazine/slmagnum(src)
-	new /obj/item/ammo_magazine/slmagnum(src)
+/obj/item/storage/box/syndie_kit/slmagnum
+	name = ".40 speedloader box"
+	desc = "Contains 3 .40 speedloaders."
+	prespawned_content_amount = 3
+	prespawned_content_type = /obj/item/ammo_magazine/slmagnum
 
 /obj/item/storage/box/syndie_kit/slmagnum/highvelocity
 	name = ".40 HV speedloader box"
 	desc = "Contains 3 .40 HV speedloaders."
+	prespawned_content_amount = 3
+	prespawned_content_type = /obj/item/ammo_magazine/slmagnum/highvelocity
 
-/obj/item/storage/box/syndie_kit/slmagnum/highvelocity/populate_contents()
-	new /obj/item/ammo_magazine/slmagnum/highvelocity(src)
-	new /obj/item/ammo_magazine/slmagnum/highvelocity(src)
-	new /obj/item/ammo_magazine/slmagnum/highvelocity(src)
-
-/obj/item/storage/box/syndie_kit/slpistol/populate_contents()
-	new /obj/item/ammo_magazine/slpistol(src)
-	new /obj/item/ammo_magazine/slpistol(src)
+/obj/item/storage/box/syndie_kit/slpistol
+	name = ".35 speedloaders box"
+	desc = "Contains 3 .35 speedloaders."
+	prespawned_content_amount = 3
+	prespawned_content_type = /obj/item/ammo_magazine/slpistol
 
 /obj/item/storage/box/syndie_kit/slpistol/hv
 	name = ".35 HV speedloaders box"
 	desc = "Contains 3 .35 HV speedloaders."
+	prespawned_content_amount = 3
+	prespawned_content_type = /obj/item/ammo_magazine/slpistol/hv
 
-/obj/item/storage/box/syndie_kit/slpistol/hv/populate_contents()
-	new /obj/item/ammo_magazine/slpistol/hv(src)
-	new /obj/item/ammo_magazine/slpistol/hv(src)
-	new /obj/item/ammo_magazine/slpistol/hv(src)
+/obj/item/storage/box/syndie_kit/slsrifle
+	name = ".20 strip box"
+	desc = "Contains 2 .20 strips."
+	prespawned_content_amount = 2
+	prespawned_content_type = /obj/item/ammo_magazine/slsrifle
 
 /obj/item/storage/box/syndie_kit/slsrifle/hv
 	name = ".20 HV strip box"
 	desc = "Contains 2 .20 HV strips."
+	prespawned_content_amount = 2
+	prespawned_content_type = /obj/item/ammo_magazine/slsrifle/hv
 
-/obj/item/storage/box/syndie_kit/slsrifle/hv/populate_contents()
-	new /obj/item/ammo_magazine/slsrifle/hv(src)
-	new /obj/item/ammo_magazine/slsrifle/hv(src)
+/obj/item/storage/box/syndie_kit/sllrifle
+	name = ".30 strip box"
+	desc = "Contains 2 .30 strips."
+	prespawned_content_amount = 2
+	prespawned_content_type = /obj/item/ammo_magazine/sllrifle
 
 /obj/item/storage/box/syndie_kit/sllrifle/hv
 	name = ".30 HV strip box"
 	desc = "Contains 2 .30 HV strips."
-
-/obj/item/storage/box/syndie_kit/sllrifle/hv/populate_contents()
-	new /obj/item/ammo_magazine/sllrifle/hv(src)
-	new /obj/item/ammo_magazine/sllrifle/hv(src)
+	prespawned_content_amount = 2
+	prespawned_content_type = /obj/item/ammo_magazine/sllrifle/hv

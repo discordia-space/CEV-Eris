@@ -438,7 +438,7 @@
 		return
 
 	var/list/copied_stats = list()
-	if(!host.stats)
+	if(host.stats)
 		for(var/stat_name in ALL_STATS)
 			var/host_stat = host.stats.getStat(stat_name, pure=TRUE)
 			var/borer_stat = stats.getStat(stat_name, pure=TRUE)

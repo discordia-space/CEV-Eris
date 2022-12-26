@@ -14,6 +14,7 @@
 	rarity_value = 100
 	spawn_blacklisted = TRUE
 	price_tag = 300
+	no_double_tact = TRUE
 
 	var/amount = 0
 	var/max_amount = 30

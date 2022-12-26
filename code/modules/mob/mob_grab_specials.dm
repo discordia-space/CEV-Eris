@@ -84,7 +84,7 @@
 	var/obj/item/organ/external/organ = target.get_organ(check_zone(target_zone))
 	if(!organ || organ.nerve_struck == -1)
 		return
-
+	visible_message(SPAN_WARNING("[attacker] tries to put [target]'s [organ.name] into a jointlock."))
 	if(!do_after(attacker, 7 SECONDS, target))
 		to_chat(attacker, SPAN_WARNING("You must stand still to jointlock [target]!"))
 	else

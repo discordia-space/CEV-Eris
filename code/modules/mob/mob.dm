@@ -254,8 +254,8 @@
 	if((is_blind(src) || usr.stat) && !isobserver(src))
 		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
 		return
-
-	face_atom(examinify)
+	if(!istype(examinify, /obj/screen))
+		face_atom(examinify)
 	var/obj/item/device/lighting/toggleable/flashlight/FL = locate() in src
 	if (FL?.on && stat != DEAD && !incapacitated())
 		FL.afterattack(examinify, src)

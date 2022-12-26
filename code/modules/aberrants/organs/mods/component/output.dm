@@ -25,7 +25,7 @@
 	return description
 
 /datum/component/modification/organ/output/reagents/modify(obj/item/I, mob/living/user)
-	if(!output_qualities.len)
+	if(!LAZYLEN(output_qualities))
 		return
 
 	var/list/can_adjust = list("metabolic target", "reagent")
@@ -67,7 +67,7 @@
 		for(var/output in possible_outputs)
 			var/list/possibilities = output_qualities.Copy()
 
-			if(possible_outputs.len > 1)
+			if(LAZYLEN(possible_outputs) > 1)
 				for(var/effect_name in possibilities)
 					var/effect_type = possibilities[effect_name]
 					if(output != effect_type && possible_outputs.Find(effect_type))
@@ -92,11 +92,11 @@
 	var/datum/reagents/metabolism/RM = owner.get_metabolism_handler(mode)
 	var/triggered = FALSE
 
-	if(input.len && input.len <= possible_outputs.len)
+	if(LAZYLEN(input))
 		for(var/i in input)
 			var/index = input.Find(i)
 			var/is_input_valid = input[i] ? TRUE : FALSE
-			if(is_input_valid)
+			if(is_input_valid && index <= LAZYLEN(possible_outputs))
 				var/input_multiplier = input[i]
 				var/datum/reagent/output = possible_outputs[index]
 				var/amount_to_add = possible_outputs[output] * organ_multiplier * input_multiplier
@@ -144,13 +144,13 @@
 	return description
 
 /datum/component/modification/organ/output/chemical_effects/modify(obj/item/I, mob/living/user)
-	if(!output_qualities.len)
+	if(!LAZYLEN(output_qualities))
 		return
 
 	for(var/output in possible_outputs)
 		var/list/possibilities = output_qualities.Copy()
 
-		if(possible_outputs.len > 1)
+		if(LAZYLEN(possible_outputs) > 1)
 			for(var/effect_name in possibilities)
 				var/effect_type = possibilities[effect_name]
 				if(output != effect_type && possible_outputs.Find(effect_type))
@@ -177,11 +177,11 @@
 	var/datum/reagents/metabolism/RM = owner.get_metabolism_handler(CHEM_BLOOD)
 	var/triggered = FALSE
 
-	if(input.len && input.len <= possible_outputs.len)
+	if(LAZYLEN(input))
 		for(var/i in input)
 			var/index = input.Find(i)
 			var/is_input_valid = input[i] ? TRUE : FALSE
-			if(is_input_valid)
+			if(is_input_valid && index <= LAZYLEN(possible_outputs))
 				var/input_multiplier = input[i]
 				var/datum/reagent/output = possible_outputs[index]
 				var/amount_to_add = initial(output.metabolism) * organ_multiplier * input_multiplier
@@ -209,13 +209,13 @@
 	return description
 
 /datum/component/modification/organ/output/stat_boost/modify(obj/item/I, mob/living/user)
-	if(!output_qualities.len)
+	if(!LAZYLEN(output_qualities))
 		return
 
 	for(var/output in possible_outputs)
 		var/list/possibilities = output_qualities.Copy()
 		var/output_amount = possible_outputs[output]
-		if(possible_outputs.len > 1)
+		if(LAZYLEN(possible_outputs) > 1)
 			for(var/stat in possibilities)
 				if(output != stat && possible_outputs.Find(stat))
 					possibilities.Remove(stat)
@@ -238,11 +238,11 @@
 	var/delay = S.aberrant_cooldown_time + 2 SECONDS
 	var/triggered = FALSE
 
-	if(input.len && iscarbon(owner))
+	if(LAZYLEN(input) && iscarbon(owner))
 		for(var/i in input)
 			var/index = input.Find(i)
 			var/is_input_valid = input[i] ? TRUE : FALSE
-			if(is_input_valid && index <= possible_outputs.len)
+			if(is_input_valid && index <= LAZYLEN(possible_outputs))
 				var/input_multiplier = input[i]
 				var/stat = possible_outputs[index]
 				var/magnitude = possible_outputs[stat] * organ_multiplier * input_multiplier
@@ -269,11 +269,11 @@
 	var/organ_multiplier = (S.max_damage - S.damage) / S.max_damage
 	var/triggered = FALSE
 
-	if(input.len && ishuman(owner))
+	if(LAZYLEN(input) && ishuman(owner))
 		for(var/i in input)
 			var/index = input.Find(i)
 			var/is_input_valid = input[i]
-			if(is_input_valid)
+			if(is_input_valid && index <= LAZYLEN(possible_outputs))
 				var/input_multiplier = input[i]
 				var/mob/living/carbon/human/H = owner
 				var/damage_type = possible_outputs[index]
@@ -338,7 +338,7 @@
 		active_owner_verb_adds |= old_owner_verb_adds
 		are_values_stored = TRUE
 
-	if(input.len)
+	if(LAZYLEN(input))
 		for(var/i in input)
 			var/is_input_valid = input[i]
 			if(is_input_valid)
@@ -351,7 +351,7 @@
 				oxygen_req_mod = active_oxygen_req_mod * organ_multiplier * input_multiplier
 				owner_verb_adds = active_owner_verb_adds.Copy()
 
-				if(active_organ_efficiency_mod.len)
+				if(LAZYLEN(active_organ_efficiency_mod))
 					for(var/process in active_organ_efficiency_mod)
 						if(!islist(H.internal_organs_by_efficiency[process]))
 							H.internal_organs_by_efficiency[process] = list()
@@ -368,7 +368,7 @@
 	oxygen_req_mod = old_oxygen_req_mod
 	owner_verb_adds = old_owner_verb_adds
 
-	if(active_organ_efficiency_mod.len && !organ_efficiency_mod.len)
+	if(LAZYLEN(active_organ_efficiency_mod) && !LAZYLEN(organ_efficiency_mod))
 		for(var/process in active_organ_efficiency_mod)
 			if(!islist(H.internal_organs_by_efficiency[process]))
 				H.internal_organs_by_efficiency[process] = list()

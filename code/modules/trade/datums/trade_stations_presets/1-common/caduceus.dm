@@ -18,7 +18,7 @@
 	wealth = 0
 	hidden_inv_threshold = 2000
 	recommendation_threshold = 4000
-	stations_recommended = list("moe_adv", "trapper")
+	stations_recommended = list("moe_adv", "trapper", "botany")
 	inventory = list(
 		"Design Disks" = list(
 			/obj/item/computer_hardware/hard_drive/portable/design/medical = good_data("Moebius Medical Designs", list(1, 10), 400)
@@ -62,7 +62,6 @@
 		"Misc" = list(
 			/obj/item/storage/pouch/medical_supply,
 //			/obj/item/virusdish/random,		// Spawns without an icon
-			/obj/structure/reagent_dispensers/coolanttank,
 			/obj/item/clothing/mask/breath/medical,
 			/obj/item/clothing/mask/surgical,
 			/obj/item/clothing/gloves/latex,

@@ -99,6 +99,10 @@
 	},
 /turf/simulated/floor/wood,
 /area/deepmaint)
+"F" = (
+/obj/machinery/vending/plant_gene,
+/turf/simulated/floor/grass,
+/area/deepmaint)
 
 (1,1,1) = {"
 a
@@ -130,7 +134,7 @@ a
 a
 c
 e
-k
+F
 c
 q
 c

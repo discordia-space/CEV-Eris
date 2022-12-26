@@ -17,7 +17,7 @@
 	ammo_type = /obj/item/ammo_casing/pistol
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL|MAG_WELL_SMG
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 12)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
 	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_300,
@@ -29,7 +29,7 @@
 	init_recoil = SMG_RECOIL(0.6)
 	spawn_blacklisted = TRUE
 	wield_delay = 0 // No delay for this , its litteraly a junk gun
-	gun_parts = list(/obj/item/part/gun/frame/luty = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/smg/steel = 1, /obj/item/part/gun/barrel/pistol/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/luty = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/smg/steel = 1, /obj/item/part/gun/barrel/pistol/steel = 1)
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 
 
@@ -37,9 +37,9 @@
 	name = "Luty frame"
 	desc = "A Luty SMG. It rattles a bit, but it's okay. Just don\'t shake it too hard."
 	icon_state = "frame_luty"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 6)
+	matter = list(MATERIAL_STEEL = 5)
 	resultvars = list(/obj/item/gun/projectile/automatic/luty)
-	gripvars = list(/obj/item/part/gun/grip/wood)
+	gripvars = list(/obj/item/part/gun/grip/black)
 	mechanismvar = /obj/item/part/gun/mechanism/smg/steel
 	barrelvars = list(/obj/item/part/gun/barrel/pistol/steel, /obj/item/part/gun/barrel/magnum/steel)
 

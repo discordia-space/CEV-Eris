@@ -91,6 +91,12 @@
 	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
 										//  have to be recreated multiple times
 
+/obj/item/projectile/Destroy()
+	firer = null
+	original = null
+	starting = null
+	LAZYCLEARLIST(permutated)
+	return ..()
 
 /obj/item/projectile/is_hot()
 	if (damage_types[BURN])
@@ -505,7 +511,7 @@
 		pixel_x = location.pixel_x
 		pixel_y = location.pixel_y
 
-		if(!bumped && !isturf(original))
+		if(!bumped && !QDELETED(original) && !isturf(original))
 			if(loc == get_turf(original))
 				if(!(original in permutated))
 					if(Bump(original))
@@ -633,7 +639,7 @@
 			damage_types -= dmg_type
 	if(!damage_types.len)
 		on_impact(A)
-		qdel(A)
+		qdel(src)
 
 	return dmg_total ? (dmg_remaining / dmg_total) : 0
 

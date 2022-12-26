@@ -222,7 +222,6 @@
 		"You get overwhelmed and start to panic!",
 		"You're inconsolably terrified!",
 		"You can't choke back the tears anymore!",
-		"The hair on your nape stands on end! The fear sends you into a frenzy!",
 		"It's too much! You freak out and lose control!"
 	)
 	end_messages = list(

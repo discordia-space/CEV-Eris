@@ -14,6 +14,7 @@
     src.transform *= 0.5 // this little trick makes bone size small while keeping detail level of 32x32 bones.
 
 /obj/item/organ/internal/bone/proc/fracture()
+	playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
 	if(owner)
 		owner.visible_message(
 			SPAN_DANGER("You hear a loud cracking sound coming from \the [owner]."),

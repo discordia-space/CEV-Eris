@@ -18,13 +18,6 @@
 	var/sqltext = dbcon.Quote(t);
 	return copytext(sqltext, 2, length(sqltext));//Quote() adds quotes around input, we already do that
 
-/proc/generateRandomString(length)
-	. = list()
-	for(var/a in 1 to length)
-		var/letter = rand(33,126)
-		. += ascii2text(letter)
-	. = jointext(., null)
-
 /*
  * Text sanitization
  */

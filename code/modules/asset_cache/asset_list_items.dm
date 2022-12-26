@@ -529,12 +529,6 @@
 		assets[filename] = I
 	..()
 
-/datum/asset/simple/codicon
-	assets = list(
-		"codicon.css" = 'html/codicon/codicon.css',
-		"codicon.ttf" = 'html/codicon/codicon.ttf'
-	)
-
 /datum/asset/simple/directories/nanoui
 	dirs = list(
 		"nano/js/",

@@ -146,12 +146,13 @@
 	force = WEAPON_FORCE_DANGEROUS // weaker than novakovic, but with a bayonet installed it will be slightly stronger
 	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_SRIFLE
-	damage_multiplier = 1.7
-	penetration_multiplier = 0.7
+	damage_multiplier = 1.8
+	penetration_multiplier = 1
 	init_recoil = RIFLE_RECOIL(1.8)
 	init_offset = 0 //no bayonet
 	max_shells = 6
 	zoom_factors = list(0.8) //vintorez level
+	proj_step_multiplier = 0.8 //high pressure and long barrel
 	magazine_type = /obj/item/ammo_magazine/srifle
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
 	wielded_item_state = "_doble_ih_scope"
@@ -162,12 +163,27 @@
 	price_tag = 1200
 	serial_type = "FS"
 
+/obj/item/gun/projectile/boltgun/fs/civilian
+	name = "FS BR .20 \"Arasaka\""
+	desc = "Weapon for hunting, or endless coastal warfare. \
+			A replica of a replica, this simple, low-cost bolt-action rifle offers superb armor-piercing short of anti-materiel rounds. \
+			This is mounted with a short scope, for ranges mildly longer than a maintenance tunnel."
+	icon_state = "arisaka_civilian"
+	item_suffix  = "_civilian"
+	init_recoil = RIFLE_RECOIL(2)
+	zoom_factors = list(0.5) //like the xbow
+	wielded_item_state = "_doble_arisaka"
+	spawn_blacklisted = FALSE
+	gun_parts = list(/obj/item/part/gun/frame/kadmin = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/srifle/steel = 1)
+	price_tag = 1000
+
 /obj/item/part/gun/frame/kadmin
 	name = "Kadmin frame"
 	desc = "A Kadmin bolt-action rifle frame. For hunting or endless coastal warfare."
 	icon_state = "frame_weebrifle"
-	resultvars = list(/obj/item/gun/projectile/boltgun/fs)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
+	result = /obj/item/gun/projectile/boltgun/fs
+	gripvars = list(/obj/item/part/gun/grip/rubber, /obj/item/part/gun/grip/wood)
+	resultvars = list(/obj/item/gun/projectile/boltgun/fs, /obj/item/gun/projectile/boltgun/fs/civilian)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
 	barrelvars = list(/obj/item/part/gun/barrel/srifle/steel)
 
@@ -176,7 +192,7 @@
 	desc = "A handmade bolt action rifle, made from junk and some spare parts."
 	icon_state = "boltgun_hand"
 	item_suffix = "_hand"
-	matter = list(MATERIAL_STEEL = 25, MATERIAL_WOOD = 16)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
 	wielded_item_state = "_doble_hand"
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
@@ -198,7 +214,7 @@
 	name = "Riose frame"
 	desc = "A Riose bolt-action rifle frame. For hunting or endless maintenance warfare."
 	icon_state = "frame_riose"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 10)
+	matter = list(MATERIAL_STEEL = 5)
 	resultvars = list(/obj/item/gun/projectile/boltgun/handmade)
 	gripvars = list(/obj/item/part/gun/grip/wood)
 	mechanismvar = /obj/item/part/gun/mechanism/boltgun
