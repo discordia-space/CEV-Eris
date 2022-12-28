@@ -42,7 +42,6 @@
 		greet()
 
 	log_admin("[target] became an antagonist, [role_text].")
-	message_admins("[target] became an antagonist, [role_text].")
 
 	return TRUE
 
