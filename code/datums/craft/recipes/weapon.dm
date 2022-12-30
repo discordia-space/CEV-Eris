@@ -193,6 +193,8 @@
 		list(/obj/item/stack/rods, 1),
 		list(QUALITY_ADHESIVE, 10, "time" = 5),
 		list(/obj/item/stack/rods, 1),
+		list(QUALITY_ADHESIVE, 10, "time" = 5),
+		list(/obj/item/stack/rods, 1),
 		list(QUALITY_ADHESIVE, 10, "time" = 5)
 	)
 
@@ -212,9 +214,7 @@
 	name = "makeshift halberd"
 	result = /obj/item/tool/spear/makeshift_halberd
 	steps = list(
-		list(/obj/item/stack/rods, 1),
-		list(QUALITY_ADHESIVE, 10, "time" = 5),
-		list(/obj/item/stack/rods, 1),
+		list(/obj/item/stack/rods, 3),
 		list(QUALITY_ADHESIVE, 10, "time" = 5),
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 		list(QUALITY_HAMMERING, 10, "time" = 10),
