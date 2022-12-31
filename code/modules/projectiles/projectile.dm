@@ -288,6 +288,7 @@
 	var/hit_mod = 0
 	switch(target_mob.mob_size)
 		if(120 to INFINITY)
+			hit_mod = -6
 		if(80 to 120)
 			hit_mod = -4
 		if(40 to 80)
