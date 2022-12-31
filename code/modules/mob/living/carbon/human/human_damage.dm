@@ -4,26 +4,17 @@
 		health = maxHealth
 		stat = CONSCIOUS
 		return
-	var/total_burn  = 0
-	var/total_brute = 0
-	for(var/obj/item/organ/external/O in organs)	//hardcoded to streamline things a bit
-		if(O.vital) //*non-vital* limbs don't count towards shock and crit
-			total_brute += O.brute_dam
-			total_burn  += O.burn_dam
 
-	var/oxy_l = ((species.flags & NO_BREATHE) ? 0 : getOxyLoss())
-	var/tox_l = ((species.flags & NO_POISON) ? 0 : getToxLoss())
-	var/clone_l = getCloneLoss()
+	var/lethal_damage = max((species.flags & NO_BREATHE) ? 0 : oxyloss, brainloss)
 
-	health = maxHealth - oxy_l - tox_l - clone_l - total_burn - total_brute
+	health = maxHealth - lethal_damage
 	SEND_SIGNAL(src, COMSIG_HUMAN_HEALTH, health)
-	//TODO: fix husking
-	if( ((maxHealth - total_burn) < HEALTH_THRESHOLD_DEAD) && stat == DEAD)
-		ChangeToHusk()
+
 	return
 
 /mob/living/carbon/human/adjustBrainLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 
 	if(species && species.has_process[BP_BRAIN])
 		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
@@ -36,7 +27,8 @@
 		setBrainLoss(0)
 
 /mob/living/carbon/human/setBrainLoss(amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 
 	if(species && species.has_process[BP_BRAIN])
 		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
@@ -49,8 +41,8 @@
 		brainloss = 0
 
 /mob/living/carbon/human/getBrainLoss()
-
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 
 	if(species && species.has_process[BP_BRAIN])
 		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
@@ -134,25 +126,17 @@
 	..()
 
 /mob/living/carbon/human/getCloneLoss()
-	if(species.flags & (NO_SCAN))
-		cloneloss = 0
-	return ..()
+	return
 
 /mob/living/carbon/human/setCloneLoss(amount)
-	if(species.flags & (NO_SCAN))
-		cloneloss = 0
-	else
-		..()
+	adjustCloneLoss(amount)
 
 /mob/living/carbon/human/adjustCloneLoss(amount)
-	..()
-
 	if(species.flags & (NO_SCAN))
 		cloneloss = 0
 		return
 
-	var/heal_prob = max(0, 80 - getCloneLoss())
-	var/mut_prob = min(80, getCloneLoss()+10)
+	var/mut_prob = min(80, amount+10)
 	if (amount > 0)
 		if (prob(mut_prob))
 			var/list/obj/item/organ/external/candidates = list()
@@ -164,19 +148,7 @@
 				O.mutate()
 				to_chat(src, "<span class = 'notice'>Something is not right with your [O.name]...</span>")
 				return
-	else
-		if (prob(heal_prob))
-			for (var/obj/item/organ/external/O in organs)
-				if (O.status & ORGAN_MUTATED)
-					O.unmutate()
-					to_chat(src, "<span class = 'notice'>Your [O.name] is shaped normally again.</span>")
-					return
 
-	if (getCloneLoss() < 1)
-		for (var/obj/item/organ/external/O in organs)
-			if (O.status & ORGAN_MUTATED)
-				O.unmutate()
-				to_chat(src, "<span class = 'notice'>Your [O.name] is shaped normally again.</span>")
 	BITSET(hud_updateflag, HEALTH_HUD)
 
 // Defined here solely to take species flags into account without having to recast at mob/living level.
@@ -201,22 +173,13 @@
 		..()
 
 /mob/living/carbon/human/getToxLoss()
-	if(species.flags & NO_POISON)
-		toxloss = 0
-	return ..()
+	return
 
-/mob/living/carbon/human/adjustToxLoss(amount)
-	if(species.flags & NO_POISON)
-		toxloss = 0
-	else
-		amount = amount*species.toxins_mod
-		if(stats.getPerk(PERK_BLOOD_OF_LEAD) && amount > 0)
-			amount *= 0.5
-		..(amount)
+/mob/living/carbon/human/adjustToxLoss()
+	return
 
-/mob/living/carbon/human/setToxLoss(var/amount)
-	if(!(species.flags & NO_POISON) && !isSynthetic())
-		adjustToxLoss(amount-getToxLoss())
+/mob/living/carbon/human/setToxLoss()
+	return
 
 ////////////////////////////////////////////
 
@@ -362,6 +325,9 @@ This function restores all organs.
 			var/obj/item/organ/brain = random_organ_by_process(BP_BRAIN)
 			brain.take_damage(damage, PSY, armor_divisor, wounding_multiplier)
 			return TRUE
+
+		if(damagetype == TOX && stats.getPerk(PERK_BLOOD_OF_LEAD))
+			damage /= 2
 
 		. = ..(damage, damagetype, def_zone)
 	else	//Handle BRUTE and BURN damage

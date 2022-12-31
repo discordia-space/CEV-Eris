@@ -113,7 +113,7 @@
 
 /obj/item/organ/internal/proc/get_possible_wounds(damage_type, sharp, edge)
 	var/list/possible_wounds = list()
-		
+
 	// Determine possible wounds based on nature and damage type
 	var/is_robotic = BP_IS_ROBOTIC(src)
 	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
@@ -402,8 +402,6 @@
 		return
 	damage = initial(damage)
 	SEND_SIGNAL(src, COMSIG_IWOUND_DAMAGE)
-	if(damage >= max_damage)
-		die()
 
 /obj/item/organ/internal/proc/add_wound(datum/component/internal_wound/IW)
 	if(!IW || initial(IW.wound_nature) != nature || status & ORGAN_DEAD)
@@ -425,3 +423,4 @@
 	if(wounds)
 		parent.number_internal_wounds += LAZYLEN(wounds)
 		parent.severity_internal_wounds += damage
+	parent.total_internal_health += max_damage

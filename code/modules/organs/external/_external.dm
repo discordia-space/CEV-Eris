@@ -43,10 +43,11 @@
 
 	// Wound and structural data.
 	var/wound_update_accuracy = 1		// how often wounds should be updated, a higher number means less often
-	var/list/wounds = list()			// wound datum list.
-	var/number_wounds = 0				// number of wounds, which is NOT wounds.len!
+	var/list/wounds = list()			// External wound datum list.
+	var/number_wounds = 0				// Number of external wounds, which is NOT wounds.len!
 	var/number_internal_wounds = 0		// Number of internal wounds
 	var/severity_internal_wounds = 0	// Total damage from internal wounds
+	var/total_internal_health = 0		// Total max health of internal organs
 	var/internal_wound_hal_dam = 0		// Total pain from internal wounds
 	var/list/children = list()			// Sub-limbs.
 	var/list/internal_organs = list()	// Internal organs of this body part
@@ -501,7 +502,6 @@ This function completely restores a damaged organ to perfect condition.
 
 /obj/item/organ/external/Process()
 	if(owner)
-
 		// Process wounds, doing healing etc. Only do this every few ticks to save processing power
 		if(owner.life_tick % wound_update_accuracy == 0)
 			update_wounds()
@@ -513,6 +513,12 @@ This function completely restores a damaged organ to perfect condition.
 				if(trace_chemicals[chemID] <= 0)
 					trace_chemicals.Remove(chemID)
 
+		// Infection side effects
+		if(status & ORGAN_INFECTED)
+			// Altered temp calcs from bay infection
+			if(owner.species.heat_level_1 < INFINITY)
+				var/fever_temperature = owner.species.heat_level_1 - 5
+				owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
 	else
 		..()
 
@@ -535,6 +541,7 @@ This function completely restores a damaged organ to perfect condition.
 	// Internal wound handling
 	number_internal_wounds = 0
 	severity_internal_wounds = 0
+	total_internal_health = 0
 	internal_wound_hal_dam = 0
 
 	SEND_SIGNAL(src, COMSIG_IORGAN_REFRESH_PARENT)

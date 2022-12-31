@@ -700,7 +700,6 @@ var/list/rank_prefix = list(\
 			location.add_vomit_floor(src, 1)
 
 		adjustNutrition(-40)
-		adjustToxLoss(-3)
 		regen_slickness(-3)
 		dodge_time = get_game_time()
 		confidence = FALSE

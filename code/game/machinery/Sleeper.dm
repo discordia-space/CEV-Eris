@@ -69,10 +69,16 @@
 				data["stat"] = "Unconscious"
 			if(DEAD)
 				data["stat"] = "<font color='red'>Dead</font>"
-		data["health"] = occupant.health
+		data["crit_health"] = occupant.health
 		if(ishuman(occupant))
 			var/mob/living/carbon/human/H = occupant
 			data["pulse"] = H.get_pulse(GETPULSE_TOOL)
+			var/organ_health
+			var/organ_damage
+			for(var/obj/item/organ/external/E in H.organs)
+				organ_health += E.total_internal_health
+				organ_damage += E.severity_internal_wounds
+			data["internal_health"] = 1 - (organ_health ? organ_damage / organ_health : 0)
 		data["brute"] = occupant.getBruteLoss()
 		data["burn"] = occupant.getFireLoss()
 		data["oxy"] = occupant.getOxyLoss()

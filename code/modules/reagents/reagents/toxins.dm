@@ -26,7 +26,7 @@
 
 /datum/reagent/toxin/overdose(mob/living/carbon/M, alien)
 	if(strength)
-		M.adjustToxLoss(strength * issmall(M) ? 2 : 1)
+		M.add_chemical_effect(CE_TOXIN, strength * 10)
 
 /datum/reagent/toxin/plasticide
 	name = "Plasticide"

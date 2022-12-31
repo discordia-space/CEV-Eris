@@ -224,6 +224,7 @@
 	hal_damage = IWOUND_LIGHT_DAMAGE
 	can_spread = TRUE
 	spread_threshold = IORGAN_SMALL_HEALTH
+	status_flag = ORGAN_INFECTED
 
 /datum/component/internal_wound/organic/infection/standard
 	name = "infection"
@@ -238,5 +239,5 @@
 	can_progress = FALSE
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 
-/datum/component/internal_wound/organic/permanent/nondamage
+/datum/component/internal_wound/organic/permanent/nopain
 	hal_damage = 0

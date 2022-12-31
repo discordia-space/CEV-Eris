@@ -113,13 +113,14 @@
 
 
 // Organ defines.
-#define ORGAN_CUT_AWAY   (1<<0)
-#define ORGAN_BLEEDING   (1<<1)
-#define ORGAN_BROKEN     (1<<2)
-#define ORGAN_DESTROYED  (1<<3)
-#define ORGAN_SPLINTED   (1<<4)
-#define ORGAN_DEAD       (1<<5)
-#define ORGAN_MUTATED    (1<<6)
+#define ORGAN_CUT_AWAY	(1<<0)
+#define ORGAN_BLEEDING	(1<<1)
+#define ORGAN_BROKEN	(1<<2)
+#define ORGAN_DESTROYED	(1<<3)
+#define ORGAN_SPLINTED	(1<<4)
+#define ORGAN_DEAD		(1<<5)
+#define ORGAN_MUTATED	(1<<6)
+#define ORGAN_INFECTED	(1<<7)
 
 // Body part functions
 #define BODYPART_GRASP				(1<<0)
@@ -147,6 +148,9 @@
 #define IORGAN_SMALL_HEALTH 8
 #define IORGAN_SKELETAL_HEALTH 14
 #define IORGAN_MAX_HEALTH 14
+
+#define IORGAN_KIDNEY_TOX_RATIO 0.25
+#define IORGAN_LIVER_TOX_RATIO 0.75
 
 // INTERNAL WOUNDS
 #define TREATMENT_ITEM 1

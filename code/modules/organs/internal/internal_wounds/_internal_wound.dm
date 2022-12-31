@@ -17,7 +17,7 @@
 	var/can_progress = TRUE							// Whether the wound can progress or not
 	var/progress_during_death = FALSE				// Will the wound progress while the organ is dead?
 	var/datum/component/next_wound					// If defined, applies a wound of this type when severity is at max
-	var/progression_threshold = IWOUND_3_MINUTES	// How many ticks until the wound progresses, default is 3 minutes
+	var/progression_threshold = IWOUND_4_MINUTES	// How many ticks until the wound progresses, default is 3 minutes
 	var/current_progression_tick					// Current tick towards progression
 
 	var/can_spread = FALSE				// Whether the wound can spread throughout the body or not

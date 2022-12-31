@@ -547,10 +547,8 @@
 	set category = "Carrion"
 	set name = "Blood Purge (25)"
 
-
-	if (owner.check_ability(25))
+	if(owner.check_ability(25))
 		to_chat(owner, SPAN_NOTICE("You cleanse your blood of all chemicals and poisons."))
-		owner.adjustToxLoss(-100)
 		owner.radiation = 0
 		owner.reagents.update_total()
 		owner.reagents.trans_to_turf(owner.loc, owner.reagents.total_volume)

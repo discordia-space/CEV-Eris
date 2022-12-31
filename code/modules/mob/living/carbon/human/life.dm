@@ -250,15 +250,15 @@
 				// Effects of kelotane, bicaridine (minus percentage healing) and tricordrazine
 				adjustOxyLoss(-0.6)
 				heal_organ_damage(0.6, 0.6)
-				adjustToxLoss(-0.3)
-				add_chemical_effect(CE_BLOODCLOT, 0.15)
+				add_reagent("leukotriene", REM)		// Anti-tox 0.5
+				add_reagent("thrombopoietin", REM)	// Blood-clotting 0.25
 
 			else if(get_active_mutation(src, MUTATION_LESSER_HEALING))
 				// Effects of tricordrazine
 				adjustOxyLoss(-0.6)
 				heal_organ_damage(0.3, 0.3)
-				adjustToxLoss(-0.3)
-				add_chemical_effect(CE_BLOODCLOT, 0.1)
+				add_reagent("leukotriene", REM)		// Anti-tox 0.5
+				add_reagent("thrombopoietin", REM)	// Blood-clotting 0.25
 
 	radiation = CLAMP(radiation,0,100)
 
@@ -760,9 +760,12 @@
 		chem_effects.Cut()
 		analgesic = 0
 
-		if(touching) touching.metabolize()
-		if(ingested) ingested.metabolize()
-		if(bloodstr) bloodstr.metabolize()
+		if(touching)
+			touching.metabolize()
+		if(ingested)
+			ingested.metabolize()
+		if(bloodstr)
+			bloodstr.metabolize()
 		metabolism_effects.process()
 
 		if(CE_PAINKILLER in chem_effects)
@@ -777,9 +780,11 @@
 		for(var/obj/item/I in src)
 			if(I.contaminated)
 				total_plasmaloss += vsc.plc.CONTAMINATION_LOSS
-		if(!(status_flags & GODMODE)) adjustToxLoss(total_plasmaloss)
+		if(!(status_flags & GODMODE))
+			bloodstr.add_reagent("plasma", total_plasmaloss)
 
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 
 	if(species.light_dam)
 		var/light_amount = 0
@@ -823,7 +828,6 @@
 			if(stats.getPerk(PERK_UNFINISHED_DELIVERY) && prob(33)) //Unless you have this perk
 				heal_organ_damage(20, 20)
 				adjustOxyLoss(-100)
-				adjustToxLoss(-20)
 				AdjustSleeping(rand(20,30))
 				updatehealth()
 				stats.removePerk(PERK_UNFINISHED_DELIVERY)

@@ -199,10 +199,13 @@
 /datum/reagent/medicine/cryoxadone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.bodytemperature < 170)
 		M.adjustCloneLoss(-(1 + (M.getCloneLoss() * 0.05)) * effect_multiplier)
+		M.add_chemical_effect(CE_ONCOCIDAL, 1)
 		M.adjustOxyLoss(-(1 + (M.getOxyLoss() * 0.05)) * effect_multiplier)
 		M.add_chemical_effect(CE_OXYGENATED, 1)
 		M.heal_organ_damage(1 * effect_multiplier, 1 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
+		M.add_chemical_effect(CE_BLOODCLOT, 0.30)
 		M.adjustToxLoss(-(1 + (M.getToxLoss() * 0.05)) * effect_multiplier)
+		M.add_chemical_effect(CE_ANTITOX, 1)
 		M.add_chemical_effect(CE_PULSE, -2)
 
 /datum/reagent/medicine/clonexadone
@@ -218,10 +221,13 @@
 /datum/reagent/medicine/clonexadone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.bodytemperature < 170)
 		M.adjustCloneLoss(-(3 + (M.getCloneLoss() * 0.05)) * effect_multiplier)
+		M.add_chemical_effect(CE_ONCOCIDAL, 1)
 		M.adjustOxyLoss(-(3 + (M.getOxyLoss() * 0.05)) * effect_multiplier)
-		M.add_chemical_effect(CE_OXYGENATED, 2)
+		M.add_chemical_effect(CE_OXYGENATED, 1)
 		M.heal_organ_damage(3 * effect_multiplier, 3 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
+		M.add_chemical_effect(CE_BLOODCLOT, 0.55)
 		M.adjustToxLoss(-(3 + (M.getToxLoss() * 0.05)) * effect_multiplier)
+		M.add_chemical_effect(CE_ANTITOX, 2)
 		M.add_chemical_effect(CE_PULSE, -2)
 
 /* Painkillers */

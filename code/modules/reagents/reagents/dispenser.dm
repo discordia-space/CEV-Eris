@@ -129,7 +129,7 @@
 
 /datum/reagent/ethanol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_PAINKILLER, 125 * effect_multiplier)	// Effect multiplier is 0.2, same strength as paracetamol
-
+	M.add_chemical_effect(CE_ONCOCIDAL, 0.5)	// STALKER reference
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
 //Tough people can drink a lot

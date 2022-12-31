@@ -56,16 +56,23 @@
 /mob/living/carbon/human/proc/kidney_process()
 	var/datum/reagents/metabolism/BLOOD_METABOLISM = get_metabolism_handler(CHEM_BLOOD)
 	var/kidneys_efficiency = get_organ_efficiency(OP_KIDNEYS)
+	var/obj/item/organ/internal/kidney = random_organ_by_process(OP_LIVER)
+	var/toxin_strength = chem_effects[CE_TOXIN]
+	var/toxin_damage = ((toxin_strength * IORGAN_KIDNEY_TOX_RATIO) / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (kidneys_efficiency / 100)
+	
 	//If your kidneys aren't working, your body's going to have a hard time cleaning your blood.
 	if(chem_effects[CE_ANTITOX])
 		if(kidneys_efficiency < BRUISED_2_EFFICIENCY)
 			if(prob(5) && BLOOD_METABOLISM.get_reagent_amount("potassium") < 5)
-				BLOOD_METABOLISM.add_reagent("potassium", REM*5)
+				BLOOD_METABOLISM.add_reagent("potassium", REM * 5)
 		if(kidneys_efficiency < BROKEN_2_EFFICIENCY)
 			if(BLOOD_METABOLISM.get_reagent_amount("potassium") < 15)
-				BLOOD_METABOLISM.add_reagent("potassium", REM*2)
+				BLOOD_METABOLISM.add_reagent("potassium", REM * 2)
 		if(kidneys_efficiency < DEAD_2_EFFICIENCY)
-			adjustToxLoss(1)
+			BLOOD_METABOLISM.add_reagent("toxin", REM * 2)
+	
+	if(toxin_damage > 0)
+		kidney.take_damage(toxin_damage, TOX)
 
 /mob/living/carbon/human/proc/liver_process()
 	var/liver_efficiency = get_organ_efficiency(OP_LIVER) + (chem_effects[CE_ANTITOX] * 33)
@@ -73,18 +80,15 @@
 	var/alcohol_strength = chem_effects[CE_ALCOHOL]
 	var/alcohol_toxic_strength = chem_effects[CE_ALCOHOL_TOXIC]
 	var/toxin_strength = chem_effects[CE_TOXIN]
+	var/toxin_damage = (alcohol_toxic_strength + toxin_strength * IORGAN_LIVER_TOX_RATIO) / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1) - (liver_efficiency / 100)
 
 	// If you're not filtering well, you're in trouble. Ammonia buildup to toxic levels and damage from alcohol
-	if(liver_efficiency < 66)
+	if(liver_efficiency < BROKEN_2_EFFICIENCY)
 		if(alcohol_strength)
-			adjustToxLoss(0.5 * max(2 - (liver_efficiency * 0.01), 0) * (alcohol_toxic_strength + 0.5 * alcohol_strength))
-	else if(!alcohol_strength && !toxin_strength && !radiation) // Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxloss.
-		// this will filter some toxins out of owners body
-		adjustToxLoss(-(liver_efficiency * 0.001))
+			toxin_damage += 0.5 * max(2 - (liver_efficiency * 0.01), 0) * (alcohol_strength / 2)
 
-	var/liver_damage = alcohol_toxic_strength + toxin_strength - (liver_efficiency / 100)
-	if(liver_damage > 0)
-		liver.take_damage(liver_damage, TOX)
+	if(toxin_damage > 0)
+		liver.take_damage(toxin_damage, TOX)
 
 	//Blood regeneration if there is some space
 	regenerate_blood(0.1 + chem_effects[CE_BLOODRESTORE])
@@ -95,7 +99,7 @@
 		if(nutrition >= 300)
 			adjustNutrition(-10)
 		else if(nutrition >= 200)
-			adjustNutrition(-3)
+			adjustNutrition(-2)
 
 
 /mob/living/carbon/human/proc/heart_process()
@@ -149,8 +153,7 @@
 			to_chat(src, SPAN_WARNING("Your organs feel extremely heavy"))
 
 	else if(blood_volume < blood_bad)
-		adjustOxyLoss(2)
-		adjustToxLoss(1)
+		adjustOxyLoss(3)
 		if(prob(15))
 			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
 
@@ -173,16 +176,14 @@
 	//Blood regeneration if there is some space
 	if(blood_volume_raw < species.blood_volume)
 		var/datum/reagent/organic/blood/B = get_blood(vessel)
-		B.volume += 0.1 // regenerate blood VERY slowly
-		if(CE_BLOODRESTORE in chem_effects)
-			B.volume += chem_effects[CE_BLOODRESTORE]
+		B.volume += 0.1 + chem_effects[CE_BLOODRESTORE]		// regenerate blood VERY slowly
 
 	// Blood loss or heart damage make you lose nutriments
 	if(blood_volume < total_blood_req + BLOOD_VOLUME_SAFE_MODIFIER || heart_efficiency < BRUISED_2_EFFICIENCY)
 		if(nutrition >= 300)
-			nutrition -= 10
+			adjustNutrition(-10)
 		else if(nutrition >= 200)
-			nutrition -= 3
+			adjustNutrition(-2)
 
 
 /mob/living/carbon/human/proc/lung_process()

@@ -140,7 +140,7 @@ var/list/disciples = list()
 		if(wearer.mutation_index)
 			var/datum/mutation/M = pick(wearer.active_mutations)
 			M.cleanse(wearer)
-			wearer.adjustToxLoss(rand(5, 25))
+			wearer.adjustFireLoss(rand(5,25))
 
 	if(wearer.stat == DEAD)
 		deactivate()
