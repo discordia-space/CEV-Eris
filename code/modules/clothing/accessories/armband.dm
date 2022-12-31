@@ -6,17 +6,17 @@
 
 /obj/item/clothing/accessory/armband/cargo
 	name = "cargo armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is brown."
+	desc = "An armband, worn by the crew to display which corporation they're assigned to. This one is brown."
 	icon_state = "cargo"
 
 /obj/item/clothing/accessory/armband/engine
 	name = "engineering armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is orange with a reflective strip!"
+	desc = "An armband, worn by the crew to display which faction they're assigned to. This one is orange with a reflective strip!"
 	icon_state = "engie"
 
 /obj/item/clothing/accessory/armband/science
-	name = "science armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is purple."
+	name = "Moebius research armband"
+	desc = "An armband, worn by the crew to display which corporation they're assigned to. This one is purple."
 	icon_state = "rnd"
 
 /obj/item/clothing/accessory/armband/hydro
@@ -26,10 +26,10 @@
 
 /obj/item/clothing/accessory/armband/med
 	name = "medical armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is white."
+	desc = "An armband, worn by the crew to display which corporation they're assigned to. This one is white."
 	icon_state = "med"
 
 /obj/item/clothing/accessory/armband/medgreen
 	name = "EMT armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is white and green."
+	desc = "An armband, worn by the crew to display which corporation they're assigned to. This one is white and green."
 	icon_state = "medgreen"
