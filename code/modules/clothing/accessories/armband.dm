@@ -26,10 +26,10 @@
 
 /obj/item/clothing/accessory/armband/med
 	name = "white armband"
-	desc = "An armband, worn by the crew to display which corporation they're assigned to. This one is white."
+	desc = "A plain white peice of cloth fashoned into an armband"
 	icon_state = "med"
 
 /obj/item/clothing/accessory/armband/medgreen
-	name = "moebius medical armband"
+	name = "Moebius medical armband"
 	desc = "An armband, worn by the crew to display which corporation they're assigned to. This one is white and green."
 	icon_state = "medgreen"
