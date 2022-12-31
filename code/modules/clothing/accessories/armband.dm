@@ -5,12 +5,12 @@
 	slot = "armband"
 
 /obj/item/clothing/accessory/armband/cargo
-	name = "cargo armband"
+	name = "asters guild armband"
 	desc = "An armband, worn by the crew to display which corporation they're assigned to. This one is brown."
 	icon_state = "cargo"
 
 /obj/item/clothing/accessory/armband/engine
-	name = "engineering armband"
+	name = "technomancer armband"
 	desc = "An armband, worn by the crew to display which faction they're assigned to. This one is orange with a reflective strip!"
 	icon_state = "engie"
 
@@ -25,11 +25,11 @@
 	icon_state = "hydro"
 
 /obj/item/clothing/accessory/armband/med
-	name = "medical armband"
+	name = "white armband"
 	desc = "An armband, worn by the crew to display which corporation they're assigned to. This one is white."
 	icon_state = "med"
 
 /obj/item/clothing/accessory/armband/medgreen
-	name = "EMT armband"
+	name = "moebius medical armband"
 	desc = "An armband, worn by the crew to display which corporation they're assigned to. This one is white and green."
 	icon_state = "medgreen"
