@@ -183,7 +183,7 @@
 	related_stats = list(STAT_COG)
 
 /datum/craft_recipe/bucket
-	name = "bucket"
+	name = "Bucket"
 	result = /obj/item/reagent_containers/glass/bucket
 	steps = list(
 		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTIC, "time" = 10),
