@@ -68,7 +68,7 @@ Admin Ghost:
 \tShift + Ctrl + Click = View Variables
 </font>"}
 
-	var/hotkey_mode = {"<font color='blue'>
+	var/hotkey_mode = {"<font color='purple'>
 Hotkey-Mode: (hotkey-mode must be on)
 \tTAB = toggle hotkey-mode
 \ta = left
@@ -78,8 +78,6 @@ Hotkey-Mode: (hotkey-mode must be on)
 \tq = drop
 \te = equip
 \tf = block
-\tb = resist
-\tc = rest
 \tShift+e = belt-equip
 \tShift+q = suit-storage-equip
 \tShift+b = bag-equip
