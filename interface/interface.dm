@@ -77,7 +77,6 @@ Hotkey-Mode: (hotkey-mode must be on)
 \tw = up
 \tq = drop
 \te = equip
-\tf = block
 \tShift+e = belt-equip
 \tShift+q = suit-storage-equip
 \tShift+b = bag-equip
@@ -87,8 +86,8 @@ Hotkey-Mode: (hotkey-mode must be on)
 \tx = swap-hand
 \tz = activate held object (or y)
 \tj = toggle-aiming-mode
-\tCtrl+f = cycle-intents-left
-\tCtrl+g = cycle-intents-right
+\tf = cycle-intents-left
+\tg = cycle-intents-right
 \t1 = help-intent
 \t2 = disarm-intent
 \t3 = grab-intent
