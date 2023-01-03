@@ -1,18 +1,28 @@
 SUBSYSTEM_DEF(explosions)
 	name = "explosions"
 	wait = 1 MINUTES
-	priority = SS_PRIORITY_INACTIVITY
+	priority = FIRE_PRIORITY_EXPLOSIONS
 	var/list/datum/explosion_handler/explode_queue = list()
 	var/list/throwing_queue = list()
 
 /datum/controller/subsystem/explosions/fire(resumed = FALSE)
 	for(var/datum/explosion_handler/explodey as anything in explode_queue)
+		// get rid of last queue
 		throwing_queue = list()
 		explodey.Run()
 		for(var/atom/movable/to_throw as anything in throwing_queue)
 			to_throw.throw_at(throwing_queue[to_throw], get_dist(to_throw, throwing_queue[to_throw]), 5, "Explosion")
+		if(!length(explodey.turf_queue))
+			explode_queue -= explodey
+			qdel(explodey)
 
-/datum/controller/subsystem/explosions/stat_entry()
+
+
+///datum/controller/subsystem/explosions/stat_entry()
+
+/datum/controller/subsystem/explosions/proc/start_explosion(turf/epicenter, power, falloff)
+	var/reference = new /datum/explosion_handler(epicenter, power, falloff)
+	explode_queue += reference
 
 /turf/proc/explosion_act()
 	return TRUE
@@ -23,6 +33,16 @@ SUBSYSTEM_DEF(explosions)
 	var/falloff
 	var/list/turf/turf_queue = list()
 	var/list/turf/immediate_queue = list()
+
+/datum/explosion_handler/New(turf/loc, power, falloff)
+	..()
+	for(var/dir in list(NORTH,SOUTH,WEST,EAST))
+		turf_queue += get_step(loc, dir)
+	src.power = power
+	src.falloff = falloff
+
+/turf/proc/test_explosion()
+	SSexplosions.start_explosion(src, 100, 10)
 
 /datum/explosion_handler/proc/Run()
 	immediate_queue = list()
@@ -56,6 +76,7 @@ SUBSYSTEM_DEF(explosions)
 		temporary_queue -= temporary_queue | immediate_queue
 		immediate_queue = temporary_queue
 		replacement_queue = replacement_queue + temporary_queue
+		target.color = COLOR_AMBER
 	// Special handling for last one , since it "loops" around , or would in  worst case scenario
 	target = turf_queue[1]
 	target_power = power - get_dist(epicenter, target) * falloff
