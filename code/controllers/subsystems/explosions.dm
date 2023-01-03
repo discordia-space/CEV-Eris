@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(explosions)
 	name = "explosions"
-	wait = 1 MINUTES
+	wait = 1 SECOND
 	priority = FIRE_PRIORITY_EXPLOSIONS
 	var/list/datum/explosion_handler/explode_queue = list()
 	var/list/throwing_queue = list()
