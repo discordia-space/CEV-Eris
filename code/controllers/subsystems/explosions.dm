@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(explosions)
 	name = "explosions"
-	wait = 1 SECOND
+	wait = 0.5 SECOND
 	priority = FIRE_PRIORITY_EXPLOSIONS
 	var/list/datum/explosion_handler/explode_queue = list()
 	var/list/throwing_queue = list()
@@ -11,12 +11,13 @@ SUBSYSTEM_DEF(explosions)
 		throwing_queue = list()
 		explodey.Run()
 		for(var/atom/movable/to_throw as anything in throwing_queue)
-			to_throw.throw_at(throwing_queue[to_throw], get_dist(to_throw, throwing_queue[to_throw]), 5, "Explosion")
+			if(to_throw.anchored)
+				continue
+			spawn(0)
+				to_throw.throw_at(throwing_queue[to_throw], get_dist(to_throw, throwing_queue[to_throw]), 5, "Explosion")
 		if(!length(explodey.turf_queue))
 			explode_queue -= explodey
 			qdel(explodey)
-
-
 
 ///datum/controller/subsystem/explosions/stat_entry()
 
@@ -32,12 +33,13 @@ SUBSYSTEM_DEF(explosions)
 	var/power
 	var/falloff
 	var/list/turf/turf_queue = list()
-	var/list/turf/immediate_queue = list()
+	//var/list/turf/immediate_queue = list()
 
 /datum/explosion_handler/New(turf/loc, power, falloff)
 	..()
 	for(var/dir in list(NORTH,SOUTH,WEST,EAST))
 		turf_queue += get_step(loc, dir)
+	src.epicenter = loc
 	src.power = power
 	src.falloff = falloff
 
@@ -45,7 +47,7 @@ SUBSYSTEM_DEF(explosions)
 	SSexplosions.start_explosion(src, 100, 10)
 
 /datum/explosion_handler/proc/Run()
-	immediate_queue = list()
+	var/list/immediate_queue = list()
 	var/list/temporary_queue = list()
 	var/list/replacement_queue = list()
 	// Prep for first turf handling
@@ -53,9 +55,9 @@ SUBSYSTEM_DEF(explosions)
 	var/target_power = power - get_dist(epicenter, target) * falloff
 	var/center_to_turf_angle = Get_Angle(epicenter, target)
 	if(target_power > 10)
-		immediate_queue += get_step(epicenter,angle2dir(center_to_turf_angle + 90))
-		immediate_queue += get_step(epicenter,angle2dir(center_to_turf_angle))
-		immediate_queue += get_step(epicenter,angle2dir(center_to_turf_angle - 90))
+		immediate_queue += get_step(target,angle2dir(center_to_turf_angle + 90))
+		immediate_queue += get_step(target,angle2dir(center_to_turf_angle))
+		immediate_queue += get_step(target,angle2dir(center_to_turf_angle - 90))
 	// Actual handling of all turfs except last one
 	for(var/i = 1; i < length(turf_queue); i++)
 		target = turf_queue[i]
@@ -65,33 +67,38 @@ SUBSYSTEM_DEF(explosions)
 		if(target_power < 10)
 			continue
 		target_power -= target.explosion_act(target_power)
+		if(target.density)
+			target_power -= 50
 		if(target_power < 10)
 			continue
 		for(var/atom/movable/moving_stuff in target)
 			SSexplosions.throwing_queue[moving_stuff] = get_turf_away_from_target_simple(target, epicenter, min(power / 25, 1))
 		center_to_turf_angle = Get_Angle(epicenter, target)
-		temporary_queue += get_step(epicenter,angle2dir(center_to_turf_angle + 90))
-		temporary_queue += get_step(epicenter,angle2dir(center_to_turf_angle))
-		temporary_queue += get_step(epicenter,angle2dir(center_to_turf_angle - 90))
-		temporary_queue -= temporary_queue | immediate_queue
+		message_admins("[angle2dir(center_to_turf_angle - 90)] | [angle2dir(center_to_turf_angle)] | [angle2dir(center_to_turf_angle + 90)]")
+		temporary_queue = list()
+		temporary_queue += get_step(target,angle2dir(center_to_turf_angle + 90))
+		temporary_queue += get_step(target,angle2dir(center_to_turf_angle))
+		temporary_queue += get_step(target,angle2dir(center_to_turf_angle - 90))
+		temporary_queue -= temporary_queue & immediate_queue
 		immediate_queue = temporary_queue
 		replacement_queue = replacement_queue + temporary_queue
-		target.color = COLOR_AMBER
+		target.color = COLOR_AMBER + target.color
 	// Special handling for last one , since it "loops" around , or would in  worst case scenario
 	target = turf_queue[1]
 	target_power = power - get_dist(epicenter, target) * falloff
 	if(target_power > 10)
 		center_to_turf_angle = Get_Angle(epicenter, target)
-		immediate_queue += get_step(epicenter,angle2dir(center_to_turf_angle + 90))
-		immediate_queue += get_step(epicenter,angle2dir(center_to_turf_angle))
-		immediate_queue += get_step(epicenter,angle2dir(center_to_turf_angle - 90))
+		immediate_queue += get_step(target,angle2dir(center_to_turf_angle + 90))
+		immediate_queue += get_step(target,angle2dir(center_to_turf_angle))
+		immediate_queue += get_step(target,angle2dir(center_to_turf_angle - 90))
 	target = turf_queue[length(turf_queue)]
 	target_power = power - get_dist(epicenter, target) * falloff
 	center_to_turf_angle = Get_Angle(epicenter, target)
-	temporary_queue += get_step(epicenter,angle2dir(center_to_turf_angle + 90))
-	temporary_queue += get_step(epicenter,angle2dir(center_to_turf_angle))
-	temporary_queue += get_step(epicenter,angle2dir(center_to_turf_angle - 90))
-	temporary_queue -= temporary_queue | immediate_queue
+	temporary_queue = list()
+	temporary_queue += get_step(target,angle2dir(center_to_turf_angle + 90))
+	temporary_queue += get_step(target,angle2dir(center_to_turf_angle))
+	temporary_queue += get_step(target,angle2dir(center_to_turf_angle - 90))
+	temporary_queue -= temporary_queue & immediate_queue
 	replacement_queue = replacement_queue + temporary_queue
 
 	// replace the queue with the new list
