@@ -1,4 +1,3 @@
-author: Firefox13
-delete-after: true
-changes:
+2023-01-03:
+  Firefox13:
   - rscdel: Removed rocky debris, unbreakable xenoarcheology leftover
