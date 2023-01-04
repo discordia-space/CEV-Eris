@@ -11,7 +11,7 @@
 
 /obj/item/clothing/accessory/armband/engine
 	name = "technomancer armband"
-	desc = "An armband, worn by the crew to display which faction they're assigned to. This one is orange with a reflective strip!"
+	desc = "An armband, worn by the crew to display which faction they're assigned to. this one is in the technomancer leauge colors, yellow and blue"
 	icon_state = "engie"
 
 /obj/item/clothing/accessory/armband/science
