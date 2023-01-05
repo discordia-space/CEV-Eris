@@ -149,16 +149,16 @@
 	price_tag = 10
 
 /obj/item/clothing/gloves/aerostatic
-	name = "red designed leather gloves"
-	desc = "Elegant leather gloves without fingertips."
+	name = "red designer leather gloves"
+	desc = "fancy red leather gloves from a designer brand."
 	icon_state = "aerostatic_gloves"
 	item_state = "aerostatic_gloves"
-	clipped = TRUE
 	cold_protection = ARMS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = ARMS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
-	price_tag = 10
+	style = STYLE_HIGH
+	price_tag = 100
 
 /obj/item/clothing/gloves/german
 	name = "Oberth Republic gloves"
