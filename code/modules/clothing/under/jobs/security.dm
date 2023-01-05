@@ -25,7 +25,7 @@
 
 /obj/item/clothing/under/rank/warden/skirt
 	name = "Gunnery Sergeant jumpskirt"
-	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for more robust protection. It has\"Gunnery Sergeant\" rank pins on the shoulders.""
+	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for more robust protection. It has\"Gunnery Sergeant\" rank pins on the shoulders."
 	icon_state = "warden_skirt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
