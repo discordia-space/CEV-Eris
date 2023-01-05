@@ -65,7 +65,7 @@
 	name = "NT Acolyte Jacket"
 	build_path = /obj/item/clothing/suit/storage/neotheology_jacket
 
-/datum/design/bioprinter/nt_clothes/acolyte_jacket
+/datum/design/bioprinter/nt_clothes/acolyte_jacket/black
 	name = "NT Black Acolyte Jacket"
 	build_path = /obj/item/clothing/suit/storage/neotheology_jacket/black
 
