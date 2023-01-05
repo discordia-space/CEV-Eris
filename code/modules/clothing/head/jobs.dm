@@ -80,7 +80,7 @@
 
 /obj/item/clothing/head/beret/sec/navy/hos
 	name = "Commander beret"
-	desc = "Grey beret with a Leiutennant's rank emblem. For officers that are more inclined towards style than safety."
+	desc = "Grey beret with a Lieutenant's rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_navy_hos"
 	spawn_blacklisted = TRUE
 
