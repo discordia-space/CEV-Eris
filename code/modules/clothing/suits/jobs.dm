@@ -144,7 +144,7 @@
 		rad = 0
 	)
 
-/obj/item/clothing/suit/storage/neotheology_jacket
+/obj/item/clothing/suit/storage/neotheology_jacket/black
 	name = "black acolyte jacket"
 	desc = "A long black jacket. Dark, stylish, and authoritarian."
 	icon_state = "chaplain_hoodie_old"
