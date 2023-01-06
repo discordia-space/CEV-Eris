@@ -33,6 +33,7 @@ SUBSYSTEM_DEF(explosions)
 	var/power
 	var/falloff
 	var/list/turf/turf_queue = list()
+	var/list/visited = list()
 	//var/list/turf/immediate_queue = list()
 
 /datum/explosion_handler/New(turf/loc, power, falloff)
