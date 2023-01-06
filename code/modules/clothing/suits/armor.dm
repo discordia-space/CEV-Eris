@@ -537,7 +537,7 @@
 	stiffness = LIGHT_STIFFNESS
 	style = STYLE_NONE
 
-/obj/item/clothing/suit/storage/vest/insulated
+/obj/item/clothing/suit/storage/vest/technomancer_old
 	name = "reinforced technomancer armor"
 	desc = "Technomancer League's ballistic armor, less protective against industrial hazards but better in a fight"
 	icon_state = "armor_engineering_old"
