@@ -11,25 +11,6 @@
 	anchored = FALSE
 	bad_type = /obj/structure/closet/gimmick
 
-/obj/structure/closet/gimmick/russian
-	name = "russian surplus closet"
-	desc = "A storage unit for Russian standard-issue surplus."
-	icon_state = "syndicate"
-	rarity_value = 5
-
-/obj/structure/closet/gimmick/russian/populate_contents()
-	new /obj/item/clothing/head/ushanka(src)
-	new /obj/item/clothing/head/ushanka(src)
-	new /obj/item/clothing/head/ushanka(src)
-	new /obj/item/clothing/head/ushanka(src)
-	new /obj/item/clothing/head/ushanka(src)
-	new /obj/item/clothing/under/soviet(src)
-	new /obj/item/clothing/under/soviet(src)
-	new /obj/item/clothing/under/soviet(src)
-	new /obj/item/clothing/under/soviet(src)
-	new /obj/item/clothing/under/soviet(src)
-
-
 /obj/structure/closet/thunderdome
 	name = "\improper Thunderdome closet"
 	desc = "Everything you need!"
