@@ -77,9 +77,10 @@
 		C.return_mind()
 
 	// Notifies borer of host death.
-	var/mob/living/simple_animal/borer/B = has_brain_worms()
-	if(B?.controlling)
-		B.host_death()
+	if(has_brain_worms())
+		var/mob/living/simple_animal/borer/B = has_brain_worms()
+		if(B?.controlling)
+			B.host_death()
 
 	update_lying_buckled_and_verb_status()
 	reset_plane_and_layer()
