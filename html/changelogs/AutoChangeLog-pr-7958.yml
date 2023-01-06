@@ -1,0 +1,4 @@
+author: Iglpigl
+delete-after: true
+changes:
+  - bugfix: lethal injection is lethal now
