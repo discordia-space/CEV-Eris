@@ -826,6 +826,7 @@
 
 /datum/reagent/toxin/chlorine
 	name = "Chlorine"
+	id = "chlorine"
 	description = "A highly poisonous liquid. Smells strongly of bleach."
 	reagent_state = LIQUID
 	taste_description = "bleach"
