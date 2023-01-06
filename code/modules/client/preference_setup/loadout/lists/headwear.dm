@@ -20,6 +20,11 @@
 	display_name = "beret, purple"
 	path = /obj/item/clothing/head/beret/purple
 
+/datum/gear/head/beret/moebius
+	display_name = "beret, moebius"
+	path = /obj/item/clothing/head/beret/moebius
+	allowed_roles = list(JOBS_SCIENCE, JOBS_MEDICAL)
+
 /datum/gear/head/beret/ntsec
 	display_name = "beret, old nanotrasen"
 	path = /obj/item/clothing/head/beret/ntsec

@@ -40,17 +40,12 @@
 	sort_category = "Accessories"
 
 /datum/gear/accessory/cargo
-	display_name = "armband, cargo"
+	display_name = "armband, Asters guild"
 	path = /obj/item/clothing/accessory/armband/cargo
 	allowed_roles = list(JOBS_CARGO)
 
-/datum/gear/accessory/emt
-	display_name = "armband, EMT"
-	path = /obj/item/clothing/accessory/armband/medgreen
-	allowed_roles = list(JOBS_MEDICAL)
-
 /datum/gear/accessory/engineering
-	display_name = "armband, engineering"
+	display_name = "armband, Technomancer leauge"
 	path = /obj/item/clothing/accessory/armband/engine
 	allowed_roles = list(JOBS_ENGINEERING)
 
@@ -63,10 +58,18 @@
 	path = /obj/item/clothing/accessory/armband/med
 	allowed_roles = list(JOBS_MEDICAL)
 
-/datum/gear/accessory/science
-	display_name = "armband, science"
+/datum/gear/accessory/moebius
+	display_name = "Moebius armband selection"
 	path = /obj/item/clothing/accessory/armband/science
-	allowed_roles = list(JOBS_SCIENCE)
+	allowed_roles = list(JOBS_SCIENCE, JOBS_MEDICAL)
+
+/datum/gear/accessory/moebius/New()
+    ..()
+    var/moebius_armband = list(
+        "Moebius armband, research purple" = /obj/item/clothing/accessory/armband/science,
+        "Moebius armband, biomedical blue" = /obj/item/clothing/accessory/armband/medgreen
+    )
+    gear_tweaks += new /datum/gear_tweak/path(moebius_armband)
 
 /datum/gear/accessory/holster
 	display_name = "holster, selection"

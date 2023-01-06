@@ -192,10 +192,6 @@
 	path = /obj/item/clothing/under/dress/dress_hop
 	allowed_roles = list("First Officer")*/
 
-/datum/gear/uniform/soviet
-	display_name = "soviet uniform"
-	path = /obj/item/clothing/under/soviet
-
 /datum/gear/uniform/battledress_serb
 	display_name = "battle dress uniform, serbian"
 	path = /obj/item/clothing/under/serbiansuit
