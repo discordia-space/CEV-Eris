@@ -1,0 +1,5 @@
+author: Firefox13
+delete-after: true
+changes:
+  - tweak: When cryoing departmental relics will now go into storage instead of getting
+      deleted
