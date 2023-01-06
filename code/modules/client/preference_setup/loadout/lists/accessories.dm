@@ -54,9 +54,8 @@
 	path = /obj/item/clothing/accessory/armband/hydro
 
 /datum/gear/accessory/medical
-	display_name = "armband, medical"
+	display_name = "armband, white"
 	path = /obj/item/clothing/accessory/armband/med
-	allowed_roles = list(JOBS_MEDICAL)
 
 /datum/gear/accessory/moebius
 	display_name = "Moebius armband selection"
@@ -67,6 +66,7 @@
     ..()
     var/moebius_armband = list(
         "Moebius armband, research purple" = /obj/item/clothing/accessory/armband/science,
+//		"Moebius armband, corporate colors" = /obj/item/clothing/accessory/armband/moebius
         "Moebius armband, biomedical blue" = /obj/item/clothing/accessory/armband/medgreen
     )
     gear_tweaks += new /datum/gear_tweak/path(moebius_armband)
