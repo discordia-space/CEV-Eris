@@ -94,7 +94,6 @@
 	name = "Purple beret"
 	desc = "A stylish, if purple, beret."
 	icon_state = "beret_purple"
-	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/beret/engineering
 	name = "Technomancer beret"
@@ -113,7 +112,7 @@
 /obj/item/clothing/head/beret/moebius
 	name = "Moebius Laboratories beret"
 	desc = "a purple beret emblazoned with the Moebius Laboratories logo"
-	icon_state = "beret_purple"
+	icon_state = "beret_moebius"
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/surgery
