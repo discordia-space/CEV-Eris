@@ -1,6 +1,0 @@
-author: Moltovz
-delete-after: true
-changes:
-  - bugfix: You can cycle intents with a bind while in hotkey mode.
-  - bugfix: Adds missing binds to hotkey-help's hotkey mode list
-  - tweak: Hotkey mode and any mode now have different colors in the hotkey-help verb.
