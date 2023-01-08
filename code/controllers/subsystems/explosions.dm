@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(explosions)
 	name = "explosions"
-	wait = 2 SECOND
+	wait = 1 // very small
 	priority = FIRE_PRIORITY_EXPLOSIONS
 	var/list/datum/explosion_handler/explode_queue = list()
 	var/list/throwing_queue = list()
@@ -8,16 +8,19 @@ SUBSYSTEM_DEF(explosions)
 /datum/controller/subsystem/explosions/fire(resumed = FALSE)
 	for(var/datum/explosion_handler/explodey as anything in explode_queue)
 		// get rid of last queue
-		throwing_queue = list()
-		explodey.Run()
+		//throwing_queue = list()
+		explodey.Run2()
+		/*
 		for(var/atom/movable/to_throw as anything in throwing_queue)
 			if(to_throw.anchored)
 				continue
 			spawn(0)
 				to_throw.throw_at(throwing_queue[to_throw], get_dist(to_throw, throwing_queue[to_throw]), 5, "Explosion")
+		*/
 		if(!length(explodey.turf_queue))
 			explode_queue -= explodey
 			qdel(explodey)
+
 
 ///datum/controller/subsystem/explosions/stat_entry()
 
@@ -26,7 +29,10 @@ SUBSYSTEM_DEF(explosions)
 	explode_queue += reference
 
 /turf/proc/explosion_act()
-	return TRUE
+	if(density)
+		return 20
+	else
+		return 0
 
 /datum/explosion_handler
 	var/turf/epicenter
@@ -45,7 +51,48 @@ SUBSYSTEM_DEF(explosions)
 	src.falloff = falloff
 
 /turf/proc/test_explosion()
-	SSexplosions.start_explosion(src, 100, 10)
+	SSexplosions.start_explosion(src, 100, 1)
+
+/datum/explosion_handler/proc/Run2()
+	var/target_power
+	var/list/new_turf_queue = list()
+	//var/center_angle
+	for(var/turf/target as anything in turf_queue)
+		target_power = turf_queue[target] - falloff
+		if(target_power < 10)
+			continue
+		visited[target] = world.time + 0.5 SECOND
+		target_power -= target.explosion_act(target_power)
+		if(target_power < 10)
+			continue
+		switch(target.color)
+			if(null)
+				target.color = COLOR_BLUE
+			if(COLOR_BLUE)
+				target.color = COLOR_CYAN
+			if(COLOR_CYAN)
+				target.color = COLOR_GREEN
+			if(COLOR_GREEN)
+				target.color = COLOR_YELLOW
+			if(COLOR_YELLOW)
+				target.color = COLOR_BROWN
+			if(COLOR_BROWN)
+				target.color = COLOR_RED
+		//center_angle = Get_Angle(epicenter, target)
+		/*
+		for(var/angle in list(-90,0,90))
+			var/turf/next = get_step(target,angle2dir(center_angle + angle))
+			if(visited[next])
+				continue
+			new_turf_queue[next] = target_power
+		*/
+		for(var/dir in list(NORTH,SOUTH,EAST,WEST))
+			var/turf/next = get_step(target,dir)
+			if(visited[next] > world.time )
+				continue
+			new_turf_queue[next] = target_power
+	turf_queue = new_turf_queue
+
 
 /datum/explosion_handler/proc/Run()
 	var/list/immediate_queue = list()
