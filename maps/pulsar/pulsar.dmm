@@ -158,17 +158,9 @@
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "ff" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = -5;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = 5;
-	pixel_y = 4
-	},
-/turf/simulated/floor/wood,
-/area/outpost/pulsar)
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/outpost/pulsar/maintenance)
 "fl" = (
 /turf/simulated/floor/wood,
 /area/outpost/pulsar)
@@ -249,6 +241,15 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "jo" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -5;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 5;
+	pixel_y = 4
+	},
 /obj/machinery/holoposter{
 	pixel_x = 32
 	},
@@ -338,9 +339,6 @@
 /turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "ln" = (
-/obj/structure/sign/faction/technomancers{
-	pixel_x = 32
-	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -355,9 +353,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar)
 "lG" = (
-/obj/structure/sign/faction/technomancers{
-	pixel_x = -32
-	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -866,7 +861,8 @@
 /turf/simulated/floor/wood,
 /area/outpost/pulsar)
 "Et" = (
-/obj/machinery/vending/boozeomat,
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/shaker,
 /turf/simulated/floor/wood,
 /area/outpost/pulsar)
 "Ev" = (
@@ -1051,8 +1047,20 @@
 /turf/simulated/floor/tiled/white,
 /area/outpost/pulsar/maintenance)
 "LI" = (
-/obj/structure/pulsar_fuel_tank,
-/turf/simulated/wall/r_wall,
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
+	pixel_x = -4;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
+	pixel_x = -3;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/turf/simulated/floor/wood,
 /area/outpost/pulsar)
 "LW" = (
 /obj/machinery/door/airlock/maintenance_engineering{
@@ -1105,8 +1113,8 @@
 /area/outpost/pulsar/maintenance)
 "Nd" = (
 /obj/effect/map_effect/portal/master/side_a{
-	portal_id = "pulsar";
-	dir = 8
+	dir = 8;
+	portal_id = "pulsar"
 	},
 /turf/simulated/floor/reinforced,
 /area/outpost/pulsar)
@@ -1144,7 +1152,6 @@
 /turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "NS" = (
-/obj/item/stool/padded,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -1160,9 +1167,10 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/outpost/pulsar/maintenance)
 "Ob" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/shaker,
-/turf/simulated/floor/wood,
+/obj/structure/sign/faction/technomancers{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/dark,
 /area/outpost/pulsar)
 "OB" = (
 /obj/machinery/door/firedoor,
@@ -1191,7 +1199,9 @@
 /turf/simulated/floor/reinforced,
 /area/outpost/pulsar)
 "PM" = (
-/obj/structure/pulsar_fuel_tank,
+/obj/structure/sign/faction/technomancers{
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled/dark,
 /area/outpost/pulsar)
 "PR" = (
@@ -1251,22 +1261,6 @@
 /obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/outpost/pulsar/maintenance)
-"Sx" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
-	pixel_x = -4;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
-	pixel_x = -3;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/turf/simulated/floor/wood,
-/area/outpost/pulsar)
 "SA" = (
 /turf/simulated/floor/tiled/dark/techfloor_grid/airless,
 /area/outpost/pulsar/maintenance)
@@ -17639,7 +17633,7 @@ bM
 bM
 bM
 bM
-ai
+ff
 bM
 lf
 Wp
@@ -17852,10 +17846,10 @@ Pl
 qh
 aj
 bM
-ai
+ff
 bM
 bM
-ai
+ff
 bM
 aa
 aa
@@ -18438,7 +18432,7 @@ aa
 aa
 aa
 zo
-ai
+ff
 bN
 Fm
 aj
@@ -20492,7 +20486,7 @@ af
 bN
 bN
 bN
-ai
+ff
 ak
 aa
 aa
@@ -20694,7 +20688,7 @@ aj
 in
 bN
 bN
-ai
+ff
 ak
 aa
 aa
@@ -20871,7 +20865,7 @@ jC
 Ue
 kT
 Pw
-PM
+Yf
 ad
 HA
 HA
@@ -21072,7 +21066,7 @@ ad
 ad
 ad
 Yy
-LI
+ad
 ad
 ad
 aa
@@ -21272,7 +21266,7 @@ En
 fn
 ON
 AI
-Yf
+Ob
 WD
 lG
 Yf
@@ -21673,8 +21667,8 @@ aa
 aa
 OB
 NS
-fn
-fn
+fl
+fl
 fl
 KG
 Co
@@ -21874,9 +21868,9 @@ aa
 aa
 aa
 OB
-Ob
-Sx
-ff
+fn
+fn
+fn
 fl
 Uo
 Yf
@@ -22077,10 +22071,10 @@ aa
 aa
 OB
 Et
-fl
+LI
 jo
 fl
-Yf
+PM
 Yf
 ln
 Yf
@@ -24494,7 +24488,7 @@ aa
 aa
 aa
 zo
-ai
+ff
 bN
 bN
 Uq
@@ -24527,7 +24521,7 @@ Su
 aj
 bN
 bN
-ai
+ff
 ak
 aa
 aa
@@ -24899,7 +24893,7 @@ aa
 aa
 aa
 zo
-ai
+ff
 bN
 bN
 af
@@ -26125,11 +26119,11 @@ aa
 aa
 aa
 bM
-ai
-ai
+ff
+ff
 bM
 bM
-ai
+ff
 bM
 bS
 bS
