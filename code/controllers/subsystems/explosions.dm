@@ -61,31 +61,10 @@ SUBSYSTEM_DEF(explosions)
 		target_power = turf_queue[target] - falloff
 		if(target_power < 10)
 			continue
-		visited[target] = world.time + 0.5 SECOND
+		visited[target] = world.time + 0.3 SECOND
 		target_power -= target.explosion_act(target_power)
 		if(target_power < 10)
 			continue
-		switch(target.color)
-			if(null)
-				target.color = COLOR_BLUE
-			if(COLOR_BLUE)
-				target.color = COLOR_CYAN
-			if(COLOR_CYAN)
-				target.color = COLOR_GREEN
-			if(COLOR_GREEN)
-				target.color = COLOR_YELLOW
-			if(COLOR_YELLOW)
-				target.color = COLOR_BROWN
-			if(COLOR_BROWN)
-				target.color = COLOR_RED
-		//center_angle = Get_Angle(epicenter, target)
-		/*
-		for(var/angle in list(-90,0,90))
-			var/turf/next = get_step(target,angle2dir(center_angle + angle))
-			if(visited[next])
-				continue
-			new_turf_queue[next] = target_power
-		*/
 		for(var/dir in list(NORTH,SOUTH,EAST,WEST))
 			var/turf/next = get_step(target,dir)
 			if(visited[next] > world.time )
