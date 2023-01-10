@@ -302,7 +302,7 @@
 	name = "Makeshift prosthetic left arm"
 	result = /obj/item/organ/external/robotic/makeshift/l_arm
 	steps = list(
-		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL, "time" = 0),
+		list(CRAFT_MATERIAL, 8, MATERIAL_STEEL, "time" = 0),
 		list(QUALITY_CUTTING, 10, 10),
 		list(QUALITY_WELDING, 10, 10),
 		list(/obj/item/stack/cable_coil, 10, "time" = 0),
