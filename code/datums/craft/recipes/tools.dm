@@ -18,7 +18,7 @@
 	result = /obj/item/tool/knife/shiv
 	steps = list(
 		list(/obj/item/material/shard, 1, "time" = 30),
-		list(/obj/item/stack/medical/bruise_pack/handmade, 1, "time" = 10)
+		list(QUALITY_ADHESIVE, 15, 20)
 	)
 
 //A rod wrapped in tape makes a crude screwthing
