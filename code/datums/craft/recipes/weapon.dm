@@ -214,7 +214,7 @@
 	name = "makeshift halberd"
 	result = /obj/item/tool/spear/makeshift_halberd
 	steps = list(
-		list(/obj/item/tool/hammer/staff),
+		list(/obj/item/tool/hammer/staff, 1),
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 		list(QUALITY_HAMMERING, 10, "time" = 10),
 		list(QUALITY_ADHESIVE, 10, "time" = 5)
