@@ -27,7 +27,6 @@
 	var/datum/geosample/geologic_data
 	var/excavation_level = 0
 	var/list/finds
-	var/next_rock = 0
 	var/archaeo_overlay = ""
 	var/excav_overlay = ""
 	var/obj/item/last_find
@@ -127,20 +126,8 @@
 			if(excavation_amount)
 				to_chat(user, SPAN_NOTICE("You start exacavating [src]."))
 				if(I.use_tool(user, src, WORKTIME_SLOW, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_COG))
-					to_chat(user, SPAN_NOTICE("You finish exacavating [src]."))
-
-					if(excavation_level + excavation_amount >= 100 )
-						//if players have been excavating this turf, leave some rocky debris behind
-						new /obj/structure/boulder
-
+					to_chat(user, SPAN_NOTICE("You finish excavating [src]."))
 					excavation_level += excavation_amount
-
-					//drop some rocks
-					next_rock += excavation_amount * 10
-					while(next_rock > 100)
-						next_rock -= 100
-						var/obj/item/ore/O = new(src)
-
 					GetDrilled(0)
 				return
 			return
@@ -149,8 +136,6 @@
 			to_chat(user, SPAN_NOTICE("You start digging the [src]."))
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
 				to_chat(user, SPAN_NOTICE("You finish digging the [src]."))
-				if(prob(15))
-					new /obj/structure/boulder(src)
 				GetDrilled(0)
 			return
 		if(ABORT_CHECK)

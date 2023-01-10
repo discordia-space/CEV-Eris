@@ -1,0 +1,22 @@
+2023-01-03:
+  Firefox13:
+  - rscdel: Removed rocky debris, unbreakable xenoarcheology leftover
+2023-01-07:
+  Firefox13:
+  - admin: Players getting antagonist status is now logged.
+  - tweak: When cryoing departmental relics will now go into storage instead of getting
+      deleted
+  Iglpigl:
+  - bugfix: lethal injection is lethal now
+  MLGTASTICa:
+  - balance: All stats are now capped at a maximum of 150.
+  Moltovz:
+  - bugfix: You can cycle intents with a bind while in hotkey mode.
+  - bugfix: Adds missing binds to hotkey-help's hotkey mode list
+  - tweak: Hotkey mode and any mode now have different colors in the hotkey-help verb.
+  assortedbeads:
+  - tweak: Energy sword and Energy sabre now fit in the baton sheath and ring sheath
+      respectively
+  - balance: The Krabin only accepts humans in it's link now
+  master832:
+  - tweak: Super series cells have moved to Asters Cells II tab on station Solnyshko
