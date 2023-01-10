@@ -14,6 +14,7 @@
 #define CAL_FLARE "flare shell"
 #define CAL_GRENADE "grenade"
 #define CAL_CBOLT "crossbow bolt"
+#define CAL_CANNON "cannon round"
 
 //Gun loading types
 #define SINGLE_CASING 	1	//The gun only accepts ammo_casings. ammo_magazines should never have this as their mag_type.

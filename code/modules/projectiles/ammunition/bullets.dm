@@ -575,7 +575,7 @@
 	matter_reagents = list("phosphorus" = 3)
 	rarity_value = 8
 
-/obj/item/ammo_casing/crossbow/bolt 
+/obj/item/ammo_casing/crossbow/bolt
 	name = "steel bolt"
 	desc = "A steel rod worked into the shape of a crossbow bolt."
 	icon_state = "CrossbowBolt"
@@ -593,3 +593,23 @@
 
 /obj/item/ammo_casing/crossbow/bolt/prespawned
 	amount = 5
+
+/obj/item/ammo_casing/cannon
+	name = "25x137mm caseless cannon round"
+	icon_state = ""
+	spent_icon = ""
+	caliber = CAL_CANNON
+	projectile_type = /obj/item/projectile/bullet/cannon
+	matter = list(MATERIAL_STEEL = 10)
+	is_caseless = TRUE
+	maxamount = 1
+
+/obj/item/ammo_casing/rocket/concussion
+	name = "CN-7V flash grenade"
+	desc = ""
+	description_info = ""
+	icon_state = "rocket_shock"
+	projectile_type = /obj/item/projectile/energy/flash/mechrocket
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASMA = 3)
+	is_caseless = TRUE
+	maxamount = 1
