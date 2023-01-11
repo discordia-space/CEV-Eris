@@ -1,5 +1,5 @@
 /obj/item/gun/projectile/automatic/vintorez
-	name = "Excelsior .20 \"Vintorez\""
+	name = "Excelsior .20 \"Charon\""
 	desc = "This gun is a copy of a design from a country that no longer exists. It is still highly prized for its armor piercing capabilities. \
 			The design was made to be able to fit long magazine alongside the standard ones. Uses .20 Rifle rounds."
 	icon = 'icons/obj/guns/projectile/vintorez.dmi'
@@ -45,8 +45,8 @@
 	item_state = itemstring
 
 /obj/item/part/gun/frame/vintorez
-	name = "Vintorez frame"
-	desc = "A Vintorez rifle frame. Accurate and damaging."
+	name = "Charon frame"
+	desc = "A Charon rifle frame. Accurate and damaging."
 	icon_state = "frame_vintorez"
 	resultvars = list(/obj/item/gun/projectile/automatic/vintorez)
 	gripvars = list(/obj/item/part/gun/grip/excel)

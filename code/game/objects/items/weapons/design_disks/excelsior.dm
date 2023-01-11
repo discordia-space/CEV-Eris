@@ -117,7 +117,7 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/excelsior/vintorez
-	disk_name = "Excelsior - .20 Vintorez Rifle"
+	disk_name = "Excelsior - .20 Charon Rifle"
 	desc = {"The back has a machine etching:\n \
 	\"Remember the failures of those before; \
 	for all failures serve as lessons and warnings - \

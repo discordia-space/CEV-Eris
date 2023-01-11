@@ -133,7 +133,7 @@
 // .20 Rifles
 
 /datum/design/autolathe/gun/vintorez
-	name = "Excelsior .20 \"Vintorez\""
+	name = "Excelsior .20 \"Charon\""
 	build_path = /obj/item/gun/projectile/automatic/vintorez
 
 /datum/design/autolathe/gun/z8
