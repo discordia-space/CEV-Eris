@@ -66,7 +66,7 @@
     ..()
     var/moebius_armband = list(
         "Moebius armband, research purple" = /obj/item/clothing/accessory/armband/science,
-//		"Moebius armband, corporate colors" = /obj/item/clothing/accessory/armband/moebius
+		"Moebius armband, corporate colors" = /obj/item/clothing/accessory/armband/moebius
         "Moebius armband, biomedical blue" = /obj/item/clothing/accessory/armband/medgreen
     )
     gear_tweaks += new /datum/gear_tweak/path(moebius_armband)
