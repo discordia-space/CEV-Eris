@@ -59,7 +59,7 @@
 /obj/item/clothing/suit/storage/toggle/labcoat/science
 	name = "moebius scientist labcoat"
 	desc = "A suit that protects against minor chemical spills. Has a purple stripe on the shoulder."
-	icon_state = "labcoat_tox_open"
+	icon_state = "labcoat_tox" //makes it start closed
 	icon_open = "labcoat_tox_open"
 	icon_closed = "labcoat_tox"
 
