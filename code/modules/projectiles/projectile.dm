@@ -279,7 +279,7 @@
 		recoil = leftmost_bit(recoil) //LOG2 calculation
 	else
 		recoil = 0
-	distance = distance <= 3 ? 5 - max(1,distance) : leftmost_bit(distance)
+	distance = leftmost_bit(distance)
 
 	def_zone = ran_zone(def_zone, 100 - (distance + recoil) * 10)
 
@@ -305,7 +305,6 @@
 	if(target_mob == original)
 		var/acc_mod = leftmost_bit(projectile_accuracy)
 		hit_mod -= acc_mod //LOG2 on the projectile accuracy
-
 	return prob((base_miss_chance[def_zone] + hit_mod) * 10)
 
 //Called when the projectile intercepts a mob. Returns 1 if the projectile hit the mob, 0 if it missed and should keep flying.
