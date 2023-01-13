@@ -40,7 +40,7 @@
 	sort_category = "Accessories"
 
 /datum/gear/accessory/cargo
-	display_name = "armband, Asters guild"
+	display_name = "armband, Aster's Guild"
 	path = /obj/item/clothing/accessory/armband/cargo
 	allowed_roles = list(JOBS_CARGO)
 
