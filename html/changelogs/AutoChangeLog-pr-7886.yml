@@ -1,5 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - rscadd: Added placeholder OS vendors and OS cash
-  - code_imp: Added alternative currency behavior to vending machines

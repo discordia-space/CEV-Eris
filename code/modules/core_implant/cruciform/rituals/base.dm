@@ -17,13 +17,13 @@
 
 /datum/ritual/cruciform/base/relief
 	name = "Relief"
-	phrase = "Et si ambulavero in medio umbrae mortis non timebo mala"
+	phrase = "Semper invicta"
 	desc = "Short litany to relieve pain of the afflicted."
 	power = 20
 	ignore_stuttering = TRUE
 
 /datum/ritual/cruciform/base/relief/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C)
-	H.add_chemical_effect(CE_PAINKILLER, 10)
+	H.reagents.add_reagent("angelsbalm", 15)
 	set_personal_cooldown(H)
 	return TRUE
 

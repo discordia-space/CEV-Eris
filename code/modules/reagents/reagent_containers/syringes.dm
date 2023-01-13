@@ -450,8 +450,8 @@
 	spawn_tags = SPAWN_ITEM_CONTRABAND
 	rarity_value = 40
 
-/obj/item/reagent_containers/syringe/ld50_syringe/choral
-	preloaded_reagents = list("chloralhydrate" = 50)
+/obj/item/reagent_containers/syringe/ld50_syringe/chlorine
+	preloaded_reagents = list("chlorine" = 25, "chloralhydrate" = 25)
 
 /obj/item/reagent_containers/syringe/stim
 	name = "syringe (stim)"

@@ -1,5 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - bugfix: Fixed artist stats not increasing on level up
-  - bugfix: Fixed insight stacking

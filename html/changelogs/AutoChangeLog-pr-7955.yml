@@ -1,0 +1,4 @@
+author: ValoTheValo
+delete-after: true
+changes:
+  - rscdel: Removed accuracy debuff at close range

@@ -51,12 +51,12 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/srifle
 	name = ".20 caliber bullet"
-	damage_types = list(BRUTE = 34)
+	damage_types = list(BRUTE = 24)
 	armor_divisor = 1.5
 	penetrating = 2
 	can_ricochet = TRUE
 	recoil = 3
-	wounding_mult = WOUNDING_SMALL
+	wounding_mult = WOUNDING_INTERMEDIATE
 
 /obj/item/projectile/bullet/srifle/nomuzzle
 	muzzle_type = null
@@ -78,6 +78,7 @@ There are important things regarding this file:
 	damage_types = list(BRUTE = 9, HALLOSS = 9)
 	embed = FALSE
 	sharp = FALSE
+	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/srifle/scrap
 	armor_divisor = 1.2

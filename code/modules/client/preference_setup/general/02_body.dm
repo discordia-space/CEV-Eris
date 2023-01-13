@@ -141,72 +141,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		pref.randomize_appearance_and_body_for()
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
-	/*else if(href_list["change_descriptor"])
-		if(mob_species.descriptors)
-			var/desc_id = href_list["change_descriptor"]
-			if(pref.body_descriptors[desc_id])
-				var/datum/mob_descriptor/descriptor = mob_species.descriptors[desc_id]
-				var/choice = input("Please select a descriptor.", "Descriptor") as null|anything in descriptor.chargen_value_descriptors
-				if(choice && mob_species.descriptors[desc_id]) // Check in case they sneakily changed species.
-					pref.body_descriptors[desc_id] = descriptor.chargen_value_descriptors[choice]
-					return TOPIC_REFRESH
-	*/
-
 	else if(href_list["blood_type"])
 		var/new_b_type = input(user, "Choose your character's blood-type:", CHARACTER_PREFERENCE_INPUT_TITLE) as null|anything in valid_bloodtypes
 		if(new_b_type && CanUseTopic(user))
 			pref.b_type = new_b_type
 			return TOPIC_REFRESH
 
-	/*else if(href_list["show_species"])
-		var/choice = input("Which species would you like to look at?") as null|anything in playable_species
-		if(choice)
-			var/datum/species/current_species = all_species[choice]
-			user << browse(current_species.get_description(), "window=species;size=700x400")
-			return TOPIC_HANDLED
-
-	else if(href_list["set_species"])
-
-		var/list/species_to_pick = list()
-		for(var/species in playable_species)
-			if(!check_rights(R_ADMIN, 0) && config.usealienwhitelist)
-				var/datum/species/current_species = all_species[species]
-				if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))
-					continue
-				else if((current_species.spawn_flags & SPECIES_IS_WHITELISTED) && !is_alien_whitelisted(preference_mob(),current_species))
-					continue
-			species_to_pick += species
-
-		var/choice = input("Select a species to play as.") as null|anything in species_to_pick
-		if(!choice || !(choice in all_species))
-			return
-
-		var/prev_species = pref.species
-		pref.species = choice
-		if(prev_species != pref.species)
-			mob_species = all_species[pref.species]
-			if(!(pref.gender in mob_species.genders))
-				pref.gender = mob_species.genders[1]
-
-			ResetAllHair()
-
-			//reset hair colour and skin colour
-			pref.r_hair = 0//hex2num(copytext(new_hair, 2, 4))
-			pref.g_hair = 0//hex2num(copytext(new_hair, 4, 6))
-			pref.b_hair = 0//hex2num(copytext(new_hair, 6, 8))
-			pref.s_tone = 0
-			pref.age = max(min(pref.age, mob_species.max_age), mob_species.min_age)
-
-			reset_limbs() // Safety for species with incompatible manufacturers; easier than trying to do it case by case.
-			pref.body_markings.Cut() // Basically same as above.
-
-			//prune_occupation_prefs()
-			pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)
-
-			pref.cultural_info = mob_species.default_cultural_info.Copy()
-
-			return TOPIC_REFRESH_UPDATE_PREVIEW
-	*/
 	else if(href_list["hair_color"])
 		if(!has_flag(mob_species, HAS_HAIR_COLOR))
 			return TOPIC_NOACTION
@@ -241,18 +181,16 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["base_skin"])
-		var/new_s_base = input(user, "Choose your character's base colour:", CHARACTER_PREFERENCE_INPUT_TITLE) as null//|anything in mob_species.base_skin_colours
+		var/new_s_base = input(user, "Choose your character's base colour:", CHARACTER_PREFERENCE_INPUT_TITLE) as null
 		if(new_s_base && CanUseTopic(user))
 			pref.s_base = new_s_base
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["skin_tone"])
-		//var/new_s_tone = input(user, "Choose your character's skin-tone. Lower numbers are lighter, higher are darker. Range: 1 to [mob_species.max_skin_tone()]", CHARACTER_PREFERENCE_INPUT_TITLE, (-pref.s_tone) + 35) as num|null
 		var/new_s_tone = input(user, "Choose your character's skin-tone. Lower numbers are lighter, higher are darker. Range: 1 to 225", CHARACTER_PREFERENCE_INPUT_TITLE, (-pref.s_tone) + 35) as num|null
 
 		mob_species = all_species[pref.species]
 		if(new_s_tone && CanUseTopic(user))
-			//pref.s_tone = 35 - max(min(round(new_s_tone), mob_species.max_skin_tone()), 1)
 			pref.s_tone = 35 - max(min(round(new_s_tone), 220), 1)
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 

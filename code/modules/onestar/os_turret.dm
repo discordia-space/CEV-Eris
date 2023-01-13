@@ -1,6 +1,6 @@
 /obj/machinery/power/os_turret
-	name = "One Star turret"
-	desc = "A turret of the One Star variety."
+	name = "One Star Gauss turret"
+	desc = "A One Star made turret with a mounted QJZ-295 gauss machinegun." //A turret of the One Star variety.
 	icon = 'icons/obj/machines/one_star/machines.dmi'
 	icon_state = "os_gauss"
 	circuit = /obj/item/electronics/circuitboard/os_turret
@@ -29,7 +29,9 @@
 	var/cooldown_timer_id
 
 /obj/machinery/power/os_turret/laser
+	name = "One Star laser turret"
 	icon_state = "os_laser"
+	desc = "A One Star made turret with a mounted QJZ-958 laser machinegun." //A turret of the One Star variety.
 	circuit = /obj/item/electronics/circuitboard/os_turret/laser
 	range = 10
 	projectile = /obj/item/projectile/beam/pulsed_laser
@@ -101,7 +103,7 @@
 			if(distance_to_target < nearest_valid_target_distance)
 				nearest_valid_target = L
 				nearest_valid_target_distance = distance_to_target
-	
+
 	if(nearest_valid_target)
 		try_shoot(nearest_valid_target)
 
@@ -238,11 +240,11 @@
 		for(var/i in 1 to to_shoot)
 			shot_timer_ids += addtimer(CALLBACK(src, .proc/shoot, target, def_zone), timer, TIMER_STOPPABLE)
 			timer += time_between_shots
-	
+
 	if(cooldown_time && !returning_fire)
 		on_cooldown = TRUE
 		cooldown_timer_id = addtimer(CALLBACK(src, .proc/cooldown), cooldown_time, TIMER_STOPPABLE)
-	
+
 	if(returning_fire)
 		returning_fire = FALSE
 

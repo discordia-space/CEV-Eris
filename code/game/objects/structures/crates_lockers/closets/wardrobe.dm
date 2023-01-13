@@ -282,7 +282,6 @@
 	new /obj/item/storage/fancy/candle_box(src)
 	new /obj/item/storage/fancy/candle_box(src)
 	new /obj/item/deck/tarot(src)
-	new /obj/item/talkingcrystal(src)
 
 /obj/structure/closet/wardrobe/engineering_yellow
 	name = "engineering wardrobe"

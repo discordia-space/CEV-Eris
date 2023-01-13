@@ -254,8 +254,8 @@
 	if((is_blind(src) || usr.stat) && !isobserver(src))
 		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
 		return
-
-	face_atom(examinify)
+	if(!istype(examinify, /obj/screen))
+		face_atom(examinify)
 	var/obj/item/device/lighting/toggleable/flashlight/FL = locate() in src
 	if (FL?.on && stat != DEAD && !incapacitated())
 		FL.afterattack(examinify, src)
@@ -1081,11 +1081,16 @@ mob/proc/yank_out_object()
 	return slowdown
 
 //Check for brain worms in head.
-/mob/proc/has_brain_worms()
+/mob/proc/get_brain_worms()
 	for(var/I in contents)
 		if(istype(I, /mob/living/simple_animal/borer))
 			return I
+	return
 
+/mob/proc/has_brain_worms()
+	for(var/I in contents)
+		if(istype(I, /mob/living/simple_animal/borer))
+			return TRUE
 	return FALSE
 
 /mob/proc/updateicon()

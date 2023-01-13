@@ -262,13 +262,8 @@ Technomancer RIG
 		/obj/item/tool,
 		/obj/item/device/scanner/health,
 		/obj/item/device/measuring_tape,
-		/obj/item/device/ano_scanner,
-		/obj/item/device/depth_scanner,
-		/obj/item/device/core_sampler,
 		/obj/item/device/gps,
-		/obj/item/device/beacon_locator,
 		/obj/item/device/radio/beacon,
-		/obj/item/storage/bag/fossils
 	)
 
 	req_access = list()
@@ -282,7 +277,6 @@ Technomancer RIG
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/maneuvering_jets,
-		/obj/item/rig_module/device/anomaly_scanner,
 		/obj/item/rig_module/storage
 		)
 

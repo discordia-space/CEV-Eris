@@ -27,7 +27,6 @@
 		/obj/item/gun/projectile/mk58,
 		/obj/item/gun/projectile/olivaw,
 		/obj/item/gun/projectile/mandella,
-		/obj/item/gun/projectile/voodoo,
 		/obj/item/gun/projectile/pistol,
 		/obj/item/gun/projectile/shotgun/type_21,
 		/obj/item/gun/energy/gun,
@@ -75,7 +74,8 @@
 		/obj/item/melee,
 		/obj/item/tool/crowbar,
 		/obj/item/tool/hammer/,
-		/obj/item/tool/hatchet
+		/obj/item/tool/hatchet,
+		/obj/item/melee/energy/sword
 		)
 
 
@@ -179,7 +179,6 @@
 		/obj/item/gun/projectile/mk58,
 		/obj/item/gun/projectile/olivaw,
 		/obj/item/gun/projectile/mandella,
-		/obj/item/gun/projectile/voodoo,
 		/obj/item/gun/projectile/pistol,
 		/obj/item/gun/projectile/shotgun/type_21,
 		/obj/item/gun/energy/gun,
@@ -257,7 +256,9 @@
 	max_w_class = ITEM_SIZE_BULKY
 	can_hold = list(
 		/obj/item/tool/hammer,
-		/obj/item/tool/hatchet
+		/obj/item/tool/hatchet,
+		/obj/item/tool/makeshiftaxe,
+		/obj/item/melee/energy/sword/sabre
 		)
 	price_tag = 20
 

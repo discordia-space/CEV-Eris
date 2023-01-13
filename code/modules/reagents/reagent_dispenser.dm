@@ -282,6 +282,17 @@
 	contents_cost = 700
 	spawn_blacklisted = TRUE
 
+/obj/structure/reagent_dispensers/coolanttank
+	name = "coolant tank"
+	desc = "A tank of industrial coolant"
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "coolanttank"
+	amount_per_transfer_from_this = 10
+	volume = 1000
+	starting_reagent = "coolant"
+	price_tag = 50
+	contents_cost = 700
+
 
 /obj/structure/reagent_dispensers/cahorsbarrel
 	name = "NeoTheology Cahors barrel"

@@ -2822,7 +2822,7 @@
 	},
 /obj/structure/table/rack,
 /obj/item/storage/box/emps{
-	initial_amount = 3
+	prespawned_content_amount = 3
 	},
 /obj/item/ammo_casing/shotgun/pellet/prespawned,
 /obj/item/gun/projectile/shotgun/doublebarrel,

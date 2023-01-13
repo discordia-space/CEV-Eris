@@ -283,7 +283,7 @@ obj/structure/salvageable/bliss/Initialize()
 	bad_type = /obj/structure/salvageable/os
 
 /obj/structure/salvageable/os/machine
-	name = "broken machine"
+	name = "broken terminal"
 	icon_state = "os-machine"
 	salvageable_parts = list(
 		/obj/item/stock_parts/console_screen = 80,
@@ -298,6 +298,7 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/stock_parts/micro_laser/one_star = 40,
 		/obj/item/stock_parts/matter_bin/one_star = 40,
 		/obj/item/stock_parts/matter_bin/one_star = 40,
+		/obj/item/computer_hardware/hard_drive/portable/research_points = 60,
 		/obj/spawner/prothesis_one_star = 20
 	)
 
@@ -330,6 +331,7 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/implant/freedom = 20,
 		/obj/item/implant/tracking = 30,
 		/obj/item/implant/chem = 30,
+		/obj/item/stock_parts/matter_bin/one_star = 60,
 		/obj/item/organ/external/robotic/l_arm = 20,
 		/obj/item/organ/external/robotic/r_arm = 20,
 		/obj/item/organ/external/robotic/l_leg = 20,
@@ -356,7 +358,7 @@ obj/structure/salvageable/bliss/Initialize()
 	)
 
 /obj/structure/salvageable/os/server
-	name = "broken server"
+	name = "broken analyzer"
 	icon_state = "os-server"
 	rarity_value = 33
 	salvageable_parts = list(
@@ -367,15 +369,12 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/computer_hardware/network_card/wired = 40,
 		/obj/item/computer_hardware/processor_unit/super = 40,
 		/obj/item/computer_hardware/processor_unit/super = 40,
-		/obj/item/stock_parts/subspace/amplifier = 40,
+		/obj/item/stock_parts/scanning_module/one_star = 40,
+		/obj/item/stock_parts/scanning_module/one_star = 40,
 		/obj/item/stock_parts/subspace/amplifier = 40,
 		/obj/item/stock_parts/subspace/analyzer = 40,
-		/obj/item/stock_parts/subspace/analyzer = 40,
-		/obj/item/stock_parts/subspace/ansible = 40,
 		/obj/item/stock_parts/subspace/ansible = 40,
 		/obj/item/stock_parts/subspace/transmitter = 40,
-		/obj/item/stock_parts/subspace/transmitter = 40,
-		/obj/item/stock_parts/subspace/crystal = 30,
 		/obj/item/stock_parts/subspace/crystal = 30,
 		/obj/item/computer_hardware/network_card/wired = 20
 	)
@@ -415,4 +414,17 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/computer_hardware/card_slot = 40,
 		/obj/item/computer_hardware/card_slot = 40,
 		/obj/item/computer_hardware/network_card/advanced = 40
+	)
+
+/obj/structure/salvageable/os/power  //todo:make a system to directly repair to a generator
+	name = "broken generator"
+	desc = "A One Star cold fusion reactor, broken beyond repair. You may be able to salvage something from this."
+	icon_state = "generator_broken"
+	rarity_value = 80
+	salvageable_parts = list(
+		/obj/item/stock_parts/console_screen = 80,
+		/obj/item/stock_parts/micro_laser/one_star = 50,
+		/obj/item/stock_parts/micro_laser/one_star = 20,
+		/obj/item/stock_parts/capacitor/one_star = 50,
+		/obj/item/electronics/circuitboard/os_generator = 99
 	)

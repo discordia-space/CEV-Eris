@@ -97,9 +97,9 @@
 	new /obj/item/clothing/mask/gas/ihs(src)
 	new /obj/item/storage/box/teargas(src)
 	new /obj/item/storage/box/flashbangs(src)
-	new /obj/item/ammo_magazine/magnum/rubber(src)
-	new /obj/item/ammo_magazine/magnum/rubber(src)
-	new	/obj/item/gun/projectile/voodoo(src)
+	new /obj/item/ammo_magazine/pistol/rubber(src)
+	new /obj/item/ammo_magazine/pistol/rubber(src)
+	new	/obj/item/gun/projectile/paco(src)
 	new /obj/item/ammo_magazine/ihclrifle/rubber(src)
 	new /obj/item/ammo_magazine/ihclrifle/rubber(src)
 	new /obj/item/gun/projectile/automatic/sol(src)
@@ -200,8 +200,8 @@
 	icon_state = "secure"
 
 /obj/structure/closet/secure_closet/injection/populate_contents()
-	new /obj/item/reagent_containers/syringe/ld50_syringe/choral(src)
-	new /obj/item/reagent_containers/syringe/ld50_syringe/choral(src)
+	new /obj/item/reagent_containers/syringe/ld50_syringe/chlorine(src)
+	new /obj/item/reagent_containers/syringe/ld50_syringe/chlorine(src)
 
 /obj/structure/closet/secure_closet/brig
 	name = "brig locker"

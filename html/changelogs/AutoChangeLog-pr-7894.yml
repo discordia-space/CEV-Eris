@@ -1,4 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - bugfix: Fixed a runtime caused by taking the negative root of a value
