@@ -1,0 +1,6 @@
+author: driecg36
+delete-after: true
+changes:
+  - rscadd: You can now craft buckets.
+  - tweak: Made crafting recipes in general much easier and removed a lot of the wonky
+      part requirements.
