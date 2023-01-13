@@ -45,7 +45,7 @@
 	allowed_roles = list(JOBS_CARGO)
 
 /datum/gear/accessory/engineering
-	display_name = "armband, Technomancer leauge"
+	display_name = "armband, Technomancer League"
 	path = /obj/item/clothing/accessory/armband/engine
 	allowed_roles = list(JOBS_ENGINEERING)
 
