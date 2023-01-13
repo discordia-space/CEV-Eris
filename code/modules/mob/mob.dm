@@ -1085,8 +1085,7 @@ mob/proc/yank_out_object()
 	for(var/I in contents)
 		if(istype(I, /mob/living/simple_animal/borer))
 			return I
-
-	return FALSE
+	return
 
 /mob/proc/updateicon()
 	return
