@@ -121,7 +121,7 @@
  * Ironhammer Commander
  */
 /obj/item/clothing/under/rank/ih_commander
-	desc = "The uniform of an on-field Ironhammer officer. Used to distinguish themselves from the grunts. It has \"Leiutennant\" rank pins on the shoulder"
+	desc = "The uniform of an on-field Ironhammer officer. Used to distinguish officers from the grunts. It has \"Lieutenant\" rank pins on the shoulder"
 	name = "Ironhammer Commander's jumpsuit"
 	icon_state = "hos"
 	item_state = "r_suit"
