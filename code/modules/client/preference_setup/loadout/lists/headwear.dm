@@ -46,7 +46,7 @@
 	allowed_roles = list("Ironhammer Commander")
 
 /datum/gear/head/beret/eng
-	display_name = "beret, yellow technomancer"
+	display_name = "beret, yellow Technomancer"
 	path = /obj/item/clothing/head/beret/engineering
 	allowed_roles = list(JOBS_ENGINEERING)
 
