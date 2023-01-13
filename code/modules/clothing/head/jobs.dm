@@ -96,8 +96,8 @@
 	icon_state = "beret_purple"
 
 /obj/item/clothing/head/beret/engineering
-	name = "Technomancer yellow beret"
-	desc = "A beret with the Technomancer leauge insignia emblazoned on it. For engineers that are more inclined towards style than safety."
+	name = "technomancer yellow beret"
+	desc = "A beret with the Technomancer League insignia emblazoned on it. For engineers that are more inclined towards style than safety."
 	icon_state = "beret_engineering"
 	spawn_blacklisted = TRUE
 
