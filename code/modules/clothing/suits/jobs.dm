@@ -127,7 +127,7 @@
 
 //NeoTheology
 /obj/item/clothing/suit/storage/neotheology_jacket
-	name = "Acolyte jacket"
+	name = "acolyte jacket"
 	desc = "A long jacket. Dark, stylish, and authoritarian."
 	icon_state = "chaplain_hoodie"
 	item_state = "chaplain_hoodie"
