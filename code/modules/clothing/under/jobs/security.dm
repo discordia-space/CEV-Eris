@@ -62,7 +62,7 @@
 
 /obj/item/clothing/under/rank/medspec/skirt
 	name = "Medical Specialist's jumpskirt"
-	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for robust protection. It has\"Specialist\" rank pins on the shoulders."
+	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for robust protection. It has \"Specialist\" rank pins on the shoulders."
 	icon_state = "medspec_skirt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
