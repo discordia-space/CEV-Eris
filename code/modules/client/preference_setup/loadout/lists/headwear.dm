@@ -51,7 +51,7 @@
 	allowed_roles = list(JOBS_ENGINEERING)
 
 /datum/gear/head/beret/eng/old
-	display_name = "beret, orange technomancer"
+	display_name = "beret, orange Technomancer"
 	path = /obj/item/clothing/head/beret/engineering/old
 	allowed_roles = list(JOBS_ENGINEERING)
 
