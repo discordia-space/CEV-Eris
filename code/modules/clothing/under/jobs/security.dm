@@ -71,7 +71,7 @@
  */
 /obj/item/clothing/under/rank/inspector
 	name = "inspector's suit"
-	desc = "fancy dress shirt, slacks and tie, fancy civilian clothes of Ironhammer Inspector."
+	desc = "Fancy dress shirt, slacks and tie. The fancy civilian clothes of an Ironhammer Inspector."
 	icon_state = "insp_under"
 	item_state = "insp_under"
 	siemens_coefficient = 0.8
