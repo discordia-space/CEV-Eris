@@ -10,7 +10,7 @@
 	icon_state = "cargo"
 
 /obj/item/clothing/accessory/armband/engine
-	name = "technomancer armband"
+	name = "Technomancer armband"
 	desc = "An armband, worn by the crew to display which faction they're assigned to. This one is in the Technomancer League colors, yellow and blue"
 	icon_state = "techno"
 
