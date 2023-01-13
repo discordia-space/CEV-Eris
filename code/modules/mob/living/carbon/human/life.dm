@@ -250,15 +250,15 @@
 				// Effects of kelotane, bicaridine (minus percentage healing) and tricordrazine
 				adjustOxyLoss(-0.6)
 				heal_organ_damage(0.6, 0.6)
-				add_reagent("leukotriene", REM)		// Anti-tox 0.5
-				add_reagent("thrombopoietin", REM)	// Blood-clotting 0.25
+				bloodstr.add_reagent("leukotriene", REM)		// Anti-tox 0.5
+				bloodstr.add_reagent("thrombopoietin", REM)		// Blood-clotting 0.25
 
 			else if(get_active_mutation(src, MUTATION_LESSER_HEALING))
 				// Effects of tricordrazine
 				adjustOxyLoss(-0.6)
 				heal_organ_damage(0.3, 0.3)
-				add_reagent("leukotriene", REM)		// Anti-tox 0.5
-				add_reagent("thrombopoietin", REM)	// Blood-clotting 0.25
+				bloodstr.add_reagent("leukotriene", REM)		// Anti-tox 0.5
+				bloodstr.add_reagent("thrombopoietin", REM)		// Blood-clotting 0.25
 
 	radiation = CLAMP(radiation,0,100)
 
