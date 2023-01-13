@@ -7,8 +7,8 @@
 	power_gen = 0						// Watts output per power_output level
 	var/can_generate_power = FALSE
 	var/is_circuit_fried = FALSE		// Doesn't actually fry anything, maybe it should
-	var/power_gen_gain_per_tick = 100	// How fast this thing ramps up
-	var/max_power_gen = 30000
+	var/power_gen_gain_per_tick = 10000	// How fast this thing ramps up
+	var/max_power_gen = 300000
 	var/max_power_output = 10			// The maximum power setting without emagging.
 
 /obj/machinery/power/port_gen/os_generator/Initialize()
