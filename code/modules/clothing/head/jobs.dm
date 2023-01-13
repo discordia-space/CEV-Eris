@@ -102,7 +102,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/beret/engineering/old
-	name = "technomancer orange beret"
+	name = "Technomancer orange beret"
 	desc = "A beret with the Technomancer League insignia emblazoned on it. For engineers that are more inclined towards style than safety."
 	icon_state = "beret_engineering_old"
 	spawn_blacklisted = TRUE
