@@ -108,7 +108,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/beret/artist
-	name = "Feathered beret"
+	name = "feathered beret"
 	desc = "Fit for artists, frenchmen, and eccentric military officers across the cosmos."
 	icon_state = "beret_artist"
 	item_state = "beret_artist"
