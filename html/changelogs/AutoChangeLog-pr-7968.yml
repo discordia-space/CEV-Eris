@@ -1,0 +1,5 @@
+author: Hyperio
+delete-after: true
+changes:
+  - code_imp: Rename has_brain_worms into get_brain_worms
+  - code_imp: New has_brain_worms function
