@@ -44,7 +44,7 @@
 
 /obj/item/clothing/under/rank/security/turtleneck
 	name = "Ironhammer Operative's turtleneck"
-	desc = "Same as the standard Ironhammer uniform but with a sleek black military style sweater. best used in cold environments"
+	desc = "Same as the standard Ironhammer uniform but with a sleek black military style sweater. Best used in cold environments"
 	icon_state = "securityrturtle"
 
 /obj/item/clothing/under/rank/security/skirt
