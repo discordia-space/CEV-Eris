@@ -150,7 +150,7 @@
 
 /obj/item/clothing/gloves/aerostatic
 	name = "red designer leather gloves"
-	desc = "fancy red leather gloves from a designer brand."
+	desc = "Fancy red leather gloves from a designer brand."
 	icon_state = "aerostatic_gloves"
 	item_state = "aerostatic_gloves"
 	cold_protection = ARMS
