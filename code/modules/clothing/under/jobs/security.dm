@@ -55,7 +55,7 @@
 
 /obj/item/clothing/under/rank/medspec
 	name = "Medical Specialist's jumpsuit"
-	desc = "an ironhammer uniform modified for use by medics. with a white shirt and medical insignia. It has\"Specialist\" rank pins on the shoulders."
+	desc = "An i\Ironhammer uniform modified for use by medics. Comes with a white shirt and medical insignia. It has\"Specialist\" rank pins on the shoulders."
 	icon_state = "medspec"
 	item_state = "ba_suit"
 	siemens_coefficient = 0.8
