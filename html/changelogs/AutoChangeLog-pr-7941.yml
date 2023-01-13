@@ -1,0 +1,6 @@
+author: CocaColaTastesGood
+delete-after: true
+changes:
+  - bugfix: Borers no longer get soft locked by their host dying while assuming control.
+  - bugfix: Non-humanoid carbons can be controlled again.
+  - bugfix: Borer's no longer persist in a host's implants/contents after leaving.
