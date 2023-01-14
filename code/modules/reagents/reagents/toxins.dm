@@ -21,12 +21,12 @@
 		M.adjustToxLoss(strength * multi)
 		if(sanityloss && ishuman(M))
 			var/mob/living/carbon/human/H = M
-			H.sanity.onToxin(src, effect_multiplier)
+			H.sanity.onToxin(src, multi)
 		M.add_chemical_effect(CE_TOXIN, multi * strength * 10)
 
 /datum/reagent/toxin/overdose(mob/living/carbon/M, alien)
 	if(strength)
-		M.add_chemical_effect(CE_TOXIN, strength * 10)
+		M.add_chemical_effect(CE_TOXIN, strength * dose * 2.5)
 
 /datum/reagent/toxin/plasticide
 	name = "Plasticide"

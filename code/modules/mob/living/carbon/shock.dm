@@ -109,20 +109,22 @@
 		to_chat(src, "<span class='danger'>[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!</span>")
 
 	if(shock_stage >= 60)
-		if(shock_stage == 60) emote("me",1,"is having trouble keeping their eyes open.")
+		if(shock_stage == 60)
+			emote("me",1,"is having trouble keeping their eyes open.")
 		stuttering = max(stuttering, 5)
 
 	if(shock_stage == 80)
 		to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
 
 	if (shock_stage >= 100)
-		if(shock_stage == 100) emote("me",1,"'s body becomes limp.")
-		if (prob(2))
+		if(shock_stage == 100)
+			emote("me",1,"'s body becomes limp.")
+		if(prob(2))
 			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
 			Weaken(10)
 
 	if(shock_stage >= 120)
-		if (prob(5))
+		if(prob(5))
 			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
 			Weaken(10)
 

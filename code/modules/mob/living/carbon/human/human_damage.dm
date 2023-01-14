@@ -175,10 +175,14 @@
 /mob/living/carbon/human/getToxLoss()
 	return
 
-/mob/living/carbon/human/adjustToxLoss()
+/mob/living/carbon/human/adjustToxLoss(amount)
+	if(amount > 0)
+		bloodstr.add_reagent("toxin", amount)
+	else
+		bloodstr.remove_reagent("toxin", -amount)
 	return
 
-/mob/living/carbon/human/setToxLoss()
+/mob/living/carbon/human/setToxLoss(amount)
 	return
 
 ////////////////////////////////////////////

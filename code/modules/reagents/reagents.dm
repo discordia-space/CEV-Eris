@@ -194,7 +194,7 @@
 /datum/reagent/proc/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
 
 /datum/reagent/proc/overdose(mob/living/carbon/M, alien) // Overdose effect. Doesn't happen instantly.
-	M.add_chemical_effect(CE_TOXIN, 1)
+	M.add_chemical_effect(CE_TOXIN, dose / 4)
 	return
 
 /datum/reagent/proc/create_overdose_wound(obj/item/organ/internal/I, mob/user, datum/component/internal_wound/base_type, wound_descriptor = "poisoning")
