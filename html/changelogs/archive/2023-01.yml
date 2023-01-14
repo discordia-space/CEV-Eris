@@ -20,3 +20,25 @@
   - balance: The Krabin only accepts humans in it's link now
   master832:
   - tweak: Super series cells have moved to Asters Cells II tab on station Solnyshko
+2023-01-14:
+  CeUvi:
+  - imageadd: cruciforge resprite
+  - imageadd: eotp resprite
+  - imageadd: warrant projector resprite
+  CocaColaTastesGood:
+  - bugfix: Borers no longer get soft locked by their host dying while assuming control.
+  - bugfix: Non-humanoid carbons can be controlled again.
+  - bugfix: Borer's no longer persist in a host's implants/contents after leaving.
+  Hyperio:
+  - code_imp: Rename has_brain_worms into get_brain_worms
+  - code_imp: New has_brain_worms function
+  - code_imp: Has_brain_worms now returns null instead of FALSE
+  Iglpigl:
+  - tweak: guild vendor now sells hydroponics trays circuit boards
+  ValoTheValo:
+  - rscdel: Removed accuracy debuff at close range
+  driecg36:
+  - balance: Buff Onestar Microfusion Generator
+  - rscadd: You can now craft buckets.
+  - tweak: Made crafting recipes in general much easier and removed a lot of the wonky
+      part requirements.
