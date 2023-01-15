@@ -99,8 +99,8 @@
 	desc = "These tactical gloves are somewhat fire and impact resistant."
 	icon_state = "security_tactical"
 	item_state = "security_tactical"
-	siemens_coefficient = 0
-	price_tag = 500
+	siemens_coefficient = 0.5
+	price_tag = 100
 
 /obj/item/clothing/gloves/latex
 	name = "latex gloves"
