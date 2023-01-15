@@ -11,7 +11,7 @@
 
 /obj/item/clothing/under/security_formal
 	name = "ironhammer formal uniform"
-	desc = "A navy blue suit. Often used by Ironhammer bodyguards, for shooting with style."
+	desc = "A navy blue suit. Often used by Ironhammer personnel, for shooting with style."
 	icon_state = "ih_formal"
 	item_state = "ih_formal"
 	spawn_blacklisted = TRUE
