@@ -26,7 +26,7 @@
 
 /obj/item/clothing/accessory/armband/med
 	name = "white armband"
-	desc = "A plain white peice of cloth fashoned into an armband"
+	desc = "A plain white piece of cloth fashioned into an armband."
 	icon_state = "med"
 
 /obj/item/clothing/accessory/armband/medgreen
