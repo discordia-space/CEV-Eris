@@ -266,7 +266,7 @@
 	/obj/item/clothing/head/armor/faceshield/altyn/brown = 1,
 	/obj/item/clothing/mask/balaclava = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
-	/obj/item/clothing/gloves/security/tactical = 1,
+	/obj/item/clothing/gloves/security = 1,
 	/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat_brown = 1)
 
 /obj/item/storage/deferred/crate/uniform_black
@@ -279,7 +279,7 @@
 	/obj/item/clothing/head/armor/faceshield/altyn/black = 1,
 	/obj/item/clothing/mask/balaclava = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
-	/obj/item/clothing/gloves/security/tactical = 1,
+	/obj/item/clothing/gloves/security = 1,
 	/obj/item/clothing/suit/storage/greatcoat/serbian_overcoat = 1)
 
 /obj/item/storage/deferred/crate/uniform_flak
@@ -292,7 +292,7 @@
 	/obj/item/clothing/head/armor/faceshield/altyn/maska = 1,
 	/obj/item/clothing/mask/balaclava = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
-	/obj/item/clothing/gloves/security/tactical = 1,
+	/obj/item/clothing/gloves/security = 1,
 	/obj/item/storage/fancy/cigarettes = 1)
 
 /obj/item/storage/deferred/crate/uniform_light
@@ -305,7 +305,7 @@
 	/obj/item/clothing/suit/armor/flak = 1,
 	/obj/item/clothing/head/armor/steelpot = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
-	/obj/item/clothing/gloves/security/tactical = 1,
+	/obj/item/clothing/gloves/security = 1,
 	/obj/item/storage/fancy/cigarettes = 1)
 
 /obj/item/storage/deferred/crate/german_uniform

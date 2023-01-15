@@ -96,11 +96,11 @@
 
 /obj/item/clothing/gloves/security/tactical
 	name = "tactical gloves"
-	desc = "These tactical gloves are somewhat fire and impact resistant."
+	desc = "These tactical gloves are somewhat fire, shock and impact resistant."
 	icon_state = "security_tactical"
 	item_state = "security_tactical"
-	siemens_coefficient = 0.5
-	price_tag = 100
+	siemens_coefficient = 0
+	price_tag = 500
 
 /obj/item/clothing/gloves/latex
 	name = "latex gloves"
