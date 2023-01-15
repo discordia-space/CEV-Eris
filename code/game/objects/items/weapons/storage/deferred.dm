@@ -253,7 +253,7 @@
 	/obj/item/clothing/head/armor/faceshield/altyn = 1,
 	/obj/item/clothing/mask/balaclava = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
-	/obj/item/clothing/gloves/security/tactical = 1)
+	/obj/item/clothing/gloves/security = 1)
 
 /obj/item/storage/deferred/crate/uniform_brown
 	name = "brown uniform kit"
