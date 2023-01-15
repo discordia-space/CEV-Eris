@@ -36,5 +36,5 @@
 
 /obj/item/clothing/accessory/armband/moebius
 	name = "Moebius armband"
-	desc = "An armband, worn by the crew to display which corporation they're assigned to. This one is white and teal."
+	desc = "An armband, worn by the crew to display which corporation they're assigned to. This one is purple and teal."
 	icon_state = "moebius"
