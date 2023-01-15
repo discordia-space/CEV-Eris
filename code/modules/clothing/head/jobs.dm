@@ -91,7 +91,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/beret/purple
-	name = "Purple beret"
+	name = "purple beret"
 	desc = "A stylish, if purple, beret."
 	icon_state = "beret_purple"
 
