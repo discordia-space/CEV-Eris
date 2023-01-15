@@ -305,7 +305,7 @@
 	/obj/item/clothing/suit/armor/flak = 1,
 	/obj/item/clothing/head/armor/steelpot = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
-	/obj/item/clothing/gloves/security = 1,
+	/obj/item/clothing/gloves/fingerless = 1,
 	/obj/item/storage/fancy/cigarettes = 1)
 
 /obj/item/storage/deferred/crate/german_uniform
