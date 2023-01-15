@@ -539,7 +539,7 @@
 
 /obj/item/clothing/suit/storage/vest/technomancer_old
 	name = "reinforced Technomancer armor"
-	desc = "Technomancer League's ballistic armor, less protective against industrial hazards but better in a fight"
+	desc = "Technomancer League's ballistic armor, less protective against industrial hazards but better in a fight."
 	icon_state = "armor_engineering_old"
 	item_state = "armor_engineering_old"
 	blood_overlay_type = "armor"
