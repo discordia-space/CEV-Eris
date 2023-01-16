@@ -92,9 +92,10 @@
 		. += span("highlight", "Subject's pulse: <font color='red'>-- bpm.</font>")
 		return
 
-	var/fake_oxy = max(rand(1, 40), M.getOxyLoss(), (300 - (M.getToxLoss() + M.getFireLoss() + M.getBruteLoss())))
+	var/fake_oxy = max(rand(1, 40), M.getOxyLoss(), (300 - (M.getFireLoss() + M.getBruteLoss())))
+	var/tox_content = M.chem_effects[CE_TOXIN] + M.chem_effects[CE_ALCOHOL_TOXIC]
 	var/OX = M.getOxyLoss() > 50 	? 	"<b>[M.getOxyLoss()]</b>" 		: M.getOxyLoss()
-	var/TX = M.getToxLoss() > 50 	? 	"<b>[M.getToxLoss()]</b>" 		: M.getToxLoss()
+	var/TX = tox_content > 8		?	"<b>[tox_content]</b>"			: (tox_content ? tox_content : "0")
 	var/BU = M.getFireLoss() > 50 	? 	"<b>[M.getFireLoss()]</b>" 		: M.getFireLoss()
 	var/BR = M.getBruteLoss() > 50 	? 	"<b>[M.getBruteLoss()]</b>" 	: M.getBruteLoss()
 	if(M.status_flags & FAKEDEATH)
@@ -118,13 +119,13 @@
 				capitalize(org.name),
 				(BP_IS_ROBOTIC(org)) ? "(Cybernetic)" : "",
 				(org.brute_dam > 0) ? SPAN_WARNING("[org.brute_dam]") : 0,
-				(org.status & ORGAN_BLEEDING)?SPAN_DANGER("\[Bleeding\]"):"",
+				(org.status & ORGAN_BLEEDING)?SPAN_DANGER(" \[Bleeding\]"):"",
 				(org.burn_dam > 0) ? "<font color='#FFA500'>[org.burn_dam]</font>" : 0)
 		else
 			dat += span("highlight", "    Limbs are OK.")
 
 	OX = M.getOxyLoss() > 50 ? 	 "<font color='#0080ff'><b>Severe oxygen deprivation detected</b></font>" 		: 	"Subject bloodstream oxygen level normal"
-	TX = M.getToxLoss() > 50 ? 	 "<font color='green'><b>Dangerous amount of toxins detected</b></font>" 	: 	"Subject bloodstream toxin level minimal"
+	TX = tox_content > 8 ? 	 "<font color='green'><b>Dangerous amount of toxins detected</b></font>" 	: 	"Subject bloodstream toxin level minimal"
 	BU = M.getFireLoss() > 50 ?  "<font color='#FFA500'><b>Severe burn damage detected</b></font>" 			:	"Subject burn injury status O.K"
 	BR = M.getBruteLoss() > 50 ? "<font color='red'><b>Severe anatomical damage detected</b></font>" 		: 	"Subject brute-force injury status O.K"
 	if(M.status_flags & FAKEDEATH)
@@ -184,8 +185,6 @@
 						dat += SPAN_WARNING("Unsecured fracture in subject [E.get_bone()]. Splinting recommended for transport.")
 					else
 						foundUnlocatedFracture = TRUE
-			if(E.has_infected_wound())
-				dat += SPAN_WARNING("Infected wound detected in subject [E]. Disinfection recommended.")
 
 		if(foundUnlocatedFracture)
 			dat += SPAN_WARNING("Bone fractures detected. Advanced scanner required for location.")
@@ -196,6 +195,16 @@
 			for(var/datum/wound/W in e.wounds) if(W.internal)
 				dat += text(SPAN_WARNING("Internal bleeding detected. Advanced scanner required for location."))
 				break
+			var/internal_wound_severity = e.severity_internal_wounds
+			if(!internal_wound_severity)
+				continue
+			if(internal_wound_severity < 5)
+				dat += text(SPAN_WARNING("Light internal damage detected in \the [e]. Advanced scanner required for location. Treatment recommended."))
+			else if(internal_wound_severity < 9)
+				dat += text(SPAN_WARNING("Moderate internal damage detected \the [e]. Advanced scanner required for location. Treatment recommended."))
+			else
+				dat += text(SPAN_WARNING("Severe internal damage detected \the [e]. Advanced scanner required for location. Immediate treatment recommended."))
+
 		if(H.vessel)
 			var/blood_volume = H.vessel.get_reagent_amount("blood")
 			var/blood_percent =  round((blood_volume / H.species.blood_volume)*100)

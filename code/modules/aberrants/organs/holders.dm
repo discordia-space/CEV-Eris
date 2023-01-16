@@ -117,6 +117,7 @@
 
 	update_color()
 
+	SEND_SIGNAL(src, COMSIG_IWOUND_EFFECTS)
 	SEND_SIGNAL(src, COMSIG_APPVAL, src)
 
 	update_name()

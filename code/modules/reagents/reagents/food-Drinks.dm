@@ -2341,10 +2341,8 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/heart/L = H.random_organ_by_process(OP_HEART)
 		if(L && istype(L))
-			if(dose < 120)
-				L.take_damage(1 * effect_multiplier, 0)
-			else
-				L.take_damage(10 * effect_multiplier, 0)
+			if(dose > 120)
+				L.take_damage(dose/6, FALSE, TOX)
 
 /datum/reagent/alcohol/red_mead
 	name = "Red Mead"
