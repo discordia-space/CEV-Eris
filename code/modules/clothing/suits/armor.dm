@@ -549,7 +549,7 @@
 		energy = 7,
 		bomb = 40,
 		bio = 0,
-		rad = 10
+		rad = 5
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	item_flags = DRAG_AND_DROP_UNEQUIP
