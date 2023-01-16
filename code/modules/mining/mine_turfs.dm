@@ -173,7 +173,7 @@
 
 /turf/simulated/mineral/random
 	name = "Mineral deposit"
-	var/mineralSpawnChanceList = list("Uranium" = 5, "Platinum" = 5, "Hematite" = 35, "Carbon" = 34, "Diamond" = 1, "Gold" = 5, "Silver" = 5, "Plasma" = 10, "MHydrogen" = 1)
+	var/mineralSpawnChanceList = list(ORE_URANIUM = 5, ORE_PLATINUM = 5, ORE_IRON = 35, ORE_CARBON = 35, ORE_DIAMOND = 1, ORE_GOLD = 5, ORE_SILVER = 5, ORE_PLASMA = 10, ORE_HYDROGEN = 1)
 	var/mineralChance = 100 //10 //means 10% chance of this plot changing to a mineral deposit
 
 /turf/simulated/mineral/random/New()
@@ -191,7 +191,7 @@
 
 /turf/simulated/mineral/random/high_chance
 	mineralChance = 100 //25
-	mineralSpawnChanceList = list("Uranium" = 10, "Platinum" = 10, "Hematite" = 20, "Carbon" = 19, "Diamond" = 2, "Gold" = 10, "Silver" = 10, "Plasma" = 20, "MHydrogen" = 1)
+	mineralSpawnChanceList = list(ORE_URANIUM = 10, ORE_PLATINUM = 10, ORE_IRON = 20, ORE_CARBON = 20, ORE_DIAMOND = 2, ORE_GOLD = 10, ORE_SILVER = 10, ORE_PLASMA = 20, ORE_HYDROGEN = 1)
 
 
 /**********************Asteroid**************************/
