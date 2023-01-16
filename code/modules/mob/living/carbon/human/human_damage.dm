@@ -5,7 +5,9 @@
 		stat = CONSCIOUS
 		return
 
-	var/lethal_damage = max((species.flags & NO_BREATHE) ? 0 : oxyloss, brainloss)
+	var/brain_damage = getBrainLoss()
+	var/oxygen_level = (species.flags & NO_BREATHE) ? 0 : oxyloss
+	var/lethal_damage = max(brain_damage, oxygen_level)
 
 	health = maxHealth - lethal_damage
 	SEND_SIGNAL(src, COMSIG_HUMAN_HEALTH, health)
@@ -20,7 +22,7 @@
 		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
 			sponge.take_damage(amount)
-			brainloss = initial(sponge.health) - sponge.health
+			brainloss = (sponge.damage / sponge.max_damage) * 200
 		else
 			setBrainLoss(200)
 	else
@@ -33,8 +35,8 @@
 	if(species && species.has_process[BP_BRAIN])
 		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
-			sponge.health = min(max(amount, 0),(maxHealth*2))
-			brainloss = initial(sponge.health) - sponge.health
+			sponge.take_damage(amount)
+			brainloss = (sponge.damage / sponge.max_damage) * 200
 		else
 			brainloss = 200
 	else
@@ -47,7 +49,7 @@
 	if(species && species.has_process[BP_BRAIN])
 		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
-			brainloss = min(sponge.damage,maxHealth*2)
+			brainloss = (sponge.damage / sponge.max_damage) * 200
 		else
 			brainloss = 200
 	else

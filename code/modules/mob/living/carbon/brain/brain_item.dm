@@ -19,7 +19,7 @@
 	max_blood_storage = 80
 	oxygen_req = 8
 	nutriment_req = 6
-	health = 100
+	health = 50
 	var/mob/living/carbon/brain/brainmob = null
 	var/timer_id
 
@@ -40,7 +40,7 @@
 	if(!damage_type || status & ORGAN_DEAD)
 		return
 
-	health -= amount
+	health -= amount * wounding_multiplier
 
 	if(health < 0)
 		var/wound_damage = -health

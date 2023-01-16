@@ -45,6 +45,7 @@
 				organ_health += E.total_internal_health
 				organ_damage += E.severity_internal_wounds
 			internal_health = organ_health ? round((1 - (organ_damage / organ_health)) * 100) : 100
+		var/tox_content = victim.chem_effects[CE_TOXIN] + victim.chem_effects[CE_ALCOHOL_TOXIC]
 		dat += {"
 				<B>Patient Information:</B><BR>
 				<BR>
@@ -55,7 +56,7 @@
 				<B>Critical Health:</B> [victim.health]%<BR>
 				<B>Organ Health:</B> [internal_health]%<BR>
 				<B>Brute Damage:</B> [victim.getBruteLoss()]<BR>
-				<B>Toxins Damage:</B> [victim.getToxLoss()]<BR>
+				<B>Toxin Content:</B> [tox_content ? tox_content : "0"]<BR>
 				<B>Fire Damage:</B> [victim.getFireLoss()]<BR>
 				<B>Suffocation Damage:</B> [victim.getOxyLoss()]<BR>
 				<B>Patient Status:</B> [victim.stat ? "Non-Responsive" : "Stable"]<BR>

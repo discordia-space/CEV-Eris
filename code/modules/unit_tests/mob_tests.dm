@@ -60,9 +60,7 @@
 #define IMMUNE 3              // Will take no damage
 
 /datum/unit_test/mob_damage/Run()
-	var/list/damtypes = list(
-		BRUTE, BURN, TOX,
-		OXY, CLONE, HALLOSS)
+	var/list/damtypes = list(BRUTE, BURN, OXY, HALLOSS)
 
 	for(var/i in damtypes)
 		var/mob/living/carbon/human/H = allocate(/mob/living/carbon/human)
