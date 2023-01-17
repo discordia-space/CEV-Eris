@@ -69,7 +69,10 @@
 #define GUN_UPGRADE_OFFSET "offset" //Constant offset, in degrees
 #define GUN_UPGRADE_ZOOM "zoom"
 
-
+//Type configuration
+#define GUN_UPGRADE_DEFINE_CALIBER "caliber"
+#define GUN_UPGRADE_DEFINE_MAG_WELL "mag_well"
+#define GUN_UPGRADE_FIREMODES "firemodes"
 
 //boolean
 #define GUN_UPGRADE_SILENCER "silencable"
@@ -88,13 +91,20 @@
 //Location Tag defines
 
 #define GUN_UNDERBARREL "underbarrel slot"
-#define GUN_BARREL "barrel slot"
+#define GUN_BARREL "barrel attachment slot"
 #define GUN_TRIGGER "trigger slot"
 #define GUN_MUZZLE "muzzle slot"
 #define GUN_SCOPE "scope slot"
 #define GUN_MECHANISM "misc slot"
-#define GUN_GRIP "grip slot"
+#define GUN_GRIP "grip attachment slot"
 #define GUN_COSMETIC "cosmetic slot"
+
+// Reminder: projectile_defines.dm contains a lot of unused slots
+
+#define PART_BARREL "barrel slot"
+#define PART_MECHANISM "firing mechanism slot"
+#define PART_GRIP "grip slot"
+#define PART_STOCK "stock slot"
 
 //Whitelist Tag defines
 #define GUN_SILENCABLE "silencable"
@@ -105,6 +115,7 @@
 #define GUN_INTERNAL_MAG "internal mag"
 #define GUN_GILDABLE "gildable"
 #define GUN_FA_MODDABLE "full auto moddable"
+#define GUN_MODULAR "modular"
 
 #define GUN_CALIBRE_35 "caliber .35"
 

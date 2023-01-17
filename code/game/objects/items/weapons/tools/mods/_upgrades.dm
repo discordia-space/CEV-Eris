@@ -9,6 +9,11 @@
 	for (var/t in subtypesof(/obj/item/tool_upgrade))
 		new t(usr.loc)
 */
+
+#define MOD_REMOVABLE 1
+#define MOD_FUSED 0
+#define MOD_INTEGRAL -1
+
 /datum/component/item_upgrade
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	can_transfer = TRUE
@@ -19,7 +24,7 @@
 	var/destroy_on_removal = FALSE
 	//The upgrade can be applied to a tool that has any of these qualities
 	var/list/required_qualities = list()
-	var/removable = TRUE
+	var/removable = MOD_REMOVABLE
 	var/breakable = TRUE //Some mods meant to be tamper-resistant and should be removed only in a hard way
 
 	//The upgrade can not be applied to a tool that has any of these qualities
@@ -326,7 +331,6 @@
 		G.vision_flags = SEE_MOBS
 	if(weapon_upgrades[GUN_UPGRADE_GILDED])
 		G.gilded = TRUE
-
 	if(weapon_upgrades[GUN_UPGRADE_BAYONET])
 		G.attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 		G.sharp = TRUE
@@ -364,13 +368,20 @@
 		var/obj/item/gun/projectile/P = G
 		if(weapon_upgrades[GUN_UPGRADE_MAGUP])
 			P.max_shells += weapon_upgrades[GUN_UPGRADE_MAGUP]
-
+		if(weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER])
+			P.caliber = weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER]
+			P.name = "[weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER]] [P.name]"
+		if(weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL])
+			P.mag_well = weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL]
 	for(var/datum/firemode/F in G.firemodes)
 		apply_values_firemode(F)
 
 /datum/component/item_upgrade/proc/add_values_gun(obj/item/gun/G)
 	if(weapon_upgrades[GUN_UPGRADE_FULLAUTO])
 		G.add_firemode(FULL_AUTO_400)
+	if(weapon_upgrades[GUN_UPGRADE_FIREMODES])
+		for(var/FM in weapon_upgrades[GUN_UPGRADE_FIREMODES])
+			G.add_firemode(FM)
 
 /datum/component/item_upgrade/proc/apply_values_firemode(datum/firemode/F)
 	for(var/i in F.settings)
@@ -572,6 +583,13 @@
 			else
 				to_chat(user, SPAN_WARNING("Decreases scope zoom by x[amount]"))
 
+/*	It is best we stick to description with these two, at least for now
+		if(weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER])
+			var/amount = weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER]
+			to_chat(user, SPAN_WARNING("Fits [amount] caliber bullets"))
+		if(weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL])
+			var/amount = weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL]
+			to_chat(user, SPAN_WARNING("")) */
 		to_chat(user, SPAN_WARNING("Requires a weapon with the following properties"))
 		to_chat(user, english_list(req_gun_tags))
 
@@ -614,8 +632,10 @@
 		if(toremove == "Cancel")
 			return 1
 		var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
-		if(IU.removable == FALSE)
-			to_chat(user, SPAN_DANGER("\the [toremove] seems to be fused with the [upgrade_loc]"))
+		if(IU.removable == MOD_FUSED)
+			to_chat(user, SPAN_DANGER("\the [toremove] seems to be fused with the [upgrade_loc]!"))
+		else if(IU.removable == MOD_INTEGRAL)
+			to_chat(user, SPAN_DANGER("\the [toremove] can only be removed by disassembling the [upgrade_loc]!"))
 		else
 			if(C.use_tool(user = user, target =  upgrade_loc, base_time = IU.removal_time, required_quality = QUALITY_SCREW_DRIVING, fail_chance = IU.removal_difficulty, required_stat = STAT_MEC))
 				//If you pass the check, then you manage to remove the upgrade intact

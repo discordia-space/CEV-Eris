@@ -1,3 +1,33 @@
+/obj/item/part/gun
+	name = "gun part"
+	desc = "Spare part of gun."
+	icon_state = "gun_part_1"
+	spawn_tags = SPAWN_TAG_GUN_PART
+	w_class = ITEM_SIZE_SMALL
+	matter = list(MATERIAL_PLASTEEL = 5)
+	var/generic = TRUE
+	var/part_overlay
+
+/obj/item/part/gun/Initialize()
+	. = ..()
+	if(generic)
+		icon_state = "gun_part_[rand(1,6)]"
+
+/obj/item/part/gun/artwork
+	desc = "This is an artistically-made gun part."
+	spawn_frequency = 0
+
+/obj/item/part/gun/artwork/Initialize()
+	name = get_weapon_name(capitalize = TRUE)
+	AddComponent(/datum/component/atom_sanity, 0.2 + pick(0,0.1,0.2), "")
+	price_tag += rand(0, 500)
+	return ..()
+
+/obj/item/part/gun/artwork/get_item_cost(export)
+	. = ..()
+	GET_COMPONENT(comp_sanity, /datum/component/atom_sanity)
+	. += comp_sanity.affect * 100
+
 /obj/item/part/gun/frame
 	name = "gun frame"
 	desc = "a generic gun frame. consider debug"
@@ -35,7 +65,6 @@
 	var/obj/item/gun/G = new result(null)
 	if(G.serial_type)
 		serial_type = G.serial_type
-
 
 /obj/item/part/gun/frame/New(loc)
 	..()
@@ -187,12 +216,6 @@
 			else if(isnull(serial_type))
 				to_chat(user, SPAN_DANGER("The serial is scribbled away."))
 
-//Modular
-
-/obj/item/part/gun/frame/modular
-//Pretty empty rn
-
-
 //Grips
 /obj/item/part/gun/grip
 	name = "generic grip"
@@ -204,33 +227,48 @@
 	price_tag = 100
 	rarity_value = 5
 
+/obj/item/part/gun/grip/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_OFFSET = -15 // Without a grip the gun shoots funny, players are legally allowed to not use a grip
+		)
+	I.gun_loc_tag = PART_GRIP
+	I.req_gun_tags = list(GUN_MODULAR)
+	I.removable = FALSE
+
 /obj/item/part/gun/grip/wood
 	name = "wood grip"
 	desc = "A wood firearm grip, unattached from a firearm."
 	icon_state = "grip_wood"
 	matter = list(MATERIAL_WOOD = 6)
+	part_overlay = "grip_wood"
 
 /obj/item/part/gun/grip/black //Nanotrasen, Moebius, Syndicate, Oberth
 	name = "plastic grip"
 	desc = "A black plastic firearm grip, unattached from a firearm. For sleekness and decorum."
 	icon_state = "grip_black"
+	part_overlay = "grip_bl"
 
 /obj/item/part/gun/grip/rubber //FS and IH
 	name = "rubber grip"
 	desc = "A rubber firearm grip, unattached from a firearm. For professionalism and violence of action."
 	icon_state = "grip_rubber"
+	part_overlay = "grip_ru"
 
 /obj/item/part/gun/grip/excel
 	name = "Excelsior plastic grip"
 	desc = "A tan plastic firearm grip, unattached from a firearm. To fight for Haven and to spread the unified revolution!"
 	icon_state = "grip_excel"
 	rarity_value = 7
+	part_overlay = "grip_ex"
 
 /obj/item/part/gun/grip/serb
 	name = "bakelite plastic grip"
 	desc = "A brown plastic firearm grip, unattached from a firearm. Classics never go out of style."
 	icon_state = "grip_serb"
 	rarity_value = 7
+	part_overlay = "grip_sb"
 
 //Mechanisms
 /obj/item/part/gun/mechanism
@@ -243,10 +281,27 @@
 	price_tag = 100
 	rarity_value = 6
 
+	var/datum/component/item_upgrade/I // For changing when needed
+	var/list/accepted_calibers = list(CAL_PISTOL, CAL_MAGNUM, CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE, CAL_SHOTGUN)
+
+/obj/item/part/gun/mechanism/New()
+	..()
+	I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_DEFINE_MAG_WELL = MAG_WELL_GENERIC
+		)
+	I.gun_loc_tag = PART_MECHANISM
+	I.req_gun_tags = list(GUN_MODULAR)
+	I.removable = FALSE
+
 /obj/item/part/gun/mechanism/pistol
 	name = "pistol mechanism"
 	desc = "All the bits that makes the bullet go bang, all in a small, convenient frame."
 	icon_state = "mechanism_pistol"
+
+/obj/item/part/gun/mechanism/pistol/New()
+	..()
+	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 
 /obj/item/part/gun/mechanism/revolver
 	name = "revolver mechanism"
@@ -259,10 +314,18 @@
 	icon_state = "mechanism_shotgun"
 	matter = list(MATERIAL_PLASTEEL = 10)
 
+/obj/item/part/gun/mechanism/shotgun/New()
+	..()
+	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_RIFLE
+
 /obj/item/part/gun/mechanism/smg
 	name = "SMG mechanism"
 	desc = "All the bits that makes the bullet go bang, in a speedy package."
 	icon_state = "mechanism_smg"
+
+/obj/item/part/gun/mechanism/smg/New()
+	..()
+	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_SMG
 
 /obj/item/part/gun/mechanism/autorifle
 	name = "self-loading mechanism"
@@ -270,12 +333,42 @@
 	icon_state = "mechanism_autorifle"
 	matter = list(MATERIAL_PLASTEEL = 10)
 
+/obj/item/part/gun/mechanism/autorifle/New()
+	..()
+	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
+
+/obj/item/part/gun/mechanism/autorifle/burst
+	name = "self-loading mechanism"
+	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love."
+	icon_state = "mechanism_autorifle"
+	matter = list(MATERIAL_PLASTEEL = 10)
+
+/obj/item/part/gun/mechanism/autorifle/burst/New()
+	..()
+	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
+	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = list(SEMI_AUTO_300, BURST_5_ROUND)
+
+/obj/item/part/gun/mechanism/autorifle/fullauto
+	name = "self-loading mechanism"
+	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love."
+	icon_state = "mechanism_autorifle"
+	matter = list(MATERIAL_PLASTEEL = 10)
+
+/obj/item/part/gun/mechanism/autorifle/fullauto/New()
+	..()
+	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
+	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = list(FULL_AUTO_400, SEMI_AUTO_300, BURST_5_ROUND)
+
 /obj/item/part/gun/mechanism/machinegun
 	name = "machine gun mechanism"
 	desc = "All the bits that makes the bullet go bang. Now I have a machine gun, Ho, Ho, Ho."
 	icon_state = "mechanism_machinegun"
 	matter = list(MATERIAL_PLASTEEL = 16)
 	rarity_value = 8
+
+/obj/item/part/gun/mechanism/machinegun/New()
+	..()
+	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_BOX
 
 // steel mechanisms
 /obj/item/part/gun/mechanism/pistol/steel
@@ -325,6 +418,17 @@
 	price_tag = 200
 	rarity_value = 15
 	var/caliber = CAL_357
+	var/datum/component/item_upgrade/I
+
+/obj/item/part/gun/barrel/New()
+	..()
+	I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_DEFINE_CALIBER = CAL_357
+		)
+	I.gun_loc_tag = PART_BARREL
+	I.req_gun_tags = list(GUN_MODULAR)
+	I.removable = FALSE
 
 /obj/item/part/gun/barrel/pistol
 	name = ".35 barrel"
@@ -333,6 +437,13 @@
 	matter = list(MATERIAL_PLASTEEL = 4)
 	price_tag = 100
 	caliber = CAL_PISTOL
+	part_overlay = "well_pistol"
+
+/obj/item/part/gun/barrel/pistol/New()
+	..()
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_DEFINE_CALIBER = CAL_PISTOL
+		)
 
 /obj/item/part/gun/barrel/magnum
 	name = ".40 barrel"
@@ -341,6 +452,13 @@
 	matter = list(MATERIAL_PLASTEEL = 4)
 	price_tag = 100
 	caliber = CAL_MAGNUM
+	part_overlay = "well_mag"
+
+/obj/item/part/gun/barrel/magnum/New()
+	..()
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_DEFINE_CALIBER = CAL_MAGNUM
+		)
 
 /obj/item/part/gun/barrel/srifle
 	name = ".20 barrel"
@@ -348,6 +466,13 @@
 	icon_state = "barrel_20"
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_SRIFLE
+	part_overlay = "well_rifle"
+
+/obj/item/part/gun/barrel/srifle/New()
+	..()
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_DEFINE_CALIBER = CAL_SRIFLE
+		)
 
 /obj/item/part/gun/barrel/clrifle
 	name = ".25 barrel"
@@ -355,6 +480,13 @@
 	icon_state = "barrel_25"
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_CLRIFLE
+	part_overlay = "well_cs"
+
+/obj/item/part/gun/barrel/clrifle/New()
+	..()
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_DEFINE_CALIBER = CAL_CLRIFLE
+		)
 
 /obj/item/part/gun/barrel/lrifle
 	name = ".30 barrel"
@@ -362,6 +494,13 @@
 	icon_state = "barrel_30"
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_LRIFLE
+	part_overlay = "well_rifle" // Same as .20, might be wise to add different sprites for distinguishment
+
+/obj/item/part/gun/barrel/lrifle/New()
+	..()
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_DEFINE_CALIBER = CAL_LRIFLE
+		)
 
 /obj/item/part/gun/barrel/shotgun
 	name = "shotgun barrel"
@@ -369,6 +508,13 @@
 	icon_state = "barrel_50"
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_SHOTGUN
+	part_overlay = "well_shot"
+
+/obj/item/part/gun/barrel/shotgun/New()
+	..()
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_DEFINE_CALIBER = CAL_SHOTGUN
+		)
 
 /obj/item/part/gun/barrel/antim
 	name = ".60 barrel"
@@ -376,6 +522,12 @@
 	icon_state = "barrel_60"
 	matter = list(MATERIAL_PLASTEEL = 16)
 	caliber = CAL_ANTIM
+
+/obj/item/part/gun/barrel/antim/New()
+	..()
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_DEFINE_CALIBER = CAL_ANTIM
+		)
 
 // steel barrels
 /obj/item/part/gun/barrel/pistol/steel
@@ -413,3 +565,9 @@
 	desc = "A gun barrel, which keeps the bullet (or bullets) going in the right direction. Chambered in .50 caliber. \
 			This one does not look as high quality."
 	matter = list(MATERIAL_STEEL = 8)
+
+/obj/item/part/gun/stock
+	name = "stock frame"
+	desc = "A frame for the stock of a gun. Not compatible with most gun frames. Improves accuracy when the weapon is wielded in two hands, but increases bulk."
+	matter = list(MATERIAL_STEEL = 10)
+	icon_state = "stock_frame"
