@@ -19,13 +19,12 @@
 	max_blood_storage = 80
 	oxygen_req = 8
 	nutriment_req = 6
-	health = 50
+	health = 50		// Must be depleted before normal wounds can be applied
 	var/mob/living/carbon/brain/brainmob = null
 	var/timer_id
 
 /obj/item/organ/internal/brain/New()
 	..()
-	health = config.default_brain_health
 	timer_id = addtimer(CALLBACK(src, .proc/clear_hud), 5, TIMER_STOPPABLE)
 
 /obj/item/organ/internal/brain/Destroy()
