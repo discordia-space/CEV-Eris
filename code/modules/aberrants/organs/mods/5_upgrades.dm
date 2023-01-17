@@ -133,28 +133,3 @@
 /obj/item/modification/organ/internal/parenchymal/large
 	name = "parenchymal membrane"
 	organ_eff_mod = 0.4
-
-// Junk loot or craftables
-/obj/item/modification/organ/internal/electromechanical
-	bad_type = /obj/item/modification/organ/internal/electromechanical
-	spawn_blacklisted = FALSE
-
-/obj/item/modification/organ/internal/electromechanical/bone_braces
-	name = "bone braces"
-	desc = "Little metal bits that bones can be reinforced with."
-	icon = 'icons/obj/surgery.dmi'
-	icon_state = "bone_braces"
-	matter = list(MATERIAL_PLASTEEL = 3)
-	price_tag = 90
-
-/obj/item/modification/organ/internal/electromechanical/bone_braces/New()
-	var/datum/component/modification/organ/M = AddComponent(/datum/component/modification/organ)
-
-	M.apply_to_types = list(/obj/item/organ/internal/bone)
-	M.examine_msg = "Can be attached to bones."
-	M.examine_difficulty = STAT_LEVEL_BASIC
-	M.prefix = "reinforced"
-
-	M.organ_efficiency_mod = 0.33
-
-	..()

@@ -39,6 +39,10 @@
 	deactivate(emergency=TRUE)
 	..()
 
+/obj/item/organ/external/robotic/update_germs()
+	germ_level = 0
+	return
+
 /obj/item/organ/external/robotic/setBleeding()
 	return FALSE
 

@@ -165,7 +165,7 @@
 				if(affecting)
 					if(BP_IS_ROBOTIC(affecting))
 						return
-					if(affecting.take_damage(5, BRUTE))
+					if(affecting.take_damage(5, 0))
 						H.UpdateDamageIcon()
 					H.updatehealth()
 					if(!(H.species.flags & NO_PAIN))
