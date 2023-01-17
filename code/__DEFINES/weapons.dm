@@ -58,9 +58,6 @@
 #define STRUCTURE_DAMAGE_POWERFUL    	2
 #define STRUCTURE_DAMAGE_DESTRUCTIVE 	3
 
-// Weapon minimum fire_delay
-#define GUN_MINIMUM_FIRETIME 1.1 // 110 MS , ~9 shots per second, 545 RPM
-
 //Quick defines for fire modes
 #define FULL_AUTO_300		list(mode_name = "full auto",  mode_desc = "300 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 4  , icon="auto")
 #define FULL_AUTO_400		list(mode_name = "full auto",  mode_desc = "400 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 3, icon="auto")
