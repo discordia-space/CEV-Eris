@@ -1,7 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - tweak: Click cooldown from firing uses both burst delay and fire delay
-  - code_imp: Changed the shooting loop to use sleep() instead of spawn(), uses Humonitarian's
-      logic
-  - code_imp: Moved a define to weapons.dm

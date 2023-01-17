@@ -42,3 +42,18 @@
   - rscadd: You can now craft buckets.
   - tweak: Made crafting recipes in general much easier and removed a lot of the wonky
       part requirements.
+2023-01-17:
+  MLGTASTICa:
+  - refactor: Refactored the code of  the guild mining shuttle smelter and gave it
+      a TGUI.
+  Pink-Chink:
+  - tweak: Added MLGTASTICa's edits to Processor.js
+  - tweak: Click cooldown from firing uses both burst delay and fire delay
+  - code_imp: Changed the shooting loop to use sleep() instead of spawn(), uses Humonitarian's
+      logic
+  - code_imp: Moved a define to weapons.dm
+  - rscadd: Added Erismed 4
+  - tweak: Tweaked many reagents to provide chem effects for wound treatment
+  - tweak: Tox loss and clone loss are no longer considered in lethal damage or pain
+      calculations
+  - rscdel: Removed bay germs and bay infections
