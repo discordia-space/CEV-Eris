@@ -11,8 +11,9 @@
 
 // Takes care of organ related updates, such as broken and missing limbs
 /mob/living/carbon/human/proc/handle_organs()
+
 	var/force_process = 0
-	var/damage_this_tick = getBruteLoss() + getFireLoss()
+	var/damage_this_tick = getBruteLoss() + getFireLoss() + getToxLoss()
 	if(damage_this_tick > last_dam)
 		force_process = 1
 	last_dam = damage_this_tick
@@ -43,12 +44,18 @@
 		else
 			E.Process()
 
-			if(!lying && !buckled && world.time - l_move_time < 15)
+			if (!lying && !buckled && world.time - l_move_time < 15)
 			//Moving around with fractured ribs won't do you any good
-				if(E.is_broken() && E.internal_organs && E.internal_organs.len && prob(15))
-					var/obj/item/organ/internal/I = pick(E.internal_organs)
+				if (E.is_broken() && E.internal_organs && E.internal_organs.len && prob(15))
+					var/obj/item/organ/I = pick(E.internal_organs)
 					custom_pain("You feel broken bones moving in your [E.name]!", 1)
-					I.take_damage(rand(2,10), BRUTE, sharp = TRUE, edge = TRUE)
+					I.take_damage(rand(3,5))
+
+				//Moving makes open wounds get infected much faster
+				if (E.wounds.len)
+					for(var/datum/wound/W in E.wounds)
+						if (W.infection_check())
+							W.germ_level += 1
 
 /mob/living/carbon/human/proc/handle_stance()
 	// Don't need to process any of this if they aren't standing anyways
@@ -214,7 +221,7 @@
 	else
 		if(organ_type in BP_ALL_LIMBS)
 			var/obj/item/organ/external/O = E
-			if (heal && (O.damage > 0 || O.status & (ORGAN_BROKEN)))
+			if (heal && (O.damage > 0 || O.status & (ORGAN_BROKEN) || O.has_internal_bleeding()))
 				O.status &= ~ORGAN_BROKEN
 				for(var/datum/wound/W in O.wounds)
 					if(W.internal)

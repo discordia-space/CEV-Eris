@@ -46,10 +46,10 @@
 	var/obj/item/organ/internal/nerve/user_nerve = user.random_organ_by_process(OP_NERVE)
 	if(!user_muscle)
 		return FALSE
-	user_muscle.take_damage(dose/3, FALSE, TOX)
+	user_muscle.take_damage(round(volume/6))
 	if(!user_nerve)
 		return FALSE
-	user_nerve.take_damage(dose/3, FALSE, TOX)
+	user_nerve.take_damage(round(volume/6))
 	if(prob(3))
 		to_chat(user, span_danger("Your muscles ache with agonizing pain!"))
 		user.Weaken(2)
@@ -58,7 +58,7 @@
 		if(!user_heart || BP_IS_ROBOTIC(user_heart))
 			return FALSE
 		to_chat(user, span_danger("You feel like your heart just exploded!"))
-		user_heart.take_damage(15, FALSE, TOX)
+		user_heart.take_damage(user_heart.health)
 
 /datum/reagent/medicine/meralyne
 	name = "Meralyne"
@@ -115,13 +115,17 @@
 	M.adjust_hallucination(-0.9 * effect_multiplier)
 	M.adjustToxLoss(-((0.4 + (M.getToxLoss() * 0.05)) * effect_multiplier))
 	M.add_chemical_effect(CE_ANTITOX, 1)
-	M.add_chemical_effect(CE_ANTIBIOTIC, 1)
 	holder.remove_reagent("pararein", 0.2 )
 	holder.remove_reagent("blattedin", 0.2 )
 
 /datum/reagent/medicine/dylovene/overdose(mob/living/carbon/human/user, alien)
 	var/obj/item/organ/internal/blood_vessel/user_vessel = user.random_organ_by_process(OP_BLOOD_VESSEL)
-	create_overdose_wound(user_vessel, user, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+	if(!user_vessel)
+		return FALSE
+	user_vessel.take_damage(round(volume/10)) // 5 out of 100 at 60 units
+	if(prob(1))
+		to_chat(user, "You feel a sharp pain in your chest.")
+
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
@@ -176,7 +180,7 @@
 	var/obj/item/organ/internal/liver/user_liver = user.random_organ_by_process(OP_LIVER)
 	if(!user_liver)
 		return FALSE
-	user_liver.take_damage(dose/3, FALSE, TOX)
+	user_liver.take_damage(round(volume/12)) // 5 out of 100 at 60 units
 	// For those special people
 	if(volume > 300 && prob(10))
 		var/obj/item/organ/internal/blood_vessel/user_vessel = user.random_organ_by_process(OP_BLOOD_VESSEL)
@@ -184,7 +188,7 @@
 			return FALSE
 		to_chat(user, "You feel intense swelling in your [user_vessel.loc?.name], and you notice it going numb and red!")
 		user.AdjustParalysis(5)
-		user_vessel.take_damage(15, FALSE, TOX)
+		user_vessel.take_damage(user_vessel.health)
 
 /datum/reagent/medicine/cryoxadone
 	name = "Cryoxadone"
@@ -199,13 +203,10 @@
 /datum/reagent/medicine/cryoxadone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.bodytemperature < 170)
 		M.adjustCloneLoss(-(1 + (M.getCloneLoss() * 0.05)) * effect_multiplier)
-		M.add_chemical_effect(CE_ONCOCIDAL, 1)
 		M.adjustOxyLoss(-(1 + (M.getOxyLoss() * 0.05)) * effect_multiplier)
 		M.add_chemical_effect(CE_OXYGENATED, 1)
 		M.heal_organ_damage(1 * effect_multiplier, 1 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
-		M.add_chemical_effect(CE_BLOODCLOT, 0.30)
 		M.adjustToxLoss(-(1 + (M.getToxLoss() * 0.05)) * effect_multiplier)
-		M.add_chemical_effect(CE_ANTITOX, 1)
 		M.add_chemical_effect(CE_PULSE, -2)
 
 /datum/reagent/medicine/clonexadone
@@ -221,13 +222,10 @@
 /datum/reagent/medicine/clonexadone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.bodytemperature < 170)
 		M.adjustCloneLoss(-(3 + (M.getCloneLoss() * 0.05)) * effect_multiplier)
-		M.add_chemical_effect(CE_ONCOCIDAL, 1)
 		M.adjustOxyLoss(-(3 + (M.getOxyLoss() * 0.05)) * effect_multiplier)
-		M.add_chemical_effect(CE_OXYGENATED, 1)
+		M.add_chemical_effect(CE_OXYGENATED, 2)
 		M.heal_organ_damage(3 * effect_multiplier, 3 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
-		M.add_chemical_effect(CE_BLOODCLOT, 0.55)
 		M.adjustToxLoss(-(3 + (M.getToxLoss() * 0.05)) * effect_multiplier)
-		M.add_chemical_effect(CE_ANTITOX, 2)
 		M.add_chemical_effect(CE_PULSE, -2)
 
 /* Painkillers */
@@ -468,7 +466,6 @@
 
 /datum/reagent/medicine/hyronalin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.radiation = max(M.radiation - (3 * effect_multiplier), 0)
-	M.add_chemical_effect(CE_ONCOCIDAL, 1)
 
 /datum/reagent/medicine/arithrazine
 	name = "Arithrazine"
@@ -485,7 +482,6 @@
 	M.adjustToxLoss(-(1 + (M.getToxLoss() * 0.05)) * effect_multiplier)
 	if(prob(60))
 		M.take_organ_damage(0.4 * effect_multiplier, 0)
-	M.add_chemical_effect(CE_ONCOCIDAL, 1)
 
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
@@ -498,17 +494,6 @@
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
-/datum/reagent/medicine/spaceacillin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_ANTIBIOTIC, 2)
-	if(dose > 4)
-		M.add_chemical_effect(CE_ANTIBIOTIC, 2)
-	if(dose > 9)
-		M.add_chemical_effect(CE_ANTIBIOTIC, 2)
-
-/datum/reagent/medicine/spaceacillin/overdose(mob/living/carbon/M, alien)
-	. = ..()
-	M.add_chemical_effect(CE_ANTIBIOTIC, 4)
-
 /datum/reagent/medicine/sterilizine
 	name = "Sterilizine"
 	id = "sterilizine"
@@ -519,14 +504,17 @@
 	touch_met = 5
 
 /datum/reagent/medicine/sterilizine/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
+	M.germ_level -= min(effect_multiplier * 2, M.germ_level)
 	for(var/obj/item/I in M.contents)
 		I.was_bloodied = null
 	M.was_bloodied = null
 
 /datum/reagent/medicine/sterilizine/touch_obj(var/obj/O)
+	O.germ_level -= min(volume*20, O.germ_level)
 	O.was_bloodied = null
 
 /datum/reagent/medicine/sterilizine/touch_turf(var/turf/T)
+	T.germ_level -= min(volume*20, T.germ_level)
 	for(var/obj/item/I in T.contents)
 		I.was_bloodied = null
 	for(var/obj/effect/decal/cleanable/blood/B in T)
@@ -647,15 +635,21 @@
 	metabolism = REM/2
 
 /datum/reagent/medicine/quickclot/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_BLOODCLOT, 0.25)
+	M.add_chemical_effect(CE_BLOODCLOT, min(1,0.1 * effect_multiplier))	// adding 0.01 to be more than 0.1 in order to stop int bleeding from growing
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/external/E in H.organs)
+			for(var/datum/wound/W in E.wounds)
+				if(W.internal)
+					W.heal_damage(5 * effect_multiplier)
 
 /datum/reagent/medicine/quickclot/overdose(mob/living/carbon/M, alien)
-	M.add_chemical_effect(CE_BLOODCLOT, 0.25)
+	M.add_chemical_effect(CE_BLOODCLOT, min(1, 0.20))
 
 /datum/reagent/medicine/ossisine
 	name = "Ossisine"
 	id = "ossisine"
-	description = "Puts the user in a great amount of pain and repairs broken bones. Medicate in critical conditions only."
+	description = "Puts the user in a great amount of pain and repairs broken bones one at a time. Medicate in critical conditions only."
 	taste_description = "calcium"
 	reagent_state = LIQUID
 	color = "#660679"
@@ -663,13 +657,22 @@
 	overdose = REAGENTS_OVERDOSE/2
 
 /datum/reagent/medicine/ossisine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.apply_damage(20, HALLOSS)
+	M.apply_damage(15, HALLOSS)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.1)
-	M.add_chemical_effect(CE_BONE_MEND, 1)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/list/brokenBP = list()
+		for(var/obj/item/organ/external/E in H.organs)
+			if(E.is_broken())
+				brokenBP += E
+		if(brokenBP.len)
+			var/obj/item/organ/external/E = pick(brokenBP)
+			E.mend_fracture()
+			M.pain(E.name, 60, TRUE)
+			dose -= min(dose, metabolism)
 
 /datum/reagent/medicine/ossisine/overdose(mob/living/carbon/M, alien)
 	M.adjustCloneLoss(2)
-	M.add_chemical_effect(CE_BONE_MEND, 1)
 
 /datum/reagent/medicine/noexcutite
 	name = "Noexcutite"
@@ -761,7 +764,7 @@
 /datum/reagent/medicine/purger
 	name = "Purger"
 	id = "purger"
-	description = "Temporary purges all addictions and treats chemical poisoning in large doses."
+	description = "Temporary purges all addictions."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#d4cf3b"
@@ -770,15 +773,11 @@
 
 /datum/reagent/medicine/purger/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_PURGER, 1)
-	if(dose > 4)
-		M.add_chemical_effect(CE_PURGER, 1)
-	if(dose > 9)
-		M.add_chemical_effect(CE_PURGER, 1)
 
 /datum/reagent/medicine/addictol
 	name = "Addictol"
 	id = "addictol"
-	description = "Purges all addictions and treats chemical poisoning."
+	description = "Purges all addictions."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#0179e7"
@@ -790,10 +789,9 @@
 	if(istype(C) && C.metabolism_effects.addiction_list.len)
 		if(prob(5 * effect_multiplier + dose))
 			var/datum/reagent/R = pick(C.metabolism_effects.addiction_list)
-			to_chat(C, SPAN_NOTICE("You dont crave [R.name] anymore."))
+			to_chat(C, SPAN_NOTICE("You dont crave for [R.name] anymore."))
 			C.metabolism_effects.addiction_list.Remove(R)
 			qdel(R)
-	M.add_chemical_effect(CE_PURGER, 3)
 
 /datum/reagent/medicine/addictol/on_mob_delete(mob/living/L)
 	..()

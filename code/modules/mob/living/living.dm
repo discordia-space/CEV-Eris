@@ -200,7 +200,7 @@ default behaviour is:
 	var/extradam = 0	//added to when organ is at max dam
 	for(var/obj/item/organ/external/affecting in organs)
 		//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
-		if(affecting.take_damage(divided_damage+extradam, BURN))
+		if(affecting.take_damage(0, divided_damage+extradam))
 			UpdateDamageIcon()
 	updatehealth()
 	return TRUE

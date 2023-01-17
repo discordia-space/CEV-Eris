@@ -90,6 +90,7 @@
 		  "Looks completely ruined.",
 		   "It is difficult to make out what this thing once was.",
 	 	   "A relic from a bygone age.")
+		germ_level = max(germ_level, pick(80,110,160))
 
 		if(prob(80))
 			color = pick("#AA7744", "#774411", "#777777")

@@ -10,6 +10,9 @@
 /mob/living/carbon/Life()
 	. = ..()
 	handle_viruses()
+	// Increase germ_level regularly
+	if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
+		germ_level++
 
 /mob/living/carbon/Destroy()
 	QDEL_NULL(metabolism_effects)
@@ -43,6 +46,9 @@
 		if(is_watching == TRUE)
 			reset_view(null)
 			is_watching = FALSE
+		// Moving around increases germ_level faster
+		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
+			germ_level++
 
 /mob/living/carbon/relaymove(var/mob/living/user, direction)
 	if((user in src.stomach_contents) && istype(user))
@@ -56,7 +62,7 @@
 					var/mob/living/carbon/human/H = src
 					var/obj/item/organ/external/organ = H.get_organ(BP_CHEST)
 					if (istype(organ))
-						if(organ.take_damage(d, BRUTE))
+						if(organ.take_damage(d, 0))
 							H.UpdateDamageIcon()
 					H.updatehealth()
 				else

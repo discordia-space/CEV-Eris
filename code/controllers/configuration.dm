@@ -115,7 +115,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/forbid_singulo_possession = 0
 
 	var/organs_decay
-	var/default_brain_health = 100
+	var/default_brain_health = 400
 
 	//Paincrit knocks someone down once they hit 60 shock_stage, so by default make it so that close to 100 additional damage needs to be dealt,
 	//so that it's similar to HALLOSS. Lowered it a bit since hitting paincrit takes much longer to wear off than a halloss stun.

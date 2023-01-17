@@ -13,16 +13,10 @@
 	{{if data.occupant}}
 		<div class="item">
 			<div class="itemLabel">
-				Critical Health:
+			Occupant status:
 			</div>
 			<div class="itemContent">
-				{{:data.crit_health}}% ({{:data.stat}})
-			</div>
-			<div class="itemLabel">
-				Organ Health:
-			</div>
-			<div class="itemContent">
-				{{:data.internal_health}}%
+				Health: {{:data.health}}% ({{:data.stat}}).
 			</div>
 			<div class="itemLabel">
 				Pulse:
