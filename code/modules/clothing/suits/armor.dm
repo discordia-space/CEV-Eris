@@ -544,8 +544,8 @@
 	item_state = "armor_engineering_old"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 8,
-		bullet = 10,
+		melee = 9,
+		bullet = 9,
 		energy = 9,
 		bomb = 40,
 		bio = 0,
