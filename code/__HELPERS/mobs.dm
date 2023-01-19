@@ -330,9 +330,8 @@ Proc for attack log creation, because really why not
 	return FALSE
 
 /proc/is_superior_animal(var/mob/M)
-	if(istype(M, /mob/living/carbon/superior_animal)
+	if(istype(M, /mob/living/carbon/superior_animal))
 		return TRUE
-
 	return FALSE
 
 /proc/mob_hearers(var/atom/movable/heard_atom, var/range = world.view)
