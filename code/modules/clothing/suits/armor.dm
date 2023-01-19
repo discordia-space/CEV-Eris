@@ -523,7 +523,7 @@
 		bullet = 7,
 		energy = 2,
 		bomb = 50,
-		bio = 25,
+		bio = 0,
 		rad = 80
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
