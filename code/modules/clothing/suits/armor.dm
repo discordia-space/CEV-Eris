@@ -523,7 +523,7 @@
 		bullet = 7,
 		energy = 2,
 		bomb = 50,
-		bio = 0,
+		bio = 25,
 		rad = 80
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
@@ -545,11 +545,11 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		melee = 8,
-		bullet = 12,
-		energy = 7,
+		bullet = 10,
+		energy = 9,
 		bomb = 40,
 		bio = 0,
-		rad = 5
+		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	item_flags = DRAG_AND_DROP_UNEQUIP
