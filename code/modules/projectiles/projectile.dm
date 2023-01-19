@@ -437,6 +437,10 @@
 				visible_message(SPAN_DANGER("\The [M] uses [G.affecting] as a shield!"))
 				if(Bump(G.affecting, TRUE))
 					return //If Bump() returns 0 (keep going) then we continue on to attack M.
+			if(is_superior_animal(A))
+				passthrough = !attack_mob(M)
+				bumped = FALSE // Roaches do not bump, allowing multiple roaches to be hit by one bullet
+			else
 			passthrough = !attack_mob(M)
 		else
 			passthrough = FALSE //so ghosts don't stop bullets
