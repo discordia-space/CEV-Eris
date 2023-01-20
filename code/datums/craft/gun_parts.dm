@@ -248,27 +248,27 @@
 	name = "plastic grip"
 	desc = "A black plastic firearm grip, unattached from a firearm. For sleekness and decorum."
 	icon_state = "grip_black"
-	part_overlay = "grip_bl"
+	part_overlay = "grip_black"
 
 /obj/item/part/gun/grip/rubber //FS and IH
 	name = "rubber grip"
 	desc = "A rubber firearm grip, unattached from a firearm. For professionalism and violence of action."
 	icon_state = "grip_rubber"
-	part_overlay = "grip_ru"
+	part_overlay = "grip_rubber"
 
 /obj/item/part/gun/grip/excel
 	name = "Excelsior plastic grip"
 	desc = "A tan plastic firearm grip, unattached from a firearm. To fight for Haven and to spread the unified revolution!"
 	icon_state = "grip_excel"
 	rarity_value = 7
-	part_overlay = "grip_ex"
+	part_overlay = "grip_excelsior"
 
 /obj/item/part/gun/grip/serb
 	name = "bakelite plastic grip"
 	desc = "A brown plastic firearm grip, unattached from a firearm. Classics never go out of style."
 	icon_state = "grip_serb"
 	rarity_value = 7
-	part_overlay = "grip_sb"
+	part_overlay = "grip_serbian"
 
 //Mechanisms
 /obj/item/part/gun/mechanism
@@ -452,7 +452,7 @@
 	matter = list(MATERIAL_PLASTEEL = 4)
 	price_tag = 100
 	caliber = CAL_MAGNUM
-	part_overlay = "well_mag"
+	part_overlay = "well_magnum"
 
 /obj/item/part/gun/barrel/magnum/New()
 	..()
@@ -466,7 +466,7 @@
 	icon_state = "barrel_20"
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_SRIFLE
-	part_overlay = "well_rifle"
+	part_overlay = "well_srifle"
 
 /obj/item/part/gun/barrel/srifle/New()
 	..()
@@ -480,7 +480,7 @@
 	icon_state = "barrel_25"
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_CLRIFLE
-	part_overlay = "well_cs"
+	part_overlay = "well_clrifle"
 
 /obj/item/part/gun/barrel/clrifle/New()
 	..()
@@ -494,7 +494,7 @@
 	icon_state = "barrel_30"
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_LRIFLE
-	part_overlay = "well_rifle" // Same as .20, might be wise to add different sprites for distinguishment
+	part_overlay = "well_lrifle"
 
 /obj/item/part/gun/barrel/lrifle/New()
 	..()
@@ -508,7 +508,7 @@
 	icon_state = "barrel_50"
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_SHOTGUN
-	part_overlay = "well_shot"
+	part_overlay = "well_shotgun"
 
 /obj/item/part/gun/barrel/shotgun/New()
 	..()
@@ -522,6 +522,7 @@
 	icon_state = "barrel_60"
 	matter = list(MATERIAL_PLASTEEL = 16)
 	caliber = CAL_ANTIM
+	part_overlay = "well_amr"
 
 /obj/item/part/gun/barrel/antim/New()
 	..()
