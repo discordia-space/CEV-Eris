@@ -60,9 +60,10 @@
 				if(remaining_ablative && dmg)
 					var/ablative_difference
 					ablative_difference = dmg - remaining_ablative
-					used_armor += ablative_difference > 0 ? dmg - ablative_difference : dmg
-					remaining_ablative = ablative_difference > 0 ? 0 : -ablative_difference
-					dmg = ablative_difference > 0 ? ablative_difference : 0
+					var/is_difference_positive = ablative_difference > 0
+					used_armor += is_difference_positive ? dmg - ablative_difference : dmg
+					remaining_ablative = is_difference_positive ? 0 : -ablative_difference
+					dmg = is_difference_positive ? ablative_difference : 0
 			else
 				dmg = max(dmg - remaining_armor - remaining_ablative, 0)
 
