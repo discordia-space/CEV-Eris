@@ -628,8 +628,9 @@
 			dmg_total += dmg
 		if(dmg && amount)
 			var/dmg_armor_difference = dmg - amount
-			amount = dmg_armor_difference > 0 ? 0 : -dmg_armor_difference
-			dmg = dmg_armor_difference > 0 ? dmg_armor_difference : 0
+			var/is_difference_positive = dmg_armor_difference > 0
+			amount = is_difference_positive ? 0 : -dmg_armor_difference
+			dmg = is_difference_positive ? dmg_armor_difference : 0
 			if(!(dmg_type == HALLOSS))
 				dmg_remaining += dmg
 		if(dmg > 0)
