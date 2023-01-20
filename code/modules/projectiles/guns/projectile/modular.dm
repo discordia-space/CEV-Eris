@@ -45,7 +45,6 @@
 /obj/item/gun/projectile/automatic/modular/ak
 
 
-
 /obj/item/gun/projectile/automatic/modular/ak/update_icon()
 	..()
 	cut_overlays()
@@ -57,19 +56,26 @@
 		for(var/obj/item/part/gun/gun_part in gun_parts)
 			if(gun_part.part_overlay)
 				overlays += gun_part.part_overlay + "-st"
+				if(istype(gun_part, /obj/item/part/gun/grip))
+					itemstring += "_[gun_part.part_overlay]"
+
 	else // Stock is folded or missing
 		for(var/obj/item/part/gun/gun_part in gun_parts)
 			if(gun_part.part_overlay)
 				overlays += gun_part.part_overlay
 
 	if (ammo_magazine) // Warning! If a sprite is missing from the DMI despite being possible to insert ingame, it might have unforeseen consequences (no magazine showing up)
+		itemstring += "_full"
 		if(stock)
 			overlays += "mag_[ammo_magazine.mag_well][caliber]-st"
 		else
 			overlays += "mag_[ammo_magazine.mag_well][caliber]"
 
-	//if(wielded)
-		// ITEMSTRING IS NOT REAL ITEMSTRING IS NOT REAL
+	if(wielded)
+		itemstring += "_doble" // Traditions are to be followed
+
+	if(!(stock == STOCK_UNFOLDED))
+		itemstring += "_f"
 
 	icon_state = iconstring
 	set_item_state(itemstring)
