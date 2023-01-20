@@ -15,13 +15,12 @@
 	exosuit_color = COLOR_GUNMETAL
 	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/combat
 	installed_software_boards = list(
-		/obj/item/electronics/circuitboard/exosystem/weapons,
-		/obj/item/electronics/circuitboard/exosystem/advweapons
+		/obj/item/electronics/circuitboard/exosystem/weapons
 	)
 	installed_systems = list(
 		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/mounted_system/taser,
 		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/taser/ion,
-		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
+		HARDPOINT_HEAD = /obj/item/mech_equipment/light
 	)
 
 
@@ -36,66 +35,3 @@
 		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/taser/ion,
 		HARDPOINT_HEAD = /obj/item/mech_equipment/light
 	)
-
-/obj/item/mech_component/sensors/combat
-	name = "combat sensors"
-	gender = PLURAL
-	exosuit_desc_string = "high-resolution thermal sensors"
-	desc = "High resolution thermal combat sensors, designed to locate targets even through cover or smoke."
-	icon_state = "combat_head"
-	vision_flags = SEE_MOBS
-	see_invisible = SEE_INVISIBLE_NOLIGHTING
-	max_damage = 50 //the sensors are delicate, the value of this part is in the SEE_MOBS flag anyway
-	power_use = 200
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 4, MATERIAL_GOLD = 10, MATERIAL_URANIUM = 15)
-
-/obj/item/mech_component/chassis/combat
-	name = "sealed exosuit chassis"
-	hatch_descriptor = "canopy"
-	desc = "This standard combat chassis is reinforced with plasteel for extra durability without compromising visibility or ease of access."
-	pilot_coverage = 100
-	transparent_cabin = TRUE
-	hide_pilot = TRUE
-	exosuit_desc_string = "an armored chassis"
-	icon_state = "combat_body"
-	max_damage = 100
-	mech_health = 400 //It's not as beefy as the heavy, but it IS a combat chassis, so let's make it slightly beefier
-	power_use = 40
-	climb_time = 25 //standard values for now to encourage use over heavy
-	matter = list(MATERIAL_STEEL = 45, MATERIAL_PLASTEEL = 10, MATERIAL_PLASMAGLASS = 5)
-
-/obj/item/mech_component/chassis/combat/Initialize()
-	pilot_positions = list(
-		list(
-			"[NORTH]" = list("x" = 8,  "y" = 8),
-			"[SOUTH]" = list("x" = 8,  "y" = 8),
-			"[EAST]"  = list("x" = 4,  "y" = 8),
-			"[WEST]"  = list("x" = 12, "y" = 8)
-		)
-	)
-
-	. = ..()
-
-/obj/item/mech_component/manipulators/combat
-	name = "combat arms"
-	exosuit_desc_string = "flexible, advanced manipulators"
-	desc = "These advanced manipulators are designed for combat, and as a result can take and dish out beatings fairly well."
-	icon_state = "combat_arms"
-	melee_damage = 45 // Whack
-	action_delay = 10
-	max_damage = 100
-	power_use = 50
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5, MATERIAL_PLASMA = 4, MATERIAL_DIAMOND = 2)
-
-/obj/item/mech_component/propulsion/combat
-	name = "combat legs"
-	exosuit_desc_string = "sleek hydraulic legs"
-	desc = "These combat legs are both fast and durable, thanks to a generous plasteel reinforcement and aerodynamic design."
-	icon_state = "combat_legs"
-	move_delay = 3
-	power_use = 20
-	matter = list(MATERIAL_STEEL = 15)
-	turn_delay = 2 // Better than light , turns fast and costs a lot
-	max_damage = 100
-	power_use = 25
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5, MATERIAL_PLASMA = 5, MATERIAL_DIAMOND = 2) // Expensive because durable.

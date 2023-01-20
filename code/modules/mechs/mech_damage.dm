@@ -52,12 +52,16 @@
 /mob/living/exosuit/adjustFireLoss(amount, obj/item/mech_component/MC = null)
 	if(!MC)
 		MC = pick(list(arms, legs, body, head))
+	if(amount < 1)
+		return FALSE
 	MC.take_burn_damage(amount)
 	MC.update_health()
 
 /mob/living/exosuit/adjustBruteLoss(amount, obj/item/mech_component/MC = null)
 	if(!MC)
 		MC = pick(list(arms, legs, body, head))
+	if(amount < 1)
+		return FALSE
 	MC.take_brute_damage(amount)
 	MC.update_health()
 
@@ -98,7 +102,7 @@
 			if(damage_type == HALLOSS)
 				continue // don't even bother
 			var/damage = P.damage_types[damage_type]
-			damage_through_armor(damage, damage_type, def_zone, P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
+			damage_through_armor(clamp(damage,0, damage), damage_type, def_zone, P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
 
 	P.on_hit(src, def_zone)
 	return TRUE
@@ -119,11 +123,11 @@
 /mob/living/exosuit/emp_act(severity)
 	var/emp_resist = 1 + getarmor(null, ARMOR_ENERGY)
 
-	if(emp_resist >= 50)
+	if(emp_resist >= 30)
 		for(var/mob/living/m in pilots)
 			to_chat(m, SPAN_NOTICE("The electromagnetic pulse fails to penetrate your Faraday shielding!"))
 		return
-	else if(emp_resist < 50)
+	else if(emp_resist < 30)
 		for(var/mob/living/m in pilots)
 			to_chat(m, SPAN_NOTICE("The electromagnetic pulse penetrates your shielding, causing damage!"))
 
