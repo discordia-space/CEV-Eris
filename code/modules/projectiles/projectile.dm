@@ -356,6 +356,8 @@
 	if(result == PROJECTILE_FORCE_MISS || result == PROJECTILE_FORCE_MISS_SILENCED)
 		if(!silenced && result == PROJECTILE_FORCE_MISS)
 			visible_message(SPAN_NOTICE("\The [src] misses [target_mob] narrowly!"))
+			if(isroach(target_mob))
+				bumped = FALSE // Roaches do not bump when missed, allowing the bullet to attempt to hit the rest of the roaches in a single cluster
 		return FALSE
 
 	//hit messages
