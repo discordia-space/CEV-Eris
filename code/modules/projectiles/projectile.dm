@@ -358,7 +358,6 @@
 			visible_message(SPAN_NOTICE("\The [src] misses [target_mob] narrowly!"))
 			if(issuperioranimal(target_mob))
 				bumped = FALSE // Roaches do not bump when missed, allowing the bullet to attempt to hit the rest of the roaches in a single cluster
-			else
 		return FALSE
 
 	//hit messages
