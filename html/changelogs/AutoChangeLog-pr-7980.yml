@@ -1,5 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - balance: when missing a roach in a cluster, the bullet will still attempt to hit
-      the rest without missing all of them automatically

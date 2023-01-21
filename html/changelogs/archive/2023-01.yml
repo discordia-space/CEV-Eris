@@ -57,3 +57,19 @@
   - tweak: Tox loss and clone loss are no longer considered in lethal damage or pain
       calculations
   - rscdel: Removed bay germs and bay infections
+2023-01-21:
+  CeUvi & Valo:
+  - imageadd: nt uniforms resprite
+  - imageadd: onestar female uniform fix
+  Humonitarian:
+  - balance: when missing a roach in a cluster, the bullet will still attempt to hit
+      the rest without missing all of them automatically
+  Pink-Chink:
+  - rscdel: Removed photon vortex from the pool
+  - tweak: Space weather behavior is now tick-based
+  - tweak: Space weather event weight reduced, limited to one per round for each event
+  - code_imp: Parallax icon logic moved to event subsystem
+  - code_imp: Spell-checked a variable
+  TheLeopold:
+  - tweak: NT Scourge now smaller
+  - balance: NT Scourge is single-tap when folded
