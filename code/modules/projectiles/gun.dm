@@ -869,7 +869,7 @@
 /obj/item/gun/dropped(mob/user)
 	// I really fucking hate this but this is how this is going to work.
 	var/mob/living/carbon/human/H = user
-	if (H.using_scope)
+	if (istype(H) && H.using_scope)
 		toggle_scope(H)
 	update_firemode(FALSE)
 	.=..()
