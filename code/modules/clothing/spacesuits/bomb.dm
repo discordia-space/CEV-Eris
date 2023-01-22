@@ -40,7 +40,7 @@
 	equip_delay = 10 SECONDS
 	price_tag = 300
 	slowdown = HEAVY_SLOWDOWN
-	stiffness = HEAVY_STIFFNESS
+	/*stiffness = HEAVY_STIFFNESS*/
 
 /obj/item/clothing/head/space/bomb/security
 	icon_state = "bombsuitsec"

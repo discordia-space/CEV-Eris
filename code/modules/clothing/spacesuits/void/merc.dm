@@ -39,7 +39,7 @@
 	helmet = /obj/item/clothing/head/space/void/SCAF
 	spawn_blacklisted = TRUE
 	slowdown = MEDIUM_SLOWDOWN * 1.5
-	stiffness = MEDIUM_STIFFNESS
+	/*stiffness = MEDIUM_STIFFNESS*/
 
 
 //Voidsuit for contractors
@@ -88,7 +88,7 @@
 	resilience = 0.08
 	species_restricted = list(SPECIES_HUMAN)
 	helmet = /obj/item/clothing/head/space/void/merc
-	stiffness = MEDIUM_STIFFNESS
+	/*stiffness = MEDIUM_STIFFNESS*/
 
 /obj/item/clothing/suit/space/void/merc/equipped
 	spawn_blacklisted = TRUE
