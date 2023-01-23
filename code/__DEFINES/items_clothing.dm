@@ -228,9 +228,9 @@
 #define HEAVY_SLOWDOWN 1
 
 //Offset for helmets
-#define LIGHT_OBSCURATION 2
+/*#define LIGHT_OBSCURATION 2
 #define MEDIUM_OBSCURATION 3
-#define HEAVY_OBSCURATION 5
+#define HEAVY_OBSCURATION 5*/
 
 //RIG ablation
 #define ABLATION_CERAMIC 3

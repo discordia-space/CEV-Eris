@@ -22,8 +22,8 @@
 	rarity_value = 20
 	price_tag = 500
 	helm_type = /obj/item/clothing/head/space/rig/combat
-	/*stiffness = 0*/
-	obscuration = 0
+	//stiffness = 0
+	//obscuration = 0
 
 /obj/item/rig/combat/equipped
 	rarity_value = 40

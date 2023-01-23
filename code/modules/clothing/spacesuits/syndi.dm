@@ -36,7 +36,7 @@
 	spawn_blacklisted = TRUE
 	accompanying_object = /obj/item/clothing/head/space/syndicate
 	slowdown = LIGHT_SLOWDOWN
-	/*stiffness = HEAVY_STIFFNESS*/
+	//stiffness = HEAVY_STIFFNESS
 
 ///////////////////////Black Market//////////////////////////////
 

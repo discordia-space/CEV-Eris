@@ -63,7 +63,7 @@
 	)
 	flash_protection = FLASH_PROTECTION_MODERATE
 	price_tag = 500
-	obscuration = LIGHT_OBSCURATION
+	//obscuration = LIGHT_OBSCURATION
 	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/dermal
@@ -123,7 +123,7 @@
 		rad = 0
 	)
 	flash_protection = FLASH_PROTECTION_MAJOR
-	obscuration = MEDIUM_OBSCURATION
+	//obscuration = MEDIUM_OBSCURATION
 	price_tag = 500
 
 /obj/item/clothing/head/armor/helmet/handmade
@@ -183,7 +183,7 @@
 		MATERIAL_PLASTEEL = 2, //Higher plasteel cost since it's booletproof
 		MATERIAL_GLASS = 3 //For the visor parts
 	)
-	obscuration = LIGHT_OBSCURATION
+	//obscuration = LIGHT_OBSCURATION
 	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg //currently junk-only
@@ -302,7 +302,7 @@
 	var/list/armor_down = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 	var/tint_down = TINT_LOW
-	var/obscuration_down = MEDIUM_OBSCURATION
+	//var/obscuration_down = MEDIUM_OBSCURATION
 	flags_inv = HIDEEARS
 	var/flags_inv_down = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHEADHAIR
 	body_parts_covered = HEAD|EARS
@@ -346,7 +346,7 @@
 		armor = getArmor(arglist(armor_up))
 		flash_protection = initial(flash_protection)
 		tint = initial(tint)
-		obscuration = initial(obscuration)
+		//obscuration = initial(obscuration)
 		flags_inv = initial(flags_inv)
 		body_parts_covered = initial(body_parts_covered)
 		style_coverage = initial(style_coverage)
@@ -354,7 +354,7 @@
 		armor = getArmor(arglist(armor_down))
 		flash_protection = flash_protection_down
 		tint = tint_down
-		obscuration = obscuration_down
+		//obscuration = obscuration_down
 		flags_inv = flags_inv_down
 		body_parts_covered = body_parts_covered_down
 		style_coverage = COVERS_WHOLE_HEAD
@@ -390,7 +390,7 @@
 	icon_state = "light_riot"
 
 	tint = TINT_NONE
-	obscuration = LIGHT_OBSCURATION
+	//obscuration = LIGHT_OBSCURATION
 
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(
@@ -558,7 +558,7 @@
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
-	obscuration = MEDIUM_OBSCURATION // May God guide your aim
+	//obscuration = MEDIUM_OBSCURATION // May God guide your aim
 	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/tanker
@@ -621,7 +621,7 @@
 	spawn_blacklisted = TRUE
 	style = STYLE_HIGH
 	tint_down = TINT_NONE
-	obscuration_down = LIGHT_OBSCURATION
+	//obscuration_down = LIGHT_OBSCURATION
 	var/speaker_enabled = TRUE
 	var/scan_scheduled = FALSE
 	var/scan_interval = 15 SECONDS

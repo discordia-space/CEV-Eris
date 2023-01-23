@@ -28,4 +28,4 @@
 		rad = 50
 	)
 	siemens_coefficient = 0.7
-	/*stiffness = MEDIUM_STIFFNESS*/
+	//stiffness = MEDIUM_STIFFNESS

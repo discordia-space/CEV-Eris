@@ -17,7 +17,7 @@
 	flash_protection = FLASH_PROTECTION_MAJOR
 	light_overlay = "helmet_light"
 	spawn_tags = null
-	obscuration = LIGHT_OBSCURATION
+	//obscuration = LIGHT_OBSCURATION
 
 /obj/item/clothing/suit/space/void
 	name = "voidsuit"
@@ -41,7 +41,7 @@
 	spawn_tags = SPAWN_TAG_VOID_SUIT
 	accompanying_object = /obj/item/clothing/shoes/magboots
 	slowdown = MEDIUM_SLOWDOWN
-	/*stiffness = HEAVY_STIFFNESS*/ // Very hard to aim in
+	//stiffness = HEAVY_STIFFNESS // Very hard to aim in
 
 	//Inbuilt devices.
 	var/obj/item/clothing/shoes/magboots/boots // Deployable boots, if any.
