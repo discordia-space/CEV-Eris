@@ -218,7 +218,7 @@
 #define STORY_MALFUNCTION "Malfunction"
 
 //Recoil for suits
-/*define LIGHT_STIFFNESS 0.5
+/*#define LIGHT_STIFFNESS 0.5
 #define MEDIUM_STIFFNESS 1
 #define HEAVY_STIFFNESS 1.5*/
 
