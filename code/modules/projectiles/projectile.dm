@@ -630,11 +630,12 @@
 			dmg_total += dmg
 		if(dmg && amount)
 			var/dmg_armor_difference = dmg - amount
-			amount = dmg_armor_difference ? 0 : -dmg_armor_difference
-			dmg = dmg_armor_difference ? dmg_armor_difference : 0
+			var/is_difference_positive = dmg_armor_difference > 0
+			amount = is_difference_positive ? 0 : -dmg_armor_difference
+			dmg = is_difference_positive ? dmg_armor_difference : 0
 			if(!(dmg_type == HALLOSS))
 				dmg_remaining += dmg
-		if(dmg)
+		if(dmg > 0)
 			damage_types[dmg_type] = dmg
 		else
 			damage_types -= dmg_type
@@ -642,7 +643,7 @@
 		on_impact(A)
 		qdel(src)
 
-	return dmg_total ? (dmg_remaining / dmg_total) : 0
+	return dmg_total > 0 ? (dmg_remaining / dmg_total) : 0
 
 //"Tracing" projectile
 /obj/item/projectile/test //Used to see if you can hit them.
