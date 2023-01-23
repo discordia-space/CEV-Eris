@@ -1,7 +1,3 @@
-#define STOCK_FOLDED -1
-#define STOCK_UNFOLDED 1
-#define STOCK_MISSING 0
-
 //NO new variables here, might as well not even have this category, many guns outside /automatic use automatic firemodes
 /obj/item/gun/projectile/automatic/modular
 	name = "\"Kalashnikov\""
@@ -9,8 +5,8 @@
 		 This is a copy of an ancient semi-automatic rifle. If it won't fire, percussive maintenance should get it working again. \
 		 It is known for its easy maintenance, and low price."
 	icon = 'icons/obj/guns/projectile/ak.dmi'
-	icon_state = "ak"
-	item_state = "AK"
+	icon_state = "frame"
+	item_state = "" // I do not believe this affects anything
 	w_class = ITEM_SIZE_BULKY // Stock increases it by 1
 	force = WEAPON_FORCE_PAINFUL
 	caliber = null // Determined by barrel
@@ -29,10 +25,19 @@
 	damage_multiplier = 1 // Mechanism + Barrel can modify
 	penetration_multiplier = 0 // Mechanism + Barrel can modify
 	spawn_blacklisted = TRUE
-	gun_parts = list() // Will be regenerated on init, used for sprite diplay (for now)
+
+	// Will be regenerated on init, used to determine what sprites to display
+	gun_parts = list()
+
+	// Determines what parts the modular gun accepts and required. 0 means required, -1 means optional. Order matters.
+	var/list/required_parts = list(/obj/item/part/gun/modular/mechanism/autorifle = 0, /obj/item/part/gun/modular/barrel = 0, /obj/item/part/gun/modular/grip = 0, /obj/item/part/gun/modular/stock = -1)
+
 	init_offset = 15 // Removed by grip, this is present just in case you don't want one for style reasons
 
 	gun_tags = list(GUN_SILENCABLE, GUN_MODULAR)
+	var/spriteTags = PARTMOD_STRIPPED // Tags to attach to sprites
+	var/statusTags = PARTMOD_STRIPPED
+	var/grip_type = ""
 
 	init_firemodes = list( // Determined by mechanism
 		SEMI_AUTO_300,
@@ -41,28 +46,90 @@
 	serial_type = "Excelsior"
 
 	var/stock = STOCK_MISSING
+	max_upgrades = 6
+
+/obj/item/gun/projectile/automatic/modular/refresh_upgrades()
+	caliber = initial(caliber)
+	name = initial(name)
+	mag_well = initial(mag_well)
+	spriteTags = initial(spriteTags)
+	grip_type = initial(grip_type)
+	..()
 
 /obj/item/gun/projectile/automatic/modular/ak
 
+/obj/item/gun/projectile/automatic/modular/ak/update_icon() // V2
+	..()
+	cut_overlays() // This is where the fun begins
 
-/obj/item/gun/projectile/automatic/modular/ak/update_icon()
+	// Determine base using the current stock status
+	var/iconstring = initial(icon_state)
+	var/itemstring = ""
+
+	// Define "-" tags
+	var/dashTag = ""
+	if((PARTMOD_STOCK & spriteTags) && (PARTMOD_STOCK & statusTags))
+		dashTag += "-st"
+
+	// Add dashTag to iconstring
+	iconstring += dashTag
+
+	for(var/obj/item/part/gun/modular/gun_part in gun_parts) // Cycle through all parts
+		if(gun_part.part_overlay) // Safety check
+
+			if(gun_part.needs_grip_type) // Will be replaced with a more modular system once V3 comes
+				overlays += gun_part.part_overlay + "_" + grip_type + dashTag
+			else
+				overlays += gun_part.part_overlay + dashTag // Add the part's overlay, with respect to tags
+
+			if(gun_part.part_itemstring) // Part also wants to modify itemstring
+				itemstring += "_" + gun_part.part_overlay // Add their overlay name
+
+
+	if (ammo_magazine) // Warning! If a sprite is missing from the DMI despite being possible to insert ingame, it might have unforeseen consequences (no magazine showing up)
+		itemstring += "_full"
+		overlays += "mag_[ammo_magazine.mag_well][caliber]" + dashTag
+
+	if(wielded)
+		itemstring += "_doble" // Traditions are to be followed
+
+	// Finally, we add the dashTag to the itemstring
+	itemstring += dashTag
+
+	visible_message(SPAN_WARNING("[itemstring]"))
+	icon_state = iconstring
+	wielded_item_state = itemstring // Hacky solution to a hacky system. Reere forgive us. V3 will fix this.
+	set_item_state(itemstring)
+/*
+/obj/item/gun/projectile/automatic/modular/ak/update_icon_defunct() // V1
 	..()
 	cut_overlays()
 
-	var/iconstring = initial(icon_state) // We start with default folded version
+	var/iconstring = stock == STOCK_UNFOLDED ? initial(icon_state) + "-st" : initial(icon_state)
 	var/itemstring = ""
 
-	if(stock) // Stock is unfolded
+	if(stock == STOCK_UNFOLDED) // Stock is unfolded
+		var/grip_type = ""
 		for(var/obj/item/part/gun/gun_part in gun_parts)
-			if(gun_part.part_overlay)
-				overlays += gun_part.part_overlay + "-st"
-				if(istype(gun_part, /obj/item/part/gun/grip))
-					itemstring += "_[gun_part.part_overlay]"
+			if(gun_part.part_overlay) // TODO: clean this part up to be more modular before adding other modular guns
+
+				if(istype(gun_part, /obj/item/part/gun/modular/grip))
+					grip_type = gun_part.part_overlay
+					overlays += "grip_" + grip_type + "-st"
+					itemstring += "_grip_" + grip_type
+				else
+					overlays += gun_part.part_overlay + "-st"
+
+				if(gun_part.part_overlay == "stock_frame") // If it is a stock, it'll also attempt to add the grip type
+					overlays += "stock_" + grip_type + "-st"
 
 	else // Stock is folded or missing
 		for(var/obj/item/part/gun/gun_part in gun_parts)
 			if(gun_part.part_overlay)
-				overlays += gun_part.part_overlay
+				if(istype(gun_part, /obj/item/part/gun/modular/grip))
+					overlays += "grip_" + gun_part.part_overlay
+				else
+					overlays += gun_part.part_overlay
 
 	if (ammo_magazine) // Warning! If a sprite is missing from the DMI despite being possible to insert ingame, it might have unforeseen consequences (no magazine showing up)
 		itemstring += "_full"
@@ -77,9 +144,10 @@
 	if(!(stock == STOCK_UNFOLDED))
 		itemstring += "_f"
 
+	visible_message(SPAN_WARNING("[itemstring]"))
 	icon_state = iconstring
 	set_item_state(itemstring)
-
+*/
 /obj/item/part/gun/modularframe
 	name = "\"Kalashnikov\" frame"
 	desc = "An AK rifle frame. The eternal firearm. Universal design accepts .20, .25 and .30 barrels, as well as any grips. Requires an autorifle mechanism."
@@ -87,7 +155,7 @@
 	generic = FALSE
 
 	// List of parts required to assemble
-	var/list/required_parts = list(/obj/item/part/gun/mechanism/autorifle = 0, /obj/item/part/gun/barrel = 0, /obj/item/part/gun/stock = -1, /obj/item/part/gun/grip = 0)
+	var/list/required_parts = list(/obj/item/part/gun/modular/mechanism/autorifle = 0, /obj/item/part/gun/modular/barrel = 0, /obj/item/part/gun/modular/stock = -1, /obj/item/part/gun/modular/grip = 0)
 
 	// The resulting type of modular gun
 	var/result = /obj/item/gun/projectile/automatic/modular/ak
@@ -127,18 +195,18 @@
 
 
 /obj/item/part/gun/modularframe/proc/handle_install(obj/item/I, mob/living/user, var/InstallPath)
-	if(required_parts[InstallPath])
+	if(istype(required_parts[InstallPath], InstallPath))
 		to_chat(user, SPAN_WARNING("A part of this type is already installed!"))
 		return
 
 
 	// Caliber check coming for barrels
-	if(istype(I, /obj/item/part/gun/barrel))
+	if(istype(I, /obj/item/part/gun/modular/barrel))
 		var/has_mechanism = FALSE
 		for(var/Check_Mechanism in required_parts) // Check for presence of mechanism
-			if(istype(required_parts[Check_Mechanism], /obj/item/part/gun/mechanism))
-				var/obj/item/part/gun/mechanism/M = required_parts[Check_Mechanism]
-				var/obj/item/part/gun/barrel/B = I
+			if(istype(required_parts[Check_Mechanism], /obj/item/part/gun/modular/mechanism))
+				var/obj/item/part/gun/modular/mechanism/M = required_parts[Check_Mechanism]
+				var/obj/item/part/gun/modular/barrel/B = I
 				if(M.accepted_calibers)
 					if(!M.accepted_calibers.Find(B.caliber)) // Check for compatibility, if a mechanism doesn't define a caliber, it is a wildcard
 						to_chat(user, SPAN_WARNING("The barrel does not fit the mechanism! The gun fits the following calibers: [english_list(M.accepted_calibers, "None are suitable!", " and ", ", ", ".")]"))
@@ -146,11 +214,11 @@
 				has_mechanism = TRUE
 		if(!has_mechanism)
 			to_chat(user, SPAN_WARNING("Install a mechanism before adding a barrel!"))
-	else if(istype(I, /obj/item/part/gun/mechanism))
+	else if(istype(I, /obj/item/part/gun/modular/mechanism))
 		for(var/Check_Barrel in required_parts) // Check for presence of barrel
-			if(istype(required_parts[Check_Barrel], /obj/item/part/gun/barrel))
-				var/obj/item/part/gun/barrel/B = required_parts[Check_Barrel]
-				var/obj/item/part/gun/mechanism/M = I
+			if(istype(required_parts[Check_Barrel], /obj/item/part/gun/modular/barrel))
+				var/obj/item/part/gun/modular/barrel/B = required_parts[Check_Barrel]
+				var/obj/item/part/gun/modular/mechanism/M = I
 				if(M.accepted_calibers)
 					if(!M.accepted_calibers.Find(B.caliber)) // Check for compatibility, if a mechanism doesn't define a caliber, it is a wildcard
 						to_chat(user, SPAN_WARNING("The barrel does not fit the mechanism! The gun fits the following calibers: [english_list(M.accepted_calibers, "None are suitable!", " and ", ", ", ".")]"))
@@ -220,22 +288,22 @@
 					var/result = /obj/item/gun/projectile
 
 					// Currently installed grip
-					var/obj/item/part/gun/grip/InstalledGrip
+					var/obj/item/part/gun/modular/grip/InstalledGrip
 
 					// Which grips does the frame accept?
-					var/list/gripvars = list(/obj/item/part/gun/grip/wood, /obj/item/part/gun/grip/black)
+					var/list/gripvars = list(/obj/item/part/gun/modular/grip/wood, /obj/item/part/gun/modular/grip/black)
 					// What are the results (in order relative to gripvars)?
 					var/list/resultvars = list(/obj/item/gun/projectile, /obj/item/gun/energy)
 
 					// Currently installed mechanism
-					var/obj/item/part/gun/grip/InstalledMechanism
+					var/obj/item/part/gun/modular/grip/InstalledMechanism
 					// Which mechanism the frame accepts?
-					var/list/mechanismvar = /obj/item/part/gun/mechanism
+					var/list/mechanismvar = /obj/item/part/gun/modular/mechanism
 
 					// Currently installed barrel
-					var/obj/item/part/gun/barrel/InstalledBarrel
+					var/obj/item/part/gun/modular/barrel/InstalledBarrel
 					// Which barrels does the frame accept?
-					var/list/barrelvars = list(/obj/item/part/gun/barrel)
+					var/list/barrelvars = list(/obj/item/part/gun/modular/barrel)
 
 					var/serial_type = ""
 
@@ -276,21 +344,21 @@
 									InstalledGrip = new select(src)
 
 				/obj/item/part/gun/frame/attackby(obj/item/I, mob/living/user, params)
-					if(istype(I, /obj/item/part/gun/grip))
+					if(istype(I, /obj/item/part/gun/modular/grip))
 						if(InstalledGrip)
 							to_chat(user, SPAN_WARNING("[src] already has a grip attached!"))
 							return
 						else
 							handle_gripvar(I, user)
 
-					if(istype(I, /obj/item/part/gun/mechanism))
+					if(istype(I, /obj/item/part/gun/modular/mechanism))
 						if(InstalledMechanism)
 							to_chat(user, SPAN_WARNING("[src] already has a mechanism attached!"))
 							return
 						else
 							handle_mechanismvar(I, user)
 
-					if(istype(I, /obj/item/part/gun/barrel))
+					if(istype(I, /obj/item/part/gun/modular/barrel))
 						if(InstalledBarrel)
 							to_chat(user, SPAN_WARNING("[src] already has a barrel attached!"))
 							return
@@ -313,11 +381,11 @@
 								return
 							if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
 								eject_item(toremove, user)
-								if(istype(toremove, /obj/item/part/gun/grip))
+								if(istype(toremove, /obj/item/part/gun/modular/grip))
 									InstalledGrip = null
-								else if(istype(toremove, /obj/item/part/gun/barrel))
+								else if(istype(toremove, /obj/item/part/gun/modular/barrel))
 									InstalledBarrel = FALSE
-								else if(istype(toremove, /obj/item/part/gun/mechanism))
+								else if(istype(toremove, /obj/item/part/gun/modular/mechanism))
 									InstalledMechanism = FALSE
 
 					return ..()

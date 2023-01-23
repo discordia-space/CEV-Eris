@@ -24,7 +24,7 @@
 	gun_tags = list(GUN_SILENCABLE)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	gun_parts = list(/obj/item/part/gun/frame/paco = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/paco = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/pistol = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "FS"
 
 /obj/item/gun/projectile/paco/update_icon()
@@ -55,6 +55,6 @@
 	desc = "A Paco pistol frame. A reliable companion in the field."
 	icon_state = "frame_paco"
 	resultvars = list(/obj/item/gun/projectile/paco)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/pistol
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)

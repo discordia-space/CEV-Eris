@@ -34,17 +34,17 @@
 	var/bolt_open = 0
 	var/item_suffix = ""
 	var/message = "bolt"        // what message appears when cocking, eg "You work the [bolt] open, ejecting a casing!"
-	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/modular/grip/excel = 1, /obj/item/part/gun/modular/mechanism/boltgun = 1, /obj/item/part/gun/modular/barrel/lrifle/steel = 1)
 
 /obj/item/part/gun/frame/boltgun
 	name = "bolt-action rifle frame"
 	desc = "A bolt-action rifle frame. For hunting or endless trench warfare."
 	icon_state = "frame_serbrifle"
 	result = /obj/item/gun/projectile/boltgun
-	gripvars = list(/obj/item/part/gun/grip/excel, /obj/item/part/gun/grip/wood)
+	gripvars = list(/obj/item/part/gun/modular/grip/excel, /obj/item/part/gun/modular/grip/wood)
 	resultvars = list(/obj/item/gun/projectile/boltgun, /obj/item/gun/projectile/boltgun/serbian)
-	mechanismvar = /obj/item/part/gun/mechanism/boltgun
-	barrelvars = list(/obj/item/part/gun/barrel/lrifle/steel)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/boltgun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/lrifle/steel)
 
 /obj/item/gun/projectile/boltgun/update_icon()
 	..()
@@ -134,7 +134,7 @@
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/stack/material/steel = 16)
 	sawn = /obj/item/gun/projectile/boltgun/obrez/serbian
-	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/boltgun = 1, /obj/item/part/gun/modular/barrel/lrifle/steel = 1)
 
 /obj/item/gun/projectile/boltgun/fs
 	name = "FS BR .20 \"Kadmin\""
@@ -158,7 +158,7 @@
 	sharp = FALSE
 	spawn_blacklisted = TRUE
 	saw_off = FALSE
-	gun_parts = list(/obj/item/part/gun/frame/kadmin = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/srifle/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/kadmin = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/boltgun = 1, /obj/item/part/gun/modular/barrel/srifle/steel = 1)
 	price_tag = 1200
 	serial_type = "FS"
 
@@ -167,9 +167,9 @@
 	desc = "A Kadmin bolt-action rifle frame. For hunting or endless coastal warfare."
 	icon_state = "frame_weebrifle"
 	resultvars = list(/obj/item/gun/projectile/boltgun/fs)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/boltgun
-	barrelvars = list(/obj/item/part/gun/barrel/srifle/steel)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/boltgun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/srifle/steel)
 
 /obj/item/gun/projectile/boltgun/handmade
 	name = "HM BR \"Riose\""
@@ -192,7 +192,7 @@
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	saw_off = TRUE // yeah, we are getting the ghetto sawn off too
 	sawn = /obj/item/gun/projectile/boltgun/obrez/handmade
-	gun_parts = list(/obj/item/part/gun/frame/riose = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/riose = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/boltgun = 1, /obj/item/part/gun/modular/barrel/lrifle/steel = 1)
 
 /obj/item/part/gun/frame/riose
 	name = "Riose frame"
@@ -200,9 +200,9 @@
 	icon_state = "frame_riose"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 10)
 	resultvars = list(/obj/item/gun/projectile/boltgun/handmade)
-	gripvars = list(/obj/item/part/gun/grip/wood)
-	mechanismvar = /obj/item/part/gun/mechanism/boltgun
-	barrelvars = list(/obj/item/part/gun/barrel/lrifle/steel, /obj/item/part/gun/barrel/srifle/steel, /obj/item/part/gun/barrel/clrifle/steel)
+	gripvars = list(/obj/item/part/gun/modular/grip/wood)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/boltgun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/lrifle/steel, /obj/item/part/gun/modular/barrel/srifle/steel, /obj/item/part/gun/modular/barrel/clrifle/steel)
 
 //// OBREZ ////
 

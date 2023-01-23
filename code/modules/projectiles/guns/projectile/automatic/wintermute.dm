@@ -34,7 +34,7 @@
 		)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	gun_parts = list(/obj/item/part/gun/frame/wintermute = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/wintermute = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/autorifle = 1, /obj/item/part/gun/modular/barrel/srifle = 1)
 	serial_type = "FS"
 
 /obj/item/gun/projectile/automatic/wintermute/update_icon()
@@ -54,6 +54,6 @@
 	desc = "A Wintermute assault rifle frame. The finest of the Ironhammer lineup."
 	icon_state = "frame_wintermute"
 	resultvars = list(/obj/item/gun/projectile/automatic/wintermute)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/autorifle
-	barrelvars = list(/obj/item/part/gun/barrel/srifle)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle
+	barrelvars = list(/obj/item/part/gun/modular/barrel/srifle)

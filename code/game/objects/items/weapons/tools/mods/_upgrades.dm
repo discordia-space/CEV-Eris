@@ -368,11 +368,19 @@
 		var/obj/item/gun/projectile/P = G
 		if(weapon_upgrades[GUN_UPGRADE_MAGUP])
 			P.max_shells += weapon_upgrades[GUN_UPGRADE_MAGUP]
-		if(weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER])
-			P.caliber = weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER]
-			P.name = "[weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER]] [P.name]"
-		if(weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL])
-			P.mag_well = weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL]
+
+		if(istype(G, /obj/item/gun/projectile/automatic/modular))
+			var/obj/item/gun/projectile/automatic/modular/M = G
+			if(weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL])
+				M.mag_well = weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL]
+			if(weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER])
+				M.caliber = weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER]
+				M.name = "[weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER]] [P.name]"
+			if(weapon_upgrades[GUN_UPGRADE_DEFINE_STOCK])
+				M.spriteTags |= PARTMOD_STOCK // Adds the stock to the spriteTags
+			if(weapon_upgrades[GUN_UPGRADE_DEFINE_GRIP])
+				M.grip_type = weapon_upgrades[GUN_UPGRADE_DEFINE_GRIP]
+
 	for(var/datum/firemode/F in G.firemodes)
 		apply_values_firemode(F)
 

@@ -26,7 +26,7 @@
 	gun_parts = list(/obj/item/part/gun = 5 ,/obj/item/stack/material/plasteel = 6)
 	wield_delay = 1 SECOND
 	wield_delay_factor = 0.4 // 40 vig for insta wield
-	gun_parts = list(/obj/item/part/gun/frame/dallas = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/clrifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/dallas = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/machinegun = 1, /obj/item/part/gun/modular/barrel/clrifle = 1)
 
 	gun_tags = list(GUN_SILENCABLE)
 
@@ -50,7 +50,7 @@
 	desc = "A Dallas pulse rifle frame. Sawing aliens in twain since time immemorial."
 	icon_state = "frame_dallas"
 	resultvars = list(/obj/item/gun/projectile/automatic/dallas)
-	gripvars = list(/obj/item/part/gun/grip/black)
-	mechanismvar = /obj/item/part/gun/mechanism/machinegun
-	barrelvars = list(/obj/item/part/gun/barrel/clrifle)
+	gripvars = list(/obj/item/part/gun/modular/grip/black)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/machinegun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/clrifle)
 	spawn_blacklisted = TRUE

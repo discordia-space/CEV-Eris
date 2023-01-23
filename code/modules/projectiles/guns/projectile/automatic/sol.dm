@@ -28,7 +28,7 @@
 		BURST_3_ROUND_RAPID
 		)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	gun_parts = list(/obj/item/part/gun/frame/sol = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/clrifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/sol = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/smg = 1, /obj/item/part/gun/modular/barrel/clrifle = 1)
 	serial_type = "FS"
 
 /obj/item/gun/projectile/automatic/sol/proc/update_charge()
@@ -53,6 +53,6 @@
 	desc = "A Sol carbine frame. Ironhammer's favorite."
 	icon_state = "frame_ihbullpup"
 	resultvars = list(/obj/item/gun/projectile/automatic/sol)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/smg // guh?? ok you do you
-	barrelvars = list(/obj/item/part/gun/barrel/clrifle)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/smg // guh?? ok you do you
+	barrelvars = list(/obj/item/part/gun/modular/barrel/clrifle)

@@ -409,9 +409,6 @@
 
 /obj/item/gun/projectile/refresh_upgrades()
 	max_shells = initial(max_shells)
-	caliber = initial(caliber)
-	name = initial(name)
-	mag_well = initial(mag_well)
 	..()
 
 /obj/item/gun/projectile/generate_guntags()

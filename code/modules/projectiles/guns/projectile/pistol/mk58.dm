@@ -16,7 +16,7 @@
 	damage_multiplier = 1.3
 	penetration_multiplier = 0
 	init_recoil = HANDGUN_RECOIL(1)
-	gun_parts = list(/obj/item/part/gun/frame/mk58 = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/mk58 = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/pistol = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "NT"
 
 /obj/item/gun/projectile/mk58/update_icon()
@@ -36,7 +36,7 @@
 	icon_state = "mk58_wood"
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 650
-	gun_parts = list(/obj/item/part/gun/frame/mk58 = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/mk58 = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/pistol = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 
 /obj/item/gun/projectile/mk58/army
 	name = "NT HG .35 Auto \"Mk58-M\""
@@ -45,7 +45,7 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 8)
 	price_tag = 700
 	init_recoil = HANDGUN_RECOIL(0.9)
-	gun_parts = list(/obj/item/part/gun/frame/mk58 = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/mk58 = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/pistol = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 
 
 /obj/item/part/gun/frame/mk58
@@ -53,7 +53,7 @@
 	desc = "A MK58 pistol frame. The standard issue of the Nanotrasen Corporation."
 	icon_state = "frame_mk58"
 	result = /obj/item/gun/projectile/mk58
-	gripvars = list(/obj/item/part/gun/grip/black, /obj/item/part/gun/grip/wood, /obj/item/part/gun/grip/rubber)
+	gripvars = list(/obj/item/part/gun/modular/grip/black, /obj/item/part/gun/modular/grip/wood, /obj/item/part/gun/modular/grip/rubber)
 	resultvars = list(/obj/item/gun/projectile/mk58, /obj/item/gun/projectile/mk58/wood, /obj/item/gun/projectile/mk58/army)
-	mechanismvar = /obj/item/part/gun/mechanism/pistol
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)

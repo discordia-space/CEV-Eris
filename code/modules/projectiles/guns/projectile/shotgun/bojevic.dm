@@ -28,7 +28,7 @@
 		FULL_AUTO_400,
 		SEMI_AUTO_300
 		)
-	gun_parts = list(/obj/item/part/gun/frame/bojevic = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	gun_parts = list(/obj/item/part/gun/frame/bojevic = 1, /obj/item/part/gun/modular/grip/serb = 1, /obj/item/part/gun/modular/mechanism/autorifle = 1, /obj/item/part/gun/modular/barrel/shotgun = 1)
 	serial_type = "SA"
 
 /obj/item/gun/projectile/shotgun/bojevic/update_icon()
@@ -57,6 +57,6 @@
 	desc = "A Bojevic shotgun frame. Specially designed to sweep streets and spaceship halls."
 	icon_state = "frame_bojevic"
 	resultvars = list(/obj/item/gun/projectile/shotgun/bojevic)
-	gripvars = list(/obj/item/part/gun/grip/serb)
-	mechanismvar = /obj/item/part/gun/mechanism/autorifle // listen, its semi and full auto, not pump. makes sense
-	barrelvars = list(/obj/item/part/gun/barrel/shotgun)
+	gripvars = list(/obj/item/part/gun/modular/grip/serb)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle // listen, its semi and full auto, not pump. makes sense
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun)

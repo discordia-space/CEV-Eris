@@ -25,7 +25,7 @@
 	damage_multiplier = 1
 	penetration_multiplier = 0
 	spawn_blacklisted = TRUE
-	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/modular/grip/excel = 1, /obj/item/part/gun/modular/mechanism/autorifle = 1, /obj/item/part/gun/modular/barrel/lrifle = 1)
 
 	gun_tags = list(GUN_SILENCABLE)
 
@@ -43,10 +43,10 @@
 	desc = "An AK rifle frame. The eternal firearm."
 	icon_state = "frame_ak"
 	result = /obj/item/gun/projectile/automatic/ak47
-	gripvars = list(/obj/item/part/gun/grip/excel, /obj/item/part/gun/grip/serb, /obj/item/part/gun/grip/wood, /obj/item/part/gun/grip/rubber)
+	gripvars = list(/obj/item/part/gun/modular/grip/excel, /obj/item/part/gun/modular/grip/serb, /obj/item/part/gun/modular/grip/wood, /obj/item/part/gun/modular/grip/rubber)
 	resultvars = list(/obj/item/gun/projectile/automatic/ak47, /obj/item/gun/projectile/automatic/ak47/sa, /obj/item/gun/projectile/automatic/ak47/fs, /obj/item/gun/projectile/automatic/ak47/fs/ih)
-	mechanismvar = /obj/item/part/gun/mechanism/autorifle
-	barrelvars = list(/obj/item/part/gun/barrel/lrifle)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle
+	barrelvars = list(/obj/item/part/gun/modular/barrel/lrifle)
 
 /obj/item/gun/projectile/automatic/ak47/proc/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
@@ -106,7 +106,7 @@
 
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 
-	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/modular/grip/serb = 1, /obj/item/part/gun/modular/mechanism/autorifle = 1, /obj/item/part/gun/modular/barrel/lrifle = 1)
 
 	price_tag = 3500
 	serial_type = "SA"
@@ -180,7 +180,7 @@
 	price_tag = 1600
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	spawn_blacklisted = FALSE
-	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/autorifle = 1, /obj/item/part/gun/modular/barrel/lrifle = 1)
 	serial_type = "FS"
 
 
@@ -197,7 +197,7 @@
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 	gun_tags = list(GUN_FA_MODDABLE)
-	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/ak47 = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/autorifle = 1, /obj/item/part/gun/modular/barrel/lrifle = 1)
 	price_tag = 2000
 	damage_multiplier = 1.1
 	penetration_multiplier = 0
@@ -269,7 +269,7 @@
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	matter = list(MATERIAL_STEEL = 22, MATERIAL_PLASTEEL = 18, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 12)
 	price_tag = 500
-	gun_parts = list(/obj/item/part/gun/frame/kalash = 1, /obj/item/part/gun/grip/wood = 1 , /obj/item/part/gun/mechanism/autorifle/steel = 1, /obj/item/part/gun/barrel/lrifle/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/kalash = 1, /obj/item/part/gun/modular/grip/wood = 1 , /obj/item/part/gun/modular/mechanism/autorifle/steel = 1, /obj/item/part/gun/modular/barrel/lrifle/steel = 1)
 	serial_type = ""
 
 /obj/item/part/gun/frame/kalash
@@ -278,7 +278,7 @@
 	icon_state = "frame_kalash"
 	matter = list(MATERIAL_STEEL = 22, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 6)
 	resultvars = list(/obj/item/gun/projectile/automatic/ak47/makeshift)
-	gripvars = list(/obj/item/part/gun/grip/wood)
-	mechanismvar = /obj/item/part/gun/mechanism/autorifle/steel
-	barrelvars = list(/obj/item/part/gun/barrel/lrifle/steel, /obj/item/part/gun/barrel/srifle/steel, /obj/item/part/gun/barrel/clrifle/steel)
+	gripvars = list(/obj/item/part/gun/modular/grip/wood)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle/steel
+	barrelvars = list(/obj/item/part/gun/modular/barrel/lrifle/steel, /obj/item/part/gun/modular/barrel/srifle/steel, /obj/item/part/gun/modular/barrel/clrifle/steel)
 

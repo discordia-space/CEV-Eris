@@ -17,7 +17,7 @@
 	init_recoil = HANDGUN_RECOIL(1.2)
 	gun_tags = list(GUN_GILDABLE)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	gun_parts = list(/obj/item/part/gun/frame/colt = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/colt = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/pistol = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "FS"
 /obj/item/gun/projectile/colt/update_icon()
 	..()
@@ -44,6 +44,6 @@
 	desc = "A Colt pistol frame. Winner of dozens of world wars, and loser of many more guerilla wars."
 	icon_state = "frame_1911"
 	resultvars = list(/obj/item/gun/projectile/colt)
-	gripvars = list(/obj/item/part/gun/grip/wood)
-	mechanismvar = /obj/item/part/gun/mechanism/pistol
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	gripvars = list(/obj/item/part/gun/modular/grip/wood)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)
