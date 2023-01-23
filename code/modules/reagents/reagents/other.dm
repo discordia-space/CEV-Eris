@@ -132,7 +132,7 @@
 	M.setOxyLoss(0)
 	M.radiation = 0
 	M.heal_organ_damage(5,5)
-	M.adjustToxLoss(-5)
+	M.add_chemical_effect(CE_TOXIN, -50)
 	M.hallucination_power = 0
 	M.setBrainLoss(0)
 	M.disabilities = 0
@@ -204,7 +204,7 @@
 	M.SetParalysis(0)
 	M.SetWeakened(0)
 	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "adrenaline")
-	M.adjustToxLoss(rand(3))
+	M.add_chemical_effect(CE_TOXIN, 3)
 
 /datum/reagent/adrenaline/withdrawal_act(mob/living/carbon/M)
 	M.adjustOxyLoss(15)
@@ -429,8 +429,6 @@
 */
 
 /datum/reagent/other/coolant/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustToxLoss(1)
-
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/organ_process = pick(OP_LIVER, OP_LUNGS, OP_KIDNEYS, OP_BLOOD_VESSEL, OP_STOMACH)
@@ -575,7 +573,7 @@
 	color = "#cf820f"
 	metabolism = REM * 0.2
 	nerve_system_accumulations = 20
-	sanity_gain_ingest = 0.5	
+	sanity_gain_ingest = 0.5
 	taste_tag = list(TASTE_LIGHT)
 	glass_icon_state = "teaglass"
 	glass_name = "odd tea"

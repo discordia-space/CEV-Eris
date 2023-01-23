@@ -92,7 +92,7 @@
 		M.custom_emote(1,"twitches and drops [M.gender == MALE ? "his" : "her"] [M.get_active_hand()].") // there is only two genders, male and others
 		M.drop_item()
 	if(prob(80 - (20 * inverse_tough_mult)))
-		M.adjustToxLoss(5)
+		M.add_chemical_effect(CE_TOXIN, 5)
 	if(ishuman(M)&& prob(80 - (60 * inverse_tough_mult)))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/N = H.random_organ_by_process(OP_NERVE)
@@ -284,7 +284,7 @@
 /datum/reagent/stim/ultra_surgeon/overdose(mob/living/carbon/M, alien)
 	var/inverse_tough_mult = 1 - M.stats.getMult(STAT_TGH)
 	if(prob(80 - (20 * inverse_tough_mult)))
-		M.adjustToxLoss(10)
+		M.add_chemical_effect(CE_TOXIN, 10)
 	if(prob(10 - (5 * inverse_tough_mult)))
 		M.custom_emote(1,"twitches and drops [M.gender == MALE ? "his" : "her"] [M.get_active_hand()].") // there is only two genders, male and others
 		M.drop_item()
@@ -443,7 +443,7 @@
 			var/mob/living/carbon/human/H = M
 			var/obj/item/organ/internal/N = H.random_organ_by_process(OP_NERVE)
 			create_overdose_wound(N, M, /datum/component/internal_wound/organic/permanent, "scar")
-		
+
 
 /datum/reagent/stim/menace
 	name = "MENACE"

@@ -34,7 +34,6 @@
 
 		if(transferred_damage_amount > 0)
 			I.take_damage(transferred_damage_amount, damage_type, wounding_multiplier, sharp, edge, FALSE)
-			amount -= round(min(transferred_damage_amount, amount * 0.75), 0.01)
 
 	if(amount <= 0)
 		return FALSE

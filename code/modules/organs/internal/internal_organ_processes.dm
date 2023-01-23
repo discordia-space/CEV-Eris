@@ -54,40 +54,30 @@
 	update_client_colour()
 
 /mob/living/carbon/human/proc/kidney_process()
-	var/datum/reagents/metabolism/BLOOD_METABOLISM = get_metabolism_handler(CHEM_BLOOD)
 	var/kidneys_efficiency = get_organ_efficiency(OP_KIDNEYS)
 	var/obj/item/organ/internal/kidney = random_organ_by_process(OP_LIVER)
-	var/toxin_strength = chem_effects[CE_TOXIN]
-	var/toxin_damage = ((toxin_strength * IORGAN_KIDNEY_TOX_RATIO) / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (kidneys_efficiency / 100)
-	
-	//If your kidneys aren't working, your body's going to have a hard time cleaning your blood.
-	if(chem_effects[CE_ANTITOX])
-		if(kidneys_efficiency < BRUISED_2_EFFICIENCY)
-			if(prob(5) && BLOOD_METABOLISM.get_reagent_amount("potassium") < 5)
-				BLOOD_METABOLISM.add_reagent("potassium", REM * 5)
-		if(kidneys_efficiency < BROKEN_2_EFFICIENCY)
-			if(BLOOD_METABOLISM.get_reagent_amount("potassium") < 15)
-				BLOOD_METABOLISM.add_reagent("potassium", REM * 2)
-		if(kidneys_efficiency < DEAD_2_EFFICIENCY)
-			BLOOD_METABOLISM.add_reagent("toxin", REM * 2)
-	
-	if(toxin_damage > 0)
-		kidney.take_damage(toxin_damage, TOX)
+	var/toxin_strength = chem_effects[CE_TOXIN] * IORGAN_KIDNEY_TOX_RATIO + chem_effects[CE_ANTITOX]		// Too much antitox medication will hurt your kidneys
+	var/toxin_damage = (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (kidneys_efficiency / 100)
+
+	if(toxin_damage > 0 && kidney)
+		if(prob(5))
+			var/datum/component/internal_wound/new_wound = new /datum/component/internal_wound/organic/heavy_poisoning
+			new_wound.name = "anti-toxin oversaturation"
+			kidney.add_wound(new_wound)
 
 /mob/living/carbon/human/proc/liver_process()
-	var/liver_efficiency = get_organ_efficiency(OP_LIVER) + (chem_effects[CE_ANTITOX] * 33)
+	var/liver_efficiency = get_organ_efficiency(OP_LIVER) * (1 + chem_effects[CE_ANTITOX])
 	var/obj/item/organ/internal/liver = random_organ_by_process(OP_LIVER)
 	var/alcohol_strength = chem_effects[CE_ALCOHOL]
-	var/alcohol_toxic_strength = chem_effects[CE_ALCOHOL_TOXIC]
-	var/toxin_strength = chem_effects[CE_TOXIN]
-	var/toxin_damage = (alcohol_toxic_strength + toxin_strength * IORGAN_LIVER_TOX_RATIO) / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1) - (liver_efficiency / 100)
+	var/toxin_strength = chem_effects[CE_TOXIN] * IORGAN_LIVER_TOX_RATIO + chem_effects[CE_ALCOHOL_TOXIC]
+	var/toxin_damage = (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (liver_efficiency / 100)
 
 	// If you're not filtering well, you're in trouble. Ammonia buildup to toxic levels and damage from alcohol
 	if(liver_efficiency < BROKEN_2_EFFICIENCY)
 		if(alcohol_strength)
-			toxin_damage += 0.5 * max(2 - (liver_efficiency * 0.01), 0) * (alcohol_strength / 2)
+			toxin_damage += 0.5 * max(2 - (liver_efficiency * 0.01), 0) * alcohol_strength
 
-	if(toxin_damage > 0)
+	if(toxin_damage > 0 && liver)
 		liver.take_damage(toxin_damage, TOX)
 
 	//Blood regeneration if there is some space

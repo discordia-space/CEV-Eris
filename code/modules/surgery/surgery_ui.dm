@@ -30,10 +30,10 @@
 	// For diagnostics on an internal object
 	data["viewing_internal"] = selected_internal_object ? TRUE : FALSE
 
+	if(!istype(selected_internal_object, /obj/item/organ/internal))
+		selected_internal_object = null
+
 	if(selected_internal_object)
-		if(!LAZYFIND(internal_organs, selected_internal_object))
-			selected_internal_object = null
-			return
 		var/obj/item/organ/internal/I = selected_internal_object
 		data["diag_name"] = I.name
 		data["diag_max_damage"] = I.max_damage
@@ -197,7 +197,7 @@
 				var/target = get_surgery_target()
 				var/obj/item/I = user.get_active_hand()
 
-				if(!(QUALITY_CLAMPING in I.tool_qualities))
+				if(!I && !(QUALITY_CLAMPING in I.tool_qualities))
 					to_chat(user, SPAN_WARNING("You need a tool with [QUALITY_CLAMPING] quality"))
 					return FALSE
 

@@ -9,7 +9,7 @@
 	reagent_type = "General"
 
 /datum/reagent/acetone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustToxLoss(effect_multiplier * 0.3)
+	M.add_chemical_effect(CE_TOXIN, 1.5 * effect_multiplier)
 
 /datum/reagent/acetone/touch_obj(obj/O)	//I copied this wholesale from ethanol and could likely be converted into a shared proc. ~Techhead
 	if(istype(O, /obj/item/paper))
@@ -51,7 +51,7 @@
 	metabolism = REM * 0.5
 
 /datum/reagent/toxin/ammonia/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustToxLoss(effect_multiplier * 0.15)
+	M.add_chemical_effect(CE_TOXIN, 0.7 * effect_multiplier)
 
 /datum/reagent/carbon
 	name = "Carbon"
@@ -214,11 +214,11 @@
 	touch_met = 5
 
 /datum/reagent/toxin/hydrazine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustToxLoss(0.4 * effect_multiplier)
+	M.add_chemical_effect(CE_TOXIN, 2 * effect_multiplier)
 
 /datum/reagent/toxin/hydrazine/affect_touch(mob/living/carbon/M, alien, effect_multiplier) // Hydrazine is both toxic and flammable.
 	M.adjust_fire_stacks(0.4 / 12)
-	M.adjustToxLoss(0.2 * effect_multiplier)
+	M.add_chemical_effect(CE_TOXIN, effect_multiplier)
 
 /datum/reagent/toxin/hydrazine/touch_turf(turf/T)
 	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)

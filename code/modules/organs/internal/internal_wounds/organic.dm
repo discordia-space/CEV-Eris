@@ -128,7 +128,7 @@
 /datum/component/internal_wound/organic/poisoning
 	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 1)
 	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
-	treatments_chem = list(CE_ANTITOX = 1)
+	treatments_chem = list(CE_ANTITOX = 2)
 	severity = 0
 	severity_max = 2
 	hal_damage = IWOUND_LIGHT_DAMAGE
@@ -191,7 +191,7 @@
 // Secondary wounds
 /datum/component/internal_wound/organic/swelling
 	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
-	treatments_chem = list(CE_ANTIBIOTIC = 3) // 5u Spaceacillin or spaceacillin + dylovene
+	treatments_chem = list(CE_ANTIBIOTIC = 3) // Spaceacillin
 	severity = 0
 	severity_max = 3
 	next_wound = /datum/component/internal_wound/organic/infection
@@ -217,7 +217,7 @@
 
 // Infection 2.0. This will spread to other organs in your body if untreated. Progresses until death.
 /datum/component/internal_wound/organic/infection
-	treatments_chem = list(CE_ANTIBIOTIC = 5)	// 10u Spaceacillin or 5u spaceacillin + dylovene
+	treatments_chem = list(CE_ANTIBIOTIC = 5)	// Spaceacillin + dylovene
 	severity = 0
 	severity_max = IORGAN_MAX_HEALTH
 	progress_during_death = TRUE	// Dead organs will spread the infection

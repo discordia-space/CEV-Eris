@@ -113,11 +113,10 @@
 /datum/reagent/medicine/dylovene/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.drowsyness = max(0, M.drowsyness - 0.6 * effect_multiplier)
 	M.adjust_hallucination(-0.9 * effect_multiplier)
-	M.adjustToxLoss(-((0.4 + (M.getToxLoss() * 0.05)) * effect_multiplier))
-	M.add_chemical_effect(CE_ANTITOX, 1)
+	M.add_chemical_effect(CE_ANTITOX, 2)
 	M.add_chemical_effect(CE_ANTIBIOTIC, 1)
-	holder.remove_reagent("pararein", 0.2 )
-	holder.remove_reagent("blattedin", 0.2 )
+	holder.remove_reagent("pararein", 0.2)
+	holder.remove_reagent("blattedin", 0.2)
 
 /datum/reagent/medicine/dylovene/overdose(mob/living/carbon/human/user, alien)
 	var/obj/item/organ/internal/blood_vessel/user_vessel = user.random_organ_by_process(OP_BLOOD_VESSEL)
@@ -169,7 +168,7 @@
 /datum/reagent/medicine/tricordrazine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustOxyLoss(-0.6 * effect_multiplier)
 	M.heal_organ_damage(0.3 * effect_multiplier, 0.3 * effect_multiplier)
-	M.adjustToxLoss(-0.3 * effect_multiplier)
+	M.add_chemical_effect(CE_ANTITOX, 1)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.1)
 
 /datum/reagent/medicine/tricordrazine/overdose(mob/living/carbon/human/user, alien)
@@ -198,15 +197,14 @@
 
 /datum/reagent/medicine/cryoxadone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.bodytemperature < 170)
-		M.adjustCloneLoss(-(1 + (M.getCloneLoss() * 0.05)) * effect_multiplier)
 		M.add_chemical_effect(CE_ONCOCIDAL, 1)
-		M.adjustOxyLoss(-(1 + (M.getOxyLoss() * 0.05)) * effect_multiplier)
 		M.add_chemical_effect(CE_OXYGENATED, 1)
-		M.heal_organ_damage(1 * effect_multiplier, 1 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
-		M.add_chemical_effect(CE_BLOODCLOT, 0.30)
-		M.adjustToxLoss(-(1 + (M.getToxLoss() * 0.05)) * effect_multiplier)
+		M.add_chemical_effect(CE_BLOODCLOT, 0.50)
 		M.add_chemical_effect(CE_ANTITOX, 1)
+		M.add_chemical_effect(CE_ANTIBIOTIC, 3)
 		M.add_chemical_effect(CE_PULSE, -2)
+		M.adjustOxyLoss(-(1 + (M.getOxyLoss() * 0.05)) * effect_multiplier)
+		M.heal_organ_damage(effect_multiplier, effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
 
 /datum/reagent/medicine/clonexadone
 	name = "Clonexadone"
@@ -220,15 +218,14 @@
 
 /datum/reagent/medicine/clonexadone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.bodytemperature < 170)
-		M.adjustCloneLoss(-(3 + (M.getCloneLoss() * 0.05)) * effect_multiplier)
 		M.add_chemical_effect(CE_ONCOCIDAL, 1)
-		M.adjustOxyLoss(-(3 + (M.getOxyLoss() * 0.05)) * effect_multiplier)
 		M.add_chemical_effect(CE_OXYGENATED, 1)
-		M.heal_organ_damage(3 * effect_multiplier, 3 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
-		M.add_chemical_effect(CE_BLOODCLOT, 0.55)
-		M.adjustToxLoss(-(3 + (M.getToxLoss() * 0.05)) * effect_multiplier)
+		M.add_chemical_effect(CE_BLOODCLOT, 0.50)
 		M.add_chemical_effect(CE_ANTITOX, 2)
+		M.add_chemical_effect(CE_ANTIBIOTIC, 7)
 		M.add_chemical_effect(CE_PULSE, -2)
+		M.adjustOxyLoss(-(3 + (M.getOxyLoss() * 0.05)) * effect_multiplier)
+		M.heal_organ_damage(3 * effect_multiplier, 3 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
 
 /* Painkillers */
 
@@ -325,7 +322,7 @@
 	holder.remove_reagent("mindbreaker", 5)
 	M.adjust_hallucination(-10)
 	M.add_chemical_effect(CE_MIND, 2)
-	M.adjustToxLoss(0.5 * effect_multiplier) // It used to be incredibly deadly due to an oversight. Not anymore!
+	M.add_chemical_effect(CE_TOXIN, 2.5 * effect_multiplier) // It used to be incredibly deadly due to an oversight. Not anymore!
 	M.add_chemical_effect(CE_PAINKILLER, 20)
 
 /datum/reagent/medicine/alkysine
@@ -482,7 +479,7 @@
 
 /datum/reagent/medicine/arithrazine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.radiation = max(M.radiation - (7 + (M.radiation * 0.10)) * effect_multiplier, 0)
-	M.adjustToxLoss(-(1 + (M.getToxLoss() * 0.05)) * effect_multiplier)
+	M.add_chemical_effect(CE_TOXIN, -(1 + (M.chem_effects[CE_TOXIN] * 0.05)) * effect_multiplier)
 	if(prob(60))
 		M.take_organ_damage(0.4 * effect_multiplier, 0)
 	M.add_chemical_effect(CE_ONCOCIDAL, 1)
@@ -499,14 +496,6 @@
 	scannable = 1
 
 /datum/reagent/medicine/spaceacillin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_ANTIBIOTIC, 2)
-	if(dose > 4)
-		M.add_chemical_effect(CE_ANTIBIOTIC, 2)
-	if(dose > 9)
-		M.add_chemical_effect(CE_ANTIBIOTIC, 2)
-
-/datum/reagent/medicine/spaceacillin/overdose(mob/living/carbon/M, alien)
-	. = ..()
 	M.add_chemical_effect(CE_ANTIBIOTIC, 4)
 
 /datum/reagent/medicine/sterilizine
@@ -629,7 +618,7 @@
 	M.adjustCloneLoss(-(2 + (M.getCloneLoss() * 0.05)) * effect_multiplier)
 	M.adjustOxyLoss(-0.2 * effect_multiplier)
 	M.heal_organ_damage(2 * effect_multiplier, 2 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
-	M.adjustToxLoss(-(2 + (M.getToxLoss() * 0.05)) * effect_multiplier)
+	M.add_chemical_effect(CE_TOXIN, -(2 + (M.chem_effects[CE_TOXIN] * 0.05)) * effect_multiplier)
 	if(dose > 3)
 		M.status_flags &= ~DISFIGURED
 	if(dose > 10)
@@ -852,7 +841,7 @@
 	M.add_chemical_effect(CE_PULSE, -1)
 
 /datum/reagent/medicine/haloperidol/overdose(mob/living/carbon/M, alien)
-	M.adjustToxLoss(6)
+	M.add_chemical_effect(CE_TOXIN, 6)
 
 /datum/reagent/medicine/vomitol
 	name = "Vomitol"

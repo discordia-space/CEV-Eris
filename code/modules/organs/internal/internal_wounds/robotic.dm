@@ -101,6 +101,7 @@
 	name = "carbonized wiring"
 
 /datum/component/internal_wound/robotic/overheat
+	treatments_item = list(/obj/item/stack/nanopaste = 2)
 	treatments_chem = list(CE_MECH_STABLE = 2.5)	// coolant + refrigerant
 	severity = 0
 	severity_max = IORGAN_MAX_HEALTH
@@ -129,6 +130,7 @@
 
 // Other wounds
 /datum/component/internal_wound/robotic/corrosion
+	treatments_item = list(/obj/item/stack/nanopaste = 2)
 	treatments_chem = list(CE_MECH_ACID = 1.5)	// sulphiric + hydrochloric acid or poly acid
 	scar = /datum/component/internal_wound/robotic/blunt	// Cleaning corrosion involves removing material
 	severity = 0

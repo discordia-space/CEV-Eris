@@ -197,7 +197,7 @@
 	M.add_chemical_effect(CE_TOXIN, dose / 4)
 	return
 
-/datum/reagent/proc/create_overdose_wound(obj/item/organ/internal/I, mob/user, datum/component/internal_wound/base_type, wound_descriptor = "poisoning")
+/datum/reagent/proc/create_overdose_wound(obj/item/organ/internal/I, mob/user, datum/component/internal_wound/base_type, wound_descriptor = "poisoning", silent = FALSE)
 	if(!istype(I))
 		return
 	if(I.nature != initial(base_type.wound_nature))
@@ -207,7 +207,7 @@
 	var/datum/component/internal_wound/new_wound = new wound_path
 	new_wound.name = "[name] [wound_descriptor]"
 	I.add_wound(new_wound)
-	if(BP_IS_ORGANIC(I))
+	if(!silent && BP_IS_ORGANIC(I))
 		to_chat(user, "You feel a sharp pain in your [I.parent.name].")
 
 /datum/reagent/proc/initialize_data(newdata) // Called when the reagent is created.

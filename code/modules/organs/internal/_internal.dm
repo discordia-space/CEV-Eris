@@ -108,14 +108,14 @@
 			LAZYREMOVE(possible_wounds, choice)
 			if(!LAZYLEN(possible_wounds))
 				break
-		
+
 		owner.custom_pain("Something inside your [parent.name] hurts a lot.", 0)		// Let em know they're hurting
 
 /obj/item/organ/internal/proc/get_possible_wounds(damage_type, sharp, edge)
 	var/list/possible_wounds = list()
 
 	// Determine possible wounds based on nature and damage type
-	var/is_robotic = BP_IS_ROBOTIC(src)
+	var/is_robotic = BP_IS_ROBOTIC(src) || BP_IS_ASSISTED(src)
 	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
 
 	switch(damage_type)

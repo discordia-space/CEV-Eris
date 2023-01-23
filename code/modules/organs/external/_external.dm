@@ -3,9 +3,9 @@
 ****************************************************/
 
 //These control the damage thresholds for the various ways of removing limbs
-#define DROPLIMB_THRESHOLD_EDGE 1.2
-#define DROPLIMB_THRESHOLD_TEAROFF 1.25
-#define DROPLIMB_THRESHOLD_DESTROY 1.35
+#define DROPLIMB_THRESHOLD_EDGE 1.5
+#define DROPLIMB_THRESHOLD_TEAROFF 1.75
+#define DROPLIMB_THRESHOLD_DESTROY 2
 
 /obj/item/organ/external
 	name = "external"
@@ -743,7 +743,7 @@ This function completely restores a damaged organ to perfect condition.
 		return bone
 
 /obj/item/organ/external/proc/mutate()
-	if(BP_IS_ROBOTIC(src))
+	if(BP_IS_ROBOTIC(src) || !LAZYLEN(internal_organs))
 		return
 	var/obj/item/organ/internal/I = pick(internal_organs)
 	if(I)
