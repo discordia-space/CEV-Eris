@@ -43,8 +43,8 @@
 	permeability_coefficient = 0.1
 	unacidable = 1
 	slowdown = HEAVY_SLOWDOWN // Very slow, but gimbal makes aim steady
-	//stiffness = LIGHT_STIFFNESS
-	//obscuration = LIGHT_OBSCURATION
+	/*stiffness = LIGHT_STIFFNESS
+	obscuration = LIGHT_OBSCURATION*/
 	var/ablative_armor = 0
 	var/ablative_max = 0
 	var/ablation = ABLATION_STANDARD

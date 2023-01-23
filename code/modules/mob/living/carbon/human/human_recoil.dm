@@ -3,7 +3,7 @@
 
 	var/base_recoil = 1
 
-	/*var/mob/living/carbon/human/H = src*/
+	//var/mob/living/carbon/human/H = src
 	var/suit_stiffness = 0
 	var/uniform_stiffness = 0
 	/*if(H.wear_suit)
