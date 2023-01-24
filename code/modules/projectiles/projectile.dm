@@ -279,7 +279,7 @@
 		recoil = leftmost_bit(recoil) //LOG2 calculation
 	else
 		recoil = 0
-	distance = distance <= 3 ? 5 - max(1,distance) : leftmost_bit(distance)
+	distance = leftmost_bit(distance)
 
 	def_zone = ran_zone(def_zone, 100 - (distance + recoil) * 10)
 
@@ -305,7 +305,6 @@
 	if(target_mob == original)
 		var/acc_mod = leftmost_bit(projectile_accuracy)
 		hit_mod -= acc_mod //LOG2 on the projectile accuracy
-
 	return prob((base_miss_chance[def_zone] + hit_mod) * 10)
 
 //Called when the projectile intercepts a mob. Returns 1 if the projectile hit the mob, 0 if it missed and should keep flying.
@@ -357,6 +356,8 @@
 	if(result == PROJECTILE_FORCE_MISS || result == PROJECTILE_FORCE_MISS_SILENCED)
 		if(!silenced && result == PROJECTILE_FORCE_MISS)
 			visible_message(SPAN_NOTICE("\The [src] misses [target_mob] narrowly!"))
+			if(isroach(target_mob))
+				bumped = FALSE // Roaches do not bump when missed, allowing the bullet to attempt to hit the rest of the roaches in a single cluster
 		return FALSE
 
 	//hit messages
@@ -629,11 +630,12 @@
 			dmg_total += dmg
 		if(dmg && amount)
 			var/dmg_armor_difference = dmg - amount
-			amount = dmg_armor_difference ? 0 : -dmg_armor_difference
-			dmg = dmg_armor_difference ? dmg_armor_difference : 0
+			var/is_difference_positive = dmg_armor_difference > 0
+			amount = is_difference_positive ? 0 : -dmg_armor_difference
+			dmg = is_difference_positive ? dmg_armor_difference : 0
 			if(!(dmg_type == HALLOSS))
 				dmg_remaining += dmg
-		if(dmg)
+		if(dmg > 0)
 			damage_types[dmg_type] = dmg
 		else
 			damage_types -= dmg_type
@@ -641,7 +643,7 @@
 		on_impact(A)
 		qdel(src)
 
-	return dmg_total ? (dmg_remaining / dmg_total) : 0
+	return dmg_total > 0 ? (dmg_remaining / dmg_total) : 0
 
 //"Tracing" projectile
 /obj/item/projectile/test //Used to see if you can hit them.

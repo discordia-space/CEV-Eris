@@ -8,6 +8,7 @@
 	anchored = TRUE
 	reagent_flags = OPENCONTAINER
 	volume = 100
+	circuit = /obj/item/electronics/circuitboard/hydroponics
 
 	var/mechanical = TRUE         // Set to 0 to stop it from drawing the alert lights.
 	var/base_name = "tray"
@@ -636,3 +637,10 @@
 	closed_system = !closed_system
 	to_chat(user, "You [closed_system ? "close" : "open"] the tray's lid.")
 	update_icon()
+
+/obj/item/electronics/circuitboard/hydroponics
+	name = T_BOARD("hydroponics tray")
+	build_path = /obj/machinery/portable_atmospherics/hydroponics
+	board_type = "machine"
+	req_components = list(
+	)

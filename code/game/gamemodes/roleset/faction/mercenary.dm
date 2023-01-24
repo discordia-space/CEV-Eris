@@ -3,7 +3,7 @@
 	name = "serbian mercenaries"
 	role_id = ROLE_MERCENARY
 	weight = 0.4
-	ocurrences_max = 1
+	occurrences_max = 1
 	req_crew = 5
 	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE)
 	

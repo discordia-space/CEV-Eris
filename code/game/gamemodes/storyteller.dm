@@ -334,10 +334,10 @@ The actual fire event proc is located in storyteller_meta*/
 			new_weight = 0
 		else
 			new_weight = calculate_event_weight(a)
-			//Reduce the weight based on number of ocurrences.
+			//Reduce the weight based on number of occurrences.
 			//This is mostly for the sake of midround handovers
-			if (a.ocurrences >= 1)
-				new_weight *= repetition_multiplier ** a.ocurrences
+			if (a.occurrences >= 1)
+				new_weight *= repetition_multiplier ** a.occurrences
 
 		//We setup the event pools as an associative list in preparation for a pickweight call
 		if (EVENT_LEVEL_MUNDANE in a.event_pools)
@@ -359,8 +359,8 @@ The actual fire event proc is located in storyteller_meta*/
 /datum/storyteller/proc/update_pool_weights(var/list/pool)
 	for(var/datum/storyevent/a in pool)
 		var/new_weight = calculate_event_weight(a)
-		if (a.ocurrences >= 1)
-			new_weight *= repetition_multiplier ** a.ocurrences
+		if (a.occurrences >= 1)
+			new_weight *= repetition_multiplier ** a.occurrences
 
 		pool[a] = new_weight
 	return pool
