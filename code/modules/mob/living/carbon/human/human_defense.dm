@@ -397,7 +397,7 @@ meteor_act
 							break_all_grabs(M) //See about breaking grips or pulls
 							playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 							return TRUE
-						if(item_in_active_hand.wielded && !recoil >= 80)
+						if(item_in_active_hand.wielded && recoil < 80)
 							playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 							return TRUE
 						unEquip(item_in_active_hand)
