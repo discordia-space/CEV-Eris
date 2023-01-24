@@ -73,3 +73,6 @@
   TheLeopold:
   - tweak: NT Scourge now smaller
   - balance: NT Scourge is single-tap when folded
+2023-01-24:
+  Humonitarian:
+  - bugfix: fixed calculation errors in penetration and armor
