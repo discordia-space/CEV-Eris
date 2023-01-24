@@ -365,7 +365,7 @@
 /obj/item/part/gun/modular/mechanism/autorifle/burst/New()
 	..()
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
-	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = list(SEMI_AUTO_300, BURST_5_ROUND)
+	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = list(BURST_3_ROUND, BURST_5_ROUND)
 
 /obj/item/part/gun/modular/mechanism/autorifle/fullauto
 	name = "self-loading mechanism"
@@ -376,7 +376,7 @@
 /obj/item/part/gun/modular/mechanism/autorifle/fullauto/New()
 	..()
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
-	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = list(FULL_AUTO_400, SEMI_AUTO_300, BURST_5_ROUND)
+	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = list(BURST_3_ROUND, BURST_5_ROUND, FULL_AUTO_400)
 
 /obj/item/part/gun/modular/mechanism/machinegun
 	name = "machine gun mechanism"
