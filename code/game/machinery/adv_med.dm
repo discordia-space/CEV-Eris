@@ -270,10 +270,10 @@
 	if (occ["virus_present"])
 		dat += "<font color='red'>Viral pathogen detected in blood stream.</font><br>"
 	dat += text("[]\t-Brute Damage: []</font><br>", ("<font color='[occ["bruteloss"] < 60  ? "blue" : "red"]'>"), occ["bruteloss"])
-	dat += text("[]\t-Toxin Content: []</font><br>", ("<font color='[occ["toxloss"] < 60  ? "blue" : "red"]'>"), occ["toxloss"] ? occ["toxloss"] : "0")
 	dat += text("[]\t-Burn Severity: []</font><br>", ("<font color='[occ["fireloss"] < 60  ? "blue" : "red"]'>"), occ["fireloss"])
 	dat += text("[]\t-Respiratory Damage %: []</font><br><br>", ("<font color='[occ["oxyloss"] < 60  ? "blue" : "red"]'>"), occ["oxyloss"])
 
+	dat += text("[]\t-Toxicity: []</font><br>", ("<font color='[occ["toxloss"] < 60  ? "blue" : "red"]'>"), occ["toxloss"] ? occ["toxloss"] : "0")
 	dat += text("[]\tRadiation Level %: []</font><br>", ("<font color='[occ["rads"] < 10  ? "blue" : "red"]'>"), occ["rads"])
 	dat += text("[]\tApprox. Brain Damage %: []</font><br>", ("<font color='[occ["brainloss"] < 1  ? "blue" : "red"]'>"), occ["brainloss"])
 	dat += text("[]\tNeural System Accumulation: []/[]</font><br>", ("<font color='[occ["NSA"] < occ["NSA_threshold"]  ? "blue" : "red"]'>"), occ["NSA"], occ["NSA_threshold"])
@@ -408,7 +408,7 @@
 			connected.update_icon()
 		if(occupant)
 			var/occupant_condition = round((occupant.health / occupant.maxHealth) * 100)
-			if(occupant_condition>=100)
+			if(occupant_condition>=100 && !occupant.getBruteLoss() && !occupant.getFireLoss())
 				icon_state = "scanner_green"
 				set_light(l_range = 1.5, l_power = 2, l_color = COLOR_LIME)
 			else if(occupant_condition>=0)
