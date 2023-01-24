@@ -59,11 +59,6 @@
 	var/toxin_strength = chem_effects[CE_TOXIN] * IORGAN_KIDNEY_TOX_RATIO + chem_effects[CE_ANTITOX]		// Too much antitox medication will hurt your kidneys
 	var/toxin_damage = (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (kidneys_efficiency / 100)
 
-	// Organ functions
-	// Blood regeneration if there is some space
-	regenerate_blood(0.1 + chem_effects[CE_BLOODRESTORE])
-
-	// Bad stuff
 	if(toxin_damage > 0 && kidney)
 		if(prob(5))
 			var/datum/component/internal_wound/new_wound = new /datum/component/internal_wound/organic/heavy_poisoning
