@@ -59,6 +59,11 @@
 	var/toxin_strength = chem_effects[CE_TOXIN] * IORGAN_KIDNEY_TOX_RATIO + chem_effects[CE_ANTITOX]		// Too much antitox medication will hurt your kidneys
 	var/toxin_damage = (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (kidneys_efficiency / 100)
 
+	// Organ functions
+	// Blood regeneration if there is some space
+	regenerate_blood(0.1 + chem_effects[CE_BLOODRESTORE])
+
+	// Bad stuff
 	if(toxin_damage > 0 && kidney)
 		if(prob(5))
 			var/datum/component/internal_wound/new_wound = new /datum/component/internal_wound/organic/heavy_poisoning
@@ -72,6 +77,11 @@
 	var/toxin_strength = chem_effects[CE_TOXIN] * IORGAN_LIVER_TOX_RATIO + chem_effects[CE_ALCOHOL_TOXIC]
 	var/toxin_damage = (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (liver_efficiency / 100)
 
+	// Organ functions
+	// Blood regeneration if there is some space
+	regenerate_blood(0.1 + chem_effects[CE_BLOODRESTORE])
+
+	// Bad stuff
 	// If you're not filtering well, you're in trouble. Ammonia buildup to toxic levels and damage from alcohol
 	if(liver_efficiency < BROKEN_2_EFFICIENCY)
 		if(alcohol_strength)
@@ -79,9 +89,6 @@
 
 	if(toxin_damage > 0 && liver)
 		liver.take_damage(toxin_damage, TOX)
-
-	//Blood regeneration if there is some space
-	regenerate_blood(0.1 + chem_effects[CE_BLOODRESTORE])
 
 	// Blood loss or liver damage make you lose nutriments
 	var/blood_volume = get_blood_volume()

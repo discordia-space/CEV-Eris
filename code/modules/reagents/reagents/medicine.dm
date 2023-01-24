@@ -639,7 +639,7 @@
 	M.add_chemical_effect(CE_BLOODCLOT, 0.25)
 
 /datum/reagent/medicine/quickclot/overdose(mob/living/carbon/M, alien)
-	M.add_chemical_effect(CE_BLOODCLOT, 0.25)
+	M.add_chemical_effect(CE_BLOODCLOT, 0.75)
 
 /datum/reagent/medicine/ossisine
 	name = "Ossisine"
@@ -759,10 +759,6 @@
 
 /datum/reagent/medicine/purger/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_PURGER, 1)
-	if(dose > 4)
-		M.add_chemical_effect(CE_PURGER, 1)
-	if(dose > 9)
-		M.add_chemical_effect(CE_PURGER, 1)
 
 /datum/reagent/medicine/addictol
 	name = "Addictol"
@@ -782,7 +778,7 @@
 			to_chat(C, SPAN_NOTICE("You dont crave [R.name] anymore."))
 			C.metabolism_effects.addiction_list.Remove(R)
 			qdel(R)
-	M.add_chemical_effect(CE_PURGER, 3)
+	M.add_chemical_effect(CE_PURGER, 2)
 
 /datum/reagent/medicine/addictol/on_mob_delete(mob/living/L)
 	..()
