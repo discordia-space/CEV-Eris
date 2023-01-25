@@ -114,7 +114,6 @@
 	M.drowsyness = max(0, M.drowsyness - 0.6 * effect_multiplier)
 	M.adjust_hallucination(-0.9 * effect_multiplier)
 	M.add_chemical_effect(CE_ANTITOX, 2)
-	M.add_chemical_effect(CE_ANTIBIOTIC, 1)
 	holder.remove_reagent("pararein", 0.2)
 	holder.remove_reagent("blattedin", 0.2)
 
@@ -200,8 +199,8 @@
 		M.add_chemical_effect(CE_ONCOCIDAL, 1)
 		M.add_chemical_effect(CE_OXYGENATED, 1)
 		M.add_chemical_effect(CE_BLOODCLOT, 0.50)
-		M.add_chemical_effect(CE_ANTITOX, 1)
-		M.add_chemical_effect(CE_ANTIBIOTIC, 3)
+		M.add_chemical_effect(CE_ANTITOX, 2)
+		M.add_chemical_effect(CE_ANTIBIOTIC, 5)
 		M.add_chemical_effect(CE_PULSE, -2)
 		M.adjustOxyLoss(-(1 + (M.getOxyLoss() * 0.05)) * effect_multiplier)
 		M.heal_organ_damage(effect_multiplier, effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
@@ -222,7 +221,7 @@
 		M.add_chemical_effect(CE_OXYGENATED, 1)
 		M.add_chemical_effect(CE_BLOODCLOT, 0.50)
 		M.add_chemical_effect(CE_ANTITOX, 2)
-		M.add_chemical_effect(CE_ANTIBIOTIC, 7)
+		M.add_chemical_effect(CE_ANTIBIOTIC, 5)
 		M.add_chemical_effect(CE_PULSE, -2)
 		M.adjustOxyLoss(-(3 + (M.getOxyLoss() * 0.05)) * effect_multiplier)
 		M.heal_organ_damage(3 * effect_multiplier, 3 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
@@ -496,7 +495,7 @@
 	scannable = 1
 
 /datum/reagent/medicine/spaceacillin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_ANTIBIOTIC, 4)
+	M.add_chemical_effect(CE_ANTIBIOTIC, 5)
 
 /datum/reagent/medicine/sterilizine
 	name = "Sterilizine"
@@ -755,15 +754,20 @@
 	reagent_state = LIQUID
 	color = "#d4cf3b"
 	scannable = 1
-	metabolism = REM/2
+	metabolism = REM / 2
+	overdose = REAGENTS_OVERDOSE / 3
 
 /datum/reagent/medicine/purger/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_PURGER, 1)
 
+/datum/reagent/medicine/purger/overdose(mob/living/carbon/M, alien)
+	. = ..()
+	M.add_chemical_effect(CE_PURGER, 2)
+
 /datum/reagent/medicine/addictol
 	name = "Addictol"
 	id = "addictol"
-	description = "Purges all addictions and treats chemical poisoning."
+	description = "Purges all addictions and aids in treating chemical poisoning."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#0179e7"

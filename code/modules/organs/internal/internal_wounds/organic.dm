@@ -191,7 +191,7 @@
 // Secondary wounds
 /datum/component/internal_wound/organic/swelling
 	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
-	treatments_chem = list(CE_ANTIBIOTIC = 3) // Spaceacillin
+	treatments_chem = list(CE_ANTIBIOTIC = 5) // Spaceacillin
 	severity = 0
 	severity_max = 3
 	next_wound = /datum/component/internal_wound/organic/infection
@@ -206,7 +206,6 @@
 
 // Other wounds
 /datum/component/internal_wound/organic/oxy
-	name = "blood loss"
 	treatments_chem = list(CE_OXYGENATED = 2, CE_BLOODRESTORE = 1)	// Dex+ treats, but it will come back if you don't get blood
 	severity = 0
 	severity_max = IORGAN_MAX_HEALTH
