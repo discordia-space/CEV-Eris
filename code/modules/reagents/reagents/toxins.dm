@@ -808,10 +808,10 @@
 	taste_description = "bleach"
 	color = "#707c13"
 	strength = 15
+
 /datum/reagent/toxin/chlorine/touch_obj(obj/O)
 	if(istype(O, /obj/effect/plant/hivemind))
 		qdel(O)
-
 
 /datum/reagent/toxin/tar
 	name = "Tar"
@@ -831,7 +831,7 @@
 	metabolism = REM
 	overdose = REAGENTS_OVERDOSE/2
 	nerve_system_accumulations = 5
-	strength = 0.01
+	strength = 1
 	sanityloss = 2
 
 /datum/reagent/toxin/mold/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)

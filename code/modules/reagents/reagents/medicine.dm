@@ -354,10 +354,19 @@
 	M.eye_blind = max(M.eye_blind - (5 * effect_multiplier), 0)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/eyes/E = H.random_organ_by_process(OP_EYES)
+		var/obj/item/organ/internal/E = H.random_organ_by_process(OP_EYES)
 		if(E && istype(E))
-			if(E.damage > 0)
-				E.damage = max(E.damage - (0.5 * effect_multiplier), 0)
+			var/list/current_wounds = E.GetComponents(/datum/component/internal_wound)
+			if(LAZYLEN(current_wounds) && prob(10))
+				SEND_SIGNAL(E, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
+
+/datum/reagent/medicine/imidazoline/overdose(mob/living/carbon/M, alien)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/list/eye_organs = H.internal_organs_by_efficiency[OP_EYES]
+		if(LAZYLEN(eye_organs))
+			create_overdose_wound(pick(eye_organs), H, /datum/component/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/medicine/peridaxon
 	name = "Peridaxon"
@@ -372,10 +381,18 @@
 /datum/reagent/medicine/peridaxon/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-
 		for(var/obj/item/organ/I in H.internal_organs)
-			if((I.damage > 0) && !BP_IS_ROBOTIC(I)) //Peridaxon heals only non-robotic organs
-				I.heal_damage(((0.2 + I.damage * 0.05) * effect_multiplier), FALSE)
+			var/list/current_wounds = I.GetComponents(/datum/component/internal_wound)
+			if(LAZYLEN(current_wounds) && !BP_IS_ROBOTIC(I)) //Peridaxon heals only non-robotic organs
+				SEND_SIGNAL(I, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
+
+/datum/reagent/medicine/peridaxon/overdose(mob/living/carbon/M, alien)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/list/organs_sans_brain = H.internal_organs - H.internal_organs_by_efficiency[BP_BRAIN]
+		if(LAZYLEN(organs_sans_brain))
+			create_overdose_wound(pick(organs_sans_brain), H, /datum/component/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/medicine/ryetalyn
 	name = "Ryetalyn"
@@ -385,8 +402,10 @@
 	reagent_state = SOLID
 	color = "#004000"
 	overdose = REAGENTS_OVERDOSE
-/*
+
 /datum/reagent/medicine/ryetalyn/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	M.add_chemical_effect(CE_ONCOCIDAL, 2)
+/*
 	var/needs_update = M.mutations.len > 0
 
 	M.mutations = list()
@@ -407,13 +426,11 @@
 	color = "#224422"
 	overdose = REAGENTS_OVERDOSE
 
-
 /datum/reagent/medicine/kognim/affect_blood(mob/living/carbon/human/H, alien, effect_multiplier)
 	if(istype(H))
 		var/obj/item/organ/external/E = pick(H.organs)
 		H.apply_damage(2, HALLOSS)
 		H.pain(E.name, 15, TRUE)
-
 
 /datum/reagent/medicine/negative_ling
 	name = "Negative Paragenetic Marker"
@@ -614,10 +631,10 @@
 	scannable = 1
 
 /datum/reagent/medicine/rezadone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustCloneLoss(-(2 + (M.getCloneLoss() * 0.05)) * effect_multiplier)
 	M.adjustOxyLoss(-0.2 * effect_multiplier)
 	M.heal_organ_damage(2 * effect_multiplier, 2 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
 	M.add_chemical_effect(CE_TOXIN, -(2 + (M.chem_effects[CE_TOXIN] * 0.05)) * effect_multiplier)
+	M.add_chemical_effect(CE_ONCOCIDAL, 2)
 	if(dose > 3)
 		M.status_flags &= ~DISFIGURED
 	if(dose > 10)
@@ -718,7 +735,7 @@
 	M.add_chemical_effect(CE_BLOODCLOT, min(1,0.1 * effect_multiplier))
 
 /datum/reagent/medicine/polystem/overdose(mob/living/carbon/M, alien)
-	M.add_chemical_effect(CE_BLOODCLOT, min(1,0.1))
+	M.add_chemical_effect(CE_BLOODCLOT, 0.1)
 
 /datum/reagent/medicine/detox
 	name = "Detox"
@@ -767,7 +784,7 @@
 /datum/reagent/medicine/addictol
 	name = "Addictol"
 	id = "addictol"
-	description = "Purges all addictions and aids in treating chemical poisoning."
+	description = "Purges all addictions and greatly aids in treating chemical poisoning."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#0179e7"
@@ -794,7 +811,7 @@
 /datum/reagent/medicine/aminazine
 	name = "Aminazine"
 	id = "aminazine"
-	description = "Medication designed to opresses withdrawal effects for some time."
+	description = "Medication designed to suppress withdrawal effects for some time."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#88336f"
