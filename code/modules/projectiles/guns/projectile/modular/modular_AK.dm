@@ -29,10 +29,10 @@
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/rubber, /obj/item/part/gun/modular/stock)
 
 /obj/item/gun/projectile/automatic/modular/ak/serbian_arms // Total points: 4, contains all the bits that make a serb ak a serb ak
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/fullauto, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/serbian, /obj/item/part/gun/modular/stock)
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/fullauto, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/serb, /obj/item/part/gun/modular/stock)
 
 /obj/item/gun/projectile/automatic/modular/ak/serbian_mercenaries // Total points: 8, contains all the bits that make a serb ak a serb ak
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/fullauto, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/serbian, /obj/item/part/gun/modular/stock)
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/fullauto, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/serb, /obj/item/part/gun/modular/stock)
 
 /obj/item/gun/projectile/automatic/modular/ak/excelsior // Total points: 8, contains all the bits that make an excel ak an excel ak
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/fullauto, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/excelsior, /obj/item/part/gun/modular/stock)
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/fullauto, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/excel, /obj/item/part/gun/modular/stock)

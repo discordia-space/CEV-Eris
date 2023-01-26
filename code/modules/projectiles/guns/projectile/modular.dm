@@ -168,7 +168,7 @@
 
 // Interactions
 
-/obj/item/gun/projectile/automatic/modular/proc/can_interact(mob/user)
+/obj/item/gun/projectile/automatic/modular/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
 		return 1
 	if(istype(loc, /obj/item/storage))

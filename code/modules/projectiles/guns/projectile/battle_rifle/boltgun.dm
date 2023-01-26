@@ -174,7 +174,7 @@
 	zoom_factors = list(0.5) //like the xbow
 	wielded_item_state = "_doble_arisaka"
 	spawn_blacklisted = FALSE
-	gun_parts = list(/obj/item/part/gun/frame/kadmin = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/srifle/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/kadmin = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/boltgun = 1, /obj/item/part/gun/modular/barrel/srifle/steel = 1)
 	price_tag = 1000
 
 /obj/item/part/gun/frame/kadmin
@@ -183,7 +183,7 @@
 	icon_state = "frame_weebrifle"
 	result = /obj/item/gun/projectile/boltgun/fs
 	resultvars = list(/obj/item/gun/projectile/boltgun/fs, /obj/item/gun/projectile/boltgun/fs/civilian)
-	gripvars = list(/obj/item/part/gun/modular/grip/rubber, /obj/item/part/gun/modular/grip/woo)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber, /obj/item/part/gun/modular/grip/wood)
 	mechanismvar = /obj/item/part/gun/modular/mechanism/boltgun
 	barrelvars = list(/obj/item/part/gun/modular/barrel/srifle/steel)
 
