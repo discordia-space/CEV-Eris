@@ -1,0 +1,11 @@
+author: ValoTheValo
+delete-after: true
+changes:
+  - rscadd: added Moebius Beret, Reinforced Technomancer Armor and Black Neotheology
+      Coat
+  - rscdel: Space Soviet Russian uniform closet
+  - tweak: re-did flavor text on several apparel items, added tactical gloves to ironhammer
+      wadrobe and serbian crates
+  - bugfix: moebius coat open and closed sprites being inverted, onestar uniform not
+      having its own female sprite
+  - imageadd: resprited technomancer beret and moebius armband
