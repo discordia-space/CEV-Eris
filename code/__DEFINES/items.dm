@@ -47,6 +47,11 @@
 
 //Weapon upgrade defines
 
+// Modification removability (toolmods, gunparts, etc.)
+#define MOD_REMOVABLE 1
+#define MOD_FUSED 0
+#define MOD_INTEGRAL -1
+
 //Int multiplier
 #define GUN_UPGRADE_DAMAGE_MULT "damage_mult"
 #define GUN_UPGRADE_PEN_MULT "penetration_mult"
@@ -81,6 +86,7 @@
 #define GUN_UPGRADE_ZOOM "zoom"
 
 //Type configuration
+#define GUN_UPGRADE_DEFINE_OK_CALIBERS "ok_calibers"
 #define GUN_UPGRADE_DEFINE_CALIBER "caliber"
 #define GUN_UPGRADE_DEFINE_MAG_WELL "mag_well"
 #define GUN_UPGRADE_DEFINE_STOCK "stock"

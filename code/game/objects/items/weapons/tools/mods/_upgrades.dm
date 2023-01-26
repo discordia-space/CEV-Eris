@@ -10,10 +10,6 @@
 		new t(usr.loc)
 */
 
-#define MOD_REMOVABLE 1
-#define MOD_FUSED 0
-#define MOD_INTEGRAL -1
-
 /datum/component/item_upgrade
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	can_transfer = TRUE
@@ -66,6 +62,9 @@
 
 	if(istool(A))
 		return check_tool(A, user)
+
+	if(ismodulargun(A))
+		return (check_modulargun(A, user) && check_gun(A, user))
 
 	if(isgun(A))
 		return check_gun(A, user)
@@ -178,6 +177,28 @@
 	if((req_fuel_cell & REQ_CELL) && !istype(G, /obj/item/gun/energy))
 		if(user)
 			to_chat(user, SPAN_WARNING("This weapon does not use power!"))
+		return FALSE
+	return TRUE
+
+/datum/component/item_upgrade/proc/check_modulargun(var/obj/item/gun/projectile/automatic/modular/MG, mob/living/user)
+	// Caliber check coming for barrels
+	if(istype(parent, /obj/item/part/gun/modular/barrel))
+		var/obj/item/part/gun/modular/barrel/B = parent
+		if(!MG.good_calibers.len)
+			return TRUE // No mechanism installed
+		for(var/i in MG.good_calibers)
+			if(B.caliber == i)
+				return TRUE
+		to_chat(user, SPAN_WARNING("The barrel does not fit the mechanism! The gun fits the following calibers: [english_list(MG.good_calibers, "None are suitable!", " and ", ", ", ".")]"))
+		return FALSE
+	if(istype(parent, /obj/item/part/gun/modular/mechanism))
+		var/obj/item/part/gun/modular/mechanism/M = parent
+		if(!MG.caliber)
+			return TRUE // No barrel installed
+		for(var/i in M.accepted_calibers)
+			if(MG.caliber == i)
+				return TRUE
+		to_chat(user, SPAN_WARNING("The mechanism does not fit the barrel! The mechanism fits the following calibers: [english_list(M.accepted_calibers, "None are suitable!", " and ", ", ", ".")]"))
 		return FALSE
 	return TRUE
 
@@ -373,6 +394,8 @@
 			var/obj/item/gun/projectile/automatic/modular/M = G
 			if(weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL])
 				M.mag_well = weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL]
+			if(weapon_upgrades[GUN_UPGRADE_DEFINE_OK_CALIBERS])
+				M.good_calibers = weapon_upgrades[GUN_UPGRADE_DEFINE_OK_CALIBERS]
 			if(weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER])
 				M.caliber = weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER]
 				M.name = "[weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER]] [P.name]"
@@ -639,20 +662,24 @@
 		possibles += "Cancel"
 		var/obj/item/tool_upgrade/toremove = input("Which upgrade would you like to try to remove? The upgrade will probably be destroyed in the process","Removing Upgrades") in possibles
 		if(toremove == "Cancel")
-			return 1
+			return TRUE
 		var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
 		if(IU.removable == MOD_FUSED)
 			to_chat(user, SPAN_DANGER("\the [toremove] seems to be fused with the [upgrade_loc]!"))
-		else if(IU.removable == MOD_INTEGRAL)
-			to_chat(user, SPAN_DANGER("\the [toremove] can only be removed by disassembling the [upgrade_loc]!"))
 		else
+			if(IU.removable == MOD_INTEGRAL)
+				if(istype(upgrade_loc, /obj/item/gun/projectile/automatic/modular))
+					var/obj/item/gun/projectile/automatic/modular/MG = upgrade_loc
+					if(MG.loaded.len || MG.ammo_magazine || MG.chambered)
+						to_chat(user, SPAN_DANGER("You must unload the [upgrade_loc] before removing \the [toremove]!"))
+						return FALSE
 			if(C.use_tool(user = user, target =  upgrade_loc, base_time = IU.removal_time, required_quality = QUALITY_SCREW_DRIVING, fail_chance = IU.removal_difficulty, required_stat = STAT_MEC))
 				//If you pass the check, then you manage to remove the upgrade intact
 				if(!IU.destroy_on_removal && user)
 					to_chat(user, SPAN_NOTICE("You successfully remove \the [toremove] while leaving it intact."))
 				SEND_SIGNAL(toremove, COMSIG_REMOVE, upgrade_loc)
 				upgrade_loc.refresh_upgrades()
-				return 1
+				return TRUE
 			else
 				//You failed the check, lets see what happens
 				if(IU.breakable == FALSE)
@@ -666,15 +693,15 @@
 					QDEL_NULL(toremove)
 					upgrade_loc.refresh_upgrades()
 					user.update_action_buttons()
-					return 1
+					return TRUE
 				else if(T && T.degradation) //Because robot tools are unbreakable
 					//otherwise, damage the host tool a bit, and give you another try
 					to_chat(user, SPAN_DANGER("You only managed to damage \the [upgrade_loc], but you can retry."))
 					T.adjustToolHealth(-(5 * T.degradation), user) // inflicting 4 times use damage
 					upgrade_loc.refresh_upgrades()
 					user.update_action_buttons()
-					return 1
-	return 0
+					return TRUE
+	return FALSE
 
 /obj/item/tool_upgrade
 	name = "tool upgrade"

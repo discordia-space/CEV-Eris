@@ -20,7 +20,7 @@
 	inventory = list(
 		"Guns" = list(
 			/obj/item/gun/projectile/boltgun/serbian = custom_good_amount_range(list(1, 10)),
-			/obj/item/gun/projectile/automatic/ak47/sa = custom_good_amount_range(list(1, 3)),
+			/obj/item/gun/projectile/automatic/modular/ak/serbian_arms = custom_good_amount_range(list(1, 3)),
 			/obj/item/gun/projectile/kovacs = custom_good_amount_range(list(1, 3)),
 			/obj/item/ammo_magazine/sllrifle,
 			/obj/item/ammo_magazine/lrifle,

@@ -17136,10 +17136,10 @@
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/item/gun/projectile/automatic/ak47/fs/ih,
-/obj/item/gun/projectile/automatic/ak47/fs/ih,
-/obj/item/gun/projectile/automatic/ak47/fs/ih,
-/obj/item/gun/projectile/automatic/ak47/fs/ih,
+/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities,
+/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities,
+/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities,
+/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aQD" = (

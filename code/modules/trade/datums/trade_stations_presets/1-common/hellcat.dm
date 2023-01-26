@@ -38,7 +38,7 @@
 			/obj/item/gun/projectile/selfload,
 			/obj/item/gun/projectile/olivaw,
 			/obj/item/gun/projectile/revolver/havelock,
-			/obj/item/gun/projectile/automatic/ak47/fs,
+			/obj/item/gun/projectile/automatic/modular/ak/frozen_star,
 			/obj/item/gun/projectile/automatic/atreides,
 			/obj/item/gun/projectile/shotgun/pump
 		),

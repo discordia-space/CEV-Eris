@@ -3,7 +3,7 @@
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 		 This is a copy of an ancient semi-automatic rifle. If it won't fire, percussive maintenance should get it working again. \
 		 It is known for its easy maintenance, and low price."
-	icon = 'icons/obj/guns/projectile/ak.dmi'
+	icon = 'icons/obj/guns/projectile/modular/ak.dmi'
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1) // Parts can give better tech
@@ -22,5 +22,17 @@
 	gun_tags = list(GUN_SILENCABLE)
 	serial_type = "FS"
 
-/obj/item/gun/projectile/automatic/modular/ak/fs // Contains all the bits that make an FS ak an FS ak
+/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities // Total points: 4, contains all the bits that make an IH ak an IH ak
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/burst, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/rubber, /obj/item/part/gun/modular/stock)
+
+/obj/item/gun/projectile/automatic/modular/ak/frozen_star // Total points: 3, contains all the bits that make an FS ak an FS ak
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/rubber, /obj/item/part/gun/modular/stock)
+
+/obj/item/gun/projectile/automatic/modular/ak/serbian_arms // Total points: 4, contains all the bits that make a serb ak a serb ak
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/fullauto, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/serbian, /obj/item/part/gun/modular/stock)
+
+/obj/item/gun/projectile/automatic/modular/ak/serbian_mercenaries // Total points: 8, contains all the bits that make a serb ak a serb ak
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/fullauto, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/serbian, /obj/item/part/gun/modular/stock)
+
+/obj/item/gun/projectile/automatic/modular/ak/excelsior // Total points: 8, contains all the bits that make an excel ak an excel ak
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/fullauto, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/excelsior, /obj/item/part/gun/modular/stock)

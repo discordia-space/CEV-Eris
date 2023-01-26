@@ -165,19 +165,19 @@
 
 /datum/design/autolathe/gun/ak47
 	name = "Excelsior .30 AK-47"
-	build_path = /obj/item/gun/projectile/automatic/ak47
+	build_path = /obj/item/gun/projectile/automatic/modular/ak/excelsior
 
 /datum/design/autolathe/gun/ak47_fs
 	name = "FS AR .30 \"Vipr\""
-	build_path = /obj/item/gun/projectile/automatic/ak47/fs
+	build_path = /obj/item/gun/projectile/automatic/modular/ak/frozen_star
 
 /datum/design/autolathe/gun/ak47_fs_ih
 	name = "FS AR .30 \"Venger\""
-	build_path = /obj/item/gun/projectile/automatic/ak47/fs/ih
+	build_path = /obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities
 
 /datum/design/autolathe/gun/ak47_sa
 	name = "SA CAR .30 \"Krinkov\""
-	build_path = /obj/item/gun/projectile/automatic/ak47/sa
+	build_path = /obj/item/gun/projectile/automatic/modular/ak/serbian_arms
 
 /datum/design/autolathe/gun/sts35
 	name = "OR SDF .30 \"STS-35\""

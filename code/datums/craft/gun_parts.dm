@@ -49,7 +49,7 @@
 		UPGRADE_MAXUPGRADES = 1 // Since this takes an upgrade slot, we want to give it back
 		)
 	I.req_gun_tags = list(GUN_MODULAR)
-	I.removable = FALSE // Will get unique removal handling when we get there, until then works by disassembling the frame
+	I.removable = MOD_INTEGRAL // Will get unique removal handling when we get there, until then works by disassembling the frame
 
 /obj/item/part/gun/frame
 	name = "gun frame"
@@ -311,6 +311,7 @@
 /obj/item/part/gun/modular/mechanism/New()
 	..()
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_GENERIC
+	I.weapon_upgrades[GUN_UPGRADE_DEFINE_OK_CALIBERS] = accepted_calibers
 	I.gun_loc_tag = PART_MECHANISM
 
 /obj/item/part/gun/modular/mechanism/pistol
@@ -377,6 +378,20 @@
 	..()
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
 	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = list(BURST_3_ROUND, BURST_5_ROUND, FULL_AUTO_400)
+
+// Determined - slower firerate, but no loss in damage. Total point value: +3
+/obj/item/part/gun/modular/mechanism/autorifle/determined
+	name = "self-loading mechanism"
+	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love."
+	icon_state = "mechanism_autorifle"
+	matter = list(MATERIAL_PLASTEEL = 10)
+	list/accepted_calibers = list(CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE)
+
+/obj/item/part/gun/modular/mechanism/autorifle/determined/New()
+	..()
+	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
+	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = list(BURST_3_ROUND, FULL_AUTO_300) // +5 points
+	I.weapon_upgrades[GUN_UPGRADE_RECOIL] = 1.25 // -2 points
 
 /obj/item/part/gun/modular/mechanism/machinegun
 	name = "machine gun mechanism"

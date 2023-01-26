@@ -86,6 +86,8 @@
 
 #define isgun(A) istype(A, /obj/item/gun)
 
+#define ismodulargun(A) istype(A, /obj/item/gun/projectile/automatic/modular)
+
 #define istool(A) istype(A, /obj/item/tool)
 
 #define isCoil(A) istype(A, /obj/item/stack/cable_coil)

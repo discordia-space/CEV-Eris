@@ -1493,7 +1493,7 @@
 /obj/machinery/vending/theomat/proc/check_NT(mob/user)
 	var/bingo = FALSE
 	if(ishuman(user))
-	
+
 		var/mob/living/carbon/human/H = user
 
 		if(!scan_id)
@@ -1647,7 +1647,7 @@
 					/obj/item/gun/projectile/mk58  = 2,
 					/obj/item/gun/projectile/mk58/wood = 2,
 					/obj/item/gun/projectile/revolver/deckard = 2,
-					/obj/item/gun/projectile/automatic/ak47/fs = 4,
+					/obj/item/gun/projectile/automatic/modular/ak/frozen_star = 4,
 					/obj/item/gun/projectile/automatic/z8 = 4,
 					/obj/item/gun/projectile/shotgun/pump/regulator = 4,
 					/obj/item/storage/deferred/crate/clown_crime = 2,
@@ -1673,7 +1673,7 @@
 					/obj/item/gun/projectile/mk58/wood = 900,
 					/obj/item/gun/projectile/mandella = 1800,
 					/obj/item/gun/projectile/revolver/deckard = 3600,
-					/obj/item/gun/projectile/automatic/ak47/fs = 3200,
+					/obj/item/gun/projectile/automatic/modular/ak/frozen_star = 3200,
 					/obj/item/gun/projectile/automatic/z8 = 3500,
 					/obj/item/gun/projectile/shotgun/pump/regulator = 2400,
 					/obj/item/storage/deferred/crate/clown_crime = 1800,

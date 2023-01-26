@@ -5,7 +5,7 @@
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 		 This is a copy of an ancient semi-automatic rifle. If it won't fire, percussive maintenance should get it working again. \
 		 It is known for its easy maintenance, and low price."
-	icon = 'icons/obj/guns/projectile/ak.dmi'
+	icon = 'icons/obj/guns/projectile/modular/ak.dmi'
 	icon_state = "frame"
 	item_state = "" // I do not believe this affects anything
 	w_class = ITEM_SIZE_BULKY // Stock increases it by 1
@@ -29,6 +29,7 @@
 
 	// Determines what parts the modular gun accepts and required. 0 means required, -1 means optional. Order matters.
 	var/list/required_parts = list(/obj/item/part/gun/modular/mechanism/autorifle = 0, /obj/item/part/gun/modular/barrel = 0, /obj/item/part/gun/modular/grip = 0, /obj/item/part/gun/modular/stock = -1)
+	var/list/good_calibers = list()
 
 	init_offset = 15 // Removed by grip, this is present just in case you don't want one for style reasons
 
@@ -49,11 +50,16 @@
 /obj/item/gun/projectile/automatic/modular/Initialize()
 
 	gun_tags += GUN_MODULAR
+	var/list/newParts = list()
 	for(var/partPath in gun_parts)
 		if(ispath(partPath))
 			var/obj/item/part/gun/modular/new_part = new partPath
 			if(!SEND_SIGNAL(new_part, COMSIG_IATTACK, src, null))
 				QDEL_NULL(new_part)
+				visible_message(SPAN_WARNING("Something seems wrong... Maybe you should ask a professional for help?"))
+			else
+				newParts += new_part
+	gun_parts = newParts
 	. = ..()
 	update_icon()
 
@@ -64,6 +70,7 @@
 	spriteTags = initial(spriteTags)
 	verbs -= MODULAR_VERBS // Removes all modularized verbs
 	grip_type = initial(grip_type)
+	good_calibers = initial(good_calibers)
 	..()
 
 /obj/item/gun/projectile/automatic/modular/update_icon() // V2
