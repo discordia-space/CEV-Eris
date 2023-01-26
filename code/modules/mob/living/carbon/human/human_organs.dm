@@ -127,7 +127,7 @@
 			continue
 
 		if(E.mob_can_unequip(src))
-			if(E.is_broken() || E.is_nerve_struck() || E.limb_efficiency <= 50)
+			if(E.is_broken() || E.limb_efficiency <= 50)
 				
 				drop_from_inventory(E)
 

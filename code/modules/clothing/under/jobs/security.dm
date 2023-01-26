@@ -14,7 +14,6 @@
 	desc = "A navy blue suit. It lacks the protection of standard-issue jumpsuits, but at least you will be shooting with some style."
 	icon_state = "ih_formal"
 	item_state = "ih_formal"
-	style = STYLE_LOW
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/under/rank/warden
@@ -89,13 +88,13 @@
 	//item_state = "sl_suit"
 	desc = "An immaculate white dress shirt, paired with a pair of dark grey dress pants, a red tie, and a charcoal vest."
 
-/obj/item/clothing/head/det
+/obj/item/clothing/head/detective
 	name = "fedora"
 	desc = "A brown fedora - either the cornerstone of a detective's style or a poor attempt at looking cool, depending on the person wearing it."
-	icon_state = "detective"
+	icon_state = "detective_brown"
 	item_state_slots = list(
-		slot_l_hand_str = "det_hat",
-		slot_r_hand_str = "det_hat",
+		slot_l_hand_str = "detective_hat",
+		slot_r_hand_str = "detective_hat",
 		)
 	allowed = list(/obj/item/reagent_containers/food/snacks/candy_corn, /obj/item/pen)
 	armor = list(
@@ -109,9 +108,13 @@
 	siemens_coefficient = 0.8
 	body_parts_covered = NONE
 
-/obj/item/clothing/head/det/grey
-	icon_state = "detective2"
+/obj/item/clothing/head/detective/grey
+	icon_state = "detective_gray"
 	desc = "A grey fedora - either the cornerstone of a detective's style or a poor attempt at looking cool, depending on the person wearing it."
+
+/obj/item/clothing/head/detective/black
+	icon_state = "detective_black"
+	desc = "A black fedora - either the cornerstone of a detective's style or a poor attempt at looking cool, depending on the person wearing it."
 
 
 /*

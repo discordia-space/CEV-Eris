@@ -21,6 +21,7 @@
 /obj/item/device/mmi
 	name = "man-machine interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
+	description_info = "Brains can be inserted by clicking on it. Brains can be removed by swiping a ID with roboticist access and clicking with an empty hand."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "mmi_empty"
 	w_class = ITEM_SIZE_NORMAL
@@ -48,9 +49,8 @@
 		if(!BM.client)
 			for(var/mob/observer/ghost/G in GLOB.player_list)
 				if(G.can_reenter_corpse && G.mind == BM.mind)
-					if(alert(G, "Somebody is attempting to put your brain in an MMI. Would you like to return to it?","Become brain","OH YES","No") == "OH YES")
-						G.reenter_corpse()
-						break
+					G.reenter_corpse()
+					break
 			if(!BM.client)
 				to_chat(user, SPAN_WARNING("\The [src] indicates that \the [B] is unresponsive."))
 				return

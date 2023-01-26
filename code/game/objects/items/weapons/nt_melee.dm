@@ -17,7 +17,7 @@
 /obj/item/tool/sword/nt/equipped(mob/living/M)
 	..()
 	if(is_held() && is_neotheology_disciple(M))
-		embed_mult = 0.1
+		embed_mult = 0.05
 	else
 		embed_mult = initial(embed_mult)
 
@@ -65,7 +65,7 @@
 /obj/item/tool/knife/dagger/nt/equipped(mob/living/H)
 	..()
 	if(is_held() && is_neotheology_disciple(H))
-		embed_mult = 0.1
+		embed_mult = 0.2
 	else
 		embed_mult = initial(embed_mult)
 
@@ -82,6 +82,8 @@
 	max_upgrades = 1
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
+	extended_reach = TRUE
+	forced_broad_strike = TRUE
 	price_tag = 600
 	matter = list(MATERIAL_BIOMATTER = 80, MATERIAL_STEEL = 8, MATERIAL_WOOD = 10, MATERIAL_PLASTEEL = 2)
 
@@ -98,7 +100,7 @@
 	var/agony = 20
 	var/agony_extended = 45
 	var/stun = 0
-	w_class = ITEM_SIZE_BULKY
+	w_class = ITEM_SIZE_NORMAL
 	price_tag = 1000
 	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 2)
 
@@ -117,7 +119,7 @@
 	armor_divisor += (armor_divisor_extended - initial(armor_divisor))
 	agony += (agony_extended - initial(agony))
 	slot_flags = null
-	w_class = ITEM_SIZE_HUGE
+	w_class = ITEM_SIZE_BULKY
 	update_icon()
 
 /obj/item/tool/sword/nt/scourge/proc/unextend()
@@ -161,18 +163,20 @@
 	throw_speed = 3
 	price_tag = 450
 	allow_spin = FALSE
+	extended_reach = TRUE
+	push_attack = TRUE
 	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_PLASTEEL = 10) // More expensive, high-end spear
 	style_damage = 50
 
 /obj/item/tool/sword/nt/spear/equipped(mob/living/W)
 	..()
 	if(is_held() && is_neotheology_disciple(W))
-		embed_mult = 0.1
+		embed_mult = 0.2
 	else
 		embed_mult = initial(embed_mult)
 
 /obj/item/tool/sword/nt/spear/dropped(mob/living/W)
-	embed_mult = 300
+	embed_mult = 600
 	..()
 
 /obj/item/tool/sword/nt/spear/throw_impact(atom/hit_atom, speed)
@@ -211,7 +215,7 @@
 	base_block_chance = 45
 	shield_difficulty = 40
 	item_flags = DRAG_AND_DROP_UNEQUIP
-	shield_integrity = 130
+	shield_integrity = 200
 	var/obj/item/storage/internal/container
 	var/storage_slots = 3
 	var/max_w_class = ITEM_SIZE_HUGE
@@ -272,7 +276,7 @@
 	base_block_chance = 35
 	shield_difficulty = 70
 	item_flags = DRAG_AND_DROP_UNEQUIP
-	shield_integrity = 110
+	shield_integrity = 180
 	var/obj/item/storage/internal/container
 	var/storage_slots = 1
 	var/max_w_class = ITEM_SIZE_HUGE
@@ -337,7 +341,7 @@
 /obj/item/stack/thrown/nt/equipped(mob/living/M)
 	..()
 	if(is_held() && is_neotheology_disciple(M))
-		embed_mult = 0.1
+		embed_mult = 0.2
 	else
 		embed_mult = initial(embed_mult)
 
@@ -363,7 +367,7 @@
 	style_damage = 30
 
 /obj/item/stack/thrown/nt/verutum/launchAt()
-	embed_mult = 300
+	embed_mult = 600
 	..()
 
 /obj/item/stack/thrown/nt/verutum/full

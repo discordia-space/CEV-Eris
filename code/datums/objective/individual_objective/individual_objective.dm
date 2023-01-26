@@ -39,7 +39,6 @@
 	var/based_time = FALSE
 	var/limited_antag = FALSE
 	var/rarity = 1
-	var/insight_reward = 20
 	var/completed_desc = "<span style='color:green'>Objective completed!</span>"
 	var/show_la = "<span style='color:red'>(LA)</span>"
 	var/la_explanation  = "<b><B>Note:</B><span style='font-size: 75%'> limited antag (LA) objectives provide an ability to harm only your target, \
@@ -59,10 +58,9 @@
 		return
 	completed = TRUE
 	var/mob/living/carbon/human/H = owner.current
-	H.sanity.give_insight(insight_reward)
-	H.sanity.give_insight_rest(insight_reward/2)
 	update_faction_score()
 	to_chat(owner,  SPAN_NOTICE("You have completed the personal objective: [name]"))
+	H.sanity.insight += 100
 
 /datum/individual_objective/proc/get_description()
 	var/n_desc = desc

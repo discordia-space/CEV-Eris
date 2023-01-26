@@ -82,14 +82,15 @@
 
 
 
-
+/*
 /datum/storyevent/roleset/malf
 	id = "malf"
 	name = "malfunctioning AI"
 	role_id = ROLE_MALFUNCTION
-	req_crew = 15
-
-
+	req_crew = 20
+	occurrences_max = 1
+	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE)
+*/
 /datum/storyevent/roleset/marshal
 	id = "marshal"
 	name = "marshal"

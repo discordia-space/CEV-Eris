@@ -68,7 +68,7 @@ Admin Ghost:
 \tShift + Ctrl + Click = View Variables
 </font>"}
 
-	var/hotkey_mode = {"<font color='purple'>
+	var/hotkey_mode = {"<font color='blue'>
 Hotkey-Mode: (hotkey-mode must be on)
 \tTAB = toggle hotkey-mode
 \ta = left
@@ -77,6 +77,9 @@ Hotkey-Mode: (hotkey-mode must be on)
 \tw = up
 \tq = drop
 \te = equip
+\tf = block
+\tb = resist
+\tc = rest
 \tShift+e = belt-equip
 \tShift+q = suit-storage-equip
 \tShift+b = bag-equip
@@ -180,3 +183,15 @@ Any-Mode: (hotkey doesn't need to be on)
 		to_chat(src, other)
 	if(holder)
 		to_chat(src, admin)
+
+/client/verb/changelog()
+	set name = "Changelog"
+	set category = "OOC"
+	if(!GLOB.changelog_tgui)
+		GLOB.changelog_tgui = new /datum/changelog()
+
+	GLOB.changelog_tgui.ui_interact(mob)
+	if(prefs.lastchangelog != changelog_hash)
+		prefs.lastchangelog = changelog_hash
+		prefs.save_preferences()
+		winset(src, "rpane.changelog", "background-color=none;font-style=;")

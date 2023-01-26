@@ -44,6 +44,7 @@
 
 /// Proc called when the perk is removed from a human. Obviously, in your perks, you should call parent as the last thing you do, since it deletes the perk itself.
 /datum/perk/proc/remove()
+	UnregisterSignal(holder, COMSIG_MOB_LIFE, .proc/on_process)
 	SHOULD_CALL_PARENT(TRUE)
 	qdel(src)
 

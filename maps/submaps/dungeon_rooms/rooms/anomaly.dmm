@@ -138,6 +138,7 @@
 /area/crawler)
 "y" = (
 /obj/structure/closet/onestar/tier1,
+/obj/spawner/cloth/onestar,
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "z" = (

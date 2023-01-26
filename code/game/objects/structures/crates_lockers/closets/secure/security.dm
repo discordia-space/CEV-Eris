@@ -168,11 +168,13 @@
 	new /obj/item/clothing/under/rank/det/black(src)
 	new /obj/item/clothing/under/rank/inspector(src)
 	new /obj/item/clothing/suit/storage/detective(src)
-	new /obj/item/clothing/suit/storage/detective/ironhammer(src)
+	new /obj/item/clothing/suit/storage/detective/brown(src)
+	new /obj/item/clothing/suit/storage/detective/black(src)
 	new /obj/item/clothing/mask/gas/ihs(src)
 	new /obj/item/clothing/gloves/thick(src)
-	new /obj/item/clothing/head/det(src)
-	new /obj/item/clothing/head/det/grey(src)
+	new /obj/item/clothing/head/detective(src)
+	new /obj/item/clothing/head/detective/grey(src)
+	new /obj/item/clothing/head/detective/black(src)
 	new /obj/item/clothing/shoes/reinforced/ironhammer(src)
 	new /obj/item/storage/box/evidence(src)
 	new /obj/item/device/radio/headset/headset_sec(src)
@@ -198,8 +200,8 @@
 	icon_state = "secure"
 
 /obj/structure/closet/secure_closet/injection/populate_contents()
-	new /obj/item/reagent_containers/syringe/ld50_syringe/choral(src)
-	new /obj/item/reagent_containers/syringe/ld50_syringe/choral(src)
+	new /obj/item/reagent_containers/syringe/ld50_syringe/chlorine(src)
+	new /obj/item/reagent_containers/syringe/ld50_syringe/chlorine(src)
 
 /obj/structure/closet/secure_closet/brig
 	name = "brig locker"

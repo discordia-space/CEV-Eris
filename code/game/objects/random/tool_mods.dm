@@ -23,4 +23,5 @@
 /obj/spawner/tool_upgrade/rare/onestar
 	name = "random onestar tool upgrade"
 	icon_state = "tech-red"
+	allow_blacklist = TRUE
 	tags_to_spawn = list(SPAWN_OS_TOOL_UPGRADE)

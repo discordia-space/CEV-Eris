@@ -43,7 +43,6 @@
 		/obj/machinery/smartfridge/,
 		/obj/machinery/biogenerator,
 		/obj/machinery/constructable_frame,
-		/obj/machinery/radiocarbon_spectrometer,
 		/obj/machinery/centrifuge,
 		/obj/machinery/electrolyzer
 		)

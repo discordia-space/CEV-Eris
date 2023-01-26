@@ -18,7 +18,7 @@
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	hitsound = 'sound/weapons/melee/heavystab.ogg'
 	sharp = TRUE
-	structure_damage_factor = STRUCTURE_DAMAGE_BORING //Drills and picks are made for getting through hard materials
+	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE //Drills and picks are made for getting through hard materials
 	//They are the best anti-structure melee weapons
 	embed_mult = 1.2 //Digs deep
 	mode = EXCAVATE //Mode should be whatever is the starting tool and off quality.

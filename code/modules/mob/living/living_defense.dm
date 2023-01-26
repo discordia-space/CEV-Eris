@@ -1,4 +1,4 @@
-#define ARMOR_HALLOS_COEFFICIENT 0.4
+#define ARMOR_HALLOS_COEFFICIENT 0.25
 
 
 //This calculation replaces old run_armor_check in favor of more complex and better system
@@ -18,12 +18,14 @@
 		show_message(msg1, 1)
 
 /mob/living/proc/damage_through_armor(damage = 0, damagetype = BRUTE, def_zone, attack_flag = ARMOR_MELEE, armor_divisor = 1, used_weapon, sharp = FALSE, edge = FALSE, wounding_multiplier = 1, list/dmg_types = list(), return_continuation = FALSE)
-
 	if(damage) // If damage is defined, we add it to the list
 		if(!dmg_types[damagetype])
 			dmg_types += damagetype
 		dmg_types[damagetype] += damage
 
+	if(armor_divisor <= 0)
+		armor_divisor = 1
+		log_debug("[used_weapon] applied damage to [name] with a nonpositive armor divisor")
 
 	var/total_dmg = 0
 	var/dealt_damage = 0
@@ -51,15 +53,17 @@
 			if(dmg_type in list(BRUTE, BURN, TOX, BLAST)) // Some damage types do not help penetrate armor
 				if(remaining_armor)
 					var/dmg_armor_difference = dmg - remaining_armor
-					used_armor += dmg_armor_difference ? dmg - dmg_armor_difference : dmg
-					remaining_armor = dmg_armor_difference ? 0 : -dmg_armor_difference
-					dmg = dmg_armor_difference ? dmg_armor_difference : 0
+					var/is_difference_positive = dmg_armor_difference > 0
+					used_armor += is_difference_positive ? dmg - dmg_armor_difference : dmg
+					remaining_armor = is_difference_positive ? 0 : -dmg_armor_difference
+					dmg = is_difference_positive ? dmg_armor_difference : 0
 				if(remaining_ablative && dmg)
 					var/ablative_difference
 					ablative_difference = dmg - remaining_ablative
-					used_armor += ablative_difference ? dmg - ablative_difference : dmg
-					remaining_ablative = ablative_difference ? 0 : -ablative_difference
-					dmg = ablative_difference ? ablative_difference : 0
+					var/is_difference_positive = ablative_difference > 0
+					used_armor += is_difference_positive ? dmg - ablative_difference : dmg
+					remaining_ablative = is_difference_positive ? 0 : -ablative_difference
+					dmg = is_difference_positive ? ablative_difference : 0
 			else
 				dmg = max(dmg - remaining_armor - remaining_ablative, 0)
 
@@ -117,6 +121,17 @@
 	if(ablative_armor)
 		damageablative(def_zone, (ablative_armor - remaining_ablative) * armor_divisor)
 
+	//If we have a grab in our hands and get hit with melee damage type, there is a chance we lower our grab's state
+	if(attack_flag == ARMOR_MELEE && ishuman(src) && isitem(used_weapon))
+		var/mob/living/carbon/human/H = src
+		var/obj/item/I = used_weapon
+		var/toughness_val = H.stats.getStat(STAT_TGH)
+
+		if(dealt_damage > 10 && prob((dealt_damage - toughness_val * (sharp && edge ? 1 : 0.5) * (I.w_class < ITEM_SIZE_BULKY ? 1 : 0.5))))
+			for(var/obj/item/grab/G in get_both_hands(H))
+				visible_message(SPAN_NOTICE("[H]'s grab has been weakened!"), SPAN_WARNING("Your grab has been weakened!"))
+				G.state--
+
 	// Returns if a projectile should continue travelling
 	if(return_continuation)
 		var/obj/item/projectile/P = used_weapon
@@ -171,12 +186,13 @@
 	if(P.knockback && hit_dir)
 		throw_at(get_edge_target_turf(src, hit_dir), P.knockback, P.knockback)
 
+	P.on_hit(src, def_zone_hit)
+
 	//Armor and damage
 	if(!P.nodamage)
 		hit_impact(P.get_structure_damage(), hit_dir)
 		return damage_through_armor(def_zone = def_zone_hit, attack_flag = P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P), wounding_multiplier = P.wounding_mult, dmg_types = P.damage_types, return_continuation = TRUE)
 
-	P.on_hit(src, def_zone_hit)
 	return PROJECTILE_CONTINUE
 
 //Handles the effects of "stun" weapons

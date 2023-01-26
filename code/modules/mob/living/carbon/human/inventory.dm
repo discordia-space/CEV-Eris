@@ -435,6 +435,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 		var/obj/item/clothing/suit/worn_hat = head
 		head_coverage = worn_hat.style_coverage
 		style_factor += worn_hat.get_style()
+	else if(!head)
+		style_factor++ // if we're not wearing anything on our head we look stylish, bald people rise up
 	if (!(head_coverage & COVERS_WHOLE_FACE) && istype(wear_mask, /obj/item/clothing)) // is it hidden, and if not is it a mask?
 		var/obj/item/clothing/mask/worn_mask = wear_mask
 		head_coverage |= worn_mask.style_coverage
@@ -446,14 +448,22 @@ This saves us from having to call add_fingerprint() any time something is put in
 			style_factor += r_ear.get_style()
 	if (glasses && !(head_coverage & COVERS_EYES))
 		style_factor += glasses.get_style()
+	else if(!glasses)
+		style_factor++ // if we're not wearing any glasses we look stylish
 	if (gloves && !(suit_coverage & COVERS_FOREARMS))
 		style_factor += gloves.get_style()
+	else if(!gloves)
+		style_factor-- // if we're not hiding fingerprints we're definitely stylish
 	if (w_uniform && !((gloves || suit_coverage & COVERS_FOREARMS) && (shoes || suit_coverage & COVERS_FORELEGS) && (suit_coverage & (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS)) == (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS))) // if suit_coverage AND three flags equals those three flags, then it means it has those three flags.
 		style_factor += w_uniform.get_style()
 	if (shoes && !(suit_coverage & COVERS_FORELEGS))
 		style_factor += shoes.get_style()
+	else if(!shoes)
+		style_factor-- // if we're not wearing shoes we're definitely not stylish
 	if (back)
 		style_factor += back.get_style() // back and belt can't be covered
+	else if(!back)
+		style_factor++ // if we don't have anything on our back we look stylish by since literally no backpacks give or take style bonus isn't big
 	if (belt)
 		style_factor += belt.get_style()
 

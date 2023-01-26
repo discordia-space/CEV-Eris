@@ -202,6 +202,8 @@ var/list/disciples = list()
 				var/atom/movable/AM = mod
 				SEND_SIGNAL(AM, COMSIG_REMOVE, I)
 				I.take_damage(rand(5,10))
+				if(I.parent)
+					I.parent.take_damage(rand(2,5))
 				wearer.visible_message(SPAN_NOTICE("<b>\The [AM]</b> rips through \the [wearer]'s flesh."), SPAN_NOTICE("<b>\The [AM]</b> rips through your flesh. Your [I.name] hurts."))
 	if(ishuman(wearer))
 		var/mob/living/carbon/human/H = wearer

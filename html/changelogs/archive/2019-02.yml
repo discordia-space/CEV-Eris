@@ -1,0 +1,222 @@
+2019-02-04:
+  Boredone:
+  - bugfix: Now Beartraps are printable again.
+  Camper2012:
+  - experiment: Openspaces now use vis_contents as a displaying method. Floor plane
+      system. Object on different floors now have different planes.
+  Clockrigger:
+  - rscadd: Excelsior now have their own cells available at 'Means of Production'
+      disc.
+  - rscadd: Added a new Guild disc with some default cells.
+  - wip: Restructured ship areas for further work on coloured light in department
+      areas.
+  EvenInDeathIStillServe:
+  - rscadd: Recordings from the Tape Recorder are now saved as audio files, which
+      can be played using the recorder or a computer/tablet/PDA with the Audio Player
+      program.
+  - tweak: Reworked how getting drunk works.
+  - bugfix: Fixed trying to open maintenance hatches on cyborg rechargers ending up
+      with you hitting the recharger with the screwdriver.
+  - bugfix: Fixed job-specific loadouts never being available for ANY job.
+  - bugfix: Fixed guns not dropping bullet casings.
+  - bugfix: Fixed two small issues with .32 hollowpoints.
+  Garen7:
+  - rscadd: Readded AntagHUD.
+  - bugfix: Fixed SecHUD.
+  Gray:
+  - maptweak: Added window missing under the privacy shutters, aft side of the ironhammer
+      medical office.
+  - maptweak: Fixed air ports outside engineering having wrong pressure.
+  - maptweak: Now it's easier for Operatives to get their Ironhammer Holobadges.
+  - maptweak: Added missing roof near engine room.
+  - maptweak: Added More ATMs on the map.
+  - maptweak: Virology ejector sends things into distance now.
+  - maptweak: Added  EFTpos scanners to each head of staff's office.
+  - maptweak: Fixed the one teleportation module in Security Lobby.
+  ITCups:
+  - bugfix: Fixes unblanket error message.
+  JTB:
+  - tweak: Craft menu now opens code-predefined tab.
+  - bugfix: Protolathe now accepts any reagents from any reagent_containers.
+  - bugfix: Fixed gravity generator sound's runtime.
+  - bugfix: Now round delay works as it should work.
+  LethalGhost:
+  - bugfix: Fixed overcharged weapons icon select.
+  - bugfix: Fixed chem master custom button handling.
+  Luduk:
+  - rscadd: Added wedging tools into airlocks to keep 'em open. You wedge a tool in
+      by holding it in hand, and in right-click dropdown menu of airlock clicking
+      'Wedge item', or by putting it on the same tile as the airlock.
+  Matt:
+  - rscadd: Added a small animated speech bubble for when someone says something.
+  Nanako:
+  - wip: Started porting Baymed Expect lots of bugs and features..
+  - rscadd: Reworked and implemented shield floor diffusers.
+  - maptweak: Added in plenty of shield diffusers, to places where shields previously
+      blocked airlocks, mass drivers, and disposal ejections.
+  - tweak: Rigs can now properly store the full list of allowed items that all other
+      suits get, including guns and weapons.
+  - tweak: Slightly increased the speed penalty on IH hardsuit.
+  - tweak: Slightly reduced the quantity of the grenades in uplink boxes.
+  - tweak: Added a 25% fuse timer variance on grenades, the detonation is unpredictable
+      between 3-5 seconds.
+  - tweak: Significantly reduced the overall power and damage of frag and explosive
+      grenades.
+  - bugfix: Fixed an issue where items in suit storage could have wrong icons depending
+      on what's worn on your back.
+  - bugfix: Fixed a severe bug that was breaking rig suits due to a runtime with the
+      allowed list.
+  - bugfix: Fixed a nasty issue where the cruciform wouldn't properly activate when
+      attached to a newly cloned person, resulting in them being unable to be targeted
+      by rituals.
+  - bugfix: Fixed an issue where the shield generator could break by a lockout var
+      being set and not reset.
+  - bugfix: Fixed movement bugs caused by Baymed implementation.
+  - bugfix: Fixed magboots not preventing floating around during zero gravity.
+  - bugfix: Fixed people on altars having wierd offsets when released from a grab.
+  Nikov:
+  - tweak: Rebalanced window limits to provide a FUN experience to negligent supermatter
+      operators and gas handlers.
+  - bugfix: Fixed windows on low walls not taking damage from fire.
+  TorinoFermic:
+  - bugfix: Prevented the middle mouse drag exploit.
+  hitsedesen:
+  - rscadd: Added the uniform to paramedics.
+  - tweak: Now splash occur only on harm intent.
+  - bugfix: Added stats transfering on cloning.
+  - bugfix: Now you can't take stuff out of holodeck by using paper wrapper.
+  nichlas0010:
+  - tweak: Now the chatbar turn white when you're in hotkeymode.
+2019-02-22:
+  Cakey:
+  - bugfix: Cyborgs picking up items does now trigger the pick-up animation.
+  - bugfix: Cyborgs now have a button to stop pulling.
+  Camper2012:
+  - bugfix: Fixed many cases with robot items plane.
+  Carbonhell:
+  - bugfix: Beds, chairs and all subtypes can now be dismantled again.
+  - tweak: They can also be dismantled by any tool with the bolt turning quality,
+      and the padding removed with the wirecutting quality.
+  - bugfix: Fixed station_levels list. With this fix, NTnet works again for PDAs.
+  - bugfix: Fixed blast door not opening when being drilled.
+  - bugfix: Fixed several GC failures.
+  - bugfix: Isolation centrifuge can now be dismantled properly with a screwdriver.
+  - rscadd: The isolation centrifuge circuitboard can now be made through an autolathe,
+      and is a part of the circuitpack autolathe disk.
+  - bugfix: The lottery cannot be won by departments anymore, and the output message
+      has been fixed.
+  - bugfix: Crew records now properly show the religion field.
+  - tweak: Setting the criminal status on the crew records program will properly update
+      security HUDs.
+  Clockrigger:
+  - rscadd: Now areas have a specific var for color that lights should use. It allow
+      us to more carefully and precisely create an atmosphere where we need it.
+  - imageadd: New sprites for three guns, default energy gun, and two versions of
+      Mk58.
+  EvenInDeathIStillServe:
+  - experiment: You can now print a custom vendomat circuit board using the circuits
+      autolathe disk, or buy one from the asters disk vendor.
+  - rscadd: When the vendomat is unlocked, it can be stocked with any item. Once an
+      item is added, the owner can change the price for it. Profits from sales go
+      to the owner of the vendomat.
+  - rscadd: The vendomat can be emagged in order to override current ownership, effectively
+      unregistering the owner and allowing the next ID swiped to take his place.
+  - rscadd: Added RCD to the advanced tools disk. Replaced the silver cost with 3
+      platinum.
+  - rscadd: Added RCD ammo to the basic tool disk. 30 metal + 10 glass.
+  - tweak: Allowed setting suit sensors for non-ranked clothing.
+  - tweak: You can now hit security cameras with melee if your intent is set to harm.
+  - tweak: Exosuit fabricator now accepts plastic when it requires it for a few things.
+  - tweak: You could read an audio file's transcript without transcribing it by opening
+      it in the file manager.
+  - tweak: Miller revolver has appropriate manufacturing requirements.
+  - bugfix: Fixed a runtime error when using the RCD on stuff that isn't a floor when
+      not in deconstruction mode.
+  - bugfix: Fixed printing vendomat boards in autolathe.
+  - bugfix: Fixed supermatter monitor gasses.
+  - bugfix: Fixed input lag for hear_talk.
+  - bugfix: Fixed some Excelsior machinery issues.
+  - bugfix: Fixed bug with stopping and starting a recording a second time made the
+      first recording get repeated in the transcript.
+  - spellcheck: Fixed a spelling mistake in the circuit disk. Technomacer > TechnomaNcer.
+  - spellcheck: Renamed Cyberchristianity to Neotheology in some cases.
+  Garen7:
+  - bugfix: You can remove light hardsuits by clickdragging them to your hand, so
+      you can now remove light hardsuits with storage components.
+  - rscdel: IH Commander no longer has 2 berets in his locker since there should only
+      ever be one commander.
+  - bugfix: Bull shotguns ammo overlay no longer breaks when you have shots in the
+      chamber and fully load the gun.
+  - spellcheck: Fixed toolset implant verb spelling error.
+  - spellcheck: Fixed Kalashnikov spelling error.
+  Kurgis:
+  - tweak: Further refactors bullet-type ammo to use a set of defines for calling
+      damage, and a set of defines for damage multipliers.
+  - imageadd: Added sprites to all the tile stack items, for when you pry up tiles,
+      or craft them.
+  - imagedel: Deleted old tile stack sprites.
+  - bugfix: Floor tiles should no longer appear invisible when crafted or pried off.
+  - bugfix: Small fix to minor cell landmark.
+  MadmanMartian:
+  - rscadd: Portals now show a preview of the turf you will be arriving at.
+  MrStonedOne:
+  - bugfix: Fixed middle click drag aimbot exploit.
+  Nanako:
+  - experiment: More Baymed porting in progress, nothing to see here, move along.
+  - experiment: Added large searchable piles of random stuff, with dynamically generated
+      sprites based on cobbling together many icons into a rather convincing pile.
+      Some are just generic garbage, some are industrial, or medical, or full of broken
+      science and tech.
+  - rscadd: Directly adapted the sign language from William Gibson's Neuromancer.
+      Jive is a method of communication involving gestures and signals to quietly
+      and covertly conduct illicit trade and negotiating criminal stuff.
+  - rscadd: Allowed users to choose one additional language to start with at character
+      creation. Serbian, Techno Russian and Jive are the currently available choices.
+  - rscadd: "Real, true, fully functional full auto firing mode is here. It Just Works\u0432\
+      \u201E\u045E."
+  - rscadd: People spawning in cryo will now actually start INSIDE a cryobed, and
+      asleep for a short time (15 seconds). They must wake up and climb out, or be
+      autoejected after a minute.
+  - rscadd: Added the Dormitory as a new alternate spawnpoint. Anyone spawning there
+      will start off in a bed, asleep.
+  - rscadd: Added Evac Vote, and reforked vote system in general with different vote
+      power for different players.
+  - rscadd: Added the PK machine gun to the serbian armoury, replacing the old L6
+      SAW.
+  - rscadd: Added Storyteller Panel button to the Player Panel.
+  - tweak: Added the ability for admins to override vote cooldowns.
+  - tweak: Beartraps are now harder, and do some screenshake. Beartraps will now catch
+      the victim even if their leg armor blocks the initial damage.
+  - bugfix: Admin ghosts now have up/down buttons.
+  - bugfix: The rescue cyborg's roller bed rack now can pick the bed back up.
+  - bugfix: Fixed resisting out of beartraps by adding a new permission proc.
+  - bugfix: Fixed tons of bugs in spawning code, so that it now properly uses fallback
+      behaviour.
+  - bugfix: Fixed tons of bugs with beds and sheets, this feature should now work
+      flawlessly, no more getting stuck in a bed.
+  - bugfix: Fixed floors being black after repair, and also removed some old obsolete
+      vars.
+  - bugfix: Fixed issues where installing the cruciform would puncture the target's
+      lungs.
+  - bugfix: Fixed evac vote time.
+  TorinoFermic:
+  - fix: Added back missing required components for the excelsior autolathe circuit
+      board after having built.
+  - bugfix: Windoor construction can be completed now, also changed states from string
+      to integer to make code clearer.
+  - bugfix: Bear traps can be picked again right now after a mob has gibbed on the
+      trap.
+  - bugfix: Fixed bible crash.
+  Uvash:
+  - tweak: Space cleaner can clean lube now.
+  Voldirs:
+  - imageadd: Colored stripes on rubber or high velocity mags. Blue stripe is for
+      rubber ammo, red one is for high-velocity ammo.
+  - tweak: Firearm damage rebalance. Low damage smg/pistol rounds, medium damage rifle
+      rounds, high damage revolver/rare pistol.
+  - tweak: New ammo type, high-velocity in Uplink.
+  nichlas0010:
+  - rscadd: Added an inactive storyteller, and let admins change storytellers midround.
+  - tweak: Added the globals stat entry to MC menu.
+  - bugfix: Fixed magazines not dropping to the ground properly.
+  - bugfix: Handteleporter portals and wormholes now delete themself.

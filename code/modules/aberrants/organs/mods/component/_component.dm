@@ -1,19 +1,19 @@
 /datum/component/modification/organ
 	install_time = WORKTIME_FAST
 	//install_tool_quality = null
-	install_difficulty = 35
+	install_difficulty = FAILCHANCE_VERY_EASY + 5
 	install_stat = STAT_BIO
 	install_sound = 'sound/effects/squelch1.ogg'
 
 	mod_time = WORKTIME_FAST
 	mod_tool_quality = QUALITY_LASER_CUTTING			
-	mod_difficulty = FAILCHANCE_HARD
+	mod_difficulty = FAILCHANCE_HARD - 5
 	mod_stat = STAT_BIO
 	mod_sound = 'sound/effects/squelch1.ogg'
 
 	removal_time = WORKTIME_SLOW
 	removal_tool_quality = QUALITY_LASER_CUTTING
-	removal_difficulty = FAILCHANCE_CHALLENGING
+	removal_difficulty = FAILCHANCE_HARD - 5
 	removal_stat = STAT_BIO
 
 	adjustable = FALSE
@@ -58,6 +58,20 @@
 	var/max_upgrade_mod = null
 	var/scanner_hidden = FALSE
 
+/datum/component/modification/organ/apply(obj/item/organ/O, mob/living/user)
+	. = ..()
+
+	// Mutation index checks
+	// If the mod failed to install, do nothing
+	if(!.)
+		return FALSE
+
+
+	// If the organ was already modded, do nothing
+	if(!O.owner || LAZYLEN(O.item_upgrades) > 1)
+		return FALSE
+
+	O.owner.mutation_index++
 
 /datum/component/modification/organ/apply_values(obj/item/organ/internal/holder)
 	ASSERT(holder)
@@ -147,29 +161,36 @@
 	if(scanner_hidden)
 		holder.scanner_hidden = scanner_hidden
 
-/datum/component/modification/organ/uninstall(obj/item/I, mob/living/user)
+/datum/component/modification/organ/uninstall(obj/item/organ/O, mob/living/user)
 	..()
-	if(istype(I, /obj/item/organ/internal/scaffold))
-		var/obj/item/organ/internal/scaffold/S = I
+	if(istype(O, /obj/item/organ/internal/scaffold))
+		var/obj/item/organ/internal/scaffold/S = O
 		S.try_ruin()
+	
+	// If the organ has no owner or is still modded, do nothing
+	if(!O.owner || LAZYLEN(O.item_upgrades))
+		return
+
+	O.owner.mutation_index--
 
 /datum/component/modification/organ/on_examine(mob/user)
 	var/using_sci_goggles = FALSE
 	var/details_unlocked = FALSE
 
-	if(ishuman(user))
+	if(isghost(user))
+		details_unlocked = TRUE
+	else if(user.stats)
 		// Goggles check
-		var/mob/living/carbon/human/H = user
-		if(istype(H.glasses, /obj/item/clothing/glasses/powered/science))
-			var/obj/item/clothing/glasses/powered/G = H.glasses
-			using_sci_goggles = G.active	// Meat vision
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(istype(H.glasses, /obj/item/clothing/glasses/powered/science))
+				var/obj/item/clothing/glasses/powered/G = H.glasses
+				using_sci_goggles = G.active	// Meat vision
 
 		// Stat check
 		details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
 		if(examine_stat_secondary && details_unlocked)
 			details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
-	else if(istype(user, /mob/observer/ghost))
-		details_unlocked = TRUE
 
 	if(examine_msg)
 		to_chat(user, SPAN_WARNING(examine_msg))

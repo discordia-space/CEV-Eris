@@ -12,6 +12,8 @@
 
 /datum/stat_holder/Destroy()
 	holder = null
+	QDEL_LIST(perks)
+	QDEL_LIST(perk_stats)
 	return ..()
 
 /datum/stat_holder/proc/check_for_shared_perk(ability_bitflag)
@@ -192,7 +194,10 @@
 			return SM
 
 /datum/stat/proc/changeValue(affect)
-	value = value + affect
+	if(value + affect > STAT_VALUE_MAXIMUM)
+		value = STAT_VALUE_MAXIMUM
+	else
+		value = value + affect
 
 /datum/stat/proc/getValue(pure = FALSE)
 	if(pure)
@@ -208,7 +213,10 @@
 			. += SM.value
 
 /datum/stat/proc/setValue(value)
-	src.value = value
+	if(value > STAT_VALUE_MAXIMUM)
+		src.value = STAT_VALUE_MAXIMUM
+	else
+		src.value = value
 
 /datum/stat/proc/copyTo(var/datum/stat/recipient)
 	recipient.value = getValue(TRUE)

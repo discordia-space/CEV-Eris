@@ -25,18 +25,13 @@ var/global/list/robot_modules = list(
 	var/channels = list()
 	var/networks = list()
 	var/languages = list(							//Any listed language will be understandable. Any set to 1 will be speakable
-					LANGUAGE_SOL_COMMON = 1,
-					LANGUAGE_TRADEBAND = 1,
-					LANGUAGE_UNATHI = 0,
-					LANGUAGE_SIIK_MAAS = 0,
-					LANGUAGE_SKRELLIAN = 0,
-					LANGUAGE_GUTTER = 1,
-					LANGUAGE_VAURCESE = 0,
-					LANGUAGE_ROOTSONG = 0,
-					LANGUAGE_SIGN = 0,
-					LANGUAGE_SIGN_TAJARA = 0,
-					LANGUAGE_SIIK_TAJR = 0,
-					LANGUAGE_AZAZIBA = 0
+					LANGUAGE_COMMON = 1,
+					LANGUAGE_GERMAN = 1,
+					LANGUAGE_CYRILLIC = 1,
+					LANGUAGE_SERBIAN = 1,
+					LANGUAGE_JIVE = 0,
+					LANGUAGE_NEOHONGO = 1,
+					LANGUAGE_LATIN = 0,
 					)
 	var/sprites = list()
 	var/can_be_pushed = 1
@@ -786,13 +781,14 @@ var/global/list/robot_modules = list(
 	name = "service robot module"
 	channels = list("Service" = 1)
 	languages = list(
-					LANGUAGE_SOL_COMMON = 1,
-					LANGUAGE_TRADEBAND = 1,
-					LANGUAGE_UNATHI = 1,
-					LANGUAGE_SIIK_MAAS = 1,
-					LANGUAGE_SKRELLIAN = 1,
-					LANGUAGE_GUTTER = 1,
-					LANGUAGE_ROOTSONG = 1
+					LANGUAGE_COMMON = 1,
+					LANGUAGE_GERMAN = 1,
+					LANGUAGE_CYRILLIC = 1,
+					LANGUAGE_SERBIAN = 1,
+					LANGUAGE_JIVE = 1,
+					LANGUAGE_NEOHONGO = 1,
+					LANGUAGE_LATIN = 1,
+					LANGUAGE_MONKEY = 1
 					)
 
 	sprites = list(	"Waitress" = "service",
@@ -979,13 +975,13 @@ var/global/list/robot_modules = list(
 	name = "syndicate robot module"
 	hide_on_manifest = TRUE
 	languages = list(
-					LANGUAGE_SOL_COMMON = 1,
-					LANGUAGE_TRADEBAND = 1,
-					LANGUAGE_UNATHI = 1,
-					LANGUAGE_SIIK_MAAS = 1,
-					LANGUAGE_SKRELLIAN = 1,
-					LANGUAGE_GUTTER = 1,
-					LANGUAGE_ROOTSONG = 1
+					LANGUAGE_COMMON = 1,
+					LANGUAGE_GERMAN = 1,
+					LANGUAGE_CYRILLIC = 1,
+					LANGUAGE_SERBIAN = 1,
+					LANGUAGE_JIVE = 1,
+					LANGUAGE_NEOHONGO = 1,
+					LANGUAGE_LATIN = 1
 					)
 
 	sprites = list(
@@ -1129,14 +1125,13 @@ var/global/list/robot_modules = list(
 /obj/item/robot_module/hunter_seeker
 	name = "hunter seeker robot module"
 	languages = list(
-					LANGUAGE_SOL_COMMON = 1,
-					LANGUAGE_TRADEBAND = 1,
-					LANGUAGE_UNATHI = 1,
-					LANGUAGE_SIIK_MAAS = 1,
-					LANGUAGE_SKRELLIAN = 1,
-					LANGUAGE_GUTTER = 1,
-					LANGUAGE_ROOTSONG = 1,
-					LANGUAGE_TERMINATOR = 1
+					LANGUAGE_COMMON = 1,
+					LANGUAGE_GERMAN = 1,
+					LANGUAGE_CYRILLIC = 1,
+					LANGUAGE_SERBIAN = 1,
+					LANGUAGE_JIVE = 1,
+					LANGUAGE_NEOHONGO = 1,
+					LANGUAGE_LATIN = 1
 					)
 
 	sprites = list(

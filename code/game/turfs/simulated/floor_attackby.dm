@@ -4,8 +4,8 @@
 		return 0
 
 	if(istype(src, /turf/simulated/floor/plating/under) && (istype(I, /obj/item/stack/material/cyborg/steel) || istype(I, /obj/item/stack/material/steel)))
-		if(do_after(user, 5, src))
-			if(I:use(2))
+		if(do_after(user, (30 * user.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT, src))))
+			if(I:use(1))
 				ChangeTurf(/turf/simulated/floor/plating)
 
 	var/obj/effect/shield/turf_shield = getEffectShield()
@@ -38,7 +38,7 @@
 				take_damage(I.force*I.structure_damage_factor, I.damtype)
 			else
 				visible_message(SPAN_DANGER("[user] ineffectually hits [src] with [I]"))
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.75) //This longer cooldown helps promote skill in melee combat by punishing misclicks a bit
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) 
 			return TRUE
 
 	for(var/atom/movable/A in src)

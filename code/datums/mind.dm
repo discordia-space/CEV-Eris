@@ -139,7 +139,10 @@
 			output += "<br><b>Your [A.role_text] objectives:</b>"
 		output += "[A.print_objectives(FALSE)]"
 	output += print_individualobjectives()
-	recipient << browse(output, "window=memory")
+
+	var/datum/browser/panel = new(recipient, "memory", "Memory", 333, 333)
+	panel.set_content(output)
+	panel.open()
 
 /datum/mind/proc/edit_memory()
 	if(SSticker.current_state != GAME_STATE_PLAYING)

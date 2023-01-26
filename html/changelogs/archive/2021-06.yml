@@ -1,0 +1,161 @@
+2021-06-05:
+  CeUvi:
+  - imageadd: new sprites for walkietalkie
+  - imageadd: added some arms and bands
+  Chickenish:
+  - balance: The carrion's Maw's Consume Flesh ability now removes a random organ
+      from and damages the target instead of tearing it off, can't be initiated while
+      in progress, and does not work with a weak grab.
+  - balance: Rotten organs are now worth only a third of the points to carrions.
+  - spellcheck: Cleaned up the Maw's Consume Flesh ability text.
+  Hatterhat:
+  - balance: bolt-actions' recoil has been made a little more in-line with other .30
+      firing rifles
+  HerBaon:
+  - bugfix: Exultant has NTNET Access now, and MEO spawns with the NTNET Program in
+      their laptop.
+  - bugfix: IH Hammer no longer appears when holding IH Disks.
+  - bugfix: fixed a lot of bugs and typos around.
+  - bugfix: Serbian Magboots work properly now.
+  Hyperio:
+  - rscadd: Add Dusty the bluespace cat
+  MLGTASTICa:
+  - bugfix: drones being able to call evac.
+  TheShown911:
+  - rscadd: New combat focused origin for technomancers
+  - balance: pain knockout duration lowered to 1.5 minutes
+  - balance: self surgery now possible by stacking 2 painkillers
+  Wouju:
+  - bugfix: Shadow Banishes a creature in the hivemind nest into eternal pit of torment
+      known as discord admin channel. (fixes a hive mob not spawning properly in the
+      hivemind deepmaint room)
+  fernandos13:
+  - balance: accelerated growth power 50 > 10
+  - balance: mercy power 50 > 5
+  - balance: Absolution of wounds power 50 > 10
+  - balance: Relief  power 50 > 20
+  - balance: Entreaty power 50 > 0 AND added cooldown of 1min
+  - balance: Cruciform sense added cooldown of 1 minute
+  - balance: Revelation power 50 > 10
+  - balance: Words of purging power 50 > 5
+  greggbot:
+  - bugfix: Wire splicings no longer get stuck in a state of being used if you attempt
+      to add wires past the max.
+  zombiemimic:
+  - rscadd: Added Offship account
+  - tweak: Changed around some vendor accounts
+2021-06-11:
+  Alliostra:
+  - balance: The melee damage of the motherfucker has been nerfed by 5 damage points.
+  - bugfix: you can now attach bayonets to guns again
+  - imageadd: new sprites for the unique AMR shells
+  Chickenish:
+  - bugfix: True Faith gave the benefit by itself and was added and removed by obelisks;
+      now obelisks activate and deactivate it similarly to Exotic Inspiration.
+  Herbaon:
+  - bugfix: Mesons can properly detect minerals when turned on.
+  - bugfix: A lot of typos & references of "station" to ship
+  - bugfix: Bugfixes overall, removed some exploits.
+  Hyperio:
+  - bugfix: Fix slipping on ladders with slipping items
+  - tweak: Malf AI cannot recall bluespace jumps anymore
+  - bugfix: Fix zpipes display on standard tiles
+  - rscadd: Add normal tiles to atmos room to cover unecessary plating
+  zombiemimic:
+  - tweak: vertically centers a bunch of ID cards
+2021-06-12:
+  Herbaon:
+  - rscadd: Added a tip that references the self-surgery carrion abilities.
+  Hyperio:
+  - tweak: Dusty cannot be carried anymore
+  Omni44:
+  - rscadd: Added VVD-40 and sprite for it.
+  zombiemimic:
+  - rscadd: Autolathe disk box now is sold from the trade beacon
+  - code_imp: steals ranged attacks from simple_mob
+2021-06-18:
+  Omni44:
+  - rscadd: Added TM RIG
+  - balance: Buffed TE's RIG
+  - tweak: Edited bit of maint next to EVA access point above S3 hallway
+  - tweak: tweaked birgmed's equipment
+  - bugfix: fixed a shield tiel appearing in bar
+2021-06-19:
+  Anonmare:
+  - bugfix: The Miller's AP now correctly reflects its role as the gun for killing
+      poor people.
+  Chickenish:
+  - code_imp: fixed the code causing ambiguous code warnings
+  Firefox13:
+  - balance: Plastic bag doesn't holds as much as duffle bag, but it can store a nuke
+      disk now.
+  HerBaon:
+  - balance: Only glorious humans can be part of NT. Everyone else gets gibbed or
+      isn't worthy anymore.
+  Herbaon:
+  - bugfix: fixed carrion being permanently paralyzed 10 minutes after using reg.stasis
+  - bugfix: Artist and Kube Oddities turning all-stats oddities by Preacher Blessing
+      Litany.
+  - bugfix: Secure Briefcase being able to be opened by altclick.
+  - bugfix: Borosilicate/Plasma glass being called Platinum glass and incorrect Moebius
+      isotope diffuser description.
+  - bugfix: dartgun and syringe guns gunpart exploit
+  - imageadd: updated the sechud icons
+  - imagedel: old sechud icons
+  - balance: NT Bioprinter was balanced to have better storage and printing speed.
+  - bugfix: fixed Preacher making all stats oddities with cube and artist oddities
+  Hyperio:
+  - rscadd: New affinity chunks for JTB
+  - code_imp: Deletion of JTB is now progressive to reduce lag
+  - code_imp: JTB tiles have no atmosphere by default
+  - code_imp: JTB ship-side portal is now directly deleted when JTB is released
+  - rscdel: Removed pipes, vents and scrubbers from JTB chunks
+  Sparrowbird611:
+  - rscdel: Removed one second detonation option from grenades.
+  - balance: Made the detective's coat more protective, and made it offer leg protection.
+  granodd:
+  - rscadd: added toolbelt, large cell mount, high powered motor, and jackhammer to
+      mining locker
+  - tweak: upgraded the cells in mining locker to high tier capacity and added two
+      large cells plus an additional small cell
+  - tweak: made toolbelt capable of holding the mining scanner
+  - tweak: doubled capacity of the mining ore satchel
+  - tweak: reduced charge cost on jackhammers from 0.6 -> 0.4, and One Star jackhammers
+      from 0.8 -> 0.6
+  - tweak: reduced charge cost of mining scanner significantly from 2 -> 0.5
+  - tweak: reduced charge cost of optical meson scanners from 0.5 -> 0.3
+2021-06-26:
+  Anonmare:
+  - balance: Malfunctioning AIs have deleted system32 and generate CPU 20x as fast
+      now.
+  Chickenish:
+  - bugfix: reinforcing windows with silicate actually works now, and beaker splashes
+      now apply touch effects.
+  - rscadd: Adds Gunsmith oddity perk, which increases the amount of ammo from ammo
+      kits and adds options to gun assemblies.
+  - balance: Gun assemblies now have less options available per 10 Mec, cost two thirds
+      as much, and have a maximum price per option based on option number.
+  Hyperio:
+  - rscadd: Rework Guild Lobby in Section III
+  TheShown911:
+  - balance: negative effects of pain such as chat messages and stuttering take more
+      pain to activate.
+  - balance: All painkillers have consistent strength anyway they consumed/injected.
+  Xoxeyos:
+  - spellcheck: Typo fix, 'comptuer' to 'computer'.
+  zombiemimic:
+  - rscadd: Added the Maxim machine gun to excel roster
+  - tweak: tweaked mosin disk rarity
+  - tweak: changed excel turret as the maxim on a stand that it is
+  - code_imp: added slowdown_hold for slowdown caused by holding items
+2021-06-27:
+  TheShown911:
+  - bugfix: fixed movement runtimes.
+  drexample:
+  - tweak: Drastically reworks several subsystems for the sake of optimization.
+2021-06-29:
+  drexample:
+  - bugfix: Fixes a runtime in processing
+2021-06-30:
+  drexample:
+  - rscdel: Removed plumbing

@@ -5,7 +5,7 @@
 	set name = "Release Control"
 	set desc = "Release control of your host's body."
 
-	var/mob/living/simple_animal/borer/B = has_brain_worms()
+	var/mob/living/simple_animal/borer/B = get_brain_worms()
 
 	if(B && B.host_brain)
 		to_chat(src, "\red <B>You withdraw your probosci, releasing control of [B.host_brain]</B>")
@@ -27,7 +27,7 @@
 	set name = "Talk to captive host"
 	set desc = "Talk to your captive host."
 
-	var/mob/living/simple_animal/borer/B = has_brain_worms()
+	var/mob/living/simple_animal/borer/B = get_brain_worms()
 	var/text = null
 
 	if(!B)
@@ -48,7 +48,7 @@
 	set name = "Reproduce"
 	set desc = "Spawn several young."
 
-	var/mob/living/simple_animal/borer/B = has_brain_worms()
+	var/mob/living/simple_animal/borer/B = get_brain_worms()
 
 	if(!B)
 		return

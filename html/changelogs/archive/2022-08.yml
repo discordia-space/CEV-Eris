@@ -1,0 +1,215 @@
+2022-08-06:
+  Humonitarian:
+  - bugfix: fixed heatwave light damage range trigger
+  - code_imp: Improved heatwave code
+  - bugfix: various vending machine issues
+  MLGTASTICa:
+  - bugfix: Burst fire can no longer stack
+  - bugfix: Full auto fire_delay is now based on the shown value , no longer on the
+      gun's burst_delay
+  - bugfix: Guns are no longer hard locked to a 4 MS fire_delay.
+  - balance: Bull shotgun now has a fire_delay of 2 MS.
+  - balance: SEMI_AUTO_NODELAY has been changed to SEMI_AUTO_300, with a firerate
+      delay of 2 MS
+  SirRichardFrancis:
+  - rscadd: text-to-speech
+  - bugfix: ghost not hearing tts
+  - bugfix: mice and other mobs having actual voice
+  ValoTheValo:
+  - rscadd: more holoposters and decorations around maint
+  - rscadd: Shop area in technomancer lobby
+  - tweak: Remapped Disposals
+  - balance: small buffs to Excelsior and Neotheo Voidsuit to compete with basic armor
+      vests
+  assortedbeads:
+  - rscadd: Added 2 new scabbards and 2 equivalent recipes to obtain them
+  - soundadd: added 4 new sounds, two for holster sheathing and unsheathing, two for
+      scabbard sheathing and unsheathing
+  - imageadd: added 4 new on-mob icons and 2 new icons
+  - spellcheck: changed the grammar of some holster text to be less guncentric, since
+      scabbards are a subtype of holsters.
+  - code_imp: ported code from Sojourn to allow holstering swords
+  pexel5:
+  - rscadd: The ability to take glasses that protect from flash for heads of departments/
+  - bugfix: Sunglasses desc.
+2022-08-12:
+  Anonmare:
+  - tweak: The C20 is now in line with the standardised naming convention. Moebius
+      gun products are now abbrviated to "ML"
+  null-Aurelian:
+  - rscadd: Add recipe for Trash Bag item
+2022-08-13:
+  Firefox13:
+  - bugfix: You can once more cover people mouths to make them shut up.
+  - rscadd: Marisa outfit from /tg/ by TetraZeta, admin-only
+  - tweak: fumo is now pickable, always spawns on table in dorms
+  - bugfix: Floor lights now have sprites again
+  - spellcheck: BSDM, RIGs and other stuff no longer `flick_lights` and flickers properly
+  GrayRachnid:
+  - balance: Small and Medium cells now fit in ammo pouches.
+  Hyperio:
+  - bugfix: Fix fumo removal due to another map PR
+  MLGTASTICa:
+  - bugfix: Roaches can no longer be flipped
+  - bugfix: Multitool interactions with camera
+  - bugfix: Some items showign up through z-levels at time
+  - bugfix: Lookup not working at times
+  - balance: Acid now takes into account all worn clothing
+  - balance: Acid now melts clothing before dealing damage.
+  ValoTheValo:
+  - bugfix: wrong floor
+  - rscadd: Onestar Toolmod spawner.
+  - balance: tweaked the spawners and items found around the dungeon. should be better
+      and more fitting loot
+  - bugfix: onestar dungeon now uses onestar salvagables
+  drexample:
+  - rscadd: ports (currently unused) portal effect from Polaris
+  maikilangiolo:
+  - rscadd: Added beer keg back to club
+  - rscadd: added more scrubbers and vents to club
+  - rscadd: added more shield diffuers to junk beacon
+  - rscadd: added shield diffusers to incinerator room
+  - bugfix: fixed conference buttons with wrong id
+  - bugfix: fixed SM eject button not working
+  - bugfix: fixed bad and incomplete piping in club
+  - bugfix: fixed that one normal window in courtroom
+  - bugfix: fixed double wall and missing hull plating
+  - bugfix: more I forgot
+2022-08-14:
+  Firefox13:
+  - bugfix: removed death rays (fullauto from tesla chip is gone because it allows
+      for 1ms killing machine)
+  Hyperio:
+  - bugfix: 'Fix #7340 and #7367 conflicts'
+  MLGTASTICa:
+  - balance: Guns may no longer go below 1.1 ms firerate
+2022-08-15:
+  MLGTASTICa:
+  - balance: Minimum fire delayi is now 2 MS.
+  - code_imp: Fixed a exploit regarding possesions.
+2022-08-20:
+  Alliostra:
+  - tweak: makes smoke not lose reagents anymore when some are transferred to a mob.
+  GrayRachnid:
+  - balance: Ammo pouches can no longer hold ammo boxes and drum magazines.
+  MLGTASTICa:
+  - bugfix: fixes a circuit related bug
+  - tweak: Examining now opens the examine tab
+  - rscadd: Added descriptions to a lot of items
+  - balance: Unpowered doors can be unbolted using a hammering tool
+  - bugfix: Gas overlay inconsistencies with ZAS
+  - bugfix: Fixed ZAS-zone rebuilding
+  - code_imp: Ported a new system for handling gas movement
+  - code_imp: Ported a new system for handling gas rendering
+  - rscadd: New map images for crew monitoring and security monitoring map mode
+  - tweak: Added Icon32 for the crew monitor.
+  - bugfix: Probably fixed white screens.
+  - code_imp: Fixed security exploits.
+  - bugfix: Fixed valkrie missing wielded sprites
+  - bugfix: Fixed machinery not checking for power sources when created.
+  - rscadd: Added new robotic  and assisted sprites for organs
+  - balance: Robotic remove item now uses bolt turning instead of clamping
+  - bugfix: FIxed hardsuits not being removeable from FBP's backs.
+  - balance: NT-disks brought through the EOTP have unlimited license points
+  - bugfix: Fixes the IH AK Folding verb.
+  - bugfix: Fixed AltClicking turfs,  now it will always set your statpanel to Turf
+      tab.
+  - bugfix: Fixed farmbot pathing runtimes
+  - bugfix: Fixed being able to throw implanted/attached/undroppable items up ladders
+  - bugfix: Fixed being able to stick implanted/attached/undroppable items in pizzas.
+  - bugfix: Fixed armament disks runtiming
+  - bugfix: Fixed autodoc shrapnel removal not working properly.
+  - bugfix: Fixed inactivity kicking everyone.
+  Pink-Chink:
+  - bugfix: re-enables low pressure damage
+  Shazbot194:
+  - rscadd: Dynamic sprites for speedloaders
+  - tweak: Speedloaders are now Tiny
+  ValoTheValo:
+  - rscadd: added a new background, the Kestrel Hive
+  assortedbeads:
+  - rscdel: Removed the old crossbow.dm launcher code
+  - rscdel: Removed a reference to an old projectile type in alien.dm
+  - rscdel: Removed a reference to the old crossbow in centcomm.dmm
+  - rscdel: Deleted the old Crossbow and RXB dmi files
+  - tweak: Recipe for RXD moved to guns section
+  - tweak: RXD recipe edited to include steel and need a multitool applied for crafting,
+      this is supposed to represent making the bow and hacking the RCD respectively
+  - code_imp: Made an new entry for the RXD under energy guns
+  maikilangiolo:
+  - rscadd: Added lemon Juice to soda and booze dispensers
+  - tweak: lowered by 1 makeshift ak, laser carbine and smg gun part requirements
+  - balance: rebalanced gun part recycle cost
+  - tweak: changed gun assembly require gun parts 10 -> 5
+  - balance: z8 and kovacs can now take .20 extended
+  - bugfix: fixed wrong makeshift AK name in extended and drum mags descs
+  null-Aurelian:
+  - balance: Medical Supply Pouch converted to use continuous storage, equivalent
+      to the medium pouch in space. Medical pouch can now hold nanopaste.
+  - balance: Engineering Tool Pouch slots increased by 1 (3 to 4), can hold normal
+      sized items and nanopaste.
+  - balance: Engineering Supply Pouch converted to use continuous storage, equivalent
+      to a large pouch in space.
+  - balance: Engineering Material Pouch converted to use continuous storage, enough
+      space for 3 stacks of materials
+  - balance: Gun Part Pouch converted to use continuous storage, enough space for
+      8 normal parts and can now hold tool upgrade mods
+2022-08-21:
+  MLGTASTICa:
+  - bugfix: Fixed all binary pumps being turned on at round-start.
+  - bugfix: Fixed inactivity properly
+  assortedbeads:
+  - balance: RXB damage now 44 instead of 55
+  - balance: RXB ap now 27 instead of 30
+  - balance: RXB charge cost now 100 instead of 50
+2022-08-22:
+  LetterN:
+  - bugfix: Fixed disposal runtime
+  ValoTheValo:
+  - bugfix: NT can use thier disks now
+2022-08-27:
+  Benblu:
+  - rscadd: Stranger's gun has oddity properties and randomizes said properties.
+  - bugfix: broken necklace's description.
+  Hyperio:
+  - tweak: Switch frequency of integrated circuits to 1457
+  - tweak: Modify the Destroy function of integrated circuits
+  LetterN:
+  - bugfix: abilities can be viewed again
+  - bugfix: attempt fix radio runtime
+  - code_imp: only the mc can control rng
+  - code_imp: mouse now inits using Initialize instead of New
+  MLGTASTICa:
+  - balance: Most flashes now deal eye damage
+  - balance: Fixed flashlights no letting you flash / check other people
+  - rscadd: Added special descriptin for flashlights
+  - balance: Flashbangs now bypass all protection on thermal users.
+  - bugfix: Fixed robots not getting a flash overlay
+  - bugfix: Fixed chemical flashbangs not checking for protection.
+  - rscadd: Added more item descriptions
+  - bugfix: Fixed fire-rate limits being bypassable by spam clicking(again)
+  - balance: Robots now climb ladders 50% faster than before.
+  - rscadd: Added new plasma and nitrous oxide sprites.
+  Pink-Chink:
+  - rscadd: Added selection tree, viewable carts, cart save slots, an ordering system,
+      and a function for fulfilling all offers to the trade program
+  - rscadd: Added trade logging app
+  - tweak: Trade program supports carts with goods from multiple stations
+  - tweak: Trade orders can be done via the catalog/ordering app on the PDA (check
+      downloadable apps)
+  - balance: increased non-offer favor multiplier to 25%
+  Wouju:
+  - imageadd: replaced old himan dead sprite with a new one (more horizontal, less
+      gnomey)
+  assortedbeads:
+  - rscadd: Changed the quality needed for rig removal from welding to drilling
+  - rscadd: Changed the flavour text shown to the player to reference drilling rather
+      than welding
+  - rscdel: Reverts the old PR fix
+  maikilangiolo:
+  - rscadd: Added .20 and .30 scrap stripper clips to crafing station
+  - tweak: tweaked .40 ammo pile and ammo packet size
+  - balance: rebalanced armor part and ammo crafting cost
+  - balance: rebalanced magazine crafting costs
+  - tweak: changed ammo packet recycle cost to avoid steel multiplication
+  - tweak: fixed wrong .25 caseless pistol mag category and name in crafting station

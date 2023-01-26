@@ -12,3 +12,9 @@
 	name = "random plushie"
 	icon_state = "box-grey"
 	tags_to_spawn = list(SPAWN_PLUSHIE)
+
+/obj/spawner/toy/card
+	name = "random trading card"
+	icon_state = "box-grey"
+	tags_to_spawn = list(SPAWN_TRADING_CARD)
+	allow_blacklist = TRUE

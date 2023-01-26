@@ -149,3 +149,9 @@
 #define INFECTION_LEVEL_THREE 1000
 
 #define ORGAN_RECOVERY_THRESHOLD (5 MINUTES)
+
+// Organ generation
+#define ORGAN_HAS_BONES			(1<<0)
+#define ORGAN_HAS_BLOOD_VESSELS	(1<<1)
+#define ORGAN_HAS_NERVES		(1<<2)
+#define ORGAN_HAS_MUSCLES		(1<<3)

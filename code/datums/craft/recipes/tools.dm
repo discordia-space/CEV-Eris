@@ -18,7 +18,7 @@
 	result = /obj/item/tool/knife/shiv
 	steps = list(
 		list(/obj/item/material/shard, 1, "time" = 30),
-		list(QUALITY_ADHESIVE, 15, 70)
+		list(QUALITY_ADHESIVE, 15, 20)
 	)
 
 //A rod wrapped in tape makes a crude screwthing
@@ -87,7 +87,7 @@
 	name = "Jury-rigged torch"
 	result = /obj/item/tool/weldingtool/improvised
 	steps = list(
-		list(/obj/item/device/assembly/igniter, 1),
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 		list(/obj/item/tank/emergency_oxygen, 1),
 		list(QUALITY_ADHESIVE, 15, 100),
 		list(QUALITY_SCREW_DRIVING, 10, 40)
@@ -98,17 +98,16 @@
 	result = /obj/item/organ_module/active/simple/makeshift
 	steps = list(
 		list(/obj/item/storage/toolbox, 1),
+		list(QUALITY_PRYING, 10, 70),
 		list(/obj/item/electronics/circuitboard, 1),
+		list(QUALITY_SCREW_DRIVING, 10, "time" = 40),
+		list(CRAFT_MATERIAL, 12, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, 150),
 		list(/obj/item/stack/cable_coil, 5, "time" = 20),
-		list(/obj/item/tool/screwdriver/improvised, 1),
-		list(/obj/item/tool/wirecutters/improvised, 1),
-		list(/obj/item/tool/crowbar/improvised, 1),
-		list(/obj/item/tool/wrench/improvised, 1),
-		list(/obj/item/tool/shovel/improvised, 1),
-		list(/obj/item/tool/saw/improvised, 1),
-		list(/obj/item/tool/weldingtool/improvised, 1),
+		list(QUALITY_WIRE_CUTTING, 10, "time" = 60),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
+	related_stats = list(STAT_MEC)
 
 /*************************
 	TOOL MODS
@@ -166,15 +165,12 @@
 	name = "Tool mod: Heavy cell mount"
 	result = /obj/item/tool_upgrade/augment/cell_mount
 	steps = list(
-		list(/obj/item/frame/apc, 2, "time" = 30),			//hull
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),			//hull
 		list(QUALITY_SCREW_DRIVING, 10, "time" = 40),		//prepare hull
 		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),			//additional frame to support wires
 		list(QUALITY_WELDING, 10, "time" = 70),				//secure frame
 		list(/obj/item/stack/cable_coil, 30, "time" = 10),	//add wiring
-		list(QUALITY_WIRE_CUTTING, 10, "time" = 60),		//adjust wiring
-		list(/obj/item/cell/large, 1),				//cell for parts
-		list(QUALITY_SAWING, 10, "time" = 70),				//The large cell is disassembled for parts
-		list(QUALITY_WELDING, 10, "time" = 70),				//weld parts in place
+		list(QUALITY_WIRE_CUTTING, 10, "time" = 60),		//adjust wiring	
 	)
 
 //Welding backpack disassembled into a smaller tank
@@ -185,10 +181,8 @@
 	steps = list(
 		list(CRAFT_MATERIAL, 8, MATERIAL_PLASTEEL),
 		list(QUALITY_WELDING, 10, 50),
-		list(QUALITY_HAMMERING, 10, 100),
 		list(/obj/item/stack/rods, 2, 30),
 		list(QUALITY_WELDING, 10, 100),
-		list(QUALITY_BOLT_TURNING, 10, 40),
 		list(QUALITY_ADHESIVE, 20, 30)
 	)
 

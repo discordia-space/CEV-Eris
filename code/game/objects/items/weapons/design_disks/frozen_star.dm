@@ -406,12 +406,12 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/fs_tk
-	disk_name = "Frozen Star - .30 Takeshi LMG"
+	disk_name = "Frozen Star - .25 Takeshi LMG"
 	icon_state = "frozenstar"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 90
 	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/lmg_tk = 3, // "FS LMG .30 \"Takeshi\""
-		/datum/design/autolathe/ammo/lrifle_pk,
+		/datum/design/autolathe/gun/lmg_tk = 3, // "FS LMG .25 \"Takeshi\""
+		/datum/design/autolathe/ammo/ihclmg
 	)

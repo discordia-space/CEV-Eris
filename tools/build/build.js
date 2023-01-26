@@ -206,7 +206,7 @@ export const TguiBenchTarget = new Juke.Target({
 });
 
 export const TestTarget = new Juke.Target({
-  dependsOn: [DmTestTarget], // TguiTestTarget
+  dependsOn: [DmTestTarget, TguiTestTarget],
 });
 
 export const LintTarget = new Juke.Target({
@@ -214,7 +214,7 @@ export const LintTarget = new Juke.Target({
 });
 
 export const BuildTarget = new Juke.Target({
-  dependsOn: [DmTarget], // TguiTarget
+  dependsOn: [DmTarget, TguiTarget],
 });
 
 export const ServerTarget = new Juke.Target({

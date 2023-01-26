@@ -636,20 +636,6 @@
 				broken()
 	return
 
-//blob effect
-
-
-// timed process
-// use power
-
-#define LIGHTING_POWER_FACTOR 20		//20W per unit luminosity
-
-
-/obj/machinery/light/Process()
-	if(on)
-		use_power(light_range * LIGHTING_POWER_FACTOR, STATIC_LIGHT)
-
-
 // called when area power state changes
 /obj/machinery/light/power_change()
 	spawn(10)

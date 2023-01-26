@@ -87,6 +87,7 @@
 	steps = list(
 		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
 	)
+	time = WORKTIME_FAST
 	flags = null
 
 /datum/craft_recipe/machinery/wall/lightfixture

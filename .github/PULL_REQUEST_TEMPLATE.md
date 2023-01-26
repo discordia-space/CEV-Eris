@@ -9,6 +9,10 @@
 
 <!-- Please add a short description of why you think these changes would benefit the game. If you can't justify it in words, it might not be worth adding. -->
 
+## Testing
+
+<!-- Describe the tests you ran with your addition. It is recommended to add images, videos and step-by-step explanations of conducted testing. -->
+
 ## Changelog
 :cl:
 add: Added new things

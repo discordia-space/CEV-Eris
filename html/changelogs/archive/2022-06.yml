@@ -1,0 +1,64 @@
+2022-06-04:
+  Humonitarian:
+  - balance: reduced recoil globally
+  - balance: bullet miss chance takes size into account, vigilance hit chance bonus
+      only triggers on the target clicked on
+  - code_imp: bodypart randomization is determined when a bullet is launched, rather
+      than when the bullet reaches a target
+  ValoTheValo:
+  - tweak: Colt 1911, Molly and Gladstone moved from Billomat to FS Vendor
+  - balance: Molly Item Price reduced by 400$ to 1000 (From 1400)
+  - balance: Molly Vendor Price reduced by 800$ to 1000 (From 1800)
+  - balance: Gladstone returned to original price of 2000$
+  pexel5:
+  - rscadd: Added spy bugs in inspector locker.
+  - rscadd: 2 stack`s plasma r glass on techno table
+2022-06-06:
+  SirRichardFrancis:
+  - admin: verb for tweaking respawn timer
+  - admin: tools for extra fancy adminbus
+2022-06-11:
+  Humonitarian:
+  - balance: reduced girder health
+  SirRichardFrancis:
+  - tweak: slightly lowered .35 and .40 SMG magazines price in ammo kits
+  - bugfix: weirdness in body bag examine()
+  - tweak: increase floating text Y offset
+  - rscadd: couple of roombas
+  - rscadd: more egun and energy cell interactions
+  - bugfix: infinite meat from gibber
+  - rscadd: toggle self vision verb
+  - tweak: lifted apc access requirement for rebooting
+  - bugfix: fixed bunch of incorrect serial numbers
+  - rscadd: flourescent color customization
+  - tweak: captain and fo start with all channel in their headsets enabled by default
+  - bugfix: ghosted players missing UI buttons
+  - bugfix: re-enter corpse verb breaking UI
+  - bugfix: mop sweep
+2022-06-18:
+  SirRichardFrancis:
+  - balance: increased roach and spider movement speed
+  - tweak: increased respawn timer reduction from most sources
+  - bugfix: hostile mobs ignoring non-targeted projectiles
+  - tweak: resuscitator could be used 15 minutes after person's death
+  assortedbeads:
+  - balance: Rebalanced the damage of the old spear so it properly references our
+      damage define.
+  - imageadd: Added icons for the 4 types of spears, which show up inhand, wielded
+      and on back and suit storage
+  - code_imp: Added recipes for crafting all the spears
+  - code_imp: Put the throw speed of the new spears and the already added throwing
+      knife in line with current ranged options.
+  pexel5:
+  - rscdel: excess showcase
+2022-06-25:
+  SirRichardFrancis:
+  - bugfix: replaced some bay12 lore with eris lore
+  - admin: added "manage custom kits" verb and associated functionality
+  ValoTheValo:
+  - rscdel: Tripping
+  - balance: reverted to old values which means no-slips work and you trip less on
+      plating
+  - rscadd: Added Tripwire Belt Background
+  - rscdel: Removed MAIDS Background
+  - balance: slightly edits First Fleet Background

@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(chameleon_key_to_path, list(
 
 
 /obj/item/proc/pick_disguise(mob/user)
-	var/list/options = generate_chameleon_choices(isgun(src) ? /obj/item/gun : parent_type)
+	var/list/options = generate_chameleon_choices(isgun(src) ? /obj/item/gun : istype(src, /obj/item/clothing/mask/chameleon/voice) ? /obj/item/clothing/mask : parent_type)
 	var/obj/item/I = input(user, "Available options", "Set appearance") as anything in options
 	if(I)
 		disguise(options[I], usr)

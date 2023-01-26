@@ -9,8 +9,9 @@
 	var/banglet = 0
 	var/spawner_type = null // must be an object path
 	var/deliveryamt = 1 // amount of type to deliver
+	var/thrower_is_friend = FALSE // is whoever primed the grenade a friend?
 
-/obj/item/grenade/spawnergrenade/prime()	// Prime now just handles the two loops that query for people in lockers and people who can see it.
+/obj/item/grenade/spawnergrenade/prime(mob/user)	// Prime now just handles the two loops that query for people in lockers and people who can see it.
 
 	if(spawner_type && deliveryamt)
 		// Make a quick flash
@@ -23,6 +24,9 @@
 		for(var/i=1, i<=deliveryamt, i++)
 			var/atom/movable/x = new spawner_type
 			x.loc = T
+			if(thrower_is_friend && istype(x, /mob/living/simple_animal/hostile))
+				var/mob/living/simple_animal/hostile/L = x
+				L.friends += user
 			if(prob(50))
 				for(var/j = 1, j <= rand(1, 3), j++)
 					step(x, pick(NORTH,SOUTH,EAST,WEST))
@@ -34,11 +38,11 @@
 
 /obj/item/grenade/spawnergrenade/manhacks
 	name = "manhack delivery grenade"
-	desc = "Deploys a swarm of floating robots that will attack anything nearby."
+	desc = "Deploys a swarm of floating robots that will attack anyone nearby other than the user. "
 	spawner_type = /mob/living/simple_animal/hostile/viscerator
 	deliveryamt = 5
 	origin_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 4, TECH_COVERT = 4)
-
+	thrower_is_friend = TRUE
 
 /obj/item/grenade/spawnergrenade/blob
 	name = "bioweapon sample"

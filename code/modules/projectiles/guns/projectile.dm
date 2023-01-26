@@ -48,6 +48,7 @@
 /obj/item/gun/projectile/Destroy()
 	QDEL_NULL(chambered)
 	QDEL_NULL(ammo_magazine)
+	QDEL_LIST(loaded)
 	return ..()
 
 /obj/item/gun/projectile/proc/cock_gun(mob/user)

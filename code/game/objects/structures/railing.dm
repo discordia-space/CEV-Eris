@@ -11,7 +11,7 @@
 	anchored = TRUE
 	flags = ON_BORDER
 	icon_state = "railing0"
-	matter = list(MATERIAL_STEEL = 4)
+	matter = list(MATERIAL_STEEL = 2)
 	var/broken = 0
 	var/health=70
 	var/maxhealth=70

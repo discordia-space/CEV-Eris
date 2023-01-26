@@ -106,7 +106,7 @@
 	desc = "This upgrade will slightly increase follower resistance to physical and burn injuries from any source."
 	icon_state = "faiths_shield"
 	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_GOLD = 5, MATERIAL_PLASTEEL = 10)
-	var/shield_mod = 0.1
+	var/shield_mod = 0.2
 
 /obj/item/cruciform_upgrade/faiths_shield/OnInstall(var/disciple, var/_cruciform)
 	..()

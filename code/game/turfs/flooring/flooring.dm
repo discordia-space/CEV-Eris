@@ -224,12 +224,12 @@ var/list/flooring_types
 	if (istype(I, /obj/item/stack/rods))
 		.=TRUE
 		var/obj/item/stack/rods/R = I
-		if(R.amount <= 3)
+		if(R.amount <= 2)
 			return
 		else
-			R.use(3)
-			to_chat(user, SPAN_NOTICE("You start connecting [R.name]s to [src.name], creating catwalk ..."))
-			if(do_after(user,60))
+			R.use(2)
+			to_chat(user, SPAN_NOTICE("You start connecting [R.name]s to [src.name], creating catwalk..."))
+			if(do_after(user, (20 * user.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT))))
 				T.alpha = 0
 				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(T)
 				T.contents += CT

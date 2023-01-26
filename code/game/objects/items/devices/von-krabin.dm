@@ -35,9 +35,6 @@
 /obj/item/device/von_krabin/Destroy()
 	GLOB.all_faction_items -= src
 	GLOB.moebius_faction_item_loss++
-	..()
-
-/obj/item/device/von_krabin/nt_sword_handle()
 	for(var/mob/living/carbon/human/broken_minded in the_broken)
 		to_chat(broken_minded, SPAN_NOTICE("Your connection to the faith seems to have been restored to full power."))
 		var/obj/item/implant/core_implant/cruciform/C = broken_minded.get_core_implant(/obj/item/implant/core_implant/cruciform)
@@ -56,16 +53,21 @@
 		for(var/stat in stats_buff)
 			hive_minded.stats.removeTempStat(stat, "von-crabbin")
 			hive_minded.stats.changeStat(stat, -30)  // hard to adapt back to normality
-		if(eotp)
-			eotp.power += 10
-			eotp.armaments_rate += 5
-			eotp.max_armaments_points += 5
 	the_hiveminded = null
+	was_notified = null
+	..()
+
+/obj/item/device/von_krabin/nt_sword_handle()
 	if(eotp)
 		// no more NT link obstructions
 		eotp.max_power -= 20 // reduces how much is needed for things to happen
 		eotp.armaments_rate += 10
 		eotp.max_armaments_points += 50
+	for(var/mob/living/carbon/human/hive_minded in the_hiveminded)
+		if(eotp)
+			eotp.power += 10
+			eotp.armaments_rate += 5
+			eotp.max_armaments_points += 5
 
 /obj/item/device/von_krabin/attackby(obj/item/I, mob/user, params)
 	if(nt_sword_attack(I, user))
@@ -89,6 +91,8 @@
 	..()
 
 /obj/item/device/von_krabin/attack(mob/living/M, mob/living/user, target_zone)
+	if(!ishuman(M) || M.isMonkey())
+		return ..()
 	if(user.a_intent == I_HELP && !is_neotheology_disciple(M))
 		if(M in the_hiveminded)
 			user.visible_message(SPAN_NOTICE("[user] begins unlinking [M]'s mind from the [src]"))

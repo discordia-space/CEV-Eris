@@ -35,6 +35,7 @@
 "i" = (
 /obj/structure/table/onestar,
 /obj/spawner/gun/energy_cheap/low_chance,
+/obj/spawner/cloth/onestar/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "j" = (
@@ -131,6 +132,7 @@
 "H" = (
 /obj/structure/table/onestar,
 /obj/item/handcuffs,
+/obj/item/gun/energy/retro,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "N" = (

@@ -97,6 +97,9 @@
 //Lets remove ourselves from the global list and cleanup any held references
 /obj/structure/burrow/Destroy()
 	GLOB.all_burrows.Remove(src)
+	populated_burrows -= src
+	unpopulated_burrows -= src
+	distressed_burrows -= src
 	target = null
 	recieving = null
 	//Eject any mobs that tunnelled through us
@@ -104,9 +107,9 @@
 		if (a.loc == src)
 			a.forceMove(loc)
 	population = list()
-	plantspread_burrows = list()
+	plantspread_burrows = list()	// Other burrows may still hold a reference to this burrow after it qdels
 	plant = null
-	.=..()
+	return ..()
 
 //This is called from the migration subsystem. It scans for nearby creatures
 //Any kind of simple or superior animal is valid, all of them are treated as population for this burrow

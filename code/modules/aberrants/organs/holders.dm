@@ -34,8 +34,12 @@
 	update_icon()
 
 /obj/item/organ/internal/scaffold/Destroy()
-	..()
 	UnregisterSignal(src, COMSIG_ABERRANT_COOLDOWN)
+	if(LAZYLEN(item_upgrades))
+		for(var/datum/mod in item_upgrades)
+			SEND_SIGNAL(mod, COMSIG_REMOVE, src)
+			qdel(mod)
+	return ..()
 
 /obj/item/organ/internal/scaffold/Process()
 	..()
@@ -47,17 +51,18 @@
 	var/using_sci_goggles = FALSE
 	var/details_unlocked = FALSE
 
-	if(ishuman(user))
+	if(isghost(user))
+		details_unlocked = TRUE
+	else if(user.stats)
 		// Goggles check
-		var/mob/living/carbon/human/H = user
-		if(istype(H.glasses, /obj/item/clothing/glasses/powered/science))
-			var/obj/item/clothing/glasses/powered/G = H.glasses
-			using_sci_goggles = G.active	// Meat vision
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H && istype(H.glasses, /obj/item/clothing/glasses/powered/science))
+				var/obj/item/clothing/glasses/powered/G = H.glasses
+				using_sci_goggles = G.active	// Meat vision
 
 		// Stat check
 		details_unlocked = (user.stats.getStat(STAT_BIO) >= STAT_LEVEL_EXPERT - 5 && user.stats.getStat(STAT_COG) >= STAT_LEVEL_BASIC - 5) ? TRUE : FALSE
-	else if(istype(user, /mob/observer/ghost))
-		details_unlocked = TRUE
 
 	if(using_sci_goggles || details_unlocked)
 		var/function_info
@@ -248,6 +253,7 @@
 	var/base_input_type = null
 	var/list/specific_input_type_pool = list()
 	var/input_mode = null
+	var/input_threshold = 0
 	var/list/process_info = list()
 	var/should_process_have_organ_stats = TRUE
 	var/list/output_pool = list()
@@ -295,7 +301,7 @@
 
 	var/obj/item/modification/organ/internal/input/I
 	if(ispath(input_mod_path, /obj/item/modification/organ/internal/input))
-		I = new input_mod_path(src, FALSE, null, input_info, input_mode, additional_input_info)
+		I = new input_mod_path(src, FALSE, null, input_info, input_mode, input_threshold, additional_input_info)
 
 	var/obj/item/modification/organ/internal/process/P
 	if(ispath(process_mod_path, /obj/item/modification/organ/internal/process))

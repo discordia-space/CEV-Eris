@@ -27,12 +27,13 @@
 	msg = "## NOTICE: [msg]"
 	log_world(msg)
 
-
 //print a testing-mode debug message to world.log and world
 #ifdef TESTING
 #define testing(msg) log_world("## TESTING: [msg]"); to_chat(world, "## TESTING: [msg]")
+#define testing_variable(variable, value) var variable = value
 #else
 #define testing(msg)
+#define testing_variable(variable, value)
 #endif
 
 #if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
@@ -119,8 +120,39 @@
 	if (config.log_pda)
 		game_log("PDA", text)
 
-/proc/log_href_exploit(atom/user)
-	log_admin("[key_name_admin(user)] has potentially attempted an href exploit.")
+/**
+ * Appends a tgui-related log entry. All arguments are optional.
+ */
+/proc/log_tgui(user, message, context,
+		datum/tgui_window/window,
+		datum/src_object)
+	var/entry = ""
+	// Insert user info
+	if(!user)
+		entry += "<nobody>"
+	else if(istype(user, /mob))
+		var/mob/mob = user
+		entry += "[mob.ckey] (as [mob] at [mob.x],[mob.y],[mob.z])"
+	else if(istype(user, /client))
+		var/client/client = user
+		entry += "[client.ckey]"
+	// Insert context
+	if(context)
+		entry += " in [context]"
+	else if(window)
+		entry += " in [window.id]"
+	// Resolve src_object
+	if(!src_object && window?.locked_by)
+		src_object = window.locked_by.src_object
+	// Insert src_object info
+	if(src_object)
+		entry += "\nUsing: [src_object.type] [REF(src_object)]"
+	// Insert message
+	if(message)
+		entry += "\n[message]"
+	game_log("TGUI", entry)
+	// WRITE_LOG(GLOB.tgui_log, entry)
+
 
 /proc/log_to_dd(text)
 	log_world(text)

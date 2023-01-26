@@ -320,6 +320,7 @@
 	var/gene_type
 	var/gene_value
 	metabolism = REM * 2
+	scannable = TRUE
 
 /datum/reagent/toxin/mutagen/moeball/proc/isWorm()
 	name = "mass of still whirling worms"
@@ -555,6 +556,7 @@
 	color = "#a37d9c"
 	metabolism = REM * 2
 	overdose = REAGENTS_OVERDOSE/3
+	addiction_chance = 0
 	nerve_system_accumulations = 10
 	strength = 0.01
 	sanityloss = 1
@@ -568,7 +570,7 @@
 	M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "pararein")
 	sanity_gain = 1.2
 	if(prob(10))
-		to_chat(M, SPAN_WARNING ("you feel like your mind is boiling and the blood in your veins is coming alive!"))
+		to_chat(M, SPAN_WARNING ("You feel like your mind is boiling and the blood in your veins is coming alive!"))
 
 /datum/reagent/toxin/aranecolmin
 	name = "Aranecolmin"
@@ -580,7 +582,7 @@
 	overdose = REAGENTS_OVERDOSE
 	strength = 0.1
 	metabolism = REM * 2
-	addiction_chance = 10
+	addiction_chance = 0
 	nerve_system_accumulations = 5
 
 /datum/reagent/toxin/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
@@ -824,6 +826,7 @@
 
 /datum/reagent/toxin/chlorine
 	name = "Chlorine"
+	id = "chlorine"
 	description = "A highly poisonous liquid. Smells strongly of bleach."
 	reagent_state = LIQUID
 	taste_description = "bleach"

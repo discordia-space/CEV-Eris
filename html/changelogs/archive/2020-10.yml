@@ -1,0 +1,256 @@
+2020-10-02:
+  Anonmare:
+  - tweak: Hardsuit injectors now use 5u injections instead of 10u
+  Evankhell561:
+  - bugfix: fix drag beakers to chem master
+  - bugfix: trays un backpack
+  - bugfix: bedsheets un backpack.
+  - bugfix: armor spam messages
+  - tweak: revive proc no longer destroys organs, it only heals them.
+  - bugfix: revive proc no longer causes the target to lose their cruciform.
+  - tweak: disk now spawn less frequently.
+  - rscadd: fluid duct multilayered
+  - rscadd: fluid duct design
+  - tweak: the fluid ducts now have can be of different layers.
+  Fernandos33:
+  - balance: large syringe now uses 1 silver. and is in Moebius Medical Designs" (20
+      liscense points)
+  - bugfix: typo in the "THIS taste like"
+  - rscadd: EMT now holds, crowbar, mini extinguisherand, flashlight.
+  - rscadd: medical belt can now hold bloodbags
+  Hopek:
+  - bugfix: The SM no longer divides by zero creating thousands of runtime errors
+  - bugfix: The medical stand no longer runtimes a few thousand times per round.
+  Hyperio:
+  - bugfix: Fixed firemode change that was erasing charge_cost and fire_delay of gunmods
+  Kurgis:
+  - balance: Medical belts may only hold latex and medical HUDs.
+  - tweak: Tool spawners will no longer spawn items with the "junk" tag. Added junk
+      tag to all improvised tools.
+  - balance: Adjusted various rarity values on tools, and removed reinforced plating's
+      lower rarity value.
+  - bugfix: Tool spawner will no longer spawn only from a list of duct tape. Circular
+      saws will no longer dominate places where surgical tools randomly spawn.
+  MacBlaze1:
+  - rscadd: You can now put items easily into your backpack with E and into your belt
+      with Shift E
+  MadmanMartian:
+  - rscdel: Lizards, Yithians, Tindalos, Diyaabs, Samaks, and Shantaks have been removed
+      from the infestation event.
+  TheShown911, INFRARED_BARON:
+  - rscadd: Bones for external organs
+  - rscadd: Bones can be reinforced with surgery using braces made in the crafting
+      menu
+  - rscadd: Organ icons show up during surgery
+  TorinoFermic:
+  - rscdel: Removed playable Xenos and Aliens. Simple Animal xenos are kept.
+  - config: Removed few configs checks from code.
+  - admin: Reworked some admin verbs and added required logging to them
+  Trilbyspaceclone:
+  - bugfix: Fixed the .25 Mandella being called .35 in its linense
+  boy2mantwicethefam:
+  - tweak: Players will now receive more feedback regarding their eligibility to use
+      posibrains. Remember that you have to be able to respawn as a crewmember before
+      you can become a robot!
+  fernandos13:
+  - bugfix: fixes smoking pipe craft
+  seekin4u:
+  - rscadd: Added new thing - slotmachine.
+  soslow4u:
+  - rscadd: Excelsior wants YOU to fight. Draft conscripts from outer space to aid
+      your revolution. Send ~~asleep~~ any revolutioner to your Motherbase and replace
+      them with fresh new blood with 20 minutes cooldown.
+  yorpyorpyorp:
+  - bugfix: Can no longer enter mechs while buckled.
+  - bugfix: fixed the biogenerator not consuming people that were wearing armor, or
+      had robotic limbs.
+2020-10-03:
+  MacBlaze1:
+  - bugfix: fixed errors with the qol hotkeys pr
+  MadmanMartian:
+  - balance: The excelsior teleporter board no longer shows up in randomly generated
+      excel stashes.
+  - tweak: Welder eye damage now can be treated through surgery or imidazoline.
+  TheShown911:
+  - bugfix: Moebius limbs are now correctly named.
+  - bugfix: Prosthetic sprites on females shouldn't be offset anymore.
+  soslow4u:
+  - bugfix: You can build real shield generators from boards. Right-click and deploy
+      conduits for multi dock and hull shielding options
+2020-10-05:
+  TheShown:
+  - balance: stun beams don't bypass armor anymore
+2020-10-07:
+  fantasticfwoosh:
+  - rscadd: A mechanical tide of oneeye roombas have reactivated and now infest the
+      derelict rooms within the deep-maintenance in all their horrible varieties with
+      arnament of weapons varying from gentle nudging to explosives. Tresspass at
+      your peril.
+  yorpyorpyorp:
+  - rscadd: Eris will now randomly start at 1 of 3 locations.
+  - rscadd: Lines in config file to determine starting location.
+  - rscdel: Asteroid loses its default location.
+2020-10-08:
+  ACCount:
+  - tweak: You can now replace broken lights by clicking them with a new light
+2020-10-09:
+  Evankhell561:
+  - rscadd: a lot of individual objectives
+  - rscadd: two new rituals.
+  - tweak: the sword of truth can now destroy other faction items.
+  - tweak: techno-tribalism enfoncer can now feed off other faction items.
+  - bugfix: fix prescription glasses
+  Firefox13:
+  - bugfix: Prosthetic offsets fixed finally(I hope) for this time.
+  - rscdel: Sprites of red fleshy mass on limb stumps is no more.
+  MacBlaze1:
+  - rscadd: You can now see down and up ladders, and up and down stairs by alt clicking
+      the zlevel change structure, whether it be a ladder or a stair
+  - rscadd: You can now throw items up and down ladders by clicking on the ladder
+      with the item inhand (grenades blow up)
+  - rscadd: Added new hotkeys, shift + B for taking from and putting into the backpack,
+      and Shift + Q for taking from and placing into suit storage
+  TheShown:
+  - admin: Drop everything in VV does not drop EVERYTHING including organs anymore.
+  - balance: Flashbangs no longer knockdown people with eye protection, and the stun
+      on people with eye protection has been further reduced.
+  Trilbyspaceclone:
+  - rscadd: Added stock parts to the diesel generator, as well as a second manipulator
+      to the Mech Fabs
+  - rscadd: Each type of chem dispenser now has their own board that also can be replaced/made
+      at RnD
+  - tweak: Better sorting of RnD designs and new groups to help see/sort the differences
+  - bugfix: Rnd white fuzz has been corrected.
+  genessee596:
+  - rscadd: You can now buy autolathe design disks from the 'Zarya' in the cargo trade
+      beacons.
+  yorpyorpyorp:
+  - rscadd: Sub-access types to ID modification. Department heads can now add or remove
+      access to their departments and general ship areas.
+  - tweak: re-did some of the ID computer code, and moved a few access types around.
+      Maint is now a general access type, instead of an engineering one.
+  - refactor: Refactored the authorization function, to allow it to check for all
+      the ID mod subtypes.
+2020-10-10:
+  Anonmare:
+  - bugfix: Construction borgs can use regular glass
+  Trilbyspaceclone:
+  - bugfix: Chem dispenders now have different boards again
+2020-10-11:
+  MadmanMartian:
+  - rscadd: You can now search by taste type in the neon cocktails catalogue
+2020-10-12:
+  TorinoFermic:
+  - bugfix: Better temp fix for crashing bug
+  genessee596:
+  - bugfix: The autolathe disk "Technomancers IJIRO-451 Advanced Tools" should now
+      correctly spawn wherever common disks may be found, albeit rarely.
+  - bugfix: The 'Asters Robustcells' disk should now correctly spawn wherever common
+      design disks would be found.
+2020-10-15:
+  MadmanMartian:
+  - tweak: The big wrench now does more damage than a normal wrench
+2020-10-16:
+  Evankhell561:
+  - rscadd: 'biome spawners: These are a smart spawner that prioritizes the most dangerous
+      mobs and traps depending on the amount of loot in the area.'
+  - tweak: several deep maint maps work with biomes.
+  - tweak: the trash piles now work on spawn tags.
+  - tweak: trash piles now always contain at least one rare item.
+  Firefox13:
+  - rscadd: Press B to resist.
+  - rscadd: Ctrl+WASD changes your face direction, Alt+WASD locks your face direction.
+  MadmanMartian:
+  - bugfix: Soda, beer, and industrial chem dispensers can now be built again.
+  - balance: The medbay doors have now been reinforced, after complaints from doctors
+      of vagabonds breaking them down for free healthcare.
+  - balance: The hivemind tyrant no longer stops time for the entire server during
+      combat
+  - balance: The hivemind tyrant no longer destroys a majority of the ship upon death
+  TorinoFermic:
+  - tweak: Shield Generator logging is sorted by new
+  Wouju:
+  - rscadd: Added new hivemind surname, added ability for hivemind to convert disposal
+      bins
+  - rscdel: Removed hivemind ability to convert plumbing ducts
+  - bugfix: Hivemind death is now properly announced
+  - refactor: code is easier to look at, i hope (it looks more like an actual list
+      and you don't have to scroll to the side too much)
+  drexample:
+  - rscadd: Adds circuit printer
+  - bugfix: Returns circuits to RnD designs
+  - bugfix: Fixes integrated microphones not working in implants and assemblies not
+      working from containers
+  genessee596:
+  - tweak: Unloaded China Lake can't spawn in maintenance now. Only loaded version.
+  - rscadd: Three new autolathe disks that can print armor can now be found in maintenance,
+      one of which that can also be bought at an Asters Print-o-Mat. Two more disks
+      that print IH faction armor can be found in the SecTech.
+  - tweak: The SecTech now vends Ironhammer Miscellaneous Pack design disks.
+  - tweak: The China Lake and it's specialized ammunition should now correctly spawn
+      in places across the ship.
+  maikilangiolo:
+  - rscadd: added windows with remote shutters to club kitchen
+  - rscadd: added windoor in front of booze-o-mat
+  - rscadd: added 'take-away' counter
+  - tweak: switched places of condi-master and sink
+  - tweak: moved a light fixture and air alarm
+2020-10-17:
+  genessee596:
+  - bugfix: China Lake works for real this time. I promise.
+  - tweak: Armor design disks no longer dominate disk spawns.
+2020-10-19:
+  Evankhell561:
+  - bugfix: missing footsteps sounds
+  Firefox13:
+  - rscadd: Male necks
+  MadmanMartian:
+  - bugfix: misc weapon mod fixes
+2020-10-23:
+  Evankhell561:
+  - tweak: "add some objects to the blacklist and modify the spawn values \u200B\u200B\
+      of others."
+  - bugfix: runtimes in trash piles
+  - refactor: generation of loot in the trash piles.
+  - tweak: some spawners have a chance to spawn a rare item
+  - rscadd: now the loot rework generates files that contain all the spawn data for
+      each path.
+  Garen7:
+  - bugfix: Fixed spider rose having the wrong inhand sprite when at 50% and in the
+      left hand
+  MadmanMartian:
+  - tweak: Having a high enough mechanical skill can tell you if a cell is rigged
+      to explode on use.
+  - balance: Flashbangs no longer floor you, instead they disorient you.
+  - balance: Blitzshells are now less likely to spawn
+  - balance: Helmets are now taken into account when stunning people by throwing things
+      on top of them.
+  TermService:
+  - bugfix: Mech vision works correct
+2020-10-25:
+  MadmanMartian:
+  - bugfix: Stinging fruits can now be picked up if you are wearing gloves.
+2020-10-30:
+  TheShown911:
+  - tweak: NPC monkeys don't receive environment sanity damage and insight.
+  - code_imp: onLife() sanity procs effects trigger once every 2 life ticks.
+2020-10-31:
+  Evankhell561:
+  - rscadd: Bluespace entropy
+  - rscadd: bluespace distrosion events.
+  - rscadd: 'mob: stranger.'
+  - rscadd: Bluespace roaches
+  Garen7:
+  - bugfix: Heads can no longer give themselves Church/Club access (the Priest/Manager
+      still can though)
+  - bugfix: MBO can give access to the medbay(moebius general access) and to his office
+  - bugfix: MBO can access his office again
+  - bugfix: Doctors can access virology again
+  - bugfix: Fixes the orange error on boots with a knife in them
+  MadmanMartian:
+  - balance: The amount of research points you receive from researching an autopsy
+      report has been nerfed
+  TermService:
+  - bugfix: Added missed icons to forensic boxes
+  - bugfix: fixed double mine bug
+  - bugfix: An oxygen deprivation first aid now has onmob icon

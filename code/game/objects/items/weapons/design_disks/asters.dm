@@ -20,6 +20,7 @@
 		/datum/design/autolathe/tool/saw,
 		/datum/design/autolathe/tool/multitool,
 		/datum/design/autolathe/tool/pickaxe,
+		/datum/design/autolathe/tool/sledgehammer,
 		/datum/design/autolathe/tool/shovel,
 		/datum/design/autolathe/tool/spade,
 		/datum/design/autolathe/device/t_scanner,

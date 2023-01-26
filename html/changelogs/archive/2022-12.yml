@@ -1,0 +1,99 @@
+2022-12-10:
+  Firefox13:
+  - rscadd: Added ATM near Neotheology shop
+  - bugfix: Fixed surgery disposals
+  - bugfix: Fixed technomancer shop shutters, remove redundant ones
+  - bugfix: Fixed medbay depressurizing roundstart
+  - bugfix: Fixed MBO and chemistry maint hatches
+  - bugfix: Repositioned a light in chemistry so it's not on chem dispenser
+  - rscadd: Added EFTPOS to guild near autolathe
+  - tweak: Tersus vacuum cleaner isn't double tact anymore
+  Iglpigl:
+  - tweak: console screen can now be printed from means of production disk and crafted
+      too
+  - rscadd: adds njoy pills and a chemical to make the pills
+  Pink-Chink:
+  - bugfix: Fixed full auto click handler not being removed when a zoomed gun was
+      dropped
+  - rscdel: Removed virus event
+  - bugfix: Fixed artist stats not increasing on level up
+  - bugfix: Fixed insight stacking
+  - bugfix: Fixed a tabling runtime
+  - bugfix: Fixed a runtime caused by taking the negative root of a value
+  - bugfix: Low frequency messages are actually low frequency
+  - rscadd: Added placeholder OS vendors and OS cash
+  - code_imp: Added alternative currency behavior to vending machines
+  - rscadd: Added skeleton species
+  - rscadd: Added hobo, Excelsior, and One Star corpse spawner presets
+  - tweak: Updated corpse spawner features to allow for more varied corpses
+  - tweak: Added checks for null blood color in blood overlay and blood splatter procs
+  - bugfix: Fixed Bump() runtime where a qdeleted objected was bumped
+  - tweak: Gave airflow an AD of 1
+  - bugfix: AD defaults to 1 if 0 is passed to damage_through_armor()
+  SirRichardFrancis:
+  - bugfix: Weather-related CI fail
+  maikilangiolo:
+  - tweak: Kadmin has slightly faster bullets
+2022-12-17:
+  Alliostra:
+  - bugfix: loudmouth grenades no longer turn invisible
+  - tweak: loudmouth grenades use metal sheets instead of a hailer in their recipe
+      now.
+  Chickenish:
+  - code_imp: removed some old inactive baycode
+  Humonitarian:
+  - tweak: Moebius MicroMed and MiniPharma vendors can now hold genetic cubes and
+      organs
+  - bugfix: Theomat can now be stocked with new items, and actually accepts payment
+  ValoTheValo:
+  - rscadd: Added a salvageable broken One Star generator
+  - balance: changed drops for salvaged onestar machines
+  - imageadd: directional sprites for broken onestar machines
+  - tweak: added flavor text to some onestar machines and items
+  - imageadd: added new magazine sprites to the wintermute and vintorez
+  assortedbeads:
+  - rscadd: Adds the Combat Hardsuit to the contraband section of the Boris Station
+  - imageadd: replaces all the sprites of the old combat hardsuit
+  driecg36:
+  - rscadd: New names for the already existing guns.
+  - tweak: Homogenized gun names in the crafting window for better organization/consistency.
+  - balance: Handmade guns are much easier and faster to craft.
+  - spellcheck: Gun Description typos.
+  maikilangiolo:
+  - rscadd: added a civilian version of the Kadmin to Bill's vendor
+  sgtmind:
+  - rscdel: Removed xenoarcheology
+  the-og-gear:
+  - bugfix: Stowing borg modules no longer leaves the inventory slot highlighted
+2022-12-21:
+  SirRichardFrancis:
+  - bugfix: Makarov's serial number mentioning incorrect manufacturer.
+  - bugfix: Fixed nameless and empty Njoy bottles appearing.
+  - bugfix: Fixed Njoy packets spawning empty
+  - spellcheck: Changed few box names to lowercase
+  - refactor: Partial storage code optimization
+  - rscdel: Removed silly text line from stun breakdown.
+  - rscadd: Added description for several HUD elements.
+2022-12-24:
+  assortedbeads:
+  - rscadd: Added a makeshift battle axe weapon
+  - rscadd: Adds a makeshift battle axe crafting recipe
+  - imageadd: adds sprites for the makeshift battle axe
+  - imageadd: edits the sprite for the sledgehammer (right hand) to remove stray pixels
+2022-12-25:
+  MLGTASTICa:
+  - bugfix: Hands being bugged due to MMI insertion
+  - bugfix: Ghost-alert spam using MMI's
+  - rscadd: Added extra-description to the MMI
+  Pink-Chink:
+  - code_imp: Re-organized corpse spawning code
+  SirRichardFrancis:
+  - rscadd: Added christmas-themed alternative to benzin roaches.
+  assortedbeads:
+  - balance: NT pain litany now adds angelsbalm to your bloodstream
+  - balance: NT pain litany is shorter to say now
+2022-12-31:
+  Iglpigl:
+  - rscdel: malf AI has been removed from the storyteller
+  assortedbeads:
+  - tweak: Bowl2 Haircut and Volaju haircuts have been edited slightly

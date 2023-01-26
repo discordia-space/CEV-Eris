@@ -7,7 +7,7 @@
 var/list/custom_table_appearance = list(
 					"Bar - special" 	= list("bar table", "Well designed bar table.", "bar_table", CUSTOM_TABLE_ICON_REPLACE, TRUE),
 					"Gambling" 			= list("gambling table", null, "carpet", CUSTOM_TABLE_COVERING, FALSE),
-					"OneStar"			= list("onestar", "Very durable table made by an extinct empire", "onestar", CUSTOM_TABLE_ICON_REPLACE, TRUE )
+					"OneStar"			= list("One Star table", "Very durable table made by an extinct empire", "onestar", CUSTOM_TABLE_ICON_REPLACE, TRUE )
 										)
 
 

@@ -67,7 +67,7 @@
 
 /datum/gear/uniform/dress
 	display_name = "dresses"
-	path = /obj/item/clothing/under/dress
+	path = /obj/item/clothing/under/dress/gray
 
 /datum/gear/uniform/dress/New()
 	..()
@@ -121,7 +121,9 @@
 /datum/gear/uniform/scrubs/color_presets/New()
 	..()
 	var/jumpsuit = list(
-		"Green"			=	/obj/item/clothing/under/rank/medical/green,
+		"green"			=	/obj/item/clothing/under/rank/medical/green,
+		"purple"		=	/obj/item/clothing/under/rank/medical/purple,
+		"blue"			=	/obj/item/clothing/under/rank/medical/blue
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jumpsuit)
 
@@ -161,9 +163,9 @@
 	gear_tweaks += new /datum/gear_tweak/path(generic)
 
 /datum/gear/uniform/tuxedo
-	display_name = "cheap tuxedo"
-	path = /obj/item/clothing/under/tuxedo/cheap
-	cost = 2
+	display_name = "tuxedo"
+	path = /obj/item/clothing/under/tuxedo
+	cost = 1
 
 /datum/gear/uniform/security_formal
 	display_name = "formal security outfit"

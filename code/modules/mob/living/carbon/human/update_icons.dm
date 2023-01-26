@@ -133,7 +133,8 @@ Please contact me on #coderbus IRC. ~Carn x
 #define L_HAND_LAYER		25
 #define R_HAND_LAYER		26
 #define FIRE_LAYER			27		//If you're on fire
-#define TOTAL_LAYERS		27
+#define BLOCKING_LAYER		28
+#define TOTAL_LAYERS		28
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -190,23 +191,24 @@ var/global/list/damage_icon_parts = list()
 	var/image/standing_image = image(species.damage_overlays, icon_state = "00")
 
 	// blend the individual damage states with our icons
-	for(var/obj/item/organ/external/O in organs)
-		if(O.is_stump())
-			continue
+	if(species.blood_color)
+		for(var/obj/item/organ/external/O in organs)
+			if(O.is_stump())
+				continue
 
-		O.update_damstate()
-		if(O.damage_state == "00") continue
-		var/icon/DI
-		var/cache_index = "[O.damage_state]/[O.organ_tag]/[species.blood_color]/[species.get_bodytype()]"
-		if(damage_icon_parts[cache_index] == null)
-			DI = new /icon(species.damage_overlays, O.damage_state)			// the damage icon for whole human
-			DI.Blend(new /icon(species.damage_mask, O.organ_tag), ICON_MULTIPLY)	// mask with this organ's pixels
-			DI.Blend(species.blood_color, ICON_MULTIPLY)
-			damage_icon_parts[cache_index] = DI
-		else
-			DI = damage_icon_parts[cache_index]
+			O.update_damstate()
+			if(O.damage_state == "00") continue
+			var/icon/DI
+			var/cache_index = "[O.damage_state]/[O.organ_tag]/[species.blood_color]/[species.get_bodytype()]"
+			if(damage_icon_parts[cache_index] == null)
+				DI = new /icon(species.damage_overlays, O.damage_state)			// the damage icon for whole human
+				DI.Blend(new /icon(species.damage_mask, O.organ_tag), ICON_MULTIPLY)	// mask with this organ's pixels
+				DI.Blend(species.blood_color, ICON_MULTIPLY)
+				damage_icon_parts[cache_index] = DI
+			else
+				DI = damage_icon_parts[cache_index]
 
-		standing_image.overlays += DI
+			standing_image.overlays += DI
 
 	overlays_standing[DAMAGE_LAYER] = standing_image
 
@@ -804,6 +806,7 @@ var/global/list/damage_icon_parts = list()
 			t_icon = get_gender_icon(gender, "belt")
 
 		standing = image(icon = t_icon, icon_state = t_state)
+		standing.color = belt.color
 
 		var/beltlayer = BELT_LAYER
 		var/otherlayer = BELT_LAYER_ALT
@@ -1126,6 +1129,13 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing", "layer"=FIRE_LAYER)
 
 	if(update_icons)   update_icons()
+
+/mob/living/carbon/human/proc/update_block_overlay(var/update_icons=1)
+	overlays_standing[BLOCKING_LAYER] = null
+	if(blocking)
+		overlays_standing[BLOCKING_LAYER] = image("icon"='icons/mob/misc_overlays.dmi', "icon_state"="block", "layer"=BLOCKING_LAYER)
+
+	update_icons()
 
 /mob/living/carbon/human/proc/update_surgery(var/update_icons=1)
 	overlays_standing[SURGERY_LAYER] = null

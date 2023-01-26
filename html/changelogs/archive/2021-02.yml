@@ -1,0 +1,134 @@
+2021-02-04:
+  Alliostra:
+  - tweak: armblades no longer spawn in maint
+2021-02-05:
+  AlexMorgan3817:
+  - refactor: Trade stations now able to use spawn system to get it's assortiments
+  Alliostra:
+  - tweak: maintshrooms are now syringe-drawable
+  - tweak: club personnel now starts with a sanity-recovering aura trait
+  Firefox13, Shazbot:
+  - bugfix: Junk ammo craft kit won't delete itself if you leave the ammo selection
+      menu. Also added some feedback to it.
+  Hyperio:
+  - balance: Tune stats of Neotheology jobs
+  TheShown911:
+  - rscadd: Ported new borer mechanics from Osiris
+  - imageadd: Ported new borer mechanics from Osiris
+2021-02-06:
+  Evankhell561:
+  - rscadd: faction and personal scores
+  Trexdude:
+  - bugfix: r&d console no longer gains points from researching tech trees
+2021-02-10:
+  Alliostra:
+  - tweak: NT suits now have pockets and some more protection
+  - tweak: the NT armors no longer slow you down
+  - tweak: the NT flashbangs and smoke grenades cost less to produce
+  - tweak: NT armor now properly covers legs and arms
+  - bugfix: some fixes to NT sprites
+  - bugfix: the sheath can now hold the NT longsword
+  Evankhell561:
+  - tweak: Dirty areas have a lower penalty on the NT score.
+  - rscadd: the nanoforge.
+  Honestly101:
+  - rscadd: Added the other Engi voidsuit to maint loot
+  - tweak: Reverted the Engi voidsuit in EVA storage back to the classic one
+  Wouju:
+  - tweak: Chameleon Projector is now blacklisted from maint.
+2021-02-11:
+  Alliostra:
+  - balance: buffed most knives
+  - balance: nerfed katanas
+  - balance: buffed the big wrench
+  - balance: nerfed the circular saw
+2021-02-12:
+  Alliostra:
+  - bugfix: fixed some NT scourge related bugs
+  - tweak: added smoke bombs to the sec and gun vendors
+  - tweak: the laser cannon is now less deadly - its charge mode was removed and energy
+      per shot increased(100 instead of 50).
+  Evankhell561:
+  - tweak: The price of the items has a greater weight to determine their spawn frequency.
+  - tweak: rarity values for power cells and stock parts are now determined automatically.
+  - tweak: aadd a lot of items to the spawn blacklist.
+  Hyperio:
+  - rscadd: New Neat perk for Custodians
+  - rscadd: New Green Thumb perk for Agrolytes
+  - rscadd: New Accelerated growth littany for Agrolytes
+  Wouju:
+  - tweak: tweaked Bomber speed and health
+2021-02-15:
+  Alliostra:
+  - bugfix: The Olivaw is no longer costs 0 credits in the vendor
+  MadmanMartian:
+  - tweak: Nanopaste now requires plasteel, steel, and nanites to construct. It is
+      now considerably more valuable, and considerably rarer.
+  - tweak: Nanopaste, welding, and cabling prosthetics now heals on a wound by wound
+      basis.
+  TheShown911:
+  - imageadd: replaced old spiderling sprite base carrion spiderling sprite.
+2021-02-19:
+  Alliostra:
+  - rscadd: the ideal character age is now displayed in the occupation description.
+  - tweak: the uplink AMR now comes in a briefcase.
+  Evankhell561:
+  - bugfix: Only technomancer or players with a high MEC stat can use the nanoforge.
+  Hyperio:
+  - rscadd: New Channeling perk for NT priests
+  - rscadd: New Words of purging littany for NT custodians
+  - rscadd: New Hand of mercy and Absolution of wounds littanies for NT agrolytes
+  Tea-Primoris:
+  - balance: You'll now stumble when firing shotguns (except sawn off) with one hand
+      based on yours robustness.
+  Wouju:
+  - tweak: Tweaked malfunction proc damage on Hivemind mobs and tweaked EMP damage
+      against Hivemind
+  - balance: Tormentor has a slightly longer stun, chance to resist said stun is bigger
+      and Tormentor has longer cooldown
+  - bugfix: Marionette no longer spawns from Hivemind Assemblers
+2021-02-26:
+  DarkLevel - code:
+  - bugfix: EOTP runtime fix
+  Evankhell561:
+  - tweak: Nobles inheritance now has a perk.
+2021-02-27:
+  AlexMorgan3817:
+  - admin: Stock byond's optimized client-side profiler for devs, that not cause dream
+      seeker and daemon lag as shit, required rights can be set through config. Current
+      R_DEBUG | R_SERVER.
+  Alliostra:
+  - rscadd: signaler spider for the carrion, works like a signaling device
+  - balance: buffed the damage of incendiary slugs
+  - bugfix: fixed a surgery-related runtime
+  - bugfix: the ablative armor crate now comes with ablative armor
+  - tweak: tweaked the price and contents of some weapon & armor crates.
+  DarkLevel - code; Armolitskiy - sprites:
+  - rscadd: Cruciform upgrades and another thing that related to cruciform upgrades.
+  - bugfix: construction ritual now don't use ALL materials.
+  Evankhell561:
+  - rscadd: gun assembly.
+  - rscadd: Handmade bolt action rifle
+  - rscadd: Handmade revolver
+  - tweak: Handmade Pistol now uses .40 caliber and requires different materials to
+      craft it.
+  - rscadd: Slide barrel shotgun
+  - rscadd: Makeshift laser carbine
+  - rscadd: Makeshift grenade launcher
+  - rscadd: gun and armor parts
+  - tweak: now there are fewer guns in maint, instead some gun parts spawners have
+      been added.
+  - bugfix: gun spawn values
+  - rscadd: Makeshift armored void suit
+  - rscadd: "Scavenger armor.\u200B"
+  - rscadd: gun parts and electronics pouch
+  - bugfix: handmade revolver recipe
+  - bugfix: handmade bolt gun recipe
+  - bugfix: Scavenger armor recipe
+  - bugfix: Makeshift armored void suit recipe
+  - bugfix: craft system
+  - bugfix: Novakovic two hands sprite
+  - bugfix: handmade bolt action rifletwo hands sprite
+  - bugfix: electronic pouch sprite
+  Honestly101:
+  - rscadd: Added two new languages

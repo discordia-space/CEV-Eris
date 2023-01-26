@@ -87,7 +87,7 @@
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/crawler)
 "u" = (
-/obj/machinery/field_generator,
+/obj/machinery/shieldwallgen/excelsior,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "v" = (
@@ -126,7 +126,7 @@
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "C" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/machinery/power/port_gen/os_generator,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "D" = (

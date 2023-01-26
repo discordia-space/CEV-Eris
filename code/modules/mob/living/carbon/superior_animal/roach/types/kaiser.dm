@@ -106,7 +106,7 @@ Has ability of every roach.
 	gas_sac.clear_reagents()
 	return TRUE
 
-/mob/living/carbon/superior_animal/roach/support/findTarget()
+/mob/living/carbon/superior_animal/roach/kaiser/findTarget()
 	. = ..()
 	if(. && gas_attack())
 		visible_emote("charges at [.] in clouds of poison!")

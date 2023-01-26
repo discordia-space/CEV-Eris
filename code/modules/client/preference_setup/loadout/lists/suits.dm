@@ -1,6 +1,6 @@
 // Suit slot
 /datum/gear/suit
-	display_name = "apron, blue"
+	display_name = "apron, yellow"
 	path = /obj/item/clothing/suit/apron
 	slot = slot_wear_suit
 	sort_category = "Suits and Overwear"

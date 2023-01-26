@@ -197,6 +197,7 @@
 	hud_actions += action
 
 /obj/item/gun/Destroy()
+	make_young()
 	for(var/i in firemodes)
 		if(!islist(i))
 			qdel(i)
@@ -869,8 +870,8 @@
 	update_firemode()
 
 /obj/item/gun/dropped(mob/user)
-	.=..()
 	update_firemode(FALSE)
+	.=..()
 
 /obj/item/gun/swapped_from()
 	.=..()

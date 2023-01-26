@@ -89,3 +89,7 @@
 /obj/item/trash/mre_can
 	name = "ration can"
 	icon_state = "ration_can_trash"
+
+/obj/item/trash/gym_ticket
+	name = "expired electronic ticket"
+	icon_state = "gym_ticket_trash"

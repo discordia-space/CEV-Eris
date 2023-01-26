@@ -1,0 +1,136 @@
+2019-03-19:
+  ACCount:
+  - experiment: Added mapmerge2 from tgstation.
+  - experiment: Connections from localhost are now automatically given full access
+      rank.
+  - bugfix: Fixeed all reagent containers spawning with random shit in them.
+  - bugfix: Stoped constant plane masters updates from murdering GC. Lags begone.
+  - experiment: Hivemind We now have hivemind with tons of features.
+  - experiment: Too many to count them all here, good luck fighting it.
+  Cakey:
+  - bugfix: Fixeed ion trails lasting forever.
+  - bugfix: Fixeed look up not working in space.
+  Camper2012:
+  - bugfix: Made openspace clickable, so players should be capable of building lattice
+      over it.
+  - bugfix: Fixed AI lighting overlay bug.
+  - bugfix: Fixed camera console bug.
+  Carbonhell:
+  - bugfix: Made the email client start minimized on roundstart/latejoin, fixed NTnet
+      email creation runtime.
+  Clockrigger:
+  - rcsadd: Added floor pills for junk spawner with memes inside.
+  Dawnshock:
+  - imageadd: New held sprites for miner's lantern.
+  - imageadd: TG sprites for spiders.
+  - imageadd: Spiders, mice, chickens and tomato mobs now do have a walking animation.
+  - imagedel: Removed gno'rrupt sprite.
+  EvenInDeathIStillServe:
+  - rcsadd: Firearm and Ammunition vending machines registered to the Frozen Star
+      Corporation now conduct an extensive and scrutinous background check on all
+      customers.
+  - rcsadd: Ported some cool stuff from Baystation related to beverages, while leaving
+      custom drink sprites intact.
+  - rcsadd: Added insulated pitchers, teacups, and 11 mug types to the dinnerware
+      vendor. Added pitchers and mugs to the loadout.
+  - rcsadd: Some reagent containers, including the new ones added now have their icon
+      accurately reflect the color of the drink. The name and description of the container
+      also changes.
+  - rcsadd: Added green tea. Fixed the color of black tea.
+  - rcsadd: Ported Nanako's animal feeding mechanics from Aurora.
+  - rcsadd: Monkeys can wear hats now. Charming.
+  - rcsadd: Animals can passively heal if they have eaten recently. You can also use
+      bruise packs and ointments on them to heal brute and burn damage respectively.
+  - rcsadd: Added bandanas that can be worn on the head or the face. Added them to
+      loadout, and clothing closets Also more tweaks for balaklavas.
+  - rcsadd: Adds a computer parts autolathe disk, courtesy of Moebius Laboratories.
+  - rcsadd: Portable modular computers can now be disassembled for materials in the
+      autolathe.
+  - rcsadd: Vending machines with auto pricing enabled now automatically price their
+      products if a price is not specifically set.
+  - tweak: Chaplain and Ironhammer Gunnery Sergeant can now access their department's
+      account.
+  - imageadd: Replaced some drink carton sprites with better ones from Bay.
+  - imageadd: Added icons to scarves, and added striped scarves. Scarves are also
+      in loadout now.
+  - bugfix: Fixed a bug where you can't restock non-custom vendors. You need to screw
+      open the panel to load it now.
+  - bugfix: Roaches can be taken off surgery tables.
+  - spellcheck: Fixes some spelling mistakes and things that seem out of place.
+  FlattestGuitar:
+  - rscadd: Added fancy Attack Log viewer for admins.
+  - bugfix: Fixed Admin JMP in Who.
+  - bugfix: Fixed Href parsing.
+  Kmc2000:
+  - bugfix: Fixed escaping issues with counting escaped people.
+  Kurgis:
+  - rscadd: Added reinforced plasma glass as a constructable.
+  - rscadd: Added language config. This allows us to connect to both parts of the
+      wiki using the config, and not hardcode.
+  - bugfix: Psychedelic jumpsuit no longer appears with the debug item icon.
+  - bugfix: Tweaked the debug tile stack icon, fixed white grayplatform stacks having
+      the debug sprite, fixed steel platform tile stacks having their colors inverted.
+      Removed matter from the tiles parent, so cyborgs can't produce steel.
+  Nanako:
+  - rscadd: Added several new fun features to mice, mostly ported from my work on
+      Aurora, but some completely new too.
+  - rscadd: Added proper sound effect and click cooldown for bonking airlocks.
+  - rscadd: Added normal, reinforced and low walls for the one star faction, for use
+      in future derelicts content, also added an appropriate window/wall spawner.
+  - rscadd: Mice can now nibble cardboard boxes open.
+  - rscadd: Mice can now bite mobs with alt+click.
+  - bugfix: Fixed infinite loop with paralysis causing MC to crash.
+  - bugfix: Fixed plant burrow runtime.
+  - bugfix: Fixed uplink announcements again.
+  - bugfix: Fixed clicks. Click safely now, cowboy.
+  - bugfix: Fixed mannequin log spam.
+  Rhys096:
+  - rcsadd: Fixeed borg module duplication.
+  TorinoFermic:
+  - tweak: Cryopods can be exited by pressing movement keys after sleeping timer.
+  - bugfix: Fixed floorpills's runtimes.
+  - bugfix: Grab and Drag system with dirty quick fix. The animation won't be pretty.
+  - bugfix: Sticky webs and cocoons are now visible again and Ion Trails now can disappear.
+  nichlas0010:
+  - rscadd: Added radial menu for the get_tool_type proc.
+  - tweak: Made crafted objects inherit the dir of the crafter.
+  - tweak: Made status not log to reduce log spam.
+  - bugfix: Fixed roboticist not having the right outfit.
+  - bugfix: Fixed robot Hattons being able to have their magazines ejected.
+  - bugfix: Fixed the t-ray scanner not working.
+  - bugfix: Fixed adminjumps not working.
+  - bugfix: Fixed digging double radial.
+  - bugfix: Shooting yourself in the mouth while the gun safety is on no longer kills
+      you.
+2019-03-28:
+  TorinoFermic:
+  - rscadd: Admins, observers and ghosts now can hear the excelsior chat. Only with
+      antagHUD enabled for no-admins.
+  - rscadd: Radios has been augmented to use "." or ":" and you can whisper with ".w"
+      or ":w". Just like all other servers.
+  - tweak: Changed AMR ammo and TC cost.
+  - tweak: Growth of maintshrooms are slowed and burrows won't be spawning these when
+      lit.
+  - tweak: Fixed the gibbing and rebalanced the fall damage on all falling items/strucs.
+  - tweak: Cyrofeed structure made solid to avoid trapping arrival players.
+  - bugfix: Burrow's light count runtimes fixed.
+  XanderDox:
+  - rscadd: Adds a new Preacher litany, 'Baptismal Record. This litany is done in
+      front of the altar in the Chapel Ritual Room, and will make the altar print
+      out a piece of paper with all active Neotheologians names on it.
+  - rscadd: 'New Preacher Ability: Atonement. Atonement is essentially the Inquisitor''s
+      power ''Penance'', but costs more to use which stops the Preacher from being
+      able to completely disable someone with it.'
+  - rscadd: Additionally, cruciforms will now have the names of those they were removed
+      from attached so the Preacher doesn't have to worry about losing track of who
+      was which.
+  - imageadd: Added a new ritual book sprite, which serves as the new basic ritual
+      book look.
+  - tweak: If a silicone, whether android/cyborg/maint drone is SSD or ghosted, they
+      will not have access and cannot be pushed into doors, or used on doors to open
+      them.
+  - tweak: Updated the skills of most roles to be more realistic to their roles without
+      compromising gameplay.
+  - bugfix: Fixed the plane-issue with the altars. Bodies will not be layed out properly
+      on top of altars, as will cruciforms.
+  - bugfix: Fixed the Priest not spawning with the bible as they should have been.

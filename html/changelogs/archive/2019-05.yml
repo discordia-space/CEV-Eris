@@ -1,0 +1,269 @@
+2019-05-05:
+  ACCount:
+  - rscadd: You can now print blank design disks in R&D, load them with R&D designs
+      and use them in autolathes.
+  - rscadd: Ported admin notes to topic datums.
+  - imageadd: Added a new icon for SMES coils, this one sucks a bit less.
+  - tweak: Made R&D designs and autolathe design datums compatible. Removed a ton
+      of shitcode and made adding new R&D designs easier. Also changed autolate UI
+      a bit and fixes some unrelated bugs.
+  - tweak: Tweaks autolathe UI a bit. I wish I had time to rework it properly.
+  - bugfix: Fixed tool upgrades being utterly broken.
+  - bugfix: bank accounts being accessible without PIN in ATMs.
+  - bugfix: Fixed brig timers not working with flasher & doors.
+  - bugfix: Fixed a runtime error in runtime error handler.
+  - bugfix: Fixed .44 and Wintermute mags lacking sprites.
+  - bugfix: incorrect mags displaying the wrong message.
+  - bugfix: Fixed batteries being deleted at random.
+  - bugfix: Fixed Sol failing to reload.
+  - bugfix: Fixed mecha PDA runtimes.
+  - bugfix: Fixed autolathe disk cloner, yay piracy!
+  BASIC-BIT:
+  - spellcheck: Fixed typo in weapon force defines.
+  Camper2012:
+  - rscadd: New OneStar items - Oxygen regenerator, EMP mine, OneStar thermal goggles.
+  Clockrigger:
+  - rscadd: Aim is now Vigilance. Description was eddited, and later it will be a
+      stat will hepl protects from insanity.
+  - tweak: Unnerfed stungloves.
+  - tweak: You can now resist effect of two techhive structures with Vigilance stat.
+  - tweak: You can now resist both drawback and actual effect of Searing Revelation
+      litany (crusader AoE stun).
+  EkuDza:
+  - bugfix: Fixed zoom HUD icon.
+  EvenInDeathIStillServe:
+  - rscadd: Players' high-priority role now show up in lobby tab.
+  - rscadd: Wheelchairs are craftable now.
+  - tweak: Floors no longer stay lubed permanently until you exorcise it using an
+      RCD set to deconstruct.
+  - tweak: Custom vendors now separate same-type items.
+  - tweak: Crayons are now grindable.
+  GeneriedJenelle:
+  - rscadd: Ported player notes from Baystation.
+  Granodd:
+  - imageadd: Added new energy sword sprites.
+  - tweak: Pill bottle max storage space increased to 12 from 8 as to allow a beaker
+      of 120u to comfortably fill a pill bottle with 10u pills.
+  - tweak: Stacking machine defaults sheet stacks to 120 and now has the option in
+      its stacking console.
+  - maptweak: Removed one of the fuel tank attachments and the random tool attachment
+      spawn in the locker to give miners optical meson glasses, a heavy duty flashlight,
+      a drill instead of a jackhammer, and a small cell for their mesons.
+  - bugfix: Fixed the cutlass deciding it wanted to be anything but a cutlass when
+      activated.
+  - bugfix: Pills now actually go into pill bottles.
+  Greggbot:
+  - rscadd: Added a new multitool designed for miners.
+  - rscadd: Added descriptions to the modules.
+  - spellcheck: Some augment typos fixed.
+  ITCups:
+  - rscadd: Added targeting by using numpad. Future is here old man.
+  - tweak: Added some clarification to random tips.
+  - tweak: Some lobby changes.
+  - bugfix: Fixed icon load time.
+  Kmc2000:
+  - rscadd: Added toxic roach and nanite roach.
+  - rscadd: 'Added roach taming. '
+  - rscadd: Added a crosshair that changes with your gun's recoil. Recoil now affects
+      accuracy.
+  - rscadd: Security, captain and barman have a skill which reduces recoil.
+  - rscadd: Added radial menu to grinders.
+  - tweak: Hunger now slows you down.
+  - tweak: Full auto now has proper recoil.
+  - tweak: Gun cursors only appear when you have the safety off.
+  - bugfix: Parallax at high zoom no longer looks like ass.
+  Kurgis:
+  - rscadd: Added wiki manuals that actually properly connects to the wiki, but doesn't
+      actually add them into the map. You can find a few if you want in both bookcases,
+      and the security borg's book module.
+  - imageadd: Book sprite for Ironhammer Paragraphs.
+  - rscadd: Adds a One Star autolathe disk for the new tools to be placed on, will
+      be expanded upon as One Star gets more content.
+  - rscadd: You can now change between digging and excavating with a pickaxe by using
+      it in-hand.
+  - imagedel: Deletes old advanced welder sprites.
+  - spellcheck: Fixes some spelling with tool descriptions.
+  - tweak: One Star tool stats have been re-adjusted.
+  - tweak: Excavation pickaxe and the spade no longer do as much damage as their larger
+      counterparts.
+  - tweak: Windows now use the defines set out in defines weapons.
+  - bugfix: Fixed most glass airlocks having an incorrect resistance value, making
+      them stronger than regular airlocks.
+  Macleod962:
+  - rscadd: New OneStar tools. Crowbar, Medical multitool, Efficient combi driver,
+      Activable power pickaxe, powerful jackhammer and mining drill, welding tool.
+  PJB3005:
+  - tweak: Improved default NanoUI UI re-open behavior.
+  RandomColonist:
+  - rscdel: Removes polyacid and plasma from list of possible chems for maintenance
+      shrooms.
+  - tweak: Added recoil modifier var to most of the ballistic weapons. Now, guns assigned
+      recoil modifier according to their caliber, type, size, etc.
+  - tweak: Excelsior AK was given autofire mode, three round bursts on both AKs were
+      changed to short bursts.
+  - tweak: Reshuffled order in both ammo disks and almost all gun disks to make much
+      more sense.
+  - tweak: Added recipe datum for Z8 Bulldog and added it to Ultimate Protection Pack.
+  - tweak: Added recipe datum for WT550 and added it to Ultimate Protection Pack (maybe
+      should've added it to Civilian one).
+  - tweak: Moved Zeus from Old Testament disk to New Testament disk.
+  - tweak: Added 5.56 civilian mags (used by Z8 Bulldog if something) to autolathe
+      designs, both lethal and practice (please build killhouse pretty please) to
+      corresponding disks.
+  - tweak: Added silencer to IH surplus disk, so it now slightly more than marginally
+      useable because it now has two useable things (first is tactical knife ofc).
+  - tweak: Regular 7.62 mag are now short mag (20 rounds), AK 7.62 mag are now long
+      mag (30 rounds).
+  - tweak: Both STS and AK can fit both short and long mags, sprites are present for
+      both for both rifles.
+  - tweak: All semi-auto handguns now have generic item_state (in hand sprites) by
+      which you can now tell that someone is holding a gun.
+  - tweak: Riot shield back sprite was enabled.
+  - tweak: Sol back (on suit actually, but sol can't go on back, so i left it as is,
+      it works) sprite was enabled.
+  - tweak: NT Protector got new sprites, thanks to WalterJe (from his sprite dump).
+  - tweak: Zeus got new sprites including charge level ones.
+  - tweak: Giskard got new sprites, originally by WalterJe, repaletted and improved
+      by Keekenox.
+  - tweak: With new sprites, Giskard can now attach silencer.
+  - tweak: Laser cannon got new on suit sprite.
+  - tweak: 'Various naming changes: Fixed Dallas caliber naming, fixed Wintermute
+      caliber in autolathe recipe name, brought order and consistency to ammo naming,
+      fixed some inconsistency in ammunition/magazine/speed loader naming, renamed
+      stun cartridge shells to taser shells.'
+  - tweak: Z8 Bulldog was remade into carbine from AR, mag capasity was buffed to
+      20, added zoom, recoil mod, etc.
+  - tweak: Added auto-eject to some modern guns. Added sound of it to them also. Added
+      flag which forbids tactical reload for said guns because reasons.
+  - tweak: Zoom was adjusted across the deck. Most guns now have 1.2 zoom which meant
+      for red-dots, mechanical sights and shit like this. Only AMR and Valkyrie now
+      have 2.0 zoom.
+  - tweak: Various naming improvements, unused vars removal, damage multiplier adjustment
+      and much more.
+  - tweak: Due to all changes above and for sake of standartisation of economy, most
+      gun prices are changed.
+  - tweak: Wizard and old Nuke Operatives voidsuits are no longer normal size, but
+      bulky in line with any other voidsuit.
+  - tweak: Remade BR into AR, remade mags, desc, reduced size to large from huge,
+      reduced price from 4000 to 3500 (regular AR), added zoom because it has scope,
+      removed DMG multiplier, replaced 250 RPM mode with 400 RPM, added "short burst"
+      mode, replaced old 7.62 mags in secure armoury with new IH 5.56 mags.
+  - tweak: Made PK boxes into mag boxes to work with magwells.
+  - tweak: Flare pouch was renamed to tubular pouch and can carry rockets for RPG
+      now.
+  - tweak: Demolition crate which contains Hatton was renamed to Breaching crate,
+      added tubular pouch for tubes to it.
+  - tweak: Anti-armor crate which contains RPG was renamed to Demolition crate.
+  - tweak: Remade hardcoded RPG, which was subtype of launcher and huge pile of shitcode
+      into less, but still snowflakery subtype of projectile gun, which has same functionality
+      in practice.
+  - tweak: RPG now takes time to reload, about three seconds.
+  - tweak: RPG rocket now needs some time to reach it's target, so it's not hitscan
+      and rocket actually has sprite.
+  - tweak: Rocket in-flight now glows yellow so it's more spottable, especially in
+      darkness.
+  - tweak: Nerfed quantity of RPG rockets from 20 to 12 (nicely looks in crate-box),
+      buffed their w_class to normal, but allowed tubular pouches to carry it, added
+      one tubular pouch to Demolition crate also.
+  - tweak: You can throw things over low walls now, including grenades.
+  - tweak: c20r no more inherits all possible fire modes for automatic weapons, now
+      it has 400RPM full auto, semi-auto fire with no move delay, and 3-round burst.
+  - tweak: Altered Z8 Bulldog description, moved "space marine" meme to Dallas where
+      it belongs.
+  - tweak: You can no longer make an effectively axe with just steel rod, wires and
+      metal shrapnel. Spear force was nerfed drastically, now it's around ~15-20 instead
+      of flat 30, glass spear is ~10. More of a fix than nerf.
+  - tweak: STS-35 lost illegal tech levels because why would it have it? Anyone can
+      get those gun, there's nothing special in it.
+  - tweak: Reduced 6.5 mm bullet AP from 20 to 15, because it was literally almost
+      good as 5.56 IH rifle.
+  - tweak: Altered Molly description to let players know that it accepts both types
+      of mags.
+  - tweak: IH Combat RIG now have 1.35 slowdown (same as serb voidsuit). IH voidsuit
+      now have standart 1 slowdown.
+  - tweak: IH Combat RIG lost their thermals and combat chem injector but gained storage.
+  - tweak: Eased slowdown on Technomancer Exultant Advanced Voidsuit Magboots because
+      he was still slow with 2, made it 1. TE deserves some love.
+  - bugfix: STS-35 sprites with mag fixed.
+  - bugfix: Fixed underslung had matter var set which led to Z8 cost in autolathe
+      was added to GL cost.
+  - bugfix: Fixed issue with Z8 sprites.
+  - bugfix: Fixed some old vars in grenade launcher code.
+  - bugfix: Fixed missing icon_state with silencer, but without mag for Molly and
+      Paco.
+  - bugfix: Fixed left hand STS sprite missing, name was set wrong.
+  - bugfix: Fixed shitton of bullshit in LMG code, removed unused vars, altered used
+      vars, altered file structure to make it more logical.
+  - spellcheck: Fixed some typos in various serb crate-boxes descriptions and names.
+  Shazbot:
+  - rscadd: Added mag wells and Wintermags.
+  - imageadd: Added new STS sprites.
+  - tweak: Split ammo into 3 files.
+  TorinoFermic:
+  - rscadd: All guns with magazine will have by default have their tactical reload
+      enabled. All machine guns does not have tactical reload.
+  - imageadd: New sprites for Cassad in-hand and back.
+  - imageadd: New sprite for Bull for the back.
+  - tweak: Tuned the hivemind to delay the spawning of monsters to 30 seconds in case
+      of explosive probes..
+  - tweak: Adjusted the damage to make useful these HE grenades.
+  - tweak: Made the Excelsior Stash without antag items.
+  - tweak: Excelsior implants have Illegal Tech 2, broken implants have some use for
+      money or for science if they get on it.
+  - tweak: Remains of stash will be hidden under the floor now.
+  - tweak: Lamia and Dallas have autoejection now.
+  - tweak: Rebalanced agony for stun gameplay.
+  - tweak: 'Enabled and disabled autoejection on weapons : STS/Avasarala has lost
+      it, Molly gained.'
+  - bugfix: Fixed the autoinjectors sprite.
+  - bugfix: All implants should be calling uninstall() when removing these implants
+      by surgery or by cruciform.
+  - bugfix: Fixed SMG magazines sprites.
+  - bugfix: Clothing can be mousedropped on your hands with animation.
+  - bugfix: Full windows are properly dissembling and reassembling at any steps.
+  - bugfix: Make the config disabling AI in working order.
+  - bugfix: Pills won't get deleted when you move away or the target move away.
+  - bugfix: Fixed Excelsior chat for antagHUD.
+  comma:
+  - tweak: Excelsior implant now shows up as either Death Alarm or Chem Implant on
+      Adv Scanner.
+  soslow4u:
+  - rscadd: Added overslot mechanics all over equipable items. Currently only magboots
+      (hardsuit boots - too) have such feature.
+  - rscadd: Added cryopod antirobbery system.
+  - rscadd: Vote system now uses NanoUI.
+  - imageadd: Added new holodancer sprite to holoplants.
+  - imageadd: Added new tank sprites.
+  - imageadd: Added new syringe sprites.
+  - tweak: Almost all hostile critters would move around walls with slips, except
+      carps ofc..
+  - tweak: Tweaked a bit IB numbers, it would take twice more time to build up nasty
+      numbers and would let you live for like one or two more minutes.
+  - tweak: Adjusted power consumption for silicons. EXTERMINATE.
+  - tweak: Low walls would be build without windows with RCD.
+  - tweak: Nerfed jetpacks so they work as intended.
+  - tweak: Added borg recharger exit delay.
+  - tweak: 'Added "reinforcement" for wire splicing: use cable coil with harm intent.'
+  - tweak: Magboots, antag shoes from uplink and galoshes are fully insulated now.
+  - tweak: Added ability to make splicing from current wiring. Any wiring on floor.
+      Use cable coil with 'harm' intent.
+  - tweak: Added ability to spawn splicing on tools failure.
+  - tweak: Tweaked morgue respawn bonus.
+  - tweak: Nerfed handcuffs delay.
+  - bugfix: Proper movement in spess, v.3.0. No more 'there is space under your way'.
+  - bugfix: Every tool with QUALITY_BOLT_TURNING should work with pipes just good.
+  - bugfix: Preacher now can connect soul sitting in old corpse to new body.
+  - bugfix: Magboots let you forget about your jetpack stabilization now.
+  - bugfix: Some tool.use_tool replacing tool/wrench and such stuff.
+  - bugfix: Fixed runtimes around non-existant IDs and empty hands.
+  - bugfix: Check for distance between mob and tables was added.
+  - bugfix: Fixed issue about phasing empty floors from below.
+  - bugfix: Fixed broken sprites of AK and STS.
+  - bugfix: Aural dampener on multitool works as intended now.
+  - bugfix: Fixed pAI issues with runtimes and stuff.
+  - bugfix: Fixed some Drone issues with destructor.
+  - bugfix: Fixed being unable to detach signallers.
+  - bugfix: No more BST gloves inside scrap piles.
+  - bugfix: Proper overslot check for voidsuits.
+  - bugfix: Fixed issue about jetpacks inertia.
+  - bugfix: Fixed runtime in rig_attackby.

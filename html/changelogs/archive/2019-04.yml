@@ -1,0 +1,89 @@
+2019-04-08:
+  ACCount:
+  - experiment: Added Gun UI buttons. Bang bang motherfuckers.
+  - rscadd: PDAs now spawn with a PDA-specific self-charging power cell. It generates
+      just enough power to offset PDA power consumption, unless your LED is on.
+  - rscadd: You can now remove PDA/laptop power cells by clickdrag, same as most of
+      the other devices.
+  - rscadd: Modular PC "data crystals" are now data disks. This is a foundation for
+      a future update that would make autolathe disks and modular PCs work together.
+  - rscdel: Obsolete Modular PC power cells are now gone.
+  - rscadd: Allowed players to check their health by clicking health icon.
+  - rscadd: Adds to_chat to CONTRIBUTING.md.
+  - tweak: Some internal code tweaks to rechargers, MPC disks and PDAs.
+  - bugfix: Fixed damage overlay obscuring HUD icons.
+  - bugfix: Fixed that bug with people spawning in space.
+  - bugfix: Fixed pills not doing anything.
+  - bugfix: Going up the stairs in engineering no longer can lead to being spaced.
+  - spellcheck: Fixed some of the code still referencing phoron.
+  BASIC-BIT:
+  - bugfix: Fixed ChemMaster circuit research object definition.
+  Clockrigger:
+  - experiment: Reworked random loot system.
+  - tweak: Shovel can be modded now.
+  Kmc2000:
+  - bugfix: Parallax at high zoom no longer looks like ass.
+  RandomColonist:
+  - rscadd: Four new guns, Wintermute, Straylight, Paco and Molly.
+  - rscadd: Added new Lamia sprites.
+  - rscadd: Added new silencer mechanics. You can install/remove silencer by hand
+      in a few seconds to make gun shots almost completely silent.
+  - imageadd: Added new Lamia sprites.
+  - imageadd: Updated sprites for energy swords, double energy swords, katana, knife.
+  - tweak: Replaced Lightfalls with Cassads in secure armory.
+  - tweak: Made sawn-off not peashooter.
+  - tweak: You will be able to holster syringe gun now.
+  - tweak: Restricted some guns from belts and holsters since they are too big or
+      unwieldy or both.
+  - tweak: Added new items to belts and pouches whitelists. You can store all kind
+      of glasses and gloves in any belt, also medium cells in engineering and security
+      one and much more.
+  - tweak: Removed guns from sec vendor due to them being repositioned somewhere else.
+  - tweak: Drastically reduced amount of guns in secure armory.
+  - tweak: Paco is now chambered in 10mm, ther is now ammo for it basically everywhere
+      (tunnels, brig, autolathe, uplink) and it was placed in Operative lockers as
+      sidearms.
+  - tweak: Buffed Deckard damage by 10%.
+  - tweak: Security vendor contents changed drastically.
+  - maptweak: Medspec room was remade a bit, gave them second locker and gave them
+      Mollies also because why not?
+  - maptweak: Slightly altered contents of IH lockers to make them not so cluttered.
+  - maptweak: General armory content was altered, changes are too many to list them,
+      you can find out in game.
+  - maptweak: Lightfall carbines were removed from armory, instead four Straylights
+      with ammo was added.
+  - maptweak: Slightly expanded secure armory by adding one more niche for ammo crate,
+      which now contains ammo boxes for guns in armory and also disks for an autholathe.
+  - maptweak: Added two additional Bull shotguns into armory.
+  - maptweak: Added two Wintermute heavy assault rifles with ammo into armory.
+  - maptweak: Replased all glass windows with walls at firing range, because what
+      the fuck glass to fucking space doing on a fucking firing range?
+  - bugfix: Small fix to SMG mag sprite.
+  - bugfix: 'Fixed Armoury access '
+  TorinoFermic:
+  - tweak: Hatton code is ordered with additions of research nodes and bugfixing the
+      variable.
+  - tweak: Hatton tubes sprites are oriented in addition with changing sizes to match
+      with RCD ammo.
+  - tweak: Flare pouches will now carry Hatton tubes
+  - imageadd: Changed shotgun's bullets sprites.
+  - tweak: Made visible the excelsior chat to ghosts/observers with antagHUD enabled
+      and admins.
+  - tweak: 'Recoil and aim increased when dual wielding. '
+  - tweak: Excelsior antag won't be given to Heads or Ironhammer anymore.
+  - tweak: Now HE grenade applies explosion effect around the grenade in the range
+      of 1.
+  driecg36:
+  - tweak: Removed access requirements from the majority of cargo crates.
+  - tweak: Reorganized the security crates in cargo, which were just a mess.
+  - tweak: Adjusted a lot of cargo prices, especially in engineering.
+  - tweak: Separated the surplus RIG and surplus space suit into two different categories
+      and added a rig module crate.
+  - tweak: Added an expensive plasteel crate to engineering in cargo.
+  - tweak: Switched damage values of 10mm and .45.
+  soslow4u:
+  - bugfix: Fixed Magboots movement.
+  - bugfix: Fixed RIG module activation.
+  - bugfix: Fixed light effect from flashlights on wormhole.
+  - bugfix: Fixed gravity loss event.
+  - bugfix: Fixed re-entering body resetting the respawn timer.

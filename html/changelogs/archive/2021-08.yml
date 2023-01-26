@@ -1,0 +1,123 @@
+2021-08-07:
+  Chickenish:
+  - bugfix: fixed division by zero runtime in sanity HUD
+  Wouju:
+  - tweak: enricher rejects virus food
+2021-08-13:
+  Chickenish:
+  - bugfix: fixed three division by zero runtimes from excel tele, piloting the ship,
+      and spreading plants
+2021-08-14:
+  Doster-d:
+  - rscadd: Circuit Component subsystem to optimization circuit do_work proc.
+  - rscadd: Circuit subsystem to optimization initialization stuff.
+  - rscadd: New numerous circuits.
+  - rscadd: circuits cloning ability.
+  - tweak: Updated interface for assemblies, now it look like interface of Visual
+      Studio Code.
+  - rscdel: Disabled old circuit subsystem.
+  - soundadd: added some new sound for circuits, like tripple beep sound.
+  - soundadd: added HEV suit sound from HL2. (Circuits only)
+  - soundadd: added AI sounds from System Shock. (Circuits only)
+  - admin: Added secret to disable/enable circuit proc do_work firing.
+  - config: Added config var to disable circuit cloning
+  Hyperio:
+  - rscadd: Church map rework
+  SirRichardFrancis:
+  - rscadd: COG affecting nsa_threshold
+  - rscadd: Robotic omnitools and organ gripper
+  - rscdel: Construction drone and unused robotic tools
+  - tweak: Maintenance drone laws no longer forbid interaction with other mobs
+  - bugfix: Fixed medical robot being unable to perform organ surgery
+  - rscadd: code language for IH
+  - imageadd: Image for codespeak perk
+  - bugfix: fixed flashbang not being deleted after detonation
+  - rscadd: new oddity with special interactions
+  TheShown911:
+  - balance: projectiles have a chance to miss depending on the limb they are going
+      for.
+  Xoxeyos:
+  - tweak: SM Cascade event is now more lore friendly.
+  drexample:
+  - bugfix: Fixes boomboxes spawning with no sprite
+  - bugfix: Remember kids to never compile while pulling.
+  zombiemimic:
+  - rscadd: Added sawn off boltguns and Kammerer
+2021-08-15:
+  Chickenish:
+  - bugfix: armor now works against things falling on you
+  - rscdel: 'fix: hand teles no longer malfunction on zlevel 2'
+  Doster-d:
+  - bugfix: Examiner circuir now don't runtime and finally works.
+  - bugfix: position of cloning node in research window are now in right place.
+  - bugfix: Implant circuits are now work fine.
+  - bugfix: Chemical syphon are now have sprites.
+  - bugfix: Used correct material cost multiplication.
+  - rscadd: Cloning design are now avaliable in research.
+  - tweak: Added new tools to research design (they are in printer too).
+  - tweak: Now it's possible to clone implant circuit.
+  SirRichardFrancis:
+  - bugfix: codespeak fixes
+  - tweak: drone interacting laws
+  - bugfix: fixed radio working as an universal translator
+2021-08-21:
+  Chickenish:
+  - rscadd: tool tooltips now include the armor penetration value.
+  Deal5:
+  - bugfix: Fixed RCD's ability to build airlocks and low walls inside other walls
+      without spending any ammo
+  - balance: Reduced some of the building costs for the RCD
+  Doster-d:
+  - bugfix: possible radial error fixed.
+  - bugfix: bluespace rift circuit is now works.
+  Hyperio:
+  - bugfix: Fix being unable to get back in JTB area
+  - balance: Reduce quality of loot in JTB chunks
+  - rscadd: Add toilets at lower club level
+  - bugfix: Fix a few issues of church map rework
+  SirRichardFrancis:
+  - bugfix: vent button in supermatter room
+  - bugfix: egun dismantling
+  - bugfix: annoying blob "expand" verb
+  - bugfix: items from butchered mobs no longer getting lost in bluespace
+  - rscadd: new codespeak verbs
+  - bugfix: invisible energy swords
+  - bugfix: now bears rest in peace after death
+  - bugfix: mentions of NDV Icarus
+  - bugfix: chemistry gripper not accepting meat
+  - rscadd: buildable autodoc for excelsior
+  - imageadd: codersprite for excelsior autodoc
+  - bugfix: NT-branded AMR having wrong name
+  zombiemimic:
+  - tweak: tweaked shotgun box size
+2021-08-22:
+  Hyperio:
+  - bugfix: Fix missing plating in lower bar
+2021-08-23:
+  drexample:
+  - rscadd: Many more tapes and a way to get them from roaches.
+2021-08-28:
+  AlexMorgan3817:
+  - bugfix: Fixes autofailing of CI tests, because of not setuped music for tapes
+  Chickenish:
+  - bugfix: Kaiser melee bile uses bio armor now
+  - bugfix: it is no longer possible to put implanted items in sliceable food items.
+  - bugfix: Wire Splicings no longer spawn off of cables.
+  Funce:
+  - bugfix: Cameras no longer stay infinitely alarming when they're repaired.
+  - bugfix: Malf borgs properly know when their cameras are being accessed.
+  Hyperio:
+  - tweak: NT open space above hydroponics and biogen room is now sealed
+  - rscadd: Add tickets shortcut to the interface
+  - bugfix: Several fixes for Church Rework
+  - rscdel: Removed double preacher spawn
+  - rscadd: Added sprites for OneStar turf stacks.
+  - tweak: Switch copy-tile stack ability to alt-click
+  MLGTASTICa:
+  - balance: The meatspike now requires a neck-kill grab to spike anything
+  - bugfix: Fixed meatspike victim names not being shown on examine
+  - bugfix: Fixed meatspike sanity damage not being applied
+  - balance: Tripled sanity damage from cutting members of your own species
+2021-08-29:
+  Chickenish:
+  - bugfix: roaches no longer die over and over again while dead.

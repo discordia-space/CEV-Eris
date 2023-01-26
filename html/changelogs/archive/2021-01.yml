@@ -1,0 +1,159 @@
+2021-01-01:
+  MadmanMartian:
+  - rscdel: The Lightsuit rig has been removed from loot tables
+2021-01-04:
+  MadmanMartian:
+  - bugfix: The surgery UI on amputated limbs now works again.
+  - balance: The moebius roundstart prosthetics are no longer armored.
+2021-01-06:
+  Alliostra:
+  - balance: ammo casings no longer have any export value.
+  Evankhell561:
+  - code_imp: fix get_max_w_class proc
+  Kurgis:
+  - bugfix: Fixed a broken pixel offset on acolyte armor.
+  MadmanMartian:
+  - rscadd: Technomancers now get their own version of full body prosthesis.
+  TheShown911:
+  - balance: Hysteric breakdown takes 60 instead of 30 seconds to trigger.
+2021-01-08:
+  DarkLevel:
+  - balance: Serbians now spawns with SURVIVOR perk
+  - code_imp: Add perks value to antags
+  MadmanMartian:
+  - rscadd: The weapon info page has been improved
+  - balance: Items purchased via the supply shuttle are now only resellable to the
+      supply shuttle for 40% base value, unless processed
+2021-01-09:
+  Evankhell561:
+  - code_imp: change some values for their corresponding definition.
+  Harrivchaw:
+  - bugfix: Added the option to pick new vests from loadout
+  - bugfix: Shotgun and other big guns are now visible on back and when wielded
+  driecg36:
+  - tweak: Made NT crusader armor cover legs and arms.
+  - bugfix: Made hair not poke through acolyte hood.
+2021-01-10:
+  Firefox13:
+  - rscdel: Removed .70 and .60, grenades and rockets from artist revolvers.
+2021-01-13:
+  DarkLevel:
+  - bugfix: EOTP runtimefix
+2021-01-14:
+  MadmanMartian:
+  - bugfix: You can now fix robot bones, using a welding tool, or some nanopaste.
+  - tweak: Cleaning a voidsuit now also youngifys the helmet, tank, and boots
+  - bugfix: Cleaning your voidsuit in the washing machine no longer deletes magboots
+      attached post spawn
+  - bugfix: Rigs no longer eat your shoes and gloves when unequipping the rigsuit.
+  - balance: There is now a hard limit on how much of a speed boost you can get from
+      implanting muscles into your legs.
+2021-01-15:
+  Alliostra:
+  - balance: VIG now has a much lower influence on AP than before
+  Wouju:
+  - rscadd: New attack text for Phasers
+  - tweak: Hivemobs names are now same as their code names, and changed some of their
+      descriptions. Hive is also now announced later. Rarity value of mobs is now
+      also changed
+  - balance: Hivemind shockwave cooldown is greater, tormentor cooldown is shorter.
+      Goo also deals less tox damage now.  Assemblers are no longer dense, mobs can
+      move through them. Mechiver has less HP and deals a bit less damage via its
+      special ability. Wires now deal more damage to doors and have a higher chance
+      of unbolting them
+  - sounddel: removed outbreak7.ogg from hivemind announcement
+  - code_imp: Removed/edited some comments I left
+2021-01-16:
+  MadmanMartian:
+  - balance: Prosthesis now feel pain in the same way that organic limbs do
+  - balance: Pain now scales on the quality of your nerves
+  - bugfix: Players now walk at the pre muscle speed nerf speed again
+2021-01-18:
+  MadmanMartian:
+  - bugfix: Fixes good borers who never take control of people from preventing the
+      death of their host through a runtime error.
+2021-01-19:
+  DarkLevel - code, Armolitskiy - sprites.:
+  - rscadd: Tanker helmets collection
+  MadmanMartian:
+  - bugfix: Machine binding ritual now actually gives some stats
+2021-01-21:
+  DarkLevel:
+  - balance: reducing minimal oxyloss of resuscitator
+  - bugfix: fixing resuscitator organs check.
+  - code_imp: Stasis now re-update death time
+  Evankhell561:
+  - refactor: Loot data now ignoring by git.
+  MadmanMartian:
+  - bugfix: The crafting subtypes of doors, tiles, and chairs are now available again.
+  - balance: Vending machines now fire coins at projectile speeds when hacked, rather
+      than their inventory
+  - rscdel: The honk trigger has been removed.
+  - balance: The shunt now only gives an additional 50% damage
+2021-01-23:
+  Alliostra:
+  - tweak: reworked the shellshock to be able to shoot grenades, as well as being
+      able to trade an emty cell for another shot
+  Evankhell561:
+  - tweak: Completing the Technomancer's "Disturbance" objective reduces global entropy.
+  - tweak: the narrator's events related to bluespace increase global entropy.
+  - tweak: bluespace cockroach teleports create sparks.
+  - tweak: the Stranger is a bit more powerful as a minor event.
+  - tweak: portals produce a little more entropy.
+  - tweak: destroying the gitf bluespace produces much more entropy.
+  - tweak: creating the bluespace gift produces reduces entropy a bit more.
+  - rscadd: admins are informed about where the Stranger spawned.
+  - tweak: bluespace roaches now have bluespace crystals instead of roach meat.
+  - tweak: trade beacons generate entropy when used.
+  Kurgis:
+  - bugfix: Fixed a stray pixel on tunnel snake suit.
+2021-01-27:
+  Alliostra:
+  - tweak: The hacking tool now uses COG to determine the hacking speed
+  - bugfix: fixes wall-penetration related bugs
+  - tweak: bullets fired from the sky driver can no longer ricochet
+  DarkLevel:
+  - balance: Reworked NT and IH shields to provide armor increase and lesser knockdown
+      immunity instead of block chance.
+  MadmanMartian:
+  - rscadd: Adds emergency self surgery.
+  - rscadd: Stand still, and use a sharp item on the limb with shrapnel in it to remove
+      shrapnel from yourself.
+  - rscadd: Stand still, and use a hot item to cauterize any open wounds on yourself.
+      Useful if you're out of bandages.
+  Wouju:
+  - rscadd: Added new hivemind mob, the Lobber. A ranged mob that is able to rapidly
+      fire tripling it's output.
+2021-01-28:
+  Alliostra:
+  - tweak: you can now put pills into drinks unnoticed if you have the fast fingers
+      perk.
+2021-01-29:
+  Kurgis:
+  - tweak: Cyborgs with the Service module now have access to a mini-synthesizer instrument.
+  MadmanMartian:
+  - rscadd: Old guns can now have faulty weapon mods on them, that require removal.
+  TheShown911:
+  - rscadd: Added the surgery kit, the chameleon kit and the shipwide announcement
+      to the carrion uplink.
+2021-01-30:
+  Alliostra:
+  - tweak: Oddities no longer lose their perk when being used to level up
+  Firefox13:
+  - tweak: Junk .60 ammoboxes should be less frequent now.
+  - tweak: the changelog that says that oddities do not lose their perk is a lie.
+  Omni44:
+  - rscadd: 2 burst  firemode
+  - rscdel: Charge mode on cog
+  - rscadd: cog's design disk
+  - tweak: cog's matter list
+  - rscadd: burst = 1 to WEAPON_NORMAL firemode
+  - tweak: added legs and arms coverage to ablative_vest
+  - tweak: made ablative_vest into ablative_vest_full
+  maikilangiolo:
+  - rscadd: Added cabinet to medbay examination room
+  - bugfix: fixed scrubber and vent in VIP bar using the wrong pipes
+  shazbot194:
+  - rscadd: Added scrap ammo and scrap ammo kits.
+  - rscadd: Added stacking for normal bullets
+  - imageadd: Added unique icons for all ammo

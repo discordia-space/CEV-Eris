@@ -96,7 +96,7 @@
 /obj/item/device/radio/intercom/proc/loop_area_check()
 	var/area/target_area = get_area(src)
 	if(!target_area?.apc)
-		addtimer(CALLBACK(src, .proc/loop_area_check), 30 SECONDS) // We don't proces if there is no APC , no point in doing so is there ?
+		addtimer(CALLBACK(src, .proc/loop_area_check), 30 SECONDS, TIMER_STOPPABLE) // We don't proces if there is no APC , no point in doing so is there ?
 		return FALSE
 	linked_area = target_area
 	RegisterSignal(target_area, COMSIG_AREA_APC_DELETED, .proc/on_apc_removal)

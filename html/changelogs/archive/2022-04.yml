@@ -1,0 +1,181 @@
+2022-04-02:
+  Humonitarian:
+  - tweak: Many HomeMadeTM guns renamed
+  - bugfix: throwing knives will be thrown when thrown
+  Pink-Chink:
+  - tweak: added mind check to living Life() sleep check logic
+  - balance: slightly extends the generate_body() timer to 66 seconds from 60
+  TGCMbetcher:
+  - bugfix: made a better uranium solidification recipe
+2022-04-09:
+  HentaiStorm:
+  - bugfix: fix of missing stacks of metal rods
+  - bugfix: fix opened water bottle sprite
+  - bugfix: fix missing halbert back sprite
+  Humonitarian:
+  - tweak: acolytes can now call armaments from the EOTP
+  - balance: observation maximum raised, but more power is required for a miracle
+  - bugfix: observation update bug preventing reaching maximum observation
+  - balance: makeshift slide barrel shotgun buffed
+  MLGTASTICa:
+  - balance: Upgrading the chem dispenser now provides it with more reagent options.
+  TGCMbetcher:
+  - tweak: Fixes export scanners shown value
+  ValoTheValo:
+  - rscadd: Adds Onestar Clothing, not obtainable currently
+  - rscadd: All Heads of staff now spawn with handguns and 2 rubber magazines
+  - rscdel: FO and Captains pistols no longer spawn in their locker
+  assortedbeads:
+  - balance: The following hammers have been buffed damage wise; Makeshift Mace, Mace,
+      Home Wrecker, Powered Hammer, One Star Powered Hammer, Charge Hammer
+  - balance: The following hammers have been buffed slightly AP wise; Makeshift Mace,
+      Mace, Powered Hammer, One Star Powered Hammer
+  - balance: The homewrecker has been slightly nerfed in AP
+  - balance: The Charge Hammer has been tremendously buffed compared to its previous
+      AP
+  greggbot:
+  - bugfix: having biograde vision active as a borer no longer prevents infesting
+      a host.
+  - bugfix: Hydraulic clamps can now properly load scrap cubes without destabilizing
+      them and creating a ghost cube out of nothing.
+  - rscdel: Removed avasarala + a mag from FO's locker.
+2022-04-16:
+  Alliostra:
+  - rscadd: added the ability to quickly switch between different loadouts for chameleon
+      clothes if the chameleon jumpsuit is worn.
+  - rscadd: Added the chameleon satchel
+  - bugfix: chameleon items will no longer block other clothing sprites from appearing
+      when they weren't supposed to
+  - tweak: chameleon clothes are now made of plastic instead of bioatter
+  - tweak: removed some things you can't disguise chameleon items as.
+  Humonitarian:
+  - tweak: Turned the Club showcase into a custom vending machine
+  - tweak: Turned the medical vending machines into custom ones, allowing stocking
+      them with chems and supplies
+  - tweak: Turned the Theo-Mat vending machine into a custom one, allowing stocking
+      with the products of NeoTheology
+  - spellcheck: Fixed a few typos for vending machines
+  - code_imp: Changed some vending machine code
+  - balance: TheoMat now only serves the cruciformed
+  MLGTASTICa:
+  - rscadd: Pets now heal sanity .
+  - rscadd: Gun serial numbers
+  - balance: Blood can now be replenished in dead people.
+  - balance: Mobs can no longer fall into walls or any fully dense structres.
+  SirRichardFrancis:
+  - rscadd: limited edition colored Easter (roach) eggs with gamer chemicals
+  - bugfix: benzin roaches dying to fuel they produce
+  - code_imp: updated contribution guidelines
+  - bugfix: runtime in mech_icon.dm
+  - bugfix: diving in space
+  - bugfix: diving when grabbed
+  - bugfix: runtime in mob_helpers.dm
+  - rscadd: benzin roach
+  - bugfix: runtime in radio.dm
+  - bugfix: runtime in catwalk.dm
+  - balance: maximum style value an item can have capped at 2
+  - balance: explosions with severity of 1 and 2 can not be dodged anymore
+  - balance: guns with low fire rate received style_damage increase
+  - bugfix: icon of cash bundle that vagabonds spawn with
+  Trilbyspaceclone:
+  - rscdel: Removed an old unused file.
+  assortedbeads:
+  - rscadd: A new makeshift omnitool entire has been added in organmodule/active/makeshift
+  - rscdel: The old makeshift omnitool entry has been removed
+  - balance: The makeshift omnitool is now a single tool rather than a container with
+      several tools
+  - soundadd: The new makeshift omnitool has been given the "cutting sound"
+  githubuser4141:
+  - balance: Mobs, including mechs can bash through light structures (tables, girders,
+      l-walls, walls and railings), their speed of wall destruction depends on their
+      melee damage ofc.
+  - soundadd: Ports two metal smash/hit sounds from TGMC or CM.
+  - balance: Buffs RIG armour values, adds storage modules to (hopefully) every RIG,
+      buffs the mech flashlight. Makes the fugly MEO suit a bit faster.
+  - tweak: Mech drillbits can be printed from the mechfab now and the orderable exosuit
+      crate now contains all the necessary components.
+2022-04-23:
+  MLGTASTICa:
+  - rscdel: Removed firework pop-up open alert.
+  - bugfix: Fixed autodoc trying to complete unselected surgery steps
+  - balance: Heavy mech legs are now slower and turn twice as slow.
+  - bugfix: Fix roaches not targetting mechs properly
+  - balance: You can once again , move while Weakened()
+  - code_imp: Fixed some cyborg traits being randomly added.
+  - balance: Techomancer armour ratings tweaked to be more usefull to their job ,  technomaner
+      armor style loss removed.
+  - balance: Grenades that are thrown above people will bounce to the side.
+  - balance: Cover now only works if the target is adjacent to it
+  - bugfix: Bullets now hit mechs where you aimed them
+  - bugfix: Mechs no longer magically soak up bullets
+  Pink-Chink:
+  - bugfix: added check for existing invisible soil when planting a seed with TRAIT_SPREAD
+      > 0
+  SirRichardFrancis:
+  - rscadd: chameleon gun can change it's own serial number
+  - rscdel: chameleon satchel
+  - tweak: chameleon kit comes in a chameleon backpack
+  - tweak: chameleon and handmade guns comes with no serial number
+  - bugfix: chameleon projectiles not changing appearance properly
+  - refactor: chameleon items code
+  - bugfix: chat-related runtime
+  - tweak: washing machine working time halved
+  - tweak: washing machine no longer takes corgi for a ride
+  - imageadd: washing machine sprites by Rosalimo
+  - imagedel: old washing machine sprites
+  zombiemimic:
+  - rscadd: Added notice for gun part crafting failure
+2022-04-30:
+  Chickenish:
+  - balance: Grabbing now takes time to upgrade aggressive and kill grabs.
+  - balance: Neck Grab no longer stuns the victim for twenty seconds.
+  - bugfix: Grab animations now line up with their effects.
+  - balance: resisting grabs has been changed to a ROB contest.
+  Humonitarian:
+  - rscadd: Thermobaric and HEAT rockets
+  - bugfix: Rockets and grenadeshells no longer duplicate forever
+  - imageadd: More rocket icons
+  MLGTASTICa:
+  - balance: Duct taping a camera now costs 10.5 units of duct tape.
+  - balance: Burrows can no longer spawn ontop of cables / pipes
+  Pink-Chink:
+  - rscadd: added trade catalog app
+  - rscadd: added style and smoke stations
+  - rscadd: added export function to beacons
+  - rscdel: removed FS gun vendor
+  - rscdel: removed references to obsolete /obj/item/tracker_electronics
+  - rscdel: removed supply consoles and circuitboards
+  - rscdel: removed price_list.dm
+  - tweak: shipping error event now uses beacons
+  - tweak: guild individual objectives now use beacons
+  - tweak: merchant has trade program on spawn
+  - tweak: PDA export scanner doesn't need to be linked
+  - tweak: no more 200 credit crate commission in beacons
+  - tweak: trade station inventory and offer tweaks
+  - balance: Garbaj and Armitage are easier to unlock
+  - balance: trade station favor unlocks are instant
+  - balance: buying from trade stations increases favor by 0.125 of value, down from
+      0.5
+  - balance: oddity prices reverted to 0
+  - balance: price tags of most food items to 25
+  - balance: circuit board price to 50
+  - balance: reagents are now 0.125 credits per unit, most drinks are 0.25 per unit,
+      and alcohol is 0.5 credits per unit
+  - bugfix: fixed overlap between get_item_cost() and get_price() for several items
+  - code_imp: trade stations can have custom good prices set
+  - code_imp: trade station restocking is more random
+  - tweak: gun parts can be removed from frames with a screwdriver
+  - balance: maint/trash gun frames spawn with 1-2 parts installed
+  SirRichardFrancis:
+  - refactor: dna, mutations and genetics.
+  - rscdel: some deprecated lore
+  - rscadd: button for reloading fancy chat
+  - rscadd: ashtrays being used automatically
+  - bugfix: no longer can jump over security barrier
+  - bugfix: oddities and steal targets not being accounted for if placed in RIG or
+      suit pockets
+  - bugfix: toxic revenger affecting robots and fbp
+  - bugfix: Shift+B hotkey interactions with various storage types
+  - tweak: excelsior implant will identify user name correctly regardless of their
+      health and equipment
+  - bugfix: some invisible sprites

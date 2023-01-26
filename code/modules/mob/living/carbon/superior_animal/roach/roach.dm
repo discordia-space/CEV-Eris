@@ -56,6 +56,11 @@
 		bio = 25,
 		rad = 50
 	)
+
+/mob/living/carbon/superior_animal/roach/Destroy()
+	eat_target = null
+	return ..()
+
 //When roaches die near a leader, the leader may call for reinforcements
 /mob/living/carbon/superior_animal/roach/death()
 	.=..()

@@ -64,6 +64,7 @@
 /area/crawler)
 "q" = (
 /obj/structure/closet/onestar/tier2,
+/obj/spawner/cloth/onestar,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "r" = (
@@ -124,6 +125,7 @@
 "M" = (
 /obj/structure/closet/onestar/tier2,
 /obj/spawner/firstaid/low_chance,
+/obj/spawner/cloth/onestar/low_chance,
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "Q" = (

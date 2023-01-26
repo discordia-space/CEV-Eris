@@ -143,7 +143,7 @@
 		goods_tick()
 	else
 		initialized = TRUE
-	update_time = rand(8,12) MINUTES
+	update_time = rand(6,8) MINUTES
 	addtimer(CALLBACK(src, .proc/update_tick), update_time, TIMER_STOPPABLE)
 	update_timer_start = world.time
 
@@ -331,24 +331,15 @@
 			components = offer_content["attachments"]
 			component_count = offer_content["attach_count"]
 
-		var/min_amt = round(SPECIAL_OFFER_MIN_PRICE / max(1, base_price))
-		var/max_amt = round(SPECIAL_OFFER_MAX_PRICE / (max(1, base_price)))
-
-		if(min_amt < 1)
-			min_amt = 1
+		var/max_amt = 1
 
 		if(amount_cap > 0)
-			if(max_amt > amount_cap)
-				max_amt = amount_cap
+			max_amt = amount_cap
 		else if(offer_limit > 0)
-			if(max_amt > offer_limit)
-				max_amt = offer_limit
+			max_amt = offer_limit
 
-		var/new_amt = rand(min_amt, max_amt)
-
-		var/min_price = clamp(new_amt * max(1, base_price), SPECIAL_OFFER_MIN_PRICE, SPECIAL_OFFER_MAX_PRICE)
-		var/max_price = clamp(new_amt * max(1, base_price), min_price, SPECIAL_OFFER_MAX_PRICE)
-		var/new_price = rand(min_price, max_price)
+		var/new_amt = rand(1, max_amt)
+		var/new_price = new_amt * base_price
 
 		if(offer_content?.len >= 5)
 			offer_content = offer_data_mods(name, new_price, new_amt, components, component_count)

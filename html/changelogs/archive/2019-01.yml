@@ -1,0 +1,122 @@
+2019-01-20:
+  < Nanako >:
+  - experiment: Major overhaul of Excelsior. Finally they have recieved the Healing
+      Touch of Nanako.
+  - rscadd: Implants now work. In addition, we made implants generally implantable
+      in nonhuman organic mobs. This allows excelsior to implant their pets so that
+      turrets and shields don't target them.
+  - rscadd: Added a couple new item recipes, disk cloner and the new Excelsior armored
+      space suit, sprites thanks to Watler.
+  - rscadd: Excelsior Armor is balanced around the teleporter. It requires a moderate
+      amount of plasteel, and you can manufacture a full set every 10 minutes. It's
+      moderately powerful all around, especially vs laser weapons.
+  - tweak: Excelsior Shieldwall now unlocks for any excelsior instead of requiring
+      engineering access. The shield barrier itself now also selectively allows excelsior-implanted
+      people through, while blocking the normies.
+  - tweak: Majorly reworked Excelsior Mine. Once armed, detonates when any non-excelsior
+      walks over it.
+  - tweak: Excelsior Autolathe now requires no extra parts and comes with a free beaker
+      preinstalled.
+  - tweak: Rebalanced material costs of Excelsior Teleporter a little bit.
+  - tweak: Hugely buffed Diesel Generator in both capacity and power consumption.
+  - experiment: Major Payday rework Crew are now paid once per hour, with an email
+      being sent to notify them of this, as well as the shipwide announcement of payday.
+  - rscadd: Departments themselves are also paid, each department gets an hourly budget
+      infusion to their departmental funds, drawn from the same source as their wages.
+  - rscadd: The Ship Account now starts with three million credits. It is used to
+      pay other departments as outlined above. Captain is encouraged to roleplay with
+      the money and not just make it rain from the catwalks.
+  - tweak: Instead of captain, now any head of staff is required to start the round.
+  - rscadd: Added a few more grenade types to the grenades section of the Uplink.
+      Frags, highex, teargas, with appropriate costs.
+  - rscadd: Added two spawning grenades to the grenades section of the Uplink. The
+      Viscerator spawner and Bioweapon sample.
+  - rscadd: Added a smaller Spending Money bundle to the uplink. 1 TC, 500 credits.
+  - tweak: Rebalanced TC costs of many things in Uplink. Generally, guns are cheaper
+      to reflect their ready availability on Eris. Money is now far more expensive.
+  - tweak: More tweaks for mopping to make floors stay clean longer once cleaned.
+  - tweak: Nerfed robot VTec upgrade.
+  - tweak: Reduced power of stunbeam tasers, to bring them in line with similar lethal
+      weapons.
+  - tweak: Reduced siemens coefficient of SCAF suit, making mercenaries more resistant
+      to tasers.
+  - maptweak: Removed six of the nine Ironhammer hardsuits from their armoury, and
+      instead added ten random hardsuit module spawns.
+  - maptweak: Added a missing disposal pipe section.
+  - maptweak: Reduced the quantity of metal and plastic that spawns in robotics.
+  - maptweak: Swapped out the civilian bombsuits for the military styled ones in Armory.
+  - maptweak: Deleted that silly shotgun permit.
+  - maptweak: Added a mapped in duct tape spawn at all of the head of staff offices,
+      and a few other stationary related locations around the ship. Intended for aiding
+      in taping up notices to walls.
+  - maptweak: Added several mapped in vial boxes to the chemistry lab, to go along
+      with the vial pouches.
+  - maptweak: 'Added fire axe cabinets. Here''s Johnny! '
+  - maptweak: Added one additional ATM, in the hallway just above cryostorage.
+  - bugfix: Fixed many cases of objectives not being assigned, or excelsior being
+      told to kill themselves.
+  - bugfix: Fixed endless duplication of silver.
+  - bugfix: Fixed fake announcements in the traitor uplink.
+  - bugfix: Admin force-start now works correctly and actually starts the round.
+  - bugfix: The storyteller is no longer reset to Guide if starting fails.
+  - bugfix: Fixed and rebalanced several issues with embedding.
+  Boredone:
+  - tweak: Nerfed duct tape cuffs.
+  - bugfix: Removed safety check from rig guns.
+  - bugfix: Added Cruciform to the Known Implant list in Body Scanner.
+  EvenInDeathIStillServe:
+  - rscadd: Added a message and sound effect when toggling welding tools.
+  - rscadd: Robot tools can now be modded by an external user.
+  - rscadd: Added the ability to revert mech DNA lock by heads of staff.
+  - soundadd: Added 4 new sound effects for welding.
+  - bugfix: Fixed infinite air alarm cables.
+  - bugfix: Sparks and plasma gas are actually visible now.
+  - tweak: Made hardhats normal-sized.
+  ITCups:
+  - tweak: Tweaked ammo loading/unloading.
+  - bugfix: Fixed Exosuit Fabricator efficiency.
+  - bugfix: Fixed robot interaction with doors.
+  - bugfix: Fixed flavour text refusing to save.
+  SahQO YOLOS:
+  - bugfix: Serbs and other /datum/antag/ now have their skills setting on role spawn.
+  - spellcheck: Fixed SMG's ammo typo.
+  hitsedesen:
+  - tweak: Reworked the way keycard authentication device works.
+2019-01-26:
+  Nanako:
+  - rscadd: Adds new sprites for the Ironhammer Voidsuit. By Watler. Now they are
+      regularly available in the lower armoury.
+  - maptweak: An Ironhammer operative entering the armoury now has a total of six
+      armour options available to them, and all of these have their advantages and
+      drawbacks.
+  - maptweak: Rearranged things in the armoury to add three voidsuit spawns, along
+      with magboots and jetpack for each. Removed several of the gasmasks, oxygen
+      tanks, and portable flashers. And instead added in some double capacity emergency
+      tanks, and an oxygen canister for refilling.
+  - tweak: Extended Excelsior turret working range by 50%.
+  - tweak: The voidsuit's stats are reworked a bit, and its positioned squarely inbetween
+      the stats of a normal vest, and an IH rig suit. The rig is both better armored
+      and faster, but the voidsuit is less demanding on your storage space.
+  - tweak: Slightly buffed the stats of ironhammer hardsuit, and serbian SCAF suit,
+      based on observations of combat performance.
+  - tweak: Buffed the Chief Engineer's rig too, for such a vital role they have an
+      alarmingly common habit of dying alone in maintenance.
+  - tweak: Buffed the handmade armor vest, because it sucks and nobody uses it.
+  - tweak: Slightly buffed the non primary stats of the three specialist vests to
+      keep them viable, but also added minor slowdown to bulletproof and ablative
+      vest.
+  - tweak: Added many parts to the excelsior disk so they can actually create shield
+      generators.
+  - bugfix: Fixed the excelsior autolathe not working properly when manually constructed.
+  - bugfix: Fixed infinitely duplicating energy guns when disassembling turrets.
+  - bugfix: Fixed zero initial bank balance.
+  - bugfix: Allowed slots on suits not allowing large weapons.
+  - bugfix: Fixed fireaxe sprites when facing east.
+  - bugfix: Fixed excelsior implants not being properly setup when spawned by storyteller,
+      resulting in their own turrets shooting them.
+  - bugfix: Fixed storyteller having a defunct 'roleset' option in the roleset pool
+      which wasted antag points.
+  - tweak: Majorly reworked how material costs are calculated for protolathe, autolathe
+      and circuit imprinter designs. Some costs were adjusted in the process
+  - tweak: Made the prices of ordering materials in the guild far cheaper. Also added
+      a bulk metal crate for large quantities of steel at once.

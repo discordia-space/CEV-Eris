@@ -1,4 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - rscadd: Add check for division by 0 in block_damage

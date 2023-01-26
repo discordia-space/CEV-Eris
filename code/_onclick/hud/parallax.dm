@@ -1,42 +1,38 @@
 GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "space4", "space5", "space6"))
 
-/obj/parallax_screen
-	icon = 'icons/parallax.dmi'
-
-/obj/parallax_screen/New()
-	icon_state = GLOB.random_parallax
-
 /obj/parallax
+	icon = 'icons/parallax.dmi'
+	icon_state = "space0"
 	name = "parallax"
 	mouse_opacity = 0
 	blend_mode = BLEND_MULTIPLY
 	plane = PLANE_SPACE_PARALLAX
-//	invisibility = 101
 	anchored = TRUE
 	var/mob/owner
-	var/obj/parallax_screen/parallax_screen
-	var/list/layers = list()
 
 /obj/parallax/New(mob/M)
 	owner = M
-	owner.parallax = src
-	parallax_screen = new /obj/parallax_screen
-	parallax_screen.plane = plane
-	overlays += parallax_screen
+	owner.parallax += src
+	SSevent.all_parallaxes += src
 	update()
 	..(null)
+
+/obj/parallax/Destroy()
+	owner = null
+	SSevent.all_parallaxes -= src
+	return ..()
 
 /obj/parallax/proc/update() //This proc updates your parallax (duh). If your view has been altered by binoculars, admin fuckery, and so on. We need to make the space bigger by applying a matrix transform to it. This is hardcoded for now.
 	if(!owner || !owner.client)
 		return
-	overlays.Cut()
 	var/turf/T = get_turf(owner.client.eye)
-	screen_loc = "CENTER:[-224-(T&&T.x)],CENTER:[-224-(T&&T.y)]"
-	var/view = owner.client.view
-	var/matrix/M = matrix() //create matrix for transformation
-	if(view != world.view) //Not bigger than world view. We don't need transforming
-		var/toscale = view //How many extra tiles we need to fill with parallax. EG. Their view is 8. World view is 7. So one extra tile is needed.
-		switch(view) //If you change these values, I need to know! ~Kmc
+	if(!T)
+		return
+	screen_loc = "CENTER:[-224-T.x],CENTER:[-224-T.y]"
+	var/matrix/M = matrix()	//create matrix for transformation
+	if(owner.client.view != world.view)	//Not bigger than world view. We don't need transforming
+		var/toscale = owner.client.view	//How many extra tiles we need to fill with parallax. EG. Their view is 8. World view is 7. So one extra tile is needed.
+		switch(owner.client.view)
 			if(8)
 				toscale = 1.2
 			if(9)
@@ -54,11 +50,12 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 			if(128)
 				toscale = 4
 		M.Scale(toscale)
-		src.transform = M
 	else
 		M.Scale(1)
-		src.transform = M
-	overlays  += parallax_screen
+	transform = M
+
+/obj/parallax/update_icon(new_icon_state)
+	icon_state = new_icon_state
 
 /obj/parallax/update_plane()
 	return
@@ -66,7 +63,7 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 /obj/parallax/set_plane(var/np)
 	plane = np
 
-
+// Mob stuff
 /mob
 	var/obj/parallax/parallax
 

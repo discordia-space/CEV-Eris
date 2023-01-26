@@ -156,6 +156,7 @@
 /area/crawler)
 "D" = (
 /obj/structure/closet/onestar/tier3,
+/obj/spawner/gun/onestar/low_chance,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 "N" = (

@@ -281,6 +281,9 @@ var/global/list/default_medbay_channels = list(
 	//  Fix for permacell radios, but kinda eh about actually fixing them.
 	if(!M || !message) return 0
 
+	if(speaking && (speaking.flags & (NONVERBAL|SIGNLANG))) // so we don't speak sign language over radio
+		return 0
+
 	//  Uncommenting this. To the above comment:
 	// 	The permacell radios aren't suppose to be able to transmit, this isn't a bug and this "fix" is just making radio wires useless. -Giacom
 	if(wires.IsIndexCut(WIRE_TRANSMIT)) // The device has to have all its wires and shit intact
@@ -780,7 +783,6 @@ var/global/list/default_medbay_channels = list(
 	var/bluespace_items = list(
 		/obj/item/computer_hardware/hard_drive/portable/design/guns/dallas = 25,
 		/obj/item/gun/energy/plasma/stranger = 25,
-		/obj/machinery/artifact = 25,
 		/obj/item/computer_hardware/hard_drive/portable/design/guns/fs_wintermute = 5,
 		/obj/item/computer_hardware/hard_drive/portable/design/excelsior/ak47 = 5,
 		/obj/item/computer_hardware/hard_drive/portable/design/nt/nt_lightfall = 5,

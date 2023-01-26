@@ -1,0 +1,270 @@
+2021-04-01:
+  Alliostra:
+  - rscadd: cell overlay for the brigador
+  - rscadd: you can now adjust the way a gun will be displayed when worn on your suit
+      and back slot (will only work for guns with differing back and suit slot sprites)
+  - tweak: turns most back gun sprites into onsuit sprites as well and vice versa.
+  infraredbaron:
+  - imageadd: Generic module for your needs
+  - imagedel: breacher RIGs; ERT RIGs; Asset protection RIG; Burecracy RIG;
+2021-04-02:
+  Evankhell561:
+  - rscadd: To Uphold the Holy Word and Grace of Perseverance rituals
+  - rscdel: 'priest rituals: increase of stats.'
+  - bugfix: Areas without apc are no longer considered for the Disturbance objective.
+  - tweak: changes the spawn values of all clothing in the game.
+  - tweak: adds some debug items to the blacklist.
+  Hyperio:
+  - rscadd: New sprite for gravity generator
+  - admin: Improve ticket system based on feedbacks
+  TheShown911:
+  - rscadd: pickle
+  Wouju:
+  - balance: Rebalanced the hivemind to be more enjoyable to fight against
+  - balance: Made Hivemind boring again, due to many times the players found themselves
+      in a pickle
+  drexample:
+  - rscadd: New vote sound
+  - bugfix: Fixes missing human mob icons
+  infraredbaron:
+  - rscadd: email now properly logged.
+  shazbot194:
+  - bugfix: fixed several issues with icons on both casings and magazines
+2021-04-03:
+  Firefox13:
+  - bugfix: Tobacco demand have been increasing too much lately, cigarette prices
+      have lowered in accordance to demand.
+2021-04-09:
+  Cocacola4124:
+  - rscadd: Ghosts can now occupy borers whenever.
+  - bugfix: Fixed monkey cubes
+  Evankhell561:
+  - tweak: IH now has less base score.
+  Holvr0:
+  - bugfix: fixed separate_solution in reagent_containers.dm, to properly handle the
+      amount of reagents transferred in the centrifuge. Amounts of reagents below
+      2u no longer result in 2u after separation.
+  Hyperio:
+  - rscadd: You can now place lattice and floors on planets
+  - bugfix: Exploration flags can now be put down on planets
+  - bugfix: Roombas no longer carry wood floor overlay with them
+  - bugfix: Mineral overlays should no longer appear on ruins turfs
+  - bugfix: Foutain no longer duplicates organs if you have prosthetics
+  - bugfix: Lava no longer melts reality (ghosts, lights)
+  - bugfix: Officer uniform and naked corpses in ruins
+  - bugfix: Blacklist ruins exclusive items from spawning on Eris
+  - tweak: All access removed from the crashed pod corpses' IDs
+  - bugfix: Fix shuttle landing area not having any mineral ressource
+  Kurgis:
+  - refactor: Removed ~2000 lines regarding some map object variables, should have
+      no in-game effect.
+  Omni44:
+  - imageadd: New rescue RIG sprites
+  - imagedel: Old rescue RIG sprites
+  StiffRobot:
+  - bugfix: Moving while gulping something down will splash everything on you now
+  Wouju:
+  - tweak: Himan has new sprites, along with Hiborg
+  - balance: Himan fake death triggers earlier, has a bit stronger stun and heals
+      him a bit, the scream however no longer deafens and is now weaker
+  infraredbaron:
+  - balance: AMR is less OP now
+  zoktiik:
+  - rscadd: Craftable shivs now count as boot knives, allowing you to put them in
+      any boot that can hold a knife.
+2021-04-10:
+  Firefox13:
+  - spellcheck: Instead of abosrbing damage, armor now absorbs it properly.
+  - spellcheck: Hach mode on hacktool was replaced with hack mode.
+  - spellcheck: All wall griders were replaced with girders. Rejoice!
+  - spellcheck: God now protects those who defend his faith rather than those who
+      believe while wearing crusader armor.
+  - spellcheck: Oddities description that are made by Techno-Tribalist Enforcer are
+      now "created" rather than "maded"
+  Hyperio:
+  - balance: Remove salary of NT jobs
+  - bugfix: Remove redeclaration of effect/damagedfloor
+  - balance: Increase ore quantity and reduce mining drill consumption
+  Medcar - code | CeUvi - sprites:
+  - rscadd: Added new NT Voidsuit
+  Omni44:
+  - rscadd: Resoruce Integration Gear Tab in Cargo Console
+  - rscadd: Some RIG crates to Cargo console
+  infraredbaron:
+  - imageadd: new, dedicated NT crossbow sprite
+  - imagedel: deleted martyr
+  zombiemimic:
+  - rscadd: Added 4 new Excelsior disks, in the style of the Drozd disk that was already
+      found.
+2021-04-11:
+  Omni44:
+  - balance: Moved NT void to EOTP reward pool
+  - code_imp: changed some NT void code.
+  infraredbaron:
+  - bugfix: AMR sprite is fixed
+2021-04-15:
+  AgentMA1:
+  - bugfix: Cigs have prices
+  zoktiik:
+  - admin: Bluespace Technicians now spawn with 99 in each stat, know every language,
+      and have a small change to their ID cards' descriptions.
+2021-04-16:
+  CeUvi:
+  - imageadd: beakers, vials and pill bottles resprite
+  - imagedel: old beakers, vials and pill bottles are gone
+  Ceuvi - sprites, Wouju - code:
+  - imageadd: Added a new sprite for the NT Acolyte Jacket
+  Cocacola4124:
+  - tweak: New players have floating chat enabled by default.
+  Evankhell561:
+  - rscadd: RPG, traitor uplink, mindreader and several other debug items were removed
+      from maints.
+  Joooks:
+  - spellcheck: fixed 2 typos in techno cube
+  Kurgis:
+  - code_imp: Mapfile format readability quick-fix.
+  - tweak: Excelsior design disk has been split into two, and Excelsior stashes now
+      also spawn with an empty design disk.
+  - balance: Excelsior gun designs should spawn somewhat less.
+  MLGTASTICa:
+  - balance: Reduced recoil of the mandella from 19 to 2
+  - balance: Reduced recoil of the avarsala from  33 to 5
+  - balance: Reduced recoil of the lamia from 21 to 5
+  - balance: Reduced recoil from the paco from 10 to 3
+  - balance: Reduced recoil from clarrisa from 19 to 2
+  - balance: Reduced recoil from the makarov from 21 to 3
+  - balance: Reduced recoil fron the consul from 35 to 6
+  - balance: Reduced recoil from the deckard from 40 to 6
+  - balance: Reduced recoil of the handmade revolver from 60 to 7
+  - balance: Reduced recoil from the havelock from 18 to 8
+  - balance: Reduced recoil from the mateba from 38 to 6
+  - balance: Reduced recoil from miller from 50 to 8
+  - balance: Reduced recoil from the skydriver from 50 to 6
+  TheShown, Infrared Baron:
+  - rscadd: Roach cubes
+  Wouju:
+  - rscdel: Removed a premade paper titled "Judgement" from spawning in maint
+  - tweak: Hivemind can't upgrade the supermatter now
+  Wouju, Ceuvi:
+  - imageadd: Resprited paramedic uniform
+  Xoxeyos:
+  - spellcheck: Neotechnology is now Neotheology, in the scores screen.
+  infraredbaron:
+  - bugfix: boltguns now have proper states
+  zoktiik:
+  - rscadd: Added an examine message that states whether or not a cruciform has been
+      activated, and that additionally tells NT members and ghosts whose soul it is.
+  - tweak: Low walls (without a window) and unflipped tables will no longer block
+      "living", "hard-stunned" creatures, meaning that, without any shielding, you
+      can now break a window to space and get spaced if you don't have magboots.
+  - balance: Airflow stun length has been nerfed from 5 to 3 ticks, so that you don't
+      get back up from the stun in the middle of nowhere after getting spaced.
+2021-04-17:
+  CeUvi:
+  - imageadd: fem state for acolyte jacket
+  Evankhell561:
+  - rscadd: the offering rituals.
+  - bugfix: now all miracles count towards the miracle count.
+  - tweak: the Cruciform sense litany now scans everyone around the one performing
+      the ritual.
+  Firefox13:
+  - rscdel: Every CEV Eris crewman, including vagabonds, have been vaccinated against
+      monkism syndrome. Reject monkey, return to modernity.
+  Shazbot194:
+  - rscadd: SA Carbine "Krinkov"
+  - balance: Changed FA AK into the FA Vipr; a Hunting Rifle
+  - tweak: Mirrored Excel AK back sprite so now you can seen wearing two AKMSs.
+  Tea-Primoris:
+  - imageadd: New sprites for smartfridge, soda dispenser and drinks showcase provided
+      by Granodd and Toriate
+  Wouju:
+  - balance: Neotheos now have a wage and starting money, however no external funding
+      so they have to use their department account for wages, it should last enough
+      for five paychecks though.
+2021-04-23:
+  Evankhell561:
+  - tweak: the bioreactor receiver now accepts dead mobs, except humans.
+  - bugfix: autopsy score
+  Wouju:
+  - rscadd: Added parts pouch to a NT disk (the one with pouches and clothes)
+  - tweak: tweaked materials from gun and armour parts, gun part is smaller
+2021-04-24:
+  ? ''
+  : - balance: internal storage for RIGs is now satchel sized
+  CeUvi:
+  - bugfix: fixed overlay layering for beakers and bottles.
+  - imagedel: deleted "labeled" states for all reagent containers, as there is no
+      need in them anymore.
+  CeUvi (sprites):
+  - rscadd: New sprites by CeUvi
+  - tweak: added a rarity value to LMG (woops)
+  - rscdel: old sprites and broken hud code
+  Cocacola4124:
+  - bugfix: Encodes helm computer.
+  - tweak: Most mobs can be mind-swapped into, with a few exceptions.
+  - tweak: If you have robustness of 80 or more you can break cuffs in 5 seconds.
+  Evankhell561:
+  - bugfix: gun assembly no longer returns to the user the gun parts used to create
+      a gun.
+  - tweak: gun that can be created using a gun assembly are no longer displayed according
+      to their spawn frequency.
+  - tweak: obelisks provide less energy regeneration to nearby disciples.
+  - tweak: now when performing the sanctify ritual, all obelisks, temporarily, function
+      as if they have an NT member in their vicinity.
+  - bugfix: the message that appears when performing an offering ritual is now in
+      English.
+  - tweak: offering rituals now let you know what to offer.
+  - tweak: now the miracle of regeneration gives an alert to all the members of the
+      church.
+  - bugfix: fix the craft system, maybe.
+  - rscadd: 'group ritual: VIG.'
+  - rscadd: Divine blessing ritual.
+  - tweak: ghosts can activate the Last Shelter by means of a verb.
+  Firefox13:
+  - rscdel: Evil powers have affected NT religion! "Reveal Adversaries" is no longer
+      able to detect Carrions. Rely on EOTP instead.
+  - tweak: Coolant tanks and coolant behaviour was changed not to cool down entire
+      ship at once.
+  - rscdel: Random disk in 'Zarya' station.
+  - balance: Due to recent [REDACTED] raid on Moebius science station the original
+      blueprint for biological demolecularisor was lost. Replacements are already
+      being researched, but the new resource cost will be higher.
+  Jackofashepard:
+  - rscdel: fun
+  - tweak: max damage for spear
+  - rscadd: 2 more NT acolyte closets
+  - rscadd: 2 more toolboxes of each type
+  - rscadd: 2 more NT acolyte slots and spawn points
+  - tweak: upped NT acolyte cap by 2
+  - tweak: All NTs know latin now
+  - tweak: reduced gun vendor prices (and prices on guns themselves).
+  - rscadd: Fumo
+  - tweak: tweaked resist code so the visible message does not display unless you
+      are actually attempting to break out
+  - balance: you now use the trap to break out of your cuffs faster (basically the
+      total time to completely break out evens out)
+  - bugfix: fixed infinite handcuff in trap exploit
+  - bugfix: reverse boltgun states and dissapearing AMR
+  MLGTASTICa:
+  - balance: AI Emergency forcefield health quadruped (100 > 400)
+  - balance: AI Emergency forcefield no longer dissipates
+  - bugfix: Fixed AI Emergency forcefield not being useable
+  Medcar:
+  - rscadd: Balaclava resprite and vending machine buyab;e
+  Shazbot:
+  - rscadd: Added IH, 2 new FS AKs, and makeshift
+  - balance: Minor tweaks to SA AK size and AP
+  - refactor: AK icons are now in separate files
+  Xoxeyos:
+  - spellcheck: Psyionic is now psionic
+2021-04-29:
+  Wouju:
+  - rscdel: Banishes spears to the eternal realm of the TeeGee github, where it will
+      suffer for all eternity for using bay code
+2021-04-30:
+  AlexMorgan3817:
+  - balance: Removes random lathe disks from Zarya.
+  - tweak: Zarya now selling not full belt for 300 credits.
+  - bugfix: Caching of goods for trade stations now work properly.
+  Cocacola4124:
+  - bugfix: Fixes locker destruction.

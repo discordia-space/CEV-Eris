@@ -578,7 +578,6 @@ its easier to just keep the beam vertical.
 
 //returns 1 if made bloody, returns 0 otherwise
 /atom/proc/add_blood(mob/living/carbon/human/M)
-
 	if(flags & NOBLOODY)
 		return FALSE
 
@@ -592,7 +591,8 @@ its easier to just keep the beam vertical.
 			M.fingers_trace = md5(M.real_name)
 		if (M.species)
 			blood_color = M.species.blood_color
-	. = TRUE
+			if(!blood_color)
+				return FALSE
 	return TRUE
 
 /atom/proc/add_vomit_floor(mob/living/carbon/M, var/toxvomit = FALSE)

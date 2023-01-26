@@ -66,7 +66,7 @@
 	flags = CONDUCT
 	sharp = TRUE
 	edge = TRUE
-	embed_mult = 40 //MADE for embedding
+	embed_mult = 80 //MADE for embedding
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 5, QUALITY_CUTTING = 5)
 	max_upgrades = 0
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")

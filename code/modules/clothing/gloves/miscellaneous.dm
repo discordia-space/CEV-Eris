@@ -198,6 +198,7 @@
 	item_state = "dusters"
 	var/punch_increase = 5
 	price_tag = 20
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/gloves/dusters/silver
 	name = "silver knuckle dusters"

@@ -545,7 +545,8 @@
 	desc = "May God guide you."
 	icon_state = "crusader_hemet"
 	item_state = "crusader_hemet"
-	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
+	body_parts_covered = HEAD|FACE|EYES|EARS
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 5, MATERIAL_GOLD = 1)
 	armor = list(
 		melee = 13,
@@ -565,7 +566,7 @@
 	desc = "Protects the head from damage while you are in the exoskeleton."
 	icon_state = "tanker_helmet"
 	item_flags = THICKMATERIAL
-	flags_inv = HIDEEARS|BLOCKHAIR
+	flags_inv = HIDEEARS|BLOCKHEADHAIR
 	siemens_coefficient = 1
 	armor = list(
 		melee = 4,

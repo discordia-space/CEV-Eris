@@ -5,9 +5,7 @@
 			<tr>
 				<th>Station
 				<th>Name
-				{{if data.prg_type != "ordering"}}
-					<th>Price
-				{{/if}}
+				<th>Price
 				<th>Amount
 				{{if data.prg_type != "ordering"}}
 					<th>Send
@@ -17,9 +15,7 @@
 				<tr>
 					<td>{{:value.station}}
 					<td>{{:value.name}}
-					{{if data.prg_type != "ordering"}}
-						<td>{{:value.price}}
-					{{/if}}
+					<td>{{:value.price}}
 					<td>{{:(isNaN(value.available) ? '' : +value.available + '/') + value.amount}}
 					{{if data.prg_type != "ordering"}}
 						<td style="width: 0">{{:helper.link("", 'check', {'PRG_offer_fulfill' : value.index, 'PRG_offer_fulfill_path' : value.path}, (value.available >= value.amount && value.amount > 0) ? null : 'disabled')}}

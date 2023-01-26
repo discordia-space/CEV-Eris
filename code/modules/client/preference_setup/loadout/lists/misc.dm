@@ -18,7 +18,7 @@
 /datum/gear/clown
 	display_name = "clown pack"
 	path = /obj/item/storage/box/clown
-	allowed_roles = list("Vagabond")
+	allowed_roles = list(ASSISTANT_TITLE)
 
 /datum/gear/dice
 	display_name = "dice pack"

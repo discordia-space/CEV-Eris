@@ -1,0 +1,204 @@
+2020-05-06:
+  Kurgis:
+  - tweak: Changes how gun icons are pathed code-wise, this will have no noticeable
+      effect in-game.
+  - tweak: Inspector stats adjusted to focus less on Biology skill. MedSpec stats
+      adjusted to focus on Biology skill instead of Vigilance.
+  - tweak: Gunnery Sergeant given MedSpec access, as it's essentially an extension
+      of the Brig. Inspector given MedSpec access, as it's important for forensics.
+  - imageadd: New folder sprites.
+  - bugfix: AI now properly receives cryosleep respawn bonus when using the 'Wipe
+      Core' command, and entering Intelligence Storage.
+  - imageadd: Added new sprites for existing material stack items, that being steel,
+      plasteel, plastic, iron, wood, and all glass.
+  - imagedel: Removed replaced material sprites from the above addition.
+  - imagedel: Removed unused fcardholder icon.
+  - imageadd: New Ian sprite done by Watler, in addition of a puppy sprite I did based
+      off it.
+  TorinoFermic:
+  - tweak: Pinpointer will point to nuclear bomb if the disk has been loaded into
+      it.
+  - bugfix: Items will now eject from gibbed roaches.
+  - bugfix: Mechs won't despawn with a occupant while going out of current map.
+  - bugfix: Cleaned up the weird coffin code.
+2020-05-11:
+  Autisem:
+  - rscadd: A sink for NeoTheologists hydroponics
+  - rscadd: Both gene machines are added to NoeTheologists hydroponics
+  - rscadd: Atropa belladonna, a new berry which contains atropine
+  - rscadd: Atropine, which stops death and heals oxy damage, can be OD'd and will
+      cause oxy damage when it does
+  - bugfix: fixed roach taming not working, it can now be done with potato's
+  - balance: Genes are now unobfuscated, meaning that it will say what they do instead
+      of the guessing game
+2020-05-12:
+  Crossedfall:
+  - rscadd: Adds documentation to the automated changelog generator script
+  Hyperio:
+  - rscadd: Added holowarrant item to display arrest and search warrants
+  - tweak: Tweaked Warrant Assistant application for holowarrant use
+  - bugfix: Fixed electric chair not working
+  MadmanMartian:
+  - bugfix: Fixes robot equipment that would use the internal cell, not doing so.
+  - bugfix: Fixes the blitzshell being on accessible camera networks.
+  Smokingsquirrel:
+  - rscadd: new prefix "d" for german language
+2020-05-14:
+  Autisem:
+  - rscadd: A exmaple stash sack that hides from t-ray scanners
+  - bugfix: storage items can now hide from t-ray scanners
+  - code_imp: storage now has a is_tray_hidden, if set to true it wont be found my
+      the scanner
+  Kurgis:
+  - code_imp: The unincluded mecha module has been fully removed from the codebase,
+      along with changing many naming conventions used in code to be closer to Baystation.
+      This should have no effect in-game.
+  MadmanMartian:
+  - bugfix: Fixes Blitzshells being able to drop their module items
+  - bugfix: Fixes Blitzshells being unable to pick up secure documents
+  Tech3434:
+  - bugfix: when you upgrade manipulators inside the cloner it won't work at all
+  - bugfix: manipulators don't actually speed cloning process
+  TheShown911:
+  - rscdel: Removed objectives from traitors, lings and blitzshell
+  - rscdel: Removed double agents
+  drexample:
+  - bugfix: fixed changelog choking when encountered with wrong prefix
+2020-05-15:
+  Fritcher:
+  - rscadd: New drug that heals breakdowns.
+  - rscadd: 5 breakdowns requested by Reere
+  - rscdel: Plastic is no more toxic.
+  - balance: overall sanity balance
+  Hyperio:
+  - bugfix: Fixed cyborgs not being able to pick up items (ores, sheets, ...)
+  - code_imp: New way to define in which direction a craft should be spawned
+  Kurgis, WatlerJe:
+  - rscadd: Added new wall-mounted fire closets across the CEV Eris.
+  - tweak: Firefighter equipment comes stored inside a duffelbag.
+  - imageadd: New sprites from WatlerJe for wall-mounted emergency lockers, fire-safety
+      closets, and MiniMed Vendor.
+  MadmanMartian:
+  - bugfix: Fixes Ztravel making you invisible if you spammed it.
+  - bugfix: Fixes the can_climbs for some Ztravel methods not working properly.
+  - tweak: Some Ztravel methods now give more player feedback.
+  TorinoFermic:
+  - tweak: Radio prefix will now work with any capitalization
+2020-05-16:
+  Keekenox:
+  - imageadd: New bottle icons and reagent fillings.
+  Kurgis:
+  - rscadd: The Preacher has a nifty new hat, any resemblance to another hat of a
+      notable head of staff is surely heretical thinking.
+  WatlerJe:
+  - imageadd: New icons for lighters and zippos, check them out!
+  - imagedel: Removed old lighter sprites.
+2020-05-17:
+  Carbonhell:
+  - refactor: Refactored the perk system to be easier to use and more robust.
+  - rscadd: Perks now show up with their icon, name and description in the "Show stats
+      and perks" in IC tab.
+  - rscadd: All IH members start with a perk that reduces their sanity loss at the
+      sight of the dead.
+  - rscadd: All Moebius staff start with a perk that reduces the chance to trigger
+      a chem addiction, and boosts basic NSA by 10.
+  - rscadd: All Vagabonds start with a perk that caps their environmental sanity loss
+      to 40 instead of the default 20.
+  - rscadd: Guild Merchants start with a perk that lets them use cash bundles as inspiration
+      objects, instead of just oddities. More means more levels, and the stat is picked
+      randomly.
+  - rscadd: 'All the guild workers start with a perk that gives them one of four possible
+      benefits: a random language, knowledge of an active traitor contract, a stash
+      location paper or a rare object.'
+  - rscadd: All NeoTheology crew starts with a perk that boosts their sanity regeneration
+      when near an altar.
+  Kurgis:
+  - bugfix: Zippos no longer invisible when you flick them on.
+  Smokingsquirrel:
+  - tweak: Gave CM maintenance access
+  - tweak: Fixed wigs and maska helmets eating facial hair
+  - code_imp: civilian.dm, misc.dm, armor.dm
+  Wowzewow:
+  - tweak: Grenade shell sprites are now smaller to match the other sprites in scale.
+2020-05-19:
+  WatlerJe:
+  - imageadd: New disposal chute sprites.
+  - imageadd: New matchbox sprites.
+2020-05-20:
+  Hyperio:
+  - bugfix: Fixed crafting system not checking the required material
+  hyperioo:
+  - rscadd: Added holowarrants to security vendors
+2020-05-21:
+  AlexMorgan3817:
+  - bugfix: fixed MC crash caused by wrong simple_animal-AI logic for exosuits.
+  - bugfix: mobs without client now won't be able to become ghost.
+  - bugfix: fixed exosuits' recharging.
+  - rscdel: exosuits' personal cells replaced by large/high cells.
+  - code_imp: removed some `src.`-shit.
+  hyperioo:
+  - bugfix: Fixed bedsheet duplication and storage issues
+2020-05-22:
+  Anonmare:
+  - server: Fixes an exploit to prevent filesystem access
+  Evankhell561:
+  - bugfix: Vasiliy Dokuchaev airlock buttons
+  Hyperio:
+  - bugfix: Fixed marshal having another marshal as assassination target
+  Kurgis:
+  - balance: Excelsior cells are now somewhat marginally better now.
+  - bugfix: No more tank icons appearing over everyone.
+  Kurgis, WatlerJe:
+  - rscadd: There's a new Treatment locker within the PermaBrig. Keeping someone detained
+      against their will is aggression, violating the NAP. So now anyone can leave
+      if they wish to do so voluntarily.
+  - imageadd: New tank & belt icons for utility and tactical belts.
+  - imagedel: Deleted some unused assets, and replaced many.
+  - spellcheck: Pre-made paper is no longer a horrible mess to read in-game.
+  WatlerJe:
+  - imageadd: Gloves have gotten a touch-up.
+2020-05-23:
+  Evankhell561:
+  - code_imp: 'del double add: in pr template'
+  - bugfix: alien machine sprite
+2020-05-24:
+  Hyperio:
+  - bugfix: Fixed runtime in summon_mobs
+  - rscadd: Added a shovel to the toolset of maintenance drones
+2020-05-25:
+  Evankhell561:
+  - rscadd: large grenades can contain slime extracts
+  - code_imp: more cell.give and cell.check_charge
+  Hyperio:
+  - rscadd: Added new destinations in space for merc shuttle
+  Pariah919:
+  - balance: Homewrecker now fits on your back and belt. And does 26 damage wielded.
+2020-05-27:
+  Hyperio:
+  - bugfix: Fixed runtime in spiderbot.dm
+2020-05-29:
+  Hyperio:
+  - bugfix: Fixed runtime in priest.dm
+  - bugfix: Fixed a runtime when trying to read stats and perks
+  - bugfix: Fixed runtime in mind.dm
+  Kurgis:
+  - tweak: Migration events should be more aggressive when The Jester is selected.
+  Kurgis, Toriate:
+  - rscadd: New portable freezers for helping with all your spoilable groceries.
+2020-05-31:
+  ACCount:
+  - rscadd: You can now hot swap exosuit software boards and power cells while in
+      maintenance mode. Click the exosuit with a cell or a board to insert, click-drag
+      it on yourself to remove.
+  - rscdel: Removes random exosuit fail chance.
+  - tweak: Changes exosuit mechfab tabs and R&D tech tree to something a bit more
+      sane.
+  - bugfix: Fixes exosuit construction and deconstruction not working with tool qualities.
+  - bugfix: Fixes a good dozen of other exosuit bugs.
+  Evankhell561:
+  - admin: option Send Back To Lobby
+  Hyperio:
+  - rscadd: Added tobacco seeds and leaves to hydroponics
+  - tweak: Tweak roach and spider behavior with windows
+  TorinoFermic:
+  - bugfix: Missing sound for catwalks in space.

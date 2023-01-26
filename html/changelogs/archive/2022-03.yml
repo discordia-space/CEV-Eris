@@ -1,0 +1,127 @@
+2022-03-04:
+  Alliostra:
+  - bugfix: fixed .60 ammo boxes not containing as many shells as they should
+  - tweak: moved the embedded smg to gun crafting window, made it easier to craft
+  ValoTheValo:
+  - bugfix: Fixed NVGs costing biomatter to make in the protolathe
+2022-03-05:
+  Alliostra:
+  - rscadd: Adds new plastic goggles
+  - rscadd: 4 varieties of tropical shirts to the drip vendor
+  - rscadd: 3 varieties of puffy coats to the loadout.
+  - rscadd: 3 varieties of sneakers to the loadout.
+  - rscadd: Adds rapid 3-round-bursts to the Sol
+  Humonitarian:
+  - tweak: hunting rifle and PD rifle crates now contain Tosshin and Vipr respectively
+  - balance: changed the prices of the hunting and PD rifle crates, increased price
+      of tosshin, reduced price of Vipr
+  - bugfix: OR guns are no longer FS
+  - spellcheck: fixed some typos
+  - bugfix: emitter no longer hits low walls
+  - rscadd: 'Two new magazine types: extended .20 magazines for the vintorez and wintermute,
+      as well as .30 drum magazines exclusively for the Krinkov'
+  - rscadd: Severity 4 explosions implemented
+  - balance: blast and explosive grenades now less deadly
+  Hyperio:
+  - rscadd: New sprite for deep drill by CeUvi
+  - rscadd: Mining turret that shoots golems on sight.
+  - rscdel: Removed old mining drill from the game
+  - bugfix: Fix issue with plasma golem not exploding properly without atmosphere
+  - tweak: Reduce drill digging radius from 7 to 4
+  - rscadd: Add OneStar stalkers
+  - tweak: Asteroid and exoplanet turfs are now indestructible
+  - bugfix: Fix issue with JTB portals when releasing too soon
+  Trilbyspaceclone:
+  - rscadd: Mercenaries now have a radio with their own privet channel rather then
+      needing to buy it form their uplinks - But its more limited then the version
+      they do buy
+  hyperioo:
+  - bugfix: Covers now trigger properly
+2022-03-12:
+  Alliostra:
+  - balance: The NT spear now deals the intended 45 damage when thrown instead of
+      75 damage, and deals 50 style damage instead of 20.
+  - bugfix: fixed the fullauto/burst damage reduction being applied twice. doubled
+      fullauto and burst damage reduction.
+  - tweak: The voice changer mask can now change appearances like a chameleon mask.
+  - tweak: The "change voice" and "toggle voice" verbs of the voice changer have been
+      moved to the chameleon item tab
+  - tweak: the "Keep hotkeys on mob change" preference will now be toggled on by default
+  - rscadd: added the ability to quickly switch between different loadouts for chameleon
+      clothes if the chameleon jumpsuit is worn.
+  - rscadd: Added the chameleon satchel
+  - bugfix: chameleon items will no longer block other clothing sprites from appearing
+      when they weren't supposed to
+  - tweak: chameleon clothes are now made of plastic instead of bioatter
+  - tweak: the seclite now uses half as much power per tick as it did before.
+  - balance: greatly buffed the damage, AP and bullet velocity of the mandella
+2022-03-19:
+  Alliostra:
+  - bugfix: chemical reagent smoke should be much more reliable now.
+  - tweak: weaken() makes you drop items again
+  - rscadd: The "Old newspaper" oddity can now be used to zoom out a couple tiles.
+  Autisem:
+  - rscadd: priests may use new litany to summon items from the EOTP
+  - tweak: Only 1 High Inquisitor's Seal may be recieved from the EOTP
+  Humonitarian:
+  - rscadd: Nature's Blessing Cruciform upgrade now heals the heavily injured
+  - rscadd: Heatwave and NT Stinger shells for the Protector Grenade Launcher
+  - rscadd: Velutum throwing javelin
+  - balance: Reworks NT disks for the EOTP
+  - bugfix: Fixes shrapnel and sting grenades misbehaving at long ranges
+  - bugfix: Stacks no longer runtime when bloody
+  - refactor: Throwing knife code improved
+  - bugfix: Iriska and Dusty date less often
+  - imageadd: kalash drum mag sprite added
+  MLGTASTICa:
+  - code_imp: RIG UI's now update at clicks.
+  githubuser4141:
+  - tweak: Adds the syndicate space suit to the uplink for the price of 3 TC.
+  greggbot:
+  - bugfix: Attempting to construct a bioreactor platform now gives the correct result,
+      instead of a tank platform.
+2022-03-21:
+  Autisem:
+  - bugfix: dielthymine did not process properly in trays.
+  - bugfix: eotp quick fix
+  - rscadd: priests may use new litany to summon items from the EOTP
+  - tweak: Only 1 High Inquisitor's Seal may be recieved from the EOTP
+2022-03-25:
+  StiffRobot:
+  - bugfix: The Maintenance Control Hatch button in perma now opens that shutter instead
+      of the (nonexistant) one at the firing range
+  githubuser4141:
+  - balance: Adds materials to grenades, weapon mods and a few various knives you'd
+      find on uplinks or in maints. Now traitors can donate materials to science by
+      purchasing crap from their uplinks!
+2022-03-26:
+  Humonitarian:
+  - bugfix: fixed armor calculation bug
+  - tweak: Diving & Sliding is now based on momentum
+  - bugfix: Sliding no longer starves you out
+  Hyperio:
+  - bugfix: Fixed broken vent in kitchen quarters
+  MLGTASTICa:
+  - balance: RIG Combat dispenser now has hyperzine , nutriment , tricord and tramadol
+  - balance: You can now add and remove beakers from modular injectors
+  - balance: Printed modular injector(chem dispensers) no longer start filled
+  - balance: Uplink injector price changed from 6 to 3 tc as it no longer starts full.
+  - code_imp: Added framework for Cyborg trait , removed a few variables and replaced
+      them with robot traits
+  - balance: Robot upgrades can now be removed
+  - balance: Hacked cyborgs can't be hacked by other AI's if they've already been
+      hacked by another one.
+  drexample:
+  - bugfix: Fixes CLI Error
+  githubuser4141:
+  - tweak: Ports new sprites from Baystation with a /slight/ adjustment to the combat
+      exosuit chestpiece to account for it being transparent. Ports exosuit diagnoses
+      via clicking the exosuit health doll. Changes mech walking and turning sounds.
+      Ports exo clamps being able to hold up to 5 items. Ports exosuit storage spaces
+      which can be accessed via click-and-drag. Ports exosuit health and temperature
+      sensors (click the mech health icon / air gauge for more info.) Ports a fix
+      for mechs dying instantly in too-hot air, now they properly receive damage.
+  - bugfix: Fixes simple mobs ignoring mech armor.
+  - balance: Merges 'radproof' exo armor into 'plain' exo armor to clean things up.
+      Minor armor tweaks, buffs the NV mech sensors to 50 HP, same as the thermals.
+      Exosuits now receive the correct damage when overheating.

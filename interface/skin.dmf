@@ -620,13 +620,10 @@ macro "hotkeymode"
 		command = "quick-equip"
 	elem
 		name = "F"
-		command = "a-intent left"
+		command = "blocking"
 	elem
-		name = "CTRL+F"
+		name =  "CTRL+F"
 		command = "a-intent left"
-	elem
-		name = "G"
-		command = "a-intent right"
 	elem
 		name = "CTRL+G"
 		command = "a-intent right"

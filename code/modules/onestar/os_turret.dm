@@ -1,6 +1,6 @@
 /obj/machinery/power/os_turret
-	name = "One Star turret"
-	desc = "A turret of the One Star variety."
+	name = "One Star Gauss turret"
+	desc = "A One Star made turret with a mounted QJZ-295 gauss machinegun." //A turret of the One Star variety.
 	icon = 'icons/obj/machines/one_star/machines.dmi'
 	icon_state = "os_gauss"
 	circuit = /obj/item/electronics/circuitboard/os_turret
@@ -16,22 +16,26 @@
 
 	// Shooting
 	var/obj/item/projectile/projectile = /obj/item/projectile/bullet/gauss
+	var/shot_sound = 'sound/weapons/guns/fire/energy_shotgun.ogg'
 	var/number_of_shots = 5
 	var/time_between_shots = 0.5 SECONDS
 	var/list/shot_timer_ids = list()
 	var/cooldown_time = null
 
 	// Internal
-	var/emp_cooldown = 4 SECONDS
+	var/emp_cooldown = 8 SECONDS
 	var/emp_timer_id
 	var/on_cooldown = FALSE
 	var/cooldown_timer_id
 
 /obj/machinery/power/os_turret/laser
+	name = "One Star laser turret"
 	icon_state = "os_laser"
+	desc = "A One Star made turret with a mounted QJZ-958 laser machinegun." //A turret of the One Star variety.
 	circuit = /obj/item/electronics/circuitboard/os_turret/laser
 	range = 10
 	projectile = /obj/item/projectile/beam/pulsed_laser
+	shot_sound = 'sound/weapons/Laser.ogg'
 	number_of_shots = 3
 	time_between_shots = 0.3 SECONDS
 	cooldown_time = 2 SECONDS
@@ -99,7 +103,7 @@
 			if(distance_to_target < nearest_valid_target_distance)
 				nearest_valid_target = L
 				nearest_valid_target_distance = distance_to_target
-	
+
 	if(nearest_valid_target)
 		try_shoot(nearest_valid_target)
 
@@ -201,8 +205,10 @@
 
 /obj/machinery/power/os_turret/proc/take_damage(amount)
 	machine_integrity = max(machine_integrity - amount, 0)
-	if(machine_integrity <= 0)
+	if(!machine_integrity)
 		stat |= BROKEN
+	else if(prob(50))
+		do_sparks(1, 0, loc)
 	return amount
 
 /obj/machinery/power/os_turret/proc/try_shoot(target)
@@ -234,11 +240,11 @@
 		for(var/i in 1 to to_shoot)
 			shot_timer_ids += addtimer(CALLBACK(src, .proc/shoot, target, def_zone), timer, TIMER_STOPPABLE)
 			timer += time_between_shots
-	
+
 	if(cooldown_time && !returning_fire)
 		on_cooldown = TRUE
 		cooldown_timer_id = addtimer(CALLBACK(src, .proc/cooldown), cooldown_time, TIMER_STOPPABLE)
-	
+
 	if(returning_fire)
 		returning_fire = FALSE
 
@@ -248,6 +254,7 @@
 	set_dir(get_dir(src, target))
 	var/obj/item/projectile/P = new projectile(loc)
 	P.launch(target, def_zone)
+	playsound(src, shot_sound, 60, 1)
 
 /obj/machinery/power/os_turret/proc/cooldown()
 	on_cooldown = FALSE

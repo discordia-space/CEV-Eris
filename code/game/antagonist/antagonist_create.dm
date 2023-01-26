@@ -41,6 +41,8 @@
 	if(announce)
 		greet()
 
+	log_admin("[target] became the [role_text].")
+
 	return TRUE
 
 /datum/antagonist/proc/special_init()

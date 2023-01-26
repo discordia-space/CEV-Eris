@@ -35,10 +35,8 @@
 
 	if(pod.start())
 		var/damage_modifier = 1
-		if(is_inquisidor(user) || is_preacher(user))
+		if(is_inquisidor(user) || is_preacher(user) || is_acolyte(user)) // previously acolytes had 0.5 modifier but that's too bad
 			damage_modifier = 0
-		else if(is_acolyte(user))
-			damage_modifier = 0.5
 		pod.clone_damage = clone_damage * damage_modifier
 	return TRUE
 

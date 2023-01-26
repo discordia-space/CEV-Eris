@@ -1,0 +1,196 @@
+2020-12-02:
+  DarkLevel - code, Watler'Je - Sprites.:
+  - rscadd: Gnome costume set.
+  Evankhell561:
+  - bugfix: common rig modules can now be spawned in maint.
+  - bugfix: Various items that should be spawned in maint are now actually spawned
+      in maint.
+  - bugfix: ethanol (parent) no longer increases sanity.
+  Garen7:
+  - rscadd: Added a pipe dispenser to toxins
+  - rscadd: Added a gas filter to toxins
+  - rscadd: Added a connector port directly to space
+  - rscadd: Replaced a bedroom with a tachyon array room on the science shuttle
+  - tweak: The mixing chamber monitors can now control the air injectors and vents
+      in the chambers
+  - rscdel: Removed pumps from toxins that are no longer needed
+  - tweak: Moved the von krabin infront of toxins so you can reach the rnd apc
+  - tweak: Replaced the plasma glass on the mixing chamber with reinforced plasma
+      glass so it doesn't break so easily
+  - bugfix: Fixed the toxins igniter buttons firing both igniters despite which button
+      you pressed
+  Tea-Primoris:
+  - balance: Telepad can't access centcomm and the one star dungeon levels
+  TheShown911:
+  - bugfix: fixed an exploit that could give you infinate money
+  - rscadd: Added new info to surgery UI and changed the backround a bit/
+  ma44:
+  - tweak: Roaches and other superior animals are more optimized and shouldn't cause
+      as much lag as before.
+2020-12-03:
+  DarkLevel - code, Matt - code(resuscitator base).:
+  - rscadd: resuscitator reagent
+  - balance: Molitor-Riedel Enricher now produce resuscitator.
+  - bugfix: maneki neko now will work properly.
+  - bugfix: sanctifier is no longer spawns in maintenances.
+  Evankhell561:
+  - tweak: gyropistol no longer spawns in maint.
+  - tweak: cal .70 has less spawn frequency.
+  TheShown911:
+  - rscadd: Added another kidney.
+  - bugfix: fixed a surgery UI bug where the UI would break if a person was cruciformed
+  - bugfix: fixed a bug where the same implant would show up twice in the UI
+  genessee596:
+  - rscadd: A new assortment of fullbody vests that can be found across the ship
+2020-12-06:
+  DarkLevel:
+  - rscadd: Adding new perk "Market Professional"
+  - bugfix: Fixing some enricher old text
+  Evankhell561:
+  - bugfix: The desires are displayed in the chat.
+  Garen7:
+  - rscadd: Added an action button for toggling breath masks
+  - balance: Rebalances style to favor vanity gear over powergaming gear
+  - tweak: Gunfire residue no longer makes things less stylish
+  Harrivchaw:
+  - tweak: Grenade-like spiders (Toxic, Explosive, Flashbang) now emit more obvious
+      tell-tale signs before activating
+  MadmanMartian:
+  - bugfix: The health analyzer, and modular computer health application, now show
+      the times of death of an individual again.
+  - tweak: Attempting to put a brain in an MMI now informs the brain they're being
+      MMI'd, and informs the user if the brain is no longer playing.
+2020-12-10:
+  AlexMorgan3817:
+  - tweak: McRonalds now buy not roaches, but their meat.
+  - bugfix: fixed that special offers wasn't able to be fulfilled in some situations
+  - bugfix: special offers won't able to request 0 from 0 things
+  - bugfix: fixed freezing of UI after first buy
+  - rscadd: You can now sell things to trade stations
+  - rscadd: Trade beacons now on activation not just animated, but have sparks. If
+      you will be on tile where goods will "land", you will be injured.
+  - rscadd: Now you can't farm crates for free, if you buy goods with crates you will
+      pay for crate as commision
+  - rscadd: Added cat ears that can be bought in McRonalds together with Chocola cake
+  - rscadd: You can now input how many goods you want to add in cart.
+  - spellcheck: Fixed typos on GBT 'Suit Up'
+  - spellcheck: FSMS 'Kaida' fixed unfinished descri
+2020-12-11:
+  Evankhell561:
+  - tweak: the odditys created by the artist are less powerful.
+  - tweak: the locations in the names of the statues are more varied.
+  - tweak: now the prices of artworks are set when initializing the object and are
+      generally more expensive.
+  - tweak: now there can only be two artists in the round.
+  - tweak: now artistic oddities have no perk.
+  - tweak: artwork guns now have sprite inhand.
+  - tweak: perk artist increased insight gain by 150% instead of 200%.
+  - bugfix: now there can only be two artists per round
+2020-12-12:
+  MadmanMartian:
+  - balance: The reality complicator is now a static structure, confined within the
+      technomancer exultant's office.
+  - balance: Carrion Maws now cost 0 genome points.
+  - balance: Carrion spider nests cost 1 genome point each to place.
+  Omni44:
+  - rscadd: Pouches to NT's clothes disk.
+  - rscadd: Biomatter cost for pouches.
+  genessee596:
+  - rscadd: Admin cells intended for debugging and admemery
+2020-12-13:
+  MadmanMartian:
+  - tweak: Removing an Excel's implant now gives a bit more feedback to viewers as
+      to why that person's head explodes.
+2020-12-14:
+  DarkLevel - code, CeUvi - sprites.:
+  - rscadd: Cruciform Forge
+  MadmanMartian:
+  - bugfix: Roaches and spiders can no longer hunt you through walls.
+2020-12-15:
+  CeUvi:
+  - imageadd: updated old sprites and added 2 more helmet types
+  - rscadd: Added helmet selection to the techno voidsuite
+2020-12-18:
+  Evankhell561:
+  - tweak: artwork descriptions are better now I think.
+  - bugfix: revolver artwork now has a different inhand sprite for each one.
+  - tweak: Now odditys lose their perk on first use.
+  - tweak: Odditys now have a 60% chance to have an associated perk.
+  Harrivchaw:
+  - bugfix: Fixes Excelsior Machine Gun
+  MadmanMartian:
+  - tweak: The MBO's office is now connected to chemistry.
+  StiffRobot:
+  - tweak: Read ID Card verb was removed, its code got merged with examine
+  drexample:
+  - rscadd: Ports HTML5 jukebox
+  genessee596:
+  - rscadd: Admin stock parts intended for debugging
+2020-12-19:
+  DarkLevel:
+  - bugfix: EotP first day fix
+  ? DarkLevel - coding; Armolitskiy - sprites (NeoTheoligan Medkit); CeUvi - sprites
+    (Eye of the Protector), Techbro from Eris - sprites (NT oddity).
+  : - rscadd: Eye of the Protector
+    - rscadd: NeoTheologian Medkit
+    - rscadd: NT oddity
+  DarkLevel - coding; Armolitskiy - sprites.:
+  - rscadd: Punk Vest
+  - rscadd: Windbreaker
+  - rscadd: Cyberpunk vest
+  MadmanMartian:
+  - bugfix: Body prosthesis is now not limited by faction again
+  - rscadd: You can now craft makeshift prosthetics
+  - rscadd: Moebius can now opt in to a full body prosthesis through character loadouts.
+  - rscadd: The misc tools in robotics surgery bay have been replaced with a surgical
+      medkit.
+  TermService:
+  - bugfix: The door flickers if you do not have access but you click on it
+2020-12-20:
+  MadmanMartian:
+  - bugfix: The chemistry shutters now extend to the windows added in the extension.
+2020-12-22:
+  Bloodpriest:
+  - imageadd: resprited idle and dead sprites, added moving animation for Kampfer,
+      Panzer, Seuche, Jager and Gestrahlte roaches.
+2020-12-24:
+  DarkLevel:
+  - bugfix: LongSword now HUGE
+  MadmanMartian:
+  - rscdel: Removes the ability to hack the jukebox for meme songs
+  - bugfix: Fixes deepmaint disabling the ship's nuke
+  SweptWasTaken:
+  - bugfix: fixed rogue pixels in christmas.dmi
+  TheShown911:
+  - rscadd: Blood/Oxygen/Nutriment requirements/
+  - balance: nerves are capped at 50% agony damage reduction
+  - balance: Some extrenal organs have extra space.
+2020-12-26:
+  Tea-Primoris:
+  - balance: Guns damage reverted.
+  - balance: Gladstone now have reduced damage.
+2020-12-28:
+  MadmanMartian:
+  - balance: Something moving over a chameleon projection now disables the projection
+  - balance: Removes the cigarette butt from being the default projection of a cham
+      projector
+  Wouju:
+  - rscdel: Removed Augmented Shades from being spawned
+2020-12-29:
+  DarkLevel:
+  - balance: Crusader armor now have bullet/energy protection 50 instead of 30
+  MadmanMartian:
+  - balance: The value of the contents of surplus weapon and ammo crates from guild,
+      is now more or less equivalent to the cost of the crate.
+  - tweak: The excelsior stash now has to be summoned, by a member of excelsior.
+2020-12-30:
+  Evankhell561:
+  - bugfix: solidifier no longer crashes the server.
+2020-12-31:
+  MadmanMartian:
+  - balance: Using the Harpoon to teleport onto a wall now telefrags you.
+  Omni44:
+  - rscadd: Excruciator disk
+  - rscadd: Excruciator's cost
+  - balance: rebalanced ammo pouches
+  - tweak: fixes light on NT helmets.

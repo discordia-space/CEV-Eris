@@ -1,0 +1,356 @@
+2022-09-03:
+  Humonitarian:
+  - balance: most roaches and spiders slowed down to be closer to old speed
+  - balance: New armor system implemented
+  - tweak: roach sizes changed
+  LetterN:
+  - code_imp: ci fix.
+  - code_imp: update apc initialize/new code
+  - code_imp: machine checking is during lateinit for areas
+  MLGTASTICa:
+  - balance: Reworked interactions between departamental artifacts
+  - balance: Grab speed also takes the affected's robustnesss into account now
+  - balance: flip-in-hand no longer forces people to rest
+  - code_imp: Added the AI-like-control component , can only be applied on humans
+      , provides AI-like shortcuts to humans.
+  - bugfix: Fixed C4 not deleting girders properly
+  - balance: Reduced C4 minimum time from 5 seconds to 2
+  - balance: Reduced planting time for C4 from 5 seconds to 2.
+  Pink-Chink:
+  - rscadd: Added aberrant organs
+  - rscadd: Added organ lab to medbay
+  - rscadd: Added medi-sarcophagus, organ vendor, organ fabricator, regurgitator,
+      and organ fridge
+  - rscadd: Added new wiring for the new vendors
+  - rscadd: Added new deep maint spawns
+  - tweak: Cruciforms will rip your guts out
+  - tweak: Back Alley Organs require an autolathe with ORGAN_GROWER
+  - tweak: Created a new spawner for deep maint that includes the aberrant machines
+  - tweak: Organs will be in stasis when inside smartfridges and the regurgitator
+  - tweak: Deep maint cryo room has medi-sarcophagi instead of sleepers
+  - bugfix: Fixes crayon eating
+  - code_imp: Added some procs to internal organs to handle mods
+  - code_imp: Added selective recycling logic for autolathes (only used for the organ
+      fabricator)
+  - bugfix: Fixed modded organs exploding in curciform holder's hands
+  - bugfix: Fixed a bug with mod removal when the modded organ explodes
+  assortedbeads:
+  - rscadd: Added oversized poncho sprite
+  - rscadd: Added beginning of code for future cloaks and ponchos
+2022-09-04:
+  Hyperio:
+  - bugfix: Fixed map issues for the CI
+  MLGTASTICa:
+  - bugfix: Fixed shortwave radio not spawning bluespace items
+  - bugfix: Fixed organ naming having a + in the middle.
+  - code_imp: Removed a debug message from the von-krabin.
+  - bugfix: Fixed techno-radio broadcasting
+  - balance: Made eyes take double the damage to be broken,
+  Pink-Chink:
+  - bugfix: Fixed items getting stuck in the regurgitator
+  - bugfix: Fixed situation where regurgitator biotic substrate count would go negative
+  - bugfix: Fixed potential issue with swapping parts on the regurgitator
+  maikilangiolo:
+  - bugfix: fixed improper .40 bullet pile size
+2022-09-05:
+  Pink-Chink:
+  - bugfix: Turns off sprite generation logging due it being a source of significant
+      lag
+  - bugfix: Removed worldwide check for deprecated object type
+  - bugfix: Fixed artwork revolver Initialize() runtime
+  TheShown911:
+  - bugfix: fixed possible carp hard dels
+2022-09-06:
+  MLGTASTICa:
+  - bugfix: Fixed the eye damage from flashes always being doubled/
+2022-09-10:
+  Humonitarian:
+  - balance: gun firerate now more accurate
+  - balance: Molly now has a burst-mode instead of FA
+  - bugfix: bugs related to firerate and gun UI
+  - balance: fragment damage adjusted for new armor system
+  - bugfix: fragment damage type fixed
+  - rscadd: Cover properly triggers when overshooting
+  - balance: bonus damage from gun mods now applies only once to buckshot
+  Hyperio:
+  - rscdel: Disable release of junk field
+  Kegdo:
+  - rscadd: irish whip on humanoid spinning grab special
+  - rscadd: gut punch grab special
+  - rscadd: first aid grab specials
+  - rscadd: countering grab specials
+  - rscadd: nerve strike grab specials
+  - rscadd: grab special grab special
+  - rscadd: elbow drops, more feedback for jointlock grab special and suplex grab
+      special
+  - balance: buffed the damage of suplex grab special
+  - tweak: dropkick grab special shares the same aim slot as suplex grab special
+  - rscdel: flipping on humanoid spinning grab special
+  - rscdel: dislocating grab special
+  - rscadd: white tank top
+  - rscadd: boxer jacket
+  - rscadd: wifebeater in loadout
+  - rscadd: MRB reference in loadout
+  MLGTASTICa:
+  - bugfix: Fixed guild radio bluespace item spawning.
+  Pink-Chink:
+  - rscadd: Adds Moebius Bio-Engineer, a new MoeMed role for genetics + viscera
+  - rscadd: Added mod attach/remove buttons to organs in the surgery window
+  - rscadd: Added examine button to aberrant organs in the surgery window
+  - rscadd: Added dependent, enigmatic, and parasitic teratomas to the loot drop pool
+  - rscadd: Added Moebius genetics and viscera disks
+  - rscadd: Added parenchymal membrane
+  - balance: Aberrant organ examine info requires 35 BIO and 10 COG
+  - balance: Organoids don't have a chance to be destroyed on failed removal
+  - balance: Durable membrane and biostructure gel size mod reduced to 0.25
+  - balance: Hormone blood-clotting effect increased to 0.2
+  - tweak: Reduced BIO req for regular organ info from 40 to 35
+  - tweak: Genetics moved to medical, psych moved to science
+  - tweak: Sci goggles allow user to see organoid information
+  - tweak: Reagent-based teratomas are separated by their reagent pool
+  - tweak: Parasitic organoids reworked
+  - tweak: Renamed regurgitator to disgorger
+  - tweak: Organs don't rot in vending machines
+  - tweak: Halved spawn rate of deep maint organ machines
+  - bugfix: Fixes disgorger substrate value going negative
+  - bugfix: Adds stomach to the organ fab
+  assortedbeads:
+  - imageadd: edited the german beret back view to be one pixel higher
+  - rscadd: Added 5 new colours for poncho
+  - rscadd: Adds a clown poncho
+  - rscadd: Adds relevant recipes for crafting
+  - rscadd: Adds loadout options for ponchos
+  - imageadd: added new icons for the new ponchos
+  - tweak: The clown costume now costs 1 loadout point instead of 3
+  - tweak: The RXB, Powered Crossbow and Shellshock can no longer take the Giga Lens,
+      Battery Shunt and Overdrive mods
+  - tweak: The Shellshock has been given the projectile firing flag and can take mods
+      reliant on that now.
+  - imageadd: NT spears had the right hand mob icons the wrong way around, they're
+      fixed now
+  maikilangiolo:
+  - tweak: tweaked a few guns to be better balanced
+  - bugfix: fixed wrong gun stats
+2022-09-11:
+  MLGTASTICa:
+  - bugfix: Fixed guild radio spawning bluespace items with no upgrade
+  - bugfix: Fixed burrows taking out pipes round-start
+2022-09-12:
+  zombiemimic:
+  - rscdel: removed grips spawning in frames
+  - bugfix: fixed debug gun spawning when assembling frames
+2022-09-17:
+  Alliostra:
+  - rscadd: Added a new tip about the preference of automatically switching to the
+      examine tab
+  - rscadd: Added a new antaghud symbol for carrion
+  - tweak: the chameleon backpack has been replaced by a chameleon satchel.
+  ErisMeleeEnjoyer:
+  - balance: nerfed shrapnel removal damage, again
+  - balance: made combat less lethal (salt pr)
+  - bugfix: using spent advanced kits to heal wounds in surgery
+  Hyperio:
+  - bugfix: Fixed runtime in Stranger initialization
+  - bugfix: Fix turf in bar meeting room
+  Iglpigl:
+  - spellcheck: fixed a few typos regarding litanies,
+  Kegdo:
+  - rscadd: more drip to loadout
+  - balance: some loadout jackets give style
+  - rscadd: swing grab special
+  - rscadd: fireman grab special
+  - rscdel: vore grab special
+  - balance: throatslit damage refactored
+  - balance: neckgrab doesn't give click cooldown
+  - balance: vomit stun duration reduced from 5 to 2
+  MLGTASTICa:
+  - bugfix: Fixed terminals
+  MatejaTadic03:
+  - balance: adds deprivation lithany to all NT occupations
+  Pink-Chink:
+  - tweak: Allows coolant to cool reagent containers
+  - rscadd: Added refrigerant as a coolant subtype
+  - code_imp: Commented out unused coolant proc
+  - bugfix: Teratoma stat recommendation fixed
+  - bugfix: Added check to prevent an organ fab runtime
+  - bugfix: Disgorger description fix
+  - bugfix: Fixes disgorger losing acceptable reagents
+  - bugfix: Removed organ fab and disgorger circuits from junk spawns
+  - tweak: Allows ghosts to see organoid info, fixes a runtime
+  - balance: Added lipzoine, lime juice, orange juice, tomato juice, tea, and iced
+      tea to teratoma (edible) pool
+  - balance: Standard reagent outputs increased to 2u
+  - balance: Hormone blood-clotting effect increased to 0.25
+  - balance: Hormone blood regen effect increased to 0.4
+  - balance: Hormone painkiller effect increased to 20
+  - balance: Hormone speed boost effect increased to 0.25
+  assortedbeads:
+  - tweak: Techno Rig has the Light_Slowdown Flag now, same as the TE Rig
+  - tweak: Armor parts now recycle for 10 steel and 10 plastic, same as the cost to
+      print them.
+  maikilangiolo:
+  - bugfix: fixed .20 scrap stripper clip icons
+  - bugfix: fixed .40 ammo packet icons
+  - balance: reduced .20 raw damage 36 -> 32
+2022-09-18:
+  Iglpigl:
+  - tweak: no more conveyors and levers in lower guild
+  - bugfix: dresses show properly in loadout now
+  - bugfix: tactical belt sprite works now
+  MatejaTadic03:
+  - bugfix: left excelsior arm sprite now exists
+  - spellcheck: fixed the description of ironhammer tactical hud and medical hud
+2022-09-19:
+  Humonitarian:
+  - rscadd: New club recipes
+  - rscadd: Genechanging reagent
+  - rscdel: No more benzin
+  Hyperio:
+  - tweak: Station time replaced by ship time
+  - rscdel: Removed exoplanet generation
+  Iglpigl:
+  - imageadd: striped tracksuit female sprite now exsists
+  MLGTASTICa:
+  - code_imp: Made firedoors even less of a performance hit, and no longer update
+      their icons.
+  - code_imp: Brought back processing for vents and scrubbers
+  MatejaTadic03:
+  - imageadd: added sprites for the bandana head slots
+  Mycah:
+  - tweak: Description for shields is different.
+  assortedbeads:
+  - rscadd: Added a new riot shield, the Dozer shield and an accompanying crafting
+      recipe
+  - rscadd: Adds a recipe for the non-makeshift mace
+  - tweak: You can now store your shields in your suit storage
+  - balance: Buffed the Rig hardsuits integrity
+  - imageadd: added sprites for the new shield
+  maikilangiolo:
+  - rscadd: Added the ability to craft gun parts in the crafting station
+  - tweak: Changed the gun assembly to print frames instea of whole guns
+  - rscadd: added makeshift obrez
+  - rscadd: added frames for all makeshift guns so they work with frame assembly system
+  - balance: rebalanced handmade bolt action stats. good vs no armor, bad otherwise
+      (perfect for hunting maint fauna)
+  - refactor: refactored frame assembly code
+  - rscadd: addedd new crafting recipies for all makeshift gun frames
+  - tweak: now makeshift guns are assembled from frames and regular gun parts
+  - balance: rebalanced ammo hardcase steel cost 20 -> 15
+  - balance: reduced flare shotgun steel cost
+2022-09-20:
+  Pink-Chink:
+  - rscadd: Added a placeholder sprite for tool mods
+2022-09-24:
+  Alliostra:
+  - tweak: huds will now show a glitched overlay when they get EMP'd
+  - tweak: ablative armor can now reflect lasers again
+  ErisMeleeEnjoyer:
+  - tweak: throatslit timer
+  - bugfix: swing grab special
+  - bugfix: fireman grab special
+  - balance: flashes don't deal eye damage
+  - balance: flashes no longer weaken humans
+  Humonitarian:
+  - balance: sawn off Cog and rapid crossbow penetration stat fixed
+  - balance: plasma firerates increased, plasma firemode related firerate bugs fixed
+  Kegdo:
+  - rscadd: cowboy hats, WIDE
+  - rscadd: spurs that jingle-jangle-jingle(jingle-jangle)
+  Mycah142:
+  - tweak: Added id_scan check to the NeoTheology vendor before it checks for cruciform.
+  Pink-Chink:
+  - bugfix: Fixed an issue with organ species not being set
+  - balance: Organ mod installation has 100% success rate at 35 BIO
+  - balance: intracrinal organoids increase a given stat by 5, intracrinal membranes
+      increase it by 10
+  - balance: Disgorger stomach, liver, kidney efficiency affects reagent-to-substrate
+      conversion ratio, muscle efficiency better improves process speed, accepts nutriment,
+      checks reagents before biomatter content
+  - bugfix: Disgorger can handle child reagent types
+  - balance: Parenchymal mods can be adjusted
+  - balance: Parenchymal membranes have double base efficiency, but only one organ
+      type
+  - balance: Organ scaffold price reduced to 100, organ mod price reduced to 25
+  - balance: Vendor aberrant organs tweaked to have type 2 hormones and 2u reagent
+      output
+  - balance: Organ fab base and starting biotic substrate increased to 480
+  - tweak: Internal organs show efficiencies and mods at 35 BIO
+  - bugfix: Kidney efficiency mods are no longer halved
+  - bugfix: Fixed an issue where organs with new efficiencies weren't being added
+      correctly when modded during surgery
+  ValoTheValo:
+  - bugfix: Genetics and Organs not being connected to the power grid
+  - rscadd: more posters around the ship
+  - tweak: remapped medbay
+  maikilangiolo:
+  - balance: rebalanced sawn off shotguns. they trade AP, recoil and bullet speed
+      for being hand cannons
+  - rscdel: deleted the gun assembly crafting recipe. Rest in piss
+  - balance: rebalanced .20 recoil
+  - balance: rebalanced .30 damage (gun modifiers adjusted accordingly)
+  - balance: recoil buff for all bolt guns and obrezes
+  - balance: rebalanced .60 stats. AMR stats changed accordingly and buffed
+  - bugfix: fixed armor and gun UI being hard to understand or lying
+2022-09-25:
+  Hyperio:
+  - rscdel: Removed duplicate APC
+  ValoTheValo:
+  - bugfix: removed a button in medbay maint and moved the obelisk like i said i did
+  assortedbeads:
+  - imageadd: Inner and side bulldozer shield icons have been updated
+  maikilangiolo:
+  - bugfix: fixed spaghetti with guns that did not specify ap multplier, the sts and
+      clarissa. whoops
+  - bugfix: fixed frame crafting
+  - rscadd: added new marshall .20 revolver
+  - rscdel: removed duplicate ammo var in skydriver
+  - tweak: 'tweaked skydriver: 0.2 more recoil, 30% faster bullets, short scope'
+2022-09-27:
+  ? ''
+  : - tweak: New Rome background updated, now increases COG and decreases MEC.
+  BlackCat-055:
+  - bugfix: fixed the NT not being able to copy all of appearance bug
+  - code_imp: Did some new code on the cloning machine and cruciform module to allow
+      for this
+  Hyperio:
+  - bugfix: Fix wrong icon_file check
+  Iglpigl, Omni, INFRARED_BARON:
+  - rscadd: joker suit
+  Kegdo:
+  - rscadd: belt holster
+  - rscadd: accessory holster resprite
+  - rscdel: bay12 godawful holster sprites and code
+  - tweak: holster pouches moved into one subtype for hotkey use
+  - code_imp: holster code refactor
+  ValoTheValo:
+  - bugfix: tactical belt now has an on mob sprite
+  maikilangiolo:
+  - bugfix: fixed sermak crafting making excelsior ak
+  - rscdel: removed anomalous marshal lever guns blacklist
+  - tweak: changed lever rifle ammo 6 -> 10
+  - tweak: changed lever shotgun ammo 9 -> 7
+  - bugfix: removed unnecessary FS serial vars since they were children and inherited
+      the serial already
+2022-09-30:
+  ErisMeleeEnjoyer:
+  - balance: armblade damage increased
+  - bugfix: no more embed tools being dropped
+  Iglpigl:
+  - tweak: roundstart monkeys changed to monkey cubes, artists now spawn in office
+      always instead of only when there is one artist and floating camera in medbay
+      isolation deleted
+  Iglpigl, Maik, bobob9000:
+  - rscadd: Added .25 clips
+  Kurgis:
+  - tweak: Tau Cross Necklace is now a small item.
+  Pink-Chink:
+  - rscadd: Added placeholder aberrant organ research
+  - bugfix: Fixes incorrect description in durable membrane
+  - bugfix: Fixes bone bracing buff being overwritten by mods
+  WatlerJe, Kurgis:
+  - rscadd: New crewman jumpsuit, made by WatlerJe, which can be selected in the loadout.
+  budgetcommander:
+  - rscadd: Damage against targets with 0 and 10 armour is now visible in a gun's
+      stats.
+  - rscadd: Wound value is visible again.
+  - tweak: Displayed damage is no longer changed by wound value.

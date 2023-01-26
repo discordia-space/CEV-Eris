@@ -86,8 +86,8 @@
 	update_charge()
 
 /obj/item/gun/projectile/shotgun/pump/grenade/makeshift
-	name = "makeshift grenade launcher"
-	desc = "Your own, homemade, China Lake."
+	name = "HM GL \"Civil Disobedience\""
+	desc = "Your own homemade China Lake. Best used to inform the powers that be of your displeasure with the system."
 	icon = 'icons/obj/guns/launcher/makeshift.dmi'
 	icon_state = "makeshift"
 	item_state = "makeshift"

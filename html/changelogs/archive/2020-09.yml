@@ -1,0 +1,225 @@
+2020-09-01:
+  Fernandos33:
+  - rscadd: Martyr. new NT disposable handgun. Sprites by EDD
+  PigeonLord:
+  - imageadd: Added proper inhand sprites for the Lightfall
+2020-09-02:
+  Fernandos33:
+  - rscadd: Hitting a armed mine will make it explode
+  - bugfix: fixes mine bugs
+  Hopek:
+  - rscadd: 'New Litany: Cruciform sense. A very short litany to identify cruciform
+      followers.'
+  MadmanMartian:
+  - tweak: The washing machine can now be examined to see how much time it has left.
+  - balance: Washing machines now consume power
+  genessee596:
+  - admin: Admin chem dispenser now has a more exhaustive list of medicines, a new
+      name, a new atompath, and new description.
+2020-09-06:
+  GoodG1448:
+  - tweak: NT clothes and product designs are now split between two different disks
+  - rscadd: NT can now print armor, coats, jackets and clothes of their own
+  - rscadd: NT brand cleaner and weedkiller grenades are now available from NT product
+      disk
+  - rscadd: Hailers, Reagent and Medical scanner modules for PDAs and Industrial Grinder
+      boards have been added to some disks.
+  Hopek:
+  - rscadd: The cryopod will now attempt to give your items back on eject if you leave
+      items inside of the pod.
+  - bugfix: fixed a re-equipping bug where it left your items (Such as the PDA) on
+      the floor if you equip a custom loadout.
+  TheShown:
+  - balance: control spider duration is no longer exactly 1 minute, but randomized
+      from 45 to 70 seconds.
+  - code_imp: revive() proc from carrion regen stasis changed to rejuvinate().
+2020-09-08:
+  Evankhell561:
+  - bugfix: bullets can leave shrapnel insidel the impacted organ
+  TorinoFermic:
+  - code_imp: Added new fresh GC code
+  - refactor: Ported GC from tgstation
+2020-09-09:
+  WuffDev:
+  - rscadd: The entreaty litany now calls out the area of the chanter.
+  - tweak: The power cost of Bounty has been reduced to 1/5 of the previous, unwieldy
+      cost.
+  greggbot:
+  - rscadd: Exosuit-mounted hydraulic clamps can now compress scrap into cubes for
+      transport. These cubes can then be whacked with a decent amount of force (a
+      crowbar should do) to decompress them and release the scrap pile. They can also
+      be recycled directly for a reduced amount of materials compared to recycling
+      the contents individually - this amount can be increased with better microlasers,
+      from 25% to 45% with One Star parts.
+  - rscadd: The conveyors disk now has boards for the smelter and sorter. It's also
+      been renamed to logistics, and has license points. Conveyor and switch assemblies
+      still cost 0 LP, so don't worry.
+2020-09-10:
+  DarkLevel:
+  - rscadd: Ask for new contract
+  - rscadd: Mindreader
+  - rscadd: Internal Energy Armblade Implant
+  - rscadd: Psychic laser cannon
+  - rscadd: Syndicate "Proffesional Killer" scope
+  - rscadd: Frozen Star "Watchman" scope
+  - rscadd: Syndicate "Self Desturct" trigger
+  - rscadd: Syndicate "Gauss Coil" barrel
+  - rscadd: Special donut delivery case
+  - rscadd: Unknown ship Announcement
+  - rscadd: 5 Random Stims Kit
+  - balance: Silencer now take slot of the muzzle
+  - code_imp: Returning an "Electrowarfare Suite and Voice Synthesiser" and "Portable
+      autodoc" back into traitor items list.
+  Toriate:
+  - rscadd: Added floor painters, available in the miscellaneous autolathe disk.
+  - rscadd: Added mech painters, available in the miscellaneous autolathe disk.
+  - rscadd: You can now craft exosuit drill heads.
+  - rscadd: Exosuits can now strafe
+  - balance: Exosuits will no longer fumble.
+  - bugfix: You can now actually produce basic exosuit manipulators.
+2020-09-11:
+  Fernandos33:
+  - rscadd: TASTE for some foods
+  - rscadd: NEW tastes to roll in insights
+  - tweak: Drinks got a more matching taste profile aswell as new taste profiles
+  - tweak: thanks to Evankhell561 all reagents can now have a taste too.
+2020-09-13:
+  Evankhell561:
+  - code_imp: change the use_power variable with their corresponding defines.
+2020-09-14:
+  Firefox13:
+  - tweak: A lot of clothing sprites were changed to fix ankles, wrists and female
+      side states.
+  TheShown911:
+  - admin: expands investigations to include atmos and chemistry information.
+2020-09-16:
+  AlexMorgan3817:
+  - refactor: Cargo system reworked, now it is trade system, using overmap.
+  Evankhell561:
+  - refactor: improves the automatic centerling of the holomap and makes it more compatible
+      with maps of different sizes.
+  - rscadd: Fluid ducts
+  - rscadd: 'Plumbing: destroyer'
+  - rscadd: 'Plumbing: input'
+  - rscadd: 'Plumbing: output'
+  - rscadd: 'Plumbing: tank'
+  - rscadd: the biomatter is now a fertilizer.
+  - tweak: the reagent dispensers, bioreactor, biotank and biogenerator are are compatible
+      with fluid dcuts.
+  - bugfix: 'Fate perk: freelancer logic.'
+  - tweak: the oddity of the nobles now increases the sanity of whoever looks at it.
+  - tweak: 'fate perk: alcoholic produces an increase in VIG and TGH when the user
+      is drunk.'
+  Fernandos33:
+  - balance: nerfs martyr fire rate
+  GrayRachnid:
+  - admin: fixed admin issue regarding log spam
+  Hatterhat:
+  - bugfix: Plasteel now alloys properly without extra conversion of plasma ore into
+      slag.
+  - tweak: The ore processor on the Hulk no longer has a limiter on how much ore it
+      can pick up per tick.
+  TheShown:
+  - code_imp: Updated global_lists.dm with global list macros, removed a few unused
+      global lists.
+  TheShown911:
+  - config: fixed a small error related to sql in config
+  TorinoFermic:
+  - admin: Added debug verb "Display del() Log"
+  - server: Minor change in qdel file logging
+2020-09-17:
+  TorinoFermic:
+  - bugfix: Admin kick and notes.
+2020-09-19:
+  Hopek:
+  - code_imp: You can now compile and run the codebase through VS code or extools
+      without errors on start.
+  - rscadd: Circuit boards now display required components when examined.
+  - bugfix: fixed cryopods ignoring logic and not giving items back when the occupant
+      went afk on spawn for longer than a minute.
+  TheShown911:
+  - admin: added a panic bunker whitelist
+  TorinoFermic:
+  - bugfix: Ticker is not longer frozen and prevent storyteller from progressing
+2020-09-20:
+  Evankhell561:
+  - tweak: building dcuts is faster and cheaper.
+  - tweak: the solidifier is compatible with the plumbing system.
+  - tweak: the solidifier connector now points south.
+  Firefox13:
+  - bugfix: Yellow neon tracksuit side sprite fixed, again.
+  - rscadd: Moebius combat voidsuit.
+  Hopek:
+  - rscadd: You can now spawn with duct tape for 3 loadout points because at the moment
+      you cannot get adhesive unless you go to the public autolathe or get really
+      lucky defeating the point of current improvised tools.
+  Smokingsquirrel:
+  - balance: increased custodial cyborg module speed to 1.0
+  - code_imp: changes in robot_module.dm
+  TorinoFermic:
+  - bugfix: Makes sure duping money method is extra dead.
+  - tweak: Fixed the price of reagent containers for trading
+  - bugfix: Money dupe
+2020-09-21:
+  Evankhell561:
+  - bugfix: skill_to_evade_traps logic
+  - bugfix: reagent containers no longer have the same value as the entire multiverse.
+2020-09-24:
+  MadmanMartian:
+  - bugfix: Fixes silicons not being able to interact with windoors.
+  Toriate:
+  - bugfix: Energy Armblade implant should no longer delete itself a minute after
+      being used for the first time
+2020-09-25:
+  Armolitskiy, Firefox13:
+  - rscadd: Three more generic outfits to the loadout.
+  Evankhell561:
+  - bugfix: runtime in technomancer oddities
+  Firefox13:
+  - bugfix: Moebius reinfoced shoes were replaced with Moebius reinforced shoes.
+  MacBlaze1:
+  - bugfix: fixed radstorms affecting encounter maps, like the mine, asteroid belt,
+      space fortress
+  - bugfix: fixed bear traps and mines being able to be placed onto ladder turfs
+  TheShown911, GrayRachnid:
+  - admin: updated or changed names of some admin verbs
+  soslow4u:
+  - tweak: Stationary shield diffusers are more responsive upon activation/deactivation.
+      No more shield flickering.
+  yorpyorpyorp:
+  - rscadd: Imported Metallic Hydrogen sprites
+  - rscadd: Metallic Hydrogen spawning on the asteroid field. Rarer then diamond.
+  - tweak: Mining Barge stacking computer console now shows prettier names for some
+      materials.
+2020-09-26:
+  Anonmare:
+  - tweak: The prefix to speak in German is now ,g
+  Evankhell561:
+  - bugfix: fix the rarity value of all items
+  - rscadd: Random spawn values
+  - rscdel: lists of random content.
+  - bugfix: add many items to spawn blacklist
+  - tweak: more things to blacklist
+  - bugfix: more things to spawn blacklistx3
+  Fernandos33:
+  - rscadd: drying rack added to NT garden
+  - rscadd: recipe to create smoking pipe. (5 wood, and something that can cut)
+  - tweak: drying rack now dry stuff faster (from almost an hour before. to a couple
+      of seconds npw)
+  MacBlaze1:
+  - bugfix: improved development by allowing breakpoints to work
+  TheShown911, INFRARED_BARON:
+  - rscadd: New sprites for prosthetics
+2020-09-27:
+  Hopek:
+  - bugfix: Fixed a massive exploit that allowed you to insert a negative number of
+      biomass in the biomass cloning container. Because of bad logic when inserting
+      -99999 biomass inside you LITERALLY get a stack of 99999+ biomass sheets in
+      your hand.
+  - bugfix: Fix exploit when you insert more biomass sheets than what you currently
+      have. The logic literally bypassed taking the sheets from your hand.
+  - bugfix: The cloning biocanister now doesn't give you a satisfying ping as intended
+      when you do not insert any biomatter sheets.
+  - rscadd: the game now gives you a reality check when you insert an impossible amount
+      of biomatter sheets in to the biomass container.
+  - code_imp: Cleaned up terrible code in cloning.dm

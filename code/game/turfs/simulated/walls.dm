@@ -235,9 +235,9 @@
 			Proj.damage_types[BRUTE] = round(Proj.damage_types[BRUTE] / 2 + Proj.damage_types[BRUTE] * ricochetchance / 200)
 			Proj.damage_types[BURN] = round(Proj.damage_types[BURN] / 2 + Proj.damage_types[BURN] * ricochetchance / 200)
 			Proj.def_zone = ran_zone()
-			take_damage(min(proj_damage - damagediff, 100))
+			projectile_reflection(Proj)		// Reflect before damage, runtimes occur in some cases if damage happens first.
 			visible_message("<span class='danger'>\The [Proj] ricochets off the surface of wall!</span>")
-			projectile_reflection(Proj)
+			take_damage(min(proj_damage - damagediff, 100))
 			new /obj/effect/sparks(get_turf(Proj))
 			return PROJECTILE_CONTINUE // complete projectile permutation
 

@@ -22,7 +22,11 @@
 #define ARMOR_PEN_MAX				10
 
 //Wounding Multiplier: Increases damage taken, applied after armor.
+
+#define WOUNDING_TRIVIAL			0.1
+#define WOUNDING_TINY				0.25
 #define WOUNDING_SMALL				0.5
+#define WOUNDING_INTERMEDIATE		0.75
 #define WOUNDING_NORMAL				1
 #define WOUNDING_WIDE				1.5
 #define WOUNDING_EXTREME			2
@@ -31,6 +35,7 @@
 //Resistance value is also used on simple animals.
 //Reduces the damage they take by flat amounts
 #define RESISTANCE_NONE 				0
+#define RESISTANCE_FLIMSY				2
 #define RESISTANCE_FRAGILE 				4
 #define RESISTANCE_AVERAGE 				8
 #define RESISTANCE_IMPROVED 			12
@@ -50,8 +55,8 @@
 #define STRUCTURE_DAMAGE_BLUNT 			1.3
 #define STRUCTURE_DAMAGE_HEAVY 			1.5
 #define STRUCTURE_DAMAGE_BREACHING 		1.8
-#define STRUCTURE_DAMAGE_DESTRUCTIVE 	2
-#define STRUCTURE_DAMAGE_BORING 		3
+#define STRUCTURE_DAMAGE_POWERFUL    	2
+#define STRUCTURE_DAMAGE_DESTRUCTIVE 	3
 
 //Quick defines for fire modes
 #define FULL_AUTO_300		list(mode_name = "full auto",  mode_desc = "300 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 4  , icon="auto")

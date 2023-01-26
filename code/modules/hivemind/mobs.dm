@@ -129,6 +129,7 @@
 	if(!hive_mind_ai)
 		if(prob(5))
 			death()
+			return FALSE
 		else if(prob(15))
 			mulfunction()
 
@@ -383,8 +384,10 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/lobber/Life()
-	. = ..()
-//checks if cooldown is over and is targeting mob, if so, activates special ability
+	if(!..())
+		return
+
+	//checks if cooldown is over and is targeting mob, if so, activates special ability
 	if(target_mob && world.time > special_ability_cooldown)
 		special_ability()
 
@@ -550,7 +553,8 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/himan/Life()
-	. = ..()
+	if(!..())
+		return
 
 	//shriek
 	if(target_mob && !fake_dead && world.time > special_ability_cooldown)
@@ -719,7 +723,9 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/mechiver/Life()
-	. = ..()
+	if(!..())
+		return
+
 	update_icon()
 
 	//when we have passenger, we torture him
@@ -919,7 +925,8 @@
 	set_light(2, 1, COLOR_BLUE_LIGHT)
 
 /mob/living/simple_animal/hostile/hivemind/treader/Life()
-	. = ..()
+	if(!..())
+		return
 
 	if(maxHealth > health && world.time > special_ability_cooldown)
 		special_ability()
@@ -973,7 +980,9 @@
 
 /mob/living/simple_animal/hostile/hivemind/phaser/Life()
 	stop_automated_movement = TRUE
-	. = ..()
+
+	if(!..())
+		return
 
 	//special ability using
 	if(world.time > special_ability_cooldown && can_use_special_ability)

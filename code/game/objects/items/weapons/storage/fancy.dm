@@ -300,7 +300,7 @@
 	item_obj = /obj/item/clothing/mask/smokable/cigarette/cigar
 	var/open = FALSE
 
-/obj/item/storage/fancy/cigar/proc/can_interact(mob/user)
+/obj/item/storage/fancy/cigar/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
 		return 1
 	if(istype(loc, /obj/item/storage))

@@ -62,7 +62,8 @@
 		verbs |= proc_path
 
 /obj/item/organ/internal/proc/get_process_efficiency(process_define)
-	return organ_efficiency[process_define] - (organ_efficiency[process_define] * (damage / max_damage))
+	var/organ_eff = organ_efficiency[process_define]
+	return organ_eff - (organ_eff * (damage / max_damage))
 
 /obj/item/organ/internal/take_damage(amount, silent)	//Deals damage to the organ itself
 	damage = CLAMP(damage + amount * (100 / (parent ? parent.limb_efficiency : 100)), 0, max_damage)
@@ -72,10 +73,10 @@
 /obj/item/organ/internal/proc/handle_blood()
 	if(BP_IS_ROBOTIC(src) || !owner)
 		return
-	if(OP_BLOOD_VESSEL in organ_efficiency && !(owner.status_flags & BLEEDOUT))
-		current_blood = min(current_blood + 5, max_blood_storage)	//Blood vessels get an extra flat 5 blood regen
 	if(!blood_req)
 		return
+	if(OP_BLOOD_VESSEL in organ_efficiency && !(owner.status_flags & BLEEDOUT))
+		current_blood = min(current_blood + 5, max_blood_storage)	//Blood vessels get an extra flat 5 blood regen
 
 	if(owner.status_flags & BLEEDOUT)
 		current_blood = max(current_blood - blood_req, 0)

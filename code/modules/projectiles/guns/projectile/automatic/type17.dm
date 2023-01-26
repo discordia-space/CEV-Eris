@@ -13,7 +13,7 @@
 	mag_well = MAG_WELL_RIFLE
 	magazine_type = /obj/item/ammo_magazine/lrifle
 	matter = list(MATERIAL_PLASTEEL = 18, MATERIAL_PLATINUM = 8, MATERIAL_PLASTIC = 10)
-	price_tag = 3200
+	price_tag = 3800
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
@@ -23,12 +23,12 @@
 	damage_multiplier = 1.2
 	penetration_multiplier = 0.4
 	spawn_tags = SPAWN_TAG_GUN_OS
+	spawn_blacklisted = TRUE
 	init_firemodes = list(
 		SEMI_AUTO_300,
 		BURST_3_ROUND,
 		FULL_AUTO_400
 		)
-	spawn_blacklisted = TRUE //until loot rework
 
 	gun_tags = list(GUN_SILENCABLE)
 	serial_type = "OS"

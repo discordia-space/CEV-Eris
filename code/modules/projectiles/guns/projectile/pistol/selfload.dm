@@ -75,6 +75,7 @@
 		SEMI_AUTO_300
 		)
 	gun_parts = list(/obj/item/part/gun/frame/makarov = 1, /obj/item/part/gun/modular/grip/excel = 1, /obj/item/part/gun/modular/mechanism/pistol = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
+	serial_type = "Excelsior"
 
 /obj/item/part/gun/frame/makarov
 	name = "Makarov frame"

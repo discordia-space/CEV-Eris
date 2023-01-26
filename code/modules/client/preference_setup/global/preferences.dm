@@ -252,6 +252,24 @@ var/list/_client_preferences_by_type
 	key = "KEEP_HOTKEY_MODE"
 	default_value = GLOB.PREF_YES
 
+/datum/client_preference/tgui_fancy
+	description ="Enable/Disable tgui fancy mode"
+	key = "tgui_fancy"
+
+/datum/client_preference/tgui_fancy/changed(mob/preference_mob, new_value)
+	for (var/datum/tgui/tgui as anything in preference_mob?.tgui_open_uis)
+		// Force it to reload either way
+		tgui.update_static_data(preference_mob)
+
+/datum/client_preference/tgui_lock
+	description ="TGUI Lock"
+	key = "tgui_lock"
+
+/datum/client_preference/tgui_lock/changed(mob/preference_mob, new_value)
+	for (var/datum/tgui/tgui as anything in preference_mob?.tgui_open_uis)
+		// Force it to reload either way
+		tgui.update_static_data(preference_mob)
+
 /********************
 * General Staff Preferences *
 ********************/

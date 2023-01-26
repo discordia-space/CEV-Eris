@@ -44,6 +44,7 @@
 /obj/structure/low_wall/onestar
 	wall_color = "#FFFFFF"
 	icon_state = "onestar"
+	name = "One Star low wall"
 
 
 

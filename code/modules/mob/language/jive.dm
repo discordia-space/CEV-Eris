@@ -1,10 +1,10 @@
 /datum/language/jive
 	name = LANGUAGE_JIVE
-	desc = "A mostly nonverbal language made of hand gestures, popular among criminals, punks and mercenaries. Often used to conduct illicit trade away from prying ears."
+	desc = "Nonverbal language made of hand gestures, popular among criminals, punks and mercenaries. Often used to conduct illicit trade away from prying ears."
 	signlang_verb = list("gestures", "signs", "signals", "motions")
 	colour = "jive"
 	key = "s"
-	flags = SIGNLANG | NO_STUTTER | NONVERBAL
+	flags = SIGNLANG | NO_STUTTER
 	shorthand = "JI"
 
 //To maintain an air of informality, jive does not force capitalization
