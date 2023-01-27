@@ -212,7 +212,7 @@
 	power_use = 0
 	climb_time = 7 // Quickest entry because it's unsealed
 
-/obj/item/mech_component/chassis/powerloader/Initialize()
+/obj/item/mech_component/chassis/cheap/Initialize()
 	pilot_positions = list(
 		list(
 			"[NORTH]" = list("x" = 8,  "y" = 8),
