@@ -94,4 +94,4 @@
 	turn_delay = 4 // Turning should be easy , moving not.
 	max_damage = 250
 	power_use = 100
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 8)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 8)'
