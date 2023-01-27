@@ -41,7 +41,7 @@
 /obj/item/robot_parts/robot_component/armour/exosuit/combat
 	name = "heavy combat exosuit plating"
 	desc = "Plating designed to deflect incoming attacks and explosions."
-	armor = list(melee = 24, bullet = 22, energy = 16, bomb = 70, bio = 100, rad = 50)
+	armor = list(melee = 24, bullet = 24, energy = 16, bomb = 70, bio = 100, rad = 50)
 	origin_tech = list(TECH_MATERIAL = 5)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_DIAMOND = 5, MATERIAL_URANIUM = 5)
 	spawn_blacklisted = FALSE
