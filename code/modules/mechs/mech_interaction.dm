@@ -367,7 +367,6 @@
 		if(do_mob(user, src, 30) && coil.use(5))
 			mc.repair_burn_damage(15)
 
-
 	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_WELDING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
