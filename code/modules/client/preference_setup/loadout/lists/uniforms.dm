@@ -212,6 +212,6 @@
 	path = /obj/item/clothing/under/germansuit
 
 /datum/gear/uniform/ntsec
-	display_name = "Old security uniform"
+	display_name = "old security uniform"
 	path = /obj/item/clothing/under/oldsec
 	allowed_roles = list(ASSISTANT_TITLE)

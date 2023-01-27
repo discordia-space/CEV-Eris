@@ -21,7 +21,7 @@
 	path = /obj/item/clothing/head/beret/purple
 
 /datum/gear/head/beret/ntsec
-	display_name = "beret, old nanotrasen"
+	display_name = "beret, old security"
 	path = /obj/item/clothing/head/beret/oldsec
 	allowed_roles = list(ASSISTANT_TITLE)
 
