@@ -36,8 +36,8 @@
 		/obj/item/rig_module/fabricator/energy_net,
 		/obj/item/rig_module/storage
 		)
-	stiffness = 0
-	obscuration = 0
+	/*stiffness = 0
+	obscuration = 0*/
 
 //Has most of the modules removed
 /obj/item/rig/merc/empty

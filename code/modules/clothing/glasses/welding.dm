@@ -7,7 +7,7 @@
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 2)
 	flash_protection = FLASH_PROTECTION_MAJOR
 	tint = TINT_HEAVY
-	obscuration = HEAVY_OBSCURATION
+	//obscuration = HEAVY_OBSCURATION
 
 /obj/item/clothing/glasses/welding/attack_self()
 	adjust()
@@ -26,7 +26,7 @@
 			icon_state = initial(icon_state)
 			flash_protection = initial(flash_protection)
 			tint = initial(tint)
-			obscuration = initial(obscuration)
+			//obscuration = initial(obscuration)
 			to_chat(usr, "You flip \the [src] down to protect your eyes.")
 		else
 			src.active = !src.active
@@ -35,7 +35,7 @@
 			icon_state = "[initial(icon_state)]up"
 			flash_protection = FLASH_PROTECTION_NONE
 			tint = TINT_NONE
-			obscuration = 0
+			//obscuration = 0
 			to_chat(usr, "You push \the [src] up out of your face.")
 		if(ishuman(usr))
 			var/mob/living/carbon/human/beingofeyes = usr
@@ -50,4 +50,4 @@
 	item_state = "rwelding-g"
 	prescription = TRUE
 	tint = TINT_MODERATE
-	obscuration = MEDIUM_OBSCURATION
+	//obscuration = MEDIUM_OBSCURATION

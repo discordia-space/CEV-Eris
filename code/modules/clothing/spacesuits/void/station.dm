@@ -226,7 +226,7 @@
 	)
 	siemens_coefficient = 0.7
 	light_overlay = "helmet_light_ihs"
-	obscuration = MEDIUM_OBSCURATION
+	//obscuration = MEDIUM_OBSCURATION
 
 /obj/item/clothing/suit/space/void/security
 	name = "ironhammer voidsuit"
@@ -314,7 +314,7 @@
 	)
 	siemens_coefficient = 0.4
 	light_overlay = "helmet_light_dual"
-	obscuration = 0
+	//obscuration = 0
 
 /obj/item/clothing/head/space/void/science
 	var/list/icon_states = list(
@@ -369,7 +369,7 @@
 	siemens_coefficient = 0.4
 	helmet = /obj/item/clothing/head/space/void/science
 	spawn_blacklisted = TRUE
-	stiffness = MEDIUM_STIFFNESS
+	//stiffness = MEDIUM_STIFFNESS
 
 /obj/item/clothing/suit/space/void/science/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
