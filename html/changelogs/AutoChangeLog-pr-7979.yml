@@ -1,4 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - bugfix: fixed calculation errors in penetration and armor

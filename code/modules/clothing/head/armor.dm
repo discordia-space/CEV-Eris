@@ -115,9 +115,9 @@
 	action_button_name = "Toggle Headlamp"
 	brightness_on = 4
 	armor = list(
-		melee = 8,
-		bullet = 12,
-		energy = 7,
+		melee = 9,
+		bullet = 9,
+		energy = 9,
 		bomb = 40,
 		bio = 0,
 		rad = 0

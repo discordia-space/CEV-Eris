@@ -504,7 +504,7 @@
 	)
 
 /obj/item/clothing/suit/storage/vest/merc/full
-	name = "full heavy armor vest"
+	name = "full mercenary armor vest"
 	desc = "A high-quality armor vest in a fetching tan. This one is webbed, and has kneepads and shoulderpads for extra coverage."
 	icon_state = "mercwebvest_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -533,6 +533,28 @@
 	siemens_coefficient = 0
 	price_tag = 600
 	//Used ablative gear armor values and technomancer helmet/voidsuit values.
+	slowdown = LIGHT_SLOWDOWN
+	stiffness = LIGHT_STIFFNESS
+	style = STYLE_NONE
+
+/obj/item/clothing/suit/storage/vest/technomancer_old
+	name = "reinforced Technomancer armor"
+	desc = "Technomancer League's ballistic armor, less protective against industrial hazards but better in a fight."
+	icon_state = "armor_engineering_old"
+	item_state = "armor_engineering_old"
+	blood_overlay_type = "armor"
+	armor = list(
+		melee = 9,
+		bullet = 9,
+		energy = 9,
+		bomb = 40,
+		bio = 0,
+		rad = 0
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	item_flags = DRAG_AND_DROP_UNEQUIP
+	siemens_coefficient = 0.5
+	price_tag = 600
 	slowdown = LIGHT_SLOWDOWN
 	stiffness = LIGHT_STIFFNESS
 	style = STYLE_NONE
