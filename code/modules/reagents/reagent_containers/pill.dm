@@ -134,18 +134,28 @@
 	preloaded_reagents = list("citalopram" = 15)
 
 /obj/item/reagent_containers/pill/suppressital
-	name = "Njoy red pill"
+	name = "Njoy pill"
 	desc = "Stops all breakdowns."
 	icon_state = "pill_njoy_red"
 	preloaded_reagents = list("suppressital" = 15)
 
+/obj/item/reagent_containers/pill/suppressital/red
+	name = "Njoy red pill"
+	desc = "Stops all breakdowns. Tastes faintly of cherry."
+	icon_state = "pill_njoy_red"
+	preloaded_reagents = list("suppressital" = 15, "cherryjelly" = 5)
+
 /obj/item/reagent_containers/pill/suppressital/blue
 	name = "Njoy blue pill"
+	desc = "Stops all breakdowns. Tastes faintly of blueberry."
 	icon_state = "pill_njoy_blue"
+	preloaded_reagents = list("suppressital" = 15, "berryjuice" = 5)
 
 /obj/item/reagent_containers/pill/suppressital/green
 	name = "Njoy green pill"
+	desc = "Stops all breakdowns. Tastes faintly of watermelon."
 	icon_state = "pill_njoy_green"
+	preloaded_reagents = list("suppressital" = 15, "watermelonjuice" = 5)
 
 
 /obj/item/reagent_containers/pill/inaprovaline

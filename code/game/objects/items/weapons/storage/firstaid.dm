@@ -297,7 +297,7 @@
 	name = "bottle of Njoy pills"
 	desc = "Contains pills used to stop all breakdowns."
 	icon_state = "bottle_njoy_red"
-	prespawned_content_type = /obj/item/reagent_containers/pill/suppressital
+	prespawned_content_type = /obj/item/reagent_containers/pill/suppressital/red
 
 /obj/item/storage/pill_bottle/njoy/green
 	icon_state = "bottle_njoy_green"
