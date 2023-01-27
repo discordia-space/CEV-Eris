@@ -333,6 +333,22 @@
 				MC.return_diagnostics(user)
 		return
 
+	else if(istype(I, /obj/item/stack/nanopaste))
+		var/obj/item/stack/nanopaste/paste = I
+		if(paste.amount < 2)
+			to_chat(user, SPAN_WARNING("You need at least 5 nanopastes pieces in order to repair damage."))
+			return TRUE
+		var/obj/item/mech_component/mc = get_targeted_part(user)
+		if(!repairing_check(mc, user))
+			return TRUE
+		if(mc.total_damage <= 0)
+			to_chat(user, SPAN_WARNING("Damage on this part is already repaired."))
+			return TRUE
+		to_chat(user, SPAN_NOTICE("You start distributing tubes of nanopaste into \the [src]'s nanite pump."))
+		if(do_mob(user, src, 30) && paste.use(2))
+			mc.repair_burn_damage(20)
+			mc.repair_brute_damage(20)
+
 	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_PRYING, QUALITY_SCREW_DRIVING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
