@@ -556,7 +556,7 @@
 	siemens_coefficient = 0.5
 	price_tag = 600
 	slowdown = LIGHT_SLOWDOWN
-	stiffness = LIGHT_STIFFNESS
+	//stiffness = LIGHT_STIFFNESS
 	style = STYLE_NONE
 
 /*
