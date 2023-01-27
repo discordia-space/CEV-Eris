@@ -274,7 +274,7 @@
 		if(GRAB_PASSIVE)
 			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
 			// having ass of concrete divides damage by 3
-			// max damage can be 30 without armor, and gets mitigated by having 15 melle armor
+			// max damage can be 30 without armor, and gets mitigated by having 15 melee armor
 			target.damage_through_armor(round(10 * skillRatio * (health/maxhealth) / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.5)
 			if(!toughTarget)
 				target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, 8 SECONDS, "window_smash")
@@ -286,12 +286,12 @@
 				visible_message(SPAN_DANGER("<big>[target] gets staggered by [user]'s smash against \the [src]!</big>"))
 				target.Weaken(1)
 			target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * 1.5, toughTarget ? 6 SECONDS : 12 SECONDS, "window_smash")
-			// at most 60 without armor , 23 with 15 melle armor
+			// at most 60 without armor , 23 with 15 melee armor
 			target.damage_through_armor(round(20 * skillRatio * health/maxhealth / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.4)
 			hit(round(target.mob_size * skillRatio * 1.5 * (toughTarget ? 2 : 1) / windowResistance))
 		if(GRAB_NECK)
 			visible_message(SPAN_DANGER("<big>[user] crushes [target] against \the [src]!</big>"))
-			// at most 90 damage without armor, 40 with 15 melle armor
+			// at most 90 damage without armor, 40 with 15 melee armor
 			target.damage_through_armor(round(30 * skillRatio * health/maxhealth / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.3)
 			target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * 2, toughTarget ? 10 SECONDS : 20 SECONDS, "window_smash")
 			hit(round(target.mob_size * skillRatio * 2 * ((toughTarget ? 2 : 1)) / windowResistance))
@@ -321,16 +321,16 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 		var/windowResistance = resistance ? resistance : 1
 		var/healthRatio = health/maxhealth
 		// you shall suffer for being negative on toughness , it becomes negative so it cancels the negative toughness
-		var/toughnessDivisor = victimToughness > 0 ? 100 : -(100 - victimToughness)
+		var/toughnessDivisor = victimToughness > 0 ? STAT_VALUE_MAXIMUM : -(STAT_VALUE_MAXIMUM - victimToughness)
 		// if you less tougher and less sized than the window itself and its health , you are more likely to suffer more
 		if(victimToughness * M.mob_size / toughnessDivisor < windowResistance * healthRatio)
 			M.adjustHalLoss(5)
 			M.Weaken(2)
-			// 40 in worst case, 10 with 15 melle armor
+			// 40 in worst case, 10 with 15 melee armor
 			M.damage_through_armor(40 * (1 - victimToughness/toughnessDivisor) * healthRatio, BRUTE, body_part, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.5)
 		else
 			M.adjustHalLoss(3)
-			// 20 in worst  case , 5 with 15 melle armor
+			// 20 in worst  case , 5 with 15 melee armor
 			M.damage_through_armor(20 * (1 - victimToughness/toughnessDivisor) * healthRatio, BRUTE, body_part, ARMOR_MELEE, sharp = FALSE)
 	else
 		M.damage_through_armor(5, BRUTE, body_part, ARMOR_MELEE) // just a scratch
