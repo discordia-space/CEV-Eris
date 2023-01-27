@@ -41,7 +41,7 @@
 	spawn_tags = SPAWN_TAG_VOID_SUIT
 	accompanying_object = /obj/item/clothing/shoes/magboots
 	slowdown = MEDIUM_SLOWDOWN
-	//stiffness = HEAVY_STIFFNESS // Very hard to aim in
+	//stiffness = HEAVY_STIFFNESS
 
 	//Inbuilt devices.
 	var/obj/item/clothing/shoes/magboots/boots // Deployable boots, if any.
