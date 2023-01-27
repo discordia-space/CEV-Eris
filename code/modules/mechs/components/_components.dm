@@ -70,12 +70,12 @@
 
 
 /obj/item/mech_component/proc/repair_brute_damage(amt)
-	if (brute_damage > 0)
+	if(brute_damage > 0)
 		amt = clamp(amt, 0, brute_damage)
 		take_brute_damage(-amt)
 
 /obj/item/mech_component/proc/repair_burn_damage(amt)
-	if (burn_damage > 0)
+	if(burn_damage > 0)
 		amt = clamp(amt, 0, burn_damage)
 		take_burn_damage(-amt)
 
