@@ -558,7 +558,7 @@
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
-	//obscuration = MEDIUM_OBSCURATION
+	//obscuration = MEDIUM_OBSCURATION // May God guide your aim
 	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/tanker

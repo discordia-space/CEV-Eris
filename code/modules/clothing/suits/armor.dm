@@ -608,7 +608,7 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
-	slowdown = LIGHT_SLOWDOWN
+	slowdown = LIGHT_SLOWDOWN // Melee faction trades ranged accuracy for speed
 	//stiffness = HEAVY_STIFFNESS
 
 /obj/item/clothing/suit/armor/paramedic
