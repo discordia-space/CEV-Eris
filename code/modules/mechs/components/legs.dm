@@ -80,7 +80,7 @@
 	desc = "These combat legs are both fast and durable, thanks to a generous plasteel reinforcement and aerodynamic design."
 	icon_state = "combat_legs"
 	move_delay = 3
-	turn_delay = 2 // Better than light , turns fast and costs a lot
+	turn_delay = 2
 	max_damage = 125
 	power_use = 25
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 7, MATERIAL_DIAMOND = 2) // Expensive because durable.
@@ -91,7 +91,7 @@
 	desc = "Exosuit actuators struggle to move these armored legs, and they're even worse at turning."
 	icon_state = "heavy_legs"
 	move_delay = 5
-	turn_delay = 4 // Turning should be easy , moving not.
+	turn_delay = 3
 	max_damage = 250
 	power_use = 100
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 8)'
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 8)
