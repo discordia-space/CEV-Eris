@@ -578,20 +578,21 @@
 	I.prefix = "sanctified"
 
 /obj/item/tool_upgrade/augment/hammer_addon
-	name = "Flat surface"
+	name = "Platsteel surface"
 	icon_state = "hammer_addon"
-	desc = "An attachment that fits on almost everything, that gives a simple flat surface to employ the tool for hammering."
+	desc = "An tool reinforcement made of platsteel, a sturdier material fit for hammering."
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_STEEL = 2)
-	rarity_value = 20
+	rarity_value = 30
 
 /obj/item/tool_upgrade/augment/hammer_addon/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = -0.1,
-	UPGRADE_HEALTH_THRESHOLD = 5,
-	tool_qualities = list(QUALITY_HAMMERING = 10)
+	UPGRADE_DEGRADATION_MULT = 0.9,
+	UPGRADE_FORCE_MOD = 4
 	)
+	I.required_qualities = list(QUALITY_HAMMERING)
 	I.prefix = "flattened"
 
 //Vastly reduces tool sounds, for stealthy hacking
