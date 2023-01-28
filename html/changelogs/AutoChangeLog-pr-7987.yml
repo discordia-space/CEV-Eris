@@ -1,4 +1,0 @@
-author: Hyperioo
-delete-after: true
-changes:
-  - bugfix: Fix window grab interaction rework
