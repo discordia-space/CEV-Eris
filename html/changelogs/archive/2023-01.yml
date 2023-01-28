@@ -88,3 +88,15 @@
   - bugfix: moebius coat open and closed sprites being inverted, onestar uniform not
       having its own female sprite
   - imageadd: resprited technomancer beret and moebius armband
+2023-01-28:
+  Humonitarian:
+  - balance: njoy lasts twice as long
+  - tweak: you no longer get neutral breakdowns while on njoy
+  - tweak: njoy has flavouring
+  - tweak: njoy works when injected
+  Hyperioo:
+  - bugfix: Fix window grab interaction rework
+  Pink-Chink:
+  - bugfix: Removes pointless procs during cloning
+  the-og-gear:
+  - bugfix: You no longer retain your zoomed view when dropping your scoped weapon

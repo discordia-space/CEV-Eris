@@ -444,6 +444,9 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 /datum/sanity/proc/breakdown(var/positive_breakdown = FALSE)
 	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN
 
+	if(owner.stats.getPerk(PERK_NJOY))
+		return // No breakdowns when you're Njoying life. TODO: once Psychosis is added, reduce to 50% chance
+
 	for(var/obj/item/device/mind_fryer/M in GLOB.active_mind_fryers)
 		if(get_turf(M) in view(get_turf(owner)))
 			M.reg_break(owner)
@@ -453,9 +456,9 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 			S.reg_break(owner)
 
 	var/list/possible_results
-	if((prob(positive_prob) && positive_prob_multiplier > 0 || positive_breakdown) && !owner.stats.getPerk(PERK_NJOY))
+	if((prob(positive_prob) && positive_prob_multiplier > 0 || positive_breakdown))
 		possible_results = subtypesof(/datum/breakdown/positive)
-	else if(prob(negative_prob) && !owner.stats.getPerk(PERK_NJOY))
+	else if(prob(negative_prob))
 		possible_results = subtypesof(/datum/breakdown/negative)
 	else
 		possible_results = subtypesof(/datum/breakdown/common)
