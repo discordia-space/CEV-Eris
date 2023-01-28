@@ -58,7 +58,7 @@
 
 /obj/item/clothing/suit/storage/cargo_jacket/old
 	name = "black guild technician jacket"
-	desc = "Stylish jacket lined with pockets. It seems to have a little protection from physical harm. this one is in dark black"
+	desc = "Stylish jacket lined with pockets. It seems to have a little protection from physical harm. This one is done in dark black color."
 	icon_state = "cargo_jacket_old"
 	item_state = "cargo_jacket_old"
 	blood_overlay_type = "coat"
