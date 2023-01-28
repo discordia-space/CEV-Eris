@@ -191,6 +191,7 @@
 				return TRUE
 		to_chat(user, SPAN_WARNING("The barrel does not fit the mechanism! The gun fits the following calibers: [english_list(MG.good_calibers, "None are suitable!", " and ", ", ", ".")]"))
 		return FALSE
+	// Caliber check for mechanism
 	if(istype(parent, /obj/item/part/gun/modular/mechanism))
 		var/obj/item/part/gun/modular/mechanism/M = parent
 		if(!MG.caliber)
@@ -200,6 +201,10 @@
 				return TRUE
 		to_chat(user, SPAN_WARNING("The mechanism does not fit the barrel! The mechanism fits the following calibers: [english_list(M.accepted_calibers, "None are suitable!", " and ", ", ", ".")]"))
 		return FALSE
+	// Checking if part is accepted
+	for(var/partPath in MG.required_parts)
+		if(!istype(parent, parthPath))
+			visible_message(SPAN_WARNING("\The [src] doesn't fit into the [MG]."))
 	return TRUE
 
 /datum/component/item_upgrade/proc/apply(obj/item/A, mob/living/user)

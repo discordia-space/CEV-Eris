@@ -309,10 +309,11 @@
 	price_tag = 100
 	rarity_value = 6
 	var/list/accepted_calibers = list(CAL_PISTOL, CAL_MAGNUM, CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE, CAL_SHOTGUN)
+	var/mag_well = MAG_WELL_GENERIC
 
 /obj/item/part/gun/modular/mechanism/New()
 	..()
-	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_GENERIC
+	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = mag_well
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_OK_CALIBERS] = accepted_calibers
 	I.gun_loc_tag = PART_MECHANISM
 
@@ -320,10 +321,7 @@
 	name = "pistol mechanism"
 	desc = "All the bits that makes the bullet go bang, all in a small, convenient frame."
 	icon_state = "mechanism_pistol"
-
-/obj/item/part/gun/modular/mechanism/pistol/New()
-	..()
-	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
+	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 
 /obj/item/part/gun/modular/mechanism/revolver
 	name = "revolver mechanism"
@@ -335,39 +333,30 @@
 	desc = "All the bits that makes the bullet go bang, perfect for long shells."
 	icon_state = "mechanism_shotgun"
 	matter = list(MATERIAL_PLASTEEL = 10)
-
-/obj/item/part/gun/modular/mechanism/shotgun/New()
-	..()
-	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_RIFLE
+	mag_well = MAG_WELL_RIFLE
 
 /obj/item/part/gun/modular/mechanism/smg
 	name = "SMG mechanism"
 	desc = "All the bits that makes the bullet go bang, in a speedy package."
 	icon_state = "mechanism_smg"
-
-/obj/item/part/gun/modular/mechanism/smg/New()
-	..()
-	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_SMG
+	mag_well = MAG_WELL_SMG
 
 /obj/item/part/gun/modular/mechanism/autorifle
 	name = "self-loading mechanism"
 	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love."
 	icon_state = "mechanism_autorifle"
 	matter = list(MATERIAL_PLASTEEL = 10)
-
-/obj/item/part/gun/modular/mechanism/autorifle/New()
-	..()
-	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
 
 /obj/item/part/gun/modular/mechanism/autorifle/burst
 	name = "self-loading mechanism"
 	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love."
 	icon_state = "mechanism_autorifle"
 	matter = list(MATERIAL_PLASTEEL = 10)
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
 
 /obj/item/part/gun/modular/mechanism/autorifle/burst/New()
 	..()
-	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
 	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = list(BURST_3_ROUND, BURST_5_ROUND)
 
 /obj/item/part/gun/modular/mechanism/autorifle/fullauto
@@ -375,10 +364,10 @@
 	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love."
 	icon_state = "mechanism_autorifle"
 	matter = list(MATERIAL_PLASTEEL = 10)
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
 
 /obj/item/part/gun/modular/mechanism/autorifle/fullauto/New()
 	..()
-	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
 	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = list(BURST_3_ROUND, BURST_5_ROUND, FULL_AUTO_400)
 
 // Determined - slower firerate, but no loss in damage. Total point value: +3
@@ -388,10 +377,10 @@
 	icon_state = "mechanism_autorifle"
 	matter = list(MATERIAL_PLASTEEL = 10)
 	list/accepted_calibers = list(CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE)
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
 
 /obj/item/part/gun/modular/mechanism/autorifle/determined/New()
 	..()
-	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
 	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = list(BURST_3_ROUND, FULL_AUTO_300) // +5 points
 	I.weapon_upgrades[GUN_UPGRADE_RECOIL] = 1.25 // -2 points
 
@@ -401,10 +390,7 @@
 	icon_state = "mechanism_machinegun"
 	matter = list(MATERIAL_PLASTEEL = 16)
 	rarity_value = 8
-
-/obj/item/part/gun/modular/mechanism/machinegun/New()
-	..()
-	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = MAG_WELL_BOX
+	mag_well = MAG_WELL_BOX
 
 // steel mechanisms
 /obj/item/part/gun/modular/mechanism/pistol/steel
