@@ -186,16 +186,6 @@
 			else
 				stop()
 
-		if(occupant && ishuman(occupant))
-			occupant.setCloneLoss(max(CLONING_DONE-progress, clone_damage))
-			occupant.setBrainLoss(CLONING_DONE-progress)
-
-			occupant.adjustOxyLoss(-4)
-			occupant.Paralyse(4)
-
-			occupant.updatehealth()
-
-
 		if(progress >= CLONING_MEAT && !occupant)
 			var/datum/core_module/cruciform/cloning/R = reader.implant.get_module(CRUCIFORM_CLONING)
 			if(!R)

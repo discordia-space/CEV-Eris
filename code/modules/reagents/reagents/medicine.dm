@@ -875,8 +875,9 @@
 	reagent_state = LIQUID
 	color = "#001aff"
 	overdose = REAGENTS_OVERDOSE
+	metabolism = REM/2
 
-/datum/reagent/medicine/suppressital/affect_ingest/(mob/living/carbon/M)
+/datum/reagent/medicine/suppressital/affect_blood/(mob/living/carbon/M)
 	if(!M.stats.getPerk(PERK_NJOY))
 		M.stats.addPerk(PERK_NJOY)
 

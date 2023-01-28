@@ -867,6 +867,10 @@
 	update_firemode()
 
 /obj/item/gun/dropped(mob/user)
+	// I really fucking hate this but this is how this is going to work.
+	var/mob/living/carbon/human/H = user
+	if (istype(H) && H.using_scope)
+		toggle_scope(H)
 	update_firemode(FALSE)
 	.=..()
 
