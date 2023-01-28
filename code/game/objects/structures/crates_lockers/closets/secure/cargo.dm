@@ -12,7 +12,6 @@
 	new /obj/item/device/radio/headset/headset_cargo(src)
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/head/soft(src)
-	new /obj/item/clothing/accessory/armband/cargo (src)
 	new /obj/item/device/scanner/price(src)
 
 /obj/structure/closet/secure_closet/reinforced/quartermaster
