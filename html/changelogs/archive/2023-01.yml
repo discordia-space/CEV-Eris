@@ -100,3 +100,6 @@
   - bugfix: Removes pointless procs during cloning
   the-og-gear:
   - bugfix: You no longer retain your zoomed view when dropping your scoped weapon
+2023-01-29:
+  Pink-Chink:
+  - tweak: Renames ore icons to match the new defines
