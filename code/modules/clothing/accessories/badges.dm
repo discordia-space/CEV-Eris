@@ -5,7 +5,7 @@
 */
 
 /obj/item/clothing/accessory/badge
-	name = "Inspector's badge"
+	name = "Faded Inspector's badge"
 	desc = "A NanoTrasen badge, made from gold and set on false leather."
 	icon_state = "badge"
 	item_state = "marshalbadge"
