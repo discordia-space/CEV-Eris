@@ -72,7 +72,7 @@
 	new /obj/item/gun/energy/gun/martin(src)
 	new /obj/item/clothing/accessory/holster(src)
 	new /obj/item/melee/telebaton(src)
-	new /obj/item/clothing/accessory/badge/hos(src)
+	new /obj/item/clothing/accessory/badge/commander(src)
 	new /obj/item/storage/pouch/holster(src)
 	new /obj/item/storage/pouch/holster/baton(src)
 
@@ -104,7 +104,7 @@
 	new /obj/item/ammo_magazine/ihclrifle/rubber(src)
 	new /obj/item/gun/projectile/automatic/sol(src)
 	new /obj/item/storage/box/holobadge(src)
-	new /obj/item/clothing/accessory/badge/warden(src)
+	new /obj/item/clothing/accessory/badge/holo/sergeant(src)
 	new /obj/item/storage/pouch/holster(src)
 	new /obj/item/storage/pouch/holster/baton(src)
 	new /obj/item/clothing/suit/armor/vest/ironhammer(src)
@@ -155,6 +155,7 @@
 	new /obj/item/clothing/suit/storage/toggle/labcoat/medspec(src)
 	new /obj/item/ammo_magazine/smg/rubber(src)
 	new /obj/item/gun/projectile/automatic/molly(src)
+	new /obj/item/clothing/accessory/badge/holo/specialist(src)
 	new /obj/item/storage/pouch/holster(src)
 	new /obj/item/storage/briefcase/crimekit(src)
 
@@ -191,6 +192,7 @@
 	new /obj/item/ammo_magazine/slmagnum/rubber(src)
 	new /obj/item/ammo_magazine/slmagnum/rubber(src)
 	new /obj/item/storage/pouch/holster(src)
+	new /obj/item/clothing/accessory/badge/inspector(src)
 	new /obj/item/storage/briefcase/crimekit(src)
 	new /obj/item/storage/box/syndie_kit/spy(src)
 
