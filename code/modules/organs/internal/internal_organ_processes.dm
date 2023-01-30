@@ -55,14 +55,14 @@
 
 /mob/living/carbon/human/proc/kidney_process()
 	var/kidneys_efficiency = get_organ_efficiency(OP_KIDNEYS)
-	var/obj/item/organ/internal/kidney = random_organ_by_process(OP_LIVER)
+	var/obj/item/organ/internal/kidney = random_organ_by_process(OP_KIDNEYS)
 	var/toxin_strength = chem_effects[CE_TOXIN] * IORGAN_KIDNEY_TOX_RATIO + chem_effects[CE_ANTITOX]		// Too much antitox medication will hurt your kidneys
 	var/toxin_damage = (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (kidneys_efficiency / 100)
 
 	if(toxin_damage > 0 && kidney)
 		if(prob(5))
-			var/datum/component/internal_wound/new_wound = new /datum/component/internal_wound/organic/heavy_poisoning
-			new_wound.name = "anti-toxin oversaturation"
+			var/wound_path = pick(subtypesof(/datum/component/internal_wound/organic/heavy_poisoning))
+			var/datum/component/internal_wound/new_wound = new wound_path
 			kidney.add_wound(new_wound)
 
 /mob/living/carbon/human/proc/liver_process()
@@ -182,7 +182,7 @@
 	var/lung_efficiency = get_organ_efficiency(OP_LUNGS)
 	var/internal_oxygen = 100 - oxyloss
 
-	internal_oxygen *= lung_efficiency
+	internal_oxygen *= lung_efficiency / 100
 
 	if(internal_oxygen < total_oxygen_req)
 		if(prob(1))
