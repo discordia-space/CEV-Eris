@@ -321,7 +321,8 @@
 			hud.name = "choke"
 		else if(!QDELETED(src))
 			state = GRAB_AGGRESSIVE
-			hud.icon_state = "reinforce_final"
+			if(hud)
+				hud.icon_state = "reinforce_final"
 
 	else if(state < GRAB_UPGRADING)
 		assailant.visible_message(SPAN_DANGER("[assailant] starts to tighten \his grip on [affecting]'s neck!"))
@@ -416,10 +417,10 @@
 						return
 					else if(hit_zone == BP_MOUTH)
 						force_vomit(affecting, assailant)
-					else 
+					else
 						var/mob/living/carbon/human/H = affecting
 						var/obj/item/organ/external/o = H.get_organ(hit_zone)
-						
+
 						if(o.status & ORGAN_BLEEDING)
 							slow_bleeding(affecting, assailant, o)
 						else
