@@ -56,6 +56,23 @@
 		rad = 0
 	)
 
+/obj/item/clothing/suit/storage/cargo_jacket/old
+	name = "black guild technician jacket"
+	desc = "Stylish jacket lined with pockets. It seems to have a little protection from physical harm. This one is done in dark black color."
+	icon_state = "cargo_jacket_old"
+	item_state = "cargo_jacket_old"
+	blood_overlay_type = "coat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
+	armor = list(
+		melee = 2,
+		bullet = 2,
+		energy = 2,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+
 //Merchant
 /obj/item/clothing/suit/storage/qm_coat
 	name = "guild merchant coat"
