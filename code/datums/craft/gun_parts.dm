@@ -50,6 +50,8 @@
 		)
 	I.req_gun_tags = list(GUN_MODULAR)
 	I.removable = MOD_INTEGRAL // Will get unique removal handling when we get there, until then works by disassembling the frame
+	I.removal_time = WORKTIME_SLOW
+	I.removal_difficulty = FAILCHANCE_NORMAL
 
 /obj/item/part/gun/frame
 	name = "gun frame"
