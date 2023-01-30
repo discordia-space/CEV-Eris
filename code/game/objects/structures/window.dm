@@ -11,7 +11,7 @@
 	var/resistance = RESISTANCE_FLIMSY	//Incoming damage is reduced by this flat amount before being subtracted from health. Defines found in code\__defines\weapons.dm
 	var/maximal_heat = T0C + 100 		// Maximal heat before this window begins taking damage from fire
 	var/damage_per_fire_tick = 2 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
-	var/health
+	var/health = 20
 	var/ini_dir = null
 	var/state = 2
 	var/reinf = 0
@@ -216,27 +216,21 @@
 
 /obj/structure/window/attack_hand(mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-/*	if(HULK in user.mutations)
-		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
-		user.visible_message(SPAN_DANGER("[user] smashes through [src]!"))
-		user.do_attack_animation(src)
-		shatter(TRUE,TRUE)
-*/
-	if (usr.a_intent == I_HURT)
+	if (user.a_intent == I_HURT)
 
-		if (ishuman(usr))
-			var/mob/living/carbon/human/H = usr
+		if (ishuman(user))
+			var/mob/living/carbon/human/H = user
 			if(H.species.can_shred(H))
 				attack_generic(H,25)
 				return
-		playsound(src.loc, 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
+		playsound(get_turf(src), 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
 		user.do_attack_animation(src)
-		usr.visible_message(SPAN_DANGER("\The [usr] bangs against \the [src]!"),
+		user.visible_message(SPAN_DANGER("\The [user] bangs against \the [src]!"),
 							SPAN_DANGER("You bang against \the [src]!"),
 							"You hear a banging sound.")
 	else
-		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
-		usr.visible_message("[usr.name] knocks on the [src.name].",
+		playsound(get_turf(src), 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
+		user.visible_message("[user.name] knocks on the [src.name].",
 							"You knock on the [src.name].",
 							"You hear a knocking sound.")
 	return
@@ -250,46 +244,98 @@
 		hit(damage)
 	else
 		visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly."))
-		playsound(src.loc, 'sound/effects/glasshit.ogg', 40, 1)
+		playsound(get_turf(src), 'sound/effects/glasshit.ogg', 40, 1)
 		return
 	return 1
 
-/obj/structure/window/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
+/obj/structure/window/affect_grab(mob/living/user, mob/living/target, state)
 	target.do_attack_animation(src, FALSE) //This is to visually create the appearance of the victim being bashed against the window
+	// so they don't insta spam it
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	//So we pass false on the use_item flag so it doesn't look like they hit the window with something
+	// clamped between 3 times and a third of the effects
+	// it takes the grabber's rob , adds 1 so it can't be 0
+	var/grabberRob = user.stats.getStat(STAT_ROB, FALSE) == 0 ? 1 : user.stats.getStat(STAT_ROB, FALSE)
+	var/targetTgh = target.stats.getStat(STAT_TGH, FALSE) == 0 ? 1 : target.stats.getStat(STAT_TGH, FALSE)
+	var/windowResistance = resistance ? resistance : 1
+	// get them positive (and add to one side if the other is negative)
+	if(grabberRob < 0 && targetTgh < 0)
+		grabberRob = abs(grabberRob)
+		targetTgh = abs(targetTgh)
+	else if(grabberRob > 0 && targetTgh < 0)
+		targetTgh = abs(targetTgh)
+		grabberRob += targetTgh
+	else if(grabberRob < 0 && targetTgh > 0)
+		grabberRob = abs(grabberRob)
+		targetTgh += grabberRob
+	var/skillRatio = clamp(grabberRob  / targetTgh , 0.3 , 3)
+	var/toughTarget = target.stats.getPerk(PERK_ASS_OF_CONCRETE) ? TRUE : FALSE
 	switch(state)
 		if(GRAB_PASSIVE)
 			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
-			target.damage_through_armor(6, BRUTE, BP_HEAD, ARMOR_MELEE)
-			hit(10)
+			// having ass of concrete divides damage by 3
+			// max damage can be 30 without armor, and gets mitigated by having 15 melee armor
+			target.damage_through_armor(round(10 * skillRatio * (health/maxhealth) / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.5)
+			if(!toughTarget)
+				target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, 8 SECONDS, "window_smash")
+			hit(round(target.mob_size * skillRatio * (toughTarget ? 2 : 1 ) / windowResistance))
 		if(GRAB_AGGRESSIVE)
 			visible_message(SPAN_DANGER("[user] bashes [target] against \the [src]!"))
-			if(prob(30))
+			// attacker has double the victim's toughness (altough cap it at 1 second max after they chain it)
+			if(skillRatio > 2 && !(target.weakened || toughTarget))
+				visible_message(SPAN_DANGER("<big>[target] gets staggered by [user]'s smash against \the [src]!</big>"))
 				target.Weaken(1)
-			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
-			hit(15)
+			target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * 1.5, toughTarget ? 6 SECONDS : 12 SECONDS, "window_smash")
+			// at most 60 without armor , 23 with 15 melee armor
+			target.damage_through_armor(round(20 * skillRatio * health/maxhealth / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.4)
+			hit(round(target.mob_size * skillRatio * 1.5 * (toughTarget ? 2 : 1) / windowResistance))
 		if(GRAB_NECK)
 			visible_message(SPAN_DANGER("<big>[user] crushes [target] against \the [src]!</big>"))
-			target.Weaken(5)
-			target.damage_through_armor(12, BRUTE, BP_HEAD, ARMOR_MELEE)
-			hit(20)
+			// at most 90 damage without armor, 40 with 15 melee armor
+			target.damage_through_armor(round(30 * skillRatio * health/maxhealth / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.3)
+			target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * 2, toughTarget ? 10 SECONDS : 20 SECONDS, "window_smash")
+			hit(round(target.mob_size * skillRatio * 2 * ((toughTarget ? 2 : 1)) / windowResistance))
 	admin_attack_log(user, target,
 		"Smashed [key_name(target)] against \the [src]",
 		"Smashed against \the [src] by [key_name(user)]",
 		"smashed [key_name(target)] against \the [src]."
 	)
-	sleep(5) //Allow a littleanimating time
+	end_grab_onto(user, target)
 	return TRUE
 
-/obj/structure/window/proc/hit_by_living(var/mob/living/M)
+proc/end_grab_onto(mob/living/user, mob/living/target)
+	for(var/obj/item/grab/G in list(user.l_hand, user.r_hand))
+		if(G.affecting == target)
+			qdel(G)
+			break
+
+/obj/structure/window/proc/hit_by_living(mob/living/M)
 	var/body_part = pick(BP_HEAD, BP_CHEST, BP_GROIN)
 	var/direction = get_dir(M, src)
+	var/tforce = M.mob_size
 	visible_message(SPAN_DANGER("[M] slams against \the [src]!"))
-	if(prob(30))
-		M.Weaken(1)
-	M.damage_through_armor(rand(7,10), BRUTE, body_part, ARMOR_MELEE)
+	// being super tough has its perks!
+	if(!M.stats.getPerk(PERK_ASS_OF_CONCRETE))
+		var/victimToughness = M.stats.getStat(STAT_TGH, FALSE)
+		victimToughness = victimToughness ? victimToughness : 1
+		var/windowResistance = resistance ? resistance : 1
+		var/healthRatio = health/maxhealth
+		// you shall suffer for being negative on toughness , it becomes negative so it cancels the negative toughness
+		var/toughnessDivisor = victimToughness > 0 ? STAT_VALUE_MAXIMUM : -(STAT_VALUE_MAXIMUM - victimToughness)
+		// if you less tougher and less sized than the window itself and its health , you are more likely to suffer more
+		if(victimToughness * M.mob_size / toughnessDivisor < windowResistance * healthRatio)
+			M.adjustHalLoss(5)
+			M.Weaken(2)
+			// 40 in worst case, 10 with 15 melee armor
+			M.damage_through_armor(40 * (1 - victimToughness/toughnessDivisor) * healthRatio, BRUTE, body_part, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.5)
+		else
+			M.adjustHalLoss(3)
+			// 20 in worst  case , 5 with 15 melee armor
+			M.damage_through_armor(20 * (1 - victimToughness/toughnessDivisor) * healthRatio, BRUTE, body_part, ARMOR_MELEE, sharp = FALSE)
+	else
+		M.damage_through_armor(5, BRUTE, body_part, ARMOR_MELEE) // just a scratch
+		tforce *= 2
 
-	var/tforce = (M.stats.getPerk(PERK_ASS_OF_CONCRETE) ? 60 : 15)
 	if(reinf) tforce *= 0.25
 	if(hit(tforce) && health <= 7 && !reinf)
 		set_anchored(FALSE)

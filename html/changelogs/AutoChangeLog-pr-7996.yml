@@ -1,0 +1,7 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - balance: Hornet can pierce reinforced walls, but deals much less damage than other
+      revolvers
+  - balance: Mandella received minor decrease to damage, and moderate decrease to
+      penetration
