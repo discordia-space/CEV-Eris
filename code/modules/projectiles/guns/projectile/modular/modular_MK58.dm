@@ -58,4 +58,4 @@
 
 /obj/item/gun/projectile/automatic/modular/mk58/army
 	slide_type = "black"
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/excelsior) // Funny
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/excel) // Funny
