@@ -183,29 +183,32 @@
 /datum/component/item_upgrade/proc/check_modulargun(var/obj/item/gun/projectile/automatic/modular/MG, mob/living/user)
 	// Caliber check coming for barrels
 	if(istype(parent, /obj/item/part/gun/modular/barrel))
-		var/obj/item/part/gun/modular/barrel/B = parent
-		if(!MG.good_calibers.len)
-			return TRUE // No mechanism installed
-		for(var/i in MG.good_calibers)
-			if(B.caliber == i)
-				return TRUE
-		to_chat(user, SPAN_WARNING("The barrel does not fit the mechanism! The gun fits the following calibers: [english_list(MG.good_calibers, "None are suitable!", " and ", ", ", ".")]"))
-		return FALSE
+		if(MG.good_calibers.len)
+			var/obj/item/part/gun/modular/barrel/B = parent
+			var/check = FALSE
+			for(var/i in MG.good_calibers)
+				if(B.caliber == i)
+					check = TRUE
+			if(!check)
+				to_chat(user, SPAN_WARNING("The barrel does not fit the mechanism! The gun fits the following calibers: [english_list(MG.good_calibers, "None are suitable!", " and ", ", ", ".")]"))
+				return FALSE
 	// Caliber check for mechanism
 	if(istype(parent, /obj/item/part/gun/modular/mechanism))
-		var/obj/item/part/gun/modular/mechanism/M = parent
-		if(!MG.caliber)
-			return TRUE // No barrel installed
-		for(var/i in M.accepted_calibers)
-			if(MG.caliber == i)
-				return TRUE
-		to_chat(user, SPAN_WARNING("The mechanism does not fit the barrel! The mechanism fits the following calibers: [english_list(M.accepted_calibers, "None are suitable!", " and ", ", ", ".")]"))
-		return FALSE
+		if(MG.caliber)
+			var/obj/item/part/gun/modular/mechanism/M = parent
+			var/check = FALSE
+			for(var/i in M.accepted_calibers)
+				if(MG.caliber == i)
+					check = TRUE
+			if(!check)
+				to_chat(user, SPAN_WARNING("The mechanism does not fit the barrel! The mechanism fits the following calibers: [english_list(M.accepted_calibers, "None are suitable!", " and ", ", ", ".")]"))
+				return FALSE
 	// Checking if part is accepted
 	for(var/partPath in MG.required_parts)
-		if(!istype(parent, partPath))
-			to_chat(user, SPAN_WARNING("\The [src] doesn't fit into the [MG]."))
-	return TRUE
+		if(istype(parent, partPath))
+			return TRUE
+	to_chat(user, SPAN_WARNING("\The [parent] doesn't fit into the [MG]."))
+	return FALSE
 
 /datum/component/item_upgrade/proc/apply(obj/item/A, mob/living/user)
 	if(user)
