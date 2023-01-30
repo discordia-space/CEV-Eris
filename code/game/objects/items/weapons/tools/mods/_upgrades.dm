@@ -203,8 +203,8 @@
 		return FALSE
 	// Checking if part is accepted
 	for(var/partPath in MG.required_parts)
-		if(!istype(parent, parthPath))
-			visible_message(SPAN_WARNING("\The [src] doesn't fit into the [MG]."))
+		if(!istype(parent, partPath))
+			to_chat(user, SPAN_WARNING("\The [src] doesn't fit into the [MG]."))
 	return TRUE
 
 /datum/component/item_upgrade/proc/apply(obj/item/A, mob/living/user)
