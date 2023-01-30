@@ -59,7 +59,7 @@
 	name = "augment organoid"
 	desc = ""
 	bad_type = /obj/item/modification/organ/internal/stromal/augment
-	
+
 /obj/item/modification/organ/internal/stromal/augment/overclock
 	name = "visceral symbiont"
 	desc = "A leech-like creature that attaches itself to the viscera of an orgnanism. It mimics the function of the parent organ in exchange for blood, oxygen, and nutrients."
@@ -155,6 +155,6 @@
 	M.examine_difficulty = STAT_LEVEL_BASIC
 	M.prefix = "reinforced"
 
-	M.organ_efficiency_mod = 0.33
+	M.organ_efficiency_mod = list(OP_BONE = 0.33)
 
 	..()
