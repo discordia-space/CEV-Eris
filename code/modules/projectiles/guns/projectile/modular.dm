@@ -63,9 +63,12 @@
 	. = ..()
 	update_icon()
 
+/obj/item/gun/projectile/automatic/modular/proc/get_initial_name()
+	return initial(name)
+
 /obj/item/gun/projectile/automatic/modular/refresh_upgrades()
+	name = get_initial_name()
 	caliber = initial(caliber)
-	name = initial(name)
 	mag_well = initial(mag_well)
 	spriteTags = initial(spriteTags)
 	verbs -= MODULAR_VERBS // Removes all modularized verbs
@@ -79,7 +82,7 @@
 
 	// Determine base using the current stock status
 	var/iconstring = initial(icon_state)
-	var/itemstring = ""
+	var/itemstring = initial(item_state)
 
 	// Define "-" tags
 	var/dashTag = ""

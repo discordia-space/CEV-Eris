@@ -1,5 +1,5 @@
 /obj/item/gun/projectile/automatic/modular/ak
-	name = "\"Kalashnikov\""
+	name = "\"Kalash\""
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 		 This is a copy of an ancient semi-automatic rifle. If it won't fire, percussive maintenance should get it working again. \
 		 It is known for its easy maintenance, and low price."
@@ -21,6 +21,25 @@
 
 	gun_tags = list(GUN_SILENCABLE)
 	serial_type = "FS"
+
+	required_parts = list(/obj/item/part/gun/modular/mechanism/autorifle = 0, /obj/item/part/gun/modular/barrel = 0, /obj/item/part/gun/modular/grip = 0, /obj/item/part/gun/modular/stock = -1)
+
+/obj/item/gun/projectile/automatic/modular/ak/get_initial_name()
+	if(grip_type)
+		switch(grip_type)
+			if("wood")
+				return "FS Car [caliber] Vipr"
+			if("black")
+				return "BM Car [caliber] MPi-K" // Name of East-German AKs
+			if("rubber")
+				return "FS Car [caliber] Venger"
+			if("excelsior")
+				return "Excelsior [caliber] Kalashnikov"
+			if("serbian")
+				return "SA Car [caliber] Krinkov"
+			if("makeshift")
+				return "MS Car [caliber] [english_list(shuffle(list("ka", "lash", "ni", "kov")), and_text = "", comma_text = "", final_comma_text = "")]"
+	..()
 
 /obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities // Total points: 4, contains all the bits that make an IH ak an IH ak
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/burst, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/rubber, /obj/item/part/gun/modular/stock)

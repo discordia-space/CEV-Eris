@@ -403,7 +403,6 @@
 				M.good_calibers = weapon_upgrades[GUN_UPGRADE_DEFINE_OK_CALIBERS]
 			if(weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER])
 				M.caliber = weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER]
-				M.name = "[weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER]] [P.name]"
 			if(weapon_upgrades[GUN_UPGRADE_DEFINE_STOCK])
 				M.spriteTags |= PARTMOD_FOLDING_STOCK // Adds the stock to the spriteTags
 				M.verbs += /obj/item/gun/projectile/automatic/modular/proc/quick_fold // Grant the verb for folding stocks

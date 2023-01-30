@@ -300,6 +300,14 @@
 	part_overlay = "grip_serbian"
 	type_of_grip = "serbian"
 
+/obj/item/part/gun/modular/grip/makeshift
+	name = "makeshift grip"
+	desc = "A makeshift firearm grip assembled from metal and ducttape, unattached from a firearm."
+	icon_state = "grip_wood"
+	matter = list(MATERIAL_STEEL = 5)
+	part_overlay = "grip_makeshift"
+	type_of_grip = "makeshift"
+
 //Mechanisms
 /obj/item/part/gun/modular/mechanism
 	name = "generic mechanism"
