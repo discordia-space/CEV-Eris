@@ -628,7 +628,7 @@
 		var/dmg = damage_types[dmg_type]
 		if(!(dmg_type == HALLOSS))
 			dmg_total += dmg
-		if(dmg && amount)
+		if(dmg > 0 && amount > 0)
 			var/dmg_armor_difference = dmg - amount
 			var/is_difference_positive = dmg_armor_difference > 0
 			amount = is_difference_positive ? 0 : -dmg_armor_difference
