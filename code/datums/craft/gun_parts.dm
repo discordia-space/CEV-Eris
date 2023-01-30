@@ -247,12 +247,14 @@
 /obj/item/part/gun/modular/grip
 	name = "generic grip"
 	desc = "A generic firearm grip, unattached from a firearm."
+	part_overlay = "grip"
 	icon_state = "grip_wood"
 	generic = FALSE
 	bad_type = /obj/item/part/gun/modular/grip
 	matter = list(MATERIAL_PLASTIC = 6)
 	price_tag = 100
 	rarity_value = 5
+	needs_grip_type = TRUE
 	var/type_of_grip = "wood" // Placeholder
 	part_itemstring = TRUE
 
@@ -267,21 +269,18 @@
 	desc = "A wood firearm grip, unattached from a firearm."
 	icon_state = "grip_wood"
 	matter = list(MATERIAL_WOOD = 5)
-	part_overlay = "grip_wood"
 	type_of_grip = "wood"
 
 /obj/item/part/gun/modular/grip/black //Nanotrasen, Moebius, Syndicate, Oberth
 	name = "plastic grip"
 	desc = "A black plastic firearm grip, unattached from a firearm. For sleekness and decorum."
 	icon_state = "grip_black"
-	part_overlay = "grip_black"
 	type_of_grip = "black"
 
 /obj/item/part/gun/modular/grip/rubber //FS and IH
 	name = "rubber grip"
 	desc = "A rubber firearm grip, unattached from a firearm. For professionalism and violence of action."
 	icon_state = "grip_rubber"
-	part_overlay = "grip_rubber"
 	type_of_grip = "rubber"
 
 /obj/item/part/gun/modular/grip/excel
@@ -289,7 +288,6 @@
 	desc = "A tan plastic firearm grip, unattached from a firearm. To fight for Haven and to spread the unified revolution!"
 	icon_state = "grip_excel"
 	rarity_value = 7
-	part_overlay = "grip_excelsior"
 	type_of_grip = "excelsior"
 
 /obj/item/part/gun/modular/grip/serb
@@ -297,7 +295,6 @@
 	desc = "A brown plastic firearm grip, unattached from a firearm. Classics never go out of style."
 	icon_state = "grip_serb"
 	rarity_value = 7
-	part_overlay = "grip_serbian"
 	type_of_grip = "serbian"
 
 /obj/item/part/gun/modular/grip/makeshift
@@ -305,7 +302,6 @@
 	desc = "A makeshift firearm grip assembled from metal and ducttape, unattached from a firearm."
 	icon_state = "grip_wood"
 	matter = list(MATERIAL_STEEL = 5)
-	part_overlay = "grip_makeshift"
 	type_of_grip = "makeshift"
 
 //Mechanisms

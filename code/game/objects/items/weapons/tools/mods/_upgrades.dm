@@ -223,6 +223,7 @@
 	RegisterSignal(A, COMSIG_ADDVAL, .proc/add_values)
 	A.AddComponent(/datum/component/upgrade_removal)
 	A.refresh_upgrades()
+	user.update_action_buttons()
 	return TRUE
 
 /datum/component/item_upgrade/proc/uninstall(obj/item/I, mob/living/user)

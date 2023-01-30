@@ -44,6 +44,7 @@
 // Used for sprite handling, when present as both parts it will modify the base sprite and all overlays.
 #define PARTMOD_STRIPPED 0
 #define PARTMOD_FOLDING_STOCK 1
+#define PARTMOD_SLIDE 2
 
 //Weapon upgrade defines
 
