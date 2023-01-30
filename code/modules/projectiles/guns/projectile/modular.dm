@@ -53,9 +53,9 @@
 	for(var/partPath in gun_parts)
 		if(ispath(partPath))
 			var/obj/item/part/gun/modular/new_part = new partPath
-			if(!SEND_SIGNAL(new_part, COMSIG_IATTACK, src, null))
-				QDEL_NULL(new_part)
+			if(!new_part.I.rapid_apply(src))
 				visible_message(SPAN_WARNING("Something seems wrong... Maybe you should ask a professional for help?"))
+	refresh_upgrades()
 	. = ..()
 	update_icon()
 

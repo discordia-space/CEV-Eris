@@ -227,6 +227,15 @@
 		user.update_action_buttons()
 	return TRUE
 
+/datum/component/item_upgrade/proc/rapid_apply(obj/item/A) // Faster, but no safety checks and no refresh_upgrades
+	var/obj/item/I = parent
+	I.forceMove(A)
+	A.item_upgrades.Add(I)
+	RegisterSignal(A, COMSIG_APPVAL, .proc/apply_values)
+	RegisterSignal(A, COMSIG_ADDVAL, .proc/add_values)
+	A.AddComponent(/datum/component/upgrade_removal)
+	return TRUE
+
 /datum/component/item_upgrade/proc/uninstall(obj/item/I, mob/living/user)
 	var/obj/item/P = parent
 	I.item_upgrades -= P
