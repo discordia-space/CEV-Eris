@@ -112,7 +112,6 @@
 	// Finally, we add the dashTag to the itemstring
 	itemstring += dashTag
 
-	visible_message(SPAN_WARNING("[itemstring]"))
 	icon_state = iconstring
 	wielded_item_state = itemstring // Hacky solution to a hacky system. Reere forgive us. V3 will fix this.
 	set_item_state(itemstring)
