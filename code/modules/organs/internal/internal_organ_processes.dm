@@ -163,7 +163,7 @@
 	regenerate_blood(0.1 + chem_effects[CE_BLOODRESTORE])		// regenerate blood VERY slowly
 
 	// Blood loss or heart damage make you lose nutriments
-	if(blood_volume < total_blood_req + BLOOD_VOLUME_SAFE_MODIFIER || heart_efficiency < BRUISED_2_EFFICIENCY)
+	if(blood_volume < blood_safe || heart_efficiency < BRUISED_2_EFFICIENCY)
 		if(nutrition >= 300)
 			adjustNutrition(-10)
 		else if(nutrition >= 200)
