@@ -1,7 +1,0 @@
-author: thevandie
-delete-after: true
-changes:
-  - rscadd: Sergeant, Medspec, and Inspector badges
-  - imageadd: New sprites for the Gunny badge, Marshal badge, and Commander badge
-      as well as Medspec Sarge and Inspector sprites for the new items.
-  - tweak: Slight flavor changes for the badges to make them fit better.

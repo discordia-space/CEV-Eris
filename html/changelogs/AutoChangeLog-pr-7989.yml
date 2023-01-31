@@ -1,5 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - admin: A bwoink will now play whenever a player with a cookie from banned account
-      connects. This respects the bwoink sound preference (global charsetup)

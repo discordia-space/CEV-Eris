@@ -103,3 +103,20 @@
 2023-01-29:
   Pink-Chink:
   - tweak: Renames ore icons to match the new defines
+2023-01-31:
+  Firefox13:
+  - admin: A bwoink will now play whenever a player with a cookie from banned account
+      connects. This respects the bwoink sound preference (global charsetup)
+  Humonitarian:
+  - bugfix: walls and shields block bullets significantly more effectively
+  - balance: Hornet can pierce reinforced walls, but deals much less damage than other
+      revolvers
+  - balance: Mandella received minor decrease to damage, and moderate decrease to
+      penetration
+  ValoTheValo:
+  - rscadd: Old Guild Tech jacket
+  thevandie:
+  - rscadd: Sergeant, Medspec, and Inspector badges
+  - imageadd: New sprites for the Gunny badge, Marshal badge, and Commander badge
+      as well as Medspec Sarge and Inspector sprites for the new items.
+  - tweak: Slight flavor changes for the badges to make them fit better.
