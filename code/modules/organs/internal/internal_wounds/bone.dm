@@ -78,4 +78,4 @@
 	severity = 4
 	severity_max = 4
 	hal_damage = IWOUND_MEDIUM_DAMAGE
-	status_flag = ORGAN_BROKEN
+	status_flag = ORGAN_WOUNDED|ORGAN_BROKEN

@@ -174,7 +174,7 @@
 	severity = 1
 	severity_max = 1
 	hal_damage = IWOUND_LIGHT_DAMAGE
-	status_flag = ORGAN_MUTATED
+	status_flag = ORGAN_WOUNDED|ORGAN_MUTATED
 
 /datum/component/internal_wound/organic/radiation/benign
 	name = "benign tumor"
@@ -223,7 +223,7 @@
 	hal_damage = IWOUND_LIGHT_DAMAGE
 	can_spread = TRUE
 	spread_threshold = IORGAN_SMALL_HEALTH
-	status_flag = ORGAN_INFECTED
+	status_flag = ORGAN_WOUNDED|ORGAN_INFECTED
 
 /datum/component/internal_wound/organic/infection/standard
 	name = "infection"

@@ -42,7 +42,7 @@
 	var/oxygen_req_multiplier = null
 
 	// Parent organ adjustments
-	var/status_flag
+	var/status_flag = ORGAN_WOUNDED		// Causes the parent limb to start processing
 
 /datum/component/internal_wound/RegisterWithParent()
 	// Internal organ parent
@@ -97,15 +97,10 @@
 	var/is_treated = FALSE
 	var/list/owner_ce = H.chem_effects
 	for(var/chem_effect in owner_ce)
-		var/to_remove = LAZYACCESS(treatments_chem, chem_effect)
-		if(to_remove && owner_ce[chem_effect] >= to_remove)
-			owner_ce[chem_effect] -= to_remove
-			is_treated = TRUE
+		var/treatment_threshold = LAZYACCESS(treatments_chem, chem_effect)
+		if(owner_ce[chem_effect] >= treatment_threshold)
 			treatment(FALSE)
-			break
-
-	if(is_treated)
-		return
+			return
 
 	// Spread once
 	if(can_spread)

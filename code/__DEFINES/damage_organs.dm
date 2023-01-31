@@ -121,6 +121,7 @@
 #define ORGAN_DEAD		(1<<5)
 #define ORGAN_MUTATED	(1<<6)
 #define ORGAN_INFECTED	(1<<7)
+#define ORGAN_WOUNDED	(1<<8)
 
 // Body part functions
 #define BODYPART_GRASP				(1<<0)
