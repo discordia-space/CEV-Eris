@@ -367,6 +367,7 @@ semi accepts weird caliber - +1 points
 	desc = "All the bits that makes the bullet go bang, all in a small, convenient frame."
 	icon_state = "mechanism_pistol"
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
+	accepted_calibers = list(CAL_PISTOL, CAL_MAGNUM, CAL_SRIFLE, CAL_CLRIFLE)
 
 /obj/item/part/gun/modular/mechanism/revolver
 	name = "revolver mechanism"

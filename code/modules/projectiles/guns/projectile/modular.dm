@@ -68,7 +68,7 @@
 	spriteTags = initial(spriteTags)
 	verbs -= MODULAR_VERBS // Removes all modularized verbs
 	grip_type = initial(grip_type)
-	good_calibers = initial(good_calibers)
+	good_calibers = list() // Won't ever be redefined, mechanism determines this, and when no mechanism is installed, we don't want anything here anyways
 	..()
 	name = get_initial_name()
 
