@@ -18,7 +18,7 @@
 	// Damage is transferred to internal organs. Chest and head must be broken before transferring.
 	if(LAZYLEN(internal_organs))
 		var/can_transfer = FALSE	// Only applies to brute and burn
-		if((organ_tag != BP_CHEST || organ_tag != BP_HEAD) || status & ORGAN_BROKEN)
+		if((organ_tag != BP_CHEST && organ_tag != BP_HEAD) || status & ORGAN_BROKEN)
 			can_transfer = TRUE
 		var/obj/item/organ/internal/I = pick(internal_organs)
 		var/transferred_damage_amount
@@ -42,22 +42,17 @@
 	if(used_weapon)
 		add_autopsy_data("[used_weapon]", amount)
 
-	// Brute-specific behavior
-	var/can_cut = FALSE
-	if(damage_type == BRUTE)
-		if(should_fracture())
-			fracture()
-
-		if(status & ORGAN_BROKEN && prob(40))
-			if(owner && !(owner.species && (owner.species.flags & NO_PAIN)))
-				owner.emote("scream")	//getting hit on broken hand hurts
-
-		can_cut = ((prob(amount*2) || sharp) && !BP_IS_ROBOTIC(src))
-
 	// Handle remaining limb damage
 	switch(damage_type)
 		if(BRUTE)
-			if(can_cut)
+			if(should_fracture())
+				fracture()
+
+			if(status & ORGAN_BROKEN && prob(40))
+				if(owner && !(owner.species && (owner.species.flags & NO_PAIN)))
+					owner.emote("scream")	//getting hit on broken hand hurts
+
+			if((prob(amount*2) || sharp) && !BP_IS_ROBOTIC(src))
 				if(sharp && !edge)
 					createwound(PIERCE, amount)
 				else

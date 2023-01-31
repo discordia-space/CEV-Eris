@@ -719,9 +719,11 @@ This function completely restores a damaged organ to perfect condition.
 
 // Checks if the limb should get fractured by now
 /obj/item/organ/external/proc/should_fracture()
+	if((status & ORGAN_BROKEN) || cannot_break)
+		return FALSE
 	if(owner)
 		var/bone_efficiency = owner.get_specific_organ_efficiency(OP_BONE, organ_tag)
-		return config.bones_can_break && (brute_dam > ((min_broken_damage * ORGAN_HEALTH_MULTIPLIER) * (bone_efficiency / 100)))
+		return brute_dam > ((min_broken_damage * ORGAN_HEALTH_MULTIPLIER) * (bone_efficiency / 100))
 
 // Fracture the bone in the limb
 /obj/item/organ/external/proc/fracture()

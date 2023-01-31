@@ -183,9 +183,9 @@
 	name = "malignant tumor"
 	treatments_tool = list()
 	treatments_chem = list(CE_ONCOCIDAL = 2)
+	characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_PROGRESS|IWOUND_SPREAD
 	severity = 0
 	severity_max = IORGAN_MAX_HEALTH	// Will kill any organ
-	can_spread = TRUE
 	spread_threshold = IORGAN_SMALL_HEALTH	// This will spread at the same moment it kills a small organ
 
 // Secondary wounds
@@ -216,12 +216,11 @@
 
 // Infection 2.0. This will spread to other organs in your body if untreated. Progresses until death.
 /datum/component/internal_wound/organic/infection
-	treatments_chem = list(CE_ANTIBIOTIC = 5)	// Spaceacillin + dylovene
+	treatments_chem = list(CE_ANTIBIOTIC = 5)
+	characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_PROGRESS|IWOUND_PROGRESS_DEATH|IWOUND_SPREAD
 	severity = 0
 	severity_max = IORGAN_MAX_HEALTH
-	progress_during_death = TRUE	// Dead organs will spread the infection
 	hal_damage = IWOUND_LIGHT_DAMAGE
-	can_spread = TRUE
 	spread_threshold = IORGAN_SMALL_HEALTH
 	status_flag = ORGAN_WOUNDED|ORGAN_INFECTED
 
@@ -233,9 +232,9 @@
 	treatments_item = list()	// No way to treat without an autodoc
 	treatments_tool = list()
 	treatments_chem = list()
+	characteristic_flag = IWOUND_CAN_DAMAGE
 	severity = 2
 	severity_max = 2
-	can_progress = FALSE
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 
 /datum/component/internal_wound/organic/permanent/nopain

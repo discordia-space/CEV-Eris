@@ -10,17 +10,20 @@
 	var/diagnosis_stat					// BIO for organic, MEC for robotic
 	var/diagnosis_difficulty			// basic - 25, adv - 40
 
+	// Wound characteristics
+	// IWOUND_CAN_DAMAGE - Does wound severity damage the parent organ?
+	// IWOUND_PROGRESS - Whether the wound can progress or not
+	// IWOUND_PROGRESS_DEATH - Will the wound progress while the organ is dead?
+	// IWOUND_SPREAD - hether the wound can spread throughout the body or not
+	var/characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_PROGRESS
+
 	var/severity = 0					// How much the wound contributes to internal organ damage
 	var/severity_max = 3				// How far the wound can progress, default is 2
-	var/can_damage_organ = TRUE			// Does wound severity damage the parent organ?
 
-	var/can_progress = TRUE							// Whether the wound can progress or not
-	var/progress_during_death = FALSE				// Will the wound progress while the organ is dead?
 	var/datum/component/next_wound					// If defined, applies a wound of this type when severity is at max
 	var/progression_threshold = IWOUND_4_MINUTES	// How many ticks until the wound progresses, default is 3 minutes
 	var/current_progression_tick					// Current tick towards progression
 
-	var/can_spread = FALSE				// Whether the wound can spread throughout the body or not
 	var/spread_threshold = 0			// Severity at which the wound spreads a single time
 
 	var/wound_nature					// Make sure we don't apply organic wounds to robotic organs and vice versa
@@ -79,10 +82,10 @@
 	var/mob/living/carbon/human/H = parent ? O.owner : null
 
 	// Don't process when the parent limb or owner is dead. Organs don't process in corpses and won't die from wounds.
-	if((!parent || O.status & ORGAN_DEAD) && !progress_during_death)
+	if((!parent || O.status & ORGAN_DEAD) && !(characteristic_flag & IWOUND_PROGRESS_DEATH))
 		return PROCESS_KILL
 
-	if(can_progress)
+	if(characteristic_flag & IWOUND_PROGRESS)
 		++current_progression_tick
 		if(current_progression_tick >= progression_threshold)
 			current_progression_tick = 0
@@ -94,16 +97,16 @@
 		return
 
 	// Chemical treatment handling
-	var/is_treated = FALSE
 	var/list/owner_ce = H.chem_effects
 	for(var/chem_effect in owner_ce)
 		var/treatment_threshold = LAZYACCESS(treatments_chem, chem_effect)
-		if(owner_ce[chem_effect] >= treatment_threshold)
+		if(treatment_threshold && owner_ce[chem_effect] >= treatment_threshold)
+			owner_ce[chem_effect] -= 0.01	// Slowly consume so not all wounds are cured each tick
 			treatment(FALSE)
 			return
 
 	// Spread once
-	if(can_spread)
+	if(characteristic_flag & IWOUND_SPREAD)
 		if(severity == spread_threshold)
 			var/list/internal_organs_sans_parent = H.internal_organs.Copy() - O
 			var/obj/item/organ/next_organ = pick(internal_organs_sans_parent)
@@ -114,7 +117,7 @@
 		H.sanity.onPsyDamage(psy_damage * severity)
 
 	// Apply effects
-	if(can_hallucinate)
+	if(characteristic_flag & IWOUND_HALLUCINATE)
 		++current_hallucination_tick
 		if(current_hallucination_tick >= ticks_per_hallucination && H.sanity)
 			var/num = rand(1,4)
@@ -130,14 +133,13 @@
 			current_hallucination_tick = 0
 
 /datum/component/internal_wound/proc/progress()
-	if(!can_progress)
+	if(!(characteristic_flag & IWOUND_PROGRESS))
 		return
 
 	if(severity < severity_max)
 		++severity
 	else
-		can_progress = FALSE
-		progress_during_death = FALSE	// Lets us remove the wound from processing
+		characteristic_flag &= ~(IWOUND_PROGRESS|IWOUND_PROGRESS_DEATH)	// Lets us remove the wound from processing
 		if(next_wound && ispath(next_wound, /datum/component))
 			var/chosen_wound_type = pick(subtypesof(next_wound))
 			SEND_SIGNAL(parent, COMSIG_IORGAN_ADD_WOUND, chosen_wound_type)
@@ -187,7 +189,9 @@
 /datum/component/internal_wound/proc/treatment(used_tool, used_autodoc = FALSE)
 	if(severity > 0 && !used_tool)
 		--severity
-		can_progress = initial(can_progress)	// If it was turned off by reaching the max, turn it on again.
+		// If it was turned off by reaching the max, turn it on again.
+		if(initial(characteristic_flag) & IWOUND_PROGRESS)
+			characteristic_flag |= IWOUND_PROGRESS
 	else
 		if(!used_autodoc && scar && ispath(scar, /datum/component))
 			SEND_SIGNAL(parent, COMSIG_IORGAN_ADD_WOUND, pick(subtypesof(scar)))
@@ -235,7 +239,7 @@
 		O.parent.status &= ~status_flag
 
 /datum/component/internal_wound/proc/apply_damage()
-	if(!can_damage_organ)
+	if(!(characteristic_flag & IWOUND_CAN_DAMAGE))
 		return
 
 	var/obj/item/organ/internal/O = parent

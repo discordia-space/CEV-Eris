@@ -3,12 +3,10 @@
 	treatments_chem = list(CE_MIND = 2)
 	diagnosis_stat = STAT_COG
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
-	can_progress = FALSE
+	characteristic_flag = IWOUND_HALLUCINATE
 	severity = 1
 	severity_max = 1
-	can_damage_organ = FALSE
 	psy_damage = IWOUND_MEDIUM_DAMAGE
-	can_hallucinate = TRUE
 
 /datum/component/internal_wound/organic/sanity/twitch
 	name = "twitching tissue"
@@ -17,13 +15,11 @@
 	treatments_chem = list(CE_MIND = 2)
 	diagnosis_stat = STAT_COG
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
-	can_progress = FALSE
 	wound_nature = MODIFICATION_SILICON
+	characteristic_flag = IWOUND_HALLUCINATE
 	severity = 1
 	severity_max = 1
-	can_damage_organ = FALSE
 	psy_damage = IWOUND_MEDIUM_DAMAGE
-	can_hallucinate = TRUE
 
 /datum/component/internal_wound/robotic/sanity/volt
 	name = "anomalous voltage accumulation"

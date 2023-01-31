@@ -24,6 +24,8 @@
 	//processing internal organs is pretty cheap, do that first.
 	for(var/obj/item/organ/I in internal_organs)
 		I.Process()
+		if(I.damage > 0)
+			force_process = TRUE	// Let's us know that we have internal damage to process
 
 	handle_stance()
 	handle_grasp()
@@ -33,6 +35,10 @@
 
 	for(var/obj/item/organ/external/E in organs)
 		E.handle_bones()
+
+		// If there is a flag from an internal injury, queue it for processing
+		if(E.status & ORGAN_MUTATED|ORGAN_INFECTED|ORGAN_WOUNDED)
+			bad_external_organs |= E
 
 	for(var/obj/item/organ/external/E in bad_external_organs)
 		if(!E)
@@ -44,11 +50,11 @@
 			E.Process()
 
 			if(!lying && !buckled && world.time - l_move_time < 15)
-			//Moving around with fractured ribs won't do you any good
+				//Moving around with fractured ribs won't do you any good
 				if(E.is_broken() && E.internal_organs && E.internal_organs.len && prob(15))
 					var/obj/item/organ/internal/I = pick(E.internal_organs)
 					custom_pain("You feel broken bones moving in your [E.name]!", 1)
-					I.take_damage(rand(2,10), BRUTE, sharp = TRUE, edge = TRUE)
+					I.take_damage(3, BRUTE, E.max_damage, 5.8, TRUE, TRUE)		// Internal damage is taken at 80% health
 
 /mob/living/carbon/human/proc/handle_stance()
 	// Don't need to process any of this if they aren't standing anyways
@@ -121,7 +127,7 @@
 
 		if(E.mob_can_unequip(src))
 			if(E.is_broken() || E.limb_efficiency <= 50)
-				
+
 				drop_from_inventory(E)
 
 				if(E.limb_efficiency <= 50)
