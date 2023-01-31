@@ -1,3 +1,31 @@
+/*
+Gun part point system:
+Each part contains a few upgrades and downgrades, these have conditional point costs to use.
+Currently there is no automated way to calculate them, so follow this guide:
+
+STAT changes:
+damage - 1 point / 0.05
+penetration - 1 point / 0.1
+
+RECOIL: (bound to change)
++SEMI - 1 point / 0.25
+-SEMI - 1 point / 0.125
++2burst - 1.5 points / 0.25
++FA - 1 point / 0.125
+-FA - 2 point / 0.125
+
+FIREMODES:
+2-burst - 3 points
+3/5 burst - 4 points
+300 FA - 5 points
+400 FA - 6 points
+600 FA - 7 points
+
+MODIFICATION:
+3-burst/FA doesn't accept drum - -1 points
+semi accepts weird caliber - +1 points
+3-burst/FA accepts weird caliber - +2 points
+*/
 /obj/item/part/gun
 	name = "gun part"
 	desc = "Spare part of gun."
@@ -316,11 +344,22 @@
 	rarity_value = 6
 	var/list/accepted_calibers = list(CAL_PISTOL, CAL_MAGNUM, CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE, CAL_SHOTGUN)
 	var/mag_well = MAG_WELL_GENERIC
+	var/damage_bonus = 0 // Increases damage multiplier additively
+	var/divisor_bonus = 0
+	var/recoil_bonus = 0
+	var/list/bonus_firemodes = list()
 
 /obj/item/part/gun/modular/mechanism/New()
 	..()
+	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = bonus_firemodes
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = mag_well
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_OK_CALIBERS] = accepted_calibers
+	if(damage_bonus)
+		I.weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS] = damage_bonus
+	if(divisor_bonus)
+		I.weapon_upgrades[GUN_UPGRADE_PEN_MULT] = divisor_bonus
+	if(recoil_bonus)
+		I.weapon_upgrades[GUN_UPGRADE_RECOIL] = recoil_bonus
 	I.gun_loc_tag = PART_MECHANISM
 
 /obj/item/part/gun/modular/mechanism/pistol
@@ -348,47 +387,93 @@
 	mag_well = MAG_WELL_SMG
 
 /obj/item/part/gun/modular/mechanism/autorifle
-	name = "self-loading mechanism"
+	name = "generic self-loading mechanism"
 	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love."
 	icon_state = "mechanism_autorifle"
 	matter = list(MATERIAL_PLASTEEL = 10)
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
 
-/obj/item/part/gun/modular/mechanism/autorifle/burst
-	name = "self-loading mechanism"
-	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love."
+// Basic - semiauto with high damage. Total point value: +4
+/obj/item/part/gun/modular/mechanism/autorifle/basic
+	name = "basic self-loading mechanism"
+	desc = "All the bits that makes the bullet go bang, for all the civilian hardware you know and love. \
+			Professional design aids in preserving muzzle velocity and improving stopping power."
 	icon_state = "mechanism_autorifle"
-	matter = list(MATERIAL_PLASTEEL = 10)
-	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_IH
+	damage_bonus = 0.2 // +4 points
+	accepted_calibers = list(CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE)
 
-/obj/item/part/gun/modular/mechanism/autorifle/burst/New()
-	..()
-	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = list(BURST_3_ROUND, BURST_5_ROUND)
-
-/obj/item/part/gun/modular/mechanism/autorifle/fullauto
-	name = "self-loading mechanism"
-	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love."
+// Simple - semiauto with high flexibility. Improved AP makes up for the low AP of scrap ammo. Total point value: +4
+/obj/item/part/gun/modular/mechanism/autorifle/simple
+	name = "simplified self-loading mechanism"
+	desc = "All the bits that makes the bullet go bang, for all the makeshift hardware you know and love. \
+			Supports an extended list of calibers and magazines."
 	icon_state = "mechanism_autorifle"
-	matter = list(MATERIAL_PLASTEEL = 10)
-	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
+	matter = list(MATERIAL_STEEL = 10)
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D|MAG_WELL_SMG|MAG_WELL_IH
+	accepted_calibers = list(CAL_PISTOL, CAL_MAGNUM, CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE, CAL_SHOTGUN) // +1 points
+	divisor_bonus = 0.2 // +2 points
+	damage_bonus = 0.05 // +1 points
 
-/obj/item/part/gun/modular/mechanism/autorifle/fullauto/New()
-	..()
-	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = list(BURST_3_ROUND, BURST_5_ROUND, FULL_AUTO_400)
+// Heavy - burstfire with high AP. Total point value: +4
+/obj/item/part/gun/modular/mechanism/autorifle/heavy
+	name = "heavy self-loading mechanism"
+	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love. \
+			Supports 3 and 5 shot bursts, and improves bullet penetration."
+	icon_state = "mechanism_autorifle"
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_IH // -1 points
+	bonus_firemodes = list(BURST_3_ROUND, BURST_5_ROUND) // +4 points
+	divisor_bonus = 0.2 // +2 points
+	recoil_bonus = 1.125 // -1 point
+	accepted_calibers = list(CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE)
 
-// Determined - slower firerate, but no loss in damage. Total point value: +3
+// Light - good firerate, but heavy loss in damage. Total point value: +4
+/obj/item/part/gun/modular/mechanism/autorifle/light
+	name = "light self-loading mechanism"
+	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love. \
+			Offers 600 RPM fully automatic fire, at the cost of damage output. Also supports pistol caliber, and drum magazines."
+	icon_state = "mechanism_autorifle"
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D|MAG_WELL_SMG|MAG_WELL_IH
+	accepted_calibers = list(CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE, CAL_PISTOL)
+	bonus_firemodes = list(BURST_3_ROUND, BURST_5_ROUND, FULL_AUTO_400) // +6 points
+	damage_bonus = -0.1 // -2 points
+
+// Determined - slower firerate, but no loss in damage. Total point value: +4
 /obj/item/part/gun/modular/mechanism/autorifle/determined
-	name = "self-loading mechanism"
-	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love."
+	name = "determined self-loading mechanism"
+	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love. \
+			Offers 400 RPM fully automatic fire. Provides slightly improved damage output at the cost of fire control. Supports drum magazines."
 	icon_state = "mechanism_autorifle"
-	matter = list(MATERIAL_PLASTEEL = 10)
-	list/accepted_calibers = list(CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE)
+	accepted_calibers = list(CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE)
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
+	recoil_bonus = 1.25 // -2 points
+	damage_bonus = 0.05 // +1 points
+	bonus_firemodes = list(BURST_3_ROUND, BURST_5_ROUND, FULL_AUTO_300) // +5 points
 
-/obj/item/part/gun/modular/mechanism/autorifle/determined/New()
-	..()
-	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = list(BURST_3_ROUND, FULL_AUTO_300) // +5 points
-	I.weapon_upgrades[GUN_UPGRADE_RECOIL] = 1.25 // -2 points
+// Sharpshooter - Massively increased damage and moderately increased penetration at the cost of heavy recoil. Total point value: +4
+/obj/item/part/gun/modular/mechanism/autorifle/sharpshooter
+	name = "sharpshooter self-loading mechanism"
+	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love. \
+			Powerful semiauto mechanism, effective at maximizing the firepower of each bullet. Hard to control."
+	icon_state = "mechanism_autorifle"
+	accepted_calibers = list(CAL_SRIFLE, CAL_LRIFLE)
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L
+	recoil_bonus = 2 // -4 points
+	damage_bonus = 0.3 // +6 points
+	divisor_bonus = 0.2 // +2 points
+
+// Marksman - Allows dual fire, and has both improved damage at the cost of penetration. Total point value: +4
+/obj/item/part/gun/modular/mechanism/autorifle/marksman
+	name = "marksman self-loading mechanism"
+	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love. \
+			Accurate mechanism with a 2-fire burst, for designated marksman rifles. Lacks penetration."
+	icon_state = "mechanism_autorifle"
+	accepted_calibers = list(CAL_SRIFLE, CAL_LRIFLE)
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L
+	recoil_bonus = 1.25 // -1.5 points
+	damage_bonus = 0.25 // +5 points
+	divisor_bonus = -0.25 // -2.5 points, encourages use of .20 to make up for it
+	bonus_firemodes = list(BURST_2_ROUND) // +3 points
 
 /obj/item/part/gun/modular/mechanism/machinegun
 	name = "machine gun mechanism"

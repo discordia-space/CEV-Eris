@@ -309,10 +309,10 @@
 	T.prefixes |= prefix
 
 /datum/component/item_upgrade/proc/apply_values_gun(var/obj/item/gun/G)
-	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT])
-		G.damage_multiplier *= weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT]
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS])
 		G.damage_multiplier += weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS]
+	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT])
+		G.damage_multiplier *= weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT]
 	if(weapon_upgrades[GUN_UPGRADE_PEN_MULT])
 		G.penetration_multiplier += weapon_upgrades[GUN_UPGRADE_PEN_MULT]
 	if(weapon_upgrades[GUN_UPGRADE_PIERC_MULT])
@@ -480,6 +480,13 @@
 	if(weapon_upgrades.len)
 		to_chat(user, SPAN_NOTICE("Can be attached to a firearm, giving the following benefits:"))
 
+		if(weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS])
+			var/amount = weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS]
+			if(amount > 0)
+				to_chat(user, SPAN_NOTICE("Increases projectile damage multiplier by [amount]"))
+			else
+				to_chat(user, SPAN_WARNING("Decreases projectile damage by [abs(amount)]"))
+
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT]-1
 			if(amount > 0)
@@ -633,13 +640,16 @@
 			else
 				to_chat(user, SPAN_WARNING("Decreases scope zoom by x[amount]"))
 
-/*	It is best we stick to description with these two, at least for now
+//	It is best we stick to description with some of these, at least for now
 		if(weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER])
 			var/amount = weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER]
 			to_chat(user, SPAN_WARNING("Fits [amount] caliber bullets"))
-		if(weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL])
+		if(weapon_upgrades[GUN_UPGRADE_DEFINE_OK_CALIBERS])
+			var/amount = weapon_upgrades[GUN_UPGRADE_DEFINE_OK_CALIBERS]
+			to_chat(user, SPAN_WARNING("Fits the following calibers: [english_list(amount, "None are suitable!", " and ", ", ", ".")]"))
+		/*if(weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL])
 			var/amount = weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL]
-			to_chat(user, SPAN_WARNING("")) */
+			to_chat(user, SPAN_WARNING("Fits a variety of magazines."))*/
 		to_chat(user, SPAN_WARNING("Requires a weapon with the following properties"))
 		to_chat(user, english_list(req_gun_tags))
 

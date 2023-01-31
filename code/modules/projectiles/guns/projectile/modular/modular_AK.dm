@@ -43,14 +43,14 @@
 		return "Car [caliber] \"Kalash\"" // No nikov
 
 /obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities // Total points: 4, contains all the bits that make an IH ak an IH ak
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/burst, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/rubber, /obj/item/part/gun/modular/stock)
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/heavy, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/rubber, /obj/item/part/gun/modular/stock)
 
 /obj/item/gun/projectile/automatic/modular/ak/frozen_star // Total points: 3, contains all the bits that make an FS ak an FS ak
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/rubber, /obj/item/part/gun/modular/stock)
 	spawn_blacklisted = FALSE
 
 /obj/item/gun/projectile/automatic/modular/ak/serbian_arms // Total points: 8, contains all the bits that make a serb ak a serb ak
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/fullauto, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/serb, /obj/item/part/gun/modular/stock)
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/light, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/serb, /obj/item/part/gun/modular/stock)
 
 /obj/item/gun/projectile/automatic/modular/ak/excelsior // Total points: 8, contains all the bits that make an excel ak an excel ak
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/fullauto, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/excel, /obj/item/part/gun/modular/stock)
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/determined, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/excel, /obj/item/part/gun/modular/stock)
