@@ -60,10 +60,7 @@
 	var/toxin_damage = (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (kidneys_efficiency / 100)
 
 	if(toxin_damage > 0 && kidney)
-		if(prob(5))
-			var/wound_path = pick(subtypesof(/datum/component/internal_wound/organic/heavy_poisoning))
-			var/datum/component/internal_wound/new_wound = new wound_path
-			kidney.add_wound(new_wound)
+		kidney.take_damage(toxin_damage, TOX)
 
 /mob/living/carbon/human/proc/liver_process()
 	var/liver_efficiency = get_organ_efficiency(OP_LIVER) * (1 + chem_effects[CE_ANTITOX])
@@ -143,32 +140,27 @@
 		status_flags |= BLEEDOUT
 		if(prob(15))
 			to_chat(src, SPAN_WARNING("Your organs feel extremely heavy"))
+	else
+		status_flags &= ~BLEEDOUT
 
-	else if(blood_volume < blood_bad)
+	if(blood_volume < blood_bad)
 		adjustOxyLoss(3)
 		if(prob(15))
 			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
-
 	else if(blood_volume < blood_okay)
 		eye_blurry = max(eye_blurry,6)
-		adjustOxyLoss(1)
+		adjustOxyLoss(2)
 		if(prob(15))
 			Weaken(rand(1,3))
 			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
-
 	else if(blood_volume < blood_safe)
 		if(prob(1))
 			to_chat(src, SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]"))
 		if(getOxyLoss() < 10)
 			adjustOxyLoss(1)
 
-	if(blood_volume > total_blood_req)
-		status_flags &= ~BLEEDOUT
-
 	//Blood regeneration if there is some space
-	if(blood_volume_raw < species.blood_volume)
-		var/datum/reagent/organic/blood/B = get_blood(vessel)
-		B.volume += 0.1 + chem_effects[CE_BLOODRESTORE]		// regenerate blood VERY slowly
+	regenerate_blood(0.1 + chem_effects[CE_BLOODRESTORE])		// regenerate blood VERY slowly
 
 	// Blood loss or heart damage make you lose nutriments
 	if(blood_volume < total_blood_req + BLOOD_VOLUME_SAFE_MODIFIER || heart_efficiency < BRUISED_2_EFFICIENCY)
