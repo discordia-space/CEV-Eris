@@ -156,11 +156,6 @@
 				if(is_robotic)
 					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/sanity))
 
-	// Wounds of the same type don't stack
-	for(var/path in possible_wounds)
-		if(GetComponent(path))
-			possible_wounds -= path
-
 	return possible_wounds
 
 /obj/item/organ/internal/proc/handle_blood()

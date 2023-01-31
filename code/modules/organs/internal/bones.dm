@@ -44,8 +44,6 @@
 			if(is_robotic)
 				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/emp_burn))
 
-	LAZYREMOVE(possible_wounds, GetComponents(/datum/component/internal_wound))	// Wounds of the same type don't stack
-
 	return possible_wounds
 
 /obj/item/organ/internal/bone/chest

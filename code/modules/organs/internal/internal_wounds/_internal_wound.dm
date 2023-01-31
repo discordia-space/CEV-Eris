@@ -1,6 +1,6 @@
 /datum/component/internal_wound
 	var/name = "internal injury"
-	dupe_mode = COMPONENT_DUPE_UNIQUE
+	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 
 	var/list/treatments_item = list()	// list(/obj/item = amount)
 	var/list/treatments_tool = list()	// list(QUALITY_TOOL = FAILCHANCE)
@@ -69,6 +69,9 @@
 
 	if(LAZYACCESS(SSinternal_wounds.processing, src))
 		STOP_PROCESSING(SSinternal_wounds, src)
+
+/datum/component/internal_wound/InheritComponent()	// Getting a new wound of the same type as an existing wound will progress it
+	progress()
 
 /datum/component/internal_wound/Process(delta_time)
 	var/obj/item/organ/O = parent
