@@ -103,12 +103,21 @@
 	new /obj/item/clothing/suit/space/void/merc/boxed(src)
 	new /obj/item/clothing/mask/gas/syndicate(src)
 
+/obj/item/storage/box/syndie_kit/mercarmor
+	name = "boxed mercenary armor"
+
+/obj/item/storage/box/syndie_kit/mercarmor/populate_contents()
+	new /obj/item/clothing/suit/storage/vest/merc/full(src)
+	new /obj/item/clothing/head/armor/helmet/merchelm(src)
+
 /obj/item/storage/box/syndie_kit/softsuit
 	name = "boxed soft suit"
 
 /obj/item/storage/box/syndie_kit/softsuit/populate_contents()
 	new /obj/item/clothing/suit/space/syndicate/uplink(src)
 	new /obj/item/clothing/head/space/syndicate/uplink(src)
+
+
 
 /obj/item/storage/backpack/chameleon/populate_contents()
 	new /obj/item/clothing/under/chameleon(src)
