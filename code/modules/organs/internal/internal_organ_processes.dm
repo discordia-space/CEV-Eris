@@ -143,21 +143,27 @@
 	else
 		status_flags &= ~BLEEDOUT
 
-	if(blood_volume < blood_bad)
-		adjustOxyLoss(3)
+	if(blood_volume < 1)
+		eye_blurry = max(eye_blurry,6)
+		adjustOxyLoss(20)
 		if(prob(15))
 			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
+	else if(blood_volume < blood_bad)
+		eye_blurry = max(eye_blurry,6)
+		adjustOxyLoss(6)
+		if(prob(15))
+			to_chat(src, SPAN_WARNING("You feel very [pick("dizzy","woosey","faint")]"))
 	else if(blood_volume < blood_okay)
 		eye_blurry = max(eye_blurry,6)
-		adjustOxyLoss(2)
+		adjustOxyLoss(4)
 		if(prob(15))
 			Weaken(rand(1,3))
-			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
+			to_chat(src, SPAN_WARNING("You feel very [pick("dizzy","woosey","faint")]"))
 	else if(blood_volume < blood_safe)
 		if(prob(1))
 			to_chat(src, SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]"))
 		if(getOxyLoss() < 10)
-			adjustOxyLoss(1)
+			adjustOxyLoss(2)
 
 	//Blood regeneration if there is some space
 	regenerate_blood(0.1 + chem_effects[CE_BLOODRESTORE])		// regenerate blood VERY slowly
@@ -198,8 +204,7 @@
 			to_chat(src, SPAN_WARNING("Your [heavy_spot] feels too heavy for your body"))
 
 	if(internal_oxygen < (total_oxygen_req / 10))
-		if(prob(20))
-			adjustBrainLoss(1)
+		adjustOxyLoss(6)
 
 /mob/living/carbon/human/proc/stomach_process()
 	var/stomach_efficiency = get_organ_efficiency(OP_STOMACH)
