@@ -117,8 +117,6 @@
 	new /obj/item/clothing/suit/space/syndicate/uplink(src)
 	new /obj/item/clothing/head/space/syndicate/uplink(src)
 
-
-
 /obj/item/storage/backpack/chameleon/populate_contents()
 	new /obj/item/clothing/under/chameleon(src)
 	new /obj/item/clothing/head/chameleon(src)
