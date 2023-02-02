@@ -151,7 +151,7 @@
 	return
 
 /obj/item/modification/organ/internal/electromechanical/bone_braces/New()
-	var/datum/component/modification/organ/M = AddComponent(/datum/component/modification/organ)
+	var/datum/component/modification/organ/stromal/M = AddComponent(/datum/component/modification/organ/stromal)
 
 	M.apply_to_types = list(/obj/item/organ/internal/bone)
 	M.examine_msg = "Can be attached to bones."
