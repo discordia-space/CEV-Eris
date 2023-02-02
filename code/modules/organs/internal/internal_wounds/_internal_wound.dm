@@ -11,10 +11,11 @@
 	var/diagnosis_difficulty			// basic - 25, adv - 40
 
 	// Wound characteristics
-	// IWOUND_CAN_DAMAGE - Does wound severity damage the parent organ?
-	// IWOUND_PROGRESS - Whether the wound can progress or not
-	// IWOUND_PROGRESS_DEATH - Will the wound progress while the organ is dead?
-	// IWOUND_SPREAD - hether the wound can spread throughout the body or not
+	// IWOUND_CAN_DAMAGE - Applies wound severity damage to the parent organ
+	// IWOUND_PROGRESS - Allows the wound to progress
+	// IWOUND_PROGRESS_DEATH - Allows the wound to progress after organ death
+	// IWOUND_SPREAD - Allows the wound to spread to another organ
+	// IWOUND_HALLUCINATE - Causes hallucinations
 	var/characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_PROGRESS
 
 	var/severity = 0					// How much the wound contributes to internal organ damage
@@ -85,7 +86,8 @@
 	if((!parent || O.status & ORGAN_DEAD) && !(characteristic_flag & IWOUND_PROGRESS_DEATH))
 		return PROCESS_KILL
 
-	if(characteristic_flag & IWOUND_PROGRESS)
+	// Progress if not in a cryo tube or in stasis
+	if(characteristic_flag & IWOUND_PROGRESS && (H && !(H.bodytemperature < 170 || H.in_stasis)))
 		++current_progression_tick
 		if(current_progression_tick >= progression_threshold)
 			current_progression_tick = 0
@@ -101,7 +103,7 @@
 	for(var/chem_effect in owner_ce)
 		var/treatment_threshold = LAZYACCESS(treatments_chem, chem_effect)
 		if(treatment_threshold && owner_ce[chem_effect] >= treatment_threshold)
-			owner_ce[chem_effect] -= 0.01	// Slowly consume so not all wounds are cured each tick
+			owner_ce[chem_effect] -= treatment_threshold
 			treatment(FALSE)
 			return
 

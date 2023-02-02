@@ -147,6 +147,9 @@
 	matter = list(MATERIAL_PLASTEEL = 3)
 	price_tag = 90
 
+/obj/item/modification/organ/internal/electromechanical/bone_braces/update_icon()
+	return
+
 /obj/item/modification/organ/internal/electromechanical/bone_braces/New()
 	var/datum/component/modification/organ/M = AddComponent(/datum/component/modification/organ)
 
@@ -156,5 +159,4 @@
 	M.prefix = "reinforced"
 
 	M.organ_efficiency_mod = list(OP_BONE = 0.33)
-
 	..()

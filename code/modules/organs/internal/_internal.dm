@@ -398,10 +398,12 @@
 	damage = initial(damage)
 	SEND_SIGNAL(src, COMSIG_IWOUND_DAMAGE)
 
-/obj/item/organ/internal/proc/add_wound(datum/component/internal_wound/IW)
+/obj/item/organ/internal/proc/add_wound(datum/component/internal_wound/IW, wound_name = null)
 	if(!IW || initial(IW.wound_nature) != nature || status & ORGAN_DEAD)
 		return
-	AddComponent(IW)
+	var/datum/component/internal_wound/new_wound = AddComponent(IW)
+	if(wound_name)
+		new_wound.name = wound_name
 	refresh_upgrades()
 
 /obj/item/organ/internal/proc/remove_wound(datum/component/wound)
