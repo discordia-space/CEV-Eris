@@ -1,0 +1,9 @@
+author: thevandie
+delete-after: true
+changes:
+  - rscadd: Added the Merc Combat Armor box item
+  - rscadd: Added the Merc Combat Armor box item into the uplink for 6 tc
+  - rscdel: Removed the old merc armor helmet and vest, as they're in a single kit
+  - tweak: Voidsuit is now 12 TC
+  - tweak: Non-full Merc vest is now 3 TC for when you either wanna run and gun or
+      are just strapped for cash
