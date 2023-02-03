@@ -391,17 +391,16 @@ meteor_act
 					confused = max(confused, 2)
 					external_recoil(40)
 					var/obj/item/item_in_active_hand = get_active_hand()
-					var/mob/living/carbon/M = user
 					if(recoil >= 60 && item_in_active_hand)
 						if(istype(item_in_active_hand, /obj/item/grab))
-							break_all_grabs(M) //See about breaking grips or pulls
+							break_all_grabs(user) //See about breaking grips or pulls
 							playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 							return TRUE
 						if(item_in_active_hand.wielded && recoil < 80)
 							playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 							return TRUE
 						unEquip(item_in_active_hand)
-						visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
+						visible_message(SPAN_DANGER("[user] has disarmed [src]!"))
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						return TRUE
 	return TRUE
