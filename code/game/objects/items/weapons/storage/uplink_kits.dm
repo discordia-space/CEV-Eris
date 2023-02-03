@@ -105,7 +105,7 @@
 
 /obj/item/storage/box/syndie_kit/mercarmor
 	name = "boxed mercenary armor"
-	desc = "A sleek, sturdy box. This one contains a full set of tan mercenary combat gear, that being a helmet full vest."
+	desc = "A sleek, sturdy box. This one contains a full set of tan mercenary combat gear - a helmet and full-body vest."
 
 /obj/item/storage/box/syndie_kit/mercarmor/populate_contents()
 	new /obj/item/clothing/suit/storage/vest/merc/full(src)
