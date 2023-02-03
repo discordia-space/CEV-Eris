@@ -56,7 +56,8 @@
 /mob/living/carbon/human/proc/kidney_process()
 	var/kidneys_efficiency = get_organ_efficiency(OP_KIDNEYS)
 	var/obj/item/organ/internal/kidney = random_organ_by_process(OP_KIDNEYS)
-	var/toxin_strength = chem_effects[CE_TOXIN] * IORGAN_KIDNEY_TOX_RATIO + chem_effects[CE_ANTITOX]		// Too much antitox medication will hurt your kidneys
+	var/chem_toxicity = chem_effects[CE_ANTITOX] + chem_effects[CE_BLOODCLOT] + chem_effects[CE_SPEEDBOOST]
+	var/toxin_strength = chem_effects[CE_TOXIN] * IORGAN_KIDNEY_TOX_RATIO + chem_toxicity
 	var/toxin_damage = (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (kidneys_efficiency / 100)
 
 	if(toxin_damage > 0 && kidney)
