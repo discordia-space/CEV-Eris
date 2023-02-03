@@ -91,7 +91,7 @@
 			switch(damage_type)
 				if(BRUTE)
 					if(edge_eligible && (amount + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_EDGE)
-						droplimb(FALSE, DROPLIMB_EDGE)
+						droplimb(TRUE, DROPLIMB_EDGE)
 					else if((amount + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_DESTROY)
 						droplimb(FALSE, DROPLIMB_BLUNT)
 					else if((amount + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_TEAROFF)
@@ -100,7 +100,7 @@
 						droplimb(prob(50), pick(DROPLIMB_EDGE, DROPLIMB_BLUNT))
 				if(BURN)
 					if(edge_eligible && (amount + prev_burn) >= max_damage * DROPLIMB_THRESHOLD_EDGE)
-						droplimb(TRUE, DROPLIMB_EDGE)
+						droplimb(TRUE, DROPLIMB_EDGE_BURN)
 					else if((amount + prev_burn) >= max_damage * DROPLIMB_THRESHOLD_DESTROY)
 						droplimb(TRUE, DROPLIMB_BURN)
 
