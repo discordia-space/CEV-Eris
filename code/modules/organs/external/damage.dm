@@ -52,14 +52,17 @@
 				if(owner && !(owner.species && (owner.species.flags & NO_PAIN)))
 					owner.emote("scream")	//getting hit on broken hand hurts
 
-			if((prob(amount*2) || sharp) && !BP_IS_ROBOTIC(src))
-				if(sharp && !edge)
+			if(sharp && !BP_IS_ROBOTIC(src))
+				if(!edge)
 					createwound(PIERCE, amount)
 				else
 					createwound(CUT, amount)
 			else
 				createwound(BRUISE, amount)
 		if(BURN)
+			if(status & ORGAN_BLEEDING)
+				status &= ~ORGAN_BLEEDING
+
 			createwound(BURN, amount)
 
 	// sync the organ's damage with its wounds
@@ -88,16 +91,18 @@
 			switch(damage_type)
 				if(BRUTE)
 					if(edge_eligible && (amount + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_EDGE)
-						droplimb(0, DROPLIMB_EDGE)
+						droplimb(FALSE, DROPLIMB_EDGE)
 					else if((amount + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_DESTROY)
-						droplimb(0, DROPLIMB_BLUNT)
+						droplimb(FALSE, DROPLIMB_BLUNT)
 					else if((amount + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_TEAROFF)
-						droplimb(0, DROPLIMB_EDGE)
+						droplimb(FALSE, DROPLIMB_EDGE)
 					else if(brute_dam && BP_IS_ROBOTIC(src))
 						droplimb(prob(50), pick(DROPLIMB_EDGE, DROPLIMB_BLUNT))
 				if(BURN)
-					if((amount + prev_burn) >= max_damage * DROPLIMB_THRESHOLD_DESTROY)
-						droplimb(0, DROPLIMB_BURN)
+					if(edge_eligible && (amount + prev_burn) >= max_damage * DROPLIMB_THRESHOLD_EDGE)
+						droplimb(TRUE, DROPLIMB_EDGE)
+					else if((amount + prev_burn) >= max_damage * DROPLIMB_THRESHOLD_DESTROY)
+						droplimb(TRUE, DROPLIMB_BURN)
 
 	return update_damstate()
 
