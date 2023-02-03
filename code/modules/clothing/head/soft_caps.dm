@@ -81,9 +81,9 @@
 	icon_state = "rainbowsoft"
 
 /obj/item/clothing/head/soft/sec
-	name = "NanoTrasen security cap"
-	initial_name = "Nanotrasen security cap"
-	desc = "A washed out red cap bearing the security department logo of the long defunct nanotrasen corporation"
+	name = "old security cap"
+	initial_name = "old  security cap"
+	desc = "A washed out red cap bearing logo of the long defunct \"Securitech\" company."
 	icon_state = "secsoft"
 
 /obj/item/clothing/head/soft/sec/corp

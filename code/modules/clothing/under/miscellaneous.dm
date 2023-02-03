@@ -411,9 +411,9 @@ obj/item/clothing/under/genericr
 	icon_state = "tropicopuke"
 	item_state = "tropicopuke"
 
-/obj/item/clothing/under/ntsec
-	name = "NanoTrasen Security Uniform"
-	desc = "A worn and dusty red security jumpsuit from the long defunct Nanotrasen Corporation. this uniform once signified authority, now its just an ugly set of clothes"
+/obj/item/clothing/under/oldsec
+	name = "old security uniform"
+	desc = "A worn and dusty red security jumpsuit from the long defunct \"Securitech\". This uniform once signified authority but now it's just an ugly set of clothes."
 	icon_state = "nanosec"
 	item_state = "nanosec"
 	siemens_coefficient = 0.8

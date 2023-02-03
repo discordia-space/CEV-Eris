@@ -26,8 +26,8 @@
 	allowed_roles = list(JOBS_SCIENCE, JOBS_MEDICAL)
 
 /datum/gear/head/beret/ntsec
-	display_name = "beret, old nanotrasen"
-	path = /obj/item/clothing/head/beret/ntsec
+	display_name = "beret, old security"
+	path = /obj/item/clothing/head/beret/oldsec
 	allowed_roles = list(ASSISTANT_TITLE)
 
 /datum/gear/head/beret/bsec
@@ -64,7 +64,7 @@
 	path = /obj/item/clothing/head/soft/sec/corp
 
 /datum/gear/head/cap/sec
-	display_name = "cap, old nanotrasen"
+	display_name = "cap, old security"
 	path = /obj/item/clothing/head/soft/sec
 	allowed_roles = list(ASSISTANT_TITLE)
 

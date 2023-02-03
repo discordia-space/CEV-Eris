@@ -279,9 +279,9 @@
 		rad = 0
 	)
 
-/obj/item/clothing/head/beret/ntsec
+/obj/item/clothing/head/beret/oldsec
 	name = "Nanotrasen Security Beret"
-	desc = "A washed out and dusty corporate security beret from the long defunct NanoTrasen Corporation."
+	desc = "A washed out and dusty corporate security beret from the long defunct \"Securitech\" company."
 	icon_state = "nanoberet"
 
 /obj/item/clothing/head/onestar
