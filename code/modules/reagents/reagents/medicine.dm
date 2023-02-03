@@ -648,8 +648,8 @@
 	taste_description = "metal"
 	reagent_state = LIQUID
 	color = "#a6b85b"
-	overdose = REAGENTS_OVERDOSE/2
-	metabolism = REM/2
+	overdose = REAGENTS_OVERDOSE / 6
+	metabolism = REM / 2
 
 /datum/reagent/medicine/quickclot/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.25)
@@ -665,7 +665,7 @@
 	reagent_state = LIQUID
 	color = "#660679"
 	metabolism = REM * 5
-	overdose = REAGENTS_OVERDOSE/2
+	overdose = 12	// 15u will treat 4 fractures
 
 /datum/reagent/medicine/ossisine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.apply_damage(20, HALLOSS)
@@ -673,7 +673,7 @@
 	M.add_chemical_effect(CE_BONE_MEND, 1)
 
 /datum/reagent/medicine/ossisine/overdose(mob/living/carbon/M, alien)
-	M.adjustCloneLoss(2)
+	M.adjustCloneLoss(5)
 	M.add_chemical_effect(CE_BONE_MEND, 1)
 
 /datum/reagent/medicine/noexcutite

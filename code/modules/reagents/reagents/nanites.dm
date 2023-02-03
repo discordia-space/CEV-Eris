@@ -304,7 +304,7 @@
 	name = "repair nanites"
 	description = "Microscopic construction robots programmed to repair internal components."
 	id = "fbp_repair"
-	overdose = REAGENTS_OVERDOSE / 2
+	overdose = REAGENTS_OVERDOSE / 6
 
 /datum/reagent/nanites/fbp/repair/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	if(!..())
