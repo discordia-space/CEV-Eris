@@ -42,21 +42,6 @@
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/plastique
 
-/datum/uplink_item/item/tools/heavy_vest
-	name = "Heavy Armor Vest"
-	item_cost = 6
-	path = /obj/item/clothing/suit/storage/vest/merc
-
-/datum/uplink_item/item/tools/full_heavy_vest
-	name = "Fullbody Heavy Armor Vest"
-	item_cost = 12
-	path = /obj/item/clothing/suit/storage/vest/merc/full
-
-/datum/uplink_item/item/tools/heavy_helmet
-	name = "Heavy Armor Helmet"
-	item_cost = 4
-	path = /obj/item/clothing/head/armor/helmet/merchelm
-
 /datum/uplink_item/item/tools/encryptionkey_radio
 	name = "Encrypted Radio Channel Key"
 	item_cost = 4
@@ -85,8 +70,18 @@
 
 /datum/uplink_item/item/tools/space_suit
 	name = "Mercenary Voidsuit"
-	item_cost = 6
+	item_cost = 12
 	path = /obj/item/storage/box/syndie_kit/space
+
+/datum/uplink_item/item/tools/mercarmor
+	name = "Mercenary Combat Armor"
+	item_cost = 6
+	path = /obj/item/storage/box/syndie_kit/mercarmor
+
+/datum/uplink_item/item/tools/heavy_vest
+	name = "Mercenary Vest"
+	item_cost = 3
+	path = /obj/item/clothing/suit/storage/vest/merc
 
 /datum/uplink_item/item/tools/softsuit
 	name = "Armoured Softsuit"
