@@ -392,7 +392,7 @@ datum/wound/puncture/massive
 				"clotted stump" = damage_amt*0.5,
 				"scarred stump" = 0
 				)
-		if(DROPLIMB_BURN)
+		if(DROPLIMB_BURN, DROPLIMB_EDGE_BURN)
 			damage_type = BURN
 			stages = list(
 				"ripped charred stump" = damage_amt*1.3,

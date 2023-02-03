@@ -130,6 +130,7 @@
 #define DROPLIMB_EDGE 0
 #define DROPLIMB_BLUNT 1
 #define DROPLIMB_BURN 2
+#define DROPLIMB_EDGE_BURN 3
 
 #define MODIFICATION_ORGANIC 0	// Organic
 #define MODIFICATION_ASSISTED 1 // Like pacemakers, not robotic
