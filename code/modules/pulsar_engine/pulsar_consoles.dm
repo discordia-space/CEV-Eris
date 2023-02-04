@@ -1,4 +1,4 @@
-#define PULSAR_100_POWER 400000
+#define PULSAR_100_POWER 25000000
 
 /obj/machinery/pulsar //Not meant to be destroyed, snowflake object for control, lots of things hold refs to it so it would harddel
 	name = "pulsar starmap"
@@ -158,7 +158,7 @@
 
 /obj/machinery/power/pulsar_power_bridge/Process()
 	if(powernet && pulsar_console)
-		add_avail(PULSAR_100_POWER * pulsar_console.get_effective_power_porduced())
+		add_avail(PULSAR_100_POWER * pulsar_console.get_effective_power_porduced() / 100)
 	. = ..()
 
 /obj/machinery/power/pulsar_power_bridge/power_change()
@@ -189,7 +189,7 @@
 	if(pulsar_console)
 		data["pulsar_connected"] = TRUE
 		data["power_percentage"] = pulsar_console.get_effective_power_porduced()
-		data["power_produced"] = PULSAR_100_POWER * pulsar_console.get_effective_power_porduced()
+		data["power_produced"] = (PULSAR_100_POWER / 1000000) * pulsar_console.get_effective_power_porduced() / 100
 
 	return data
 
@@ -199,10 +199,6 @@
 	else if(href_list["reconnect"])
 		pulsar_console = locate() in console_area
 	SSnano.update_uis(src)
-
-/obj/machinery/power/pulsar_power_bridge/examine(mob/user, distance, infix, suffix)
-	..(user)
-	to_chat(user, "\The [src] appears to be producing [PULSAR_100_POWER * pulsar_console.get_effective_power_porduced()] W.")
 
 /obj/machinery/power/pulsar_power_bridge/Destroy()
 	pulsar_console = null

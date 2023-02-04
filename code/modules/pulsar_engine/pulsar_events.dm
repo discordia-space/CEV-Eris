@@ -107,7 +107,7 @@
 		command_announcement.Announce("Another wave of energy has been dumbed on your vessel.", "Technomancer Pulsar Monitor")
 
 	for(var/obj/effect/rift as anything in pulsar_rifts)
-		projectile_explosion(get_turf(rift), 10, /obj/item/projectile/beam/emitter, rand(5, 10), list(BURN = 100))
+		projectile_explosion(get_turf(rift), 10, /obj/item/projectile/beam/emitter, rand(5, 10), list(BURN = 50))
 	
 
 /datum/event/pulsar_overcharge/proc/spwawn_new_rift_wave(amount)
