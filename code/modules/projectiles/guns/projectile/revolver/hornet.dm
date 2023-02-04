@@ -14,10 +14,10 @@
 	max_shells = 8 // makes more sense than 7 shot .40 revolvers
 	proj_step_multiplier = 0.8
 	price_tag = 2400 // middle ground between miller and deckard
-	damage_multiplier = 2
-	penetration_multiplier = 0.5
+	damage_multiplier = 1.4 // much less raw damage than deckard due to caliber
+	penetration_multiplier = 2 // raises AP to 3.5, makes armor close to worthless, yet still only barely allows penetrating reinforced walls
 	zoom_factors = list(0.2) // same scope as z8
-	init_recoil = HANDGUN_RECOIL(1.6)
+	init_recoil = HANDGUN_RECOIL(2) // same as .40
 	gun_parts = list(/obj/item/part/gun/frame/hornet = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/srifle = 1)
 	serial_type = "OR"
 

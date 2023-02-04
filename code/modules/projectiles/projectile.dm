@@ -356,6 +356,8 @@
 	if(result == PROJECTILE_FORCE_MISS || result == PROJECTILE_FORCE_MISS_SILENCED)
 		if(!silenced && result == PROJECTILE_FORCE_MISS)
 			visible_message(SPAN_NOTICE("\The [src] misses [target_mob] narrowly!"))
+			if(isroach(target_mob))
+				bumped = FALSE // Roaches do not bump when missed, allowing the bullet to attempt to hit the rest of the roaches in a single cluster
 		return FALSE
 
 	//hit messages
@@ -626,13 +628,14 @@
 		var/dmg = damage_types[dmg_type]
 		if(!(dmg_type == HALLOSS))
 			dmg_total += dmg
-		if(dmg && amount)
+		if(dmg > 0 && amount > 0)
 			var/dmg_armor_difference = dmg - amount
-			amount = dmg_armor_difference ? 0 : -dmg_armor_difference
-			dmg = dmg_armor_difference ? dmg_armor_difference : 0
+			var/is_difference_positive = dmg_armor_difference > 0
+			amount = is_difference_positive ? 0 : -dmg_armor_difference
+			dmg = is_difference_positive ? dmg_armor_difference : 0
 			if(!(dmg_type == HALLOSS))
 				dmg_remaining += dmg
-		if(dmg)
+		if(dmg > 0)
 			damage_types[dmg_type] = dmg
 		else
 			damage_types -= dmg_type
@@ -640,7 +643,7 @@
 		on_impact(A)
 		qdel(src)
 
-	return dmg_total ? (dmg_remaining / dmg_total) : 0
+	return dmg_total > 0 ? (dmg_remaining / dmg_total) : 0
 
 //"Tracing" projectile
 /obj/item/projectile/test //Used to see if you can hit them.

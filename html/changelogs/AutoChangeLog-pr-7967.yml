@@ -1,4 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - code_imp: Has_brain_worms now returns null instead of FALSE

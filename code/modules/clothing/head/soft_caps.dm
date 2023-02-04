@@ -81,9 +81,9 @@
 	icon_state = "rainbowsoft"
 
 /obj/item/clothing/head/soft/sec
-	name = "NanoTrasen security cap"
-	initial_name = "Nanotrasen security cap"
-	desc = "A washed out red cap bearing the security department logo of the long defunct nanotrasen corporation"
+	name = "old security cap"
+	initial_name = "old  security cap"
+	desc = "A washed out red cap bearing logo of the long defunct \"Securitech\" company."
 	icon_state = "secsoft"
 
 /obj/item/clothing/head/soft/sec/corp
@@ -123,7 +123,13 @@
 // M O E B I U S //
 
 /obj/item/clothing/head/soft/medical
-	name = "medical cap"
+	name = "Moebius medical cap"
 	desc = "Cap worn by moebius medical personnel, usually outside spacecraft."
 	icon_state = "medcap"
 	item_state = "medcap"
+
+///obj/item/clothing/head/soft/science
+	//name = "moebius research cap"
+	//desc = "Cap worn by moebius research personnel."
+	//icon_state = "scicap"
+	//item_state = "scicap"

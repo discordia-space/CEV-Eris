@@ -349,7 +349,7 @@ meteor_act
 					W.Fire(target_location, src)
 					return TRUE
 			//else do other types of intervention attacks
-			var/intervention_type = pick("out of breath", "bloodstains")
+			var/intervention_type = pick("out of breath", "bloodstains", "winded")
 			switch(intervention_type)
 				if("bloodstains")
 					if(blood_color)
@@ -383,7 +383,23 @@ meteor_act
 						adjustOxyLoss(10)
 						adjustHalLoss(5)
 
-
+				if("winded")
+					visible_message(SPAN_WARNING("[src] is winded!"), SPAN_DANGER("You feel disoriented!"))
+					confused = max(confused, 2)
+					external_recoil(40)
+					var/obj/item/item_in_active_hand = get_active_hand()
+					if(recoil >= 60 && item_in_active_hand)
+						if(istype(item_in_active_hand, /obj/item/grab))
+							break_all_grabs(user) //See about breaking grips or pulls
+							playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+							return TRUE
+						if(item_in_active_hand.wielded && recoil < 80)
+							playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+							return TRUE
+						unEquip(item_in_active_hand)
+						visible_message(SPAN_DANGER("[user] has disarmed [src]!"))
+						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+						return TRUE
 	return TRUE
 
 /mob/living/carbon/human/proc/attack_joint(var/obj/item/organ/external/organ, var/obj/item/W)

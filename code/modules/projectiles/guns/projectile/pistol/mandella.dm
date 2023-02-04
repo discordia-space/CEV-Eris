@@ -19,8 +19,8 @@
 	mag_well = MAG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/cspistol
 	proj_step_multiplier = 0.8
-	damage_multiplier = 1.7
-	penetration_multiplier = 0.8
+	damage_multiplier = 1.6
+	penetration_multiplier = 0.5 // Penetration level of 2, penetrates much more reliably than most rifles
 	init_recoil = HANDGUN_RECOIL(0.6)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
