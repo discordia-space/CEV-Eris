@@ -320,10 +320,12 @@
 	..()
 
 /datum/breakdown/negative/fabric/proc/add_image(image/I)
+	SIGNAL_HANDLER
 	images |= I
 	holder.owner.client?.images |= I
 
 /datum/breakdown/negative/fabric/proc/update_client_images()
+	SIGNAL_HANDLER
 	holder.owner.client?.images |= images
 
 
@@ -385,6 +387,7 @@
 	..()
 
 /datum/breakdown/common/power_hungry/proc/check_shock()
+	SIGNAL_HANDLER
 	finished = TRUE
 
 #define ACTVIEW_ONE TRUE
@@ -486,6 +489,7 @@
 	..()
 
 /datum/breakdown/common/desire_for_chrome/proc/check_organ()
+	SIGNAL_HANDLER
 	finished = TRUE
 
 
@@ -694,5 +698,6 @@
 	..()
 
 /datum/breakdown/common/signs/proc/check_message(msg)
+	SIGNAL_HANDLER
 	if(msg == message)
 		finished = TRUE

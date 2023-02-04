@@ -23,6 +23,7 @@ GLOBAL_LIST_EMPTY(fabric_list)
 	return ..()
 
 /datum/component/fabric/proc/onLife()
+	SIGNAL_HANDLER
 	fabric_image.icon_state = pick(icon_states('icons/effects/fabric_symbols.dmi', 2))
 	fabric_image.pixel_x = rand(-1,1)
 	fabric_image.pixel_y = rand(-1,1)

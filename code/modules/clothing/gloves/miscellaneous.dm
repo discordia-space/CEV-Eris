@@ -258,9 +258,11 @@
 	RegisterSignal(src, COMSIG_CLOTH_DROPPED, .proc/decrease_punch_damage)
 
 /obj/item/clothing/gloves/dusters/proc/increase_punch_damage(mob/living/carbon/human/user)
+	SIGNAL_HANDLER
 	if(istype(user))
 		user.punch_damage_increase += punch_increase
 
 /obj/item/clothing/gloves/dusters/proc/decrease_punch_damage(mob/living/carbon/human/user)
+	SIGNAL_HANDLER
 	if(istype(user))
 		user.punch_damage_increase -= punch_increase

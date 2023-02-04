@@ -221,6 +221,7 @@
 		return new_name
 
 /obj/item/organ/internal/scaffold/proc/start_cooldown()
+	SIGNAL_HANDLER
 	on_cooldown = TRUE
 	addtimer(CALLBACK(src, .proc/end_cooldown), aberrant_cooldown_time, TIMER_STOPPABLE)
 

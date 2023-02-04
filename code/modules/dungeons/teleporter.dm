@@ -50,6 +50,7 @@
 			to_chat(user, "The teleporter needs time to charge.")
 
 /obj/rogue/teleporter/proc/dungeon_generated()
+	SIGNAL_HANDLER
 	dungeon_is_generated = TRUE
 	UnregisterSignal(src, COMSIG_DUNGEON_GENERATED)
 

@@ -17,7 +17,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 	return ..()
 
 /obj/effect/statclick/proc/cleanup()
-	//SIGNAL_HANDLER
+	SIGNAL_HANDLER
 	qdel(src)
 
 /obj/effect/statclick/proc/update(text)

@@ -125,6 +125,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 			level_up()
 
 /datum/sanity/proc/onLife()
+	//SIGNAL_HANDLER
 	handle_breakdowns()
 	if(owner.stat == DEAD || owner.life_tick % life_tick_modifier || owner.in_stasis || (owner.species.lower_sanity_process && !owner.client))
 		return
@@ -411,6 +412,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 		add_rest(INSIGHT_DESIRE_SMOKING, 0.4 * S.quality_multiplier)
 
 /datum/sanity/proc/onSay()
+	SIGNAL_HANDLER
 	if(world.time < say_time)
 		return
 	say_time = world.time + SANITY_COOLDOWN_SAY

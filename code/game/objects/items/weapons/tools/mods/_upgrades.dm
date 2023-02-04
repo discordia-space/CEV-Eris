@@ -44,6 +44,7 @@
 	RegisterSignal(parent, COMSIG_REMOVE, .proc/uninstall)
 
 /datum/component/item_upgrade/proc/attempt_install(atom/A, mob/living/user, params)
+	//SIGNAL_HANDLER
 	return can_apply(A, user) && apply(A, user)
 
 /datum/component/item_upgrade/proc/can_apply(atom/A, mob/living/user)
@@ -195,6 +196,7 @@
 	return TRUE
 
 /datum/component/item_upgrade/proc/uninstall(obj/item/I, mob/living/user)
+	//SIGNAL_HANDLER
 	var/obj/item/P = parent
 	I.item_upgrades -= P
 	if(destroy_on_removal)
@@ -207,6 +209,7 @@
 	UnregisterSignal(I, COMSIG_APPVAL)
 
 /datum/component/item_upgrade/proc/apply_values(atom/holder)
+	SIGNAL_HANDLER
 	if(!holder)
 		return
 	if(istool(holder))
@@ -216,12 +219,14 @@
 	return TRUE
 
 /datum/component/item_upgrade/proc/add_values(atom/holder)
+	SIGNAL_HANDLER
 	ASSERT(holder)
 	if(isgun(holder))
 		add_values_gun(holder)
 	return TRUE
 
 /datum/component/item_upgrade/proc/apply_values_tool(obj/item/tool/T)
+	SIGNAL_HANDLER
 	if(tool_upgrades[UPGRADE_SANCTIFY])
 		T.aspects += list(SANCTIFIED)
 	if(tool_upgrades[UPGRADE_PRECISION])
@@ -264,6 +269,7 @@
 	T.prefixes |= prefix
 
 /datum/component/item_upgrade/proc/apply_values_gun(var/obj/item/gun/G)
+	SIGNAL_HANDLER
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT])
 		G.damage_multiplier *= weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT]
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS])
@@ -383,6 +389,7 @@
 					F.settings[i] *= weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT]
 
 /datum/component/item_upgrade/proc/on_examine(mob/user)
+	SIGNAL_HANDLER
 	if(tool_upgrades[UPGRADE_SANCTIFY])
 		to_chat(user, SPAN_NOTICE("Does additional burn damage to mutants."))
 	if (tool_upgrades[UPGRADE_PRECISION] > 0)
@@ -593,6 +600,7 @@
 	UnregisterSignal(parent, COMSIG_ATTACKBY)
 
 /datum/component/upgrade_removal/proc/attempt_uninstall(obj/item/C, mob/living/user)
+	//SIGNAL_HANDLER
 	if(!isitem(C))
 		return 0
 

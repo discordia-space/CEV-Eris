@@ -69,7 +69,7 @@
 		return nerve_system_accumulations[tag]
 
 /datum/metabolism_effects/proc/get_nsa()
-	SEND_SIGNAL(parent, COMSING_NSA, nsa_current)
+	SEND_SIGNAL(parent, COMSIG_NSA, nsa_current)
 	return nsa_current
 
 /datum/metabolism_effects/proc/get_nsa_target()

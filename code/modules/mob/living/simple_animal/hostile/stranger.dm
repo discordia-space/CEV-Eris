@@ -175,6 +175,7 @@
 
 
 /obj/item/gun/energy/plasma/stranger/proc/chaos()
+	SIGNAL_HANDLER
 	var/list/stats = ALL_STATS
 	var/list/final_oddity = list()
 	var/stat = pick(stats)

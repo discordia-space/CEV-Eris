@@ -106,7 +106,7 @@
 	RegisterSignal(target_area, COMSIG_TURRENT, .proc/task_completed)
 
 /datum/individual_objective/guard/task_completed()
-		completed()
+	completed()
 
 /datum/individual_objective/guard/completed()
 	if(completed) return

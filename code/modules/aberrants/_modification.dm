@@ -73,6 +73,7 @@ COMSIG_ABERRANT_SECONDARY
 	RegisterSignal(parent, COMSIG_REMOVE, .proc/uninstall)
 
 /datum/component/modification/proc/attempt_install(atom/A, mob/living/user, params)
+	//SIGNAL_HANDLER
 	return can_apply(A, user) && apply(A, user)
 
 /datum/component/modification/proc/can_apply(atom/A, mob/living/user)
@@ -139,6 +140,7 @@ COMSIG_ABERRANT_SECONDARY
 	return TRUE
 
 /datum/component/modification/proc/try_modify(obj/item/I, mob/living/user)
+	//SIGNAL_HANDLER
 	if(user && adjustable)
 		if(!I.use_tool(user = user, target = parent, base_time = mod_time, required_quality = mod_tool_quality, fail_chance = mod_difficulty, required_stat = mod_stat, forced_sound = mod_sound))
 			return FALSE
@@ -151,6 +153,7 @@ COMSIG_ABERRANT_SECONDARY
 	return TRUE
 
 /datum/component/modification/proc/apply_values(atom/holder)
+	SIGNAL_HANDLER
 	ASSERT(holder)
 	if(new_name)
 		holder.name = new_name
@@ -163,6 +166,7 @@ COMSIG_ABERRANT_SECONDARY
 	return TRUE
 
 /datum/component/modification/proc/on_examine(mob/user)
+	SIGNAL_HANDLER
 	var/details_unlocked = FALSE
 	details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
 	if(examine_stat_secondary)
@@ -179,6 +183,7 @@ COMSIG_ABERRANT_SECONDARY
 	return
 
 /datum/component/modification/proc/uninstall(obj/item/I, mob/living/user)
+	//SIGNAL_HANDLER
 	var/obj/item/P = parent
 	I.item_upgrades -= P
 	if(destroy_on_removal)
@@ -211,6 +216,7 @@ COMSIG_ABERRANT_SECONDARY
 	UnregisterSignal(parent, COMSIG_ATTACKBY)
 
 /datum/component/modification_removal/proc/attempt_uninstall(obj/item/C, mob/living/user)
+	//SIGNAL_HANDLER
 	if(!isitem(C))
 		return 0
 

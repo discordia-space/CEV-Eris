@@ -29,7 +29,7 @@
 /datum/individual_objective/get_nsa/assign()
 	..()
 	desc = "Reach [units_requested] of NSA. Survive."
-	RegisterSignal(mind_holder, COMSING_NSA, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSIG_NSA, .proc/task_completed)
 
 /datum/individual_objective/get_nsa/task_completed(n_nsa)
 	units_completed = n_nsa ? n_nsa : 0
@@ -38,7 +38,7 @@
 
 /datum/individual_objective/get_nsa/completed()
 	if(completed) return
-	UnregisterSignal(mind_holder, COMSING_NSA)
+	UnregisterSignal(mind_holder, COMSIG_NSA)
 	..()
 
 /datum/individual_objective/derail
@@ -93,7 +93,7 @@
 	desc = "Perform [units_requested] autopsies."
 	RegisterSignal(mind_holder, COMSING_AUTOPSY, .proc/task_completed)
 
-/datum/individual_objective/autopsy/task_completed(mob/living/carbon/human/H) 
+/datum/individual_objective/autopsy/task_completed(mob/living/carbon/human/H)
 	if(H in cadavers)
 		return
 	cadavers += H
@@ -122,7 +122,7 @@
 	desc = "\The [target] is wasted in their hands. Put it into a destructive analyzer."
 	RegisterSignal(mind_holder, COMSING_DESTRUCTIVE_ANALIZER, .proc/task_completed)
 
-/datum/individual_objective/more_research/task_completed(obj/item/I) 
+/datum/individual_objective/more_research/task_completed(obj/item/I)
 	if(target.type == I.type)
 		..(1)
 

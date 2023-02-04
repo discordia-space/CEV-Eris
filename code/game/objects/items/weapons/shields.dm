@@ -253,6 +253,7 @@
 	return ..()
 
 /obj/item/shield/riot/proc/is_picked()
+	SIGNAL_HANDLER
 	var/mob/living/carbon/human/user = loc
 	if(istype(user))
 		picked_by_human = TRUE
@@ -261,12 +262,14 @@
 		update_state()
 
 /obj/item/shield/riot/proc/is_dropped()
+	SIGNAL_HANDLER
 	if(picked_by_human && picking_human)
 		UnregisterSignal(picking_human, COMSIG_HUMAN_WALKINTENT_CHANGE)
 		picked_by_human = FALSE
 		picking_human = null
 
 /obj/item/shield/riot/proc/update_state()
+	SIGNAL_HANDLER
 	if(!picking_human)
 		return
 	if(MOVING_QUICKLY(picking_human))

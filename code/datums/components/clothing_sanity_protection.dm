@@ -11,6 +11,7 @@
 	RegisterSignal(current_parent, COMSIG_CLOTH_EQUIPPED, .proc/handle_sanity_buffs)
 
 /datum/component/clothing_sanity_protection/proc/handle_sanity_buffs(mob/living/carbon/human/user)
+	SIGNAL_HANDLER
 	var/obj/item/current_parent = parent
 	if(current_parent.is_worn())
 		user.sanity.environment_cap_coeff *= environment_cap_buff
@@ -18,12 +19,13 @@
 		current_user = user
 
 /datum/component/clothing_sanity_protection/proc/handle_sanity_debuff()
+	SIGNAL_HANDLER
 	current_user.sanity.environment_cap_coeff /= environment_cap_buff
 	UnregisterSignal(current_user, COMSIG_CLOTH_DROPPED)
 	current_user = null
 
 // Remove any references to avoid hard dels
-/datum/component/clothing_sanity_protection/RemoveComponent()
+/datum/component/clothing_sanity_protection/ClearFromParent()
 	if(current_user)
 		current_user.sanity.environment_cap_coeff /= environment_cap_buff
 		UnregisterSignal(current_user, COMSIG_CLOTH_DROPPED)

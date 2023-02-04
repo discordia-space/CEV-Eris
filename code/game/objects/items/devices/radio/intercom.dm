@@ -90,6 +90,7 @@
 	return canhear_range
 
 /obj/item/device/radio/intercom/proc/change_status()
+	SIGNAL_HANDLER
 	on = linked_area.powered(STATIC_EQUIP)
 	icon_state = on ? "intercom" : "intercom-p"
 
@@ -103,6 +104,7 @@
 	RegisterSignal(target_area, COMSIG_AREA_APC_POWER_CHANGE, .proc/change_status)
 
 /obj/item/device/radio/intercom/proc/on_apc_removal()
+	SIGNAL_HANDLER
 	UnregisterSignal(linked_area , COMSIG_AREA_APC_DELETED)
 	UnregisterSignal(linked_area, COMSIG_AREA_APC_POWER_CHANGE)
 	linked_area = null

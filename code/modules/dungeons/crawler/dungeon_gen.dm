@@ -88,6 +88,7 @@
 	RegisterSignal(src, COMSIG_GENERATE_DUNGEON, .proc/trigger_generation)
 
 /obj/crawler/map_maker/proc/trigger_generation(obj/rogue/teleporter/O)
+	//SIGNAL_HANDLER
 	UnregisterSignal(src, COMSIG_GENERATE_DUNGEON)
 	generate_controllers()
 	populate_starting_lane()

@@ -22,6 +22,7 @@
 	..()
 
 /datum/component/ai_like_control/proc/ShiftClicked(atom/target)
+	SIGNAL_HANDLER
 	var/obj/machinery/door/airlock/le_door
 	if(isturf(target))
 		le_door = locate(/obj/machinery/door/airlock) in target.contents
@@ -43,6 +44,7 @@
 		to_chat(owner, "You toggle the [le_apc]'s power")
 
 /datum/component/ai_like_control/proc/AltClicked(atom/target)
+	SIGNAL_HANDLER
 	var/obj/machinery/door/airlock/le_door
 	if(isturf(target))
 		le_door = locate(/obj/machinery/door/airlock) in target.contents
@@ -65,6 +67,7 @@
 		to_chat(owner, "You toggle the [le_apc]'s lock")
 
 /datum/component/ai_like_control/proc/CtrlClicked(atom/target)
+	SIGNAL_HANDLER
 	var/obj/machinery/door/airlock/le_door
 	if(isturf(target))
 		le_door = locate(/obj/machinery/door/airlock) in target.contents
