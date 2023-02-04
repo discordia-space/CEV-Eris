@@ -209,7 +209,7 @@
 	UnregisterSignal(I, COMSIG_APPVAL)
 
 /datum/component/item_upgrade/proc/apply_values(atom/holder)
-	SIGNAL_HANDLER
+	//SIGNAL_HANDLER
 	if(!holder)
 		return
 	if(istool(holder))
@@ -219,14 +219,12 @@
 	return TRUE
 
 /datum/component/item_upgrade/proc/add_values(atom/holder)
-	SIGNAL_HANDLER
 	ASSERT(holder)
 	if(isgun(holder))
 		add_values_gun(holder)
 	return TRUE
 
 /datum/component/item_upgrade/proc/apply_values_tool(obj/item/tool/T)
-	SIGNAL_HANDLER
 	if(tool_upgrades[UPGRADE_SANCTIFY])
 		T.aspects += list(SANCTIFIED)
 	if(tool_upgrades[UPGRADE_PRECISION])
@@ -269,7 +267,6 @@
 	T.prefixes |= prefix
 
 /datum/component/item_upgrade/proc/apply_values_gun(var/obj/item/gun/G)
-	SIGNAL_HANDLER
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT])
 		G.damage_multiplier *= weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT]
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS])

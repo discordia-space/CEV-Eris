@@ -412,7 +412,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 		add_rest(INSIGHT_DESIRE_SMOKING, 0.4 * S.quality_multiplier)
 
 /datum/sanity/proc/onSay()
-	SIGNAL_HANDLER
+	//SIGNAL_HANDLER
 	if(world.time < say_time)
 		return
 	say_time = world.time + SANITY_COOLDOWN_SAY

@@ -19,7 +19,6 @@
 	RegisterSignal(mind_holder, SWORD_OF_TRUTH_OF_DESTRUCTION, .proc/task_completed)
 
 /datum/individual_objective/bad_technology/task_completed(obj/item/I)
-	SIGNAL_HANDLER
 	if(target.type == I.type)
 		..(1)
 
@@ -56,7 +55,6 @@
 	RegisterSignal(target, COMSIG_HUMAN_INSTALL_IMPLANT, .proc/task_completed)
 
 /datum/individual_objective/convert/task_completed(mob/living/carbon/human/H, obj/item/implant)
-	SIGNAL_HANDLER
 	if(H == target && istype(implant, /obj/item/implant/core_implant/cruciform))
 		completed()
 
@@ -95,7 +93,6 @@
 	RegisterSignal(mind_holder, COMSIG_RITUAL_REVELATION, .proc/task_completed)
 
 /datum/individual_objective/spread/task_completed(datum/ritual/cruciform/R, mob/M)
-	SIGNAL_HANDLER
 	if(R.type == ritual.type && M == target)
 		completed()
 
@@ -117,7 +114,6 @@
 	RegisterSignal(target_area, COMSIG_AREA_SANCTIFY, .proc/task_completed)
 
 /datum/individual_objective/sanctify/task_completed()
-	SIGNAL_HANDLER
 	completed()
 
 /datum/individual_objective/sanctify/completed()
