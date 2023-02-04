@@ -241,7 +241,7 @@ COMSIG_ABERRANT_SECONDARY
 				// If you pass the check, then you manage to remove the upgrade intact
 				if(!M.destroy_on_removal && user)
 					to_chat(user, SPAN_NOTICE("You successfully extract \the [toremove] while leaving it intact."))
-				SEND_SIGNAL(toremove, COMSIG_REMOVE, upgrade_loc)
+				SEND_SIGNAL_OLD(toremove, COMSIG_REMOVE, upgrade_loc)
 				upgrade_loc.refresh_upgrades()
 				return TRUE
 			else
@@ -253,7 +253,7 @@ COMSIG_ABERRANT_SECONDARY
 				else if(prob(50))
 					//50% chance to break the upgrade and remove it
 					to_chat(user, SPAN_DANGER("You successfully extract \the [toremove], but destroy it in the process."))
-					SEND_SIGNAL(toremove, COMSIG_REMOVE, parent)
+					SEND_SIGNAL_OLD(toremove, COMSIG_REMOVE, parent)
 					//do_sparks(5, 0, toremove.loc)
 					QDEL_NULL(toremove)
 					upgrade_loc.refresh_upgrades()

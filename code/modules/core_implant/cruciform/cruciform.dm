@@ -202,7 +202,7 @@ var/list/disciples = list()
 				continue
 			for(var/mod in I.item_upgrades)
 				var/atom/movable/AM = mod
-				SEND_SIGNAL(AM, COMSIG_REMOVE, I)
+				SEND_SIGNAL_OLD(AM, COMSIG_REMOVE, I)
 				I.take_damage(rand(5,10))
 				if(I.parent)
 					I.parent.take_damage(rand(2,5))

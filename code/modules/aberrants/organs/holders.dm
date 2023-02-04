@@ -37,14 +37,14 @@
 	UnregisterSignal(src, COMSIG_ABERRANT_COOLDOWN)
 	if(LAZYLEN(item_upgrades))
 		for(var/datum/mod in item_upgrades)
-			SEND_SIGNAL(mod, COMSIG_REMOVE, src)
+			SEND_SIGNAL_OLD(mod, COMSIG_REMOVE, src)
 			qdel(mod)
 	return ..()
 
 /obj/item/organ/internal/scaffold/Process()
 	..()
 	if(owner && !on_cooldown && damage < min_broken_damage)
-		SEND_SIGNAL(src, COMSIG_ABERRANT_INPUT, src, owner)
+		SEND_SIGNAL_OLD(src, COMSIG_ABERRANT_INPUT, src, owner)
 
 /obj/item/organ/internal/scaffold/examine(mob/user)
 	. = ..()
@@ -117,7 +117,7 @@
 
 	update_color()
 
-	SEND_SIGNAL(src, COMSIG_APPVAL, src)
+	SEND_SIGNAL_OLD(src, COMSIG_APPVAL, src)
 
 	update_name()
 	update_icon()
@@ -317,13 +317,13 @@
 		S = new special_mod_path(src, FALSE, null, special_info)
 
 	if(I)
-		SEND_SIGNAL(I, COMSIG_IATTACK, src)
+		SEND_SIGNAL_OLD(I, COMSIG_IATTACK, src)
 
 	if(P)
-		SEND_SIGNAL(P, COMSIG_IATTACK, src)
+		SEND_SIGNAL_OLD(P, COMSIG_IATTACK, src)
 
 	if(O)
-		SEND_SIGNAL(O, COMSIG_IATTACK, src)
+		SEND_SIGNAL_OLD(O, COMSIG_IATTACK, src)
 
 	if(S)
-		SEND_SIGNAL(S, COMSIG_IATTACK, src)
+		SEND_SIGNAL_OLD(S, COMSIG_IATTACK, src)

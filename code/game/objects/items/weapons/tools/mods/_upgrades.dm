@@ -626,7 +626,7 @@
 				//If you pass the check, then you manage to remove the upgrade intact
 				if(!IU.destroy_on_removal && user)
 					to_chat(user, SPAN_NOTICE("You successfully remove \the [toremove] while leaving it intact."))
-				SEND_SIGNAL(toremove, COMSIG_REMOVE, upgrade_loc)
+				SEND_SIGNAL_OLD(toremove, COMSIG_REMOVE, upgrade_loc)
 				upgrade_loc.refresh_upgrades()
 				return 1
 			else
@@ -638,7 +638,7 @@
 				else if(prob(50))
 					//50% chance to break the upgrade and remove it
 					to_chat(user, SPAN_DANGER("You successfully remove \the [toremove], but destroy it in the process."))
-					SEND_SIGNAL(toremove, COMSIG_REMOVE, parent)
+					SEND_SIGNAL_OLD(toremove, COMSIG_REMOVE, parent)
 					QDEL_NULL(toremove)
 					upgrade_loc.refresh_upgrades()
 					user.update_action_buttons()

@@ -243,8 +243,8 @@
 		generateHUD(data).show(user.client)
 		is_seeing |= user
 		user.s_active = src
-	SEND_SIGNAL(src, COMSIG_STORAGE_OPENED, user)
-	SEND_SIGNAL(user, COMSIG_STORAGE_OPENED, src)
+	SEND_SIGNAL_OLD(src, COMSIG_STORAGE_OPENED, user)
+	SEND_SIGNAL_OLD(user, COMSIG_STORAGE_OPENED, src)
 
 /obj/item/storage/proc/hide_from(mob/user)
 	is_seeing -= user

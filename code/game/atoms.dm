@@ -389,7 +389,7 @@ its easier to just keep the beam vertical.
 		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
 		P.virtual_scanner.afterattack(src, user, get_dist(src, user) <= 1)
 
-	SEND_SIGNAL(src, COMSIG_EXAMINE, user, distance)
+	SEND_SIGNAL_OLD(src, COMSIG_EXAMINE, user, distance)
 
 	return distance == -1 || (get_dist(src, user) <= distance) || isobserver(user)
 

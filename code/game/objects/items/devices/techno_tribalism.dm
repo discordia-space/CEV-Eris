@@ -29,7 +29,7 @@
 
 /obj/item/device/techno_tribalism/Destroy()
 	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
-		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+		SEND_SIGNAL_OLD(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
 	GLOB.all_faction_items -= src
 	GLOB.technomancer_faction_item_loss++
 	..()
@@ -164,7 +164,7 @@
 			return
 
 		to_chat(user, SPAN_NOTICE("You feed [W] to [src]."))
-		SEND_SIGNAL(user, COMSIG_OBJ_TECHNO_TRIBALISM, W)
+		SEND_SIGNAL_OLD(user, COMSIG_OBJ_TECHNO_TRIBALISM, W)
 		items_count += 1
 		qdel(W)
 

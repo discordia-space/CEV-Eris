@@ -32,7 +32,7 @@
 		lenses.saved_last_overlay = FALSE
 		to_chat(usr, "You detach \the [have_lenses] from \the [src]");
 		usr.put_in_hands(have_lenses)
-		SEND_SIGNAL(src, COMSIG_GLASS_LENSES_REMOVED, usr, src)
+		SEND_SIGNAL_OLD(src, COMSIG_GLASS_LENSES_REMOVED, usr, src)
 		have_lenses = FALSE
 		if(ishuman(usr))
 			var/mob/living/carbon/human/beingofeyes = usr

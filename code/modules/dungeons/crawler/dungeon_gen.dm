@@ -95,7 +95,7 @@
 	sleep(100)
 	generate_dungeon()
 	// Dungeon has been generated, send signal to teleporter
-	SEND_SIGNAL(O, COMSIG_DUNGEON_GENERATED)
+	SEND_SIGNAL_OLD(O, COMSIG_DUNGEON_GENERATED)
 
 /obj/crawler/map_maker/proc/generate_controllers()
 	var/roomnumber = 0

@@ -125,7 +125,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	if(linked_console)
 		linked_console.handle_item_analysis(loaded_item)
 	for(var/mob/living/carbon/human/H in viewers(src))
-		SEND_SIGNAL(H, COMSING_DESTRUCTIVE_ANALIZER, loaded_item)
+		SEND_SIGNAL_OLD(H, COMSING_DESTRUCTIVE_ANALIZER, loaded_item)
 	if(istype(loaded_item,/obj/item/stack))
 		var/obj/item/stack/S = loaded_item
 		if(S.amount <= 1)

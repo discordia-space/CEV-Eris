@@ -70,7 +70,7 @@
 
 	for(var/mob/living/carbon/human/H in oviewers(src))
 		H.sanity.onSeeDeath(src)
-		SEND_SIGNAL(H, COMSIG_MOB_DEATH, src)
+		SEND_SIGNAL_OLD(H, COMSIG_MOB_DEATH, src)
 
 	stat = DEAD
 	for(var/obj/item/implant/carrion_spider/control/C in src)

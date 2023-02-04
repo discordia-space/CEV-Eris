@@ -162,7 +162,7 @@
 
 
 /mob/proc/Life()
-	SEND_SIGNAL(src, COMSIG_MOB_LIFE)
+	SEND_SIGNAL_OLD(src, COMSIG_MOB_LIFE)
 //	if(organStructure)
 //		organStructure.ProcessOrgans()
 	//handle_typing_indicator() //You said the typing indicator would be fine. The test determined that was a lie.

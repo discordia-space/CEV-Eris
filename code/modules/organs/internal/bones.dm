@@ -110,7 +110,7 @@
 		reinforced = FALSE
 		reinforce()
 
-	SEND_SIGNAL(src, COMSIG_APPVAL, src)
+	SEND_SIGNAL_OLD(src, COMSIG_APPVAL, src)
 
 	for(var/prefix in prefixes)
 		name = "[prefix] [name]"

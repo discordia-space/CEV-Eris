@@ -245,7 +245,7 @@
 		area.power_environ = FALSE
 		area.power_change()
 		area.apc = null
-		SEND_SIGNAL(area, COMSIG_AREA_APC_DELETED)
+		SEND_SIGNAL_OLD(area, COMSIG_AREA_APC_DELETED)
 
 	if(wires)
 		QDEL_NULL(wires)
@@ -1067,7 +1067,7 @@
 		return FALSE
 
 /obj/machinery/power/apc/Process()
-	SEND_SIGNAL(area, COMSIG_AREA_APC_OPERATING, operating)
+	SEND_SIGNAL_OLD(area, COMSIG_AREA_APC_OPERATING, operating)
 	if(stat & (BROKEN|MAINT))
 		return
 	if(!area.requires_power)
