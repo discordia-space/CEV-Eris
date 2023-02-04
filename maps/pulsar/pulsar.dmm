@@ -213,9 +213,8 @@
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "hG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/techmaint,
+/obj/machinery/space_heater,
+/turf/simulated/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "hK" = (
 /obj/spawner/junkfood/low_chance,
@@ -302,14 +301,11 @@
 /turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "kT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
+/obj/structure/table/standard,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/outpost/pulsar/maintenance)
 "le" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -348,8 +344,6 @@
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "lA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar)
 "lG" = (
@@ -368,13 +362,6 @@
 /obj/structure/table/standard,
 /obj/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
-/area/outpost/pulsar/maintenance)
-"nb" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "nc" = (
 /obj/spawner/junk/low_chance,
@@ -476,15 +463,6 @@
 	},
 /turf/space,
 /area/space)
-"sI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
 "tf" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -595,11 +573,8 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "wT" = (
-/obj/machinery/portable_atmospherics/canister/empty,
-/obj/machinery/atmospherics/portables_connector{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/machinery/portable_atmospherics/powered/scrubber,
+/turf/simulated/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "xa" = (
 /obj/effect/map_effect/portal/line/side_a{
@@ -688,8 +663,7 @@
 /turf/space,
 /area/space)
 "zw" = (
-/obj/structure/table/standard,
-/obj/spawner/electronics,
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/outpost/pulsar/maintenance)
 "zC" = (
@@ -778,15 +752,6 @@
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
-"Co" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
 "Ct" = (
 /obj/spawner/scrap/sparse,
 /obj/machinery/light/small{
@@ -807,10 +772,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "CH" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
+/obj/machinery/portable_atmospherics/canister,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/outpost/pulsar/maintenance)
 "CL" = (
@@ -897,11 +859,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
-"Gp" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
 "GD" = (
 /obj/structure/filingcabinet,
 /obj/machinery/light{
@@ -1003,36 +960,6 @@
 	dir = 1
 	},
 /turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"JA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"Ks" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
-"KG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
-"KK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "LB" = (
 /obj/structure/sink{
@@ -1175,12 +1102,6 @@
 "Pl" = (
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
-"Pw" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
 "PC" = (
 /turf/simulated/floor/reinforced,
 /area/outpost/pulsar)
@@ -1246,8 +1167,6 @@
 /area/outpost/pulsar/maintenance)
 "SD" = (
 /obj/spawner/junk/low_chance,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar)
 "SG" = (
@@ -1269,16 +1188,6 @@
 /obj/structure/railing,
 /turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
-"SR" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
 "SY" = (
 /obj/structure/table/standard,
 /obj/item/paper_bin{
@@ -1296,12 +1205,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/outpost/pulsar/maintenance)
 "TC" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /obj/structure/sign/faction/technomancers{
 	pixel_y = 32
 	},
@@ -1331,10 +1234,6 @@
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
-"Ue" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
 "Uh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/structure/catwalk,
@@ -1353,12 +1252,6 @@
 	},
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
-"Uo" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
 "Uq" = (
 /obj/structure/table/rack,
 /obj/spawner/pack/tech_loot/low_chance,
@@ -1418,8 +1311,6 @@
 	name = "Engine Access";
 	req_access = list(11)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar)
 "Wk" = (
@@ -1434,8 +1325,6 @@
 	name = "Engine Access";
 	req_access = list(11)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "Wp" = (
@@ -1444,15 +1333,6 @@
 /obj/spawner/pack/tech_loot,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/outpost/pulsar/maintenance)
-"WD" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
 "WZ" = (
 /obj/structure/table/standard,
 /obj/spawner/medical_lowcost,
@@ -1467,11 +1347,8 @@
 /turf/simulated/floor/plating,
 /area/outpost/pulsar/maintenance)
 "Xe" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/obj/machinery/atmospherics/portables_connector{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/machinery/portable_atmospherics/powered/pump,
+/turf/simulated/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "Xi" = (
 /obj/machinery/light/small{
@@ -1488,13 +1365,6 @@
 /obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/outpost/pulsar/maintenance)
-"Xx" = (
-/obj/machinery/atmospherics/binary/pump{
-	dir = 4;
-	name = "Oxygen to Biogenerator"
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
 "Yf" = (
 /turf/simulated/floor/tiled/dark,
 /area/outpost/pulsar)
@@ -1509,12 +1379,6 @@
 	name = "Engine Access";
 	req_access = list(11)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/dark,
 /area/outpost/pulsar)
 "YD" = (
@@ -1522,23 +1386,11 @@
 /obj/item/device/lighting/toggleable/lamp,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/outpost/pulsar/maintenance)
-"YI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
 "YQ" = (
 /obj/structure/railing{
 	dir = 8
 	},
 /turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"YX" = (
-/obj/machinery/atmospherics/binary/pump{
-	dir = 8;
-	name = "Biogenerator to Waste"
-	},
-/turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "Zp" = (
 /obj/structure/table/rack,
@@ -20053,7 +19905,7 @@ cX
 aj
 tJ
 Zq
-CH
+kT
 aj
 AQ
 il
@@ -20842,9 +20694,9 @@ aa
 aa
 ad
 jC
-Ue
-kT
-Pw
+Yf
+Yf
+Yf
 Yf
 ad
 HA
@@ -20855,8 +20707,8 @@ aa
 He
 bq
 nf
-Xx
-YX
+bq
+aJ
 aj
 Cl
 AQ
@@ -21055,10 +20907,10 @@ aa
 aa
 aa
 He
-sI
-hG
-nb
-JA
+bq
+bq
+bq
+bq
 aj
 aj
 aj
@@ -21247,7 +21099,7 @@ fn
 ON
 AI
 LI
-WD
+Yf
 lG
 Yf
 ew
@@ -21257,9 +21109,9 @@ aa
 aa
 aa
 bM
-KK
+bq
 aj
-aJ
+hG
 bq
 tS
 bq
@@ -21448,8 +21300,8 @@ fl
 fl
 fl
 fl
-Ks
-WD
+Yf
+Yf
 Yf
 Yf
 ad
@@ -21650,10 +21502,10 @@ NS
 fl
 fl
 fl
-KG
-Co
-Gp
-YI
+Yf
+Yf
+Yf
+Yf
 Wb
 lA
 SD
@@ -21661,7 +21513,7 @@ lA
 lA
 lA
 Wm
-SR
+ze
 aj
 CC
 tf
@@ -21852,7 +21704,7 @@ fn
 fn
 fn
 fl
-Uo
+Yf
 Yf
 Yf
 Yf

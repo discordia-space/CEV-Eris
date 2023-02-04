@@ -98989,6 +98989,15 @@
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "eFF" = (
+/obj/machinery/power/sensor{
+	long_range = 1;
+	name = "Powernet Sensor - Engine Power";
+	name_tag = "Engine Power"
+	},
+/obj/structure/cable/cyan{
+	d2 = 4;
+	icon_state = "0-4"
+	},
 /obj/machinery/power/apc/hyper/critical{
 	dir = 1;
 	name = "north bump";
@@ -105735,8 +105744,8 @@
 /area/eris/engineering/construction)
 "uDn" = (
 /obj/effect/map_effect/portal/master/side_b{
-	portal_id = "pulsar";
-	dir = 4
+	dir = 4;
+	portal_id = "pulsar"
 	},
 /turf/simulated/floor/reinforced,
 /area/eris/engineering/engine_room)
