@@ -28,8 +28,7 @@
 	var/brightness_on
 	var/on = FALSE
 
-	/*stiffness = 0
-	obscuration = 0*/
+
 
 	price_tag = 30
 

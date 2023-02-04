@@ -152,8 +152,7 @@ Advanced Voidsuit: Technomancer Exultant
 	req_one_access = list()
 	spawn_blacklisted = TRUE//antag_item_targets
 	slowdown = LIGHT_SLOWDOWN * 1.1
-	/*stiffness = 0
-	obscuration = 0*/
+
 
 /obj/item/rig/ce/equipped
 	rarity_value = 40
@@ -311,7 +310,6 @@ Technomancer RIG
 		/obj/item/roller
 	)
 	slowdown = LIGHT_SLOWDOWN * 1.1
-	//stiffness = MEDIUM_STIFFNESS
 
 /obj/item/rig/medical/equipped
 	req_access = list()
