@@ -1,6 +1,11 @@
-author: thevandie
-delete-after: true
-changes:
+2023-02-04:
+  Humonitarian:
+  - bugfix: fixed ethanol painkilling power
+  Pink-Chink:
+  - tweak: Edged burn weapons can delimb
+  assortedbeads:
+  - tweak: laser swords do burn damage now
+  thevandie:
   - rscadd: Added the Merc Combat Armor box item
   - rscadd: Added the Merc Combat Armor box item into the uplink for 6 tc
   - rscdel: Removed the old merc armor helmet and vest, as they're in a single kit
