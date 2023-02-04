@@ -2,8 +2,6 @@
 	deltimer(recoil_reduction_timer)
 
 	var/base_recoil = 1
-
-	//var/mob/living/carbon/human/H = src
 	var/suit_stiffness = 0
 	var/uniform_stiffness = 0
 	base_recoil += suit_stiffness + suit_stiffness * uniform_stiffness // Wearing it under actual armor, or anything too thick is extremely uncomfortable.
