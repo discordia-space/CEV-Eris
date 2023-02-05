@@ -32,7 +32,7 @@ PROCESSING_SUBSYSTEM_DEF(mobs)
 /datum/controller/subsystem/processing/mobs/fire(resumed = FALSE)
 
 	// We don't expect the list to change at all.
-	for(var/i = 1, i < length(high_priority), i++)
+	for(var/i = 1, i <= length(high_priority), i++)
 		var/datum/thing = high_priority[i]
 		if(QDELETED(thing))
 			high_priority -= thing
