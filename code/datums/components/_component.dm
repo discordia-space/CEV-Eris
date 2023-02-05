@@ -77,7 +77,7 @@
 	if(!force)
 		_RemoveFromParent()
 	if(!silent)
-		SEND_SIGNAL_OLD(parent, COMSIG_COMPONENT_REMOVING, src)
+		SEND_SIGNAL(parent, COMSIG_COMPONENT_REMOVING, src)
 	parent = null
 	return ..()
 
@@ -327,7 +327,7 @@
  *
  * Will runtime if used on datums with an empty component list
  *
- * Use the [SEND_SIGNAL_OLD] define instead
+ * Use the [SEND_SIGNAL] define instead
  */
 /datum/proc/_SendSignal(sigtype, list/arguments)
 	var/target = comp_lookup[sigtype]
@@ -476,7 +476,7 @@
 		new_comp = new nt(raw_args) // Dupes are allowed, act like normal
 
 	if(!old_comp && !QDELETED(new_comp)) // Nothing related to duplicate components happened and the new component is healthy
-		SEND_SIGNAL_OLD(src, COMSIG_COMPONENT_ADDED, new_comp)
+		SEND_SIGNAL(src, COMSIG_COMPONENT_ADDED, new_comp)
 		return new_comp
 	return old_comp
 
@@ -505,7 +505,7 @@
 	PreTransfer()
 	_RemoveFromParent()
 	parent = null
-	SEND_SIGNAL_OLD(old_parent, COMSIG_COMPONENT_REMOVING, src)
+	SEND_SIGNAL(old_parent, COMSIG_COMPONENT_REMOVING, src)
 
 /**
  * Transfer this component to another parent
