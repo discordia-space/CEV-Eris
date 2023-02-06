@@ -30,11 +30,10 @@
 	var/wound_nature					// Make sure we don't apply organic wounds to robotic organs and vice versa
 
 	// Damage applied to mob each process tick
-	var/hal_damage
+	var/hal_damage			// Stored on the limb and applied in shock.dm
 	var/psy_damage			// Not the same as sanity damage, but does deal sanity damage
 
 	// Additional effects
-	var/can_hallucinate = FALSE			// Will this wound cause hallucinations?
 	var/ticks_per_hallucination = IWOUND_1_MINUTE
 	var/current_hallucination_tick
 

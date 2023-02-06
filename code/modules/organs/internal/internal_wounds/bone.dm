@@ -4,7 +4,7 @@
 	treatments_tool = list(QUALITY_SEALING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_BONE_MEND = 1)
 	severity = 0
-	severity_max = 3
+	severity_max = 5
 	hal_damage = IWOUND_LIGHT_DAMAGE
 
 /datum/component/internal_wound/organic/bone_blunt/bruise
@@ -13,14 +13,16 @@
 /datum/component/internal_wound/organic/bone_blunt/sprain
 	name = "sprained ligament"
 
+/datum/component/internal_wound/organic/bone_blunt/dislocation
+	name = "dislocation"
+
+/*
 /datum/component/internal_wound/organic/bone_blunt/trauma
 	name = "blunt trauma"
 
 /datum/component/internal_wound/organic/bone_blunt/hemorrhage
 	name = "internal hemorrhage"
-
-/datum/component/internal_wound/organic/bone_blunt/dislocation
-	name = "dislocation"
+*/
 
 // Sharp
 /datum/component/internal_wound/organic/bone_sharp
@@ -28,7 +30,7 @@
 	treatments_tool = list(QUALITY_SEALING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_BONE_MEND = 1)
 	severity = 0
-	severity_max = 3
+	severity_max = 5
 	hal_damage = IWOUND_LIGHT_DAMAGE
 
 /datum/component/internal_wound/organic/bone_sharp/perforation
@@ -40,11 +42,13 @@
 /datum/component/internal_wound/organic/bone_sharp/puncture
 	name = "puncture"
 
+/*
 /datum/component/internal_wound/organic/bone_sharp/trauma
 	name = "penetrating trauma"
 
 /datum/component/internal_wound/organic/bone_sharp/depressed
 	name = "depressed tissue"
+*/
 
 // Edge
 /datum/component/internal_wound/organic/bone_edge
@@ -52,7 +56,7 @@
 	treatments_tool = list(QUALITY_SEALING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_BONE_MEND = 1)
 	severity = 0
-	severity_max = 3
+	severity_max = 5
 	hal_damage = IWOUND_LIGHT_DAMAGE
 
 /datum/component/internal_wound/organic/bone_edge/laceration
@@ -64,11 +68,13 @@
 /datum/component/internal_wound/organic/bone_edge/chip
 	name = "chipped tissue"
 
+/*
 /datum/component/internal_wound/organic/bone_edge/gore
 	name = "gored tissue"
 
 /datum/component/internal_wound/organic/bone_edge/cut
 	name = "grazed tissue"
+*/
 
 // Fracture
 /datum/component/internal_wound/organic/bone_fracture

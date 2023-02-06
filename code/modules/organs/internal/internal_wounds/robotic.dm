@@ -9,17 +9,11 @@
 	treatments_tool = list(QUALITY_HAMMERING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_MECH_REPAIR = 0.55)		// repair nanites + 3 metals OR repair nanite OD + a metal
 	severity = 0
-	severity_max = 3
+	severity_max = 5
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
 
 /datum/component/internal_wound/robotic/blunt/malfunction
 	name = "mechanical malfunction"
-
-/datum/component/internal_wound/robotic/blunt/bent
-	name = "bent structure"
-
-/datum/component/internal_wound/robotic/blunt/crack
-	name = "cracked frame"
 
 /datum/component/internal_wound/robotic/blunt/minor_deform
 	name = "minor deformation"
@@ -27,13 +21,21 @@
 /datum/component/internal_wound/robotic/blunt/shear
 	name = "sheared support"
 
+/*
+/datum/component/internal_wound/robotic/blunt/bent
+	name = "bent structure"
+
+/datum/component/internal_wound/robotic/blunt/crack
+	name = "cracked frame"
+*/
+
 // Sharp
 /datum/component/internal_wound/robotic/sharp
 	treatments_item = list(/obj/item/stack/nanopaste = 1)
 	treatments_tool = list(QUALITY_SEALING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_MECH_REPAIR = 0.85)		// repair nanites + 6 metals OR repair nanite OD + 7 metals
 	severity = 0
-	severity_max = 3
+	severity_max = 5
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
 
 /datum/component/internal_wound/robotic/sharp/perforation
@@ -42,14 +44,16 @@
 /datum/component/internal_wound/robotic/sharp/cavitation
 	name = "cavitation"
 
-/datum/component/internal_wound/robotic/sharp/puncture
-	name = "puncture"
-
 /datum/component/internal_wound/robotic/sharp/leak
 	name = "weeping leak"
 
+/*
+/datum/component/internal_wound/robotic/sharp/puncture
+	name = "puncture"
+
 /datum/component/internal_wound/robotic/sharp/pressure
 	name = "pressure failure"
+*/
 
 // Edge
 /datum/component/internal_wound/robotic/edge
@@ -57,17 +61,11 @@
 	treatments_tool = list(QUALITY_CLAMPING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_MECH_REPAIR = 0.85)
 	severity = 0
-	severity_max = 3
+	severity_max = 5
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
-
-/datum/component/internal_wound/robotic/edge/short
-	name = "electrical short"
 
 /datum/component/internal_wound/robotic/edge/cut
 	name = "exposed wiring"
-
-/datum/component/internal_wound/robotic/edge/arc
-	name = "arcing"
 
 /datum/component/internal_wound/robotic/edge/gouge
 	name = "gouged structure"
@@ -75,13 +73,21 @@
 /datum/component/internal_wound/robotic/edge/shred
 	name = "shredded shielding"
 
+/*
+/datum/component/internal_wound/robotic/edge/short
+	name = "electrical short"
+
+/datum/component/internal_wound/robotic/edge/arc
+	name = "arcing"
+*/
+
 // EMP/burn wounds
 /datum/component/internal_wound/robotic/emp_burn
 	treatments_item = list(/obj/item/stack/cable_coil = 5, /obj/item/stack/nanopaste = 1)
 	treatments_tool = list(QUALITY_PULSING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_MECH_REPAIR = 0.95)	// repair nanite OD + all metals
 	severity = 0
-	severity_max = 3
+	severity_max = 5
 	next_wound = /datum/component/internal_wound/robotic/overheat
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
 
@@ -91,14 +97,16 @@
 /datum/component/internal_wound/robotic/emp_burn/slag
 	name = "slagged mechanism"
 
+/datum/component/internal_wound/robotic/emp_burn/carbonized
+	name = "carbonized wiring"
+
+/*
 /datum/component/internal_wound/robotic/emp_burn/melt
 	name = "melted component"
 
 /datum/component/internal_wound/robotic/emp_burn/fry
 	name = "fried circuitry"
-
-/datum/component/internal_wound/robotic/emp_burn/carbonized
-	name = "carbonized wiring"
+*/
 
 /datum/component/internal_wound/robotic/overheat
 	treatments_item = list(/obj/item/stack/nanopaste = 2)

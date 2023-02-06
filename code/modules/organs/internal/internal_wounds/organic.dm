@@ -9,17 +9,11 @@
 	treatments_tool = list(QUALITY_CAUTERIZING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_BLOODCLOT = 0.55)	// Tricordrazine/polystem + bicaridine + meralyne OR quickclot OD + any brute heal
 	severity = 0
-	severity_max = 3
+	severity_max = 5
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 
 /datum/component/internal_wound/organic/blunt/rupture
 	name = "rupture"
-
-/datum/component/internal_wound/organic/blunt/bruising
-	name = "severe bruising"
-
-/datum/component/internal_wound/organic/blunt/trauma
-	name = "blunt trauma"
 
 /datum/component/internal_wound/organic/blunt/hemorrhage
 	name = "internal hemorrhage"
@@ -27,13 +21,21 @@
 /datum/component/internal_wound/organic/blunt/contusion
 	name = "contusion"
 
+/*
+/datum/component/internal_wound/organic/blunt/bruising
+	name = "severe bruising"
+
+/datum/component/internal_wound/organic/blunt/trauma
+	name = "blunt trauma"
+*/
+
 // Sharp
 /datum/component/internal_wound/organic/sharp
 	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 2)
 	treatments_tool = list(QUALITY_CAUTERIZING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_BLOODCLOT = 0.85)	// Brute heal chem mix + quickclot OD
 	severity = 0
-	severity_max = 3
+	severity_max = 5
 	next_wound = /datum/component/internal_wound/organic/swelling
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 
@@ -43,14 +45,16 @@
 /datum/component/internal_wound/organic/sharp/cavity
 	name = "cavitation"
 
+/datum/component/internal_wound/organic/sharp/gore
+	name = "gored tissue"
+
+/*
 /datum/component/internal_wound/organic/sharp/puncture
 	name = "puncture"
 
 /datum/component/internal_wound/organic/sharp/trauma
 	name = "penetrating trauma"
-
-/datum/component/internal_wound/organic/sharp/gore
-	name = "gored tissue"
+*/
 
 // Edge
 /datum/component/internal_wound/organic/edge
@@ -58,7 +62,7 @@
 	treatments_tool = list(QUALITY_CAUTERIZING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_BLOODCLOT = 0.85)	// Brute heal chem mix + quickclot OD
 	severity = 0
-	severity_max = 3
+	severity_max = 5
 	next_wound = /datum/component/internal_wound/organic/swelling
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 
@@ -71,11 +75,13 @@
 /datum/component/internal_wound/organic/edge/rip
 	name = "ripped tissue"
 
+/*
 /datum/component/internal_wound/organic/edge/tear
 	name = "torn tissue"
 
 /datum/component/internal_wound/organic/edge/cut
 	name = "leaking cut"
+*/
 
 // Burn
 /datum/component/internal_wound/organic/burn
@@ -84,24 +90,26 @@
 	treatments_chem = list(CE_STABLE = 1)	// Inaprov will only keep it from killing you
 	scar = /datum/component/internal_wound/organic/necrosis_start
 	severity = 0
-	severity_max = 3
+	severity_max = 5
 	next_wound = /datum/component/internal_wound/organic/infection
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 
 /datum/component/internal_wound/organic/burn/scorch
 	name = "scorched tissue"
 
-/datum/component/internal_wound/organic/burn/sear
-	name = "seared flesh"
-
 /datum/component/internal_wound/organic/burn/char
 	name = "charred tissue"
 
-/datum/component/internal_wound/organic/burn/burnt
-	name = "burnt tissue"
-
 /datum/component/internal_wound/organic/burn/incinerate
 	name = "incinerated flesh"
+
+/*
+/datum/component/internal_wound/organic/burn/sear
+	name = "seared flesh"
+
+/datum/component/internal_wound/organic/burn/burnt
+	name = "burnt tissue"
+*/
 
 /datum/component/internal_wound/organic/necrosis_start
 	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
@@ -130,14 +138,11 @@
 	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_ANTITOX = 2)
 	severity = 0
-	severity_max = 2
+	severity_max = 3
 	hal_damage = IWOUND_LIGHT_DAMAGE
 
 /datum/component/internal_wound/organic/poisoning/pustule
 	name = "pustule"
-
-/datum/component/internal_wound/organic/poisoning/swelling
-	name = "light swelling"
 	specific_organ_size_multiplier = 0.20
 
 /datum/component/internal_wound/organic/poisoning/poisoning
@@ -149,6 +154,11 @@
 /datum/component/internal_wound/organic/poisoning/accumulation
 	name = "foreign accumulation"
 	hal_damage = IWOUND_MEDIUM_DAMAGE
+
+/*
+/datum/component/internal_wound/organic/poisoning/swelling
+	name = "light swelling"
+*/
 
 // Tox (OD/atmos)
 /datum/component/internal_wound/organic/heavy_poisoning
