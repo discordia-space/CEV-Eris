@@ -26,7 +26,7 @@
 
 /// Proc called in human life. Should be the first thing to be called.
 /datum/perk/proc/on_process()
-	SIGNAL_HANDLER
+	//SIGNAL_HANDLER
 	SHOULD_CALL_PARENT(TRUE)
 	if(!holder)
 		return FALSE
