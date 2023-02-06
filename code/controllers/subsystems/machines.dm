@@ -53,7 +53,6 @@ PROCESSING_SUBSYSTEM_DEF(machines)
 	if (!resumed)
 		for(var/datum/powernet/powernet as anything in powernets)
 			powernet.reset() //reset the power state.
-		src.currentrun = processing.Copy()
 
 	. = ..()
 
