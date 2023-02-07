@@ -6,7 +6,7 @@
 
 	power_use = 10
 	matter = list(MATERIAL_STEEL = 10)
-	var/melee_damage = 10
+	var/melee_damage = WEAPON_FORCE_PAINFUL
 	var/action_delay = 15
 	var/obj/item/robot_parts/robot_component/actuator/motivator
 	var/punch_sound = ('sound/mechs/mech_punch.ogg')
@@ -50,7 +50,6 @@
 	desc = "Industrial lifter arms that allow you to crudely manipulate things from the safety of your cockpit."
 	exosuit_desc_string = "industrial lifter arms"
 	icon_state = "loader_arms"
-	melee_damage = 15
 	max_damage = 90
 	power_use = 30
 
@@ -59,7 +58,6 @@
 	exosuit_desc_string = "lightweight, segmented manipulators"
 	desc = "As flexible as they are fragile, these manipulators can follow a pilot's movements in close to real time."
 	icon_state = "light_arms"
-	melee_damage = 10
 	action_delay = 5
 	max_damage = 45
 	power_use = 10
@@ -70,7 +68,7 @@
 	exosuit_desc_string = "flexible, advanced manipulators"
 	desc = "These advanced manipulators are designed for combat, and as a result can take and dish out beatings fairly well."
 	icon_state = "combat_arms"
-	melee_damage = 45 // Whack
+	melee_damage = WEAPON_FORCE_LETHAL + 5 // Whack
 	action_delay = 10
 	max_damage = 125
 	power_use = 50
@@ -81,7 +79,7 @@
 	exosuit_desc_string = "super-heavy reinforced manipulators"
 	icon_state = "heavy_arms"
 	desc = "Designed for durability and dishing out beatings, this heavy set of manipulators can both take and dish out beatings."
-	melee_damage = 60 // You know , these things walk like a snail . Why would you even get close to this.
+	melee_damage = WEAPON_FORCE_LETHAL + 20 // You know , these things walk like a snail . Why would you even get close to this.
 	action_delay = 20
 	max_damage = 175
 	power_use = 60

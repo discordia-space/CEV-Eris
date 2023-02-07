@@ -155,12 +155,12 @@
 		return
 
 	if(total_damage >= max_damage)
-		to_chat(user, SPAN_WARNING("This part is too damaged to be repaired with a welder!"))
+		to_chat(user, SPAN_WARNING("This component is completely destroyed, you can't repair it!"))
 		return
 
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			visible_message(SPAN_WARNING("\The [src] has been repaired by [user]!"),"You hear welding.")
+			visible_message(SPAN_NOTICE("\The [src] has been repaired by [user]."), SPAN_NOTICE("You weld a damaged section of \the [src]."), "You hear welding.")
 			repair_brute_damage(weld_amt)
 			return
 
@@ -182,9 +182,9 @@
 	to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
 
 	if(do_mob(user, src, 30) && CC.use(5))
+		user.visible_message(user, SPAN_NOTICE("\The [src] has been re-wired by [user]."), SPAN_NOTICE("You replace frayed wiring in \the [src]."), "You hear rustling metal.")
 		repair_burn_damage(wire_amt)
 		return
-
 
 /obj/item/mech_component/proc/get_damage_string()
 	switch(damage_state)

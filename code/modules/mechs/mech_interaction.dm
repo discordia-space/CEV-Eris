@@ -336,7 +336,7 @@
 	else if(istype(I, /obj/item/stack/nanopaste))
 		var/obj/item/stack/nanopaste/paste = I
 		if(paste.amount < 2)
-			to_chat(user, SPAN_WARNING("You need at least 5 nanopastes pieces in order to repair damage."))
+			to_chat(user, SPAN_WARNING("You need at least 2 nanite segments in order to repair damage."))
 			return TRUE
 		var/obj/item/mech_component/mc = get_targeted_part(user)
 		if(!repairing_check(mc, user))
@@ -344,7 +344,7 @@
 		if(mc.total_damage <= 0)
 			to_chat(user, SPAN_WARNING("Damage on this part is already repaired."))
 			return TRUE
-		to_chat(user, SPAN_NOTICE("You start distributing tubes of nanopaste into \the [src]'s nanite pump."))
+		to_chat(user, SPAN_NOTICE("You start feeding nanite segments into \the [src]'s nanite port."))
 		if(do_mob(user, src, 30) && paste.use(2))
 			mc.repair_burn_damage(15)
 			mc.repair_brute_damage(15)
@@ -406,6 +406,9 @@
 			return TRUE
 
 		if(QUALITY_WELDING)
+			if(!maintenance_protocols)
+				to_chat(user, SPAN_WARNING("The securing bolts are not visible while maintenance protocols are disabled."))
+				return TRUE
 			var/obj/item/mech_component/mc = get_targeted_part(user)
 			if(!repairing_check(mc, user))
 				return TRUE
