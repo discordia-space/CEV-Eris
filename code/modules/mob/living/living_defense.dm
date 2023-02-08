@@ -168,8 +168,8 @@
 		IgniteMob()
 
 	if(config.z_level_shooting && P.height) // If the bullet came from above or below, limit what bodyparts can be hit for consistency
-		if(resting == TRUE || stat == TRUE)
-			return FALSE // Bullet flies overhead
+		if(resting || lying)
+			return PROJECTILE_CONTINUE // Bullet flies overhead
 
 		switch(P.height)
 			if(HEIGHT_HIGH)
