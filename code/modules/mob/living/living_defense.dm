@@ -136,7 +136,7 @@
 	if(return_continuation)
 		var/obj/item/projectile/P = used_weapon
 		P.damage_types = dmg_types
-		if(sharp)
+		if(sharp && !istype(P, /obj/item/projectile/bullet/pellet))
 			var/remaining_dmg = 0
 			for(var/dmg_type in dmg_types)
 				remaining_dmg += dmg_types[dmg_type]
@@ -167,10 +167,9 @@
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
 
-	//Being hit while using a deadman switch
-	if(istype(get_active_hand(),/obj/item/device/assembly/signaler))
-		var/obj/item/device/assembly/signaler/signaler = get_active_hand()
-		if(signaler.deadman && prob(80))
+	if(config.z_level_shooting && P.height) // If the bullet came from above or below, limit what bodyparts can be hit for consistency
+		if(resting || lying)
+			return PROJif(signaler.deadman && prob(80))
 			log_and_message_admins("has triggered a signaler deadman's switch")
 			src.visible_message(SPAN_WARNING("[src] triggers their deadman's switch!"))
 			signaler.signal()
