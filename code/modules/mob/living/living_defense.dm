@@ -136,7 +136,7 @@
 	if(return_continuation)
 		var/obj/item/projectile/P = used_weapon
 		P.damage_types = dmg_types
-		if(sharp)
+		if(sharp && !istype(P, /obj/item/projectile/bullet/pellet))
 			var/remaining_dmg = 0
 			for(var/dmg_type in dmg_types)
 				remaining_dmg += dmg_types[dmg_type]
