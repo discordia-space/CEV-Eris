@@ -106,6 +106,17 @@ see multiz/movement.dm for some info.
 	return
 
 /turf/simulated/open/fallThrough(var/atom/movable/mover)
+
+	// If we are the target, the projectile traverses down
+	if(config.z_level_shooting && istype(mover,/obj/item/projectile))
+		var/obj/item/projectile/P = mover
+		if(!P.height && istype(P.original, /turf/simulated/open) && get_dist(P.starting, P.original) <= get_dist(P.starting, src))
+			P.forceMove(below)
+			P.trajectory.loc_z = below.z
+			P.bumped = FALSE
+			P.height = HEIGHT_LOW // We are shooting from above, this protects windows from damage
+			return // We are done here
+
 	if(!mover.can_fall())
 		return
 
