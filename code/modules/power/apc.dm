@@ -179,7 +179,7 @@
 		name = "\improper [get_area_name_litteral(area, TRUE)] APC"
 		stat |= MAINT
 		update_icon()
-		addtimer(CALLBACK(src, .proc/update), 5)
+		addtimer(CALLBACK(src, PROC_REF(update)), 5)
 		set_dir(ndir)
 
 	switch(dir)
@@ -231,7 +231,7 @@
 
 	make_terminal()
 
-	addtimer(CALLBACK(src, .proc/update), 5)
+	addtimer(CALLBACK(src, PROC_REF(update)), 5)
 
 /obj/machinery/power/apc/Destroy()
 	GLOB.apc_list -= src

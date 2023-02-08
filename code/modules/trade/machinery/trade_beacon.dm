@@ -43,7 +43,7 @@
 	if(!export_timer_start)
 		activate()
 		export_timer_start = world.time
-		addtimer(CALLBACK(src, .proc/reset_export_timer), export_cooldown, TIMER_STOPPABLE)
+		addtimer(CALLBACK(src, PROC_REF(reset_export_timer)), export_cooldown, TIMER_STOPPABLE)
 
 /obj/machinery/trade_beacon/sending/proc/reset_export_timer()
 	activate()

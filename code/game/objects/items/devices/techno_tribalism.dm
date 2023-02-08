@@ -183,7 +183,7 @@
 				items_count = 0
 				oddity_stats = list(STAT_MEC = 0, STAT_COG = 0, STAT_BIO = 0, STAT_ROB = 0, STAT_TGH = 0, STAT_VIG = 0)
 				// let technos know
-				addtimer(CALLBACK(src, .proc/alert_technomancers), cooldown)
+				addtimer(CALLBACK(src, PROC_REF(alert_technomancers)), cooldown)
 				last_produce = world.time
 				user.put_in_hands(T)
 			else

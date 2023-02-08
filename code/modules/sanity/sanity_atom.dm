@@ -9,7 +9,7 @@
 	affect = value
 	desc = new_desc
 
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/onMoved)
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(onMoved))
 
 	onMoved(null, A.loc)
 

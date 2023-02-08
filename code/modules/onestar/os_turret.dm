@@ -131,7 +131,7 @@
 /obj/machinery/power/os_turret/emp_act()
 	..()
 	stat |= EMPED
-	emp_timer_id = addtimer(CALLBACK(src, .proc/emp_off), emp_cooldown, TIMER_STOPPABLE)
+	emp_timer_id = addtimer(CALLBACK(src, PROC_REF(emp_off)), emp_cooldown, TIMER_STOPPABLE)
 
 /obj/machinery/power/os_turret/bullet_act(obj/item/projectile/proj)
 	var/damage = proj.get_structure_damage()
@@ -238,12 +238,12 @@
 		var/timer = time_between_shots
 		shoot(target, def_zone)
 		for(var/i in 1 to to_shoot)
-			shot_timer_ids += addtimer(CALLBACK(src, .proc/shoot, target, def_zone), timer, TIMER_STOPPABLE)
+			shot_timer_ids += addtimer(CALLBACK(src, PROC_REF(shoot), target, def_zone), timer, TIMER_STOPPABLE)
 			timer += time_between_shots
 
 	if(cooldown_time && !returning_fire)
 		on_cooldown = TRUE
-		cooldown_timer_id = addtimer(CALLBACK(src, .proc/cooldown), cooldown_time, TIMER_STOPPABLE)
+		cooldown_timer_id = addtimer(CALLBACK(src, PROC_REF(cooldown)), cooldown_time, TIMER_STOPPABLE)
 
 	if(returning_fire)
 		returning_fire = FALSE

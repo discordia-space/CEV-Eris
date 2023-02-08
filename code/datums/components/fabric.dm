@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(fabric_list)
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	RegisterSignal(parent, COMSIG_MOB_LIFE, .proc/onLife)
+	RegisterSignal(parent, COMSIG_MOB_LIFE, PROC_REF(onLife))
 
 	GLOB.fabric_list |= src
 

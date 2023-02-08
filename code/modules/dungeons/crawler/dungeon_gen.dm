@@ -85,7 +85,7 @@
 
 	// Listen to signal to trigger dungeon generation only when needed
 	// i.e only when teleporter to dungeon is activated
-	RegisterSignal(src, COMSIG_GENERATE_DUNGEON, .proc/trigger_generation)
+	RegisterSignal(src, COMSIG_GENERATE_DUNGEON, PROC_REF(trigger_generation))
 
 /obj/crawler/map_maker/proc/trigger_generation(obj/rogue/teleporter/O)
 	//SIGNAL_HANDLER

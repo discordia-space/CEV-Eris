@@ -28,7 +28,7 @@
 
 /obj/item/organ/internal/scaffold/New()
 	..()
-	RegisterSignal(src, COMSIG_ABERRANT_COOLDOWN, .proc/start_cooldown)
+	RegisterSignal(src, COMSIG_ABERRANT_COOLDOWN, PROC_REF(start_cooldown))
 	if(use_generated_icon)
 		organ_type = "-[rand(1,8)]"
 	update_icon()
@@ -223,7 +223,7 @@
 /obj/item/organ/internal/scaffold/proc/start_cooldown()
 	SIGNAL_HANDLER
 	on_cooldown = TRUE
-	addtimer(CALLBACK(src, .proc/end_cooldown), aberrant_cooldown_time, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, PROC_REF(end_cooldown)), aberrant_cooldown_time, TIMER_STOPPABLE)
 
 /obj/item/organ/internal/scaffold/proc/end_cooldown()
 	on_cooldown = FALSE

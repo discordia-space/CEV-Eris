@@ -248,8 +248,8 @@
 	else return get_protected_area(user)
 
 /obj/item/shield/riot/New()
-	RegisterSignal(src, COMSIG_ITEM_PICKED, .proc/is_picked)
-	RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/is_dropped)
+	RegisterSignal(src, COMSIG_ITEM_PICKED, PROC_REF(is_picked))
+	RegisterSignal(src, COMSIG_ITEM_DROPPED, PROC_REF(is_dropped))
 	return ..()
 
 /obj/item/shield/riot/proc/is_picked()
@@ -258,7 +258,7 @@
 	if(istype(user))
 		picked_by_human = TRUE
 		picking_human = user
-		RegisterSignal(picking_human, COMSIG_HUMAN_WALKINTENT_CHANGE, .proc/update_state)
+		RegisterSignal(picking_human, COMSIG_HUMAN_WALKINTENT_CHANGE, PROC_REF(update_state))
 		update_state()
 
 /obj/item/shield/riot/proc/is_dropped()

@@ -941,7 +941,7 @@ var/list/rank_prefix = list(\
 				var/mob/living/carbon/superior_animal/roach/R = M
 				R.target_mob = null
 				R.set_faction(faction)
-				addtimer(CALLBACK(R, .proc/set_faction), 1 MINUTE)
+				addtimer(CALLBACK(R, PROC_REF(set_faction)), 1 MINUTE)
 
 			else if(ishuman(M))
 				var/mob/living/carbon/human/H = M
@@ -964,7 +964,7 @@ var/list/rank_prefix = list(\
 				var/mob/living/carbon/superior_animal/giant_spider/S = M
 				S.target_mob = null
 				S.set_faction(faction)
-				addtimer(CALLBACK(S, .proc/set_faction), 1 MINUTE)
+				addtimer(CALLBACK(S, PROC_REF(set_faction)), 1 MINUTE)
 
 			else if(ishuman(M))
 				var/mob/living/carbon/human/H = M

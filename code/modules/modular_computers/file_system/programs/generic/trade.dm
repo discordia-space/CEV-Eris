@@ -325,7 +325,7 @@
 		trade_screen = ORDER_SCREEN
 		if(account != department_accounts[DEPARTMENT_GUILD])
 			orders_locked = TRUE
-			addtimer(CALLBACK(src, .proc/unlock_ordering), 10 SECONDS, TIMER_STOPPABLE)
+			addtimer(CALLBACK(src, PROC_REF(unlock_ordering)), 10 SECONDS, TIMER_STOPPABLE)
 		return TRUE
 
 	if(href_list["PRG_view_order"])

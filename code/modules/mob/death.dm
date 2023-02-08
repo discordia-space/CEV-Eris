@@ -19,7 +19,7 @@
 		animation.icon = 'icons/mob/mob.dmi'
 		animation.master = src
 		flick(anim, animation)
-	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
+	addtimer(CALLBACK(src, PROC_REF(check_delete), animation), 15)
 
 /mob/proc/check_delete(var/atom/movable/overlay/animation)
 	if(animation)	qdel(animation)
@@ -50,7 +50,7 @@
 		animation.icon = iconfile
 		animation.master = src
 		flick(anim, animation)
-	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
+	addtimer(CALLBACK(src, PROC_REF(check_delete), animation), 15)
 
 
 /mob/proc/death(gibbed,deathmessage="seizes up and falls limp...",show_dead_message = "You have died.")

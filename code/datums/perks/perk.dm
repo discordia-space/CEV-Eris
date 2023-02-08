@@ -39,13 +39,13 @@
 	if(istype(H))
 		SHOULD_CALL_PARENT(TRUE)
 		holder = H
-		RegisterSignal(holder, COMSIG_MOB_LIFE, .proc/on_process)
+		RegisterSignal(holder, COMSIG_MOB_LIFE, PROC_REF(on_process))
 		to_chat(holder, SPAN_NOTICE("[gain_text]"))
 		return TRUE
 
 /// Proc called when the perk is removed from a human. Obviously, in your perks, you should call parent as the last thing you do, since it deletes the perk itself.
 /datum/perk/proc/remove()
-	UnregisterSignal(holder, COMSIG_MOB_LIFE, .proc/on_process)
+	UnregisterSignal(holder, COMSIG_MOB_LIFE, PROC_REF(on_process))
 	SHOULD_CALL_PARENT(TRUE)
 	qdel(src)
 

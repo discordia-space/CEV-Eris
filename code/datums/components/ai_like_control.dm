@@ -10,9 +10,9 @@
 	if(!ishuman(parent))
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
-	RegisterSignal(owner,COMSIG_SHIFTCLICK, .proc/ShiftClicked )
-	RegisterSignal(owner,COMSIG_ALTCLICK, .proc/AltClicked )
-	RegisterSignal(owner,COMSIG_CTRLCLICK, .proc/CtrlClicked )
+	RegisterSignal(owner,COMSIG_SHIFTCLICK, PROC_REF(ShiftClicked))
+	RegisterSignal(owner,COMSIG_ALTCLICK, PROC_REF(AltClicked))
+	RegisterSignal(owner,COMSIG_CTRLCLICK, PROC_REF(CtrlClicked))
 
 /datum/component/ai_like_control/RemoveComponent()
 	UnregisterSignal(owner, COMSIG_SHIFTCLICK)

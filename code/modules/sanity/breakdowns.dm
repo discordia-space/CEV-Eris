@@ -302,8 +302,8 @@
 	)
 
 /datum/breakdown/negative/fabric/occur()
-	RegisterSignal(SSdcs, COMSIG_GLOB_FABRIC_NEW, .proc/add_image)
-	RegisterSignal(holder.owner, COMSIG_MOB_LOGIN, .proc/update_client_images)
+	RegisterSignal(SSdcs, COMSIG_GLOB_FABRIC_NEW, PROC_REF(add_image))
+	RegisterSignal(holder.owner, COMSIG_MOB_LOGIN, PROC_REF(update_client_images))
 	for(var/datum/component/fabric/F in GLOB.fabric_list)
 		if(F.parent == holder.owner)
 			continue
@@ -369,8 +369,8 @@
 	return FALSE
 
 /datum/breakdown/common/power_hungry/occur()
-	RegisterSignal(holder.owner, COMSIG_CARBON_ELECTROCTE, .proc/check_shock)
-	RegisterSignal(holder.owner, COMSIG_LIVING_STUN_EFFECT, .proc/check_shock)
+	RegisterSignal(holder.owner, COMSIG_CARBON_ELECTROCTE, PROC_REF(check_shock))
+	RegisterSignal(holder.owner, COMSIG_LIVING_STUN_EFFECT, PROC_REF(check_shock))
 	return ..()
 
 /datum/breakdown/common/power_hungry/update()
@@ -433,7 +433,7 @@
 			to_chat(target, SPAN_WARNING("It seems as if you are looking through someone else's eyes."))
 			active_view = ACTVIEW_BOTH
 		target.sanity.changeLevel(-rand(5,10)) //This phenomena will prove taxing on the viewed regardless
-		addtimer(CALLBACK(src, .proc/reset_views, TRUE), time_view)
+		addtimer(CALLBACK(src, PROC_REF(reset_views), TRUE), time_view)
 		time = world.time + time_view
 
 /datum/breakdown/negative/glassification/proc/reset_views()
@@ -481,7 +481,7 @@
 	return FALSE
 
 /datum/breakdown/common/desire_for_chrome/occur()
-	RegisterSignal(holder.owner, COMSIG_HUMAN_ROBOTIC_MODIFICATION, .proc/check_organ)
+	RegisterSignal(holder.owner, COMSIG_HUMAN_ROBOTIC_MODIFICATION, PROC_REF(check_organ))
 	return ..()
 
 /datum/breakdown/common/desire_for_chrome/conclude()
@@ -690,7 +690,7 @@
 	to_chat(holder.owner,"...[jointext(words, " ", phrase_pos, phrase_pos + phrase_len + 1)]...")
 
 /datum/breakdown/common/signs/occur()
-	RegisterSignal(holder.owner, COMSIG_HUMAN_SAY, .proc/check_message)
+	RegisterSignal(holder.owner, COMSIG_HUMAN_SAY, PROC_REF(check_message))
 	return ..()
 
 /datum/breakdown/common/signs/conclude()

@@ -134,7 +134,7 @@
 	for(var/stat in stats_to_boost)
 		var/amount = stats_to_boost[stat]
 		participant.stats.addTempStat(stat, amount, effect_time, src.name)
-		addtimer(CALLBACK(src, .proc/take_boost, participant, stat, amount), effect_time)
+		addtimer(CALLBACK(src, PROC_REF(take_boost), participant, stat, amount), effect_time)
 	spawn(30)
 		to_chat(participant, SPAN_NOTICE("A wave of dizziness washes over you, and your mind is filled with a sudden insight into [get_stats_to_text()]."))
 

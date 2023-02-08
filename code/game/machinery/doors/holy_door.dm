@@ -277,7 +277,7 @@
 		for(var/atom/movable/AM in turf)
 			if(AM.blocks_airlock())
 				if(tryingToLock)
-					addtimer(CALLBACK(src, .proc/close), 30 SECONDS)
+					addtimer(CALLBACK(src, PROC_REF(close)), 30 SECONDS)
 				if(world.time > next_beep_at)
 					playsound(loc, 'sound/machines/buzz-two.ogg', 30, 1, -1)
 					next_beep_at = world.time + SecondsToTicks(10)

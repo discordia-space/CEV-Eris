@@ -33,8 +33,8 @@ var/list/disciples = list()
 	restore_power(true_power_regen)
 
 /obj/item/implant/core_implant/cruciform/proc/register_wearer()
-	RegisterSignal(wearer, COMSIG_CARBON_HAPPY, .proc/on_happy, TRUE)
-	RegisterSignal(wearer, COMSIG_GROUP_RITUAL, .proc/on_ritual, TRUE)
+	RegisterSignal(wearer, COMSIG_CARBON_HAPPY, PROC_REF(on_happy), TRUE)
+	RegisterSignal(wearer, COMSIG_GROUP_RITUAL, PROC_REF(on_ritual), TRUE)
 
 /obj/item/implant/core_implant/cruciform/proc/unregister_wearer()
 	UnregisterSignal(wearer, COMSIG_CARBON_HAPPY)

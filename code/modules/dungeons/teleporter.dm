@@ -37,7 +37,7 @@
 		if(dungeon_generator)
 			to_chat(user, "You activate the teleporter. A strange rumbling fills the area around you.")
 			// Listen to signal for when the generation will be finished
-			RegisterSignal(src, COMSIG_DUNGEON_GENERATED, .proc/dungeon_generated)
+			RegisterSignal(src, COMSIG_DUNGEON_GENERATED, PROC_REF(dungeon_generated))
 			// Generate the dungeon while mobs are spawning to attack the teleporter
 			SEND_SIGNAL_OLD(dungeon_generator, COMSIG_GENERATE_DUNGEON, src)
 			start_teleporter_event()

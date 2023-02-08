@@ -67,10 +67,10 @@ COMSIG_ABERRANT_SECONDARY
 	var/new_color
 
 /datum/component/modification/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_IATTACK, .proc/attempt_install)
-	RegisterSignal(parent, COMSIG_ATTACKBY, .proc/try_modify)
-	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
-	RegisterSignal(parent, COMSIG_REMOVE, .proc/uninstall)
+	RegisterSignal(parent, COMSIG_IATTACK, PROC_REF(attempt_install))
+	RegisterSignal(parent, COMSIG_ATTACKBY, PROC_REF(try_modify))
+	RegisterSignal(parent, COMSIG_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_REMOVE, PROC_REF(uninstall))
 
 /datum/component/modification/proc/attempt_install(atom/A, mob/living/user, params)
 	//SIGNAL_HANDLER
@@ -130,8 +130,8 @@ COMSIG_ABERRANT_SECONDARY
 	var/obj/item/I = parent
 	I.forceMove(A)	// May want to change this to I.loc = A or something similar. forceMove() calls all Crossed() procs between the src and the target.
 	A.item_upgrades.Add(I)
-	RegisterSignal(A, trigger_signal, .proc/trigger)
-	RegisterSignal(A, COMSIG_APPVAL, .proc/apply_values)
+	RegisterSignal(A, trigger_signal, PROC_REF(trigger))
+	RegisterSignal(A, COMSIG_APPVAL, PROC_REF(apply_values))
 
 	var/datum/component/modification_removal/MR = A.AddComponent(/datum/component/modification_removal)
 	MR.removal_tool_quality = removal_tool_quality
@@ -210,7 +210,7 @@ COMSIG_ABERRANT_SECONDARY
 	var/removal_tool_quality = QUALITY_CLAMPING
 
 /datum/component/modification_removal/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ATTACKBY, .proc/attempt_uninstall)
+	RegisterSignal(parent, COMSIG_ATTACKBY, PROC_REF(attempt_uninstall))
 
 /datum/component/modification_removal/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ATTACKBY)

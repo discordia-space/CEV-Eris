@@ -254,8 +254,8 @@
 
 /obj/item/clothing/gloves/dusters/New()
 	..()
-	RegisterSignal(src, COMSIG_CLOTH_EQUIPPED, .proc/increase_punch_damage)
-	RegisterSignal(src, COMSIG_CLOTH_DROPPED, .proc/decrease_punch_damage)
+	RegisterSignal(src, COMSIG_CLOTH_EQUIPPED, PROC_REF(increase_punch_damage))
+	RegisterSignal(src, COMSIG_CLOTH_DROPPED, PROC_REF(decrease_punch_damage))
 
 /obj/item/clothing/gloves/dusters/proc/increase_punch_damage(mob/living/carbon/human/user)
 	SIGNAL_HANDLER

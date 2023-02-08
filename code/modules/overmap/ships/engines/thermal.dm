@@ -111,7 +111,7 @@
 			T = get_step(T,exhaust_dir)
 			if(!T)
 				break
-			addtimer(CALLBACK(src, .proc/extend_plume, T, exhaust_dir, air_contents.temperature >= 1000, i != range - 1), i * 0.5, TIMER_UNIQUE)
+			addtimer(CALLBACK(src, PROC_REF(extend_plume), T, exhaust_dir, air_contents.temperature >= 1000, i != range - 1), i * 0.5, TIMER_UNIQUE)
 
 /obj/machinery/atmospherics/unary/engine/proc/extend_plume(turf/T, exhaust_dir, is_flame, is_midsection)
 	new/obj/effect/engine_exhaust(T, exhaust_dir, is_flame, is_midsection)

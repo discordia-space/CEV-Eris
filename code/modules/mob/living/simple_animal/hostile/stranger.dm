@@ -56,7 +56,7 @@
 	animation.icon =  'icons/mob/mob.dmi'
 	animation.master = src
 	flick("dust2-h", animation)
-	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
+	addtimer(CALLBACK(src, PROC_REF(check_delete), animation), 15)
 	do_sparks(3, 0, src.loc)
 	qdel(src)
 
@@ -192,7 +192,7 @@
 /obj/item/gun/energy/plasma/stranger/New()
 	. = ..()
 	AddComponent(/datum/component/inspiration, list())
-	RegisterSignal(src, COMSIG_ODDITY_USED, .proc/chaos)
+	RegisterSignal(src, COMSIG_ODDITY_USED, PROC_REF(chaos))
 	chaos()
 
 /obj/item/gun/energy/plasma/stranger/attack_hand(mob/user)
