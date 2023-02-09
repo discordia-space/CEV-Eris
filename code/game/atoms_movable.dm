@@ -129,8 +129,7 @@
 		src.throwing = 0
 		var/turf/T = hit_atom
 		if(T.density)
-			spawn(2)
-				step(src, turn(src.last_move, 180))
+			step(src, turn(src.last_move, 180))
 			if(isliving(src))
 				var/mob/living/M = src
 				M.turf_collision(T, speed)
@@ -147,6 +146,17 @@
 				if(A.density && !A.throwpass)	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop movement
 					src.throw_impact(A,speed)
 
+
+/atom/movable/proc/throw_at(atom/target, range, speed, thrower)
+	if(!target || range < 1 || speed < 1)
+		return FALSE
+	SSthrowing.throwing_queue[src] += list(target, speed, range, 0)
+	throwing = TRUE
+	src.thrower = thrower
+	throw_source = get_turf(thrower)
+	return TRUE
+
+/*
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower)
 	if(!target || !src)	return 0
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
@@ -250,7 +260,7 @@
 		if(isobj(src))
 			src.throw_impact(new_loc,speed)
 		new_loc.Entered(src)
-
+*/
 //Overlays
 /atom/movable/overlay
 	var/atom/master

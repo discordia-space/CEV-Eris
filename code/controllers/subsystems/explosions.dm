@@ -7,9 +7,11 @@ SUBSYSTEM_DEF(explosions)
 
 /datum/controller/subsystem/explosions/fire(resumed = FALSE)
 	for(var/datum/explosion_handler/explodey as anything in explode_queue)
+		if(MC_TICK_CHECK)
+			return
 		// get rid of last queue
 		//throwing_queue = list()
-		explodey.Run2()
+		explodey.Run()
 		/*
 		for(var/atom/movable/to_throw as anything in throwing_queue)
 			if(to_throw.anchored)
@@ -38,8 +40,9 @@ SUBSYSTEM_DEF(explosions)
 	var/turf/epicenter
 	var/power
 	var/falloff
-	var/list/turf/turf_queue = list()
-	var/list/visited = list()
+	var/list/turf_queue[50]
+	var/list/direction_list[50]
+	var/list/visited[100]
 	//var/list/turf/immediate_queue = list()
 
 /datum/explosion_handler/New(turf/loc, power, falloff)
@@ -53,9 +56,10 @@ SUBSYSTEM_DEF(explosions)
 /turf/proc/test_explosion()
 	SSexplosions.start_explosion(src, 100, 1)
 
-/datum/explosion_handler/proc/Run2()
+/datum/explosion_handler/proc/Run()
 	var/target_power
 	var/list/new_turf_queue = list()
+	var/list/new_directions = list()
 	//var/center_angle
 	for(var/turf/target as anything in turf_queue)
 		target_power = turf_queue[target] - falloff
@@ -65,14 +69,20 @@ SUBSYSTEM_DEF(explosions)
 		target_power -= target.explosion_act(target_power)
 		if(target_power < 10)
 			continue
+		for(var/atom/movable/thing in target.contents)
+			if(thing.anchored)
+				continue
+			//throwing_queue[thing] += list(round(target_power/falloff), direction_list[target])
 		for(var/dir in list(NORTH,SOUTH,EAST,WEST))
 			var/turf/next = get_step(target,dir)
 			if(visited[next] > world.time )
 				continue
 			new_turf_queue[next] = target_power
+			new_directions[next] = get_dir(target, next)
 	turf_queue = new_turf_queue
+	direction_list = new_directions
 
-
+/*
 /datum/explosion_handler/proc/Run()
 	var/list/immediate_queue = list()
 	var/list/temporary_queue = list()
@@ -145,4 +155,5 @@ SUBSYSTEM_DEF(explosions)
 
 	// replace the queue with the new list
 	turf_queue = replacement_queue
+*/
 
