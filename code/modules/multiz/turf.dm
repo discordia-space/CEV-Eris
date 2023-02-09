@@ -110,7 +110,7 @@ see multiz/movement.dm for some info.
 	// If we are the target, the projectile traverses down
 	if(config.z_level_shooting && istype(mover,/obj/item/projectile))
 		var/obj/item/projectile/P = mover
-		if(!P.height && istype(P.original, /turf/simulated/open) && get_dist(P.starting, P.original) <= get_dist(P.starting, src))
+		if(isnull(P.height) && istype(P.original, /turf/simulated/open) && get_dist(P.starting, P.original) <= get_dist(P.starting, src))
 			P.forceMove(below)
 			P.trajectory.loc_z = below.z
 			P.bumped = FALSE
