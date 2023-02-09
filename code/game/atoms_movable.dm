@@ -141,6 +141,7 @@
 			if(A == src) continue
 			if(isliving(A))
 				if(A:lying) continue
+				//if(SSthrowing.throwing_queue[src][I_THROWNTIME] > world.time - 1 SECONDS && thrower == A) continue
 				src.throw_impact(A,speed)
 			if(isobj(A))
 				if(A.density && !A.throwpass)	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop movement
@@ -150,10 +151,21 @@
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower)
 	if(!target || range < 1 || speed < 1)
 		return FALSE
-	SSthrowing.throwing_queue[src] += list(target, speed, range, 0)
-	throwing = TRUE
+	src.throwing = TRUE
 	src.thrower = thrower
 	throw_source = get_turf(thrower)
+	/// spot 4 is for tiles we already moved, 5,6 for distx and disty, and 7,8 for dx, dy and 9 for current error
+	SSthrowing.throwing_queue[src] = list(
+		target,
+		speed,
+		range,
+		0,
+		abs(target.x - src.x),
+		abs(target.y - src.y),
+		target.x > x ? EAST : WEST,
+		target.y > y ? NORTH : SOUTH,
+		0
+	)
 	return TRUE
 
 /*

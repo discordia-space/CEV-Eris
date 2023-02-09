@@ -1,3 +1,6 @@
+/// This subsystem could also be reworked to use global lists instead of explosion datums
+/// Which could allow for explosions to interact with eachother and affect eachother
+
 SUBSYSTEM_DEF(explosions)
 	name = "explosions"
 	wait = 1 // very small
@@ -9,16 +12,7 @@ SUBSYSTEM_DEF(explosions)
 	for(var/datum/explosion_handler/explodey as anything in explode_queue)
 		if(MC_TICK_CHECK)
 			return
-		// get rid of last queue
-		//throwing_queue = list()
 		explodey.Run()
-		/*
-		for(var/atom/movable/to_throw as anything in throwing_queue)
-			if(to_throw.anchored)
-				continue
-			spawn(0)
-				to_throw.throw_at(throwing_queue[to_throw], get_dist(to_throw, throwing_queue[to_throw]), 5, "Explosion")
-		*/
 		if(!length(explodey.turf_queue))
 			explode_queue -= explodey
 			qdel(explodey)
@@ -30,7 +24,16 @@ SUBSYSTEM_DEF(explosions)
 	var/reference = new /datum/explosion_handler(epicenter, power, falloff)
 	explode_queue += reference
 
-/turf/proc/explosion_act()
+/turf/proc/explosion_act(explosion_power)
+	var/severity = explosion_power / 20
+	if(severity > 3)
+		severity = 3
+	else if(severity < 1)
+		severity = 1
+	severity = round(severity)
+	for(var/atom/stuff in contents)
+		stuff.ex_act(severity)
+	ex_act(severity)
 	if(density)
 		return 20
 	else
@@ -54,7 +57,7 @@ SUBSYSTEM_DEF(explosions)
 	src.falloff = falloff
 
 /turf/proc/test_explosion()
-	SSexplosions.start_explosion(src, 100, 1)
+	SSexplosions.start_explosion(src, 100, 5)
 
 /datum/explosion_handler/proc/Run()
 	var/target_power
@@ -65,13 +68,15 @@ SUBSYSTEM_DEF(explosions)
 		target_power = turf_queue[target] - falloff
 		if(target_power < 10)
 			continue
-		visited[target] = world.time + 0.3 SECOND
+		visited[target] = TRUE
 		target_power -= target.explosion_act(target_power)
 		if(target_power < 10)
 			continue
 		for(var/atom/movable/thing in target.contents)
 			if(thing.anchored)
 				continue
+			var/to_throw_at = get_turf_away_from_target_complex(target, get_step(target, turn(direction_list[target], 180)), target_power/falloff)
+			thing.throw_at(to_throw_at, target_power/falloff, target_power/10, "explosion")
 			//throwing_queue[thing] += list(round(target_power/falloff), direction_list[target])
 		for(var/dir in list(NORTH,SOUTH,EAST,WEST))
 			var/turf/next = get_step(target,dir)
