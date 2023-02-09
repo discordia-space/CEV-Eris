@@ -280,7 +280,7 @@
 	)
 
 /obj/item/clothing/head/beret/oldsec
-	name = "Nanotrasen Security Beret"
+	name = "old security beret"
 	desc = "A washed out and dusty corporate security beret from the long defunct \"Securitech\" company."
 	icon_state = "nanoberet"
 
