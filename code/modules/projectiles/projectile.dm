@@ -247,6 +247,7 @@
 				if(!(locate(/obj/structure/catwalk) in newTurf)) // Can't shoot through catwalks
 					loc = newTurf
 					height = HEIGHT_HIGH // We are shooting from below, this protects resting players at the expense of windows
+					original = get_turf(original) // Aim at turfs instead of mobs, to ensure we don't hit players
 
 	firer = user
 	shot_from = launcher.name
