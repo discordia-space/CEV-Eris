@@ -29,6 +29,15 @@
 	desc = "Tastes like... well, you know."
 	price_tag = 25
 
+/obj/item/reagent_containers/food/snacks/meat/pork
+	name = "porcine meat"
+	desc = "A raw slab of meat from pig or otherwise porcine animal, which you hopefully slaughtered without cruelty." // Always remember to pray Bismillah before, keep it halal.
+	icon_state = "sus" // It's the name of genus of the pig, don't give me that look.
+	preloaded_reagents = list("protein" = 8)
+	filling_color = "#C28585"
+	slice_path = /obj/item/reagent_containers/food/snacks/rawbacon
+	slices_num = 4 // Since 2u protein each
+
 /obj/item/reagent_containers/food/snacks/meat/roachmeat
 	name = "Kampfer meat"
 	desc = "A slab of sickly-green bubbling meat cut from a kampfer roach. You swear you can see it still twitching occasionally. Delicious!"
@@ -67,7 +76,7 @@
 	desc = "A slab of sickly-green bubbling meat cut from a jager roach. You swear you can see it still twitching. Delicious!"
 	preloaded_reagents = list("protein" = 6, "blattedin" = 6, "gewaltine" = 8, "diplopterum" = 2)
 
-/obj/item/reagent_containers/food/snacks/meat/roachmeat/kraftwerk 
+/obj/item/reagent_containers/food/snacks/meat/roachmeat/kraftwerk
 	name = "Kraftwerk meat"
 	desc = "A slab of sickly-green meat cut from a kraftwerk roach, bursting with nanite activity. Delicious!"
 	preloaded_reagents = list("protein" = 6, "blattedin" = 6, "gewaltine" = 6, "uncap nanites" = 2, "nanites" = 3)
@@ -102,7 +111,7 @@
 	desc = "A bloated slab of sickly-green meat cut from a nurse spider. The venom just gives it more flavor. Delicious!"
 	icon_state = "xenomeat"
 	filling_color = "#E2FFDE"
-	
+
 	bitesize = 6
 	preloaded_reagents = list("protein" = 6, "aranecolmin" = 8,"pararein" = 8)
 
@@ -138,3 +147,12 @@
 	preloaded_reagents = list("protein" = 6, "pacid" = 6)
 
 	price_tag = 200
+
+/obj/item/reagent_containers/food/snacks/meat/chicken
+	name = "poultry"
+	desc = "Poultry meat, might be chicken or any other avian species."
+	icon_state = "birdmeat"
+	filling_color = "#EDA897"
+	preloaded_reagents = list("protein" = 8)
+	slice_path = /obj/item/reagent_containers/food/snacks/chickenbreast
+	slices_num = 4

@@ -55304,6 +55304,14 @@
 /obj/machinery/camera/network/third_section{
 	dir = 1
 	},
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/plate,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/plate,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/plate,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/plate,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/plate,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/plate,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/plate,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/plate,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "cCI" = (
@@ -86284,6 +86292,7 @@
 /area/eris/maintenance/section3deck3starboard)
 "dYD" = (
 /obj/structure/table/standard,
+/obj/machinery/cooking_with_jane/stove,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "dYE" = (
@@ -91798,6 +91807,7 @@
 	pixel_x = 5
 	},
 /obj/item/material/kitchen/rollingpin,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/board,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "elZ" = (
@@ -93210,6 +93220,25 @@
 /obj/structure/closet/chefcloset,
 /obj/item/tool/knife,
 /obj/item/tool/knife,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/pot,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/pot,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/pan,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/pan,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/oven,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/oven,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/oven,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/oven,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/grill_grate,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/grill_grate,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/deep_basket,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/deep_basket,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/bowl,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/bowl,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/bowl,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/bowl,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/board,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/air_basket,
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/air_basket,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "epI" = (
@@ -94809,6 +94838,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/cooking_with_jane/grill,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "etr" = (
@@ -101739,6 +101769,11 @@
 /obj/structure/plasticflaps/mining,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/disposaldrop)
+"gMj" = (
+/obj/structure/table/standard,
+/obj/machinery/cooking_with_jane/oven,
+/turf/simulated/floor/tiled/cafe,
+/area/eris/crew_quarters/kitchen)
 "gNE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -104927,6 +104962,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/item/electronics/circuitboard/cooking_with_jane/grill,
+/obj/item/electronics/circuitboard/cooking_with_jane/oven,
+/obj/item/electronics/circuitboard/cooking_with_jane/stove,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/crew_quarters/kitchen_storage)
 "oAL" = (
@@ -206405,7 +206443,7 @@ dXM
 cil
 bZh
 rPI
-ewF
+gMj
 cCy
 cBr
 jRL
