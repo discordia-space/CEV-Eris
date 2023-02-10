@@ -50,7 +50,7 @@
 		affectareas -= get_areas(V)
 
 	weather_duration = rand(weather_duration_lower, weather_duration_upper)
-	SSweather.processing += src
+	START_PROCESSING(SSweather, src)
 	update_areas()
 	for(var/M in GLOB.player_list)
 		var/turf/mob_turf = get_turf(M)
@@ -97,7 +97,7 @@
 	if(stage == END_STAGE)
 		return 1
 	stage = END_STAGE
-	SSweather.processing -= src
+	STOP_PROCESSING(SSweather, src)
 	update_areas()
 
 /datum/weather/proc/can_weather_act(mob/living/L) //Can this weather impact a mob?
@@ -144,12 +144,19 @@
 //Used for all kinds of weather, ex. lavaland ash storms.
 SUBSYSTEM_DEF(weather)
 	name = "Weather"
-	flags = SS_BACKGROUND | SS_NO_FIRE
+	flags = SS_BACKGROUND
 	wait = 10
 	runlevels = RUNLEVEL_GAME
 	var/list/processing = list()
 	var/list/eligible_zlevels = list()
 	var/list/next_hit_by_zlevel = list() //Used by barometers to know when the next storm is coming
+
+/datum/controller/subsystem/weather/fire()
+	// process active weather
+	for(var/V in processing)
+		var/datum/weather/W = V
+		if(W.aesthetic || W.stage != MAIN_STAGE)
+			continue
 
 /datum/controller/subsystem/weather/Initialize(start_timeofday)
 	for(var/V in subtypesof(/datum/weather))

@@ -35,14 +35,6 @@ SUBSYSTEM_DEF(processing)
 		if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/processing/proc/add_to_processing(datum/thing)
-	processing += thing
-	return TRUE
-
-/datum/controller/subsystem/processing/proc/remove_from_processing(datum/thing)
-	processing -= thing
-	return TRUE
-
 /**
  * This proc is called on a datum on every "cycle" if it is being processed by a subsystem. The time between each cycle is determined by the subsystem's "wait" setting.
  * You can start and stop processing a datum using the START_PROCESSING and STOP_PROCESSING defines.
