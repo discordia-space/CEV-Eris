@@ -1,13 +1,14 @@
-PROCESSING_SUBSYSTEM_DEF(machines)
+SUBSYSTEM_DEF(machines)
 	name = "Machines"
 	init_order = INIT_ORDER_MACHINES
 	priority = SS_PRIORITY_MACHINERY
 	flags = SS_KEEP_TIMING
 	wait = 2 SECONDS
+	var/list/processing = list()
+	var/list/currentrun = list()
 	var/list/powernets  = list()
-	process_proc = /obj/machinery/Process
 
-/datum/controller/subsystem/processing/machines/Initialize()
+/datum/controller/subsystem/machines/Initialize()
 	makepowernets()
 	fire()
 	return ..()
@@ -16,7 +17,7 @@ PROCESSING_SUBSYSTEM_DEF(machines)
 	var/associated_typepath = null
 	var/count = 0
 
-/datum/controller/subsystem/processing/machines/proc/Debug_Processing()
+/datum/controller/subsystem/machines/proc/Debug_Processing()
 	var/list/holy_fuck_this_is_big = processing.Copy() // Cache
 	var/list/typepath_associative_list = list()
 	for(var/atom/A in holy_fuck_this_is_big)
@@ -35,7 +36,7 @@ PROCESSING_SUBSYSTEM_DEF(machines)
 	for(var/datum/temp_counter_debug/debugger in typepath_associative_list)
 		message_admins("MC Machine debug data : [debugger.associated_typepath] |||| [debugger.count]")
 
-/datum/controller/subsystem/processing/machines/proc/makepowernets()
+/datum/controller/subsystem/machines/proc/makepowernets()
 	for(var/datum/powernet/power_network as anything in powernets)
 		qdel(power_network)
 	powernets.Cut()
@@ -46,17 +47,29 @@ PROCESSING_SUBSYSTEM_DEF(machines)
 			new_powernet.add_cable(power_cable)
 			propagate_network(power_cable, power_cable.powernet)
 
-/datum/controller/subsystem/processing/machines/stat_entry()
+/datum/controller/subsystem/machines/stat_entry()
 	..("M:[processing.len]|PN:[powernets.len]")
 
-/datum/controller/subsystem/processing/machines/fire(resumed = FALSE)
+/datum/controller/subsystem/machines/fire(resumed = FALSE)
 	if (!resumed)
 		for(var/datum/powernet/powernet as anything in powernets)
 			powernet.reset() //reset the power state.
+		src.currentrun = processing.Copy()
 
-	. = ..()
+	//cache for sanic speed (lists are references anyways)
+	var/list/currentrun = src.currentrun
 
-/datum/controller/subsystem/processing/machines/proc/setup_template_powernets(list/cables)
+	var/seconds = wait * 0.1
+	while(currentrun.len)
+		var/obj/machinery/thing = currentrun[currentrun.len]
+		currentrun.len--
+		if (QDELETED(thing) || thing.Process(seconds) == PROCESS_KILL)
+			processing -= thing
+			thing.is_processing = FALSE
+		if (MC_TICK_CHECK)
+			return
+
+/datum/controller/subsystem/machines/proc/setup_template_powernets(list/cables)
 	for(var/A in cables)
 		var/obj/structure/cable/PC = A
 		if(!PC.powernet)
@@ -64,7 +77,7 @@ PROCESSING_SUBSYSTEM_DEF(machines)
 			NewPN.add_cable(PC)
 			propagate_network(PC,PC.powernet)
 
-/datum/controller/subsystem/processing/machines/Recover()
+/datum/controller/subsystem/machines/Recover()
 	if (istype(SSmachines.processing))
 		processing = SSmachines.processing
 	if (istype(SSmachines.powernets))
