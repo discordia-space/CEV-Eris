@@ -30,13 +30,18 @@
 	for(var/obj/item/thing in contents)
 		thing.emp_act(severity)
 
-/obj/item/mech_component/examine()
+/obj/item/mech_component/examine(mob/user)
 	. = ..()
+
 	if(.)
 		if(ready_to_install())
 			to_chat(usr, SPAN_NOTICE("It is ready for installation."))
 		else
 			show_missing_parts(usr)
+
+	var/damage_string = src.get_damage_string()
+	to_chat(user, "The [src.name] [src.gender == PLURAL ? "are" : "is"] [damage_string].")
+
 
 //These icons have multiple directions but before they're attached we only want south.
 /obj/item/mech_component/set_dir()
@@ -160,7 +165,7 @@
 
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			visible_message(SPAN_NOTICE("\The [src] has been repaired by [user]."), SPAN_NOTICE("You weld a damaged section of \the [src]."), "You hear welding.")
+			user.visible_message(SPAN_NOTICE("The [src] has been repaired by [user]."), SPAN_NOTICE("You weld a damaged section of \the [src]."), SPAN_NOTICE("You hear welding."))
 			repair_brute_damage(weld_amt)
 			return
 
@@ -182,18 +187,19 @@
 	to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
 
 	if(do_mob(user, src, 30) && CC.use(5))
-		user.visible_message(user, SPAN_NOTICE("\The [src] has been re-wired by [user]."), SPAN_NOTICE("You replace frayed wiring in \the [src]."), "You hear rustling metal.")
+		user.visible_message(SPAN_NOTICE("\The [src] has been re-wired by [user]."), SPAN_NOTICE("You replace frayed wiring in \the [src]."), SPAN_NOTICE("You hear rustling metal."))
 		repair_burn_damage(wire_amt)
 		return
 
 /obj/item/mech_component/proc/get_damage_string()
+	var/brute_dom = brute_damage > total_damage/1.5
 	switch(damage_state)
 		if(MECH_COMPONENT_DAMAGE_UNDAMAGED)
-			return FONT_COLORED(COLOR_GREEN, "undamaged")
+			return FONT_COLORED(COLOR_BLUE, ("[total_damage > 5 ? "somewhat damaged" : "undamaged"]"))
 		if(MECH_COMPONENT_DAMAGE_DAMAGED)
-			return FONT_COLORED(COLOR_YELLOW, "damaged")
+			return FONT_COLORED(COLOR_OLIVE, ("[brute_dom ? "slightly dented" : "slightly burnt"]"))
 		if(MECH_COMPONENT_DAMAGE_DAMAGED_BAD)
-			return FONT_COLORED(COLOR_ORANGE, "badly damaged")
+			return FONT_COLORED(COLOR_ORANGE, ("[brute_dom ? "seriously dented" : "badly scorched"]"))
 		if(MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
-			return FONT_COLORED(COLOR_RED, "almost destroyed")
+			return FONT_COLORED(COLOR_RED, ("[brute_dom ? "falling to pieces" : "nearly melted"]"))
 	return FONT_COLORED(COLOR_RED, "destroyed")
