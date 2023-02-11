@@ -1,54 +1,114 @@
-/// This subsystem could also be reworked to use global lists instead of explosion datums
-/// Which could allow for explosions to interact with eachother and affect eachother
-
 SUBSYSTEM_DEF(explosions)
 	name = "explosions"
 	wait = 1 // very small
 	priority = FIRE_PRIORITY_EXPLOSIONS
-	var/list/datum/explosion_handler/explode_queue = list()
+	var/list/explosion_handler/explode_queue = list()
 	var/list/throwing_queue = list()
 
 /datum/controller/subsystem/explosions/fire(resumed = FALSE)
-	for(var/datum/explosion_handler/explodey as anything in explode_queue)
-		if(MC_TICK_CHECK)
-			return
-		explodey.Run()
+	var/target_power = 0
+	var/list/new_turf_queue = list()
+	var/list/new_directions = list()
+	for(var/explosion_handler/explodey as anything in explode_queue)
+		if(!resumed)
+			explodey.current_turf_queue = explodey.turf_queue.Copy()
+			// Trash the list for a new one, with a pre-set size because we want to avoid resizing
+			explodey.turf_queue = list()
+		while(length(explodey.current_turf_queue))
+			var/turf/target = explodey.current_turf_queue[length(explodey.current_turf_queue)]
+			explodey.current_turf_queue -= target
+			target_power = explodey.turf_queue[target]
+			explodey.visited[target] = TRUE
+			target_power -= target.explosion_act(target_power)
+			if(target_power < 10)
+				continue
+			for(var/atom/movable/thing in target.contents)
+				if(thing.anchored)
+					continue
+				thing.throw_at(get_turf_away_from_target_complex(explodey.epicenter, target, target_power/explodey.falloff),  target_power/explodey.falloff, target_power/10, "explosion")
+			if(target_power - explodey.falloff > 10)
+				for(var/dir in list(NORTH,SOUTH,EAST,WEST))
+					var/turf/next = get_step(target,dir)
+					if(explodey.visited[next] > world.time )
+						continue
+					explodey.turf_queue[next] = target_power - explodey.falloff
+			if(MC_TICK_CHECK)
+				return
+		explodey.iterations++
 		if(!length(explodey.turf_queue))
 			explode_queue -= explodey
 			qdel(explodey)
 
 
+		/*
+		new_turf_queue = list()
+		new_directions = list()
+		//var/center_angle
+		for(var/turf/target as anything in explodey.turf_queue)
+			target_power = explodey.turf_queue[target] - explodey.falloff
+			if(target_power < 10)
+				continue
+			explodey.visited[target] = world.time + 0.3 SECOND
+			target_power -= target.explosion_act(target_power)
+			if(target_power < 10)
+				continue
+			for(var/atom/movable/thing in target.contents)
+				if(thing.anchored)
+					continue
+				//throwing_queue[thing] += list(round(target_power/falloff), direction_list[target])
+			for(var/dir in list(NORTH,SOUTH,EAST,WEST))
+				var/turf/next = get_step(target,dir)
+				if(explodey.visited[next] > world.time )
+					continue
+				new_turf_queue[next] = target_power
+				//new_directions[next] = get_dir(target, next)
+			if(MC_TICK_CHECK)
+				return
+		explodey.turf_queue = new_turf_queue
+		*/
+		//explodey.direction_list = new_directions
+		// get rid of last queue
+		//throwing_queue = list()
+		//explodey.Run()
+		/*
+		for(var/atom/movable/to_throw as anything in throwing_queue)
+			if(to_throw.anchored)
+				continue
+			spawn(0)
+				to_throw.throw_at(throwing_queue[to_throw], get_dist(to_throw, throwing_queue[to_throw]), 5, "Explosion")
+
+		if(!length(explodey.turf_queue))
+			explode_queue -= explodey
+			qdel(explodey)
+		*/
+
+
 ///datum/controller/subsystem/explosions/stat_entry()
 
 /datum/controller/subsystem/explosions/proc/start_explosion(turf/epicenter, power, falloff)
-	var/reference = new /datum/explosion_handler(epicenter, power, falloff)
+	var/reference = new /explosion_handler(epicenter, power, falloff)
 	explode_queue += reference
 
-/turf/proc/explosion_act(explosion_power)
-	var/severity = explosion_power / 20
-	if(severity > 3)
-		severity = 3
-	else if(severity < 1)
-		severity = 1
-	severity = round(severity)
-	for(var/atom/stuff in contents)
-		stuff.ex_act(severity)
-	ex_act(severity)
+/turf/proc/explosion_act()
 	if(density)
 		return 20
 	else
 		return 0
 
-/datum/explosion_handler
+explosion_handler
 	var/turf/epicenter
 	var/power
 	var/falloff
-	var/list/turf_queue[50]
-	var/list/direction_list[50]
-	var/list/visited[100]
+	var/list/turf_queue = list()
+	//var/list/direction_list[50]
+	var/list/visited = list()
+	/// Used for letting us know how many iterations were already ran
+	var/iterations = 0
+	var/list/current_turf_queue
+	//var/list/current_direction_list[50]
 	//var/list/turf/immediate_queue = list()
 
-/datum/explosion_handler/New(turf/loc, power, falloff)
+explosion_handler/New(turf/loc, power, falloff)
 	..()
 	for(var/dir in list(NORTH, EAST, SOUTH , WEST))
 		turf_queue[get_step(loc, dir)] = power
@@ -57,8 +117,9 @@ SUBSYSTEM_DEF(explosions)
 	src.falloff = falloff
 
 /turf/proc/test_explosion()
-	SSexplosions.start_explosion(src, 100, 5)
+	SSexplosions.start_explosion(src, 100, 1)
 
+/*
 /datum/explosion_handler/proc/Run()
 	var/target_power
 	var/list/new_turf_queue = list()
@@ -68,15 +129,13 @@ SUBSYSTEM_DEF(explosions)
 		target_power = turf_queue[target] - falloff
 		if(target_power < 10)
 			continue
-		visited[target] = TRUE
+		visited[target] = world.time + 0.3 SECOND
 		target_power -= target.explosion_act(target_power)
 		if(target_power < 10)
 			continue
 		for(var/atom/movable/thing in target.contents)
 			if(thing.anchored)
 				continue
-			var/to_throw_at = get_turf_away_from_target_complex(target, get_step(target, turn(direction_list[target], 180)), target_power/falloff)
-			thing.throw_at(to_throw_at, target_power/falloff, target_power/10, "explosion")
 			//throwing_queue[thing] += list(round(target_power/falloff), direction_list[target])
 		for(var/dir in list(NORTH,SOUTH,EAST,WEST))
 			var/turf/next = get_step(target,dir)
@@ -86,6 +145,7 @@ SUBSYSTEM_DEF(explosions)
 			new_directions[next] = get_dir(target, next)
 	turf_queue = new_turf_queue
 	direction_list = new_directions
+*/
 
 /*
 /datum/explosion_handler/proc/Run()
