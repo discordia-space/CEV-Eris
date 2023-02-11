@@ -1,7 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Fixed  humans lagging to extreme levels
-  - refactor: SSweather no longer processes.
-  - refactor: SSmachines is now a processing subsystem
-  - code_imp: Framework for more control over Subsystem processing handling

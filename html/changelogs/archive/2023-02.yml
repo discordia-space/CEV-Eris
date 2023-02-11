@@ -12,3 +12,13 @@
   - tweak: Voidsuit is now 12 TC
   - tweak: Non-full Merc vest is now 3 TC for when you either wanna run and gun or
       are just strapped for cash
+2023-02-11:
+  Firefox13:
+  - spellcheck: Renamed NT beret to Securitech that I missed the other week
+  Iglpigl:
+  - rscdel: Removed stiffness and obscuration
+  MLGTASTICa:
+  - bugfix: Fixed  humans lagging to extreme levels
+  - refactor: SSweather no longer processes.
+  - refactor: SSmachines is now a processing subsystem
+  - code_imp: Framework for more control over Subsystem processing handling
