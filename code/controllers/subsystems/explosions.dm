@@ -2,30 +2,29 @@ SUBSYSTEM_DEF(explosions)
 	name = "explosions"
 	wait = 1 // very small
 	priority = FIRE_PRIORITY_EXPLOSIONS
-	var/list/explosion_handler/explode_queue = list()
+	var/list/explode_queue = list()
+	var/list/current_run = list()
 	var/list/throwing_queue = list()
 
 /datum/controller/subsystem/explosions/fire(resumed = FALSE)
 	var/target_power = 0
 	var/list/new_turf_queue = list()
 	var/list/new_directions = list()
-	for(var/explosion_handler/explodey as anything in explode_queue)
-		if(!resumed)
-			explodey.current_turf_queue = explodey.turf_queue.Copy()
-			// Trash the list for a new one, with a pre-set size because we want to avoid resizing
-			explodey.turf_queue = list()
+	for(var/explosion_handler/explodey as anything in current_run)
 		while(length(explodey.current_turf_queue))
 			var/turf/target = explodey.current_turf_queue[length(explodey.current_turf_queue)]
+			target_power = explodey.current_turf_queue[target]
 			explodey.current_turf_queue -= target
-			target_power = explodey.turf_queue[target]
 			explodey.visited[target] = TRUE
 			target_power -= target.explosion_act(target_power)
 			if(target_power < 10)
 				continue
+			/*
 			for(var/atom/movable/thing in target.contents)
 				if(thing.anchored)
 					continue
 				thing.throw_at(get_turf_away_from_target_complex(explodey.epicenter, target, target_power/explodey.falloff),  target_power/explodey.falloff, target_power/10, "explosion")
+			*/
 			if(target_power - explodey.falloff > 10)
 				for(var/dir in list(NORTH,SOUTH,EAST,WEST))
 					var/turf/next = get_step(target,dir)
@@ -38,6 +37,11 @@ SUBSYSTEM_DEF(explosions)
 		if(!length(explodey.turf_queue))
 			explode_queue -= explodey
 			qdel(explodey)
+		explodey.current_turf_queue = explodey.turf_queue.Copy()
+		// Trash the list for a new one, with a pre-set size because we want to avoid resizing
+		explodey.turf_queue = list()
+		current_run -= explodey
+	current_run = explode_queue.Copy()
 
 
 		/*
@@ -89,7 +93,16 @@ SUBSYSTEM_DEF(explosions)
 	var/reference = new /explosion_handler(epicenter, power, falloff)
 	explode_queue += reference
 
-/turf/proc/explosion_act()
+/turf/proc/explosion_act(target_power)
+	var/severity = 3
+	if(target_power > 60)
+		severity = 1
+	else if(target_power > 40)
+		severity = 2
+	ex_act(severity)
+	for(var/atom/movable/thing as anything in contents)
+		if(thing.simulated && isobj(thing))
+			thing.ex_act(severity)
 	if(density)
 		return 20
 	else
@@ -117,7 +130,11 @@ explosion_handler/New(turf/loc, power, falloff)
 	src.falloff = falloff
 
 /turf/proc/test_explosion()
-	SSexplosions.start_explosion(src, 100, 1)
+	var/power
+	var/falloff
+	power = input(usr, "Explo power", "Explodeee", 100) as num
+	falloff = input(usr,"Explo falloff", "Exploodee",20) as num
+	SSexplosions.start_explosion(src, power, falloff)
 
 /*
 /datum/explosion_handler/proc/Run()
