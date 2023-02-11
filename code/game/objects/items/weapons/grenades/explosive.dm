@@ -4,7 +4,7 @@
 	icon_state = "explosive"
 	matter = list(MATERIAL_STEEL = 5)
 
-	var/devastation_range = -1
+	var/devastation_range = 1
 	var/heavy_range = 1
 	var/weak_range = 3
 	var/weakest_range = 5
