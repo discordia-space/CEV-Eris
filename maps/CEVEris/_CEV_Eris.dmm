@@ -55312,6 +55312,9 @@
 /obj/item/reagent_containers/cooking_with_jane/cooking_container/plate,
 /obj/item/reagent_containers/cooking_with_jane/cooking_container/plate,
 /obj/item/reagent_containers/cooking_with_jane/cooking_container/plate,
+/obj/item/spatula,
+/obj/item/spatula,
+/obj/item/spatula,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "cCI" = (
