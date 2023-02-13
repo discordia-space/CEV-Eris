@@ -1,7 +1,7 @@
 /datum/computer_file/program/cook_catalog
 	filename = "cook_catalog"
-	filedesc = "VIKA"
-	extended_desc = "Lonestar (and Soteria) Presents: Victoria's Incredible Kitchen Assistant - an AI-generated electronic catalog for cooking."
+	filedesc = "Cooking Assistant"
+	extended_desc = "Bradhaanata Presents: Papa Louie's Cooking Assistant - an AI-generated electronic catalog for cooking."
 	program_icon_state = "generic"
 	program_key_state = "generic_key"
 	size = 2
@@ -10,7 +10,7 @@
 	usage_flags = PROGRAM_ALL
 
 /datum/nano_module/cook_catalog
-	name = "Lonestar (and Soteria) Presents: Victoria's Incredible Kitchen Assistant"
+	name = "Bradhaanata Presents: Papa Louie's Cooking Assistant"
 
 /datum/nano_module/cook_catalog/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, state = GLOB.default_state)
 	var/list/data = nano_ui_data(user)
@@ -212,5 +212,3 @@
 			log_debug("Created cooking icon under file name [filename]")
 			#endif
 	..()
-
-
