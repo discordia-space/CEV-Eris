@@ -135,6 +135,8 @@
 	// Returns if a projectile should continue travelling
 	if(return_continuation)
 		var/obj/item/projectile/P = used_weapon
+		if(istype(P, /obj/item/projectile/bullet/pellet)) // Pellets should never penetrate
+			return PROJECTILE_STOP
 		P.damage_types = dmg_types
 		if(sharp)
 			var/remaining_dmg = 0
