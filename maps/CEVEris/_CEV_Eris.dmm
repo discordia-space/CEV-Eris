@@ -37165,7 +37165,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall31"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "bKg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -37585,7 +37585,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall12"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "bLa" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 10
@@ -73382,7 +73382,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall27"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "dvc" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -74167,7 +74167,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall17"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "dxg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel/orangecorner,
@@ -75550,7 +75550,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall34"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "dAC" = (
 /obj/structure/table/standard,
 /obj/machinery/autolathe/organ_fabricator/loaded{
@@ -79986,7 +79986,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall14"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "dKW" = (
 /obj/structure/bed/chair,
 /turf/simulated/floor/tiled/steel/gray_perforated,
@@ -80806,7 +80806,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall9"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "dNA" = (
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall8"
@@ -99888,6 +99888,9 @@
 /obj/effect/shuttle_landmark/merc/sec3east4,
 /turf/space,
 /area/space)
+"fOr" = (
+/turf/simulated/floor/reinforced,
+/area/outpost/pulsar)
 "fOG" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/wood,
@@ -100847,9 +100850,6 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
-"ijk" = (
-/turf/simulated/floor/reinforced,
-/area/outpost/pulsar)
 "ijn" = (
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom/low_chance,
@@ -102239,6 +102239,13 @@
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
+"lGL" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Pulsar Satellite Access";
+	req_access = list(11)
+	},
+/turf/simulated/floor/reinforced,
+/area/outpost/pulsar)
 "lGX" = (
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
@@ -106585,13 +106592,6 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
-"wPJ" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Pulsar Satellite Access";
-	req_access = list(11)
-	},
-/turf/simulated/floor/reinforced,
-/area/outpost/pulsar)
 "wQU" = (
 /obj/structure/railing{
 	dir = 4
@@ -240388,11 +240388,11 @@ duc
 eEt
 bNn
 dvg
-ijk
-ijk
-ijk
-ijk
-ijk
+fOr
+fOr
+fOr
+fOr
+fOr
 vhD
 bNn
 eEt
@@ -240590,11 +240590,11 @@ byd
 eEt
 bNn
 dvP
-ijk
-ijk
-ijk
-ijk
-ijk
+fOr
+fOr
+fOr
+fOr
+fOr
 dNB
 bNn
 eEt
@@ -240792,11 +240792,11 @@ dtT
 eEt
 bNn
 vJq
-ijk
-ijk
-ijk
-ijk
-ijk
+fOr
+fOr
+fOr
+fOr
+fOr
 vdU
 bNn
 eEt
@@ -240995,9 +240995,9 @@ eEt
 bNn
 dLn
 dKi
-ijk
-ijk
-ijk
+fOr
+fOr
+fOr
 dKi
 bMf
 bNn
@@ -241198,7 +241198,7 @@ bNn
 dLo
 dLW
 bKd
-wPJ
+lGL
 bKP
 bLb
 bPr
