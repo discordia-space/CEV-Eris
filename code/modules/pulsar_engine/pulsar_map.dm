@@ -1,5 +1,5 @@
 /obj/effect/pulsar
-	name = "pulsar"
+	name = "Barber's Sun"
 	desc = "An insanely quickly rotating star, that releases 2 giant ratiation beams"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "pulsar"
@@ -22,19 +22,19 @@
 	icon = 'icons/obj/overmap.dmi'
 	icon_state = "pulsar_beam"
 
-/obj/effect/pulsar_beam/dl
-	icon_state = "pulsar_beam_dl"
+/obj/effect/pulsar_beam/dr
+	icon_state = "pulsar_beam_dr"
 
-/obj/effect/pulsar_beam/ur
-	icon_state = "pulsar_beam_ur"
+/obj/effect/pulsar_beam/ul
+	icon_state = "pulsar_beam_ul"
 
 /obj/effect/pulsar_ship
-	name = "Technomancer satellite orbit"
+	name = "Pulsar satellite orbit"
 	desc = "The orbit target for the satellite"
 	icon = 'icons/obj/overmap.dmi'
-	icon_state = "ihs_capital_g"
+	icon_state = "tm_satellite"
 	var/obj/effect/shadow
-	var/decay_timer = 5 MINUTES
+	var/decay_timer = ORBIT_DECAY_TIMER
 	var/fuel = 100
 	var/fuel_movement_cost = 5
 	var/crash_timer_id
@@ -47,6 +47,7 @@
 	. = ..()
 	addtimer(CALLBACK(src, .proc/decay_orbit), decay_timer)
 	radio = new /obj/item/device/radio{channels=list("Engineering")}(src)
+	name = pick(list("Dutchman", "Celeste", "Barnham's Pride", "Horseman", "Christian", "Hera's Dream", "Manatee", "Antelope"))
 	
 /obj/effect/pulsar_ship/Destroy()
 	. = ..()
@@ -76,11 +77,12 @@
 			if(O.type == /obj/effect/pulsar_beam)
 				beam_collision = TRUE
 				if(!crash_timer_id)
-					radio.autosay("WARNING: COLLISION WITH RADIATION BEAMS IMMINENT! ETA: 3 MINUTES!", "Pulsar Monitor", "Engineering", TRUE)
+					radio.autosay("WARNING: COLLISION WITH RADIATION BEAMS IMMINENT! ETA: 3 MINUTES (15 seconds for testing)!", "Pulsar Monitor", "Engineering", TRUE)
 					crash_timer_id = addtimer(CALLBACK(src, .proc/crash_into_beam), 15 SECONDS, TIMER_STOPPABLE) //15 seconds so debuging is easier
 		if(!beam_collision)
 			if(crash_timer_id)
 				deltimer(crash_timer_id)
+				radio.autosay("Collision with radiation beams avoided", "Pulsar Monitor", "Engineering", TRUE)
 				crash_timer_id = null
 			if(storm)
 				storm.endWhen = 1
@@ -95,11 +97,12 @@
 /obj/effect/pulsar_ship/proc/try_overcharge(start = TRUE)
 	if(start)
 		if(!overcharge_timer_id)
-			radio.autosay("WARNING: PULSAR OVERCHARGE IMMINENT! ETA: 3 MINUTES!", "Pulsar Monitor", "Engineering", TRUE)
+			radio.autosay("WARNING: PULSAR OVERCHARGE IMMINENT! ETA: 3 MINUTES (15 seconds for testing)!", "Pulsar Monitor", "Engineering", TRUE)
 			overcharge_timer_id = addtimer(CALLBACK(src, .proc/overcharge), 15 SECONDS, TIMER_STOPPABLE)	//15 seconds so debuging is easier
 	else 
 		if(overcharge_timer_id)
 			deltimer(overcharge_timer_id)
+			radio.autosay("Pulsar overcharge avoided.", "Pulsar Monitor", "Engineering", TRUE)
 			overcharge_timer_id = null	
 		if(overcharge)
 			overcharge.endWhen = 1
@@ -110,8 +113,8 @@
 	overcharge.Initialize()
 
 /obj/effect/pulsar_ship_shadow
-	name = "Technomancer satellite orbit"
+	name = "Pulsar satellite orbit"
 	desc = "The orbit target for the satellite"
 	icon = 'icons/obj/overmap.dmi'
-	icon_state = "ihs_capital_g"
+	icon_state = "tm_satellite_g"
 	alpha = 255 * 0.5

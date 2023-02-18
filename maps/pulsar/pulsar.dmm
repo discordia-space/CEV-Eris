@@ -469,6 +469,10 @@
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
+"tm" = (
+/obj/structure/pulsar_fuel_tank,
+/turf/simulated/floor/tiled/dark,
+/area/outpost/pulsar)
 "tp" = (
 /obj/spawner/closet/tech/low_chance,
 /turf/simulated/floor/tiled/techmaint,
@@ -1407,6 +1411,7 @@
 /area/outpost/pulsar/maintenance)
 "Zv" = (
 /obj/machinery/light,
+/obj/structure/dispenser/plasma,
 /turf/simulated/floor/tiled/dark,
 /area/outpost/pulsar)
 
@@ -20697,7 +20702,7 @@ jC
 Yf
 Yf
 Yf
-Yf
+tm
 ad
 HA
 HA

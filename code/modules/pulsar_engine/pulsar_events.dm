@@ -88,7 +88,7 @@
 	command_announcement.Announce("The pulsar sattelite has passed the radiation beams. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
 	revoke_maint_all_access()
 
-#define PULAR_RIFT_COOLDOWN 3 MINUTES
+
 /datum/event/pulsar_overcharge
 	startWhen = 5
 	announceWhen = 1
@@ -97,14 +97,14 @@
 	var/list/pulsar_rifts = list()
 
 /datum/event/pulsar_overcharge/announce()
-	command_announcement.Announce("The pulsar sattelite has been overloaded with power, expect excess energy to be dumped onto your vessel, ебать.", "Technomancer Pulsar Monitor")
+	command_announcement.Announce("The pulsar sattelite has been overloaded with power, expect excess energy to be dumped onto your vessel.", "Technomancer Pulsar Monitor")
 
 /datum/event/pulsar_overcharge/tick()
 	. = ..()
 	if(world.time > last_rift_spawn + PULAR_RIFT_COOLDOWN)
 		spwawn_new_rift_wave(rand(4,6))
 		last_rift_spawn = world.time
-		command_announcement.Announce("Another wave of energy has been dumbed on your vessel.", "Technomancer Pulsar Monitor")
+		command_announcement.Announce("Another wave of energy has been dumped on your vessel.", "Technomancer Pulsar Monitor")
 
 	for(var/obj/effect/rift as anything in pulsar_rifts)
 		projectile_explosion(get_turf(rift), 10, /obj/item/projectile/beam/emitter, rand(5, 10), list(BURN = 50))
@@ -134,4 +134,3 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "wormhole"
 	anchored = TRUE
-

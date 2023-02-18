@@ -1,9 +1,7 @@
-#define PULSAR_100_POWER 25000000
-
 /obj/machinery/pulsar //Not meant to be destroyed, snowflake object for control, lots of things hold refs to it so it would harddel
 	name = "pulsar starmap"
-	icon = 'icons/obj/computer.dmi'
-	icon_state = "computer"
+	icon = 'icons/obj/pulsar_machinery.dmi'
+	icon_state = "console"
 	density = TRUE
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
@@ -12,7 +10,7 @@
 	var/obj/effect/pulsar_ship/ship
 	var/obj/structure/pulsar_fuel_tank/tank
 	var/map_active
-	var/shield_power = 50
+	var/shield_power = 45
 
 /obj/machinery/pulsar/Initialize(mapload, d)
 	linked = GLOB.maps_data.pulsar_star
@@ -85,6 +83,7 @@
 	data["shield_power"] = shield_power
 	data["shield_power_req"] = get_required_shielding()
 	data["effective_power_produced"] = get_effective_power_porduced()
+	data["decay_time"] = ship.decay_timer / (1 MINUTES)
 
 	return data
 
@@ -125,11 +124,12 @@
 			return 60
 	return max(30, 30 + (round(((GLOB.maps_data.pulsar_size * ROOT(2,2)) - 2 * ROOT(2, abs(linked.x - ship.x) ** 2 + abs(linked.y - ship.y) ** 2)) * 100/(GLOB.maps_data.pulsar_size * ROOT(2,2))) / 5))
 
-/obj/machinery/pulsar/proc/get_effective_power_porduced() //Formula comes with deminishing returns but it's rising way past 100
+/obj/machinery/pulsar/proc/get_effective_power_porduced() //Formula comes with deminishing returns but it's rising way past 100, returns precentages
 	return get_produced_power() * (100 - shield_power) / 100
 
 /obj/machinery/pulsar/proc/onShipMoved()
 	SSnano.update_uis(src)
+	ship.decay_timer = max(10, 100 - get_produced_power()) / 100 * ORBIT_DECAY_TIMER
 
 /obj/machinery/pulsar/proc/scan_for_fuel()
 	tank = locate(/obj/structure/pulsar_fuel_tank) in get_area(src)
@@ -138,15 +138,17 @@
 
 /obj/machinery/power/pulsar_power_bridge //Only holds ref to the console and its area, used to get power from it, or disconnect the ship.
 	name = "pulsar power bridge"
-	icon = 'icons/obj/computer.dmi'
-	icon_state = "computer"
+	icon = 'icons/obj/pulsar_power_bridge.dmi'
+	icon_state = "bridge"
 	density = TRUE
 	anchored = TRUE
-	layer = BELOW_OBJ_LAYER
+	use_power = NO_POWER_USE
+	pixel_x = -10
 	var/obj/machinery/pulsar/pulsar_console
 	var/area/console_area
 
 /obj/machinery/power/pulsar_power_bridge/Initialize(mapload, d)
+	. = ..()
 	connect_to_network()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -159,7 +161,7 @@
 /obj/machinery/power/pulsar_power_bridge/Process()
 	if(powernet && pulsar_console)
 		add_avail(PULSAR_100_POWER * pulsar_console.get_effective_power_porduced() / 100)
-	. = ..()
+	update_icon()
 
 /obj/machinery/power/pulsar_power_bridge/power_change()
 	..()
@@ -204,11 +206,18 @@
 	pulsar_console = null
 	. = ..()
 
+/obj/machinery/power/pulsar_power_bridge/update_icon()
+	if(!pulsar_console)
+		icon_state = "bridge"
+	else
+		var/state = CLAMP(round(pulsar_console.get_effective_power_porduced() / 10), 1, 6)
+		icon_state = "bridge_on[state]"
+
 /obj/structure/pulsar_fuel_tank
 	name = "pulsar fuel tank"
 	desc = "A massive fuel tank refialable by smaller gas tanks."
-	icon = 'icons/atmos/tank.dmi' //All sprites are placeholders
-	icon_state = "plasma_map"
+	icon = 'icons/obj/pulsar_machinery.dmi'
+	icon_state = "pulsar_tank"
 	anchored = TRUE
 
 	var/obj/machinery/pulsar/connected_console //Used to handle proper qdels, couldn't find a signal for it
@@ -236,8 +245,13 @@
 		tank.remove_air(tank.volume)
 		to_chat(user, SPAN_NOTICE("You pump the contents of [tank] into [src]"))
 		playsound(src, 'sound/effects/spray.ogg', 50, 1, -3)
+		
 		if(round(air_contents.get_total_moles()) > 100)
+			icon_state = "pulsar_tank_burst"
 			visible_message(SPAN_DANGER("[src] looks like it's about to explode!"))
+		else
+			icon_state = "pulsar_tank"
+
 		if(round(air_contents.get_total_moles()) >= 125)
 			var/turf/simulated/T = get_turf(src)
 			if(!T)
@@ -258,5 +272,3 @@
 	to_chat(user, "Fuel: [round(air_contents.get_total_moles())]/100")
 	if(round(air_contents.get_total_moles()) >= 100)
 		to_chat(user, SPAN_DANGER("It looks like its about to burst!"))
-
-#undef PULSAR_100_POWER

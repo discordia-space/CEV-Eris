@@ -92,10 +92,10 @@ SUBSYSTEM_DEF(mapping)
 		new /obj/effect/pulsar_beam(beam_loc)
 
 		var/turf/beam_right = locate(i + 1, i, GLOB.maps_data.pulsar_z)
-		new /obj/effect/pulsar_beam/ur(beam_right)
+		new /obj/effect/pulsar_beam/ul(beam_right)
 
 		var/turf/beam_left = locate(i - 1, i, GLOB.maps_data.pulsar_z)
-		new /obj/effect/pulsar_beam/dl(beam_left)
+		new /obj/effect/pulsar_beam/dr(beam_left)
 
 	var/turf/satellite_loc = locate(round((GLOB.maps_data.pulsar_size)/2 + (GLOB.maps_data.pulsar_size)/4), round((GLOB.maps_data.pulsar_size)/2 - (GLOB.maps_data.pulsar_size)/4), GLOB.maps_data.pulsar_z)
 	var/turf/shadow_loc = locate(round((GLOB.maps_data.pulsar_size)/2 - (GLOB.maps_data.pulsar_size)/4), round((GLOB.maps_data.pulsar_size)/2 + (GLOB.maps_data.pulsar_size)/4), GLOB.maps_data.pulsar_z)
