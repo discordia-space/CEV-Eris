@@ -1,3 +1,5 @@
+#define TURFS_PER_PROCESS_LIMIT 30
+
 SUBSYSTEM_DEF(explosions)
 	name = "explosions"
 	wait = 1 // very small
@@ -10,8 +12,10 @@ SUBSYSTEM_DEF(explosions)
 	var/target_power = 0
 	var/list/new_turf_queue = list()
 	var/list/new_directions = list()
+	var/turfs_processed = 0
 	for(var/explosion_handler/explodey as anything in current_run)
 		while(length(explodey.current_turf_queue))
+			turfs_processed++
 			var/turf/target = explodey.current_turf_queue[length(explodey.current_turf_queue)]
 			target_power = explodey.current_turf_queue[target]
 			explodey.current_turf_queue -= target
@@ -31,7 +35,7 @@ SUBSYSTEM_DEF(explosions)
 					if(explodey.visited[next] > world.time )
 						continue
 					explodey.turf_queue[next] = target_power - explodey.falloff
-			if(MC_TICK_CHECK)
+			if(MC_TICK_CHECK && turfs_processed > TURFS_PER_PROCESS_LIMIT)
 				return
 		explodey.iterations++
 		if(!length(explodey.turf_queue))
@@ -125,6 +129,7 @@ explosion_handler/New(turf/loc, power, falloff)
 	..()
 	for(var/dir in list(NORTH, EAST, SOUTH , WEST))
 		turf_queue[get_step(loc, dir)] = power
+	turf_queue[loc] = power
 	src.epicenter = loc
 	src.power = power
 	src.falloff = falloff
