@@ -22,3 +22,6 @@
   - refactor: SSweather no longer processes.
   - refactor: SSmachines is now a processing subsystem
   - code_imp: Framework for more control over Subsystem processing handling
+2023-02-18:
+  Humonitarian:
+  - bugfix: fixed a bug related to buckshot
