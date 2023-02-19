@@ -3,7 +3,36 @@
 proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, singe_impact_range)
 	var/explosion_power = devastation_range * 20 + heavy_impact_range * 10 + light_impact_range * 5
 	var/explosion_falloff = devastation_range * 5 + heavy_impact_range * 2 + light_impact_range
+	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flash_range, singe_impact_range)
+	var/far_dist = 0
+	far_dist += heavy_impact_range * 5
+	far_dist += devastation_range * 20
+	var/frequency = get_rand_frequency()
 	SSexplosions.start_explosion(epicenter, explosion_power, explosion_falloff)
+	for(var/mob/M in GLOB.player_list)
+		// Double check for client
+		if(M && M.client)
+			var/turf/M_turf = get_turf(M)
+			if(M_turf && M_turf.z == epicenter.z)
+			var/dist = get_dist(M_turf, epicenter)
+			// If inside the blast radius + world.view - 2
+			if(dist <= round(max_range + world.view - 2, 1))
+				M.playsound_local(epicenter, get_sfx("explosion"), 100, 1, frequency, falloff = 5) // get_sfx() is so that everyone gets the same sound
+				//You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
+			else if(dist <= far_dist)
+				var/far_volume = CLAMP(far_dist, 30, 50) // Volume is based on explosion size and dist
+				far_volume += (dist <= far_dist * 0.5 ? 50 : 0) // add 50 volume if the mob is pretty close to the explosion
+				M.playsound_local(epicenter, 'sound/effects/explosionfar.ogg', far_volume, 1, frequency, falloff = 5)
+	var/close = range(world.view+round(devastation_range,1), epicenter)
+	// to all distanced mobs play a different sound
+	for(var/mob/M in world) if(M.z == epicenter.z) if(!(M in close))
+		// check if the mob can hear
+		if(M.ear_deaf <= 0 || !M.ear_deaf) if(!istype(M.loc,/turf/space))
+			M << 'sound/effects/explosionfar.ogg'
+	if(adminlog)
+		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [singe_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
+		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [singe_impact_range]) in area [epicenter.loc.name] ")
+
 	/*
 	spawn(0)
 		if(config.use_recursive_explosions)

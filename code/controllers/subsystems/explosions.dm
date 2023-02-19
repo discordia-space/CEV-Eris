@@ -127,8 +127,6 @@ explosion_handler
 
 explosion_handler/New(turf/loc, power, falloff)
 	..()
-	for(var/dir in list(NORTH, EAST, SOUTH , WEST))
-		turf_queue[get_step(loc, dir)] = power
 	turf_queue[loc] = power
 	src.epicenter = loc
 	src.power = power
