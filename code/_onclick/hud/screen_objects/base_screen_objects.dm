@@ -32,9 +32,6 @@
 		src.icon_state = _icon_state
 	..()
 
-/obj/screen/examine(mob/user)
-	if(desc)
-		to_chat(user, SPAN_NOTICE(desc))
 
 /obj/screen/Process()
 	return
@@ -54,13 +51,11 @@
 
 
 /obj/screen/Click(location, control, params)
-	// Object Click() processed before and separately from mob's ClickOn(), thus every shift click doubles as just click
-	// This is a band aid to prevent such behavior
-	var/list/modifiers = params2list(params)
-	if(desc && modifiers["shift"])
-		return
+	if(!usr)
+		return TRUE
 
 	switch(name)
+
 		if("equip")
 			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
@@ -68,7 +63,8 @@
 
 		if("Reset Machine")
 			usr.unset_machine()
-
+		else
+			return FALSE
 	return TRUE
 //--------------------------------------------------close---------------------------------------------------------
 
@@ -326,9 +322,6 @@
 //--------------------------------------------------health---------------------------------------------------------
 /obj/screen/health
 	name = "health"
-	desc = "Not your actual health, but an estimate of how much pain you feel.\
-	<br>Experience too much of it, and you will lose consciousness.\
-	<br>Pain tolerance scales with your Toughness."
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "health0"
 	screen_loc = "15,7"
@@ -371,8 +364,6 @@
 	overlays += ovrls["health7"]
 
 /obj/screen/health/Click()
-	if(!..())
-		return
 	if(ishuman(parentmob))
 		var/mob/living/carbon/human/H = parentmob
 		H.check_self_for_injuries()
@@ -381,10 +372,6 @@
 //--------------------------------------------------sanity---------------------------------------------------------
 /obj/screen/sanity
 	name = "sanity"
-	desc = "Soundness of your mind. Not keeping it in check may result in a breakdown.\
-	<br>Damaged by feeling pain, as well as seeing grime and gore; \
-	soothed by taking drugs, drinking, eating decent food and talking, preferably in a clean place with fellow humans around.\
-	<br>Sanity damage scales with your Vigilance. Left-click eye icon to see your current sanity, insight and style."
 	icon_state = "blank"
 
 /obj/screen/sanity/New()
@@ -446,8 +433,6 @@
 	overlays += ovrls["sanity0"]
 
 /obj/screen/sanity/Click()
-	if(!..())
-		return
 	if(!ishuman(parentmob))
 		return FALSE
 	var/mob/living/carbon/human/H = parentmob
@@ -458,9 +443,6 @@
 //--------------------------------------------------nsa---------------------------------------------------------
 /obj/screen/nsa
 	name = "nsa"
-	desc = "Neural System Accumulation depicts strain your body is experiencing.\
-	<br>It is increased by chemicals and mutations.\
-	<br>Going beyond your body's limits has negative consequences. NSA limit scales with your Cognition."
 	icon_state = "blank"
 
 /obj/screen/nsa/New()
@@ -515,7 +497,6 @@
 //--------------------------------------------------nutrition---------------------------------------------------------
 /obj/screen/nutrition
 	name = "nutrition"
-	desc = "This shows how much hunger you feel. Being malnourished significantly slows you down. Not updated immediately after eating."
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "blank"
 	screen_loc = "15,6"
@@ -553,9 +534,6 @@
 //--------------------------------------------------bodytemp---------------------------------------------------------
 /obj/screen/bodytemp
 	name = "bodytemp"
-	desc = "Temperature of your body. Affected by environment, health and ingested chemicals.\
-	<br>Fever might be a sign of untreated infection.\
-	<br>You are slowed down if your body temperature is low enough."
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "blank"
 	screen_loc = "15,8"
@@ -625,8 +603,6 @@
 //--------------------------------------------------pressure---------------------------------------------------------
 /obj/screen/pressure
 	name = "pressure"
-	desc = "Barometric pressure experienced by your body.\
-	<br>Being in an environment with extreme pressure without a voidsuit is fatal."
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "blank"
 	screen_loc = "15,13"
@@ -1365,7 +1341,7 @@ obj/screen/fire/DEADelize()
 		var/obj/item/clothing/glasses/G = H.wearing_rig.getCurrentGlasses()
 		if(G && H.wearing_rig.visor.active)
 			overlays |= G.overlay
-
+	
 	if(get_active_mutation(H, MUTATION_NIGHT_VISION))
 		overlays |= global_hud.nvg
 
