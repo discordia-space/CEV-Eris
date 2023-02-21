@@ -432,7 +432,7 @@ semi accepts weird caliber - +1 points
 /obj/item/part/gun/modular/mechanism/autorifle/light
 	name = "light self-loading mechanism"
 	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love. \
-			Offers 600 RPM fully automatic fire, at the cost of damage output. Also supports pistol caliber, and drum magazines."
+			Offers 400 RPM fully automatic fire, at the cost of damage output. Also supports pistol caliber, and drum magazines."
 	icon_state = "mechanism_autorifle"
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D|MAG_WELL_SMG|MAG_WELL_IH
 	accepted_calibers = list(CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE, CAL_PISTOL)
@@ -443,7 +443,7 @@ semi accepts weird caliber - +1 points
 /obj/item/part/gun/modular/mechanism/autorifle/determined
 	name = "determined self-loading mechanism"
 	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love. \
-			Offers 400 RPM fully automatic fire. Provides slightly improved damage output at the cost of fire control. Supports drum magazines."
+			Offers 300 RPM fully automatic fire. Provides slightly improved damage output at the cost of fire control. Supports drum magazines."
 	icon_state = "mechanism_autorifle"
 	accepted_calibers = list(CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE)
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D

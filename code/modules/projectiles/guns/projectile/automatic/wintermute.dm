@@ -34,7 +34,7 @@
 		)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	gun_parts = list(/obj/item/part/gun/frame/wintermute = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/autorifle = 1, /obj/item/part/gun/modular/barrel/srifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/wintermute = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/autorifle/determined = 1, /obj/item/part/gun/modular/barrel/srifle = 1)
 	serial_type = "FS"
 
 /obj/item/gun/projectile/automatic/wintermute/update_icon()

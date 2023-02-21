@@ -25,7 +25,7 @@
 	init_recoil = RIFLE_RECOIL(1.3)
 	zoom_factors = list(0.6)
 	fire_delay = 6.5
-	gun_parts = list(/obj/item/part/gun/frame/kovacs = 1, /obj/item/part/gun/modular/grip/serb = 1, /obj/item/part/gun/modular/mechanism/autorifle = 1, /obj/item/part/gun/modular/barrel/lrifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/kovacs = 1, /obj/item/part/gun/modular/grip/serb = 1, /obj/item/part/gun/modular/mechanism/autorifle/sharpshooter = 1, /obj/item/part/gun/modular/barrel/lrifle = 1)
 	serial_type = "SA"
 
 

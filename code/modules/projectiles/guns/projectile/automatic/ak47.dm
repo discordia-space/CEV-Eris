@@ -1,3 +1,4 @@
+/*
 /obj/item/gun/projectile/automatic/ak47
 	name = "Excelsior .30 \"Kalashnikov\""
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
@@ -240,7 +241,7 @@
 
 	playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()
-
+*/
 //////////////////////////////////////////Makeshift//////////////////////////////////////////
 
 /obj/item/gun/projectile/automatic/ak47/makeshift
@@ -269,7 +270,7 @@
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 5)
 	price_tag = 500
-	gun_parts = list(/obj/item/part/gun/frame/kalash = 1, /obj/item/part/gun/modular/grip/wood = 1 , /obj/item/part/gun/modular/mechanism/autorifle/steel = 1, /obj/item/part/gun/modular/barrel/lrifle/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/kalash = 1, /obj/item/part/gun/modular/grip/wood = 1 , /obj/item/part/gun/modular/mechanism/autorifle/simple = 1, /obj/item/part/gun/modular/barrel/lrifle/steel = 1)
 	serial_type = ""
 
 /obj/item/part/gun/frame/kalash
@@ -281,4 +282,3 @@
 	gripvars = list(/obj/item/part/gun/modular/grip/black)
 	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle/steel
 	barrelvars = list(/obj/item/part/gun/modular/barrel/lrifle/steel, /obj/item/part/gun/modular/barrel/srifle/steel, /obj/item/part/gun/modular/barrel/clrifle/steel)
-

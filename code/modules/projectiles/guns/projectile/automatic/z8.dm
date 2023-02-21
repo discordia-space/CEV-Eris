@@ -34,7 +34,7 @@
 	var/obj/item/gun/projectile/shotgun/pump/grenade/underslung/launcher
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	gun_parts = list(/obj/item/part/gun/frame/z8 = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/autorifle = 1, /obj/item/part/gun/modular/barrel/srifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/z8 = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/autorifle/heavy = 1, /obj/item/part/gun/modular/barrel/srifle = 1)
 	serial_type = "OR"
 
 /obj/item/gun/projectile/automatic/z8/Initialize()

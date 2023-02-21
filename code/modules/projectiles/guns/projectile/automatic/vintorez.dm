@@ -25,7 +25,7 @@
 		SEMI_AUTO_300,
 		BURST_2_ROUND
 		)
-	gun_parts = list(/obj/item/part/gun/frame/vintorez = 1, /obj/item/part/gun/modular/grip/excel = 1, /obj/item/part/gun/modular/mechanism/autorifle = 1, /obj/item/part/gun/modular/barrel/srifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/vintorez = 1, /obj/item/part/gun/modular/grip/excel = 1, /obj/item/part/gun/modular/mechanism/autorifle/marksman = 1, /obj/item/part/gun/modular/barrel/srifle = 1)
 	serial_type = "Excelsior"
 
 /obj/item/gun/projectile/automatic/vintorez/update_icon()
