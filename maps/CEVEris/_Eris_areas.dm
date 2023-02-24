@@ -559,6 +559,11 @@
 	icon_state = "chapeloffice"
 	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_DARK
 
+/area/eris/neotheology/funeral
+	name = "\improper Funeral Chamber"
+	icon_state = "erisyellow"
+	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_DARK
+
 /area/eris/neotheology/chapelritualroom
 	name = "Chapel Rituals Room"
 	icon_state = "erisgreen"
