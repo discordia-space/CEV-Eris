@@ -169,6 +169,16 @@
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
 
+	if(config.z_level_shooting && P.height) // If the bullet came from above or below, limit what bodyparts can be hit for consistency
+		if(resting || lying)
+			return PROJECTILE_CONTINUE // Bullet flies overhead
+
+		switch(P.height)
+			if(HEIGHT_HIGH)
+				def_zone_hit = pick(list(BP_CHEST, BP_HEAD, BP_L_ARM, BP_R_ARM))
+			if(HEIGHT_LOW)
+				def_zone_hit = pick(list(BP_CHEST, BP_GROIN, BP_L_LEG, BP_R_LEG))
+
 	//Being hit while using a deadman switch
 	if(istype(get_active_hand(),/obj/item/device/assembly/signaler))
 		var/obj/item/device/assembly/signaler/signaler = get_active_hand()

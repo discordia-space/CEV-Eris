@@ -133,6 +133,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/welder_vision = 1
 	var/generate_asteroid = 0
 	var/no_click_cooldown = 0
+	var/z_level_shooting = FALSE
 
 	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
 	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
