@@ -1,0 +1,5 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - rscadd: shooting between zlevels, toggled by admins
+  - bugfix: minor bugfixes for tables
