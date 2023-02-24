@@ -1,0 +1,5 @@
+author: DiaFRAME444
+delete-after: true
+changes:
+  - balance: pain gained from armor blocking bullets is now 40% of the original damage.
+      Should make shotguns viable again.
