@@ -156,7 +156,7 @@
 	if(config.z_level_shooting)
 		if(P.height == HEIGHT_HIGH)
 			return TRUE // Bullet is too high to hit
-		P.height = P.height == HEIGHT_LOW ? HEIGHT_LOW : HEIGHT_CENTER
+		P.height = (P.height == HEIGHT_LOW) ? HEIGHT_LOW : HEIGHT_CENTER
 
 	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return 1
