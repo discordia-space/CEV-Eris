@@ -7859,6 +7859,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
+/obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
 "asq" = (
@@ -29672,8 +29673,11 @@
 /area/eris/medical/virology)
 "bsC" = (
 /obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
+	dir = 4
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/sorter)
@@ -100673,9 +100677,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/barquarters)
-"eHY" = (
-/turf/simulated/wall/r_wall,
-/area/eris/maintenance/sorter)
 "eIo" = (
 /turf/simulated/wall,
 /area/eris/engineering/propulsion/right)
@@ -101429,6 +101430,15 @@
 /obj/machinery/camera/network/command,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck4central)
+"fUS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/eris/quartermaster/disposaldrop)
 "fVv" = (
 /obj/structure/closet/crate,
 /obj/item/stack/material/steel{
@@ -101863,9 +101873,6 @@
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
-"gUi" = (
-/turf/simulated/wall,
-/area/eris/maintenance/sorter)
 "gWZ" = (
 /obj/structure/table/woodentable,
 /obj/machinery/firealarm{
@@ -102145,6 +102152,11 @@
 	},
 /turf/simulated/open,
 /area/eris/engineering/engine_room)
+"hCo" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/eris/maintenance/sorter)
 "hDk" = (
 /obj/landmark/join/start/clubworker,
 /turf/simulated/floor/tiled/steel/bar_dance,
@@ -103177,6 +103189,19 @@
 "jOh" = (
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/maintenance/section3deck2port)
+"jOw" = (
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/alarm{
+	pixel_y = 26
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/sorter)
 "jRe" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -103580,6 +103605,13 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/reception)
+"kVX" = (
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/sorter)
 "kWg" = (
 /obj/spawner/closet,
 /turf/simulated/floor/tiled/techmaint_panels,
@@ -103630,19 +103662,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics/garden)
-"leG" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/alarm{
-	pixel_y = 26
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/sorter)
 "leT" = (
 /obj/structure/reagent_dispensers/cahorsbarrel,
 /obj/structure/sign/faction/neotheology_cross/gold{
@@ -104267,11 +104286,6 @@
 "mzM" = (
 /turf/simulated/wall/r_wall,
 /area/eris/crew_quarters/barconference)
-"mAt" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/eris/maintenance/sorter)
 "mAA" = (
 /turf/simulated/wall,
 /area/eris/crew_quarters/clownoffice)
@@ -105128,6 +105142,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/crew_quarters/fitness)
+"oHP" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/sorter)
 "oHW" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 4
@@ -105354,16 +105372,6 @@
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
-"peU" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/sorter)
 "peX" = (
 /obj/landmark/join/start/acolyte,
 /turf/simulated/floor/wood,
@@ -105650,6 +105658,9 @@
 	},
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/barconference)
+"pVr" = (
+/turf/simulated/wall/r_wall,
+/area/eris/maintenance/sorter)
 "pVN" = (
 /obj/structure/railing{
 	dir = 4
@@ -105724,6 +105735,15 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/barquarters)
+"qdC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/eris/quartermaster/disposaldrop)
 "qeb" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -105910,15 +105930,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/sorter)
-"qyg" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/disposaldrop)
 "qyl" = (
 /obj/structure/table/rack/shelf,
 /obj/machinery/light{
@@ -106009,6 +106020,16 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
+"qLQ" = (
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/sorter)
 "qMe" = (
 /obj/spawner/gun/handmade,
 /turf/simulated/floor/plating,
@@ -108514,15 +108535,6 @@
 /obj/spawner/gun/handmade,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck1port)
-"wxv" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/disposaldrop)
 "wxB" = (
 /obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/plating,
@@ -108601,10 +108613,6 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
-"wPX" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/sorter)
 "wQU" = (
 /obj/structure/railing{
 	dir = 8
@@ -108878,16 +108886,6 @@
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/crew_quarters/barbackroom)
-"xzK" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/sorter)
 "xAA" = (
 /obj/structure/bed/psych,
 /turf/simulated/floor/carpet,
@@ -109048,6 +109046,9 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
+"xUX" = (
+/turf/simulated/wall,
+/area/eris/maintenance/sorter)
 "xVV" = (
 /obj/structure/table/standard,
 /obj/item/cell/large/high,
@@ -127675,7 +127676,7 @@ aCn
 aCn
 aCn
 aBC
-wPX
+oHP
 bmO
 eBl
 eBl
@@ -128079,7 +128080,7 @@ arI
 apn
 apn
 clU
-bsC
+kVX
 btr
 bBX
 eBl
@@ -128281,7 +128282,7 @@ avQ
 avQ
 apn
 cmm
-xzK
+qLQ
 dQA
 bBX
 eBl
@@ -128686,7 +128687,7 @@ atp
 blT
 apn
 dlO
-wPX
+oHP
 dUG
 efv
 azU
@@ -128887,16 +128888,16 @@ atp
 atp
 awX
 apn
-peU
+bsC
 dTH
 btb
-eHY
+pVr
 aBJ
 aBJ
-gUi
+xUX
 aBJ
 aBJ
-gUi
+xUX
 hOx
 arI
 huE
@@ -129089,7 +129090,7 @@ atp
 atp
 blT
 apn
-leG
+jOw
 dUo
 afx
 iCc
@@ -129499,10 +129500,10 @@ btu
 apV
 ewo
 ewo
-gUi
+xUX
 ewo
 ewo
-gUi
+xUX
 ewo
 bOg
 bQI
@@ -129699,13 +129700,13 @@ bsR
 atM
 avz
 apV
-mAt
+hCo
 eyd
-eHY
-eHY
-eHY
-eHY
-eHY
+pVr
+pVr
+pVr
+pVr
+pVr
 apn
 bRh
 arI
@@ -129897,7 +129898,7 @@ apV
 awi
 awi
 aAz
-qyg
+qdC
 btw
 avz
 apV
@@ -130099,7 +130100,7 @@ aur
 awk
 axM
 aAz
-qyg
+qdC
 atM
 avz
 kFA
@@ -130301,7 +130302,7 @@ aCv
 awk
 awW
 aAz
-qyg
+qdC
 atM
 avz
 kFA
@@ -130503,7 +130504,7 @@ avE
 awf
 ayq
 avs
-qyg
+qdC
 atM
 cpB
 apV
@@ -130705,7 +130706,7 @@ aty
 awi
 awi
 awi
-qyg
+qdC
 awy
 drX
 apV
@@ -130907,7 +130908,7 @@ auX
 atM
 atM
 atM
-qyg
+qdC
 atM
 avz
 kFA
@@ -131109,7 +131110,7 @@ atS
 awl
 axO
 aTM
-wxv
+fUS
 atM
 avz
 kFA
