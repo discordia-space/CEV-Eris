@@ -38,6 +38,9 @@
 	name = "Fueltank Storage"
 	icon_state = "erisblue"
 
+/area/eris/maintenance/sorter
+	name = "Trash Sorter"
+
 /area/eris/maintenance/section1deck1central
 	name = "First Section Deck 1 Fore Maintenance"
 	icon_state = "section1deck1central"
