@@ -141,7 +141,7 @@
 
 	//dead already, no need for more processing
 	if(status & ORGAN_DEAD)
-		return PROCESS_KILL		// Can't bring dead organs back. Most can be printed for cheap.
+		return
 
 	if(BP_IS_ROBOTIC(src))
 		return

@@ -36,9 +36,9 @@
 	handle_blood()
 
 /obj/item/organ/internal/Destroy()
-	for(var/datum/component/comp as anything in GetComponents(/datum/component))
-		istype(comp, /datum/component/internal_wound) ? remove_wound(comp) : qdel(comp)
 	QDEL_LIST(item_upgrades)
+	for(var/comp in GetComponents(/datum/component/internal_wound))
+		remove_wound(comp)
 	UnregisterSignal(src, COMSIG_IORGAN_ADD_WOUND)
 	UnregisterSignal(src, COMSIG_IORGAN_REMOVE_WOUND)
 	UnregisterSignal(src, COMSIG_IORGAN_REFRESH_SELF)
@@ -268,9 +268,15 @@
 		var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
 
 		if(is_organic)
-			remove_wound(/datum/component/internal_wound/organic/bone_fracture)
+			var/organic_wound = GetComponent(/datum/component/internal_wound/organic/bone_fracture)
+			if(organic_wound)
+				remove_wound(organic_wound)
 		if(is_robotic)
-			remove_wound(/datum/component/internal_wound/robotic/deformation)
+			var/robotic_wound = GetComponent(/datum/component/internal_wound/robotic/deformation)
+			if(robotic_wound)
+				remove_wound(robotic_wound)
+		
+		
 
 /obj/item/organ/internal/get_actions()
 	var/list/actions_list = ..()

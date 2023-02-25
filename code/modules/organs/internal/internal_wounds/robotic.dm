@@ -109,8 +109,8 @@
 */
 
 /datum/component/internal_wound/robotic/overheat
-	treatments_item = list(/obj/item/stack/nanopaste = 2)
-	treatments_chem = list(CE_MECH_STABLE = 2.5)	// coolant + refrigerant
+	treatments_item = list(/obj/item/stack/cable_coil = 10, /obj/item/stack/nanopaste = 2)
+	treatments_chem = list(CE_MECH_STABLE = 0.5)	// coolant or refrigerant
 	severity = 0
 	severity_max = IORGAN_MAX_HEALTH
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
@@ -121,7 +121,7 @@
 /datum/component/internal_wound/robotic/overheat/alt
 	name = "thermal runaway"
 
-// Tox
+// Tox - UNUSED
 /datum/component/internal_wound/robotic/build_up
 	treatments_tool = list(QUALITY_PRYING = FAILCHANCE_NORMAL)	// Pop it out and replace the filter
 	treatments_chem = list(CE_MECH_ACID = 1)		// sulphiric acid

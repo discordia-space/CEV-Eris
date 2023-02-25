@@ -585,7 +585,8 @@
 	if(M.bloodstr && M.bloodstr.has_reagent("pararein"))
 		if(prob(5))
 			to_chat(M, SPAN_WARNING("The blood in your veins burns beneath your flesh!"))
-			create_overdose_wound(pick(M.internal_organs), M, /datum/component/internal_wound/organic/heavy_poisoning, "rot", TRUE)
+			if(LAZYLEN(M.internal_organs))	// Check needed because spiders can inject this into roaches
+				create_overdose_wound(pick(M.internal_organs), M, /datum/component/internal_wound/organic/heavy_poisoning, "rot", TRUE)
 
 /datum/reagent/toxin/diplopterum
 	name = "Diplopterum"

@@ -197,7 +197,7 @@
 				var/target = get_surgery_target()
 				var/obj/item/I = user.get_active_hand()
 
-				if(!I && !(QUALITY_CLAMPING in I.tool_qualities))
+				if(!I || !(QUALITY_CLAMPING in I.tool_qualities))
 					to_chat(user, SPAN_WARNING("You need a tool with [QUALITY_CLAMPING] quality"))
 					return FALSE
 
