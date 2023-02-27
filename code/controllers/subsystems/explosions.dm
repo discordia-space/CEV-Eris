@@ -48,51 +48,6 @@ SUBSYSTEM_DEF(explosions)
 	current_run = explode_queue.Copy()
 
 
-		/*
-		new_turf_queue = list()
-		new_directions = list()
-		//var/center_angle
-		for(var/turf/target as anything in explodey.turf_queue)
-			target_power = explodey.turf_queue[target] - explodey.falloff
-			if(target_power < 10)
-				continue
-			explodey.visited[target] = world.time + 0.3 SECOND
-			target_power -= target.explosion_act(target_power)
-			if(target_power < 10)
-				continue
-			for(var/atom/movable/thing in target.contents)
-				if(thing.anchored)
-					continue
-				//throwing_queue[thing] += list(round(target_power/falloff), direction_list[target])
-			for(var/dir in list(NORTH,SOUTH,EAST,WEST))
-				var/turf/next = get_step(target,dir)
-				if(explodey.visited[next] > world.time )
-					continue
-				new_turf_queue[next] = target_power
-				//new_directions[next] = get_dir(target, next)
-			if(MC_TICK_CHECK)
-				return
-		explodey.turf_queue = new_turf_queue
-		*/
-		//explodey.direction_list = new_directions
-		// get rid of last queue
-		//throwing_queue = list()
-		//explodey.Run()
-		/*
-		for(var/atom/movable/to_throw as anything in throwing_queue)
-			if(to_throw.anchored)
-				continue
-			spawn(0)
-				to_throw.throw_at(throwing_queue[to_throw], get_dist(to_throw, throwing_queue[to_throw]), 5, "Explosion")
-
-		if(!length(explodey.turf_queue))
-			explode_queue -= explodey
-			qdel(explodey)
-		*/
-
-
-///datum/controller/subsystem/explosions/stat_entry()
-
 /datum/controller/subsystem/explosions/proc/start_explosion(turf/epicenter, power, falloff)
 	var/reference = new /explosion_handler(epicenter, power, falloff)
 	explode_queue += reference
@@ -118,6 +73,10 @@ explosion_handler
 	var/falloff
 	var/list/turf_queue = list()
 	//var/list/direction_list[50]
+
+	// TODO turn this into a hashed list instead of a red-black binary tree(which byond uses by default)
+	// should use x+ map_size * y as the hashkey
+	// modulo divider should be 65792
 	var/list/visited = list()
 	/// Used for letting us know how many iterations were already ran
 	var/iterations = 0

@@ -134,8 +134,8 @@
 			var/obj/item/material/shard/S = new shardtype(loc)
 			if (nearby.len > 0)
 				var/turf/target = pick(nearby)
-				spawn()
-					S.throw_at(target,40,3)
+				//spawn()
+				S.throw_at(target,40,3)
 			index++
 	else
 		new shardtype(loc) //todo pooling?

@@ -151,38 +151,50 @@ steam.start() -- spawns the effect
 /datum/effect/effect/system/spark_spread
 	var/total_sparks = 0 // To stop it being spammed and lagging!
 
-	set_up(n = 3, c = 0, loca)
-		if(n > 10)
-			n = 10
-		number = n
-		cardinals = c
-		if(istype(loca, /turf/))
-			location = loca
-		else
-			location = get_turf(loca)
+/datum/effect/effect/system/spark_spread/set_up(n = 3, c = 0, loca)
+	if(n > 10)
+		n = 10
+	number = n
+	cardinals = c
+	if(istype(loca, /turf/))
+		location = loca
+	else
+		location = get_turf(loca)
 
-	start()
-		var/i = 0
-		for(i=0, i<src.number, i++)
-			if(src.total_sparks > 20)
-				return
-			spawn(0)
-				if(holder)
-					src.location = get_turf(holder)
-				var/obj/effect/sparks/sparks = new(location)
-				src.total_sparks++
-				var/direction
-				if(src.cardinals)
-					direction = pick(cardinal)
-				else
-					direction = pick(alldirs)
-				for(i=0, i<pick(1,2,3), i++)
-					sleep(rand(1,5))
-					step(sparks,direction)
-				spawn(20)
-					if(sparks)
-						qdel(sparks)
-					src.total_sparks--
+/datum/effect/effect/system/spark_spread/start()
+	var/i = 0
+	for(i=0, i<src.number, i++)
+		if(src.total_sparks > 20)
+			return
+		if(holder)
+			src.location = get_turf(holder)
+		var/obj/effect/sparks/sparks = new(location)
+		src.total_sparks++
+		var/direction
+		if(src.cardinals)
+			direction = pick(cardinal)
+		else
+			direction = pick(alldirs)
+		for(i=0, i<pick(1,2,3), i++)
+			addtimer(CALLBACK(src, .proc/do_spark_movement, sparks, direction), rand(1,5) SECONDS)
+			//sleep(rand(1,5))
+			//step(sparks,direction)
+
+		addtimer(CALLBACK(src, .proc/delete_spark, sparks), 2 SECONDS)
+		/*
+		spawn(20)
+			if(sparks)
+				qdel(sparks)
+			src.total_sparks--
+		*/
+
+/datum/effect/effect/system/spark_spread/proc/do_spark_movement(atom/movable/sparks, direction)
+	step(sparks, direction)
+
+/datum/effect/effect/system/spark_spread/proc/delete_spark(atom/movable/sparks)
+	if(!QDELETED(sparks))
+		qdel(sparks)
+	total_sparks--
 
 
 
