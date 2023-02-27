@@ -215,9 +215,8 @@
 	var/distance = get_dist(curloc, original)
 	check_hit_zone(distance, user_recoil)
 
-	spawn()
-		setup_trajectory(curloc, targloc, x_offset, y_offset, angle_offset) //plot the initial trajectory
-		Process()
+	setup_trajectory(curloc, targloc, x_offset, y_offset, angle_offset) //plot the initial trajectory
+	Process()
 
 	return FALSE
 
