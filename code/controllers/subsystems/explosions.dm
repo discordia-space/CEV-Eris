@@ -57,7 +57,6 @@ SUBSYSTEM_DEF(explosions)
 		explodey.iterations++
 		if(!length(explodey.turf_queue))
 			explode_queue -= explodey
-			/*
 			var/i = length(available_hash_lists) + 1
 			while(i > 1)
 				i--
@@ -74,7 +73,6 @@ SUBSYSTEM_DEF(explosions)
 					available_hash_lists[i] = explodey.hashed_power
 					explodey.hashed_power = null
 				else break
-			*/
 			qdel(explodey)
 		explodey.current_turf_queue = explodey.turf_queue.Copy()
 		// Trash the list for a new one, with a pre-set size because we want to avoid resizing
