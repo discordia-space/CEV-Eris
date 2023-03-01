@@ -1,4 +1,4 @@
-#define TURFS_PER_PROCESS_LIMIT 30
+#define TURFS_PER_PROCESS_LIMIT 90
 #define SPARE_HASH_LISTS 200
 #define HASH_MODULO (world.maxx + world.maxy*world.maxy)
 #define EXPLO_HASH(x,y) (round((x+y*world.maxy)%HASH_MODULO))
@@ -41,6 +41,12 @@ SUBSYSTEM_DEF(explosions)
 			target_power -= target.explosion_act(target_power)
 			if(target_power < 10)
 				continue
+			/*
+			for(var/atom/movable/thing in target.contents)
+				if(thing.anchored)
+					continue
+				thing.throw_at(get_turf_away_from_target_complex(explodey.epicenter, target, target_power/explodey.falloff),  target_power/explodey.falloff, target_power/10, "explosion")
+			*/
 			if(target_power - explodey.falloff > 10)
 				for(var/dir in list(NORTH,SOUTH,EAST,WEST))
 					var/turf/next = get_step(target,dir)
@@ -140,11 +146,9 @@ explosion_handler/New(turf/loc, power, falloff)
 			hashed_power = SSexplosions.available_hash_lists[i]
 			SSexplosions.available_hash_lists[i] = null
 		else break
+	hashed_power[turf_key] = power
 	if(!length(hashed_visited))
 		hashed_visited = new /list(HASH_MODULO)
-	if(!length(hashed_power))
-		hashed_power = new /list(HASH_MODULO)
-	hashed_power[turf_key] = power
 	//message_admins("EXPLOSION HANDLER CREATED WITHOUT ANY AVAILABLE HASH LIST, CURRENT LIMIT IS [SPARE_HASH_LISTS], Doing a slow initialization. If this is frequent developers should be informed.")
 	//hashed_visited = /list(HASH_MODULO, null)
 
