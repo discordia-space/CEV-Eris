@@ -1285,12 +1285,14 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 /obj/machinery/power/apc/proc/set_broken()
 	// Aesthetically much better!
 	visible_message(SPAN_NOTICE("[src]'s screen flickers with warnings briefly!"))
-	spawn(rand(2,5))
-		visible_message(SPAN_NOTICE("[src]'s screen suddenly explodes in rain of sparks and small debris!"))
-		stat |= BROKEN
-		operating = 0
-		update_icon()
-		update()
+	addtimer(CALLBACK(src, .proc/finish_broken), 1 SECOND)
+
+/obj/machinery/power/apc/proc/finish_broken()
+	visible_message(SPAN_NOTICE("[src]'s screen suddenly explodes in rain of sparks and small debris!"))
+	stat |= BROKEN
+	operating = 0
+	update_icon()
+	update()
 
 // overload the lights in this APC area
 
