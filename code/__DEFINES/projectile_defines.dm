@@ -42,3 +42,6 @@
 #define SLOT_MECHANICS "mechanics"
 #define SLOT_BAYONET "bayonet slot"
 
+#define HEIGHT_LOW 1
+#define HEIGHT_CENTER 0
+#define HEIGHT_HIGH 2

@@ -21,6 +21,12 @@
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /obj/structure/table/proc/check_cover(obj/item/projectile/P, turf/from)
+
+	if(config.z_level_shooting)
+		if(P.height == HEIGHT_HIGH)
+			return TRUE // Bullet is too high to hit
+		P.height = (P.height == HEIGHT_LOW) ? HEIGHT_LOW : HEIGHT_CENTER
+
 	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return TRUE
 	if(get_dist(loc, P.trajectory.target) > 1 ) // Target turf must be adjacent for it to count as cover
@@ -42,6 +48,11 @@
 				valid = TRUE
 		else
 			valid = FALSE					//But only from one side
+
+	// Bullet is low enough to hit the table
+	if(config.z_level_shooting && P.height == HEIGHT_LOW)
+		valid = TRUE
+
 	if(valid)
 		var/pierce = P.check_penetrate(src)
 		health -= P.get_structure_damage()/2
@@ -51,8 +62,8 @@
 		else
 			visible_message(SPAN_WARNING("[src] breaks down!"))
 			break_to_parts()
-			return 1
-	return 1
+			return TRUE
+	return TRUE
 
 /obj/structure/table/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSTABLE))

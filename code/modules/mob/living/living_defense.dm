@@ -1,4 +1,4 @@
-#define ARMOR_HALLOS_COEFFICIENT 0.25
+#define ARMOR_HALLOS_COEFFICIENT 0.4
 
 
 //This calculation replaces old run_armor_check in favor of more complex and better system
@@ -135,6 +135,8 @@
 	// Returns if a projectile should continue travelling
 	if(return_continuation)
 		var/obj/item/projectile/P = used_weapon
+		if(istype(P, /obj/item/projectile/bullet/pellet)) // Pellets should never penetrate
+			return PROJECTILE_STOP
 		P.damage_types = dmg_types
 		if(sharp)
 			var/remaining_dmg = 0
@@ -166,6 +168,16 @@
 
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
+
+	if(config.z_level_shooting && P.height) // If the bullet came from above or below, limit what bodyparts can be hit for consistency
+		if(resting || lying)
+			return PROJECTILE_CONTINUE // Bullet flies overhead
+
+		switch(P.height)
+			if(HEIGHT_HIGH)
+				def_zone_hit = pick(list(BP_CHEST, BP_HEAD, BP_L_ARM, BP_R_ARM))
+			if(HEIGHT_LOW)
+				def_zone_hit = pick(list(BP_CHEST, BP_GROIN, BP_L_LEG, BP_R_LEG))
 
 	//Being hit while using a deadman switch
 	if(istype(get_active_hand(),/obj/item/device/assembly/signaler))

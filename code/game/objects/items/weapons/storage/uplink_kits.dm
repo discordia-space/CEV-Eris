@@ -103,6 +103,14 @@
 	new /obj/item/clothing/suit/space/void/merc/boxed(src)
 	new /obj/item/clothing/mask/gas/syndicate(src)
 
+/obj/item/storage/box/syndie_kit/mercarmor
+	name = "boxed mercenary armor"
+	desc = "A sleek, sturdy box. This one contains a full set of tan mercenary combat gear - a helmet and full-body vest."
+
+/obj/item/storage/box/syndie_kit/mercarmor/populate_contents()
+	new /obj/item/clothing/suit/storage/vest/merc/full(src)
+	new /obj/item/clothing/head/armor/helmet/merchelm(src)
+
 /obj/item/storage/box/syndie_kit/softsuit
 	name = "boxed soft suit"
 

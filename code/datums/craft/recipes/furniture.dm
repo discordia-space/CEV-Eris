@@ -211,3 +211,14 @@
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 		list(CRAFT_MATERIAL, 1, MATERIAL_WOOD),
 	)
+
+/datum/craft_recipe/furniture/drying_rack
+	name = "drying rack"
+	result = /obj/machinery/smartfridge/drying_rack
+	steps = list(
+		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
+		list(QUALITY_SAWING, 10, 20),
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
+		list(QUALITY_HAMMERING, 10, 20),
+	)
+
