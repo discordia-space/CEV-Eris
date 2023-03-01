@@ -51,6 +51,7 @@ SUBSYSTEM_DEF(explosions)
 						continue
 					explodey.turf_queue += next
 					explodey.hashed_power[temp_key] = target_power - explodey.falloff
+					explodey.hashed_visited[temp_key] = TRUE
 					//explodey.turf_queue[next] = target_power - explodey.falloff
 			if(MC_TICK_CHECK && turfs_processed > TURFS_PER_PROCESS_LIMIT)
 				return
