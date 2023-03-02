@@ -445,7 +445,6 @@ area/space/atmosalert()
 /area/holodeck
 	name = "\improper Holodeck"
 	icon_state = "Holodeck"
-	dynamic_lighting = 0
 	sound_env = LARGE_ENCLOSED
 
 //We'll assume holodecks have their own private gravity/antigrav generator, and are thus immune to any changes in gravity elsewhere
@@ -456,10 +455,25 @@ area/space/atmosalert()
 
 /area/holodeck/alphadeck
 	name = "\improper Holodeck Alpha"
+	sound_env = LARGE_ENCLOSED
 
-/area/holodeck/source_plating
+/area/holodeck/source
+	name = "\improper Holodeck - Nonexistent"
+	atmos = FALSE // So open spaces don't lose air
+	no_air = TRUE // Make there be no air to lose either
+
+/area/holodeck/source/off
 	name = "\improper Holodeck - Off"
 
+/area/holodeck/source/spacebar
+	name = "\improper Holodeck - Spacebar"
+	sound_env = LARGE_SOFTFLOOR
+
+/area/holodeck/source/texas
+	name = "\improper Holodeck - Texas"
+	sound_env = AUDITORIUM
+
+/*
 /area/holodeck/source_emptycourt
 	name = "\improper Holodeck - Empty Court"
 	sound_env = ARENA
@@ -490,14 +504,6 @@ area/space/atmosalert()
 /area/holodeck/source_wildlife
 	name = "\improper Holodeck - Wildlife Simulation"
 
-/area/holodeck/source_meetinghall
-	name = "\improper Holodeck - Meeting Hall"
-	sound_env = AUDITORIUM
-
-/area/holodeck/source_theatre
-	name = "\improper Holodeck - Theatre"
-	sound_env = CONCERT_HALL
-
 /area/holodeck/source_picnicarea
 	name = "\improper Holodeck - Picnic Area"
 	sound_env = PLAIN
@@ -514,6 +520,15 @@ area/space/atmosalert()
 	name = "\improper Holodeck - Space"
 	has_gravity = 0
 	sound_env = SPACE
+
+/area/holodeck/source_meetinghall
+	name = "\improper Holodeck - Meeting Hall"
+	sound_env = AUDITORIUM
+
+/area/holodeck/source_theatre
+	name = "\improper Holodeck - Theatre"
+	sound_env = CONCERT_HALL
+*/
 
 //DJSTATION
 

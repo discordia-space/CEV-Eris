@@ -272,10 +272,10 @@
 	for(var/obj/effect/decal/cleanable/blood/B in linkedholodeck)
 		qdel(B)
 
-	holographic_objs = A.copy_contents_to(linkedholodeck , 1)
+	holographic_objs = A.copy_contents_to(linkedholodeck , 0)
 	for(var/obj/holo_obj in holographic_objs)
-		holo_obj.alpha *= 0.8 //give holodeck objs a slight transparency
-		holo_obj.plane = 95 //This makes all objects load on the plane that Eris's 4th z-level uses for objects. This is not dynamic.
+		holo_obj.alpha *= 0.95 //give holodeck objs a slight transparency
+		holo_obj.plane = 63 //This makes all objects load on the plane that Eris's 3rd z-level uses for objects. This is not dynamic.
 
 	if(HP.ambience)
 		linkedholodeck.forced_ambience = HP.ambience
@@ -343,21 +343,9 @@
 /obj/machinery/computer/HolodeckControl/Exodus/New()
 	..()
 	supported_programs = list(
-	"Empty Court" 		= "emptycourt",
-	"Basketball Court" 	= "basketball",
-	"Thunderdome Court"	= "thunderdomecourt",
-	"Boxing Ring"		= "boxingcourt",
-	"Beach" 			= "beach",
-	"Desert" 			= "desert",
-	"Space" 			= "space",
-	"Picnic Area" 		= "picnicarea",
-	"Snow Field" 		= "snowfield",
-	"Theatre" 			= "theatre",
-	"Meeting Hall" 		= "meetinghall",
-	"Courtroom" 		= "courtroom"
+	"Texas Tavern" 			= "texas",
+	"Space Bar" 		= "spacebar",
 	)
 
 	restricted_programs = list(
-	"Atmospheric Burn Simulation" = "burntest",
-	"Wildlife Simulation" = "wildlifecarp"
 	)

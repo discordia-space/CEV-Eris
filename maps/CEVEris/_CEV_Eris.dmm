@@ -33878,8 +33878,8 @@
 	pixel_x = 28
 	},
 /obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
+	d2 = 8;
+	icon_state = "0-8"
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/barconference)
@@ -47802,6 +47802,11 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/carpet,
 /area/eris/crew_quarters/barconference)
 "cjN" = (
@@ -48265,6 +48270,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
 /area/eris/crew_quarters/bar)
@@ -52174,6 +52184,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/barconference)
 "cvu" = (
@@ -52598,9 +52613,8 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/hallway/side/bridgehallway)
 "cwA" = (
-/obj/structure/railing/grey,
 /turf/simulated/floor/bluegrid,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "cwC" = (
 /obj/structure/bed/chair/office/light,
 /turf/simulated/floor/tiled/white/brown_perforated,
@@ -53052,6 +53066,11 @@
 "cxA" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
@@ -53992,7 +54011,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "czO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
 /obj/spawner/contraband/low_chance,
@@ -54010,10 +54029,6 @@
 /obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
-"czR" = (
-/obj/item/stool/custom/bar_special,
-/turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
 "czS" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -54242,6 +54257,11 @@
 	name = "Club Total Lockdown"
 	},
 /obj/machinery/door/firedoor,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/crew_quarters/barconference)
 "cAq" = (
@@ -54299,15 +54319,14 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
 "cAw" = (
-/obj/structure/bed/chair/custom/bar_special,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "cAx" = (
 /turf/simulated/floor/tiled/steel/monofloor{
 	dir = 4
@@ -54567,11 +54586,6 @@
 /area/eris/maintenance/section3deck4central)
 "cBa" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/barconference)
 "cBb" = (
@@ -82066,15 +82080,10 @@
 /turf/simulated/floor/tiled/steel/danger,
 /area/eris/engineering/propulsion/right)
 "dOc" = (
-/obj/structure/bed/chair/wood{
-	dir = 1
-	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 28
-	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/eris/neotheology/chapel)
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/holodeck/alphadeck)
 "dOd" = (
 /obj/structure/table/rack,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -82373,9 +82382,6 @@
 /obj/spawner/pack/machine,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
-"dOO" = (
-/turf/simulated/open,
-/area/eris/crew_quarters/bar)
 "dOP" = (
 /obj/machinery/atmospherics/pipe/zpipe/up{
 	dir = 8
@@ -83592,12 +83598,6 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/eris/engineering/engeva)
-"dRW" = (
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/turf/simulated/open,
-/area/eris/crew_quarters/bar)
 "dRX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
@@ -84059,17 +84059,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck2port)
-"dTd" = (
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/obj/structure/railing/grey,
-/turf/simulated/open,
-/area/eris/crew_quarters/bar)
-"dTe" = (
-/obj/structure/railing/grey,
-/turf/simulated/open,
-/area/eris/crew_quarters/bar)
 "dTf" = (
 /obj/machinery/power/apc{
 	name = "South APC";
@@ -85973,7 +85962,7 @@
 	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "dXN" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/black,
@@ -86006,20 +85995,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/bed/chair/custom/bar_special{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
-"dXR" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/bed/chair/custom/bar_special{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "dXT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -86028,7 +86005,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "dXU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -86059,13 +86036,6 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/rnd/docking)
-"dXW" = (
-/obj/structure/table/bar_special,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "dXX" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_rnd{
@@ -89350,9 +89320,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/barconference)
@@ -94555,8 +94525,8 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/open,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "esL" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
@@ -94580,7 +94550,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/bluegrid,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "esO" = (
 /obj/spawner/pack/machine,
 /turf/simulated/floor/tiled/techmaint,
@@ -94679,17 +94649,6 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
-"etb" = (
-/obj/structure/table/bar_special,
-/obj/structure/table/bar_special,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
-"etc" = (
-/obj/structure/bed/chair/custom/bar_special{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "etd" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/machinery/light{
@@ -94780,7 +94739,7 @@
 /obj/machinery/camera/network/third_section,
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "etn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white/gray_perforated,
@@ -94789,11 +94748,8 @@
 /obj/machinery/light_switch/dimmer_switch{
 	pixel_x = 22
 	},
-/obj/structure/table/bar_special,
-/obj/item/reagent_containers/food/drinks/shaker,
-/obj/item/reagent_containers/food/drinks/shaker,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "etp" = (
 /obj/structure/multiz/stairs/enter,
 /obj/machinery/light{
@@ -94812,10 +94768,12 @@
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "etr" = (
-/obj/structure/table/bar_special,
 /obj/machinery/light,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/obj/machinery/computer/HolodeckControl/Exodus{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "ets" = (
 /obj/structure/multiz/stairs/enter{
 	dir = 1
@@ -95912,26 +95870,12 @@
 /turf/simulated/floor/plating/under,
 /area/eris/quartermaster/disposaldrop)
 "evS" = (
-/obj/structure/table/bar_special,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3;
-	pixel_y = 9
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
-"evT" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/alarm{
-	pixel_y = 26
-	},
+/obj/structure/cyberplant,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
+"evT" = (
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "evU" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
@@ -96134,7 +96078,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "ewo" = (
 /obj/structure/railing{
 	dir = 8
@@ -96187,11 +96131,8 @@
 /area/eris/quartermaster/hangarsupply)
 "ewv" = (
 /obj/machinery/light,
-/obj/structure/bed/chair/custom/bar_special{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "eww" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -96239,13 +96180,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/barconference)
-"ewD" = (
-/obj/structure/railing/grey,
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/turf/simulated/open,
-/area/eris/crew_quarters/bar)
 "ewF" = (
 /obj/structure/table/standard,
 /obj/machinery/microwave{
@@ -101136,6 +101070,11 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/barconference)
 "flS" = (
@@ -101195,6 +101134,10 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = -22
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
@@ -101339,10 +101282,9 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "fLQ" = (
-/obj/structure/table/bar_special,
 /obj/machinery/chemical_dispenser/soda,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "fMl" = (
 /obj/effect/shuttle_landmark/merc/sec3east4,
 /turf/space,
@@ -101585,7 +101527,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "gsO" = (
 /obj/machinery/door/airlock/glass_medical{
 	id_tag = null;
@@ -101656,6 +101598,11 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/carpet,
 /area/eris/crew_quarters/barconference)
 "gCq" = (
@@ -101682,9 +101629,8 @@
 /obj/machinery/camera/network/third_section{
 	dir = 4
 	},
-/obj/item/stool/custom/bar_special,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "gDr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -101955,12 +101901,11 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/office)
 "hmN" = (
-/obj/item/stool/custom/bar_special,
 /obj/structure/disposalpipe/junction{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "hnK" = (
 /obj/machinery/vending/cigarette,
 /turf/simulated/floor/wood,
@@ -102078,7 +102023,7 @@
 "hDk" = (
 /obj/landmark/join/start/clubworker,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "hEe" = (
 /obj/machinery/gym/toughness,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -102149,11 +102094,6 @@
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
-"hKV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/table/bar_special,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "hMo" = (
 /obj/machinery/holomap{
 	dir = 8;
@@ -102475,9 +102415,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/table/bar_special,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "iDt" = (
 /obj/structure/multiz/ladder/up,
 /turf/simulated/floor/tiled/steel/gray_platform,
@@ -102539,14 +102478,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/table/bar_special,
 /obj/item/storage/fancy/cigarettes/homeless,
-/obj/item/flame/lighter{
-	pixel_x = 4;
-	pixel_y = 2
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "iLh" = (
 /obj/structure/closet/random/tech,
 /turf/simulated/floor/tiled/steel/panels,
@@ -102753,8 +102687,8 @@
 /obj/machinery/vending/boozeomat{
 	req_access = list(28)
 	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "jcw" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
@@ -102831,10 +102765,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/crew_quarters/fitness)
-"jmK" = (
-/obj/machinery/slotmachine,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "jnX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -102845,12 +102775,11 @@
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
 "jqi" = (
-/obj/structure/table/bar_special,
 /obj/machinery/camera/network/third_section{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "jrc" = (
 /obj/structure/closet/crate,
 /obj/item/caution{
@@ -102890,13 +102819,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
-"jtq" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/item/stool/custom/bar_special,
-/turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
 "jtH" = (
 /obj/structure/sink{
 	dir = 8;
@@ -103183,6 +103105,14 @@
 /obj/structure/bed/chair/custom/bar_special{
 	dir = 1
 	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	name = "South APC";
+	pixel_y = -28
+	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "kde" = (
@@ -103200,6 +103130,15 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
+"kdQ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/alarm{
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "keu" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/holy,
@@ -103207,8 +103146,8 @@
 /area/eris/neotheology/chapelritualroom)
 "kfa" = (
 /obj/machinery/camera/network/third_section,
-/turf/simulated/open,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "kfP" = (
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbreak)
@@ -103277,7 +103216,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "kjj" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/pack/tech_loot,
@@ -103437,15 +103376,6 @@
 "kLT" = (
 /turf/simulated/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/clownoffice)
-"kNX" = (
-/obj/structure/bed/chair/custom/bar_special{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "kOE" = (
 /obj/structure/railing{
 	dir = 8
@@ -103619,7 +103549,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "ltJ" = (
 /obj/machinery/holomap{
 	dir = 4;
@@ -103639,12 +103569,6 @@
 /obj/machinery/camera/network/command,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck4central)
-"ltV" = (
-/obj/structure/bed/chair/custom/bar_special{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "ltZ" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -103799,7 +103723,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "lHU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -103824,6 +103748,17 @@
 "lLd" = (
 /turf/simulated/wall,
 /area/eris/medical/medbay/organs)
+"lLk" = (
+/obj/structure/bed/chair/wood{
+	dir = 1
+	},
+/obj/machinery/light,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 28
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/eris/neotheology/chapel)
 "lMG" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -103832,7 +103767,7 @@
 	},
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "lOh" = (
 /obj/structure/disposaloutlet{
 	dir = 4
@@ -104038,12 +103973,9 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/foyer)
 "mrk" = (
-/obj/structure/bed/chair/custom/bar_special{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "mrW" = (
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
@@ -104272,7 +104204,7 @@
 "mLc" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "mNb" = (
 /obj/machinery/atmospherics/unary/heat_exchanger,
 /turf/simulated/floor/tiled/steel/danger,
@@ -104292,9 +104224,8 @@
 /obj/machinery/vending/drink_showcase{
 	pixel_y = 7
 	},
-/obj/structure/table/bar_special,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "mQJ" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -104328,9 +104259,8 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/engineering/engine_room)
 "nab" = (
-/obj/structure/table/bar_special,
 /turf/simulated/floor/tiled/steel/bar_flat,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "naW" = (
 /obj/machinery/camera/network/third_section{
 	dir = 4
@@ -104557,21 +104487,12 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
 "nvZ" = (
-/obj/structure/table/bar_special,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3;
-	pixel_y = 9
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "nwR" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -105153,7 +105074,7 @@
 "oXn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "oYe" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -105203,24 +105124,10 @@
 "peB" = (
 /turf/simulated/wall/r_wall,
 /area/eris/engineering/long_range_scanner)
-"peG" = (
-/obj/structure/table/bar_special,
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "peX" = (
 /obj/landmark/join/start/acolyte,
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
-"pfh" = (
-/obj/structure/cyberplant,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "phq" = (
 /obj/machinery/light{
 	dir = 8
@@ -105276,15 +105183,14 @@
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/hallway/side/section3starboard)
 "pth" = (
-/obj/structure/table/bar_special,
 /obj/machinery/button/remote/blast_door{
 	id = "ClubTotalLockdown";
 	name = "Lockdown";
 	pixel_y = -24;
 	req_access = list(28)
 	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "ptn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -105641,8 +105547,8 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "qlQ" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
@@ -105827,7 +105733,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/carpet,
-/area/eris/crew_quarters/bar)
+/area/eris/crew_quarters/barconference)
 "qKj" = (
 /obj/structure/table/woodentable,
 /obj/structure/bedsheetbin,
@@ -105877,8 +105783,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "qRx" = (
 /obj/machinery/power/apc{
 	name = "South APC";
@@ -105892,7 +105798,7 @@
 	},
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "qSQ" = (
 /obj/structure/catwalk,
 /obj/machinery/alarm{
@@ -105932,7 +105838,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "qZm" = (
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
@@ -106062,6 +105968,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/crew_quarters/fitness)
+"rre" = (
+/turf/simulated/wall/r_wall,
+/area/holodeck/alphadeck)
 "rtb" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
@@ -106137,7 +106046,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "rII" = (
 /obj/structure/sign/faction/astersguild{
 	pixel_y = -32
@@ -106162,7 +106071,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "rMC" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -106254,11 +106163,10 @@
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/kitchen)
 "rSp" = (
-/obj/structure/table/bar_special,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "rUL" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/effect/floor_decal/industrial/warning,
@@ -106592,15 +106500,14 @@
 /turf/space,
 /area/space)
 "sGv" = (
-/obj/structure/bed/chair/custom/bar_special,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "sHg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -106626,7 +106533,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "sHI" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -106791,16 +106698,6 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/crew_quarters/fitness)
-"tap" = (
-/obj/item/stool/custom/bar_special,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "taz" = (
 /obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
@@ -106848,8 +106745,8 @@
 /area/eris/engineering/engine_room)
 "ten" = (
 /obj/machinery/vending/dinnerware,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "teI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -107019,6 +106916,23 @@
 /obj/spawner/booze/low_chance,
 /turf/simulated/floor/carpet,
 /area/eris/crew_quarters/barconference)
+"tzC" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/carpet,
+/area/eris/crew_quarters/barconference)
 "tzQ" = (
 /obj/machinery/door/airlock/medical{
 	name = "Chemistry";
@@ -107122,11 +107036,6 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/eschangarb)
-"tNy" = (
-/obj/structure/table/bar_special,
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "tPD" = (
 /obj/machinery/holoposter{
 	pixel_x = -32
@@ -107146,8 +107055,8 @@
 /area/eris/maintenance/section2deck4central)
 "tSk" = (
 /obj/machinery/vending/cigarette,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/holodeck/alphadeck)
 "tSt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -107537,16 +107446,6 @@
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/crew_quarters/fitness)
-"uOi" = (
-/obj/structure/bed/chair/wood{
-	dir = 1
-	},
-/obj/item/device/radio/intercom{
-	dir = 1;
-	pixel_y = -22
-	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/eris/neotheology/chapel)
 "uPp" = (
 /obj/structure/table/standard,
 /obj/machinery/button/remote/blast_door{
@@ -107867,15 +107766,6 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbreak)
-"vyv" = (
-/obj/structure/table/bar_special,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "vAE" = (
 /turf/simulated/wall/r_wall,
 /area/eris/crew_quarters/clownoffice)
@@ -107908,7 +107798,7 @@
 /obj/landmark/join/start/clubworker,
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "vHm" = (
 /obj/machinery/button/remote/blast_door{
 	id = "ClubTotalLockdown";
@@ -108160,7 +108050,7 @@
 	},
 /obj/structure/cyberplant,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "wmQ" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -108402,7 +108292,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "wYi" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
 	dir = 8;
@@ -108690,14 +108580,13 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/item/stool/custom/bar_special,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
+/area/holodeck/alphadeck)
 "xOd" = (
 /turf/simulated/open,
 /area/eris/hallway/main/section3)
@@ -168019,7 +167908,7 @@ czL
 bZh
 mzM
 flg
-gCn
+tzC
 gCn
 gCn
 cjM
@@ -205989,7 +205878,7 @@ evu
 ctk
 crX
 evu
-khE
+lLk
 cmE
 cvn
 nAr
@@ -206190,7 +206079,7 @@ pRq
 kio
 flS
 fuj
-uOi
+anJ
 anJ
 anJ
 aqa
@@ -206201,7 +206090,7 @@ tSk
 qlL
 aqa
 gCN
-jmK
+evT
 rPI
 ewF
 cCy
@@ -206392,18 +206281,18 @@ mKQ
 dGn
 dGU
 ctd
-dOc
 anJ
+evT
 evS
-kcK
-bZh
-cjQ
+evT
+evS
+evT
 sHF
-cil
+evT
 kiY
 dXM
-cil
-bZh
+evT
+evS
 rPI
 ewF
 cCy
@@ -206594,18 +206483,18 @@ cmE
 cmE
 pVZ
 ksp
-cmE
 anJ
+kdQ
 evT
-cil
-cil
-etc
+evT
+evT
+evT
 sHF
-cil
+evT
 kiY
-cil
-rXJ
-cjQ
+evT
+evT
+evT
 rPI
 dYD
 dYL
@@ -206797,16 +206686,16 @@ fiZ
 eeB
 evC
 anJ
-ltV
-cil
-ltV
-cil
-cil
+evT
+evT
+evT
+evT
+evT
 sHF
-ltV
-kNX
-cil
-cil
+evT
+kiY
+evT
+evT
 ewv
 egG
 etq
@@ -206999,11 +206888,11 @@ dFB
 eeB
 evC
 anJ
-etb
-cil
-cjQ
-cil
-cil
+evT
+evT
+evT
+evT
+evT
 sGv
 rSp
 nvZ
@@ -207201,17 +207090,17 @@ dFB
 eeB
 jkF
 anJ
-cjQ
-cil
-peG
-cil
-cil
+evT
+evT
+evT
+evT
+evT
 cAw
-hKV
-hKV
-dXR
-cil
-cil
+evT
+evT
+iCY
+evT
+evT
 rPI
 uxm
 cBr
@@ -207403,17 +207292,17 @@ dGo
 eeB
 evC
 anJ
-etc
-cil
-etc
-cil
-cil
+evT
+evT
+evT
+evT
+evT
 qZg
 mrk
 mrk
 dXT
-czR
-czR
+evT
+evT
 rPI
 uxm
 vHm
@@ -207611,10 +207500,10 @@ oXn
 oXn
 oXn
 rIa
-cil
-cil
-jtq
-cjQ
+evT
+evT
+iCY
+evT
 nab
 cAS
 vVi
@@ -207808,15 +207697,15 @@ eeB
 evC
 anJ
 ctF
-aqV
-dRW
-dTd
-jmK
-tap
-cil
-cil
+dOc
+evT
+evT
+evT
+czN
+evT
+evT
 hmN
-tNy
+mLc
 vGE
 mLc
 wXM
@@ -208010,15 +207899,15 @@ eeB
 evC
 anJ
 ctG
-aqV
-dOO
-dTe
-pfh
+dOc
+evT
+evT
+evS
 czN
 lMG
 gst
 xNN
-vyv
+gst
 gst
 gst
 qRx
@@ -208211,18 +208100,18 @@ bsS
 cId
 dJu
 anJ
-anJ
-anJ
+rre
+rre
 esN
 cwA
-jmK
-tap
+evT
+czN
 lHB
-czR
+evT
 iJH
-cjQ
-cil
-cil
+evT
+evT
+evT
 etr
 anJ
 abF
@@ -208413,17 +208302,17 @@ cqO
 cIi
 dJK
 aqa
-dOO
+evT
 esK
-dOO
-dOO
-ewD
+evT
+evT
+evT
 czN
 lHB
-czR
-dXW
-cil
-cil
+evT
+iCY
+evT
+evT
 hDk
 pth
 anJ
@@ -208615,17 +208504,17 @@ cqE
 bAX
 dJL
 esS
-dOO
-dOO
-dOO
-dOO
-dTe
+evT
+evT
+evT
+evT
+evT
 czN
 lHB
-czR
-dXW
-cil
-cil
+evT
+iCY
+evT
+evT
 eto
 jqi
 anJ
@@ -208817,16 +208706,16 @@ buH
 dHg
 bWk
 esS
-dOO
-dOO
-dOO
-dOO
-dTe
+evT
+evT
+evT
+evT
+evT
 czN
 lHB
-czR
+evT
 iCY
-cil
+evT
 fLQ
 chY
 chY
@@ -209019,16 +208908,16 @@ buH
 evx
 dJV
 esS
-dOO
-dOO
-dOO
-dOO
-dTe
+evT
+evT
+evT
+evT
+evT
 czN
 lHB
-czR
+evT
 iCY
-cil
+evT
 jbO
 chY
 cpj
@@ -209222,15 +209111,15 @@ evw
 bWk
 aqa
 kfa
-dOO
-dOO
-dOO
-dTe
+evT
+evT
+evT
+evT
 czN
 ewn
 wlN
 mQt
-cil
+evT
 ten
 chY
 cpm
