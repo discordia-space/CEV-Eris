@@ -168,14 +168,14 @@
 	name = "bar stool"
 	icon_state = "bar_stool"
 
-/obj/structure/bed/chair/holochair
+/obj/structure/bed/chair/custom/holochair
 
-/obj/structure/bed/chair/holochair/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/bed/chair/custom/holochair/attackby(obj/item/W as obj, mob/user as mob)
 	if(istool(W) || istype(W,/obj/item/stack))
 		return
 	..()
 
-/obj/structure/bed/chair/holochair/bar
+/obj/structure/bed/chair/custom/holochair/bar
 	name = "bar chair"
 	desc = "Modern design and soft pad. Served up with the drink and great company."
 	icon_state = "bar_chair"

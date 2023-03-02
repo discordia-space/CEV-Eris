@@ -2901,7 +2901,7 @@
 	},
 /area/shuttle/mercenary)
 "lG" = (
-/obj/structure/bed/chair/holochair{
+/obj/structure/bed/chair/custom/holochair{
 	dir = 4
 	},
 /turf/simulated/floor/holofloor/carpet,
@@ -4483,7 +4483,7 @@
 /turf/simulated/shuttle/plating,
 /area/shuttle/mercenary)
 "wb" = (
-/obj/structure/bed/chair/holochair/bar{
+/obj/structure/bed/chair/custom/holochair/bar{
 	dir = 4
 	},
 /turf/simulated/floor/holofloor/tiled/bar_light,
@@ -4675,7 +4675,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/centcom/evac)
 "Aa" = (
-/obj/structure/bed/chair/holochair{
+/obj/structure/bed/chair/custom/holochair{
 	dir = 1
 	},
 /turf/simulated/floor/holofloor/carpet,
@@ -4754,7 +4754,7 @@
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source/texas)
 "CD" = (
-/obj/structure/bed/chair/holochair/bar,
+/obj/structure/bed/chair/custom/holochair/bar,
 /turf/simulated/floor/holofloor/tiled/bar_light,
 /area/holodeck/source/spacebar)
 "CE" = (
@@ -4765,7 +4765,7 @@
 	},
 /area/skipjack_station/start)
 "CF" = (
-/obj/structure/bed/chair/holochair/bar{
+/obj/structure/bed/chair/custom/holochair/bar{
 	dir = 8
 	},
 /turf/simulated/floor/holofloor/tiled/bar_light,
@@ -5147,7 +5147,7 @@
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
 "Ly" = (
-/obj/structure/bed/chair/holochair,
+/obj/structure/bed/chair/custom/holochair,
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source/texas)
 "LG" = (
@@ -5272,7 +5272,7 @@
 	},
 /area/wizard_station)
 "NF" = (
-/obj/structure/bed/chair/holochair{
+/obj/structure/bed/chair/custom/holochair{
 	dir = 8
 	},
 /turf/simulated/floor/holofloor/carpet,
@@ -5343,7 +5343,7 @@
 	},
 /area/centcom/merc_base)
 "OI" = (
-/obj/structure/bed/chair/holochair/bar{
+/obj/structure/bed/chair/custom/holochair/bar{
 	dir = 1
 	},
 /turf/simulated/floor/holofloor/tiled/bar_light,
