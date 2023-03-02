@@ -23,18 +23,13 @@ SUBSYSTEM_DEF(explosions)
 			target_power -= target.explosion_act(target_power)
 			if(target_power < 10)
 				continue
-			/*
-			for(var/atom/movable/thing in target.contents)
-				if(thing.anchored)
-					continue
-				thing.throw_at(get_turf_away_from_target_complex(explodey.epicenter, target, target_power/explodey.falloff),  target_power/explodey.falloff, target_power/10, "explosion")
-			*/
 			if(target_power - explodey.falloff > 10)
 				for(var/dir in list(NORTH,SOUTH,EAST,WEST))
 					var/turf/next = get_step(target,dir)
-					if(explodey.visited[next] > world.time )
+					if(explodey.visited[next])
 						continue
 					explodey.turf_queue[next] = target_power - explodey.falloff
+					explodey.visited[next] = TRUE
 			if(MC_TICK_CHECK && turfs_processed > TURFS_PER_PROCESS_LIMIT)
 				return
 		explodey.iterations++
