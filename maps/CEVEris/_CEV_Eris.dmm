@@ -94767,13 +94767,6 @@
 	},
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
-"etr" = (
-/obj/machinery/light,
-/obj/machinery/computer/HolodeckControl/Exodus{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/steel/bar_dance,
-/area/holodeck/alphadeck)
 "ets" = (
 /obj/structure/multiz/stairs/enter{
 	dir = 1
@@ -108304,7 +108297,9 @@
 /turf/simulated/floor/reinforced/airless,
 /area/eris/rnd/mixing)
 "wYA" = (
-/obj/machinery/papershredder,
+/obj/machinery/computer/HolodeckControl/Exodus{
+	dir = 1
+	},
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/crew_quarters/barbackroom)
 "wYD" = (
@@ -208112,7 +208107,7 @@ iJH
 evT
 evT
 evT
-etr
+ewv
 anJ
 abF
 abF
