@@ -457,6 +457,7 @@
 	color = "#D3D3D3"
 	metabolism = REM * 10
 	overdose = REAGENTS_OVERDOSE / 3 // Even 10 is a lot of this
+	scannable = TRUE
 
 /datum/reagent/medicine/fun_gas/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	var/effective_dose = dose / 2
