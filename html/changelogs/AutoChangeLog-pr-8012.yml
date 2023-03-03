@@ -1,0 +1,5 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - refactor: Removes a sleep from projectile launch code, removing random delays
+      added to gun firing.
