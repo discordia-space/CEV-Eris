@@ -449,6 +449,41 @@
 		M.drowsyness = max(M.drowsyness, 60)
 	M.add_chemical_effect(CE_PULSE, -1)
 
+/datum/reagent/medicine/fun_gas
+	name = "N2O"
+	id = "sagent"
+	description = "An effective sedative used during surgery to keep patients asleep."
+	taste_description = "bitterness"
+	reagent_state = GAS
+	color = "#D3D3D3"
+	metabolism = REM * 10
+	overdose = REAGENTS_OVERDOSE / 3 // Even 10 is a lot of this
+	scannable = TRUE
+
+/datum/reagent/medicine/fun_gas/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	var/effective_dose = dose / 2
+	dose *= 0.75 // Reduce the dose to prevent buildup from little N2O
+	if(issmall(M))
+		effective_dose *= 2
+
+	if(effective_dose < 1)
+		if(effective_dose == metabolism * 2 || prob(10))
+			M.emote("giggle")
+	else if(effective_dose < 1.5)
+		M.eye_blurry = max(M.eye_blurry, 10)
+		if(prob(20))
+			M.emote(pick("giggle", "laugh"))
+	else if(effective_dose < 5)
+		if(prob(50))
+			M.Weaken(2)
+		if(prob(30))
+			M.emote("giggle")
+		M.drowsyness = max(M.drowsyness, 20)
+	else
+		M.sleeping = max(M.sleeping, 20)
+		M.drowsyness = max(M.drowsyness, 60)
+	M.add_chemical_effect(CE_PULSE, -1)
+
 /datum/reagent/medicine/chloralhydrate
 	name = "Chloral Hydrate"
 	id = "chloralhydrate"
