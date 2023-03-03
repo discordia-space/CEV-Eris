@@ -1,0 +1,4 @@
+author: Firefox13
+delete-after: true
+changes:
+  - admin: antagrole log now shows ckey
