@@ -19,6 +19,18 @@
 /turf/simulated/floor/holofloor/set_flooring()
 	return
 
+/turf/simulated/floor/holofloor/plating
+	icon = 'icons/turf/flooring/plating.dmi'
+	name = "plating"
+	icon_state = "plating"
+	initial_flooring = /decl/flooring/reinforced/plating
+
+/turf/simulated/floor/holofloor/plating/under
+	name = "underplating"
+	icon_state = "under"
+	icon = 'icons/turf/flooring/plating.dmi'
+	initial_flooring = /decl/flooring/reinforced/plating/under
+
 /turf/simulated/floor/holofloor/carpet
 	name = "carpet"
 	icon = 'icons/turf/flooring/carpet.dmi'
@@ -142,6 +154,16 @@
 	icon_modifier = "grey_"
 	icon_state = "grey_railing0"
 
+/obj/structure/lattice/hololattice
+
+/obj/structure/lattice/hololattice/attackby(obj/item/I, mob/user)
+	return
+
+/obj/structure/catwalk/holo
+
+/obj/structure/catwalk/holo/attackby
+	return
+
 /obj/item/stool/holostool
 	damtype = HALLOSS
 
@@ -258,6 +280,8 @@
 	if(display_message)
 		visible_message("[src] fades away as it shatters!")
 	qdel(src)
+
+// Holo type items
 
 /obj/item/holo
 	damtype = HALLOSS

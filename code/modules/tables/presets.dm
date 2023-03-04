@@ -35,6 +35,14 @@
 		reinforced = get_material_by_name(MATERIAL_STEEL)
 		..()
 
+/obj/structure/table/holosteel_reinforced
+	icon_state = "holo_preview"
+	color = "#666666"
+	New()
+		material = get_material_by_name("holo[MATERIAL_STEEL]")
+		reinforced = get_material_by_name("holo[MATERIAL_STEEL]")
+		..()
+
 /obj/structure/table/woodentable
 	icon_state = "plain_preview"
 	color = "#824B28"
