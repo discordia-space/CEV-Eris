@@ -61,6 +61,16 @@
 	icon_state = "tiles"
 	initial_flooring = /decl/flooring/tiling/dark
 
+/turf/simulated/floor/holofloor/tiled/steel
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles_steel.dmi'
+	icon_state = "tiles"
+	initial_flooring = /decl/flooring/tiling/steel
+
+/turf/simulated/floor/holofloor/tiled/steel/gray_perforated
+	icon_state = "gray_perforated"
+	initial_flooring = /decl/flooring/tiling/steel/gray_perforated
+
 /turf/simulated/floor/holofloor/wood
 	name = "wooden floor"
 	icon = 'icons/turf/flooring/wood.dmi'
