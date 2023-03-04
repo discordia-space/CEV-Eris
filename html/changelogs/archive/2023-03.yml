@@ -1,0 +1,13 @@
+2023-03-04:
+  Firefox13:
+  - admin: antagrole log now shows ckey
+  Humonitarian:
+  - rscdel: Disliked feature containing gamebreaking bug removed
+  MLGTASTICa:
+  - refactor: Removes a sleep from projectile launch code, removing random delays
+      added to gun firing.
+  SingingSpock:
+  - rscadd: funeral disposal for NT to use.
+  - bugfix: Maintshrooms no longer treat solid objects as a mere suggestion
+  - bugfix: Maintshrooms now check if the other end of a burrow is too bright for
+      it to grow before spreading
