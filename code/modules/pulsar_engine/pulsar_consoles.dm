@@ -136,6 +136,9 @@
 	tank?.connected_console = src
 	SSnano.update_uis(src)
 
+/obj/machinery/pulsar/ex_act(severity)
+	return
+
 /obj/machinery/power/pulsar_power_bridge //Only holds ref to the console and its area, used to get power from it, or disconnect the ship.
 	name = "pulsar power bridge"
 	icon = 'icons/obj/pulsar_power_bridge.dmi'
@@ -144,6 +147,7 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	pixel_x = -10
+	circuit = /obj/item/electronics/circuitboard/pulsar_power_bridge
 	var/obj/machinery/pulsar/pulsar_console
 	var/area/console_area
 
@@ -204,6 +208,7 @@
 
 /obj/machinery/power/pulsar_power_bridge/Destroy()
 	pulsar_console = null
+	new /obj/item/electronics/circuitboard/pulsar_power_bridge(get_turf(src))
 	. = ..()
 
 /obj/machinery/power/pulsar_power_bridge/update_icon()
@@ -228,7 +233,6 @@
 	. = ..()
 	air_contents = new /datum/gas_mixture(volume)
 	air_contents.temperature = T20C
-	air_contents.adjust_gas("plasma", 3 * ONE_ATMOSPHERE * volume/(R_IDEAL_GAS_EQUATION*T20C))
 
 
 /obj/structure/pulsar_fuel_tank/Destroy()
@@ -272,3 +276,7 @@
 	to_chat(user, "Fuel: [round(air_contents.get_total_moles())]/100")
 	if(round(air_contents.get_total_moles()) >= 100)
 		to_chat(user, SPAN_DANGER("It looks like its about to burst!"))
+
+/obj/structure/pulsar_fuel_tank/filled/Initialize()
+	. = ..()
+	air_contents.adjust_gas("plasma", 3 * ONE_ATMOSPHERE * volume/(R_IDEAL_GAS_EQUATION*T20C))

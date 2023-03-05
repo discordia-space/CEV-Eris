@@ -470,7 +470,7 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "tm" = (
-/obj/structure/pulsar_fuel_tank,
+/obj/structure/pulsar_fuel_tank/filled,
 /turf/simulated/floor/tiled/dark,
 /area/outpost/pulsar)
 "tp" = (
