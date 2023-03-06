@@ -35,7 +35,6 @@ SUBSYSTEM_DEF(explosions)
 			var/turf/target = explodey.current_turf_queue[length(explodey.current_turf_queue)]
 			turf_key = EXPLO_HASH(target.x, target.y)
 			target_power = explodey.hashed_power[turf_key]
-			//target_power = explodey.current_turf_queue[target]
 			explodey.current_turf_queue -= target
 			explodey.hashed_visited[turf_key] = TRUE
 			target_power -= target.explosion_act(target_power)
@@ -52,30 +51,26 @@ SUBSYSTEM_DEF(explosions)
 					explodey.turf_queue += next
 					explodey.hashed_power[temp_key] = target_power - explodey.falloff
 					explodey.hashed_visited[temp_key] = TRUE
-					//explodey.turf_queue[next] = target_power - explodey.falloff
 			if(MC_TICK_CHECK && turfs_processed > TURFS_PER_PROCESS_LIMIT)
 				return
 		explodey.iterations++
 		if(!length(explodey.turf_queue))
 			explode_queue -= explodey
-			/*
 			var/i = length(available_hash_lists) + 1
+			for(var/cleaner = 1; cleaner <= HASH_MODULO; cleaner++)
+				explodey.hashed_visited[cleaner] = 0
+				explodey.hashed_power[cleaner] = 0
 			while(i > 1)
 				i--
 				if(available_hash_lists[i] != null)
 					continue
 				if(explodey.hashed_visited != null)
-					for(var/cleaner = 1; cleaner <= HASH_MODULO; cleaner++)
-						explodey.hashed_visited[cleaner] = null
 					available_hash_lists[i] = explodey.visited
 					explodey.visited = null
 				else if(explodey.hashed_power != null)
-					for(var/cleaner = 1; cleaner <= HASH_MODULO; cleaner++)
-						explodey.hashed_power[cleaner] = null
 					available_hash_lists[i] = explodey.hashed_power
 					explodey.hashed_power = null
 				else break
-			*/
 			qdel(explodey)
 		explodey.current_turf_queue = explodey.turf_queue.Copy()
 		// Trash the list for a new one, with a pre-set size because we want to avoid resizing
@@ -94,10 +89,10 @@ SUBSYSTEM_DEF(explosions)
 		severity = 1
 	else if(target_power > 40)
 		severity = 2
-	ex_act(severity)
 	for(var/atom/movable/thing as anything in contents)
 		if(thing.simulated && isobj(thing))
 			thing.ex_act(severity)
+	ex_act(severity)
 	if(density)
 		return 20
 	else
