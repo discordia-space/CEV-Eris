@@ -1,40 +1,76 @@
 #define TURFS_PER_PROCESS_LIMIT 30
+#define SPARE_HASH_LISTS 200
+#define HASH_MODULO (world.maxx + world.maxy*world.maxy)
+#define EXPLO_HASH(x,y) (round((x+y*world.maxy)%HASH_MODULO))
 
 SUBSYSTEM_DEF(explosions)
-	name = "explosions"
+	name = "Explosions"
 	wait = 1 // very small
 	priority = FIRE_PRIORITY_EXPLOSIONS
+	init_order = INIT_ORDER_EXPLOSIONS
 	var/list/explode_queue = list()
 	var/list/current_run = list()
 	var/list/throwing_queue = list()
+	var/list/available_hash_lists
+
+/datum/controller/subsystem/explosions/Initialize(timeoftheworld)
+	// Each hashed list is extremly huge , as it stands today each one would be
+	// 0.250~ MB(roughly 2 million bits)
+	// So memory allocated for explosion management * SPARE_HASH_LIST
+	// For 20 , we get 5 MB allocated to this(not a whole lot) , but generally we shouldn't need more than 100 spare lists(who expects 50 explosions to happen at once ?)
+	// For 200 its 50 MB , so not that much.
+	available_hash_lists = new /list(SPARE_HASH_LISTS)
+	for(var/i = 1,i <= SPARE_HASH_LISTS,i++)
+		available_hash_lists[i] = new /list(HASH_MODULO)
+	return ..()
+
 
 /datum/controller/subsystem/explosions/fire(resumed = FALSE)
 	var/target_power = 0
-	var/list/new_turf_queue = list()
-	var/list/new_directions = list()
 	var/turfs_processed = 0
+	var/turf_key = null
 	for(var/explosion_handler/explodey as anything in current_run)
 		while(length(explodey.current_turf_queue))
 			turfs_processed++
 			var/turf/target = explodey.current_turf_queue[length(explodey.current_turf_queue)]
-			target_power = explodey.current_turf_queue[target]
+			turf_key = EXPLO_HASH(target.x, target.y)
+			target_power = explodey.hashed_power[turf_key]
 			explodey.current_turf_queue -= target
-			explodey.visited[target] = TRUE
+			explodey.hashed_visited[turf_key] = TRUE
 			target_power -= target.explosion_act(target_power)
 			if(target_power < 10)
 				continue
 			if(target_power - explodey.falloff > 10)
 				for(var/dir in list(NORTH,SOUTH,EAST,WEST))
 					var/turf/next = get_step(target,dir)
-					if(explodey.visited[next])
+					if(!next)
 						continue
-					explodey.turf_queue[next] = target_power - explodey.falloff
-					explodey.visited[next] = TRUE
+					var/temp_key = EXPLO_HASH(next.x, next.y)
+					if(explodey.hashed_visited[temp_key])
+						continue
+					explodey.turf_queue += next
+					explodey.hashed_power[temp_key] = target_power - explodey.falloff
+					explodey.hashed_visited[temp_key] = TRUE
 			if(MC_TICK_CHECK && turfs_processed > TURFS_PER_PROCESS_LIMIT)
 				return
 		explodey.iterations++
 		if(!length(explodey.turf_queue))
 			explode_queue -= explodey
+			var/i = length(available_hash_lists) + 1
+			for(var/cleaner = 1; cleaner <= HASH_MODULO; cleaner++)
+				explodey.hashed_visited[cleaner] = 0
+				explodey.hashed_power[cleaner] = 0
+			while(i > 1)
+				i--
+				if(available_hash_lists[i] != null)
+					continue
+				if(explodey.hashed_visited != null)
+					available_hash_lists[i] = explodey.visited
+					explodey.visited = null
+				else if(explodey.hashed_power != null)
+					available_hash_lists[i] = explodey.hashed_power
+					explodey.hashed_power = null
+				else break
 			qdel(explodey)
 		explodey.current_turf_queue = explodey.turf_queue.Copy()
 		// Trash the list for a new one, with a pre-set size because we want to avoid resizing
@@ -53,10 +89,10 @@ SUBSYSTEM_DEF(explosions)
 		severity = 1
 	else if(target_power > 40)
 		severity = 2
-	ex_act(severity)
 	for(var/atom/movable/thing as anything in contents)
 		if(thing.simulated && isobj(thing))
 			thing.ex_act(severity)
+	ex_act(severity)
 	if(density)
 		return 20
 	else
@@ -67,12 +103,15 @@ explosion_handler
 	var/power
 	var/falloff
 	var/list/turf_queue = list()
+	var/list/hashed_power
 	//var/list/direction_list[50]
 
 	// TODO turn this into a hashed list instead of a red-black binary tree(which byond uses by default)
 	// should use x+ map_size * y as the hashkey
 	// modulo divider should be 65792
 	var/list/visited = list()
+	// This is given by the subsystem and returned upon completion
+	var/list/hashed_visited
 	/// Used for letting us know how many iterations were already ran
 	var/iterations = 0
 	var/list/current_turf_queue
@@ -81,10 +120,31 @@ explosion_handler
 
 explosion_handler/New(turf/loc, power, falloff)
 	..()
-	turf_queue[loc] = power
+	turf_queue += loc
+	var/turf_key = EXPLO_HASH(loc.x, loc.y)
 	src.epicenter = loc
 	src.power = power
 	src.falloff = falloff
+	var/i = length(SSexplosions.available_hash_lists) + 1
+	while(i > 1)
+		i--
+		if(SSexplosions.available_hash_lists[i] == null)
+			continue
+		if(hashed_visited == null)
+			hashed_visited = SSexplosions.available_hash_lists[i]
+			// We reserve it for ourselves
+			SSexplosions.available_hash_lists[i] = null
+		else if(hashed_power == null)
+			hashed_power = SSexplosions.available_hash_lists[i]
+			SSexplosions.available_hash_lists[i] = null
+		else break
+	if(!length(hashed_visited))
+		hashed_visited = new /list(HASH_MODULO)
+	if(!length(hashed_power))
+		hashed_power = new /list(HASH_MODULO)
+	hashed_power[turf_key] = power
+	//message_admins("EXPLOSION HANDLER CREATED WITHOUT ANY AVAILABLE HASH LIST, CURRENT LIMIT IS [SPARE_HASH_LISTS], Doing a slow initialization. If this is frequent developers should be informed.")
+	//hashed_visited = /list(HASH_MODULO, null)
 
 /turf/proc/test_explosion()
 	var/power
