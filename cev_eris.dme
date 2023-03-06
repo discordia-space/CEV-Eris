@@ -2502,6 +2502,7 @@
 #include "code\modules\pulsar_engine\_defines.dm"
 #include "code\modules\pulsar_engine\pulsar_consoles.dm"
 #include "code\modules\pulsar_engine\pulsar_events.dm"
+#include "code\modules\pulsar_engine\pulsar_lights.dm"
 #include "code\modules\pulsar_engine\pulsar_map.dm"
 #include "code\modules\random_map\_random_map_setup.dm"
 #include "code\modules\random_map\random_map.dm"
