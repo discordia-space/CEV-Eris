@@ -115,8 +115,12 @@
 /obj/machinery/pulsar/proc/get_produced_power() //Simply based on linear distance from the pulsar
 	for(var/obj/O in get_turf(ship))
 		if(O.type in subtypesof(/obj/effect/pulsar_beam))
-			return 150
-	return max(0, round(((GLOB.maps_data.pulsar_size * ROOT(2,2)) - 2 * ROOT(2, abs(linked.x - ship.x) ** 2 + abs(linked.y - ship.y) ** 2)) * 100/(GLOB.maps_data.pulsar_size * ROOT(2,2))))
+			var/power = 150
+			SEND_SIGNAL(src, COMSIG_PULSAR_LIGHTS, round(power / 10))
+			return power
+	var/power = max(0, round(((GLOB.maps_data.pulsar_size * ROOT(2,2)) - 2 * ROOT(2, abs(linked.x - ship.x) ** 2 + abs(linked.y - ship.y) ** 2)) * 100/(GLOB.maps_data.pulsar_size * ROOT(2,2))))
+	SEND_SIGNAL(src, COMSIG_PULSAR_LIGHTS, round(power / 10))
+	return power
 
 /obj/machinery/pulsar/proc/get_required_shielding()
 	for(var/obj/O in get_turf(ship))
