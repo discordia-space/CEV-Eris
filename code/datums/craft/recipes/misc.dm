@@ -114,6 +114,15 @@
 	)
 	related_stats = list(STAT_MEC)
 
+/datum/craft_recipe/pulsar_fuel_tank
+	name = "pulsar fuel tank"
+	result = /obj/structure/pulsar_fuel_tank
+	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+	steps = list(
+		list(CRAFT_MATERIAL, 30, MATERIAL_STEEL)
+	)
+	related_stats = list(STAT_MEC)
+
 /datum/craft_recipe/cannon_frame
 	name = "cannon frame"
 	result = /obj/item/cannonframe
