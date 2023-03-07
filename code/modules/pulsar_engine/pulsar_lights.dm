@@ -12,7 +12,6 @@
 	..()
 
 /turf/space/pulsar/update_starlight(intensity=1)
-	admin_notice("Update turfs with intensity: [intensity]")
 	if(intensity)
 		// Increase both radius and brightness
 		set_light(intensity, intensity, PULSAR_COLOR)
