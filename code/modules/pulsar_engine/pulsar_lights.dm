@@ -1,20 +1,24 @@
-/obj/effect/effect/light/pulsar
-	name = "pulsar light"
-	icon = 'icons/misc/landmarks.dmi'
-	icon_state = ""
-	invisibility = INVISIBILITY_MAXIMUM
+/turf/space/pulsar
+	var/obj/machinery/pulsar/linked
 
-/obj/effect/effect/light/pulsar/New(var/newloc)
-	// Default initialization
-	..(newloc, 1, 1, PULSAR_COLOR, FALSE)
-	// Register to signal that updates all pulsar lights
-	// RegisterSignal(src, COMSIG_PULSAR_LIGHTS, .proc/update_pulsar_light)
-
-/obj/effect/effect/light/pulsar/Destroy()
-	// UnregisterSignal(src, COMSIG_PULSAR_LIGHTS)
+/turf/space/pulsar/New()
+	testing("HONK")
+	var/list/turfs = get_area_turfs(/area/outpost/pulsar)
+	testing("---- Detected turfs: [turfs.len]")
+	linked = locate(/obj/machinery/pulsar) in get_area_turfs(/area/outpost/pulsar)
+	testing("---- Linked: [linked]")
+	RegisterSignal(linked, COMSIG_PULSAR_LIGHTS, .proc/update_starlight)
 	..()
 
-/obj/effect/effect/light/pulsar/proc/update_pulsar_light(intensity)
-	admin_notice("Update lights with intensity: [intensity]")
-	// Increase both radius and brightness
-	set_light(intensity, intensity, PULSAR_COLOR)
+/turf/space/pulsar/Destroy()
+	UnregisterSignal(linked, COMSIG_PULSAR_LIGHTS)
+	linked = null
+	..()
+
+/turf/space/pulsar/update_starlight(intensity=1)
+	admin_notice("Update turfs with intensity: [intensity]")
+	if(intensity && (locate(/turf/simulated) in RANGE_TURFS(1, src)))
+		// Increase both radius and brightness
+		set_light(intensity, intensity, PULSAR_COLOR)
+	else
+		set_light(0)
