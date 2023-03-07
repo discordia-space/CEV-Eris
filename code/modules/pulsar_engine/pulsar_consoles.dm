@@ -11,6 +11,7 @@
 	var/obj/structure/pulsar_fuel_tank/tank
 	var/map_active
 	var/shield_power = 45
+	var/last_light_lvl = 0
 
 /obj/machinery/pulsar/Initialize(mapload, d)
 	linked = GLOB.maps_data.pulsar_star
@@ -113,17 +114,22 @@
 	return 100
 
 /obj/machinery/pulsar/proc/get_produced_power() //Simply based on linear distance from the pulsar
-	admin_notice("Get produced power")
 	for(var/obj/O in get_turf(ship))
 		if(O.type in subtypesof(/obj/effect/pulsar_beam))
 			var/power = 150
-			admin_notice("DEBUG")
-			SEND_SIGNAL(src, COMSIG_PULSAR_LIGHTS, round(power / 10))
+			check_pulsar_lights(power)
 			return power
 	var/power = max(0, round(((GLOB.maps_data.pulsar_size * ROOT(2,2)) - 2 * ROOT(2, abs(linked.x - ship.x) ** 2 + abs(linked.y - ship.y) ** 2)) * 100/(GLOB.maps_data.pulsar_size * ROOT(2,2))))
-	admin_notice("DEBUG")
-	SEND_SIGNAL(src, COMSIG_PULSAR_LIGHTS, round(power / 10))
+	check_pulsar_lights(power)
 	return power
+
+/obj/machinery/pulsar/proc/check_pulsar_lights(power)
+	if(get_light_lvl(power) != last_light_lvl)
+		last_light_lvl = get_light_lvl(power)
+		SEND_SIGNAL(src, COMSIG_PULSAR_LIGHTS, last_light_lvl)
+
+/obj/machinery/pulsar/proc/get_light_lvl(power)
+	return round(power / 20)
 
 /obj/machinery/pulsar/proc/get_required_shielding()
 	for(var/obj/O in get_turf(ship))
