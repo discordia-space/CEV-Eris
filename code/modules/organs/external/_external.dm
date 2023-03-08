@@ -751,6 +751,7 @@ This function completely restores a damaged organ to perfect condition.
 	else
 		list_of_bones = internal_organs
 	if(LAZYLEN(list_of_bones))
+		list_of_bones = shuffle(list_of_bones)
 		for(var/obj/item/organ/internal/bone in list_of_bones)
 			if(bone.organ_efficiency[OP_BONE])
 				return bone
