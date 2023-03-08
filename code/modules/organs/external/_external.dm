@@ -734,15 +734,26 @@ This function completely restores a damaged organ to perfect condition.
 		bone.fracture()
 
 /obj/item/organ/external/proc/mend_fracture()
-	for(var/obj/item/organ/internal/bone in owner.internal_organs_by_efficiency[OP_BONE])
+	var/list/list_of_bones = list()
+	if(owner)
+		list_of_bones = owner.internal_organs_by_efficiency[OP_BONE] & internal_organs
+	else
+		list_of_bones = internal_organs
+	for(var/obj/item/organ/internal/bone in list_of_bones)
 		bone.mend()
 	return TRUE
 
 /obj/item/organ/external/proc/get_bone()
-	var/list/list_of_bones = owner.internal_organs_by_efficiency[OP_BONE] & internal_organs
+	var/list/list_of_bones = list()
+	if(owner)
+		list_of_bones = owner.internal_organs_by_efficiency[OP_BONE] & internal_organs
+	else
+		list_of_bones = internal_organs
 	if(LAZYLEN(list_of_bones))
-		var/obj/item/organ/internal/bone = pick(list_of_bones)
-		return bone
+		for(var/obj/item/organ/internal/bone in list_of_bones)
+			if(bone.organ_efficiency[OP_BONE])
+				return bone
+	return FALSE
 
 /obj/item/organ/external/proc/mutate()
 	if(BP_IS_ROBOTIC(src) || !LAZYLEN(internal_organs))
