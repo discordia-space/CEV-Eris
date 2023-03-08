@@ -740,7 +740,8 @@ This function completely restores a damaged organ to perfect condition.
 	else
 		list_of_bones = internal_organs
 	for(var/obj/item/organ/internal/bone in list_of_bones)
-		bone.mend()
+		if(bone.organ_efficiency[OP_BONE])
+			bone.mend()
 	return TRUE
 
 /obj/item/organ/external/proc/get_bone()
