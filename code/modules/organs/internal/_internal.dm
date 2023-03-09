@@ -275,8 +275,6 @@
 			var/robotic_wound = GetComponent(/datum/component/internal_wound/robotic/deformation)
 			if(robotic_wound)
 				remove_wound(robotic_wound)
-		
-		
 
 /obj/item/organ/internal/get_actions()
 	var/list/actions_list = ..()

@@ -13,6 +13,10 @@
     . = ..()
     src.transform *= 0.5 // this little trick makes bone size small while keeping detail level of 32x32 bones.
 
+/// Bones can be repaired after being destroyed. It's not ideal to have this here instead of in the parent (checking for bone efficiencies), but there are fewer corner cases this way.
+/obj/item/organ/internal/bone/die()
+	return
+
 /obj/item/organ/internal/bone/get_possible_wounds(damage_type, sharp, edge)
 	var/list/possible_wounds = list()
 		
