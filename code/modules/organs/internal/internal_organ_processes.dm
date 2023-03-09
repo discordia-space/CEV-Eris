@@ -62,6 +62,10 @@
 	// Existing damage is subtracted to prevent weaker toxins from maxing out tox wounds on the organ
 	var/toxin_damage = (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (kidneys_efficiency / 100) - kidney.damage
 
+	// Organ functions
+	// Blood regeneration if there is some space
+	regenerate_blood(0.2 + 2 * chem_effects[CE_BLOODRESTORE] * (kidneys_efficiency / 100))
+
 	// Bad stuff
 	if(kidneys_efficiency < BROKEN_2_EFFICIENCY)
 		if(toxin_strength > 0)
@@ -80,14 +84,14 @@
 	var/toxin_damage = (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (liver_efficiency / 100) - liver.damage
 
 	// Organ functions
-	// Blood regeneration if there is some space
-	regenerate_blood(0.1 + chem_effects[CE_BLOODRESTORE])
 
 	// Bad stuff
 	// If you're not filtering well, you're in trouble. Ammonia buildup to toxic levels and damage from alcohol
 	if(liver_efficiency < BROKEN_2_EFFICIENCY)
 		if(alcohol_strength)
 			toxin_damage += 0.5 * max(2 - (liver_efficiency * 0.01), 0) * alcohol_strength
+		if(toxin_strength > 0)
+			apply_damage(toxin_strength, TOX)	// If your liver isn't working, your body will start to take damage
 
 	if(toxin_damage > 0 && liver)
 		liver.take_damage(toxin_damage, TOX)
@@ -134,7 +138,6 @@
 	var/blood_volume_raw = vessel.get_reagent_amount("blood")
 	var/blood_volume = round((blood_volume_raw/species.blood_volume)*100) // Percentage.
 
-
 	// Damaged heart virtually reduces the blood volume, as the blood isn't being pumped properly anymore.
 	if(heart_efficiency <= 100)	//flat scaling up to 100
 		blood_volume *= heart_efficiency / 100
@@ -175,9 +178,6 @@
 		if(getOxyLoss() < 10)
 			adjustOxyLoss(2)
 
-	//Blood regeneration if there is some space
-	regenerate_blood(0.1 + chem_effects[CE_BLOODRESTORE])		// regenerate blood VERY slowly
-
 	// Blood loss or heart damage make you lose nutriments
 	if(blood_volume < blood_safe || heart_efficiency < BRUISED_2_EFFICIENCY)
 		if(nutrition >= 300)
@@ -213,8 +213,8 @@
 			var/heavy_spot = pick("chest", "skin", "brain")
 			to_chat(src, SPAN_WARNING("Your [heavy_spot] feels too heavy for your body"))
 
-	if(internal_oxygen < (total_oxygen_req / 10))
-		adjustOxyLoss(6)
+	if(lung_efficiency < BROKEN_2_EFFICIENCY)
+		adjustOxyLoss(2)
 
 /mob/living/carbon/human/proc/stomach_process()
 	var/stomach_efficiency = get_organ_efficiency(OP_STOMACH)
