@@ -13590,11 +13590,6 @@
 /obj/structure/catwalk,
 /obj/structure/table/rack,
 /obj/spawner/pack/tech_loot,
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "North APC";
-	pixel_y = 28
-	},
 /obj/machinery/camera/network/fourth_section{
 	dir = 8
 	},
@@ -14403,6 +14398,10 @@
 	d1 = 16;
 	d2 = 0;
 	icon_state = "16-0"
+	},
+/obj/machinery/power/apc{
+	name = "South APC";
+	pixel_y = -28
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5starboard)
@@ -24951,6 +24950,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "bhF" = (
@@ -29656,13 +29661,10 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
 "bsA" = (
-/obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
+	dir = 1
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
+/obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "bsB" = (
@@ -29719,13 +29721,20 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
 "bsI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "bsJ" = (
 /obj/landmark/join/observer,
@@ -29752,15 +29761,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/virology)
-"bsN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck1central)
 "bsP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -30221,6 +30221,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bua" = (
@@ -30231,6 +30237,12 @@
 "bub" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /turf/simulated/floor/plating/under,
@@ -57692,17 +57704,12 @@
 "cID" = (
 /obj/structure/table/standard,
 /obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/storage/primary)
 "cIE" = (
 /obj/structure/table/standard,
 /obj/spawner/material/building,
-/obj/spawner/material/building,
-/obj/spawner/material/building/low_chance,
-/obj/spawner/material/building/low_chance,
 /obj/spawner/material/building/low_chance,
 /obj/spawner/material/building/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
@@ -60231,7 +60238,9 @@
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/engine_room)
 "cPk" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/table/standard,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/storage/primary)
 "cPl" = (
@@ -60262,7 +60271,10 @@
 /turf/simulated/floor/plating,
 /area/eris/hallway/main/section4)
 "cPo" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/table/standard,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/storage/primary)
 "cPp" = (
@@ -93404,6 +93416,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/storage/primary)
 "eqd" = (
@@ -93907,6 +93920,12 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -96789,6 +96808,7 @@
 	dir = 8;
 	pixel_x = 22
 	},
+/obj/structure/reagent_dispensers/watertank,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/side/section3deck2port)
 "exI" = (
@@ -97436,21 +97456,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
-"ezl" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck1central)
 "ezm" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
@@ -97496,6 +97501,12 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
@@ -97934,26 +97945,18 @@
 /area/eris/crew_quarters/librarybackroom)
 "eAh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
 /obj/structure/railing{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "eAi" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-y"
-	},
 /obj/structure/railing{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "eAj" = (
@@ -98028,6 +98031,10 @@
 	},
 /obj/structure/railing{
 	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
@@ -101303,6 +101310,13 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"fAs" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/structure/reagent_dispensers/fueltank,
+/turf/simulated/floor/tiled/steel/cargo,
+/area/eris/hallway/side/section3deck2port)
 "fBx" = (
 /obj/machinery/holomap{
 	dir = 4;
@@ -101992,14 +102006,17 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/crew_quarters/janitor)
 "hjp" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/structure/railing{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
+/obj/structure/disposalpipe/junction{
+	dir = 8;
+	icon_state = "pipe-y"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
-/obj/spawner/junk/nondense,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "hkv" = (
 /obj/structure/table/rack/shelf,
@@ -102015,6 +102032,12 @@
 	dir = 4
 	},
 /obj/spawner/junk/nondense,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "hlV" = (
@@ -104539,6 +104562,12 @@
 /obj/machinery/door/airlock/maintenance_common{
 	name = "Service Maintenance";
 	req_access = list(12)
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck1central)
@@ -248475,7 +248504,7 @@ cIj
 dIj
 dYo
 eaE
-cFK
+fAs
 dAk
 exS
 cIV
@@ -285651,7 +285680,7 @@ blX
 blX
 blX
 bsA
-bdI
+bsI
 aNe
 aQV
 cNH
@@ -286054,7 +286083,7 @@ aLZ
 boS
 eqI
 boS
-bsI
+cNH
 btZ
 aCh
 boS
@@ -286256,7 +286285,7 @@ aLZ
 aLZ
 aLZ
 aZv
-bsI
+cNH
 btZ
 aCh
 boS
@@ -286458,7 +286487,7 @@ aLZ
 aLZ
 aLZ
 aZv
-bsI
+cNH
 btZ
 eUP
 boS
@@ -286660,7 +286689,7 @@ aLZ
 aLZ
 aLZ
 aZv
-bsI
+cNH
 hlj
 bkF
 boS
@@ -286862,7 +286891,7 @@ aLZ
 aLZ
 aLZ
 aZv
-bsI
+cNH
 btZ
 raY
 boS
@@ -287064,7 +287093,7 @@ aLZ
 aLZ
 aLZ
 aZw
-bsI
+cNH
 btZ
 cNH
 bkF
@@ -287266,7 +287295,7 @@ aLZ
 aLZ
 aZv
 bAU
-hjp
+qLb
 btZ
 cNH
 bkF
@@ -287468,7 +287497,7 @@ uZh
 uZh
 fwf
 lwZ
-bsI
+cNH
 btZ
 aRM
 cNH
@@ -287670,7 +287699,7 @@ aLZ
 aLZ
 aZv
 vpB
-bsI
+cNH
 btZ
 qLb
 aQV
@@ -288074,7 +288103,7 @@ bmU
 bqa
 boS
 bsg
-bsN
+bkK
 bhE
 boS
 aQV
@@ -288276,7 +288305,7 @@ cNH
 bqn
 boS
 bsg
-bsN
+bkK
 bhE
 boS
 cNH
@@ -288478,7 +288507,7 @@ cNH
 bqn
 boS
 bsg
-bsN
+bkK
 bub
 boS
 cNH
@@ -288680,7 +288709,7 @@ esd
 aCh
 boS
 bsg
-bsN
+bkK
 bhE
 boS
 aNe
@@ -288882,7 +288911,7 @@ exN
 eyl
 eyu
 ezi
-ezl
+ezi
 ezp
 ezs
 ezE
@@ -289085,7 +289114,7 @@ eAc
 brA
 ezk
 eAi
-ezk
+hjp
 ezD
 buI
 eAB
