@@ -1,0 +1,10 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - rscadd: Adds organ wounding mechanic
+  - tweak: Reworks damage system to one focused on vital organ health, replaces bay-style
+      damage tracking and deaths
+  - tweak: Tweaked many reagents to provide chem effects for wound treatment
+  - tweak: Tox loss and clone loss are no longer considered in lethal damage or pain
+      calculations
+  - rscdel: Removed bay germs and bay infections
