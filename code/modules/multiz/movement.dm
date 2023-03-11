@@ -81,10 +81,11 @@
 		to_chat(src, SPAN_WARNING("\The [destination] blocks you."))
 		return FALSE
 
-	// Prevent people from going directly inside or outside a shuttle through the ceiling 
+	// Prevent people from going directly inside or outside a shuttle through the ceiling
 	// Would be possible if the shuttle is not on the highest z-level
+	// Also prevent the bug where people could get in from under the shuttle
 	if(istype(start, /turf/simulated/shuttle) || istype(destination, /turf/simulated/shuttle))
-		to_chat(src, SPAN_WARNING("An invisible energy shield on top of the shuttle blocks you."))
+		to_chat(src, SPAN_WARNING("An invisible energy shield around the shuttle blocks you."))
 		return FALSE
 
 	// Check for blocking atoms at the destination.
