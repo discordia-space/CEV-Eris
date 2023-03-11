@@ -1,8 +1,0 @@
-author: githubuser4141
-delete-after: true
-changes:
-  - balance: Increases mech HP/armour values, increases component cost, mechs are
-      more time-consuming to repair now, mech treads can't strafe because that was
-      OP as f*ck, the power loader/ball chassis can now fit passengers.
-  - tweak: Moved exosuits' parts around (no player facing changes.) from the premade
-      directory to components.
