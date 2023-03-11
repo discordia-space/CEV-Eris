@@ -5,6 +5,7 @@
 	icon_state = "guitar"
 	sound_player = /datum/sound_player/synthesizer
 	path = /datum/instrument/guitar/clean_crisis
+	matter = list(MATERIAL_WOOD = 6)
 
 
 /obj/item/device/synthesized_instrument/guitar/multi
@@ -14,3 +15,4 @@
 	icon_state = "eguitar"
 	sound_player = /datum/sound_player/synthesizer
 	path = /datum/instrument/guitar
+	matter = list(MATERIAL_STEEL = 6)
