@@ -19,6 +19,7 @@
 	spawn_blacklisted = TRUE
 
 	matter = list(MATERIAL_BIOMATTER = 50)
+	origin_tech = list(TECH_BIO = 4)
 	var/ticks
 
 /obj/item/reagent_containers/bonsai/New()
