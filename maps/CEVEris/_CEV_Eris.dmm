@@ -44024,8 +44024,8 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 8;
-	name = "First Officer Line Access";
-	id = "firstofficer_access"
+	id = "firstofficer_access";
+	name = "First Officer Line Access"
 	},
 /turf/simulated/floor/plating,
 /area/eris/command/fo)
@@ -44060,8 +44060,8 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 8;
-	name = "First Officer Line Access";
-	id = "firstofficer_access"
+	id = "firstofficer_access";
+	name = "First Officer Line Access"
 	},
 /turf/simulated/floor/plating,
 /area/eris/command/fo)
@@ -44812,8 +44812,8 @@
 	},
 /obj/machinery/door/blast/shutters{
 	dir = 8;
-	name = "First Officer Line Access";
-	id = "firstofficer_access"
+	id = "firstofficer_access";
+	name = "First Officer Line Access"
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/command/fo)
@@ -101101,10 +101101,10 @@
 "faY" = (
 /obj/structure/table/standard,
 /obj/machinery/button/remote/blast_door{
-	pixel_y = -4;
-	pixel_x = 4;
+	id = "neotheology_shop";
 	name = "NeoTheology Shop Access";
-	id = "neotheology_shop"
+	pixel_x = 4;
+	pixel_y = -4
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/churchbooth)
@@ -102403,8 +102403,8 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 8;
-	name = "First Officer Line Access";
-	id = "firstofficer_access"
+	id = "firstofficer_access";
+	name = "First Officer Line Access"
 	},
 /turf/simulated/floor/plating,
 /area/eris/command/fo)
@@ -108732,8 +108732,8 @@
 /area/eris/security/exerooms)
 "xgV" = (
 /obj/machinery/disposal/deliveryChute{
-	name = "Funeral Ejector";
-	dir = 4
+	dir = 4;
+	name = "Funeral Ejector"
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 8
@@ -160606,11 +160606,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+abF
+abF
+abF
+abF
+abF
 aaa
 aaa
 aaa
@@ -160808,11 +160808,11 @@ bUG
 bUG
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+abF
+abF
+abF
+abF
+abF
 aaa
 aaa
 aaa
@@ -161010,11 +161010,11 @@ qtF
 bUG
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+abF
+abF
+abF
+abF
+abF
 aaa
 aaa
 aaa
@@ -161212,11 +161212,11 @@ jby
 bUG
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+abF
+abF
+abF
+abF
+abF
 aaa
 aaa
 aaa
