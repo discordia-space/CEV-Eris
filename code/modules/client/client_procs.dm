@@ -1,8 +1,7 @@
 	////////////
 	//SECURITY//
 	////////////
-#define UPLOAD_LIMIT 524288 //Restricts client uploads to the server to 0.5MB
-#define UPLOAD_LIMIT_ADMIN 10485760 //Restricts admin client uploads to the server to 2.5MB //Boosted this thing to 10mb. What's the worst that can happen
+#define UPLOAD_LIMIT 10485760 //Restricts client uploads to the server to 10MB
 
 GLOBAL_LIST_INIT(blacklisted_builds, list(
 	"1407" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
@@ -171,10 +170,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
 /client/AllowUpload(filename, filelength)
-	if (holder)
-		if(filelength > UPLOAD_LIMIT_ADMIN)
-			to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT_ADMIN/1024]KiB.</font>")
-			return FALSE
 	if(filelength > UPLOAD_LIMIT)
 		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB.</font>")
 		return FALSE
