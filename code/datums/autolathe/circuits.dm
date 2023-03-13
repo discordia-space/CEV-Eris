@@ -80,6 +80,10 @@
 	name = "tracker electronics"
 	build_path = /obj/item/electronics/tracker
 
+/datum/design/autolathe/circuit/hydroponics
+	name = "hydroponics tray"
+	build_path = /obj/item/electronics/circuitboard/hydroponics
+
 //Exelsior ciruits
 /datum/design/autolathe/circuit/shieldgen_excelsior
 	name = "excelsior shield wall generator"

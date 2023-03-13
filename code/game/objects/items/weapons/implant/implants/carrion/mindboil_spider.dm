@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(active_mindboil_spiders)
 		for(var/mob/living/carbon/human/H in view(5, attack_from))
 			if(H.get_species() != SPECIES_HUMAN || (H in victims) || (H == owner_mob))
 				continue
-			H.sanity.onPsyDamage(1) //Half the ammount of mind fryer, can be mass produced
+			H.apply_damage(1, PSY, wounding_multiplier = 5)
 
 		// Pick up a new contract if there is none
 		if(owner_mob && !contract)

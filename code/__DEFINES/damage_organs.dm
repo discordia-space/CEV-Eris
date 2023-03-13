@@ -113,13 +113,15 @@
 
 
 // Organ defines.
-#define ORGAN_CUT_AWAY   (1<<0)
-#define ORGAN_BLEEDING   (1<<1)
-#define ORGAN_BROKEN     (1<<2)
-#define ORGAN_DESTROYED  (1<<3)
-#define ORGAN_SPLINTED   (1<<4)
-#define ORGAN_DEAD       (1<<5)
-#define ORGAN_MUTATED    (1<<6)
+#define ORGAN_CUT_AWAY	(1<<0)
+#define ORGAN_BLEEDING	(1<<1)
+#define ORGAN_BROKEN	(1<<2)
+#define ORGAN_DESTROYED	(1<<3)
+#define ORGAN_SPLINTED	(1<<4)
+#define ORGAN_DEAD		(1<<5)
+#define ORGAN_MUTATED	(1<<6)
+#define ORGAN_INFECTED	(1<<7)
+#define ORGAN_WOUNDED	(1<<8)
 
 // Body part functions
 #define BODYPART_GRASP				(1<<0)
@@ -130,6 +132,7 @@
 #define DROPLIMB_EDGE 0
 #define DROPLIMB_BLUNT 1
 #define DROPLIMB_BURN 2
+#define DROPLIMB_EDGE_BURN 3
 
 #define MODIFICATION_ORGANIC 0	// Organic
 #define MODIFICATION_ASSISTED 1 // Like pacemakers, not robotic
@@ -140,15 +143,38 @@
 // Damage above this value must be repaired with surgery.
 #define ROBOLIMB_SELF_REPAIR_CAP 30
 
-//Germs and infections.
-#define GERM_LEVEL_AMBIENT  110 // Maximum germ level you can reach by standing still.
-#define GERM_LEVEL_MOVE_CAP 200 // Maximum germ level you can reach by running around.
-
-#define INFECTION_LEVEL_ONE   100
-#define INFECTION_LEVEL_TWO   500
-#define INFECTION_LEVEL_THREE 1000
-
 #define ORGAN_RECOVERY_THRESHOLD (5 MINUTES)
+
+// INTERNAL ORGANS
+#define IORGAN_STANDARD_HEALTH 12
+#define IORGAN_SMALL_HEALTH 8
+#define IORGAN_SKELETAL_HEALTH 14
+#define IORGAN_MAX_HEALTH 14
+
+#define IORGAN_KIDNEY_TOX_RATIO 0.25
+#define IORGAN_LIVER_TOX_RATIO 0.75
+
+// INTERNAL WOUNDS
+#define TREATMENT_ITEM 1
+#define TREATMENT_TOOL 2
+#define TREATMENT_CHEM 3
+
+#define IWOUND_CAN_DAMAGE		(1<<0)
+#define IWOUND_PROGRESS			(1<<1)
+#define IWOUND_PROGRESS_DEATH	(1<<2)
+#define IWOUND_SPREAD			(1<<3)
+#define IWOUND_HALLUCINATE		(1<<4)
+
+#define IWOUND_INSIGNIFICANT_DAMAGE 0.05
+#define IWOUND_LIGHT_DAMAGE 0.1
+#define IWOUND_MEDIUM_DAMAGE 0.25
+#define IWOUND_HEAVY_DAMAGE 0.5
+
+#define IWOUND_1_MINUTE	30
+#define IWOUND_2_MINUTES 60
+#define IWOUND_3_MINUTES 90
+#define IWOUND_4_MINUTES 120
+#define IWOUND_5_MINUTES 150
 
 // Organ generation
 #define ORGAN_HAS_BONES			(1<<0)

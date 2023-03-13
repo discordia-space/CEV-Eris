@@ -1,19 +1,3 @@
-
-// Spread germs from surgeon to the organ
-/obj/item/organ/proc/spread_germs_from(mob/living/carbon/human/user, obj/item/tool)
-	if(!istype(user)) // Robots and such are considered sterile
-		return
-
-	var/new_germ_level = user.germ_level
-	if(user.gloves)
-		new_germ_level = user.gloves.germ_level
-
-	if(tool)
-		new_germ_level = max(new_germ_level, tool.germ_level)
-
-	germ_level = max(germ_level, new_germ_level) //as funny as scrubbing microbes out with clean gloves is - no.
-
-
 // Get a name to be displayed in surgery messages
 /obj/item/organ/proc/get_surgery_name()
 	if(!owner)	// Loose organ shows its own name only
@@ -82,25 +66,6 @@
 			"step" = /datum/surgery_step/robotic/connect_organ
 		)))
 	else
-		var/is_aberrant = istype(src, /obj/item/organ/internal/scaffold)
-		if(item_upgrades.len < max_upgrades)
-			actions_list.Add(list(list(
-				"name" = is_aberrant ? "Attach Mod/Organoid" : "Attach Mod",
-				"organ" = "\ref[src]",
-				"step" = /datum/surgery_step/attach_mod
-			)))
-		if(item_upgrades.len)
-			actions_list.Add(list(list(
-				"name" = is_aberrant ? "Remove Mod/Organoid" : "Remove Mod",
-				"organ" = "\ref[src]",
-				"step" = /datum/surgery_step/remove_mod
-			)))
-		if(is_aberrant)	// Currently, scaffolds are the only type that warrant examining in-body
-			actions_list.Add(list(list(
-				"name" = "Examine",
-				"organ" = "\ref[src]",
-				"step" = /datum/surgery_step/examine
-			)))
 		actions_list.Add(list(list(
 			"name" = (status & ORGAN_CUT_AWAY) ? "Attach" : "Separate",
 			"organ" = "\ref[src]",
@@ -111,14 +76,10 @@
 	return actions_list
 
 /obj/item/organ/internal/proc/get_process_data()
-	var/list/processes = list()
+	var/processes = ""
 	for(var/efficiency in organ_efficiency)
-		processes += list(
-			list(
-				"title" = "[capitalize(efficiency)] efficiency",
-				"efficiency" = organ_efficiency[efficiency],
-				)
-			)
+		processes += "[capitalize(efficiency)] ([organ_efficiency[efficiency]]), "
+	processes = copytext(processes, 1, length(processes) - 1)
 	return processes
 
 // Is body part open for most surgerical operations?

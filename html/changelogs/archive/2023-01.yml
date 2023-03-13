@@ -1,0 +1,122 @@
+2023-01-03:
+  Firefox13:
+  - rscdel: Removed rocky debris, unbreakable xenoarcheology leftover
+2023-01-07:
+  Firefox13:
+  - admin: Players getting antagonist status is now logged.
+  - tweak: When cryoing departmental relics will now go into storage instead of getting
+      deleted
+  Iglpigl:
+  - bugfix: lethal injection is lethal now
+  MLGTASTICa:
+  - balance: All stats are now capped at a maximum of 150.
+  Moltovz:
+  - bugfix: You can cycle intents with a bind while in hotkey mode.
+  - bugfix: Adds missing binds to hotkey-help's hotkey mode list
+  - tweak: Hotkey mode and any mode now have different colors in the hotkey-help verb.
+  assortedbeads:
+  - tweak: Energy sword and Energy sabre now fit in the baton sheath and ring sheath
+      respectively
+  - balance: The Krabin only accepts humans in it's link now
+  master832:
+  - tweak: Super series cells have moved to Asters Cells II tab on station Solnyshko
+2023-01-14:
+  CeUvi:
+  - imageadd: cruciforge resprite
+  - imageadd: eotp resprite
+  - imageadd: warrant projector resprite
+  CocaColaTastesGood:
+  - bugfix: Borers no longer get soft locked by their host dying while assuming control.
+  - bugfix: Non-humanoid carbons can be controlled again.
+  - bugfix: Borer's no longer persist in a host's implants/contents after leaving.
+  Hyperio:
+  - code_imp: Rename has_brain_worms into get_brain_worms
+  - code_imp: New has_brain_worms function
+  - code_imp: Has_brain_worms now returns null instead of FALSE
+  Iglpigl:
+  - tweak: guild vendor now sells hydroponics trays circuit boards
+  ValoTheValo:
+  - rscdel: Removed accuracy debuff at close range
+  driecg36:
+  - balance: Buff Onestar Microfusion Generator
+  - rscadd: You can now craft buckets.
+  - tweak: Made crafting recipes in general much easier and removed a lot of the wonky
+      part requirements.
+2023-01-17:
+  MLGTASTICa:
+  - refactor: Refactored the code of  the guild mining shuttle smelter and gave it
+      a TGUI.
+  Pink-Chink:
+  - tweak: Added MLGTASTICa's edits to Processor.js
+  - tweak: Click cooldown from firing uses both burst delay and fire delay
+  - code_imp: Changed the shooting loop to use sleep() instead of spawn(), uses Humonitarian's
+      logic
+  - code_imp: Moved a define to weapons.dm
+  - rscadd: Added Erismed 4
+  - tweak: Tweaked many reagents to provide chem effects for wound treatment
+  - tweak: Tox loss and clone loss are no longer considered in lethal damage or pain
+      calculations
+  - rscdel: Removed bay germs and bay infections
+2023-01-21:
+  CeUvi & Valo:
+  - imageadd: nt uniforms resprite
+  - imageadd: onestar female uniform fix
+  Humonitarian:
+  - balance: when missing a roach in a cluster, the bullet will still attempt to hit
+      the rest without missing all of them automatically
+  Pink-Chink:
+  - rscdel: Removed photon vortex from the pool
+  - tweak: Space weather behavior is now tick-based
+  - tweak: Space weather event weight reduced, limited to one per round for each event
+  - code_imp: Parallax icon logic moved to event subsystem
+  - code_imp: Spell-checked a variable
+  TheLeopold:
+  - tweak: NT Scourge now smaller
+  - balance: NT Scourge is single-tap when folded
+2023-01-24:
+  Humonitarian:
+  - bugfix: fixed calculation errors in penetration and armor
+2023-01-27:
+  MLGTASTICa:
+  - code_imp: Updated some of the structure code to modern standards.
+  ValoTheValo:
+  - rscadd: added Moebius Beret, Reinforced Technomancer Armor and Black Neotheology
+      Coat
+  - rscdel: Space Soviet Russian uniform closet
+  - tweak: re-did flavor text on several apparel items, added tactical gloves to ironhammer
+      wadrobe and serbian crates
+  - bugfix: moebius coat open and closed sprites being inverted, onestar uniform not
+      having its own female sprite
+  - imageadd: resprited technomancer beret and moebius armband
+2023-01-28:
+  Humonitarian:
+  - balance: njoy lasts twice as long
+  - tweak: you no longer get neutral breakdowns while on njoy
+  - tweak: njoy has flavouring
+  - tweak: njoy works when injected
+  Hyperioo:
+  - bugfix: Fix window grab interaction rework
+  Pink-Chink:
+  - bugfix: Removes pointless procs during cloning
+  the-og-gear:
+  - bugfix: You no longer retain your zoomed view when dropping your scoped weapon
+2023-01-29:
+  Pink-Chink:
+  - tweak: Renames ore icons to match the new defines
+2023-01-31:
+  Firefox13:
+  - admin: A bwoink will now play whenever a player with a cookie from banned account
+      connects. This respects the bwoink sound preference (global charsetup)
+  Humonitarian:
+  - bugfix: walls and shields block bullets significantly more effectively
+  - balance: Hornet can pierce reinforced walls, but deals much less damage than other
+      revolvers
+  - balance: Mandella received minor decrease to damage, and moderate decrease to
+      penetration
+  ValoTheValo:
+  - rscadd: Old Guild Tech jacket
+  thevandie:
+  - rscadd: Sergeant, Medspec, and Inspector badges
+  - imageadd: New sprites for the Gunny badge, Marshal badge, and Commander badge
+      as well as Medspec Sarge and Inspector sprites for the new items.
+  - tweak: Slight flavor changes for the badges to make them fit better.

@@ -222,3 +222,4 @@ aux*.pdb
 
 # Screenshot tests
 /artifacts
+yarn.lock

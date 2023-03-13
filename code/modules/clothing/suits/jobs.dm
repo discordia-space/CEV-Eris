@@ -2,7 +2,7 @@
  * Job related
  */
 
-//Assistant
+//vagabond
 /obj/item/clothing/suit/storage/ass_jacket
 	name = "assistant jacket"
 	desc = "Practical and comfortable jacket. It seems have a little protection from physical harm."
@@ -20,6 +20,7 @@
 		rad = 0
 	)
 
+//Guild Artist
 /obj/item/clothing/suit/artist
 	name = "Complicated Vest"
 	desc = "The tubes don't even do anything."
@@ -55,7 +56,24 @@
 		rad = 0
 	)
 
-//Quartermaster
+/obj/item/clothing/suit/storage/cargo_jacket/old
+	name = "black guild technician jacket"
+	desc = "Stylish jacket lined with pockets. It seems to have a little protection from physical harm. This one is done in dark black color."
+	icon_state = "cargo_jacket_old"
+	item_state = "cargo_jacket_old"
+	blood_overlay_type = "coat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
+	armor = list(
+		melee = 2,
+		bullet = 2,
+		energy = 2,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+
+//Merchant
 /obj/item/clothing/suit/storage/qm_coat
 	name = "guild merchant coat"
 	desc = "An ideal choice for a smuggler. This coat seems have good impact resistance, and is made from resistant and expensive materials."
@@ -88,7 +106,7 @@
 		/obj/item/weedkiller
 	)
 
-//Civillian
+//Club
 /obj/item/clothing/suit/storage/toggle/club
 	name = "Manager's jacket"
 	desc = "A well tailored and rich jacket of the club manager"
@@ -124,12 +142,30 @@
 	price_tag = 5000
 	style = STYLE_HIGH
 
-//Chaplain
+//NeoTheology
 /obj/item/clothing/suit/storage/neotheology_jacket
 	name = "acolyte jacket"
 	desc = "A long jacket. Dark, stylish, and authoritarian."
 	icon_state = "chaplain_hoodie"
 	item_state = "chaplain_hoodie"
+	blood_overlay_type = "coat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
+	spawn_blacklisted = TRUE
+	armor = list(
+		melee = 5,
+		bullet = 2,
+		energy = 2,
+		bomb = 0,
+		bio = 50,  //same as labcoats at LEAST
+		rad = 0
+	)
+
+/obj/item/clothing/suit/storage/neotheology_jacket/black
+	name = "black acolyte jacket"
+	desc = "A long black jacket. Dark, stylish, and authoritarian."
+	icon_state = "chaplain_hoodie_old"
+	item_state = "chaplain_hoodie_old"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
@@ -162,7 +198,7 @@
 	)
 
 /obj/item/clothing/suit/storage/neotheosports
-	name = "neotheology sports jacket"
+	name = "NeoTheology sports jacket"
 	desc = "NeoTheology styled sports jacket to keep the faithful always on their feet."
 	icon_state = "nt_sportsjacket"
 	item_state = "nt_sportsjacket"
@@ -212,7 +248,7 @@
 	body_parts_covered = 0
 	spawn_blacklisted = TRUE
 
-//Detective
+//Inspector
 /obj/item/clothing/suit/storage/detective
 	name = "inspector's grey armored trenchcoat"
 	desc = "Grey armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
@@ -245,7 +281,7 @@
 	icon_state = "detective_black"
 	item_state = "detective_black"
 
-//Engineering
+//Technomancers
 /obj/item/clothing/suit/storage/hazardvest
 	name = "hazard vest"
 	desc = "A high-visibility vest used in work zones."
@@ -265,7 +301,7 @@
 	icon_state = "hazard_black"
 	item_state = "hazard_black"
 
-//Chief Engineer/Technomancer Exultant
+//Technomancer Exultant
 /obj/item/clothing/suit/storage/te_coat
 	name = "exultant coat"
 	desc = "A sturdy and proud crimson coat. Lightly armored, with some protection against radiation."

@@ -1,0 +1,36 @@
+2023-02-04:
+  Humonitarian:
+  - bugfix: fixed ethanol painkilling power
+  Pink-Chink:
+  - tweak: Edged burn weapons can delimb
+  assortedbeads:
+  - tweak: laser swords do burn damage now
+  thevandie:
+  - rscadd: Added the Merc Combat Armor box item
+  - rscadd: Added the Merc Combat Armor box item into the uplink for 6 tc
+  - rscdel: Removed the old merc armor helmet and vest, as they're in a single kit
+  - tweak: Voidsuit is now 12 TC
+  - tweak: Non-full Merc vest is now 3 TC for when you either wanna run and gun or
+      are just strapped for cash
+2023-02-11:
+  Firefox13:
+  - spellcheck: Renamed NT beret to Securitech that I missed the other week
+  Iglpigl:
+  - rscdel: Removed stiffness and obscuration
+  MLGTASTICa:
+  - bugfix: Fixed  humans lagging to extreme levels
+  - refactor: SSweather no longer processes.
+  - refactor: SSmachines is now a processing subsystem
+  - code_imp: Framework for more control over Subsystem processing handling
+2023-02-18:
+  Humonitarian:
+  - bugfix: fixed a bug related to buckshot
+2023-02-25:
+  DiaFRAME444:
+  - balance: pain gained from armor blocking bullets is now 40% of the original damage.
+      Should make shotguns viable again.
+  Humonitarian:
+  - rscadd: shooting between zlevels, toggled by admins
+  - bugfix: minor bugfixes for tables
+  Mycah142:
+  - rscadd: Added craft recipe

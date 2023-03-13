@@ -1,0 +1,28 @@
+2023-03-04:
+  Firefox13:
+  - admin: antagrole log now shows ckey
+  Humonitarian:
+  - rscdel: Disliked feature containing gamebreaking bug removed
+  MLGTASTICa:
+  - refactor: Removes a sleep from projectile launch code, removing random delays
+      added to gun firing.
+  SingingSpock:
+  - rscadd: funeral disposal for NT to use.
+  - bugfix: Maintshrooms no longer treat solid objects as a mere suggestion
+  - bugfix: Maintshrooms now check if the other end of a burrow is too bright for
+      it to grow before spreading
+2023-03-11:
+  Pink-Chink:
+  - rscadd: Adds organ wounding mechanic
+  - tweak: Reworks damage system to one focused on vital organ health, replaces bay-style
+      damage tracking and deaths
+  - tweak: Tweaked many reagents to provide chem effects for wound treatment
+  - tweak: Tox loss and clone loss are no longer considered in lethal damage or pain
+      calculations
+  - rscdel: Removed bay germs and bay infections
+  githubuser4141:
+  - balance: Increases mech HP/armour values, increases component cost, mechs are
+      more time-consuming to repair now, mech treads can't strafe because that was
+      OP as f*ck, the power loader/ball chassis can now fit passengers.
+  - tweak: Moved exosuits' parts around (no player facing changes.) from the premade
+      directory to components.

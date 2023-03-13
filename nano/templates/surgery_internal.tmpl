@@ -1,0 +1,68 @@
+<div class="item" style="display: table">
+	<div class="item" style="display: table-cell; vertical-align: top; width: 290px; padding-right: 10px">
+		<div class="display">
+			<header><h3>Wounds</h3></header>
+			{{if data.diag_wounds}}
+				<article>
+					{{for data.diag_wounds :wound:wound_i}}
+						<div class="nanoMap">
+							<div class="item">
+								<div class="itemLabel">Type:</div>
+								<div class="itemContent">{{:wound.name}}</div>
+							</div>
+							<div class="item">
+								<div class="itemLabel">Severity:</div>
+								<div class="itemContent">{{:wound.severity}} / {{:wound.severity_max}}</div>
+							</div>
+							<div class="item">
+								<div class="itemLabel">Treatments:</div>
+								<div class="itemContent">{{:wound.treatments}}</div>
+							</div>
+							<div class="content">{{:helper.link('Treat', null, {'command' : 'treat_wound', 'wound' : wound.wound})}}</div>
+						</div>
+					{{/for}}
+				</article>
+			{{/if}}
+		</div>
+	</div>
+	<div class="item" style="display: table-cell; vertical-align: top; width: auto">
+		<div class="display">
+			<article>
+				<div class="content">{{:helper.link('Return to External Diagnostics', 'arrowreturn-1-w', {'command' : 'view', 'view' : null})}}</div>
+			</article>
+		</div>
+		<div class="display">
+			<header><h3>Diagnostics - {{:data.diag_name.toTitleCase()}}</h3></header>
+			<article>
+				{{if data.diagnosed}}
+					<section>
+						<span class="label">Health:</span>
+						<div class="content">{{:helper.displayBar(data.diag_health, 0, data.diag_max_damage, (data.diag_damage > (data.diag_max_damage / 2)) ? 'bad' : 'good', data.diag_health + " / " + data.diag_max_damage)}}</div>	
+					</section>
+					{{if data.diag_max_blood}}
+						<section>
+							<span class="label">Blood:</span>
+							<div class="content">{{:helper.displayBar(data.diag_stored_blood, 0, data.diag_max_blood, 'bad', data.diag_stored_blood + " / " + data.diag_max_blood)}}</div>
+						</section>
+					{{/if}}
+				{{/if}}
+			</article>
+			<article>
+				<div class="content">{{:helper.link("Examine", null, {'command' : 'step', 'step' : data.diag_examine, 'organ' : data.diag_ref,}, data.diag_open ? null : 'disabled')}}</div>
+			</article>
+		</div>
+		<div class="display">
+			<header><h3>Modifications</h3></header>
+			<article>
+				<div class="nanoMap">
+					{{if data.diag_mods}}
+						{{for data.diag_mods :mod:mod_i}}
+							<div class="item">{{:mod.name}}</div>
+						{{/for}}
+					{{/if}}
+				</div>
+				<div class="content">{{:helper.link("Attach", null, {'command' : 'step', 'step' : data.diag_attach, 'organ' : data.diag_ref,}, data.diag_open ? null : 'disabled')}}</div>
+				<div class="content">{{:helper.link("Remove", null, {'command' : 'step', 'step' : data.diag_remove, 'organ' : data.diag_ref,}, data.diag_open ? null : 'disabled')}}</div>
+			</article>
+		</div>
+	</div>

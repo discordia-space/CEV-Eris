@@ -152,6 +152,12 @@
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /obj/structure/low_wall/proc/check_cover(obj/item/projectile/P, turf/from)
+
+	if(config.z_level_shooting)
+		if(P.height == HEIGHT_HIGH)
+			return TRUE // Bullet is too high to hit
+		P.height = (P.height == HEIGHT_LOW) ? HEIGHT_LOW : HEIGHT_CENTER
+
 	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return 1
 	if(get_dist(loc, P.trajectory.target) > 1 ) // Target turf must be adjacent for it to count as cover
@@ -167,6 +173,11 @@
 		var/mob/M = P.original
 		if (M.lying)
 			valid = TRUE			//Lying down covers your whole body
+
+	// Bullet is low enough to hit the wall
+	if(config.z_level_shooting && P.height == HEIGHT_LOW)
+		valid = TRUE
+
 	if(valid)
 		var/pierce = P.check_penetrate(src)
 		health -= P.get_structure_damage()/2

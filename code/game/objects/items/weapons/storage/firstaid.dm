@@ -143,7 +143,9 @@
 		/obj/item/tool/surgicaldrill,
 		/obj/item/device/scanner,
 		/obj/item/storage/pill_bottle,
-		/obj/item/stack/medical)
+		/obj/item/stack/medical,
+		/obj/item/tool/tape_roll
+		)
 
 /obj/item/storage/firstaid/surgery/populate_contents()
 	new /obj/item/tool/bonesetter(src)
@@ -153,6 +155,7 @@
 	new /obj/item/tool/retractor(src)
 	new /obj/item/tool/scalpel(src)
 	new /obj/item/tool/surgicaldrill(src)
+	new /obj/item/tool/tape_roll/fiber/medical(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	make_exact_fit()
 
@@ -167,6 +170,7 @@
 	new /obj/item/tool/retractor(src)
 	new /obj/item/tool/scalpel/advanced(src)
 	new /obj/item/tool/surgicaldrill(src)
+	new /obj/item/tool/tape_roll/fiber/medical(src)
 	new /obj/item/device/scanner/health(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/storage/pill_bottle/oxycodone(src)
@@ -297,7 +301,7 @@
 	name = "bottle of Njoy pills"
 	desc = "Contains pills used to stop all breakdowns."
 	icon_state = "bottle_njoy_red"
-	prespawned_content_type = /obj/item/reagent_containers/pill/suppressital
+	prespawned_content_type = /obj/item/reagent_containers/pill/suppressital/red
 
 /obj/item/storage/pill_bottle/njoy/green
 	icon_state = "bottle_njoy_green"
