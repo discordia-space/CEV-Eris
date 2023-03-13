@@ -191,7 +191,6 @@
 
 /datum/component/internal_wound/organic/radiation/malignant
 	name = "malignant tumor"
-	treatments_tool = list()
 	treatments_chem = list(CE_ONCOCIDAL = 2)
 	characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_PROGRESS|IWOUND_SPREAD
 	severity = 0
