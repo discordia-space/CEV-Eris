@@ -41,10 +41,8 @@
 
 /datum/breakdown/positive/stalwart/conclude()
 	holder.owner.adjustBruteLoss(-25)
-	holder.owner.adjustCloneLoss(-10)
 	holder.owner.adjustFireLoss(-25)
 	holder.owner.adjustOxyLoss(-45)
-	holder.owner.adjustToxLoss(-25)
 	holder.owner.reagents.add_reagent("tramadol", 5) // the way this works is silly as all fuck and should probably be fixed at some point
 	..()
 
@@ -190,7 +188,7 @@
 				if(damage_eyes)
 					holder.owner.visible_message(SPAN_DANGER("[holder.owner] scratches at [G.his] eyes!"))
 					var/obj/item/organ/internal/eyes/eyes = holder.owner.random_organ_by_process(OP_EYES)
-					eyes.take_damage(rand(1,2), 1)
+					eyes.take_damage(rand(1,10), TRUE, BRUTE, TRUE, TRUE)
 				else
 					holder.owner.visible_message(SPAN_DANGER(pick(list(
 						"[holder.owner] tries to end [G.his] misery!",
