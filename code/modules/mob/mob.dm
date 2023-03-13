@@ -1,5 +1,8 @@
 /mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
-	STOP_PROCESSING(SSmobs, src)
+	if(ishuman(src))
+		STOP_PROCESSING(SShumans, src)
+	else
+		STOP_PROCESSING(SSmobs, src)
 	GLOB.dead_mob_list -= src
 	GLOB.living_mob_list -= src
 	GLOB.mob_list -= src
@@ -28,7 +31,10 @@
 	return
 
 /mob/Initialize()
-	START_PROCESSING(SSmobs, src)
+	if(ishuman(src))
+		START_PROCESSING(SShumans, src)
+	else
+		START_PROCESSING(SSmobs, src)
 	if(stat == DEAD)
 		GLOB.dead_mob_list += src
 	else

@@ -10,7 +10,7 @@
 	var/obj/item/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_lying_buckled_and_verb_status() call.
 	var/using_scope // This is not very good either, because I've copied it. Sorry.
 
-/mob/living/carbon/human/New(new_loc, new_species)
+/mob/living/carbon/human/Initialize(new_loc, new_species)
 	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100", ON_MOB_HUD_LAYER)
 	hud_list[STATUS_HUD]      = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
 	hud_list[LIFE_HUD]        = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
@@ -24,7 +24,7 @@
 
 	GLOB.human_mob_list |= src
 
-	..()
+	. = ..()
 
 	if(!species)
 		if(new_species)
