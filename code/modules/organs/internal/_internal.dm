@@ -177,10 +177,14 @@
 					break
 			if(BV)
 				BV.current_blood = max(BV.current_blood - blood_req, 0)
-			if(BV?.current_blood == 0)	//When all blood from the organ and blood vessel is lost,
+			if(!damage && BV?.current_blood == 0)	//When all blood from the organ and blood vessel is lost,
 				add_wound(/datum/component/internal_wound/organic/oxy/blood_loss)
 
 		return
+
+	// If the bleedout status is removed, remove blood loss wound
+	if(damage)
+		remove_wound(GetComponent(/datum/component/internal_wound/organic/oxy/blood_loss))
 
 	current_blood = min(current_blood + blood_req, max_blood_storage)
 
