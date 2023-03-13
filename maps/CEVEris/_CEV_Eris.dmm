@@ -48229,6 +48229,12 @@
 /obj/item/device/radio,
 /obj/item/device/radio,
 /obj/structure/table/reinforced,
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "Von-Krabin";
+	name = "Von-Krabin Stimulator id lock";
+	pixel_y = -28;
+	req_access = list(30)
+	},
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/mixing)
 "ckT" = (
