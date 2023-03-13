@@ -23285,12 +23285,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/machinery/button/remote/blast_door/id_card{
-	id = "Von-Krabin";
-	name = "Von-Krabin Stimulator id lock";
-	pixel_x = -28;
-	req_access = list(5)
-	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
 "bdx" = (
@@ -48232,8 +48226,8 @@
 /obj/machinery/button/remote/blast_door/id_card{
 	id = "Von-Krabin";
 	name = "Von-Krabin Stimulator id lock";
-	pixel_y = -28;
-	req_access = list(30)
+	req_access = list(5);
+	pixel_y = -28
 	},
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/mixing)
