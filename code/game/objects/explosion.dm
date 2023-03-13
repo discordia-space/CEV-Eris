@@ -2,12 +2,15 @@
 
 proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, singe_impact_range)
 	var/explosion_power = devastation_range * 60 + heavy_impact_range * 40 + light_impact_range * 20
-	var/explosion_falloff = devastation_range * 10 + heavy_impact_range * 5 + light_impact_range * 2
+	var/explosion_falloff = abs(devastation_range * 10 + heavy_impact_range * 5 + light_impact_range * 2)
+	if(explosion_falloff == 0)
+		explosion_falloff = (explosion_power / (light_impact_range + heavy_impact_range + devastation_range)) * 2
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flash_range, singe_impact_range)
 	var/far_dist = 0
 	far_dist += heavy_impact_range * 5
 	far_dist += devastation_range * 20
 	var/frequency = get_rand_frequency()
+	//new /obj/effect/explosion(epicenter)
 	SSexplosions.start_explosion(epicenter, explosion_power, explosion_falloff)
 	for(var/mob/M in GLOB.player_list)
 		// Double check for client
