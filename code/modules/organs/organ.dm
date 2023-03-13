@@ -210,9 +210,6 @@
 		if(owner && parent && amount > 0 && !silent)
 			owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
 
-/obj/item/organ/proc/bruise()
-	damage = max(damage, min_bruised_damage)
-
 /obj/item/organ/emp_act(severity)
 	if(!BP_IS_ROBOTIC(src))
 		return
