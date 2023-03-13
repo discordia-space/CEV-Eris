@@ -15,10 +15,10 @@
 		if(BURN)
 			amount = round(amount * burn_mod, 0.1)
 
-	// Damage is transferred to internal organs. Chest and head must be broken before transferring.
+	// Damage is transferred to internal organs. Chest and head must be broken before transferring unless they're slime limbs.
 	if(LAZYLEN(internal_organs))
 		var/can_transfer = FALSE	// Only applies to brute and burn
-		if((organ_tag != BP_CHEST && organ_tag != BP_HEAD) || status & ORGAN_BROKEN)
+		if((organ_tag != BP_CHEST && organ_tag != BP_HEAD) || status & ORGAN_BROKEN || cannot_break)
 			can_transfer = TRUE
 		var/obj/item/organ/internal/I = pick(internal_organs)
 		var/transferred_damage_amount
