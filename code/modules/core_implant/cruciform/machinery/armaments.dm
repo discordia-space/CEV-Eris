@@ -124,6 +124,24 @@
 
 
 /datum/armament/item/disk/cells
+	name = "Utilities disk"
+	cost = 50
+	min_cost = 50
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter
+
+/datum/armament/item/disk/cells
+	name = "Bio-Fabric disk"
+	cost = 50
+	min_cost = 50
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter_clothes
+
+/datum/armament/item/disk/cells
+	name = "Hastatii disk"
+	cost = 50
+	min_cost = 50
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt_melee
+
+/datum/armament/item/disk/cells
 	name = "Power Cells disk"
 	cost = 75
 	min_cost = 50
