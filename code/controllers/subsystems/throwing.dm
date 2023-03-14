@@ -12,6 +12,7 @@
 #define I_DX 7
 #define I_DY 8
 #define I_ERROR 9
+#define I_TURF_CLICKED 10
 
 SUBSYSTEM_DEF(throwing)
 	name = "throwing"
@@ -36,10 +37,7 @@ SUBSYSTEM_DEF(throwing)
 		var/area/cur_area = get_area(thing.loc)
 		if(cur_area && cur_area.has_gravity)
 			if(tiles_to_move + throwing_queue[thing][I_MOVED] > throwing_queue[thing][I_RANGE])
-				tiles_to_move = throwing_queue[thing][I_RANGE] - throwing_queue[thing][I_MOVED] - tiles_to_move
-			var/tiles_to_destination = abs(throwing_queue[thing][I_TARGET]:x - thing.x) + abs(throwing_queue[thing][I_TARGET]:y - thing.y)
-			if(tiles_to_destination < tiles_to_move)
-				tiles_to_move = tiles_to_destination
+				tiles_to_move = min(throwing_queue[thing][I_RANGE] - throwing_queue[thing][I_MOVED], tiles_to_move)
 		if(tiles_to_move < 1)
 			throwing_queue -= thing
 			thing.throwing = FALSE
@@ -61,15 +59,19 @@ SUBSYSTEM_DEF(throwing)
 				thing.thrower = null
 				thing.throw_source = null
 				break
+			cur_area = get_area(thing.loc)
+			if(cur_area && cur_area.has_gravity)
+				if(thing.loc == throwing_queue[thing][I_TURF_CLICKED])
+					thing.throwing = FALSE
 			if(!thing.throwing)
 				throwing_queue -= thing
 				thing.throwing = FALSE
 				thing.thrower = null
 				thing.throw_source = null
 				break
-			cur_area = get_area(thing.loc)
+
+
 			if(throwing_queue[thing][I_DIST_X] > throwing_queue[thing][I_DIST_Y])
-				throwing_queue[thing][I_ERROR] += throwing_queue[thing][I_DIST_X]/2 - throwing_queue[thing][I_DIST_Y]
 				if(throwing_queue[thing][I_ERROR] < 0)
 					to_move = get_step(thing, throwing_queue[thing][I_DY])
 					throwing_queue[thing][I_ERROR] += throwing_queue[thing][I_DIST_X]
@@ -77,7 +79,6 @@ SUBSYSTEM_DEF(throwing)
 					to_move = get_step(thing, throwing_queue[thing][I_DX])
 					throwing_queue[thing][I_ERROR] -= throwing_queue[thing][I_DIST_Y]
 			else
-				throwing_queue[thing][I_ERROR] += throwing_queue[thing][I_DIST_Y]/2 - throwing_queue[thing][I_DIST_X]
 				if(throwing_queue[thing][I_ERROR] < 0)
 					to_move = get_step(thing, throwing_queue[thing][I_DX])
 					throwing_queue[thing][I_ERROR] += throwing_queue[thing][I_DIST_Y]

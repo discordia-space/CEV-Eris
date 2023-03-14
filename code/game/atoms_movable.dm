@@ -154,17 +154,20 @@
 	src.throwing = TRUE
 	src.thrower = thrower
 	throw_source = get_turf(thrower)
+	var/dist_x = abs(target.x - src.x)
+	var/dist_y = abs(target.y - src.y)
 	/// spot 4 is for tiles we already moved, 5,6 for distx and disty, and 7,8 for dx, dy and 9 for current error
 	SSthrowing.throwing_queue[src] = list(
 		target,
 		speed,
 		range,
 		0,
-		abs(target.x - src.x),
-		abs(target.y - src.y),
+		dist_x,
+		dist_y,
 		target.x > x ? EAST : WEST,
 		target.y > y ? NORTH : SOUTH,
-		0
+		dist_x > dist_y ? dist_x/2 - dist_y : dist_y/2 - dist_x,
+		get_turf(target),
 	)
 	return TRUE
 

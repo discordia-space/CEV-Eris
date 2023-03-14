@@ -19,7 +19,7 @@
 	var/num_fragments = 25
 	var/damage_step = 2
 
-	var/explosion_d_size = -1
+	var/explosion_d_size = 0
 	var/explosion_h_size = 1
 	var/explosion_l_size = 2
 	var/explosion_f_size = 15
