@@ -129,5 +129,5 @@
 
 /obj/item/dropped()
 	. = ..()
-	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, src)
+	SEND_SIGNAL_OLD(src, COMSIG_ITEM_DROPPED, src)
 	update_light()

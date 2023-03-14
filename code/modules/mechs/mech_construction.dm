@@ -44,7 +44,7 @@
 
 	if(target == selected_hardpoint) clear_selected_hardpoint()
 
-	GLOB.destroyed_event.unregister(module_to_forget, src, .proc/forget_module)
+	GLOB.destroyed_event.unregister(module_to_forget, src, PROC_REF(forget_module))
 
 	var/obj/screen/movable/exosuit/hardpoint/H = HUDneed[target]
 	if(istype(H)) H.holding = null
@@ -94,7 +94,7 @@
 			else return FALSE
 
 	system.installed(src)
-	GLOB.destroyed_event.register(system, src, .proc/forget_module)
+	GLOB.destroyed_event.register(system, src, PROC_REF(forget_module))
 
 
 
@@ -138,7 +138,7 @@
 	system.layer = initial(system.layer)
 	system.forceMove(get_turf(src))
 
-	GLOB.destroyed_event.unregister(system, src, .proc/forget_module)
+	GLOB.destroyed_event.unregister(system, src, PROC_REF(forget_module))
 
 	var/obj/screen/movable/exosuit/hardpoint/H = HUDneed[system_hardpoint]
 	if(istype(H)) H.holding = null

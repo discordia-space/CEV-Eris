@@ -32,7 +32,7 @@
 /datum/stat_holder/proc/addTempStat(statName, Value, timeDelay, id = null)
 	var/datum/stat/S = stat_list[statName]
 	S.addModif(timeDelay, Value, id)
-	SEND_SIGNAL(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
+	SEND_SIGNAL_OLD(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
 
 
 /datum/stat_holder/proc/removeTempStat(statName, id)
@@ -50,7 +50,7 @@
 /datum/stat_holder/proc/changeStat(statName, Value)
 	var/datum/stat/S = stat_list[statName]
 	S.changeValue(Value)
-	SEND_SIGNAL(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
+	SEND_SIGNAL_OLD(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
 
 /datum/stat_holder/proc/setStat(statName, Value)
 	var/datum/stat/S = stat_list[statName]
@@ -60,7 +60,7 @@
 	if (!islist(statName))
 		var/datum/stat/S = stat_list[statName]
 		if(holder)
-			SEND_SIGNAL(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
+			SEND_SIGNAL_OLD(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
 		return S ? S.getValue(pure) : 0
 	else
 		log_debug("passed list to getStat()")

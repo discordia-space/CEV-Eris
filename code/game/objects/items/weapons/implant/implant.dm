@@ -80,7 +80,7 @@
 	on_install(target, affected)
 	wearer.update_implants()
 	for(var/mob/living/carbon/human/H in viewers(target))
-		SEND_SIGNAL(H, COMSIG_HUMAN_INSTALL_IMPLANT, target, src)
+		SEND_SIGNAL_OLD(H, COMSIG_HUMAN_INSTALL_IMPLANT, target, src)
 	return TRUE
 
 /obj/item/implant/proc/can_install(var/mob/living/target, var/obj/item/organ/external/E)

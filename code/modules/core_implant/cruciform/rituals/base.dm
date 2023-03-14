@@ -142,7 +142,7 @@
 	T.hallucination(50,100)
 	var/sanity_gain = rand(0,10)
 	T.sanity.changeLevel(sanity_gain)
-	SEND_SIGNAL(H, COMSIG_RITUAL_REVELATION, src, T)
+	SEND_SIGNAL_OLD(H, COMSIG_RITUAL_REVELATION, src, T)
 	set_personal_cooldown(H)
 	return TRUE
 

@@ -389,7 +389,7 @@
 /obj/item/organ/internal/proc/apply_modifiers()
 	SEND_SIGNAL(src, COMSIG_IWOUND_EFFECTS)
 	SEND_SIGNAL(src, COMSIG_IWOUND_LIMB_EFFECTS)
-	SEND_SIGNAL(src, COMSIG_APPVAL, src)
+	SEND_SIGNAL(src, COMSIG_APPVAL)
 	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_ADD)
 
 	for(var/prefix in prefixes)

@@ -91,7 +91,7 @@
 /obj/item/implant/carrion_spider/observer/proc/start()
 	var/list/local_spiders = get_local_spiders()
 	if(local_spiders.len >= 3)
-		timer = addtimer(CALLBACK(src, .proc/finish), 10 MINUTES, TIMER_STOPPABLE)
+		timer = addtimer(CALLBACK(src, PROC_REF(finish)), 10 MINUTES, TIMER_STOPPABLE)
 		for(var/obj/item/implant/carrion_spider/observer/S in local_spiders)
 			S.timer = timer
 			S.group = local_spiders

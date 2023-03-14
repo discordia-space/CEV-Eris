@@ -285,7 +285,7 @@
 	forceMove(owner)
 	STOP_PROCESSING(SSobj, src)
 	if(BP_IS_ROBOTIC(src))
-		SEND_SIGNAL(owner, COMSIG_HUMAN_ROBOTIC_MODIFICATION)
+		SEND_SIGNAL_OLD(owner, COMSIG_HUMAN_ROBOTIC_MODIFICATION)
 
 	var/datum/reagent/organic/blood/transplant_blood = locate(/datum/reagent/organic/blood) in reagents?.reagent_list
 	transplant_data = list()

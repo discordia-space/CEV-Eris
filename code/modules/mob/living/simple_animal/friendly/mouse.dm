@@ -244,7 +244,7 @@
 		if(ckey || prob(35))
 			squeak_loud(0)//deathgasp
 
-		addtimer(CALLBACK(src, .proc/dust), decompose_time)
+		addtimer(CALLBACK(src, PROC_REF(dust)), decompose_time)
 
 	..()
 
