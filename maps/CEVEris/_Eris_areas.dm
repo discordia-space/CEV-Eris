@@ -38,6 +38,9 @@
 	name = "Fueltank Storage"
 	icon_state = "erisblue"
 
+/area/eris/maintenance/sorter
+	name = "Trash Sorter"
+
 /area/eris/maintenance/section1deck1central
 	name = "First Section Deck 1 Fore Maintenance"
 	icon_state = "section1deck1central"
@@ -557,6 +560,11 @@
 /area/eris/neotheology/office
 	name = "\improper Chapel Office"
 	icon_state = "chapeloffice"
+	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_DARK
+
+/area/eris/neotheology/funeral
+	name = "\improper Funeral Chamber"
+	icon_state = "erisyellow"
 	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_DARK
 
 /area/eris/neotheology/chapelritualroom

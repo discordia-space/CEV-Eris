@@ -139,21 +139,20 @@
 	)
 
 /datum/craft_recipe/clothing/armorvest
-	name = "armor vest"
+	name = "Makeshift armor vest"
 	result = /obj/item/clothing/suit/armor/vest/handmade
 	steps = list(
-		list(/obj/item/clothing/suit/storage/hazardvest, 1, "time" = 30),
-		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
-		list(/obj/item/part/armor, 2),
+		list(/obj/item/clothing/under, 1),
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
 /datum/craft_recipe/clothing/armorvest/fullbody
-	name = "fullbody armor vest"
+	name = "Makeshift fullbody armor vest"
 	result = /obj/item/clothing/suit/armor/vest/handmade/full
 	steps = list(
-		list(/obj/item/clothing/suit/armor/vest/handmade, 1, "time" = 30),
-		list(/obj/item/part/armor, 4),
+		list(/obj/item/clothing/suit/armor/vest/handmade, 1),
+		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
@@ -196,7 +195,6 @@
 		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTEEL),
 		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTIC),
 		list(QUALITY_ADHESIVE, 15, 15),
-		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS),
 		list(QUALITY_WELDING, 10, 20),
 	)
 
@@ -208,7 +206,6 @@
 		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
 		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC),
 		list(QUALITY_ADHESIVE, 15, 15),
-		list(CRAFT_MATERIAL, 10, MATERIAL_GLASS),
 		list(QUALITY_WELDING, 10, 20),
 	)
 

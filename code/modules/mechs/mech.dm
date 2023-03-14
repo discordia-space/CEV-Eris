@@ -170,35 +170,29 @@
 /mob/living/exosuit/IsAdvancedToolUser()
 	return TRUE
 
-/mob/living/exosuit/examine(var/mob/user)
+/mob/living/exosuit/examine(mob/user)
 	. = ..()
-	if(.)
-		if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin))
-			to_chat(user, "It is being piloted by [english_list(pilots, nothing_text = "nobody")].")
-		if(hardpoints.len)
-			to_chat(user, "It has the following hardpoints:")
-			for(var/hardpoint in hardpoints)
-				var/obj/item/I = hardpoints[hardpoint]
-				to_chat(user, "- [hardpoint]: [istype(I) ? "[I]" : "nothing"].")
-		else
-			to_chat(user, "It has no visible hardpoints.")
+	if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin))
+		to_chat(user, "It is being piloted by [english_list(pilots, nothing_text = "nobody")].")
+	if(body && LAZYLEN(body.pilot_positions))
+		to_chat(user, "It can seat [body.pilot_positions.len] pilot\s total.")
+	if(hardpoints.len)
+		to_chat(user, "It has the following hardpoints:")
+		for(var/hardpoint in hardpoints)
+			var/obj/item/I = hardpoints[hardpoint]
+			to_chat(user, "- [hardpoint]: [istype(I) ? "[I]" : "nothing"].")
+	else
+		to_chat(user, "It has no visible hardpoints.")
 
-		for(var/obj/item/mech_component/thing in list(arms, legs, head, body))
-			if(!thing)
-				continue
-			var/damage_string = "destroyed"
-			switch(thing.damage_state)
-				if(MECH_COMPONENT_DAMAGE_UNDAMAGED)
-					damage_string = "undamaged"
-				if(MECH_COMPONENT_DAMAGE_DAMAGED)
-					damage_string = "damaged"
-				if(MECH_COMPONENT_DAMAGE_DAMAGED_BAD)
-					damage_string = "badly damaged"
-				if(MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
-					damage_string = "almost destroyed"
-			to_chat(user, "Its [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string].")
+	for(var/obj/item/mech_component/thing in list(arms, legs, head, body))
+		if(!thing)
+			continue
 
-		material ? to_chat(user, "Its frame is reinforced with [material].") : null
+		var/damage_string = thing.get_damage_string()
+		to_chat(user, "Its [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string].")
+
+	to_chat(user, "It menaces with reinforcements of [material].")
+
 
 /mob/living/exosuit/return_air()
 	if(src && loc)

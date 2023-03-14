@@ -5,7 +5,7 @@
 //There are six various machines where multistructure datum is just a holder, each part proccess almost independently
 
 #define CLEANING_TIME 2 SECONDS
-#define CLONE_DAMAGE_PER_TICK 5
+#define BIOREACTOR_DAMAGE_PER_TICK 20
 
 
 /datum/multistructure/bioreactor
