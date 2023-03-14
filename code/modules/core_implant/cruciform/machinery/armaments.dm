@@ -123,19 +123,20 @@
 			desc = text
 
 
-/datum/armament/item/disk/cells
+//Roundstart disks start at minimal cost, implies they were ordered before
+/datum/armament/item/disk/utilities
 	name = "Utilities disk"
 	cost = 50
 	min_cost = 50
 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter
 
-/datum/armament/item/disk/cells
+/datum/armament/item/disk/clothes
 	name = "Bio-Fabric disk"
 	cost = 50
 	min_cost = 50
 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter_clothes
 
-/datum/armament/item/disk/cells
+/datum/armament/item/disk/hastatii
 	name = "Hastatii disk"
 	cost = 50
 	min_cost = 50
