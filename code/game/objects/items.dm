@@ -28,7 +28,7 @@
 	var/forced_broad_strike = FALSE //If a weapon is forced to always perform broad strikes.
 	var/extended_reach = FALSE		//Wielded spears can hit alive things one tile further.
 	var/ready = FALSE				//All weapons that are ITEM_SIZE_BULKY or bigger have double tact, meaning you have to click twice.
-	var/no_double_tact = FALSE		//for when you,  for some inconceivable reason, want a bulky item to not have double tact	
+	var/no_double_tact = FALSE		//for when you,  for some inconceivable reason, want a bulky item to not have double tact
 	var/push_attack = FALSE			//Hammers and spears can push the victim away on hit when you aim groin.
 	//Why are we using vars instead of defines or anything else?
 	//Because we need them to be shown in the tool info UI.
@@ -63,8 +63,6 @@
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 	var/slowdown_hold // How much holding an item slows you down.
-	var/stiffness = 0 // How much recoil is caused by moving
-	var/obscuration = 0 // How much firearm accuracy is decreased
 
 	var/datum/armor/armor // Ref to the armor datum
 	var/list/allowed = list() //suit storage stuff.
@@ -508,12 +506,12 @@ var/global/list/items_blood_overlay_by_type = list()
 							visible_message(SPAN_WARNING("[grabbed] slams into the wall!"))
 							grabbed.damage_through_armor(15, BRUTE, BP_CHEST, ARMOR_MELEE)
 							break
-						
+
 						for(var/obj/structure/S in get_step(grabbed, whip_dir))
 							if(istype(S, /obj/structure/window))
 								visible_message(SPAN_WARNING("[grabbed] slams into \the [S]!"))
 								grabbed.damage_through_armor(25, BRUTE, BP_CHEST, ARMOR_MELEE)
-								
+
 								moves = 3
 								break
 							if(istype(S, /obj/structure/railing))

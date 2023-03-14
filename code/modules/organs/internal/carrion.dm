@@ -30,7 +30,7 @@
 	return TRUE
 
 /obj/item/organ/internal/carrion
-	max_damage = 150 //resilient
+	max_damage = 15 //resilient
 	scanner_hidden = TRUE //sneaky
 
 /obj/item/organ/internal/carrion/chemvessel
@@ -363,7 +363,7 @@
 			visible_message(SPAN_DANGER("[owner] bites into [H.name]'s [E.name] and starts tearing it apart!"))
 			if(do_after(owner, 5 SECONDS, H))
 				tearing = FALSE
-				E.take_damage(30)
+				E.take_damage(30, BRUTE)
 				var/blacklist = list()
 				for (var/obj/item/organ/internal/to_blacklist in E.internal_organs)
 					if (istype(to_blacklist, /obj/item/organ/internal/bone/))
@@ -547,10 +547,8 @@
 	set category = "Carrion"
 	set name = "Blood Purge (25)"
 
-
-	if (owner.check_ability(25))
+	if(owner.check_ability(25))
 		to_chat(owner, SPAN_NOTICE("You cleanse your blood of all chemicals and poisons."))
-		owner.adjustToxLoss(-100)
 		owner.radiation = 0
 		owner.reagents.update_total()
 		owner.reagents.trans_to_turf(owner.loc, owner.reagents.total_volume)

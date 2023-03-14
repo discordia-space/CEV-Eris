@@ -243,6 +243,8 @@
 #define SPAN_DANGER(text)  "<span class='danger'>[text]</span>"
 #define span(class, text) ("<span class='[class]'>[text]</span>")
 
+#define FONT_COLORED(color, text) "<font color='[color]'>[text]</font>"
+
 #define text_starts_with(text, start) (copytext(text, 1, length(start) + 1) == start)
 
 #define attack_animation(A) if(istype(A)) A.do_attack_animation(src)

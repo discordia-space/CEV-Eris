@@ -117,7 +117,8 @@
 
 	update_color()
 
-	SEND_SIGNAL_OLD(src, COMSIG_APPVAL, src)
+	SEND_SIGNAL(src, COMSIG_IWOUND_EFFECTS)
+	SEND_SIGNAL(src, COMSIG_APPVAL)
 
 	update_name()
 	update_icon()

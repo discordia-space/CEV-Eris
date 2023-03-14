@@ -201,3 +201,73 @@
 
 	if(storage_compartment)
 		return storage_compartment.MouseDrop(over)
+
+/obj/item/mech_component/chassis/cheap
+	name = "open exosuit chassis"
+	hatch_descriptor = "roll cage"
+	pilot_coverage = 40
+	exosuit_desc_string = "an industrial roll cage"
+	desc = "An industrial roll cage. Absolutely useless in hazardous environments, as it isn't even sealed."
+	max_damage = 150
+	power_use = 0
+	climb_time = 7 // Quickest entry because it's unsealed
+
+/obj/item/mech_component/chassis/cheap/Initialize()
+	pilot_positions = list(
+		list(
+			"[NORTH]" = list("x" = 8,  "y" = 8),
+			"[SOUTH]" = list("x" = 8,  "y" = 8),
+			"[EAST]"  = list("x" = 8,  "y" = 8),
+			"[WEST]"  = list("x" = 8,  "y" = 8)
+		),
+		list(
+			"[NORTH]" = list("x" = 8,  "y" = 16),
+			"[SOUTH]" = list("x" = 8,  "y" = 16),
+			"[EAST]"  = list("x" = 0,  "y" = 16),
+			"[WEST]"  = list("x" = 16, "y" = 16)
+		)
+	)
+	. = ..()
+
+/obj/item/mech_component/chassis/light
+	name = "light exosuit chassis"
+	hatch_descriptor = "canopy"
+	desc = "This light cockpit combines ultralight materials with clear aluminum laminates to provide an optimized cockpit experience. Doesn't offer much protection, though."
+	pilot_coverage = 100
+	transparent_cabin =  TRUE
+	hide_pilot = TRUE //Sprite too small, legs clip through, so for now hide pilot
+	exosuit_desc_string = "an open and light chassis"
+	icon_state = "light_body"
+	max_damage = 75
+	power_use = 5
+	climb_time = 10 //gets a buff to climb_time, in exchange for being less beefy
+	has_hardpoints = list(HARDPOINT_BACK)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 5, MATERIAL_PLASTIC = 10)
+
+/obj/item/mech_component/chassis/combat
+	name = "sealed exosuit chassis"
+	hatch_descriptor = "canopy"
+	desc = "An advanced cockpit that utilises sophisticated fiber optic sensors to enable outside visibility without additional hardware."
+	pilot_coverage = 100
+	transparent_cabin = TRUE
+	hide_pilot = TRUE
+	exosuit_desc_string = "an armored chassis"
+	icon_state = "combat_body"
+	max_damage = 200
+	mech_health = 500 //It's not as beefy as the heavy, but it IS a combat chassis, so let's make it slightly beefier
+	power_use = 40
+	climb_time = 25 //standard values for now to encourage use over heavy
+	matter = list(MATERIAL_STEEL = 45, MATERIAL_PLASTEEL = 12, MATERIAL_GOLD = 4, MATERIAL_SILVER = 4)
+
+/obj/item/mech_component/chassis/heavy
+	name = "reinforced exosuit chassis"
+	hatch_descriptor = "hatch"
+	desc = "This heavy combat chassis is a veritable juggernaut, capable of protecting a pilot even in the most violent of conflicts. It's hell to climb in and out of, however."
+	pilot_coverage = 100
+	exosuit_desc_string = "a heavily armoured chassis"
+	icon_state = "heavy_body"
+	max_damage = 300
+	mech_health = 750
+	power_use = 50
+	climb_time = 35 //Takes longer to climb into, but is beefy as HELL.
+	matter = list(MATERIAL_STEEL = 50, MATERIAL_URANIUM = 20, MATERIAL_PLASTEEL = 20)

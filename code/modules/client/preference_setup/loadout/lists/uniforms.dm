@@ -210,6 +210,6 @@
 	path = /obj/item/clothing/under/germansuit
 
 /datum/gear/uniform/ntsec
-	display_name = "Nanotrasen security uniform"
-	path = /obj/item/clothing/under/ntsec
+	display_name = "old security uniform"
+	path = /obj/item/clothing/under/oldsec
 	allowed_roles = list(ASSISTANT_TITLE)

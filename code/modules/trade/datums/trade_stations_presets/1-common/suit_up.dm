@@ -51,7 +51,7 @@
 			/obj/item/clothing/head/ushanka,
 			/obj/item/clothing/head/witchwig,
 			/obj/item/clothing/head/xenos,
-			/obj/item/clothing/head/beret/ntsec,
+			/obj/item/clothing/head/beret/oldsec,
 			/obj/item/clothing/head/cowboy,
 			/obj/item/clothing/head/cowboy/white,
 			/obj/item/clothing/head/cowboy/black,
@@ -106,7 +106,7 @@
 			/obj/item/clothing/under/bride_white,
 			/obj/item/clothing/under/tuxedo,
 			/obj/item/clothing/under/wifebeater,
-			/obj/item/clothing/under/ntsec
+			/obj/item/clothing/under/oldsec
 		),
 		"Suits" = list(
 			/obj/item/clothing/suit/apron,

@@ -70,7 +70,7 @@
 
 		//Organs and blood
 		handle_organs()
-		process_internal_ograns()
+		process_internal_organs()
 		handle_blood()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 
@@ -250,15 +250,15 @@
 				// Effects of kelotane, bicaridine (minus percentage healing) and tricordrazine
 				adjustOxyLoss(-0.6)
 				heal_organ_damage(0.6, 0.6)
-				adjustToxLoss(-0.3)
-				add_chemical_effect(CE_BLOODCLOT, 0.15)
+				bloodstr.add_reagent("leukotriene", REM)		// Anti-tox 0.5
+				bloodstr.add_reagent("thrombopoietin", REM)		// Blood-clotting 0.25
 
 			else if(get_active_mutation(src, MUTATION_LESSER_HEALING))
 				// Effects of tricordrazine
 				adjustOxyLoss(-0.6)
 				heal_organ_damage(0.3, 0.3)
-				adjustToxLoss(-0.3)
-				add_chemical_effect(CE_BLOODCLOT, 0.1)
+				bloodstr.add_reagent("leukotriene", REM)		// Anti-tox 0.5
+				bloodstr.add_reagent("thrombopoietin", REM)		// Blood-clotting 0.25
 
 	radiation = CLAMP(radiation,0,100)
 
@@ -291,16 +291,17 @@
 				take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
 			if(prob(1))
 				to_chat(src, SPAN_WARNING("You feel strange!"))
-				adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
+				var/obj/item/organ/external/E = pick(organs)
+				E.mutate()
 				emote("gasp")
 
 		if(damage)
 			damage *= species.radiation_mod
-			adjustToxLoss(damage * RADIATION_SPEED_COEFFICIENT)
-			updatehealth()
 			if(organs.len)
 				var/obj/item/organ/external/O = pick(organs)
-				if(istype(O)) O.add_autopsy_data("Radiation Poisoning", damage)
+				O.take_damage(damage * RADIATION_SPEED_COEFFICIENT, TOX, silent = TRUE)
+				if(istype(O))
+					O.add_autopsy_data("Radiation Poisoning", damage)
 
 	/** breathing **/
 
@@ -456,8 +457,9 @@
 	// Too much poison in the air.
 
 	if(toxins_pp > safe_toxins_max)
-		var/ratio = (poison/safe_toxins_max) * 10
-		reagents.add_reagent("toxin", CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
+		var/ratio = CLAMP((poison/safe_toxins_max) * 10, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE)
+		var/obj/item/organ/internal/I = pick(internal_organs_by_efficiency[OP_LUNGS])
+		I.take_damage(4 * ratio, TOX)
 		breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
 		plasma_alert = 1
 	else
@@ -467,12 +469,11 @@
 	if(breath.gas["sleeping_agent"])
 		var/SA_pp = (breath.gas["sleeping_agent"] / breath.total_moles) * breath_pressure
 		if(SA_pp > SA_para_min)		// Enough to make us paralysed for a bit
-			Paralyse(3)	// 3 gives them one second to wake up and run away a bit!
+			reagents.add_reagent("sagent", 2)
 			if(SA_pp > SA_sleep_min)	// Enough to make us sleep as well
-				Sleeping(5)
+				reagents.add_reagent("sagent", 5)
 		else if(SA_pp > 0.15)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
-			if(prob(20))
-				emote(pick("giggle", "laugh"))
+			reagents.add_reagent("sagent", 1)
 
 		breath.adjust_gas("sleeping_agent", -breath.gas["sleeping_agent"]/6, update = 0) //update after
 
@@ -758,9 +759,12 @@
 		chem_effects.Cut()
 		analgesic = 0
 
-		if(touching) touching.metabolize()
-		if(ingested) ingested.metabolize()
-		if(bloodstr) bloodstr.metabolize()
+		if(touching)
+			touching.metabolize()
+		if(ingested)
+			ingested.metabolize()
+		if(bloodstr)
+			bloodstr.metabolize()
 		metabolism_effects.process()
 
 		if(CE_PAINKILLER in chem_effects)
@@ -775,9 +779,11 @@
 		for(var/obj/item/I in src)
 			if(I.contaminated)
 				total_plasmaloss += vsc.plc.CONTAMINATION_LOSS
-		if(!(status_flags & GODMODE)) adjustToxLoss(total_plasmaloss)
+		if(!(status_flags & GODMODE))
+			bloodstr.add_reagent("plasma", total_plasmaloss)
 
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 
 	if(species.light_dam)
 		var/light_amount = 0
@@ -821,7 +827,6 @@
 			if(stats.getPerk(PERK_UNFINISHED_DELIVERY) && prob(33)) //Unless you have this perk
 				heal_organ_damage(20, 20)
 				adjustOxyLoss(-100)
-				adjustToxLoss(-20)
 				AdjustSleeping(rand(20,30))
 				updatehealth()
 				stats.removePerk(PERK_UNFINISHED_DELIVERY)
@@ -899,10 +904,6 @@
 				Paralyse(5)
 
 		confused = max(0, confused - 1)
-
-		// If you're dirty, your gloves will become dirty, too.
-		if(gloves && germ_level > gloves.germ_level && prob(10))
-			gloves.germ_level += 1
 
 	return 1
 

@@ -36,7 +36,7 @@
 
 /datum/ritual/cruciform/base/soul_hunger/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C)
 	H.adjustNutrition(100)
-	H.adjustToxLoss(5)
+	H.adjustFireLoss(5)
 	set_personal_cooldown(H)
 	return TRUE
 

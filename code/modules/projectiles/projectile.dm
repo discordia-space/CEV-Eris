@@ -34,6 +34,7 @@
 	var/atom/original = null // the target clicked (not necessarily where the projectile is headed). Should probably be renamed to 'target' or something.
 	var/turf/starting = null // the projectile's starting turf
 	var/list/permutated = list() // we've passed through these atoms, don't try to hit them again
+	var/height // starts undefined, used for Zlevel shooting
 
 	var/p_x = 16
 	var/p_y = 16 // the pixel location of the tile that the player clicked. Default is the center
@@ -214,9 +215,8 @@
 	var/distance = get_dist(curloc, original)
 	check_hit_zone(distance, user_recoil)
 
-	spawn()
-		setup_trajectory(curloc, targloc, x_offset, y_offset, angle_offset) //plot the initial trajectory
-		Process()
+	setup_trajectory(curloc, targloc, x_offset, y_offset, angle_offset) //plot the initial trajectory
+	Process()
 
 	return FALSE
 
@@ -235,12 +235,18 @@
 		recoil = aimer.recoil
 		recoil -= projectile_accuracy
 
-		if(iscarbon(user))
-			var/mob/living/carbon/human/blanker = user
-			if(blanker.can_multiz_pb && (!isturf(target)))
-				loc = get_turf(blanker.client.eye)
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H.can_multiz_pb && (!isturf(target)))
+				loc = get_turf(H.client.eye)
 				if(!(loc.Adjacent(target)))
-					loc = get_turf(blanker)
+					loc = get_turf(H)
+			if(config.z_level_shooting && H.client.eye == H.shadow && !height) // Player is watching a higher zlevel
+				var/newTurf = get_turf(H.shadow)
+				if(!(locate(/obj/structure/catwalk) in newTurf)) // Can't shoot through catwalks
+					loc = newTurf
+					height = HEIGHT_HIGH // We are shooting from below, this protects resting players at the expense of windows
+					original = get_turf(original) // Aim at turfs instead of mobs, to ensure we don't hit players
 
 	firer = user
 	shot_from = launcher.name
@@ -316,6 +322,10 @@
 	miss_modifier = 0
 
 	var/result = PROJECTILE_CONTINUE
+
+	if(config.z_level_shooting && height == HEIGHT_HIGH)
+		if(target_mob.resting == TRUE || target_mob.stat == TRUE)
+			return FALSE // Bullet flies overhead
 
 	if(target_mob != original) // If mob was not clicked on / is not an NPC's target, checks if the mob is concealed by cover
 		var/turf/cover_loc = get_step(get_turf(target_mob), get_dir(get_turf(target_mob), starting))
@@ -430,6 +440,7 @@
 			trajectory.loc_z = loc.z
 			bumped = FALSE
 			return FALSE
+
 	if(ismob(A))
 		var/mob/M = A
 		if(isliving(A))
