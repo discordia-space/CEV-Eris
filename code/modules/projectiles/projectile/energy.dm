@@ -65,7 +65,7 @@
 	icon_state = "declone"
 	nodamage = 1
 	damage_types = list(CLONE = 5)
-	irradiate = 100
+	irradiate = 10
 
 
 /obj/item/projectile/energy/dart
