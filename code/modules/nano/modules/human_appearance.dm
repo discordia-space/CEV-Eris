@@ -20,6 +20,9 @@
 	src.whitelist = species_whitelist
 	src.blacklist = species_blacklist
 
+/datum/nano_module/appearance_changer/Destroy()
+	owner = null
+	..()
 
 /datum/nano_module/appearance_changer/Topic(ref, href_list, var/datum/nano_topic_state/state = GLOB.default_state)
 	if(..())
