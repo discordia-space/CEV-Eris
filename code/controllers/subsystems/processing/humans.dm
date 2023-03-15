@@ -6,3 +6,8 @@ PROCESSING_SUBSYSTEM_DEF(humans)
 	wait = 2 SECONDS
 
 	process_proc = /mob/proc/Life
+
+	var/list/mob_list
+
+/datum/controller/subsystem/processing/humans/PreInit()
+	mob_list = processing // Simply setups a more recognizable var name than "processing"

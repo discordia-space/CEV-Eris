@@ -872,7 +872,7 @@ var/list/rank_prefix = list(\
 		return
 
 	var/list/mobs = list()
-	for(var/mob/living/carbon/C in SSmobs.mob_list)
+	for(var/mob/living/carbon/C in SSmobs.mob_list | SShumans.mob_list)
 		mobs += C
 
 	var/mob/target = input("Who do you want to project your mind to ?") as null|anything in mobs
@@ -908,7 +908,7 @@ var/list/rank_prefix = list(\
 
 	var/list/mobs = list()
 
-	for(var/mob/living/carbon/H in SSmobs.mob_list)
+	for(var/mob/living/carbon/H in SSmobs.mob_list | SShumans.mob_list)
 		if(H.ckey && H.stat == CONSCIOUS)
 			mobs += H
 
