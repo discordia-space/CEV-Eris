@@ -164,7 +164,7 @@
 		if(istype(patchnote.organ, /obj/item/organ/internal))
 			var/obj/item/organ/internal/I = patchnote.organ
 			to_chat(patient, SPAN_NOTICE("Treating internal wounds in the patient's [I.name]."))
-			SEND_SIGNAL(I, COMSIG_IWOUND_TREAT, TRUE, TRUE)
+			SEND_SIGNAL_OLD(I, COMSIG_IWOUND_TREAT, TRUE, TRUE)
 			patchnote.surgery_operations &= ~AUTODOC_INTERNAL_WOUNDS
 
 /datum/autodoc/Process()
