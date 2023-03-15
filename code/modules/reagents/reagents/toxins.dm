@@ -21,7 +21,7 @@
 		if(sanityloss && ishuman(M))
 			var/mob/living/carbon/human/H = M
 			H.sanity.onToxin(src, multi)
-		M.add_chemical_effect(CE_TOXIN, multi * strength)
+		M.add_chemical_effect(CE_TOXIN, strength)
 
 /datum/reagent/toxin/overdose(mob/living/carbon/M, alien)
 	if(strength)
