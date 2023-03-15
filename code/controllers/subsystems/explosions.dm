@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(explosions)
 	var/turf_key = null
 	for(var/explosion_handler/explodey as anything in current_run)
 		var/z = 0
-		while(z < 3)
+		while(z < 2)
 			z++
 			while(length(explodey.current_turf_queue))
 				turfs_processed++
