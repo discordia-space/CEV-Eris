@@ -10427,10 +10427,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/disposal)
 "azt" = (
-/obj/machinery/door/airlock/glass{
-	name = "Hydroponics";
-	req_access = list(35)
-	},
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -10446,6 +10442,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/crew_quarters/hydroponics)
 "azu" = (
@@ -33253,8 +33250,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "bBf" = (
-/obj/structure/table/standard,
-/obj/item/tool/multitool,
+/obj/machinery/power/nt_obelisk,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/biogenerator)
 "bBg" = (
@@ -101711,6 +101707,14 @@
 	},
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
+"gBx" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/standard,
+/obj/item/tool/multitool,
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/neotheology/biogenerator)
 "gBK" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -108711,6 +108715,10 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/sorter)
+"xbD" = (
+/obj/machinery/power/nt_obelisk,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/hydroponics)
 "xdz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -124442,7 +124450,7 @@ alg
 ceU
 cbR
 bBf
-bpo
+gBx
 cas
 cxv
 cbt
@@ -125457,7 +125465,7 @@ azn
 cCh
 dAg
 aCn
-aSf
+xbD
 bpV
 bPA
 bPA
