@@ -111,7 +111,7 @@
 		if(severity == spread_threshold)
 			var/list/internal_organs_sans_parent = H.internal_organs.Copy() - O
 			var/obj/item/organ/next_organ = pick(internal_organs_sans_parent)
-			SEND_SIGNAL(next_organ, COMSIG_IORGAN_ADD_WOUND, type)
+			SEND_SIGNAL_OLD(next_organ, COMSIG_IORGAN_ADD_WOUND, type)
 
 	// Deal damage - halloss is handled in shock.dm
 	if(psy_damage)
@@ -143,7 +143,7 @@
 		characteristic_flag &= ~(IWOUND_PROGRESS|IWOUND_PROGRESS_DEATH)	// Lets us remove the wound from processing
 		if(next_wound && ispath(next_wound, /datum/component))
 			var/chosen_wound_type = pick(subtypesof(next_wound))
-			SEND_SIGNAL(parent, COMSIG_IORGAN_ADD_WOUND, chosen_wound_type)
+			SEND_SIGNAL_OLD(parent, COMSIG_IORGAN_ADD_WOUND, chosen_wound_type)
 
 	SEND_SIGNAL(parent, COMSIG_IORGAN_REFRESH_SELF)
 
@@ -195,8 +195,8 @@
 			characteristic_flag |= IWOUND_PROGRESS
 	else
 		if(!used_autodoc && scar && ispath(scar, /datum/component))
-			SEND_SIGNAL(parent, COMSIG_IORGAN_ADD_WOUND, pick(subtypesof(scar)))
-		SEND_SIGNAL(parent, COMSIG_IORGAN_REMOVE_WOUND, src)
+			SEND_SIGNAL_OLD(parent, COMSIG_IORGAN_ADD_WOUND, pick(subtypesof(scar)))
+		SEND_SIGNAL_OLD(parent, COMSIG_IORGAN_REMOVE_WOUND, src)
 
 /datum/component/internal_wound/proc/apply_effects()
 	var/obj/item/organ/internal/O = parent

@@ -26,9 +26,9 @@
 	initialize_organ_efficiencies()
 	initialize_owner_verbs()
 	update_icon()
-	RegisterSignal(src, COMSIG_IORGAN_ADD_WOUND, .proc/add_wound)
-	RegisterSignal(src, COMSIG_IORGAN_REMOVE_WOUND, .proc/remove_wound)
-	RegisterSignal(src, COMSIG_IORGAN_REFRESH_SELF, .proc/refresh_upgrades)
+	RegisterSignal(src, COMSIG_IORGAN_ADD_WOUND, PROC_REF(add_wound))
+	RegisterSignal(src, COMSIG_IORGAN_REMOVE_WOUND, PROC_REF(remove_wound))
+	RegisterSignal(src, COMSIG_IORGAN_REFRESH_SELF, PROC_REF(refresh_upgrades))
 
 /obj/item/organ/internal/Process()
 	refresh_damage()	// Death check is in the parent proc
@@ -70,9 +70,9 @@
 /obj/item/organ/internal/replaced(obj/item/organ/external/affected)
 	..()
 	parent.internal_organs |= src
-	RegisterSignal(parent, COMSIG_IORGAN_WOUND_COUNT, .proc/wound_count, TRUE)
-	RegisterSignal(parent, COMSIG_IORGAN_REFRESH_PARENT, .proc/refresh_organ_stats, TRUE)
-	RegisterSignal(parent, COMSIG_IORGAN_APPLY, .proc/apply_modifiers, TRUE)
+	RegisterSignal(parent, COMSIG_IORGAN_WOUND_COUNT, PROC_REF(wound_count), TRUE)
+	RegisterSignal(parent, COMSIG_IORGAN_REFRESH_PARENT, PROC_REF(refresh_organ_stats), TRUE)
+	RegisterSignal(parent, COMSIG_IORGAN_APPLY, PROC_REF(apply_modifiers), TRUE)
 	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_ADD)
 
 /obj/item/organ/internal/replaced_mob(mob/living/carbon/human/target)
