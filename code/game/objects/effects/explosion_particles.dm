@@ -44,7 +44,7 @@
 
 /obj/effect/explosion/New()
 	..()
-	addtimer(CALLBACK(src, /proc/qdel, src), 1 SECOND)
+	addtimer(CALLBACK(GLOBAL_PROC, /proc/qdel, src), 1 SECOND)
 	//spawn (10)
 	//	qdel(src)
 	return
@@ -71,10 +71,10 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "fire_trails"
 
-/*
-/obj/effect/effect/explosion_fire/New()
+
+/obj/effect/explosion_fire/New()
 	..()
-	addtimer(CALLBACK(src, /proc/qdel, src), 3 SECOND)
-	*/
+	addtimer(CALLBACK(GLOBAL_PROC, /proc/qdel, src), 0.5 SECOND)
+
 
 
