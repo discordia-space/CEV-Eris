@@ -10,7 +10,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 	far_dist += heavy_impact_range * 5
 	far_dist += devastation_range * 20
 	var/frequency = get_rand_frequency()
-	//new /obj/effect/explosion(epicenter)
+	new /obj/effect/explosion(epicenter)
 	SSexplosions.start_explosion(epicenter, explosion_power, explosion_falloff)
 	for(var/mob/M in GLOB.player_list)
 		// Double check for client

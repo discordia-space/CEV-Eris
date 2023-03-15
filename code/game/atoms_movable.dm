@@ -151,6 +151,8 @@
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower)
 	if(!target || range < 1 || speed < 1)
 		return FALSE
+	if(target.allow_spin && src.allow_spin)
+		SpinAnimation(5,1)
 	src.throwing = TRUE
 	src.thrower = thrower
 	throw_source = get_turf(thrower)

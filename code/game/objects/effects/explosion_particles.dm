@@ -44,8 +44,9 @@
 
 /obj/effect/explosion/New()
 	..()
-	spawn (10)
-		qdel(src)
+	addtimer(CALLBACK(src, /proc/qdel, src), 1 SECOND)
+	//spawn (10)
+	//	qdel(src)
 	return
 
 /datum/effect/system/explosion
@@ -64,14 +65,16 @@
 		var/datum/effect/effect/system/smoke_spread/S = new/datum/effect/effect/system/smoke_spread()
 		S.set_up(5,0,location,null)
 		S.start()
-/*
+
 /obj/effect/explosion_fire
 	name = "Shockwave"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "fire_trails"
 
+/*
 /obj/effect/effect/explosion_fire/New()
 	..()
-	addtimer(CALLBACK(src, /proc/qdel), 3 SECOND)
-*/
+	addtimer(CALLBACK(src, /proc/qdel, src), 3 SECOND)
+	*/
+
 

@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(explosions)
 	var/list/current_run = list()
 	var/list/throwing_queue = list()
 	var/list/available_hash_lists
-	//var/obj/effect/explosion_fire
+	var/obj/effect/explosion_fire
 
 /datum/controller/subsystem/explosions/Initialize(timeoftheworld)
 	// Each hashed list is extremly huge , as it stands today each one would be
@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(explosions)
 	available_hash_lists = new /list(SPARE_HASH_LISTS)
 	for(var/i = 1,i <= SPARE_HASH_LISTS,i++)
 		available_hash_lists[i] = new /list(HASH_MODULO)
-	//explosion_fire = new /obj/effect/explosion_fire(NULLSPACE)
+	explosion_fire = new /obj/effect/explosion_fire(NULLSPACE)
 	return ..()
 
 
@@ -39,8 +39,8 @@ SUBSYSTEM_DEF(explosions)
 			target_power = explodey.hashed_power[turf_key]
 			explodey.current_turf_queue -= target
 			explodey.hashed_visited[turf_key] = TRUE
-			//target.vis_contents += explosion_fire
-			//explodey.remove_effects += target
+			target.vis_contents += explosion_fire
+			explodey.remove_effects += target
 			target_power -= target.explosion_act(target_power)
 			if(target_power < 10)
 				continue
@@ -62,6 +62,9 @@ SUBSYSTEM_DEF(explosions)
 		//explodey.remove_effects = list()
 		explodey.iterations++
 		if(!length(explodey.turf_queue))
+			for(var/turf/remove_visuals_from as anything in explodey.remove_effects)
+				remove_visuals_from.vis_contents -= explosion_fire
+
 			explode_queue -= explodey
 			var/i = length(available_hash_lists) + 1
 			for(var/cleaner = 1; cleaner <= HASH_MODULO; cleaner++)
