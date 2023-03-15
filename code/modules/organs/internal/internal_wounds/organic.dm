@@ -218,7 +218,7 @@
 	treatments_chem = list(CE_OXYGENATED = 2, CE_BLOODRESTORE = 1)	// Dex+ treats, but it will come back if you don't get blood
 	severity = 0
 	severity_max = IORGAN_MAX_HEALTH
-	progression_threshold = 9	// Kills the organ in approx. 3 minutes
+	progression_threshold = IWOUND_1_MINUTE	// Kills small organs in 7 minutes, normal in 14
 
 /datum/component/internal_wound/organic/oxy/blood_loss
 	name = "blood loss"
