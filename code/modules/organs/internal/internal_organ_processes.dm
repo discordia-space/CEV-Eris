@@ -160,12 +160,12 @@
 			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
 	else if(blood_volume < blood_bad)
 		eye_blurry = max(eye_blurry,6)
-		adjustOxyLoss(6)
+		adjustOxyLoss(2)
 		if(prob(15))
 			to_chat(src, SPAN_WARNING("You feel very [pick("dizzy","woosey","faint")]"))
 	else if(blood_volume < blood_okay)
 		eye_blurry = max(eye_blurry,6)
-		adjustOxyLoss(4)
+		adjustOxyLoss(1.5)
 		if(prob(15))
 			Weaken(rand(1,3))
 			to_chat(src, SPAN_WARNING("You feel very [pick("dizzy","woosey","faint")]"))
@@ -173,7 +173,7 @@
 		if(prob(1))
 			to_chat(src, SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]"))
 		if(getOxyLoss() < 10)
-			adjustOxyLoss(2)
+			adjustOxyLoss(1)
 
 	// Blood loss or heart damage make you lose nutriments
 	if(blood_volume < blood_safe || heart_efficiency < BRUISED_2_EFFICIENCY)
@@ -211,7 +211,7 @@
 			to_chat(src, SPAN_WARNING("Your [heavy_spot] feels too heavy for your body"))
 
 	if(lung_efficiency < BROKEN_2_EFFICIENCY)
-		adjustOxyLoss(2)
+		adjustOxyLoss(1)
 
 /mob/living/carbon/human/proc/stomach_process()
 	var/stomach_efficiency = get_organ_efficiency(OP_STOMACH)
