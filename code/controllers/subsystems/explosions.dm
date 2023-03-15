@@ -1,4 +1,4 @@
-#define TURFS_PER_PROCESS_LIMIT 30
+#define TURFS_PER_PROCESS_LIMIT 999
 #define SPARE_HASH_LISTS 200
 #define HASH_MODULO (world.maxx + world.maxy*world.maxy)
 #define EXPLO_HASH(x,y) (round((x+y*world.maxy)%HASH_MODULO))
@@ -8,6 +8,7 @@ SUBSYSTEM_DEF(explosions)
 	wait = 1 // very small
 	priority = FIRE_PRIORITY_EXPLOSIONS
 	init_order = INIT_ORDER_EXPLOSIONS
+	flags = SS_KEEP_TIMING
 	var/list/explode_queue = list()
 	var/list/current_run = list()
 	var/list/throwing_queue = list()
@@ -30,57 +31,62 @@ SUBSYSTEM_DEF(explosions)
 	var/turfs_processed = 0
 	var/turf_key = null
 	for(var/explosion_handler/explodey as anything in current_run)
-		while(length(explodey.current_turf_queue))
-			turfs_processed++
-			var/turf/target = explodey.current_turf_queue[length(explodey.current_turf_queue)]
-			turf_key = EXPLO_HASH(target.x, target.y)
-			target_power = explodey.hashed_power[turf_key]
-			explodey.current_turf_queue -= target
-			explodey.hashed_visited[turf_key] = TRUE
-			new /obj/effect/explosion_fire(target)
-			target_power -= target.explosion_act(target_power)
-			if(target_power < 10)
-				continue
-			if(target_power - explodey.falloff > 10)
-				for(var/dir in list(NORTH,SOUTH,EAST,WEST))
-					var/turf/next = get_step(target,dir)
-					if(!next)
-						continue
-					var/temp_key = EXPLO_HASH(next.x, next.y)
-					if(explodey.hashed_visited[temp_key])
-						continue
-					explodey.turf_queue += next
-					explodey.hashed_power[temp_key] = target_power - explodey.falloff
-					explodey.hashed_visited[temp_key] = TRUE
-			if(MC_TICK_CHECK && turfs_processed > TURFS_PER_PROCESS_LIMIT)
-				return
-		//for(var/turf/remove_visuals_from as anything in explodey.remove_effects)
-		//	remove_visuals_from.vis_contents -= explosion_fire
-		//explodey.remove_effects = list()
-		explodey.iterations++
-		if(!length(explodey.turf_queue))
-
-			explode_queue -= explodey
-			var/i = length(available_hash_lists) + 1
-			for(var/cleaner = 1; cleaner <= HASH_MODULO; cleaner++)
-				explodey.hashed_visited[cleaner] = 0
-				explodey.hashed_power[cleaner] = 0
-			while(i > 1)
-				i--
-				if(available_hash_lists[i] != null)
+		var/z = 0
+		while(z < 3)
+			z++
+			while(length(explodey.current_turf_queue))
+				turfs_processed++
+				var/turf/target = explodey.current_turf_queue[length(explodey.current_turf_queue)]
+				turf_key = EXPLO_HASH(target.x, target.y)
+				target_power = explodey.hashed_power[turf_key]
+				explodey.current_turf_queue -= target
+				explodey.hashed_visited[turf_key] = TRUE
+				new /obj/effect/explosion_fire(target)
+				target_power -= target.explosion_act(target_power)
+				if(target_power < 10)
 					continue
-				if(explodey.hashed_visited != null)
-					available_hash_lists[i] = explodey.hashed_visited
-					explodey.hashed_visited = null
-				else if(explodey.hashed_power != null)
-					available_hash_lists[i] = explodey.hashed_power
-					explodey.hashed_power = null
-				else break
-			qdel(explodey)
-		explodey.current_turf_queue = explodey.turf_queue.Copy()
-		// Trash the list for a new one, with a pre-set size because we want to avoid resizing
-		explodey.turf_queue = list()
-		current_run -= explodey
+				if(target_power - explodey.falloff > 10)
+					for(var/dir in list(NORTH,SOUTH,EAST,WEST))
+						var/turf/next = get_step(target,dir)
+						if(!next)
+							continue
+						var/temp_key = EXPLO_HASH(next.x, next.y)
+						if(explodey.hashed_visited[temp_key])
+							continue
+						explodey.turf_queue += next
+						explodey.hashed_power[temp_key] = target_power - explodey.falloff
+						explodey.hashed_visited[temp_key] = TRUE
+				//if(MC_TICK_CHECK && turfs_processed > TURFS_PER_PROCESS_LIMIT)
+				//	return
+			//for(var/turf/remove_visuals_from as anything in explodey.remove_effects)
+			//	remove_visuals_from.vis_contents -= explosion_fire
+			//explodey.remove_effects = list()
+			explodey.iterations++
+			if(!length(explodey.turf_queue))
+
+				explode_queue -= explodey
+				var/i = length(available_hash_lists) + 1
+				for(var/cleaner = 1; cleaner <= HASH_MODULO; cleaner++)
+					explodey.hashed_visited[cleaner] = 0
+					explodey.hashed_power[cleaner] = 0
+				while(i > 1)
+					i--
+					if(available_hash_lists[i] != null)
+						continue
+					if(explodey.hashed_visited != null)
+						available_hash_lists[i] = explodey.hashed_visited
+						explodey.hashed_visited = null
+					else if(explodey.hashed_power != null)
+						available_hash_lists[i] = explodey.hashed_power
+						explodey.hashed_power = null
+					else break
+				qdel(explodey)
+				break
+
+			explodey.current_turf_queue = explodey.turf_queue.Copy()
+			// Trash the list for a new one, with a pre-set size because we want to avoid resizing
+			explodey.turf_queue = list()
+			current_run -= explodey
 	current_run = explode_queue.Copy()
 
 
