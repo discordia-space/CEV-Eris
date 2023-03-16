@@ -113,7 +113,6 @@
 	if(ishuman(M) && mode == 1)
 		var/mob/living/carbon/human/H = M
 		var/list/damaged = H.get_damaged_organs(1, 1)
-		dat += "<hr>"
 		dat += span("highlight", "Localized Damage:")
 		if(length(damaged) > 0)
 			for(var/obj/item/organ/external/org in damaged)
@@ -122,9 +121,9 @@
 				var/internal_wound_severity = org.severity_internal_wounds
 
 				if(internal_wound_severity > 0)
-					if(internal_wound_severity < 5)
+					if(internal_wound_severity < 6)
 						internal_wound_severity = "Light"
-					else if(internal_wound_severity < 8)
+					else if(internal_wound_severity < 10)
 						internal_wound_severity = "Moderate"
 					else
 						internal_wound_severity = "Severe"
@@ -141,8 +140,6 @@
 				internal_wound_severity ? "<font color='red'>\[[internal_wound_severity] Organ Wounds\]</font>" : "")
 		else
 			dat += span("highlight", "Limbs are OK.")
-		dat += "<hr>"
-
 	OX = M.getOxyLoss() > 50 ? 	 "<font color='#0080ff'><b>Severe oxygen deprivation detected</b></font>" 		: 	"Subject bloodstream oxygen level normal"
 	TX = tox_content > 12 ? 	 "<font color='green'><b>Dangerous amount of toxins detected</b></font>" 	: 	"Subject bloodstream toxin level minimal"
 	if(M.status_flags & FAKEDEATH)
