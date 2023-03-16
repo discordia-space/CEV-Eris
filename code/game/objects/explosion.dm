@@ -161,7 +161,7 @@ proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount 
 	var/list/target_turfs = getcircle(epicenter, range)
 	var/fragments_per_projectile = f_amount/target_turfs.len //This is rounded but only later
 	for(var/turf/T in target_turfs)
-		sleep(0)
+		//sleep(0)
 		var/obj/item/projectile/bullet/pellet/fragment/P = new f_type(epicenter)
 
 		if (!isnull(f_damage))

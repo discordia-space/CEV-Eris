@@ -152,7 +152,7 @@
 	if(reagents)
 		QDEL_NULL(reagents)
 
-	spawn()
+	//spawn()
 		update_openspace()
 	return ..()
 

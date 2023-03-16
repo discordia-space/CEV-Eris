@@ -471,10 +471,10 @@
 
 	do_animate("opening")
 	icon_state = "door0"
-	sleep(3)
+	//sleep(3)
 	src.density = FALSE
 	update_nearby_tiles()
-	sleep(7)
+	//sleep(7)
 	src.layer = open_layer
 	explosion_resistance = 0
 	update_icon()
@@ -492,10 +492,10 @@
 	operating = TRUE
 
 	do_animate("closing")
-	sleep(3)
+	//sleep(3)
 	src.density = TRUE
 	update_nearby_tiles()
-	sleep(7)
+	//sleep(7)
 	src.layer = closed_layer
 	explosion_resistance = initial(explosion_resistance)
 	update_icon()

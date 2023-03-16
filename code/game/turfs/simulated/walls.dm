@@ -326,8 +326,8 @@
 /turf/simulated/wall/proc/take_damage(dam)
 	if(dam)
 		damage = max(0, damage + dam)
-		update_damage()
-	return
+		return update_damage()
+	return 0
 
 /turf/simulated/wall/proc/update_damage()
 	var/cap = material.integrity
@@ -343,10 +343,17 @@
 			dismantle_wall(no_product = TRUE)
 		else
 			dismantle_wall()
-	else
-		update_icon()
+		return leftover
+	update_icon()
+	return 0
 
-	return
+/turf/simulated/wall/explosion_act(target_power)
+	var/leftover = take_damage(target_power)
+	// All damage has been blocked
+	if(!leftover)
+		return target_power
+	..(leftover)
+	return target_power - leftover
 
 /turf/simulated/wall/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)//Doesn't fucking work because walls don't interact with air :(
 	burn(exposed_temperature)
@@ -383,6 +390,7 @@
 
 	ChangeTurf(/turf/simulated/floor/plating)
 
+/*
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)
 		if(1)
@@ -395,6 +403,7 @@
 			take_damage(rand(40, 100))
 		else
 	return
+*/
 
 
 

@@ -404,17 +404,20 @@ steam.start() -- spawns the effect
 	if(holder)
 		src.location = get_turf(holder)
 	for(i=0, i<src.number, i++)
-		spawn()
-			var/obj/effect/effect/smoke/smoke = new smoke_type(location)
-			var/direction
-			if(cardinals)
-				direction = pick(cardinal)
-			else
-				direction = pick(alldirs)
+		var/obj/effect/effect/smoke/smoke = new smoke_type(location)
+		var/direction
+		if(cardinals)
+			direction = pick(cardinal)
+		else
+			direction = pick(alldirs)
+		var/added_time = 1 SECOND
+		for(i=0, i<pick(0,1,1,1,2,2,2,3), i++)
+			addtimer(CALLBACK(src, .proc/move_smoke, smoke, direction), added_time)
+			added_time += 1 SECOND
 
-			for(i=0, i<pick(0,1,1,1,2,2,2,3), i++)
-				sleep(10)
-				step(smoke,direction)
+/datum/effect/effect/system/smoke_spread/proc/move_smoke(atom/movable/smoke, move_dir)
+	SIGNAL_HANDLER
+	step(smoke, move_dir)
 
 
 /datum/effect/effect/system/smoke_spread/bad

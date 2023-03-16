@@ -77,7 +77,6 @@
 	update_nearby_tiles()
 	src.update_icon()
 	src.set_opacity(0)
-	sleep(15)
 	src.layer = open_layer
 	src.operating = 0
 
@@ -93,7 +92,6 @@
 	update_nearby_tiles()
 	src.update_icon()
 	src.set_opacity(1)
-	sleep(15)
 	src.operating = 0
 
 // Proc: force_toggle()

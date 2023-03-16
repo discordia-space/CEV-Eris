@@ -1,4 +1,3 @@
-#define TURFS_PER_PROCESS_LIMIT 999
 #define SPARE_HASH_LISTS 200
 #define HASH_MODULO (world.maxx + world.maxy*world.maxy)
 #define EXPLO_HASH(x,y) (round((x+y*world.maxy)%HASH_MODULO))
@@ -32,8 +31,10 @@ SUBSYSTEM_DEF(explosions)
 	var/turf_key = null
 	for(var/explosion_handler/explodey as anything in current_run)
 		var/z = 0
+		// Go twice, so the stress on ZAS rebuilding is reduced.
 		while(z < 2)
 			z++
+			// Explosion processing itself.
 			while(length(explodey.current_turf_queue))
 				turfs_processed++
 				var/turf/target = explodey.current_turf_queue[length(explodey.current_turf_queue)]
@@ -56,12 +57,8 @@ SUBSYSTEM_DEF(explosions)
 						explodey.turf_queue += next
 						explodey.hashed_power[temp_key] = target_power - explodey.falloff
 						explodey.hashed_visited[temp_key] = TRUE
-				//if(MC_TICK_CHECK && turfs_processed > TURFS_PER_PROCESS_LIMIT)
-				//	return
-			//for(var/turf/remove_visuals_from as anything in explodey.remove_effects)
-			//	remove_visuals_from.vis_contents -= explosion_fire
-			//explodey.remove_effects = list()
 			explodey.iterations++
+			// Explosion is done , nothing else left to iterate , cleanup and etc.
 			if(!length(explodey.turf_queue))
 
 				explode_queue -= explodey
@@ -84,7 +81,6 @@ SUBSYSTEM_DEF(explosions)
 				break
 
 			explodey.current_turf_queue = explodey.turf_queue.Copy()
-			// Trash the list for a new one, with a pre-set size because we want to avoid resizing
 			explodey.turf_queue = list()
 			current_run -= explodey
 	current_run = explode_queue.Copy()
@@ -104,10 +100,7 @@ SUBSYSTEM_DEF(explosions)
 		if(thing.simulated && isobj(thing))
 			thing.ex_act(severity)
 	ex_act(severity)
-	if(density)
-		return 20
-	else
-		return 0
+	return 0
 
 explosion_handler
 	var/turf/epicenter
@@ -141,12 +134,12 @@ explosion_handler/New(turf/loc, power, falloff)
 			SSexplosions.available_hash_lists[i] = null
 		else break
 	if(!length(hashed_visited))
+		message_admins("Explosion created a visit list")
 		hashed_visited = new /list(HASH_MODULO)
 	if(!length(hashed_power))
+		message_admins("Explosion created a power list")
 		hashed_power = new /list(HASH_MODULO)
 	hashed_power[turf_key] = power
-	//message_admins("EXPLOSION HANDLER CREATED WITHOUT ANY AVAILABLE HASH LIST, CURRENT LIMIT IS [SPARE_HASH_LISTS], Doing a slow initialization. If this is frequent developers should be informed.")
-	//hashed_visited = /list(HASH_MODULO, null)
 
 /turf/proc/test_explosion()
 	var/power
@@ -154,107 +147,4 @@ explosion_handler/New(turf/loc, power, falloff)
 	power = input(usr, "Explo power", "Explodeee", 100) as num
 	falloff = input(usr,"Explo falloff", "Exploodee",20) as num
 	SSexplosions.start_explosion(src, power, falloff)
-
-/*
-/datum/explosion_handler/proc/Run()
-	var/target_power
-	var/list/new_turf_queue = list()
-	var/list/new_directions = list()
-	//var/center_angle
-	for(var/turf/target as anything in turf_queue)
-		target_power = turf_queue[target] - falloff
-		if(target_power < 10)
-			continue
-		visited[target] = world.time + 0.3 SECOND
-		target_power -= target.explosion_act(target_power)
-		if(target_power < 10)
-			continue
-		for(var/atom/movable/thing in target.contents)
-			if(thing.anchored)
-				continue
-			//throwing_queue[thing] += list(round(target_power/falloff), direction_list[target])
-		for(var/dir in list(NORTH,SOUTH,EAST,WEST))
-			var/turf/next = get_step(target,dir)
-			if(visited[next] > world.time )
-				continue
-			new_turf_queue[next] = target_power
-			new_directions[next] = get_dir(target, next)
-	turf_queue = new_turf_queue
-	direction_list = new_directions
-*/
-
-/*
-/datum/explosion_handler/proc/Run()
-	var/list/immediate_queue = list()
-	var/list/temporary_queue = list()
-	var/list/replacement_queue = list()
-	// Prep for first turf handling
-	var/turf/target = turf_queue[length(turf_queue)]
-	var/target_power = turf_queue[target] - falloff
-	var/center_to_turf_angle = Get_Angle(epicenter, target)
-	if(target_power > 10)
-		immediate_queue += get_step(target,angle2dir(center_to_turf_angle - 90))
-		immediate_queue += get_step(target,angle2dir(center_to_turf_angle))
-		immediate_queue += get_step(target,angle2dir(center_to_turf_angle + 90))
-	// Actual handling of all turfs except last one
-	for(var/i = 1; i < length(turf_queue); i++)
-		target = turf_queue[i]
-		// retrieve power using the turf ref!
-		target_power = turf_queue[target] - falloff
-		// todo - add to a separate queue that gets cleared on each iteration to check for implosion
-		if(target_power < 10)
-			continue
-		target_power -= target.explosion_act(target_power)
-		if(target.density)
-			target_power -= 50
-		if(target_power < 10)
-			continue
-		for(var/atom/movable/moving_stuff in target)
-			SSexplosions.throwing_queue[moving_stuff] = get_turf_away_from_target_simple(target, epicenter, min(power / 25, 1))
-		center_to_turf_angle = Get_Angle(epicenter, target)
-		//message_admins("[angle2dir(center_to_turf_angle - 90)] | [angle2dir(center_to_turf_angle)] | [angle2dir(center_to_turf_angle + 90)]")
-		temporary_queue = list()
-		temporary_queue += get_step(target,angle2dir(center_to_turf_angle - 90))
-		temporary_queue += get_step(target,angle2dir(center_to_turf_angle))
-		temporary_queue += get_step(target,angle2dir(center_to_turf_angle + 90))
-		temporary_queue -= temporary_queue & immediate_queue
-		immediate_queue = temporary_queue
-		for(var/turf_ref in temporary_queue)
-			replacement_queue[turf_ref] = target_power
-		if(target.color == COLOR_RED)
-			target.color = COLOR_BLUE
-		else if(target.color == COLOR_AMBER)
-			target.color = COLOR_RED
-		else
-			target.color = COLOR_AMBER
-	// Special handling for last one , since it "loops" around , or would in  worst case scenario
-	target = turf_queue[1]
-	target_power = turf_queue[target] - falloff
-	if(target_power > 10)
-		center_to_turf_angle = Get_Angle(epicenter, target)
-		immediate_queue += get_step(target,angle2dir(center_to_turf_angle - 90))
-		immediate_queue += get_step(target,angle2dir(center_to_turf_angle))
-		immediate_queue += get_step(target,angle2dir(center_to_turf_angle + 90))
-	target = turf_queue[length(turf_queue)]
-	target_power = turf_queue[target] - falloff
-	target_power -= target.explosion_act(target_power)
-	if(target_power > 10)
-		center_to_turf_angle = Get_Angle(epicenter, target)
-		temporary_queue = list()
-		temporary_queue += get_step(target,angle2dir(center_to_turf_angle - 90))
-		temporary_queue += get_step(target,angle2dir(center_to_turf_angle))
-		temporary_queue += get_step(target,angle2dir(center_to_turf_angle + 90))
-		temporary_queue -= temporary_queue & immediate_queue
-		for(var/turf_ref in temporary_queue)
-			replacement_queue[turf_ref] = target_power
-		if(target.color == COLOR_RED)
-			target.color = COLOR_BLUE
-		else if(target.color == COLOR_AMBER)
-			target.color = COLOR_RED
-		else
-			target.color = COLOR_AMBER
-
-	// replace the queue with the new list
-	turf_queue = replacement_queue
-*/
 

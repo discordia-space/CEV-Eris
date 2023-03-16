@@ -65,14 +65,14 @@
 		if(istype(bot))
 			if(density && src.check_access(bot.botcard))
 				open()
-				sleep(50)
+				//sleep(50)
 				close()
 		else if(istype(AM, /mob/living/exosuit))
 			var/mob/living/exosuit/exosuit = AM
 			if(density)
 				if(exosuit.pilots.len && allowed(exosuit.pilots[1]))
 					open()
-					sleep(50)
+					//sleep(50)
 					close()
 		return
 	var/mob/M = AM // we've returned by here if M is not a mob
@@ -80,10 +80,12 @@
 		return
 	if (src.density && (!issmall(M) || ishuman(M)) && src.allowed(AM))
 		open()
+		/*
 		if(src.check_access(null))
 			sleep(50)
 		else //secure doors close faster
 			sleep(20)
+		*/
 		close()
 	return
 
@@ -112,7 +114,7 @@
 	flick(text("[]opening", src.base_state), src)
 	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
 	src.icon_state = text("[]open", src.base_state)
-	sleep(10)
+	//sleep(10)
 
 	explosion_resistance = 0
 	src.density = FALSE
@@ -137,7 +139,7 @@
 //		SetOpacity(1)	//TODO: why is this here? Opaque windoors? ~Carn
 	update_nearby_tiles()
 
-	sleep(10)
+	//sleep(10)
 
 	src.operating = 0
 	return 1
