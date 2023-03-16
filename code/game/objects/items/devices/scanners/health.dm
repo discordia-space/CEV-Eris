@@ -116,8 +116,8 @@
 		dat += span("highlight", "Localized Damage:")
 		if(length(damaged) > 0)
 			for(var/obj/item/organ/external/org in damaged)
-				var/brute_health = org.max_health - org.brute_dam
-				var/burn_health = org.max_health - org.burn_dam
+				var/brute_health = org.max_damage - org.brute_dam
+				var/burn_health = org.max_damage - org.burn_dam
 				var/internal_wound_severity = org.severity_internal_wounds
 
 				if(internal_wound_severity > 0)
@@ -133,8 +133,8 @@
 				dat += text("<span class='highlight'>     [][]:  [] - [] - [] [] []</span>",
 				capitalize(org.name),
 				(BP_IS_ROBOTIC(org)) ? "(Cybernetic)" : "",
-				"<font color='red'>[brute_health ? brute_health : "0"] / [org.max_health]</font>",
-				"<font color='#FFA500'>[burn_health ? burn_health : "0"] / [org.max_health]</font>",
+				"<font color='red'>[brute_health ? brute_health : "0"] / [org.max_damage]</font>",
+				"<font color='#FFA500'>[burn_health ? burn_health : "0"] / [org.max_damage]</font>",
 				(org.status & ORGAN_BLEEDING) ? "<font color='red'>\[Bleeding\]</font>" : "",
 				(org.status & ORGAN_BROKEN && !(org.status & ORGAN_SPLINTED)) ? "<font color='red'>\[Broken\]</font>" : "",
 				internal_wound_severity ? "<font color='red'>\[[internal_wound_severity] Organ Wounds\]</font>" : "")

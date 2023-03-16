@@ -982,7 +982,7 @@
 		var/image/holder = hud_list[HEALTH_HUD]
 		if(stat == DEAD)
 			holder.icon_state = "hudhealth-100" 	// X_X
-		else	
+		else
 			var/organ_health
 			var/organ_damage
 			var/limb_health
@@ -991,7 +991,7 @@
 			for(var/obj/item/organ/external/E in organs)
 				organ_health += E.total_internal_health
 				organ_damage += E.severity_internal_wounds
-				limb_health += E.max_health
+				limb_health += E.max_damage
 				limb_damage += max(E.brute_dam, E.burn_dam)
 
 			var/crit_health = (health / maxHealth) * 100
