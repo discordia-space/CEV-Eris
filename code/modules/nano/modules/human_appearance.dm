@@ -22,6 +22,7 @@
 
 /datum/nano_module/appearance_changer/Destroy()
 	owner = null
+	topic_manager = null	// The mob is the topic manager and should not be deleted
 	..()
 
 /datum/nano_module/appearance_changer/Topic(ref, href_list, var/datum/nano_topic_state/state = GLOB.default_state)
