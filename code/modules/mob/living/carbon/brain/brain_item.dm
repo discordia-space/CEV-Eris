@@ -46,6 +46,15 @@
 		health = 0
 		..(wound_damage, damage_type, wounding_multiplier, sharp, edge, silent)
 
+/// Brain blood oxygenation is handled via oxyloss
+/obj/item/organ/internal/brain/handle_blood()
+	if(BP_IS_ROBOTIC(src) || !owner)
+		return
+	if(!blood_req)
+		return
+
+	current_blood = max_blood_storage
+
 /obj/item/organ/internal/brain/proc/clear_hud()
 	if(brainmob && brainmob.client)
 		brainmob.client.screen.len = null //clear the hud
