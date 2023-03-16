@@ -41,7 +41,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		if(H.blocking)
 			H.stop_blocking()
 	if(ishuman(user) && !(user == A) && !(user.loc == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/simulated/wall) && A.loc != user)
-		swing_attack(src, user, params)
+		swing_attack(A, user, params)
 		if(istype(A, /turf/simulated/floor)) // shitty hack so you can attack floors while wielding a large weapon
 			return A.attackby(src, user, params)
 		return 1 //Swinging calls its own attacks
@@ -87,54 +87,41 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	var/turf/R
 	var/turf/C
 	var/turf/L
-	var/_x
-	var/_y
-	var/_z
 	if(A.x == 0 && A.y == 0 && A.z == 0) //Attacking equipped items results in them getting forwarded
-		_x = user.x
-		_y = user.y
-		_z = user.z
+		C = get_turf(user)
 	else
-		_x = A.x
-		_y = A.y
-		_z = A.z
+		C = get_turf(A)
 	var/_dir
-	if(_x == user.x && _y == user.y && _z == user.z)
+	if(C == get_turf(user)) //If turf matches with user, move the attack towards where the user is facing
 		_dir = user.dir
-		switch(_dir)
-			if(NORTH)
-				_y++
-			if(SOUTH)
-				_y--
-			if(EAST)
-				_x++
-			if(WEST)
-				_x--
+		C = get_step(C, _dir)
 	else
 		_dir = get_dir(user, A)
-	C = locate(_x, _y, _z)
 	switch(_dir)
-		if(NORTH, SOUTH)
-			R = locate((_x + 1), _y, _z)
-			L = locate((_x - 1), _y, _z)
+		if(NORTH)
+			R = get_step(C, EAST)
+			L = get_step(C, WEST)
+		if(SOUTH)
+			R = get_step(C, WEST)
+			L = get_step(C, EAST)
 		if(EAST)
-			R = locate(_x, (_y - 1), _z)
-			L = locate(_x, (_y + 1), _z)
-		if(NORTHEAST)
-			R = locate(_x, (_y - 1), _z)
-			L = locate((_x - 1), _y, _z)
-		if(SOUTHEAST)
-			R = locate((_x - 1), _y, _z)
-			L = locate(_x, (_y + 1), _z)
+			R = get_step(C, SOUTH)
+			L = get_step(C, NORTH)
 		if(WEST)
-			R = locate(_x, (_y + 1), _z)
-			L = locate(_x, (_y - 1), _z)
+			R = get_step(C, NORTH)
+			L = get_step(C, SOUTH)
+		if(NORTHEAST)
+			R = get_step(C, SOUTH)
+			L = get_step(C, WEST)
 		if(NORTHWEST)
-			R = locate((_x + 1), _y, _z)
-			L = locate(_x, (_y - 1), _z)
+			R = get_step(C, EAST)
+			L = get_step(C, SOUTH)
+		if(SOUTHEAST)
+			R = get_step(C, WEST)
+			L = get_step(C, NORTH)
 		if(SOUTHWEST)
-			R = locate(_x, (_y + 1), _z)
-			L = locate((_x + 1), _y, _z)
+			R = get_step(C, NORTH)
+			L = get_step(C, EAST)
 	var/obj/effect/effect/melee/swing/S = new(user.loc)
 	S.dir = _dir
 	user.visible_message(SPAN_DANGER("[user] swings \his [src]"))
@@ -142,15 +129,17 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	switch(holdinghand)
 		if(slot_l_hand)
 			flick("left_swing", S)
-			tileattack(user, L, modifier = 0.6)
-			tileattack(user, C, modifier = 0.8)
-			tileattack(user, R, modifier = 1)
+			var/dmg_modifier = 1
+			dmg_modifier -= tileattack(user, L, modifier = 1) ? 0.2 : 0
+			dmg_modifier -= tileattack(user, C, modifier = dmg_modifier) ? 0.2 : 0
+			tileattack(user, R, modifier = dmg_modifier)
 			QDEL_IN(S, 2 SECONDS)
 		if(slot_r_hand)
 			flick("right_swing", S)
-			tileattack(user, R, modifier = 0.6)
-			tileattack(user, C, modifier = 0.8)
-			tileattack(user, L, modifier = 1)
+			var/dmg_modifier = 1
+			dmg_modifier -= tileattack(user, R, modifier = 1) ? 0.2 : 0
+			dmg_modifier -= tileattack(user, C, modifier = dmg_modifier) ? 0.2 : 0
+			tileattack(user, L, modifier = dmg_modifier)
 			QDEL_IN(S, 2 SECONDS)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
@@ -213,38 +202,44 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	else
 		return I.attack(src, user, user.targeted_organ)
 
-//Area of effect attacks (swinging)
+//Area of effect attacks (swinging), return TRUE if we hit something
 /obj/item/proc/tileattack(mob/living/user, turf/targetarea, modifier = 1)
 	if(!wielded)
-		return
+		return FALSE
 	var/original_force = force
-	var/original_unwielded_force = force_wielded_multiplier ? force / force_wielded_multiplier : force / 1.3	
+	var/original_unwielded_force = force_wielded_multiplier ? force / force_wielded_multiplier : force / 1.3
 	force *= modifier
 	if(istype(targetarea, /turf/simulated/wall))
 		var/turf/simulated/W = targetarea
 		W.attackby(src, user)
 		force = original_force
-		return
+		return TRUE
+	var/successful_hit = FALSE
 	for(var/obj/S in targetarea)
 		if (S.density && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal) && !istype(S, /obj/structure/closet))
 			S.attackby(src, user)
+			successful_hit = TRUE
 	var/list/living_mobs = new/list()
 	var/list/dead_mobs = new/list()
 	for(var/mob/living/M in targetarea)
-		if(M.stat == DEAD)
-			dead_mobs.Add(M)
-		else
-			living_mobs.Add(M)
+		if(M != user)
+			if(M.stat == DEAD)
+				dead_mobs.Add(M)
+			else
+				living_mobs.Add(M)
 	var/target
 	if(living_mobs.len)
 		target = pick(living_mobs)
+		successful_hit = TRUE
 	else if(dead_mobs.len)
 		target = pick(dead_mobs)
+		successful_hit = TRUE
 	else
 		force = original_force
-		return
+		return successful_hit
 	attack(target, user, user.targeted_organ)
 	force = wielded ? original_force : round(original_unwielded_force, 1)
+	return successful_hit
 // modifying force after calling attack() here is a bad idea, as the force can be changed by means of embedding in a target, which leads to unwielding a weapon.
 //This code replicates the damage reduction caused by unwielding something, but it will likely cause problems elsewhere.
 
