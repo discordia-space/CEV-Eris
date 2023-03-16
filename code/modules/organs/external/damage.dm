@@ -34,8 +34,8 @@
 				transferred_damage_amount = amount
 
 		if(transferred_damage_amount > 0)
-			I.take_damage(transferred_damage_amount, damage_type, wounding_multiplier, sharp, edge, FALSE)
-			amount = round(max(amount / 2, amount - transferred_damage_amount), 0.1)
+			if(I.take_damage(transferred_damage_amount, damage_type, wounding_multiplier, sharp, edge, FALSE))
+				amount = round(max(amount / 2, amount - transferred_damage_amount), 0.1)
 
 	if(amount <= 0)
 		return FALSE

@@ -92,12 +92,12 @@
 
 /obj/item/organ/internal/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)	//Deals damage to the organ itself
 	if(!damage_type || status & ORGAN_DEAD)
-		return
+		return FALSE
 
 	var/wound_count = max(0, round((amount * wounding_multiplier) / 8))	// At base values, every 8 points of damage is 1 wound
 
 	if(!wound_count)
-		return
+		return FALSE
 
 	var/list/possible_wounds = get_possible_wounds(damage_type, sharp, edge)
 
@@ -110,6 +110,9 @@
 				break
 
 		owner.custom_pain("Something inside your [parent.name] hurts a lot.", 0)		// Let em know they're hurting
+
+		return TRUE
+	return FALSE
 
 /obj/item/organ/internal/proc/get_possible_wounds(damage_type, sharp, edge)
 	var/list/possible_wounds = list()
