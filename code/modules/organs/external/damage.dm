@@ -26,7 +26,8 @@
 			if(BRUTE)
 				transferred_damage_amount = can_transfer ? (amount - (max_damage - brute_dam) / armor_divisor) / 2 : 0
 			if(BURN)
-				transferred_damage_amount = can_transfer ? (amount - (max_damage - burn_dam) / armor_divisor) / 2 : 0
+				var/damage_divisor = can_transfer ? 2 : 4
+				transferred_damage_amount = (amount - (max_damage - burn_dam) / armor_divisor) / damage_divisor
 			if(HALLOSS)
 				transferred_damage_amount = 0
 			else
