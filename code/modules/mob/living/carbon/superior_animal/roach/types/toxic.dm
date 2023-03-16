@@ -48,7 +48,7 @@
 	icon = 'icons/obj/hivemind.dmi'
 	icon_state = "goo_proj"
 	damage_types = list(TOX = 15)
-	irradiate = 15
+	irradiate = 5
 	check_armour = ARMOR_BIO
 	step_delay = 2
 
