@@ -129,18 +129,21 @@
 	cost = 50
 	min_cost = 50
 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter
+	var/purchase_count = 1
 
 /datum/armament/item/disk/clothes
 	name = "Bio-Fabric disk"
 	cost = 50
 	min_cost = 50
 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter_clothes
+	var/purchase_count = 1
 
 /datum/armament/item/disk/hastatii
 	name = "Hastatii disk"
 	cost = 50
 	min_cost = 50
 	path = /obj/item/computer_hardware/hard_drive/portable/design/nt_melee
+	var/purchase_count = 1
 
 /datum/armament/item/disk/cells
 	name = "Power Cells disk"
