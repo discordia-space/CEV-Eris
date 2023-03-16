@@ -28,7 +28,7 @@
 	if(stats.getPerk(PERK_BALLS_OF_PLASTEEL))
 		hard_crit_threshold += 20
 
-	. = 0.9	* get_limb_damage() + 0.6 * oxyloss
+	. = get_limb_damage()
 
 	//Constant Pain above 80% of the crit treshold gets converted to dynamic pain (hallos)
 	//Damage from the last tick gets saved as last_tick_pain and compared to current pain, if the current pain is larger hallos gets applied again
