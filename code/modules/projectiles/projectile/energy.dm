@@ -64,7 +64,7 @@
 	name = "demolecularisor"
 	icon_state = "declone"
 	nodamage = 1
-	damage_types = list(CLONE = 5)
+	damage_types = list(CLONE = 12)
 	irradiate = 10
 
 
