@@ -1,0 +1,4 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - rscadd: Added Destroy() cleanup to /datum/nano_module/appearance_changer
