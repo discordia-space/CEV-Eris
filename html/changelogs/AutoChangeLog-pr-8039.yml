@@ -1,0 +1,9 @@
+author: TheLeopold
+delete-after: true
+changes:
+  - rscadd: Added obelisk to hydroponics and biogenerator
+  - tweak: replaced regular hydroponics door with NTdoor
+  - tweak: moved Krabin id lock button next to showcase
+  - bugfix: added missing ceiling to funeral ejector
+  - tweak: disposal bin in guild lobby now properly sends trash to sorter
+  - bugfix: added missing disposal pipe in maintenance above gym
