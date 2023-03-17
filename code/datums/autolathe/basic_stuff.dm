@@ -45,3 +45,7 @@
 /datum/design/autolathe/misc/cane
 	name = "cane"
 	build_path = /obj/item/tool/cane
+
+/datum/design/autolathe/misc/mirror
+	name = "handheld mirror"
+	build_path = /obj/item/mirror
