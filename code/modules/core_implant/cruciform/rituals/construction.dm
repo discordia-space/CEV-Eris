@@ -338,3 +338,13 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 		/obj/item/stack/material/gold = 3
 	)
 	build_time = 8 SECONDS
+
+/datum/nt_blueprint/machinery/door_public
+	name = "Public Door"
+	build_path = /obj/machinery/door/holy/public
+	materials = list(
+		/obj/item/stack/material/steel = 5,
+		/obj/item/stack/material/biomatter = 20,
+		/obj/item/stack/material/silver = 3
+	)
+	build_time = 8 SECONDS
