@@ -1,0 +1,4 @@
+author: Hyperio
+delete-after: true
+changes:
+  - rscadd: Block people from leaving/entering shuttles through their ceiling
