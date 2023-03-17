@@ -121,9 +121,9 @@
 				var/internal_wound_severity = org.severity_internal_wounds
 
 				if(internal_wound_severity > 0)
-					if(internal_wound_severity < 6)
+					if(internal_wound_severity < 4)
 						internal_wound_severity = "Light"
-					else if(internal_wound_severity < 10)
+					else if(internal_wound_severity < 7)
 						internal_wound_severity = "Moderate"
 					else
 						internal_wound_severity = "Severe"
