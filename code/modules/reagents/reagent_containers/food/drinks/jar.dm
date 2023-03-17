@@ -6,6 +6,7 @@
 	center_of_mass = list("x"=15, "y"=8)
 	unacidable = 1
 	spawn_tags = SPAWN_TAG_JUNK
+	matter = list(MATERIAL_GLASS = 2)
 	rarity_value = 20
 
 /obj/item/reagent_containers/food/drinks/jar/on_reagent_change()
