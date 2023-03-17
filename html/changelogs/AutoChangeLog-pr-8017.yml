@@ -1,0 +1,11 @@
+author: SingingSpock
+delete-after: true
+changes:
+  - bugfix: Disposal/atmos piping above the gym no longer runs into a wall.
+  - bugfix: A maintenance APC in a tiny room on deck 1 is actually placed where its
+      wire is rather than never charging.
+  - tweak: Tanks in public tools are protected from stray bullets/coins by a windoor.
+  - bugfix: Harsuit storage module now has a name in the hardsuit interface rather
+      than being generic
+  - tweak: Gunnery Sergeant gets paid on par with the specialist/investigator rather
+      than an operative.
