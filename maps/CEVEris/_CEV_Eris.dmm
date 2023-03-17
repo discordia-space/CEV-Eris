@@ -10427,10 +10427,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/disposal)
 "azt" = (
-/obj/machinery/door/airlock/glass{
-	name = "Hydroponics";
-	req_access = list(35)
-	},
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -10446,6 +10442,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/crew_quarters/hydroponics)
 "azu" = (
@@ -23284,12 +23281,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/machinery/button/remote/blast_door/id_card{
-	id = "Von-Krabin";
-	name = "Von-Krabin Stimulator id lock";
-	pixel_x = -28;
-	req_access = list(5)
-	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
 "bdx" = (
@@ -30819,9 +30810,6 @@
 /turf/simulated/floor/plating,
 /area/eris/rnd/lab)
 "bvG" = (
-/obj/structure/disposalpipe/up{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/zpipe/up{
 	dir = 4
 	},
@@ -30837,10 +30825,6 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "bvH" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
@@ -33265,8 +33249,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "bBf" = (
-/obj/structure/table/standard,
-/obj/item/tool/multitool,
+/obj/machinery/power/nt_obelisk,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/biogenerator)
 "bBg" = (
@@ -44884,9 +44867,11 @@
 /turf/simulated/floor/plating,
 /area/eris/medical/medbay)
 "ccX" = (
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck4central)
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/hallway/side/section3starboard)
 "ccY" = (
 /obj/structure/railing{
 	dir = 4
@@ -48241,6 +48226,12 @@
 /obj/item/device/radio,
 /obj/item/device/radio,
 /obj/structure/table/reinforced,
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "Von-Krabin";
+	name = "Von-Krabin Stimulator id lock";
+	req_access = list(5);
+	pixel_y = -28
+	},
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/mixing)
 "ckT" = (
@@ -55232,9 +55223,6 @@
 "cCv" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -55912,12 +55900,13 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/side/section3starboard)
 "cEe" = (
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck4central)
+/turf/simulated/floor/tiled/steel,
+/area/eris/hallway/side/section3starboard)
 "cEf" = (
 /obj/structure/closet/cabinet,
 /obj/spawner/booze,
@@ -64112,9 +64101,6 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2starboard)
 "cYN" = (
-/obj/structure/disposalpipe/down{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/zpipe/down{
 	dir = 4
 	},
@@ -67842,19 +67828,9 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck3port)
 "dhi" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/universal{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck3starboard)
+/obj/machinery/power/nt_obelisk,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/hydroponics)
 "dhj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -77308,6 +77284,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
 "dDb" = (
@@ -78707,6 +78684,9 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/structure/disposalpipe/junction{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "dGB" = (
@@ -78785,6 +78765,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
@@ -79007,10 +78990,6 @@
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/quartermaster/office)
 "dHo" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
@@ -79019,6 +78998,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "dHp" = (
@@ -80707,9 +80687,6 @@
 /area/eris/engineering/foyer)
 "dKL" = (
 /obj/structure/catwalk,
-/obj/structure/disposalpipe/junction{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
@@ -80727,6 +80704,10 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/hallway/side/section3starboard)
@@ -94833,10 +94814,6 @@
 /turf/simulated/open,
 /area/eris/maintenance/section3deck4central)
 "etj" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
@@ -96237,14 +96214,11 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "ews" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/camera/network/third_section{
-	dir = 1
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
@@ -103596,6 +103570,14 @@
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
+"kOD" = (
+/obj/structure/catwalk,
+/obj/structure/disposalpipe/junction{
+	dir = 1;
+	icon_state = "pipe-j2"
+	},
+/turf/simulated/open,
+/area/eris/quartermaster/storage)
 "kOE" = (
 /obj/structure/railing{
 	dir = 8
@@ -103978,6 +103960,25 @@
 	},
 /turf/simulated/floor/plating,
 /area/eris/engineering/foyer)
+"lLa" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass_mining{
+	name = "Cargo Bay";
+	req_access = list(50)
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "CargoTotalLockdown";
+	layer = 2.6;
+	name = "Cargo Total Lockdown";
+	opacity = 0
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/cargo,
+/area/eris/quartermaster/office)
 "lLd" = (
 /turf/simulated/wall,
 /area/eris/medical/medbay/organs)
@@ -104060,6 +104061,14 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/eris/medical/medbay/organs)
+"lXg" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/standard,
+/obj/item/tool/multitool,
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/neotheology/biogenerator)
 "lYT" = (
 /obj/structure/sink{
 	pixel_y = 26
@@ -124471,7 +124480,7 @@ alg
 ceU
 cbR
 bBf
-bpo
+lXg
 cas
 cxv
 cbt
@@ -125486,7 +125495,7 @@ azn
 cCh
 dAg
 aCn
-aSf
+dhi
 bpV
 bPA
 bPA
@@ -160635,11 +160644,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+abF
+abF
+abF
+abF
+abF
 aaa
 aaa
 aaa
@@ -160837,11 +160846,11 @@ bUG
 bUG
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+abF
+abF
+abF
+abF
+abF
 aaa
 aaa
 aaa
@@ -161039,11 +161048,11 @@ qtF
 bUG
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+abF
+abF
+abF
+abF
+abF
 aaa
 aaa
 aaa
@@ -161241,11 +161250,11 @@ jby
 bUG
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+abF
+abF
+abF
+abF
+abF
 aaa
 aaa
 aaa
@@ -171349,8 +171358,8 @@ daz
 ddq
 cJw
 bZy
-cEe
-ccX
+dpb
+bZy
 bvH
 cEi
 csN
@@ -211748,11 +211757,11 @@ dyv
 dKZ
 dXd
 dXF
-dXF
+cEe
 etj
 dYu
 avn
-dhi
+cDB
 dFG
 dvd
 dFw
@@ -211951,7 +211960,7 @@ yaL
 dyL
 dyL
 dGK
-ews
+ewW
 avn
 avn
 cCv
@@ -212354,7 +212363,7 @@ czw
 czT
 cwD
 cwD
-dYd
+ews
 dLa
 cAQ
 dYB
@@ -212556,7 +212565,7 @@ cxK
 cyY
 ctm
 cwD
-cFX
+ccX
 etk
 avn
 avn
@@ -212758,7 +212767,7 @@ cxQ
 cvx
 esX
 cwD
-cFX
+ccX
 wTM
 avn
 cFp
@@ -212960,7 +212969,7 @@ cxX
 czc
 ctm
 cwD
-cFX
+ccX
 rII
 avn
 dGk
@@ -213162,7 +213171,7 @@ czz
 cxI
 ctr
 ctr
-cAN
+lLa
 cAN
 cgO
 cgO
@@ -213360,11 +213369,11 @@ cwH
 eBv
 cvF
 cvF
-cuY
-cie
+kOD
+cvF
 dDa
-cie
-cie
+cvF
+cuY
 cie
 cAT
 etp
@@ -285881,7 +285890,7 @@ boS
 boS
 bvj
 boS
-boS
+erb
 niQ
 boS
 boS
