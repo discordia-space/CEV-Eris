@@ -1,0 +1,4 @@
+author: Kurgis
+delete-after: true
+changes:
+  - bugfix: Cyborg Service Fabricators use the correct icon file.
