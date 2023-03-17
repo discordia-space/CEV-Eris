@@ -57,11 +57,11 @@
 		src.throw_impact(A)
 		src.throwing = 0
 
-	spawn(0)
-		if (A && yes)
-			A.last_bumped = world.time
-			A.Bumped(src)
-		return
+
+	if (A && yes)
+		A.last_bumped = world.time
+		A.Bumped(src)
+	return
 	..()
 	return
 

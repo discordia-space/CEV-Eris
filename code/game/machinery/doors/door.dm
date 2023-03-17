@@ -348,24 +348,27 @@
 		playsound(src.loc, hitsound, calc_damage*2.5, 1, 3,3)
 		take_damage(W.force)
 
-/obj/machinery/door/proc/take_damage(var/damage)
+/obj/machinery/door/proc/take_damage(damage)
 	if (!isnum(damage))
 		return
 
 	var/smoke_amount
 
-	var/initialhealth = src.health
-	src.health = max(0, src.health - damage)
-	if(src.health <= 0 && initialhealth > 0)
-		src.set_broken()
+	var/initialhealth = health
+	health = health - damage
+	if(health < 0)
+		qdel(src)
+		return initialhealth
+	else if(health < maxhealth / 5 && initialhealth > maxhealth / 5)
+		set_broken()
 		smoke_amount = 4
-	else if(src.health < src.maxhealth / 4 && initialhealth >= src.maxhealth / 4)
+	else if(health < maxhealth / 4 && initialhealth >= maxhealth / 4)
 		visible_message("\The [src] looks like it's about to break!" )
 		smoke_amount = 3
-	else if(src.health < src.maxhealth / 2 && initialhealth >= src.maxhealth / 2)
+	else if(health < maxhealth / 2 && initialhealth >= maxhealth / 2)
 		visible_message("\The [src] looks seriously damaged!" )
 		smoke_amount = 2
-	else if(src.health < src.maxhealth * 3/4 && initialhealth >= src.maxhealth * 3/4)
+	else if(health < maxhealth * 3/4 && initialhealth >= maxhealth * 3/4)
 		visible_message("\The [src] shows signs of damage!" )
 		smoke_amount = 1
 	update_icon()
@@ -373,7 +376,8 @@
 		var/datum/effect/effect/system/smoke_spread/S = new
 		S.set_up(smoke_amount, 0, src)
 		S.start()
-	return
+	// full block
+	return damage
 
 
 /obj/machinery/door/examine(mob/user)
@@ -396,7 +400,7 @@
 		visible_message(SPAN_WARNING("\The [src.name] breaks!"))
 	update_icon()
 
-
+/*
 /obj/machinery/door/ex_act(severity)
 	switch(severity)
 		if(1)
@@ -407,30 +411,21 @@
 			else
 				take_damage(300)
 		if(3)
-			/*
-			if(prob(80))
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-				s.set_up(2, 1, src)
-				s.start()
-			else
-				take_damage(150)
-				*/
 			if(prob(20))
 				take_damage(150)
 		if(4)
-			/*
-			if(prob(80))
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-				s.set_up(2, 1, src)
-				s.start()
-			else
-				take_damage(60)
-			*/
 			if(prob(20))
 				take_damage(60)
 
 	return
+*/
 
+
+
+/obj/machinery/door/explosion_act(target_power)
+	var/absorbed = take_damage(target_power)
+	message_admins("Door block absorbed [absorbed] damage , whilst having a health pool of [health] out of a maximum of [maxhealth]")
+	return absorbed
 
 /obj/machinery/door/update_icon()
 	icon_state = "door[density]"

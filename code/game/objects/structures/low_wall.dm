@@ -492,14 +492,17 @@
 		dam *= 10
 
 	health -= dam
-	update_damage()
-
+	if(health < 0)
+		dismantle_wall()
+	else
+		update_icon()
+/*
 /obj/structure/low_wall/proc/update_damage()
 	if(health < 0)
 		dismantle_wall()
 	else
 		update_icon()
-
+*/
 /obj/structure/low_wall/proc/clear_plants()
 	for(var/obj/effect/overlay/wallrot/WR in src)
 		qdel(WR)

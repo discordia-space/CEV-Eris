@@ -324,11 +324,23 @@
 	return
 
 /turf/simulated/wall/proc/take_damage(dam)
-	if(dam)
-		damage = max(0, damage + dam)
-		return update_damage()
-	return 0
-
+	var/initialdamage = damage
+	damage = max(0, damage + dam)
+	var/cap = material.integrity
+	if(reinf_material)
+		cap += reinf_material.integrity
+	if(locate(/obj/effect/overlay/wallrot) in src)
+		cap = cap / 10
+	if(damage >= cap)
+		var/leftover = damage - cap
+		if (leftover > 150)
+			dismantle_wall(no_product = TRUE)
+		else
+			dismantle_wall()
+		return damage - initialdamage
+	update_icon()
+	return dam
+/*
 /turf/simulated/wall/proc/update_damage()
 	var/cap = material.integrity
 	if(reinf_material)
@@ -346,14 +358,14 @@
 		return leftover
 	update_icon()
 	return 0
+*/
 
 /turf/simulated/wall/explosion_act(target_power)
-	var/leftover = take_damage(target_power)
+	var/absorbed = take_damage(target_power)
 	// All damage has been blocked
-	if(!leftover)
+	if(absorbed == target_power)
 		return target_power
-	..(leftover)
-	return target_power - leftover
+	return absorbed + ..(target_power - absorbed)
 
 /turf/simulated/wall/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)//Doesn't fucking work because walls don't interact with air :(
 	burn(exposed_temperature)

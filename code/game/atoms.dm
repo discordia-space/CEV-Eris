@@ -153,7 +153,7 @@
 		QDEL_NULL(reagents)
 
 	//spawn()
-		update_openspace()
+	update_openspace()
 	return ..()
 
 ///Generate a tag for this atom
@@ -413,6 +413,9 @@ its easier to just keep the beam vertical.
 	return
 
 /atom/proc/ex_act()
+	return
+
+/atom/proc/explosion_act(target_power)
 	return
 
 /atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)

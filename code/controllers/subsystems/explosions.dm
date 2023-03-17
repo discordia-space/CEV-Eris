@@ -1,6 +1,10 @@
+#define EFLAG_EXPONENTIALFALLOFF 1
+#define EFLAG_ADDITIVEFALLOFF 2
+
 #define SPARE_HASH_LISTS 200
 #define HASH_MODULO (world.maxx + world.maxy*world.maxy)
 #define EXPLO_HASH(x,y) (round((x+y*world.maxy)%HASH_MODULO))
+
 
 SUBSYSTEM_DEF(explosions)
 	name = "Explosions"
@@ -38,6 +42,9 @@ SUBSYSTEM_DEF(explosions)
 			while(length(explodey.current_turf_queue))
 				turfs_processed++
 				var/turf/target = explodey.current_turf_queue[length(explodey.current_turf_queue)]
+				if(!target || QDELETED(target))
+					explodey.current_turf_queue -= target
+					continue
 				turf_key = EXPLO_HASH(target.x, target.y)
 				target_power = explodey.hashed_power[turf_key]
 				explodey.current_turf_queue -= target
@@ -58,6 +65,11 @@ SUBSYSTEM_DEF(explosions)
 						explodey.hashed_power[temp_key] = target_power - explodey.falloff
 						explodey.hashed_visited[temp_key] = TRUE
 			explodey.iterations++
+			if(explodey.flags & EFLAG_EXPONENTIALFALLOFF)
+				explodey.falloff *= 2
+			if(explodey.flags & EFLAG_ADDITIVEFALLOFF)
+				explodey.falloff += explodey.falloff
+
 			// Explosion is done , nothing else left to iterate , cleanup and etc.
 			if(!length(explodey.turf_queue))
 
@@ -90,17 +102,13 @@ SUBSYSTEM_DEF(explosions)
 	var/reference = new /explosion_handler(epicenter, power, falloff)
 	explode_queue += reference
 
-/turf/proc/explosion_act(target_power)
-	var/severity = 3
-	if(target_power > 60)
-		severity = 1
-	else if(target_power > 40)
-		severity = 2
+/turf/explosion_act(target_power)
+	var/power_reduction = 0
 	for(var/atom/movable/thing as anything in contents)
 		if(thing.simulated && isobj(thing))
-			thing.ex_act(severity)
-	ex_act(severity)
-	return 0
+			power_reduction += thing.explosion_act(target_power)
+
+	return power_reduction
 
 explosion_handler
 	var/turf/epicenter
@@ -112,14 +120,20 @@ explosion_handler
 	/// Used for letting us know how many iterations were already ran
 	var/iterations = 0
 	var/list/current_turf_queue
+	var/flags
 
 explosion_handler/New(turf/loc, power, falloff)
 	..()
 	turf_queue += loc
-	var/turf_key = EXPLO_HASH(loc.x, loc.y)
+	/* Blame BYOND , putting it up here gives you a EEOS/expected end  of statement error .
+	var/turf_key = round((loc.x + loc.y*world.maxy))
+	turf_key = turf_key % HASH_MODULO
+	*/
 	src.epicenter = loc
 	src.power = power
 	src.falloff = falloff
+	src.flags = flags
+	var/turf_key = EXPLO_HASH(loc.x, loc.y)
 	var/i = length(SSexplosions.available_hash_lists) + 1
 	while(i > 1)
 		i--

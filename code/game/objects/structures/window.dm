@@ -771,9 +771,8 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 
 	for(var/obj/structure/window/reinforced/polarized/W in range(src,range))
 		if (W.id == src.id || !W.id)
-			spawn(0)
-				W.toggle()
-				return
+			W.toggle()
+			return
 
 /obj/machinery/button/windowtint/power_change()
 	..()
@@ -820,7 +819,5 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 //Used when the window finds itself no longer on a tile. For example if someone drags it out of the wall
 //The window will do a litle animation of falling to the floor, giving them a brief moment to regret their mistake
 /obj/structure/window/proc/shatterfall()
-	sleep(5)
 	animate(src, pixel_y = -12, time = 7, easing = QUAD_EASING)
-	spawn(8)
-		shatter(TRUE, TRUE) //Use explosive shattering, might injure nearby mobs with shards
+	shatter(TRUE, TRUE) //Use explosive shattering, might injure nearby mobs with shards

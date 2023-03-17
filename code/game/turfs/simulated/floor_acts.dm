@@ -27,21 +27,22 @@
 */
 
 /turf/simulated/floor/explosion_act(target_power)
+	var/absorbed_damage = 0
 	var/obj/effect/shield/turf_shield = getEffectShield()
 
 	if (turf_shield)
 		var/temp = turf_shield.ignoreExAct
 		turf_shield.ignoreExAct = FALSE
-		target_power -= turf_shield.explosion_act(target_power)
+		absorbed_damage = turf_shield.explosion_act(target_power)
 		turf_shield.ignoreExAct = temp
 	// was fully blocked
-	if(!target_power)
+	if(target_power == absorbed_damage)
 		return target_power
 	// damage everything on the turf by this amount, since we the floor
-	..(target_power)
-	take_damage(target_power, BLAST)
+	absorbed_damage += ..(target_power - absorbed_damage)
+	take_damage(target_power - absorbed_damage, BLAST)
 	// didn't block anyhing
-	return 0
+	return absorbed_damage
 
 
 
