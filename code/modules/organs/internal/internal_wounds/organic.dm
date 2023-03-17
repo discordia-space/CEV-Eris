@@ -143,7 +143,8 @@
 
 /// Cheap hack, but prevents unbalanced toxins from killing someone immediately
 /datum/component/internal_wound/organic/poisoning/InheritComponent()
-	return
+	if(prob(5))
+		progress()
 
 /datum/component/internal_wound/organic/poisoning/pustule
 	name = "pustule"
