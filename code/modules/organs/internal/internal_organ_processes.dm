@@ -68,7 +68,7 @@
 
 	// Bad stuff
 	if(kidneys_efficiency < BROKEN_2_EFFICIENCY)
-		if(toxin_strength > 0)
+		if(toxin_strength > 0 && prob(10))
 			apply_damage(toxin_strength, TOX)	// If your kidneys aren't working, your body will start to take damage
 
 	if(toxin_damage > 0 && kidney)
@@ -88,7 +88,7 @@
 	if(liver_efficiency < BROKEN_2_EFFICIENCY)
 		if(alcohol_strength)
 			toxin_damage += 0.5 * max(2 - (liver_efficiency * 0.01), 0) * alcohol_strength
-		if(toxin_strength > 0)
+		if(toxin_strength > 0 && prob(10))
 			apply_damage(toxin_strength, TOX)	// If your liver isn't working, your body will start to take damage
 
 	if(toxin_damage > 0 && liver)
