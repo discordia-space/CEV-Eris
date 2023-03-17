@@ -21,7 +21,7 @@
 		if(sanityloss && ishuman(M))
 			var/mob/living/carbon/human/H = M
 			H.sanity.onToxin(src, multi)
-		M.add_chemical_effect(CE_TOXIN, multi * strength)
+		M.add_chemical_effect(CE_TOXIN, strength)
 
 /datum/reagent/toxin/overdose(mob/living/carbon/M, alien)
 	if(strength)
@@ -272,6 +272,7 @@
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
+	metabolism = REM * 2.5
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/toxin/lexorin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
@@ -587,7 +588,7 @@
 	overdose = REAGENTS_OVERDOSE/3
 	addiction_chance = 0
 	nerve_system_accumulations = 10
-	strength = 8
+	strength = 2
 	sanityloss = 1
 	heating_point = 523
 	heating_products = list("toxin")
@@ -614,14 +615,18 @@
 	addiction_chance = 0
 	nerve_system_accumulations = 5
 
+/datum/reagent/toxin/aranecolmin/on_mob_add(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		if(LAZYLEN(C.internal_organs) && C.bloodstr && C.bloodstr.has_reagent("pararein"))
+			var/obj/item/organ/internal/I = pick(C.internal_organs)
+			to_chat(C, "Something burns inside your [I.parent.name]...")
+			create_overdose_wound(I, C, /datum/component/internal_wound/organic/heavy_poisoning, "rot", TRUE)
+
 /datum/reagent/toxin/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.add_chemical_effect(CE_PAINKILLER, 15)
-	if(M.bloodstr && M.bloodstr.has_reagent("pararein"))
-		if(prob(5))
-			to_chat(M, SPAN_WARNING("The blood in your veins burns beneath your flesh!"))
-			if(LAZYLEN(M.internal_organs))	// Check needed because spiders can inject this into roaches
-				create_overdose_wound(pick(M.internal_organs), M, /datum/component/internal_wound/organic/heavy_poisoning, "rot", TRUE)
 
 /datum/reagent/toxin/diplopterum
 	name = "Diplopterum"

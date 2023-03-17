@@ -60,7 +60,7 @@
 	var/toxin_strength = chem_effects[CE_TOXIN] * IORGAN_KIDNEY_TOX_RATIO + chem_toxicity
 
 	// Existing damage is subtracted to prevent weaker toxins from maxing out tox wounds on the organ
-	var/toxin_damage = (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (kidneys_efficiency / 100) - kidney.damage
+	var/toxin_damage = kidney ? (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (kidneys_efficiency / 100) - kidney.damage : 0
 
 	// Organ functions
 	// Blood regeneration if there is some space
@@ -81,9 +81,7 @@
 	var/toxin_strength = chem_effects[CE_TOXIN] * IORGAN_LIVER_TOX_RATIO + chem_effects[CE_ALCOHOL_TOXIC]
 
 	// Existing damage is subtracted to prevent weaker toxins from maxing out tox wounds on the organ
-	var/toxin_damage = (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (liver_efficiency / 100) - liver.damage
-
-	// Organ functions
+	var/toxin_damage = liver ? (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (liver_efficiency / 100) - liver.damage : 0
 
 	// Bad stuff
 	// If you're not filtering well, you're in trouble. Ammonia buildup to toxic levels and damage from alcohol
@@ -112,13 +110,14 @@
 /mob/living/carbon/human/proc/handle_pulse()
 	var/roboheartcheck = TRUE //Check if all hearts are robotic
 	for(var/obj/item/organ/internal/heart in organ_list_by_process(OP_HEART))
-		if(!(heart.nature == MODIFICATION_SILICON || heart.nature == MODIFICATION_LIFELIKE))
+		if(!BP_IS_ROBOTIC(heart))
 			roboheartcheck = FALSE
 			break
 
 	if(stat == DEAD || roboheartcheck)
 		pulse = PULSE_NONE	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
 		return
+
 	if(life_tick % 5 == 0)//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
 		pulse = PULSE_NORM
 
@@ -132,17 +131,15 @@
 
 /mob/living/carbon/human/proc/handle_heart_blood()
 	var/heart_efficiency = get_organ_efficiency(OP_HEART)
-	if(stat == DEAD || bodytemperature <= 170)	//Dead or cryosleep people do not pump the blood.
-		return
-
+	var/blood_oxygenation = 0.4 * chem_effects[CE_OXYGENATED] - 0.2 * chem_effects[CE_BLOODCLOT]
 	var/blood_volume_raw = vessel.get_reagent_amount("blood")
 	var/blood_volume = round((blood_volume_raw/species.blood_volume)*100) // Percentage.
 
 	// Damaged heart virtually reduces the blood volume, as the blood isn't being pumped properly anymore.
 	if(heart_efficiency <= 100)	//flat scaling up to 100
-		blood_volume *= heart_efficiency / 100
+		blood_volume *= (heart_efficiency / 100) + blood_oxygenation
 	else	//half scaling at over 100
-		blood_volume *= 1 + ((heart_efficiency - 100) / 200)
+		blood_volume *= 1 + ((heart_efficiency - 100) / 200) + blood_oxygenation
 
 	//Effects of bloodloss
 	var/blood_safe = total_blood_req + BLOOD_VOLUME_SAFE_MODIFIER
@@ -163,12 +160,12 @@
 			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
 	else if(blood_volume < blood_bad)
 		eye_blurry = max(eye_blurry,6)
-		adjustOxyLoss(6)
+		adjustOxyLoss(2)
 		if(prob(15))
 			to_chat(src, SPAN_WARNING("You feel very [pick("dizzy","woosey","faint")]"))
 	else if(blood_volume < blood_okay)
 		eye_blurry = max(eye_blurry,6)
-		adjustOxyLoss(4)
+		adjustOxyLoss(1.5)
 		if(prob(15))
 			Weaken(rand(1,3))
 			to_chat(src, SPAN_WARNING("You feel very [pick("dizzy","woosey","faint")]"))
@@ -176,7 +173,7 @@
 		if(prob(1))
 			to_chat(src, SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]"))
 		if(getOxyLoss() < 10)
-			adjustOxyLoss(2)
+			adjustOxyLoss(1)
 
 	// Blood loss or heart damage make you lose nutriments
 	if(blood_volume < blood_safe || heart_efficiency < BRUISED_2_EFFICIENCY)
@@ -214,7 +211,7 @@
 			to_chat(src, SPAN_WARNING("Your [heavy_spot] feels too heavy for your body"))
 
 	if(lung_efficiency < BROKEN_2_EFFICIENCY)
-		adjustOxyLoss(2)
+		adjustOxyLoss(1)
 
 /mob/living/carbon/human/proc/stomach_process()
 	var/stomach_efficiency = get_organ_efficiency(OP_STOMACH)
