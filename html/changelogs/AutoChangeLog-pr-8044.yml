@@ -1,0 +1,6 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - balance: Blattedin strength halved since it makes its way into blood and ingest
+  - balance: Toxin wounds won't build up rapidly when poisoned
+  - balance: Toxin damage from failing liver/kidney significantly slowed down
