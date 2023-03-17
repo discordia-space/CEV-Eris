@@ -983,7 +983,23 @@
 		if(stat == DEAD)
 			holder.icon_state = "hudhealth-100" 	// X_X
 		else
-			var/percentage_health = RoundHealth((health-HEALTH_THRESHOLD_CRIT)/(maxHealth-HEALTH_THRESHOLD_CRIT)*100)
+			var/organ_health
+			var/organ_damage
+			var/limb_health
+			var/limb_damage
+
+			for(var/obj/item/organ/external/E in organs)
+				organ_health += E.total_internal_health
+				organ_damage += E.severity_internal_wounds
+				limb_health += E.max_damage
+				limb_damage += max(E.brute_dam, E.burn_dam)
+
+			var/crit_health = (health / maxHealth) * 100
+			var/external_health = (1 - (limb_health ? limb_damage / limb_health : 0)) * 100
+			var/internal_health = (1 - (organ_health ? organ_damage / organ_health : 0)) * 100
+
+			var/percentage_health = RoundHealth(min(crit_health, external_health, internal_health))	// Old: RoundHealth((health-HEALTH_THRESHOLD_CRIT)/(maxHealth-HEALTH_THRESHOLD_CRIT)*100)
+
 			holder.icon_state = "hud[percentage_health]"
 		hud_list[HEALTH_HUD] = holder
 
