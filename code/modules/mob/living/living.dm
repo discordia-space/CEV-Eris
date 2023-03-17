@@ -167,7 +167,7 @@ default behaviour is:
 
 /mob/living/verb/succumb()
 	set hidden = TRUE
-	if (health < 0) // Health below Zero but above 5-away-from-death, as before, but variable
+	if (health < 0)
 		adjustOxyLoss(health + maxHealth * 2) // Deal 2x health in OxyLoss damage, as before but variable.
 		health = -maxHealth
 		to_chat(src, "\blue You have given up life and succumbed to death.")
