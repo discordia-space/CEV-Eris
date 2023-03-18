@@ -2,8 +2,8 @@
 #define EFLAG_ADDITIVEFALLOFF 2
 
 #define SPARE_HASH_LISTS 200
-#define HASH_MODULO (world.maxx + world.maxy*world.maxy)
-#define EXPLO_HASH(x,y) (round((x+y*world.maxy)%HASH_MODULO))
+#define HASH_MODULO (world.maxx + world.maxx*world.maxy)
+#define EXPLO_HASH(x,y) (round((x+y*world.maxx)%HASH_MODULO))
 
 
 SUBSYSTEM_DEF(explosions)
@@ -20,6 +20,7 @@ SUBSYSTEM_DEF(explosions)
 /datum/controller/subsystem/explosions/Initialize(timeoftheworld)
 	// Each hashed list is extremly huge , as it stands today each one would be
 	// 0.250~ MB(roughly 2 million bits)
+	// As long as this doesnt go over 12 MB , it should be fine as it still fits in CPU caches
 	// So memory allocated for explosion management * SPARE_HASH_LIST
 	// For 20 , we get 5 MB allocated to this(not a whole lot) , but generally we shouldn't need more than 100 spare lists(who expects 50 explosions to happen at once ?)
 	// For 200 its 50 MB , so not that much.
@@ -34,10 +35,10 @@ SUBSYSTEM_DEF(explosions)
 	var/turfs_processed = 0
 	var/turf_key = null
 	for(var/explosion_handler/explodey as anything in current_run)
-		var/z = 0
+		var/times_ticked = 0
 		// Go twice, so the stress on ZAS rebuilding is reduced.
-		while(z < 2)
-			z++
+		while(times_ticked < 2)
+			times_ticked++
 			// Explosion processing itself.
 			while(length(explodey.current_turf_queue))
 				turfs_processed++
