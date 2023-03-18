@@ -81,7 +81,7 @@ SUBSYSTEM_DEF(explosions)
 
 
 /datum/controller/subsystem/explosions/fire(resumed = FALSE)
-	var/target_power = 0s
+	var/target_power = 0
 	var/turf_key = null
 	for(var/explosion_handler/explodey as anything in current_run)
 		var/times_ticked = 0
