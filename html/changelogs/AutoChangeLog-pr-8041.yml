@@ -1,6 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - tweak: Health scanner shows limb health and statuses in one location
-  - tweak: Health HUD shows the lowest between critical health, limb health, and organ
-      health

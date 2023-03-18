@@ -1,4 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - admin: increased upload limit to 10MB

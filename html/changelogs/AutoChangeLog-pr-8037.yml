@@ -1,6 +1,0 @@
-author: TheLeopold
-delete-after: true
-changes:
-  - bugfix: 'fixed wrong materials when recycling: dusters, cruciform, jar'
-  - rscadd: added matter to breath mask, gas mask, glowstick
-  - bugfix: renamed "glass ashtray" design to "ashtray"

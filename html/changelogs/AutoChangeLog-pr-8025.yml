@@ -1,6 +1,0 @@
-author: TheLeopold
-delete-after: true
-changes:
-  - rscadd: NT can build silver door, which allows anyone with cruciform to open it
-  - bugfix: fixed rogue pixel in open/close animation of NT doors
-  - imageadd: added silver NT door sprite
