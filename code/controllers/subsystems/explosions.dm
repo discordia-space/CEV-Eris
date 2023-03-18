@@ -153,21 +153,17 @@ SUBSYSTEM_DEF(explosions)
 	var/reference = new /explosion_handler(epicenter, power, falloff)
 	explode_queue += reference
 
+/turf/proc/take_damage(target_power, damage_type)
+	return 0
+
 /turf/explosion_act(target_power)
 	var/power_reduction = 0
 	for(var/atom/movable/thing as anything in contents)
 		if(thing.simulated && isobj(thing))
 			power_reduction += thing.explosion_act(target_power)
-	/*
 	var/turf/to_propagate = GetAbove(src)
-	if(to_propagate)
-		to_propagate.explosion_act_below(target_power)
-	to_propagate = GetBelow(src)
-	if(to_propagate)
-		to_propagate.explosion_act_above(target_power)
-	*/
-
-
+	if(to_propagate && target_power > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
+		to_propagate.take_damage(target_power - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD, BLAST)
 
 	return power_reduction
 /*

@@ -323,7 +323,7 @@
 	visible_message(SPAN_DANGER("\The [src] spontaneously combusts!.")) //!!OH SHIT!!
 	return
 
-/turf/simulated/wall/proc/take_damage(dam)
+/turf/simulated/wall/take_damage(dam)
 	var/initialdamage = damage
 	damage = max(0, damage + dam)
 	var/cap = material.integrity

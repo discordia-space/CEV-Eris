@@ -27,7 +27,7 @@
 	update_icon()
 
 
-/turf/simulated/floor/proc/take_damage(damage = 0, damage_type = BRUTE, ignore_resistance = FALSE)
+/turf/simulated/floor/take_damage(damage = 0, damage_type = BRUTE, ignore_resistance = FALSE)
 	if(is_hole)
 		//This turf is space or an open space, it can't break, burn or be damaged
 		//But we could break lattices in this tile

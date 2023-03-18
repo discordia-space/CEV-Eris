@@ -61,8 +61,7 @@
 	if (A && yes)
 		A.last_bumped = world.time
 		A.Bumped(src)
-	..()
-	return
+	return ..()
 
 /atom/movable/proc/entered_with_container(var/atom/old_loc)
 	return
