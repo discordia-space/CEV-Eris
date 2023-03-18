@@ -1,3 +1,4 @@
+
 /client/proc/kaboom()
 	var/power = input(src, "power?", "power?") as num
 	var/turf/T = get_turf(src.mob)
@@ -122,3 +123,4 @@ proc/explosion_rec(turf/epicenter, power)
 
 /turf/unsimulated/explosion_spread(power)
 	return //So it doesn't get to the parent proc, which simulates explosions
+

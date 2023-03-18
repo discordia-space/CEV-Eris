@@ -61,7 +61,6 @@
 	if (A && yes)
 		A.last_bumped = world.time
 		A.Bumped(src)
-	return
 	..()
 	return
 

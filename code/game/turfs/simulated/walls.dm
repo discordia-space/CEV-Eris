@@ -333,11 +333,13 @@
 		cap = cap / 10
 	if(damage >= cap)
 		var/leftover = damage - cap
+		var/damage_before_change = damage
 		if (leftover > 150)
 			dismantle_wall(no_product = TRUE)
 		else
 			dismantle_wall()
-		return damage - initialdamage
+		// because we can do changeTurf and lose the var
+		return damage_before_change - initialdamage
 	update_icon()
 	return dam
 /*
