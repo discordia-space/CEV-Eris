@@ -90,7 +90,6 @@ SUBSYSTEM_DEF(explosions)
 			times_ticked++
 			// Explosion processing itself.
 			while(length(explodey.current_turf_queue))
-				turfs_processed++
 				var/turf/target = explodey.current_turf_queue[length(explodey.current_turf_queue)]
 				// Invalid turf??
 				if(!target || QDELETED(target))
