@@ -8,6 +8,29 @@
 #define HASH_MODULO (world.maxx + world.maxx*world.maxy)
 #define EXPLO_HASH(x,y) (round((x+y*world.maxx)%HASH_MODULO))
 
+/*
+A subsystem for handling explosions in a tick-based manner
+Basic functioning
+Explosions initialize with a cache of X hash lists , as many as are put in the define , each of these lists is immense
+and has a slot for every turf on a map. This is done like this because as a explosion gets bigger , its look-up using its own reference becomes exponentially higher.
+With hashing the lookup its at O(1)
+Unlike other SS, it doesn't use the MC resume system , instead if just keeps processing current_run until its all done and makes up a new queue itself
+
+The Fire() proc.
+Each explosion handler(which is created for every explosion , no matter the size) is processed twice
+A process involves checking its current turf queue, which could have leftovers from the last tick which might've not fully processed and running the explosion checks for each turf inside
+Each turf will call explosion_act on its own turf , Explosion_act is expected to only return a value if it should reduce the explosion power for the future spread(Shield , Door, Barricade , etc etc)
+^This is not done in a queued manner , every item will receive the same explosion_act with the same power , the return value will just reduce it for the neighbouring turfs.
+After the explosion_act , the remaining power of the explosion is checked , if its above the defined minimum, it will check adjaecent turfs and upper and above turfs
+Each turf to spread towards is checked for being visited before , and if not , added to the visited list, along with the power it should have. They add themselves to the visited list at this step to prevent
+double-turfs, which you get when 2 turfs share the same corner
+If the turfs to spread to are fully valid , they are added to the turf_queue , which will eventually replace the current turf queue on the explosion handler as soon as its empty.
+For upper and lower turfs , the explosion handler grabs extra lists from the SS as needed when spreading to them, it also reduces the power by the explosion_ztransfer  threshold define. Ideally you'd want explosions
+to spread up and down freely , but due to memory constraints ive limited it with a reduction of 100 in its power
+If the turf queue of a handler is empty after processing, it will be removed from the queue, and have the hashed lists returned to the SS stack.
+
+*/
+
 
 SUBSYSTEM_DEF(explosions)
 	name = "Explosions"
@@ -58,18 +81,18 @@ SUBSYSTEM_DEF(explosions)
 
 
 /datum/controller/subsystem/explosions/fire(resumed = FALSE)
-	var/target_power = 0
-	var/turfs_processed = 0
+	var/target_power = 0s
 	var/turf_key = null
 	for(var/explosion_handler/explodey as anything in current_run)
 		var/times_ticked = 0
-		// Go twice, so the stress on ZAS rebuilding is reduced.
+		// Go twice, so the stress on ZAS rebuilding zones is reduced.
 		while(times_ticked < 2)
 			times_ticked++
 			// Explosion processing itself.
 			while(length(explodey.current_turf_queue))
 				turfs_processed++
 				var/turf/target = explodey.current_turf_queue[length(explodey.current_turf_queue)]
+				// Invalid turf??
 				if(!target || QDELETED(target))
 					explodey.current_turf_queue -= target
 					continue
@@ -122,7 +145,7 @@ SUBSYSTEM_DEF(explosions)
 								explodey.hashed_visited[checking.z][turf_key] = TRUE
 								explodey.hashed_power[checking.z][turf_key] = target_power - explodey.falloff - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD
 								explodey.turf_queue += checking
-
+			// For funky explosive options
 			explodey.iterations++
 			if(explodey.flags & EFLAG_EXPONENTIALFALLOFF)
 				explodey.falloff *= 2
@@ -142,7 +165,7 @@ SUBSYSTEM_DEF(explosions)
 					SSexplosions.returnHashList(explodey.hashed_power[cur_z])
 				qdel(explodey)
 				break
-
+			// If explosion is not done , just copy the turf queue , and keep it for the next run.
 			explodey.current_turf_queue = explodey.turf_queue.Copy()
 			explodey.turf_queue = list()
 			current_run -= explodey
@@ -156,7 +179,10 @@ SUBSYSTEM_DEF(explosions)
 /turf/proc/take_damage(target_power, damage_type)
 	return 0
 
+// Explosion action proc , should never SLEEP, and should avoid icon updates , overlays and other visual stuff as much as possible , since they cause massive time delays
+// in processing.
 /turf/explosion_act(target_power)
+	SHOULD_CALL_PARENT(TRUE)
 	var/power_reduction = 0
 	for(var/atom/movable/thing as anything in contents)
 		if(thing.simulated && isobj(thing))
@@ -166,27 +192,28 @@ SUBSYSTEM_DEF(explosions)
 		to_propagate.take_damage(target_power - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD, BLAST)
 
 	return power_reduction
-/*
-/turf/proc/explosion_act_below(target_power)
-	return 0
 
-/turf/proc/explosion_act_above(target_power)
-	return 0
-*/
 
 explosion_handler
+	// Source turf
 	var/turf/epicenter
+	// Starting power
 	var/power
+	// Falloff per tile
 	var/falloff
+	// Used for cleanup
 	var/maximum_z = 0
 	var/minimum_z = 0
+	// Queue holding the next turfs to process
 	var/list/turf_queue = list()
+	// Lists using hashed keys for accesing
 	var/list/hashed_power
 	var/list/hashed_visited
 	/// Used for letting us know how many iterations were already ran
 	var/iterations = 0
+	// Queue holding currently processing turfs
 	var/list/current_turf_queue
-	/// When we traverse Z-levels , we create a new handler.
+	/// Various flags
 	var/flags
 
 explosion_handler/New(turf/loc, power, falloff, flags)
