@@ -6,8 +6,9 @@
 	layer = BELOW_OBJ_LAYER
 	matter = list(MATERIAL_STEEL = 5)
 	var/state = 0
-	var/health = 100
 	var/cover = 50 //how much cover the girder provides against projectiles.
+	// Not a lot of explosion blocking but still there.
+	explosionCoverage = 0.4
 	var/material/reinf_material
 	var/reinforcing = 0
 	var/resistance = RESISTANCE_TOUGH
@@ -308,17 +309,23 @@
 */
 	return ..()
 
-/obj/structure/girder/proc/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
+/obj/structure/girder/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
 	if (!ignore_resistance)
 		damage -= resistance
 	if (!damage || damage <= 0)
 		return
+	. = health - damage < 0 ? damage - health : damage
+	. *= explosionCoverage
 
 	health -= damage
 	if (health <= 0)
 		dismantle()
 
+/obj/structure/girder/explosion_act(target_power)
+	var/absorbed = take_damage(target_power)
+	return absorbed
 
+/*
 /obj/structure/girder/ex_act(severity)
 	switch(severity)
 		if(1)
@@ -329,10 +336,11 @@
 			take_damage(rand(60,180))
 		if(4)
 			take_damage(rand(20,80))
+*/
 
 
 /obj/structure/girder/get_fall_damage(var/turf/from, var/turf/dest)
-	var/damage = health * 0.4
+	var/damage = health * 0.4 * get_health_ratio()
 
 	if (from && dest)
 		damage *= abs(from.z - dest.z)

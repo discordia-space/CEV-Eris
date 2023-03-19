@@ -191,7 +191,6 @@ Like for example singulo act and whatever.
 			fail_adjacent_segments(rand(8, 16), hitby)
 			for(var/obj/effect/shield/S in field_segments)
 				S.fail(1)
-				CHECK_TICK
 			return 0
 
 /obj/effect/shield/proc/isInactive()

@@ -13,9 +13,6 @@
 	level = BELOW_PLATING_LEVEL
 	layer = ABOVE_NORMAL_TURF_LAYER
 
-	//health is used when attempting to collapse this hole. It is a multiplier on the time taken and failure rate
-	//Any failed attempt to collapse it will reduce the health, making future attempts easier
-	var/health = 100
 
 	var/isSealed = TRUE	// borrow spawns as cracks and becomes a hole when critters emerge
 

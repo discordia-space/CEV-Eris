@@ -9,7 +9,7 @@
 	var/base_state = "left"
 	resistance = RESISTANCE_FRAGILE
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 100 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
+	maxHealth = 100 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
 	health = 100
 	visible = 0
 	use_power = NO_POWER_USE
@@ -278,7 +278,7 @@
 	base_state = "leftsecure"
 	req_access = list(access_security)
 	var/id
-	maxhealth = 200
+	maxHealth = 200
 	health = 200 //Stronger doors for prison (regular window door health is 100)
 
 

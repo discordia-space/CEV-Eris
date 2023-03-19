@@ -55,8 +55,9 @@ for reference:
 	icon_state = "barricade"
 	anchored = TRUE
 	density = TRUE
-	var/health = 100
-	var/maxhealth = 100
+	health = 100
+	maxHealth = 100
+	explosionCoverage = 0.7
 	var/material/material
 
 /obj/structure/barricade/New(newloc, material_name)
@@ -70,8 +71,8 @@ for reference:
 	name = "[material.display_name] barricade"
 	desc = "This space is blocked off by a barricade made of [material.display_name]."
 	color = material.icon_colour
-	maxhealth = material.integrity
-	health = maxhealth
+	maxHealth = material.integrity
+	health = maxHealth
 
 /obj/structure/barricade/get_matter()
 	var/list/matter = ..()
@@ -91,14 +92,14 @@ for reference:
 		var/obj/item/stack/D = W
 		if(D.get_material_name() != material.name)
 			return //hitting things with the wrong type of stack usually doesn't produce messages, and probably doesn't need to.
-		if(health < maxhealth)
+		if(health < maxHealth)
 			if(D.get_amount() < 1)
 				to_chat(user, SPAN_WARNING("You need one sheet of [material.display_name] to repair \the [src]."))
 				return
 			visible_message(SPAN_NOTICE("[user] begins to repair \the [src]."))
-			if(do_after(user,20,src) && health < maxhealth)
+			if(do_after(user,20,src) && health < maxHealth)
 				if(D.use(1))
-					health = maxhealth
+					health = maxHealth
 					visible_message(SPAN_NOTICE("[user] repairs \the [src]."))
 				return
 		return
@@ -122,10 +123,13 @@ for reference:
 	qdel(src)
 	return
 
-/obj/structure/barricade/proc/take_damage(damage)
+/obj/structure/barricade/take_damage(damage)
+	. = health - damage < 0 ? damage - health : damage
+	. *= density ? explosionCoverage : explosionCoverage / 2
 	health -= damage
 	if(health <= 0)
 		dismantle()
+	return
 
 /obj/structure/barricade/attack_generic(mob/M, damage, attack_message)
 	if(damage)
@@ -137,6 +141,7 @@ for reference:
 	else
 		attack_hand(M)
 
+/*
 /obj/structure/barricade/ex_act(severity)
 	switch(severity)
 		if(1)
@@ -149,6 +154,7 @@ for reference:
 				visible_message(SPAN_DANGER("\The [src] is blown apart!"))
 				dismantle()
 			return
+*/
 
 /obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
 
@@ -216,7 +222,7 @@ for reference:
 	density = TRUE
 	icon_state = "barrier0"
 	var/health = 300
-	var/maxhealth = 300
+	var/maxHealth = 300
 	var/locked = FALSE
 //	req_access = list(access_maint_tunnels)
 
@@ -256,8 +262,8 @@ for reference:
 				return
 		return
 	else if(istype(W, /obj/item/tool/wrench))
-		if(health < maxhealth)
-			health = maxhealth
+		if(health < maxHealth)
+			health = maxHealth
 			emagged = 0
 			req_access = list(access_security)
 			visible_message(SPAN_WARNING("[user] repairs \the [src]!"))
