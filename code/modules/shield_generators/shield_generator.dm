@@ -475,7 +475,7 @@
 
 
 // Takes specific amount of damage
-/obj/machinery/power/shield_generator/proc/take_damage(var/damage, var/shield_damtype, var/atom/damager = null)
+/obj/machinery/power/shield_generator/proc/take_shield_damage(var/damage, var/shield_damtype, var/atom/damager = null)
 	var/energy_to_use = damage * ENERGY_PER_HP
 
 	// Even if the shield isn't currently modulating, it can still use old modulation buildup to reduce damage

@@ -10,19 +10,19 @@
 	opacity = 0
 	anchored = TRUE
 	unacidable = 1
-	var/const/max_health = 200
-	var/health = max_health //The shield can only take so much beating (prevents perma-prisons)
+	var/const/maxShieldHealth = 200
+	var/shieldHealth = maxShieldHealth //The shield can only take so much beating (prevents perma-prisons)
 	var/shield_generate_power = 7500	//how much power we use when regenerating
 	var/shield_idle_power = 1500		//how much power we use when just being sustained.
 
 /obj/machinery/shield/malfai
 	name = "emergency forcefield"
 	desc = "A powerful forcefield which seems to be projected by the vessel's emergency atmosphere containment field."
-	description_antag = "This special shield is overcharged, it has double the health of a normal one and only blocks bullets."
-	health = 400
+	description_antag = "This special shield is overcharged, it has double the shieldHealth of a normal one and only blocks bullets."
+	shieldHealth = 400
 
 /obj/machinery/shield/proc/check_failure()
-	if (health <= 0)
+	if (shieldHealth <= 0)
 		visible_message(SPAN_NOTICE("\The [src] dissipates!"))
 		qdel(src)
 		return
@@ -46,7 +46,7 @@
 	//Calculate damage
 	var/aforce = W.force
 	if(W.damtype == BRUTE || W.damtype == BURN)
-		src.health -= aforce
+		src.shieldHealth -= aforce
 
 	//Play a fitting sound
 	playsound(src.loc, 'sound/effects/EMPulse.ogg', 75, 1)
@@ -60,7 +60,7 @@
 	..()
 
 /obj/machinery/shield/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.get_structure_damage()
+	shieldHealth -= Proj.get_structure_damage()
 	..()
 	check_failure()
 	set_opacity(TRUE)
@@ -104,7 +104,7 @@
 	else
 		tforce = AM:throwforce
 
-	health -= tforce
+	shieldHealth -= tforce
 
 	//This seemed to be the best sound for hitting a force field.
 	playsound(loc, 'sound/effects/EMPulse.ogg', 100, 1)
@@ -128,8 +128,8 @@
 	opacity = 0
 	anchored = FALSE
 	req_access = list(access_engine)
-	var/const/max_health = 100
-	var/health = max_health
+	var/const/maxShieldHealth = 100
+	var/shieldHealth = maxShieldHealth
 	var/active = 0
 	var/malfunction = 0 //Malfunction causes parts of the shield to slowly dissapate
 	var/list/deployed_shields = list()
@@ -212,9 +212,9 @@
 			check_delay--
 
 /obj/machinery/shieldgen/proc/checkhp()
-	if(health <= 30)
+	if(shieldHealth <= 30)
 		src.malfunction = 1
-	if(health <= 0)
+	if(shieldHealth <= 0)
 		spawn(0)
 			explosion(get_turf(src.loc), 0, 0, 1, 0, 0, 0)
 		qdel(src)
@@ -224,27 +224,27 @@
 /obj/machinery/shieldgen/ex_act(severity)
 	switch(severity)
 		if(1)
-			src.health -= 75
+			src.shieldHealth -= 75
 			src.checkhp()
 		if(2)
-			src.health -= 30
+			src.shieldHealth -= 30
 			if (prob(15))
 				src.malfunction = 1
 			src.checkhp()
 		if(3)
-			src.health -= 10
+			src.shieldHealth -= 10
 			src.checkhp()
 	return
 
 /obj/machinery/shieldgen/emp_act(severity)
 	switch(severity)
 		if(1)
-			src.health /= 2 //cut health in half
+			src.shieldHealth /= 2 //cut shieldHealth in half
 			malfunction = 1
 			locked = pick(0,1)
 		if(2)
 			if(prob(50))
-				src.health *= 0.3 //chop off a third of the health
+				src.shieldHealth *= 0.3 //chop off a third of the shieldHealth
 				malfunction = 1
 	checkhp()
 
@@ -313,7 +313,7 @@
 		to_chat(user, SPAN_NOTICE("You begin to replace the wires."))
 		if(do_after(user, 30,src))
 			if (coil.use(1))
-				health = max_health
+				shieldHealth = maxShieldHealth
 				malfunction = 0
 				to_chat(user, SPAN_NOTICE("You repair the [src]!"))
 				update_icon()

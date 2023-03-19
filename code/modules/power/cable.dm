@@ -41,6 +41,8 @@ var/list/possible_cable_coil_colours = list(
 	desc = "A flexible superconducting cable for heavy-duty power transfer"
 	icon = 'icons/obj/power_cond_white.dmi'
 	icon_state = "0-1"
+	health = 20
+	maxHealth = 20
 	var/d1 = 0
 	var/d2 = 1
 	color = COLOR_RED_LIGHT
@@ -265,6 +267,7 @@ var/list/possible_cable_coil_colours = list(
 	return 0
 
 //explosion handling
+/*
 /obj/structure/cable/ex_act(severity)
 	switch(severity)
 		if(1)
@@ -279,6 +282,17 @@ var/list/possible_cable_coil_colours = list(
 				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
 				qdel(src)
 	return
+*/
+
+/obj/structure/cable/explosion_act(target_power)
+	take_damage(target_power)
+	if(QDELING(src) && target_power < 40)
+		new /obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
+	// Non blocking
+	return 0
+
+/obj/structure/cable/take_damage(amount)
+	..()
 
 obj/structure/cable/proc/cableColor(var/colorC)
 	var/color_n = "#DD0000"

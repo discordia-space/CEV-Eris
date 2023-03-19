@@ -107,11 +107,11 @@
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
 	var/obj/item/electronics/circuitboard/circuit
 	var/frame_type = FRAME_DEFAULT
+	var/health = 100
+	var/maxHealth = 100
 
 	var/current_power_usage = 0 // How much power are we currently using, dont change by hand, change power_usage vars and then use set_power_use
 	var/area/current_power_area // What area are we powering currently
-
-	var/machine_integrity = 360
 
 	var/hacked = FALSE // If this machine has had its access requirements hacked or not
 
@@ -150,6 +150,15 @@
 		new /obj/effect/overlay/pulse(loc)
 	..()
 
+/obj/machinery/proc/take_damage(amount)
+	health -= amount
+	if(health <= 0)
+		qdel(src)
+
+/obj/machinery/explosion_act(target_power)
+	take_damage(target_power)
+	return 0
+/*
 /obj/machinery/ex_act(severity)
 	switch(severity)
 		if(1)
@@ -160,6 +169,7 @@
 		if(3)
 			if(prob(25))
 				qdel(src)
+*/
 
 /proc/is_operable(obj/machinery/M, mob/user)
 	return istype(M) && M.operable()

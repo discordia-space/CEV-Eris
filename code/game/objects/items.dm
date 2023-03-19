@@ -16,7 +16,7 @@
 	var/abstract = 0
 	var/r_speed = 1
 	var/health = 100
-	var/max_health = 100
+	var/maxHealth = 100
 	var/burn_point
 	var/burning
 	var/hitsound = 'sound/weapons/genhit1.ogg'
@@ -136,7 +136,7 @@
 
 /obj/item/get_fall_damage()
 	return w_class * 2
-
+/*
 /obj/item/ex_act(severity)
 	switch(severity)
 		if(1)
@@ -147,6 +147,16 @@
 		if(3)
 			if(prob(5))
 				qdel(src)
+	*/
+
+/obj/item/proc/take_damage(amount)
+	health -= amount
+	if(health <= 0)
+		qdel(src)
+
+/obj/item/explosion_act(target_power)
+	take_damage(target_power)
+	return 0
 
 /obj/item/emp_act(severity)
 	if(chameleon_type)

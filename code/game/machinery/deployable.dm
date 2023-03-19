@@ -391,7 +391,7 @@ for reference:
 			return 1
 	return 1
 
-/obj/machinery/deployable/barrier/proc/take_damage(damage)
+/obj/machinery/deployable/barrier/take_damage(damage)
 	health -= damage
 	if(health <= 0)
 		dismantle()

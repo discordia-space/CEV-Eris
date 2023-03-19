@@ -204,7 +204,7 @@
 	W.time_inflicted = world.time
 
 //Note: external organs have their own version of this proc
-/obj/item/organ/proc/take_damage(amount, damage_type, wounding_multiplier = 1, silent)
+/obj/item/organ/take_damage(amount, damage_type, wounding_multiplier = 1, silent)
 	if(!BP_IS_ROBOTIC(src))
 		//only show this if the organ is not robotic
 		if(owner && parent && amount > 0 && !silent)

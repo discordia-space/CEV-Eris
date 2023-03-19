@@ -170,7 +170,7 @@ Like for example singulo act and whatever.
 	new/obj/effect/shield_impact(get_turf(src))
 	gen.handle_reporting() //This will queue up a damage report if one isnt already. It's delayed so its fine to call it before the damage is applied
 	var/list/field_segments = gen.field_segments
-	switch(gen.take_damage(damage, damtype, hitby))
+	switch(gen.take_shield_damage(damage, damtype, hitby))
 		if(SHIELD_ABSORBED)
 			shield_impact_sound(get_turf(src), damage*0.5, damage*1.5)
 			return damage

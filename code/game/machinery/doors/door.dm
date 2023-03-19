@@ -348,7 +348,7 @@
 		playsound(src.loc, hitsound, calc_damage*2.5, 1, 3,3)
 		take_damage(W.force)
 
-/obj/machinery/door/proc/take_damage(damage)
+/obj/machinery/door/take_damage(damage)
 	if (!isnum(damage))
 		return
 
