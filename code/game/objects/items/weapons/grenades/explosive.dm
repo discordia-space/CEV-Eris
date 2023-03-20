@@ -4,8 +4,8 @@
 	icon_state = "explosive"
 	matter = list(MATERIAL_STEEL = 5)
 
-	var/explosion_power = 600
-	var/explosion_falloff = 50
+	var/explosion_power = 400
+	var/explosion_falloff = 25
 	var/explosion_flags = 0
 	var/flash_range = 10
 
@@ -28,5 +28,6 @@
 	desc = "There's an inscription along the bands. \'And the Lord spake, saying: First shalt thou take out the Holy Pin. Then, shalt thou count to three, no more, no less. Three shall be the number thou shalt count, and the number of the counting shall be three. Four shalt thou not count, nor either count thou two, excepting that thou then proceed to three. Five is right out! Once the number three, being the third number, be reached, then lobbest thou thy Holy Hand Grenade of Antioch towards thou foe, who being naughty in my sight, shall snuff it.\'"
 	icon_state = "explosive_nt"
 	item_state = "explosive_nt"
-	explosion_power = 700
+	explosion_power = 600
+	explosion_falloff = 30
 	matter = list(MATERIAL_BIOMATTER = 100)
