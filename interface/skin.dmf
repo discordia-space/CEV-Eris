@@ -622,6 +622,12 @@ macro "hotkeymode"
 		name = "F"
 		command = "blocking"
 	elem
+		name =  "CTRL+F"
+		command = "a-intent left"
+	elem
+		name = "CTRL+G"
+		command = "a-intent right"
+	elem
 		name = "B"
 		command = "resist"
 	elem

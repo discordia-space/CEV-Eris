@@ -115,7 +115,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/forbid_singulo_possession = 0
 
 	var/organs_decay
-	var/default_brain_health = 400
 
 	//Paincrit knocks someone down once they hit 60 shock_stage, so by default make it so that close to 100 additional damage needs to be dealt,
 	//so that it's similar to HALLOSS. Lowered it a bit since hitting paincrit takes much longer to wear off than a halloss stun.
@@ -133,6 +132,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/welder_vision = 1
 	var/generate_asteroid = 0
 	var/no_click_cooldown = 0
+	var/z_level_shooting = FALSE
 
 	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
 	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
@@ -772,10 +772,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					config.organ_damage_spillover_multiplier = value / 100
 				if("organs_can_decay")
 					config.organs_decay = 1
-				if("default_brain_health")
-					config.default_brain_health = text2num(value)
-					if(!config.default_brain_health || config.default_brain_health < 1)
-						config.default_brain_health = initial(config.default_brain_health)
 				if("bones_can_break")
 					config.bones_can_break = value
 				if("limbs_can_break")

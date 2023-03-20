@@ -58,6 +58,6 @@
 
 /obj/item/clothing/mask/balaclava/tactical
 	name = "tactical balaclava"
-	desc = "Designed to both hide identities and keep your face comfy and warm."
+	desc = "Designed to both hide identities and keep your face comfy and warm. This one is in Ironhammer colors."
 	icon_state = "swatclava"
 	item_state = "swatclava"

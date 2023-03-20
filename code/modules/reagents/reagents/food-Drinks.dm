@@ -38,7 +38,7 @@
 
 /datum/reagent/organic/nutriment/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(!injectable)
-		M.adjustToxLoss(0.1 * effect_multiplier)
+		M.add_chemical_effect(CE_TOXIN, 5 * effect_multiplier)
 		return
 	affect_ingest(M, alien, effect_multiplier * 1.2)
 
@@ -290,7 +290,7 @@
 	taste_tag = list(TASTE_SPICY)
 
 /datum/reagent/organic/capsaicin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustToxLoss(0.05 * effect_multiplier)
+	M.add_chemical_effect(CE_TOXIN, 0.25 * effect_multiplier)
 
 /datum/reagent/organic/capsaicin/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustNutrition(0.8 * effect_multiplier)
@@ -406,7 +406,7 @@
 	price_per_unit = 0.25
 
 /datum/reagent/drink/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustToxLoss(0.2) // Probably not a good idea; not very deadly though
+	M.add_chemical_effect(CE_TOXIN, 0.25) // Probably not a good idea; not very deadly though
 	return
 
 /datum/reagent/drink/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
@@ -507,7 +507,7 @@
 
 /datum/reagent/drink/limejuice/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
-	M.adjustToxLoss(-0.05 * effect_multiplier)
+	M.add_chemical_effect(CE_TOXIN, -0.25 * effect_multiplier)
 
 /datum/reagent/drink/orangejuice
 	name = "Orange juice"
@@ -649,7 +649,7 @@
 
 /datum/reagent/drink/tea/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
-	M.adjustToxLoss(-0.05 * effect_multiplier)
+	M.add_chemical_effect(CE_TOXIN, -0.25 * effect_multiplier)
 
 /datum/reagent/drink/tea/icetea
 	name = "Iced Tea"
@@ -713,9 +713,9 @@
 		var/obj/item/organ/internal/kidney/K = H.random_organ_by_process(OP_KIDNEYS)
 		if(istype(K))
 			if(K.is_bruised())
-				M.adjustToxLoss(0.1)
+				M.add_chemical_effect(CE_TOXIN, 0.5)
 			else if(K.is_broken())
-				M.adjustToxLoss(0.3)
+				M.add_chemical_effect(CE_TOXIN, 1)
 	M.add_chemical_effect(CE_PULSE, 1)
 
 /datum/reagent/drink/coffee/overdose(mob/living/carbon/M, alien)
@@ -1052,7 +1052,7 @@
 	..()
 	M.adjustOxyLoss(-0.4 * effect_multiplier)
 	M.heal_organ_damage(0.2 * effect_multiplier, 0.2 * effect_multiplier)
-	M.adjustToxLoss(-0.2 * effect_multiplier)
+	M.add_chemical_effect(CE_TOXIN, -effect_multiplier)
 	if(M.dizziness)
 		M.dizziness = max(0, M.dizziness - 15 * effect_multiplier)
 	if(M.confused)
@@ -1188,14 +1188,14 @@
 
 /datum/reagent/alcohol/on_mob_add(mob/living/L)
 	..()
-	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_ADD_DRUG)
+	SEND_SIGNAL_OLD(L, COMSIG_CARBON_HAPPY, src, MOB_ADD_DRUG)
 
 /datum/reagent/alcohol/on_mob_delete(mob/living/L)
 	..()
-	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_DELETE_DRUG)
+	SEND_SIGNAL_OLD(L, COMSIG_CARBON_HAPPY, src, MOB_DELETE_DRUG)
 
 /datum/reagent/alcohol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustToxLoss(0.2 * toxicity * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
+	M.add_chemical_effect(CE_TOXIN, toxicity * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 	M.add_chemical_effect(CE_PAINKILLER, max(35 - (strength / 2), 1))	//Vodka 32.5 painkiller, beer 15
 
 /datum/reagent/alcohol/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
@@ -1216,7 +1216,7 @@
 		M.adjust_hallucination(halluci, halluci)
 
 	apply_sanity_effect(M, effect_multiplier/strength*20)
-	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
+	SEND_SIGNAL_OLD(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
 
 /datum/reagent/alcohol/touch_obj(obj/O)
 	if(istype(O, /obj/item/paper))
@@ -1551,7 +1551,7 @@
 /datum/reagent/alcohol/ntcahors/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.adjust_hallucination(-0.9 * effect_multiplier)
-	M.adjustToxLoss(-0.5 * effect_multiplier)
+	M.add_chemical_effect(CE_TOXIN, -2.5 * effect_multiplier)
 
 // Cocktails
 /datum/reagent/alcohol/acid_spit
@@ -2336,15 +2336,13 @@
 /datum/reagent/alcohol/pwine/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	if(dose > 30)
-		M.adjustToxLoss(0.2 * effect_multiplier)
+		M.add_chemical_effect(CE_TOXIN, effect_multiplier)
 	if(dose > 60 && ishuman(M) && prob(5))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/heart/L = H.random_organ_by_process(OP_HEART)
 		if(L && istype(L))
-			if(dose < 120)
-				L.take_damage(1 * effect_multiplier, 0)
-			else
-				L.take_damage(10 * effect_multiplier, 0)
+			if(dose > 120)
+				L.take_damage(dose/6, FALSE, TOX)
 
 /datum/reagent/alcohol/red_mead
 	name = "Red Mead"
@@ -2677,7 +2675,7 @@
 	M.slurring = max(M.slurring, 30)
 	if(prob(5))
 		M.vomit()
-	M.adjustToxLoss(2)
+	M.add_chemical_effect(CE_TOXIN, 4)
 
 /datum/reagent/alcohol/roachbeer/withdrawal_act(mob/living/carbon/M) ////// lose sanity on withdrawal, notify user about this
 	var/mob/living/carbon/human/addicte = M
@@ -2720,7 +2718,7 @@
 	M.add_side_effect("Headache", 11)
 	if(prob(5))
 		M.vomit()
-	M.adjustToxLoss(6)
+	M.add_chemical_effect(CE_TOXIN, 10)
 
 /datum/reagent/alcohol/kaiserbeer/withdrawal_act(mob/living/carbon/M, effect_multiplier) ////// lose sanity on withdrawal, notify user about this
 	var/mob/living/carbon/human/addicte = M

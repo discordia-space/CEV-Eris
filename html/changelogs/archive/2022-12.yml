@@ -80,3 +80,20 @@
   - rscadd: Adds a makeshift battle axe crafting recipe
   - imageadd: adds sprites for the makeshift battle axe
   - imageadd: edits the sprite for the sledgehammer (right hand) to remove stray pixels
+2022-12-25:
+  MLGTASTICa:
+  - bugfix: Hands being bugged due to MMI insertion
+  - bugfix: Ghost-alert spam using MMI's
+  - rscadd: Added extra-description to the MMI
+  Pink-Chink:
+  - code_imp: Re-organized corpse spawning code
+  SirRichardFrancis:
+  - rscadd: Added christmas-themed alternative to benzin roaches.
+  assortedbeads:
+  - balance: NT pain litany now adds angelsbalm to your bloodstream
+  - balance: NT pain litany is shorter to say now
+2022-12-31:
+  Iglpigl:
+  - rscdel: malf AI has been removed from the storyteller
+  assortedbeads:
+  - tweak: Bowl2 Haircut and Volaju haircuts have been edited slightly

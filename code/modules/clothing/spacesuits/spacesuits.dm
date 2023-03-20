@@ -101,7 +101,6 @@
 	style_coverage = COVERS_WHOLE_TORSO_AND_LIMBS
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
 	slowdown = HEAVY_SLOWDOWN * 0.5
-	stiffness = HEAVY_STIFFNESS
 
 /obj/item/clothing/suit/space/equipped(mob/M)
 	check_limb_support()

@@ -60,7 +60,7 @@
 		S.close(clientMob)
 
 /obj/item/storage/proc/setupItemBackground(var/HUD_element/itemBackground, atom/item, itemCount)
-	itemBackground.setClickProc(.proc/itemBackgroundClick)
+	itemBackground.setClickProc(PROC_REF(itemBackgroundClick))
 	itemBackground.setData("item", item)
 
 	var/HUD_element/itemIcon = itemBackground.add(new/HUD_element())
@@ -90,7 +90,7 @@
 	closeButton.setName("HUD Storage Close Button")
 	closeButton.setIcon(icon("icons/mob/screen1.dmi","x"))
 	closeButton.setHideParentOnClick(TRUE)
-	closeButton.setClickProc(.proc/closeButtonClick)
+	closeButton.setClickProc(PROC_REF(closeButtonClick))
 	closeButton.setData("item", src)
 
 	//storage space based items
@@ -104,7 +104,7 @@
 		storageBackground.setName("HUD Storage Background")
 		storageBackground.setHideParentOnHide(TRUE)
 
-		storageBackground.setClickProc(.proc/storageBackgroundClick)
+		storageBackground.setClickProc(PROC_REF(storageBackgroundClick))
 		storageBackground.setData("item", src)
 
 		var/paddingSides = 2 //in pixels
@@ -188,7 +188,7 @@
 
 				currentItemNumber++
 			else //empty slots
-				itemBackground.setClickProc(.proc/storageBackgroundClick)
+				itemBackground.setClickProc(PROC_REF(storageBackgroundClick))
 				itemBackground.setData("item", src)
 
 			totalWidth += itemBackground.getWidth() + spacingBetweenSlots
@@ -243,8 +243,8 @@
 		generateHUD(data).show(user.client)
 		is_seeing |= user
 		user.s_active = src
-	SEND_SIGNAL(src, COMSIG_STORAGE_OPENED, user)
-	SEND_SIGNAL(user, COMSIG_STORAGE_OPENED, src)
+	SEND_SIGNAL_OLD(src, COMSIG_STORAGE_OPENED, user)
+	SEND_SIGNAL_OLD(user, COMSIG_STORAGE_OPENED, src)
 
 /obj/item/storage/proc/hide_from(mob/user)
 	is_seeing -= user

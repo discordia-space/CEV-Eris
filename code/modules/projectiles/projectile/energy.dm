@@ -64,8 +64,8 @@
 	name = "demolecularisor"
 	icon_state = "declone"
 	nodamage = 1
-	damage_types = list(CLONE = 0)
-	irradiate = 150
+	damage_types = list(CLONE = 12)
+	irradiate = 10
 
 
 /obj/item/projectile/energy/dart

@@ -64,3 +64,26 @@
 #define PLASTEEL_COLOUR "#8e9799"
 //Color to exactly match concept art #b0bcbe
 //I made it slightly darker than that, because the original color was too bright and causes eyestrain imo
+
+
+#define ORE_CARBON "o_carbon"
+#define ORE_IRON "o_hematite"
+#define ORE_PLASMA "o_plasma"
+#define ORE_SAND "o_sand"
+#define ORE_URANIUM "o_pitchblende"
+#define ORE_DIAMOND "o_diamond"
+#define ORE_SILVER "o_silver"
+#define ORE_GOLD "o_gold"
+#define ORE_PLATINUM "o_platinum"
+#define ORE_HYDROGEN "o_hydrogen"
+
+#define ORE_LIST list(\
+	ORE_CARBON,\
+	ORE_IRON,\
+	ORE_PLASMA,\
+	ORE_SAND,\
+	ORE_URANIUM,\
+	ORE_DIAMOND,\
+	ORE_SILVER,\
+	ORE_GOLD,\
+	ORE_PLATINUM)

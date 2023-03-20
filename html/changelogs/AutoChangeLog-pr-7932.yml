@@ -1,6 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Hands being bugged due to MMI insertion
-  - bugfix: Ghost-alert spam using MMI's
-  - rscadd: Added extra-description to the MMI

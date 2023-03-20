@@ -57,7 +57,7 @@
 
 /datum/craft_recipe/bone_braces
 	name = "bone braces"
-	result = /obj/item/bone_brace
+	result = /obj/item/modification/organ/internal/electromechanical/bone_braces
 	steps = list(
 		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),
 		list(QUALITY_WELDING, 20, 50),
@@ -182,6 +182,14 @@
 	)
 	related_stats = list(STAT_COG)
 
+/datum/craft_recipe/bucket
+	name = "Bucket"
+	result = /obj/item/reagent_containers/glass/bucket
+	steps = list(
+		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTIC, "time" = 10),
+		list(QUALITY_SEALING, 10, 60),
+	)
+	related_stats = list(STAT_MEC)
 
 //You build a frame from rods, add metal shelves, plastic wheels and handles
 /datum/craft_recipe/janicart
@@ -279,9 +287,8 @@
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL, "time" = 0),
 		list(QUALITY_CUTTING, 10, 10),
 		list(QUALITY_WELDING, 10, 10),
-		list(/obj/item/stack/cable_coil, 5, "time" = 0),
+		list(/obj/item/stack/cable_coil, 10, "time" = 0),
 		list(QUALITY_WIRE_CUTTING, 10, 10),
-		list(/obj/item/stock_parts/manipulator, 1),
 		list(QUALITY_PULSING, 10, 10),
 		list(/obj/item/reagent_containers/glass/bucket, 1)
 	)
@@ -295,14 +302,12 @@
 	name = "Makeshift prosthetic left arm"
 	result = /obj/item/organ/external/robotic/makeshift/l_arm
 	steps = list(
-		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL, "time" = 0),
+		list(CRAFT_MATERIAL, 8, MATERIAL_STEEL, "time" = 0),
 		list(QUALITY_CUTTING, 10, 10),
 		list(QUALITY_WELDING, 10, 10),
-		list(/obj/item/stack/cable_coil, 5, "time" = 0),
+		list(/obj/item/stack/cable_coil, 10, "time" = 0),
 		list(QUALITY_WIRE_CUTTING, 10, 10),
-		list(/obj/item/stock_parts/manipulator, 1),
 		list(QUALITY_PULSING, 10, 10),
-		list(/obj/item/tool/knife/hook, 1)
 	)
 	related_stats = list(STAT_MEC)
 

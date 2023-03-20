@@ -8,6 +8,7 @@
 	icon_state = "violin"
 	sound_player = /datum/sound_player/violin
 	path = /datum/instrument/obsolete/violin
+	matter = list(MATERIAL_WOOD = 6)
 
 /obj/structure/synthesized_instrument/synthesizer/should_stop_playing(mob/user)
 	return !(src && in_range(src, user))
