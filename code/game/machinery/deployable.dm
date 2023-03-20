@@ -124,7 +124,7 @@ for reference:
 	return
 
 /obj/structure/barricade/take_damage(damage)
-	. = health - damage < 0 ? damage - health : damage
+	. = health - damage < 0 ? damage - (damage - health) : damage
 	. *= density ? explosionCoverage : explosionCoverage / 2
 	health -= damage
 	if(health <= 0)
@@ -221,8 +221,8 @@ for reference:
 	anchored = FALSE
 	density = TRUE
 	icon_state = "barrier0"
-	var/health = 300
-	var/maxHealth = 300
+	health = 300
+	maxHealth = 300
 	var/locked = FALSE
 //	req_access = list(access_maint_tunnels)
 
@@ -295,6 +295,17 @@ for reference:
 			if(health <= 0)
 				explode()
 			return
+
+/obj/machinery/deployable/barrier/explosion_act(target_power, explosion_handler/handler)
+	return take_damage(target_power)
+
+/obj/machinery/deployable/barrier/take_damage(amount)
+	. = health - amount <= 0 ? amount - (amount - health) : amount
+	// decent amount of protection
+	. *= 0.7
+	health -= amount
+	if(health <= 0)
+		qdel(src)
 
 /obj/machinery/deployable/barrier/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))

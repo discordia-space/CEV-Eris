@@ -12,7 +12,7 @@
 	var/occupied = 1
 	var/destroyed = 0
 
-/obj/structure/displaycase/explosion_act(target_power)
+/obj/structure/displaycase/explosion_act(target_power, explosion_handler/handler)
 	var/absorbed = take_damage(target_power)
 	return absorbed
 /*
@@ -41,7 +41,7 @@
 	return
 
 /obj/structure/displaycase/take_damage(damage)
-	. = health - damage < 0 ? damage - health : damage
+	. = health - damage < 0 ? damage - (damage - health) : damage
 	. *= explosionCoverage
 	health -= damage
 	if (health <= 0)

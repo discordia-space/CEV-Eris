@@ -284,7 +284,7 @@ var/list/possible_cable_coil_colours = list(
 	return
 */
 
-/obj/structure/cable/explosion_act(target_power)
+/obj/structure/cable/explosion_act(target_power, explosion_handler/handler)
 	take_damage(target_power)
 	if(QDELING(src) && target_power < 40)
 		new /obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)

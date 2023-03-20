@@ -907,8 +907,9 @@
 
 	// test health for brokenness
 /obj/structure/disposalpipe/take_damage(damage)
-	. = health - damage < 0 ? damage - health : damage
+	. = health - damage < 0 ? damage - (damage - health) : damage
 	. *= explosionCoverage
+	health -= damage
 	if(health <= 0)
 		broken(FALSE)
 	else if(health < 2)

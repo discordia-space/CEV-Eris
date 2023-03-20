@@ -14,7 +14,7 @@
 	anchored = TRUE
 	animate_movement=1
 	health = 150 //yeah, it's tougher than ed209 because it is a big metal box with wheels --rastaf0
-	maxhealth = 150
+	maxHealth = 150
 	fire_dam_coeff = 0.7
 	brute_dam_coeff = 0.5
 	var/atom/movable/load = null		// the loaded crate (usually)
@@ -118,8 +118,8 @@
 
 		updateDialog()
 	else if (istype(I, /obj/item/tool/wrench))
-		if (src.health < maxhealth)
-			src.health = min(maxhealth, src.health+25)
+		if (src.health < maxHealth)
+			src.health = min(maxHealth, src.health+25)
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			user.visible_message(
 				SPAN_NOTICE("\The [user] repairs \the [src]!"),

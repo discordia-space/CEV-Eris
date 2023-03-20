@@ -488,7 +488,7 @@
 
 
 /obj/structure/low_wall/take_damage(damage)
-	. = health - damage < 0 ? damage - health : damage
+	. = health - damage < 0 ? damage - (damage - health) : damage
 	. *= explosionCoverage
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		damage *= 10

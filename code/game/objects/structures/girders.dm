@@ -314,14 +314,14 @@
 		damage -= resistance
 	if (!damage || damage <= 0)
 		return
-	. = health - damage < 0 ? damage - health : damage
+	. = health - damage < 0 ? damage - (damage - health) : damage
 	. *= explosionCoverage
 
 	health -= damage
 	if (health <= 0)
 		dismantle()
 
-/obj/structure/girder/explosion_act(target_power)
+/obj/structure/girder/explosion_act(target_power, explosion_handler/handler)
 	var/absorbed = take_damage(target_power)
 	return absorbed
 

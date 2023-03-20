@@ -103,6 +103,18 @@
 
 				return 1
 
+/mob/living/carbon/superior_animal/explosion_act(target_power)
+	flash(round(target_power/100), FALSE, FALSE , FALSE)
+	target_power -= getarmor(null, ARMOR_BOMB)
+	if(target_power > 1000)
+		gib()
+	else if(target_power > 300)
+		adjustEarDamage(round(target_power/10), round(target_power/100))
+	adjustBruteLoss(target_power)
+	// Non blocking
+	return 0
+
+/*
 /mob/living/carbon/superior_animal/ex_act(severity)
 	..()
 	flash(5, FALSE ,FALSE ,FALSE)
@@ -135,7 +147,7 @@
 	adjustBruteLoss(b_loss)
 
 	updatehealth()
-
+*/
 /mob/living/carbon/superior_animal/handle_regular_status_updates()
 	..()
 	if(status_flags & GODMODE)

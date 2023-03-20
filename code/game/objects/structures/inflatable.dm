@@ -56,7 +56,7 @@
 	. = ..()
 
 /obj/structure/inflatable/take_damage(damage)
-	. = health - damage < 0 ? damage - health : damage
+	. = health - damage < 0 ? damage - (damage - health) : damage
 	. *= explosionCoverage
 	if(health < 0)
 		deflate(TRUE)
@@ -74,7 +74,7 @@
 	return
 
 
-/obj/structure/inflatable/explosion_act(target_power)
+/obj/structure/inflatable/explosion_act(target_power, explosion_handler/handler)
 	var/absorbed = take_damage(target_power)
 	return absorbed
 

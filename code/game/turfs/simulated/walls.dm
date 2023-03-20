@@ -362,7 +362,7 @@
 	return 0
 */
 
-/turf/simulated/wall/explosion_act(target_power)
+/turf/simulated/wall/explosion_act(target_power, explosion_handler/handler)
 	var/absorbed = take_damage(target_power)
 	// All damage has been blocked
 	if(absorbed == target_power)

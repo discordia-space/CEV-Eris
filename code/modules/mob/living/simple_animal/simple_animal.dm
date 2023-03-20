@@ -433,7 +433,7 @@
 	density = FALSE
 	stasis = TRUE
 	return ..(gibbed,deathmessage)
-
+/*
 /mob/living/simple_animal/ex_act(severity)
 	flash(0, FALSE,FALSE,FALSE)
 	switch (severity)
@@ -450,6 +450,14 @@
 			adjustBruteLoss(30)
 		if(4)
 			adjustBruteLoss(15)
+*/
+
+/mob/living/simple_animal/explosion_act(target_power)
+	if(target_power > 1000)
+		gib()
+	else
+		adjustBruteLoss(target_power)
+	return 0
 
 
 

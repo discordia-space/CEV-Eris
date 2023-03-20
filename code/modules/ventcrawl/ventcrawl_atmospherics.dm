@@ -18,9 +18,9 @@
 	. = ..()
 */
 
-/obj/machinery/atmospherics/explosion_act(target_power)
+/obj/machinery/atmospherics/explosion_act(target_power, explosion_handler/handler)
 	for(var/atom/movable/A in src) //ventcrawling is serious business
-		A.explosion_act(target_power)
+		A.explosion_act(target_power, handler)
 	. = ..()
 
 /obj/machinery/atmospherics/relaymove(mob/living/user, direction)

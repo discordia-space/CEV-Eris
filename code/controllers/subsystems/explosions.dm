@@ -2,7 +2,7 @@
 #define EFLAG_ADDITIVEFALLOFF 2
 
 #define EXPLOSION_MINIMUM_THRESHOLD 10
-#define EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD 100
+#define EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD 200
 
 #define SPARE_HASH_LISTS 400
 #define HASH_MODULO (world.maxx + world.maxx*world.maxy)
@@ -100,7 +100,7 @@ SUBSYSTEM_DEF(explosions)
 				explodey.current_turf_queue -= target
 				explodey.hashed_visited[target.z][turf_key] = TRUE
 				new /obj/effect/explosion_fire(target)
-				target_power -= target.explosion_act(target_power)
+				target_power -= target.explosion_act(target_power, explodey)
 				if(target_power < EXPLOSION_MINIMUM_THRESHOLD)
 					continue
 				// Run these first so the ones coming from below/above don't get calculated first.
@@ -119,7 +119,7 @@ SUBSYSTEM_DEF(explosions)
 				if(target_power - explodey.falloff - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
 					var/turf/checking = GetAbove(target)
 					if(!QDELETED(checking) && istype(checking, /turf/simulated/open))
-						// Startup for first time
+						// Startup for first time, kind of ineefficient , but better than distributing the lists willy nilly
 						if(explodey.hashed_visited[checking.z] == null)
 							explodey.hashed_visited[checking.z] = SSexplosions.retrieveHashList()
 							explodey.hashed_power[checking.z] = SSexplosions.retrieveHashList()
@@ -180,12 +180,11 @@ SUBSYSTEM_DEF(explosions)
 
 // Explosion action proc , should never SLEEP, and should avoid icon updates , overlays and other visual stuff as much as possible , since they cause massive time delays
 // in processing.
-/turf/explosion_act(target_power)
-	SHOULD_CALL_PARENT(TRUE)
+/turf/explosion_act(target_power, explosion_handler/handler)
 	var/power_reduction = 0
 	for(var/atom/movable/thing as anything in contents)
-		if(thing.simulated && isobj(thing))
-			power_reduction += thing.explosion_act(target_power)
+		if(thing.simulated)
+			power_reduction += thing.explosion_act(target_power, handler)
 	var/turf/to_propagate = GetAbove(src)
 	if(to_propagate && target_power > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
 		to_propagate.take_damage(target_power - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD, BLAST)

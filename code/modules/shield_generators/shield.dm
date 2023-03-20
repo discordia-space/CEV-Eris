@@ -240,7 +240,7 @@ Like for example singulo act and whatever.
 		if (!isInactive())
 			take_damage(rand(10,15) / severity, SHIELD_DAMTYPE_PHYSICAL, src)
 
-/obj/effect/shield/explosion_act(target_power)
+/obj/effect/shield/explosion_act(target_power, explosion_handler/handler)
 	if(!ignoreExAct && !isInactive())
 		return take_damage(target_power, SHIELD_DAMTYPE_PHYSICAL, src)
 

@@ -100,6 +100,46 @@
 		return
 	..(duration, drop_items, doblind, doblurry)
 
+
+/mob/living/carbon/human/explosion_act(target_power, explosion_handler/handle)
+	var/BombDamage = target_power - (getarmor(null, ARMOR_BOMB) + mob_bomb_defense)
+	var/ThrowTurf = get_turf(src)
+	var/ThrowDistance = round(target_power / 100)
+	if(ThrowTurf != handle.epicenter && ThrowDistance)
+		ThrowTurf = get_turf_away_from_target_simple(src, handle.epicenter, 8)
+		throw_at(ThrowTurf, ThrowDistance, ThrowDistance, "explosion")
+	// Heroic sacrifice
+	else if(ThrowTurf == handle.epicenter && BombDamage > 300)
+		gib()
+		// 80% block of total explosion
+		return BombDamage * 0.8
+
+	if(slickness * 50 > BombDamage)
+		slickness = 0
+		return 0
+
+	if(BombDamage > 1000)
+		gib()
+
+	else if(BombDamage > 600)
+		var/earProtection = earcheck()
+		if(earProtection * 100 < BombDamage)
+			adjustEarDamage((BombDamage - earProtection*100)/ 10,(BombDamage - earProtection*100)/ 100)
+
+	var/DamageToApply = round(BombDamage / 7)
+	apply_damage(DamageToApply, BRUTE, BP_HEAD)
+	apply_damage(DamageToApply, BRUTE, BP_CHEST)
+	apply_damage(DamageToApply, BRUTE, BP_GROIN)
+	apply_damage(DamageToApply, BRUTE, BP_R_ARM)
+	apply_damage(DamageToApply, BRUTE, BP_L_ARM)
+	apply_damage(DamageToApply, BRUTE, BP_R_LEG)
+	apply_damage(DamageToApply, BRUTE, BP_L_LEG)
+	if(lying)
+		return BombDamage * 0.1
+	else
+		return BombDamage * 0.3
+
+/*
 /mob/living/carbon/human/ex_act(severity, epicenter)
 	flash(5, FALSE, TRUE , TRUE, 5)
 
@@ -159,6 +199,7 @@
 		exp_damage = rand(0, b_loss)
 		src.apply_damage(exp_damage, BRUTE, organ_hit)
 		organ_hit = pickweight(list(BP_HEAD = 0.1, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG = 0.1, BP_L_LEG = 0.1))  //We determine some other body parts that should be hit
+*/
 
 /mob/living/carbon/human/restrained()
 	if(handcuffed)
@@ -617,6 +658,13 @@ var/list/rank_prefix = list(\
 		return FLASH_PROTECTION_MAJOR
 
 	return flash_protection
+
+/mob/living/carbon/human/earcheck()
+	if(istype(l_ear, /obj/item/clothing/ears/earmuffs) || istype(r_ear, /obj/item/clothing/ears/earmuffs))
+		. += 2
+	if(istype(head, /obj/item/clothing/head/armor/helmet))
+		. += 1
+	return .
 
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.

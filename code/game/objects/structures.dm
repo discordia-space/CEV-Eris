@@ -22,7 +22,7 @@
 // Should  always return the amount of damage done
 /obj/structure/proc/take_damage(damage)
 	// Blocked amount
-	. = health - damage < 0 ? damage - health : damage
+	. = health - damage < 0 ? damage - (damage - health) : damage
 	. *= explosionCoverage
 	health -= damage
 	if(health < 0)
@@ -73,7 +73,7 @@
 /obj/structure/attack_tk()
 	return
 
-/obj/structure/explosion_act(target_power)
+/obj/structure/explosion_act(target_power, explosion_handler/handler)
 	var/absorbed = take_damage(target_power)
 	return absorbed
 

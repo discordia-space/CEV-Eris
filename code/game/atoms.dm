@@ -417,7 +417,7 @@ its easier to just keep the beam vertical.
 
 // Explosion action proc , should never SLEEP, and should avoid icon updates , overlays and other visual stuff as much as possible , since they cause massive time delays
 // in explosion processing.
-/atom/proc/explosion_act(target_power)
+/atom/proc/explosion_act(target_power, explosion_handler/handler)
 	SHOULD_NOT_SLEEP(TRUE)
 	return
 

@@ -422,7 +422,7 @@
 
 
 
-/obj/machinery/door/explosion_act(target_power)
+/obj/machinery/door/explosion_act(target_power, explosion_handler/handler)
 	var/absorbed = take_damage(target_power)
 	//message_admins("Door block absorbed [absorbed] damage , whilst having a health pool of [health] out of a maximum of [maxHealth]")
 	return absorbed

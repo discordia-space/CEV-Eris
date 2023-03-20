@@ -47,7 +47,7 @@
 	take_damage(Proj.get_structure_damage() * 0.25)
 
 /obj/structure/golem_burrow/take_damage(damage)
-	. = health - damage < 0 ? damage - health : damage
+	. = health - damage < 0 ? damage - (damage - health) : damage
 	. *= explosionCoverage
 	health = min(max(health - damage, 0), maxHealth)
 	if(health == 0)

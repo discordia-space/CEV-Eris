@@ -63,7 +63,7 @@
 //Returns the actual damage taken after resistance is accounted for. This is useful for audio volumes
 /obj/structure/window/take_damage(var/damage = 0,  var/sound_effect = 1, var/ignore_resistance = FALSE)
 	var/initialhealth = health
-	. = health - (damage * (1 - silicate / 200) - resistance) < 0 ? damage - health : damage
+	. = health - (damage * (1 - silicate / 200) - resistance) < 0 ? damage - (damage - health) : damage
 	. *= explosionCoverage
 
 	if (!ignore_resistance)

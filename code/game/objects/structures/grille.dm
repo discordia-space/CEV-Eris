@@ -13,7 +13,7 @@
 	health = 50
 	var/destroyed = 0
 
-/obj/structure/grille/explosion_act(target_power)
+/obj/structure/grille/explosion_act(target_power, explosion_handler/handler)
 	var/absorbed = take_damage(target_power)
 	return absorbed
 /*
@@ -189,7 +189,7 @@
 
 
 /obj/structure/grille/take_damage(damage)
-	. = health - damage < 0 ? damage - health : damage
+	. = health - damage < 0 ? damage - (damage - health) : damage
 	. *= explosionCoverage
 	if(health <= 0)
 		if(!destroyed)
