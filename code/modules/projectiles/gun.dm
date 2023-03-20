@@ -299,7 +299,7 @@
 					)
 				user.drop_item()
 			if(rigged > TRUE)
-				explosion(get_turf(src), 1, 2, 3, 3)
+				explosion(get_turf(src), 300, 150)
 				qdel(src)
 			return FALSE
 	return TRUE

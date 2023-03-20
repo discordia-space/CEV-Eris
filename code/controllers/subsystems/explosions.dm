@@ -171,8 +171,8 @@ SUBSYSTEM_DEF(explosions)
 	current_run = explode_queue.Copy()
 
 
-/datum/controller/subsystem/explosions/proc/start_explosion(turf/epicenter, power, falloff)
-	var/reference = new /explosion_handler(epicenter, power, falloff)
+/datum/controller/subsystem/explosions/proc/start_explosion(turf/epicenter, power, falloff, explosion_flags)
+	var/reference = new /explosion_handler(epicenter, power, falloff, explosion_flags)
 	explode_queue += reference
 
 /turf/proc/take_damage(target_power, damage_type)
@@ -216,17 +216,26 @@ explosion_handler
 
 explosion_handler/New(turf/loc, power, falloff, flags)
 	..()
-	turf_queue += loc
 	src.epicenter = loc
 	src.power = power
 	src.falloff = falloff
 	src.flags = flags
 	hashed_power = new /list(world.maxz)
 	hashed_visited = new /list(world.maxz)
-
-	hashed_power[loc.z] = SSexplosions.retrieveHashList()
-	hashed_visited[loc.z] = SSexplosions.retrieveHashList()
-	hashed_power[loc.z][EXPLO_HASH(loc.x, loc.y)] = power
+	if(!islist(loc))
+		turf_queue += loc
+		hashed_power[loc.z] = SSexplosions.retrieveHashList()
+		hashed_visited[loc.z] = SSexplosions.retrieveHashList()
+		hashed_power[loc.z][EXPLO_HASH(loc.x, loc.y)] = power
+	else
+		var/list/locations = loc
+		for(var/turf/target in locations)
+			turf_queue += target
+			if(hashed_power[target.z] == null)
+				hashed_power[target.z] = SSexplosions.retrieveHashList()
+			if(hashed_visited[target.z] == null)
+				hashed_visited[target.z] = SSexplosions.retrieveHashList()
+			hashed_power[target.z][EXPLO_HASH(target.x, target.y)] = power
 	maximum_z = minimum_z = loc.z
 
 /turf/proc/test_explosion()

@@ -468,31 +468,8 @@ steam.start() -- spawns the effect
 					M.Weaken(rand(1,5))
 			return
 		else
-			var/devst = -1
-			var/heavy = -1
-			var/light = -1
-			var/flash = -1
-
-			// Clamp all values to fractions of max_explosion_range, following the same pattern as for tank transfer bombs
-			if (round(amount/12) > 0)
-				devst = devst + amount/12
-
-			if (round(amount/6) > 0)
-				heavy = heavy + amount/6
-
-			if (round(amount/3) > 0)
-				light = light + amount/3
-
-			if (flashing && flashing_factor)
-				flash = (amount/4) * flashing_factor
-
+			var/explosion_power = amount
 			for(var/mob/M in viewers(8, location))
 				to_chat(M, SPAN_WARNING("The solution violently explodes."))
 
-			explosion(
-				location,
-				round(min(devst, BOMBCAP_DVSTN_RADIUS)),
-				round(min(heavy, BOMBCAP_HEAVY_RADIUS)),
-				round(min(light, BOMBCAP_LIGHT_RADIUS)),
-				round(min(flash, BOMBCAP_FLASH_RADIUS))
-				)
+			explosion(get_turf(location), explosion_power, explosion_power / 10)

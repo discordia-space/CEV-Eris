@@ -216,7 +216,7 @@
 		src.malfunction = 1
 	if(shieldHealth <= 0)
 		spawn(0)
-			explosion(get_turf(src.loc), 0, 0, 1, 0, 0, 0)
+			explosion(get_turf(src), 50, 50)
 		qdel(src)
 	update_icon()
 	return

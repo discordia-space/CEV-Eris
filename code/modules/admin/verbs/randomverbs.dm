@@ -516,28 +516,17 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_list_open_jobs, R_DEBUG, FALSE)
 	set name = "Explosion"
 
 	if(!check_rights(R_DEBUG|R_FUN))	return
-
-	var/devastation = input("Range of total devastation. -1 to none", text("Input"))  as num|null
-	if(devastation == null) return
-	var/heavy = input("Range of heavy impact. -1 to none", text("Input"))  as num|null
-	if(heavy == null) return
-	var/light = input("Range of light impact. -1 to none", text("Input"))  as num|null
-	if(light == null) return
-	var/flash = input("Range of flash. -1 to none", text("Input"))  as num|null
-	if(flash == null) return
-
-	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1))
-		if ((devastation > 20) || (heavy > 20) || (light > 20))
-			if (alert(src, "Are you sure you want to do this? It will laaag.", "Confirmation", "Yes", "No") == "No")
-				return
-
-		explosion(O, devastation, heavy, light, flash)
-		log_admin("[key_name(usr)] created an explosion ([devastation],[heavy],[light],[flash]) at ([O.x],[O.y],[O.z])")
-		message_admins("[key_name_admin(usr)] created an explosion ([devastation],[heavy],[light],[flash]) at ([O.x],[O.y],[O.z])", 1)
-
-		return
-	else
-		return
+	var/explosion_power = input("Explosion power. From 100 to infinity") as num
+	var/explosion_falloff = input("Explosion falloff. Should not be 0") as num
+	var/additive_falloff = input("Additive falloff for this explosion?") as num
+	var/multiplicative_falloff = input("Multiplicative falloff for this explosion?") as num
+	var/eflags = additive_falloff ? EFLAG_ADDITIVEFALLOFF : 0 | multiplicative_falloff ? EFLAG_EXPONENTIALFALLOFF : 0
+	if(explosion_power > 1000 || explosion_power / 15 > explosion_falloff)
+		if (alert(src, "Are you sure you want to do this? Explosions above 1k cause lots of turf changes and ones with little falloff might be laggy if they go for too long.", "Confirmation", "Yes", "No") == "No")
+			return
+	explosion(get_turf(O), explosion_power, explosion_falloff, eflags)
+	log_admin("[key_name(usr)] created an explosion with power:[explosion_power] falloff:[explosion_falloff] multiplicative:[!!multiplicative_falloff] additive : [!!additive_falloff] at ([O.x],[O.y],[O.z])")
+	message_admins("[key_name_admin(usr)]created an explosion with power:[explosion_power] falloff:[explosion_falloff] multiplicative:[!!multiplicative_falloff] additive : [!!additive_falloff] at ([O.x],[O.y],[O.z])", 1)
 
 /client/proc/cmd_admin_emp(atom/O as obj|mob|turf in range(world.view))
 	set category = "Special Verbs"

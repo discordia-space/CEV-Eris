@@ -423,7 +423,7 @@
 			smoke.set_up(3, 0, loc)
 			smoke.attach(src)
 			smoke.start()
-			explosion(loc, -1, 0, 1, 3, 1, 0)
+			explosion(get_turf(src), 100, 20)
 			qdel(src)
 			return
 		else if(prob(15)) //Power drain

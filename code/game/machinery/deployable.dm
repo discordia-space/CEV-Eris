@@ -338,7 +338,7 @@ for reference:
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-
+	explosion(get_turf(src), 100, 50)
 	explosion(src.loc,-1,-1,0)
 	if(src)
 		qdel(src)

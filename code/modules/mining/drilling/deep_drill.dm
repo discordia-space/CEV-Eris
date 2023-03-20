@@ -357,7 +357,7 @@
 		if(prob(10)) // Some chance that the drill completely blows up
 			var/turf/O = get_turf(src)
 			if(!O) return
-			explosion(O, -1, 1, 4, 10)
+			explosion(get_turf(src), 800, 50)
 			qdel(src)
 
 /obj/machinery/mining/deep_drill/proc/update_ore_count()

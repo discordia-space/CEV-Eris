@@ -65,7 +65,8 @@
 	var/grav_pulling = 0
 	// Time in ticks between delamination ('exploding') and exploding (as in the actual boom)
 	var/pull_time = 300
-	var/explosion_power = 6
+	var/explosion_power = 5000
+	var/explosion_falloff = 250
 
 	var/emergency_issued = 0
 
@@ -127,7 +128,7 @@
 			var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(mob, src) + 1) )
 			mob.apply_effect(rads, IRRADIATE)
 	spawn(pull_time)
-		explosion(get_turf(src), explosion_power, explosion_power * 1.25, explosion_power * 1.5, explosion_power * 1.75, 1)
+		explosion(get_turf(src), explosion_power, explosion_falloff)
 		qdel(src)
 		return
 

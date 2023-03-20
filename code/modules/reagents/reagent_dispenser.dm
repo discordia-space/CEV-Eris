@@ -210,21 +210,22 @@
 
 		if(!istype(Proj ,/obj/item/projectile/beam/lastertag) && !istype(Proj ,/obj/item/projectile/beam/practice) )
 			explode()
-
+/obj/structure/reagent_dispensers/fueltank/explosion_act(target_power, explosion_handler/handle)
+	if(target_power > health)
+		explode()
+	else
+		take_damage(target_power)
+/*
 /obj/structure/reagent_dispensers/fueltank/ex_act()
 	explode()
+*/
 
 /obj/structure/reagent_dispensers/fueltank/ignite_act()
 	if(modded)
 		explode()
 
 /obj/structure/reagent_dispensers/fueltank/explode()
-	if (reagents.total_volume > 500)
-		explosion(src.loc,1,2,4)
-	else if (reagents.total_volume > 100)
-		explosion(src.loc,0,1,3)
-	else if (reagents.total_volume > 50)
-		explosion(src.loc,-1,1,2)
+	explosion(get_turf(src), reagents.total_volume / 2, 50)
 	if(src)
 		qdel(src)
 

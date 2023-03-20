@@ -20,7 +20,7 @@
 	recoil = 3
 
 /obj/item/projectile/bullet/gyro/on_hit(atom/target)
-	explosion(target, -1, 0, 2)
+	explosion(get_turf(target), 100, 50)
 	return TRUE
 
 /obj/item/projectile/bullet/rocket
@@ -44,13 +44,13 @@
 	return TRUE
 
 /obj/item/projectile/bullet/rocket/proc/detonate(atom/target)
-	explosion(get_turf(src), 0, 1, 2, 5)
+	explosion(get_turf(target), 700, 50)
 
 /obj/item/projectile/bullet/rocket/scrap
 	damage_types = list(BRUTE = 30)
 
 /obj/item/projectile/bullet/rocket/scrap/detonate(atom/target)
-	explosion(target, 0, 0, 1, 4, singe_impact_range = 3)
+	explosion(get_turf(target), 500, 50)
 
 /obj/item/projectile/bullet/rocket/hesh
 	name = "high-explosive squash head rocket"
@@ -60,7 +60,7 @@
 
 /obj/item/projectile/bullet/rocket/hesh/detonate(atom/target)
 	fragment_explosion_angled(get_turf(src), starting, /obj/item/projectile/bullet/pellet/fragment/strong, 20)
-	explosion(get_turf(src), 0, 0, 1, 3, singe_impact_range = 3) // Much weaker explosion, but offset by shrapnel released
+	explosion(get_turf(target), 300, 50)
 
 /obj/item/projectile/bullet/rocket/heat
 	name = "high-explosive anti-tank rocket"
@@ -74,7 +74,7 @@
 	P.launch(T, def_zone)
 	if(target)
 		P.Bump(target, TRUE)
-	explosion(get_turf(src), 0, 0, 0, 3, singe_impact_range = 3) // Explosion mostly ineffective
+	explosion(get_turf(target), 300, 50)
 
 /obj/item/projectile/bullet/rocket/thermo
 	name = "thermobaric rocket"
