@@ -67,12 +67,13 @@ COMSIG_ABERRANT_SECONDARY
 	var/new_color
 
 /datum/component/modification/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_IATTACK, .proc/attempt_install)
-	RegisterSignal(parent, COMSIG_ATTACKBY, .proc/try_modify)
-	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
-	RegisterSignal(parent, COMSIG_REMOVE, .proc/uninstall)
+	RegisterSignal(parent, COMSIG_IATTACK, PROC_REF(attempt_install))
+	RegisterSignal(parent, COMSIG_ATTACKBY, PROC_REF(try_modify))
+	RegisterSignal(parent, COMSIG_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_REMOVE, PROC_REF(uninstall))
 
 /datum/component/modification/proc/attempt_install(atom/A, mob/living/user, params)
+	//SIGNAL_HANDLER
 	return can_apply(A, user) && apply(A, user)
 
 /datum/component/modification/proc/can_apply(atom/A, mob/living/user)
@@ -129,8 +130,8 @@ COMSIG_ABERRANT_SECONDARY
 	var/obj/item/I = parent
 	I.forceMove(A)	// May want to change this to I.loc = A or something similar. forceMove() calls all Crossed() procs between the src and the target.
 	A.item_upgrades.Add(I)
-	RegisterSignal(A, trigger_signal, .proc/trigger)
-	RegisterSignal(A, COMSIG_APPVAL, .proc/apply_values)
+	RegisterSignal(A, trigger_signal, PROC_REF(trigger))
+	RegisterSignal(A, COMSIG_APPVAL, PROC_REF(apply_values))
 
 	var/datum/component/modification_removal/MR = A.AddComponent(/datum/component/modification_removal)
 	MR.removal_tool_quality = removal_tool_quality
@@ -139,6 +140,7 @@ COMSIG_ABERRANT_SECONDARY
 	return TRUE
 
 /datum/component/modification/proc/try_modify(obj/item/I, mob/living/user)
+	//SIGNAL_HANDLER
 	if(user && adjustable)
 		if(!I.use_tool(user = user, target = parent, base_time = mod_time, required_quality = mod_tool_quality, fail_chance = mod_difficulty, required_stat = mod_stat, forced_sound = mod_sound))
 			return FALSE
@@ -151,6 +153,7 @@ COMSIG_ABERRANT_SECONDARY
 	return TRUE
 
 /datum/component/modification/proc/apply_values(atom/holder)
+	SIGNAL_HANDLER
 	ASSERT(holder)
 	if(new_name)
 		holder.name = new_name
@@ -163,6 +166,7 @@ COMSIG_ABERRANT_SECONDARY
 	return TRUE
 
 /datum/component/modification/proc/on_examine(mob/user)
+	SIGNAL_HANDLER
 	var/details_unlocked = FALSE
 	details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
 	if(examine_stat_secondary)
@@ -179,6 +183,7 @@ COMSIG_ABERRANT_SECONDARY
 	return
 
 /datum/component/modification/proc/uninstall(obj/item/I, mob/living/user)
+	//SIGNAL_HANDLER
 	var/obj/item/P = parent
 	I.item_upgrades -= P
 	if(destroy_on_removal)
@@ -205,12 +210,13 @@ COMSIG_ABERRANT_SECONDARY
 	var/removal_tool_quality = QUALITY_CLAMPING
 
 /datum/component/modification_removal/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ATTACKBY, .proc/attempt_uninstall)
+	RegisterSignal(parent, COMSIG_ATTACKBY, PROC_REF(attempt_uninstall))
 
 /datum/component/modification_removal/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ATTACKBY)
 
 /datum/component/modification_removal/proc/attempt_uninstall(obj/item/C, mob/living/user)
+	//SIGNAL_HANDLER
 	if(!isitem(C))
 		return 0
 
@@ -235,7 +241,7 @@ COMSIG_ABERRANT_SECONDARY
 				// If you pass the check, then you manage to remove the upgrade intact
 				if(!M.destroy_on_removal && user)
 					to_chat(user, SPAN_NOTICE("You successfully extract \the [toremove] while leaving it intact."))
-				SEND_SIGNAL(toremove, COMSIG_REMOVE, upgrade_loc)
+				SEND_SIGNAL_OLD(toremove, COMSIG_REMOVE, upgrade_loc)
 				upgrade_loc.refresh_upgrades()
 				return TRUE
 			else
@@ -247,7 +253,7 @@ COMSIG_ABERRANT_SECONDARY
 				else if(prob(50))
 					//50% chance to break the upgrade and remove it
 					to_chat(user, SPAN_DANGER("You successfully extract \the [toremove], but destroy it in the process."))
-					SEND_SIGNAL(toremove, COMSIG_REMOVE, parent)
+					SEND_SIGNAL_OLD(toremove, COMSIG_REMOVE, parent)
 					//do_sparks(5, 0, toremove.loc)
 					QDEL_NULL(toremove)
 					upgrade_loc.refresh_upgrades()

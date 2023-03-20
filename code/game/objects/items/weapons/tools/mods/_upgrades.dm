@@ -39,11 +39,12 @@
 	var/list/weapon_upgrades = list() //variable name(string) -> num
 
 /datum/component/item_upgrade/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_IATTACK, .proc/attempt_install)
-	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
-	RegisterSignal(parent, COMSIG_REMOVE, .proc/uninstall)
+	RegisterSignal(parent, COMSIG_IATTACK, PROC_REF(attempt_install))
+	RegisterSignal(parent, COMSIG_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_REMOVE, PROC_REF(uninstall))
 
 /datum/component/item_upgrade/proc/attempt_install(atom/A, mob/living/user, params)
+	//SIGNAL_HANDLER
 	return can_apply(A, user) && apply(A, user)
 
 /datum/component/item_upgrade/proc/can_apply(atom/A, mob/living/user)
@@ -188,13 +189,14 @@
 	var/obj/item/I = parent
 	I.forceMove(A)
 	A.item_upgrades.Add(I)
-	RegisterSignal(A, COMSIG_APPVAL, .proc/apply_values)
-	RegisterSignal(A, COMSIG_ADDVAL, .proc/add_values)
+	RegisterSignal(A, COMSIG_APPVAL, PROC_REF(apply_values))
+	RegisterSignal(A, COMSIG_ADDVAL, PROC_REF(add_values))
 	A.AddComponent(/datum/component/upgrade_removal)
 	A.refresh_upgrades()
 	return TRUE
 
 /datum/component/item_upgrade/proc/uninstall(obj/item/I, mob/living/user)
+	//SIGNAL_HANDLER
 	var/obj/item/P = parent
 	I.item_upgrades -= P
 	if(destroy_on_removal)
@@ -207,6 +209,7 @@
 	UnregisterSignal(I, COMSIG_APPVAL)
 
 /datum/component/item_upgrade/proc/apply_values(atom/holder)
+	//SIGNAL_HANDLER
 	if(!holder)
 		return
 	if(istool(holder))
@@ -383,6 +386,7 @@
 					F.settings[i] *= weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT]
 
 /datum/component/item_upgrade/proc/on_examine(mob/user)
+	SIGNAL_HANDLER
 	if(tool_upgrades[UPGRADE_SANCTIFY])
 		to_chat(user, SPAN_NOTICE("Does additional burn damage to mutants."))
 	if (tool_upgrades[UPGRADE_PRECISION] > 0)
@@ -587,12 +591,13 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 
 /datum/component/upgrade_removal/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ATTACKBY, .proc/attempt_uninstall)
+	RegisterSignal(parent, COMSIG_ATTACKBY, PROC_REF(attempt_uninstall))
 
 /datum/component/upgrade_removal/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ATTACKBY)
 
 /datum/component/upgrade_removal/proc/attempt_uninstall(obj/item/C, mob/living/user)
+	//SIGNAL_HANDLER
 	if(!isitem(C))
 		return 0
 
@@ -621,7 +626,7 @@
 				//If you pass the check, then you manage to remove the upgrade intact
 				if(!IU.destroy_on_removal && user)
 					to_chat(user, SPAN_NOTICE("You successfully remove \the [toremove] while leaving it intact."))
-				SEND_SIGNAL(toremove, COMSIG_REMOVE, upgrade_loc)
+				SEND_SIGNAL_OLD(toremove, COMSIG_REMOVE, upgrade_loc)
 				upgrade_loc.refresh_upgrades()
 				return 1
 			else
@@ -633,7 +638,7 @@
 				else if(prob(50))
 					//50% chance to break the upgrade and remove it
 					to_chat(user, SPAN_DANGER("You successfully remove \the [toremove], but destroy it in the process."))
-					SEND_SIGNAL(toremove, COMSIG_REMOVE, parent)
+					SEND_SIGNAL_OLD(toremove, COMSIG_REMOVE, parent)
 					QDEL_NULL(toremove)
 					upgrade_loc.refresh_upgrades()
 					user.update_action_buttons()

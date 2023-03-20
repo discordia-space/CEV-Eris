@@ -134,7 +134,7 @@
 	Paralyse(knockout_time)
 	status_flags |= HARDCRIT
 
-	addtimer(CALLBACK(src, .proc/exit_hard_crit), knockout_time)
+	addtimer(CALLBACK(src, PROC_REF(exit_hard_crit)), knockout_time)
 
 /mob/living/carbon/human/proc/exit_hard_crit()
 	if(status_flags & HARDCRIT)

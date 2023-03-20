@@ -41,7 +41,7 @@ mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 		G.check_safety_cursor(src)
 
 	if(recoil != 0)
-		recoil_reduction_timer = addtimer(CALLBACK(src, .proc/calc_recoil), 0.1 SECONDS, TIMER_STOPPABLE)
+		recoil_reduction_timer = addtimer(CALLBACK(src, PROC_REF(calc_recoil)), 0.1 SECONDS, TIMER_STOPPABLE)
 	else
 		deltimer(recoil_reduction_timer)
 

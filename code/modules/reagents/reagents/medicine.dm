@@ -362,7 +362,7 @@
 		if(E && istype(E))
 			var/list/current_wounds = E.GetComponents(/datum/component/internal_wound)
 			if(LAZYLEN(current_wounds) && prob(10))
-				SEND_SIGNAL(E, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
+				SEND_SIGNAL_OLD(E, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
 
 /datum/reagent/medicine/imidazoline/overdose(mob/living/carbon/M, alien)
 	. = ..()
@@ -388,7 +388,7 @@
 		for(var/obj/item/organ/I in H.internal_organs)
 			var/list/current_wounds = I.GetComponents(/datum/component/internal_wound)
 			if(LAZYLEN(current_wounds) && !BP_IS_ROBOTIC(I)) //Peridaxon heals only non-robotic organs
-				SEND_SIGNAL(I, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
+				SEND_SIGNAL_OLD(I, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
 
 /datum/reagent/medicine/peridaxon/overdose(mob/living/carbon/M, alien)
 	. = ..()

@@ -29,7 +29,7 @@
 
 /obj/item/device/techno_tribalism/Destroy()
 	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
-		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+		SEND_SIGNAL_OLD(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
 	GLOB.all_faction_items -= src
 	GLOB.technomancer_faction_item_loss++
 	..()
@@ -164,7 +164,7 @@
 			return
 
 		to_chat(user, SPAN_NOTICE("You feed [W] to [src]."))
-		SEND_SIGNAL(user, COMSIG_OBJ_TECHNO_TRIBALISM, W)
+		SEND_SIGNAL_OLD(user, COMSIG_OBJ_TECHNO_TRIBALISM, W)
 		items_count += 1
 		qdel(W)
 
@@ -183,7 +183,7 @@
 				items_count = 0
 				oddity_stats = list(STAT_MEC = 0, STAT_COG = 0, STAT_BIO = 0, STAT_ROB = 0, STAT_TGH = 0, STAT_VIG = 0)
 				// let technos know
-				addtimer(CALLBACK(src, .proc/alert_technomancers), cooldown)
+				addtimer(CALLBACK(src, PROC_REF(alert_technomancers)), cooldown)
 				last_produce = world.time
 				user.put_in_hands(T)
 			else

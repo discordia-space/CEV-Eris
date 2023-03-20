@@ -1027,8 +1027,8 @@
 	initialize_firemodes()
 
 	//Now lets have each upgrade reapply its modifications
-	SEND_SIGNAL(src, COMSIG_ADDVAL, src)
-	SEND_SIGNAL(src, COMSIG_APPVAL, src)
+	SEND_SIGNAL_OLD(src, COMSIG_ADDVAL, src)
+	SEND_SIGNAL_OLD(src, COMSIG_APPVAL, src)
 
 	if(firemodes.len)
 		very_unsafe_set_firemode(sel_mode) // Reset the firemode so it gets the new changes

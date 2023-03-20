@@ -229,7 +229,7 @@
 
 			var/datum/wound = locate(href_list["wound"])
 			if(wound)
-				SEND_SIGNAL(wound, COMSIG_ATTACKBY, I, user)
+				SEND_SIGNAL_OLD(wound, COMSIG_ATTACKBY, I, user)
 			return TRUE
 
 		if("view")

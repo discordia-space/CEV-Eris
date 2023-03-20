@@ -49,4 +49,4 @@
             else
                 to_chat(M, SPAN_WARNING("You hear some stupid propaganda, you dont belive it but... what if they are right?"))
                 M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, 20 SECONDS, "ex_boombox_m")
-        addtimer(CALLBACK(src, .proc/send_propaganda), 20 SECONDS)
+        addtimer(CALLBACK(src, PROC_REF(send_propaganda)), 20 SECONDS)

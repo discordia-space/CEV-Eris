@@ -10,14 +10,14 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 	name = text
 	src.target = target
 	if(istype(target, /datum)) //Harddel man bad
-		RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/cleanup)
+		RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(cleanup))
 
 /obj/effect/statclick/Destroy()
 	target = null
 	return ..()
 
 /obj/effect/statclick/proc/cleanup()
-	//SIGNAL_HANDLER
+	SIGNAL_HANDLER
 	qdel(src)
 
 /obj/effect/statclick/proc/update(text)

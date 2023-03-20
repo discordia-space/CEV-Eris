@@ -19,7 +19,7 @@
 		for(var/element in input)
 			input[element] += multiplier
 
-		SEND_SIGNAL(holder, COMSIG_ABERRANT_OUTPUT, holder, owner, input)
+		SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_OUTPUT, holder, owner, input)
 
 
 /datum/component/modification/organ/process/map
@@ -64,7 +64,7 @@
 		input = shuffled_input
 
 	if(input.len)
-		SEND_SIGNAL(holder, COMSIG_ABERRANT_OUTPUT, holder, owner, input)
+		SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_OUTPUT, holder, owner, input)
 
 
 /datum/component/modification/organ/process/condense
@@ -83,4 +83,4 @@
 		for(var/element in input)
 			condensed_input["condensed input"] |= input[element]
 
-		SEND_SIGNAL(holder, COMSIG_ABERRANT_OUTPUT, holder, owner, condensed_input)
+		SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_OUTPUT, holder, owner, condensed_input)

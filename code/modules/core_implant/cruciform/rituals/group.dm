@@ -231,5 +231,5 @@
 		O.force_active = max(60, O.force_active)
 
 /area/proc/sanctify()
-	SEND_SIGNAL(src, COMSIG_AREA_SANCTIFY)
+	SEND_SIGNAL_OLD(src, COMSIG_AREA_SANCTIFY)
 	return

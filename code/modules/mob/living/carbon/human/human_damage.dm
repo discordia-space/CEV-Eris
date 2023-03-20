@@ -10,9 +10,7 @@
 	var/lethal_damage = max(brain_damage, oxygen_level)
 
 	health = maxHealth - lethal_damage
-	SEND_SIGNAL(src, COMSIG_HUMAN_HEALTH, health)
-
-	return
+	SEND_SIGNAL_OLD(src, COMSIG_HUMAN_HEALTH, health)
 
 /mob/living/carbon/human/adjustBrainLoss(var/amount)
 	if(status_flags & GODMODE)
