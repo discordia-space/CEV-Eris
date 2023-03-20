@@ -9,7 +9,7 @@
 	..()
 	target_val = mind_holder.stats.getStat(STAT_COG) + delta
 	desc = "Ensure that your COG stat will be increased to [target_val]."
-	RegisterSignal(mind_holder, COMSIG_STAT, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSIG_STAT, PROC_REF(task_completed))
 
 /datum/individual_objective/big_brain/task_completed(stat_name, stat_value, stat_value_pure)
 	if(target_stat == stat_name && (stat_value >= target_val))
@@ -29,7 +29,7 @@
 /datum/individual_objective/get_nsa/assign()
 	..()
 	desc = "Reach [units_requested] of NSA. Survive."
-	RegisterSignal(mind_holder, COMSING_NSA, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSIG_NSA, PROC_REF(task_completed))
 
 /datum/individual_objective/get_nsa/task_completed(n_nsa)
 	units_completed = n_nsa ? n_nsa : 0
@@ -38,7 +38,7 @@
 
 /datum/individual_objective/get_nsa/completed()
 	if(completed) return
-	UnregisterSignal(mind_holder, COMSING_NSA)
+	UnregisterSignal(mind_holder, COMSIG_NSA)
 	..()
 
 /datum/individual_objective/derail
@@ -51,7 +51,7 @@
 	..()
 	units_requested = rand(3,4)
 	desc = "Observe a sum of [units_requested] mental breakdowns of you, orother non people."
-	RegisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN, PROC_REF(task_completed))
 
 /datum/individual_objective/derail/task_completed(mob/living/L, datum/breakdown/breakdown)
 	..(1)
@@ -71,7 +71,7 @@
 	..()
 	units_requested = rand(3,4)
 	desc = "Observe a sum of [units_requested] occasions on where people will get addicted to any chems."
-	RegisterSignal(mind_holder, COMSIG_CARBON_ADICTION, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSIG_CARBON_ADICTION, PROC_REF(task_completed))
 
 /datum/individual_objective/adiction/task_completed(mob/living/carbon/C, datum/reagent/reagent)
 	if(C != mind_holder)
@@ -91,9 +91,9 @@
 	..()
 	units_requested = rand(2,3)
 	desc = "Perform [units_requested] autopsies."
-	RegisterSignal(mind_holder, COMSING_AUTOPSY, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSING_AUTOPSY, PROC_REF(task_completed))
 
-/datum/individual_objective/autopsy/task_completed(mob/living/carbon/human/H) 
+/datum/individual_objective/autopsy/task_completed(mob/living/carbon/human/H)
 	if(H in cadavers)
 		return
 	cadavers += H
@@ -120,9 +120,9 @@
 	..()
 	target = pick_faction_item(mind_holder)
 	desc = "\The [target] is wasted in their hands. Put it into a destructive analyzer."
-	RegisterSignal(mind_holder, COMSING_DESTRUCTIVE_ANALIZER, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSING_DESTRUCTIVE_ANALIZER, PROC_REF(task_completed))
 
-/datum/individual_objective/more_research/task_completed(obj/item/I) 
+/datum/individual_objective/more_research/task_completed(obj/item/I)
 	if(target.type == I.type)
 		..(1)
 
@@ -141,7 +141,7 @@
 	units_requested = rand(120,160)
 	desc = "Receive cumulative [units_requested] damage of any kind, to ensure that you see things in a different light."
 	last_health = mind_holder.health
-	RegisterSignal(mind_holder, COMSIG_HUMAN_HEALTH, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSIG_HUMAN_HEALTH, PROC_REF(task_completed))
 
 /datum/individual_objective/damage/task_completed(health)
 	if(last_health > health)
@@ -178,7 +178,7 @@
 	for(var/obj/item/organ/O in target.internal_organs)
 		valid_organs += O
 	desc = "[target] looks interesting. Put any of their organ in destructive analyzer."
-	RegisterSignal(mind_holder, COMSING_DESTRUCTIVE_ANALIZER, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSING_DESTRUCTIVE_ANALIZER, PROC_REF(task_completed))
 
 /datum/individual_objective/for_science/task_completed(obj/item/I)
 	if(I in valid_organs)

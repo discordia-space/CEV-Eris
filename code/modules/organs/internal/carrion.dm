@@ -72,6 +72,8 @@
 	owner = null //overrides removed() call
 	. = ..()
 
+/obj/item/organ/internal/carrion/core/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)
+	return
 
 /obj/item/organ/internal/carrion/core/proc/make_spider()
 	set category = "Carrion"
@@ -295,7 +297,7 @@
 	owner.emote("gasp")
 	owner.timeofdeath = world.time
 
-	addtimer(CALLBACK(src, .proc/carrion_revive), rand(1 MINUTES, 3 MINUTES))
+	addtimer(CALLBACK(src, PROC_REF(carrion_revive)), rand(1 MINUTES, 3 MINUTES))
 
 /obj/item/organ/internal/carrion/core/proc/carrion_revive()
 	if(!owner)
@@ -572,7 +574,7 @@
 /obj/structure/spider_nest/New()
 	. = ..()
 	spider_spawns = rand(3,8)
-	addtimer(CALLBACK(src, .proc/spawn_spider), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(spawn_spider)), 30 SECONDS)
 
 /obj/structure/spider_nest/attackby(obj/item/I, mob/living/user)
 	..()
@@ -598,7 +600,7 @@
 	visible_message(SPAN_WARNING("A spider spews out of \The [src]"))
 	spider_spawns--
 	if(spider_spawns)
-		addtimer(CALLBACK(src, .proc/spawn_spider), 1 MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(spawn_spider)), 1 MINUTES)
 
 /mob/proc/make_carrion()
 	var/mob/living/carbon/human/user = src

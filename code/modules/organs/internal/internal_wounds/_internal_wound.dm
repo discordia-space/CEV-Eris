@@ -111,7 +111,7 @@
 		if(severity == spread_threshold)
 			var/list/internal_organs_sans_parent = H.internal_organs.Copy() - O
 			var/obj/item/organ/next_organ = pick(internal_organs_sans_parent)
-			SEND_SIGNAL(next_organ, COMSIG_IORGAN_ADD_WOUND, type)
+			SEND_SIGNAL_OLD(next_organ, COMSIG_IORGAN_ADD_WOUND, type)
 
 	// Deal damage - halloss is handled in shock.dm
 	if(psy_damage)
@@ -143,12 +143,14 @@
 		characteristic_flag &= ~(IWOUND_PROGRESS|IWOUND_PROGRESS_DEATH)	// Lets us remove the wound from processing
 		if(next_wound && ispath(next_wound, /datum/component))
 			var/chosen_wound_type = pick(subtypesof(next_wound))
-			SEND_SIGNAL(parent, COMSIG_IORGAN_ADD_WOUND, chosen_wound_type)
+			SEND_SIGNAL_OLD(parent, COMSIG_IORGAN_ADD_WOUND, chosen_wound_type)
 
 	SEND_SIGNAL(parent, COMSIG_IORGAN_REFRESH_SELF)
 
 /datum/component/internal_wound/proc/apply_tool(obj/item/I, mob/user)
 	var/success = FALSE
+	var/obj/item/organ/internal/organ = parent
+	var/obj/item/organ/limb = organ.parent
 
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = I
@@ -161,14 +163,25 @@
 			to_chat(user, SPAN_WARNING("You cannot draw blood like this."))
 
 	if(!I.tool_qualities || !LAZYLEN(I.tool_qualities))
-		var/charges_needed = LAZYACCESS(treatments_item, I.type)
-		var/can_treat = TRUE
+		var/charges_needed
+		for(var/path in treatments_item)
+			if(istype(I, path))
+				charges_needed = treatments_item[path]
+		var/is_treated = FALSE
+		var/free_use = FALSE
+		var/user_stat_level = user.stats.getStat(diagnosis_stat)
 		if(charges_needed)
 			if(istype(I, /obj/item/stack))
 				var/obj/item/stack/S = I
-				if(!S.use(charges_needed))
-					can_treat = FALSE
-			if(can_treat && do_after(user, WORKTIME_NORMAL - user.stats.getStat(diagnosis_stat), parent))
+				if(do_after(user, WORKTIME_NORMAL - user_stat_level, parent))
+					if(prob(10 + user_stat_level))
+						free_use = TRUE
+						is_treated = TRUE
+					else
+						is_treated = S.use(charges_needed)
+			if(is_treated)
+				if(free_use)
+					to_chat(user, SPAN_NOTICE("You have managed to waste less [I.name]."))
 				success = TRUE
 	else
 		for(var/tool_quality in treatments_tool)
@@ -182,6 +195,8 @@
 	if(user)
 		if(success)
 			to_chat(user, SPAN_NOTICE("You treat the [name] with \the [I]."))
+			if(limb)
+				SSnano.update_user_uis(user, limb)
 		else
 			to_chat(user, SPAN_WARNING("You cannot treat the [name] with \the [I]."))
 
@@ -195,8 +210,8 @@
 			characteristic_flag |= IWOUND_PROGRESS
 	else
 		if(!used_autodoc && scar && ispath(scar, /datum/component))
-			SEND_SIGNAL(parent, COMSIG_IORGAN_ADD_WOUND, pick(subtypesof(scar)))
-		SEND_SIGNAL(parent, COMSIG_IORGAN_REMOVE_WOUND, src)
+			SEND_SIGNAL_OLD(parent, COMSIG_IORGAN_ADD_WOUND, pick(subtypesof(scar)))
+		SEND_SIGNAL_OLD(parent, COMSIG_IORGAN_REMOVE_WOUND, src)
 
 /datum/component/internal_wound/proc/apply_effects()
 	var/obj/item/organ/internal/O = parent

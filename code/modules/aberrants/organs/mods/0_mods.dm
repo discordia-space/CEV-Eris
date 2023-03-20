@@ -24,7 +24,7 @@
 /obj/item/modification/organ/internal/Destroy()
 	if(LAZYLEN(datum_components))
 		for(var/datum/component/comp in datum_components)
-			comp.RemoveComponent()
+			comp.ClearFromParent()
 			qdel(comp)
 	return ..()
 

@@ -6,7 +6,7 @@
 	while(great_mods.len)
 		var/great_mod_path = pick_n_take(great_mods)
 		var/obj/item/great_mod = new great_mod_path
-		if(SEND_SIGNAL(great_mod, COMSIG_IATTACK, src, null))
+		if(SEND_SIGNAL_OLD(great_mod, COMSIG_IATTACK, src, null))
 			break
 		QDEL_NULL(great_mod)
 
@@ -15,7 +15,7 @@
 	while(great_mods.len)
 		var/great_mod_path = pick_n_take(great_mods)
 		var/obj/item/great_mod = new great_mod_path
-		if(SEND_SIGNAL(great_mod, COMSIG_IATTACK, src, null))
+		if(SEND_SIGNAL_OLD(great_mod, COMSIG_IATTACK, src, null))
 			break
 		QDEL_NULL(great_mod)
 

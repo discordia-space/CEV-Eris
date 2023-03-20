@@ -26,9 +26,9 @@
 	initialize_organ_efficiencies()
 	initialize_owner_verbs()
 	update_icon()
-	RegisterSignal(src, COMSIG_IORGAN_ADD_WOUND, .proc/add_wound)
-	RegisterSignal(src, COMSIG_IORGAN_REMOVE_WOUND, .proc/remove_wound)
-	RegisterSignal(src, COMSIG_IORGAN_REFRESH_SELF, .proc/refresh_upgrades)
+	RegisterSignal(src, COMSIG_IORGAN_ADD_WOUND, PROC_REF(add_wound))
+	RegisterSignal(src, COMSIG_IORGAN_REMOVE_WOUND, PROC_REF(remove_wound))
+	RegisterSignal(src, COMSIG_IORGAN_REFRESH_SELF, PROC_REF(refresh_upgrades))
 
 /obj/item/organ/internal/Process()
 	refresh_damage()	// Death check is in the parent proc
@@ -70,9 +70,9 @@
 /obj/item/organ/internal/replaced(obj/item/organ/external/affected)
 	..()
 	parent.internal_organs |= src
-	RegisterSignal(parent, COMSIG_IORGAN_WOUND_COUNT, .proc/wound_count, TRUE)
-	RegisterSignal(parent, COMSIG_IORGAN_REFRESH_PARENT, .proc/refresh_organ_stats, TRUE)
-	RegisterSignal(parent, COMSIG_IORGAN_APPLY, .proc/apply_modifiers, TRUE)
+	RegisterSignal(parent, COMSIG_IORGAN_WOUND_COUNT, PROC_REF(wound_count), TRUE)
+	RegisterSignal(parent, COMSIG_IORGAN_REFRESH_PARENT, PROC_REF(refresh_organ_stats), TRUE)
+	RegisterSignal(parent, COMSIG_IORGAN_APPLY, PROC_REF(apply_modifiers), TRUE)
 	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_ADD)
 
 /obj/item/organ/internal/replaced_mob(mob/living/carbon/human/target)
@@ -92,12 +92,12 @@
 
 /obj/item/organ/internal/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)	//Deals damage to the organ itself
 	if(!damage_type || status & ORGAN_DEAD)
-		return
+		return FALSE
 
 	var/wound_count = max(0, round((amount * wounding_multiplier) / 8))	// At base values, every 8 points of damage is 1 wound
 
 	if(!wound_count)
-		return
+		return FALSE
 
 	var/list/possible_wounds = get_possible_wounds(damage_type, sharp, edge)
 
@@ -110,6 +110,9 @@
 				break
 
 		owner.custom_pain("Something inside your [parent.name] hurts a lot.", 0)		// Let em know they're hurting
+
+		return TRUE
+	return FALSE
 
 /obj/item/organ/internal/proc/get_possible_wounds(damage_type, sharp, edge)
 	var/list/possible_wounds = list()
@@ -177,10 +180,14 @@
 					break
 			if(BV)
 				BV.current_blood = max(BV.current_blood - blood_req, 0)
-			if(BV?.current_blood == 0)	//When all blood from the organ and blood vessel is lost,
+			if(!damage && BV?.current_blood == 0)	//When all blood from the organ and blood vessel is lost,
 				add_wound(/datum/component/internal_wound/organic/oxy/blood_loss)
 
 		return
+
+	// If the bleedout status is removed, remove blood loss wound
+	if(damage)
+		remove_wound(GetComponent(/datum/component/internal_wound/organic/oxy/blood_loss))
 
 	current_blood = min(current_blood + blood_req, max_blood_storage)
 
@@ -389,8 +396,10 @@
 /obj/item/organ/internal/proc/apply_modifiers()
 	SEND_SIGNAL(src, COMSIG_IWOUND_EFFECTS)
 	SEND_SIGNAL(src, COMSIG_IWOUND_LIMB_EFFECTS)
-	SEND_SIGNAL(src, COMSIG_APPVAL, src)
+	SEND_SIGNAL(src, COMSIG_APPVAL)
 	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_ADD)
+
+	refresh_damage()
 
 	for(var/prefix in prefixes)
 		name = "[prefix] [name]"

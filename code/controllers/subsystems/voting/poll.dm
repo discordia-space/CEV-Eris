@@ -1,6 +1,6 @@
 /datum/poll
 	var/name = "Voting"
-	var/question = "Voting, voting, candidates are faggots!"
+	var/question = "Voting, voting, candidates are пичке!"
 	var/description = ""
 	var/time = 60	//in seconds
 	var/list/choice_types = list(/datum/vote_choice)	//Choices will be initialized from this list

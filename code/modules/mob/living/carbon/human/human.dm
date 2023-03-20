@@ -986,7 +986,7 @@ var/list/rank_prefix = list(\
 				var/mob/living/carbon/superior_animal/roach/R = M
 				R.target_mob = null
 				R.set_faction(faction)
-				addtimer(CALLBACK(R, .proc/set_faction), 1 MINUTE)
+				addtimer(CALLBACK(R, PROC_REF(set_faction)), 1 MINUTE)
 
 			else if(ishuman(M))
 				var/mob/living/carbon/human/H = M
@@ -1009,7 +1009,7 @@ var/list/rank_prefix = list(\
 				var/mob/living/carbon/superior_animal/giant_spider/S = M
 				S.target_mob = null
 				S.set_faction(faction)
-				addtimer(CALLBACK(S, .proc/set_faction), 1 MINUTE)
+				addtimer(CALLBACK(S, PROC_REF(set_faction)), 1 MINUTE)
 
 			else if(ishuman(M))
 				var/mob/living/carbon/human/H = M
@@ -1066,17 +1066,6 @@ var/list/rank_prefix = list(\
 	losebreath = 0
 
 	..()
-
-/mob/living/carbon/human/proc/is_lung_ruptured()
-	var/obj/item/organ/internal/lungs/L = random_organ_by_process(OP_LUNGS)
-	return L && L.is_bruised()
-
-/mob/living/carbon/human/proc/rupture_lung()
-	var/obj/item/organ/internal/lungs/L = random_organ_by_process(OP_LUNGS)
-
-	if(L && !L.is_bruised())
-		src.custom_pain("You feel a stabbing pain in your chest!", 1)
-		L.bruise()
 
 /mob/living/carbon/human/add_blood(mob/living/carbon/human/M)
 	if(!..())
@@ -1643,7 +1632,7 @@ var/list/rank_prefix = list(\
 //			output for machines^	^^^^^^^output for people^^^^^^^^^
 
 /mob/living/carbon/human/proc/pulse()
-	if(!(organ_list_by_process(OP_HEART).len))
+	if(stat == DEAD || !(organ_list_by_process(OP_HEART).len))
 		return PULSE_NONE
 	else
 		return pulse

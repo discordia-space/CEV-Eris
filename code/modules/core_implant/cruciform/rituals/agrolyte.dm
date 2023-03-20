@@ -36,7 +36,7 @@
 
 /datum/ritual/cruciform/agrolyte/accelerated_growth/proc/give_boost(datum/seed/S)
 	S.set_trait(TRAIT_BOOSTED_GROWTH, boost_value)
-	addtimer(CALLBACK(src, .proc/take_boost, S), effect_time)
+	addtimer(CALLBACK(src, PROC_REF(take_boost), S), effect_time)
 
 /datum/ritual/cruciform/agrolyte/accelerated_growth/proc/take_boost(datum/seed/S, stat, amount)
 	// take_boost is automatically triggered by a callback function when the boost ends but the seed 

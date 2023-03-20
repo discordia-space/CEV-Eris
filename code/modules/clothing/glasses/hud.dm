@@ -27,7 +27,7 @@
 			timer = 1 MINUTES
 		if(2)
 			timer = 3 MINUTES
-	addtimer(CALLBACK(src, .proc/repair_self), timer)
+	addtimer(CALLBACK(src, PROC_REF(repair_self)), timer)
 	
 /obj/item/clothing/glasses/hud/health
 	name = "Health Scanner HUD"

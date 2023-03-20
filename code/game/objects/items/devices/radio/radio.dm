@@ -358,7 +358,7 @@ var/global/list/default_medbay_channels = list(
 		displayname = M.GetVoice()
 		jobname = "Unknown"
 		voicemask = 1
-	SEND_SIGNAL(src, COMSIG_MESSAGE_SENT)
+	SEND_SIGNAL_OLD(src, COMSIG_MESSAGE_SENT)
 
 
 
@@ -800,7 +800,7 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/random_radio/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
-		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+		SEND_SIGNAL_OLD(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
 	GLOB.all_faction_items -= src
 	GLOB.guild_faction_item_loss++
 	. = ..()

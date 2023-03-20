@@ -55,7 +55,7 @@
 	. = ..(message, alt_name = alt_name)
 
 	if(.)
-		SEND_SIGNAL(src, COMSIG_HUMAN_SAY, message)
+		SEND_SIGNAL_OLD(src, COMSIG_HUMAN_SAY, message)
 
 /mob/living/carbon/human/proc/forcesay(list/append)
 	if(stat == CONSCIOUS)

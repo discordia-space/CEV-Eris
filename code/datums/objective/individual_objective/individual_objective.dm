@@ -79,6 +79,7 @@
 
 
 /datum/individual_objective/proc/task_completed(count=1)
+	SIGNAL_HANDLER
 	units_completed += count
 	if(check_for_completion())
 		completed()

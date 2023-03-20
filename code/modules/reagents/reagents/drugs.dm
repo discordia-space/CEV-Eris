@@ -5,29 +5,29 @@
 
 /datum/reagent/drug/on_mob_add(mob/living/L)
 	..()
-	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_ADD_DRUG)
+	SEND_SIGNAL_OLD(L, COMSIG_CARBON_HAPPY, src, MOB_ADD_DRUG)
 
 /datum/reagent/drug/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(sanity_gain && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.sanity.onDrug(src, effect_multiplier)
-	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
+	SEND_SIGNAL_OLD(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
 
 /datum/reagent/drug/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(sanity_gain && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.sanity.onDrug(src, effect_multiplier)
-	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
+	SEND_SIGNAL_OLD(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
 
 /datum/reagent/drug/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	if(sanity_gain && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.sanity.onDrug(src, effect_multiplier)
-	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
+	SEND_SIGNAL_OLD(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
 
 /datum/reagent/drug/on_mob_delete(mob/living/L)
 	..()
-	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_DELETE_DRUG)
+	SEND_SIGNAL_OLD(L, COMSIG_CARBON_HAPPY, src, MOB_DELETE_DRUG)
 
 /datum/reagent/drug/space_drugs
 	name = "Space drugs"

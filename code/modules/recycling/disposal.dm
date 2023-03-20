@@ -1350,8 +1350,7 @@
 /obj/structure/disposalpipe/trunk/Initialize()
 	. = ..()
 	pipe_dir = dir
-
-	INVOKE_ASYNC(src, .proc/getlinked)
+	INVOKE_ASYNC(src, PROC_REF(getlinked))
 	update()
 
 /obj/structure/disposalpipe/trunk/Destroy()

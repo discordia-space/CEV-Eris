@@ -96,7 +96,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	var/area/A = get_area(src)
-	SEND_SIGNAL(A, COMSIG_TURRENT, src)
+	SEND_SIGNAL_OLD(A, COMSIG_TURRENT, src)
 	setup()
 
 /obj/machinery/porta_turret/crescent/New()

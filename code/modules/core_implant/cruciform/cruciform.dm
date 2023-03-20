@@ -7,6 +7,7 @@ var/list/disciples = list()
 	icon_state = "cruciform_green"
 	desc = "Soul holder for every disciple. With the proper rituals, this can be implanted to induct a new believer into NeoTheology."
 	description_info = "The cruciform ensures genetic purity, it will purge any cybernetic attachments, or mutation that are not part of the standard human genome"
+	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_PLASTEEL = 5, MATERIAL_GOLD = 2)
 	allowed_organs = list(BP_CHEST)
 	implant_type = /obj/item/implant/core_implant/cruciform
 	layer = ABOVE_MOB_LAYER
@@ -33,20 +34,22 @@ var/list/disciples = list()
 	restore_power(true_power_regen)
 
 /obj/item/implant/core_implant/cruciform/proc/register_wearer()
-	RegisterSignal(wearer, COMSIG_CARBON_HAPPY, .proc/on_happy, TRUE)
-	RegisterSignal(wearer, COMSIG_GROUP_RITUAL, .proc/on_ritual, TRUE)
+	RegisterSignal(wearer, COMSIG_CARBON_HAPPY, PROC_REF(on_happy), TRUE)
+	RegisterSignal(wearer, COMSIG_GROUP_RITUAL, PROC_REF(on_ritual), TRUE)
 
 /obj/item/implant/core_implant/cruciform/proc/unregister_wearer()
 	UnregisterSignal(wearer, COMSIG_CARBON_HAPPY)
 	UnregisterSignal(wearer, COMSIG_GROUP_RITUAL)
 
 /obj/item/implant/core_implant/cruciform/proc/on_happy(datum/reagent/happy, signal)
+	SIGNAL_HANDLER
 	if(istype(happy, /datum/reagent/ethanol) && happy.id != "ntcahors")
 		righteous_life = max(righteous_life - 0.1, 0)
 	else if(istype(happy, /datum/reagent/drug))
 		righteous_life = max(righteous_life - 0.5, 0)
 
 /obj/item/implant/core_implant/cruciform/proc/on_ritual()
+	SIGNAL_HANDLER
 	righteous_life = min(righteous_life + 25, max_righteous_life)
 
 
@@ -200,7 +203,7 @@ var/list/disciples = list()
 				continue
 			for(var/mod in I.item_upgrades)
 				var/atom/movable/AM = mod
-				SEND_SIGNAL(AM, COMSIG_REMOVE, I)
+				SEND_SIGNAL_OLD(AM, COMSIG_REMOVE, I)
 				I.take_damage(rand(6,12), BRUTE)
 				if(I.parent)
 					I.parent.take_damage(rand(2,5))

@@ -38,7 +38,7 @@
 		bluespace_entropy(entropy_value, get_turf(src))
 
 /obj/structure/strangebeacon/pods/attack_hand(mob/living/user as mob)
-	addtimer(CALLBACK(src, .proc/call_droppod), rand(100,300))
+	addtimer(CALLBACK(src, PROC_REF(call_droppod)), rand(100,300))
 
 /obj/structure/strangebeacon/bombard/attack_hand(mob/living/user as mob)
 	var/counter = 0

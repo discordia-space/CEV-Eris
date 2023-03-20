@@ -137,8 +137,10 @@
 
 /datum/reagent/medicine/dexalin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustOxyLoss(-1.5 * effect_multiplier)
-	M.add_chemical_effect(CE_OXYGENATED, 1)
 	holder.remove_reagent("lexorin", 0.2 * effect_multiplier)
+	var/ce_to_add = 1 - M.chem_effects[CE_OXYGENATED]
+	if(ce_to_add > 0)
+		M.add_chemical_effect(CE_OXYGENATED, ce_to_add)
 
 /datum/reagent/medicine/dexalinp
 	name = "Dexalin Plus"
@@ -152,8 +154,10 @@
 
 /datum/reagent/medicine/dexalinp/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustOxyLoss(-30 * effect_multiplier)
-	M.add_chemical_effect(CE_OXYGENATED, 2)
 	holder.remove_reagent("lexorin", 0.3 * effect_multiplier)
+	var/ce_to_add = 2 - M.chem_effects[CE_OXYGENATED]
+	if(ce_to_add > 0)
+		M.add_chemical_effect(CE_OXYGENATED, ce_to_add)
 
 /datum/reagent/medicine/tricordrazine
 	name = "Tricordrazine"
@@ -358,7 +362,7 @@
 		if(E && istype(E))
 			var/list/current_wounds = E.GetComponents(/datum/component/internal_wound)
 			if(LAZYLEN(current_wounds) && prob(10))
-				SEND_SIGNAL(E, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
+				SEND_SIGNAL_OLD(E, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
 
 /datum/reagent/medicine/imidazoline/overdose(mob/living/carbon/M, alien)
 	. = ..()
@@ -384,7 +388,7 @@
 		for(var/obj/item/organ/I in H.internal_organs)
 			var/list/current_wounds = I.GetComponents(/datum/component/internal_wound)
 			if(LAZYLEN(current_wounds) && !BP_IS_ROBOTIC(I)) //Peridaxon heals only non-robotic organs
-				SEND_SIGNAL(I, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
+				SEND_SIGNAL_OLD(I, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
 
 /datum/reagent/medicine/peridaxon/overdose(mob/living/carbon/M, alien)
 	. = ..()

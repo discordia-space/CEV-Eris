@@ -828,7 +828,7 @@
 	prefixes = list()
 
 	//Now lets have each upgrade reapply its modifications
-	SEND_SIGNAL(src, COMSIG_APPVAL, src)
+	SEND_SIGNAL_OLD(src, COMSIG_APPVAL, src)
 
 	for(var/prefix in prefixes)
 		name = "[prefix] [name]"

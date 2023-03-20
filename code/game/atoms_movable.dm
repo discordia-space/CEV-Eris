@@ -100,7 +100,7 @@
 			if(is_new_area && is_destination_turf)
 				destination.loc.Entered(src, origin)
 
-	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, origin, loc)
+	SEND_SIGNAL_OLD(src, COMSIG_MOVABLE_MOVED, origin, loc)
 
 	// Only update plane if we're located on map
 	if(isturf(loc))
@@ -256,7 +256,7 @@
 	// To prevent issues, diagonal movements are broken up into two cardinal movements.
 
 	// Is this a diagonal movement?
-	SEND_SIGNAL(src, COMSIG_MOVABLE_PREMOVE, src)
+	SEND_SIGNAL_OLD(src, COMSIG_MOVABLE_PREMOVE, src)
 	if (Dir & (Dir - 1))
 		if (Dir & NORTH)
 			if (Dir & EAST)
@@ -313,7 +313,7 @@
 				update_plane()
 				onTransitZ(get_z(oldloc, get_z(loc)))
 
-		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
+		SEND_SIGNAL_OLD(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
 
 // Wrapper of step() that also sets glide size to a specific value.
 /proc/step_glide(atom/movable/AM, newdir, glide_size_override)
@@ -322,7 +322,7 @@
 
 //We're changing zlevel
 /atom/movable/proc/onTransitZ(old_z, new_z)//uncomment when something is receiving this signal
-	/*SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
+	/*SEND_SIGNAL_OLD(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
 	for(var/atom/movable/AM in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
 		AM.onTransitZ(old_z,new_z)*/
 
@@ -344,10 +344,10 @@
 	if(anchored == anchorvalue || !can_anchor)
 		return FALSE
 	anchored = anchorvalue
-	SEND_SIGNAL(src, COMSIG_ATOM_UNFASTEN, anchored)
+	SEND_SIGNAL_OLD(src, COMSIG_ATOM_UNFASTEN, anchored)
 	. = TRUE
 
 /atom/movable/proc/update_overlays()
 	SHOULD_CALL_PARENT(TRUE)
 	. = list()
-	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)
+	SEND_SIGNAL_OLD(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)

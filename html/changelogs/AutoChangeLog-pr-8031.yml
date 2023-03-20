@@ -1,0 +1,5 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - code_imp: Ported TG components and elements
+  - code_imp: Adds macros for proc reference compatibility with byond 515

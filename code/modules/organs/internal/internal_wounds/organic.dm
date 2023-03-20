@@ -141,6 +141,11 @@
 	severity_max = 3
 	hal_damage = IWOUND_LIGHT_DAMAGE
 
+/// Cheap hack, but prevents unbalanced toxins from killing someone immediately
+/datum/component/internal_wound/organic/poisoning/InheritComponent()
+	if(prob(5))
+		progress()
+
 /datum/component/internal_wound/organic/poisoning/pustule
 	name = "pustule"
 	specific_organ_size_multiplier = 0.20
@@ -191,7 +196,6 @@
 
 /datum/component/internal_wound/organic/radiation/malignant
 	name = "malignant tumor"
-	treatments_tool = list()
 	treatments_chem = list(CE_ONCOCIDAL = 2)
 	characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_PROGRESS|IWOUND_SPREAD
 	severity = 0
@@ -219,7 +223,7 @@
 	treatments_chem = list(CE_OXYGENATED = 2, CE_BLOODRESTORE = 1)	// Dex+ treats, but it will come back if you don't get blood
 	severity = 0
 	severity_max = IORGAN_MAX_HEALTH
-	progression_threshold = 9	// Kills the organ in approx. 3 minutes
+	progression_threshold = IWOUND_1_MINUTE	// Kills small organs in 7 minutes, normal in 14
 
 /datum/component/internal_wound/organic/oxy/blood_loss
 	name = "blood loss"

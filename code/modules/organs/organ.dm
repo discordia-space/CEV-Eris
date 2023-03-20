@@ -210,9 +210,6 @@
 		if(owner && parent && amount > 0 && !silent)
 			owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
 
-/obj/item/organ/proc/bruise()
-	damage = max(damage, min_bruised_damage)
-
 /obj/item/organ/emp_act(severity)
 	if(!BP_IS_ROBOTIC(src))
 		return
@@ -285,7 +282,7 @@
 	forceMove(owner)
 	STOP_PROCESSING(SSobj, src)
 	if(BP_IS_ROBOTIC(src))
-		SEND_SIGNAL(owner, COMSIG_HUMAN_ROBOTIC_MODIFICATION)
+		SEND_SIGNAL_OLD(owner, COMSIG_HUMAN_ROBOTIC_MODIFICATION)
 
 	var/datum/reagent/organic/blood/transplant_blood = locate(/datum/reagent/organic/blood) in reagents?.reagent_list
 	transplant_data = list()
