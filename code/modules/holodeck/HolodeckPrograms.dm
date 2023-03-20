@@ -2,6 +2,9 @@ var/global/list/holodeck_programs = list(
 
 	"texas" 			= new/datum/holodeck_program(/area/holodeck/source/texas),
 	"spacebar" 		= new/datum/holodeck_program(/area/holodeck/source/spacebar),
+	"wireframe" 			= new/datum/holodeck_program(/area/holodeck/source/wireframe),
+	"industrial" 		= new/datum/holodeck_program(/area/holodeck/source/industrial),
+	"industrial_arena" 			= new/datum/holodeck_program(/area/holodeck/source/industrial_arena),
 	"turnoff" 			= new/datum/holodeck_program(/area/holodeck/source/off)
 	)
 

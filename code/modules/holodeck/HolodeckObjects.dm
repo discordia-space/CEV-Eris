@@ -200,6 +200,9 @@
 	name = "bar stool"
 	icon_state = "bar_stool"
 
+/obj/item/stool/holostool/bar/update_icon()
+	return
+
 /obj/structure/bed/chair/custom/holochair
 
 /obj/structure/bed/chair/custom/holochair/attackby(obj/item/W as obj, mob/user as mob)

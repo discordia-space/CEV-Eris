@@ -24,18 +24,22 @@
 	},
 /turf/unsimulated/wall,
 /area/space)
+"ah" = (
+/obj/structure/railing/holorailing,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
 "an" = (
 /obj/structure/railing/holorailing/grey{
 	dir = 4
 	},
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/wireframe)
 "ap" = (
 /obj/structure/table/holosteel_reinforced,
 /obj/structure/catwalk/holo,
 /obj/machinery/floor_light/prebuilt,
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "at" = (
 /obj/structure/cryofeed{
 	dir = 4;
@@ -71,7 +75,7 @@
 /area/centcom/suppy)
 "aI" = (
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "aO" = (
 /turf/unsimulated/floor{
 	icon_state = "plating";
@@ -109,7 +113,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "aU" = (
 /obj/structure/bed/chair/custom/holochair{
 	dir = 8
@@ -129,7 +133,7 @@
 /obj/structure/table/holobar_special,
 /obj/structure/catwalk,
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/wireframe)
 "aZ" = (
 /obj/structure/table/steel_reinforced,
 /obj/effect/floor_decal/industrial/danger{
@@ -180,6 +184,10 @@
 "bk" = (
 /turf/simulated/shuttle/wall/cargo,
 /area/supply/dock)
+"bt" = (
+/obj/structure/railing/holorailing/grey,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
 "bv" = (
 /obj/structure/shuttle_part/cargo{
 	icon_state = "cargoshwall9"
@@ -318,7 +326,7 @@
 /area/supply/dock)
 "cg" = (
 /turf/simulated/floor/tiled/dark/gray_perforated,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "ck" = (
 /obj/structure/shuttle_part/cargo{
 	icon_state = "cargoshwall19"
@@ -411,7 +419,7 @@
 "cE" = (
 /obj/structure/railing/holorailing,
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "cF" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -564,7 +572,7 @@
 "dz" = (
 /obj/structure/lattice,
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/wireframe)
 "dK" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
@@ -633,7 +641,7 @@
 	dir = 8
 	},
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "dX" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark/golden,
@@ -690,7 +698,7 @@
 /obj/structure/table/holosteel_reinforced,
 /obj/structure/catwalk/holo,
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "ei" = (
 /turf/simulated/shuttle/wall{
 	icon_state = "wall3"
@@ -725,7 +733,7 @@
 	},
 /obj/structure/lattice,
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/wireframe)
 "et" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -1969,6 +1977,12 @@
 "hZ" = (
 /turf/simulated/floor/carpet/bcarpet,
 /area/centcom/evac)
+"ib" = (
+/obj/structure/railing/holorailing{
+	dir = 8
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
 "ic" = (
 /turf/space,
 /turf/simulated/shuttle/wall{
@@ -2009,7 +2023,7 @@
 	dir = 1
 	},
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "iq" = (
 /turf/simulated/shuttle/wall{
 	icon_state = "wall3"
@@ -2281,7 +2295,7 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "jq" = (
 /turf/unsimulated/floor{
 	dir = 2;
@@ -2334,7 +2348,7 @@
 	},
 /obj/structure/catwalk/holo,
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "jy" = (
 /turf/space,
 /area/centcom/evac)
@@ -3311,7 +3325,7 @@
 /obj/structure/catwalk,
 /obj/structure/table/holobar_special,
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/wireframe)
 "mw" = (
 /obj/structure/toilet{
 	pixel_y = 8
@@ -4120,7 +4134,7 @@
 	},
 /obj/structure/lattice,
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/wireframe)
 "pn" = (
 /obj/machinery/door/airlock/hatch{
 	frequency = 1331;
@@ -4459,7 +4473,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "qH" = (
 /obj/effect/shuttle_landmark/escape_pod/transit/pod2,
 /turf/space,
@@ -4538,7 +4552,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "rX" = (
 /obj/structure/table/bar_special,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -4559,11 +4573,11 @@
 	dir = 1
 	},
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "sr" = (
 /obj/structure/railing/holorailing,
 /turf/simulated/open/holonofloor,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "sN" = (
 /obj/item/caution,
 /turf/unsimulated/floor{
@@ -4602,7 +4616,7 @@
 /obj/machinery/floor_light/prebuilt,
 /obj/structure/catwalk/holo,
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "ty" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/meds,
@@ -4632,7 +4646,7 @@
 /obj/effect/floor_decal/industrial/danger,
 /obj/structure/catwalk/holo,
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "tS" = (
 /obj/item/stack/material/glass{
 	amount = 15
@@ -4736,11 +4750,14 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"uE" = (
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
 "uH" = (
 /obj/structure/catwalk/holo,
 /obj/machinery/floor_light/prebuilt,
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "uL" = (
 /obj/structure/table/rack,
 /obj/item/stack/rods{
@@ -4768,7 +4785,7 @@
 	},
 /obj/structure/lattice,
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/wireframe)
 "uS" = (
 /obj/structure/railing/holorailing/grey,
 /turf/simulated/open/holonofloor,
@@ -4793,7 +4810,7 @@
 	dir = 8
 	},
 /turf/simulated/open/holonofloor,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "vi" = (
 /obj/structure/closet,
 /obj/item/tool/pickaxe/diamonddrill,
@@ -4819,7 +4836,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "vz" = (
 /obj/structure/table/bar_special,
 /turf/simulated/floor/holofloor/tiled/bar_light,
@@ -4838,7 +4855,7 @@
 	dir = 1
 	},
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/wireframe)
 "wa" = (
 /obj/structure/table/steel_reinforced,
 /obj/effect/floor_decal/industrial/danger{
@@ -4918,7 +4935,7 @@
 	},
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "wu" = (
 /obj/structure/closet,
 /obj/machinery/light{
@@ -4938,7 +4955,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "xd" = (
 /obj/machinery/slotmachine,
 /obj/effect/floor_decal/industrial/danger{
@@ -4979,7 +4996,7 @@
 /obj/effect/floor_decal/industrial/danger,
 /obj/structure/catwalk/holo,
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "xq" = (
 /obj/structure/bed/chair/custom/holochair{
 	dir = 8
@@ -4992,7 +5009,7 @@
 	},
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "xs" = (
 /obj/structure/table/rack,
 /obj/item/gun/energy/ionrifle,
@@ -5026,7 +5043,7 @@
 	},
 /obj/structure/catwalk/holo,
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "xP" = (
 /obj/effect/floor_decal/industrial/danger,
 /obj/effect/floor_decal/industrial/danger/corner{
@@ -5037,7 +5054,7 @@
 	},
 /obj/structure/catwalk/holo,
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "xZ" = (
 /obj/structure/railing/holorailing/grey{
 	dir = 8
@@ -5059,7 +5076,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "yn" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 4
@@ -5071,7 +5088,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "yq" = (
 /obj/structure/railing/holorailing/grey,
 /obj/structure/railing/holorailing/grey{
@@ -5089,7 +5106,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "yx" = (
 /obj/structure/grille,
 /turf/space,
@@ -5113,7 +5130,7 @@
 	},
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "yF" = (
 /obj/structure/sink{
 	dir = 8;
@@ -5133,7 +5150,7 @@
 /obj/structure/railing/holorailing/grey,
 /obj/structure/lattice,
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/wireframe)
 "yR" = (
 /obj/structure/bed/chair/custom/holochair{
 	dir = 8
@@ -5166,7 +5183,7 @@
 	},
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "zs" = (
 /obj/structure/urinal{
 	pixel_y = 32
@@ -5221,7 +5238,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "zN" = (
 /obj/structure/window/reinforced/crescent{
 	dir = 4
@@ -5287,7 +5304,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "AU" = (
 /obj/structure/window/reinforced/crescent{
 	dir = 1
@@ -5321,6 +5338,13 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"Bk" = (
+/obj/structure/railing/holorailing{
+	dir = 8
+	},
+/obj/structure/railing/holorailing,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
 "Bo" = (
 /obj/item/stool/holostool,
 /obj/effect/floor_decal/industrial/danger{
@@ -5338,7 +5362,7 @@
 "Bq" = (
 /obj/structure/catwalk,
 /turf/simulated/floor/holofloor/plating/under,
-/area/space)
+/area/holodeck/source/wireframe)
 "Bt" = (
 /obj/structure/lattice,
 /obj/structure/grille,
@@ -5382,7 +5406,7 @@
 	},
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "Cc" = (
 /obj/structure/table/rack,
 /obj/item/rig/light/hacker,
@@ -5409,7 +5433,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "Cx" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -5451,7 +5475,17 @@
 "Dl" = (
 /obj/effect/floor_decal/industrial/danger/full,
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
+"Dy" = (
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
 "Dz" = (
 /obj/structure/table/holo_woodentable,
 /obj/machinery/power/apc{
@@ -5465,6 +5499,19 @@
 	},
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source/texas)
+"DE" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
 "DJ" = (
 /obj/structure/table/steel,
 /obj/item/storage/deferred/comms,
@@ -5487,7 +5534,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "Er" = (
 /obj/structure/window/reinforced/crescent{
 	dir = 1
@@ -5508,7 +5555,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "EK" = (
 /obj/structure/bed,
 /obj/item/bedsheet/rd,
@@ -5564,7 +5611,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "EY" = (
 /obj/structure/table/standard,
 /obj/item/storage/box/drinkingglasses{
@@ -5602,6 +5649,12 @@
 /obj/structure/table/holo_woodentable,
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source/texas)
+"Ft" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 8
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
 "Fy" = (
 /obj/structure/table/bar_special,
 /turf/simulated/floor/holofloor/tiled/bar_light,
@@ -5654,7 +5707,7 @@
 	dir = 1
 	},
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/wireframe)
 "Gj" = (
 /obj/structure/table/bar_special,
 /obj/structure/cable/green{
@@ -5751,6 +5804,13 @@
 	icon_state = "floor4"
 	},
 /area/skipjack_station/start)
+"HF" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 8
+	},
+/obj/structure/railing/holorailing/grey,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
 "HJ" = (
 /obj/structure/table/rack,
 /obj/item/tank/jetpack/oxygen,
@@ -5772,7 +5832,7 @@
 	},
 /obj/structure/lattice,
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/wireframe)
 "HQ" = (
 /obj/structure/table/rack,
 /obj/item/storage/box/handcuffs{
@@ -5805,7 +5865,7 @@
 	},
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "Ir" = (
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/texas)
@@ -5817,7 +5877,7 @@
 	dir = 1
 	},
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "IN" = (
 /obj/structure/railing/holorailing/grey,
 /turf/simulated/open/holonofloor,
@@ -5831,6 +5891,9 @@
 	},
 /turf/simulated/floor/holofloor/tiled/bar_light,
 /area/holodeck/source/spacebar)
+"IZ" = (
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
 "Ja" = (
 /obj/structure/railing/holorailing,
 /turf/simulated/open/holonofloor,
@@ -5843,7 +5906,7 @@
 /obj/effect/floor_decal/industrial/danger,
 /obj/structure/catwalk/holo,
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "Jr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/table/bar_special,
@@ -5859,7 +5922,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "Jx" = (
 /obj/machinery/light,
 /obj/structure/bed/chair/custom/holochair{
@@ -5874,6 +5937,17 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/reinforced,
 /area/space)
+"JA" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
 "JJ" = (
 /obj/item/tool/knife{
 	pixel_x = -6
@@ -5900,6 +5974,9 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"JK" = (
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
 "JM" = (
 /obj/structure/table/standard,
 /obj/item/storage/firstaid/adv{
@@ -5994,7 +6071,10 @@
 	dir = 4
 	},
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/industrial_arena)
+"KX" = (
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/off)
 "KZ" = (
 /obj/machinery/light{
 	dir = 1
@@ -6015,6 +6095,13 @@
 	name = "plating"
 	},
 /area/wizard_station)
+"Lk" = (
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
 "Ln" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
@@ -6217,7 +6304,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "NL" = (
 /obj/structure/bed/chair/custom/holochair{
 	dir = 4
@@ -6230,7 +6317,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "NM" = (
 /obj/structure/bed/chair/custom/holochair,
 /obj/effect/floor_decal/industrial/danger{
@@ -6327,6 +6414,21 @@
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/space)
+"OQ" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial_arena)
 "OT" = (
 /obj/item/modular_computer/console/preset{
 	dir = 10
@@ -6351,14 +6453,18 @@
 	},
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "OZ" = (
 /obj/structure/railing/holorailing,
 /obj/structure/railing/holorailing{
 	dir = 8
 	},
 /turf/simulated/open/holonofloor,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
+"Pc" = (
+/obj/structure/catwalk,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
 "Pd" = (
 /obj/structure/table/rack,
 /obj/item/storage/belt/utility/full,
@@ -6377,11 +6483,11 @@
 	},
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "Pk" = (
 /obj/structure/table/holosteel_reinforced,
 /turf/simulated/floor/holofloor/reinforced,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "Pl" = (
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source/texas)
@@ -6468,7 +6574,7 @@
 /area/space)
 "QQ" = (
 /turf/simulated/open/holonofloor,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "QR" = (
 /obj/machinery/shower{
 	pixel_y = 32
@@ -6533,7 +6639,7 @@
 	dir = 4
 	},
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "RO" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 4
@@ -6543,7 +6649,7 @@
 	},
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "RP" = (
 /obj/structure/railing/holorailing/grey{
 	dir = 8
@@ -6552,11 +6658,11 @@
 	dir = 4
 	},
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/wireframe)
 "Sc" = (
 /obj/structure/catwalk,
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/wireframe)
 "Sh" = (
 /obj/structure/table/holosteel_reinforced,
 /obj/effect/floor_decal/industrial/danger{
@@ -6567,7 +6673,7 @@
 	},
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/reinforced,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "Sk" = (
 /obj/structure/table/standard,
 /obj/item/paper_bin{
@@ -6594,7 +6700,7 @@
 	},
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "SR" = (
 /obj/structure/bed/chair/custom/holochair{
 	dir = 8
@@ -6607,7 +6713,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "SS" = (
 /obj/item/stool/holostool,
 /obj/effect/floor_decal/industrial/danger{
@@ -6618,7 +6724,7 @@
 	},
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "SW" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/crate/kovacs,
@@ -6632,7 +6738,7 @@
 	},
 /obj/structure/lattice,
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/wireframe)
 "Tc" = (
 /obj/structure/bed/chair/custom/holochair{
 	dir = 1
@@ -6667,7 +6773,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/holofloor/reinforced,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "Tr" = (
 /obj/structure/table/bar_special,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6765,7 +6871,7 @@
 	},
 /obj/structure/catwalk/holo,
 /turf/simulated/floor/holofloor/plating/under,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "UP" = (
 /obj/structure/table/standard,
 /obj/item/bodybag,
@@ -6848,7 +6954,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "VM" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/box/donut,
@@ -6896,7 +7002,7 @@
 	},
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/reinforced,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "Wq" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 1
@@ -6910,14 +7016,14 @@
 	},
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/reinforced,
-/area/space)
+/area/holodeck/source/industrial_arena)
 "Ww" = (
 /obj/structure/railing/holorailing/grey{
 	dir = 4
 	},
 /obj/structure/railing/holorailing/grey,
 /turf/simulated/open/holonofloor,
-/area/space)
+/area/holodeck/source/wireframe)
 "WS" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/bag/money,
@@ -6936,6 +7042,14 @@
 /obj/item/stool/holostool/bar,
 /turf/simulated/floor/holofloor/tiled/bar_light,
 /area/holodeck/source/spacebar)
+"Xr" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
 "Xz" = (
 /obj/structure/bed/chair/custom/holochair/bar,
 /turf/simulated/floor/holofloor/tiled/bar_light,
@@ -6946,7 +7060,7 @@
 	},
 /obj/structure/railing/holorailing,
 /turf/simulated/open/holonofloor,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "XL" = (
 /obj/structure/table/standard,
 /obj/item/roller{
@@ -6993,7 +7107,7 @@
 	},
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "Yd" = (
 /obj/structure/bed/chair/custom/holochair/bar{
 	dir = 1
@@ -7103,7 +7217,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 "ZT" = (
 /obj/item/storage/toolbox/syndicate{
 	pixel_x = -1;
@@ -7130,7 +7244,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source/off)
+/area/holodeck/source/industrial)
 
 (1,1,1) = {"
 aa
@@ -30168,12 +30282,12 @@ ad
 ad
 ad
 mF
-ef
-ef
-ef
+uE
+uE
+uE
 zN
-ef
-ef
+uE
+uE
 eZ
 aa
 aa
@@ -30365,17 +30479,17 @@ aa
 (116,1,1) = {"
 aa
 ac
-ef
-ef
-ef
-ef
-ef
-ef
-ef
-ef
-ef
-ef
-ef
+uE
+uE
+uE
+uE
+uE
+uE
+uE
+uE
+uE
+uE
+uE
 eZ
 aa
 aa
@@ -30567,17 +30681,17 @@ aa
 (117,1,1) = {"
 aa
 ac
-ef
-ef
-ef
+uE
+uE
+uE
 Cw
 Cw
 Cw
 Cw
-ef
-ef
-ef
-ef
+uE
+uE
+uE
+uE
 eZ
 aa
 aa
@@ -30769,17 +30883,17 @@ aa
 (118,1,1) = {"
 aa
 ac
-ef
-ef
+uE
+uE
 cE
 cg
 cg
 cg
 cg
 AD
-ef
-ef
-ef
+uE
+uE
+uE
 eZ
 aa
 aa
@@ -30971,17 +31085,17 @@ aa
 (119,1,1) = {"
 aa
 ac
-ef
-ef
+uE
+uE
 cE
 cg
 cg
 cg
 cg
 AD
-ef
-ef
-ef
+uE
+uE
+uE
 eZ
 aa
 aa
@@ -31173,17 +31287,17 @@ aa
 (120,1,1) = {"
 aa
 ac
-ef
-ef
+uE
+uE
 cE
 cg
 cg
 cg
 cg
 AD
-ef
-ef
-ef
+uE
+uE
+uE
 eZ
 aa
 aa
@@ -31375,17 +31489,17 @@ aa
 (121,1,1) = {"
 aa
 ac
-ef
-ef
+uE
+uE
 cE
 cg
 cg
 cg
 cg
 AD
-ef
-QU
-Zs
+uE
+DE
+JA
 eZ
 aa
 aa
@@ -31577,14 +31691,14 @@ aa
 (122,1,1) = {"
 aa
 ac
-ef
-ef
-ef
+uE
+uE
+uE
 vx
 vx
 vx
 vx
-ef
+uE
 OX
 Pk
 Pk
@@ -31781,17 +31895,17 @@ aa
 ab
 av
 Vd
-UV
-UV
-UZ
-ef
-ef
-ef
+ib
+ib
+Bk
+uE
+uE
+uE
 yE
 Pk
-ef
-ef
-ef
+uE
+uE
+uE
 eZ
 aa
 aa
@@ -31983,16 +32097,16 @@ aa
 aa
 aa
 ac
-Bp
-Bp
-Ja
-ef
-ef
-ef
+JK
+JK
+ah
+uE
+uE
+uE
 yE
 Pk
-ef
-ef
+uE
+uE
 To
 eZ
 aa
@@ -32185,17 +32299,17 @@ aa
 ab
 ad
 QH
-Bp
-Bp
-Ja
-ef
-ef
-ef
-Gp
+JK
+JK
+ah
+uE
+uE
+uE
+Xr
 Pk
-ef
-ef
-OA
+uE
+uE
+Lk
 eZ
 aa
 aa
@@ -32385,19 +32499,19 @@ aa
 (126,1,1) = {"
 aa
 ac
-Bp
+JK
 KJ
 KJ
 KJ
-Ja
-ef
-ef
-ef
-Gp
-ef
-ef
-ef
-OA
+ah
+uE
+uE
+uE
+Xr
+uE
+uE
+uE
+Lk
 eZ
 aa
 aa
@@ -32587,19 +32701,19 @@ aa
 (127,1,1) = {"
 aa
 ac
-Ja
-Sc
-Sc
-Sc
+ah
+Pc
+Pc
+Pc
 IK
 dW
-ef
-ef
-Gp
-ef
-ef
-dP
-TY
+uE
+uE
+Xr
+uE
+uE
+OQ
+Dy
 eZ
 aa
 aa
@@ -32789,16 +32903,16 @@ aa
 (128,1,1) = {"
 aa
 ac
-Ja
-Sc
-Sc
-Sc
+ah
+Pc
+Pc
+Pc
 jp
-Sc
-ef
-ef
-Gp
-ef
+Pc
+uE
+uE
+Xr
+uE
 Wl
 AU
 av
@@ -32991,16 +33105,16 @@ aa
 (129,1,1) = {"
 aa
 ac
-Ja
-Sc
-Sc
-Sc
+ah
+Pc
+Pc
+Pc
 ip
 RB
-ef
-ef
-Gp
-ef
+uE
+uE
+Xr
+uE
 Ws
 eZ
 aa
@@ -33193,16 +33307,16 @@ aa
 (130,1,1) = {"
 aa
 ac
-Bp
-UV
-UV
-UV
-Ja
-ef
-ef
-ef
+JK
+ib
+ib
+ib
+ah
+uE
+uE
+uE
 Pg
-ef
+uE
 Sh
 eZ
 aa
@@ -33799,17 +33913,17 @@ aa
 (133,1,1) = {"
 aa
 ac
-Bp
-Bp
-Bp
-Bp
+IZ
+IZ
+IZ
+IZ
 an
 uM
 RP
 eq
-Bp
-Wd
-Wd
+IZ
+Ft
+Ft
 eZ
 aa
 aa
@@ -34001,17 +34115,17 @@ aa
 (134,1,1) = {"
 aa
 ac
-Bp
-Bp
-Bp
+IZ
+IZ
+IZ
 Ww
 aX
 aX
 aX
 pm
-Bp
-Bp
-Bp
+IZ
+IZ
+IZ
 eZ
 aa
 aa
@@ -34203,9 +34317,9 @@ aa
 (135,1,1) = {"
 aa
 ac
-Bp
-Bp
-Cl
+IZ
+IZ
+bt
 aX
 Sc
 Sc
@@ -34609,15 +34723,15 @@ aa
 ac
 an
 an
-Cl
+bt
 aX
 Sc
 Sc
 mv
 Gg
 eq
-Wd
-Wd
+Ft
+Ft
 eZ
 aa
 aa
@@ -34812,14 +34926,14 @@ ac
 Sc
 Sc
 vX
-xZ
+HF
 aX
 aX
 aX
 pm
 dz
-Bp
-Bp
+IZ
+IZ
 eZ
 aa
 aa
@@ -35017,11 +35131,11 @@ pm
 dz
 eq
 eq
-Wd
-Bp
+Ft
+IZ
 dz
-Bp
-Bp
+IZ
+IZ
 Er
 ad
 ab
@@ -35215,15 +35329,15 @@ aa
 ab
 av
 Vd
-Bp
-Bp
-Bp
+IZ
+IZ
+IZ
 dz
-Bp
-Bp
+IZ
+IZ
 dz
-Bp
-Cl
+IZ
+bt
 Sc
 Sc
 eZ
@@ -35417,15 +35531,15 @@ aa
 aa
 aa
 ac
-Bp
-Bp
-Bp
+IZ
+IZ
+IZ
 dz
-Bp
-Bp
+IZ
+IZ
 dz
-Bp
-Cl
+IZ
+bt
 Sc
 Sc
 eZ
@@ -35619,15 +35733,15 @@ aa
 ab
 ad
 QH
-Bp
-Bp
-Bp
+IZ
+IZ
+IZ
 dz
-Bp
-Bp
+IZ
+IZ
 dz
-Bp
-Cl
+IZ
+bt
 Sc
 Sc
 eZ
@@ -35819,17 +35933,17 @@ aa
 (143,1,1) = {"
 aa
 ac
-Bp
-Bp
-Bp
-Bp
-Bp
+IZ
+IZ
+IZ
+IZ
+IZ
 dz
-Bp
-Bp
+IZ
+IZ
 dz
-Bp
-Cl
+IZ
+bt
 Sc
 Sc
 eZ
@@ -36021,14 +36135,14 @@ aa
 (144,1,1) = {"
 aa
 ac
-Bp
-Bp
-Bp
-Bp
-Bp
+IZ
+IZ
+IZ
+IZ
+IZ
 dz
-Bp
-Bp
+IZ
+IZ
 dz
 dz
 yQ
@@ -36223,17 +36337,17 @@ aa
 (145,1,1) = {"
 aa
 ac
-Bp
-Bp
-Bp
-Bp
-Bp
+IZ
+IZ
+IZ
+IZ
+IZ
 dz
-Bp
-Bp
+IZ
+IZ
 dz
-Bp
-Bp
+IZ
+IZ
 AU
 av
 ab
@@ -36425,17 +36539,17 @@ aa
 (146,1,1) = {"
 aa
 ac
-Bp
-Bp
-Bp
-Bp
-Bp
+IZ
+IZ
+IZ
+IZ
+IZ
 dz
-Bp
+IZ
 an
 SY
-Bp
-Bp
+IZ
+IZ
 eZ
 aa
 aa
@@ -36627,17 +36741,17 @@ aa
 (147,1,1) = {"
 aa
 ac
-Bp
-Bp
-Bp
-Bp
-Bp
+IZ
+IZ
+IZ
+IZ
+IZ
 dz
-Cl
+bt
 Bq
 Bq
 vX
-Bp
+IZ
 eZ
 aa
 aa
@@ -36844,19 +36958,19 @@ ab
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+av
+av
+av
+av
+av
+ag
+ag
+ag
+av
+ag
+ag
+ab
 aa
 aa
 aa
@@ -37046,19 +37160,19 @@ eZ
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+ad
+ad
+ad
+ad
+mF
+KX
+KX
+KX
+zN
+KX
+KX
+eZ
 aa
 aa
 aa
@@ -37248,19 +37362,19 @@ eZ
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
 aa
 aa
 aa
@@ -37450,19 +37564,19 @@ eZ
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
 aa
 aa
 aa
@@ -37652,19 +37766,19 @@ eZ
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
 aa
 aa
 aa
@@ -37854,19 +37968,19 @@ eZ
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
 aa
 aa
 aa
@@ -38056,19 +38170,19 @@ eZ
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
 aa
 aa
 aa
@@ -38258,19 +38372,19 @@ eZ
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
 aa
 aa
 aa
@@ -38460,21 +38574,21 @@ Er
 ad
 ab
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+Er
+ad
+ab
 aa
 aa
 aa
@@ -38662,21 +38776,21 @@ aI
 aI
 eZ
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+av
+Vd
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
 aa
 aa
 aa
@@ -38866,19 +38980,19 @@ eZ
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
 aa
 aa
 aa
@@ -39066,21 +39180,21 @@ aI
 UE
 eZ
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+ad
+QH
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
 aa
 aa
 aa
@@ -39268,21 +39382,21 @@ aI
 UE
 eZ
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
 aa
 aa
 aa
@@ -39470,21 +39584,21 @@ jx
 xP
 eZ
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
 aa
 aa
 aa
@@ -39672,21 +39786,21 @@ AU
 av
 ab
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+AU
+av
+ab
 aa
 aa
 aa
@@ -39874,19 +39988,19 @@ eZ
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
 aa
 aa
 aa
@@ -40076,19 +40190,19 @@ eZ
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
 aa
 aa
 aa

@@ -343,9 +343,12 @@
 /obj/machinery/computer/HolodeckControl/Exodus/New()
 	..()
 	supported_programs = list(
-	"Texas Tavern" 			= "texas",
-	"Space Bar" 		= "spacebar",
+	"Texas Saloon"		= "texas",
+	"Space Bar"			= "spacebar",
+	"Wireframe Bar"		= "wireframe",
+	"Industrial Pub"			= "industrial"
 	)
 
 	restricted_programs = list(
+	"Industrial Arenas"		= "industrial_arena"
 	)

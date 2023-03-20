@@ -469,9 +469,22 @@ area/space/atmosalert()
 	name = "\improper Holodeck - Spacebar"
 	sound_env = LARGE_SOFTFLOOR
 
+/area/holodeck/source/wireframe
+	name = "\improper Holodeck - Wireframe Bar"
+	sound_env = TUNNEL_ENCLOSED
+	has_gravity = FALSE
+
 /area/holodeck/source/texas
-	name = "\improper Holodeck - Texas"
+	name = "\improper Holodeck - Texas Saloon"
 	sound_env = AUDITORIUM
+
+/area/holodeck/source/industrial
+	name = "\improper Holodeck - Industrial Bar"
+	sound_env = LARGE_ENCLOSED
+
+/area/holodeck/source/industrial_arena
+	name = "\improper Holodeck - Industrial arena"
+	sound_env = LARGE_ENCLOSED
 
 /*
 /area/holodeck/source_emptycourt
