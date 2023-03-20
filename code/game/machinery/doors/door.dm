@@ -21,8 +21,8 @@
 	var/normalspeed = 1
 	var/heat_proof = 0 // For glass airlocks/opacity firedoors
 	var/air_properties_vary_with_direction = 0
-	var/maxHealth = 250
-	var/health
+	maxHealth = 250
+	health = 250
 	var/destroy_hits = 10 //How many strong hits it takes to destroy the door
 	var/resistance = RESISTANCE_TOUGH //minimum amount of force needed to damage the door with a melee weapon
 	var/bullet_resistance = RESISTANCE_FRAGILE

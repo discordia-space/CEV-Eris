@@ -27,7 +27,8 @@
 	var/hack_stage = 0
 	var/max_mob_size = 2
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
-	var/health = 100
+	health = 100
+	maxHealth = 100
 	var/breakout = FALSE //if someone is currently breaking out. mutex
 	var/storage_capacity = 2 * MOB_MEDIUM //This is so that someone can't pack hundreds of items in a locker/crate
 							  //then open it in a populated area to crash clients.
