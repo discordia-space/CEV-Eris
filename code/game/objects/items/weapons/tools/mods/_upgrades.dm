@@ -333,6 +333,11 @@
 	if(weapon_upgrades[GUN_UPGRADE_BAYONET])
 		G.attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 		G.sharp = TRUE
+	if(weapon_upgrades[GUN_UPGRADE_FLASHLIGHT])
+		G.flashlight_attachment = TRUE
+		G.verbs += /obj/item/gun/proc/toggle_light
+	else
+		G.verbs -= /obj/item/gun/proc/toggle_light
 	if(weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE])
 		G.force += weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE]
 	if(weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION])

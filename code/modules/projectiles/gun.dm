@@ -104,6 +104,7 @@
 	var/wield_delay_factor = 0 // A factor that characterizes weapon size , this makes it require more vig to insta-wield this weapon or less , values below 0 reduce the vig needed and above 1 increase it
 	var/serial_type = "" // If there is a serial type, the gun will add a number that will show on examine
 
+	var/flashlight_attachment = FALSE
 
 /obj/item/gun/wield(mob/user)
 	if(!wield_delay)
@@ -1017,6 +1018,7 @@
 	sharp = initial(sharp)
 	braced = initial(braced)
 	recoil = getRecoil(init_recoil[1], init_recoil[2], init_recoil[3])
+	flashlight_attachment = initial(flashlight_attachment)
 
 	attack_verb = list()
 	if (custom_default.len) // this override is used by the artwork_revolver for RNG gun stats
@@ -1053,3 +1055,43 @@
 	else
 		refresh_upgrades()
 
+/obj/item/gun/container_dir_changed(new_dir)
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.container_dir_changed(new_dir)
+
+/obj/item/gun/moved(mob/user, old_loc)
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.moved(user, old_loc)
+
+/obj/item/gun/entered_with_container()
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.entered_with_container()
+
+/obj/item/gun/pre_pickup(mob/user)
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.pre_pickup(user)
+
+/obj/item/gun/dropped(mob/user as mob)
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.dropped(user)
+
+/obj/item/gun/afterattack(atom/A, mob/user)
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.afterattack(A, user)
+
+/obj/item/gun/proc/toggle_light(mob/user)
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.attack_self(user)
