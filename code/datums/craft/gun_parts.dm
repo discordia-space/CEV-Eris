@@ -70,6 +70,10 @@ semi accepts weird caliber - +1 points
 	bad_type = /obj/item/part/gun/modular
 	var/datum/component/item_upgrade/I // For changing stats when needed
 
+	// Bonuses from forging/type or maluses from printing
+	var/damage_bonus = 0 // Increases damage multiplier additively
+	var/cheap = FALSE // Set this to true for cheap variants
+
 /obj/item/part/gun/modular/New()
 	..()
 	I = AddComponent(/datum/component/item_upgrade)
@@ -112,6 +116,11 @@ semi accepts weird caliber - +1 points
 	var/list/barrelvars = list(/obj/item/part/gun/modular/barrel)
 
 	var/serial_type = ""
+
+/obj/item/part/gun/modular/mechanism/New()
+	..()
+	if(damage_bonus)
+		I.weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS] = damage_bonus
 
 /obj/item/part/gun/frame/New(loc, ...)
 	. = ..()
@@ -344,7 +353,6 @@ semi accepts weird caliber - +1 points
 	rarity_value = 6
 	var/list/accepted_calibers = list(CAL_PISTOL, CAL_MAGNUM, CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE, CAL_SHOTGUN)
 	var/mag_well = MAG_WELL_GENERIC
-	var/damage_bonus = 0 // Increases damage multiplier additively
 	var/divisor_bonus = 0
 	var/recoil_bonus = 0
 	var/list/bonus_firemodes = list()
@@ -354,8 +362,6 @@ semi accepts weird caliber - +1 points
 	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = bonus_firemodes
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = mag_well
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_OK_CALIBERS] = accepted_calibers
-	if(damage_bonus)
-		I.weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS] = damage_bonus
 	if(divisor_bonus)
 		I.weapon_upgrades[GUN_UPGRADE_PEN_MULT] = divisor_bonus
 	if(recoil_bonus)
@@ -368,6 +374,7 @@ semi accepts weird caliber - +1 points
 	icon_state = "mechanism_pistol"
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	accepted_calibers = list(CAL_PISTOL, CAL_MAGNUM, CAL_SRIFLE, CAL_CLRIFLE)
+	part_overlay = "mechanism_pistol"
 
 /obj/item/part/gun/modular/mechanism/revolver
 	name = "revolver mechanism"
@@ -450,6 +457,11 @@ semi accepts weird caliber - +1 points
 	recoil_bonus = 1.25 // -2 points
 	damage_bonus = 0.05 // +1 points
 	bonus_firemodes = list(BURST_3_ROUND, BURST_5_ROUND, FULL_AUTO_300) // +5 points
+
+/obj/item/part/gun/modular/mechanism/autorifle/determined/excelsior
+	name = "Excelsior D-ArM \"Soviet March\""
+	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love. \
+			Offers 300 RPM fully automatic fire. Provides slightly improved damage output at the cost of fire control. Supports drum magazines."
 
 // Sharpshooter - Massively increased damage and moderately increased penetration at the cost of heavy recoil. Total point value: +4
 /obj/item/part/gun/modular/mechanism/autorifle/sharpshooter
@@ -534,6 +546,10 @@ semi accepts weird caliber - +1 points
 	var/caliber = CAL_357
 
 /obj/item/part/gun/modular/barrel/New()
+	if(cheap)
+		var/damage_name = pick("warped", "crooked", "bent", "deformed", "misshapen")
+		name = damage_name + " " + name
+		damage_bonus = -0.05 // -1 points to grand total
 	..()
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER] = caliber
 	I.gun_loc_tag = PART_BARREL
@@ -581,6 +597,18 @@ semi accepts weird caliber - +1 points
 	matter = list(MATERIAL_PLASTEEL = 8)
 	caliber = CAL_LRIFLE
 	part_overlay = "well_lrifle"
+
+/obj/item/part/gun/modular/barrel/lrifle/forged
+	name = "forged .30 barrel"
+	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .30 caliber.\
+			Visibly forged by hand, high quality."
+	damage_bonus = 0.1 // +2 points to grand total
+
+/obj/item/part/gun/modular/barrel/lrifle/cheap
+	name = ".30 barrel"
+	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .30 caliber.\
+			Autolathe marks give away the barrel's low quality at a glance."
+	cheap = TRUE
 
 /obj/item/part/gun/modular/barrel/shotgun
 	name = "shotgun barrel"

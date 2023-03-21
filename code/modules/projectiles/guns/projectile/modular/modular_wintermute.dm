@@ -22,7 +22,7 @@
 	gun_tags = list(GUN_SILENCABLE)
 	serial_type = "FS"
 
-	damage_multiplier = 1.15 // Higher-end and not fully modular, justifies increasing the default multiplier without balance concerns (you can't combo it with a crazy mechanism)
+	damage_multiplier = 1.1 // Higher-end and not fully modular, justifies increasing the default multiplier without balance concerns (you can't combo it with a crazy mechanism)
 	init_recoil = RIFLE_RECOIL(1) // Mechanism increases by 25%
 
 	required_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/determined = 0, /obj/item/part/gun/modular/barrel = 0, /obj/item/part/gun/modular/grip = 0, /obj/item/part/gun/modular/stock = 0)
