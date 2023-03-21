@@ -84,7 +84,7 @@
 
 /obj/item/projectile/bullet/rocket/thermo/detonate(atom/target)
 	heatwave(get_turf(src), 3, 5, 100, TRUE, 20)
-	explosion(get_turf(src), 0, 0, 0, 5, singe_impact_range = 4)
+	explosion(get_turf(src), 300, 30)
 
 /obj/item/projectile/temp
 	name = "freeze beam"
@@ -114,21 +114,20 @@
 		loc = A.loc
 		return
 
-	sleep(-1) //Might not be important enough for a sleep(-1) but the sleep/spawn itself is necessary thanks to explosions and metoerhits
 
 	if(src)//Do not add to this if() statement, otherwise the meteor won't delete them
 		if(A)
 
-			A.ex_act(2)
+			A.explosion_act(500, null)
 			playsound(src.loc, 'sound/effects/meteorimpact.ogg', 40, 1)
 
 			for(var/mob/M in range(10, src))
 				if(!M.stat && !isAI(M))
 					shake_camera(M, 3, 1)
 			qdel(src)
-			return 1
+			return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/item/projectile/energy/floramut
 	name = "alpha somatoray"

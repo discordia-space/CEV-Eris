@@ -154,7 +154,6 @@
 /obj/machinery/power/shield_generator/proc/shutdown_field()
 	for(var/obj/effect/shield/S in field_segments)
 		qdel(S)
-		CHECK_TICK
 
 	running = SHIELD_OFF
 	mitigation_em = 0

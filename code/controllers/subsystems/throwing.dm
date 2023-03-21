@@ -13,12 +13,13 @@
 #define I_DY 8
 #define I_ERROR 9
 #define I_TURF_CLICKED 10
+#define I_THROWFLAGS 11
 
 SUBSYSTEM_DEF(throwing)
 	name = "throwing"
 	wait = 1 // very small
 	priority = FIRE_PRIORITY_THROWING
-	var/list/throwing_queue[50]
+	var/list/throwing_queue = list()
 
 /datum/controller/subsystem/throwing/fire(resumed = FALSE)
 	for(var/atom/movable/thing as anything in throwing_queue)
@@ -32,6 +33,7 @@ SUBSYSTEM_DEF(throwing)
 			thing.throwing = FALSE
 			thing.thrower = null
 			thing.throw_source = null
+			thing.pass_flags -= throwing_queue[thing][I_THROWFLAGS]
 			continue
 		var/tiles_to_move = throwing_queue[thing][I_SPEED]
 		var/area/cur_area = get_area(thing.loc)
@@ -39,14 +41,15 @@ SUBSYSTEM_DEF(throwing)
 			if(tiles_to_move + throwing_queue[thing][I_MOVED] > throwing_queue[thing][I_RANGE])
 				tiles_to_move = min(throwing_queue[thing][I_RANGE] - throwing_queue[thing][I_MOVED], tiles_to_move)
 		if(tiles_to_move < 1)
-			throwing_queue -= thing
 			thing.throwing = FALSE
 			thing.thrower = null
 			thing.throw_source = null
+			thing.pass_flags -= throwing_queue[thing][I_THROWFLAGS]
 			var/turf/new_loc = get_turf(thing)
 			if(new_loc && isobj(src))
 				thing.throw_impact(new_loc,throwing_queue[thing][I_SPEED])
 				new_loc.Entered(src)
+			throwing_queue -= thing
 			continue
 		var/turf/to_move
 		while(tiles_to_move > 0)
@@ -54,20 +57,16 @@ SUBSYSTEM_DEF(throwing)
 				throwing_queue -= thing
 				break
 			if(!istype(thing.loc, /turf))
-				throwing_queue -= thing
 				thing.throwing = FALSE
-				thing.thrower = null
-				thing.throw_source = null
-				break
 			cur_area = get_area(thing.loc)
 			if(cur_area && cur_area.has_gravity)
 				if(thing.loc == throwing_queue[thing][I_TURF_CLICKED])
 					thing.throwing = FALSE
 			if(!thing.throwing)
-				throwing_queue -= thing
-				thing.throwing = FALSE
 				thing.thrower = null
 				thing.throw_source = null
+				thing.pass_flags -= throwing_queue[thing][I_THROWFLAGS]
+				throwing_queue -= thing
 				break
 
 
@@ -86,14 +85,15 @@ SUBSYSTEM_DEF(throwing)
 					to_move = get_step(thing, throwing_queue[thing][I_DY])
 					throwing_queue[thing][I_ERROR] -= throwing_queue[thing][I_DIST_X]
 			if(!to_move)
-				throwing_queue -= thing
 				thing.throwing = FALSE
 				thing.thrower = null
 				thing.throw_source = null
 				var/turf/new_loc = get_turf(thing)
+				thing.pass_flags -= throwing_queue[thing][I_THROWFLAGS]
 				if(new_loc && isobj(src))
 					thing.throw_impact(new_loc,throwing_queue[thing][I_SPEED])
 					new_loc.Entered(src)
+				throwing_queue -= thing
 				break
 			else
 				thing.Move(to_move)
