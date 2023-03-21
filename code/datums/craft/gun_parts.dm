@@ -327,8 +327,8 @@ semi accepts weird caliber - +1 points
 
 /obj/item/part/gun/modular/grip/makeshift
 	name = "makeshift grip"
-	desc = "A makeshift firearm grip assembled from metal and ducttape, unattached from a firearm."
-	icon_state = "grip_wood"
+	desc = "A makeshift firearm grip from rusted metal and lots of ducttape."
+	icon_state = "grip_makeshift"
 	matter = list(MATERIAL_STEEL = 5)
 	type_of_grip = "makeshift"
 
