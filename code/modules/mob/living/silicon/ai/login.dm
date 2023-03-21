@@ -12,3 +12,4 @@
 	view_core()
 
 	client.CAN_MOVE_DIAGONALLY = TRUE
+	client.CH = new /datum/click_handler/ai(client)

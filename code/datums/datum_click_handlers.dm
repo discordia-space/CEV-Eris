@@ -1,6 +1,4 @@
 /datum/click_handler
-//	var/mob_type
-	var/species
 	var/handler_name
 	var/one_use_flag = 1//drop client.CH after succes ability use
 	var/client/owner
@@ -137,11 +135,25 @@
 	stop_firing() //Without this it keeps firing in an infinite loop when deleted
 	.=..()
 
-/datum/click_handler/human/mob_check(mob/living/carbon/human/user)
-	if(ishuman(user))
-		if(user.species.name == src.species)
-			return 1
-	return 0
+/***********
+ * AI Control
+ */
 
-/datum/click_handler/human/use_ability(mob/living/carbon/human/user,atom/target)
-	return
+/datum/click_handler/ai
+
+/datum/click_handler/ai/Click(atom/target, location, control, params)
+	if(isHUDobj(target))
+		return TRUE
+	if(!isatom(target))
+		return TRUE
+	if (mob_check(owner.mob) && use_ability(owner.mob, target))
+		return TRUE
+	return FALSE
+
+/datum/click_handler/ai/mob_check(mob/living/silicon/ai/user) //Check can mob use a ability
+	return TRUE
+
+/datum/click_handler/ai/use_ability(mob/living/silicon/ai/user,atom/target)
+	if(SSjamming.IsPositionJammed(get_turf(target), 10))
+		return FALSE
+	return TRUE

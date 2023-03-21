@@ -26,6 +26,11 @@
 	var/datum/powernet/PN			// Our powernet
 	var/obj/structure/cable/attached		// the attached cable
 
+/obj/item/device/powersink/Initialize(mapload)
+	. = ..()
+	var/datum/component/jamming/jammie = AddComponent(/datum/component/jamming)
+	jammie.power = 50
+	jammie.radius = 50
 /*
 /obj/item/device/powersink/Destroy()
 	if(mode == 2)
