@@ -107,3 +107,7 @@
   - imageadd: added silver NT door sprite
   - rscadd: autolathe recipe for handheld mirror
   - tweak: handheld mirror has materials
+2023-03-21:
+  Pink-Chink:
+  - code_imp: Ported TG components and elements
+  - code_imp: Adds macros for proc reference compatibility with byond 515
