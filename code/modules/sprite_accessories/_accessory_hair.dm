@@ -709,3 +709,11 @@
 /datum/sprite_accessory/hair/zone
 	name = "Zone Braid"
 	icon_state = "zone"
+
+/datum/sprite_accessory/hair/row_braid
+	name = "Row Braid"
+	icon_state = "row_braid"
+
+/datum/sprite_accessory/hair/croft
+	name = "Croft"
+	icon_state = "croft"
