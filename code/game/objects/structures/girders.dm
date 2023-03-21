@@ -250,9 +250,6 @@
 	if(!istype(M))
 		return 0
 
-	if (!istype(M, /material/steel))
-		to_chat(user, SPAN_NOTICE("Low walls can only be made of steel."))
-		return 0
 	add_hiddenprint(usr)
 
 	to_chat(user, SPAN_NOTICE("You begin adding the plating..."))
@@ -261,7 +258,7 @@
 		return 1 //once we've gotten this far don't call parent attackby()
 
 
-	var/obj/structure/low_wall/T = new(loc)
+	var/obj/structure/low_wall/T = new(loc, M.name, reinf_material?.name)
 	T.add_hiddenprint(usr)
 	T.Created()
 	qdel(src)

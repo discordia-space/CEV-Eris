@@ -31,6 +31,8 @@
 	var/roundstart = FALSE
 	var/list/connections = list("0", "0", "0", "0")
 	var/list/wall_connections = list("0", "0", "0", "0")
+	var/material/material
+	var/material/reinf_material
 
 	var/construction_stage
 
@@ -52,11 +54,20 @@
 
 
 //Low walls mark the turf they're on as a wall.  This is vital for floor icon updating code
-/obj/structure/low_wall/New()
+/obj/structure/low_wall/New(newloc, materialtype, rmaterialtype)
+	.=..(newloc)
 	var/turf/T = loc
 	if (istype(T))
 		T.is_wall = TRUE
-	.=..()
+	if(!materialtype)
+		materialtype = MATERIAL_STEEL
+		material = get_material_by_name(materialtype)
+	if(!isnull(rmaterialtype))
+		rmaterialtype = get_material_by_name(rmaterialtype)
+	health = material.integrity + reinf_material?.integrity
+	maxHealth = health
+	wall_color = material.icon_colour
+	name = "[material.name] [name]"
 
 /obj/structure/low_wall/Destroy()
 	for (var/obj/structure/window/W in loc)
@@ -107,13 +118,13 @@
 	//The main intent is to prevent creatures from walking under the wall in hide mode, there is no "under" the wall.
 	//This is necessary because low walls can't be placed below the hide layer due to shutters
 	if(istype(mover) && mover.checkpass(PASSTABLE) && mover.layer > layer)
-		return 1
+		return TRUE
 	if(locate(/obj/structure/low_wall) in get_turf(mover))
-		return 1
+		return TRUE
 	if(isliving(mover))
 		var/mob/living/L = mover
 		if(L.weakened)
-			return 1
+			return TRUE
 	return ..()
 
 

@@ -2,7 +2,7 @@
 #define EFLAG_ADDITIVEFALLOFF 2
 
 #define EXPLOSION_MINIMUM_THRESHOLD 10
-#define EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD 200
+#define EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD 500
 
 #define SPARE_HASH_LISTS 400
 #define HASH_MODULO (world.maxx + world.maxx*world.maxy)
@@ -101,10 +101,11 @@ SUBSYSTEM_DEF(explosions)
 				explodey.hashed_visited[target.z][turf_key] = TRUE
 				new /obj/effect/explosion_fire(target)
 				target_power -= target.explosion_act(target_power, explodey)
+				target_power -= explodey.falloff
 				if(target_power < EXPLOSION_MINIMUM_THRESHOLD)
 					continue
 				// Run these first so the ones coming from below/above don't get calculated first.
-				if(target_power - explodey.falloff > EXPLOSION_MINIMUM_THRESHOLD)
+				if(target_power > EXPLOSION_MINIMUM_THRESHOLD)
 					for(var/dir in list(NORTH,SOUTH,EAST,WEST))
 						var/turf/next = get_step(target,dir)
 						if(QDELETED(next))
@@ -116,7 +117,7 @@ SUBSYSTEM_DEF(explosions)
 						explodey.hashed_power[next.z][temp_key] = target_power - explodey.falloff
 						explodey.hashed_visited[next.z][temp_key] = TRUE
 				// For Up and Down , we use the turf  key since its valid
-				if(target_power - explodey.falloff - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
+				if(target_power - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
 					var/turf/checking = GetAbove(target)
 					if(!QDELETED(checking) && istype(checking, /turf/simulated/open))
 						// Startup for first time, kind of ineefficient , but better than distributing the lists willy nilly

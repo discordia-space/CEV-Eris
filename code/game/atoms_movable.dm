@@ -155,11 +155,11 @@
 #define I_MOVED 4 /// Index for amount of turfs we alreathrowing_queue[thing][I_DY] moved by
 #define I_DIST_X 5
 #define I_DIST_Y 6
-#define I_DX 7
-#define I_DY 8
-#define I_ERROR 9
+#define I_DX 7 // The bias for the X-axis
+#define I_DY 8 // The bias for the Y-axis
+#define I_ERROR 9 // Calculation error accumulated so far
 #define I_TURF_CLICKED 10
-#define I_THROWFLAGS 11
+#define I_THROWFLAGS 11 // pass_flags for the thrown obj
 */
 
 
@@ -174,7 +174,7 @@
 	var/dist_x = abs(target.x - src.x)
 	var/dist_y = abs(target.y - src.y)
 	pass_flags += throwflags
-	/// spot 4 is for tiles we already moved, 5,6 for distx and disty, and 7,8 for dx, dy and 9 for current error
+	/// defines for each slot are above the function def
 	var/list/tl = new /list(11)
 	tl[1] = target
 	tl[2] = speed
@@ -187,33 +187,7 @@
 	tl[9] = (dist_x > dist_y ? dist_x/2 - dist_y : dist_y/2 - dist_x)
 	tl[10] = get_turf(target)
 	tl[11] = throwflags
-	/*
-	tl[I_TARGET] = target
-	tl[I_SPEED] = speed
-	tl[I_RANGE] = range
-	tl[I_MOVED] = 0
-	tl[I_DIST_X] = dist_x
-	tl[I_DIST_Y] = dist_y
-	tl[I_ERROR] = dist_x > dist_y ? dist_x/2 - dist_y : dist_y/2 - dist_x
-	tl[I_TURF_CLICKED] = get_turf(target)
-	tl[I_THROWFLAGS] = throwflags
-	*/
 	SSthrowing.throwing_queue[src] = tl
-	/*
-	SSthrowing.throwing_queue[src] = list(
-		target,
-		speed,
-		range,
-		0,
-		dist_x,
-		dist_y,
-		target.x > x ? EAST : WEST,
-		target.y > y ? NORTH : SOUTH,
-		dist_x > dist_y ? dist_x/2 - dist_y : dist_y/2 - dist_x,
-		get_turf(target),
-		throwflags,
-	)
-	*/
 	return TRUE
 
 
