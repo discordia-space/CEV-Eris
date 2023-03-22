@@ -16,7 +16,7 @@
 		melee = 10,
 		bullet = 13,
 		energy = 14,
-		bomb = 25,
+		bomb = 75,
 		bio = 100,
 		rad = 75
 	)
@@ -77,7 +77,7 @@
 		melee = 10,
 		bullet = 13,
 		energy = 14,
-		bomb = 25,
+		bomb = 75,
 		bio = 100,
 		rad = 75
 	)

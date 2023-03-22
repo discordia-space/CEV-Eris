@@ -204,7 +204,7 @@
 		melee = 7,
 		bullet = 7,
 		energy = 7,
-		bomb = 5,
+		bomb = 50,
 		bio = 0,
 		rad = 0
 	)
@@ -264,7 +264,7 @@
 		melee = 13,
 		bullet = 6,
 		energy = 6,
-		bomb = 15,
+		bomb = 50,
 		bio = 0,
 		rad = 0
 	)
