@@ -130,15 +130,15 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		if(slot_l_hand)
 			flick("left_swing", S)
 			var/dmg_modifier = 1
-			dmg_modifier -= tileattack(user, L, modifier = 1) ? 0.2 : 0
-			dmg_modifier -= tileattack(user, C, modifier = dmg_modifier) ? 0.2 : 0
+			dmg_modifier = tileattack(user, L, modifier = 1)
+			dmg_modifier = tileattack(user, C, modifier = dmg_modifier, original_target = A)
 			tileattack(user, R, modifier = dmg_modifier)
 			QDEL_IN(S, 2 SECONDS)
 		if(slot_r_hand)
 			flick("right_swing", S)
 			var/dmg_modifier = 1
-			dmg_modifier -= tileattack(user, R, modifier = 1) ? 0.2 : 0
-			dmg_modifier -= tileattack(user, C, modifier = dmg_modifier) ? 0.2 : 0
+			dmg_modifier = tileattack(user, R, modifier = 1)
+			dmg_modifier = tileattack(user, C, modifier = dmg_modifier, original_target = A)
 			tileattack(user, L, modifier = dmg_modifier)
 			QDEL_IN(S, 2 SECONDS)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -202,23 +202,41 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	else
 		return I.attack(src, user, user.targeted_organ)
 
-//Area of effect attacks (swinging), return TRUE if we hit something
-/obj/item/proc/tileattack(mob/living/user, turf/targetarea, modifier = 1)
-	if(!wielded)
+//Used by Area of effect attacks, if it returns FALSE, it failed
+/obj/item/proc/attack_with_multiplier(mob/living/user, var/atom/target, var/modifier = 1)
+	if(!wielded && modifier > 0)
 		return FALSE
 	var/original_force = force
 	var/original_unwielded_force = force_wielded_multiplier ? force / force_wielded_multiplier : force / 1.3
 	force *= modifier
+	target.attackby(src, user)
+	force = wielded ? original_force : round(original_unwielded_force, 1)
+	return TRUE
+
+//Same as above but for mobs
+/obj/item/proc/attack_with_multiplier_mob(mob/living/user, var/mob/living/target, var/modifier = 1)
+	if(!wielded && modifier > 0)
+		return FALSE
+	var/original_force = force
+	var/original_unwielded_force = force_wielded_multiplier ? force / force_wielded_multiplier : force / 1.3
+	force *= modifier
+	attack(target, user, user.targeted_organ)
+	force = wielded ? original_force : round(original_unwielded_force, 1)
+	return TRUE
+
+//Area of effect attacks (swinging), return remaining damage
+/obj/item/proc/tileattack(mob/living/user, turf/targetarea, var/modifier = 1, var/swing_degradation = 0.2, var/original_target)
 	if(istype(targetarea, /turf/simulated/wall))
 		var/turf/simulated/W = targetarea
-		W.attackby(src, user)
-		force = original_force
-		return TRUE
+		if(attack_with_multiplier(user, W, modifier))
+			return (modifier - swing_degradation) // We hit a static object, prevents hitting anything underneath
 	var/successful_hit = FALSE
 	for(var/obj/S in targetarea)
 		if (S.density && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal) && !istype(S, /obj/structure/closet))
-			S.attackby(src, user)
-			successful_hit = TRUE
+			if(attack_with_multiplier(user, S, modifier))
+				successful_hit = TRUE // Livings or targeted mobs can still be hit
+	if(successful_hit)
+		modifier -= swing_degradation // Only deduct damage once for dense objects
 	var/list/living_mobs = new/list()
 	var/list/dead_mobs = new/list()
 	for(var/mob/living/M in targetarea)
@@ -227,19 +245,27 @@ avoid code duplication. This includes items that may sometimes act as a standard
 				dead_mobs.Add(M)
 			else
 				living_mobs.Add(M)
-	var/target
-	if(living_mobs.len)
-		target = pick(living_mobs)
+	var/mob/living/target
+	if(original_target && istype(original_target, /mob/living)) // Check if original target is a mob
+		if(original_target in living_mobs || original_target in dead_mobs) // Check if original target is a mob on this tile
+			target = original_target
+			if(attack_with_multiplier_mob(user, target, modifier))
+				modifier -= swing_degradation
+			if(target.density) // If the original target was dense, the rest of the mobs are shielded
+				return modifier
+
+	while(living_mobs.len && modifier > 0)
+		target = pick_n_take(living_mobs)
+		if(attack_with_multiplier_mob(user, target, modifier))
+			modifier -= swing_degradation
 		successful_hit = TRUE
-	else if(dead_mobs.len)
+		if(target.density) // If we hit a dense target, the rest of the mobs are shielded
+			return modifier
+	if(!successful_hit && dead_mobs.len) // If we hit nothing, try to hit dead mobs
 		target = pick(dead_mobs)
-		successful_hit = TRUE
-	else
-		force = original_force
-		return successful_hit
-	attack(target, user, user.targeted_organ)
-	force = wielded ? original_force : round(original_unwielded_force, 1)
-	return successful_hit
+		if(attack_with_multiplier_mob(user, target, modifier))
+			modifier -= swing_degradation
+	return modifier
 // modifying force after calling attack() here is a bad idea, as the force can be changed by means of embedding in a target, which leads to unwielding a weapon.
 //This code replicates the damage reduction caused by unwielding something, but it will likely cause problems elsewhere.
 
