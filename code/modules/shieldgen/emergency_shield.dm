@@ -68,19 +68,6 @@
 		if(src)
 			set_opacity(FALSE)
 
-/obj/machinery/shield/ex_act(severity)
-	switch(severity)
-		if(1)
-			if (prob(75))
-				qdel(src)
-		if(2)
-			if (prob(50))
-				qdel(src)
-		if(3)
-			if (prob(25))
-				qdel(src)
-	return
-
 /obj/machinery/shield/emp_act(severity)
 	switch(severity)
 		if(1)
@@ -221,20 +208,11 @@
 	update_icon()
 	return
 
-/obj/machinery/shieldgen/ex_act(severity)
-	switch(severity)
-		if(1)
-			src.shieldHealth -= 75
-			src.checkhp()
-		if(2)
-			src.shieldHealth -= 30
-			if (prob(15))
-				src.malfunction = 1
-			src.checkhp()
-		if(3)
-			src.shieldHealth -= 10
-			src.checkhp()
-	return
+/obj/machinery/shieldgen/take_damage(amount)
+	shieldHealth -= amount / 2
+	checkhp()
+	return 0
+
 
 /obj/machinery/shieldgen/emp_act(severity)
 	switch(severity)

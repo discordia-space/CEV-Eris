@@ -83,7 +83,7 @@
 	if( prob(pull_chance) )
 		for(var/obj/O in T.contents)
 			if(O.anchored)
-				O.ex_act(ex_act_force)
+				O.explosion_act(ex_act_force, null)
 			else
 				step_towards(O,src)
 		for(var/mob/living/M in T.contents)

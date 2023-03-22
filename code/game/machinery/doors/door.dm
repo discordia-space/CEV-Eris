@@ -400,28 +400,6 @@
 		visible_message(SPAN_WARNING("\The [src.name] breaks!"))
 	update_icon()
 
-/*
-/obj/machinery/door/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(prob(25))
-				qdel(src)
-			else
-				take_damage(300)
-		if(3)
-			if(prob(20))
-				take_damage(150)
-		if(4)
-			if(prob(20))
-				take_damage(60)
-
-	return
-*/
-
-
-
 /obj/machinery/door/explosion_act(target_power, explosion_handler/handler)
 	var/absorbed = take_damage(target_power)
 	//message_admins("Door block absorbed [absorbed] damage , whilst having a health pool of [health] out of a maximum of [maxHealth]")

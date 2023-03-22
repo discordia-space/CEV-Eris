@@ -307,20 +307,14 @@
 	return added_units
 
 // this should probably use dump_contents()
-/obj/structure/closet/ex_act(severity)
-	switch(severity)
-		if(1)
-			for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
-				A.ex_act(severity + 1)
-			qdel(src)
-		if(2)
-			if(prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.ex_act(severity + 1)
-				qdel(src)
-		if(3)
-			if(prob(5))
-				qdel(src)
+
+/obj/structure/closet/explosion_act(target_power, explosion_handler/handler)
+	if(target_power > health)
+		for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
+			A.explosion_act(target_power - health, handler)
+		dump_contents()
+	// Counts as protection
+	. = ..()
 
 /obj/structure/closet/proc/populate_contents()
 	return

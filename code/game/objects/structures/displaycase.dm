@@ -15,25 +15,6 @@
 /obj/structure/displaycase/explosion_act(target_power, explosion_handler/handler)
 	var/absorbed = take_damage(target_power)
 	return absorbed
-/*
-/obj/structure/displaycase/ex_act(severity)
-	switch(severity)
-		if (1)
-			new /obj/item/material/shard( src.loc )
-			if (occupied)
-				new /obj/item/gun/energy/captain( src.loc )
-				occupied = 0
-			qdel(src)
-		if (2)
-			if (prob(50))
-				src.health -= 15
-				src.healthcheck()
-		if (3)
-			if (prob(50))
-				src.health -= 5
-				src.healthcheck()
-*/
-
 
 /obj/structure/displaycase/bullet_act(var/obj/item/projectile/Proj)
 	take_damage(Proj.get_structure_damage())

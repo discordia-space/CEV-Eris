@@ -108,35 +108,12 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/machinery/bodyscanner/ex_act(severity)
-	switch(severity)
-		if(1)
-			for(var/atom/movable/A in src)
-				A.forceMove(loc)
-				A.ex_act(severity)
-			qdel(src)
-		if(2)
-			if (prob(50))
-				for(var/atom/movable/A in src)
-					A.forceMove(loc)
-					A.ex_act(severity)
-				qdel(src)
-		if(3)
-			if (prob(25))
-				for(var/atom/movable/A in src)
-					A.forceMove(loc)
-					A.ex_act(severity)
-				qdel(src)
-
-/obj/machinery/body_scanconsole/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			if (prob(50))
-				qdel(src)
-				return
+/obj/machinery/bodyscanner/explosion_act(target_power, explosion_handler/handler)
+	if(target_power > health)
+		for(var/atom/movable/A in src)
+			A.forceMove(loc)
+			A.explosion_act(target_power)
+	. = ..()
 
 /obj/machinery/body_scanconsole/power_change()
 	..()
@@ -305,13 +282,13 @@
 		for(var/obj/item/organ/internal/I in e.internal_organs) // I put this before the actual external organ
 			if(I.scanner_hidden) // so that I could set significant based on internal organ results.
 				continue
-	
+
 			var/list/internal_wounds = list()
 			if(BP_IS_ASSISTED(I))
 				internal_wounds += "Assisted"
 			if(BP_IS_ROBOTIC(I))
 				internal_wounds += "Prosthetic"
-	
+
 			var/total_brute_and_misc_damage = 0
 			var/total_burn_damage = 0
 

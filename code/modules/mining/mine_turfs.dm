@@ -45,16 +45,11 @@
 
 /turf/simulated/mineral/is_plating()
 	return TRUE
-
-/turf/simulated/mineral/ex_act(severity)
-	switch(severity)
-		if(2)
-			if (prob(70))
-				mined_ore = 1 //some of the stuff gets blown up
-				GetDrilled()
-		if(1)
-			mined_ore = 2 //some of the stuff gets blown up
-			GetDrilled()
+/turf/simulated/mineral/explosion_act(target_power, explosion_handler/handler)
+	. = ..()
+	if(src && target_power > 75)
+		mined_ore = 1
+		GetDrilled()
 
 /turf/simulated/mineral/bullet_act(var/obj/item/projectile/Proj)
 
@@ -218,16 +213,10 @@
 		overlay_detail = "asteroid[rand(0,8)]"
 		updateMineralOverlays(1)
 
-/turf/simulated/floor/asteroid/ex_act(severity)
-	switch(severity)
-		if(3)
-			return
-		if(2)
-			if (prob(70))
-				gets_dug()
-		if(1)
-			gets_dug()
-	return
+/turf/simulated/floor/asteroid/explosion_act(target_power, explosion_handler/handler)
+	. = ..()
+	if(src && target_power > 50)
+		gets_dug()
 
 /turf/simulated/floor/asteroid/is_plating()
 	return !density

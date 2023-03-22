@@ -694,12 +694,11 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/is_in_chassis()
 	return istype(loc, /turf)
 
-
-/mob/living/silicon/ai/ex_act(var/severity)
-	if(severity == 1)
+/mob/living/silicon/ai/explosion_act(target_power, explosion_handler/handler)
+	if(target_power/3 > maxHealth)
 		qdel(src)
-		return
-	..()
+	else
+		adjustBruteLoss(target_power / 3)
 
 /mob/living/silicon/ai/proc/multitool_mode()
 	set name = "Toggle Multitool Mode"

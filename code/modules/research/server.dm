@@ -63,9 +63,9 @@
 	griefProtection()
 	..()
 
-/obj/machinery/r_n_d/server/ex_act(severity)
+/obj/machinery/r_n_d/server/explosion_act(target_power, explosion_handler/handler)
 	griefProtection()
-	..()
+	. = ..()
 
 //Backup files to centcom to help admins recover data after greifer attacks
 /obj/machinery/r_n_d/server/proc/griefProtection()

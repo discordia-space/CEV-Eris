@@ -141,21 +141,6 @@ for reference:
 	else
 		attack_hand(M)
 
-/*
-/obj/structure/barricade/ex_act(severity)
-	switch(severity)
-		if(1)
-			visible_message(SPAN_DANGER("\The [src] is blown apart!"))
-			qdel(src)
-			return
-		if(2)
-			health -= 25
-			if(health <= 0)
-				visible_message(SPAN_DANGER("\The [src] is blown apart!"))
-				dismantle()
-			return
-*/
-
 /obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
 
 	if(istype(mover,/obj/item/projectile))
@@ -285,17 +270,6 @@ for reference:
 			explode()
 		..()
 
-/obj/machinery/deployable/barrier/ex_act(severity)
-	switch(severity)
-		if(1)
-			explode()
-			return
-		if(2)
-			health -= 25
-			if(health <= 0)
-				explode()
-			return
-
 /obj/machinery/deployable/barrier/explosion_act(target_power, explosion_handler/handler)
 	return take_damage(target_power)
 
@@ -305,6 +279,7 @@ for reference:
 	. *= 0.7
 	health -= amount
 	if(health <= 0)
+		explode()
 		qdel(src)
 
 /obj/machinery/deployable/barrier/emp_act(severity)

@@ -16,11 +16,6 @@
 /obj/structure/grille/explosion_act(target_power, explosion_handler/handler)
 	var/absorbed = take_damage(target_power)
 	return absorbed
-/*
-/obj/structure/grille/ex_act(severity)
-	if(severity < 4)
-		qdel(src)
-*/
 
 /obj/structure/grille/update_icon()
 	if(destroyed)

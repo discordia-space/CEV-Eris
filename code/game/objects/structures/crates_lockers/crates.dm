@@ -34,26 +34,6 @@
 	update_icon()
 	return TRUE
 
-/obj/structure/closet/crate/ex_act(severity)
-	switch(severity)
-		if(1)
-			for(var/obj/O in src.contents)
-				qdel(O)
-			qdel(src)
-			return
-		if(2)
-			for(var/obj/O in src.contents)
-				if(prob(50))
-					qdel(O)
-			qdel(src)
-			return
-		if(3)
-			if (prob(50))
-				qdel(src)
-			return
-		else
-	return
-
 /obj/structure/closet/crate/MouseDrop_T(mob/target, mob/user)
 	var/mob/living/L = user
 	if(istype(L) && can_climb(L) && target == user)

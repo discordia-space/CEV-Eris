@@ -170,19 +170,6 @@
 
 	return TRUE
 
-/*
-/obj/structure/window/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			shatter(0,TRUE)
-		if(3)
-			shatter(0,TRUE)
-		if(4)
-			if(prob(50))
-				shatter(0,TRUE)
-	*/
 
 //TODO: Make full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point
@@ -743,8 +730,8 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 /obj/structure/window/reinforced/crescent/attackby()
 	return
 
-/obj/structure/window/reinforced/crescent/ex_act()
-	return
+/obj/structure/window/reinforced/crescent/explosion_act(target_power, explosion_handler/handler)
+	return target_power
 
 /obj/structure/window/reinforced/crescent/hitby()
 	return

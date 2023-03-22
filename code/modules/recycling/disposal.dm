@@ -881,30 +881,6 @@
 
 	qdel(src)
 
-
-// pipe affected by explosion
-/*
-/obj/structure/disposalpipe/ex_act(severity)
-
-	switch(severity)
-		if(1)
-			broken(0)
-			return
-		if(2)
-			health -= rand(5,15)
-			healthcheck()
-			return
-		if(3)
-			health -= rand(0,15)
-			healthcheck()
-			return
-		if(4)
-			health -= rand(0,5)
-			healthcheck()
-			return
-*/
-
-
 	// test health for brokenness
 /obj/structure/disposalpipe/take_damage(damage)
 	. = health - damage < 0 ? damage - (damage - health) : damage

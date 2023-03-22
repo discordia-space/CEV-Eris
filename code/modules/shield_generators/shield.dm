@@ -235,10 +235,6 @@ Like for example singulo act and whatever.
 
 
 // Explosions
-/obj/effect/shield/ex_act(var/severity)
-	if (!ignoreExAct)
-		if (!isInactive())
-			take_damage(rand(10,15) / severity, SHIELD_DAMTYPE_PHYSICAL, src)
 
 /obj/effect/shield/explosion_act(target_power, explosion_handler/handler)
 	if(!ignoreExAct && !isInactive())

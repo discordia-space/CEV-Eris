@@ -151,6 +151,7 @@
 	..()
 
 /obj/machinery/proc/take_damage(amount)
+	. = health - amount < 0 ? amount - (amount - health) : amount
 	health -= amount
 	if(health <= 0)
 		qdel(src)
@@ -158,18 +159,6 @@
 /obj/machinery/explosion_act(target_power, explosion_handler/handler)
 	take_damage(target_power)
 	return 0
-/*
-/obj/machinery/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(prob(50))
-				qdel(src)
-		if(3)
-			if(prob(25))
-				qdel(src)
-*/
 
 /proc/is_operable(obj/machinery/M, mob/user)
 	return istype(M) && M.operable()

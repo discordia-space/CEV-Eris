@@ -118,7 +118,7 @@
 	if(value != SD_EMPTY_TILE && T.contents.len)
 		for(var/atom/movable/AM in T)
 			if(AM.simulated && !isobserver(AM))
-				AM.ex_act(1)
+				AM.explosion_act(700, null)
 
 	// Also spawn doors and loot.
 	if(value == SD_DOOR_TILE)

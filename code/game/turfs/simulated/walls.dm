@@ -384,23 +384,6 @@
 
 	ChangeTurf(/turf/simulated/floor/plating)
 
-/*
-/turf/simulated/wall/ex_act(severity)
-	switch(severity)
-		if(1)
-			take_damage(rand(500, 800))
-		if(2)
-			take_damage(rand(200, 500))
-		if(3)
-			take_damage(rand(90, 250))
-		if(4)
-			take_damage(rand(40, 100))
-		else
-	return
-*/
-
-
-
 /turf/simulated/wall/proc/can_melt()
 	if(material.flags & MATERIAL_UNMELTABLE)
 		return 0

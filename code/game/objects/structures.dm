@@ -77,20 +77,6 @@
 	var/absorbed = take_damage(target_power)
 	return absorbed
 
-/*
-/obj/structure/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			if(prob(50))
-				qdel(src)
-				return
-		if(3)
-			return
-*/
-
 /obj/structure/New()
 	..()
 	if(climbable)

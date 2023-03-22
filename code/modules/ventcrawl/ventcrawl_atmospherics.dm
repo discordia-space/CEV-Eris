@@ -11,12 +11,6 @@
 				M.pipes_shown -= pipe_image
 		pipe_image = null
 	. = ..()
-/*
-/obj/machinery/atmospherics/ex_act(severity)
-	for(var/atom/movable/A in src) //ventcrawling is serious business
-		A.ex_act(severity)
-	. = ..()
-*/
 
 /obj/machinery/atmospherics/explosion_act(target_power, explosion_handler/handler)
 	for(var/atom/movable/A in src) //ventcrawling is serious business

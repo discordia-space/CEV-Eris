@@ -67,19 +67,8 @@
 	chem_splash(loc, 5, list(reagents))
 	qdel(src)
 
-/obj/structure/reagent_dispensers/ex_act(severity)
-	switch(severity)
-		if(1)
-			explode()
-			return
-		if(2)
-			if (prob(50))
-				explode()
-				return
-		if(3)
-			if (prob(5))
-				explode()
-				return
+/obj/structure/reagent_dispensers/take_damage(damage)
+	explode()
 
 /obj/structure/reagent_dispensers/get_item_cost(export)
 	if(export)
@@ -215,10 +204,6 @@
 		explode()
 	else
 		take_damage(target_power)
-/*
-/obj/structure/reagent_dispensers/fueltank/ex_act()
-	explode()
-*/
 
 /obj/structure/reagent_dispensers/fueltank/ignite_act()
 	if(modded)

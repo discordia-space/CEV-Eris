@@ -683,12 +683,12 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		to_chat(usr, SPAN_WARNING("You can see something move behind the cracks. You should weld them shut before it breaks through."))
 
 
-/obj/structure/burrow/ex_act(severity)
-	var/turf/T = get_turf(src)
-	if(T.is_hole)
-		qdel(src)
-	else
-		collapse()
+/obj/structure/burrow/explosion_act(target_power, explosion_handler/handler)
+	. = ..()
+	if(QDELETED(src))
+		return 0
+	collapse()
+	return 0
 
 /obj/structure/burrow/preventsTurfInteractions()
 	if(isRevealed)

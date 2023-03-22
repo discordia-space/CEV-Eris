@@ -267,22 +267,6 @@ var/list/possible_cable_coil_colours = list(
 	return 0
 
 //explosion handling
-/*
-/obj/structure/cable/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if (prob(50))
-				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
-				qdel(src)
-
-		if(3)
-			if (prob(25))
-				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
-				qdel(src)
-	return
-*/
 
 /obj/structure/cable/explosion_act(target_power, explosion_handler/handler)
 	take_damage(target_power)

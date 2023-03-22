@@ -136,18 +136,6 @@
 
 /obj/item/get_fall_damage()
 	return w_class * 2
-/*
-/obj/item/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(prob(50))
-				qdel(src)
-		if(3)
-			if(prob(5))
-				qdel(src)
-	*/
 
 /obj/item/proc/take_damage(amount)
 	health -= amount

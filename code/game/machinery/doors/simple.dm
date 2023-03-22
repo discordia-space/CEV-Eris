@@ -93,19 +93,12 @@
 		if(Adjacent(user)) //not remotely though
 			return attack_hand(user)
 
-/obj/machinery/door/unpowered/simple/ex_act(severity)
-	switch(severity)
-		if(1)
-			set_broken()
-		if(2)
-			if(prob(25))
-				set_broken()
-			else
-				take_damage(300)
-		if(3)
-			if(prob(20))
-				take_damage(150)
-
+/obj/machinery/door/unpowered/simple/take_damage(damage)
+	. = ..()
+	if(QDELETED(src))
+		return .
+	if(health < maxHealth * 0.75)
+		set_broken()
 
 /obj/machinery/door/unpowered/simple/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)

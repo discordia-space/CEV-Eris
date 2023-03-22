@@ -101,16 +101,8 @@
 	qdel(radio)
 	. = ..()
 
-/obj/machinery/power/supermatter/ex_act(var/severity)
-	switch(severity)
-		if(1)
-			explode()
-		if(2)
-			damage += 500
-		if(3)
-			damage += 200
-		if(4)
-			damage += 50
+/obj/machinery/power/supermatter/take_damage(amount)
+	damage += amount
 
 /obj/machinery/power/supermatter/proc/explode()
 	log_and_message_admins("Supermatter exploded at [x] [y] [z]")

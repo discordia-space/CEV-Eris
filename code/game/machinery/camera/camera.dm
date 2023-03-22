@@ -102,15 +102,10 @@
 /obj/machinery/camera/bullet_act(var/obj/item/projectile/P)
 	take_damage(P.get_structure_damage())
 
-/obj/machinery/camera/ex_act(severity)
-	if(src.invuln)
-		return
-
-	//camera dies if an explosion touches it!
-	if(severity <= 2 || prob(50))
-		destroy()
-
-	..() //and give it the regular chance of being deleted outright
+/obj/machinery/camera/explosion_act(target_power, explosion_handler/handler)
+	if(invuln)
+		return 0
+	. = ..()
 
 /obj/machinery/camera/hitby(AM as mob|obj)
 	..()

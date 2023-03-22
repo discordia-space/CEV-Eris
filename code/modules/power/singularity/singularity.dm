@@ -54,21 +54,6 @@
 	consume(user)
 	return 1
 
-/obj/singularity/ex_act(severity)
-	if(current_size == STAGE_SUPER)//IT'S UNSTOPPABLE
-		return
-	switch(severity)
-		if(1)
-			if(prob(25))
-				investigate_log("has been destroyed by an explosion.", I_SINGULO)
-				qdel(src)
-				return
-			else
-				energy += 50
-		if(2 to 3)
-			energy += round((rand(20,60)/2),1)
-			return
-
 /obj/singularity/bullet_act(obj/item/projectile/P)
 	return 0 //Will there be an impact? Who knows. Will we see it? No.
 

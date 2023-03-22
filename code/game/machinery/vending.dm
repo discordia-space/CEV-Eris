@@ -290,27 +290,16 @@
 	product_records.Cut()
 	return ..()
 
-/obj/machinery/vending/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			if(prob(50))
-				qdel(src)
-				return
-			if(prob(50))
-				spawn(0)
-					malfunction()
-					return
-		if(3)
-			if(prob(25))
-				spawn(0)
-					malfunction()
-					return
-				return
-		else
-	return
+/obj/machinery/vending/take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return .
+	if(amount > 50)
+		malfunction()
+
+/obj/machinery/vending/explosion_act(target_power, explosion_handler/handler)
+	// Blocks 60% at most
+	return round(take_damage(target_power) * 0.6)
 
 /obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
 	if(machine_vendor_account || vendor_department || earnings_account)

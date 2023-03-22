@@ -292,18 +292,9 @@
 			damage_reaction()
 			stun(10)
 
-
-/obj/machinery/hivemind_machine/ex_act(severity)
-	switch(severity)
-		if(1)
-			take_damage(80)
-		if(2)
-			take_damage(30)
-		if(3)
-			take_damage(10)
-		if(4)
-			take_damage(5)
-
+/obj/machinery/hivemind_machine/explosion_act(target_power, explosion_handler/handler)
+	take_damage(round(target_power / 10))
+	return 0
 
 /obj/machinery/hivemind_machine/emp_act(severity)
 	switch(severity)

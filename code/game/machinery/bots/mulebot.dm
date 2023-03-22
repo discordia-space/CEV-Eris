@@ -145,17 +145,17 @@
 	playsound(src.loc, 'sound/effects/sparks1.ogg', 100, 0)
 	return 1
 
-/obj/machinery/bot/mulebot/ex_act(var/severity)
+/obj/machinery/bot/mulebot/take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return 0
 	unload(0)
-	switch(severity)
-		if(2)
-			BITRESET(wires, rand(0,9))
-			BITRESET(wires, rand(0,9))
-			BITRESET(wires, rand(0,9))
-		if(3)
-			BITRESET(wires, rand(0,9))
-	..()
-	return
+	if(amount > 100)
+		BITRESET(wires, rand(0,9))
+		BITRESET(wires, rand(0,9))
+		BITRESET(wires, rand(0,9))
+	else
+		BITRESET(wires, rand(0,9))
 
 /obj/machinery/bot/mulebot/bullet_act()
 	if(prob(50) && !isnull(load))

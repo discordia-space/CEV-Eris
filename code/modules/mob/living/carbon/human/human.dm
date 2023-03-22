@@ -139,68 +139,6 @@
 	else
 		return BombDamage * 0.3
 
-/*
-/mob/living/carbon/human/ex_act(severity, epicenter)
-	flash(5, FALSE, TRUE , TRUE, 5)
-
-	var/b_loss = 0
-	var/bomb_defense = getarmor(null, ARMOR_BOMB) + mob_bomb_defense
-	var/target_turf // null means epicenter is same tile
-	if(epicenter != get_turf(src))
-		target_turf = get_turf_away_from_target_simple(src, epicenter, 8)
-	var/throw_distance = 8 - 2*severity
-	var/not_slick = TRUE
-	if(target_turf) // this means explosions on the same tile will not fling you
-		throw_at(target_turf, throw_distance, 5)
-		not_slick = FALSE // only explosions that fling you can be survived with slickness
-	if(slickness < (9-(2*severity)) * 10)
-		Weaken(severity) // If they don't get knocked out , weaken them for a bit.
-		not_slick = TRUE // if you don't have enough slickness, you can't safely ride the boom
-	else
-		slickness -= (9-(2*severity)) * 10 // awesome feats aren't something you can do constantly.
-
-	switch(severity)
-		if(1)
-			b_loss += 500
-			if(!prob(bomb_defense))
-				gib()
-				return
-		if(2)
-			b_loss = 120
-			if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-				adjustEarDamage(30, 120)
-
-		if(3)
-			if(not_slick)
-				b_loss += 80
-				if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-					adjustEarDamage(15, 60)
-			else
-				visible_message(SPAN_WARNING("[src] rides the shockwave!"))
-				dodge_time = get_game_time()
-				confidence = FALSE
-		if(4)
-			if(not_slick)
-				b_loss += 50
-				if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-					adjustEarDamage(10, 30)
-			else
-				visible_message(SPAN_WARNING("[src] rides the shockwave!"))
-				dodge_time = get_game_time()
-				confidence = FALSE
-
-	if(bomb_defense)
-		b_loss = max(b_loss - bomb_defense, 0)
-
-	var/organ_hit = BP_CHEST //Chest is hit first
-	var/exp_damage = 0
-	while(b_loss > 0)
-		b_loss -= exp_damage
-		exp_damage = rand(0, b_loss)
-		src.apply_damage(exp_damage, BRUTE, organ_hit)
-		organ_hit = pickweight(list(BP_HEAD = 0.1, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG = 0.1, BP_L_LEG = 0.1))  //We determine some other body parts that should be hit
-*/
-
 /mob/living/carbon/human/restrained()
 	if(handcuffed)
 		return 1

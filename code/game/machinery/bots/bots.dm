@@ -89,23 +89,11 @@
 	..()
 	healthcheck()
 
-/obj/machinery/bot/ex_act(severity)
-	switch(severity)
-		if(1)
-			src.explode()
-			return
-		if(2)
-			src.health -= rand(5,10)*fire_dam_coeff
-			src.health -= rand(10,20)*brute_dam_coeff
-			healthcheck()
-			return
-		if(3)
-			if (prob(50))
-				src.health -= rand(1,5)*fire_dam_coeff
-				src.health -= rand(1,5)*brute_dam_coeff
-				healthcheck()
-				return
-	return
+/obj/machinery/bot/take_damage(amount)
+	health -= amount/10 * brute_dam_coeff * 2
+	health -= amount/10 * fire_dam_coeff
+	healthcheck()
+
 
 /obj/machinery/bot/emp_act(severity)
 	var/was_on = on

@@ -83,7 +83,7 @@
 			T.gets_dug()
 	else if(istype(get_turf(src), /turf/simulated/floor))
 		var/turf/simulated/floor/T = get_turf(src)
-		T.ex_act(2)
+		T.explosion_act(200, null)
 
 	dig_ore()
 

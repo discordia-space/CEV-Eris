@@ -33,7 +33,7 @@
 		//But we could break lattices in this tile
 		for(var/obj/structure/lattice/L in src)
 			if(damage > 75)
-				L.ex_act(1)
+				L.take_damage(damage)
 		return
 
 	damage -= flooring ? flooring.resistance : 0

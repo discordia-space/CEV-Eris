@@ -1154,7 +1154,7 @@ There are 9 wires.
 	return FALSE
 
 /obj/structure/window/airlock_crush(crush_damage)
-	ex_act(2)//Smashin windows
+	explosion_act(500, null)
 
 /obj/machinery/portable_atmospherics/canister/airlock_crush(crush_damage)
 	. = ..()
