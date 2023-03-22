@@ -416,7 +416,7 @@ its easier to just keep the beam vertical.
 // in explosion processing.
 /atom/proc/explosion_act(target_power, explosion_handler/handler)
 	SHOULD_NOT_SLEEP(TRUE)
-	return
+	return 0
 
 /atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
 	return NO_EMAG_ACT

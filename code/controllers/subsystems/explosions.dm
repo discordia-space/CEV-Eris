@@ -100,8 +100,7 @@ SUBSYSTEM_DEF(explosions)
 				explodey.current_turf_queue -= target
 				explodey.hashed_visited[target.z][turf_key] = TRUE
 				new /obj/effect/explosion_fire(target)
-				target_power -= target.explosion_act(target_power, explodey)
-				target_power -= explodey.falloff
+				target_power -= target.explosion_act(target_power, explodey) - explodey.falloff
 				if(target_power < EXPLOSION_MINIMUM_THRESHOLD)
 					continue
 				// Run these first so the ones coming from below/above don't get calculated first.

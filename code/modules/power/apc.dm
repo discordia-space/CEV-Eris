@@ -1259,7 +1259,7 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 
 /obj/machinery/power/apc/take_damage(amount)
 	if(cell)
-		take_damage(cell)
+		cell.take_damage(amount)
 	. = ..()
 	if(QDELETED(src))
 		return 0
@@ -1275,12 +1275,11 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 /obj/machinery/power/apc/proc/set_broken()
 	// Aesthetically much better!
 	visible_message(SPAN_NOTICE("[src]'s screen flickers with warnings briefly!"))
-	spawn(rand(2,5))
-		visible_message(SPAN_NOTICE("[src]'s screen suddenly explodes in rain of sparks and small debris!"))
-		stat |= BROKEN
-		operating = 0
-		update_icon()
-		update()
+	visible_message(SPAN_NOTICE("[src]'s screen suddenly explodes in rain of sparks and small debris!"))
+	stat |= BROKEN
+	operating = 0
+	update_icon()
+	update()
 
 // overload the lights in this APC area
 

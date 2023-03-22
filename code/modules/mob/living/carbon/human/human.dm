@@ -108,6 +108,8 @@
 	if(ThrowTurf != handle.epicenter && ThrowDistance)
 		ThrowTurf = get_turf_away_from_target_simple(src, handle.epicenter, 8)
 		throw_at(ThrowTurf, ThrowDistance, ThrowDistance, "explosion")
+	if(BombDamage < 0)
+		return target_power * 0.2
 	// Heroic sacrifice
 	else if(ThrowTurf == handle.epicenter && BombDamage > 300)
 		gib()

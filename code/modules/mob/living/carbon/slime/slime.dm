@@ -187,8 +187,8 @@
 	..()
 
 /mob/living/carbon/slime/explosion_act(target_power, explosion_handler/handler)
-	adjustBruteLoss(round(target_power / 3))
-	adjustFireLoss(round(target_power / 3))
+	adjustBruteLoss(round(target_power))
+	adjustFireLoss(round(target_power))
 	updatehealth()
 	return 0
 

@@ -250,8 +250,8 @@
 	return 1
 
 /mob/living/silicon/explosion_act(target_power, explosion_handler/handler)
-	adjustBruteLoss(target_power / 3)
-	adjustFireLoss(target_power / 3)
+	adjustBruteLoss(target_power/2)
+	adjustFireLoss(target_power/2)
 	updatehealth()
 	return 0
 

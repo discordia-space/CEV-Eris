@@ -435,10 +435,10 @@
 	return ..(gibbed,deathmessage)
 
 /mob/living/simple_animal/explosion_act(target_power)
-	if(target_power > 1000)
+	if(target_power/3 > maxHealth)
 		gib()
 	else
-		adjustBruteLoss(target_power)
+		adjustBruteLoss(target_power / 3)
 	return 0
 
 

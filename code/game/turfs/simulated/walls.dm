@@ -327,8 +327,10 @@
 	return
 
 /turf/simulated/wall/take_damage(damage)
+	if(damage < 0)
+		return 0
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		health *= 10
+		damage *= 10
 	. = health - damage < 0 ? damage - (damage - health) : damage
 	health -= damage
 	if(health <= 0)
