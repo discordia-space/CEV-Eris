@@ -74,9 +74,12 @@
 		target = get_atom_on_turf(src)
 	if(!target)
 		target = src
-	if(location)
-		explosion(get_turf(src), 1000, 750)
-
+	if(target)
+		target.explosion_act(1000, null)
+	else if(location)
+		target = get_turf(location)
+		target.explosion_act(1000, null)
+	/*
 	if(target)
 		if (istype(target, /turf/simulated/wall))
 			var/turf/simulated/wall/W = target
@@ -85,6 +88,7 @@
 			target.explosion_act(1000) // c4 can't gib mobs anymore.
 		else
 			target.explosion_act(1000)
+	*/
 
 	//Girders are a pain, just delete em
 	//for (var/obj/structure/girder/G in loc)

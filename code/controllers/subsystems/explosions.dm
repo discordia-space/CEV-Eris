@@ -186,7 +186,7 @@ SUBSYSTEM_DEF(explosions)
 		if(thing.simulated)
 			power_reduction += thing.explosion_act(target_power, handler)
 	var/turf/to_propagate = GetAbove(src)
-	if(to_propagate && target_power > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
+	if(to_propagate && target_power - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
 		to_propagate.take_damage(target_power - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD, BLAST)
 
 	return power_reduction
