@@ -12,8 +12,8 @@
 	if(target_power == absorbed_damage)
 		return target_power
 	// damage everything on the turf by this amount, since we the floor
-	take_damage(target_power - absorbed_damage, BLAST)
 	absorbed_damage += ..(target_power - absorbed_damage, handler)
+	take_damage(target_power - absorbed_damage, BLAST)
 	// didn't block anyhing
 	return absorbed_damage
 

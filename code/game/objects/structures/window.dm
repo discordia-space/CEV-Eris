@@ -61,30 +61,26 @@
 
 //Subtracts resistance from damage then applies it
 //Returns the actual damage taken after resistance is accounted for. This is useful for audio volumes
-/obj/structure/window/take_damage(var/damage = 0,  var/sound_effect = 1, var/ignore_resistance = FALSE)
+/obj/structure/window/take_damage(damage = 0)
 	var/initialhealth = health
 	. = health - (damage * (1 - silicate / 200) - resistance) < 0 ? damage - (damage - health) : damage
 	. *= explosionCoverage
-
-	if (!ignore_resistance)
-		damage = damage * (1 - silicate / 200) // up to 50% damage resistance
-		damage -= resistance // then flat resistance from material
+	damage = damage * (1 - silicate / 200) // up to 50% damage resistance
+	damage -= resistance // then flat resistance from material
 
 	if (damage <= 0)
 		return 0
 
-	health = max(0, health - damage)
+	health -= damage
 
 	if(health <= 0)
-		if (prob(damage*2))//Heavy hits are more likely to send shards flying
+		if(health < -100)
 			shatter(FALSE, TRUE)
 		else
-			//To break it safely, use a lighter hit to deal the finishing touch, or throw things from afar
 			shatter()
 		qdel(src)
 	else
-		if(sound_effect)
-			playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
+		playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
 		if(health < maxHealth / 4 && initialhealth >= maxHealth / 4)
 			visible_message("[src] looks like it's about to shatter!" )
 		else if(health < maxHealth / 2 && initialhealth >= maxHealth / 2)

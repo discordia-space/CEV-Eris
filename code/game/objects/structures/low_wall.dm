@@ -508,7 +508,7 @@
 		dismantle_wall()
 	else
 		update_icon()
-	return
+	return .
 
 /obj/structure/low_wall/proc/clear_plants()
 	for(var/obj/effect/overlay/wallrot/WR in src)

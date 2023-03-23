@@ -99,12 +99,12 @@ SUBSYSTEM_DEF(explosions)
 				target_power = explodey.hashed_power[target.z][turf_key]
 				explodey.current_turf_queue -= target
 				explodey.hashed_visited[target.z][turf_key] = TRUE
+				target_power -= target.explosion_act(target_power, explodey)
 				new /obj/effect/explosion_fire(target)
-				target_power -= target.explosion_act(target_power, explodey) - explodey.falloff
 				if(target_power < EXPLOSION_MINIMUM_THRESHOLD)
 					continue
 				// Run these first so the ones coming from below/above don't get calculated first.
-				if(target_power > EXPLOSION_MINIMUM_THRESHOLD)
+				if(target_power - explodey.falloff > EXPLOSION_MINIMUM_THRESHOLD)
 					for(var/dir in list(NORTH,SOUTH,EAST,WEST))
 						var/turf/next = get_step(target,dir)
 						if(QDELETED(next))
@@ -116,7 +116,7 @@ SUBSYSTEM_DEF(explosions)
 						explodey.hashed_power[next.z][temp_key] = target_power - explodey.falloff
 						explodey.hashed_visited[next.z][temp_key] = TRUE
 				// For Up and Down , we use the turf  key since its valid
-				if(target_power - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
+				if(target_power - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD - explodey.falloff > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
 					var/turf/checking = GetAbove(target)
 					if(!QDELETED(checking) && istype(checking, /turf/simulated/open))
 						// Startup for first time, kind of ineefficient , but better than distributing the lists willy nilly
@@ -182,9 +182,12 @@ SUBSYSTEM_DEF(explosions)
 // in processing.
 /turf/explosion_act(target_power, explosion_handler/handler)
 	var/power_reduction = 0
+	var/temp_red = 0
 	for(var/atom/movable/thing as anything in contents)
 		if(thing.simulated)
-			power_reduction += thing.explosion_act(target_power, handler)
+			temp_red = thing.explosion_act(target_power, handler)
+			message_admins("[thing.name] has blocked [temp_red] damage")
+			power_reduction += temp_red
 	var/turf/to_propagate = GetAbove(src)
 	if(to_propagate && target_power > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
 		to_propagate.take_damage(target_power - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD, BLAST)
