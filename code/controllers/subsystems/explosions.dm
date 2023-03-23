@@ -182,12 +182,9 @@ SUBSYSTEM_DEF(explosions)
 // in processing.
 /turf/explosion_act(target_power, explosion_handler/handler)
 	var/power_reduction = 0
-	var/temp_red = 0
 	for(var/atom/movable/thing as anything in contents)
 		if(thing.simulated)
-			temp_red = thing.explosion_act(target_power, handler)
-			message_admins("[thing.name] has blocked [temp_red] damage")
-			power_reduction += temp_red
+			power_reduction += thing.explosion_act(target_power, handler)
 	var/turf/to_propagate = GetAbove(src)
 	if(to_propagate && target_power > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
 		to_propagate.take_damage(target_power - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD, BLAST)
