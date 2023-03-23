@@ -103,22 +103,28 @@
 
 /mob/living/carbon/human/explosion_act(target_power, explosion_handler/handle)
 	var/BombDamage = target_power - (getarmor(null, ARMOR_BOMB) + mob_bomb_defense)
-	var/ThrowTurf = get_turf(src)
-	var/ThrowDistance = round(target_power / 100)
-	if(ThrowTurf != handle.epicenter && ThrowDistance)
-		ThrowTurf = get_turf_away_from_target_simple(src, handle.epicenter, 8)
-		throw_at(ThrowTurf, ThrowDistance, ThrowDistance, "explosion")
+	var/BlockCoefficient = 0.2
+	if(handle)
+		var/ThrowTurf = get_turf(src)
+		var/ThrowDistance = round(target_power / 100)
+		if(ThrowTurf != handle.epicenter && ThrowDistance)
+			ThrowTurf = get_turf_away_from_target_simple(src, handle.epicenter, 8)
+			throw_at(ThrowTurf, ThrowDistance, ThrowDistance, "explosion")
+		// Heroic sacrifice
+		else if(ThrowTurf == handle.epicenter && lying)
+			if(BombDamage > 500)
+				gib()
+			BlockCoefficient = 0.8
 	if(BombDamage < 0)
-		return target_power * 0.2
-	// Heroic sacrifice
-	else if(ThrowTurf == handle.epicenter && BombDamage > 300)
-		gib()
-		// 80% block of total explosion
-		return BombDamage * 0.8
-
+		return target_power * BlockCoefficient
 	if(slickness * 50 > BombDamage)
 		slickness = 0
-		return 0
+		return target_power * BlockCoefficient
+
+	// 10% reduction for  takin cover down i guess
+	if(lying)
+		BombDamage *= 0.9
+		BlockCoefficient = 0.1
 
 	if(BombDamage > 1000)
 		gib()
@@ -136,10 +142,7 @@
 	apply_damage(DamageToApply, BRUTE, BP_L_ARM)
 	apply_damage(DamageToApply, BRUTE, BP_R_LEG)
 	apply_damage(DamageToApply, BRUTE, BP_L_LEG)
-	if(lying)
-		return BombDamage * 0.1
-	else
-		return BombDamage * 0.3
+	return BombDamage * BlockCoefficient
 
 /mob/living/carbon/human/restrained()
 	if(handcuffed)

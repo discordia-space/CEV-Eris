@@ -66,14 +66,14 @@
 			if(density && src.check_access(bot.botcard))
 				open()
 				//sleep(50)
-				close()
+				addtimer(CALLBACK(src, PROC_REF(close)), 5 SECONDS)
 		else if(istype(AM, /mob/living/exosuit))
 			var/mob/living/exosuit/exosuit = AM
 			if(density)
 				if(exosuit.pilots.len && allowed(exosuit.pilots[1]))
 					open()
 					//sleep(50)
-					close()
+					addtimer(CALLBACK(src, PROC_REF(close), 5 SECONDS))
 		return
 	var/mob/M = AM // we've returned by here if M is not a mob
 	if (src.operating)
