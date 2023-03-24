@@ -247,7 +247,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 				living_mobs.Add(M)
 	var/mob/living/target
 	if(original_target && istype(original_target, /mob/living)) // Check if original target is a mob
-		if(original_target in living_mobs || original_target in dead_mobs) // Check if original target is a mob on this tile
+		if(LAZYFIND(living_mobs, original_target) || LAZYFIND(dead_mobs, original_target)) // Check if original target is a mob on this tile
 			target = original_target
 			if(attack_with_multiplier_mob(user, target, modifier))
 				modifier -= swing_degradation
