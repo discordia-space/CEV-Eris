@@ -361,7 +361,7 @@
 /datum/ritual/cruciform/priest/confirmation
 	name = "Confirmation"
 	phrase = "Misericordia et veritas non te deserant circumda eas gutturi tuo et describe in tabulis cordis tui..."
-	desc = "Ritual of assigning a disciple to specific duty within the church."
+	desc = "Ritual of assigning a disciple to a specific duty within the church."
 	power = 80
 	cooldown = TRUE
 	cooldown_time = 1 MINUTE
