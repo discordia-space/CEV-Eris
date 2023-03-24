@@ -1,0 +1,6 @@
+author: Skegal
+delete-after: true
+changes:
+  - rscadd: Added 2 new haircut
+  - imageadd: added 2 sprites in Icon/mob/human_races_species_human/hair.dmi
+  - code_imp: added a few lines in code/modules/sprite_accessories
