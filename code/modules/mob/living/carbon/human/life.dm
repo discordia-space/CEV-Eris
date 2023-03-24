@@ -263,13 +263,9 @@
 	radiation = CLAMP(radiation,0,100)
 
 	if(radiation)
-		var/damage = 0
 		radiation -= 1 * RADIATION_SPEED_COEFFICIENT
-		if(prob(25))
-			damage = 1
 
 		if(radiation > 50)
-			damage = 1
 			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
 				radiation -= 5 * RADIATION_SPEED_COEFFICIENT
@@ -286,7 +282,6 @@
 
 		if(radiation > 75)
 			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
-			damage = 3
 			if(prob(5))
 				take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
 			if(prob(1))
@@ -294,14 +289,6 @@
 				var/obj/item/organ/external/E = pick(organs)
 				E.mutate()
 				emote("gasp")
-
-		if(damage)
-			damage *= species.radiation_mod
-			if(organs.len)
-				var/obj/item/organ/external/O = pick(organs)
-				O.take_damage(damage * RADIATION_SPEED_COEFFICIENT, TOX, silent = TRUE)
-				if(istype(O))
-					O.add_autopsy_data("Radiation Poisoning", damage)
 
 	/** breathing **/
 
