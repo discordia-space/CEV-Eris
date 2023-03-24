@@ -1,0 +1,5 @@
+author: TheLeopold
+delete-after: true
+changes:
+  - rscadd: Added disks smartstorage
+  - imageadd: added filled states for disk storage
