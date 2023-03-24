@@ -57,7 +57,7 @@
 			/obj/item/reagent_containers/glass/rag,
 			/obj/item/grenade/chem_grenade/cleaner/nt_cleaner,
 			/obj/item/grenade/chem_grenade/antiweed/nt_antiweed,
-			/obj/structure/mopbucket,		
+			/obj/structure/mopbucket,
 			/obj/structure/janitorialcart,
 			/obj/item/holyvacuum
 		)
@@ -68,8 +68,8 @@
 			/obj/item/gun/energy/nt_svalinn
 		),
 		"Ballistic Weapons" = list(
-			/obj/item/gun/projectile/mk58,
-			/obj/item/gun/projectile/mk58/wood,
+			/obj/item/gun/projectile/automatic/modular/mk58/gray/stock,
+			/obj/item/gun/projectile/automatic/modular/mk58/gray/wood,
 			/obj/item/gun/projectile/shotgun/pump/regulator
 		),
 		"Neotheology Cells" = list(

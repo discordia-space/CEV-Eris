@@ -29,17 +29,17 @@
 
 /datum/design/autolathe/gun/mk58
 	name = "NT HG .35 \"Mk58\""
-	build_path = /obj/item/gun/projectile/mk58
+	build_path = /obj/item/gun/projectile/automatic/modular/mk58/gray/stock
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/mk58_wood
 	name = "NT HG .35 \"Mk58c\""
-	build_path = /obj/item/gun/projectile/mk58/wood
+	build_path = /obj/item/gun/projectile/automatic/modular/mk58/gray/wood
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/mk58_army
 	name = "NT HG .35 \"Mk58m\""
-	build_path = /obj/item/gun/projectile/mk58/army
+	build_path = /obj/item/gun/projectile/automatic/modular/mk58/black/army
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/colt
@@ -142,7 +142,7 @@
 
 /datum/design/autolathe/gun/wintermute
 	name = "FS AR .20 \"Wintermute\""
-	build_path = /obj/item/gun/projectile/automatic/wintermute
+	build_path = /obj/item/gun/projectile/automatic/modular/wintermute/finished
 
 /datum/design/autolathe/gun/kovacs
 	name = "SA BR .20 \"Kovacs\""

@@ -15,7 +15,9 @@
 	can_dual = TRUE
 	magazine_type = /obj/item/ammo_magazine/pistol
 	init_recoil = HANDGUN_RECOIL(1)
-	spawn_blacklisted = FALSE
+
+	spawn_tags = SPAWN_TAG_GUN_PART
+
 
 	bad_type = /obj/item/gun/projectile/automatic/modular/mk58
 	gun_tags = list(GUN_SILENCABLE)
@@ -26,18 +28,6 @@
 	serial_type = "NT"
 
 	required_parts = list(/obj/item/part/gun/modular/barrel/pistol = 0, /obj/item/part/gun/modular/mechanism/pistol = 0, /obj/item/part/gun/modular/grip = 0)
-
-/obj/item/gun/projectile/automatic/modular/mk58/gray // Frame
-	slide_type = "gray"
-	icon_state = "frame_gray"
-
-/obj/item/gun/projectile/automatic/modular/mk58/black // Frame
-	slide_type = "black"
-	icon_state = "frame_black"
-
-/obj/item/gun/projectile/automatic/modular/mk58/tan // Frame
-	slide_type = "tan"
-	icon_state = "frame_tan"
 
 /obj/item/gun/projectile/automatic/modular/mk58/Initialize()
 	item_state = "_[slide_type]"
@@ -62,11 +52,29 @@
 	else
 		return "[slide_name][caliber] \"Mk-58\""
 
+/obj/item/gun/projectile/automatic/modular/mk58/gray // Frame
+	slide_type = "gray"
+	icon_state = "frame_gray"
+	spawn_blacklisted = FALSE // Spawns in gun part loot
+
+/obj/item/gun/projectile/automatic/modular/mk58/black // Frame
+	slide_type = "black"
+	icon_state = "frame_black"
+	spawn_blacklisted = FALSE // Spawns in gun part loot
+
+/obj/item/gun/projectile/automatic/modular/mk58/tan // Frame
+	slide_type = "tan"
+	icon_state = "frame_tan"
+	spawn_blacklisted = FALSE // Spawns in gun part loot
+
 /obj/item/gun/projectile/automatic/modular/mk58/gray/stock
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/black)
+	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
 
 /obj/item/gun/projectile/automatic/modular/mk58/gray/wood
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/wood)
+	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
 
 /obj/item/gun/projectile/automatic/modular/mk58/black/army
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/excel) // Funny
+	spawn_tags = SPAWN_TAG_GUN_PROJECTILE

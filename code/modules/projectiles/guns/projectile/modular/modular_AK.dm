@@ -18,6 +18,9 @@
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	init_recoil = RIFLE_RECOIL(1) // Default is 0.8 to 0.7 on most AKs, we will reduce this value with relevant gun parts
 
+	spawn_blacklisted = FALSE // Spawns in gun part loot
+	spawn_tags = SPAWN_TAG_GUN_PART
+
 	gun_tags = list(GUN_SILENCABLE)
 
 	serial_type = "FS"
@@ -44,13 +47,30 @@
 
 /obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities // Total points: 4, contains all the bits that make an IH ak an IH ak
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/heavy, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/rubber, /obj/item/part/gun/modular/stock)
+	spawn_blacklisted = TRUE
 
 /obj/item/gun/projectile/automatic/modular/ak/frozen_star // Total points: 3, contains all the bits that make an FS ak an FS ak
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/basic, /obj/item/part/gun/modular/barrel/lrifle/cheap, /obj/item/part/gun/modular/grip/rubber, /obj/item/part/gun/modular/stock)
-	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 /obj/item/gun/projectile/automatic/modular/ak/serbian_arms // Total points: 6, contains all the bits that make a serb ak a serb ak
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/light, /obj/item/part/gun/modular/barrel/lrifle/forged, /obj/item/part/gun/modular/grip/serb, /obj/item/part/gun/modular/stock)
+	spawn_blacklisted = TRUE
 
 /obj/item/gun/projectile/automatic/modular/ak/excelsior // Total points: 6, contains all the bits that make an excel ak an excel ak
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/determined/excelsior, /obj/item/part/gun/modular/barrel/lrifle/forged, /obj/item/part/gun/modular/grip/excel)
+	spawn_blacklisted = TRUE
+
+/obj/item/gun/projectile/automatic/modular/ak/makeshift
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/simple, /obj/item/part/gun/modular/barrel/lrifle/cheap, /obj/item/part/gun/modular/grip/makeshift, /obj/item/part/gun/modular/stock)
+	spawn_tags = SPAWN_TAG_GUN_HANDMADE
+
+	origin_tech = list(TECH_COMBAT = 1)
+	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
+			This is a copy of an ancient semi-automatic rifle. If it won't fire, percussive maintenance should get it working again. \
+			It is known for its easy maintenance, and low price. \
+			This crude copy shows just how forgiving the design can be."
+	init_recoil = RIFLE_RECOIL(1.25) // Placeholder debuff for makeshift production
+
+/obj/item/gun/projectile/automatic/modular/ak/makeshiftget_initial_name()
+		return "MS [caliber] \"Sermak\"" // Unlike normal AKs, the makeshift variant's frame is easily distinguishable at closer inspection. The name reflects this.
