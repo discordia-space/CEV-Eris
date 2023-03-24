@@ -334,7 +334,7 @@
 
 /obj/machinery/neotheology/biomass_container
 	name = "NeoTheology's biomass container"
-	desc = "Making strange noises barrel, filled with a substance which at any time may become someone else's body."
+	desc = "A barrel making strange noises, filled with a substance which at any time may become someone else's body."
 	icon_state = "biocan"
 	density = TRUE
 	anchored = TRUE
@@ -378,7 +378,7 @@
 	if (istype(I, /obj/item/stack/material/biomatter))
 		var/obj/item/stack/material/biomatter/B = I
 		if (B.biomatter_in_sheet && B.amount)
-			var/sheets_amount_to_transfer = input(user, "How many sheets you want to load?", "Biomatter melting", 1) as num
+			var/sheets_amount_to_transfer = input(user, "How many sheets do you want to load?", "Biomatter melting", 1) as num
 			if(sheets_amount_to_transfer > 0)
 				if(sheets_amount_to_transfer > B.amount)
 					sheets_amount_to_transfer = B.amount
