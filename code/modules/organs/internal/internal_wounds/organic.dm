@@ -192,7 +192,6 @@
 	severity_max = 2
 	next_wound = /datum/component/internal_wound/organic/debuff_tumor
 	hal_damage = 0
-	status_flag = ORGAN_WOUNDED
 
 /datum/component/internal_wound/organic/radiation/abnormal
 	name = "abnormal growth"
@@ -255,11 +254,9 @@
 /datum/component/internal_wound/organic/debuff_tumor
 	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_ONCOCIDAL = 2)
-	characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_PROGRESS
 	severity = 0
 	severity_max = 1
-	status_flag = ORGAN_WOUNDED
-	organ_efficiency_multiplier = -0.20
+	organ_efficiency_multiplier = -0.10
 
 /datum/component/internal_wound/organic/debuff_tumor
 	name = "tumor"
