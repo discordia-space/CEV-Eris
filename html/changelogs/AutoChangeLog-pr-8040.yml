@@ -1,7 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - bugfix: You can now swing diagonally
-  - bugfix: You no longer hit yourself while running
-  - tweak: Swings get weaker the more objects you hit
-  - tweak: Swings can hit multiple roaches in a single tile

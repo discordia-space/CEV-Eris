@@ -1,6 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - rscdel: Removes tox damage from radiation
-  - bugfix: Removed "no damage" flag from Demolecularisor
-  - bugfix: Fixed sprite flags so mutated limbs don't appear missing
