@@ -190,6 +190,7 @@
 	characteristic_flag = IWOUND_PROGRESS	// Does not apply any damage to the parent organ
 	severity = 0
 	severity_max = 2
+	next_wound = /datum/component/internal_wound/organic/debuff_tumor
 	hal_damage = 0
 	status_flag = ORGAN_WOUNDED
 
@@ -202,8 +203,8 @@
 /datum/component/internal_wound/organic/radiation/polyp
 	name = "polyp"
 
-/datum/component/internal_wound/organic/radiation/polyp_benign
-	name = "benign polyp"
+/datum/component/internal_wound/organic/radiation/polyp_abnormal
+	name = "abnormal polyp"
 
 /datum/component/internal_wound/organic/radiation/polyp_strange
 	name = "strange polyp"
@@ -211,8 +212,8 @@
 /datum/component/internal_wound/organic/radiation/neoplasm
 	name = "neoplasm"
 
-/datum/component/internal_wound/organic/radiation/neoplasm_benign
-	name = "benign neoplasm"
+/datum/component/internal_wound/organic/radiation/neoplasm_abnormal
+	name = "abnormal neoplasm"
 
 /datum/component/internal_wound/organic/radiation/malignant
 	name = "malignant neoplasm"
@@ -250,6 +251,26 @@
 
 /datum/component/internal_wound/organic/tumor/malignant
 	name = "malignant tumor"
+
+/datum/component/internal_wound/organic/debuff_tumor
+	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
+	treatments_chem = list(CE_ONCOCIDAL = 2)
+	characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_PROGRESS
+	severity = 0
+	severity_max = 1
+	status_flag = ORGAN_WOUNDED
+	organ_efficiency_multiplier = -0.20
+
+/datum/component/internal_wound/organic/debuff_tumor
+	name = "tumor"
+
+/datum/component/internal_wound/organic/debuff_tumor_15
+	name = "tumor"
+	organ_efficiency_multiplier = -0.15
+
+/datum/component/internal_wound/organic/debuff_tumor_5
+	name = "tumor"
+	organ_efficiency_multiplier = -0.05
 
 /datum/component/internal_wound/organic/parenchyma
 	treatments_tool = list(QUALITY_LASER_CUTTING = FAILCHANCE_NORMAL)	// Players may not want to remove this
