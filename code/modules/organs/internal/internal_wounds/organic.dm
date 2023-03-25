@@ -260,35 +260,35 @@
 
 /datum/component/internal_wound/organic/parenchyma/heart
 	name = "heart parenchyma"
-	organ_efficiency_add = list(OP_HEART = 10)
+	organ_efficiency_mod = list(OP_HEART = 10)
 
 /datum/component/internal_wound/organic/parenchyma/lungs
 	name = "lung parenchyma"
-	organ_efficiency_add = list(OP_LUNGS = 10)
+	organ_efficiency_mod = list(OP_LUNGS = 10)
 
 /datum/component/internal_wound/organic/parenchyma/liver
 	name = "liver parenchyma"
-	organ_efficiency_add = list(OP_LIVER = 10)
+	organ_efficiency_mod = list(OP_LIVER = 10)
 
 /datum/component/internal_wound/organic/parenchyma/kidney
 	name = "kidney parenchyma"
-	organ_efficiency_add = list(OP_KIDNEYS = 10)
+	organ_efficiency_mod = list(OP_KIDNEYS = 10)
 
 /datum/component/internal_wound/organic/parenchyma/stomach
 	name = "stomach parenchyma"
-	organ_efficiency_add = list(OP_STOMACH = 10)
+	organ_efficiency_mod = list(OP_STOMACH = 10)
 
 /datum/component/internal_wound/organic/parenchyma/blood_vessel
 	name = "blood vessel parenchyma"
-	organ_efficiency_add = list(OP_BLOOD_VESSEL = 10)
+	organ_efficiency_mod = list(OP_BLOOD_VESSEL = 10)
 
 /datum/component/internal_wound/organic/parenchyma/nerve
 	name = "nerve parenchyma"
-	organ_efficiency_add = list(OP_NERVE = 10)
+	organ_efficiency_mod = list(OP_NERVE = 10)
 
 /datum/component/internal_wound/organic/parenchyma/muscle
 	name = "muscle parenchyma"
-	organ_efficiency_add = list(OP_MUSCLE = 10)
+	organ_efficiency_mod = list(OP_MUSCLE = 10)
 
 // Other wounds
 /datum/component/internal_wound/organic/oxy
