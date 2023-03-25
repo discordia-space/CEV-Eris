@@ -32,6 +32,9 @@ If the turf queue of a handler is empty after processing, it will be removed fro
 As an end note , there are still possible optimizations to do, more specifically
 Remove the need for multiple visited hash list , and just use binary representations for each z-level (can support up to 32 this way without extra memory usage in 1 list)
 Make the obj fire effect use vis_Contents without losing them on turf change
+Optimize turf changes/updates ,make turf proc/take_damage() detached from the source(set src = null) so it can continue executing after the original turf gets deleted(and so it can take out lattices)
+
+
 
 
 
