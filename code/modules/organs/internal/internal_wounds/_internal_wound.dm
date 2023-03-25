@@ -38,6 +38,7 @@
 	var/current_hallucination_tick
 
 	// Organ adjustments - preferably used for more severe wounds
+	var/list/organ_efficiency_mod = list()
 	var/specific_organ_size_multiplier = null
 	var/max_blood_storage_multiplier = null
 	var/blood_req_multiplier = null
@@ -215,6 +216,25 @@
 
 /datum/component/internal_wound/proc/apply_effects()
 	var/obj/item/organ/internal/O = parent
+
+	if(!islist(O.organ_efficiency))
+		O.organ_efficiency = list()
+
+	if(LAZYLEN(organ_efficiency_mod))
+		for(var/organ in organ_efficiency_mod)
+			var/added_efficiency = organ_efficiency_mod[organ]
+			if(O.organ_efficiency.Find(organ))
+				O.organ_efficiency[organ] += round(added_efficiency, 1)
+			else
+				O.organ_efficiency.Add(organ)
+				O.organ_efficiency[organ] = round(added_efficiency, 1)
+
+		if(O.owner && istype(O.owner, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = O.owner
+			for(var/process in organ_efficiency_mod)
+				if(!islist(H.internal_organs_by_efficiency[process]))
+					H.internal_organs_by_efficiency[process] = list()
+				H.internal_organs_by_efficiency[process] |= O
 
 	if(specific_organ_size_multiplier)
 		O.specific_organ_size *= 1 + round(specific_organ_size_multiplier, 0.01)

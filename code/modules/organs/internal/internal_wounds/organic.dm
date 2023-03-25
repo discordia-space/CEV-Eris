@@ -183,24 +183,45 @@
 	name = "chemical poisoning"
 
 // Clone/radiation
+// There are a lot of dummy wounds that exist for cosmetic purposes
 /datum/component/internal_wound/organic/radiation
 	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_ONCOCIDAL = 1)
-	severity = 1
-	severity_max = 1
-	hal_damage = IWOUND_LIGHT_DAMAGE
-	status_flag = ORGAN_WOUNDED|ORGAN_MUTATED
+	characteristic_flag = IWOUND_PROGRESS	// Does not apply any damage to the parent organ
+	severity = 0
+	severity_max = 2
+	hal_damage = 0
+	status_flag = ORGAN_WOUNDED
 
-/datum/component/internal_wound/organic/radiation/benign
-	name = "benign tumor"
+/datum/component/internal_wound/organic/radiation/abnormal
+	name = "abnormal growth"
+
+/datum/component/internal_wound/organic/radiation/strange
+	name = "strange growth"
+
+/datum/component/internal_wound/organic/radiation/polyp
+	name = "polyp"
+
+/datum/component/internal_wound/organic/radiation/polyp_benign
+	name = "benign polyp"
+
+/datum/component/internal_wound/organic/radiation/polyp_strange
+	name = "strange polyp"
+
+/datum/component/internal_wound/organic/radiation/neoplasm
+	name = "neoplasm"
+
+/datum/component/internal_wound/organic/radiation/neoplasm_benign
+	name = "benign neoplasm"
 
 /datum/component/internal_wound/organic/radiation/malignant
-	name = "malignant tumor"
+	name = "malignant neoplasm"
 	treatments_chem = list(CE_ONCOCIDAL = 2)
-	characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_PROGRESS|IWOUND_SPREAD
-	severity = 0
-	severity_max = IORGAN_MAX_HEALTH	// Will kill any organ
-	spread_threshold = IORGAN_SMALL_HEALTH	// This will spread at the same moment it kills a small organ
+	next_wound = /datum/component/internal_wound/organic/tumor
+
+/datum/component/internal_wound/organic/radiation/metaplasm
+	name = "metaplasm"
+	next_wound = /datum/component/internal_wound/organic/parenchyma
 
 // Secondary wounds
 /datum/component/internal_wound/organic/swelling
@@ -217,6 +238,57 @@
 
 /datum/component/internal_wound/organic/swelling/abcess
 	name = "abcess"
+
+/datum/component/internal_wound/organic/tumor
+	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
+	treatments_chem = list(CE_ONCOCIDAL = 2)
+	characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_PROGRESS|IWOUND_SPREAD
+	severity = 0
+	severity_max = IORGAN_MAX_HEALTH	// Will kill any organ
+	spread_threshold = IORGAN_SMALL_HEALTH	// This will spread at the same moment it kills a small organ
+	status_flag = ORGAN_WOUNDED|ORGAN_MUTATED
+
+/datum/component/internal_wound/organic/tumor/malignant
+	name = "malignant tumor"
+
+/datum/component/internal_wound/organic/parenchyma
+	treatments_tool = list(QUALITY_LASER_CUTTING = FAILCHANCE_NORMAL)	// Players may not want to remove this
+	characteristic_flag = null
+	severity = 0
+	severity_max = 0
+	status_flag = null
+
+/datum/component/internal_wound/organic/parenchyma/heart
+	name = "heart parenchyma"
+	organ_efficiency_add = list(OP_HEART = 10)
+
+/datum/component/internal_wound/organic/parenchyma/lungs
+	name = "lung parenchyma"
+	organ_efficiency_add = list(OP_LUNGS = 10)
+
+/datum/component/internal_wound/organic/parenchyma/liver
+	name = "liver parenchyma"
+	organ_efficiency_add = list(OP_LIVER = 10)
+
+/datum/component/internal_wound/organic/parenchyma/kidney
+	name = "kidney parenchyma"
+	organ_efficiency_add = list(OP_KIDNEYS = 10)
+
+/datum/component/internal_wound/organic/parenchyma/stomach
+	name = "stomach parenchyma"
+	organ_efficiency_add = list(OP_STOMACH = 10)
+
+/datum/component/internal_wound/organic/parenchyma/blood_vessel
+	name = "blood vessel parenchyma"
+	organ_efficiency_add = list(OP_BLOOD_VESSEL = 10)
+
+/datum/component/internal_wound/organic/parenchyma/nerve
+	name = "nerve parenchyma"
+	organ_efficiency_add = list(OP_NERVE = 10)
+
+/datum/component/internal_wound/organic/parenchyma/muscle
+	name = "muscle parenchyma"
+	organ_efficiency_add = list(OP_MUSCLE = 10)
 
 // Other wounds
 /datum/component/internal_wound/organic/oxy
