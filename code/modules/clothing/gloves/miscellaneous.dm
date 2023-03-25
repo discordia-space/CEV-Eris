@@ -196,7 +196,6 @@
 	icon_state = "dusters"
 	item_state = "dusters"
 	var/punch_increase = 5
-	matter = list(MATERIAL_STEEL = 3)
 	price_tag = 20
 	spawn_blacklisted = TRUE
 
@@ -205,7 +204,6 @@
 	desc = "More pain for them, more bling for you."
 	icon_state = "dusters_silver"
 	item_state = "dusters_silver"
-	matter = list(MATERIAL_SILVER = 3)
 	price_tag = 40
 	style = STYLE_LOW
 
@@ -215,7 +213,6 @@
 	icon_state = "dusters_plasteel"
 	item_state = "dusters_plasteel"
 	punch_increase = 10
-	matter = list(MATERIAL_PLASTEEL = 3)
 	price_tag = 60
 
 /obj/item/clothing/gloves/dusters/gold
@@ -224,7 +221,6 @@
 	icon_state = "dusters_gold"
 	item_state = "dusters_gold"
 	punch_increase = 10
-	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_GOLD = 3)
 	price_tag = 100
 	style = STYLE_HIGH
 
@@ -234,7 +230,6 @@
 	icon_state = "dusters_platinum"
 	item_state = "dusters_platinum"
 	punch_increase = 15
-	matter = list(MATERIAL_PLATINUM = 3, MATERIAL_PLASTEEL = 3, MATERIAL_STEEL = 2)
 	price_tag = 120
 	style = STYLE_HIGH
 
@@ -254,7 +249,6 @@
 		bio = 0,
 		rad = 0
 	)
-	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_PLASTEEL = 3)
 	price_tag = 540
 
 /obj/item/clothing/gloves/dusters/New()

@@ -39,7 +39,7 @@
 	build_path = /obj/item/light/bulb
 
 /datum/design/autolathe/misc/ashtray
-	name = "ashtray"
+	name = "glass ashtray"
 	build_path = /obj/item/material/ashtray
 
 /datum/design/autolathe/misc/cane
