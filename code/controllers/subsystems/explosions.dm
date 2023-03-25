@@ -29,6 +29,13 @@ For upper and lower turfs , the explosion handler grabs extra lists from the SS 
 to spread up and down freely , but due to memory constraints ive limited it with a reduction of 100 in its power
 If the turf queue of a handler is empty after processing, it will be removed from the queue, and have the hashed lists returned to the SS stack.
 
+As an end note , there are still possible optimizations to do, more specifically
+Remove the need for multiple visited hash list , and just use binary representations for each z-level (can support up to 32 this way without extra memory usage in 1 list)
+Make the obj fire effect use vis_Contents without losing them on turf change
+
+
+
+
 */
 
 
@@ -99,12 +106,12 @@ SUBSYSTEM_DEF(explosions)
 				target_power = explodey.hashed_power[target.z][turf_key]
 				explodey.current_turf_queue -= target
 				explodey.hashed_visited[target.z][turf_key] = TRUE
-				target_power -= target.explosion_act(target_power, explodey)
+				target_power -= target.explosion_act(target_power, explodey) + explodey.falloff
 				new /obj/effect/explosion_fire(target)
 				if(target_power < EXPLOSION_MINIMUM_THRESHOLD)
 					continue
 				// Run these first so the ones coming from below/above don't get calculated first.
-				if(target_power - explodey.falloff > EXPLOSION_MINIMUM_THRESHOLD)
+				if(target_power > EXPLOSION_MINIMUM_THRESHOLD)
 					for(var/dir in list(NORTH,SOUTH,EAST,WEST))
 						var/turf/next = get_step(target,dir)
 						if(QDELETED(next))
@@ -113,10 +120,11 @@ SUBSYSTEM_DEF(explosions)
 						if(explodey.hashed_visited[next.z][temp_key])
 							continue
 						explodey.turf_queue += next
-						explodey.hashed_power[next.z][temp_key] = target_power - explodey.falloff
+						explodey.hashed_power[next.z][temp_key] = target_power
 						explodey.hashed_visited[next.z][temp_key] = TRUE
 				// For Up and Down , we use the turf  key since its valid
-				if(target_power - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD - explodey.falloff > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
+				target_power -= EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD
+				if(target_power > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
 					var/turf/checking = GetAbove(target)
 					if(!QDELETED(checking) && istype(checking, /turf/simulated/open))
 						// Startup for first time, kind of ineefficient , but better than distributing the lists willy nilly
@@ -128,7 +136,7 @@ SUBSYSTEM_DEF(explosions)
 						// Actual spread code
 						if(!explodey.hashed_visited[checking.z][turf_key])
 							explodey.hashed_visited[checking.z][turf_key] = TRUE
-							explodey.hashed_power[checking.z][turf_key] = target_power - explodey.falloff - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD
+							explodey.hashed_power[checking.z][turf_key] = target_power
 							explodey.turf_queue += checking
 					if(istype(target, /turf/simulated/open))
 						checking = GetBelow(target)
@@ -142,9 +150,9 @@ SUBSYSTEM_DEF(explosions)
 							// Acual spread code
 							if(!explodey.hashed_visited[checking.z][turf_key])
 								explodey.hashed_visited[checking.z][turf_key] = TRUE
-								explodey.hashed_power[checking.z][turf_key] = target_power - explodey.falloff - EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD
+								explodey.hashed_power[checking.z][turf_key] = target_power
 								explodey.turf_queue += checking
-			// For funky explosive options
+			// For funky explosive options, end of explosion anyway
 			explodey.iterations++
 			if(explodey.flags & EFLAG_EXPONENTIALFALLOFF)
 				explodey.falloff *= 2
