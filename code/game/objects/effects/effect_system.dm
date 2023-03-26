@@ -95,7 +95,7 @@ steam.start() -- spawns the effect
 					direction = pick(cardinal)
 				else
 					direction = pick(alldirs)
-				for(i=0, i<pick(1,2,3), i++)
+				for(var/j=0, j<pick(1,2,3), j++)
 					sleep(5)
 					step(steam,direction)
 				spawn(20)
@@ -175,7 +175,7 @@ steam.start() -- spawns the effect
 			direction = pick(cardinal)
 		else
 			direction = pick(alldirs)
-		for(i=0, i<pick(1,2,3), i++)
+		for(var/j=0, j<pick(1,2,3), j++)
 			addtimer(CALLBACK(src, .proc/do_spark_movement, sparks, direction), rand(1,5) SECONDS)
 			//sleep(rand(1,5))
 			//step(sparks,direction)
@@ -414,7 +414,7 @@ steam.start() -- spawns the effect
 		else
 			direction = pick(alldirs)
 		var/added_time = 1 SECOND
-		for(i=0, i<pick(0,1,1,1,2,2,2,3), i++)
+		for(var/j=0, j<pick(0,1,1,1,2,2,2,3), j++)
 			addtimer(CALLBACK(src, PROC_REF(move_smoke), smoke, direction), added_time)
 			added_time += 1 SECOND
 
