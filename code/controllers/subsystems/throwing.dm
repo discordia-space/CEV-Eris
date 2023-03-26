@@ -59,16 +59,13 @@ SUBSYSTEM_DEF(throwing)
 				break
 			if(!istype(thing.loc, /turf))
 				thing.throwing = FALSE
-			cur_area = get_area(thing.loc)
-			if(cur_area && cur_area.has_gravity)
-				if(thing.loc == throwing_queue[thing][I_TURF_CLICKED])
-					thing.throwing = FALSE
 			if(!thing.throwing)
 				thing.thrower = null
 				thing.throw_source = null
 				thing.pass_flags -= throwing_queue[thing][I_THROWFLAGS]
 				throwing_queue -= thing
 				break
+
 
 
 			if(throwing_queue[thing][I_DIST_X] > throwing_queue[thing][I_DIST_Y])
@@ -85,6 +82,10 @@ SUBSYSTEM_DEF(throwing)
 				else
 					to_move = get_step(thing, throwing_queue[thing][I_DY])
 					throwing_queue[thing][I_ERROR] -= throwing_queue[thing][I_DIST_X]
+			cur_area = get_area(thing.loc)
+			if(cur_area && cur_area.has_gravity)
+				if(thing.loc == throwing_queue[thing][I_TURF_CLICKED])
+					to_move = FALSE
 			if(!to_move)
 				thing.throwing = FALSE
 				thing.thrower = null
