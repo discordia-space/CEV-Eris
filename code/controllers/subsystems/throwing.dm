@@ -29,11 +29,11 @@ SUBSYSTEM_DEF(throwing)
 			throwing_queue -= thing
 			continue
 		if(!istype(thing.loc, /turf))
-			throwing_queue -= thing
 			thing.throwing = FALSE
 			thing.thrower = null
 			thing.throw_source = null
 			thing.pass_flags -= throwing_queue[thing][I_THROWFLAGS]
+			throwing_queue -= thing
 			continue
 		var/tiles_to_move = throwing_queue[thing][I_SPEED]
 		var/area/cur_area = get_area(thing.loc)
