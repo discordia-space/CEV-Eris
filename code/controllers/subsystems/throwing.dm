@@ -46,8 +46,9 @@ SUBSYSTEM_DEF(throwing)
 			thing.throw_source = null
 			thing.pass_flags -= throwing_queue[thing][I_THROWFLAGS]
 			var/turf/new_loc = get_turf(thing)
-			if(new_loc && isobj(thing))
-				thing.throw_impact(new_loc,throwing_queue[thing][I_SPEED])
+			if(new_loc)
+				if(isobj(thing))
+					thing.throw_impact(new_loc,throwing_queue[thing][I_SPEED])
 				new_loc.Entered(thing)
 			throwing_queue -= thing
 			continue
@@ -90,8 +91,9 @@ SUBSYSTEM_DEF(throwing)
 				thing.throw_source = null
 				var/turf/new_loc = get_turf(thing)
 				thing.pass_flags -= throwing_queue[thing][I_THROWFLAGS]
-				if(new_loc && isobj(thing))
-					thing.throw_impact(new_loc,throwing_queue[thing][I_SPEED])
+				if(new_loc)
+					if(isobj(thing))
+						thing.throw_impact(new_loc,throwing_queue[thing][I_SPEED])
 					new_loc.Entered(thing)
 				throwing_queue -= thing
 				break
