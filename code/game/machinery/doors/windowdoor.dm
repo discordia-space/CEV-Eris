@@ -80,13 +80,13 @@
 		return
 	if (src.density && (!issmall(M) || ishuman(M)) && src.allowed(AM))
 		open()
+		addtimer(CALLBACK(src, PROC_REF(close)), 5 SECONDS)
 		/*
 		if(src.check_access(null))
 			sleep(50)
 		else //secure doors close faster
 			sleep(20)
 		*/
-		close()
 	return
 
 /obj/machinery/door/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
