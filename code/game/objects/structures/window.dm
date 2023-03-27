@@ -78,7 +78,6 @@
 			shatter(FALSE, TRUE)
 		else
 			shatter()
-		qdel(src)
 	else
 		playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
 		if(health < maxHealth / 4 && initialhealth >= maxHealth / 4)
@@ -142,6 +141,7 @@
 		new shardtype(loc) //todo pooling?
 		if(reinf)
 			new /obj/item/stack/rods(loc)
+	qdel(src)
 	return
 
 

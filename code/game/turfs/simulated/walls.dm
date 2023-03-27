@@ -300,11 +300,11 @@
 	else
 		var/hratio = health / maxHealth
 		if(hratio <= 0.3)
-			to_chat(user, SPAN_WARNING("It looks slightly healthd."))
+			to_chat(user, SPAN_WARNING("It looks heavily damaged."))
 		else if(hratio <= 0.6)
-			to_chat(user, SPAN_WARNING("It looks moderately healthd."))
+			to_chat(user, SPAN_WARNING("It looks moderately damaged."))
 		else
-			to_chat(user, SPAN_DANGER("It looks heavily healthd."))
+			to_chat(user, SPAN_DANGER("It looks lightly damaged."))
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		to_chat(user, SPAN_WARNING("There is fungus growing on [src]."))
@@ -327,8 +327,6 @@
 	return
 
 /turf/simulated/wall/take_damage(damage)
-	if(damage < 0)
-		return 0
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		damage *= 10
 	. = health - damage < 0 ? damage - (damage - health) : damage
