@@ -1306,6 +1306,7 @@ var/list/rank_prefix = list(\
 		var/datum/category_item/setup_option/core_implant/I = Pref.get_option("Core implant")
 		if(I.implant_type && (!mind || mind.assigned_role != "Robot"))
 			var/obj/item/implant/core_implant/C = new I.implant_type
+			C.taint(src)
 			C.install(src)
 			C.activate()
 			if(mind)
@@ -1338,6 +1339,7 @@ var/list/rank_prefix = list(\
 			var/datum/category_item/setup_option/core_implant/I = client.prefs.get_option("Core implant")
 			if(I.implant_type)
 				var/obj/item/implant/core_implant/C = new I.implant_type
+				C.taint(src)
 				C.install(src)
 				C.activate()
 				C.install_default_modules_by_job(mind.assigned_job)
@@ -1355,6 +1357,7 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/proc/post_prefinit()
 	var/obj/item/implant/core_implant/C = locate() in src
 	if(C)
+		C.taint(src)
 		C.install(src)
 		C.activate()
 		C.install_default_modules_by_job(mind.assigned_job)
