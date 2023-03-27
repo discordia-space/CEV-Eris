@@ -98,7 +98,7 @@ var/list/disciples = list()
 	if(!wearer || active)
 		return
 	var/delayed_gib = FALSE
-	if(get_active_mutation(wearer, MUTATION_GODBLOOD))
+	if(get_active_mutation(wearer, MUTATION_GODBLOOD) && !istype(wearer, /mob/living/carbon/human/dummy/mannequin))
 		spawn(2 MINUTES)
 		for(var/mob/living/carbon/human/H in (disciples - wearer))
 			to_chat(H, SPAN_WARNING("A distant scream pierced your mind. You feel that a vile mutant sneaked among the faithful."))
