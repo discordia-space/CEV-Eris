@@ -88,7 +88,6 @@ var/list/disciples = list()
 	var/mob/living/carbon/human/H = target
 	if(istype(H, /mob/living/carbon/human/dummy/mannequin))
 		var/datum/mutation/U = new MUTATION_GODBLOOD
-		var/mob/living/carbon/human/H = target
 		U.imprint(H)
 	else
 		if(H.species.name != "Slime")
