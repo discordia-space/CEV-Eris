@@ -24,7 +24,7 @@
 		/obj/item/gun/projectile/handmade_pistol,
 		/obj/item/gun/projectile/flare_gun,
 		/obj/item/gun/projectile/lamia,
-		/obj/item/gun/projectile/mk58,
+		/obj/item/gun/projectile/automatic/modular/mk58/gray/stock,
 		/obj/item/gun/projectile/olivaw,
 		/obj/item/gun/projectile/mandella,
 		/obj/item/gun/projectile/pistol,

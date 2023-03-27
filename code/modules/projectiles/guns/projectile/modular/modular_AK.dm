@@ -72,5 +72,5 @@
 			This crude copy shows just how forgiving the design can be."
 	init_recoil = RIFLE_RECOIL(1.25) // Placeholder debuff for makeshift production
 
-/obj/item/gun/projectile/automatic/modular/ak/makeshiftget_initial_name()
+/obj/item/gun/projectile/automatic/modular/ak/makeshift/get_initial_name()
 		return "MS [caliber] \"Sermak\"" // Unlike normal AKs, the makeshift variant's frame is easily distinguishable at closer inspection. The name reflects this.
