@@ -111,8 +111,8 @@ var/list/disciples = list()
 			wearer.gib()
 			if(eotp)  // le mutants reward
 				eotp.addObservation(observation_points)
+			return
 		delayed_gib = TRUE
-		return
 	..()
 	add_module(new CRUCIFORM_COMMON)
 	update_data()
