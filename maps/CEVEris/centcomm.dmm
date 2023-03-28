@@ -5580,6 +5580,14 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"DT" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/structure/mirror/antag{
+	pixel_y = -28
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/centcom/evac)
 "Eb" = (
 /obj/item/beach_ball/holoball,
 /turf/simulated/floor/holofloor/tiled,
@@ -5646,6 +5654,13 @@
 	icon_state = "lino"
 	},
 /area/wizard_station)
+"Fz" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/crate/shotgun,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
 "FE" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/backpack/satchel/leather/withwallet,
@@ -6234,13 +6249,6 @@
 /area/skipjack_station/start)
 "Wf" = (
 /turf/simulated/mineral,
-/area/centcom/merc_base)
-"Wj" = (
-/obj/structure/table/rack,
-/obj/item/storage/deferred/crate/shotgun,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
 /area/centcom/merc_base)
 "WS" = (
 /obj/structure/table/woodentable,
@@ -16575,7 +16583,7 @@ cN
 hR
 cN
 hZ
-Ln
+DT
 ho
 aa
 aa
@@ -33940,7 +33948,7 @@ hl
 hl
 hl
 gZ
-Wj
+Fz
 MV
 JW
 nL
