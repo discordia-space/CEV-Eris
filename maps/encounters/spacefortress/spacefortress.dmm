@@ -208,11 +208,11 @@
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bc" = (
-/obj/structure/reagent_dispensers/fueltank/huge,
+/obj/structure/reagent_dispensers/fueltank/huge/derelict,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bd" = (
-/obj/structure/reagent_dispensers/watertank/huge,
+/obj/structure/reagent_dispensers/watertank/huge/derelict,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "be" = (
@@ -393,8 +393,8 @@
 /area/outpost/abandoned_fortress)
 "bT" = (
 /obj/structure/sink{
-	icon_state = "sink";
 	dir = 8;
+	icon_state = "sink";
 	pixel_x = -12;
 	pixel_y = 2
 	},
@@ -12117,7 +12117,7 @@ bp
 bp
 bp
 bp
-bp
+bu
 bp
 bp
 bp
@@ -12127,7 +12127,7 @@ bq
 bp
 bp
 bp
-bp
+bu
 bp
 bp
 bp
@@ -14743,6 +14743,7 @@ bp
 bp
 bp
 bp
+bu
 bp
 bp
 bp
@@ -14752,8 +14753,7 @@ bp
 bp
 bp
 bp
-bp
-bp
+bu
 bp
 bp
 bp
@@ -17762,39 +17762,39 @@ ae
 ab
 aN
 aN
-bp
+bu
 aN
 aN
 aN
-bp
+bu
 aN
 aN
 aN
-bp
+bu
 aN
 aN
 aN
-bp
-aN
-aN
-bp
-bp
-bp
+bu
 aN
 aN
 bp
-aN
-aN
-aN
+bp
 bp
 aN
 aN
-aN
-bp
-aN
+bu
 aN
 aN
-bp
+aN
+bu
+aN
+aN
+aN
+bu
+aN
+aN
+aN
+bu
 aN
 aN
 ab
@@ -18974,39 +18974,39 @@ ae
 ab
 aN
 aN
-bp
+bu
 aN
 aN
 aN
-bp
+bu
 aN
 aN
 aN
-bp
+bu
 aN
 aN
 aN
-bp
-aN
-aN
-bp
-bp
-bp
+bu
 aN
 aN
 bp
-aN
-aN
-aN
+bp
 bp
 aN
 aN
-aN
-bp
-aN
+bu
 aN
 aN
-bp
+aN
+bu
+aN
+aN
+aN
+bu
+aN
+aN
+aN
+bu
 aN
 aN
 ab
