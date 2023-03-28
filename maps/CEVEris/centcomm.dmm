@@ -4297,7 +4297,7 @@
 /area/centcom/raider_base)
 "nL" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/crate/specialists_sidearm,
+/obj/item/storage/deferred/crate/saw,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5163,13 +5163,7 @@
 /area/skipjack_station/start)
 "ty" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/meds,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
+/obj/item/storage/deferred/crate/ak,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5339,7 +5333,13 @@
 /area/centcom/raider_base)
 "wf" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/surgery,
+/obj/item/storage/deferred/meds,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5501,7 +5501,7 @@
 /area/centcom/evac)
 "AW" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/crate/saw,
+/obj/item/storage/deferred/crate/specialists_sidearm,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5826,7 +5826,7 @@
 /area/centcom/raider_base)
 "JW" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/crate/demolition,
+/obj/item/storage/deferred/crate/marksman,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -6120,7 +6120,7 @@
 /area/centcom/merc_base)
 "SW" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/crate/kovacs,
+/obj/item/storage/deferred/surgery,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -6145,7 +6145,7 @@
 /area/shuttle/mercenary)
 "TZ" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/crate/marksman,
+/obj/item/storage/deferred/crate/kovacs,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -6257,7 +6257,7 @@
 /area/shuttle/mercenary)
 "XP" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/crate/ak,
+/obj/item/storage/deferred/crate/demolition,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -33933,7 +33933,7 @@ hl
 hl
 hl
 gZ
-SW
+iX
 MV
 JW
 nL
@@ -33941,7 +33941,7 @@ ty
 wf
 iX
 iX
-iX
+SW
 zt
 jq
 jq

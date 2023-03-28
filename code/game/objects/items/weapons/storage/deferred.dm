@@ -227,6 +227,17 @@
 		/obj/item/ammo_magazine/msmg = 16,
 		)
 
+/obj/item/storage/deferred/crate/shotgun
+	name = "pointman shotgun crate"
+	desc = "A crate containing 4 bojevic autoshotguns and 120 rounds of .50 buck and slug ammunition each. good to keep handy \
+			for close encounters."
+	icon_state = "serbcrate_deferred_black"
+	initial_contents = list(
+		/obj/item/gun/projectile/shotgun/bojevic = 4,
+		/obj/item/ammo_magazine/m12/pellet = 10,
+		/obj/item/ammo_magazine/m12 = 10
+		)
+
 /obj/item/storage/deferred/crate/cells
 	name = "power cell bin"
 	desc = "A moderately sized crate full of various power cells."
