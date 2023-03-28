@@ -124,14 +124,12 @@
 /obj/landmark/corpse/hobo
 	name = "Hobo"
 	corpseuniform = /obj/item/clothing/under/turtleneck
-	corpsesuit = /obj/item/clothing/suit/storage/leather_jacket
-	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpsesuit = /obj/item/clothing/suit/storage/ass_jacket
+	corpseshoes = /obj/item/clothing/shoes/color/black
 	corpseradio = /obj/item/device/radio/headset
-	corpsemask = /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
 	corpsepocket1 = /obj/item/modular_computer/pda
-	corpsepocket2 = /obj/item/oddity/common/old_id
 	corpseid = TRUE
-	corpseidjob = list("Therapist", "Private Security", "Master Chef", "Researcher", "Market Analyst", "Colonist")
+	corpseidjob = list("Convict Exploitation Vehicle \"Eris\" Laborer", "Convict Exploitation Vehicle \"Eris\" Warden", "Researcher", "Market Analyst", "Colony Expansion Vehicle \"Eris\" Colonist")
 	injury_level = 4
 
 /obj/landmark/corpse/excelsior
@@ -142,6 +140,13 @@
 	corpsegloves = /obj/item/clothing/gloves/security
 	injury_level = 8
 
+/obj/landmark/corpse/skeleton
+	name = "skeletal corpse"
+	species = SPECIES_SKELETON
+	min_age = 359	// OS disappeared in 2291, CEV Eris launched 2642. This means the skeleton of a child of 8 years would be 359 years old.
+	max_age = 499	// Oldest skeleton is of a person of 140 years. Implies OS managed to extend life expectancy. Revise according to lore.
+
+
 /obj/landmark/corpse/one_star
 	name = "twisted skeletal remains"
 	species = SPECIES_SKELETON
@@ -149,7 +154,7 @@
 	max_age = 499	// Oldest skeleton is of a person of 140 years. Implies OS managed to extend life expectancy. Revise according to lore.
 	corpseuniform = /obj/item/clothing/under/onestar
 	corpsesuit = /obj/item/clothing/suit/storage/greatcoat/onestar
-	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpseshoes = /obj/item/clothing/shoes/jackboots/ironhammer
 	corpseradio = /obj/item/device/radio/headset
 	corpsehelmet = /obj/item/clothing/head/onestar
 	//corpseid = TRUE
@@ -159,10 +164,8 @@
 	name = "warped skeletal remains"
 	corpseuniform = /obj/item/clothing/under/onestar
 	corpsesuit = /obj/item/clothing/suit/space/void/onestar		// Helmet won't spawn pre-equipped, but it's there
-	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpseshoes = /obj/item/clothing/shoes/workboots
 	corpseradio = /obj/item/device/radio/headset
-	//corpseid = TRUE
-	//corpseidjob = list("Therapist", "Private Security", "Master Chef", "Researcher", "Market Analyst", "Colonist")
 
 // Legacy corpses
 /obj/landmark/corpse/syndicatesoldier
