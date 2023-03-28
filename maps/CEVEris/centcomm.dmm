@@ -1183,16 +1183,14 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/centcom/evac)
 "dM" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "escape_pod_2_recovery";
-	pixel_x = 25;
-	pixel_y = 0;
-	req_one_access = list(13);
-	tag_door = "escape_pod_2_recovery_hatch"
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/centcom/evac)
+/turf/unsimulated/floor{
+	icon_state = "cult";
+	name = "plating"
+	},
+/area/centcom/merc_base)
 "dN" = (
 /obj/structure/window/reinforced/holowindow{
 	dir = 8
@@ -3431,7 +3429,6 @@
 /area/centcom/merc_base)
 "kG" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/item/storage/box/phosphorous,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5406,6 +5403,14 @@
 /obj/item/rig/light/stealth,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
+"xw" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/structure/mirror/antag{
+	pixel_y = -28
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/centcom/evac)
 "xy" = (
 /obj/structure/table/standard,
 /obj/item/storage/firstaid/fire{
@@ -5459,11 +5464,13 @@
 	},
 /area/centcom/raider_base)
 "zt" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/obj/item/storage/box/phosphorous,
+/obj/structure/table/rack,
+/obj/item/storage/deferred/crate/shotgun,
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
 /turf/unsimulated/floor{
-	icon_state = "plating";
-	name = "plating"
+	icon_state = "dark"
 	},
 /area/centcom/merc_base)
 "zv" = (
@@ -5559,16 +5566,6 @@
 	icon_state = "dark"
 	},
 /area/wizard_station)
-"Cp" = (
-/obj/structure/table/rack,
-/obj/item/storage/deferred/crate/shotgun,
-/obj/structure/sign/faction/serbian{
-	pixel_y = 32
-	},
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/centcom/merc_base)
 "CE" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
@@ -5598,14 +5595,6 @@
 /obj/item/beach_ball/holoball,
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_basketball)
-"Eg" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/obj/structure/mirror/antag{
-	pixel_y = -28
-	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/centcom/evac)
 "EK" = (
 /obj/structure/bed,
 /obj/item/bedsheet/rd,
@@ -5693,6 +5682,17 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"FW" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	frequency = 1380;
+	id_tag = "escape_pod_2_recovery";
+	pixel_x = 25;
+	pixel_y = 0;
+	req_one_access = list(13);
+	tag_door = "escape_pod_2_recovery_hatch"
+	},
+/turf/simulated/floor/tiled/dark/golden,
+/area/centcom/evac)
 "Go" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
@@ -5778,6 +5778,8 @@
 /obj/item/storage/box/smokes,
 /obj/item/storage/box/smokes,
 /obj/item/storage/box/smokes,
+/obj/item/storage/box/phosphorous,
+/obj/item/storage/box/phosphorous,
 /obj/item/storage/box/phosphorous,
 /obj/item/storage/box/phosphorous,
 /obj/item/storage/box/phosphorous,
@@ -5921,15 +5923,6 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/mercenary)
-"LP" = (
-/obj/structure/sign/faction/serbian{
-	pixel_y = 32
-	},
-/turf/unsimulated/floor{
-	icon_state = "cult";
-	name = "plating"
-	},
-/area/centcom/merc_base)
 "LR" = (
 /obj/structure/table/rack,
 /obj/item/rig/industrial,
@@ -6074,6 +6067,17 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"OX" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/mercenary)
 "Pd" = (
 /obj/structure/table/rack,
 /obj/item/storage/belt/utility/full,
@@ -6166,17 +6170,6 @@
 	icon_state = "lino"
 	},
 /area/wizard_station)
-"TA" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/obj/structure/sign/faction/serbian{
-	pixel_y = 32
-	},
-/turf/simulated/shuttle/floor{
-	icon_state = "floor6"
-	},
-/area/shuttle/mercenary)
 "TT" = (
 /obj/structure/closet{
 	name = "custodial"
@@ -16616,7 +16609,7 @@ cN
 hR
 cN
 hZ
-Eg
+xw
 ho
 aa
 aa
@@ -17418,9 +17411,9 @@ dn
 hZ
 hZ
 hZ
-dM
 dn
-cN
+dn
+FW
 ho
 jy
 aa
@@ -29139,7 +29132,7 @@ iJ
 iJ
 iJ
 iq
-TA
+OX
 iU
 iU
 iJ
@@ -32162,7 +32155,7 @@ hh
 hh
 hh
 gZ
-LP
+dM
 hp
 gN
 gN
@@ -33981,7 +33974,7 @@ hl
 hl
 hl
 gZ
-Cp
+zt
 MV
 JW
 nL
@@ -33990,7 +33983,7 @@ wf
 iX
 iX
 SW
-zt
+hf
 jq
 jq
 jG
