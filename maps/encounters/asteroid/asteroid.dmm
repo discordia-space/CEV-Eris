@@ -215,24 +215,18 @@
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
-"aX" = (
-/obj/machinery/door/airlock/vault{
-	name = "NSKR -11"
-	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
 "aY" = (
 /obj/machinery/door/airlock/vault{
 	name = "NSKR -11"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/outpost/abandoned)
 "aZ" = (
 /obj/effect/floor_decal/rust,
 /obj/machinery/door/airlock/vault{
 	name = "NSKR -11"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/outpost/abandoned)
 "ba" = (
 /obj/effect/floor_decal/rust,
@@ -660,10 +654,6 @@
 /obj/spawner/techpart,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
-"dk" = (
-/obj/item/gun/projectile/colt,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
 "dl" = (
 /obj/structure/table/rack,
 /obj/item/gun/projectile/shotgun/pump,
@@ -707,6 +697,10 @@
 "OV" = (
 /obj/effect/floor_decal/rust,
 /obj/item/gun/projectile/shotgun/pump,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned)
+"XT" = (
+/obj/item/gun/projectile/colt,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "Zv" = (
@@ -19223,7 +19217,7 @@ bl
 bl
 bl
 bl
-aX
+aY
 bl
 bl
 ad
@@ -30339,7 +30333,7 @@ bl
 bD
 bD
 bD
-dk
+XT
 af
 Fe
 bD
@@ -30952,7 +30946,7 @@ af
 af
 ag
 ag
-aX
+aY
 ag
 af
 af
@@ -31151,7 +31145,7 @@ bl
 ag
 bJ
 bN
-aX
+aY
 bD
 bD
 bX
@@ -31757,7 +31751,7 @@ bl
 bl
 bl
 bN
-aX
+aY
 bD
 bD
 bD
@@ -31765,7 +31759,7 @@ bX
 bD
 bD
 bD
-aX
+aY
 bD
 bD
 bD
@@ -32363,7 +32357,7 @@ bl
 ag
 bL
 bN
-aX
+aY
 bD
 bD
 bD
@@ -32568,7 +32562,7 @@ af
 af
 ag
 ag
-aX
+aY
 ag
 af
 af
