@@ -147,11 +147,9 @@ for reference:
 		return (check_cover(mover,target))
 
 	if(air_group || (height==0))
-		return 1
-	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/structure/barricade/proc/check_cover(obj/item/projectile/P, turf/from)
 
