@@ -191,6 +191,20 @@
 	corpseshoes = /obj/item/clothing/shoes/workboots
 	corpseradio = /obj/item/device/radio/headset
 
+/obj/landmark/corpse/operative
+	name = "Ironhammer Operative"
+	corpseuniform = /obj/item/clothing/under/rank/security
+	corpseshoes = /obj/item/clothing/shoes/jackboots/ironhammer
+	corpsegloves = list(/obj/item/clothing/gloves/security/ironhammer, /obj/item/clothing/gloves/stungloves)
+	corpseradio = /obj/item/device/radio/headset/headset_sec
+	corpsesuit = list(/obj/item/clothing/suit/armor/vest/ironhammer, /obj/item/clothing/suit/armor/vest/full/ironhammer, /obj/item/clothing/suit/storage/vest/ironhammer)
+	corpsehelmet = list(/obj/item/clothing/head/armor/helmet/ironhammer, /obj/item/clothing/head/soft/sec2soft, /obj/item/clothing/head/beret/sec/navy/officer, /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg)
+	corpseglasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
+	corpsemask = /obj/item/clothing/mask/balaclava/tactical
+	corpsebelt = /obj/item/storage/belt/tactical/ironhammer
+	corpseid = 1
+	corpseidjob = "Ironhammer Operative"
+
 // Legacy corpses
 /obj/landmark/corpse/syndicatesoldier
 	name = "Syndicate Operative"
