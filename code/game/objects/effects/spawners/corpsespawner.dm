@@ -204,6 +204,7 @@
 	corpsebelt = /obj/item/storage/belt/tactical/ironhammer
 	corpseid = 1
 	corpseidjob = "Ironhammer Operative"
+	corpseidaccess = "ihoper"
 
 // Legacy corpses
 /obj/landmark/corpse/syndicatesoldier
