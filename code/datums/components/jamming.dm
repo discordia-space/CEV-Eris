@@ -7,6 +7,7 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	can_transfer = FALSE
 
+/// To do , add a human signal handler
 /datum/component/jamming/Initialize()
 	. = ..()
 	if(!ismovable(parent))
