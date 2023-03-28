@@ -102,7 +102,12 @@
 			if(is_new_area && is_destination_turf)
 				destination.loc.Entered(src, origin)
 
-	SEND_SIGNAL_OLD(src, COMSIG_MOVABLE_MOVED, origin, loc)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, origin, loc)
+	if(origin && destination)
+		if(get_z(origin) != get_z(destination))
+			SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, get_z(origin) , get_z(destination))
+			for(var/atom/movable/thing in contents)
+				SEND_SIGNAL(thing, COMSIG_MOVABLE_Z_CHANGED,get_z(origin),get_z(destination))
 
 	// Only update plane if we're located on map
 	if(isturf(loc))
@@ -390,9 +395,15 @@
 			// if we wasn't on map OR our Z coord was changed
 			if( !isturf(oldloc) || (get_z(loc) != get_z(oldloc)) )
 				update_plane()
-				onTransitZ(get_z(oldloc, get_z(loc)))
 
-		SEND_SIGNAL_OLD(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
+		if(get_z(oldloc) != get_z(loc))
+			SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, get_z(oldloc), get_z(NewLoc))
+			for(var/atom/movable/thing in contents)
+				SEND_SIGNAL(thing, COMSIG_MOVABLE_Z_CHANGED,get_z(oldloc),get_z(NewLoc))
+
+			//onTransitZ(get_z(oldloc), get_z(loc))
+
+		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
 
 // Wrapper of step() that also sets glide size to a specific value.
 /proc/step_glide(atom/movable/AM, newdir, glide_size_override)
@@ -400,10 +411,14 @@
 	return step(AM, newdir)
 
 //We're changing zlevel
+/*
 /atom/movable/proc/onTransitZ(old_z, new_z)//uncomment when something is receiving this signal
-	/*SEND_SIGNAL_OLD(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
+	/*
 	for(var/atom/movable/AM in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
-		AM.onTransitZ(old_z,new_z)*/
+		AM.onTransitZ(old_z,new_z)
+	*/
+*/
 
 /mob/living/proc/update_z(new_z) // 1+ to register, null to unregister
 	if (registered_z != new_z)
