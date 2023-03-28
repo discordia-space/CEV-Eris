@@ -280,11 +280,11 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/shotgunammo_beanbag
 	name = "FS Shotgun shells (Beanbag)"
-	contains = list(/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
-					/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
-					/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
-					/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
-					/obj/item/ammo_magazine/ammobox/shotgun/beanbags)
+	contains = list(/obj/item/ammo_magazine/ammobox/shotgun/beanbag,
+					/obj/item/ammo_magazine/ammobox/shotgun/beanbag,
+					/obj/item/ammo_magazine/ammobox/shotgun/beanbag,
+					/obj/item/ammo_magazine/ammobox/shotgun/beanbag,
+					/obj/item/ammo_magazine/ammobox/shotgun/beanbag)
 	cost = 1000
 	crate_name = "FS Shotgun shells (Beanbag)"
 	group = "Security"

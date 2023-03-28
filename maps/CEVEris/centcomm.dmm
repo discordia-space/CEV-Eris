@@ -6235,6 +6235,13 @@
 "Wf" = (
 /turf/simulated/mineral,
 /area/centcom/merc_base)
+"Wj" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/crate/shotgun,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
 "WS" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/bag/money,
@@ -33118,11 +33125,11 @@ hl
 hl
 hl
 hl
-Wf
-Wf
-Wf
-Wf
-Wf
+hl
+hl
+hl
+hl
+hl
 gZ
 gZ
 gZ
@@ -33933,7 +33940,7 @@ hl
 hl
 hl
 gZ
-iX
+Wj
 MV
 JW
 nL
