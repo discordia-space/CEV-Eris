@@ -758,8 +758,8 @@ its easier to just keep the beam vertical.
 
 //Bullethole shit.
 /atom/proc/create_bullethole(var/obj/item/projectile/Proj)
-	var/p_x = Proj.p_x + pick(0,0,0,0,0,-1,1) // really ugly way of coding "sometimes offset Proj.p_x!"
-	var/p_y = Proj.p_y + pick(0,0,0,0,0,-1,1) // Used for bulletholes
+	var/p_x = Proj.p_x + rand(-8,8) // really ugly way of coding "sometimes offset Proj.p_x!"
+	var/p_y = Proj.p_y + rand(-8,8) // Used for bulletholes
 	var/obj/effect/overlay/bmark/BM = new(src)
 
 	BM.pixel_x = p_x

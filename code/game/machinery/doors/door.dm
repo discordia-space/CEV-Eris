@@ -351,14 +351,15 @@
 /obj/machinery/door/take_damage(damage)
 	if (!isnum(damage))
 		return
-
-	var/smoke_amount
-
 	var/initialhealth = health
-	health = health - damage
+	. = health - damage < 0 ? damage - (damage - health) : damage
+	// Not closed , not protected.
+	. *= density
+	health -= damage
+	var/smoke_amount
 	if(health < 0)
 		qdel(src)
-		return initialhealth
+		return
 	else if(health < maxHealth / 5 && initialhealth > maxHealth / 5)
 		set_broken()
 		smoke_amount = 4
@@ -376,8 +377,6 @@
 		var/datum/effect/effect/system/smoke_spread/S = new
 		S.set_up(smoke_amount, 0, src)
 		S.start()
-	// full block
-	return damage
 
 
 /obj/machinery/door/examine(mob/user)

@@ -73,8 +73,6 @@
 	material = get_material_by_name(materialtype)
 	if(!isnull(rmaterialtype))
 		reinf_material = get_material_by_name(rmaterialtype)
-	health = material.integrity + reinf_material?.integrity
-	maxHealth = health
 	update_material(FALSE) //We call update material with update set to false, so it won't update connections or icon yet
 	..(newloc)
 
