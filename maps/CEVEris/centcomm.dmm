@@ -3030,6 +3030,7 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
+/obj/item/toy/figure/serbian,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
@@ -4576,16 +4577,6 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
-"oC" = (
-/obj/structure/table/rack,
-/obj/item/storage/deferred/crate/shotgun,
-/obj/structure/sign/faction/serbian{
-	pixel_y = 32
-	},
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/centcom/merc_base)
 "oE" = (
 /obj/structure/table/reinforced,
 /obj/item/tray{
@@ -5568,6 +5559,16 @@
 	icon_state = "dark"
 	},
 /area/wizard_station)
+"Cp" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/crate/shotgun,
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
 "CE" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
@@ -5597,6 +5598,14 @@
 /obj/item/beach_ball/holoball,
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_basketball)
+"Eg" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/structure/mirror/antag{
+	pixel_y = -28
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/centcom/evac)
 "EK" = (
 /obj/structure/bed,
 /obj/item/bedsheet/rd,
@@ -5889,15 +5898,6 @@
 /obj/item/tool/crowbar,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
-"Lx" = (
-/obj/structure/sign/faction/serbian{
-	pixel_y = 32
-	},
-/turf/unsimulated/floor{
-	icon_state = "cult";
-	name = "plating"
-	},
-/area/centcom/merc_base)
 "LG" = (
 /obj/machinery/door/airlock/external{
 	density = 1;
@@ -5921,6 +5921,15 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/mercenary)
+"LP" = (
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
+/turf/unsimulated/floor{
+	icon_state = "cult";
+	name = "plating"
+	},
+/area/centcom/merc_base)
 "LR" = (
 /obj/structure/table/rack,
 /obj/item/rig/industrial,
@@ -6143,14 +6152,6 @@
 	icon_state = "lino"
 	},
 /area/centcom/merc_base)
-"Sn" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/obj/structure/mirror/antag{
-	pixel_y = -28
-	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/centcom/evac)
 "SW" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/surgery,
@@ -6165,6 +6166,17 @@
 	icon_state = "lino"
 	},
 /area/wizard_station)
+"TA" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/mercenary)
 "TT" = (
 /obj/structure/closet{
 	name = "custodial"
@@ -6370,17 +6382,6 @@
 	pixel_x = 25
 	},
 /obj/item/storage/deferred/crate/cells,
-/turf/simulated/shuttle/floor{
-	icon_state = "floor6"
-	},
-/area/shuttle/mercenary)
-"ZJ" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/obj/structure/sign/faction/serbian{
-	pixel_y = 32
-	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
@@ -16615,7 +16616,7 @@ cN
 hR
 cN
 hZ
-Sn
+Eg
 ho
 aa
 aa
@@ -29138,7 +29139,7 @@ iJ
 iJ
 iJ
 iq
-ZJ
+TA
 iU
 iU
 iJ
@@ -32161,7 +32162,7 @@ hh
 hh
 hh
 gZ
-Lx
+LP
 hp
 gN
 gN
@@ -33980,7 +33981,7 @@ hl
 hl
 hl
 gZ
-oC
+Cp
 MV
 JW
 nL
