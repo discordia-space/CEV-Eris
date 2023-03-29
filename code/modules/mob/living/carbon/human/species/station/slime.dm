@@ -58,7 +58,7 @@
 	if(!user || !species)
 		return
 	if(user.stat)
-		return 
+		return
 	for(var/limb_tag in BP_ALL_LIMBS)
 		var/obj/item/organ/external/organ_to_check = organs_by_name[limb_tag]
 		if(!organ_to_check || istype(organ_to_check , /obj/item/organ/external/stump))
@@ -75,3 +75,11 @@
 		var/datum/organ_description/OD = species.has_limbs[missing_limb_tag]
 		OD.create_organ(src)
 		to_chat(user, "You regenerate your [missing_limb_tag]")
+
+/datum/species/slime/tainted
+	name = SPECIES_TAINTED
+	name_plural = "tainteds"
+	blood_color = "#deff05"
+	flesh_color = "#babd19"
+	icobase = 'icons/mob/human_races/r_tainted.dmi'
+	deform = 'icons/mob/human_races/r_tainted.dmi'

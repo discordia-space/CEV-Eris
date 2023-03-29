@@ -210,6 +210,7 @@
 
 #define SPECIES_HUMAN			"Human"
 #define SPECIES_SLIME			"Slime"
+#define SPECIES_TAINTED			"Tainted"
 #define SPECIES_MONKEY			"Monkey"
 #define SPECIES_GOLEM			"Golem"
 #define SPECIES_SKELETON        "Skeleton"

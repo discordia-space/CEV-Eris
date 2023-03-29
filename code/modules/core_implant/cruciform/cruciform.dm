@@ -90,8 +90,8 @@ var/list/disciples = list()
 		var/datum/mutation/U = new MUTATION_GODBLOOD
 		U.imprint(H)
 	else
-		if(H.species.name != "Slime")
-			H.set_species("Slime")
+		if(H.species.name != SPECIES_TAINTED)
+			H.set_species(SPECIES_TAINTED)
 
 /obj/item/implant/core_implant/cruciform/activate()
 	var/observation_points = 200
@@ -103,7 +103,7 @@ var/list/disciples = list()
 		for(var/mob/living/carbon/human/H in (disciples - wearer))
 			to_chat(H, SPAN_WARNING("A distant scream pierced your mind. You feel that a vile mutant sneaked among the faithful."))
 			playsound(wearer.loc, 'sound/hallucinations/veryfar_noise.ogg', 55, 1)
-	else if(wearer.get_species() != SPECIES_SLIME || is_carrion(wearer))
+	else if(wearer.get_species() != SPECIES_TAINTED || is_carrion(wearer))
 		if(wearer.get_species() == SPECIES_MONKEY)
 			observation_points /= 20
 		playsound(wearer.loc, 'sound/hallucinations/wail.ogg', 55, 1)
