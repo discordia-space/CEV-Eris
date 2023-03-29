@@ -222,6 +222,13 @@
 	for (var/signal_type in signal_types)
 		RegisterSignal(target, signal_type, proctype, override)
 
+/// Checks if we already are registered onto the object with said proc
+/datum/proc/IsRegistered(datum/target, signal_type, proctype)
+	if(target.comp_lookup[signal_type])
+		if(target.comp_lookup[signal_type].Find(src))
+			return TRUE
+	return FALSE
+
 /**
  * Stop listening to a given signal from target
  *

@@ -14,11 +14,16 @@
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
 	RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(OnLevelChange))
+	RegisterSignal(owner, COMSIG_STORAGE_INSERTED, PROC_REF(OnStore))
 
 /datum/component/jamming/proc/OnLevelChange(source, oldLevel, newLevel)
 	if(active)
 		SSjamming.active_jammers[oldLevel] -= src
 		SSjamming.active_jammers[newLevel] += src
+
+/datum/component/jamming/proc/OnStore(obj/item/storage/container)
+
+
 
 /datum/component/jamming/Destroy()
 	if(active)

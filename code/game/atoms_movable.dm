@@ -38,6 +38,7 @@
 //		testing("GC: [type] was deleted via GC with qdel()")
 	..()
 
+
 /atom/movable/Destroy()
 	. = ..()
 	for(var/atom/movable/AM in contents)
@@ -67,6 +68,14 @@
 
 /atom/movable/proc/entered_with_container(var/atom/old_loc)
 	return
+
+// Gets the top-atom that contains us, doesn't care about how deeply nested a item is
+/atom/movable/proc/getContainingMovable()
+	var/atom/checking = src
+	while(!isturf(checking.loc))
+		checking = checking.loc
+	return checking
+
 
 /atom/movable/proc/forceMove(atom/destination, var/special_event, glide_size_override=0)
 	if(loc == destination)
