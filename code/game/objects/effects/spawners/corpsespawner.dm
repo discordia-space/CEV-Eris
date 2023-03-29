@@ -128,23 +128,38 @@
 	if(corpsehelmet)
 		if(islist(corpsehelmet))
 			corpsehelmet = safepick(corpsehelmet)
-		M.equip_to_slot_or_del(new corpsehelmet(M), slot_head)
+		if(corpsehelmet)
+			M.equip_to_slot_or_del(new corpsehelmet(M), slot_head)
+	else
+		M.equip_to_slot_or_del
 	if(corpsebelt)
 		if(islist(corpsebelt))
 			corpsebelt = safepick(corpsebelt)
-		M.equip_to_slot_or_del(new corpsebelt(M), slot_belt)
+		if(corpsebelt)
+			M.equip_to_slot_or_del(new corpsebelt(M), slot_belt)
+	else
+		M.equip_to_slot_or_del
 	if(corpsepocket1)
 		if(islist(corpsepocket1))
 			corpsepocket1 = safepick(corpsepocket1)
-		M.equip_to_slot_or_del(new corpsepocket1(M), slot_r_store)
+		if(corpsepocket1)
+			M.equip_to_slot_or_del(new corpsepocket1(M), slot_l_store)
+	else
+		M.equip_to_slot_or_del
 	if(corpsepocket2)
 		if(islist(corpsepocket2))
 			corpsepocket2 = safepick(corpsepocket2)
-		M.equip_to_slot_or_del(new corpsepocket2(M), slot_l_store)
+		if(corpsepocket2)
+			M.equip_to_slot_or_del(new corpsepocket2(M), slot_r_store)
+	else
+		M.equip_to_slot_or_del
 	if(corpseback)
 		if(islist(corpseback))
 			corpseback = safepick(corpseback)
-		M.equip_to_slot_or_del(new corpseback(M), slot_back)
+		if(corpseback)
+			M.equip_to_slot_or_del(new corpseback(M), slot_back)
+	else
+		M.equip_to_slot_or_del
 
 	var/datum/job/jobdatum = corpseidjob ? SSjob.GetJob(corpseidjob) : null
 	if(jobdatum)
