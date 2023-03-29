@@ -1,5 +1,5 @@
 /datum/job/ihc
-	title = "Ironhammer Cummander"
+	title = "Ironhammer Commander"
 	flag = IHC
 	head_position = 1
 	department = DEPARTMENT_SECURITY
@@ -7,7 +7,7 @@
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Craptain"
+	supervisors = "the Captain"
 	selection_color = "#97b0be"
 	req_admin_notify = 1
 	wage = WAGE_COMMAND
@@ -68,7 +68,7 @@
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Ironhammer Cummander"
+	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
 	department_account_access = TRUE
 	wage = WAGE_PROFESSIONAL
@@ -115,14 +115,14 @@
 
 
 /datum/job/inspector
-	title = "Defective Detective"
+	title = "Ironhammer Inspector"
 	flag = INSPECTOR
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Ironhammer Cummander"
+	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
 	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_NEOHONGO = 100)
@@ -233,7 +233,7 @@
 	faction = "CEV Eris"
 	total_positions = 6
 	spawn_positions = 6
-	supervisors = "the Ironhammer Cummander, Ironhammer Sergeant"
+	supervisors = "the Ironhammer Commander, Ironhammer Sergeant"
 	//alt_titles = list("Ironhammer Junior Operative")
 	selection_color = "#a7bbc6"
 	wage = WAGE_LABOUR_HAZARD

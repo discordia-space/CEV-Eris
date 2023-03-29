@@ -145,7 +145,7 @@
  */
 /obj/item/clothing/under/rank/cadet
 	name = "Ironhammer Cadet's jumpskirt"
-	desc = "A sailor's uniform used for cadets in training, though more frequently in acts of hazing. standard issue uniform of ironhammer M.A.I.D.S"
+	desc = "A sailor's uniform used for cadets in training, though more frequently in acts of hazing."
 	icon_state = "cadet"
 	item_state = "cadet"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
