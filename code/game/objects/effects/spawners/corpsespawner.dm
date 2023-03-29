@@ -228,7 +228,7 @@
 		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager,
 		null,
 		/obj/item/clothing/suit/space/emergency,)
-	corpseshoes = list(/obj/item/clothing/shoes/jackboots, /obj/item/clothing/shoes/color/black, /obj/item/clothing/shoes/workboots, /obj/item/clothing/shoes/reinforced)
+	corpseshoes = list(/obj/item/clothing/shoes/jackboots, /obj/item/clothing/shoes/color/black, null, /obj/item/clothing/shoes/workboots, /obj/item/clothing/shoes/reinforced)
 	corpsegloves = list(/obj/item/clothing/gloves/thick, /obj/item/clothing/gloves/fingerless, null, /obj/item/clothing/gloves/security, /obj/item/clothing/gloves/insulated/cheap)
 	min_age = 40
 	max_age = 250
