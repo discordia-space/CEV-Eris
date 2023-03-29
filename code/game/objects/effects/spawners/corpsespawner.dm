@@ -216,6 +216,7 @@
 		/obj/item/clothing/suit/armor/vest/handmade,
 		/obj/item/clothing/suit/armor/vest/handmade/full,
 		/obj/item/clothing/suit/armor/flak,
+		null,
 		/obj/item/clothing/suit/storage/vest,
 		/obj/item/clothing/suit/storage/toggle/bomber,
 		/obj/item/clothing/suit/storage/toggle/hoodie/black,
@@ -225,9 +226,10 @@
 		/obj/item/clothing/suit/storage/leather_jacket,
 		/obj/item/clothing/suit/storage/bladerunner,
 		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager,
+		null,
 		/obj/item/clothing/suit/space/emergency,)
 	corpseshoes = list(/obj/item/clothing/shoes/jackboots, /obj/item/clothing/shoes/color/black, /obj/item/clothing/shoes/workboots, /obj/item/clothing/shoes/reinforced)
-	corpsegloves = list(/obj/item/clothing/gloves/thick, /obj/item/clothing/gloves/fingerless, /obj/item/clothing/gloves/security, /obj/item/clothing/gloves/insulated/cheap)
+	corpsegloves = list(/obj/item/clothing/gloves/thick, /obj/item/clothing/gloves/fingerless, null, /obj/item/clothing/gloves/security, /obj/item/clothing/gloves/insulated/cheap)
 	min_age = 40
 	max_age = 250
 
