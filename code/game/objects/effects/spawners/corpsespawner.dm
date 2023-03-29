@@ -207,7 +207,7 @@
 	max_age = 250
 
 /obj/landmark/corpse/skeleton/maint //deepmaint loot corpses
-	name = "crewmember corpse"
+	name = "eris crewmember"
 	corpseuniform = list(/obj/item/clothing/under/oldsec, /obj/item/clothing/under/rank/assistant, /obj/item/clothing/under/rank/crewman, /obj/item/clothing/under/genericw, /obj/item/clothing/under/genericb, /obj/item/clothing/under/leisure, /obj/item/clothing/under/color/grey, /obj/item/clothing/under/color/black)
 	corpsesuit = list(
 		/obj/item/clothing/suit/armor/vest,
