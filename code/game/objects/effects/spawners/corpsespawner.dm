@@ -206,7 +206,7 @@
 	min_age = 35
 	max_age = 250
 
-/obj/landmark/corpse/skeleton/maint //deepmaint loot corpses
+/obj/landmark/corpse/skeleton/maint //They look like human remains. Some poor soul expired here, a million miles from home.
 	name = "eris crewmember"
 	corpseuniform = list(/obj/item/clothing/under/oldsec, /obj/item/clothing/under/rank/assistant, /obj/item/clothing/under/rank/crewman, /obj/item/clothing/under/genericw, /obj/item/clothing/under/genericb, /obj/item/clothing/under/leisure, /obj/item/clothing/under/color/grey, /obj/item/clothing/under/color/black)
 	corpsesuit = list(
