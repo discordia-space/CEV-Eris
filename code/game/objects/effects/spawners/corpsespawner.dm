@@ -147,13 +147,13 @@
 // Eris corpses
 /obj/landmark/corpse/hobo
 	name = "Hobo"
-	corpseuniform = /obj/item/clothing/under/turtleneck
+	corpseuniform = /obj/item/clothing/under/rank/assistant
 	corpsesuit = /obj/item/clothing/suit/storage/ass_jacket
 	corpseshoes = /obj/item/clothing/shoes/color/black
 	corpseradio = /obj/item/device/radio/headset
 	corpsepocket1 = /obj/item/modular_computer/pda
 	corpseid = TRUE
-	corpseidjob = list("Convict Exploitation Vehicle \"Eris\" Laborer", "Convict Exploitation Vehicle \"Eris\" Warden", "Researcher", "Market Analyst", "Colony Expansion Vehicle \"Eris\" Colonist")
+	corpseidjob = list("Convict Exploitation Vehicle \"Eris\" Laborer", "Convict Exploitation Vehicle \"Eris\" Warden", "Cargo Export Vehicle \"Eris\" Smuggler", "Capital Exchange Venue \"Eris\" Market Analyst") //fake vagabond jobs
 	injury_level = 4
 
 /obj/landmark/corpse/excelsior
@@ -164,10 +164,35 @@
 	corpsegloves = /obj/item/clothing/gloves/security
 	injury_level = 8
 
-/obj/landmark/corpse/skeleton //generic skeleton corpse
+/obj/landmark/corpse/skeleton
 	name = "skeletal corpse"
 	species = SPECIES_SKELETON
 	min_age = 35
+	max_age = 250
+
+/obj/landmark/corpse/skeleton/maint //deepmaint loot corpses
+	name = "crewmember corpse"
+	corpseuniform = list(/obj/item/clothing/under/oldsec, /obj/item/clothing/under/rank/assistant, /obj/item/clothing/under/rank/crewman, /obj/item/clothing/under/genericw, /obj/item/clothing/under/leisure)
+	corpsesuit = list(
+		/obj/item/clothing/suit/armor/vest,
+		/obj/item/clothing/suit/armor/vest/security,
+		/obj/item/clothing/suit/armor/platecarrier,
+		/obj/item/clothing/suit/armor/vest/handmade,
+		/obj/item/clothing/suit/armor/vest/handmade/full,
+		/obj/item/clothing/suit/armor/flak,
+		/obj/item/clothing/suit/storage/vest,
+		/obj/item/clothing/suit/storage/toggle/bomber,
+		/obj/item/clothing/suit/storage/toggle/hoodie/black,
+		/obj/item/clothing/suit/storage/toggle/windbreaker,
+		/obj/item/clothing/suit/storage/ass_jacket,
+		/obj/item/clothing/suit/storage/cyberpunksleek,
+		/obj/item/clothing/suit/storage/leather_jacket,
+		/obj/item/clothing/suit/storage/bladerunner,
+		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager,
+		/obj/item/clothing/suit/space/emergency,)
+	corpseshoes = list(/obj/item/clothing/shoes/jackboots, /obj/item/clothing/shoes/color/black, /obj/item/clothing/shoes/workboots, /obj/item/clothing/shoes/reinforced)
+	corpsegloves = list(/obj/item/clothing/gloves/thick, /obj/item/clothing/gloves/fingerless, /obj/item/clothing/gloves/security, /obj/item/clothing/gloves/insulated/cheap)
+	min_age = 40
 	max_age = 250
 
 
@@ -182,7 +207,7 @@
 	corpseradio = /obj/item/device/radio/headset
 	corpsehelmet = /obj/item/clothing/head/onestar
 	//corpseid = TRUE
-	//corpseidjob = list("Therapist", "Private Security", "Master Chef", "Researcher", "Market Analyst", "Colonist")
+	//corpseidjob = list("General", "Commisar", "Commander", "Captain", "Admiral", "Leiutennant")
 
 /obj/landmark/corpse/one_star/void
 	name = "warped skeletal remains"
@@ -191,6 +216,7 @@
 	corpseshoes = /obj/item/clothing/shoes/workboots
 	corpseradio = /obj/item/device/radio/headset
 
+//Faction Corpses//
 /obj/landmark/corpse/operative
 	name = "Ironhammer Operative"
 	corpseuniform = /obj/item/clothing/under/rank/security
@@ -205,6 +231,7 @@
 	corpseid = 1
 	corpseidjob = "Ironhammer Operative"
 	corpseidaccess = "ihoper"
+	injury_level = 8
 
 // Legacy corpses
 /obj/landmark/corpse/syndicatesoldier
