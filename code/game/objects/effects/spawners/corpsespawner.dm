@@ -79,31 +79,52 @@
 	if(corpseuniform)
 		if(islist(corpseuniform))
 			corpseuniform = safepick(corpseuniform)
-		M.equip_to_slot_or_del(new corpseuniform(M), slot_w_uniform)
+		if(corpsuniform)
+			M.equip_to_slot_or_del(new corpseuniform(M), slot_w_uniform)
+	else
+		M.equip_to_slot_or_del
 	if(corpsesuit)
 		if(islist(corpsesuit))
 			corpsesuit = safepick(corpsesuit)
-		M.equip_to_slot_or_del(new corpsesuit(M), slot_wear_suit)
+		if(corpsesuit)
+			M.equip_to_slot_or_del(new corpsesuit(M), slot_wear_suit)
+	else
+		M.equip_to_slot_or_del
 	if(corpseshoes)
 		if(islist(corpseshoes))
 			corpseshoes = safepick(corpseshoes)
-		M.equip_to_slot_or_del(new corpseshoes(M), slot_shoes)
+		if(corpseshoes)
+			M.equip_to_slot_or_del(new corpseshoes(M), slot_shoes)
+	else
+		M.equip_to_slot_or_del
 	if(corpsegloves)
 		if(islist(corpsegloves))
 			corpsegloves = safepick(corpsegloves)
-		M.equip_to_slot_or_del(new corpsegloves(M), slot_gloves)
+		if(corpsegloves)
+			M.equip_to_slot_or_del(new corpsegloves(M), slot_shoes)
+	else
+		M.equip_to_slot_or_del
 	if(corpseradio)
 		if(islist(corpseradio))
 			corpseradio = safepick(corpseradio)
-		M.equip_to_slot_or_del(new corpseradio(M), slot_l_ear)
+		if(corpseradio)
+			M.equip_to_slot_or_del(new corpseradio(M), slot_l_ear)
+	else
+		M.equip_to_slot_or_del
 	if(corpseglasses)
 		if(islist(corpseglasses))
 			corpseglasses = safepick(corpseglasses)
-		M.equip_to_slot_or_del(new corpseglasses(M), slot_glasses)
+		if(corpseglasses)
+			M.equip_to_slot_or_del(new corpseglasses(M), slot_glasses)
+	else
+		M.equip_to_slot_or_del
 	if(corpsemask)
 		if(islist(corpsemask))
 			corpsemask = safepick(corpsemask)
-		M.equip_to_slot_or_del(new corpsemask(M), slot_wear_mask)
+		if(corpsemask)
+			M.equip_to_slot_or_del(new corpsemask(M), slot_wear_mask)
+	else
+		M.equip_to_slot_or_del
 	if(corpsehelmet)
 		if(islist(corpsehelmet))
 			corpsehelmet = safepick(corpsehelmet)
