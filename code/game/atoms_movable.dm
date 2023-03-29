@@ -72,7 +72,7 @@
 // Gets the top-atom that contains us, doesn't care about how deeply nested a item is
 /atom/movable/proc/getContainingMovable()
 	var/atom/checking = src
-	while(!isturf(checking.loc))
+	while(!isturf(checking.loc) && !isnull(checking.loc))
 		checking = checking.loc
 	return checking
 
@@ -117,6 +117,10 @@
 			SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, get_z(origin) , get_z(destination))
 			for(var/atom/movable/thing in contents)
 				SEND_SIGNAL(thing, COMSIG_MOVABLE_Z_CHANGED,get_z(origin),get_z(destination))
+
+	// Container change
+	if(!(is_origin_turf || is_destination_turf))
+		SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, destination.getContainingMovable())
 
 	// Only update plane if we're located on map
 	if(isturf(loc))
