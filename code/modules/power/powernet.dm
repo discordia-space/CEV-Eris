@@ -168,7 +168,7 @@
 		if (30000000 to 50000000)
 			return min(rand(80,180),rand(80,180))
 
-		// 20 to 30 MW - a seriously overclocked SM with some extra Technomancer voodoo
+		// 20 to 30 MW - a seriously overclocked SM with some extra Adeptus voodoo
 		if (20000000 to 30000000)
 			return min(rand(70,170),rand(70,170))
 

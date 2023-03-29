@@ -2,7 +2,7 @@ var/global/list/robot_modules = list(
 	"Standard"		= /obj/item/robot_module/standard,
 	"Service" 		= /obj/item/robot_module/service,
 	"Research" 		= /obj/item/robot_module/research,
-	"Miner" 		= /obj/item/robot_module/miner,
+	"Golemslayer" 		= /obj/item/robot_module/miner,
 	"Rescue" 		= /obj/item/robot_module/medical/rescue,
 	"Medical" 		= /obj/item/robot_module/medical/general,
 	"Security" 		= /obj/item/robot_module/security/general,
@@ -294,11 +294,11 @@ var/global/list/robot_modules = list(
 				"Needles" = "medicalrobot",
 				"Standard" = "surgeon",
 				"Advanced Droid - Medical" = "droid-medical",
-				"Advanced Droid - Chemistry" = "droid-chemistry",
+				"Advanced Droid - Powergamerry" = "droid-chemistry",
 				"Drone - Medical" = "drone-surgery",
-				"Drone - Chemistry" = "drone-chemistry",
+				"Drone - Powergamerry" = "drone-chemistry",
 				"Sleek - Medical" = "sleekmedic",
-				"Sleek - Chemistry" = "sleekchemistry"
+				"Sleek - Powergamerry" = "sleekchemistry"
 				)
 
 	desc = "A versatile medical droid, equipped with all the tools necessary for surgery, chemistry, and \

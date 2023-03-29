@@ -1,6 +1,6 @@
 2022-12-10:
   Firefox13:
-  - rscadd: Added ATM near Neotheology shop
+  - rscadd: Added ATM near NanoTrasen shop
   - bugfix: Fixed surgery disposals
   - bugfix: Fixed technomancer shop shutters, remove redundant ones
   - bugfix: Fixed medbay depressurizing roundstart

@@ -97,7 +97,7 @@
 /datum/ritual/cruciform/base/sense_cruciform
 	name = "Cruciform sense"
 	phrase = "Et si medio umbrae"
-	desc = "Very short litany to identify NeoTheology followers. Targets individuals in view of the follower. Has a moderate cooldown."
+	desc = "Very short litany to identify NanoTrasen followers. Targets individuals in view of the follower. Has a moderate cooldown."
 	cooldown_time = 1 MINUTES
 	power = 20
 
@@ -230,7 +230,7 @@
 /datum/ritual/cruciform/base/reincarnation
 	name = "Reincarnation"
 	phrase = "Vetus moritur et onus hoc levaverit"
-	desc = "A reunion of a spirit with it's new body, ritual of activation of a cruciform, lying on the body. The process requires NeoTheology's special altar on which a body stripped of clothes is to be placed."
+	desc = "A reunion of a spirit with it's new body, ritual of activation of a cruciform, lying on the body. The process requires NanoTrasen's special altar on which a body stripped of clothes is to be placed."
 
 /datum/ritual/cruciform/base/reincarnation/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
 	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform, FALSE)

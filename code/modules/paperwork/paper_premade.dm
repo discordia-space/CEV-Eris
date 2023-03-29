@@ -171,7 +171,7 @@
 	 2. Update medical files.
 	 3. Prepare materials for medical operations.
 
-	\[b\]Research Technician\[/b\] 2>3-0-0
+	\[b\]Research Pawn Star\[/b\] 2>3-0-0
 	This job is primarily a step up from research assistant. These people generally do not get their own lab but are more hands on in the experimentation process. At this level they are permitted to work as consultants to the others formally.
 	 1. Inform superiors of research.
 	 2. Perform research alongside of official researchers.
@@ -182,12 +182,12 @@
 	 2. Store and catalogue evidence properly.
 	 3. Testify to superiors/inquieries on findings.
 
-	\[b\]Station Technician\[/b\] 2>0-2-3
+	\[b\]Station Pawn Star\[/b\] 2>0-2-3
 	People assigned to this position must work to make sure all the systems aboard Space Station 13 are operable. They should primarily work in the computer lab and repairing faulty equipment. They should work with the atmospheric technician.
 	 1. Maintain SS13 systems.
 	 2. Repair equipment.
 
-	\[b\]Atmospheric Technician\[/b\] 3>0-0-4
+	\[b\]Atmospheric Pawn Star\[/b\] 3>0-0-4
 	These people should primarily work in the atmospheric control center and lab. They have the very important job of maintaining the delicate atmosphere on SS13.
 	 1. Maintain atmosphere on SS13
 	 2. Research atmospheres on the space station. (safely please!)
@@ -203,12 +203,12 @@
 	 1. Make sure the station is kept safe.
 	 2. Research medical properties of materials studied of Space Station 13.
 
-	\[b\]Scientist\[/b\] 2>5-0-0
-	These people study the properties, particularly the toxic properties, of materials handled on SS13. Technically they can also be called Plasma Technicians as plasma is the material they routinly handle.
+	\[b\]Cruciform Recycler\[/b\] 2>5-0-0
+	These people study the properties, particularly the toxic properties, of materials handled on SS13. Technically they can also be called Plasma Pawn Stars as plasma is the material they routinly handle.
 	 1. Research plasma
 	 2. Make sure all plasma is properly handled.
 
-	\[b\]Medical Doctor (Officer)\[/b\] 2>0-0-0People working this job should primarily stay in the medical area. They should make sure everyone goes to the medical bay for treatment and examination. Also they should make sure that medical supplies are kept in order.
+	\[b\]Medical Nurse (Officer)\[/b\] 2>0-0-0People working this job should primarily stay in the medical area. They should make sure everyone goes to the medical bay for treatment and examination. Also they should make sure that medical supplies are kept in order.
 	 1. Heal wounded people.
 	 2. Perform examinations of all personnel.
 	 3. Moniter usage of medical equipment.
@@ -311,7 +311,7 @@
 	\[b\]3.\[/b\] That those detained have the right to voluntarily leave detainment, under the American principles we hold, and uphold under the Hansa Trade Union.
 
 	\[small\]\[b\]NOTICE:\[/b\] Engaging in Anti-Depressive Self-Pacification Treatment is non-pursuant to proprty rights if your person is the property of another. You \[b\]WILL be fined\[/b\] if you engage in self-pacification \[b\]post-mortem or otherwise\[/b\], your property manager may also consenquently enact punitive financial measures. \
-	\"Cruciformed\" assets (assuming positive consent of conversion) are considered property of The Church of NeoTheology, and are \[b\]not\[/b\] eligible for this social program. Your hosting Dispute Resolution Organization may further detain your cruciform in the event of self-pacification as an additional punitive measure.\[/small\]
+	\"Cruciformed\" assets (assuming positive consent of conversion) are considered property of The Church of NanoTrasen, and are \[b\]not\[/b\] eligible for this social program. Your hosting Dispute Resolution Organization may further detain your cruciform in the event of self-pacification as an additional punitive measure.\[/small\]
 
 	\[h3\]\[b\]Self-Pacification Procedures:\[/b\]\[/h3\]
 	\[b\]1.\[/b\] Adorn provided breath mask securely, try to leave no gaps for air to escape, and remember to cover your nose.

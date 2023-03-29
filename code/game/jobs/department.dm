@@ -57,7 +57,7 @@
 	funding_source = DEPARTMENT_COMMAND
 
 /datum/department/technomancers
-	name = "Technomancer League"
+	name = "Adeptus Mechanicus"
 	id = DEPARTMENT_ENGINEERING
 	funding_source = DEPARTMENT_COMMAND
 
@@ -72,19 +72,19 @@
 *******************/
 //Departments subsidised by an external organisation. These pay their own employees
 /datum/department/moebius_medical
-	name = "Moebius Corp: Medical Division"
+	name = "Morbius Corp: Medical Division"
 	id = DEPARTMENT_MEDICAL
-	funding_source = "Moebius Corp."
+	funding_source = "Morbius Corp."
 
 /datum/department/moebius_research
-	name = "Moebius Corp: Research Division"
+	name = "Morbius Corp: Research Division"
 	id = DEPARTMENT_SCIENCE
-	funding_source = "Moebius Corp."
+	funding_source = "Morbius Corp."
 
 /datum/department/church
-	name = "Church of NeoTheology"
+	name = "Church of NanoTrasen"
 	id = DEPARTMENT_CHURCH
-	funding_source = "Church of NeoTheology"
+	funding_source = "Church of NanoTrasen"
 
 
 /******************
@@ -92,7 +92,7 @@
 *******************/
 //Self funds and pays wages out of its earnings
 /datum/department/guild
-	name = "Asters Merchant Guild"
+	name = "Asters Rabbi Synagogue"
 	id = DEPARTMENT_GUILD
 
 	/*

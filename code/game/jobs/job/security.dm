@@ -1,5 +1,5 @@
 /datum/job/ihc
-	title = "Ironhammer Commander"
+	title = "Tard Wrangler"
 	flag = IHC
 	head_position = 1
 	department = DEPARTMENT_SECURITY
@@ -55,13 +55,13 @@
 		Your third loyalty is to the crew. As the strongest military force on the ship, any mutiny attempt is likely at your mercy, and if unjustified, it will fall to you to put it down. If the captain has gone mad and a mutiny is justified, your support will be the difference between a peaceful arrest and a bloody civil war in the halls. Without your guns, an insane captain will usually be forced to surrender."
 
 /obj/landmark/join/start/ihc
-	name = "Ironhammer Commander"
+	name = "Tard Wrangler"
 	icon_state = "player-blue-officer"
 	join_tag = /datum/job/ihc
 
 
 /datum/job/gunserg
-	title = "Ironhammer Gunnery Sergeant"
+	title = "Armoury Opener"
 	flag = GUNSERG
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
@@ -109,13 +109,13 @@
 	loyalties = "You're a military man through and through. As such, your first loyalty is to the Commander, and thusly to the chain of command"
 
 /obj/landmark/join/start/gunserg
-	name = "Ironhammer Gunnery Sergeant"
+	name = "Armoury Opener"
 	icon_state = "player-blue"
 	join_tag = /datum/job/gunserg
 
 
 /datum/job/inspector
-	title = "Ironhammer Inspector"
+	title = "Defective"
 	flag = INSPECTOR
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
@@ -167,13 +167,13 @@
 		Secondly, you are loyal to ironhammer and to the commander. Follow the chain of command"
 
 /obj/landmark/join/start/inspector
-	name = "Ironhammer Inspector"
+	name = "Defective"
 	icon_state = "player-blue"
 	join_tag = /datum/job/inspector
 
 
 /datum/job/medspec
-	title = "Ironhammer Medical Specialist"
+	title = "Blue Nurse"
 	flag = MEDSPEC
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
@@ -207,26 +207,26 @@
 
 	description = "You are a highly trained specialist within Ironhammer. You were probably a medical student or inexperienced doctor when you joined Ironhammer, and you thusly have a combination of medical and military training. You are not quite as knowledgeable as a civilian career doctor, not quite as much of a fighter as a dedicated IH operative, but strike a balance inbetween. Balance is the nature of your existence.<br>\
 	<br>\
-	Within Ironhammer, you have three roles to undertake. All of your roles can be delegated to others when needed - Moebius Medical for roles 1 and 2, the Ironhammer Inspector for role 3. But you are often the best positioned to carry out these tasks, especially when time is short<br>\
+	Within Ironhammer, you have three roles to undertake. All of your roles can be delegated to others when needed - Morbius Medical for roles 1 and 2, the Ironhammer Inspector for role 3. But you are often the best positioned to carry out these tasks, especially when time is short<br>\
 	<br>\
 	1. Field Medic. <br>\
 	You may be expected to serve on the backlines in a combat situation, treating and stabilising the wounded, making the call as to whether they can return to combat or leave by medivac. You may need to perform emergency trauma surgery in undesireable conditions. <br>\
-	You are allowed to be armed, but remember that saving lives, not taking them, is your first duty. Don't be afraid to send patients to moebius medical for proper specialist care.<br>\
+	You are allowed to be armed, but remember that saving lives, not taking them, is your first duty. Don't be afraid to send patients to morbius medical for proper specialist care.<br>\
 	<br>\
-	2. Prison Doctor.<br>\
+	2. Prison Nurse.<br>\
 	During quiet times, when inmates are serving in the brig, you will often be required to treat prisoners, criminal suspects, and the condemned. Suicide attempts are common in prison, and you will often be treating a patient against their will, who is attempting to escape. When serving in this role, stay on guard, work closely with the gunnery sergeant, and keep control of the situation<br>\
 	<br>\
 	3. Forensic Specialist.<br>\
 	Solving crimes often requires scientific analysis, and expert rulings from a trusted source within Ironhammer. You will often be expected to analyze blood, chemicals and fingerprints, conduct autopsies, and submit your findings to help track down elusive culprits. In this task, you will work closely with the inspector, and if necessary, he often has the talents to perform these tasks. But his time is better spent questioning and interrogating people"
 
 /obj/landmark/join/start/medspec
-	name = "Ironhammer Medical Specialist"
+	name = "Blue Nurse"
 	icon_state = "player-blue"
 	join_tag = /datum/job/medspec
 
 
 /datum/job/ihoper
-	title = "Ironhammer Operative"
+	title = "Faceless Goon"
 	flag = IHOPER
 	department = DEPARTMENT_SECURITY
 	department_flag = IRONHAMMER
@@ -266,7 +266,7 @@
 	<br>\
 	When there are no standing orders, your ongoing task is to patrol the ship and be on the lookout for threats. Check in at departments, ask if there are any concerns, break up fights and do your best to prevent trouble before it spirals out of control. Wipe out roaches and other dangerous creatures wherever you encounter them.<br>\
 	<br>\
-	You have almost-total access to the ship in order to carry out your duties and reach threats quickly. Do not abuse this. It does not mean you can walk into anywhere you like, many areas are full of sensitive machinery and entering unnanounced can be harmful to your health. Do not steal from departments either. If it's not in the ironhammer wing, it doesn't belong to you. Stealing from the Guild is a good way to get shot in the back"
+	You have almost-total access to the ship in order to carry out your duties and reach threats quickly. Do not abuse this. It does not mean you can walk into anywhere you like, many areas are full of sensitive machinery and entering unnanounced can be harmful to your health. Do not steal from departments either. If it's not in the ironhammer wing, it doesn't belong to you. Stealing from the Synagogue is a good way to get shot in the back"
 
 	duties = "		Patrol the ship, provide a security presence, and look for trouble<br>\
 		Subdue and arrest criminals, terrorists, and other threats<br>\
@@ -281,7 +281,7 @@
 		Your third loyalty is to humanity. You are still human under all that armour. If you're being ordered to slaughter civilians en masse, it may be time to start thinking for yourself."
 
 /obj/landmark/join/start/ihoper
-	name = "Ironhammer Operative"
+	name = "Faceless Goon"
 	icon_state = "player-blue"
 	join_tag = /datum/job/ihoper
 

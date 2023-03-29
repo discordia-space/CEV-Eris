@@ -25,7 +25,7 @@
 
 /tipsAndTricks/roles/bombs
     roles_list = list(/datum/antagonist)
-    tipText = "You can create very potent bombs in Moebius chemistry or toxins. You also have various activation methods to chose from."
+    tipText = "You can create very potent bombs in Morbius chemistry or toxins. You also have various activation methods to chose from."
 
 /tipsAndTricks/roles/computerPrograms
     roles_list = list(/datum/antagonist/contractor)

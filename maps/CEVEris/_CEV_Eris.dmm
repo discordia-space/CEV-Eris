@@ -615,7 +615,7 @@
 "abL" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
-	name = "Ironhammer Commander";
+	name = "Tard Wrangler";
 	req_access = list(58)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -747,7 +747,7 @@
 "abZ" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_command{
-	name = "Ironhammer Commander";
+	name = "Tard Wrangler";
 	req_access = list(58)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -23287,7 +23287,7 @@
 /obj/structure/disposalpipe/sortjunction{
 	dir = 2;
 	icon_state = "pipe-j2s";
-	sortType = list("Medbay","CMO Office","Chemistry","Research","Robotics")
+	sortType = list("Medbay","CMO Office","Powergamerry","Research","Robotics")
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -32608,7 +32608,7 @@
 "bzI" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_mining{
-	name = "Artist's office";
+	name = "Clown's office";
 	req_access = list(44)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -43570,7 +43570,7 @@
 "bZA" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
-	name = "First Officer";
+	name = "Spare Wheel";
 	req_access = list(57)
 	},
 /obj/structure/cable/green{
@@ -44752,9 +44752,9 @@
 	name = "Conference Room"
 	},
 /obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	layer = 2.6;
-	name = "Club Total Lockdown"
+	name = "Mafia Total Lockdown"
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/crew_quarters/barconference)
@@ -44985,7 +44985,7 @@
 /area/eris/hallway/main/section1)
 "cdp" = (
 /obj/machinery/door/airlock/glass_command{
-	name = "Moebius Biolab Officer";
+	name = "Morbius Not Organ Harvester";
 	req_access = list(40)
 	},
 /obj/machinery/door/firedoor,
@@ -47284,9 +47284,9 @@
 	name = "Maintenance Hatch"
 	},
 /obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	layer = 2.6;
-	name = "Club Total Lockdown"
+	name = "Mafia Total Lockdown"
 	},
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/bar)
@@ -48652,9 +48652,9 @@
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	layer = 2.6;
-	name = "Club Total Lockdown"
+	name = "Mafia Total Lockdown"
 	},
 /obj/machinery/door/blast/shutters{
 	dir = 8;
@@ -48990,7 +48990,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/airlock/command{
-	name = "Moebius Expedition Overseer";
+	name = "Morbius Big Nerd";
 	req_access = list(30)
 	},
 /turf/simulated/floor/tiled/dark/cargo,
@@ -50193,16 +50193,16 @@
 	name = "plastic table frame"
 	},
 /obj/machinery/door/window/eastright{
-	name = "Technomancer Desk"
+	name = "Adeptus Desk"
 	},
 /obj/machinery/door/window/westright{
-	name = "Technomancer Desk";
+	name = "Adeptus Desk";
 	req_access = list(10)
 	},
 /obj/machinery/door/blast/shutters{
 	dir = 4;
-	id = "TechnomancerShopLockdown";
-	name = "Technomancer Shop Lockdown"
+	id = "AdeptusShopLockdown";
+	name = "Adeptus Shop Lockdown"
 	},
 /turf/simulated/floor/plating,
 /area/eris/engineering/foyer)
@@ -51888,9 +51888,9 @@
 	name = "Maintenance Hatch"
 	},
 /obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	layer = 2.6;
-	name = "Club Total Lockdown"
+	name = "Mafia Total Lockdown"
 	},
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/barconference)
@@ -51946,9 +51946,9 @@
 "cuD" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
-	department = "Moebius Expedition Overseer's Desk";
+	department = "Morbius Big Nerd's Desk";
 	departmentType = 4;
-	name = "Moebius Expedition Overseer RC";
+	name = "Morbius Big Nerd RC";
 	pixel_x = -30
 	},
 /turf/simulated/floor/carpet/purcarpet,
@@ -52549,7 +52549,7 @@
 "cwq" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
-	name = "Guild Merchant's Quarters";
+	name = "Synagogue Rabbi's Quarters";
 	req_access = list(41)
 	},
 /obj/machinery/door/blast/regular{
@@ -54270,9 +54270,9 @@
 	name = "Conference Room"
 	},
 /obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	layer = 2.6;
-	name = "Club Total Lockdown"
+	name = "Mafia Total Lockdown"
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/white/golden,
@@ -55841,7 +55841,7 @@
 	pixel_y = -2
 	},
 /obj/item/device/eftpos{
-	eftpos_name = "Moebius Labs EFTPOS scanner"
+	eftpos_name = "Morbius Labs EFTPOS scanner"
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/command/meo)
@@ -56505,7 +56505,7 @@
 /obj/structure/disposalpipe/sortjunction{
 	dir = 2;
 	icon_state = "pipe-j2s";
-	sortType = list("Cargo Bay","QM Office","Library Backroom","Chapel","Preacher Office","Theatre","Hydroponics","NeoTheology Machine Room")
+	sortType = list("Cargo Bay","QM Office","Library Backroom","Chapel","Head of Personnel Office","Theatre","Hydroponics","NanoTrasen Machine Room")
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -58218,9 +58218,9 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	layer = 2.6;
-	name = "Club Total Lockdown"
+	name = "Mafia Total Lockdown"
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/crew_quarters/bar)
@@ -63566,7 +63566,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/command{
-	name = "Moebius Expedition Overseer's Quarters";
+	name = "Morbius Big Nerd's Quarters";
 	req_access = list(30)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -65599,7 +65599,7 @@
 /obj/structure/disposalpipe/sortjunction{
 	dir = 8;
 	icon_state = "pipe-j2s";
-	sortType = list("Chemistry")
+	sortType = list("Powergamerry")
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -68249,7 +68249,7 @@
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/command{
-	name = "Moebius Biolab Officer's Quarters";
+	name = "Morbius Not Organ Harvester's Quarters";
 	req_access = list(40)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -68264,7 +68264,7 @@
 "dim" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
-	name = "Technomancer Exultant's Quarters";
+	name = "Adeptus Enginseer's Quarters";
 	req_access = list(56)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -68610,7 +68610,7 @@
 "djb" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
-	name = "Technomancer Exultant's Quarters";
+	name = "Adeptus Enginseer's Quarters";
 	req_access = list(56)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -69624,7 +69624,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/command{
-	name = "Moebius Biolab Officer";
+	name = "Morbius Not Organ Harvester";
 	req_access = list(40)
 	},
 /obj/machinery/door/blast/shutters{
@@ -71905,7 +71905,7 @@
 "dqk" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_medical{
-	name = "Chemistry Storage";
+	name = "Powergamerry Storage";
 	req_access = list(33)
 	},
 /turf/simulated/floor/tiled/white/cargo,
@@ -72320,7 +72320,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_medical{
 	id_tag = null;
-	name = "Chemistry Lab";
+	name = "Powergamerry Lab";
 	req_access = list(33)
 	},
 /obj/structure/cable/green{
@@ -72426,7 +72426,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_medical{
 	id_tag = null;
-	name = "Chemistry Lab";
+	name = "Powergamerry Lab";
 	req_access = list(33)
 	},
 /obj/machinery/door/blast/regular{
@@ -72616,7 +72616,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/window/westright{
 	dir = 4;
-	name = "Chemistry Desk";
+	name = "Powergamerry Desk";
 	req_access = list(33)
 	},
 /turf/simulated/floor/tiled/white/cargo,
@@ -75443,9 +75443,9 @@
 "dyS" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
-	department = "Moebius Biolab Officer's Desk";
+	department = "Morbius Not Organ Harvester's Desk";
 	departmentType = 4;
-	name = "Moebius Biolab Officer RC";
+	name = "Morbius Not Organ Harvester RC";
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
@@ -75532,7 +75532,7 @@
 /area/eris/maintenance/section2deck2port)
 "dzb" = (
 /obj/machinery/door/airlock/command{
-	name = "Guild Merchant's Quarters";
+	name = "Synagogue Rabbi's Quarters";
 	req_access = list(41)
 	},
 /obj/machinery/door/firedoor,
@@ -75907,7 +75907,7 @@
 "dzX" = (
 /obj/structure/table/standard,
 /obj/item/device/eftpos{
-	eftpos_name = "Moebius Biolabs EFTPOS scanner"
+	eftpos_name = "Morbius Biolabs EFTPOS scanner"
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -76777,7 +76777,7 @@
 	opacity = 0
 	},
 /obj/machinery/door/window/westright{
-	name = "Chemistry Desk";
+	name = "Powergamerry Desk";
 	req_access = list(33)
 	},
 /obj/machinery/door/blast/shutters{
@@ -76955,7 +76955,7 @@
 /area/eris/medical/patients_rooms)
 "dCn" = (
 /obj/machinery/door/airlock/command{
-	name = "Guild Merchant's Quarters";
+	name = "Synagogue Rabbi's Quarters";
 	req_access = list(41)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -77613,7 +77613,7 @@
 /area/eris/hallway/main/section2)
 "dDT" = (
 /obj/machinery/door/airlock/command{
-	name = "Guild Merchant's Quarters";
+	name = "Synagogue Rabbi's Quarters";
 	req_access = list(41)
 	},
 /obj/structure/disposalpipe/segment{
@@ -78309,7 +78309,7 @@
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "neotheology_shop";
-	name = "NeoTheology Shop Access"
+	name = "NanoTrasen Shop Access"
 	},
 /turf/simulated/floor/plating,
 /area/eris/neotheology/churchbooth)
@@ -78576,13 +78576,13 @@
 /obj/structure/table/standard,
 /obj/machinery/door/window{
 	dir = 1;
-	name = "NeoTheology Shop"
+	name = "NanoTrasen Shop"
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "neotheology_shop";
-	name = "NeoTheology Shop Access"
+	name = "NanoTrasen Shop Access"
 	},
 /turf/simulated/floor/holofloor/tiled,
 /area/eris/neotheology/churchbooth)
@@ -84633,7 +84633,7 @@
 /obj/structure/table/reinforced,
 /obj/item/tool/tape_roll,
 /obj/item/device/eftpos{
-	eftpos_name = "Technomancers EFTPOS scanner"
+	eftpos_name = "Adeptuss EFTPOS scanner"
 	},
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/command/exultant)
@@ -88455,7 +88455,7 @@
 "edR" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_medical{
-	name = "Chemistry Storage";
+	name = "Powergamerry Storage";
 	req_access = list(33)
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
@@ -94678,9 +94678,9 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular/open{
 	dir = 4;
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	layer = 2.6;
-	name = "Club Total Lockdown"
+	name = "Mafia Total Lockdown"
 	},
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/bar)
@@ -94700,7 +94700,7 @@
 /obj/structure/disposalpipe/sortjunction{
 	dir = 4;
 	icon_state = "pipe-j2s";
-	sortType = list("NeoTheology Machine Room")
+	sortType = list("NanoTrasen Machine Room")
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
@@ -94759,7 +94759,7 @@
 "ete" = (
 /obj/machinery/door/airlock/command{
 	id_tag = "cedoor";
-	name = "Technomancer Exultant";
+	name = "Adeptus Enginseer";
 	req_access = list(56)
 	},
 /obj/machinery/door/firedoor,
@@ -96117,9 +96117,9 @@
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	layer = 2.6;
-	name = "Club Total Lockdown"
+	name = "Mafia Total Lockdown"
 	},
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/bar)
@@ -100105,7 +100105,7 @@
 "eFc" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/medical{
-	name = "Paramedic Closet";
+	name = "Hobo Closet";
 	req_access = list(68)
 	},
 /turf/simulated/floor/tiled/white/cargo,
@@ -100906,7 +100906,7 @@
 	pixel_y = 24
 	},
 /obj/landmark/storyevent/midgame_stash_spawn{
-	navigation = "Section 2, floor 4. Moebius dormitory of science deparment, on the bed."
+	navigation = "Section 2, floor 4. Morbius dormitory of science deparment, on the bed."
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/rnd/research)
@@ -101080,7 +101080,7 @@
 /obj/structure/table/standard,
 /obj/machinery/button/remote/blast_door{
 	id = "neotheology_shop";
-	name = "NeoTheology Shop Access";
+	name = "NanoTrasen Shop Access";
 	pixel_x = 4;
 	pixel_y = -4
 	},
@@ -101570,9 +101570,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	layer = 2.6;
-	name = "Club Total Lockdown"
+	name = "Mafia Total Lockdown"
 	},
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/barconference)
@@ -102019,7 +102019,7 @@
 /area/eris/neotheology/chapelritualroom)
 "hms" = (
 /obj/machinery/door/airlock/command{
-	name = "Guild Merchant's Quarters";
+	name = "Synagogue Rabbi's Quarters";
 	req_access = list(41)
 	},
 /obj/machinery/door/firedoor,
@@ -103075,7 +103075,7 @@
 "jDU" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_medical{
-	name = "Chemistry Maintenance";
+	name = "Powergamerry Maintenance";
 	req_access = list(33)
 	},
 /obj/machinery/door/blast/regular{
@@ -103115,8 +103115,8 @@
 /area/eris/maintenance/sorter)
 "jFW" = (
 /obj/machinery/button/remote/blast_door{
-	id = "TechnomancerShopLockdown";
-	name = "Technomancer Shop Lockdown";
+	id = "AdeptusShopLockdown";
+	name = "Adeptus Shop Lockdown";
 	pixel_x = 22
 	},
 /turf/simulated/wall/r_wall,
@@ -103467,9 +103467,9 @@
 	req_access = list(28)
 	},
 /obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	layer = 2.6;
-	name = "Club Total Lockdown"
+	name = "Mafia Total Lockdown"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -103691,8 +103691,8 @@
 "ljI" = (
 /obj/structure/catwalk,
 /obj/machinery/button/remote/blast_door{
-	id = "TechnomancerShopLockdown";
-	name = "Technomancer Shop Lockdown";
+	id = "AdeptusShopLockdown";
+	name = "Adeptus Shop Lockdown";
 	pixel_x = 22
 	},
 /turf/simulated/open,
@@ -103949,7 +103949,7 @@
 "lIR" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_engineering{
-	name = "Technomancer Desk";
+	name = "Adeptus Desk";
 	req_one_access = list(10)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -104103,9 +104103,9 @@
 	dir = 2
 	},
 /obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	layer = 2.6;
-	name = "Club Total Lockdown"
+	name = "Mafia Total Lockdown"
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -104302,8 +104302,8 @@
 /obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/shutters{
 	dir = 4;
-	id = "TechnomancerShopLockdown";
-	name = "Technomancer Shop Lockdown"
+	id = "AdeptusShopLockdown";
+	name = "Adeptus Shop Lockdown"
 	},
 /turf/simulated/floor/plating,
 /area/eris/engineering/foyer)
@@ -105049,9 +105049,9 @@
 "owS" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
-	department = "Technomancer Exultant's Desk";
+	department = "Adeptus Enginseer's Desk";
 	departmentType = 4;
-	name = "Technomancer Exultant RC";
+	name = "Adeptus Enginseer RC";
 	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
@@ -105472,7 +105472,7 @@
 "pth" = (
 /obj/structure/table/bar_special,
 /obj/machinery/button/remote/blast_door{
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	name = "Lockdown";
 	pixel_y = -24;
 	req_access = list(28)
@@ -105681,9 +105681,9 @@
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	layer = 2.6;
-	name = "Club Total Lockdown"
+	name = "Mafia Total Lockdown"
 	},
 /obj/machinery/door/blast/shutters{
 	dir = 8;
@@ -106232,8 +106232,8 @@
 /area/eris/medical/medbay)
 "rkA" = (
 /obj/machinery/button/remote/blast_door{
-	id = "TechnomancerShopLockdown";
-	name = "Technomancer Shop Lockdown";
+	id = "AdeptusShopLockdown";
+	name = "Adeptus Shop Lockdown";
 	pixel_x = 22
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -106627,8 +106627,8 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
-	id = "TechnomancerShopLockdown";
-	name = "Technomancer Shop Lockdown"
+	id = "AdeptusShopLockdown";
+	name = "Adeptus Shop Lockdown"
 	},
 /turf/simulated/floor/plating,
 /area/eris/engineering/foyer)
@@ -107284,7 +107284,7 @@
 /area/eris/crew_quarters/barconference)
 "tzQ" = (
 /obj/machinery/door/airlock/medical{
-	name = "Chemistry";
+	name = "Powergamerry";
 	req_access = list(33)
 	},
 /obj/machinery/door/blast/regular{
@@ -107731,9 +107731,9 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	layer = 2.6;
-	name = "Club Total Lockdown"
+	name = "Mafia Total Lockdown"
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
@@ -108186,7 +108186,7 @@
 /area/eris/crew_quarters/bar)
 "vHm" = (
 /obj/machinery/button/remote/blast_door{
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	name = "Lockdown";
 	pixel_x = 24;
 	pixel_y = -6;
@@ -109103,9 +109103,9 @@
 "xWd" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
+	id = "MafiaTotalLockdown";
 	layer = 2.6;
-	name = "Club Total Lockdown"
+	name = "Mafia Total Lockdown"
 	},
 /obj/machinery/door/airlock{
 	name = "Garden";

@@ -1,5 +1,5 @@
 /decl/hierarchy/outfit/job/captain
-	name = OUTFIT_JOB_NAME("Captain")
+	name = OUTFIT_JOB_NAME("Steering Wheel")
 	head = /obj/item/clothing/head/caphat
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	uniform = /obj/item/clothing/under/rank/captain
@@ -30,7 +30,7 @@
 				qdel(medal)
 
 /decl/hierarchy/outfit/job/hop
-	name = OUTFIT_JOB_NAME("First Officer")
+	name = OUTFIT_JOB_NAME("Spare Wheel")
 	head = /obj/item/clothing/head/caphat/hop
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	uniform = /obj/item/clothing/under/rank/first_officer

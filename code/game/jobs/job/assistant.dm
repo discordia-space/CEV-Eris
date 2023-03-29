@@ -8,9 +8,9 @@
 	spawn_positions = -1
 	supervisors = "anyone who pays you"
 	selection_color = "#dddddd"
-	initial_balance	= 0 // This is now defined in code\modules\economy\cash.dm under spacecash/bundle/Vagabond as they carry cash on them.
+	initial_balance	= 0 // This is now defined in code\modules\economy\cash.dm under spacecash/bundle/Hobo as they carry cash on them.
 	wage = WAGE_NONE //Get a job ya lazy bum
-	//alt_titles = list("Technomancer Assistant","Moebius Medical Intern","Moebius Research Assistant")
+	//alt_titles = list("Adeptus Assistant","Morbius Medical Intern","Morbius Research Assistant")
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5)
 
 	access = list(access_maint_tunnels)

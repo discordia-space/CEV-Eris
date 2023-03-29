@@ -79,7 +79,7 @@
 							/datum/design/research/item/weapon/flora_gun)
 
 /datum/technology/portable_chemistry
-	name = "Portable Chemistry"
+	name = "Portable Powergamerry"
 	desc = "Portable bottle generating and reagent separation. Portable heating system, space for system required: 30 cubic millimeters."
 	tech_type = RESEARCH_BIOTECH
 

@@ -139,7 +139,7 @@
   - bugfix: Fixed bug with stopping and starting a recording a second time made the
       first recording get repeated in the transcript.
   - spellcheck: Fixed a spelling mistake in the circuit disk. Technomacer > TechnomaNcer.
-  - spellcheck: Renamed Cyberchristianity to Neotheology in some cases.
+  - spellcheck: Renamed Cyberchristianity to NanoTrasen in some cases.
   Garen7:
   - bugfix: You can remove light hardsuits by clickdragging them to your hand, so
       you can now remove light hardsuits with storage components.

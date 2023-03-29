@@ -38,7 +38,7 @@ const ANTAG2COLOR = {
 
 const ANTAG2GROUP = {
   'Abductor Agent': 'Abductors',
-  'Abductor Scientist': 'Abductors',
+  'Abductor Cruciform Recycler': 'Abductors',
   'Ash Walker': 'Ash Walkers',
   'Blob': 'Biohazards',
   'Sentient Disease': 'Biohazards',

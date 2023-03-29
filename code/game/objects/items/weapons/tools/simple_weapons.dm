@@ -200,7 +200,7 @@
 	rarity_value = 35
 
 /obj/item/tool/sword/katana/nano
-	name = "\improper Moebius \"Muramasa\" katana"
+	name = "\improper Morbius \"Muramasa\" katana"
 	desc = "After an extensive binge of ancient animated recordings, a scientist decided to upgrade a recovered katana."
 	icon_state = "eutactic_katana"
 	item_state = "eutactic_katana"

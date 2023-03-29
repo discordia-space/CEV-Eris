@@ -88,7 +88,7 @@
   Keekenox:
   - imageadd: New bottle icons and reagent fillings.
   Kurgis:
-  - rscadd: The Preacher has a nifty new hat, any resemblance to another hat of a
+  - rscadd: The Head of Personnel has a nifty new hat, any resemblance to another hat of a
       notable head of staff is surely heretical thinking.
   WatlerJe:
   - imageadd: New icons for lighters and zippos, check them out!
@@ -110,7 +110,7 @@
   - rscadd: 'All the guild workers start with a perk that gives them one of four possible
       benefits: a random language, knowledge of an active traitor contract, a stash
       location paper or a rare object.'
-  - rscadd: All NeoTheology crew starts with a perk that boosts their sanity regeneration
+  - rscadd: All NanoTrasen crew starts with a perk that boosts their sanity regeneration
       when near an altar.
   Kurgis:
   - bugfix: Zippos no longer invisible when you flick them on.

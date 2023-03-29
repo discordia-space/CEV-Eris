@@ -80,7 +80,7 @@
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil/random(src)
 
-/obj/item/storage/belt/utility/technomancer 
+/obj/item/storage/belt/utility/technomancer
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/belt/utility/technomancer/populate_contents()
@@ -91,7 +91,7 @@
 	new /obj/item/tool/wirecutters/armature(src)
 	new /obj/item/tool/shovel/power(src)
 	new /obj/item/stack/cable_coil/random(src)
-	
+
 /obj/item/storage/belt/utility/neotheology
 	name = "neotheology utility belt"
 	desc = "Waist-held holy items."

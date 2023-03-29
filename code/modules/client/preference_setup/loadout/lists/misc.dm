@@ -1,5 +1,5 @@
 /datum/gear/bible
-	display_name = "NeoTheology ritual book"
+	display_name = "NanoTrasen ritual book"
 	path = /obj/item/book/ritual/cruciform
 	cost = 2
 

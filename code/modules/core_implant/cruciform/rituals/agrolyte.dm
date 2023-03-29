@@ -2,7 +2,7 @@
 	name = "agrolyte"
 	phrase = null
 	desc = ""
-	category = "Agrolyte"
+	category = "Botanist"
 
 /datum/ritual/cruciform/agrolyte/accelerated_growth
 	name = "Accelerated growth"
@@ -39,7 +39,7 @@
 	addtimer(CALLBACK(src, PROC_REF(take_boost), S), effect_time)
 
 /datum/ritual/cruciform/agrolyte/accelerated_growth/proc/take_boost(datum/seed/S, stat, amount)
-	// take_boost is automatically triggered by a callback function when the boost ends but the seed 
+	// take_boost is automatically triggered by a callback function when the boost ends but the seed
 	// may have been deleted during the duration of the boost
 	if(S) // check if seed still exist otherwise we cannot read null.stats
 		S.set_trait(TRAIT_BOOSTED_GROWTH, 1)

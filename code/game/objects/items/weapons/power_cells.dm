@@ -1,7 +1,7 @@
 //BIG CELLS - for APC, borgs and machinery.
 /obj/item/cell/large
 	name = "Asters \"Robustcell 1000L\""
-	desc = "Asters Guild branded rechargeable L-standardized power cell. This one is the cheapest you can find."
+	desc = "Asters Synagogue branded rechargeable L-standardized power cell. This one is the cheapest you can find."
 	icon_state = "b_st"
 	maxcharge = CELL_LARGE_BASE_CHARGE//1000
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3)
@@ -10,56 +10,56 @@
 
 /obj/item/cell/large/high
 	name = "Asters \"Robustcell 5000L\""
-	desc = "Asters Guild branded rechargeable L-standardized power cell. Popular and reliable version."
+	desc = "Asters Synagogue branded rechargeable L-standardized power cell. Popular and reliable version."
 	icon_state = "b_hi"
 	origin_tech = list(TECH_POWER = 2)
 	maxcharge = 5000
 
 /obj/item/cell/large/super
 	name = "Asters \"Robustcell 15000L\""
-	desc = "Asters Guild branded rechargeable L-standardized power cell. This advanced version can store even more energy."
+	desc = "Asters Synagogue branded rechargeable L-standardized power cell. This advanced version can store even more energy."
 	icon_state = "b_sup"
 	origin_tech = list(TECH_POWER = 5)
 	maxcharge = 15000
 
 /obj/item/cell/large/hyper
 	name = "Asters \"Robustcell-X 20000L\""
-	desc = "Asters Guild branded rechargeable L-standardized power cell. Looks like this is a rare and powerful prototype."
+	desc = "Asters Synagogue branded rechargeable L-standardized power cell. Looks like this is a rare and powerful prototype."
 	icon_state = "b_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 20000
 
 /obj/item/cell/large/moebius
-	name = "Moebius \"Power-Geyser 2000L\""
-	desc = "Moebius Laboratories branded rechargeable L-standardized power cell. This one is cheap, yet better than Aster model for same price."
+	name = "Morbius \"Power-Geyser 2000L\""
+	desc = "Morbius Laboratories branded rechargeable L-standardized power cell. This one is cheap, yet better than Aster model for same price."
 	icon_state = "meb_b_st"
 	maxcharge = 2000
 	spawn_tags = SPAWN_TAG_POWERCELL_MOEBIUS_LARGE
 
 /obj/item/cell/large/moebius/high
-	name = "Moebius \"Power-Geyser 7000L\""
-	desc = "Moebius Laboratories branded rechargeable L-standardized power cell. Popular and reliable version."
+	name = "Morbius \"Power-Geyser 7000L\""
+	desc = "Morbius Laboratories branded rechargeable L-standardized power cell. Popular and reliable version."
 	icon_state = "meb_b_hi"
 	origin_tech = list(TECH_POWER = 2)
 	maxcharge = 7000
 
 /obj/item/cell/large/moebius/super
-	name = "Moebius \"Power-Geyser 13000L\""
-	desc = "Moebius Laboratories branded rechargeable L-standardized power cell. This advanced version can store even more energy."
+	name = "Morbius \"Power-Geyser 13000L\""
+	desc = "Morbius Laboratories branded rechargeable L-standardized power cell. This advanced version can store even more energy."
 	icon_state = "meb_b_sup"
 	origin_tech = list(TECH_POWER = 5)
 	maxcharge = 13000
 
 /obj/item/cell/large/moebius/hyper
-	name = "Moebius \"Power-Geyser 18000L\""
-	desc = "Moebius Laboratories branded rechargeable L-standardized power cell. Looks like this is rare and powerful prototype."
+	name = "Morbius \"Power-Geyser 18000L\""
+	desc = "Morbius Laboratories branded rechargeable L-standardized power cell. Looks like this is rare and powerful prototype."
 	icon_state = "meb_b_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 18000
 
 /obj/item/cell/large/moebius/nuclear
-	name = "Moebius \"Atomcell 13000L\""
-	desc = "Moebius Laboratories branded rechargeable L-standardized power cell. This version able to recharge itself over time."
+	name = "Morbius \"Atomcell 13000L\""
+	desc = "Morbius Laboratories branded rechargeable L-standardized power cell. This version able to recharge itself over time."
 	icon_state = "meb_b_nu"
 	autorecharging = TRUE
 	origin_tech = list(TECH_POWER = 6)
@@ -76,8 +76,8 @@
 	rarity_value = 32
 
 /obj/item/cell/large/neotheology
-	name = "NeoTheology \"Spark 13000L\""
-	desc = "NeoTheology branded non-rechargeable L-standardized power cell."
+	name = "NanoTrasen \"Spark 13000L\""
+	desc = "NanoTrasen branded non-rechargeable L-standardized power cell."
 	icon_state = "b_nt"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_BIOMATTER = 15)
 	maxcharge = 13000
@@ -86,8 +86,8 @@
 	spawn_tags = SPAWN_TAG_POWERCELL_NEOTHEOLOGY_LARGE
 
 /obj/item/cell/large/neotheology/plasma
-	name = "NeoTheology \"Radiance 20000L\""
-	desc = "NeoTheology branded non-rechargeable L-standardized power cell. This advanced version can store even more energy."
+	name = "NanoTrasen \"Radiance 20000L\""
+	desc = "NanoTrasen branded non-rechargeable L-standardized power cell. This advanced version can store even more energy."
 	icon_state = "b_nt_pl"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_BIOMATTER = 15)
 	maxcharge = 20000
@@ -119,7 +119,7 @@
 
 /obj/item/cell/medium
 	name = "Asters \"Robustcell 600M\""
-	desc = "Asters Guild branded rechargeable M-standardized power cell. This one is the cheapest you can find."
+	desc = "Asters Synagogue branded rechargeable M-standardized power cell. This one is the cheapest you can find."
 	icon_state = "m_st"
 	w_class = ITEM_SIZE_SMALL
 	force = WEAPON_FORCE_HARMLESS
@@ -132,7 +132,7 @@
 
 /obj/item/cell/medium/high
 	name = "Asters \"Robustcell 800M\""
-	desc = "Asters Guild branded rechargeable M-standardized power cell. Popular and reliable version."
+	desc = "Asters Synagogue branded rechargeable M-standardized power cell. Popular and reliable version."
 	icon_state = "m_hi"
 	origin_tech = list(TECH_POWER = 2)
 	maxcharge = 800
@@ -140,49 +140,49 @@
 
 /obj/item/cell/medium/super
 	name = "Asters \"Robustcell 1000M\""
-	desc = "Asters Guild branded rechargeable M-standardized power cell. This advanced version can store even more energy."
+	desc = "Asters Synagogue branded rechargeable M-standardized power cell. This advanced version can store even more energy."
 	icon_state = "m_sup"
 	origin_tech = list(TECH_POWER = 5)
 	maxcharge = 1000
 
 /obj/item/cell/medium/hyper
 	name = "Asters \"Robustcell-X 1500M\""
-	desc = "Asters Guild branded rechargeable M-standardized power cell. Looks like this is a rare and powerful prototype."
+	desc = "Asters Synagogue branded rechargeable M-standardized power cell. Looks like this is a rare and powerful prototype."
 	icon_state = "m_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 1500
 
 /obj/item/cell/medium/moebius
-	name = "Moebius \"Power-Geyser 700M\""
-	desc = "Moebius Laboratories branded rechargeable M-standardized power cell. This one is cheap, yet better than Aster model for same price."
+	name = "Morbius \"Power-Geyser 700M\""
+	desc = "Morbius Laboratories branded rechargeable M-standardized power cell. This one is cheap, yet better than Aster model for same price."
 	icon_state = "meb_m_st"
 	maxcharge = 700
 	spawn_tags = SPAWN_TAG_POWERCELL_MOEBIUS_MEDIUM
 
 /obj/item/cell/medium/moebius/high
-	name = "Moebius \"Power-Geyser 900M\""
-	desc = "Moebius Laboratories branded rechargeable M-standardized power cell. Popular and reliable version."
+	name = "Morbius \"Power-Geyser 900M\""
+	desc = "Morbius Laboratories branded rechargeable M-standardized power cell. Popular and reliable version."
 	icon_state = "meb_m_hi"
 	origin_tech = list(TECH_POWER = 2)
 	maxcharge = 900
 
 /obj/item/cell/medium/moebius/super
-	name = "Moebius \"Power-Geyser 1000M\""
-	desc = "Moebius Laboratories branded rechargeable M-standardized power cell. This advanced version can store even more energy."
+	name = "Morbius \"Power-Geyser 1000M\""
+	desc = "Morbius Laboratories branded rechargeable M-standardized power cell. This advanced version can store even more energy."
 	icon_state = "meb_m_sup"
 	origin_tech = list(TECH_POWER = 5)
 	maxcharge = 1000
 
 /obj/item/cell/medium/moebius/hyper
-	name = "Moebius \"Power-Geyser 1300M\""
-	desc = "Moebius Laboratories branded rechargeable M-standardized power cell. Looks like this is rare and powerful prototype."
+	name = "Morbius \"Power-Geyser 1300M\""
+	desc = "Morbius Laboratories branded rechargeable M-standardized power cell. Looks like this is rare and powerful prototype."
 	icon_state = "meb_m_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 1300
 
 /obj/item/cell/medium/moebius/nuclear
-	name = "Moebius \"Atomcell 1000M\""
-	desc = "Moebius Laboratories branded rechargeable M-standardized power cell. This version able to recharge itself over time."
+	name = "Morbius \"Atomcell 1000M\""
+	desc = "Morbius Laboratories branded rechargeable M-standardized power cell. This version able to recharge itself over time."
 	icon_state = "meb_m_nu"
 	autorecharging = TRUE
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 2, MATERIAL_URANIUM = 4)
@@ -199,8 +199,8 @@
 	rarity_value = 27
 
 /obj/item/cell/medium/neotheology
-	name = "NeoTheology \"Spark 1000M\""
-	desc = "NeoTheology branded non-rechargeable M-standardized power cell."
+	name = "NanoTrasen \"Spark 1000M\""
+	desc = "NanoTrasen branded non-rechargeable M-standardized power cell."
 	icon_state = "m_nt"
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_BIOMATTER = 10)
 	maxcharge = 1000
@@ -209,8 +209,8 @@
 	spawn_tags = SPAWN_TAG_POWERCELL_NEOTHEOLOGY_MEDIUM
 
 /obj/item/cell/medium/neotheology/plasma
-	name = "NeoTheology \"Radiance 1500M\""
-	desc = "NeoTheology branded non-rechargeable M-standardized power cell. This advanced version can store even more energy."
+	name = "NanoTrasen \"Radiance 1500M\""
+	desc = "NanoTrasen branded non-rechargeable M-standardized power cell. This advanced version can store even more energy."
 	icon_state = "m_nt_pl"
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_BIOMATTER = 10)
 	maxcharge = 1500
@@ -218,7 +218,7 @@
 //SMALL CELLS - for small devices, such as flashlights, analyzers and HUDs.
 /obj/item/cell/small
 	name = "Asters \"Robustcell 100S\""
-	desc = "Asters Guild branded rechargeable S-standardized power cell. This one is the cheapest you can find."
+	desc = "Asters Synagogue branded rechargeable S-standardized power cell. This one is the cheapest you can find."
 	icon_state = "s_st"
 	w_class = ITEM_SIZE_TINY
 	force = WEAPON_FORCE_HARMLESS
@@ -231,56 +231,56 @@
 
 /obj/item/cell/small/high
 	name = "Asters \"Robustcell 200S\""
-	desc = "Asters Guild branded rechargeable S-standardized power cell. Popular and reliable version."
+	desc = "Asters Synagogue branded rechargeable S-standardized power cell. Popular and reliable version."
 	icon_state = "s_hi"
 	origin_tech = list(TECH_POWER = 2)
 	maxcharge = 200
 
 /obj/item/cell/small/super
 	name = "Asters \"Robustcell 300S\""
-	desc = "Asters Guild branded rechargeable S-standardized power cell. This advanced version can store even more energy."
+	desc = "Asters Synagogue branded rechargeable S-standardized power cell. This advanced version can store even more energy."
 	icon_state = "s_sup"
 	origin_tech = list(TECH_POWER = 5)
 	maxcharge = 300
 
 /obj/item/cell/small/hyper
 	name = "Asters \"Robustcell-X 500S\""
-	desc = "Asters Guild branded rechargeable S-standardized power cell. Looks like this is a rare and powerful prototype."
+	desc = "Asters Synagogue branded rechargeable S-standardized power cell. Looks like this is a rare and powerful prototype."
 	icon_state = "s_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 500
 
 /obj/item/cell/small/moebius
-	name = "Moebius \"Power-Geyser 120S\""
-	desc = "Moebius Laboratories branded rechargeable S-standardized power cell. This one is cheap, yet better than Aster model for same price."
+	name = "Morbius \"Power-Geyser 120S\""
+	desc = "Morbius Laboratories branded rechargeable S-standardized power cell. This one is cheap, yet better than Aster model for same price."
 	icon_state = "meb_s_st"
 	maxcharge = 120
 	spawn_tags = SPAWN_TAG_POWERCELL_MOEBIUS_SMALL
 
 /obj/item/cell/small/moebius/high
-	name = "Moebius \"Power-Geyser 250S\""
-	desc = "Moebius Laboratories branded rechargeable S-standardized power cell. Popular and reliable version."
+	name = "Morbius \"Power-Geyser 250S\""
+	desc = "Morbius Laboratories branded rechargeable S-standardized power cell. Popular and reliable version."
 	icon_state = "meb_s_hi"
 	origin_tech = list(TECH_POWER = 2)
 	maxcharge = 250
 
 /obj/item/cell/small/moebius/super
-	name = "Moebius \"Power-Geyser 300S\""
-	desc = "Moebius Laboratories branded rechargeable S-standardized power cell. This advanced version can store even more energy."
+	name = "Morbius \"Power-Geyser 300S\""
+	desc = "Morbius Laboratories branded rechargeable S-standardized power cell. This advanced version can store even more energy."
 	icon_state = "meb_s_sup"
 	origin_tech = list(TECH_POWER = 5)
 	maxcharge = 300
 
 /obj/item/cell/small/moebius/hyper
-	name = "Moebius \"Power-Geyser 400S\""
-	desc = "Moebius Laboratories branded rechargeable S-standardized power cell. Looks like this is rare and powerful prototype."
+	name = "Morbius \"Power-Geyser 400S\""
+	desc = "Morbius Laboratories branded rechargeable S-standardized power cell. Looks like this is rare and powerful prototype."
 	icon_state = "meb_s_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 400
 
 /obj/item/cell/small/moebius/nuclear
-	name = "Moebius \"Atomcell 300S\""
-	desc = "Moebius Laboratories branded rechargeable S-standardized microreactor cell. Recharges itself over time."
+	name = "Morbius \"Atomcell 300S\""
+	desc = "Morbius Laboratories branded rechargeable S-standardized microreactor cell. Recharges itself over time."
 	icon_state = "meb_s_nu"
 	autorecharging = TRUE
 	origin_tech = list(TECH_POWER = 6)
@@ -288,8 +288,8 @@
 	maxcharge = 300
 
 /obj/item/cell/small/moebius/pda
-	name = "Moebius \"Atomcell 50S\""
-	desc = "Moebius Laboratories branded S-standardized microreactor cell. Recharges itself over time."
+	name = "Morbius \"Atomcell 50S\""
+	desc = "Morbius Laboratories branded S-standardized microreactor cell. Recharges itself over time."
 	icon_state = "meb_pda"
 	origin_tech = list(TECH_POWER = 4)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1)
@@ -311,8 +311,8 @@
 	rarity_value = 32
 
 /obj/item/cell/small/neotheology
-	name = "NeoTheology \"Spark 300S\""
-	desc = "NeoTheology branded non-rechargeable S-standardized power cell."
+	name = "NanoTrasen \"Spark 300S\""
+	desc = "NanoTrasen branded non-rechargeable S-standardized power cell."
 	icon_state = "s_nt"
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_BIOMATTER = 5)
 	maxcharge = 300
@@ -321,8 +321,8 @@
 	spawn_tags = SPAWN_TAG_POWERCELL_NEOTHEOLOGY_SMALL
 
 /obj/item/cell/small/neotheology/plasma
-	name = "NeoTheology \"Radiance 500S\""
-	desc = "NeoTheology branded non-rechargeable S-standardized power cell. This advanced version can store even more energy."
+	name = "NanoTrasen \"Radiance 500S\""
+	desc = "NanoTrasen branded non-rechargeable S-standardized power cell. This advanced version can store even more energy."
 	icon_state = "s_nt_pl"
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_BIOMATTER = 5)
 	maxcharge = 500

@@ -165,7 +165,7 @@
 	var/icon = 'icons/obj/contraband.dmi'
 
 /datum/poster/asters
-	description_fluff = "Appears to been produced by members of the Aster's Guild."
+	description_fluff = "Appears to been produced by members of the Aster's Synagogue."
 
 /datum/poster/proc/set_design(var/obj/item/contraband/poster/poster)
 	poster.name = "poster - [name]"

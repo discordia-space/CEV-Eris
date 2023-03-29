@@ -65,7 +65,7 @@
 
 /obj/machinery/dna/proc/on_hacked()
 	if(!hacked)
-		hacked = pick("Rache Bartmoss", "Doctor Braun", "Overseer Koster", "admin")
+		hacked = pick("Rache Bartmoss", "Nurse Braun", "Overseer Koster", "admin")
 		log_add("Security protocols compromised.")
 		log_add("Access granted to [hacked]", TRUE)
 

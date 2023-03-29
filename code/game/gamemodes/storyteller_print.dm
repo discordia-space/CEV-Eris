@@ -68,7 +68,7 @@
 	data += "<br>Ironhammer: [sec] "
 	if(debug_mode)
 		data += "<a href='?src=\ref[src];edit_sec=1'>\[EDIT\]</a>"
-	data += "<br>Technomancers: [eng] "
+	data += "<br>Adeptus: [eng] "
 	if(debug_mode)
 		data += "<a href='?src=\ref[src];edit_eng=1'>\[EDIT\]</a>"
 	data += "<br>Medical: [med] "

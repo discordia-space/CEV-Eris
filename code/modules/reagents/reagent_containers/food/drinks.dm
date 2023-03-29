@@ -242,8 +242,8 @@
 
 
 //////////////////////////pitchers, pots, flasks and cups//
-//Note by Darem: This code handles the mixing of drinks. New drinks go in three places: In Chemistry-Reagents.dm (for the drink
-//	itself), in Chemistry-Recipes.dm (for the reaction that changes the components into the drink), and here (for the drinking glass
+//Note by Darem: This code handles the mixing of drinks. New drinks go in three places: In Powergamerry-Reagents.dm (for the drink
+//	itself), in Powergamerry-Recipes.dm (for the reaction that changes the components into the drink), and here (for the drinking glass
 //	icon states.
 
 /obj/item/reagent_containers/food/drinks/shaker
@@ -352,7 +352,7 @@
 	icon_state = "mug_old_nt"
 
 /obj/item/reagent_containers/food/drinks/mug/new_nt
-	name = "NeoTheology mug"
+	name = "NanoTrasen mug"
 	desc = "A brown mug, it prominently features a tau-cross."
 	icon_state = "mug_new_nt"
 
@@ -372,23 +372,23 @@
 	icon_state = "mug_hammer"
 
 /obj/item/reagent_containers/food/drinks/mug/league
-	name = "Technomancer mug"
-	desc = "A mug with a Technomancer League logo on it."
+	name = "Adeptus mug"
+	desc = "A mug with a Adeptus Mechanicus logo on it."
 	icon_state = "mug_league"
 
 /obj/item/reagent_containers/food/drinks/mug/moe
-	name = "Moebius mug"
-	desc = "A white mug with Moebius Laboratories logo on it."
+	name = "Morbius mug"
+	desc = "A white mug with Morbius Laboratories logo on it."
 	icon_state = "mug_moe"
 
 /obj/item/reagent_containers/food/drinks/mug/aster
 	name = "Aster mug"
-	desc = "A fancy gold mug with a Aster Guild logo on it."
+	desc = "A fancy gold mug with a Aster Synagogue logo on it."
 	icon_state = "mug_aster"
 
 /obj/item/reagent_containers/food/drinks/mug/guild
-	name = "Guild mug"
-	desc = "A plain mug with a Aster Guild logo on it."
+	name = "Synagogue mug"
+	desc = "A plain mug with a Aster Synagogue logo on it."
 	icon_state = "mug_guild"
 
 /obj/item/reagent_containers/food/drinks/mug/white

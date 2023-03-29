@@ -3,7 +3,7 @@
 	hierarchy_type = /decl/hierarchy/outfit/job/cargo
 
 /decl/hierarchy/outfit/job/cargo/merchant
-	name = OUTFIT_JOB_NAME("Guild Merchant")
+	name = OUTFIT_JOB_NAME("Synagogue Rabbi")
 	uniform = /obj/item/clothing/under/rank/cargotech
 	shoes = /obj/item/clothing/shoes/color/brown
 	glasses = /obj/item/clothing/glasses/sunglasses/big
@@ -15,14 +15,14 @@
 	backpack_contents = list(/obj/item/gun/projectile/olivaw = 1, /obj/item/ammo_magazine/pistol/rubber = 2)
 
 /decl/hierarchy/outfit/job/cargo/cargo_tech
-	name = OUTFIT_JOB_NAME("Guild Technician")
+	name = OUTFIT_JOB_NAME("Synagogue Pawn Star")
 	uniform = /obj/item/clothing/under/rank/cargotech
 	suit = /obj/item/clothing/suit/storage/cargo_jacket
 	belt = /obj/item/storage/belt/utility
 	pda_type = /obj/item/modular_computer/pda/cargo
 
 /decl/hierarchy/outfit/job/cargo/mining
-	name = OUTFIT_JOB_NAME("Guild Miner")
+	name = OUTFIT_JOB_NAME("Synagogue Golemslayer")
 	uniform = /obj/item/clothing/under/rank/miner
 	pda_type = /obj/item/modular_computer/pda/moebius/science
 	belt = /obj/item/storage/belt/utility
@@ -34,12 +34,12 @@
 	BACKPACK_OVERRIDE_ENGINEERING
 
 /decl/hierarchy/outfit/job/cargo/mining/void
-	name = OUTFIT_JOB_NAME("Guild Miner - Voidsuit")
+	name = OUTFIT_JOB_NAME("Synagogue Golemslayer - Voidsuit")
 	mask = /obj/item/clothing/mask/breath
 	suit = /obj/item/clothing/suit/space/void/mining
 
 /decl/hierarchy/outfit/job/cargo/artist
-	name = OUTFIT_JOB_NAME("Guild Artist")
+	name = OUTFIT_JOB_NAME("Corporate Clown")
 	uniform = /obj/item/clothing/under/rank/artist
 	//suit = /obj/item/clothing/suit/artist
 	shoes = /obj/item/clothing/shoes/artist_shoes
@@ -50,7 +50,7 @@
 	backpack_contents = list(/obj/item/bananapeel = 1, /obj/item/storage/fancy/crayons = 1, /obj/item/toy/waterflower = 1, /obj/item/stamp/clown = 1, /obj/item/handcuffs/fake = 1)
 
 /decl/hierarchy/outfit/job/cargo/artist/clown
-	name = OUTFIT_JOB_NAME("Guild Clown")
+	name = OUTFIT_JOB_NAME("Corporate Clown")
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	mask = /obj/item/clothing/mask/gas/clown_hat

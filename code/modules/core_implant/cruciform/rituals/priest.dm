@@ -14,19 +14,19 @@
 	name = "acolyte"
 	phrase = null
 	desc = ""
-	category = "Acolyte"
+	category = "Assistant"
 
 /datum/ritual/targeted/cruciform/priest/acolyte
 	name = "acolyte targeted"
 	phrase = null
 	desc = ""
-	category = "Acolyte"
+	category = "Assistant"
 
 
 /datum/ritual/cruciform/priest/acolyte/epiphany
 	name = "Epiphany"
 	phrase = "In nomine Patris et Filii et Spiritus sancti"
-	desc = "NeoTheology's principal sacrament is a ritual of baptism and merging with cruciform. A body, relieved of clothes should be placed on NeoTheology's special altar."
+	desc = "NanoTrasen's principal sacrament is a ritual of baptism and merging with cruciform. A body, relieved of clothes should be placed on NanoTrasen's special altar."
 
 /datum/ritual/cruciform/priest/acolyte/epiphany/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
 	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform, FALSE)
@@ -373,18 +373,18 @@
 		fail("Cruciform not found", user, C)
 		return FALSE
 
-	var/designation = alert("Which designation should this disciple have?", "Rite of Confirmation", "Acolyte", "Agrolyte", "Custodian")
+	var/designation = alert("Which designation should this disciple have?", "Rite of Confirmation", "Assistant", "Botanist", "Janitor")
 	var/extra_phrase
 
-	if(designation == "Acolyte")
+	if(designation == "Assistant")
 		CI.make_acolyte()
 		extra_phrase = "...acolytus."
 
-	else if(designation == "Agrolyte")
+	else if(designation == "Botanist")
 		CI.make_agrolyte()
 		extra_phrase = "...hortulanus."
 
-	else if(designation == "Custodian")
+	else if(designation == "Janitor")
 		CI.make_custodian()
 		extra_phrase = "...custos."
 

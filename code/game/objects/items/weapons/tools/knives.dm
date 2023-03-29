@@ -2,7 +2,7 @@
 //Knifes
 /obj/item/tool/knife
 	name = "kitchen knife"
-	desc = "A general purpose Chef's Knife made by Asters Merchant Guild. Guaranteed to stay sharp for years to come."
+	desc = "A general purpose Chef's Knife made by Asters Rabbi Synagogue. Guaranteed to stay sharp for years to come."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "knife"
 	description_info = "Could be attached to a gun"
@@ -81,7 +81,7 @@
 	rarity_value = 5
 
 /obj/item/tool/knife/neotritual
-	name = "NeoTheology ritual knife"
+	name = "NanoTrasen ritual knife"
 	desc = "The sweet embrace of mercy, for relieving the soul from a tortured vessel."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "neot-knife"
@@ -134,7 +134,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/tool/knife/dagger/bluespace
-	name = "Moebius \"Displacement Dagger\""
+	name = "Morbius \"Displacement Dagger\""
 	desc = "A teleportation matrix attached to a dagger, for sending things you stab it into very far away."
 	icon_state = "bluespace_dagger"
 	item_state = "bluespace_dagger"

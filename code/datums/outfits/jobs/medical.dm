@@ -12,7 +12,7 @@
 	BACKPACK_OVERRIDE_MEDICAL
 
 /decl/hierarchy/outfit/job/medical/cmo
-	name = OUTFIT_JOB_NAME("Moebius Biolab Officer")
+	name = OUTFIT_JOB_NAME("Morbius Not Organ Harvester")
 	l_ear  =/obj/item/device/radio/headset/heads/cmo
 	uniform = /obj/item/clothing/under/rank/moebius_biolab_officer
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/cmo
@@ -24,7 +24,7 @@
 	backpack_contents = list(/obj/item/gun/projectile/selfload/moebius = 1, /obj/item/ammo_magazine/pistol/rubber = 2)
 
 /decl/hierarchy/outfit/job/medical/doctor
-	name = OUTFIT_JOB_NAME("Moebius Doctor")
+	name = OUTFIT_JOB_NAME("Morbius Nurse")
 	uniform = /obj/item/clothing/under/rank/medical
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	l_hand = /obj/item/storage/firstaid/adv
@@ -32,7 +32,7 @@
 	belt = /obj/item/storage/belt/medical/
 
 /decl/hierarchy/outfit/job/medical/chemist
-	name = OUTFIT_JOB_NAME("Moebius Chemist")
+	name = OUTFIT_JOB_NAME("Morbius Powergamer")
 	uniform = /obj/item/clothing/under/rank/chemist
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/chemist
 	id_type = /obj/item/card/id/chem
@@ -46,7 +46,7 @@
 	backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/storage/backpack/satchel/orange/chemist;
 
 /decl/hierarchy/outfit/job/medical/paramedic
-	name = OUTFIT_JOB_NAME("Moebius Paramedic")
+	name = OUTFIT_JOB_NAME("Morbius Hobo")
 	head = /obj/item/clothing/head/armor/faceshield/paramedic
 	uniform = /obj/item/clothing/under/rank/paramedic
 	suit = /obj/item/clothing/suit/armor/paramedic
@@ -57,7 +57,7 @@
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
 
 /decl/hierarchy/outfit/job/medical/bioengineer
-	name = OUTFIT_JOB_NAME("Moebius Bio-Engineer")
+	name = OUTFIT_JOB_NAME("Morbius Definitely Organ Harvester")
 	uniform = /obj/item/clothing/under/rank/bioengineer
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/bioengineer
 	l_hand = /obj/item/storage/freezer/medical

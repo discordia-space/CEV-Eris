@@ -113,7 +113,7 @@
   - imageadd: beakers, vials and pill bottles resprite
   - imagedel: old beakers, vials and pill bottles are gone
   Ceuvi - sprites, Wouju - code:
-  - imageadd: Added a new sprite for the NT Acolyte Jacket
+  - imageadd: Added a new sprite for the NT Assistant Jacket
   Cocacola4124:
   - tweak: New players have floating chat enabled by default.
   Evankhell561:
@@ -148,7 +148,7 @@
   Wouju, Ceuvi:
   - imageadd: Resprited paramedic uniform
   Xoxeyos:
-  - spellcheck: Neotechnology is now Neotheology, in the scores screen.
+  - spellcheck: Neotechnology is now NanoTrasen, in the scores screen.
   infraredbaron:
   - bugfix: boltguns now have proper states
   zoktiik:

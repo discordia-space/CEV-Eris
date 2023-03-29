@@ -1,17 +1,17 @@
 /* Closets for specific jobs
  * Contains:
- *		Club Manager
- *      Club Worker
+ *		Mafia Don
+ *      Mafia Consigliere
  *		Janitor
- *		Custodian
- *		Acolyte
+ *		Janitor
+ *		Assistant
  */
 
 /*
  * Bartender
  */
 /obj/structure/closet/gmcloset
-	name = "Club Manager closet"
+	name = "Mafia Don closet"
 	desc = "A storage unit for formal clothing."
 	icon_door = "black"
 
@@ -34,7 +34,7 @@
  * Chef
  */
 /obj/structure/closet/chefcloset
-	name = "Club Worker closet"
+	name = "Mafia Consigliere closet"
 	desc = "A storage unit for club personnel."
 	icon_door = "black"
 

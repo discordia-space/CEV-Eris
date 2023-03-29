@@ -67,7 +67,7 @@
 
 		found_ssd
 			channel_name = "Nyx Daily"
-			author = "Doctor Eric Hanfield"
+			author = "Nurse Eric Hanfield"
 
 			message = {"Several people have been found unconscious at their terminals. It is thought that it was due
 						to a lack of sleep or of simply migraines from staring at the screen too long. Camera footage

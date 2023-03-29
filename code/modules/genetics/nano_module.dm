@@ -2,7 +2,7 @@
 	filename = "dnaapp"
 	filedesc = "Genome decoder"
 	program_icon_state = "generic"
-	extended_desc = "Copyright © 2563, Moebius Laboratories. All rights reserved."
+	extended_desc = "Copyright © 2563, Morbius Laboratories. All rights reserved."
 	size = 2
 	available_on_ntnet = 1
 	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP

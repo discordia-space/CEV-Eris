@@ -42,7 +42,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "artist_bench.tmpl", "Artist's Bench UI", 600, 700)
+		ui = new(user, src, ui_key, "artist_bench.tmpl", "Clown's Bench UI", 600, 700)
 
 		ui.add_template("_materials", "autolathe_materials.tmpl")
 

@@ -233,8 +233,8 @@
 	..()
 
 /obj/item/grenade/chem_grenade/large/moebius
-	name = "large moebius chem grenade"
-	desc = "An oversized grenade that affects a larger area. Has Moebius markings"
+	name = "large morbius chem grenade"
+	desc = "An oversized grenade that affects a larger area. Has Morbius markings"
 	icon_state = "moebius_grenade"
 
 /obj/item/grenade/chem_grenade/metalfoam
@@ -307,7 +307,7 @@
 	icon_state = "grenade"
 
 /obj/item/grenade/chem_grenade/antiweed/nt_antiweed
-	name = "NeoTheology \"Kudzu Killer\""
+	name = "NanoTrasen \"Kudzu Killer\""
 	desc = "NT brand weedkiller grenades. Designed to deal with Kudzu infestations back in New Rome. Mixes toxic biomatter with plasticides for great results"
 	icon_state = "foam"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_BIOMATTER = 5)
@@ -338,7 +338,7 @@
 	beakers += B2
 
 /obj/item/grenade/chem_grenade/cleaner/nt_cleaner
-	name = "NeoTheology \"Cleanse Capsule\""
+	name = "NanoTrasen \"Cleanse Capsule\""
 	desc = "NT brand cleaner grenades. Designed to deal with Biogenerator accidents and the aftermaths of gang wars inside the New Rome slums."
 	icon_state = "foam"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_BIOMATTER = 5)

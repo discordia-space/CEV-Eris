@@ -1,6 +1,6 @@
 /obj/item/gun/energy/nt_svalinn
 	name = "NT LP \"Svalinn\""
-	desc = "\"NeoTheology\" brand laser pistol. Small and easily concealable, it's still a reasonable punch for a laser weapon."
+	desc = "\"NanoTrasen\" brand laser pistol. Small and easily concealable, it's still a reasonable punch for a laser weapon."
 	icon = 'icons/obj/guns/energy/nt_svalinn.dmi'
 	icon_state = "nt_svalinn"
 	item_state = "nt_svalinn"

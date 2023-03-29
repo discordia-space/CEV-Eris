@@ -1,5 +1,5 @@
 /obj/item/clothing/head/armor/acolyte
-	name = "Acolyte hood"
+	name = "Assistant hood"
 	desc = "Even the most devout deserve head protection."
 	icon_state = "acolyte"
 	item_state = "acolyte"
@@ -18,7 +18,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/armor/acolyte
-	name = "Acolyte armor"
+	name = "Assistant armor"
 	desc = "Worn heavy, steadfast in the name of God."
 	icon_state = "acolyte"
 	item_state = "acolyte"
@@ -36,7 +36,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/armor/agrolyte
-	name = "Agrolyte hood"
+	name = "Botanist hood"
 	desc = "Don't want anything getting in your eyes."
 	icon_state = "botanist"
 	item_state = "botanist"
@@ -55,7 +55,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/armor/agrolyte
-	name = "Agrolyte armor"
+	name = "Botanist armor"
 	desc = "Every rose has its thorns."
 	icon_state = "botanist"
 	item_state = "botanist"
@@ -73,7 +73,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/armor/custodian
-	name = "Custodian helmet"
+	name = "Janitor helmet"
 	desc = "Cleaning floors is more dangerous than it looks."
 	icon_state = "custodian"
 	item_state = "custodian"
@@ -93,7 +93,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/armor/custodian
-	name = "Custodian armor"
+	name = "Janitor armor"
 	desc = "Someone's gotta clean this mess."
 	icon_state = "custodian"
 	item_state = "custodian"

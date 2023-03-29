@@ -253,7 +253,7 @@
 
 /obj/machinery/power/port_gen/pacman/explode()
 	//Vapourize all the plasma
-	//When ground up in a grinder, 1 sheet produces 20 u of plasma -- Chemistry-Machinery.dm
+	//When ground up in a grinder, 1 sheet produces 20 u of plasma -- Powergamerry-Machinery.dm
 	//1 mol = 10 u? I dunno. 1 mol of carbon is definitely bigger than a pill
 	var/plasma = 0
 	if(!use_reagents_as_fuel)

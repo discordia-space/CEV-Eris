@@ -5,7 +5,7 @@
 <table class="fixed" style="width: 100%; background: #000000;border: 1px solid #40628a">
 	<tr>
 		<td>
-			{{:helper.link(data.prg_screen ? "To Merchants" : "To Trade Screen", null, {'PRG_prg_screen' : 1})}}
+			{{:helper.link(data.prg_screen ? "To Rabbis" : "To Trade Screen", null, {'PRG_prg_screen' : 1})}}
 		<td>
 			{{if data.account}}
 				{{:helper.link(data.account, null, {'PRG_account' : 1})}}{{:helper.link('', 'circle-close', {'PRG_account_unlink' : 1}, null, 'redButton')}}
@@ -36,7 +36,7 @@
 				{{else}}
 					{{:helper.link("Receiving Beacon", 'link', {'PRG_receiving' : 1})}}
 				{{/if}}
-			<td>		
+			<td>
 				{{if data.sending}}
 					{{:helper.link("Sending Beacon: " + data.sending, null, {'PRG_sending' : 1})}}
 				{{else}}

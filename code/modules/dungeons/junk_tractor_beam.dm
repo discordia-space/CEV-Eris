@@ -854,7 +854,7 @@
 	icon_state = "shield_normal"
 	var/list/victims = list()
 
-/turf/simulated/jtb_edge/proc/MineralSpread()
+/turf/simulated/jtb_edge/proc/GolemslayeralSpread()
 	return
 
 /turf/simulated/jtb_edge/Destroy()

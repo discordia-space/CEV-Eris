@@ -66,12 +66,12 @@
 					"We kindly ask you to open the COMPLAINT REPORT (attached) to reply on this complaint..")
 				if(4)
 					sender = pick("Buy Dr. Maxman","Having dysfuctional troubles?")
-					message = pick("DR MAXMAN: REAL Doctors, REAL Science, REAL Results!",\
+					message = pick("DR MAXMAN: REAL Nurses, REAL Science, REAL Results!",\
 					"Dr. Maxman was created by George Acuilar, M.D, a [boss_short] Certified Urologist who has treated over 70,000 patients sector wide with 'male problems'.",\
 					"After seven years of research, Dr Acuilar and his team came up with this simple breakthrough male enhancement formula.",\
 					"Men of all species report AMAZING increases in length, width and stamina.")
 				if(5)
-					sender = pick("Dr","Crown prince","King Regent","Professor","Captain")
+					sender = pick("Dr","Crown prince","King Regent","Professor","Steering Wheel")
 					sender += " " + pick("Robert","Alfred","Josephat","Kingsley","Sehi","Zbahi")
 					sender += " " + pick("Mugawe","Nkem","Gbatokwia","Nchekwube","Ndim","Ndubisi")
 					message = pick("YOUR FUND HAS BEEN MOVED TO [pick("Salusa","Segunda","Cepheus","Andromeda","Gruis","Corona","Aquila","ARES","Asellus")] DEVELOPMENTARY BANK FOR ONWARD REMITTANCE.",\

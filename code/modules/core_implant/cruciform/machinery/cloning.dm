@@ -9,8 +9,8 @@
 #define ANIM_CLOSE -1
 
 /obj/machinery/neotheology/cloner
-	name = "NeoTheology's clonepod"
-	desc = "The newest design and God's gift from NeoTheology, this automatic machine will return the flesh to the spirit in no time."
+	name = "NanoTrasen's clonepod"
+	desc = "The newest design and God's gift from NanoTrasen, this automatic machine will return the flesh to the spirit in no time."
 	icon = 'icons/obj/neotheology_pod.dmi'
 	icon_state = "preview"
 	density = TRUE
@@ -333,7 +333,7 @@
 /////////////////////
 
 /obj/machinery/neotheology/biomass_container
-	name = "NeoTheology's biomass container"
+	name = "NanoTrasen's biomass container"
 	desc = "A barrel making strange noises, filled with a substance which at any time may become someone else's body."
 	icon_state = "biocan"
 	density = TRUE
@@ -414,7 +414,7 @@
 /////////////////////
 
 /obj/machinery/neotheology/reader
-	name = "NeoTheology's cruciform reader"
+	name = "NanoTrasen's cruciform reader"
 	desc = "The altar for scanning genetic information from medium of soul - the cruciform."
 	icon_state = "reader_off"
 	density = TRUE

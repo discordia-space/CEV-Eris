@@ -34,39 +34,39 @@
 
 //[CLOTHES, ARMOR AND ACCESORIES]
 /datum/design/bioprinter/nt_clothes/acolyte_armor
-	name = "NT Acolyte Armor"
+	name = "NT Assistant Armor"
 	build_path = /obj/item/clothing/suit/armor/acolyte
 
 /datum/design/bioprinter/nt_clothes/agrolyte_armor
-	name = "NT Agrolyte Armor"
+	name = "NT Botanist Armor"
 	build_path = /obj/item/clothing/suit/armor/agrolyte
 
 /datum/design/bioprinter/nt_clothes/custodian_armor
-	name = "NT Custodian Armor"
+	name = "NT Janitor Armor"
 	build_path = /obj/item/clothing/suit/armor/custodian
 
 /datum/design/bioprinter/nt_clothes/acolyte_armor_head
-	name = "NT Acolyte Hood"
+	name = "NT Assistant Hood"
 	build_path = /obj/item/clothing/head/armor/acolyte
 
 /datum/design/bioprinter/nt_clothes/agrolyte_armor_head
-	name = "NT Agrolyte Helmet"
+	name = "NT Botanist Helmet"
 	build_path = /obj/item/clothing/head/armor/agrolyte
 
 /datum/design/bioprinter/nt_clothes/custodian_armor_head
-	name = "NT Custodian Helmet"
+	name = "NT Janitor Helmet"
 	build_path = /obj/item/clothing/head/armor/custodian
 
 /datum/design/bioprinter/nt_clothes/preacher_coat
-	name = "NT Preacher Longcoat"
+	name = "NT Head of Personnel Longcoat"
 	build_path = /obj/item/clothing/suit/storage/neotheology_coat
 
 /datum/design/bioprinter/nt_clothes/acolyte_jacket
-	name = "NT Acolyte Jacket"
+	name = "NT Assistant Jacket"
 	build_path = /obj/item/clothing/suit/storage/neotheology_jacket
 
 /datum/design/bioprinter/nt_clothes/acolyte_jacket/black
-	name = "NT Black Acolyte Jacket"
+	name = "NT Black Assistant Jacket"
 	build_path = /obj/item/clothing/suit/storage/neotheology_jacket/black
 
 /datum/design/bioprinter/nt_clothes/sports_jacket
@@ -74,7 +74,7 @@
 	build_path = /obj/item/clothing/suit/storage/neotheosports
 
 /datum/design/bioprinter/nt_clothes/acolyte_uniform
-	name = "NT Acolyte Garment"
+	name = "NT Assistant Garment"
 	build_path = /obj/item/clothing/under/rank/acolyte
 
 /datum/design/bioprinter/nt_clothes/sports_uniform
@@ -86,16 +86,16 @@
 	build_path = /obj/item/clothing/under/rank/church
 
 /datum/design/bioprinter/jackboots
-	name = "Custodian's jackboots"
+	name = "Janitor's jackboots"
 	build_path = /obj/item/clothing/shoes/jackboots/neotheology
 	materials = list(MATERIAL_BIOMATTER = 20)
 
 /datum/design/bioprinter/belt/utility
-	name = "Neotheology utility belt"
+	name = "NanoTrasen utility belt"
 	build_path = /obj/item/storage/belt/utility/neotheology
 
 /datum/design/bioprinter/belt/security
-	name = "Neotheology tactical belt"
+	name = "NanoTrasen tactical belt"
 	build_path = /obj/item/storage/belt/tactical/neotheology
 
 /datum/design/bioprinter/backpack
@@ -292,12 +292,12 @@
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/firstaid/nt
-	name = "NeoTheology Medkit"
+	name = "NanoTrasen Medkit"
 	build_path = /obj/item/storage/firstaid/nt
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/excruciator
-	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
+	name = "NanoTrasen \"EXCRUCIATOR\" giga lens"
 	build_path = /obj/item/gun_upgrade/barrel/excruciator
 	factions = list(FACTION_NEOTHEOLOGY)
 

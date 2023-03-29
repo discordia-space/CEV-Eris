@@ -260,11 +260,11 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Security"
 /*
 /datum/supply_pack/loyalty
-	name = "Moebius Loyalty implant crate"
+	name = "Morbius Loyalty implant crate"
 	contains = list (/obj/item/storage/lockbox/loyalty)
 	cost = 6000
 	containertype = /obj/structure/closet/crate/secure
-	crate_name = "Moebius Loyalty implant crate"
+	crate_name = "Morbius Loyalty implant crate"
 	group = "Security"
 */
 /datum/supply_pack/ballisticarmor

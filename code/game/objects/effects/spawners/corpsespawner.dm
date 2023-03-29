@@ -26,7 +26,7 @@
 	var/corpseback
 	var/corpseid = 0    		// Just set to 1 if you want them to have an ID
 	var/corpseidjob 			// Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
-	var/corpseidaccess 			// This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
+	var/corpseidaccess 			// This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Steering Wheel" if you want it to be all access.
 	var/species = SPECIES_HUMAN
 	var/injury_level = 0		// Number of times to inflict a random injury on the mob
 
@@ -222,9 +222,9 @@
 	corpseidjob = "Medical doctor"
 
 /obj/landmark/corpse/engineer
-	name = "Technomancer"
+	name = "Adeptus Servitor"
 	corpseid = 1
-	corpseidjob = "Technomancer"
+	corpseidjob = "Adeptus Servitor"
 
 /obj/landmark/corpse/engineer/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/engineering
@@ -243,21 +243,21 @@
 	//corpseidaccess = "Clown" //not exist
 
 /obj/landmark/corpse/scientist
-	name = "Scientist"
+	name = "Cruciform Recycler"
 	corpseuniform = /obj/item/clothing/under/rank/scientist
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpseradio = /obj/item/device/radio/headset
 	corpsesuit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 	corpseid = 1
-	corpseidjob = "Scientist"
+	corpseidjob = "Cruciform Recycler"
 
 /obj/landmark/corpse/miner
-	name = "Guild Miner"
+	name = "Synagogue Golemslayer"
 	corpseuniform = /obj/item/clothing/under/rank/miner
 	corpseshoes = /obj/item/clothing/shoes/color/black
 	corpseradio = /obj/item/device/radio/headset/headset_cargo
 	corpseid = 1
-	corpseidjob = "Guild Miner"
+	corpseidjob = "Synagogue Golemslayer"
 
 /obj/landmark/corpse/miner/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/mining
@@ -286,7 +286,7 @@
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
 	corpseid = 1
 	corpseidjob = "Bridge Officer"
-	// corpseidaccess = "Captain"  // No reason for them to have all access on Eris
+	// corpseidaccess = "Steering Wheel"  // No reason for them to have all access on Eris
 
 /obj/landmark/corpse/commander
 	name = "Commander"
@@ -301,7 +301,7 @@
 	corpsepocket1 = /obj/item/flame/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Commander"
-	// corpseidaccess = "Captain"  // No reason for them to have all access on Eris
+	// corpseidaccess = "Steering Wheel"  // No reason for them to have all access on Eris
 
 
 /////////////////Enemies//////////////////////

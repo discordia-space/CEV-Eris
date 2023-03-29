@@ -189,7 +189,7 @@
 "aN" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_medical{
-	name = "Chemistry Maintenance";
+	name = "Powergamerry Maintenance";
 	req_access = list(33)
 	},
 /obj/machinery/door/blast/regular{

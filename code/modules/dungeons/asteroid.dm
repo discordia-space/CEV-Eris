@@ -10,7 +10,7 @@
 		for(var/turf/T in oview(src,1))
 			if(istype(get_turf(T),/turf/space))
 				var/turf/simulated/floor/asteroid/flooring = new /turf/simulated/floor/asteroid(T)
-				flooring.updateMineralOverlays(1)
+				flooring.updateGolemslayeralOverlays(1)
 	. = ..()
 
 

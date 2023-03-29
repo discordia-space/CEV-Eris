@@ -81,22 +81,22 @@
 /datum/gear/uniform/security_skirt
 	display_name = "jumpskirt, operative"
 	path = /obj/item/clothing/under/rank/security/skirt
-	allowed_roles = list("Ironhammer Operative")
+	allowed_roles = list("Faceless Goon")
 
 /datum/gear/uniform/medspec_skirt
 	display_name = "jumpskirt, medical specialist"
 	path = /obj/item/clothing/under/rank/medspec/skirt
-	allowed_roles = list("Ironhammer Medical Specialist")
+	allowed_roles = list("Blue Nurse")
 
 /datum/gear/uniform/warden_skirt
 	display_name = "jumpskirt, warden"
 	path = /obj/item/clothing/under/rank/warden/skirt
-	allowed_roles = list("Ironhammer Gunnery Sergeant")
+	allowed_roles = list("Armoury Opener")
 
 /datum/gear/uniform/hos_skirt
 	display_name = "jumpskirt, commander"
 	path = /obj/item/clothing/under/rank/ih_commander/skirt
-	allowed_roles = list("Ironhammer Commander")
+	allowed_roles = list("Tard Wrangler")
 
 /*/datum/gear/uniform/skirt
 	display_name = "plaid skirt, blue"
@@ -190,7 +190,7 @@
 /*/datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"
 	path = /obj/item/clothing/under/dress/dress_hop
-	allowed_roles = list("First Officer")*/
+	allowed_roles = list("Spare Wheel")*/
 
 /datum/gear/uniform/battledress_serb
 	display_name = "battle dress uniform, serbian"

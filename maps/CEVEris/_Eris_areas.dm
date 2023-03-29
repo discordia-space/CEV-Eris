@@ -331,13 +331,13 @@
 	area_light_color = COLOR_LIGHTING_CREW_SOFT
 
 /area/eris/command/exultant
-	name = "\improper Engineering - Exultant Office"
+	name = "\improper Engineering - Enginseer Office"
 	icon_state = "head_quarters"
 	sound_env = SMALL_SOFTFLOOR
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 
 /area/eris/command/exultant/quarters
-	name = "\improper Engineering - Exultant Quarters"
+	name = "\improper Engineering - Enginseer Quarters"
 	icon_state = "head_quarters"
 	sound_env = SMALL_SOFTFLOOR
 	area_light_color = COLOR_LIGHTING_CREW_SOFT
@@ -362,7 +362,7 @@
 	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/eris/command/merchant
-	name = "\improper Cargo - Merchant Office"
+	name = "\improper Cargo - Rabbi Office"
 	icon_state = "quart"
 	sound_env = SMALL_SOFTFLOOR
 	holomap_color = HOLOMAP_AREACOLOR_CARGO
@@ -534,7 +534,7 @@
 	name = "Public Hydroponics"
 	icon_state = "erisblue"
 
-// NeoTheology
+// NanoTrasen
 
 /area/eris/neotheology
 	icon_state = "erisgreen"
@@ -832,7 +832,7 @@
 	ambience = list('sound/ambience/ambimo1.ogg','sound/ambience/ambimo2.ogg')
 
 /area/eris/medical/chemistry
-	name = "\improper Chemistry"
+	name = "\improper Powergamerry"
 	icon_state = "chem"
 
 /area/eris/medical/surgery
@@ -882,7 +882,7 @@
 	area_light_color = COLOR_LIGHTING_SCI_DARK
 
 /area/eris/medical/paramedic
-	name = "\improper Paramedic Closet"
+	name = "\improper Hobo Closet"
 	icon_state = "erisyellow"
 	area_light_color = COLOR_LIGHTING_SCI_DARK
 
@@ -1036,7 +1036,7 @@
 
 
 /area/eris/quartermaster
-	name = "\improper Merchants"
+	name = "\improper Rabbis"
 	icon_state = "quart"
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
 	holomap_color = HOLOMAP_AREACOLOR_CARGO
@@ -1046,7 +1046,7 @@
 	icon_state = "quartoffice"
 
 /area/eris/quartermaster/artistoffice
-	name = "\improper Guild Artist Office"
+	name = "\improper Corporate Clown Office"
 	icon_state = "erisyellow"
 
 /area/eris/quartermaster/storage
@@ -1101,7 +1101,7 @@
 	icon_state = "robotics"
 
 /area/eris/rnd/rdoffice
-	name = "\improper Moebius Expedition Overseer's Office"
+	name = "\improper Morbius Big Nerd's Office"
 	icon_state = "head_quarters"
 
 /area/eris/rnd/supermatter

@@ -8,7 +8,7 @@
 	var/job_high = null
 	var/list/job_medium        //List of all things selected for medium weight
 	var/list/job_low           //List of all the things selected for low weight
-	var/list/player_alt_titles // the default name of a job like "Medical Doctor"
+	var/list/player_alt_titles // the default name of a job like "Medical Nurse"
 
 	//Keeps track of preferrence for not getting any wanted jobs
 	var/alternate_option = 2

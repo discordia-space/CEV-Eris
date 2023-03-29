@@ -1032,7 +1032,7 @@
 	glass_desc = "A tangy substance made of 0.5% natural citrus!"
 
 /datum/reagent/drink/doctor_delight
-	name = "The Doctor's Delight"
+	name = "The Nurse's Delight"
 	id = "doctorsdelight"
 	description = "A gulp a day keeps the MediBot away. That's probably for the best."
 	taste_description = "homely fruit"
@@ -1044,7 +1044,7 @@
 
 	glass_unique_appearance = TRUE
 	glass_icon_state = "doctorsdelightglass"
-	glass_name = "The Doctor's Delight"
+	glass_name = "The Nurse's Delight"
 	glass_desc = "A healthy mixture of juices, guaranteed to keep you healthy until the next toolboxing takes place."
 	glass_center_of_mass = list("x"=16, "y"=8)
 
@@ -1534,7 +1534,7 @@
 	taste_tag = list(TASTE_SWEET, TASTE_BITTER)
 
 /datum/reagent/alcohol/ntcahors
-	name = "NeoTheology Cahors Wine"
+	name = "NanoTrasen Cahors Wine"
 	id = "ntcahors"
 	description = "Fortified dessert wine made from cabernet sauvignon, saperavi and other grapes."
 	taste_description = "sweet charcoal"
@@ -1607,7 +1607,7 @@
 /datum/reagent/alcohol/amasec
 	name = "Amasec"
 	id = "amasec"
-	description = "Official drink of the Gun Club!"
+	description = "Official drink of the Gun Mafia!"
 	taste_description = "dark and metallic"
 	reagent_state = LIQUID
 	color = "#124da7"

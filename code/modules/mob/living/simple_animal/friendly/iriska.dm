@@ -108,7 +108,7 @@ var/list/despised = list()
 				if(M.real_name in tolerated)
 					if(prob(2)) say("Meoow!")
 
-				else if ((M.job == "Captain") && !(M.real_name in despised)) // Recognize captain
+				else if ((M.job == "Steering Wheel") && !(M.real_name in despised)) // Recognize captain
 					tolerated |= M.real_name
 					visible_emote("looks at [M] with a hint of respect.")
 

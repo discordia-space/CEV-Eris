@@ -66,7 +66,7 @@
 	return 0
 
 /obj/machinery/smartfridge/kitchen
-	name = "\improper Agro-Club Fridge"
+	name = "\improper Agro-Mafia Fridge"
 	desc = "The panel says it won't allow anyone without access to the kitchen or hydroponics."
 	req_one_access = list(access_hydroponics,access_kitchen)
 
@@ -88,7 +88,7 @@
 
 
 /*******************
-*   Chemistry Medicine Storage
+*   Powergamerry Medicine Storage
 ********************/
 /obj/machinery/smartfridge/secure/medbay
 	name = "\improper Refrigerated Medicine Storage"

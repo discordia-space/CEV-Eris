@@ -1,4 +1,4 @@
-/** Club's special Bonsai tree, so they can operate somewhat without a garden.
+/** Mafia's special Bonsai tree, so they can operate somewhat without a garden.
 
 	Every 10 seconds, checks if it has 10+ units of any alcohol.
 		If it does, removes said alcohol, and spawns a random base fruit or vegetable.

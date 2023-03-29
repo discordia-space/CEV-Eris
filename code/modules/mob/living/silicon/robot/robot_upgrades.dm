@@ -208,7 +208,7 @@
 		R.module.modules += ref_to_jetpack
 //		for(var/obj/item/tank/jetpack/carbondioxide in R.module.modules)
 //			R.internals = src
-		//R.icon_state="Miner+j"
+		//R.icon_state="Golemslayer+j"
 		R.module.Initialize() //Fixes layering and possible tool issues
 		return 1
 

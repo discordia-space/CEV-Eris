@@ -1,7 +1,7 @@
 /obj/item/gun/projectile/automatic/c20r
 	name = "S SMG .35 \"C-20r\""
 	desc = "The C-20r is a lightweight and robust bullpup SMG of ancient design, for when you REALLY need someone dead. \
-			Famous as most used SMG by criminal organizations of various sorts. Was recently reverse-engineered by Moebius \
+			Famous as most used SMG by criminal organizations of various sorts. Was recently reverse-engineered by Morbius \
 			almost completely from the scratch, introducing gun to the broad masses of customers. This one however, is original. \
 			Has a '\"Scarborough Arms\" - Per falcis, per pravitas' buttstock stamp. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/cr20.dmi'
@@ -64,7 +64,7 @@
 
 /obj/item/gun/projectile/automatic/c20r/moebius
 	name = "ML SMG .35 \"C-20M\""
-	desc = "The C-20M is a Moebius copy of the famous C-20r, a lightweight and robust bullpup SMG of ancient design. \
+	desc = "The C-20M is a Morbius copy of the famous C-20r, a lightweight and robust bullpup SMG of ancient design. \
 			Famous as most used SMG by criminal organizations of various sorts. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/c20m.dmi'
 	icon_state = "c20r"

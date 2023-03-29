@@ -116,7 +116,7 @@ SUBSYSTEM_DEF(job)
 			continue
 
 		var/datum/category_item/setup_option/core_implant/I = player.client.prefs.get_option("Core implant")
-		// cant be Neotheology without a cruciform
+		// cant be NanoTrasen without a cruciform
 		if(job.department == DEPARTMENT_CHURCH && istype(I.implant_type,/obj/item/implant/core_implant/cruciform))
 			continue
 		if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
@@ -369,7 +369,7 @@ SUBSYSTEM_DEF(job)
 				return H.Robotize()
 			if("AI")
 				return H
-			if("Captain")
+			if("Steering Wheel")
 				var/sound/announce_sound = (SSticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
 				captain_announcement.Announce("All hands, Captain [H.real_name] on deck!", new_sound=announce_sound)
 

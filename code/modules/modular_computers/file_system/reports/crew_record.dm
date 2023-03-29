@@ -24,7 +24,7 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 
 /datum/computer_file/report/crew_record/proc/load_from_mob(var/mob/living/carbon/human/H)
 	if(istype(H))
-		if(H.job == ASSISTANT_TITLE) // As stowaways, Vagabond do not show up on the crew manifest.
+		if(H.job == ASSISTANT_TITLE) // As stowaways, Hobo do not show up on the crew manifest.
 			GLOB.all_crew_records.Remove(src)
 			return
 		photo_front = getFlatIcon(H, SOUTH)

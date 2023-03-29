@@ -210,7 +210,7 @@
 	preloaded_reagents = list("nothing" = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/patron
-	name = "Wrapp Artiste Patron"
+	name = "Wrapp Clowne Patron"
 	desc = "Silver laced tequilla, served in space night clubs across the galaxy."
 	icon_state = "patronbottle"
 	center_of_mass = list("x"=16, "y"=6)
@@ -266,7 +266,7 @@
 	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/reagent_containers/food/drinks/bottle/ntcahors
-	name = "NeoTheology Cahors Wine"
+	name = "NanoTrasen Cahors Wine"
 	desc = "Ritual drink that cleanses the soul and body."
 	icon_state = "ntcahors"
 	center_of_mass = list("x"=16, "y"=4)

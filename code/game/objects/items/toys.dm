@@ -500,7 +500,7 @@
 
 /obj/item/toy/figure/acolyte
 	name = "acolyte figurine"
-	desc = "Church of NeoTheology \"New Faith Life\" brand figurine of an acolyte, hooded both physically and spiritually from that which would lead them astray."
+	desc = "Church of NanoTrasen \"New Faith Life\" brand figurine of an acolyte, hooded both physically and spiritually from that which would lead them astray."
 	icon_state = "acolyte"
 
 /obj/item/toy/figure/carrion

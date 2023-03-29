@@ -3,7 +3,7 @@
 	Supply pod event causes a drop pod to hit the ship, containing a variety of rare and useful loot.
 	Assistants are sure to swarm it and ironhammer will need to fight them off. Or the assistants might die horribly
 
-	The pod causes major devastation where it hits, Technomancers will need to rebuild the room
+	The pod causes major devastation where it hits, Adeptuss will need to rebuild the room
 	It may contain monsters or traps.But it also contains a very large quantity of items,
 	including quite a few rares
 

@@ -187,7 +187,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 		GLOB.field_radius += S.field_radius
 	GLOB.field_radius = CLAMP(GLOB.field_radius, 0, world.maxx)
 
-	//Technomancer Modifiers
+	//Adeptus Modifiers
 	if(GLOB.all_smes_powered)
 		GLOB.score_smes_powered = 350 //max = 350
 	GLOB.score_technomancer_objectives = GLOB.technomancer_objectives_completed * 25 //max: ~= 100
@@ -198,7 +198,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 
 	GLOB.technomancer_score = GLOB.initial_technomancer_score + GLOB.score_smes_powered + GLOB.score_technomancer_objectives + GLOB.score_ship_shield + GLOB.score_fireloss + GLOB.score_powerloss + GLOB.score_technomancer_faction_item_loss
 
-	// NeoTheology score
+	// NanoTrasen score
 	var/list/dirt_areas = list()
 	//Check how much uncleaned mess is on the station
 	for(var/obj/effect/decal/cleanable/M in world)
@@ -211,7 +211,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	GLOB.dirt_areas = dirt_areas.len
 
 
-	//NeoTheology Modifiers
+	//NanoTrasen Modifiers
 	GLOB.score_neotheology_faction_item_loss -= GLOB.neotheology_faction_item_loss * 150 //300
 	GLOB.neotheology_objectives_score = GLOB.neotheology_objectives_completed * 25 // ~100
 	GLOB.score_mess -= GLOB.dirt_areas * 10 //~250
@@ -222,7 +222,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	GLOB.neotheology_score = GLOB.initial_neotheology_score + GLOB.score_neotheology_faction_item_loss + GLOB.neotheology_objectives_score + GLOB.score_mess + GLOB.grup_ritual_score + GLOB.biomatter_score + GLOB.new_neothecnology_convert_score
 
 
-	//Moebius score
+	//Morbius score
 	GLOB.score_moebius_faction_item_loss -= GLOB.moebius_faction_item_loss * 150 //300
 	GLOB.moebius_objectives_score = GLOB.moebius_objectives_completed * 25 // ~100
 	GLOB.score_crew_dead -=	GLOB.crew_dead * 25 // ~200
@@ -241,7 +241,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 
 	GLOB.ironhammer_score = GLOB.initial_ironhammer_score + GLOB.ironhammer_objectives_score + GLOB.score_antag_contracts + GLOB.ironhammer_operative_dead_score + GLOB.captured_or_dead_antags_score
 
-	//Guild score
+	//Synagogue score
 	GLOB.score_guild_faction_item_loss -= 150 * GLOB.guild_faction_item_loss // ~-300
 	GLOB.guild_objectives_score = GLOB.guild_objectives_completed * 25 // ~100
 	GLOB.guild_profit_score	= round(GLOB.supply_profit/50) // ? review it //target_max~500//
@@ -290,19 +290,19 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 
 	//moebius
 	dat += {"
-	<u>Moebius scores</u><br>
+	<u>Morbius scores</u><br>
 	<b>Base score:</b> [green_text(GLOB.initial_moebius_score)]<br>
 	<b>Lost faction items:</b> [GLOB.moebius_faction_item_loss] ([to_score_color(GLOB.score_moebius_faction_item_loss)] Points)<br>
 	<b>Faction objectives completed:</b> [GLOB.moebius_objectives_completed] ([to_score_color(GLOB.moebius_objectives_score)] Points)<br>
 	<b>Dead crew:</b> [GLOB.crew_dead] ([to_score_color(GLOB.score_crew_dead)] Points)<br>
 	<b>Research points gained:</b> [GLOB.research_point_gained] ([to_score_color(GLOB.score_research_point_gained)] Points)<br>
 	<b>Autopsies performed:</b> [GLOB.moebius_autopsies_mobs.len] ([to_score_color(GLOB.score_moebius_autopsies_mobs)] Points)<br>
-	<b>Final Moebius score:</b> [get_color_score(GLOB.moebius_score, GLOB.moebius_score)] Points<br><br>
+	<b>Final Morbius score:</b> [get_color_score(GLOB.moebius_score, GLOB.moebius_score)] Points<br><br>
 	"}
 
 	//nt
 	dat += {"
-	<u>NeoTheology scores</u><br>
+	<u>NanoTrasen scores</u><br>
 	<b>Base score:</b> [green_text(GLOB.initial_neotheology_score)]<br>
 	<b>Lost faction items:</b> [GLOB.neotheology_faction_item_loss] ([to_score_color(GLOB.score_neotheology_faction_item_loss)] Points)<br>
 	<b>Faction objectives completed:</b> [GLOB.neotheology_objectives_completed] ([to_score_color(GLOB.neotheology_objectives_score)] Points)<br>
@@ -310,23 +310,23 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	<b>Biomatter produced:</b> [GLOB.biomatter_neothecnology_amt] ([to_score_color(GLOB.biomatter_score)] Points)<br>
 	<b>Total of conversions:</b> [GLOB.new_neothecnology_convert] ([to_score_color(GLOB.new_neothecnology_convert_score)] Points)<br>
 	<b>Group rituals performed:</b> [GLOB.grup_ritual_performed] ([to_score_color(GLOB.grup_ritual_score)] Points)<br>
-	<b>Final Neotheology score:</b> [get_color_score(GLOB.neotheology_score, GLOB.neotheology_score)] Points<br><br>
+	<b>Final NanoTrasen score:</b> [get_color_score(GLOB.neotheology_score, GLOB.neotheology_score)] Points<br><br>
 	"}
 
 	//guild
 	dat += {"
-	<u>Guild scores</u><br>
+	<u>Synagogue scores</u><br>
 	<b>Base score:</b> [green_text(GLOB.initial_guild_score)]<br>
 	<b>Lost faction items:</b> [GLOB.guild_faction_item_loss] ([to_score_color(GLOB.score_guild_faction_item_loss)] Points)<br>
 	<b>Faction objectives completed:</b> [GLOB.guild_objectives_completed] ([to_score_color(GLOB.guild_objectives_score)] Points)<br>
 	<b>Profit profits:</b> [GLOB.supply_profit] ([to_score_color(GLOB.guild_profit_score)] Points)<br>
-	<b>Crew with items distributed by the Guild:</b> [GLOB.guild_shared_gears] ([to_score_color(GLOB.guild_shared_gears_score)] Points)<br>
-	<b>Final Guild score:</b> [get_color_score(GLOB.guild_score, GLOB.guild_score)] Points<br><br><br>
+	<b>Crew with items distributed by the Synagogue:</b> [GLOB.guild_shared_gears] ([to_score_color(GLOB.guild_shared_gears_score)] Points)<br>
+	<b>Final Synagogue score:</b> [get_color_score(GLOB.guild_score, GLOB.guild_score)] Points<br><br><br>
 	"}
 
-	//Technomancers
+	//Adeptuss
 	dat += {"
-	<u>Technomancers scores</u><br>
+	<u>Adeptus Mechanicus scores</u><br>
 	<b>Base score:</b> [green_text(GLOB.initial_technomancer_score)]<br>
 	<b>Faction objectives completed:</b> [GLOB.technomancer_objectives_completed] ([to_score_color(GLOB.score_technomancer_objectives)] Points)<br>
 	<b>All SMES Charged:</b> [GLOB.all_smes_powered ? "Yes" : "No"] ([to_score_color(GLOB.score_smes_powered)] Points)<br>
@@ -334,7 +334,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	<b>Lost faction items:</b> [GLOB.technomancer_faction_item_loss] ([to_score_color(GLOB.score_technomancer_faction_item_loss)] Points)<br>
 	<b>Unpowered areas:</b> [GLOB.area_powerloss] ([to_score_color(GLOB.score_powerloss)] Points)<br>
 	<b>Areas with atmospheric problems:</b> [GLOB.area_fireloss] ([to_score_color(GLOB.score_fireloss)] Points)<br>
-	<b>Final Technomancers score:</b> [get_color_score(GLOB.technomancer_score, GLOB.technomancer_score)] Points<br><br>
+	<b>Final Adeptus Mechanicus score:</b> [get_color_score(GLOB.technomancer_score, GLOB.technomancer_score)] Points<br><br>
 	"}
 
 	dat += "<br><hr>"

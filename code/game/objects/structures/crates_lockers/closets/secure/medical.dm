@@ -32,7 +32,7 @@
 	new /obj/item/tool/wrench(src)
 
 /obj/structure/closet/secure_closet/personal/doctor
-	name = "moebius doctor's locker"
+	name = "morbius doctor's locker"
 	req_access = list(access_cmo)
 	access_occupy = list(access_medical_equip)
 	icon_state = "med"
@@ -59,7 +59,7 @@
 	new /obj/item/clothing/suit/storage/surgical_apron(src)
 
 /obj/structure/closet/secure_closet/personal/paramedic
-	name = "moebius paramedic's locker"
+	name = "morbius paramedic's locker"
 	req_access = list(access_cmo)
 	access_occupy = list(access_paramedic)
 	icon_state = "med"
@@ -88,7 +88,7 @@
 	new /obj/item/storage/pouch/medical_supply(src)
 
 /obj/structure/closet/secure_closet/reinforced/CMO
-	name = "moebius biolab officer's locker"
+	name = "morbius biolab officer's locker"
 	req_access = list(access_cmo)
 	icon_state = "cmo"
 

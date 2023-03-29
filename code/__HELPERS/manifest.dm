@@ -17,13 +17,13 @@
 
 		list("names" = list(), "header" = "Command Staff", "flag" = COMMAND),
 		list("names" = list(), "header" = "Ironhammer Security", "flag" = IRONHAMMER),
-		list("names" = list(), "header" = "Moebius Medical", "flag" = MEDICAL),
-		list("names" = list(), "header" = "Moebius Research", "flag" = SCIENCE),
-		list("names" = list(), "header" = "Church of NeoTheology", "flag" = CHURCH),
-		list("names" = list(), "header" = "Asters Guild", "flag" = GUILD),
+		list("names" = list(), "header" = "Morbius Medical", "flag" = MEDICAL),
+		list("names" = list(), "header" = "Morbius Research", "flag" = SCIENCE),
+		list("names" = list(), "header" = "Church of NanoTrasen", "flag" = CHURCH),
+		list("names" = list(), "header" = "Asters Synagogue", "flag" = GUILD),
 		list("names" = list(), "header" = "Civilian", "flag" = CIVILIAN),
 		list("names" = list(), "header" = "Service", "flag" = SERVICE),
-		list("names" = list(), "header" = "Technomancer League", "flag" = ENGINEERING),
+		list("names" = list(), "header" = "Adeptus Mechanicus", "flag" = ENGINEERING),
 		list("names" = list(), "header" = "Miscellaneous", "flag" = MISC),
 		list("names" = list(), "header" = "Silicon")
 	)

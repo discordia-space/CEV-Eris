@@ -113,7 +113,7 @@
 
 
 /***************************************
-Advanced Voidsuit: Technomancer Exultant
+Advanced Voidsuit: Adeptus Enginseer
 ****************************************/
 /obj/item/rig/ce
 	name = "advanced voidsuit control module"
@@ -175,7 +175,7 @@ Advanced Voidsuit: Technomancer Exultant
 	mag_slow = 1
 
 /***************************************
-Technomancer RIG
+Adeptus RIG
 ***************************************/
 /obj/item/rig/techno
 	name = "technomancer suit control module"
@@ -231,7 +231,7 @@ Technomancer RIG
 
 
 /***************************************
-	Hazmat: Moebius Overseer
+	Hazmat: Morbius Overseer
 ****************************************/
 /obj/item/rig/hazmat
 	name = "AMI control module"

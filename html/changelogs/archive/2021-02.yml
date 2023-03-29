@@ -11,7 +11,7 @@
   - bugfix: Junk ammo craft kit won't delete itself if you leave the ammo selection
       menu. Also added some feedback to it.
   Hyperio:
-  - balance: Tune stats of Neotheology jobs
+  - balance: Tune stats of NanoTrasen jobs
   TheShown911:
   - rscadd: Ported new borer mechanics from Osiris
   - imageadd: Ported new borer mechanics from Osiris

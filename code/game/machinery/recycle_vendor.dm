@@ -166,7 +166,7 @@
 				stored_item_value += round(S.get_item_cost(), 2) / 2
 				stored_item_fluff += "<br>[i] - [stored_item_materials[i]] units, worth [round(S.get_item_cost(), 2) / 2] credits."
 			else
-				stored_item_fluff += "<br>Payouts for [i] suspended by Aster Guild representative."
+				stored_item_fluff += "<br>Payouts for [i] suspended by Aster Synagogue representative."
 		else // Bay leftover materials
 			stored_item_fluff += "<br>[i] recycling is not supported."
 

@@ -9,10 +9,10 @@
 	</br></br>
 	{{:helper.link('Connect', null, {'connect' : '1'})}}
 	</br></br>
-	<i>If this fails, your long range scanner may be missing, uninstalled, destroyed, or have its software control disabled. Please contact your local Technomancers for assistance.</i>
+	<i>If this fails, your long range scanner may be missing, uninstalled, destroyed, or have its software control disabled. Please contact your local Adeptuss for assistance.</i>
 {{else}}
 	<h2>SYSTEM STATUS</h2>
-	
+
 	<div class="item">
 		<div class="itemLabel">
 			Scanner is:
@@ -76,15 +76,15 @@
 			{{if data.running}}
 				<td>{{:helper.link('EMERGENCY SHUTDOWN', null, {'emergency_shutdown' : '1'})}}
 			{{/if}}
-			
+
 			<tr>
 			<td>{{:helper.link('Set Input Cap', null, {'set_input_cap' : '1'})}}
 		</table>
-		
-		
-		
-		
-	<h2>LOGGING</h2>	
+
+
+
+
+	<h2>LOGGING</h2>
 	<div style="height:120px;width:550px;border:1px solid #ccc;overflow:auto;line-height:15px;">
 	{{for data.logs}}
 		{{:value.entry}}</br>

@@ -62,7 +62,7 @@
 
 /obj/item/grenade/frag/sting/AG
 	name = "AG SG \"Mosquito\""
-	desc = "A standard-issue Asters Guild sting grenade, for use against unruly crowds."
+	desc = "A standard-issue Asters Synagogue sting grenade, for use against unruly crowds."
 	icon_state = "sting_ag"
 	item_state = "fraggrenade"
 	fragment_type = /obj/item/projectile/bullet/pellet/fragment/rubber/weak

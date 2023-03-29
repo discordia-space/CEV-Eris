@@ -389,25 +389,25 @@ obj/item/clothing/under/genericr
 
 /obj/item/clothing/under/tropicalpink
 	name = "pink tropical shirt"
-	desc = "An Aster\'s Guild branded neosilk tropical shirt. This one makes you feel nostalgic."
+	desc = "An Aster\'s Synagogue branded neosilk tropical shirt. This one makes you feel nostalgic."
 	icon_state = "3005vintage"
 	item_state = "3005vintage"
 
 /obj/item/clothing/under/tropicalblue
 	name = "blue tropical shirt"
-	desc = "An Aster\'s Guild branded neosilk tropical shirt. This one makes you feel out of touch."
+	desc = "An Aster\'s Synagogue branded neosilk tropical shirt. This one makes you feel out of touch."
 	icon_state = "miamivice"
 	item_state = "miamivice"
 
 /obj/item/clothing/under/tropicalblack
 	name = "black tropical shirt"
-	desc = "An Aster\'s Guild branded neosilk tropical shirt. This one makes you feel like an animal."
+	desc = "An Aster\'s Synagogue branded neosilk tropical shirt. This one makes you feel like an animal."
 	icon_state = "animalstyle"
 	item_state = "animalstyle"
 
 /obj/item/clothing/under/tropicalgreen
 	name = "puke-green tropical shirt"
-	desc = "An Aster\'s Guild branded neosilk tropical shirt. This one makes you look like puke."
+	desc = "An Aster\'s Synagogue branded neosilk tropical shirt. This one makes you look like puke."
 	icon_state = "tropicopuke"
 	item_state = "tropicopuke"
 

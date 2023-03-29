@@ -131,7 +131,7 @@ var/list/event_last_fired = list()
 	active_with_role["Engineer"] = 0
 	active_with_role["Medical"] = 0
 	active_with_role["Security"] = 0
-	active_with_role["Scientist"] = 0
+	active_with_role["Cruciform Recycler"] = 0
 	active_with_role["AI"] = 0
 	active_with_role["Robot"] = 0
 	active_with_role["Janitor"] = 0
@@ -154,7 +154,7 @@ var/list/event_last_fired = list()
 				else if(istype(R.module, /obj/item/robot_module/medical))
 					active_with_role["Medical"]++
 				else if(istype(R.module, /obj/item/robot_module/research))
-					active_with_role["Scientist"]++
+					active_with_role["Cruciform Recycler"]++
 
 		if(M.mind.assigned_role in engineering_positions)
 			active_with_role["Engineer"]++
@@ -166,7 +166,7 @@ var/list/event_last_fired = list()
 			active_with_role["Security"]++
 
 		if(M.mind.assigned_role in science_positions)
-			active_with_role["Scientist"]++
+			active_with_role["Cruciform Recycler"]++
 
 		if(M.mind.assigned_role == "AI")
 			active_with_role["AI"]++

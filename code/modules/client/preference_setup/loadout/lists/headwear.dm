@@ -38,20 +38,20 @@
 /datum/gear/head/beret/bsec_warden
 	display_name = "beret, Sergeant"
 	path = /obj/item/clothing/head/beret/sec/navy/warden
-	allowed_roles = list("Ironhammer Commander","Gunnery Sergeant")
+	allowed_roles = list("Tard Wrangler","Gunnery Sergeant")
 
 /datum/gear/head/beret/bsec_hos
 	display_name = "beret, Lieutenant"
 	path = /obj/item/clothing/head/beret/sec/navy/hos
-	allowed_roles = list("Ironhammer Commander")
+	allowed_roles = list("Tard Wrangler")
 
 /datum/gear/head/beret/eng
-	display_name = "beret, yellow Technomancer"
+	display_name = "beret, yellow Adeptus"
 	path = /obj/item/clothing/head/beret/engineering
 	allowed_roles = list(JOBS_ENGINEERING)
 
 /datum/gear/head/beret/eng/old
-	display_name = "beret, orange Technomancer"
+	display_name = "beret, orange Adeptus"
 	path = /obj/item/clothing/head/beret/engineering/old
 	allowed_roles = list(JOBS_ENGINEERING)
 
@@ -143,7 +143,7 @@
 /datum/gear/head/cap/sarge
 	display_name = "cap, IH sergeant"
 	path = /obj/item/clothing/head/soft/sarge2soft
-	allowed_roles = list("Ironhammer Commander","Ironhammer Gunnery Sergeant")
+	allowed_roles = list("Tard Wrangler","Armoury Opener")
 
 /datum/gear/head/cyberpunkgoggle
 	display_name = "Type-34C Semi-Enclosed Headwear"
@@ -165,7 +165,7 @@
 /datum/gear/head/tanker_helmet/color_presets
 	display_name = "tanker helmet, color presets"
 	path = /obj/item/clothing/head/armor/helmet/tanker
-	allowed_roles = list("Moebius Roboticist", "Guild Technician", "Technomancer", "Technomancer Exultant", ASSISTANT_TITLE)
+	allowed_roles = list("Morbius Oppan Gundam Style", "Synagogue Pawn Star", "Adeptus Servitor", "Adeptus Enginseer", ASSISTANT_TITLE)
 	cost = 2
 
 /datum/gear/head/tanker_helmet/color_presets/New()

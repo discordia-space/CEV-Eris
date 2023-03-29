@@ -37,7 +37,7 @@
 
 /obj/item/clothing/shoes/jackboots/neotheology
 	name = "custodian's jackboots"
-	desc = "Specially altered jackboots for NeoTheology custodians to prevent them from slipping."
+	desc = "Specially altered jackboots for NanoTrasen custodians to prevent them from slipping."
 	icon_state = "jackboots"
 	item_state = "jackboots"
 	force = WEAPON_FORCE_HARMLESS
@@ -66,8 +66,8 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/shoes/reinforced/medical
-	name = "moebius reinforced shoes"
-	desc = "Slightly reinforced shoes for moebius medical personnel."
+	name = "morbius reinforced shoes"
+	desc = "Slightly reinforced shoes for morbius medical personnel."
 	icon_state = "reinforced_moebius"
 	item_state = "reinforced_moebius"
 	spawn_blacklisted = TRUE

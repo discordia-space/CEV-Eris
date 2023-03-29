@@ -155,7 +155,7 @@
 /obj/structure/closet/onestar/tier3/special/empty
 /obj/structure/closet/onestar/tier3/special/empty/populate_contents()
 
-////Mineral
+////Golemslayeral
 //Tier 1
 /obj/structure/closet/onestar/tier1/mineral
 	name = "\improper OneStar forgotten closet"

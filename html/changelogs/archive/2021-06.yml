@@ -94,7 +94,7 @@
       isn't worthy anymore.
   Herbaon:
   - bugfix: fixed carrion being permanently paralyzed 10 minutes after using reg.stasis
-  - bugfix: Artist and Kube Oddities turning all-stats oddities by Preacher Blessing
+  - bugfix: Artist and Kube Oddities turning all-stats oddities by Head of Personnel Blessing
       Litany.
   - bugfix: Secure Briefcase being able to be opened by altclick.
   - bugfix: Borosilicate/Plasma glass being called Platinum glass and incorrect Moebius
@@ -103,7 +103,7 @@
   - imageadd: updated the sechud icons
   - imagedel: old sechud icons
   - balance: NT Bioprinter was balanced to have better storage and printing speed.
-  - bugfix: fixed Preacher making all stats oddities with cube and artist oddities
+  - bugfix: fixed Head of Personnel making all stats oddities with cube and artist oddities
   Hyperio:
   - rscadd: New affinity chunks for JTB
   - code_imp: Deletion of JTB is now progressive to reduce lag

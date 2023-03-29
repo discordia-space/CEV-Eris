@@ -260,7 +260,7 @@
 	hard_drive.store_file(new/datum/computer_file/program/alarm_monitor())
 	//hard_drive.store_file(new/datum/computer_file/program/aidiag())
 
-// Merchant
+// Rabbi
 /obj/item/modular_computer/console/preset/merchant/install_default_programs()
 	..()
 	//hard_drive.store_file(new/datum/computer_file/program/merchant())

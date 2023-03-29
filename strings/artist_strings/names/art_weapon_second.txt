@@ -60,7 +60,7 @@ Liberator
 Exploder
 Leader
 Captain
-Vagabond
+Hobo
 Soldier
 Serbian
 Russian
@@ -75,7 +75,7 @@ Arbiter
 Judge
 Major
 Sheriff
-Marshal
+Outsourced Sheriff
 Worker
 Cop
 Lubricator

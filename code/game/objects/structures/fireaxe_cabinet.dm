@@ -82,7 +82,7 @@
 	if(istype(O, /obj/item/tool/multitool))
 		toggle_lock(user)
 		return
-	if(istype(O, /obj/item/card/id))	
+	if(istype(O, /obj/item/card/id))
 		var/obj/item/card/id/ID = O
 		if(has_access(list(), req_one_access, ID.GetAccess()))
 			toggle_lock(user)

@@ -20,7 +20,7 @@
 		rad = 0
 	)
 
-//Guild Artist
+//Corporate Clown
 /obj/item/clothing/suit/artist
 	name = "Complicated Vest"
 	desc = "The tubes don't even do anything."
@@ -38,7 +38,7 @@
 	)
 	spawn_frequency = 0
 
-//Guild Technician
+//Synagogue Pawn Star
 /obj/item/clothing/suit/storage/cargo_jacket
 	name = "guild technician jacket"
 	desc = "Stylish jacket lined with pockets. It seems to have a little protection from physical harm."
@@ -73,7 +73,7 @@
 		rad = 0
 	)
 
-//Merchant
+//Rabbi
 /obj/item/clothing/suit/storage/qm_coat
 	name = "guild merchant coat"
 	desc = "An ideal choice for a smuggler. This coat seems have good impact resistance, and is made from resistant and expensive materials."
@@ -106,7 +106,7 @@
 		/obj/item/weedkiller
 	)
 
-//Club
+//Mafia
 /obj/item/clothing/suit/storage/toggle/club
 	name = "Manager's jacket"
 	desc = "A well tailored and rich jacket of the club manager"
@@ -142,7 +142,7 @@
 	price_tag = 5000
 	style = STYLE_HIGH
 
-//NeoTheology
+//NanoTrasen
 /obj/item/clothing/suit/storage/neotheology_jacket
 	name = "acolyte jacket"
 	desc = "A long jacket. Dark, stylish, and authoritarian."
@@ -198,8 +198,8 @@
 	)
 
 /obj/item/clothing/suit/storage/neotheosports
-	name = "NeoTheology sports jacket"
-	desc = "NeoTheology styled sports jacket to keep the faithful always on their feet."
+	name = "NanoTrasen sports jacket"
+	desc = "NanoTrasen styled sports jacket to keep the faithful always on their feet."
 	icon_state = "nt_sportsjacket"
 	item_state = "nt_sportsjacket"
 	body_parts_covered = UPPER_TORSO|ARMS
@@ -281,7 +281,7 @@
 	icon_state = "detective_black"
 	item_state = "detective_black"
 
-//Technomancers
+//Adeptuss
 /obj/item/clothing/suit/storage/hazardvest
 	name = "hazard vest"
 	desc = "A high-visibility vest used in work zones."
@@ -296,12 +296,12 @@
 	icon_state = "hazard_orange"
 	item_state = "hazard_orange"
 
-//Paramedics
+//Hobos
 /obj/item/clothing/suit/storage/hazardvest/black
 	icon_state = "hazard_black"
 	item_state = "hazard_black"
 
-//Technomancer Exultant
+//Adeptus Enginseer
 /obj/item/clothing/suit/storage/te_coat
 	name = "exultant coat"
 	desc = "A sturdy and proud crimson coat. Lightly armored, with some protection against radiation."
@@ -320,7 +320,7 @@
 	)
 	price_tag = 250
 
-//Roboticist
+//Oppan Gundam Style
 /obj/item/clothing/suit/storage/robotech_jacket
 	name = "robotech jacket"
 	desc = "Jacket for those who like to get dirty in a machine oil."

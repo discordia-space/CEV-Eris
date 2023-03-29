@@ -106,7 +106,7 @@
 
 /obj/item/clothing/head/armor/helmet/technomancer_old
 	name = "reinforced technomancer helmet"
-	desc = "Technomancer League's ballistic helmet. Comes with a built-in flashlight. The welder-proof visor hinders aim."
+	desc = "Adeptus Mechanicus's ballistic helmet. Comes with a built-in flashlight. The welder-proof visor hinders aim."
 	icon_state = "technohelmet_old"
 	body_parts_covered = HEAD|EARS|EYES|FACE
 	item_flags = THICKMATERIAL
@@ -582,7 +582,7 @@
 	icon_state = "tanker_helmet_gray"
 
 /obj/item/clothing/head/armor/faceshield/paramedic
-	name = "Moebius paramedic helmet"
+	name = "Morbius paramedic helmet"
 	desc = "Seven minutes or a refund."
 	icon_state = "trauma_team"
 	item_state = "trauma_team"

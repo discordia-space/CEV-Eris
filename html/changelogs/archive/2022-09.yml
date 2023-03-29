@@ -257,7 +257,7 @@
   - rscadd: cowboy hats, WIDE
   - rscadd: spurs that jingle-jangle-jingle(jingle-jangle)
   Mycah142:
-  - tweak: Added id_scan check to the NeoTheology vendor before it checks for cruciform.
+  - tweak: Added id_scan check to the NanoTrasen vendor before it checks for cruciform.
   Pink-Chink:
   - bugfix: Fixed an issue with organ species not being set
   - balance: Organ mod installation has 100% success rate at 35 BIO

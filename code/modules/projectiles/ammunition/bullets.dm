@@ -497,7 +497,7 @@
 			There\'s an inscription along the sides. \'For those who disbelieve, for them are cut out garments of fire, boiling water shall be poured over their heads.\'"
 	icon_state = "blast"
 	projectile_type = /obj/item/projectile/bullet/grenade/heatwave
-	rarity_value = 40 // Neotheology
+	rarity_value = 40 // NanoTrasen
 
 //// Other ////
 
@@ -575,7 +575,7 @@
 	matter_reagents = list("phosphorus" = 3)
 	rarity_value = 8
 
-/obj/item/ammo_casing/crossbow/bolt 
+/obj/item/ammo_casing/crossbow/bolt
 	name = "steel bolt"
 	desc = "A steel rod worked into the shape of a crossbow bolt."
 	icon_state = "CrossbowBolt"

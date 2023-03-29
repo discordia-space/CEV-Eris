@@ -1,5 +1,5 @@
 /*******************************
-* NeoTheology: Religious items *
+* NanoTrasen: Religious items *
 *******************************/
 /*
 Intended for inquisitors and maybe future crusaders
@@ -57,7 +57,7 @@ A small pool of thematically appropriate religious items that are generally chea
 //A priest cruciform implant, allows field promotion of a disciple to a preacher.
 //This also requires an inquisitor ritual to complete the process, so it can't be done by anyone else
 /datum/uplink_item/item/neotheology/priest
-	name = "Preacher Ascension Kit"
+	name = "Head of Personnel Ascension Kit"
 	item_cost = 3
 	path = /obj/item/coreimplant_upgrade/cruciform/priest
 
@@ -70,17 +70,17 @@ A small pool of thematically appropriate religious items that are generally chea
 
 
 /datum/uplink_item/item/neotheology/coat
-	name = "Preacher Coat"
+	name = "Head of Personnel Coat"
 	item_cost = 3
 	path = /obj/item/clothing/suit/storage/neotheology_coat
 
 /datum/uplink_item/item/neotheology/hat
-	name = "Preacher Hat"
+	name = "Head of Personnel Hat"
 	item_cost = 3
 	path = /obj/item/clothing/head/preacher
 
 /*
-	Guns: All taken from the NeoTheology Armory of the New Testament
+	Guns: All taken from the NanoTrasen Armory of the New Testament
 	All guns are 1 TC cheaper than the closest equivilant in normal contractor gear
 */
 /datum/uplink_item/item/neotheology/laser

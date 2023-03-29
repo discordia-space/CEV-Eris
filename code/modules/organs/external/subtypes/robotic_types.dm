@@ -38,8 +38,8 @@
 	default_description = /datum/organ_description/leg/right
 
 /obj/item/organ/external/robotic/technomancer
-	name = "Technomancer \"Homebrew\""
-	desc = "Technomancer \"branded\" \"functional\" prosthesis."
+	name = "Adeptus \"Homebrew\""
+	desc = "Adeptus \"branded\" \"functional\" prosthesis."
 	force_icon = 'icons/mob/human_races/cyberlimbs/technomancer.dmi'
 	model = "technomancer"
 	price_tag = 700
@@ -70,7 +70,7 @@
 	name = "\"Moebius\""
 	desc = "Streamlined, sleek, and sterile."
 	force_icon = 'icons/mob/human_races/cyberlimbs/moebius.dmi'
-	model = "moebius"
+	model = "morbius"
 	price_tag = 250
 	bad_type = /obj/item/organ/external/robotic/moebius
 

@@ -1,7 +1,7 @@
 /datum/antagonist/inquisitor
 	id = ROLE_INQUISITOR
-	role_text = "NeoTheology Inquisitor"
-	role_text_plural = "NeoTheology Inquisitors"
+	role_text = "NanoTrasen Inquisitor"
+	role_text_plural = "NanoTrasen Inquisitors"
 	bantype = ROLE_BANTYPE_INQUISITOR
 	welcome_text = ""
 	antaghud_indicator = "hudcyberchristian"
@@ -65,7 +65,7 @@
 	// Basic intro text.
 	to_chat(player, "<span class='danger'><font size=3>You are a [role_text]!</font></span>")
 
-	to_chat(player, "Inquisitor is a higher ranking officer in the Church of NeoTheology.<br>\
+	to_chat(player, "Inquisitor is a higher ranking officer in the Church of NanoTrasen.<br>\
 	You are here to promote the Church's interests and protect disciples, but more importantly, you are also here to \
 	track down criminals, spies and saboteurs within the church's ranks. Interrogate NT followers, and deal with those \
 	who would tarnish the public image of the Church or betray its principles.<br>\

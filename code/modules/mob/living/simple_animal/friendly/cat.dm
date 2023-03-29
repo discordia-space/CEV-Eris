@@ -236,7 +236,7 @@
 	gender = FEMALE
 	icon_state = "cat"
 	item_state =  "cat"
-	befriend_job = "Moebius Biolab Officer"
+	befriend_job = "Morbius Not Organ Harvester"
 
 /mob/living/simple_animal/cat/kitten
 	name = "kitten"
@@ -260,7 +260,7 @@
 	icon_state = "cat3"
 	item_state = "cat3"
 	holder_type = /obj/item/holder/cat/fluff/bones
-	befriend_job = "Moebius Biolab Officer"
+	befriend_job = "Morbius Not Organ Harvester"
 	sanity_damage = -2
 	var/friend_name = "Erstatz Vryroxes"
 

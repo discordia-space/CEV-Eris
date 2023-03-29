@@ -73,7 +73,7 @@ var/global/Holiday = null
 
 		if(7)	//Jul
 			switch(DD)
-				if(1)							Holiday = "Doctor's Day"
+				if(1)							Holiday = "Nurse's Day"
 				if(2)							Holiday = "UFO Day"
 				if(8)							Holiday = "Writer's Day"
 				if(30)							Holiday = "Friendship Day"

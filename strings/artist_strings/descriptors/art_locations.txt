@@ -14,12 +14,12 @@ snowy trench
 prison cell
 engine compartment
 escape pod
-Moebius Medical Division
-Moebius Research Division
-Asters Guild
-Technomancer League
+Morbius Medical Division
+Morbius Research Division
+Asters Synagogue
+Adeptus Mechanicus
 Ironhammer Security
-NeoTheology Church
+NanoTrasen Church
 Vasily Dokuchaev
 Mining hulk
 CEV Eris

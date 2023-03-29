@@ -27,7 +27,7 @@
 "bU" = (
 /obj/machinery/door/airlock/glass_medical{
 	id_tag = null;
-	name = "Chemistry Lab";
+	name = "Powergamerry Lab";
 	req_access = list(33)
 	},
 /turf/simulated/floor/tiled/white,
@@ -736,7 +736,7 @@
 /area/outpost/prisonhulk/security)
 "Pd" = (
 /obj/machinery/door/airlock/maintenance_medical{
-	name = "Chemistry Storage";
+	name = "Powergamerry Storage";
 	req_access = list(33)
 	},
 /turf/simulated/floor/tiled/white,

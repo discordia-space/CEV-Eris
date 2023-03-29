@@ -1,5 +1,5 @@
 /datum/job/chaplain
-	title = "NeoTheology Preacher"
+	title = "NanoTrasen Head of Personnel"
 	flag = CHAPLAIN
 	head_position = 1
 	department = DEPARTMENT_CHURCH
@@ -7,7 +7,7 @@
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the NeoTheology Church"
+	supervisors = "the NanoTrasen Church"
 	selection_color = "#ecd37d"
 	also_known_languages = list(LANGUAGE_LATIN = 100)
 	security_clearance = CLEARANCE_CLERGY
@@ -40,9 +40,9 @@
 		CRUCIFORM_REDLIGHT
 	)
 
-	description = "You are the head of a local branch of the Church of NeoTheology. You represent the church's interests aboard Eris, as well as the interests of the NT disciples among the crew, who can be identified by the Cruciform implant upon their breast. The church is a major contributor to the funding of Eris' mission, and demands respect<br>\
+	description = "You are the head of a local branch of the Church of NanoTrasen. You represent the church's interests aboard Eris, as well as the interests of the NT disciples among the crew, who can be identified by the Cruciform implant upon their breast. The church is a major contributor to the funding of Eris' mission, and demands respect<br>\
 	<br>\
-	Your duties aboard the ship may not seem so important to its mission, but they have greater significance in the galaxy as a whole. As well as a more immediate significance to the morale of the crew, especially the followers of NeoTheology.<br>\
+	Your duties aboard the ship may not seem so important to its mission, but they have greater significance in the galaxy as a whole. As well as a more immediate significance to the morale of the crew, especially the followers of NanoTrasen.<br>\
 	<br>\
 	Sometimes the Church will deploy Inquisitors to remote outposts like this, to serve its interests. When one is on Eris, you will generally be their point of contact. Inquisitors outrank you and you should follow all of their instructions without question. Inquisitors work in secret, and so you should not discuss their presence with anyone unless they permit it.<br>\
 	<br>\
@@ -64,19 +64,19 @@
 	setup_restricted = TRUE
 
 /obj/landmark/join/start/chaplain
-	name = "NeoTheology Preacher"
+	name = "NanoTrasen Head of Personnel"
 	icon_state = "player-black"
 	join_tag = /datum/job/chaplain
 
 /datum/job/acolyte
-	title = "NeoTheology Acolyte"
+	title = "NanoTrasen Assistant"
 	flag = ACOLYTE
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
 	total_positions = 4
 	spawn_positions = 4
-	supervisors = "the NeoTheology Preacher"
+	supervisors = "the NanoTrasen Head of Personnel"
 	selection_color = "#ecd37d"
 	also_known_languages = list(LANGUAGE_LATIN = 100)
 	security_clearance = CLEARANCE_COMMON
@@ -95,32 +95,32 @@
 		CRUCIFORM_ACOLYTE
 	)
 
-	description = "You serve the NeoTheology Preacher as a disciple of the Faith.<br>\
+	description = "You serve the NanoTrasen Head of Personnel as a disciple of the Faith.<br>\
 	<br>\
 	The sacred duties of operating the bioreactor and managing biomass for the church's holy cloner falls to you.<br>\
 	<br>\
-	Though more may be required of you, should your Preacher so chose."
+	Though more may be required of you, should your Head of Personnel so chose."
 
 	duties = "Operate the bioreactor to create power.<br>\
 	Manage the distribution of biomatter.<br>\
-	Serve the Preacher's will."
+	Serve the Head of Personnel's will."
 
 	setup_restricted = TRUE
 
 /obj/landmark/join/start/acolyte
-	name = "NeoTheology Acolyte"
+	name = "NanoTrasen Assistant"
 	icon_state = "player-black"
 	join_tag = /datum/job/acolyte
 
 /datum/job/hydro
-	title = "NeoTheology Agrolyte"
+	title = "NanoTrasen Botanist"
 	flag = BOTANIST
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the NeoTheology Preacher"
+	supervisors = "the NanoTrasen Head of Personnel"
 	selection_color = "#ecd37d"
 	//alt_titles = list("Hydroponicist")
 	also_known_languages = list(LANGUAGE_LATIN = 100)
@@ -155,21 +155,21 @@
 	setup_restricted = TRUE
 
 /obj/landmark/join/start/hydro
-	name = "NeoTheology Agrolyte"
+	name = "NanoTrasen Botanist"
 	icon_state = "player-black"
 	join_tag = /datum/job/hydro
 
 /datum/job/janitor
-	title = "NeoTheology Custodian"
+	title = "NanoTrasen Janitor"
 	flag = JANITOR
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the NeoTheology Preacher"
+	supervisors = "the NanoTrasen Head of Personnel"
 	selection_color = "#ecd37d"
-	//alt_titles = list("Custodian","Sanitation Technician")
+	//alt_titles = list("Janitor","Sanitation Pawn Star")
 	also_known_languages = list(LANGUAGE_LATIN = 100)
 	security_clearance = CLEARANCE_COMMON
 	cruciform_access = list(access_janitor, access_maint_tunnels, access_morgue, access_crematorium)
@@ -191,7 +191,7 @@
 
 	software_on_spawn = list(/datum/computer_file/program/camera_monitor)
 
-	description = "You are the Custodian, the church's disciple charged with keeping the corridors of not only the church clean, but that of the entire ship.<br>\
+	description = "You are the Janitor, the church's disciple charged with keeping the corridors of not only the church clean, but that of the entire ship.<br>\
 	<br>\
 	While most ships employ a simple janitor, you are much more than that. Cleanliness is next to godliness, and so, the halls must remain clean. Though the ship is also infested with giant roaches and spiders, which may find their ways out from the maintenance tunnels and into the main corridors where they consequently die.<br>\
 	<br>\
@@ -203,6 +203,6 @@
 	setup_restricted = TRUE
 
 /obj/landmark/join/start/janitor
-	name = "NeoTheology Custodian"
+	name = "NanoTrasen Janitor"
 	icon_state = "player-black"
 	join_tag = /datum/job/janitor

@@ -3,14 +3,14 @@
 //MINING-1 // CLUSTER
 /obj/effect/overmap/sector/asteroid
 	name = "unknown spatial phenomenon"
-	desc = "A large asteroid. Mineral content detected."
+	desc = "A large asteroid. Golemslayeral content detected."
 	generic_waypoints = list(
 		"nav_asteroid_1",
 		"nav_asteroid_2"
 	)
 	known = 1
 	in_space = 0
-	
+
 	name_stages = list("asteroid", "unknown object", "unknown spatial phenomenon")
 
 /obj/effect/overmap/sector/asteroid/Initialize()

@@ -1,6 +1,6 @@
 /obj/machinery/autolathe/organ_fabricator
 	name = "Organ Fabricator"
-	desc = "Moebius machine for printing organs using biotic substrate."
+	desc = "Morbius machine for printing organs using biotic substrate."
 	description_info = "Quick Guide to Organs:\n\n\
 						Print an organ scaffold\n\
 						Print an input, process, and output teratoma\n\

@@ -70,7 +70,7 @@
 	return "\icon[icon]"
 
 /datum/uplink_item/item/badassery/marshallbadge
-	name = "Marshal's Badge"
+	name = "Outsourced Sheriff's Badge"
 	item_cost = 1
 	antag_roles = list(ROLE_MARSHAL)
 	path = /obj/item/clothing/accessory/badge/marshal

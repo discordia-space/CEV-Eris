@@ -39,7 +39,7 @@
 /datum/gear/eyes/sciencegoggles
 	display_name = "Science Goggles"
 	path = /obj/item/clothing/glasses/powered/science
-	allowed_roles = list(JOBS_SCIENCE,"Moebius Bio-Engineer")
+	allowed_roles = list(JOBS_SCIENCE,"Morbius Definitely Organ Harvester")
 
 /datum/gear/eyes/security
 	display_name = "Security HUD"
@@ -64,6 +64,6 @@
 /datum/gear/eyes/shades/big
 	display_name = "Sunglasses, fat"
 	path = /obj/item/clothing/glasses/sunglasses/big
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Ironhammer Gunnery Sergeant","Captain","First Officer","Ironhammer Inspector","Guild Merchant","Moebius Biolab Officer","Moebius Expedition Overseer","Technomancer Exultant","Club Manager","NeoTheology Preacher")
+	allowed_roles = list("Faceless Goon","Tard Wrangler","Armoury Opener","Steering Wheel","Spare Wheel","Defective","Synagogue Rabbi","Morbius Not Organ Harvester","Morbius Big Nerd","Adeptus Enginseer","Mafia Don","NanoTrasen Head of Personnel")
 
 

@@ -21,7 +21,7 @@
 
 
 /obj/item/modular_computer/tablet/moebius
-	desc = "A small, portable microcomputer. This one has two extra screens and a Moebius Laboratories logo stamped on the back."
+	desc = "A small, portable microcomputer. This one has two extra screens and a Morbius Laboratories logo stamped on the back."
 	icon = 'icons/obj/modular_tablet_moebius.dmi'
 	var/image/direction_overlay
 	var/image/z_level_overlay

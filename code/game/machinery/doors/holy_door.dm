@@ -1,5 +1,5 @@
 /obj/machinery/door/holy
-	name = "NeoTheology door"
+	name = "NanoTrasen door"
 	icon = 'icons/obj/doors/Door_holy.dmi'
 	icon_state = "door_closed"
 	autoclose = 1
@@ -12,18 +12,18 @@
 	var/obj/item/wedged_item
 
 /obj/machinery/door/holy/preacher
-	name = "NeoTheology clergy door"
+	name = "NanoTrasen clergy door"
 	icon = 'icons/obj/doors/Door_holy_preacher.dmi'
 	minimal_holiness = CLEARANCE_CLERGY
 
 /obj/machinery/door/holy/public
-	name = "NeoTheology public door"
+	name = "NanoTrasen public door"
 	icon = 'icons/obj/doors/Door_holy_public.dmi'
 	minimal_holiness = CLEARANCE_NONE
 
 /obj/item/clothing/accessory/cross // It belongs here
 	name = "Tau Cross necklace"
-	desc = "Heavy necklace resembling a Tau Cross - symbol of NeoTheology. Used as a key to NeoTheology doors."
+	desc = "Heavy necklace resembling a Tau Cross - symbol of NanoTrasen. Used as a key to NanoTrasen doors."
 	icon = 'icons/inventory/accessory/icon.dmi'
 	icon_state = "cross"
 	item_state = ""	// No inhands

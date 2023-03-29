@@ -1,4 +1,4 @@
-/**********************Mineral stacking unit console**************************/
+/**********************Golemslayeral stacking unit console**************************/
 
 /obj/machinery/mineral/stacking_unit_console
 	name = "stacking machine console"
@@ -55,7 +55,7 @@
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	src.updateUsrDialog()
 
-/**********************Mineral stacking unit**************************/
+/**********************Golemslayeral stacking unit**************************/
 
 
 /obj/machinery/mineral/stacking_machine

@@ -219,7 +219,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG, FALSE)
 			new_id.icon_state = "gold"
 			new_id.access = get_all_accesses()
 			new_id.registered_name = H.real_name
-			new_id.assignment = "Captain"
+			new_id.assignment = "Steering Wheel"
 			new_id.name = "[new_id.registered_name]'s ID Card ([new_id.assignment])"
 			H.equip_to_slot_or_del(new_id, slot_wear_id)
 			H.update_inv_wear_id()

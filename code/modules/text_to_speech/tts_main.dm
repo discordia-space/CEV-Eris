@@ -197,7 +197,7 @@ var/list/tts_seeds = list()
 				if("<")
 					character_sequence_end = ">"
 
-				// NT to NeoTheology
+				// NT to NanoTrasen
 				if("N")
 					listen_for_character = "T"
 					output += character

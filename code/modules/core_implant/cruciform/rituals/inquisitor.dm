@@ -259,7 +259,7 @@
 /datum/ritual/cruciform/inquisitor/initiation
 	name = "Initiation"
 	phrase = "Habe fiduciam in Domino ex toto corde tuo et ne innitaris prudentiae tuae, in omnibus viis tuis cogita illum et ipse diriget gressus tuos"
-	desc = "The second stage of granting a field promotion to a disciple, upgrading them to Preacher. The Preacher ascension kit is the first step."
+	desc = "The second stage of granting a field promotion to a disciple, upgrading them to Head of Personnel. The Head of Personnel ascension kit is the first step."
 	power = 100
 
 /datum/ritual/cruciform/inquisitor/initiation/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C,list/targets)
@@ -281,7 +281,7 @@
 		return FALSE
 
 	PC.activate()
-	log_and_message_admins("promoted disciple [C] to Preacher with initiation litany")
+	log_and_message_admins("promoted disciple [C] to Head of Personnel with initiation litany")
 
 	return TRUE
 

@@ -38,13 +38,13 @@
 	item_state = "crewman"
 
 /obj/item/clothing/under/rank/preacher
-	desc = "Ceremonial garb of NeoTheology preachers."
+	desc = "Ceremonial garb of NanoTrasen preachers."
 	name = "preacher vestments"
 	icon_state = "preacher"
 	item_state = "w_suit"
 
 /obj/item/clothing/under/rank/acolyte
-	desc = "Ceremonial garb of NeoTheology disciples."
+	desc = "Ceremonial garb of NanoTrasen disciples."
 	name = "acolyte vestments"
 	icon_state = "acolyte"
 	item_state = "acolyte"

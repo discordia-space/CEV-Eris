@@ -36,7 +36,7 @@
 #define SPAWN_IRONHAMMER "ironhammer"
 #define SPAWN_NANOTRASEN "nanotrasen"
 #define SPAWN_NEOTHEOLOGY "neotheology"
-#define SPAWN_MOEBIUS "moebius"
+#define SPAWN_MOEBIUS "morbius"
 #define SPAWN_SERBIAN "serbian"
 #define SPAWN_ONESTAR "onestar"
 #define SPAWN_TECHNOMANCER "technomancer"

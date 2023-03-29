@@ -124,7 +124,7 @@
 			positions["misc"][name] = rank
 
 	for(var/k in positions)
-		positions[k] = list2params(positions[k]) // converts positions["heads"] = list("Bob"="Captain", "Bill"="CMO") into positions["heads"] = "Bob=Captain&Bill=CMO"
+		positions[k] = list2params(positions[k]) // converts positions["heads"] = list("Bob"="Steering Wheel", "Bill"="CMO") into positions["heads"] = "Bob=Captain&Bill=CMO"
 
 	return positions
 

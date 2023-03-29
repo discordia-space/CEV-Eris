@@ -333,7 +333,7 @@
 		"Free Pizza Voucher",
 		"It Burns! Ow! Stop! Help Me! It Burns!",
 		"Clown Around Town",
-		"Artist Around Ship",
+		"Clown Around Ship",
 		"Communion",
 		"TOO MANY EXCESS VACATION DAYS?? TAKE A GOD DAMN VACATION STRAIGHT TO HELL!",
 		"Easels",

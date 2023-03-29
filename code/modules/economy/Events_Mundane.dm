@@ -60,7 +60,7 @@
 					[pick("comedian","singer/songwright","artist","playwright","TV personality","model")] "
 				else
 					body += "[pick("successful","highly respected","ingenious","esteemed")] \
-					[pick("academic","Professor","Doctor","Scientist")] "
+					[pick("academic","Professor","Nurse","Cruciform Recycler")] "
 
 				body += "[random_name(pick(MALE,FEMALE))] on [affected_dest.name] [pick("last week","yesterday","this morning","two days ago","three days ago")]\
 				[pick(". Assassination is suspected, but the perpetrators have not yet been brought to justice",\
@@ -104,7 +104,7 @@
 				body += "[pick("TV host","Webcast personality","Superstar","Model","Actor","Singer")] [random_name(pick(MALE,FEMALE))] "
 				if(prob(33))
 					body += "and their partner announced the birth of their [pick("first","second","third")] child on [affected_dest.name] early this morning. \
-					Doctors say the child is well, and the parents are considering "
+					Nurses say the child is well, and the parents are considering "
 					if(prob(50))
 						body += capitalize(pick(GLOB.first_names_female))
 					else

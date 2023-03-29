@@ -60,7 +60,7 @@ Signed your pal who isn't named Bob."
 
 /datum/stash/junk/guild/crackdown
 	story_type = STORY_CRIME
-	lore = "Guildsman,<br>\
+	lore = "Synagoguesman,<br>\
  With the recent crackdown on what sorts of merchandise we can sell I am going to teach you a vital lesson in entrepreneurship.<br>\
  <br>\
 
@@ -71,7 +71,7 @@ Signed your pal who isn't named Bob."
 /datum/stash/junk/guild/protection
 	contents_list_external = list(/obj/item/remains/human = 1) //Corrupt security murdered this guy for not paying protection money
 	story_type = STORY_CRIME
-	lore = "Guild Master,<br>\
+	lore = "Synagogue Master,<br>\
  The current protection racket for our little lemonade stand is exceeding tolerable levels.<br>\
  I have relocated to %D, just in case you'd think I made off with the lot.<br>\
  <br>\

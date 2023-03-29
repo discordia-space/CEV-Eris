@@ -252,7 +252,7 @@
   - tweak: Nerfed handcuffs delay.
   - bugfix: Proper movement in spess, v.3.0. No more 'there is space under your way'.
   - bugfix: Every tool with QUALITY_BOLT_TURNING should work with pipes just good.
-  - bugfix: Preacher now can connect soul sitting in old corpse to new body.
+  - bugfix: Head of Personnel now can connect soul sitting in old corpse to new body.
   - bugfix: Magboots let you forget about your jetpack stabilization now.
   - bugfix: Some tool.use_tool replacing tool/wrench and such stuff.
   - bugfix: Fixed runtimes around non-existant IDs and empty hands.

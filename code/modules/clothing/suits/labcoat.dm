@@ -18,7 +18,7 @@
 	)
 
 /obj/item/clothing/suit/storage/toggle/labcoat/cmo
-	name = "moebius biolab officer's labcoat"
+	name = "morbius biolab officer's labcoat"
 	desc = "Bluer than the standard model."
 	icon_state = "labcoat_cmo_open"
 	item_state = "labcoat_cmo"
@@ -26,21 +26,21 @@
 	icon_closed = "labcoat_cmo"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/chemist
-	name = "moebius chemist labcoat"
+	name = "morbius chemist labcoat"
 	desc = "A suit that protects against minor chemical spills. Has an orange stripe on the shoulder."
 	icon_state = "labcoat_chem_open"
 	icon_open = "labcoat_chem_open"
 	icon_closed = "labcoat_chem"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/bioengineer
-	name = "moebius bio-engineer labcoat"
+	name = "morbius bio-engineer labcoat"
 	desc = "A suit that protects against minor chemical spills. Has a red stripe on the shoulder."
 	icon_state = "labcoat_vir_open"
 	icon_open = "labcoat_vir_open"
 	icon_closed = "labcoat_vir"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/virologist
-	name = "moebius virologist labcoat"
+	name = "morbius virologist labcoat"
 	desc = "A suit that protects against minor chemical spills. Offers slightly more protection against biohazards than the standard model. Has a green stripe on the shoulder."
 	icon_state = "labcoat_vir_open"
 	icon_open = "labcoat_vir_open"
@@ -57,7 +57,7 @@
 	)
 
 /obj/item/clothing/suit/storage/toggle/labcoat/science
-	name = "moebius scientist labcoat"
+	name = "morbius scientist labcoat"
 	desc = "A suit that protects against minor chemical spills. This one is used by scientists."
 	icon_state = "labcoat_tox_open"
 	icon_open = "labcoat_tox_open"

@@ -13,7 +13,7 @@
 	BACKPACK_OVERRIDE_ENGINEERING
 
 /decl/hierarchy/outfit/job/engineering/exultant
-	name = OUTFIT_JOB_NAME("Technomancer Exultant")
+	name = OUTFIT_JOB_NAME("Adeptus Enginseer")
 	head = /obj/item/clothing/head/hardhat/white
 	uniform = /obj/item/clothing/under/rank/exultant
 	suit = /obj/item/clothing/suit/storage/te_coat
@@ -23,7 +23,7 @@
 	backpack_contents = list(/obj/item/gun/projectile/selfload/makarov = 1, /obj/item/ammo_magazine/pistol/rubber = 2) //TE got the excel gun as a war trophy same as the hatton
 
 /decl/hierarchy/outfit/job/engineering/engineer
-	name = OUTFIT_JOB_NAME("Technomancer")
+	name = OUTFIT_JOB_NAME("Adeptus Servitor")
 	head = /obj/item/clothing/head/armor/helmet/technomancer
 	uniform = /obj/item/clothing/under/rank/engineer
 	suit = /obj/item/clothing/suit/storage/vest/insulated
@@ -31,6 +31,6 @@
 	pda_type = /obj/item/modular_computer/pda/engineering
 
 /decl/hierarchy/outfit/job/engineering/engineer/void
-	name = OUTFIT_JOB_NAME("Technomancer - Voidsuit")
+	name = OUTFIT_JOB_NAME("Adeptus Servitor - Voidsuit")
 	mask = /obj/item/clothing/mask/breath
 	suit = /obj/item/clothing/suit/space/void/engineering

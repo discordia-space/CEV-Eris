@@ -224,7 +224,7 @@
 /obj/item/book/manual/wiki/engineering_atmos
 	name = "Pipes and You: Getting To Know Your Scary Tools"
 	icon_state = "book_atmos"
-	author = "Maria Crash, Senior Atmospherics Technician"
+	author = "Maria Crash, Senior Atmospherics Pawn Star"
 	title = "Pipes and You: Getting To Know Your Scary Tools"
 	page_link = "Guide_to_Atmospherics"
 
@@ -290,11 +290,11 @@
 	page_link = "Guide_to_Medical"
 
 /obj/item/book/manual/wiki/medical_chemistry
-	name = "Chemistry Textbook"
+	name = "Powergamerry Textbook"
 	icon_state = "book"//TODO: Add icon
 	author = "Medical Journal, volume 2"
-	title = "Chemistry"
-	page_link = "Guide_to_Chemistry"
+	title = "Powergamerry"
+	page_link = "Guide_to_Powergamerry"
 
 //neotheology
 /obj/item/book/manual/wiki/neotheology_cloning //TODO: Completely change this to be NT-oriented.

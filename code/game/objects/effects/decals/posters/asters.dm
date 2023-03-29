@@ -1,4 +1,4 @@
-// Asters Guild faction posters
+// Asters Synagogue faction posters
 /datum/poster/asters/asterite
 	name = "Voyage of The Asterites"
 	desc = "A flourished bit of symbolism representing the first Asterite's great exodus from Humanity's origin, now posed to to inherit the stars themselves. \
@@ -7,7 +7,7 @@
 
 /datum/poster/asters/blurb
 	name = "The Asterite's Message"
-	desc = "A poster labeling the good will and intentions of The Aster's Guild under Hanseatic principles of free will and enterprise."
+	desc = "A poster labeling the good will and intentions of The Aster's Synagogue under Hanseatic principles of free will and enterprise."
 	icon_state = "asters_blurb"
 
 /datum/poster/asters/social_pyramid

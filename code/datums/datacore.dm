@@ -127,7 +127,7 @@ var/global/ManifestJSON
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[sci[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	if(car.len > 0)
-		dat += "<tr><th colspan=3>Guild</th></tr>"
+		dat += "<tr><th colspan=3>Synagogue</th></tr>"
 		for(name in car)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[car[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
@@ -392,7 +392,7 @@ var/global/ManifestJSON
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			depthead = 1
-			if(rank=="Captain" && heads.len != 1)
+			if(rank=="Steering Wheel" && heads.len != 1)
 				heads.Swap(1, heads.len)
 
 		if(real_rank in security_positions)

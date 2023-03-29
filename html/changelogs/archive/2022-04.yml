@@ -53,7 +53,7 @@
   - tweak: Turned the medical vending machines into custom ones, allowing stocking
       them with chems and supplies
   - tweak: Turned the Theo-Mat vending machine into a custom one, allowing stocking
-      with the products of NeoTheology
+      with the products of NanoTrasen
   - spellcheck: Fixed a few typos for vending machines
   - code_imp: Changed some vending machine code
   - balance: TheoMat now only serves the cruciformed

@@ -3,7 +3,7 @@
 
 
 /datum/job/clubmanager
-	title = "Club Manager"
+	title = "Mafia Don"
 	flag = CLUBMANAGER
 	department = DEPARTMENT_CIVILIAN
 	department_flag = SERVICE
@@ -24,9 +24,9 @@
 		STAT_VIG = 15,
 	)
 	outfit_type = /decl/hierarchy/outfit/job/service/bartender //Re-using this.
-	description = "As the Club Manager, you run the club aboard CEV Eris. Provide the crewmembers with drinks, food, and entertainment.<br>\
+	description = "As the Mafia Don, you run the club aboard CEV Eris. Provide the crewmembers with drinks, food, and entertainment.<br>\
 	<br>\
-	Technically you take orders from no one, but the Captain and the First Officer are the ones who hired you and you should strive to please them. Your Club Workers help you run the place and make money. Pay them well!"
+	Technically you take orders from no one, but the Captain and the First Officer are the ones who hired you and you should strive to please them. Your Mafia Consiglieres help you run the place and make money. Pay them well!"
 
 	duties = "		Run the club, provide a safe haven for food, drinks, and entertainment.<br>\
 		Make money, run deals through your place, provide entertainment, trade secrets.<br>\
@@ -35,19 +35,19 @@
 	loyalties = LOYALTY_CIVILIAN
 
 /obj/landmark/join/start/clubmanager
-	name = "Club Manager"
+	name = "Mafia Don"
 	icon_state = "player-grey"
 	join_tag = /datum/job/clubmanager
 
 /datum/job/clubworker
-	title = "Club Worker"
+	title = "Mafia Consigliere"
 	flag = CLUBWORKER
 	department = DEPARTMENT_CIVILIAN
 	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the Club Manager"
+	supervisors = "the Mafia Don"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_JIVE = 60)
 	access = list(access_bar, access_kitchen, access_maint_tunnels)
@@ -61,21 +61,21 @@
 		STAT_VIG = 5,
 	)
 	outfit_type = /decl/hierarchy/outfit/job/service/waiter
-	description = "As a Club Worker, you work for the Club Manager. Your job is to fulfill your duties in running the Club and making sure all the customers are satisfied.<br>\
+	description = "As a Mafia Consigliere, you work for the Mafia Don. Your job is to fulfill your duties in running the Mafia and making sure all the customers are satisfied.<br>\
 	<br>\
-	You can cook, clean, server, tend the bar, entertain, or even be the bouncer. You have no limits to what you can do inside the Club granted your manager requests you do it.<br>\
+	You can cook, clean, server, tend the bar, entertain, or even be the bouncer. You have no limits to what you can do inside the Mafia granted your manager requests you do it.<br>\
 	<br>\
-	You are paid directly by the Club Manager, he gives you your allowance. The Club Manager only makes money if the Club is ran well, so work hard!"
+	You are paid directly by the Mafia Don, he gives you your allowance. The Mafia Don only makes money if the Mafia is ran well, so work hard!"
 
-	duties = "		Assist the Club Manager with running the club.<br>\
+	duties = "		Assist the Mafia Don with running the club.<br>\
 		Serve customers. Feed customers. Entertain customers.<br>\
-		Protect the Club. Protect the Customers.<br>\
+		Protect the Mafia. Protect the Customers.<br>\
 		Make enough money to stay alive aboard CEV Eris."
 
 	loyalties = LOYALTY_CIVILIAN
 
 /obj/landmark/join/start/clubworker
-	name = "Club Worker"
+	name = "Mafia Consigliere"
 	icon_state = "player-grey"
 	join_tag = /datum/job/clubworker
 

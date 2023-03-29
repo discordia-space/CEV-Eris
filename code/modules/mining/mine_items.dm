@@ -1,4 +1,4 @@
-/**********************Miner Lockers**************************/
+/**********************Golemslayer Lockers**************************/
 
 /obj/structure/closet/secure_closet/personal/miner
 	name = "miner's equipment"

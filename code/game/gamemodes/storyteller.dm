@@ -96,7 +96,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 		if(!engineer && !command)
 			to_chat(world, "<b><font color='[tcol]'>A command officer and technomancer are required to start round.</font></b>")
 		else if(!engineer)
-			to_chat(world, "<b><font color='[tcol]'>Technomancer is required to start round.</font></b>")
+			to_chat(world, "<b><font color='[tcol]'>Adeptus Mechanicus is required to start round.</font></b>")
 		else if(!command)
 			to_chat(world, "<b><font color='[tcol]'>A command officer is required to start round.</font></b>")
 

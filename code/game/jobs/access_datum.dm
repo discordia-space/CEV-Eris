@@ -37,13 +37,13 @@
 /var/const/access_moebius = 5
 /datum/access/moebius
 	id = access_moebius
-	desc = "Moebius General"
+	desc = "Morbius General"
 	region = ACCESS_REGION_RESEARCH
 
 //same as above but the MBO can assign it
 /datum/access/moebius_medical
 	id = access_moebius
-	desc = "Moebius General"
+	desc = "Morbius General"
 	region = ACCESS_REGION_MEDBAY
 
 /var/const/access_morgue = 6
@@ -133,7 +133,7 @@
 /var/const/access_captain = 20
 /datum/access/captain
 	id = access_captain
-	desc = "Captain"
+	desc = "Steering Wheel"
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_all_personal_lockers = 21
@@ -193,7 +193,7 @@
 /var/const/access_rd = 30
 /datum/access/rd
 	id = access_rd
-	desc = "Moebius Expedition Overseer"
+	desc = "Morbius Big Nerd"
 	region = ACCESS_REGION_RESEARCH
 
 /var/const/access_cargo = 31
@@ -211,7 +211,7 @@
 /var/const/access_chemistry = 33
 /datum/access/chemistry
 	id = access_chemistry
-	desc = "Chemistry Lab"
+	desc = "Powergamerry Lab"
 	region = ACCESS_REGION_MEDBAY
 
 /var/const/access_cargo_bot = 34
@@ -245,7 +245,7 @@
 /var/const/access_cmo = 40
 /datum/access/cmo
 	id = access_cmo
-	desc = "Moebius Biolab Officer"
+	desc = "Morbius Not Organ Harvester"
 	region = ACCESS_REGION_MEDBAY
 
 // /var/const/free_access_id = 39
@@ -255,7 +255,7 @@
 /var/const/access_merchant = 41
 /datum/access/merchant
 	id = access_merchant
-	desc = "Guild Merchant"
+	desc = "Synagogue Rabbi"
 	region = ACCESS_REGION_SUPPLY
 
 /var/const/access_network = 42
@@ -273,7 +273,7 @@
 /var/const/access_artist = 44
 /datum/access/artist_office
 	id = access_artist
-	desc = "Guild Artist"
+	desc = "Corporate Clown"
 	region = ACCESS_REGION_SUPPLY
 
 /var/const/access_surgery = 45
@@ -329,19 +329,19 @@
 /var/const/access_ce = 56
 /datum/access/ce
 	id = access_ce
-	desc = "Technomancer Exultant"
+	desc = "Adeptus Enginseer"
 	region = ACCESS_REGION_ENGINEERING
 
 /var/const/access_hop = 57
 /datum/access/hop
 	id = access_hop
-	desc = "First Officer"
+	desc = "Spare Wheel"
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_hos = 58
 /datum/access/hos
 	id = access_hos
-	desc = "Ironhammer Commander"
+	desc = "Tard Wrangler"
 	region = ACCESS_REGION_SECURITY
 
 /var/const/access_RC_announce = 59 //Request console announcements
@@ -374,10 +374,10 @@
 	desc = "Security"
 	region = ACCESS_REGION_SECURITY
 
-/var/const/access_psychiatrist = 64 // Psychiatrist's office
+/var/const/access_psychiatrist = 64 // Candy Pusher's office
 /datum/access/psychiatrist
 	id = access_psychiatrist
-	desc = "Psychiatrist's Office"
+	desc = "Candy Pusher's Office"
 	region = ACCESS_REGION_RESEARCH
 
 /var/const/access_xenoarch = 65
@@ -398,51 +398,51 @@
 	desc = "Medical Specialist"
 	region = ACCESS_REGION_SECURITY
 
-/var/const/access_paramedic = 68 // Paramedic's closet
+/var/const/access_paramedic = 68 // Hobo's closet
 /datum/access/paramedic
 	id = access_paramedic
-	desc = "Paramedic's Office"
+	desc = "Hobo's Office"
 	region = ACCESS_REGION_MEDBAY
 
 // /var/const/free_access_id = 69
 
 /**************
-* NeoTheology *
+* NanoTrasen *
 ***************/
 /var/const/access_nt_disciple = 70
 /datum/access/nt_disciple
 	id = access_nt_disciple
-	desc = "NeoTheology Disciple"
+	desc = "NanoTrasen Disciple"
 	region = ACCESS_REGION_CHURCH
 
 /var/const/access_nt_acolyte = 71
 /datum/access/nt_acolyte
 	id = access_nt_acolyte
-	desc = "NeoTheology Acolyte"
+	desc = "NanoTrasen Assistant"
 	region = ACCESS_REGION_CHURCH
 
 /var/const/access_nt_custodian = 72
 /datum/access/nt_custodian
 	id = access_nt_custodian
-	desc = "NeoTheology Custodian"
+	desc = "NanoTrasen Janitor"
 	region = ACCESS_REGION_CHURCH
 
 /var/const/access_nt_agrolyte = 73
 /datum/access/nt_agrolyte
 	id = access_nt_agrolyte
-	desc = "NeoTheology Agrolyte"
+	desc = "NanoTrasen Botanist"
 	region = ACCESS_REGION_CHURCH
 
 /var/const/access_nt_preacher = 74
 /datum/access/nt_preacher
 	id = access_nt_preacher
-	desc = "NeoTheology Preacher"
+	desc = "NanoTrasen Head of Personnel"
 	region = ACCESS_REGION_CHURCH
 
 /var/const/access_nt_inquisitor = 75
 /datum/access/nt_inquisitor
 	id = access_nt_inquisitor
-	desc = "NeoTheology Inquisitor"
+	desc = "NanoTrasen Inquisitor"
 	region = ACCESS_REGION_CHURCH
 
 /****************
@@ -487,7 +487,7 @@
 /var/const/access_change_club = 86
 /datum/access/change_club
 	id = access_change_club
-	desc = "Club Change IDs"
+	desc = "Mafia Change IDs"
 	region = ACCESS_REGION_CLUB
 
 /******************

@@ -619,11 +619,11 @@
 
 /obj/item/rig_module/cape/te
 	name = "technomancer cape"
-	desc = "A tough regal cape, imprinted with the emblem of the Technomancer League."
+	desc = "A tough regal cape, imprinted with the emblem of the Adeptus Mechanicus."
 	suit_overlay_active = "cape_te"
 	suit_overlay_inactive = "cape_te"
 	suit_overlay_mob_only = 1
 
-	interface_name = "Technomancer Cape"
+	interface_name = "Adeptus Cape"
 	interface_desc = "A grand yet hardy cape."
 	rarity_value = 100

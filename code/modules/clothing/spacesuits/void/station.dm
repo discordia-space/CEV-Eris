@@ -1,7 +1,7 @@
 // Ship voidsuits
 //Engineering void
 /obj/item/clothing/head/space/void/engineering
-	name = "Technomancer voidsuit helmet"
+	name = "Adeptus voidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has radiation shielding."
 	icon_state = "technohelmet_void_old"
 	item_state = "technohelmet_void_old"
@@ -21,7 +21,7 @@
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/suit/space/void/engineering
-	name = "Technomancer voidsuit"
+	name = "Adeptus voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding and extra plating."
 	icon_state = "technosuit_old"
 	item_state = "technosuit_old"
@@ -51,7 +51,7 @@
 
 //Old engineering void
 /obj/item/clothing/head/space/void/engineeringold
-	name = "outdated Technomancer voidsuit helmet"
+	name = "outdated Adeptus voidsuit helmet"
 	desc = "This visor has a few more options in its shape than its more newer version."
 	icon_state = "technohelmet_void"
 	item_state = "technohelmet_void"
@@ -95,8 +95,8 @@
 		return 1
 
 /obj/item/clothing/suit/space/void/engineeringold
-	name = "outdated Technomancer voidsuit"
-	desc = "An outdated Technomancer voidsuit that is nearly identical in all properties to its newer version. Nevertheless this design was rejected in favour of more streamlined counterpart. Rumors claim there was a different reason to it, but we all stick to this one."
+	name = "outdated Adeptus voidsuit"
+	desc = "An outdated Adeptus voidsuit that is nearly identical in all properties to its newer version. Nevertheless this design was rejected in favour of more streamlined counterpart. Rumors claim there was a different reason to it, but we all stick to this one."
 	icon_state = "technosuit"
 	item_state = "technosuit"
 	armor = list(
@@ -289,7 +289,7 @@
 
 //Science
 /obj/item/clothing/head/space/void/science
-	name = "Moebius combat helmet"
+	name = "Morbius combat helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. The high-tech sensor systems built into the visor allow a good amount of protection without impairing aim."
 	icon_state = "moebiushelmb"
 	item_state = "moebiushelmb"
@@ -343,9 +343,9 @@
 	usr.update_action_buttons()
 
 /obj/item/clothing/suit/space/void/science
-	name = "Moebius combat voidsuit"
+	name = "Morbius combat voidsuit"
 	icon_state = "moebiussuit"
-	desc = "A heavy space suit designed by Moebius personnel for work in hazardous environment without impairing mobility. Features several advanced layers of armor."
+	desc = "A heavy space suit designed by Morbius personnel for work in hazardous environment without impairing mobility. Features several advanced layers of armor."
 	item_state = "moebiussuit"
 	matter = list(
 	MATERIAL_PLASTEEL = 15,
@@ -427,7 +427,7 @@
 
 /obj/item/clothing/head/space/void/NTvoid
 	name = "neotheology voidsuit helmet"
-	desc = "A voidsuit helmet designed by NeoTheology with a most holy mix of biomatter and inorganic matter."
+	desc = "A voidsuit helmet designed by NanoTrasen with a most holy mix of biomatter and inorganic matter."
 	icon_state = "ntvoidhelmet"
 	item_state = "ntvoidhelmet"
 	action_button_name = "Toggle Helmet Light"
@@ -446,7 +446,7 @@
 
 /obj/item/clothing/suit/space/void/NTvoid
 	name = "neotheology voidsuit"
-	desc = "A voidsuit designed by NeoTheology with a most holy mix of biomatter and inorganic matter."
+	desc = "A voidsuit designed by NanoTrasen with a most holy mix of biomatter and inorganic matter."
 	icon_state = "ntvoid"
 	item_state = "ntvoid"
 	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_STEEL = 10, MATERIAL_BIOMATTER = 35)

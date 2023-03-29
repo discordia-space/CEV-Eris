@@ -1,4 +1,4 @@
-/**********************Mineral deposits**************************/
+/**********************Golemslayeral deposits**************************/
 /turf/unsimulated/mineral
 	name = "impassable rock"
 	icon = 'icons/turf/walls.dmi'
@@ -38,7 +38,7 @@
 	.=..()
 	icon_state = "rock[rand(0,4)]"
 	spawn(0)
-		MineralSpread()
+		GolemslayeralSpread()
 
 /turf/simulated/mineral/can_build_cable()
 	return !density
@@ -93,18 +93,18 @@
 			var/obj/item/mech_equipment/drill/D = M.selected_hardpoint
 			D.afterattack(src)
 
-/turf/simulated/mineral/proc/MineralSpread()
+/turf/simulated/mineral/proc/GolemslayeralSpread()
 	if(mineral && mineral.spread)
 		for(var/trydir in cardinal)
 			if(prob(mineral.spread_chance))
 				var/turf/simulated/mineral/target_turf = get_step(src, trydir)
 				if(istype(target_turf) && !target_turf.mineral)
 					target_turf.mineral = mineral
-					target_turf.UpdateMineral()
-					target_turf.MineralSpread()
+					target_turf.UpdateGolemslayeral()
+					target_turf.GolemslayeralSpread()
 
 
-/turf/simulated/mineral/proc/UpdateMineral()
+/turf/simulated/mineral/proc/UpdateGolemslayeral()
 	clear_ore_effects()
 	if(!mineral)
 		name = "\improper Rock"
@@ -147,7 +147,7 @@
 	for(var/obj/effect/mineral/M in contents)
 		qdel(M)
 
-/turf/simulated/mineral/proc/DropMineral()
+/turf/simulated/mineral/proc/DropGolemslayeral()
 	if(!mineral)
 		return
 	clear_ore_effects()
@@ -160,7 +160,7 @@
 
 		//if the turf has already been excavated, some of it's ore has been removed
 		for (var/i = 1 to mineral.result_amount - mined_ore)
-			DropMineral()
+			DropGolemslayeral()
 
 	//Add some rubble,  you did just clear out a big chunk of rock.
 
@@ -168,11 +168,11 @@
 
 	if(istype(N))
 		N.overlay_detail = "asteroid[rand(0,9)]"
-		N.updateMineralOverlays(1)
+		N.updateGolemslayeralOverlays(1)
 
 
 /turf/simulated/mineral/random
-	name = "Mineral deposit"
+	name = "Golemslayeral deposit"
 	var/mineralSpawnChanceList = list(ORE_URANIUM = 5, ORE_PLATINUM = 5, ORE_IRON = 35, ORE_CARBON = 35, ORE_DIAMOND = 1, ORE_GOLD = 5, ORE_SILVER = 5, ORE_PLASMA = 10, ORE_HYDROGEN = 1)
 	var/mineralChance = 100 //10 //means 10% chance of this plot changing to a mineral deposit
 
@@ -182,7 +182,7 @@
 		mineral_name = lowertext(mineral_name)
 		if (mineral_name && (mineral_name in ore_data))
 			mineral = ore_data[mineral_name]
-			UpdateMineral()
+			UpdateGolemslayeral()
 
 	. = ..()
 
@@ -216,7 +216,7 @@
 	icon_state = "asteroid[rand(0,2)]"
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,8)]"
-		updateMineralOverlays(1)
+		updateGolemslayeralOverlays(1)
 
 /turf/simulated/floor/asteroid/ex_act(severity)
 	switch(severity)
@@ -257,7 +257,7 @@
 	icon_state = "asteroid_dug"
 	return
 
-/turf/simulated/floor/asteroid/proc/updateMineralOverlays(var/update_neighbors)
+/turf/simulated/floor/asteroid/proc/updateGolemslayeralOverlays(var/update_neighbors)
 
 	overlays.Cut()
 
@@ -276,7 +276,7 @@
 			var/turf/simulated/floor/asteroid/A
 			if(istype(get_step(src, direction), /turf/simulated/floor/asteroid))
 				A = get_step(src, direction)
-				A.updateMineralOverlays()
+				A.updateGolemslayeralOverlays()
 
 /turf/simulated/floor/asteroid/Entered(atom/movable/M as mob|obj)
 	..()

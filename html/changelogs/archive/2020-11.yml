@@ -220,7 +220,7 @@
   - balance: The chameleon projector now requires an item have a minimum pixel count
       to their icon.
   - balance: The rig teleport module has been removed from the loot tables, hopefully.
-  - tweak: NT Acolyte stats have been reworked to have them be more combat and cleaning
+  - tweak: NT Assistant stats have been reworked to have them be more combat and cleaning
       oriented.
   - balance: NT armors are no longer spaceproof. Their armor values have been buffed
       to accomodate.

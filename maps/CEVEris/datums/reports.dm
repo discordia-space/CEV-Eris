@@ -225,7 +225,7 @@
 	..()
 	add_header()
 	add_field(/datum/report_field/simple_text, "AO Codename")
-	add_field(/datum/report_field/people/from_manifest, "Reporting Scientist")
+	add_field(/datum/report_field/people/from_manifest, "Reporting Cruciform Recycler")
 	add_field(/datum/report_field/people/from_manifest, "Overviewing Research Director")
 	add_field(/datum/report_field/pencode_text, "Containment Procedures")
 	add_field(/datum/report_field/pencode_text, "Generalized Overview")
@@ -346,7 +346,7 @@
 
 /datum/computer_file/report/recipient/nt/volunteer
 	form_name = "CEV-1443"
-	title = "Moebius Test Subject Volunteer Form"
+	title = "Morbius Test Subject Volunteer Form"
 	logo= "\[moebius\]"
 	available_on_ntnet = 1
 
@@ -358,9 +358,9 @@
 	add_field(/datum/report_field/simple_text, "Intended Procedure(s)")
 	add_field(/datum/report_field/simple_text, "Compensation for Volunteer: (if any)")
 	add_field(/datum/report_field/people/list_from_manifest, "Handling Researcher(s)")
-	add_field(/datum/report_field/instruction, "By signing, the \"Volunteer\" agrees to absolve the Moebius Laboratories, and its employees, of any liability or responsibility for injuries, damages, property loss or side-effects that may result from the intended procedure. If signed by an authorized representative of the Moebius Laboratories, such as a Expedition Overseer or Biolab Officer - this form is deemed reviewed, but is only approved if so marked.")
+	add_field(/datum/report_field/instruction, "By signing, the \"Volunteer\" agrees to absolve the Morbius Laboratories, and its employees, of any liability or responsibility for injuries, damages, property loss or side-effects that may result from the intended procedure. If signed by an authorized representative of the Morbius Laboratories, such as a Big Nerd or Not Organ Harvester - this form is deemed reviewed, but is only approved if so marked.")
 	add_field(/datum/report_field/signature, "Volunteer's Signature:")
-	temp_fields += add_field(/datum/report_field/signature, "Moebius Representative's Signature")
+	temp_fields += add_field(/datum/report_field/signature, "Morbius Representative's Signature")
 	temp_fields += add_field(/datum/report_field/options/yes_no, "Approved")
 	for(var/datum/report_field/temp_field in temp_fields)
 		temp_field.set_access(access_edit = access_heads)
@@ -373,8 +373,8 @@
 /datum/computer_file/report/recipient/nt/deny/generate_fields()
 	..()
 	add_header()
-	add_field(/datum/report_field/instruction, "Dear Sir/Madam, we regret to inform you that your volunteer application for service as a test subject with the Moebius Laboratories has been rejected. We thank you for your interest in our company and the progression of research. Attached, you will find a copy of your original volunteer form for your records. Regards,")
-	add_field(/datum/report_field/signature, "Moebius Representative's Signature")
+	add_field(/datum/report_field/instruction, "Dear Sir/Madam, we regret to inform you that your volunteer application for service as a test subject with the Morbius Laboratories has been rejected. We thank you for your interest in our company and the progression of research. Attached, you will find a copy of your original volunteer form for your records. Regards,")
+	add_field(/datum/report_field/signature, "Morbius Representative's Signature")
 	add_field(/datum/report_field/people/from_manifest, "Name of Volunteer")
 	add_field(/datum/report_field/instruction, "Reason for Rejection")
 	add_field(/datum/report_field/options/yes_no, "Physically Unfit")

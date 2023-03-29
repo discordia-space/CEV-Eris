@@ -1,5 +1,5 @@
 <!--
-Title: Artist's bench, largely from Autolathe.tmpl
+Title: Clown's bench, largely from Autolathe.tmpl
 Used In File(s): \code\game\machinery\autolathe\artist_bench.dm
  -->
 
@@ -24,7 +24,7 @@ Used In File(s): \code\game\machinery\autolathe\artist_bench.dm
 	<div class="block">
 		<div class="item">
 			<div class="itemContentWide">
-			Model Oddity: 
+			Model Oddity:
 			{{if data.oddity_name}}
 				<b>{{:data.oddity_name ? data.oddity_name :'data oddity_name'}}</b>
 			{{else}}
@@ -38,13 +38,13 @@ Used In File(s): \code\game\machinery\autolathe\artist_bench.dm
 					{{for data.oddity_stats}}
 						<div class="itemContentWide">
 						{{if value.level >= 10}}
-							<span style="color:gold;"><b>Overwhelming</b></span> aspect of 
+							<span style="color:gold;"><b>Overwhelming</b></span> aspect of
 						{{else value.level >= 6}}
-							<span style="color:red;"><b>Strong</b></span> aspect of 
+							<span style="color:red;"><b>Strong</b></span> aspect of
 						{{else value.level >= 3}}
-							<span style="color:green;"><b>Medium</b></span> aspect of 
+							<span style="color:green;"><b>Medium</b></span> aspect of
 						{{else value.level >= 1}}
-							<span style="color:blue;"><b>Weak</b></span> aspect of 
+							<span style="color:blue;"><b>Weak</b></span> aspect of
 						{{/if}}
 						<b>{{:value.name}}</b>
 						</div>

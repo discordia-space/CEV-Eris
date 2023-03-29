@@ -1,6 +1,6 @@
 /mob/observer/eye/angel
 	name = "\improper ANGEL"
-	desc = "A soul of someone dead, now lurking in the corporate networks of NeoTheology."
+	desc = "A soul of someone dead, now lurking in the corporate networks of NanoTrasen."
 
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "angel"		// Placeholders!

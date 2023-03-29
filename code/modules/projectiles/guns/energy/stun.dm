@@ -48,7 +48,7 @@
 
 /obj/item/gun/energy/stunrevolver/moebius
 	name = "ML SP \"Suez\""	//Ersatz name
-	desc = "Also know as stunrevolver. A Moebius copy of the older and less precise Nanotrasen solution for non-lethal takedowns. This gun has smaller capacity in exchange for S-cells use."
+	desc = "Also know as stunrevolver. A Morbius copy of the older and less precise Nanotrasen solution for non-lethal takedowns. This gun has smaller capacity in exchange for S-cells use."
 	icon = 'icons/obj/guns/energy/stunrevolver_moebius.dmi'
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 6, MATERIAL_SILVER = 2, MATERIAL_PLASTIC = 5)
 	serial_type = "ML"

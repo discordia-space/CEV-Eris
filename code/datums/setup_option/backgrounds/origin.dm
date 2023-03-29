@@ -11,7 +11,7 @@
 	desc = "An independent colony founded by German immigrants from old Earth and consisting of one giant hive city on a barren desert planet. \
 			It was once one of the most promising of colonies, back when the terraforming process had just begun; a group of scientists gathered together to forge a brighter future. \
 			Now, after a stalemated civil war, Oberth has degenerated into an anarcho-capitalist hell ruled by three governments, all unable to establish control over the city or stop ravaging band wars. \
-			Even Hanza and NeoTheology failed to bring order. Though still a place of infinite possibilities, most of them are illegal. \
+			Even Hanza and NanoTrasen failed to bring order. Though still a place of infinite possibilities, most of them are illegal. \
 			Gives you knowledge of the German language."
 
 	stat_modifiers = list(
@@ -70,8 +70,8 @@
 	name = "New Rome"
 	desc = "One of the first colonies founded by American settlers, New Rome was rich with biosphere and natural resources and served as Nanotrasen's headquarters when it was still an emerging power. As such, it holds the highest human population of any planet in the galaxy. \
 			Although the War ended before it was sieged, New Rome suffered an economic crisis following the fall of Nanotrasen and never recovered. \
-			Formerly a garden world, it is now dotted with hive cities, decaying ecologies, widespread poverty, and NeoTheology desperately trying to revive the ecosphere artificially with biomatter technology. \
-			On New Rome, one must make the choice: to remain free and die impoverished and starving, or join the cult of NeoTheology to survive with a stable job and a place to live. \
+			Formerly a garden world, it is now dotted with hive cities, decaying ecologies, widespread poverty, and NanoTrasen desperately trying to revive the ecosphere artificially with biomatter technology. \
+			On New Rome, one must make the choice: to remain free and die impoverished and starving, or join the cult of NanoTrasen to survive with a stable job and a place to live. \
 			Gives you knowledge of the Latin language."
 
 	stat_modifiers = list(
@@ -116,7 +116,7 @@
 			Plated in rusty metal, with high costs of living, a permanent space roach infestation and no natural ecology to speak of, the \"Destined\" can be aptly described as an industrial hell. \
 			While The Corporation War was rather merciful to it, and the station remained neutral throughout most of the conflict, in the end, it succumbed to Syndicate occupation. \
 			The \"Destined\" is widely known for its anachronistic Monarchical government and system of noble peerage, with most successful nobles controlling smaller stations near it and others bent on quelling the chaos within the Colony proper. \
-			They are also members of Asters Guild, and this whole station is considered major Guild territory."
+			They are also members of Asters Synagogue, and this whole station is considered major Synagogue territory."
 
 	stat_modifiers = list(
 		STAT_ROB = 5,
@@ -133,7 +133,7 @@
 	desc = "A lifeless, unforgiving ice world, rich with rare minerals, life on Crozet is only possible underground. \
 			Originally founded by a French mining company, it was occupied later by exiled nobility from the HMSS \"Destined\". \
 			The exiles founded the Four Great Houses to defend the colony's sovereignty, as well as their right to work the local population to death in the mines. \
-			This lasted until Nanotrasen invaded with the help of one of the Houses, and later, Crozet was left under NeoTheology control under the terms of a peace treaty. \
+			This lasted until Nanotrasen invaded with the help of one of the Houses, and later, Crozet was left under NanoTrasen control under the terms of a peace treaty. \
 			The local population are prone to revolt after decades of mistreatment and generally want to be left alone, making them ripe for recruitment by the Founders."
 
 	stat_modifiers = list(
@@ -175,7 +175,7 @@
 			Even before the war it was full of conflicts between local governments, pirates and corporations, and it just got worse afterwards. \
 			While it's formally under Hanza control now, the war resulted in a fall of many governments, thus the anarchy spreads, and patchwork states are being born and die every year. \
 			Nations are mixed in a spiral of endless conflict, all of the old Earth languages are present there, and any ideology and religion can be found here. \
-			This system is also known for Moebius HQ - a large station orbiting the End Point black hole."
+			This system is also known for Morbius HQ - a large station orbiting the End Point black hole."
 
 	stat_modifiers = list(
 		STAT_ROB = -9,
@@ -211,7 +211,7 @@
     name = "Eureka"
     desc = "Once a paradise for the Australian colonists that lived on it, their neutrality during the corporate wars cost them this paradise. \
             And thus did the Syndicate and Nanotrasen both bomb Eureka to hell, causing once verdant lands to become hellish deserts of nuclear proportions. \
-            As a side effect of this once the corporate wars ended, Eurekans are known to be eerily good trackers and pathfinders in these conditions and elsewhere, causing what's left of the Eurekan people to pay a tithe to Hansa and Neotheology both in the form of criminals. \
+            As a side effect of this once the corporate wars ended, Eurekans are known to be eerily good trackers and pathfinders in these conditions and elsewhere, causing what's left of the Eurekan people to pay a tithe to Hansa and NanoTrasen both in the form of criminals. \
             All in the name of saving what's left."
 
     stat_modifiers = list(

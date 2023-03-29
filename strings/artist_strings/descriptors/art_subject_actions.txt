@@ -104,7 +104,7 @@ comforting
 putting [object] to sleep
 watching after
 analyzing
-analyzing [object] using Moebius gear
+analyzing [object] using Morbius gear
 raising [object]\s salary
 promoting [object] in position
 awarding [object] the nobel prize of peace

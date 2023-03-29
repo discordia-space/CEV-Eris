@@ -57,8 +57,8 @@
 
 /obj/structure/cryopod_spawner/medical
 	outfit_type = /decl/hierarchy/outfit/job/medical/doctor
-	spawn_faction = "Moebius"
-	spawn_role = "Doctor"
+	spawn_faction = "Morbius"
+	spawn_role = "Nurse"
 
 	stat_modifiers = list(
 		STAT_MEC = 25,
@@ -68,8 +68,8 @@
 
 /obj/structure/cryopod_spawner/technomancer
 	outfit_type = /decl/hierarchy/outfit/job/engineering/exultant
-	spawn_faction = "Technomancer"
-	spawn_role = "Exultant"
+	spawn_faction = "Adeptus"
+	spawn_role = "Enginseer"
 
 	stat_modifiers = list(
 		STAT_MEC = 40,

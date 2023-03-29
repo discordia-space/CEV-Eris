@@ -39,7 +39,7 @@
 		"You feel something in your throat.",
 		"You need to be alone.",
 		"Why do the machines on this ship look different every day?",
-		"Those Vagabonds sure have some weird job titles. How old is this ship? What's YOUR role in its fate?",
+		"Those Hobos sure have some weird job titles. How old is this ship? What's YOUR role in its fate?",
 		"At the end of the day, you will rest and recover. But not now - there is work to be done.",
 		"A shadow twitches.",
 		"There is something in the corner of your eye, almost unseen. For how long was it there?",

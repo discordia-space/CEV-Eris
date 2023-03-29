@@ -2,7 +2,7 @@
 	name = "custodian"
 	phrase = null
 	desc = ""
-	category = "Custodian"
+	category = "Janitor"
 
 /datum/ritual/cruciform/custodian/purging
 	name = "Words of purging"

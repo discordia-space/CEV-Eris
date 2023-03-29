@@ -201,7 +201,7 @@
 									available_channels.Add(":m")
 								if("Mining")
 									available_channels.Add(":d")
-								if("Guild")
+								if("Synagogue")
 									available_channels.Add(":q")
 		else
 			..()

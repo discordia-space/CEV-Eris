@@ -115,14 +115,14 @@
   - tweak: Cyrofeed structure made solid to avoid trapping arrival players.
   - bugfix: Burrow's light count runtimes fixed.
   XanderDox:
-  - rscadd: Adds a new Preacher litany, 'Baptismal Record. This litany is done in
+  - rscadd: Adds a new Head of Personnel litany, 'Baptismal Record. This litany is done in
       front of the altar in the Chapel Ritual Room, and will make the altar print
       out a piece of paper with all active Neotheologians names on it.
-  - rscadd: 'New Preacher Ability: Atonement. Atonement is essentially the Inquisitor''s
-      power ''Penance'', but costs more to use which stops the Preacher from being
+  - rscadd: 'New Head of Personnel Ability: Atonement. Atonement is essentially the Inquisitor''s
+      power ''Penance'', but costs more to use which stops the Head of Personnel from being
       able to completely disable someone with it.'
   - rscadd: Additionally, cruciforms will now have the names of those they were removed
-      from attached so the Preacher doesn't have to worry about losing track of who
+      from attached so the Head of Personnel doesn't have to worry about losing track of who
       was which.
   - imageadd: Added a new ritual book sprite, which serves as the new basic ritual
       book look.

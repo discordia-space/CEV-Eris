@@ -1,7 +1,7 @@
 var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 /datum/job/captain
-	title = "Captain"
+	title = "Steering Wheel"
 	flag = CAPTAIN
 	department = DEPARTMENT_COMMAND
 	head_position = TRUE
@@ -63,14 +63,14 @@ Your second loyalty is to your command officers. The heads of each faction. List
 		return get_all_station_access()
 
 /obj/landmark/join/start/captain
-	name = "Captain"
+	name = "Steering Wheel"
 	icon_state = "player-gold-officer"
 	join_tag = /datum/job/captain
 
 
 
 /datum/job/hop
-	title = "First Officer"
+	title = "Spare Wheel"
 	flag = FIRSTOFFICER
 	department = DEPARTMENT_COMMAND
 	head_position = TRUE
@@ -131,6 +131,6 @@ Act as the captain's sidekick, bodyguard, and last line of defense in a crisis o
 	)
 
 /obj/landmark/join/start/hop
-	name = "First Officer"
+	name = "Spare Wheel"
 	icon_state = "player-gold"
 	join_tag = /datum/job/hop

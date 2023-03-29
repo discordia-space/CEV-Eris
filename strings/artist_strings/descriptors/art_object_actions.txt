@@ -39,7 +39,7 @@ being healed with medkit
 being cooked alive
 being vaporized into dust
 being gutted alive
-being disintegrated 
+being disintegrated
 being choked
 being choked to death
 being frozen
@@ -86,7 +86,7 @@ being melted into an unrecognisable mass
 being treated with respect
 being born
 being kicked
-being respected 
+being respected
 being kissed and cared for
 being fed forcibly with cookies
 being put out of misery
@@ -110,7 +110,7 @@ being comforted
 being put to sleep
 being watched after
 being analyzed
-being analyzed using Moebius gear
+being analyzed using Morbius gear
 being raised in salary
 being promoted in position
 being awarded the nobel prize of peace

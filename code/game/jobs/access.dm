@@ -52,7 +52,7 @@
 	switch(job)
 		if("VIP Guest")
 			return list(access_cent_general)
-		if("Custodian")
+		if("Janitor")
 			return list(access_cent_general, access_cent_living, access_cent_storage)
 		if("Thunderdome Overseer")
 			return list(access_cent_general, access_cent_thunder)
@@ -165,9 +165,9 @@
 		if(ACCESS_REGION_SUPPLY) //supply
 			return "Supply"
 		if(ACCESS_REGION_CHURCH) //Neotheo
-			return "NeoTheology"
+			return "NanoTrasen"
 		if(ACCESS_REGION_CLUB) //service
-			return "Club"
+			return "Mafia"
 
 /proc/get_access_desc(id)
 	var/list/AS = get_all_access_datums_by_id()
@@ -190,7 +190,7 @@
 
 /proc/get_all_centcom_jobs()
 	return list("VIP Guest",
-		"Custodian",
+		"Janitor",
 		"Thunderdome Overseer",
 		"Intel Officer",
 		"Medical Officer",

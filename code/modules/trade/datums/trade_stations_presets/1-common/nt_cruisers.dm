@@ -1,6 +1,6 @@
 /datum/trade_station/nt_cruisers
 	name_pool = list(
-		"NTV \'Faith\'" = "NeoTheology Vessel \'Faith\': \"The most holy purveyors of ecclesiarchic goods!\"",
+		"NTV \'Faith\'" = "NanoTrasen Vessel \'Faith\': \"The most holy purveyors of ecclesiarchic goods!\"",
 	)
 	icon_states = list("nt_frigate", "ship")
 	uid = "nt_basic"
@@ -57,7 +57,7 @@
 			/obj/item/reagent_containers/glass/rag,
 			/obj/item/grenade/chem_grenade/cleaner/nt_cleaner,
 			/obj/item/grenade/chem_grenade/antiweed/nt_antiweed,
-			/obj/structure/mopbucket,		
+			/obj/structure/mopbucket,
 			/obj/structure/janitorialcart,
 			/obj/item/holyvacuum
 		)
@@ -72,7 +72,7 @@
 			/obj/item/gun/projectile/mk58/wood,
 			/obj/item/gun/projectile/shotgun/pump/regulator
 		),
-		"Neotheology Cells" = list(
+		"NanoTrasen Cells" = list(
 			/obj/item/cell/small/neotheology,
 			/obj/item/cell/medium/neotheology,
 			/obj/item/cell/large/neotheology
@@ -100,10 +100,10 @@
 		/obj/item/gun_upgrade/barrel/excruciator = offer_data("NT \"EXCRUCIATOR\" giga lens", 500, 0),
 		/obj/item/oddity/common/towel = offer_data("trustworthy towel", 500, 1),
 		/obj/item/cruciform_upgrade = offer_data("cruciform upgrade", 1600, 0),
-		/obj/item/book/ritual/cruciform = offer_data("Neotheology ritual book", 1800, 1),
+		/obj/item/book/ritual/cruciform = offer_data("NanoTrasen ritual book", 1800, 1),
 		/obj/item/implant/core_implant/cruciform = offer_data("cruciform", 2500, 3),
-		/obj/item/computer_hardware/hard_drive/portable/design/nt/medicii = offer_data("NeoTheology Armory - \"Medicii Supplies\"", 2000, 1),
-		/obj/item/computer_hardware/hard_drive/portable/design/nt/nt_lightfall = offer_data("NeoTheology Armory - Lightfall Laser Gun", 2500, 1),
-		/obj/item/computer_hardware/hard_drive/portable/design/nt/grenades = offer_data("NeoTheology Armory - Grenades Pack", 2500, 1),
-		/obj/item/computer_hardware/hard_drive/portable/design/nt/triarii = offer_data("NeoTheology Armory - \"Triarii Arms\"", 8000, 1)
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/medicii = offer_data("NanoTrasen Armory - \"Medicii Supplies\"", 2000, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/nt_lightfall = offer_data("NanoTrasen Armory - Lightfall Laser Gun", 2500, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/grenades = offer_data("NanoTrasen Armory - Grenades Pack", 2500, 1),
+		/obj/item/computer_hardware/hard_drive/portable/design/nt/triarii = offer_data("NanoTrasen Armory - \"Triarii Arms\"", 8000, 1)
 	)

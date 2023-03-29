@@ -38,7 +38,7 @@
 	icon_state = "hopcap"
 	spawn_blacklisted = TRUE
 
-//NeoTheology
+//NanoTrasen
 /obj/item/clothing/head/chaplain_hood
 	name = "preacher's hood"
 	desc = "It's hood that covers the head. It keeps you warm during the space winters."
@@ -96,14 +96,14 @@
 	icon_state = "beret_purple"
 
 /obj/item/clothing/head/beret/engineering
-	name = "Technomancer yellow beret"
-	desc = "A beret with the Technomancer League insignia emblazoned on it. For engineers that are more inclined towards style than safety."
+	name = "Adeptus yellow beret"
+	desc = "A beret with the Adeptus Mechanicus insignia emblazoned on it. For engineers that are more inclined towards style than safety."
 	icon_state = "beret_engineering"
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/beret/engineering/old
-	name = "Technomancer orange beret"
-	desc = "A beret with the Technomancer League insignia emblazoned on it. For engineers that are more inclined towards style than safety."
+	name = "Adeptus orange beret"
+	desc = "A beret with the Adeptus Mechanicus insignia emblazoned on it. For engineers that are more inclined towards style than safety."
 	icon_state = "beret_engineering_old"
 	spawn_blacklisted = TRUE
 
@@ -116,8 +116,8 @@
 
 //Moebius
 /obj/item/clothing/head/beret/moebius
-	name = "Moebius beret"
-	desc = "A purple beret emblazioned with the Moebius Laboratories logo."
+	name = "Morbius beret"
+	desc = "A purple beret emblazioned with the Morbius Laboratories logo."
 	icon_state = "beret_moebius"
 	spawn_blacklisted = TRUE
 

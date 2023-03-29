@@ -8,7 +8,7 @@
   - balance: fullbody vests now slow you down
   Evankhell561:
   - bugfix: makeshift laser carbine sprites
-  - bugfix: Preacher no longer sends spam messages constantly.
+  - bugfix: Head of Personnel no longer sends spam messages constantly.
   - bugfix: Material requirements no longer disappear when crafting an item.
   - bugfix: add a debug item called "under" to the blacklist
   - tweak: the default name for jumsuit is "jumsuit"

@@ -21,7 +21,7 @@
 	icon_keyboard = "power_key"
 	icon_screen = "shuttle"
 	req_access = list(access_cargo)
-	shuttle_tag = "Merchant"
+	shuttle_tag = "Rabbi"
 
 
 /*

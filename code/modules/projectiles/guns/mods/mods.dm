@@ -91,7 +91,7 @@
 
 //For energy weapons, increases the damage output, but also the charge cost. Acquired through loot spawns or Eye of the Protector.
 /obj/item/gun_upgrade/barrel/excruciator
-	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
+	name = "NanoTrasen \"EXCRUCIATOR\" giga lens"
 	desc = "It's time for us to shine."
 	icon_state = "Excruciator"
 	matter = list(MATERIAL_BIOMATTER = 3, MATERIAL_PLASTEEL = 2, MATERIAL_GOLD = 2, MATERIAL_GLASS = 1)

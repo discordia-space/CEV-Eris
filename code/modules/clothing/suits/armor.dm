@@ -499,7 +499,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = LIGHT_SLOWDOWN
 
-//Technomancer armor
+//Adeptus armor
 /obj/item/clothing/suit/storage/vest/insulated
 	name = "insulated technomancer armor"
 	desc = "A set of armor insulated against heat and electrical shocks, shielded against radiation, and protected against blunt hits."
@@ -525,8 +525,8 @@
 	style = STYLE_NONE
 
 /obj/item/clothing/suit/storage/vest/technomancer_old
-	name = "reinforced Technomancer armor"
-	desc = "Technomancer League's ballistic armor, less protective against industrial hazards but better in a fight."
+	name = "reinforced Adeptus armor"
+	desc = "Adeptus Mechanicus's ballistic armor, less protective against industrial hazards but better in a fight."
 	icon_state = "armor_engineering_old"
 	item_state = "armor_engineering_old"
 	blood_overlay_type = "armor"
@@ -619,7 +619,7 @@
 	slowdown = LIGHT_SLOWDOWN
 
 /obj/item/clothing/suit/armor/paramedic
-	name = "Moebius paramedic armor"
+	name = "Morbius paramedic armor"
 	desc = "Seven minutes or a refund."
 	icon_state = "trauma_team"
 	item_state = "trauma_team"

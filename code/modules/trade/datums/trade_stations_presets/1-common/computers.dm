@@ -1,6 +1,6 @@
 /datum/trade_station/computers
 	name_pool = list(
-		"MTB \'Macro Rim\'" = "Moebius Trade Beacon \'Macro Rim\': Connection with the Moebius computer surplus network established."
+		"MTB \'Macro Rim\'" = "Morbius Trade Beacon \'Macro Rim\': Connection with the Morbius computer surplus network established."
 	)
 	icon_states = list("moe_frigate", "ship")
 	uid = "med_comp"
@@ -17,7 +17,7 @@
 	recommendations_needed = 0
 	inventory = list(
 		"Design Disks" = list(
-			/obj/item/computer_hardware/hard_drive/portable/design/computer = good_data("Moebius Computer Parts", list(1, 10), 500)
+			/obj/item/computer_hardware/hard_drive/portable/design/computer = good_data("Morbius Computer Parts", list(1, 10), 500)
 		),
 		"Computer Frames" = list(
 			/obj/item/modular_computer/pda,

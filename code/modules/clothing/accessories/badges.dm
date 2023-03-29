@@ -127,9 +127,9 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/accessory/badge/marshal
-	name = "Marshal's badge"
+	name = "Outsourced Sheriff's badge"
 	desc = "A leather-backed gold badge displaying the crest of the Ironhammer Marshals."
 	icon_state = "marshalbadge"
 	item_state = "marshalbadge"
-	badge_string = "Ironhammer Marshal Bureau"
+	badge_string = "Ironhammer Outsourced Sheriff Bureau"
 	spawn_blacklisted = TRUE

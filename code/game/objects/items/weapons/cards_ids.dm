@@ -204,8 +204,8 @@ var/const/NO_EMAG_ACT = -50
 	desc = "The spare ID of the High Lord himself."
 	icon_state = MATERIAL_GOLD
 	item_state = "gold_id"
-	registered_name = "Captain"
-	assignment = "Captain"
+	registered_name = "Steering Wheel"
+	assignment = "Steering Wheel"
 	spawn_blacklisted = TRUE
 
 /obj/item/card/id/captains_spare/New()

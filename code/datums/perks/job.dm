@@ -14,7 +14,7 @@
 	..()
 
 /datum/perk/job/artist
-	name = "Artist"
+	name = "Clown"
 	desc = "You have a lot of expertise in making works of art. You gain 150% insight from all sources but can only level \
 			up by creating works of art."
 	icon_state = "paintbrush" // https://game-icons.net/1x1/delapouite/paint-brush.html
@@ -74,7 +74,7 @@
 	..()
 
 /datum/perk/vagabond
-	name = "Vagabond"
+	name = "Hobo"
 	desc = "You're used to see the worst sight the world has to offer. Your mind feels more resistant. \
 			This perk reduces the total sanity damage you can take from what is happening around you."
 	icon_state = "vagabond" // https://game-icons.net/1x1/lorc/eye-shield.html
@@ -89,7 +89,7 @@
 	..()
 
 /datum/perk/merchant
-	name = "Merchant"
+	name = "Rabbi"
 	desc = "Money is what matters for you, and it's so powerful it lets you improve your skills. \
 			This perk lets you use money for leveling up. The credits need to be in your backpack."
 	icon_state = "merchant" // https://game-icons.net/1x1/lorc/cash.html and https://game-icons.net/1x1/delapouite/graduate-cap.html slapped on https://game-icons.net/1x1/lorc/trade.html

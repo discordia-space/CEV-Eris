@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/personal/scientist
-	name = "moebius scientist's locker"
+	name = "morbius scientist's locker"
 	req_access = list(access_rd)
 	access_occupy = list(access_tox_storage)
 	icon_state = "science"
@@ -20,7 +20,7 @@
 	new /obj/item/clothing/glasses/regular/goggles/clear(src)
 
 /obj/structure/closet/secure_closet/personal/psychiartist
-	name = "moebius psychiartist's locker"
+	name = "morbius psychiartist's locker"
 	req_access = list(access_rd)
 	access_occupy = list(access_psychiatrist)
 	icon_state = "science"
@@ -36,7 +36,7 @@
 	new /obj/item/clothing/glasses/regular/hipster(src)
 
 /obj/structure/closet/secure_closet/reinforced/RD
-	name = "Moebius Expedition Overseer locker"
+	name = "Morbius Big Nerd locker"
 	req_access = list(access_rd)
 	icon_state = "rd"
 

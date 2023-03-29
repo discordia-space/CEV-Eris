@@ -115,7 +115,7 @@
 	name = "Research Outpost Sample Analysis"
 
 /area/outpost/research/chemistry
-	name = "Research Outpost Chemistry"
+	name = "Research Outpost Powergamerry"
 
 /area/outpost/research/medical
 	name = "Research Outpost Medical"

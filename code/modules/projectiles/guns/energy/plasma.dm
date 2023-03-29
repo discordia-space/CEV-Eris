@@ -1,6 +1,6 @@
 /obj/item/gun/energy/plasma
 	name = "NT PR \"Dominion\""
-	desc = "A \"NeoTheology\" weapon that uses advanced plasma generation technology to emit highly controllable blasts of energized matter. Due to its complexity and cost, it is rarely seen in use, except by specialists."
+	desc = "A \"NanoTrasen\" weapon that uses advanced plasma generation technology to emit highly controllable blasts of energized matter. Due to its complexity and cost, it is rarely seen in use, except by specialists."
 	description_info = "Plasma weapons excel at armor penetration, especially with high-power modes due to extreme temperatures they cause."
 	icon = 'icons/obj/guns/energy/pulse.dmi'
 	icon_state = "pulse"
@@ -48,7 +48,7 @@
 
 /obj/item/gun/energy/plasma/destroyer
 	name = "NT PR \"Purger\""
-	desc = "A more recent \"NeoTheology\" brand plasma cannon, focused on the superior firepower at the cost of high energy usage. \
+	desc = "A more recent \"NanoTrasen\" brand plasma cannon, focused on the superior firepower at the cost of high energy usage. \
             There\'s an inscription on the stock. \'For those whom the Angels hath cursed: thou wilt find, have no one to help.\'"
 	icon = 'icons/obj/guns/energy/destroyer.dmi'
 	fire_sound = 'sound/weapons/energy/incinerate.ogg'

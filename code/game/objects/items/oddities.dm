@@ -330,7 +330,7 @@
 	)
 	rarity_value = 27
 
-//Oddity generated from Technomancer's Techno-Tribalism Enforcer
+//Oddity generated from Adeptus's Techno-Tribalism Enforcer
 /obj/item/oddity/techno
 	name = "Unknown technological part"
 	desc = "Technological part created by Techno-Tribalism Enforcer."
@@ -448,7 +448,7 @@
 
 /obj/item/oddity/nt/seal
 	name = "High Inquisitor's Seal"
-	desc = "An honorary badge given to the most devout of NeoTheology preachers by the High Inquisitor. Such a badge is a rare sight indeed - rumor has it that the badge imbues the holder with the power of the Angels themselves."
+	desc = "An honorary badge given to the most devout of NanoTrasen preachers by the High Inquisitor. Such a badge is a rare sight indeed - rumor has it that the badge imbues the holder with the power of the Angels themselves."
 	icon_state = "nt_seal"
 	oddity_stats = list(
 		STAT_COG = 12,

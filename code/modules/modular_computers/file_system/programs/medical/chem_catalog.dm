@@ -1,7 +1,7 @@
 /datum/computer_file/program/chem_catalog
 	filename = "chemCatalog"
 	filedesc = "MIRC"
-	extended_desc = "Moebius Internal Reagent Catalogue - Electronic catalog containing all information about basic chemical reactions and reagents."
+	extended_desc = "Morbius Internal Reagent Catalogue - Electronic catalog containing all information about basic chemical reactions and reagents."
 	program_icon_state = "generic"
 	program_key_state = "generic_key"
 	size = 2
@@ -10,7 +10,7 @@
 	usage_flags = PROGRAM_ALL
 
 /datum/nano_module/chem_catalog
-	name = "Chemistry Catalog"
+	name = "Powergamerry Catalog"
 
 /datum/nano_module/chem_catalog/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_REINITIALIZE, state = GLOB.default_state)
 	var/list/data = nano_ui_data(user)

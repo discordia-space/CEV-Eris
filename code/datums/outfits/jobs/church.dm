@@ -10,7 +10,7 @@
 	BACKPACK_OVERRIDE_NEOTHEOLOGY
 
 /decl/hierarchy/outfit/job/church/chaplain
-	name = OUTFIT_JOB_NAME("NeoTheology Preacher")
+	name = OUTFIT_JOB_NAME("NanoTrasen Head of Personnel")
 	l_ear = /obj/item/device/radio/headset/heads/preacher
 	id_type = /obj/item/card/id/chaplain
 	head = /obj/item/clothing/head/preacher
@@ -21,7 +21,7 @@
 	backpack_contents = list(/obj/item/book/ritual/cruciform/priest = 1, /obj/item/clothing/accessory/cross = 1, /obj/item/gun/energy/nt_svalinn = 1, /obj/item/cell/small/neotheology/plasma = 2)
 
 /decl/hierarchy/outfit/job/church/acolyte
-	name = OUTFIT_JOB_NAME("NeoTheology Acolyte")
+	name = OUTFIT_JOB_NAME("NanoTrasen Assistant")
 	uniform = /obj/item/clothing/under/rank/acolyte
 	shoes = /obj/item/clothing/shoes/reinforced
 	gloves = /obj/item/clothing/gloves/thick

@@ -17,7 +17,7 @@
   - bugfix: runtime in floor_damage.dm
   ValoTheValo:
   - bugfix: Inspector can now access brig cells
-  - bugfix: Preacher gets a command wage like the rest of command
+  - bugfix: Head of Personnel gets a command wage like the rest of command
   - bugfix: NeoTheo now actually has a funding source and wont run out of money halfway
       through the round
   - bugfix: IH Jobs now say supervisors correctly
@@ -42,7 +42,7 @@
   - soundadd: the Deckard now makes its iconic sound from Bladerunner
 2022-07-23:
   MemedHams:
-  - rscadd: nobles who spawn as part of Neotheology now get a 50% chance of aquiring
+  - rscadd: nobles who spawn as part of NanoTrasen now get a 50% chance of aquiring
       a Neotheo heirloom
   - tweak: more items for the basic heirloom pool
   - tweak: noble heirloom names are now visibly structured "(item) of (family)"

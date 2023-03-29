@@ -1,6 +1,6 @@
 /datum/trade_station/caduceus
 	name_pool = list(
-		"MAV \'Caduceus\'" = "Moebius Aid Vessel \'Caduceus\': \"Hello there, we are from the Old Sol Republic. We will be leaving the system shortly but we can offer you medical supplies in the meantime.\"."
+		"MAV \'Caduceus\'" = "Morbius Aid Vessel \'Caduceus\': \"Hello there, we are from the Old Sol Republic. We will be leaving the system shortly but we can offer you medical supplies in the meantime.\"."
 	)
 	forced_overmap_zone = list(
 		list(20, 22),
@@ -21,7 +21,7 @@
 	stations_recommended = list("moe_adv", "trapper", "botany")
 	inventory = list(
 		"Design Disks" = list(
-			/obj/item/computer_hardware/hard_drive/portable/design/medical = good_data("Moebius Medical Designs", list(1, 10), 400)
+			/obj/item/computer_hardware/hard_drive/portable/design/medical = good_data("Morbius Medical Designs", list(1, 10), 400)
 		),
 		"First Aid" = list(
 			/obj/item/storage/firstaid/regular = custom_good_price(450),

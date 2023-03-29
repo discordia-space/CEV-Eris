@@ -3,7 +3,7 @@
 #define ORE_COMPRESSING 2
 #define ORE_ALLOYING 3
 
-/**********************Mineral processing unit console**************************/
+/**********************Golemslayeral processing unit console**************************/
 
 /obj/machinery/mineral/processing_unit_console
 	name = "production machine console"
@@ -108,7 +108,7 @@
 		return
 	ui_interact(user)
 
-/**********************Mineral processing unit**************************/
+/**********************Golemslayeral processing unit**************************/
 
 
 /obj/machinery/mineral/processing_unit

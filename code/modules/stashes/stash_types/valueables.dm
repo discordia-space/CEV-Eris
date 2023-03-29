@@ -39,7 +39,7 @@
 	/obj/item/implant/core_implant/cruciform = 4,
 	/obj/item/book/ritual/cruciform = 4,
 	/obj/item/clothing/suit/storage/neotheology_jacket = 2)
-	lore = "Acolyte, pirates have taken the ship.<br>\
+	lore = "Assistant, pirates have taken the ship.<br>\
  When you awaken, avoid arousing any suspicion.<br>\
  Focus on recovering crosses from the faithful. <br>\
 I have taken the Church relics and secreted them here <br>\

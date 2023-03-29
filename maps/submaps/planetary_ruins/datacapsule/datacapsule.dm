@@ -20,11 +20,11 @@
 
 
 /obj/effect/landmark/corpse/zombiescience
-	name = "Dead Scientist"
+	name = "Dead Cruciform Recycler"
 	corpse_outfits = list(/decl/hierarchy/outfit/zombie_science)
 
 /decl/hierarchy/outfit/zombie_science
-	name = OUTFIT_JOB_NAME("Dead Scientist")
+	name = OUTFIT_JOB_NAME("Dead Cruciform Recycler")
 	uniform = /obj/item/clothing/under/rank/scientist
 	suit = /obj/item/clothing/suit/bio_suit
 	head = /obj/item/clothing/head/bio_hood

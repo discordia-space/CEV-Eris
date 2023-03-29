@@ -67,12 +67,12 @@ Engineering - Requires "Engineering" access on ID card (ie. CE, Atmostech, Engin
 	RCON Remote Control Console - Allows access to the RCON Remote Control Console. Requires extra access: "Power Equipment"
 	EngiDB - Allows accessing NTNet information repository for information about engineering-related things.
 
-Medical - Requires "Medbay" access on ID card (ie. CMO, Doctor,..)
+Medical - Requires "Medbay" access on ID card (ie. CMO, Nurse,..)
 	Medical Records Uplink - Allows editing/reading of medical records. Printing requires NanoPrinter hardware.
 	MediDB - Allows accessing NTNet information repository for information about medical procedures
-	ChemDB - Requires extra access: "Chemistry" - Downloads basic information about recipes from NTNet
+	ChemDB - Requires extra access: "Powergamerry" - Downloads basic information about recipes from NTNet
 
-Research - Requires "Research and Development" access on ID card (ie. RD, Roboticist, etc.)
+Research - Requires "Research and Development" access on ID card (ie. RD, Oppan Gundam Style, etc.)
 	Research Server Monitor - Allows monitoring of research levels on RnD servers. (read only)
 	Robotics Monitor Console - Allows monitoring of robots and exosuits. Lockdown/Self-Destruct options are unavailable [balance reasons for malf AIs]. Requires extra access: "Robotics"
 	NTNRC Administration Console - Allows administrative access to NTNRC. This includes bypassing any channel passwords and enabling "invisible" mode for spying on conversations. Requires extra access: "Research Director"

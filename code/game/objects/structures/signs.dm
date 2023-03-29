@@ -549,41 +549,41 @@
 	icon_state = "frozenstar"
 
 /obj/structure/sign/faction/moebius
-	name = "Moebius Laboratories"
+	name = "Morbius Laboratories"
 	desc = "Shady pharmaceutical and prosthetic manufacturer. Few outsiders know what happens behind the doors of their labs, and whoever knows does not live a long life."
 	icon_state = "moebius"
 
 /obj/structure/sign/faction/moebius_alt
-	name = "Moebius Laboratories Sign"
+	name = "Morbius Laboratories Sign"
 	desc = "Shady pharmaceutical and prosthetic manufacturer. Few outsiders know what happens behind the doors of their labs, and whoever knows does not live a long life. The sign is emblazoned with the slogan, new minds new horizons"
 	icon_state = "moebius_alt"
 
 /obj/structure/sign/faction/neotheology
-	name = "NeoTheology"
-	desc = "the Tau Cross - symbol of NeoTheology."
+	name = "NanoTrasen"
+	desc = "the Tau Cross - symbol of NanoTrasen."
 	icon_state = "neotheology"
 
 /obj/structure/sign/faction/neotheology_old
-	name = "NeoTheology"
-	desc = "the Tau Cross - symbol of NeoTheology."
+	name = "NanoTrasen"
+	desc = "the Tau Cross - symbol of NanoTrasen."
 	icon_state = "neotheology-old"
 
 /obj/structure/sign/faction/neotheology_cross
-	name = "NeoTheology Tau cross"
-	desc = "Religious symbol of NeoTheology - the Tau cross. It looks like a decoration, not a real cruciform."
+	name = "NanoTrasen Tau cross"
+	desc = "Religious symbol of NanoTrasen - the Tau cross. It looks like a decoration, not a real cruciform."
 	icon_state = "wall_cross_steel"
 
 /obj/structure/sign/faction/neotheology_cross/gold
 	icon_state = "wall_cross_gold"
 
 /obj/structure/sign/faction/astersguild
-	name = "Asters Guild"
-	desc = "Asters Guild - monopolists of far space transportation."
+	name = "Asters Synagogue"
+	desc = "Asters Synagogue - monopolists of far space transportation."
 	icon_state = "astersguild"
 
 /obj/structure/sign/faction/technomancers
-	name = "Technomancer League"
-	desc = "Technomancer League - anarchistic community ruled by powerful clans."
+	name = "Adeptus Mechanicus"
+	desc = "Adeptus Mechanicus - anarchistic community ruled by powerful clans."
 	icon_state = "technomancers"
 
 /obj/structure/sign/faction/excelsior

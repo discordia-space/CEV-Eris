@@ -1,6 +1,6 @@
 /obj/item/gun/energy/laser
 	name = "NT LG \"Lightfall\""
-	desc = "\"NeoTheology\" brand laser carbine. Deadly and radiant, like the ire of God it represents."
+	desc = "\"NanoTrasen\" brand laser carbine. Deadly and radiant, like the ire of God it represents."
 	icon = 'icons/obj/guns/energy/laser.dmi'
 	icon_state = "laser"
 	item_state = "laser"
@@ -47,7 +47,7 @@
 
 /obj/item/gun/energy/laser/practice
 	name = "NT LG \"Lightfall\" - P"
-	desc = "A modified version of \"NeoTheology\" brand laser carbine, this one fires less concentrated energy bolts, designed for target practice."
+	desc = "A modified version of \"NanoTrasen\" brand laser carbine, this one fires less concentrated energy bolts, designed for target practice."
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 2)
 	price_tag = 1000
 	projectile_type = /obj/item/projectile/beam/practice
@@ -316,8 +316,8 @@
 	force = WEAPON_FORCE_NORMAL
 	projectile_type = /obj/item/projectile/beam
 	damage_multiplier = 0.5
-	charge_cost = 125 
-	fire_delay = 15 
+	charge_cost = 125
+	fire_delay = 15
 	price_tag = 250
 	init_firemodes = list(
 		BURST_2_BEAM

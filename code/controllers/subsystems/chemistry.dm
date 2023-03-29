@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(chemistry)
-	name = "Chemistry"
+	name = "Powergamerry"
 	wait = 2 SECONDS
 
 	var/list/active_holders = list()

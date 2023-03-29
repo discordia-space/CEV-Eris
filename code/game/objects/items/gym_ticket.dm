@@ -1,6 +1,6 @@
 /obj/item/gym_ticket
 	name = "electronic ticket"
-	desc = "An electronic ticket used by the Club exercise equipment."
+	desc = "An electronic ticket used by the Mafia exercise equipment."
 	description_info = "Gym structures can use rest points to permanently increase your stats. Otherwise, they only temporary increase them."
 	icon = 'icons/obj/gym_ticket.dmi'
 	icon_state = "gym_ticket"

@@ -13,7 +13,7 @@ GLOBAL_LIST_INIT(art_styles, file2list("strings/artist_strings/descriptors/art_s
 
 GLOBAL_LIST_INIT(art_types, file2list("strings/artist_strings/descriptors/art_types.txt"))
 
-//When you need something simple (for random Artist Artwork)
+//When you need something simple (for random Clown Artwork)
 /proc/get_weapon_name(capitalize = FALSE)
 	var/first_name = pick(GLOB.art_weapon_first_names)
 	var/second_name = pick(GLOB.art_weapon_second_names)

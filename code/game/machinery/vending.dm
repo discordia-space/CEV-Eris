@@ -994,7 +994,7 @@
 	auto_price = FALSE
 
 /obj/machinery/vending/drink_showcase
-	name = "Club Cocktail Showcase"
+	name = "Mafia Cocktail Showcase"
 	desc = "A vending machine to showcase cocktails."
 	icon_state = "showcase"
 	var/icon_fill = "showcase-fill"
@@ -1208,7 +1208,7 @@
 	contraband = list(/obj/item/reagent_containers/pill/tox = 3,/obj/item/reagent_containers/pill/stox = 4,/obj/item/reagent_containers/pill/antitox = 6)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	auto_price = FALSE
-	custom_vendor = TRUE // Chemists can load it for MDs
+	custom_vendor = TRUE // Powergamers can load it for MDs
 	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle, /obj/item/reagent_containers/food/snacks/moecube, /obj/item/organ/internal)
 	vendor_department = DEPARTMENT_MEDICAL
 	shut_up = TRUE
@@ -1230,7 +1230,7 @@
 	light_color = COLOR_LIGHTING_GREEN_BRIGHT
 	icon_deny = "wallmed-deny"
 	product_ads = "Self-medication can be healthy!;Natural chemicals!;This stuff saves lives.;Don't you want some?;Hook it up to your veins!"
-	custom_vendor = TRUE // Chemists can load it for customers
+	custom_vendor = TRUE // Powergamers can load it for customers
 	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/pill, /obj/item/stack/medical, /obj/item/bodybag, /obj/item/device/scanner/health, /obj/item/reagent_containers/hypospray, /obj/item/storage/pill_bottle, /obj/item/reagent_containers/food/snacks/moecube, /obj/item/organ/internal)
 	vendor_department = DEPARTMENT_MEDICAL
 
@@ -1512,8 +1512,8 @@
 	auto_price = FALSE
 
 /obj/machinery/vending/theomat
-	name = "NeoTheology Theo-Mat"
-	desc = "A NeoTheology dispensary for disciples and new converts."
+	name = "NanoTrasen Theo-Mat"
+	desc = "A NanoTrasen dispensary for disciples and new converts."
 	product_slogans = "Immortality is the reward of the faithful.; Help humanity ascend, join your brethren today!; Come and seek a new life!"
 	product_ads = "Praise!;Pray!;Obey!"
 	icon_state = "teomat"
@@ -1560,7 +1560,7 @@
 		..(I, user)
 
 /obj/machinery/vending/powermat
-	name = "Asters Guild Power-Mat"
+	name = "Asters Synagogue Power-Mat"
 	desc = "Trust is power, and there's no power you can trust like Robustcell."
 	product_slogans = "Trust is power, and there's no cell you can trust like Robustcell.;No battery is stronger nor lasts longer.;One that Lasts!;You can't top the copper top!"
 	product_ads = "Robust!;Trustworthy!;Durable!"
@@ -1571,7 +1571,7 @@
 				/obj/item/cell/large/super = 1200, /obj/item/cell/medium/super = 700, /obj/item/cell/small/super = 350)
 
 /obj/machinery/vending/printomat
-	name = "Asters Guild Print-o-Mat"
+	name = "Asters Synagogue Print-o-Mat"
 	desc = "Everything you can imagine (not really) on a disc! Print your own gun TODAY."
 	product_slogans = "Print your own gun TODAY!;The future is NOW!;Can't stop the industrial revolution!"
 	product_ads = "Almost free!;Print it yourself!;Don't copy that floppy!"
@@ -1729,8 +1729,8 @@
 	vendor_department = DEPARTMENT_OFFSHIP
 
 /obj/machinery/vending/style
-	name = "Asters Guild Style-o-matic"
-	desc = "Asters Guild vendor selling, possibly stolen, most likely overpriced, stylish clothing."
+	name = "Asters Synagogue Style-o-matic"
+	desc = "Asters Synagogue vendor selling, possibly stolen, most likely overpriced, stylish clothing."
 	product_slogans = "Highly stylish clothing for sale!;Latest fashion trends right here!"
 	product_ads = "Stylish!;Cheap!;Legal within this sector!"
 	icon_state = "style"
@@ -1816,8 +1816,8 @@
 		/obj/item/clothing/head/skull/drip = 1)	//drip
 
 /obj/machinery/vending/gym
-	name = "Club\'s Total Workout"
-	desc = "A Club vendor that sells exercise equipment."
+	name = "Mafia\'s Total Workout"
+	desc = "A Mafia vendor that sells exercise equipment."
 	product_slogans = "Usually no carcinogens!;Best sports!;Become the strongest!"
 	product_ads = "Strength!;Cheap!;There are contraindications, it is recommended to consult a medical specialist."
 	icon_state = "gym"

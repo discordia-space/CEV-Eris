@@ -1,6 +1,6 @@
 /datum/trade_station/station_zarya
 	name_pool = list(
-		"TTB \'Zarya\'" = "Technomancer Trade Beacon \'Zarya\': \"Privet, this is the trade beacon \'Zarya\'. We sell electronics, construction, and anything related to engineering!"
+		"TTB \'Zarya\'" = "Adeptus Trade Beacon \'Zarya\': \"Privet, this is the trade beacon \'Zarya\'. We sell electronics, construction, and anything related to engineering!"
 	)
 	icon_states = list("htu_station", "station")
 	uid = "techno_basic"
@@ -17,10 +17,10 @@
 	stations_recommended = list()
 	inventory = list(
 		"Design Disks" = list(
-			/obj/item/computer_hardware/hard_drive/portable/design/components = good_data("Technomancers ARK-034 Components", list(5, 10), 400),
-			/obj/item/computer_hardware/hard_drive/portable/design/adv_tools = good_data("Technomancers IJIRO-451 Advanced Tools", list(5, 10), 1500),
-			/obj/item/computer_hardware/hard_drive/portable/design/circuits = good_data("Technomancers ESPO-830 Circuits", list(5, 10), 400),
-			/obj/item/computer_hardware/hard_drive/portable/design/conveyors = good_data("Technomancers LAT-018 Logistics", list(5, 10), 300)
+			/obj/item/computer_hardware/hard_drive/portable/design/components = good_data("Adeptuss ARK-034 Components", list(5, 10), 400),
+			/obj/item/computer_hardware/hard_drive/portable/design/adv_tools = good_data("Adeptuss IJIRO-451 Advanced Tools", list(5, 10), 1500),
+			/obj/item/computer_hardware/hard_drive/portable/design/circuits = good_data("Adeptuss ESPO-830 Circuits", list(5, 10), 400),
+			/obj/item/computer_hardware/hard_drive/portable/design/conveyors = good_data("Adeptuss LAT-018 Logistics", list(5, 10), 300)
 		),
 		"Atmospherics" = list(
 			/obj/item/tank/air,

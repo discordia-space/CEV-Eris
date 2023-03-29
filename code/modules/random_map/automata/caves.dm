@@ -46,7 +46,7 @@
 		var/check_cell = pick(ore_turfs)
 		ore_turfs -= check_cell
 		if(prob(75))
-			map[check_cell] = DOOR_CHAR  // Mineral block
+			map[check_cell] = DOOR_CHAR  // Golemslayeral block
 		else
 			map[check_cell] = EMPTY_CHAR // Rare mineral block.
 		ore_count--

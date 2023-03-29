@@ -112,7 +112,7 @@
 	icon = null
 	icon_state = null
 
-/turf/simulated/planet_edge/proc/MineralSpread()
+/turf/simulated/planet_edge/proc/GolemslayeralSpread()
 	return
 
 /turf/simulated/planet_edge/Initialize()

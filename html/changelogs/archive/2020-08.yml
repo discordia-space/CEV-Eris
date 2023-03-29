@@ -261,7 +261,7 @@
   Hopek:
   - rscadd: Autolathe disk eject QoL. You can now Alt-Click on any autolathe to eject
       the design disk.
-  - tweak: The NeoTheology Cahors barrel holds less volume to give NT a chance to
+  - tweak: The NanoTrasen Cahors barrel holds less volume to give NT a chance to
       use the extra barrels downstairs.
   TheShown911:
   - tweak: Dungeon exit teleporter now teleports all clostets in range as well
@@ -284,7 +284,7 @@
   - tweak: mines now anchor when deployed
   - tweak: deployed mines can now be disarmed with multitool
   Firefox13, Armolitsky:
-  - rscadd: Added NT LP "Svalinn", new NeoTheology brand laser pistol. Preacher, Acolytes
+  - rscadd: Added NT LP "Svalinn", new NanoTrasen brand laser pistol. Head of Personnel, Acolytes
       and Custodians lockers are now supplemented with one, as well as NT Energy Pack
       comes with two laser pistols.
   Firefox13, Jefferyjefferson:

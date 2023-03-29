@@ -238,7 +238,7 @@
 
 		all_money_accounts.Add(M)
 
-		var/datum/transaction/T = new(0, M.get_name(), "Account creation", account.department_id ? "[account.get_name()]" : "Asters Guild Representative [account.get_name()]", current_date_string, stationtime2text() )
+		var/datum/transaction/T = new(0, M.get_name(), "Account creation", account.department_id ? "[account.get_name()]" : "Asters Synagogue Representative [account.get_name()]", current_date_string, stationtime2text() )
 		M.transaction_log.Add(T)
 
 		charge_to_account(account.account_number, owner_name, "Account registration fee", name, registration_fee)
