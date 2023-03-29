@@ -79,7 +79,7 @@
 	if(corpseuniform)
 		if(islist(corpseuniform))
 			corpseuniform = safepick(corpseuniform)
-		if(corpsuniform)
+		if(corpseuniform)
 			M.equip_to_slot_or_del(new corpseuniform(M), slot_w_uniform)
 	else
 		M.equip_to_slot_or_del
