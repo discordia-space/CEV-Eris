@@ -107,7 +107,7 @@
 		if(!undeploy_path)
 			return
 		visible_message("\The [src] slowly deflates.")
-		addtimer(CALLBACK(src, .proc/slow_deflate), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(slow_deflate)), 5 SECONDS)
 
 /obj/structure/inflatable/proc/slow_deflate()
 	var/obj/item/inflatable/R = new undeploy_path(src.loc)

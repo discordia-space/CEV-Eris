@@ -176,11 +176,11 @@ steam.start() -- spawns the effect
 		else
 			direction = pick(alldirs)
 		for(var/j=0, j<pick(1,2,3), j++)
-			addtimer(CALLBACK(src, .proc/do_spark_movement, sparks, direction), rand(1,5) SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(do_spark_movement), sparks, direction), rand(1,5) SECONDS)
 			//sleep(rand(1,5))
 			//step(sparks,direction)
 
-		addtimer(CALLBACK(src, .proc/delete_spark, sparks), 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(delete_spark), sparks), 2 SECONDS)
 		/*
 		spawn(20)
 			if(sparks)
