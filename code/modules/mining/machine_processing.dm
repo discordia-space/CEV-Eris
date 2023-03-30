@@ -217,7 +217,7 @@
 			sheets_to_process -= ore_amount
 			var/ore/product = stored_ore_data.ore
 			while(ore_amount)
-				new product.ore(get_step(src, output_dir))
+				new product(get_step(src, output_dir))
 				ore_amount--
 				ores_stored[ore] -= 1
 		if(ores_processing[ore] == ORE_SMELTING && stored_ore_data.smelts_to)
