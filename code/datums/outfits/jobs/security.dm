@@ -14,7 +14,7 @@
 /decl/hierarchy/outfit/job/security/ihc
 	name = OUTFIT_JOB_NAME("Ironhammer Commander")
 	l_ear = /obj/item/device/radio/headset/heads/hos
-	uniform = /obj/item/clothing/under/rank/ih_commander
+	uniform = /obj/item/clothing/under/rank/cadet
 	suit = /obj/item/clothing/suit/storage/greatcoat/ironhammer
 	l_pocket = /obj/item/device/flash
 	gloves = /obj/item/clothing/gloves/stungloves
@@ -27,7 +27,7 @@
 
 /decl/hierarchy/outfit/job/security/gunserg
 	name = OUTFIT_JOB_NAME("Ironhammer Gunnery Sergeant")
-	uniform = /obj/item/clothing/under/rank/warden
+	uniform = /obj/item/clothing/under/rank/cadet
 	suit = /obj/item/clothing/suit/armor/vest/ironhammer
 	head = /obj/item/clothing/head/beret/sec/navy/warden
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
@@ -37,7 +37,7 @@
 
 /decl/hierarchy/outfit/job/security/inspector
 	name = OUTFIT_JOB_NAME("Ironhammer Inspector")
-	uniform = /obj/item/clothing/under/rank/inspector
+	uniform = /obj/item/clothing/under/rank/cadet
 	suit = /obj/item/clothing/suit/storage/detective/brown
 	head = /obj/item/clothing/head/detective
 	l_pocket = /obj/item/device/flash
@@ -56,7 +56,7 @@
 	name = OUTFIT_JOB_NAME("Ironhammer Medical Specialist")
 	l_pocket = /obj/item/device/flash
 	id_type = /obj/item/card/id/medcpec
-	uniform = /obj/item/clothing/under/rank/medspec
+	uniform = /obj/item/clothing/under/rank/cadet
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/medspec
 	pda_type = /obj/item/modular_computer/pda/forensics
 	belt = /obj/item/storage/belt/medical/emt
@@ -67,7 +67,7 @@
 /decl/hierarchy/outfit/job/security/ihoper
 	name = OUTFIT_JOB_NAME("Ironhammer Operative")
 	l_pocket = /obj/item/device/flash
-	uniform = /obj/item/clothing/under/rank/security
+	uniform = /obj/item/clothing/under/rank/cadet
 	suit = /obj/item/clothing/suit/armor/vest/full/ironhammer
 	mask = /obj/item/clothing/mask/balaclava/tactical
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
