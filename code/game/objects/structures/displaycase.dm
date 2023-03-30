@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 	unacidable = 1//Dissolving the case would also delete the gun.
-	explosionCoverage = 0.8
+	explosion_coverage = 0.8
 	health = 60
 	maxHealth = 60
 	var/occupied = 1
@@ -23,7 +23,7 @@
 
 /obj/structure/displaycase/take_damage(damage)
 	. = health - damage < 0 ? damage - (damage - health) : damage
-	. *= explosionCoverage
+	. *= explosion_coverage
 	health -= damage
 	if (health <= 0)
 		if (!(destroyed ))

@@ -9,7 +9,7 @@
 	layer = BELOW_OBJ_LAYER
 	explosion_resistance = 1
 	// Blocks very little , since its just metal rods..
-	explosionCoverage = 0.2
+	explosion_coverage = 0.2
 	health = 50
 	var/destroyed = 0
 
@@ -185,7 +185,7 @@
 
 /obj/structure/grille/take_damage(damage)
 	. = health - damage < 0 ? damage - (damage - health) : damage
-	. *= explosionCoverage
+	. *= explosion_coverage
 	if(health <= 0)
 		if(!destroyed)
 			density = FALSE

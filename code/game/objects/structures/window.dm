@@ -9,7 +9,7 @@
 	flags = ON_BORDER
 	maxHealth = 20
 	health = 20
-	explosionCoverage = 1
+	explosion_coverage = 1
 	var/resistance = RESISTANCE_FLIMSY	//Incoming damage is reduced by this flat amount before being subtracted from health. Defines found in code\__defines\weapons.dm
 	var/maximal_heat = T0C + 100 		// Maximal heat before this window begins taking damage from fire
 	var/damage_per_fire_tick = 2 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
@@ -64,7 +64,7 @@
 /obj/structure/window/take_damage(damage = 0)
 	var/initialhealth = health
 	. = health - (damage * (1 - silicate / 200) - resistance) < 0 ? damage - (damage - health) : damage
-	. *= explosionCoverage
+	. *= explosion_coverage
 	damage = damage * (1 - silicate / 200) // up to 50% damage resistance
 	damage -= resistance // then flat resistance from material
 

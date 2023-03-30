@@ -41,7 +41,7 @@
 
 	var/undeploy_path = null
 	health = 30
-	explosionCoverage = 1
+	explosion_coverage = 1
 
 /obj/structure/inflatable/wall
 	name = "inflatable wall"
@@ -57,7 +57,7 @@
 
 /obj/structure/inflatable/take_damage(damage)
 	. = health - damage < 0 ? damage - (damage - health) : damage
-	. *= explosionCoverage
+	. *= explosion_coverage
 	if(health < 0)
 		deflate(TRUE)
 	playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)

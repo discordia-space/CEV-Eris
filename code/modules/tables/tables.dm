@@ -25,7 +25,7 @@ var/list/custom_table_appearance = list(
 	var/flipped = 0
 	maxHealth = 10
 	health = 10
-	explosionCoverage = 0.2
+	explosion_coverage = 0.2
 
 	// For racks.
 	var/can_reinforce = 1
@@ -76,7 +76,7 @@ var/list/custom_table_appearance = list(
 		else
 			amount *= TABLE_BRITTLE_MATERIAL_MULTIPLIER
 	. = health - amount < 0 ? amount - health : initialdamage
-	. *= explosionCoverage
+	. *= explosion_coverage
 	health -= amount
 	if(health <= 0)
 		visible_message(SPAN_WARNING("\The [src] breaks down!"))

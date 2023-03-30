@@ -7,7 +7,7 @@
 	bad_type = /obj/structure
 	var/health = 100
 	var/maxHealth = 100
-	var/explosionCoverage = 0
+	var/explosion_coverage = 0
 	var/climbable
 	var/breakable
 	var/parts
@@ -23,7 +23,7 @@
 /obj/structure/proc/take_damage(damage)
 	// Blocked amount
 	. = health - damage < 0 ? damage - (damage - health) : damage
-	. *= explosionCoverage
+	. *= explosion_coverage
 	health -= damage
 	if(health < 0)
 		qdel(src)

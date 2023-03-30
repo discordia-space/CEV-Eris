@@ -8,7 +8,7 @@
 
 	maxHealth = 50
 	health = 50
-	explosionCoverage = 0.3
+	explosion_coverage = 0.3
 	var/datum/golem_controller/controller
 
 /obj/structure/golem_burrow/New(loc, parent)
@@ -48,7 +48,7 @@
 
 /obj/structure/golem_burrow/take_damage(damage)
 	. = health - damage < 0 ? damage - (damage - health) : damage
-	. *= explosionCoverage
+	. *= explosion_coverage
 	health = min(max(health - damage, 0), maxHealth)
 	if(health == 0)
 		qdel(src)

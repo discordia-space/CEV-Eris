@@ -39,7 +39,7 @@
 	maxHealth = 450
 	health = 450
 	// Anything above is far too blocking.
-	explosionCoverage = 0.2
+	explosion_coverage = 0.2
 
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	climbable = TRUE
@@ -500,7 +500,7 @@
 
 /obj/structure/low_wall/take_damage(damage)
 	. = health - damage < 0 ? damage - (damage - health) : damage
-	. *= explosionCoverage
+	. *= explosion_coverage
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		damage *= 10
 	health -= damage

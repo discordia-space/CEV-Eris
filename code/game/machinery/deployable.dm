@@ -57,7 +57,7 @@ for reference:
 	density = TRUE
 	health = 100
 	maxHealth = 100
-	explosionCoverage = 0.7
+	explosion_coverage = 0.7
 	var/material/material
 
 /obj/structure/barricade/New(newloc, material_name)
@@ -125,7 +125,7 @@ for reference:
 
 /obj/structure/barricade/take_damage(damage)
 	. = health - damage < 0 ? damage - (damage - health) : damage
-	. *= density ? explosionCoverage : explosionCoverage / 2
+	. *= density ? explosion_coverage : explosion_coverage / 2
 	health -= damage
 	if(health <= 0)
 		dismantle()

@@ -15,7 +15,7 @@
 	var/broken = 0
 	health=70
 	maxHealth=70
-	explosionCoverage = 0
+	explosion_coverage = 0
 	var/check = 0
 	var/reinforced = FALSE
 	var/reinforcement_security = 0 // extra health from being reinforced, hardcoded to 40 on add
@@ -85,7 +85,7 @@
 
 /obj/structure/railing/take_damage(amount)
 	. = health - amount < 0 ? amount - health : amount
-	. *= explosionCoverage
+	. *= explosion_coverage
 	if (reinforced)
 		if (reinforcement_security == 0)
 			visible_message(SPAN_WARNING("[src]'s reinforcing rods fall off!"))

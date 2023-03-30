@@ -8,7 +8,7 @@
 	var/state = 0
 	var/cover = 50 //how much cover the girder provides against projectiles.
 	// Not a lot of explosion blocking but still there.
-	explosionCoverage = 0.4
+	explosion_coverage = 0.4
 	var/material/reinf_material
 	var/reinforcing = 0
 	var/resistance = RESISTANCE_TOUGH
@@ -312,7 +312,7 @@
 	if (!damage || damage <= 0)
 		return
 	. = health - damage < 0 ? damage - (damage - health) : damage
-	. *= explosionCoverage
+	. *= explosion_coverage
 
 	health -= damage
 	if (health <= 0)
