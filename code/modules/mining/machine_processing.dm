@@ -1,7 +1,8 @@
 #define ORE_STORING 0
-#define ORE_SMELTING 1
-#define ORE_COMPRESSING 2
-#define ORE_ALLOYING 3
+#define ORE_PASSING 1
+#define ORE_SMELTING 2
+#define ORE_COMPRESSING 3
+#define ORE_ALLOYING 4
 
 /**********************Mineral processing unit console**************************/
 
@@ -50,12 +51,15 @@
 		switch(machine.ores_processing[ore])
 			if(ORE_STORING)
 				ore_list["current_action_string"] = "Storing"
+			if(ORE_PASSING)
+				ore_list["current_action_string"] = "Passing"
 			if(ORE_SMELTING)
 				ore_list["current_action_string"] = "Smelting"
 			if(ORE_COMPRESSING)
 				ore_list["current_action_string"] = "Compressing"
 			if(ORE_ALLOYING)
 				ore_list["current_action_string"] = "Alloying"
+
 		data["materials_data"] += list(ore_list)
 	data["alloy_data"] = list()
 	for(var/datum/alloy/alloy in machine.alloy_data)
@@ -205,6 +209,17 @@
 			continue
 		/// Would've named this ore_data , but it gives infinite cross reference ( and also conflicts with the global version)
 		var/ore/stored_ore_data = ore_data[ore]
+		if(ores_processing[ore] == ORE_PASSING && stored_ore_data.ore)
+			if(ores_stored[ore] < 1)
+				continue
+			var/ore_amount = min(round(ores_stored[ore]), sheets_per_tick)
+			ore_amount = min(ore_amount, sheets_to_process)
+			sheets_to_process -= ore_amount
+			var/ore/product = stored_ore_data.ore
+			while(ore_amount)
+				new product.ore(get_step(src, output_dir))
+				ore_amount--
+				ores_stored[ore] -= 1
 		if(ores_processing[ore] == ORE_SMELTING && stored_ore_data.smelts_to)
 			if(ores_stored[ore] < 1)
 				continue
