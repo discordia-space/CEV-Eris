@@ -65,6 +65,9 @@
 	if(!skipverbs)
 		for(var/verb_path in owner_verbs)
 			verbs -= verb_path
+	
+	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
+		owner.mutation_index--
 	..()
 
 /obj/item/organ/internal/replaced(obj/item/organ/external/affected)
@@ -85,6 +88,9 @@
 
 	for(var/proc_path in owner_verbs)
 		verbs |= proc_path
+	
+	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
+		owner.mutation_index++
 
 /obj/item/organ/internal/proc/get_process_efficiency(process_define)
 	var/organ_eff = organ_efficiency[process_define]
