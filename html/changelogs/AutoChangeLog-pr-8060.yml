@@ -1,0 +1,5 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - code_imp: Human revive() doesn't use the rebuild_organs() logic anymore
+  - code_imp: Added limb rebuilding logic to human rejuvenate()
