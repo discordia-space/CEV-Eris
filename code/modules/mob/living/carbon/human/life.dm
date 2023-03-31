@@ -1139,6 +1139,31 @@
 	sanity.setLevel(sanity.max_level)
 	timeofdeath = 0
 	restore_blood()
+
+	// If a limb was missing, regrow
+	if(LAZYLEN(organs) < 7)
+		var/list/tags_to_grow = list(BP_HEAD, BP_CHEST, BP_GROIN, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
+		var/upper_body_nature
+
+		for(var/obj/item/organ/external/E in organs)
+			if(!E.is_stump())
+				tags_to_grow -= E.organ_tag
+				if(E.organ_tag == BP_CHEST)
+					upper_body_nature = E.nature
+			else
+				qdel(E)		// Will regrow
+		
+		var/datum/preferences/user_pref = client ? client.prefs : null
+
+		for(var/tag in tags_to_grow)
+			// FBP limbs get replaced with makeshift if not defined by user or clientless
+			var/datum/body_modification/BM = user_pref ? user_pref.get_modification(tag) : (upper_body_nature == MODIFICATION_ORGANIC) ? new /datum/body_modification/none : new /datum/body_modification/limb/prosthesis/makeshift
+			var/datum/organ_description/OD = species.has_limbs[tag]
+			if(BM.is_allowed(tag, user_pref, src))
+				BM.create_organ(src, OD, user_pref.modifications_colors[tag])
+			else
+				OD.create_organ(src)
+
 	..()
 
 /mob/living/carbon/human/handle_vision()

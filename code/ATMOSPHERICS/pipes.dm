@@ -69,6 +69,7 @@
 		QDEL_NULL(air_temporary)
 
 	. = ..()
+	return QDEL_HINT_QUEUE
 
 /obj/machinery/atmospherics/pipe/attackby(obj/item/I, mob/user)
 	if (istype(src, /obj/machinery/atmospherics/pipe/tank))

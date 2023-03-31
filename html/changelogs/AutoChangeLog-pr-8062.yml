@@ -1,0 +1,6 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - bugfix: Added targeting signals to some mobs to clear references on Destroy()
+  - bugfix: Added targeting signals to cameras to clear references on Destroy()
+  - code_imp: Cleaned up some camera code

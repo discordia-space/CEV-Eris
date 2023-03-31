@@ -1,0 +1,6 @@
+author: TheLeopold
+delete-after: true
+changes:
+  - tweak: bioreactor won't melt unacidable stuff
+  - balance: cruciform (and upgrades) now unacidable
+  - bugfix: cruciform melting in bioreactor

@@ -1,0 +1,4 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - bugfix: Fixed an issue where atmos pipes would hard delete at roundstart
