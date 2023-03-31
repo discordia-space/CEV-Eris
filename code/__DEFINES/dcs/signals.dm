@@ -30,6 +30,9 @@
 #define COMSIG_GROUP_RITUAL "grup_ritual"
 #define COMSIG_TRANSATION "transation"          //from transfer_funds()
 
+#define COMSIG_NULL_TARGET "null_target"		// Used to null references created by targeting logic (mob targeting)
+#define COMSIG_NULL_SECONDARY_TARGET "null_secondary_target"
+
 /// generic topic handler (usr, href_list)
 #define COMSIG_TOPIC "handle_topic"
 /// handler for vv_do_topic (usr, href_list)

@@ -36,6 +36,7 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "core_upgrade"
 	bad_type = /obj/item/cruciform_upgrade
+	unacidable = 1
 	var/mob/living/carbon/human/wearer
 	var/obj/item/implant/core_implant/cruciform/cruciform
 	var/active = FALSE

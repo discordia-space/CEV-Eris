@@ -993,14 +993,9 @@ var/list/rank_prefix = list(\
 	return gender
 
 /mob/living/carbon/human/revive()
-
 	if(species && !(species.flags & NO_BLOOD))
 		vessel.add_reagent("blood",species.blood_volume-vessel.total_volume)
 		fixblood()
-
-	// Fix up all organs.
-	// This will ignore any prosthetics in the prefs currently.
-	rebuild_organs()
 
 	if(!client || !key) //Don't boot out anyone already in the mob.
 		for(var/obj/item/organ/internal/brain/H in world)
