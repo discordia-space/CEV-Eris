@@ -56,8 +56,6 @@
 	slot_flags = SLOT_BACK
 	fire_delay = 20
 	charge_cost = 200
-	wield_delay = 0.8 SECOND
-	wield_delay_factor = 0.9 // 90 vig for instant wield
 
 	init_firemodes = list(
 		list(mode_name="DISINTEGRATE", mode_desc="Removes heresy from sight", projectile_type=/obj/item/projectile/plasma/aoe/heat/strong, fire_sound='sound/weapons/energy/incinerate.ogg', fire_delay=20, charge_cost=200, icon="destroy", projectile_color = "#ff1212"),
