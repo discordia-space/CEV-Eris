@@ -1,0 +1,6 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - tweak: Reworked radiation wounds as polyps and plasms
+  - balance: Reduces odds of receving a lethal tumor to 10% from 50% and removed the
+      mutated limb effect from all radiation-related wounds except the malignant tumor
