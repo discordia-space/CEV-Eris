@@ -123,7 +123,7 @@
 		loc = null
 
 	QDEL_NULL(hidden_uplink)
-	QDEL_NULL(blood_overlay)
+	blood_overlay = null
 	QDEL_NULL(action)
 	if(hud_actions)
 		for(var/action in hud_actions)
