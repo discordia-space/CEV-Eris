@@ -381,8 +381,6 @@
 	name = "Prison Guard"
 	corpsehelmet = null
 
-/////////////////Officers//////////////////////
-
 /obj/landmark/corpse/bridgeofficer
 	name = "Bridge Officer"
 	corpseradio = /obj/item/device/radio/headset
