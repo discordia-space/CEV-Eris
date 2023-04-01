@@ -1,6 +1,0 @@
-author: ValoTheValo
-delete-after: true
-changes:
-  - balance: Dallas no longer spawns in guild radio when upgraded
-  - bugfix: Dallas no longer has a delay on wielding, dallas now gives gun parts correctly
-  - balance: Purger gun no longar has a delay on wielding

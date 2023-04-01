@@ -1,0 +1,26 @@
+2023-04-01:
+  Humonitarian:
+  - soundadd: new sound effect for metal rods falling
+  Mycah142:
+  - rscadd: Added new Smelter function
+  Pink-Chink:
+  - bugfix: HUD elements clear their reference to the owning mob
+  - code_imp: Human revive() doesn't use the rebuild_organs() logic anymore
+  - code_imp: Added limb rebuilding logic to human rejuvenate()
+  - tweak: Reworked radiation wounds as polyps and plasms
+  - balance: Reduces odds of receving a lethal tumor to 10% from 50% and removed the
+      mutated limb effect from all radiation-related wounds except the malignant tumor
+  - bugfix: Added targeting signals to some mobs to clear references on Destroy()
+  - bugfix: Added targeting signals to cameras to clear references on Destroy()
+  - code_imp: Cleaned up some camera code
+  - bugfix: Fixed an issue where atmos pipes would hard delete at roundstart
+  - bugfix: Fixed a runtime when dragging a turf to a craft object
+  - bugfix: Added cleanup to /obj/item/craft/Destroy()
+  TheLeopold:
+  - tweak: bioreactor won't melt unacidable stuff
+  - balance: cruciform (and upgrades) now unacidable
+  - bugfix: cruciform melting in bioreactor
+  ValoTheValo:
+  - balance: Dallas no longer spawns in guild radio when upgraded
+  - bugfix: Dallas no longer has a delay on wielding, dallas now gives gun parts correctly
+  - balance: Purger gun no longar has a delay on wielding
