@@ -14,7 +14,7 @@
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
 	RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(OnLevelChange))
-	RegisterSignal(owner, COMSIG_STORAGE_INSERTED, PROC_REF(OnStore))
+	RegisterSignal(owner, COMSIG_ATOM_CONTAINERED, PROC_REF(OnContainered))
 
 /datum/component/jamming/proc/OnLevelChange(source, oldLevel, newLevel)
 	if(active)
@@ -22,6 +22,10 @@
 		SSjamming.active_jammers[newLevel] += src
 
 /datum/component/jamming/proc/OnStore(obj/item/storage/container)
+
+/datum/component/jamming/proc/OnContainered(atom/sender, atom/movable/container)
+	SIGNAL_HANDLER
+	message_admins("Jamming component with parent set as [owner] has been containered, with its highest parent being [container]")
 
 
 

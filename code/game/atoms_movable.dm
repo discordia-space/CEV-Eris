@@ -70,7 +70,7 @@
 	return
 
 // Gets the top-atom that contains us, doesn't care about how deeply nested a item is
-/atom/movable/proc/getContainingMovable()
+/atom/proc/getContainingMovable()
 	var/atom/checking = src
 	while(!isturf(checking.loc) && !isnull(checking.loc))
 		checking = checking.loc
@@ -115,18 +115,21 @@
 	if(origin && destination)
 		if(get_z(origin) != get_z(destination))
 			SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, get_z(origin) , get_z(destination))
-			for(var/atom/movable/thing in contents)
-				SEND_SIGNAL(thing, COMSIG_MOVABLE_Z_CHANGED,get_z(origin),get_z(destination))
+		if(!is_origin_turf)
+			update_plane()
+			//for(var/atom/movable/thing in contents)
+			//	SEND_SIGNAL(thing, COMSIG_MOVABLE_Z_CHANGED,get_z(origin),get_z(destination))
 
 	// Container change
-	if(!(is_origin_turf || is_destination_turf))
-		SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, destination.getContainingMovable())
-
+	if(!is_origin_turf || !is_destination_turf)
+		SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, getContainingMovable())
+	/*
 	// Only update plane if we're located on map
-	if(isturf(loc))
+	if(is_destination_turf)
 		// if we wasn't on map OR our Z coord was changed
-		if( !isturf(origin) || (get_z(loc) != get_z(origin)) )
+		if(!is_origin_turf || (get_z(loc) != get_z(origin)) )
 			update_plane()
+	*/
 
 	return 1
 
@@ -351,7 +354,6 @@
 		set_glide_size(glide_size_override)
 
 	// To prevent issues, diagonal movements are broken up into two cardinal movements.
-
 	// Is this a diagonal movement?
 	SEND_SIGNAL_OLD(src, COMSIG_MOVABLE_PREMOVE, src)
 	if (Dir & (Dir - 1))
@@ -411,12 +413,14 @@
 
 		if(get_z(oldloc) != get_z(loc))
 			SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, get_z(oldloc), get_z(NewLoc))
-			for(var/atom/movable/thing in contents)
-				SEND_SIGNAL(thing, COMSIG_MOVABLE_Z_CHANGED,get_z(oldloc),get_z(NewLoc))
+			//for(var/atom/movable/thing in contents)
+			//	SEND_SIGNAL(thing, COMSIG_MOVABLE_Z_CHANGED,get_z(oldloc),get_z(NewLoc))
 
 			//onTransitZ(get_z(oldloc), get_z(loc))
 
 		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
+		if(!isturf(oldloc) || !isturf(loc))
+			SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, getContainingMovable())
 
 // Wrapper of step() that also sets glide size to a specific value.
 /proc/step_glide(atom/movable/AM, newdir, glide_size_override)
