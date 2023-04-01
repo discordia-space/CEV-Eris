@@ -188,8 +188,8 @@
 	corpseshoes = /obj/item/clothing/shoes/color/black
 	corpseradio = /obj/item/device/radio/headset
 	corpsepocket1 = /obj/item/modular_computer/pda
-	corpseid = TRUE
-	corpseidjob = list("Convict Exploitation Vehicle \"Eris\" Laborer", "Convict Exploitation Vehicle \"Eris\" Warden", "Cargo Export Vehicle \"Eris\" Smuggler", "Capital Exchange Venue \"Eris\" Market Analyst") //fake vagabond jobs
+	//corpseid = TRUE
+	//corpseidjob = list() find a way to pull from vagabond job titles
 	injury_level = 4
 
 /obj/landmark/corpse/excelsior
