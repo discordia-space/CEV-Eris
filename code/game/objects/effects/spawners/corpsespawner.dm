@@ -232,6 +232,7 @@
 	corpsegloves = list(/obj/item/clothing/gloves/thick, /obj/item/clothing/gloves/fingerless, null, /obj/item/clothing/gloves/security, /obj/item/clothing/gloves/insulated/cheap)
 	min_age = 40
 	max_age = 250
+	injury_level = 4
 
 
 /obj/landmark/corpse/one_star
@@ -271,7 +272,7 @@
 	corpseidaccess = "ihoper"
 	injury_level = 8
 
-// Legacy corpses
+////LEGACY CORPSES////REPLACE WITH NEW CORPSES IF FOUND IN MAP////
 /obj/landmark/corpse/syndicatesoldier
 	name = "Syndicate Operative"
 	corpseuniform = /obj/item/clothing/under/syndicate
@@ -305,8 +306,6 @@
 /obj/landmark/corpse/hobo
 	name = "Hobo"
 	corpseuniform = /obj/item/clothing/under/rank/assistant
-
-///////////Civilians//////////////////////
 
 /obj/landmark/corpse/chef
 	name = "Chef"
