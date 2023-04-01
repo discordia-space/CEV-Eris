@@ -424,8 +424,6 @@
 	corpsesuit = /obj/item/clothing/suit/pirate
 	corpsehelmet = /obj/item/clothing/head/pirate
 
-
-
 /obj/landmark/corpse/russian
 	name = "Russian"
 	corpseuniform = /obj/item/clothing/under/soviet
