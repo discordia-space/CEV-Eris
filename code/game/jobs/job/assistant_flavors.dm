@@ -229,3 +229,9 @@
 
 /datum/job_flavor/assistant/salesman
 	title = "Cargo Export Vehicle \"Eris\" Salesman"
+
+/datum/job_flavor/assistant/stockmarket
+	title = "Capital Exchange Venue \"Eris\" Market Analyst"
+
+/datum/job_flavor/assistant/executive
+	title = "Capital Exchange Venue \"Eris\" Executive"
