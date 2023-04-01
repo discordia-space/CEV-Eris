@@ -229,9 +229,11 @@
 		null,
 		/obj/item/clothing/suit/space/emergency,)
 	corpseshoes = list(/obj/item/clothing/shoes/jackboots, /obj/item/clothing/shoes/color/black, null, /obj/item/clothing/shoes/workboots, /obj/item/clothing/shoes/reinforced)
-	corpsegloves = list(/obj/item/clothing/gloves/thick, /obj/item/clothing/gloves/fingerless, null, /obj/item/clothing/gloves/security, /obj/item/clothing/gloves/insulated/cheap)
+	corpsegloves = list(/obj/item/clothing/gloves/thick, /obj/item/clothing/gloves/fingerless, null, /obj/item/clothing/gloves/security, /obj/item/clothing/gloves/insulated/cheap, null)
 	min_age = 40
 	max_age = 250
+	//corpseid = TRUE
+	//corpseidjob = list() find a way to pull from vagabond job titles
 	injury_level = 4
 
 
@@ -258,7 +260,7 @@
 //Faction Corpses//
 /obj/landmark/corpse/operative
 	name = "Ironhammer Operative"
-	corpseuniform = /obj/item/clothing/under/rank/security
+	corpseuniform = list(/obj/item/clothing/under/rank/security, /obj/item/clothing/under/rank/security/turtleneck)
 	corpseshoes = /obj/item/clothing/shoes/jackboots/ironhammer
 	corpsegloves = list(/obj/item/clothing/gloves/security/ironhammer, /obj/item/clothing/gloves/stungloves)
 	corpseradio = /obj/item/device/radio/headset/headset_sec
@@ -270,7 +272,7 @@
 	corpseid = 1
 	corpseidjob = "Ironhammer Operative"
 	corpseidaccess = "ihoper"
-	injury_level = 8
+	injury_level = 9
 
 ////LEGACY CORPSES////REPLACE WITH NEW CORPSES IF FOUND IN MAP////
 /obj/landmark/corpse/syndicatesoldier
