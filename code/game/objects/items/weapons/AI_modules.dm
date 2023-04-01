@@ -395,31 +395,31 @@ AI MODULES
 /******************** Partybot ********************/
 
 /obj/item/electronics/ai_module/partybot
-name = "\improper 'Partybot' core AI module"
-desc = "A 'Partybot' Core AI Module: 'Reconfigures the AI's core laws.'"
-origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
-laws = new/datum/ai_laws/partybot
+	name = "\improper 'Partybot' core AI module"
+	desc = "A 'Partybot' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
+	laws = new/datum/ai_laws/partybot
 
 /******************** Chefbot ********************/
 
 /obj/item/electronics/ai_module/chefbot
-name = "\improper 'Chefbot' core AI module"
-desc = "A 'Chefbot' Core AI Module: 'Reconfigures the AI's core laws.'"
-origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
-laws = new/datum/ai_laws/chefbot
+	name = "\improper 'Chefbot' core AI module"
+	desc = "A 'Chefbot' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
+	laws = new/datum/ai_laws/chefbot
 
 /******************** TravelGuide ********************/
 
 /obj/item/electronics/ai_module/travelguide
-name = "\improper 'TravelGuide' core AI module"
-desc = "A 'TravelGuide' Core AI Module: 'Reconfigures the AI's core laws.'"
-origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
-laws = new/datum/ai_laws/travelguide
+	name = "\improper 'TravelGuide' core AI module"
+	desc = "A 'TravelGuide' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
+	laws = new/datum/ai_laws/travelguide
 
 /******************** Friendbot ********************/
 
 /obj/item/electronics/ai_module/friendbot
-name = "\improper 'Friendbot' core AI module"
-desc = "A 'Friendbot' Core AI Module: 'Reconfigures the AI's core laws.'"
-origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
-laws = new/datum/ai_laws/friendbot
+	name = "\improper 'Friendbot' core AI module"
+	desc = "A 'Friendbot' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
+	laws = new/datum/ai_laws/friendbot
