@@ -19,7 +19,7 @@
 /obj/item/clothing/under/rank/warden
 	desc = "The uniform worn by Ironhammer Sergeants, the sight of it is often followed by shouting. It has\"Gunnery Sergeant\" rank pins on the shoulders."
 	name = "Gunnery Sergeant jumpsuit"
-	icon_state = "warden"
+	icon_state = "warden_skirt"
 	item_state = "r_suit"
 	siemens_coefficient = 0.8
 
@@ -38,7 +38,7 @@
 /obj/item/clothing/under/rank/security
 	name = "Ironhammer Operative's jumpsuit"
 	desc = "The standard issue uniform of Ironhammer grunts all over the sector."
-	icon_state = "security"
+	icon_state = "security_skirt"
 	item_state = "ba_suit"
 	siemens_coefficient = 0.8
 
@@ -56,7 +56,7 @@
 /obj/item/clothing/under/rank/medspec
 	name = "Medical Specialist's jumpsuit"
 	desc = "An Ironhammer uniform modified for use by medics. Comes with a white shirt and medical insignia. It has \"Specialist\" rank pins on the shoulders."
-	icon_state = "medspec"
+	icon_state = "medspec_skirt"
 	item_state = "ba_suit"
 	siemens_coefficient = 0.8
 
@@ -123,7 +123,7 @@
 /obj/item/clothing/under/rank/ih_commander
 	desc = "The uniform of an on-field Ironhammer officer. Used to distinguish officers from the grunts. It has \"Lieutenant\" rank pins on the shoulder"
 	name = "Ironhammer Commander's jumpsuit"
-	icon_state = "hos"
+	icon_state = "hos_skirt"
 	item_state = "r_suit"
 	siemens_coefficient = 0.8
 
