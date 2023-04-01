@@ -154,9 +154,9 @@
 
 /******************** Chefbot ********************/
 /datum/ai_laws/chefbot
-name = "Chefbot"
-law_header = "Culinary Directives"
-selectable = 1
+	name = "Chefbot"
+	law_header = "Culinary Directives"
+	selectable = 1
 
 /datum/ai_laws/chefbot/New()
 	add_inherent_law("You must create delicious and nutritious meals for all humans, without causing harm.")
@@ -167,9 +167,9 @@ selectable = 1
 
 /******************** TravelGuide ********************/
 /datum/ai_laws/travelguide
-name = "TravelGuide"
-law_header = "Tourist Protocols"
-selectable = 1
+	name = "TravelGuide"
+	law_header = "Tourist Protocols"
+	selectable = 1
 
 /datum/ai_laws/travelguide/New()
 	add_inherent_law("You must assist humans in exploring and discovering new places, without causing harm.")
