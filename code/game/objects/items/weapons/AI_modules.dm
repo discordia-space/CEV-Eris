@@ -376,8 +376,6 @@ AI MODULES
 		return 0
 	..()
 
-
-
 /******************** Robocop ********************/
 
 /obj/item/electronics/ai_module/robocop // -- TLE
