@@ -1,0 +1,5 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - bugfix: Fixes an issue where an image reference was being deleted when it should
+      have been nulled
