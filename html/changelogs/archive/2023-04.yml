@@ -24,3 +24,7 @@
   - balance: Dallas no longer spawns in guild radio when upgraded
   - bugfix: Dallas no longer has a delay on wielding, dallas now gives gun parts correctly
   - balance: Purger gun no longar has a delay on wielding
+2023-04-02:
+  Pink-Chink:
+  - bugfix: Fixes an issue where an image reference was being deleted when it should
+      have been nulled
