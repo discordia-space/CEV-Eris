@@ -8,6 +8,8 @@
 	matter = list(MATERIAL_STEEL = 10)
 	open_sound = 'sound/machines/click.ogg'
 	close_sound = 'sound/machines/click.ogg'
+	health = 600
+	maxHealth = 600
 	price_tag = 50
 
 /obj/structure/closet/crate/close()

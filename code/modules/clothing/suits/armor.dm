@@ -16,6 +16,8 @@
 	slowdown = 0
 	valid_accessory_slots = list("armband","decor")
 	restricted_accessory_slots = list("armband")
+	maxHealth = 500
+	health = 500
 
 /*
  * Vests

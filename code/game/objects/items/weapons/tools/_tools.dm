@@ -20,6 +20,9 @@
 
 	price_tag = 20
 
+	health = 600
+	maxHealth = 600
+
 	var/tool_in_use = FALSE
 
 	var/force_upgrade_mults = 1
