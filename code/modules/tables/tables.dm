@@ -25,7 +25,7 @@ var/list/custom_table_appearance = list(
 	var/flipped = 0
 	maxHealth = 10
 	health = 10
-	explosion_coverage = 0.2
+	explosion_coverage = 0.1
 
 	// For racks.
 	var/can_reinforce = 1
