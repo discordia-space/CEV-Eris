@@ -25,7 +25,9 @@
 
 /datum/component/jamming/proc/OnContainered(atom/sender, atom/movable/container)
 	SIGNAL_HANDLER
-	message_admins("Jamming component with parent set as [owner] has been containered, with its highest parent being [container]")
+	message_admins("Jamming component with parent set as [owner] has been containered, with its highest parent being [container] at [world.time]")
+	message_admins("Registered to parent = [IsRegistered(owner, COMSIG_MOVABLE_Z_CHANGED)]")
+	message_admins("Registered to highestmovable = [IsRegistered(container, COMSIG_MOVABLE_Z_CHANGED)]")
 
 
 

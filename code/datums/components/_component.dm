@@ -222,11 +222,16 @@
 	for (var/signal_type in signal_types)
 		RegisterSignal(target, signal_type, proctype, override)
 
-/// Checks if we already are registered onto the object with said proc
-/datum/proc/IsRegistered(datum/target, signal_type, proctype)
-	if(target.comp_lookup[signal_type])
-		if(target.comp_lookup[signal_type].Find(src))
-			return TRUE
+/// Checks if we already are registered onto the object with any proc on said signal
+/datum/proc/IsRegistered(datum/target, signal_type)
+	if(length(target.comp_lookup))
+		if(length(target.comp_lookup[signal_type]))
+			if(islist(target.comp_lookup[signal_type]))
+				var/list/listRef = target.comp_lookup[signal_type]
+				if(listRef.Find(src))
+					return TRUE
+			else if(target.comp_lookup[signal_type] == src)
+				return TRUE
 	return FALSE
 
 /**

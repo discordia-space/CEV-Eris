@@ -361,7 +361,8 @@
 		usr.prepare_for_slotmove(W)
 		usr.update_icons() //update our overlays
 
-	W.loc = src
+	//W.loc = src
+	W.forceMove(src)
 	W.on_enter_storage(src)
 
 	if(usr)
