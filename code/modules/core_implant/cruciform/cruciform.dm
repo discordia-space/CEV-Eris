@@ -16,6 +16,7 @@ var/list/disciples = list()
 	max_power = 50
 	power_regen = 20/(1 MINUTES)
 	price_tag = 500
+	unacidable = 1
 	var/obj/item/cruciform_upgrade/upgrade
 
 	var/righteous_life = 0
