@@ -115,8 +115,9 @@
 		M.equip_to_slot_or_del(new corpseback(M), slot_back)
 
 	var/datum/job/jobdatum = corpseidjob ? SSjob.GetJob(corpseidjob) : null
-	if(jobdatum)
-		jobdatum.equip(M)
+//	if(jobdatum)
+//		jobdatum.equip(M)
+//commented out so i can make realistic faction corpses and not have extra loot spawn
 
 	if(corpseid)
 		var/datum/money_account/MA = create_account(M.real_name, rand(500,2000))
