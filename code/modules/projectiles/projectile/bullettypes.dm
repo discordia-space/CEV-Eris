@@ -17,7 +17,7 @@ There are important things regarding this file:
 	name = ".35 caliber bullet"
 	// effective against lightly armoured targets, useless agaisnt anything with 7+ armor
 	damage_types = list(BRUTE = 7)
-	wounding_mult = 3
+	wounding_mult = 4
 	armor_divisor = 1
 	can_ricochet = TRUE
 	penetrating = 2
@@ -254,12 +254,12 @@ There are important things regarding this file:
 	name = "slug"
 	icon_state = "slug"
 	// slugs are indeed good at penetration, but high recoil, slow and usually inaccurate
-	damage_types = list(BRUTE = 25)
+	damage_types = list(BRUTE = 40)
 	armor_divisor = 1
 	wounding_mult = 1
 	knockback = 1
 	step_delay = 1.1
-	style_damage = 25
+	style_damage = 15
 	recoil = 8
 
 /obj/item/projectile/bullet/shotgun/scrap
@@ -307,7 +307,7 @@ There are important things regarding this file:
 	// any pistol worthy armor (7+ will fully block)
 	armor_divisor = 0.5
 	// style counter
-	style_Damage = 30
+	style_Damage = 50
 	pellets = 6
 	range_step = 1
 	spread_step = 10
