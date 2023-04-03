@@ -241,7 +241,7 @@
 		to_chat(user, SPAN_DANGER("You short out the access protocol for the suit."))
 		return 1
 
-/obj/item/rig/block_explosion(mob/user, power) // Returns damage to block
+/obj/item/rig/proc/block_explosion(mob/user, power) // Returns damage to block
 	if(!active || !ablative_armor)
 		return FALSE
 
