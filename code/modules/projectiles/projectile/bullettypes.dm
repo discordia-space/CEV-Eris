@@ -15,14 +15,18 @@ There are important things regarding this file:
 //Low-caliber pistols and SMGs .35
 /obj/item/projectile/bullet/pistol
 	name = ".35 caliber bullet"
-	damage_types = list(BRUTE = 26)
+	// effective against lightly armoured targets, useless agaisnt anything with 7+ armor
+	damage_types = list(BRUTE = 7)
+	wounding_mult = 3
 	armor_divisor = 1
 	can_ricochet = TRUE
 	penetrating = 2
 	style_damage = 20
 	recoil = 3
 
+
 /obj/item/projectile/bullet/pistol/hv
+	// Will pen as long as below 10 armor
 	armor_divisor = 1.5
 	step_delay = 0.75
 
@@ -51,12 +55,13 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/srifle
 	name = ".20 caliber bullet"
-	damage_types = list(BRUTE = 24)
-	armor_divisor = 1.5
+	// Effective against people with under 20 armor
+	damage_types = list(BRUTE = 20)
+	wounding_mult = 1
+	armor_divisor = 1
 	penetrating = 2
 	can_ricochet = TRUE
 	recoil = 3
-	wounding_mult = WOUNDING_INTERMEDIATE
 
 /obj/item/projectile/bullet/srifle/nomuzzle
 	muzzle_type = null
@@ -81,15 +86,16 @@ There are important things regarding this file:
 	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/srifle/scrap
-	armor_divisor = 1.2
+	armor_divisor = 0.8
 	recoil = 5
 
 // .25 caseless rifle
 
 /obj/item/projectile/bullet/clrifle
 	name = ".25 caliber bullet"
-	damage_types = list(BRUTE = 21)
-	armor_divisor = 1.5
+	damage_types = list(BRUTE = 25)
+	// More punch , less penetration
+	armor_divisor = 0.6
 	penetrating = 2
 	can_ricochet = FALSE //to reduce collateral damage and FF, since IH use it in their primary firearm
 	recoil = 3.5
@@ -103,7 +109,7 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/clrifle/hv
-	armor_divisor = 2
+	armor_divisor = 1.2
 	step_delay = 0.7
 	can_ricochet = TRUE
 
@@ -124,12 +130,15 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/lrifle
 	name = ".30 caliber bullet"
-	damage_types = list(BRUTE = 18)
-	armor_divisor = 1.5
+	damage_types = list(BRUTE = 30)
+	// Packs a big punch , doesn't have the best aerodynamics
+	// superior to .25 in armor pen , and to damage in .20, ( but .20 pens more)
+	armor_divisor = 0.7
+	wounding_mult = 1
 	penetrating = 2
 	can_ricochet = TRUE
-	recoil = 4.5
-	wounding_mult = WOUNDING_WIDE
+	// much gunpowder
+	recoil = 6
 
 /obj/item/projectile/bullet/lrifle/practice
 	name = "practice bullet"
@@ -157,13 +166,14 @@ There are important things regarding this file:
 //Revolvers and high-caliber pistols .40
 /obj/item/projectile/bullet/magnum
 	name = " .40 caliber bullet"
-	damage_types = list(BRUTE = 21)
-	armor_divisor = 1
+	damage_types = list(BRUTE = 40)
+	// trash armor penetration , but highly damaging
+	armor_divisor = 0.4
+	wounding_mult = 1
 	can_ricochet = TRUE
 	penetrating = 2
 	style_damage = 40
 	recoil = 6
-	wounding_mult = WOUNDING_WIDE
 
 /obj/item/projectile/bullet/magnum/practice
 	name = "practice bullet"
@@ -179,10 +189,9 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/magnum/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 10, HALLOSS = 11)
+	damage_types = list(BRUTE = 10, HALLOSS = 29)
 	embed = FALSE
 	sharp = FALSE
-	wounding_mult = WOUNDING_NORMAL
 
 /obj/item/projectile/bullet/magnum/scrap
 	armor_divisor = 0.8
@@ -191,16 +200,16 @@ There are important things regarding this file:
 //Sniper rifles .60
 /obj/item/projectile/bullet/antim
 	name = ".60 caliber bullet"
-	damage_types = list(BRUTE = 18)
-	armor_divisor = 3
+	damage_types = list(BRUTE = 50)
+	armor_divisor = 1
+	wounding_mult = 1
 	penetrating = 2
 	step_delay = 0.8
 	style_damage = 70
 	recoil = 15 // Good luck shooting these from a revolver
-	wounding_mult = WOUNDING_EXTREME
 
 /obj/item/projectile/bullet/antim/emp
-	damage_types = list(BRUTE = 16)
+	damage_types = list(BRUTE = 35)
 	armor_divisor = 2
 
 /obj/item/projectile/bullet/antim/emp/on_hit(atom/target, blocked = FALSE)
@@ -208,12 +217,12 @@ There are important things regarding this file:
 	empulse(target, 0, 0)
 
 /obj/item/projectile/bullet/antim/uranium
-	damage_types = list(BRUTE = 16)
-	armor_divisor = 5
+	damage_types = list(BRUTE = 35)
+	armor_divisor = 3
 	irradiate = 200
 
 /obj/item/projectile/bullet/antim/breach
-	damage_types = list(BRUTE = 16, HALLOSS = 20)
+	damage_types = list(BRUTE = 30, HALLOSS = 40)
 	armor_divisor = 2
 	penetrating = -5
 	nocap_structures = TRUE
@@ -225,7 +234,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/antim/breach/get_structure_damage()
 	var/distance = get_dist(loc, starting)
-	return  22 * get_tiles_passed(distance)
+	return  50 * get_tiles_passed(distance)
 
 
 /obj/item/projectile/bullet/antim/breach/on_hit(atom/target, blocked = FALSE)
@@ -235,22 +244,23 @@ There are important things regarding this file:
 
 
 
-
+// trrash penetration
 /obj/item/projectile/bullet/antim/scrap
-	armor_divisor = 2
+	armor_divisor = 0.3
 	recoil = 20
 
 //Shotguns .50
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
 	icon_state = "slug"
+	// slugs are indeed good at penetration, but high recoil, slow and usually inaccurate
 	damage_types = list(BRUTE = 25)
 	armor_divisor = 1
+	wounding_mult = 1
 	knockback = 1
 	step_delay = 1.1
 	style_damage = 25
 	recoil = 8
-	wounding_mult = WOUNDING_EXTREME
 
 /obj/item/projectile/bullet/shotgun/scrap
 	armor_divisor = 0.8
@@ -260,7 +270,7 @@ There are important things regarding this file:
 	name = "beanbag"
 	icon_state = "buckshot"
 	check_armour = ARMOR_BULLET //neverforget
-	damage_types = list(BRUTE = 10, HALLOSS = 20)
+	damage_types = list(BRUTE = 10, HALLOSS = 25)
 	embed = FALSE
 	sharp = FALSE
 	wounding_mult = WOUNDING_WIDE
@@ -276,7 +286,7 @@ There are important things regarding this file:
 	knockback = 0
 
 /obj/item/projectile/bullet/shotgun/incendiary
-	damage_types = list(BRUTE = 38)
+	damage_types = list(BRUTE = 15, BURN = 10)
 	knockback = 0
 
 	var/fire_stacks = 4
@@ -293,8 +303,11 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
 	icon_state = "birdshot-1"
-	damage_types = list(BRUTE = 21)
-	armor_divisor = 1
+	damage_types = list(BRUTE = 15)
+	// any pistol worthy armor (7+ will fully block)
+	armor_divisor = 0.5
+	// style counter
+	style_Damage = 30
 	pellets = 6
 	range_step = 1
 	spread_step = 10
@@ -326,13 +339,12 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/bolt
 	icon_state = "SpearFlight"
 	name = "bolt"
-	damage_types = list(BRUTE = 27)
-	armor_divisor = 2
+	damage_types = list(BRUTE = 35)
+	armor_divisor = 1
 	embed = FALSE
 	can_ricochet = TRUE
 	recoil = 3
-	style_damage = 40
-	wounding_mult = WOUNDING_EXTREME
+	style_damage = 30
 
 /obj/item/projectile/bullet/bolt/on_hit(mob/living/target, def_zone = BP_CHEST)
     if(istype(target))
