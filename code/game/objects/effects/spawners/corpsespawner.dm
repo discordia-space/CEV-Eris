@@ -76,90 +76,43 @@
 	else if(M.species.min_age && M.species.max_age)
 		M.age = rand(M.species.min_age, M.species.max_age)
 
+	corpseuniform = islist(corpseuniform) ? safepick(corpseuniform) : corpseuniform
+	corpsesuit = islist(corpsesuit) ? safepick(corpsesuit) : corpsesuit
+	corpseshoes = islist(corpseshoes) ? safepick(corpseshoes) : corpseshoes
+	corpsegloves = islist(corpsegloves) ? safepick(corpsegloves) : corpsegloves
+	corpseradio = islist(corpseradio) ? safepick(corpseradio) : corpseradio
+	corpseglasses = islist(corpseglasses) ? safepick(corpseglasses) : corpseglasses
+	corpsemask = islist(corpsemask) ? safepick(corpsemask) : corpsemask
+	corpsehelmet = islist(corpsehelmet) ? safepick(corpsehelmet) : corpsehelmet
+	corpsebelt = islist(corpsebelt) ? safepick(corpsebelt) : corpsebelt
+	corpsepocket1 = islist(corpsepocket1) ? safepick(corpsepocket1) : corpsepocket1
+	corpsepocket2 = islist(corpsepocket2) ? safepick(corpsepocket2) : corpsepocket2
+	corpseback = islist(corpseback) ? safepick(corpseback) : corpseback
+
 	if(corpseuniform)
-		if(islist(corpseuniform))
-			corpseuniform = safepick(corpseuniform)
-		if(corpseuniform)
-			M.equip_to_slot_or_del(new corpseuniform(M), slot_w_uniform)
-	else
-		M.equip_to_slot_or_del
+		M.equip_to_slot_or_del(new corpseuniform(M), slot_w_uniform)
 	if(corpsesuit)
-		if(islist(corpsesuit))
-			corpsesuit = safepick(corpsesuit)
-		if(corpsesuit)
-			M.equip_to_slot_or_del(new corpsesuit(M), slot_wear_suit)
-	else
-		M.equip_to_slot_or_del
+		M.equip_to_slot_or_del(new corpsesuit(M), slot_wear_suit)
 	if(corpseshoes)
-		if(islist(corpseshoes))
-			corpseshoes = safepick(corpseshoes)
-		if(corpseshoes)
-			M.equip_to_slot_or_del(new corpseshoes(M), slot_shoes)
-	else
-		M.equip_to_slot_or_del
+		M.equip_to_slot_or_del(new corpseshoes(M), slot_shoes)
 	if(corpsegloves)
-		if(islist(corpsegloves))
-			corpsegloves = safepick(corpsegloves)
-		if(corpsegloves)
-			M.equip_to_slot_or_del(new corpsegloves(M), slot_shoes)
-	else
-		M.equip_to_slot_or_del
+		M.equip_to_slot_or_del(new corpsegloves(M), slot_gloves)
 	if(corpseradio)
-		if(islist(corpseradio))
-			corpseradio = safepick(corpseradio)
-		if(corpseradio)
-			M.equip_to_slot_or_del(new corpseradio(M), slot_l_ear)
-	else
-		M.equip_to_slot_or_del
+		M.equip_to_slot_or_del(new corpseradio(M), slot_l_ear)
 	if(corpseglasses)
-		if(islist(corpseglasses))
-			corpseglasses = safepick(corpseglasses)
-		if(corpseglasses)
-			M.equip_to_slot_or_del(new corpseglasses(M), slot_glasses)
-	else
-		M.equip_to_slot_or_del
+		M.equip_to_slot_or_del(new corpseglasses(M), slot_glasses)
 	if(corpsemask)
-		if(islist(corpsemask))
-			corpsemask = safepick(corpsemask)
-		if(corpsemask)
-			M.equip_to_slot_or_del(new corpsemask(M), slot_wear_mask)
-	else
-		M.equip_to_slot_or_del
+		M.equip_to_slot_or_del(new corpsemask(M), slot_wear_mask)
 	if(corpsehelmet)
-		if(islist(corpsehelmet))
-			corpsehelmet = safepick(corpsehelmet)
-		if(corpsehelmet)
-			M.equip_to_slot_or_del(new corpsehelmet(M), slot_head)
-	else
-		M.equip_to_slot_or_del
+		M.equip_to_slot_or_del(new corpsehelmet(M), slot_head)
 	if(corpsebelt)
-		if(islist(corpsebelt))
-			corpsebelt = safepick(corpsebelt)
-		if(corpsebelt)
-			M.equip_to_slot_or_del(new corpsebelt(M), slot_belt)
-	else
-		M.equip_to_slot_or_del
+		M.equip_to_slot_or_del(new corpsebelt(M), slot_belt)
 	if(corpsepocket1)
-		if(islist(corpsepocket1))
-			corpsepocket1 = safepick(corpsepocket1)
-		if(corpsepocket1)
-			M.equip_to_slot_or_del(new corpsepocket1(M), slot_l_store)
-	else
-		M.equip_to_slot_or_del
+		M.equip_to_slot_or_del(new corpsepocket1(M), slot_r_store)
 	if(corpsepocket2)
-		if(islist(corpsepocket2))
-			corpsepocket2 = safepick(corpsepocket2)
-		if(corpsepocket2)
-			M.equip_to_slot_or_del(new corpsepocket2(M), slot_r_store)
-	else
-		M.equip_to_slot_or_del
+		M.equip_to_slot_or_del(new corpsepocket2(M), slot_l_store)
 	if(corpseback)
-		if(islist(corpseback))
-			corpseback = safepick(corpseback)
-		if(corpseback)
-			M.equip_to_slot_or_del(new corpseback(M), slot_back)
-	else
-		M.equip_to_slot_or_del
+		M.equip_to_slot_or_del(new corpseback(M), slot_back)
 
 	var/datum/job/jobdatum = corpseidjob ? SSjob.GetJob(corpseidjob) : null
 	if(jobdatum)
