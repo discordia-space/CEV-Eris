@@ -241,11 +241,7 @@
 
 
 /mob/hatton_act()
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		H.take_overall_damage(35, 10)
-	else
-		explosion_act(600, null)
+	explosion_act(120, null)
 //turfs
 
 /turf/simulated/wall/hatton_act()
