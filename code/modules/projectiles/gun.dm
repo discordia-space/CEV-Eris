@@ -1019,6 +1019,7 @@
 	braced = initial(braced)
 	recoil = getRecoil(init_recoil[1], init_recoil[2], init_recoil[3])
 	flashlight_attachment = initial(flashlight_attachment)
+	G.verbs -= /obj/item/gun/proc/toggle_light
 
 	attack_verb = list()
 	if (custom_default.len) // this override is used by the artwork_revolver for RNG gun stats
