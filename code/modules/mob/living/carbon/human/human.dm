@@ -103,6 +103,9 @@
 
 /mob/living/carbon/human/explosion_act(target_power, explosion_handler/handle)
 	var/BombDamage = target_power - (getarmor(null, ARMOR_BOMB) + mob_bomb_defense)
+	var/obj/item/rig/hardsuitChad = back
+	if(back && istype(hardsuitChad))
+		BombDamage -= hardsuitChad.block_explosion(src, target_power)
 	var/BlockCoefficient = 0.2
 	if(handle)
 		var/ThrowTurf = get_turf(src)
