@@ -70,15 +70,17 @@
 			explode(get_turf(target))
 
 /obj/item/plastique/proc/explode(location)
+	var/cur_turf = get_turf(src)
 	if(!target)
 		target = get_atom_on_turf(src)
 	if(!target)
 		target = src
-	if(target)
+	if(target != src)
 		target.explosion_act(1000, null)
 	else if(location)
 		target = get_turf(location)
 		target.explosion_act(1000, null)
+	explosion(cur_turf, 400, 180)
 	/*
 	if(target)
 		if (istype(target, /turf/simulated/wall))

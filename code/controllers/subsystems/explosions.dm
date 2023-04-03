@@ -1,5 +1,6 @@
 #define EFLAG_EXPONENTIALFALLOFF 1
 #define EFLAG_ADDITIVEFALLOFF 2
+#define EFLAG_HALVEFALLOFF 4
 
 #define EXPLOSION_MINIMUM_THRESHOLD 10
 #define EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD 500
@@ -110,6 +111,8 @@ SUBSYSTEM_DEF(explosions)
 				explodey.current_turf_queue -= target
 				explodey.hashed_visited[target.z][turf_key] = TRUE
 				target_power -= target.explosion_act(target_power, explodey) + explodey.falloff
+				if(explodey.flags & EFLAG_HALVEFALLOFF)
+					target_power /= 2
 				new /obj/effect/explosion_fire(target)
 				if(target_power < EXPLOSION_MINIMUM_THRESHOLD)
 					continue
@@ -158,9 +161,9 @@ SUBSYSTEM_DEF(explosions)
 			// For funky explosive options, end of explosion anyway
 			explodey.iterations++
 			if(explodey.flags & EFLAG_EXPONENTIALFALLOFF)
-				explodey.falloff *= 2
+				explodey.falloff ^= 2
 			if(explodey.flags & EFLAG_ADDITIVEFALLOFF)
-				explodey.falloff += explodey.falloff
+				explodey.falloff += explodey.initial_falloff
 
 			// Explosion is done , nothing else left to iterate , cleanup and etc.
 			if(!length(explodey.turf_queue))
@@ -212,6 +215,8 @@ explosion_handler
 	var/power
 	// Falloff per tile
 	var/falloff
+	// Initial falloff that wont change
+	var/initial_falloff
 	// Used for cleanup
 	var/maximum_z = 0
 	var/minimum_z = 0
@@ -232,6 +237,7 @@ explosion_handler/New(turf/loc, power, falloff, flags)
 	src.epicenter = loc
 	src.power = power
 	src.falloff = falloff
+	initial_falloff = falloff
 	src.flags = flags
 	hashed_power = new /list(world.maxz)
 	hashed_visited = new /list(world.maxz)
