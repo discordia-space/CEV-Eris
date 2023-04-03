@@ -36,6 +36,7 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "core_upgrade"
 	bad_type = /obj/item/cruciform_upgrade
+	unacidable = 1
 	var/mob/living/carbon/human/wearer
 	var/obj/item/implant/core_implant/cruciform/cruciform
 	var/active = FALSE
@@ -143,14 +144,14 @@
 
 /obj/item/cruciform_upgrade/martyr_gift
 	name = "Martyr gift"
-	desc = "This upgrade upon the death of the follower, causes a large ‘explosion’ that doesn’t damage terrain nor does it damage followers of NT. It will cause massive burns to any non-cruciformed crewmembers or critters within its radius. However, in process of doing so, this upgrade destroys itself, albeit cruciform remains intact."
+	desc = "This upgrade upon the death of the follower, causes a large ‘explosion’ that doesn’t damage terrain nor does it damage followers of NT. It will cause massive burns to any non-cruciformed crewmembers or critters within its radius. However, in the process of doing so, this upgrade destroys itself, albeit the cruciform remains intact."
 	icon_state = "martyr_gift"
 	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_GOLD = 5, MATERIAL_PLASTEEL = 5, MATERIAL_PLASMA = 5)
 	var/burn_damage = 50
 
 /obj/item/cruciform_upgrade/wrath_of_god
 	name = "Wrath of god"
-	desc = "This upgrade make the follower deal more damage in melee, but also receive a slightly more damage from all sources."
+	desc = "This upgrade makes the follower deal more damage in melee, but also receive slightly more damage from all sources."
 	icon_state = "wrath_of_god"
 	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_GOLD = 5, MATERIAL_PLASTEEL = 15)
 	var/damage_mod = 0.2

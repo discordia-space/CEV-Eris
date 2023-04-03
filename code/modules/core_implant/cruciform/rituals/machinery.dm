@@ -13,7 +13,7 @@
 /datum/ritual/cruciform/machines/resurrection
 	name = "Resurrection"
 	phrase = "Qui fuit, et crediderunt in me non morietur in aeternum"
-	desc = "A ritual of formation of a new body in a speclially designed machine.  Deceased person's cruciform has to be placed on the scanner then a prayer is to be uttered over the apparatus."
+	desc = "A ritual of formation of a new body in a specially designed machine.  Deceased person's cruciform has to be placed on the scanner then a prayer is to be uttered over the apparatus."
 	var/clone_damage = 60
 
 /datum/ritual/cruciform/machines/resurrection/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
@@ -43,7 +43,7 @@
 /datum/ritual/cruciform/machines/cruciformforge
 	name = "Make cruciform"
 	phrase = "Nos nostrae initium creatores."
-	desc = "A ritual, that commands cruciform forge to make a new empty cruciform."
+	desc = "A ritual, that commands the cruciform forge to make a new empty cruciform."
 
 /datum/ritual/cruciform/machines/cruciformforge/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
 	var/list/OBJS = get_front(user)
@@ -151,7 +151,7 @@
 /datum/ritual/cruciform/machines/power_biogen_awake
 	name = "Power biogenerator song"
 	phrase = "Dixitque Deus: Fiat lux. Et facta est lux.  Et lux in tenebris lucet, et renebrae eam non comprehenderunt."
-	desc = "A ritual, that can activate or deactivate power biogenerator machine. You should be nearby its metrics screen."
+	desc = "A ritual, that can activate or deactivate the biogenerator machine. You should be nearby its metrics screen."
 
 
 /datum/ritual/cruciform/machines/power_biogen_awake/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C)
@@ -200,7 +200,7 @@
 /datum/ritual/cruciform/machines/bioreactor/solution
 	name = "Bioreactor solution pump's lullaby"
 	phrase = "Nihil igitur fieri de nihilo posse putandum est."
-	desc = "This ritual pump in or pump out solution of bioreactor's chamber. You should stay nearby its screen."
+	desc = "This ritual pumps in or pumps out solution of the bioreactor's chamber. You should stay nearby its screen."
 
 
 /datum/ritual/cruciform/machines/bioreactor/solution/perform_command(datum/multistructure/bioreactor/bioreactor)
@@ -219,7 +219,7 @@
 /datum/ritual/cruciform/machines/bioreactor/chamber_doors
 	name = "Bioreactor chamber's words"
 	phrase = "Constituit quoque ianitores in portis domus Domini ut non ingrederetur eam inmundus in omni."
-	desc = "This ritual open or close bioreactor chamber. You should stay nearby its screen."
+	desc = "This ritual opens or closes the bioreactor chamber. You should stay nearby its screen."
 
 
 /datum/ritual/cruciform/machines/bioreactor/chamber_doors/perform_command(datum/multistructure/bioreactor/bioreactor)

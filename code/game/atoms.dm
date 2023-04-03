@@ -144,6 +144,7 @@
  * Cleans up the following:
  * * Removes alternate apperances from huds that see them
  * * qdels the reagent holder from atoms if it exists
+ * * Clears itself from any targeting-related vars that hold a reference to it
  * * clears the orbiters list
  * * clears overlays and priority overlays
  * * clears the light object
@@ -152,7 +153,9 @@
 	if(reagents)
 		QDEL_NULL(reagents)
 
-	//spawn()
+	SEND_SIGNAL(src, COMSIG_NULL_TARGET)
+	SEND_SIGNAL(src, COMSIG_NULL_SECONDARY_TARGET)
+
 	update_openspace()
 	return ..()
 
