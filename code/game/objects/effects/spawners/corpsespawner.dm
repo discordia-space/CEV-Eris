@@ -186,7 +186,7 @@
 	min_age = 40
 	max_age = 250
 	//corpseid = TRUE
-	//corpseidjob = list() find a way to pull from vagabond job titles
+	//corpseidjob = list() find a way to pull from vagabond job titles. i have 0 clue how to do that but i will
 	injury_level = 4
 
 
