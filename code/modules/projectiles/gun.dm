@@ -104,7 +104,6 @@
 	var/wield_delay_factor = 0 // A factor that characterizes weapon size , this makes it require more vig to insta-wield this weapon or less , values below 0 reduce the vig needed and above 1 increase it
 	var/serial_type = "" // If there is a serial type, the gun will add a number that will show on examine
 
-
 /obj/item/gun/wield(mob/user)
 	if(!wield_delay)
 		..()
@@ -169,7 +168,7 @@
 		set_firemode(sel_mode)
 
 	if(!restrict_safety)
-		verbs += /obj/item/gun/proc/toggle_safety_verb//addint it to all guns
+		verbs += /obj/item/gun/proc/toggle_safety_verb  //addint it to all guns
 
 		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/safety
 		action.owner = src
@@ -203,7 +202,7 @@
 	firemodes = null
 	return ..()
 
-/obj/item/gun/proc/set_item_state(state, hands = FALSE, back = FALSE, onsuit = FALSE)
+/obj/item/gun/proc/set_item_state(state, hands = TRUE, back = FALSE, onsuit = FALSE)
 	var/wield_state
 	if(wielded_item_state)
 		wield_state = wielded_item_state
@@ -213,6 +212,7 @@
 		if(wield_state && wielded)//Because most of the time the "normal" icon state is held in one hand. This could be expanded to be less hacky in the future.
 			item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state
 			item_state_slots[slot_r_hand_str] = "righthand" + wield_state
+			
 		else
 			item_state_slots[slot_l_hand_str] = "lefthand"  + state
 			item_state_slots[slot_r_hand_str] = "righthand" + state
@@ -220,30 +220,30 @@
 
 	var/carry_state = inversed_carry
 	if(back && !carry_state)
-		item_state_slots[slot_back_str]   = "back"      + state
+		item_state_slots[slot_back_str]   = "back"		+ state
 	if(back && carry_state)
-		item_state_slots[slot_back_str]   = "onsuit"      + state
+		item_state_slots[slot_back_str]   = "onsuit"	+ state
 	if(onsuit && !carry_state)
 		item_state_slots[slot_s_store_str]= "onsuit"    + state
 	if(onsuit && carry_state)
-		item_state_slots[slot_s_store_str]= "back"    + state
+		item_state_slots[slot_s_store_str]= "back"		+ state
 
 /obj/item/gun/update_icon()
-	if(wielded_item_state)
-		if(icon_contained)//If it has it own icon file then we want to pull from that.
-			if(wielded)
-				item_state_slots[slot_l_hand_str] = "lefthand"  + wielded_item_state
-				item_state_slots[slot_r_hand_str] = "righthand" + wielded_item_state
-			else
-				item_state_slots[slot_l_hand_str] = "lefthand"
-				item_state_slots[slot_r_hand_str] = "righthand"
-		else//Otherwise we can just pull from the generic left and right hand icons.
-			if(wielded)
-				item_state_slots[slot_l_hand_str] = wielded_item_state
-				item_state_slots[slot_r_hand_str] = wielded_item_state
-			else
-				item_state_slots[slot_l_hand_str] = initial(item_state)
-				item_state_slots[slot_r_hand_str] = initial(item_state)
+    if(wielded_item_state)
+        if(icon_contained)//If it has it own icon file then we want to pull from that.
+            if(wielded)
+                item_state_slots[slot_l_hand_str] = "lefthand"  + wielded_item_state
+                item_state_slots[slot_r_hand_str] = "righthand" + wielded_item_state
+            else
+                item_state_slots[slot_l_hand_str] = "lefthand"
+                item_state_slots[slot_r_hand_str] = "righthand"
+        else//Otherwise we can just pull from the generic left and right hand icons.
+            if(wielded_icon)
+                item_state_slots[slot_l_hand_str] = wielded_item_state
+                item_state_slots[slot_r_hand_str] = wielded_item_state
+            else
+                item_state_slots[slot_l_hand_str] = initial(item_state)
+                item_state_slots[slot_r_hand_str] = initial(item_state)
 
 
 //Checks whether a given mob can use the gun

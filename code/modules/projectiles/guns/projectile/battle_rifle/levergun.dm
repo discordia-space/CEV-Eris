@@ -2,6 +2,7 @@
 	name = "FS BR .40 \"Svengali\""
 	desc = "A perfect modernization of an old earth classic hailing popular use with gun ho lawmen and bounty hunters. \
 	Marketed as the number one choice for crack shots on Oberth colonies and large vessels."
+	icon = 'icons/obj/guns/projectile/winchester.dmi'
 	icon_state = "lever_winchester"
 	item_suffix  = "_winchester"
 	force = WEAPON_FORCE_DANGEROUS
@@ -38,6 +39,7 @@
 
 /obj/item/gun/projectile/boltgun/levergun/sawn
 	name = "sawn-off FS BR .40 \"Svengali\""
+	icon = 'icons/obj/guns/projectile/winchester_sawn.dmi'
 	icon_state = "lever_winchester_sawn"
 	w_class = ITEM_SIZE_NORMAL
 	proj_step_multiplier = 1

@@ -125,6 +125,7 @@
 	desc = "Weapon for hunting, or endless trench warfare. \
 			If you’re on a budget, it’s a darn good rifle for just about everything. \
 			This copy, in fact, is a reverse-engineered poor-quality copy of a more perfect copy of an ancient rifle"
+	icon = 'icons/obj/guns/projectile/novakovic.dmi'
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
 	force = 23
@@ -141,6 +142,7 @@
 	desc = "Weapon for hunting, or endless coastal warfare. \
 			A replica of an ancient bolt action known for its easy maintenance and low price. \
 			This is mounted with a scope, for ranges longer than a maintenance tunnel."
+	icon = 'icons/obj/guns/projectile/arisaka.dmi'
 	icon_state = "arisaka_ih_scope"
 	item_suffix  = "_ih_scope"
 	force = WEAPON_FORCE_DANGEROUS // weaker than novakovic, but with a bayonet installed it will be slightly stronger
@@ -163,11 +165,13 @@
 	price_tag = 1200
 	serial_type = "FS"
 
+
 /obj/item/gun/projectile/boltgun/fs/civilian
 	name = "FS BR .20 \"Arasaka\""
 	desc = "Weapon for hunting, or endless coastal warfare. \
 			A replica of a replica, this simple, low-cost bolt-action rifle offers superb armor-piercing short of anti-materiel rounds. \
 			This is mounted with a short scope, for ranges mildly longer than a maintenance tunnel."
+	icon = 'icons/obj/guns/projectile/arisaka_civ.dmi'
 	icon_state = "arisaka_civilian"
 	item_suffix  = "_civilian"
 	init_recoil = RIFLE_RECOIL(2)
@@ -190,6 +194,7 @@
 /obj/item/gun/projectile/boltgun/handmade
 	name = "HM BR \"Riose\""
 	desc = "A handmade bolt action rifle, made from junk and some spare parts."
+	icon = 'icons/obj/guns/projectile/riose.dmi'
 	icon_state = "boltgun_hand"
 	item_suffix = "_hand"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
