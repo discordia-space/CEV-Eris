@@ -185,8 +185,7 @@
 
 /obj/item/computer_hardware/hard_drive/portable/design/excelsior/ks
 	disk_name = "Excelsior - KS-23 SG"
-	desc = {"The back has a machine etching:\n \
-	\"Riot Control!!\""}
+	desc = "The back has a machine etching: \"Riot Control!.\""
 	icon_state = "excelsior"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_EXCELSIOR
 	rarity_value = 90
