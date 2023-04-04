@@ -1,6 +1,7 @@
 
 /datum/component/jamming
 	var/atom/movable/owner
+	var/atom/movable/highest_container
 	var/active = FALSE
 	var/radius = 20
 	var/power = 1
@@ -13,22 +14,23 @@
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
-	RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(OnLevelChange))
+	highest_container = owner.getContainingMovable()
 	RegisterSignal(owner, COMSIG_ATOM_CONTAINERED, PROC_REF(OnContainered))
+	RegisterSignal(highest_container, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(OnLevelChange))
 
 /datum/component/jamming/proc/OnLevelChange(source, oldLevel, newLevel)
 	if(active)
 		SSjamming.active_jammers[oldLevel] -= src
 		SSjamming.active_jammers[newLevel] += src
-
-/datum/component/jamming/proc/OnStore(obj/item/storage/container)
+	message_admins("Z-level changed from [oldLevel] to [newLevel]")
 
 /datum/component/jamming/proc/OnContainered(atom/sender, atom/movable/container)
 	SIGNAL_HANDLER
-	message_admins("Jamming component with parent set as [owner] has been containered, with its highest parent being [container] at [world.time]")
-	message_admins("Registered to parent = [IsRegistered(owner, COMSIG_MOVABLE_Z_CHANGED)]")
-	message_admins("Registered to highestmovable = [IsRegistered(container, COMSIG_MOVABLE_Z_CHANGED)]")
-
+	if(highest_container == container)
+		return
+	UnregisterSignal(highest_container, COMSIG_MOVABLE_Z_CHANGED)
+	highest_container = container
+	RegisterSignal(highest_container, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(OnLevelChange))
 
 
 /datum/component/jamming/Destroy()

@@ -79,7 +79,7 @@
 
 /atom/movable/proc/forceMove(atom/destination, var/special_event, glide_size_override=0)
 	if(loc == destination)
-		return 0
+		return FALSE
 
 	if (glide_size_override)
 		set_glide_size(glide_size_override)
@@ -115,13 +115,14 @@
 	if(origin && destination)
 		if(get_z(origin) != get_z(destination))
 			SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, get_z(origin) , get_z(destination))
-		if(!is_origin_turf)
+			update_plane()
+		else if(!is_origin_turf)
 			update_plane()
 			//for(var/atom/movable/thing in contents)
 			//	SEND_SIGNAL(thing, COMSIG_MOVABLE_Z_CHANGED,get_z(origin),get_z(destination))
 
 	// Container change
-	if((!is_origin_turf || !is_destination_turf) || ((!is_origin_turf || !is_destination_turf) && (origin != destination)))
+	if((!is_origin_turf || !is_destination_turf) || ((!is_origin_turf && !is_destination_turf) && (origin != destination)))
 		SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, getContainingMovable())
 	/*
 	// Only update plane if we're located on map
@@ -131,7 +132,7 @@
 			update_plane()
 	*/
 
-	return 1
+	return TRUE
 
 
 //called when src is thrown into hit_atom
@@ -413,14 +414,12 @@
 
 		if(get_z(oldloc) != get_z(loc))
 			SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, get_z(oldloc), get_z(NewLoc))
-			//for(var/atom/movable/thing in contents)
-			//	SEND_SIGNAL(thing, COMSIG_MOVABLE_Z_CHANGED,get_z(oldloc),get_z(NewLoc))
-
-			//onTransitZ(get_z(oldloc), get_z(loc))
 
 		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
+		/* Inserting into contents uses only forceMove
 		if(!isturf(oldloc) || !isturf(loc))
 			SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, getContainingMovable())
+		*/
 
 // Wrapper of step() that also sets glide size to a specific value.
 /proc/step_glide(atom/movable/AM, newdir, glide_size_override)
