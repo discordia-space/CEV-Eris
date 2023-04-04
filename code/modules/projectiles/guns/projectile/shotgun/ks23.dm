@@ -11,7 +11,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10, MATERIAL_STEEL = 15)
 	proj_step_multiplier = 1.2
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet/scrap
-	price_tag = 3000
+	price_tag = 2000
 	damage_multiplier = 1.2
 	penetration_multiplier = 1.5
 	init_recoil = CARBINE_RECOIL(3)
