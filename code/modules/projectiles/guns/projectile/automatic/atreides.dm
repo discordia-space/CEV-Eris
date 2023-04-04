@@ -29,6 +29,9 @@
 		FULL_AUTO_400,
 		SEMI_AUTO_300,
 		)
+/obj/item/gun/projectile/automatic/atreides/equipped(var/mob/user, var/slot)
+	.=..()
+	update_icon()
 
 /obj/item/gun/projectile/automatic/atreides/update_icon()
 	..()
@@ -39,16 +42,22 @@
 	if(gilded)
 		iconstring += "_gold"
 		itemstring += "_gold"
+		wielded_item_state = "_doble_gold"
+	else
+		wielded_item_state = "_doble"
 
 	if (ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
+		wielded_item_state += "_mag"
 
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
 
 	if (silenced)
 		iconstring += "_s"
+		itemstring += "_s"
+
 
 	icon_state = iconstring
 	set_item_state(itemstring)

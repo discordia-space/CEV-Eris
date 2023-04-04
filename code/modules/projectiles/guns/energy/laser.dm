@@ -1,7 +1,7 @@
 /obj/item/gun/energy/laser
 	name = "NT LG \"Lightfall\""
 	desc = "\"NeoTheology\" brand laser carbine. Deadly and radiant, like the ire of God it represents."
-	icon = 'icons/obj/guns/energy/laser.dmi'
+	icon = 'icons/obj/guns/energy/laser.dmi' // back and suit sprites are stolen from Valkyrie, spriter's help needed if you are willing to redraw it
 	icon_state = "laser"
 	item_state = "laser"
 	item_charge_meter = TRUE
@@ -280,6 +280,21 @@
 	twohanded = FALSE
 	init_recoil = HANDGUN_RECOIL(1)
 
+/obj/item/gun/energy/psychic/mindflayer/update_icon(var/ignore_inhands)
+	if(charge_meter)
+		var/ratio = 0
+
+		if(cell && cell.charge >= charge_cost)
+			ratio = cell.charge / cell.maxcharge
+			ratio = min(max(round(ratio, 0.25) * 100, 25), 100)
+
+		if(item_charge_meter)
+			set_item_state("-[ratio]")
+			wielded_item_state = "_doble-[ratio]"
+			icon_state = "xray[ratio]"
+	if(!ignore_inhands)
+		update_wear_icon()
+
 /obj/item/gun/energy/laser/makeshift
 	name = "HM LG \"Retina Burn\""
 	desc = "A somewhat power inefficient makeshift laser carbine, but shockingly reliable."
@@ -316,8 +331,8 @@
 	force = WEAPON_FORCE_NORMAL
 	projectile_type = /obj/item/projectile/beam
 	damage_multiplier = 0.5
-	charge_cost = 125 
-	fire_delay = 15 
+	charge_cost = 125
+	fire_delay = 15
 	price_tag = 250
 	init_firemodes = list(
 		BURST_2_BEAM

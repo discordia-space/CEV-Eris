@@ -119,7 +119,7 @@
 /obj/item/gun/energy/plasma/stranger
 	name = "unknown plasma gun"
 	desc = "A plasma gun with unknown origins, it seems to always spark a different feeling in those inspired by it."
-	icon = 'icons/obj/guns/energy/lancer.dmi'
+	icon = 'icons/obj/guns/energy/lancer.dmi' // back and on_suit sprites required
 	icon_state = "lancer"
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 8, MATERIAL_GOLD = 4)
 	price_tag = 5000
@@ -137,27 +137,28 @@
 		list(mode_name="bP6hfnj3Js", mode_desc="AhG8GjobYa", burst=3, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, move_delay=4, charge_cost=11, icon="vaporize", projectile_color = "#FFFFFF")
 	)
 
-/obj/item/gun/energy/plasma/stranger/update_icon(ignore_inhands)
+/obj/item/gun/energy/plasma/stranger/update_icon(var/ignore_inhands)
 	if(charge_meter)
 		var/ratio = 0
 
 		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
 		if(cell && cell.charge >= charge_cost)
-			ratio = 100
-		else if(!cell)
-			ratio = "empty"
+			ratio = cell.charge / cell.maxcharge
+			ratio = min(max(round(ratio, 0.5) * 100, 50), 100)
 
 		if(modifystate)
-			icon_state = "[modifystate]-[ratio]"
+			icon_state = "[modifystate][ratio]"
+			wielded_item_state = "_doble" + "[modifystate][ratio]"
 		else
-			icon_state = "[initial(icon_state)]-[ratio]"
+			icon_state = "[initial(icon_state)][ratio]"
 
 		if(item_charge_meter)
 			set_item_state("-[item_modifystate][ratio]")
+			wielded_item_state = "_doble" + "-[item_modifystate][ratio]"
 	if(!item_charge_meter && item_modifystate)
 		set_item_state("-[item_modifystate]")
-	if(!ignore_inhands)
-		update_wear_icon()
+		wielded_item_state = "_doble" + "-[item_modifystate]"
+	update_wear_icon()
 
 /obj/item/gun/energy/plasma/stranger/examine(user, distance)
 	. = ..()

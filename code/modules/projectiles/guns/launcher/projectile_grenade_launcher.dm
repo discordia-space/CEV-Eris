@@ -23,6 +23,9 @@
 	gun_parts = list(/obj/item/part/gun = 2, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/shotgun = 1)
 	serial_type = "NT"
 
+/obj/item/gun/projectile/shotgun/pump/grenade/update_icon()
+	wielded_item_state = "_doble"
+
 /obj/item/gun/projectile/shotgun/pump/grenade/examine(mob/user)
 	if(..(user, 2))
 		if(chambered)
