@@ -37,3 +37,7 @@
 	name = OUTFIT_JOB_NAME("Janitor")
 	uniform = /obj/item/clothing/under/rank/church
 	shoes = /obj/item/clothing/shoes/jackboots/neotheology
+
+/decl/hierarchy/outfit/job/church/neophyte
+	name = OUTFIT_JOB_NAME("Neophyte")
+	uniform = /obj/item/clothing/under/rank/church

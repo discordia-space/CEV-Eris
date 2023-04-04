@@ -58,6 +58,7 @@ var/const/CHAPLAIN			=(1<<0)
 var/const/ACOLYTE			=(1<<1)
 var/const/JANITOR			=(1<<2)
 var/const/BOTANIST			=(1<<3)
+var/const/NEOPHYTE			=(1<<4)
 
 
 var/list/assistant_occupations = list()

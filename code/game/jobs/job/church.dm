@@ -74,8 +74,8 @@
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
 	also_known_languages = list(LANGUAGE_LATIN = 100)
@@ -86,9 +86,9 @@
 
 	stat_modifiers = list(
 		STAT_VIG = 15,
-		STAT_TGH = 15,
+		STAT_TGH = 10,
 		STAT_ROB = 15,
-		STAT_COG = 10,
+		STAT_COG = 20,
 	)
 
 	core_upgrades = list(
@@ -118,8 +118,8 @@
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
 	//alt_titles = list("Hydroponicist")
@@ -206,3 +206,47 @@
 	name = "NeoTheology Custodian"
 	icon_state = "player-black"
 	join_tag = /datum/job/janitor
+
+/datum/job/neophyte
+	title = "NeoTheology Neophyte"
+	flag = NEOPHYTE
+	department = DEPARTMENT_CHURCH
+	department_flag = CHURCH
+	faction = "CEV Eris"
+	total_positions = 3
+	spawn_positions = 3
+	supervisors = "the NeoTheology Preacher"
+	selection_color = "#ecd37d"
+	//alt_titles = list("NeoTheology Initiate","NeoTheology Novice")
+	also_known_languages = list(LANGUAGE_LATIN = 100)
+	security_clearance = CLEARANCE_COMMON
+	cruciform_access = list(access_maint_tunnels, access_morgue, access_crematorium)
+	wage = WAGE_LABOUR // The money of the soul is faith, and cold hard cash
+	outfit_type = /decl/hierarchy/outfit/job/church/neophyte
+
+	stat_modifiers = list(
+		STAT_VIG = 10,
+		STAT_TGH = 15,
+		STAT_ROB = 15,
+		STAT_COG = 10,
+	)
+
+	core_upgrades = list(
+		CRUCIFORM_COMMON
+	)
+
+	description = "You are the Neophyte, this is a placeholder.<br>\
+	<br>\
+	This is a placeholder too.<br>\
+	<br>\
+	And his is a placeholder as well."
+
+	duties = "Another placeholder.<br>\
+	Serve the faith."
+
+	setup_restricted = TRUE
+
+/obj/landmark/join/start/neophyte
+	name = "NeoTheology Neophyte"
+	icon_state = "player-black"
+	join_tag = /datum/job/neophyte
