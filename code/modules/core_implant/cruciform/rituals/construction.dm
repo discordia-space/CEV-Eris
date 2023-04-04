@@ -119,6 +119,11 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 		effect.failure()
 		return
 	
+	if(QDELETED(reclaimed) || reclaimed.loc != target_turf)
+		fail("It's no longer there.", user, C, targets)
+		effect.failure()
+		return
+	
 	//Lets spawn and drop the materials resulting from deconstruction
 	for(var/obj/scrap as anything in loot)
 		if(ispath(scrap, /obj/item/stack))
