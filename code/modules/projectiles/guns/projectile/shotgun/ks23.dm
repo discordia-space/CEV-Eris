@@ -1,5 +1,5 @@
 /obj/item/gun/projectile/shotgun/pump/ks
-	name = "KS-23"
+	name = "Excelsior SG KS-23"
 	desc = "Karabin Spetsialniy, designed by Excelsior for cheap crowd control for their agents, made with reused anti-aircraft barrels."
 	icon = 'icons/obj/guns/projectile/ks23.dmi'
 	icon_state = "ks23"
