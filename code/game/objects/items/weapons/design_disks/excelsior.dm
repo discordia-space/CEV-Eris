@@ -184,7 +184,7 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/excelsior/ks
-	disk_name = "Excelsior - KS-23"
+	disk_name = "Excelsior - KS-23 SG"
 	desc = {"The back has a machine etching:\n \
 	\"Riot Control!!\""}
 	icon_state = "excelsior"
