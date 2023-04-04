@@ -136,7 +136,7 @@
 
 /mob/living/carbon/superior_animal/Destroy()
 	GLOB.superior_animal_list -= src
-	target_mob = null
+	clearTarget()
 	LAZYCLEARLIST(objectsInView)
 	LAZYCLEARLIST(friends)
 	return ..()

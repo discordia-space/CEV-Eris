@@ -111,3 +111,24 @@
   Pink-Chink:
   - code_imp: Ported TG components and elements
   - code_imp: Adds macros for proc reference compatibility with byond 515
+2023-03-25:
+  Humonitarian:
+  - bugfix: You can now swing diagonally
+  - bugfix: You no longer hit yourself while running
+  - tweak: Swings get weaker the more objects you hit
+  - tweak: Swings can hit multiple roaches in a single tile
+  Mycah142:
+  - tweak: tweaked trade ship to encourage more player material trading
+  Pink-Chink:
+  - rscdel: Removes tox damage from radiation
+  - bugfix: Removed "no damage" flag from Demolecularisor
+  - bugfix: Fixed sprite flags so mutated limbs don't appear missing
+  Skegal:
+  - rscadd: Added 2 new haircut
+  - imageadd: added 2 sprites in Icon/mob/human_races_species_human/hair.dmi
+  - code_imp: added a few lines in code/modules/sprite_accessories
+  TheLeopold:
+  - rscadd: Added disks smartstorage
+  - imageadd: added filled states for disk storage
+  assortedbeads:
+  - balance: Uranium spear used to do 5 - 10 radiation damage, it now does 60 - 65

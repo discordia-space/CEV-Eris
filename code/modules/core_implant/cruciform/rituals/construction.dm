@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 /datum/ritual/cruciform/priest/acolyte/construction
 	name = "Manifestation"
 	phrase = "Omnia autem quae arguuntur a lumine manifestantur omne enim quod manifestatur lumen est."
-	desc = "Build and expand. Shape your faith in something more sensible."
+	desc = "Build and expand. Shape your faith into something more sensible."
 	power = 40
 
 /datum/ritual/cruciform/priest/acolyte/construction/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C, list/targets)

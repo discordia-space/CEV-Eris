@@ -402,7 +402,7 @@
 /obj/item/tool/spear/uranium/apply_hit_effect(mob/living/carbon/human/target, mob/living/user, hit_zone)
 	..()
 	if(istype(target))
-		target.apply_effect(rand(5, 10), IRRADIATE)
+		target.apply_effect(rand(60, 65), IRRADIATE)
 
 /obj/item/tool/spear/makeshift_halberd
 	name = "makeshift halberd"

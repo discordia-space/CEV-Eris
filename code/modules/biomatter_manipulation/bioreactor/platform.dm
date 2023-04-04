@@ -54,7 +54,7 @@
 				var/obj/item/target = M
 				//if we found biomatter, let's start processing
 				//it will slowly disappear. Time based at size of object and we manipulate with its alpha (we also check for it)
-				if(MATERIAL_BIOMATTER in target.matter)
+				if((MATERIAL_BIOMATTER in target.matter) && !target.unacidable)
 					target.alpha -= round(100 / target.w_class)
 					var/icon/I = new(target.icon, icon_state = target.icon_state)
 					//we turn this things to degenerate sprite a bit
