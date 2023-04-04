@@ -140,7 +140,7 @@
 	..()
 
 /******************** Partybot ********************/
-	/datum/ai_laws/partybot
+/datum/ai_laws/partybot
 	name = "Partybot"
 	law_header = "Party Commandments"
 	selectable = 1
