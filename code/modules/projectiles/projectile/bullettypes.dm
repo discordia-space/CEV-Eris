@@ -307,7 +307,7 @@ There are important things regarding this file:
 	// any pistol worthy armor (7+ will fully block)
 	armor_divisor = 0.5
 	// style counter
-	style_Damage = 50
+	style_damage = 50
 	pellets = 6
 	range_step = 1
 	spread_step = 10
