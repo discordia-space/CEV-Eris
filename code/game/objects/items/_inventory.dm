@@ -39,7 +39,7 @@
 				return TRUE
 
 
-/obj/item/proc/pre_equip(var/mob/user, var/slot)
+/obj/item/proc/pre_equip(mob/user, slot)
 	//Some inventory sounds.
 	//occurs when you equip something
 	if(item_flags & EQUIP_SOUNDS)
@@ -51,6 +51,7 @@
 			src.overslot_contents = equipped
 			user.drop_from_inventory(equipped)
 			equipped.forceMove(src)
+	return FALSE
 
 /obj/item/proc/equipped(var/mob/user, var/slot)
 	equip_slot = slot
@@ -149,7 +150,7 @@
 
 		if(!H.canUnEquip(src))
 			return
-		if(!H.can_equip(src, target, TRUE, FALSE, FALSE))
+		if(!H.can_equip(src, target, FALSE, FALSE, FALSE))
 			return
 		H.remove_from_mob(src, drop = FALSE)
 		/*
