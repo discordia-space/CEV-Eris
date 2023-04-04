@@ -104,6 +104,10 @@
 	name = "SA SG \"Bojevic\""
 	build_path = /obj/item/gun/projectile/shotgun/bojevic
 
+/datum/design/autolathe/gun/ks23
+	name = "KS-23"
+	build_path = /obj/item/gun/projectile/shotgun/pump/ks
+
 // SMGs
 
 /datum/design/autolathe/gun/zoric
