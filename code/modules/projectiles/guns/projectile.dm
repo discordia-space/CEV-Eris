@@ -176,8 +176,6 @@
 				if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
 				cock_gun(user)
 				update_firemode()
-				update_icon()
-				set_item_state()
 			if(SPEEDLOADER)
 				if(loaded.len >= max_shells)
 					to_chat(user, SPAN_WARNING("[src] is full!"))
@@ -259,7 +257,7 @@
 		if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 
 	update_icon()
-	set_item_state()
+	update_held_icon()
 
 //attempts to unload src. If allow_dump is set to 0, the speedloader unloading method will be disabled
 /obj/item/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
@@ -292,7 +290,7 @@
 	else
 		to_chat(user, SPAN_WARNING("[src] is empty."))
 	update_icon()
-	set_item_state()
+	update_held_icon()
 
 /obj/item/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
 	.=..()
@@ -320,6 +318,7 @@
 			qdel(src)
 	if (!.) //Parent returns true if attackby is handled
 		load_ammo(A, user)
+		update_held_icon()
 
 /obj/item/gun/projectile/attack_self(mob/user as mob)
 	if(firemodes.len > 1)

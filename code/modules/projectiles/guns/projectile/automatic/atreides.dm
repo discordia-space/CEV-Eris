@@ -57,6 +57,7 @@
 	if (silenced)
 		iconstring += "_s"
 		itemstring += "_s"
+		wielded_item_state += "_s"
 
 
 	icon_state = iconstring
