@@ -8,8 +8,6 @@
 	shoes = /obj/item/clothing/shoes/magboots/merc
 	pda_slot = slot_belt
 	pda_type = /obj/item/modular_computer/pda
-	back = /obj/item/storage/backpack/satchel/military
-	//I gave them a satchel. I don't fucking know why they didn't have one before. -Vandu
 
 //The outfit that mercs spawn in. They get their armor and weapons from the merc base
 /decl/hierarchy/outfit/antagonist/mercenary/casual
@@ -30,7 +28,7 @@
 
 	suit = /obj/item/clothing/suit/space/void/SCAF
 	suit_store = /obj/item/tank/jetpack/oxygen
-
+	back = /obj/item/storage/backpack/satchel/military
 
 
 
