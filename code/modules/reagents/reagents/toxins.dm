@@ -9,7 +9,7 @@
 	reagent_state = LIQUID
 	color = "#CF3600"
 	metabolism = REM * 0.05 // 0.01 by default. They last a while and slowly kill you.
-	var/strength = 0.05 // How much damage it deals per unit
+	var/strength = 1		// Base CE_TOXIN magnitude, multiplied by effect multiplier
 	var/sanityloss = 0
 	reagent_type = "Toxin"
 
@@ -18,15 +18,14 @@
 		var/multi = effect_multiplier
 		if(issmall(M))  // Small bodymass, more effect from lower volume.
 			multi *= 2
-		M.adjustToxLoss(strength * multi)
 		if(sanityloss && ishuman(M))
 			var/mob/living/carbon/human/H = M
-			H.sanity.onToxin(src, effect_multiplier)
-	M.add_chemical_effect(CE_TOXIN, 1)
+			H.sanity.onToxin(src, multi)
+		M.add_chemical_effect(CE_TOXIN, strength)
 
 /datum/reagent/toxin/overdose(mob/living/carbon/M, alien)
 	if(strength)
-		M.adjustToxLoss(strength * issmall(M) ? 2 : 1)
+		M.add_chemical_effect(CE_TOXIN, strength * dose / 4)
 
 /datum/reagent/toxin/plasticide
 	name = "Plasticide"
@@ -35,7 +34,7 @@
 	taste_description = "plastic"
 	reagent_state = LIQUID
 	color = "#CF3600"
-	strength = 0.6
+	strength = 6
 
 /datum/reagent/toxin/oil
 	name = "Oil"
@@ -52,7 +51,7 @@
 	taste_description = "mushroom"
 	reagent_state = LIQUID
 	color = "#792300"
-	strength = 0.1
+	strength = 1
 	nerve_system_accumulations = 60
 	addiction_chance = 20
 	heating_point = 523
@@ -65,7 +64,7 @@
 	taste_description = "fish"
 	reagent_state = LIQUID
 	color = "#003333"
-	strength = 0.1
+	strength = 1
 	overdose = REAGENTS_OVERDOSE/3
 	addiction_chance = 10
 	nerve_system_accumulations = 5
@@ -76,11 +75,7 @@
 	withdrawal_rate = REM
 
 /datum/reagent/toxin/carpotoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
-		if(istype(L))
-			L.take_damage(strength * effect_multiplier, 0)
+	..()
 	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_ADEPT, STIM_TIME, "carpotoxin")
 
 /datum/reagent/toxin/carpotoxin/withdrawal_act(mob/living/carbon/M)
@@ -93,9 +88,9 @@
 		M.adjustBrainLoss(2)
 	if(strength)
 		if(issmall(M))
-			M.adjustToxLoss(strength)
+			M.add_chemical_effect(CE_TOXIN, strength)
 		else
-			M.adjustToxLoss(strength)
+			M.add_chemical_effect(CE_TOXIN, strength)
 
 ///datum/reagent/toxin/blattedin is defined in blattedin.dm
 
@@ -106,7 +101,7 @@
 	taste_mult = 1.5
 	reagent_state = LIQUID
 	color = "#9D14DB"
-	strength = 0.3
+	strength = 3
 	touch_met = 5
 
 /datum/reagent/toxin/plasma/touch_mob(mob/living/L, var/amount)
@@ -132,7 +127,7 @@
 	taste_mult = 0.6
 	reagent_state = LIQUID
 	color = "#CF3600"
-	strength = 0.2
+	strength = 2
 	metabolism = REM * 2
 
 /datum/reagent/toxin/cyanide/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
@@ -169,7 +164,7 @@
 	taste_description = "salt"
 	reagent_state = SOLID
 	color = "#FFFFFF"
-	strength = 0.1
+	strength = 1
 	overdose = 20
 
 /datum/reagent/toxin/potassium_chlorophoride/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
@@ -191,7 +186,7 @@
 	reagent_state = SOLID
 	color = "#669900"
 	metabolism = REM
-	strength = 0.04
+	strength = 0.4
 
 /datum/reagent/toxin/zombiepowder/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
@@ -216,7 +211,7 @@
 	taste_description = "plant food"
 	taste_mult = 0.5
 	reagent_state = LIQUID
-	strength = 0.01 // It's not THAT poisonous.
+	strength = 0.1 // It's not THAT poisonous.
 	color = "#664330"
 
 /datum/reagent/toxin/fertilizer/eznutrient
@@ -238,7 +233,7 @@
 	taste_mult = 1
 	reagent_state = LIQUID
 	color = "#49002E"
-	strength = 0.04
+	strength = 0.4
 
 /datum/reagent/toxin/plantbgone/touch_turf(turf/T)
 	if(istype(T, /turf/simulated/wall))
@@ -270,7 +265,6 @@
 	power = 10
 	meltdose = 4
 
-
 /datum/reagent/toxin/lexorin
 	name = "Lexorin"
 	id = "lexorin"
@@ -278,6 +272,7 @@
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
+	metabolism = REM * 2.5
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/toxin/lexorin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
@@ -377,13 +372,13 @@
 		U?.cleanse(H)
 
 	// Neither safe nor pleasant experience
-	H.adjustToxLoss(rand(5, 25))
+	H.add_chemical_effect(CE_TOXIN, rand(5, 25))
 	H.sanity.changeLevel(-20)
 
 /datum/reagent/toxin/mutagen/moeball/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(15))
 		to_chat(M, SPAN_DANGER("You feel your veins crackling and sending chills all over your skin!"))
-		M.adjustToxLoss(rand(4, 8) * effect_multiplier)
+		M.add_chemical_effect(CE_TOXIN, rand(4, 8) * effect_multiplier)
 		M.adjustOxyLoss(rand(5, 20))
 	if(dose > 3 && ishuman(M))
 		mutate(M, alien, effect_multiplier)
@@ -394,7 +389,7 @@
 /datum/reagent/toxin/mutagen/moeball/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(10))
 		to_chat(M, SPAN_DANGER("Your insides are burning!"))
-		M.adjustToxLoss(rand(2, 6) * effect_multiplier)
+		M.add_chemical_effect(CE_TOXIN, rand(2, 6) * effect_multiplier)
 	if(dose > 4 && ishuman(M))
 		mutate(M, alien, effect_multiplier)
 		dose = dose - 4
@@ -416,7 +411,7 @@
 		return
 	if(prob(10))
 		to_chat(M, SPAN_DANGER("Your insides are burning!"))
-		M.adjustToxLoss(rand(10, 30) * effect_multiplier)
+		M.add_chemical_effect(CE_TOXIN, rand(10, 30) * effect_multiplier)
 	else if(prob(40))
 		M.heal_organ_damage(2.5 * effect_multiplier, 0)
 
@@ -449,6 +444,41 @@
 		M.drowsyness = max(M.drowsyness, 60)
 	M.add_chemical_effect(CE_PULSE, -1)
 
+/datum/reagent/medicine/fun_gas
+	name = "N2O"
+	id = "sagent"
+	description = "An effective sedative used during surgery to keep patients asleep."
+	taste_description = "bitterness"
+	reagent_state = GAS
+	color = "#D3D3D3"
+	metabolism = REM * 10
+	overdose = REAGENTS_OVERDOSE / 3 // Even 10 is a lot of this
+	scannable = TRUE
+
+/datum/reagent/medicine/fun_gas/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	var/effective_dose = dose / 2
+	dose *= 0.75 // Reduce the dose to prevent buildup from little N2O
+	if(issmall(M))
+		effective_dose *= 2
+
+	if(effective_dose < 1)
+		if(effective_dose == metabolism * 2 || prob(10))
+			M.emote("giggle")
+	else if(effective_dose < 1.5)
+		M.eye_blurry = max(M.eye_blurry, 10)
+		if(prob(20))
+			M.emote(pick("giggle", "laugh"))
+	else if(effective_dose < 5)
+		if(prob(50))
+			M.Weaken(2)
+		if(prob(30))
+			M.emote("giggle")
+		M.drowsyness = max(M.drowsyness, 20)
+	else
+		M.sleeping = max(M.sleeping, 20)
+		M.drowsyness = max(M.drowsyness, 60)
+	M.add_chemical_effect(CE_PULSE, -1)
+
 /datum/reagent/medicine/chloralhydrate
 	name = "Chloral Hydrate"
 	id = "chloralhydrate"
@@ -474,7 +504,7 @@
 		M.sleeping = max(M.sleeping, 30)
 
 	if(effective_dose > 1)
-		M.adjustToxLoss(effect_multiplier * 0.1)
+		M.add_chemical_effect(CE_TOXIN, effect_multiplier)
 
 /datum/reagent/medicine/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
 	name = "Beer"
@@ -558,7 +588,7 @@
 	overdose = REAGENTS_OVERDOSE/3
 	addiction_chance = 0
 	nerve_system_accumulations = 10
-	strength = 0.01
+	strength = 2
 	sanityloss = 1
 	heating_point = 523
 	heating_products = list("toxin")
@@ -580,29 +610,23 @@
 	reagent_state = LIQUID
 	color = "#acc107"
 	overdose = REAGENTS_OVERDOSE
-	strength = 0.1
+	strength = 1
 	metabolism = REM * 2
 	addiction_chance = 0
 	nerve_system_accumulations = 5
 
+/datum/reagent/toxin/aranecolmin/on_mob_add(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		if(LAZYLEN(C.internal_organs) && C.bloodstr && C.bloodstr.has_reagent("pararein"))
+			var/obj/item/organ/internal/I = pick(C.internal_organs)
+			to_chat(C, "Something burns inside your [I.parent.name]...")
+			create_overdose_wound(I, C, /datum/component/internal_wound/organic/heavy_poisoning, "rot", TRUE)
+
 /datum/reagent/toxin/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.add_chemical_effect(CE_PAINKILLER, 15)
-	if(M.bloodstr)
-		for(var/current in M.bloodstr.reagent_list)
-			var/datum/reagent/toxin/pararein/R = current
-			if(istype(R))
-				R.metabolism = initial(R.metabolism) * 3
-
-/datum/reagent/toxin/aranecolmin/on_mob_delete(mob/living/carbon/M)
-	..()
-	if(istype(M))
-		if(M.bloodstr)
-			for(var/current in M.bloodstr.reagent_list)
-				var/datum/reagent/toxin/pararein/R = current
-				if(istype(R))
-					R.metabolism = initial(R.metabolism)
-					break
 
 /datum/reagent/toxin/diplopterum
 	name = "Diplopterum"
@@ -612,7 +636,7 @@
 	reagent_state = LIQUID
 	color = "#c9bed2"
 	overdose = REAGENTS_OVERDOSE * 0.66
-	strength = 0.1
+	strength = 1
 	addiction_chance = 10
 	nerve_system_accumulations = 5
 	heating_point = 573
@@ -629,15 +653,11 @@
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "diplopterum_w")
 
 /datum/reagent/toxin/diplopterum/overdose(mob/living/carbon/M, alien)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
-		if(istype(L))
-			L.take_damage(strength, 0)
+	var/od_toxicity = (dose / 2) * strength
 	if(issmall(M))
-		M.adjustToxLoss(strength * 2)
+		M.add_chemical_effect(CE_TOXIN, od_toxicity * 2)
 	else
-		M.adjustToxLoss(strength)
+		M.add_chemical_effect(CE_TOXIN, od_toxicity)
 
 /datum/reagent/toxin/seligitillin
 	name = "Seligitillin"
@@ -654,13 +674,9 @@
 	withdrawal_threshold = 10
 
 /datum/reagent/toxin/seligitillin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_BLOODCLOT, 0.2)
-	M.heal_organ_damage(0.2 * effect_multiplier, 0, 3)
-	var/mob/living/carbon/human/H = M
-	for(var/obj/item/organ/external/E in H.organs)
-		for(var/datum/wound/W in E.wounds)
-			if(W.internal)
-				W.heal_damage(1 * effect_multiplier)
+	..()
+	M.add_chemical_effect(CE_BLOODCLOT, 0.25)
+	M.heal_organ_damage(0.25 * effect_multiplier, 0, 3)
 
 /datum/reagent/toxin/seligitillin/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT, STIM_TIME, "seligitillin_w")
@@ -671,10 +687,10 @@
 	var/mob/living/carbon/human/H = M
 	var/obj/item/organ/internal/heart/S = H.random_organ_by_process(OP_HEART)
 	if(istype(S))
-		S.take_damage(2, 0)
+		S.take_damage(dose/2, FALSE, TOX)
 	var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
 	if(istype(L))
-		L.take_damage(3, 0)
+		L.take_damage(dose/2, FALSE, TOX)
 
 /datum/reagent/toxin/starkellin
 	name = "Starkellin"
@@ -709,7 +725,7 @@
 	overdose = REAGENTS_OVERDOSE/2
 	addiction_chance = 20
 	nerve_system_accumulations = 5
-	strength = 0.2
+	strength = 1
 	heating_point = 573
 	heating_products = list("radium", "mercury", "sugar", "nutriment")
 	reagent_type = "Toxin/Stimulator"
@@ -742,6 +758,7 @@
 	withdrawal_threshold = 5
 
 /datum/reagent/toxin/fuhrerole/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	..()
 	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "fuhrerole_w")
 	M.faction = "roach"
 
@@ -788,7 +805,7 @@
 /datum/reagent/toxin/kaiseraurum/overdose(mob/living/carbon/M, alien)
 	M.add_chemical_effect(CE_SPEECH_VOLUME, rand(3, 4))
 	M.adjustBrainLoss(0.5)
-	M.adjustToxLoss(1)
+	M.add_chemical_effect(CE_TOXIN, 10)	// This should be a cool roach-specific wound instead of generic toxicity
 
 /datum/reagent/toxin/biomatter
 	name = "Biomatter"
@@ -797,7 +814,7 @@
 	taste_description = "vomit"
 	reagent_state = LIQUID
 	color = "#527f4f"
-	strength = 0.3
+	strength = 0.25
 
 /datum/reagent/toxin/biomatter/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
@@ -826,15 +843,16 @@
 
 /datum/reagent/toxin/chlorine
 	name = "Chlorine"
+	id = "chlorine"
 	description = "A highly poisonous liquid. Smells strongly of bleach."
 	reagent_state = LIQUID
 	taste_description = "bleach"
 	color = "#707c13"
 	strength = 15
+
 /datum/reagent/toxin/chlorine/touch_obj(obj/O)
 	if(istype(O, /obj/effect/plant/hivemind))
 		qdel(O)
-
 
 /datum/reagent/toxin/tar
 	name = "Tar"
@@ -854,7 +872,7 @@
 	metabolism = REM
 	overdose = REAGENTS_OVERDOSE/2
 	nerve_system_accumulations = 5
-	strength = 0.01
+	strength = 1
 	sanityloss = 2
 
 /datum/reagent/toxin/mold/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)

@@ -14,7 +14,6 @@
 	)
 	siemens_coefficient = 0.35
 	light_overlay = "helmet_light_dual"
-	obscuration = LIGHT_OBSCURATION
 	bad_type = /obj/item/clothing/head/space/void/onestar
 
 /obj/item/clothing/suit/space/void/onestar
@@ -38,4 +37,3 @@
 	spawn_tags = SPAWN_TAG_CLOTHING_OS
 	spawn_blacklisted = TRUE
 	slowdown = MEDIUM_SLOWDOWN
-	stiffness = LIGHT_STIFFNESS

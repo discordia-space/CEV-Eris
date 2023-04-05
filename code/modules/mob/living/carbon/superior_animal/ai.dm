@@ -31,7 +31,14 @@
 		if ((M.z == src.z) && (get_dist(src, M) <= viewRange) && isValidAttackTarget(M))
 			filteredTargets += M
 
-	return safepick(nearestObjectsInList(filteredTargets, src, acceptableTargetDistance))
+	var/target = safepick(nearestObjectsInList(filteredTargets, src, acceptableTargetDistance))
+	RegisterSignal(target, COMSIG_NULL_TARGET, PROC_REF(clearTarget), TRUE)
+	return target
+
+/mob/living/carbon/superior_animal/proc/clearTarget()
+	if(target_mob)
+		UnregisterSignal(target_mob, COMSIG_NULL_TARGET)
+		target_mob = null
 
 /mob/living/carbon/superior_animal/proc/attemptAttackOnTarget()
 	if (!Adjacent(target_mob))

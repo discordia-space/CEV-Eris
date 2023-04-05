@@ -22,7 +22,7 @@
 	desc = "There is a mark made on your old star chart. You do not remember why you did it but your curiosity wont let you sleep.  \
 			Move [linked] to coordinates [x], [y] for [unit2time(units_requested)]."
 	timer = world.time
-	RegisterSignal(linked, COMSIG_SHIP_STILL, .proc/task_completed)
+	RegisterSignal(linked, COMSIG_SHIP_STILL, PROC_REF(task_completed))
 
 /datum/individual_objective/beyond/task_completed(nx, ny, is_still)
 	if(!is_still || x != nx || y != ny)

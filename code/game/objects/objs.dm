@@ -153,7 +153,7 @@
 
 /obj/proc/hide(hide)
 	invisibility = hide ? INVISIBILITY_MAXIMUM : initial(invisibility)
-	SEND_SIGNAL(src, COMSIG_OBJ_HIDE, hide)
+	SEND_SIGNAL_OLD(src, COMSIG_OBJ_HIDE, hide)
 
 /obj/proc/hides_under_flooring()
 	return level == BELOW_PLATING_LEVEL

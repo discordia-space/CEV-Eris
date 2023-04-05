@@ -91,6 +91,8 @@
 	..()
 
 /obj/item/device/von_krabin/attack(mob/living/M, mob/living/user, target_zone)
+	if(!ishuman(M) || M.isMonkey())
+		return ..()
 	if(user.a_intent == I_HELP && !is_neotheology_disciple(M))
 		if(M in the_hiveminded)
 			user.visible_message(SPAN_NOTICE("[user] begins unlinking [M]'s mind from the [src]"))

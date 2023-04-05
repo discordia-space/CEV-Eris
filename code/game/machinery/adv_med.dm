@@ -226,14 +226,13 @@
 		"name" = H.get_visible_name(),
 		"stationtime" = stationtime2text(),
 		"stat" = H.stat,
-		"health" = round(H.health/H.maxHealth)*100,
+		"health" = round(H.health / H.maxHealth * 100),
 		"virus_present" = H.virus2.len,
 		"bruteloss" = H.getBruteLoss(),
 		"fireloss" = H.getFireLoss(),
 		"oxyloss" = H.getOxyLoss(),
-		"toxloss" = H.getToxLoss(),
+		"toxloss" = H.chem_effects[CE_TOXIN] + H.chem_effects[CE_ALCOHOL_TOXIC],
 		"rads" = H.radiation,
-		"cloneloss" = H.getCloneLoss(),
 		"brainloss" = H.getBrainLoss(),
 		"paralysis" = H.paralysis,
 		"bodytemp" = H.bodytemperature,
@@ -245,7 +244,6 @@
 		"dermaline_amount" = H.reagents.get_reagent_amount("dermaline"),
 		"blood_amount" = round((H.vessel.get_reagent_amount("blood") / H.species.blood_volume)*100),
 		"disabilities" = H.sdisabilities,
-		"lung_ruptured" = H.is_lung_ruptured(),
 		"external_organs" = H.organs.Copy(),
 		"internal_organs" = H.internal_organs.Copy(),
 		"species_organs" = H.species.has_process, //Just pass a reference for this, it shouldn't ever be modified outside of the datum.
@@ -267,16 +265,15 @@
 			aux = "Unconscious"
 		else
 			aux = "Dead"
-	dat += text("[]\tHealth %: [] ([])</font><br>", ("<font color='[occ["health"] > 50 ? "blue" : "red"]>"), occ["health"], aux)
+	dat += text("[]\t-Critical Health %: [] ([])</font><br>", ("<font color='[occ["health"] > 80 ? "blue" : "red"]'>"), occ["health"], aux)
 	if (occ["virus_present"])
 		dat += "<font color='red'>Viral pathogen detected in blood stream.</font><br>"
-	dat += text("[]\t-Brute Damage %: []</font><br>", ("<font color='[occ["bruteloss"] < 60  ? "blue" : "red"]'>"), occ["bruteloss"])
-	dat += text("[]\t-Respiratory Damage %: []</font><br>", ("<font color='[occ["oxyloss"] < 60  ? "blue" : "red"]'>"), occ["oxyloss"])
-	dat += text("[]\t-Toxin Content %: []</font><br>", ("<font color='[occ["toxloss"] < 60  ? "blue" : "red"]'>"), occ["toxloss"])
-	dat += text("[]\t-Burn Severity %: []</font><br><br>", ("<font color='[occ["fireloss"] < 60  ? "blue" : "red"]'>"), occ["fireloss"])
+	dat += text("[]\t-Brute Damage: []</font><br>", ("<font color='[occ["bruteloss"] < 60  ? "blue" : "red"]'>"), occ["bruteloss"])
+	dat += text("[]\t-Burn Severity: []</font><br>", ("<font color='[occ["fireloss"] < 60  ? "blue" : "red"]'>"), occ["fireloss"])
+	dat += text("[]\t-Respiratory Damage %: []</font><br><br>", ("<font color='[occ["oxyloss"] < 60  ? "blue" : "red"]'>"), occ["oxyloss"])
 
+	dat += text("[]\tToxicity: []</font><br>", ("<font color='[occ["toxloss"] < 60  ? "blue" : "red"]'>"), occ["toxloss"] ? occ["toxloss"] : "0")
 	dat += text("[]\tRadiation Level %: []</font><br>", ("<font color='[occ["rads"] < 10  ? "blue" : "red"]'>"), occ["rads"])
-	dat += text("[]\tGenetic Tissue Damage %: []</font><br>", ("<font color='[occ["cloneloss"] < 1  ? "blue" : "red"]'>"), occ["cloneloss"])
 	dat += text("[]\tApprox. Brain Damage %: []</font><br>", ("<font color='[occ["brainloss"] < 1  ? "blue" : "red"]'>"), occ["brainloss"])
 	dat += text("[]\tNeural System Accumulation: []/[]</font><br>", ("<font color='[occ["NSA"] < occ["NSA_threshold"]  ? "blue" : "red"]'>"), occ["NSA"], occ["NSA_threshold"])
 	dat += text("Paralysis Summary %: [] ([] seconds left!)<br>", occ["paralysis"], round(occ["paralysis"] / 4))
@@ -298,7 +295,7 @@
 	dat += "<th>Organ</th>"
 	dat += "<th>Burn Damage</th>"
 	dat += "<th>Brute Damage</th>"
-	dat += "<th>Other Wounds</th>"
+	dat += "<th>Status</th>"
 	dat += "</tr>"
 
 	for(var/obj/item/organ/external/e in occ["external_organs"])
@@ -315,38 +312,36 @@
 			if(BP_IS_ROBOTIC(I))
 				internal_wounds += "Prosthetic"
 	
-			var/obj/item/organ/internal/bone/B = I
-			if(istype(B))
-				if(B.parent.status & ORGAN_BROKEN)
-					internal_wounds += "[B.broken_description]"
-	
-			switch (I.germ_level)
-				if (0 to INFECTION_LEVEL_ONE - 1) //in the case of no infection, do nothing.
-				if (1 to INFECTION_LEVEL_ONE + 200)
-					internal_wounds += "Mild Infection"
-				if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-					internal_wounds += "Mild Infection+"
-				if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-					internal_wounds += "Mild Infection++"
-				if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
-					internal_wounds += "Acute Infection"
-				if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-					internal_wounds += "Acute Infection+"
-				if (INFECTION_LEVEL_TWO + 300 to INFINITY)
-					internal_wounds += "Acute Infection++"
-			if(I.rejecting)
-				internal_wounds += "being rejected"
-			if (I.damage || internal_wounds.len)
+			var/total_brute_and_misc_damage = 0
+			var/total_burn_damage = 0
+
+			if(I.status & ORGAN_DEAD)
+				internal_wounds += "<font color='red'>Dead</font>"
+			else
+				if(I.rejecting)
+					internal_wounds += "being rejected"
+
+				var/list/internal_wound_comps = I.GetComponents(/datum/component/internal_wound)
+
+				for(var/datum/component/internal_wound/IW in internal_wound_comps)
+					var/severity = IW.severity
+					internal_wounds += "[IW.name] ([severity]/[IW.severity_max])"
+					if(istype(IW, /datum/component/internal_wound/organic/burn) || istype(IW, /datum/component/internal_wound/robotic/emp_burn))
+						total_burn_damage += severity
+					else
+						total_brute_and_misc_damage += severity
+
+			// Format internal wounds
+			var/internal_wounds_details
+			if(LAZYLEN(internal_wounds))
+				internal_wounds_details = jointext(internal_wounds, ",<br>")
+
+			if(internal_wounds_details)
 				significant = TRUE
 				dat += "<tr>"
-				dat += "<td>[I.name]</td><td>N/A</td><td>[I.damage]</td><td>[other_wounds.len ? jointext(other_wounds, ":") : "None"]</td><td></td>"
+				dat += "<td>[I.name],<br><i>[e.name]</i></td><td>[total_burn_damage]</td><td>[total_brute_and_misc_damage]</td><td>[internal_wounds_details ? internal_wounds_details : "None"]</td><td></td>"
 				dat += "</tr>"
 
-		for(var/datum/wound/W in e.wounds) if(W.internal)
-			other_wounds += "Internal bleeding"
-			break
-		if(e.organ_tag == BP_CHEST && occ["lung_ruptured"])
-			other_wounds += "Lung ruptured"
 		if(e.status & ORGAN_SPLINTED)
 			other_wounds += "Splinted"
 		if(e.status & ORGAN_BLEEDING)
@@ -358,22 +353,6 @@
 		if(e.open)
 			other_wounds += "Open"
 
-		switch (e.germ_level)
-			if (0 to INFECTION_LEVEL_ONE - 1) //in the case of no infection, do nothing.
-			if (INFECTION_LEVEL_ONE to INFECTION_LEVEL_ONE + 200)
-				other_wounds += "Mild Infection"
-			if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-				other_wounds += "Mild Infection+"
-			if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-				other_wounds += "Mild Infection++"
-			if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
-				other_wounds += "Acute Infection"
-			if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-				other_wounds += "Acute Infection+"
-			if (INFECTION_LEVEL_TWO + 300 to INFECTION_LEVEL_TWO + 400)
-				other_wounds += "Acute Infection++"
-			if (INFECTION_LEVEL_THREE to INFINITY)
-				other_wounds += "Septic"
 		if(e.rejecting)
 			other_wounds += "being rejected"
 		if (e.implants.len)
@@ -425,13 +404,14 @@
 		if(connected)
 			connected.update_icon()
 		if(occupant)
-			if(occupant.health>=100)
+			var/occupant_condition = round((occupant.health / occupant.maxHealth) * 100)
+			if(occupant_condition>=100 && !occupant.getBruteLoss() && !occupant.getFireLoss())
 				icon_state = "scanner_green"
 				set_light(l_range = 1.5, l_power = 2, l_color = COLOR_LIME)
-			else if(occupant.health>=0)
+			else if(occupant_condition>=0)
 				icon_state = "scanner_yellow"
 				set_light(l_range = 1.5, l_power = 2, l_color = COLOR_YELLOW)
-			else if(occupant.health>=-90)
+			else if(occupant_condition>=-90)
 				icon_state = "scanner_red"
 				set_light(l_range = 1.5, l_power = 2, l_color = COLOR_RED)
 			else

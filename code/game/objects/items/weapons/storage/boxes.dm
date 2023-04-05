@@ -32,7 +32,7 @@
 		playsound(loc, pick('sound/effects/creatures/nibble1.ogg', 'sound/effects/creatures/nibble2.ogg'), 50, 1, 2)
 		shake_animation()
 		var/damage_amount = user.mob_size ? user.mob_size : MOB_MINISCULE
-		addtimer(CALLBACK(src, .proc/handle_generic_damage, user, damage_amount), 0.5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(handle_generic_damage), user, damage_amount), 0.5 SECONDS)
 
 /obj/item/storage/box/proc/handle_generic_damage(mob/user, severity)
 	if(QDELETED(src))

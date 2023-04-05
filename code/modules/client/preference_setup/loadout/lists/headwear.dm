@@ -20,9 +20,14 @@
 	display_name = "beret, purple"
 	path = /obj/item/clothing/head/beret/purple
 
+/datum/gear/head/beret/moebius
+	display_name = "beret, Moebius"
+	path = /obj/item/clothing/head/beret/moebius
+	allowed_roles = list(JOBS_SCIENCE, JOBS_MEDICAL)
+
 /datum/gear/head/beret/ntsec
-	display_name = "beret, old nanotrasen"
-	path = /obj/item/clothing/head/beret/ntsec
+	display_name = "beret, old security"
+	path = /obj/item/clothing/head/beret/oldsec
 	allowed_roles = list(ASSISTANT_TITLE)
 
 /datum/gear/head/beret/bsec
@@ -41,8 +46,13 @@
 	allowed_roles = list("Ironhammer Commander")
 
 /datum/gear/head/beret/eng
-	display_name = "beret, engie-orange"
+	display_name = "beret, yellow Technomancer"
 	path = /obj/item/clothing/head/beret/engineering
+	allowed_roles = list(JOBS_ENGINEERING)
+
+/datum/gear/head/beret/eng/old
+	display_name = "beret, orange Technomancer"
+	path = /obj/item/clothing/head/beret/engineering/old
 	allowed_roles = list(JOBS_ENGINEERING)
 
 /datum/gear/head/cap/flat
@@ -54,7 +64,7 @@
 	path = /obj/item/clothing/head/soft/sec/corp
 
 /datum/gear/head/cap/sec
-	display_name = "cap, old nanotrasen"
+	display_name = "cap, old security"
 	path = /obj/item/clothing/head/soft/sec
 	allowed_roles = list(ASSISTANT_TITLE)
 

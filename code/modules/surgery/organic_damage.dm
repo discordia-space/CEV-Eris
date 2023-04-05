@@ -9,7 +9,7 @@
 
 	duration = 80
 
-/datum/surgery_step/robotic/fix_organ/require_tool_message(mob/living/user)
+/datum/surgery_step/fix_organ/require_tool_message(mob/living/user)
 	to_chat(user, SPAN_WARNING("You need an advanced trauma kit, or at least some bandages, to complete this step."))
 
 /datum/surgery_step/fix_organ/proc/get_tool_name(obj/item/stack/tool)

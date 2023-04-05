@@ -190,7 +190,7 @@
 
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"
-	desc = "A thick, well-worn WW2 leather bomber jacket."
+	desc = "A thick, well-worn WW2 style leather bomber jacket."
 	icon_state = "bomber"
 	item_state = "bomber"
 	icon_open = "bomber_open"
@@ -203,15 +203,15 @@
 
 /obj/item/clothing/suit/storage/toggle/bomber/furred
 	name = "furred bomber jacket"
-	desc = "A thick, well-worn WW2 leather bomber jacket, padded with warm fur. It's cold out in space!"
+	desc = "A thick, well-worn WW2 style leather bomber jacket, padded with warm fur. It's cold out in space!"
 	icon_state = "fur_bomber"
 	item_state = "fur_bomber"
 	icon_open = "fur_bomber_open"
 	icon_closed = "fur_bomber"
 
 /obj/item/clothing/suit/storage/toggle/service
-	name = "service jacket"
-	desc = "A blue service jacket with golden badges. You aren't doing any kind service for free, are you?"
+	name = "Ironhammer service jacket"
+	desc = "A blue service jacket with golden badges. Often worn in low threat areas, formal situations, or by veterans."
 	icon_state = "service"
 	item_state = "service"
 	icon_open = "service_open"

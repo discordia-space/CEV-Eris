@@ -24,6 +24,7 @@
 	active = 1
 	force = active_force
 	throwforce = active_throwforce
+	damtype = BURN
 	sharp = TRUE
 	edge = TRUE
 	w_class = active_w_class
@@ -38,6 +39,7 @@
 	active = 0
 	force = initial(force)
 	throwforce = initial(throwforce)
+	damtype = initial(damtype)
 	sharp = initial(sharp)
 	edge = initial(edge)
 	w_class = initial(w_class)
@@ -187,6 +189,7 @@
 	icon_state = "blade"
 	force = WEAPON_FORCE_ROBUST //Normal attacks deal very high damage - about the same as wielded fire axe
 	armor_divisor = ARMOR_PEN_MAX
+	damtype = BURN
 	sharp = TRUE
 	edge = TRUE
 	anchored = TRUE    // Never spawned outside of inventory, should be fine.

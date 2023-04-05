@@ -28,7 +28,7 @@
 
 /obj/item/organ/internal/scaffold/New()
 	..()
-	RegisterSignal(src, COMSIG_ABERRANT_COOLDOWN, .proc/start_cooldown)
+	RegisterSignal(src, COMSIG_ABERRANT_COOLDOWN, PROC_REF(start_cooldown))
 	if(use_generated_icon)
 		organ_type = "-[rand(1,8)]"
 	update_icon()
@@ -37,14 +37,14 @@
 	UnregisterSignal(src, COMSIG_ABERRANT_COOLDOWN)
 	if(LAZYLEN(item_upgrades))
 		for(var/datum/mod in item_upgrades)
-			SEND_SIGNAL(mod, COMSIG_REMOVE, src)
+			SEND_SIGNAL_OLD(mod, COMSIG_REMOVE, src)
 			qdel(mod)
 	return ..()
 
 /obj/item/organ/internal/scaffold/Process()
 	..()
 	if(owner && !on_cooldown && damage < min_broken_damage)
-		SEND_SIGNAL(src, COMSIG_ABERRANT_INPUT, src, owner)
+		SEND_SIGNAL_OLD(src, COMSIG_ABERRANT_INPUT, src, owner)
 
 /obj/item/organ/internal/scaffold/examine(mob/user)
 	. = ..()
@@ -117,7 +117,8 @@
 
 	update_color()
 
-	SEND_SIGNAL(src, COMSIG_APPVAL, src)
+	SEND_SIGNAL(src, COMSIG_IWOUND_EFFECTS)
+	SEND_SIGNAL(src, COMSIG_APPVAL)
 
 	update_name()
 	update_icon()
@@ -221,8 +222,9 @@
 		return new_name
 
 /obj/item/organ/internal/scaffold/proc/start_cooldown()
+	SIGNAL_HANDLER
 	on_cooldown = TRUE
-	addtimer(CALLBACK(src, .proc/end_cooldown), aberrant_cooldown_time, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, PROC_REF(end_cooldown)), aberrant_cooldown_time, TIMER_STOPPABLE)
 
 /obj/item/organ/internal/scaffold/proc/end_cooldown()
 	on_cooldown = FALSE
@@ -316,13 +318,13 @@
 		S = new special_mod_path(src, FALSE, null, special_info)
 
 	if(I)
-		SEND_SIGNAL(I, COMSIG_IATTACK, src)
+		SEND_SIGNAL_OLD(I, COMSIG_IATTACK, src)
 
 	if(P)
-		SEND_SIGNAL(P, COMSIG_IATTACK, src)
+		SEND_SIGNAL_OLD(P, COMSIG_IATTACK, src)
 
 	if(O)
-		SEND_SIGNAL(O, COMSIG_IATTACK, src)
+		SEND_SIGNAL_OLD(O, COMSIG_IATTACK, src)
 
 	if(S)
-		SEND_SIGNAL(S, COMSIG_IATTACK, src)
+		SEND_SIGNAL_OLD(S, COMSIG_IATTACK, src)

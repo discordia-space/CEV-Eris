@@ -74,7 +74,8 @@
 		/obj/item/melee,
 		/obj/item/tool/crowbar,
 		/obj/item/tool/hammer/,
-		/obj/item/tool/hatchet
+		/obj/item/tool/hatchet,
+		/obj/item/melee/energy/sword
 		)
 
 
@@ -256,7 +257,8 @@
 	can_hold = list(
 		/obj/item/tool/hammer,
 		/obj/item/tool/hatchet,
-		/obj/item/tool/makeshiftaxe
+		/obj/item/tool/makeshiftaxe,
+		/obj/item/melee/energy/sword/sabre
 		)
 	price_tag = 20
 

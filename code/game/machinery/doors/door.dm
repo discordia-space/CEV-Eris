@@ -474,7 +474,7 @@
 	operating = FALSE
 	if(autoclose)
 		var/wait = normalspeed ? 150 : 5
-		addtimer(CALLBACK(src, .proc/close), wait)
+		addtimer(CALLBACK(src, PROC_REF(close)), wait)
 	return TRUE
 
 /obj/machinery/door/proc/close(var/forced = 0)

@@ -197,6 +197,7 @@
 
 		/datum/design/bioprinter/nt_clothes/preacher_coat,
 		/datum/design/bioprinter/nt_clothes/acolyte_jacket,
+		/datum/design/bioprinter/nt_clothes/acolyte_jacket/black,
 		/datum/design/bioprinter/nt_clothes/sports_jacket,
 
 		/datum/design/bioprinter/nt_clothes/acolyte_uniform,

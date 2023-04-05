@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 /datum/ritual/cruciform/priest/acolyte/construction
 	name = "Manifestation"
 	phrase = "Omnia autem quae arguuntur a lumine manifestantur omne enim quod manifestatur lumen est."
-	desc = "Build and expand. Shape your faith in something more sensible."
+	desc = "Build and expand. Shape your faith into something more sensible."
 	power = 40
 
 /datum/ritual/cruciform/priest/acolyte/construction/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C, list/targets)
@@ -336,5 +336,15 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 		/obj/item/stack/material/steel = 5,
 		/obj/item/stack/material/biomatter = 20,
 		/obj/item/stack/material/gold = 3
+	)
+	build_time = 8 SECONDS
+
+/datum/nt_blueprint/machinery/door_public
+	name = "Public Door"
+	build_path = /obj/machinery/door/holy/public
+	materials = list(
+		/obj/item/stack/material/steel = 5,
+		/obj/item/stack/material/biomatter = 20,
+		/obj/item/stack/material/silver = 3
 	)
 	build_time = 8 SECONDS

@@ -6,7 +6,7 @@
 	spawn(100)
 		if(busy == MOVING_TO_TARGET)
 			if(eat_target == C && get_dist(src,eat_target) > 1)
-				eat_target = null
+				clearEatTarget()
 				busy = 0
 				stop_automated_movement = 0
 
@@ -24,6 +24,7 @@
 							eatTargets += C
 
 					eat_target = safepick(nearestObjectsInList(eatTargets,src,1))
+					RegisterSignal(eat_target, COMSIG_NULL_SECONDARY_TARGET, PROC_REF(clearEatTarget), TRUE)
 					if (eat_target)
 						busy = MOVING_TO_TARGET
 						set_glide_size(DELAY2GLIDESIZE(move_to_delay))
@@ -99,7 +100,7 @@
 									if(tasty.meat_amount >= 6)// ate a fuhrer or kaiser
 										var/mob/living/carbon/superior_animal/roach/roachling/bigboss = src
 										bigboss.big_boss = TRUE
-						eat_target = null
+						clearEatTarget()
 					busy = 0
 					stop_automated_movement = 0
 

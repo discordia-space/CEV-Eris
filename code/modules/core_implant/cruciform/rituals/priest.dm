@@ -134,7 +134,7 @@
 	for(var/stat in stats_to_boost)
 		var/amount = stats_to_boost[stat]
 		participant.stats.addTempStat(stat, amount, effect_time, src.name)
-		addtimer(CALLBACK(src, .proc/take_boost, participant, stat, amount), effect_time)
+		addtimer(CALLBACK(src, PROC_REF(take_boost), participant, stat, amount), effect_time)
 	spawn(30)
 		to_chat(participant, SPAN_NOTICE("A wave of dizziness washes over you, and your mind is filled with a sudden insight into [get_stats_to_text()]."))
 
@@ -361,7 +361,7 @@
 /datum/ritual/cruciform/priest/confirmation
 	name = "Confirmation"
 	phrase = "Misericordia et veritas non te deserant circumda eas gutturi tuo et describe in tabulis cordis tui..."
-	desc = "Ritual of assigning a disciple to specific duty within the church."
+	desc = "Ritual of assigning a disciple to a specific duty within the church."
 	power = 80
 	cooldown = TRUE
 	cooldown_time = 1 MINUTE

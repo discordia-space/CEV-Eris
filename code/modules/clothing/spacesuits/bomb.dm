@@ -15,7 +15,6 @@
 	)
 	siemens_coefficient = 0
 	tint = TINT_LOW
-	obscuration = HEAVY_OBSCURATION
 	price_tag = 100
 
 /obj/item/clothing/suit/space/bomb
@@ -40,7 +39,6 @@
 	equip_delay = 10 SECONDS
 	price_tag = 300
 	slowdown = HEAVY_SLOWDOWN
-	stiffness = HEAVY_STIFFNESS
 
 /obj/item/clothing/head/space/bomb/security
 	icon_state = "bombsuitsec"

@@ -31,7 +31,7 @@
 			goo.update_icon()
 
 /obj/item/organ/internal/borer/removed_mob(mob/living/user)
-	var/mob/living/simple_animal/borer/B = owner.has_brain_worms()
+	var/mob/living/simple_animal/borer/B = owner.get_brain_worms()
 	if(B)
 		B.leave_host()
 		B.ckey = owner.ckey

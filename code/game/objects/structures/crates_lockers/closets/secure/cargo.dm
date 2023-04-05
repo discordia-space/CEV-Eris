@@ -6,6 +6,8 @@
 
 /obj/structure/closet/secure_closet/personal/cargotech/populate_contents()
 	new /obj/item/clothing/under/rank/cargotech(src)
+	new /obj/item/clothing/suit/storage/cargo_jacket/old(src)
+	new /obj/item/clothing/suit/storage/cargo_jacket(src)
 	new /obj/item/clothing/shoes/color/black(src)
 	new /obj/item/device/radio/headset/headset_cargo(src)
 	new /obj/item/clothing/gloves/thick(src)

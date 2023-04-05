@@ -1,4 +1,4 @@
-#define ARMOR_HALLOS_COEFFICIENT 0.25
+#define ARMOR_HALLOS_COEFFICIENT 0.4
 
 
 //This calculation replaces old run_armor_check in favor of more complex and better system
@@ -23,9 +23,9 @@
 			dmg_types += damagetype
 		dmg_types[damagetype] += damage
 
-	if(!armor_divisor)
+	if(armor_divisor <= 0)
 		armor_divisor = 1
-		log_debug("[used_weapon] applied damage to [name] with an armor divisor of 0")
+		log_debug("[used_weapon] applied damage to [name] with a nonpositive armor divisor")
 
 	var/total_dmg = 0
 	var/dealt_damage = 0
@@ -53,15 +53,17 @@
 			if(dmg_type in list(BRUTE, BURN, TOX, BLAST)) // Some damage types do not help penetrate armor
 				if(remaining_armor)
 					var/dmg_armor_difference = dmg - remaining_armor
-					used_armor += dmg_armor_difference ? dmg - dmg_armor_difference : dmg
-					remaining_armor = dmg_armor_difference ? 0 : -dmg_armor_difference
-					dmg = dmg_armor_difference ? dmg_armor_difference : 0
+					var/is_difference_positive = dmg_armor_difference > 0
+					used_armor += is_difference_positive ? dmg - dmg_armor_difference : dmg
+					remaining_armor = is_difference_positive ? 0 : -dmg_armor_difference
+					dmg = is_difference_positive ? dmg_armor_difference : 0
 				if(remaining_ablative && dmg)
 					var/ablative_difference
 					ablative_difference = dmg - remaining_ablative
-					used_armor += ablative_difference ? dmg - ablative_difference : dmg
-					remaining_ablative = ablative_difference ? 0 : -ablative_difference
-					dmg = ablative_difference ? ablative_difference : 0
+					var/is_difference_positive = ablative_difference > 0
+					used_armor += is_difference_positive ? dmg - ablative_difference : dmg
+					remaining_ablative = is_difference_positive ? 0 : -ablative_difference
+					dmg = is_difference_positive ? ablative_difference : 0
 			else
 				dmg = max(dmg - remaining_armor - remaining_ablative, 0)
 
@@ -85,9 +87,9 @@
 						var/mob/living/carbon/human/H = src
 						var/obj/item/I = used_weapon
 						if((is_carrion(H) || active_mutations.len) && (SANCTIFIED in I.aspects))
-							apply_damage(dmg / 2, BURN, def_zone, sharp, edge, used_weapon)
+							apply_damage(dmg / 2, BURN, def_zone, armor_divisor, wounding_multiplier, sharp, edge, used_weapon)
 
-				apply_damage(dmg, dmg_type, def_zone, sharp, edge, used_weapon)
+				apply_damage(dmg, dmg_type, def_zone, armor_divisor, wounding_multiplier, sharp, edge, used_weapon)
 				if(ishuman(src) && def_zone && dmg >= 20)
 					var/mob/living/carbon/human/H = src
 					var/obj/item/organ/external/o = H.get_organ(def_zone)
@@ -133,6 +135,8 @@
 	// Returns if a projectile should continue travelling
 	if(return_continuation)
 		var/obj/item/projectile/P = used_weapon
+		if(istype(P, /obj/item/projectile/bullet/pellet)) // Pellets should never penetrate
+			return PROJECTILE_STOP
 		P.damage_types = dmg_types
 		if(sharp)
 			var/remaining_dmg = 0
@@ -164,6 +168,16 @@
 
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
+
+	if(config.z_level_shooting && P.height) // If the bullet came from above or below, limit what bodyparts can be hit for consistency
+		if(resting || lying)
+			return PROJECTILE_CONTINUE // Bullet flies overhead
+
+		switch(P.height)
+			if(HEIGHT_HIGH)
+				def_zone_hit = pick(list(BP_CHEST, BP_HEAD, BP_L_ARM, BP_R_ARM))
+			if(HEIGHT_LOW)
+				def_zone_hit = pick(list(BP_CHEST, BP_GROIN, BP_L_LEG, BP_R_LEG))
 
 	//Being hit while using a deadman switch
 	if(istype(get_active_hand(),/obj/item/device/assembly/signaler))
@@ -207,11 +221,11 @@
 		Weaken(stun_amount * armor_coefficient)
 		apply_effect(STUTTER, stun_amount * armor_coefficient)
 		apply_effect(EYE_BLUR, stun_amount * armor_coefficient)
-		SEND_SIGNAL(src, COMSIG_LIVING_STUN_EFFECT)
+		SEND_SIGNAL_OLD(src, COMSIG_LIVING_STUN_EFFECT)
 
 	if (agony_amount && armor_coefficient)
 
-		apply_damage(agony_amount * armor_coefficient, HALLOSS, def_zone, 0, used_weapon)
+		apply_damage(agony_amount * armor_coefficient, HALLOSS, def_zone, FALSE, FALSE, FALSE, used_weapon)
 		apply_effect(STUTTER, agony_amount * armor_coefficient)
 		apply_effect(EYE_BLUR, agony_amount * armor_coefficient)
 

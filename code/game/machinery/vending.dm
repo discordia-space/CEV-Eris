@@ -1594,7 +1594,8 @@
 					/obj/item/computer_hardware/hard_drive/portable/design/guns/fs_slaught_o_matic = 5,
 					/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10,
 					/obj/item/electronics/circuitboard/autolathe = 3,
-					/obj/item/electronics/circuitboard/vending = 10)
+					/obj/item/electronics/circuitboard/vending = 10,
+					/obj/item/electronics/circuitboard/hydroponics = 60)
 	contraband = list(
 			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = 3,
 			/obj/item/electronics/circuitboard/autolathe_disk_cloner = 3
@@ -1618,7 +1619,8 @@
 					/obj/item/electronics/circuitboard/autolathe = 700,
 					/obj/item/electronics/circuitboard/autolathe_disk_cloner = 1000,
 					/obj/item/electronics/circuitboard/vending = 500,
-					/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = 1200,)
+					/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = 1200,
+					/obj/item/electronics/circuitboard/hydroponics = 250)
 
 /obj/machinery/vending/serbomat
 	name = "From Serbia with love"

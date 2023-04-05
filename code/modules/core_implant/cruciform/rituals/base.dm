@@ -36,7 +36,7 @@
 
 /datum/ritual/cruciform/base/soul_hunger/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C)
 	H.adjustNutrition(100)
-	H.adjustToxLoss(5)
+	H.adjustFireLoss(5)
 	set_personal_cooldown(H)
 	return TRUE
 
@@ -97,7 +97,7 @@
 /datum/ritual/cruciform/base/sense_cruciform
 	name = "Cruciform sense"
 	phrase = "Et si medio umbrae"
-	desc = "Very short litany to identify NeoTheology followers. Targets individuals directly in front of caster or being grabbed by caster."
+	desc = "Very short litany to identify NeoTheology followers. Targets individuals in view of the follower. Has a moderate cooldown."
 	cooldown_time = 1 MINUTES
 	power = 20
 
@@ -124,7 +124,7 @@
 /datum/ritual/cruciform/base/revelation
 	name = "Revelation"
 	phrase = "Patris ostendere viam"
-	desc = "A person close to you will have a vision that could increase ther sanity... or that's what you hope will happen."
+	desc = "A person close to you will have a vision that could increase their sanity... or that's what you hope will happen."
 	power = 10
 
 /datum/ritual/cruciform/base/revelation/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C)
@@ -142,7 +142,7 @@
 	T.hallucination(50,100)
 	var/sanity_gain = rand(0,10)
 	T.sanity.changeLevel(sanity_gain)
-	SEND_SIGNAL(H, COMSIG_RITUAL_REVELATION, src, T)
+	SEND_SIGNAL_OLD(H, COMSIG_RITUAL_REVELATION, src, T)
 	set_personal_cooldown(H)
 	return TRUE
 
@@ -200,7 +200,7 @@
 /datum/ritual/cruciform/base/uninstall_upgrade
 	name = "Uninstall Cruciform Upgrade"
 	phrase = "Deus meus ut quid habebant affectus."
-	desc = "This litany will command cruciform uprgrade to detach from cruciform."
+	desc = "This litany will command cruciform upgrade to detach from cruciform."
 	power = 20
 
 /datum/ritual/cruciform/base/uninstall_upgrade/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
@@ -230,7 +230,7 @@
 /datum/ritual/cruciform/base/reincarnation
 	name = "Reincarnation"
 	phrase = "Vetus moritur et onus hoc levaverit"
-	desc = "A reunion of a spirit with it's new body, ritual of activation of a crucifrom, lying on the body. The process requires NeoTheology's special altar on which a body stripped of clothes is to be placed."
+	desc = "A reunion of a spirit with it's new body, ritual of activation of a cruciform, lying on the body. The process requires NeoTheology's special altar on which a body stripped of clothes is to be placed."
 
 /datum/ritual/cruciform/base/reincarnation/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
 	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform, FALSE)

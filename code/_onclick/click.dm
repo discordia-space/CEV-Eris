@@ -92,15 +92,15 @@
 			MiddleClickOn(A)
 		return 1
 	if(modifiers["shift"])
-		SEND_SIGNAL(src, COMSIG_SHIFTCLICK, A)
+		SEND_SIGNAL_OLD(src, COMSIG_SHIFTCLICK, A)
 		ShiftClickOn(A)
 		return 0
 	if(modifiers["alt"]) // alt and alt-gr (rightalt)
-		SEND_SIGNAL(src, COMSIG_ALTCLICK, A)
+		SEND_SIGNAL_OLD(src, COMSIG_ALTCLICK, A)
 		AltClickOn(A)
 		return 1
 	if(modifiers["ctrl"])
-		SEND_SIGNAL(src, COMSIG_CTRLCLICK, A)
+		SEND_SIGNAL_OLD(src, COMSIG_CTRLCLICK, A)
 		CtrlClickOn(A)
 		return 1
 
@@ -140,7 +140,7 @@
 	if((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= 1))
 		// faster access to objects already on you
 		if(W)
-			var/resolved = (SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL(A, COMSIG_ATTACKBY, W, src, params)) || W.resolve_attackby(A, src, params)
+			var/resolved = (SEND_SIGNAL_OLD(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL_OLD(A, COMSIG_ATTACKBY, W, src, params)) || W.resolve_attackby(A, src, params)
 			if(!resolved && A && W)
 				W.afterattack(A, src, 1, params) // 1 indicates adjacency
 		else
@@ -164,7 +164,7 @@
 		if(adjacent) // see adjacent.dm
 			if(W)
 				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
-				var/resolved = (SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL(A, COMSIG_ATTACKBY, W, src, params))
+				var/resolved = (SEND_SIGNAL_OLD(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL_OLD(A, COMSIG_ATTACKBY, W, src, params))
 				if(!resolved && A && W)
 					if(W.double_tact(src, A, adjacent))
 						resolved = W.resolve_attackby(A, src, params)

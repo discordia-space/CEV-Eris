@@ -100,7 +100,7 @@
 	var/agony = 20
 	var/agony_extended = 45
 	var/stun = 0
-	w_class = ITEM_SIZE_BULKY
+	w_class = ITEM_SIZE_NORMAL
 	price_tag = 1000
 	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 2)
 
@@ -119,7 +119,7 @@
 	armor_divisor += (armor_divisor_extended - initial(armor_divisor))
 	agony += (agony_extended - initial(agony))
 	slot_flags = null
-	w_class = ITEM_SIZE_HUGE
+	w_class = ITEM_SIZE_BULKY
 	update_icon()
 
 /obj/item/tool/sword/nt/scourge/proc/unextend()

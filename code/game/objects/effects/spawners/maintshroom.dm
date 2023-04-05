@@ -40,7 +40,7 @@
 	//Lets decide how long to wait
 	var/delay = RAND_DECIMAL(1, delaymax)
 
-	addtimer(CALLBACK(src, .proc/spawn_shroom), delay)
+	addtimer(CALLBACK(src, PROC_REF(spawn_shroom)), delay)
 	alpha = 0 //Make it invisible
 
 

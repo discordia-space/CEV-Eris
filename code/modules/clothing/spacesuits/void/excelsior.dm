@@ -92,4 +92,3 @@
 	helmet = /obj/item/clothing/head/space/void/excelsior
 	spawn_blacklisted = TRUE
 	slowdown = MEDIUM_SLOWDOWN
-	stiffness = LIGHT_STIFFNESS
