@@ -121,14 +121,15 @@
 
 /datum/uplink_item/item/tools/handheld_ai_jammer
 	name = "Handheld AI Jammer"
-	desc = "A handheld AI jammer , will stop AI signals from being executed within a 10 tile range"
+	desc = "A handheld AI jammer , will stop AI signals from being executed within a 8 tile range"
 	item_cost = 3
 	antag_roles = list(ROLE_CONTRACTOR, ROLE_MARSHAL, ROLE_INQUISITOR, ROLE_MERCENARY)
 	path = /obj/item/device/jammer
 
+// Enough for a whole deck almost
 /datum/uplink_item/item/tools/portable_ai_jammer
 	name = "Portable area AI jammer"
-	desc = "A massive jammer put on a rolling cart, will stop AI signals from being executed within a 60 tile range \n Warning! Cannot be stored in bags or held"
+	desc = "A massive jammer put on a rolling cart, will stop AI signals from being executed within a 24 tile range \n Warning! Cannot be stored in bags or held"
 	item_cost = 15
 	antag_roles = list(ROLE_CONTRACTOR, ROLE_MARSHAL, ROLE_INQUISITOR, ROLE_MERCENARY)
 	path = /obj/machinery/jammer
