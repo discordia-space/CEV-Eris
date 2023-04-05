@@ -106,7 +106,6 @@
 			"\red You hear a heavy electrical crack." \
 		)
 		SEND_SIGNAL_OLD(src, COMSIG_CARBON_ELECTROCTE)
-		Stun(10)//This should work for now, more is really silly and makes you lay there forever
 		Weaken(10)
 	else
 		src.visible_message(
