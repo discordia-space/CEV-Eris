@@ -66,6 +66,7 @@
 		overlays += "taser_pdw"
 	else
 		overlays += "lazer_pdw"
+	update_held_icon()
 
 /obj/item/gun/energy/gun/martin/update_icon()
 	cut_overlays()

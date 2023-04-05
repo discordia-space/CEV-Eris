@@ -39,6 +39,7 @@
 	. = ..()
 	if(.)
 		update_icon()
+		update_held_icon()
 
 /obj/item/gun/energy/emp_act(severity)
 	..()
