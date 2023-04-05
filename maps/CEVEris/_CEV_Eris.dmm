@@ -41668,7 +41668,7 @@
 /area/eris/maintenance/section3deck3port)
 "bUK" = (
 /obj/item/reagent_containers/spray/cleaner,
-/obj/structure/closet/custodial,
+/obj/structure/closet/secure_closet/personal/custodial,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/crew_quarters/janitor)
 "bUL" = (
@@ -101920,7 +101920,7 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck4port)
 "hbk" = (
-/obj/structure/closet/acolyte,
+/obj/structure/closet/secure_closet/personal/acolyte,
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
@@ -102086,7 +102086,7 @@
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "hug" = (
-/obj/structure/closet/acolyte,
+/obj/structure/closet/secure_closet/personal/acolyte,
 /obj/machinery/camera/network/third_section{
 	dir = 4
 	},
@@ -103421,7 +103421,7 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemstor)
 "koc" = (
-/obj/structure/closet/acolyte,
+/obj/structure/closet/secure_closet/personal/acolyte,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
@@ -106943,7 +106943,7 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
 "sNY" = (
-/obj/structure/closet/acolyte,
+/obj/structure/closet/secure_closet/personal/acolyte,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
