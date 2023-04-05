@@ -142,18 +142,27 @@
 /datum/click_handler/ai
 
 /datum/click_handler/ai/Click(atom/target, location, control, params)
+	var/modifiers = params2list(params)
 	if(isHUDobj(target))
 		return TRUE
 	if(!isatom(target))
 		return TRUE
-	if (mob_check(owner.mob) && use_ability(owner.mob, target))
+	if (mob_check(owner.mob) && use_ability(owner.mob, target, params))
 		return TRUE
+	else if(modifiers["shift"])
+		owner.mob.examinate(target)
 	return FALSE
 
 /datum/click_handler/ai/mob_check(mob/living/silicon/ai/user) //Check can mob use a ability
 	return TRUE
 
-/datum/click_handler/ai/use_ability(mob/living/silicon/ai/user,atom/target)
-	if(SSjamming.IsPositionJammed(get_turf(target), 10))
+/datum/click_handler/ai/use_ability(mob/living/silicon/ai/user,atom/target, params)
+	var/signalStrength
+	if(get_dist_euclidian(owner.mob, get_turf(target)) < 50)
+		// Can't block at such close distance
+		signalStrength = 1000
+	else
+		signalStrength = 10
+	if(SSjamming.IsPositionJammed(get_turf(target),  signalStrength))
 		return FALSE
 	return TRUE

@@ -28,15 +28,7 @@
 
 /obj/item/device/powersink/Initialize(mapload)
 	. = ..()
-	var/datum/component/jamming/jammie = AddComponent(/datum/component/jamming)
-	jammie.power = 50
-	jammie.radius = 50
-/*
-/obj/item/device/powersink/Destroy()
-	if(mode == 2)
-		STOP_PROCESSING_POWER_OBJECT(src)
-	. = ..()
-*/
+
 /obj/item/device/powersink/attackby(obj/item/I, mob/user)
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
