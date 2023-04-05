@@ -8,7 +8,6 @@
 	icon_state = "loader"
 	idle_power_usage = 120
 	active_power_usage = 300
-	panel_openable = 0
 	pixel_x = -8
 	layer = LOW_OBJ_LAYER
 	var/dir_input = WEST
