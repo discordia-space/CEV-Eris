@@ -30,7 +30,7 @@
 	path = /obj/item/clothing/head/beret/german
 
 /datum/gear/head/beret/ntsec
-	display_name = "beret, military"
+	display_name = "beret, old security"
 	path = /obj/item/clothing/head/beret/oldsec
 
 /datum/gear/head/beret/bsec

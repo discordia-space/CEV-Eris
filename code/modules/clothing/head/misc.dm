@@ -287,7 +287,7 @@
 
 /obj/item/clothing/head/beret/oldsec
 	name = "old security beret"
-	desc = "An old nondescript military-style beret used by any small army, militia, or police force who lacks in funding."
+	desc = "A washed out and dusty corporate security beret from the long defunct \"Securitech\" company."
 	icon_state = "nanoberet"
 
 /obj/item/clothing/head/onestar
