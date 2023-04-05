@@ -1,5 +1,8 @@
+
 /mob/living/silicon/ai/Logout()
-	client.CH = null
+	if(old_client)
+		QDEL_NULL(old_client.CH)
+	old_client = null
 	..()
 	for(var/obj/machinery/ai_status_display/O in world) //change status
 		O.mode = 0
