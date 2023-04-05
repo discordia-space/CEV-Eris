@@ -22,7 +22,6 @@
 	if(active)
 		SSjamming.active_jammers[oldLevel] -= src
 		SSjamming.active_jammers[newLevel] += src
-	message_admins("Z-level changed from [oldLevel] to [newLevel]")
 
 /datum/component/jamming/proc/OnContainered(atom/sender, atom/movable/container)
 	SIGNAL_HANDLER
