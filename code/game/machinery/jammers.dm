@@ -3,7 +3,7 @@
 
 /obj/machinery/jammer
 	name = "Oberth Portable Signal Jammer"
-	desc = "A big, industrial-size jammer, will render any AI signals unuseable in a 60 tile radius"
+	desc = "A big, industrial-size jammer, will render any AI signals unuseable in a 24 tile radius"
 	icon = 'icons/obj/jamming.dmi'
 	icon_state = "jammer_stationary4"
 	anchored = FALSE
@@ -16,7 +16,8 @@
 	// Don't wanna process
 	STOP_PROCESSING(SSmachines, src)
 	var/datum/component/jamming/our_jammer = AddComponent(/datum/component/jamming)
-	our_jammer.radius = 60
+	// Big
+	our_jammer.radius = 24
 	our_jammer.power = 10
 	var/datum/component/overlay_manager/overlay_manager = AddComponent(/datum/component/overlay_manager)
 	overlay_manager.addOverlay(OVERKEY_JAMMER_OFF, mutable_appearance(icon, "jammerstatover_off"))
@@ -80,7 +81,7 @@
 
 /obj/item/device/jammer
 	name = "Oberth Mobile Jammer"
-	desc = "A small, portable jammer. wil render any AI unuseable in a 10 tile radius"
+	desc = "A small, portable jammer. wil render any AI unuseable in a 8 tile radius"
 	icon = 'icons/obj/jamming.dmi'
 	icon_state = "jammer_portable2"
 	w_class = ITEM_SIZE_SMALL
@@ -95,7 +96,7 @@
 /obj/item/device/jammer/Initialize(mapload)
 	. = ..()
 	var/datum/component/jamming/our_jammer = AddComponent(/datum/component/jamming)
-	our_jammer.radius = 10
+	our_jammer.radius = 8
 	our_jammer.power = 10
 	var/datum/component/overlay_manager/overlay_manager = AddComponent(/datum/component/overlay_manager)
 	overlay_manager.addOverlay(OVERKEY_JAMMER_OFF, mutable_appearance(icon, "jammermobover_off"))

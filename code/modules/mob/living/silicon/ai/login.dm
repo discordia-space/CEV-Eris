@@ -4,6 +4,7 @@
 		return FALSE
 
 	regenerate_icons()
+	client.create_UI(type)
 
 	if(stat != DEAD)
 		for(var/obj/machinery/ai_status_display/O in GLOB.ai_status_display_list) //change status

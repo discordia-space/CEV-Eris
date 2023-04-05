@@ -143,7 +143,7 @@
 
 /datum/click_handler/ai/Click(atom/target, location, control, params)
 	var/modifiers = params2list(params)
-	if(isHUDobj(target))
+	if(isHUDobj(target) || istype(target, /HUD_element))
 		return TRUE
 	if(!isatom(target))
 		return TRUE
@@ -151,6 +151,8 @@
 		return TRUE
 	else if(modifiers["shift"])
 		owner.mob.examinate(target)
+	if(isobj(target) || ismachinery(target))
+		to_chat(usr, SPAN_NOTICE("ERROR: No response from targeted device"))
 	return FALSE
 
 /datum/click_handler/ai/mob_check(mob/living/silicon/ai/user) //Check can mob use a ability
@@ -158,7 +160,7 @@
 
 /datum/click_handler/ai/use_ability(mob/living/silicon/ai/user,atom/target, params)
 	var/signalStrength
-	if(get_dist_euclidian(owner.mob, get_turf(target)) < 50)
+	if(get_dist_euclidian(owner.mob, get_turf(target)) < 16)
 		// Can't block at such close distance
 		signalStrength = 1000
 	else
