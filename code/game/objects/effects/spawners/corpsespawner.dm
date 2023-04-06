@@ -235,6 +235,7 @@
 	corpseuniform = /obj/item/clothing/under/onestar
 	corpsesuit = /obj/item/clothing/suit/space/void/onestar		// Helmet won't spawn pre-equipped, but it's there
 	corpseshoes = /obj/item/clothing/shoes/workboots
+	corpsehelmet = null
 	corpseradio = /obj/item/device/radio/headset
 
 //Faction Corpses//
