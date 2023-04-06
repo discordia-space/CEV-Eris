@@ -161,7 +161,7 @@
 	max_age = 250
 
 /obj/landmark/corpse/skeleton/maint //They look like human remains. Some poor soul expired here, a million miles from home.
-	name = "eris crewmember"
+	name = "Eris Crewmember"
 	corpseuniform = list(
 		/obj/item/clothing/under/oldsec,
 		/obj/item/clothing/under/rank/assistant,
@@ -186,7 +186,7 @@
 		/obj/item/clothing/suit/armor/vest/handmade/full,
 		/obj/item/clothing/suit/armor/flak,
 		/obj/item/clothing/suit/storage/vest,
-		null,//null is chance of not spawning, 24% chance to not spawn jacket/armor
+		null,//null is chance of not spawning,
 		null,
 		null,
 		null,
