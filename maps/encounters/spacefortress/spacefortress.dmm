@@ -498,6 +498,18 @@
 /obj/spawner/junk,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
+"jb" = (
+/obj/spawner/gun/normal,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"kV" = (
+/obj/landmark/corpse/skeleton,
+/turf/simulated/floor/plating,
+/area/outpost/abandoned_fortress)
+"Qo" = (
+/obj/landmark/corpse/skeleton,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
 
 (1,1,1) = {"
 aa
@@ -10305,7 +10317,7 @@ ae
 ac
 bp
 bp
-bM
+Qo
 ac
 ae
 ae
@@ -16364,7 +16376,7 @@ ae
 ae
 aj
 bp
-bM
+Qo
 bp
 aj
 ae
@@ -19378,7 +19390,7 @@ ae
 ab
 aN
 bp
-bM
+Qo
 bN
 aN
 bp
@@ -19397,7 +19409,7 @@ bp
 bp
 bp
 aN
-bM
+Qo
 bp
 bN
 aN
@@ -20226,7 +20238,7 @@ aF
 ae
 ae
 ae
-aq
+kV
 ae
 ab
 ab
@@ -21777,7 +21789,7 @@ bp
 bp
 bp
 ac
-bM
+Qo
 bp
 bp
 bp
@@ -23449,7 +23461,7 @@ bp
 bp
 bp
 bF
-bL
+jb
 bp
 bp
 ac
@@ -24049,7 +24061,7 @@ ab
 ac
 bp
 bp
-bL
+jb
 bp
 bN
 bp
@@ -25617,7 +25629,7 @@ bp
 ab
 ab
 an
-aq
+kV
 ae
 ab
 ab
@@ -29297,7 +29309,7 @@ bp
 ac
 ab
 ab
-aq
+kV
 ab
 ab
 ab
