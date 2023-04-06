@@ -170,20 +170,41 @@
 		/obj/item/clothing/suit/armor/vest/handmade,
 		/obj/item/clothing/suit/armor/vest/handmade/full,
 		/obj/item/clothing/suit/armor/flak,
-		null,
+		null,//null is chance of not spawning
 		/obj/item/clothing/suit/storage/vest,
 		/obj/item/clothing/suit/storage/toggle/bomber,
 		/obj/item/clothing/suit/storage/toggle/hoodie/black,
 		/obj/item/clothing/suit/storage/toggle/windbreaker,
+		/obj/item/clothing/suit/storage/toggle/labcoat,
+		/obj/item/clothing/suit/storage/ass_jacket,
+		/obj/item/clothing/suit/storage/ass_jacket, //increased chance of assistant jacket
 		/obj/item/clothing/suit/storage/ass_jacket,
 		/obj/item/clothing/suit/storage/cyberpunksleek,
 		/obj/item/clothing/suit/storage/leather_jacket,
 		/obj/item/clothing/suit/storage/bladerunner,
 		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager,
 		null,
-		/obj/item/clothing/suit/space/emergency,)
+		/obj/item/clothing/suit/fire,
+		/obj/item/clothing/suit/poncho/tactical,
+		/obj/item/clothing/suit/space/emergency)
 	corpseshoes = list(/obj/item/clothing/shoes/jackboots, /obj/item/clothing/shoes/color/black, null, /obj/item/clothing/shoes/workboots, /obj/item/clothing/shoes/reinforced)
 	corpsegloves = list(/obj/item/clothing/gloves/thick, /obj/item/clothing/gloves/fingerless, null, /obj/item/clothing/gloves/security, /obj/item/clothing/gloves/insulated/cheap, null)
+	corpsehelmet = list(
+		/obj/item/clothing/head/armor/helmet/tanker,
+		/obj/item/clothing/head/armor/helmet/handmade,
+		/obj/item/clothing/head/armor/helmet,
+		/obj/item/clothing/head/armor/helmet/visor,
+		/obj/item/clothing/head/armor/faceshield/riot,
+		null,
+		/obj/item/clothing/head/welding,
+		/obj/item/clothing/head/hardhat,
+		/obj/item/clothing/head/hardhat/visor,
+		/obj/item/clothing/head/soft/sec/corp,
+		/obj/item/clothing/head/soft/sec,
+		/obj/item/clothing/head/bandana/green,
+		/obj/item/clothing/head/beret/oldsec,
+		/obj/item/clothing/head/space/emergency
+		)
 	min_age = 40
 	max_age = 250
 	//corpseid = TRUE
