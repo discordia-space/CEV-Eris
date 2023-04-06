@@ -248,7 +248,7 @@
 
 /obj/landmark/corpse/skeleton/fortress
 	name = "skeletal corpse"
-
+	corpsesuit = list(/obj/item/clothing/suit/armor/vest, /obj/item/clothing/suit/armor/vest/security, /obj/item/clothing/suit/storage/vest)
 
 /obj/landmark/corpse/one_star
 	name = "twisted skeletal remains"

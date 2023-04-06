@@ -149,7 +149,7 @@
 /area/outpost/abandoned_fortress)
 "aH" = (
 /obj/structure/bed/padded,
-/obj/item/remains,
+/obj/landmark/corpse/skeleton,
 /turf/simulated/floor/carpet/bcarpet,
 /area/outpost/abandoned_fortress)
 "aI" = (
@@ -237,6 +237,10 @@
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/electronics,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"bl" = (
+/obj/spawner/gun/normal,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bm" = (
@@ -498,17 +502,13 @@
 /obj/spawner/junk,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
-"jb" = (
-/obj/spawner/gun/normal,
+"ej" = (
+/obj/landmark/corpse/skeleton,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
-"kV" = (
+"qV" = (
 /obj/landmark/corpse/skeleton,
 /turf/simulated/floor/plating,
-/area/outpost/abandoned_fortress)
-"Qo" = (
-/obj/landmark/corpse/skeleton,
-/turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 
 (1,1,1) = {"
@@ -9087,7 +9087,7 @@ bp
 bp
 bp
 bp
-bM
+ej
 ab
 ab
 ae
@@ -9341,7 +9341,7 @@ bp
 bp
 bp
 bq
-bM
+ej
 by
 ab
 ab
@@ -10317,7 +10317,7 @@ ae
 ac
 bp
 bp
-Qo
+ej
 ac
 ae
 ae
@@ -16152,7 +16152,7 @@ bp
 bp
 bp
 bp
-bM
+ej
 bp
 bq
 bp
@@ -16376,7 +16376,7 @@ ae
 ae
 aj
 bp
-Qo
+ej
 bp
 aj
 ae
@@ -19390,7 +19390,7 @@ ae
 ab
 aN
 bp
-Qo
+ej
 bN
 aN
 bp
@@ -19409,7 +19409,7 @@ bp
 bp
 bp
 aN
-Qo
+ej
 bp
 bN
 aN
@@ -20238,7 +20238,7 @@ aF
 ae
 ae
 ae
-kV
+qV
 ae
 ab
 ab
@@ -20435,7 +20435,7 @@ ab
 ab
 ab
 ac
-aq
+qV
 at
 ae
 bZ
@@ -21789,7 +21789,7 @@ bp
 bp
 bp
 ac
-Qo
+ej
 bp
 bp
 bp
@@ -23062,7 +23062,7 @@ bp
 bp
 ac
 bY
-aq
+qV
 ae
 ae
 ae
@@ -23253,7 +23253,7 @@ br
 ac
 bA
 bp
-bp
+av
 bp
 bp
 bp
@@ -23461,7 +23461,7 @@ bp
 bp
 bp
 bF
-jb
+bl
 bp
 bp
 ac
@@ -23866,7 +23866,7 @@ bF
 aw
 aw
 bp
-bp
+av
 bp
 ac
 ab
@@ -24061,7 +24061,7 @@ ab
 ac
 bp
 bp
-jb
+bl
 bp
 bN
 bp
@@ -24466,7 +24466,7 @@ ac
 bB
 bp
 bp
-bp
+av
 bp
 bp
 bp
@@ -25031,7 +25031,7 @@ at
 at
 at
 at
-aq
+qV
 ab
 ab
 ab
@@ -25278,7 +25278,7 @@ bp
 bp
 aw
 bp
-bp
+av
 bp
 bp
 bV
@@ -25629,7 +25629,7 @@ bp
 ab
 ab
 an
-kV
+qV
 ae
 ab
 ab
@@ -29309,7 +29309,7 @@ bp
 ac
 ab
 ab
-kV
+qV
 ab
 ab
 ab
