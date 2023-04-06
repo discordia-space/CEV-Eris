@@ -90,7 +90,6 @@
 	var/ratio = get_ammo() / (max_shells + 1)//1 in the chamber
 	ratio = round(ratio, 0.25) * 100
 	overlays += "[ratio]_PW"
-	update_icon()
 
 /obj/item/gun/projectile/shotgun/bull/update_icon()
 	..()
@@ -109,6 +108,7 @@
 	set_item_state(itemstring)
 	cut_overlays()
 	update_held_icon()
+	update_charge()
 
 /obj/item/part/gun/frame/bull
 	name = "Bull frame"
