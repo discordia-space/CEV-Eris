@@ -23,7 +23,7 @@
 		SSjamming.active_jammers[oldLevel] -= src
 		SSjamming.active_jammers[newLevel] += src
 
-/datum/component/jamming/proc/OnContainered(atom/sender, atom/movable/container)
+/datum/component/jamming/proc/OnContainered(atom/sender, atom/movable/container, atom/movable/oldContainer)
 	SIGNAL_HANDLER
 	if(highest_container == container)
 		return

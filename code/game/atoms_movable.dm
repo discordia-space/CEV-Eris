@@ -123,7 +123,7 @@
 
 	// Container change
 	if((!is_origin_turf || !is_destination_turf) || ((!is_origin_turf && !is_destination_turf) && (origin != destination)))
-		SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, getContainingMovable())
+		SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, getContainingMovable(), origin)
 	/*
 	// Only update plane if we're located on map
 	if(is_destination_turf)

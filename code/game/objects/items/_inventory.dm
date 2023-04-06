@@ -67,7 +67,6 @@
 		unwield(user)
 	SEND_SIGNAL_OLD(user, COMSIG_CLOTH_EQUIPPED, src) // Theres instances in which its usefull to keep track of it both on the user and individually
 	SEND_SIGNAL_OLD(src, COMSIG_CLOTH_EQUIPPED, user)
-	//SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, user.getContainingMovable())
 
 /obj/item/proc/dropped(mob/user)
 	if(zoom) //binoculars, scope, etc
