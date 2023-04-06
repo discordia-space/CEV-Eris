@@ -17,8 +17,10 @@
 	STOP_PROCESSING(SSmachines, src)
 	var/datum/component/jamming/our_jammer = AddComponent(/datum/component/jamming)
 	// Big
-	our_jammer.radius = 24
-	our_jammer.power = 10
+	our_jammer.radius = 32
+	our_jammer.power = 500
+	our_jammer.z_transfer = 1
+	our_jammer.z_reduction = 8
 	var/datum/component/overlay_manager/overlay_manager = AddComponent(/datum/component/overlay_manager)
 	overlay_manager.addOverlay(OVERKEY_JAMMER_OFF, mutable_appearance(icon, "jammerstatover_off"))
 	cell = new /obj/item/cell/large(src)
@@ -97,7 +99,8 @@
 	. = ..()
 	var/datum/component/jamming/our_jammer = AddComponent(/datum/component/jamming)
 	our_jammer.radius = 8
-	our_jammer.power = 10
+	our_jammer.power = 200
+	our_jammer.z_transfer = 0
 	var/datum/component/overlay_manager/overlay_manager = AddComponent(/datum/component/overlay_manager)
 	overlay_manager.addOverlay(OVERKEY_JAMMER_OFF, mutable_appearance(icon, "jammermobover_off"))
 
@@ -134,7 +137,7 @@
 	START_PROCESSING(SSobj, src)
 
 #undef OVERKEY_JAMMER_OFF
-#undef OVERKEY_JAMMER_OFF
+#undef OVERKEY_JAMMER_ON
 
 
 

@@ -5,6 +5,10 @@
 	var/active = FALSE
 	var/radius = 20
 	var/power = 1
+	// Z levels to bo above or below
+	var/z_transfer = 0
+	//reduction in range based on z-level diff
+	var/z_reduction = 0
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	can_transfer = FALSE
 
@@ -18,10 +22,26 @@
 	RegisterSignal(owner, COMSIG_ATOM_CONTAINERED, PROC_REF(OnContainered))
 	RegisterSignal(highest_container, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(OnLevelChange))
 
-/datum/component/jamming/proc/OnLevelChange(source, oldLevel, newLevel)
-	if(active)
-		SSjamming.active_jammers[oldLevel] -= src
-		SSjamming.active_jammers[newLevel] += src
+/datum/component/jamming/proc/getAffectedLevels(targetLevel)
+	var/minimumLevel = targetLevel
+	var/maximumLevel = targetLevel
+	while(HasBelow(minimumLevel) && minimumLevel > targetLevel - z_transfer)
+		minimumLevel--
+	while(HasAbove(maximumLevel) && maximumLevel < targetLevel + z_transfer)
+		maximumLevel++
+	return list(minimumLevel, maximumLevel)
+
+/datum/component/jamming/proc/OnLevelChange(atom/source, oldLevel, newLevel)
+	SIGNAL_HANDLER
+	if(!active)
+		return
+	var/list/affectedLevels = getAffectedLevels(oldLevel)
+	for(var/i = affectedLevels[1], i <= affectedLevels[2]; i++)
+		SSjamming.active_jammers[i] -= src
+	affectedLevels = getAffectedLevels(newLevel)
+	for(var/i = affectedLevels[1], i <= affectedLevels[2]; i++)
+		SSjamming.active_jammers[i] += src
+
 
 /datum/component/jamming/proc/OnContainered(atom/sender, atom/movable/container)
 	SIGNAL_HANDLER
@@ -34,15 +54,20 @@
 
 /datum/component/jamming/Destroy()
 	if(active)
-		SSjamming.active_jammers[owner.z] -= src
+		var/list/affectedLevels = getAffectedLevels(highest_container.z)
+		for(var/i = affectedLevels[1], i <= affectedLevels[2]; i++)
+			SSjamming.active_jammers[i] -= src
 	owner = null
+	highest_container = null
 	..()
 
 /datum/component/jamming/proc/Toggle()
-	var/turf/level = get_turf(owner)
+	var/list/affectedLevels = getAffectedLevels(highest_container.z)
 	if(active)
-		SSjamming.active_jammers[level.z] -= src
+		for(var/i = affectedLevels[1], i <= affectedLevels[2]; i++)
+			SSjamming.active_jammers[i] -= src
 	else
-		SSjamming.active_jammers[level.z] += src
+		for(var/i = affectedLevels[1], i <= affectedLevels[2]; i++)
+			SSjamming.active_jammers[i] += src
 	active = !active
 
