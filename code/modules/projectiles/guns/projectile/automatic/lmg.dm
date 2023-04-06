@@ -49,6 +49,7 @@
 	cover_open = !cover_open
 	to_chat(user, SPAN_NOTICE("You [cover_open ? "open" : "close"] [src]'s cover."))
 	update_icon()
+	update_held_icon()
 
 /obj/item/gun/projectile/automatic/lmg/attack_self(mob/user as mob)
 	if(cover_open)
