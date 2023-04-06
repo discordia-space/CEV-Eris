@@ -170,7 +170,7 @@
 		/obj/item/clothing/under/rank/crewman,
 		/obj/item/clothing/under/genericw,
 		/obj/item/clothing/under/genericb,
-		obj/item/clothing/under/genericr,
+		/obj/item/clothing/under/genericr,
 		/obj/item/clothing/under/black,
 		/obj/item/clothing/under/leisure,
 		/obj/item/clothing/under/color/grey,
