@@ -133,7 +133,7 @@
 		)
 
 	var/global/list/potency_reagents = list(
-		"diethylamine" =    1
+		"diethylamine" =    1,
 		"biomatter" =       0.5
 	)
 
