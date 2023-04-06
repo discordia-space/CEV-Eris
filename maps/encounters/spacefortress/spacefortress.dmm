@@ -501,38 +501,38 @@
 /obj/spawner/junk,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
-"jD" = (
-/obj/spawner/gun/normal,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned_fortress)
-"lX" = (
-/obj/structure/closet/l3closet/general,
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned_fortress)
-"ob" = (
+"mH" = (
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
-"rC" = (
+"zy" = (
+/obj/landmark/corpse/skeleton,
+/turf/simulated/floor/plating,
+/area/outpost/abandoned_fortress)
+"AN" = (
+/obj/structure/closet/l3closet/general,
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"Of" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"Ro" = (
+/obj/spawner/gun/normal,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"VX" = (
 /obj/structure/sign/directions/security{
 	dir = 1;
 	pixel_y = 32
 	},
 /obj/structure/sign/directions/medical{
 	pixel_y = 25
-	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned_fortress)
-"GT" = (
-/obj/landmark/corpse/skeleton,
-/turf/simulated/floor/plating,
-/area/outpost/abandoned_fortress)
-"Ic" = (
-/obj/structure/table/standard{
-	name = "plastic table frame"
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
@@ -20264,7 +20264,7 @@ aF
 ae
 ae
 ae
-GT
+zy
 ae
 ab
 ab
@@ -20461,7 +20461,7 @@ ab
 ab
 ab
 ac
-GT
+zy
 at
 ae
 bZ
@@ -23067,7 +23067,7 @@ ac
 ac
 ac
 ac
-rC
+VX
 bp
 bp
 ac
@@ -23088,7 +23088,7 @@ bp
 bp
 ac
 bY
-GT
+zy
 ae
 ae
 ae
@@ -23284,7 +23284,7 @@ bp
 bp
 bp
 bp
-Ic
+Of
 bp
 bM
 bp
@@ -23486,8 +23486,8 @@ bp
 bp
 bp
 bp
-Ic
-jD
+Of
+Ro
 bp
 bp
 ac
@@ -23678,7 +23678,7 @@ bp
 bp
 bp
 bp
-lX
+AN
 bt
 ac
 bp
@@ -23887,8 +23887,8 @@ ac
 aw
 aw
 aw
-Ic
-Ic
+Of
+Of
 aw
 aw
 bp
@@ -24087,7 +24087,7 @@ ab
 ac
 bp
 bp
-jD
+Ro
 bp
 bN
 bp
@@ -24850,7 +24850,7 @@ ab
 ab
 ae
 ab
-ob
+mH
 at
 ax
 ax
@@ -25052,12 +25052,12 @@ ab
 ab
 ae
 aj
-ob
+mH
 at
 at
 at
 at
-GT
+zy
 ab
 ab
 ab
@@ -25254,7 +25254,7 @@ ab
 ab
 ae
 ab
-ob
+mH
 at
 at
 ax
@@ -25655,7 +25655,7 @@ bp
 ab
 ab
 an
-GT
+zy
 ae
 ab
 ab
@@ -25701,7 +25701,7 @@ ab
 ab
 ab
 ac
-Ic
+Of
 bp
 bp
 bp
@@ -25711,7 +25711,7 @@ bp
 bp
 bp
 bp
-Ic
+Of
 ac
 ab
 ab
@@ -29335,7 +29335,7 @@ bp
 ac
 ab
 ab
-GT
+zy
 ab
 ab
 ab
