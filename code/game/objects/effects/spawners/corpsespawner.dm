@@ -170,7 +170,12 @@
 		/obj/item/clothing/suit/armor/vest/handmade,
 		/obj/item/clothing/suit/armor/vest/handmade/full,
 		/obj/item/clothing/suit/armor/flak,
-		null,//null is chance of not spawning
+		null,//null is chance of not spawning, 24% chance to not spawn jacket/armor
+		null,
+		null,
+		null,
+		null,
+		null,
 		/obj/item/clothing/suit/storage/vest,
 		/obj/item/clothing/suit/storage/toggle/bomber,
 		/obj/item/clothing/suit/storage/toggle/hoodie/black,
@@ -178,12 +183,10 @@
 		/obj/item/clothing/suit/storage/toggle/labcoat,
 		/obj/item/clothing/suit/storage/ass_jacket,
 		/obj/item/clothing/suit/storage/ass_jacket, //increased chance of assistant jacket
-		/obj/item/clothing/suit/storage/ass_jacket,
 		/obj/item/clothing/suit/storage/cyberpunksleek,
 		/obj/item/clothing/suit/storage/leather_jacket,
 		/obj/item/clothing/suit/storage/bladerunner,
 		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager,
-		null,
 		/obj/item/clothing/suit/fire,
 		/obj/item/clothing/suit/poncho/tactical,
 		/obj/item/clothing/suit/space/emergency)
@@ -197,7 +200,7 @@
 		/obj/item/clothing/head/armor/faceshield/riot,
 		null,
 		null,
-		null, //20% chance to spawn no helmet
+		null, //20% chance to spawn no helmet/hat
 		null,
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/head/hardhat,
