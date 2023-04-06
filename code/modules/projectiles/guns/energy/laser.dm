@@ -341,3 +341,26 @@
 	twohanded = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	init_recoil = SMG_RECOIL(1)
+
+
+/obj/item/gun/energy/laser/makeshift_pistol/update_icon(ignore_inhands)
+	if(charge_meter)
+		var/ratio = 0
+
+		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
+		if(cell && cell.charge >= charge_cost)
+			ratio = cell.charge / cell.maxcharge
+			ratio = min(max(round(ratio, 1) * 100, 100), 100) //if you want to make a charge meter sprite for hands (0 25 50 75 100), replace with following line
+//			ratio = min(max(round(ratio, 0.25) * 100, 25), 100)
+		if(modifystate)
+			icon_state = "[modifystate][ratio]"
+			wielded_item_state = "_doble" + "[ratio]"
+		else
+			icon_state = "[initial(icon_state)][ratio]"
+
+		if(item_charge_meter)
+			set_item_state("-[ratio]")
+			wielded_item_state = "_doble" + "-[ratio]"
+	if(!ignore_inhands)
+		update_wear_icon()
+
