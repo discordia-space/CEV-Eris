@@ -3,7 +3,7 @@
 
 /obj/machinery/jammer
 	name = "Oberth Portable Signal Jammer"
-	desc = "A big, industrial-size jammer, will render any AI signals unuseable in a 24 tile radius"
+	desc = "A big, industrial-size jammer, will render any AI signals unuseable in a 32 tile radius. Its effect also extends up and above by 1 level, with a reduction in range of 8"
 	icon = 'icons/obj/jamming.dmi'
 	icon_state = "jammer_stationary4"
 	anchored = FALSE
