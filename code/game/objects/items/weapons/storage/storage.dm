@@ -25,6 +25,16 @@
 	var/prespawned_content_amount // Number of items storage should initially contain
 	var/prespawned_content_type // Type of items storage should contain, takes effect if variable above is at least 1
 
+/obj/item/storage/Initialize(mapload, ...)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_CONTAINERED, PROC_REF(RelayContainerization))
+
+/obj/item/storage/proc/RelayContainerization()
+	SIGNAL_HANDLER
+	var/atom/highestContainer = getContainingMovable()
+	for(var/atom/thing as anything in contents)
+		SEND_SIGNAL(thing, COMSIG_ATOM_CONTAINERED, highestContainer)
+
 /obj/item/storage/New()
 	can_hold |= can_hold_extra
 	. = ..()
@@ -351,7 +361,8 @@
 		usr.prepare_for_slotmove(W)
 		usr.update_icons() //update our overlays
 
-	W.loc = src
+	//W.loc = src
+	W.forceMove(src)
 	W.on_enter_storage(src)
 
 	if(usr)

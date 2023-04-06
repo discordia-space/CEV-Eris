@@ -50,6 +50,8 @@
 #define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
 #define COMSIG_ATOM_UPDATE_OVERLAYS "atom_update_overlays"  //update_overlays()
 #define COMSIG_ATOM_UNFASTEN "atom_unfasten" // set_anchored()
+// Whenever we are put into a container of any sort , storage , closets , pockets. (atom/true_parent)
+#define COMSIG_ATOM_CONTAINERED "atom_containered"
 
 // /area signals
 #define COMSIG_AREA_SANCTIFY "sanctify_area"
