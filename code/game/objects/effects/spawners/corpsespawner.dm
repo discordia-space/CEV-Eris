@@ -188,13 +188,16 @@
 		/obj/item/clothing/suit/poncho/tactical,
 		/obj/item/clothing/suit/space/emergency)
 	corpseshoes = list(/obj/item/clothing/shoes/jackboots, /obj/item/clothing/shoes/color/black, null, /obj/item/clothing/shoes/workboots, /obj/item/clothing/shoes/reinforced)
-	corpsegloves = list(/obj/item/clothing/gloves/thick, /obj/item/clothing/gloves/fingerless, null, /obj/item/clothing/gloves/security, /obj/item/clothing/gloves/insulated/cheap, null)
+	corpsegloves = list(/obj/item/clothing/gloves/thick, null, /obj/item/clothing/gloves/fingerless, null, /obj/item/clothing/gloves/security, null, /obj/item/clothing/gloves/insulated/cheap, null)//50% chance to not spawn gloves
 	corpsehelmet = list(
 		/obj/item/clothing/head/armor/helmet/tanker,
 		/obj/item/clothing/head/armor/helmet/handmade,
 		/obj/item/clothing/head/armor/helmet,
 		/obj/item/clothing/head/armor/helmet/visor,
 		/obj/item/clothing/head/armor/faceshield/riot,
+		null,
+		null,
+		null, //20% chance to spawn no helmet
 		null,
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/head/hardhat,
@@ -203,6 +206,8 @@
 		/obj/item/clothing/head/soft/sec,
 		/obj/item/clothing/head/bandana/green,
 		/obj/item/clothing/head/beret/oldsec,
+		/obj/item/clothing/head/soft/green2soft,
+		/obj/item/clothing/head/soft/tan2soft,
 		/obj/item/clothing/head/space/emergency
 		)
 	min_age = 40
