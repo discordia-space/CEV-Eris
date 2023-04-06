@@ -198,8 +198,8 @@
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "aX" = (
-/obj/structure/barricade,
-/turf/space,
+/obj/landmark/corpse/skeleton,
+/turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bb" = (
 /obj/structure/table/rack/shelf,
@@ -237,10 +237,6 @@
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/electronics,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned_fortress)
-"bl" = (
-/obj/spawner/gun/normal,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bm" = (
@@ -473,6 +469,9 @@
 /obj/spawner/ammo/lowcost/low_chance,
 /obj/spawner/ammo/lowcost/low_chance,
 /obj/spawner/junk,
+/obj/structure/sign/vacuum{
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "ci" = (
@@ -502,13 +501,40 @@
 /obj/spawner/junk,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
-"ej" = (
-/obj/landmark/corpse/skeleton,
+"jD" = (
+/obj/spawner/gun/normal,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
-"qV" = (
+"lX" = (
+/obj/structure/closet/l3closet/general,
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"ob" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/turf/simulated/floor/plating,
+/area/outpost/abandoned_fortress)
+"rC" = (
+/obj/structure/sign/directions/security{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/structure/sign/directions/medical{
+	pixel_y = 25
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"GT" = (
 /obj/landmark/corpse/skeleton,
 /turf/simulated/floor/plating,
+/area/outpost/abandoned_fortress)
+"Ic" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 
 (1,1,1) = {"
@@ -9087,7 +9113,7 @@ bp
 bp
 bp
 bp
-ej
+aX
 ab
 ab
 ae
@@ -9341,7 +9367,7 @@ bp
 bp
 bp
 bq
-ej
+aX
 by
 ab
 ab
@@ -10317,7 +10343,7 @@ ae
 ac
 bp
 bp
-ej
+aX
 ac
 ae
 ae
@@ -16152,7 +16178,7 @@ bp
 bp
 bp
 bp
-ej
+aX
 bp
 bq
 bp
@@ -16376,7 +16402,7 @@ ae
 ae
 aj
 bp
-ej
+aX
 bp
 aj
 ae
@@ -19390,7 +19416,7 @@ ae
 ab
 aN
 bp
-ej
+aX
 bN
 aN
 bp
@@ -19409,7 +19435,7 @@ bp
 bp
 bp
 aN
-ej
+aX
 bp
 bN
 aN
@@ -20238,7 +20264,7 @@ aF
 ae
 ae
 ae
-qV
+GT
 ae
 ab
 ab
@@ -20435,7 +20461,7 @@ ab
 ab
 ab
 ac
-qV
+GT
 at
 ae
 bZ
@@ -21412,7 +21438,7 @@ bp
 bp
 aS
 aN
-aX
+aS
 by
 by
 aS
@@ -21789,7 +21815,7 @@ bp
 bp
 bp
 ac
-ej
+aX
 bp
 bp
 bp
@@ -23041,7 +23067,7 @@ ac
 ac
 ac
 ac
-bp
+rC
 bp
 bp
 ac
@@ -23062,7 +23088,7 @@ bp
 bp
 ac
 bY
-qV
+GT
 ae
 ae
 ae
@@ -23253,12 +23279,12 @@ br
 ac
 bA
 bp
-av
 bp
 bp
 bp
 bp
-bF
+bp
+Ic
 bp
 bM
 bp
@@ -23449,7 +23475,7 @@ bp
 bp
 bp
 bp
-bq
+bp
 bp
 bp
 bu
@@ -23460,8 +23486,8 @@ bp
 bp
 bp
 bp
-bF
-bl
+Ic
+jD
 bp
 bp
 ac
@@ -23652,7 +23678,7 @@ bp
 bp
 bp
 bp
-br
+lX
 bt
 ac
 bp
@@ -23861,12 +23887,12 @@ ac
 aw
 aw
 aw
-bF
-bF
+Ic
+Ic
 aw
 aw
 bp
-av
+bp
 bp
 ac
 ab
@@ -24061,7 +24087,7 @@ ab
 ac
 bp
 bp
-bl
+jD
 bp
 bN
 bp
@@ -24466,7 +24492,7 @@ ac
 bB
 bp
 bp
-av
+bp
 bp
 bp
 bp
@@ -24824,7 +24850,7 @@ ab
 ab
 ae
 ab
-au
+ob
 at
 ax
 ax
@@ -25026,12 +25052,12 @@ ab
 ab
 ae
 aj
-au
+ob
 at
 at
 at
 at
-qV
+GT
 ab
 ab
 ab
@@ -25228,7 +25254,7 @@ ab
 ab
 ae
 ab
-au
+ob
 at
 at
 ax
@@ -25278,7 +25304,7 @@ bp
 bp
 aw
 bp
-av
+bp
 bp
 bp
 bV
@@ -25629,7 +25655,7 @@ bp
 ab
 ab
 an
-qV
+GT
 ae
 ab
 ab
@@ -25675,7 +25701,7 @@ ab
 ab
 ab
 ac
-bF
+Ic
 bp
 bp
 bp
@@ -25685,7 +25711,7 @@ bp
 bp
 bp
 bp
-bF
+Ic
 ac
 ab
 ab
@@ -29309,7 +29335,7 @@ bp
 ac
 ab
 ab
-qV
+GT
 ab
 ab
 ab
