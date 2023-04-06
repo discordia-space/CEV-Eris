@@ -162,23 +162,42 @@
 
 /obj/landmark/corpse/skeleton/maint //They look like human remains. Some poor soul expired here, a million miles from home.
 	name = "eris crewmember"
-	corpseuniform = list(/obj/item/clothing/under/oldsec, /obj/item/clothing/under/rank/assistant, /obj/item/clothing/under/rank/crewman, /obj/item/clothing/under/genericw, /obj/item/clothing/under/genericb, /obj/item/clothing/under/leisure, /obj/item/clothing/under/color/grey, /obj/item/clothing/under/color/black)
+	corpseuniform = list(
+		/obj/item/clothing/under/oldsec,
+		/obj/item/clothing/under/rank/assistant,
+		/obj/item/clothing/under/rank/assistant,
+		/obj/item/clothing/under/rank/crewman,
+		/obj/item/clothing/under/rank/crewman,
+		/obj/item/clothing/under/genericw,
+		/obj/item/clothing/under/genericb,
+		obj/item/clothing/under/genericr,
+		/obj/item/clothing/under/black,
+		/obj/item/clothing/under/leisure,
+		/obj/item/clothing/under/color/grey,
+		/obj/item/clothing/under/color/black
+						)
 	corpsesuit = list(
 		/obj/item/clothing/suit/armor/vest,
+		/obj/item/clothing/suit/armor/vest/warden,
 		/obj/item/clothing/suit/armor/vest/security,
+		/obj/item/clothing/suit/armor/vest/detective,
 		/obj/item/clothing/suit/armor/platecarrier,
 		/obj/item/clothing/suit/armor/vest/handmade,
 		/obj/item/clothing/suit/armor/vest/handmade/full,
 		/obj/item/clothing/suit/armor/flak,
+		/obj/item/clothing/suit/storage/vest,
 		null,//null is chance of not spawning, 24% chance to not spawn jacket/armor
 		null,
 		null,
 		null,
 		null,
 		null,
-		/obj/item/clothing/suit/storage/vest,
 		/obj/item/clothing/suit/punkvest/cyber,
 		/obj/item/clothing/suit/punkvest,
+		/obj/item/clothing/suit/storage/hazardvest,
+		/obj/item/clothing/suit/storage/hazardvest/orange,
+		/obj/item/clothing/suit/storage/hazardvest/black,
+		/obj/item/clothing/suit/storage/cargo_jacket/old,
 		/obj/item/clothing/suit/storage/toggle/bomber,
 		/obj/item/clothing/suit/storage/toggle/hoodie/black,
 		/obj/item/clothing/suit/storage/toggle/windbreaker,
@@ -186,13 +205,17 @@
 		/obj/item/clothing/suit/storage/ass_jacket,
 		/obj/item/clothing/suit/storage/ass_jacket, //increased chance of assistant jacket
 		/obj/item/clothing/suit/storage/cyberpunksleek,
-		/obj/item/clothing/suit/storage/leather_jacket,
 		/obj/item/clothing/suit/storage/bladerunner,
 		/obj/item/clothing/suit/storage/bomj,
+		/obj/item/clothing/suit/storage/leather_jacket,
+		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake,
 		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager,
+		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake,
 		/obj/item/clothing/suit/fire,
+		/obj/item/clothing/suit/poncho,
 		/obj/item/clothing/suit/poncho/tactical,
-		/obj/item/clothing/suit/space/emergency)
+		/obj/item/clothing/suit/space/emergency
+					)
 	corpseshoes = list(/obj/item/clothing/shoes/jackboots, /obj/item/clothing/shoes/color/black, null, /obj/item/clothing/shoes/workboots, /obj/item/clothing/shoes/reinforced)
 	corpsegloves = list(/obj/item/clothing/gloves/thick, null, /obj/item/clothing/gloves/fingerless, null, /obj/item/clothing/gloves/security, null, /obj/item/clothing/gloves/insulated/cheap, null)//50% chance to not spawn gloves
 	corpsehelmet = list(
