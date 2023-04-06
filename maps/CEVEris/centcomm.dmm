@@ -2636,17 +2636,8 @@
 	name = "plating"
 	},
 /area/centcom/merc_base)
-"hK" = (
-/obj/structure/sign/double/map/left{
-	pixel_y = 32
-	},
-/turf/unsimulated/floor{
-	icon_state = "cult";
-	name = "plating"
-	},
-/area/centcom/merc_base)
 "hL" = (
-/obj/structure/sign/double/map/right{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
@@ -3116,6 +3107,13 @@
 /obj/item/clothing/shoes/magboots/merc,
 /obj/item/clothing/shoes/magboots/merc,
 /obj/item/clothing/shoes/magboots/merc,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
@@ -5731,13 +5729,6 @@
 	icon_state = "wood"
 	},
 /area/wizard_station)
-"Ho" = (
-/obj/item/storage/box/phosphorous,
-/turf/unsimulated/floor{
-	dir = 2;
-	icon_state = "dark"
-	},
-/area/centcom/merc_base)
 "Hs" = (
 /obj/structure/table/woodentable,
 /obj/item/dice/d20,
@@ -31751,7 +31742,7 @@ hf
 hf
 hf
 gZ
-hK
+hJ
 hp
 gN
 EM
@@ -32975,7 +32966,7 @@ jq
 jq
 jq
 jq
-Ho
+jq
 hf
 mO
 iB
