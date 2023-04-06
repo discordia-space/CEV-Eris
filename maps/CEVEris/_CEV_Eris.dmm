@@ -39934,11 +39934,10 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/crew_quarters/sleep/cryo)
 "bQg" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/reagent_dispensers/watertank/huge,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/botany/editor,
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics)
 "bQh" = (
@@ -40072,7 +40071,6 @@
 /area/eris/engineering/drone_fabrication)
 "bQA" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/reagent_dispensers/watertank/huge,
 /obj/structure/sign/faction/neotheology_cross/gold{
 	pixel_y = 32
 	},
@@ -41668,7 +41666,7 @@
 /area/eris/maintenance/section3deck3port)
 "bUK" = (
 /obj/item/reagent_containers/spray/cleaner,
-/obj/structure/closet/secure_closet/personal/custodial,
+/obj/structure/closet/secure_closet/custodial,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/crew_quarters/janitor)
 "bUL" = (
@@ -41757,16 +41755,11 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
 "bUZ" = (
-/obj/structure/table/reinforced,
-/obj/item/beartrap,
-/obj/item/beartrap,
-/obj/item/stack/rods/random,
-/obj/item/stack/rods/random,
-/obj/item/stack/material/steel/random,
-/obj/item/stack/material/plastic/random,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/closet/secure_closet/custodial,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/crew_quarters/janitor)
 "bVa" = (
@@ -43039,7 +43032,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/landmark/join/start/acolyte,
+/obj/landmark/join/start/neophyte,
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "bYm" = (
@@ -67825,8 +67818,11 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck3port)
 "dhi" = (
-/obj/machinery/power/nt_obelisk,
-/turf/simulated/floor/wood,
+/obj/item/reagent_containers/glass/bottle/mutagen,
+/obj/item/reagent_containers/dropper,
+/obj/structure/closet/crate/secure/hydrosec/prelocked,
+/obj/item/tool/wrench,
+/turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics)
 "dhj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -87264,10 +87260,10 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
 "eaQ" = (
-/obj/structure/flora/ausbushes/ywflowers,
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
+/obj/machinery/botany/extractor,
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics)
 "eaR" = (
@@ -94705,17 +94701,13 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
 "esU" = (
-/obj/machinery/botany/extractor,
+/obj/structure/reagent_dispensers/watertank/huge,
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics)
 "esV" = (
 /obj/structure/closet/firecloset,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
-"esW" = (
-/obj/machinery/botany/editor,
-/turf/simulated/floor/grass,
-/area/eris/crew_quarters/hydroponics)
 "esX" = (
 /obj/structure/table/rack,
 /obj/spawner/lowkeyrandom,
@@ -101920,10 +101912,10 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck4port)
 "hbk" = (
-/obj/structure/closet/secure_closet/personal/acolyte,
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/neotheology/churchbarracks)
 "hbQ" = (
@@ -102086,10 +102078,10 @@
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "hug" = (
-/obj/structure/closet/secure_closet/personal/acolyte,
 /obj/machinery/camera/network/third_section{
 	dir = 4
 	},
+/obj/structure/table/rack/shelf,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/neotheology/churchbarracks)
 "huE" = (
@@ -103421,7 +103413,7 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemstor)
 "koc" = (
-/obj/structure/closet/secure_closet/personal/acolyte,
+/obj/structure/closet/secure_closet/acolyte,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
@@ -103515,6 +103507,13 @@
 /obj/machinery/camera/network/third_section{
 	dir = 1
 	},
+/obj/item/stack/material/plastic/random,
+/obj/item/stack/material/steel/random,
+/obj/item/stack/rods/random,
+/obj/item/stack/rods/random,
+/obj/item/beartrap,
+/obj/item/beartrap,
+/obj/structure/table/reinforced,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/crew_quarters/janitor)
 "kEr" = (
@@ -105408,7 +105407,7 @@
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "peX" = (
-/obj/landmark/join/start/acolyte,
+/obj/landmark/join/start/neophyte,
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "pfh" = (
@@ -106943,7 +106942,7 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
 "sNY" = (
-/obj/structure/closet/secure_closet/personal/acolyte,
+/obj/structure/closet/secure_closet/acolyte,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
@@ -109020,14 +109019,11 @@
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
 "xTo" = (
-/obj/item/reagent_containers/glass/bottle/mutagen,
-/obj/item/reagent_containers/dropper,
-/obj/structure/closet/crate/secure/hydrosec/prelocked,
-/obj/item/tool/wrench,
 /obj/machinery/camera/network/third_section{
 	dir = 1
 	},
-/turf/simulated/floor/grass,
+/obj/machinery/power/nt_obelisk,
+/turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
 "xTu" = (
 /obj/machinery/power/nt_obelisk,
@@ -125492,7 +125488,7 @@ azn
 cCh
 dAg
 aCn
-dhi
+aSf
 bpV
 bPA
 bPA
@@ -127917,12 +127913,12 @@ daO
 ayJ
 bBW
 eBl
-esW
+esU
 ccB
 ccB
 ccB
-kJk
-yll
+ccB
+dhi
 eBl
 bBQ
 gBK
@@ -163676,7 +163672,7 @@ jgX
 cFv
 haf
 snT
-dFn
+snT
 dFn
 sHg
 cFv

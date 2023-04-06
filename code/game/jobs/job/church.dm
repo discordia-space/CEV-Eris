@@ -165,8 +165,8 @@
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
 	//alt_titles = list("Custodian","Sanitation Technician")
@@ -213,8 +213,8 @@
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
 	//alt_titles = list("NeoTheology Initiate","NeoTheology Novice")
@@ -226,7 +226,7 @@
 
 	stat_modifiers = list(
 		STAT_VIG = 10,
-		STAT_TGH = 15,
+		STAT_TGH = 10,
 		STAT_ROB = 15,
 		STAT_COG = 10,
 	)
@@ -235,13 +235,14 @@
 		CRUCIFORM_COMMON
 	)
 
-	description = "You are the Neophyte, this is a placeholder.<br>\
+	description = "You are the Neophyte in the process of initiatiation into service in the Church of NeoTheology.<br>\
 	<br>\
-	This is a placeholder too.<br>\
+	As per your initiation, you are tasked with doing the dirty work. Prove your worth.<br>\
 	<br>\
-	And his is a placeholder as well."
+	You are not yet trusted with the sacred duties of operating the holy machines of the church. Special circumstances may change this."
 
-	duties = "Another placeholder.<br>\
+	duties = "Find materials and salvage.<br>\
+	Earn the favor of the clergy.<br>\
 	Serve the faith."
 
 	setup_restricted = TRUE

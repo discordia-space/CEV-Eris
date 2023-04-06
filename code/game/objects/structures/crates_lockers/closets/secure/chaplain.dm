@@ -32,13 +32,13 @@
 	new /obj/item/tool/knife/dagger/nt(src)
 	new /obj/item/storage/box/ids(src)
 
-/obj/structure/closet/secure_closet/personal/custodial
+/obj/structure/closet/secure_closet/custodial
 	name = "custodial closet"
 	desc = "A storage unit for purifying clothes and gear."
 	req_access = list(access_nt_custodian)
 	icon_state = "custodian"
 
-/obj/structure/closet/secure_closet/personal/custodial/populate_contents()
+/obj/structure/closet/secure_closet/custodial/populate_contents()
 	if(prob(25))
 		new /obj/item/storage/backpack/neotheology(src)
 	else if(prob(25))
@@ -73,13 +73,13 @@
 	new /obj/item/holyvacuum(src)
 	new /obj/item/clothing/shoes/jackboots/neotheology(src)
 
-/obj/structure/closet/secure_closet/personal/acolyte
+/obj/structure/closet/secure_closet/acolyte
 	name = "acolyte closet"
 	desc = "A closet for those that work with the machines of god."
 	req_access = list(access_nt_acolyte)
 	icon_state = "acolyte"
 
-/obj/structure/closet/secure_closet/personal/acolyte/populate_contents()
+/obj/structure/closet/secure_closet/acolyte/populate_contents()
 	if(prob(25))
 		new /obj/item/storage/backpack/neotheology(src)
 	else if(prob(25))
