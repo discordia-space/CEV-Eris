@@ -80,6 +80,10 @@
 /obj/item/stool,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/deepmaint)
+"K" = (
+/obj/landmark/corpse/hobo,
+/turf/simulated/floor/tiled/techmaint,
+/area/deepmaint)
 
 (1,1,1) = {"
 a
@@ -150,7 +154,7 @@ b
 b
 c
 o
-f
+K
 y
 l
 y

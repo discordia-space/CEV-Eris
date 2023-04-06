@@ -217,7 +217,6 @@
 	},
 /area/deepmaint)
 "aN" = (
-/obj/item/remains/human,
 /obj/spawner/pack/cloth,
 /obj/spawner/pack/cloth,
 /obj/spawner/gun/normal,
@@ -228,6 +227,7 @@
 	dir = 1;
 	pixel_y = -32
 	},
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
@@ -476,7 +476,8 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/item/remains/human,
+/obj/landmark/corpse/skeleton/maint,
+/obj/spawner/pack/gun_loot,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 "bA" = (
@@ -489,11 +490,11 @@
 /area/deepmaint)
 "bC" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/cloth,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
+/obj/structure/bed/chair/shuttle,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
@@ -518,11 +519,10 @@
 "bF" = (
 /obj/structure/bed/chair/shuttle,
 /obj/effect/decal/cleanable/blood,
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/cloth,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
@@ -530,6 +530,7 @@
 "bG" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/oil,
+/obj/structure/bed/chair/shuttle,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
@@ -537,11 +538,10 @@
 "bH" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
+/obj/structure/bed/chair/shuttle,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
@@ -577,11 +577,9 @@
 /area/deepmaint)
 "bM" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor7";
 	tag = "icon-cargofloor7"
@@ -609,9 +607,6 @@
 "bP" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/gun_loot,
 /obj/structure/closet/wall_mounted/emcloset{
@@ -621,16 +616,16 @@
 	dir = 1;
 	pixel_y = -32
 	},
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
 /area/deepmaint)
 "bQ" = (
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/gun_loot,
+/obj/effect/decal/cleanable/blood,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/deepmaint)
 "bR" = (
@@ -638,31 +633,30 @@
 	dir = 4;
 	pixel_x = -22
 	},
-/obj/structure/bed/chair/shuttle{
-	dir = 1;
-	icon_state = "shuttle_chair";
-	tag = "icon-shuttle_chair (NORTH)"
-	},
 /obj/effect/decal/cleanable/blood,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
 /area/deepmaint)
 "bS" = (
 /obj/effect/decal/cleanable/blood,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
 /area/deepmaint)
 "bT" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 1;
-	icon_state = "shuttle_chair";
-	tag = "icon-shuttle_chair (NORTH)"
-	},
 /obj/machinery/light,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
@@ -671,6 +665,9 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
@@ -679,6 +676,9 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
@@ -705,9 +705,9 @@
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 "nh" = (
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/turf/simulated/floor/tiled/dark/gray_platform,
+/obj/landmark/corpse/skeleton/maint,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/deepmaint)
 "tD" = (
 /obj/structure/table/standard,
@@ -725,6 +725,24 @@
 "Oi" = (
 /obj/item/stool,
 /turf/simulated/floor/tiled/dark/panels,
+/area/deepmaint)
+"RW" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "cargofloor1"
+	},
+/area/deepmaint)
+"VW" = (
+/obj/landmark/corpse/skeleton,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 
 (1,1,1) = {"
@@ -779,7 +797,7 @@ ab
 af
 af
 ax
-ax
+nh
 ax
 af
 af
@@ -807,7 +825,7 @@ aR
 ba
 af
 bl
-bl
+VW
 bl
 af
 ak
@@ -828,7 +846,7 @@ az
 aK
 aS
 bb
-ah
+af
 bl
 bs
 bl
@@ -951,7 +969,7 @@ af
 aq
 bH
 bJ
-bH
+RW
 bg
 af
 ab
@@ -1084,7 +1102,7 @@ aI
 ag
 bp
 af
-nh
+af
 ag
 aI
 aQ

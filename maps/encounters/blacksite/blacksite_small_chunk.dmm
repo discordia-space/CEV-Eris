@@ -85,7 +85,7 @@
 	dir = 4
 	},
 /obj/item/tool/sword/katana,
-/obj/item/remains,
+/obj/landmark/corpse/one_star,
 /turf/simulated/floor/tiled/derelict/white_red_edges/airless,
 /area/outpost/blacksite/small)
 "ds" = (
