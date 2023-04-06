@@ -186,7 +186,7 @@
 		/obj/item/clothing/suit/armor/vest/handmade/full,
 		/obj/item/clothing/suit/armor/flak,
 		/obj/item/clothing/suit/storage/vest,
-		null,//null is chance of not spawning,
+		null,//null is chance of not spawning
 		null,
 		null,
 		null,
