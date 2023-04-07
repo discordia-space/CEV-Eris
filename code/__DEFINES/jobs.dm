@@ -9,7 +9,7 @@
 #define JOBS_MOEBIUS "Moebius Biolab Officer","Moebius Doctor","Moebius Psychiatrist","Moebius Chemist","Moebius Paramedic","Moebius Bio-Engineer","Moebius Expedition Overseer","Moebius Scientist","Moebius Roboticist"
 #define JOBS_CARGO "Guild Merchant","Guild Technician","Guild Miner","Guild Artist"
 #define JOBS_CIVILIAN "Club Manager","Club Worker",ASSISTANT_TITLE
-#define JOBS_CHURCH	"NeoTheology Preacher","NeoTheology Acolyte","NeoTheology Agrolyte","NeoTheology Custodian","NeoTheology Neophyte"
+#define JOBS_CHURCH	"NeoTheology Preacher","NeoTheology Acolyte","NeoTheology Agrolyte","NeoTheology Custodian"
 #define JOBS_NONHUMAN "AI","Robot","pAI"
 #define CREDITS "&cent;"
 #define CREDS "&cent;"
