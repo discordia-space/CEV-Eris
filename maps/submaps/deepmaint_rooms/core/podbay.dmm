@@ -211,22 +211,15 @@
 	},
 /area/deepmaint)
 "aM" = (
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor7";
 	tag = "icon-cargofloor7"
 	},
 /area/deepmaint)
 "aN" = (
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/gun/normal,
-/obj/structure/closet/wall_mounted/emcloset{
-	pixel_y = 32
-	},
-/obj/structure/closet/wall_mounted/emcloset{
-	dir = 1;
-	pixel_y = -32
-	},
 /obj/landmark/corpse/skeleton/maint,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
