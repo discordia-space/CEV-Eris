@@ -50,14 +50,16 @@
 
 /datum/component/jamming/Destroy()
 	if(active)
-		var/list/affectedLevels = getAffectedLevels(get_turf(owner):z)
+		var/turf/ownerTurf = get_turf(owner)
+		var/list/affectedLevels = getAffectedLevels(ownerTurf.z)
 		for(var/i = affectedLevels[1], i <= affectedLevels[2]; i++)
 			SSjamming.active_jammers[i] -= src
 	owner = null
 	..()
 
 /datum/component/jamming/proc/Toggle()
-	var/list/affectedLevels = getAffectedLevels(get_turf(owner):z)
+	var/turf/ownerTurf = get_turf(owner)
+	var/list/affectedLevels = getAffectedLevels(ownerTurf.z)
 	if(active)
 		for(var/i = affectedLevels[1], i <= affectedLevels[2]; i++)
 			SSjamming.active_jammers[i] -= src
