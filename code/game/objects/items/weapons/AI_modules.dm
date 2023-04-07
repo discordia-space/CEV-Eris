@@ -406,7 +406,7 @@ AI MODULES
 	name = "\improper 'Chefbot' core AI module"
 	desc = "A 'Chefbot' Core AI Module: 'Reconfigures the AI's core laws.'"
 	origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
-	laws = new/datum/ai_laws/chefbot
+	laws = new/datum/ai_laws/chefbot()
 
 /******************** TravelGuide ********************/
 
