@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(jamming)
 	name = "Jamming"
 	init_order = INIT_ORDER_JAMMING
 	flags = SS_NO_FIRE
-	var/list/datum/component/jamming/active_jammers
+	var/list/active_jammers
 
 /datum/controller/subsystem/jamming/Initialize(start_timeofday)
 	active_jammers = new /list(world.maxz)
