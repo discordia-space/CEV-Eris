@@ -43032,7 +43032,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/landmark/join/start/neophyte,
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "bYm" = (
@@ -105407,7 +105406,6 @@
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "peX" = (
-/obj/landmark/join/start/neophyte,
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "pfh" = (
