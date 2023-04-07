@@ -70,7 +70,7 @@
 	return
 
 // Gets the top-atom that contains us, doesn't care about how deeply nested a item is
-/atom/proc/getContainingMovable()
+/atom/proc/getContainingAtom()
 	var/atom/checking = src
 	while(!isturf(checking.loc) && !isnull(checking.loc))
 		checking = checking.loc
@@ -123,7 +123,10 @@
 
 	// Container change
 	if((!is_origin_turf || !is_destination_turf) || ((!is_origin_turf && !is_destination_turf) && (origin != destination)))
-		SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, getContainingMovable(), origin)
+		var/newContainer = getContainingAtom()
+		var/oldContainer = origin.getContainingAtom()
+		if(newContainer != oldContainer)
+			SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, newContainer , oldContainer)
 	/*
 	// Only update plane if we're located on map
 	if(is_destination_turf)
@@ -418,7 +421,7 @@
 		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
 		/* Inserting into contents uses only forceMove
 		if(!isturf(oldloc) || !isturf(loc))
-			SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, getContainingMovable())
+			SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, getContainingAtom())
 		*/
 
 // Wrapper of step() that also sets glide size to a specific value.
