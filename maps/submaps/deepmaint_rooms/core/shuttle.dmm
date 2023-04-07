@@ -1,5 +1,73 @@
-"a" = ()
+"aE" = (/turf/space,/area/deepmaint)
+"cy" = (/obj/machinery/door/airlock/maintenance{frequency = 1380; icon_state = "door_locked"; id_tag = "supply_shuttle_hatch"; locked = 1; name = "Shuttle Hatch"; req_access = list(13)},/obj/machinery/conveyor/east{id = "QMLoad"},/turf/simulated/shuttle/floor{icon_state = "cargofloor1"; name = "Cargo Transport Shuttle (A5)"},/area/deepmaint)
+"dI" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall5"},/area/deepmaint)
+"fm" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall35"},/turf/space,/area/deepmaint)
+"gu" = (/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/deepmaint)
+"gY" = (/obj/machinery/door/airlock/maintenance{frequency = 1380; icon_state = "door_locked"; id_tag = "supply_shuttle_hatch"; locked = 1; name = "Shuttle Hatch"; req_access = list(13)},/obj/machinery/conveyor/west{id = "QMLoad2"},/turf/simulated/shuttle/floor{icon_state = "cargofloor1"; name = "Cargo Transport Shuttle (A5)"},/area/deepmaint)
+"hh" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall23"},/turf/space,/area/deepmaint)
+"hX" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall20"},/area/deepmaint)
+"ij" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall15"},/area/deepmaint)
+"ir" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall29"},/area/deepmaint)
+"jc" = (/turf/simulated/shuttle/floor{icon_state = "cargofloor3"; name = "Cargo Transport Shuttle (A5)"},/area/deepmaint)
+"mu" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall2"},/area/deepmaint)
+"mL" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall27"},/area/deepmaint)
+"nX" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall40"},/turf/space,/area/deepmaint)
+"qL" = (/turf/simulated/shuttle/wall/cargo,/area/deepmaint)
+"rl" = (/turf/simulated/shuttle/floor{icon_state = "cargofloor6"; name = "Cargo Transport Shuttle (A5)"},/area/deepmaint)
+"rJ" = (/obj/machinery/conveyor/west{id = "QMLoad2"},/turf/simulated/shuttle/floor{icon_state = "cargofloor1"; name = "Cargo Transport Shuttle (A5)"},/area/deepmaint)
+"si" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall3"},/area/deepmaint)
+"sE" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall16"},/turf/space,/area/deepmaint)
+"tT" = (/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/turf/simulated/shuttle/floor{icon_state = "cargofloor1"; name = "Cargo Transport Shuttle (A5)"},/area/deepmaint)
+"tV" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall38"},/turf/space,/area/deepmaint)
+"uW" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall28"},/area/deepmaint)
+"vg" = (/obj/machinery/embedded_controller/radio/simple_docking_controller{frequency = 1380; id_tag = "supply_shuttle"; pixel_x = 0; pixel_y = 25; req_one_access = list(13,31); tag_door = "supply_shuttle_hatch"},/turf/simulated/shuttle/floor{icon_state = "cargofloor1"; name = "Cargo Transport Shuttle (A5)"},/area/deepmaint)
+"wG" = (/obj/machinery/door/airlock/maintenance{frequency = 1380; icon_state = "door_locked"; id_tag = "supply_shuttle_hatch"; locked = 1; name = "Shuttle Hatch"; req_access = list(13)},/turf/simulated/shuttle/floor{icon_state = "cargofloor1"; name = "Cargo Transport Shuttle (A5)"},/area/deepmaint)
+"Aw" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall39"},/turf/space,/area/deepmaint)
+"AA" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall30"},/area/deepmaint)
+"Br" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall17"},/area/deepmaint)
+"BK" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall26"},/turf/space,/area/deepmaint)
+"BM" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall6"},/area/deepmaint)
+"Cw" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall41"},/turf/space,/area/deepmaint)
+"EI" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall4"},/area/deepmaint)
+"EK" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall11"},/area/deepmaint)
+"Id" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall37"},/turf/space,/area/deepmaint)
+"IU" = (/obj/machinery/conveyor/east{id = "QMLoad"},/turf/simulated/shuttle/floor{icon_state = "cargofloor1"; name = "Cargo Transport Shuttle (A5)"},/area/deepmaint)
+"JJ" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall25"},/area/deepmaint)
+"Kh" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall21"},/turf/space,/area/deepmaint)
+"Kp" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall10"},/area/deepmaint)
+"KK" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall12"},/turf/space,/area/deepmaint)
+"Lm" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall8"},/turf/space,/area/deepmaint)
+"Mr" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall24"},/area/deepmaint)
+"MX" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall32"},/area/deepmaint)
+"Oc" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall36"},/turf/space,/area/deepmaint)
+"OT" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall7"},/area/deepmaint)
+"QK" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall33"},/area/deepmaint)
+"RD" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall34"},/turf/space,/area/deepmaint)
+"Sd" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall14"},/turf/space,/area/deepmaint)
+"Tq" = (/obj/machinery/light{dir = 8},/turf/simulated/shuttle/floor{icon_state = "cargofloor1"; name = "Cargo Transport Shuttle (A5)"},/area/deepmaint)
+"Vr" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall9"},/turf/space,/area/deepmaint)
+"WC" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall31"},/area/deepmaint)
+"WE" = (/obj/effect/shuttle_landmark/supply/centcom,/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall18"},/area/deepmaint)
+"XK" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall13"},/area/deepmaint)
+"YE" = (/turf/simulated/shuttle/floor{icon_state = "cargofloor1"; name = "Cargo Transport Shuttle (A5)"},/area/deepmaint)
+"YI" = (/turf/simulated/shuttle/wall/cargo{icon_state = "cargoshwall22"},/area/deepmaint)
+"YS" = (/turf/simulated/shuttle/floor{icon_state = "cargofloor5"; name = "Cargo Transport Shuttle (A5)"},/area/deepmaint)
+"Ze" = (/obj/structure/shuttle_part/cargo{icon_state = "cargoshwall19"},/turf/space,/area/deepmaint)
 
 (1,1,1) = {"
-a
+aEaEaEaEaEaEaEaEaEaEaEaEaEaEaE
+aEaEguguguguguguguguguguaEaEaE
+aEaEguLmOTBMdIEIsimuqLguaEaEaE
+aEaEguVrKptTYEvgYEYEEKguaEaEaE
+aEaEguKKXKYEYEYEYEIUcyguaEaEaE
+aEaEguSdijYEYEYEYEjcwGguaEaEaE
+aEaEgusEBrYEYEYEYEYEWEguaEaEaE
+aEaEguZehXYEYEYEYEjcwGguaEaEaE
+aEaEguKhYITqYEYSYErJgYguaEaEaE
+aEaEguhhMrYEYErlYEYEJJguaEaEaE
+aEaEguBKmLuWirAAWCMXQKguaEaEaE
+aEaEguRDfmOcIdtVAwnXCwguaEaEaE
+aEaEguguguguguguguguguguaEaEaE
+aEaEguguguguguguguguguguaEaEaE
+aEaEaEaEaEaEaEaEaEaEaEaEaEaEaE
 "}
