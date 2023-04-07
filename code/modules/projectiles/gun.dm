@@ -229,21 +229,21 @@
 		item_state_slots[slot_s_store_str]= "back"		+ state
 
 /obj/item/gun/update_icon()
-    if(wielded_item_state)
-        if(icon_contained)//If it has it own icon file then we want to pull from that.
-            if(wielded)
-                item_state_slots[slot_l_hand_str] = "lefthand"  + wielded_item_state
-                item_state_slots[slot_r_hand_str] = "righthand" + wielded_item_state
-            else
-                item_state_slots[slot_l_hand_str] = "lefthand"
-                item_state_slots[slot_r_hand_str] = "righthand"
-        else//Otherwise we can just pull from the generic left and right hand icons.
-            if(wielded_icon)
-                item_state_slots[slot_l_hand_str] = wielded_item_state
-                item_state_slots[slot_r_hand_str] = wielded_item_state
-            else
-                item_state_slots[slot_l_hand_str] = initial(item_state)
-                item_state_slots[slot_r_hand_str] = initial(item_state)
+	if(wielded_item_state)
+		if(icon_contained)//If it has it own icon file then we want to pull from that.
+			if(wielded)
+				item_state_slots[slot_l_hand_str] = "lefthand"  + wielded_item_state
+				item_state_slots[slot_r_hand_str] = "righthand" + wielded_item_state
+			else
+				item_state_slots[slot_l_hand_str] = "lefthand"
+			item_state_slots[slot_r_hand_str] = "righthand"
+		else//Otherwise we can just pull from the generic left and right hand icons.
+			if(wielded_icon)
+				item_state_slots[slot_l_hand_str] = wielded_item_state
+				item_state_slots[slot_r_hand_str] = wielded_item_state
+			else
+				item_state_slots[slot_l_hand_str] = initial(item_state)
+				item_state_slots[slot_r_hand_str] = initial(item_state)
 
 
 //Checks whether a given mob can use the gun
