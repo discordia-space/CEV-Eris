@@ -1,0 +1,4 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - config: zlevel shooting is enabled by default

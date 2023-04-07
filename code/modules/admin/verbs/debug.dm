@@ -50,7 +50,7 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 	else
 		alert("Invalid mob")
 
-/client/proc/cmd_admin_animalize(var/mob/M in SSmobs.mob_list)
+/client/proc/cmd_admin_animalize(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 	set category = "Fun"
 	set name = "Make Simple Animal"
 
@@ -204,7 +204,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG, FALSE)
 	log_admin("[key_name(src)] has remade the powernet. makepowernets() called.")
 	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.", 0)
 
-/client/proc/cmd_admin_grantfullaccess(var/mob/M in SSmobs.mob_list)
+/client/proc/cmd_admin_grantfullaccess(var/mob/M in SShumans.mob_list)
 	set category = "Admin"
 	set name = "Grant Full Access"
 
@@ -229,7 +229,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG, FALSE)
 	log_admin("[key_name(src)] has granted [M.key] full access.")
 	message_admins("\blue [key_name_admin(usr)] has granted [M.key] full access.", 1)
 
-/client/proc/cmd_assume_direct_control(var/mob/M in SSmobs.mob_list)
+/client/proc/cmd_assume_direct_control(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 	set category = "Admin"
 	set name = "Assume direct control"
 	set desc = "Direct intervention"
@@ -421,7 +421,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_mob_lists, R_DEBUG, FALSE)
 		if("Admins")
 			to_chat(usr, jointext(admins,","))
 		if("Mobs")
-			to_chat(usr, jointext(SSmobs.mob_list,","))
+			to_chat(usr, jointext(SSmobs.mob_list | SShumans.mob_list,","))
 		if("Living Mobs")
 			to_chat(usr, jointext(GLOB.living_mob_list,","))
 		if("Dead Mobs")

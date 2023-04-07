@@ -1,0 +1,4 @@
+author: Trilbyspaceclone
+delete-after: true
+changes:
+  - bugfix: Ports over SoJ fix to deconstruction prayer exploit

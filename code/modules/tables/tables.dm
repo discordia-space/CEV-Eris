@@ -90,10 +90,22 @@ var/list/custom_table_appearance = list(
 	// reset color/alpha, since they're set for nice map previews
 	color = "#ffffff"
 	alpha = 255
+
+	update_material()
+
+	// If it was flipped with var-editing, we want to be able to put this back
+	if(flipped)
+		// All the changes from flip() without throwing items around
+		if(dir != NORTH)
+			layer = 5
+		climbable = FALSE
+		flags |= ON_BORDER
+		verbs -=/obj/structure/table/verb/do_flip
+		verbs +=/obj/structure/table/proc/do_put
+
 	update_connections(1)
 	update_icon()
 	update_desc()
-	update_material()
 
 /obj/structure/table/Destroy()
 	material = null

@@ -1,0 +1,5 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - rscadd: Added separate subsystem for humans
+  - code_imp: Mobs use Initialize() instead of New()
