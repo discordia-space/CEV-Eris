@@ -87,7 +87,7 @@
 	if(T)
 		var/list/hear = hear(7, T)
 
-		for(var/mob/M in SSmobs.mob_list)
+		for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 			if(M.locs.len && (M.locs[1] in hear))
 				listening |= M
 			else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)

@@ -255,6 +255,7 @@
 #include "code\controllers\subsystems\vote.dm"
 #include "code\controllers\subsystems\wireless.dm"
 #include "code\controllers\subsystems\initialization\character_setup.dm"
+#include "code\controllers\subsystems\processing\humans.dm"
 #include "code\controllers\subsystems\processing\mobs.dm"
 #include "code\controllers\subsystems\processing\nano.dm"
 #include "code\controllers\subsystems\processing\objs.dm"
