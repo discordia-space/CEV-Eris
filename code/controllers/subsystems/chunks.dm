@@ -1,6 +1,4 @@
-/*
-
-#define CHUNKID(x,y,size) round((((x - x%size) + (y - y%size) * world.maxx) / size ** 2), 1)
+#define CHUNKID(x,y,size) max(1,round((((x - x%size) + (y - y%size) * world.maxx) / size ** 2), 1))
 #define CHUNKSPERLEVEL(x,y,size) ((world.maxx * world.maxy) / size ** 2)
 #define CHUNKCOORDCHECK(x,y) (x > world.maxx || y > world.maxy || x < 0 || y < 0)
 /// This subsystem is meant for anything that should not be employing byond view() and is generally very constraining to keep track of
@@ -26,70 +24,12 @@ SUBSYSTEM_DEF(chunks)
 		chunk_list_by_zlevel[i] = new/list(CHUNKSPERLEVEL(world.maxx, world.maxy, chunk_size))
 		for(var/j = 1, j <= CHUNKSPERLEVEL(world.maxx, world.maxy, chunk_size), j++)
 			chunk_list_by_zlevel[i][j] = new /datum/chunk(src)
-	zlevel_toreference_to_mob = new/list(world.maxz)
-	for(var/i = 1; i <= world.maxz, i++)
-		zlevel_toreference_to_mob = new/list(0,0)
-	RegisterSignal(SSdcs, COMSIG_MOB_INITIALIZE, PROC_REF(onMobNew))
+	RegisterSignal(SSdcs, COMSIG_MOB_INITIALIZED, PROC_REF(onMobNew))
 	return ..()
-/*
-/datum/controller/subsystem/chunks/proc/addToReferenceTracking(mob/target)
-	zlevel_toreference_to_mob[target.z][target.getContainingAtom()] += target
 
-/datum/controller/subsystem/chunks/proc/removeFromReferenceTracking(mob/target)
-	zlevel_to_reference_to_mob[target.z][target.getContainingAtom()] -= target
-*/
-
-/datum/controller/subsystem/chunks/proc/onContainerization(mob/containered, atom/movable/container, atom/movable/oldContainer)
+/datum/controller/subsystem/chunks/proc/onMobNew(atom/signalSource, mob/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(oldContainer, list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_Z_CHANGED))
-	zlevel_to_reference_to_mob[containered.z][oldContainer] -= containered
-	RegisterSignal(container), COMSIG_MOVABLE_MOVED, PROC_REF(onMobMove)
-	RegisterSignal(container, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(onLevelChange))
-	zlevel_to_reference_to_mob[containered.z][container] += containered
-
-/datum/controller/subsystem/chunks/proc/onMobNew(mob/source)
-	SIGNAL_HANDLER
-	var/atom/movable/container = source.getContainingAtom()
-	RegisterSignal(source, COMSIG_PARENT_QDELETING, PROC_REF(removeMob))
-	RegisterSignal(container, COMSIG_MOVABLE_MOVED, PROC_REF(onMobMove))
-	RegisterSignal(container, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(onLevelChange))
-	RegisterSignal(source, COMSIG_ATOM_CONTAINERED, PROC_REF(onContainerization))
-	var/datum/chunk/chunk_reference = chunk_list_by_zlevel[container.z][CHUNKID(container.x, container.y, chunk_size)]
-	chunk_reference.mobs += source
-	zlevel_to_reference_to_mob[container.z][container] += source
-
-/datum/controller/subsystem/chunks/proc/onMobMove(atom/source, turf/oldloc, turf/newloc)
-	SIGNAL_HANDLER
-	if(CHUNKID(oldloc.x, oldloc.y, chunk_size) == CHUNKID(newloc.x, newloc.y, chunk_size))
-		return
-	var/list/mob/sourceMobs = zlevel_toreference_to_mob[source.z][source]
-	var/datum/chunk/chunk_reference = chunk_list_by_zlevel[source.z][CHUNKID(oldloc.x, oldloc.y, chunk_size)]
-	chunk_reference.mobs -= sourceMobs
-	// The new location has invalid coordinates , so lets get rid of them from the old chunk and not update to another one
-	if(CHUNKCOORDCHECK(newloc.x, newloc.y))
-		return
-	chunk_reference = chunk_list_by_zlevel[source.z][CHUNKID(newloc.x, newloc.y, chunk_size)]
-	chunk_reference.mobs += sourceMobs
-
-/datum/controller/subsyste/chunks/proc/onLevelChange(atom/source, oldLevel, newLevel)
-	SIGNAL_HANDLER
-	var/list/mob/sourceMobs = zlevel_toreference_to_mob[oldLevel][source]
-	zlevel_to_reference_to_mob[oldLevel] -= source
-	zlevel_to_reference_to_mob[newLevel] += source
-	zlevel_to_reference_to_mob[newLevel][source] = sourceMobs
-	if(CHUNKCOORDCHECK(source.x, source.y))
-		return
-	var/datum/chunk/chunk_reference = chunk_list_by_zlevel[oldLevel][CHUNKID(source.x, source.y, chunk_size)]
-	chunk_reference.mobs -= sourceMobs
-	chunk_reference = chunk_list_by_zlevel[newLevel][CHUNKID(source.x, source.y, chunk_size)]
-	chunk_reference.mobs += sourceMobs
-
-
-/datum/controller/subsystem/chunks/proc/removeMob(mob/source)
-	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
-	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
-
+	source.InitiateChunkTracking()
 
 // Get mobs in range using chunks
 /proc/getMobsInRangeChunked(atom/source, range, aliveonly = FALSE)
@@ -123,22 +63,62 @@ SUBSYSTEM_DEF(chunks)
 				continue
 			. += poss_mob
 
-/mob/proc/chunkOnMove(atom/source, oldLocation , newLocation)
+/mob/proc/chunkOnMove(atom/source, atom/oldLocation, atom/newLocation)
 	SIGNAL_HANDLER
+	if(CHUNKID(oldLocation.x, oldLocation.y, SSchunks.chunk_size) == CHUNKID(newLocation.x, newLocation.y, SSchunks.chunk_size))
+		return
+	var/datum/chunk/chunk_reference = SSchunks.chunk_list_by_zlevel[oldLocation.z][CHUNKID(oldLocation.x, oldLocation.y, SSchunks.chunk_size)]
+	chunk_reference.mobs -= src
+	// The new location has invalid coordinates , so lets get rid of them from the old chunk and not update to another one
+	if(CHUNKCOORDCHECK(newLocation.x, newLocation.y))
+		return
+	// Don't bother with new location coordinates, faster to acces local ones which are also set
+	chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y, SSchunks.chunk_size)]
+	chunk_reference.mobs += src
 
-/mob/proc/chunkOnContainerization(atom/source, newContainer , oldContainer)
+/mob/proc/chunkOnContainerization(atom/source, atom/newContainer , atom/oldContainer)
 	SIGNAL_HANDLER
+	UnregisterSignal(oldContainer , list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_Z_CHANGED))
+	RegisterSignal(newContainer, COMSIG_MOVABLE_MOVED, PROC_REF(chunkOnMove))
+	RegisterSignal(newContainer, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(chunkOnLevelChange))
 
 /mob/proc/chunkOnLevelChange(atom/source, oldLevel, newLevel)
 	SIGNAL_HANDLER
+	if(CHUNKCOORDCHECK(x,y))
+		return
+	var/datum/chunk/chunk_reference = SSchunks.chunk_list_by_zlevel[oldLevel][CHUNKID(x, y, SSchunks.chunk_size)]
+	chunk_reference.mobs -= src
+	chunk_reference = SSchunks.chunk_list_by_zlevel[newLevel][CHUNKID(x, y, SSchunks.chunk_size)]
+	chunk_reference.mobs += src
 
-// This is done by the mob itself because keeping track of them with referecen solving is trash and unefficient
+/mob/proc/chunkClearSelf(atom/source)
+	SIGNAL_HANDLER
+	var/atom/container = getContainingAtom()
+	var/datum/chunk/chunk_reference = SSchunks.chunk_list_by_zlevel[container.z][CHUNKID(container.x, container.y, SSchunks.chunk_size)]
+	chunk_reference.mobs -= src
+
+// This is done by the mob itself because keeping track of them with reference solving is trash and unefficient
+// Especially resolving references between container > contained mob to update X mob's chunk
 // TGMC Minimaps are a good example
 /mob/proc/InitiateChunkTracking()
 	SIGNAL_HANDLER
+	// No
+	if(isnewplayer(src))
+		return
 	var/atom/highestContainer = getContainingAtom()
+	if(highestContainer.z == 0)
+		log_debug("SSchunks : Mob initialized with the container : [highestContainer] which has its z-level set to 0. This mob has not been registered.")
+		return
 	RegisterSignal(highestContainer, COMSIG_MOVABLE_MOVED, PROC_REF(chunkOnMove))
 	RegisterSignal(highestContainer, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(chunkOnLevelChange))
 	RegisterSignal(src, COMSIG_ATOM_CONTAINERED, PROC_REF(chunkOnContainerization))
-*/
+	RegisterSignal(src, COMSIG_PARENT_QDELETING, PROC_REF(chunkClearSelf))
+	var/datum/chunk/chunk_reference = SSchunks.chunk_list_by_zlevel[highestContainer.z][CHUNKID(highestContainer.x, highestContainer.y, SSchunks.chunk_size)]
+	chunk_reference.mobs += src
+
+/mob/proc/wnm(range)
+	var/list/atom/mobz = getMobsInRangeChunked(src, range, FALSE)
+	message_admins("returned  a list of [length(mobz)]")
+	for(var/atom/thing in mobz)
+		message_admins("[thing]")
 

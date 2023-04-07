@@ -125,7 +125,7 @@
 	if((!is_origin_turf || !is_destination_turf) || ((!is_origin_turf && !is_destination_turf) && (origin != destination)))
 		var/newContainer = getContainingAtom()
 		var/oldContainer
-		if(is_origin_turf)
+		if(is_origin_turf || origin == null)
 			// We are our own top-most container
 			oldContainer = src
 		else
