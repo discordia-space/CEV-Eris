@@ -501,18 +501,8 @@
 /obj/spawner/junk,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
-"hJ" = (
-/obj/structure/table/standard{
-	dir = 8;
-	flipped = 1;
-	name = "plastic table frame"
-	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned_fortress)
-"ln" = (
-/obj/machinery/computer/atmos_alert{
-	dir = 4
-	},
+"hf" = (
+/obj/landmark/corpse/skeleton/fortress,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "mH" = (
@@ -521,12 +511,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
-"nb" = (
-/obj/landmark/corpse/skeleton/fortress,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned_fortress)
-"rC" = (
-/obj/spawner/gun/shotgun,
+"pq" = (
+/obj/structure/table/standard{
+	dir = 8;
+	flipped = 1;
+	name = "plastic table frame"
+	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "zy" = (
@@ -547,6 +537,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
+"PL" = (
+/obj/spawner/gun/shotgun,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
 "Ro" = (
 /obj/spawner/gun/normal,
 /turf/simulated/floor/tiled,
@@ -558,6 +552,12 @@
 	},
 /obj/structure/sign/directions/medical{
 	pixel_y = 25
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"Yu" = (
+/obj/machinery/computer/atmos_alert{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
@@ -20063,7 +20063,7 @@ ab
 ab
 ac
 aS
-hJ
+pq
 aS
 ac
 ab
@@ -23298,7 +23298,7 @@ bp
 bp
 bp
 AN
-rC
+PL
 bp
 br
 ac
@@ -23311,7 +23311,7 @@ bp
 bp
 AN
 bp
-nb
+hf
 bp
 ac
 ab
@@ -23702,7 +23702,7 @@ bp
 bp
 bp
 AN
-nb
+hf
 bp
 bt
 ac
@@ -23912,8 +23912,8 @@ ac
 aw
 aw
 aw
-hJ
-hJ
+pq
+pq
 aw
 aw
 bp
@@ -24317,7 +24317,7 @@ bp
 bp
 bp
 bp
-nb
+hf
 bp
 bp
 bp
@@ -24524,7 +24524,7 @@ bp
 bp
 bp
 bp
-nb
+hf
 ac
 ab
 ab
@@ -24718,12 +24718,12 @@ ab
 ac
 ac
 ac
-hJ
+pq
 bp
-hJ
+pq
 ac
 bp
-ln
+Yu
 bp
 ac
 ac
@@ -24920,7 +24920,7 @@ ab
 ac
 bC
 bp
-nb
+hf
 bp
 bp
 aw
@@ -25530,9 +25530,9 @@ bp
 bp
 bp
 aw
-hJ
-hJ
-hJ
+pq
+pq
+pq
 ac
 ac
 ac
@@ -25921,7 +25921,7 @@ bp
 bp
 ac
 aS
-hJ
+pq
 aS
 ac
 ab
@@ -26730,7 +26730,7 @@ bp
 ac
 bp
 bp
-nb
+hf
 ac
 ab
 ab
