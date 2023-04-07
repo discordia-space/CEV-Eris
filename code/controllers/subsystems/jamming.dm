@@ -14,13 +14,9 @@ SUBSYSTEM_DEF(jamming)
 	. = ..()
 
 /datum/controller/subsystem/jamming/proc/IsPositionJammed(turf/location, signalStrength)
-	var/distance = 0
-	var/radius = 0
-	var/turf/tempRef = null
 	for(var/datum/component/jamming/jammer as anything in active_jammers[location.z])
-		distance = get_dist_euclidian(jammer.owner, location)
-		tempRef = get_turf(jammer.owner)
-		radius = jammer.radius - abs((tempRef.z - location.z) * jammer.z_reduction)
+		var/distance = get_dist_euclidian(jammer.owner, location)
+		var/radius = jammer.radius - abs((jammer.highest_container.z - location.z) * jammer.z_reduction)
 		// incase its  multi-Z jammer with distance reduction
 		if(distance > radius)
 			continue
