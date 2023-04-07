@@ -422,4 +422,4 @@ AI MODULES
 	name = "\improper 'Friendbot' core AI module"
 	desc = "A 'Friendbot' Core AI Module: 'Reconfigures the AI's core laws.'"
 	origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
-	laws = new/datum/ai_laws/friendbot
+	laws = new/datum/ai_laws/friendbot()
