@@ -501,13 +501,7 @@
 /obj/spawner/junk,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
-"mH" = (
-/obj/structure/table/standard{
-	name = "plastic table frame"
-	},
-/turf/simulated/floor/plating,
-/area/outpost/abandoned_fortress)
-"pt" = (
+"hJ" = (
 /obj/structure/table/standard{
 	dir = 8;
 	flipped = 1;
@@ -515,11 +509,24 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
-"zl" = (
+"ln" = (
+/obj/machinery/computer/atmos_alert{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"mH" = (
 /obj/structure/table/standard{
-	flipped = 1;
 	name = "plastic table frame"
 	},
+/turf/simulated/floor/plating,
+/area/outpost/abandoned_fortress)
+"nb" = (
+/obj/landmark/corpse/skeleton/fortress,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"rC" = (
+/obj/spawner/gun/shotgun,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "zy" = (
@@ -532,20 +539,6 @@
 	flipped = 1;
 	name = "plastic table frame"
 	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned_fortress)
-"Cj" = (
-/obj/machinery/computer/atmos_alert{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned_fortress)
-"GG" = (
-/obj/landmark/corpse/skeleton/fortress,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned_fortress)
-"Ke" = (
-/obj/spawner/gun/shotgun,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "Of" = (
@@ -20070,7 +20063,7 @@ ab
 ab
 ac
 aS
-pt
+hJ
 aS
 ac
 ab
@@ -21693,7 +21686,7 @@ bp
 bp
 bq
 bp
-zl
+AN
 bp
 bp
 bq
@@ -23305,7 +23298,7 @@ bp
 bp
 bp
 AN
-Ke
+rC
 bp
 br
 ac
@@ -23318,7 +23311,7 @@ bp
 bp
 AN
 bp
-GG
+nb
 bp
 ac
 ab
@@ -23709,7 +23702,7 @@ bp
 bp
 bp
 AN
-GG
+nb
 bp
 bt
 ac
@@ -23919,8 +23912,8 @@ ac
 aw
 aw
 aw
-pt
-pt
+hJ
+hJ
 aw
 aw
 bp
@@ -24324,7 +24317,7 @@ bp
 bp
 bp
 bp
-GG
+nb
 bp
 bp
 bp
@@ -24531,7 +24524,7 @@ bp
 bp
 bp
 bp
-GG
+nb
 ac
 ab
 ab
@@ -24725,12 +24718,12 @@ ab
 ac
 ac
 ac
-pt
+hJ
 bp
-pt
+hJ
 ac
 bp
-Cj
+ln
 bp
 ac
 ac
@@ -24927,7 +24920,7 @@ ab
 ac
 bC
 bp
-GG
+nb
 bp
 bp
 aw
@@ -25537,9 +25530,9 @@ bp
 bp
 bp
 aw
-pt
-pt
-pt
+hJ
+hJ
+hJ
 ac
 ac
 ac
@@ -25928,7 +25921,7 @@ bp
 bp
 ac
 aS
-pt
+hJ
 aS
 ac
 ab
@@ -26737,7 +26730,7 @@ bp
 ac
 bp
 bp
-GG
+nb
 ac
 ab
 ab
