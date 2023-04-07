@@ -65,21 +65,22 @@
 		"Yellow"		=	/obj/item/clothing/shoes/color/yellow,
 		"Green"			=	/obj/item/clothing/shoes/color/green,
 		"Blue"			=	/obj/item/clothing/shoes/color/blue,
-		"Purple"		=	/obj/item/clothing/shoes/color/purple,
+		"Purple"		=	/obj/item/clothing/shoes/color/purple
 	)
 	gear_tweaks += new /datum/gear_tweak/path(shoes)
 
-/datum/gear/shoes/sneakerspurple
-	display_name = "purple sneakers"
-	path = /obj/item/clothing/shoes/sneakerspurple
-
-/datum/gear/shoes/sneakersblue
-	display_name = "blue sneakers"
-	path = /obj/item/clothing/shoes/sneakersblue
-
-/datum/gear/shoes/sneakersred
-	display_name = "red sneakers"
+/datum/gear/shoes/sneaker_colors
+	display_name = "sneakers, color presets"
 	path = /obj/item/clothing/shoes/sneakersred
+
+/datum/gear/shoes/sneaker_colors/New()
+	..()
+	var/sneaker_colors = list(
+		"Red" 		=	 /obj/item/clothing/shoes/sneakersred,
+		"Blue" 		=	 /obj/item/clothing/shoes/sneakersblue,
+		"Purple"	=	 /obj/item/clothing/shoes/sneakerspurple
+	)
+	gear_tweaks += new /datum/gear_tweak/path(sneaker_colors)
 
 /datum/gear/shoes/spurs
 	display_name = "spurs"
