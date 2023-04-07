@@ -84,7 +84,7 @@
 	init_recoil = RIFLE_RECOIL(1)
 	spawn_tags = SPAWN_TAG_FS_ENERGY
 
-/obj/item/gun/energy/plasma/cassad/update_icon(var/ignore_inhands)
+/obj/item/gun/energy/plasma/cassad/update_icon(ignore_inhands)
 	..()
 	if(charge_meter)
 		var/ratio = 0
