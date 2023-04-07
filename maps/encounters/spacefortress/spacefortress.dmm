@@ -501,8 +501,14 @@
 /obj/spawner/junk,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
-"hf" = (
-/obj/landmark/corpse/skeleton/fortress,
+"fL" = (
+/obj/spawner/gun/shotgun,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"lE" = (
+/obj/machinery/computer/atmos_alert{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "mH" = (
@@ -511,12 +517,8 @@
 	},
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
-"pq" = (
-/obj/structure/table/standard{
-	dir = 8;
-	flipped = 1;
-	name = "plastic table frame"
-	},
+"xC" = (
+/obj/landmark/corpse/skeleton/fortress,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "zy" = (
@@ -531,14 +533,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
-"Of" = (
+"If" = (
 /obj/structure/table/standard{
+	dir = 8;
+	flipped = 1;
 	name = "plastic table frame"
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
-"PL" = (
-/obj/spawner/gun/shotgun,
+"Of" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "Ro" = (
@@ -552,12 +558,6 @@
 	},
 /obj/structure/sign/directions/medical{
 	pixel_y = 25
-	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned_fortress)
-"Yu" = (
-/obj/machinery/computer/atmos_alert{
-	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
@@ -20063,7 +20063,7 @@ ab
 ab
 ac
 aS
-pq
+If
 aS
 ac
 ab
@@ -20266,7 +20266,7 @@ ab
 ac
 bp
 bp
-bp
+xC
 ac
 ab
 ab
@@ -23298,7 +23298,7 @@ bp
 bp
 bp
 AN
-PL
+fL
 bp
 br
 ac
@@ -23311,7 +23311,7 @@ bp
 bp
 AN
 bp
-hf
+xC
 bp
 ac
 ab
@@ -23702,7 +23702,7 @@ bp
 bp
 bp
 AN
-hf
+xC
 bp
 bt
 ac
@@ -23912,8 +23912,8 @@ ac
 aw
 aw
 aw
-pq
-pq
+If
+If
 aw
 aw
 bp
@@ -24317,7 +24317,7 @@ bp
 bp
 bp
 bp
-hf
+xC
 bp
 bp
 bp
@@ -24524,7 +24524,7 @@ bp
 bp
 bp
 bp
-hf
+xC
 ac
 ab
 ab
@@ -24718,12 +24718,12 @@ ab
 ac
 ac
 ac
-pq
+If
 bp
-pq
+If
 ac
 bp
-Yu
+lE
 bp
 ac
 ac
@@ -24920,7 +24920,7 @@ ab
 ac
 bC
 bp
-hf
+xC
 bp
 bp
 aw
@@ -25530,9 +25530,9 @@ bp
 bp
 bp
 aw
-pq
-pq
-pq
+If
+If
+If
 ac
 ac
 ac
@@ -25921,7 +25921,7 @@ bp
 bp
 ac
 aS
-pq
+If
 aS
 ac
 ab
@@ -26730,7 +26730,7 @@ bp
 ac
 bp
 bp
-hf
+xC
 ac
 ab
 ab
