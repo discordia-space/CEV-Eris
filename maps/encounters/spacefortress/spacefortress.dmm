@@ -501,6 +501,12 @@
 /obj/spawner/junk,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
+"fb" = (
+/obj/machinery/computer/atmos_alert{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
 "mH" = (
 /obj/structure/table/standard{
 	name = "plastic table frame"
@@ -512,8 +518,7 @@
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "AN" = (
-/obj/structure/closet/l3closet/general,
-/obj/spawner/junk/low_chance,
+/obj/landmark/corpse/skeleton/fortress,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "Of" = (
@@ -533,6 +538,14 @@
 	},
 /obj/structure/sign/directions/medical{
 	pixel_y = 25
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"Xg" = (
+/obj/structure/table/standard{
+	dir = 8;
+	flipped = 1;
+	name = "plastic table frame"
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
@@ -20038,7 +20051,7 @@ ab
 ab
 ac
 aS
-bF
+Of
 aS
 ac
 ab
@@ -21650,7 +21663,7 @@ aS
 bj
 bp
 bp
-bF
+Of
 bp
 bp
 bp
@@ -21661,7 +21674,7 @@ bp
 bp
 bq
 bp
-bF
+Of
 bp
 bp
 bq
@@ -22866,7 +22879,7 @@ ab
 ab
 ac
 bp
-bp
+bq
 bp
 ac
 ab
@@ -23272,9 +23285,9 @@ bp
 bp
 bp
 bp
+Of
 bp
 bp
-br
 br
 ac
 bA
@@ -23286,7 +23299,7 @@ bp
 bp
 Of
 bp
-bM
+AN
 bp
 ac
 ab
@@ -23676,9 +23689,9 @@ bp
 bp
 bp
 bp
-bp
-bp
+Of
 AN
+bp
 bt
 ac
 bp
@@ -23887,8 +23900,8 @@ ac
 aw
 aw
 aw
-Of
-Of
+Xg
+Xg
 aw
 aw
 bp
@@ -24087,15 +24100,15 @@ ab
 ac
 bp
 bp
-Ro
+bp
 bp
 bN
+Ro
 bp
 bp
 bp
 bp
 bp
-bM
 ac
 ab
 ab
@@ -24287,12 +24300,12 @@ ab
 ab
 ab
 ac
+aX
 bp
 bp
-bM
 bp
 bp
-bM
+AN
 bp
 bp
 bp
@@ -24499,7 +24512,7 @@ bp
 bp
 bp
 bp
-bp
+AN
 ac
 ab
 ab
@@ -24693,12 +24706,12 @@ ab
 ac
 ac
 ac
+Xg
 bp
-bp
-bp
+Xg
 ac
 bp
-bp
+fb
 bp
 ac
 ac
@@ -24895,7 +24908,7 @@ ab
 ac
 bC
 bp
-bp
+AN
 bp
 bp
 aw
@@ -25505,9 +25518,9 @@ bp
 bp
 bp
 aw
-bp
-bp
-bp
+Xg
+Xg
+Xg
 ac
 ac
 ac
@@ -25704,10 +25717,10 @@ ac
 Of
 bp
 bp
-bp
+aX
 bp
 aw
-bp
+aX
 bp
 bp
 bp
@@ -25896,7 +25909,7 @@ bp
 bp
 ac
 aS
-bF
+Of
 aS
 ac
 ab
@@ -26705,7 +26718,7 @@ bp
 ac
 bp
 bp
-bM
+AN
 ac
 ab
 ab
