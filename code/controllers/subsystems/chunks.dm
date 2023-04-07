@@ -50,10 +50,10 @@ SUBSYSTEM_DEF(chunks)
 	for(var/chunkX = coordinates[1], chunkX <= coordinates[3], chunkX += CHUNK_SIZE)
 		for(var/chunkY = coordinates[2], chunkY <= coordinates[4], chunkY += CHUNK_SIZE)
 			chunkReference = SSchunks.chunk_list_by_zlevel[container.z][CHUNKID(chunkX, chunkY, CHUNK_SIZE)]
-			message_admins("SSchunks : checking chunk ID : [CHUNKID(chunkX, chunkY, CHUNK_SIZE)]")
-			message_admins("SSchunks : chunk ID coordinates x = [chunkX] y = [chunkY]]")
-			var/turf/target = locate(chunkX, chunkY, source.z)
-			target.color = COLOR_RED
+			///message_admins("SSchunks : checking chunk ID : [CHUNKID(chunkX, chunkY, CHUNK_SIZE)]")
+			///message_admins("SSchunks : chunk ID coordinates x = [chunkX] y = [chunkY]]")
+			///var/turf/target = locate(chunkX, chunkY, source.z)
+			///target.color = COLOR_RED
 			for(var/mob/mobToCheck as anything in chunkReference.mobs)
 				if(get_dist_euclidian(source, mobToCheck) < range)
 					returnValue += mobToCheck
@@ -95,15 +95,16 @@ SUBSYSTEM_DEF(chunks)
 
 // This is done by the mob itself because keeping track of them with reference solving is trash and unefficient
 // Especially resolving references between container > contained mob to update X mob's chunk
-// TGMC Minimaps are a good example
+// TGMC Minimaps are a good example (old ones they fixed their stuff)
 /mob/proc/InitiateChunkTracking()
 	SIGNAL_HANDLER
-	// No
+	// No to this!!
 	if(isnewplayer(src))
 		return
 	var/atom/highestContainer = getContainingAtom()
+	// Initalized in null space , needs custom handling after it gets moved. (Shouldnțt be handled by the SS)
 	if(highestContainer.z == 0)
-		log_debug("SSchunks : Mob initialized with the container : [highestContainer] which has its z-level set to 0. This mob has not been registered.")
+		log_debug("SSchunks : Mob initialized with the container : [highestContainer] which has its z-level coordinate set to 0. This mob has not been registered.")
 		return
 	RegisterSignal(highestContainer, COMSIG_MOVABLE_MOVED, PROC_REF(chunkOnMove))
 	RegisterSignal(highestContainer, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(chunkOnLevelChange))
@@ -112,9 +113,4 @@ SUBSYSTEM_DEF(chunks)
 	var/datum/chunk/chunk_reference = SSchunks.chunk_list_by_zlevel[highestContainer.z][CHUNKID(highestContainer.x, highestContainer.y, CHUNK_SIZE)]
 	chunk_reference.mobs += src
 
-/mob/proc/wnm(range)
-	var/list/atom/mobz = getMobsInRangeChunked(src, range, FALSE)
-	message_admins("returned  a list of [length(mobz)]")
-	for(var/atom/thing in mobz)
-		message_admins("[thing]")
 
