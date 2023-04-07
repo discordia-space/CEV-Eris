@@ -1,5 +1,3 @@
-/*
-
 #define CHUNKID(x,y,size) round((((x - x%size) + (y - y%size) * world.maxx) / size ** 2), 1)
 #define CHUNKSPERLEVEL(x,y,size) ((world.maxx * world.maxy) / size ** 2)
 #define CHUNKCOORDCHECK(x,y) (x > world.maxx || y > world.maxy || x < 0 || y < 0)
@@ -17,6 +15,7 @@ SUBSYSTEM_DEF(chunks)
 	init_order = INIT_ORDER_CHUNKS
 	flags = SS_NO_FIRE
 	var/list/datum/chunk/chunk_list_by_zlevel
+	var/list/zlevel_toreference_to_mob
 	// 8 x 8 tiles.
 	var/chunk_size = 8
 
@@ -33,10 +32,10 @@ SUBSYSTEM_DEF(chunks)
 	return ..()
 /*
 /datum/controller/subsystem/chunks/proc/addToReferenceTracking(mob/target)
-	zlevel_toreference_to_mob[target.z][target.getContainingAtom()] += target
+	zlevel_toreference_to_mob[target.z][target.getContainingMovable()] += target
 
 /datum/controller/subsystem/chunks/proc/removeFromReferenceTracking(mob/target)
-	zlevel_to_reference_to_mob[target.z][target.getContainingAtom()] -= target
+	zlevel_to_reference_to_mob[target.z][target.getContainingMovable()] -= target
 */
 
 /datum/controller/subsystem/chunks/proc/onContainerization(mob/containered, atom/movable/container, atom/movable/oldContainer)
@@ -49,7 +48,7 @@ SUBSYSTEM_DEF(chunks)
 
 /datum/controller/subsystem/chunks/proc/onMobNew(mob/source)
 	SIGNAL_HANDLER
-	var/atom/movable/container = source.getContainingAtom()
+	var/atom/movable/container = source.getContainingMovable()
 	RegisterSignal(source, COMSIG_PARENT_QDELETING, PROC_REF(removeMob))
 	RegisterSignal(container, COMSIG_MOVABLE_MOVED, PROC_REF(onMobMove))
 	RegisterSignal(container, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(onLevelChange))
@@ -122,23 +121,3 @@ SUBSYSTEM_DEF(chunks)
 			if(aliveonly && poss_mob.stat == DEAD)
 				continue
 			. += poss_mob
-
-/mob/proc/chunkOnMove(atom/source, oldLocation , newLocation)
-	SIGNAL_HANDLER
-
-/mob/proc/chunkOnContainerization(atom/source, newContainer , oldContainer)
-	SIGNAL_HANDLER
-
-/mob/proc/chunkOnLevelChange(atom/source, oldLevel, newLevel)
-	SIGNAL_HANDLER
-
-// This is done by the mob itself because keeping track of them with referecen solving is trash and unefficient
-// TGMC Minimaps are a good example
-/mob/proc/InitiateChunkTracking()
-	SIGNAL_HANDLER
-	var/atom/highestContainer = getContainingAtom()
-	RegisterSignal(highestContainer, COMSIG_MOVABLE_MOVED, PROC_REF(chunkOnMove))
-	RegisterSignal(highestContainer, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(chunkOnLevelChange))
-	RegisterSignal(src, COMSIG_ATOM_CONTAINERED, PROC_REF(chunkOnContainerization))
-*/
-
