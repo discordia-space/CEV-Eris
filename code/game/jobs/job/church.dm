@@ -178,7 +178,7 @@
 
 	stat_modifiers = list(
 		STAT_ROB = 15,
-		STAT_TGH = 10,
+		STAT_TGH = 15,
 		STAT_VIG = 15,
 		STAT_COG = 10,
 	)
