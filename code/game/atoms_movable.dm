@@ -124,7 +124,13 @@
 	// Container change
 	if((!is_origin_turf || !is_destination_turf) || ((!is_origin_turf && !is_destination_turf) && (origin != destination)))
 		var/newContainer = getContainingAtom()
-		var/oldContainer = origin.getContainingAtom()
+		var/oldContainer
+		if(is_origin_turf)
+			// We are our own top-most container
+			oldContainer = src
+		else
+			oldContainer = origin.getContainingAtom()
+
 		if(newContainer != oldContainer)
 			SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, newContainer , oldContainer)
 	/*
