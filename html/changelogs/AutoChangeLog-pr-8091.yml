@@ -1,5 +1,0 @@
-author: Pink-Chink
-delete-after: true
-changes:
-  - tweak: Added logic to table Initialize() that allows flipped tables through var
-      editing
