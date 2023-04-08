@@ -85,6 +85,9 @@
 	overlays += "grenademag_[ratio]"
 
 /obj/item/gun/projectile/shotgun/pump/grenade/lenar/update_icon()
+	..()
+	wielded_item_state = "_doble"
+	set_item_state()
 	cut_overlays()
 	update_charge()
 
