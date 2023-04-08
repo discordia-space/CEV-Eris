@@ -122,7 +122,7 @@
 			//	SEND_SIGNAL(thing, COMSIG_MOVABLE_Z_CHANGED,get_z(origin),get_z(destination))
 
 	// Container change
-	if((!is_origin_turf || !is_destination_turf) || ((!is_origin_turf && !is_destination_turf) && (origin != destination)))
+	if(origin != destination && !(is_origin_turf && is_destination_turf))
 		var/newContainer = getContainingAtom()
 		var/oldContainer
 		if(is_origin_turf || origin == null)

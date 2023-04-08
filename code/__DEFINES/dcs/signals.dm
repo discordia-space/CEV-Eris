@@ -60,8 +60,9 @@
 #define COMSIG_TURF_LEVELUPDATE "turf_levelupdate" //levelupdate()
 
 // /atom/movable signals
-#define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, origin_loc, new_loc)
-#define COMSIG_MOVABLE_Z_CHANGED "movable_z_moved"				//from base of atom/movable/onTransitZ(): (oldz, newz)
+// These 2 can be sent at the same time togheter, if you only care about the Z-level , only use the Z-changed , else only use the moved.
+#define COMSIG_MOVABLE_MOVED "movable_moved"					//from atom/movable/Move and forceMove: (/atom, origin_loc, new_loc)
+#define COMSIG_MOVABLE_Z_CHANGED "movable_z_moved"				//from atom/movable/Move and forceMove): (oldz, newz)
 #define COMSIG_MOVABLE_PREMOVE "moveable_boutta_move"
 
 // /mob signals

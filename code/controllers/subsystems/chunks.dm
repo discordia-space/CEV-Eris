@@ -81,26 +81,15 @@ SUBSYSTEM_DEF(chunks)
 			return
 		chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y, CHUNK_SIZE)]
 		chunk_reference.mobs += src
+		if(ishuman(src))
+			message_admins("Added self to chunkID [CHUNKID(newLocation.x, newLocation.y, CHUNK_SIZE)]")
 
 /mob/proc/chunkOnContainerization(atom/source, atom/newContainer , atom/oldContainer)
 	SIGNAL_HANDLER
-	UnregisterSignal(oldContainer , list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_Z_CHANGED))
+	message_admins("[src] switched container from [oldContainer] to [newContainer]")
+	UnregisterSignal(oldContainer , COMSIG_MOVABLE_MOVED)
 	RegisterSignal(newContainer, COMSIG_MOVABLE_MOVED, PROC_REF(chunkOnMove))
-	RegisterSignal(newContainer, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(chunkOnLevelChange))
 
-/mob/proc/chunkOnLevelChange(atom/source, oldLevel, newLevel)
-	SIGNAL_HANDLER
-
-	if(CHUNKCOORDCHECK(x,y))
-		return
-	var/datum/chunk/chunk_reference
-	// these checks for != 0 might be redundant since x,  y will also be invalid.
-	if(oldLevel != 0)
-		chunk_reference = SSchunks.chunk_list_by_zlevel[oldLevel][CHUNKID(x, y, CHUNK_SIZE)]
-		chunk_reference.mobs -= src
-	if(newLevel != 0)
-		chunk_reference = SSchunks.chunk_list_by_zlevel[newLevel][CHUNKID(x, y, CHUNK_SIZE)]
-		chunk_reference.mobs += src
 
 /mob/proc/chunkClearSelf(atom/source)
 	SIGNAL_HANDLER
@@ -127,7 +116,6 @@ SUBSYSTEM_DEF(chunks)
 	*/
 
 	RegisterSignal(highestContainer, COMSIG_MOVABLE_MOVED, PROC_REF(chunkOnMove))
-	RegisterSignal(highestContainer, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(chunkOnLevelChange))
 	RegisterSignal(src, COMSIG_ATOM_CONTAINERED, PROC_REF(chunkOnContainerization))
 	RegisterSignal(src, COMSIG_PARENT_QDELETING, PROC_REF(chunkClearSelf))
 	if(highestContainer.z != 0)
