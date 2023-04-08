@@ -145,7 +145,7 @@
 		return FALSE
 
 	M.forceMove(spawn_turf)
-	M.InitiateChunkTracking()
+	//M.InitiateChunkTracking()
 
 	// Moving wheelchair if they have one
 	if(M.buckled && istype(M.buckled, /obj/structure/bed/chair/wheelchair))
