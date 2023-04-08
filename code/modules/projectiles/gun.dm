@@ -104,6 +104,8 @@
 	var/wield_delay_factor = 0 // A factor that characterizes weapon size , this makes it require more vig to insta-wield this weapon or less , values below 0 reduce the vig needed and above 1 increase it
 	var/serial_type = "" // If there is a serial type, the gun will add a number that will show on examine
 
+	var/flashlight_attachment = FALSE
+
 /obj/item/gun/wield(mob/user)
 	if(!wield_delay)
 		..()
