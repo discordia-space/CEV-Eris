@@ -18,7 +18,8 @@ SUBSYSTEM_DEF(jamming)
 		// blame linters being shit
 		var/datum/component/jamming/jammer = thing
 		var/distance = get_dist_euclidian(jammer.owner, location)
-		var/radius = jammer.radius - abs((jammer.highest_container.z - location.z) * jammer.z_reduction)
+		var/atom/container = jammer.owner.getContainingAtom()
+		var/radius = jammer.radius - (abs(container.z - location.z) * jammer.z_reduction)
 		// incase its  multi-Z jammer with distance reduction
 		if(distance > radius)
 			continue
