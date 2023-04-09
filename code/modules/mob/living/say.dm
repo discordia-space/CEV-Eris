@@ -267,7 +267,7 @@ var/list/channel_to_radio_key = new
 		//DO NOT FUCKING CHANGE THIS TO GET_OBJ_OR_MOB_AND_BULLSHIT() -- Hugs and Kisses ~Ccomp
 
 
-		for(var/mob/M as anything in getMobsInRangeChunked(T, max(message_range, falloff)) | GLOB.player_ghost_list)
+		for(var/mob/M as anything in getMobsInRangeChunked(T, max(message_range, falloff), FALSE, TRUE) | GLOB.player_ghost_list)
 			if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 				listening |= M
 				continue

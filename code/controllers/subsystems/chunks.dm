@@ -1,16 +1,17 @@
 #define CHUNK_SIZE 8
 //#define CHUNKID(x,y,size) round((((x - x%size) + (y - y%size) * world.maxx) / size ** 2))
 #define CHUNKID(x,y) max(1,round(x/CHUNK_SIZE)+round(y/CHUNK_SIZE)*round(world.maxx / CHUNK_SIZE))
-#define CHUNKSPERLEVEL(x,y) round(world.maxx * worldmaxy) / (CHUNK_SIZE ** 2) + round(world.maxx / CHUNK_SIZE)
+#define CHUNKSPERLEVEL(x,y) round(world.maxx * world.maxy) / (CHUNK_SIZE ** 2) + round(world.maxx / CHUNK_SIZE)
 #define CHUNKCOORDCHECK(x,y) (x > world.maxx || y > world.maxy || x <= 0 || y <= 0)
 /// This subsystem is meant for anything that should not be employing byond view() and is generally very constraining to keep track of
-/// For now it only has mobs, but it should also include sanity
+/// For now it only has mobs and hearers, but it should also include sanity , signal receivers , and anything that is very frequently
+// searched
 
 /datum/chunk
 	var/list/mob/mobs = list()
-	var/list/sanity_damagers = list()
+	//var/list/sanity_damagers = list()
 	var/list/obj/hearers = list()
-	var/list/signal_receivers = list()
+	//var/list/signal_receivers = list()
 
 SUBSYSTEM_DEF(chunks)
 	name = "Chunks"
@@ -32,7 +33,7 @@ SUBSYSTEM_DEF(chunks)
 	source.InitiateChunkTracking()
 
 // Get mobs in range using chunks
-/proc/getMobsInRangeChunked(atom/source, range, aliveonly = FALSE)
+/proc/getMobsInRangeChunked(atom/source, range, aliveonly = FALSE, canseeonly = FALSE)
 	if(!source || !range)
 		return
 	var/atom/container = source.getContainingAtom()
@@ -54,6 +55,10 @@ SUBSYSTEM_DEF(chunks)
 			chunkReference = SSchunks.chunk_list_by_zlevel[container.z][CHUNKID(chunkX, chunkY)]
 			for(var/mob/mobToCheck as anything in chunkReference.mobs)
 				if(get_dist_euclidian(source, get_turf(mobToCheck)) < range)
+					if(aliveonly && mobToCheck.stat == DEAD)
+						continue
+					if(canseeonly && !can_see(get_turf(container), get_turf(mobToCheck), range * 2))
+						continue
 					returnValue += mobToCheck
 	return returnValue
 
@@ -78,7 +83,7 @@ SUBSYSTEM_DEF(chunks)
 		for(var/chunkY = coordinates[2], chunkY <= coordinates[4], chunkY += CHUNK_SIZE)
 			chunkReference = SSchunks.chunk_list_by_zlevel[container.z][CHUNKID(chunkX, chunkY)]
 			for(var/obj/hearerToCheck as anything in chunkReference.hearers)
-				if(get_dist_euclidian(source, hearerToCheck) < range)
+				if(get_dist_euclidian(source, get_turf(hearerToCheck)) < range)
 					returnValue += hearerToCheck
 	return returnValue
 
