@@ -4,6 +4,7 @@
 	icon_state = "maneki_neko"
 	item_state = "maneki_neko"
 	desc = "Costs a lot of money, this is ancient relic with no practical purpose. Feels like it's looking at you, with menacingly gaze. Fragile."
+	description_info = "Feeding the resuscitator machine to it will permit it to convert bars of iron into gold."
 	description_fluff = "Its said that one must be a fool to break such a valuable vase. As it contains the soul of a Neko itself."
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
@@ -18,6 +19,7 @@
 	var/affect_radius = 7
 	matter = list(MATERIAL_GLASS = 5, MATERIAL_GOLD = 7, MATERIAL_SILVER = 5, MATERIAL_DIAMOND = 1)
 	var/list/mob/living/carbon/human/followers = list()
+	var/converting = FALSE
 
 
 /obj/item/maneki_neko/New()
@@ -40,6 +42,22 @@
 		followers |= affected
 
 /obj/item/maneki_neko/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/reagent_containers/enricher))
+		user.drop_from_inventory(W)
+		qdel(W)
+		name = "Activated Ancient Maneki Neko"
+		desc = "The potential of the Neko has been discovered. Feed it iron bars , and it shall give gold!"
+		converting = TRUE
+		return
+
+	if(istype(W, /obj/item/stack/material/iron))
+		var/obj/item/stack/material/thing_to_check = W
+		user.drop_from_inventory(W)
+		to_chat(user, SPAN_NOTICE("You insert the iron bars into the [src], and watch as they turn golden."))
+		new /obj/item/stack/material/gold(get_turf(src), round(thing_to_check.amount))
+		qdel(W)
+		return
+
 	if(nt_sword_attack(W, user))
 		return FALSE
 

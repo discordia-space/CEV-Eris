@@ -2,7 +2,7 @@
 	name = "Techno-Tribalism Enforcer"
 	desc = "Feeds on rare tools, tool mods and other tech items. After being fed enough, will produce a strange technological part, that will be useful to train your skills overtime."
 	icon = 'icons/obj/faction_item.dmi'
-	description_info = "Has an internal radio that informs technomancers of its delay, it can be reenabled with a screwdriver if it is not functioning. Deconstructing other departamental oddities reduces its cooldown."
+	description_info = "Has an internal radio that informs technomancers of its delay, it can be reenabled with a screwdriver if it is not functioning. Deconstructing other departamental oddities reduces its cooldown. Deconstructing combat-oriented oddities buffs its capability to make better combat-oddities"
 	description_antag = "You can disable its internal radio with a EMP."
 	icon_state = "techno_tribalism"
 	item_state = "techno_tribalism"
@@ -11,6 +11,11 @@
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
 	var/list/oddity_stats = list(STAT_MEC = 0, STAT_COG = 0, STAT_BIO = 0, STAT_ROB = 0, STAT_TGH = 0, STAT_VIG = 0)
+	/// double  for taking out combat-oddities (skydriver , sword of truth)
+	// summ of all combat stats points thats permitted
+	// 5 power shovels = 30 points
+	// deconstructing both gives you 40
+	var/combat_cap = 10
 	var/last_produce = -20 MINUTES
 	var/items_count = 0
 	var/max_count = 5
@@ -46,7 +51,7 @@
 		return FALSE
 	if(items_count < max_count)
 		if(W in GLOB.all_faction_items)
-			to_chat(user, "Inserting the departamental item decreases the [src]'s delay by 2 minutes!")
+			to_chat(user, "Inserting the departamental relic decreases the [src]'s delay by 2 minutes!")
 			cooldown -= 2 MINUTES
 			if(GLOB.all_faction_items[W] == GLOB.department_moebius)
 				oddity_stats[STAT_COG] += 3
@@ -56,11 +61,17 @@
 				oddity_stats[STAT_VIG] += 3
 				oddity_stats[STAT_TGH] += 3
 				oddity_stats[STAT_ROB] += 3
+				if(istype(W, /obj/item/gun/projectile/revolver/sky_driver))
+					to_chat(user, "This departamental relic is used for combat.. it has boosted the [src]'s capability of creating combat oddities")
+					combat_cap *= 2
 			else if(GLOB.all_faction_items[W] == GLOB.department_church)
 				oddity_stats[STAT_BIO] += 3
 				oddity_stats[STAT_COG] += 2
 				oddity_stats[STAT_VIG] += 2
 				oddity_stats[STAT_TGH] += 2
+				if(istype(W, /obj/item/tool/sword/nt_sword))
+					to_chat(user, "This departamental relic is used for combat.. it has boosted the [src]'s capability of creating combat oddities")
+					combat_cap *= 2
 			else if(GLOB.all_faction_items[W] == GLOB.department_guild)
 				oddity_stats[STAT_COG] += 3
 				oddity_stats[STAT_MEC] += 3
@@ -163,6 +174,9 @@
 			to_chat(user, SPAN_WARNING("The [W] is not suitable for [src]!"))
 			return
 
+		if(oddity_stats[STAT_ROB] + oddity_stats[STAT_VIG] + oddity_stats[STAT_TGH] > combat_cap)
+			to_chat(user, SPAN_WARNING("The [W] goes beyond the Tribalism's capability for combat, it perhaps could be upgraded with combat relics from other factions."))
+			return
 		to_chat(user, SPAN_NOTICE("You feed [W] to [src]."))
 		SEND_SIGNAL_OLD(user, COMSIG_OBJ_TECHNO_TRIBALISM, W)
 		items_count += 1
@@ -208,3 +222,4 @@
 	to_chat(user, SPAN_NOTICE("The [src] is fed by [items_count]/[max_count]."))
 	to_chat(user, SPAN_NOTICE("The remaining delay is [world.time > last_produce + cooldown ? "0" : round(abs(world.time - (last_produce + cooldown)) / 600)] Minutes"))
 	to_chat(user, SPAN_NOTICE("Its internal radio is currently [internal_radio.broadcasting ? "working normally" : "not functioning"]"))
+	to_chat(user, SPAN_NOTICE("The current limit for all combat-oriented skill points on oddities is [combat_cap]"))
