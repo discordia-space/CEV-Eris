@@ -266,7 +266,6 @@ var/list/channel_to_radio_key = new
 		var/falloff = (message_range + round(3 * (chem_effects[CE_SPEECH_VOLUME] ? chem_effects[CE_SPEECH_VOLUME] : 1))) //A wider radius where you're heard, but only quietly. This means you can hear people offscreen.
 		//DO NOT FUCKING CHANGE THIS TO GET_OBJ_OR_MOB_AND_BULLSHIT() -- Hugs and Kisses ~Ccomp
 
-
 		for(var/mob/M as anything in getMobsInRangeChunked(T, max(message_range, falloff), FALSE, TRUE) | GLOB.player_ghost_list)
 			if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 				listening |= M
@@ -277,11 +276,6 @@ var/list/channel_to_radio_key = new
 				listening_falloff |= M
 
 		listening_obj |= getHearersInRangeChunked(T, message_range)
-		/*
-		for(var/obj in getHearersInRangeChunked(src, message_range))
-			if(get_turf(obj) in hear)
-				listening_obj |= obj
-		*/
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")

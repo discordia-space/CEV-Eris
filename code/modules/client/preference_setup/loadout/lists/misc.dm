@@ -162,10 +162,10 @@
 /datum/gear/cigarettes/New()
 	..()
 	var/cigarettes_type = list(
-		"Space Cigarettes"	=	/obj/item/storage/fancy/cigarettes,
+		"Space Cigarettes"			=	/obj/item/storage/fancy/cigarettes,
 		"DromedaryCo Cigarettes"	=	/obj/item/storage/fancy/cigarettes/dromedaryco,
-		"AcmeCo Cigarettes"	=	/obj/item/storage/fancy/cigarettes/killthroat,
-		//"Nomads Cigarettes"	=	/obj/item/storage/fancy/cigarettes/homeless
+		"AcmeCo Cigarettes"			=	/obj/item/storage/fancy/cigarettes/killthroat,
+		"Nomads Cigarettes"			=	/obj/item/storage/fancy/cigarettes/homeless
 	)
 	gear_tweaks += new/datum/gear_tweak/path(cigarettes_type)
 
