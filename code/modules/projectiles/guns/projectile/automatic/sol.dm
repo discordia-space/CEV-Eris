@@ -44,8 +44,9 @@
 	..()
 
 	icon_state = initial(icon_state) + (ammo_magazine ? "-full" : "")
-	set_item_state(ammo_magazine ? "-full" : "", back = TRUE)
+	set_item_state(ammo_magazine ? "_mag" : "", hands = TRUE, back = TRUE, onsuit = TRUE)
 	cut_overlays()
+	update_wear_icon()
 	update_charge()
 
 /obj/item/part/gun/frame/sol
