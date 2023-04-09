@@ -78,7 +78,7 @@
 
 	// Determine base using the current stock status
 	var/iconstring = initial(icon_state)
-	var/itemstring = initial(item_state)
+	var/itemstring = grip_type
 
 	// Define "-" tags
 	var/dashTag = ""
@@ -90,8 +90,9 @@
 	// Add dashTag to iconstring
 	iconstring += dashTag
 
-	for(var/obj/item/part/gun/modular/gun_part in contents) // Cycle through all parts
-		if(gun_part.part_overlay) // Safety check
+	for(var/part_path in required_parts)
+		var/obj/item/part/gun/modular/gun_part = locate(part_path) in contents
+		if(gun_part && gun_part.part_overlay) // Safety check
 
 			if(gun_part.needs_grip_type) // Will be replaced with a more modular system once V3 comes
 				overlays += gun_part.part_overlay + "_" + grip_type + dashTag
@@ -115,56 +116,6 @@
 	icon_state = iconstring
 	wielded_item_state = itemstring // Hacky solution to a hacky system. Reere forgive us. V3 will fix this.
 	set_item_state(itemstring)
-
-/*
-/obj/item/gun/projectile/automatic/modular/ak/update_icon_defunct() // V1
-	..()
-	cut_overlays()
-
-	var/iconstring = stock == STOCK_UNFOLDED ? initial(icon_state) + "-st" : initial(icon_state)
-	var/itemstring = ""
-
-	if(stock == STOCK_UNFOLDED) // Stock is unfolded
-		var/grip_type = ""
-		for(var/obj/item/part/gun/gun_part in gun_parts)
-			if(gun_part.part_overlay) // TODO: clean this part up to be more modular before adding other modular guns
-
-				if(istype(gun_part, /obj/item/part/gun/modular/grip))
-					grip_type = gun_part.part_overlay
-					overlays += "grip_" + grip_type + "-st"
-					itemstring += "_grip_" + grip_type
-				else
-					overlays += gun_part.part_overlay + "-st"
-
-				if(gun_part.part_overlay == "stock_frame") // If it is a stock, it'll also attempt to add the grip type
-					overlays += "stock_" + grip_type + "-st"
-
-	else // Stock is folded or missing
-		for(var/obj/item/part/gun/gun_part in gun_parts)
-			if(gun_part.part_overlay)
-				if(istype(gun_part, /obj/item/part/gun/modular/grip))
-					overlays += "grip_" + gun_part.part_overlay
-				else
-					overlays += gun_part.part_overlay
-
-	if (ammo_magazine) // Warning! If a sprite is missing from the DMI despite being possible to insert ingame, it might have unforeseen consequences (no magazine showing up)
-		itemstring += "_full"
-		if(stock)
-			overlays += "mag_[ammo_magazine.mag_well][caliber]-st"
-		else
-			overlays += "mag_[ammo_magazine.mag_well][caliber]"
-
-	if(wielded)
-		itemstring += "_doble" // Traditions are to be followed
-
-	if(!(stock == STOCK_UNFOLDED))
-		itemstring += "_f"
-
-	visible_message(SPAN_WARNING("[itemstring]"))
-	icon_state = iconstring
-	set_item_state(itemstring)
-*/
-
 
 // Interactions
 
