@@ -34,7 +34,7 @@
 	remove_hearing()
 	. = ..()
 
-/obj/item/device/taperecorder/Initialize(mapload)
+/obj/item/device/taperecorder/LateInitialize()
 	. = ..()
 	add_hearing()
 

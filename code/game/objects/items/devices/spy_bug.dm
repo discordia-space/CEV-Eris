@@ -28,7 +28,7 @@
 	remove_hearing()
 	. = ..()
 
-/obj/item/device/spy_bug/Initialize(mapload)
+/obj/item/device/spy_bug/voice/LateInitialize()
 	. = ..()
 	add_hearing()
 
@@ -72,7 +72,7 @@
 	..()
 	radio = new(src)
 
-/obj/item/device/spy_monitor/Initialize(mapload)
+/obj/item/device/spy_monitor/LateInitialize()
 	. = ..()
 	add_hearing()
 

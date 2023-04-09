@@ -14,7 +14,7 @@
 	..()
 	update_icon()
 
-/obj/item/implant/explosive/Initialize()
+/obj/item/implant/explosive/voice/LateInitialize()
 	. = ..()
 	add_hearing()
 

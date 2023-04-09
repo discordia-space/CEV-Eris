@@ -13,7 +13,7 @@
 	var/obj/item/device/assembly/left_assembly
 	var/obj/item/device/assembly/right_assembly
 
-/obj/item/device/assembly_holder/Initialize(mapload)
+/obj/item/device/assembly_holder/LateInitialize()
 	. = ..()
 	add_hearing()
 
