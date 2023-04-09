@@ -42,7 +42,7 @@ ADMIN_VERB_ADD(/client/proc/jumptoturf, R_ADMIN, FALSE)
 
 ADMIN_VERB_ADD(/client/proc/jumptomob, R_ADMIN|R_DEBUG, FALSE)
 //allows us to jump to a specific mob
-/client/proc/jumptomob(var/mob/M in SSmobs.mob_list)
+/client/proc/jumptomob(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 	set category = "Admin"
 	set name = "Jump to Mob"
 
@@ -98,7 +98,7 @@ ADMIN_VERB_ADD(/client/proc/jumptokey, R_ADMIN, TRUE)
 
 ADMIN_VERB_ADD(/client/proc/Getmob, R_ADMIN, FALSE)
 //teleports a mob to our location
-/client/proc/Getmob(var/mob/M in SSmobs.mob_list)
+/client/proc/Getmob(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 	set category = "Admin"
 	set name = "Get Mob"
 	set desc = "Mob to teleport"

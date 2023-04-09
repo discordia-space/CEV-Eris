@@ -225,7 +225,7 @@
 					var/DNAstring = input("Input DNA string to search for." , "Please Enter String." , "")
 					if(!DNAstring)
 						return
-					for(var/mob/living/carbon/M in SSmobs.mob_list)
+					for(var/mob/living/carbon/M in SSmobs.mob_list | SShumans.mob_list)
 						if(M.dna_trace == DNAstring)
 							target = M
 							break
