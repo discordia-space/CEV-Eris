@@ -72,7 +72,7 @@
 // Gets the top-atom that contains us, doesn't care about how deeply nested a item is
 /atom/proc/getContainingAtom()
 	var/atom/checking = src
-	while(!isturf(checking.loc) && !isnull(checking.loc))
+	while(!isturf(checking.loc) && !isnull(checking.loc) && !isarea(checking.loc))
 		checking = checking.loc
 	return checking
 

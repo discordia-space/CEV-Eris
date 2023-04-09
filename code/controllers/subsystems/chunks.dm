@@ -1,7 +1,7 @@
 #define CHUNK_SIZE 8
 //#define CHUNKID(x,y,size) round((((x - x%size) + (y - y%size) * world.maxx) / size ** 2))
 #define CHUNKID(x,y) max(1,round(x/CHUNK_SIZE)+round(y/CHUNK_SIZE)*round(world.maxx / CHUNK_SIZE))
-#define CHUNKSPERLEVEL(x,y) ((world.maxx * world.maxy) / CHUNK_SIZE ** 2)
+#define CHUNKSPERLEVEL(x,y) round(world.maxx * worldmaxy) / (CHUNK_SIZE ** 2) + round(world.maxx / CHUNK_SIZE)
 #define CHUNKCOORDCHECK(x,y) (x > world.maxx || y > world.maxy || x <= 0 || y <= 0)
 /// This subsystem is meant for anything that should not be employing byond view() and is generally very constraining to keep track of
 /// For now it only has mobs, but it should also include sanity
@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(chunks)
 /proc/getMobsInRangeChunked(atom/source, range, aliveonly = FALSE)
 	if(!source || !range)
 		return
-	var/atom/container = source.getContainingAtom(source)
+	var/atom/container = source.getContainingAtom()
 	var/list/returnValue = list()
 	if(container.z == 0)
 		return returnValue
@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(chunks)
 		for(var/chunkY = coordinates[2], chunkY <= coordinates[4], chunkY += CHUNK_SIZE)
 			chunkReference = SSchunks.chunk_list_by_zlevel[container.z][CHUNKID(chunkX, chunkY)]
 			for(var/mob/mobToCheck as anything in chunkReference.mobs)
-				if(get_dist_euclidian(source, mobToCheck) < range)
+				if(get_dist_euclidian(source, get_turf(mobToCheck)) < range)
 					returnValue += mobToCheck
 	return returnValue
 
@@ -90,18 +90,50 @@ SUBSYSTEM_DEF(chunks)
 /mob/proc/chunkOnMove(atom/source, atom/oldLocation, atom/newLocation)
 	SIGNAL_HANDLER
 	var/datum/chunk/chunk_reference
+	if(oldLocation?.z && newLocation?.z)
+		if(CHUNKID(oldLocation.x, oldLocation.y) == CHUNKID(newLocation.x, newLocation.y) && oldLocation.z == newLocation.z)
+			return
+		chunk_reference = SSchunks.chunk_list_by_zlevel[oldLocation.z][CHUNKID(oldLocation.x, oldLocation.y)]
+		chunk_reference.mobs -= src
+		if(ishuman(src))
+			message_admins("[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)]")
+		if(CHUNKCOORDCHECK(newLocation.x, newLocation.y))
+			return
+		chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y)]
+		chunk_reference.mobs += src
+		if(ishuman(src))
+			message_admins("[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)]")
+	else if(newLocation?.z)
+		if(CHUNKCOORDCHECK(newLocation.x, newLocation.y))
+			return
+		chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y)]
+		chunk_reference.mobs += src
+		if(ishuman(src))
+			message_admins("[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)]")
+	else if(oldLocation?.z)
+		chunk_reference = SSchunks.chunk_list_by_zlevel[oldLocation.z][CHUNKID(oldLocation.x, oldLocation.y)]
+		chunk_reference.mobs -= src
+		if(ishuman(src))
+			message_admins("[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)]")
+
+	/*
 	if(oldLocation && oldLocation.z != 0)
-		if(newLocation)
-			if(CHUNKID(oldLocation.x, oldLocation.y) == CHUNKID(newLocation.x, newLocation.y))
+		if(newLocation && newLocation.z != 0)
+			if(CHUNKID(oldLocation.x, oldLocation.y) == CHUNKID(newLocation.x, newLocation.y) || oldLocation.z != newLocation.z)
 				return
 		chunk_reference = SSchunks.chunk_list_by_zlevel[oldLocation.z][CHUNKID(oldLocation.x, oldLocation.y)]
 		chunk_reference.mobs -= src
+		if(ishuman(src))
+			message_admins("[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)]")
 	// The new location has invalid coordinates , so lets get rid of them from the old chunk and not update to another one
 	if(newLocation && newLocation.z != 0)
 		if(CHUNKCOORDCHECK(newLocation.x, newLocation.y))
 			return
 		chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y)]
 		chunk_reference.mobs += src
+		if(ishuman(src))
+			message_admins("[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)]")
+	*/
 
 /mob/proc/chunkOnContainerization(atom/source, atom/newContainer , atom/oldContainer)
 	SIGNAL_HANDLER
@@ -128,19 +160,22 @@ SUBSYSTEM_DEF(chunks)
 				return
 		chunk_reference = SSchunks.chunk_list_by_zlevel[oldLocation.z][CHUNKID(oldLocation.x, oldLocation.y)]
 		chunk_reference.hearers -= src
+		if(ishuman(src))
+			message_admins("[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)]")
 	// The new location has invalid coordinates , so lets get rid of them from the old chunk and not update to another one
 	if(newLocation && newLocation.z != 0)
 		if(CHUNKCOORDCHECK(newLocation.x, newLocation.y))
 			return
 		chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y)]
 		chunk_reference.hearers += src
+		if(ishuman(src))
+			message_admins("[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)]")
 
 /obj/proc/chunkHearerOnContainerization(atom/source, atom/newContainer, atom/oldContainer)
 	SIGNAL_HANDLER
 	message_admins("[src] switched container from [oldContainer] to [newContainer]")
 	UnregisterSignal(oldContainer , COMSIG_MOVABLE_MOVED)
 	RegisterSignal(newContainer, COMSIG_MOVABLE_MOVED, PROC_REF(chunkHearerOnMove))
-	SIGNAL_HANDLER
 
 /obj/proc/chunkHearerClearSelf(datum/source)
 	var/atom/container = getContainingAtom()

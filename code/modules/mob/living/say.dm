@@ -271,7 +271,7 @@ var/list/channel_to_radio_key = new
 			if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 				listening |= M
 				continue
-			else if(get_dist_euclidian(T, M) <= message_range)
+			else if(get_dist_euclidian(T, get_turf(M)) <= message_range)
 				listening |= M
 			else
 				listening_falloff |= M
