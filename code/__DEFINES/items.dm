@@ -45,6 +45,7 @@
 #define PARTMOD_STRIPPED 0
 #define PARTMOD_FOLDING_STOCK 1
 #define PARTMOD_SLIDE 2
+#define PARTMOD_FRAME_SPRITE 4 // Defines whether grips or frames determine the inhands, TODO: remove this when V3 comes
 
 //Weapon upgrade defines
 

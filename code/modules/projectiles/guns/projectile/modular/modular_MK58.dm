@@ -21,17 +21,13 @@
 
 	bad_type = /obj/item/gun/projectile/automatic/modular/mk58
 	gun_tags = list(GUN_SILENCABLE)
-	spriteTags = PARTMOD_SLIDE
+	spriteTags = PARTMOD_SLIDE | PARTMOD_FRAME_SPRITE
 
 	var/slide_type = "gray"
 
 	serial_type = "NT"
 
 	required_parts = list(/obj/item/part/gun/modular/barrel/pistol = 0, /obj/item/part/gun/modular/mechanism/pistol = 0, /obj/item/part/gun/modular/grip = 0)
-
-/obj/item/gun/projectile/automatic/modular/mk58/Initialize()
-	item_state = "_[slide_type]"
-	..()
 
 /obj/item/gun/projectile/automatic/modular/mk58/get_initial_name()
 	var/slide_name = (slide_type == "black") ? "BM " : "NT "

@@ -78,7 +78,7 @@
 
 	// Determine base using the current stock status
 	var/iconstring = initial(icon_state)
-	var/itemstring = grip_type
+	var/itemstring = (PARTMOD_FRAME_SPRITE & spriteTags) ? ("_" + iconstring) : ("_" + grip_type)
 
 	// Define "-" tags
 	var/dashTag = ""
@@ -99,9 +99,8 @@
 			else
 				overlays += gun_part.part_overlay + dashTag // Add the part's overlay, with respect to tags
 
-			if(gun_part.part_itemstring) // Part also wants to modify itemstring
-				itemstring += "_" + gun_part.part_overlay // Add their overlay name
-
+			if(gun_part.part_itemstring && !(PARTMOD_FRAME_SPRITE & spriteTags)) // Part also wants to modify itemstring, and is allowed to
+				itemstring = "_" + gun_part.part_overlay + itemstring // Add their overlay name
 
 	if (ammo_magazine) // Warning! If a sprite is missing from the DMI despite being possible to insert ingame, it might have unforeseen consequences (no magazine showing up)
 		itemstring += "_full"
