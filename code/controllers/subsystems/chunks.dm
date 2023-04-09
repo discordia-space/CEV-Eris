@@ -84,7 +84,7 @@ SUBSYSTEM_DEF(chunks)
 			chunkReference = SSchunks.chunk_list_by_zlevel[container.z][CHUNKID(chunkX, chunkY)]
 			for(var/obj/hearerToCheck as anything in chunkReference.hearers)
 				if(get_dist_euclidian(source, get_turf(hearerToCheck)) < range)
-					if(!can_see(source, get_turf(hearerToCheck, range * 2)))
+					if(!can_see(source, get_turf(hearerToCheck), range * 2))
 						continue
 					returnValue += hearerToCheck
 	return returnValue
