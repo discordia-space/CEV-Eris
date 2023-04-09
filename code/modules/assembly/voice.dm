@@ -7,8 +7,8 @@
 	var/listening = 0
 	var/recorded	//the activation message
 
-/obj/item/device/assembly/voice/New()
-	..()
+/obj/item/device/assembly/voice/Initialize(mapload)
+	. = ..()
 	add_hearing()
 
 /obj/item/device/assembly/voice/Destroy()
