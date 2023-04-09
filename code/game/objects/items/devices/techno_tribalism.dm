@@ -49,6 +49,14 @@
 	if(user.a_intent != I_DISARM)
 		to_chat(user, "You need to be in a disarming stance to insert items into the [src]")
 		return FALSE
+	var/starting_sum = list(
+		STAT_TGH = oddity_stats[STAT_TGH],
+		STAT_ROB = oddity_stats[STAT_ROB],
+		STAT_VIG = oddity_stats[STAT_VIG],
+		STAT_BIO = oddity_stats[STAT_BIO],
+		STAT_MEC = oddity_stats[STAT_MEC],
+		STAT_COG = oddity_stats[STAT_COG]
+	)
 	if(items_count < max_count)
 		if(W in GLOB.all_faction_items)
 			to_chat(user, "Inserting the departamental relic decreases the [src]'s delay by 2 minutes!")
@@ -176,6 +184,8 @@
 
 		if(oddity_stats[STAT_ROB] + oddity_stats[STAT_VIG] + oddity_stats[STAT_TGH] > combat_cap)
 			to_chat(user, SPAN_WARNING("The [W] goes beyond the Tribalism's capability for combat, it perhaps could be upgraded with combat relics from other factions."))
+			for(var/stat in starting_sum)
+				oddity_stats[stat] = starting_sum[stat]
 			return
 		to_chat(user, SPAN_NOTICE("You feed [W] to [src]."))
 		SEND_SIGNAL_OLD(user, COMSIG_OBJ_TECHNO_TRIBALISM, W)

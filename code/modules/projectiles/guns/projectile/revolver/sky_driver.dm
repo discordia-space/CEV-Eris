@@ -27,6 +27,10 @@
 
 /obj/item/gun/projectile/revolver/sky_driver/consume_next_projectile()
 	. = ..()
+	if(guided && .)
+		if(.)
+			qdel(.)
+		. = new /obj/item/projectile/bullet/pistol/guided(null)
 
 
 /obj/item/gun/projectile/revolver/sky_driver/New()

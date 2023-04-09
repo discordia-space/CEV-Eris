@@ -57,8 +57,9 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 	if(!items_check(user, target_turf, blueprint))
 		fail("Something is missing.",user,C,targets)
 		return
-	if(istype(blueprint,/datum/nt_blueprint/machinery/eotp && eotp != null))
+	if(istype(blueprint,/datum/nt_blueprint/machinery/eotp) && eotp != null)
 		fail("You cannot build a second Eye of the Protector in this bluespace area. The Last Shelter forbids it.")
+		return
 
 	user.visible_message(SPAN_NOTICE("You see as [user] passes his hands over something."),SPAN_NOTICE("You see your faith take physical form as you concentrate on [blueprint.name] image"))
 
