@@ -78,7 +78,7 @@
 				oddity_stats[STAT_VIG] += 2
 				oddity_stats[STAT_TGH] += 2
 				if(istype(W, /obj/item/tool/sword/nt_sword))
-					to_chat(user, "This departamental relic is used for combat.. it has boosted the [src]'s capability of creating combat oddities")
+					to_chat(user, "This departmental relic is used for combat, it has boosted the [src]'s capability of creating combat oddities.")
 					combat_cap *= 2
 			else if(GLOB.all_faction_items[W] == GLOB.department_guild)
 				oddity_stats[STAT_COG] += 3
