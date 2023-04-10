@@ -67,13 +67,22 @@ CREATE TABLE `bans` (
 DROP TABLE IF EXISTS `playtimes`;
 
 CREATE TABLE `playtimes` (
-	`id` int(11) NOT NULL AUTO_INCREMENT
+	`id` int(11) NOT NULL AUTO_INCREMENT,
 	`job` varchar(255) NOT NULL,
 	`time_played` int(12) NOT NULL DEFAULT 1,
 	PRIMARY KEY (`id`),
-	KEY `index_playtimes_by_id` (`index_by_id`) USING BTREE
+	KEY `index_playtimes_by_id` (`index_by_id`) USING BTREE,
 	KEY `index_playtimes_by_job` (`index_by_playtimes`) using BTREE,
 	CONSTRAINT `nameyes` FOREIGN KEY (`target_id`) REFERENCES `players` (`id`)
+) ENGINE= InnoDB DEFAULT CHARSET=utf8
+
+DROP TABLE IF EXISTS `whitelisted_from_job_playtimes`;
+
+CREATE TABLE `whitelisted_from_job_playtimes` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`ckey` varchar(255) NOT NULL,
+	`whitelisted` int(1) NOT NULL DEFAULT 0,
+	PRIMARY KEY (`id`)
 ) ENGINE= InnoDB DEFAULT CHARSET=utf8
 
 --
