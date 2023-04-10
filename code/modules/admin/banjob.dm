@@ -101,6 +101,31 @@ DEBUG
 				var/ckey = get_ckey.item[1]
 				jobban_keylist.Add("[ckey] - [job]")
 
+/proc/jobplaytimes_retrieve(ckey, job)
+	if(!establish_db_connection())
+		error("Job playtime database connection failed, returning job as compatible")
+		return 6969696969
+	var/DBQuery/id_query= dbcon.NewQuery("SELECT id from players WHERE ckey = '[ckey]'")
+	id_query.Execute()
+	var/id = null
+	while(id_query.NextRow())
+		if(id)
+			message_admins("Database query returned multiple ID's for the same player ckey , [ckey]")
+		id = query.item[1]
+	if(!id)
+		error("Player ckey not in database")
+		return 0
+	var/DBQuery/job_query = dbcon.NewQuery("SELECT time_played from playtimes WHERE id = '[id]' AND job = '[job]'")
+	var/playtime = 0
+	while(job_query.NextRow())
+		if(playtime)
+			message_admins("Database query for [ckey] returned multiple job playtimes for [job]")
+		playtime = job_query.item[1]
+	return playtime
+
+
+
+
 
 
 /proc/jobban_savebanfile()

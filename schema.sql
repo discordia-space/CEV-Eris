@@ -51,7 +51,6 @@ CREATE TABLE `bans` (
   `target_id` int(11) NOT NULL,
   `banned_by_id` int(11) NOT NULL,
   `expiration_time` datetime NOT NULL,
-
   `unbanned` tinyint(1) DEFAULT NULL,
   `unbanned_time` datetime DEFAULT NULL,
   `unbanned_by_id` int(11) DEFAULT NULL,
@@ -64,6 +63,18 @@ CREATE TABLE `bans` (
   CONSTRAINT `fk_rails_a305c9e562` FOREIGN KEY (`unbanned_by_id`) REFERENCES `players` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+DROP TABLE IF EXISTS `playtimes`;
+
+CREATE TABLE `playtimes` (
+	`id` int(11) NOT NULL AUTO_INCREMENT
+	`job` varchar(255) NOT NULL,
+	`time_played` int(12) NOT NULL DEFAULT 1,
+	PRIMARY KEY (`id`),
+	KEY `index_playtimes_by_id` (`index_by_id`) USING BTREE
+	KEY `index_playtimes_by_job` (`index_by_playtimes`) using BTREE,
+	CONSTRAINT `nameyes` FOREIGN KEY (`target_id`) REFERENCES `players` (`id`)
+) ENGINE= InnoDB DEFAULT CHARSET=utf8
 
 --
 -- Table structure for table `books`
@@ -112,6 +123,7 @@ CREATE TABLE `players` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 
 --
 -- Table structure for table `poll_options`

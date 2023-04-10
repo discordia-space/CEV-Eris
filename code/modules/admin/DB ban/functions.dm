@@ -302,7 +302,6 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 	holder.DB_ban_panel()
 
-
 /datum/admins/proc/DB_ban_panel(var/playerckey = null, var/adminckey = null, var/playerip = null, var/playercid = null, var/dbbantype = null, var/match = null)
 	if(!usr.client)
 		return
