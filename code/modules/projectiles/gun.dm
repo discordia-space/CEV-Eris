@@ -1019,6 +1019,8 @@
 	sharp = initial(sharp)
 	braced = initial(braced)
 	recoil = getRecoil(init_recoil[1], init_recoil[2], init_recoil[3])
+	flashlight_attachment = initial(flashlight_attachment)
+	verbs -= /obj/item/gun/proc/toggle_light
 
 	attack_verb = list()
 	if (custom_default.len) // this override is used by the artwork_revolver for RNG gun stats
@@ -1055,3 +1057,43 @@
 	else
 		refresh_upgrades()
 
+/obj/item/gun/container_dir_changed(new_dir)
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.container_dir_changed(new_dir)
+
+/obj/item/gun/moved(mob/user, old_loc)
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.moved(user, old_loc)
+
+/obj/item/gun/entered_with_container()
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.entered_with_container()
+
+/obj/item/gun/pre_pickup(mob/user)
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.pre_pickup(user)
+
+/obj/item/gun/dropped(mob/user as mob)
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.dropped(user)
+
+/obj/item/gun/afterattack(atom/A, mob/user)
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.afterattack(A, user)
+
+/obj/item/gun/proc/toggle_light(mob/user)
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.attack_self(user)
