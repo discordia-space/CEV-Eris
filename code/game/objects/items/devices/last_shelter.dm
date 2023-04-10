@@ -28,7 +28,7 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 
 /obj/item/device/last_shelter/proc/alert_believers()
 	if(radio_broadcasting)
-		internal_radio.autosay("The [src] has rescued a believer's cruciform from bluespace", "The Last Shelter", "NT Voice", TRUE)
+		internal_radio.autosay("The [src] has rescued a believer's cruciform from bluespace.", "The Last Shelter", "NT Voice", TRUE)
 
 /obj/item/device/last_shelter/emp_act(severity)
 	. = ..()
