@@ -107679,18 +107679,6 @@
 /obj/structure/railing,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
-"vVi" = (
-/obj/machinery/door/airlock{
-	name = "Kitchen Freezer";
-	req_access = list(28)
-	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
-	name = "Kitchen Freezer";
-	req_access = list(28)
-	},
-/turf/simulated/floor/tiled/white/cargo,
-/area/eris/crew_quarters/bar)
 "vXK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -108050,13 +108038,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/medical/chemstor)
-"wXM" = (
-/obj/machinery/power/apc{
-	name = "South APC";
-	pixel_y = -28
-	},
-/turf/simulated/floor/tiled/steel/bar_dance,
-/area/holodeck/alphadeck)
 "wYi" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
 	dir = 8;
@@ -207289,7 +207270,7 @@ xNN
 xNN
 nab
 anJ
-vVi
+iEr
 anJ
 cAS
 anJ
@@ -207491,7 +207472,7 @@ xNN
 xNN
 vGE
 xNN
-wXM
+xNN
 anJ
 mvj
 anJ
