@@ -120,6 +120,8 @@
 			update_plane()
 			//for(var/atom/movable/thing in contents)
 			//	SEND_SIGNAL(thing, COMSIG_MOVABLE_Z_CHANGED,get_z(origin),get_z(destination))
+	else if(destination)
+		update_plane()
 
 	// Container change
 	if(origin != destination && !(is_origin_turf && is_destination_turf))
