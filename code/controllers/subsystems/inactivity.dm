@@ -13,6 +13,8 @@ SUBSYSTEM_DEF(inactivity)
 /datum/controller/subsystem/inactivity/proc/onJobSpawn(mob/target)
 	if(!target.ckey)
 		return
+	if(!length(ckey_to_job_playtime[target.ckey]))
+		ckey_to_job_playtime[target.ckey] = list()
 	ckey_to_job_playtime[target.ckey][target.mind.assigned_job.title] = list(world.time, world.time)
 
 /datum/controller/subsystem/inactivity/fire(resumed = FALSE)
