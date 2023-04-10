@@ -25,6 +25,7 @@
 	)
 	price_tag = 20
 	style = STYLE_NEG_LOW
+	matter = list(MATERIAL_PLASTIC = 2)
 	muffle_voice = TRUE
 
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)

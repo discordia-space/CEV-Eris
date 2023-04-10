@@ -34,7 +34,7 @@
 			destination_candidates.Add(F)
 
 	next_teleportation = pick(timer_min, timer_max)
-	teleportation_timer = addtimer(CALLBACK(src, .proc/teleport_random_item), next_teleportation)
+	teleportation_timer = addtimer(CALLBACK(src, PROC_REF(teleport_random_item)), next_teleportation)
 	bluespace_entropy(entropy_value, get_turf(src), TRUE)
 
 /obj/structure/bs_crystal_structure/Destroy()
@@ -101,4 +101,4 @@
 			new /obj/item/bluespace_dust(target_turf)
 
 			next_teleportation = pick(timer_min, timer_max)
-			teleportation_timer = addtimer(CALLBACK(src, .proc/teleport_random_item), next_teleportation)
+			teleportation_timer = addtimer(CALLBACK(src, PROC_REF(teleport_random_item)), next_teleportation)

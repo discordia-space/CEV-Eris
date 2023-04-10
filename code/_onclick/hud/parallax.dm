@@ -14,6 +14,7 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	owner = M
 	owner.parallax += src
 	SSevent.all_parallaxes += src
+	icon_state = GLOB.random_parallax
 	update()
 	..(null)
 

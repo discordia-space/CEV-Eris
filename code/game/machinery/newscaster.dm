@@ -1007,7 +1007,7 @@ obj/item/newspaper/attackby(obj/item/W as obj, mob/user as mob)
 			playsound(loc, 'sound/machines/twobeep.ogg', 75, TRUE)
 		alert = TRUE
 		update_icon()
-		addtimer(CALLBACK(src,.proc/remove_alert),alert_delay,TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src,PROC_REF(remove_alert)),alert_delay,TIMER_UNIQUE|TIMER_OVERRIDE)
 
 	else if(!channel && update_alert)
 		for(var/mob/O in hearers(world.view-1, T))

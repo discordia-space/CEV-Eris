@@ -118,7 +118,7 @@
 //Not even going to touch this pile of spaghetti
 /turf/simulated/mineral/attackby(obj/item/I, mob/living/user)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION), src, CB = CALLBACK(src,.proc/check_radial_dig))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION), src, CB = CALLBACK(src, PROC_REF(check_radial_dig)))
 	switch(tool_type)
 
 		if(QUALITY_EXCAVATION)

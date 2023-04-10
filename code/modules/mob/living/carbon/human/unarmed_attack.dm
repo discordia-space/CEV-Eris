@@ -106,7 +106,7 @@ var/global/list/sparring_attack_cache = list()
 
 /datum/unarmed_attack/proc/handle_eye_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target)
 	var/obj/item/organ/internal/eyes/eyes = target.random_organ_by_process(OP_EYES)
-	eyes.take_damage(rand(3,4), 1)
+	eyes.take_damage(rand(6,10), BRUTE)
 
 	user.visible_message(SPAN_DANGER("[user] presses \his fingers into [target]'s [eyes.name]!")) //no need to check for claws because only humans(monkeys?) can grab(no, humans and monkeys don't have claws)
 	to_chat(target, SPAN_DANGER("You experience[(target.species.flags & NO_PAIN)? "" : " immense pain as you feel" ] digits being pressed into your [eyes.name][(target.species.flags & NO_PAIN)? "." : "!"]"))

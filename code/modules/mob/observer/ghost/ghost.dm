@@ -89,7 +89,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 /mob/observer/ghost/Topic(href, href_list)
 	if (href_list["track"])
 		if(ismob(href_list["track"]))
-			var/mob/target = locate(href_list["track"]) in SSmobs.mob_list
+			var/mob/target = locate(href_list["track"]) in SSmobs.mob_list | SShumans.mob_list
 			if(target)
 				ManualFollow(target)
 		else
@@ -321,7 +321,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/list/player_controlled_mobs = list()
 
-	for(var/mob/M in sortNames(SSmobs.mob_list))
+	for(var/mob/M in sortNames(SSmobs.mob_list | SShumans.mob_list))
 		if(M.ckey && !isnewplayer(M))
 			player_controlled_mobs.Add(M)
 

@@ -1,26 +1,3 @@
-#define SEND_SIGNAL(target, sigtype, arguments...) ( !target.comp_lookup || !target.comp_lookup[sigtype] ? NONE : target._SendSignal(sigtype, list(##arguments)) )
-
-#define SEND_GLOBAL_SIGNAL(sigtype, arguments...) ( SEND_SIGNAL(SSdcs, sigtype, ##arguments) )
-
-/// Signifies that this proc is used to handle signals.
-/// Every proc you pass to RegisterSignal must have this.
-#define SIGNAL_HANDLER SHOULD_NOT_SLEEP(TRUE)
-
-//shorthand
-#define GET_COMPONENT_FROM(varname, path, target) var##path/##varname = ##target.GetComponent(##path)
-#define GET_COMPONENT(varname, path) GET_COMPONENT_FROM(varname, path, src)
-
-#define COMPONENT_INCOMPATIBLE 1
-#define COMPONENT_NOTRANSFER 2
-#define COMPONENT_TRANSFER 3
-
-// How multiple components of the exact same type are handled in the same datum
-
-#define COMPONENT_DUPE_HIGHLANDER		0		//old component is deleted (default)
-#define COMPONENT_DUPE_ALLOWED			1	//duplicates allowed
-#define COMPONENT_DUPE_UNIQUE			2	//new component is deleted
-#define COMPONENT_DUPE_UNIQUE_PASSARGS	4	//old component is given the initialization args of the new
-
 // All signals. Format:
 // When the signal is called: (signal arguments)
 // All signals send the source datum of the signal as the first argument
@@ -34,11 +11,18 @@
 //////////////////////////////////////////////////////////////////
 
 // /datum signals
-#define COMSIG_COMPONENT_ADDED "component_added"				//when a component is added to a datum: (/datum/component)
-#define COMSIG_COMPONENT_REMOVING "component_removing"			//before a component is removed from a datum because of RemoveComponent: (/datum/component)
-#define COMSIG_PARENT_PREQDELETED "parent_preqdeleted"			//before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation
-#define COMSIG_PARENT_QDELETING "parent_qdeleting"			  // just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
-#define COMSIG_PARENT_QDELETED "parent_qdeleted"				//after a datum's Destroy() is called: (force, qdel_hint), at this point none of the other components chose to interrupt qdel and Destroy has been called
+/// when a component is added to a datum: (/datum/component)
+#define COMSIG_COMPONENT_ADDED "component_added"
+/// before a component is removed from a datum because of ClearFromParent: (/datum/component)
+#define COMSIG_COMPONENT_REMOVING "component_removing"
+/// before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation
+/// you should only be using this if you want to block deletion
+/// that's the only functional difference between it and COMSIG_PARENT_QDELETING, outside setting QDELETING to detect
+#define COMSIG_PARENT_PREQDELETED "parent_preqdeleted"
+/// just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
+#define COMSIG_PARENT_QDELETING "parent_qdeleting"
+/// after a datum's Destroy() is called: (force, qdel_hint), at this point none of the other components chose to interrupt qdel and Destroy has been called
+#define COMSIG_PARENT_QDELETED "parent_qdeleted"
 
 #define COMSIG_SHUTTLE_SUPPLY "shuttle_supply"  //form sell()
 #define COMSIG_TRADE_BEACON "trade_beacon"
@@ -46,8 +30,21 @@
 #define COMSIG_GROUP_RITUAL "grup_ritual"
 #define COMSIG_TRANSATION "transation"          //from transfer_funds()
 
+#define COMSIG_NULL_TARGET "null_target"		// Used to null references created by targeting logic (mob targeting)
+#define COMSIG_NULL_SECONDARY_TARGET "null_secondary_target"
+
+/// generic topic handler (usr, href_list)
+#define COMSIG_TOPIC "handle_topic"
+/// handler for vv_do_topic (usr, href_list)
+#define COMSIG_VV_TOPIC "vv_topic"
+	#define COMPONENT_VV_HANDLED (1<<0)
 /// from datum ui_act (usr, action)
 #define COMSIG_UI_ACT "COMSIG_UI_ACT"
+
+/// fires on the target datum when an element is attached to it (/datum/element)
+#define COMSIG_ELEMENT_ATTACH "element_attach"
+/// fires on the target datum when an element is attached to it  (/datum/element)
+#define COMSIG_ELEMENT_DETACH "element_detach"
 
 // /atom signals
 #define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
@@ -79,7 +76,7 @@
 
 // /mob/living/carbon signals
 #define COMSIG_CARBON_ELECTROCTE "carbon_electrocute act"	   //mob/living/carbon/electrocute_act()
-#define COMSING_NSA "current_nsa"							   //current nsa
+#define COMSIG_NSA "current_nsa"							   //current nsa
 #define COMSIG_CARBON_ADICTION "new_chem_adiction"			  //from check_reagent()
 
 // /mob/living/carbon/human signals
@@ -134,7 +131,23 @@
 #define COMSIG_MESSAGE_SENT "radio_message_sent"
 #define COMSIG_MESSAGE_RECEIVED "radio_message_received"
 
-// ABERRANT signals
+// Internal organ signals
+#define COMSIG_IORGAN_REFRESH_SELF "internal_organ_self_refresh"
+#define COMSIG_IORGAN_REFRESH_PARENT "internal_organ_parent_refresh"
+#define COMSIG_IORGAN_APPLY "internal_organ_apply_modifiers"
+#define COMSIG_IORGAN_ADD_WOUND "add_internal_wound"
+#define COMSIG_IORGAN_REMOVE_WOUND "remove_internal_wound"
+#define COMSIG_IORGAN_WOUND_COUNT "count_internal_wounds"
+
+// Internal wound signals
+#define COMSIG_IWOUND_EFFECTS "internal_wound_effects"
+#define COMSIG_IWOUND_LIMB_EFFECTS "internal_wound_limb_effects"
+#define COMSIG_IWOUND_FLAGS_ADD "internal_wound_flags_add"
+#define COMSIG_IWOUND_FLAGS_REMOVE "internal_wound_flags_remove"
+#define COMSIG_IWOUND_DAMAGE "internal_wound_damage"
+#define COMSIG_IWOUND_TREAT "internal_wound_autodoc"
+
+// Aberrant signals
 #define COMSIG_ABERRANT_INPUT "aberrant_input"
 #define COMSIG_ABERRANT_PROCESS "aberrant_process"
 #define COMSIG_ABERRANT_OUTPUT "aberrant_output"

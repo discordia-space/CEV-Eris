@@ -601,7 +601,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 		nextinterval *= RAND_DECIMAL(1-variance, 1+variance)
 
 	//Set the next timer handle
-	timer_handle = addtimer(CALLBACK(src, .proc/do_sound, TRUE), nextinterval, TIMER_STOPPABLE)
+	timer_handle = addtimer(CALLBACK(src, PROC_REF(do_sound), TRUE), nextinterval, TIMER_STOPPABLE)
 
 
 

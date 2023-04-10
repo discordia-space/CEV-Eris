@@ -71,7 +71,7 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
 	department_account_access = TRUE
-	wage = WAGE_LABOUR_HAZARD
+	wage = WAGE_PROFESSIONAL
 	also_known_languages = list(LANGUAGE_NEOHONGO = 100)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/gunserg

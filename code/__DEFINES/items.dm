@@ -104,6 +104,7 @@
 #define GUN_UPGRADE_RIGGED "rigged"
 #define GUN_UPGRADE_THERMAL "thermal scope"
 #define GUN_UPGRADE_BAYONET "bayonet"
+#define GUN_UPGRADE_FLASHLIGHT "flashlight"
 #define GUN_UPGRADE_GILDED "gilded"
 #define GUN_UPGRADE_DNALOCK "biocoded"
 #define GUN_UPGRADE_FOREGRIP "foregrip"

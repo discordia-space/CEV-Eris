@@ -30,7 +30,7 @@
 		organ.owner_custom_pain("Someone is digging into your [limb.name]!", 1)
 
 /datum/surgery_step/attach_mod/end_step(mob/living/user, obj/item/organ/internal/organ, obj/item/mod)
-	SEND_SIGNAL(mod, COMSIG_IATTACK, organ, user)
+	SEND_SIGNAL_OLD(mod, COMSIG_IATTACK, organ, user)
 
 /datum/surgery_step/attach_mod/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/mod)
 	user.visible_message(
@@ -54,7 +54,7 @@
 		organ.owner_custom_pain("Someone is cutting into your [limb.name]!", 1)
 
 /datum/surgery_step/remove_mod/end_step(mob/living/user, obj/item/organ/internal/organ, obj/item/tool)
-	SEND_SIGNAL(organ, COMSIG_ATTACKBY, tool, user)
+	SEND_SIGNAL_OLD(organ, COMSIG_ATTACKBY, tool, user)
 
 /datum/surgery_step/remove_mod/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/tool)
 	user.visible_message(
@@ -70,7 +70,7 @@
 	difficulty = 0
 
 /datum/surgery_step/examine/tool_quality(obj/item/tool)
-	return 100		// Don't need no tool
+	return 120		// Don't need no tool
 
 /datum/surgery_step/examine/can_use(mob/living/user, obj/item/organ/organ, obj/item/tool, target)
 	return TRUE

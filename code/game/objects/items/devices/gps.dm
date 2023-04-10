@@ -49,7 +49,7 @@
 	emped = TRUE
 	overlays.Cut()
 	overlays += image(icon, "emp")
-	addtimer(CALLBACK(src, .proc/post_emp), 300)
+	addtimer(CALLBACK(src, PROC_REF(post_emp)), 300)
 
 /obj/item/device/gps/proc/post_emp()
 	emped = FALSE

@@ -22,7 +22,7 @@
 	// UI is updated by "return 1" in Topic()
 	use_power = ACTIVE_POWER_USE
 
-	addtimer(CALLBACK(src, .proc/finish_task), action_time)
+	addtimer(CALLBACK(src, PROC_REF(finish_task)), action_time)
 
 /obj/machinery/botany/proc/finish_task()
 	use_power = IDLE_POWER_USE

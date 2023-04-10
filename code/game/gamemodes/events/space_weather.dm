@@ -327,7 +327,7 @@
 		ghost.appearance = to_copy.appearance
 		ghost.mouse_opacity = 0
 		ghost.density = 0
-		addtimer(CALLBACK(src, .proc/delete_ghost, ghost), 2 SECONDS, TIMER_STOPPABLE)
+		addtimer(CALLBACK(src, PROC_REF(delete_ghost), ghost), 2 SECONDS, TIMER_STOPPABLE)
 
 /datum/event/interphase/proc/delete_ghost(mob/ghost)
 	if(!QDELETED(ghost))	//no idea how it could be gone in 20 seconds but gamers will find a way

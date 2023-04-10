@@ -14,7 +14,7 @@
 	..()
 	target = pick_faction_item(mind_holder)
 	desc = "Export or sell \the [target] item of another faction via trade beacon."
-	RegisterSignal(SStrade, COMSIG_TRADE_BEACON, .proc/task_completed)
+	RegisterSignal(SStrade, COMSIG_TRADE_BEACON, PROC_REF(task_completed))
 
 /datum/individual_objective/repossession/task_completed(atom/movable/AM)
 	if(target.type == AM.type)
@@ -34,7 +34,7 @@
 	..()
 	units_requested = rand(3,4)
 	desc = "Ensure that [units_requested] oddities are exported or sold via trade beacon."
-	RegisterSignal(SStrade, COMSIG_TRADE_BEACON, .proc/task_completed)
+	RegisterSignal(SStrade, COMSIG_TRADE_BEACON, PROC_REF(task_completed))
 
 /datum/individual_objective/museum/task_completed(atom/movable/AM)
 	if(AM.GetComponent(/datum/component/inspiration))
@@ -83,7 +83,7 @@
 	target = pick_candidates()
 	target = new target()
 	desc = "A friend of yours on the other side on trade teleporter is waiting for a [target]. Ensure it will be exported or sold via trade beacon."
-	RegisterSignal(SStrade, COMSIG_TRADE_BEACON, .proc/task_completed)
+	RegisterSignal(SStrade, COMSIG_TRADE_BEACON, PROC_REF(task_completed))
 
 /datum/individual_objective/order/task_completed(atom/movable/AM)
 	if(AM.type == target.type)
@@ -120,7 +120,7 @@
 		valied_areas += A
 	target = pick(valied_areas)
 	desc = "Ensure that [target] does not have cumulative price of items inside it that is higher than [price_target][CREDITS]."
-	RegisterSignal(mind_holder, COMSIG_MOB_LIFE, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSIG_MOB_LIFE, PROC_REF(task_completed))
 
 /datum/individual_objective/stripping/task_completed()
 	if(mind_holder.stat == DEAD)
@@ -164,7 +164,7 @@
 	units_requested = rand(2000, 5000)
 	desc = "Some of your relative asked you to procure and provide this account number: \"[target.account_number]\" with sum of [units_requested][CREDITS]. \
 			You dont know exactly why, but this is important."
-	RegisterSignal(owner.initial_account, COMSIG_TRANSATION, .proc/task_completed)
+	RegisterSignal(owner.initial_account, COMSIG_TRANSATION, PROC_REF(task_completed))
 
 /datum/individual_objective/transfer/task_completed(datum/money_account/S, datum/money_account/T, amount)
 	if(S == owner.initial_account && T == target)
