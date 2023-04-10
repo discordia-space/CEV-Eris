@@ -5,13 +5,13 @@
 	icon_screen = "holocontrol"
 
 	use_power = IDLE_POWER_USE
-	active_power_usage = 8000 //8kW for the scenery + 500W per holoitem
+	active_power_usage = 10000 //10kW for the scenery + 50W per holoitem
 
 	circuit = /obj/item/electronics/circuitboard/holodeckcontrol
 
-	var/item_power_usage = 500
+	var/item_power_usage = 50
 
-	var/area/linkedholodeck = null
+	var/area/holodeck/linkedholodeck = null
 	var/linkedholodeck_area
 	var/active = 0
 	var/list/holographic_objs = list()
@@ -27,6 +27,7 @@
 /obj/machinery/computer/HolodeckControl/New()
 	..()
 	linkedholodeck = locate(linkedholodeck_area)
+	linkedholodeck.linked_console = linkedholodeck.linked_console ? linkedholodeck.linked_console : src
 	supported_programs = list()
 	restricted_programs = list()
 
@@ -140,7 +141,7 @@
 
 /obj/machinery/computer/HolodeckControl/proc/update_projections()
 	if (safety_disabled)
-		item_power_usage = 2500
+		item_power_usage = 250
 		for(var/obj/item/holo/esword/H in linkedholodeck)
 			H.damtype = BRUTE
 	else
@@ -182,8 +183,7 @@
 	if(!..())
 		return
 	if(active)
-		use_power(item_power_usage * (holographic_objs.len + holographic_mobs.len))
-
+		use_power(item_power_usage * (holographic_objs.len + holographic_mobs.len) + linkedholodeck.usage(TOTAL))
 		if(!checkInteg(linkedholodeck))
 			damaged = 1
 			loadProgram(holodeck_programs["turnoff"], 0)
@@ -318,7 +318,7 @@
 
 	last_gravity_change = world.time
 	active = 1
-	use_power = IDLE_POWER_USE
+	use_power = ACTIVE_POWER_USE
 
 
 	if(A.has_gravity)

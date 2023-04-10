@@ -446,6 +446,14 @@ area/space/atmosalert()
 	name = "\improper Holodeck"
 	icon_state = "Holodeck"
 	sound_env = LARGE_ENCLOSED
+	requires_power = FALSE
+	var/obj/machinery/computer/HolodeckControl/linked_console
+
+/area/holodeck/powered(var/chan)		// return true if the area has power to given channel
+
+	if(linked_console && linked_console.active)
+		return TRUE // If the linked console is active, we are always powered
+	. = ..()
 
 //We'll assume holodecks have their own private gravity/antigrav generator, and are thus immune to any changes in gravity elsewhere
 //This proc checks and sets nothing. Gravity will be set directly on the area from a nearby holodeck console
