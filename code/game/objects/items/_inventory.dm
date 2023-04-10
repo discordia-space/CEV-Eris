@@ -146,12 +146,12 @@
 		//makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
 		//there's got to be a better way of doing this.
 		if(src.loc != H || H.incapacitated())
-			return
+			return FALSE
 
 		if(!H.canUnEquip(src))
-			return
+			return FALSE
 		if(!H.can_equip(src, target, FALSE, FALSE, FALSE))
-			return
+			return FALSE
 		H.remove_from_mob(src, drop = FALSE)
 		/*
 			Copied from human equip_to_slot
