@@ -51,7 +51,7 @@
 	new/obj/item/clothing/head/beret/artist(src)
 	new/obj/item/clothing/glasses/artist(src)
 	new/obj/item/clothing/mask/gas/artist_hat(src)
-	new/obj/item/device/radio/headset/headset_cargo(src)
+	new/obj/item/device/radio/headset/headset_service(src)
 	new/obj/item/electronics/circuitboard/artist_bench(src)
 
 /obj/structure/closet/wardrobe/color/pink/artist
