@@ -4,7 +4,7 @@
 	icon_state = "maneki_neko"
 	item_state = "maneki_neko"
 	desc = "Costs a lot of money, this is ancient relic with no practical purpose. Feels like it's looking at you, with menacingly gaze. Fragile."
-	description_info = "Feeding the resuscitator machine to it will permit it to convert bars of iron into gold."
+	description_info = "Feeding the Molitor-Riedel Enricher to it will permit it to convert bars of iron into gold."
 	description_fluff = "Its said that one must be a fool to break such a valuable vase. As it contains the soul of a Neko itself."
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
