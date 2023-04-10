@@ -37,8 +37,8 @@
 	new /obj/item/device/scanner/price(src)
 
 /obj/structure/closet/secure_closet/personal/artist
-	name = "guild artist's locker"
-	req_access = list(access_merchant)
+	name = "club artist's locker"
+	req_access = list(access_change_club)
 	access_occupy = list(access_artist)
 	icon_state = "cargo"
 	spawn_frequency = 0

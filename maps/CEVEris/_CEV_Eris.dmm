@@ -27387,7 +27387,7 @@
 	pixel_x = -28
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "bmT" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -28765,7 +28765,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "bqa" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
@@ -32619,7 +32619,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/cargo,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "bzJ" = (
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
 	id_tag = "engeve_access_console";
@@ -32706,7 +32706,7 @@
 	opacity = 0
 	},
 /turf/simulated/floor/plating,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "bzO" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
@@ -33895,7 +33895,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "bCW" = (
 /obj/structure/computerframe{
 	anchored = 1;
@@ -46653,7 +46653,7 @@
 	},
 /obj/structure/flora/pottedplant/random,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "cgR" = (
 /obj/item/device/radio/beacon,
 /turf/simulated/floor/tiled/steel,
@@ -46715,7 +46715,7 @@
 /area/eris/command/fo)
 "chd" = (
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "che" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -46729,7 +46729,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "chf" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
@@ -46753,7 +46753,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "chi" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
@@ -46878,7 +46878,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "chv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -46911,7 +46911,7 @@
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "chy" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
@@ -47032,7 +47032,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "chI" = (
 /obj/structure/bed/chair/office/light,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -47040,13 +47040,13 @@
 	},
 /obj/landmark/join/start/artist,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "chJ" = (
 /obj/item/modular_computer/console/preset/civilian/professional{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "chK" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -47105,7 +47105,7 @@
 /obj/item/device/synthesized_instrument/guitar,
 /obj/item/device/synthesized_instrument/synthesizer,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "chV" = (
 /obj/structure/table/standard,
 /obj/item/paper_bin,
@@ -47114,7 +47114,7 @@
 	pixel_y = 2
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "chW" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -47148,7 +47148,7 @@
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "cia" = (
 /obj/structure/catwalk,
 /turf/simulated/open,
@@ -47724,7 +47724,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "cjB" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/research{
@@ -47831,7 +47831,7 @@
 /obj/item/clothing/suit/monkeysuit,
 /obj/item/clothing/mask/gas/monkeymask,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "cjN" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -49556,7 +49556,7 @@
 /obj/item/device/synthesized_instrument/synthesizer,
 /obj/machinery/light,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "coo" = (
 /obj/structure/table/standard,
 /obj/item/electronics/circuitboard/aicore{
@@ -50006,7 +50006,7 @@
 /obj/structure/bed/chair/office/light,
 /obj/landmark/join/start/artist,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "cps" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 8
@@ -50839,7 +50839,7 @@
 	},
 /obj/machinery/autolathe/artist_bench,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "crB" = (
 /obj/structure/sign/department/dock{
 	pixel_y = 32
@@ -51303,7 +51303,7 @@
 	pixel_y = -28
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "csK" = (
 /obj/item/modular_computer/console/preset/command{
 	dir = 1
@@ -51414,7 +51414,7 @@
 /obj/machinery/camera/network/third_section,
 /obj/structure/closet/secure_closet/personal/artist,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "ctd" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
@@ -51484,7 +51484,7 @@
 	},
 /obj/structure/closet/wardrobe/color/pink/artist,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "ctq" = (
 /obj/structure/table/rack/shelf,
 /obj/machinery/firealarm{
@@ -51499,7 +51499,7 @@
 /obj/item/clothing/suit/monkeysuit,
 /obj/item/clothing/mask/gas/monkeymask,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "ctr" = (
 /turf/simulated/wall/r_wall,
 /area/eris/quartermaster/office)
@@ -51719,7 +51719,7 @@
 	},
 /obj/landmark/join/start/artist,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "ctY" = (
 /obj/structure/lattice,
 /obj/structure/railing,
@@ -51972,7 +51972,7 @@
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "cuK" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -52185,7 +52185,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "cvu" = (
 /obj/structure/table/standard,
 /obj/spawner/pack/tech_loot,
@@ -52942,7 +52942,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "cxj" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
@@ -53031,7 +53031,7 @@
 	pixel_x = -27
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "cxu" = (
 /turf/simulated/wall/r_wall,
 /area/eris/crew_quarters/hydroponics/garden)
@@ -54241,7 +54241,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white/golden,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "cAq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/red{
 	dir = 4
@@ -54555,7 +54555,7 @@
 /obj/item/device/lighting/toggleable/lamp,
 /obj/structure/table/standard,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "cBb" = (
 /obj/item/clothing/mask/breath,
 /obj/machinery/door/window/southleft{
@@ -55063,7 +55063,7 @@
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "cCm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/camera/network/third_section{
@@ -65056,7 +65056,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "dbq" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -84256,7 +84256,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "dTK" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -89634,7 +89634,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white/golden,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "ehf" = (
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section4deck2starboard)
@@ -91684,7 +91684,7 @@
 "elW" = (
 /obj/structure/closet/secure_closet/personal/artist,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "elX" = (
 /obj/structure/closet/firecloset,
 /turf/simulated/floor/tiled/steel/gray_platform,
@@ -93764,7 +93764,7 @@
 /area/eris/maintenance/section3deck2starboard)
 "erj" = (
 /turf/simulated/wall/r_wall,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "erk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/railing{
@@ -93797,7 +93797,7 @@
 /area/eris/medical/surgery)
 "ero" = (
 /turf/simulated/wall,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "erq" = (
 /obj/structure/bed/chair/office/light,
 /obj/machinery/holoposter{
@@ -96086,7 +96086,7 @@
 /obj/structure/closet/wardrobe/color/pink/artist,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "ewF" = (
 /obj/structure/table/standard,
 /obj/machinery/microwave{
@@ -100965,7 +100965,7 @@
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "flS" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -101485,7 +101485,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "gCq" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_common{
@@ -103496,7 +103496,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "lwA" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -104289,7 +104289,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "nqt" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -104514,7 +104514,7 @@
 "oek" = (
 /obj/structure/flora/pottedplant/random,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "ofp" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -105241,7 +105241,7 @@
 	name = "Maintenance Hatch"
 	},
 /turf/simulated/floor/plating,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "pVr" = (
 /turf/simulated/wall/r_wall,
 /area/eris/maintenance/sorter)
@@ -106698,7 +106698,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "tzQ" = (
 /obj/machinery/door/airlock/medical{
 	name = "Chemistry";
@@ -107390,7 +107390,7 @@
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "vkt" = (
 /obj/machinery/door/window/eastright{
 	name = "Research Desk";
@@ -107873,7 +107873,7 @@
 /obj/structure/closet/secure_closet/personal/artist,
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/carpet/gaycarpet,
-/area/eris/quartermaster/artistoffice)
+/area/eris/crew_quarters/artistoffice)
 "wqX" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
