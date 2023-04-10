@@ -70,7 +70,7 @@
 				oddity_stats[STAT_TGH] += 3
 				oddity_stats[STAT_ROB] += 3
 				if(istype(W, /obj/item/gun/projectile/revolver/sky_driver))
-					to_chat(user, "This departamental relic is used for combat.. it has boosted the [src]'s capability of creating combat oddities")
+					to_chat(user, "This departmental relic is used for combat, it has boosted the [src]'s capability of creating combat oddities.")
 					combat_cap *= 2
 			else if(GLOB.all_faction_items[W] == GLOB.department_church)
 				oddity_stats[STAT_BIO] += 3
