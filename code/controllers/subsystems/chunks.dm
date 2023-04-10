@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(chunks)
 		for(var/chunkY = coordinates[2], chunkY <= coordinates[4], chunkY += CHUNK_SIZE)
 			chunkReference = SSchunks.chunk_list_by_zlevel[container.z][CHUNKID(chunkX, chunkY)]
 			for(var/mob/mobToCheck as anything in chunkReference.mobs)
-				if(get_dist_euclidian(source, get_turf(mobToCheck)) < range)
+				if(get_dist_euclidian(get_turf(source), get_turf(mobToCheck)) < range)
 					if(aliveonly && mobToCheck.stat == DEAD)
 						continue
 					if(canseeonly && !can_see(get_turf(container), get_turf(mobToCheck), range * 2))
