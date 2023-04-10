@@ -44,7 +44,7 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 /obj/item/device/last_shelter/attackby(obj/item/I, mob/living/user, params)
 	if(I.get_tool_quality(QUALITY_SCREW_DRIVING) && !radio_broadcasting && user.a_intent == I_HELP)
 		radio_broadcasting = TRUE
-		to_chat(user, SPAN_NOTICE("You reenable the radio inside of [src]"))
+		to_chat(user, SPAN_NOTICE("You re-enable the radio inside of [src]."))
 		return
 
 	if(nt_sword_attack(I, user))
