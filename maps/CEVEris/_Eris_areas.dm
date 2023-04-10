@@ -492,6 +492,10 @@
 	name = "Bar Quarters"
 	icon_state = "erisblue"
 
+/area/eris/crew_quarters/clubmanager
+	name = "Club Manager's Quarters"
+	icon_state = "erisgreen"
+
 /area/eris/crew_quarters/theatre
 	name = "\improper Theatre"
 	icon_state = "Theatre"
