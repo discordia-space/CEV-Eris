@@ -48,7 +48,7 @@
 	if(istype(I, /obj/item/device/von_krabin))
 		user.drop_from_inventory(I)
 		qdel(I)
-		name = "Guided S REV .35 Auto \"Sky Driver\""
+		name = "guided S REV .35 Auto \"Sky Driver\""
 		desc = "Old, Syndicate revolver made on lost tech before the Corporate war. Uses .35 Auto rounds. This one has been augmented with psionic-tracking"
 		guided = TRUE
 		return
