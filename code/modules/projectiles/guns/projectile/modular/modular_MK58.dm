@@ -23,43 +23,37 @@
 	gun_tags = list(GUN_SILENCABLE)
 	spriteTags = PARTMOD_SLIDE | PARTMOD_FRAME_SPRITE
 
-	var/slide_type = "gray"
-
 	serial_type = "NT"
 
 	required_parts = list(/obj/item/part/gun/modular/barrel/pistol = 0, /obj/item/part/gun/modular/mechanism/pistol = 0, /obj/item/part/gun/modular/grip = 0)
 
 /obj/item/gun/projectile/automatic/modular/mk58/get_initial_name()
-	var/slide_name = (slide_type == "black") ? "BM " : "NT "
 	if(grip_type)
 		switch(grip_type)
 			if("wood")
-				return "[slide_name][caliber] \"Mk-58 C\""
+				return "NT [caliber] \"Mk-58 C\""
 			if("black")
-				return "[slide_name][caliber] \"Mk-58 B\""
+				return "NT [caliber] \"Mk-58 B\""
 			if("rubber")
-				return "[slide_name][caliber] \"Mk-58 a\""
+				return "NT [caliber] \"Mk-58 a\""
 			if("excelsior")
-				return "[slide_name][caliber] \"Mk-58 e\""
+				return "NT [caliber] \"Mk-58 e\""
 			if("serbian")
-				return "[slide_name][caliber] \"Mk-58 T\""
+				return "NT [caliber] \"Mk-58 T\""
 			if("makeshift")
-				return "[slide_name][caliber] \"Mk-58 m\""
+				return "NT [caliber] \"Mk-58 m\""
 	else
-		return "[slide_name][caliber] \"Mk-58\""
+		return "NT [caliber] \"Mk-58\""
 
 /obj/item/gun/projectile/automatic/modular/mk58/gray // Frame
-	slide_type = "gray"
 	icon_state = "frame_gray"
 	spawn_blacklisted = FALSE // Spawns in gun part loot
 
 /obj/item/gun/projectile/automatic/modular/mk58/black // Frame
-	slide_type = "black"
 	icon_state = "frame_black"
 	spawn_blacklisted = FALSE // Spawns in gun part loot
 
 /obj/item/gun/projectile/automatic/modular/mk58/tan // Frame
-	slide_type = "tan"
 	icon_state = "frame_tan"
 	spawn_blacklisted = FALSE // Spawns in gun part loot
 
