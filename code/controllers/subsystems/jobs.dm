@@ -13,6 +13,7 @@ SUBSYSTEM_DEF(job)
 	var/list/job_debug = list()				//Debug info
 	var/list/job_mannequins = list()				//Cache of icons for job info window
 	var/list/ckey_to_job_to_playtime = list()
+	var/list/ckey_to_job_to_can_play = list()
 	var/list/job_to_playtime_requirement = list()
 
 /datum/controller/subsystem/job/Initialize(start_timeofday)
@@ -22,16 +23,79 @@ SUBSYSTEM_DEF(job)
 		LoadPlaytimeRequirements("config/job_playtime_requirements.txt")
 	return ..()
 
-/datum/controller/subsystem/job/proc/CanHaveJob(client/target_client, job_title)
+/datum/controller/subsystem/job/proc/UpdatePlayableJobs(ckey)
+	if(!length(ckey_to_job_to_can_play[ckey]))
+		ckey_to_job_to_can_play[ckey] = list()
+	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
+	var/whitelisted = FALSE
+	from_file(save_data["whitelisted"], whitelisted)
+	for(var/occupation in occupations_by_name)
+		if(is_admin(get_client_by_ckey(ckey)) || whitelisted)
+			ckey_to_job_to_can_play[ckey][occupation] = TRUE
+		else
+			ckey_to_job_to_can_play[ckey][occupation] = CanHaveJob(ckey, occupation)
+
+/datum/controller/subsystem/job/proc/WhitelistPlayer(ckey)
+	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
+	to_file(save_data["whitelisted"], TRUE)
+
+/datum/controller/subsystem/job/proc/UnwhitelistPlayer(ckey)
+	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
+	to_file(save_data["whitelisted"], FALSE)
+
+/datum/controller/subsystem/job/proc/CanHaveJob(ckey, job_title)
 	if(!occupations_by_name[job_title])
 		return FALSE
-	if(!target_client)
+	if(!ckey)
 		return FALSE
-	if(!length(ckey_to_job_to_playtime[target_client.ckey]))
+	if(job_to_playtime_requirement[job_title] == 0)
+		return TRUE
+	var/datum/job/wanted_job = occupations_by_name[job_title]
+	var/datum/job/checking_job
+	if(!wanted_job)
+		return FALSE
+	var/total_playtime
+	if(ckey_to_job_to_playtime[ckey])
+		if(ckey_to_job_to_playtime[ckey][job_title])
+			total_playtime += ckey_to_job_to_playtime[ckey][job_title]
+	for(var/job_name in ckey_to_job_to_playtime[ckey])
+		checking_job = occupations_by_name[job_name]
+		if(!checking_job)
+			continue
+		if(checking_job.department_flag & wanted_job.department_flag)
+			total_playtime += ckey_to_job_to_playtime[ckey][job_name]
+	if(length(SSinactivity_and_job_tracking))
+		if(length(SSinactivity_and_job_tracking[ckey]))
+			for(var/played_job in SSinactivity_and_job_tracking[ckey])
+				checking_job = occupations_by_name[played_job]
+				if(!checking_job)
+					continue
+				if(checking_job.department_flag & wanted_job.department_flag)
+					total_playtime += round((SSinactivity_and_job_tracking[ckey][played_job][2] - SSinactivity_and_job_tracking[ckey][played_job][1])/600)
+	if(total_playtime >= job_to_playtime_requirement[job_title])
+		return TRUE
+	else
 		return FALSE
 
 /datum/controller/subsystem/job/proc/LoadPlaytimeRequirements(folderPath)
 	var/list/le_playtimes = file2list(folderPath)
+	for(var/playtime in le_playtimes)
+		if(!playtime)
+			continue
+		playtime = trim(playtime)
+		if (!length(playtime))
+			continue
+		var/pos = findtext(playtime, "=")
+		var/name = null
+		var/value = null
+		if(pos)
+			name = copytext(playtime, 1, pos)
+			value = copytext(playtime, pos + 1)
+		else
+			continue
+		if(name && value)
+			job_to_playtime_requirement[name] = text2num(value)
+	return TRUE
 
 /datum/controller/subsystem/job/proc/LoadPlaytimes(client/target_client)
 	if(!target_client)
@@ -68,10 +132,12 @@ SUBSYSTEM_DEF(job)
 		save_data.cd = ".."
 
 /datum/controller/subsystem/job/proc/CreateConfigFile()
-	var/file = file("config/job_playtime_requirements.txt")
+	// This is a file used for generating a template of all the current jobs..
+	// Create it in the config and then just call this proc, it will add in a pre-set config for all jobs with
+	// the required playtime at 0
+	var/file = file("config/job_playtimes_template.txt")
 	for(var/datum/job/occupation in occupations)
 		file << "[occupation.title]=0"
-		message_admins("[occupation.title]=0")
 
 /datum/controller/subsystem/job/proc/SetupOccupations(faction = "CEV Eris")
 	occupations.Cut()
