@@ -12,12 +12,55 @@ SUBSYSTEM_DEF(job)
 	var/list/unassigned = list()			//Players who need jobs
 	var/list/job_debug = list()				//Debug info
 	var/list/job_mannequins = list()				//Cache of icons for job info window
+	var/list/ckey_to_job_to_playtime = list()
 
 /datum/controller/subsystem/job/Initialize(start_timeofday)
 	if(!occupations.len)
 		SetupOccupations()
 		LoadJobs("config/jobs.txt")
 	return ..()
+
+/datum/controller/subsystem/job/proc/CanHaveJob(client/target_client, job_title)
+	if(!occupations_by_name[job_title])
+		return FALSE
+	if(!target_client)
+		return FALSE
+	if(!length(ckey_to_job_to_playtime[target_client.ckey]))
+		return FALSE
+
+/datum/controller/subsystem/job/proc/LoadPlaytimes(client/target_client)
+	if(!target_client)
+		return
+	var/target_key = target_client.ckey
+	var/savefile/save_data = new("data/player_saves/[copytext(target_key, 1, 2)]/[target_key]/playtimes.sav")
+	for(var/occupation in occupations_by_name)
+		save_data.cd = occupation
+		if(!length(ckey_to_job_to_playtime[target_key]))
+			ckey_to_job_to_playtime[target_key] = list()
+		from_file(save_data["playtime"], ckey_to_job_to_playtime[target_key][occupation])
+		// return to last directory
+		save_data.cd = ".."
+
+/datum/controller/subsystem/job/proc/SavePlaytimes(client/target_client)
+	if(!target_client)
+		return FALSE
+	var/target_key = target_client.ckey
+	var/savefile/save_data = new("data/player_saves/[copytext(target_key, 1, 2)]/[target_key]/playtimes.sav")
+	/// No playtimes registered
+	if(!length(SSinactivity_and_job_tracking.current_playtimes[target_key]))
+		return FALSE
+	for(var/occupation in SSinactivity_and_job_tracking.current_playtimes[target_key])
+		var/playtime = SSinactivity_and_job_tracking.current_playtimes[target_key][occupation][2] - SSinactivity_and_job_tracking.current_playtimes[target_key][occupation][1]
+		var/playtime_from_file
+		save_data.cd = occupation
+		from_file(save_data["playtime"], playtime_from_file)
+		playtime = playtime + playtime_from_file
+		if(!isnum(playtime))
+			message_admins("Malformatted input into job save playtimes for [target_key] [occupation], not saving the new playtime : [playtime]")
+			continue
+		to_file(save_data["playtime"], playtime)
+		/// return to last dir
+		save_data.cd = ".."
 
 /datum/controller/subsystem/job/proc/SetupOccupations(faction = "CEV Eris")
 	occupations.Cut()
@@ -362,6 +405,7 @@ SUBSYSTEM_DEF(job)
 	var/alt_title = null
 	if(H.mind)
 		H.mind.assigned_role = rank
+		SSinactivity_and_job_tracking.on_job_spawn(H, H.client.ckey)
 	//	alt_title = H.mind.role_alt_title
 
 		switch(rank)
@@ -413,6 +457,7 @@ SUBSYSTEM_DEF(job)
 
 	BITSET(H.hud_updateflag, ID_HUD)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
+
 	return H
 
 /proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
