@@ -111,7 +111,7 @@ DEBUG
 	while(id_query.NextRow())
 		if(id)
 			message_admins("Database query returned multiple ID's for the same player ckey , [ckey]")
-		id = id_query.item[1]
+		id = query.item[1]
 	if(!id)
 		error("Player ckey not in database")
 		return 0

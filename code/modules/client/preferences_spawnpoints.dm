@@ -145,7 +145,6 @@
 		return FALSE
 
 	M.forceMove(spawn_turf)
-	SSinactivity.onJobSpawn(M)
 
 	// Moving wheelchair if they have one
 	if(M.buckled && istype(M.buckled, /obj/structure/bed/chair/wheelchair))
@@ -197,13 +196,11 @@
 
 		//When spawning in cryo, you start off asleep for a few moments and wake up
 		M.Paralyse(2)
-		SSinactivity.onJobSpawn(M)
-
 
 		//You can get yourself out of the cryopod, or it will auto-eject after one minute
 		spawn(600)
 			if (C && C.occupant == M)
-				C.eject()
+				C.eject() 
 		return TRUE
 	return FALSE
 
@@ -252,7 +249,6 @@
 	if (beds.len)
 		var/obj/structure/bed/C = pick(beds)
 		M.forceMove(C.loc)
-		SSinactivity.onJobSpawn(M)
 		C.buckle_mob(M)
 
 		//When spawning in bed, you start off asleep for a moment

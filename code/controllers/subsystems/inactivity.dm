@@ -3,17 +3,7 @@ SUBSYSTEM_DEF(inactivity)
 	wait = 1 MINUTES
 	priority = SS_PRIORITY_INACTIVITY
 	var/tmp/list/client_list
-	var/list/ckey_to_job_playtime
 	var/number_kicked = 0
-
-/datum/controller/subsystem/inactivity/Initialize()
-	. = ..()
-	ckey_to_job_playtime = list()
-
-/datum/controller/subsystem/inactivity/proc/onJobSpawn(mob/target)
-	if(!target.ckey)
-		return
-	ckey_to_job_playtime[target.ckey][target.mind.assigned_job.title] = list(world.time, world.time)
 
 /datum/controller/subsystem/inactivity/fire(resumed = FALSE)
 	if (!resumed)
@@ -29,8 +19,6 @@ SUBSYSTEM_DEF(inactivity)
 			number_kicked++
 		else if (C.mob && C.mob.mind && C.mob.stat != DEAD)
 			C.mob.mind.last_activity = world.time - C.inactivity
-			if(C.mob.mind.assigned_job)
-				ckey_to_job_playtime[C.ckey][C.mob.mind.assigned_job.title][2] = C.mob.mind.last_activity
 
 		if (MC_TICK_CHECK)
 			return
