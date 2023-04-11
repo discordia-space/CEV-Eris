@@ -61,4 +61,4 @@
 /obj/item/stack/rods/throw_impact(atom/hit_atom, speed)
 	..()
 	if(isfloor(hit_atom))
-		playsound(loc, 'sound/effects/metalpipe.ogg', 200, 1)
+		playsound(loc, 'sound/effects/metalpipe.ogg', 100, 1)
