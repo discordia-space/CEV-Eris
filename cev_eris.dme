@@ -1365,7 +1365,6 @@
 #include "code\modules\admin\topic.dm"
 #include "code\modules\admin\ToRban.dm"
 #include "code\modules\admin\callproc\callproc.dm"
-#include "code\modules\admin\DB ban\DB_playtimes.dm"
 #include "code\modules\admin\DB ban\delayed_ban.dm"
 #include "code\modules\admin\DB ban\functions.dm"
 #include "code\modules\admin\DB_search\search.dm"
