@@ -3,8 +3,8 @@
 	desc = "A large, glowing spider, about the size of your fist. It's undulating and emitting a soft ticking noise."
 	icon_state = "spiderling_explosive"
 	spider_price = 40
-	var/explosion_power =  250
-	var/explosion_falloff = 75
+	var/explosion_power =  100
+	var/explosion_falloff = 25
 	var/det_time = 2 SECONDS
 
 /obj/item/implant/carrion_spider/explosive/activate()
