@@ -14,6 +14,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 	var/target_slot = get_quick_slot(I)
 	if(I.pre_equip(usr, target_slot))
 		return
+	if(isgun(I) && client.CH)
+		QDEL_NULL(client.CH)
 	if(!I.try_transfer(target_slot, usr))
 		quick_equip_storage(I)
 	/*
