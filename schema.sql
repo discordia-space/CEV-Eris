@@ -1,15 +1,13 @@
-CREATE DATABASE  IF NOT EXISTS `schema` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `schema`;
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.16, for Linux (x86_64)
 --
--- Host: localhost    Database: schema
+-- Host: localhost    Database: development
 -- ------------------------------------------------------
--- Server version	8.0.32
+-- Server version	5.7.16-0ubuntu0.16.10.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -23,14 +21,14 @@ USE `schema`;
 
 DROP TABLE IF EXISTS `ar_internal_metadata`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ar_internal_metadata` (
   `key` varchar(255) NOT NULL,
   `value` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,23 +37,23 @@ CREATE TABLE `ar_internal_metadata` (
 
 DROP TABLE IF EXISTS `bans`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bans` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `server` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   `ip` varchar(255) DEFAULT NULL,
   `cid` varchar(255) DEFAULT NULL,
   `reason` text NOT NULL,
   `job` varchar(255) DEFAULT NULL,
-  `duration` int NOT NULL,
+  `duration` int(11) NOT NULL,
   `time` datetime NOT NULL,
-  `target_id` int NOT NULL,
-  `banned_by_id` int NOT NULL,
+  `target_id` int(11) NOT NULL,
+  `banned_by_id` int(11) NOT NULL,
   `expiration_time` datetime NOT NULL,
   `unbanned` tinyint(1) DEFAULT NULL,
   `unbanned_time` datetime DEFAULT NULL,
-  `unbanned_by_id` int DEFAULT NULL,
+  `unbanned_by_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_bans_on_banned_by_id` (`banned_by_id`) USING BTREE,
   KEY `index_bans_on_target_id` (`target_id`) USING BTREE,
@@ -63,8 +61,9 @@ CREATE TABLE `bans` (
   CONSTRAINT `fk_rails_20d480679b` FOREIGN KEY (`banned_by_id`) REFERENCES `players` (`id`),
   CONSTRAINT `fk_rails_62ac37e1e1` FOREIGN KEY (`target_id`) REFERENCES `players` (`id`),
   CONSTRAINT `fk_rails_a305c9e562` FOREIGN KEY (`unbanned_by_id`) REFERENCES `players` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 
 --
 -- Table structure for table `books`
@@ -72,36 +71,20 @@ CREATE TABLE `bans` (
 
 DROP TABLE IF EXISTS `books`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `books` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `author` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `content` varchar(255) DEFAULT NULL,
   `category` varchar(255) DEFAULT NULL,
-  `author_id` int DEFAULT NULL,
+  `author_id` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_books_on_author_id` (`author_id`),
   CONSTRAINT `fk_rails_53d51ce16a` FOREIGN KEY (`author_id`) REFERENCES `players` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `player_playtimes`
---
-
-DROP TABLE IF EXISTS `player_playtimes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `player_playtimes` (
-  `id` int NOT NULL,
-  `job` varchar(45) NOT NULL,
-  `time_played` int NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `playtimes_to_id` FOREIGN KEY (`id`) REFERENCES `players` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,9 +93,9 @@ CREATE TABLE `player_playtimes` (
 
 DROP TABLE IF EXISTS `players`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `players` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `ckey` varchar(255) NOT NULL,
   `registered` date DEFAULT NULL,
   `first_seen` datetime NOT NULL,
@@ -120,30 +103,16 @@ CREATE TABLE `players` (
   `ip` varchar(255) NOT NULL,
   `cid` varchar(255) NOT NULL,
   `rank` varchar(255) NOT NULL DEFAULT 'player',
-  `flags` int NOT NULL DEFAULT '0',
+  `flags` int(11) NOT NULL DEFAULT '0',
   `byond_version` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
-  `VPN_check_white` tinyint NOT NULL DEFAULT '0',
+  `VPN_check_white` tinyint(4) NOT NULL DEFAULT '0',
   `ip_related_ids` tinytext,
   `cid_related_ids` tinytext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `playtime_whitelisted`
---
-
-DROP TABLE IF EXISTS `playtime_whitelisted`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `playtime_whitelisted` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `whitelisted` tinyint DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `whitelisted_to_player` FOREIGN KEY (`id`) REFERENCES `players` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `poll_options`
@@ -151,17 +120,17 @@ CREATE TABLE `playtime_whitelisted` (
 
 DROP TABLE IF EXISTS `poll_options`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `poll_options` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `poll_id` int NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `poll_id` int(11) NOT NULL,
   `text` varchar(255) NOT NULL,
-  `min_value` int DEFAULT NULL,
-  `max_value` int DEFAULT NULL,
+  `min_value` int(11) DEFAULT NULL,
+  `max_value` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_poll_options_on_poll_id` (`poll_id`),
   CONSTRAINT `fk_rails_aa85becb42` FOREIGN KEY (`poll_id`) REFERENCES `polls` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,19 +139,19 @@ CREATE TABLE `poll_options` (
 
 DROP TABLE IF EXISTS `poll_text_replies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `poll_text_replies` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `time` datetime DEFAULT NULL,
-  `poll_id` int DEFAULT NULL,
-  `player_id` int DEFAULT NULL,
+  `poll_id` int(11) DEFAULT NULL,
+  `player_id` int(11) DEFAULT NULL,
   `text` text,
   PRIMARY KEY (`id`),
   KEY `index_poll_text_replies_on_poll_id` (`poll_id`),
   KEY `index_poll_text_replies_on_player_id` (`player_id`),
   CONSTRAINT `fk_rails_0833f4df0b` FOREIGN KEY (`poll_id`) REFERENCES `polls` (`id`),
   CONSTRAINT `fk_rails_ffc8df499f` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,13 +160,13 @@ CREATE TABLE `poll_text_replies` (
 
 DROP TABLE IF EXISTS `poll_votes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `poll_votes` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `time` datetime NOT NULL,
-  `poll_id` int NOT NULL,
-  `player_id` int NOT NULL,
-  `option_id` int NOT NULL,
+  `poll_id` int(11) NOT NULL,
+  `player_id` int(11) NOT NULL,
+  `option_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_poll_votes_on_poll_id` (`poll_id`),
   KEY `index_poll_votes_on_player_id` (`player_id`),
@@ -205,7 +174,7 @@ CREATE TABLE `poll_votes` (
   CONSTRAINT `fk_rails_826ebfbbb3` FOREIGN KEY (`option_id`) REFERENCES `poll_options` (`id`),
   CONSTRAINT `fk_rails_a3e5a3aede` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`),
   CONSTRAINT `fk_rails_a6e6974b7e` FOREIGN KEY (`poll_id`) REFERENCES `polls` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,15 +183,15 @@ CREATE TABLE `poll_votes` (
 
 DROP TABLE IF EXISTS `polls`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `polls` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(16) NOT NULL,
   `start` datetime NOT NULL,
   `end` datetime NOT NULL,
   `question` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,15 +200,15 @@ CREATE TABLE `polls` (
 
 DROP TABLE IF EXISTS `populations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `populations` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `player_count` int NOT NULL,
-  `admin_count` int NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `player_count` int(11) NOT NULL,
+  `admin_count` int(11) NOT NULL,
   `time` datetime NOT NULL,
   `server` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,11 +217,11 @@ CREATE TABLE `populations` (
 
 DROP TABLE IF EXISTS `schema_migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) NOT NULL,
   PRIMARY KEY (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -264,4 +233,4 @@ CREATE TABLE `schema_migrations` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-11 14:54:10
+-- Dump completed on 2017-01-21 10:28:19
