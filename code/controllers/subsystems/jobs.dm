@@ -13,11 +13,13 @@ SUBSYSTEM_DEF(job)
 	var/list/job_debug = list()				//Debug info
 	var/list/job_mannequins = list()				//Cache of icons for job info window
 	var/list/ckey_to_job_to_playtime = list()
+	var/list/job_to_playtime_requirement = list()
 
 /datum/controller/subsystem/job/Initialize(start_timeofday)
 	if(!occupations.len)
 		SetupOccupations()
 		LoadJobs("config/jobs.txt")
+		LoadPlaytimeRequirements("config/job_playtime_requirements.txt")
 	return ..()
 
 /datum/controller/subsystem/job/proc/CanHaveJob(client/target_client, job_title)
@@ -27,6 +29,9 @@ SUBSYSTEM_DEF(job)
 		return FALSE
 	if(!length(ckey_to_job_to_playtime[target_client.ckey]))
 		return FALSE
+
+/datum/controller/subsystem/job/proc/LoadPlaytimeRequirements(folderPath)
+	var/list/le_playtimes = file2list(folderPath)
 
 /datum/controller/subsystem/job/proc/LoadPlaytimes(client/target_client)
 	if(!target_client)
@@ -54,13 +59,19 @@ SUBSYSTEM_DEF(job)
 		var/playtime_from_file
 		save_data.cd = occupation
 		from_file(save_data["playtime"], playtime_from_file)
-		playtime = playtime + playtime_from_file
+		playtime = round(playtime / 600) + playtime_from_file
 		if(!isnum(playtime))
 			message_admins("Malformatted input into job save playtimes for [target_key] [occupation], not saving the new playtime : [playtime]")
 			continue
 		to_file(save_data["playtime"], playtime)
 		/// return to last dir
 		save_data.cd = ".."
+
+/datum/controller/subsystem/job/proc/CreateConfigFile()
+	var/file = file("config/job_playtime_requirements.txt")
+	for(var/datum/job/occupation in occupations)
+		file << "[occupation.title]=0"
+		message_admins("[occupation.title]=0")
 
 /datum/controller/subsystem/job/proc/SetupOccupations(faction = "CEV Eris")
 	occupations.Cut()
