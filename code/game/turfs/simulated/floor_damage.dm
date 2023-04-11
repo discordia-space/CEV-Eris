@@ -66,3 +66,4 @@
 	var/turf/simulated/floor/F = locate(x,y,z)
 	if (istype(F))
 		F.take_damage(damage, damage_type, ignore_resistance)
+
