@@ -125,7 +125,7 @@
 		return target_power * BlockCoefficient
 
 	// 10% reduction for  takin cover down i guess
-	if(lying)
+	if(lying && BlockCoefficient != 0.8)
 		BombDamage *= 0.9
 		BlockCoefficient = 0.1
 
