@@ -28,20 +28,21 @@
 	required_parts = list(/obj/item/part/gun/modular/mechanism/autorifle = 0, /obj/item/part/gun/modular/barrel = 0, /obj/item/part/gun/modular/grip = 0, /obj/item/part/gun/modular/stock = -1)
 
 /obj/item/gun/projectile/automatic/modular/ak/get_initial_name()
+	var/stock_type = (PARTMOD_FOLDING_STOCK & spriteTags) ? "AR" : "Car"
 	if(grip_type)
 		switch(grip_type)
 			if("wood")
-				return "FS Car [caliber] \"Vipr\""
+				return "FS [stock_type] [caliber] \"Vipr\""
 			if("black")
-				return "BM Car [caliber] \"MPi-K\"" // Name of East-German AKs
+				return "BM [stock_type] [caliber] \"MPi-K\"" // Name of East-German AKs
 			if("rubber")
-				return "FS Car [caliber] \"Venger\""
+				return "FS [stock_type] [caliber] \"Venger\""
 			if("excelsior")
-				return "Excelsior [caliber] \"Kalashnikov\""
+				return "Excelsior [stock_type] [caliber] \"Kalashnikov\""
 			if("serbian")
-				return "SA Car [caliber] \"Krinkov\""
+				return "SA [stock_type] [caliber] \"Krinkov\""
 			if("makeshift")
-				return "MS Car [caliber] \"[capitalize(english_list(shuffle(list("ka", "lash", "ni", "kov")), and_text = "", comma_text = "", final_comma_text = ""))]\""
+				return "MS [stock_type] [caliber] \"[capitalize(english_list(shuffle(list("ka", "lash", "ni", "kov")), and_text = "", comma_text = "", final_comma_text = ""))]\""
 	else
 		return "Car [caliber] \"Kalash\"" // No nikov
 

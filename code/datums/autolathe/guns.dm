@@ -28,17 +28,17 @@
 	build_path = /obj/item/gun/projectile/paco
 
 /datum/design/autolathe/gun/mk58
-	name = "NT HG .35 \"Mk58\""
+	name = "NT HG .35 \"Mk-58 B\""
 	build_path = /obj/item/gun/projectile/automatic/modular/mk58/gray/stock
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/mk58_wood
-	name = "NT HG .35 \"Mk58c\""
+	name = "NT HG .35 \"Mk-58 C\""
 	build_path = /obj/item/gun/projectile/automatic/modular/mk58/gray/wood
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/mk58_army
-	name = "NT HG .35 \"Mk58m\""
+	name = "NT HG .35 \"Mk-58 e\""
 	build_path = /obj/item/gun/projectile/automatic/modular/mk58/black/army
 	factions = list(FACTION_NEOTHEOLOGY)
 
@@ -178,7 +178,7 @@
 	build_path = /obj/item/gun/projectile/boltgun/fs
 
 /datum/design/autolathe/gun/ak47
-	name = "Excelsior .30 Kalashnikov"
+	name = "Excelsior Car .30 Kalashnikov"
 	build_path = /obj/item/gun/projectile/automatic/modular/ak/excelsior
 
 /datum/design/autolathe/gun/ak47_fs
@@ -190,7 +190,7 @@
 	build_path = /obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities
 
 /datum/design/autolathe/gun/ak47_sa
-	name = "SA CAR .30 \"Krinkov\""
+	name = "SA AR .30 \"Krinkov\""
 	build_path = /obj/item/gun/projectile/automatic/modular/ak/serbian_arms
 
 /datum/design/autolathe/gun/sts35

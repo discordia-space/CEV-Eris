@@ -31,17 +31,17 @@
 	if(grip_type)
 		switch(grip_type)
 			if("wood")
-				return "NT [caliber] \"Mk-58 C\""
+				return "NT HG [caliber] \"Mk-58 C\""
 			if("black")
-				return "NT [caliber] \"Mk-58 B\""
+				return "NT HG [caliber] \"Mk-58 B\""
 			if("rubber")
-				return "NT [caliber] \"Mk-58 a\""
+				return "NT HG [caliber] \"Mk-58 a\""
 			if("excelsior")
-				return "NT [caliber] \"Mk-58 e\""
+				return "NT HG [caliber] \"Mk-58 e\""
 			if("serbian")
-				return "NT [caliber] \"Mk-58 T\""
+				return "NT HG [caliber] \"Mk-58 T\""
 			if("makeshift")
-				return "NT [caliber] \"Mk-58 m\""
+				return "NT HG [caliber] \"Mk-58 m\""
 	else
 		return "NT [caliber] \"Mk-58\""
 

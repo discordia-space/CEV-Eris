@@ -1,7 +1,7 @@
 /obj/item/gun/projectile/automatic/modular/wintermute // Frame
 	name = "\"Wintermute\""
-	desc = "IH. \
-		 Pew pew."
+	desc = "A high end military grade assault rifle, designed as a modern ballistic infantry weapon. Primarily used by and produced for IH troops. Uses IH .20 Rifle magazines. \
+			The design was made to be able to fit long magazine alongside the standard ones."
 	icon = 'icons/obj/guns/projectile/modular/wintermute.dmi'
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
@@ -31,19 +31,19 @@
 	if(grip_type)
 		switch(grip_type)
 			if("wood")
-				return "FS Car [caliber] \"Fall\""
+				return "FS AR [caliber] \"Fall\""
 			if("black")
-				return "BM Car [caliber] \"Wintersun\""
+				return "BM AR [caliber] \"Wintersun\""
 			if("rubber")
-				return "FS Car [caliber] \"Wintermute\""
+				return "FS AR [caliber] \"Wintermute\""
 			if("excelsior")
-				return "Excelsior [caliber] \"Commute\""
+				return "Excelsior AR [caliber] \"Commute\""
 			if("serbian")
-				return "SA Car [caliber] \"Mutiny\""
+				return "SA AR [caliber] \"Mutiny\""
 			if("makeshift")
-				return "MS Car [caliber] \"Springloader\""
+				return "MS AR [caliber] \"Springloader\""
 	else
-		return "Car [caliber] \"Winter\""
+		return "AR [caliber] \"Winter\""
 
 /obj/item/gun/projectile/automatic/modular/wintermute/finished
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/determined, /obj/item/part/gun/modular/barrel/srifle, /obj/item/part/gun/modular/grip/rubber, /obj/item/part/gun/modular/stock)
