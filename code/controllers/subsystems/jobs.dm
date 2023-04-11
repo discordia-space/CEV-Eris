@@ -23,6 +23,7 @@ SUBSYSTEM_DEF(job)
 		LoadPlaytimeRequirements("config/job_playtime_requirements.txt")
 	return ..()
 
+
 /datum/controller/subsystem/job/proc/UpdatePlayableJobs(ckey)
 	if(!length(ckey_to_job_to_can_play[ckey]))
 		ckey_to_job_to_can_play[ckey] = list()
@@ -34,6 +35,32 @@ SUBSYSTEM_DEF(job)
 			ckey_to_job_to_can_play[ckey][occupation] = TRUE
 		else
 			ckey_to_job_to_can_play[ckey][occupation] = CanHaveJob(ckey, occupation)
+
+ADMIN_VERB_ADD(/client/verb/whitelistPlayerForJobs, null, FALSE)
+/client/verb/whitelistPlayerForJobs()
+	set category = "Admin"
+	set name = "Allow client to bypass all job requirement playtimes"
+
+	if(!holder)	return
+
+	var/client/the_chosen_one = input(usr, "Select player to whitelist for jobs", "THE CHOSEN ONE!", null) in clients
+	if(!the_chosen_one)
+		to_chat(usr, SPAN_DANGER("No client selected to whitelist"))
+		return
+	SSjob.WhitelistPlayer(the_chosen_one.ckey)
+
+ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
+/client/verb/unwhitelistPlayerForJobs()
+	set category = "Admin"
+	set name = "Unwhitelist a client from all job requirement playtimes"
+
+	if(!holder)	return
+
+	var/client/the_disavowed_one = input(usr, "Select player to unwhitelist from jobs", "THE DISAVOWED ONE!", null) in clients
+	if(!the_disavowed_one)
+		to_chat(usr, SPAN_DANGER("No client selected to unwhitelist"))
+		return
+	SSjob.UnwhitelistPlayer(the_disavowed_one.ckey)
 
 /datum/controller/subsystem/job/proc/WhitelistPlayer(ckey)
 	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
@@ -66,7 +93,9 @@ SUBSYSTEM_DEF(job)
 			total_playtime += ckey_to_job_to_playtime[ckey][job_name]
 	if(length(SSinactivity_and_job_tracking))
 		if(length(SSinactivity_and_job_tracking[ckey]))
-			for(var/played_job in SSinactivity_and_job_tracking[ckey])
+			/// Blame linters!!!!
+			var/iter_ref = SSinactivity_and_job_tracking[ckey]
+			for(var/played_job in iter_ref)
 				checking_job = occupations_by_name[played_job]
 				if(!checking_job)
 					continue
