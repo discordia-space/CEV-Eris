@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(inactivity_and_job_tracking)
 	if(!length(current_playtimes[client_ckey]))
 		current_playtimes[client_ckey] = list()
 	if(!length(current_playtimes[client_ckey][target.mind.assigned_job.title]))
-		current_playtimes[client_ckey][target.mind.assigned_job.title] = list(world.timeofday, world.timeofday)
+		current_playtimes[client_ckey][target.mind.assigned_job.title] = 0
 
 /datum/controller/subsystem/inactivity_and_job_tracking/fire(resumed = FALSE)
 	if (!resumed)
@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(inactivity_and_job_tracking)
 		else if (C.mob && C.mob.mind && C.mob.stat != DEAD)
 			C.mob.mind.last_activity = world.time - C.inactivity
 			if(C.mob.mind?.assigned_job?.title)
-				current_playtimes[C.ckey][C.mob.mind.assigned_job.title][2] = world.timeofday
+				current_playtimes[C.ckey][C.mob.mind.assigned_job.title] += 1 MINUTE
 
 		if (MC_TICK_CHECK)
 			return

@@ -27,6 +27,8 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/UpdatePlayableJobs(ckey)
 	if(!length(ckey_to_job_to_can_play[ckey]))
 		ckey_to_job_to_can_play[ckey] = list()
+	if(!length(ckey_to_job_to_playtime[ckey]))
+		LoadPlaytimes(ckey)
 	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
 	var/whitelisted = FALSE
 	from_file(save_data["whitelisted"], whitelisted)
@@ -100,7 +102,7 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
 				if(!checking_job)
 					continue
 				if(checking_job.department_flag & wanted_job.department_flag)
-					total_playtime += round((SSinactivity_and_job_tracking[ckey][played_job][2] - SSinactivity_and_job_tracking[ckey][played_job][1])/600)
+					total_playtime += round(SSinactivity_and_job_tracking[ckey][played_job])
 	if(total_playtime >= job_to_playtime_requirement[job_title])
 		return TRUE
 	else
@@ -126,35 +128,33 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
 			job_to_playtime_requirement[name] = text2num(value)
 	return TRUE
 
-/datum/controller/subsystem/job/proc/LoadPlaytimes(client/target_client)
-	if(!target_client)
+/datum/controller/subsystem/job/proc/LoadPlaytimes(ckey)
+	if(!ckey)
 		return
-	var/target_key = target_client.ckey
-	var/savefile/save_data = new("data/player_saves/[copytext(target_key, 1, 2)]/[target_key]/playtimes.sav")
+	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
 	for(var/occupation in occupations_by_name)
 		save_data.cd = occupation
-		if(!length(ckey_to_job_to_playtime[target_key]))
-			ckey_to_job_to_playtime[target_key] = list()
-		from_file(save_data["playtime"], ckey_to_job_to_playtime[target_key][occupation])
+		if(!length(ckey_to_job_to_playtime[ckey]))
+			ckey_to_job_to_playtime[ckey] = list()
+		from_file(save_data["playtime"], ckey_to_job_to_playtime[ckey][occupation])
 		// return to last directory
 		save_data.cd = ".."
 
-/datum/controller/subsystem/job/proc/SavePlaytimes(client/target_client)
-	if(!target_client)
+/datum/controller/subsystem/job/proc/SavePlaytimes(ckey)
+	if(!ckey)
 		return FALSE
-	var/target_key = target_client.ckey
-	var/savefile/save_data = new("data/player_saves/[copytext(target_key, 1, 2)]/[target_key]/playtimes.sav")
+	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
 	/// No playtimes registered
-	if(!length(SSinactivity_and_job_tracking.current_playtimes[target_key]))
+	if(!length(SSinactivity_and_job_tracking.current_playtimes[ckey]))
 		return FALSE
-	for(var/occupation in SSinactivity_and_job_tracking.current_playtimes[target_key])
-		var/playtime = SSinactivity_and_job_tracking.current_playtimes[target_key][occupation][2] - SSinactivity_and_job_tracking.current_playtimes[target_key][occupation][1]
+	for(var/occupation in SSinactivity_and_job_tracking.current_playtimes[ckey])
+		var/playtime = SSinactivity_and_job_tracking.current_playtimes[ckey][occupation]
 		var/playtime_from_file
 		save_data.cd = occupation
 		from_file(save_data["playtime"], playtime_from_file)
-		playtime = round(playtime / 600) + playtime_from_file
+		playtime = round(playtime) + playtime_from_file
 		if(!isnum(playtime))
-			message_admins("Malformatted input into job save playtimes for [target_key] [occupation], not saving the new playtime : [playtime]")
+			message_admins("Malformatted input into job save playtimes for [ckey] [occupation], not saving the new playtime : [playtime]")
 			continue
 		to_file(save_data["playtime"], playtime)
 		/// return to last dir
