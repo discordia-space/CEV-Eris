@@ -111,7 +111,6 @@ SUBSYSTEM_DEF(throwing)
 			thing.hit_check(throwing_queue[thing][I_SPEED])
 			tiles_to_move--
 			throwing_queue[thing][I_MOVED]++
-			last_move = to_move
 			to_move = null
 			current_throwing_queue -= thing
 			if(MC_TICK_CHECK)
