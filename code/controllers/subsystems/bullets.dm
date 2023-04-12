@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(bullets)
 		src.targetLevel = LEVEL_TURF
 	else if(isitem(target))
 		src.targetLevel = LEVEL_TURF
-	bullet_queue += src
+	SSbullets.bullet_queue += src
 
 /datum/bullet_data/proc/getShootingAngle()
 	return ATAN2(firedTurf.x - targetTurf.x, firedTurf.y - targetTurf.y)
@@ -85,13 +85,12 @@ SUBSYSTEM_DEF(bullets)
 /datum/bullet_data/proc/getCoordinateRatio()
 	var/x = abs(firedTurf.x - targetTurf.x) * PIXELS_PER_TURF + targetCoords[1]
 	var/y = abs(firedTurf.y - targetTurf.y) * PIXELS_PER_TURF + targetCoords[2]
-	var/r = sqrt(X ? X**2 : 0 + Y ? Y**2 : 0)
-	var/diff = X ? X/R : 0 - Y ? Y/R : 0
+	var/r = sqrt(x ? x**2 : 0 + y ? y**2 : 0)
+	var/diff = x ? x/r : 0 - y ? y/r : 0
 	// rounded down to 0.05 to keep it sane
 	return diff > 0 ? list(round(x * (1 - diff), 0.05), round(y * diff, 0.05)) : list(round(x * diff, 0.05), round(y * (1 - diff), 0.05))
 
 /datum/controller/subsystem/bullets/fire(resumed)
-	. = ..()
 	if(!resumed)
 		current_queue = bullet_queue.Copy()
 	for(var/datum/bullet_data/bullet in current_queue)
