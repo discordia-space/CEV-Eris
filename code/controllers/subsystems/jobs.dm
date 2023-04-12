@@ -228,6 +228,9 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
 	Debug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
 	var/list/candidates = list()
 	for(var/mob/new_player/player in unassigned)
+		if(!CanHaveJob(player.client.ckey, job.title))
+			Debug("FOC playtime failed, Player:[player]")
+			continue
 		if(jobban_isbanned(player, job.title))
 			Debug("FOC isbanned failed, Player: [player]")
 			continue
@@ -248,7 +251,11 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
 		if(!job)
 			continue
 
+
 		if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
+			continue
+
+		if(!CanHaveJob(player.client.ckey, job.title))
 			continue
 
 		if(istype(job, GetJob(ASSISTANT_TITLE))) // We don't want to give him assistant, that's boring!
