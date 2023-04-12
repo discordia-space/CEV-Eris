@@ -511,7 +511,7 @@
 /datum/ritual/cruciform/priest/acolyte/search
 	name = "Search"
 	phrase = "Ut ostenderet viam filio suo."
-	desc = "Find the location of cruciform."
+	desc = "Find the location of disciple."
 	success_message = "Your prayers have been heard."
 	fail_message = "Your prayers have not been answered."
 	power = 50
