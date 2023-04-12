@@ -83,7 +83,7 @@ SUBSYSTEM_DEF(chunks)
 		for(var/chunkY = coordinates[2], chunkY <= coordinates[4], chunkY += CHUNK_SIZE)
 			chunkReference = SSchunks.chunk_list_by_zlevel[container.z][CHUNKID(chunkX, chunkY)]
 			for(var/obj/hearerToCheck as anything in chunkReference.hearers)
-				if(get_dist_euclidian(source, get_turf(hearerToCheck)) < range)
+				if(get_dist_euclidian(get_turf(source), get_turf(hearerToCheck)) < range)
 					if(!can_see(source, get_turf(hearerToCheck), range * 2))
 						continue
 					returnValue += hearerToCheck
@@ -125,7 +125,7 @@ SUBSYSTEM_DEF(chunks)
 
 /mob/proc/chunkOnContainerization(atom/source, atom/newContainer , atom/oldContainer)
 	SIGNAL_HANDLER
-	message_admins("[src] switched container from [oldContainer] to [newContainer]")
+	//message_admins("[src] switched container from [oldContainer] to [newContainer]")
 	UnregisterSignal(oldContainer , COMSIG_MOVABLE_MOVED)
 	RegisterSignal(newContainer, COMSIG_MOVABLE_MOVED, PROC_REF(chunkOnMove))
 
