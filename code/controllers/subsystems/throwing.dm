@@ -86,7 +86,7 @@ SUBSYSTEM_DEF(throwing)
 			if(cur_area && cur_area.has_gravity)
 				if(thing.loc == throwing_queue[thing][I_TURF_CLICKED])
 					to_move = FALSE
-			if(!to_move)
+			if(!to_move || (to_move && !thing.Move(to_move)))
 				thing.throwing = FALSE
 				thing.thrower = null
 				thing.throw_source = null
@@ -98,8 +98,6 @@ SUBSYSTEM_DEF(throwing)
 					new_loc.Entered(thing)
 				throwing_queue -= thing
 				break
-			else
-				thing.Move(to_move)
 			// The proc below is very poorly written and i couldn't be bothered to rewrite all of its underlying
 			// code. Its why i use thing.throwing to actually check wheter we should keep going or not.
 			// reached a map corner or something we can't move towards
