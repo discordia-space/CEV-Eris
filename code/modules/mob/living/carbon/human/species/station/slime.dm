@@ -17,6 +17,8 @@
 	siemens_coefficient = 3 //conductive
 	darksight = 3
 
+	injury_type =  INJURY_TYPE_HOMOGENOUS
+
 	blood_color = "#05FF9B"
 	flesh_color = "#05FFFB"
 
@@ -58,7 +60,7 @@
 	if(!user || !species)
 		return
 	if(user.stat)
-		return 
+		return
 	for(var/limb_tag in BP_ALL_LIMBS)
 		var/obj/item/organ/external/organ_to_check = organs_by_name[limb_tag]
 		if(!organ_to_check || istype(organ_to_check , /obj/item/organ/external/stump))

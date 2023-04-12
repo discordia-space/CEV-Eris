@@ -9,11 +9,14 @@
 	var/prev_brute = brute_dam	//We'll record how much damage the limb already had, before we apply the damage from this incoming hit
 	var/prev_burn = burn_dam
 
+	var/external_wounding_multiplier = wounding_multiplier
 	switch(damage_type)
 		if(BRUTE)
 			amount = round(amount * brute_mod, 0.1)
+			wounding_multiplier = wound_check(species.injury_type, wounding_multiplier, edge, sharp)
 		if(BURN)
 			amount = round(amount * burn_mod, 0.1)
+			wounding_multiplier = wound_check(species.injury_type, wounding_multiplier, edge, sharp)
 
 	// Damage is transferred to internal organs. Chest and head must be broken before transferring unless they're slime limbs.
 	if(LAZYLEN(internal_organs))
