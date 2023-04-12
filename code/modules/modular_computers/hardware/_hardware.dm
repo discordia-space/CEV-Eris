@@ -92,7 +92,7 @@
 	return holder2 ? holder2.drop_location() : ..()
 
 // Damages the component. Contains necessary checks. Negative damage "heals" the component.
-/obj/item/computer_hardware/proc/take_damage(amount)
+/obj/item/computer_hardware/take_damage(amount)
 	damage += round(amount) 					// We want nice rounded numbers here.
 	damage = between(0, damage, max_damage)		// Clamp the value.
 

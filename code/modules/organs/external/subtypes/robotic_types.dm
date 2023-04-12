@@ -98,7 +98,7 @@
 /obj/item/organ/external/robotic/moebius/reinforced
 	name = "\"Moebius\" R++"
 	desc = "Reinforced purple and white prosthesis designed for space exploration and light combat."
-	armor = list(melee = 3, bullet = 3, energy = 3, bomb = 20, bio = 0, rad = 100)
+	armor = list(melee = 3, bullet = 3, energy = 3, bomb = 25, bio = 0, rad = 100)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1)
 	max_damage = 60
 	min_broken_damage = 40
@@ -131,7 +131,7 @@
 	desc = "Plasma reinforced black prosthesis designed for heavy combat."
 	force_icon = 'icons/mob/human_races/cyberlimbs/excelsior.dmi'
 	model = "excelsior"
-	armor = list(melee = 5, bullet = 5, energy = 5, bomb = 35, bio = 0, rad = 100)
+	armor = list(melee = 5, bullet = 5, energy = 5, bomb = 30, bio = 0, rad = 100)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 1, MATERIAL_PLASMA = 0.5) //Plasma needed as a material that excelsiors can't teleport in
 	max_damage = 65
 	min_broken_damage = 45
@@ -165,7 +165,7 @@
 	desc = "Advanced, extremely resilient and mobile prosthetic. Inscribed with \"Made in\" followed by gibberish, must have been lost to time."
 	force_icon = 'icons/mob/human_races/cyberlimbs/one_star.dmi'
 	model = "one_star"
-	armor = list(melee = 10, bullet = 10, energy = 10, bomb = 50, bio = 0, rad = 100)
+	armor = list(melee = 10, bullet = 10, energy = 10, bomb = 40, bio = 0, rad = 100)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 4, MATERIAL_GOLD = 2)
 	max_damage = 70
 	min_broken_damage = 45

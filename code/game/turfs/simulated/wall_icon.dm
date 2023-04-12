@@ -6,9 +6,11 @@
 
 //The logic for how connections work is mostly found in tables.dm, in the dirs_to_corner_states proc
 
-/turf/simulated/wall/proc/update_material(var/update = TRUE)
+/turf/simulated/wall/proc/update_material(update = TRUE)
 	icon_base = ""
 	icon_base_reinf = ""
+	health = 0
+	maxHealth = 0
 
 	if(material)
 		//We'll set the icon bases to those of the materials
@@ -25,10 +27,13 @@
 		if(material)
 			explosion_resistance = material.explosion_resistance
 			hitsound = material.hitsound
+			health = material.integrity
+			maxHealth = material.integrity
 		if(reinf_material && reinf_material.explosion_resistance > explosion_resistance)
 			explosion_resistance = reinf_material.explosion_resistance
-
 		if(reinf_material)
+			health += reinf_material.integrity
+			maxHealth += reinf_material.integrity
 			name = "reinforced [material.display_name] wall"
 			desc = "It seems to be a section of hull reinforced with [reinf_material.display_name] and plated with [material.display_name]."
 		else
@@ -98,16 +103,11 @@
 				I.color = reinf_color
 				overlays += I
 
-	if(damage != 0)
-		var/integrity = material.integrity
-		if(reinf_material)
-			integrity += reinf_material.integrity
+	var/overlay = round((1 - health/maxHealth) * damage_overlays.len) + 1
+	if(overlay > damage_overlays.len)
+		overlay = damage_overlays.len
 
-		var/overlay = round(damage / integrity * damage_overlays.len) + 1
-		if(overlay > damage_overlays.len)
-			overlay = damage_overlays.len
-
-		overlays += damage_overlays[overlay]
+	overlays += damage_overlays[overlay]
 
 
 /turf/simulated/wall/proc/update_connections(propagate = 0)
@@ -130,13 +130,12 @@
 		var/T_dir = get_dir(src, T)
 		dirs |= T_dir
 		if(propagate)
-			spawn(0)
-				T.update_connections()
-				T.update_icon()
+			T.update_connections()
+			T.update_icon()
 
 	wall_connections = dirs_to_corner_states(dirs)
 
 /turf/simulated/wall/proc/can_join_with(var/turf/simulated/wall/W)
 	if(material && W.material && material.icon_base == W.material.icon_base)
-		return 1
-	return 0
+		return TRUE
+	return FALSE

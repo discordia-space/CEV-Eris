@@ -3,10 +3,8 @@
 	desc = "A large, glowing spider, about the size of your fist. It's undulating and emitting a soft ticking noise."
 	icon_state = "spiderling_explosive"
 	spider_price = 40
-	var/devastation_range = -1
-	var/heavy_range = 0
-	var/weak_range = 2
-	var/flash_range = 6
+	var/explosion_power =  100
+	var/explosion_falloff = 25
 	var/det_time = 2 SECONDS
 
 /obj/item/implant/carrion_spider/explosive/activate()
@@ -33,4 +31,4 @@
 
 /obj/item/implant/carrion_spider/explosive/proc/on_explosion(O)
 	visible_message(SPAN_DANGER("[src] explodes!"))
-	explosion(get_turf(src), devastation_range, heavy_range, weak_range, flash_range)
+	explosion(get_turf(src), explosion_power, explosion_falloff)

@@ -494,8 +494,9 @@
 	qdel(src)
 	return TRUE
 
-/obj/item/projectile/ex_act()
-	return //explosions probably shouldn't delete projectiles
+
+/obj/item/projectile/explosion_act(target_power, explosion_handler/handler)
+	return 0
 
 /obj/item/projectile/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return TRUE

@@ -9,17 +9,9 @@
 	var/health = 15
 
 //similar to weeds, but only barfed out by nurses manually
-/obj/effect/spider/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if (prob(50))
-				qdel(src)
-		if(3)
-			if (prob(5))
-				qdel(src)
-	return
+/obj/effect/spider/explosion_act(target_power, explosion_handler/handler)
+	qdel(src)
+	return 0
 
 /obj/effect/spider/attackby(obj/item/I, mob/user)
 	if(I.attack_verb.len)

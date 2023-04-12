@@ -16,8 +16,8 @@
 
 	circuit = /obj/item/electronics/circuitboard/miningdrill
 
-	var/max_health = 2000
-	var/health = 2000
+	maxHealth = 2000
+	health = 2000
 
 	var/last_update = 0
 	var/list/stored_ore = list()
@@ -83,7 +83,7 @@
 			T.gets_dug()
 	else if(istype(get_turf(src), /turf/simulated/floor))
 		var/turf/simulated/floor/T = get_turf(src)
-		T.ex_act(2)
+		T.explosion_act(200, null)
 
 	dig_ore()
 
@@ -190,7 +190,7 @@
 		return
 
 	// Repair the drill if it is damaged
-	var/damage = max_health - health
+	var/damage = maxHealth - health
 	if(damage && (QUALITY_WELDING in I.tool_qualities))
 		if(active)
 			to_chat(user, SPAN_WARNING("Turn \the [src] off first!"))
@@ -199,12 +199,12 @@
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
-			if(damage < 0.33 * max_health)
+			if(damage < 0.33 * maxHealth)
 				take_damage(-damage)  // Completely repair the drill
-			else if(damage < 0.66 * max_health)
-				take_damage(-(0.66 * max_health - health))  // Repair the drill to 66 percents
+			else if(damage < 0.66 * maxHealth)
+				take_damage(-(0.66 * maxHealth - health))  // Repair the drill to 66 percents
 			else
-				take_damage(-(0.33 * max_health - health))  // Repair the drill to 33 percents
+				take_damage(-(0.33 * maxHealth - health))  // Repair the drill to 33 percents
 		return
 
 	if(!panel_open || active)
@@ -350,14 +350,14 @@
 	var/damage = Proj.get_structure_damage()
 	take_damage(damage)
 
-/obj/machinery/mining/deep_drill/proc/take_damage(value)
-	health = min(max(health - value, 0), max_health)
+/obj/machinery/mining/deep_drill/take_damage(value)
+	health = min(max(health - value, 0), maxHealth)
 	if(health == 0)
 		system_error("critical damage")
 		if(prob(10)) // Some chance that the drill completely blows up
 			var/turf/O = get_turf(src)
 			if(!O) return
-			explosion(O, -1, 1, 4, 10)
+			explosion(get_turf(src), 800, 50)
 			qdel(src)
 
 /obj/machinery/mining/deep_drill/proc/update_ore_count()
@@ -372,11 +372,11 @@
 	. = ..()
 	if(health <= 0)
 		to_chat(user, "\The [src] is wrecked.")
-	else if(health < max_health * 0.33)
+	else if(health < maxHealth * 0.33)
 		to_chat(user, "<span class='danger'>\The [src] looks like it's about to break!</span>")
-	else if(health < max_health * 0.66)
+	else if(health < maxHealth * 0.66)
 		to_chat(user, "<span class='danger'>\The [src] looks seriously damaged!</span>")
-	else if(health < max_health)
+	else if(health < maxHealth)
 		to_chat(user, "\The [src] shows signs of damage!")
 	else
 		to_chat(user, "\The [src] is in pristine condition.")

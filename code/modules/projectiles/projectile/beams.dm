@@ -124,7 +124,7 @@
 
 /obj/item/projectile/beam/pulse/on_hit(atom/target)
 	if(isturf(target))
-		target.ex_act(2)
+		target.explosion_act(100, null)
 	..()
 
 /obj/item/projectile/beam/emitter
