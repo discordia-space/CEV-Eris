@@ -106,6 +106,15 @@
 
 	var/flashlight_attachment = FALSE
 
+/obj/item/gun/debugging
+	name = "Big chun chun chungus big chungus"
+
+/obj/item/gun/debugging/afterattack(atom/A, mob/user)
+	if(!A)
+		return
+
+
+
 /obj/item/gun/wield(mob/user)
 	if(!wield_delay)
 		..()
@@ -367,7 +376,6 @@
 		if (!suppress_delay_warning && world.time % 3) //to prevent spam
 			to_chat(user, SPAN_WARNING("[src] is not ready to fire again!"))
 		return
-
 
 	add_fingerprint(user)
 
