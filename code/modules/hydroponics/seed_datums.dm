@@ -254,8 +254,8 @@
 
 /datum/seed/eggplant/realeggplant
 	name = "realeggplant"
-	seed_name = "real egg plant"
-	display_name = "real egg plants"
+	seed_name = "egg plant"
+	display_name = "egg plants"
 	chems = list("nutriment" = list(1,10), "egg" = list(1,10))
 	kitchen_tag = "egg"
 
