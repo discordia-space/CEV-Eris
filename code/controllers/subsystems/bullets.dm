@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(bullets)
 	priority = SS_PRIORITY_BULLETS
 	init_order = INIT_ORDER_BULLETS
 
-	var/list/current_queue = list()
+	var/list/datum/bullet_data/current_queue = list()
 	var/list/hitscans = list()
 	var/list/datum/bullet_data/bullet_queue = list()
 
@@ -82,6 +82,7 @@ SUBSYSTEM_DEF(bullets)
 
 /datum/controller/subsystem/bullets/fire(resumed)
 	. = ..()
+
 
 #undef LEVEL_BELOW
 #undef LEVEL_TURF
