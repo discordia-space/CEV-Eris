@@ -20,9 +20,12 @@ SUBSYSTEM_DEF(throwing)
 	wait = 1 // very small
 	priority = FIRE_PRIORITY_THROWING
 	var/list/throwing_queue = list()
+	var/list/current_throwing_queue = list()
 
 /datum/controller/subsystem/throwing/fire(resumed = FALSE)
-	for(var/atom/movable/thing as anything in throwing_queue)
+	if(!resumed)
+		current_throwing_queue = throwing_queue.Copy()
+	for(var/atom/movable/thing as anything in current_throwing_queue)
 		//if(MC_TICK_CHECK)
 		//	return
 		if(QDELETED(thing))
@@ -34,6 +37,7 @@ SUBSYSTEM_DEF(throwing)
 			thing.throw_source = null
 			thing.pass_flags -= throwing_queue[thing][I_THROWFLAGS]
 			throwing_queue -= thing
+			current_throwing_queue -= thing
 			continue
 		var/tiles_to_move = throwing_queue[thing][I_SPEED]
 		var/area/cur_area = get_area(thing.loc)
@@ -51,6 +55,7 @@ SUBSYSTEM_DEF(throwing)
 					thing.throw_impact(new_loc,throwing_queue[thing][I_SPEED])
 				new_loc.Entered(thing)
 			throwing_queue -= thing
+			current_throwing_queue -= thing
 			continue
 		var/turf/to_move
 		while(tiles_to_move > 0)
@@ -64,6 +69,7 @@ SUBSYSTEM_DEF(throwing)
 				thing.throw_source = null
 				thing.pass_flags -= throwing_queue[thing][I_THROWFLAGS]
 				throwing_queue -= thing
+				current_throwing_queue -= thing
 				break
 
 
@@ -97,6 +103,7 @@ SUBSYSTEM_DEF(throwing)
 						thing.throw_impact(new_loc,throwing_queue[thing][I_SPEED])
 					new_loc.Entered(thing)
 				throwing_queue -= thing
+				current_throwing_queue -= thing
 				break
 			// The proc below is very poorly written and i couldn't be bothered to rewrite all of its underlying
 			// code. Its why i use thing.throwing to actually check wheter we should keep going or not.
@@ -104,4 +111,9 @@ SUBSYSTEM_DEF(throwing)
 			thing.hit_check(throwing_queue[thing][I_SPEED])
 			tiles_to_move--
 			throwing_queue[thing][I_MOVED]++
+			last_move = to_move
 			to_move = null
+			current_throwing_queue -= thing
+			if(MC_TICK_CHECK)
+				return
+
