@@ -87,16 +87,45 @@ SUBSYSTEM_DEF(bullets)
 	var/y = abs(firedTurf.y - targetTurf.y) * PIXELS_PER_TURF + targetCoords[2]
 	var/r = sqrt(x ? x**2 : 0 + y ? y**2 : 0)
 	var/diff = x ? x/r : 0 - y ? y/r : 0
-	// rounded down to 0.05 to keep it sane
-	return diff > 0 ? list(round(x * (1 - diff), 0.05), round(y * diff, 0.05)) : list(round(x * diff, 0.05), round(y * (1 - diff), 0.05))
+	if(x && y)
+		// rounded down to 0.05 to keep it sane
+		return diff > 0 ? list(round(x * (1 - diff)/100, 0.01), round((y * diff)/100, 0.05)) : list(round((x * abs(diff))/100, 0.05), round(y * (1 - abs(diff))/100, 0.01))
+	else if(x)
+		return list(1,0)
+	else if(y)
+		return list(0,1)
 
 /datum/controller/subsystem/bullets/fire(resumed)
 	if(!resumed)
 		current_queue = bullet_queue.Copy()
 	for(var/datum/bullet_data/bullet in current_queue)
+		current_queue -= bullet
+		if(!istype(bullet.referencedBullet, /obj/item/projectile/bullet))
+			bullet_queue -= bullet
+			continue
 		var/list/ratios = bullet.getCoordinateRatio()
-		var/list/coordinates = list(PIXELS_PER_TURF * ratios[1] + bullet.currentCoords[1], PIXELS_PER_TURF * ratios[2] + bullet.currentCoords[2])
-		animate(bullet.referencedBullet, 1 SECOND,  pixel_x = coordinates[1]%PIXELS_PER_TURF, pixel_y = coordinates[2]%PIXELS_PER_TURF, x = bullet.referencedBullet.x + round(coordinates[1]/32), y = bullet.referencedBullet.y + round(coordinates[2]/32))
+		var/list/coordinates = list(round(PIXELS_PER_TURF * ratios[1]) + bullet.currentCoords[1], round(PIXELS_PER_TURF * ratios[2]) + bullet.currentCoords[2])
+		if(coordinates[1] > 32 || coordinates[2] > 32)
+			var/newpx = coordinates[1] > PIXELS_PER_TURF ? PIXELS_PER_TURF : coordinates[1]
+			var/newpy = coordinates[2] > PIXELS_PER_TURF ? PIXELS_PER_TURF : coordinates[2]
+			animate(bullet.referencedBullet, pixel_x = newpx, pixel_y = newpy, time = 0.5)
+			bullet.referencedBullet.Move(locate(round(coordinates[1]/PIXELS_PER_TURF), round(coordinates[2]/PIXELS_PER_TURF), bullet.referencedBullet.z))
+			bullet.referencedBullet.pixel_x = coordinates[1] > PIXELS_PER_TURF ? PIXELS_PER_TURF - coordinates[1] : coordinates[1]
+			bullet.referencedBullet.pixel_y = coordinates[2] > PIXELS_PER_TURF ? PIXELS_PER_TURF - coordinates[2] : coordinates[2]
+			animate(bullet.referencedBullet, pixel_x = newpx, pixel_y = newpy, time = 0.5)
+			bullet.currentCoords[1] = bullet.referencedBullet.pixel_x
+			bullet.currentCoords[2] = bullet.referencedBullet.pixel_y
+		else
+			var/newpx = coordinates[1]
+			var/newpy = coordinates[2]
+			animate(bullet.referencedBullet, pixel_x = newpx, pixel_y = newpy, time = 1)
+			bullet.currentCoords[1] = bullet.referencedBullet.pixel_x
+			bullet.currentCoords[2] = bullet.referencedBullet.pixel_y
+
+
+
+
+		//animate(bullet.referencedBullet, pixel_x = coordinates[1]%PIXELS_PER_TURF, pixel_y = coordinates[2]%PIXELS_PER_TURF, x = bullet.referencedBullet.x + round(coordinates[1]/32), y = bullet.referencedBullet.y + round(coordinates[2]/32), time = 1)
 		current_queue -= bullet
 
 
