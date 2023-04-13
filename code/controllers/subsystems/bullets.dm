@@ -81,7 +81,13 @@ SUBSYSTEM_DEF(bullets)
 	SSbullets.bullet_queue += src
 
 /datum/bullet_data/proc/getShootingAngle()
-	return round(ATAN2((firedTurf.x - targetTurf.x) * PPT - targetCoords[1], (firedTurf.y - targetTurf.y)*PPT - targetCoords[2])*180/3.14)
+	//return TODEGREES(ATAN2((firedTurf.x - targetTurf.x) * PPT - targetCoords[1], (firedTurf.y - targetTurf.y)*PPT - targetCoords[2]))
+	var/list/coordinates = list(0,0)
+	coordinates[1] = ((firedTurf.x - targetTurf.x) * PPT - targetCoords[1]) / PPT + 0.0001
+	coordinates[2] = ((firedTurf.y - targetTurf.y) * PPT - targetCoords[2]) / PPT + 0.0001
+	var/ipotenuse = sqrt(coordinates[1] ** 2 + coordinates[2] ** 2)
+	var/angleX = arcsin(coordinates[1] / ipotenuse)
+	var/angleY = arccos(coordinates[2] / ipotenuse)
 
 /datum/bullet_data/proc/getCoordinateRatio()
 	var/angle = getShootingAngle()
