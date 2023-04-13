@@ -1,25 +1,3 @@
-/obj/item/projectile/bullet/pistol/guided
-	name = "Psionically guided bullet"
-	color = "#995599"
-	style_damage = 69420777
-
-/obj/item/projectile/bullet/pistol/guided/launch_from_gun(atom/target, mob/user, obj/item/gun/launcher, target_zone, x_offset, y_offset, angle_offset)
-	. = ..()
-	if(ismob(target))
-		RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(guide))
-
-/obj/item/projectile/bullet/pistol/guided/check_miss_chance(mob/target_mob)
-	return 0
-
-/obj/item/projectile/bullet/pistol/guided/attack_mob(mob/living/target_mob, distance, miss_modifier)
-	. = ..(target_mob, distance, miss_modifier = 0)
-	qdel(src)
-
-/obj/item/projectile/bullet/pistol/guided/proc/guide(atom/source, atom/newLocation, atom/oldLocation)
-	SIGNAL_HANDLER
-	/// You want fancy redirection ? get a physics and bullet subsystem.
-	redirect(original.x , original.y, newLocation, firer)
-
 /obj/item/projectile/ion
 	name = "ion bolt"
 	icon_state = "ion"
