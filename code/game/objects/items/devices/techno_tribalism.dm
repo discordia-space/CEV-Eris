@@ -2,7 +2,7 @@
 	name = "Techno-Tribalism Enforcer"
 	desc = "Feeds on rare tools, tool mods and other tech items. After being fed enough, will produce a strange technological part, that will be useful to train your skills overtime."
 	icon = 'icons/obj/faction_item.dmi'
-	description_info = "Has an internal radio that informs technomancers of its delay, it can be reenabled with a screwdriver if it is not functioning. Deconstructing other departamental oddities reduces its cooldown. Deconstructing combat-oriented oddities buffs its capability to make better combat-oddities"
+	description_info = "Has an internal radio that informs technomancers of its delay, it can be re-enabled with a screwdriver if it is not functioning. Deconstructing other departmental oddities reduces its cooldown. Deconstructing combat-oriented oddities buffs its capability to make better combat oddities."
 	description_antag = "You can disable its internal radio with a EMP."
 	icon_state = "techno_tribalism"
 	item_state = "techno_tribalism"
