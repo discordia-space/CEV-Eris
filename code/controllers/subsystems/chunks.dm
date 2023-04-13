@@ -31,9 +31,13 @@ SUBSYSTEM_DEF(chunks)
 
 /datum/controller/subsystem/chunks/proc/beforeLevelIncrement(datum/source)
 	SIGNAL_HANDLER
-	chunk_list_by_zlevel.len++
+	var/temp_list = new/list(world.maxz + 1)
+	for(var/i = 1; i <= world.maxz; i++)
+		temp_list[i] = chunk_list_by_zlevel[i]
+
 	for(var/j = 1, j <= CHUNKSPERLEVEL(world.maxx, world.maxy), j++)
-		chunk_list_by_zlevel[world.maxz + 1][j] = new /datum/chunk(src)
+		temp_list[world.maxz + 1][j] = new /datum/chunk(src)
+	chunk_list_by_zlevel = temp_list
 
 
 /datum/controller/subsystem/chunks/proc/onMobNew(atom/signalSource, mob/source)
