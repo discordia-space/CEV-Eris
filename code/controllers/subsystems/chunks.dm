@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(chunks)
 	for(var/i = 1; i <= world.maxz; i++)
 		temp_list[i] = chunk_list_by_zlevel[i]
 
-	temp_list[i] = new/list(CHUNKSPERLEVEL(world.maxx, world.maxy))
+	temp_list[world.maxz + 1] = new/list(CHUNKSPERLEVEL(world.maxx, world.maxy))
 	for(var/j = 1, j <= CHUNKSPERLEVEL(world.maxx, world.maxy), j++)
 		temp_list[world.maxz + 1][j] = new /datum/chunk(src)
 	chunk_list_by_zlevel = temp_list
