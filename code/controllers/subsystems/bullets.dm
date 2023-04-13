@@ -6,7 +6,8 @@
 #define LEVEL_STANDING 5
 #define LEVEL_ABOVE 6
 
-#define PIXELS_PER_TURF 32
+/// Pixels per turf
+#define PPT 32
 SUBSYSTEM_DEF(bullets)
 	name = "Bullets"
 	wait = 1
@@ -80,20 +81,21 @@ SUBSYSTEM_DEF(bullets)
 	SSbullets.bullet_queue += src
 
 /datum/bullet_data/proc/getShootingAngle()
-	return ATAN2(firedTurf.x - targetTurf.x, firedTurf.y - targetTurf.y)
+	return round(ATAN2((firedTurf.x - targetTurf.x) * PPT - targetCoords[1], (firedTurf.y - targetTurf.y)*PPT - targetCoords[2])*180/3.14)
 
 /datum/bullet_data/proc/getCoordinateRatio()
-	var/x = abs(firedTurf.x - targetTurf.x) * PIXELS_PER_TURF + targetCoords[1]
-	var/y = abs(firedTurf.y - targetTurf.y) * PIXELS_PER_TURF + targetCoords[2]
-	var/r = sqrt(x ? x**2 : 0 + y ? y**2 : 0)
-	var/diff = x ? x/r : 0 - y ? y/r : 0
-	if(x && y)
-		// rounded down to 0.05 to keep it sane
-		return diff > 0 ? list(round(x * (1 - diff)/100, 0.01), round((y * diff)/100, 0.05)) : list(round((x * abs(diff))/100, 0.05), round(y * (1 - abs(diff))/100, 0.01))
-	else if(x)
-		return list(1,0)
-	else if(y)
-		return list(0,1)
+	var/angle = getShootingAngle()
+	var/bias_x = sin(angle)
+	var/bias_y = cos(angle)
+	var/bias_diff = abs(bias_x) - abs(bias_y)
+	if(bias_diff > 0)
+		bias_x = bias_diff
+		bias_y = 1 - bias_diff
+	else
+		bias_x = 1 - abs(bias_diff)
+		bias_y = abs(bias_diff)
+	message_admins("angle : [angle] , ratio x : [bias_x] , ratio y : [bias_y] , total [bias_x + bias_y]")
+	return list(bias_x, bias_y)
 
 /datum/controller/subsystem/bullets/fire(resumed)
 	if(!resumed)
@@ -104,6 +106,8 @@ SUBSYSTEM_DEF(bullets)
 			bullet_queue -= bullet
 			continue
 		var/list/ratios = bullet.getCoordinateRatio()
+		bullet_queue -= bullet
+		/*
 		var/list/coordinates = list(round(PIXELS_PER_TURF * ratios[1]) + bullet.currentCoords[1], round(PIXELS_PER_TURF * ratios[2]) + bullet.currentCoords[2])
 		if(coordinates[1] > 32 || coordinates[2] > 32)
 			var/newpx = coordinates[1] > PIXELS_PER_TURF ? PIXELS_PER_TURF : coordinates[1]
@@ -121,6 +125,7 @@ SUBSYSTEM_DEF(bullets)
 			animate(bullet.referencedBullet, pixel_x = newpx, pixel_y = newpy, time = 1)
 			bullet.currentCoords[1] = bullet.referencedBullet.pixel_x
 			bullet.currentCoords[2] = bullet.referencedBullet.pixel_y
+		*/
 
 
 
