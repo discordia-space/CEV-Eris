@@ -514,7 +514,7 @@
 	desc = "Find the location of disciple."
 	success_message = "Your prayers have been heard."
 	fail_message = "Your prayers have not been answered."
-	power = 50
+	power = 25
 
 /datum/ritual/cruciform/priest/acolyte/search/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C, list/targets)
 	var/list/OBJS = get_front(user)
