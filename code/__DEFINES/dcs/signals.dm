@@ -9,7 +9,9 @@
 #define COMSIG_GLOB_FABRIC_NEW "!fabric_new"					//(image/fabric)
 
 //////////////////////////////////////////////////////////////////
+// world signals
 
+#define COMSIG_WORLD_MAXZ_INCREMENTING "world_maxz_increase"
 // /datum signals
 /// when a component is added to a datum: (/datum/component)
 #define COMSIG_COMPONENT_ADDED "component_added"

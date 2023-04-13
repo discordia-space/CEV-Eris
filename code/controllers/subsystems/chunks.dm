@@ -26,7 +26,15 @@ SUBSYSTEM_DEF(chunks)
 		for(var/j = 1, j <= CHUNKSPERLEVEL(world.maxx, world.maxy), j++)
 			chunk_list_by_zlevel[i][j] = new /datum/chunk(src)
 	RegisterSignal(SSdcs, COMSIG_MOB_INITIALIZED, PROC_REF(onMobNew))
+	RegisterSignal(SSdcs, COMSIG_WORLD_MAXZ_INCREMENTING, PROC_REF(beforeLevelIncrement))
 	return ..()
+
+/datum/controller/subsystem/chunks/proc/beforeLevelIncrement(datum/source)
+	SIGNAL_HANDLER
+	chunk_list_by_zlevel.len++
+	for(var/j = 1, j <= CHUNKSPERLEVEL(world.maxx, world.maxy), j++)
+		chunk_list_by_zlevel[world.maxz + 1][j] = new /datum/chunk(src)
+
 
 /datum/controller/subsystem/chunks/proc/onMobNew(atom/signalSource, mob/source)
 	SIGNAL_HANDLER
