@@ -17,7 +17,6 @@
 	damage_multiplier = 1.35
 	penetration_multiplier = 0
 	init_recoil = HANDGUN_RECOIL(2)
-	style_damage_multiplier = 2
 	spawn_frequency = 0
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE

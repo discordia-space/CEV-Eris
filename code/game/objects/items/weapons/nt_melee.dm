@@ -166,7 +166,6 @@
 	extended_reach = TRUE
 	push_attack = TRUE
 	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_PLASTEEL = 10) // More expensive, high-end spear
-	style_damage = 50
 
 /obj/item/tool/sword/nt/spear/equipped(mob/living/W)
 	..()
@@ -364,7 +363,6 @@
 	price_tag = 150
 	allow_spin = FALSE
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 5) // Easy to mass-produce and arm the faithful
-	style_damage = 30
 
 /obj/item/stack/thrown/nt/verutum/launchAt()
 	embed_mult = 600

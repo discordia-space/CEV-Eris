@@ -15,7 +15,6 @@
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
 	init_recoil = RIFLE_RECOIL(1.7)
-	style_damage_multiplier = 2
 	damage_multiplier = 1
 	penetration_multiplier = 0.1
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1)
@@ -80,9 +79,6 @@
 		to_chat(user, SPAN_WARNING("You can't load [src] while the barrel is closed!"))
 		return
 	. = ..()
-	if (. && ishuman(user)) // if it actually loaded and the user is human
-		var/mob/living/carbon/human/stylish = user
-		stylish.regen_slickness()
 
 
 /obj/item/gun/projectile/shotgun/doublebarrel/unload_ammo(mob/user, var/allow_dump=1)

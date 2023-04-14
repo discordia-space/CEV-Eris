@@ -31,7 +31,6 @@
 
 	var/list/custom_default = list() // used to preserve changes to stats past refresh_upgrades proccing
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
-	var/style_damage_multiplier = 1 // multiplies style damage of projectiles fired from this gun
 	var/penetration_multiplier = 0 //Sum of armor penetration of projectiles fired from this gun
 	var/pierce_multiplier = 0 //Additing wall penetration to projectiles fired from this gun
 	var/ricochet_multiplier = 1 //multiplier for how much projectiles fired from this gun can ricochet, modified by the bullet blender weapon mod
@@ -392,7 +391,6 @@
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 
-		projectile.multiply_projectile_style_damage(style_damage_multiplier)
 
 		projectile.add_projectile_penetration(penetration_multiplier)
 

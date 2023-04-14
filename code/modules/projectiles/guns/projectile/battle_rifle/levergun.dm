@@ -8,7 +8,6 @@
 	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_MAGNUM
 	damage_multiplier = 1.6
-	style_damage_multiplier = 1
 	penetration_multiplier = 0
 	proj_step_multiplier = 0.8
 	init_recoil = RIFLE_RECOIL(2)
