@@ -183,7 +183,7 @@
 	seed_name = "blood tomato"
 	display_name = "blood tomato plant"
 	mutants = list("killer")
-	chems = list("nutriment" = list(1,10), "blood" = list(1,5))
+	chems = list("nutriment" = list(1,10), "blood" = list(1,5), "protein" = list(1,5))
 	splat_type = /obj/effect/decal/cleanable/blood/splatter
 
 /datum/seed/tomato/blood/New()
@@ -251,6 +251,17 @@
 	set_trait(TRAIT_PLANT_ICON,"bush4")
 	set_trait(TRAIT_IDEAL_HEAT, 298)
 	set_trait(TRAIT_IDEAL_LIGHT, 7)
+
+/datum/seed/eggplant/realeggplant
+	name = "realeggplant"
+	seed_name = "egg plant"
+	display_name = "egg plants"
+	chems = list("nutriment" = list(1,10), "egg" = list(1,10))
+	kitchen_tag = "egg"
+
+/datum/seed/eggplant/realeggplant/New()
+	..()
+	set_trait(TRAIT_PRODUCT_COLOUR,"#ffffff")
 
 //Apples/varieties.
 /datum/seed/apple
