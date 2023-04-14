@@ -42,8 +42,14 @@
 
 	var/iconstring = initial(icon_state)
 	iconstring = initial(icon_state) + (ammo_magazine ? "_mag" + (ammo_magazine.mag_well == MAG_WELL_RIFLE_L ? "_l" : (ammo_magazine.mag_well == MAG_WELL_RIFLE_D ? "_d" : "")) : "")
-
 	icon_state = iconstring
+	if(ammo_magazine)
+		wielded_item_state = "_doble_mag"
+	else
+		wielded_item_state = "_doble"
+
+	set_item_state("[ammo_magazine ? "_mag" : null]", hands = TRUE, back = TRUE, onsuit = TRUE)
+	update_wear_icon()
 
 /obj/item/gun/projectile/automatic/wintermute/Initialize()
 	. = ..()

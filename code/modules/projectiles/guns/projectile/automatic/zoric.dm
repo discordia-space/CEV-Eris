@@ -37,6 +37,10 @@
 	if(ammo_magazine)
 		overlays += "mag[ammo_magazine.ammo_label_string]"
 		itemstring += "_mag"
+		wielded_item_state = "_doble" + "_mag"
+	else
+		wielded_item_state = "_doble"
+		
 
 	set_item_state(itemstring)
 

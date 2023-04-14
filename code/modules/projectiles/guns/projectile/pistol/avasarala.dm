@@ -39,6 +39,9 @@
 	if(gilded)
 		iconstring += "_gold"
 		itemstring += "_gold"
+		wielded_item_state = "_doble" + "_gold"
+	else
+		wielded_item_state = "_doble"
 
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
