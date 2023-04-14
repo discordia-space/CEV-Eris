@@ -1,0 +1,4 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - bugfix: fixed .40 barrel not working on modular guns
