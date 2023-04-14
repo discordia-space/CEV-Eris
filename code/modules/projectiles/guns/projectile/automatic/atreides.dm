@@ -18,7 +18,7 @@
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2)
 	price_tag = 800
 	gun_tags = list(GUN_SILENCABLE, GUN_GILDABLE)
-	gun_parts = list(/obj/item/part/gun/frame/atreides = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/atreides = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/smg = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "FS"
 
 	damage_multiplier = 0.9
@@ -72,6 +72,6 @@
 	desc = "An Atreides SMG frame. The king of street warfare."
 	icon_state = "frame_atreides"
 	resultvars = list(/obj/item/gun/projectile/automatic/atreides)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/smg
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/smg
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)

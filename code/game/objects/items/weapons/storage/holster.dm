@@ -24,7 +24,7 @@
 		/obj/item/gun/projectile/handmade_pistol,
 		/obj/item/gun/projectile/flare_gun,
 		/obj/item/gun/projectile/lamia,
-		/obj/item/gun/projectile/mk58,
+		/obj/item/gun/projectile/automatic/modular/mk58/gray/stock,
 		/obj/item/gun/projectile/olivaw,
 		/obj/item/gun/projectile/mandella,
 		/obj/item/gun/projectile/pistol,
@@ -176,7 +176,7 @@
 		/obj/item/gun/projectile/handmade_pistol,
 		/obj/item/gun/projectile/flare_gun,
 		/obj/item/gun/projectile/lamia,
-		/obj/item/gun/projectile/mk58,
+		/obj/item/gun/projectile/automatic/modular/mk58,
 		/obj/item/gun/projectile/olivaw,
 		/obj/item/gun/projectile/mandella,
 		/obj/item/gun/projectile/pistol,
@@ -234,7 +234,7 @@
 		/obj/item/tool/sword/nt/halberd,
 		/obj/item/tool/sword/nt/spear
 		)
-	
+
 	price_tag = 300
 	sound_in = 'sound/effects/sheathin.ogg'
 	sound_out = 'sound/effects/sheathout.ogg'
@@ -332,7 +332,7 @@
 				holster.attack_hand(H)
 				holster_handled = TRUE
 				break
-	
+
 	if(!holster_handled)
 		to_chat(H, SPAN_NOTICE(!H.get_active_hand() ? "You don't have any occupied pouch holsters." : "All your pouch holsters are occupied."))
 		return FALSE

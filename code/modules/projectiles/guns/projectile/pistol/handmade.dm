@@ -11,8 +11,7 @@
 	load_method = SINGLE_CASING
 	max_shells = 1
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
-	w_class = ITEM_SIZE_SMALL
-	gun_parts = list(/obj/item/part/gun/frame/handmade_pistol = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/pistol/steel = 1, /obj/item/part/gun/barrel/pistol/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/handmade_pistol = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/pistol/steel = 1, /obj/item/part/gun/modular/barrel/pistol/steel = 1)
 	ammo_type = /obj/item/ammo_casing/magnum
 	damage_multiplier = 1.35
 	penetration_multiplier = 0
@@ -31,9 +30,9 @@
 	icon_state = "frame_pistol_hm"
 	matter = list(MATERIAL_STEEL = 5)
 	resultvars = list(/obj/item/gun/projectile/handmade_pistol)
-	gripvars = list(/obj/item/part/gun/grip/wood)
-	mechanismvar = /obj/item/part/gun/mechanism/pistol/steel
-	barrelvars = list(/obj/item/part/gun/barrel/pistol/steel, /obj/item/part/gun/barrel/magnum/steel)
+	gripvars = list(/obj/item/part/gun/modular/grip/wood)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/pistol/steel
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol/steel, /obj/item/part/gun/modular/barrel/magnum/steel)
 
 /obj/item/gun/projectile/handmade_pistol/New()
 	..()

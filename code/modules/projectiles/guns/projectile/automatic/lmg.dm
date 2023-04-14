@@ -96,7 +96,7 @@
 	icon_state = "pkclosed-empty"
 	item_state = "pkclosedmag"
 	spawn_blacklisted = FALSE
-	gun_parts = list(/obj/item/part/gun/frame/pk = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/pk = 1, /obj/item/part/gun/modular/grip/serb = 1, /obj/item/part/gun/modular/mechanism/machinegun = 1, /obj/item/part/gun/modular/barrel/lrifle = 1)
 	serial_type = "SA"
 
 /obj/item/part/gun/frame/pk
@@ -104,9 +104,9 @@
 	desc = "A Pulemyot Kalashnikova LMG frame. A violent and beautiful spark of the past."
 	icon_state = "frame_pk"
 	resultvars = list(/obj/item/gun/projectile/automatic/lmg/pk)
-	gripvars = list(/obj/item/part/gun/grip/serb)
-	mechanismvar = /obj/item/part/gun/mechanism/machinegun
-	barrelvars = list(/obj/item/part/gun/barrel/lrifle)
+	gripvars = list(/obj/item/part/gun/modular/grip/serb)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/machinegun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/lrifle)
 
 /obj/item/gun/projectile/automatic/lmg/pk/update_icon()
 	icon_state = "[icon_base][cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
@@ -128,7 +128,7 @@
 	penetration_multiplier = 0.3
 
 	spawn_blacklisted = FALSE
-	gun_parts = list(/obj/item/part/gun/frame/tk = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/clrifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/tk = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/machinegun = 1, /obj/item/part/gun/modular/barrel/clrifle = 1)
 	serial_type = "FS"
 
 /obj/item/part/gun/frame/tk
@@ -136,6 +136,6 @@
 	desc = "A Takeshi LMG frame. A fine-oiled machine of war and death."
 	icon_state = "frame_mg"
 	resultvars = list(/obj/item/gun/projectile/automatic/lmg/tk)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/machinegun
-	barrelvars = list(/obj/item/part/gun/barrel/clrifle)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/machinegun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/clrifle)

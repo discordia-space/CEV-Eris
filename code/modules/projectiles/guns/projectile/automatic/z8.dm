@@ -34,7 +34,7 @@
 	var/obj/item/gun/projectile/shotgun/pump/grenade/underslung/launcher
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	gun_parts = list(/obj/item/part/gun/frame/z8 = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/z8 = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/autorifle/heavy = 1, /obj/item/part/gun/modular/barrel/srifle = 1)
 	serial_type = "OR"
 
 /obj/item/gun/projectile/automatic/z8/Initialize()
@@ -89,6 +89,6 @@
 	desc = "A Z8 Bulldog carbine frame. Old but gold."
 	icon_state = "frame_pug"
 	resultvars = list(/obj/item/gun/projectile/automatic/z8)
-	gripvars = list(/obj/item/part/gun/grip/black)
-	mechanismvar = /obj/item/part/gun/mechanism/autorifle
-	barrelvars = list(/obj/item/part/gun/barrel/srifle)
+	gripvars = list(/obj/item/part/gun/modular/grip/black)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle
+	barrelvars = list(/obj/item/part/gun/modular/barrel/srifle)
