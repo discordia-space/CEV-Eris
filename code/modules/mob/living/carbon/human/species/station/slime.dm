@@ -1,5 +1,5 @@
 /datum/species/slime
-	name = "Slime"
+	name = SPECIES_SLIME
 	name_plural = "slimes"
 	mob_size = MOB_SMALL
 
@@ -58,7 +58,7 @@
 	if(!user || !species)
 		return
 	if(user.stat)
-		return 
+		return
 	for(var/limb_tag in BP_ALL_LIMBS)
 		var/obj/item/organ/external/organ_to_check = organs_by_name[limb_tag]
 		if(!organ_to_check || istype(organ_to_check , /obj/item/organ/external/stump))
@@ -67,11 +67,15 @@
 	if(!missing_limb_tag)
 		to_chat(user, "You don't have any limbs to replace!")
 		return
+	if(nutrition < 100)
+		to_chat(user, "You do not have enough nutrition to regenerate a limb")
+		return
+
 	if(user.species.has_limbs.Find(missing_limb_tag))
 		var/stump_to_delete = organs_by_name[missing_limb_tag]
 		if(stump_to_delete)
 			qdel(stump_to_delete)
-		user.adjustNutrition(-50)
+		user.adjustNutrition(-100)
 		var/datum/organ_description/OD = species.has_limbs[missing_limb_tag]
 		OD.create_organ(src)
-		to_chat(user, "You regenerate your [missing_limb_tag]")
+		to_chat(user, "You regenerate your [OD.name]")
