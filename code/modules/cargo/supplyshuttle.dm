@@ -1,19 +1,4 @@
-//Config stuff
-/*
-var/list/mechtoys = list(
-	/obj/item/toy/prize/ripley,
-	/obj/item/toy/prize/fireripley,
-	/obj/item/toy/prize/deathripley,
-	/obj/item/toy/prize/gygax,
-	/obj/item/toy/prize/durand,
-	/obj/item/toy/prize/honk,
-	/obj/item/toy/prize/marauder,
-	/obj/item/toy/prize/seraph,
-	/obj/item/toy/prize/mauler,
-	/obj/item/toy/prize/odysseus,
-	/obj/item/toy/prize/phazon
-)
-*/
+
 /area/supply/station
 	name = "supply shuttle"
 	icon_state = "shuttle3"
@@ -24,7 +9,7 @@ var/list/mechtoys = list(
 	icon_state = "shuttle3"
 	requires_power = 0
 
-//SUPPLY PACKS MOVED TO /code/defines/obj/supplypacks.dm
+//SUPPLY PACKS MOVED TO /code/modules/cargo/packs.dm
 
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
 	name = "\improper plastic flaps"
