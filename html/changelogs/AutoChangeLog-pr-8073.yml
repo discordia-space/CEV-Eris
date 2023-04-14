@@ -1,0 +1,5 @@
+author: Hopek
+delete-after: true
+changes:
+  - rscadd: Added 4 "fun" non malicious lawsets to print. Partybot, Chefbot, TravelGuide
+      and Friendbot
