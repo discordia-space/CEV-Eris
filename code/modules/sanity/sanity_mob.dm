@@ -107,7 +107,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 
 	if(owner)
 		var/multiplier = owner.style / MAX_HUMAN_STYLE / 3
-		return clamp(multiplier, 0, 0.3)
+		return clamp(multiplier, -0.15, 0.3)
 
 /datum/sanity/proc/give_insight(value)
 	var/new_value = value
