@@ -167,6 +167,7 @@
 	initial_zoom_factors = zoom_factors.Copy()
 	. = ..()
 	initialize_firemodes()
+	initialize_firemode_actions()
 	initialize_scope()
 	//Properly initialize the default firing mode
 	if (firemodes.len)
@@ -741,6 +742,8 @@
 		var/list/L = init_firemodes[i]
 		add_firemode(L)
 
+
+/obj/item/gun/proc/initialize_firemode_actions()
 	var/obj/screen/item_action/action = locate(/obj/screen/item_action/top_bar/gun/fire_mode) in hud_actions
 	if(firemodes.len > 1)
 		if(!action)
@@ -1037,6 +1040,8 @@
 	//Now lets have each upgrade reapply its modifications
 	SEND_SIGNAL_OLD(src, COMSIG_ADDVAL, src)
 	SEND_SIGNAL_OLD(src, COMSIG_APPVAL, src)
+
+	initialize_firemode_actions()
 
 	if(firemodes.len)
 		very_unsafe_set_firemode(sel_mode) // Reset the firemode so it gets the new changes

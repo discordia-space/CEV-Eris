@@ -109,7 +109,7 @@
 
 /datum/craft_recipe/gun/kalash
 	name = "HM AR \"Sermak\""
-	result = /obj/item/gun/projectile/automatic/ak47/makeshift
+	result = /obj/item/gun/projectile/automatic/modular/ak/makeshift
 	steps = list(
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
@@ -160,7 +160,7 @@
 	result = /obj/item/ammo_casing/crossbow/bolt/prespawned
 	steps = list(
 		list(/obj/item/stack/rods, 5, "time" = 1),
-		list(QUALITY_HAMMERING, 5, 10, "time" = 10)) 
+		list(QUALITY_HAMMERING, 5, 10, "time" = 10))
 
 /datum/craft_recipe/gun/rxd
 	name = "RXD - Rapid Crossbow Device"
