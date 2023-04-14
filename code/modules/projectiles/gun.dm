@@ -362,13 +362,13 @@
 		return ..() //Pistolwhippin'
 
 /obj/item/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
-	if(!user || !target) return
+	if(!user || !target)
+		return
 
 	if(world.time < next_fire_time)
 		if (!suppress_delay_warning && world.time % 3) //to prevent spam
 			to_chat(user, SPAN_WARNING("[src] is not ready to fire again!"))
 		return
-
 
 	add_fingerprint(user)
 
@@ -377,9 +377,9 @@
 
 	currently_firing = TRUE
 
-	var/shoot_time = (burst - 1)* burst_delay
-	user.setClickCooldown(shoot_time) //no clicking on things while shooting
+	var/shoot_time = (burst - 1) * burst_delay + ((fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : fire_delay) * ((!twohanded && user.stats.getPerk(PERK_GUNSLINGER)) ? 0.66 : 1))
 	next_fire_time = world.time + shoot_time
+	user.setClickCooldown(shoot_time)
 
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
@@ -429,18 +429,11 @@
 			update_icon()
 
 		if(i < burst)
-			next_fire_time = world.time + shoot_time
 			sleep(burst_delay)
 
 		if(!(target && target.loc))
 			target = targloc
-			pointblank = 0
-	if(!twohanded && user.stats.getPerk(PERK_GUNSLINGER))
-		next_fire_time = world.time + (fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : fire_delay) * 0.66
-		user.setClickCooldown(fire_delay * 0.66)
-	else
-		next_fire_time = world.time + fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : fire_delay
-		user.setClickCooldown(fire_delay)
+			pointblank = FALSE
 
 	user.set_move_cooldown(move_delay)
 	if(muzzle_flash)

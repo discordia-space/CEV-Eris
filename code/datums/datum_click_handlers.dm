@@ -109,18 +109,17 @@
 	return TRUE
 
 /datum/click_handler/fullauto/proc/shooting_loop()
+	while(target)
+		if(!owner || !owner.mob || owner.mob.resting)
+			return FALSE
 
-	if(!owner || !owner.mob || owner.mob.resting)
-		return FALSE
-	if(target)
 		owner.mob.face_atom(target)
 
-	while(time_since_last_shot < world.time)
-		do_fire()
-		time_since_last_shot = world.time + (reciever.fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : reciever.fire_delay) * min(world.tick_lag, 1)
+		while(time_since_last_shot < world.time)
+			do_fire()
+			time_since_last_shot += (reciever.fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : reciever.fire_delay) * min(world.tick_lag, 1)
 
-	spawn(1)
-		shooting_loop()
+		sleep(1)
 
 /datum/click_handler/fullauto/MouseDrag(over_object, src_location, over_location, src_control, over_control, params)
 	src_location = resolve_world_target(src_location)
