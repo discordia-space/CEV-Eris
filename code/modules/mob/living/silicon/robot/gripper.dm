@@ -298,7 +298,8 @@
 		/obj/item/newspaper,
 		/obj/item/electronics/circuitboard/broken,
 		/obj/item/clothing/mask/smokable/cigarette,
-		///obj/item/reagent_containers/cooking_container //PArt of cooking overhaul, not yet ported
+		/obj/item/spacecash,
+		///obj/item/reagent_containers/cooking_container //Part of cooking overhaul, not yet ported
 		)
 
 /obj/item/gripper/no_use //Used when you want to hold and put items in other things, but not able to 'use' the item

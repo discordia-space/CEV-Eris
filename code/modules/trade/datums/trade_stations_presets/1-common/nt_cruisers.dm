@@ -92,7 +92,8 @@
 			/obj/item/seeds/goldappleseed = good_data("golden apple seeds", list(1,3), null),
 			/obj/item/seeds/ambrosiadeusseed = good_data("ambrosia deus seeds", list(1,3), null),
 			/obj/item/seeds/walkingmushroommycelium = good_data("walking mushroom spores", list(1,3), null),
-			/obj/item/seeds/angelmycelium = good_data("destroying angel spores", list(1,3), null)
+			/obj/item/seeds/angelmycelium = good_data("destroying angel spores", list(1,3), null),
+			/obj/item/seeds/realeggplant = good_data("egg plant seeds", list(1,3), null)
 		)
 	)
 	offer_types = list(

@@ -49,6 +49,7 @@
 	cover_open = !cover_open
 	to_chat(user, SPAN_NOTICE("You [cover_open ? "open" : "close"] [src]'s cover."))
 	update_icon()
+	update_held_icon()
 
 /obj/item/gun/projectile/automatic/lmg/attack_self(mob/user as mob)
 	if(cover_open)
@@ -70,8 +71,8 @@
 
 /obj/item/gun/projectile/automatic/lmg/update_icon()
 	icon_state = "[icon_base][cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
-	set_item_state("-[cover_open ? "open" : null][ammo_magazine ?"mag":"nomag"]", hands = TRUE)
-	set_item_state("-[ammo_magazine ?"mag":"nomag"]", back = TRUE, onsuit = TRUE)
+	set_item_state("-[cover_open ? "open" : ""][ammo_magazine ? "mag":"nomag"]", hands = TRUE, back = TRUE, onsuit = TRUE)
+	wielded_item_state = "_doble_[cover_open ? "open" : ""][ammo_magazine ? "mag" : ""]"
 	update_wear_icon()
 
 /obj/item/gun/projectile/automatic/lmg/load_ammo(var/obj/item/A, mob/user)

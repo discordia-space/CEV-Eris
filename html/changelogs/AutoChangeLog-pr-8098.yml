@@ -1,0 +1,5 @@
+author: Penwin0
+delete-after: true
+changes:
+  - rscdel: Removes commented/unused code previously marked for deletion
+  - bugfix: fixes a misleading comment in code

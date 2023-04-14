@@ -1,0 +1,5 @@
+author: Deal5
+delete-after: true
+changes:
+  - rscadd: harpoon gun sprite
+  - bugfix: most ranged weapons should work as intended when being taken in two hands

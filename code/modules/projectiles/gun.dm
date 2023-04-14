@@ -171,7 +171,7 @@
 		set_firemode(sel_mode)
 
 	if(!restrict_safety)
-		verbs += /obj/item/gun/proc/toggle_safety_verb//addint it to all guns
+		verbs += /obj/item/gun/proc/toggle_safety_verb  //addint it to all guns
 
 		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/safety
 		action.owner = src
@@ -205,7 +205,7 @@
 	firemodes = null
 	return ..()
 
-/obj/item/gun/proc/set_item_state(state, hands = FALSE, back = FALSE, onsuit = FALSE)
+/obj/item/gun/proc/set_item_state(state, hands = TRUE, back = FALSE, onsuit = FALSE)
 	var/wield_state
 	if(wielded_item_state)
 		wield_state = wielded_item_state
@@ -215,6 +215,7 @@
 		if(wield_state && wielded)//Because most of the time the "normal" icon state is held in one hand. This could be expanded to be less hacky in the future.
 			item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state
 			item_state_slots[slot_r_hand_str] = "righthand" + wield_state
+			
 		else
 			item_state_slots[slot_l_hand_str] = "lefthand"  + state
 			item_state_slots[slot_r_hand_str] = "righthand" + state
@@ -222,13 +223,13 @@
 
 	var/carry_state = inversed_carry
 	if(back && !carry_state)
-		item_state_slots[slot_back_str]   = "back"      + state
+		item_state_slots[slot_back_str]   = "back"		+ state
 	if(back && carry_state)
-		item_state_slots[slot_back_str]   = "onsuit"      + state
+		item_state_slots[slot_back_str]   = "onsuit"	+ state
 	if(onsuit && !carry_state)
 		item_state_slots[slot_s_store_str]= "onsuit"    + state
 	if(onsuit && carry_state)
-		item_state_slots[slot_s_store_str]= "back"    + state
+		item_state_slots[slot_s_store_str]= "back"		+ state
 
 /obj/item/gun/update_icon()
 	if(wielded_item_state)
@@ -238,9 +239,9 @@
 				item_state_slots[slot_r_hand_str] = "righthand" + wielded_item_state
 			else
 				item_state_slots[slot_l_hand_str] = "lefthand"
-				item_state_slots[slot_r_hand_str] = "righthand"
+			item_state_slots[slot_r_hand_str] = "righthand"
 		else//Otherwise we can just pull from the generic left and right hand icons.
-			if(wielded)
+			if(wielded_icon)
 				item_state_slots[slot_l_hand_str] = wielded_item_state
 				item_state_slots[slot_r_hand_str] = wielded_item_state
 			else
@@ -476,7 +477,7 @@
 		playsound(user, fire_sound_silenced, 15, 1, -5)
 	else
 		playsound(user, fire_sound, 60, 1)
-
+		/*
 		if(reflex)
 			user.visible_message(
 				"<span class='reflex_shoot'><b>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""] by reflex!</b></span>",
@@ -489,6 +490,7 @@
 				SPAN_WARNING("You fire \the [src]!"),
 				"You hear a [fire_sound_text]!"
 				)
+		*/
 
 		if(muzzle_flash)
 			set_light(muzzle_flash)

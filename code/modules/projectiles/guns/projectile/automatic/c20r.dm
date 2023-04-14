@@ -7,6 +7,7 @@
 	icon = 'icons/obj/guns/projectile/cr20.dmi'
 	icon_state = "c20r"
 	item_state = "c20r"
+	var/itemstring = ""
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL
 	caliber = CAL_PISTOL
@@ -50,6 +51,8 @@
 /obj/item/gun/projectile/automatic/c20r/update_icon()
 	cut_overlays()
 	icon_state = "[initial(icon_state)][silenced ? "_s" : ""]"
+	itemstring = "[silenced ? "_s" : ""]"
+	set_item_state(itemstring)
 
 	if(ammo_magazine)
 		overlays += "mag[silenced ? "_s" : ""][ammo_magazine.ammo_label_string]"
@@ -57,6 +60,12 @@
 			overlays += "slide[silenced ? "_s" : ""]"
 	else
 		overlays += "slide[silenced ? "_s" : ""]"
+
+	if (silenced)
+		wielded_item_state = "_s"
+	else
+		wielded_item_state = ""
+
 
 /obj/item/gun/projectile/automatic/c20r/Initialize()
 	. = ..()
