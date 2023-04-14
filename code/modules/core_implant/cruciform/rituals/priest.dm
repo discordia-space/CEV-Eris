@@ -528,6 +528,6 @@
 	if (!H)
 		return
 	var/area/t = get_area(H)
-	log_and_message_admins("finds location of [H] with search litany")
-	to_chat(user, "<span class='info'>[H], faithful cruciform follower, currently at [t.name].</span>")
+	log_game("[key_name(user)] locates [H] in [t] using Search litany.")
+	to_chat(user, SPAN_NOTICE("[H], faithful cruciform follower, currently at [t.name]."))
 	return TRUE
