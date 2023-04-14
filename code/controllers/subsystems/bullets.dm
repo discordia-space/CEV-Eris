@@ -97,9 +97,7 @@ SUBSYSTEM_DEF(bullets)
 	var/list/coordinates = list(0,0)
 	coordinates[1] = ((targetTurf.x -firedTurf.x) * PPT + targetCoords[1]) / PPT + 0.0001
 	coordinates[2] = ((targetTurf.y - firedTurf.y) * PPT + targetCoords[2]) / PPT + 0.0001
-	var/ipotenuse = sqrt(coordinates[1] ** 2 + coordinates[2] ** 2)
 	var/coordonate_median = abs(coordinates[1]) + abs(coordinates[2])
-	//message_admins("X-ratio [coordinates[1]/coordonate_median], Y-ratio [coordinates[2]/coordonate_median]")
 	return list(coordinates[1]/coordonate_median, coordinates[2]/coordonate_median)
 
 /datum/controller/subsystem/bullets/fire(resumed)
@@ -113,29 +111,41 @@ SUBSYSTEM_DEF(bullets)
 		var/list/ratios = bullet.getCoordinateRatio()
 		var/px = round(ratios[1] * PPT) + bullet.currentCoords[1]
 		var/py = round(ratios[2] * PPT) + bullet.currentCoords[2]
-		if(px > PPT/2 || py > PPT/2 || px < PPT/2 || py < PPT/2)
+		var/x_change = 0
+		var/y_change = 0
+		while(px > PPT/2 || py > PPT/2 || px < -PPT/2 || py < -PPT/2)
 			message_admins("Moving [bullet.referencedBullet], y = [round(py/PPT)], py = [py], x = [round(px/PPT)], px = [px]")
-			var/x_change = px > PPT/2 ? 1 : px < -PPT/2 ? -1 : 0
-			var/y_change = py > PPT/2 ? 1 : py < -PPT/2 ? -1 : 0
-			bullet.referencedBullet.Move(locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z))
-			bullet.currentCoords[1] = px
-			bullet.currentCoords[2] = py
-			if(bullet.currentCoords[1] > PPT/2)
-				bullet.currentCoords[1] -= PPT/2
-			else if(bullet.currentCoords[1] < -PPT/2)
-				bullet.currentCoords[1] += PPT/2
-			if(bullet.currentCoords[2] > PPT/2)
-				bullet.currentCoords[2] -= PPT/2
-			else if(bullet.currentCoords[2] < -PPT/2)
-				bullet.currentCoords[2] += PPT/2
-			bullet.referencedBullet.pixel_x = bullet.currentCoords[1]
-			bullet.referencedBullet.pixel_y = bullet.currentCoords[2]
+			x_change += px > PPT/2 ? 1 : px < -PPT/2 ? -1 : 0
+			y_change += py > PPT/2 ? 1 : py < -PPT/2 ? -1 : 0
+			if(px > PPT/2)
+				px -= PPT/2
+			else if(px < -PPT/2)
+				px += PPT/2
+			if(py > PPT/2)
+				py -= PPT/2
+			else if(py < -PPT/2)
+				py += PPT/2
 
-		else
-			bullet.currentCoords[1] = px
-			bullet.referencedBullet.pixel_x = px
-			bullet.currentCoords[2] = py
-			bullet.referencedBullet.pixel_y = py
+		if(x_change > 0)
+			px = px - PPT/2
+		else if(x_change < 0)
+			px = PPT/2 + px
+		if(y_change > 0)
+			py = py - PPT/2
+		else if(y_change < 0)
+			py = PPT/2 + py
+
+		bullet.referencedBullet.Move(locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z))
+		bullet.currentCoords[1] = px
+		bullet.currentCoords[2] = py
+		bullet.referencedBullet.pixel_x = bullet.currentCoords[1]
+		bullet.referencedBullet.pixel_y = bullet.currentCoords[2]
+		/*
+		bullet.currentCoords[1] = px
+		bullet.referencedBullet.pixel_x = px
+		bullet.currentCoords[2] = py
+		bullet.referencedBullet.pixel_y = py
+		*/
 		if(QDELETED(bullet.referencedBullet))
 			bullet_queue -= bullet
 #undef LEVEL_BELOW
