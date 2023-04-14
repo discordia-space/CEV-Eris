@@ -48,6 +48,9 @@
 	if (silenced)
 		iconstring += "_s"
 		itemstring += "_s"
+		wielded_item_state = "_doble_s"
+	else
+		wielded_item_state = "_doble"
 
 	icon_state = iconstring
 	set_item_state(itemstring)

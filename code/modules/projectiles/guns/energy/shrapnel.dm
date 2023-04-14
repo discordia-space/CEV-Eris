@@ -30,6 +30,9 @@
 
 	serial_type = "OR"
 
+/obj/item/gun/energy/shrapnel/update_icon()
+ 	..()
+
 /obj/item/gun/energy/shrapnel/consume_next_projectile()
 	if(!cell) return null
 	if(!ispath(projectile_type)) return null

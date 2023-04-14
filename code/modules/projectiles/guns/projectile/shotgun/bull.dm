@@ -93,16 +93,21 @@
 
 /obj/item/gun/projectile/shotgun/bull/update_icon()
 	..()
-
+	var/ratio = get_ammo() / (max_shells + 1)
+	ratio = round(ratio, 0.25) * 100
 	var/iconstring = initial(icon_state)
 	var/itemstring = ""
 
-	if(wielded)
-		itemstring += "_doble"
+	if(ratio > 0)
+		wielded_item_state = "_doble_mag"
+	else
+		wielded_item_state = "_doble"
+		itemstring += "_empty"
 
 	icon_state = iconstring
 	set_item_state(itemstring)
 	cut_overlays()
+	update_held_icon()
 	update_charge()
 
 /obj/item/part/gun/frame/bull
@@ -113,3 +118,5 @@
 	gripvars = list(/obj/item/part/gun/grip/rubber)
 	mechanismvar = /obj/item/part/gun/mechanism/shotgun
 	barrelvars = list(/obj/item/part/gun/barrel/shotgun)
+
+
