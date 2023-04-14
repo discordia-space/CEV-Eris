@@ -79,29 +79,28 @@ SUBSYSTEM_DEF(bullets)
 	else if(isitem(target))
 		src.targetLevel = LEVEL_TURF
 	SSbullets.bullet_queue += src
-
+/*
 /datum/bullet_data/proc/getShootingAngle()
 	//return TODEGREES(ATAN2((firedTurf.x - targetTurf.x) * PPT - targetCoords[1], (firedTurf.y - targetTurf.y)*PPT - targetCoords[2]))
 	var/list/coordinates = list(0,0)
-	coordinates[1] = ((firedTurf.x - targetTurf.x) * PPT - targetCoords[1]) / PPT + 0.0001
-	coordinates[2] = ((firedTurf.y - targetTurf.y) * PPT - targetCoords[2]) / PPT + 0.0001
+	coordinates[1] = ((targetTurf.x -firedTurf.x) * PPT + targetCoords[1]) / PPT + 0.0001
+	coordinates[2] = ((targetTurf.y - firedTurf.y) * PPT + targetCoords[2]) / PPT + 0.0001
 	var/ipotenuse = sqrt(coordinates[1] ** 2 + coordinates[2] ** 2)
-	var/angleX = arcsin(coordinates[1] / ipotenuse)
-	var/angleY = arccos(coordinates[2] / ipotenuse)
+	var/angleX = arcsin(coordinates[1]/ipotenuse)
+	var/angleY = arccos(coordinates[2]/ipotenuse)
 
+	return 90
+*/
+
+/// I hate trigonometry
 /datum/bullet_data/proc/getCoordinateRatio()
-	var/angle = getShootingAngle()
-	var/bias_x = sin(angle)
-	var/bias_y = cos(angle)
-	var/bias_diff = abs(bias_x) - abs(bias_y)
-	if(bias_diff > 0)
-		bias_x = bias_diff
-		bias_y = 1 - bias_diff
-	else
-		bias_x = 1 - abs(bias_diff)
-		bias_y = abs(bias_diff)
-	message_admins("angle : [angle] , ratio x : [bias_x] , ratio y : [bias_y] , total [bias_x + bias_y]")
-	return list(bias_x, bias_y)
+	var/list/coordinates = list(0,0)
+	coordinates[1] = ((targetTurf.x -firedTurf.x) * PPT + targetCoords[1]) / PPT + 0.0001
+	coordinates[2] = ((targetTurf.y - firedTurf.y) * PPT + targetCoords[2]) / PPT + 0.0001
+	var/ipotenuse = sqrt(coordinates[1] ** 2 + coordinates[2] ** 2)
+	var/coordonate_median = abs(coordinates[1]) + abs(coordinates[2])
+	//message_admins("X-ratio [coordinates[1]/coordonate_median], Y-ratio [coordinates[2]/coordonate_median]")
+	return list(coordinates[1]/coordonate_median, coordinates[2]/coordonate_median)
 
 /datum/controller/subsystem/bullets/fire(resumed)
 	if(!resumed)
@@ -112,34 +111,37 @@ SUBSYSTEM_DEF(bullets)
 			bullet_queue -= bullet
 			continue
 		var/list/ratios = bullet.getCoordinateRatio()
-		bullet_queue -= bullet
-		/*
-		var/list/coordinates = list(round(PIXELS_PER_TURF * ratios[1]) + bullet.currentCoords[1], round(PIXELS_PER_TURF * ratios[2]) + bullet.currentCoords[2])
-		if(coordinates[1] > 32 || coordinates[2] > 32)
-			var/newpx = coordinates[1] > PIXELS_PER_TURF ? PIXELS_PER_TURF : coordinates[1]
-			var/newpy = coordinates[2] > PIXELS_PER_TURF ? PIXELS_PER_TURF : coordinates[2]
-			animate(bullet.referencedBullet, pixel_x = newpx, pixel_y = newpy, time = 0.5)
-			bullet.referencedBullet.Move(locate(round(coordinates[1]/PIXELS_PER_TURF), round(coordinates[2]/PIXELS_PER_TURF), bullet.referencedBullet.z))
-			bullet.referencedBullet.pixel_x = coordinates[1] > PIXELS_PER_TURF ? PIXELS_PER_TURF - coordinates[1] : coordinates[1]
-			bullet.referencedBullet.pixel_y = coordinates[2] > PIXELS_PER_TURF ? PIXELS_PER_TURF - coordinates[2] : coordinates[2]
-			animate(bullet.referencedBullet, pixel_x = newpx, pixel_y = newpy, time = 0.5)
-			bullet.currentCoords[1] = bullet.referencedBullet.pixel_x
-			bullet.currentCoords[2] = bullet.referencedBullet.pixel_y
+		var/px = round(ratios[1] * PPT) + bullet.currentCoords[1]
+		var/py = round(ratios[2] * PPT) + bullet.currentCoords[2]
+		if(abs(px) > PPT || abs(py) > PPT)
+			message_admins("Moving [bullet.referencedBullet], y = [round(py/PPT)], py = [py], x = [round(px/PPT)], px = [px]")
+			var/x_change = round(px/PPT)
+			var/y_change = round(py/PPT)
+			if(x_change < -1)
+				x_change++
+			if(y_change < -1)
+				y_change++
+			bullet.referencedBullet.Move(locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z))
+			bullet.currentCoords[1] = px
+			bullet.currentCoords[2] = py
+			if(bullet.currentCoords[1] > PPT)
+				bullet.currentCoords[1] -= PPT
+			else if(bullet.currentCoords[1] < -PPT)
+				bullet.currentCoords[1] += PPT
+			if(bullet.currentCoords[2] > PPT)
+				bullet.currentCoords[2] -= PPT
+			else if(bullet.currentCoords[2] < -PPT)
+				bullet.currentCoords[2] += PPT
+			bullet.referencedBullet.pixel_x = bullet.currentCoords[1]
+			bullet.referencedBullet.pixel_y = bullet.currentCoords[2]
+
 		else
-			var/newpx = coordinates[1]
-			var/newpy = coordinates[2]
-			animate(bullet.referencedBullet, pixel_x = newpx, pixel_y = newpy, time = 1)
-			bullet.currentCoords[1] = bullet.referencedBullet.pixel_x
-			bullet.currentCoords[2] = bullet.referencedBullet.pixel_y
-		*/
-
-
-
-
-		//animate(bullet.referencedBullet, pixel_x = coordinates[1]%PIXELS_PER_TURF, pixel_y = coordinates[2]%PIXELS_PER_TURF, x = bullet.referencedBullet.x + round(coordinates[1]/32), y = bullet.referencedBullet.y + round(coordinates[2]/32), time = 1)
-		current_queue -= bullet
-
-
+			bullet.currentCoords[1] = px
+			bullet.referencedBullet.pixel_x = px
+			bullet.currentCoords[2] = py
+			bullet.referencedBullet.pixel_y = py
+		if(QDELETED(bullet.referencedBullet))
+			bullet_queue -= bullet
 #undef LEVEL_BELOW
 #undef LEVEL_TURF
 #undef LEVEL_LYING
