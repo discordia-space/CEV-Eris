@@ -2,7 +2,7 @@
 	name = "NT PR \"Dominion\""
 	desc = "A \"NeoTheology\" weapon that uses advanced plasma generation technology to emit highly controllable blasts of energized matter. Due to its complexity and cost, it is rarely seen in use, except by specialists."
 	description_info = "Plasma weapons excel at armor penetration, especially with high-power modes due to extreme temperatures they cause."
-	icon = 'icons/obj/guns/energy/pulse.dmi'
+	icon = 'icons/obj/guns/energy/pulse.dmi' // back and on_suit sprites required, pretty please
 	icon_state = "pulse"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	item_charge_meter = TRUE
@@ -50,7 +50,7 @@
 	name = "NT PR \"Purger\""
 	desc = "A more recent \"NeoTheology\" brand plasma cannon, focused on the superior firepower at the cost of high energy usage. \
             There\'s an inscription on the stock. \'For those whom the Angels hath cursed: thou wilt find, have no one to help.\'"
-	icon = 'icons/obj/guns/energy/destroyer.dmi'
+	icon = 'icons/obj/guns/energy/destroyer.dmi' // Dominion _doble sprites so pls draw + back and on_suit sprites required, pretty please
 	fire_sound = 'sound/weapons/energy/incinerate.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 10, MATERIAL_URANIUM = 5)
 	slot_flags = SLOT_BACK
@@ -62,7 +62,6 @@
 		list(mode_name="CLEANSE", mode_desc="Cleanse the filth", mode_type = /datum/firemode/automatic, projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/energy/vaporize.ogg', fire_delay=4, charge_cost=35, icon="burst", projectile_color = "#00AAFF"),
 	)
 	init_recoil = LMG_RECOIL(1)
-
 
 /obj/item/gun/energy/plasma/cassad
 	name = "FS PR \"Cassad\""
@@ -85,9 +84,22 @@
 	init_recoil = RIFLE_RECOIL(1)
 	spawn_tags = SPAWN_TAG_FS_ENERGY
 
-/obj/item/gun/energy/plasma/cassad/update_icon()
+/obj/item/gun/energy/plasma/cassad/update_icon(ignore_inhands)
 	..()
-	set_item_state(null, back = TRUE)
+	if(charge_meter)
+		var/ratio = 0
+
+		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
+		if(cell && cell.charge >= charge_cost)
+			ratio = cell.charge / cell.maxcharge
+			ratio = min(max(round(ratio, 0.25) * 100, 25), 100)
+
+		if(item_charge_meter)
+			set_item_state("-[ratio]")
+			wielded_item_state = "_doble" + "-[ratio]"
+			icon_state = initial(icon_state) + "[ratio]"
+	if(!ignore_inhands)
+		update_wear_icon()
 
 /obj/item/gun/energy/plasma/brigador
 	name = "ML PP \"Brigador\""

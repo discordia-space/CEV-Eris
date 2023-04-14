@@ -57,16 +57,16 @@
 
 /obj/item/gun/projectile/automatic/ak47/update_icon()
 	..()
+	icon_state = initial(icon_state)
+	set_item_state("[gilded ? "_gold":""][ammo_magazine ? "_mag":""][folded ? "_f":""]", hands = TRUE, back = TRUE, onsuit = TRUE)
+	wielded_item_state = "_doble[gilded ? "_gold":""][ammo_magazine ? "_mag":""][folded ? "_f":""]"
 
 	var/iconstring = initial(icon_state)
-	var/itemstring = ""
-
+	
 	if(gilded)
 		iconstring += "_gold"
-		itemstring += "_gold"
 
 	if (ammo_magazine)
-		itemstring += "_full"
 		if (ammo_magazine.mag_well == MAG_WELL_RIFLE_L)
 			iconstring += "_l"
 		if (ammo_magazine.mag_well == MAG_WELL_RIFLE_D)
@@ -74,15 +74,12 @@
 		else
 			iconstring += "[ammo_magazine? "_mag[ammo_magazine.max_ammo]": ""]"
 
-	if(wielded)
-		itemstring += "_doble"
-
 	if(folded)
 		iconstring += "_f"
-		itemstring += "_f"
 
 	icon_state = iconstring
-	set_item_state(itemstring)
+	update_held_icon()
+	update_wear_icon()
 
 /obj/item/gun/projectile/automatic/ak47/Initialize()
 	. = ..()
