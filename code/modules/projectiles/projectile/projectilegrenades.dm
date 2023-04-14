@@ -65,6 +65,7 @@
 
 /obj/item/projectile/bullet/grenade/frag/grenade_effect(target)
 	fragment_explosion(target, range, f_type, f_amount, f_damage, f_step, same_turf_hit_chance)
+	explosion(get_turf(target), 100, 20)
 
 /obj/item/projectile/bullet/grenade/frag/sting/weak
 	name = "sting shell"
