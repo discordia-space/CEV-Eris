@@ -113,25 +113,21 @@ SUBSYSTEM_DEF(bullets)
 		var/list/ratios = bullet.getCoordinateRatio()
 		var/px = round(ratios[1] * PPT) + bullet.currentCoords[1]
 		var/py = round(ratios[2] * PPT) + bullet.currentCoords[2]
-		if(abs(px) > PPT || abs(py) > PPT)
+		if(px > PPT/2 || py > PPT/2 || px < PPT/2 || py < PPT/2)
 			message_admins("Moving [bullet.referencedBullet], y = [round(py/PPT)], py = [py], x = [round(px/PPT)], px = [px]")
-			var/x_change = round(px/PPT)
-			var/y_change = round(py/PPT)
-			if(x_change < -1)
-				x_change++
-			if(y_change < -1)
-				y_change++
+			var/x_change = px > PPT/2 ? 1 : px < -PPT/2 ? -1 : 0
+			var/y_change = py > PPT/2 ? 1 : py < -PPT/2 ? -1 : 0
 			bullet.referencedBullet.Move(locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z))
 			bullet.currentCoords[1] = px
 			bullet.currentCoords[2] = py
-			if(bullet.currentCoords[1] > PPT)
-				bullet.currentCoords[1] -= PPT
-			else if(bullet.currentCoords[1] < -PPT)
-				bullet.currentCoords[1] += PPT
-			if(bullet.currentCoords[2] > PPT)
-				bullet.currentCoords[2] -= PPT
-			else if(bullet.currentCoords[2] < -PPT)
-				bullet.currentCoords[2] += PPT
+			if(bullet.currentCoords[1] > PPT/2)
+				bullet.currentCoords[1] -= PPT/2
+			else if(bullet.currentCoords[1] < -PPT/2)
+				bullet.currentCoords[1] += PPT/2
+			if(bullet.currentCoords[2] > PPT/2)
+				bullet.currentCoords[2] -= PPT/2
+			else if(bullet.currentCoords[2] < -PPT/2)
+				bullet.currentCoords[2] += PPT/2
 			bullet.referencedBullet.pixel_x = bullet.currentCoords[1]
 			bullet.referencedBullet.pixel_y = bullet.currentCoords[2]
 
