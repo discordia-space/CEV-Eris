@@ -1,0 +1,4 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - rscdel: Removed mob hit by bullet and mob fires gun messages.
