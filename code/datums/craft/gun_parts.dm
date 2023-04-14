@@ -572,8 +572,6 @@ semi accepts weird caliber - +1 points
 	caliber = CAL_MAGNUM
 	part_overlay = "well_magnum"
 
-/obj/item/part/gun/modular/barrel/magnum/New()
-
 /obj/item/part/gun/modular/barrel/srifle
 	name = ".20 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .20 caliber."
