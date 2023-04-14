@@ -125,16 +125,29 @@
 /obj/item/clothing/head/ushanka
 	name = "ushanka"
 	desc = "Perfect for winter in Siberia, da?"
-	icon_state = "ushankadown"
+	icon_state = "ushanka_down"
 	flags_inv = HIDEEARS
 	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/ushanka/attack_self(mob/user)
-	if(src.icon_state == "ushankadown")
-		src.icon_state = "ushankaup"
+	if(src.icon_state == "ushanka_down")
+		src.icon_state = "ushanka_up"
 		to_chat(user, "You raise the ear flaps on the ushanka.")
 	else
-		src.icon_state = "ushankadown"
+		src.icon_state = "ushanka_down"
+		to_chat(user, "You lower the ear flaps on the ushanka.")
+
+/obj/item/clothing/head/ushanka/black
+	name = "serbian ushanka"
+	desc = "Perfect for winter in Serbia, da?"
+	icon_state = "ushankabl_down"
+
+/obj/item/clothing/head/ushanka/black/attack_self(mob/user)
+	if(src.icon_state == "ushankabl_down")
+		src.icon_state = "ushankabl_up"
+		to_chat(user, "You raise the ear flaps on the ushanka.")
+	else
+		src.icon_state = "ushankabl_down"
 		to_chat(user, "You lower the ear flaps on the ushanka.")
 
 /*

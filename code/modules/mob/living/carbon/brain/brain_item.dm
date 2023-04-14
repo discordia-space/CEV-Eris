@@ -25,7 +25,7 @@
 
 /obj/item/organ/internal/brain/New()
 	..()
-	timer_id = addtimer(CALLBACK(src, .proc/clear_hud), 5, TIMER_STOPPABLE)
+	timer_id = addtimer(CALLBACK(src, PROC_REF(clear_hud)), 5, TIMER_STOPPABLE)
 
 /obj/item/organ/internal/brain/Destroy()
 	if(timer_id)

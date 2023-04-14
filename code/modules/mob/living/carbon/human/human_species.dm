@@ -5,12 +5,11 @@
 /mob/living/carbon/human/monkey
 	icon_state = "monkey"
 
-/mob/living/carbon/human/monkey/New(var/new_loc)
+/mob/living/carbon/human/monkey/Initialize(var/new_loc)
 	..(new_loc, "Monkey")
 
 /mob/living/carbon/human/dummy/mannequin/Initialize()
 	. = ..()
-	STOP_PROCESSING(SSmobs, src)
 	GLOB.human_mob_list -= src
 	delete_inventory()
 
@@ -20,8 +19,7 @@
 /mob/living/carbon/human/skeleton
 	icon_state = "skeleton"
 
-/mob/living/carbon/human/skeleton/New(new_loc)
-	..(new_loc, SPECIES_SKELETON)
-	STOP_PROCESSING(SSmobs, src)
+/mob/living/carbon/human/skeleton/Initialize(new_loc)
+	. = ..(new_loc, SPECIES_SKELETON)
 	death(FALSE)
 	GLOB.human_mob_list -= src
