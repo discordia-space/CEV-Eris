@@ -1,0 +1,8 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - rscadd: Slimepeople now get warned when their glomp recharges
+  - bugfix: Slimepeople organ regeneration verb now mentions the actual organ name
+  - balance: Removed stun from electrocutions
+  - balance: Weaken from electrocution is now dependant on the shock_damage, any damage
+      above 15 will shock now for 2  seconds minimum and 10 seconds maximum ,
