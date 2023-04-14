@@ -1,0 +1,9 @@
+author: Humonitarian, Shazbot, ValoTheValo, Vandu-Jr
+delete-after: true
+changes:
+  - rscadd: Modular gun frames implemented
+  - code_imp: Gun parts now function modularly and support modifications
+  - imageadd: New modular AK sprites by Shazbot
+  - imageadd: New modular MK58 sprites by Valo
+  - imageadd: New modular Wintermute sprites by Vandu-Jr
+  - rscadd: New modifiers for use by mods (intended only for gun parts)
