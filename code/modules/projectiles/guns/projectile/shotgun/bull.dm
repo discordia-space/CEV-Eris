@@ -32,7 +32,7 @@
 
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
 	price_tag = 2000 //gives tactical advantage with beanbags, but consumes more ammo and hits less harder with lethal ammo, so Gladstone or Regulator would be better for lethal takedowns in general
-	gun_parts = list(/obj/item/part/gun/frame/bull = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	gun_parts = list(/obj/item/part/gun/frame/bull = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/shotgun = 1, /obj/item/part/gun/modular/barrel/shotgun = 1)
 	serial_type = "FS"
 
 /obj/item/gun/projectile/shotgun/bull/proc/pump(mob/M as mob)
@@ -115,8 +115,6 @@
 	desc = "A Bull shotgun frame. Double-barrel and pump action, through a miracle of engineering."
 	icon_state = "frame_bull"
 	resultvars = list(/obj/item/gun/projectile/shotgun/bull)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/shotgun
-	barrelvars = list(/obj/item/part/gun/barrel/shotgun)
-
-
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/shotgun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun)

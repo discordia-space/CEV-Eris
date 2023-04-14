@@ -25,7 +25,7 @@
 	init_recoil = RIFLE_RECOIL(1.3)
 	zoom_factors = list(0.6)
 	fire_delay = 6.5
-	gun_parts = list(/obj/item/part/gun/frame/kovacs = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/kovacs = 1, /obj/item/part/gun/modular/grip/serb = 1, /obj/item/part/gun/modular/mechanism/autorifle/sharpshooter = 1, /obj/item/part/gun/modular/barrel/lrifle = 1)
 	serial_type = "SA"
 
 
@@ -55,6 +55,6 @@
 	desc = "A Kovacs battle rifle frame. To punch through people with panache."
 	icon_state = "frame_kovacs"
 	resultvars = list(/obj/item/gun/projectile/kovacs)
-	gripvars = list(/obj/item/part/gun/grip/serb)
-	mechanismvar = /obj/item/part/gun/mechanism/autorifle
-	barrelvars = list(/obj/item/part/gun/barrel/lrifle)
+	gripvars = list(/obj/item/part/gun/modular/grip/serb)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle
+	barrelvars = list(/obj/item/part/gun/modular/barrel/lrifle)

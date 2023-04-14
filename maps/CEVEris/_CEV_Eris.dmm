@@ -17148,10 +17148,10 @@
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/item/gun/projectile/automatic/ak47/fs/ih,
-/obj/item/gun/projectile/automatic/ak47/fs/ih,
-/obj/item/gun/projectile/automatic/ak47/fs/ih,
-/obj/item/gun/projectile/automatic/ak47/fs/ih,
+/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities,
+/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities,
+/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities,
+/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aQD" = (
@@ -17480,8 +17480,8 @@
 /area/eris/maintenance/section3deck1central)
 "aRy" = (
 /obj/structure/table/rack,
-/obj/item/gun/projectile/automatic/wintermute,
-/obj/item/gun/projectile/automatic/wintermute,
+/obj/item/gun/projectile/automatic/modular/wintermute/finished,
+/obj/item/gun/projectile/automatic/modular/wintermute/finished,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
