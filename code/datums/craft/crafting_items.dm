@@ -40,35 +40,6 @@
 	GET_COMPONENT(comp_sanity, /datum/component/atom_sanity)
 	. += comp_sanity.affect * 100
 
-/obj/item/part/gun
-	name = "gun part"
-	desc = "Spare part of gun."
-	icon_state = "gun_part_1"
-	spawn_tags = SPAWN_TAG_GUN_PART
-	w_class = ITEM_SIZE_SMALL
-	matter = list(MATERIAL_PLASTEEL = 5)
-	var/generic = TRUE
-
-/obj/item/part/gun/Initialize()
-	. = ..()
-	if(generic)
-		icon_state = "gun_part_[rand(1,6)]"
-
-/obj/item/part/gun/artwork
-	desc = "This is an artistically-made gun part."
-	spawn_frequency = 0
-
-/obj/item/part/gun/artwork/Initialize()
-	name = get_weapon_name(capitalize = TRUE)
-	AddComponent(/datum/component/atom_sanity, 0.2 + pick(0,0.1,0.2), "")
-	price_tag += rand(0, 500)
-	return ..()
-
-/obj/item/part/gun/artwork/get_item_cost(export)
-	. = ..()
-	GET_COMPONENT(comp_sanity, /datum/component/atom_sanity)
-	. += comp_sanity.affect * 100
-
 /obj/item/craft_frame
 	name = "item assembly"
 	desc = "Debug item"

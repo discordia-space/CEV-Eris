@@ -95,13 +95,13 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 	if(!GLOB.nt_constructs) //Makes sure the list we curated earlier actually exists
 		fail("You have no idea what constitutes a church construct.",user,C,targets)
 		return
-	
+
 	var/obj/reclaimed //Variable to be defined later as the removed construct
 	var/loot //Variable to be defined later as materials resulting from deconstruction
 	var/turf/target_turf = get_step(user,user.dir) //Gets the turf in front of the user
-	
+
 	//Find the NT Structure in front of the player
-	for(reclaimed in target_turf) 
+	for(reclaimed in target_turf)
 		if(reclaimed.type in GLOB.nt_constructs)
 			loot = GLOB.nt_constructs[reclaimed.type]
 			break
@@ -116,6 +116,11 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 
 	if(!do_after(user, 5 SECONDS, target_turf)) //"Sit still" timer
 		fail("You feel something is judging you upon your impatience",user,C,targets)
+		effect.failure()
+		return
+	
+	if(QDELETED(reclaimed) || reclaimed.loc != target_turf)
+		fail("It's no longer there.", user, C, targets)
 		effect.failure()
 		return
 	
@@ -348,3 +353,14 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 		/obj/item/stack/material/silver = 3
 	)
 	build_time = 8 SECONDS
+
+/datum/nt_blueprint/machinery/altar
+	name = "NeoTheology's altar"
+	build_path = /obj/machinery/optable/altar
+	materials = list(
+		/obj/item/stack/material/steel = 10,
+		/obj/item/stack/material/biomatter = 50,
+		/obj/item/stack/material/silver = 5,
+		/CRUCIFORM_TYPE = 1
+	)
+	build_time = 10 SECONDS

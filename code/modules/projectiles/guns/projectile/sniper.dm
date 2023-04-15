@@ -33,7 +33,7 @@
 	var/item_suffix = ""
 	wield_delay = 0
 	pierce_multiplier = 6
-	gun_parts = list(/obj/item/part/gun/frame/heavysniper = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/antim = 1)
+	gun_parts = list(/obj/item/part/gun/frame/heavysniper = 1, /obj/item/part/gun/modular/grip/serb = 1, /obj/item/part/gun/modular/mechanism/boltgun = 1, /obj/item/part/gun/modular/barrel/antim = 1)
 	serial_type = "SA"
 	action_button_name = "Switch zoom level"
 	action_button_proc = "switch_zoom"
@@ -43,9 +43,9 @@
 	desc = "A Hristov AMR frame. For removing chunks of man and machine alike."
 	icon_state = "frame_antimaterial"
 	resultvars = list(/obj/item/gun/projectile/heavysniper)
-	gripvars = list(/obj/item/part/gun/grip/serb)
-	mechanismvar = /obj/item/part/gun/mechanism/boltgun
-	barrelvars = list(/obj/item/part/gun/barrel/antim)
+	gripvars = list(/obj/item/part/gun/modular/grip/serb)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/boltgun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/antim)
 
 /obj/item/gun/projectile/heavysniper/update_icon()
 	..()

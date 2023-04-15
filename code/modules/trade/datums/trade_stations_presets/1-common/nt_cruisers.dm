@@ -57,7 +57,7 @@
 			/obj/item/reagent_containers/glass/rag,
 			/obj/item/grenade/chem_grenade/cleaner/nt_cleaner,
 			/obj/item/grenade/chem_grenade/antiweed/nt_antiweed,
-			/obj/structure/mopbucket,		
+			/obj/structure/mopbucket,
 			/obj/structure/janitorialcart,
 			/obj/item/holyvacuum
 		)
@@ -68,8 +68,8 @@
 			/obj/item/gun/energy/nt_svalinn
 		),
 		"Ballistic Weapons" = list(
-			/obj/item/gun/projectile/mk58,
-			/obj/item/gun/projectile/mk58/wood,
+			/obj/item/gun/projectile/automatic/modular/mk58/gray/stock,
+			/obj/item/gun/projectile/automatic/modular/mk58/gray/wood,
 			/obj/item/gun/projectile/shotgun/pump/regulator
 		),
 		"Neotheology Cells" = list(
@@ -92,7 +92,8 @@
 			/obj/item/seeds/goldappleseed = good_data("golden apple seeds", list(1,3), null),
 			/obj/item/seeds/ambrosiadeusseed = good_data("ambrosia deus seeds", list(1,3), null),
 			/obj/item/seeds/walkingmushroommycelium = good_data("walking mushroom spores", list(1,3), null),
-			/obj/item/seeds/angelmycelium = good_data("destroying angel spores", list(1,3), null)
+			/obj/item/seeds/angelmycelium = good_data("destroying angel spores", list(1,3), null),
+			/obj/item/seeds/realeggplant = good_data("egg plant seeds", list(1,3), null)
 		)
 	)
 	offer_types = list(

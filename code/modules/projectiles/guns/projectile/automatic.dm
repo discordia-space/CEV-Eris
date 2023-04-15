@@ -1,3 +1,4 @@
+//NO new variables here, might as well not even have this category, many guns outside /automatic use automatic firemodes
 /obj/item/gun/projectile/automatic
 	name = "automatic projectile gun"
 	desc = "A debug firearm, which should be reported if present in-game. Uses 9mm rounds."
