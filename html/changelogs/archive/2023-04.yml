@@ -72,3 +72,32 @@
       the exact same stats, ie the punk ones.
   - tweak: put the triad jacket into the contraband section of the style vendor to
       slightly dampen it's usage (and because it's kind of funny).
+2023-04-15:
+  Deal5:
+  - rscadd: harpoon gun sprite
+  - bugfix: most ranged weapons should work as intended when being taken in two hands
+  Hopek:
+  - rscadd: Added 4 "fun" non malicious lawsets to print. Partybot, Chefbot, TravelGuide
+      and Friendbot
+  Humonitarian:
+  - bugfix: fixed .40 barrel not working on modular guns
+  - soundadd: metal rod sound effect
+  Humonitarian, Shazbot, ValoTheValo, Vandu-Jr:
+  - rscadd: Modular gun frames implemented
+  - code_imp: Gun parts now function modularly and support modifications
+  - imageadd: New modular AK sprites by Shazbot
+  - imageadd: New modular MK58 sprites by Valo
+  - imageadd: New modular Wintermute sprites by Vandu-Jr
+  - rscadd: New modifiers for use by mods (intended only for gun parts)
+  MLGTASTICa:
+  - rscadd: Slimepeople now get warned when their glomp recharges
+  - bugfix: Slimepeople organ regeneration verb now mentions the actual organ name
+  - balance: Removed stun from electrocutions
+  - balance: Weaken from electrocution is now dependant on the shock_damage, any damage
+      above 15 will shock now for 2  seconds minimum and 10 seconds maximum ,
+  - rscdel: Removed mob hit by bullet and mob fires gun messages.
+  Mycah142:
+  - tweak: Added service gripper functionality to include credit handling
+  Penwin0:
+  - rscdel: Removes commented/unused code previously marked for deletion
+  - bugfix: fixes a misleading comment in code
