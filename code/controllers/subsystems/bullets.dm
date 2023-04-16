@@ -90,8 +90,8 @@ SUBSYSTEM_DEF(bullets)
 	var/list/coordinates = list(0,0)
 	// These add 0.0001 so in the case we are firing straight we don't have to handle special cases(division by 0)
 	// The 0.0001 are meaningless overall considering the scale of calculation.
-	coordinates[1] = ((targetTurf.x - firedTurf.x) * PPT + targetCoords[1]) / PPT + 0.0001
-	coordinates[2] = ((targetTurf.y - firedTurf.y) * PPT + targetCoords[2]) / PPT + 0.0001
+	coordinates[1] = ((targetTurf.x - firedTurf.x) * PPT + targetCoords[1] - 8) / PPT + 0.0001
+	coordinates[2] = ((targetTurf.y - firedTurf.y) * PPT + targetCoords[2] - 8) / PPT + 0.0001
 	var/r = sqrt(coordinates[1] ** 2 + coordinates[2] ** 2)
 	return list(coordinates[1]/r, coordinates[2]/r)
 
@@ -104,8 +104,8 @@ SUBSYSTEM_DEF(bullets)
 			bullet_queue -= bullet
 			continue
 		var/list/ratios = bullet.getCoordinateRatio()
-		var/px = round(ratios[1] * PPT/2 * bullet.turfsPerTick) + bullet.currentCoords[1]
-		var/py = round(ratios[2] * PPT/2 * bullet.turfsPerTick) + bullet.currentCoords[2]
+		var/px = ratios[1] * bullet.turfsPerTick + bullet.currentCoords[1]
+		var/py = ratios[2] * bullet.turfsPerTick + bullet.currentCoords[2]
 		var/x_change = 0
 		var/y_change = 0
 		var/turf/target_turf
@@ -113,10 +113,8 @@ SUBSYSTEM_DEF(bullets)
 			message_admins("Moving [bullet.referencedBullet], y = [round(py/PPT)], py = [py], x = [round(px/PPT)], px = [px]")
 			if(QDELETED(bullet.referencedBullet))
 				break
-			x_change = 0
-			y_change = 0
-			x_change += px >= PPT/2 ? 1 : px <= -PPT/2 ? -1 : 0
-			y_change += py >= PPT/2 ? 1 : py <= -PPT/2 ? -1 : 0
+			x_change = px >= PPT/2 ? 1 : px <= -PPT/2 ? -1 : 0
+			y_change = py >= PPT/2 ? 1 : py <= -PPT/2 ? -1 : 0
 			if(px >= PPT/2)
 				px -= PPT/2
 			else if(px <= -PPT/2)
@@ -133,8 +131,8 @@ SUBSYSTEM_DEF(bullets)
 
 		bullet.currentCoords[1] = px
 		bullet.currentCoords[2] = py
-		bullet.referencedBullet.pixel_x = bullet.currentCoords[1]
-		bullet.referencedBullet.pixel_y = bullet.currentCoords[2]
+		bullet.referencedBullet.pixel_x = round(bullet.currentCoords[1])
+		bullet.referencedBullet.pixel_y = round(bullet.currentCoords[2])
 		if(QDELETED(bullet.referencedBullet))
 			bullet_queue -= bullet
 			for(var/turf/thing in bullet.coloreds)
