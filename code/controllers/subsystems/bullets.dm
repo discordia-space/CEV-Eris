@@ -18,6 +18,9 @@ SUBSYSTEM_DEF(bullets)
 	var/list/hitscans = list()
 	var/list/datum/bullet_data/bullet_queue = list()
 
+/// You might ask why use a bullet data datum, and not store all the vars on the bullet itself, honestly its to keep track and initialize firing relevant vars only when needed
+/// This data is guaranteed to be of temporary use spanning 15-30 seconds or how long the bullet moves for. Putting them on the bullet makes each one take up more ram
+/// And ram is not a worry , but its better to initialize less and do the lifting on fire.
 /datum/bullet_data
 	var/obj/item/projectile/referencedBullet = null
 	var/aimedZone = ""
@@ -81,26 +84,16 @@ SUBSYSTEM_DEF(bullets)
 	else if(isitem(target))
 		src.targetLevel = LEVEL_TURF
 	SSbullets.bullet_queue += src
-/*
-/datum/bullet_data/proc/getShootingAngle()
-	//return TODEGREES(ATAN2((firedTurf.x - targetTurf.x) * PPT - targetCoords[1], (firedTurf.y - targetTurf.y)*PPT - targetCoords[2]))
-	var/list/coordinates = list(0,0)
-	coordinates[1] = ((targetTurf.x -firedTurf.x) * PPT + targetCoords[1]) / PPT + 0.0001
-	coordinates[2] = ((targetTurf.y - firedTurf.y) * PPT + targetCoords[2]) / PPT + 0.0001
-	var/ipotenuse = sqrt(coordinates[1] ** 2 + coordinates[2] ** 2)
-	var/angleX = arcsin(coordinates[1]/ipotenuse)
-	var/angleY = arccos(coordinates[2]/ipotenuse)
-
-	return 90
-*/
 
 /// I hate trigonometry
 /datum/bullet_data/proc/getCoordinateRatio()
 	var/list/coordinates = list(0,0)
-	coordinates[1] = ((targetTurf.x -firedTurf.x) * PPT + targetCoords[1]) / PPT + 0.0001
+	// These add 0.0001 so in the case we are firing straight we don't have to handle special cases(division by 0)
+	// The 0.0001 are meaningless overall considering the scale of calculation.
+	coordinates[1] = ((targetTurf.x - firedTurf.x) * PPT + targetCoords[1]) / PPT + 0.0001
 	coordinates[2] = ((targetTurf.y - firedTurf.y) * PPT + targetCoords[2]) / PPT + 0.0001
-	var/coordonate_median = abs(coordinates[1]) + abs(coordinates[2])
-	return list(coordinates[1]/coordonate_median, coordinates[2]/coordonate_median)
+	var/r = sqrt(coordinates[1] ** 2 + coordinates[2] ** 2)
+	return list(coordinates[1]/r, coordinates[2]/r)
 
 /datum/controller/subsystem/bullets/fire(resumed)
 	if(!resumed)
@@ -111,52 +104,37 @@ SUBSYSTEM_DEF(bullets)
 			bullet_queue -= bullet
 			continue
 		var/list/ratios = bullet.getCoordinateRatio()
-		var/px = round(ratios[1] * PPT) + bullet.currentCoords[1]
-		var/py = round(ratios[2] * PPT) + bullet.currentCoords[2]
+		var/px = round(ratios[1] * PPT/2 * bullet.turfsPerTick) + bullet.currentCoords[1]
+		var/py = round(ratios[2] * PPT/2 * bullet.turfsPerTick) + bullet.currentCoords[2]
 		var/x_change = 0
 		var/y_change = 0
 		var/turf/target_turf
-		while(px > PPT/2 || py > PPT/2 || px < -PPT/2 || py < -PPT/2)
+		while(px >= PPT/2 || py >= PPT/2 || px <= -PPT/2 || py <= -PPT/2)
 			message_admins("Moving [bullet.referencedBullet], y = [round(py/PPT)], py = [py], x = [round(px/PPT)], px = [px]")
 			if(QDELETED(bullet.referencedBullet))
 				break
 			x_change = 0
 			y_change = 0
-			x_change += px > PPT/2 ? 1 : px < -PPT/2 ? -1 : 0
-			y_change += py > PPT/2 ? 1 : py < -PPT/2 ? -1 : 0
-			if(px > PPT/2)
+			x_change += px >= PPT/2 ? 1 : px <= -PPT/2 ? -1 : 0
+			y_change += py >= PPT/2 ? 1 : py <= -PPT/2 ? -1 : 0
+			if(px >= PPT/2)
 				px -= PPT/2
-			else if(px < -PPT/2)
+			else if(px <= -PPT/2)
 				px += PPT/2
-			if(py > PPT/2)
+			if(py >= PPT/2)
 				py -= PPT/2
-			else if(py < -PPT/2)
+			else if(py <= -PPT/2)
 				py += PPT/2
 			target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z)
 			bullet.referencedBullet.Move(target_turf)
 			bullet.coloreds |= target_turf
 			target_turf.color = "#2fff05ee"
 
-		/*
-		if(x_change > 0)
-			px = PPT/2 - px
-		else if(x_change < 0)
-			px = PPT/2 + px
-		if(y_change > 0)
-			py = PPT/2 - py
-		else if(y_change < 0)
-			py = PPT/2 + py
-		*/
+
 		bullet.currentCoords[1] = px
 		bullet.currentCoords[2] = py
 		bullet.referencedBullet.pixel_x = bullet.currentCoords[1]
 		bullet.referencedBullet.pixel_y = bullet.currentCoords[2]
-		/*
-		bullet.currentCoords[1] = px
-		bullet.referencedBullet.pixel_x = px
-		bullet.currentCoords[2] = py
-		bullet.referencedBullet.pixel_y = py
-		*/
 		if(QDELETED(bullet.referencedBullet))
 			bullet_queue -= bullet
 			for(var/turf/thing in bullet.coloreds)
