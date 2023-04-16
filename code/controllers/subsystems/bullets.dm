@@ -29,6 +29,7 @@ SUBSYSTEM_DEF(bullets)
 	var/list/targetCoords = list(0,0)
 	var/turf/currentTurf = null
 	var/currentCoords = list(0,0)
+	var/list/turf/coloreds = list()
 	var/targetLevel = 0
 	var/turfsPerTick = 0
 	var/projectileAccuracy = 0
@@ -125,17 +126,20 @@ SUBSYSTEM_DEF(bullets)
 				py -= PPT/2
 			else if(py < -PPT/2)
 				py += PPT/2
-
+		/*
 		if(x_change > 0)
-			px = px - PPT/2
+			px = PPT/2 - px
 		else if(x_change < 0)
 			px = PPT/2 + px
 		if(y_change > 0)
-			py = py - PPT/2
+			py = PPT/2 - py
 		else if(y_change < 0)
 			py = PPT/2 + py
-
-		bullet.referencedBullet.Move(locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z))
+		*/
+		var/turf/target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z)
+		bullet.coloreds |= target_turf
+		target_turf.color = "#2fff05ee"
+		bullet.referencedBullet.Move(target_turf)
 		bullet.currentCoords[1] = px
 		bullet.currentCoords[2] = py
 		bullet.referencedBullet.pixel_x = bullet.currentCoords[1]
@@ -148,6 +152,8 @@ SUBSYSTEM_DEF(bullets)
 		*/
 		if(QDELETED(bullet.referencedBullet))
 			bullet_queue -= bullet
+			for(var/turf/thing in bullet.coloreds)
+				thing.color = initial(thing.color)
 #undef LEVEL_BELOW
 #undef LEVEL_TURF
 #undef LEVEL_LYING
