@@ -45,7 +45,8 @@ SUBSYSTEM_DEF(bullets)
 	src.firedTurf = get_turf(firer)
 	src.target = target
 	src.targetTurf = get_turf(target)
-	src.targetCoords = targetCoords
+	//src.targetCoords = targetCoords
+	src.targetCoords = list(8,8)
 	src.turfsPerTick = turfsPerTick
 	src.projectileAccuracy = projectileAccuracy
 	src.lifetime = lifetime
@@ -114,8 +115,13 @@ SUBSYSTEM_DEF(bullets)
 		var/py = round(ratios[2] * PPT) + bullet.currentCoords[2]
 		var/x_change = 0
 		var/y_change = 0
+		var/turf/target_turf
 		while(px > PPT/2 || py > PPT/2 || px < -PPT/2 || py < -PPT/2)
 			message_admins("Moving [bullet.referencedBullet], y = [round(py/PPT)], py = [py], x = [round(px/PPT)], px = [px]")
+			if(QDELETED(bullet.referencedBullet))
+				break
+			x_change = 0
+			y_change = 0
 			x_change += px > PPT/2 ? 1 : px < -PPT/2 ? -1 : 0
 			y_change += py > PPT/2 ? 1 : py < -PPT/2 ? -1 : 0
 			if(px > PPT/2)
@@ -126,6 +132,11 @@ SUBSYSTEM_DEF(bullets)
 				py -= PPT/2
 			else if(py < -PPT/2)
 				py += PPT/2
+			target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z)
+			bullet.referencedBullet.Move(target_turf)
+			bullet.coloreds |= target_turf
+			target_turf.color = "#2fff05ee"
+
 		/*
 		if(x_change > 0)
 			px = PPT/2 - px
@@ -136,10 +147,6 @@ SUBSYSTEM_DEF(bullets)
 		else if(y_change < 0)
 			py = PPT/2 + py
 		*/
-		var/turf/target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z)
-		bullet.coloreds |= target_turf
-		target_turf.color = "#2fff05ee"
-		bullet.referencedBullet.Move(target_turf)
 		bullet.currentCoords[1] = px
 		bullet.currentCoords[2] = py
 		bullet.referencedBullet.pixel_x = bullet.currentCoords[1]
