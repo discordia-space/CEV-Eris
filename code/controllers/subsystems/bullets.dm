@@ -148,6 +148,7 @@ SUBSYSTEM_DEF(bullets)
 			py += -1 * y_change * PPT/2
 			pz += z_change
 			target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z + z_change)
+			if(iswall(target_turf) && target_turf:projectileBounceCheck())
 			bullet.updateLevel()
 			bullet.referencedBullet.Move(target_turf)
 			bullet.coloreds |= target_turf

@@ -99,6 +99,8 @@
 
 	update_icon()
 
+/turf/simulated/wall/proc/projectileBounceCheck(obj/item/projectile/incoming)
+	return TRUE
 
 /turf/simulated/wall/Destroy()
 	STOP_PROCESSING(SSturf, src)
