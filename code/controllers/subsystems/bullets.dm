@@ -87,7 +87,7 @@ SUBSYSTEM_DEF(bullets)
 		src.targetLevel = LEVEL_TURF
 	src.firedCoordinates[1] = 8
 	src.firedCoordinates[2] = 8
-	src.firedCoordinates[3] = bullet.referencedBullet.z
+	src.firedCoordinates[3] = referencedBullet.z
 	updateCoordinateRatio()
 	SSbullets.bullet_queue += src
 
@@ -140,7 +140,10 @@ SUBSYSTEM_DEF(bullets)
 				break
 			x_change = px >= PPT/2 ? 1 : px <= -PPT/2 ? -1 : 0
 			y_change = py >= PPT/2 ? 1 : py <= -PPT/2 ? -1 : 0
-			z_change = round(pz) > bullet.currentCoords[3] ? 1 :  round(pz) < bullet.currentCoords[3] ? : -1 : 0
+			if(round(pz) > bullet.currentCoords[3])
+				z_change = 1
+			else if(round(pz) < round(bullet.currentCoords[3]))
+				z_change = -1
 			px += -1 * x_change * PPT/2
 			py += -1 * y_change * PPT/2
 			pz += z_change
