@@ -216,7 +216,7 @@
 	check_hit_zone(distance, user_recoil)
 
 	setup_trajectory(curloc, targloc, x_offset, y_offset, angle_offset) //plot the initial trajectory
-	new /datum/bullet_data(src, target_zone, usr, target, list(x_offset, y_offset), 5, 1, 50)
+	new /datum/bullet_data(src, target_zone, usr, target, list(x_offset, y_offset), 16, 1, 50)
 	//Process()
 
 	return FALSE
