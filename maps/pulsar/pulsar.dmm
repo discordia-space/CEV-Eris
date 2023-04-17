@@ -289,7 +289,7 @@
 	req_access = list(11)
 	},
 /turf/simulated/floor/reinforced,
-/area/outpost/pulsar/shuttle)
+/area/outpost/pulsar)
 "kF" = (
 /obj/structure/table/rack,
 /obj/spawner/material/building,
@@ -420,9 +420,6 @@
 /obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/outpost/pulsar/maintenance)
-"ox" = (
-/turf/simulated/wall/r_wall,
-/area/outpost/pulsar/shuttle)
 "oK" = (
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom/low_chance,
@@ -447,6 +444,12 @@
 /obj/spawner/junkfood/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
+"qG" = (
+/obj/effect/map_effect/simple_portal{
+	portal_tag = "pulsar"
+	},
+/turf/simulated/floor/reinforced,
+/area/outpost/pulsar)
 "qW" = (
 /obj/structure/table/rack,
 /obj/spawner/boxes,
@@ -498,7 +501,7 @@
 "tM" = (
 /obj/structure/jtb_pillar,
 /turf/simulated/floor/reinforced,
-/area/outpost/pulsar/shuttle)
+/area/outpost/pulsar)
 "tQ" = (
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/tiled/steel/brown_platform,
@@ -587,11 +590,8 @@
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "xa" = (
-/obj/effect/map_effect/portal/line/side_a{
-	dir = 8
-	},
 /turf/simulated/floor/reinforced,
-/area/outpost/pulsar/shuttle)
+/area/outpost/pulsar)
 "xl" = (
 /obj/structure/table/rack,
 /obj/spawner/pack/tech_loot/low_chance,
@@ -1038,13 +1038,6 @@
 /obj/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
-"Nd" = (
-/obj/effect/map_effect/portal/master/side_a{
-	dir = 8;
-	portal_id = "pulsar"
-	},
-/turf/simulated/floor/reinforced,
-/area/outpost/pulsar/shuttle)
 "Nf" = (
 /obj/machinery/pulsar,
 /turf/simulated/floor/tiled/dark/gray_perforated,
@@ -1113,16 +1106,9 @@
 	},
 /turf/simulated/floor/wood,
 /area/outpost/pulsar)
-"Pd" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/outpost/pulsar/shuttle)
 "Pl" = (
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
-"PC" = (
-/turf/simulated/floor/reinforced,
-/area/outpost/pulsar/shuttle)
 "PR" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -22128,13 +22114,13 @@ WB
 OB
 OB
 OB
-ox
-ox
-ox
+ad
+ad
+ad
 kB
-ox
-ox
-ox
+ad
+ad
+ad
 WB
 aa
 aa
@@ -22330,13 +22316,13 @@ WB
 WB
 WB
 WB
-Pd
+ew
 tM
-PC
-PC
-PC
+xa
+xa
+xa
 tM
-Pd
+ew
 WB
 aa
 aa
@@ -22532,13 +22518,13 @@ WB
 aa
 aa
 WB
-Pd
-PC
-PC
-PC
-PC
-PC
-Pd
+ew
+xa
+xa
+xa
+xa
+xa
+ew
 WB
 aa
 aa
@@ -22734,13 +22720,13 @@ WB
 aa
 aa
 WB
-ox
-PC
-PC
-PC
-PC
-PC
-ox
+ad
+xa
+xa
+qG
+xa
+xa
+ad
 WB
 aa
 WB
@@ -22936,13 +22922,13 @@ WB
 WB
 WB
 WB
-ox
-PC
-PC
-PC
-PC
-PC
-ox
+ad
+xa
+xa
+xa
+xa
+xa
+ad
 WB
 WB
 WB
@@ -23138,13 +23124,13 @@ bM
 bM
 WB
 WB
-ox
-Nd
+ad
 xa
 xa
 xa
 xa
-ox
+xa
+ad
 WB
 WB
 bM
@@ -23340,13 +23326,13 @@ rU
 bM
 HA
 HA
-ox
-ox
-ox
-ox
-ox
-ox
-ox
+ad
+ad
+ad
+ad
+ad
+ad
+ad
 HA
 HA
 bM
