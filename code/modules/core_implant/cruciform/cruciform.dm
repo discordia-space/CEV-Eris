@@ -1,6 +1,7 @@
 #define OBELISK_UPDATE_TIME 5 SECONDS
 
 var/list/disciples = list()
+var/list/lost_cruciforms = list()
 
 /obj/item/implant/core_implant/cruciform
 	name = "cruciform"
@@ -81,6 +82,7 @@ var/list/disciples = list()
 	if(part)
 		H.apply_damage(100+rand(75), BURN, part, used_weapon = src)
 	H.apply_effect(40+rand(20), IRRADIATE, check_protection = 0)
+	LAZYADD(lost_cruciforms, src)
 	var/datum/effect/effect/system/spark_spread/s = new
 	s.set_up(3, 1, src)
 	s.start()
