@@ -42,6 +42,7 @@
 		H.flash(3, FALSE , TRUE , TRUE, 15)
 	else
 		M.flash(5, FALSE, TRUE , TRUE)
+	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_ADEPT, 10 SECONDS, "flashbang")
 	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, 10 SECONDS, "flashbang")
 	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_ADEPT, 10 SECONDS, "flashbang")
 	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_ADEPT, 10 SECONDS, "flashbang")
@@ -129,16 +130,20 @@
 		var/obj/item/organ/internal/eyes/E = H.random_organ_by_process(OP_EYES)
 		if (E && E.damage >= E.min_bruised_damage)
 			to_chat(M, SPAN_DANGER("Your eyes start to burn badly!"))
+		H.add_recoil(300 - ear_safety * 100)
 	if (M.ear_damage >= 15)
 		to_chat(M, SPAN_DANGER("Your ears start to ring badly!"))
 	else
 		if (M.ear_damage >= 5)
 			to_chat(M, SPAN_DANGER("Your ears start to ring!"))
+
 	if(stat_reduction)
+		M.stats.addTempStat(STAT_ROB, stat_def, 10 SECONDS, "flashbang")
 		M.stats.addTempStat(STAT_VIG, stat_def, 10 SECONDS, "flashbang")
 		M.stats.addTempStat(STAT_COG, stat_def, 10 SECONDS, "flashbang")
 		M.stats.addTempStat(STAT_BIO, stat_def, 10 SECONDS, "flashbang")
 		M.stats.addTempStat(STAT_MEC, stat_def, 10 SECONDS, "flashbang")
+
 	M.update_icons()
 
 /obj/item/grenade/flashbang/nt
