@@ -328,11 +328,6 @@
 		//Results will have a length of quality
 	return results
 
-//Pick a random element from the list.
-/proc/pick_random(list/L)
-	if(L.len)
-		var/picked = rand(1,L.len)
-		. = L[picked]		//Cut is far more efficient that Remove()
 
 //Pick a random element from the list and remove it from the list.
 /proc/pick_n_take(list/L)
