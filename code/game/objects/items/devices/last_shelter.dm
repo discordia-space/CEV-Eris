@@ -44,12 +44,12 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 			scan = FALSE
 			if(istype(src.loc, /mob/living/carbon/human))
 				user.put_in_hands(cruciform)
-				to_chat(user, SPAN_NOTICE("The [src] has found the lost cruciform in a deep space. Now this fate of the disciple rests in your hands."))
+				to_chat(user, SPAN_NOTICE("The [src] has found the lost cruciform. Now this fate of the disciple rests in your hands."))
 			else
 				visible_message(SPAN_NOTICE("[src] drops [cruciform]."))
 				cruciform.forceMove(get_turf(src))
 		else
-			to_chat(user, SPAN_WARNING("The [src] can't find any working cruciforms in deep space. You can try to use [src] again later."))
+			to_chat(user, SPAN_WARNING("The [src] can't find any working cruciforms. You can try to use [src] again later."))
 			scan = FALSE
 
 		if(alert)
@@ -74,6 +74,7 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 	if(!MN)
 		var/obj/item/implant/core_implant/CI = pick_n_take(lost_cruciforms)
 		CI.forceMove(get_turf(src))
+		return CI
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
 	for(var/stat in ALL_STATS)
 		H.stats.changeStat(stat, rand(STAT_LEVEL_ADEPT, STAT_LEVEL_PROF))
