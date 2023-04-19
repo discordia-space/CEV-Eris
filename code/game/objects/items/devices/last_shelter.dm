@@ -73,7 +73,6 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 	var/datum/mind/MN = request_player()
 	if(!MN)
 		var/obj/item/implant/core_implant/CI = pick(lost_cruciforms)
-		CI.forceMove(get_turf(src))
 		return CI
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
 	for(var/stat in ALL_STATS)
