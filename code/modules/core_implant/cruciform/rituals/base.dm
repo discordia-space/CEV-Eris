@@ -61,6 +61,34 @@
 	set_personal_cooldown(H)
 	return TRUE
 
+/datum/ritual/cruciform/base/reject
+	name = "Rejection"
+	phrase = "Ad tollendum zizania a corpore"
+	desc = "Painfully cleans your body of anything foreign."
+	cooldown = TRUE
+	cooldown_time = 100
+	ignore_stuttering = TRUE
+	power = 25
+
+/datum/ritual/cruciform/base/reject/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C)
+	for(var/obj/item/organ/external/limb in H)
+		for(var/obj/thing in limb.implants)
+			if(thing != C)
+				if(istype(thing, /obj/item/implant))
+					var/obj/item/implant/implant = thing
+					implant.uninstall()
+					implant.malfunction = MALFUNCTION_PERMANENT
+				else
+					limb.remove_item(thing)
+				limb.take_damage(rand(15, 30))
+				to_chat(H, SPAN_DANGER("[thing.name] rips through your [limb.name]."))
+
+		if(BP_IS_ROBOTIC(limb))
+			to_chat(H, SPAN_DANGER("Your [limb.name] tears off."))
+			limb.droplimb()
+			H.update_implants()
+	return TRUE
+
 /datum/ritual/cruciform/base/reveal
 	name = "Reveal Adversaries"
 	phrase = "Et fumus tormentorum eorum ascendet in saecula saeculorum: nec habent requiem die ac nocte, qui adoraverunt bestiam, et imaginem ejus, et si quis acceperit caracterem nominis ejus."
