@@ -384,7 +384,7 @@
 /datum/ritual/cruciform/base/escape
 	name = "Escape" //Probably need a better name
 	phrase = "Excedere mundum a tergo et ascendere in caelum"
-	desc = "This litany will command your cruciform to detach, killing in the process. Others will be able to use it in scanner for Resurrection."
+	desc = "This litany will command your cruciform to detach, killing you in the process. Others will be able to use it in scanner for Resurrection."
 	ignore_stuttering = TRUE
 
 /datum/ritual/cruciform/base/escape/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
