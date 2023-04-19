@@ -2,7 +2,7 @@
 	category = CAT_WEAPON
 
 // Weapons
-/datum/design/research/item/weapon/AssembleDesignDesc()
+/datum/design/research/item/weapon/AssembleDesignDesc(
 	if(!desc && build_path)
 		var/obj/item/I = build_path
 		desc = initial(I.desc)
