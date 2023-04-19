@@ -90,8 +90,8 @@
 	var/weaponlock_time = 120
 	var/lawupdate = TRUE //Cyborgs will sync their laws with their AI by default
 	var/lockcharge //Used when locking down a borg to preserve cell charge
-	/// Humans get a -1 by default from any shoe.
-	var/speed = -1
+	/// Humans get a -1 by default from any shoe. , robots had a 0.25 added by default.
+	var/speed = -0.75
 	var/scrambledcodes = 0 // Used to determine if a borg shows up on the robotics console.  Setting to one hides them.
 	var/tracking_entities = 0 //The number of known entities currently accessing the internal camera
 	var/braintype = "Cyborg"
