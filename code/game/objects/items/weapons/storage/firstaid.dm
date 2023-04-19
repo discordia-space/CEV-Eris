@@ -259,7 +259,7 @@
 
 /obj/item/storage/pill_bottle/carbon
 	name = "bottle of Carbon pills"
-	desc = "Contains pills used to purge stomach contents"
+	desc = "Contains pills used to purge stomach contents."
 	prespawned_content_type = /obj/item/reagent_containers/pill/carbon
 
 /obj/item/storage/pill_bottle/inaprovaline
