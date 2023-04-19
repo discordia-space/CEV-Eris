@@ -258,7 +258,7 @@ var/list/flooring_types
 	if(MOVING_QUICKLY(M))
 		if(prob(5))
 			M.adjustBruteLoss(5)
-			M.Weaken(6)
+			M.Weaken(6
 			playsound(M, 'sound/effects/bang.ogg', 50, 1)
 			to_chat(M, SPAN_WARNING("You tripped over!"))
 			return
