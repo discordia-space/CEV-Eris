@@ -72,7 +72,7 @@
 		if(BP_L_LEG, BP_R_LEG, BP_GROIN) return legs
 		else return body
 
-/mob/living/exosuit/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, armor_divisor = 1, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, obj/used_weapon = null)
+/mob/living/exosuit/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, armor_divisor, wounding_multiplier, sharp = FALSE, edge = FALSE, obj/used_weapon = null)
 	switch(damagetype)
 		if(BRUTE)
 			wounding_multiplier = wound_check(injury_type, wounding_multiplier, edge, sharp)
