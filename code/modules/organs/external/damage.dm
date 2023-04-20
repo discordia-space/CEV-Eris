@@ -9,11 +9,14 @@
 	var/prev_brute = brute_dam	//We'll record how much damage the limb already had, before we apply the damage from this incoming hit
 	var/prev_burn = burn_dam
 
+	var/external_wounding_multiplier = wounding_multiplier
 	switch(damage_type)
 		if(BRUTE)
 			amount = round(amount * brute_mod, 0.1)
+			external_wounding_multiplier = wound_check(species.injury_type, wounding_multiplier, edge, sharp)
 		if(BURN)
 			amount = round(amount * burn_mod, 0.1)
+			external_wounding_multiplier = wound_check(species.injury_type, wounding_multiplier, edge, sharp)
 
 	// Damage is transferred to internal organs. Chest and head must be broken before transferring unless they're slime limbs.
 	if(LAZYLEN(internal_organs))
@@ -55,16 +58,16 @@
 
 			if(sharp && !BP_IS_ROBOTIC(src))
 				if(!edge)
-					createwound(PIERCE, amount)
+					createwound(PIERCE, amount * external_wounding_multiplier)
 				else
-					createwound(CUT, amount)
+					createwound(CUT, amount * external_wounding_multiplier)
 			else
-				createwound(BRUISE, amount)
+				createwound(BRUISE, amount * external_wounding_multiplier)
 		if(BURN)
 			if(status & ORGAN_BLEEDING)
 				status &= ~ORGAN_BLEEDING
 
-			createwound(BURN, amount)
+			createwound(BURN, amount * external_wounding_multiplier)
 
 	// sync the organ's damage with its wounds
 	update_damages()

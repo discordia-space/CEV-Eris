@@ -37,6 +37,8 @@
 	#define MED_HUD 2 //Medical HUD mode
 	mob_classification = CLASSIFICATION_SYNTHETIC
 
+	injury_type = INJURY_TYPE_UNLIVING // Has no soft vitals, but also contains delicate electronics
+
 /mob/living/silicon/Initialize()
 	GLOB.silicon_mob_list |= src
 	. = ..()

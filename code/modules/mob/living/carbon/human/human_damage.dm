@@ -340,7 +340,6 @@ This function restores all organs.
 				damage = damage*species.brute_mod
 			if(BURN)
 				damage = damage*species.burn_mod
-
 	var/obj/item/organ/external/organ
 	if(isorgan(def_zone))
 		organ = def_zone
@@ -352,6 +351,7 @@ This function restores all organs.
 	if(!organ)
 		return FALSE
 
+	//Wounding multiplier is handled in the organ itself
 	damageoverlaytemp = 20
 	if(organ.take_damage(damage, damagetype, armor_divisor, wounding_multiplier, sharp, edge, used_weapon))
 		UpdateDamageIcon()
