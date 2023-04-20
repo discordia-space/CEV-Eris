@@ -223,9 +223,13 @@
 		/obj/item/clipboard,
 		/obj/item/paper,
 		/obj/item/paper_bundle,
+		/obj/item/paper_bin,
 		/obj/item/card/id,
 		/obj/item/book,
-		/obj/item/newspaper
+		/obj/item/newspaper,
+		/obj/item/pen,
+		/obj/item/stamp,
+		/obj/item/smallDelivery
 		)
 
 /obj/item/gripper/research //A general usage gripper, used for toxins/robotics/xenobio/etc
@@ -299,6 +303,7 @@
 		/obj/item/electronics/circuitboard/broken,
 		/obj/item/clothing/mask/smokable/cigarette,
 		/obj/item/spacecash,
+		/obj/item/device/eftpos,
 		///obj/item/reagent_containers/cooking_container //Part of cooking overhaul, not yet ported
 		)
 
