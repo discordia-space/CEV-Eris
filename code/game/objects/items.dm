@@ -274,12 +274,13 @@
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/the_storage)
-	SEND_SIGNAL_OLD(the_storage, COMSIG_STORAGE_TAKEN, src, the_storage)
+	SEND_SIGNAL(the_storage, COMSIG_STORAGE_TAKEN, src)
 	return
 
 // called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
 /obj/item/proc/on_enter_storage(obj/item/storage/the_storage)
-	SEND_SIGNAL_OLD(the_storage, COMSIG_STORAGE_INSERTED, src, the_storage)
+	SEND_SIGNAL(the_storage, COMSIG_STORAGE_INSERTED, src, the_storage)
+	//SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, the_storage.getContainingMovable())
 	return
 
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
