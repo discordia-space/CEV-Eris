@@ -17,7 +17,7 @@
 	else
 		show_message(msg1, 1)
 
-/mob/living/proc/damage_through_armor(damage = 0, damagetype = BRUTE, def_zone, attack_flag = ARMOR_MELEE, armor_divisor = 1, used_weapon, sharp = FALSE, edge = FALSE, wounding_multiplier = 1, list/dmg_types = list(), return_continuation = FALSE)
+/mob/living/proc/damage_through_armor(damage = 0, damagetype = BRUTE, def_zone, attack_flag = ARMOR_MELEE, armor_divisor = 1, used_weapon, sharp = FALSE, edge = FALSE, wounding_multiplier, list/dmg_types = list(), return_continuation = FALSE)
 	if(damage) // If damage is defined, we add it to the list
 		if(!dmg_types[damagetype])
 			dmg_types += damagetype
@@ -68,20 +68,25 @@
 				dmg = max(dmg - remaining_armor - remaining_ablative, 0)
 
 			if(!(dmg_type == HALLOSS)) // Determine pain from impact
-				adjustHalLoss(used_armor * wounding_multiplier * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
+				adjustHalLoss(used_armor * (wounding_multiplier ? wounding_multiplier : 1) * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 
 			dmg_types[dmg_type] = dmg // Finally, we adjust the damage passing through
 			if(dmg)
 				dealt_damage += dmg
-				dmg *= dmg_type == HALLOSS ? 1 : wounding_multiplier
 
 				if(dmg_type == HALLOSS)
 					dmg = round(dmg * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 				if(dmg_type == BRUTE)
 
-					if ( (sharp || edge) && prob ( (1 - dmg / dmg_types[dmg_type]) * 100 ) ) // If enough of the brute damage is blocked, sharpness is lost from all followup attacks
+					if ( (sharp || edge) && prob ( (1 - dmg / dmg_types[dmg_type]) * 100 ) ) // If enough of the brute damage is blocked, sharpness is lost from all followup attacks, this converts damage into crushing as well
+						if(wounding_multiplier)
+							wounding_multiplier = step_wounding_double(wounding_multiplier) // Implied piercing damage, degrade by two steps (prevents damage duping from <1 multiplier)
+						else
+							wounding_multiplier = 1 // Crushing multiplier forced
 						sharp = FALSE
 						edge = FALSE
+						armor_message(SPAN_NOTICE("[src] armor deflected the strike!"), // No cut (strike), only bash
+										SPAN_NOTICE("Your armor deflects the strike!"))
 
 					if(ishuman(src) && isitem(used_weapon))
 						var/mob/living/carbon/human/H = src
@@ -113,7 +118,7 @@
 		if(74 to 49)
 			armor_message(SPAN_NOTICE("[src] armor absorbs most of the damage!"),
 							SPAN_NOTICE("Your armor protects you from the impact!"))
-		if(24 to -INFINITY)
+		if(49 to 24)
 			armor_message(SPAN_NOTICE("[src] armor reduces the impact by a little."),
 							SPAN_NOTICE("Your armor reduced the impact a little."))
 
