@@ -705,10 +705,10 @@ proc/is_blind(A)
 			if(WOUNDING_EXTREME)
 				return WOUNDING_NORMAL
 
-// Determine wounding level. If var/wounding is provided, the attack should come from a projectile. This isn't the case yet, as we default to var/wounding = 1 until melee rework.
-/proc/wound_check(var/injurytype, var/wounding, var/edge, var/sharp)
-	if(sharp && (!edge)) // impaling/piercing, 2x damage, affected by injurytype
-		switch(injurytype)
+// Determine wounding level. If var/wounding is provided, the attack comes from a bullet. This changes degradation rates.
+/proc/wound_check(var/livingtype, var/wounding, var/edge, var/sharp)
+	if(sharp && (!edge)) // impaling/piercing, 2x damage, affected by livingtype
+		switch(livingtype)
 			if(INJURY_TYPE_HOMOGENOUS)
 				return wounding ? step_wounding_double(wounding) : 1
 			if(INJURY_TYPE_UNLIVING)
