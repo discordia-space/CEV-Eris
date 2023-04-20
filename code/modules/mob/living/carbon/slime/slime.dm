@@ -65,8 +65,6 @@
 
 	var/core_removal_stage = 0 //For removing cores.
 
-	injury_type = INJURY_TYPE_HOMOGENOUS
-
 /mob/living/carbon/slime/New(var/location, var/colour="grey")
 
 	verbs += /mob/living/proc/ventcrawl

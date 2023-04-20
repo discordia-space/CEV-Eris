@@ -73,6 +73,7 @@
 			dmg_types[dmg_type] = dmg // Finally, we adjust the damage passing through
 			if(dmg)
 				dealt_damage += dmg
+				dmg *= dmg_type == HALLOSS ? 1 : wounding_multiplier
 
 				if(dmg_type == HALLOSS)
 					dmg = round(dmg * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
