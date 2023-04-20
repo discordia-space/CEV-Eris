@@ -158,9 +158,9 @@
 	emergencyShutdown()
 	. = ..()
 
-/obj/machinery/computer/HolodeckControl/explosion_act(target_power, explosion_handler/handler)
+/obj/machinery/computer/HolodeckControl/ex_act(severity)
 	emergencyShutdown()
-	. = ..()
+	..()
 
 /obj/machinery/computer/HolodeckControl/power_change()
 	var/oldstat
@@ -198,7 +198,7 @@
 					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 					s.set_up(2, 1, T)
 					s.start()
-				T.explosion_act(100, null)
+				T.ex_act(3)
 				T.hotspot_expose(1000,500,1)
 
 /obj/machinery/computer/HolodeckControl/proc/derez(var/obj/obj , var/silent = 1)

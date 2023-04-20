@@ -114,18 +114,47 @@
 
 /obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
 	var/fuel_moles = air_contents.gas["plasma"] + air_contents.gas["oxygen"] / 6
+	var/strength = 1
 
 	var/turf/ground_zero = get_turf(loc)
 	loc = null
 
 	if(air_contents.temperature > (T0C + 400))
-		explosion(ground_zero, fuel_moles * 150, fuel_moles * 10)
+		strength = (fuel_moles/15)
+
+		if(strength >=1)
+			explosion(ground_zero, round(strength,1), round(strength*2,1), round(strength*3,1), round(strength*4,1))
+		else if(strength >=0.5)
+			explosion(ground_zero, 0, 1, 2, 4)
+		else if(strength >=0.2)
+			explosion(ground_zero, -1, 0, 1, 2)
+		else
+			ground_zero.assume_air(air_contents)
+			ground_zero.hotspot_expose(1000, 125)
+
 	else if(air_contents.temperature > (T0C + 250))
-		explosion(ground_zero, fuel_moles * 100, fuel_moles * 10)
+		strength = (fuel_moles/20)
+
+		if(strength >=1)
+			explosion(ground_zero, 0, round(strength,1), round(strength*2,1), round(strength*3,1))
+		else if (strength >=0.5)
+			explosion(ground_zero, -1, 0, 1, 2)
+		else
+			ground_zero.assume_air(air_contents)
+			ground_zero.hotspot_expose(1000, 125)
+
 	else if(air_contents.temperature > (T0C + 100))
-		explosion(ground_zero, fuel_moles * 50, fuel_moles * 10)
-	ground_zero.assume_air(air_contents)
-	ground_zero.hotspot_expose(1000, 125)
+		strength = (fuel_moles/25)
+
+		if (strength >=1)
+			explosion(ground_zero, -1, 0, round(strength,1), round(strength*3,1))
+		else
+			ground_zero.assume_air(air_contents)
+			ground_zero.hotspot_expose(1000, 125)
+
+	else
+		ground_zero.assume_air(air_contents)
+		ground_zero.hotspot_expose(1000, 125)
 
 	if(master)
 		qdel(master)

@@ -284,8 +284,15 @@ var/list/global/tank_gauge_cache = list()
 		air_contents.react()
 
 		pressure = air_contents.return_pressure()
-		var/power = (pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE
-		explosion(get_turf(src), power, 10, EFLAG_ADDITIVEFALLOFF)
+		var/range = (pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE
+
+		explosion(
+			get_turf(loc),
+			round(min(BOMBCAP_DVSTN_RADIUS, range*0.25)),
+			round(min(BOMBCAP_HEAVY_RADIUS, range*0.50)),
+			round(min(BOMBCAP_LIGHT_RADIUS, range*1.00)),
+			round(min(BOMBCAP_FLASH_RADIUS, range*1.50)),
+			)
 		qdel(src)
 
 	else if(pressure > TANK_RUPTURE_PRESSURE)

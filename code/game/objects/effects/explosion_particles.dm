@@ -28,7 +28,7 @@
 		spawn(0)
 			var/obj/effect/expl_particles/expl = new /obj/effect/expl_particles(src.location)
 			var/direct = pick(alldirs)
-			for(var/j=0, j<pick(1;25,2;50,3,4;200), j++)
+			for(i=0, i<pick(1;25,2;50,3,4;200), i++)
 				sleep(1)
 				step(expl,direct)
 
@@ -44,9 +44,8 @@
 
 /obj/effect/explosion/New()
 	..()
-	addtimer(CALLBACK(GLOBAL_PROC, /proc/qdel, src), 1 SECOND)
-	//spawn (10)
-	//	qdel(src)
+	spawn (10)
+		qdel(src)
 	return
 
 /datum/effect/system/explosion
@@ -65,16 +64,3 @@
 		var/datum/effect/effect/system/smoke_spread/S = new/datum/effect/effect/system/smoke_spread()
 		S.set_up(5,0,location,null)
 		S.start()
-
-/obj/effect/explosion_fire
-	name = "Shockwave"
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "fire_trails"
-
-
-/obj/effect/explosion_fire/New()
-	..()
-	addtimer(CALLBACK(GLOBAL_PROC, /proc/qdel, src), 0.5 SECOND)
-
-
-
