@@ -17,7 +17,8 @@
 	if(id_tag != signal.data["tag"] || !signal.data["command"]) return
 
 	cur_command = signal.data["command"]
-	execute_current_command()
+	spawn()
+		execute_current_command()
 
 /obj/machinery/door/airlock/proc/execute_current_command()
 	if(operating)
@@ -52,13 +53,17 @@
 
 		if("secure_open")
 			unlock()
+
+			sleep(2)
 			open()
+
 			lock()
 
 		if("secure_close")
 			unlock()
 			close()
 			lock()
+			sleep(2)
 
 	send_status()
 

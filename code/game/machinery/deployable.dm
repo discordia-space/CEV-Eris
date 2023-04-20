@@ -55,9 +55,8 @@ for reference:
 	icon_state = "barricade"
 	anchored = TRUE
 	density = TRUE
-	health = 100
-	maxHealth = 100
-	explosion_coverage = 0.7
+	var/health = 100
+	var/maxhealth = 100
 	var/material/material
 
 /obj/structure/barricade/New(newloc, material_name)
@@ -71,8 +70,8 @@ for reference:
 	name = "[material.display_name] barricade"
 	desc = "This space is blocked off by a barricade made of [material.display_name]."
 	color = material.icon_colour
-	maxHealth = material.integrity
-	health = maxHealth
+	maxhealth = material.integrity
+	health = maxhealth
 
 /obj/structure/barricade/get_matter()
 	var/list/matter = ..()
@@ -92,14 +91,14 @@ for reference:
 		var/obj/item/stack/D = W
 		if(D.get_material_name() != material.name)
 			return //hitting things with the wrong type of stack usually doesn't produce messages, and probably doesn't need to.
-		if(health < maxHealth)
+		if(health < maxhealth)
 			if(D.get_amount() < 1)
 				to_chat(user, SPAN_WARNING("You need one sheet of [material.display_name] to repair \the [src]."))
 				return
 			visible_message(SPAN_NOTICE("[user] begins to repair \the [src]."))
-			if(do_after(user,20,src) && health < maxHealth)
+			if(do_after(user,20,src) && health < maxhealth)
 				if(D.use(1))
-					health = maxHealth
+					health = maxhealth
 					visible_message(SPAN_NOTICE("[user] repairs \the [src]."))
 				return
 		return
@@ -123,13 +122,10 @@ for reference:
 	qdel(src)
 	return
 
-/obj/structure/barricade/take_damage(damage)
-	. = health - damage < 0 ? damage - (damage - health) : damage
-	. *= density ? explosion_coverage : explosion_coverage / 2
+/obj/structure/barricade/proc/take_damage(damage)
 	health -= damage
 	if(health <= 0)
 		dismantle()
-	return
 
 /obj/structure/barricade/attack_generic(mob/M, damage, attack_message)
 	if(damage)
@@ -141,15 +137,30 @@ for reference:
 	else
 		attack_hand(M)
 
+/obj/structure/barricade/ex_act(severity)
+	switch(severity)
+		if(1)
+			visible_message(SPAN_DANGER("\The [src] is blown apart!"))
+			qdel(src)
+			return
+		if(2)
+			health -= 25
+			if(health <= 0)
+				visible_message(SPAN_DANGER("\The [src] is blown apart!"))
+				dismantle()
+			return
+
 /obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
 
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
 
 	if(air_group || (height==0))
-		return TRUE
+		return 1
+	if(istype(mover) && mover.checkpass(PASSTABLE))
+		return 1
 	else
-		return FALSE
+		return 0
 
 /obj/structure/barricade/proc/check_cover(obj/item/projectile/P, turf/from)
 
@@ -204,8 +215,8 @@ for reference:
 	anchored = FALSE
 	density = TRUE
 	icon_state = "barrier0"
-	health = 300
-	maxHealth = 300
+	var/health = 300
+	var/maxhealth = 300
 	var/locked = FALSE
 //	req_access = list(access_maint_tunnels)
 
@@ -245,8 +256,8 @@ for reference:
 				return
 		return
 	else if(istype(W, /obj/item/tool/wrench))
-		if(health < maxHealth)
-			health = maxHealth
+		if(health < maxhealth)
+			health = maxhealth
 			emagged = 0
 			req_access = list(access_security)
 			visible_message(SPAN_WARNING("[user] repairs \the [src]!"))
@@ -268,17 +279,16 @@ for reference:
 			explode()
 		..()
 
-/obj/machinery/deployable/barrier/explosion_act(target_power, explosion_handler/handler)
-	return take_damage(target_power)
-
-/obj/machinery/deployable/barrier/take_damage(amount)
-	. = health - amount <= 0 ? amount - (amount - health) : amount
-	// decent amount of protection
-	. *= 0.7
-	health -= amount
-	if(health <= 0)
-		explode()
-		qdel(src)
+/obj/machinery/deployable/barrier/ex_act(severity)
+	switch(severity)
+		if(1)
+			explode()
+			return
+		if(2)
+			health -= 25
+			if(health <= 0)
+				explode()
+			return
 
 /obj/machinery/deployable/barrier/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
@@ -311,7 +321,7 @@ for reference:
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	explosion(get_turf(src), 100, 50)
+
 	explosion(src.loc,-1,-1,0)
 	if(src)
 		qdel(src)
@@ -375,7 +385,7 @@ for reference:
 			return 1
 	return 1
 
-/obj/machinery/deployable/barrier/take_damage(damage)
+/obj/machinery/deployable/barrier/proc/take_damage(damage)
 	health -= damage
 	if(health <= 0)
 		dismantle()

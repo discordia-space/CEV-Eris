@@ -149,7 +149,7 @@
 
 			//If we're not near to any external tiles, then we can melt stuff
 			if (!near_external)
-				T.explosion_act(prob(80) ? 50 : 100, null)
+				T.ex_act(prob(80) ? 3 : 2)
 
 /obj/effect/plant/update_icon()
 	//TODO: should really be caching this.

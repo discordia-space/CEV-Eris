@@ -184,9 +184,11 @@
  * */
 	if(is_empty())
 		return
-	var/explosion_power = round(sqrt(charge))
-	var/explosion_falloff = 50
-	if (explosion_power ==0)
+	var/devastation_range = -1 //round(charge/11000)
+	var/heavy_impact_range = round(sqrt(charge)/60)
+	var/light_impact_range = round(sqrt(charge)/30)
+	var/flash_range = light_impact_range
+	if (light_impact_range==0)
 		rigged = FALSE
 		corrupt()
 		return
@@ -197,7 +199,7 @@
 
 	qdel(src)
 
-	explosion(T, explosion_power, explosion_falloff)
+	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 
 /obj/item/cell/proc/corrupt()
 	charge /= 2
@@ -216,15 +218,29 @@
 	if (charge < 0)
 		charge = 0
 	..()
-/obj/item/cell/explosion_act(target_power, explosion_handler/handle)
-	take_damage(target_power)
-	return 0
 
-/obj/item/cell/take_damage(amount)
-	. = ..()
-	if(src && health / maxHealth < 0.5)
-		corrupt()
+/obj/item/cell/ex_act(severity)
 
+	switch(severity)
+		if(1)
+			qdel(src)
+			return
+		if(2)
+			if (prob(50))
+				qdel(src)
+				return
+			if (prob(50))
+				corrupt()
+		if(3)
+			if (prob(25))
+				qdel(src)
+				return
+			if (prob(25))
+				corrupt()
+		if(4)
+			if (prob(25))
+				corrupt()
+	return
 
 // Calculation of cell shock damage
 // Keep in mind that airlocks, the most common source of electrocution, have siemens_coefficent of 0.7, dealing only 70% of electrocution damage

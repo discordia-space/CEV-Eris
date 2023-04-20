@@ -313,10 +313,11 @@
 	for(var/mob/M in src)
 		M.emp_act(severity)
 
-/obj/item/device/paicard/take_damage(amount)
+/obj/item/device/paicard/ex_act(severity)
 	if(pai)
-		pai.adjustBruteLoss(amount)
-	. = ..()
+		pai.ex_act(severity)
+	else
+		qdel(src)
 
 /obj/item/device/paicard/see_emote(mob/living/M, text)
 	if(pai && pai.client && !pai.canmove)

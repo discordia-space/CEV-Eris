@@ -3,7 +3,6 @@
 	w_class = ITEM_SIZE_SMALL
 	icon = 'icons/obj/inflatable.dmi'
 	price_tag = 40
-	health = 20
 	var/deploy_path = null
 
 /obj/item/inflatable/attack_self(mob/user)
@@ -15,6 +14,8 @@
 	src.transfer_fingerprints_to(R)
 	R.add_fingerprint(user)
 	qdel(src)
+
+
 /obj/item/inflatable/wall
 	name = "inflatable wall"
 	desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
@@ -40,8 +41,7 @@
 	atmos_canpass = CANPASS_DENSITY
 
 	var/undeploy_path = null
-	health = 30
-	explosion_coverage = 1
+	var/health = 50
 
 /obj/structure/inflatable/wall
 	name = "inflatable wall"
@@ -55,28 +55,31 @@
 	update_nearby_tiles()
 	. = ..()
 
-/obj/structure/inflatable/take_damage(damage)
-	. = health - damage < 0 ? damage - (damage - health) : damage
-	. *= explosion_coverage
-	if(health < 0)
-		deflate(TRUE)
-	playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
-	return
-
 /obj/structure/inflatable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return 0
 
 /obj/structure/inflatable/bullet_act(var/obj/item/projectile/Proj)
 	var/proj_damage = Proj.get_structure_damage()
 	if(!proj_damage) return
-	take_damage(proj_damage)
+
+	health -= proj_damage
 	..()
+	if(health <= 0)
+		deflate(1)
 	return
 
-
-/obj/structure/inflatable/explosion_act(target_power, explosion_handler/handler)
-	var/absorbed = take_damage(target_power)
-	return absorbed
+/obj/structure/inflatable/ex_act(severity)
+	switch(severity)
+		if(1)
+			qdel(src)
+			return
+		if(2)
+			deflate(1)
+			return
+		if(3)
+			if(prob(50))
+				deflate(1)
+				return
 
 /obj/structure/inflatable/attack_hand(mob/user as mob)
 	add_fingerprint(user)
@@ -87,11 +90,18 @@
 
 	if (can_puncture(W))
 		visible_message(SPAN_DANGER("[user] pierces [src] with [W]!"))
-		deflate(TRUE)
+		deflate(1)
 	if(W.damtype == BRUTE || W.damtype == BURN)
-		take_damage(W.force)
+		hit(W.force)
 		..()
 	return
+
+/obj/structure/inflatable/proc/hit(var/damage, var/sound_effect = 1)
+	health = max(0, health - damage)
+	if(sound_effect)
+		playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
+	if(health <= 0)
+		deflate(1)
 
 /obj/structure/inflatable/CtrlClick()
 	hand_deflate()
@@ -107,13 +117,10 @@
 		if(!undeploy_path)
 			return
 		visible_message("\The [src] slowly deflates.")
-		addtimer(CALLBACK(src, PROC_REF(slow_deflate)), 5 SECONDS)
-
-/obj/structure/inflatable/proc/slow_deflate()
-	var/obj/item/inflatable/R = new undeploy_path(src.loc)
-	src.transfer_fingerprints_to(R)
-	qdel(src)
-
+		spawn(50)
+			var/obj/item/inflatable/R = new undeploy_path(src.loc)
+			src.transfer_fingerprints_to(R)
+			qdel(src)
 
 /obj/structure/inflatable/verb/hand_deflate()
 	set name = "Deflate"
@@ -127,13 +134,14 @@
 	deflate()
 
 /obj/structure/inflatable/attack_generic(var/mob/user, var/damage, var/attack_verb)
+	health -= damage
 	attack_animation(user)
-	take_damage(damage)
 	if(health <= 0)
 		user.visible_message(SPAN_DANGER("[user] [attack_verb] open the [src]!"))
+		spawn(1) deflate(1)
 	else
 		user.visible_message(SPAN_DANGER("[user] [attack_verb] at [src]!"))
-	return TRUE
+	return 1
 
 /obj/structure/inflatable/door //Based on mineral door code
 	name = "inflatable door"

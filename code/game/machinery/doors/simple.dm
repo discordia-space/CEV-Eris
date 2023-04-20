@@ -21,8 +21,8 @@
 	if(!material)
 		qdel(src)
 		return
-	maxHealth = max(100, material.integrity*10)
-	health = maxHealth
+	maxhealth = max(100, material.integrity*10)
+	health = maxhealth
 	if(!icon_base)
 		icon_base = material.door_icon_base
 	hitsound = material.hitsound
@@ -93,12 +93,19 @@
 		if(Adjacent(user)) //not remotely though
 			return attack_hand(user)
 
-/obj/machinery/door/unpowered/simple/take_damage(damage)
-	. = ..()
-	if(QDELETED(src))
-		return .
-	if(health < maxHealth * 0.75)
-		set_broken()
+/obj/machinery/door/unpowered/simple/ex_act(severity)
+	switch(severity)
+		if(1)
+			set_broken()
+		if(2)
+			if(prob(25))
+				set_broken()
+			else
+				take_damage(300)
+		if(3)
+			if(prob(20))
+				take_damage(150)
+
 
 /obj/machinery/door/unpowered/simple/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
@@ -112,7 +119,7 @@
 		if(stat & BROKEN)
 			to_chat(user, SPAN_NOTICE("It looks like \the [src] is pretty busted. It's going to need more than just patching up now."))
 			return
-		if(health >= maxHealth)
+		if(health >= maxhealth)
 			to_chat(user, SPAN_NOTICE("Nothing to fix!"))
 			return
 		if(!density)
@@ -121,12 +128,12 @@
 
 		//figure out how much metal we need
 		var/obj/item/stack/stack = I
-		var/amount_needed = CEILING((maxHealth - health)/DOOR_REPAIR_AMOUNT, 1)
+		var/amount_needed = CEILING((maxhealth - health)/DOOR_REPAIR_AMOUNT, 1)
 		var/used = min(amount_needed,stack.amount)
 		if (used)
 			to_chat(user, SPAN_NOTICE("You fit [used] [stack.singular_name]\s to damaged and broken parts on \the [src]."))
 			stack.use(used)
-			health = between(health, health + used*DOOR_REPAIR_AMOUNT, maxHealth)
+			health = between(health, health + used*DOOR_REPAIR_AMOUNT, maxhealth)
 		return
 
 
