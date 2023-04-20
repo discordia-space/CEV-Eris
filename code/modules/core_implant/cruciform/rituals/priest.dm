@@ -529,5 +529,5 @@
 		return
 	var/area/t = get_area(H)
 	log_game("[key_name(user)] locates [H] in [t] using Search litany.")
-	to_chat(user, SPAN_NOTICE("[H], faithful cruciform follower, currently at [t.name]."))
+	to_chat(user, span_info("[H], faithful cruciform follower, currently at [t.name]."))
 	return TRUE
