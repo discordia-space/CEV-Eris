@@ -2,22 +2,8 @@
 #define SUPPLY_DOCKZ 2          //Z-level of the Dock.
 #define SUPPLY_STATIONZ 1       //Z-level of the Station.
 
-//Supply packs are in /code/defines/obj/supplypacks.dm
-//Computers are in /code/game/machinery/computer/supply.dm
+//Supply packs are in /code/modules/cargo/packs.dm
 
-var/list/mechtoys = list(
-	/obj/item/toy/prize/ripley,
-	/obj/item/toy/prize/fireripley,
-	/obj/item/toy/prize/deathripley,
-	/obj/item/toy/prize/gygax,
-	/obj/item/toy/prize/durand,
-	/obj/item/toy/prize/honk,
-	/obj/item/toy/prize/marauder,
-	/obj/item/toy/prize/seraph,
-	/obj/item/toy/prize/mauler,
-	/obj/item/toy/prize/odysseus,
-	/obj/item/toy/prize/phazon
-)
 
 /obj/item/paper/manifest
 	name = "supply manifest"

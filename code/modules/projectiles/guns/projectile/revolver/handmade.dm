@@ -15,7 +15,7 @@
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	serial_type = ""
-	gun_parts = list(/obj/item/part/gun/frame/revolver_handmade = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/revolver/steel = 1, /obj/item/part/gun/barrel/magnum/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/revolver_handmade = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/revolver/steel = 1, /obj/item/part/gun/modular/barrel/magnum/steel = 1)
 
 /obj/item/part/gun/frame/revolver_handmade
 	name = "Handmade revolver frame"
@@ -23,6 +23,6 @@
 	icon_state = "frame_revolver_hm"
 	matter = list(MATERIAL_STEEL = 5)
 	resultvars = list(/obj/item/gun/projectile/revolver/handmade)
-	gripvars = list(/obj/item/part/gun/grip/wood)
-	mechanismvar = /obj/item/part/gun/mechanism/revolver/steel
-	barrelvars = list(/obj/item/part/gun/barrel/magnum/steel, /obj/item/part/gun/barrel/pistol/steel)
+	gripvars = list(/obj/item/part/gun/modular/grip/wood)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/revolver/steel
+	barrelvars = list(/obj/item/part/gun/modular/barrel/magnum/steel, /obj/item/part/gun/modular/barrel/pistol/steel)

@@ -28,3 +28,76 @@
   Pink-Chink:
   - bugfix: Fixes an issue where an image reference was being deleted when it should
       have been nulled
+2023-04-08:
+  Humonitarian:
+  - rscadd: Ironhammer flashlights can be installed on guns
+  - tweak: NeoTheology Altars can be constructed now
+  - config: zlevel shooting is enabled by default
+  MLGTASTICa:
+  - code_imp: Fixed linters , once for all.
+  Mycah142:
+  - rscadd: Added biomatter reagent to plant tray reagent lists
+  Pink-Chink:
+  - tweak: Added logic to table Initialize() that allows flipped tables through var
+      editing
+  - rscdel: Removed a qdel() from Stalker death()
+  - bugfix: Changed Stalker blood color to that of oil
+  - rscadd: Added separate subsystem for humans
+  - code_imp: Mobs use Initialize() instead of New()
+  Skegal:
+  - rscadd: KS-23, KS-23 disk
+  - imageadd: added KS-23.dmi
+  - code_imp: added ks23.dm, modified excelsior.dm/guns.dm
+  - config: added the ks-23 to cev_eris.dme
+  Trilbyspaceclone:
+  - bugfix: Ports over SoJ fix to deconstruction prayer exploit
+  thevandie:
+  - rscadd: added a lot of suits from the style vendor to the loadout menu
+  - rscadd: added new miscellaneous items like new hazard vests to the loadout menu
+  - rscadd: added a new Serbian Mercenary Commander beret that the serb merc commander
+      now gets
+  - rscadd: added the full security armor to the aster's enforcement disk
+  - rscadd: added new sprites for the ushanka and earmuffs from the archive
+  - tweak: lumped a lot of loadout items together into their own lists, like the ponchos,
+      sneakers, and puffy jackets.
+  - tweak: made the red "nanotrasen" beret usable by everyone and made it more ambiguous
+      to who made it, so that everyone can have a red military beret.
+  - tweak: swapped the names of the assistant formal uniform and tuxedo, as the assistant
+      formal uniform looks like an actual tuxedo more than the "tuxedo" and made it
+      no longer locked to vagabonds, considering that's a holdover. (I didn't actually
+      call the old tuxedo the "assistant formal uniform" it's just the "black formal
+      suit" now
+  - tweak: changed some of the point costs for items in the loadouts since making
+      the jackets 2 is kind of stupid considering there's other jackets with 1 with
+      the exact same stats, ie the punk ones.
+  - tweak: put the triad jacket into the contraband section of the style vendor to
+      slightly dampen it's usage (and because it's kind of funny).
+2023-04-15:
+  Deal5:
+  - rscadd: harpoon gun sprite
+  - bugfix: most ranged weapons should work as intended when being taken in two hands
+  Hopek:
+  - rscadd: Added 4 "fun" non malicious lawsets to print. Partybot, Chefbot, TravelGuide
+      and Friendbot
+  Humonitarian:
+  - bugfix: fixed .40 barrel not working on modular guns
+  - soundadd: metal rod sound effect
+  Humonitarian, Shazbot, ValoTheValo, Vandu-Jr:
+  - rscadd: Modular gun frames implemented
+  - code_imp: Gun parts now function modularly and support modifications
+  - imageadd: New modular AK sprites by Shazbot
+  - imageadd: New modular MK58 sprites by Valo
+  - imageadd: New modular Wintermute sprites by Vandu-Jr
+  - rscadd: New modifiers for use by mods (intended only for gun parts)
+  MLGTASTICa:
+  - rscadd: Slimepeople now get warned when their glomp recharges
+  - bugfix: Slimepeople organ regeneration verb now mentions the actual organ name
+  - balance: Removed stun from electrocutions
+  - balance: Weaken from electrocution is now dependant on the shock_damage, any damage
+      above 15 will shock now for 2  seconds minimum and 10 seconds maximum ,
+  - rscdel: Removed mob hit by bullet and mob fires gun messages.
+  Mycah142:
+  - tweak: Added service gripper functionality to include credit handling
+  Penwin0:
+  - rscdel: Removes commented/unused code previously marked for deletion
+  - bugfix: fixes a misleading comment in code

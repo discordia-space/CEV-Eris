@@ -369,13 +369,13 @@
 			if(isroach(target_mob))
 				bumped = FALSE // Roaches do not bump when missed, allowing the bullet to attempt to hit the rest of the roaches in a single cluster
 		return FALSE
-
+	/*
 	//hit messages
 	if(silenced)
 		to_chat(target_mob, SPAN_DANGER("You've been hit in the [parse_zone(def_zone)] by \the [src]!"))
 	else
 		visible_message(SPAN_DANGER("\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!"))//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
-
+	*/
 	playsound(target_mob, pick(mob_hit_sound), 40, 1)
 
 	//admin logs

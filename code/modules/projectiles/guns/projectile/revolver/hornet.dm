@@ -18,7 +18,7 @@
 	penetration_multiplier = 2 // raises AP to 3.5, makes armor close to worthless, yet still only barely allows penetrating reinforced walls
 	zoom_factors = list(0.2) // same scope as z8
 	init_recoil = HANDGUN_RECOIL(2) // same as .40
-	gun_parts = list(/obj/item/part/gun/frame/hornet = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/srifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/hornet = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/revolver = 1, /obj/item/part/gun/modular/barrel/srifle = 1)
 	serial_type = "OR"
 
 /obj/item/part/gun/frame/hornet
@@ -26,6 +26,6 @@
 	desc = "A Hornet revolver frame. Long, heavy, and hotloaded."
 	icon_state = "frame_hornet"
 	resultvars = list(/obj/item/gun/projectile/revolver/hornet)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/revolver
-	barrelvars = list(/obj/item/part/gun/barrel/srifle)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/revolver
+	barrelvars = list(/obj/item/part/gun/modular/barrel/srifle)

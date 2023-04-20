@@ -30,7 +30,7 @@
 	wield_delay = 0 // Super weak SMG
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	gun_parts = list(/obj/item/part/gun/frame/straylight = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/straylight = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/smg = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "FS"
 
 /obj/item/gun/projectile/automatic/straylight/update_icon()
@@ -38,10 +38,12 @@
 
 	var/iconstring = initial(icon_state)
 	var/itemstring = ""
+	wielded_item_state = "_doble"
 
 	if(ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
+		wielded_item_state += "_mag"
 
 	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
@@ -49,6 +51,7 @@
 	if(silenced)
 		iconstring += "_s"
 		itemstring += "_s"
+		wielded_item_state += "_s"
 
 	icon_state = iconstring
 	set_item_state(itemstring)
@@ -62,6 +65,6 @@
 	desc = "A Straylight SMG frame. A rabidly fast bullet hose."
 	icon_state = "frame_ihsmg"
 	resultvars = list(/obj/item/gun/projectile/automatic/straylight)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/smg
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/smg
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)

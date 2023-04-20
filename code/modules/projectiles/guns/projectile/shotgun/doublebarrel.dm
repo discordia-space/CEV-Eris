@@ -33,7 +33,7 @@
 		)
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/shotgun/doublebarrel/sawn
-	gun_parts = list(/obj/item/part/gun/frame/doublebarrel = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	gun_parts = list(/obj/item/part/gun/frame/doublebarrel = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/shotgun = 1, /obj/item/part/gun/modular/barrel/shotgun = 1)
 	serial_type = "AGM" // asters guild manufacturing
 
 /obj/item/gun/projectile/shotgun/doublebarrel/pellet
@@ -95,6 +95,6 @@
 	desc = "A double-barreled shotgun frame. An immortal classic of cowboys and bartenders alike."
 	icon_state = "frame_dshotgun"
 	resultvars = list(/obj/item/gun/projectile/shotgun/doublebarrel)
-	gripvars = list(/obj/item/part/gun/grip/wood)
-	mechanismvar = /obj/item/part/gun/mechanism/shotgun
-	barrelvars = list(/obj/item/part/gun/barrel/shotgun)
+	gripvars = list(/obj/item/part/gun/modular/grip/wood)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/shotgun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun)

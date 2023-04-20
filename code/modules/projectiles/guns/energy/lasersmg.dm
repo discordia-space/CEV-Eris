@@ -47,6 +47,12 @@
 	if (cell)
 		iconstring += "_mag"
 		itemstring += "_mag"
+		wielded_item_state = "_doble_mag"
+	else
+		wielded_item_state = "_doble"
+
+	icon_state = iconstring
+	set_item_state(itemstring)
 
 /obj/item/gun/energy/lasersmg/update_icon()//TODO: Rework overlays, check assets storage for charge states.
 	cut_overlays()
