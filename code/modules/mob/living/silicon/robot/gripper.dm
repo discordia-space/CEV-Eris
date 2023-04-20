@@ -229,6 +229,8 @@
 		/obj/item/newspaper,
 		/obj/item/pen,
 		/obj/item/stamp,
+		/obj/item/packageWrap,
+		/obj/item/device/destTagger,
 		/obj/item/smallDelivery
 		)
 
