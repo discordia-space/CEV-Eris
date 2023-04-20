@@ -1,0 +1,13 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - rscadd: Added 2 new traitor gadgets for  preventing AI control for an area , the
+      portabla jammer , for 3 TC,  which stops any AI click in a 8 tile radius, with
+      a lifetime of 666 seconds for a 100S cell , and the big portable jammer , 15
+      TC, stops in a 24 tile radius , with a lifetime of 1000 S for a 1000L cell.
+  - code_imp: added an Overlay manager component
+  - code_imp: Added a new comsig signal , COMSIG_ATOM_CONTAINERIZED , for when an
+      item is put inside any storage object, has as the argument the top-most container
+  - code_imp: Added a new comsig signal , COMSIG_MOVABLE_ZCHANGED,  for when an movable
+      atom is sent to another z-level.
+  - bugfix: Fixed AI's not receiving a hud  when a ghost was dragged inside
