@@ -147,7 +147,7 @@
 		walk(src,0)
 		spawn(rand(50,150))
 			if(!disabled && exploding)
-				explosion(get_turf(src), 500, 50)
+				explosion(get_turf(src), 200, 75)
 	..()
 
 //ion rifle!

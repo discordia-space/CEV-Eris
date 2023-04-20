@@ -19,8 +19,8 @@
 	var/num_fragments = 25
 	var/damage_step = 2
 
-	var/explosion_power = 300
-	var/explosion_falloff = 150
+	var/explosion_power = 250
+	var/explosion_falloff = 100
 
 	var/armed = FALSE
 	var/deployed = FALSE
@@ -61,7 +61,8 @@
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASMA = 5)
 	prob_explode = 75
 	pulse_difficulty = FAILCHANCE_ZERO
-	explosion_power = 200
+	explosion_power = 175
+	explosion_falloff = 75
 
 /obj/item/mine/improv/armed
 	armed = TRUE

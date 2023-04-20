@@ -10,7 +10,7 @@
 	var/fragment_damage = 15
 	var/damage_step = 8      //projectiles lose a fragment each time they travel this distance. Can be a non-integer.
 	var/explosion_power = 100
-	var/explosion_falloff = 20
+	var/explosion_falloff = 40
 
 	//The radius of the circle used to launch projectiles. Lower values mean less projectiles are used but if set too low gaps may appear in the spread pattern
 	var/spread_range = 7

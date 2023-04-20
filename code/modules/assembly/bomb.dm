@@ -119,11 +119,11 @@
 	loc = null
 
 	if(air_contents.temperature > (T0C + 400))
-		explosion(ground_zero, fuel_moles * 150, fuel_moles * 10)
+		explosion(ground_zero, fuel_moles * 75, fuel_moles * 15)
 	else if(air_contents.temperature > (T0C + 250))
-		explosion(ground_zero, fuel_moles * 100, fuel_moles * 10)
+		explosion(ground_zero, fuel_moles * 50, fuel_moles * 15)
 	else if(air_contents.temperature > (T0C + 100))
-		explosion(ground_zero, fuel_moles * 50, fuel_moles * 10)
+		explosion(ground_zero, fuel_moles * 25, fuel_moles * 15)
 	ground_zero.assume_air(air_contents)
 	ground_zero.hotspot_expose(1000, 125)
 

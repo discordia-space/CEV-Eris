@@ -4,8 +4,8 @@
 	icon_state = "explosive"
 	matter = list(MATERIAL_STEEL = 5)
 
-	var/explosion_power = 400
-	var/explosion_falloff = 50
+	var/explosion_power = 350
+	var/explosion_falloff = 75
 	var/explosion_flags = 0
 	var/flash_range = 10
 

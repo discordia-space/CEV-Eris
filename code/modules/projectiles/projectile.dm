@@ -177,9 +177,9 @@
 
 /obj/item/projectile/proc/get_structure_damage(var/injury_type)
 	if(!injury_type) // Assume homogenous
-		return (damage_types[BRUTE] + damage_types[BURN]) * wound_check(INJURY_TYPE_HOMOGENOUS, wounding_mult, edge, sharp)
+		return (damage_types[BRUTE] + damage_types[BURN]) * wound_check(INJURY_TYPE_HOMOGENOUS, wounding_mult, edge, sharp) * 2
 	else
-		return (damage_types[BRUTE] + damage_types[BURN]) * wound_check(injury_type, wounding_mult, edge, sharp)
+		return (damage_types[BRUTE] + damage_types[BURN]) * wound_check(injury_type, wounding_mult, edge, sharp) * 2
 
 //return 1 if the projectile should be allowed to pass through after all, 0 if not.
 /obj/item/projectile/proc/check_penetrate(atom/A)

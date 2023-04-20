@@ -25,7 +25,7 @@
 
 /obj/item/projectile/bullet/grenade/blast
 	name = "blast shell"
-	var/explosion_power = 500
+	var/explosion_power = 200
 	var/explosion_falloff = 50
 
 /obj/item/projectile/bullet/grenade/blast/grenade_effect(target)
@@ -65,7 +65,7 @@
 
 /obj/item/projectile/bullet/grenade/frag/grenade_effect(target)
 	fragment_explosion(target, range, f_type, f_amount, f_damage, f_step, same_turf_hit_chance)
-	explosion(get_turf(target), 100, 20)
+	explosion(get_turf(target), 60, 40)
 
 /obj/item/projectile/bullet/grenade/frag/sting/weak
 	name = "sting shell"

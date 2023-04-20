@@ -137,14 +137,11 @@
 		if(earProtection * 100 < BombDamage)
 			adjustEarDamage((BombDamage - earProtection*100)/ 10,(BombDamage - earProtection*100)/ 100)
 
-	var/DamageToApply = round(BombDamage / 7)
-	apply_damage(DamageToApply, BRUTE, BP_HEAD)
-	apply_damage(DamageToApply, BRUTE, BP_CHEST)
-	apply_damage(DamageToApply, BRUTE, BP_GROIN)
-	apply_damage(DamageToApply, BRUTE, BP_R_ARM)
-	apply_damage(DamageToApply, BRUTE, BP_L_ARM)
-	apply_damage(DamageToApply, BRUTE, BP_R_LEG)
-	apply_damage(DamageToApply, BRUTE, BP_L_LEG)
+	var/DamageToApply = round(BombDamage / 4)
+
+	for(var/limb in BP_BY_DEPTH)
+		if (limb in organ_rel_size)
+			apply_damage(DamageToApply * organ_rel_size[limb], BRUTE, limb)
 	return BombDamage * BlockCoefficient
 
 /mob/living/carbon/human/restrained()

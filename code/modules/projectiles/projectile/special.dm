@@ -26,13 +26,17 @@
 /obj/item/projectile/bullet/rocket
 	name = "high explosive rocket"
 	icon_state = "rocket"
-	damage_types = list(BRUTE = 60)
-	armor_divisor = 1
+	damage_types = list(BRUTE = 80)
+	armor_divisor = 3 // Everything has ridiculously high bomb armor. This makes up for it.
 	style_damage = 101 //single shot, incredibly powerful. If you get direct hit with this you deserve it, if you dodge the direct shot you're protected from the explosion.
 	check_armour = ARMOR_BOMB
 	penetrating = -5
 	recoil = 40
 	can_ricochet = FALSE
+	var/explosion_power = 350
+	var/explosion_falloff = 75
+	sharp = FALSE
+	edge = FALSE
 
 /obj/item/projectile/bullet/rocket/launch(atom/target, target_zone, x_offset, y_offset, angle_offset, proj_sound, user_recoil)
 	set_light(2.5, 0.5, "#dddd00")
@@ -44,29 +48,38 @@
 	return TRUE
 
 /obj/item/projectile/bullet/rocket/proc/detonate(atom/target)
-	explosion(get_turf(target), 700, 50)
+	explosion(get_turf(target), explosion_power, explosion_falloff)
 
 /obj/item/projectile/bullet/rocket/scrap
-	damage_types = list(BRUTE = 30)
+	name = "improvised explosive rocket"
+	damage_types = list(BRUTE = 60)
 
-/obj/item/projectile/bullet/rocket/scrap/detonate(atom/target)
-	explosion(get_turf(target), 500, 50)
+	explosion_power = 200
+	explosion_falloff = 75
 
 /obj/item/projectile/bullet/rocket/hesh
 	name = "high-explosive squash head rocket"
 	damage_types = list(BRUTE = 80)
 	armor_divisor = 2
 	check_armour = ARMOR_BULLET
+	sharp = TRUE
+
+	explosion_power = 200
+	explosion_falloff = 75
 
 /obj/item/projectile/bullet/rocket/hesh/detonate(atom/target)
 	fragment_explosion_angled(get_turf(src), starting, /obj/item/projectile/bullet/pellet/fragment/strong, 20)
-	explosion(get_turf(target), 300, 50)
+	..()
 
 /obj/item/projectile/bullet/rocket/heat
 	name = "high-explosive anti-tank rocket"
 	damage_types = list(BRUTE = 20)
 	armor_divisor = 1
 	check_armour = ARMOR_BULLET
+	sharp = TRUE
+
+	explosion_power = 200
+	explosion_falloff = 75
 
 /obj/item/projectile/bullet/rocket/heat/detonate(atom/target)
 	var/turf/T = get_turf_away_from_target_complex(get_turf(src), starting, 3)
@@ -74,7 +87,7 @@
 	P.launch(T, def_zone)
 	if(target)
 		P.Bump(target, TRUE)
-	explosion(get_turf(target), 300, 50)
+	..()
 
 /obj/item/projectile/bullet/rocket/thermo
 	name = "thermobaric rocket"
@@ -82,9 +95,12 @@
 	armor_divisor = 1
 	check_armour = ARMOR_BULLET
 
+	explosion_power = 300
+	explosion_falloff = 30 // Very large, albeit weak explosion
+
 /obj/item/projectile/bullet/rocket/thermo/detonate(atom/target)
 	heatwave(get_turf(src), 3, 5, 100, TRUE, 20)
-	explosion(get_turf(src), 300, 30)
+	..()
 
 /obj/item/projectile/temp
 	name = "freeze beam"

@@ -644,7 +644,7 @@
 /obj/machinery/light/proc/explode()
 	broken()	// break it first to give a warning
 	sleep(2)
-	explosion(get_turf(src), 100, 20)
+	explosion(get_turf(src), 60, 20)
 	sleep(1)
 	qdel(src)
 
