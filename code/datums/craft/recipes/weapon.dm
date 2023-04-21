@@ -221,7 +221,7 @@
 	)
 
 /datum/craft_recipe/weapon/armknife
-	name = "Wrist Shank"
+	name = "wristshank"
 	result = /obj/item/organ_module/active/simple/shanker
 	steps = list(
 		list(CRAFT_MATERIAL, 8, MATERIAL_STEEL, "time" = 10),
