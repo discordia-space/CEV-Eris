@@ -183,7 +183,7 @@
 			return
 
 		if(oddity_stats[STAT_ROB] + oddity_stats[STAT_VIG] + oddity_stats[STAT_TGH] > combat_cap)
-			to_chat(user, SPAN_WARNING("The [W] goes beyond the Tribalism's capability for combat, it perhaps could be upgraded with combat relics from other factions."))
+			to_chat(user, SPAN_WARNING("The [W] goes beyond the Tribalism's capability for combat, perhaps it could be upgraded with combat relics from other factions."))
 			for(var/stat in starting_sum)
 				oddity_stats[stat] = starting_sum[stat]
 			return
