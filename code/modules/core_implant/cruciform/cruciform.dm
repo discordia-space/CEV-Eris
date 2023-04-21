@@ -2,7 +2,6 @@
 
 var/list/disciples = list()
 var/list/lost_cruciforms = list()
-var/list/shelter_cruciforms = list() //for last shelter get_cruciform proc
 
 /obj/item/implant/core_implant/cruciform
 	name = "cruciform"
