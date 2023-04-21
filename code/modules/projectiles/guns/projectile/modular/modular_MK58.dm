@@ -8,7 +8,7 @@
 	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1) // Parts can give better tech
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE // So far not modular
-	magazine_type = /obj/item/ammo_magazine/pistol // Default magazine, only relevant for spawned AKs, not crafted or printed ones
+	magazine_type = /obj/item/ammo_magazine/pistol // Default magazine, only relevant for spawned pistols, not crafted or printed ones
 	matter = list(MATERIAL_PLASTEEL = 5)
 	price_tag = 400
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
@@ -37,7 +37,7 @@
 			if("rubber")
 				return "NT HG [caliber] \"Mk-58 a\""
 			if("excelsior")
-				return "NT HG [caliber] \"Mk-58 e\""
+				return "NT HG [caliber] \"Mk-58 M\""
 			if("serbian")
 				return "NT HG [caliber] \"Mk-58 T\""
 			if("makeshift")
@@ -66,5 +66,5 @@
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
 
 /obj/item/gun/projectile/automatic/modular/mk58/black/army
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/excel) // Funny
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/excel)
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
