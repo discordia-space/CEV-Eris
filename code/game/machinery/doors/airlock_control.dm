@@ -33,7 +33,7 @@
 		cur_command = null
 		return TRUE
 	if(!completing)
-		addtimer(CALLBACK(src , .proc/execute_current_command), 2 SECONDS) // Fuck it , try again.
+		addtimer(CALLBACK(src , PROC_REF(execute_current_command)), 2 SECONDS) // Fuck it , try again.
 		completing = TRUE
 	return FALSE
 

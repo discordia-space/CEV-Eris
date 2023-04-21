@@ -187,7 +187,7 @@
 			Move(newloc)
 			handle_wraparound()
 		update_icon()
-	SEND_SIGNAL(src, COMSIG_SHIP_STILL, x, y, is_still())
+	SEND_SIGNAL_OLD(src, COMSIG_SHIP_STILL, x, y, is_still())
 
 /obj/effect/overmap/ship/update_icon()
 	cut_overlays()

@@ -123,6 +123,29 @@
 			desc = text
 
 
+//Roundstart disks start at minimal cost, implies they were ordered before
+/datum/armament/item/disk/utilities
+	name = "Utilities disk"
+	cost = 50
+	min_cost = 50
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter
+	purchase_count = 1
+
+
+/datum/armament/item/disk/clothes
+	name = "Bio-Fabric disk"
+	cost = 50
+	min_cost = 50
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter_clothes
+	purchase_count = 1
+
+/datum/armament/item/disk/hastatii
+	name = "Hastatii disk"
+	cost = 50
+	min_cost = 50
+	path = /obj/item/computer_hardware/hard_drive/portable/design/nt_melee
+	purchase_count = 1
+
 /datum/armament/item/disk/cells
 	name = "Power Cells disk"
 	cost = 75

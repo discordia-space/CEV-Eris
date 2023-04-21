@@ -44,6 +44,7 @@
 
 /obj/screen/Destroy()
 	master = null
+	parentmob = null
 	return ..()
 
 /obj/screen/update_plane()
@@ -1039,7 +1040,7 @@ obj/screen/fire/DEADelize()
 	var/decl/move_intent/newintent = decls_repository.get_decl(move_intent_type)
 	if (newintent.can_enter(parentmob, TRUE))
 		parentmob.move_intent = newintent
-		SEND_SIGNAL(parentmob, COMSIG_HUMAN_WALKINTENT_CHANGE, parentmob, newintent)
+		SEND_SIGNAL_OLD(parentmob, COMSIG_HUMAN_WALKINTENT_CHANGE, parentmob, newintent)
 		update_icon()
 
 	update_icon()
@@ -1152,7 +1153,7 @@ obj/screen/fire/DEADelize()
 		parentmob.a_intent_change(I_GRAB)
 	if(_x>=17 && _y>=17)
 		parentmob.a_intent_change(I_DISARM)
-	SEND_SIGNAL(parentmob, COMSIG_HUMAN_ACTIONINTENT_CHANGE, parentmob)
+	SEND_SIGNAL_OLD(parentmob, COMSIG_HUMAN_ACTIONINTENT_CHANGE, parentmob)
 
 /obj/screen/intent/update_icon()
 	src.cut_overlays()

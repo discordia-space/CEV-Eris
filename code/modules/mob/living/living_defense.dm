@@ -87,9 +87,9 @@
 						var/mob/living/carbon/human/H = src
 						var/obj/item/I = used_weapon
 						if((is_carrion(H) || active_mutations.len) && (SANCTIFIED in I.aspects))
-							apply_damage(dmg / 2, BURN, def_zone, sharp, edge, used_weapon)
+							apply_damage(dmg / 2, BURN, def_zone, armor_divisor, wounding_multiplier, sharp, edge, used_weapon)
 
-				apply_damage(dmg, dmg_type, def_zone, sharp, edge, used_weapon)
+				apply_damage(dmg, dmg_type, def_zone, armor_divisor, wounding_multiplier, sharp, edge, used_weapon)
 				if(ishuman(src) && def_zone && dmg >= 20)
 					var/mob/living/carbon/human/H = src
 					var/obj/item/organ/external/o = H.get_organ(def_zone)
@@ -221,11 +221,11 @@
 		Weaken(stun_amount * armor_coefficient)
 		apply_effect(STUTTER, stun_amount * armor_coefficient)
 		apply_effect(EYE_BLUR, stun_amount * armor_coefficient)
-		SEND_SIGNAL(src, COMSIG_LIVING_STUN_EFFECT)
+		SEND_SIGNAL_OLD(src, COMSIG_LIVING_STUN_EFFECT)
 
 	if (agony_amount && armor_coefficient)
 
-		apply_damage(agony_amount * armor_coefficient, HALLOSS, def_zone, 0, used_weapon)
+		apply_damage(agony_amount * armor_coefficient, HALLOSS, def_zone, FALSE, FALSE, FALSE, used_weapon)
 		apply_effect(STUTTER, agony_amount * armor_coefficient)
 		apply_effect(EYE_BLUR, agony_amount * armor_coefficient)
 

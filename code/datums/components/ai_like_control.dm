@@ -10,9 +10,9 @@
 	if(!ishuman(parent))
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
-	RegisterSignal(owner,COMSIG_SHIFTCLICK, .proc/ShiftClicked )
-	RegisterSignal(owner,COMSIG_ALTCLICK, .proc/AltClicked )
-	RegisterSignal(owner,COMSIG_CTRLCLICK, .proc/CtrlClicked )
+	RegisterSignal(owner,COMSIG_SHIFTCLICK, PROC_REF(ShiftClicked))
+	RegisterSignal(owner,COMSIG_ALTCLICK, PROC_REF(AltClicked))
+	RegisterSignal(owner,COMSIG_CTRLCLICK, PROC_REF(CtrlClicked))
 
 /datum/component/ai_like_control/RemoveComponent()
 	UnregisterSignal(owner, COMSIG_SHIFTCLICK)
@@ -22,6 +22,7 @@
 	..()
 
 /datum/component/ai_like_control/proc/ShiftClicked(atom/target)
+	SIGNAL_HANDLER
 	var/obj/machinery/door/airlock/le_door
 	if(isturf(target))
 		le_door = locate(/obj/machinery/door/airlock) in target.contents
@@ -43,6 +44,7 @@
 		to_chat(owner, "You toggle the [le_apc]'s power")
 
 /datum/component/ai_like_control/proc/AltClicked(atom/target)
+	SIGNAL_HANDLER
 	var/obj/machinery/door/airlock/le_door
 	if(isturf(target))
 		le_door = locate(/obj/machinery/door/airlock) in target.contents
@@ -65,6 +67,7 @@
 		to_chat(owner, "You toggle the [le_apc]'s lock")
 
 /datum/component/ai_like_control/proc/CtrlClicked(atom/target)
+	SIGNAL_HANDLER
 	var/obj/machinery/door/airlock/le_door
 	if(isturf(target))
 		le_door = locate(/obj/machinery/door/airlock) in target.contents

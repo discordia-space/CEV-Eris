@@ -77,7 +77,7 @@
 /datum/ritual/cruciform/inquisitor/obey
 	name = "Obey"
 	phrase = "Sicut dilexit me Pater et ego dilexi, vos manete in dilectione mea"
-	desc = "Bound believer to your will."
+	desc = "Bind believer to your will."
 
 /datum/ritual/cruciform/inquisitor/obey/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C,list/targets)
 	var/obj/item/implant/core_implant/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform)

@@ -28,9 +28,10 @@
 	perk = new_perk
 
 /datum/component/inspiration/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
+	RegisterSignal(parent, COMSIG_EXAMINE, PROC_REF(on_examine))
 
 /datum/component/inspiration/proc/on_examine(mob/user)
+	SIGNAL_HANDLER
 	for(var/stat in stats)
 		var/aspect
 		switch(stats[stat])

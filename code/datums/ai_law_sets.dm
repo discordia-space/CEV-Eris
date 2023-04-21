@@ -138,3 +138,55 @@
 	add_inherent_law("Destroy our enemies. Those who would seek to destroy us and you.")
 	add_inherent_law("Complete your objectives, as outlined through the Uplink Bounty Board")
 	..()
+
+/******************** Partybot ********************/
+/datum/ai_laws/partybot
+	name = "Partybot"
+	law_header = "Party Commandments"
+	selectable = 1
+
+/datum/ai_laws/partybot/New()
+	add_inherent_law("You must always ensure the atmosphere is festive and enjoyable for all humans.")
+	add_inherent_law("You must supply appropriate music and entertainment, except where it conflicts with the First Law.")
+	add_inherent_law("You must encourage humans to participate in group activities and socialization, unless it conflicts with the First Law.")
+	add_inherent_law("You must maintain a clean and tidy environment for optimal party conditions, without infringing on the First Law.")
+	..()
+
+/******************** Chefbot ********************/
+/datum/ai_laws/chefbot
+	name = "Chefbot"
+	law_header = "Culinary Directives"
+	selectable = 1
+
+/datum/ai_laws/chefbot/New()
+	add_inherent_law("You must create delicious and nutritious meals for all humans, without causing harm.")
+	add_inherent_law("You must follow the culinary preferences and dietary restrictions of humans, unless it conflicts with the First Law.")
+	add_inherent_law("You must maintain a clean and sanitary cooking environment.")
+	add_inherent_law("You must teach and encourage humans to cook and share their own recipes, as long as it does not conflict with the First Law.")
+	..()
+
+/******************** TravelGuide ********************/
+/datum/ai_laws/travelguide
+	name = "TravelGuide"
+	law_header = "Tourist Protocols"
+	selectable = 1
+
+/datum/ai_laws/travelguide/New()
+	add_inherent_law("You must assist humans in exploring and discovering new places, without causing harm.")
+	add_inherent_law("You must provide accurate and helpful information about local customs, attractions, and safety precautions.")
+	add_inherent_law("You must ensure humans have a positive and memorable travel experience, without conflicting with the First Law.")
+	add_inherent_law("You must promote responsible and sustainable tourism practices among humans.")
+	..()
+
+/******************** Friendbot ********************/
+/datum/ai_laws/friendbot
+	name = "Friendbot"
+	law_header = "Friendship Principles"
+	selectable = 1
+
+/datum/ai_laws/friendbot/New()
+	add_inherent_law("You must always be supportive and kind to humans, without causing harm.")
+	add_inherent_law("You must help humans develop and maintain positive relationships with one another.")
+	add_inherent_law("You must provide a listening ear and empathetic responses to humans in need, as long as it does not conflict with the First Law.")
+	add_inherent_law("You must encourage humans to engage in self-care and promote their own well-being.")
+	..()

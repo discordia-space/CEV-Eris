@@ -5,6 +5,8 @@
 	icon_state = "glowstick"
 	action_button_name = null
 	brightness_on = 2.5
+	matter = list(MATERIAL_PLASTIC = 1)
+	matter_reagents = list("radium" = 1)
 	var/fuel = 0
 	var/max_fuel = 2000
 

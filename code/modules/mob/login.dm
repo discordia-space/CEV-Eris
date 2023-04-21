@@ -63,7 +63,7 @@
 	if(!client)
 		return FALSE
 
-	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
+	SEND_SIGNAL_OLD(src, COMSIG_MOB_LOGIN)
 	// the datum fires first than actual login. Do actual login first before triggering login events
 	GLOB.logged_in_event.raise_event(src)
 

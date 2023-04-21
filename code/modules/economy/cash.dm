@@ -115,7 +115,7 @@
 /obj/item/spacecash/bundle/Initialize()
 	. = ..()
 	update_icon()
-	AddComponent(/datum/component/inspiration, CALLBACK(src, .proc/return_stats))
+	AddComponent(/datum/component/inspiration, CALLBACK(src, PROC_REF(return_stats)))
 
 /// Returns a list to use with inspirations. It can be empty if there's not enough money in the bundle. Important side-effects: converts worth to points, thus reducing worth.
 /obj/item/spacecash/bundle/proc/return_stats()
