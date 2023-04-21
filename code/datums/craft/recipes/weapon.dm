@@ -224,7 +224,7 @@
 	name = "Wrist Shank"
 	result = /obj/item/organ_module/active/simple/shanker
 	steps = list(
-		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL, "time" = 10),
+		list(CRAFT_MATERIAL, 8, MATERIAL_STEEL, "time" = 10),
 		list(QUALITY_WELDING, 10, "time" = 30),
 		list(QUALITY_HAMMERING, 5, 10),
 		list(/obj/item/stack/cable_coil, 2, "time" = 10),
