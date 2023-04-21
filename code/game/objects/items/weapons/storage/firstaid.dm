@@ -69,6 +69,9 @@
 	new /obj/item/reagent_containers/pill/antitox(src)
 	new /obj/item/reagent_containers/pill/antitox(src)
 	new /obj/item/reagent_containers/pill/antitox(src)
+	new /obj/item/reagent_containers/pill/carbon(src)
+	new /obj/item/reagent_containers/pill/carbon(src)
+	new /obj/item/reagent_containers/pill/carbon(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector(src)
 	new /obj/item/device/scanner/health(src)
 
@@ -194,6 +197,8 @@
 	new /obj/item/stack/medical/advanced/ointment/nt(src)
 	new /obj/item/reagent_containers/syringe/large/antitoxin(src)
 	new /obj/item/reagent_containers/syringe/large/dexalin_plus(src)
+	new /obj/item/reagent_containers/pill/carbon(src)
+	new /obj/item/reagent_containers/pill/carbon(src)
 
 /obj/item/storage/firstaid/nt/update_icon()
 	if(!contents.len)
@@ -251,6 +256,11 @@
 	name = "bottle of Dylovene pills"
 	desc = "Contains pills used to treat toxic substances in the blood."
 	prespawned_content_type = /obj/item/reagent_containers/pill/dylovene
+
+/obj/item/storage/pill_bottle/carbon
+	name = "bottle of Carbon pills"
+	desc = "Contains pills used to purge stomach contents."
+	prespawned_content_type = /obj/item/reagent_containers/pill/carbon
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "bottle of Inaprovaline pills"
