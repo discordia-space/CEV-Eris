@@ -187,7 +187,7 @@ Will return zero if the object is not currently equipped to anyone
 */
 
 
-/obj/item/proc/try_uneqip(target, mob/living/user)
+/obj/item/proc/try_transfer(target, mob/living/user)
 /*
 Not directly related to inventory procs
 Used for unequipping things from mob inventory to hands with mouse DragnDrop

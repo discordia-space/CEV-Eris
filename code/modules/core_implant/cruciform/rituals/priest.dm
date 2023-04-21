@@ -508,3 +508,26 @@
 	eotp.nano_ui_interact(H)
 	return TRUE
 
+/datum/ritual/cruciform/priest/acolyte/search
+	name = "Search"
+	phrase = "Ut ostenderet viam filio suo."
+	desc = "Find the location of disciple."
+	success_message = "Your prayers have been heard."
+	fail_message = "Your prayers have not been answered."
+	power = 25
+
+/datum/ritual/cruciform/priest/acolyte/search/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C, list/targets)
+	var/list/OBJS = get_front(user)
+
+	var/obj/machinery/power/eotp/EOTP = locate(/obj/machinery/power/eotp) in OBJS
+	if(!EOTP)
+		fail("You must be in front of the Eye of the Protector.", user, C)
+		return FALSE
+
+	var/mob/living/carbon/human/H = pick_disciple_global(user, TRUE)
+	if (!H)
+		return
+	var/area/t = get_area(H)
+	log_game("[key_name(user)] locates [H] in [t] using Search litany.")
+	to_chat(user, span_info("[H], faithful cruciform follower, currently at [t.name]."))
+	return TRUE

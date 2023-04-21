@@ -11,10 +11,19 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(!I)
 		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
 		return
+	var/target_slot = get_quick_slot(I)
+	if(I.pre_equip(usr, target_slot))
+		return
+	if(isgun(I) && client.CH)
+		QDEL_NULL(client.CH)
+	if(!I.try_transfer(target_slot, usr))
+		quick_equip_storage(I)
+	/*
 	if(!equip_to_appropriate_slot(I))
 		to_chat(src, SPAN_WARNING("You are unable to equip that to your person."))
 		if(quick_equip_storage(I))
 			return
+	*/
 
 /mob/living/carbon/human/verb/belt_equip()
 	set name = "belt-equip"
@@ -42,6 +51,11 @@ This saves us from having to call add_fingerprint() any time something is put in
 	else
 		to_chat(src, SPAN_NOTICE("You are not holding anything to equip or draw."))
 	return
+
+/mob/living/carbon/human/proc/get_quick_slot(obj/item/I)
+	for(var/slot in slot_equipment_priority)
+		if(can_equip(I, slot, TRUE, FALSE, FALSE))
+			return slot
 
 
 /mob/living/carbon/human/verb/bag_equip()

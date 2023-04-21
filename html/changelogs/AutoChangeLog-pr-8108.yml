@@ -1,0 +1,4 @@
+author: ToasterBiome
+delete-after: true
+changes:
+  - bugfix: fixes wire splicing not looking around them for valid spawn positions

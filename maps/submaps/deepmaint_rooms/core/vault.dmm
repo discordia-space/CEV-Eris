@@ -66,9 +66,9 @@
 /area/deepmaint)
 "aq" = (
 /obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
+	dir = 8;
 	icon_state = "railing0";
-	dir = 8
+	tag = "icon-railing0 (WEST)"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -79,8 +79,8 @@
 /area/deepmaint)
 "as" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/deepmaint)
@@ -108,8 +108,8 @@
 "ay" = (
 /obj/spawner/junk,
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -125,8 +125,8 @@
 /area/deepmaint)
 "aB" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -158,9 +158,9 @@
 /area/deepmaint)
 "aG" = (
 /obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
+	dir = 4;
 	icon_state = "railing0";
-	dir = 4
+	tag = "icon-railing0 (EAST)"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -170,8 +170,8 @@
 "aI" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -179,8 +179,8 @@
 /obj/spawner/junk,
 /obj/spawner/junk,
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -190,16 +190,16 @@
 /area/deepmaint)
 "aL" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/wall,
 /area/deepmaint)
 "aM" = (
 /obj/spawner/junk,
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -216,43 +216,43 @@
 /obj/spawner/junk,
 /obj/spawner/junk,
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
 "aQ" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
 "aR" = (
 /obj/structure/railing,
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
 "aS" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
 "aT" = (
 /obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
+	dir = 8;
 	icon_state = "railing0";
-	dir = 8
+	tag = "icon-railing0 (WEST)"
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -262,8 +262,8 @@
 /area/deepmaint)
 "aV" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -287,8 +287,8 @@
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/reinforced,
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating,
 /area/deepmaint)
@@ -296,8 +296,8 @@
 /obj/structure/catwalk,
 /obj/spawner/traps/low_chance,
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -310,8 +310,8 @@
 /area/deepmaint)
 "bb" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/deepmaint)
@@ -324,8 +324,8 @@
 "bd" = (
 /obj/spawner/junk,
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -373,8 +373,8 @@
 /area/deepmaint)
 "bl" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/deepmaint)
@@ -391,10 +391,9 @@
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
 "bp" = (
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/gun_loot,
+/obj/effect/decal/cleanable/blood,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/deepmaint)
 "bq" = (
@@ -454,8 +453,8 @@
 /obj/structure/catwalk,
 /obj/spawner/junk,
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -536,10 +535,8 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/deepmaint)
 "bN" = (
@@ -547,8 +544,8 @@
 	dir = 8
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/deepmaint)
@@ -620,9 +617,9 @@
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden,
 /obj/structure/disposalpipe/junction{
-	tag = "icon-pipe-y (EAST)";
+	dir = 4;
 	icon_state = "pipe-y";
-	dir = 4
+	tag = "icon-pipe-y (EAST)"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
@@ -634,18 +631,18 @@
 /area/deepmaint)
 "cd" = (
 /obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
+	dir = 4;
 	icon_state = "railing0";
-	dir = 4
+	tag = "icon-railing0 (EAST)"
 	},
 /obj/spawner/junk,
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
 "ce" = (
 /obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
+	dir = 8;
 	icon_state = "railing0";
-	dir = 8
+	tag = "icon-railing0 (WEST)"
 	},
 /obj/spawner/junk,
 /turf/simulated/floor/plating/under,
@@ -701,33 +698,33 @@
 /area/deepmaint)
 "cp" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/wall/r_wall,
 /area/deepmaint)
 "cq" = (
 /obj/structure/railing{
-	tag = "icon-railing0 (NORTH)";
+	dir = 1;
 	icon_state = "railing0";
-	dir = 1
+	tag = "icon-railing0 (NORTH)"
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
 "cr" = (
 /obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
+	dir = 4;
 	icon_state = "railing0";
-	dir = 4
+	tag = "icon-railing0 (EAST)"
 	},
 /obj/spawner/junk,
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating/under,
 /area/deepmaint)

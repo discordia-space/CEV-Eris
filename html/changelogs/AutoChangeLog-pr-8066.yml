@@ -1,0 +1,8 @@
+author: ValoTheValo
+delete-after: true
+changes:
+  - rscadd: new loot skeletons to deepmaint
+  - balance: onestar turret room now has onestar loot, serbian mercenaries get a bojevic
+      crate
+  - bugfix: scrap beanbags bad type, onestar window explosions
+  - code_imp: added more functionality to corpse spawner

@@ -39,7 +39,7 @@
 				return TRUE
 
 
-/obj/item/proc/pre_equip(var/mob/user, var/slot)
+/obj/item/proc/pre_equip(mob/user, slot)
 	//Some inventory sounds.
 	//occurs when you equip something
 	if(item_flags & EQUIP_SOUNDS)
@@ -51,6 +51,7 @@
 			src.overslot_contents = equipped
 			user.drop_from_inventory(equipped)
 			equipped.forceMove(src)
+	return FALSE
 
 /obj/item/proc/equipped(var/mob/user, var/slot)
 	equip_slot = slot
@@ -66,6 +67,7 @@
 		unwield(user)
 	SEND_SIGNAL_OLD(user, COMSIG_CLOTH_EQUIPPED, src) // Theres instances in which its usefull to keep track of it both on the user and individually
 	SEND_SIGNAL_OLD(src, COMSIG_CLOTH_EQUIPPED, user)
+	//SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, user.getContainingMovable())
 
 /obj/item/proc/dropped(mob/user)
 	if(zoom) //binoculars, scope, etc
@@ -130,30 +132,60 @@
 
 /obj/item/MouseDrop(obj/over_object)
 	if(item_flags & DRAG_AND_DROP_UNEQUIP && isliving(usr))
-		if(try_uneqip(over_object, usr))
+		if(try_transfer(over_object, usr))
 			return
 	return ..()
 
 
-/obj/item/proc/try_uneqip(target, mob/living/user)
+/obj/item/proc/try_transfer(target, mob/living/user)
 	if(loc == user && ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if (!istype(target, /obj/screen/inventory/hand))
-			return
-
+		if(istype(target, /obj/screen/inventory))
+			var/obj/screen/inventory/screen_thing = target
+			target = screen_thing.slot_id
 		//makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
 		//there's got to be a better way of doing this.
 		if(src.loc != H || H.incapacitated())
-			return
+			return FALSE
 
-		if (!H.unEquip(src))
-			return
+		if(!H.canUnEquip(src))
+			return FALSE
+		if(!H.can_equip(src, target, FALSE, FALSE, FALSE))
+			return FALSE
+		H.remove_from_mob(src, drop = FALSE)
+		/*
+			Copied from human equip_to_slot
+			Separate since its needed to prevent double-signals being sent
+			on atom containerization
 
-		var/obj/screen/inventory/hand/Hand = target
+		*/
+		forceMove(user)
+		H.legacy_equip_to_slot(src, target, TRUE)
+		equipped(user, target)
+		update_wear_icon(TRUE)
+		screen_loc = H.find_inv_position(target)
+		layer = ABOVE_HUD_LAYER
+		plane = ABOVE_HUD_PLANE
+		if(H.client)
+			H.client.screen |= src
+		if(action_button_name)
+			H.update_action_buttons()
+		if(H.get_holding_hand(src))
+			add_hud_actions(H)
+
+
+
+
+
+
+
+
+		/*
 		switch(Hand.slot_id)
 			if(slot_r_hand)
 				H.put_in_r_hand(src)
 			if(slot_l_hand)
 				H.put_in_l_hand(src)
 		src.add_fingerprint(usr)
+		*/
 		return TRUE

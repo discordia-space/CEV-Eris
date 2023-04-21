@@ -1,0 +1,5 @@
+author: koghs
+delete-after: true
+changes:
+  - bugfix: added missing energy guns to pistol holsters
+  - bugfix: made wasp revolver spawn with correct mag

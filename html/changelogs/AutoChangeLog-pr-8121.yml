@@ -1,0 +1,5 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - balance: Cyborgs  no longer get a 1.25 tally movespeed debuff, and are more on
+      par with human movement speeds , but still with a 0.25 tally debuff.
