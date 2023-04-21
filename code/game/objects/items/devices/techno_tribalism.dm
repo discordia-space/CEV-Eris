@@ -59,7 +59,7 @@
 	)
 	if(items_count < max_count)
 		if(W in GLOB.all_faction_items)
-			to_chat(user, "Inserting the departamental relic decreases the [src]'s delay by 2 minutes!")
+			to_chat(user, "Inserting the departmental relic decreases the [src]'s delay by 2 minutes!")
 			cooldown -= 2 MINUTES
 			if(GLOB.all_faction_items[W] == GLOB.department_moebius)
 				oddity_stats[STAT_COG] += 3
