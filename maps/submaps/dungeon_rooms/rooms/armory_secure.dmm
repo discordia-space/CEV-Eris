@@ -76,15 +76,16 @@
 /obj/spawner/gun/energy_cheap,
 /obj/spawner/gun/shotgun,
 /obj/spawner/contraband,
-/obj/spawner/gun/onestar/low_chance,
+/obj/spawner/gun/onestar,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "q" = (
 /obj/structure/table/rack,
 /obj/spawner/gun/normal,
-/obj/spawner/gun/normal,
 /obj/spawner/gun/normal/low_chance,
 /obj/spawner/gun/shotgun,
+/obj/spawner/gun/onestar,
+/obj/spawner/gun/onestar,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "s" = (
@@ -92,6 +93,19 @@
 	dir = 1
 	},
 /turf/simulated/floor/plating/under,
+/area/crawler)
+"A" = (
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"F" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/machinery/light/built{
+	dir = 4
+	},
+/mob/living/carbon/superior_animal/stalker/dual,
+/turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 
 (1,1,1) = {"
@@ -118,13 +132,13 @@ a
 "}
 (3,1,1) = {"
 a
-c
+A
 e
 i
 i
 i
 s
-c
+A
 a
 "}
 (4,1,1) = {"
@@ -140,20 +154,20 @@ a
 "}
 (5,1,1) = {"
 a
-c
+A
 e
 i
 i
 i
 s
-c
+A
 b
 "}
 (6,1,1) = {"
 b
 c
 a
-j
+F
 l
 j
 a

@@ -7,8 +7,8 @@
 /area/deepmaint)
 "c" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/deepmaint)
@@ -76,6 +76,7 @@
 /obj/spawner/pack/rare/low_chance,
 /obj/spawner/pack/rare/low_chance,
 /obj/spawner/pack/rare/low_chance,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/floor/tiled/steel,
 /area/deepmaint)
 "n" = (
