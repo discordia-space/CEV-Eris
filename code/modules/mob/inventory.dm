@@ -139,10 +139,11 @@
 	O.layer = initial(O.layer)
 	O.set_plane(initial(O.plane))
 	O.screen_loc = null
-	if(istype(O, /obj/item) && drop)
+	if(isitem(O))
 		var/obj/item/I = O
-		I.forceMove(get_turf(src), MOVED_DROP)
 		I.dropped(src)
+		if(drop && !QDELING(O))
+			I.forceMove(get_turf(src), MOVED_DROP)
 	return TRUE
 
 

@@ -152,7 +152,7 @@
 			return FALSE
 		if(!H.can_equip(src, target, FALSE, FALSE, FALSE))
 			return FALSE
-		H.remove_from_mob(src, drop = FALSE)
+		H.remove_from_mob(src, FALSE)
 		/*
 			Copied from human equip_to_slot
 			Separate since its needed to prevent double-signals being sent
