@@ -59,7 +59,6 @@
 	name = "wristshank"
 	desc = "A stubby blade deployed from your wrist. Get shanking."
 	icon = 'icons/obj/surgery.dmi'
-	icon_state = "armknife"
 	worksound = WORKSOUND_HARD_SLASH
 	force = WEAPON_FORCE_DANGEROUS
 	throwforce = WEAPON_FORCE_WEAK
