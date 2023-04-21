@@ -5486,19 +5486,6 @@
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source/industrial_arena)
-"Dz" = (
-/obj/structure/table/holo_woodentable,
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "West APC";
-	pixel_x = -28
-	},
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source/texas)
 "DE" = (
 /obj/item/stool/holostool,
 /obj/effect/floor_decal/industrial/danger{
@@ -5708,14 +5695,6 @@
 	},
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/wireframe)
-"Gj" = (
-/obj/structure/table/bar_special,
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/holofloor/tiled/bar_light,
-/area/holodeck/source/spacebar)
 "Go" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
@@ -6514,19 +6493,6 @@
 	icon_state = "floor4"
 	},
 /area/skipjack_station/start)
-"PN" = (
-/obj/structure/table/bar_special,
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "West APC";
-	pixel_x = -28
-	},
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/holofloor/tiled/bar_light,
-/area/space)
 "PS" = (
 /obj/item/tank/nitrogen,
 /turf/unsimulated/floor{
@@ -40785,7 +40751,7 @@ Fp
 Pl
 Cq
 Pl
-Dz
+Fp
 Pl
 Pl
 Pl
@@ -44219,7 +44185,7 @@ Fy
 OI
 Gw
 CD
-Gj
+Fy
 Gw
 Gw
 Gw
@@ -44235,7 +44201,7 @@ vz
 Yd
 rh
 Xz
-PN
+vz
 rh
 rh
 rh
