@@ -1,5 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Fixed infinite material duping exploit using smelters to get fractional
-      sheets.
