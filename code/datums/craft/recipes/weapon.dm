@@ -220,9 +220,9 @@
 		list(QUALITY_ADHESIVE, 10, "time" = 5)
 	)
 
-/datum/craft_recipe/weapon/armknife
+/datum/craft_recipe/weapon/wristshank
 	name = "wristshank"
-	result = /obj/item/organ_module/active/simple/shanker
+	result = /obj/item/organ_module/active/simple/wristshank
 	steps = list(
 		list(CRAFT_MATERIAL, 8, MATERIAL_STEEL, "time" = 10),
 		list(QUALITY_WELDING, 10, "time" = 30),

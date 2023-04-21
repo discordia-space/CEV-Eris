@@ -53,8 +53,8 @@
 	..()
 	playsound(H.loc, 'sound/weapons/saberoff.ogg', 50, 1)
 
-/obj/item/tool/armblade/shanker
-	icon_state = "armknife"
+/obj/item/tool/armblade/wristshank
+	icon_state = "wristshank"
 	item_state = null
 	name = "wristshank"
 	desc = "A stubby blade deployed from your wrist. Get shanking."
@@ -68,11 +68,11 @@
 	tool_qualities = list(QUALITY_CUTTING = 20)
 	hitsound = 'sound/weapons/melee/lightstab.ogg'
 
-/obj/item/organ_module/active/simple/shanker
-	name = "embedded armknife"
+/obj/item/organ_module/active/simple/wristshank
+	name = "embedded wristshank"
 	desc = "A stubby blade designed to be inserted into a wrist. Gives you a nice advantage in a brawl."
-	verb_name = "Deploy armknife"
-	icon_state = "armknife"
+	verb_name = "Deploy wristshank"
+	icon_state = "wristshank"
 	matter = list(MATERIAL_STEEL = 8)
 	allowed_organs = list(BP_R_ARM, BP_L_ARM)
-	holding_type = /obj/item/tool/armblade/shanker
+	holding_type = /obj/item/tool/armblade/wristshank
