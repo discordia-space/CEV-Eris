@@ -1939,7 +1939,7 @@
 		)
 
 	prices = list(
-		/obj/item/gym_ticket = 50,
+		/obj/item/gym_ticket = 200,
 		/obj/item/tool/hammer/dumbbell = 90,
 		/obj/item/reagent_containers/food/drinks/protein_shake = 150,//a total ripoff
 		/obj/item/reagent_containers/food/drinks/energy = 200,
