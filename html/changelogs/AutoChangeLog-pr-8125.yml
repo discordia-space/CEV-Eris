@@ -1,0 +1,6 @@
+author: Mycah142
+delete-after: true
+changes:
+  - rscadd: Added EFTPOS to Service Gripper list
+  - rscadd: Added pen, stamp, package wrap, destination tagger, and small parcels
+      to Clerical Gripper
