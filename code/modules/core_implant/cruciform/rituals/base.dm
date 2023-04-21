@@ -382,8 +382,8 @@
 		return FALSE
 
 /datum/ritual/cruciform/base/escape
-	name = "Slumber"
-	phrase = "Dormis, cucumi"
+	name = "Escape" //Probably need a better name
+	phrase = "Excedere mundum a tergo et ascendere in caelum"
 	desc = "This litany will command your cruciform to detach, killing you in the process. Others will be able to use it in scanner for Resurrection."
 	ignore_stuttering = TRUE
 
