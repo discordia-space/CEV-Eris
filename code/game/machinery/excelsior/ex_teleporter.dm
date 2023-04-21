@@ -351,7 +351,7 @@ var/global/excelsior_last_draft = 0
 		to_chat(user, SPAN_WARNING("Not enough energy."))
 		return
 	if(world.time < (excelsior_last_draft + reinforcements_delay))
-		to_chat(user, SPAN_WARNING("You can call only one conscript for [reinforcements_delay/MINUTES] minutes."))
+		to_chat(user, SPAN_WARNING("You can call only one conscript for [reinforcements_delay / 600] minutes."))
 		return
 	if(excelsior_conscripts <= 0)
 		to_chat(user, SPAN_WARNING("They have nobody to send to you."))
