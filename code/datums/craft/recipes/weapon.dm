@@ -220,6 +220,18 @@
 		list(QUALITY_ADHESIVE, 10, "time" = 5)
 	)
 
+/datum/craft_recipe/weapon/armknife
+	name = "Wrist Shank"
+	result = /obj/item/organ_module/active/simple/shanker
+	steps = list(
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL, "time" = 10),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(QUALITY_HAMMERING, 5, 10),
+		list(/obj/item/stack/cable_coil, 2, "time" = 10),
+		list(QUALITY_SCREW_DRIVING, 10),
+		list(QUALITY_ADHESIVE, 15, 70)
+	)
+
 /datum/craft_recipe/weapon/glass_spear
 	name = "glass spear"
 	result = /obj/item/tool/spear

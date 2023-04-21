@@ -52,3 +52,29 @@
 /obj/item/organ_module/active/simple/armblade/energy_blade/retract(mob/living/carbon/human/H, obj/item/organ/external/E)
 	..()
 	playsound(H.loc, 'sound/weapons/saberoff.ogg', 50, 1)
+
+/obj/item/tool/armblade/shanker
+	icon_state = "armknife"
+	item_state = null
+	name = "wristshank"
+	desc = "A stubby blade deployed from your wrist. Get shanking."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "armknife"
+	worksound = WORKSOUND_HARD_SLASH
+	force = WEAPON_FORCE_DANGEROUS
+	throwforce = WEAPON_FORCE_WEAK
+	w_class = ITEM_SIZE_SMALL
+	attack_verb = list("shanked", "slashed", "gored")
+	armor_divisor = ARMOR_PEN_MODERATE
+	tool_qualities = list(QUALITY_CUTTING = 20)
+	hitsound = 'sound/weapons/melee/lightstab.ogg'
+	bad_type = /obj/item/tool/armblade
+
+/obj/item/organ_module/active/simple/shanker
+	name = "embedded armknife"
+	desc = "A stubby blade designed to be inserted into a wrist. Gives you a nice advantage in a brawl."
+	verb_name = "Deploy armknife"
+	icon_state = "armknife"
+	matter = list(MATERIAL_STEEL = 8)
+	allowed_organs = list(BP_R_ARM, BP_L_ARM)
+	holding_type = /obj/item/tool/armblade/shanker
