@@ -67,7 +67,6 @@
 	armor_divisor = ARMOR_PEN_MODERATE
 	tool_qualities = list(QUALITY_CUTTING = 20)
 	hitsound = 'sound/weapons/melee/lightstab.ogg'
-	bad_type = /obj/item/tool/armblade
 
 /obj/item/organ_module/active/simple/shanker
 	name = "embedded armknife"
