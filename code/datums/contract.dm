@@ -346,7 +346,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 			to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy, [E.time2minutes(E.mandate_increase)] minutes have been added to the detection countdown timer.)"))
 		else
 			to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy)"))
-	
+
 	for (var/obj/machinery/complant_teleporter/t in excelsior_teleporters)
 		t.update_nano_data()
 
@@ -377,7 +377,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	reward = 1200
 	var/datum/mind/target_mind
 	var/cruciform_check = FALSE
-	var/desc_text = "by stuffing them alive in the teleporter" // Text for the end of desc, a bit hacky
+	var/desc_text = "by stuffing them alive in the teleporter. We will provide reinforcements for the completion of this objective." // Text for the end of desc, a bit hacky
 	var/command_bias = 15 //Bonus chance for targeting heads and IH
 
 /datum/antag_contract/excel/targeted/New()

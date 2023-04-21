@@ -25,7 +25,7 @@ var/global/excelsior_last_draft = 0
 	var/mob/current_user
 	var/time_until_scan
 
-	var/reinforcements_delay = 20 MINUTES
+	var/reinforcements_delay = 5 MINUTES
 	var/reinforcements_cost = 2000
 
 	var/list/nanoui_data = list()			// Additional data for NanoUI use
@@ -351,7 +351,7 @@ var/global/excelsior_last_draft = 0
 		to_chat(user, SPAN_WARNING("Not enough energy."))
 		return
 	if(world.time < (excelsior_last_draft + reinforcements_delay))
-		to_chat(user, SPAN_WARNING("You can call only one conscript for 20 minutes."))
+		to_chat(user, SPAN_WARNING("You can call only one conscript for [reinforcements_delay / 600] minutes."))
 		return
 	if(excelsior_conscripts <= 0)
 		to_chat(user, SPAN_WARNING("They have nobody to send to you."))
@@ -373,12 +373,16 @@ var/global/excelsior_last_draft = 0
 	var/mob/living/carbon/human/conscript = new /mob/living/carbon/human(loc)
 	conscript.ckey = candidate.ckey
 	make_antagonist(conscript.mind, ROLE_EXCELSIOR_REV)
-	conscript.stats.setStat(STAT_TGH, 10)
-	conscript.stats.setStat(STAT_VIG, 10)
+	conscript.stats.setStat(STAT_TGH, 30)
+	conscript.stats.setStat(STAT_VIG, 30)
+	conscript.stats.setStat(STAT_ROB, 30)
+	conscript.stats.setStat(STAT_MEC, 10)
+	conscript.stats.setStat(STAT_BIO, 10)
 	conscript.equip_to_appropriate_slot(new /obj/item/clothing/under/excelsior())
 	conscript.equip_to_appropriate_slot(new /obj/item/clothing/shoes/workboots())
 	conscript.equip_to_appropriate_slot(new /obj/item/device/radio/headset())
 	conscript.equip_to_appropriate_slot(new /obj/item/storage/backpack/satchel())
+	conscript.equip_to_appropriate_slot(new /obj/item/melee/baton/excelbaton())
 	var/obj/item/card/id/card = new(conscript)
 	conscript.set_id_info(card)
 	card.assignment = "Excelsior Conscript"
