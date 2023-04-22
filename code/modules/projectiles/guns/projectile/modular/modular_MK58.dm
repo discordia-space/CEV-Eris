@@ -10,7 +10,8 @@
 	load_method = MAGAZINE // So far not modular
 	magazine_type = /obj/item/ammo_magazine/pistol // Default magazine, only relevant for spawned pistols, not crafted or printed ones
 	matter = list(MATERIAL_PLASTEEL = 5)
-	price_tag = 400
+	price_tag = 600
+	damage_multiplier = 1.3
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	can_dual = TRUE
 	magazine_type = /obj/item/ammo_magazine/pistol
