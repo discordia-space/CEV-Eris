@@ -1,5 +1,5 @@
 /obj/item/gun/projectile/automatic/modular/mk58 // Parent type
-	name = "\"Mk-58\""
+	name = "\"Mk58\""
 	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, that was produced by a NanoTrasen subsidiary. Uses standard .35 and high capacity magazines."
 	icon = 'icons/obj/guns/projectile/modular/mk58.dmi'
 	icon_state = "frame" // frame_gray, frame_black, frame_tan
