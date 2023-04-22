@@ -18,14 +18,13 @@
 
 	return null//If we get here, the holder must be buried many layers deep in nested containers, or else is somehow contained in nullspace
 
-/atom/proc/in_inventory()
+/atom/proc/is_inside(A)
 	var/atom/L = loc
-	while(isobj(L))
+	while(!istype(L, A))
 		L = L.loc
-	if(ismob(L))
-		return TRUE
-	else
-		return FALSE
+		if(isturf(L))
+			return FALSE
+	return TRUE
 
 /atom/proc/add_overlay(overlay)
 	ASSERT(overlay)
