@@ -32,15 +32,15 @@
 	if(grip_type)
 		switch(grip_type)
 			if("wood")
-				return "NT HG [caliber] \"Mk58 C\""
+				return "NT HG [caliber] \"Mk58 C\"" //civillian
 			if("black")
-				return "NT HG [caliber] \"Mk58 B\""
+				return "NT HG [caliber] \"Mk58 S\"" //security
 			if("rubber")
-				return "NT HG [caliber] \"Mk58 R\""
+				return "NT HG [caliber] \"Mk58 T\"" //tactical
 			if("excelsior")
-				return "NT HG [caliber] \"Mk58 M\""
+				return "NT HG [caliber] \"Mk58 M\"" //military
 			if("serbian")
-				return "SA HG [caliber] \"Mk58\""
+				return "NT HG [caliber] \"Mk58 SA\"" //serbian arms
 			if("makeshift")
 				return "HM HG [caliber] \"Mk58\""
 	else
@@ -56,6 +56,10 @@
 
 /obj/item/gun/projectile/automatic/modular/mk58/tan // Frame
 	icon_state = "frame_tan"
+	spawn_blacklisted = FALSE // Spawns in gun part loot
+
+/obj/item/gun/projectile/automatic/modular/mk58/alternate // Frame
+	icon_state = "frame_altgray"
 	spawn_blacklisted = FALSE // Spawns in gun part loot
 
 /obj/item/gun/projectile/automatic/modular/mk58/gray/stock
