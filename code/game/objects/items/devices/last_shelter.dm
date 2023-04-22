@@ -80,7 +80,7 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 			else
 				cruciforms_temporary -= picked
 				continue
-		return
+		return FALSE
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
 	for(var/stat in ALL_STATS)
 		H.stats.changeStat(stat, rand(STAT_LEVEL_ADEPT, STAT_LEVEL_PROF))
