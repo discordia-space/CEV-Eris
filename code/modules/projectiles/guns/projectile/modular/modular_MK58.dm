@@ -32,19 +32,19 @@
 	if(grip_type)
 		switch(grip_type)
 			if("wood")
-				return "NT HG [caliber] \"Mk-58 C\""
+				return "NT HG [caliber] \"Mk58 C\""
 			if("black")
-				return "NT HG [caliber] \"Mk-58 B\""
+				return "NT HG [caliber] \"Mk58 B\""
 			if("rubber")
-				return "NT HG [caliber] \"Mk-58 a\""
+				return "NT HG [caliber] \"Mk58 R\""
 			if("excelsior")
-				return "NT HG [caliber] \"Mk-58 M\""
+				return "NT HG [caliber] \"Mk58 M\""
 			if("serbian")
-				return "NT HG [caliber] \"Mk-58 T\""
+				return "SA HG [caliber] \"Mk58\""
 			if("makeshift")
-				return "NT HG [caliber] \"Mk-58 m\""
+				return "HM HG [caliber] \"Mk58\""
 	else
-		return "NT [caliber] \"Mk-58\""
+		return "NT [caliber] \"Mk58\""
 
 /obj/item/gun/projectile/automatic/modular/mk58/gray // Frame
 	icon_state = "frame_gray"
@@ -69,3 +69,8 @@
 /obj/item/gun/projectile/automatic/modular/mk58/black/army
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/excel)
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
+
+/obj/item/gun/projectile/automatic/modular/mk58/tan/army
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/excel)
+	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
+
