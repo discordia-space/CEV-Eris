@@ -75,7 +75,7 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 		var/list/cruciforms_temporary = lost_cruciforms.Copy()
 		while(cruciforms_temporary.len)
 			var/obj/item/implant/core_implant/picked = pick(cruciforms_temporary)
-			if(!ishuman(picked.loc))
+			if(!picked.in_inventory())
 				return picked
 			else
 				cruciforms_temporary -= picked
