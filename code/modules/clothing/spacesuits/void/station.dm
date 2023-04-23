@@ -422,7 +422,7 @@
 	siemens_coefficient = 0.8
 	helmet = /obj/item/clothing/head/space/void/riggedvoidsuit
 	spawn_blacklisted = TRUE
-	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
+	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS|STOPPRESSUREDAMAGE|THICKMATERIAL|COVER_PREVENT_MANIPULATION
 	var/obj/item/storage/internal/pockets
 
 /obj/item/clothing/suit/space/void/riggedvoidsuit/New()
