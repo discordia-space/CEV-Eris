@@ -210,12 +210,6 @@
 		fail("[H] must lie on the altar.", user, C)
 		return FALSE
 
-	for(var/obj/item/clothing/CL in H)
-		if(H.l_hand == CL || H.r_hand == CL)
-			continue
-		fail("[H] must be undressed.", user, C)
-		return FALSE
-
 
 
 	if(!CU.install(H, CI) || CU.wearer != H)
@@ -346,12 +340,6 @@
 
 	if(isanimal(H) || isslime(H) || issuperioranimal(H) || H.get_species() == "Monkey")
 		fail("The lesser creatures are unworthy.", user, C)
-		return FALSE
-
-	for(var/obj/item/clothing/CL in H)
-		if(H.l_hand == CL || H.r_hand == CL)
-			continue
-		fail("[H] must be undressed.", user, C)
 		return FALSE
 
 
