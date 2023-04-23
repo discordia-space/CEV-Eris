@@ -36,7 +36,7 @@
 			if("black")
 				return "NT HG [caliber] \"Mk58 S\"" //security
 			if("rubber")
-				return "NT HG [caliber] \"Mk58 T\"" //tactical
+				return "NT HG [caliber] \"Mk58 T\"" //tacticool
 			if("excelsior")
 				return "NT HG [caliber] \"Mk58 M\"" //military
 			if("serbian")
