@@ -21,6 +21,8 @@
 /atom/proc/is_inside(LIST)
 	var/atom/A = loc
 	while(!is_type_in_list(A, LIST))
+		if(isnull(A))
+			return null
 		A = A.loc
 		if(isturf(A))
 			return FALSE
