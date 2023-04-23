@@ -27810,20 +27810,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
-"bnK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck4central)
 "bnL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -46669,6 +46655,16 @@
 /obj/item/modular_computer/console/preset/security/records,
 /turf/simulated/floor/wood,
 /area/eris/command/fo)
+"chd" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/button/remote/blast_door{
+	id = "maint_hatch_cargo_bay";
+	name = "Maintenance Hatch Control";
+	pixel_x = -24;
+	req_access = null
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/quartermaster/storage)
 "che" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -46693,6 +46689,20 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/eris/command/captain)
+"chh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck4central)
 "chi" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
@@ -106662,14 +106672,10 @@
 	dir = 1
 	},
 /obj/machinery/light,
-/obj/structure/cable/green{
-	d1 = 16;
-	d2 = 0;
-	icon_state = "16-0"
-	},
 /obj/machinery/power/apc/super{
 	pixel_y = -28
 	},
+/obj/structure/cable/green,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/crew_quarters/clubmanager)
 "tpd" = (
@@ -107440,16 +107446,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/medbay/uppercor)
-"vjw" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/machinery/button/remote/blast_door{
-	id = "maint_hatch_cargo_bay";
-	name = "Maintenance Hatch Control";
-	pixel_x = -24;
-	req_access = null
-	},
-/turf/simulated/floor/tiled/steel,
-/area/eris/quartermaster/storage)
 "vkt" = (
 /obj/machinery/door/window/eastright{
 	name = "Research Desk";
@@ -171585,7 +171581,7 @@ bbk
 bex
 cqQ
 bbk
-bnK
+chh
 cAj
 cCa
 cgO
@@ -171989,7 +171985,7 @@ abF
 bbk
 cgQ
 csN
-bnK
+chh
 bZy
 dqD
 cgO
@@ -172594,7 +172590,7 @@ abF
 abF
 bbk
 dqD
-bnK
+chh
 bZy
 bZy
 chZ
@@ -172997,7 +172993,7 @@ aad
 bVX
 cam
 cgO
-vjw
+chd
 chj
 bgH
 chN
