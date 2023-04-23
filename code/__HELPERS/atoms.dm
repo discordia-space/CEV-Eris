@@ -18,11 +18,11 @@
 
 	return null//If we get here, the holder must be buried many layers deep in nested containers, or else is somehow contained in nullspace
 
-/atom/proc/is_inside(A)
-	var/atom/L = loc
-	while(!istype(L, A))
-		L = L.loc
-		if(isturf(L))
+/atom/proc/is_inside(LIST)
+	var/atom/A = loc
+	while(!is_type_in_list(A, LIST))
+		A = A.loc
+		if(isturf(A))
 			return FALSE
 	return TRUE
 

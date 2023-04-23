@@ -1,5 +1,15 @@
 GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 
+//can't get cruciform from inside one of these
+var/list/shelter_blacklist = list(
+	/mob,
+	/obj/machinery/neotheology/reader,
+	/obj/item/storage/bsdm,
+	/obj/machinery/recycle_vendor,
+	/obj/machinery/smelter,
+	/obj/machinery/r_n_d/destructive_analyzer
+	)
+
 /obj/item/device/last_shelter
 	name = "Last Shelter"
 	desc = "Powerful scanner that can teleport a cruciforms of pilgrims lost in this sector of space."
@@ -75,11 +85,11 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 		var/list/cruciforms_temporary = lost_cruciforms.Copy()
 		while(cruciforms_temporary.len)
 			var/obj/item/implant/core_implant/picked = pick(cruciforms_temporary)
-			if(!picked.is_inside(/mob) && !picked.is_inside(/obj/machinery))
-				return picked
-			else
+			if(picked.is_inside(shelter_blacklist))
 				cruciforms_temporary -= picked
 				continue
+			else
+				return picked
 		return FALSE
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
 	for(var/stat in ALL_STATS)
