@@ -63,14 +63,17 @@ SUBSYSTEM_DEF(chunks)
 	if(coordinates[4] > world.maxy)
 		coordinates[4] = world.maxy
 	var/datum/chunk/chunkReference
+	var/turf/containerTurf = get_turf(container)
+	if(containerTurf == null)
+		return returnValue
 	for(var/chunkX = coordinates[1], chunkX <= coordinates[3], chunkX += CHUNK_SIZE)
 		for(var/chunkY = coordinates[2], chunkY <= coordinates[4], chunkY += CHUNK_SIZE)
 			chunkReference = SSchunks.chunk_list_by_zlevel[container.z][CHUNKID(chunkX, chunkY)]
 			for(var/mob/mobToCheck as anything in chunkReference.mobs)
-				if(get_dist_euclidian(get_turf(source), get_turf(mobToCheck)) < range)
+				if(get_dist_euclidian(containerTurf, get_turf(mobToCheck)) < range)
 					if(aliveonly && mobToCheck.stat == DEAD)
 						continue
-					if(canseeonly && !can_see(get_turf(container), get_turf(mobToCheck), range * 2))
+					if(canseeonly && !can_see(containerTurf, get_turf(mobToCheck), range * 2))
 						continue
 					returnValue += mobToCheck
 	return returnValue
@@ -92,11 +95,15 @@ SUBSYSTEM_DEF(chunks)
 	if(coordinates[4] > world.maxy)
 		coordinates[4] = world.maxy
 	var/datum/chunk/chunkReference
+	var/turf/containerTurf = get_turf(container)
+	if(containerTurf == null)
+		return returnValue
 	for(var/chunkX = coordinates[1], chunkX <= coordinates[3], chunkX += CHUNK_SIZE)
 		for(var/chunkY = coordinates[2], chunkY <= coordinates[4], chunkY += CHUNK_SIZE)
 			chunkReference = SSchunks.chunk_list_by_zlevel[container.z][CHUNKID(chunkX, chunkY)]
 			for(var/obj/hearerToCheck as anything in chunkReference.hearers)
-				if(get_dist_euclidian(get_turf(source), get_turf(hearerToCheck)) < range)
+
+				if(get_dist_euclidian(containerTurf, get_turf(hearerToCheck)) < range)
 					if(!can_see(source, get_turf(hearerToCheck), range * 2))
 						continue
 					returnValue += hearerToCheck
