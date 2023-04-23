@@ -27810,6 +27810,20 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
+"bnK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck4central)
 "bnL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -46679,20 +46693,6 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/eris/command/captain)
-"chh" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck4central)
 "chi" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
@@ -106668,8 +106668,7 @@
 	icon_state = "16-0"
 	},
 /obj/machinery/power/apc/super{
-	pixel_y = 28;
-	dir = 1
+	pixel_y = -28
 	},
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/crew_quarters/clubmanager)
@@ -171586,7 +171585,7 @@ bbk
 bex
 cqQ
 bbk
-chh
+bnK
 cAj
 cCa
 cgO
@@ -171990,7 +171989,7 @@ abF
 bbk
 cgQ
 csN
-chh
+bnK
 bZy
 dqD
 cgO
@@ -172595,7 +172594,7 @@ abF
 abF
 bbk
 dqD
-chh
+bnK
 bZy
 bZy
 chZ
