@@ -126,6 +126,10 @@
 	//This approach is future proof and will support people who possibly have >2 hands
 	var/obj/item/prev_held = get_active_hand()
 
+	if(prev_held)
+		if(prev_held.wielded)
+			prev_held.unwield(src)
+
 	//Now we do the hand swapping
 	src.hand = !( src.hand )
 	for (var/obj/screen/inventory/hand/H in src.HUDinventory)
