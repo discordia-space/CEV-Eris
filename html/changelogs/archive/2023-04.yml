@@ -152,3 +152,6 @@
   assortedbeads:
   - rscadd: Adds a wrist knife, implant it and shank people in the gut
   - imageadd: adds wrist knife icons
+2023-04-24:
+  assortedbeads:
+  - rscadd: Added flags to makeshift voidsuit to allow space walking
