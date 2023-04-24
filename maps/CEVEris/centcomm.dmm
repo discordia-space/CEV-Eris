@@ -589,15 +589,12 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/centcom/evac)
 "dM" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "escape_pod_2_recovery";
-	pixel_x = 25;
-	pixel_y = 0;
-	req_one_access = list(13);
-	tag_door = "escape_pod_2_recovery_hatch"
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/structure/mirror/antag{
+	pixel_y = -28
 	},
-/turf/simulated/floor/tiled/dark/gray_platform,
+/turf/simulated/floor/carpet/bcarpet,
 /area/centcom/evac)
 "dP" = (
 /obj/structure/table/steel_reinforced,
@@ -690,6 +687,9 @@
 	pixel_y = 0
 	},
 /obj/structure/uplink/mercenary,
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
@@ -1913,16 +1913,16 @@
 	},
 /area/centcom/merc_base)
 "hK" = (
-/obj/structure/sign/double/map/left{
+/obj/structure/table/rack,
+/obj/structure/sign/faction/serbian{
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
-	icon_state = "cult";
-	name = "plating"
+	icon_state = "dark"
 	},
 /area/centcom/merc_base)
 "hL" = (
-/obj/structure/sign/double/map/right{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
@@ -2357,6 +2357,7 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
+/obj/item/toy/figure/serbian,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
@@ -2448,6 +2449,13 @@
 /obj/item/clothing/shoes/magboots/merc,
 /obj/item/clothing/shoes/magboots/merc,
 /obj/item/clothing/shoes/magboots/merc,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
@@ -2761,7 +2769,6 @@
 /area/centcom/merc_base)
 "kG" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/item/storage/box/phosphorous,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5195,13 +5202,16 @@
 	},
 /area/centcom/raider_base)
 "zt" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/obj/item/storage/box/phosphorous,
-/turf/unsimulated/floor{
-	icon_state = "plating";
-	name = "plating"
+/obj/structure/bed/chair{
+	dir = 4
 	},
-/area/centcom/merc_base)
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/mercenary)
 "zv" = (
 /obj/structure/table/rack,
 /obj/item/gun/energy/sniperrifle,
@@ -5759,10 +5769,12 @@
 /turf/simulated/floor/holofloor/tiled/bar_light,
 /area/space)
 "Ho" = (
-/obj/item/storage/box/phosphorous,
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
 /turf/unsimulated/floor{
-	dir = 2;
-	icon_state = "dark"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/merc_base)
 "Hs" = (
@@ -5825,6 +5837,8 @@
 /obj/item/storage/box/smokes,
 /obj/item/storage/box/smokes,
 /obj/item/storage/box/smokes,
+/obj/item/storage/box/phosphorous,
+/obj/item/storage/box/phosphorous,
 /obj/item/storage/box/phosphorous,
 /obj/item/storage/box/phosphorous,
 /obj/item/storage/box/phosphorous,
@@ -6334,6 +6348,9 @@
 	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
@@ -7027,6 +7044,17 @@
 /obj/structure/railing/holorailing,
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/industrial)
+"XJ" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	frequency = 1380;
+	id_tag = "escape_pod_2_recovery";
+	pixel_x = 25;
+	pixel_y = 0;
+	req_one_access = list(13);
+	tag_door = "escape_pod_2_recovery_hatch"
+	},
+/turf/simulated/floor/tiled/dark/golden,
+/area/centcom/evac)
 "XL" = (
 /obj/structure/table/standard,
 /obj/item/roller{
@@ -7145,6 +7173,9 @@
 "Zl" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/crate/sidearm,
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -17427,7 +17458,7 @@ cN
 hR
 cN
 hZ
-Ln
+dM
 ho
 aa
 aa
@@ -18229,9 +18260,9 @@ dn
 hZ
 hZ
 hZ
-dM
 dn
-cN
+dn
+XJ
 ho
 jy
 aa
@@ -29950,7 +29981,7 @@ iJ
 iJ
 iJ
 iq
-iU
+zt
 iU
 iU
 iJ
@@ -32569,7 +32600,7 @@ hf
 hf
 hf
 gZ
-hK
+hJ
 hp
 gN
 EM
@@ -32973,7 +33004,7 @@ hh
 hh
 hh
 gZ
-hJ
+Ho
 hp
 gN
 gN
@@ -33793,7 +33824,7 @@ jq
 jq
 jq
 jq
-Ho
+jq
 hf
 mO
 iB
@@ -33977,11 +34008,11 @@ hl
 hl
 hl
 hl
-Wf
-Wf
-Wf
-Wf
-Wf
+hl
+hl
+hl
+hl
+hl
 gZ
 gZ
 gZ
@@ -34792,16 +34823,16 @@ hl
 hl
 hl
 gZ
-SW
+hK
 MV
-JW
-nL
+TZ
+AW
+XP
 ty
+iX
+iX
 wf
-iX
-iX
-iX
-zt
+hf
 jq
 jq
 jG
@@ -35399,10 +35430,10 @@ hl
 hl
 gZ
 Zl
-AW
-TZ
+nL
+SW
 BP
-XP
+JW
 HQ
 iX
 iX
