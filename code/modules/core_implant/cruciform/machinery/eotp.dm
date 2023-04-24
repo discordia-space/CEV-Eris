@@ -56,6 +56,10 @@ var/global/obj/machinery/power/eotp/eotp
 	for(var/arm in arm_paths)
 		armaments += new arm
 
+/obj/machinery/power/eotp/Destroy()
+	. = ..()
+	eotp = null
+
 /obj/machinery/power/eotp/examine(user)
 	..()
 

@@ -115,3 +115,43 @@
   - code_imp: Added a new comsig signal , COMSIG_MOVABLE_ZCHANGED,  for when an movable
       atom is sent to another z-level.
   - bugfix: Fixed AI's not receiving a hud  when a ghost was dragged inside
+2023-04-22:
+  MLGTASTICa:
+  - balance: Gym tickets now cost 200 credits , up from 50 credits.
+  - bugfix: Fixed gun actions and click handlers sticking when using quick-equip.
+  - rscadd: Added a .35 pistol ammo recipe to the moebius self-defense research.
+  - balance: Cyborgs  no longer get a 1.25 tally movespeed debuff, and are more on
+      par with human movement speeds , but still with a 0.25 tally debuff.
+  - rscadd: Added carbon pills to the anti-toxin kit and NT medkit,
+  - rscadd: Added a new pill bottle , carbon pill bottle.
+  - balance: Remote observation is now a T4 mutation, from T2 , and now also gives
+      20 NSA.
+  - balance: Meson Optical Scanners no longer provide any flash protection.(from maximum
+      protection to 0)
+  Mycah142:
+  - rscadd: Added EFTPOS to Service Gripper list
+  - rscadd: Added pen, stamp, package wrap, destination tagger, and small parcels
+      to Clerical Gripper
+  TheLeopold:
+  - rscadd: 'Added new litany: Rejection'
+  - rscadd: 'Added new acolyte''s litany: Search'
+  ToasterBiome:
+  - bugfix: fixes wire splicing not looking around them for valid spawn positions
+  ValoTheValo:
+  - rscadd: new loot skeletons to deepmaint
+  - balance: onestar turret room now has onestar loot, serbian mercenaries get a bojevic
+      crate
+  - bugfix: scrap beanbags bad type, onestar window explosions
+  - code_imp: added more functionality to corpse spawner
+  assortedbeads:
+  - tweak: Makeshift voidsuit has 3 pockets like Scav Armor now
+  koghs:
+  - bugfix: added missing energy guns to pistol holsters
+  - bugfix: made wasp revolver spawn with correct mag
+2023-04-23:
+  assortedbeads:
+  - rscadd: Adds a wrist knife, implant it and shank people in the gut
+  - imageadd: adds wrist knife icons
+2023-04-24:
+  assortedbeads:
+  - rscadd: Added flags to makeshift voidsuit to allow space walking

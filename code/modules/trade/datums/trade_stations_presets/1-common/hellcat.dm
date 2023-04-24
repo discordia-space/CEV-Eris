@@ -57,7 +57,7 @@
 			/obj/item/ammo_magazine/hpistol/rubber = custom_good_name("highcap magazine (.35 Auto rubber)"),
 			/obj/item/ammo_magazine/ammobox/shotgun = custom_good_name("ammunition box (.50 shells)"),
 			/obj/item/ammo_magazine/ammobox/shotgun/buckshot = custom_good_name("ammunition box (.50 pellet)"),
-			/obj/item/ammo_magazine/ammobox/shotgun/beanbags = custom_good_name("ammunition box (.50 beanbag)"),
+			/obj/item/ammo_magazine/ammobox/shotgun/beanbag = custom_good_name("ammunition box (.50 beanbag)"),
 			/obj/item/clothing/accessory/holster,
 			/obj/item/clothing/accessory/holster/scabbard,
 			/obj/item/clothing/accessory/holster/knife,

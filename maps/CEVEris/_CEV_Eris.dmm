@@ -714,10 +714,10 @@
 	name = "ammo crate";
 	req_access = list(63)
 	},
-/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
-/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
-/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
-/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
+/obj/item/ammo_magazine/ammobox/shotgun/beanbag,
+/obj/item/ammo_magazine/ammobox/shotgun/beanbag,
+/obj/item/ammo_magazine/ammobox/shotgun/beanbag,
+/obj/item/ammo_magazine/ammobox/shotgun/beanbag,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "abW" = (

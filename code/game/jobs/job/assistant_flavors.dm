@@ -214,3 +214,24 @@
 
 /datum/job_flavor/assistant/archimandrite
 	title = "Christian Era Vector \"Eris\" Archimandrite"
+
+/datum/job_flavor/assistant/prisoner
+	title = "Convict Exploitation Vehicle \"Eris\" Prisoner"
+
+/datum/job_flavor/assistant/guard
+	title = "Convict Exploitation Vehicle \"Eris\" Guard"
+
+/datum/job_flavor/assistant/warden
+	title = "Convict Exploitation Vehicle \"Eris\" Warden"
+
+/datum/job_flavor/assistant/smuggler
+	title = "Cargo Export Vehicle \"Eris\" Smuggler"
+
+/datum/job_flavor/assistant/salesman
+	title = "Cargo Export Vehicle \"Eris\" Salesman"
+
+/datum/job_flavor/assistant/stockmarket
+	title = "Capital Exchange Venue \"Eris\" Market Analyst"
+
+/datum/job_flavor/assistant/executive
+	title = "Capital Exchange Venue \"Eris\" Executive"
