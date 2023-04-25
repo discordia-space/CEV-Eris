@@ -69,20 +69,12 @@
 		return consumed_amount_human(M, alien,location) // Since humans should scale off livers , hearts and stomachs
 	var/removed = metabolism
 	if(location == CHEM_INGEST)
-		if(ingest_met)
-			removed = ingest_met
-		else
-			removed = removed/2
+		removed = ingest_met ? ingest_met : removed * 0.5
 	if(touch_met && (location == CHEM_TOUCH))
-		removed = touch_met
-	// on half of overdose, chemicals will start be metabolized faster,
-	// also blood circulation affects chemical strength (meaining if target has low blood volume or has something that lowers blood circulation chemicals will be consumed less and effect will diminished)
-	if(location == CHEM_BLOOD)
-		if(!constant_metabolism)
-			if(overdose)
-				removed = CLAMP(metabolism * volume/(overdose/2) * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
-			else
-				removed = CLAMP(metabolism * volume/(REAGENTS_OVERDOSE/2) * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
+		removed = touch_met ? touch_met : removed * 0.5
+	// The faster the blood circulation, the faster the reagents process. Blood volume affects blood circulation as well, leading to diminished effects.
+	if(!constant_metabolism && (location == CHEM_BLOOD || location == CHEM_INGEST))
+		removed = CLAMP(metabolism * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
 	removed = max(round(removed, 0.01), 0.01)
 	removed = min(removed, volume)
 
