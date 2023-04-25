@@ -85,7 +85,7 @@
 	dir = 4
 	},
 /obj/item/tool/sword/katana,
-/obj/item/remains,
+/obj/landmark/corpse/one_star,
 /turf/simulated/floor/tiled/derelict/white_red_edges/airless,
 /area/outpost/blacksite/small)
 "ds" = (
@@ -301,7 +301,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/item/remains/human,
+/obj/landmark/corpse/skeleton,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
 /area/outpost/blacksite/small)
 "pT" = (
@@ -323,8 +323,8 @@
 /turf/simulated/floor/tiled/derelict/red_white_edges/airless,
 /area/outpost/blacksite/small)
 "rw" = (
-/obj/item/remains/human,
 /obj/item/tool/knife/shiv,
+/obj/landmark/corpse/skeleton,
 /turf/simulated/floor/tiled/dark/brown_platform/airless,
 /area/outpost/blacksite/small)
 "rx" = (
@@ -618,6 +618,11 @@
 /obj/spawner/junk/low_chance,
 /turf/template_noop,
 /area/template_noop)
+"Fa" = (
+/obj/machinery/light/floor,
+/obj/landmark/corpse/skeleton,
+/turf/simulated/floor/wood/airless,
+/area/outpost/blacksite/small)
 "Fj" = (
 /obj/structure/window/basic,
 /obj/spawner/junk/low_chance,
@@ -805,7 +810,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/item/remains/human,
+/obj/landmark/corpse/skeleton,
 /turf/simulated/floor/tiled/derelict/white_big_edges/airless,
 /area/outpost/blacksite/small)
 "Pb" = (
@@ -3289,7 +3294,7 @@ CY
 oU
 jJ
 nI
-Ww
+Fa
 Ib
 Pm
 SA

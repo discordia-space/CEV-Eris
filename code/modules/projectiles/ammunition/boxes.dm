@@ -253,7 +253,7 @@
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
 
-/obj/item/ammo_magazine/ammobox/shotgun/beanbags
+/obj/item/ammo_magazine/ammobox/shotgun/beanbag
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	rarity_value = 10
 

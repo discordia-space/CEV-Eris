@@ -39,26 +39,26 @@
 /area/deepmaint)
 "ak" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall19";
-	icon_state = "escpodwall19"
+	icon_state = "escpodwall19";
+	tag = "icon-escpodwall19"
 	},
 /area/deepmaint)
 "al" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall20";
-	icon_state = "escpodwall20"
+	icon_state = "escpodwall20";
+	tag = "icon-escpodwall20"
 	},
 /area/deepmaint)
 "am" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall21";
-	icon_state = "escpodwall21"
+	icon_state = "escpodwall21";
+	tag = "icon-escpodwall21"
 	},
 /area/deepmaint)
 "an" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall22";
-	icon_state = "escpodwall22"
+	icon_state = "escpodwall22";
+	tag = "icon-escpodwall22"
 	},
 /area/deepmaint)
 "ao" = (
@@ -77,27 +77,27 @@
 /area/deepmaint)
 "aq" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall25";
-	icon_state = "escpodwall25"
+	icon_state = "escpodwall25";
+	tag = "icon-escpodwall25"
 	},
 /area/deepmaint)
 "ar" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall26";
-	icon_state = "escpodwall26"
+	icon_state = "escpodwall26";
+	tag = "icon-escpodwall26"
 	},
 /area/deepmaint)
 "as" = (
 /obj/structure/shuttle_part/escpod{
-	tag = "icon-escpodwall27";
-	icon_state = "escpodwall27"
+	icon_state = "escpodwall27";
+	tag = "icon-escpodwall27"
 	},
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/deepmaint)
 "at" = (
 /obj/structure/shuttle_part/escpod{
-	tag = "icon-escpodwall28";
-	icon_state = "escpodwall28"
+	icon_state = "escpodwall28";
+	tag = "icon-escpodwall28"
 	},
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/deepmaint)
@@ -116,8 +116,8 @@
 /area/deepmaint)
 "ay" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall16";
-	icon_state = "escpodwall16"
+	icon_state = "escpodwall16";
+	tag = "icon-escpodwall16"
 	},
 /area/deepmaint)
 "az" = (
@@ -162,20 +162,20 @@
 /area/deepmaint)
 "aE" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall29";
-	icon_state = "escpodwall29"
+	icon_state = "escpodwall29";
+	tag = "icon-escpodwall29"
 	},
 /area/deepmaint)
 "aF" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall17";
-	icon_state = "escpodwall17"
+	icon_state = "escpodwall17";
+	tag = "icon-escpodwall17"
 	},
 /area/deepmaint)
 "aG" = (
 /obj/structure/shuttle_part/escpod{
-	tag = "icon-escpodwall18";
-	icon_state = "escpodwall18"
+	icon_state = "escpodwall18";
+	tag = "icon-escpodwall18"
 	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/deepmaint)
@@ -191,57 +191,50 @@
 /obj/structure/girder,
 /obj/structure/barricade,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	icon_state = "cargofloor7";
+	tag = "icon-cargofloor7"
 	},
 /area/deepmaint)
 "aK" = (
 /obj/spawner/junk,
 /obj/spawner/junk,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	icon_state = "cargofloor7";
+	tag = "icon-cargofloor7"
 	},
 /area/deepmaint)
 "aL" = (
 /obj/spawner/junk,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	icon_state = "cargofloor7";
+	tag = "icon-cargofloor7"
 	},
 /area/deepmaint)
 "aM" = (
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	icon_state = "cargofloor7";
+	tag = "icon-cargofloor7"
 	},
 /area/deepmaint)
 "aN" = (
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/gun/normal,
-/obj/structure/closet/wall_mounted/emcloset{
-	pixel_y = 32
-	},
-/obj/structure/closet/wall_mounted/emcloset{
-	dir = 1;
-	pixel_y = -32
-	},
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
 /area/deepmaint)
 "aO" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall14";
-	icon_state = "escpodwall14"
+	icon_state = "escpodwall14";
+	tag = "icon-escpodwall14"
 	},
 /area/deepmaint)
 "aP" = (
 /obj/structure/shuttle_part/escpod{
-	tag = "icon-escpodwall15";
-	icon_state = "escpodwall15"
+	icon_state = "escpodwall15";
+	tag = "icon-escpodwall15"
 	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/deepmaint)
@@ -251,8 +244,8 @@
 /area/deepmaint)
 "aR" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall11";
-	icon_state = "escpodwall11"
+	icon_state = "escpodwall11";
+	tag = "icon-escpodwall11"
 	},
 /area/deepmaint)
 "aS" = (
@@ -261,9 +254,9 @@
 	pixel_x = -22
 	},
 /obj/structure/bed/chair/shuttle{
-	tag = "icon-shuttle_chair (NORTH)";
+	dir = 1;
 	icon_state = "shuttle_chair";
-	dir = 1
+	tag = "icon-shuttle_chair (NORTH)"
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
@@ -271,9 +264,9 @@
 /area/deepmaint)
 "aT" = (
 /obj/structure/bed/chair/shuttle{
-	tag = "icon-shuttle_chair (NORTH)";
+	dir = 1;
 	icon_state = "shuttle_chair";
-	dir = 1
+	tag = "icon-shuttle_chair (NORTH)"
 	},
 /obj/spawner/junk,
 /turf/simulated/shuttle/floor{
@@ -282,9 +275,9 @@
 /area/deepmaint)
 "aU" = (
 /obj/structure/bed/chair/shuttle{
-	tag = "icon-shuttle_chair (NORTH)";
+	dir = 1;
 	icon_state = "shuttle_chair";
-	dir = 1
+	tag = "icon-shuttle_chair (NORTH)"
 	},
 /obj/machinery/light,
 /obj/spawner/junk,
@@ -294,9 +287,9 @@
 /area/deepmaint)
 "aV" = (
 /obj/structure/bed/chair/shuttle{
-	tag = "icon-shuttle_chair (NORTH)";
+	dir = 1;
 	icon_state = "shuttle_chair";
-	dir = 1
+	tag = "icon-shuttle_chair (NORTH)"
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
@@ -318,14 +311,14 @@
 /area/deepmaint)
 "aY" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall12";
-	icon_state = "escpodwall12"
+	icon_state = "escpodwall12";
+	tag = "icon-escpodwall12"
 	},
 /area/deepmaint)
 "aZ" = (
 /obj/structure/shuttle_part/escpod{
-	tag = "icon-escpodwall13";
-	icon_state = "escpodwall13"
+	icon_state = "escpodwall13";
+	tag = "icon-escpodwall13"
 	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/deepmaint)
@@ -334,20 +327,20 @@
 /area/deepmaint)
 "bb" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall2";
-	icon_state = "escpodwall2"
+	icon_state = "escpodwall2";
+	tag = "icon-escpodwall2"
 	},
 /area/deepmaint)
 "bc" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall3";
-	icon_state = "escpodwall3"
+	icon_state = "escpodwall3";
+	tag = "icon-escpodwall3"
 	},
 /area/deepmaint)
 "bd" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall4";
-	icon_state = "escpodwall4"
+	icon_state = "escpodwall4";
+	tag = "icon-escpodwall4"
 	},
 /area/deepmaint)
 "be" = (
@@ -366,27 +359,27 @@
 /area/deepmaint)
 "bg" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall7";
-	icon_state = "escpodwall7"
+	icon_state = "escpodwall7";
+	tag = "icon-escpodwall7"
 	},
 /area/deepmaint)
 "bh" = (
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall8";
-	icon_state = "escpodwall8"
+	icon_state = "escpodwall8";
+	tag = "icon-escpodwall8"
 	},
 /area/deepmaint)
 "bi" = (
 /obj/structure/shuttle_part/escpod{
-	tag = "icon-escpodwall9";
-	icon_state = "escpodwall9"
+	icon_state = "escpodwall9";
+	tag = "icon-escpodwall9"
 	},
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/deepmaint)
 "bj" = (
 /obj/structure/shuttle_part/escpod{
-	tag = "icon-escpodwall10";
-	icon_state = "escpodwall10"
+	icon_state = "escpodwall10";
+	tag = "icon-escpodwall10"
 	},
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/deepmaint)
@@ -417,10 +410,10 @@
 /area/deepmaint)
 "bq" = (
 /obj/structure/computerframe{
-	tag = "icon-0 (WEST)";
-	icon_state = "0";
+	anchored = 1;
 	dir = 8;
-	anchored = 1
+	icon_state = "0";
+	tag = "icon-0 (WEST)"
 	},
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
@@ -476,9 +469,8 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
+/obj/landmark/corpse/skeleton/maint,
+/obj/spawner/pack/gun_loot,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 "bA" = (
@@ -491,11 +483,11 @@
 /area/deepmaint)
 "bC" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/cloth,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
+/obj/structure/bed/chair/shuttle,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
@@ -520,11 +512,10 @@
 "bF" = (
 /obj/structure/bed/chair/shuttle,
 /obj/effect/decal/cleanable/blood,
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/cloth,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
@@ -532,6 +523,7 @@
 "bG" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/oil,
+/obj/structure/bed/chair/shuttle,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
@@ -539,11 +531,10 @@
 "bH" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
+/obj/structure/bed/chair/shuttle,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
@@ -556,15 +547,15 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	icon_state = "cargofloor7";
+	tag = "icon-cargofloor7"
 	},
 /area/deepmaint)
 "bK" = (
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	icon_state = "cargofloor7";
+	tag = "icon-cargofloor7"
 	},
 /area/deepmaint)
 "bL" = (
@@ -573,20 +564,18 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	icon_state = "cargofloor7";
+	tag = "icon-cargofloor7"
 	},
 /area/deepmaint)
 "bM" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	icon_state = "cargofloor7";
+	tag = "icon-cargofloor7"
 	},
 /area/deepmaint)
 "bN" = (
@@ -596,24 +585,21 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	icon_state = "cargofloor7";
+	tag = "icon-cargofloor7"
 	},
 /area/deepmaint)
 "bO" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	icon_state = "cargofloor7";
+	tag = "icon-cargofloor7"
 	},
 /area/deepmaint)
 "bP" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/gun_loot,
 /obj/structure/closet/wall_mounted/emcloset{
@@ -623,16 +609,16 @@
 	dir = 1;
 	pixel_y = -32
 	},
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
 /area/deepmaint)
 "bQ" = (
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/gun_loot,
+/obj/effect/decal/cleanable/blood,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/deepmaint)
 "bR" = (
@@ -640,31 +626,30 @@
 	dir = 4;
 	pixel_x = -22
 	},
+/obj/effect/decal/cleanable/blood,
 /obj/structure/bed/chair/shuttle{
-	tag = "icon-shuttle_chair (NORTH)";
-	icon_state = "shuttle_chair";
 	dir = 1
 	},
-/obj/effect/decal/cleanable/blood,
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
 /area/deepmaint)
 "bS" = (
 /obj/effect/decal/cleanable/blood,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
 /area/deepmaint)
 "bT" = (
-/obj/structure/bed/chair/shuttle{
-	tag = "icon-shuttle_chair (NORTH)";
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
 /obj/machinery/light,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
@@ -673,6 +658,9 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
@@ -681,6 +669,9 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
@@ -706,6 +697,11 @@
 	},
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
+"nh" = (
+/obj/landmark/corpse/skeleton/maint,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/deepmaint)
 "tD" = (
 /obj/structure/table/standard,
 /obj/item/storage/toolbox/mechanical{
@@ -722,6 +718,24 @@
 "Oi" = (
 /obj/item/stool,
 /turf/simulated/floor/tiled/dark/panels,
+/area/deepmaint)
+"RW" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "cargofloor1"
+	},
+/area/deepmaint)
+"VW" = (
+/obj/landmark/corpse/skeleton,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 
 (1,1,1) = {"
@@ -776,7 +790,7 @@ ab
 af
 af
 ax
-ax
+nh
 ax
 af
 af
@@ -804,7 +818,7 @@ aR
 ba
 af
 bl
-bl
+VW
 bl
 af
 ak
@@ -825,7 +839,7 @@ az
 aK
 aS
 bb
-ah
+af
 bl
 bs
 bl
@@ -948,7 +962,7 @@ af
 aq
 bH
 bJ
-bH
+RW
 bg
 af
 ab

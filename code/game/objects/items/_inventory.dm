@@ -67,6 +67,7 @@
 		unwield(user)
 	SEND_SIGNAL_OLD(user, COMSIG_CLOTH_EQUIPPED, src) // Theres instances in which its usefull to keep track of it both on the user and individually
 	SEND_SIGNAL_OLD(src, COMSIG_CLOTH_EQUIPPED, user)
+	//SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, user.getContainingMovable())
 
 /obj/item/proc/dropped(mob/user)
 	if(zoom) //binoculars, scope, etc
@@ -145,13 +146,13 @@
 		//makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
 		//there's got to be a better way of doing this.
 		if(src.loc != H || H.incapacitated())
-			return
+			return FALSE
 
 		if(!H.canUnEquip(src))
-			return
+			return FALSE
 		if(!H.can_equip(src, target, FALSE, FALSE, FALSE))
-			return
-		H.remove_from_mob(src, drop = FALSE)
+			return FALSE
+		H.remove_from_mob(src, FALSE)
 		/*
 			Copied from human equip_to_slot
 			Separate since its needed to prevent double-signals being sent
@@ -171,20 +172,4 @@
 			H.update_action_buttons()
 		if(H.get_holding_hand(src))
 			add_hud_actions(H)
-
-
-
-
-
-
-
-
-		/*
-		switch(Hand.slot_id)
-			if(slot_r_hand)
-				H.put_in_r_hand(src)
-			if(slot_l_hand)
-				H.put_in_l_hand(src)
-		src.add_fingerprint(usr)
-		*/
-		return TRUE
+    return TRUE

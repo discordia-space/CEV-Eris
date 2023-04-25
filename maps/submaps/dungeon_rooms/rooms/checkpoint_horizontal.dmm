@@ -75,7 +75,6 @@
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "p" = (
-/obj/structure/low_wall/onestar,
 /obj/effect/window_lwall_spawn/smartspawn/onestar,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)

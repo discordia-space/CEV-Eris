@@ -63,7 +63,6 @@
 
 /obj/item/clothing/shoes/reinforced/ironhammer
 	icon_state = "reinforced_ironhammer"
-	spawn_blacklisted = TRUE
 
 /obj/item/clothing/shoes/reinforced/medical
 	name = "moebius reinforced shoes"

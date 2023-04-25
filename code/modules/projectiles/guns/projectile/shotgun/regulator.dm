@@ -14,7 +14,7 @@
 	penetration_multiplier = -0.2
 	init_recoil = RIFLE_RECOIL(2.4)
 	saw_off = FALSE
-	gun_parts = list(/obj/item/part/gun/frame/regulator = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	gun_parts = list(/obj/item/part/gun/frame/regulator = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/shotgun = 1, /obj/item/part/gun/modular/barrel/shotgun = 1)
 	serial_type = "NT"
 
 /obj/item/part/gun/frame/regulator
@@ -22,10 +22,10 @@
 	desc = "A Regulator shotgun frame. The gold standard for boarder repelling."
 	icon_state = "frame_regulator"
 	result = /obj/item/gun/projectile/shotgun/pump/regulator
-	gripvars = list(/obj/item/part/gun/grip/black, /obj/item/part/gun/grip/rubber)
+	gripvars = list(/obj/item/part/gun/modular/grip/black, /obj/item/part/gun/modular/grip/rubber)
 	resultvars = list(/obj/item/gun/projectile/shotgun/pump/regulator, /obj/item/gun/projectile/shotgun/pump/regulator/army)
-	mechanismvar = /obj/item/part/gun/mechanism/shotgun
-	barrelvars = list(/obj/item/part/gun/barrel/shotgun)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/shotgun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun)
 
 /obj/item/gun/projectile/shotgun/pump/regulator/army
 	name = "NT SG \"Regulator M1000\""
@@ -35,4 +35,4 @@
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 12)
 	price_tag = 2200
 	init_recoil = RIFLE_RECOIL(2.3)
-	gun_parts = list(/obj/item/part/gun/frame/regulator = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	gun_parts = list(/obj/item/part/gun/frame/regulator = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/shotgun = 1, /obj/item/part/gun/modular/barrel/shotgun = 1)

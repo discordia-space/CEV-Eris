@@ -48,6 +48,7 @@
 	RegisterSignal(newContainer, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(OnLevelChange))
 
 
+
 /datum/component/jamming/Destroy()
 	if(active)
 		var/turf/ownerTurf = get_turf(owner)
