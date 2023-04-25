@@ -292,9 +292,9 @@
 		M.add_chemical_effect(CE_DYNAMICFINGERS, uni_identity)
 
 /datum/reagent/nanites/repair
-	name = "repair nanites"
+	name = "Mechanites"
 	description = "Microscopic construction robots programmed to repair internal components."
-	id = "fbp_repair"
+	id = "repair"
 
 	var/repair_strength = 0
 
