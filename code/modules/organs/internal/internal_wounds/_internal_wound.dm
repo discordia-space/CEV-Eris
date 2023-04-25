@@ -106,6 +106,8 @@
 		if(treatment_threshold && owner_ce[chem_effect] >= treatment_threshold)
 			owner_ce[chem_effect] -= treatment_threshold
 			treatment(FALSE)
+			if(chem_effect == CE_MECH_REPAIR)
+				SEND_SIGNAL(H, COMSIG_HUMAN_MECH_REPAIR)
 			return
 
 	// Spread once
@@ -236,7 +238,7 @@
 				if(!islist(H.internal_organs_by_efficiency[process]))
 					H.internal_organs_by_efficiency[process] = list()
 				H.internal_organs_by_efficiency[process] |= O
-	
+
 	if(organ_efficiency_multiplier)
 		for(var/organ in O.organ_efficiency)
 			O.organ_efficiency[organ] = round(O.organ_efficiency[organ] * (1 + organ_efficiency_multiplier), 1)

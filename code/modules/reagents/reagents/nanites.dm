@@ -298,11 +298,22 @@
 
 	var/repair_strength = 0
 
+/datum/reagent/nanites/repair/proc/on_wound_repaired(mob/living/carbon/human/H)
+	SIGNAL_HANDLER
+
+	repair_strength = H.chem_effects[CE_MECH_REPAIR] // Resets the repair strength to the remaining strength after treating a wound.
+
+/datum/reagent/nanites/repair/on_mob_add(mob/living/L)
+	RegisterSignal(L, COMSIG_HUMAN_MECH_REPAIR, PROC_REF(on_wound_repaired))
+
 /datum/reagent/nanites/repair/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(!..())
 		return
 	M.add_chemical_effect(CE_MECH_REPAIR, repair_strength)
 	repair_strength += 0.1 * effect_multiplier // Based on treatment thresholds specific to each wound type.
+
+/datum/reagent/nanites/repair/on_mob_delete(mob/living/L)
+	UnregisterSignal(L, COMSIG_HUMAN_MECH_REPAIR)
 
 /* Uncomment when CE_MECH_REPLENISH has a use
 // "Blood" restore
