@@ -20,11 +20,11 @@
 	if(B && B.volume)
 		B.remove_self(volume * NANOBOTS_BLOOD_DRAIN)
 
-/datum/reagent/nanites/proc/will_occur(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/proc/will_occur(mob/living/carbon/M, alien, location)
 	if(location == CHEM_BLOOD)
 		return TRUE
 
-/datum/reagent/nanites/consumed_amount(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/consumed_amount(mob/living/carbon/M, alien, location)
 	if(will_occur(M, alien, location))
 		return ..()
 	else
@@ -40,6 +40,9 @@
 		met.add_reagent("nanodead", removed)
 	if(will_occur(M, alien, CHEM_BLOOD))
 		return TRUE
+
+/datum/reagent/nanites/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	holder.trans_to_mob(M, 0.5 * effect_multiplier, id) // Nanites are programmed to enter the bloodstream from the stomach.
 
 /datum/reagent/nanites/capped
 	name = "Raw Industrial Nanobots"
@@ -160,7 +163,7 @@
 /datum/reagent/nanites/nanosymbiotes
 	name = "Nanosymbiotes"
 	id = "nanosymbiotes"
-	description = "Microscopic construction robots programmed to heal body cells."
+	description = "Microscopic construction robots programmed to heal bodily structures."
 
 /datum/reagent/nanites/nanosymbiotes/will_occur(mob/living/carbon/M, alien, var/location)
 	if(..() && (M.getBruteLoss() || M.getFireLoss() || M.getToxLoss() || M.getCloneLoss() || M.getBrainLoss()))
@@ -176,7 +179,7 @@
 /datum/reagent/nanites/oxyrush
 	name = "Oxyrush"
 	id = "oxyrush"
-	description = "Microscopic construction robots programmed to keep oxygenation level stable no matter what."
+	description = "Microscopic construction robots programmed to keep the oxygenation level stable no matter what."
 
 /datum/reagent/nanites/oxyrush/will_occur(mob/living/carbon/M, alien, var/location)
 	if(..() && M.getOxyLoss())
@@ -190,19 +193,19 @@
 /datum/reagent/nanites/trauma_control_system
 	name = "Trauma Control System"
 	id = "trauma_control_system"
-	description = "Microscopic construction robots programmed to restore vitality of damaged organs."
+	description = "Microscopic construction robots programmed to restore the vitality of damaged organs. Unable to repair prosthetics."
 
 /datum/reagent/nanites/trauma_control_system/will_occur(mob/living/carbon/M, alien, var/location)
 	if(..() && ishuman(M))
 		var/mob/living/carbon/human/H = M
-		for(var/obj/item/organ/organ in H.organs) //Grab the organ holding the implant.
+		for(var/obj/item/organ/organ in H.organs)
 			if(organ.damage > 0 && !BP_IS_ROBOTIC(organ))
 				return TRUE
 
 /datum/reagent/nanites/trauma_control_system/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(..() && ishuman(M))
 		var/mob/living/carbon/human/H = M
-		for(var/obj/item/organ/organ in H.organs) //Grab the organ holding the implant.
+		for(var/obj/item/organ/organ in H.organs)
 			if (istype(organ, /obj/item/organ/external) && organ.damage > 0 && !BP_IS_ROBOTIC(organ))
 				organ.heal_damage((2 + organ.damage * 0.03)* effect_multiplier, (2 + organ.damage * 0.03)* effect_multiplier)
 			else if (istype(organ, /obj/item/organ/internal) && organ.damage > 0 && !BP_IS_ROBOTIC(organ))
@@ -288,33 +291,18 @@
 	if(..())
 		M.add_chemical_effect(CE_DYNAMICFINGERS, uni_identity)
 
-// FBP med - simple nanites for dealing with wounds and applying robo-chem effects
-/datum/reagent/nanites/fbp
-	name = "simple nanobots"
-	description = "Microscopic construction robots. Useless without programming and have limited use."
-	id = "dont use these either"
-	constant_metabolism = TRUE
-
-/datum/reagent/nanites/fbp/will_occur(mob/living/carbon/M, alien, var/location)
-	if(location == CHEM_INGEST)
-		return TRUE
-
-// "Blood" clot
-/datum/reagent/nanites/fbp/repair
+/datum/reagent/nanites/repair
 	name = "repair nanites"
 	description = "Microscopic construction robots programmed to repair internal components."
 	id = "fbp_repair"
-	overdose = REAGENTS_OVERDOSE / 6
 
-/datum/reagent/nanites/fbp/repair/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	var/repair_strength = 0
+
+/datum/reagent/nanites/repair/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(!..())
 		return
-	M.add_chemical_effect(CE_MECH_REPAIR, 0.25)
-
-/datum/reagent/nanites/fbp/repair/overdose(mob/living/carbon/M, alien)
-	if(!..())
-		return
-	M.add_chemical_effect(CE_MECH_REPAIR, 0.75)
+	M.add_chemical_effect(CE_MECH_REPAIR, repair_strength)
+	repair_strength += 0.1 * effect_multiplier // Based on treatment thresholds specific to each wound type.
 
 /* Uncomment when CE_MECH_REPLENISH has a use
 // "Blood" restore
