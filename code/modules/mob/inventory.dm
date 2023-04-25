@@ -141,9 +141,9 @@
 	O.screen_loc = null
 	if(isitem(O))
 		var/obj/item/I = O
-		I.dropped(src)
 		if(drop && !QDELING(O))
 			I.forceMove(get_turf(src), MOVED_DROP)
+		I.dropped(src)
 	return TRUE
 
 
