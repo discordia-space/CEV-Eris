@@ -40,7 +40,7 @@
 			if("excelsior")
 				return "NT HG [caliber] \"Mk58 M\"" //military
 			if("serbian")
-				return "NT HG [caliber] \"Mk58 SA\"" //serbian arms
+				return "SA HG [caliber] \"Mk58\"" //serbian arms
 			if("makeshift")
 				return "HM HG [caliber] \"Mk58\""
 	else
