@@ -28,9 +28,6 @@
 /datum/reagent/metal
 	reagent_type = "Metal"
 
-/datum/reagent/metal/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_MECH_REPAIR, 0.05)	// Makes metals useful and stackable for FBPs
-
 /datum/reagent/metal/aluminum
 	name = "Aluminum"
 	id = "aluminum"

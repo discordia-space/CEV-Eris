@@ -42,7 +42,7 @@
 		return TRUE
 
 /datum/reagent/nanites/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
-	holder.trans_to_mob(M, 0.5, id) // Nanites are programmed to enter the bloodstream from the stomach.
+	holder.trans_to_mob(M, 0.5, id) // Nanites are programmed to enter the bloodstream from the stomach on their own.
 
 /datum/reagent/nanites/capped
 	name = "Raw Industrial Nanobots"
