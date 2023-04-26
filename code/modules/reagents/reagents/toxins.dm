@@ -591,6 +591,7 @@
 				if(20)
 					to_chat(M, SPAN_DANGER("Your skin starts burning from water!"))
 					M.adjustHalLoss(10)
+					M.visible_message("Emanates clouds of steam as the water from their skin starts boiling! ", range = 7)
 					var/datum/effect/effect/system/smoke_spread/smoke = new()
 					smoke.set_up(3, 0 , get_turf(M), FALSE)
 					smoke.start()
