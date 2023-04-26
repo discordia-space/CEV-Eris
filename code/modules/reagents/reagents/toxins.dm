@@ -521,6 +521,7 @@
 
 /* Transformations */
 
+#define UNITS_TO_CONVERT_TO_SLIMEPERSON 10
 /datum/reagent/toxin/slimetoxin
 	name = "Mutation Toxin"
 	id = "mutationtoxin"
@@ -528,13 +529,37 @@
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#13BC5E"
+	metabolism = 0.5 // so you need 20 life ticks to convert someone ,which roughly translates to 40 seconds to stop it.
+
+	var/blood_ticks = 0
 
 /datum/reagent/toxin/slimetoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.species.name != SPECIES_SLIME)
-			to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
-			H.set_species(SPECIES_SLIME)
+		if(dose < UNITS_TO_CONVERT_TO_SLIMEPERSON)
+			switch(blood_ticks)
+				if(-INFINITY to 0)
+					to_chat(M, SPAN_DANGER("You feel your skin losing coherence"))
+				if(5)
+					to_chat(M, SPAN_DANGER("Your limbs can't hold their shape anymore!"))
+				if(10)
+					to_chat(M, SPAN_DANGER("Your chest starts radiating with pain!"))
+					M.adjustHalLoss(10)
+				if(15)
+					to_chat(M, SPAN_DANGER("Your skin starts turning blue!"))
+					M.adjustHalLoss(20)
+			blood_ticks++
+		else
+			var/mob/living/carbon/human/H = M
+			if(H.species.name != SPECIES_SLIME)
+				to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
+				H.set_species(SPECIES_SLIME)
+
+/datum/reagent/toxin/slimetoxin/on_mob_delete(mob/living/L)
+	. = ..()
+	to_chat(L, SPAN_NOTICE("Your body doesn't ache with pain anymore."))
+
+#undef UNITS_TO_CONVERT_TO_SLIMEPERSON
+#define UNITS_TO_CONVERT_TO_SLIME 15
 
 /datum/reagent/toxin/aslimetoxin
 	name = "Advanced Mutation Toxin"
@@ -543,31 +568,60 @@
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#13BC5E"
+	metabolism = 0.5 // takes 30 life ticks to convert, 60 seconds.
+	var/blood_ticks = 0
 
 /datum/reagent/toxin/aslimetoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier) // TODO: check if there's similar code anywhere else
+
 	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(M))
 		return
-	to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
-	ADD_TRANSFORMATION_MOVEMENT_HANDLER(M)
-	M.canmove = 0
-	M.icon = null
-	M.overlays.Cut()
-	M.invisibility = 101
-	for(var/obj/item/W in M)
-		if(istype(W, /obj/item/implant)) //TODO: Carn. give implants a dropped() or something
-			qdel(W)
-			continue
-		W.layer = initial(W.layer)
-		W.loc = M.loc
-		W.dropped(M)
-	var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(M.loc)
-	new_mob.a_intent = "hurt"
-	new_mob.universal_speak = 1
-	if(M.mind)
-		M.mind.transfer_to(new_mob)
-	else
-		new_mob.key = M.key
-	qdel(M)
+	if(ishuman(M))
+		if(dose < UNITS_TO_CONVERT_TO_SLIME)
+			switch(blood_ticks)
+				if(-INFINITY to 0)
+					to_chat(M, SPAN_DANGER("You feel your skin losing coherence"))
+				if(5)
+					to_chat(M, SPAN_DANGER("Your limbs can't hold their shape anymore!"))
+				if(10)
+					to_chat(M, SPAN_DANGER("Your chest starts melting!"))
+					M.adjustHalLoss(10)
+				if(15)
+					to_chat(M, SPAN_DANGER("Your bones turn into jelly!"))
+					M.adjustHalLoss(20)
+				if(20)
+					to_chat(M, SPAN_DANGER("Your skin starts burning from water!"))
+					M.adjustHalLoss(10)
+					var/datum/effect/effect/system/smoke_spread/smoke = new()
+					smoke.set_up(3, 0 , get_turf(M), FALSE)
+					smoke.start()
+			blood_ticks++
+		else
+			to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
+			ADD_TRANSFORMATION_MOVEMENT_HANDLER(M)
+			M.canmove = 0
+			M.icon = null
+			M.overlays.Cut()
+			M.invisibility = 101
+			for(var/obj/item/W in M)
+				if(istype(W, /obj/item/implant)) //TODO: Carn. give implants a dropped() or something
+					qdel(W)
+					continue
+				W.layer = initial(W.layer)
+				W.loc = M.loc
+				W.dropped(M)
+			var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(M.loc)
+			new_mob.a_intent = "hurt"
+			new_mob.universal_speak = 1
+			if(M.mind)
+				M.mind.transfer_to(new_mob)
+			else
+				new_mob.key = M.key
+			qdel(M)
+
+/datum/reagent/aslimetoxin/on_mob_delete(mob/living/L)
+	. = ..()
+	to_chat(L, SPAN_NOTICE("Your body regains its natural form."))
+
 
 /datum/reagent/other/xenomicrobes
 	name = "Xenomicrobes"
