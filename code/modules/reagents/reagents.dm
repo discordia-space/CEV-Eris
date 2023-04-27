@@ -86,18 +86,22 @@
 
 /datum/reagent/proc/consumed_amount_human(mob/living/carbon/human/consumer, alien, location)
 	var/removed = metabolism
+	var/calculated_buff = 1
 
-	if(location == CHEM_INGEST)
-		var/calculated_buff = ((consumer.get_organ_efficiency(OP_LIVER) + consumer.get_organ_efficiency(OP_HEART) + consumer.get_organ_efficiency(OP_STOMACH)) / 3) / 100
-		removed = ingest_met ? ingest_met : removed * 0.5
-	if(touch_met && location == CHEM_TOUCH)
-		removed = touch_met // This isn't affected by any internal organs.
-	if(location == CHEM_BLOOD)
-		var/calculated_buff = ((consumer.get_organ_efficiency(OP_LIVER) + consumer.get_organ_efficiency(OP_HEART) * 2) / 3) / 100
+	switch(location)
+		if(CHEM_INGEST)
+			calculated_buff = ((consumer.get_organ_efficiency(OP_LIVER) + consumer.get_organ_efficiency(OP_HEART) + consumer.get_organ_efficiency(OP_STOMACH)) / 3) / 100
+			removed = ingest_met ? ingest_met : removed * 0.5
+		if(CHEM_TOUCH)
+			removed = touch_met ? touch_met : removed // This isn't directly affected by any of the existing organs.
+		if(CHEM_BLOOD)
+			calculated_buff = ((consumer.get_organ_efficiency(OP_LIVER) + consumer.get_organ_efficiency(OP_HEART) * 2) / 3) / 100
+
+	removed *= calculated_buff
 
 	// The faster the blood circulation, the faster the reagents process. Blood volume affects blood circulation as well, leading to diminished effects.
 	if(!constant_metabolism && (location == CHEM_BLOOD || location == CHEM_INGEST))
-		removed = CLAMP(metabolism * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
+		removed = CLAMP(removed * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
 
 	removed = max(round(removed, 0.01), 0.01)
 	removed = min(removed, volume)
