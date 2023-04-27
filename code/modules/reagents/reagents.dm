@@ -70,15 +70,17 @@
 
 	var/removed = metabolism
 
-	if(location == CHEM_INGEST)
-		removed = ingest_met ? ingest_met : removed * 0.5
-	if(touch_met && (location == CHEM_TOUCH))
-		removed = touch_met ? touch_met : removed * 0.5
+	switch(location)
+		if(CHEM_INGEST)
+			removed = ingest_met ? ingest_met : removed * 0.5
+		if(CHEM_TOUCH)
+			removed = touch_met ? touch_met : removed
 
 	// The faster the blood circulation, the faster the reagents process. Blood volume affects blood circulation as well, leading to diminished effects.
 	if(!constant_metabolism && (location == CHEM_BLOOD || location == CHEM_INGEST))
-		removed = CLAMP(metabolism * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
+		removed *= M.get_blood_circulation()/100
 
+	removed = CLAMP(removed, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
 	removed = CLAMP(removed, 0, volume)
 
 	return removed
@@ -100,10 +102,10 @@
 
 	// The faster the blood circulation, the faster the reagents process. Blood volume affects blood circulation as well, leading to diminished effects.
 	if(!constant_metabolism && (location == CHEM_BLOOD || location == CHEM_INGEST))
-		removed = CLAMP(removed * consumer.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
+		removed *= consumer.get_blood_circulation()/100
 
-	removed = max(round(removed, 0.01), 0.01)
-	removed = min(removed, volume)
+	removed = CLAMP(removed, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
+	removed = CLAMP(removed, 0, volume)
 
 	return removed
 
