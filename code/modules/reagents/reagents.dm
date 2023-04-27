@@ -101,7 +101,7 @@
 
 	// The faster the blood circulation, the faster the reagents process. Blood volume affects blood circulation as well, leading to diminished effects.
 	if(!constant_metabolism && (location == CHEM_BLOOD || location == CHEM_INGEST))
-		removed = CLAMP(removed * M.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
+		removed = CLAMP(removed * consumer.get_blood_circulation()/100, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
 
 	removed = max(round(removed, 0.01), 0.01)
 	removed = min(removed, volume)
