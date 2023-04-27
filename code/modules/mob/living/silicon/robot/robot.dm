@@ -82,7 +82,7 @@
 	var/modtype = "Default"
 	var/lower_mod = 0
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
-	var/datum/effect/effect/system/spark_spread/spark_system//So they can initialize sparks whenever/N
+	var/datum/effect/effect/system/spark_spread/spark_system //So they can initialize sparks whenever/N
 	var/jeton = 0
 	var/killswitch = 0
 	var/killswitch_time = 60
@@ -90,7 +90,8 @@
 	var/weaponlock_time = 120
 	var/lawupdate = TRUE //Cyborgs will sync their laws with their AI by default
 	var/lockcharge //Used when locking down a borg to preserve cell charge
-	var/speed = 0.25
+	/// Humans get a -1 by default from any shoe. , robots had a 0.25 added by default.
+	var/speed = -0.75
 	var/scrambledcodes = 0 // Used to determine if a borg shows up on the robotics console.  Setting to one hides them.
 	var/tracking_entities = 0 //The number of known entities currently accessing the internal camera
 	var/braintype = "Cyborg"

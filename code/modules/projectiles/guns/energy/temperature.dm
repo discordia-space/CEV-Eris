@@ -6,6 +6,7 @@
 	item_charge_meter = TRUE
 	fire_sound = 'sound/weapons/pulse3.ogg'
 	desc = "A gun that changes temperatures. It has a small label on the side, \"More extreme temperatures will cost more charge!\""
+	suitable_cell = /obj/item/cell/medium
 	var/temperature = T20C
 	var/current_temperature = T20C
 	charge_cost = 100
@@ -92,3 +93,18 @@
 	var/obj/item/projectile/temp/temp_proj = new projectile_type(src)
 	temp_proj.temperature = current_temperature
 	return temp_proj
+
+/obj/item/gun/energy/temperature/update_icon(var/ignore_inhands)
+	if(charge_meter)
+		var/ratio = 0
+
+		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
+		if(cell && cell.charge >= charge_cost)
+			ratio = cell.charge / cell.maxcharge
+			ratio = min(max(round(ratio, 0.25) * 100, 25), 100)
+		if(item_charge_meter)
+			set_item_state("-[ratio]")
+			wielded_item_state = "_doble" + "-[ratio]"
+			icon_state = initial(icon_state) + "[ratio]"
+	if(!ignore_inhands)
+		update_wear_icon()

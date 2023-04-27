@@ -119,6 +119,8 @@
 		..()
 
 
+
+
 /obj/item/gun/attackby(obj/item/I, mob/living/user, params)
 	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, serial_type ? QUALITY_HAMMERING : null), src)
 	switch(tool_type)
@@ -164,13 +166,14 @@
 	initial_zoom_factors = zoom_factors.Copy()
 	. = ..()
 	initialize_firemodes()
+	initialize_firemode_actions()
 	initialize_scope()
 	//Properly initialize the default firing mode
 	if (firemodes.len)
 		set_firemode(sel_mode)
 
 	if(!restrict_safety)
-		verbs += /obj/item/gun/proc/toggle_safety_verb//addint it to all guns
+		verbs += /obj/item/gun/proc/toggle_safety_verb  //addint it to all guns
 
 		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/safety
 		action.owner = src
@@ -204,7 +207,7 @@
 	firemodes = null
 	return ..()
 
-/obj/item/gun/proc/set_item_state(state, hands = FALSE, back = FALSE, onsuit = FALSE)
+/obj/item/gun/proc/set_item_state(state, hands = TRUE, back = FALSE, onsuit = FALSE)
 	var/wield_state
 	if(wielded_item_state)
 		wield_state = wielded_item_state
@@ -214,6 +217,7 @@
 		if(wield_state && wielded)//Because most of the time the "normal" icon state is held in one hand. This could be expanded to be less hacky in the future.
 			item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state
 			item_state_slots[slot_r_hand_str] = "righthand" + wield_state
+
 		else
 			item_state_slots[slot_l_hand_str] = "lefthand"  + state
 			item_state_slots[slot_r_hand_str] = "righthand" + state
@@ -221,13 +225,13 @@
 
 	var/carry_state = inversed_carry
 	if(back && !carry_state)
-		item_state_slots[slot_back_str]   = "back"      + state
+		item_state_slots[slot_back_str]   = "back"		+ state
 	if(back && carry_state)
-		item_state_slots[slot_back_str]   = "onsuit"      + state
+		item_state_slots[slot_back_str]   = "onsuit"	+ state
 	if(onsuit && !carry_state)
 		item_state_slots[slot_s_store_str]= "onsuit"    + state
 	if(onsuit && carry_state)
-		item_state_slots[slot_s_store_str]= "back"    + state
+		item_state_slots[slot_s_store_str]= "back"		+ state
 
 /obj/item/gun/update_icon()
 	if(wielded_item_state)
@@ -237,9 +241,9 @@
 				item_state_slots[slot_r_hand_str] = "righthand" + wielded_item_state
 			else
 				item_state_slots[slot_l_hand_str] = "lefthand"
-				item_state_slots[slot_r_hand_str] = "righthand"
+			item_state_slots[slot_r_hand_str] = "righthand"
 		else//Otherwise we can just pull from the generic left and right hand icons.
-			if(wielded)
+			if(wielded_icon)
 				item_state_slots[slot_l_hand_str] = wielded_item_state
 				item_state_slots[slot_r_hand_str] = wielded_item_state
 			else
@@ -475,7 +479,7 @@
 		playsound(user, fire_sound_silenced, 15, 1, -5)
 	else
 		playsound(user, fire_sound, 60, 1)
-
+		/*
 		if(reflex)
 			user.visible_message(
 				"<span class='reflex_shoot'><b>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""] by reflex!</b></span>",
@@ -488,6 +492,7 @@
 				SPAN_WARNING("You fire \the [src]!"),
 				"You hear a [fire_sound_text]!"
 				)
+		*/
 
 		if(muzzle_flash)
 			set_light(muzzle_flash)
@@ -736,6 +741,8 @@
 		var/list/L = init_firemodes[i]
 		add_firemode(L)
 
+
+/obj/item/gun/proc/initialize_firemode_actions()
 	var/obj/screen/item_action/action = locate(/obj/screen/item_action/top_bar/gun/fire_mode) in hud_actions
 	if(firemodes.len > 1)
 		if(!action)
@@ -1032,6 +1039,8 @@
 	//Now lets have each upgrade reapply its modifications
 	SEND_SIGNAL_OLD(src, COMSIG_ADDVAL, src)
 	SEND_SIGNAL_OLD(src, COMSIG_APPVAL, src)
+
+	initialize_firemode_actions()
 
 	if(firemodes.len)
 		very_unsafe_set_firemode(sel_mode) // Reset the firemode so it gets the new changes

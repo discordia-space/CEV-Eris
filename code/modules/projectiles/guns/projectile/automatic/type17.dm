@@ -42,6 +42,9 @@
 	if (ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
+		wielded_item_state = "_doble" + "_mag"
+	else
+		wielded_item_state = "_doble"
 
 	icon_state = iconstring
 	set_item_state(itemstring)

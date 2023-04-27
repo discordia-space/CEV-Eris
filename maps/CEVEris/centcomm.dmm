@@ -1183,16 +1183,14 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/centcom/evac)
 "dM" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "escape_pod_2_recovery";
-	pixel_x = 25;
-	pixel_y = 0;
-	req_one_access = list(13);
-	tag_door = "escape_pod_2_recovery_hatch"
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/centcom/evac)
+/turf/unsimulated/floor{
+	icon_state = "cult";
+	name = "plating"
+	},
+/area/centcom/merc_base)
 "dN" = (
 /obj/structure/window/reinforced/holowindow{
 	dir = 8
@@ -1329,6 +1327,9 @@
 	pixel_y = 0
 	},
 /obj/structure/uplink/mercenary,
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
@@ -2635,17 +2636,8 @@
 	name = "plating"
 	},
 /area/centcom/merc_base)
-"hK" = (
-/obj/structure/sign/double/map/left{
-	pixel_y = 32
-	},
-/turf/unsimulated/floor{
-	icon_state = "cult";
-	name = "plating"
-	},
-/area/centcom/merc_base)
 "hL" = (
-/obj/structure/sign/double/map/right{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
@@ -3027,6 +3019,7 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
+/obj/item/toy/figure/serbian,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
@@ -3114,6 +3107,13 @@
 /obj/item/clothing/shoes/magboots/merc,
 /obj/item/clothing/shoes/magboots/merc,
 /obj/item/clothing/shoes/magboots/merc,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
@@ -3427,7 +3427,6 @@
 /area/centcom/merc_base)
 "kG" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/item/storage/box/phosphorous,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -4297,7 +4296,7 @@
 /area/centcom/raider_base)
 "nL" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/crate/specialists_sidearm,
+/obj/item/storage/deferred/crate/saw,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5163,13 +5162,7 @@
 /area/skipjack_station/start)
 "ty" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/meds,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
+/obj/item/storage/deferred/crate/ak,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5339,7 +5332,13 @@
 /area/centcom/raider_base)
 "wf" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/surgery,
+/obj/item/storage/deferred/meds,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5402,6 +5401,14 @@
 /obj/item/rig/light/stealth,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
+"xw" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/structure/mirror/antag{
+	pixel_y = -28
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/centcom/evac)
 "xy" = (
 /obj/structure/table/standard,
 /obj/item/storage/firstaid/fire{
@@ -5455,11 +5462,13 @@
 	},
 /area/centcom/raider_base)
 "zt" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/obj/item/storage/box/phosphorous,
+/obj/structure/table/rack,
+/obj/item/storage/deferred/crate/shotgun,
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
 /turf/unsimulated/floor{
-	icon_state = "plating";
-	name = "plating"
+	icon_state = "dark"
 	},
 /area/centcom/merc_base)
 "zv" = (
@@ -5501,7 +5510,7 @@
 /area/centcom/evac)
 "AW" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/crate/saw,
+/obj/item/storage/deferred/crate/specialists_sidearm,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5671,6 +5680,17 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"FW" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	frequency = 1380;
+	id_tag = "escape_pod_2_recovery";
+	pixel_x = 25;
+	pixel_y = 0;
+	req_one_access = list(13);
+	tag_door = "escape_pod_2_recovery_hatch"
+	},
+/turf/simulated/floor/tiled/dark/golden,
+/area/centcom/evac)
 "Go" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
@@ -5709,13 +5729,6 @@
 	icon_state = "wood"
 	},
 /area/wizard_station)
-"Ho" = (
-/obj/item/storage/box/phosphorous,
-/turf/unsimulated/floor{
-	dir = 2;
-	icon_state = "dark"
-	},
-/area/centcom/merc_base)
 "Hs" = (
 /obj/structure/table/woodentable,
 /obj/item/dice/d20,
@@ -5756,6 +5769,8 @@
 /obj/item/storage/box/smokes,
 /obj/item/storage/box/smokes,
 /obj/item/storage/box/smokes,
+/obj/item/storage/box/phosphorous,
+/obj/item/storage/box/phosphorous,
 /obj/item/storage/box/phosphorous,
 /obj/item/storage/box/phosphorous,
 /obj/item/storage/box/phosphorous,
@@ -5826,7 +5841,7 @@
 /area/centcom/raider_base)
 "JW" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/crate/demolition,
+/obj/item/storage/deferred/crate/marksman,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -6012,6 +6027,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
@@ -6040,6 +6058,17 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"OX" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/mercenary)
 "Pd" = (
 /obj/structure/table/rack,
 /obj/item/storage/belt/utility/full,
@@ -6120,7 +6149,7 @@
 /area/centcom/merc_base)
 "SW" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/crate/kovacs,
+/obj/item/storage/deferred/surgery,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -6145,7 +6174,7 @@
 /area/shuttle/mercenary)
 "TZ" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/crate/marksman,
+/obj/item/storage/deferred/crate/kovacs,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -6257,7 +6286,7 @@
 /area/shuttle/mercenary)
 "XP" = (
 /obj/structure/table/rack,
-/obj/item/storage/deferred/crate/ak,
+/obj/item/storage/deferred/crate/demolition,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -6323,6 +6352,9 @@
 "Zl" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/crate/sidearm,
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -16568,7 +16600,7 @@ cN
 hR
 cN
 hZ
-Ln
+xw
 ho
 aa
 aa
@@ -17370,9 +17402,9 @@ dn
 hZ
 hZ
 hZ
-dM
 dn
-cN
+dn
+FW
 ho
 jy
 aa
@@ -29091,7 +29123,7 @@ iJ
 iJ
 iJ
 iq
-iU
+OX
 iU
 iU
 iJ
@@ -31710,7 +31742,7 @@ hf
 hf
 hf
 gZ
-hK
+hJ
 hp
 gN
 EM
@@ -32114,7 +32146,7 @@ hh
 hh
 hh
 gZ
-hJ
+dM
 hp
 gN
 gN
@@ -32934,7 +32966,7 @@ jq
 jq
 jq
 jq
-Ho
+jq
 hf
 mO
 iB
@@ -33118,11 +33150,11 @@ hl
 hl
 hl
 hl
-Wf
-Wf
-Wf
-Wf
-Wf
+hl
+hl
+hl
+hl
+hl
 gZ
 gZ
 gZ
@@ -33933,7 +33965,7 @@ hl
 hl
 hl
 gZ
-SW
+zt
 MV
 JW
 nL
@@ -33941,8 +33973,8 @@ ty
 wf
 iX
 iX
-iX
-zt
+SW
+hf
 jq
 jq
 jG

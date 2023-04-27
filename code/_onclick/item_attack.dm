@@ -166,6 +166,9 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(!istype(I, /obj/item/tool/sword/nt_sword))
 		return FALSE
 	var/obj/item/tool/sword/nt_sword/NT = I
+	if(user.a_intent != I_HURT)
+		to_chat(user, SPAN_NOTICE("You need to be in a harming stance."))
+		return FALSE
 	if(NT.isBroken)
 		return FALSE
 	if(!(NT.flags & NOBLUDGEON))

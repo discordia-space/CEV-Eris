@@ -56,6 +56,7 @@
 	if(cocked_sound)
 		sleep(3)
 		if(user && loc) playsound(src.loc, cocked_sound, 75, 1)
+	set_item_state()
 
 /obj/item/gun/projectile/consume_next_projectile()
 	//get the next casing
@@ -131,6 +132,7 @@
 /obj/item/gun/projectile/proc/load_ammo(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = A
+		update_wear_icon()
 		if(!(load_method & AM.mag_type) || caliber != AM.caliber)
 			to_chat(user, SPAN_WARNING("[AM] won't fit into the magwell. This mag and ammunition inside it is incompatible with [src]."))
 			return //incompatible
@@ -196,6 +198,8 @@
 					cock_gun(user)
 					. = 1
 				update_firemode()
+				update_icon()
+				set_item_state()
 		AM.update_icon()
 	else if(istype(A, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = A
@@ -253,6 +257,7 @@
 		if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 
 	update_icon()
+	update_held_icon()
 
 //attempts to unload src. If allow_dump is set to 0, the speedloader unloading method will be disabled
 /obj/item/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
@@ -285,6 +290,7 @@
 	else
 		to_chat(user, SPAN_WARNING("[src] is empty."))
 	update_icon()
+	update_held_icon()
 
 /obj/item/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
 	.=..()
@@ -306,12 +312,13 @@
 			user.visible_message(SPAN_DANGER("The [src] goes off!"), SPAN_DANGER("The [src] goes off in your face!"))
 			return
 		if(saw_off && A.use_tool(user, src, WORKTIME_LONG, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			var/obj/item/gun/projectile/sawnoff = new sawn(usr.loc) 
+			var/obj/item/gun/projectile/sawnoff = new sawn(usr.loc)
 			sawnoff.caliber = caliber
 			to_chat(user, SPAN_WARNING("You cut down the stock, barrel, and anything else nice from \the [src], ruining a perfectly good weapon."))
 			qdel(src)
 	if (!.) //Parent returns true if attackby is handled
 		load_ammo(A, user)
+		update_held_icon()
 
 /obj/item/gun/projectile/attack_self(mob/user as mob)
 	if(firemodes.len > 1)
@@ -343,6 +350,7 @@
 		ammo_magazine.update_icon()
 		ammo_magazine = null
 		update_icon() //make sure to do this after unsetting ammo_magazine
+		set_item_state()
 
 /obj/item/gun/projectile/examine(mob/user)
 	..(user)

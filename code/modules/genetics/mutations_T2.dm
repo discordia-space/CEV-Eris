@@ -21,20 +21,6 @@
 	if(..())
 		user.verbs -= /mob/living/carbon/human/proc/remotesay
 
-
-/datum/mutation/t2/remoteobserve
-	name = "Remote observation"
-	desc = "Allows you to look through the eyes of other people."
-
-/datum/mutation/t2/remoteobserve/imprint(mob/living/carbon/user)
-	if(..())
-		user.verbs += /mob/living/carbon/human/proc/remoteobserve
-
-/datum/mutation/t2/remoteobserve/cleanse(mob/living/carbon/user)
-	if(..())
-		user.verbs -= /mob/living/carbon/human/proc/remoteobserve
-
-
 /datum/mutation/t2/forcespeak
 	name = "Force speak"
 	desc = "Allows you to force other person in line of sight to speak."

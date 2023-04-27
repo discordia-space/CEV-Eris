@@ -34,7 +34,25 @@
 // Weapon minimum fire_delay
 #define GUN_MINIMUM_FIRETIME 1.1 // 110 MS , ~9 shots per second.
 
+// Modular weapon defines
+
+#define STOCK_FOLDED -1
+#define STOCK_UNFOLDED 1
+#define STOCK_MISSING 0
+
+// When present as a spritetag, this denotes whether the part is installed. When present as a parttag, it denotes that the sprite is currently activated.
+// Used for sprite handling, when present as both parts it will modify the base sprite and all overlays.
+#define PARTMOD_STRIPPED 0
+#define PARTMOD_FOLDING_STOCK 1
+#define PARTMOD_SLIDE 2
+#define PARTMOD_FRAME_SPRITE 4 // Defines whether grips or frames determine the inhands, TODO: remove this when V3 comes
+
 //Weapon upgrade defines
+
+// Modification removability (toolmods, gunparts, etc.)
+#define MOD_REMOVABLE 1
+#define MOD_FUSED 0
+#define MOD_INTEGRAL -1
 
 //Int multiplier
 #define GUN_UPGRADE_DAMAGE_MULT "damage_mult"
@@ -69,7 +87,13 @@
 #define GUN_UPGRADE_OFFSET "offset" //Constant offset, in degrees
 #define GUN_UPGRADE_ZOOM "zoom"
 
-
+//Type configuration
+#define GUN_UPGRADE_DEFINE_OK_CALIBERS "ok_calibers"
+#define GUN_UPGRADE_DEFINE_CALIBER "caliber"
+#define GUN_UPGRADE_DEFINE_MAG_WELL "mag_well"
+#define GUN_UPGRADE_DEFINE_STOCK "stock"
+#define GUN_UPGRADE_FIREMODES "firemodes"
+#define GUN_UPGRADE_DEFINE_GRIP "grip"
 
 //boolean
 #define GUN_UPGRADE_SILENCER "silencable"
@@ -89,13 +113,20 @@
 //Location Tag defines
 
 #define GUN_UNDERBARREL "underbarrel slot"
-#define GUN_BARREL "barrel slot"
+#define GUN_BARREL "barrel attachment slot"
 #define GUN_TRIGGER "trigger slot"
 #define GUN_MUZZLE "muzzle slot"
 #define GUN_SCOPE "scope slot"
 #define GUN_MECHANISM "misc slot"
-#define GUN_GRIP "grip slot"
+#define GUN_GRIP "grip attachment slot"
 #define GUN_COSMETIC "cosmetic slot"
+
+// Reminder: projectile_defines.dm contains a lot of unused slots
+
+#define PART_BARREL "barrel slot"
+#define PART_MECHANISM "firing mechanism slot"
+#define PART_GRIP "grip slot"
+#define PART_STOCK "stock slot"
 
 //Whitelist Tag defines
 #define GUN_SILENCABLE "silencable"
@@ -106,6 +137,7 @@
 #define GUN_INTERNAL_MAG "internal mag"
 #define GUN_GILDABLE "gildable"
 #define GUN_FA_MODDABLE "full auto moddable"
+#define GUN_MODULAR "modular"
 
 #define GUN_CALIBRE_35 "caliber .35"
 
