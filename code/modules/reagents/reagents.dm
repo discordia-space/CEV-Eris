@@ -80,7 +80,6 @@
 	if(!constant_metabolism && (location == CHEM_BLOOD || location == CHEM_INGEST))
 		removed *= M.get_blood_circulation()/100
 
-	removed = CLAMP(removed, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
 	removed = CLAMP(removed, 0, volume)
 
 	return removed
@@ -104,7 +103,6 @@
 	if(!constant_metabolism && (location == CHEM_BLOOD || location == CHEM_INGEST))
 		removed *= consumer.get_blood_circulation()/100
 
-	removed = CLAMP(removed, metabolism * REAGENTS_MIN_EFFECT_MULTIPLIER, metabolism * REAGENTS_MAX_EFFECT_MULTIPLIER)
 	removed = CLAMP(removed, 0, volume)
 
 	return removed
