@@ -7,7 +7,7 @@
 /datum/component/internal_wound/robotic/blunt
 	treatments_item = list(/obj/item/stack/nanopaste = 1)
 	treatments_tool = list(QUALITY_HAMMERING = FAILCHANCE_NORMAL)
-	treatments_chem = list(CE_MECH_REPAIR = 0.1)
+	treatments_chem = list(CE_MECH_REPAIR = 0.5)
 	severity = 0
 	severity_max = 5
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
@@ -33,7 +33,7 @@
 /datum/component/internal_wound/robotic/sharp
 	treatments_item = list(/obj/item/stack/nanopaste = 1)
 	treatments_tool = list(QUALITY_SEALING = FAILCHANCE_NORMAL)
-	treatments_chem = list(CE_MECH_REPAIR = 0.15)
+	treatments_chem = list(CE_MECH_REPAIR = 0.8)
 	severity = 0
 	severity_max = 5
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
@@ -59,7 +59,7 @@
 /datum/component/internal_wound/robotic/edge
 	treatments_item = list(/obj/item/stack/cable_coil = 5, /obj/item/stack/nanopaste = 1)
 	treatments_tool = list(QUALITY_CLAMPING = FAILCHANCE_NORMAL)
-	treatments_chem = list(CE_MECH_REPAIR = 0.15)
+	treatments_chem = list(CE_MECH_REPAIR = 0.8)
 	severity = 0
 	severity_max = 5
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
@@ -85,7 +85,7 @@
 /datum/component/internal_wound/robotic/emp_burn
 	treatments_item = list(/obj/item/stack/cable_coil = 5, /obj/item/stack/nanopaste = 1)
 	treatments_tool = list(QUALITY_PULSING = FAILCHANCE_NORMAL)
-	treatments_chem = list(CE_MECH_REPAIR = 0.1)
+	treatments_chem = list(CE_MECH_REPAIR = 1)
 	severity = 0
 	severity_max = 5
 	next_wound = /datum/component/internal_wound/robotic/overheat
@@ -139,7 +139,7 @@
 // Other wounds
 /datum/component/internal_wound/robotic/corrosion
 	treatments_item = list(/obj/item/stack/nanopaste = 2)
-	treatments_chem = list(CE_MECH_ACID = 1.5, CE_MECH_REPAIR = 0.075)	// sulphiric + hydrochloric acid or poly acid
+	treatments_chem = list(CE_MECH_ACID = 1.5, CE_MECH_REPAIR = 0.5)	// sulphiric + hydrochloric acid or poly acid
 	scar = /datum/component/internal_wound/robotic/blunt	// Cleaning corrosion involves removing material
 	severity = 0
 	severity_max = 4
@@ -155,7 +155,7 @@
 	name = "plastic deformation"
 	treatments_item = list(/obj/item/stack/nanopaste = 5)
 	treatments_tool = list(QUALITY_WELDING = FAILCHANCE_NORMAL)
-	treatments_chem = list(CE_MECH_REPAIR = 0.25)
+	treatments_chem = list(CE_MECH_REPAIR = 1)
 	severity = 4
 	severity_max = 4
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
