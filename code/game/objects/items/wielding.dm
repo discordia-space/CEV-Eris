@@ -52,9 +52,12 @@
 		return
 	if(!is_held_twohanded(user))
 		return
-	if(user.get_inactive_hand())
+	var/obj/item/X = user.get_inactive_hand()
+	if(X)
+		if(!X.mob_can_unequip(user))
+			return
 		user.drop_offhand()
-		to_chat(user, SPAN_WARNING("You dropped \the [user.get_inactive_hand()]."))
+		to_chat(user, SPAN_WARNING("You dropped \the [X]."))
 	wielded = TRUE
 	if(force_wielded_multiplier)
 		force = force * force_wielded_multiplier
