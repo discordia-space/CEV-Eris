@@ -291,6 +291,7 @@
 	name = "Mechanites"
 	description = "Microscopic construction robots programmed to repair internal components."
 	id = "repair"
+	metabolism = REM // Twice the metabolization rate of normal nanites.
 
 	var/repair_strength = 0
 
@@ -307,7 +308,7 @@
 	if(!..())
 		return
 	M.add_chemical_effect(CE_MECH_REPAIR, repair_strength)
-	repair_strength += 0.1 * effect_multiplier // Based on treatment thresholds specific to each wound type.
+	repair_strength += metabolism * effect_multiplier // Based on treatment thresholds specific to each wound type.
 
 /datum/reagent/nanites/repair/on_mob_delete(mob/living/L)
 	UnregisterSignal(L, COMSIG_HUMAN_MECH_REPAIR)
