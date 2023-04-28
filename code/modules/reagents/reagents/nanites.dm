@@ -295,7 +295,7 @@
 /datum/reagent/nanites/repair/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(!..())
 		return
-	M.add_chemical_effect(CE_MECH_REPAIR, 1)
+	M.add_chemical_effect(CE_MECH_REPAIR, 1 * effect_multiplier)
 
 /* Uncomment when CE_MECH_REPLENISH has a use
 // "Blood" restore
