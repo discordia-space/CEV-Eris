@@ -82,9 +82,7 @@
 	heating_products = null
 
 /datum/reagent/nanites/uncapped/will_occur(mob/living/carbon/M, alien, var/location)
-	if(type == /datum/reagent/nanites/uncapped) // only derived classes are consumed
-		return FALSE
-	return ..()
+	return FALSE
 
 /datum/reagent/nanites/arad
 	name = "A-rad"
@@ -230,7 +228,7 @@
 				if(istype(current, /datum/reagent/nanites) && !istype(current, /datum/reagent/nanites/purgers))
 					R.remove_self(effect_multiplier * 1)
 
-/datum/reagent/nanites/uncapped/control_booster_utility
+/datum/reagent/nanites/control_booster_utility
 	name = "Control Booster Utility"
 	id = "cbu"
 	description = "Microscopic construction robots programmed to enchant immensively mental capabilities."
@@ -238,13 +236,13 @@
 	heating_products = list("uncap nanites")
 	reagent_type = "Nanites/Stimulator"
 
-/datum/reagent/nanites/uncapped/control_booster_utility/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+/datum/reagent/nanites/control_booster_utility/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(..())
 		M.stats.addTempStat(STAT_MEC, STAT_LEVEL_ADEPT, STIM_TIME, "CBU")
 		M.stats.addTempStat(STAT_BIO, STAT_LEVEL_ADEPT, STIM_TIME, "CBU")
 		M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT, STIM_TIME, "CBU")
 
-/datum/reagent/nanites/uncapped/control_booster_combat
+/datum/reagent/nanites/control_booster_combat
 	name = "Control Booster Combat"
 	id = "cbc"
 	description = "Microscopic construction robots programmed to enchant combat capabilites to maximum."
@@ -252,13 +250,13 @@
 	heating_products = list("uncap nanites")
 	reagent_type = "Nanites/Stimulator"
 
-/datum/reagent/nanites/uncapped/control_booster_combat/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+/datum/reagent/nanites/control_booster_combat/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(..())
 		M.stats.addTempStat(STAT_VIG, STAT_LEVEL_ADEPT, STIM_TIME, "CBC")
 		M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT, STIM_TIME, "CBC")
 		M.stats.addTempStat(STAT_ROB, STAT_LEVEL_ADEPT, STIM_TIME, "CBC")
 
-/datum/reagent/nanites/uncapped/voice_mimic
+/datum/reagent/nanites/voice_mimic
 	name = "Voice mimics"
 	id = "nanovoice"
 	description = "Microscopic construction robots programmed to change users voice. You should hit them first, just in case..."
@@ -266,11 +264,11 @@
 	heating_point = 523
 	heating_products = list("uncap nanites")
 
-/datum/reagent/nanites/uncapped/voice_mimic/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+/datum/reagent/nanites/voice_mimic/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(..())
 		M.add_chemical_effect(CE_VOICEMIMIC, voiceName)
 
-/datum/reagent/nanites/uncapped/dynamic_handprints
+/datum/reagent/nanites/dynamic_handprints
 	name = "Handyprints"
 	id = "nanohands"
 	description = "Microscopic construction robots programmed to change handprints while in bloodstream."
@@ -278,7 +276,7 @@
 	heating_point = 523
 	heating_products = list("uncap nanites")
 
-/datum/reagent/nanites/uncapped/dynamic_handprints/on_mob_add(mob/living/L)
+/datum/reagent/nanites/dynamic_handprints/on_mob_add(mob/living/L)
 	..()
 	var/mob/living/carbon/human/host = L
 	if(istype(host))
@@ -287,7 +285,7 @@
 				host.fingers_trace = H.fingers_trace
 				return
 
-/datum/reagent/nanites/uncapped/dynamic_handprints/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+/datum/reagent/nanites/dynamic_handprints/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(..())
 		M.add_chemical_effect(CE_DYNAMICFINGERS, uni_identity)
 
