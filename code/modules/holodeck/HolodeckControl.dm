@@ -9,7 +9,7 @@
 
 	circuit = /obj/item/electronics/circuitboard/holodeckcontrol
 
-	var/item_power_usage = 50
+	var/item_power_usage = 5
 
 	var/area/holodeck/linkedholodeck = null
 	var/linkedholodeck_area
