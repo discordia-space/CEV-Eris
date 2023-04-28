@@ -291,7 +291,6 @@
 	name = "Mechanites"
 	description = "Microscopic construction robots programmed to repair internal components."
 	id = "repair"
-	metabolism = REM // Twice the metabolism of other nanites.
 
 /datum/reagent/nanites/repair/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(!..())
