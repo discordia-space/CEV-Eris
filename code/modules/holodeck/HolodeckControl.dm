@@ -141,7 +141,7 @@
 
 /obj/machinery/computer/HolodeckControl/proc/update_projections()
 	if (safety_disabled)
-		item_power_usage = 250
+		item_power_usage = 25
 		for(var/obj/item/holo/esword/H in linkedholodeck)
 			H.damtype = BRUTE
 	else
