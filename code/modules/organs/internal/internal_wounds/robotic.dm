@@ -85,7 +85,7 @@
 /datum/component/internal_wound/robotic/emp_burn
 	treatments_item = list(/obj/item/stack/cable_coil = 5, /obj/item/stack/nanopaste = 1)
 	treatments_tool = list(QUALITY_PULSING = FAILCHANCE_NORMAL)
-	treatments_chem = list(CE_MECH_REPAIR = 1)
+	treatments_chem = list(CE_MECH_REPAIR = 0.6)
 	severity = 0
 	severity_max = 5
 	next_wound = /datum/component/internal_wound/robotic/overheat
