@@ -95,7 +95,6 @@
 #define COMSIG_HUMAN_HEALTH "human_health"					   //from human/updatehealth()
 #define COMSIG_HUMAN_SANITY "human_sanity"						//from /datum/sanity/proc/onLife()
 #define COMSIG_HUMAN_INSTALL_IMPLANT "human_install_implant"
-#define COMSIG_HUMAN_MECH_REPAIR "human_mech_repair"			//from /datum/component/internal_wound/Process()
 // /datum/species signals
 
 // /obj signals
