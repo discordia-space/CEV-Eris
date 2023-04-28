@@ -54,7 +54,7 @@
 		return
 	var/obj/item/X = user.get_inactive_hand()
 	if(X)
-		if(!X.mob_can_unequip(user))
+		if(!X.canremove)
 			return
 		user.drop_offhand()
 		to_chat(user, SPAN_WARNING("You dropped \the [X]."))
