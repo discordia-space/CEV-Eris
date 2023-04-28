@@ -84,7 +84,7 @@
 /datum/reagent/nanites/uncapped/will_occur(mob/living/carbon/M, alien, var/location)
 	if(type == /datum/reagent/nanites/uncapped) // only derived classes are consumed
 		return FALSE
-	return TRUE
+	return ..()
 
 /datum/reagent/nanites/arad
 	name = "A-rad"
