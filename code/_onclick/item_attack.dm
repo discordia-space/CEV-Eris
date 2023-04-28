@@ -41,7 +41,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		if(H.blocking)
 			H.stop_blocking()
 	if(ishuman(user) && !(user == A) && !(user.loc == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/simulated/wall) && A.loc != user)
-		swing_attack(src, user, params)
+		swing_attack(A, user, params)
 		if(istype(A, /turf/simulated/floor)) // shitty hack so you can attack floors while wielding a large weapon
 			return A.attackby(src, user, params)
 		return 1 //Swinging calls its own attacks
@@ -87,54 +87,41 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	var/turf/R
 	var/turf/C
 	var/turf/L
-	var/_x
-	var/_y
-	var/_z
 	if(A.x == 0 && A.y == 0 && A.z == 0) //Attacking equipped items results in them getting forwarded
-		_x = user.x
-		_y = user.y
-		_z = user.z
+		C = get_turf(user)
 	else
-		_x = A.x
-		_y = A.y
-		_z = A.z
+		C = get_turf(A)
 	var/_dir
-	if(_x == user.x && _y == user.y && _z == user.z)
+	if(C == get_turf(user)) //If turf matches with user, move the attack towards where the user is facing
 		_dir = user.dir
-		switch(_dir)
-			if(NORTH)
-				_y++
-			if(SOUTH)
-				_y--
-			if(EAST)
-				_x++
-			if(WEST)
-				_x--
+		C = get_step(C, _dir)
 	else
 		_dir = get_dir(user, A)
-	C = locate(_x, _y, _z)
 	switch(_dir)
-		if(NORTH, SOUTH)
-			R = locate((_x + 1), _y, _z)
-			L = locate((_x - 1), _y, _z)
+		if(NORTH)
+			R = get_step(C, EAST)
+			L = get_step(C, WEST)
+		if(SOUTH)
+			R = get_step(C, WEST)
+			L = get_step(C, EAST)
 		if(EAST)
-			R = locate(_x, (_y - 1), _z)
-			L = locate(_x, (_y + 1), _z)
-		if(NORTHEAST)
-			R = locate(_x, (_y - 1), _z)
-			L = locate((_x - 1), _y, _z)
-		if(SOUTHEAST)
-			R = locate((_x - 1), _y, _z)
-			L = locate(_x, (_y + 1), _z)
+			R = get_step(C, SOUTH)
+			L = get_step(C, NORTH)
 		if(WEST)
-			R = locate(_x, (_y + 1), _z)
-			L = locate(_x, (_y - 1), _z)
+			R = get_step(C, NORTH)
+			L = get_step(C, SOUTH)
+		if(NORTHEAST)
+			R = get_step(C, SOUTH)
+			L = get_step(C, WEST)
 		if(NORTHWEST)
-			R = locate((_x + 1), _y, _z)
-			L = locate(_x, (_y - 1), _z)
+			R = get_step(C, EAST)
+			L = get_step(C, SOUTH)
+		if(SOUTHEAST)
+			R = get_step(C, WEST)
+			L = get_step(C, NORTH)
 		if(SOUTHWEST)
-			R = locate(_x, (_y + 1), _z)
-			L = locate((_x + 1), _y, _z)
+			R = get_step(C, NORTH)
+			L = get_step(C, EAST)
 	var/obj/effect/effect/melee/swing/S = new(user.loc)
 	S.dir = _dir
 	user.visible_message(SPAN_DANGER("[user] swings \his [src]"))
@@ -142,15 +129,17 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	switch(holdinghand)
 		if(slot_l_hand)
 			flick("left_swing", S)
-			tileattack(user, L, modifier = 0.6)
-			tileattack(user, C, modifier = 0.8)
-			tileattack(user, R, modifier = 1)
+			var/dmg_modifier = 1
+			dmg_modifier = tileattack(user, L, modifier = 1)
+			dmg_modifier = tileattack(user, C, modifier = dmg_modifier, original_target = A)
+			tileattack(user, R, modifier = dmg_modifier)
 			QDEL_IN(S, 2 SECONDS)
 		if(slot_r_hand)
 			flick("right_swing", S)
-			tileattack(user, R, modifier = 0.6)
-			tileattack(user, C, modifier = 0.8)
-			tileattack(user, L, modifier = 1)
+			var/dmg_modifier = 1
+			dmg_modifier = tileattack(user, R, modifier = 1)
+			dmg_modifier = tileattack(user, C, modifier = dmg_modifier, original_target = A)
+			tileattack(user, L, modifier = dmg_modifier)
 			QDEL_IN(S, 2 SECONDS)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
@@ -188,7 +177,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		visible_message(SPAN_DANGER("[src] has been hit by [user] with [NT]."))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		for(var/mob/living/carbon/human/H in viewers(user))
-			SEND_SIGNAL(H, SWORD_OF_TRUTH_OF_DESTRUCTION, src)
+			SEND_SIGNAL_OLD(H, SWORD_OF_TRUTH_OF_DESTRUCTION, src)
 		if(eotp)
 			eotp.addObservation(200)
 			eotp.power_gaine *= 2
@@ -213,38 +202,70 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	else
 		return I.attack(src, user, user.targeted_organ)
 
-//Area of effect attacks (swinging)
-/obj/item/proc/tileattack(mob/living/user, turf/targetarea, modifier = 1)
-	if(!wielded)
-		return
+//Used by Area of effect attacks, if it returns FALSE, it failed
+/obj/item/proc/attack_with_multiplier(mob/living/user, var/atom/target, var/modifier = 1)
+	if(!wielded && modifier > 0)
+		return FALSE
 	var/original_force = force
-	var/original_unwielded_force = force_wielded_multiplier ? force / force_wielded_multiplier : force / 1.3	
+	var/original_unwielded_force = force_wielded_multiplier ? force / force_wielded_multiplier : force / 1.3
 	force *= modifier
+	target.attackby(src, user)
+	force = wielded ? original_force : round(original_unwielded_force, 1)
+	return TRUE
+
+//Same as above but for mobs
+/obj/item/proc/attack_with_multiplier_mob(mob/living/user, var/mob/living/target, var/modifier = 1)
+	if(!wielded && modifier > 0)
+		return FALSE
+	var/original_force = force
+	var/original_unwielded_force = force_wielded_multiplier ? force / force_wielded_multiplier : force / 1.3
+	force *= modifier
+	attack(target, user, user.targeted_organ)
+	force = wielded ? original_force : round(original_unwielded_force, 1)
+	return TRUE
+
+//Area of effect attacks (swinging), return remaining damage
+/obj/item/proc/tileattack(mob/living/user, turf/targetarea, var/modifier = 1, var/swing_degradation = 0.2, var/original_target)
 	if(istype(targetarea, /turf/simulated/wall))
 		var/turf/simulated/W = targetarea
-		W.attackby(src, user)
-		force = original_force
-		return
+		if(attack_with_multiplier(user, W, modifier))
+			return (modifier - swing_degradation) // We hit a static object, prevents hitting anything underneath
+	var/successful_hit = FALSE
 	for(var/obj/S in targetarea)
 		if (S.density && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal) && !istype(S, /obj/structure/closet))
-			S.attackby(src, user)
+			if(attack_with_multiplier(user, S, modifier))
+				successful_hit = TRUE // Livings or targeted mobs can still be hit
+	if(successful_hit)
+		modifier -= swing_degradation // Only deduct damage once for dense objects
 	var/list/living_mobs = new/list()
 	var/list/dead_mobs = new/list()
 	for(var/mob/living/M in targetarea)
-		if(M.stat == DEAD)
-			dead_mobs.Add(M)
-		else
-			living_mobs.Add(M)
-	var/target
-	if(living_mobs.len)
-		target = pick(living_mobs)
-	else if(dead_mobs.len)
+		if(M != user)
+			if(M.stat == DEAD)
+				dead_mobs.Add(M)
+			else
+				living_mobs.Add(M)
+	var/mob/living/target
+	if(original_target && istype(original_target, /mob/living)) // Check if original target is a mob
+		if(LAZYFIND(living_mobs, original_target) || LAZYFIND(dead_mobs, original_target)) // Check if original target is a mob on this tile
+			target = original_target
+			if(attack_with_multiplier_mob(user, target, modifier))
+				modifier -= swing_degradation
+			if(target.density) // If the original target was dense, the rest of the mobs are shielded
+				return modifier
+
+	while(living_mobs.len && modifier > 0)
+		target = pick_n_take(living_mobs)
+		if(attack_with_multiplier_mob(user, target, modifier))
+			modifier -= swing_degradation
+		successful_hit = TRUE
+		if(target.density) // If we hit a dense target, the rest of the mobs are shielded
+			return modifier
+	if(!successful_hit && dead_mobs.len) // If we hit nothing, try to hit dead mobs
 		target = pick(dead_mobs)
-	else
-		force = original_force
-		return
-	attack(target, user, user.targeted_organ)
-	force = wielded ? original_force : round(original_unwielded_force, 1)
+		if(attack_with_multiplier_mob(user, target, modifier))
+			modifier -= swing_degradation
+	return modifier
 // modifying force after calling attack() here is a bad idea, as the force can be changed by means of embedding in a target, which leads to unwielding a weapon.
 //This code replicates the damage reduction caused by unwielding something, but it will likely cause problems elsewhere.
 

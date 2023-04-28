@@ -41,7 +41,7 @@
 	log_and_message_admins("performed a crusade litany")
 	to_chat(user, SPAN_NOTICE("You feel an extraordinary burst of energy."))
 	set_personal_cooldown(user)
-	addtimer(CALLBACK(src, .proc/discard_effect, user, count), src.cooldown_time)
+	addtimer(CALLBACK(src, PROC_REF(discard_effect), user, count), src.cooldown_time)
 	return TRUE
 
 /datum/ritual/cruciform/crusader/battle_call/proc/discard_effect(mob/living/carbon/human/user, amount)
@@ -52,7 +52,7 @@
 /datum/ritual/cruciform/crusader/flash
 	name = "Searing Revelation"
 	phrase = "Per fidem enim ambulamus et non per speciem."
-	desc = "Knocks over everybody without cruciform in the view range. Psy-wave is too powerful, speaker can be knocked too."
+	desc = "Knocks over everybody without a cruciform in the view range. Psy-wave is too powerful, speaker can be knocked down too."
 	cooldown = TRUE
 	cooldown_time = 2 MINUTES
 	cooldown_category = "flash"

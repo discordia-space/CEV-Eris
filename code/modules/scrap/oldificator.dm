@@ -43,7 +43,7 @@
 	for (var/obj/item/toremove in stored_upgrades)
 		var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
 		if (IU)
-			SEND_SIGNAL(toremove, COMSIG_REMOVE, src)
+			SEND_SIGNAL_OLD(toremove, COMSIG_REMOVE, src)
 			visible_message(SPAN_NOTICE("\The [toremove] detaches from \the [src]."))
 			. = TRUE
 
@@ -58,7 +58,7 @@
 	for (var/obj/item/toremove in stored_upgrades)
 		var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
 		if (IU)
-			SEND_SIGNAL(toremove, COMSIG_REMOVE, src)
+			SEND_SIGNAL_OLD(toremove, COMSIG_REMOVE, src)
 			visible_message(SPAN_NOTICE("\The [toremove] detaches from \the [src]."))
 			. = TRUE
 
@@ -90,7 +90,6 @@
 		  "Looks completely ruined.",
 		   "It is difficult to make out what this thing once was.",
 	 	   "A relic from a bygone age.")
-		germ_level = max(germ_level, pick(80,110,160))
 
 		if(prob(80))
 			color = pick("#AA7744", "#774411", "#777777")
@@ -401,6 +400,6 @@
 		while(trash_mods.len)
 			var/trash_mod_path = pick_n_take(trash_mods)
 			var/obj/item/trash_mod = new trash_mod_path
-			if(SEND_SIGNAL(trash_mod, COMSIG_IATTACK, src, null))
+			if(SEND_SIGNAL_OLD(trash_mod, COMSIG_IATTACK, src, null))
 				break
 			QDEL_NULL(trash_mod)

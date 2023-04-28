@@ -279,9 +279,15 @@
 		rad = 0
 	)
 
-/obj/item/clothing/head/beret/ntsec
-	name = "Nanotrasen Security Beret"
-	desc = "A washed out and dusty corporate security beret from the long defunct NanoTrasen Corporation."
+/obj/item/clothing/head/beret/merc
+	name = "Serbian Commander beret"
+	desc = "A green beret that strikes discipline into even mercenaries."
+	icon_state = "beret_mercenary"
+	spawn_blacklisted = TRUE
+
+/obj/item/clothing/head/beret/oldsec
+	name = "old security beret"
+	desc = "A washed out and dusty corporate security beret from the long defunct \"Securitech\" company."
 	icon_state = "nanoberet"
 
 /obj/item/clothing/head/onestar

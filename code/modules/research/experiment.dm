@@ -1,6 +1,5 @@
 // Contains everything related to earning research points
 #define AUTOPSY_WEAPON_PAMT rand(1,5) * 20 // 50-100 points for random weapon
-#define ARTIFACT_PAMT rand(5,10) * 1000 // 5000-10000 points for random artifact
 
 GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
@@ -20,19 +19,8 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 		TECH_COVERT = 5000,
 	)
 
-	// So we don't give points for researching non-artifact item
-	var/static/list/artifact_types = list(
-		/obj/machinery/auto_cloner,
-		/obj/machinery/power/supermatter,
-		/obj/machinery/giga_drill,
-//		/obj/mecha/working/hoverpod,
-		/obj/machinery/replicator,
-		/obj/machinery/artifact
-	)
-
 	var/list/saved_tech_levels = list() // list("materials" = list(1, 4, ...), ...)
 	var/list/saved_autopsy_weapons = list()
-	var/list/saved_artifacts = list()
 	var/list/saved_symptoms = list()
 	var/list/saved_slimecores = list()
 
@@ -112,19 +100,6 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 			else
 				points += AUTOPSY_WEAPON_PAMT
 
-	for(var/list/artifact in I.scanned_artifacts)
-		if(!(artifact["type"] in artifact_types)) // useless
-			continue
-
-		var/already_scanned = FALSE
-		for(var/list/our_artifact in saved_artifacts)
-			if(our_artifact["type"] == artifact["type"] && our_artifact["first_effect"] == artifact["first_effect"] && our_artifact["second_effect"] == artifact["second_effect"])
-				already_scanned = TRUE
-				break
-
-		if(!already_scanned)
-			points += ARTIFACT_PAMT
-			saved_artifacts += list(artifact)
 
 	for(var/symptom in I.scanned_symptoms)
 		if(saved_symptoms[symptom])
@@ -158,15 +133,6 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
 	for(var/weapon in O.saved_autopsy_weapons)
 		saved_autopsy_weapons |= weapon
-
-	for(var/list/artifact in O.saved_artifacts)
-		var/has_artifact = FALSE
-		for(var/list/our_artifact in saved_artifacts)
-			if(our_artifact["type"] == artifact["type"] && our_artifact["first_effect"] == artifact["first_effect"] && our_artifact["second_effect"] == artifact["second_effect"])
-				has_artifact = TRUE
-				break
-		if(!has_artifact)
-			saved_artifacts += list(artifact)
 
 	for(var/symptom in O.saved_symptoms)
 		saved_symptoms[symptom] = O.saved_symptoms[symptom]
@@ -237,7 +203,6 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
 	var/datum/experiment_data/experiments
 	var/list/scanned_autopsy_weapons = list()
-	var/list/scanned_artifacts = list()
 	var/list/scanned_symptoms = list()
 	var/list/scanned_slimecores = list()
 	var/datablocks = 0
@@ -258,21 +223,6 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 			if(!(W.weapon in scanned_autopsy_weapons))
 				scanneddata += 1
 				scanned_autopsy_weapons += W.weapon
-
-	if(istype(O, /obj/item/paper/artifact_info))
-		var/obj/item/paper/artifact_info/report = O
-		if(report.artifact_type)
-			for(var/list/artifact in scanned_artifacts)
-				if(artifact["type"] == report.artifact_type && artifact["first_effect"] == report.artifact_first_effect && artifact["second_effect"] == report.artifact_second_effect)
-					to_chat(user, SPAN_NOTICE("[src] already has data about this artifact report"))
-					return
-
-			scanned_artifacts += list(list(
-				"type" = report.artifact_type,
-				"first_effect" = report.artifact_first_effect,
-				"second_effect" = report.artifact_second_effect,
-			))
-			scanneddata += 1
 
 	if(istype(O, /obj/item/paper/virus_report))
 		var/obj/item/paper/virus_report/report = O
@@ -297,7 +247,6 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
 /obj/item/device/science_tool/proc/clear_data()
 	scanned_autopsy_weapons = list()
-	scanned_artifacts = list()
 	scanned_symptoms = list()
 	scanned_slimecores = list()
 	datablocks = 0

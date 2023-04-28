@@ -35,25 +35,35 @@
 	user.set_machine(src)
 	var/dat = "<HEAD><TITLE>Operating Computer</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
 	dat += "<A HREF='?src=\ref[user];mach_close=op'>Close</A><br><br>" //| <A HREF='?src=\ref[user];update=1'>Update</A>"
-	if(src.table && (src.table.check_victim()))
-		src.victim = src.table.victim
+	if(table && (table.check_victim()))
+		victim = table.victim
+		var/internal_health
+		if(ishuman(victim))
+			var/organ_health
+			var/organ_damage
+			for(var/obj/item/organ/external/E in victim.organs)
+				organ_health += E.total_internal_health
+				organ_damage += E.severity_internal_wounds
+			internal_health = organ_health ? round((1 - (organ_damage / organ_health)) * 100) : 100
+		var/tox_content = victim.chem_effects[CE_TOXIN] + victim.chem_effects[CE_ALCOHOL_TOXIC]
 		dat += {"
-<B>Patient Information:</B><BR>
-<BR>
-<B>Name:</B> [src.victim.real_name]<BR>
-<B>Age:</B> [src.victim.age]<BR>
-<B>Blood Type:</B> [src.victim.b_type]<BR>
-<BR>
-<B>Health:</B> [src.victim.health]<BR>
-<B>Brute Damage:</B> [src.victim.getBruteLoss()]<BR>
-<B>Toxins Damage:</B> [src.victim.getToxLoss()]<BR>
-<B>Fire Damage:</B> [src.victim.getFireLoss()]<BR>
-<B>Suffocation Damage:</B> [src.victim.getOxyLoss()]<BR>
-<B>Patient Status:</B> [src.victim.stat ? "Non-Responsive" : "Stable"]<BR>
-<B>Heartbeat rate:</B> [victim.get_pulse(GETPULSE_TOOL)]<BR>
-"}
+				<B>Patient Information:</B><BR>
+				<BR>
+				<B>Name:</B> [victim.real_name]<BR>
+				<B>Age:</B> [victim.age]<BR>
+				<B>Blood Type:</B> [victim.b_type]<BR>
+				<BR>
+				<B>Critical Health:</B> [victim.health]%<BR>
+				<B>Organ Health:</B> [internal_health]%<BR>
+				<B>Brute Damage:</B> [victim.getBruteLoss()]<BR>
+				<B>Toxin Content:</B> [tox_content ? tox_content : "0"]<BR>
+				<B>Fire Damage:</B> [victim.getFireLoss()]<BR>
+				<B>Suffocation Damage:</B> [victim.getOxyLoss()]<BR>
+				<B>Patient Status:</B> [victim.stat ? "Non-Responsive" : "Stable"]<BR>
+				<B>Heartbeat rate:</B> [victim.get_pulse(GETPULSE_TOOL)]<BR>
+				"}
 	else
-		src.victim = null
+		victim = null
 		dat += {"
 <B>Patient Information:</B><BR>
 <BR>

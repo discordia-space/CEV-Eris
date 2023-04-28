@@ -1,12 +1,12 @@
 /obj/item/gun/projectile/revolver/handmade
-	name = "handmade revolver"
-	desc = "Handmade revolver, made from gun parts. and some duct tap, will it even hold up?"
+	name = "HM REV \"Cartel\""
+	desc = "A handmade revolver built with junk, duct tape and dubious engineering skills. Will it even work?"
 	icon = 'icons/obj/guns/projectile/handmade_revolver.dmi'
 	icon_state = "handmade_revolver"
 	caliber = CAL_MAGNUM
 	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
 	max_shells = 6
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 10)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
 	price_tag = 250 //one of the cheapest revolvers here
 	damage_multiplier = 1.25
 	penetration_multiplier = 0.1
@@ -21,7 +21,7 @@
 	name = "Handmade revolver frame"
 	desc = "A handmade revolver. The second most ancient gun design, made with scrap and spit."
 	icon_state = "frame_revolver_hm"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 4)
+	matter = list(MATERIAL_STEEL = 5)
 	resultvars = list(/obj/item/gun/projectile/revolver/handmade)
 	gripvars = list(/obj/item/part/gun/grip/wood)
 	mechanismvar = /obj/item/part/gun/mechanism/revolver/steel

@@ -9,7 +9,7 @@
 		return
 
 	switch(disintegrate)
-		if(DROPLIMB_EDGE)
+		if(DROPLIMB_EDGE, DROPLIMB_EDGE_BURN)
 			if(!clean)
 				var/gore_sound = "[BP_IS_ROBOTIC(src) ? "tortured metal" : "ripping tendons and flesh"]"
 				owner.visible_message(
@@ -54,7 +54,7 @@
 		dir = 2
 
 	switch(disintegrate)
-		if(DROPLIMB_EDGE)
+		if(DROPLIMB_EDGE, DROPLIMB_EDGE_BURN)
 			compile_icon()
 			add_blood(victim)
 			var/matrix/M = matrix()

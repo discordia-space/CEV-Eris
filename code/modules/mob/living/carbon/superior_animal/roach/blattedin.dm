@@ -5,7 +5,7 @@
 	taste_description = "chicken"
 	reagent_state = LIQUID
 	color = "#0F4800"
-	strength = 0.15
+	strength = 6
 	var/heal_strength = 5
 	metabolism = REM * 0.1
 

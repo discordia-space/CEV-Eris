@@ -42,7 +42,7 @@
 	..(loc)
 	birthtime = world.time
 	lifetime = _lifetime
-	addtimer(CALLBACK(src, .proc/close,), lifetime)
+	addtimer(CALLBACK(src, PROC_REF(close)), lifetime)
 
 var/list/portal_cache = list()
 

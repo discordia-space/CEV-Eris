@@ -257,7 +257,7 @@
 //used to initialize the subsystem AFTER the map has loaded
 /datum/controller/subsystem/Initialize()
 	initialized = TRUE
-	// SEND_SIGNAL(src, COMSIG_SUBSYSTEM_POST_INITIALIZE)
+	// SEND_SIGNAL_OLD(src, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 
 	var/time = rustg_time_milliseconds(SS_INIT_TIMER_KEY)
 	var/seconds = round(time / 1000, 0.01)

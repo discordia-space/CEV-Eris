@@ -35,9 +35,10 @@
 					continue
 				//if our target has hazard protection, apply damage based on the protection percentage.
 				var/hazard_protection = victim.getarmor(null, ARMOR_BIO)
-				var/damage = CLONE_DAMAGE_PER_TICK - (CLONE_DAMAGE_PER_TICK * (hazard_protection/100))
-				victim.apply_damage(damage, CLONE, used_weapon = "Biological")
-				
+				var/damage = BIOREACTOR_DAMAGE_PER_TICK - (BIOREACTOR_DAMAGE_PER_TICK * (hazard_protection/100))
+				victim.apply_damage(damage, BRUTE, used_weapon = "Biological")
+				victim.adjustOxyLoss(BIOREACTOR_DAMAGE_PER_TICK / 2)	// Snowflake shit, but we need the mob to die within a reasonable time frame
+
 				if(prob(10))
 					playsound(loc, 'sound/effects/bubbles.ogg', 45, 1)
 				if(victim.health <= -victim.maxHealth)
@@ -53,7 +54,7 @@
 				var/obj/item/target = M
 				//if we found biomatter, let's start processing
 				//it will slowly disappear. Time based at size of object and we manipulate with its alpha (we also check for it)
-				if(MATERIAL_BIOMATTER in target.matter)
+				if((MATERIAL_BIOMATTER in target.matter) && !target.unacidable)
 					target.alpha -= round(100 / target.w_class)
 					var/icon/I = new(target.icon, icon_state = target.icon_state)
 					//we turn this things to degenerate sprite a bit
@@ -113,7 +114,7 @@
 			to_chat(M, SPAN_NOTICE("Your remains have been dissolved and reused. Your crew respawn time is reduced by [(BIOREACTOR_RESPAWN_BONUS)/600] minutes."))
 			M << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
 			M.set_respawn_bonus("CORPSE_DISSOLVING", BIOREACTOR_RESPAWN_BONUS)
-		
+
 	qdel(object)
 	//now let's add some dirt to the glass
 	for(var/obj/structure/window/reinforced/bioreactor/glass in loc)

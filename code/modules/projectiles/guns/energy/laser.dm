@@ -281,13 +281,13 @@
 	init_recoil = HANDGUN_RECOIL(1)
 
 /obj/item/gun/energy/laser/makeshift
-	name = "makeshift laser carbine"
-	desc = "A makeshift laser carbine, rather wasteful on its charge, but nonetheless reliable"
+	name = "HM LG \"Retina Burn\""
+	desc = "A somewhat power inefficient makeshift laser carbine, but shockingly reliable."
 	icon = 'icons/obj/guns/energy/makeshift_carbine.dmi'
 	icon_state = "makeshift"
 	item_state = "makeshift"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 15)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 15, MATERIAL_SILVER = 5)
 	item_charge_meter = TRUE
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_NORMAL
@@ -303,8 +303,8 @@
 	init_recoil = CARBINE_RECOIL(1)
 
 /obj/item/gun/energy/laser/makeshift_pistol
-	name = "makeshift laser pistol"
-	desc = "A heavy makeshift laser pistol, trades off some power and efficiency for ease of storage and use"
+	name = "HM LG \"Scorcher\""
+	desc = "A heavy makeshift laser pistol, trades off some power and efficiency for ease of storage and use."
 	icon = 'icons/obj/guns/energy/makeshift_pistol.dmi'
 	icon_state = "makeshiftpistol"
 	item_state = "makeshiftpistol"

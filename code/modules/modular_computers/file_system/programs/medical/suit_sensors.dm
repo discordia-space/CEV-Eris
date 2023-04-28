@@ -49,7 +49,7 @@
 	if(href_list["track"])
 		if(isAI(usr))
 			var/mob/living/silicon/ai/AI = usr
-			var/mob/living/carbon/human/H = locate(href_list["track"]) in SSmobs.mob_list
+			var/mob/living/carbon/human/H = locate(href_list["track"]) in SShumans.mob_list
 			if(hassensorlevel(H, SUIT_SENSOR_TRACKING))
 				AI.ai_actual_track(H)
 		else
@@ -57,7 +57,7 @@
 			if(istype(host_program))
 				var/obj/item/modular_computer/tablet/moebius/T = host_program.computer
 				if(istype(T))
-					var/mob/living/carbon/human/H = locate(href_list["track"]) in SSmobs.mob_list
+					var/mob/living/carbon/human/H = locate(href_list["track"]) in SShumans.mob_list
 					T.target_mob = H
 					if(!T.is_tracking)
 						T.pinpoint()
@@ -72,7 +72,7 @@
 		return TOPIC_HANDLED
 
 	if(href_list["mute"])
-		var/mob/living/carbon/human/H = locate(href_list["mute"]) in SSmobs.mob_list
+		var/mob/living/carbon/human/H = locate(href_list["mute"]) in SShumans.mob_list
 		if(H)
 			GLOB.ignore_health_alerts_from.Add(H.name)
 			// Run that so UI updates right after button is pressed, without 5 second delay
@@ -82,7 +82,7 @@
 		return TOPIC_HANDLED
 
 	if(href_list["unmute"])
-		var/mob/living/carbon/human/H = locate(href_list["unmute"]) in SSmobs.mob_list
+		var/mob/living/carbon/human/H = locate(href_list["unmute"]) in SShumans.mob_list
 		if(H)
 			GLOB.ignore_health_alerts_from.Remove(H.name)
 			for(var/z_level in GLOB.maps_data.station_levels)

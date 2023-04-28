@@ -178,16 +178,19 @@
 	new /obj/item/clothing/under/rank/security(src)
 	new /obj/item/clothing/under/rank/security(src)
 	new /obj/item/clothing/under/rank/security(src)
-	new /obj/item/clothing/shoes/jackboots(src)
-	new /obj/item/clothing/shoes/jackboots(src)
-	new /obj/item/clothing/shoes/jackboots(src)
+	new /obj/item/clothing/shoes/jackboots/ironhammer(src)
+	new /obj/item/clothing/shoes/jackboots/ironhammer(src)
+	new /obj/item/clothing/shoes/jackboots/ironhammer(src)
 	new /obj/item/clothing/head/beret/sec/navy/officer(src)
 	new /obj/item/clothing/head/beret/sec/navy/officer(src)
 	new /obj/item/clothing/head/beret/sec/navy/officer(src)
+	new /obj/item/clothing/gloves/security/ironhammer(src)
+	new /obj/item/clothing/gloves/security/ironhammer(src)
+	new /obj/item/clothing/gloves/security/ironhammer(src)
 
 /obj/structure/closet/wardrobe/science_white
 	name = "science wardrobe"
-	icon_door = "white"
+	icon_door = "mixed"
 	spawn_blacklisted = TRUE
 
 /obj/structure/closet/wardrobe/science_white/populate_contents()
@@ -282,7 +285,6 @@
 	new /obj/item/storage/fancy/candle_box(src)
 	new /obj/item/storage/fancy/candle_box(src)
 	new /obj/item/deck/tarot(src)
-	new /obj/item/talkingcrystal(src)
 
 /obj/structure/closet/wardrobe/engineering_yellow
 	name = "engineering wardrobe"

@@ -250,7 +250,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		else
 			screen = SCREEN_WORKING
 			griefProtection() //Putting this here because I dont trust the sync process
-			addtimer(CALLBACK(src, .proc/sync_tech), 3 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(sync_tech)), 3 SECONDS)
 	if(href_list["togglesync"]) //Prevents the console from being synced by other consoles. Can still send data.
 		sync = !sync
 	if(href_list["select_category"]) // User is selecting a design category while in the protolathe/imprinter screen
@@ -294,7 +294,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	if(href_list["find_device"]) // Connect with the local devices
 		screen = SCREEN_WORKING
-		addtimer(CALLBACK(src, .proc/find_devices), 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(find_devices)), 2 SECONDS)
 	if(href_list["disconnect"]) //The R&D console disconnects with a specific device.
 		switch(href_list["disconnect"])
 			if("destroy")
@@ -314,7 +314,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			screen = SCREEN_WORKING
 			qdel(files)
 			files = new /datum/research(src)
-			addtimer(CALLBACK(src, .proc/reset_screen), 2 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(reset_screen)), 2 SECONDS)
 	if(href_list["lock"]) //Lock the console from use by anyone without tox access.
 		if(allowed(usr) || emagged)
 			screen = SCREEN_LOCKED

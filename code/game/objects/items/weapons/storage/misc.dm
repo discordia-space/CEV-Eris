@@ -2,12 +2,12 @@
 	name = "pack of dice"
 	desc = "A small container with dice inside."
 	spawn_tags = SPAWN_TAG_ITEM
-	pill_type = /obj/item/dice/d20
-	initial_amt = 1
+	prespawned_content_type = /obj/item/dice/d20
+	prespawned_content_amount = 1
 
 /obj/item/storage/pill_bottle/dice/populate_contents()
-	for(var/i in 1 to initial_amt)
-		new pill_type(src)
+	for(var/i in 1 to prespawned_content_amount)
+		new prespawned_content_type(src)
 	new /obj/item/dice(src)
 
 /*
@@ -20,13 +20,12 @@
 	name = "donut box"
 	max_storage_space = 12 //The amount of starting donuts multiplied by the donut item size to keep only exact space requirement met.
 	can_hold = list(/obj/item/reagent_containers/food/snacks/donut)
-	foldable = /obj/item/stack/material/cardboard
-	initial_amount = 6
-	spawn_type = /obj/item/reagent_containers/food/snacks/donut/normal
+	prespawned_content_amount = 6
+	prespawned_content_type = /obj/item/reagent_containers/food/snacks/donut/normal
 
 /obj/item/storage/box/donut/populate_contents()
-	for(var/i in 1 to initial_amount)
-		new spawn_type(src)
+	for(var/i in 1 to prespawned_content_amount)
+		new prespawned_content_type(src)
 	update_icon()
 
 /obj/item/storage/box/donut/update_icon()
@@ -37,7 +36,7 @@
 		i++
 
 /obj/item/storage/box/donut/empty
-	initial_amount = 0
+	prespawned_content_amount = 0
 
 /*
  * Emergency Ration Pack

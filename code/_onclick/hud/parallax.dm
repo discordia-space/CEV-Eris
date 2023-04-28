@@ -13,11 +13,14 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 /obj/parallax/New(mob/M)
 	owner = M
 	owner.parallax += src
+	SSevent.all_parallaxes += src
+	icon_state = GLOB.random_parallax
 	update()
 	..(null)
 
 /obj/parallax/Destroy()
 	owner = null
+	SSevent.all_parallaxes -= src
 	return ..()
 
 /obj/parallax/proc/update() //This proc updates your parallax (duh). If your view has been altered by binoculars, admin fuckery, and so on. We need to make the space bigger by applying a matrix transform to it. This is hardcoded for now.
@@ -27,27 +30,6 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	if(!T)
 		return
 	screen_loc = "CENTER:[-224-T.x],CENTER:[-224-T.y]"
-	//And now we change depending on what is happening in processing events
-	for(var/datum/event/E in SSevent.active_events)
-		switch(E.storyevent.id)
-			if("bluespace_interphase")
-				icon_state = "bluespace_interphase"
-			if("graveyard")
-				icon_state = "graveyard"
-			if("bluespace_storm")
-				icon_state = "bluespace_storm"
-			if("ion_blizzard")
-				icon_state = "ion_blizzard"
-				//no close layer here
-			if("photon_vortex")
-				icon_state = "photon_vortex"
-			if("micro_debris")
-				icon_state = "micro_debris"
-			if("nebula")
-				icon_state = "nebula"
-			else
-				icon_state = GLOB.random_parallax
-		continue //Only one event changes our state, priority should be from up to down if there are multiple
 	var/matrix/M = matrix()	//create matrix for transformation
 	if(owner.client.view != world.view)	//Not bigger than world view. We don't need transforming
 		var/toscale = owner.client.view	//How many extra tiles we need to fill with parallax. EG. Their view is 8. World view is 7. So one extra tile is needed.
@@ -73,13 +55,16 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 		M.Scale(1)
 	transform = M
 
+/obj/parallax/update_icon(new_icon_state)
+	icon_state = new_icon_state
+
 /obj/parallax/update_plane()
 	return
 
 /obj/parallax/set_plane(var/np)
 	plane = np
 
-
+// Mob stuff
 /mob
 	var/obj/parallax/parallax
 

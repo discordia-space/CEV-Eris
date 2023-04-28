@@ -21,8 +21,7 @@
 			/obj/item/storage/deferred/slime = good_data("slime supply box", list(1, 3), 500),
 			/obj/item/storage/deferred/xenobotany = good_data("xenobotany supply box", list(1, 3), 500),
 			/obj/item/storage/deferred/rnd = good_data("research box", list(1, 3), 5000),
-			/obj/item/storage/box/monkeycubes = good_data("monkey cube box", list(1, 3), 2000),
-			/obj/machinery/suspension_gen
+			/obj/item/storage/box/monkeycubes = good_data("monkey cube box", list(1, 3), 2000)
 		),
 		"Chemical Surplus" = list(
 			/obj/item/reagent_containers/glass/bottle/inaprovaline = custom_good_amount_range(list(2, 3)),

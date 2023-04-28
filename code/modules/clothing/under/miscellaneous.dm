@@ -143,8 +143,8 @@
 
 
 /obj/item/clothing/under/assistantformal
-	name = "assistant's formal uniform"
-	desc = "An assistant's formal-wear. Why an assistant needs formal-wear is still unknown."
+	name = "formal tuxedo"
+	desc = "A spiffy tuxedo. Perfect for a ball, or just a fancy night out with the boys."
 	icon_state = "assistant_formal"
 	item_state = "gy_suit"
 
@@ -271,11 +271,11 @@ obj/item/clothing/under/genericr
 	item_state = "gnome"
 
 /obj/item/clothing/under/tuxedo
-	name = "tuxedo"
-	desc = "A very stylish black tuxedo with a necktie. Must have for all crime-boys."
+	name = "formal suit"
+	desc = "A very stylish black suit with a necktie. Must have for all crime-boys."
 	icon_state = "tuxedo"
 
-//stylish vendor clothes
+//stylish vendor clothes (old)
 /obj/item/clothing/under/white
 	name = "ivory white outfit"
 	desc = "White suit, white pants and a white tie."
@@ -411,9 +411,9 @@ obj/item/clothing/under/genericr
 	icon_state = "tropicopuke"
 	item_state = "tropicopuke"
 
-/obj/item/clothing/under/ntsec
-	name = "NanoTrasen Security Uniform"
-	desc = "A worn and dusty red security jumpsuit from the long defunct Nanotrasen Corporation. this uniform once signified authority, now its just an ugly set of clothes"
+/obj/item/clothing/under/oldsec
+	name = "old security uniform"
+	desc = "A worn and dusty red security jumpsuit from the long defunct \"Securitech\". This uniform once signified authority but now it's just an ugly set of clothes."
 	icon_state = "nanosec"
 	item_state = "nanosec"
 	siemens_coefficient = 0.8

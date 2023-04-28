@@ -217,20 +217,10 @@
 #define STORY_MUTINY "Mutiny"
 #define STORY_MALFUNCTION "Malfunction"
 
-//Recoil for suits
-#define LIGHT_STIFFNESS 0.5
-#define MEDIUM_STIFFNESS 1
-#define HEAVY_STIFFNESS 1.5
-
 //Slowdown for suits
 #define LIGHT_SLOWDOWN 0.1
 #define MEDIUM_SLOWDOWN 0.2
 #define HEAVY_SLOWDOWN 1
-
-//Offset for helmets
-#define LIGHT_OBSCURATION 2
-#define MEDIUM_OBSCURATION 3
-#define HEAVY_OBSCURATION 5
 
 //RIG ablation
 #define ABLATION_CERAMIC 3

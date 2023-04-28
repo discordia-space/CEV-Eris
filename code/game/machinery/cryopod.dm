@@ -183,7 +183,18 @@
 		/obj/item/clothing/shoes/magboots,
 		/obj/item/blueprints,
 		/obj/item/clothing/head/space,
-		/obj/item/storage/internal
+		/obj/item/storage/internal,
+		/obj/item/device/von_krabin,
+		/obj/item/complicator,
+		/obj/item/biosyphon,
+		/obj/item/device/last_shelter,
+		/obj/item/device/techno_tribalism,
+		/obj/item/device/radio/random_radio,
+		/obj/item/maneki_neko,
+		/obj/item/tool/sword/nt_sword,
+		/obj/item/reagent_containers/atomic_distillery,
+		/obj/item/reagent_containers/bonsai,
+		/obj/item/reagent_containers/enricher
 	)
 
 /obj/machinery/cryopod/robot

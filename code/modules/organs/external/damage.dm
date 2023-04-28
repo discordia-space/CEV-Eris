@@ -5,83 +5,73 @@
 /obj/item/organ/external/proc/is_damageable(additional_damage = 0)
 	return (vital || brute_dam + burn_dam + additional_damage < max_damage)
 
-/obj/item/organ/external/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), silent)
+/obj/item/organ/external/take_damage(amount, damage_type, armor_divisor = 1, wounding_multiplier = 1, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), silent)
 	var/prev_brute = brute_dam	//We'll record how much damage the limb already had, before we apply the damage from this incoming hit
 	var/prev_burn = burn_dam
 
-	brute = round(brute * brute_mod, 0.1)
-	burn = round(burn * burn_mod, 0.1)
-	if((brute <= 0) && (burn <= 0))
-		return 0
+	switch(damage_type)
+		if(BRUTE)
+			amount = round(amount * brute_mod, 0.1)
+		if(BURN)
+			amount = round(amount * burn_mod, 0.1)
 
-	// High brute damage or sharp objects may damage internal organs
-	if(internal_organs && (brute_dam >= max_damage || (((sharp && brute >= 5) || brute >= 10) && prob(5))))
-		// Damage an internal organ
-		if(internal_organs && internal_organs.len)
-			var/obj/item/organ/internal/I = pick(internal_organs)
-			I.take_damage(brute / 2)
-			brute -= brute / 2
-	var/bone_efficiency = owner.get_specific_organ_efficiency(OP_BONE, organ_tag)
-	if(brute_dam > (min_broken_damage * (bone_efficiency / 100)) && prob(brute_dam + brute))
-		fracture()
-
-	if(status & ORGAN_BROKEN && prob(40) && brute)
-		if (owner && !(owner.species && (owner.species.flags & NO_PAIN)))
-			owner.emote("scream")	//getting hit on broken hand hurts
-	if(used_weapon)
-		add_autopsy_data("[used_weapon]", brute + burn)
-
-	var/can_cut = (prob(brute*2 || sharp) && !BP_IS_ROBOTIC(src))
-
-	// If the limbs can break, make sure we don't exceed the maximum damage a limb can take before breaking
-	// Non-vital organs are limited to max_damage. You can't kill someone by bludeonging their arm all the way to 200 -- you can
-	// push them faster into paincrit though, as the additional damage is converted into shock.
-	if(is_damageable(brute + burn) || !config.limbs_can_break)
-		if(brute)
-			if(can_cut)
-				if(sharp && !edge)
-					createwound( PIERCE, brute )
-				else
-					createwound( CUT, brute )
+	// Damage is transferred to internal organs. Chest and head must be broken before transferring unless they're slime limbs.
+	if(LAZYLEN(internal_organs))
+		var/can_transfer = FALSE	// Only applies to brute and burn
+		if((organ_tag != BP_CHEST && organ_tag != BP_HEAD) || status & ORGAN_BROKEN || cannot_break)
+			can_transfer = TRUE
+		var/obj/item/organ/internal/I = pick(internal_organs)
+		var/transferred_damage_amount
+		switch(damage_type)
+			if(BRUTE)
+				transferred_damage_amount = can_transfer ? (amount - (max_damage - brute_dam) / armor_divisor) / 2 : 0
+			if(BURN)
+				var/damage_divisor = can_transfer ? 2 : 4
+				transferred_damage_amount = (amount - (max_damage - burn_dam) / armor_divisor) / damage_divisor
+			if(HALLOSS)
+				transferred_damage_amount = 0
 			else
-				createwound( BRUISE, brute )
-		if(burn)
-			createwound( BURN, burn )
-	else
-		//If we can't inflict the full amount of damage, spread the damage in other ways
-		//How much damage can we actually cause?
-		var/can_inflict = max_damage * ORGAN_HEALTH_MULTIPLIER - (brute_dam + burn_dam)
-		var/spillover = 0
-		if(can_inflict)
-			if (brute > 0)
-				//Inflict all burte damage we can
-				if(can_cut)
-					if(sharp && !edge)
-						createwound( PIERCE, min(brute,can_inflict) )
-					else
-						createwound( CUT, min(brute,can_inflict) )
+				transferred_damage_amount = amount
+
+		if(transferred_damage_amount > 0)
+			if(I.take_damage(transferred_damage_amount, damage_type, wounding_multiplier, sharp, edge, FALSE))
+				amount = round(max(amount / 2, amount - transferred_damage_amount), 0.1)
+
+	if(amount <= 0)
+		return FALSE
+
+	if(used_weapon)
+		add_autopsy_data("[used_weapon]", amount)
+
+	// Handle remaining limb damage
+	switch(damage_type)
+		if(BRUTE)
+			if(should_fracture())
+				fracture()
+
+			if(status & ORGAN_BROKEN && prob(40))
+				if(owner && !(owner.species && (owner.species.flags & NO_PAIN)))
+					owner.emote("scream")	//getting hit on broken hand hurts
+
+			if(sharp && !BP_IS_ROBOTIC(src))
+				if(!edge)
+					createwound(PIERCE, amount)
 				else
-					createwound( BRUISE, min(brute,can_inflict) )
-				var/temp = can_inflict
-				//How much mroe damage can we inflict
-				can_inflict = max(0, can_inflict - brute)
-				//How much brute damage is left to inflict
-				spillover += max(0, brute - temp)
+					createwound(CUT, amount)
+			else
+				createwound(BRUISE, amount)
+		if(BURN)
+			if(status & ORGAN_BLEEDING)
+				status &= ~ORGAN_BLEEDING
 
-			if (burn > 0 && can_inflict)
-				//Inflict all burn damage we can
-				createwound(BURN, min(burn,can_inflict))
-				//How much burn damage is left to inflict
-				spillover += max(0, burn - can_inflict)
-
+			createwound(BURN, amount)
 
 	// sync the organ's damage with its wounds
-	src.update_damages()
+	update_damages()
 	owner?.updatehealth() //droplimb will call updatehealth() again if it does end up being called
 
-
-	//If limb took enough damage, try to cut or tear it off
-	if(owner && loc == owner && !is_stump())
+	//If limb took enough damage and is broken, try to cut or tear it off
+	if(status & ORGAN_BROKEN && owner && loc == owner && !is_stump())
 		if(!cannot_amputate && config.limbs_can_break && (brute_dam + burn_dam) >= (max_damage * ORGAN_HEALTH_MULTIPLIER))
 			//organs can come off in four cases
 			//1. If the damage source is edge_eligible and the brute damage dealt exceeds the edge threshold, then the organ is cut off.
@@ -99,16 +89,21 @@
 				else
 					edge_eligible = 1
 
-			if(edge_eligible && (brute + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_EDGE && prob(brute))
-				droplimb(0, DROPLIMB_EDGE)
-			else if((burn + prev_burn) >= max_damage * DROPLIMB_THRESHOLD_DESTROY && prob(burn/3))
-				droplimb(0, DROPLIMB_BURN)
-			else if((brute + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_DESTROY && prob(brute/3))
-				droplimb(0, DROPLIMB_BLUNT)
-			else if((brute + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_TEAROFF && prob(brute/5))
-				droplimb(0, DROPLIMB_EDGE)
-			else if(brute_dam && BP_IS_ROBOTIC(src) && (status & ORGAN_BROKEN) && prob(brute*2))
-				droplimb(prob(50), pick(DROPLIMB_EDGE, DROPLIMB_BLUNT))
+			switch(damage_type)
+				if(BRUTE)
+					if(edge_eligible && (amount + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_EDGE)
+						droplimb(TRUE, DROPLIMB_EDGE)
+					else if((amount + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_DESTROY)
+						droplimb(FALSE, DROPLIMB_BLUNT)
+					else if((amount + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_TEAROFF)
+						droplimb(FALSE, DROPLIMB_EDGE)
+					else if(brute_dam && BP_IS_ROBOTIC(src))
+						droplimb(prob(50), pick(DROPLIMB_EDGE, DROPLIMB_BLUNT))
+				if(BURN)
+					if(edge_eligible && (amount + prev_burn) >= max_damage * DROPLIMB_THRESHOLD_EDGE)
+						droplimb(TRUE, DROPLIMB_EDGE_BURN)
+					else if((amount + prev_burn) >= max_damage * DROPLIMB_THRESHOLD_DESTROY)
+						droplimb(TRUE, DROPLIMB_BURN)
 
 	return update_damstate()
 

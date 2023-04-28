@@ -37,6 +37,11 @@
 
 /obj/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
+
+	if(gender == NEUTER)
+		gender = pick(MALE, FEMALE)
+	M.gender = gender
+
 	M.set_species(species)
 
 	if(species)
@@ -49,12 +54,9 @@
 	M.death(FALSE)
 	for(var/obj/item/organ/O in M.internal_organs)
 		O.die()
-	STOP_PROCESSING(SSmobs, src)
 	M.pulse = PULSE_NONE			// Because killing a mob and its organs doesn't stop its pulse
 	GLOB.human_mob_list -= M
-
-	gender = pick(MALE, FEMALE)
-	M.gender = gender
+	STOP_PROCESSING(SSmobs, src)
 
 	if(mobname)
 		M.real_name = mobname
@@ -64,7 +66,10 @@
 	if(skintone)
 		M.change_skin_tone(skintone)
 	else
-		M.change_skin_tone(rand(-200,-15))
+		if(prob(80))	// If I don't do this, we're going to have a bunch of black corpses everywhere
+			M.change_skin_tone(rand(-80,-15))
+		else
+			M.change_skin_tone(rand(-200,-81))
 
 	if(min_age && max_age)
 		M.age = rand(min_age, max_age)
@@ -141,7 +146,7 @@
 	name = "twisted skeletal remains"
 	species = SPECIES_SKELETON
 	min_age = 359	// OS disappeared in 2291, CEV Eris launched 2642. This means the skeleton of a child of 8 years would be 359 years old.
-	max_age = 499	// Oldest skeleton is of a person of 140 years. Implies OS managed to extend life expectancy via technology. Revise according to lore.
+	max_age = 499	// Oldest skeleton is of a person of 140 years. Implies OS managed to extend life expectancy. Revise according to lore.
 	corpseuniform = /obj/item/clothing/under/onestar
 	corpsesuit = /obj/item/clothing/suit/storage/greatcoat/onestar
 	corpseshoes = /obj/item/clothing/shoes/jackboots

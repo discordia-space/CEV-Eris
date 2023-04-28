@@ -22,6 +22,8 @@
 	var/collection_mode = TRUE //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle" //sound played when used. null for no sound.
 	var/is_tray_hidden = FALSE //hides from even t-rays
+	var/prespawned_content_amount // Number of items storage should initially contain
+	var/prespawned_content_type // Type of items storage should contain, takes effect if variable above is at least 1
 
 /obj/item/storage/New()
 	can_hold |= can_hold_extra
@@ -58,7 +60,7 @@
 		S.close(clientMob)
 
 /obj/item/storage/proc/setupItemBackground(var/HUD_element/itemBackground, atom/item, itemCount)
-	itemBackground.setClickProc(.proc/itemBackgroundClick)
+	itemBackground.setClickProc(PROC_REF(itemBackgroundClick))
 	itemBackground.setData("item", item)
 
 	var/HUD_element/itemIcon = itemBackground.add(new/HUD_element())
@@ -88,7 +90,7 @@
 	closeButton.setName("HUD Storage Close Button")
 	closeButton.setIcon(icon("icons/mob/screen1.dmi","x"))
 	closeButton.setHideParentOnClick(TRUE)
-	closeButton.setClickProc(.proc/closeButtonClick)
+	closeButton.setClickProc(PROC_REF(closeButtonClick))
 	closeButton.setData("item", src)
 
 	//storage space based items
@@ -102,7 +104,7 @@
 		storageBackground.setName("HUD Storage Background")
 		storageBackground.setHideParentOnHide(TRUE)
 
-		storageBackground.setClickProc(.proc/storageBackgroundClick)
+		storageBackground.setClickProc(PROC_REF(storageBackgroundClick))
 		storageBackground.setData("item", src)
 
 		var/paddingSides = 2 //in pixels
@@ -186,7 +188,7 @@
 
 				currentItemNumber++
 			else //empty slots
-				itemBackground.setClickProc(.proc/storageBackgroundClick)
+				itemBackground.setClickProc(PROC_REF(storageBackgroundClick))
 				itemBackground.setData("item", src)
 
 			totalWidth += itemBackground.getWidth() + spacingBetweenSlots
@@ -241,8 +243,8 @@
 		generateHUD(data).show(user.client)
 		is_seeing |= user
 		user.s_active = src
-	SEND_SIGNAL(src, COMSIG_STORAGE_OPENED, user)
-	SEND_SIGNAL(user, COMSIG_STORAGE_OPENED, src)
+	SEND_SIGNAL_OLD(src, COMSIG_STORAGE_OPENED, user)
+	SEND_SIGNAL_OLD(user, COMSIG_STORAGE_OPENED, src)
 
 /obj/item/storage/proc/hide_from(mob/user)
 	is_seeing -= user
@@ -549,7 +551,9 @@
 
 // Override in subtypes
 /obj/item/storage/proc/populate_contents()
-	return
+	if(prespawned_content_type && prespawned_content_amount)
+		for(var/i in 1 to prespawned_content_amount)
+			new prespawned_content_type(src)
 
 /obj/item/storage/emp_act(severity)
 	if(!isliving(loc))

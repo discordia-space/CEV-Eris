@@ -5,18 +5,18 @@
 	slot = "armband"
 
 /obj/item/clothing/accessory/armband/cargo
-	name = "cargo armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is brown."
+	name = "Aster's Guild armband"
+	desc = "An armband, worn by the crew to display which corporation they're assigned to. This one is brown."
 	icon_state = "cargo"
 
 /obj/item/clothing/accessory/armband/engine
-	name = "engineering armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is orange with a reflective strip!"
-	icon_state = "engie"
+	name = "Technomancer armband"
+	desc = "An armband, worn by the crew to display which faction they're assigned to. This one is in the Technomancer League colors, yellow and blue"
+	icon_state = "techno"
 
 /obj/item/clothing/accessory/armband/science
-	name = "science armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is purple."
+	name = "Moebius research armband"
+	desc = "An armband, worn by the crew to display which corporation they're assigned to. This one is purple."
 	icon_state = "rnd"
 
 /obj/item/clothing/accessory/armband/hydro
@@ -25,11 +25,16 @@
 	icon_state = "hydro"
 
 /obj/item/clothing/accessory/armband/med
-	name = "medical armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is white."
+	name = "white armband"
+	desc = "A plain white piece of cloth fashioned into an armband."
 	icon_state = "med"
 
 /obj/item/clothing/accessory/armband/medgreen
-	name = "EMT armband"
-	desc = "An armband, worn by the crew to display which department they're assigned to. This one is white and green."
+	name = "Moebius medical armband"
+	desc = "An armband, worn by the crew to display which corporation they're assigned to. This one is white and teal."
 	icon_state = "medgreen"
+
+/obj/item/clothing/accessory/armband/moebius
+	name = "Moebius armband"
+	desc = "An armband, worn by the crew to display which corporation they're assigned to. This one is purple and teal."
+	icon_state = "moebius"

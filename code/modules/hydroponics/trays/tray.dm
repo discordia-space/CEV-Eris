@@ -8,6 +8,7 @@
 	anchored = TRUE
 	reagent_flags = OPENCONTAINER
 	volume = 100
+	circuit = /obj/item/electronics/circuitboard/hydroponics
 
 	var/mechanical = TRUE         // Set to 0 to stop it from drawing the alert lights.
 	var/base_name = "tray"
@@ -56,7 +57,8 @@
 		"pacid" =           3,
 		"plantbgone" =      3,
 		"cryoxadone" =     -3,
-		"radium" =          2
+		"radium" =          2,
+		"biomatter" =      -1
 		)
 	var/global/list/nutrient_reagents = list(
 		"milk" =            0.1,
@@ -86,7 +88,8 @@
 	var/global/list/pestkiller_reagents = list(
 		"sugar" =           2,
 		"diethylamine" =   -2,
-		"adminordrazine" = -5
+		"adminordrazine" = -5,
+		"biomatter" =      -1
 		)
 	var/global/list/water_reagents = list(
 		"water" =           1,
@@ -97,6 +100,7 @@
 		"phosphorus" =     -0.5,
 		"water" =           1,
 		"sodawater" =       1,
+		"biomatter" =		0.5
 		)
 
 	// Beneficial reagents also have values for modifying yield_mod and mut_mod (in that order).
@@ -116,18 +120,21 @@
 		"radium" =         list( -1.5,  0,   0.2),
 		"adminordrazine" = list(  1,    1,   1  ),
 		"robustharvest" =  list(  0,    0.2, 0  ),
-		"left4zed" =       list(  0,    0,   0.2)
+		"left4zed" =       list(  0,    0,   0.2),
+		"biomatter" =      list(  0.1,  0.1, 0.1)
 		)
 
 	// Mutagen list specifies minimum value for the mutation to take place, rather
 	// than a bound as the lists above specify.
 	var/global/list/mutagenic_reagents = list(
-		"radium" =  8,
-		"mutagen" = 15
+		"radium" =    8,
+		"mutagen" =   15,
+		"biomatter" = 4
 		)
 
 	var/global/list/potency_reagents = list(
-		"diethylamine" =    1
+		"diethylamine" =    1,
+		"biomatter" =       0.5
 	)
 
 /obj/machinery/portable_atmospherics/hydroponics/AltClick()
@@ -636,3 +643,10 @@
 	closed_system = !closed_system
 	to_chat(user, "You [closed_system ? "close" : "open"] the tray's lid.")
 	update_icon()
+
+/obj/item/electronics/circuitboard/hydroponics
+	name = T_BOARD("hydroponics tray")
+	build_path = /obj/machinery/portable_atmospherics/hydroponics
+	board_type = "machine"
+	req_components = list(
+	)
