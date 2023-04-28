@@ -5,7 +5,7 @@
 	icon_screen = "holocontrol"
 
 	use_power = IDLE_POWER_USE
-	active_power_usage = 10000 //10kW for the scenery + 50W per holoitem
+	active_power_usage = 5000 //5kW for the scenery + 5W per holoitem
 
 	circuit = /obj/item/electronics/circuitboard/holodeckcontrol
 
