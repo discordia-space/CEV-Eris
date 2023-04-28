@@ -126,6 +126,8 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
 			continue
 		if(name && value)
 			job_to_playtime_requirement[name] = text2num(value)
+		else if(name)
+			job_to_playtime_requirement[name] = 0
 	return TRUE
 
 /datum/controller/subsystem/job/proc/LoadPlaytimes(ckey)
