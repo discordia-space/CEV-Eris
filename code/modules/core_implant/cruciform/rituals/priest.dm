@@ -25,7 +25,7 @@
 
 /datum/ritual/cruciform/priest/acolyte/epiphany
 	name = "Epiphany"
-	phrase = "In nomine Patris et Filii et Spiritus sancti"
+	phrase = "In nomine Patris et Filii et Spiritus sancti."
 	desc = "NeoTheology's principal sacrament is a ritual of baptism and merging with cruciform. A body, relieved of clothes should be placed on NeoTheology's special altar."
 
 /datum/ritual/cruciform/priest/acolyte/epiphany/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
@@ -48,7 +48,7 @@
 		return FALSE
 
 	log_and_message_admins("successfully baptized [CI.wearer]")
-	to_chat(CI.wearer, "<span class='info'>Your cruciform vibrates and warms up.</span>")
+	to_chat(CI.wearer, span_info("Your cruciform vibrates and warms up."))
 
 	CI.activate()
 
@@ -67,7 +67,7 @@
 
 /datum/ritual/cruciform/priest/acolyte/unupgrade
 	name = "Asacris"
-	phrase = "A caelo usque ad centrum"
+	phrase = "A caelo usque ad centrum."
 	desc = "This litany will remove any upgrade from the target's Cruciform implant"
 
 /datum/ritual/cruciform/priest/acolyte/unupgrade/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
@@ -161,12 +161,12 @@
 
 /datum/ritual/cruciform/priest/acolyte/short_boost/wisdom
 	name = "Grace of Perseverance"
-	phrase = "Domine petra mea et robur meum et salvator meus Deus meus fortis meus sperabo in eo scutum meum et cornu salutis meae susceptor meus"
+	phrase = "Domine petra mea et robur meum et salvator meus Deus meus fortis meus sperabo in eo scutum meum et cornu salutis meae susceptor meus."
 	stats_to_boost = list(STAT_MEC = 10, STAT_COG = 10, STAT_BIO = 10)
 
 /datum/ritual/cruciform/priest/acolyte/short_boost/courage
 	name = "To Uphold the Holy Word"
-	phrase = "In Deo laudabo verbum in Domino praedicabo sermonem in Deo speravi non timebo quid faciat homo mihi"
+	phrase = "In Deo laudabo verbum in Domino praedicabo sermonem in Deo speravi non timebo quid faciat homo mihi."
 	stats_to_boost = list(STAT_ROB = 10, STAT_TGH = 10, STAT_VIG = 10)
 
 /datum/ritual/targeted/cruciform/priest/atonement
@@ -315,14 +315,14 @@
 
 /datum/ritual/cruciform/priest/offering/holy_guidance
 	name = "Holy guidance"
-	phrase = "Domine deus, lux via"
+	phrase = "Domine deus, lux via."
 	desc = "Present your prayers to the Eye of the Protector. You must offer an oddity and 40 fruits."
 	req_offerings = list(/obj/item/oddity = 1, /obj/item/reagent_containers/food/snacks/grown = 40)
 	miracles = list(ALERT, INSPIRATION, ODDITY, STAT_BUFF, ENERGY_REWARD)
 
 /datum/ritual/cruciform/priest/divine_blessing
 	name = "Divine Blessing"
-	phrase = "Corpus Deus"
+	phrase = "Corpus Deus."
 	desc = "Increase an oddity's stats by a certain amount but reduce yours by half of that amount."
 	success_message = "Your oddity has been blessed."
 	fail_message = "You feel cold in your active hand."
@@ -394,7 +394,7 @@
 
 /datum/ritual/cruciform/priest/adoption
 	name = "Adoption"
-	phrase = "Dervans semitas iustitiae et vias sanctorum custodiens"
+	phrase = "Dervans semitas iustitiae et vias sanctorum custodiens."
 	desc = "Opens church doors for target disciple."
 	power = 15
 
@@ -410,7 +410,7 @@
 
 /datum/ritual/cruciform/priest/ordination
 	name = "Ordination"
-	phrase = "Gloriam sapientes possidebunt stultorum exaltatio ignominia"
+	phrase = "Gloriam sapientes possidebunt stultorum exaltatio ignominia."
 	desc = "Opens clergy doors for target disciple."
 	power = 15
 
@@ -426,7 +426,7 @@
 
 /datum/ritual/cruciform/priest/omission
 	name = "Omission"
-	phrase = "Via impiorum tenebrosa nesciunt ubi corruant"
+	phrase = "Via impiorum tenebrosa nesciunt ubi corruant."
 	desc = "Removes all access from target disciple's cruciform."
 	power = 30
 

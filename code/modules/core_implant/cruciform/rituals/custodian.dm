@@ -6,7 +6,7 @@
 
 /datum/ritual/cruciform/custodian/purging
 	name = "Words of purging"
-	phrase = "Purificati a peccatis et in remissionem peccatorum"
+	phrase = "Purificati a peccatis et in remissionem peccatorum."
 	desc = "Addictions are common afflictions among ship denizens. This litany helps those people by easing or removing their addictions."
 	power = 5
 

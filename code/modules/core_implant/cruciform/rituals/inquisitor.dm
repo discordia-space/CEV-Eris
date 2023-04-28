@@ -31,7 +31,7 @@
 */
 /datum/ritual/targeted/cruciform/inquisitor/penance
 	name = "Penance"
-	phrase = "Mihi vindicta \[Target human]"
+	phrase = "Mihi vindicta \[Target human]."
 	desc = "Imparts extreme pain on the target disciple. Does no actual harm."
 	power = 35
 
@@ -76,7 +76,7 @@
 /*
 /datum/ritual/cruciform/inquisitor/obey
 	name = "Obey"
-	phrase = "Sicut dilexit me Pater et ego dilexi, vos manete in dilectione mea"
+	phrase = "Sicut dilexit me Pater et ego dilexi, vos manete in dilectione mea."
 	desc = "Bind believer to your will."
 
 /datum/ritual/cruciform/inquisitor/obey/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C,list/targets)
@@ -111,14 +111,14 @@
 */
 /datum/ritual/cruciform/inquisitor/selfheal
 	name = "Convalescence"
-	phrase = "Dominus autem dirigat corda vestra in caritate Dei et patientia Christi"
+	phrase = "Dominus autem dirigat corda vestra in caritate Dei et patientia Christi."
 	desc = "Recover from the ravages of wounds and pain."
 	cooldown = TRUE
 	cooldown_time = 100
 	power = 25 //Healing yourself is slightly easier than healing someone else
 
 /datum/ritual/cruciform/inquisitor/selfheal/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C,list/targets)
-	to_chat(H, "<span class='info'>A sensation of relief bathes you, washing away your pain</span>")
+	to_chat(H, span_info("A sensation of relief bathes you, washing away your pain"))
 	log_and_message_admins("healed himself with convalescence litany")
 	H.add_chemical_effect(CE_PAINKILLER, 20)
 	H.adjustBruteLoss(-20)
@@ -137,10 +137,10 @@
 */
 /datum/ritual/cruciform/inquisitor/heal_other
 	name = "Succour"
-	phrase = "Venite ad me, omnes qui laboratis, et onerati estis et ego reficiam vos"
+	phrase = "Venite ad me, omnes qui laboratis, et onerati estis et ego reficiam vos."
 	desc = "Heal a nearby disciple"
 	cooldown = TRUE
-	cooldown_time = 100
+	cooldown_time = 10 SECONDS
 	power = 35
 
 /datum/ritual/cruciform/inquisitor/heal_other/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C,list/targets)
@@ -249,7 +249,7 @@
 	if (!text)
 		return
 	log_and_message_admins("sent a message to [H] with text \"[text]\"")
-	to_chat(H, "<span class='notice'>A voice speaks in your mind: \"[text]\"</span>")
+	to_chat(H, SPAN_NOTICE("A voice speaks in your mind: \"[text]\""))
 
 
 
@@ -258,7 +258,7 @@
 
 /datum/ritual/cruciform/inquisitor/initiation
 	name = "Initiation"
-	phrase = "Habe fiduciam in Domino ex toto corde tuo et ne innitaris prudentiae tuae, in omnibus viis tuis cogita illum et ipse diriget gressus tuos"
+	phrase = "Habe fiduciam in Domino ex toto corde tuo et ne innitaris prudentiae tuae, in omnibus viis tuis cogita illum et ipse diriget gressus tuos."
 	desc = "The second stage of granting a field promotion to a disciple, upgrading them to Preacher. The Preacher ascension kit is the first step."
 	power = 100
 
@@ -289,7 +289,7 @@
 
 /datum/ritual/cruciform/inquisitor/check_telecrystals
 	name = "Knowledge"
-	phrase = "Cor sapientis quaerit doctrinam, et os stultorum pascetur inperitia"
+	phrase = "Cor sapientis quaerit doctrinam, et os stultorum pascetur inperitia."
 	desc = "Find out the limits of your power, how many telecrystals you have now."
 	power = 5
 
@@ -298,10 +298,10 @@
 
 	if(I && I.uplink)
 		I.telecrystals = I.uplink.uses
-		to_chat(user, "<span class='info'>You have [I.telecrystals] telecrystals.</span>")
+		to_chat(user, span_info("You have [I.telecrystals] telecrystals."))
 		return FALSE
 	else
-		to_chat(user, "<span class='info'>You have no uplink.</span>")
+		to_chat(user, span_info("You have no uplink."))
 		return FALSE
 
 
@@ -313,7 +313,7 @@
 */
 /datum/ritual/targeted/cruciform/inquisitor/spawn_item
 	name = "Bounty"
-	phrase = "Supra Domini, bona de te peto. Audi me, et libera vocationem ad me munera tua"
+	phrase = "Supra Domini, bona de te peto. Audi me, et libera vocationem ad me munera tua."
 	desc = "Request supplies and items from headquarters. Find a private place to do this. Establishing the connection takes a lot of power."
 	power = 20
 
