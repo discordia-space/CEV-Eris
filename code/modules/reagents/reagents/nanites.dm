@@ -27,8 +27,9 @@
 /datum/reagent/nanites/consumed_amount(mob/living/carbon/M, alien, location)
 	if(will_occur(M, alien, location))
 		return ..()
-	else
-		return 0
+	else if(location == CHEM_INGEST)
+		holder.trans_to_mob(M, volume, CHEM_BLOOD) // Nanites dig through the stomach lining to get into the blood.
+	return 0
 
 /datum/reagent/nanites/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	eat_blood(M)
@@ -40,9 +41,6 @@
 		met.add_reagent("nanodead", removed)
 	if(will_occur(M, alien, CHEM_BLOOD))
 		return TRUE
-
-/datum/reagent/nanites/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
-	holder.trans_to_mob(M, 1, id) // Nanites are programmed to enter the bloodstream from the stomach.
 
 /datum/reagent/nanites/capped
 	name = "Raw Industrial Nanobots"
@@ -302,6 +300,7 @@
 	repair_strength = H.chem_effects[CE_MECH_REPAIR] // Resets the repair strength to the remaining strength after treating a wound.
 
 /datum/reagent/nanites/repair/on_mob_add(mob/living/L)
+	..()
 	RegisterSignal(L, COMSIG_HUMAN_MECH_REPAIR, PROC_REF(on_wound_repaired))
 
 /datum/reagent/nanites/repair/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
