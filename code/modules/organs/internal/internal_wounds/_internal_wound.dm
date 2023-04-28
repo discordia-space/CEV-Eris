@@ -106,8 +106,6 @@
 		if(treatment_threshold && owner_ce[chem_effect] >= treatment_threshold)
 			owner_ce[chem_effect] -= treatment_threshold
 			treatment(FALSE)
-			if(chem_effect == CE_MECH_REPAIR)
-				SEND_SIGNAL(H, COMSIG_HUMAN_MECH_REPAIR)
 			return
 
 	// Spread once
