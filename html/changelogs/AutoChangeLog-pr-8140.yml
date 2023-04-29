@@ -1,5 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Fixed some internal inventory code related to dropping items , syringes
-      will no longer have overlays on the ground.

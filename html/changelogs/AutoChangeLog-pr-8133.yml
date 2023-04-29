@@ -1,4 +1,0 @@
-author: TheLeopold
-delete-after: true
-changes:
-  - bugfix: fixed altar not allowing cruciform upgrades to be placed on it.

@@ -1,7 +1,0 @@
-author: ValoTheValo
-delete-after: true
-changes:
-  - rscadd: New NT MK58 Frame
-  - bugfix: Gave the MK58 its 1.3 damage multiplier
-  - imageadd: edited NT MK58 Barrel color
-  - spellcheck: Changed MK58 names to be consistant with old versions
