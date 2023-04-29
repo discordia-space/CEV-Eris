@@ -304,16 +304,15 @@
 
 	var/list/damaged
 	for(var/obj/item/organ/external/external in H.organs)
-		if(!BP_IS_ROBOTIC(external) || external.damage <= 0)
+		if(!BP_IS_ROBOTIC(external))
 			continue
-		damaged += external
-
-	if(!damaged.len)
-		return
+		if(external.brute_dam || external.burn_dam)
+			damaged += external
 
 	var/heal_amount = 5 / damaged.len * effect_multiplier
 	for(var/obj/item/organ/external/external in damaged)
 		external.heal_damage(heal_amount, heal_amount, robo_repair = TRUE)
+
 
 /* Uncomment when CE_MECH_REPLENISH has a use
 // "Blood" restore
