@@ -289,13 +289,31 @@
 
 /datum/reagent/nanites/repair
 	name = "Mechanites"
-	description = "Microscopic construction robots programmed to repair internal components."
+	description = "Microscopic construction robots programmed to repair prosthetics."
 	id = "repair"
 
 /datum/reagent/nanites/repair/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(!..())
 		return
-	M.add_chemical_effect(CE_MECH_REPAIR, 1 * effect_multiplier)
+
+	var/mob/living/carbon/human/H = M
+	if(!istype(H))
+		return
+
+	H.add_chemical_effect(CE_MECH_REPAIR, 1)
+
+	var/list/damaged
+	for(var/obj/item/organ/external/external in H.organs)
+		if(!BP_IS_ROBOTIC(external) || external.damage <= 0)
+			continue
+		damaged += external
+
+	if(!damaged.len)
+		return
+
+	var/heal_amount = 5 / damaged.len * effect_multiplier
+	for(var/obj/item/organ/external/external in damaged)
+		external.heal_damage(heal_amount, heal_amount, robo_repair = TRUE)
 
 /* Uncomment when CE_MECH_REPLENISH has a use
 // "Blood" restore
