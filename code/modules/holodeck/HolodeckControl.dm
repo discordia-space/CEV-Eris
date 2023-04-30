@@ -5,11 +5,11 @@
 	icon_screen = "holocontrol"
 
 	use_power = IDLE_POWER_USE
-	active_power_usage = 5000 //5kW for the scenery + 5W per holoitem
+	active_power_usage = 10000 //10kW for the scenery + 50W per holoitem
 
 	circuit = /obj/item/electronics/circuitboard/holodeckcontrol
 
-	var/item_power_usage = 5
+	var/item_power_usage = 50
 
 	var/area/holodeck/linkedholodeck = null
 	var/linkedholodeck_area
@@ -141,7 +141,7 @@
 
 /obj/machinery/computer/HolodeckControl/proc/update_projections()
 	if (safety_disabled)
-		item_power_usage = 25
+		item_power_usage = 250
 		for(var/obj/item/holo/esword/H in linkedholodeck)
 			H.damtype = BRUTE
 	else
@@ -183,7 +183,7 @@
 	if(!..())
 		return
 	if(active)
-		use_power(item_power_usage * (holographic_objs.len + holographic_mobs.len) + linkedholodeck.usage(TOTAL))
+		use_power(item_power_usage * (holographic_objs.len + holographic_mobs.len))
 		if(!checkInteg(linkedholodeck))
 			damaged = 1
 			loadProgram(holodeck_programs["turnoff"], 0)
