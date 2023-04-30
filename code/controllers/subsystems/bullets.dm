@@ -44,14 +44,14 @@ SUBSYSTEM_DEF(bullets)
 /datum/bullet_data/New(atom/referencedBullet, aimedZone, atom/firer, atom/target, list/targetCoords, turfsPerTick, projectileAccuracy, lifetime)
 	src.referencedBullet = referencedBullet
 	src.currentTurf = get_turf(referencedBullet)
-	src.currentCoords = list(referencedBullet.pixel_x, referencedBullet.pixel_y)
+	src.currentCoords = list(referencedBullet.pixel_x, referencedBullet.pixel_y, currentTurf.z)
 	src.aimedZone = aimedZone
 	src.firer = firer
 	src.firedTurf = get_turf(firer)
 	src.target = target
 	src.targetTurf = get_turf(target)
-	//src.targetCoords = targetCoords
-	src.targetCoords = list(8,8)
+	src.targetCoords = targetCoords
+	//src.targetCoords = list(8,8, targetTurf.z)
 	src.turfsPerTick = turfsPerTick
 	src.projectileAccuracy = projectileAccuracy
 	src.lifetime = lifetime
@@ -85,9 +85,7 @@ SUBSYSTEM_DEF(bullets)
 		src.targetLevel = LEVEL_TURF
 	else if(isitem(target))
 		src.targetLevel = LEVEL_TURF
-	src.firedCoordinates[1] = 8
-	src.firedCoordinates[2] = 8
-	src.firedCoordinates[3] = referencedBullet.z
+	src.firedCoordinates = list(8,8, referencedBullet.z)
 	updateCoordinateRatio()
 	SSbullets.bullet_queue += src
 
@@ -99,8 +97,11 @@ SUBSYSTEM_DEF(bullets)
 	coordinates[1] = ((targetTurf.x - firedTurf.x) * PPT + targetCoords[1] - firedCoordinates[1]) / PPT + 0.0001
 	coordinates[2] = ((targetTurf.y - firedTurf.y) * PPT + targetCoords[2] - firedCoordinates[2]) / PPT + 0.0001
 	var/r = sqrt(coordinates[1] ** 2 + coordinates[2] ** 2)
+	coordinates[3] = (targetCoords[3] - firedCoordinates[3])/r + firedLevel - targetLevel
+	coordinates[1] = coordinates[1]/r
+	coordinates[2] = coordinates[2]/r
 	// [1] is X ratio , [2] is Y ratio,  [3] is Z-ratio
-	movementRatios = list(coordinates[1]/r, coordinates[2]/r, (targetCoords[3] - firedLevel[3])/r + firedLevel - targetLevel)
+	movementRatios = coordinates
 
 /datum/bullet_data/proc/updateLevel()
 	switch(currentCoords[3])
@@ -148,7 +149,7 @@ SUBSYSTEM_DEF(bullets)
 			py += -1 * y_change * PPT/2
 			pz += z_change
 			target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z + z_change)
-			if(iswall(target_turf) && target_turf:projectileBounceCheck())
+			//if(iswall(target_turf) && target_turf:projectileBounceCheck())
 			bullet.updateLevel()
 			bullet.referencedBullet.Move(target_turf)
 			bullet.coloreds |= target_turf
