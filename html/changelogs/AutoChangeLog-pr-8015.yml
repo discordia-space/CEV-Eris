@@ -1,6 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - rscadd: Holobar
-  - rscadd: Club Artist
-  - bugfix: Some wire runtimes fixed when the floor changes types

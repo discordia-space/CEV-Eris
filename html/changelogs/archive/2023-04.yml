@@ -170,3 +170,8 @@
   - bugfix: Gave the MK58 its 1.3 damage multiplier
   - imageadd: edited NT MK58 Barrel color
   - spellcheck: Changed MK58 names to be consistant with old versions
+2023-04-30:
+  Humonitarian:
+  - rscadd: Holobar
+  - rscadd: Club Artist
+  - bugfix: Some wire runtimes fixed when the floor changes types
