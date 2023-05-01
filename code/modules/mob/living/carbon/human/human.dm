@@ -10,7 +10,7 @@
 	var/obj/item/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_lying_buckled_and_verb_status() call.
 	var/using_scope // This is not very good either, because I've copied it. Sorry.
 
-/mob/living/carbon/human/New(new_loc, new_species)
+/mob/living/carbon/human/Initialize(new_loc, new_species)
 	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100", ON_MOB_HUD_LAYER)
 	hud_list[STATUS_HUD]      = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
 	hud_list[LIFE_HUD]        = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
@@ -24,7 +24,7 @@
 
 	GLOB.human_mob_list |= src
 
-	..()
+	. = ..()
 
 	if(!species)
 		if(new_species)
@@ -872,7 +872,7 @@ var/list/rank_prefix = list(\
 		return
 
 	var/list/mobs = list()
-	for(var/mob/living/carbon/C in SSmobs.mob_list)
+	for(var/mob/living/carbon/C in SSmobs.mob_list | SShumans.mob_list)
 		mobs += C
 
 	var/mob/target = input("Who do you want to project your mind to ?") as null|anything in mobs
@@ -908,7 +908,7 @@ var/list/rank_prefix = list(\
 
 	var/list/mobs = list()
 
-	for(var/mob/living/carbon/H in SSmobs.mob_list)
+	for(var/mob/living/carbon/H in SSmobs.mob_list | SShumans.mob_list)
 		if(H.ckey && H.stat == CONSCIOUS)
 			mobs += H
 
@@ -993,14 +993,9 @@ var/list/rank_prefix = list(\
 	return gender
 
 /mob/living/carbon/human/revive()
-
 	if(species && !(species.flags & NO_BLOOD))
 		vessel.add_reagent("blood",species.blood_volume-vessel.total_volume)
 		fixblood()
-
-	// Fix up all organs.
-	// This will ignore any prosthetics in the prefs currently.
-	rebuild_organs()
 
 	if(!client || !key) //Don't boot out anyone already in the mob.
 		for(var/obj/item/organ/internal/brain/H in world)

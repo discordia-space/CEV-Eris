@@ -55,12 +55,12 @@
 /datum/unarmed_attack/slime_glomp
 	attack_verb = list("glomped")
 	attack_noun = list("body")
-	var/delay = 500 // more than 5 seconds thats for sure.
-	var/last_attack 
+	var/delay = 10 SECONDS//  10 seconds
+	var/last_attack
 	damage = 2
 
 /datum/unarmed_attack/slime_glomp/apply_effects(mob/living/carbon/human/user, mob/living/carbon/human/target, attack_damage, zone)
-	if(user.nutrition > 40 && (world.time > last_attack + delay) && !(user.stat) && istype(target))
+	if(user.nutrition > 40 && (world.time > last_attack + delay) && !(user.stat) && target)
 		zone = target.get_organ(zone) // Zone is passed as a string and not as a external organ.
 		if(!zone)
 			return
@@ -68,6 +68,10 @@
 		user.adjustNutrition(-40)
 		last_attack = world.time
 		user.visible_message(SPAN_DANGER("[user] electrocutes \the [target] with their arms!"), SPAN_NOTICE("You electrocute \the [target] with your arm!"), SPAN_WARNING("You hear a splash of water and a sharp electric buzz!"), 5)
+		addtimer(CALLBACK(src, PROC_REF(warn_recharge), user), delay)
+
+/datum/unarmed_attack/slime_glomp/proc/warn_recharge(mob/living/carbon/human/user)
+	to_chat(user, SPAN_NOTICE("Your arms are ready to shock again!"))
 /datum/unarmed_attack/stomp/weak
 	attack_verb = list("jumped on")
 
@@ -78,3 +82,4 @@
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	user.visible_message(SPAN_WARNING("[user] jumped up and down on \the [target]'s [affecting.name]!"))
 	playsound(user.loc, attack_sound, 25, 1, -1)
+	

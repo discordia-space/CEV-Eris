@@ -26,7 +26,7 @@
 		SEMI_AUTO_300,
 		)
 	gun_tags = list(GUN_SILENCABLE)
-	gun_parts = list(/obj/item/part/gun/frame/zoric = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/magnum = 1)
+	gun_parts = list(/obj/item/part/gun/frame/zoric = 1, /obj/item/part/gun/modular/grip/serb = 1, /obj/item/part/gun/modular/mechanism/smg = 1, /obj/item/part/gun/modular/barrel/magnum = 1)
 	serial_type = "SA"
 
 /obj/item/gun/projectile/automatic/zoric/update_icon()
@@ -37,6 +37,10 @@
 	if(ammo_magazine)
 		overlays += "mag[ammo_magazine.ammo_label_string]"
 		itemstring += "_mag"
+		wielded_item_state = "_doble" + "_mag"
+	else
+		wielded_item_state = "_doble"
+		
 
 	set_item_state(itemstring)
 
@@ -49,6 +53,6 @@
 	desc = "A Zoric SMG frame. Workhorse of the Excelsior force."
 	icon_state = "frame_zorik"
 	resultvars = list(/obj/item/gun/projectile/automatic/zoric)
-	gripvars = list(/obj/item/part/gun/grip/serb)
-	mechanismvar = /obj/item/part/gun/mechanism/smg
-	barrelvars = list(/obj/item/part/gun/barrel/magnum)
+	gripvars = list(/obj/item/part/gun/modular/grip/serb)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/smg
+	barrelvars = list(/obj/item/part/gun/modular/barrel/magnum)

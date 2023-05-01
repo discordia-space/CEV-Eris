@@ -406,7 +406,7 @@
 	color = "#801E28"
 
 /datum/reagent/medicine/slimejelly/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	if(M.species.name == "Slime")
+	if(M.species.name == SPECIES_SLIME)
 		M.heal_organ_damage(1 * effect_multiplier, 1 * effect_multiplier)
 		return
 	if(prob(10))
@@ -532,9 +532,9 @@
 /datum/reagent/toxin/slimetoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species.name != "Slime")
+		if(H.species.name != SPECIES_SLIME)
 			to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
-			H.set_species("Slime")
+			H.set_species(SPECIES_SLIME)
 
 /datum/reagent/toxin/aslimetoxin
 	name = "Advanced Mutation Toxin"

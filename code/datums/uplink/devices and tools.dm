@@ -119,6 +119,31 @@
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/electronics/ai_module/syndicate
 
+/datum/uplink_item/item/tools/handheld_ai_jammer
+	name = "Handheld AI Jammer"
+	desc = "A handheld AI jammer , will stop AI signals from being executed within a 8 tile range"
+	item_cost = 3
+	antag_roles = list(ROLE_CONTRACTOR, ROLE_MARSHAL, ROLE_INQUISITOR, ROLE_MERCENARY)
+	path = /obj/item/device/jammer
+
+// Enough for a whole deck almost
+/datum/uplink_item/item/tools/portable_ai_jammer
+	name = "Portable area AI jammer"
+	desc = "A massive jammer put on a rolling cart, will stop AI signals from being executed within a 32 tile range and also affects the levels below and above. Warning! Cannot be stored in bags or held"
+	item_cost = 15
+	antag_roles = list(ROLE_CONTRACTOR, ROLE_MARSHAL, ROLE_INQUISITOR, ROLE_MERCENARY)
+	path = /obj/machinery/jammer
+
+/datum/uplink_item/item/tools/portable_ai_jammer/buy(obj/item/device/uplink/U, mob/user)
+	if(!can_buy(U))
+		return
+	new path(get_turf(user))
+	bluespace_entropy(2, get_turf(user), TRUE)
+	purchase_log(U)
+	U.uses -= item_cost
+	U.used_TC += item_cost
+
+
 /datum/uplink_item/item/tools/supply_beacon
 	name = "Hacked Supply Beacon (DANGER!)"
 	item_cost = 14

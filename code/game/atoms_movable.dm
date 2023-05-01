@@ -38,6 +38,7 @@
 //		testing("GC: [type] was deleted via GC with qdel()")
 	..()
 
+
 /atom/movable/Destroy()
 	. = ..()
 	for(var/atom/movable/AM in contents)
@@ -68,9 +69,17 @@
 /atom/movable/proc/entered_with_container(var/atom/old_loc)
 	return
 
+// Gets the top-atom that contains us, doesn't care about how deeply nested a item is
+/atom/proc/getContainingMovable()
+	var/atom/checking = src
+	while(!isturf(checking.loc) && !isnull(checking.loc))
+		checking = checking.loc
+	return checking
+
+
 /atom/movable/proc/forceMove(atom/destination, var/special_event, glide_size_override=0)
 	if(loc == destination)
-		return 0
+		return FALSE
 
 	if (glide_size_override)
 		set_glide_size(glide_size_override)
@@ -102,15 +111,30 @@
 			if(is_new_area && is_destination_turf)
 				destination.loc.Entered(src, origin)
 
-	SEND_SIGNAL_OLD(src, COMSIG_MOVABLE_MOVED, origin, loc)
-
-	// Only update plane if we're located on map
-	if(isturf(loc))
-		// if we wasn't on map OR our Z coord was changed
-		if( !isturf(origin) || (get_z(loc) != get_z(origin)) )
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, origin, loc)
+	if(origin && destination)
+		if(get_z(origin) != get_z(destination))
+			SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, get_z(origin) , get_z(destination))
 			update_plane()
+		else if(!is_origin_turf)
+			update_plane()
+			//for(var/atom/movable/thing in contents)
+			//	SEND_SIGNAL(thing, COMSIG_MOVABLE_Z_CHANGED,get_z(origin),get_z(destination))
+	else if(destination)
+		update_plane()
 
-	return 1
+	// Container change
+	if((!is_origin_turf || !is_destination_turf) || ((!is_origin_turf && !is_destination_turf) && (origin != destination)))
+		SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, getContainingMovable())
+	/*
+	// Only update plane if we're located on map
+	if(is_destination_turf)
+		// if we wasn't on map OR our Z coord was changed
+		if(!is_origin_turf || (get_z(loc) != get_z(origin)) )
+			update_plane()
+	*/
+
+	return TRUE
 
 
 //called when src is thrown into hit_atom
@@ -333,7 +357,6 @@
 		set_glide_size(glide_size_override)
 
 	// To prevent issues, diagonal movements are broken up into two cardinal movements.
-
 	// Is this a diagonal movement?
 	SEND_SIGNAL_OLD(src, COMSIG_MOVABLE_PREMOVE, src)
 	if (Dir & (Dir - 1))
@@ -390,9 +413,15 @@
 			// if we wasn't on map OR our Z coord was changed
 			if( !isturf(oldloc) || (get_z(loc) != get_z(oldloc)) )
 				update_plane()
-				onTransitZ(get_z(oldloc, get_z(loc)))
 
-		SEND_SIGNAL_OLD(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
+		if(get_z(oldloc) != get_z(loc))
+			SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, get_z(oldloc), get_z(NewLoc))
+
+		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
+		/* Inserting into contents uses only forceMove
+		if(!isturf(oldloc) || !isturf(loc))
+			SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, getContainingMovable())
+		*/
 
 // Wrapper of step() that also sets glide size to a specific value.
 /proc/step_glide(atom/movable/AM, newdir, glide_size_override)
@@ -400,10 +429,14 @@
 	return step(AM, newdir)
 
 //We're changing zlevel
+/*
 /atom/movable/proc/onTransitZ(old_z, new_z)//uncomment when something is receiving this signal
-	/*SEND_SIGNAL_OLD(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
+	/*
 	for(var/atom/movable/AM in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
-		AM.onTransitZ(old_z,new_z)*/
+		AM.onTransitZ(old_z,new_z)
+	*/
+*/
 
 /mob/living/proc/update_z(new_z) // 1+ to register, null to unregister
 	if (registered_z != new_z)

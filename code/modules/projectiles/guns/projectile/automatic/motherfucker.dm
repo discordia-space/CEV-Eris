@@ -27,7 +27,7 @@
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	var/recentpumpmsg = 0
 	var/pumped = FALSE
-	gun_parts = list(/obj/item/part/gun/frame/motherfucker = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/motherfucker = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/shotgun = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 
 /obj/item/part/gun/frame/motherfucker
 	name = "Motherfucker frame"
@@ -35,9 +35,9 @@
 	icon_state = "frame_motherfucker"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 10, MATERIAL_PLASTIC = 10)
 	resultvars = list(/obj/item/gun/projectile/automatic/motherfucker)
-	gripvars = list(/obj/item/part/gun/grip/wood)
-	mechanismvar = /obj/item/part/gun/mechanism/shotgun // its effectively a shotgun
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	gripvars = list(/obj/item/part/gun/modular/grip/wood)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/shotgun // its effectively a shotgun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)
 
 /obj/item/gun/projectile/automatic/motherfucker/attack_self(mob/living/user)
 	if(world.time >= recentpumpmsg + 10)

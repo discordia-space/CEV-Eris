@@ -9,7 +9,7 @@
 	name = "helmet"
 	build_path = /obj/item/clothing/head/armor/helmet
 
-/datum/design/autolathe/clothing/generic_helmet_visored 
+/datum/design/autolathe/clothing/generic_helmet_visored
 	name = "visored helmet"
 	build_path = /obj/item/clothing/head/armor/helmet/visor
 
@@ -21,9 +21,13 @@
 	name = "fullbody armor vest"
 	build_path = /obj/item/clothing/suit/armor/vest/full
 
-/datum/design/autolathe/clothing/generic_vest_security 
+/datum/design/autolathe/clothing/generic_vest_security
 	name = "security armor"
 	build_path = /obj/item/clothing/suit/armor/vest/security
+
+/datum/design/autolathe/clothing/generic_vest_security_full
+	name = "fullbody security armor"
+	build_path = /obj/item/clothing/suit/armor/vest/full/security
 
 /datum/design/autolathe/clothing/generic_vest_webbing
 	name = "webbed armor vest"

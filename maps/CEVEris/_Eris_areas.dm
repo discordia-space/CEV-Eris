@@ -492,6 +492,10 @@
 	name = "Bar Quarters"
 	icon_state = "erisblue"
 
+/area/eris/crew_quarters/clubmanager
+	name = "Club Manager's Quarters"
+	icon_state = "erisgreen"
+
 /area/eris/crew_quarters/theatre
 	name = "\improper Theatre"
 	icon_state = "Theatre"
@@ -533,6 +537,10 @@
 /area/eris/crew_quarters/publichydro
 	name = "Public Hydroponics"
 	icon_state = "erisblue"
+
+/area/eris/crew_quarters/artistoffice
+	name = "\improper Club Artist Office"
+	icon_state = "erisyellow"
 
 // NeoTheology
 
@@ -1044,10 +1052,6 @@
 /area/eris/quartermaster/office
 	name = "\improper Cargo Office"
 	icon_state = "quartoffice"
-
-/area/eris/quartermaster/artistoffice
-	name = "\improper Guild Artist Office"
-	icon_state = "erisyellow"
 
 /area/eris/quartermaster/storage
 	name = "\improper Cargo Bay"

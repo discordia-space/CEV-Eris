@@ -268,7 +268,7 @@ var/list/channel_to_radio_key = new
 		var/list/hear = hear(message_range, T)
 		var/list/hear_falloff = hear(falloff, T)
 
-		for(var/X in SSmobs.mob_list)
+		for(var/X in SSmobs.mob_list | SShumans.mob_list)
 			if(!ismob(X))
 				continue
 			var/mob/M = X

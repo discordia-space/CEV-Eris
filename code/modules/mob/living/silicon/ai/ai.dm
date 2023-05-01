@@ -113,6 +113,9 @@ var/list/ai_verbs_default = list(
 	var/drone_cooldown_time = 30 MINUTES  // Cooldown before creating a new drone
 	var/time_destroyed = 0.0
 
+	// Stored when on login and used for custom login out behaviur. Needed for proper removal of click handlers.
+	var/client/old_client
+
 	defaultHUD = "Eris"
 
 /mob/living/silicon/ai/proc/add_ai_verbs()
@@ -437,7 +440,7 @@ var/list/ai_verbs_default = list(
 			else
 				to_chat(src, SPAN_NOTICE("Unable to locate the holopad."))
 	if (href_list["track"])
-		var/mob/target = locate(href_list["track"]) in SSmobs.mob_list
+		var/mob/target = locate(href_list["track"]) in SSmobs.mob_list | SShumans.mob_list
 		if(target && (!ishuman(target) || target.real_name == target.get_face_name()))
 			ai_actual_track(target)
 		else

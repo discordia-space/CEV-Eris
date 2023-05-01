@@ -20,7 +20,7 @@
 	if(!is_held())
 		user.remove_cursor()
 
-/obj/item/gun/try_uneqip(target, mob/living/user)
+/obj/item/gun/try_transfer(target, mob/living/user)
 	. = ..()
 	user.remove_cursor()
 

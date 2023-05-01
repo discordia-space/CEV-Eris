@@ -6,6 +6,7 @@
 // 1 decisecond click delay (above and beyond mob/next_move)
 /mob/var/next_click = 0
 
+
 /*
 	Before anything else, defer these calls to a per-mobtype handler.  This allows us to
 	remove istype() spaghetti code, but requires the addition of other handler procs to simplify it.
@@ -189,8 +190,8 @@
 
 /mob/proc/can_click()
 	if(next_click <= world.time)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 // Default behavior: ignore double clicks, the second click that makes the doubleclick call already calls for a normal click
 /mob/proc/DblClickOn(atom/A, params)

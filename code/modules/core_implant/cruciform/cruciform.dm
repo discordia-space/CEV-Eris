@@ -16,6 +16,7 @@ var/list/disciples = list()
 	max_power = 50
 	power_regen = 20/(1 MINUTES)
 	price_tag = 500
+	unacidable = 1
 	var/obj/item/cruciform_upgrade/upgrade
 
 	var/righteous_life = 0
@@ -91,7 +92,7 @@ var/list/disciples = list()
 	if(get_active_mutation(wearer, MUTATION_GODBLOOD))
 		spawn(2 MINUTES)
 		for(var/mob/living/carbon/human/H in (disciples - wearer))
-			to_chat(H, SPAN_WARNING("A distand scream pierced your mind. You feel that a vile mutant sneaked among the faithful."))
+			to_chat(H, SPAN_WARNING("A distant scream pierced your mind. You feel that a vile mutant sneaked among the faithful."))
 			playsound(wearer.loc, 'sound/hallucinations/veryfar_noise.ogg', 55, 1)
 	else if(wearer.get_species() != SPECIES_HUMAN || is_carrion(wearer))
 		if(wearer.get_species() == SPECIES_MONKEY)

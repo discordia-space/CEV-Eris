@@ -3,6 +3,20 @@
 	tier_string = "Aurelien"
 	NSA_load = 0
 
+/datum/mutation/t4/remoteobserve
+	name = "Remote observation"
+	desc = "Allows you to look through the eyes of other people."
+	NSA_load = 20
+
+/datum/mutation/t4/remoteobserve/imprint(mob/living/carbon/user)
+	if(..())
+		user.verbs += /mob/living/carbon/human/proc/remoteobserve
+
+/datum/mutation/t4/remoteobserve/cleanse(mob/living/carbon/user)
+	if(..())
+		user.verbs -= /mob/living/carbon/human/proc/remoteobserve
+
+
 /datum/mutation/t4/godblood
 	name = "God Blood"
 	desc = "Suppresses cruciform, allowing to have any implant or organ, as well as mutations."

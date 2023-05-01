@@ -24,7 +24,7 @@
 	init_recoil = HANDGUN_RECOIL(0.4)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	gun_parts = list(/obj/item/part/gun/frame/lamia = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/magnum = 1)
+	gun_parts = list(/obj/item/part/gun/frame/lamia = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/pistol = 1, /obj/item/part/gun/modular/barrel/magnum = 1)
 	serial_type = "FS"
 
 /obj/item/gun/projectile/lamia/update_icon()
@@ -40,6 +40,6 @@
 	desc = "A Lamia pistol frame. Summary executions are never the same without it."
 	icon_state = "frame_lamia"
 	resultvars = list(/obj/item/gun/projectile/lamia)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/pistol
-	barrelvars = list(/obj/item/part/gun/barrel/magnum)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/modular/barrel/magnum)

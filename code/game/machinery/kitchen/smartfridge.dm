@@ -36,6 +36,24 @@
 
 
 /*******************
+*   Disk Storage
+********************/
+/obj/machinery/smartfridge/disks
+	name = "\improper Disks Storage"
+	desc = "When you need disks fast!"
+	icon_state = "smartfridge"
+	icon_fill10 = "diskfridge-fill10"
+	icon_fill20 = "diskfridge-fill20"
+	icon_fill30 = "diskfridge-fill30"
+
+/obj/machinery/smartfridge/disks/accept_check(var/obj/item/O as obj)
+	if(istype(O,/obj/item/computer_hardware/hard_drive/portable))
+		return 1
+	return 0
+
+
+
+/*******************
 *   Seed Storage
 ********************/
 /obj/machinery/smartfridge/seeds

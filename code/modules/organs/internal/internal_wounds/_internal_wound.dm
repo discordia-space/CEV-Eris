@@ -38,6 +38,8 @@
 	var/current_hallucination_tick
 
 	// Organ adjustments - preferably used for more severe wounds
+	var/list/organ_efficiency_mod = list()
+	var/organ_efficiency_multiplier = null
 	var/specific_organ_size_multiplier = null
 	var/max_blood_storage_multiplier = null
 	var/blood_req_multiplier = null
@@ -49,15 +51,15 @@
 
 /datum/component/internal_wound/RegisterWithParent()
 	// Internal organ parent
-	RegisterSignal(parent, COMSIG_IWOUND_EFFECTS, .proc/apply_effects)
-	RegisterSignal(parent, COMSIG_IWOUND_LIMB_EFFECTS, .proc/apply_limb_effects)
-	RegisterSignal(parent, COMSIG_IWOUND_FLAGS_ADD, .proc/apply_flags)
-	RegisterSignal(parent, COMSIG_IWOUND_FLAGS_REMOVE, .proc/remove_flags)
-	RegisterSignal(parent, COMSIG_IWOUND_DAMAGE, .proc/apply_damage)
-	RegisterSignal(parent, COMSIG_IWOUND_TREAT, .proc/treatment)
+	RegisterSignal(parent, COMSIG_IWOUND_EFFECTS, PROC_REF(apply_effects))
+	RegisterSignal(parent, COMSIG_IWOUND_LIMB_EFFECTS, PROC_REF(apply_limb_effects))
+	RegisterSignal(parent, COMSIG_IWOUND_FLAGS_ADD, PROC_REF(apply_flags))
+	RegisterSignal(parent, COMSIG_IWOUND_FLAGS_REMOVE, PROC_REF(remove_flags))
+	RegisterSignal(parent, COMSIG_IWOUND_DAMAGE, PROC_REF(apply_damage))
+	RegisterSignal(parent, COMSIG_IWOUND_TREAT, PROC_REF(treatment))
 
 	// Surgery
-	RegisterSignal(src, COMSIG_ATTACKBY, .proc/apply_tool)
+	RegisterSignal(src, COMSIG_ATTACKBY, PROC_REF(apply_tool))
 
 	START_PROCESSING(SSinternal_wounds, src)
 
@@ -215,6 +217,29 @@
 
 /datum/component/internal_wound/proc/apply_effects()
 	var/obj/item/organ/internal/O = parent
+
+	if(!islist(O.organ_efficiency))
+		O.organ_efficiency = list()
+
+	if(LAZYLEN(organ_efficiency_mod))
+		for(var/organ in organ_efficiency_mod)
+			var/added_efficiency = organ_efficiency_mod[organ]
+			if(O.organ_efficiency.Find(organ))
+				O.organ_efficiency[organ] += round(added_efficiency, 1)
+			else
+				O.organ_efficiency.Add(organ)
+				O.organ_efficiency[organ] = round(added_efficiency, 1)
+
+		if(O.owner && istype(O.owner, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = O.owner
+			for(var/process in organ_efficiency_mod)
+				if(!islist(H.internal_organs_by_efficiency[process]))
+					H.internal_organs_by_efficiency[process] = list()
+				H.internal_organs_by_efficiency[process] |= O
+	
+	if(organ_efficiency_multiplier)
+		for(var/organ in O.organ_efficiency)
+			O.organ_efficiency[organ] = round(O.organ_efficiency[organ] * (1 + organ_efficiency_multiplier), 1)
 
 	if(specific_organ_size_multiplier)
 		O.specific_organ_size *= 1 + round(specific_organ_size_multiplier, 0.01)
