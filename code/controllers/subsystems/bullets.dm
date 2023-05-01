@@ -120,6 +120,23 @@ SUBSYSTEM_DEF(bullets)
 		if(LEVEL_STANDING to INFINITY)
 			currentLevel = LEVEL_ABOVE
 
+/datum/bullet_data/proc/getLevel(height)
+	switch(height)
+		if(-INFINITY to LEVEL_BELOW)
+			return LEVEL_BELOW
+		if(LEVEL_BELOW to LEVEL_TURF)
+			return LEVEL_TURF
+		if(LEVEL_TURF to LEVEL_LYING)
+			return LEVEL_LYING
+		if(LEVEL_LYING to LEVEL_LOWWALL)
+			return LEVEL_LOWWALL
+		if(LEVEL_LOWWALL to LEVEL_TABLE)
+			return LEVEL_TABLE
+		if(LEVEL_TABLE to LEVEL_STANDING)
+			return LEVEL_STANDING
+		if(LEVEL_STANDING to INFINITY)
+			return LEVEL_ABOVE
+
 /datum/controller/subsystem/bullets/fire(resumed)
 	if(!resumed)
 		current_queue = bullet_queue.Copy()
@@ -135,8 +152,8 @@ SUBSYSTEM_DEF(bullets)
 		var/y_change = 0
 		var/z_change = 0
 		var/turf/target_turf
-		while(px >= PPT/2 || py >= PPT/2 || px <= -PPT/2 || py <= -PPT/2 || pz != bullet.currentCoords[3])
-			message_admins("Moving [bullet.referencedBullet], y = [round(py/PPT)], py = [py], x = [round(px/PPT)], px = [px]")
+		while(px >= PPT/2 || py >= PPT/2 || px <= -PPT/2 || py <= -PPT/2 || pz > 1 || pz < 0)
+			message_admins("Moving [bullet.referencedBullet], y = [round(py/PPT)], py = [py], x = [round(px/PPT)], px = [px], pz = [pz]")
 			if(QDELETED(bullet.referencedBullet))
 				break
 			x_change = px >= PPT/2 ? 1 : px <= -PPT/2 ? -1 : 0
