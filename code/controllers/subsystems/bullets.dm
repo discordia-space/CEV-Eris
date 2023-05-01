@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(bullets)
 /datum/bullet_data/New(atom/referencedBullet, aimedZone, atom/firer, atom/target, list/targetCoords, turfsPerTick, projectileAccuracy, lifetime)
 	src.referencedBullet = referencedBullet
 	src.currentTurf = get_turf(referencedBullet)
-	src.currentCoords = list(referencedBullet.pixel_x, referencedBullet.pixel_y, currentTurf.z)
+	src.currentCoords = list(referencedBullet.pixel_x, referencedBullet.pixel_y, 0)
 	src.aimedZone = aimedZone
 	src.firer = firer
 	src.firedTurf = get_turf(firer)
@@ -86,6 +86,7 @@ SUBSYSTEM_DEF(bullets)
 	else if(isitem(target))
 		src.targetLevel = LEVEL_TURF
 	src.firedCoordinates = list(8,8, referencedBullet.z)
+	src.currentCoords[3] += firedLevel
 	updateCoordinateRatio()
 	SSbullets.bullet_queue += src
 
@@ -97,7 +98,7 @@ SUBSYSTEM_DEF(bullets)
 	coordinates[1] = ((targetTurf.x - firedTurf.x) * PPT + targetCoords[1] - firedCoordinates[1]) / PPT + 0.0001
 	coordinates[2] = ((targetTurf.y - firedTurf.y) * PPT + targetCoords[2] - firedCoordinates[2]) / PPT + 0.0001
 	var/r = sqrt(coordinates[1] ** 2 + coordinates[2] ** 2)
-	coordinates[3] = (targetCoords[3] - firedCoordinates[3])/r + firedLevel - targetLevel
+	coordinates[3] = (targetCoords[3] - firedCoordinates[3] + targetLevel - firedLevel)/r
 	coordinates[1] = coordinates[1]/r
 	coordinates[2] = coordinates[2]/r
 	// [1] is X ratio , [2] is Y ratio,  [3] is Z-ratio
@@ -147,7 +148,7 @@ SUBSYSTEM_DEF(bullets)
 			continue
 		var/px = bullet.movementRatios[1] * bullet.turfsPerTick + bullet.currentCoords[1]
 		var/py = bullet.movementRatios[2] * bullet.turfsPerTick + bullet.currentCoords[2]
-		var/pz = bullet.movementRatios[3] * bullet.turfsPerTick + bullet.currentCoords[3]
+		var/pz = bullet.movementRatios[3] + bullet.currentCoords[3]
 		var/x_change = 0
 		var/y_change = 0
 		var/z_change = 0
@@ -158,14 +159,17 @@ SUBSYSTEM_DEF(bullets)
 				break
 			x_change = px >= PPT/2 ? 1 : px <= -PPT/2 ? -1 : 0
 			y_change = py >= PPT/2 ? 1 : py <= -PPT/2 ? -1 : 0
-			if(round(pz) > bullet.currentCoords[3])
+			if(round(pz) > 1)
 				z_change = 1
-			else if(round(pz) < round(bullet.currentCoords[3]))
+			else if(round(pz) < 0)
 				z_change = -1
 			px += -1 * x_change * PPT/2
 			py += -1 * y_change * PPT/2
-			pz += z_change
+			pz += -1 * z_change
 			target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z + z_change)
+			if(!target_turf)
+				bullet_queue -= bullet
+				break
 			//if(iswall(target_turf) && target_turf:projectileBounceCheck())
 			bullet.updateLevel()
 			bullet.referencedBullet.Move(target_turf)
