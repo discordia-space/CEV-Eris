@@ -273,8 +273,8 @@
 /var/const/access_artist = 44
 /datum/access/artist_office
 	id = access_artist
-	desc = "Club Artist"
-	region = ACCESS_REGION_CLUB
+	desc = "Guild Artist"
+	region = ACCESS_REGION_SUPPLY
 
 /var/const/access_surgery = 45
 /datum/access/surgery

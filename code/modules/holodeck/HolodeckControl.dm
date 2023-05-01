@@ -5,13 +5,13 @@
 	icon_screen = "holocontrol"
 
 	use_power = IDLE_POWER_USE
-	active_power_usage = 5000 //5kW for the scenery + 5W per holoitem
+	active_power_usage = 8000 //8kW for the scenery + 500W per holoitem
 
 	circuit = /obj/item/electronics/circuitboard/holodeckcontrol
 
-	var/item_power_usage = 5
+	var/item_power_usage = 500
 
-	var/area/holodeck/linkedholodeck = null
+	var/area/linkedholodeck = null
 	var/linkedholodeck_area
 	var/active = 0
 	var/list/holographic_objs = list()
@@ -27,7 +27,6 @@
 /obj/machinery/computer/HolodeckControl/New()
 	..()
 	linkedholodeck = locate(linkedholodeck_area)
-	linkedholodeck.linked_console = linkedholodeck.linked_console ? linkedholodeck.linked_console : src
 	supported_programs = list()
 	restricted_programs = list()
 
@@ -141,7 +140,7 @@
 
 /obj/machinery/computer/HolodeckControl/proc/update_projections()
 	if (safety_disabled)
-		item_power_usage = 25
+		item_power_usage = 2500
 		for(var/obj/item/holo/esword/H in linkedholodeck)
 			H.damtype = BRUTE
 	else
@@ -183,7 +182,8 @@
 	if(!..())
 		return
 	if(active)
-		use_power(item_power_usage * (holographic_objs.len + holographic_mobs.len) + linkedholodeck.usage(TOTAL))
+		use_power(item_power_usage * (holographic_objs.len + holographic_mobs.len))
+
 		if(!checkInteg(linkedholodeck))
 			damaged = 1
 			loadProgram(holodeck_programs["turnoff"], 0)
@@ -272,10 +272,10 @@
 	for(var/obj/effect/decal/cleanable/blood/B in linkedholodeck)
 		qdel(B)
 
-	holographic_objs = A.copy_contents_to(linkedholodeck , 0)
+	holographic_objs = A.copy_contents_to(linkedholodeck , 1)
 	for(var/obj/holo_obj in holographic_objs)
-		holo_obj.alpha *= 0.9 //give holodeck objs a slight transparency
-		holo_obj.plane = 63 //This makes all objects load on the plane that Eris's 3rd z-level uses for objects. This is not dynamic.
+		holo_obj.alpha *= 0.8 //give holodeck objs a slight transparency
+		holo_obj.plane = 95 //This makes all objects load on the plane that Eris's 4th z-level uses for objects. This is not dynamic.
 
 	if(HP.ambience)
 		linkedholodeck.forced_ambience = HP.ambience
@@ -318,7 +318,7 @@
 
 	last_gravity_change = world.time
 	active = 1
-	use_power = ACTIVE_POWER_USE
+	use_power = IDLE_POWER_USE
 
 
 	if(A.has_gravity)
@@ -343,12 +343,21 @@
 /obj/machinery/computer/HolodeckControl/Exodus/New()
 	..()
 	supported_programs = list(
-	"Texas Saloon"		= "texas",
-	"Space Bar"			= "spacebar",
-	"Wireframe Bar"		= "wireframe",
-	"Industrial Pub"			= "industrial"
+	"Empty Court" 		= "emptycourt",
+	"Basketball Court" 	= "basketball",
+	"Thunderdome Court"	= "thunderdomecourt",
+	"Boxing Ring"		= "boxingcourt",
+	"Beach" 			= "beach",
+	"Desert" 			= "desert",
+	"Space" 			= "space",
+	"Picnic Area" 		= "picnicarea",
+	"Snow Field" 		= "snowfield",
+	"Theatre" 			= "theatre",
+	"Meeting Hall" 		= "meetinghall",
+	"Courtroom" 		= "courtroom"
 	)
 
 	restricted_programs = list(
-	"Industrial Arenas"		= "industrial_arena"
+	"Atmospheric Burn Simulation" = "burntest",
+	"Wildlife Simulation" = "wildlifecarp"
 	)

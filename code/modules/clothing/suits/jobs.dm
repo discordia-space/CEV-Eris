@@ -20,7 +20,7 @@
 		rad = 0
 	)
 
-//Club Artist
+//Guild Artist
 /obj/item/clothing/suit/artist
 	name = "Complicated Vest"
 	desc = "The tubes don't even do anything."
