@@ -65,6 +65,5 @@
 		/obj/item/rig/techno = offer_data("technomancer suit control module", 8000, 1),
 		/obj/item/rig/combat/ironhammer = offer_data("Ironhammer hardsuit control module", 8000, 1),
 		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 10000, 1),
-		/obj/item/rig/light/stealth = offer_data("stealth suit control module", 20000, 1),
 		/obj/item/rig/light/hacker = offer_data("cybersuit control module", 10000, 1)
 	)

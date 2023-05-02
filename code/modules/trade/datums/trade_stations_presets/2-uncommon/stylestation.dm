@@ -75,13 +75,15 @@
 		)
 	)
 	offer_types = list(
-		///obj/item/clothing/head/onestar = offer_data("One Star officer cap", 2000, 1),
-		///obj/item/clothing/suit/storage/greatcoat/onestar = offer_data("One Star officer coat", 4000, 1),
+		/obj/item/clothing/head/onestar = offer_data("One Star officer cap", 2000, 1),
+		/obj/item/clothing/suit/storage/greatcoat/onestar = offer_data("One Star officer coat", 4000, 1),
 		/obj/item/clothing/under/rank = offer_data("CEV Eris department jumpsuit", 100, 0),
 		/obj/item/clothing/suit/armor/paramedic = offer_data("Moebius paramedic armor", 1000, 1),
 		/obj/item/clothing/head/armor/faceshield/paramedic = offer_data("Moebius paramedic helmet", 1000, 1),
-		/datum/reagent/alcohol/neurotoxin = offer_data("Neurotoxin bottle (60u)", 2500, 1),
 		/datum/reagent/alcohol/hippies_delight = offer_data("Hippie\'s Delight bottle (60u)", 2500, 1),
+		/datum/reagent/alcohol/neurotoxin = offer_data("Neurotoxin bottle (60u)", 5000, 1),//this requires the True Pan-Galactic Gargle, which is hard to make
 		/datum/reagent/alcohol/silencer = offer_data("Silencer bottle (60u)", 2500, 1),
+		/datum/reagent/alcohol/roachbeer = offer_data("Kakerlakenbier bottle (60u)", 3000, 1),
+		/datum/reagent/alcohol/kaiserbeer = offer_data("Monarchenblut bottle (60u)", 25000, 1),
 		/obj/item/reagent_containers/food/snacks/kaiserburger = offer_data("kaiser burger", 25000, 2)
 	)

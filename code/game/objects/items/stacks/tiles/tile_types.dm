@@ -36,6 +36,9 @@
 	flags = 0
 	origin_tech = list(TECH_BIO = 1)
 
+/obj/item/stack/tile/grass/full
+	amount = 60
+
 /*
  * Wood
  */
@@ -47,6 +50,9 @@
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
 	flags = 0
+
+/obj/item/stack/tile/wood/full
+	amount = 60
 
 /obj/item/stack/tile/wood/cyborg
 	name = "wood floor tile synthesizer"
@@ -67,33 +73,57 @@
 	icon_state = "tile_carpet"
 	flags = 0
 
+/obj/item/stack/tile/carpet/full
+	amount = 60
+
 /obj/item/stack/tile/carpet/bcarpet
 	name = "black carpet"
 	icon_state = "tile_bcarpet"
+
+/obj/item/stack/tile/carpet/bcarpet/full
+	amount = 60
 
 /obj/item/stack/tile/carpet/blucarpet
 	name = "blue carpet"
 	icon_state = "tile_blucarpet"
 
+/obj/item/stack/tile/carpet/blucarpet/full
+	amount = 60
+
 /obj/item/stack/tile/carpet/turcarpet
 	name = "turquoise carpet"
 	icon_state = "tile_turcarpet"
+
+/obj/item/stack/tile/carpet/turcarpet/full
+	amount = 60
 
 /obj/item/stack/tile/carpet/sblucarpet
 	name = "silver blue carpet"
 	icon_state = "tile_sblucarpet"
 
+/obj/item/stack/tile/carpet/sblucarpet/full
+	amount = 60
+
 /obj/item/stack/tile/carpet/gaycarpet
 	name = "clown carpet"
 	icon_state = "tile_gaycarpet"
+
+/obj/item/stack/tile/carpet/gaycarpet/full
+	amount = 60
 
 /obj/item/stack/tile/carpet/purcarpet
 	name = "purple carpet"
 	icon_state = "tile_purcarpet"
 
+/obj/item/stack/tile/carpet/purcarpet/full
+	amount = 60
+
 /obj/item/stack/tile/carpet/oracarpet
 	name = "orange carpet"
 	icon_state = "tile_oracarpet"
+
+/obj/item/stack/tile/carpet/oracarpet/full
+	amount = 60
 
 /*
  * Flooring parent

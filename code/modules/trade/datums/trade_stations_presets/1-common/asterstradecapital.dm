@@ -133,6 +133,7 @@
 		)
 	)
 	offer_types = list(
+		/obj/structure/closet/crate = offer_data("crate return program", 150, 5),
 		/obj/item/oddity/common/old_id = offer_data("old id", 500, 1),
 		/obj/item/tool_upgrade = offer_data("tool upgrade", 200, 8),
 		/obj/item/mech_component = offer_data("mech component", 300, 4),															// base price: 150
