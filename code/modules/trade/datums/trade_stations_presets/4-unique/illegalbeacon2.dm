@@ -51,13 +51,6 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/biosyphon = offer_data("Bluespace Biosyphon", 35000, 1),
-		/obj/item/reagent_containers/bonsai = offer_data("Laurelin Bonsai", 35000, 1),
-		/obj/item/reagent_containers/atomic_distillery = offer_data("Atomic Distillery", 35000, 1),
-		/obj/item/device/von_krabin = offer_data("Von-Krabin Stimulator", 35000, 1),
-		/obj/item/complicator = offer_data("Reality Complicator", 35000, 1),
-		/obj/item/gun/projectile/revolver/sky_driver = offer_data(".35 Auto \"Sky Driver\" Revolver", 50000, 1),
-		/obj/item/tool/sword/nt_sword = offer_data("The Sword of Truth", 50000, 1),
 		/obj/machinery/nuclearbomb = offer_data("nuclear weapon", 50000, 1),
 		/obj/item/stack/telecrystal = offer_data("telecrystal x50", 100000, 1)
 	)
