@@ -468,12 +468,6 @@
 	icon_state = "11,1"
 	},
 /area/space)
-"ej" = (
-/obj/machinery/light/floor{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/derelict/white_red_edges,
-/area/space)
 "en" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "13,7";
@@ -766,6 +760,15 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "11,5"
 	},
+/area/space)
+"hi" = (
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 1
+	},
+/obj/structure/sign/nosmoking_2{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "hj" = (
 /obj/structure/table/onestar,
@@ -1309,11 +1312,6 @@
 	icon_state = "10,18"
 	},
 /area/space)
-"mb" = (
-/obj/structure/table/onestar,
-/obj/item/tool/medmultitool,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
 "mg" = (
 /obj/structure/bed/padded,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
@@ -1346,10 +1344,6 @@
 /turf/simulated/shuttle/floor/science{
 	icon_state = "8,11"
 	},
-/area/space)
-"mr" = (
-/obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict/white_red_edges,
 /area/space)
 "mt" = (
 /turf/simulated/shuttle/wall/mining{
@@ -1907,6 +1901,12 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "4,20"
 	},
+/area/space)
+"sD" = (
+/obj/machinery/light/floor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict/white_red_edges,
 /area/space)
 "sE" = (
 /obj/spawner/structures/os,
@@ -2751,13 +2751,6 @@
 	},
 /turf/space,
 /area/space)
-"AA" = (
-/obj/spawner/medical,
-/obj/spawner/medical,
-/obj/spawner/prothesis_one_star,
-/obj/structure/table/rack/shelf,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/space)
 "AB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -3145,6 +3138,10 @@
 	},
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
+"DU" = (
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict/white_red_edges,
+/area/space)
 "DV" = (
 /turf/simulated/shuttle/wall/science{
 	icon_state = "14,7"
@@ -3185,12 +3182,6 @@
 /turf/simulated/shuttle/wall/science{
 	icon_state = "2,3"
 	},
-/area/space)
-"Eu" = (
-/obj/structure/salvageable/os/console{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Ev" = (
 /turf/simulated/shuttle/wall/mining{
@@ -3296,13 +3287,6 @@
 	},
 /turf/space,
 /area/space)
-"Fy" = (
-/obj/structure/table/onestar,
-/obj/item/stack/medical/advanced/ointment,
-/obj/item/stack/medical/advanced/bruise_pack,
-/obj/item/reagent_containers/spray/sterilizine,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/space)
 "FE" = (
 /obj/structure/salvageable/os/console{
 	dir = 8;
@@ -3356,6 +3340,12 @@
 	pixel_x = -32
 	},
 /turf/simulated/floor/carpet/bcarpet,
+/area/space)
+"Gj" = (
+/obj/machinery/optable,
+/obj/spawner/prothesis_one_star,
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Gm" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -3677,12 +3667,6 @@
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "11,10"
 	},
-/area/space)
-"IH" = (
-/obj/machinery/optable,
-/obj/spawner/prothesis_one_star,
-/obj/item/remains/human,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "II" = (
 /obj/structure/shuttle_part/mining{
@@ -4894,6 +4878,12 @@
 	icon_state = "13,16"
 	},
 /area/space)
+"Uq" = (
+/obj/structure/salvageable/os/console{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "Us" = (
 /obj/structure/shuttle_part/science{
 	icon_state = "1,0"
@@ -4980,6 +4970,13 @@
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/space)
+"Vg" = (
+/obj/spawner/medical,
+/obj/spawner/medical,
+/obj/spawner/prothesis_one_star,
+/obj/structure/table/rack/shelf,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
 "Vi" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "1,16"
@@ -5044,15 +5041,6 @@
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "6,7"
 	},
-/area/space)
-"VL" = (
-/obj/structure/bed/chair/custom/onestar/red{
-	dir = 1
-	},
-/obj/structure/sign/nosmoking_2{
-	pixel_y = -32
-	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "VM" = (
 /obj/structure/closet/onestar/tier3,
@@ -5132,6 +5120,13 @@
 /obj/structure/sign/faction/one_star{
 	pixel_y = -32
 	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
+"WM" = (
+/obj/structure/table/onestar,
+/obj/item/stack/medical/advanced/ointment,
+/obj/item/stack/medical/advanced/bruise_pack,
+/obj/item/reagent_containers/spray/sterilizine,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "WO" = (
@@ -5340,6 +5335,11 @@
 	icon_state = "1,13"
 	},
 /turf/space,
+/area/space)
+"YG" = (
+/obj/structure/table/onestar,
+/obj/item/tool/medmultitool,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "YH" = (
 /turf/simulated/shuttle/wall/science{
@@ -13662,7 +13662,7 @@ RD
 wj
 Ew
 Ew
-mb
+YG
 XW
 XW
 cb
@@ -13862,9 +13862,9 @@ RJ
 RJ
 Hg
 wj
-Eu
-IH
-Fy
+Uq
+Gj
+WM
 XW
 cb
 cb
@@ -14266,7 +14266,7 @@ RJ
 Vv
 lO
 lO
-AA
+Vg
 XW
 cb
 cb
@@ -14468,7 +14468,7 @@ RJ
 wj
 Yq
 lO
-AA
+Vg
 XW
 cb
 cb
@@ -15477,7 +15477,7 @@ Ew
 Ew
 Ew
 Ew
-VL
+hi
 XW
 cb
 cb
@@ -15700,8 +15700,8 @@ UU
 UU
 UU
 gV
-ej
-mr
+sD
+DU
 gV
 UU
 UU
@@ -16710,8 +16710,8 @@ EF
 EF
 Qu
 gV
-ej
-mr
+sD
+DU
 gV
 gV
 gV
