@@ -172,6 +172,13 @@ SUBSYSTEM_DEF(bullets)
 				break
 			//if(iswall(target_turf) && target_turf:projectileBounceCheck())
 			bullet.updateLevel()
+			if(iswall(target_turf))
+				var/turf/simulated/wall/the_rock = target_turf
+				var/angle = TODEGREES(ATAN2(the_rock.x - bullet.referencedBullet.x, the_rock.y - bullet.referencedBullet.y))
+				// third quadrant is a lil silly
+				if(the_rock.x - bullet.referencedBullet.x < 0 && the_rock.y - bullet.referencedBullet.y < 0)
+					angle = -(180+angle)
+
 			bullet.referencedBullet.Move(target_turf)
 			bullet.coloreds |= target_turf
 			target_turf.color = "#2fff05ee"
