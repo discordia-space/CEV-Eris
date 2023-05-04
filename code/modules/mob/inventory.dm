@@ -143,7 +143,7 @@
 		var/obj/item/I = O
 		if(drop && !QDELING(O))
 			I.forceMove(get_turf(src), MOVED_DROP)
-    I.dropped(src)
+		I.dropped(src)
 	return TRUE
 
 

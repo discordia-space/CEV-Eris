@@ -17,7 +17,7 @@
 
 /datum/ritual/cruciform/base/relief
 	name = "Relief"
-	phrase = "Semper invicta"
+	phrase = "Semper invicta."
 	desc = "Short litany to relieve pain of the afflicted."
 	power = 20
 	ignore_stuttering = TRUE
@@ -30,7 +30,7 @@
 
 /datum/ritual/cruciform/base/soul_hunger
 	name = "Soul Hunger"
-	phrase = "Panem nostrum cotidianum da nobis hodie"
+	phrase = "Panem nostrum cotidianum da nobis hodie."
 	desc = "Litany of piligrims, helps better withstand hunger."
 	power = 50
 
@@ -43,7 +43,7 @@
 
 /datum/ritual/cruciform/base/entreaty
 	name = "Entreaty"
-	phrase = "Deus meus ut quid dereliquisti me"
+	phrase = "Deus meus ut quid dereliquisti me."
 	desc = "Call for help, that other cruciform bearers can hear."
 	cooldown_time = 1 MINUTES
 	ignore_stuttering = TRUE
@@ -63,7 +63,7 @@
 
 /datum/ritual/cruciform/base/reject
 	name = "Rejection"
-	phrase = "Ad tollendum zizania a corpore"
+	phrase = "Ad tollendum zizania a corpore."
 	desc = "Painfully cleans your body of anything foreign."
 	cooldown = TRUE
 	cooldown_time = 100
@@ -124,7 +124,7 @@
 
 /datum/ritual/cruciform/base/sense_cruciform
 	name = "Cruciform sense"
-	phrase = "Et si medio umbrae"
+	phrase = "Et si medio umbrae."
 	desc = "Very short litany to identify NeoTheology followers. Targets individuals in view of the follower. Has a moderate cooldown."
 	cooldown_time = 1 MINUTES
 	power = 20
@@ -151,7 +151,7 @@
 
 /datum/ritual/cruciform/base/revelation
 	name = "Revelation"
-	phrase = "Patris ostendere viam"
+	phrase = "Patris ostendere viam."
 	desc = "A person close to you will have a vision that could increase their sanity... or that's what you hope will happen."
 	power = 10
 
@@ -176,7 +176,7 @@
 
 /datum/ritual/cruciform/base/install_upgrade
 	name = "Install Cruciform Upgrade"
-	phrase = "Deum benedicite mihi voluntas in suum donum"
+	phrase = "Deum benedicite mihi voluntas in suum donum."
 	desc = "This litany will command a cruciform upgrade to attach to follower's cruciform. Follower must lie on altar and upgrade must be near them."
 	power = 20
 
@@ -257,7 +257,7 @@
 
 /datum/ritual/cruciform/base/reincarnation
 	name = "Reincarnation"
-	phrase = "Vetus moritur et onus hoc levaverit"
+	phrase = "Vetus moritur et onus hoc levaverit."
 	desc = "A reunion of a spirit with it's new body, ritual of activation of a cruciform, lying on the body. The process requires NeoTheology's special altar on which a body stripped of clothes is to be placed."
 
 /datum/ritual/cruciform/base/reincarnation/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
@@ -309,7 +309,7 @@
 
 /datum/ritual/cruciform/base/install
 	name = "Commitment"
-	phrase = "Unde ipse Dominus dabit vobis signum"
+	phrase = "Unde ipse Dominus dabit vobis signum."
 	desc = "This litany will command cruciform attach to person, so you can perform Reincarnation or Epiphany. Cruciform must lay near them."
 
 /datum/ritual/cruciform/base/install/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
@@ -375,7 +375,7 @@
 
 /datum/ritual/cruciform/base/ejection
 	name = "Deprivation"
-	phrase = "Et revertatur pulvis in terram suam unde erat et spiritus redeat ad Deum qui dedit illum"
+	phrase = "Et revertatur pulvis in terram suam unde erat et spiritus redeat ad Deum qui dedit illum."
 	desc = "This litany will command cruciform to detach from bearer, if the one bearing it is dead. You will be able to use it in scanner for Resurrection."
 
 /datum/ritual/cruciform/base/ejection/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)

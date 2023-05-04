@@ -10,8 +10,26 @@
 	return
 	// HOLOFLOOR DOES NOT GIVE A FUCK
 
+/turf/simulated/floor/holofloor/ex_act(severity)
+	switch(severity)
+		if(1)
+			take_damage(rand(100, 300), BLAST)
+		//No fucks otherwise
+
 /turf/simulated/floor/holofloor/set_flooring()
 	return
+
+/turf/simulated/floor/holofloor/plating
+	icon = 'icons/turf/flooring/plating.dmi'
+	name = "plating"
+	icon_state = "plating"
+	initial_flooring = /decl/flooring/reinforced/plating
+
+/turf/simulated/floor/holofloor/plating/under
+	name = "underplating"
+	icon_state = "under"
+	icon = 'icons/turf/flooring/plating.dmi'
+	initial_flooring = /decl/flooring/reinforced/plating/under
 
 /turf/simulated/floor/holofloor/carpet
 	name = "carpet"
@@ -25,11 +43,33 @@
 	icon_state = "tiles"
 	initial_flooring = /decl/flooring/tiling/steel
 
+/turf/simulated/floor/holofloor/tiled/bar_dance
+	icon_state = "bar_dance"
+	initial_flooring = /decl/flooring/tiling/steel/bar_light
+
+/turf/simulated/floor/holofloor/tiled/bar_flat
+	icon_state = "bar_flat"
+	initial_flooring = /decl/flooring/tiling/steel/bar_flat
+
+/turf/simulated/floor/holofloor/tiled/bar_light
+	icon_state = "bar_light"
+	initial_flooring = /decl/flooring/tiling/steel/bar_light
+
 /turf/simulated/floor/holofloor/tiled/dark
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles_dark.dmi'
 	icon_state = "tiles"
 	initial_flooring = /decl/flooring/tiling/dark
+
+/turf/simulated/floor/holofloor/tiled/steel
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles_steel.dmi'
+	icon_state = "tiles"
+	initial_flooring = /decl/flooring/tiling/steel
+
+/turf/simulated/floor/holofloor/tiled/steel/gray_perforated
+	icon_state = "gray_perforated"
+	initial_flooring = /decl/flooring/tiling/steel/gray_perforated
 
 /turf/simulated/floor/holofloor/wood
 	name = "wooden floor"
@@ -92,12 +132,88 @@
 	if(prob(10))
 		overlays += "asteroid[rand(0,9)]"
 
-/obj/structure/holostool
-	name = "stool"
-	desc = "Apply butt."
-	icon = 'icons/obj/furniture.dmi'
-	icon_state = "stool_padded_preview"
-	anchored = TRUE
+/turf/simulated/open/holonofloor // Simulated nothingness
+
+/turf/simulated/open/holonofloor/attackby(obj/item/W as obj, mob/user as mob)
+	return
+
+/turf/simulated/open/holonofloor/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
+	if(N == /turf/space) // If we want to become space,
+		var/area/A = get_area(src)
+		if(istype(A, /area/holodeck/source)) // Check if we are a holodeck source,
+			return // And return to prevent becoming space
+	..()
+
+/turf/simulated/open/holonofloor/update_air_properties()
+	var/area/A = get_area(src)
+	if(istype(A, /area/holodeck/source)) // Check if we are a holodeck source,
+		return // deny air updates
+	..()
+
+/obj/structure/railing/holorailing
+
+/obj/structure/railing/holorailing/attackby(obj/item/W as obj, mob/user as mob)
+	return
+
+/obj/structure/railing/holorailing/take_damage(amount)
+	return
+
+/obj/structure/railing/holorailing/grey
+	name = "grey railing"
+	desc = "A standard steel railing. Prevents stupid people from falling to their doom."
+	icon_modifier = "grey_"
+	icon_state = "grey_railing0"
+
+/obj/structure/lattice/hololattice
+
+/obj/structure/lattice/hololattice/attackby(obj/item/I, mob/user)
+	return
+
+/obj/structure/catwalk/holo
+
+/obj/structure/catwalk/attackby(obj/item/I, mob/user)
+	return
+
+/obj/item/stool/holostool
+	damtype = HALLOSS
+
+/obj/item/stool/holostool/attackby(obj/item/W as obj, mob/user as mob)
+	if(istool(W) || istype(W,/obj/item/stack))
+		return
+	..()
+
+/obj/item/stool/holostool/attack(mob/M as mob, mob/user as mob)
+	if (prob(5) && isliving(M))
+		user.visible_message(SPAN_DANGER("[user] breaks [src] over [M]'s back, disappearing into mist!"))
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		user.do_attack_animation(M)
+
+		user.remove_from_mob(src)
+		qdel(src)
+		var/mob/living/T = M
+		T.Weaken(10)
+		T.damage_through_armor(20, HALLOSS, BP_CHEST, ARMOR_MELEE)
+		return
+	..()
+
+/obj/item/stool/holostool/bar
+	name = "bar stool"
+	icon_state = "bar_stool"
+
+/obj/item/stool/holostool/bar/update_icon()
+	return
+
+/obj/structure/bed/chair/custom/holochair
+
+/obj/structure/bed/chair/custom/holochair/attackby(obj/item/W as obj, mob/user as mob)
+	if(istool(W) || istype(W,/obj/item/stack))
+		return
+	..()
+
+/obj/structure/bed/chair/custom/holochair/bar
+	name = "bar chair"
+	desc = "Modern design and soft pad. Served up with the drink and great company."
+	icon_state = "bar_chair"
 
 /obj/item/clothing/gloves/boxing/hologlove
 	name = "boxing gloves"
@@ -178,13 +294,7 @@
 		visible_message("[src] fades away as it shatters!")
 	qdel(src)
 
-/obj/structure/bed/chair/holochair/Destroy()
-	. = ..()
-
-/obj/structure/bed/chair/holochair/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/wrench))
-		to_chat(user, (SPAN_NOTICE("It's a holochair, you can't dismantle it!")))
-	return
+// Holo type items
 
 /obj/item/holo
 	damtype = HALLOSS
