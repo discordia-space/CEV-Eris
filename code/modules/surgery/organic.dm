@@ -392,7 +392,7 @@
 	)
 	var/obj/item/shrapnel = locate(/obj/item/material/shard/shrapnel) in organ.implants //will succeed regardless
 	organ.remove_item(shrapnel, user, FALSE)
-	organ.take_damage(tool.force * 1.2, sharp=TRUE)
+	organ.take_damage(tool.force * 1, sharp=TRUE)
 
 //Cauterizing a wound to stop bleeding
 /datum/surgery_step/close_wounds
