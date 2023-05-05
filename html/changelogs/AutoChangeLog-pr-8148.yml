@@ -1,0 +1,5 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Fixed quick-equip not supporting holsters
+  - bugfix: Fixed tripping on plating whilst having no slips.

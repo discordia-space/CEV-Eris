@@ -1,0 +1,5 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - balance: Shrapnel removal multiplier changed from 0.1 on succes to 1 , and from
+      0.3 to 1.2 on fail

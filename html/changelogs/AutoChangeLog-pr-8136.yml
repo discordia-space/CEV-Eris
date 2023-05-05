@@ -1,0 +1,8 @@
+author: thevandie
+delete-after: true
+changes:
+  - rscadd: earmuffs to the style vendor
+  - rscadd: earmuffs to the asters misc pack disk for autolathe use
+  - rscadd: earmuff item sprite (the mob sprite was already added with my other pr,
+      I just couldn't find where the item sprite was stored back then. It's from asset-storage).
+  - tweak: earmuffs only require one ear to equip

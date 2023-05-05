@@ -1482,7 +1482,7 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
-		return 0
+		return FALSE
 	..(slipped_on,stun_duration)
 	regen_slickness(-3)
 	dodge_time = get_game_time()

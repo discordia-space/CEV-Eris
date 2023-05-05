@@ -1,0 +1,5 @@
+author: TheLeopold
+delete-after: true
+changes:
+  - tweak: wielding now is more fluid
+  - code_imp: Added function to drop offhand item
