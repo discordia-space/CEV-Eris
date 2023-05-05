@@ -1,0 +1,4 @@
+author: ValoTheValo
+delete-after: true
+changes:
+  - bugfix: fixed Technomancer and Moebius ambience not playing or looping
