@@ -289,7 +289,7 @@
 	if(tool_upgrades[UPGRADE_QUALITY])
 		if(T.toggleable)
 			T.switched_on_qualities |= UPGRADE_QUALITY
-			if(switched_on)
+			if(T.switched_on)
 				T.tool_qualities |= UPGRADE_QUALITY
 		else
 			T.tool_qualities |= UPGRADE_QUALITY
