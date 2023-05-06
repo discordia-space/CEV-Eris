@@ -51877,6 +51877,22 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/structure/table/standard,
+/obj/item/stack/material/plasteel{
+	amount = 20
+	},
+/obj/item/stack/material/steel{
+	amount = 20
+	},
+/obj/item/stack/material/glass{
+	amount = 20
+	},
+/obj/item/stack/material/plastic{
+	amount = 20
+	},
+/obj/item/stack/material/wood{
+	amount = 20
+	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/crew_quarters/artistoffice)
 "cuK" = (
