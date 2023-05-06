@@ -18,6 +18,7 @@
 	magazine_type = /obj/item/ammo_magazine/lrifle // Default magazine, only relevant for spawned AKs, not crafted or printed ones
 	matter = list() // Gunparts are be stored within the gun as extra material
 	price_tag = 0 // Debug item
+	magazine_type = null // Default magazine, only relevant for spawned AKs, not crafted or printed ones
 
 	damage_multiplier = 1 // Mechanism + Barrel can modify
 	penetration_multiplier = 0 // Mechanism + Barrel can modify
@@ -167,3 +168,15 @@
 		refresh_upgrades()
 		playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 		update_icon()
+
+/obj/item/gun/projectile/automatic/modular/attackby(obj/item/I, mob/living/user, params)
+	var/tool_type = I.get_tool_type(user, list(serial_type ? QUALITY_HAMMERING : null), src)
+	switch(tool_type)
+		if(QUALITY_HAMMERING)
+			user.visible_message(SPAN_NOTICE("[user] begins scribbling \the [name]'s gun serial number away."), SPAN_NOTICE("You begin removing the serial number from \the [name]."))
+			if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_HAMMERING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				user.visible_message(SPAN_DANGER("[user] removes \the [name]'s gun serial number."), SPAN_NOTICE("You successfully remove the serial number from \the [name]."))
+				serial_type = null
+				return FALSE
+	load_ammo(I, user)
+	update_held_icon()

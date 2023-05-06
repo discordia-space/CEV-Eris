@@ -677,10 +677,11 @@
 /datum/component/upgrade_removal/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ATTACKBY)
 
+// FALSE return value causes attackby to be called on the item. Which means, we only want this to resolve to FALSE if we don't want to remove any parts.
 /datum/component/upgrade_removal/proc/attempt_uninstall(obj/item/C, mob/living/user)
 	//SIGNAL_HANDLER
 	if(!isitem(C))
-		return 0
+		return FALSE
 
 	var/obj/item/upgrade_loc = parent
 
@@ -696,19 +697,23 @@
 	if(upgrade_loc.item_upgrades.len && C.has_quality(QUALITY_SCREW_DRIVING))
 		var/list/possibles = upgrade_loc.item_upgrades.Copy()
 		possibles += "Cancel"
+		possibles += "Do something else"
 		var/obj/item/tool_upgrade/toremove = input("Which upgrade would you like to try to remove? The upgrade will probably be destroyed in the process","Removing Upgrades") in possibles
 		if(toremove == "Cancel")
 			return TRUE
+		if(toremove == "Do something else")
+			return FALSE // We want to use the tool for something else, eg. the bolt turning of a combi driver to disassemble a gun
 		var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
 		if(IU.removable == MOD_FUSED)
 			to_chat(user, SPAN_DANGER("\the [toremove] seems to be fused with the [upgrade_loc]!"))
+			return TRUE
 		else
 			if(IU.removable == MOD_INTEGRAL)
 				if(istype(upgrade_loc, /obj/item/gun/projectile/automatic/modular))
 					var/obj/item/gun/projectile/automatic/modular/MG = upgrade_loc
 					if(MG.loaded.len || MG.ammo_magazine || MG.chambered)
 						to_chat(user, SPAN_DANGER("You must unload the [upgrade_loc] before removing \the [toremove]!"))
-						return FALSE
+						return TRUE
 			if(C.use_tool(user = user, target =  upgrade_loc, base_time = IU.removal_time, required_quality = QUALITY_SCREW_DRIVING, fail_chance = IU.removal_difficulty, required_stat = STAT_MEC))
 				//If you pass the check, then you manage to remove the upgrade intact
 				if(!IU.destroy_on_removal && user)
@@ -722,6 +727,7 @@
 					to_chat(user, SPAN_DANGER("You failed to remove \the [toremove]."))
 					upgrade_loc.refresh_upgrades()
 					user.update_action_buttons()
+					return TRUE
 				else if(prob(50))
 					//50% chance to break the upgrade and remove it
 					to_chat(user, SPAN_DANGER("You successfully remove \the [toremove], but destroy it in the process."))
