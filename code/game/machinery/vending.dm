@@ -1059,7 +1059,7 @@
 					/obj/item/ammo_magazine/slpistol/rubber = 20,
 					/obj/item/ammo_magazine/smg/rubber = 15,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 20,
-					/obj/item/ammo_magazine/ammobox/shotgun/beanbags = 10,
+					/obj/item/ammo_magazine/ammobox/shotgun/beanbag = 10,
 					/obj/item/ammo_magazine/ammobox/shotgun/flashshells = 10,
 					/obj/item/ammo_magazine/ammobox/shotgun/blanks = 10,
 					/obj/item/storage/pouch/holster = 5,
@@ -1088,7 +1088,7 @@
 					/obj/item/ammo_magazine/pistol/rubber = 150,
 					/obj/item/ammo_magazine/hpistol = 300,
 					/obj/item/ammo_magazine/hpistol/rubber = 200,
-					/obj/item/ammo_magazine/ammobox/shotgun/beanbags = 300,
+					/obj/item/ammo_magazine/ammobox/shotgun/beanbag = 300,
 					/obj/item/ammo_magazine/ammobox/shotgun/flashshells = 300,
 					/obj/item/ammo_magazine/ammobox/shotgun/blanks = 50,
 					/obj/item/ammo_magazine/slpistol = 100,
@@ -1316,7 +1316,7 @@
 					/obj/item/ammo_magazine/smg/rubber = 4,
 					/obj/item/ammo_magazine/slmagnum/rubber = 4,
 					/obj/item/ammo_magazine/magnum/rubber = 4,
-					/obj/item/ammo_magazine/ammobox/shotgun/beanbags = 2,
+					/obj/item/ammo_magazine/ammobox/shotgun/beanbag = 2,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 4,
 					/obj/item/ammo_magazine/ammobox/magnum/rubber = 4,
 					/obj/item/ammo_magazine/ammobox/clrifle_small/rubber = 4,
@@ -1732,6 +1732,7 @@
 		/obj/item/clothing/accessory/armband/med = 8,
 		/obj/item/clothing/accessory/armband/hydro = 8,
 		/obj/item/clothing/glasses/sunglasses = 4,
+		/obj/item/clothing/ears/earmuffs = 4,
 		/obj/item/storage/wallet = 8,
 		/obj/item/clothing/gloves/knuckles = 3,
 		/obj/item/clothing/head/ranger = 4,
@@ -1825,6 +1826,7 @@
 		/obj/item/clothing/accessory/armband/hydro = 100,
 		/obj/item/clothing/glasses/sunglasses = 200,
 		/obj/item/storage/wallet = 100,
+		/obj/item/clothing/ears/earmuffs = 100,
 		/obj/item/clothing/gloves/knuckles = 650,
 		/obj/item/clothing/head/ranger = 200,
 		/obj/item/clothing/head/inhaler = 750,
@@ -1928,7 +1930,7 @@
 		)
 
 	prices = list(
-		/obj/item/gym_ticket = 50,
+		/obj/item/gym_ticket = 200,
 		/obj/item/tool/hammer/dumbbell = 90,
 		/obj/item/reagent_containers/food/drinks/protein_shake = 150,//a total ripoff
 		/obj/item/reagent_containers/food/drinks/energy = 200,

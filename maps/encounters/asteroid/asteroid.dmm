@@ -36,8 +36,7 @@
 /area/outpost/abandoned)
 "ao" = (
 /obj/effect/floor_decal/rust,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/pistol,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "ap" = (
@@ -216,24 +215,18 @@
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
-"aX" = (
-/obj/machinery/door/airlock/vault{
-	name = "NSKR -11"
-	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
 "aY" = (
 /obj/machinery/door/airlock/vault{
 	name = "NSKR -11"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/outpost/abandoned)
 "aZ" = (
 /obj/effect/floor_decal/rust,
 /obj/machinery/door/airlock/vault{
 	name = "NSKR -11"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/outpost/abandoned)
 "ba" = (
 /obj/effect/floor_decal/rust,
@@ -318,14 +311,14 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/rust,
+/obj/item/remains/human,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "bM" = (
 /obj/structure/computerframe{
 	anchored = 1;
 	dir = 2;
-	icon_state = "0";
-	
+	icon_state = "0"
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
@@ -371,16 +364,16 @@
 /area/outpost/abandoned)
 "ca" = (
 /obj/structure/computerframe{
-	icon_state = "0";
+	anchored = 1;
 	dir = 1;
-	anchored = 1
+	icon_state = "0"
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cb" = (
 /obj/structure/cable/orange{
-	icon_state = "0-4";
-	dir = 8
+	dir = 8;
+	icon_state = "0-4"
 	},
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/asteroid,
@@ -396,8 +389,8 @@
 /area/outpost/abandoned)
 "ch" = (
 /obj/structure/table/rack,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/pistol,
+/obj/item/ammo_magazine/pistol,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "ci" = (
@@ -406,19 +399,13 @@
 /area/outpost/abandoned)
 "ck" = (
 /obj/structure/table/rack,
-/obj/item/ammo_casing/shotgun/pellet,
-/obj/item/ammo_casing/shotgun/pellet,
-/obj/item/ammo_casing/shotgun/pellet,
-/obj/item/ammo_casing/shotgun/pellet,
-/obj/item/ammo_casing/shotgun/pellet,
+/obj/item/ammo_magazine/ammobox/shotgun/buckshot,
+/obj/item/ammo_magazine/ammobox/shotgun/buckshot,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cl" = (
 /obj/structure/table/rack,
-/obj/item/ammo_casing/shotgun/beanbag,
-/obj/item/ammo_casing/shotgun/beanbag,
-/obj/item/ammo_casing/shotgun/beanbag,
-/obj/item/ammo_casing/shotgun/beanbag,
+/obj/item/ammo_magazine/ammobox/shotgun/beanbag/scrap,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cm" = (
@@ -465,44 +452,44 @@
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
 /obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
+	dir = 1;
+	icon_state = "term"
 	},
 /obj/structure/cable/orange{
-	icon_state = "0-1";
-	dir = 8
+	dir = 8;
+	icon_state = "0-1"
 	},
 /turf/simulated/floor/plating,
 /area/outpost/abandoned)
 "ct" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
+	dir = 1;
+	icon_state = "term"
 	},
 /obj/effect/floor_decal/rust,
 /obj/structure/cable/orange{
-	icon_state = "0-1";
-	dir = 4
+	dir = 4;
+	icon_state = "0-1"
 	},
 /obj/structure/cable/orange{
-	icon_state = "0-1";
-	dir = 8
+	dir = 8;
+	icon_state = "0-1"
 	},
 /turf/simulated/floor/plating,
 /area/outpost/abandoned)
 "cu" = (
 /obj/effect/floor_decal/rust,
 /obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
+	dir = 1;
+	icon_state = "term"
 	},
 /obj/structure/cable/orange{
-	icon_state = "0-1";
-	dir = 4
+	dir = 4;
+	icon_state = "0-1"
 	},
 /obj/structure/cable/orange{
-	icon_state = "0-1";
-	dir = 8
+	dir = 8;
+	icon_state = "0-1"
 	},
 /turf/simulated/floor/plating,
 /area/outpost/abandoned)
@@ -511,16 +498,16 @@
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
 /obj/structure/cable/orange{
-	icon_state = "1-2";
-	dir = 4
+	dir = 4;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
 /area/outpost/abandoned)
 "cw" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/cable/orange{
-	icon_state = "1-2";
-	dir = 4
+	dir = 4;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
@@ -530,8 +517,8 @@
 	},
 /obj/effect/floor_decal/rust,
 /obj/structure/cable/orange{
-	icon_state = "1-4";
-	dir = 4
+	dir = 4;
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
@@ -567,8 +554,8 @@
 	},
 /obj/structure/cable/orange,
 /obj/structure/cable/orange{
-	icon_state = "0-1";
-	dir = 1
+	dir = 1;
+	icon_state = "0-1"
 	},
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
@@ -683,8 +670,8 @@
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "tj" = (
-/obj/item/gun/projectile/colt,
-/turf/simulated/floor/tiled,
+/obj/item/ammo_magazine/pistol/empty,
+/turf/simulated/floor/asteroid,
 /area/outpost/abandoned)
 "vk" = (
 /obj/structure/table/rack,
@@ -710,6 +697,10 @@
 "OV" = (
 /obj/effect/floor_decal/rust,
 /obj/item/gun/projectile/shotgun/pump,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned)
+"XT" = (
+/obj/item/gun/projectile/colt,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "Zv" = (
@@ -19226,7 +19217,7 @@ bl
 bl
 bl
 bl
-aX
+aY
 bl
 bl
 ad
@@ -30140,7 +30131,7 @@ bl
 bl
 bD
 bD
-bD
+bc
 af
 kC
 bD
@@ -30342,7 +30333,7 @@ bl
 bD
 bD
 bD
-bc
+XT
 af
 Fe
 bD
@@ -30544,7 +30535,7 @@ bD
 bD
 bD
 bD
-tj
+bD
 af
 bH
 bD
@@ -30955,7 +30946,7 @@ af
 af
 ag
 ag
-aX
+aY
 ag
 af
 af
@@ -31064,7 +31055,7 @@ ac
 ad
 ag
 ad
-ad
+tj
 ad
 af
 ac
@@ -31154,7 +31145,7 @@ bl
 ag
 bJ
 bN
-aX
+aY
 bD
 bD
 bX
@@ -31760,7 +31751,7 @@ bl
 bl
 bl
 bN
-aX
+aY
 bD
 bD
 bD
@@ -31768,7 +31759,7 @@ bX
 bD
 bD
 bD
-aX
+aY
 bD
 bD
 bD
@@ -32366,7 +32357,7 @@ bl
 ag
 bL
 bN
-aX
+aY
 bD
 bD
 bD
@@ -32571,7 +32562,7 @@ af
 af
 ag
 ag
-aX
+aY
 ag
 af
 af

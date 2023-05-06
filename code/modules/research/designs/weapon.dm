@@ -62,6 +62,12 @@
 	build_path = /obj/item/gun/projectile/selfload/moebius
 	sort_string = "TACAB"
 
+/datum/design/research/item/weapon/clarrisa_ammo
+	name = "Anne 35 Pistol Magazine"
+	desc = "A normal capacity pistol magazine chambered in .35 for the Anne auto pistol."
+	build_path = /obj/item/ammo_magazine/pistol
+	sort_string = "TACBB"
+
 /datum/design/research/item/weapon/flora_gun
 	build_path = /obj/item/gun/energy/floragun
 	sort_string = "TBAAA"

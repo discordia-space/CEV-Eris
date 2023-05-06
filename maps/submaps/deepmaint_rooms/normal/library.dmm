@@ -63,11 +63,17 @@
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/deepmaint)
 "n" = (
-/obj/item/remains,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/deepmaint)
 "o" = (
 /obj/structure/table/woodentable,
+/turf/simulated/floor/wood,
+/area/deepmaint)
+"p" = (
+/obj/structure/table/woodentable{
+	flipped = 1
+	},
 /turf/simulated/floor/wood,
 /area/deepmaint)
 
@@ -105,7 +111,7 @@ i
 f
 f
 f
-o
+p
 f
 f
 c

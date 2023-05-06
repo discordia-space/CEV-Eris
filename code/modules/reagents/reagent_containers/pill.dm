@@ -192,6 +192,11 @@
 	icon_state = "pill13"
 	preloaded_reagents = list("anti_toxin" = 15)
 
+/obj/item/reagent_containers/pill/carbon
+	name = "Carbon pill"
+	desc = "A pill of activated charcoal, used to purge stomach contents."
+	icon_state = "pill9"
+	preloaded_reagents = list("carbon" = 15)
 
 /obj/item/reagent_containers/pill/inaprovaline
 	name = "Inaprovaline pill"

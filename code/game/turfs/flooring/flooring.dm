@@ -256,9 +256,8 @@ var/list/flooring_types
 	if(!ishuman(M)|| M.incorporeal_move || !has_gravity(get_turf(M)))
 		return
 	if(MOVING_QUICKLY(M))
-		if(prob(5))
+		if(prob(5) && M.slip(null, 6))
 			M.adjustBruteLoss(5)
-			M.slip(null, 6)
 			playsound(M, 'sound/effects/bang.ogg', 50, 1)
 			to_chat(M, SPAN_WARNING("You tripped over!"))
 			return
@@ -284,7 +283,7 @@ var/list/flooring_types
 	space_smooth = SMOOTH_NONE
 	smooth_movable_atom = SMOOTH_NONE
 
-//Hull can upgrade to underplating
+//Hull can downgrade to underplating
 /decl/flooring/reinforced/plating/hull/can_build_floor(var/decl/flooring/newfloor)
 	return FALSE //Not allowed to build directly on hull, you must first remove it and then build on the underplating
 

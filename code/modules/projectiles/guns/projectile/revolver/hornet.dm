@@ -9,6 +9,7 @@
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2)
 	proj_step_multiplier = 0.8
 	ammo_type = /obj/item/ammo_casing/srifle
+	magazine_type = /obj/item/ammo_magazine/slsrifle_rev
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	caliber = CAL_SRIFLE
 	max_shells = 8 // makes more sense than 7 shot .40 revolvers

@@ -3,7 +3,6 @@
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/deepmaint)
 "b" = (
-/obj/item/remains/xeno,
 /obj/spawner/junk,
 /turf/simulated/floor/tiled/white/techfloor_grid,
 /area/deepmaint)
@@ -19,8 +18,8 @@
 /turf/simulated/floor/tiled/white/techfloor_grid,
 /area/deepmaint)
 "f" = (
-/obj/item/remains/human,
 /obj/spawner/junk,
+/obj/landmark/corpse/skeleton,
 /turf/simulated/floor/tiled/white/techfloor_grid,
 /area/deepmaint)
 "g" = (
@@ -31,6 +30,7 @@
 "h" = (
 /obj/spawner/junk,
 /obj/spawner/junk,
+/obj/landmark/corpse/skeleton,
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/deepmaint)
 "i" = (
@@ -38,8 +38,8 @@
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/deepmaint)
 "j" = (
-/obj/item/remains/human,
 /obj/spawner/junk,
+/obj/landmark/corpse/skeleton,
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/deepmaint)
 "k" = (
@@ -61,7 +61,7 @@
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/deepmaint)
 "o" = (
-/obj/item/remains/human,
+/obj/landmark/corpse/skeleton,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/deepmaint)
 "p" = (
