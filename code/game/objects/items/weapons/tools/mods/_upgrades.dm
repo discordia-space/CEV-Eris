@@ -287,7 +287,7 @@
 	if(tool_upgrades[UPGRADE_POWERCOST_MULT])
 		T.use_power_cost *= tool_upgrades[UPGRADE_POWERCOST_MULT]
 	if(tool_upgrades[UPGRADE_QUALITY])
-		if(toggleable)
+		if(T.toggleable)
 			T.switched_on_qualities |= UPGRADE_QUALITY
 			if(switched_on)
 				T.tool_qualities |= UPGRADE_QUALITY
