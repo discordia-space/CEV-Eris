@@ -40,6 +40,8 @@
 	var/statusTags = PARTMOD_STRIPPED
 	var/grip_type = ""
 
+	var/itemstring // Saved due to set_item_state being drycalled. Not worth to rework imo, but it is a good way to waste time if someone has some spare.
+
 	init_firemodes = list( // Determined by mechanism
 		SEMI_AUTO_300,
 		)
@@ -74,12 +76,11 @@
 	name = get_initial_name()
 
 /obj/item/gun/projectile/automatic/modular/update_icon() // V2
-	..()
 	cut_overlays() // This is where the fun begins
 
 	// Determine base using the current stock status
 	var/iconstring = initial(icon_state)
-	var/itemstring = (PARTMOD_FRAME_SPRITE & spriteTags) ? ("_" + iconstring) : ("_" + grip_type)
+	itemstring = (PARTMOD_FRAME_SPRITE & spriteTags) ? ("_" + iconstring) : ("_" + grip_type)
 
 	// Define "-" tags
 	var/dashTag = ""
@@ -116,6 +117,35 @@
 	icon_state = iconstring
 	wielded_item_state = itemstring // Hacky solution to a hacky system. Reere forgive us. V3 will fix this.
 	set_item_state(itemstring)
+
+/obj/item/gun/projectile/automatic/modular/set_item_state(state, hands = TRUE, back = TRUE, onsuit = TRUE) // TODO: check why a billion procs call set_item_state with no state provided
+
+	if(!state)
+		state = itemstring
+	var/wield_state
+	if(wielded_item_state)
+		wield_state = wielded_item_state
+	if(!(hands || back || onsuit))
+		hands = back = onsuit = TRUE
+	if(hands)//Ok this is a bit hacky. But basically if the gun is wielded, we want to use the wielded icon state over the other one.
+		if(wield_state && wielded)//Because most of the time the "normal" icon state is held in one hand. This could be expanded to be less hacky in the future.
+			item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state
+			item_state_slots[slot_r_hand_str] = "righthand" + wield_state
+
+		else
+			item_state_slots[slot_l_hand_str] = "lefthand"  + state
+			item_state_slots[slot_r_hand_str] = "righthand" + state
+	state = initial(state)
+
+	var/carry_state = inversed_carry
+	if(back && !carry_state)
+		item_state_slots[slot_back_str]   = "back"		+ state
+	if(back && carry_state)
+		item_state_slots[slot_back_str]   = "onsuit"	+ state
+	if(onsuit && !carry_state)
+		item_state_slots[slot_s_store_str]= "onsuit"    + state
+	if(onsuit && carry_state)
+		item_state_slots[slot_s_store_str]= "back"		+ state
 
 // Interactions
 
