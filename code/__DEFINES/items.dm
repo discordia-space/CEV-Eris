@@ -10,6 +10,7 @@
 #define UPGRADE_FORCE_MOD "force_mod"
 #define UPGRADE_FUELCOST_MULT "fuelcost_mult"
 #define UPGRADE_POWERCOST_MULT "powercost_mult"
+#define UPGRADE_QUALITY "add_quality"
 
 #define UPGRADE_BULK "bulk_mod"
 
