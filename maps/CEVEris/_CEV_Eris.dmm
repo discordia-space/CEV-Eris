@@ -51237,13 +51237,21 @@
 	},
 /obj/item/paper_bin,
 /obj/machinery/button/remote/blast_door{
-	id = "maint_hatch_conference_2";
-	name = "Maintenance Hatch Control";
+	id = "artist_office_east";
+	name = "Starboard Hatch Control";
 	pixel_x = -24;
+	pixel_y = -6;
 	req_access = null
 	},
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -28
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "artist_office_west";
+	name = "Port Hatch Control";
+	pixel_x = -24;
+	pixel_y = 6;
+	req_access = null
 	},
 /turf/simulated/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/artistoffice)
@@ -103205,6 +103213,22 @@
 /obj/machinery/smartfridge/kitchen,
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/kitchen)
+"kAg" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/regular/open{
+	id = "ClubTotalLockdown";
+	layer = 2.6;
+	name = "Club Total Lockdown"
+	},
+/obj/machinery/door/blast/shutters{
+	dir = 8;
+	id = "artist_office_east";
+	layer = 3.3;
+	name = "Maintenance Hatch"
+	},
+/turf/simulated/floor/plating,
+/area/eris/crew_quarters/artistoffice)
 "kAt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -105274,7 +105298,7 @@
 	},
 /obj/machinery/door/blast/shutters{
 	dir = 8;
-	id = "maint_hatch_conference_2";
+	id = "artist_office_west";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
@@ -168174,8 +168198,8 @@ cxA
 erj
 erj
 erj
-pSP
-pSP
+kAg
+kAg
 erj
 tCA
 dFo
