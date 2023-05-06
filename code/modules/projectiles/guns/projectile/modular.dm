@@ -36,6 +36,7 @@
 
 	gun_tags = list() // We add modular to this first step within initialize()
 	var/spriteTags = PARTMOD_STRIPPED // Tags to attach to sprites
+	var/spriteTagBans = PARTMOD_STRIPPED // To be removed when V3 comes
 	var/statusTags = PARTMOD_STRIPPED
 	var/grip_type = ""
 
@@ -45,7 +46,6 @@
 
 	serial_type = "Excelsior"
 
-	var/stock = STOCK_MISSING
 	max_upgrades = 6
 
 /obj/item/gun/projectile/automatic/modular/Initialize()
@@ -83,7 +83,7 @@
 
 	// Define "-" tags
 	var/dashTag = ""
-	if((PARTMOD_FOLDING_STOCK & spriteTags) && (PARTMOD_FOLDING_STOCK & statusTags))
+	if((PARTMOD_FOLDING_STOCK & spriteTags))
 		dashTag += "-st"
 	if((PARTMOD_SLIDE & spriteTags) && !ammo_magazine)
 		dashTag += "-e"
