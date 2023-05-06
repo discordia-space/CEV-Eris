@@ -262,6 +262,8 @@ steam.start() -- spawns the effect
 	if(alpha > 0)
 		alpha = max(0, alpha - alpha_step)
 		addtimer(CALLBACK(src, PROC_REF(fade_step), alpha_step), 1 SECOND)
+		if(alpha < initial(alpha)/2)
+			opacity = FALSE
 	else
 		qdel(src)
 
