@@ -6,23 +6,25 @@
 	var/boosting = FALSE
 
 /obj/item/organ_module/muscle/onInstall(obj/item/organ/external/E)
-	E.tally -= 0.25
-	boosting = TRUE
+	if(E.owner)
+		E.owner.tally -= 0.25
+		boosting = TRUE
 
 /obj/item/organ_module/muscle/onRemove(obj/item/organ/external/E)
-	E.tally += 0.25
+	E.owner.tally += 0.25
 	boosting = FALSE
 
 /obj/item/organ_module/muscle/emp_act(severity)
 	if(boosting)
-		E.tally += 0.3
+		E.owner.tally += 0.3
 		// worst case scenario , 5  seconds of debuff
 		boosting = FALSE
-		addtimer(CALLBACK(src, PROC_REF(reboot), 5 SECONDS / severity ))
+		addtimer(CALLBACK(src, PROC_REF(reboot), E.owner, 5 SECONDS / severity ))
 
 
-/obj/item/organ_module/muscle/proc/reboot()
-	E.tally -= 0.3
-	boosting = TRUE
+/obj/item/organ_module/muscle/proc/reboot(mob/living/carbon/human/the_debuffed)
+	if(the_debuffed)
+		the_debuffed.tally -= 0.3
+		boosting = TRUE
 
 
