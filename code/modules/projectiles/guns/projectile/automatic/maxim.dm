@@ -38,7 +38,7 @@
 	slowdown_hold = 1
 	wield_delay = 1 SECOND
 	wield_delay_factor = 0.9 // 90 vig
-	gun_parts = list(/obj/item/part/gun/frame/maxim = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/lrifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/maxim = 1, /obj/item/part/gun/modular/grip/excel = 1, /obj/item/part/gun/modular/mechanism/machinegun = 1, /obj/item/part/gun/modular/barrel/lrifle = 1)
 	serial_type = "Excelsior"
 
 /obj/item/gun/projectile/automatic/maxim/update_icon()
@@ -60,6 +60,6 @@
 	desc = "A Maxim HMG frame. Whatever happens, we have got the Maxim gun and they have not."
 	icon_state = "frame_maxim"
 	resultvars = list(/obj/item/gun/projectile/automatic/maxim)
-	gripvars = list(/obj/item/part/gun/grip/excel)
-	mechanismvar = /obj/item/part/gun/mechanism/machinegun
-	barrelvars = list(/obj/item/part/gun/barrel/lrifle)
+	gripvars = list(/obj/item/part/gun/modular/grip/excel)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/machinegun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/lrifle)

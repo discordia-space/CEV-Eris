@@ -30,7 +30,7 @@
 
 
 	//spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	gun_parts = list(/obj/item/part/gun/frame/clarissa = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/clarissa = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/pistol = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "S"
 
 /obj/item/gun/projectile/selfload/update_icon()
@@ -48,6 +48,9 @@
 	if (silenced)
 		iconstring += "_s"
 		itemstring += "_s"
+		wielded_item_state = "_doble_s"
+	else
+		wielded_item_state = "_doble"
 
 	icon_state = iconstring
 	set_item_state(itemstring)
@@ -57,9 +60,9 @@
 	desc = "A Clarissa pistol frame. Concealable yet anemic yet fast."
 	icon_state = "frame_clarissa"
 	resultvars = list(/obj/item/gun/projectile/selfload)
-	gripvars = list(/obj/item/part/gun/grip/black)
-	mechanismvar = /obj/item/part/gun/mechanism/pistol
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	gripvars = list(/obj/item/part/gun/modular/grip/black)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)
 
 /obj/item/gun/projectile/selfload/makarov
 	name = "Excelsior .35 Auto \"Makarov\""
@@ -74,7 +77,7 @@
 	init_firemodes = list(
 		SEMI_AUTO_300
 		)
-	gun_parts = list(/obj/item/part/gun/frame/makarov = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/makarov = 1, /obj/item/part/gun/modular/grip/excel = 1, /obj/item/part/gun/modular/mechanism/pistol = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "Excelsior"
 
 /obj/item/part/gun/frame/makarov
@@ -82,9 +85,9 @@
 	desc = "A Makarov pistol frame. Technology may have stagnated, but effectiveness hasn't."
 	icon_state = "frame_makarov"
 	resultvars = list(/obj/item/gun/projectile/selfload/makarov)
-	gripvars = list(/obj/item/part/gun/grip/excel)
-	mechanismvar = /obj/item/part/gun/mechanism/pistol
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	gripvars = list(/obj/item/part/gun/modular/grip/excel)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)
 
 /obj/item/gun/projectile/selfload/moebius
 	name = "ML HG .35 Auto \"Anne\"" // ML stands for Moebius Laboratories

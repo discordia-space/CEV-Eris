@@ -2,6 +2,7 @@
 	name = "FS BR .40 \"Svengali\""
 	desc = "A perfect modernization of an old earth classic hailing popular use with gun ho lawmen and bounty hunters. \
 	Marketed as the number one choice for crack shots on Oberth colonies and large vessels."
+	icon = 'icons/obj/guns/projectile/winchester.dmi'
 	icon_state = "lever_winchester"
 	item_suffix  = "_winchester"
 	force = WEAPON_FORCE_DANGEROUS
@@ -22,22 +23,23 @@
 	sawn = /obj/item/gun/projectile/boltgun/levergun/sawn
 	message = "lever"
 	serial_type = "FS"
-	gun_parts = list(/obj/item/part/gun/frame/winchester = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/magnum = 1)
+	gun_parts = list(/obj/item/part/gun/frame/winchester = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/boltgun = 1, /obj/item/part/gun/modular/barrel/magnum = 1)
 
 /obj/item/part/gun/frame/winchester
 	name = "Svengali frame"
 	desc = "A Svengali lever rifle. If death is our destination this will surely bring it."
 	icon_state = "frame_winchester"
 	resultvars = list(/obj/item/gun/projectile/boltgun/levergun)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/boltgun
-	barrelvars = list(/obj/item/part/gun/barrel/magnum)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/boltgun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/magnum)
 
 /obj/item/gun/projectile/boltgun/levergun/hand_spin(mob/living/carbon/caller)
 	bolt_act(caller)
 
 /obj/item/gun/projectile/boltgun/levergun/sawn
 	name = "sawn-off FS BR .40 \"Svengali\""
+	icon = 'icons/obj/guns/projectile/winchester_sawn.dmi'
 	icon_state = "lever_winchester_sawn"
 	w_class = ITEM_SIZE_NORMAL
 	proj_step_multiplier = 1
@@ -67,16 +69,16 @@
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 20)
 	wielded_item_state = "_doble_shotgun"
 	sawn = /obj/item/gun/projectile/boltgun/levergun/shotgun/sawn
-	gun_parts = list(/obj/item/part/gun/frame/levershotgun = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/boltgun = 1, /obj/item/part/gun/barrel/shotgun= 1)
+	gun_parts = list(/obj/item/part/gun/frame/levershotgun = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/boltgun = 1, /obj/item/part/gun/modular/barrel/shotgun= 1)
 
 /obj/item/part/gun/frame/levershotgun
 	name = "Sogekihei frame"
 	desc = "A Sogekihei lever shotgun. You are only missing a horse."
 	icon_state = "frame_levershotgun"
 	resultvars = list(/obj/item/gun/projectile/boltgun/levergun/shotgun)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/boltgun // consistent with the other lever guns
-	barrelvars = list(/obj/item/part/gun/barrel/shotgun)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/boltgun // consistent with the other lever guns
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun)
 
 /obj/item/gun/projectile/boltgun/levergun/shotgun/sawn
 	name = "sawn-off FS BR \"Sogekihei\""

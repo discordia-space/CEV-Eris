@@ -54,6 +54,8 @@
 	var/iconstring = initial(icon_state)
 	var/itemstring = "_" + choosen_color
 
+	wielded_item_state = "_doble_" + choosen_color
+
 	icon_state = iconstring + itemstring
 	set_item_state(itemstring)
 

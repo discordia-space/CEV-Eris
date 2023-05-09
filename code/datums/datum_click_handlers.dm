@@ -1,6 +1,4 @@
 /datum/click_handler
-//	var/mob_type
-	var/species
 	var/handler_name
 	var/one_use_flag = 1//drop client.CH after succes ability use
 	var/client/owner
@@ -137,11 +135,37 @@
 	stop_firing() //Without this it keeps firing in an infinite loop when deleted
 	.=..()
 
-/datum/click_handler/human/mob_check(mob/living/carbon/human/user)
-	if(ishuman(user))
-		if(user.species.name == src.species)
-			return 1
-	return 0
+/***********
+ * AI Control
+ */
 
-/datum/click_handler/human/use_ability(mob/living/carbon/human/user,atom/target)
-	return
+/datum/click_handler/ai
+
+/datum/click_handler/ai/Click(atom/target, location, control, params)
+	var/modifiers = params2list(params)
+	if(isHUDobj(target) || istype(target, /HUD_element) || istype(target, /obj/effect))
+		return TRUE
+	if(!isatom(target))
+		return TRUE
+	if (mob_check(owner.mob) && use_ability(owner.mob, target, params))
+		return TRUE
+	else if(modifiers["shift"])
+		owner.mob.examinate(target)
+		return FALSE
+	if(ismachinery(target))
+		to_chat(usr, SPAN_NOTICE("ERROR: No response from targeted device"))
+	return FALSE
+
+/datum/click_handler/ai/mob_check(mob/living/silicon/ai/user) //Check can mob use a ability
+	return TRUE
+
+/datum/click_handler/ai/use_ability(mob/living/silicon/ai/user,atom/target, params)
+	var/signalStrength
+	if(get_dist_euclidian(owner.mob, get_turf(target)) < 24)
+		// Can't block at such close distance
+		signalStrength = 1000
+	else
+		signalStrength = 10
+	if(SSjamming.IsPositionJammed(get_turf(target),  signalStrength))
+		return FALSE
+	return TRUE

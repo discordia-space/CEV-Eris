@@ -57,6 +57,9 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 	if(!items_check(user, target_turf, blueprint))
 		fail("Something is missing.",user,C,targets)
 		return
+	if(istype(blueprint,/datum/nt_blueprint/machinery/eotp) && eotp != null)
+		fail("You cannot build a second Eye of the Protector in this area. The Last Shelter forbids it.")
+		return
 
 	user.visible_message(SPAN_NOTICE("You see as [user] passes his hands over something."),SPAN_NOTICE("You see your faith take physical form as you concentrate on [blueprint.name] image"))
 
@@ -95,13 +98,13 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 	if(!GLOB.nt_constructs) //Makes sure the list we curated earlier actually exists
 		fail("You have no idea what constitutes a church construct.",user,C,targets)
 		return
-	
+
 	var/obj/reclaimed //Variable to be defined later as the removed construct
 	var/loot //Variable to be defined later as materials resulting from deconstruction
 	var/turf/target_turf = get_step(user,user.dir) //Gets the turf in front of the user
-	
+
 	//Find the NT Structure in front of the player
-	for(reclaimed in target_turf) 
+	for(reclaimed in target_turf)
 		if(reclaimed.type in GLOB.nt_constructs)
 			loot = GLOB.nt_constructs[reclaimed.type]
 			break
@@ -109,7 +112,9 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 	if(isnull(loot))
 		fail("There is no mistake to remove here.",user,C,targets)
 		return
-
+	if(reclaimed.type == /obj/machinery/power/eotp && !(is_preacher(user) || is_inquisidor(user)))
+		fail("The power of moving such holy buildings is only placed in the power of the upmost faithful!")
+		return
 	user.visible_message(SPAN_NOTICE("[user] places one hand on their chest, and the other stretched forward."),SPAN_NOTICE("You take back what is, returning it to what was."))
 
 	var/obj/effect/overlay/nt_construction/effect = new(target_turf, 5 SECONDS)
@@ -118,7 +123,12 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 		fail("You feel something is judging you upon your impatience",user,C,targets)
 		effect.failure()
 		return
-	
+
+	if(QDELETED(reclaimed) || reclaimed.loc != target_turf)
+		fail("It's no longer there.", user, C, targets)
+		effect.failure()
+		return
+
 	//Lets spawn and drop the materials resulting from deconstruction
 	for(var/obj/scrap as anything in loot)
 		if(ispath(scrap, /obj/item/stack))
@@ -183,6 +193,18 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 		/CRUCIFORM_TYPE = 1
 	)
 	build_time = 8 SECONDS
+
+/datum/nt_blueprint/machinery/eotp
+	name = "Eye of the Protector"
+	build_path = /obj/machinery/power/eotp
+	materials = list(
+		/obj/item/device/last_shelter = 1,
+		/obj/item/stack/material/gold = 15,
+		/obj/item/stack/material/plasteel = 50,
+		/obj/item/stack/material/biomatter = 100,
+		/CRUCIFORM_TYPE = 1
+
+	)
 /datum/nt_blueprint/machinery/bioprinter
 	name = "Biomatter Printer"
 	build_path = /obj/machinery/autolathe/bioprinter
@@ -348,3 +370,14 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 		/obj/item/stack/material/silver = 3
 	)
 	build_time = 8 SECONDS
+
+/datum/nt_blueprint/machinery/altar
+	name = "NeoTheology's altar"
+	build_path = /obj/machinery/optable/altar
+	materials = list(
+		/obj/item/stack/material/steel = 10,
+		/obj/item/stack/material/biomatter = 50,
+		/obj/item/stack/material/silver = 5,
+		/CRUCIFORM_TYPE = 1
+	)
+	build_time = 10 SECONDS

@@ -269,13 +269,13 @@
 			return get_step(start, EAST)
 
 /proc/get_mob_by_key(key)
-	for(var/mob/M in SSmobs.mob_list)
+	for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 		if(M.ckey == lowertext(key))
 			return M
 	return null
 
 /proc/get_client_by_ckey(key)
-	for(var/mob/M in SSmobs.mob_list)
+	for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 		if(M.ckey == lowertext(key))
 			return M.client
 	return null

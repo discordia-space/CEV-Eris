@@ -13,8 +13,8 @@
 	contents_list_random = list(/obj/item/implantcase/excelsior/broken = 70,
 	/obj/item/implantcase/excelsior/broken = 40,
 	/obj/item/clothing/suit/space/void/excelsior = 70,
-	/obj/item/gun/projectile/automatic/ak47 = 30,
-	/obj/item/gun/projectile/automatic/ak47 = 30,
+	/obj/item/gun/projectile/automatic/modular/ak/excelsior = 30,
+	/obj/item/gun/projectile/automatic/modular/ak/excelsior = 30,
 	/obj/item/ammo_magazine/lrifle = 50,
 	/obj/item/ammo_magazine/lrifle = 50
 	)

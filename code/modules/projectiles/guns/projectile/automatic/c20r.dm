@@ -27,7 +27,7 @@
 	penetration_multiplier = 0
 	zoom_factors = list(0.4)
 	init_recoil = SMG_RECOIL(0.6)
-	gun_parts = list(/obj/item/part/gun/frame/c20r = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/c20r = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/smg = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 
 	gun_tags = list(GUN_SILENCABLE)
 
@@ -44,9 +44,9 @@
 	desc = "A C20r SMG frame. The syndicate's bread and butter."
 	icon_state = "frame_syndi"
 	resultvars = list(/obj/item/gun/projectile/automatic/c20r)
-	gripvars = list(/obj/item/part/gun/grip/black)
-	mechanismvar = /obj/item/part/gun/mechanism/smg
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	gripvars = list(/obj/item/part/gun/modular/grip/black)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/smg
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)
 
 /obj/item/gun/projectile/automatic/c20r/update_icon()
 	cut_overlays()
@@ -80,7 +80,7 @@
 	item_state = "c20r"
 	damage_multiplier = 1
 	penetration_multiplier = -0.2	//Not quite as good as real syndi
-	gun_parts = list(/obj/item/part/gun/frame/c20r/moebius = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/c20r/moebius = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/smg = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "ML"
 
 /obj/item/part/gun/frame/c20r/moebius

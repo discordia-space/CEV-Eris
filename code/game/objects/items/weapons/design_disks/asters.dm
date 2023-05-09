@@ -47,6 +47,7 @@
 		/datum/design/autolathe/misc/radio_bounced,
 		/datum/design/autolathe/misc/ashtray,
 		/datum/design/autolathe/misc/mirror,
+		/datum/design/autolathe/misc/earmuffs,
 		/datum/design/autolathe/container/drinkingglass,
 		/datum/design/autolathe/container/carafe,
 		/datum/design/autolathe/container/insulated_pitcher,
@@ -119,8 +120,8 @@
 	rarity_value = 13 // between standard and bulletproof armor
 	license = 6
 	designs = list(
+		/datum/design/autolathe/clothing/generic_vest_webbing,
 		/datum/design/autolathe/clothing/generic_helmet_visored,
+		/datum/design/autolathe/clothing/generic_vest_security_full = 2,
 		/datum/design/autolathe/clothing/riot_helmet = 2,
-		/datum/design/autolathe/clothing/generic_vest_security,
-		/datum/design/autolathe/clothing/generic_vest_webbing = 2
 	)

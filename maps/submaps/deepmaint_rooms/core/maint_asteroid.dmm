@@ -56,17 +56,13 @@
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
 "ao" = (
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
 "ap" = (
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/floor/asteroid,
 /area/deepmaint)
 "aq" = (

@@ -51,15 +51,15 @@
 
 /datum/component/internal_wound/RegisterWithParent()
 	// Internal organ parent
-	RegisterSignal(parent, COMSIG_IWOUND_EFFECTS, .proc/apply_effects)
-	RegisterSignal(parent, COMSIG_IWOUND_LIMB_EFFECTS, .proc/apply_limb_effects)
-	RegisterSignal(parent, COMSIG_IWOUND_FLAGS_ADD, .proc/apply_flags)
-	RegisterSignal(parent, COMSIG_IWOUND_FLAGS_REMOVE, .proc/remove_flags)
-	RegisterSignal(parent, COMSIG_IWOUND_DAMAGE, .proc/apply_damage)
-	RegisterSignal(parent, COMSIG_IWOUND_TREAT, .proc/treatment)
+	RegisterSignal(parent, COMSIG_IWOUND_EFFECTS, PROC_REF(apply_effects))
+	RegisterSignal(parent, COMSIG_IWOUND_LIMB_EFFECTS, PROC_REF(apply_limb_effects))
+	RegisterSignal(parent, COMSIG_IWOUND_FLAGS_ADD, PROC_REF(apply_flags))
+	RegisterSignal(parent, COMSIG_IWOUND_FLAGS_REMOVE, PROC_REF(remove_flags))
+	RegisterSignal(parent, COMSIG_IWOUND_DAMAGE, PROC_REF(apply_damage))
+	RegisterSignal(parent, COMSIG_IWOUND_TREAT, PROC_REF(treatment))
 
 	// Surgery
-	RegisterSignal(src, COMSIG_ATTACKBY, .proc/apply_tool)
+	RegisterSignal(src, COMSIG_ATTACKBY, PROC_REF(apply_tool))
 
 	START_PROCESSING(SSinternal_wounds, src)
 

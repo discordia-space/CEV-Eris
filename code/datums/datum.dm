@@ -31,10 +31,10 @@
 	/**
 	  * Any datum registered to receive signals from this datum is in this list
 	  *
-	  * Lazy associated list in the structure of `signal:registree/list of registrees`
+	  * Lazy associated list in the structure of `[signal] = list(registered_objects)`
 	  */
 	var/list/comp_lookup
-	/// Lazy associated list in the structure of `signals:proctype` that are run when the datum receives that signal
+	/// Lazy associated list in the structure of `[target][signal] = proc)` that are run when the datum receives that signal
 	var/list/list/datum/callback/signal_procs
 
 	var/signal_enabled = FALSE

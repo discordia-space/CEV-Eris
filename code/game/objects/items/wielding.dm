@@ -10,19 +10,24 @@
 
 /mob/living/proc/do_wield()//The proc we actually care about.
 	var/obj/item/I = get_active_hand()
+	var/obj/item/O = get_inactive_hand()
 	if(!I)
-		return
-	I.attempt_wield(src)
+		if(!O)
+			return
+		swap_hand()
+		O.attempt_wield(src)
+	else
+		I.attempt_wield(src)
 
 /obj/item/proc/unwield(mob/living/user)
 	if(!wielded || !user)
 		return
 	wielded = FALSE
 	if(force_wielded_multiplier)
-		force = (force / force_wielded_multiplier)	
+		force = (force / force_wielded_multiplier)
 	else
 		force = (force / 1.3)
-	
+
 	var/sf = findtext(name," (Wielded)")
 	if(sf)
 		name = copytext(name,1,sf)
@@ -47,9 +52,12 @@
 		return
 	if(!is_held_twohanded(user))
 		return
-	if(user.get_inactive_hand())
-		to_chat(user, SPAN_WARNING("You need your other hand to be empty!</span>"))
-		return
+	var/obj/item/X = user.get_inactive_hand()
+	if(X)
+		if(!X.canremove)
+			return
+		user.drop_offhand()
+		to_chat(user, SPAN_WARNING("You dropped \the [X]."))
 	wielded = TRUE
 	if(force_wielded_multiplier)
 		force = force * force_wielded_multiplier
@@ -100,9 +108,9 @@
 
 /obj/item/proc/is_held_twohanded(mob/living/M)
 	var/check_hand
-	if(M.l_hand == src && !M.r_hand)//Eris removed hands long ago. This would normally check hands but it has to check if you have arms instead. Otherwise the below comments would be accurate.
+	if(M.l_hand == src)//Eris removed hands long ago. This would normally check hands but it has to check if you have arms instead. Otherwise the below comments would be accurate.
 		check_hand = BP_R_ARM //item in left hand, check right hand
-	else if(M.r_hand == src && !M.l_hand)
+	else if(M.r_hand == src)
 		check_hand = BP_L_ARM //item in right hand, check left hand
 	else
 		return FALSE

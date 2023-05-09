@@ -50,6 +50,7 @@
 /area/crawler)
 "n" = (
 /obj/structure/table/onestar,
+/obj/item/stack/os_cash,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/crawler)
 "o" = (

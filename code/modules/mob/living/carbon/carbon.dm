@@ -1,4 +1,4 @@
-/mob/living/carbon/New()
+/mob/living/carbon/Initialize()
 	//setup reagent holders
 	bloodstr = new /datum/reagents/metabolism(1000, src, CHEM_BLOOD)
 	ingested = new /datum/reagents/metabolism(1000, src, CHEM_INGEST)
@@ -106,8 +106,7 @@
 			"\red You hear a heavy electrical crack." \
 		)
 		SEND_SIGNAL_OLD(src, COMSIG_CARBON_ELECTROCTE)
-		Stun(10)//This should work for now, more is really silly and makes you lay there forever
-		Weaken(10)
+		Weaken(max(min(10,round(shock_damage / 10 )), 2) SECONDS)
 	else
 		src.visible_message(
 			"\red [src] was mildly shocked by the [source].", \
@@ -126,6 +125,10 @@
 	//We cache the held items before and after swapping using get active hand.
 	//This approach is future proof and will support people who possibly have >2 hands
 	var/obj/item/prev_held = get_active_hand()
+
+	if(prev_held)
+		if(prev_held.wielded)
+			prev_held.unwield(src)
 
 	//Now we do the hand swapping
 	src.hand = !( src.hand )
