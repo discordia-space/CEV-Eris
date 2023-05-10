@@ -206,7 +206,7 @@
 	item_state = "eutactic_katana"
 	toggleable = TRUE
 	max_upgrades = 1
-
+	w_class = ITEM_SIZE_HUGE
 	suitable_cell = /obj/item/cell/small
 
 	use_power_cost = 0.4
