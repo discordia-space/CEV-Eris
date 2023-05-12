@@ -14,7 +14,6 @@
 	damage_multiplier = 1.3
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	can_dual = TRUE
-	magazine_type = /obj/item/ammo_magazine/pistol
 	init_recoil = HANDGUN_RECOIL(1)
 
 	spawn_tags = SPAWN_TAG_GUN_PART
@@ -65,16 +64,19 @@
 /obj/item/gun/projectile/automatic/modular/mk58/gray/stock
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/black)
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
+	magazine_type = /obj/item/ammo_magazine/pistol
 
 /obj/item/gun/projectile/automatic/modular/mk58/gray/wood
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/wood)
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
+	magazine_type = /obj/item/ammo_magazine/pistol
 
 /obj/item/gun/projectile/automatic/modular/mk58/black/army
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/excel)
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
+	magazine_type = /obj/item/ammo_magazine/pistol
 
 /obj/item/gun/projectile/automatic/modular/mk58/tan/army
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/excel)
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
-
+	magazine_type = /obj/item/ammo_magazine/pistol

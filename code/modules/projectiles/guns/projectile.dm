@@ -292,6 +292,7 @@
 	update_icon()
 	update_held_icon()
 
+// Modular guns overwrite this
 /obj/item/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
 	.=..()
 	if(QUALITY_SAWING in A.tool_qualities)

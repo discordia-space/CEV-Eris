@@ -22,6 +22,8 @@
 	gun_tags = list(GUN_SILENCABLE)
 	serial_type = "FS"
 
+	spriteTagBans = PARTMOD_FOLDING_STOCK // Folding stock does not modify handheld sprite
+
 	damage_multiplier = 1.1 // Higher-end and not fully modular, justifies increasing the default multiplier without balance concerns (you can't combo it with a crazy mechanism)
 	init_recoil = RIFLE_RECOIL(1) // Mechanism increases by 25%
 
@@ -47,3 +49,6 @@
 
 /obj/item/gun/projectile/automatic/modular/wintermute/finished
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/determined, /obj/item/part/gun/modular/barrel/srifle, /obj/item/part/gun/modular/grip/rubber, /obj/item/part/gun/modular/stock)
+	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	magazine_type = /obj/item/ammo_magazine/srifle/long // For the rare case the blacklist is ignored
