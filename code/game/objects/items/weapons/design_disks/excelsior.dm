@@ -205,6 +205,6 @@
 	license = -1
 	designs = list(
 		/datum/design/bioprinter/medical/bruise,
-		/datum/design/bioprinter/medical/ointment
-		/datum/design/bioprinter/medical/splints
+		/datum/design/bioprinter/medical/ointment,
+		/datum/design/bioprinter/medical/splints,
 	)
