@@ -93,7 +93,7 @@
 	spawn_blacklisted = TRUE
 	slowdown = MEDIUM_SLOWDOWN
 
-/obj/item/clothing/suit/space/void/excelsior_ruined
+/obj/item/clothing/suit/space/void/excelsior_moth
 	name = "Excelsior armor"
 	desc = "An ancient space suit design, remade with advanced materials. This one is damaged from years of wear."
 	icon_state = "soviet_skaf"
@@ -120,7 +120,7 @@
 	spawn_blacklisted = TRUE
 	slowdown = MEDIUM_SLOWDOWN
 
-/obj/item/clothing/head/space/void/excelsior_ruined
+/obj/item/clothing/head/space/void/excelsior_moth
 	name = "Excelsior helmet"
 	desc = "A deceptively well armored space helmet. This one is damaged from years of neglect, its hud has been torn out."
 	icon_state = "cosmo"
