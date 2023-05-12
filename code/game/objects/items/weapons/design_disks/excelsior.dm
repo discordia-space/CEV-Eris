@@ -196,3 +196,15 @@
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_pellet
 	)
+/obj/item/computer_hardware/hard_drive/portable/design/excelsior/freehealthcare
+	disk_name = "Excelsior Means of Recuperation"
+	desc = {"The back has a machine etching:\n \
+	\"The preservation of the body is essential to preservation of the Revolution .\""}
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_EXCELSIOR
+	rarity_value = 50
+	license = -1
+	designs = list(
+		/datum/design/bioprinter/medical/bruise,
+		/datum/design/bioprinter/medical/ointment
+		/datum/design/bioprinter/medical/splints
+	)
