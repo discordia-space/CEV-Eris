@@ -37109,7 +37109,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall35"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "bKg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -37481,12 +37481,9 @@
 /turf/simulated/open,
 /area/eris/maintenance/section4deck4central)
 "bKP" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Pulsar Satellite Access";
-	req_access = list(11)
-	},
-/turf/simulated/floor/reinforced,
-/area/outpost/pulsar)
+/obj/structure/reagent_dispensers/fueltank,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/eris/engineering/engine_room)
 "bKQ" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Pulsar Satellite Access";
@@ -38032,7 +38029,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall32"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "bMe" = (
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall13"
@@ -39911,7 +39908,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall11"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "bQl" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -48479,7 +48476,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall2"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "clO" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -48627,7 +48624,7 @@
 /area/eris/medical/medbay)
 "cmd" = (
 /turf/simulated/shuttle/wall/pulsar,
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "cme" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -55111,16 +55108,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "cCN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/blast/shutters{
-	dir = 2;
-	id = "maint_hatch_eng_core2";
-	layer = 3.3;
-	name = "Maintenance Hatch"
-	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "cCO" = (
 /obj/spawner/junk/low_chance,
@@ -73287,12 +73276,12 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall26"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "dvg" = (
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall25"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "dvh" = (
 /obj/machinery/atmospherics/pipe/zpipe/up{
 	dir = 1
@@ -73514,7 +73503,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall22"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "dvR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -74077,12 +74066,17 @@
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dxk" = (
-/obj/effect/map_effect/portal/master/side_b{
-	dir = 4;
-	portal_id = "pulsar"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "maint_hatch_eng_core2";
+	layer = 3.3;
+	name = "Maintenance Hatch"
 	},
-/turf/simulated/floor/reinforced,
-/area/outpost/pulsar)
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/eris/engineering/engine_room)
 "dxl" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/carpet/sblucarpet,
@@ -75675,12 +75669,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/medical/medbay)
-"dBf" = (
-/obj/effect/map_effect/portal/line/side_b{
-	dir = 4
-	},
-/turf/simulated/floor/reinforced,
-/area/outpost/pulsar)
 "dBg" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 5
@@ -79612,7 +79600,7 @@
 "dKi" = (
 /obj/structure/jtb_pillar,
 /turf/simulated/floor/reinforced,
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "dKj" = (
 /obj/structure/railing{
 	dir = 8
@@ -79973,12 +79961,12 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall20"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "dLo" = (
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall19"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "dLq" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/steel/gray_platform,
@@ -80155,7 +80143,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall16"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "dLX" = (
 /obj/machinery/conveyor/north{
 	id = "minetocargo"
@@ -80720,12 +80708,12 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall8"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "dNB" = (
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall4"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "dND" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -81731,10 +81719,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/sorter)
-"dQE" = (
-/obj/machinery/light,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/eris/engineering/engine_room)
 "dQF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -81754,7 +81738,6 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "dQH" = (
-/obj/structure/reagent_dispensers/fueltank,
 /obj/structure/sign/faction/technomancers{
 	pixel_y = -32
 	},
@@ -105367,8 +105350,11 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/fitness)
 "uiz" = (
+/obj/effect/map_effect/simple_portal{
+	portal_tag = "pulsar"
+	},
 /turf/simulated/floor/reinforced,
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "uiU" = (
 /obj/structure/table/standard,
 /obj/spawner/toolbox,
@@ -105697,7 +105683,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall3"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "vfD" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger,
@@ -105725,7 +105711,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall7"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "vhN" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -105962,7 +105948,7 @@
 /turf/simulated/shuttle/wall/pulsar{
 	icon_state = "pulsarwall21"
 	},
-/area/outpost/pulsar)
+/area/eris/engineering/engine_room)
 "vLR" = (
 /obj/machinery/holomap{
 	dir = 4;
@@ -239964,11 +239950,11 @@ duc
 eEt
 bNn
 dvf
-dxk
-dBf
-dBf
-dBf
-dBf
+dKH
+dKH
+dKH
+dKH
+dKH
 dNA
 bNn
 eEt
@@ -240166,11 +240152,11 @@ duc
 eEt
 bNn
 dvg
-uiz
-uiz
-uiz
-uiz
-uiz
+dKH
+dKH
+dKH
+dKH
+dKH
 vhD
 bNn
 eEt
@@ -240368,11 +240354,11 @@ bIM
 eEt
 bNn
 dvP
+dKH
+dKH
 uiz
-uiz
-uiz
-uiz
-uiz
+dKH
+dKH
 dNB
 bNn
 eEt
@@ -240570,11 +240556,11 @@ dtT
 eEt
 bNn
 vJq
-uiz
-uiz
-uiz
-uiz
-uiz
+dKH
+dKH
+dKH
+dKH
+dKH
 vdU
 bNn
 eEt
@@ -240773,14 +240759,14 @@ eEt
 bNn
 dLn
 dKi
-uiz
-uiz
-uiz
+dKH
+dKH
+dKH
 dKi
 clN
 bNn
 eEt
-bIP
+bKP
 bIP
 abF
 aad
@@ -240976,14 +240962,14 @@ bNn
 dLo
 dLW
 bKf
-bKP
+bKQ
 bMd
 bQk
 cmd
 bNn
 eEt
+eEt
 bIP
-abF
 abF
 aaa
 dEy
@@ -241171,8 +241157,8 @@ abF
 abF
 abF
 acR
-bIP
-bIP
+bNn
+eEt
 eEt
 bNn
 cwj
@@ -241183,9 +241169,9 @@ bNn
 cwj
 cwj
 bNn
-dQE
+eEt
+cCN
 bIP
-abF
 abF
 aaa
 dFF
@@ -241373,8 +241359,8 @@ cPb
 cPb
 abF
 aaa
-aaa
-bNn
+ddt
+eEt
 dul
 bIP
 bNn
@@ -241386,8 +241372,8 @@ bNn
 bNn
 bIP
 dQF
-cCN
-dRf
+tdm
+dxk
 dRf
 dRC
 dEy
@@ -241575,8 +241561,8 @@ aCM
 aCM
 aCM
 aaa
-aaa
-bNn
+aae
+bIP
 eEt
 eEt
 bJi
