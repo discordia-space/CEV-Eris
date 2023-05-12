@@ -1,10 +1,18 @@
 /obj/item/clothing/under/excelsior
 	name = "random excelsior jumpsuit"
-	desc = "Excelsior jumpsuit designed to boost morale and spread the revolution"
+	desc = "Reject decadent capitalist 'fashion', embrace the liberation of true revolutionary style"
 	icon_state = "excelsior_white"
 	item_state = "bl_suit"
 	has_sensor = 0
 	spawn_blacklisted = TRUE
+	armor = list(
+		melee = 3,
+		bullet = 4,
+		energy = 3,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)
 
 /obj/item/clothing/under/excelsior/Initialize(mapload, ...)
 	. = ..()

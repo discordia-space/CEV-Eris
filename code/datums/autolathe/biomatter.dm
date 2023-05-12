@@ -372,7 +372,7 @@
 
 //[MED]
 /datum/design/bioprinter/medical
-	materials = list(MATERIAL_BIOMATTER = 10)
+	materials = list(MATERIAL_BIOMATTER = 5)
 
 /datum/design/bioprinter/medical/bruise
 	name = "Roll of gauze"
@@ -388,7 +388,7 @@
 
 
 /datum/design/bioprinter/medical/advanced
-	materials = list(MATERIAL_BIOMATTER = 20)
+	materials = list(MATERIAL_BIOMATTER = 10)
 
 /datum/design/bioprinter/medical/advanced/bruise
 	name = "Advanced trauma kit"
