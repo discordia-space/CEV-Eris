@@ -55,8 +55,8 @@ var/global/excelsior_last_draft = 0
 		/obj/item/stock_parts/matter_bin/excelsior = 350,
 		/obj/item/clothing/under/excelsior = 50,
 		/obj/item/computer_hardware/hard_drive/portable/design/excelsior/freehealthcare = 100,
-		/obj/item/gun/projectile/boltgun = 150,
-		/obj/item/ammo_magazine/sllrifle,
+		/obj/item/gun/projectile/boltgun = 125,
+		/obj/item/ammo_magazine/sllrifle = 25,
 
 		/obj/item/electronics/circuitboard/excelsior_teleporter = 500,
 		/obj/item/electronics/circuitboard/excelsiorautolathe = 150,
