@@ -58,8 +58,6 @@ var/global/excelsior_last_draft = 0
 		/obj/item/gun/projectile/boltgun = 150,
 		/obj/item/ammo_magazine/sllrifle,
 
-
-
 		/obj/item/electronics/circuitboard/excelsior_teleporter = 500,
 		/obj/item/electronics/circuitboard/excelsiorautolathe = 150,
 		/obj/item/electronics/circuitboard/excelsiorreconstructor = 150,
