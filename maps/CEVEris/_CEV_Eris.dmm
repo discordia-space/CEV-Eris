@@ -51237,13 +51237,21 @@
 	},
 /obj/item/paper_bin,
 /obj/machinery/button/remote/blast_door{
-	id = "maint_hatch_conference_2";
-	name = "Maintenance Hatch Control";
+	id = "artist_office_east";
+	name = "Starboard Hatch Control";
 	pixel_x = -24;
+	pixel_y = -6;
 	req_access = null
 	},
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -28
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "artist_office_west";
+	name = "Port Hatch Control";
+	pixel_x = -24;
+	pixel_y = 6;
+	req_access = null
 	},
 /turf/simulated/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/artistoffice)
@@ -51877,6 +51885,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/structure/flora/pottedplant/random,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/crew_quarters/artistoffice)
 "cuK" = (
@@ -103189,6 +103198,22 @@
 /obj/machinery/smartfridge/kitchen,
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/kitchen)
+"kAg" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/regular/open{
+	id = "ClubTotalLockdown";
+	layer = 2.6;
+	name = "Club Total Lockdown"
+	},
+/obj/machinery/door/blast/shutters{
+	dir = 8;
+	id = "artist_office_east";
+	layer = 3.3;
+	name = "Maintenance Hatch"
+	},
+/turf/simulated/floor/plating,
+/area/eris/crew_quarters/artistoffice)
 "kAt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -104293,9 +104318,24 @@
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/clownoffice)
 "npf" = (
-/obj/structure/flora/pottedplant/random,
 /obj/machinery/camera/network/third_section{
 	dir = 1
+	},
+/obj/structure/table/standard,
+/obj/item/stack/material/wood{
+	amount = 20
+	},
+/obj/item/stack/material/plastic{
+	amount = 20
+	},
+/obj/item/stack/material/glass{
+	amount = 20
+	},
+/obj/item/stack/material/plasteel{
+	amount = 20
+	},
+/obj/item/stack/material/steel{
+	amount = 20
 	},
 /turf/simulated/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/artistoffice)
@@ -105258,7 +105298,7 @@
 	},
 /obj/machinery/door/blast/shutters{
 	dir = 8;
-	id = "maint_hatch_conference_2";
+	id = "artist_office_west";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
@@ -168158,8 +168198,8 @@ cxA
 erj
 erj
 erj
-pSP
-pSP
+kAg
+kAg
 erj
 tCA
 dFo
