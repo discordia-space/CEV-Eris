@@ -126,7 +126,7 @@
 /obj/machinery/pulsar/proc/check_pulsar_lights(power)
 	if(get_light_lvl(power) != last_light_lvl)
 		last_light_lvl = get_light_lvl(power)
-		SEND_SIGNAL(src, COMSIG_PULSAR_LIGHTS, last_light_lvl)
+		// SEND_SIGNAL(src, COMSIG_PULSAR_LIGHTS, last_light_lvl)
 
 /obj/machinery/pulsar/proc/get_light_lvl(power)
 	return round(power / 20)
