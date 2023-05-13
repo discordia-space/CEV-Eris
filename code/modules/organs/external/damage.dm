@@ -98,22 +98,11 @@
 							droplimb(FALSE, DROPLIMB_BLUNT)
 						else if((amount + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_TEAROFF)
 							droplimb(FALSE, DROPLIMB_EDGE)
-						//else if(BP_IS_ROBOTIC(src) && edge_eligible && (amount + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_EDGE)
-							//droplimb(TRUE, DROPLIMB_EDGE)
-						//else if(BP_IS_ROBOTIC(src) && (amount + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_DESTROY)
-							//droplimb(FALSE, DROPLIMB_BLUNT)
-						//else if(BP_IS_ROBOTIC(src) && (amount + prev_brute) >= max_damage * DROPLIMB_THRESHOLD_TEAROFF)
-							//droplimb(FALSE, DROPLIMB_EDGE
-//commented as conditions for humans and FBPs are now the same, but if someday someone desides to change that - exemples will still lie here
 				if(BURN)
 					if(edge_eligible && (amount + prev_burn) >= max_damage * DROPLIMB_THRESHOLD_EDGE)
 						droplimb(TRUE, DROPLIMB_EDGE_BURN)
 					else if((amount + prev_burn) >= max_damage * DROPLIMB_THRESHOLD_DESTROY)
 						droplimb(TRUE, DROPLIMB_BURN)
-					//else if(BP_IS_ROBOTIC(src) && edge_eligible && (amount + prev_burn) >= max_damage * DROPLIMB_THRESHOLD_EDGE)
-						//droplimb(TRUE, DROPLIMB_EDGE_BURN)
-					//else if(BP_IS_ROBOTIC(src) && (amount + prev_burn) >= max_damage * DROPLIMB_THRESHOLD_DESTROY)
-						//droplimb(TRUE, DROPLIMB_BURN)
 
 	return update_damstate()
 
