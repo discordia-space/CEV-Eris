@@ -953,5 +953,4 @@ var/list/centcom_areas = list (
 	forced_ambience = list('sound/ambience/maintambience.ogg')
 	base_turf = /turf/simulated/floor/tiled
 	has_gravity = 1
-	requires_power = 0
 	area_light_color = COLOR_LIGHTING_MAINT_DARK
