@@ -1,5 +1,0 @@
-author: Kurgis
-delete-after: true
-changes:
-  - bugfix: Gibbers no longer stall and become stuck processing forever when a skeleton
-      is inserted.

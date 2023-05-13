@@ -1,8 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - bugfix: modular guns now accept mods
-  - bugfix: modular gun wield sprites fixed
-  - bugfix: modular gun suit sprites fixed
-  - bugfix: wrenches destroying modular guns fixed
-  - bugfix: modular guns now spawn with the right type of ammo

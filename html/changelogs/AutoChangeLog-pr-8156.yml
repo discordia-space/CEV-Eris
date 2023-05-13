@@ -1,6 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - rscadd: Give artists some starting money and starting materials
-  - rscadd: Artist office now has two buttons to control independently the west/east
-      hatches
