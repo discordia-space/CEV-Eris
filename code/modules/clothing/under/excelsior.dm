@@ -6,9 +6,9 @@
 	has_sensor = 0
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 3,
-		bullet = 4,
-		energy = 3,
+		melee = 2,
+		bullet = 2,
+		energy = 2,
 		bomb = 5,
 		bio = 0,
 		rad = 0
