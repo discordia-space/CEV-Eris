@@ -116,7 +116,7 @@
 		MATERIAL_STEEL = 10,
 		MATERIAL_PLASTEEL = 5
 	)
-	helmet = /obj/item/clothing/head/space/void/excelsior_ruined
+	helmet = /obj/item/clothing/head/space/void/excelsior_mothball
 	spawn_blacklisted = TRUE
 	slowdown = MEDIUM_SLOWDOWN
 
@@ -126,7 +126,7 @@
 	icon_state = "cosmo"
 	item_state = "cosmo"
 
-	//same armor but lower stats for stash
+	//same design but lower stats for stash
 	matter = list(
 		MATERIAL_PLASTIC = 20,
 		MATERIAL_GLASS = 10,
