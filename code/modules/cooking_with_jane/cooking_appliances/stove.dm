@@ -23,7 +23,7 @@
 
 	var/on_fire = FALSE //if the stove has caught fire or not.
 
-	circuit = /obj/item/circuitboard/cooking_with_jane/stove
+	circuit = /obj/item/electronics/circuitboard/cooking_with_jane/stove
 	scan_types = list("scan_1")
 
 //Did not want to use this...
