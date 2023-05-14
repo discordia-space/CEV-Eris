@@ -355,7 +355,7 @@
 	var/nerve_eff = max(owner.get_specific_organ_efficiency(OP_NERVE, organ_tag),1)
 	muscle_eff = (muscle_eff/100) - (muscle_eff/nerve_eff) //Need more nerves to control those new muscles
 	if(muscle_eff)
-		. += 0.6 * muscle_eff / (muscle_eff + 0.4) // Diminishing returns with a hard cap of 0.6 and soft cap of 0.5
+		. -= 0.6 * muscle_eff / (muscle_eff + 0.4) // Diminishing returns with a hard cap of 0.6 and soft cap of 0.5
 	. += tally
 
 /obj/item/organ/external/proc/is_nerve_struck()
