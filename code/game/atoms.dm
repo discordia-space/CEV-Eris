@@ -13,7 +13,6 @@
 	var/last_bumped = 0
 	var/pass_flags = 0
 	var/throwpass = 0
-	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 	var/simulated = TRUE //filter for actions - used by lighting overlays
 	var/fluorescent // Shows up under a UV light.
 	var/allow_spin = TRUE // prevents thrown atoms from spinning when disabled on thrown or target
@@ -145,6 +144,7 @@
  * Cleans up the following:
  * * Removes alternate apperances from huds that see them
  * * qdels the reagent holder from atoms if it exists
+ * * Clears itself from any targeting-related vars that hold a reference to it
  * * clears the orbiters list
  * * clears overlays and priority overlays
  * * clears the light object
@@ -153,8 +153,10 @@
 	if(reagents)
 		QDEL_NULL(reagents)
 
-	spawn()
-		update_openspace()
+	SEND_SIGNAL(src, COMSIG_NULL_TARGET)
+	SEND_SIGNAL(src, COMSIG_NULL_SECONDARY_TARGET)
+
+	update_openspace()
 	return ..()
 
 ///Generate a tag for this atom
@@ -389,7 +391,7 @@ its easier to just keep the beam vertical.
 		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
 		P.virtual_scanner.afterattack(src, user, get_dist(src, user) <= 1)
 
-	SEND_SIGNAL(src, COMSIG_EXAMINE, user, distance)
+	SEND_SIGNAL_OLD(src, COMSIG_EXAMINE, user, distance)
 
 	return distance == -1 || (get_dist(src, user) <= distance) || isobserver(user)
 
@@ -607,7 +609,6 @@ its easier to just keep the beam vertical.
 	if(!simulated)
 		return
 	fluorescent = 0
-	src.germ_level = 0
 	if(istype(blood_DNA, /list))
 		blood_DNA = null
 		return TRUE

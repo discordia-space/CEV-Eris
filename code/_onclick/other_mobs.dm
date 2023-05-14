@@ -26,7 +26,7 @@
 	. = FALSE
 	// if(!(interaction_flags_atom & INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND))
 	// 	add_fingerprint(user)
-	// if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user, modifiers) & COMPONENT_CANCEL_ATTACK_CHAIN)
+	// if(SEND_SIGNAL_OLD(src, COMSIG_ATOM_ATTACK_HAND, user, modifiers) & COMPONENT_CANCEL_ATTACK_CHAIN)
 	// 	. = TRUE
 	// if(interaction_flags_atom & INTERACT_ATOM_ATTACK_HAND)
 	. = _try_interact(user)
@@ -84,7 +84,7 @@
 	// else
 	// 	add_fingerprint(user)
 	// if(interaction_flags_atom & INTERACT_ATOM_UI_INTERACT)
-	// 	SEND_SIGNAL(src, COMSIG_ATOM_UI_INTERACT, user)
+	// 	SEND_SIGNAL_OLD(src, COMSIG_ATOM_UI_INTERACT, user)
 	// 	return ui_interact(user)
 	// return FALSE
 

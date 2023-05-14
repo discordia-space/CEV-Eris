@@ -226,7 +226,6 @@
 	)
 	siemens_coefficient = 0.7
 	light_overlay = "helmet_light_ihs"
-	obscuration = MEDIUM_OBSCURATION
 
 /obj/item/clothing/suit/space/void/security
 	name = "ironhammer voidsuit"
@@ -314,8 +313,6 @@
 	)
 	siemens_coefficient = 0.4
 	light_overlay = "helmet_light_dual"
-	obscuration = 0
-
 /obj/item/clothing/head/space/void/science
 	var/list/icon_states = list(
 		"Blue" = "moebiushelmb",
@@ -369,7 +366,6 @@
 	siemens_coefficient = 0.4
 	helmet = /obj/item/clothing/head/space/void/science
 	spawn_blacklisted = TRUE
-	stiffness = MEDIUM_STIFFNESS
 
 /obj/item/clothing/suit/space/void/science/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
@@ -426,6 +422,37 @@
 	siemens_coefficient = 0.8
 	helmet = /obj/item/clothing/head/space/void/riggedvoidsuit
 	spawn_blacklisted = TRUE
+	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS|STOPPRESSUREDAMAGE|THICKMATERIAL|COVER_PREVENT_MANIPULATION
+	var/obj/item/storage/internal/pockets
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit/New()
+	..()
+	pockets = new/obj/item/storage/internal(src)
+	pockets.storage_slots = 3	//three slots
+	pockets.max_w_class = ITEM_SIZE_SMALL		//fit only pocket sized items
+	pockets.max_storage_space = 4
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit/Destroy()
+	QDEL_NULL(pockets)
+	. = ..()
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit/attack_hand(mob/user)
+	if ((is_worn() || is_held()) && !pockets.handle_attack_hand(user))
+		return TRUE
+	..(user)
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit/MouseDrop(obj/over_object)
+	if(pockets.handle_mousedrop(usr, over_object))
+		return TRUE
+	..(over_object)
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit/attackby(obj/item/W, mob/user)
+	..()
+	pockets.attackby(W, user)
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit/emp_act(severity)
+	pockets.emp_act(severity)
+	..()
 
 //NT
 

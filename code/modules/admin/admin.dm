@@ -52,7 +52,8 @@ var/global/floorIsLava = 0
 				sound_to(C, 'sound/effects/adminhelp.ogg')
 
 proc/admin_notice(message, rights)
-	for(var/mob/M in SSmobs.mob_list)
+	var/list/mob_list = SSmobs.mob_list | SShumans.mob_list
+	for(var/mob/M in mob_list)
 		if(check_rights(rights, 0, M))
 			to_chat(M, message)
 
@@ -91,7 +92,7 @@ proc/admin_notice(message, rights)
 
 ADMIN_VERB_ADD(/datum/admins/proc/show_player_panel, null, TRUE)
 //shows an interface for individual players, with various links (links require additional flags
-/datum/admins/proc/show_player_panel(mob/M in SSmobs.mob_list)
+/datum/admins/proc/show_player_panel(mob/M in SSmobs.mob_list | SShumans.mob_list)
 	set category = null
 	set name = "Show Player Panel"
 	set desc = "Edit player (respawn, ban, heal, etc)"
@@ -922,7 +923,7 @@ ADMIN_VERB_ADD(/datum/admins/proc/spawn_atom, R_DEBUG, FALSE)
 	log_and_message_admins("spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
 
 //interface which shows a mob's mind
-/datum/admins/proc/show_contractor_panel(var/mob/M in SSmobs.mob_list)
+/datum/admins/proc/show_contractor_panel(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 	set category = "Admin"
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Contractor Panel"
@@ -1094,7 +1095,7 @@ ADMIN_VERB_ADD(/datum/admins/proc/select_tts_seed, R_FUN, FALSE)
 
 /datum/admins/proc/output_ai_laws()
 	var/ai_number = 0
-	for(var/mob/living/silicon/S in SSmobs.mob_list)
+	for(var/mob/living/silicon/S in SSmobs.mob_list | SShumans.mob_list)
 		ai_number++
 		if(isAI(S))
 			to_chat(usr, "<b>AI [key_name(S, usr)]'s laws:</b>")
@@ -1279,3 +1280,18 @@ ADMIN_VERB_ADD(/datum/admins/proc/paralyze_mob, R_ADMIN, FALSE)
 			return 0
 		return 1
 	return 0
+
+ADMIN_VERB_ADD(/datum/admins/proc/z_level_shooting, R_SERVER, FALSE)
+/datum/admins/proc/z_level_shooting()
+	set category = "Server"
+	set name = "Toggle shooting between z-levels"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	config.z_level_shooting = !(config.z_level_shooting)
+	if (config.z_level_shooting)
+		to_chat(world, "<B>Shooting between z-levels has been globally enabled! Use the lookup verb to shoot up, click on empty spaces to shoot down!</B>")
+	else
+		to_chat(world, "<B>Shooting between z-levels has been globally disabled!</B>")
+	log_and_message_admins("toggled z_level_shooting.")

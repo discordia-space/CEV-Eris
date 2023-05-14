@@ -1,0 +1,18 @@
+<!-- 
+Used In File(s): code/modules/pulsar_engine/pulsar_consoles.dm
+-->
+<h2>Pulsar power bridge</h2>
+{{if data.pulsar_connected}}
+<div class="item">
+	<div class="itemLabel">
+		Power Produced:
+	</div>
+	<div class="itemContent">
+		{{:helper.displayBar(data.power_percentage, 0, 100, 'good', data.power_produced + ' Megawatts')}}
+        {{:helper.link('disconnect sattelite', 'radiation', { 'disconnect' : 1 },  null, null)}}
+	</div>
+</div>
+{{else}}
+    <h2>NO POWER</h2>
+    {{:helper.link('reconnect sattelite', 'radiation', { 'reconnect' : 1 },  null, null)}}
+{{/if}}

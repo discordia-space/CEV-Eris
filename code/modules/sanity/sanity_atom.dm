@@ -9,11 +9,12 @@
 	affect = value
 	desc = new_desc
 
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/onMoved)
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(onMoved))
 
 	onMoved(null, A.loc)
 
 /datum/component/atom_sanity/proc/onMoved(oldloc, newloc)
+	SIGNAL_HANDLER
 	if(isturf(oldloc))
 		var/area/current_area = get_area(oldloc) //Actually new area is curret
 		if(isturf(newloc) && current_area == get_area(newloc))

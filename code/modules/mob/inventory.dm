@@ -79,6 +79,10 @@
 	var/obj/item/I = get_active_hand()
 	unEquip(I, Target, MOVED_DROP)
 
+/mob/proc/drop_offhand(var/atom/Target)
+	var/obj/item/I = get_inactive_hand()
+	unEquip(I, Target, MOVED_DROP)
+
 /*
 	Removes the object from any slots the mob might have, calling the appropriate icon update proc.
 	Does nothing else.
@@ -126,24 +130,26 @@
 /mob/proc/unEquip(obj/item/I, var/atom/Target = null, force = 0) //Force overrides NODROP for things like wizarditis and admin undress.
 	if(!canUnEquip(I))
 		return
-	SEND_SIGNAL(src, COMSIG_CLOTH_DROPPED, I)
+	SEND_SIGNAL_OLD(src, COMSIG_CLOTH_DROPPED, I)
 	if(I)
-		SEND_SIGNAL(I, COMSIG_CLOTH_DROPPED, src)
+		SEND_SIGNAL_OLD(I, COMSIG_CLOTH_DROPPED, src)
 	return drop_from_inventory(I,Target)
 
 //Attemps to remove an object on a mob.
-/mob/proc/remove_from_mob(var/obj/O)
+/mob/proc/remove_from_mob(obj/O, drop = TRUE)
 	u_equip(O)
 	if (client)
 		client.screen -= O
 	O.layer = initial(O.layer)
 	O.set_plane(initial(O.plane))
 	O.screen_loc = null
-	if(istype(O, /obj/item))
+	if(isitem(O))
 		var/obj/item/I = O
-		I.forceMove(get_turf(src), MOVED_DROP)
+		if(drop && !QDELING(O))
+			I.forceMove(get_turf(src), MOVED_DROP)
 		I.dropped(src)
 	return TRUE
+
 
 //This function is an unsafe proc used to prepare an item for being moved to a slot, or from a mob to a container
 //It should be equipped to a new slot or forcemoved somewhere immediately after this is called

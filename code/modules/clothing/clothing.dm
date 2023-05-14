@@ -28,8 +28,7 @@
 	var/brightness_on
 	var/on = FALSE
 
-	stiffness = 0 // Recoil caused by moving, defined in obj/item
-	obscuration = 0 // Similar to tint, but decreases firearm accuracy instead via giving minimum extra offset, defined in obj/item
+
 
 	price_tag = 30
 
@@ -295,7 +294,8 @@
 	desc = "Protects your hearing from loud noises, and quiet ones as well."
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
-	slot_flags = SLOT_EARS | SLOT_TWOEARS
+	slot_flags = SLOT_EARS
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1)
 
 
 ///////////////////////////////////////////////////////////////////////

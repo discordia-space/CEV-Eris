@@ -21,7 +21,7 @@
 	price_tag = 250 //cheap as they get
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
-	gun_parts = list(/obj/item/part/gun/frame/ponyets = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/shotgun/steel = 1, /obj/item/part/gun/barrel/shotgun/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/ponyets = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/shotgun/steel = 1, /obj/item/part/gun/modular/barrel/shotgun/steel = 1)
 
 /obj/item/part/gun/frame/ponyets
 	name = "Ponyets frame"
@@ -29,9 +29,9 @@
 	icon_state = "frame_ponyets"
 	matter = list(MATERIAL_STEEL = 5)
 	resultvars = list(/obj/item/gun/projectile/shotgun/slidebarrel)
-	gripvars = list(/obj/item/part/gun/grip/wood)
-	mechanismvar = /obj/item/part/gun/mechanism/shotgun/steel
-	barrelvars = list(/obj/item/part/gun/barrel/shotgun/steel, /obj/item/part/gun/barrel/antim)
+	gripvars = list(/obj/item/part/gun/modular/grip/wood)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/shotgun/steel
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun/steel, /obj/item/part/gun/modular/barrel/antim)
 
 /obj/item/gun/projectile/shotgun/slidebarrel/load_ammo(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ammo_casing))

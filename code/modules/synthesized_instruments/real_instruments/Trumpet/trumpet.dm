@@ -4,3 +4,4 @@
 	icon_state = "trumpet"
 	sound_player = /datum/sound_player/synthesizer
 	path = /datum/instrument/brass
+	matter = list(MATERIAL_STEEL = 6)

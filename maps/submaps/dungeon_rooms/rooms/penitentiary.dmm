@@ -49,7 +49,7 @@
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "l" = (
-/obj/machinery/computer/prisoner{
+/obj/structure/salvageable/os/computer{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
@@ -114,18 +114,14 @@
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
-"A" = (
-/obj/machinery/door/window/northright,
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/crawler)
 "B" = (
-/obj/machinery/door/window/northleft,
 /obj/effect/floor_decal/industrial/warning,
+/obj/machinery/door/window{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "C" = (
-/obj/structure/low_wall/onestar,
 /obj/effect/window_lwall_spawn/smartspawn/onestar,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
@@ -134,6 +130,10 @@
 /obj/item/handcuffs,
 /obj/item/gun/energy/retro,
 /turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"J" = (
+/obj/landmark/corpse/one_star/void,
+/turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 "N" = (
 /obj/item/remains,
@@ -169,7 +169,7 @@ d
 r
 w
 u
-A
+B
 N
 a
 "}
@@ -198,11 +198,11 @@ b
 (6,1,1) = {"
 b
 g
-N
+J
 C
 u
 t
-A
+B
 g
 b
 "}

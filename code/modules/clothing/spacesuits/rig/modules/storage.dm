@@ -2,6 +2,8 @@
 /obj/item/rig_module/storage
 	name = "internal storage compartment"
 	desc = "A storage container designed to be installed in a RIG suit. Allows a few items to be stored inside"
+	interface_name = "internal storage"
+	interface_desc = "A compartment within the suit allowing a few items to be stored."
 
 	var/obj/item/storage/internal/container
 	w_class = ITEM_SIZE_BULKY

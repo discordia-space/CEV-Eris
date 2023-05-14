@@ -108,8 +108,8 @@
 	return spiral_shoot()
 
 /mob/living/simple_animal/hostile/megafauna/proc/double_spiral()
-	INVOKE_ASYNC(src, .proc/spiral_shoot, FALSE)
-	INVOKE_ASYNC(src, .proc/spiral_shoot, TRUE)
+	INVOKE_ASYNC(src, PROC_REF(spiral_shoot), FALSE)
+	INVOKE_ASYNC(src, PROC_REF(spiral_shoot), TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/proc/telegraph()
 	for(var/mob/M in range(10,src))

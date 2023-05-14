@@ -182,14 +182,12 @@
 		H.lastKnownIP = s2h_ip
 
 	if(H.stat) // > Take over a body that is always dead , die , !?!??!
-		var/all_damage = H.getBruteLoss() + H.getFireLoss() + H.getCloneLoss() + H.getOxyLoss() + H.getToxLoss()
+		var/all_damage = H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss()
 		while(all_damage > 90)
 			H.adjustBruteLoss(-10)
 			H.adjustFireLoss(-10)
-			H.adjustCloneLoss(-10)
 			H.adjustOxyLoss(-10)
-			H.adjustToxLoss(-10)
-			all_damage = H.getBruteLoss() + H.getFireLoss() + H.getCloneLoss() + H.getOxyLoss() + H.getToxLoss()
+			all_damage = H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss()
 		H.stat = UNCONSCIOUS
 		H.updatehealth()
 
@@ -375,14 +373,12 @@
 	visible_message(SPAN_WARNING("With a hideous, rattling moan, [src] shudders back to life!"))
 
 
-	var/all_damage = host.getBruteLoss() + host.getFireLoss() + host.getCloneLoss() + host.getOxyLoss() + host.getToxLoss()
+	var/all_damage = host.getBruteLoss() + host.getFireLoss() + host.getOxyLoss()
 	while(all_damage > 90)
 		host.adjustBruteLoss(-10)
 		host.adjustFireLoss(-10)
-		host.adjustCloneLoss(-10)
 		host.adjustOxyLoss(-10)
-		host.adjustToxLoss(-10)
-		all_damage = host.getBruteLoss() + host.getFireLoss() + host.getCloneLoss() + host.getOxyLoss() + host.getToxLoss()
+		all_damage = host.getBruteLoss() + host.getFireLoss() + host.getOxyLoss()
 
 	host.stat = UNCONSCIOUS
 	host.updatehealth()

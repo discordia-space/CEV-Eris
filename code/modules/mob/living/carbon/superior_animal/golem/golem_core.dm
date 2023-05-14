@@ -18,7 +18,7 @@
 /obj/item/golem_core/New(loc)
 	..(loc)
 	// Golem cores have a limited lifetime
-	addtimer(CALLBACK(src, .proc/crumble,), GOLEM_CORE_LIFETIME)
+	addtimer(CALLBACK(src, PROC_REF(crumble)), GOLEM_CORE_LIFETIME)
 
 /obj/item/golem_core/attack(mob/living/M, mob/living/user)
 	if(..())

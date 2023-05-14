@@ -69,14 +69,22 @@
 				data["stat"] = "Unconscious"
 			if(DEAD)
 				data["stat"] = "<font color='red'>Dead</font>"
-		data["health"] = occupant.health
+		data["crit_health"] = round((occupant.health / occupant.maxHealth) * 100)
 		if(ishuman(occupant))
 			var/mob/living/carbon/human/H = occupant
 			data["pulse"] = H.get_pulse(GETPULSE_TOOL)
+			var/organ_health
+			var/organ_damage
+			for(var/obj/item/organ/external/E in H.organs)
+				organ_health += E.total_internal_health
+				organ_damage += E.severity_internal_wounds
+			data["internal_health"] = round((1 - (organ_health ? organ_damage / organ_health : 0)) * 100)
 		data["brute"] = occupant.getBruteLoss()
 		data["burn"] = occupant.getFireLoss()
 		data["oxy"] = occupant.getOxyLoss()
-		data["tox"] = occupant.getToxLoss()
+
+		var/tox_content = occupant.chem_effects[CE_TOXIN] + occupant.chem_effects[CE_ALCOHOL_TOXIC]
+		data["tox"] = tox_content ? tox_content : "0"
 	else
 		data["occupant"] = 0
 	if(beaker)

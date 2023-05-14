@@ -104,8 +104,8 @@
 				triggered = TRUE
 
 	if(triggered)
-		SEND_SIGNAL(holder, COMSIG_ABERRANT_COOLDOWN, TRUE)
-		SEND_SIGNAL(holder, COMSIG_ABERRANT_SECONDARY, holder, owner)
+		SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_COOLDOWN, TRUE)
+		SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_SECONDARY, holder, owner)
 
 
 /datum/component/modification/organ/output/chemical_effects	// More organ-like than producing reagents
@@ -189,8 +189,8 @@
 				triggered = TRUE
 
 	if(triggered)
-		SEND_SIGNAL(holder, COMSIG_ABERRANT_COOLDOWN, TRUE)
-		SEND_SIGNAL(holder, COMSIG_ABERRANT_SECONDARY, holder, owner)
+		SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_COOLDOWN, TRUE)
+		SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_SECONDARY, holder, owner)
 
 
 /datum/component/modification/organ/output/stat_boost
@@ -250,8 +250,8 @@
 				triggered = TRUE
 
 	if(triggered)
-		SEND_SIGNAL(holder, COMSIG_ABERRANT_COOLDOWN, TRUE)
-		SEND_SIGNAL(holder, COMSIG_ABERRANT_SECONDARY, holder, owner)
+		SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_COOLDOWN, TRUE)
+		SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_SECONDARY, holder, owner)
 
 
 /datum/component/modification/organ/output/damaging_insight_gain
@@ -284,8 +284,8 @@
 				triggered = TRUE
 
 	if(triggered)
-		SEND_SIGNAL(holder, COMSIG_ABERRANT_COOLDOWN, TRUE)
-		SEND_SIGNAL(holder, COMSIG_ABERRANT_SECONDARY, holder, owner)
+		SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_COOLDOWN, TRUE)
+		SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_SECONDARY, holder, owner)
 
 /datum/component/modification/organ/output/activate_organ_functions
 	var/list/active_organ_efficiency_mod = list()
@@ -358,8 +358,8 @@
 						H.internal_organs_by_efficiency[process] |= holder
 
 				holder.refresh_upgrades()
-				SEND_SIGNAL(holder, COMSIG_ABERRANT_COOLDOWN, TRUE)
-				SEND_SIGNAL(holder, COMSIG_ABERRANT_SECONDARY, holder, owner)
+				SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_COOLDOWN, TRUE)
+				SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_SECONDARY, holder, owner)
 				return TRUE
 
 	organ_efficiency_mod = old_organ_efficiency_mod

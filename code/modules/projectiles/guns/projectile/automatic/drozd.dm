@@ -26,7 +26,7 @@
 		FULL_AUTO_300,
 		SEMI_AUTO_300
 		)
-	gun_parts = list(/obj/item/part/gun/frame/drozd = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/magnum = 1)
+	gun_parts = list(/obj/item/part/gun/frame/drozd = 1, /obj/item/part/gun/modular/grip/excel = 1, /obj/item/part/gun/modular/mechanism/smg = 1, /obj/item/part/gun/modular/barrel/magnum = 1)
 
 	serial_type = "Excelsior"
 
@@ -48,6 +48,6 @@
 	desc = "A Drozd SMG frame. Workhorse of the Excelsior force."
 	icon_state = "frame_excelsmg"
 	resultvars = list(/obj/item/gun/projectile/automatic/drozd)
-	gripvars = list(/obj/item/part/gun/grip/excel)
-	mechanismvar = /obj/item/part/gun/mechanism/smg
-	barrelvars = list(/obj/item/part/gun/barrel/magnum)
+	gripvars = list(/obj/item/part/gun/modular/grip/excel)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/smg
+	barrelvars = list(/obj/item/part/gun/modular/barrel/magnum)

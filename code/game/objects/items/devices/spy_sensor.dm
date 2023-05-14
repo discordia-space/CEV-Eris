@@ -64,7 +64,7 @@
 /obj/item/device/spy_sensor/proc/start()
 	var/list/local_sensors = get_local_sensors()
 	if(local_sensors.len >= 3)
-		timer = addtimer(CALLBACK(src, .proc/finish), 10 MINUTES, TIMER_STOPPABLE)
+		timer = addtimer(CALLBACK(src, PROC_REF(finish)), 10 MINUTES, TIMER_STOPPABLE)
 		for(var/obj/item/device/spy_sensor/S in local_sensors)
 			S.timer = timer
 			S.group = local_sensors

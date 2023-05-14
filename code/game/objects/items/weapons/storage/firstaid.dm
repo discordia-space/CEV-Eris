@@ -69,6 +69,9 @@
 	new /obj/item/reagent_containers/pill/antitox(src)
 	new /obj/item/reagent_containers/pill/antitox(src)
 	new /obj/item/reagent_containers/pill/antitox(src)
+	new /obj/item/reagent_containers/pill/carbon(src)
+	new /obj/item/reagent_containers/pill/carbon(src)
+	new /obj/item/reagent_containers/pill/carbon(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector(src)
 	new /obj/item/device/scanner/health(src)
 
@@ -143,7 +146,9 @@
 		/obj/item/tool/surgicaldrill,
 		/obj/item/device/scanner,
 		/obj/item/storage/pill_bottle,
-		/obj/item/stack/medical)
+		/obj/item/stack/medical,
+		/obj/item/tool/tape_roll
+		)
 
 /obj/item/storage/firstaid/surgery/populate_contents()
 	new /obj/item/tool/bonesetter(src)
@@ -153,6 +158,7 @@
 	new /obj/item/tool/retractor(src)
 	new /obj/item/tool/scalpel(src)
 	new /obj/item/tool/surgicaldrill(src)
+	new /obj/item/tool/tape_roll/fiber/medical(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	make_exact_fit()
 
@@ -167,6 +173,7 @@
 	new /obj/item/tool/retractor(src)
 	new /obj/item/tool/scalpel/advanced(src)
 	new /obj/item/tool/surgicaldrill(src)
+	new /obj/item/tool/tape_roll/fiber/medical(src)
 	new /obj/item/device/scanner/health(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/storage/pill_bottle/oxycodone(src)
@@ -190,6 +197,8 @@
 	new /obj/item/stack/medical/advanced/ointment/nt(src)
 	new /obj/item/reagent_containers/syringe/large/antitoxin(src)
 	new /obj/item/reagent_containers/syringe/large/dexalin_plus(src)
+	new /obj/item/reagent_containers/pill/carbon(src)
+	new /obj/item/reagent_containers/pill/carbon(src)
 
 /obj/item/storage/firstaid/nt/update_icon()
 	if(!contents.len)
@@ -247,6 +256,11 @@
 	name = "bottle of Dylovene pills"
 	desc = "Contains pills used to treat toxic substances in the blood."
 	prespawned_content_type = /obj/item/reagent_containers/pill/dylovene
+
+/obj/item/storage/pill_bottle/carbon
+	name = "bottle of Carbon pills"
+	desc = "Contains pills used to purge stomach contents."
+	prespawned_content_type = /obj/item/reagent_containers/pill/carbon
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "bottle of Inaprovaline pills"

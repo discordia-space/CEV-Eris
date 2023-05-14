@@ -15,7 +15,6 @@
 	species_restricted = list(SPECIES_HUMAN)
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_green"
-	obscuration = MEDIUM_OBSCURATION
 
 /obj/item/clothing/suit/space/void/SCAF
 	name = "SCAF suit"
@@ -39,7 +38,6 @@
 	helmet = /obj/item/clothing/head/space/void/SCAF
 	spawn_blacklisted = TRUE
 	slowdown = MEDIUM_SLOWDOWN * 1.5
-	stiffness = MEDIUM_STIFFNESS
 
 
 //Voidsuit for contractors
@@ -60,7 +58,6 @@
 	species_restricted = list(SPECIES_HUMAN)
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_ihs"
-	obscuration = 0
 
 /obj/item/clothing/head/space/void/merc/update_icon()
 	..()
@@ -88,7 +85,6 @@
 	resilience = 0.08
 	species_restricted = list(SPECIES_HUMAN)
 	helmet = /obj/item/clothing/head/space/void/merc
-	stiffness = MEDIUM_STIFFNESS
 
 /obj/item/clothing/suit/space/void/merc/equipped
 	spawn_blacklisted = TRUE

@@ -7,7 +7,7 @@
 	var/static/list/exempt_areas = typesof(
 		/area/space, /area/skipjack_station,
 		/area/shuttle, /area/holodeck,
-		/area/supply/station)
+		/area/supply/station, /area/outpost/pulsar)
 
 	var/static/list/exempt_from_atmos = typesof(
 		/area/eris/maintenance, /area/eris/storage,

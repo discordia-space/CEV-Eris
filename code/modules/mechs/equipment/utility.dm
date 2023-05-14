@@ -273,7 +273,7 @@
 /obj/item/material/drill_head/Initialize()
 	. = ..()
 
-	//durability = 2 * (material ? material.integrity : 1)
+	//durability = 3 * (material ? material.integrity : 1)
 
 /obj/item/material/drill_head/Created(var/creator)
 	ApplyDurability()
@@ -292,7 +292,7 @@
 
 
 /obj/item/material/drill_head/verb/ApplyDurability()
-	durability = 2 * (material ? material.integrity : 1)
+	durability = 3 * (material ? material.integrity : 1)
 
 /obj/item/mech_equipment/drill
 	name = "drill"
@@ -355,10 +355,10 @@
 			var/T = target.loc
 
 			//Better materials = faster drill! //
-			var/delay = 30
+			var/delay = 20
 			switch (drill_head.material.hardness) // It's either default (steel), plasteel or diamond
-				if(80) delay = 15
-				if(100) delay = 10
+				if(80) delay = 10
+				if(100) delay = 5
 			owner.setClickCooldown(delay) //Don't spamclick!
 			if(do_after(owner, delay, target) && drill_head)
 				if(src == owner.selected_system)
@@ -383,7 +383,7 @@
 						for(var/turf/simulated/floor/asteroid/M in range(target,1))
 							if(get_dir(owner,M)&owner.dir)
 								M.gets_dug()
-								drill_head.durability -= 1
+								drill_head.durability -= 0.1
 					else if(target.loc == T)
 						target.ex_act(2)
 						drill_head.durability -= 1

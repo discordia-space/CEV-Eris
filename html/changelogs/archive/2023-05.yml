@@ -1,0 +1,40 @@
+2023-05-06:
+  Humonitarian:
+  - bugfix: fixed holobar power drain
+  MLGTASTICa:
+  - bugfix: Fixed quick-equip not supporting holsters
+  - bugfix: Fixed tripping on plating whilst having no slips.
+  - bugfix: Fixed AI Jammers not working while held(Due to checking the distance to
+      the wrong object)
+  - balance: Shrapnel removal multiplier changed from 0.1 on succes to 1 , and from
+      0.3 to 1.2 on fail
+  TheLeopold:
+  - tweak: wielding now is more fluid
+  - code_imp: Added function to drop offhand item
+  ValoTheValo:
+  - bugfix: fixed Technomancer and Moebius ambience not playing or looping
+  thevandie:
+  - rscadd: earmuffs to the style vendor
+  - rscadd: earmuffs to the asters misc pack disk for autolathe use
+  - rscadd: earmuff item sprite (the mob sprite was already added with my other pr,
+      I just couldn't find where the item sprite was stored back then. It's from asset-storage).
+  - tweak: earmuffs only require one ear to equip
+2023-05-13:
+  Humonitarian:
+  - bugfix: modular guns now accept mods
+  - bugfix: modular gun wield sprites fixed
+  - bugfix: modular gun suit sprites fixed
+  - bugfix: wrenches destroying modular guns fixed
+  - bugfix: modular guns now spawn with the right type of ammo
+  Hyperio:
+  - rscadd: Give artists some starting money and starting materials
+  - rscadd: Artist office now has two buttons to control independently the west/east
+      hatches
+  Kurgis:
+  - bugfix: Gibbers no longer stall and become stuck processing forever when a skeleton
+      is inserted.
+  Rexdyer1:
+  - tweak: overall turf dig speed
+  - balance: Mech drill effectiveness
+  TheShown911:
+  - rscadd: Pulsar engine

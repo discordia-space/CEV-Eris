@@ -132,7 +132,7 @@
 	M.setOxyLoss(0)
 	M.radiation = 0
 	M.heal_organ_damage(5,5)
-	M.adjustToxLoss(-5)
+	M.add_chemical_effect(CE_TOXIN, -50)
 	M.hallucination_power = 0
 	M.setBrainLoss(0)
 	M.disabilities = 0
@@ -204,7 +204,7 @@
 	M.SetParalysis(0)
 	M.SetWeakened(0)
 	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "adrenaline")
-	M.adjustToxLoss(rand(3))
+	M.add_chemical_effect(CE_TOXIN, 3)
 
 /datum/reagent/adrenaline/withdrawal_act(mob/living/carbon/M)
 	M.adjustOxyLoss(15)
@@ -400,6 +400,10 @@
 	var/reagent_property_coeff = 2796	// 0.7857 * 3559, the density (kg/L) and specific heat (J/(kg K)) of 50:50 propylene glycol water
 	var/latent_heat = 600			// Arbitrarily chosen amount. Just needs to be worse than refrigerant.
 
+/datum/reagent/other/coolant/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	var/cooling_coeff = round(latent_heat / 1000, 0.1)
+	M.add_chemical_effect(CE_MECH_STABLE, cooling_coeff)
+
 /*		Proc was removed because of griefing
 #define COOLANT_LATENT_HEAT 19000
 /datum/reagent/other/coolant/touch_turf(var/turf/simulated/T)
@@ -425,15 +429,12 @@
 */
 
 /datum/reagent/other/coolant/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustToxLoss(1)
-	M.add_chemical_effect(CE_TOXIN, 1)
-
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/organ_process = pick(OP_LIVER, OP_LUNGS, OP_KIDNEYS, OP_BLOOD_VESSEL, OP_STOMACH)
 		var/obj/item/organ/internal/I = H.random_organ_by_process(organ_process)
 		if(istype(I))
-			I.take_damage(1, TRUE)
+			I.take_damage(dose/2, FALSE, TOX)
 
 // This was created to give people a way to cool reagents without needing a chem heater. Use it in a sprayer.
 /datum/reagent/other/coolant/touch_obj(obj/O, amount)
@@ -572,7 +573,7 @@
 	color = "#cf820f"
 	metabolism = REM * 0.2
 	nerve_system_accumulations = 20
-	sanity_gain_ingest = 0.5	
+	sanity_gain_ingest = 0.5
 	taste_tag = list(TASTE_LIGHT)
 	glass_icon_state = "teaglass"
 	glass_name = "odd tea"

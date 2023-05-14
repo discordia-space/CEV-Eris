@@ -90,25 +90,27 @@
 	return canhear_range
 
 /obj/item/device/radio/intercom/proc/change_status()
+	SIGNAL_HANDLER
 	on = linked_area.powered(STATIC_EQUIP)
 	icon_state = on ? "intercom" : "intercom-p"
 
 /obj/item/device/radio/intercom/proc/loop_area_check()
 	var/area/target_area = get_area(src)
 	if(!target_area?.apc)
-		addtimer(CALLBACK(src, .proc/loop_area_check), 30 SECONDS, TIMER_STOPPABLE) // We don't proces if there is no APC , no point in doing so is there ?
+		addtimer(CALLBACK(src, PROC_REF(loop_area_check)), 30 SECONDS, TIMER_STOPPABLE) // We don't proces if there is no APC , no point in doing so is there ?
 		return FALSE
 	linked_area = target_area
-	RegisterSignal(target_area, COMSIG_AREA_APC_DELETED, .proc/on_apc_removal)
-	RegisterSignal(target_area, COMSIG_AREA_APC_POWER_CHANGE, .proc/change_status)
+	RegisterSignal(target_area, COMSIG_AREA_APC_DELETED, PROC_REF(on_apc_removal))
+	RegisterSignal(target_area, COMSIG_AREA_APC_POWER_CHANGE, PROC_REF(change_status))
 
 /obj/item/device/radio/intercom/proc/on_apc_removal()
+	SIGNAL_HANDLER
 	UnregisterSignal(linked_area , COMSIG_AREA_APC_DELETED)
 	UnregisterSignal(linked_area, COMSIG_AREA_APC_POWER_CHANGE)
 	linked_area = null
 	on = FALSE
 	icon_state = "intercom-p"
-	addtimer(CALLBACK(src, .proc/loop_area_check), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(loop_area_check)), 30 SECONDS)
 
 /obj/item/device/radio/intercom/broadcasting
 	broadcasting = 1

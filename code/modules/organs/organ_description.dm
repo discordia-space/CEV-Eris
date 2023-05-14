@@ -81,7 +81,7 @@
 
 	max_damage = 90
 	min_broken_damage = 60
-	vital = TRUE
+	//vital = TRUE
 
 	w_class = ITEM_SIZE_NORMAL
 	max_volume = ITEM_SIZE_GARGANTUAN

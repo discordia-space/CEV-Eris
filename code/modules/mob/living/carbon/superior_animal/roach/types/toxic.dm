@@ -38,7 +38,7 @@
 		if(isliving(A))
 			var/mob/living/L = A
 			var/damage = rand(melee_damage_lower, melee_damage_upper)
-			L.apply_effect(40, IRRADIATE)
+			L.apply_effect(10, IRRADIATE)
 			L.damage_through_armor(damage, TOX, attack_flag = ARMOR_BIO)
 			playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
 			L.visible_message(SPAN_DANGER("\the [src] globs up some glowing bile all over \the [L]!"))
@@ -48,7 +48,7 @@
 	icon = 'icons/obj/hivemind.dmi'
 	icon_state = "goo_proj"
 	damage_types = list(TOX = 15)
-	irradiate = 15
+	irradiate = 5
 	check_armour = ARMOR_BIO
 	step_delay = 2
 

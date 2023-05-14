@@ -7,9 +7,9 @@ GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 	var/bluespace_entropy = 0
 	var/bluespace_hazard_threshold = 100
 
-/proc/go_to_bluespace(turf/T, entropy=1, minor_distortion=FALSE, ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
+/proc/go_to_bluespace(turf/T, entropy = 1, minor_distortion, ateleatom, adestination, aprecision = 0, afteleport = 1, aeffectin, aeffectout, asoundin, asoundout, no_checks = FALSE)
 	bluespace_entropy(entropy, T, minor_distortion)
-	do_teleport(ateleatom, adestination, aprecision, afteleport, aeffectin, aeffectout, asoundin, asoundout)
+	do_teleport(ateleatom, adestination, aprecision, afteleport, aeffectin, aeffectout, asoundin, asoundout, no_checks)
 
 /proc/bluespace_entropy(max_value=1, turf/T, minor_distortion=FALSE)
 	var/entropy_value = rand(0, max_value) * GLOB.chaos_level

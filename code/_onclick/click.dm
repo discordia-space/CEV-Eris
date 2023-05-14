@@ -6,6 +6,7 @@
 // 1 decisecond click delay (above and beyond mob/next_move)
 /mob/var/next_click = 0
 
+
 /*
 	Before anything else, defer these calls to a per-mobtype handler.  This allows us to
 	remove istype() spaghetti code, but requires the addition of other handler procs to simplify it.
@@ -92,11 +93,11 @@
 			MiddleClickOn(A)
 		return 1
 	if(modifiers["shift"])
-		SEND_SIGNAL(src, COMSIG_SHIFTCLICK, A)
+		SEND_SIGNAL_OLD(src, COMSIG_SHIFTCLICK, A)
 		ShiftClickOn(A)
 		return 0
 	if(modifiers["alt"]) // alt and alt-gr (rightalt)
-		SEND_SIGNAL(src, COMSIG_ALTCLICK, A)
+		SEND_SIGNAL_OLD(src, COMSIG_ALTCLICK, A)
 		AltClickOn(A)
 		return 1
 	if(modifiers["ctrl"])
@@ -140,7 +141,7 @@
 	if((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= 1))
 		// faster access to objects already on you
 		if(W)
-			var/resolved = (SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL(A, COMSIG_ATTACKBY, W, src, params)) || W.resolve_attackby(A, src, params)
+			var/resolved = (SEND_SIGNAL_OLD(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL_OLD(A, COMSIG_ATTACKBY, W, src, params)) || W.resolve_attackby(A, src, params)
 			if(!resolved && A && W)
 				W.afterattack(A, src, 1, params) // 1 indicates adjacency
 		else
@@ -164,7 +165,7 @@
 		if(adjacent) // see adjacent.dm
 			if(W)
 				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
-				var/resolved = (SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL(A, COMSIG_ATTACKBY, W, src, params))
+				var/resolved = (SEND_SIGNAL_OLD(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL_OLD(A, COMSIG_ATTACKBY, W, src, params))
 				if(!resolved && A && W)
 					if(W.double_tact(src, A, adjacent))
 						resolved = W.resolve_attackby(A, src, params)
@@ -189,8 +190,8 @@
 
 /mob/proc/can_click()
 	if(next_click <= world.time)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 // Default behavior: ignore double clicks, the second click that makes the doubleclick call already calls for a normal click
 /mob/proc/DblClickOn(atom/A, params)

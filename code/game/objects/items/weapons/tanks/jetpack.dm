@@ -180,7 +180,7 @@
 	//Setup a stabilize check, but only if this isn't already from one
 	if (!stabilization_check)
 		stabilize_done = FALSE
-		addtimer(CALLBACK(src, .proc/stabilize, user, world.time), user.total_movement_delay()*1.5)
+		addtimer(CALLBACK(src, PROC_REF(stabilize), user, world.time), user.total_movement_delay()*1.5)
 
 	var/datum/gas_mixture/G = get_gas().remove(num)
 
