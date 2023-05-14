@@ -10,8 +10,8 @@
 #define CWJ_USE_TOOL				5
 #define CWJ_ADD_PRODUCE				6		//Adding Produce to a recipe
 #define CWJ_USE_STOVE	 			7 		//Using a stove in a recipe
-#define CWJ_USE_GRILL	 			8 		//Using a stove in a recipe
-#define CWJ_USE_OVEN	 			9 		//Using a stove in a recipe
+#define CWJ_USE_GRILL	 			8 		//Using a grill in a recipe
+#define CWJ_USE_OVEN	 			9 		//Using a oven in a recipe
 #define CWJ_USE_OTHER 				10 		//Custom Command flag, will take in argument lists.
 
 

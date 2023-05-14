@@ -51,6 +51,14 @@ list(<CWJ_STEP_CLASS><_OPTIONAL>, <REQUIRED_ARGS>, <CUSTOM_ARGS>=value)
 				time - the amount of time, in seconds, to keep the food on the stove.
 			Example: list(CWJ_USE_STOVE, J_LO, 40) #Cook on a stove set to "Low" for 40 seconds.
 
+		CWJ_USE_GRILL
+			Cook the cooking container on a grill. Keep it on too long, it burns. Eats wood to cook. Wood fire is superior.
+			<REQUIRED_ARGS>:
+				temperature - the required temperature to cook the food at.
+					(Temperatures are macro'd by: J_LO, J_MED, J_HI)
+				time - the amount of time, in seconds, to keep the food on the stove.
+			Example: list(CWJ_USE_GRILL, J_LO, 40) #Cook on a stove set to "Low" for 40 seconds.
+
 <_OPTIONAL>
 	The tag _OPTIONAL can be tacked onto any command to make it an optional step not required to finish the recipe.
 	Example: list(CWJ_ADD_ITEM_OPTIONAL, /obj/item/reagent_containers/food/snacks/breadslice)

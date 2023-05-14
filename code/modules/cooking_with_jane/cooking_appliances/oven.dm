@@ -24,7 +24,7 @@
 
 	var/on_fire = FALSE //if the oven has caught fire or not.
 
-	circuit = /obj/item/electronics/circuitboard/cooking_with_jane/oven
+	circuit = /obj/item/circuitboard/cooking_with_jane/oven
 
 	scan_types = list("smile", "peep")
 
@@ -350,40 +350,48 @@
 /obj/machinery/cooking_with_jane/oven/verb/toggle_burner()
 	set src in view(1)
 	set name = "Oven - Toggle"
-	set category = "Cooking"
+	set category = "Object"
 	set desc = "Turn on the oven"
 	#ifdef CWJ_DEBUG
 	log_debug("/cooking_with_jane/oven/verb/toggle_burner_1() called")
 	#endif
+	if(!ishuman(usr) && !isrobot(usr))
+		return
 	handle_switch(usr)
 
 
 /obj/machinery/cooking_with_jane/oven/verb/change_temperature()
 	set src in view(1)
 	set name = "Oven - Set Temp"
-	set category = "Cooking"
+	set category = "Object"
 	set desc = "Set a temperature for the oven."
 	#ifdef CWJ_DEBUG
 	log_debug("/cooking_with_jane/oven/verb/change_temperature_1() called")
 	#endif
+	if(!ishuman(usr) && !isrobot(usr))
+		return
 	handle_temperature(usr)
 
 /obj/machinery/cooking_with_jane/oven/verb/change_timer()
 	set src in view(1)
 	set name = "Oven - Set Timer"
-	set category = "Cooking"
+	set category = "Object"
 	set desc = "Set a timer for the oven."
 	#ifdef CWJ_DEBUG
 	log_debug("/cooking_with_jane/oven/verb/change_timer() called")
 	#endif
+	if(!ishuman(usr) && !isrobot(usr))
+		return
 	handle_timer(usr)
 
 /obj/machinery/cooking_with_jane/oven/verb/toggle_door()
 	set src in view(1)
 	set name = "Oven - Open/Close door"
-	set category = "Cooking"
+	set category = "Object"
 	set desc = "Open/Close the door of the oven."
 	#ifdef CWJ_DEBUG
 	log_debug("/cooking_with_jane/oven/verb/toggle_door() called")
 	#endif
+	if(!ishuman(usr) && !isrobot(usr))
+		return
 	handle_open(usr)
