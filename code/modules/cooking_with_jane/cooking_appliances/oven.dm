@@ -24,7 +24,7 @@
 
 	var/on_fire = FALSE //if the oven has caught fire or not.
 
-	circuit = /obj/item/circuitboard/cooking_with_jane/oven
+	circuit = /obj/item/electronics/circuitboard/cooking_with_jane/oven
 
 	scan_types = list("smile", "peep")
 

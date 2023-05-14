@@ -28,7 +28,7 @@
 
 	var/on_fire = FALSE //if the grill has caught fire or not.
 
-	circuit = /obj/item/circuitboard/cooking_with_jane/grill
+	circuit = /obj/item/electronics/circuitboard/cooking_with_jane/grill
 
 	var/obj/effect/flicker_overlay/hopper_insert
 	scan_types = list("scan_1")
