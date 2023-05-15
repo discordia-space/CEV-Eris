@@ -85,7 +85,8 @@
 
 	var/obj/item/storage/deferred/stash/sack/stash = new
 
-	new /obj/item/computer_hardware/hard_drive/portable/design(stash)
+	new /obj/item/storage/box/data_disk(stash)
+	new /obj/item/storage/box/excel_parts(stash)
 	new /obj/item/computer_hardware/hard_drive/portable/design/excelsior/core(stash)
 	new /obj/item/computer_hardware/hard_drive/portable/design/excelsior/weapons(stash)
 	new /obj/item/electronics/circuitboard/excelsiorautolathe(stash)

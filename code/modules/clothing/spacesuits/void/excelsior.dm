@@ -67,7 +67,7 @@
 		hud.forceMove(src)
 
 /obj/item/clothing/suit/space/void/excelsior
-	name = "Excelsior armor"
+	name = "Mothballed Excelsior armor"
 	desc = "An ancient space suit design, remade with advanced materials. Provides good protection, especially against energy discharges, while remaining surprisingly flexible."
 	icon_state = "soviet_skaf"
 	item_state = "soviet_skaf"
@@ -90,5 +90,58 @@
 		MATERIAL_PLASTEEL = 5
 	)
 	helmet = /obj/item/clothing/head/space/void/excelsior
+	spawn_blacklisted = TRUE
+	slowdown = MEDIUM_SLOWDOWN
+
+/obj/item/clothing/head/space/void/excelsior_mothball
+	name = "Mothballed Excelsior helmet"
+	desc = "A deceptively well armored space helmet. This one is degraded and has had its hud torn out."
+	icon_state = "cosmo"
+	item_state = "cosmo"
+
+	//Worse excel armor without a hud ingrained, its for the radio stash
+	matter = list(
+		MATERIAL_PLASTIC = 20,
+		MATERIAL_GLASS = 10,
+		MATERIAL_PLASTEEL = 3
+	)
+
+	armor = list(
+		melee = 10,
+		bullet = 10,
+		energy = 11,
+		bomb = 25,
+		bio = 100,
+		rad = 75
+	)
+	siemens_coefficient = 0
+	species_restricted = list(SPECIES_HUMAN)
+	light_overlay = "helmet_light_green"
+	price_tag = 300
+
+/obj/item/clothing/suit/space/void/excelsior_mothball
+	name = "Mothballed Excelsior armor"
+	desc = "An ancient space suit design, remade with advanced materials. Provides good protection, especially against energy discharges, while remaining surprisingly flexible."
+	icon_state = "soviet_skaf"
+	item_state = "soviet_skaf"
+	slowdown = 0.2
+	w_class = ITEM_SIZE_NORMAL
+	armor = list(
+		melee = 10,
+		bullet = 10,
+		energy = 11,
+		bomb = 25,
+		bio = 100,
+		rad = 75
+	)
+	siemens_coefficient = 0 //Shockproof!
+	breach_threshold = 6
+	resilience = 0.08
+	matter = list(
+		MATERIAL_PLASTIC = 30,
+		MATERIAL_STEEL = 10,
+		MATERIAL_PLASTEEL = 5
+	)
+	helmet = /obj/item/clothing/head/space/void/excelsior_mothball
 	spawn_blacklisted = TRUE
 	slowdown = MEDIUM_SLOWDOWN

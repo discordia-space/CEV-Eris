@@ -594,8 +594,16 @@
 	item_state = "packet_njoy_blue"
 	prespawned_content_type = /obj/item/storage/pill_bottle/njoy/blue
 
-/obj/item/storage/box/njoy/green
-	name = "green Njoy packet"
-	icon_state = "packet_njoy_green"
-	item_state = "packet_njoy_green"
-	prespawned_content_type = /obj/item/storage/pill_bottle/njoy/green
+/obj/item/storage/box/excel_parts
+	name = "Excelsior Means of Foundation"
+	desc = "Much like a factory, a revolution needs a firm foundation; this one is yours."
+	spawn_blacklisted = TRUE
+	var/list/things2spawn = list(
+		/obj/item/stock_parts/manipulator/excelsior
+		/obj/item/stock_parts/manipulator/excelsior
+		/obj/item/stock_parts/manipulator/excelsior
+		/obj/item/stock_parts/matter_bin/excelsior
+		/obj/item/stock_parts/matter_bin/excelsior
+		/obj/item/stock_parts/matter_bin/excelsior
+	)
+

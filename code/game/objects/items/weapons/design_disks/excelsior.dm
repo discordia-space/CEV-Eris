@@ -196,3 +196,17 @@
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_pellet
 	)
+
+//means of recuperation will be later supplimented with a new excelsior advanced healing kits with their own sprites, for the meantime it will contain just basic healing gear and a food item
+/obj/item/computer_hardware/hard_drive/portable/design/excelsior/frheal
+	disk_name = "Excelsior Means of Recuperation"
+	desc = {"The back has a machine etching:\n \
+	\"The health of the worker is essential to the success of the revolution\""}
+	spawn_blacklisted = TRUE
+	license = -1
+	designs = list(
+		/datum/design/bioprinter/medical/bruise,
+		/datum/design/bioprinter/medical/splints,
+		/datum/design/bioprinter/medical/ointment,
+		/datum/design/bioprinter/readeat
+	)

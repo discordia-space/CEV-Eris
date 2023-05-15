@@ -53,7 +53,10 @@ var/global/excelsior_last_draft = 0
 		/obj/item/stock_parts/manipulator/excelsior = 350,
 		/obj/item/stock_parts/micro_laser/excelsior = 350,
 		/obj/item/stock_parts/matter_bin/excelsior = 350,
-		/obj/item/clothing/under/excelsior = 50,
+		/obj/item/clothing/under/excelsior = 75,
+		/obj/item/computer_hardware/hard_drive/portable/design/excelsior/frheal = 100,
+		/obj/item/gun/projectile/boltgun = 125,
+		/obj/item/ammo_magazine/sllrifle = 25,
 		/obj/item/electronics/circuitboard/excelsior_teleporter = 500,
 		/obj/item/electronics/circuitboard/excelsiorautolathe = 150,
 		/obj/item/electronics/circuitboard/excelsiorreconstructor = 150,
@@ -390,6 +393,9 @@ var/global/excelsior_last_draft = 0
 	card.update_name()
 	conscript.equip_to_appropriate_slot(card)
 	conscript.update_inv_wear_id()
+
+//Later I'm going to add 3 new roles for excelsior conscripts with increasing energy cost, the roles are such; Mekhanik, Medik, and Commissar
+//They will have specialized skills, spawn with some medical,engineering, or for the commissar just cool looking clothes. I will not code these roles until I can make sprites for them.
 
 /obj/machinery/complant_teleporter/proc/reinforcements_check()
 	if(excelsior_conscripts <= 0)

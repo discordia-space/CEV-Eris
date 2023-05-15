@@ -30,6 +30,13 @@
 	name = "Robust Harvestt"
 	build_path = /obj/item/reagent_containers/glass/fertilizer/rh
 	materials = list(MATERIAL_BIOMATTER = 7.5)
+
+//Excel print only
+/datum/design/bioprinter/readeat
+	name = "MRE"
+	build_path = /obj/item/reagent_containers/food/snacks/mre
+	materials = list(MATERIAL_BIOMATTER = 25)
+
 //[/NUTRIMENTS]
 
 //[CLOTHES, ARMOR AND ACCESORIES]

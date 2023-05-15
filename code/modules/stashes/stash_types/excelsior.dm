@@ -8,11 +8,11 @@
 	loot_type = "Excelsior"
 	nonmaint_reroll = 100
 	contents_list_base = list(/obj/item/electronics/circuitboard/excelsiorautolathe = 1,
-	 /obj/item/implanter/excelsior/broken = 2)
+	/obj/item/implanter/excelsior/broken = 2)
 
 	contents_list_random = list(/obj/item/implantcase/excelsior/broken = 70,
 	/obj/item/implantcase/excelsior/broken = 40,
-	/obj/item/clothing/suit/space/void/excelsior = 70,
+	/obj/item/clothing/suit/space/void/excelsior_mothball = 70,
 	/obj/item/gun/projectile/automatic/modular/ak/excelsior = 30,
 	/obj/item/gun/projectile/automatic/modular/ak/excelsior = 30,
 	/obj/item/ammo_magazine/lrifle = 50,
