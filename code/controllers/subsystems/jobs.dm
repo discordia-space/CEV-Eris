@@ -12,12 +12,163 @@ SUBSYSTEM_DEF(job)
 	var/list/unassigned = list()			//Players who need jobs
 	var/list/job_debug = list()				//Debug info
 	var/list/job_mannequins = list()				//Cache of icons for job info window
+	var/list/ckey_to_job_to_playtime = list()
+	var/list/ckey_to_job_to_can_play = list()
+	var/list/job_to_playtime_requirement = list()
 
 /datum/controller/subsystem/job/Initialize(start_timeofday)
 	if(!occupations.len)
 		SetupOccupations()
 		LoadJobs("config/jobs.txt")
+		LoadPlaytimeRequirements("config/job_playtime_requirements.txt")
 	return ..()
+
+
+/datum/controller/subsystem/job/proc/UpdatePlayableJobs(ckey)
+	if(!length(ckey_to_job_to_can_play[ckey]))
+		ckey_to_job_to_can_play[ckey] = list()
+	if(!length(ckey_to_job_to_playtime[ckey]))
+		LoadPlaytimes(ckey)
+	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
+	var/whitelisted = FALSE
+	from_file(save_data["whitelisted"], whitelisted)
+	for(var/occupation in occupations_by_name)
+		if(is_admin(get_client_by_ckey(ckey)) || whitelisted)
+			ckey_to_job_to_can_play[ckey][occupation] = TRUE
+		else
+			ckey_to_job_to_can_play[ckey][occupation] = CanHaveJob(ckey, occupation)
+
+ADMIN_VERB_ADD(/client/verb/whitelistPlayerForJobs, null, FALSE)
+/client/verb/whitelistPlayerForJobs()
+	set category = "Admin"
+	set name = "Allow client to bypass all job requirement playtimes"
+
+	if(!holder)	return
+
+	var/client/the_chosen_one = input(usr, "Select player to whitelist for jobs", "THE CHOSEN ONE!", null) in clients
+	if(!the_chosen_one)
+		to_chat(usr, SPAN_DANGER("No client selected to whitelist"))
+		return
+	SSjob.WhitelistPlayer(the_chosen_one.ckey)
+
+ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
+/client/verb/unwhitelistPlayerForJobs()
+	set category = "Admin"
+	set name = "Unwhitelist a client from all job requirement playtimes"
+
+	if(!holder)	return
+
+	var/client/the_disavowed_one = input(usr, "Select player to unwhitelist from jobs", "THE DISAVOWED ONE!", null) in clients
+	if(!the_disavowed_one)
+		to_chat(usr, SPAN_DANGER("No client selected to unwhitelist"))
+		return
+	SSjob.UnwhitelistPlayer(the_disavowed_one.ckey)
+
+/datum/controller/subsystem/job/proc/WhitelistPlayer(ckey)
+	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
+	to_file(save_data["whitelisted"], TRUE)
+
+/datum/controller/subsystem/job/proc/UnwhitelistPlayer(ckey)
+	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
+	to_file(save_data["whitelisted"], FALSE)
+
+/datum/controller/subsystem/job/proc/CanHaveJob(ckey, job_title)
+	if(!occupations_by_name[job_title])
+		return FALSE
+	if(!ckey)
+		return FALSE
+	if(job_to_playtime_requirement[job_title] == 0)
+		return TRUE
+	var/datum/job/wanted_job = occupations_by_name[job_title]
+	var/datum/job/checking_job
+	if(!wanted_job)
+		return FALSE
+	var/total_playtime
+	if(ckey_to_job_to_playtime[ckey])
+		if(ckey_to_job_to_playtime[ckey][job_title])
+			total_playtime += ckey_to_job_to_playtime[ckey][job_title]
+	for(var/job_name in ckey_to_job_to_playtime[ckey])
+		checking_job = occupations_by_name[job_name]
+		if(!checking_job)
+			continue
+		if(checking_job.department_flag & wanted_job.department_flag)
+			total_playtime += ckey_to_job_to_playtime[ckey][job_name]
+	if(length(SSinactivity_and_job_tracking))
+		if(length(SSinactivity_and_job_tracking[ckey]))
+			/// Blame linters!!!!
+			var/iter_ref = SSinactivity_and_job_tracking[ckey]
+			for(var/played_job in iter_ref)
+				checking_job = occupations_by_name[played_job]
+				if(!checking_job)
+					continue
+				if(checking_job.department_flag & wanted_job.department_flag)
+					total_playtime += round(SSinactivity_and_job_tracking[ckey][played_job])
+	if(total_playtime >= job_to_playtime_requirement[job_title])
+		return TRUE
+	else
+		return FALSE
+
+/datum/controller/subsystem/job/proc/LoadPlaytimeRequirements(folderPath)
+	var/list/le_playtimes = file2list(folderPath)
+	for(var/playtime in le_playtimes)
+		if(!playtime)
+			continue
+		playtime = trim(playtime)
+		if (!length(playtime))
+			continue
+		var/pos = findtext(playtime, "=")
+		var/name = null
+		var/value = null
+		if(pos)
+			name = copytext(playtime, 1, pos)
+			value = copytext(playtime, pos + 1)
+		else
+			continue
+		if(name && value)
+			job_to_playtime_requirement[name] = text2num(value)
+		else if(name)
+			job_to_playtime_requirement[name] = 0
+	return TRUE
+
+/datum/controller/subsystem/job/proc/LoadPlaytimes(ckey)
+	if(!ckey)
+		return
+	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
+	for(var/occupation in occupations_by_name)
+		save_data.cd = occupation
+		if(!length(ckey_to_job_to_playtime[ckey]))
+			ckey_to_job_to_playtime[ckey] = list()
+		from_file(save_data["playtime"], ckey_to_job_to_playtime[ckey][occupation])
+		// return to last directory
+		save_data.cd = ".."
+
+/datum/controller/subsystem/job/proc/SavePlaytimes(ckey)
+	if(!ckey)
+		return FALSE
+	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
+	/// No playtimes registered
+	if(!length(SSinactivity_and_job_tracking.current_playtimes[ckey]))
+		return FALSE
+	for(var/occupation in SSinactivity_and_job_tracking.current_playtimes[ckey])
+		var/playtime = SSinactivity_and_job_tracking.current_playtimes[ckey][occupation]
+		var/playtime_from_file
+		save_data.cd = occupation
+		from_file(save_data["playtime"], playtime_from_file)
+		playtime = round(playtime) + playtime_from_file
+		if(!isnum(playtime))
+			message_admins("Malformatted input into job save playtimes for [ckey] [occupation], not saving the new playtime : [playtime]")
+			continue
+		to_file(save_data["playtime"], playtime)
+		/// return to last dir
+		save_data.cd = ".."
+
+/datum/controller/subsystem/job/proc/CreateConfigFile()
+	// This is a file used for generating a template of all the current jobs..
+	// Create it in the config and then just call this proc, it will add in a pre-set config for all jobs with
+	// the required playtime at 0
+	var/file = file("config/job_playtimes_template.txt")
+	for(var/datum/job/occupation in occupations)
+		file << "[occupation.title]=0"
 
 /datum/controller/subsystem/job/proc/SetupOccupations(faction = "CEV Eris")
 	occupations.Cut()
@@ -79,6 +230,9 @@ SUBSYSTEM_DEF(job)
 	Debug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
 	var/list/candidates = list()
 	for(var/mob/new_player/player in unassigned)
+		if(!CanHaveJob(player.client.ckey, job.title))
+			Debug("FOC playtime failed, Player:[player]")
+			continue
 		if(jobban_isbanned(player, job.title))
 			Debug("FOC isbanned failed, Player: [player]")
 			continue
@@ -99,7 +253,11 @@ SUBSYSTEM_DEF(job)
 		if(!job)
 			continue
 
+
 		if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
+			continue
+
+		if(!CanHaveJob(player.client.ckey, job.title))
 			continue
 
 		if(istype(job, GetJob(ASSISTANT_TITLE))) // We don't want to give him assistant, that's boring!
@@ -362,6 +520,7 @@ SUBSYSTEM_DEF(job)
 	var/alt_title = null
 	if(H.mind)
 		H.mind.assigned_role = rank
+		SSinactivity_and_job_tracking.on_job_spawn(H, H.client.ckey)
 	//	alt_title = H.mind.role_alt_title
 
 		switch(rank)
@@ -413,6 +572,7 @@ SUBSYSTEM_DEF(job)
 
 	BITSET(H.hud_updateflag, ID_HUD)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
+
 	return H
 
 /proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
