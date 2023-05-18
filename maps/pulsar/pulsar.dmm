@@ -366,6 +366,14 @@
 /obj/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
+"lZ" = (
+/obj/spawner/mob/roaches/cluster,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"mB" = (
+/obj/spawner/traps/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar)
 "nc" = (
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk/low_chance,
@@ -376,6 +384,10 @@
 	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"no" = (
+/obj/spawner/mob/roaches/cluster/low_chance,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "nC" = (
 /obj/spawner/pizza,
@@ -465,6 +477,14 @@
 /obj/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
+"rW" = (
+/obj/spawner/mob/roaches/cluster/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"sm" = (
+/obj/spawner/flora/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
 "sF" = (
 /obj/structure/catwalk,
 /obj/structure/sign/faction/technomancers{
@@ -472,6 +492,10 @@
 	},
 /turf/space/pulsar,
 /area/space)
+"sK" = (
+/obj/spawner/flora/low_chance,
+/turf/simulated/floor/tiled/steel/cargo,
+/area/outpost/pulsar/maintenance)
 "tf" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -804,6 +828,11 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/outpost/pulsar/maintenance)
+"DF" = (
+/obj/structure/catwalk,
+/obj/spawner/mob/roaches/cluster/low_chance,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
 "DN" = (
 /obj/structure/table/standard,
 /obj/spawner/booze,
@@ -842,6 +871,10 @@
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/structure/table/rack,
 /turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"EJ" = (
+/obj/spawner/traps/low_chance,
+/turf/simulated/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "EU" = (
 /obj/structure/table/standard,
@@ -1107,6 +1140,14 @@
 /turf/simulated/floor/wood,
 /area/outpost/pulsar)
 "Pl" = (
+/turf/simulated/floor/tiled/steel/cargo,
+/area/outpost/pulsar/maintenance)
+"PE" = (
+/obj/spawner/mob/roaches/cluster/low_chance,
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/outpost/pulsar/maintenance)
+"PH" = (
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "PR" = (
@@ -17682,7 +17723,7 @@ bq
 aj
 jv
 Pl
-Pl
+PH
 qh
 aj
 bM
@@ -18278,13 +18319,13 @@ Fm
 aj
 xl
 wv
-wv
+PE
 Br
 bq
 kr
 aj
 Cg
-bq
+rW
 aj
 aj
 aj
@@ -18690,7 +18731,7 @@ aj
 tR
 il
 Ub
-Pl
+sK
 aj
 YQ
 SQ
@@ -18887,7 +18928,7 @@ bq
 bq
 yR
 bq
-bq
+yR
 eI
 il
 il
@@ -19079,7 +19120,7 @@ bM
 bM
 oK
 bq
-bq
+rW
 bq
 bq
 aJ
@@ -20118,7 +20159,7 @@ Zq
 zw
 aj
 AQ
-il
+DF
 NF
 aj
 aj
@@ -20892,7 +20933,7 @@ He
 He
 bM
 aj
-bq
+yR
 Ev
 bM
 WB
@@ -20916,7 +20957,7 @@ aa
 WB
 He
 bq
-bq
+rW
 bq
 bq
 aj
@@ -21515,7 +21556,7 @@ Yf
 Yf
 Yf
 Wb
-lA
+mB
 SD
 lA
 lA
@@ -22509,7 +22550,7 @@ HA
 bM
 VY
 il
-Pl
+no
 Ub
 SK
 He
@@ -22943,7 +22984,7 @@ YQ
 aj
 Cl
 AQ
-il
+DF
 xu
 YQ
 aj
@@ -23520,7 +23561,7 @@ bM
 WZ
 il
 wh
-zg
+lZ
 AQ
 co
 wh
@@ -24146,7 +24187,7 @@ RV
 aj
 Xs
 il
-bq
+yR
 bq
 bq
 bq
@@ -24542,7 +24583,7 @@ SA
 ek
 aj
 Gl
-bq
+rW
 bq
 aj
 aj
@@ -24735,7 +24776,7 @@ WB
 zo
 He
 bN
-bN
+EJ
 af
 il
 il
@@ -24745,7 +24786,7 @@ BO
 LW
 bq
 bq
-bq
+yR
 Wk
 bq
 bq
@@ -24950,7 +24991,7 @@ fD
 aj
 aj
 bq
-bq
+sm
 aj
 aj
 eB
@@ -25155,7 +25196,7 @@ aJ
 bq
 bq
 bq
-bq
+yR
 Wk
 il
 Ab
