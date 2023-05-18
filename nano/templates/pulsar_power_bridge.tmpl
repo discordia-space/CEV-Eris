@@ -16,3 +16,8 @@ Used In File(s): code/modules/pulsar_engine/pulsar_consoles.dm
     <h2>NO POWER</h2>
     {{:helper.link('reconnect sattelite', 'radiation', { 'reconnect' : 1 },  null, null)}}
 {{/if}}
+{{if data.portal_active}}
+    <h2>PORTAL LINK ACTIVE AND STABLE</h2>
+{{else}}
+	<h2>PORTAL LINK DISCONNECTED</h2>
+{{/if}}

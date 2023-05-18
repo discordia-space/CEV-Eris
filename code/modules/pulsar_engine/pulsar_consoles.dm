@@ -161,8 +161,10 @@
 	use_power = NO_POWER_USE
 	pixel_x = -10
 	circuit = /obj/item/electronics/circuitboard/pulsar_power_bridge
+	var/portal_active = FALSE
 	var/obj/machinery/pulsar/pulsar_console
 	var/area/console_area
+	var/obj/effect/map_effect/simple_portal/portal
 
 /obj/machinery/power/pulsar_power_bridge/Initialize(mapload, d)
 	. = ..()
@@ -174,6 +176,8 @@
 	pulsar_console = locate() in world //I can get away with it once, right?
 	if(pulsar_console)
 		console_area = get_area(pulsar_console) //Area stored so reconnections are cheaper.
+	
+	portal = locate() in get_area(src)
 
 /obj/machinery/power/pulsar_power_bridge/Process()
 	if(powernet && pulsar_console)
@@ -205,6 +209,7 @@
 /obj/machinery/power/pulsar_power_bridge/ui_data()
 	var/list/data = list()
 	data["pulsar_connected"] = FALSE
+	data["portal_active"] = portal_active
 	if(pulsar_console)
 		data["pulsar_connected"] = TRUE
 		data["power_percentage"] = pulsar_console.get_effective_power_porduced()
@@ -215,8 +220,13 @@
 /obj/machinery/power/pulsar_power_bridge/Topic(href, href_list)
 	if(href_list["disconnect"])
 		pulsar_console = null
+		portal.try_deactivate()
+		portal_active = FALSE
 	else if(href_list["reconnect"])
 		pulsar_console = locate() in console_area
+		portal.try_activate()
+		portal_active = TRUE
+
 	SSnano.update_uis(src)
 
 /obj/machinery/power/pulsar_power_bridge/Destroy()
