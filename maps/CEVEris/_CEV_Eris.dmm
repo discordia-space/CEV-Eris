@@ -37084,8 +37084,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bKd" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
@@ -48238,10 +48238,11 @@
 /turf/simulated/floor/tiled/steel/bar_dance,
 /area/eris/crew_quarters/bar)
 "cle" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/structure/railing{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/gray_platform,
+/obj/machinery/camera/network/engineering,
+/turf/simulated/open,
 /area/eris/engineering/engine_room)
 "clg" = (
 /obj/structure/catwalk,
@@ -96687,8 +96688,10 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
 "eBb" = (
-/obj/structure/catwalk,
-/obj/machinery/camera/network/engineering,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/lattice,
 /turf/simulated/open,
 /area/eris/engineering/engine_room)
 "eBc" = (
@@ -99425,6 +99428,17 @@
 /obj/machinery/light,
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/office)
+"fnU" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/engineering/engine_room)
 "fow" = (
 /obj/structure/railing{
 	dir = 8
@@ -100018,6 +100032,10 @@
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/funeral)
+"gOI" = (
+/obj/structure/lattice,
+/turf/simulated/open,
+/area/eris/engineering/engine_room)
 "gPx" = (
 /obj/structure/table/woodentable,
 /obj/item/device/lighting/toggleable/lamp/green,
@@ -103507,6 +103525,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/crew_quarters/janitor)
+"pAf" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/engineering/engine_room)
 "pAy" = (
 /obj/structure/catwalk,
 /obj/machinery/light/small{
@@ -105643,13 +105667,15 @@
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section4deck3port)
 "vad" = (
-/obj/structure/railing{
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/simulated/open,
+/turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
 "vcS" = (
 /obj/structure/table/standard,
@@ -106110,6 +106136,15 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
+"wkg" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/engineering/engine_room)
 "wkx" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -106304,6 +106339,17 @@
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/security/lobby)
+"wOG" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/engineering/engine_room)
 "wOW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -241956,7 +242002,7 @@ aCM
 aaa
 aaa
 bIP
-dKv
+bCp
 eEt
 dLq
 dym
@@ -242158,7 +242204,7 @@ aCM
 aCM
 aad
 bIP
-bCp
+dKv
 dKP
 dNJ
 bJG
@@ -242362,13 +242408,13 @@ aaa
 bIP
 bIP
 dKQ
-dLq
-dym
+xld
+pAf
 xld
 xld
 dLU
-wjY
-dPD
+bKd
+xld
 dQj
 bIP
 bIP
@@ -242565,11 +242611,11 @@ bIP
 dKx
 dKR
 dLq
-bKd
+dym
 xld
 xld
 dLU
-cle
+wjY
 dPD
 dQk
 dQJ
@@ -242766,13 +242812,13 @@ aaa
 bIP
 dKy
 dur
-dCF
-dCF
+wkg
+wOG
 dCF
 dLr
 dMa
-dNJ
-dNJ
+fnU
+vad
 dMB
 cMo
 bIP
@@ -281146,7 +281192,7 @@ aaa
 abF
 abF
 abF
-bIP
+bNn
 eBX
 lfL
 pVN
@@ -281348,7 +281394,7 @@ aad
 abF
 abF
 abF
-bIP
+bNn
 eAZ
 lUo
 diS
@@ -281954,7 +282000,7 @@ aaa
 aaa
 abF
 abF
-bNn
+bIP
 eER
 eER
 nDL
@@ -281962,7 +282008,7 @@ eDd
 dPm
 eER
 eER
-bNn
+bIP
 abF
 abF
 abF
@@ -282154,17 +282200,17 @@ dky
 aCM
 aaa
 aaa
-abF
-abF
+bIP
 bNn
-eBS
+bIP
+cle
 eBS
 wQU
 eDd
 cOl
 cPh
 cPh
-bNn
+bIP
 abF
 abF
 abF
@@ -282357,16 +282403,16 @@ aCM
 aaa
 aaa
 bIP
-bIP
-bIP
-eBb
+cMC
+cNB
+cPi
 cPi
 cPi
 eDd
-cOl
-cPh
-cPh
-bNn
+eBb
+gOI
+gOI
+bIP
 abF
 abF
 abF
@@ -282559,16 +282605,16 @@ aCM
 abF
 aaa
 bIP
-cMC
-cNB
-cPi
-vad
+bNn
+bIP
+eBc
+eER
 nDL
 eDd
 cOl
 cPh
 cPh
-bNn
+bIP
 abF
 abF
 abF
@@ -282760,17 +282806,17 @@ erL
 aCM
 aCM
 aaa
+abF
+abF
 bIP
-bIP
-bIP
-eBc
+cPh
 cPh
 qhu
 eDd
 cOl
 cPh
 cPh
-bNn
+bIP
 abF
 abF
 abF
