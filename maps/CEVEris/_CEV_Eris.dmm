@@ -104139,6 +104139,11 @@
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/crew_quarters/fitness)
+"reY" = (
+/obj/structure/lattice,
+/obj/machinery/light,
+/turf/simulated/open,
+/area/eris/engineering/engine_room)
 "rfp" = (
 /obj/structure/multiz/ladder,
 /turf/simulated/floor/tiled/techmaint,
@@ -282411,7 +282416,7 @@ cPi
 eDd
 eBb
 gOI
-gOI
+reY
 bIP
 abF
 abF
