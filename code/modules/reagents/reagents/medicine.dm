@@ -388,7 +388,7 @@
 		var/list/organs_sans_brain_and_bones = H.internal_organs - H.internal_organs_by_efficiency[BP_BRAIN] - H.internal_organs_by_efficiency[OP_BONE] // Peridaxon shouldn't heal brain or bones
 		for(var/obj/item/organ/I in organs_sans_brain_and_bones)
 			var/list/current_wounds = I.GetComponents(/datum/component/internal_wound)
-			if(LAZYLEN(current_wounds) && !BP_IS_ROBOTIC(I) && prob(25)) //Peridaxon heals only non-robotic organs
+			if(LAZYLEN(current_wounds) && !BP_IS_ROBOTIC(I) && prob(75)) //Peridaxon heals only non-robotic organs
 				SEND_SIGNAL_OLD(I, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
 
 /datum/reagent/medicine/peridaxon/overdose(mob/living/carbon/M, alien)
