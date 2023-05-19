@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(job)
 		else
 			ckey_to_job_to_can_play[ckey][occupation] = CanHaveJob(ckey, occupation)
 
-ADMIN_VERB_ADD(/client/verb/whitelistPlayerForJobs, null, FALSE)
+ADMIN_VERB_ADD(/client/verb/whitelistPlayerForJobs, R_ADMIN, FALSE)
 /client/verb/whitelistPlayerForJobs()
 	set category = "Admin"
 	set name = "Allow client to bypass all job requirement playtimes"
@@ -51,7 +51,7 @@ ADMIN_VERB_ADD(/client/verb/whitelistPlayerForJobs, null, FALSE)
 		return
 	SSjob.WhitelistPlayer(the_chosen_one.ckey)
 
-ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
+ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, R_ADMIN, FALSE)
 /client/verb/unwhitelistPlayerForJobs()
 	set category = "Admin"
 	set name = "Unwhitelist a client from all job requirement playtimes"
