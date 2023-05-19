@@ -19,7 +19,6 @@ There are important things regarding this file:
 	armor_divisor = 1
 	can_ricochet = TRUE
 	penetrating = 2
-	style_damage = 20
 	recoil = 3
 
 /obj/item/projectile/bullet/pistol/hv
@@ -161,7 +160,6 @@ There are important things regarding this file:
 	armor_divisor = 1
 	can_ricochet = TRUE
 	penetrating = 2
-	style_damage = 40
 	recoil = 6
 	wounding_mult = WOUNDING_WIDE
 
@@ -195,7 +193,6 @@ There are important things regarding this file:
 	armor_divisor = 3
 	penetrating = 2
 	step_delay = 0.8
-	style_damage = 70
 	recoil = 15 // Good luck shooting these from a revolver
 	wounding_mult = WOUNDING_EXTREME
 
@@ -248,7 +245,6 @@ There are important things regarding this file:
 	armor_divisor = 1
 	knockback = 1
 	step_delay = 1.1
-	style_damage = 25
 	recoil = 8
 	wounding_mult = WOUNDING_EXTREME
 
@@ -331,7 +327,6 @@ There are important things regarding this file:
 	embed = FALSE
 	can_ricochet = TRUE
 	recoil = 3
-	style_damage = 40
 	wounding_mult = WOUNDING_EXTREME
 
 /obj/item/projectile/bullet/bolt/on_hit(mob/living/target, def_zone = BP_CHEST)

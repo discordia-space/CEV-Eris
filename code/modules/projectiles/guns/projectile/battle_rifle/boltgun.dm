@@ -13,7 +13,6 @@
 	caliber = CAL_LRIFLE
 	fire_delay = 8
 	damage_multiplier = 1.4
-	style_damage_multiplier = 5
 	penetration_multiplier = 0.3
 	init_recoil = RIFLE_RECOIL(1.5)
 	init_offset = 4 //bayonet's effect on aim, reduced from 4

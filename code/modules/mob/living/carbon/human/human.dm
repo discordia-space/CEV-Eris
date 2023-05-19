@@ -109,16 +109,8 @@
 	if(epicenter != get_turf(src))
 		target_turf = get_turf_away_from_target_simple(src, epicenter, 8)
 	var/throw_distance = 8 - 2*severity
-	var/not_slick = TRUE
 	if(target_turf) // this means explosions on the same tile will not fling you
 		throw_at(target_turf, throw_distance, 5)
-		not_slick = FALSE // only explosions that fling you can be survived with slickness
-	if(slickness < (9-(2*severity)) * 10)
-		Weaken(severity) // If they don't get knocked out , weaken them for a bit.
-		not_slick = TRUE // if you don't have enough slickness, you can't safely ride the boom
-	else
-		slickness -= (9-(2*severity)) * 10 // awesome feats aren't something you can do constantly.
-
 	switch(severity)
 		if(1)
 			b_loss += 500
@@ -131,23 +123,13 @@
 				adjustEarDamage(30, 120)
 
 		if(3)
-			if(not_slick)
-				b_loss += 80
-				if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-					adjustEarDamage(15, 60)
-			else
-				visible_message(SPAN_WARNING("[src] rides the shockwave!"))
-				dodge_time = get_game_time()
-				confidence = FALSE
+			b_loss += 80
+			if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
+				adjustEarDamage(15, 60)
 		if(4)
-			if(not_slick)
-				b_loss += 50
-				if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-					adjustEarDamage(10, 30)
-			else
-				visible_message(SPAN_WARNING("[src] rides the shockwave!"))
-				dodge_time = get_game_time()
-				confidence = FALSE
+			b_loss += 50
+			if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
+				adjustEarDamage(10, 30)
 
 	if(bomb_defense)
 		b_loss = max(b_loss - bomb_defense, 0)
@@ -700,9 +682,6 @@ var/list/rank_prefix = list(\
 			location.add_vomit_floor(src, 1)
 
 		adjustNutrition(-40)
-		regen_slickness(-3)
-		dodge_time = get_game_time()
-		confidence = FALSE
 		spawn(350)	//wait 35 seconds before next volley
 			lastpuke = 0
 
@@ -1484,9 +1463,7 @@ var/list/rank_prefix = list(\
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
 		return FALSE
 	..(slipped_on,stun_duration)
-	regen_slickness(-3)
-	dodge_time = get_game_time()
-	confidence = FALSE
+
 
 /mob/living/carbon/human/reset_view(atom/A, update_hud = 1)
 	..()
@@ -1519,15 +1496,6 @@ var/list/rank_prefix = list(\
 	if(stat) return
 	holding_back = !holding_back
 	to_chat(src, SPAN_NOTICE("You are now [holding_back ? "holding back your attacks" : "not holding back your attacks"]."))
-	return
-
-/mob/living/carbon/human/verb/toggle_dodging()
-	set name = "Toggle Dodging"
-	set desc = "Just stand still while under fire."
-	set category = "IC"
-	if(stat) return
-	dodging = !dodging
-	to_chat(src, "<span class='notice'>You are now [dodging ? "dodging incoming fire" : "not dodging incoming fire"].</span>")
 	return
 
 /mob/living/carbon/human/verb/access_holster()

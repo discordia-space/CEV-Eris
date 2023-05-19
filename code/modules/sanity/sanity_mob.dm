@@ -103,10 +103,18 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 	QDEL_LIST(breakdowns)
 	return ..()
 
+/datum/sanity/proc/get_style_multiplier()
+
+	if(owner)
+		var/multiplier = owner.style / MAX_HUMAN_STYLE / 3
+		return clamp(multiplier, -0.15, 0.3)
+
 /datum/sanity/proc/give_insight(value)
 	var/new_value = value
 	if(value > 0)
 		new_value = max(0, value * insight_gain_multiplier * GLOB.GLOBAL_INSIGHT_MOD)
+	var/multiplier = get_style_multiplier()
+	new_value += new_value * multiplier
 	insight = min(insight + new_value, max_insight)
 
 /datum/sanity/proc/give_resting(value)
