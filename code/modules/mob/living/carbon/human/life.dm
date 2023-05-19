@@ -36,7 +36,6 @@
 	var/stasis_timeofdeath = 0
 	var/pulse = PULSE_NORM
 	var/global/list/overlays_cache = null
-	var/dodge_time = 0 // will be set to timeofgame on dodging
 
 /mob/living/carbon/human/Life()
 	set invisibility = 0

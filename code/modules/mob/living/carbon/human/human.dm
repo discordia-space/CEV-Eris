@@ -1498,15 +1498,6 @@ var/list/rank_prefix = list(\
 	to_chat(src, SPAN_NOTICE("You are now [holding_back ? "holding back your attacks" : "not holding back your attacks"]."))
 	return
 
-/mob/living/carbon/human/verb/toggle_dodging()
-	set name = "Toggle Dodging"
-	set desc = "Just stand still while under fire."
-	set category = "IC"
-	if(stat) return
-	dodging = !dodging
-	to_chat(src, "<span class='notice'>You are now [dodging ? "dodging incoming fire" : "not dodging incoming fire"].</span>")
-	return
-
 /mob/living/carbon/human/verb/access_holster()
 	set name = "Holster"
 	set desc = "Try to access your holsters."
