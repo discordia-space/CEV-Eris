@@ -1,0 +1,7 @@
+author: AltHit
+delete-after: true
+changes:
+  - rscadd: Armor values for prosthetics returned to their rightful place
+  - balance: Indirectly changes balance by making prosthetics playable (probably)
+  - bugfix: Limbs now melt from burn weapons again
+  - bugfix: Prosthetics now do not delimb after ridiculously low damage

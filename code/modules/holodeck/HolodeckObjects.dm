@@ -170,7 +170,7 @@
 
 /obj/structure/catwalk/holo
 
-/obj/structure/catwalk/attackby(obj/item/I, mob/user)
+/obj/structure/catwalk/holo/attackby(obj/item/I, mob/user)
 	return
 
 /obj/item/stool/holostool

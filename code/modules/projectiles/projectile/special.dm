@@ -28,7 +28,6 @@
 	icon_state = "rocket"
 	damage_types = list(BRUTE = 80)
 	armor_divisor = 3 // Everything has ridiculously high bomb armor. This makes up for it.
-	style_damage = 101 //single shot, incredibly powerful. If you get direct hit with this you deserve it, if you dodge the direct shot you're protected from the explosion.
 	check_armour = ARMOR_BOMB
 	penetrating = -5
 	recoil = 40

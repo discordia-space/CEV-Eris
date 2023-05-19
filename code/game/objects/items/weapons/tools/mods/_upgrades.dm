@@ -182,34 +182,37 @@
 	return TRUE
 
 /datum/component/item_upgrade/proc/check_modulargun(var/obj/item/gun/projectile/automatic/modular/MG, mob/living/user)
-	// Caliber check coming for barrels
-	if(istype(parent, /obj/item/part/gun/modular/barrel))
-		if(MG.good_calibers.len)
-			var/obj/item/part/gun/modular/barrel/B = parent
-			var/check = FALSE
-			for(var/i in MG.good_calibers)
-				if(B.caliber == i)
-					check = TRUE
-			if(!check)
-				to_chat(user, SPAN_WARNING("The barrel does not fit the mechanism! The gun fits the following calibers: [english_list(MG.good_calibers, "None are suitable!", " and ", ", ", ".")]"))
-				return FALSE
-	// Caliber check for mechanism
-	if(istype(parent, /obj/item/part/gun/modular/mechanism))
-		if(MG.caliber)
-			var/obj/item/part/gun/modular/mechanism/M = parent
-			var/check = FALSE
-			for(var/i in M.accepted_calibers)
-				if(MG.caliber == i)
-					check = TRUE
-			if(!check)
-				to_chat(user, SPAN_WARNING("The mechanism does not fit the barrel! The mechanism fits the following calibers: [english_list(M.accepted_calibers, "None are suitable!", " and ", ", ", ".")]"))
-				return FALSE
-	// Checking if part is accepted
-	for(var/partPath in MG.required_parts)
-		if(istype(parent, partPath))
-			return TRUE
-	to_chat(user, SPAN_WARNING("\The [parent] doesn't fit into the [MG]."))
-	return FALSE
+	if(istype(parent, /obj/item/part/gun/modular))
+		// Caliber check coming for barrels
+		if(istype(parent, /obj/item/part/gun/modular/barrel))
+			if(MG.good_calibers.len)
+				var/obj/item/part/gun/modular/barrel/B = parent
+				var/check = FALSE
+				for(var/i in MG.good_calibers)
+					if(B.caliber == i)
+						check = TRUE
+				if(!check)
+					to_chat(user, SPAN_WARNING("The barrel does not fit the mechanism! The gun fits the following calibers: [english_list(MG.good_calibers, "None are suitable!", " and ", ", ", ".")]"))
+					return FALSE
+		// Caliber check for mechanism
+		if(istype(parent, /obj/item/part/gun/modular/mechanism))
+			if(MG.caliber)
+				var/obj/item/part/gun/modular/mechanism/M = parent
+				var/check = FALSE
+				for(var/i in M.accepted_calibers)
+					if(MG.caliber == i)
+						check = TRUE
+				if(!check)
+					to_chat(user, SPAN_WARNING("The mechanism does not fit the barrel! The mechanism fits the following calibers: [english_list(M.accepted_calibers, "None are suitable!", " and ", ", ", ".")]"))
+					return FALSE
+		// Checking if part is accepted
+		for(var/partPath in MG.required_parts)
+			if(istype(parent, partPath))
+				return TRUE
+		to_chat(user, SPAN_WARNING("\The [parent] doesn't fit into the [MG]."))
+		return FALSE
+	else
+		return TRUE //We're not even a modular part
 
 /datum/component/item_upgrade/proc/apply(obj/item/A, mob/living/user)
 	if(user)
@@ -423,7 +426,7 @@
 				M.good_calibers = weapon_upgrades[GUN_UPGRADE_DEFINE_OK_CALIBERS]
 			if(weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER])
 				M.caliber = weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER]
-			if(weapon_upgrades[GUN_UPGRADE_DEFINE_STOCK])
+			if(weapon_upgrades[GUN_UPGRADE_DEFINE_STOCK] && !(PARTMOD_FOLDING_STOCK & M.spriteTagBans))
 				M.spriteTags |= PARTMOD_FOLDING_STOCK // Adds the stock to the spriteTags
 				M.verbs += /obj/item/gun/projectile/automatic/modular/proc/quick_fold // Grant the verb for folding stocks
 			if(weapon_upgrades[GUN_UPGRADE_DEFINE_GRIP])
@@ -677,10 +680,11 @@
 /datum/component/upgrade_removal/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ATTACKBY)
 
+// FALSE return value causes attackby to be called on the item. Which means, we only want this to resolve to FALSE if we don't want to remove any parts.
 /datum/component/upgrade_removal/proc/attempt_uninstall(obj/item/C, mob/living/user)
 	//SIGNAL_HANDLER
 	if(!isitem(C))
-		return 0
+		return FALSE
 
 	var/obj/item/upgrade_loc = parent
 
@@ -696,19 +700,23 @@
 	if(upgrade_loc.item_upgrades.len && C.has_quality(QUALITY_SCREW_DRIVING))
 		var/list/possibles = upgrade_loc.item_upgrades.Copy()
 		possibles += "Cancel"
+		possibles += "Do something else"
 		var/obj/item/tool_upgrade/toremove = input("Which upgrade would you like to try to remove? The upgrade will probably be destroyed in the process","Removing Upgrades") in possibles
 		if(toremove == "Cancel")
 			return TRUE
+		if(toremove == "Do something else")
+			return FALSE // We want to use the tool for something else, eg. the bolt turning of a combi driver to disassemble a gun
 		var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
 		if(IU.removable == MOD_FUSED)
 			to_chat(user, SPAN_DANGER("\the [toremove] seems to be fused with the [upgrade_loc]!"))
+			return TRUE
 		else
 			if(IU.removable == MOD_INTEGRAL)
 				if(istype(upgrade_loc, /obj/item/gun/projectile/automatic/modular))
 					var/obj/item/gun/projectile/automatic/modular/MG = upgrade_loc
 					if(MG.loaded.len || MG.ammo_magazine || MG.chambered)
 						to_chat(user, SPAN_DANGER("You must unload the [upgrade_loc] before removing \the [toremove]!"))
-						return FALSE
+						return TRUE
 			if(C.use_tool(user = user, target =  upgrade_loc, base_time = IU.removal_time, required_quality = QUALITY_SCREW_DRIVING, fail_chance = IU.removal_difficulty, required_stat = STAT_MEC))
 				//If you pass the check, then you manage to remove the upgrade intact
 				if(!IU.destroy_on_removal && user)
@@ -722,6 +730,7 @@
 					to_chat(user, SPAN_DANGER("You failed to remove \the [toremove]."))
 					upgrade_loc.refresh_upgrades()
 					user.update_action_buttons()
+					return TRUE
 				else if(prob(50))
 					//50% chance to break the upgrade and remove it
 					to_chat(user, SPAN_DANGER("You successfully remove \the [toremove], but destroy it in the process."))

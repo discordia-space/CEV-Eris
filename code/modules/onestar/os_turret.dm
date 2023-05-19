@@ -306,7 +306,6 @@
 	damage_types = list(BRUTE = 15)
 	armor_divisor = 3
 	penetrating = 2
-	style_damage = 15
 	recoil = 30
 	step_delay = 0.4
 	sharp = TRUE	// Until all bullets are turned sharp by default
@@ -318,7 +317,6 @@
 	damage_types = list(BURN = 20)
 	armor_divisor = 2
 	stutter = 3
-	style_damage = 25
 	recoil = 10
 	wounding_mult = WOUNDING_WIDE
 

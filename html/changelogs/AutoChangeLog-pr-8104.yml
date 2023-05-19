@@ -1,0 +1,6 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - rscdel: Removed all ties of style with combat
+  - rscadd: Style now influences your insight gain , having max style will buff it
+      by 30% , and falling below will debuff to a maximum of 15%

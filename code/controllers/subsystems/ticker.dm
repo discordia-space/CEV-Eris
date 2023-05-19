@@ -135,6 +135,8 @@ SUBSYSTEM_DEF(ticker)
 			if(!nuke_in_progress && game_finished)
 				current_state = GAME_STATE_FINISHED
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
+				for(var/client/t in clients)
+					SSjob.SavePlaytimes(t)
 				declare_completion()
 
 				spawn(50)

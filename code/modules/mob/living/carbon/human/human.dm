@@ -100,29 +100,36 @@
 		return
 	..(duration, drop_items, doblind, doblurry)
 
+/mob/living/carbon/human/ex_act(severity, epicenter)
+	flash(5, FALSE, TRUE , TRUE, 5)
 
-/mob/living/carbon/human/explosion_act(target_power, explosion_handler/handle)
-	var/BombDamage = target_power - (getarmor(null, ARMOR_BOMB) + mob_bomb_defense)
-	var/obj/item/rig/hardsuitChad = back
-	if(back && istype(hardsuitChad))
-		BombDamage -= hardsuitChad.block_explosion(src, target_power)
-	var/BlockCoefficient = 0.2
-	if(handle)
-		var/ThrowTurf = get_turf(src)
-		var/ThrowDistance = round(target_power / 100)
-		if(ThrowTurf != handle.epicenter && ThrowDistance)
-			ThrowTurf = get_turf_away_from_target_simple(src, handle.epicenter, 8)
-			throw_at(ThrowTurf, ThrowDistance, ThrowDistance, "explosion")
-		// Heroic sacrifice
-		else if(ThrowTurf == handle.epicenter && lying)
-			if(BombDamage > 500)
+	var/b_loss = 0
+	var/bomb_defense = getarmor(null, ARMOR_BOMB) + mob_bomb_defense
+	var/target_turf // null means epicenter is same tile
+	if(epicenter != get_turf(src))
+		target_turf = get_turf_away_from_target_simple(src, epicenter, 8)
+	var/throw_distance = 8 - 2*severity
+	if(target_turf) // this means explosions on the same tile will not fling you
+		throw_at(target_turf, throw_distance, 5)
+	switch(severity)
+		if(1)
+			b_loss += 500
+			if(!prob(bomb_defense))
 				gib()
-			BlockCoefficient = 0.8
-	if(BombDamage < 0)
-		return target_power * BlockCoefficient
-	if(slickness * 50 > BombDamage)
-		slickness = 0
-		return target_power * BlockCoefficient
+				return
+		if(2)
+			b_loss = 120
+			if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
+				adjustEarDamage(30, 120)
+
+		if(3)
+			b_loss += 80
+			if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
+				adjustEarDamage(15, 60)
+		if(4)
+			b_loss += 50
+			if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
+				adjustEarDamage(10, 30)
 
 	// 10% reduction for  takin cover down i guess
 	if(lying && BlockCoefficient != 0.8)
@@ -691,9 +698,6 @@ var/list/rank_prefix = list(\
 			location.add_vomit_floor(src, 1)
 
 		adjustNutrition(-40)
-		regen_slickness(-3)
-		dodge_time = get_game_time()
-		confidence = FALSE
 		spawn(350)	//wait 35 seconds before next volley
 			lastpuke = 0
 
@@ -1475,9 +1479,7 @@ var/list/rank_prefix = list(\
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
 		return FALSE
 	..(slipped_on,stun_duration)
-	regen_slickness(-3)
-	dodge_time = get_game_time()
-	confidence = FALSE
+
 
 /mob/living/carbon/human/reset_view(atom/A, update_hud = 1)
 	..()
@@ -1510,15 +1512,6 @@ var/list/rank_prefix = list(\
 	if(stat) return
 	holding_back = !holding_back
 	to_chat(src, SPAN_NOTICE("You are now [holding_back ? "holding back your attacks" : "not holding back your attacks"]."))
-	return
-
-/mob/living/carbon/human/verb/toggle_dodging()
-	set name = "Toggle Dodging"
-	set desc = "Just stand still while under fire."
-	set category = "IC"
-	if(stat) return
-	dodging = !dodging
-	to_chat(src, "<span class='notice'>You are now [dodging ? "dodging incoming fire" : "not dodging incoming fire"].</span>")
 	return
 
 /mob/living/carbon/human/verb/access_holster()

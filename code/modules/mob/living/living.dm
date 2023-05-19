@@ -691,7 +691,6 @@ default behaviour is:
 		while(livmomentum > 0 && C.true_dir)
 			Move(get_step(loc, _dir),dir)
 			livmomentum--
-			regen_slickness(0.25) // The longer you slide, the more stylish it is
 			sleep(world.tick_lag + 0.5)
 		C.mloop = 0
 

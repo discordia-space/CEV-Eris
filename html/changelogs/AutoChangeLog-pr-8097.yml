@@ -1,0 +1,4 @@
+author: Penwin0
+delete-after: true
+changes:
+  - bugfix: You can't spawn infinite mice by spamming "respawn as mouse" as a ghost.

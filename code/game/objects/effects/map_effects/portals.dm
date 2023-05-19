@@ -163,7 +163,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	return ..()
 
 /obj/effect/map_effect/portal/master/proc/find_lines()
-	var/list/dirs_to_search = list( turn(dir, 90), turn(dir, -90) )
+	var/list/dirs_to_search = list(turn(dir, 90), turn(dir, -90))
 
 	for(var/dir_to_search in dirs_to_search)
 		var/turf/current_T = get_turf(src)

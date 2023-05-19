@@ -1,0 +1,5 @@
+author: Firefox13
+delete-after: true
+changes:
+  - tweak: Edited engine room to make it prettier and more compact
+  - rscadd: Added trap and roach/spider spawners to pulsar

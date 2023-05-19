@@ -1,0 +1,5 @@
+author: Firefox13
+delete-after: true
+changes:
+  - tweak: Everyone can select *truly* any prosthetic now in character setup.
+  - bugfix: Fixed chat spam ("This body-mod does not match your chosen department").

@@ -52,3 +52,15 @@
 			/obj/item/stack/cable_coil = 10,
 			/obj/item/stock_parts/capacitor = 1
 		)
+
+/obj/item/electronics/circuitboard/pulsar_power_bridge
+	name = T_BOARD("Pulsar power bridge")
+	build_path = /obj/machinery/power/pulsar_power_bridge
+	board_type = "machine"
+	rarity_value = 10
+	origin_tech = list(TECH_POWER = 2, TECH_ENGINEERING = 2)
+	req_components = list(
+		/obj/item/stack/cable_coil = 10,
+		/obj/item/stock_parts/capacitor = 5,
+		/obj/item/stock_parts/smes_coil = 1
+	)

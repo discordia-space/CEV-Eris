@@ -7,7 +7,7 @@
 	icon_state = "unloader"
 	density = TRUE
 	anchored = TRUE
-	var/unload_amt = 10
+	var/unload_amt = 20
 	var/input_dir = null
 	var/output_dir = null
 
