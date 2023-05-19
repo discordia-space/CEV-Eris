@@ -44,7 +44,7 @@
 /obj/item/projectile/beam/cutter/on_impact(var/atom/A)
 	if(istype(A, /turf/simulated/mineral))
 		var/turf/simulated/mineral/M = A
-		M.GetDrilled(1)
+		M.GetDrilled(5)
 	.=..()
 
 /obj/item/projectile/beam/practice

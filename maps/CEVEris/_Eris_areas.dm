@@ -700,7 +700,7 @@
 	icon_state = "erisgreen"
 
 /area/eris/engineering/wastingroom
-	name = "Wasting Room"
+	name = "Old Wasting Room"
 	icon_state = "erisred"
 	area_light_color = COLOR_LIGHTING_SCI_DARK
 

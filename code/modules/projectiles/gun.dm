@@ -120,7 +120,7 @@
 
 
 
-
+// Modular guns overwrite this
 /obj/item/gun/attackby(obj/item/I, mob/living/user, params)
 	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, serial_type ? QUALITY_HAMMERING : null), src)
 	switch(tool_type)
