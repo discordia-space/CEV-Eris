@@ -37484,7 +37484,7 @@
 	name = "Pulsar Satellite Access";
 	req_access = list(11)
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/engineering/engine_room)
 "bKR" = (
 /turf/simulated/wall/r_wall,
@@ -53744,7 +53744,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/engineering/engine_room)
 "czD" = (
 /obj/machinery/floodlight,
@@ -101756,7 +101756,7 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/reception)
 "kVP" = (
-/obj/spawner/closet,
+/obj/spawner/pack/machine,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section4deck3port)
 "kVX" = (
@@ -200395,13 +200395,13 @@ cIT
 abF
 cwU
 cwU
-nmJ
+cxM
 cwU
 cwU
 cwU
 cwU
 cwU
-nmJ
+cxM
 cwU
 cwU
 cwU
@@ -200606,7 +200606,7 @@ cyB
 cZR
 cZR
 cZR
-nmJ
+cxM
 cxw
 cWq
 cwU
@@ -201204,7 +201204,7 @@ abF
 cwU
 cwU
 cwU
-nmJ
+cxM
 cwU
 dRD
 cyK
@@ -201213,7 +201213,7 @@ cZR
 cZR
 cZR
 cZR
-nmJ
+cxM
 cqs
 cwU
 abF
