@@ -78,7 +78,7 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
 	set name = "Show playtimes"
 
 	if(!SSjob.initialized)
-		to_chat(mob, SPAN_NOTICE("The Jobs SubSystem is not initialized yet , please wait."))
+		to_chat(mob, SPAN_NOTICE("The Jobs subsystem is not initialized yet, please wait."))
 		return
 
 	var/client_key = ckey
