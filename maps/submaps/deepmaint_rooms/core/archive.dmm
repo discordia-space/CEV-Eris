@@ -82,8 +82,8 @@
 /area/deepmaint)
 "as" = (
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-21";
-	icon_state = "plant-21"
+	icon_state = "plant-21";
+	tag = "icon-plant-21"
 	},
 /turf/simulated/floor/wood,
 /area/deepmaint)
@@ -185,8 +185,8 @@
 /area/deepmaint)
 "aN" = (
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
-	icon_state = "plant-10"
+	icon_state = "plant-10";
+	tag = "icon-plant-10"
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/deepmaint)
@@ -208,10 +208,8 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/deepmaint)
 "aR" = (
-/obj/item/remains/human,
 /obj/structure/catwalk,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/floor/plating/under,
 /area/deepmaint)
 "aS" = (
@@ -261,9 +259,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/deepmaint)
 "bc" = (
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/floor/wood,
 /area/deepmaint)
 "bd" = (
@@ -333,12 +329,10 @@
 /turf/simulated/floor/wood,
 /area/deepmaint)
 "br" = (
-/obj/item/remains/human,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/floor/wood,
 /area/deepmaint)
 "bs" = (
@@ -363,10 +357,8 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/deepmaint)
 "bw" = (
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/floor/wood,
 /area/deepmaint)
 "bx" = (
@@ -376,18 +368,15 @@
 /turf/simulated/floor/wood,
 /area/deepmaint)
 "by" = (
-/obj/item/remains/human,
 /obj/effect/decal/cleanable/blood,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/floor/wood,
 /area/deepmaint)
 "bz" = (
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
 /obj/spawner/pack/gun_loot,
+/obj/effect/decal/cleanable/blood,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/floor/carpet/turcarpet,
 /area/deepmaint)
 "bA" = (
@@ -457,6 +446,11 @@
 /obj/item/storage/firstaid/regular,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/deepmaint)
+"iq" = (
+/obj/landmark/corpse/skeleton/maint,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/wood,
+/area/deepmaint)
 "ir" = (
 /obj/structure/table/woodentable,
 /obj/item/pen/blue{
@@ -485,9 +479,21 @@
 /obj/item/paper_bin,
 /turf/simulated/floor/wood,
 /area/deepmaint)
+"xV" = (
+/obj/structure/table/woodentable{
+	flipped = 1
+	},
+/turf/simulated/floor/wood,
+/area/deepmaint)
 "GO" = (
 /obj/item/stool,
 /turf/simulated/floor/tiled/white/brown_platform,
+/area/deepmaint)
+"Pg" = (
+/obj/spawner/pack/gun_loot,
+/obj/landmark/corpse/skeleton/maint,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/wood,
 /area/deepmaint)
 
 (1,1,1) = {"
@@ -555,7 +561,7 @@ aw
 an
 bB
 ar
-bw
+Pg
 ab
 bG
 "}
@@ -733,7 +739,7 @@ af
 be
 ar
 bK
-bc
+iq
 af
 aw
 an
@@ -849,7 +855,7 @@ bH
 aw
 be
 aw
-aG
+xV
 aw
 aI
 af
@@ -900,7 +906,7 @@ bx
 by
 af
 aX
-bw
+Pg
 ab
 aa
 "}

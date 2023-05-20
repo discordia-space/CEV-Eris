@@ -24,21 +24,8 @@
 	init_recoil = HANDGUN_RECOIL(1.2)
 	var/drawChargeMeter = TRUE
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
-	gun_parts = list(/obj/item/part/gun/frame/miller = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)
+	gun_parts = list(/obj/item/part/gun/frame/miller = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/revolver = 1, /obj/item/part/gun/modular/barrel/magnum = 1)
 	serial_type = "FS"
-
-
-/obj/item/gun/projectile/revolver/pickup(mob/user)
-	. = ..()
-	if(ishuman(user))
-		var/mob/living/carbon/human/stylish = user
-		if(stylish.style > 4)
-			style_damage_multiplier = stylish.style / 4 // this is so two stylish users that both shoot each other once at full slickness
-			to_chat(user, SPAN_NOTICE("You feel more confident with a revolver in your hand.")) // ends with the more stylish being the winner, commonly known as High Noon
-		else
-			style_damage_multiplier = 1
-			to_chat(user, SPAN_WARNING("You don't feel stylish enough to use a revolver properly."))
-
 
 /obj/item/gun/projectile/revolver/verb/spin_cylinder()
 	set name = "Spin cylinder"
@@ -52,9 +39,6 @@
 	loaded = shuffle(loaded)
 	if(rand(1,max_shells) > loaded.len)
 		chamber_offset = rand(0,max_shells - loaded.len)
-	if (ishuman(usr))
-		var/mob/living/carbon/human/stylish = usr
-		stylish.regen_slickness()
 
 /obj/item/gun/projectile/revolver/consume_next_projectile()
 	if(chamber_offset)
@@ -65,9 +49,6 @@
 /obj/item/gun/projectile/revolver/load_ammo(obj/item/A, mob/user)
 	. = ..()
 	chamber_offset = 0
-	if (. && ishuman(user)) // if it actually loaded and the user is human
-		var/mob/living/carbon/human/stylish = user
-		stylish.regen_slickness()
 
 /obj/item/gun/projectile/revolver/proc/update_charge()
 	if(!drawChargeMeter)
@@ -91,6 +72,6 @@
 	desc = "A Miller revolver frame. I hope you're feeling lucky, punk."
 	icon_state = "frame_revolver"
 	resultvars = list(/obj/item/gun/projectile/revolver)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/revolver
-	barrelvars = list(/obj/item/part/gun/barrel/magnum)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/revolver
+	barrelvars = list(/obj/item/part/gun/modular/barrel/magnum)

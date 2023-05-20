@@ -40,10 +40,14 @@
 	if(ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
+		wielded_item_state = "_doble" + "_mag"
 		if(ammo_magazine.mag_well == MAG_WELL_SMG) //thank you to kirov for the code help -Valo
 			iconstring += "_smg"
 		if(!LAZYLEN(ammo_magazine.stored_ammo))
 			iconstring += "_empty"
+		wielded_item_state = "_doble" + "_mag"
+	else
+		wielded_item_state = "_doble"
 
 	icon_state = iconstring
 	set_item_state(itemstring)

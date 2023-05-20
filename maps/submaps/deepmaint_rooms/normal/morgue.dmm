@@ -44,12 +44,14 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/landmark/corpse/skeleton,
+/obj/item/bodybag,
 /turf/simulated/floor/tiled/dark/panels,
 /area/deepmaint)
 "j" = (
 /obj/structure/morgue{
-	icon_state = "morgue1";
-	dir = 8
+	dir = 8;
+	icon_state = "morgue1"
 	},
 /turf/simulated/floor/tiled/dark/panels,
 /area/deepmaint)
@@ -64,6 +66,7 @@
 /area/deepmaint)
 "n" = (
 /obj/machinery/optable,
+/obj/landmark/corpse/skeleton/maint,
 /turf/simulated/floor/tiled/dark/panels,
 /area/deepmaint)
 "o" = (
@@ -100,6 +103,11 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
+/area/deepmaint)
+"w" = (
+/obj/landmark/corpse/skeleton,
+/obj/item/bodybag,
+/turf/simulated/floor/tiled/dark/panels,
 /area/deepmaint)
 "S" = (
 /obj/structure/table/standard,
@@ -211,7 +219,7 @@ d
 c
 i
 k
-k
+w
 k
 k
 c

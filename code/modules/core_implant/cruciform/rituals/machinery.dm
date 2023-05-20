@@ -12,7 +12,7 @@
 //Cloning
 /datum/ritual/cruciform/machines/resurrection
 	name = "Resurrection"
-	phrase = "Qui fuit, et crediderunt in me non morietur in aeternum"
+	phrase = "Qui fuit, et crediderunt in me non morietur in aeternum."
 	desc = "A ritual of formation of a new body in a specially designed machine.  Deceased person's cruciform has to be placed on the scanner then a prayer is to be uttered over the apparatus."
 	var/clone_damage = 60
 
@@ -78,7 +78,7 @@
 
 /datum/ritual/cruciform/machines/lock_door
 	name = "Activate door"
-	phrase = "Inlaqueatus"
+	phrase = "Inlaqueatus."
 	desc = "Commands nearby door to be locked or unlocked."
 
 /datum/ritual/cruciform/machines/lock_door/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
@@ -99,7 +99,7 @@
 
 /datum/ritual/cruciform/machines/repair_door
 	name = "Repair door"
-	phrase = "Redde quod periit"
+	phrase = "Redde quod periit."
 	desc = "Repairs nearby door at the cost of biomatter."
 
 /datum/ritual/cruciform/machines/repair_door/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)

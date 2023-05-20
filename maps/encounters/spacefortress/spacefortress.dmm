@@ -149,7 +149,7 @@
 /area/outpost/abandoned_fortress)
 "aH" = (
 /obj/structure/bed/padded,
-/obj/item/remains,
+/obj/landmark/corpse/skeleton,
 /turf/simulated/floor/carpet/bcarpet,
 /area/outpost/abandoned_fortress)
 "aI" = (
@@ -198,8 +198,8 @@
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "aX" = (
-/obj/structure/barricade,
-/turf/space,
+/obj/landmark/corpse/skeleton,
+/turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bb" = (
 /obj/structure/table/rack/shelf,
@@ -208,11 +208,11 @@
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bc" = (
-/obj/structure/reagent_dispensers/fueltank/huge,
+/obj/structure/reagent_dispensers/fueltank/huge/derelict,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bd" = (
-/obj/structure/reagent_dispensers/watertank/huge,
+/obj/structure/reagent_dispensers/watertank/huge/derelict,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "be" = (
@@ -393,8 +393,8 @@
 /area/outpost/abandoned_fortress)
 "bT" = (
 /obj/structure/sink{
-	icon_state = "sink";
 	dir = 8;
+	icon_state = "sink";
 	pixel_x = -12;
 	pixel_y = 2
 	},
@@ -469,6 +469,9 @@
 /obj/spawner/ammo/lowcost/low_chance,
 /obj/spawner/ammo/lowcost/low_chance,
 /obj/spawner/junk,
+/obj/structure/sign/vacuum{
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "ci" = (
@@ -497,6 +500,66 @@
 "co" = (
 /obj/spawner/junk,
 /turf/simulated/floor/plating,
+/area/outpost/abandoned_fortress)
+"fL" = (
+/obj/spawner/gun/shotgun,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"lE" = (
+/obj/machinery/computer/atmos_alert{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"mH" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/turf/simulated/floor/plating,
+/area/outpost/abandoned_fortress)
+"xC" = (
+/obj/landmark/corpse/skeleton/fortress,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"zy" = (
+/obj/landmark/corpse/skeleton,
+/turf/simulated/floor/plating,
+/area/outpost/abandoned_fortress)
+"AN" = (
+/obj/structure/table/standard{
+	dir = 1;
+	flipped = 1;
+	name = "plastic table frame"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"If" = (
+/obj/structure/table/standard{
+	dir = 8;
+	flipped = 1;
+	name = "plastic table frame"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"Of" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"Ro" = (
+/obj/spawner/gun/normal,
+/turf/simulated/floor/tiled,
+/area/outpost/abandoned_fortress)
+"VX" = (
+/obj/structure/sign/directions/security{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/structure/sign/directions/medical{
+	pixel_y = 25
+	},
+/turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 
 (1,1,1) = {"
@@ -9075,7 +9138,7 @@ bp
 bp
 bp
 bp
-bM
+aX
 ab
 ab
 ae
@@ -9329,7 +9392,7 @@ bp
 bp
 bp
 bq
-bM
+aX
 by
 ab
 ab
@@ -10305,7 +10368,7 @@ ae
 ac
 bp
 bp
-bM
+aX
 ac
 ae
 ae
@@ -12117,7 +12180,7 @@ bp
 bp
 bp
 bp
-bp
+bu
 bp
 bp
 bp
@@ -12127,7 +12190,7 @@ bq
 bp
 bp
 bp
-bp
+bu
 bp
 bp
 bp
@@ -14743,6 +14806,7 @@ bp
 bp
 bp
 bp
+bu
 bp
 bp
 bp
@@ -14752,8 +14816,7 @@ bp
 bp
 bp
 bp
-bp
-bp
+bu
 bp
 bp
 bp
@@ -16140,7 +16203,7 @@ bp
 bp
 bp
 bp
-bM
+aX
 bp
 bq
 bp
@@ -16364,7 +16427,7 @@ ae
 ae
 aj
 bp
-bM
+aX
 bp
 aj
 ae
@@ -17762,39 +17825,39 @@ ae
 ab
 aN
 aN
-bp
+bu
 aN
 aN
 aN
-bp
+bu
 aN
 aN
 aN
-bp
+bu
 aN
 aN
 aN
-bp
-aN
-aN
-bp
-bp
-bp
+bu
 aN
 aN
 bp
-aN
-aN
-aN
+bp
 bp
 aN
 aN
-aN
-bp
-aN
+bu
 aN
 aN
-bp
+aN
+bu
+aN
+aN
+aN
+bu
+aN
+aN
+aN
+bu
 aN
 aN
 ab
@@ -18974,39 +19037,39 @@ ae
 ab
 aN
 aN
-bp
+bu
 aN
 aN
 aN
-bp
+bu
 aN
 aN
 aN
-bp
+bu
 aN
 aN
 aN
-bp
-aN
-aN
-bp
-bp
-bp
+bu
 aN
 aN
 bp
-aN
-aN
-aN
+bp
 bp
 aN
 aN
-aN
-bp
-aN
+bu
 aN
 aN
-bp
+aN
+bu
+aN
+aN
+aN
+bu
+aN
+aN
+aN
+bu
 aN
 aN
 ab
@@ -19378,7 +19441,7 @@ ae
 ab
 aN
 bp
-bM
+aX
 bN
 aN
 bp
@@ -19397,7 +19460,7 @@ bp
 bp
 bp
 aN
-bM
+aX
 bp
 bN
 aN
@@ -20000,7 +20063,7 @@ ab
 ab
 ac
 aS
-bF
+If
 aS
 ac
 ab
@@ -20203,7 +20266,7 @@ ab
 ac
 bp
 bp
-bp
+xC
 ac
 ab
 ab
@@ -20226,7 +20289,7 @@ aF
 ae
 ae
 ae
-aq
+zy
 ae
 ab
 ab
@@ -20423,7 +20486,7 @@ ab
 ab
 ab
 ac
-aq
+zy
 at
 ae
 bZ
@@ -21400,7 +21463,7 @@ bp
 bp
 aS
 aN
-aX
+aS
 by
 by
 aS
@@ -21612,7 +21675,7 @@ aS
 bj
 bp
 bp
-bF
+AN
 bp
 bp
 bp
@@ -21623,7 +21686,7 @@ bp
 bp
 bq
 bp
-bF
+AN
 bp
 bp
 bq
@@ -21777,7 +21840,7 @@ bp
 bp
 bp
 ac
-bM
+aX
 bp
 bp
 bp
@@ -22828,7 +22891,7 @@ ab
 ab
 ac
 bp
-bp
+bq
 bp
 ac
 ab
@@ -23029,7 +23092,7 @@ ac
 ac
 ac
 ac
-bp
+VX
 bp
 bp
 ac
@@ -23050,7 +23113,7 @@ bp
 bp
 ac
 bY
-aq
+zy
 ae
 ae
 ae
@@ -23234,9 +23297,9 @@ bp
 bp
 bp
 bp
+AN
+fL
 bp
-bp
-br
 br
 ac
 bA
@@ -23246,9 +23309,9 @@ bp
 bp
 bp
 bp
-bF
+AN
 bp
-bM
+xC
 bp
 ac
 ab
@@ -23436,8 +23499,8 @@ bp
 bp
 bp
 bp
+AN
 bp
-bq
 bp
 bp
 bu
@@ -23448,8 +23511,8 @@ bp
 bp
 bp
 bp
-bF
-bL
+AN
+Ro
 bp
 bp
 ac
@@ -23638,9 +23701,9 @@ bp
 bp
 bp
 bp
+AN
+xC
 bp
-bp
-br
 bt
 ac
 bp
@@ -23849,8 +23912,8 @@ ac
 aw
 aw
 aw
-bF
-bF
+If
+If
 aw
 aw
 bp
@@ -24049,15 +24112,15 @@ ab
 ac
 bp
 bp
-bL
+bp
 bp
 bN
+Ro
 bp
 bp
 bp
 bp
 bp
-bM
 ac
 ab
 ab
@@ -24249,12 +24312,12 @@ ab
 ab
 ab
 ac
+aX
 bp
 bp
-bM
 bp
 bp
-bM
+xC
 bp
 bp
 bp
@@ -24461,7 +24524,7 @@ bp
 bp
 bp
 bp
-bp
+xC
 ac
 ab
 ab
@@ -24655,12 +24718,12 @@ ab
 ac
 ac
 ac
+If
 bp
-bp
-bp
+If
 ac
 bp
-bp
+lE
 bp
 ac
 ac
@@ -24812,7 +24875,7 @@ ab
 ab
 ae
 ab
-au
+mH
 at
 ax
 ax
@@ -24857,7 +24920,7 @@ ab
 ac
 bC
 bp
-bp
+xC
 bp
 bp
 aw
@@ -25014,12 +25077,12 @@ ab
 ab
 ae
 aj
-au
+mH
 at
 at
 at
 at
-aq
+zy
 ab
 ab
 ab
@@ -25216,7 +25279,7 @@ ab
 ab
 ae
 ab
-au
+mH
 at
 at
 ax
@@ -25467,9 +25530,9 @@ bp
 bp
 bp
 aw
-bp
-bp
-bp
+If
+If
+If
 ac
 ac
 ac
@@ -25617,7 +25680,7 @@ bp
 ab
 ab
 an
-aq
+zy
 ae
 ab
 ab
@@ -25663,17 +25726,17 @@ ab
 ab
 ab
 ac
-bF
+Of
 bp
 bp
-bp
+aX
 bp
 aw
+aX
 bp
 bp
 bp
-bp
-bF
+Of
 ac
 ab
 ab
@@ -25858,7 +25921,7 @@ bp
 bp
 ac
 aS
-bF
+If
 aS
 ac
 ab
@@ -26667,7 +26730,7 @@ bp
 ac
 bp
 bp
-bM
+xC
 ac
 ab
 ab
@@ -29297,7 +29360,7 @@ bp
 ac
 ab
 ab
-aq
+zy
 ab
 ab
 ab

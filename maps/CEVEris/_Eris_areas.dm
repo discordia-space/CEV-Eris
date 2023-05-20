@@ -492,6 +492,10 @@
 	name = "Bar Quarters"
 	icon_state = "erisblue"
 
+/area/eris/crew_quarters/clubmanager
+	name = "Club Manager's Quarters"
+	icon_state = "erisgreen"
+
 /area/eris/crew_quarters/theatre
 	name = "\improper Theatre"
 	icon_state = "Theatre"
@@ -533,6 +537,10 @@
 /area/eris/crew_quarters/publichydro
 	name = "Public Hydroponics"
 	icon_state = "erisblue"
+
+/area/eris/crew_quarters/artistoffice
+	name = "\improper Club Artist Office"
+	icon_state = "erisyellow"
 
 // NeoTheology
 
@@ -595,7 +603,7 @@
 	icon_state = "engineering"
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
-	ambience = list('sound/ambience/technoambient1.ogg','sound/ambience/technoambient2.ogg','sound/ambience/technoambient3.ogg','sound/ambience/technoambient4.ogg','sound/ambience/technoambient5.ogg','sound/ambience/technoambient6.ogg')
+	forced_ambience = list('sound/ambience/technoambient1.ogg','sound/ambience/technoambient2.ogg','sound/ambience/technoambient3.ogg','sound/ambience/technoambient4.ogg','sound/ambience/technoambient5.ogg','sound/ambience/technoambient6.ogg')
 
 /area/eris/engineering/gravity_generator
 	name = "Gravity Generator Room"
@@ -640,7 +648,7 @@
 	icon_state = "engine"
 	sound_env = LARGE_ENCLOSED
 	flags = AREA_FLAG_CRITICAL
-	ambience = list('sound/ambience/technoengineambient.ogg')
+	forced_ambience = list('sound/ambience/technoengineambient.ogg')
 
 /area/eris/engineering/engine_airlock
 	name = "\improper Engine Room Airlock"
@@ -692,7 +700,7 @@
 	icon_state = "erisgreen"
 
 /area/eris/engineering/wastingroom
-	name = "Wasting Room"
+	name = "Old Wasting Room"
 	icon_state = "erisred"
 	area_light_color = COLOR_LIGHTING_SCI_DARK
 
@@ -1045,10 +1053,6 @@
 	name = "\improper Cargo Office"
 	icon_state = "quartoffice"
 
-/area/eris/quartermaster/artistoffice
-	name = "\improper Guild Artist Office"
-	icon_state = "erisyellow"
-
 /area/eris/quartermaster/storage
 	name = "\improper Cargo Bay"
 	icon_state = "quartstorage"
@@ -1074,7 +1078,7 @@
 /area/eris/rnd
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
-	ambience = list('sound/ambience/researchambient1.ogg','sound/ambience/researchambient2.ogg','sound/ambience/researchambient3.ogg','sound/ambience/researchambient4.ogg','sound/ambience/researchambient5.ogg','sound/ambience/researchambient6.ogg','sound/ambience/researchambient7.ogg','sound/ambience/researchambient8.ogg','sound/ambience/researchambient9.ogg')
+	forced_ambience = list('sound/ambience/researchambient1.ogg','sound/ambience/researchambient2.ogg','sound/ambience/researchambient3.ogg','sound/ambience/researchambient4.ogg','sound/ambience/researchambient5.ogg','sound/ambience/researchambient6.ogg','sound/ambience/researchambient7.ogg','sound/ambience/researchambient8.ogg','sound/ambience/researchambient9.ogg')
 
 /area/eris/rnd/research
 	name = "\improper Research and Development"
