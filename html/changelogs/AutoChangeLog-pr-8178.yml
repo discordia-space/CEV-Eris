@@ -1,5 +1,0 @@
-author: WeNeedMorePhoron
-delete-after: true
-changes:
-  - bugfix: When game spawn in toxin, it no longer spawn in tar. Maint food, incompatible
-      blood etc. are 40x less deadly now.

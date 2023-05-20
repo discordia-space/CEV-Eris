@@ -44,3 +44,38 @@
 2023-05-19:
   TheShown911:
   - tweak: tweaked pulsar portals
+2023-05-20:
+  AltHit:
+  - rscadd: Armor values for prosthetics returned to their rightful place
+  - balance: Indirectly changes balance by making prosthetics playable (probably)
+  - bugfix: Limbs now melt from burn weapons again
+  - bugfix: Prosthetics now do not delimb after ridiculously low damage
+  Firefox13:
+  - tweak: Everyone can select *truly* any prosthetic now in character setup.
+  - bugfix: Fixed chat spam ("This body-mod does not match your chosen department").
+  - bugfix: Peridaxon doesn't heal brain or bones anymore. It's also slower at it.
+  - bugfix: Peridaxon doesn't damage bones on OD too (brain is also spared).
+  - rscdel: Nomad cigarette packet is removed from loadout but can still be obtained
+      in-game
+  - balance: Instead of removing paralysis/weakened Adrenaline now has weak painkiller
+      effect (same as inaprovaline).
+  - bugfix: Removed un/whitelist player button from non-admins
+  - tweak: Edited engine room to make it prettier and more compact
+  - rscadd: Added trap and roach/spider spawners to pulsar
+  Humonitarian:
+  - bugfix: fixes catwalks being indeconstructable
+  - tweak: nuka cola irradiates you
+  - balance: nuka cola, hyperzine nerfed
+  - balance: augmenting your leg with more muscle gives diminishing returns
+  MLGTASTICa:
+  - rscdel: Removed all ties of style with combat
+  - rscadd: Style now influences your insight gain , having max style will buff it
+      by 30% , and falling below will debuff to a maximum of 15%
+  Penwin0:
+  - bugfix: You can't spawn infinite mice by spamming "respawn as mouse" as a ghost.
+  Skyfire:
+  - tweak: Replaced the .60 ammo box sprites with new ones that are different from
+      the shotguns
+  WeNeedMorePhoron:
+  - bugfix: When game spawn in toxin, it no longer spawn in tar. Maint food, incompatible
+      blood etc. are 40x less deadly now.

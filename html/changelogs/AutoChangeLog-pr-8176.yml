@@ -1,7 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - rscdel: Nomad cigarette packet is removed from loadout but can still be obtained
-      in-game
-  - balance: Instead of removing paralysis/weakened Adrenaline now has weak painkiller
-      effect (same as inaprovaline).
