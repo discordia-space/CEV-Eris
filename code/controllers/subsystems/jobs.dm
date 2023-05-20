@@ -64,6 +64,44 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
 		return
 	SSjob.UnwhitelistPlayer(the_disavowed_one.ckey)
 
+/client/verb/showPlaytimes()
+	set category = "OOC"
+	set name = "Show playtimes"
+
+	if(!SSjob.initialized)
+		to_chat(mob, SPAN_NOTICE("The Jobs SubSystem is not initialized yet , please wait."))
+		return
+
+	var/client_key = ckey
+
+	if(!client_key) return
+
+	var/htmlContent = {"<html>
+	<head>
+		<title>Registered playtimes onboard CEV ERIS</title>
+	</head>
+	<body>
+		<ul>
+	"}
+
+	if(!length(ckey_to_job_to_playtime[ckey]))
+		LoadPlaytimes(ckey)
+	for(var/occupation in SSjob.occupations_by_name)
+		var/value = round(SSjob.ckey_to_job_to_playtime[client_key][occupation]/600)
+		if(mob?.mind?.assigned_job)
+			if(length(SSinactivity_and_job_tracking))
+				if(length(SSinactivity_and_job_tracking[ckey]))
+					value += round(SSinactivity_and_job_tracking[ckey][occupation])
+		if(!isnum(value))
+			value = 0
+		htmlContent += "<li> [occupation] : [value] Minutes</li>"
+	htmlContent += {"
+		</ul>
+	</body>
+	</html>"}
+
+	usr << browse(htmlContent, "window=playtimes;file=playtimes;display=1; size=300x300;border=0;can_close=1; can_resize=1;can_minimize=1;titlebar=1" )
+
 /datum/controller/subsystem/job/proc/WhitelistPlayer(ckey)
 	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
 	to_file(save_data["whitelisted"], TRUE)
@@ -79,6 +117,7 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
 		return FALSE
 	if(job_to_playtime_requirement[job_title] == 0)
 		return TRUE
+
 	var/datum/job/wanted_job = occupations_by_name[job_title]
 	var/datum/job/checking_job
 	if(!wanted_job)
@@ -128,6 +167,10 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
 			job_to_playtime_requirement[name] = text2num(value)
 		else if(name)
 			job_to_playtime_requirement[name] = 0
+	/// failsafe for non-existant config folders.
+	for(var/occupation in occupations_by_name)
+		if(!isnum(job_to_playtime_requirement[occupation]))
+			job_to_playtime_requirement[occupation] = 0
 	return TRUE
 
 /datum/controller/subsystem/job/proc/LoadPlaytimes(ckey)
