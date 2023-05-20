@@ -252,11 +252,16 @@
 
 /mob/new_player/proc/IsJobAvailable(rank)
 	var/datum/job/job = SSjob.GetJob(rank)
-	if(!job)	return FALSE
-	if(!job.is_position_available()) return FALSE
-	if(IsGuestKey(ckey) && SSjob.job_to_playtime_requirement[job.title]) return FALSE
-	if(!SSjob.ckey_to_job_to_can_play[client.ckey][job.title]) return FALSE
-	if(jobban_isbanned(src,rank))	return FALSE
+	if(!job)	
+		return FALSE
+	if(!job.is_position_available())	
+		return FALSE
+	if(IsGuestKey(ckey) && SSjob.job_to_playtime_requirement[job.title])	
+		return FALSE
+	if(!SSjob.ckey_to_job_to_can_play[client.ckey][job.title])
+		return FALSE
+	if(jobban_isbanned(src,rank))	
+		return FALSE
 	return TRUE
 
 /mob/new_player/proc/AttemptLateSpawn(rank, var/spawning_at)
