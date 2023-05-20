@@ -91,7 +91,7 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
 		if(mob?.mind?.assigned_job)
 			if(length(SSinactivity_and_job_tracking))
 				if(length(SSinactivity_and_job_tracking[ckey]))
-					value += round(SSinactivity_and_job_tracking[ckey][occupation])
+					value += round(SSinactivity_and_job_tracking[ckey][occupation]/600)
 		if(!isnum(value))
 			value = 0
 		htmlContent += "<li> [occupation] : [value] Minutes</li>"
