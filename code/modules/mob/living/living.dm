@@ -869,9 +869,9 @@ default behaviour is:
 
 /mob/living/Initialize()
 	. = ..()
-	/// This proc used to be done in New()
-	/// and it was a good example of byond-function failsafe, sha1 was never random , but it kept using random variables from uninitialized variables on a mob(all humans start as unknowns)
-	/// Hence it was always random, and never bothered anyone for  8 years , until someone decided to change it to Initialize and unearthed this bug -SPCR
+	/// This proc used to be done in New() and was still somehow random with people having the same real name and name
+	/// I think it was random because of Human New calling Initialize and then calling the parent of New()
+	/// Hence it kept being random whilst unexpected...  -SPCR
 	dna_trace = sha1(real_name)
 	fingers_trace = md5(real_name)
 
