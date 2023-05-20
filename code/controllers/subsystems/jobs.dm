@@ -2,10 +2,13 @@
 #define BE_ASSISTANT 1
 #define RETURN_TO_LOBBY 2
 
+/// You get 25 queries as the cap.
+#define PERMITTED_QUERIES_IN_TOTAL 25
+
 SUBSYSTEM_DEF(job)
 	name = "Jobs"
 	init_order = INIT_ORDER_JOBS
-	flags = SS_NO_FIRE
+	wait = 1 MINUTE
 
 	var/list/occupations = list()			//List of all jobs
 	var/list/occupations_by_name = list()	//Dict of all jobs, keys are titles
@@ -15,6 +18,8 @@ SUBSYSTEM_DEF(job)
 	var/list/ckey_to_job_to_playtime = list()
 	var/list/ckey_to_job_to_can_play = list()
 	var/list/job_to_playtime_requirement = list()
+	/// DOS Attack prevention by locking off file-reads.
+	var/list/queries_by_key = list()
 
 /datum/controller/subsystem/job/Initialize(start_timeofday)
 	if(!occupations.len)
@@ -23,6 +28,10 @@ SUBSYSTEM_DEF(job)
 		LoadPlaytimeRequirements("config/job_playtime_requirements.txt")
 	return ..()
 
+/datum/controller/subsystem/job/fire(resumed)
+	for(var/key in queries_by_key)
+		if(queries_by_key[key] > 3)
+			queries_by_key[key] -= 3
 
 /datum/controller/subsystem/job/proc/UpdatePlayableJobs(ckey)
 	if(!length(ckey_to_job_to_can_play[ckey]))
@@ -84,8 +93,10 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
 		<ul>
 	"}
 
-	if(!length(ckey_to_job_to_playtime[ckey]))
-		LoadPlaytimes(ckey)
+	if(!length(SSjob.ckey_to_job_to_playtime[ckey]))
+		SSjob.LoadPlaytimes(ckey)
+	if(!length(SSjob.ckey_to_job_to_playtime[ckey]))
+		to_chat(mob, SPAN_NOTICE("SSjobs was unable to load your playtimes."))
 	for(var/occupation in SSjob.occupations_by_name)
 		var/value = round(SSjob.ckey_to_job_to_playtime[client_key][occupation]/600)
 		if(mob?.mind?.assigned_job)
@@ -176,6 +187,9 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
 /datum/controller/subsystem/job/proc/LoadPlaytimes(ckey)
 	if(!ckey)
 		return
+	if(queries_by_key[ckey] > PERMITTED_QUERIES_IN_TOTAL)
+		return
+	queries_by_key[ckey]++
 	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
 	for(var/occupation in occupations_by_name)
 		save_data.cd = occupation
