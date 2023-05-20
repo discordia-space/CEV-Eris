@@ -1694,6 +1694,7 @@
 #include "code\modules\ext_scripts\python.dm"
 #include "code\modules\flufftext\Dreaming.dm"
 #include "code\modules\flufftext\TextFilters.dm"
+#include "code\modules\food\drywet.dm"
 #include "code\modules\food\recipes_microwave.dm"
 #include "code\modules\games\boardgame.dm"
 #include "code\modules\games\cardemon.dm"
