@@ -99,11 +99,12 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
 		to_chat(mob, SPAN_NOTICE("SSjobs was unable to load your playtimes."))
 	for(var/occupation in SSjob.occupations_by_name)
 		var/value = round(SSjob.ckey_to_job_to_playtime[client_key][occupation]/600)
-		if(mob?.mind?.assigned_job)
-			if(length(SSinactivity_and_job_tracking))
-				if(length(SSinactivity_and_job_tracking[ckey]))
-					value += round(SSinactivity_and_job_tracking[ckey][occupation]/600)
+		if(length(SSinactivity_and_job_tracking.current_playtimes))
+			if(length(SSinactivity_and_job_tracking.current_playtimes[ckey]))
+				value += round(SSinactivity_and_job_tracking.current_playtimes[ckey][occupation]/600)
+
 		if(!isnum(value))
+			message_admins("Value wasn't a number,  value was [value]")
 			value = 0
 		htmlContent += "<li> [occupation] : [value] Minutes</li>"
 	htmlContent += {"
@@ -195,7 +196,11 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, null, FALSE)
 		save_data.cd = occupation
 		if(!length(ckey_to_job_to_playtime[ckey]))
 			ckey_to_job_to_playtime[ckey] = list()
-		from_file(save_data["playtime"], ckey_to_job_to_playtime[ckey][occupation])
+		var/value
+		from_file(save_data["playtime"], value)
+		if(!isnum(value) || !value)
+			value = 0
+		ckey_to_job_to_playtime[ckey][occupation] = value
 		// return to last directory
 		save_data.cd = ".."
 
