@@ -30,7 +30,11 @@ SUBSYSTEM_DEF(inactivity_and_job_tracking)
 			number_kicked++
 		else if (C.mob && C.mob.mind && C.mob.stat != DEAD)
 			C.mob.mind.last_activity = world.time - C.inactivity
-			if(C.mob.mind?.assigned_job?.title)
+			if(C.mob.mind?.assigned_job?.title && !isghost(C.mob))
+				// This also shouldn't happen.
+				if(!length(current_playtimes[C.ckey]))
+					current_playtimes[C.ckey] = list()
+					message_admins("Missing ckey-list for playtime in SSinactivity for [C.ckey] with the job [C.mob.mind.assigned_job.title] and mob [C.mob], creating a list.")
 				// this shouldnt happen but there are cases that dont use SSjobs and give jobs, and finding em is too tedious
 				if(!length(current_playtimes[C.ckey][C.mob.mind.assigned_job.title]))
 					current_playtimes[C.ckey][C.mob.mind.assigned_job.title] = 0
