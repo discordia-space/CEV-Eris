@@ -24,8 +24,6 @@
 
 	GLOB.human_mob_list |= src
 
-	. = ..()
-
 	if(!species)
 		if(new_species)
 			set_species(new_species,1)
@@ -37,6 +35,9 @@
 		name = real_name
 		if(mind)
 			mind.name = real_name
+	. = ..()
+
+
 
 	sync_organ_dna()
 	make_blood()

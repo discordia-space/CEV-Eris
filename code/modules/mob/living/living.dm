@@ -866,12 +866,12 @@ default behaviour is:
 	static_overlay = image(get_static_icon(new/icon(icon, icon_state)), loc = src)
 	static_overlay.override = 1
 
+
 /mob/living/Initialize()
 	. = ..()
-
-	if(!real_name)
-		real_name = name
-
+	/// This proc used to be done in New()
+	/// and it was a good example of byond-function failsafe, sha1 was never random , but it kept using random variables from uninitialized variables on a mob(all humans start as unknowns)
+	/// Hence it was always random, and never bothered anyone for  8 years , until someone decided to change it to Initialize and unearthed this bug -SPCR
 	dna_trace = sha1(real_name)
 	fingers_trace = md5(real_name)
 
