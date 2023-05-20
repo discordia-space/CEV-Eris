@@ -27,7 +27,7 @@
 	price_tag = 1600
 	gun_tags = list(GUN_GILDABLE)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	gun_parts = list(/obj/item/part/gun/frame/avasarala = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/magnum = 1)
+	gun_parts = list(/obj/item/part/gun/frame/avasarala = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/pistol = 1, /obj/item/part/gun/modular/barrel/magnum = 1)
 	serial_type = "NT"
 
 /obj/item/gun/projectile/avasarala/update_icon()
@@ -39,6 +39,9 @@
 	if(gilded)
 		iconstring += "_gold"
 		itemstring += "_gold"
+		wielded_item_state = "_doble" + "_gold"
+	else
+		wielded_item_state = "_doble"
 
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
@@ -55,6 +58,6 @@
 	desc = "An Avasarala pistol frame. Something to command respect."
 	icon_state = "frame_deagle"
 	resultvars = list(/obj/item/gun/projectile/avasarala)
-	gripvars = list(/obj/item/part/gun/grip/black)
-	mechanismvar = /obj/item/part/gun/mechanism/pistol
-	barrelvars = list(/obj/item/part/gun/barrel/magnum)
+	gripvars = list(/obj/item/part/gun/modular/grip/black)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/modular/barrel/magnum)

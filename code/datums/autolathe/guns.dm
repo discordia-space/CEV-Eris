@@ -28,18 +28,18 @@
 	build_path = /obj/item/gun/projectile/paco
 
 /datum/design/autolathe/gun/mk58
-	name = "NT HG .35 \"Mk58\""
-	build_path = /obj/item/gun/projectile/mk58
+	name = "NT HG .35 \"Mk-58 B\""
+	build_path = /obj/item/gun/projectile/automatic/modular/mk58/gray/stock
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/mk58_wood
-	name = "NT HG .35 \"Mk58c\""
-	build_path = /obj/item/gun/projectile/mk58/wood
+	name = "NT HG .35 \"Mk-58 C\""
+	build_path = /obj/item/gun/projectile/automatic/modular/mk58/gray/wood
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/mk58_army
-	name = "NT HG .35 \"Mk58m\""
-	build_path = /obj/item/gun/projectile/mk58/army
+	name = "NT HG .35 \"Mk-58 e\""
+	build_path = /obj/item/gun/projectile/automatic/modular/mk58/black/army
 	factions = list(FACTION_NEOTHEOLOGY)
 
 /datum/design/autolathe/gun/colt
@@ -146,7 +146,7 @@
 
 /datum/design/autolathe/gun/wintermute
 	name = "FS AR .20 \"Wintermute\""
-	build_path = /obj/item/gun/projectile/automatic/wintermute
+	build_path = /obj/item/gun/projectile/automatic/modular/wintermute/finished
 
 /datum/design/autolathe/gun/kovacs
 	name = "SA BR .20 \"Kovacs\""
@@ -178,20 +178,20 @@
 	build_path = /obj/item/gun/projectile/boltgun/fs
 
 /datum/design/autolathe/gun/ak47
-	name = "Excelsior .30 Kalashnikov"
-	build_path = /obj/item/gun/projectile/automatic/ak47
+	name = "Excelsior Car .30 Kalashnikov"
+	build_path = /obj/item/gun/projectile/automatic/modular/ak/excelsior
 
 /datum/design/autolathe/gun/ak47_fs
 	name = "FS AR .30 \"Vipr\""
-	build_path = /obj/item/gun/projectile/automatic/ak47/fs
+	build_path = /obj/item/gun/projectile/automatic/modular/ak/frozen_star
 
 /datum/design/autolathe/gun/ak47_fs_ih
 	name = "FS AR .30 \"Venger\""
-	build_path = /obj/item/gun/projectile/automatic/ak47/fs/ih
+	build_path = /obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities
 
 /datum/design/autolathe/gun/ak47_sa
-	name = "SA CAR .30 \"Krinkov\""
-	build_path = /obj/item/gun/projectile/automatic/ak47/sa
+	name = "SA AR .30 \"Krinkov\""
+	build_path = /obj/item/gun/projectile/automatic/modular/ak/serbian_arms
 
 /datum/design/autolathe/gun/sts35
 	name = "OR SDF AR .30 \"STS-35\""

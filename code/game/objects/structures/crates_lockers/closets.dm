@@ -163,6 +163,9 @@
 		return
 
 	AM.forceMove(src)
+	// This could submit Src as the containing moveable , but in the future someone
+	// might as well add vehicles and not adjust this.
+	//SEND_SIGNAL(AM, COMSIG_ATOM_CONTAINERED, getContainingMovable())
 	if(AM.pulledby)
 		AM.pulledby.stop_pulling()
 

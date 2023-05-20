@@ -87,6 +87,11 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/deepmaint)
+"N" = (
+/obj/machinery/optable,
+/obj/landmark/corpse/skeleton,
+/turf/simulated/floor/tiled/white/panels,
+/area/deepmaint)
 
 (1,1,1) = {"
 a
@@ -134,7 +139,7 @@ i
 g
 a
 i
-l
+N
 m
 o
 r

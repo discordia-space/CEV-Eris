@@ -38,8 +38,8 @@ SUBSYSTEM_DEF(inactivity_and_job_tracking)
 				// this shouldnt happen but there are cases that dont use SSjobs and give jobs, and finding em is too tedious
 				if(!length(current_playtimes[C.ckey][C.mob.mind.assigned_job.title]))
 					current_playtimes[C.ckey][C.mob.mind.assigned_job.title] = 0
-
 					message_admins("Missing job-list playtime in SSinactivity for [C.ckey] with the job [C.mob.mind.assigned_job.title], creating a list.")
+			if(C.mob.mind?.assigned_job?.title)
 				current_playtimes[C.ckey][C.mob.mind.assigned_job.title] += 1 MINUTE
 
 		if (MC_TICK_CHECK)

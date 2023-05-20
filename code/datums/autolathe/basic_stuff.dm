@@ -22,6 +22,10 @@
 	name = "radio headset"
 	build_path = /obj/item/device/radio/headset
 
+/datum/design/autolathe/misc/earmuffs
+	name = "earmuffs"
+	build_path = /obj/item/clothing/ears/earmuffs
+
 /datum/design/autolathe/misc/radio_bounced
 	name = "ship bounced radio"
 	build_path = /obj/item/device/radio/off

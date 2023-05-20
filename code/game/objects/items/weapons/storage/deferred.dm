@@ -161,7 +161,7 @@
 	name = "rifleman crate"
 	desc = "A crate containing six SA AK-47 rifles, and plenty of magazines."
 	icon_state = "serbcrate_deferred_green"
-	initial_contents = list(/obj/item/gun/projectile/automatic/ak47/sa  = 6,
+	initial_contents = list(/obj/item/gun/projectile/automatic/modular/ak/serbian_arms  = 6,
 	/obj/item/ammo_magazine/lrifle = 12, /obj/item/ammo_magazine/lrifle/drum = 6)
 
 /obj/item/storage/deferred/crate/kovacs
@@ -225,6 +225,17 @@
 	initial_contents = list(
 		/obj/item/gun/projectile/automatic/zoric = 4,
 		/obj/item/ammo_magazine/msmg = 16,
+		)
+
+/obj/item/storage/deferred/crate/shotgun
+	name = "pointman shotgun crate"
+	desc = "A crate containing 4 bojevic autoshotguns and 120 rounds of .50 buck and slug ammunition each. good to keep handy \
+			for close encounters."
+	icon_state = "serbcrate_deferred_black"
+	initial_contents = list(
+		/obj/item/gun/projectile/shotgun/bojevic = 4,
+		/obj/item/ammo_magazine/m12/pellet = 10,
+		/obj/item/ammo_magazine/m12 = 10
 		)
 
 /obj/item/storage/deferred/crate/cells

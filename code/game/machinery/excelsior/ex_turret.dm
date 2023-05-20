@@ -16,7 +16,7 @@
 	var/ammo_max = 96
 	var/working_range = 30 // how far this turret operates from excelsior teleporter
 	var/burst_lenght = 8
-	health = 60
+	health = 300
 	shot_delay = 0
 
 /obj/machinery/porta_turret/excelsior/proc/has_power_source_nearby()

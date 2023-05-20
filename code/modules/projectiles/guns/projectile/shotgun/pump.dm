@@ -24,7 +24,7 @@
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/shotgun/pump/sawn
-	gun_parts = list(/obj/item/part/gun/frame/kammerer = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	gun_parts = list(/obj/item/part/gun/frame/kammerer = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/shotgun = 1, /obj/item/part/gun/modular/barrel/shotgun = 1)
 	serial_type = "FS"
 
 /obj/item/gun/projectile/shotgun/pump/consume_next_projectile()
@@ -57,9 +57,9 @@
 	desc = "A Kammerer shotgun frame. A militiaman's favorite."
 	icon_state = "frame_shotgun"
 	resultvars = list(/obj/item/gun/projectile/shotgun/pump)
-	gripvars = list(/obj/item/part/gun/grip/wood)
-	mechanismvar = /obj/item/part/gun/mechanism/shotgun
-	barrelvars = list(/obj/item/part/gun/barrel/shotgun)
+	gripvars = list(/obj/item/part/gun/modular/grip/wood)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/shotgun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun)
 
 /obj/item/gun/projectile/shotgun/pump/sawn
 	name = "sawn-off FS SG \"Kammerer\""
