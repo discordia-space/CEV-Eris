@@ -25408,9 +25408,6 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/command/courtroom)
 "biN" = (
-/obj/structure/reagent_dispensers/virusfood{
-	pixel_y = 32
-	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/virology)
 "biO" = (

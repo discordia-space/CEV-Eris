@@ -341,11 +341,6 @@
 	catalysts = list("plasma" = 5)
 	result_amount = 2
 
-/datum/chemical_reaction/virus_food
-	result = "virusfood"
-	required_reagents = list("water" = 1, "milk" = 1)
-	result_amount = 5
-
 /datum/chemical_reaction/leporazine
 	result = "leporazine"
 	required_reagents = list("silicon" = 1, "copper" = 1)
