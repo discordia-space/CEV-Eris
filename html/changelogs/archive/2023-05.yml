@@ -79,3 +79,6 @@
   WeNeedMorePhoron:
   - bugfix: When game spawn in toxin, it no longer spawn in tar. Maint food, incompatible
       blood etc. are 40x less deadly now.
+2023-05-21:
+  MLGTASTICa:
+  - bugfix: Fixed everyone having the same DNA.
