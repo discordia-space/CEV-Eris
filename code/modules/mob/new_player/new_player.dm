@@ -298,7 +298,6 @@
 	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, rank, late = TRUE)
 	spawnpoint.put_mob(character) // This can fail, and it'll result in the players being left in space and not being teleported to the station. But atleast they'll be equipped. Needs to be fixed so a default case for extreme situations is added.
 	character = SSjob.EquipRank(character, rank) //equips the human
-	equip_custom_items(character)
 	character.lastarea = get_area(loc)
 
 	if(SSjob.ShouldCreateRecords(job.title))

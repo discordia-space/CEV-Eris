@@ -7,10 +7,6 @@
 	reagents = bloodstr
 	..()
 
-/mob/living/carbon/Life()
-	. = ..()
-	handle_viruses()
-
 /mob/living/carbon/Destroy()
 	QDEL_NULL(metabolism_effects)
 	reagents = null
@@ -361,8 +357,6 @@
 	if(now_pushing || !yes)
 		return
 	..()
-	if(iscarbon(AM) && prob(10))
-		src.spread_disease_to(AM, "Contact")
 
 /mob/living/carbon/cannot_use_vents()
 	return
