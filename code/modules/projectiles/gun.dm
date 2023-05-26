@@ -31,7 +31,6 @@
 
 	var/list/custom_default = list() // used to preserve changes to stats past refresh_upgrades proccing
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
-	var/style_damage_multiplier = 1 // multiplies style damage of projectiles fired from this gun
 	var/penetration_multiplier = 0 //Sum of armor penetration of projectiles fired from this gun
 	var/pierce_multiplier = 0 //Additing wall penetration to projectiles fired from this gun
 	var/ricochet_multiplier = 1 //multiplier for how much projectiles fired from this gun can ricochet, modified by the bullet blender weapon mod
@@ -119,6 +118,8 @@
 		..()
 
 
+
+// Modular guns overwrite this
 /obj/item/gun/attackby(obj/item/I, mob/living/user, params)
 	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, serial_type ? QUALITY_HAMMERING : null), src)
 	switch(tool_type)
@@ -215,7 +216,7 @@
 		if(wield_state && wielded)//Because most of the time the "normal" icon state is held in one hand. This could be expanded to be less hacky in the future.
 			item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state
 			item_state_slots[slot_r_hand_str] = "righthand" + wield_state
-			
+
 		else
 			item_state_slots[slot_l_hand_str] = "lefthand"  + state
 			item_state_slots[slot_r_hand_str] = "righthand" + state
@@ -394,7 +395,6 @@
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 
-		projectile.multiply_projectile_style_damage(style_damage_multiplier)
 
 		projectile.add_projectile_penetration(penetration_multiplier)
 

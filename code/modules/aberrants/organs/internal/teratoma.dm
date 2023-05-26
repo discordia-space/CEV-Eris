@@ -46,7 +46,7 @@
 				else
 					specific_input_type_pool = DAMAGE_TYPES_BASIC
 					input_threshold = 45
-					
+
 			input_mode = NOT_USED
 
 		if(/obj/item/modification/organ/internal/input/power_source)

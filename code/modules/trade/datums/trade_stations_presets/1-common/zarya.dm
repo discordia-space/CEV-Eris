@@ -89,6 +89,17 @@
 			/obj/machinery/floodlight,
 			/obj/item/construct/conveyor = custom_good_price(50),
 			/obj/item/construct/conveyor_switch = custom_good_price(50)
+		),
+		"Custom Flooring" = list(
+			/obj/item/stack/tile/carpet/full = custom_good_price(50),
+			/obj/item/stack/tile/carpet/bcarpet/full = custom_good_price(50),
+			/obj/item/stack/tile/carpet/blucarpet/full = custom_good_price(50),
+			/obj/item/stack/tile/carpet/oracarpet/full = custom_good_price(50),
+			/obj/item/stack/tile/carpet/turcarpet/full = custom_good_price(50),
+			/obj/item/stack/tile/carpet/purcarpet/full = custom_good_price(50),
+			/obj/item/stack/tile/grass/full = custom_good_price(100),
+		    /obj/item/stack/tile/wood/full = custom_good_price(150),
+			/obj/item/stack/tile/carpet/gaycarpet/full = custom_good_price(150),
 		)
 	)
 	offer_types = list(
@@ -96,12 +107,13 @@
 		/obj/item/tool_upgrade/augment/randomizer = offer_data("BSL \"Randomizer\" tool polish", 1600, 2),
 		/obj/item/oddity/common/blueprint = offer_data("strange blueprint", 500, 1),
 		/obj/item/oddity/common/old_radio = offer_data("old radio", 500, 1),
-		/obj/item/organ/external/robotic = offer_data("any external prosthetic", 400, 8),
-		/obj/item/tool/crowbar = offer_data_mods("modified crowbar (6 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 6),
-		/obj/item/tool/screwdriver = offer_data_mods("modified screwdriver (6 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 6),
-		/obj/item/tool/shovel = offer_data_mods("modified shovel (6 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 6),
-		/obj/item/tool/wirecutters = offer_data_mods("modified wirecutters (6 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 6),
-		/obj/item/tool/wrench = offer_data_mods("modified wrench (6 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 6),
-		/obj/item/tool/weldingtool = offer_data_mods("modified welding tool (6 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 6),
-		/obj/item/oddity/techno = offer_data("unknown technological part", 3200, 2)
+		/obj/item/organ/external/robotic = offer_data("any external prosthetic", 500, 6),
+		/obj/item/tool/crowbar = offer_data_mods("modified crowbar (4 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 4),
+		/obj/item/tool/screwdriver = offer_data_mods("modified screwdriver (4 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 4),
+		/obj/item/tool/shovel = offer_data_mods("modified shovel (4 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 4),
+		/obj/item/tool/wirecutters = offer_data_mods("modified wirecutters (4 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 4),
+		/obj/item/tool/wrench = offer_data_mods("modified wrench (4 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 4),
+		/obj/item/tool/weldingtool = offer_data_mods("modified welding tool (4 upgrades)", 2800, 2, OFFER_MODDED_TOOL, 4),
+		/obj/item/oddity/techno = offer_data("unknown technological part", 3200, 2),
+		/obj/machinery/power/supermatter = offer_data("supermatter shard", 20000, 1) // Go on, get it from deepmaint, I dare you
 	)

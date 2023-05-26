@@ -856,6 +856,7 @@
 
 /datum/reagent/toxin/tar
 	name = "Tar"
+	id = "tar"
 	description = "A dark, viscous liquid."
 	taste_description = "petroleum"
 	color = "#140b30"

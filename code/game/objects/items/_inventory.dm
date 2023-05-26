@@ -152,20 +152,14 @@
 			return FALSE
 		if(!H.can_equip(src, target, FALSE, FALSE, FALSE))
 			return FALSE
-		H.remove_from_mob(src, drop = FALSE)
+		H.remove_from_mob(src, FALSE)
 		/*
 			Copied from human equip_to_slot
 			Separate since its needed to prevent double-signals being sent
 			on atom containerization
 
 		*/
-		forceMove(user)
-		H.legacy_equip_to_slot(src, target, TRUE)
-		equipped(user, target)
-		update_wear_icon(TRUE)
-		screen_loc = H.find_inv_position(target)
-		layer = ABOVE_HUD_LAYER
-		plane = ABOVE_HUD_PLANE
+		H.equip_to_slot(src, target, TRUE, FALSE)
 		if(H.client)
 			H.client.screen |= src
 		if(action_button_name)

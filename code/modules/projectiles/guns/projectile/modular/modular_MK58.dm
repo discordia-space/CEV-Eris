@@ -1,5 +1,5 @@
 /obj/item/gun/projectile/automatic/modular/mk58 // Parent type
-	name = "\"Mk-58\""
+	name = "\"Mk58\""
 	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, that was produced by a NanoTrasen subsidiary. Uses standard .35 and high capacity magazines."
 	icon = 'icons/obj/guns/projectile/modular/mk58.dmi'
 	icon_state = "frame" // frame_gray, frame_black, frame_tan
@@ -8,12 +8,12 @@
 	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1) // Parts can give better tech
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE // So far not modular
-	magazine_type = /obj/item/ammo_magazine/pistol // Default magazine, only relevant for spawned AKs, not crafted or printed ones
+	magazine_type = /obj/item/ammo_magazine/pistol // Default magazine, only relevant for spawned pistols, not crafted or printed ones
 	matter = list(MATERIAL_PLASTEEL = 5)
-	price_tag = 400
+	price_tag = 600
+	damage_multiplier = 1.3
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	can_dual = TRUE
-	magazine_type = /obj/item/ammo_magazine/pistol
 	init_recoil = HANDGUN_RECOIL(1)
 
 	spawn_tags = SPAWN_TAG_GUN_PART
@@ -31,19 +31,19 @@
 	if(grip_type)
 		switch(grip_type)
 			if("wood")
-				return "NT HG [caliber] \"Mk-58 C\""
+				return "NT HG [caliber] \"Mk58 C\"" //civillian
 			if("black")
-				return "NT HG [caliber] \"Mk-58 B\""
+				return "NT HG [caliber] \"Mk58 S\"" //security
 			if("rubber")
-				return "NT HG [caliber] \"Mk-58 a\""
+				return "NT HG [caliber] \"Mk58 T\"" //tacticool
 			if("excelsior")
-				return "NT HG [caliber] \"Mk-58 e\""
+				return "NT HG [caliber] \"Mk58 M\"" //military
 			if("serbian")
-				return "NT HG [caliber] \"Mk-58 T\""
+				return "SA HG [caliber] \"Mk58\"" //serbian arms
 			if("makeshift")
-				return "NT HG [caliber] \"Mk-58 m\""
+				return "HM HG [caliber] \"Mk58\""
 	else
-		return "NT [caliber] \"Mk-58\""
+		return "NT [caliber] \"Mk58\""
 
 /obj/item/gun/projectile/automatic/modular/mk58/gray // Frame
 	icon_state = "frame_gray"
@@ -57,14 +57,26 @@
 	icon_state = "frame_tan"
 	spawn_blacklisted = FALSE // Spawns in gun part loot
 
+/obj/item/gun/projectile/automatic/modular/mk58/alternate // Frame
+	icon_state = "frame_altgray"
+	spawn_blacklisted = FALSE // Spawns in gun part loot
+
 /obj/item/gun/projectile/automatic/modular/mk58/gray/stock
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/black)
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
+	magazine_type = /obj/item/ammo_magazine/pistol
 
 /obj/item/gun/projectile/automatic/modular/mk58/gray/wood
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/wood)
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
+	magazine_type = /obj/item/ammo_magazine/pistol
 
 /obj/item/gun/projectile/automatic/modular/mk58/black/army
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/excel) // Funny
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/excel)
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
+	magazine_type = /obj/item/ammo_magazine/pistol
+
+/obj/item/gun/projectile/automatic/modular/mk58/tan/army
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/excel)
+	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
+	magazine_type = /obj/item/ammo_magazine/pistol
