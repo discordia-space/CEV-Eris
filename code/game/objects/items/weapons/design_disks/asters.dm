@@ -47,6 +47,7 @@
 		/datum/design/autolathe/misc/radio_bounced,
 		/datum/design/autolathe/misc/ashtray,
 		/datum/design/autolathe/misc/mirror,
+		/datum/design/autolathe/misc/earmuffs,
 		/datum/design/autolathe/container/drinkingglass,
 		/datum/design/autolathe/container/carafe,
 		/datum/design/autolathe/container/insulated_pitcher,

@@ -9,7 +9,6 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 1) // Parts can give better tech
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE // So far not modular
-	magazine_type = /obj/item/ammo_magazine/lrifle // Default magazine, only relevant for spawned AKs, not crafted or printed ones
 	matter = list(MATERIAL_PLASTEEL = 5)
 	price_tag = 1000 // Same reason as matter, albeit this is where the license points matter
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
@@ -49,22 +48,27 @@
 /obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities // Total points: 4, contains all the bits that make an IH ak an IH ak
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/heavy, /obj/item/part/gun/modular/barrel/lrifle, /obj/item/part/gun/modular/grip/rubber, /obj/item/part/gun/modular/stock)
 	spawn_blacklisted = TRUE
+	magazine_type = /obj/item/ammo_magazine/lrifle
 
 /obj/item/gun/projectile/automatic/modular/ak/frozen_star // Total points: 3, contains all the bits that make an FS ak an FS ak
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/basic, /obj/item/part/gun/modular/barrel/lrifle/cheap, /obj/item/part/gun/modular/grip/rubber, /obj/item/part/gun/modular/stock)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	magazine_type = /obj/item/ammo_magazine/lrifle
 
 /obj/item/gun/projectile/automatic/modular/ak/serbian_arms // Total points: 6, contains all the bits that make a serb ak a serb ak
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/light, /obj/item/part/gun/modular/barrel/lrifle/forged, /obj/item/part/gun/modular/grip/serb, /obj/item/part/gun/modular/stock)
 	spawn_blacklisted = TRUE
+	magazine_type = /obj/item/ammo_magazine/lrifle/drum // Let em go wild
 
 /obj/item/gun/projectile/automatic/modular/ak/excelsior // Total points: 6, contains all the bits that make an excel ak an excel ak
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/determined/excelsior, /obj/item/part/gun/modular/barrel/lrifle/forged, /obj/item/part/gun/modular/grip/excel)
 	spawn_blacklisted = TRUE
+	magazine_type = /obj/item/ammo_magazine/lrifle
 
 /obj/item/gun/projectile/automatic/modular/ak/makeshift
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/simple, /obj/item/part/gun/modular/barrel/lrifle/cheap, /obj/item/part/gun/modular/grip/makeshift, /obj/item/part/gun/modular/stock)
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
+	magazine_type = /obj/item/ammo_magazine/lrifle
 
 	origin_tech = list(TECH_COMBAT = 1)
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \

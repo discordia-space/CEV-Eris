@@ -79,6 +79,10 @@
 	var/obj/item/I = get_active_hand()
 	unEquip(I, Target, MOVED_DROP)
 
+/mob/proc/drop_offhand(var/atom/Target)
+	var/obj/item/I = get_inactive_hand()
+	unEquip(I, Target, MOVED_DROP)
+
 /*
 	Removes the object from any slots the mob might have, calling the appropriate icon update proc.
 	Does nothing else.

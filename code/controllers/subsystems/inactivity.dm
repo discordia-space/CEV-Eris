@@ -1,11 +1,22 @@
-SUBSYSTEM_DEF(inactivity)
-	name = "Inactivity"
+SUBSYSTEM_DEF(inactivity_and_job_tracking)
+	name = "Inactivity and Job tracking"
 	wait = 1 MINUTES
-	priority = SS_PRIORITY_INACTIVITY
+	priority = SS_PRIORITY_INACTIVITY_AND_JOB_TRACKING
 	var/tmp/list/client_list
+	var/list/current_playtimes = list()
 	var/number_kicked = 0
 
-/datum/controller/subsystem/inactivity/fire(resumed = FALSE)
+/datum/controller/subsystem/inactivity_and_job_tracking/proc/on_job_spawn(mob/target, client_ckey)
+	if(!target || !client_ckey)
+		return
+	if(!target?.mind?.assigned_job?.title)
+		return
+	if(!length(current_playtimes[client_ckey]))
+		current_playtimes[client_ckey] = list()
+	if(!length(current_playtimes[client_ckey][target.mind.assigned_job.title]))
+		current_playtimes[client_ckey][target.mind.assigned_job.title] = 0
+
+/datum/controller/subsystem/inactivity_and_job_tracking/fire(resumed = FALSE)
 	if (!resumed)
 		client_list = clients.Copy()
 
@@ -19,9 +30,11 @@ SUBSYSTEM_DEF(inactivity)
 			number_kicked++
 		else if (C.mob && C.mob.mind && C.mob.stat != DEAD)
 			C.mob.mind.last_activity = world.time - C.inactivity
+			if(C.mob.mind?.assigned_job?.title)
+				current_playtimes[C.ckey][C.mob.mind.assigned_job.title] += 1 MINUTE
 
 		if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/inactivity/stat_entry()
+/datum/controller/subsystem/inactivity_and_job_tracking/stat_entry()
 	..("Kicked: [number_kicked]")

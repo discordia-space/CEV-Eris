@@ -41,7 +41,6 @@
 	can_ricochet = FALSE
 	hitscan = TRUE
 	invisibility = 101	//Works like beams
-	style_damage = 101 // Shouldn't have gotten hit by an RPG
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle
 	tracer_type = /obj/effect/projectile/xray/tracer

@@ -71,7 +71,6 @@
 	var/gunshot_residue
 	var/holding_back // Are you trying not to hurt your opponent?
 	var/blocking = FALSE //ready to block melee attacks?
-	var/dodging = TRUE // are you dodging those shots?
 
 	mob_bump_flag = HUMAN
 	mob_push_flags = ~HEAVY
@@ -100,8 +99,6 @@
 
 	var/style = 0
 	var/max_style = MAX_HUMAN_STYLE
-	var/slickness = 0 // used for stylish dodging stuff, capped at style * 10
-	var/confidence = TRUE // needed to notify player when slickness passively regens
 
 	var/shock_resist = 0 // Resistance to paincrit
 
