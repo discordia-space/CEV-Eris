@@ -47,6 +47,7 @@ SUBSYSTEM_DEF(job)
 		else
 			ckey_to_job_to_can_play[ckey][occupation] = CanHaveJob(ckey, occupation)
 
+
 ADMIN_VERB_ADD(/client/verb/whitelistPlayerForJobs, R_ADMIN, FALSE)
 /client/verb/whitelistPlayerForJobs()
 	set category = "Admin"
