@@ -51,6 +51,5 @@
 		)
 	)
 	offer_types = list(
-		/obj/machinery/nuclearbomb = offer_data("nuclear weapon", 50000, 1),
 		/obj/item/stack/telecrystal = offer_data("telecrystal x50", 100000, 1)
 	)
