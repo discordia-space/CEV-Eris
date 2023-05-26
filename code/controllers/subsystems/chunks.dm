@@ -70,7 +70,10 @@ SUBSYSTEM_DEF(chunks)
 		for(var/chunkY = coordinates[2], chunkY <= coordinates[4], chunkY += CHUNK_SIZE)
 			chunkReference = SSchunks.chunk_list_by_zlevel[container.z][CHUNKID(chunkX, chunkY)]
 			for(var/mob/mobToCheck as anything in chunkReference.mobs)
-				if(get_dist_euclidian(containerTurf, get_turf(mobToCheck)) < range)
+				var/turf/mobTurf = get_turf(mobToCheck)
+				if(!mobTurf)
+					continue
+				if(DIST_EUCLIDIAN(containerTurf.x, containerTurf.y, mobTurf.x, mobTurf.y) < range)
 					if(aliveonly && mobToCheck.stat == DEAD)
 						continue
 					if(canseeonly && !can_see(containerTurf, get_turf(mobToCheck), range * 2))
@@ -102,8 +105,10 @@ SUBSYSTEM_DEF(chunks)
 		for(var/chunkY = coordinates[2], chunkY <= coordinates[4], chunkY += CHUNK_SIZE)
 			chunkReference = SSchunks.chunk_list_by_zlevel[container.z][CHUNKID(chunkX, chunkY)]
 			for(var/obj/hearerToCheck as anything in chunkReference.hearers)
-
-				if(get_dist_euclidian(containerTurf, get_turf(hearerToCheck)) < range)
+				var/turf/hearerTurf = get_turf(hearerToCheck)
+				if(!hearerTurf)
+					continue
+				if(DIST_EUCLIDIAN(containerTurf.x, containerTurf.y, hearerTurf.x, hearerTurf.y) < range)
 					if(!can_see(source, get_turf(hearerToCheck), range * 2))
 						continue
 					returnValue += hearerToCheck
