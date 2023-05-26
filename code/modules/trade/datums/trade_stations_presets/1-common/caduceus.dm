@@ -92,6 +92,7 @@
 		/datum/reagent/stim/violence = offer_data("Violence bottle (60u)", 1600, 2),
 		/datum/reagent/stim/bouncer = offer_data("Bouncer bottle (60u)", 1600, 2),
 		/datum/reagent/stim/steady = offer_data("Steady bottle (60u)", 1600, 2),
-		/datum/reagent/medicine/ossisine = offer_data("ossissine bottle (60u)", 4000, 1),
-		/datum/reagent/medicine/kyphotorin = offer_data("kyphotorin bottle (60u)", 8000, 1)
+		/datum/reagent/drink/doctor_delight = offer_data("Doctor's Delight bottle (60u)", 1500, 1),
+		/datum/reagent/medicine/ossisine = offer_data("Ossissine bottle (60u)", 4000, 1),
+		/datum/reagent/medicine/kyphotorin = offer_data("Kyphotorin bottle (60u)", 8000, 1)
 	)

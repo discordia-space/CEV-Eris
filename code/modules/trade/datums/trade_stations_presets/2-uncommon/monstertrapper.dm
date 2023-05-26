@@ -57,7 +57,10 @@
 		)
 	)
 	offer_types = list(
+		/obj/item/mine/improv = offer_data("makeshift mine", 600, 0),
 		/obj/item/mine/old = offer_data("old landmine", 1200, 0),
 		/obj/item/beartrap/makeshift = offer_data("makeshift mechanical trap", 600, 0),
+		/obj/item/grenade/sonic = offer_data("sonic lure grenades", 450, 5),
+		/obj/item/flamethrower = offer_data("flamethrowers (urgent)", 500, 8),
 		/mob/living/simple_animal/hostile/hivemind = offer_data("hivemind creature (alive or dead)", 12000, 1)
 	)
