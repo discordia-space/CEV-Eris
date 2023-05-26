@@ -54,5 +54,5 @@
 		/obj/item/organ/internal/nerve = offer_data_mods("modified nerve (4 grafts)", 1000, 4, OFFER_MODDED_ORGAN, 4),
 		/obj/item/organ/internal/bone = offer_data_mods("modified bone (4 grafts)", 1000, 4, OFFER_MODDED_ORGAN, 4),
 		/obj/item/organ/internal/blood_vessel = offer_data_mods("modified blood vessel (4 grafts)", 1000, 4, OFFER_MODDED_ORGAN, 4),
-		/obj/item/oddity/secdocs = offer_data("confidential documents", 4500, 1)
+		/obj/item/oddity/secdocs = offer_data("confidential documents", 5000, 1)
 	)
