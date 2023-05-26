@@ -20,15 +20,16 @@
 	if(B && B.volume)
 		B.remove_self(volume * NANOBOTS_BLOOD_DRAIN)
 
-/datum/reagent/nanites/proc/will_occur(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/proc/will_occur(mob/living/carbon/M, alien, location)
 	if(location == CHEM_BLOOD)
 		return TRUE
 
-/datum/reagent/nanites/consumed_amount(mob/living/carbon/M, alien, var/location)
+/datum/reagent/nanites/consumed_amount(mob/living/carbon/M, alien, location)
 	if(will_occur(M, alien, location))
 		return ..()
-	else
-		return 0
+	else if(location == CHEM_INGEST)
+		holder.trans_to_mob(M, volume, CHEM_BLOOD) // Nanites dig through the stomach lining to get into the blood.
+	return 0
 
 /datum/reagent/nanites/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	eat_blood(M)
@@ -79,9 +80,7 @@
 	heating_products = null
 
 /datum/reagent/nanites/uncapped/will_occur(mob/living/carbon/M, alien, var/location)
-	if(type == /datum/reagent/nanites/uncapped) // only derived classes are consumed
-		return FALSE
-	return TRUE
+	return FALSE
 
 /datum/reagent/nanites/arad
 	name = "A-rad"
@@ -160,7 +159,7 @@
 /datum/reagent/nanites/nanosymbiotes
 	name = "Nanosymbiotes"
 	id = "nanosymbiotes"
-	description = "Microscopic construction robots programmed to heal body cells."
+	description = "Microscopic construction robots programmed to heal bodily structures."
 
 /datum/reagent/nanites/nanosymbiotes/will_occur(mob/living/carbon/M, alien, var/location)
 	if(..() && (M.getBruteLoss() || M.getFireLoss() || M.getToxLoss() || M.getCloneLoss() || M.getBrainLoss()))
@@ -176,7 +175,7 @@
 /datum/reagent/nanites/oxyrush
 	name = "Oxyrush"
 	id = "oxyrush"
-	description = "Microscopic construction robots programmed to keep oxygenation level stable no matter what."
+	description = "Microscopic construction robots programmed to keep the oxygenation level stable no matter what."
 
 /datum/reagent/nanites/oxyrush/will_occur(mob/living/carbon/M, alien, var/location)
 	if(..() && M.getOxyLoss())
@@ -190,19 +189,19 @@
 /datum/reagent/nanites/trauma_control_system
 	name = "Trauma Control System"
 	id = "trauma_control_system"
-	description = "Microscopic construction robots programmed to restore vitality of damaged organs."
+	description = "Microscopic construction robots programmed to restore the vitality of damaged organs. Unable to repair prosthetics."
 
 /datum/reagent/nanites/trauma_control_system/will_occur(mob/living/carbon/M, alien, var/location)
 	if(..() && ishuman(M))
 		var/mob/living/carbon/human/H = M
-		for(var/obj/item/organ/organ in H.organs) //Grab the organ holding the implant.
+		for(var/obj/item/organ/organ in H.organs)
 			if(organ.damage > 0 && !BP_IS_ROBOTIC(organ))
 				return TRUE
 
 /datum/reagent/nanites/trauma_control_system/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(..() && ishuman(M))
 		var/mob/living/carbon/human/H = M
-		for(var/obj/item/organ/organ in H.organs) //Grab the organ holding the implant.
+		for(var/obj/item/organ/organ in H.organs)
 			if (istype(organ, /obj/item/organ/external) && organ.damage > 0 && !BP_IS_ROBOTIC(organ))
 				organ.heal_damage((2 + organ.damage * 0.03)* effect_multiplier, (2 + organ.damage * 0.03)* effect_multiplier)
 			else if (istype(organ, /obj/item/organ/internal) && organ.damage > 0 && !BP_IS_ROBOTIC(organ))
@@ -227,7 +226,7 @@
 				if(istype(current, /datum/reagent/nanites) && !istype(current, /datum/reagent/nanites/purgers))
 					R.remove_self(effect_multiplier * 1)
 
-/datum/reagent/nanites/uncapped/control_booster_utility
+/datum/reagent/nanites/control_booster_utility
 	name = "Control Booster Utility"
 	id = "cbu"
 	description = "Microscopic construction robots programmed to enchant immensively mental capabilities."
@@ -235,13 +234,13 @@
 	heating_products = list("uncap nanites")
 	reagent_type = "Nanites/Stimulator"
 
-/datum/reagent/nanites/uncapped/control_booster_utility/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+/datum/reagent/nanites/control_booster_utility/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(..())
 		M.stats.addTempStat(STAT_MEC, STAT_LEVEL_ADEPT, STIM_TIME, "CBU")
 		M.stats.addTempStat(STAT_BIO, STAT_LEVEL_ADEPT, STIM_TIME, "CBU")
 		M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT, STIM_TIME, "CBU")
 
-/datum/reagent/nanites/uncapped/control_booster_combat
+/datum/reagent/nanites/control_booster_combat
 	name = "Control Booster Combat"
 	id = "cbc"
 	description = "Microscopic construction robots programmed to enchant combat capabilites to maximum."
@@ -249,13 +248,13 @@
 	heating_products = list("uncap nanites")
 	reagent_type = "Nanites/Stimulator"
 
-/datum/reagent/nanites/uncapped/control_booster_combat/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+/datum/reagent/nanites/control_booster_combat/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(..())
 		M.stats.addTempStat(STAT_VIG, STAT_LEVEL_ADEPT, STIM_TIME, "CBC")
 		M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT, STIM_TIME, "CBC")
 		M.stats.addTempStat(STAT_ROB, STAT_LEVEL_ADEPT, STIM_TIME, "CBC")
 
-/datum/reagent/nanites/uncapped/voice_mimic
+/datum/reagent/nanites/voice_mimic
 	name = "Voice mimics"
 	id = "nanovoice"
 	description = "Microscopic construction robots programmed to change users voice. You should hit them first, just in case..."
@@ -263,11 +262,11 @@
 	heating_point = 523
 	heating_products = list("uncap nanites")
 
-/datum/reagent/nanites/uncapped/voice_mimic/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+/datum/reagent/nanites/voice_mimic/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(..())
 		M.add_chemical_effect(CE_VOICEMIMIC, voiceName)
 
-/datum/reagent/nanites/uncapped/dynamic_handprints
+/datum/reagent/nanites/dynamic_handprints
 	name = "Handyprints"
 	id = "nanohands"
 	description = "Microscopic construction robots programmed to change handprints while in bloodstream."
@@ -275,7 +274,7 @@
 	heating_point = 523
 	heating_products = list("uncap nanites")
 
-/datum/reagent/nanites/uncapped/dynamic_handprints/on_mob_add(mob/living/L)
+/datum/reagent/nanites/dynamic_handprints/on_mob_add(mob/living/L)
 	..()
 	var/mob/living/carbon/human/host = L
 	if(istype(host))
@@ -284,37 +283,36 @@
 				host.fingers_trace = H.fingers_trace
 				return
 
-/datum/reagent/nanites/uncapped/dynamic_handprints/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+/datum/reagent/nanites/dynamic_handprints/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(..())
 		M.add_chemical_effect(CE_DYNAMICFINGERS, uni_identity)
 
-// FBP med - simple nanites for dealing with wounds and applying robo-chem effects
-/datum/reagent/nanites/fbp
-	name = "simple nanobots"
-	description = "Microscopic construction robots. Useless without programming and have limited use."
-	id = "dont use these either"
-	constant_metabolism = TRUE
+/datum/reagent/nanites/repair
+	name = "Mechanites"
+	description = "Microscopic construction robots programmed to repair prosthetics."
+	id = "repair"
 
-/datum/reagent/nanites/fbp/will_occur(mob/living/carbon/M, alien, var/location)
-	if(location == CHEM_INGEST)
-		return TRUE
-
-// "Blood" clot
-/datum/reagent/nanites/fbp/repair
-	name = "repair nanites"
-	description = "Microscopic construction robots programmed to repair internal components."
-	id = "fbp_repair"
-	overdose = REAGENTS_OVERDOSE / 6
-
-/datum/reagent/nanites/fbp/repair/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+/datum/reagent/nanites/repair/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(!..())
 		return
-	M.add_chemical_effect(CE_MECH_REPAIR, 0.25)
 
-/datum/reagent/nanites/fbp/repair/overdose(mob/living/carbon/M, alien)
-	if(!..())
+	var/mob/living/carbon/human/H = M
+	if(!istype(H))
 		return
-	M.add_chemical_effect(CE_MECH_REPAIR, 0.75)
+
+	H.add_chemical_effect(CE_MECH_REPAIR, 1)
+
+	var/list/damaged
+	for(var/obj/item/organ/external/external in H.organs)
+		if(!BP_IS_ROBOTIC(external))
+			continue
+		if(external.brute_dam || external.burn_dam)
+			damaged += external
+
+	var/heal_amount = 5 / damaged.len * effect_multiplier
+	for(var/obj/item/organ/external/external in damaged)
+		external.heal_damage(heal_amount, heal_amount, robo_repair = TRUE)
+
 
 /* Uncomment when CE_MECH_REPLENISH has a use
 // "Blood" restore
