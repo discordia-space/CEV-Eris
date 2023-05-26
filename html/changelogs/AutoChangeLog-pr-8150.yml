@@ -1,0 +1,11 @@
+author: MemedHams
+delete-after: true
+changes:
+  - rscadd: Adds lots of new station offers and sales.
+  - rscdel: The ninjasuit trade station offer is no more.
+  - tweak: Adds some fully-stacked variants of uncraftable floor tiles.
+  - tweak: Uncomments the onestar officer uniform offers.
+  - balance: Nerfs slime trade station offers.
+  - balance: reduces the sell value of the Gladstone and Molly.
+  - balance: Onestar parts now sell for more.
+  - balance: merc hardsuit's market cost has increased.

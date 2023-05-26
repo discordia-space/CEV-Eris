@@ -1,5 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - bugfix: Peridaxon doesn't heal brain or bones anymore. It's also slower at it.
-  - bugfix: Peridaxon doesn't damage bones on OD too (brain is also spared).

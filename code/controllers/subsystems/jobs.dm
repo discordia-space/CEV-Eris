@@ -2,10 +2,13 @@
 #define BE_ASSISTANT 1
 #define RETURN_TO_LOBBY 2
 
+/// You get 25 queries as the cap.
+#define PERMITTED_QUERIES_IN_TOTAL 25
+
 SUBSYSTEM_DEF(job)
 	name = "Jobs"
 	init_order = INIT_ORDER_JOBS
-	flags = SS_NO_FIRE
+	wait = 1 MINUTE
 
 	var/list/occupations = list()			//List of all jobs
 	var/list/occupations_by_name = list()	//Dict of all jobs, keys are titles
@@ -15,6 +18,8 @@ SUBSYSTEM_DEF(job)
 	var/list/ckey_to_job_to_playtime = list()
 	var/list/ckey_to_job_to_can_play = list()
 	var/list/job_to_playtime_requirement = list()
+	/// DOS Attack prevention by locking off file-reads.
+	var/list/queries_by_key = list()
 
 /datum/controller/subsystem/job/Initialize(start_timeofday)
 	if(!occupations.len)
@@ -23,6 +28,10 @@ SUBSYSTEM_DEF(job)
 		LoadPlaytimeRequirements("config/job_playtime_requirements.txt")
 	return ..()
 
+/datum/controller/subsystem/job/fire(resumed)
+	for(var/key in queries_by_key)
+		if(queries_by_key[key] > 3)
+			queries_by_key[key] -= 3
 
 /datum/controller/subsystem/job/proc/UpdatePlayableJobs(ckey)
 	if(!length(ckey_to_job_to_can_play[ckey]))
@@ -37,6 +46,7 @@ SUBSYSTEM_DEF(job)
 			ckey_to_job_to_can_play[ckey][occupation] = TRUE
 		else
 			ckey_to_job_to_can_play[ckey][occupation] = CanHaveJob(ckey, occupation)
+
 
 ADMIN_VERB_ADD(/client/verb/whitelistPlayerForJobs, R_ADMIN, FALSE)
 /client/verb/whitelistPlayerForJobs()
@@ -64,6 +74,47 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, R_ADMIN, FALSE)
 		return
 	SSjob.UnwhitelistPlayer(the_disavowed_one.ckey)
 
+/client/verb/showPlaytimes()
+	set category = "OOC"
+	set name = "Show playtimes"
+
+	if(!SSjob.initialized)
+		to_chat(mob, SPAN_NOTICE("The Jobs subsystem is not initialized yet, please wait."))
+		return
+
+	var/client_key = ckey
+
+	if(!client_key) return
+
+	var/htmlContent = {"<html>
+	<head>
+		<title>Registered playtimes onboard CEV ERIS</title>
+	</head>
+	<body>
+		<ul>
+	"}
+
+	if(!length(SSjob.ckey_to_job_to_playtime[ckey]))
+		SSjob.LoadPlaytimes(ckey)
+	if(!length(SSjob.ckey_to_job_to_playtime[ckey]))
+		to_chat(mob, SPAN_NOTICE("SSjobs was unable to load your playtimes."))
+	for(var/occupation in SSjob.occupations_by_name)
+		var/value = round(SSjob.ckey_to_job_to_playtime[client_key][occupation]/600)
+		if(length(SSinactivity_and_job_tracking.current_playtimes))
+			if(length(SSinactivity_and_job_tracking.current_playtimes[ckey]))
+				value += round(SSinactivity_and_job_tracking.current_playtimes[ckey][occupation]/600)
+
+		if(!isnum(value))
+			message_admins("Value wasn't a number,  value was [value]")
+			value = 0
+		htmlContent += "<li> [occupation] : [value] Minutes</li>"
+	htmlContent += {"
+		</ul>
+	</body>
+	</html>"}
+
+	usr << browse(htmlContent, "window=playtimes;file=playtimes;display=1; size=300x300;border=0;can_close=1; can_resize=1;can_minimize=1;titlebar=1" )
+
 /datum/controller/subsystem/job/proc/WhitelistPlayer(ckey)
 	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
 	to_file(save_data["whitelisted"], TRUE)
@@ -79,6 +130,7 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, R_ADMIN, FALSE)
 		return FALSE
 	if(job_to_playtime_requirement[job_title] == 0)
 		return TRUE
+
 	var/datum/job/wanted_job = occupations_by_name[job_title]
 	var/datum/job/checking_job
 	if(!wanted_job)
@@ -128,17 +180,28 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, R_ADMIN, FALSE)
 			job_to_playtime_requirement[name] = text2num(value)
 		else if(name)
 			job_to_playtime_requirement[name] = 0
+	/// failsafe for non-existant config folders.
+	for(var/occupation in occupations_by_name)
+		if(!isnum(job_to_playtime_requirement[occupation]))
+			job_to_playtime_requirement[occupation] = 0
 	return TRUE
 
 /datum/controller/subsystem/job/proc/LoadPlaytimes(ckey)
 	if(!ckey)
 		return
+	if(queries_by_key[ckey] > PERMITTED_QUERIES_IN_TOTAL)
+		return
+	queries_by_key[ckey]++
 	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")
 	for(var/occupation in occupations_by_name)
 		save_data.cd = occupation
 		if(!length(ckey_to_job_to_playtime[ckey]))
 			ckey_to_job_to_playtime[ckey] = list()
-		from_file(save_data["playtime"], ckey_to_job_to_playtime[ckey][occupation])
+		var/value
+		from_file(save_data["playtime"], value)
+		if(!isnum(value) || !value)
+			value = 0
+		ckey_to_job_to_playtime[ckey][occupation] = value
 		// return to last directory
 		save_data.cd = ".."
 

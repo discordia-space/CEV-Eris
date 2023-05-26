@@ -1,4 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - bugfix: Removed un/whitelist player button from non-admins

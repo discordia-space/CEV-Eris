@@ -252,10 +252,17 @@
 
 /mob/new_player/proc/IsJobAvailable(rank)
 	var/datum/job/job = SSjob.GetJob(rank)
-	if(!job)	return 0
-	if(!job.is_position_available()) return 0
-	if(jobban_isbanned(src,rank))	return 0
-	return 1
+	if(!job)	
+		return FALSE
+	if(!job.is_position_available())	
+		return FALSE
+	if(IsGuestKey(ckey) && SSjob.job_to_playtime_requirement[job.title])	
+		return FALSE
+	if(!SSjob.ckey_to_job_to_can_play[client.ckey][job.title])
+		return FALSE
+	if(jobban_isbanned(src,rank))	
+		return FALSE
+	return TRUE
 
 /mob/new_player/proc/AttemptLateSpawn(rank, var/spawning_at)
 	if(src != usr)
@@ -332,6 +339,7 @@
 			dat += "<font color='red'>The vessel is currently undergoing crew transfer procedures.</font><br>"
 
 	dat += "Choose from the following open/valid positions:<br>"
+	SSjob.UpdatePlayableJobs(client.ckey)
 	for(var/datum/job/job in SSjob.occupations)
 		if(job && IsJobAvailable(job.title))
 			if(job.is_restricted(client.prefs))
