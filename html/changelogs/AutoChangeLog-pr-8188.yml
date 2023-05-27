@@ -1,4 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Fixed playtime tracking resetting itself for any round-start joiner.
