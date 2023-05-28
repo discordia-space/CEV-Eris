@@ -87,7 +87,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 
 	var/eat_time_message = 0
 
-	var/life_tick_modifier = 2	//How often is the onLife() triggered and by how much are the effects multiplied
+	var/life_tick_modifier = 4	//How often is the onLife() triggered and by how much are the effects multiplied
 
 /datum/sanity/New(mob/living/carbon/human/H)
 	owner = H
