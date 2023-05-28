@@ -91,6 +91,9 @@
 			".50 slug packet (40 ammo, 15 points)" = list(15, /obj/item/ammo_magazine/ammobox/shotgun_small/scrap),
 			".50 pellet packet (40 ammo, 15 points)" = list(15, /obj/item/ammo_magazine/ammobox/shotgun_small/pellet/scrap),
 			".50 beanbag packet (40 ammo, 15 points)" = list(15, /obj/item/ammo_magazine/ammobox/shotgun_small/beanbag/scrap)),
+			".50 slug box (160 ammo, 30 points)" = list(25, /obj/item/ammo_magazine/ammobox/shotgun/scrap),
+			".50 pellet box (160 ammo, 30 points)" = list(25, /obj/item/ammo_magazine/ammobox/shotgun/pellet/scrap),
+			".50 beanbag box (160 ammo, 30 points)" = list(25, /obj/item/ammo_magazine/ammobox/shotgun/beanbag/scrap)),
 		CAL_ANTIM = list(
 			".60 ammo pile (5 ammo, 5 points)" = list(5, /obj/item/ammo_casing/antim/scrap/prespawned),
 			".60 ammo box (30 ammo, 20 points)" = list(20, /obj/item/ammo_magazine/ammobox/antim/scrap)))
