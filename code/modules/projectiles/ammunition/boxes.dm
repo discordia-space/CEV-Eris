@@ -227,15 +227,15 @@
 
 /obj/item/ammo_magazine/ammobox/shotgun
 	name = "ammunition box (.50)"
-	icon_state = "shot"
-	matter = list(MATERIAL_STEEL = 24)
-	w_class = ITEM_SIZE_NORMAL
+	icon_state = "box_shot"
+	matter = list(MATERIAL_STEEL = 60)
+	w_class = ITEM_SIZE_BULKY
 	caliber = CAL_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun
-	max_ammo = 30
+	max_ammo = 160
 	rarity_value = 20
 	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
-	ammo_states = list(30)
+	ammo_states = list(160)
 	ammo_names = list(
 		"hv" = "slug",
 		"r" = "beanbag",
@@ -284,5 +284,67 @@
 	rarity_value = 50
 
 /obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells
+	ammo_type = /obj/item/ammo_casing/shotgun/incendiary
+	rarity_value = 100
+
+/obj/item/ammo_magazine/ammobox/shotgun_small
+	name = "ammunition packet (.50)"
+	icon_state = "shot"
+	matter = list(MATERIAL_STEEL = 24)
+	w_class = ITEM_SIZE_SMALL
+	caliber = CAL_SHOTGUN
+	ammo_type = /obj/item/ammo_casing/shotgun
+	max_ammo = 40
+	rarity_value = 20
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
+	ammo_states = list(40)
+	ammo_names = list(
+		"hv" = "slug",
+		"r" = "beanbag",
+		"l" = "pellet",
+		"p" = "practice",
+		"f" = "flash",
+		"i" = "incendiary",
+		"b" = "blank",
+		"scrap" = "scrap slug",
+		"scrap_r" = "scrap beanbag",
+		"scrap_s" = "scrap pellet")
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/scrap
+	ammo_type = /obj/item/ammo_casing/shotgun/scrap
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/beanbag
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	rarity_value = 10
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/beanbag/scrap
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag/scrap
+	rarity_value = 5
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/buckshot
+	ammo_type = /obj/item/ammo_casing/shotgun/pellet
+	rarity_value = 13.33
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/pellet/scrap
+	ammo_type = /obj/item/ammo_casing/shotgun/pellet/scrap
+	rarity_value = 6.66
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/blanks
+	ammo_type = /obj/item/ammo_casing/shotgun/blank
+	rarity_value = 50
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/flashshells
+	ammo_type = /obj/item/ammo_casing/shotgun/flash
+	rarity_value = 40
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/practiceshells
+	ammo_type = /obj/item/ammo_casing/shotgun/practice
+	rarity_value = 50
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/incendiaryshells
 	ammo_type = /obj/item/ammo_casing/shotgun/incendiary
 	rarity_value = 100
