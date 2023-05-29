@@ -300,14 +300,6 @@
 
 /datum/reagent/metal/radium/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.apply_effect(1 * (issmall(M) ? effect_multiplier * 2 : effect_multiplier), IRRADIATE, 0) // Radium may increase your chances to cure a disease
-	if(M.virus2.len)
-		for(var/ID in M.virus2)
-			var/datum/disease2/disease/V = M.virus2[ID]
-			if(prob(5))
-				M.antibodies |= V.antigen
-				if(prob(50))
-					M.apply_effect(50, IRRADIATE, check_protection = 0) // curing it that way may kill you instead
-
 
 /datum/reagent/metal/radium/touch_turf(turf/T)
 	if(volume >= 3)

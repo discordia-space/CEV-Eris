@@ -107,9 +107,6 @@
 	if(temperature < minimum_temperature || temperature > maximum_temperature)
 		return FALSE
 
-	if(rotation_required && !holder.rotating)
-		return FALSE
-
 	if(maximum_pressure)
 		var/turf/location = get_turf(holder.my_atom)
 		if(location)
@@ -343,11 +340,6 @@
 	required_reagents = list("bicaridine" = 2, "clonexadone" = 2)
 	catalysts = list("plasma" = 5)
 	result_amount = 2
-
-/datum/chemical_reaction/virus_food
-	result = "virusfood"
-	required_reagents = list("water" = 1, "milk" = 1)
-	result_amount = 5
 
 /datum/chemical_reaction/leporazine
 	result = "leporazine"
@@ -585,19 +577,6 @@
 	required_reagents = list("mindbreaker" = 1, "acetone" = 1, "inaprovaline" = 1)
 	result_amount = 3
 
-/* Centrifuge */
-
-/datum/chemical_reaction/curing
-	result = "antibodies"
-	required_reagents = list("blood" = 1)
-	result_amount = 1
-	reaction_rate = REACTION_RATE(0.3)
-	rotation_required = TRUE
-	supports_decomposition_by_electrolysis = FALSE
-	mix_message = null
-
-/datum/chemical_reaction/curing/send_data(datum/reagents/T)
-	return list("antibodies" = T.get_data("blood")["antibodies"])
 
 /* Solidification */
 

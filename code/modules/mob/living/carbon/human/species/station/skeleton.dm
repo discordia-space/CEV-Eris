@@ -19,7 +19,6 @@
 
 	language = null
 	default_language = null
-	greater_form = SPECIES_HUMAN
 	show_ssd = null
 
 	eyes = "blank_eyes"

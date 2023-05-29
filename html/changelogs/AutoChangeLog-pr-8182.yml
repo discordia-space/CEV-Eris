@@ -1,5 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Fixed lacking a failsafe config for playtimes
-  - rscadd: Added a verb to show your playtimes.

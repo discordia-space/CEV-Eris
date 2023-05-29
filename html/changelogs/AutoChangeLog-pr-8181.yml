@@ -1,5 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Fixed inactivity runtimes that caused everyone on the manifest to go inactive.
-  - bugfix: Fixed latejoins not having playtime restrictions enacted.

@@ -31,11 +31,10 @@
 	. = ..()
 	RegisterSignal(src, COMSIG_ATOM_CONTAINERED, PROC_REF(RelayContainerization))
 
-/obj/item/storage/proc/RelayContainerization()
+/obj/item/storage/proc/RelayContainerization(atom/source, highestContainer, oldContainer)
 	SIGNAL_HANDLER
-	var/atom/highestContainer = getContainingMovable()
 	for(var/atom/thing as anything in contents)
-		SEND_SIGNAL(thing, COMSIG_ATOM_CONTAINERED, highestContainer)
+		SEND_SIGNAL(thing, COMSIG_ATOM_CONTAINERED, highestContainer, oldContainer)
 
 /obj/item/storage/New()
 	can_hold |= can_hold_extra

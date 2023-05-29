@@ -343,7 +343,7 @@
 		else
 			if(control_computer && control_computer.allow_items)
 				control_computer.frozen_items += W
-				W.loc = null
+				W.forceMove(NULLSPACE)
 			else
 				W.forceMove(src.loc)
 
@@ -497,21 +497,26 @@
 
 /obj/machinery/cryopod/relaymove(var/mob/user)
 	..()
-	eject()
+	//set_occupant(null, FALSE)
+	go_out()
+	for(var/obj/item/thing in contents)
+		thing.forceMove(loc)
+		user.equip_to_appropriate_slot(thing)
+
 
 /obj/machinery/cryopod/proc/go_out()
 
 	if(!occupant)
 		return
 
-	set_occupant(null)
+	set_occupant(null, FALSE)
 
 	spawn(30)
 		state("Please remember to check inside the cryopod if any belongings are missing.")
 		playsound(loc, "robot_talk_light", 100, 0, 0)
 
 //Notifications is set false when someone spawns in here
-/obj/machinery/cryopod/proc/set_occupant(var/mob/living/new_occupant, var/notifications = TRUE)
+/obj/machinery/cryopod/proc/set_occupant(mob/living/new_occupant, notifications = TRUE)
 	name = initial(name)
 	if(new_occupant)
 		occupant = new_occupant
@@ -535,8 +540,6 @@
 						if(!EA.wage_manual) // Update department account's wage if it's not in manual mode
 							EA.wage = D.get_total_budget()
 
-		new_occupant.forceMove(src)
-
 		if(notifications)
 			to_chat(occupant, SPAN_NOTICE("[on_enter_occupant_message]"))
 			to_chat(occupant, SPAN_NOTICE("<b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>"))
@@ -546,6 +549,7 @@
 				to_chat(occupant, SPAN_NOTICE("<b>Your respawn time will be reduced by [(CRYOPOD_WOUNDED_RESPAWN_BONUS)/600] minutes, allowing you to respawn as a crewmember much more quickly.</b>"))
 				to_chat(occupant, SPAN_DANGER("<b>Because you are not in perfect health, respawn time reduction is low. \
 				If you wish to respawn as a different crewmember sooner, you should treat your injuries first</b>"))
+		occupant.forceMove(src)
 
 	else
 		if(!QDELETED(occupant))

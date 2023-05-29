@@ -1,15 +1,7 @@
 // Do not forget to update the nanoUI template if you change these values
 
-#define MODE_SEPARATING   0
-#define MODE_SYNTHESISING 1
-// Modes available to makeshift centrifuge go here
+// Modes go here
 
-#define MODE_ADVANCED     2
-
-#define MODE_ISOLATING    2
-// Modes unavailable to makeshift centrifuge go here
-
-#define MODE_END          3
 
 /obj/machinery/centrifuge
 	name = "centrifuge"
@@ -26,7 +18,6 @@
 	var/workTime = 10 SECONDS
 	var/lastActivation = 0
 	var/on = FALSE
-	var/mode = MODE_SEPARATING
 	var/beakerSlots = 3
 	var/unitsPerSec = 2
 
@@ -60,9 +51,8 @@
 	if(stat & NOPOWER)
 		return
 	if(on)
-		if(mode == MODE_SEPARATING)
-			mainBeaker.reagents.handle_reactions()
-			mainBeaker.separate_solution(separationBeakers, unitsPerSec, mainBeaker.reagents.get_master_reagent_id())
+		mainBeaker.reagents.handle_reactions()
+		mainBeaker.separate_solution(separationBeakers, unitsPerSec, mainBeaker.reagents.get_master_reagent_id())
 
 		if(world.time >= lastActivation + workTime)
 			finish()
@@ -145,7 +135,6 @@
 /obj/machinery/centrifuge/nano_ui_data()
 	var/data = list()
 	data["on"] = on
-	data["mode"] = mode
 	data["cycleTime"] = workTime / 10
 	data["timeLeft"] = round((lastActivation + workTime - world.time) / 10)
 	data["maxBeakers"] = beakerSlots
@@ -168,25 +157,13 @@
 /obj/machinery/centrifuge/proc/start()
 	on = TRUE
 	lastActivation = world.time
-	if(mode == MODE_SYNTHESISING)
-		mainBeaker.reagents.rotating = TRUE
-		mainBeaker.reagents.handle_reactions()
 	update_icon()
 
 /obj/machinery/centrifuge/proc/stop()
 	on = FALSE
-	mainBeaker.reagents.rotating = FALSE
-
 	update_icon()
 
 /obj/machinery/centrifuge/proc/finish()
-	if(mode == MODE_ISOLATING)
-		var/data = mainBeaker.reagents.get_data("blood")
-		if (data)
-			var/list/datum/disease2/disease/virus = data["virus2"]
-			for (var/ID in virus)
-				var/obj/item/virusdish/dish = new (loc)
-				dish.virus2 = virus[ID].getcopy()
 	stop()
 	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
 	visible_message("\icon[src]\The [src] pings indicating that cycle is complete.")
@@ -210,14 +187,7 @@
 			separationBeakers[slot].forceMove(get_turf(src))
 			separationBeakers.Remove(separationBeakers[slot])
 
-	if(href_list["setMode"] && !on)
-		var/m = text2num(href_list["setMode"])
-		if(m >= 0 && m < MODE_END)
-			mode = m
-			if(mode == MODE_ISOLATING)
-				workTime = 60 SECONDS
-
-	if(href_list["setTime"] && !on && mode != MODE_ISOLATING)
+	if(href_list["setTime"] && !on)
 		workTime = text2num(href_list["setTime"]) SECONDS
 
 	return 1 // update UIs attached to this object
@@ -234,7 +204,6 @@
 	var/list/obj/item/reagent_containers/separationBeakers = list()
 	var/beakerSlots = 2
 	var/on = FALSE
-	var/mode = MODE_SEPARATING
 
 /obj/item/device/makeshift_centrifuge/Destroy()
 	QDEL_NULL(mainBeaker)
@@ -247,14 +216,8 @@
 	user.visible_message(SPAN_NOTICE("[user] have started to turn handle on \the [src]."), SPAN_NOTICE("You started to turn handle on \the [src]."))
 	if(do_after(user, 60 - (30 * user.stats.getMult(STAT_TGH, STAT_LEVEL_ADEPT))))
 		if(mainBeaker && mainBeaker.reagents.total_volume)
-			switch(mode)
-				if(MODE_SEPARATING)
-					mainBeaker.reagents.handle_reactions()
-					mainBeaker.separate_solution(separationBeakers, 5, mainBeaker.reagents.get_master_reagent_id())
-				if(MODE_SYNTHESISING)
-					mainBeaker.reagents.rotating = TRUE
-					mainBeaker.reagents.handle_reactions()
-					mainBeaker.reagents.rotating = FALSE
+			mainBeaker.reagents.handle_reactions()
+			mainBeaker.separate_solution(separationBeakers, 5, mainBeaker.reagents.get_master_reagent_id())
 	on = FALSE
 	SSnano.update_uis(src)
 
@@ -312,7 +275,6 @@
 /obj/item/device/makeshift_centrifuge/nano_ui_data()
 	var/data = list()
 	data["on"] = on
-	data["mode"] = mode
 	data["maxBeakers"] = beakerSlots
 	data["minimal"] = TRUE
 
@@ -335,11 +297,6 @@
 	if(..())
 		return
 
-	if(href_list["setMode"] && !on)
-		var/m = text2num(href_list["setMode"])
-		if(m >= 0 && m < MODE_ADVANCED)
-			mode = m
-
 	if(href_list["ejectBeaker"] && !on)
 		if(href_list["ejectBeaker"] == "0")
 			mainBeaker.forceMove(get_turf(src))
@@ -350,9 +307,3 @@
 			separationBeakers.Remove(separationBeakers[slot])
 
 	return 1 // update UIs attached to this object
-
-#undef MODE_SEPARATING
-#undef MODE_SYNTHESISING
-#undef MODE_ISOLATING
-#undef MODE_ADVANCED
-#undef MODE_END
