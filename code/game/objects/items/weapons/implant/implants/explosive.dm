@@ -12,8 +12,11 @@
 
 /obj/item/implant/explosive/New()
 	..()
-	add_hearing()
 	update_icon()
+
+/obj/item/implant/explosive/voice/LateInitialize()
+	. = ..()
+	add_hearing()
 
 /obj/item/implant/explosive/Destroy()
 	remove_hearing()
