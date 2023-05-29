@@ -16,7 +16,7 @@
 			H.take_damage(rand(10,30))
 	qdel(src)
 
-/obj/item/modular_computer/proc/take_damage(var/amount, var/component_probability, var/damage_casing = 1, var/randomize = 1)
+/obj/item/modular_computer/take_damage(var/amount, var/component_probability, var/damage_casing = 1, var/randomize = 1)
 	if(!modifiable)
 		return
 
@@ -35,11 +35,6 @@
 
 	if(damage >= max_damage)
 		break_apart()
-
-// Stronger explosions cause serious damage to internal components
-// Minor explosions are mostly mitigitated by casing.
-/obj/item/modular_computer/ex_act(var/severity)
-	take_damage(rand(100,200) / severity, 30 / severity)
 
 // EMPs are similar to explosions, but don't cause physical damage to the casing. Instead they screw up the components
 /obj/item/modular_computer/emp_act(var/severity)

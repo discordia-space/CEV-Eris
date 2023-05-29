@@ -72,19 +72,18 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	icon_state = "space_dust"
 	density = TRUE
 	anchored = TRUE
-	var/strength = 2 //ex_act severity number
+	var/explosion_power = 100 //ex_act severity number
 	var/life = 2 //how many things we hit before qdel(src)
 
 	weak
-		strength = 3
 		life = 1
 
 	strong
-		strength = 1
+		explosion_power = 200
 		life = 6
 
 	super
-		strength = 1
+		explosion_power = 300
 		life = 40
 
 
@@ -139,12 +138,12 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 				playsound(src.loc, 'sound/effects/meteorimpact.ogg', 40, 1)
 
 				if(ismob(A))
-					A.ex_act(strength)//This should work for now I guess
+					A.explosion_act(explosion_power, null)//This should work for now I guess
 
 				//Protect the singularity from getting released every round!
 				else if(!istype(A,/obj/machinery/power/emitter) && !istype(A,/obj/machinery/field_generator))
 					//Changing emitter/field gen ex_act would make it immune to bombs and C4
-					A.ex_act(strength)
+					A.explosion_act(explosion_power, null)
 
 				life--
 				if(life <= 0)
@@ -159,9 +158,9 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 		return
 
 
-	ex_act(severity)
+	explosion_act(target_power,  explosion_handler/handle)
 		qdel(src)
-		return
+		return 0
 
 
 

@@ -264,18 +264,19 @@ ADMIN_VERB_ADD(/client/proc/drop_bomb, R_FUN, FALSE)
 		if(null)
 			return 0
 		if("Small Bomb")
-			explosion(epicenter, 1, 2, 3, 3)
+			explosion(epicenter, 300, 50)
 		if("Medium Bomb")
-			explosion(epicenter, 2, 3, 4, 4)
+			explosion(epicenter, 600, 50)
 		if("Big Bomb")
-			explosion(epicenter, 3, 5, 7, 5)
+			explosion(epicenter, 900, 50)
 		if("Custom Bomb")
-			var/devastation_range = input("Devastation range (in tiles):") as num
-			var/heavy_impact_range = input("Heavy impact range (in tiles):") as num
-			var/light_impact_range = input("Light impact range (in tiles):") as num
-			var/flash_range = input("Flash range (in tiles):") as num
-			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
-	message_admins("\blue [ckey] creating an admin explosion at [epicenter.loc].")
+			var/explosion_power = input("Explosion Power:") as num
+			var/explosion_falloff = input("Explosion falloff:") as num
+			var/additive_falloff = input("Additive falloff for this explosion?") as num
+			var/multiplicative_falloff = input("Multiplicative falloff for this explosion?") as num
+			var/eflags = additive_falloff ? EFLAG_ADDITIVEFALLOFF : 0 | multiplicative_falloff ? EFLAG_EXPONENTIALFALLOFF : 0
+			explosion(epicenter, explosion_power, explosion_falloff, eflags)
+	message_admins("\blue [ckey] created an admin explosion at [epicenter.loc].")
 
 
 

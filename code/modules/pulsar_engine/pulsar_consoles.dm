@@ -24,7 +24,7 @@
 /obj/machinery/pulsar/LateInitialize()
 	scan_for_fuel()
 	. = ..()
-	
+
 
 /obj/machinery/pulsar/relaymove(mob/user, direction)
 	if(map_active && linked)
@@ -99,7 +99,7 @@
 
 	else if(href_list["scan_fuel"])
 		scan_for_fuel()
-	
+
 	else if(href_list["set_shield"])
 		var/target_level = input(usr, "Set shielding power", "Shield control", 50) as num
 		if(target_level < 100)
@@ -149,7 +149,7 @@
 	tank?.connected_console = src
 	SSnano.update_uis(src)
 
-/obj/machinery/pulsar/ex_act(severity)
+/obj/machinery/pulsar/explosion_act(severity)
 	return
 
 /obj/machinery/power/pulsar_power_bridge //Only holds ref to the console and its area, used to get power from it, or disconnect the ship.
@@ -176,7 +176,7 @@
 	pulsar_console = locate() in world //I can get away with it once, right?
 	if(pulsar_console)
 		console_area = get_area(pulsar_console) //Area stored so reconnections are cheaper.
-	
+
 	portal = locate() in get_area(src)
 
 /obj/machinery/power/pulsar_power_bridge/Process()
@@ -272,7 +272,7 @@
 		tank.remove_air(tank.volume)
 		to_chat(user, SPAN_NOTICE("You pump the contents of [tank] into [src]"))
 		playsound(src, 'sound/effects/spray.ogg', 50, 1, -3)
-		
+
 		if(round(air_contents.get_total_moles()) > 100)
 			icon_state = "pulsar_tank_burst"
 			visible_message(SPAN_DANGER("[src] looks like it's about to explode!"))

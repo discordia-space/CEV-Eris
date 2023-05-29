@@ -431,7 +431,7 @@ obj/item/clothing/under/genericr
 		melee = 15,
 		bullet = 18,
 		energy = 15,
-		bomb = 75,
+		bomb = 300,
 		bio = 100,
 		rad = 30
 	)

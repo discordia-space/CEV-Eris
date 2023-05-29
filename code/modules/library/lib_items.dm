@@ -81,27 +81,12 @@
 				choice.loc = get_turf(src)
 			update_icon()
 
-/obj/structure/bookcase/ex_act(severity)
-	switch(severity)
-		if(1)
-			for(var/obj/item/book/b in contents)
-				qdel(b)
-			qdel(src)
-			return
-		if(2)
-			for(var/obj/item/book/b in contents)
-				if (prob(50)) b.loc = (get_turf(src))
-				else qdel(b)
-			qdel(src)
-			return
-		if(3)
-			if (prob(50))
-				for(var/obj/item/book/b in contents)
-					b.loc = (get_turf(src))
-				qdel(src)
-			return
-		else
-	return
+/obj/structure/bookcase/take_damage(damage)
+	. = ..()
+	if(QDELETED(src))
+		return .
+	for(var/obj/item/book/b in contents)
+		b.loc = (get_turf(src))
 
 /obj/structure/bookcase/update_icon()
 	if(contents.len < 5)

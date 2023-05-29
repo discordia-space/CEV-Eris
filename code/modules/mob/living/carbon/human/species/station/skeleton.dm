@@ -44,6 +44,8 @@
 	warning_low_pressure = -1
 	hazard_low_pressure = -1
 
+	injury_type =  INJURY_TYPE_UNLIVING
+
 	has_process = list()
 
 	has_limbs = list(

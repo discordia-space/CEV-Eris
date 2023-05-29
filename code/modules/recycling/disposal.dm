@@ -707,7 +707,8 @@
 	level = BELOW_PLATING_LEVEL			// underfloor only
 	var/pipe_dir = 0		// bitmask of pipe directions
 	dir = 0				// dir will contain dominant direction for junction pipes
-	var/health = 10 	// health points 0-10
+	health = 10 	// health points 0-10
+	explosion_coverage = 0
 	layer = 2.3			// slightly lower than wires and other pipes
 	var/base_icon_state	// initial icon state on map
 	var/sortType = list()
@@ -825,9 +826,8 @@
 			for(var/atom/movable/AM in H)
 				AM.forceMove(T)
 				AM.pipe_eject(direction)
-				spawn(1)
-					if(AM)
-						AM.throw_at(target, 100, 1)
+				if(AM)
+					AM.throw_at(target, 100, 1)
 			H.vent_gas(T)
 			qdel(H)
 
@@ -840,9 +840,8 @@
 
 				AM.forceMove(T)
 				AM.pipe_eject(0)
-				spawn(1)
-					if(AM)
-						AM.throw_at(target, 5, 1)
+				if(AM)
+					AM.throw_at(target, 5, 1)
 
 			H.vent_gas(T)	// all gas vent to turf
 			qdel(H)
@@ -880,37 +879,17 @@
 		if(H)
 			expel(H, T, 0)
 
-	spawn(2)	// delete pipe after 2 ticks to ensure expel proc finished
-		qdel(src)
-
-
-// pipe affected by explosion
-/obj/structure/disposalpipe/ex_act(severity)
-
-	switch(severity)
-		if(1)
-			broken(0)
-			return
-		if(2)
-			health -= rand(5,15)
-			healthcheck()
-			return
-		if(3)
-			health -= rand(0,15)
-			healthcheck()
-			return
-		if(4)
-			health -= rand(0,5)
-			healthcheck()
-			return
-
+	qdel(src)
 
 	// test health for brokenness
-/obj/structure/disposalpipe/proc/healthcheck()
-	if(health < -2)
-		broken(0)
-	else if(health < 1)
-		broken(1)
+/obj/structure/disposalpipe/take_damage(damage)
+	. = health - damage < 0 ? damage - (damage - health) : damage
+	. *= explosion_coverage
+	health -= damage
+	if(health <= 0)
+		broken(FALSE)
+	else if(health < 2)
+		broken(TRUE)
 	return
 
 	//attack by item
@@ -1347,7 +1326,6 @@
 /obj/structure/disposalpipe/trunk/Initialize()
 	. = ..()
 	pipe_dir = dir
-	
 	INVOKE_ASYNC(src, PROC_REF(getlinked))
 	update()
 

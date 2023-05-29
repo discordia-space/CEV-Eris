@@ -21,8 +21,8 @@
 
 	var/raised = 0			//if the turret cover is "open" and the turret is raised
 	var/raising= 0			//if the turret is currently opening or closing its cover
-	var/health = 80			//the turret's health
-	var/maxhealth = 80		//turrets maximal health.
+	health = 80			//the turret's health
+	maxHealth = 80		//turrets maximal health.
 	var/resistance = RESISTANCE_FRAGILE 		//reduction on incoming damage
 	var/auto_repair = 0		//if 1 the turret slowly repairs itself.
 	var/locked = 1			//if the turret's behaviour control access is locked
@@ -455,7 +455,7 @@ var/list/turret_icons
 		enabled = 1 //turns it back on. The cover popUp() popDown() are automatically called in process(), no need to define it here
 		return 1
 
-/obj/machinery/porta_turret/proc/take_damage(var/force)
+/obj/machinery/porta_turret/take_damage(var/force)
 	if(!raised && !raising)
 		force = force / 8
 
@@ -509,16 +509,6 @@ var/list/turret_icons
 
 	..()
 
-/obj/machinery/porta_turret/ex_act(severity)
-	switch (severity)
-		if (1)
-			take_damage(rand(140,300))
-		if (2)
-			take_damage(rand(80,170))
-		if (3)
-			take_damage(rand(50,120))
-		if (4)
-			take_damage(rand(25,60))
 
 /obj/machinery/porta_turret/proc/die()	//called when the turret dies, ie, health <= 0
 	health = 0
@@ -550,9 +540,9 @@ var/list/turret_icons
 			spawn()
 				popDown() // no valid targets, close the cover
 
-	if(auto_repair && (health < maxhealth))
+	if(auto_repair && (health < maxHealth))
 		use_power(20000)
-		health = min(health+1, maxhealth) // 1HP for 20kJ
+		health = min(health+1, maxHealth) // 1HP for 20kJ
 
 /obj/machinery/porta_turret/proc/assess_and_assign(var/mob/living/L, var/list/targets, var/list/secondarytargets)
 	switch(assess_living(L))

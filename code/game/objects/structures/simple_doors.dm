@@ -150,20 +150,12 @@
 	material.place_dismantled_product(get_turf(src))
 	qdel(src)
 
-/obj/structure/simple_door/ex_act(severity = 1)
-	switch(severity)
-		if(1)
-			Dismantle(1)
-		if(2)
-			if(prob(20))
-				Dismantle(1)
-			else
-				hardness--
-				CheckHardness()
-		if(3)
-			hardness -= 0.1
-			CheckHardness()
-	return
+/obj/structure/simple_door/take_damage(damage)
+	. = ..()
+	if(QDELETED(src))
+		return .
+	hardness -= damage /(damage / 1.2)
+	CheckHardness()
 
 /obj/structure/simple_door/process()
 	if(!material.radioactivity)
