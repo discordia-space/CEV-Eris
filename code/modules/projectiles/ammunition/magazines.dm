@@ -685,7 +685,7 @@
 	name = "ammo drum (.50)"
 	icon_state = "m12"
 	mag_type = MAGAZINE
-	mag_well = MAG_WELL_RIFLE
+	mag_well = MAG_WELL_RIFLE_D
 	caliber = CAL_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_STEEL = 18)
@@ -727,6 +727,7 @@
 /obj/item/ammo_magazine/m12/short
 	name = "magazine (.50)"
 	icon_state = "shotgun"
+	mag_well = MAG_WELL_RIFLE
 	matter = list(MATERIAL_STEEL = 6)
 	w_class = ITEM_SIZE_SMALL
 	max_ammo = 8

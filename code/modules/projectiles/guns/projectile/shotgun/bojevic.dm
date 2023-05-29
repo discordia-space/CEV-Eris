@@ -11,7 +11,7 @@
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
 	load_method = MAGAZINE
-	mag_well = MAG_WELL_RIFLE
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 	magazine_type = /obj/item/ammo_magazine/m12
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 4000
@@ -39,8 +39,10 @@
 	if(wielded)
 		itemstring += "_doble"
 
+(ammo_magazine ? "_mag" + (ammo_magazine.mag_well == MAG_WELL_RIFLE_D ? "_d" : ""))
+
 	if(ammo_magazine)
-		overlays += "m12[ammo_magazine.ammo_label_string]"
+		overlays += (ammo_magazine ? ""m12[ammo_magazine.ammo_label_string]"" + (ammo_magazine.mag_well == MAG_WELL_RIFLE_D ? ""m12_short[ammo_magazine.ammo_label_string]"" : ""))
 		itemstring += "_mag"
 
 	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
