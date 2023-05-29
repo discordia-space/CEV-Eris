@@ -224,12 +224,6 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 				scanneddata += 1
 				scanned_autopsy_weapons += W.weapon
 
-	if(istype(O, /obj/item/paper/virus_report))
-		var/obj/item/paper/virus_report/report = O
-		for(var/symptom in report.symptoms)
-			if(!scanned_symptoms[symptom])
-				scanneddata += 1
-				scanned_symptoms[symptom] = report.symptoms[symptom]
 	if(istype(O, /obj/item/slime_extract))
 		if(!(O.type in scanned_slimecores))
 			scanned_slimecores += O.type

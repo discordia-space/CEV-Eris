@@ -1,0 +1,7 @@
+author: vode-code
+delete-after: true
+changes:
+  - rscdel: Removed Pathology
+  - admin: Removed some outdated transformations
+  - code_imp: deleted some inaccessible code
+  - code_imp: removed custom items

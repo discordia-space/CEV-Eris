@@ -14,10 +14,6 @@
 	name = "slime scanner"
 	build_path = /obj/item/device/scanner/xenobio
 
-/datum/design/autolathe/device/antibody_scanner
-	name = "antibody scanner"
-	build_path = /obj/item/device/antibody_scanner
-
 /datum/design/autolathe/device/megaphone
 	name = "megaphone"
 	build_path = /obj/item/device/megaphone
