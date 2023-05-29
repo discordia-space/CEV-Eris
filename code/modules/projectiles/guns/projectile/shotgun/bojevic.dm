@@ -39,10 +39,8 @@
 	if(wielded)
 		itemstring += "_doble"
 
-(ammo_magazine ? "_mag" + (ammo_magazine.mag_well == MAG_WELL_RIFLE_D ? "_d" : ""))
-
 	if(ammo_magazine)
-		overlays += (ammo_magazine ? ""m12[ammo_magazine.ammo_label_string]"" + (ammo_magazine.mag_well == MAG_WELL_RIFLE_D ? ""m12_short[ammo_magazine.ammo_label_string]"" : ""))
+		overlays += initial(icon_state) + (ammo_magazine ? "m12_short[ammo_magazine.ammo_label_string]" + (ammo_magazine.mag_well == MAG_WELL_RIFLE_D ? "m12[ammo_magazine.ammo_label_string]" : "") : "")
 		itemstring += "_mag"
 
 	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
