@@ -726,7 +726,7 @@
 
 /obj/item/ammo_magazine/m12/short
 	name = "magazine (.50)"
-	icon_state = "shotgun"
+	icon_state = "m12_short"
 	mag_well = MAG_WELL_RIFLE
 	matter = list(MATERIAL_STEEL = 6)
 	w_class = ITEM_SIZE_SMALL
@@ -738,7 +738,7 @@
 
 	if(stored_ammo.len)
 		var/obj/item/ammo_casing/LS = stored_ammo[1]
-		overlays += "shotgun_shell_[LS.shell_color]"
+		overlays += "m12_short_shell_[LS.shell_color]"
 
 /obj/item/ammo_magazine/m12/short/Initialize()
 	. = ..()
