@@ -18,10 +18,6 @@
 
 	var/copying = FALSE
 
-/obj/machinery/autolathe_disk_cloner/guild_jailbreaker
-	name = "Aster's Jailbreaker"
-	desc = "It's just a disk cloner, but slightly upgraded to barely hack autolathe disks."
-	hacked = TRUE
 
 /obj/machinery/autolathe_disk_cloner/Initialize()
 	. = ..()

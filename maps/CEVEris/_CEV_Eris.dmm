@@ -53776,7 +53776,7 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/storage)
 "czG" = (
-/obj/machinery/autolathe_disk_cloner/guild_jailbreaker,
+/obj/machinery/autolathe_disk_cloner,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/storage)
 "czH" = (
