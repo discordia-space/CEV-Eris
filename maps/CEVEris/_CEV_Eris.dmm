@@ -23129,7 +23129,6 @@
 	pixel_x = 24;
 	req_access = list(39)
 	},
-/obj/machinery/smartfridge/secure/virology,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/virology)
 "bdk" = (
@@ -24234,7 +24233,6 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "bfT" = (
-/obj/machinery/disease2/incubator,
 /obj/item/device/radio/intercom{
 	dir = 4;
 	pixel_x = -22
@@ -25130,7 +25128,6 @@
 	name = "Virology Requests Console";
 	pixel_x = 30
 	},
-/obj/machinery/disease2/diseaseanalyser,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/virology)
 "bid" = (
@@ -25411,9 +25408,6 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/command/courtroom)
 "biN" = (
-/obj/structure/reagent_dispensers/virusfood{
-	pixel_y = 32
-	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/virology)
 "biO" = (
@@ -25580,15 +25574,6 @@
 /area/eris/medical/virology)
 "bjc" = (
 /obj/structure/table/standard,
-/obj/item/virusdish/random,
-/obj/item/virusdish/random{
-	pixel_x = -2;
-	pixel_y = 10
-	},
-/obj/item/virusdish/random{
-	pixel_x = -8;
-	pixel_y = -5
-	},
 /obj/item/storage/lockbox/vials,
 /obj/structure/cable/green{
 	d1 = 1;
@@ -25725,18 +25710,12 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4central)
 "bjq" = (
-/obj/machinery/computer/curer{
-	dir = 1
-	},
 /obj/machinery/camera/network/medbay{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/virology)
 "bjr" = (
-/obj/machinery/computer/diseasesplicer{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/virology)
 "bjs" = (
@@ -26201,7 +26180,6 @@
 /obj/structure/table/standard,
 /obj/item/clothing/gloves/latex,
 /obj/item/clothing/gloves/latex,
-/obj/item/device/antibody_scanner,
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 24

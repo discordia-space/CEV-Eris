@@ -65,7 +65,6 @@
 		<option value='?_src_=vars;setspecies=\ref[src]'>Set Species</option>
 		<option value='?_src_=vars;makeai=\ref[src]'>Make AI</option>
 		<option value='?_src_=vars;makerobot=\ref[src]'>Make cyborg</option>
-		<option value='?_src_=vars;makemonkey=\ref[src]'>Make monkey</option>
 		<option value='?_src_=vars;makeslime=\ref[src]'>Make slime</option>
 	"}
 

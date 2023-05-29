@@ -21,9 +21,6 @@
 
 /datum/reagent/organic/blood/get_data() // Just in case you have a reagent that handles data differently.
 	var/T = data.Copy()
-	if(T["virus2"])
-		var/list/V = T["virus2"]
-		T["virus2"] = V.Copy()
 	return T
 
 /datum/reagent/organic/blood/touch_turf(turf/simulated/T)
@@ -41,42 +38,10 @@
 		M.add_chemical_effect(CE_TOXIN, effect_multiplier)
 	if(effective_dose > 15)
 		M.add_chemical_effect(CE_TOXIN, effect_multiplier)
-	if(data && data["virus2"])
-		var/list/vlist = data["virus2"]
-		if(vlist.len)
-			for(var/ID in vlist)
-				var/datum/disease2/disease/V = vlist[ID]
-				if(V.spreadtype == "Contact")
-					infect_virus2(M, V.getcopy())
-
-/datum/reagent/organic/blood/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
-	if(data && data["virus2"])
-		var/list/vlist = data["virus2"]
-		if(vlist.len)
-			for(var/ID in vlist)
-				var/datum/disease2/disease/V = vlist[ID]
-				if(V.spreadtype == "Contact")
-					infect_virus2(M, V.getcopy())
-	if(data && data["antibodies"])
-		M.antibodies |= data["antibodies"]
 
 /datum/reagent/organic/blood/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.inject_blood(src, volume)
 	remove_self(volume)
-
-// pure concentrated antibodies
-/datum/reagent/organic/antibodies
-	data = list("antibodies"=list())
-	name = "Antibodies"
-	taste_description = "slime"
-	id = "antibodies"
-	reagent_state = LIQUID
-	color = "#0050F0"
-
-/datum/reagent/organic/antibodies/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	if(src.data)
-		M.antibodies |= src.data["antibodies"]
-	..()
 
 #define WATER_LATENT_HEAT 19000 // How much heat is removed when applied to a hot turf, in J/unit (19000 makes 120 u of water roughly equivalent to 4L)
 /datum/reagent/water

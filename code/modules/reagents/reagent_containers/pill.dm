@@ -284,7 +284,6 @@
 					list("sacid" = 15) = 1,\
 					list("hclacid" = 15) = 1,\
 					list("impedrezene" = 15, "dexalinp" = 35) = 1,\
-					list("virusfood" = 15) = 1,\
 					list("leporazine" = 15) = 1,\
 					list("anti_toxin" = 15, "zombiepowder" = 10) = 0.5,\
 					list("dexalinp" = 35, "cyanide" = 15) = 0.5,\

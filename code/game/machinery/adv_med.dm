@@ -227,7 +227,6 @@
 		"stationtime" = stationtime2text(),
 		"stat" = H.stat,
 		"health" = round(H.health / H.maxHealth * 100),
-		"virus_present" = H.virus2.len,
 		"bruteloss" = H.getBruteLoss(),
 		"fireloss" = H.getFireLoss(),
 		"oxyloss" = H.getOxyLoss(),
@@ -305,13 +304,13 @@
 		for(var/obj/item/organ/internal/I in e.internal_organs) // I put this before the actual external organ
 			if(I.scanner_hidden) // so that I could set significant based on internal organ results.
 				continue
-	
+
 			var/list/internal_wounds = list()
 			if(BP_IS_ASSISTED(I))
 				internal_wounds += "Assisted"
 			if(BP_IS_ROBOTIC(I))
 				internal_wounds += "Prosthetic"
-	
+
 			var/total_brute_and_misc_damage = 0
 			var/total_burn_damage = 0
 

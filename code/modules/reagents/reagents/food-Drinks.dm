@@ -183,17 +183,6 @@
 		T.wet_floor()
 	return TRUE
 
-/datum/reagent/organic/nutriment/virus_food
-	name = "Virus Food"
-	id = "virusfood"
-	description = "A mixture of water, milk, and oxygen. Virus cells can use this mixture to reproduce."
-	taste_description = "vomit"
-	taste_mult = 2
-	reagent_state = LIQUID
-	nutriment_factor = 0.8
-	sanity_gain_ingest = -0.3 //Yucky
-	color = "#899613"
-	taste_tag = list(TASTE_SOUR)
 
 /datum/reagent/organic/nutriment/sprinkles
 	name = "Sprinkles"

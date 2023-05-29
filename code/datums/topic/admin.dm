@@ -757,37 +757,6 @@
 	world.save_storyteller(master_storyteller)
 	source.Topic(source, list("c_mode"=1))
 
-
-/datum/admin_topic/monkeyone
-	keyword = "monkeyone"
-	require_perms = list(R_FUN)
-
-/datum/admin_topic/monkeyone/Run(list/input)
-	var/mob/living/carbon/human/H = locate(input["monkeyone"])
-	if(!istype(H))
-		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
-		return
-
-	log_admin("[key_name(usr)] attempting to monkeyize [key_name(H)]")
-	message_admins("\blue [key_name_admin(usr)] attempting to monkeyize [key_name_admin(H)]", 1)
-	H.monkeyize()
-
-
-/datum/admin_topic/corgione
-	keyword = "corgione"
-	require_perms = list(R_FUN)
-
-/datum/admin_topic/corgione/Run(list/input)
-	var/mob/L= locate(input["corgione"])
-	if(!istype(L))
-		to_chat(usr, "This can only be used on instances of type /mob")
-		return
-
-	log_admin("[key_name(usr)] attempting to corgize [key_name(L)]")
-	message_admins("\blue [key_name_admin(usr)] attempting to corgize [key_name_admin(L)]", 1)
-	L.corgize()
-
-
 /datum/admin_topic/forcespeech
 	keyword = "forcespeech"
 	require_perms = list(R_FUN)
@@ -1375,15 +1344,6 @@
 /datum/admin_topic/admin_secrets/Run(list/input)
 	var/datum/admin_secret_item/item = locate(input["admin_secrets"]) in admin_secrets.items
 	item.execute(usr)
-
-
-/datum/admin_topic/populate_inactive_customitems
-	keyword = "populate_inactive_customitems"
-	require_perms = list(R_ADMIN|R_SERVER)
-
-/datum/admin_topic/populate_inactive_customitems/Run(list/input)
-	populate_inactive_customitems_list(source.owner)
-
 
 /datum/admin_topic/vsc
 	keyword = "vsc"

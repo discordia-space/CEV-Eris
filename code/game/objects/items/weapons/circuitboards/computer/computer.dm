@@ -107,16 +107,6 @@
 	build_path = /obj/machinery/computer/operating
 	origin_tech = list(TECH_DATA = 2, TECH_BIO = 2)
 
-/obj/item/electronics/circuitboard/curefab
-	name = T_BOARD("cure fabricator")
-	rarity_value = 40
-	build_path = /obj/machinery/computer/curer
-
-/obj/item/electronics/circuitboard/splicer
-	name = T_BOARD("disease splicer")
-	rarity_value = 40
-	build_path = /obj/machinery/computer/diseasesplicer
-
 /obj/item/electronics/circuitboard/centrifuge
 	name = T_BOARD("centrifuge")
 	build_path = /obj/machinery/centrifuge

@@ -1,40 +1,3 @@
-/mob/living/carbon/human/proc/monkeyize()
-	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
-		return
-	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
-	canmove = 0
-	stunned = 1
-	icon = null
-	invisibility = 101
-	var/atom/movable/overlay/animation = new /atom/movable/overlay( loc )
-	animation.plane = plane
-	animation.layer = ABOVE_MOB_LAYER
-	animation.icon_state = "blank"
-	animation.icon = 'icons/mob/mob.dmi'
-	animation.master = src
-	flick("h2monkey", animation)
-	sleep(48)
-	//animation = null
-
-	DEL_TRANSFORMATION_MOVEMENT_HANDLER(src)
-	stunned = 0
-
-	update_lying_buckled_and_verb_status()
-	invisibility = initial(invisibility)
-
-	if(!species.primitive_form) //If the creature in question has no primitive set, this is going to be messy.
-		gib()
-		return
-
-	for(var/obj/item/W in src)
-		drop_from_inventory(W)
-
-	set_species(species.primitive_form)
-
-	to_chat(src, "<B>You are now [species.name]. </B>")
-	qdel(animation)
-	return src
-
 /mob/new_player/AIize()
 	spawning = 1
 	return ..()
@@ -132,21 +95,6 @@
 	qdel(src)
 	return
 
-/mob/proc/corgize()
-	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
-		return
-	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
-	canmove = 0
-	icon = null
-	invisibility = 101
-
-	var/mob/living/simple_animal/corgi/new_corgi = new /mob/living/simple_animal/corgi (loc)
-	new_corgi.a_intent = I_HURT
-	new_corgi.key = key
-
-	to_chat(new_corgi, "<B>You are now a Corgi. Yap Yap!</B>")
-	qdel(src)
-	return
 
 /mob/proc/Animalize()
 

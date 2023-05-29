@@ -465,7 +465,6 @@ SUBSYSTEM_DEF(ticker)
 				captainless = FALSE
 			if(!player_is_antag(player.mind, only_offstation_roles = 1))
 				SSjob.EquipRank(player, player.mind.assigned_role)
-				equip_custom_items(player)
 	if(captainless)
 		for(var/mob/M in GLOB.player_list)
 			if(!isnewplayer(M))

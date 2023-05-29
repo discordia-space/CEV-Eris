@@ -304,16 +304,6 @@
 	contents_cost = 950
 	spawn_blacklisted = TRUE
 
-/obj/structure/reagent_dispensers/virusfood
-	name = "virus food dispenser"
-	desc = "A dispenser of virus food."
-	icon_state = "virusfoodtank"
-	amount_per_transfer_from_this = 10
-	anchored = TRUE
-	density = FALSE
-	volume = 1000
-	starting_reagent = "virusfood"
-	spawn_blacklisted = TRUE
 
 /obj/structure/reagent_dispensers/acid
 	name = "sulphuric acid dispenser"
