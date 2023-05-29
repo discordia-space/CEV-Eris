@@ -310,7 +310,7 @@
 		else
 			hit_mod = 6
 
-	if(target_mob == original)
+	if(!ismob(original) || target_mob == original)
 		var/acc_mod = leftmost_bit(projectile_accuracy)
 		hit_mod -= acc_mod //LOG2 on the projectile accuracy
 	return prob((base_miss_chance[def_zone] + hit_mod) * 10)
