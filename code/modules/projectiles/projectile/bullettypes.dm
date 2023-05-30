@@ -241,15 +241,15 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
 	icon_state = "slug"
-	damage_types = list(BRUTE = 25)
-	armor_divisor = 1
+	damage_types = list(BRUTE = 30)
+	armor_divisor = 1.5
 	knockback = 1
 	step_delay = 1.1
 	recoil = 8
 	wounding_mult = WOUNDING_EXTREME
 
 /obj/item/projectile/bullet/shotgun/scrap
-	armor_divisor = 0.8
+	armor_divisor = 1.2
 	recoil = 10
 
 /obj/item/projectile/bullet/shotgun/beanbag
@@ -272,7 +272,7 @@ There are important things regarding this file:
 	knockback = 0
 
 /obj/item/projectile/bullet/shotgun/incendiary
-	damage_types = list(BRUTE = 38)
+	damage_types = list(BRUTE = 25)
 	knockback = 0
 
 	var/fire_stacks = 4
@@ -289,7 +289,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
 	icon_state = "birdshot-1"
-	damage_types = list(BRUTE = 21)
+	damage_types = list(BRUTE = 25)
 	armor_divisor = 1
 	pellets = 6
 	range_step = 1
