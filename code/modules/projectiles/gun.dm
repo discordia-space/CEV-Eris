@@ -596,7 +596,7 @@
 	var/offset = init_offset
 
 	var/datum/movement_handler/mob/delay/delay = user.GetMovementHandler(/datum/movement_handler/mob/delay)
-	if(delay)
+	if(delay && (world.time < delay.next_move))
 		offset += recoil.getRating(RECOIL_TWOHAND)
 	else if(braceable)
 		offset -= braceable // With a bipod, you can negate most of your recoil
