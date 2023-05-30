@@ -722,3 +722,10 @@
 
 /obj/item/ammo_magazine/m12/empty
 	initial_ammo = 0
+
+/obj/item/ammo_magazine/m12/antim
+	name = "ammo drum (.60)"
+	caliber = CAL_ANTIM
+	ammo_type = /obj/item/ammo_casing/antim
+	matter = list(MATERIAL_STEEL = 6)
+	max_ammo = 8
