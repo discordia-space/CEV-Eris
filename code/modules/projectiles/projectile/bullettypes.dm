@@ -242,7 +242,7 @@ There are important things regarding this file:
 	name = "slug"
 	icon_state = "slug"
 	damage_types = list(BRUTE = 30)
-	armor_divisor = 1.5
+	armor_divisor = 1
 	knockback = 1
 	step_delay = 1.1
 	recoil = 10
