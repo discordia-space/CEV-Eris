@@ -99,10 +99,11 @@
 
 #define VIG_OVERCHARGE_GEN 0.05
 
-#define EMBEDDED_RECOIL(x)     list(1.3 *x, 0  *x, 0  *x )
-#define HANDGUN_RECOIL(x)      list(1.15*x, 0.1*x, 0.6*x )
-#define SMG_RECOIL(x)          list(1   *x, 0.2*x, 1.2*x )
-#define CARBINE_RECOIL(x)      list(0.85*x, 0.3*x, 1.8*x )
-#define RIFLE_RECOIL(x)        list(0.7 *x, 0.4*x, 2.4*x )
-#define LMG_RECOIL(x)          list(0.55*x, 0.5*x, 3*x   )
-#define HMG_RECOIL(x)          list(0.4 *x, 0.6*x, 3.6*x )
+// Base recoil - Offset while moving - Recoil from being one-handed
+#define EMBEDDED_RECOIL(x)     list(1.3 *x, 0, 0  *x )
+#define HANDGUN_RECOIL(x)      list(1.15*x, 2, 0.6*x )
+#define SMG_RECOIL(x)          list(1   *x, 4, 1.2*x )
+#define CARBINE_RECOIL(x)      list(0.85*x, 6, 1.8*x )
+#define RIFLE_RECOIL(x)        list(0.7 *x, 8, 2.4*x )
+#define LMG_RECOIL(x)          list(0.55*x, 10, 3*x   )
+#define HMG_RECOIL(x)          list(0.4 *x, 12, 3.6*x )

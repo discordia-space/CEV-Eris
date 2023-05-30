@@ -26,7 +26,6 @@
 	init_recoil = LMG_RECOIL(1)
 	matter = list()
 	cell_type = /obj/item/cell/medium/mech
-	init_offset = 10 // Pew pew in all directions
 
 /obj/item/mech_equipment/mounted_system/taser/ion
 	name = "mounted ion rifle"
