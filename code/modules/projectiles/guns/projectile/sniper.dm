@@ -45,7 +45,7 @@
 	resultvars = list(/obj/item/gun/projectile/heavysniper)
 	gripvars = list(/obj/item/part/gun/modular/grip/serb)
 	mechanismvar = /obj/item/part/gun/modular/mechanism/boltgun
-	barrelvars = list(/obj/item/part/gun/modular/barrel/antim, /obj/item/part/gun/modular/barrel/shotgun)
+	barrelvars = list(/obj/item/part/gun/modular/barrel/antim)
 
 /obj/item/gun/projectile/heavysniper/update_icon()
 	..()
