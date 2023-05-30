@@ -48,7 +48,7 @@
 	var/datum/recoil/recoil // Reference to the recoil datum in datum/recoil.dm
 	var/list/init_recoil = list(0, 0, 0) // For updating weapon mods
 
-	var/braceable = 0 // Offset reduction based on whether the gun is braced
+	var/braceable = 1 // Offset reduction based on whether the gun is braced
 
 	var/list/gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/steel = 4)
 
