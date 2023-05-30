@@ -25,7 +25,7 @@
 	gripvars = list(/obj/item/part/gun/modular/grip/black, /obj/item/part/gun/modular/grip/rubber)
 	resultvars = list(/obj/item/gun/projectile/shotgun/pump/regulator, /obj/item/gun/projectile/shotgun/pump/regulator/army)
 	mechanismvar = /obj/item/part/gun/modular/mechanism/shotgun
-	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun)
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun, /obj/item/part/gun/modular/barrel/antim)
 
 /obj/item/gun/projectile/shotgun/pump/regulator/army
 	name = "NT SG \"Regulator M1000\""

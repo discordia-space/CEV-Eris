@@ -189,15 +189,15 @@ There are important things regarding this file:
 //Sniper rifles .60
 /obj/item/projectile/bullet/antim
 	name = ".60 caliber bullet"
-	damage_types = list(BRUTE = 18)
+	damage_types = list(BRUTE = 20)
 	armor_divisor = 3
 	penetrating = 2
 	step_delay = 0.8
-	recoil = 15 // Good luck shooting these from a revolver
+	recoil = 10 // on "par" with slugs. less damage but faster and pierces walls.
 	wounding_mult = WOUNDING_EXTREME
 
 /obj/item/projectile/bullet/antim/emp
-	damage_types = list(BRUTE = 16)
+	damage_types = list(BRUTE = 18)
 	armor_divisor = 2
 
 /obj/item/projectile/bullet/antim/emp/on_hit(atom/target, blocked = FALSE)
@@ -205,12 +205,12 @@ There are important things regarding this file:
 	empulse(target, 0, 0)
 
 /obj/item/projectile/bullet/antim/uranium
-	damage_types = list(BRUTE = 16)
+	damage_types = list(BRUTE = 18)
 	armor_divisor = 5
 	irradiate = 200
 
 /obj/item/projectile/bullet/antim/breach
-	damage_types = list(BRUTE = 16, HALLOSS = 20)
+	damage_types = list(BRUTE = 18, HALLOSS = 20)
 	armor_divisor = 2
 	penetrating = -5
 	nocap_structures = TRUE
@@ -235,7 +235,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/antim/scrap
 	armor_divisor = 2
-	recoil = 20
+	recoil = 13
 
 //Shotguns .50
 /obj/item/projectile/bullet/shotgun
@@ -245,7 +245,7 @@ There are important things regarding this file:
 	armor_divisor = 1.5
 	knockback = 1
 	step_delay = 1.1
-	recoil = 8
+	recoil = 10
 	wounding_mult = WOUNDING_EXTREME
 
 /obj/item/projectile/bullet/shotgun/scrap
@@ -257,6 +257,7 @@ There are important things regarding this file:
 	icon_state = "buckshot"
 	check_armour = ARMOR_BULLET //neverforget
 	damage_types = list(BRUTE = 10, HALLOSS = 20)
+	recoil = 8 // should be weaker than lethal ammo
 	embed = FALSE
 	sharp = FALSE
 	wounding_mult = WOUNDING_WIDE
@@ -295,7 +296,7 @@ There are important things regarding this file:
 	range_step = 1
 	spread_step = 10
 	pellet_to_knockback_ratio = 2
-	recoil = 5
+	recoil = 7
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()

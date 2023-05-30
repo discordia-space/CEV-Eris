@@ -59,7 +59,7 @@
 	resultvars = list(/obj/item/gun/projectile/shotgun/pump)
 	gripvars = list(/obj/item/part/gun/modular/grip/wood)
 	mechanismvar = /obj/item/part/gun/modular/mechanism/shotgun
-	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun)
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun, /obj/item/part/gun/modular/barrel/antim)
 
 /obj/item/gun/projectile/shotgun/pump/sawn
 	name = "sawn-off FS SG \"Kammerer\""

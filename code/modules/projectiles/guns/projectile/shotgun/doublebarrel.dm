@@ -93,4 +93,4 @@
 	resultvars = list(/obj/item/gun/projectile/shotgun/doublebarrel)
 	gripvars = list(/obj/item/part/gun/modular/grip/wood)
 	mechanismvar = /obj/item/part/gun/modular/mechanism/shotgun
-	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun)
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun, /obj/item/part/gun/modular/barrel/antim)

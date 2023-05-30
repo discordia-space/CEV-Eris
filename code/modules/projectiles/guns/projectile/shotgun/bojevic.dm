@@ -59,4 +59,4 @@
 	resultvars = list(/obj/item/gun/projectile/shotgun/bojevic)
 	gripvars = list(/obj/item/part/gun/modular/grip/serb)
 	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle // listen, its semi and full auto, not pump. makes sense
-	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun)
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun, /obj/item/part/gun/modular/barrel/antim)
