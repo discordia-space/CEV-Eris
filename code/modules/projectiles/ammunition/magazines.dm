@@ -729,4 +729,3 @@
 	ammo_type = /obj/item/ammo_casing/antim
 	matter = list(MATERIAL_STEEL = 6)
 	max_ammo = 8
-	ammo_names = list(
