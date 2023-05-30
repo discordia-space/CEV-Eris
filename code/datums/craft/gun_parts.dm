@@ -71,10 +71,10 @@ semi accepts weird caliber - +1 points
 	var/datum/component/item_upgrade/I // For changing stats when needed
 
 	// Bonuses from forging/type or maluses from printing
-	var/damage_bonus = 0 // Increases damage multiplier additively
 	var/cheap = FALSE // Set this to true for cheap variants
 
-/obj/item/part/gun/modular/New()
+/obj/item/part/gun/modular/New(location, var/quality = 0)
+	price_tag = initial(price_tag) * (2 ** quality) // From a quarter of the price for junk, to quadruple the price for antag-grade parts.
 	..()
 	I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
@@ -116,11 +116,6 @@ semi accepts weird caliber - +1 points
 	var/list/barrelvars = list(/obj/item/part/gun/modular/barrel)
 
 	var/serial_type = ""
-
-/obj/item/part/gun/modular/mechanism/New()
-	..()
-	if(damage_bonus)
-		I.weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS] = damage_bonus
 
 /obj/item/part/gun/frame/New(loc, ...)
 	. = ..()
@@ -295,8 +290,21 @@ semi accepts weird caliber - +1 points
 	var/type_of_grip = "wood" // Placeholder
 	part_itemstring = TRUE
 
-/obj/item/part/gun/modular/grip/New()
-	..()
+/obj/item/part/gun/modular/grip/New(location, var/quality = 0)
+	if(quality)
+		var/damage_name
+		switch(quality)
+			if(-2)
+				damage_name = pick("misshapen", "unaligned", "coarse")
+			if(-1)
+				damage_name = pick("unbalanced", "rough")
+			if(1)
+				damage_name = pick("ergonomic")
+			if(2)
+				damage_name = pick("exceptional", "flawless", "superb")
+		name = damage_name + " " + name
+	..(quality)
+	I.weapon_upgrades[GUN_UPGRADE_RECOIL] = 1 - quality / 8
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_GRIP] = type_of_grip
 	I.weapon_upgrades[GUN_UPGRADE_OFFSET] = -15 // Without a grip the gun shoots funny, players are legally allowed to not use a grip
 	I.gun_loc_tag = PART_GRIP
@@ -355,10 +363,24 @@ semi accepts weird caliber - +1 points
 	var/mag_well = MAG_WELL_GENERIC
 	var/divisor_bonus = 0
 	var/recoil_bonus = 0
+	var/damage_bonus = 0
 	var/list/bonus_firemodes = list()
 
-/obj/item/part/gun/modular/mechanism/New()
-	..()
+/obj/item/part/gun/modular/mechanism/New(location, var/quality = 0)
+	if(quality)
+		var/damage_name
+		switch(quality)
+			if(-2)
+				damage_name = pick("wedged", "disjointed", "snapped")
+			if(-1)
+				damage_name = pick("fragile", "bent", "misaligned")
+			if(1)
+				damage_name = pick("fine")
+			if(2)
+				damage_name = pick("exceptional", "flawless", "superb")
+		name = damage_name + " " + name
+	..(quality)
+	I.weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS] = 1 + damage_bonus - quality / 20
 	I.weapon_upgrades[GUN_UPGRADE_FIREMODES] = bonus_firemodes
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL] = mag_well
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_OK_CALIBERS] = accepted_calibers
@@ -545,12 +567,21 @@ semi accepts weird caliber - +1 points
 	rarity_value = 15
 	var/caliber = CAL_357
 
-/obj/item/part/gun/modular/barrel/New()
-	if(cheap)
-		var/damage_name = pick("warped", "crooked", "bent", "deformed", "misshapen")
+/obj/item/part/gun/modular/barrel/New(location, var/quality = 0)
+	if(quality)
+		var/damage_name
+		switch(quality)
+			if(-2)
+				damage_name = pick("crooked", "bent", "deformed", "cracked")
+			if(-1)
+				damage_name = pick("warped", "distorted", "rugged", "misshapen")
+			if(1)
+				damage_name = pick("fine")
+			if(2)
+				damage_name = pick("exceptional", "flawless", "superb")
 		name = damage_name + " " + name
-		damage_bonus = -0.05 // -1 points to grand total
-	..()
+	..(quality)
+	I.weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS] = 1 - quality / 20
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER] = caliber
 	I.gun_loc_tag = PART_BARREL
 
@@ -600,7 +631,6 @@ semi accepts weird caliber - +1 points
 	name = "forged .30 barrel"
 	desc = "A gun barrel, which keeps the bullet going in the right direction. Chambered in .30 caliber.\
 			Visibly forged by hand, high quality."
-	damage_bonus = 0.1 // +2 points to grand total
 
 /obj/item/part/gun/modular/barrel/lrifle/cheap
 	name = ".30 barrel"
@@ -670,7 +700,7 @@ semi accepts weird caliber - +1 points
 	part_overlay = "stock"
 	needs_grip_type = TRUE
 
-/obj/item/part/gun/modular/stock/New()
-	..()
+/obj/item/part/gun/modular/stock/New(location, var/quality = 0)
+	..(quality)
 	I.weapon_upgrades[GUN_UPGRADE_DEFINE_STOCK] = TRUE
 	I.gun_loc_tag = PART_STOCK

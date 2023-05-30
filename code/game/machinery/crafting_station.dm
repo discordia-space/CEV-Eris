@@ -104,6 +104,57 @@
 			items_to_spawn = list("" = /obj/item/ammo_casing/rocket/scrap/prespawned)
 
 		if("Gun parts")
+			choice = input(user, "Which type of part do you want to craft?") as null|anything in list("Mechanism", "Grip", "Barrel", "Frame")
+			switch(choice)
+				if("Mechanism")
+					choice = input("What type of [choice]?") as null|anything in list("Pistol mechanism", "Revolver mechanism", "Shotgun mechanism", "SMG mechanism", "Autorifle mechanism", "Machinegun mechanism", "Bolt action mechanism")
+						switch(choice)
+							if("Pistol mechanism")
+								required_resources = materials_smechanism
+								choice = input("What type of [choice]?") as null|anything in list("Pistol", "Revolver", "Shotgun", "SMG", "Autorifle", "Machinegun", "Bolt action")
+									switch(choice)
+								items_to_spawn = list("" = /obj/item/part/gun/modular/mechanism/pistol)
+							if("Revolver mechanism")
+								required_resources = materials_smechanism
+								items_to_spawn = list("" = /obj/item/part/gun/modular/mechanism/revolver)
+							if("SMG mechanism")
+								required_resources = materials_smechanism
+								items_to_spawn = list("" = /obj/item/part/gun/modular/mechanism/smg)
+							if("Autorifle mechanism")
+								required_resources = materials_lmechanism
+								items_to_spawn = list("" = /obj/item/part/gun/modular/mechanism/autorifle)
+							if("Shotgun mechanism")
+								required_resources = materials_lmechanism
+								items_to_spawn = list("" = /obj/item/part/gun/modular/mechanism/shotgun)
+							if("Machinegun mechanism mechanism")
+								required_resources = materials_hpart
+								items_to_spawn = list("" = /obj/item/part/gun/modular/mechanism/machinegun)
+							if("Bolt action mechanism")
+								required_resources = materials_lmechanism_steel
+								items_to_spawn = list("" = /obj/item/part/gun/modular/mechanism/boltgun)
+				if("Grip")
+					choice = input(user) as null|anything in list("Plastic grip", "Rubber grip", "Excelsior grip", "Bakelite grip", "Wooden grip")
+						switch(choice)
+							if("Plastic grip")
+								required_resources = materials_pgrip
+								items_to_spawn = list("" = /obj/item/part/gun/modular/grip/black)
+							if("Rubber grip")
+								required_resources = materials_pgrip
+								items_to_spawn = list("" = /obj/item/part/gun/modular/grip/rubber)
+							if("Excelsior grip")
+								required_resources = materials_pgrip
+								items_to_spawn = list("" = /obj/item/part/gun/modular/grip/excel)
+							if("Bakelite grip")
+								required_resources = materials_pgrip
+								items_to_spawn = list("" = /obj/item/part/gun/modular/grip/serb)
+							if("Wooden grip")
+								required_resources = materials_wgrip
+								items_to_spawn = list("" = /obj/item/part/gun/modular/grip/wood)
+				if("Barrel")
+				if("Frame")
+
+
+/*		if("Gun parts")
 			choice = input(user, "Which type of part do you want to craft?") as null|anything in list("Small parts", "Large parts", "Heavy parts", "Cheap parts", "Grips")
 			switch(choice)
 				if("Small parts")
@@ -225,7 +276,7 @@
 						if("Wooden grip")
 							required_resources = materials_wgrip
 							items_to_spawn = list("" = /obj/item/part/gun/modular/grip/wood)
-
+*/
 		if("Armor parts")
 			required_resources = materials_armorpart
 			items_to_spawn = list("" = /obj/item/part/armor)
