@@ -49,7 +49,7 @@
 		return
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
-		var/offset = round(calculate_offset(G.init_offset_with_brace()) * 0.8)
+		var/offset = round(calculate_offset(G.init_offset_with_brace(src)) * 0.8)
 		var/icon/base = find_cursor_icon('icons/obj/gun_cursors/standard/standard.dmi', offset)
 		ASSERT(isicon(base))
 		client.mouse_pointer_icon = base
