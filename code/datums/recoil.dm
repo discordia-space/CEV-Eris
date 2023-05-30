@@ -46,7 +46,7 @@
 
 // Better for nanoUI data
 /datum/recoil/proc/getFancyList()
-	return list("Recoil Buildup" = recoil_buildup, "Unbraced Penalty" = brace_penalty, "Onehanding Penalty" = one_hand_penalty)
+	return list("Recoil Buildup" = recoil_buildup, "Movement Penalty" = brace_penalty, "Onehanded Penalty" = one_hand_penalty)
 
 /datum/recoil/proc/attachRecoil(datum/recoil/AA)
 	return getRecoil(recoil_buildup+AA.recoil_buildup, brace_penalty+AA.brace_penalty, one_hand_penalty+AA.one_hand_penalty)

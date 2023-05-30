@@ -43,8 +43,13 @@
 	else
 		deltimer(recoil_reduction_timer)
 
-/mob/living/proc/update_cursor(var/obj/item/gun/G)
-	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES || !(istype(get_active_hand(), /obj/item/gun) || recoil > 0))
+//This doesn't really belong here, but it doesn't belong anywhere else either
+/mob/proc/update_cursor()
+	return
+
+/mob/living/update_cursor()
+	var/obj/item/gun/G = get_active_hand()
+	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES || (!istype(G, /obj/item/gun) || G.safety))
 		remove_cursor()
 		return
 	if(client)

@@ -804,7 +804,7 @@
 	if(safety)
 		user.remove_cursor()
 	else
-		user.update_cursor(src)
+		user.update_cursor()
 
 /obj/item/gun/proc/toggle_carry_state(mob/living/user)
 	inversed_carry = !inversed_carry
@@ -898,7 +898,7 @@
 					"name" = i,
 					"value" = recoilList[i]
 					))
-				total_recoil += recoilList[i]
+				total_recoil += i == "Movement Penalty" ? recoilList[i] / 10 : recoilList[i] / 10
 		data["recoil_info"] = recoil_vals
 
 	data["total_recoil"] = total_recoil

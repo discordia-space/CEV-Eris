@@ -311,6 +311,8 @@
 	*/
 	mob.moving = FALSE
 
+	mob.update_cursor()
+
 /datum/movement_handler/mob/movement/MayMove(var/mob/mover)
 	return IS_SELF(mover) &&  mob.moving ? MOVEMENT_STOP : MOVEMENT_PROCEED
 

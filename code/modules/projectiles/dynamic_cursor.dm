@@ -3,7 +3,7 @@
 /obj/item/gun/equipped(mob/living/H)
 	. = ..()
 	if(is_held() && !safety)
-		H.update_cursor(src)
+		H.update_cursor()
 	else
 		H.remove_cursor()
 

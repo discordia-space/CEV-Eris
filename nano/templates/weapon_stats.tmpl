@@ -59,7 +59,7 @@
 						{{:value.name}}
 					</div>
 					<div class="itemContent">
-						{{:helper.displayBar(value.value, 0, data.total_recoil, value.value <= 0.5 ? 'good' : value.value <= 1.5 ? 'average' : 'bad', value.value + ' degrees')}}
+						{{:helper.displayBar(value.name == "Movement Penalty" ? value.value / 10 : value.value, 0, data.total_recoil, (value.name == "Movement Penalty" ? value.value / 10 : value.value) <= 0.5 ? 'good' : (value.name == "Movement Penalty" ? value.value / 10 : value.value) <= 1.5 ? 'average' : 'bad', (value.name == "Movement Penalty" ? value.value / 10 : value.value) + ' degrees')}}
 					</div>
 				{{/for}}
 				<br>
