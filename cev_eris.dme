@@ -1935,7 +1935,6 @@
 #include "code\modules\mob\living\carbon\human\human_movement.dm"
 #include "code\modules\mob\living\carbon\human\human_organs.dm"
 #include "code\modules\mob\living\carbon\human\human_powers.dm"
-#include "code\modules\mob\living\carbon\human\human_recoil.dm"
 #include "code\modules\mob\living\carbon\human\human_species.dm"
 #include "code\modules\mob\living\carbon\human\inventory.dm"
 #include "code\modules\mob\living\carbon\human\life.dm"

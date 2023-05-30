@@ -296,8 +296,6 @@
 	var/old_turf = get_turf(mob)
 	step(mob, direction)
 
-	if(!MOVING_DELIBERATELY(mob))
-		mob.handle_movement_recoil()
 	mob.add_momentum(direction)
 	// Something with pulling things
 	var/extra_delay = HandleGrabs(direction, old_turf)

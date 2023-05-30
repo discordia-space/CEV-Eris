@@ -48,8 +48,7 @@
 	var/datum/recoil/recoil // Reference to the recoil datum in datum/recoil.dm
 	var/list/init_recoil = list(0, 0, 0) // For updating weapon mods
 
-	var/braced = FALSE //for gun_brace proc.
-	var/braceable = 1 //can the gun be used for gun_brace proc, modifies recoil. If the gun has foregrip mod installed, it's not braceable. Bipod mod increases value by 1.
+	var/braceable = 0 // Offset reduction based on whether the gun is braced
 
 	var/list/gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/steel = 4)
 
@@ -503,13 +502,7 @@
 
 /obj/item/gun/proc/kickback(mob/living/user, obj/item/projectile/P)
 	var/base_recoil = recoil.getRating(RECOIL_BASE)
-	var/brace_recoil = 0
 	var/unwielded_recoil = 0
-
-	if(!braced)
-		brace_recoil = recoil.getRating(RECOIL_TWOHAND)
-	else if(braceable > 1)
-		base_recoil /= 4 // With a bipod, you can negate most of your recoil
 
 	if(!wielded)
 		unwielded_recoil = recoil.getRating(RECOIL_ONEHAND)
@@ -527,20 +520,7 @@
 			if(1.5 to INFINITY)
 				to_chat(user, SPAN_WARNING("You struggle to keep \the [src] on target with just one hand!"))
 
-	else if(brace_recoil)
-		switch(recoil.getRating(RECOIL_BRACE_LEVEL))
-			if(0.6 to 0.8)
-				if(prob(25))
-					to_chat(user, SPAN_WARNING("Your aim wavers slightly."))
-			if(0.8 to 1)
-				if(prob(50))
-					to_chat(user, SPAN_WARNING("Your aim wavers as you fire \the [src] while carrying it."))
-			if(1 to 1.2)
-				to_chat(user, SPAN_WARNING("You have trouble keeping \the [src] on target while carrying it!"))
-			if(1.2 to INFINITY)
-				to_chat(user, SPAN_WARNING("You struggle to keep \the [src] on target while carrying it!"))
-
-	user.handle_recoil(src, (base_recoil + brace_recoil + unwielded_recoil) * P.recoil)
+	user.handle_recoil(src, (base_recoil + unwielded_recoil) * P.recoil)
 
 /obj/item/gun/proc/process_point_blank(obj/item/projectile/P, mob/user, atom/target)
 	if(!istype(P))
@@ -590,7 +570,7 @@
 
 	if(params)
 		P.set_clickpoint(params)
-	var/offset = user.calculate_offset(init_offset_with_brace())
+	var/offset = user.calculate_offset(init_offset_with_brace(user))
 /*
 	var/remainder = offset % 4
 	offset /= 4
@@ -612,10 +592,15 @@
 	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
 
 //Support proc for calculate_offset
-/obj/item/gun/proc/init_offset_with_brace()
+/obj/item/gun/proc/init_offset_with_brace(mob/living/user)
 	var/offset = init_offset
-	if(braced)
-		offset -= braceable * 3 // Bipod doubles effect
+
+	var/datum/movement_handler/mob/delay/delay = user.GetMovementHandler(/datum/movement_handler/mob/delay)
+	if(delay)
+		offset += recoil.getRating(RECOIL_TWOHAND)
+	else if(braceable)
+		offset -= braceable // With a bipod, you can negate most of your recoil
+
 	return offset
 
 //Suicide handling.
@@ -664,25 +649,6 @@
 		handle_click_empty(user)
 		mouthshoot = FALSE
 		return
-
-/obj/item/gun/proc/gun_brace(mob/living/user, atom/target)
-	if(braceable && !user.is_busy)
-		var/atom/original_loc = user.loc
-		var/brace_direction = get_dir(user, target)
-		user.is_busy = TRUE
-		user.facing_dir = null
-		to_chat(user, SPAN_NOTICE("You brace your weapon on \the [target]."))
-		braced = TRUE
-		while(user.loc == original_loc && user.dir == brace_direction)
-			sleep(2)
-		to_chat(user, SPAN_NOTICE("You stop bracing your weapon."))
-		braced = FALSE
-		user.is_busy = FALSE
-	else
-		if(user.is_busy)
-			to_chat(user, SPAN_NOTICE("You are already bracing your weapon!"))
-		else
-			to_chat(user, SPAN_WARNING("You can\'t properly place your weapon on \the [target] because of the foregrip!"))
 
 /obj/item/gun/proc/toggle_scope(mob/living/user, switchzoom = FALSE)
 	//looking through a scope limits your periphereal vision
@@ -1024,7 +990,7 @@
 	force = initial(force)
 	armor_divisor = initial(armor_divisor)
 	sharp = initial(sharp)
-	braced = initial(braced)
+	braceable = initial(braceable)
 	recoil = getRecoil(init_recoil[1], init_recoil[2], init_recoil[3])
 	flashlight_attachment = initial(flashlight_attachment)
 	verbs -= /obj/item/gun/proc/toggle_light
