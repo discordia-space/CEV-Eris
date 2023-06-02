@@ -104,6 +104,24 @@ SUBSYSTEM_DEF(bullets)
 	// [1] is X ratio , [2] is Y ratio,  [3] is Z-ratio
 	movementRatios = coordinates
 
+/datum/bullet_data/proc/ricochet(atom/wall)
+	var/list/bCoords = list(bullet.referencedBullet.x, bullet.referencedBullet.y)
+	var/list/wCoords = list(wall.x, wall.y)
+	var/list/cCoords = list(abs(bCoords[1] - wCoords[1] + 0.00001), abs(bCoords[2] - wCoords[2] + 0.00001))
+	var/list/tCoords = list(0,0)
+	var/ipothenuse = sqrt(cCoords[1]**2 + cCoords[2]**2)
+	if(cCoords[1] > cCoords[2])
+		var/s = cCoords[1]/ipothenuse
+		s = 90 - arcsin(s)
+		if(s < 30)
+			cCoords[1] = -cCoords[1]
+	else
+		var/s = cCoords[2]/ipothenuse
+		s = 90 - arcsin(s)
+		if(s < 30)
+			cCoords[2] = -cCoords[2]
+	return cCoords
+
 /datum/bullet_data/proc/updateLevel()
 	switch(currentCoords[3])
 		if(-INFINITY to LEVEL_BELOW)
@@ -166,7 +184,15 @@ SUBSYSTEM_DEF(bullets)
 			px += -1 * x_change * PPT/2
 			py += -1 * y_change * PPT/2
 			pz += -1 * z_change
-			target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z + z_change)
+			if(z_change)
+				if(z_change > 1)
+					target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z++)
+				else
+					target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z)
+				target_turf.take_damage(bullet.referencedBullet.get_structure_damage(), BRUTE, FALSE)
+			else
+				target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z)
+
 			if(!target_turf)
 				bullet_queue -= bullet
 				break
@@ -186,6 +212,8 @@ SUBSYSTEM_DEF(bullets)
 			bullet_queue -= bullet
 			for(var/turf/thing in bullet.coloreds)
 				thing.color = initial(thing.color)
+
+
 #undef LEVEL_BELOW
 #undef LEVEL_TURF
 #undef LEVEL_LYING
