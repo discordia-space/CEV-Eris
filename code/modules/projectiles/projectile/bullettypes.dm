@@ -249,7 +249,7 @@ There are important things regarding this file:
 	wounding_mult = WOUNDING_EXTREME
 
 /obj/item/projectile/bullet/shotgun/scrap
-	armor_divisor = 1.2
+	armor_divisor = 0.8
 	recoil = 10
 
 /obj/item/projectile/bullet/shotgun/beanbag
