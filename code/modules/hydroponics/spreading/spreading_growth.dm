@@ -29,7 +29,7 @@
 		//We dont want to melt external walls and cause breaches
 		if(!near_external && floor.density)
 			if(!isnull(seed.chems["pacid"]))
-				spawn(rand(5,25)) floor.ex_act(3)
+				spawn(rand(5,25)) floor.explosion_act(100, null)
 			continue
 		if(!Adjacent(floor))
 			continue

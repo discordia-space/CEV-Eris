@@ -82,3 +82,30 @@
 2023-05-21:
   MLGTASTICa:
   - bugfix: Fixed everyone having the same DNA.
+2023-05-27:
+  MLGTASTICa:
+  - bugfix: Fixed playtime tracking resetting itself for any round-start joiner.
+  - bugfix: Fixed inactivity runtimes that caused everyone on the manifest to go inactive.
+  - bugfix: Fixed latejoins not having playtime restrictions enacted.
+  - bugfix: Fixed lacking a failsafe config for playtimes
+  - rscadd: Added a verb to show your playtimes.
+  MemedHams:
+  - rscadd: Adds lots of new station offers and sales.
+  - rscdel: The ninjasuit trade station offer is no more.
+  - tweak: Adds some fully-stacked variants of uncraftable floor tiles.
+  - tweak: Uncomments the onestar officer uniform offers.
+  - balance: Nerfs slime trade station offers.
+  - balance: reduces the sell value of the Gladstone and Molly.
+  - balance: Onestar parts now sell for more.
+  - balance: merc hardsuit's market cost has increased.
+2023-05-30:
+  MLGTASTICa:
+  - refactor: Refactored how all AI-mobs lookup for their targets, to cut down on
+      lag.
+  - refactor: Refactor how all visible message, said messages search for hearers ,
+      to cut down on lag.
+  vode-code:
+  - rscdel: Removed Pathology
+  - admin: Removed some outdated transformations
+  - code_imp: deleted some inaccessible code
+  - code_imp: removed custom items

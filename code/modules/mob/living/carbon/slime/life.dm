@@ -278,6 +278,9 @@
 			else if(canmove && isturf(loc) && prob(33))
 				step(src, pick(cardinal))
 
+/mob/living/carbon/slime/proc/setAttackCooldown(value)
+	Atkcool = value
+
 /mob/living/carbon/slime/proc/handle_AI()  // the master AI process
 
 	if(stat == DEAD || client || Victim) return // If we're dead or have a client, we don't need AI, if we're feeding, we continue feeding
@@ -309,16 +312,14 @@
 					a_intent = I_HURT
 					UnarmedAttack(Target)
 					Atkcool = 1
-					spawn(45)
-						Atkcool = 0
+					addtimer(CALLBACK(src, PROC_REF(setAttackCooldown), 0), 5 SECONDS)
 				AIproc = 0
 				return
 
 			if(Target.client && !Target.lying && prob(60 + powerlevel * 4)) // Try to take down the target first
 				if(!Atkcool)
 					Atkcool = 1
-					spawn(45)
-						Atkcool = 0
+					addtimer(CALLBACK(src, PROC_REF(setAttackCooldown), 0), 5 SECONDS)
 
 					a_intent = I_DISARM
 					UnarmedAttack(Target)
@@ -350,8 +351,7 @@
 
 	var/sleeptime = movement_delay()
 	if(sleeptime <= 5) sleeptime = 5 // Maximum one action per half a second
-	spawn (sleeptime)
-		handle_AI()
+	addtimer(CALLBACK(src, PROC_REF(handle_AI)), sleeptime)
 	return
 
 /mob/living/carbon/slime/proc/handle_speech_and_mood()

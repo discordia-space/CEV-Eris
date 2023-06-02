@@ -634,3 +634,87 @@ proc/is_blind(A)
 
 /mob/proc/set_faction(target_faction)
 	faction = target_faction ? target_faction : initial(faction)
+
+
+// Steps used to modify wounding multiplier. Should be used alongside edge/sharp when determining final damage of BRUTE-type attacks.
+/proc/step_wounding(var/wounding, var/is_increase = FALSE) // Usually mobs are the ones attacking (no), so this should be okay here? If it gets lucky a macro would be slightly faster
+	if(is_increase)
+		switch(wounding)
+			if(WOUNDING_TRIVIAL)
+				return WOUNDING_TINY
+			if(WOUNDING_TINY)
+				return WOUNDING_SMALL
+			if(WOUNDING_SMALL)
+				return WOUNDING_INTERMEDIATE
+			if(WOUNDING_INTERMEDIATE)
+				return WOUNDING_NORMAL
+			if(WOUNDING_NORMAL)
+				return WOUNDING_WIDE
+			if(WOUNDING_WIDE)
+				return WOUNDING_EXTREME
+			if(WOUNDING_EXTREME)
+				return WOUNDING_EXTREME
+	else
+		switch(wounding)
+			if(WOUNDING_TRIVIAL)
+				return WOUNDING_TRIVIAL
+			if(WOUNDING_TINY)
+				return WOUNDING_TRIVIAL
+			if(WOUNDING_SMALL)
+				return WOUNDING_TINY
+			if(WOUNDING_INTERMEDIATE)
+				return WOUNDING_SMALL
+			if(WOUNDING_NORMAL)
+				return WOUNDING_INTERMEDIATE
+			if(WOUNDING_WIDE)
+				return WOUNDING_NORMAL
+			if(WOUNDING_EXTREME)
+				return WOUNDING_WIDE
+
+/proc/step_wounding_double(var/wounding, var/is_increase = FALSE)
+	if(is_increase)
+		switch(wounding)
+			if(WOUNDING_TRIVIAL)
+				return WOUNDING_SMALL
+			if(WOUNDING_TINY)
+				return WOUNDING_INTERMEDIATE
+			if(WOUNDING_SMALL)
+				return WOUNDING_NORMAL
+			if(WOUNDING_INTERMEDIATE)
+				return WOUNDING_WIDE
+			if(WOUNDING_NORMAL)
+				return WOUNDING_EXTREME
+			if(WOUNDING_WIDE)
+				return WOUNDING_EXTREME
+			if(WOUNDING_EXTREME)
+				return WOUNDING_EXTREME
+	else
+		switch(wounding)
+			if(WOUNDING_TRIVIAL)
+				return WOUNDING_TRIVIAL
+			if(WOUNDING_TINY)
+				return WOUNDING_TRIVIAL
+			if(WOUNDING_SMALL)
+				return WOUNDING_TRIVIAL
+			if(WOUNDING_INTERMEDIATE)
+				return WOUNDING_TINY
+			if(WOUNDING_NORMAL)
+				return WOUNDING_SMALL
+			if(WOUNDING_WIDE)
+				return WOUNDING_INTERMEDIATE
+			if(WOUNDING_EXTREME)
+				return WOUNDING_NORMAL
+
+// Determine wounding level. If var/wounding is provided, the attack should come from a projectile. This isn't the case yet, as we default to var/wounding = 1 until melee rework.
+/proc/wound_check(var/injurytype, var/wounding, var/edge, var/sharp)
+	if(sharp && (!edge)) // impaling/piercing, 2x damage, affected by injurytype
+		switch(injurytype)
+			if(INJURY_TYPE_HOMOGENOUS)
+				return wounding ? step_wounding_double(wounding) : 1
+			if(INJURY_TYPE_UNLIVING)
+				return wounding ? step_wounding(wounding) : 1.5
+			else
+				return wounding ? wounding : 2
+	if(sharp && edge) // cutting, 1.5x damage
+		return wounding ? wounding : 1.5
+	return wounding ? wounding : 1 // crushing, 1x damage

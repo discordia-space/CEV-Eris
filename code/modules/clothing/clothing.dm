@@ -585,6 +585,8 @@ BLIND     // can't see anything
 	style = STYLE_LOW
 	valid_accessory_slots = list("armor","armband","decor")
 	restricted_accessory_slots = list("armor","armband")
+	maxHealth = 300
+	health = 300
 
 /obj/item/clothing/suit/Initialize(mapload, ...)
 	.=..()

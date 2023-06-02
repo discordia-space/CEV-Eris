@@ -171,11 +171,6 @@
 					++unknown
 			if(unknown)
 				dat += SPAN_WARNING("Non-medical reagent[(unknown > 1)?"s":""] found in subject's stomach.")
-		if(C.virus2.len)
-			for (var/ID in C.virus2)
-				if (ID in virusDB)
-					var/datum/data/record/V = virusDB[ID]
-					dat += SPAN_WARNING("Warning: Pathogen [V.fields["name"]] detected in subject's blood. Known antigen : [V.fields["antigen"]]")
 	if (M.getCloneLoss())
 		dat += SPAN_WARNING("Subject appears to have been imperfectly cloned.")
 	if (M.has_brain_worms())

@@ -24,16 +24,17 @@
 	var/is_tray_hidden = FALSE //hides from even t-rays
 	var/prespawned_content_amount // Number of items storage should initially contain
 	var/prespawned_content_type // Type of items storage should contain, takes effect if variable above is at least 1
+	health = 500
+	maxHealth = 500
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()
 	RegisterSignal(src, COMSIG_ATOM_CONTAINERED, PROC_REF(RelayContainerization))
 
-/obj/item/storage/proc/RelayContainerization()
+/obj/item/storage/proc/RelayContainerization(atom/source, highestContainer, oldContainer)
 	SIGNAL_HANDLER
-	var/atom/highestContainer = getContainingMovable()
 	for(var/atom/thing as anything in contents)
-		SEND_SIGNAL(thing, COMSIG_ATOM_CONTAINERED, highestContainer)
+		SEND_SIGNAL(thing, COMSIG_ATOM_CONTAINERED, highestContainer, oldContainer)
 
 /obj/item/storage/New()
 	can_hold |= can_hold_extra

@@ -888,18 +888,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Medical supply crate"
 	group = "Medical / Science"
 
-/datum/supply_pack/virus
-	name = "Virus sample crate"
-	contains = list(/obj/item/virusdish/random,
-					/obj/item/virusdish/random,
-					/obj/item/virusdish/random,
-					/obj/item/virusdish/random)
-	cost = 2500
-	containertype = /obj/structure/closet/crate/secure
-	crate_name = "Virus sample crate"
-	access = access_cmo
-	group = "Medical / Science"
-
 /datum/supply_pack/research
 	name = "Research Data crate"
 	contains = list(/obj/item/computer_hardware/hard_drive/portable/research_points,

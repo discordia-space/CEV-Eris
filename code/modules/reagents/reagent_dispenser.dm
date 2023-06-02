@@ -67,19 +67,8 @@
 	chem_splash(loc, 5, list(reagents))
 	qdel(src)
 
-/obj/structure/reagent_dispensers/ex_act(severity)
-	switch(severity)
-		if(1)
-			explode()
-			return
-		if(2)
-			if (prob(50))
-				explode()
-				return
-		if(3)
-			if (prob(5))
-				explode()
-				return
+/obj/structure/reagent_dispensers/take_damage(damage)
+	explode()
 
 /obj/structure/reagent_dispensers/get_item_cost(export)
 	if(export)
@@ -210,21 +199,18 @@
 
 		if(!istype(Proj ,/obj/item/projectile/beam/lastertag) && !istype(Proj ,/obj/item/projectile/beam/practice) )
 			explode()
-
-/obj/structure/reagent_dispensers/fueltank/ex_act()
-	explode()
+/obj/structure/reagent_dispensers/fueltank/explosion_act(target_power, explosion_handler/handle)
+	if(target_power > health)
+		explode()
+	else
+		take_damage(target_power)
 
 /obj/structure/reagent_dispensers/fueltank/ignite_act()
 	if(modded)
 		explode()
 
 /obj/structure/reagent_dispensers/fueltank/explode()
-	if (reagents.total_volume > 500)
-		explosion(src.loc,1,2,4)
-	else if (reagents.total_volume > 100)
-		explosion(src.loc,0,1,3)
-	else if (reagents.total_volume > 50)
-		explosion(src.loc,-1,1,2)
+	explosion(get_turf(src), reagents.total_volume / 2, 50)
 	if(src)
 		qdel(src)
 
@@ -304,16 +290,6 @@
 	contents_cost = 950
 	spawn_blacklisted = TRUE
 
-/obj/structure/reagent_dispensers/virusfood
-	name = "virus food dispenser"
-	desc = "A dispenser of virus food."
-	icon_state = "virusfoodtank"
-	amount_per_transfer_from_this = 10
-	anchored = TRUE
-	density = FALSE
-	volume = 1000
-	starting_reagent = "virusfood"
-	spawn_blacklisted = TRUE
 
 /obj/structure/reagent_dispensers/acid
 	name = "sulphuric acid dispenser"

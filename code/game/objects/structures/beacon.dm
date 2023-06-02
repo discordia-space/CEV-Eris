@@ -50,4 +50,4 @@
 	while(counter < counterfinish)
 		counter++
 		sleep(rand(4,7))
-		explosion(pick(bombarda), 1, 2, 3, 3)
+		explosion(get_turf(src), 500, 100)

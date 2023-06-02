@@ -172,7 +172,7 @@ var/list/flooring_types
 	footstep_sound = "plating"
 	space_smooth = FALSE
 	removal_time = 150
-	health = 100
+	health = 200
 	has_base_range = 18
 	floor_smooth = SMOOTH_BLACKLIST
 	flooring_blacklist = list(/decl/flooring/reinforced/plating/under,/decl/flooring/reinforced/plating/hull) //Smooth with everything except the contents of this list
@@ -206,7 +206,7 @@ var/list/flooring_types
 	plating_type = /decl/flooring/reinforced/plating/hull
 	is_plating = TRUE
 	removal_time = 250
-	health = 200
+	health = 500
 	has_base_range = 0
 	resistance = RESISTANCE_ARMOURED
 	footstep_sound = "catwalk"
@@ -275,7 +275,7 @@ var/list/flooring_types
 	//try_update_icon = 0
 	plating_type = null
 	is_plating = TRUE
-	health = 350
+	health = 1200
 	resistance = RESISTANCE_HEAVILY_ARMOURED
 	removal_time = 1 MINUTES //Cutting through the hull is very slow work
 	footstep_sound = "hull"
@@ -358,6 +358,7 @@ var/list/flooring_types
 	flags = TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN | TURF_HIDES_THINGS
 	build_type = /obj/item/stack/tile/floor
 	can_paint = 1
+	health = 100
 	resistance = RESISTANCE_FRAGILE
 
 	floor_smooth = SMOOTH_NONE

@@ -39,6 +39,8 @@
 	number_of_shots = 3
 	time_between_shots = 0.3 SECONDS
 	cooldown_time = 2 SECONDS
+	health = 360
+	maxHealth = 360
 
 /obj/machinery/power/os_turret/Initialize()
 	. = ..()
@@ -53,7 +55,7 @@
 			do_sparks(1, TRUE, src)
 		return
 
-	if(machine_integrity <= 0)
+	if(health <= 0)
 		stat |= BROKEN
 		return
 
@@ -203,9 +205,9 @@
 	var/obj/item/electronics/circuitboard/os_turret/C = circuit
 	C.target_superior_mobs = TRUE
 
-/obj/machinery/power/os_turret/proc/take_damage(amount)
-	machine_integrity = max(machine_integrity - amount, 0)
-	if(!machine_integrity)
+/obj/machinery/power/os_turret/take_damage(amount)
+	health = max(health - amount, 0)
+	if(!health)
 		stat |= BROKEN
 	else if(prob(50))
 		do_sparks(1, 0, loc)

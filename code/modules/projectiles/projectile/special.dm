@@ -20,18 +20,22 @@
 	recoil = 3
 
 /obj/item/projectile/bullet/gyro/on_hit(atom/target)
-	explosion(target, -1, 0, 2)
+	explosion(get_turf(target), 100, 50)
 	return TRUE
 
 /obj/item/projectile/bullet/rocket
 	name = "high explosive rocket"
 	icon_state = "rocket"
-	damage_types = list(BRUTE = 60)
-	armor_divisor = 1
+	damage_types = list(BRUTE = 80)
+	armor_divisor = 3 // Everything has ridiculously high bomb armor. This makes up for it.
 	check_armour = ARMOR_BOMB
 	penetrating = -5
 	recoil = 40
 	can_ricochet = FALSE
+	var/explosion_power = 350
+	var/explosion_falloff = 75
+	sharp = FALSE
+	edge = FALSE
 
 /obj/item/projectile/bullet/rocket/launch(atom/target, target_zone, x_offset, y_offset, angle_offset, proj_sound, user_recoil)
 	set_light(2.5, 0.5, "#dddd00")
@@ -43,29 +47,38 @@
 	return TRUE
 
 /obj/item/projectile/bullet/rocket/proc/detonate(atom/target)
-	explosion(get_turf(src), 0, 1, 2, 5)
+	explosion(get_turf(target), explosion_power, explosion_falloff)
 
 /obj/item/projectile/bullet/rocket/scrap
-	damage_types = list(BRUTE = 30)
+	name = "improvised explosive rocket"
+	damage_types = list(BRUTE = 60)
 
-/obj/item/projectile/bullet/rocket/scrap/detonate(atom/target)
-	explosion(target, 0, 0, 1, 4, singe_impact_range = 3)
+	explosion_power = 200
+	explosion_falloff = 75
 
 /obj/item/projectile/bullet/rocket/hesh
 	name = "high-explosive squash head rocket"
 	damage_types = list(BRUTE = 80)
 	armor_divisor = 2
 	check_armour = ARMOR_BULLET
+	sharp = TRUE
+
+	explosion_power = 200
+	explosion_falloff = 75
 
 /obj/item/projectile/bullet/rocket/hesh/detonate(atom/target)
 	fragment_explosion_angled(get_turf(src), starting, /obj/item/projectile/bullet/pellet/fragment/strong, 20)
-	explosion(get_turf(src), 0, 0, 1, 3, singe_impact_range = 3) // Much weaker explosion, but offset by shrapnel released
+	..()
 
 /obj/item/projectile/bullet/rocket/heat
 	name = "high-explosive anti-tank rocket"
 	damage_types = list(BRUTE = 20)
 	armor_divisor = 1
 	check_armour = ARMOR_BULLET
+	sharp = TRUE
+
+	explosion_power = 200
+	explosion_falloff = 75
 
 /obj/item/projectile/bullet/rocket/heat/detonate(atom/target)
 	var/turf/T = get_turf_away_from_target_complex(get_turf(src), starting, 3)
@@ -73,7 +86,7 @@
 	P.launch(T, def_zone)
 	if(target)
 		P.Bump(target, TRUE)
-	explosion(get_turf(src), 0, 0, 0, 3, singe_impact_range = 3) // Explosion mostly ineffective
+	..()
 
 /obj/item/projectile/bullet/rocket/thermo
 	name = "thermobaric rocket"
@@ -81,9 +94,12 @@
 	armor_divisor = 1
 	check_armour = ARMOR_BULLET
 
+	explosion_power = 300
+	explosion_falloff = 30 // Very large, albeit weak explosion
+
 /obj/item/projectile/bullet/rocket/thermo/detonate(atom/target)
 	heatwave(get_turf(src), 3, 5, 100, TRUE, 20)
-	explosion(get_turf(src), 0, 0, 0, 5, singe_impact_range = 4)
+	..()
 
 /obj/item/projectile/temp
 	name = "freeze beam"
@@ -113,21 +129,20 @@
 		loc = A.loc
 		return
 
-	sleep(-1) //Might not be important enough for a sleep(-1) but the sleep/spawn itself is necessary thanks to explosions and metoerhits
 
 	if(src)//Do not add to this if() statement, otherwise the meteor won't delete them
 		if(A)
 
-			A.ex_act(2)
+			A.explosion_act(500, null)
 			playsound(src.loc, 'sound/effects/meteorimpact.ogg', 40, 1)
 
 			for(var/mob/M in range(10, src))
 				if(!M.stat && !isAI(M))
 					shake_camera(M, 3, 1)
 			qdel(src)
-			return 1
+			return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/item/projectile/energy/floramut
 	name = "alpha somatoray"

@@ -593,13 +593,14 @@
 		melee = 3,
 		bullet = 3,
 		energy = 3,
-		bomb = 15,
+		bomb = 50,
 		bio = 75,
 		rad = 10
 	)
 	price_tag = 1997
 
 	spawn_tags = SPAWN_TAG_ODDITY
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/mask/gas/big_shot/equipped(mob/living/carbon/human/user, slot)
 	..()

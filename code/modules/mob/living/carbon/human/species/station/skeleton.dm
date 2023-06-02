@@ -19,7 +19,6 @@
 
 	language = null
 	default_language = null
-	greater_form = SPECIES_HUMAN
 	show_ssd = null
 
 	eyes = "blank_eyes"
@@ -44,6 +43,8 @@
 	warning_high_pressure = INFINITY
 	warning_low_pressure = -1
 	hazard_low_pressure = -1
+
+	injury_type =  INJURY_TYPE_UNLIVING
 
 	has_process = list()
 

@@ -7,8 +7,8 @@
 	use_power = NO_POWER_USE
 	var/obj/item/card/id/botcard			// the ID card that the bot "holds"
 	var/on = TRUE
-	var/health = 0 //do not forget to set health for your bot!
-	var/maxhealth = 0
+	health = 0 //do not forget to set health for your bot!
+	maxHealth = 0
 	var/fire_dam_coeff = 1
 	var/brute_dam_coeff = 1
 	var/open = 0//Maint panel
@@ -47,8 +47,8 @@
 
 /obj/machinery/bot/examine(mob/user)
 	..(user)
-	if (src.health < maxhealth)
-		if (src.health > maxhealth/3)
+	if (src.health < maxHealth)
+		if (src.health > maxHealth/3)
 			to_chat(user, SPAN_WARNING("[src]'s parts look loose."))
 		else
 			to_chat(user, SPAN_DANGER("[src]'s parts look very loose!"))
@@ -60,9 +60,9 @@
 			open = !open
 			to_chat(user, "<span class='notice'>Maintenance panel is now [src.open ? "opened" : "closed"].</span>")
 	else if(istype(W, /obj/item/tool/weldingtool))
-		if(health < maxhealth)
+		if(health < maxHealth)
 			if(open)
-				health = min(maxhealth, health+10)
+				health = min(maxHealth, health+10)
 				user.visible_message(SPAN_WARNING("[user] repairs [src]!"),SPAN_NOTICE("You repair [src]!"))
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			else
@@ -89,23 +89,11 @@
 	..()
 	healthcheck()
 
-/obj/machinery/bot/ex_act(severity)
-	switch(severity)
-		if(1)
-			src.explode()
-			return
-		if(2)
-			src.health -= rand(5,10)*fire_dam_coeff
-			src.health -= rand(10,20)*brute_dam_coeff
-			healthcheck()
-			return
-		if(3)
-			if (prob(50))
-				src.health -= rand(1,5)*fire_dam_coeff
-				src.health -= rand(1,5)*brute_dam_coeff
-				healthcheck()
-				return
-	return
+/obj/machinery/bot/take_damage(amount)
+	health -= amount/10 * brute_dam_coeff * 2
+	health -= amount/10 * fire_dam_coeff
+	healthcheck()
+
 
 /obj/machinery/bot/emp_act(severity)
 	var/was_on = on

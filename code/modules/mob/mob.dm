@@ -41,6 +41,7 @@
 		GLOB.living_mob_list += src
 	GLOB.mob_list += src
 	move_intent = decls_repository.get_decl(move_intent)
+	SEND_SIGNAL(SSdcs, COMSIG_MOB_INITIALIZED, src)
 	. = ..()
 
 /**
@@ -90,15 +91,15 @@
 
 		messageturfs += turf
 
-	for(var/A in GLOB.player_list)
-		var/mob/M = A
-		if (QDELETED(M))
-			GLOB.player_list -= M
+
+
+	for(var/mob/M in getMobsInRangeChunked(get_turf(src), range, FALSE, TRUE))
+		if(!M.client)
 			continue
-		if (!M.client || istype(M, /mob/new_player))
-			continue
-		if(get_turf(M) in messageturfs)
-			messagemobs += M
+		messagemobs += M
+	for(var/mob/ghosty in GLOB.player_ghost_list)
+		if(ghosty.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_EMOTES)
+			messagemobs |= ghosty
 
 	for(var/A in messagemobs)
 		var/mob/M = A
