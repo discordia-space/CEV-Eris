@@ -107,9 +107,6 @@
 	if(temperature < minimum_temperature || temperature > maximum_temperature)
 		return FALSE
 
-	if(rotation_required && !holder.rotating)
-		return FALSE
-
 	if(maximum_pressure)
 		var/turf/location = get_turf(holder.my_atom)
 		if(location)
@@ -343,11 +340,6 @@
 	required_reagents = list("bicaridine" = 2, "clonexadone" = 2)
 	catalysts = list("plasma" = 5)
 	result_amount = 2
-
-/datum/chemical_reaction/virus_food
-	result = "virusfood"
-	required_reagents = list("water" = 1, "milk" = 1)
-	result_amount = 5
 
 /datum/chemical_reaction/leporazine
 	result = "leporazine"
@@ -585,19 +577,6 @@
 	required_reagents = list("mindbreaker" = 1, "acetone" = 1, "inaprovaline" = 1)
 	result_amount = 3
 
-/* Centrifuge */
-
-/datum/chemical_reaction/curing
-	result = "antibodies"
-	required_reagents = list("blood" = 1)
-	result_amount = 1
-	reaction_rate = REACTION_RATE(0.3)
-	rotation_required = TRUE
-	supports_decomposition_by_electrolysis = FALSE
-	mix_message = null
-
-/datum/chemical_reaction/curing/send_data(datum/reagents/T)
-	return list("antibodies" = T.get_data("blood")["antibodies"])
 
 /* Solidification */
 
@@ -1116,11 +1095,17 @@
 
 /datum/chemical_reaction/slime/freeze/on_reaction(var/datum/reagents/holder)
 	..()
-	sleep(50)
-	playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
-	for(var/mob/living/M in range (get_turf(holder.my_atom), 7))
+	addtimer(CALLBACK(src, PROC_REF(do_freeze), get_turf(holder.my_atom), 5 SECONDS))
+
+/datum/chemical_reaction/slime/freeze/proc/do_freeze(turf/target)
+	playsound(target, 'sound/effects/phasein.ogg', 100, 1)
+	for(var/mob/living/M in range (target, 7))
 		M.bodytemperature -= 140
 		to_chat(M, SPAN_WARNING("You feel a chill!"))
+
+
+
+
 
 //Orange
 /datum/chemical_reaction/slime/casp
@@ -1138,12 +1123,12 @@
 
 /datum/chemical_reaction/slime/fire/on_reaction(var/datum/reagents/holder)
 	..()
-	sleep(50)
-	var/turf/location = get_turf(holder.my_atom.loc)
-	for(var/turf/simulated/floor/target_tile in range(0, location))
+	addtimer(CALLBACK(src, PROC_REF(do_fire), get_turf(holder.my_atom), 5 SECONDS))
+
+/datum/chemical_reaction/slime/fire/proc/do_fire(turf/target)
+	for(var/turf/simulated/floor/target_tile in range(0, target))
 		target_tile.assume_gas("plasma", 25, 1400)
-		spawn (0)
-			target_tile.hotspot_expose(700, 400)
+		target_tile.hotspot_expose(700, 400)
 
 //Yellow
 /datum/chemical_reaction/slime/overload
@@ -1257,8 +1242,10 @@
 
 /datum/chemical_reaction/slime/explosion/on_reaction(var/datum/reagents/holder)
 	..()
-	sleep(50)
-	explosion(get_turf(holder.my_atom), 1, 3, 6)
+	addtimer(CALLBACK(src, PROC_REF(do_explode), get_turf(holder.my_atom), 5 SECONDS))
+
+/datum/chemical_reaction/slime/explosion/proc/do_explode(turf/target)
+	explosion(target, 600, 50)
 
 //Light Pink
 /datum/chemical_reaction/slime/potion2

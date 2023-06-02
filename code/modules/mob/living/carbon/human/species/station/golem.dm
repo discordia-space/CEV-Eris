@@ -11,6 +11,8 @@
 	spawn_flags = IS_RESTRICTED
 	siemens_coefficient = 0
 
+	injury_type =  INJURY_TYPE_HOMOGENOUS
+
 	breath_type = null
 	poison_type = null
 

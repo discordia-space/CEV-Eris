@@ -285,7 +285,7 @@
 	var/total_dam = 0
 	var/max_dam = 30
 
-/obj/item/robot_parts/robot_component/proc/take_damage(var/brute_amt, var/burn_amt)
+/obj/item/robot_parts/robot_component/take_damage(var/brute_amt, var/burn_amt)
 	brute += brute_amt
 	burn += burn_amt
 	total_dam = brute+burn

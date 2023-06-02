@@ -41,7 +41,7 @@
 		if(!user || !user.bombing_core)
 			return
 		to_chat(user, "** [timer] **")
-	explosion(user.loc, 3,6,12,24)
+	explosion(get_turf(src), 2000, 100)
 	qdel(user)
 
 

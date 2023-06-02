@@ -290,7 +290,7 @@
 		mob.lastarea = get_area(mob.loc)
 
 	//We are now going to move
-	mob.moving = 1
+	mob.moving = TRUE
 
 	direction = mob.AdjustMovementDirection(direction)
 	var/old_turf = get_turf(mob)
@@ -311,7 +311,7 @@
 	for (var/obj/item/grab/G in mob.grabbed_by)
 		G.adjust_position()
 	*/
-	mob.moving = 0
+	mob.moving = FALSE
 
 /datum/movement_handler/mob/movement/MayMove(var/mob/mover)
 	return IS_SELF(mover) &&  mob.moving ? MOVEMENT_STOP : MOVEMENT_PROCEED

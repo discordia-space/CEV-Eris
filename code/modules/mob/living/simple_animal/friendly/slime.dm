@@ -13,6 +13,7 @@
 	emote_see = list("jiggles", "bounces in place")
 	var/colour = "grey"
 	can_burrow = TRUE
+	injury_type = INJURY_TYPE_HOMOGENOUS
 
 /mob/living/simple_animal/slime/can_force_feed(var/feeder, var/food, var/feedback)
 	if(feedback)

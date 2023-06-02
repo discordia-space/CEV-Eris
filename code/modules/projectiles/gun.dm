@@ -29,6 +29,9 @@
 	rarity_value = 5
 	spawn_frequency = 10
 
+	health = 600
+	maxHealth = 600
+
 	var/list/custom_default = list() // used to preserve changes to stats past refresh_upgrades proccing
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
 	var/penetration_multiplier = 0 //Sum of armor penetration of projectiles fired from this gun
@@ -303,7 +306,7 @@
 					)
 				user.drop_item()
 			if(rigged > TRUE)
-				explosion(get_turf(src), 1, 2, 3, 3)
+				explosion(get_turf(src), 250, 100)
 				qdel(src)
 			return FALSE
 	return TRUE

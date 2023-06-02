@@ -146,7 +146,6 @@
 	go_in(target, user)
 
 /obj/machinery/sleeper/relaymove(var/mob/user)
-	..()
 	go_out()
 
 /obj/machinery/sleeper/emp_act(var/severity)
@@ -189,7 +188,7 @@
 		if(M.client)
 			M.client.perspective = EYE_PERSPECTIVE
 			M.client.eye = src
-		M.loc = src
+		M.forceMove(src)
 		update_use_power(2)
 		occupant = M
 		update_icon()
@@ -205,7 +204,7 @@
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
 		if(A == beaker)
 			continue
-		A.loc = loc
+		A.forceMove(loc)
 	update_use_power(1)
 	update_icon()
 	toggle_filter()

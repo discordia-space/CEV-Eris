@@ -13,7 +13,8 @@
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
 
 	var/ricochet_id = 0
-	var/damage = 0
+	var/health = 0
+	var/maxHealth = 0
 	var/damage_overlay = 0
 	var/active
 	var/can_open = 0
@@ -211,7 +212,7 @@
 			new /obj/effect/sparks(get_turf(Proj))
 			return PROJECTILE_CONTINUE
 		src.ricochet_id = 0
-	var/proj_damage = Proj.get_structure_damage()
+	var/proj_health = Proj.get_structure_damage()
 	if(istype(Proj,/obj/item/projectile/beam))
 		burn(500)//TODO : fucking write these two procs not only for plasma (see plasma in materials.dm:283) ~
 	else if(istype(Proj,/obj/item/projectile/ion))
@@ -219,10 +220,10 @@
 
 	Proj.on_hit(src)
 
-	if(Proj.can_ricochet && proj_damage != 0 && (src.x != Proj.starting.x) && (src.y != Proj.starting.y))
+	if(Proj.can_ricochet && proj_health != 0 && (src.x != Proj.starting.x) && (src.y != Proj.starting.y))
 		var/ricochetchance = 1
-		if(proj_damage <= 60)
-			ricochetchance = 2 + round((60 - proj_damage) / 5)
+		if(proj_health <= 60)
+			ricochetchance = 2 + round((60 - proj_health) / 5)
 			ricochetchance = min(ricochetchance * ricochetchance, 100)
 		// here it is multiplied by 1/2 temporally, changes will be required when new wall system gets implemented
 		ricochetchance = round(ricochetchance * projectile_reflection(Proj, TRUE) / 2)
@@ -230,38 +231,38 @@
 		ricochetchance *= Proj.ricochet_ability
 		ricochetchance = min(max(ricochetchance, 0), 100)
 		if(prob(ricochetchance))
-			// projectile loses up to 50% of its damage when it ricochets, depending on situation
-			var/damagediff = round(proj_damage / 2 + proj_damage * ricochetchance / 200) // projectile loses up to 50% of its damage when it ricochets, depending on situation
+			// projectile loses up to 50% of its health when it ricochets, depending on situation
+			var/healthdiff = round(proj_health / 2 + proj_health * ricochetchance / 200) // projectile loses up to 50% of its health when it ricochets, depending on situation
 			Proj.damage_types[BRUTE] = round(Proj.damage_types[BRUTE] / 2 + Proj.damage_types[BRUTE] * ricochetchance / 200)
 			Proj.damage_types[BURN] = round(Proj.damage_types[BURN] / 2 + Proj.damage_types[BURN] * ricochetchance / 200)
 			Proj.def_zone = ran_zone()
-			projectile_reflection(Proj)		// Reflect before damage, runtimes occur in some cases if damage happens first.
+			projectile_reflection(Proj)		// Reflect before health, runtimes occur in some cases if health happens first.
 			visible_message("<span class='danger'>\The [Proj] ricochets off the surface of wall!</span>")
-			take_damage(min(proj_damage - damagediff, 100))
+			take_damage(min(proj_health - healthdiff, 100))
 			new /obj/effect/sparks(get_turf(Proj))
 			return PROJECTILE_CONTINUE // complete projectile permutation
 
-	//cut some projectile damage here and not in projectile.dm, because we need not to all things what are using get_str_dam() becomes thin and weak.
-	//in general, bullets have 35-95 damage, and they are plased in ~30 bullets magazines, so 50*30 = 150, but plasteel walls have only 400 hp =|
+	//cut some projectile health here and not in projectile.dm, because we need not to all things what are using get_str_dam() becomes thin and weak.
+	//in general, bullets have 35-95 health, and they are plased in ~30 bullets magazines, so 50*30 = 150, but plasteel walls have only 400 hp =|
 	//but you may also increase materials thickness or etc.
-	proj_damage = round(Proj.get_structure_damage() / 3)//Yo may replace 3 to 5-6 to make walls fucking stronk as a Poland
+	proj_health = round(Proj.get_structure_damage() / 3)//Yo may replace 3 to 5-6 to make walls fucking stronk as a Poland
 
-	//cap the amount of damage, so that things like emitters can't destroy walls in one hit.
-	var/damage_taken = 0
+	//cap the amount of health, so that things like emitters can't destroy walls in one hit.
+	var/health_taken = 0
 	if(Proj.nocap_structures)
-		damage_taken = proj_damage * 4
+		health_taken = proj_health * 4
 	else
-		damage_taken = min(proj_damage, 100)
+		health_taken = min(proj_health, 100)
 
 	create_bullethole(Proj)//Potentially infinite bullet holes but most walls don't last long enough for this to be a problem.
 
-	if(Proj.damage_types[BRUTE] && prob(src.damage / (material.integrity + reinf_material?.integrity) * 33))
+	if(Proj.damage_types[BRUTE] && prob(health / maxHealth * 33))
 		var/obj/item/trash/material/metal/slug = new(get_turf(Proj))
 		slug.matter.Cut()
 		slug.matter[reinf_material ? reinf_material.name : material.name] = 0.1
 		slug.throw_at(get_turf(Proj), 0, 1)
 
-	take_damage(damage_taken)
+	take_damage(health_taken)
 
 /turf/simulated/wall/hitby(AM as mob|obj, var/speed=THROWFORCE_SPEED_DIVISOR)
 	..()
@@ -292,21 +293,21 @@
 /turf/simulated/wall/examine(mob/user)
 	. = ..(user)
 
-	if(!damage)
+	if(health == maxHealth)
 		to_chat(user, SPAN_NOTICE("It looks fully intact."))
 	else
-		var/dam = damage / material.integrity
-		if(dam <= 0.3)
-			to_chat(user, SPAN_WARNING("It looks slightly damaged."))
-		else if(dam <= 0.6)
+		var/hratio = health / maxHealth
+		if(hratio <= 0.3)
+			to_chat(user, SPAN_WARNING("It looks heavily damaged."))
+		else if(hratio <= 0.6)
 			to_chat(user, SPAN_WARNING("It looks moderately damaged."))
 		else
-			to_chat(user, SPAN_DANGER("It looks heavily damaged."))
+			to_chat(user, SPAN_DANGER("It looks lightly damaged."))
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		to_chat(user, SPAN_WARNING("There is fungus growing on [src]."))
 
-//Damage
+//health
 
 /turf/simulated/wall/melt()
 
@@ -323,30 +324,28 @@
 	visible_message(SPAN_DANGER("\The [src] spontaneously combusts!.")) //!!OH SHIT!!
 	return
 
-/turf/simulated/wall/proc/take_damage(dam)
-	if(dam)
-		damage = max(0, damage + dam)
-		update_damage()
-	return
-
-/turf/simulated/wall/proc/update_damage()
-	var/cap = material.integrity
-	if(reinf_material)
-		cap += reinf_material.integrity
-
+/turf/simulated/wall/take_damage(damage)
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		cap = cap / 10
-
-	if(damage >= cap)
-		var/leftover = damage - cap
+		damage *= 10
+	. = health - damage < 0 ? damage - (damage - health) : damage
+	health -= damage
+	if(health <= 0)
+		var/leftover = abs(health)
 		if (leftover > 150)
 			dismantle_wall(no_product = TRUE)
 		else
 			dismantle_wall()
-	else
-		update_icon()
-
+		// because we can do changeTurf and lose the var
+		return
+	update_icon()
 	return
+
+/turf/simulated/wall/explosion_act(target_power, explosion_handler/handler)
+	var/absorbed = take_damage(target_power)
+	// All health has been blocked
+	if(absorbed == target_power)
+		return target_power
+	return absorbed + ..(target_power - absorbed)
 
 /turf/simulated/wall/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)//Doesn't fucking work because walls don't interact with air :(
 	burn(exposed_temperature)
@@ -382,21 +381,6 @@
 	update_connections(1)
 
 	ChangeTurf(/turf/simulated/floor/plating)
-
-/turf/simulated/wall/ex_act(severity)
-	switch(severity)
-		if(1)
-			take_damage(rand(500, 800))
-		if(2)
-			take_damage(rand(200, 500))
-		if(3)
-			take_damage(rand(90, 250))
-		if(4)
-			take_damage(rand(40, 100))
-		else
-	return
-
-
 
 /turf/simulated/wall/proc/can_melt()
 	if(material.flags & MATERIAL_UNMELTABLE)

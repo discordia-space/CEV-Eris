@@ -23,10 +23,6 @@
 	else
 		icon_state = "gift[pick(1, 2, 3)]"
 
-/obj/item/a_gift/ex_act()
-	qdel(src)
-	return
-
 /obj/item/a_gift/attack_self(mob/M)
 	var/gift_type = pick(
 		/obj/item/storage/wallet,

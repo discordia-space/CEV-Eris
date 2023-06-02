@@ -86,18 +86,6 @@
 	. = ..()
 	dispensable_reagents = sortList(dispensable_reagents)
 
-
-/obj/machinery/chemical_dispenser/ex_act(severity)
-	switch(severity)
-		if(1)
-			del(src)
-			return
-		if(2)
-			if (prob(50))
-				del(src)
-				return
-
-
 /obj/machinery/chemical_dispenser/nano_ui_data()
 	var/list/data = list()
 	data["amount"] = amount

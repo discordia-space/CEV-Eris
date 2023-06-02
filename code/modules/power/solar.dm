@@ -12,7 +12,8 @@
 	idle_power_usage = 0
 	active_power_usage = 0
 	var/id = 0
-	var/health = 10
+	health = 10
+	maxHealth = 10
 	var/obscured = 0
 	var/sunfrac = 0
 	var/adir = SOUTH // actual dir
@@ -135,30 +136,14 @@
 	unset_control()
 	update_icon()
 	return
-
-
-/obj/machinery/power/solar/ex_act(severity)
-	switch(severity)
-		if(1)
-			if(prob(15))
-				new /obj/item/material/shard( src.loc )
-			qdel(src)
-			return
-
-		if(2)
-			if (prob(25))
-				new /obj/item/material/shard( src.loc )
-				qdel(src)
-				return
-
-			if (prob(50))
-				broken()
-
-		if(3)
-			if (prob(25))
-				broken()
-	return
-
+/obj/machinery/power/solar/take_damage(amount)
+	var/turf/tloc = get_turf(src)
+	. = ..()
+	if(QDELETED(src))
+		new /obj/item/material/shard(tloc)
+		return 0
+	broken()
+	return 0
 
 /obj/machinery/power/solar/fake/New(var/turf/loc, var/obj/item/solar_assembly/S)
 	..(loc, S, 0)
@@ -528,20 +513,11 @@
 	stat |= BROKEN
 	update_icon()
 
-
-/obj/machinery/power/solar_control/ex_act(severity)
-	switch(severity)
-		if(1)
-			//SN src = null
-			qdel(src)
-			return
-		if(2)
-			if (prob(50))
-				broken()
-		if(3)
-			if (prob(25))
-				broken()
-	return
+/obj/machinery/power/solar_control/take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return 0
+	broken()
 
 // Used for mapping in solar array which automatically starts itself (telecomms, for example)
 /obj/machinery/power/solar_control/autostart

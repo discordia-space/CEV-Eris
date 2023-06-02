@@ -29,9 +29,6 @@
 	data["donor"] = WEAKREF(src)
 	if (!data["virus2"])
 		data["virus2"] = list()
-	data["virus2"] |= virus_copylist(virus2)
-	data["viruses"] = null
-	data["antibodies"] = antibodies
 	data["blood_DNA"] = dna_trace
 	data["blood_type"] = b_type
 	data["species"] = species.name
@@ -134,12 +131,6 @@
 /mob/living/carbon/proc/inject_blood(var/datum/reagent/organic/blood/injected, var/amount)
 	if (!injected || !istype(injected))
 		return
-	var/list/sniffles = virus_copylist(injected.data["virus2"])
-	for(var/ID in sniffles)
-		var/datum/disease2/disease/sniffle = sniffles[ID]
-		infect_virus2(src,sniffle,1)
-	if (injected.data["antibodies"] && prob(5))
-		antibodies |= injected.data["antibodies"]
 	var/list/chems = list()
 	chems = params2list(injected.data["trace_chem"])
 	for(var/C in chems)
@@ -244,10 +235,6 @@ proc/blood_splatter(var/target,var/datum/reagent/organic/blood/source,var/large)
 			B.blood_DNA[source.data["blood_DNA"]] = source.data["blood_type"]
 		else
 			B.blood_DNA[source.data["blood_DNA"]] = "O+"
-
-	// Update virus information.
-	if(source.data["virus2"])
-		B.virus2 = virus_copylist(source.data["virus2"])
 
 	B.fluorescent  = 0
 	B.invisibility = 0

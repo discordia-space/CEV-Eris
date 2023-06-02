@@ -254,23 +254,13 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 			src.ispowered = 0
 			src.update_icon()
 
-
-/obj/machinery/newscaster/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			src.isbroken = 1
-			if(prob(50))
-				qdel(src)
-			else
-				src.update_icon() //can't place it above the return and outside the if-else. or we might get runtimes of null.update_icon() if(prob(50)) goes in.
-			return
-		else
-			if(prob(50))
-				src.isbroken = 1
-			src.update_icon()
+/obj/machinery/newscaster/take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return 0
+	isbroken = TRUE
+	update_icon()
+	return 0
 
 /obj/machinery/newscaster/attack_hand(mob/user as mob)            //########### THE MAIN BEEF IS HERE! And in the proc below this...############
 
