@@ -29,6 +29,7 @@
 		/obj/item/gun/projectile/mandella,
 		/obj/item/gun/projectile/type_62,
 		/obj/item/gun/projectile/type_90,
+		/obj/item/gun/projectile/automatic/modular/mk58,
 		/obj/item/gun/projectile/shotgun/type_21,
 		/obj/item/gun/energy/gun,
 		/obj/item/gun/energy/chameleon,
