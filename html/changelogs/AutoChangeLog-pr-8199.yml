@@ -1,4 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Fixed tripping on plating not playing sounds and the text when it happens.
