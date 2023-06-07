@@ -47,8 +47,8 @@
 	new /obj/item/storage/box/mousetraps(src)
 	new /obj/item/storage/box/mousetraps(src)
 	new /obj/item/clothing/under/rank/chef(src)
-	new /obj/item/reagent_containers/glass/beaker/bowl(src)
-	new /obj/item/reagent_containers/glass/beaker/bowl(src)
+	new /obj/item/reagent_containers/drywet(src)
+	new /obj/item/reagent_containers/drywet(src)
 	new /obj/item/clothing/head/chefhat(src)
 
 /*
