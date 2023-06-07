@@ -14,6 +14,10 @@
 	possible_transfer_amounts = list(5,10,15,25,30,60,120,180)
 	w_class = ITEM_SIZE_NORMAL
 
+/obj/item/reagent_containers/drywet/Initialize()
+	. = ..()
+	desc += " Can hold up to [volume] units."
+
 /obj/item/reagent_containers/drywet/examine(mob/user)
 	. = ..()
 	if(solids)
