@@ -167,9 +167,9 @@ default behaviour is:
 
 /mob/living/verb/succumb()
 	set hidden = TRUE
-	if ((src.health < 0 && src.health > (5-src.maxHealth))) // Health below Zero but above 5-away-from-death, as before, but variable
-		src.adjustOxyLoss(src.health + src.maxHealth * 2) // Deal 2x health in OxyLoss damage, as before but variable.
-		src.health = src.maxHealth - src.getOxyLoss() - src.getToxLoss() - src.getFireLoss() - src.getBruteLoss()
+	if (health < 0)
+		adjustOxyLoss(health + maxHealth * 2) // Deal 2x health in OxyLoss damage, as before but variable.
+		health = -maxHealth
 		to_chat(src, "\blue You have given up life and succumbed to death.")
 
 
@@ -200,7 +200,7 @@ default behaviour is:
 	var/extradam = 0	//added to when organ is at max dam
 	for(var/obj/item/organ/external/affecting in organs)
 		//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
-		if(affecting.take_damage(0, divided_damage+extradam))
+		if(affecting.take_damage(divided_damage+extradam, BURN))
 			UpdateDamageIcon()
 	updatehealth()
 	return TRUE
@@ -676,15 +676,13 @@ default behaviour is:
 
 		// Diving
 		to_chat(src, SPAN_NOTICE("You dive onwards!"))
-		pass_flags += PASSTABLE // Jump over them!
 		allow_spin = FALSE
 		if(istype(get_step(src, _dir), /turf/simulated/open))
 			range++
 		if(momentum_speed > 4)
 			range++
-		throw_at(get_edge_target_turf(src, _dir), range, 1) // If you dive over a table, your momentum is set to 0. If you dive over space, you are thrown 1 tile further.
+		throw_at(get_edge_target_turf(src, _dir), range, 1, src, PASSTABLE) // If you dive over a table, your momentum is set to 0. If you dive over space, you are thrown 1 tile further.
 		update_lying_buckled_and_verb_status()
-		pass_flags -= PASSTABLE // Jumpn't over them anymore!
 		allow_spin = TRUE
 
 		// Slide
@@ -693,7 +691,6 @@ default behaviour is:
 		while(livmomentum > 0 && C.true_dir)
 			Move(get_step(loc, _dir),dir)
 			livmomentum--
-			regen_slickness(0.25) // The longer you slide, the more stylish it is
 			sleep(world.tick_lag + 0.5)
 		C.mloop = 0
 
@@ -867,12 +864,12 @@ default behaviour is:
 	static_overlay = image(get_static_icon(new/icon(icon, icon_state)), loc = src)
 	static_overlay.override = 1
 
-/mob/living/New()
-	..()
 
-	if(!real_name)
-		real_name = name
-
+/mob/living/Initialize()
+	. = ..()
+	/// This proc used to be done in New() and was still somehow random with people having the same real name and name
+	/// I think it was random because of Human New calling Initialize and then calling the parent of New()
+	/// Hence it kept being random whilst unexpected...  -SPCR
 	dna_trace = sha1(real_name)
 	fingers_trace = md5(real_name)
 

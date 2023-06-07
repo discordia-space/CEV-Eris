@@ -24,7 +24,7 @@
 
 /obj/item/reagent_containers/enricher/Destroy()
 	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
-		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+		SEND_SIGNAL_OLD(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
 	GLOB.all_faction_items -= src
 	GLOB.moebius_faction_item_loss++
 	..()
@@ -43,7 +43,7 @@
 	if(reagents.total_volume)
 		for(var/datum/reagent/reagent in reagents.reagent_list)
 			var/reagent_amount = 0
-			if(istype(reagent, /datum/reagent/organic/nutriment) && !istype(reagent, /datum/reagent/organic/nutriment/virus_food))
+			if(istype(reagent, /datum/reagent/organic/nutriment))
 				var/datum/reagent/organic/nutriment/N = reagent
 				reagent_amount = N.volume
 				N.remove_self(reagent_amount)

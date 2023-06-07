@@ -29,9 +29,11 @@
 	rarity_value = 5
 	spawn_frequency = 10
 
+	health = 600
+	maxHealth = 600
+
 	var/list/custom_default = list() // used to preserve changes to stats past refresh_upgrades proccing
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
-	var/style_damage_multiplier = 1 // multiplies style damage of projectiles fired from this gun
 	var/penetration_multiplier = 0 //Sum of armor penetration of projectiles fired from this gun
 	var/pierce_multiplier = 0 //Additing wall penetration to projectiles fired from this gun
 	var/ricochet_multiplier = 1 //multiplier for how much projectiles fired from this gun can ricochet, modified by the bullet blender weapon mod
@@ -104,6 +106,7 @@
 	var/wield_delay_factor = 0 // A factor that characterizes weapon size , this makes it require more vig to insta-wield this weapon or less , values below 0 reduce the vig needed and above 1 increase it
 	var/serial_type = "" // If there is a serial type, the gun will add a number that will show on examine
 
+	var/flashlight_attachment = FALSE
 
 /obj/item/gun/wield(mob/user)
 	if(!wield_delay)
@@ -118,6 +121,8 @@
 		..()
 
 
+
+// Modular guns overwrite this
 /obj/item/gun/attackby(obj/item/I, mob/living/user, params)
 	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, serial_type ? QUALITY_HAMMERING : null), src)
 	switch(tool_type)
@@ -163,13 +168,14 @@
 	initial_zoom_factors = zoom_factors.Copy()
 	. = ..()
 	initialize_firemodes()
+	initialize_firemode_actions()
 	initialize_scope()
 	//Properly initialize the default firing mode
 	if (firemodes.len)
 		set_firemode(sel_mode)
 
 	if(!restrict_safety)
-		verbs += /obj/item/gun/proc/toggle_safety_verb//addint it to all guns
+		verbs += /obj/item/gun/proc/toggle_safety_verb  //addint it to all guns
 
 		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/safety
 		action.owner = src
@@ -203,7 +209,7 @@
 	firemodes = null
 	return ..()
 
-/obj/item/gun/proc/set_item_state(state, hands = FALSE, back = FALSE, onsuit = FALSE)
+/obj/item/gun/proc/set_item_state(state, hands = TRUE, back = FALSE, onsuit = FALSE)
 	var/wield_state
 	if(wielded_item_state)
 		wield_state = wielded_item_state
@@ -213,6 +219,7 @@
 		if(wield_state && wielded)//Because most of the time the "normal" icon state is held in one hand. This could be expanded to be less hacky in the future.
 			item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state
 			item_state_slots[slot_r_hand_str] = "righthand" + wield_state
+
 		else
 			item_state_slots[slot_l_hand_str] = "lefthand"  + state
 			item_state_slots[slot_r_hand_str] = "righthand" + state
@@ -220,13 +227,13 @@
 
 	var/carry_state = inversed_carry
 	if(back && !carry_state)
-		item_state_slots[slot_back_str]   = "back"      + state
+		item_state_slots[slot_back_str]   = "back"		+ state
 	if(back && carry_state)
-		item_state_slots[slot_back_str]   = "onsuit"      + state
+		item_state_slots[slot_back_str]   = "onsuit"	+ state
 	if(onsuit && !carry_state)
 		item_state_slots[slot_s_store_str]= "onsuit"    + state
 	if(onsuit && carry_state)
-		item_state_slots[slot_s_store_str]= "back"    + state
+		item_state_slots[slot_s_store_str]= "back"		+ state
 
 /obj/item/gun/update_icon()
 	if(wielded_item_state)
@@ -236,9 +243,9 @@
 				item_state_slots[slot_r_hand_str] = "righthand" + wielded_item_state
 			else
 				item_state_slots[slot_l_hand_str] = "lefthand"
-				item_state_slots[slot_r_hand_str] = "righthand"
+			item_state_slots[slot_r_hand_str] = "righthand"
 		else//Otherwise we can just pull from the generic left and right hand icons.
-			if(wielded)
+			if(wielded_icon)
 				item_state_slots[slot_l_hand_str] = wielded_item_state
 				item_state_slots[slot_r_hand_str] = wielded_item_state
 			else
@@ -299,7 +306,7 @@
 					)
 				user.drop_item()
 			if(rigged > TRUE)
-				explosion(get_turf(src), 1, 2, 3, 3)
+				explosion(get_turf(src), 250, 100)
 				qdel(src)
 			return FALSE
 	return TRUE
@@ -391,7 +398,6 @@
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 
-		projectile.multiply_projectile_style_damage(style_damage_multiplier)
 
 		projectile.add_projectile_penetration(penetration_multiplier)
 
@@ -474,7 +480,7 @@
 		playsound(user, fire_sound_silenced, 15, 1, -5)
 	else
 		playsound(user, fire_sound, 60, 1)
-
+		/*
 		if(reflex)
 			user.visible_message(
 				"<span class='reflex_shoot'><b>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""] by reflex!</b></span>",
@@ -487,6 +493,7 @@
 				SPAN_WARNING("You fire \the [src]!"),
 				"You hear a [fire_sound_text]!"
 				)
+		*/
 
 		if(muzzle_flash)
 			set_light(muzzle_flash)
@@ -735,6 +742,8 @@
 		var/list/L = init_firemodes[i]
 		add_firemode(L)
 
+
+/obj/item/gun/proc/initialize_firemode_actions()
 	var/obj/screen/item_action/action = locate(/obj/screen/item_action/top_bar/gun/fire_mode) in hud_actions
 	if(firemodes.len > 1)
 		if(!action)
@@ -1017,6 +1026,8 @@
 	sharp = initial(sharp)
 	braced = initial(braced)
 	recoil = getRecoil(init_recoil[1], init_recoil[2], init_recoil[3])
+	flashlight_attachment = initial(flashlight_attachment)
+	verbs -= /obj/item/gun/proc/toggle_light
 
 	attack_verb = list()
 	if (custom_default.len) // this override is used by the artwork_revolver for RNG gun stats
@@ -1027,8 +1038,10 @@
 	initialize_firemodes()
 
 	//Now lets have each upgrade reapply its modifications
-	SEND_SIGNAL(src, COMSIG_ADDVAL, src)
-	SEND_SIGNAL(src, COMSIG_APPVAL, src)
+	SEND_SIGNAL_OLD(src, COMSIG_ADDVAL, src)
+	SEND_SIGNAL_OLD(src, COMSIG_APPVAL, src)
+
+	initialize_firemode_actions()
 
 	if(firemodes.len)
 		very_unsafe_set_firemode(sel_mode) // Reset the firemode so it gets the new changes
@@ -1053,3 +1066,43 @@
 	else
 		refresh_upgrades()
 
+/obj/item/gun/container_dir_changed(new_dir)
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.container_dir_changed(new_dir)
+
+/obj/item/gun/moved(mob/user, old_loc)
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.moved(user, old_loc)
+
+/obj/item/gun/entered_with_container()
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.entered_with_container()
+
+/obj/item/gun/pre_pickup(mob/user)
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.pre_pickup(user)
+
+/obj/item/gun/dropped(mob/user as mob)
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.dropped(user)
+
+/obj/item/gun/afterattack(atom/A, mob/user)
+	. = ..()
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.afterattack(A, user)
+
+/obj/item/gun/proc/toggle_light(mob/user)
+	if(flashlight_attachment)
+		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
+			FL.attack_self(user)

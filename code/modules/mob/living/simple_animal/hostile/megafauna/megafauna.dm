@@ -67,18 +67,9 @@
 	L.gib()
 	return TRUE
 
-/mob/living/simple_animal/hostile/megafauna/ex_act(severity, target)
-	switch (severity)
-		if (1)
-			adjustBruteLoss(250)
-
-		if (2)
-			adjustBruteLoss(100)
-
-		if(3)
-			adjustBruteLoss(50)
-		if(4)
-			adjustBruteLoss(25)
+/mob/living/simple_animal/hostile/megafauna/explosion_act(target_power, explosion_handler/handle)
+	adjustBruteLoss(target_power / 3)
+	return health
 
 /mob/living/simple_animal/hostile/megafauna/proc/SetRecoveryTime(buffer_time)
 	recovery_time = world.time + buffer_time
@@ -108,8 +99,8 @@
 	return spiral_shoot()
 
 /mob/living/simple_animal/hostile/megafauna/proc/double_spiral()
-	INVOKE_ASYNC(src, .proc/spiral_shoot, FALSE)
-	INVOKE_ASYNC(src, .proc/spiral_shoot, TRUE)
+	INVOKE_ASYNC(src, PROC_REF(spiral_shoot), FALSE)
+	INVOKE_ASYNC(src, PROC_REF(spiral_shoot), TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/proc/telegraph()
 	for(var/mob/M in range(10,src))

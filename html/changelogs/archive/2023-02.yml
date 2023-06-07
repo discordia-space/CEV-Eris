@@ -25,3 +25,12 @@
 2023-02-18:
   Humonitarian:
   - bugfix: fixed a bug related to buckshot
+2023-02-25:
+  DiaFRAME444:
+  - balance: pain gained from armor blocking bullets is now 40% of the original damage.
+      Should make shotguns viable again.
+  Humonitarian:
+  - rscadd: shooting between zlevels, toggled by admins
+  - bugfix: minor bugfixes for tables
+  Mycah142:
+  - rscadd: Added craft recipe

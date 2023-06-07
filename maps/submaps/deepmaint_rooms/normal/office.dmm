@@ -83,6 +83,11 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/deepmaint)
+"K" = (
+/obj/structure/bed/chair/office/dark,
+/obj/landmark/corpse/skeleton,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/deepmaint)
 "N" = (
 /obj/structure/table/standard,
 /obj/item/paper_bin,
@@ -175,7 +180,7 @@ i
 l
 n
 r
-p
+K
 f
 d
 a

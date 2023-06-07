@@ -10,7 +10,19 @@
 	var/obj/item/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_lying_buckled_and_verb_status() call.
 	var/using_scope // This is not very good either, because I've copied it. Sorry.
 
-/mob/living/carbon/human/New(new_loc, new_species)
+/mob/living/carbon/human/Initialize(new_loc, new_species)
+	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100", ON_MOB_HUD_LAYER)
+	hud_list[STATUS_HUD]      = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
+	hud_list[LIFE_HUD]        = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
+	hud_list[ID_HUD]          = image('icons/mob/hud.dmi', src, "hudunknown",   ON_MOB_HUD_LAYER)
+	hud_list[WANTED_HUD]      = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
+	hud_list[IMPCHEM_HUD]     = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
+	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
+	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
+	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
+	hud_list[EXCELSIOR_HUD]   = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
+
+	GLOB.human_mob_list |= src
 
 	if(!species)
 		if(new_species)
@@ -23,22 +35,9 @@
 		name = real_name
 		if(mind)
 			mind.name = real_name
-
-	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100", ON_MOB_HUD_LAYER)
-	hud_list[STATUS_HUD]      = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
-	hud_list[LIFE_HUD]        = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
-	hud_list[ID_HUD]          = image('icons/mob/hud.dmi', src, "hudunknown",   ON_MOB_HUD_LAYER)
-	hud_list[WANTED_HUD]      = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
-	hud_list[IMPCHEM_HUD]     = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
-	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
-	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
-	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
-	hud_list[EXCELSIOR_HUD]   = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
+	. = ..()
 
 
-
-	GLOB.human_mob_list |= src
-	..()
 
 	sync_organ_dna()
 	make_blood()
@@ -102,65 +101,44 @@
 		return
 	..(duration, drop_items, doblind, doblurry)
 
-/mob/living/carbon/human/ex_act(severity, epicenter)
-	flash(5, FALSE, TRUE , TRUE, 5)
+/mob/living/carbon/human/explosion_act(target_power, explosion_handler/handle)
+	var/BombDamage = target_power - (getarmor(null, ARMOR_BOMB) + mob_bomb_defense)
+	var/obj/item/rig/hardsuitChad = back
+	if(back && istype(hardsuitChad))
+		BombDamage -= hardsuitChad.block_explosion(src, target_power)
+	var/BlockCoefficient = 0.2
+	if(handle)
+		var/ThrowTurf = get_turf(src)
+		var/ThrowDistance = round(target_power / 100)
+		if(ThrowTurf != handle.epicenter && ThrowDistance)
+			ThrowTurf = get_turf_away_from_target_simple(src, handle.epicenter, 8)
+			throw_at(ThrowTurf, ThrowDistance, ThrowDistance, "explosion")
+		// Heroic sacrifice
+		else if(ThrowTurf == handle.epicenter && lying)
+			if(BombDamage > 500)
+				BlockCoefficient = 0.8
+		if(BombDamage < 0)
+			return target_power * BlockCoefficient
 
-	var/b_loss = 0
-	var/bomb_defense = getarmor(null, ARMOR_BOMB) + mob_bomb_defense
-	var/target_turf // null means epicenter is same tile
-	if(epicenter != get_turf(src))
-		target_turf = get_turf_away_from_target_simple(src, epicenter, 8)
-	var/throw_distance = 8 - 2*severity
-	var/not_slick = TRUE
-	if(target_turf) // this means explosions on the same tile will not fling you
-		throw_at(target_turf, throw_distance, 5)
-		not_slick = FALSE // only explosions that fling you can be survived with slickness
-	if(slickness < (9-(2*severity)) * 10)
-		Weaken(severity) // If they don't get knocked out , weaken them for a bit.
-		not_slick = TRUE // if you don't have enough slickness, you can't safely ride the boom
-	else
-		slickness -= (9-(2*severity)) * 10 // awesome feats aren't something you can do constantly.
+	// 10% reduction for  takin cover down i guess
+	if(lying && BlockCoefficient != 0.8)
+		BombDamage *= 0.9
+		BlockCoefficient = 0.1
 
-	switch(severity)
-		if(1)
-			b_loss += 500
-			if(!prob(bomb_defense))
-				gib()
-				return
-		if(2)
-			b_loss = 120
-			if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-				adjustEarDamage(30, 120)
+	if(BombDamage > 1000)
+		gib()
 
-		if(3)
-			if(not_slick)
-				b_loss += 80
-				if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-					adjustEarDamage(15, 60)
-			else
-				visible_message(SPAN_WARNING("[src] rides the shockwave!"))
-				dodge_time = get_game_time()
-				confidence = FALSE
-		if(4)
-			if(not_slick)
-				b_loss += 50
-				if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-					adjustEarDamage(10, 30)
-			else
-				visible_message(SPAN_WARNING("[src] rides the shockwave!"))
-				dodge_time = get_game_time()
-				confidence = FALSE
+	else if(BombDamage > 600)
+		var/earProtection = earcheck()
+		if(earProtection * 100 < BombDamage)
+			adjustEarDamage((BombDamage - earProtection*100)/ 10,(BombDamage - earProtection*100)/ 100)
 
-	if(bomb_defense)
-		b_loss = max(b_loss - bomb_defense, 0)
+	var/DamageToApply = round(BombDamage / 4)
 
-	var/organ_hit = BP_CHEST //Chest is hit first
-	var/exp_damage = 0
-	while(b_loss > 0)
-		b_loss -= exp_damage
-		exp_damage = rand(0, b_loss)
-		src.apply_damage(exp_damage, BRUTE, organ_hit)
-		organ_hit = pickweight(list(BP_HEAD = 0.1, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG = 0.1, BP_L_LEG = 0.1))  //We determine some other body parts that should be hit
+	for(var/limb in BP_BY_DEPTH)
+		if (limb in organ_rel_size)
+			apply_damage(DamageToApply * (organ_rel_size[limb] / 100), BRUTE, limb)
+	return BombDamage * BlockCoefficient
 
 /mob/living/carbon/human/restrained()
 	if(handcuffed)
@@ -620,6 +598,13 @@ var/list/rank_prefix = list(\
 
 	return flash_protection
 
+/mob/living/carbon/human/earcheck()
+	if(istype(l_ear, /obj/item/clothing/ears/earmuffs) || istype(r_ear, /obj/item/clothing/ears/earmuffs))
+		. += 2
+	if(istype(head, /obj/item/clothing/head/armor/helmet))
+		. += 1
+	return .
+
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.
 /mob/living/carbon/human/proc/headcheck(target_zone, brain_tag = BP_BRAIN)
@@ -702,10 +687,6 @@ var/list/rank_prefix = list(\
 			location.add_vomit_floor(src, 1)
 
 		adjustNutrition(-40)
-		adjustToxLoss(-3)
-		regen_slickness(-3)
-		dodge_time = get_game_time()
-		confidence = FALSE
 		spawn(350)	//wait 35 seconds before next volley
 			lastpuke = 0
 
@@ -875,7 +856,7 @@ var/list/rank_prefix = list(\
 		return
 
 	var/list/mobs = list()
-	for(var/mob/living/carbon/C in SSmobs.mob_list)
+	for(var/mob/living/carbon/C in SSmobs.mob_list | SShumans.mob_list)
 		mobs += C
 
 	var/mob/target = input("Who do you want to project your mind to ?") as null|anything in mobs
@@ -911,7 +892,7 @@ var/list/rank_prefix = list(\
 
 	var/list/mobs = list()
 
-	for(var/mob/living/carbon/H in SSmobs.mob_list)
+	for(var/mob/living/carbon/H in SSmobs.mob_list | SShumans.mob_list)
 		if(H.ckey && H.stat == CONSCIOUS)
 			mobs += H
 
@@ -941,7 +922,7 @@ var/list/rank_prefix = list(\
 				var/mob/living/carbon/superior_animal/roach/R = M
 				R.target_mob = null
 				R.set_faction(faction)
-				addtimer(CALLBACK(R, .proc/set_faction), 1 MINUTE)
+				addtimer(CALLBACK(R, PROC_REF(set_faction)), 1 MINUTE)
 
 			else if(ishuman(M))
 				var/mob/living/carbon/human/H = M
@@ -964,7 +945,7 @@ var/list/rank_prefix = list(\
 				var/mob/living/carbon/superior_animal/giant_spider/S = M
 				S.target_mob = null
 				S.set_faction(faction)
-				addtimer(CALLBACK(S, .proc/set_faction), 1 MINUTE)
+				addtimer(CALLBACK(S, PROC_REF(set_faction)), 1 MINUTE)
 
 			else if(ishuman(M))
 				var/mob/living/carbon/human/H = M
@@ -995,21 +976,10 @@ var/list/rank_prefix = list(\
 		return NEUTER
 	return gender
 
-/mob/living/carbon/human/proc/increase_germ_level(n)
-	if(gloves)
-		gloves.germ_level += n
-	else
-		germ_level += n
-
 /mob/living/carbon/human/revive()
-
 	if(species && !(species.flags & NO_BLOOD))
 		vessel.add_reagent("blood",species.blood_volume-vessel.total_volume)
 		fixblood()
-
-	// Fix up all organs.
-	// This will ignore any prosthetics in the prefs currently.
-	rebuild_organs()
 
 	if(!client || !key) //Don't boot out anyone already in the mob.
 		for(var/obj/item/organ/internal/brain/H in world)
@@ -1019,57 +989,9 @@ var/list/rank_prefix = list(\
 						H.brainmob.mind.transfer_to(src)
 						qdel(H)
 
-
-	for(var/ID in virus2)
-		var/datum/disease2/disease/V = virus2[ID]
-		V.cure(src)
-
 	losebreath = 0
 
 	..()
-
-/mob/living/carbon/human/proc/is_lung_ruptured()
-	var/obj/item/organ/internal/lungs/L = random_organ_by_process(OP_LUNGS)
-	return L && L.is_bruised()
-
-/mob/living/carbon/human/proc/rupture_lung()
-	var/obj/item/organ/internal/lungs/L = random_organ_by_process(OP_LUNGS)
-
-	if(L && !L.is_bruised())
-		src.custom_pain("You feel a stabbing pain in your chest!", 1)
-		L.bruise()
-
-/*
-/mob/living/carbon/human/verb/simulate()
-	set name = "sim"
-	set background = 1
-
-	var/damage = input("Wound damage","Wound damage") as num
-
-	var/germs = 0
-	var/tdamage = 0
-	var/ticks = 0
-	while(germs < 2501 && ticks < 100000 && round(damage/10)*20)
-		log_misc("VIRUS TESTING: [ticks] : germs [germs] tdamage [tdamage] prob [round(damage/10)*20]")
-		ticks++
-		if(prob(round(damage/10)*20))
-			germs++
-		if(germs == 100)
-			to_chat(world, "Reached stage 1 in [ticks] ticks")
-		if(germs > 100)
-			if(prob(10))
-				damage++
-				germs++
-		if(germs == 1000)
-			to_chat(world, "Reached stage 2 in [ticks] ticks")
-		if(germs > 1000)
-			damage++
-			germs++
-		if(germs == 2500)
-			to_chat(world, "Reached stage 3 in [ticks] ticks")
-	to_chat(world, "Mob took [tdamage] tox damage")
-*/
-//returns 1 if made bloody, returns 0 otherwise
 
 /mob/living/carbon/human/add_blood(mob/living/carbon/human/M)
 	if(!..())
@@ -1096,12 +1018,10 @@ var/list/rank_prefix = list(\
 	if(gloves)
 		if(gloves.clean_blood())
 			update_inv_gloves()
-		gloves.germ_level = 0
 	else
 		if(bloody_hands)
 			bloody_hands = 0
 			update_inv_gloves()
-		germ_level = 0
 
 	gunshot_residue = null
 
@@ -1150,9 +1070,9 @@ var/list/rank_prefix = list(\
 						SPAN_WARNING("A spike of pain jolts your [organ.name] as you bump [O] inside."), \
 						SPAN_WARNING("Your hasty movement jostles [O] in your [organ.name] painfully."))
 					to_chat(src, msg)
-				organ.take_damage(rand(1,3), 0, 0)
+				organ.take_damage(3, BRUTE, organ.max_damage, 6.7, TRUE, TRUE)	// When the limb is at 60% of max health, internal organs start taking damage.
 				if(organ.setBleeding())
-					src.adjustToxLoss(rand(1,3))
+					organ.take_damage(3, TOX)
 
 /mob/living/carbon/human/verb/browse_sanity()
 	set name		= "Show sanity"
@@ -1541,11 +1461,9 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
-		return 0
-	..(slipped_on,stun_duration)
-	regen_slickness(-3)
-	dodge_time = get_game_time()
-	confidence = FALSE
+		return FALSE
+	return ..(slipped_on,stun_duration)
+
 
 /mob/living/carbon/human/reset_view(atom/A, update_hud = 1)
 	..()
@@ -1578,15 +1496,6 @@ var/list/rank_prefix = list(\
 	if(stat) return
 	holding_back = !holding_back
 	to_chat(src, SPAN_NOTICE("You are now [holding_back ? "holding back your attacks" : "not holding back your attacks"]."))
-	return
-
-/mob/living/carbon/human/verb/toggle_dodging()
-	set name = "Toggle Dodging"
-	set desc = "Just stand still while under fire."
-	set category = "IC"
-	if(stat) return
-	dodging = !dodging
-	to_chat(src, "<span class='notice'>You are now [dodging ? "dodging incoming fire" : "not dodging incoming fire"].</span>")
 	return
 
 /mob/living/carbon/human/verb/access_holster()
@@ -1638,7 +1547,7 @@ var/list/rank_prefix = list(\
 //			output for machines^	^^^^^^^output for people^^^^^^^^^
 
 /mob/living/carbon/human/proc/pulse()
-	if(!(organ_list_by_process(OP_HEART).len))
+	if(stat == DEAD || !(organ_list_by_process(OP_HEART).len))
 		return PULSE_NONE
 	else
 		return pulse

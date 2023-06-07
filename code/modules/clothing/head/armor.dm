@@ -29,7 +29,7 @@
 		melee = 7,
 		bullet = 10,
 		energy = 10,
-		bomb = 20,
+		bomb = 50,
 		bio = 0,
 		rad = 0
 	)
@@ -57,7 +57,7 @@
 		melee = 12,
 		bullet = 12,
 		energy = 12,
-		bomb = 25,
+		bomb = 75,
 		bio = 0,
 		rad = 0
 	)
@@ -91,7 +91,7 @@
 		melee = 7,
 		bullet = 7,
 		energy = 3,
-		bomb = 50,
+		bomb = 100,
 		bio = 0,
 		rad = 80
 	)//Mix between hardhat.dm armor values, helmet armor values in armor.dm, and armor values for TM void helmet in station.dm.
@@ -117,7 +117,7 @@
 		melee = 9,
 		bullet = 9,
 		energy = 9,
-		bomb = 40,
+		bomb = 100,
 		bio = 0,
 		rad = 0
 	)
@@ -132,7 +132,7 @@
 		melee = 7,
 		bullet = 7,
 		energy = 7,
-		bomb = 20,
+		bomb = 35,
 		bio = 0,
 		rad = 0
 	)
@@ -146,7 +146,7 @@
 		melee = 10,
 		bullet = 9,
 		energy = 7,
-		bomb = 20,
+		bomb = 35,
 		bio = 0,
 		rad = 0
 	)
@@ -169,7 +169,7 @@
 		melee = 7,
 		bullet = 15,
 		energy = 7,
-		bomb = 20,
+		bomb = 30,
 		bio = 0,
 		rad = 0
 	)
@@ -279,7 +279,7 @@
 		melee = 7,
 		bullet = 7,
 		energy = 16,
-		bomb = 0,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
@@ -314,8 +314,8 @@
 	name = "riot helmet"
 	desc = "A helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
-	armor_up = list(melee = 7, bullet = 5, energy = 5, bomb = 20, bio = 0, rad = 0)
-	armor_down = list(melee = 10, bullet = 8, energy = 7, bomb = 35, bio = 0, rad = 0)
+	armor_up = list(melee = 7, bullet = 5, energy = 5, bomb = 35, bio = 0, rad = 0)
+	armor_down = list(melee = 10, bullet = 8, energy = 7, bomb = 50, bio = 0, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	price_tag = 150
 	matter = list(
@@ -390,7 +390,7 @@
 		melee = 16,
 		bullet = 13,
 		energy = 10,
-		bomb = 35,
+		bomb = 75,
 		bio = 0,
 		rad = 0
 	)
@@ -464,7 +464,7 @@
 		melee = 10,
 		bullet = 10,
 		energy = 7,
-		bomb = 7,
+		bomb = 50,
 		bio = 0,
 		rad = 0
 	) // slightly buffed IHS helmet minus energy resistance
@@ -476,8 +476,8 @@
 	name = "altyn helmet"
 	desc = "A titanium helmet of serbian origin. Still widely used despite being discontinued."
 	icon_state = "altyn"
-	armor_up = list(melee = 5, bullet = 5, energy = 2, bomb = 15, bio = 0, rad = 0)
-	armor_down = list(melee = 10, bullet = 13, energy = 7, bomb = 35, bio = 0, rad = 0)
+	armor_up = list(melee = 5, bullet = 5, energy = 2, bomb = 30, bio = 0, rad = 0)
+	armor_down = list(melee = 10, bullet = 13, energy = 7, bomb = 50, bio = 0, rad = 0)
 	siemens_coefficient = 1
 	up = TRUE
 
@@ -495,7 +495,7 @@
 		melee = 14,
 		bullet = 15,
 		energy = 7,
-		bomb = 45,
+		bomb = 50,
 		bio = 0,
 		rad = 0
 	) // superior ballistic protection, mediocre laser protection.
@@ -528,7 +528,7 @@
 		melee = 7,
 		bullet = 10,
 		energy = 10,
-		bomb = 20,
+		bomb = 30,
 		bio = 0,
 		rad = 0
 	)
@@ -545,7 +545,7 @@
 		melee = 13,
 		bullet = 13,
 		energy = 13,
-		bomb = 25,
+		bomb = 75,
 		bio = 0,
 		rad = 0
 	)
@@ -598,7 +598,7 @@
 		melee = 5,
 		bullet = 5,
 		energy = 5,
-		bomb = 10,
+		bomb = 20,
 		bio = 100,
 		rad = 50
 		)
@@ -606,7 +606,7 @@
 		melee = 7,
 		bullet = 10,
 		energy = 10,
-		bomb = 20,
+		bomb = 50,
 		bio = 100,
 		rad = 50)
 	up = TRUE

@@ -93,8 +93,8 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 	owner = H
 	level = max_level
 	insight = rand(0, 30)
-	RegisterSignal(owner, COMSIG_MOB_LIFE, .proc/onLife)
-	RegisterSignal(owner, COMSIG_HUMAN_SAY, .proc/onSay)
+	RegisterSignal(owner, COMSIG_MOB_LIFE, PROC_REF(onLife))
+	RegisterSignal(owner, COMSIG_HUMAN_SAY, PROC_REF(onSay))
 
 /datum/sanity/Destroy()
 	UnregisterSignal(owner, COMSIG_MOB_LIFE)
@@ -103,10 +103,18 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 	QDEL_LIST(breakdowns)
 	return ..()
 
+/datum/sanity/proc/get_style_multiplier()
+
+	if(owner)
+		var/multiplier = owner.style / MAX_HUMAN_STYLE / 3
+		return clamp(multiplier, -0.15, 0.3)
+
 /datum/sanity/proc/give_insight(value)
 	var/new_value = value
 	if(value > 0)
 		new_value = max(0, value * insight_gain_multiplier * GLOB.GLOBAL_INSIGHT_MOD)
+	var/multiplier = get_style_multiplier()
+	new_value += new_value * multiplier
 	insight = min(insight + new_value, max_insight)
 
 /datum/sanity/proc/give_resting(value)
@@ -125,6 +133,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 			level_up()
 
 /datum/sanity/proc/onLife()
+	//SIGNAL_HANDLER
 	handle_breakdowns()
 	if(owner.stat == DEAD || owner.life_tick % life_tick_modifier || owner.in_stasis || (owner.species.lower_sanity_process && !owner.client))
 		return
@@ -145,7 +154,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 			rest_timer_active = FALSE
 			level_up()
 
-	SEND_SIGNAL(owner, COMSIG_HUMAN_SANITY, level)
+	SEND_SIGNAL_OLD(owner, COMSIG_HUMAN_SANITY, level)
 
 /datum/sanity/proc/handle_view()
 	. = 0
@@ -204,15 +213,15 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 		spook_time = world.time + rand(1 MINUTES, 8 MINUTES) - (40 - level) * 1 SECONDS //Each missing sanity point below 40 decreases cooldown by a second
 
 		var/static/list/effects_40 = list(
-			.proc/effect_emote = 25,
-			.proc/effect_quote = 50
+			PROC_REF(effect_emote = 25),
+			PROC_REF(effect_quote = 50)
 		)
 		var/static/list/effects_30 = effects_40 + list(
-			.proc/effect_sound = 1,
-			.proc/effect_whisper = 25,
+			PROC_REF(effect_sound = 1),
+			PROC_REF(effect_whisper = 25)
 		)
 		var/static/list/effects_20 = effects_30 + list(
-			.proc/effect_hallucination = 30
+			PROC_REF(effect_hallucination = 30)
 		)
 
 		call(src, pickweight(level < 30 ? level < 20 ? effects_20 : effects_30 : effects_40))()
@@ -321,9 +330,9 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 					if(owner.stats.addPerk(I.perk))
 						I.perk = null
 
-				SEND_SIGNAL(O, COMSIG_ODDITY_USED)
+				SEND_SIGNAL_OLD(O, COMSIG_ODDITY_USED)
 				for(var/mob/living/carbon/human/H in viewers(owner))
-					SEND_SIGNAL(H, COMSIG_HUMAN_ODDITY_LEVEL_UP, owner, O)
+					SEND_SIGNAL_OLD(H, COMSIG_HUMAN_ODDITY_LEVEL_UP, owner, O)
 
 			else to_chat(owner, SPAN_NOTICE("Something really buggy just happened with your brain."))
 
@@ -411,6 +420,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 		add_rest(INSIGHT_DESIRE_SMOKING, 0.4 * S.quality_multiplier)
 
 /datum/sanity/proc/onSay()
+	//SIGNAL_HANDLER
 	if(world.time < say_time)
 		return
 	say_time = world.time + SANITY_COOLDOWN_SAY
@@ -478,7 +488,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 		if(B.occur())
 			breakdowns += B
 			for(var/mob/living/carbon/human/H in viewers(owner))
-				SEND_SIGNAL(H, COMSIG_HUMAN_BREAKDOWN, owner, B)
+				SEND_SIGNAL_OLD(H, COMSIG_HUMAN_BREAKDOWN, owner, B)
 		return
 
 #undef SANITY_PASSIVE_GAIN

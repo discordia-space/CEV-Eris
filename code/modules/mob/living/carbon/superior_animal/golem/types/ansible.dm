@@ -68,7 +68,7 @@
 
 	// Callback to function that will teleport the target
 	// Animation lasts 90 frames with 0.6 tick delay between frames
-	addtimer(CALLBACK(src, .proc/teleport_target,), 54)
+	addtimer(CALLBACK(src, PROC_REF(teleport_target)), 54)
 
 /mob/living/carbon/superior_animal/golem/ansible/handle_ai()
 	if(isliving(target_mob) && (world.time - teleport_cooldown > 1 MINUTE))  // Do not teleport the drill

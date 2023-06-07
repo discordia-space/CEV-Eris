@@ -290,27 +290,16 @@
 	product_records.Cut()
 	return ..()
 
-/obj/machinery/vending/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			if(prob(50))
-				qdel(src)
-				return
-			if(prob(50))
-				spawn(0)
-					malfunction()
-					return
-		if(3)
-			if(prob(25))
-				spawn(0)
-					malfunction()
-					return
-				return
-		else
-	return
+/obj/machinery/vending/take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return .
+	if(amount > 50)
+		malfunction()
+
+/obj/machinery/vending/explosion_act(target_power, explosion_handler/handler)
+	// Blocks 60% at most
+	return round(take_damage(target_power) * 0.6)
 
 /obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
 	if(machine_vendor_account || vendor_department || earnings_account)
@@ -1070,7 +1059,7 @@
 					/obj/item/ammo_magazine/slpistol/rubber = 20,
 					/obj/item/ammo_magazine/smg/rubber = 15,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 20,
-					/obj/item/ammo_magazine/ammobox/shotgun/beanbags = 10,
+					/obj/item/ammo_magazine/ammobox/shotgun/beanbag = 10,
 					/obj/item/ammo_magazine/ammobox/shotgun/flashshells = 10,
 					/obj/item/ammo_magazine/ammobox/shotgun/blanks = 10,
 					/obj/item/storage/pouch/holster = 5,
@@ -1099,7 +1088,7 @@
 					/obj/item/ammo_magazine/pistol/rubber = 150,
 					/obj/item/ammo_magazine/hpistol = 300,
 					/obj/item/ammo_magazine/hpistol/rubber = 200,
-					/obj/item/ammo_magazine/ammobox/shotgun/beanbags = 300,
+					/obj/item/ammo_magazine/ammobox/shotgun/beanbag = 300,
 					/obj/item/ammo_magazine/ammobox/shotgun/flashshells = 300,
 					/obj/item/ammo_magazine/ammobox/shotgun/blanks = 50,
 					/obj/item/ammo_magazine/slpistol = 100,
@@ -1327,7 +1316,7 @@
 					/obj/item/ammo_magazine/smg/rubber = 4,
 					/obj/item/ammo_magazine/slmagnum/rubber = 4,
 					/obj/item/ammo_magazine/magnum/rubber = 4,
-					/obj/item/ammo_magazine/ammobox/shotgun/beanbags = 2,
+					/obj/item/ammo_magazine/ammobox/shotgun/beanbag = 2,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 4,
 					/obj/item/ammo_magazine/ammobox/magnum/rubber = 4,
 					/obj/item/ammo_magazine/ammobox/clrifle_small/rubber = 4,
@@ -1682,11 +1671,11 @@
 					/obj/item/part/gun = 30,
 					/obj/item/gun/energy/retro = 4,
 					/obj/item/gun/projectile/shotgun/doublebarrel = 4,
-					/obj/item/gun/projectile/mk58  = 2,
-					/obj/item/gun/projectile/mk58/wood = 2,
-					/obj/item/gun/projectile/mk58/army = 1,
+					/obj/item/gun/projectile/automatic/modular/mk58/gray/stock  = 2,
+					/obj/item/gun/projectile/automatic/modular/mk58/gray/wood = 2,
+					/obj/item/gun/projectile/automatic/modular/mk58/black/army = 1,
 					/obj/item/gun/projectile/revolver/deckard = 2,
-					/obj/item/gun/projectile/automatic/ak47/fs = 4,
+					/obj/item/gun/projectile/automatic/modular/ak/frozen_star = 4,
 					/obj/item/gun/projectile/automatic/z8 = 4,
 					/obj/item/gun/projectile/shotgun/pump/regulator = 4,
 					/obj/item/gun/projectile/boltgun/fs/civilian = 4,
@@ -1710,12 +1699,12 @@
 					/obj/item/part/gun = 700,
 					/obj/item/gun/energy/retro = 1200,
 					/obj/item/gun/projectile/shotgun/doublebarrel = 1400,
-					/obj/item/gun/projectile/mk58  = 900,
-					/obj/item/gun/projectile/mk58/wood = 900,
-					/obj/item/gun/projectile/mk58/army = 950,
+					/obj/item/gun/projectile/automatic/modular/mk58/gray/stock  = 900,
+					/obj/item/gun/projectile/automatic/modular/mk58/gray/wood = 900,
+					/obj/item/gun/projectile/automatic/modular/mk58/black/army = 950,
 					/obj/item/gun/projectile/mandella = 1800,
 					/obj/item/gun/projectile/revolver/deckard = 3600,
-					/obj/item/gun/projectile/automatic/ak47/fs = 3200,
+					/obj/item/gun/projectile/automatic/modular/ak/frozen_star = 3200,
 					/obj/item/gun/projectile/automatic/z8 = 3500,
 					/obj/item/gun/projectile/shotgun/pump/regulator = 2400,
 					/obj/item/gun/projectile/boltgun/fs/civilian = 2000,
@@ -1739,16 +1728,25 @@
 		/obj/item/clothing/mask/scarf/style/bluestyle = 8,
 		/obj/item/clothing/mask/scarf/style/yellowstyle = 8,
 		/obj/item/clothing/mask/scarf/style/redstyle = 8,
+		/obj/item/clothing/accessory/armband = 8,
+		/obj/item/clothing/accessory/armband/med = 8,
+		/obj/item/clothing/accessory/armband/hydro = 8,
+		/obj/item/clothing/glasses/sunglasses = 4,
+		/obj/item/clothing/ears/earmuffs = 4,
+		/obj/item/storage/wallet = 8,
 		/obj/item/clothing/gloves/knuckles = 3,
 		/obj/item/clothing/head/ranger = 4,
 		/obj/item/clothing/head/inhaler = 2,
 		/obj/item/clothing/head/skull = 3,
 		/obj/item/clothing/head/skull/black = 3,
-		/obj/item/clothing/shoes/redboot = 4,
+		/obj/item/clothing/shoes/redboot = 3,
 		/obj/item/clothing/shoes/aerostatic = 3,
 		/obj/item/clothing/shoes/jamrock = 3,
 		/obj/item/clothing/shoes/jackboots/longboot = 3,
+		/obj/item/clothing/shoes/reinforced = 4,
+		/obj/item/clothing/shoes/jackboots = 4,
 		/obj/item/clothing/under/tuxedo = 4,
+		/obj/item/clothing/under/assistantformal = 4,
 		/obj/item/clothing/under/white = 4,
 		/obj/item/clothing/under/red = 4,
 		/obj/item/clothing/under/green = 4,
@@ -1756,6 +1754,9 @@
 		/obj/item/clothing/under/black = 4,
 		/obj/item/clothing/under/dress/purple = 4,
 		/obj/item/clothing/under/dress/white = 4,
+		/obj/item/clothing/under/dress/gray = 3,
+		/obj/item/clothing/under/dress/blue = 3,
+		/obj/item/clothing/under/dress/red = 3,
 		/obj/item/clothing/under/helltaker = 4,
 		/obj/item/clothing/under/johnny = 3,
 		/obj/item/clothing/under/raider = 3,
@@ -1765,18 +1766,67 @@
 		/obj/item/clothing/under/tropicalblue = 3,
 		/obj/item/clothing/under/tropicalblack = 3,
 		/obj/item/clothing/under/tropicalgreen = 3,
+		/obj/item/clothing/under/leisure = 3,
+		/obj/item/clothing/under/leisure/white = 3,
+		/obj/item/clothing/under/leisure/pullover = 3,
+		/obj/item/clothing/under/blazer = 3,
+		/obj/item/clothing/under/genericb = 3,
+		/obj/item/clothing/under/genericr = 3,
+		/obj/item/clothing/under/genericw = 3,
+		/obj/item/clothing/under/camopants = 3,
+		/obj/item/clothing/under/wifebeater = 3,
+		/obj/item/clothing/under/jersey = 3,
+		/obj/item/clothing/under/rank/crewman = 3,
+		/obj/item/clothing/under/cyber = 3,
+		/obj/item/clothing/under/storage/tracksuit = 4,
+		/obj/item/clothing/under/kilt = 3,
+		/obj/item/clothing/suit/storage/toggle/bomber = 3,
+		/obj/item/clothing/suit/storage/toggle/bomber/furred = 3,
+		/obj/item/clothing/suit/storage/toggle/service = 3,
+		/obj/item/clothing/suit/storage/khaki = 3,
+		/obj/item/clothing/suit/storage/leather_jacket = 3,
+		/obj/item/clothing/suit/storage/drive_jacket = 3,
+		/obj/item/clothing/suit/storage/violet_jacket = 3,
+		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake = 3,
+		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake = 3,
+		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager = 3,
+		/obj/item/clothing/suit/storage/boxer_jacket = 3,
+		/obj/item/clothing/suit/storage/toggle/hoodie = 3,
+		/obj/item/clothing/suit/storage/toggle/hoodie/black = 3,
+		/obj/item/clothing/suit/storage/cyberpunksleek/green = 3,
+		/obj/item/clothing/suit/storage/cyberpunksleek/black = 3,
+		/obj/item/clothing/suit/storage/cyberpunksleek/white = 3,
+		/obj/item/clothing/suit/storage/cyberpunksleek = 3,
+		/obj/item/clothing/suit/storage/cyberpunksleek_long/green = 3,
+		/obj/item/clothing/suit/storage/cyberpunksleek_long/black = 3,
+		/obj/item/clothing/suit/storage/cyberpunksleek_long/white = 3,
+		/obj/item/clothing/suit/storage/cyberpunksleek_long = 3,
+		/obj/item/clothing/suit/storage/bomj = 3,
+		/obj/item/clothing/suit/poncho = 3,
+		/obj/item/clothing/suit/poncho/tactical = 3,
+		/obj/item/clothing/suit/punkvest = 3,
+		/obj/item/clothing/suit/punkvest/cyber = 3,
+		/obj/item/clothing/suit/storage/toggle/windbreaker = 3,
+		/obj/item/clothing/suit/storage/puffypurple = 3,
+		/obj/item/clothing/suit/storage/puffyblue = 3,
+		/obj/item/clothing/suit/storage/puffyred = 3,
+		/obj/item/clothing/suit/apron = 3,
 		/obj/item/clothing/suit/storage/aerostatic = 2,
 		/obj/item/clothing/suit/storage/jamrock = 2,
 		/obj/item/clothing/suit/storage/dante = 2,
-		/obj/item/clothing/suit/storage/triad = 2,
-		/obj/item/clothing/suit/storage/akira = 2,
-		/obj/item/clothing/under/storage/tracksuit = 4
+		/obj/item/clothing/suit/storage/akira = 2
 					)
 	prices = list(
 		/obj/item/clothing/mask/scarf/style = 250,
 		/obj/item/clothing/mask/scarf/style/bluestyle = 250,
 		/obj/item/clothing/mask/scarf/style/yellowstyle = 250,
 		/obj/item/clothing/mask/scarf/style/redstyle = 250,
+		/obj/item/clothing/accessory/armband = 100,
+		/obj/item/clothing/accessory/armband/med = 100,
+		/obj/item/clothing/accessory/armband/hydro = 100,
+		/obj/item/clothing/glasses/sunglasses = 200,
+		/obj/item/storage/wallet = 100,
+		/obj/item/clothing/ears/earmuffs = 100,
 		/obj/item/clothing/gloves/knuckles = 650,
 		/obj/item/clothing/head/ranger = 200,
 		/obj/item/clothing/head/inhaler = 750,
@@ -1786,12 +1836,18 @@
 		/obj/item/clothing/shoes/aerostatic = 500,
 		/obj/item/clothing/shoes/jamrock = 500,
 		/obj/item/clothing/shoes/jackboots/longboot = 550,
+		/obj/item/clothing/shoes/reinforced = 150,
+		/obj/item/clothing/shoes/jackboots = 150,
 		/obj/item/clothing/under/tuxedo = 100,
+		/obj/item/clothing/under/assistantformal = 100,
 		/obj/item/clothing/under/white = 100,
 		/obj/item/clothing/under/red = 100,
 		/obj/item/clothing/under/green = 100,
 		/obj/item/clothing/under/grey = 100,
 		/obj/item/clothing/under/black = 100,
+		/obj/item/clothing/under/dress/gray = 100,
+		/obj/item/clothing/under/dress/blue = 100,
+		/obj/item/clothing/under/dress/red = 100,
 		/obj/item/clothing/under/dress/purple = 100,
 		/obj/item/clothing/under/dress/white = 100,
 		/obj/item/clothing/under/helltaker = 100,
@@ -1803,17 +1859,62 @@
 		/obj/item/clothing/under/tropicalblue = 100,
 		/obj/item/clothing/under/tropicalblack = 100,
 		/obj/item/clothing/under/tropicalgreen = 100,
+		/obj/item/clothing/under/leisure = 100,
+		/obj/item/clothing/under/leisure/white = 100,
+		/obj/item/clothing/under/leisure/pullover = 100,
+		/obj/item/clothing/under/blazer = 100,
+		/obj/item/clothing/under/genericb = 100,
+		/obj/item/clothing/under/genericr = 100,
+		/obj/item/clothing/under/genericw = 100,
+		/obj/item/clothing/under/camopants = 100,
+		/obj/item/clothing/under/wifebeater = 100,
+		/obj/item/clothing/under/jersey = 100,
+		/obj/item/clothing/under/rank/crewman = 100,
+		/obj/item/clothing/under/cyber = 100,
+		/obj/item/clothing/under/kilt = 100,
+		/obj/item/clothing/under/storage/tracksuit = 100,
+		/obj/item/clothing/suit/storage/toggle/bomber = 200,
+		/obj/item/clothing/suit/storage/toggle/bomber/furred = 200,
+		/obj/item/clothing/suit/storage/toggle/service = 200,
+		/obj/item/clothing/suit/storage/khaki = 200,
+		/obj/item/clothing/suit/storage/leather_jacket = 200,
+		/obj/item/clothing/suit/storage/drive_jacket = 200,
+		/obj/item/clothing/suit/storage/violet_jacket = 200,
+		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake = 200,
+		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake = 200,
+		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager = 200,
+		/obj/item/clothing/suit/storage/boxer_jacket = 200,
+		/obj/item/clothing/suit/storage/toggle/hoodie = 200,
+		/obj/item/clothing/suit/storage/toggle/hoodie/black = 200,
+		/obj/item/clothing/suit/storage/toggle/windbreaker = 200,
+		/obj/item/clothing/suit/storage/cyberpunksleek/green = 200,
+		/obj/item/clothing/suit/storage/cyberpunksleek/black = 200,
+		/obj/item/clothing/suit/storage/cyberpunksleek/white = 200,
+		/obj/item/clothing/suit/storage/cyberpunksleek = 200,
+		/obj/item/clothing/suit/storage/cyberpunksleek_long/green = 200,
+		/obj/item/clothing/suit/storage/cyberpunksleek_long/black = 200,
+		/obj/item/clothing/suit/storage/cyberpunksleek_long/white = 200,
+		/obj/item/clothing/suit/storage/cyberpunksleek_long = 200,
+		/obj/item/clothing/suit/storage/bomj = 200,
+		/obj/item/clothing/suit/poncho = 150,
+		/obj/item/clothing/suit/poncho/tactical = 150,
+		/obj/item/clothing/suit/punkvest = 200,
+		/obj/item/clothing/suit/punkvest/cyber = 200,
+		/obj/item/clothing/suit/storage/puffypurple = 200,
+		/obj/item/clothing/suit/storage/puffyblue = 200,
+		/obj/item/clothing/suit/storage/puffyred = 200,
+		/obj/item/clothing/suit/apron = 100,
 		/obj/item/clothing/suit/storage/aerostatic = 700,
 		/obj/item/clothing/suit/storage/jamrock = 700,
 		/obj/item/clothing/suit/storage/dante = 900,
 		/obj/item/clothing/suit/storage/triad = 1200,
 		/obj/item/clothing/suit/storage/akira = 600,
-		/obj/item/clothing/under/storage/tracksuit = 450,
 		/obj/item/clothing/head/skull/drip = 100000
 					)
 
 	contraband = list(
-		/obj/item/clothing/head/skull/drip = 1)	//drip
+		/obj/item/clothing/head/skull/drip = 1, //drip
+		/obj/item/clothing/suit/storage/triad = 2)
 
 /obj/machinery/vending/gym
 	name = "Club\'s Total Workout"
@@ -1829,7 +1930,7 @@
 		)
 
 	prices = list(
-		/obj/item/gym_ticket = 50,
+		/obj/item/gym_ticket = 200,
 		/obj/item/tool/hammer/dumbbell = 90,
 		/obj/item/reagent_containers/food/drinks/protein_shake = 150,//a total ripoff
 		/obj/item/reagent_containers/food/drinks/energy = 200,

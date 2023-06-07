@@ -17,8 +17,7 @@
 	if(id_tag != signal.data["tag"] || !signal.data["command"]) return
 
 	cur_command = signal.data["command"]
-	spawn()
-		execute_current_command()
+	execute_current_command()
 
 /obj/machinery/door/airlock/proc/execute_current_command()
 	if(operating)
@@ -33,7 +32,7 @@
 		cur_command = null
 		return TRUE
 	if(!completing)
-		addtimer(CALLBACK(src , .proc/execute_current_command), 2 SECONDS) // Fuck it , try again.
+		addtimer(CALLBACK(src , PROC_REF(execute_current_command)), 2 SECONDS) // Fuck it , try again.
 		completing = TRUE
 	return FALSE
 
@@ -53,17 +52,13 @@
 
 		if("secure_open")
 			unlock()
-
-			sleep(2)
 			open()
-
 			lock()
 
 		if("secure_close")
 			unlock()
 			close()
 			lock()
-			sleep(2)
 
 	send_status()
 

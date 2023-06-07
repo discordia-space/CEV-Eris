@@ -21,6 +21,12 @@
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /obj/structure/table/proc/check_cover(obj/item/projectile/P, turf/from)
+
+	if(config.z_level_shooting)
+		if(P.height == HEIGHT_HIGH)
+			return TRUE // Bullet is too high to hit
+		P.height = (P.height == HEIGHT_LOW) ? HEIGHT_LOW : HEIGHT_CENTER
+
 	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return TRUE
 	if(get_dist(loc, P.trajectory.target) > 1 ) // Target turf must be adjacent for it to count as cover
@@ -42,6 +48,11 @@
 				valid = TRUE
 		else
 			valid = FALSE					//But only from one side
+
+	// Bullet is low enough to hit the table
+	if(config.z_level_shooting && P.height == HEIGHT_LOW)
+		valid = TRUE
+
 	if(valid)
 		var/pierce = P.check_penetrate(src)
 		health -= P.get_structure_damage()/2
@@ -51,8 +62,8 @@
 		else
 			visible_message(SPAN_WARNING("[src] breaks down!"))
 			break_to_parts()
-			return 1
-	return 1
+			return TRUE
+	return TRUE
 
 /obj/structure/table/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSTABLE))
@@ -105,12 +116,6 @@
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
-			if (ishuman(target))
-				var/mob/living/carbon/human/depleted = target
-				depleted.regen_slickness(-1)
-			if (ishuman(user))
-				var/mob/living/carbon/human/stylish = user
-				stylish.regen_slickness()
 			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been slammed by [user.name] ([user.ckey] against \the [src])</font>"
@@ -135,14 +140,6 @@
 			to_chat(user, SPAN_DANGER("You need a better grip to do that!"))
 			return
 	else
-		if (ishuman(target))
-			var/mob/living/carbon/human/depleted = target
-			depleted.regen_slickness(-1)
-			depleted.confidence = FALSE
-			depleted.dodge_time = get_game_time()
-		if (ishuman(user))
-			var/mob/living/carbon/human/stylish = user
-			stylish.regen_slickness()
 		target.forceMove(loc)
 		target.Weaken(5)
 		visible_message(SPAN_DANGER("[user] puts [target] on \the [src]."))

@@ -309,7 +309,7 @@
 
 /datum/technology/cyborg_robo
 	name = "AI Robotics"
-	desc = "Positron links. Man-Machine Interface. Cyborg control systems. Artificial Intelegence mobile storages."
+	desc = "Positron links. Man-Machine Interface. Cyborg control systems. Artificial Inteligence mobile storages."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.5

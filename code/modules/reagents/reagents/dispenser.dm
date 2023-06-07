@@ -9,7 +9,7 @@
 	reagent_type = "General"
 
 /datum/reagent/acetone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustToxLoss(effect_multiplier * 0.3)
+	M.add_chemical_effect(CE_TOXIN, 1.5 * effect_multiplier)
 
 /datum/reagent/acetone/touch_obj(obj/O)	//I copied this wholesale from ethanol and could likely be converted into a shared proc. ~Techhead
 	if(istype(O, /obj/item/paper))
@@ -27,6 +27,9 @@
 
 /datum/reagent/metal
 	reagent_type = "Metal"
+
+/datum/reagent/metal/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	M.add_chemical_effect(CE_MECH_REPAIR, 0.05)	// Makes metals useful and stackable for FBPs
 
 /datum/reagent/metal/aluminum
 	name = "Aluminum"
@@ -48,7 +51,7 @@
 	metabolism = REM * 0.5
 
 /datum/reagent/toxin/ammonia/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustToxLoss(effect_multiplier * 0.15)
+	M.add_chemical_effect(CE_TOXIN, 0.7 * effect_multiplier)
 
 /datum/reagent/carbon
 	name = "Carbon"
@@ -118,15 +121,15 @@
 
 /datum/reagent/ethanol/on_mob_add(mob/living/L)
 	..()
-	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_ADD_DRUG)
+	SEND_SIGNAL_OLD(L, COMSIG_CARBON_HAPPY, src, MOB_ADD_DRUG)
 
 /datum/reagent/ethanol/on_mob_delete(mob/living/L)
 	..()
-	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_DELETE_DRUG)
+	SEND_SIGNAL_OLD(L, COMSIG_CARBON_HAPPY, src, MOB_DELETE_DRUG)
 
 /datum/reagent/ethanol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, ((dose + 1) * 6.25))
-
+	M.add_chemical_effect(CE_PAINKILLER, (dose + 1) * 6.25)
+	M.add_chemical_effect(CE_ONCOCIDAL, 0.5)	// STALKER reference
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
 //Tough people can drink a lot
@@ -153,7 +156,7 @@
 	//	M.eye_blurry = max(M.eye_blurry, 10)
 
 	if(drunkenness >= 5) // Toxic dose, at least 15 ethanol required
-		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity * drunkenness / 5)
+		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity * drunkenness)
 
 	if(drunkenness >= 6) // Drowsyness - periodically falling asleep
 		M.drowsyness = max(M.drowsyness, 20)
@@ -184,7 +187,7 @@
 		M.adjust_hallucination(halluci, halluci)
 
 	apply_sanity_effect(M, effect_multiplier)
-	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
+	SEND_SIGNAL_OLD(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
 
 /datum/reagent/ethanol/touch_obj(obj/O)
 	if(istype(O, /obj/item/paper))
@@ -211,11 +214,11 @@
 	touch_met = 5
 
 /datum/reagent/toxin/hydrazine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustToxLoss(0.4 * effect_multiplier)
+	M.add_chemical_effect(CE_TOXIN, 2 * effect_multiplier)
 
 /datum/reagent/toxin/hydrazine/affect_touch(mob/living/carbon/M, alien, effect_multiplier) // Hydrazine is both toxic and flammable.
 	M.adjust_fire_stacks(0.4 / 12)
-	M.adjustToxLoss(0.2 * effect_multiplier)
+	M.add_chemical_effect(CE_TOXIN, effect_multiplier)
 
 /datum/reagent/toxin/hydrazine/touch_turf(turf/T)
 	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)
@@ -230,8 +233,8 @@
 	reagent_state = SOLID
 	color = "#353535"
 
-
 /datum/reagent/metal/iron/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	..()
 	M.add_chemical_effect(CE_BLOODRESTORE, 0.8 * effect_multiplier)
 
 /datum/reagent/metal/lithium
@@ -297,14 +300,6 @@
 
 /datum/reagent/metal/radium/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.apply_effect(1 * (issmall(M) ? effect_multiplier * 2 : effect_multiplier), IRRADIATE, 0) // Radium may increase your chances to cure a disease
-	if(M.virus2.len)
-		for(var/ID in M.virus2)
-			var/datum/disease2/disease/V = M.virus2[ID]
-			if(prob(5))
-				M.antibodies |= V.antigen
-				if(prob(50))
-					M.apply_effect(50, IRRADIATE, check_protection = 0) // curing it that way may kill you instead
-
 
 /datum/reagent/metal/radium/touch_turf(turf/T)
 	if(volume >= 3)
@@ -327,6 +322,9 @@
 	reagent_type = "Acid"
 	var/power = 5
 	var/meltdose = 10 // How much is needed to melt
+
+/datum/reagent/acid/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	M.add_chemical_effect(CE_MECH_ACID, 0.2 * power)
 
 /datum/reagent/acid/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.take_organ_damage(0, (issmall(M) ? effect_multiplier * 2: effect_multiplier * power * 2))
@@ -360,9 +358,9 @@
 			if(C.unacidable || C.armor.bio > 99)
 				stop_loop = TRUE
 				continue
-			var/melting_requirement = (C.max_health / C.health) * (1 - C.armor.bio / 100) * meltdose
+			var/melting_requirement = (C.maxHealth / C.health) * (1 - C.armor.bio / 100) * meltdose
 			if(melting_requirement > units_per_bodypart)
-				C.health -= (C.max_health / meltdose) * (1 - C.armor.bio / 100) * units_per_bodypart
+				C.health -= (C.maxHealth / meltdose) * (1 - C.armor.bio / 100) * units_per_bodypart
 				stop_loop = TRUE
 			else
 				to_chat(our_man, SPAN_DANGER("The [C.name] melts under the action of acid."))
@@ -380,9 +378,9 @@
 			if(C.unacidable || C.armor.bio > 99)
 				stop_loop = TRUE
 				continue
-			var/melting_requirement = (C.max_health / C.health) * (1 - C.armor.bio / 100) * meltdose
+			var/melting_requirement = (C.maxHealth / C.health) * (1 - C.armor.bio / 100) * meltdose
 			if(melting_requirement > units_per_bodypart)
-				C.health -= (C.max_health / meltdose) * (1 - C.armor.bio / 100) * units_per_bodypart
+				C.health -= (C.maxHealth / meltdose) * (1 - C.armor.bio / 100) * units_per_bodypart
 				stop_loop = TRUE
 			else
 				to_chat(our_man, SPAN_DANGER("The [C.name] melts under the action of acid."))
@@ -459,7 +457,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/heart/L = H.random_organ_by_process(OP_HEART)
 		if(istype(L))
-			L.take_damage(1, 0)
+			L.take_damage(dose/4, FALSE, TOX)
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
 

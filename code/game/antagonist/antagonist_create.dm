@@ -41,7 +41,7 @@
 	if(announce)
 		greet()
 
-	log_admin("[target] became the [role_text].")
+	log_admin("[key_name(target)] became the [role_text].")
 
 	return TRUE
 

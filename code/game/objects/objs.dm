@@ -11,7 +11,6 @@
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
 	var/armor_divisor = 1
-	var/style_damage = 30 // used for dealing damage to slickness
 	var/corporation
 	var/heat = 0
 
@@ -153,7 +152,7 @@
 
 /obj/proc/hide(hide)
 	invisibility = hide ? INVISIBILITY_MAXIMUM : initial(invisibility)
-	SEND_SIGNAL(src, COMSIG_OBJ_HIDE, hide)
+	SEND_SIGNAL_OLD(src, COMSIG_OBJ_HIDE, hide)
 
 /obj/proc/hides_under_flooring()
 	return level == BELOW_PLATING_LEVEL
@@ -176,10 +175,12 @@
 	return
 
 /obj/proc/add_hearing()
-	GLOB.hearing_objects |= src
+	InitiateHearerTracking()
+	//GLOB.hearing_objects |= src
 
 /obj/proc/remove_hearing()
-	GLOB.hearing_objects.Remove(src)
+	chunkHearerClearSelf()
+	//GLOB.hearing_objects.Remove(src)
 
 /obj/proc/eject_item(obj/item/I, mob/living/user)
 	if(!I || !user.IsAdvancedToolUser() || user.stat || !user.Adjacent(I))
@@ -250,9 +251,6 @@
 //Same for AP
 /obj/proc/add_projectile_penetration(newmult)
 	armor_divisor = initial(armor_divisor) + newmult
-
-/obj/proc/multiply_projectile_style_damage(newmult)
-	style_damage = initial(style_damage) * newmult
 
 /obj/proc/multiply_pierce_penetration(newmult)
 

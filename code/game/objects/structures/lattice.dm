@@ -36,19 +36,6 @@
 			L.updateOverlays(src.loc)
 	. = ..()
 
-/obj/structure/lattice/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			qdel(src)
-			return
-		if(3)
-			return
-		else
-	return
-
 /obj/structure/lattice/attackby(obj/item/I, mob/user)
 	if(I.get_tool_type(user, list(QUALITY_WELDING), src))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))

@@ -86,6 +86,7 @@
 	desc = "A SalonPro Nano-Mirror(TM) brand mirror! Now a portable version."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "mirror"
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 	var/list/ui_users = list()
 
 /obj/item/mirror/attack_self(mob/user as mob)

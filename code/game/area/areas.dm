@@ -103,15 +103,13 @@
 	if(!air_doors_activated)
 		air_doors_activated = 1
 		for(var/obj/machinery/door/firedoor/D in all_doors)
-			spawn()
-				D.close()
+			D.close()
 
 /area/proc/air_doors_open()
 	if(air_doors_activated)
 		air_doors_activated = 0
 		for(var/obj/machinery/door/firedoor/D in all_doors)
-			spawn()
-				D.open()
+			D.open()
 
 
 /area/proc/fire_alert()
@@ -120,8 +118,7 @@
 		updateicon()
 		mouse_opacity = 0
 		for(var/obj/machinery/door/firedoor/D in all_doors)
-			spawn()
-				D.close()
+			D.close()
 
 /area/proc/fire_reset()
 	if (fire)
@@ -129,8 +126,7 @@
 		updateicon()
 		mouse_opacity = 0
 		for(var/obj/machinery/door/firedoor/D in all_doors)
-			spawn()
-				D.open()
+			D.open()
 
 /area/proc/readyalert()
 	if(!eject)
@@ -228,7 +224,7 @@
 /area/proc/power_change()
 	for(var/obj/machinery/M in src)	// for each machine in the area
 		M.power_change()			// reverify power status (to update icons etc.)
-	SEND_SIGNAL(src, COMSIG_AREA_APC_POWER_CHANGE)
+	SEND_SIGNAL_OLD(src, COMSIG_AREA_APC_POWER_CHANGE)
 	if (fire || eject || party)
 		updateicon()
 

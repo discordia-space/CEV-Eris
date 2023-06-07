@@ -129,7 +129,7 @@
 
 							if(!(M.organ_list_by_process(OP_LUNGS).len) || M.losebreath)
 								sound += " and no respiration"
-							else if(M.is_lung_ruptured() || M.getOxyLoss() > 50)
+							else if(M.getOxyLoss() > 50)
 								sound += " and [pick("wheezing","gurgling")] sounds"
 							else
 								sound += " and healthy respiration"
@@ -204,7 +204,7 @@
 		melee = 7,
 		bullet = 7,
 		energy = 7,
-		bomb = 5,
+		bomb = 50,
 		bio = 0,
 		rad = 0
 	)
@@ -264,7 +264,7 @@
 		melee = 13,
 		bullet = 6,
 		energy = 6,
-		bomb = 15,
+		bomb = 50,
 		bio = 0,
 		rad = 0
 	)

@@ -34,7 +34,7 @@
 			destination_candidates.Add(F)
 
 	next_teleportation = pick(timer_min, timer_max)
-	teleportation_timer = addtimer(CALLBACK(src, .proc/teleport_random_item), next_teleportation)
+	teleportation_timer = addtimer(CALLBACK(src, PROC_REF(teleport_random_item)), next_teleportation)
 	bluespace_entropy(entropy_value, get_turf(src), TRUE)
 
 /obj/structure/bs_crystal_structure/Destroy()
@@ -56,7 +56,7 @@
 		if(!(I.flags & NOBLUDGEON))
 			user.do_attack_animation(src)
 			if(I.type in explosion_items)
-				explosion(src.loc, 0, 1, 2, 3, 0)
+				explosion(get_turf(src), 200, 50)
 				qdel(I)
 				qdel(src)
 			if(I.hitsound)
@@ -78,7 +78,7 @@
 	if(isobj(AM))
 		var/obj/O = AM
 		if(O.type in explosion_items)
-			explosion(src.loc, 0, 1, 2, 3, 0)
+			explosion(src.loc, 200, 50)
 			qdel(AM)
 			qdel(src)
 	if(ismob(AM) || isobj(AM))
@@ -101,4 +101,4 @@
 			new /obj/item/bluespace_dust(target_turf)
 
 			next_teleportation = pick(timer_min, timer_max)
-			teleportation_timer = addtimer(CALLBACK(src, .proc/teleport_random_item), next_teleportation)
+			teleportation_timer = addtimer(CALLBACK(src, PROC_REF(teleport_random_item)), next_teleportation)

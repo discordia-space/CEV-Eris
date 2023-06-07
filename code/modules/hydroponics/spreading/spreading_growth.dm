@@ -29,7 +29,7 @@
 		//We dont want to melt external walls and cause breaches
 		if(!near_external && floor.density)
 			if(!isnull(seed.chems["pacid"]))
-				spawn(rand(5,25)) floor.ex_act(3)
+				spawn(rand(5,25)) floor.explosion_act(100, null)
 			continue
 		if(!Adjacent(floor))
 			continue
@@ -37,10 +37,6 @@
 		//Space vines can grow through airlocks by forcing their way into tiny gaps
 		//There also can be special conditions handling
 		if (!floor.Enter(src))
-
-			if(CanPass(src, floor))
-				neighbors |= floor
-				continue
 
 			//Maintshooms cannot, spread trait must be 3 or more
 			if(seed.get_trait(TRAIT_SPREAD) < 3)

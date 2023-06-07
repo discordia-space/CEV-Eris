@@ -23,12 +23,10 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	anchored = TRUE
 	density = TRUE
 	use_power = NO_POWER_USE
+	health = 800
+	maxHealth = 800
 	unacidable = 1
 	var/sprite_number = 0
-
-/obj/machinery/gravity_generator/ex_act(severity, target)
-	if(severity == 1) // Very sturdy.
-		set_broken()
 
 /obj/machinery/gravity_generator/update_icon()
 	..()
@@ -339,7 +337,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 // Shake everyone to let them know that gravity was enagaged/disenagaged.
 /obj/machinery/gravity_generator/main/proc/shake_everyone()
-	for(var/mob/M in SSmobs.mob_list)
+	for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 		var/turf/our_turf = get_turf(src.loc)
 		if(M.client)
 			shake_camera(M, 15, 1)

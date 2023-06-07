@@ -29,23 +29,6 @@
 //	spawn(100) //Wont the MC just call this process() before and at the 10 second mark anyway?
 //		Process()
 
-/obj/machinery/optable/ex_act(severity)
-
-	switch(severity)
-		if(1)
-			//SN src = null
-			qdel(src)
-			return
-		if(2)
-			if (prob(50))
-				//SN src = null
-				qdel(src)
-				return
-		if(3)
-			if (prob(25))
-				density = FALSE
-		else
-	return
 
 /obj/machinery/optable/attack_hand(mob/user as mob)
 	if (user.incapacitated(INCAPACITATION_DEFAULT))

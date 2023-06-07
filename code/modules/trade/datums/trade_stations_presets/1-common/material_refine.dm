@@ -1,6 +1,6 @@
 /datum/trade_station/mat_refinery
 	name_pool = list(
-		"RS \'Recoll\'" = "Refinery Ship \'Recoll\': \"We accept all types of ores and we sell refined materials at cheap prices, as well!\""
+		"RS \'Recoll\'" = "Refinery Ship \'Recoll\': \"We accept precious or exotic ores and we sell refined materials in bulk, as well!\""
 	)
 	icon_states = list("htu_frigate", "ship")
 	uid = "materials"
@@ -45,14 +45,9 @@
 		/obj/item/tool/pickaxe/onestar = offer_data("one star pickaxe", 5000, 2),
 		/obj/item/tool/pickaxe/drill/onestar = offer_data("one star mining drill", 5000, 2),
 		/obj/item/tool/pickaxe/jackhammer/onestar = offer_data("one star jackhammer", 5000, 2),
-		/obj/item/ore/iron = offer_data("hematite", 20, 0),
-		/obj/item/ore/coal = offer_data("raw carbon", 20, 0),
-		/obj/item/ore/glass = offer_data("sand", 1, 0),
-		/obj/item/ore/silver = offer_data("native silver ore", 125, 0),
-		/obj/item/ore/gold = offer_data("native gold ore", 160, 0),
-		/obj/item/ore/diamond = offer_data("diamonds", 225, 0),
-		/obj/item/ore/osmium = offer_data("raw platinum", 160, 0),
-		/obj/item/ore/hydrogen = offer_data("raw hydrogen", 125, 0),
-		/obj/item/ore/uranium = offer_data("pitchblende", 225, 0),
-		/obj/item/ore/plasma = offer_data("plasma crystals", 80, 0)
+		/obj/item/ore/silver = offer_data("native silver ore", 250, 0),
+		/obj/item/ore/gold = offer_data("native gold ore", 320, 0),
+		/obj/item/ore/diamond = offer_data("diamonds", 550, 0),
+		/obj/item/ore/osmium = offer_data("raw platinum", 330, 0),
+		/obj/item/ore/hydrogen = offer_data("raw hydrogen", 250, 0),
 	)

@@ -8,7 +8,6 @@
 
 #define MUTATION_LESSER_HEALING		/datum/mutation/t2/healing_factor
 #define MUTATION_REMOTESAY			/datum/mutation/t2/remotesay
-#define MUTATION_REMOTESEE			/datum/mutation/t2/remoteobserve
 #define MUTATION_FORCESAY			/datum/mutation/t2/forcespeak
 #define MUTATION_NOPRINTS			/datum/mutation/t2/noprints
 #define MUTATION_ROACH_PHEROMONES	/datum/mutation/t2/roach_pheromones
@@ -27,6 +26,7 @@
 #define MUTATION_XRAY				/datum/mutation/t4/xray
 #define MUTATION_PHAZING			/datum/mutation/t4/phazing
 #define MUTATION_MORPH				/datum/mutation/t4/morph
+#define MUTATION_REMOTESEE			/datum/mutation/t4/remoteobserve
 
 // Sdisabilities. // TODO: To be replaced with status effects -- KIROV
 #define BLIND 0x1

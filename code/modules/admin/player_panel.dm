@@ -236,7 +236,7 @@
 						var/mob/living/carbon/human/H = M
 						M_job = H.job
 					else if(isslime(M))
-						M_job = "slime"
+						M_job = "Slime"
 					else if(issmall(M))
 						M_job = "Monkey"
 					else

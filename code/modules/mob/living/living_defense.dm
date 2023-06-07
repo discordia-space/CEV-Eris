@@ -1,4 +1,4 @@
-#define ARMOR_HALLOS_COEFFICIENT 0.25
+#define ARMOR_HALLOS_COEFFICIENT 0.4
 
 
 //This calculation replaces old run_armor_check in favor of more complex and better system
@@ -17,7 +17,7 @@
 	else
 		show_message(msg1, 1)
 
-/mob/living/proc/damage_through_armor(damage = 0, damagetype = BRUTE, def_zone, attack_flag = ARMOR_MELEE, armor_divisor = 1, used_weapon, sharp = FALSE, edge = FALSE, wounding_multiplier = 1, list/dmg_types = list(), return_continuation = FALSE)
+/mob/living/proc/damage_through_armor(damage = 0, damagetype = BRUTE, def_zone, attack_flag = ARMOR_MELEE, armor_divisor = 1, used_weapon, sharp = FALSE, edge = FALSE, wounding_multiplier, list/dmg_types = list(), return_continuation = FALSE)
 	if(damage) // If damage is defined, we add it to the list
 		if(!dmg_types[damagetype])
 			dmg_types += damagetype
@@ -68,28 +68,33 @@
 				dmg = max(dmg - remaining_armor - remaining_ablative, 0)
 
 			if(!(dmg_type == HALLOSS)) // Determine pain from impact
-				adjustHalLoss(used_armor * wounding_multiplier * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
+				adjustHalLoss(used_armor * (wounding_multiplier ? wounding_multiplier : 1) * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 
 			dmg_types[dmg_type] = dmg // Finally, we adjust the damage passing through
 			if(dmg)
 				dealt_damage += dmg
-				dmg *= dmg_type == HALLOSS ? 1 : wounding_multiplier
 
 				if(dmg_type == HALLOSS)
 					dmg = round(dmg * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 				if(dmg_type == BRUTE)
 
-					if ( (sharp || edge) && prob ( (1 - dmg / dmg_types[dmg_type]) * 100 ) ) // If enough of the brute damage is blocked, sharpness is lost from all followup attacks
+					if ( (sharp || edge) && prob ( (1 - dmg / dmg_types[dmg_type]) * 100 ) ) // If enough of the brute damage is blocked, sharpness is lost from all followup attacks, this converts damage into crushing as well
+						if(wounding_multiplier)
+							wounding_multiplier = step_wounding_double(wounding_multiplier) // Implied piercing damage, degrade by two steps (prevents damage duping from <1 multiplier)
+						else
+							wounding_multiplier = 1 // Crushing multiplier forced
 						sharp = FALSE
 						edge = FALSE
+						armor_message(SPAN_NOTICE("[src] armor deflected the strike!"), // No cut (strike), only bash
+										SPAN_NOTICE("Your armor deflects the strike!"))
 
 					if(ishuman(src) && isitem(used_weapon))
 						var/mob/living/carbon/human/H = src
 						var/obj/item/I = used_weapon
 						if((is_carrion(H) || active_mutations.len) && (SANCTIFIED in I.aspects))
-							apply_damage(dmg / 2, BURN, def_zone, sharp, edge, used_weapon)
+							apply_damage(dmg / 2, BURN, def_zone, armor_divisor, wounding_multiplier, sharp, edge, used_weapon)
 
-				apply_damage(dmg, dmg_type, def_zone, sharp, edge, used_weapon)
+				apply_damage(dmg, dmg_type, def_zone, armor_divisor, wounding_multiplier, sharp, edge, used_weapon)
 				if(ishuman(src) && def_zone && dmg >= 20)
 					var/mob/living/carbon/human/H = src
 					var/obj/item/organ/external/o = H.get_organ(def_zone)
@@ -113,7 +118,7 @@
 		if(74 to 49)
 			armor_message(SPAN_NOTICE("[src] armor absorbs most of the damage!"),
 							SPAN_NOTICE("Your armor protects you from the impact!"))
-		if(24 to -INFINITY)
+		if(49 to 24)
 			armor_message(SPAN_NOTICE("[src] armor reduces the impact by a little."),
 							SPAN_NOTICE("Your armor reduced the impact a little."))
 
@@ -169,6 +174,16 @@
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
 
+	if(config.z_level_shooting && P.height) // If the bullet came from above or below, limit what bodyparts can be hit for consistency
+		if(resting || lying)
+			return PROJECTILE_CONTINUE // Bullet flies overhead
+
+		switch(P.height)
+			if(HEIGHT_HIGH)
+				def_zone_hit = pick(list(BP_CHEST, BP_HEAD, BP_L_ARM, BP_R_ARM))
+			if(HEIGHT_LOW)
+				def_zone_hit = pick(list(BP_CHEST, BP_GROIN, BP_L_LEG, BP_R_LEG))
+
 	//Being hit while using a deadman switch
 	if(istype(get_active_hand(),/obj/item/device/assembly/signaler))
 		var/obj/item/device/assembly/signaler/signaler = get_active_hand()
@@ -211,11 +226,11 @@
 		Weaken(stun_amount * armor_coefficient)
 		apply_effect(STUTTER, stun_amount * armor_coefficient)
 		apply_effect(EYE_BLUR, stun_amount * armor_coefficient)
-		SEND_SIGNAL(src, COMSIG_LIVING_STUN_EFFECT)
+		SEND_SIGNAL_OLD(src, COMSIG_LIVING_STUN_EFFECT)
 
 	if (agony_amount && armor_coefficient)
 
-		apply_damage(agony_amount * armor_coefficient, HALLOSS, def_zone, 0, used_weapon)
+		apply_damage(agony_amount * armor_coefficient, HALLOSS, def_zone, FALSE, FALSE, FALSE, used_weapon)
 		apply_effect(STUTTER, agony_amount * armor_coefficient)
 		apply_effect(EYE_BLUR, agony_amount * armor_coefficient)
 
@@ -401,9 +416,6 @@
 
 	var/turf/location = get_turf(src)
 	location.hotspot_expose(fire_burn_temperature(), 50, 1)
-	if (ishuman(src))
-		var/mob/living/carbon/human/stylish = src
-		stylish.regen_slickness() // being on fire is cool, but don't try this at home
 
 /mob/living/fire_act()
 	adjust_fire_stacks(2)

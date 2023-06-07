@@ -14,7 +14,7 @@
 
 /datum/hivemind_sdp/proc/set_master(obj/machinery/hivemind_machine/new_master)
 	src.master = new_master
-	hp_percent = master.max_health/100
+	hp_percent = master.maxHealth/100
 
 
 /datum/hivemind_sdp/proc/turn_off()
@@ -146,7 +146,7 @@
 			places_to_spawn -= spawn_loc
 	playsound(master, 'sound/effects/teleport.ogg', 80, 1)
 	champion.say(pick("You shall be destroyed!", "Fear me!", "Face me!", "You have lived for far too long!", "Die vermin!", "Fight me insect!", "There is no escape!"))
-	
+
 
 //EMERGENCY JUMP
 //Teleports master to new location

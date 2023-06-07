@@ -1,0 +1,134 @@
+2023-03-04:
+  Firefox13:
+  - admin: antagrole log now shows ckey
+  Humonitarian:
+  - rscdel: Disliked feature containing gamebreaking bug removed
+  MLGTASTICa:
+  - refactor: Removes a sleep from projectile launch code, removing random delays
+      added to gun firing.
+  SingingSpock:
+  - rscadd: funeral disposal for NT to use.
+  - bugfix: Maintshrooms no longer treat solid objects as a mere suggestion
+  - bugfix: Maintshrooms now check if the other end of a burrow is too bright for
+      it to grow before spreading
+2023-03-11:
+  Pink-Chink:
+  - rscadd: Adds organ wounding mechanic
+  - tweak: Reworks damage system to one focused on vital organ health, replaces bay-style
+      damage tracking and deaths
+  - tweak: Tweaked many reagents to provide chem effects for wound treatment
+  - tweak: Tox loss and clone loss are no longer considered in lethal damage or pain
+      calculations
+  - rscdel: Removed bay germs and bay infections
+  githubuser4141:
+  - balance: Increases mech HP/armour values, increases component cost, mechs are
+      more time-consuming to repair now, mech treads can't strafe because that was
+      OP as f*ck, the power loader/ball chassis can now fit passengers.
+  - tweak: Moved exosuits' parts around (no player facing changes.) from the premade
+      directory to components.
+2023-03-18:
+  Firefox13:
+  - admin: increased upload limit to 10MB
+  Hyperio:
+  - rscadd: Add matter to instruments
+  - bugfix: Remove window in maints above library
+  - rscadd: Block people from leaving/entering shuttles through their ceiling
+  - rscadd: Add tech level to bonsai tree
+  Kurgis:
+  - bugfix: Cyborg Service Fabricators use the correct icon file.
+  Pink-Chink:
+  - bugfix: Randomizes parallax again
+  - rscadd: Added Destroy() cleanup to /datum/nano_module/appearance_changer
+  - code_imp: Made some text compliant with Github's TOS
+  - tweak: Health scanner shows limb health and statuses in one location
+  - tweak: Health HUD shows the lowest between critical health, limb health, and organ
+      health
+  - tweak: Burn damage will always transfer at least 25% damage to internal organs
+  - tweak: Damage to limbs will only be deducted when the transferred damage creates/progresses
+      a wound
+  - tweak: Oxy loss doesn't contribute to pain
+  - tweak: Unbreakable type bones don't break
+  - tweak: Blood loss organ wounds progression time increased to 1 minute per level
+      instead of 18 seconds
+  - tweak: Oxy damage from damaged organs reduced by 50% to 75% depending on the case
+  - tweak: Oxygenation effect from Dexalin and Dexalin Plus don't stack with other
+      effects
+  - tweak: Stasis prevents suffocation/oxy damage
+  - tweak: Aranecolmin only applies rot wound once
+  - tweak: Created blood oxygenation modifier for heart processes
+  - tweak: Malignant tumors can be removed with a cutting tool
+  - tweak: Toxins don't use effect multiplier for base toxin effect
+  - balance: Glass Widow rad damage reduced to 25 from 100
+  - balance: Atomik radiation damage reduced to 7.5 from 30
+  - balance: 'Demolecularisor laser (used by Prototype: biological demolecularisor)
+      radiation damage reduced to 10 from 100'
+  - balance: Gestrahlte melee radiation build-up reduced to 10 from 40
+  - balance: Gestrahlte bile projectile radiation damage reduced to 5 from 15
+  - balance: Lexorin duration significantly reduced, 0.5u is consumed per tick instead
+      of 0.01u
+  - balance: Pararein strength reduced to 2 from 8
+  - bugfix: Carrion core won't take damage while inside a human
+  - bugfix: Blood loss wounds won't stack and restoring blood levels will treat them
+  - bugfix: Brains don't suffer blood loss
+  - bugfix: Humans should no longer have a pulse when dead
+  - bugfix: Fixed runtime related to liver and kidney processes
+  - bugfix: Organ wound treatment does the progress bar and stat check before consuming
+      charges, UI will update on a successful treatment
+  - bugfix: Fixed an issue where still live organs wouldn't heal after a wound was
+      treated
+  - bugfix: Fixed an issue where succumb wouldn't let you die if you were too close
+      to death
+  - rscdel: Removed legacy lung rupture wound
+  - balance: Blattedin strength halved since it makes its way into blood and ingest
+  - balance: Toxin wounds won't build up rapidly when poisoned
+  - balance: Toxin damage from failing liver/kidney significantly slowed down
+  SingingSpock:
+  - bugfix: Disposal/atmos piping above the gym no longer runs into a wall.
+  - bugfix: A maintenance APC in a tiny room on deck 1 is actually placed where its
+      wire is rather than never charging.
+  - tweak: Tanks in public tools are protected from stray bullets/coins by a windoor.
+  - bugfix: Harsuit storage module now has a name in the hardsuit interface rather
+      than being generic
+  - tweak: Gunnery Sergeant gets paid on par with the specialist/investigator rather
+      than an operative.
+  TheLeopold:
+  - bugfix: 'fixed wrong materials when recycling: dusters, cruciform, jar'
+  - rscadd: added matter to breath mask, gas mask, glowstick
+  - bugfix: renamed "glass ashtray" design to "ashtray"
+  - tweak: Roundstart NT disks can be ordered from EOTP
+  - rscadd: Added obelisk to hydroponics and biogenerator
+  - tweak: replaced regular hydroponics door with NTdoor
+  - tweak: moved Krabin id lock button next to showcase
+  - bugfix: added missing ceiling to funeral ejector
+  - tweak: disposal bin in guild lobby now properly sends trash to sorter
+  - bugfix: added missing disposal pipe in maintenance above gym
+  - rscadd: NT can build silver door, which allows anyone with cruciform to open it
+  - bugfix: fixed rogue pixel in open/close animation of NT doors
+  - imageadd: added silver NT door sprite
+  - rscadd: autolathe recipe for handheld mirror
+  - tweak: handheld mirror has materials
+2023-03-21:
+  Pink-Chink:
+  - code_imp: Ported TG components and elements
+  - code_imp: Adds macros for proc reference compatibility with byond 515
+2023-03-25:
+  Humonitarian:
+  - bugfix: You can now swing diagonally
+  - bugfix: You no longer hit yourself while running
+  - tweak: Swings get weaker the more objects you hit
+  - tweak: Swings can hit multiple roaches in a single tile
+  Mycah142:
+  - tweak: tweaked trade ship to encourage more player material trading
+  Pink-Chink:
+  - rscdel: Removes tox damage from radiation
+  - bugfix: Removed "no damage" flag from Demolecularisor
+  - bugfix: Fixed sprite flags so mutated limbs don't appear missing
+  Skegal:
+  - rscadd: Added 2 new haircut
+  - imageadd: added 2 sprites in Icon/mob/human_races_species_human/hair.dmi
+  - code_imp: added a few lines in code/modules/sprite_accessories
+  TheLeopold:
+  - rscadd: Added disks smartstorage
+  - imageadd: added filled states for disk storage
+  assortedbeads:
+  - balance: Uranium spear used to do 5 - 10 radiation damage, it now does 60 - 65

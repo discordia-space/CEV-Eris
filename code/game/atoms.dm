@@ -13,7 +13,6 @@
 	var/last_bumped = 0
 	var/pass_flags = 0
 	var/throwpass = 0
-	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 	var/simulated = TRUE //filter for actions - used by lighting overlays
 	var/fluorescent // Shows up under a UV light.
 	var/allow_spin = TRUE // prevents thrown atoms from spinning when disabled on thrown or target
@@ -145,6 +144,7 @@
  * Cleans up the following:
  * * Removes alternate apperances from huds that see them
  * * qdels the reagent holder from atoms if it exists
+ * * Clears itself from any targeting-related vars that hold a reference to it
  * * clears the orbiters list
  * * clears overlays and priority overlays
  * * clears the light object
@@ -153,8 +153,10 @@
 	if(reagents)
 		QDEL_NULL(reagents)
 
-	spawn()
-		update_openspace()
+	SEND_SIGNAL(src, COMSIG_NULL_TARGET)
+	SEND_SIGNAL(src, COMSIG_NULL_SECONDARY_TARGET)
+
+	update_openspace()
 	return ..()
 
 ///Generate a tag for this atom
@@ -389,7 +391,7 @@ its easier to just keep the beam vertical.
 		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
 		P.virtual_scanner.afterattack(src, user, get_dist(src, user) <= 1)
 
-	SEND_SIGNAL(src, COMSIG_EXAMINE, user, distance)
+	SEND_SIGNAL_OLD(src, COMSIG_EXAMINE, user, distance)
 
 	return distance == -1 || (get_dist(src, user) <= distance) || isobserver(user)
 
@@ -413,8 +415,10 @@ its easier to just keep the beam vertical.
 /atom/proc/container_dir_changed(new_dir)
 	return
 
-/atom/proc/ex_act()
-	return
+// Explosion action proc , should never SLEEP, and should avoid icon updates , overlays and other visual stuff as much as possible , since they cause massive time delays
+// in explosion processing.
+/atom/proc/explosion_act(target_power, explosion_handler/handler)
+	return 0
 
 /atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
 	return NO_EMAG_ACT
@@ -607,7 +611,6 @@ its easier to just keep the beam vertical.
 	if(!simulated)
 		return
 	fluorescent = 0
-	src.germ_level = 0
 	if(istype(blood_DNA, /list))
 		blood_DNA = null
 		return TRUE
@@ -659,9 +662,9 @@ its easier to just keep the beam vertical.
 	var/list/objs = list()
 	get_mobs_and_objs_in_view_fast(T,range, mobs, objs, ONLY_GHOSTS_IN_VIEW)
 
-	for(var/o in objs)
-		var/obj/O = o
-		O.show_message(message,1,blind_message,2)
+	for(var/obj/O as anything in objs)
+		if(!QDELETED(O))
+			O.show_message(message,1,blind_message,2)
 
 	for(var/m in mobs)
 		var/mob/M = m
@@ -757,8 +760,8 @@ its easier to just keep the beam vertical.
 
 //Bullethole shit.
 /atom/proc/create_bullethole(var/obj/item/projectile/Proj)
-	var/p_x = Proj.p_x + pick(0,0,0,0,0,-1,1) // really ugly way of coding "sometimes offset Proj.p_x!"
-	var/p_y = Proj.p_y + pick(0,0,0,0,0,-1,1) // Used for bulletholes
+	var/p_x = Proj.p_x + rand(-8,8) // really ugly way of coding "sometimes offset Proj.p_x!"
+	var/p_y = Proj.p_y + rand(-8,8) // Used for bulletholes
 	var/obj/effect/overlay/bmark/BM = new(src)
 
 	BM.pixel_x = p_x

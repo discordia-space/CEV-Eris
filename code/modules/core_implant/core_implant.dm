@@ -42,6 +42,7 @@
 	START_PROCESSING(SSobj, src)
 	add_hearing()
 
+
 /obj/item/implant/core_implant/deactivate()
 	if(!active)
 		return
@@ -119,7 +120,7 @@
 
 	if(wearer != H)
 		if(H.get_core_implant() && !group_ritual_leader)
-			addtimer(CALLBACK(src, .proc/hear_other, H, message), 0) // let H's own implant hear first
+			addtimer(CALLBACK(src, PROC_REF(hear_other), H, message), 0) // let H's own implant hear first
 	else
 		for(var/RT in known_rituals)
 			var/datum/ritual/R = GLOB.all_rituals[RT]

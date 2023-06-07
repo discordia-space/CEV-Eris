@@ -150,24 +150,15 @@ var/list/floor_light_cache = list()
 /obj/machinery/floor_light/proc/broken()
 	return (stat & (BROKEN|NOPOWER))
 
-/obj/machinery/floor_light/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if (prob(50))
-				qdel(src)
-			else if(prob(20))
-				stat |= BROKEN
-			else
-				if(isnull(damaged))
-					damaged = 0
-		if(3)
-			if (prob(5))
-				qdel(src)
-			else if(isnull(damaged))
-				damaged = 0
-	return
+/obj/machinery/floor_light/take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return 0
+	if(health/maxHealth < 0.5)
+		stat |= BROKEN
+	if(isnull(damaged))
+		damaged = 0
+	return 0
 
 /obj/machinery/floor_light/Destroy()
 	var/area/A = get_area(src)

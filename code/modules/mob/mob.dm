@@ -1,5 +1,8 @@
 /mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
-	STOP_PROCESSING(SSmobs, src)
+	if(ishuman(src))
+		STOP_PROCESSING(SShumans, src)
+	else
+		STOP_PROCESSING(SSmobs, src)
 	GLOB.dead_mob_list -= src
 	GLOB.living_mob_list -= src
 	GLOB.mob_list -= src
@@ -28,13 +31,17 @@
 	return
 
 /mob/Initialize()
-	START_PROCESSING(SSmobs, src)
+	if(ishuman(src))
+		START_PROCESSING(SShumans, src)
+	else
+		START_PROCESSING(SSmobs, src)
 	if(stat == DEAD)
 		GLOB.dead_mob_list += src
 	else
 		GLOB.living_mob_list += src
 	GLOB.mob_list += src
 	move_intent = decls_repository.get_decl(move_intent)
+	SEND_SIGNAL(SSdcs, COMSIG_MOB_INITIALIZED, src)
 	. = ..()
 
 /**
@@ -84,15 +91,15 @@
 
 		messageturfs += turf
 
-	for(var/A in GLOB.player_list)
-		var/mob/M = A
-		if (QDELETED(M))
-			GLOB.player_list -= M
+
+
+	for(var/mob/M in getMobsInRangeChunked(get_turf(src), range, FALSE, TRUE))
+		if(!M.client)
 			continue
-		if (!M.client || istype(M, /mob/new_player))
-			continue
-		if(get_turf(M) in messageturfs)
-			messagemobs += M
+		messagemobs += M
+	for(var/mob/ghosty in GLOB.player_ghost_list)
+		if(ghosty.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_EMOTES)
+			messagemobs |= ghosty
 
 	for(var/A in messagemobs)
 		var/mob/M = A
@@ -146,7 +153,7 @@
 
 
 /mob/proc/findname(msg)
-	for(var/mob/M in SSmobs.mob_list)
+	for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 		if (M.real_name == text("[]", msg))
 			return M
 	return 0
@@ -162,7 +169,7 @@
 
 
 /mob/proc/Life()
-	SEND_SIGNAL(src, COMSIG_MOB_LIFE)
+	SEND_SIGNAL_OLD(src, COMSIG_MOB_LIFE)
 //	if(organStructure)
 //		organStructure.ProcessOrgans()
 	//handle_typing_indicator() //You said the typing indicator would be fine. The test determined that was a lie.
@@ -247,7 +254,7 @@
 	set name = "Examine"
 	set category = "IC"
 
-	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, .proc/run_examinate, examinify))
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(run_examinate), examinify))
 
 /mob/proc/run_examinate(atom/examinify)
 
@@ -281,7 +288,7 @@
 	if(istype(A, /obj/effect/decal/point))
 		return FALSE
 
-	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, .proc/_pointed, A))
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(_pointed), A))
 
 /// possibly delayed verb that finishes the pointing process starting in [/mob/verb/pointed()].
 /// either called immediately or in the tick after pointed() was called, as per the [DEFAULT_QUEUE_OR_CALL_VERB()] macro
@@ -350,7 +357,7 @@
 	set category = "Object"
 	set src = usr
 
-	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, .proc/execute_mode))
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(execute_mode)))
 
 ///proc version to finish /mob/verb/mode() execution. used in case the proc needs to be queued for the tick after its first called
 /mob/proc/execute_mode()
@@ -482,7 +489,7 @@
 			creatures[name] = O
 
 
-	for(var/mob/M in sortNames(SSmobs.mob_list))
+	for(var/mob/M in sortNames(SSmobs.mob_list | SShumans.mob_list))
 		var/name = M.name
 		if (names.Find(name))
 			namecounts[name]++

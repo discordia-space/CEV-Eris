@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	power_channel = STATIC_ENVIRON
 
 	explosion_resistance = 10
-	maxhealth = 400
+	maxHealth = 400
 
 	var/aiControlDisabled = 0
 	//If 1, AI control is disabled until the AI hacks back in and disables the lock.
@@ -106,7 +106,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Glass Airlock"
 	icon = 'icons/obj/doors/Doorglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
@@ -156,7 +156,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doorcomglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
@@ -167,7 +167,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doorengglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
@@ -178,7 +178,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doorsecglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
 	bullet_resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
@@ -190,7 +190,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doormedglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
@@ -216,7 +216,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doorresearchglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
@@ -228,7 +228,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doorminingglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
@@ -239,7 +239,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Dooratmoglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
 	explosion_resistance = 5
 	opacity = 0
@@ -367,7 +367,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 /obj/machinery/door/airlock/glass_science
 	name = "Glass Airlocks"
 	icon = 'icons/obj/doors/Doorsciglass.dmi'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_science
@@ -474,12 +474,12 @@ There are 9 wires.
 /obj/machinery/door/airlock/proc/loseMainPower()
 	main_power_lost_until = mainPowerCablesCut() ? -1 : SecondsToTicks(60)
 	if(main_power_lost_until > 0)
-		addtimer(CALLBACK(src, .proc/regainMainPower), main_power_lost_until)
+		addtimer(CALLBACK(src, PROC_REF(regainMainPower)), main_power_lost_until)
 
 	// If backup power is permanently disabled then activate in 10 seconds if possible, otherwise it's already enabled or a timer is already running
 	if(backup_power_lost_until == -1 && !backupPowerCablesCut())
 		backup_power_lost_until = SecondsToTicks(10)
-		addtimer(CALLBACK(src, .proc/regainBackupPower), backup_power_lost_until)
+		addtimer(CALLBACK(src, PROC_REF(regainBackupPower)), backup_power_lost_until)
 
 	// Disable electricity if required
 	if(electrified_until && isAllPowerLoss())
@@ -488,7 +488,7 @@ There are 9 wires.
 /obj/machinery/door/airlock/proc/loseBackupPower()
 	backup_power_lost_until = backupPowerCablesCut() ? -1 : SecondsToTicks(60)
 	if(backup_power_lost_until > 0)
-		addtimer(CALLBACK(src, .proc/regainBackupPower), backup_power_lost_until)
+		addtimer(CALLBACK(src, PROC_REF(regainBackupPower)), backup_power_lost_until)
 
 	// Disable electricity if required
 	if(electrified_until && isAllPowerLoss())
@@ -526,7 +526,7 @@ There are 9 wires.
 		message = "The door is now electrified [duration == -1 ? "permanently" : "for [duration] second\s"]."
 		electrified_until = duration == -1 ? -1 : SecondsToTicks(duration)
 		if(electrified_until > 0)
-			addtimer(CALLBACK(src, .proc/electrify), electrified_until)
+			addtimer(CALLBACK(src, PROC_REF(electrify)), electrified_until)
 
 	if(feedback && message)
 		to_chat(usr, message)
@@ -666,11 +666,11 @@ There are 9 wires.
 			if (!(stat & NOPOWER))
 				if(stat & BROKEN)
 					overlays += image(icon, "sparks_broken")
-				else if (health < maxhealth * 3/4)
+				else if (health < maxHealth * 3/4)
 					overlays += image(icon, "sparks_damaged")
 			if(welded)
 				overlays += image(icon, "welded")
-		else if (health < maxhealth * 3/4 && !(stat & NOPOWER))
+		else if (health < maxHealth * 3/4 && !(stat & NOPOWER))
 			overlays += image(icon, "sparks_damaged")
 	else
 		icon_state = "door_open"
@@ -1154,7 +1154,7 @@ There are 9 wires.
 	return FALSE
 
 /obj/structure/window/airlock_crush(crush_damage)
-	ex_act(2)//Smashin windows
+	explosion_act(500, null)
 
 /obj/machinery/portable_atmospherics/canister/airlock_crush(crush_damage)
 	. = ..()
@@ -1204,7 +1204,7 @@ There are 9 wires.
 			for(var/atom/movable/AM in turf)
 				if(AM.blocks_airlock())
 					if(autoclose && tryingToLock)
-						addtimer(CALLBACK(src, .proc/close), 30 SECONDS)
+						addtimer(CALLBACK(src, PROC_REF(close)), 30 SECONDS)
 					if(world.time > next_beep_at)
 						playsound(loc, 'sound/machines/buzz-two.ogg', 30, 1, -1)
 						next_beep_at = world.time + SecondsToTicks(10)

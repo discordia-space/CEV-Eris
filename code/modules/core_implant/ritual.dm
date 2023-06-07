@@ -79,7 +79,7 @@
 /datum/ritual/proc/set_global_cooldown()
 	if(src.cooldown)
 		GLOB.global_ritual_cooldowns[src.cooldown_category] = TRUE
-		addtimer(CALLBACK(src, .proc/reset_global_cooldown), src.cooldown_time)
+		addtimer(CALLBACK(src, PROC_REF(reset_global_cooldown)), src.cooldown_time)
 //resets personal cooldown for user if he's not nil or resets global cooldown, internal proc
 /datum/ritual/proc/reset_global_cooldown()
 	GLOB.global_ritual_cooldowns[src.cooldown_category] = FALSE

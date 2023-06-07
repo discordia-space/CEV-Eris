@@ -264,50 +264,20 @@ ADMIN_VERB_ADD(/client/proc/drop_bomb, R_FUN, FALSE)
 		if(null)
 			return 0
 		if("Small Bomb")
-			explosion(epicenter, 1, 2, 3, 3)
+			explosion(epicenter, 300, 50)
 		if("Medium Bomb")
-			explosion(epicenter, 2, 3, 4, 4)
+			explosion(epicenter, 600, 50)
 		if("Big Bomb")
-			explosion(epicenter, 3, 5, 7, 5)
+			explosion(epicenter, 900, 50)
 		if("Custom Bomb")
-			var/devastation_range = input("Devastation range (in tiles):") as num
-			var/heavy_impact_range = input("Heavy impact range (in tiles):") as num
-			var/light_impact_range = input("Light impact range (in tiles):") as num
-			var/flash_range = input("Flash range (in tiles):") as num
-			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
-	message_admins("\blue [ckey] creating an admin explosion at [epicenter.loc].")
+			var/explosion_power = input("Explosion Power:") as num
+			var/explosion_falloff = input("Explosion falloff:") as num
+			var/additive_falloff = input("Additive falloff for this explosion?") as num
+			var/multiplicative_falloff = input("Multiplicative falloff for this explosion?") as num
+			var/eflags = additive_falloff ? EFLAG_ADDITIVEFALLOFF : 0 | multiplicative_falloff ? EFLAG_EXPONENTIALFALLOFF : 0
+			explosion(epicenter, explosion_power, explosion_falloff, eflags)
+	message_admins("\blue [ckey] created an admin explosion at [epicenter.loc].")
 
-
-/client/proc/give_disease2(mob/T as mob in SSmobs.mob_list) // -- Giacom
-	set category = "Fun"
-	set name = "Give Disease"
-	set desc = "Gives a Disease to a mob."
-
-	var/datum/disease2/disease/D = new /datum/disease2/disease()
-
-	var/severity = 1
-	var/greater = input("Is this a lesser, greater, or badmin disease?", "Give Disease") in list("Lesser", "Greater", "Badmin")
-	switch(greater)
-		if ("Lesser") severity = 1
-		if ("Greater") severity = 2
-		if ("Badmin") severity = 99
-
-	D.makerandom(severity)
-	D.infectionchance = input("How virulent is this disease? (1-100)", "Give Disease", D.infectionchance) as num
-
-	if(ishuman(T))
-		var/mob/living/carbon/human/H = T
-		if (H.species)
-			D.affected_species = list(H.species.get_bodytype())
-			if(H.species.primitive_form)
-				D.affected_species |= H.species.primitive_form
-			if(H.species.greater_form)
-				D.affected_species |= H.species.greater_form
-	infect_virus2(T,D,1)
-
-
-	log_admin("[key_name(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].")
-	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].", 1)
 
 
 ADMIN_VERB_ADD(/client/proc/make_sound, R_FUN, FALSE)
@@ -561,7 +531,7 @@ ADMIN_VERB_ADD(/client/proc/toggledrones, R_ADMIN, FALSE)
 
 
 ADMIN_VERB_ADD(/client/proc/man_up, R_ADMIN, FALSE)
-/client/proc/man_up(mob/T as mob in SSmobs.mob_list)
+/client/proc/man_up(mob/T as mob in SSmobs.mob_list | SShumans.mob_list)
 	set category = "Fun"
 	set name = "Man Up"
 	set desc = "Tells mob to man up and deal with it."
@@ -578,7 +548,7 @@ ADMIN_VERB_ADD(/client/proc/global_man_up, R_ADMIN, FALSE)
 	set name = "Man Up Global"
 	set desc = "Tells everyone to man up and deal with it."
 
-	for (var/mob/T as mob in SSmobs.mob_list)
+	for (var/mob/T as mob in SSmobs.mob_list | SShumans.mob_list)
 		to_chat(T, "<br><center><span class='notice'><b><font size=4>Man up.<br> Deal with it.</font></b><br>Move on.</span></center><br>")
 		T << 'sound/voice/ManUp1.ogg'
 
@@ -586,7 +556,7 @@ ADMIN_VERB_ADD(/client/proc/global_man_up, R_ADMIN, FALSE)
 	message_admins("\blue [key_name_admin(usr)] told everyone to man up and deal with it.", 1)
 
 ADMIN_VERB_ADD(/client/proc/skill_issue, R_ADMIN, FALSE)
-/client/proc/skill_issue(mob/T as mob in SSmobs.mob_list)
+/client/proc/skill_issue(mob/T as mob in SSmobs.mob_list | SShumans.mob_list)
 	set category = "Fun"
 	set name = "Skill Issue"
 	set desc = "Tells mob that it is a skill issue and to git gud."

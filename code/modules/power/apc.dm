@@ -179,7 +179,7 @@
 		name = "\improper [get_area_name_litteral(area, TRUE)] APC"
 		stat |= MAINT
 		update_icon()
-		addtimer(CALLBACK(src, .proc/update), 5)
+		addtimer(CALLBACK(src, PROC_REF(update)), 5)
 		set_dir(ndir)
 
 	switch(dir)
@@ -231,7 +231,7 @@
 
 	make_terminal()
 
-	addtimer(CALLBACK(src, .proc/update), 5)
+	addtimer(CALLBACK(src, PROC_REF(update)), 5)
 
 /obj/machinery/power/apc/Destroy()
 	GLOB.apc_list -= src
@@ -245,7 +245,7 @@
 		area.power_environ = FALSE
 		area.power_change()
 		area.apc = null
-		SEND_SIGNAL(area, COMSIG_AREA_APC_DELETED)
+		SEND_SIGNAL_OLD(area, COMSIG_AREA_APC_DELETED)
 
 	if(wires)
 		QDEL_NULL(wires)
@@ -1067,7 +1067,7 @@
 		return FALSE
 
 /obj/machinery/power/apc/Process()
-	SEND_SIGNAL(area, COMSIG_AREA_APC_OPERATING, operating)
+	SEND_SIGNAL_OLD(area, COMSIG_AREA_APC_OPERATING, operating)
 	if(stat & (BROKEN|MAINT))
 		return
 	if(!area.requires_power)
@@ -1257,25 +1257,15 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 	update_icon()
 	..()
 
-/obj/machinery/power/apc/ex_act(severity)
-	switch(severity)
-		if(1)
-			//set_broken() //now qdel() do what we need
-			if (cell)
-				cell.ex_act(1) // more lags woohoo
-			qdel(src)
-			return
-		if(2)
-			if (prob(50))
-				set_broken()
-				if (cell && prob(50))
-					cell.ex_act(2)
-		if(3)
-			if (prob(25))
-				set_broken()
-				if (cell && prob(25))
-					cell.ex_act(3)
-	return
+/obj/machinery/power/apc/take_damage(amount)
+	if(cell)
+		cell.take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return 0
+	if(health < maxHealth * 0.5)
+		set_broken()
+	return 0
 
 /obj/machinery/power/apc/disconnect_terminal()
 	if(terminal)
@@ -1285,12 +1275,11 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 /obj/machinery/power/apc/proc/set_broken()
 	// Aesthetically much better!
 	visible_message(SPAN_NOTICE("[src]'s screen flickers with warnings briefly!"))
-	spawn(rand(2,5))
-		visible_message(SPAN_NOTICE("[src]'s screen suddenly explodes in rain of sparks and small debris!"))
-		stat |= BROKEN
-		operating = 0
-		update_icon()
-		update()
+	visible_message(SPAN_NOTICE("[src]'s screen suddenly explodes in rain of sparks and small debris!"))
+	stat |= BROKEN
+	operating = 0
+	update_icon()
+	update()
 
 // overload the lights in this APC area
 

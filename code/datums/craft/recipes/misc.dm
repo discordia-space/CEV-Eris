@@ -57,7 +57,7 @@
 
 /datum/craft_recipe/bone_braces
 	name = "bone braces"
-	result = /obj/item/bone_brace
+	result = /obj/item/modification/organ/internal/electromechanical/bone_braces
 	steps = list(
 		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),
 		list(QUALITY_WELDING, 20, 50),
@@ -111,6 +111,15 @@
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL)
+	)
+	related_stats = list(STAT_MEC)
+
+/datum/craft_recipe/pulsar_fuel_tank
+	name = "pulsar fuel tank"
+	result = /obj/structure/pulsar_fuel_tank
+	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+	steps = list(
+		list(CRAFT_MATERIAL, 30, MATERIAL_STEEL)
 	)
 	related_stats = list(STAT_MEC)
 

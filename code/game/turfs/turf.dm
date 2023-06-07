@@ -57,9 +57,6 @@
 	..()
 	return QDEL_HINT_IWILLGC
 
-/turf/ex_act(severity)
-	return 0
-
 /turf/proc/is_solid_structure()
 	return 1
 
@@ -213,7 +210,7 @@ var/const/enterloopsanity = 100
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
 		O.hide(O.hides_under_flooring() && !is_plating())
-		SEND_SIGNAL(O, COMSIG_TURF_LEVELUPDATE, !is_plating())
+		SEND_SIGNAL_OLD(O, COMSIG_TURF_LEVELUPDATE, !is_plating())
 
 /turf/proc/AdjacentTurfs()
 	var/L[] = new()

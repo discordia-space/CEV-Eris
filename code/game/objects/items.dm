@@ -16,7 +16,7 @@
 	var/abstract = 0
 	var/r_speed = 1
 	var/health = 100
-	var/max_health = 100
+	var/maxHealth = 100
 	var/burn_point
 	var/burning
 	var/hitsound = 'sound/weapons/genhit1.ogg'
@@ -123,9 +123,7 @@
 		loc = null
 
 	QDEL_NULL(hidden_uplink)
-	if(blood_overlay && items_blood_overlay_by_type[type] == blood_overlay)
-		LAZYREMOVE(items_blood_overlay_by_type, type)
-	QDEL_NULL(blood_overlay)
+	blood_overlay = null
 	QDEL_NULL(action)
 	if(hud_actions)
 		for(var/action in hud_actions)
@@ -137,16 +135,14 @@
 /obj/item/get_fall_damage()
 	return w_class * 2
 
-/obj/item/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(prob(50))
-				qdel(src)
-		if(3)
-			if(prob(5))
-				qdel(src)
+/obj/item/proc/take_damage(amount)
+	health -= amount
+	if(health <= 0)
+		qdel(src)
+
+/obj/item/explosion_act(target_power, explosion_handler/handler)
+	take_damage(target_power)
+	return 0
 
 /obj/item/emp_act(severity)
 	if(chameleon_type)
@@ -236,7 +232,7 @@
 	if(target.put_in_active_hand(src) && old_loc )
 		if((target != old_loc) && (target != old_loc.get_holding_mob()))
 			do_pickup_animation(target,old_loc)
-		SEND_SIGNAL(src, COMSIG_ITEM_PICKED, src, target)
+		SEND_SIGNAL_OLD(src, COMSIG_ITEM_PICKED, src, target)
 	add_hud_actions(target)
 
 /obj/item/attack_ai(mob/user as mob)
@@ -263,9 +259,9 @@
 	if(zoom)
 		zoom(user)
 	if(get_equip_slot() in unworn_slots)
-		SEND_SIGNAL(src, COMSIG_CLOTH_DROPPED, user)
+		SEND_SIGNAL_OLD(src, COMSIG_CLOTH_DROPPED, user)
 		if(user)
-			SEND_SIGNAL(user, COMSIG_CLOTH_DROPPED, src)
+			SEND_SIGNAL_OLD(user, COMSIG_CLOTH_DROPPED, src)
 
 
 //	Called before an item is picked up (loc is not yet changed)
@@ -276,12 +272,13 @@
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/the_storage)
-	SEND_SIGNAL(the_storage, COMSIG_STORAGE_TAKEN, src, the_storage)
+	SEND_SIGNAL(the_storage, COMSIG_STORAGE_TAKEN, src)
 	return
 
 // called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
 /obj/item/proc/on_enter_storage(obj/item/storage/the_storage)
 	SEND_SIGNAL(the_storage, COMSIG_STORAGE_INSERTED, src, the_storage)
+	//SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, the_storage.getContainingMovable())
 	return
 
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
@@ -482,10 +479,6 @@ var/global/list/items_blood_overlay_by_type = list()
 		if (grabbed)
 			if (grabbed.stats.getPerk(PERK_ASS_OF_CONCRETE))
 				visible_message(SPAN_WARNING("[src] tries to pick up [grabbed], and fails!"))
-				if (ishuman(src))
-					var/mob/living/carbon/human/depleted = src
-					depleted.regen_slickness(-1) // unlucky and unobservant gets the penalty
-					return
 
 			else
 				if(ishuman(grabbed)) // irish whip if human(grab special), else spin and force rest
@@ -550,9 +543,6 @@ var/global/list/items_blood_overlay_by_type = list()
 			unEquip(I)
 			return
 		I.hand_spin(src)
-	if (ishuman(src))
-		var/mob/living/carbon/human/stylish = src
-		stylish.regen_slickness()
 
 /obj/item/proc/hand_spin(mob/living/carbon/caller) // used for custom behaviour on the above proc
 	return

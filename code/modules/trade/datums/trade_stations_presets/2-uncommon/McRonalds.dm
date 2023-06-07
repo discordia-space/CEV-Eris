@@ -46,5 +46,7 @@
 	offer_types = list(
 		/obj/item/organ/internal/scaffold/aberrant/teratoma = offer_data("teratoma", 100, 0),
 		/obj/item/reagent_containers/food/snacks/meat/roachmeat = offer_data("roach meat", 300, 0),
-		/obj/item/reagent_containers/food/snacks/meat/spider = offer_data("spider meat", 300, 0)
+		/obj/item/reagent_containers/food/snacks/meat/spider = offer_data("spider meat", 300, 0),
+		/obj/item/reagent_containers/food/snacks/meat/bearmeat = offer_data("bear meat", 500, 0),
+		/obj/item/reagent_containers/food/snacks/meat/carp = offer_data("carp meat", 1000, 0)
 	)

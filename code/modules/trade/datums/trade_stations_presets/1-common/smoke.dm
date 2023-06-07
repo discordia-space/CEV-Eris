@@ -46,6 +46,7 @@
 		)
 	)
 	offer_types = list(
+		/obj/item/seeds/tobaccoseed = offer_data("tobacco cultivars", 250, 4),
 		/obj/item/oddity/common/lighter = offer_data("rusted lighter", 500, 1),
 		/obj/item/oddity/common/mirror = offer_data("cracked mirror", 500, 1),
 		/obj/item/oddity/common/old_newspaper = offer_data("old newspaper", 500, 1),

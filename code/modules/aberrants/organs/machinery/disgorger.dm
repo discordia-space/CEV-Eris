@@ -226,7 +226,7 @@
 
 /obj/machinery/reagentgrinder/industrial/disgorger/bottle()
 	biomatter_counter = max(biomatter_counter - 60, 0)		// Flesh cubes have 60 biomatter
-	addtimer(CALLBACK(src, .proc/spit), 1 SECONDS, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, PROC_REF(spit)), 1 SECONDS, TIMER_STOPPABLE)
 	if(has_brain)
 		++current_spit
 

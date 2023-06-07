@@ -31,11 +31,15 @@
 	var/roundstart = FALSE
 	var/list/connections = list("0", "0", "0", "0")
 	var/list/wall_connections = list("0", "0", "0", "0")
+	var/material/material
+	var/material/reinf_material
 
 	var/construction_stage
 
-	var/maxhealth = 450
-	var/health = 450
+	maxHealth = 450
+	health = 450
+	// Anything above is far too blocking.
+	explosion_coverage = 0.2
 
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	climbable = TRUE
@@ -50,11 +54,20 @@
 
 
 //Low walls mark the turf they're on as a wall.  This is vital for floor icon updating code
-/obj/structure/low_wall/New()
+/obj/structure/low_wall/New(newloc, materialtype, rmaterialtype)
+	.=..(newloc)
 	var/turf/T = loc
 	if (istype(T))
 		T.is_wall = TRUE
-	.=..()
+	if(!materialtype)
+		materialtype = MATERIAL_STEEL
+		material = get_material_by_name(materialtype)
+	if(!isnull(rmaterialtype))
+		rmaterialtype = get_material_by_name(rmaterialtype)
+	health = material.integrity + reinf_material?.integrity
+	maxHealth = health
+	wall_color = material.icon_colour
+	name = "[material.name] [name]"
 
 /obj/structure/low_wall/Destroy()
 	for (var/obj/structure/window/W in loc)
@@ -105,13 +118,13 @@
 	//The main intent is to prevent creatures from walking under the wall in hide mode, there is no "under" the wall.
 	//This is necessary because low walls can't be placed below the hide layer due to shutters
 	if(istype(mover) && mover.checkpass(PASSTABLE) && mover.layer > layer)
-		return 1
+		return TRUE
 	if(locate(/obj/structure/low_wall) in get_turf(mover))
-		return 1
+		return TRUE
 	if(isliving(mover))
 		var/mob/living/L = mover
 		if(L.weakened)
-			return 1
+			return TRUE
 	return ..()
 
 
@@ -152,6 +165,12 @@
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /obj/structure/low_wall/proc/check_cover(obj/item/projectile/P, turf/from)
+
+	if(config.z_level_shooting)
+		if(P.height == HEIGHT_HIGH)
+			return TRUE // Bullet is too high to hit
+		P.height = (P.height == HEIGHT_LOW) ? HEIGHT_LOW : HEIGHT_CENTER
+
 	if (get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return 1
 	if(get_dist(loc, P.trajectory.target) > 1 ) // Target turf must be adjacent for it to count as cover
@@ -167,9 +186,14 @@
 		var/mob/M = P.original
 		if (M.lying)
 			valid = TRUE			//Lying down covers your whole body
+
+	// Bullet is low enough to hit the wall
+	if(config.z_level_shooting && P.height == HEIGHT_LOW)
+		valid = TRUE
+
 	if(valid)
 		var/pierce = P.check_penetrate(src)
-		health -= P.get_structure_damage()/2
+		take_damage(P.get_structure_damage()/2)
 		if (health > 0)
 			visible_message(SPAN_WARNING("[P] hits \the [src]!"))
 			return pierce
@@ -275,9 +299,8 @@
 
 
 		if(propagate)
-			spawn(0)
-				T.update_connections()
-				T.update_icon()
+			T.update_connections()
+			T.update_icon()
 
 		//If this low wall is in a cardinal direction to us,
 		//then we will grab full walls that are cardinal to IT
@@ -313,9 +336,8 @@
 			deferred_diagonals |= T_dir
 
 		if(propagate)
-			spawn(0)
-				T.update_connections()
-				T.update_icon()
+			T.update_connections()
+			T.update_icon()
 
 	//Last chance to connect
 	//Now we will dump cpnnected_cardinals list into a bitfield to make the next section simpler
@@ -407,10 +429,10 @@
 					for(var/obj/effect/overlay/wallrot/WR in src)
 						qdel(WR)
 					return
-			if(health < maxhealth)
+			if(health < maxHealth)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You repair the damage to [src]."))
-					take_damage(maxhealth - health)
+					take_damage(maxHealth - health)
 					return
 			if(isnull(construction_stage))
 				to_chat(user, SPAN_NOTICE("You begin removing the outer plating..."))
@@ -476,18 +498,17 @@
 	qdel(src)
 
 
-/obj/structure/low_wall/proc/take_damage(dam)
+/obj/structure/low_wall/take_damage(damage)
+	. = health - damage < 0 ? damage - (damage - health) : damage
+	. *= explosion_coverage
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		dam *= 10
-
-	health -= dam
-	update_damage()
-
-/obj/structure/low_wall/proc/update_damage()
+		damage *= 10
+	health -= damage
 	if(health < 0)
 		dismantle_wall()
 	else
 		update_icon()
+	return .
 
 /obj/structure/low_wall/proc/clear_plants()
 	for(var/obj/effect/overlay/wallrot/WR in src)

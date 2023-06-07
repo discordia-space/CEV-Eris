@@ -52,7 +52,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/item/remains/human,
+/obj/landmark/corpse/skeleton,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "bE" = (
@@ -74,7 +74,7 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "bJ" = (
-/obj/item/remains/human,
+/obj/landmark/corpse/skeleton,
 /turf/simulated/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "bN" = (
@@ -723,6 +723,10 @@
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
+"pa" = (
+/obj/landmark/corpse/one_star,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
 "pf" = (
 /obj/structure/sign/derelict2{
 	pixel_x = -32
@@ -774,6 +778,10 @@
 /obj/spawner/medical_lowcost,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
+"qp" = (
+/obj/landmark/corpse/skeleton,
+/turf/simulated/floor/tiled/derelict,
+/area/outpost/blacksite/medium)
 "qv" = (
 /obj/structure/curtain/open/shower,
 /obj/machinery/shower{
@@ -792,7 +800,7 @@
 /obj/structure/bed/chair/custom/onestar{
 	dir = 8
 	},
-/obj/item/remains/human,
+/obj/landmark/corpse/one_star/void,
 /turf/simulated/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "qP" = (
@@ -1264,7 +1272,7 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/outpost/blacksite/medium)
 "Gq" = (
-/obj/item/remains/human,
+/obj/landmark/corpse/skeleton,
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/outpost/blacksite/medium)
 "Gt" = (
@@ -1331,7 +1339,7 @@
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/outpost/blacksite/medium)
 "HM" = (
-/obj/item/remains/human,
+/obj/landmark/corpse/one_star,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "If" = (
@@ -1458,6 +1466,10 @@
 /obj/item/storage/box/handcuffs,
 /obj/item/storage/box/flashbangs,
 /turf/simulated/floor/tiled/dark/brown_perforated,
+/area/outpost/blacksite/medium)
+"MT" = (
+/obj/landmark/corpse/skeleton,
+/turf/simulated/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "MX" = (
 /obj/spawner/junkfood/rotten/low_chance,
@@ -1690,7 +1702,7 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "Ul" = (
-/obj/item/remains/human,
+/obj/landmark/corpse/one_star,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "Ux" = (
@@ -1721,7 +1733,7 @@
 /area/outpost/blacksite/medium)
 "Vi" = (
 /obj/machinery/door/window/westright,
-/obj/item/remains/human,
+/obj/landmark/corpse/skeleton,
 /turf/simulated/floor/tiled/white/techfloor_grid,
 /area/outpost/blacksite/medium)
 "Vl" = (
@@ -1985,7 +1997,7 @@ eO
 Co
 Hp
 bN
-HM
+MT
 Gt
 eQ
 bE
@@ -2179,7 +2191,7 @@ YZ
 YZ
 eO
 gV
-HM
+MT
 kC
 TC
 Gt
@@ -2188,7 +2200,7 @@ px
 px
 px
 us
-HM
+MT
 eO
 jW
 fx
@@ -2458,7 +2470,7 @@ Jv
 Ah
 jH
 LI
-jW
+MT
 jH
 MX
 oi
@@ -2605,7 +2617,7 @@ eO
 gB
 jH
 LT
-iY
+pa
 px
 px
 px
@@ -2948,7 +2960,7 @@ Jv
 Ah
 jH
 LT
-iY
+qp
 VW
 px
 px
@@ -3354,9 +3366,9 @@ eO
 YZ
 Xm
 eO
-HM
+MT
 jW
-HM
+MT
 eO
 qe
 Sf
@@ -3551,7 +3563,7 @@ YZ
 YZ
 eO
 jW
-HM
+MT
 jW
 eO
 gb

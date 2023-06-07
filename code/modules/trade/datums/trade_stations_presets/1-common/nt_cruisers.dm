@@ -57,7 +57,7 @@
 			/obj/item/reagent_containers/glass/rag,
 			/obj/item/grenade/chem_grenade/cleaner/nt_cleaner,
 			/obj/item/grenade/chem_grenade/antiweed/nt_antiweed,
-			/obj/structure/mopbucket,		
+			/obj/structure/mopbucket,
 			/obj/structure/janitorialcart,
 			/obj/item/holyvacuum
 		)
@@ -68,8 +68,8 @@
 			/obj/item/gun/energy/nt_svalinn
 		),
 		"Ballistic Weapons" = list(
-			/obj/item/gun/projectile/mk58,
-			/obj/item/gun/projectile/mk58/wood,
+			/obj/item/gun/projectile/automatic/modular/mk58/gray/stock,
+			/obj/item/gun/projectile/automatic/modular/mk58/gray/wood,
 			/obj/item/gun/projectile/shotgun/pump/regulator
 		),
 		"Neotheology Cells" = list(
@@ -92,7 +92,8 @@
 			/obj/item/seeds/goldappleseed = good_data("golden apple seeds", list(1,3), null),
 			/obj/item/seeds/ambrosiadeusseed = good_data("ambrosia deus seeds", list(1,3), null),
 			/obj/item/seeds/walkingmushroommycelium = good_data("walking mushroom spores", list(1,3), null),
-			/obj/item/seeds/angelmycelium = good_data("destroying angel spores", list(1,3), null)
+			/obj/item/seeds/angelmycelium = good_data("destroying angel spores", list(1,3), null),
+			/obj/item/seeds/realeggplant = good_data("egg plant seeds", list(1,3), null)
 		)
 	)
 	offer_types = list(
@@ -102,6 +103,7 @@
 		/obj/item/cruciform_upgrade = offer_data("cruciform upgrade", 1600, 0),
 		/obj/item/book/ritual/cruciform = offer_data("Neotheology ritual book", 1800, 1),
 		/obj/item/implant/core_implant/cruciform = offer_data("cruciform", 2500, 3),
+		/obj/item/grenade/explosive/nt = offer_data("Holy Hand Grenade", 5000, 1),
 		/obj/item/computer_hardware/hard_drive/portable/design/nt/medicii = offer_data("NeoTheology Armory - \"Medicii Supplies\"", 2000, 1),
 		/obj/item/computer_hardware/hard_drive/portable/design/nt/nt_lightfall = offer_data("NeoTheology Armory - Lightfall Laser Gun", 2500, 1),
 		/obj/item/computer_hardware/hard_drive/portable/design/nt/grenades = offer_data("NeoTheology Armory - Grenades Pack", 2500, 1),

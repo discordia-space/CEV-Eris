@@ -299,8 +299,7 @@
 /obj/machinery/media/jukebox/proc/explode()
 	walk_to(src,0)
 	src.visible_message(SPAN_DANGER("\the [src] blows apart!"), 1)
-
-	explosion(src.loc, 0, 0, 1, rand(1,2), 1)
+	explosion(get_turf(src), 200, 50)
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
