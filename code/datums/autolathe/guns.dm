@@ -152,6 +152,9 @@
 	name = "SA BR .20 \"Kovacs\""
 	build_path = /obj/item/gun/projectile/kovacs
 
+/datum/design/autolathe/gun/boltgun_fs
+	name = "FS BR .20 \"Kadmin\""
+	build_path = /obj/item/gun/projectile/boltgun/fs
 
 // .25 Rifles
 
@@ -172,10 +175,6 @@
 /datum/design/autolathe/gun/boltgun_serbian
 	name = "SA BR .30 \"Novakovic\""
 	build_path = /obj/item/gun/projectile/boltgun/serbian
-
-/datum/design/autolathe/gun/boltgun_fs
-	name = "FS BR .20 \"Tosshin\""
-	build_path = /obj/item/gun/projectile/boltgun/fs
 
 /datum/design/autolathe/gun/ak47
 	name = "Excelsior Car .30 Kalashnikov"
