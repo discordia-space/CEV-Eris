@@ -132,7 +132,7 @@
 	untaken_capacity -= cantrans
 	to_chat(user, SPAN_NOTICE("You transfer [trans] units of the solution to [src]."))
 	playsound(src,'sound/effects/Liquid_transfer_mono.ogg',50,1)
-	user.investigate_log("transfered [trans] units from [src]([reagents.log_list()]) to [src]([reagents.log_list()])", "chemistry")
+	user.investigate_log("transfered [trans] units from [W]([reagents.log_list()]) to [src]([reagents.log_list()])", "chemistry")
 
 // also copied from obj/item/storage
 /obj/item/reagent_containers/drywet/proc/can_be_inserted(obj/item/W as obj, stop_messages = 0)
