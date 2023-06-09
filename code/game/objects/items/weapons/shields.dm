@@ -216,10 +216,17 @@
 	. = ..()
 	if(.) playsound(user.loc, 'sound/weapons/shield/shieldmelee.ogg', 50, 1)
 
+/obj/item/shield/riot/proc/user_is_blocking(user) // Here we check if the user is human, and if true, assign them a human var to check for blocking later on using the proc
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.blocking) // Looks into mob/living/carbon/human.dm, finds Blocking, and sees if it's true or false in relation to user
+			return TRUE
+	return FALSE // Unreachable if TRUE is returned on internal IF
+
 /obj/item/shield/riot/get_block_chance(mob/user)
-	if(MOVING_QUICKLY(user))
+	if(!user_is_blocking(user))
 		return shield_difficulty/(1+100/get_wielder_skill(user,STAT_ROB))
-	if(MOVING_DELIBERATELY(user))
+	if(user_is_blocking(user))
 		return shield_difficulty/(1+100/get_wielder_skill(user,STAT_ROB))+base_block_chance //diminishing returns
 
 /obj/item/shield/riot/get_protected_area(mob/user)
@@ -228,12 +235,12 @@
 	if(user.get_equipped_item(slot_back) == src)
 		return p_area
 
-	if(MOVING_QUICKLY(user))
+	if(!user_is_blocking(user))
 		if(user.get_equipped_item(slot_l_hand) == src)
 			p_area = list(BP_L_ARM)
 		else if(user.get_equipped_item(slot_r_hand) == src)
 			p_area = list(BP_R_ARM)
-	else if(MOVING_DELIBERATELY(user) && wielded)
+	else if(user_is_blocking(user) && wielded)
 		p_area = BP_ALL_LIMBS
 
 	if(user.get_equipped_item(slot_l_hand) == src)
@@ -243,7 +250,7 @@
 	return p_area
 
 /obj/item/shield/riot/get_partial_protected_area(mob/user)
-	if(MOVING_DELIBERATELY(user))
+	if(user_is_blocking(user))
 		return BP_ALL_LIMBS
 	else return get_protected_area(user)
 
@@ -258,13 +265,13 @@
 	if(istype(user))
 		picked_by_human = TRUE
 		picking_human = user
-		RegisterSignal(picking_human, COMSIG_HUMAN_WALKINTENT_CHANGE, PROC_REF(update_state))
+		RegisterSignal(picking_human, COMSIG_HUMAN_BLOCKINTENT_CHANGE, PROC_REF(update_state))
 		update_state()
 
 /obj/item/shield/riot/proc/is_dropped()
 	SIGNAL_HANDLER
 	if(picked_by_human && picking_human)
-		UnregisterSignal(picking_human, COMSIG_HUMAN_WALKINTENT_CHANGE)
+		UnregisterSignal(picking_human, COMSIG_HUMAN_BLOCKINTENT_CHANGE)
 		picked_by_human = FALSE
 		picking_human = null
 
@@ -272,7 +279,7 @@
 	SIGNAL_HANDLER
 	if(!picking_human)
 		return
-	if(MOVING_QUICKLY(picking_human))
+	if(!user_is_blocking(picking_human))
 		item_state = "[initial(item_state)]_run"
 		visible_message("[picking_human] lowers [gender_datums[picking_human.gender].his] [src.name].")
 	else
@@ -439,7 +446,7 @@
 
 /obj/item/shield/riot/tray/get_protected_area(mob/user)
 	var/list/p_area = list(BP_CHEST, BP_HEAD, BP_L_ARM, BP_R_ARM, BP_GROIN)
-	if(MOVING_DELIBERATELY(user) && wielded)
+	if(user_is_blocking(user) && wielded)
 		p_area = BP_ALL_LIMBS
 	return p_area
 

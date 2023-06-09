@@ -84,6 +84,7 @@
 // /mob/living/carbon/human signals
 #define COMSIG_HUMAN_ACTIONINTENT_CHANGE "action_intent_change"
 #define COMSIG_HUMAN_WALKINTENT_CHANGE "walk_intent_change"
+#define COMSIG_HUMAN_BLOCKINTENT_CHANGE "block_intent_change"
 #define COMSIG_EMPTY_POCKETS "human_empty_pockets"
 #define COMSIG_HUMAN_SAY "human_say"							//from mob/living/carbon/human/say(): (message)
 #define COMSIG_HUMAN_ROBOTIC_MODIFICATION "human_robotic_modification"
