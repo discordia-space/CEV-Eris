@@ -56,9 +56,6 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 /obj/machinery/hologram/holopad/New()
 	..()
 	desc = "A floor-mounted device for projecting holographic images. Its ID is '[loc.loc]'"
-
-/obj/machinery/hologram/holopad/LateInitialize()
-	. = ..()
 	add_hearing()
 
 /obj/machinery/hologram/holopad/Destroy()

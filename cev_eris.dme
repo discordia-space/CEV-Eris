@@ -222,7 +222,6 @@
 #include "code\controllers\subsystems\atoms.dm"
 #include "code\controllers\subsystems\chat.dm"
 #include "code\controllers\subsystems\chemistry.dm"
-#include "code\controllers\subsystems\chunks.dm"
 #include "code\controllers\subsystems\craft.dm"
 #include "code\controllers\subsystems\dcs.dm"
 #include "code\controllers\subsystems\economy.dm"

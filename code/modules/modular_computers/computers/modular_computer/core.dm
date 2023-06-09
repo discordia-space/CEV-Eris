@@ -199,7 +199,7 @@
 		return FALSE
 	return ntnet_global.add_log(text, network_card)
 
-/obj/item/modular_computer/proc/shutdown_computer(loud = FALSE)
+/obj/item/modular_computer/proc/shutdown_computer(loud = TRUE)
 	QDEL_LIST(terminals)
 
 	kill_program(forced=TRUE)

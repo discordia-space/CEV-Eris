@@ -69,6 +69,7 @@ var/global/list/default_medbay_channels = list(
 	internal_channels = default_internal_channels.Copy()
 	if(syndie)
 		internal_channels += unique_internal_channels.Copy()
+	add_hearing()
 
 /obj/item/device/radio/Destroy()
 	remove_hearing()
@@ -79,12 +80,10 @@ var/global/list/default_medbay_channels = list(
 
 	return ..()
 
-/obj/item/device/radio/LateInitialize()
-	. = ..()
-	add_hearing()
 
 /obj/item/device/radio/Initialize()
 	. = ..()
+
 	if(frequency < RADIO_LOW_FREQ || frequency > RADIO_HIGH_FREQ)
 		frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
 	set_frequency(frequency)

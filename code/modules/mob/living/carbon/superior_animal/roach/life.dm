@@ -3,11 +3,12 @@
 #define LAYING_EGG 3
 
 /mob/living/carbon/superior_animal/roach/proc/GiveUp(var/C)
-	if(busy == MOVING_TO_TARGET)
-		if(eat_target == C && get_dist(src,eat_target) > 1)
-			clearEatTarget()
-			busy = 0
-			stop_automated_movement = 0
+	spawn(100)
+		if(busy == MOVING_TO_TARGET)
+			if(eat_target == C && get_dist(src,eat_target) > 1)
+				clearEatTarget()
+				busy = 0
+				stop_automated_movement = 0
 
 /mob/living/carbon/superior_animal/roach/handle_ai()
 	if(!..())
@@ -28,7 +29,7 @@
 						busy = MOVING_TO_TARGET
 						set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 						walk_to(src, eat_target, 1, move_to_delay)
-						addtimer(CALLBACK(src, PROC_REF(GiveUp), eat_target), 10 SECONDS)
+						GiveUp(eat_target) //give up if we can't reach target
 						return
 				else if(prob(probability_egg_laying)) // chance to lay an egg
 					var/obj/effect/spider/eggcluster/tastyobstacle = locate(/obj/effect/spider/eggcluster) in get_turf(src)

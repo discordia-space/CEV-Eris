@@ -42,6 +42,7 @@
 /obj/machinery/gym/Destroy()
 	if(occupant)
 		go_out(FALSE)
+	sleep(1) //we need to be sure occupant is not going to nullspace
 	return ..()
 
 /obj/machinery/gym/relaymove(mob/occupant)
@@ -53,7 +54,7 @@
 		spawn(1.5 SECONDS)
 			state("Thank you for using club services! Please come back soon.")
 			playsound(loc, "robot_talk_light", 100, 0, 0)
-
+		
 		if(occupant.rest_points > 0)
 			to_chat(occupant, SPAN_NOTICE("You feel yourself become stronger..."))
 			occupant.playsound_local(get_turf(occupant), 'sound/sanity/rest.ogg', 100)
@@ -106,7 +107,7 @@
 	add_fingerprint(user)
 	update_icon()
 	sleep(15 SECONDS)
-
+	
 	if(occupant)//is user still using our machine?
 		go_out(TRUE)
 		update_icon()

@@ -1,7 +1,5 @@
 /mob/observer/ghost/Logout()
 	..()
-	if(!client)
-		GLOB.player_ghost_list -= src
 	// This is one of very few spawn()s left in our codebase
 	// Yes it needs to be like this
 	// No, you're not allowed to use spawn() yourself, unless you're making something that needs to work outside timers
