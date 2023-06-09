@@ -26,12 +26,14 @@
 	item_state = "lgloves"
 	loc.assume_air(air_contents)
 
-/obj/item/latexballon/take_damage(amount)
-	. = ..()
-	if(QDELETED(src))
-		return 0
+/obj/item/latexballon/ex_act(severity)
 	burst()
-	return 0
+	switch(severity)
+		if (1)
+			qdel(src)
+		if (2)
+			if (prob(50))
+				qdel(src)
 
 /obj/item/latexballon/bullet_act()
 	burst()

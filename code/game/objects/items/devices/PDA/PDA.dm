@@ -1305,10 +1305,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/proc/explode() //This needs tuning. //Sure did.
 	if(!src.detonate) return
-	var/turf/T = get_turf(src)
+	var/turf/T = get_turf(src.loc)
 	if(T)
 		T.hotspot_expose(700,125)
-		explosion(T, 100, 100)
+		explosion(T, 0, 0, 1, rand(1,2))
 	return
 
 /obj/item/device/pda/Destroy()

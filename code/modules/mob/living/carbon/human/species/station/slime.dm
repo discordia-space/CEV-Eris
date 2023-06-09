@@ -17,8 +17,6 @@
 	siemens_coefficient = 3 //conductive
 	darksight = 3
 
-	injury_type =  INJURY_TYPE_HOMOGENOUS
-
 	blood_color = "#05FF9B"
 	flesh_color = "#05FFFB"
 

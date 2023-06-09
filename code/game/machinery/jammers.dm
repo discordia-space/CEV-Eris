@@ -89,6 +89,7 @@
 	w_class = ITEM_SIZE_SMALL
 	suitable_cell = /obj/item/cell/small
 	spawn_blacklisted = TRUE
+
 	var/power_usage = 0.3
 
 /obj/item/device/jammer/examine(mob/user)

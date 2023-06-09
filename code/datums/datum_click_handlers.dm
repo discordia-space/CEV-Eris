@@ -161,10 +161,7 @@
 
 /datum/click_handler/ai/use_ability(mob/living/silicon/ai/user,atom/target, params)
 	var/signalStrength
-	var/turf/targetTurf = get_turf(target)
-	if(!targetTurf)
-		return TRUE
-	if(DIST_EUCLIDIAN(owner.mob.x , owner.mob.y, targetTurf.x , targetTurf.y) < 24)
+	if(get_dist_euclidian(owner.mob, get_turf(target)) < 24)
 		// Can't block at such close distance
 		signalStrength = 1000
 	else

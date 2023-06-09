@@ -200,7 +200,7 @@
 		//You can get yourself out of the cryopod, or it will auto-eject after one minute
 		spawn(600)
 			if (C && C.occupant == M)
-				C.eject()
+				C.eject() 
 		return TRUE
 	return FALSE
 

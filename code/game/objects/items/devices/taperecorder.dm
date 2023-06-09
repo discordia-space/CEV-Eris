@@ -23,7 +23,7 @@
 
 /obj/item/device/taperecorder/New()
 	..()
-
+	add_hearing()
 	wires = new(src)
 	if(starting_drive_type)
 		mydrive = new starting_drive_type(src)
@@ -33,10 +33,6 @@
 	qdel(wires)
 	remove_hearing()
 	. = ..()
-
-/obj/item/device/taperecorder/LateInitialize()
-	. = ..()
-	add_hearing()
 
 /obj/item/device/taperecorder/examine(mob/user)
 	if(..(user, 1) && open_panel)
@@ -121,7 +117,7 @@
 		to_chat(M, SPAN_DANGER("\The [src] explodes!"))
 	if(T)
 		T.hotspot_expose(700,125)
-		explosion(get_turf(src), 100, 25)
+		explosion(T, -1, -1, 0, 4)
 	qdel(src)
 	return
 

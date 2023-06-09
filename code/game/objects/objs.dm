@@ -175,12 +175,10 @@
 	return
 
 /obj/proc/add_hearing()
-	InitiateHearerTracking()
-	//GLOB.hearing_objects |= src
+	GLOB.hearing_objects |= src
 
 /obj/proc/remove_hearing()
-	chunkHearerClearSelf()
-	//GLOB.hearing_objects.Remove(src)
+	GLOB.hearing_objects.Remove(src)
 
 /obj/proc/eject_item(obj/item/I, mob/living/user)
 	if(!I || !user.IsAdvancedToolUser() || user.stat || !user.Adjacent(I))

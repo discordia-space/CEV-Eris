@@ -593,7 +593,7 @@
 		melee = 3,
 		bullet = 3,
 		energy = 3,
-		bomb = 50,
+		bomb = 15,
 		bio = 75,
 		rad = 10
 	)

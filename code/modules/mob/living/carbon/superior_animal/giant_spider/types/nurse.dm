@@ -37,11 +37,12 @@
 
 
 /mob/living/carbon/superior_animal/giant_spider/nurse/proc/GiveUp(var/C)
-	if(busy == MOVING_TO_TARGET)
-		if(cocoon_target == C && get_dist(src,cocoon_target) > 1)
-			cocoon_target = null
-			busy = 0
-			stop_automated_movement = 0
+	spawn(100)
+		if(busy == MOVING_TO_TARGET)
+			if(cocoon_target == C && get_dist(src,cocoon_target) > 1)
+				cocoon_target = null
+				busy = 0
+				stop_automated_movement = 0
 
 /mob/living/carbon/superior_animal/giant_spider/nurse/handle_ai()
 	if(!..())
@@ -60,7 +61,7 @@
 				busy = MOVING_TO_TARGET
 				set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 				walk_to(src, cocoon_target, 1, move_to_delay)
-				addtimer(CALLBACK(src, PROC_REF(GiveUp), cocoon_target), 10 SECONDS)
+				GiveUp(cocoon_target) //give up if we can't reach target
 				return
 
 				//second, spin a sticky spiderweb on this tile
@@ -104,7 +105,7 @@
 						stop_automated_movement = 1
 						set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 						walk_to(src, cocoon_target, 1, move_to_delay)
-						addtimer(CALLBACK(src, PROC_REF(GiveUp), cocoon_target), 10 SECONDS)
+						GiveUp(cocoon_target) //give up if we can't reach target
 
 		else if(busy == MOVING_TO_TARGET && cocoon_target)
 			if(get_dist(src, cocoon_target) <= 1)
@@ -112,8 +113,7 @@
 				src.visible_message(SPAN_NOTICE("\The [src] begins to secrete a sticky substance around \the [cocoon_target]."))
 				stop_automated_movement = 1
 				walk(src,0)
-				addtimer(CALLBACK(src, PROC_REF(finish_coocoon)), 5 SECONDS)
-				/*
+				spawn(50)
 					if(busy == SPINNING_COCOON)
 						if(cocoon_target && istype(cocoon_target.loc, /turf) && get_dist(src,cocoon_target) <= 1)
 							var/obj/effect/spider/cocoon/C = locate() in cocoon_target.loc
@@ -157,52 +157,6 @@
 
 						busy = 0
 						stop_automated_movement = 0
-					*/
-
-/mob/living/carbon/superior_animal/giant_spider/nurse/proc/finish_coocoon()
-	if(busy == SPINNING_COCOON)
-		if(cocoon_target && istype(cocoon_target.loc, /turf) && get_dist(src,cocoon_target) <= 1)
-			var/obj/effect/spider/cocoon/C = locate() in cocoon_target.loc
-			var/large_cocoon
-			var/turf/targetTurf = cocoon_target.loc
-
-			for(var/obj/O in targetTurf)
-				if (O.anchored)
-					continue
-				if (istype(O, /obj/item))
-				else if (istype(O, /obj/structure) || istype(O, /obj/machinery))
-					large_cocoon = 1
-				else
-					continue
-
-				C = C || new(targetTurf)
-				O.forceMove(C)
-
-			for(var/mob/living/M in targetTurf)
-				if((M.stat == CONSCIOUS) || istype(M, /mob/living/carbon/superior_animal/giant_spider) || is_carrion(M))
-					continue
-				large_cocoon = 1
-
-				if (istype(M, /mob/living/carbon/human))
-					var/mob/living/carbon/human/H = M
-					if (H.get_blood_volume() >= 1)
-						src.visible_message(SPAN_WARNING("\The [src] sticks a proboscis into \the [cocoon_target] and sucks a viscous substance out."))
-						H.drip_blood(H.species.blood_volume)
-						fed++
-
-				C = C || new(targetTurf)
-				M.forceMove(C)
-				break
-
-			if (C)
-				if(large_cocoon || C.is_large_cocoon)
-					C.becomeLarge()
-				C.update_openspace()
-
-			cocoon_target = null
-
-		busy = 0
-		stop_automated_movement = 0
 
 
 

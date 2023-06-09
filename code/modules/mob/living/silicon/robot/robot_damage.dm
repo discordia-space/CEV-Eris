@@ -175,17 +175,17 @@
 	//Wreck the contents of the tile
 	for (var/atom/movable/AM in dest)
 		if (AM != src)
-			AM.explosion_act(50, null)
+			AM.ex_act(3)
 
 	//Damage the tile itself
-	dest.explosion_act(100,null)
+	dest.ex_act(2)
 
 	//Damage surrounding tiles
 	for (var/turf/T in range(1, src))
 		if (T == dest)
 			continue
 
-		T.explosion_act(50, null)
+		T.ex_act(3)
 
 	//And do some screenshake for everyone in the vicinity
 	for (var/mob/M in range(20, src))

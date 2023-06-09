@@ -1,6 +1,7 @@
 
 /datum/component/jamming
 	var/atom/movable/owner
+	var/atom/movable/highest_container
 	var/active = FALSE
 	var/radius = 20
 	var/power = 1
@@ -17,7 +18,7 @@
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
-	var/atom/movable/highest_container = owner.getContainingAtom()
+	highest_container = owner.getContainingMovable()
 	RegisterSignal(owner, COMSIG_ATOM_CONTAINERED, PROC_REF(OnContainered))
 	RegisterSignal(highest_container, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(OnLevelChange))
 
@@ -42,25 +43,26 @@
 		SSjamming.active_jammers[i] += src
 
 
-/datum/component/jamming/proc/OnContainered(atom/sender, atom/movable/newContainer, atom/movable/oldContainer)
+/datum/component/jamming/proc/OnContainered(atom/sender, atom/movable/container)
 	SIGNAL_HANDLER
-	UnregisterSignal(oldContainer, COMSIG_MOVABLE_Z_CHANGED)
-	RegisterSignal(newContainer, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(OnLevelChange))
-
+	if(highest_container == container)
+		return
+	UnregisterSignal(highest_container, COMSIG_MOVABLE_Z_CHANGED)
+	highest_container = container
+	RegisterSignal(highest_container, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(OnLevelChange))
 
 
 /datum/component/jamming/Destroy()
 	if(active)
-		var/turf/ownerTurf = get_turf(owner)
-		var/list/affectedLevels = getAffectedLevels(ownerTurf.z)
+		var/list/affectedLevels = getAffectedLevels(highest_container.z)
 		for(var/i = affectedLevels[1], i <= affectedLevels[2]; i++)
 			SSjamming.active_jammers[i] -= src
 	owner = null
+	highest_container = null
 	..()
 
 /datum/component/jamming/proc/Toggle()
-	var/turf/ownerTurf = get_turf(owner)
-	var/list/affectedLevels = getAffectedLevels(ownerTurf.z)
+	var/list/affectedLevels = getAffectedLevels(highest_container.z)
 	if(active)
 		for(var/i = affectedLevels[1], i <= affectedLevels[2]; i++)
 			SSjamming.active_jammers[i] -= src

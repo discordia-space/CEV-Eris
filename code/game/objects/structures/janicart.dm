@@ -287,9 +287,13 @@
 		dismantled = 1
 		qdel(src)
 
-/obj/structure/janitorialcart/take_damage(damage)
-	spill(100 / (damage / 100))
-	. = ..()
+
+/obj/structure/janitorialcart/ex_act(severity)
+	spill(100 / severity)
+	..()
+
+
+
 
 //old style retardo-cart
 /obj/structure/bed/chair/janicart
