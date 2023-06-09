@@ -19,8 +19,10 @@
 	var/num_fragments = 25
 	var/damage_step = 2
 
-	var/explosion_power = 250
-	var/explosion_falloff = 100
+	var/explosion_d_size = -1
+	var/explosion_h_size = 1
+	var/explosion_l_size = 2
+	var/explosion_f_size = 15
 
 	var/armed = FALSE
 	var/deployed = FALSE
@@ -61,8 +63,9 @@
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASMA = 5)
 	prob_explode = 75
 	pulse_difficulty = FAILCHANCE_ZERO
-	explosion_power = 175
-	explosion_falloff = 75
+	explosion_h_size = 0
+	explosion_l_size = 1
+	explosion_f_size = 5
 
 /obj/item/mine/improv/armed
 	armed = TRUE
@@ -75,8 +78,9 @@
 	explode()
 
 /obj/item/mine/proc/explode()
-	explosion(get_turf(src), explosion_power, explosion_falloff)
-	fragment_explosion(get_turf(src), spread_radius, fragment_type, num_fragments, null, damage_step)
+	var/turf/T = get_turf(src)
+	explosion(T,explosion_d_size,explosion_h_size,explosion_l_size,explosion_f_size)
+	fragment_explosion(T, spread_radius, fragment_type, num_fragments, null, damage_step)
 	if(src)
 		qdel(src)
 

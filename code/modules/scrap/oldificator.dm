@@ -292,7 +292,7 @@
 
 /obj/machinery/broken/Initialize()
 	..()
-	explosion(get_turf(src), 300, 50)
+	explosion(loc, 1, 2, 3, 3)
 	return INITIALIZE_HINT_QDEL
 
 /obj/machinery/broken/Destroy()
@@ -305,7 +305,7 @@
 /obj/item/electronics/ai_module/broken/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()
 	IonStorm()
-	explosion(get_turf(sender), 100, 20)
+	explosion(sender.loc, 1, 1, 1, 3)
 	sender.drop_from_inventory(src)
 	QDEL_NULL(src)
 

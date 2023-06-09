@@ -12,7 +12,7 @@
 		melee = 8,
 		bullet = 10,
 		energy = 5,
-		bomb = 200,
+		bomb = 75,
 		bio = 100,
 		rad = 50
 	)

@@ -17,8 +17,11 @@
 	var/door_type = /obj/structure/droppod_door
 	var/drop_type = /mob/living/simple_animal/parrot
 	var/auto_open_doors
-	var/explosion_power = 500
-	var/explosion_falloff = 100
+
+	var/placement_explosion_dev =   1
+	var/placement_explosion_heavy = 2
+	var/placement_explosion_light = 3
+	var/placement_explosion_flash = 3
 
 	var/list/floor_tiles = list()
 	var/turf/origin = null
@@ -84,10 +87,10 @@
 	return 1
 
 /datum/random_map/droppod/apply_to_map()
-	if(explosion_power)
+	if(placement_explosion_dev || placement_explosion_heavy || placement_explosion_light || placement_explosion_flash)
 		var/turf/T = locate((origin_x + n_ceil(limit_x / 2)-1), (origin_y + n_ceil(limit_y / 2)-1), origin_z)
 		if(istype(T))
-			explosion(T, explosion_power, explosion_falloff)
+			explosion(T, placement_explosion_dev, placement_explosion_heavy, placement_explosion_light, placement_explosion_flash)
 			sleep(15) // Let the explosion finish proccing before we ChangeTurf(), otherwise it might destroy our spawned objects.
 	return ..()
 
@@ -118,7 +121,7 @@
 	if(value != SD_EMPTY_TILE && T.contents.len)
 		for(var/atom/movable/AM in T)
 			if(AM.simulated && !isobserver(AM))
-				AM.explosion_act(700, null)
+				AM.ex_act(1)
 
 	// Also spawn doors and loot.
 	if(value == SD_DOOR_TILE)

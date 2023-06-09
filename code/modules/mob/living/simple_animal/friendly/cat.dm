@@ -121,11 +121,9 @@
 	if(M.a_intent == I_HURT)
 		set_flee_target(M)
 
-/mob/living/simple_animal/cat/explosion_act(target_power)
+/mob/living/simple_animal/cat/ex_act()
 	. = ..()
-	if(QDELETED(src))
-		return
-	set_flee_target(get_turf(src))
+	set_flee_target(src.loc)
 
 /mob/living/simple_animal/cat/bullet_act(var/obj/item/projectile/proj)
 	. = ..()
@@ -370,8 +368,8 @@ var/cat_number = 0
 /mob/living/simple_animal/cat/runtime/bullet_act(var/obj/item/projectile/proj)
 	return PROJECTILE_FORCE_MISS
 
-/mob/living/simple_animal/cat/runtime/explosion_act(target_power)
-	return 0
+/mob/living/simple_animal/cat/runtime/ex_act(severity)
+	return
 
 /mob/living/simple_animal/cat/runtime/singularity_act()
 	return

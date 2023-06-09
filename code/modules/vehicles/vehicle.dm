@@ -145,11 +145,23 @@
 	..()
 	healthcheck()
 
-/obj/vehicle/explosion_act(target_power, explosion_handler/handler)
-	health -= rand(5,10)*fire_dam_coeff
-	health -= rand(10,20)*brute_dam_coeff
-	healthcheck()
-	return 0
+/obj/vehicle/ex_act(severity)
+	switch(severity)
+		if(1)
+			explode()
+			return
+		if(2)
+			health -= rand(5,10)*fire_dam_coeff
+			health -= rand(10,20)*brute_dam_coeff
+			healthcheck()
+			return
+		if(3)
+			if (prob(50))
+				health -= rand(1,5)*fire_dam_coeff
+				health -= rand(1,5)*brute_dam_coeff
+				healthcheck()
+				return
+	return
 
 /obj/vehicle/emp_act(severity)
 	var/was_on = on

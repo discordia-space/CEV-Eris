@@ -325,15 +325,38 @@
 	..()
 	return
 
-/obj/machinery/shieldwall/take_damage(amount)
+
+/obj/machinery/shieldwall/ex_act(severity)
 	if(needs_power)
 		var/obj/machinery/shieldwallgen/G
-		if(prob(50))
-			G = gen_primary
-		else
-			G = gen_secondary
-		G.storedpower -= amount * 10
-	. = ..()
+		switch(severity)
+			if(1) //big boom
+				if(prob(50))
+					G = gen_primary
+				else
+					G = gen_secondary
+				G.storedpower -= 120000
+
+			if(2) //medium boom
+				if(prob(50))
+					G = gen_primary
+				else
+					G = gen_secondary
+				G.storedpower -= 30000
+
+			if(3) //lil boom
+				if(prob(50))
+					G = gen_primary
+				else
+					G = gen_secondary
+				G.storedpower -= 12000
+			if(3) //minuscule amount of boom
+				if(prob(50))
+					G = gen_primary
+				else
+					G = gen_secondary
+				G.storedpower -= 6000
+	return
 
 
 /obj/machinery/shieldwall/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)

@@ -150,7 +150,8 @@
 
 	for(var/obj/machinery/flasher/M in GLOB.machines)
 		if(M.id == src.id)
-			M.flash()
+			spawn()
+				M.flash()
 
 	sleep(50)
 

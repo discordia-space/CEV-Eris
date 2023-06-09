@@ -100,12 +100,10 @@
 
 	return
 
-/obj/structure/ore_box/take_damage(damage)
-	. = ..()
-	if(QDELETED(src))
-		return 0
-	for (var/obj/item/ore/O in contents)
-		O.loc = src.loc
-		O.take_damage(damage)
-	return 0
-
+/obj/structure/ore_box/ex_act(severity)
+	if(severity == 1 || (severity < 3 && prob(50)))
+		for (var/obj/item/ore/O in contents)
+			O.loc = src.loc
+			O.ex_act(severity++)
+		qdel(src)
+		return

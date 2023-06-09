@@ -3,8 +3,7 @@
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "yellow"
 	density = TRUE
-	health = 100
-	maxHealth = 100
+	var/health = 100
 	flags = CONDUCT
 	w_class = ITEM_SIZE_HUGE
 

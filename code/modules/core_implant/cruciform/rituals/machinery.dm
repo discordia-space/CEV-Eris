@@ -112,7 +112,7 @@
 		fail("You fail to find a compatible door here.", user, C)
 		return FALSE
 
-	if(door.health == door.maxHealth)
+	if(door.health == door.maxhealth)
 		fail("This door doesn\'t need repair.", user, C)
 		return FALSE
 
@@ -135,7 +135,7 @@
 		var/obj/effect/overlay/nt_construction/effect = new(target_turf, 50)
 		sleep(50)
 		door.stat -= BROKEN
-		door.health = door.maxHealth
+		door.health = door.maxhealth
 		door.unlock()
 		door.close()
 		effect.success()

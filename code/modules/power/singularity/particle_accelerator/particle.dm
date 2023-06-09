@@ -52,9 +52,9 @@
 	return
 
 
-/obj/effect/accelerated_particle/explosion_act(target_power, explosion_handler/handler)
+/obj/effect/accelerated_particle/ex_act(severity)
 	qdel(src)
-	return 0
+	return
 
 
 

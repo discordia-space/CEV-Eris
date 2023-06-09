@@ -174,11 +174,8 @@
 		return FALSE
 	return TRUE
 
-/obj/item/projectile/proc/get_structure_damage(var/injury_type)
-	if(!injury_type) // Assume homogenous
-		return (damage_types[BRUTE] + damage_types[BURN]) * wound_check(INJURY_TYPE_HOMOGENOUS, wounding_mult, edge, sharp) * 2
-	else
-		return (damage_types[BRUTE] + damage_types[BURN]) * wound_check(injury_type, wounding_mult, edge, sharp) * 2
+/obj/item/projectile/proc/get_structure_damage()
+	return damage_types[BRUTE] + damage_types[BURN]
 
 //return 1 if the projectile should be allowed to pass through after all, 0 if not.
 /obj/item/projectile/proc/check_penetrate(atom/A)
@@ -493,9 +490,8 @@
 	qdel(src)
 	return TRUE
 
-
-/obj/item/projectile/explosion_act(target_power, explosion_handler/handler)
-	return 0
+/obj/item/projectile/ex_act()
+	return //explosions probably shouldn't delete projectiles
 
 /obj/item/projectile/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return TRUE

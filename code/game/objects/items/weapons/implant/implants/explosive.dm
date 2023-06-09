@@ -49,7 +49,7 @@
 /obj/item/implant/explosive/proc/do_boom()
 	playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
 	sleep(25)
-	explosion(get_turf(src), 400, 75)
+	explosion(get_turf(src), 1, 2, 3, 3)
 	qdel(src)
 
 /obj/item/implant/explosive/activate(delay)
@@ -71,10 +71,10 @@
 				sleep(25)
 				if (part.organ_tag in list(BP_CHEST, BP_HEAD, BP_GROIN))
 					part.createwound(BRUISE, 60)
-					explosion(get_turf(src), 400, 75)
+					explosion(get_turf(wearer), 1, 2, 3, 3)
 					qdel(src)
 				else
-					explosion(get_turf(src), 400, 75)
+					explosion(get_turf(wearer), 1, 2, 3, 3)
 					part.droplimb(0,DROPLIMB_BLUNT)
 					qdel(src)
 

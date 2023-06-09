@@ -150,9 +150,11 @@
 		if(alarmed)
 			// Accountability!
 			users_to_open |= user.name
-		open()
+		spawn()
+			open()
 	else
-		close()
+		spawn()
+			close()
 
 /obj/machinery/door/firedoor/attackby(obj/item/I, mob/user)
 	add_fingerprint(user)
@@ -214,9 +216,11 @@
 					"You force \the [src] [density ? "open" : "closed"] with \the [I]!",\
 					"You hear metal strain, and a door [density ? "open" : "close"].")
 					if(density)
-						open(1)
+						spawn()
+							open(1)
 					else
-						close(1)
+						spawn()
+							close(1)
 					return
 				return
 			return
