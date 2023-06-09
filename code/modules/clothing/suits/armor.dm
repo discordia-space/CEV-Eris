@@ -130,7 +130,7 @@
 		rad = 0
 	)
 	price_tag = 600
-	slowdown = 0.1
+	slowdown = LIGHT_SLOWDOWN
 	valid_accessory_slots = list("armband","decor")
 	restricted_accessory_slots = list("armband")
 
