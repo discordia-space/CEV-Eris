@@ -226,6 +226,42 @@
 	ammo_type = /obj/item/ammo_casing/srifle/scrap
 	spawn_tags = SPAWN_AMMO_COMMON
 
+
+
+
+////////// .20 SHORT ///////////
+
+/obj/item/ammo_magazine/srifle/short
+	name = "Short magazine (.20 Rifle)"
+	desc = "Short .20 caliber magazine, holds 10 rounds."
+	icon_state = "ronin"
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
+	caliber = CAL_SRIFLE
+	matter = list(MATERIAL_STEEL = 9)
+	ammo_type = /obj/item/ammo_casing/srifle
+	max_ammo = 10
+	ammo_states = list(10)
+	rarity_value = 20
+
+/obj/item/ammo_magazine/srifle/shortempty
+	matter = list(MATERIAL_STEEL = 3)
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/srifle/short/practice
+	ammo_type = /obj/item/ammo_casing/srifle/practice
+
+/obj/item/ammo_magazine/srifle/short/hv
+	ammo_type = /obj/item/ammo_casing/srifle/hv
+
+/obj/item/ammo_magazine/srifle/short/rubber
+	ammo_type = /obj/item/ammo_casing/srifle/rubber
+
+/obj/item/ammo_magazine/srifle/shorts/crap
+	ammo_type = /obj/item/ammo_casing/srifle/scrap
+	spawn_tags = SPAWN_AMMO_COMMON
+
 ////////// .20 DRUM ///////////
 
 /obj/item/ammo_magazine/srifle/drum

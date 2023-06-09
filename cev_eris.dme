@@ -2480,6 +2480,7 @@
 #include "code\modules\projectiles\guns\projectile\pistol\mandella.dm"
 #include "code\modules\projectiles\guns\projectile\pistol\olivaw.dm"
 #include "code\modules\projectiles\guns\projectile\pistol\paco.dm"
+#include "code\modules\projectiles\guns\projectile\pistol\ronin.dm"
 #include "code\modules\projectiles\guns\projectile\pistol\selfload.dm"
 #include "code\modules\projectiles\guns\projectile\pistol\type62.dm"
 #include "code\modules\projectiles\guns\projectile\pistol\type90.dm"

@@ -52,6 +52,7 @@
 		/datum/design/autolathe/ammo/sl_srifle,
 		//rifles
 		/datum/design/autolathe/ammo/srifle,
+		/datum/design/autolathe/ammo/srifle/short,
 		/datum/design/autolathe/ammo/ihclrifle,
 		/datum/design/autolathe/ammo/lrifle,
 		//shells

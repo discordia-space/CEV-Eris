@@ -148,10 +148,13 @@
 	name = "FS AR .20 \"Wintermute\""
 	build_path = /obj/item/gun/projectile/automatic/modular/wintermute/finished
 
+/datum/design/autolathe/gun/ronin
+	name = "SA HG .20 \"Ronin\""
+	build_path = /obj/item/gun/projectile/ronin
+
 /datum/design/autolathe/gun/kovacs
 	name = "SA BR .20 \"Kovacs\""
 	build_path = /obj/item/gun/projectile/kovacs
-
 
 // .25 Rifles
 
