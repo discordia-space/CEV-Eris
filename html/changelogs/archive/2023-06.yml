@@ -7,3 +7,23 @@
   - bugfix: Humon's god damn gaping club hole
   ValoTheValo:
   - rscdel: Bigshot mask no longer spawns naturally
+2023-06-10:
+  Firefox13:
+  - code_imp: Reverted SSChunks and Damage Types
+  MLGTASTICa:
+  - balance: Returned armored coats to the same slowdown as armored vests.
+  ValoTheValo:
+  - bugfix: fixed the mk58 not fitting in holster
+  - bugfix: fixed the "Gun" Spawning in maint
+  assortedbeads:
+  - code_imp: Bulky Weapons Lost Double Tac When Wielded
+  maikilangiolo:
+  - rscadd: added 40-round shotgun ammo packets
+  - rscadd: added a short, 8-round shotgun magazine
+  - balance: shotgun ammo boxes are now bulky and fit 160 shells
+  - balance: shotgun drums are now normal sized and fit 16 shells
+  - bugfix: fixed the confusing name for slugs in the trade stations
+  - balance: hellcat now only sells shotgun ammo packets. unlock higher ammo stations
+      for the boxes
+  - balance: the crafting station can craft scrap ammo shotgun boxes for 30 points
+      each. Only high MECH characters can craft them.
