@@ -1022,6 +1022,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/outpost/pulsar)
+"LT" = (
+/obj/machinery/telecomms/relay/preset/pulsar,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/outpost/pulsar/maintenance)
 "LW" = (
 /obj/machinery/door/airlock/maintenance_engineering{
 	icon_state = "door_locked";
@@ -1114,8 +1118,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
 	frequency = 1379;
-	id_tag = "third_sec_3_airlock_pump";
-	name = "Third Section Airlock Pump - 3"
+	id_tag = "satellite_airlock_pump";
+	name = "Satellite Airlock Pump"
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/outpost/pulsar/maintenance)
@@ -21578,7 +21582,7 @@ Cl
 AQ
 bq
 aj
-om
+LT
 Xw
 bM
 WB
