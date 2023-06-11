@@ -42,7 +42,6 @@
 	START_PROCESSING(SSobj, src)
 	add_hearing()
 
-
 /obj/item/implant/core_implant/deactivate()
 	if(!active)
 		return

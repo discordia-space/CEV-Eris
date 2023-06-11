@@ -662,9 +662,9 @@ its easier to just keep the beam vertical.
 	var/list/objs = list()
 	get_mobs_and_objs_in_view_fast(T,range, mobs, objs, ONLY_GHOSTS_IN_VIEW)
 
-	for(var/obj/O as anything in objs)
-		if(!QDELETED(O))
-			O.show_message(message,1,blind_message,2)
+	for(var/o in objs)
+		var/obj/O = o
+		O.show_message(message,1,blind_message,2)
 
 	for(var/m in mobs)
 		var/mob/M = m

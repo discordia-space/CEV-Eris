@@ -400,7 +400,6 @@ proc/establish_db_connection()
 		return 1
 
 /world/proc/incrementMaxZ()
-	SEND_SIGNAL(SSdcs, COMSIG_WORLD_MAXZ_INCREMENTING)
 	maxz++
 	SSmobs.MaxZChanged()
 

@@ -1,7 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - refactor: Refactored how all AI-mobs lookup for their targets, to cut down on
-      lag.
-  - refactor: Refactor how all visible message, said messages search for hearers ,
-      to cut down on lag.

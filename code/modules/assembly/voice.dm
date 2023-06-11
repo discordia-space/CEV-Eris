@@ -7,10 +7,9 @@
 	var/listening = 0
 	var/recorded	//the activation message
 
-/obj/item/device/assembly/voice/LateInitialize()
-	. = ..()
+/obj/item/device/assembly/voice/New()
+	..()
 	add_hearing()
-
 
 /obj/item/device/assembly/voice/Destroy()
 	remove_hearing()

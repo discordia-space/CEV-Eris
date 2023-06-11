@@ -600,6 +600,7 @@
 	price_tag = 1997
 
 	spawn_tags = SPAWN_TAG_ODDITY
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/mask/gas/big_shot/equipped(mob/living/carbon/human/user, slot)
 	..()

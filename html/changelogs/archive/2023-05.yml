@@ -98,3 +98,14 @@
   - balance: reduces the sell value of the Gladstone and Molly.
   - balance: Onestar parts now sell for more.
   - balance: merc hardsuit's market cost has increased.
+2023-05-30:
+  MLGTASTICa:
+  - refactor: Refactored how all AI-mobs lookup for their targets, to cut down on
+      lag.
+  - refactor: Refactor how all visible message, said messages search for hearers ,
+      to cut down on lag.
+  vode-code:
+  - rscdel: Removed Pathology
+  - admin: Removed some outdated transformations
+  - code_imp: deleted some inaccessible code
+  - code_imp: removed custom items

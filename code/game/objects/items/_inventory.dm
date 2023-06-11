@@ -166,6 +166,20 @@
 			H.update_action_buttons()
 		if(H.get_holding_hand(src))
 			add_hud_actions(H)
-		return TRUE
-	
 
+
+
+
+
+
+
+
+		/*
+		switch(Hand.slot_id)
+			if(slot_r_hand)
+				H.put_in_r_hand(src)
+			if(slot_l_hand)
+				H.put_in_l_hand(src)
+		src.add_fingerprint(usr)
+		*/
+		return TRUE
