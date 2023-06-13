@@ -232,12 +232,3 @@
 	network = "eris"
 	produces_heat = 0
 	autolinkers = list("broadcasterCent")
-
-//All-In-Ones
-
-/obj/machinery/telecomms/allinone/preset/pulsar
-	name = "Homebrew Communications Unit"
-	id = "Pulsar AIO"
-	desc = "A cobbled together All In One telecommunications machine using a ship bound radio, duct tape, and half a bluespace roach with a smiley face drawn on it."
-	network = "eris"
-	autolinkers = list("p_aio")

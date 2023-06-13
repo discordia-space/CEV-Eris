@@ -71,11 +71,11 @@
 /area/outpost/pulsar/maintenance)
 "bS" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1379;
 	icon_state = "door_locked";
-	id_tag = "satellite_airlock_door_ext";
+	id_tag = "satellite_airlock_outer";
 	locked = 1;
-	name = "External Satellite Airlock"
+	name = "External Satellite Airlock";
+	frequency = 1420
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
@@ -184,11 +184,11 @@
 /area/outpost/pulsar/maintenance)
 "gi" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1379;
 	icon_state = "door_locked";
-	id_tag = "satellite_airlock_door_int";
+	id_tag = "satellite_airlock_inner";
 	locked = 1;
-	name = "Internal Satellite Airlock"
+	name = "Internal Satellite Airlock";
+	frequency = 1420
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
@@ -314,11 +314,11 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external{
-	frequency = 1379;
 	icon_state = "door_locked";
-	id_tag = "satellite_airlock_door_int";
+	id_tag = "satellite_airlock_inner";
 	locked = 1;
-	name = "Internal Satellite Airlock"
+	name = "Internal Satellite Airlock";
+	frequency = 1420
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
@@ -468,6 +468,9 @@
 /obj/spawner/boxes,
 /obj/spawner/boxes,
 /turf/simulated/floor/tiled/steel/brown_platform,
+/area/outpost/pulsar/maintenance)
+"rp" = (
+/turf/simulated/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "rJ" = (
 /obj/spawner/scrap/sparse,
@@ -687,11 +690,11 @@
 "zr" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1379;
-	master_tag = "satellite_access_console";
-	name = "Satellite External Access Button";
+	master_tag = "satellite_airlock_console";
+	name = "Satellite Airlock - External Access Button";
 	pixel_x = -25;
-	pixel_y = 25
+	pixel_y = 25;
+	frequency = 1420
 	},
 /obj/structure/catwalk,
 /turf/space/pulsar,
@@ -701,19 +704,20 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/outpost/pulsar/maintenance)
 "zC" = (
+/obj/machinery/airlock_sensor{
+	id_tag = "satellite_airlock_sensor";
+	pixel_y = 20;
+	frequency = 1420
+	},
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	id_tag = "satellite_access_console";
+	id_tag = "satellite_airlock_console";
 	name = "Satellite Airlock Console";
 	pixel_y = 32;
 	tag_airpump = "satellite_airlock_pump";
 	tag_chamber_sensor = "satellite_airlock_sensor";
-	tag_exterior_door = "satellite_airlock_door_ext";
-	tag_interior_door = "satellite_airlock_door_int"
-	},
-/obj/machinery/airlock_sensor{
-	id_tag = "satellite_airlock_sensor";
-	name = "Satellite Airlock Sensor";
-	pixel_y = 20
+	tag_exterior_door = "satellite_airlock_door_outer";
+	tag_interior_door = "satellite_airlock_door_inner";
+	frequency = 1420
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/outpost/pulsar/maintenance)
@@ -817,7 +821,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/simulated/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "Dk" = (
 /obj/spawner/booze/low_chance,
@@ -855,7 +859,7 @@
 	anchored = 1;
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/simulated/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "En" = (
 /obj/machinery/computer/arcade,
@@ -997,7 +1001,7 @@
 "Jq" = (
 /obj/structure/table/standard,
 /obj/spawner/booze,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/simulated/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "Jz" = (
 /obj/structure/railing{
@@ -1024,7 +1028,7 @@
 /area/outpost/pulsar)
 "LT" = (
 /obj/machinery/telecomms/relay/preset/pulsar,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/simulated/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "LW" = (
 /obj/machinery/door/airlock/maintenance_engineering{
@@ -1117,9 +1121,8 @@
 "NY" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1379;
 	id_tag = "satellite_airlock_pump";
-	name = "Satellite Airlock Pump"
+	frequency = 1420
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/outpost/pulsar/maintenance)
@@ -1244,7 +1247,7 @@
 	pixel_y = 7
 	},
 /obj/item/pen,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/simulated/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "Tk" = (
 /obj/machinery/door/airlock/maintenance_engineering{
@@ -1319,11 +1322,11 @@
 "Vg" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1379;
-	master_tag = "satellite_access_console";
+	master_tag = "satellite_airlock_console";
 	name = "Satellite Airlock - Internal Access Button";
 	pixel_x = 25;
-	pixel_y = 25
+	pixel_y = 25;
+	frequency = 1420
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
@@ -1415,7 +1418,7 @@
 "Xw" = (
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/simulated/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "Yf" = (
 /turf/simulated/floor/tiled/dark,
@@ -1436,7 +1439,7 @@
 "YD" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/simulated/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "YQ" = (
 /obj/structure/railing{
@@ -21784,7 +21787,7 @@ Hy
 ok
 aJ
 fD
-yE
+rp
 SY
 He
 WB
