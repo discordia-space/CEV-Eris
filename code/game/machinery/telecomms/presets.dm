@@ -48,7 +48,7 @@
 	network = "eris"
 	autolinkers = list("hub", "relay", "c_relay", "s_relay", "m_relay", "r_relay", "p_relay", "science", "medical",
 	"supply", "service", "common", "command", "engineering", "security", "nt", "unused",
-	"receiverA", "broadcasterA", "p_aio")
+	"receiverA", "broadcasterA")
 
 /obj/machinery/telecomms/hub/preset_cent
 	id = "CentCom Hub"
