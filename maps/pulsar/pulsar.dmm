@@ -72,7 +72,7 @@
 "bS" = (
 /obj/machinery/door/airlock/external{
 	icon_state = "door_locked";
-	id_tag = "satellite_airlock_outer";
+	id_tag = "satellite_airlock_door_ext";
 	locked = 1;
 	name = "External Satellite Airlock";
 	frequency = 1420
@@ -185,7 +185,7 @@
 "gi" = (
 /obj/machinery/door/airlock/external{
 	icon_state = "door_locked";
-	id_tag = "satellite_airlock_inner";
+	id_tag = "satellite_airlock_door_int";
 	locked = 1;
 	name = "Internal Satellite Airlock";
 	frequency = 1420
@@ -315,7 +315,7 @@
 	},
 /obj/machinery/door/airlock/external{
 	icon_state = "door_locked";
-	id_tag = "satellite_airlock_inner";
+	id_tag = "satellite_airlock_door_int";
 	locked = 1;
 	name = "Internal Satellite Airlock";
 	frequency = 1420
@@ -690,7 +690,7 @@
 "zr" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	master_tag = "satellite_airlock_console";
+	master_tag = "satellite_access_console";
 	name = "Satellite Airlock - External Access Button";
 	pixel_x = -25;
 	pixel_y = 25;
@@ -707,16 +707,18 @@
 /obj/machinery/airlock_sensor{
 	id_tag = "satellite_airlock_sensor";
 	pixel_y = 20;
+	master_tag = "satellite_access_console";
+	name = "Satellite Airlock Sensor";
 	frequency = 1420
 	},
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	id_tag = "satellite_airlock_console";
+	pixel_y = 30;
+	id_tag = "satellite_access_console";
 	name = "Satellite Airlock Console";
-	pixel_y = 32;
 	tag_airpump = "satellite_airlock_pump";
+	tag_exterior_door = "satellite_airlock_door_ext";
+	tag_interior_door = "satellite_airlock_door_int";
 	tag_chamber_sensor = "satellite_airlock_sensor";
-	tag_exterior_door = "satellite_airlock_door_outer";
-	tag_interior_door = "satellite_airlock_door_inner";
 	frequency = 1420
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -1322,7 +1324,7 @@
 "Vg" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	master_tag = "satellite_airlock_console";
+	master_tag = "satellite_access_console";
 	name = "Satellite Airlock - Internal Access Button";
 	pixel_x = 25;
 	pixel_y = 25;
