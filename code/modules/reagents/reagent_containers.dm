@@ -188,11 +188,11 @@
 
 	if(!reagents.total_volume)
 		to_chat(user, SPAN_NOTICE("[src] is empty."))
-		return FALSE
+		return TRUE // if it returns false, it drains from its target when empty
 
 	if(!target.reagents.get_free_space())
 		to_chat(user, SPAN_NOTICE("[target] is full."))
-		return FALSE
+		return TRUE // if it returns false, it drains from a full target
 
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 	playsound(src,'sound/effects/Liquid_transfer_mono.ogg',50,1)
