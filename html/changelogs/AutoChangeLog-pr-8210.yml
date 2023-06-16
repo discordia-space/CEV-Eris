@@ -1,0 +1,4 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - bugfix: fixed buckshot box being invisible when full
