@@ -1,0 +1,9 @@
+author: RikuTheKiller
+delete-after: true
+changes:
+  - balance: Chemicals no longer take their volume into account when processing. This
+      should lead to far more predictable reagent behaviour.
+  - balance: Removed all limits on reagent metabolization modifiers. This means giving
+      yourself 10 hearts is even funnier now.
+  - rscadd: Having a highly efficient heart may cause elevated bleeding, exercise
+      caution.
