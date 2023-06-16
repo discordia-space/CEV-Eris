@@ -82,6 +82,7 @@
 					blood_max += W.damage * WOUND_BLEED_MULTIPLIER
 		if (temp.open)
 			blood_max += OPEN_ORGAN_BLEED_AMOUNT  //Yer stomach is cut open
+		blood_max *= get_organ_efficiency(OP_HEART) //Hey check out how hard I can bleed
 
 	// bloodclotting slows bleeding
 	if(chem_effects[CE_BLOODCLOT])
