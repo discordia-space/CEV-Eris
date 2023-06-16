@@ -145,6 +145,8 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		else
 			for(var/obj/machinery/telecomms/T in telecomms_list)
 				add_link(T)
+		
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/telecomms/Destroy()
 	telecomms_list -= src

@@ -24,6 +24,13 @@
 	toggled = 0
 	autolinkers = list("r_relay")
 
+/obj/machinery/telecomms/relay/preset/pulsar
+	id = "Pulsar Relay"
+	use_power = NO_POWER_USE //TODO: Wire and power Pulsar sat with generator
+	idle_power_usage = 0
+	produces_heat = 0
+	autolinkers = list("p_relay")
+
 /obj/machinery/telecomms/relay/preset/centcom
 	id = "Centcom Relay"
 	hide = 1
@@ -39,7 +46,7 @@
 /obj/machinery/telecomms/hub/preset
 	id = "Hub"
 	network = "eris"
-	autolinkers = list("hub", "relay", "c_relay", "s_relay", "m_relay", "r_relay", "science", "medical",
+	autolinkers = list("hub", "relay", "c_relay", "s_relay", "m_relay", "r_relay", "p_relay", "science", "medical",
 	"supply", "service", "common", "command", "engineering", "security", "nt", "unused",
 	"receiverA", "broadcasterA")
 
@@ -47,7 +54,7 @@
 	id = "CentCom Hub"
 	network = "eris"
 	produces_heat = 0
-	autolinkers = list("hub_cent", "c_relay", "s_relay", "m_relay", "r_relay",
+	autolinkers = list("hub_cent", "c_relay", "s_relay", "m_relay", "r_relay", "p_relay",
 	 "centcom", "receiverCent", "broadcasterCent")
 
 //Receivers
