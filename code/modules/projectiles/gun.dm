@@ -40,7 +40,7 @@
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
-	var/move_delay = 1
+	var/move_delay = 0
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
 	var/rigged = FALSE
 	var/fire_sound_text = "gunshot"
@@ -445,7 +445,7 @@
 		next_fire_time = world.time + fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : fire_delay
 		user.setClickCooldown(fire_delay)
 
-	// user.set_move_cooldown(move_delay) Removed for testing. Uncomment to reenable move delay from firing guns.
+	user.set_move_cooldown(move_delay)
 	if(muzzle_flash)
 		set_light(0)
 

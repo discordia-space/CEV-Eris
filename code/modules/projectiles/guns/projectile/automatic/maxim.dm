@@ -27,10 +27,10 @@
 	penetration_multiplier = -0.2
 	burst_delay = 0.8
 	init_firemodes = list(
-		list(mode_name = "full auto",  mode_desc="800 rounds per minute", mode_type = /datum/firemode/automatic, fire_delay=2.4, icon="auto", move_delay=5),
-		list(mode_name="short bursts", mode_desc="dakka", burst=5, fire_delay=null, move_delay=5,  icon="burst"),
-		list(mode_name="long bursts", mode_desc="Dakka", burst=8, fire_delay=null, move_delay=7,  icon="burst"),
-		list(mode_name="suppressing fire", mode_desc="DAKKA", burst=16, fire_delay=null, move_delay=13,  icon="burst")
+		list(mode_name = "full auto",  mode_desc="800 rounds per minute", mode_type = /datum/firemode/automatic, fire_delay=2.4, icon="auto"),
+		list(mode_name="short bursts", mode_desc="dakka", burst=5, fire_delay=null, icon="burst"),
+		list(mode_name="long bursts", mode_desc="Dakka", burst=8, fire_delay=null, icon="burst"),
+		list(mode_name="suppressing fire", mode_desc="DAKKA", burst=16, fire_delay=null, icon="burst")
 		)
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
