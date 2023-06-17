@@ -1,5 +1,0 @@
-author: Chickenish
-delete-after: true
-changes:
-  - rscadd: Bowls now use a unique storage system capable of holding both items and
-      reagents.

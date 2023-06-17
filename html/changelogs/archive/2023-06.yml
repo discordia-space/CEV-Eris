@@ -27,3 +27,19 @@
       for the boxes
   - balance: the crafting station can craft scrap ammo shotgun boxes for 30 points
       each. Only high MECH characters can craft them.
+2023-06-17:
+  Chickenish:
+  - rscadd: Bowls now use a unique storage system capable of holding both items and
+      reagents.
+  Mycah142:
+  - rscadd: Added Relay to the Pulsar Sat
+  - bugfix: fixed last Tosshin reference to Kadmin
+  RikuTheKiller:
+  - balance: Chemicals no longer take their volume into account when processing. This
+      should lead to far more predictable reagent behaviour.
+  - balance: Removed all limits on reagent metabolization modifiers. This means giving
+      yourself 10 hearts is even funnier now.
+  - rscadd: Having a highly efficient heart may cause elevated bleeding, exercise
+      caution.
+  maikilangiolo:
+  - bugfix: fixed buckshot box being invisible when full
