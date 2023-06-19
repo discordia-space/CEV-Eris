@@ -283,19 +283,17 @@
 /obj/item/reagent_containers/food/drinks/bottle/melonliquor
 	name = "Emeraldine Melon Liquor"
 	desc = "A bottle of 46 proof Emeraldine Melon Liquor. Sweet and light."
-	icon_state = "alco-green" //Placeholder.
+	icon_state = "emeraldine"
 	center_of_mass = list("x"=16, "y"=6)
 	preloaded_reagents = list("melonliquor" = 100)
-	icon_state_empty = "alco-clear"
 	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/reagent_containers/food/drinks/bottle/bluecuracao
 	name = "Miss Blue Curacao"
 	desc = "A fruity, exceptionally azure drink. Does not allow the imbiber to use the fifth magic."
-	icon_state = "alco-blue" //Placeholder.
+	icon_state = "curacao"
 	center_of_mass = list("x"=16, "y"=6)
 	preloaded_reagents = list("bluecuracao" = 100)
-	icon_state_empty = "alco-clear"
 	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/reagent_containers/food/drinks/bottle/grenadine

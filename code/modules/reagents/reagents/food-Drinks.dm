@@ -940,7 +940,7 @@
 	color = "#FF004F"
 	taste_tag = list(TASTE_SWEET)
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "grenadineglass"
 	glass_name = "grenadine syrup"
 	glass_desc = "Sweet and tangy, a bar syrup used to add color or flavor to drinks."
@@ -952,12 +952,12 @@
 	description = "A refreshing beverage."
 	taste_description = "cola"
 	reagent_state = LIQUID
-	color = "#220500"
+	color = "#55433D"
 	adj_drowsy = -3
 	adj_temp = -5
 	taste_tag = list(TASTE_SWEET,TASTE_BUBBLY)
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "glass_brown"
 	glass_name = "Space Cola"
 	glass_desc = "Ah, refreshing Space Cola!"
@@ -1245,10 +1245,10 @@
 	id = "ale"
 	description = "A dark alcoholic beverage made by malted barley and yeast."
 	taste_description = "hearty barley ale"
-	color = "#664300"
+	color = "#986164"
 	strength = 25
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "aleglass"
 	glass_name = "ale"
 	glass_desc = "A freezing pint of delicious ale"
@@ -1260,7 +1260,7 @@
 	id = "beer"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water."
 	taste_description = "piss water"
-	color = "#664300"
+	color = "#BE772B"
 	strength = 35
 	nutriment_factor = 1
 
@@ -1300,7 +1300,7 @@
 	color = "#AB3C05"
 	strength = 15
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "cognacglass"
 	glass_name = "cognac"
 	glass_desc = "Damn, you feel like some kind of French aristocrat just by holding this."
@@ -1315,7 +1315,7 @@
 	color = "#664300"
 	strength = 30
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "rumglass"
 	glass_name = "rum"
 	glass_desc = "Popular with the sailors. Not very popular with everyone else."
@@ -1331,11 +1331,11 @@
 	id = "gin"
 	description = "A distilled alcoholic drink that derives its predominant flavour from juniper berries."
 	taste_description = "an alcoholic christmas tree"
-	color = "#664300"
+	color = "#D0DFEC"
 	strength = 25
 	taste_tag = list(TASTE_STRONG,TASTE_DRY)
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "ginvodkaglass"
 	glass_name = "gin"
 	glass_desc = "Crystal clear Griffeater gin."
@@ -1394,10 +1394,10 @@
 	description = "Distilled alcoholic drink made from sugarcane byproducts"
 	taste_description = "spiked butterscotch"
 	taste_mult = 1.1
-	color = "#664300"
+	color = "#623434"
 	strength = 15
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "rumglass"
 	glass_name = "rum"
 	glass_desc = "Now you want to Pray for a pirate suit, don't you?"
@@ -1409,10 +1409,10 @@
 	id = "sake"
 	description = " Alcoholic beverage made by fermenting rice that has been polished."
 	taste_description = "dry alcohol"
-	color = "#664300"
+	color = "#D0DFEC"
 	strength = 25
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "ginvodkaglass"
 	glass_name = "sake"
 	glass_desc = "Wine made from rice: it's sake!"
@@ -1424,10 +1424,10 @@
 	id = "tequilla"
 	description = "A strong and mildly flavoured, mexican produced spirit."
 	taste_description = "paint stripper"
-	color = "#FFFF91"
+	color = "#D6D9B2"
 	strength = 8
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "tequillaglass"
 	glass_name = "Tequilla"
 	glass_desc = "Now all that's missing is the weird colored shades!"
@@ -1467,7 +1467,7 @@
 	color = "#91FF91" // rgb: 145, 255, 145
 	strength = 15
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "vermouthglass"
 	glass_name = "vermouth"
 	glass_desc = "You wonder why you're even drinking this straight."
@@ -1479,10 +1479,10 @@
 	id = "vodka"
 	description = "Clear distilled alcoholic beverage that originates from Poland and Russia."
 	taste_description = "grain alcohol"
-	color = "#358adf" // rgb: 0, 100, 200
+	color = "#68BACA" // rgb: 0, 100, 200
 	strength = 5
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "ginvodkaglass"
 	glass_name = "vodka"
 	glass_desc = "Number one drink and fueling choice for Russians worldwide."
@@ -1501,7 +1501,7 @@
 	color = "#664300"
 	strength = 10
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "whiskeyglass"
 	glass_name = "whiskey"
 	glass_desc = "The silky, smoky whiskey goodness inside makes the drink look very classy."
@@ -1516,12 +1516,13 @@
 	color = "#7E4043" // rgb: 126, 64, 67
 	strength = 18
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "wineglassdrink"
 	glass_name = "wine"
 	glass_desc = "A very classy looking drink."
 	glass_center_of_mass = list("x"=15, "y"=7)
 	taste_tag = list(TASTE_SWEET, TASTE_BITTER)
+
 
 /datum/reagent/alcohol/ntcahors
 	name = "NeoTheology Cahors Wine"
@@ -1531,7 +1532,7 @@
 	color = "#7E4043" // rgb: 126, 64, 67
 	strength = 25
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "wineglass"
 	glass_name = "cahors"
 	glass_desc = "It looks like wine, but more dark."
@@ -1718,11 +1719,11 @@
 	id = "barefoot"
 	description = "Barefoot and pregnant"
 	taste_description = "creamy berries"
-	color = "#664300"
+	color = "#CE93DC"
 	strength = 30
 	sanity_gain_ingest = 0.75
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "b&p"
 	glass_name = "Barefoot"
 	glass_desc = "Barefoot and pregnant"
