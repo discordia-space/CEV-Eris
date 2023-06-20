@@ -15,10 +15,10 @@
 		if(BURN)
 			amount = round(amount * burn_mod, 0.1)
 
-	// Damage is transferred to internal organs. Chest and head must be broken before transferring unless they're slime limbs.
+	// Damage is transferred to internal organs.
 	if(LAZYLEN(internal_organs))
-		var/can_transfer = FALSE	// Only applies to brute and burn
-		if((organ_tag != BP_CHEST && organ_tag != BP_HEAD) || status & ORGAN_BROKEN || cannot_break)
+		var/can_transfer = (brute_dam > (min_broken_damage * ORGAN_HEALTH_MULTIPLIER)) ? TRUE : FALSE	// Only applies to brute and burn
+		if(!owner.get_active_mutation(target, MUTATION_TGH) || status & ORGAN_BROKEN || cannot_break) // If user has the bone mutation, they must be broken before transferring.
 			can_transfer = TRUE
 		var/obj/item/organ/internal/I = pick(internal_organs)
 		var/transferred_damage_amount
@@ -46,9 +46,6 @@
 	// Handle remaining limb damage
 	switch(damage_type)
 		if(BRUTE)
-			if(should_fracture())
-				fracture()
-
 			if(status & ORGAN_BROKEN && prob(40))
 				if(owner && !(owner.species && (owner.species.flags & NO_PAIN)))
 					owner.emote("scream")	//getting hit on broken hand hurts

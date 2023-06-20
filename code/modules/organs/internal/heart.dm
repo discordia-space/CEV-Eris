@@ -8,6 +8,9 @@
 	description_info = "Increases the efficiency of reagent metabolization in blood"
 	price_tag = 1000
 	specific_organ_size = 2
+	max_damage = IORGAN_VITAL_HEALTH
+	min_bruised_damage = IORGAN_VITAL_BRUISE
+	min_broken_damage = IORGAN_VITAL_BREAK
 	oxygen_req = 10
 	nutriment_req = 10
 	var/open

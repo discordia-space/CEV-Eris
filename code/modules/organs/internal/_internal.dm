@@ -4,8 +4,8 @@
 	bad_type = /obj/item/organ/internal
 	spawn_tags = SPAWN_TAG_ORGAN_INTERNAL
 	max_damage = IORGAN_STANDARD_HEALTH
-	min_bruised_damage = 3
-	min_broken_damage = 5
+	min_bruised_damage = IORGAN_STANDARD_BRUISE
+	min_broken_damage = IORGAN_STANDARD_BREAK
 	desc = "A vital organ."
 	var/list/owner_verbs = list()
 	var/list/initial_owner_verbs = list()
@@ -65,7 +65,7 @@
 	if(!skipverbs)
 		for(var/verb_path in owner_verbs)
 			verbs -= verb_path
-	
+
 	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
 		owner.mutation_index--
 	..()
@@ -88,7 +88,7 @@
 
 	for(var/proc_path in owner_verbs)
 		verbs |= proc_path
-	
+
 	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
 		owner.mutation_index++
 
