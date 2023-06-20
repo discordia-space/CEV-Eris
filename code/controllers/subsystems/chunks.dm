@@ -209,7 +209,6 @@ SUBSYSTEM_DEF(chunks)
 /// Hearer tracking and handling
 /obj/proc/chunkHearerOnMove(atom/source, atom/oldLocation , atom/newLocation)
 	SIGNAL_HANDLER
-	SIGNAL_HANDLER
 	var/datum/chunk/chunk_reference
 	if(oldLocation?.z && newLocation?.z)
 		if(CHUNKID(oldLocation.x, oldLocation.y) == CHUNKID(newLocation.x, newLocation.y) && oldLocation.z == newLocation.z)
