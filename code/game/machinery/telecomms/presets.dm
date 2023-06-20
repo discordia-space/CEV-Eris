@@ -26,8 +26,6 @@
 
 /obj/machinery/telecomms/relay/preset/pulsar
 	id = "Pulsar Relay"
-	name = "Homebrew Telecommunications Relay"
-	desc = "A cobbled together telecommunications relay using a ship bound radio, duct tape, and half a bluespace roach with a smiley face drawn on it."
 	produces_heat = 0
 	autolinkers = list("p_relay")
 
