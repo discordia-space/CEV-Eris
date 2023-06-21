@@ -1,4 +1,4 @@
-/obj/item/organ/internal/heart
+/obj/item/organ/internal/vital/heart
 	name = "heart"
 	icon_state = "heart-on"
 	organ_efficiency = list(OP_HEART = 100)
@@ -15,15 +15,15 @@
 	nutriment_req = 10
 	var/open
 
-/obj/item/organ/internal/heart/open
+/obj/item/organ/internal/vital/heart/open
 	open = 1
-/obj/item/organ/internal/heart/proc/is_working()
+/obj/item/organ/internal/vital/heart/proc/is_working()
 	if(!is_usable())
 		return FALSE
 
 	return owner.pulse > PULSE_NONE || BP_IS_ROBOTIC(src) || (owner.status_flags & FAKEDEATH)
 
-/obj/item/organ/internal/heart/huge
+/obj/item/organ/internal/vital/heart/huge
 	name = "five chamber heart"
 	icon_state = "heart_huge"
 	desc = "Can\'t pump the brakes now!"

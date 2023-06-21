@@ -107,7 +107,7 @@
 				var/sound_strength = "cannot hear"
 				var/heartbeat = 0
 				if(M.species && M.species.has_process[OP_HEART])
-					var/obj/item/organ/internal/heart/heart = M.random_organ_by_process(OP_HEART)
+					var/obj/item/organ/internal/vital/heart/heart = M.random_organ_by_process(OP_HEART)
 					if(heart && !BP_IS_ROBOTIC(heart))
 						heartbeat = 1
 				if(M.stat == DEAD || (M.status_flags&FAKEDEATH))
@@ -119,7 +119,7 @@
 							sound_strength = "hear"
 							sound = "no heartbeat"
 							if(heartbeat)
-								var/obj/item/organ/internal/heart/heart = M.random_organ_by_process(OP_HEART)
+								var/obj/item/organ/internal/vital/heart/heart = M.random_organ_by_process(OP_HEART)
 								if(!heart)
 									return
 								if(heart.is_bruised() || M.getOxyLoss() > 50)

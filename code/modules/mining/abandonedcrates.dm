@@ -90,7 +90,7 @@
 		if(88)
 			new/obj/item/xenos_claw(src)
 		if(90)
-			new/obj/item/organ/internal/heart(src)
+			new/obj/item/organ/internal/vital/heart(src)
 		if(91)
 			new/obj/item/tool/sword/katana(src)
 		if(92)

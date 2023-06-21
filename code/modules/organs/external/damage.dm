@@ -18,10 +18,12 @@
 	// Damage is transferred to internal organs.
 	if(LAZYLEN(internal_organs))
 	//	var/can_transfer = (brute_dam > (min_broken_damage * ORGAN_HEALTH_MULTIPLIER)) ? TRUE : FALSE	// Only applies to brute and burn
-		var/can_transfer = FALSE	// Only applies to brute and burn
-		if(!get_active_mutation(owner, MUTATION_TGH) || status & ORGAN_BROKEN || cannot_break) // If user has the bone mutation, they must be broken before transferring.
-			can_transfer = TRUE
 		var/obj/item/organ/internal/I = pickweight(internal_organs)
+		if(damage_type == BRUTE || damage_type == BURN)
+			if(get_active_mutation(owner, MUTATION_TGH) && (!(status & ORGAN_BROKEN) || !cannot_break)) // If user has the bone mutation, they must be broken before hitting any other organ.
+				I = get_bone()
+			else if((!(status & ORGAN_BROKEN) || !cannot_break) && istype(I, /obj/item/organ/internal/vital)) // Similarly, if the targeted organ is vital to short-term survival (brain, heart, lungs), it is protected by the ribcage or skull.
+				I = get_bone()
 		var/transferred_damage_amount
 		switch(damage_type)
 			if(BRUTE)

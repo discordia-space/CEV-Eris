@@ -109,7 +109,7 @@
 
 /mob/living/carbon/human/proc/handle_pulse()
 	var/roboheartcheck = TRUE //Check if all hearts are robotic
-	for(var/obj/item/organ/internal/heart in organ_list_by_process(OP_HEART))
+	for(var/obj/item/organ/internal/vital/heart in organ_list_by_process(OP_HEART))
 		if(!BP_IS_ROBOTIC(heart))
 			roboheartcheck = FALSE
 			break

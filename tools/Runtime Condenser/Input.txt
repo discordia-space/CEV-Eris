@@ -342,7 +342,7 @@ proc name: crash with (/proc/crash_with)
 runtime error: GC: -- [0x202baad] | /obj/machinery/floor_light was unable to be GC'd --
 proc name: crash with (/proc/crash_with)
   source file: unsorted.dm,1264
-runtime error: WARNING: /obj/item/organ/internal/brain is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+runtime error: WARNING: /obj/item/organ/internal/vital/brain is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
 proc name: crash with (/proc/crash_with)
   source file: unsorted.dm,1264
 runtime error: WARNING: /obj/item/device/pda is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
@@ -729,7 +729,7 @@ proc name: crash with (/proc/crash_with)
 runtime error: GC: -- [0x202b616] | /obj/machinery/floor_light was unable to be GC'd --
 proc name: crash with (/proc/crash_with)
   source file: unsorted.dm,1264
-runtime error: WARNING: /obj/item/organ/internal/brain is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+runtime error: WARNING: /obj/item/organ/internal/vital/brain is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
 proc name: crash with (/proc/crash_with)
   source file: unsorted.dm,1264
 runtime error: WARNING: /obj/item/device/pda is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
