@@ -22,7 +22,7 @@
 	health = 50		// Must be depleted before normal wounds can be applied
 	var/mob/living/carbon/brain/brainmob = null
 	var/timer_id
-	max_damage = IORGAN_VITAL_HEALTH
+	max_damage = IORGAN_VITAL_HEALTH + 2 // We want this to be very tanky
 	min_bruised_damage = IORGAN_VITAL_BRUISE
 	min_broken_damage = IORGAN_VITAL_BREAK
 
