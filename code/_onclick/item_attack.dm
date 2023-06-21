@@ -143,6 +143,24 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			QDEL_IN(S, 2 SECONDS)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
+/obj/item/proc/spin_attack(mob/user)
+	var/turf/G //Ground Zero, where the user is
+	G = get_turf(user)
+	
+	var/buffer_zone //Define the area around the user to attack
+	buffer_zone = get_step(G, alldirs)
+	
+	var/obj/effect/effect/melee/swing/S = new() //Enact the swing on the defined attack area
+	S.dir = buffer_zone
+	user.visible_message(SPAN_DANGER("[user] spins \his [src] in a circle"))
+	playsound(loc, 'sound/effects/swoosh.ogg', 50, 1, -1)
+	
+	var/dmg_modifier = 0.5 //Decide damage applied to targets in attack area
+	dmg_modifier = tileattack(user, buffer_zone, modifier = 1)
+	tileattack(user, buffer_zone, modifier = dmg_modifier)
+	QDEL_IN(S, 2 SECONDS)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+
 /atom/proc/attackby(obj/item/W, mob/user, params)
 	return
 

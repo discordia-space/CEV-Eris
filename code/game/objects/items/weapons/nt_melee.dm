@@ -92,6 +92,8 @@
 	desc = "A saintly-looking whip that can be extended for more pain."
 	icon_state = "nt_scourge"
 	item_state = "nt_scourge"
+	extended_reach = FALSE
+	forced_broad_strike = FALSE
 	force = WEAPON_FORCE_ROBUST
 	var/force_extended = WEAPON_FORCE_PAINFUL
 	armor_divisor = ARMOR_PEN_EXTREME
@@ -115,6 +117,8 @@
 
 /obj/item/tool/sword/nt/scourge/proc/extend()
 	extended = TRUE
+	extended_reach = TRUE
+	forced_broad_strike = TRUE
 	force += (force_extended - initial(force))
 	armor_divisor += (armor_divisor_extended - initial(armor_divisor))
 	agony += (agony_extended - initial(agony))
@@ -124,6 +128,8 @@
 
 /obj/item/tool/sword/nt/scourge/proc/unextend()
 	extended = FALSE
+	extended_reach = FALSE
+	forced_broad_strike = FALSE
 	w_class = initial(w_class)
 	agony = initial(agony)
 	slot_flags = initial(slot_flags)
@@ -144,6 +150,10 @@
 		var/mob/living/carbon/human/O = target
 		target.stun_effect_act(stun, agony, hit_zone, src)
 		O.say(pick("OH", "LORD", "MERCY", "SPARE", "ME", "HAVE", "PLEASE"))
+
+/obj/item/tool/sword/nt/scourge/hand_spin(mob/living/carbon/caller)
+	if(extended)
+		spin_attack(caller)
 
 /obj/item/tool/sword/nt/spear
 	name = "NT Pilum"
