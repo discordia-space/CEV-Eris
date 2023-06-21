@@ -22,6 +22,9 @@
 	health = 50		// Must be depleted before normal wounds can be applied
 	var/mob/living/carbon/brain/brainmob = null
 	var/timer_id
+	max_damage = IORGAN_VITAL_HEALTH
+	min_bruised_damage = IORGAN_VITAL_BRUISE
+	min_broken_damage = IORGAN_VITAL_BREAK
 
 /obj/item/organ/internal/brain/New()
 	..()

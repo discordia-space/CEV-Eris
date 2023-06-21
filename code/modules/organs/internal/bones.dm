@@ -18,7 +18,7 @@
 	return
 
 /obj/item/organ/internal/bone/take_damage()
-	if(damage > ((min_broken_damage * ORGAN_HEALTH_MULTIPLIER) * (bone_efficiency / 100)))
+	if(damage > (min_broken_damage * ORGAN_HEALTH_MULTIPLIER) && !(status & ORGAN_BROKEN))
 		fracture()
 	. = ..()
 
