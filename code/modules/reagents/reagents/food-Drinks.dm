@@ -2655,13 +2655,6 @@
 	taste_tag = list(TASTE_SOUR, TASTE_BUBBLY)
 	withdrawal_threshold = 10
 
-	glass_unique_appearance = TRUE
-	glass_icon_state = "roach_beer"
-	glass_name = "Kakerlakenbier"
-	glass_desc = "A green-ish substance made out of diplopterum, beer and fuel mixed with water. Doesn\'t look nor smell like beer..."
-	glass_center_of_mass = list("x"=16, "y"=12)
-
-
 /datum/reagent/alcohol/roachbeer/apply_sanity_effect(mob/living/carbon/human/H, effect_multiplier)
 	if(H.stats.getPerk(PERK_VAGABOND))	// increases sanity_gain to 3 if true
 		effect_multiplier *= 2
@@ -2698,12 +2691,6 @@
 	addiction_threshold = 30
 	sanity_gain_ingest = 3
 	taste_tag = list(TASTE_SOUR, TASTE_BUBBLY, TASTE_STRONG)
-
-	glass_unique_appearance = TRUE
-	glass_icon_state = "kaiser_beer"
-	glass_name = "Monarchenblut"
-	glass_desc = "An improvised stimulant made out of Kaiser and Fuhrer roach blood."
-	glass_center_of_mass = list("x"=16, "y"=12)
 
 /datum/reagent/alcohol/kaiserbeer/affect_ingest(mob/living/carbon/M, alien, effect_multiplier) ////// checks user for having a vagabond perk,
 	..()
