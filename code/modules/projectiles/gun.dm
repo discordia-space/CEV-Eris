@@ -445,7 +445,7 @@
 		next_fire_time = world.time + fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : fire_delay
 		user.setClickCooldown(fire_delay)
 
-	user.set_move_cooldown(move_delay)
+	user.set_move_cooldown(abs(move_delay))
 	if(muzzle_flash)
 		set_light(0)
 
