@@ -49,7 +49,7 @@
 
 	var/datum/trade_station/station
 	var/chosen_category
-	
+
 	var/cart_station_index
 	var/cart_category_index
 
@@ -104,7 +104,7 @@
 		return
 	var/list/inventory_list = open_shop_list()		// Get reference to inventory list
 	LAZYDISTINCTADD(inventory_list, path)
-	LAZYAPLUS(inventory_list, path, amount)
+	LAZYAPLUS(inventory_list, path, max(0, amount))
 
 	if(inventory_list[path] > limit)
 		LAZYSET(inventory_list, path, limit)
@@ -125,7 +125,7 @@
 /datum/computer_file/program/trade/proc/save_shop_list(name, list/shop_list = null)
 	// Need to open and copy every list within the list since copying the list just makes a list of references
 	var/list/list_to_copy
-	
+
 	if(!shop_list)
 		list_to_copy = shoppinglist
 	else if(islist(shop_list))
@@ -153,7 +153,7 @@
 	// Need to open and copy every list within the list since copying the list just makes a list of references
 	var/list/list_to_copy = saved_shopping_lists[name]
 	var/list/list_to_load = list_to_copy.Copy()
-	
+
 	for(var/station in list_to_copy)
 		var/list/categories = list_to_copy[station]
 		var/list/categories_copy = categories.Copy()
@@ -405,7 +405,7 @@
 			if(SAVED_SCREEN)
 				saved_cart_page = 1
 			if(LOG_SCREEN)
-				current_log_page = 1 
+				current_log_page = 1
 		return TRUE
 
 	if(href_list["PRG_page_prev_10"])
@@ -415,7 +415,7 @@
 			if(SAVED_SCREEN)
 				saved_cart_page = max(1, saved_cart_page - 10)
 			if(LOG_SCREEN)
-				current_log_page = max(1, current_log_page - 10) 
+				current_log_page = max(1, current_log_page - 10)
 		return TRUE
 
 	if(href_list["PRG_page_prev"])
@@ -425,7 +425,7 @@
 			if(SAVED_SCREEN)
 				saved_cart_page = max(1, --saved_cart_page)
 			if(LOG_SCREEN)
-				current_log_page = max(1, --current_log_page) 
+				current_log_page = max(1, --current_log_page)
 		return TRUE
 
 	if(href_list["PRG_page_select"])
@@ -442,7 +442,7 @@
 					return
 				saved_cart_page = clamp(input, 1, saved_cart_page_max)
 			if(LOG_SCREEN)
-				current_log_page = clamp(input, 1, log_page_max) 
+				current_log_page = clamp(input, 1, log_page_max)
 		return TRUE
 
 	if(href_list["PRG_page_next"])
@@ -452,7 +452,7 @@
 			if(SAVED_SCREEN)
 				saved_cart_page = min(saved_cart_page_max, ++saved_cart_page)
 			if(LOG_SCREEN)
-				current_log_page = min(log_page_max, ++current_log_page) 
+				current_log_page = min(log_page_max, ++current_log_page)
 		return TRUE
 
 	if(href_list["PRG_page_next_10"])
@@ -462,7 +462,7 @@
 			if(SAVED_SCREEN)
 				saved_cart_page = min(saved_cart_page_max, saved_cart_page + 10)
 			if(LOG_SCREEN)
-				current_log_page = min(log_page_max, current_log_page + 10) 
+				current_log_page = min(log_page_max, current_log_page + 10)
 		return TRUE
 
 	if(href_list["PRG_page_last"])
@@ -558,7 +558,7 @@
 			if(account.money < order_cost)
 				to_chat(usr, SPAN_WARNING("ERROR: Not enough funds in account ([account.get_name()] #[account.account_number])."))
 				return
-			if(requesting_account.money < requestor_cost)	
+			if(requesting_account.money < requestor_cost)
 				to_chat(usr, SPAN_WARNING("ERROR: Not enough funds in requesting account ([requesting_account.get_name()] #[requesting_account.account_number])."))
 				return
 
