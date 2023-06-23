@@ -81,7 +81,7 @@
 
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["ctrl"])
-		CtrlShiftClickOn(A)
+		CtrlShiftClickOn(A, params)
 		return 1
 	if(modifiers["ctrl"] && modifiers["alt"])
 		CtrlAltClickOn(A)
@@ -101,8 +101,8 @@
 		AltClickOn(A)
 		return 1
 	if(modifiers["ctrl"])
-		SEND_SIGNAL_OLD(src, COMSIG_CTRLCLICK, A)
-		CtrlClickOn(A)
+		SEND_SIGNAL(src, COMSIG_CTRLCLICK, A)
+		CtrlClickOn(A, params)
 		return 1
 
 	if(stat || paralysis || stunned || weakened)
@@ -147,7 +147,7 @@
 		else
 			if(ismob(A)) // No instant mob attacking
 				setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-			UnarmedAttack(A, 1)
+			UnarmedAttack(A, 1, params)
 		return 1
 
 	if(!isturf(loc)) // This is going to stop you from telekinesing from inside a closet, but I don't shed many tears for that
@@ -174,7 +174,7 @@
 			else
 				if(ismob(A)) // No instant mob attacking
 					setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-				UnarmedAttack(A, 1)
+				UnarmedAttack(A, 1, params)
 			return
 		else // non-adjacent click
 			if(W)
@@ -207,10 +207,10 @@
 	proximity_flag is not currently passed to attack_hand, and is instead used
 	in human click code to allow glove touches only at melee range.
 */
-/mob/proc/UnarmedAttack(atom/A, proximity_flag)
+/mob/proc/UnarmedAttack(atom/A, proximity_flag, params)
 	return
 
-/mob/living/UnarmedAttack(atom/A, proximity_flag)
+/mob/living/UnarmedAttack(atom/A, proximity_flag, params)
 	if(stat)
 		return 0
 
@@ -286,13 +286,13 @@
 	Ctrl click
 	For most objects, pull
 */
-/mob/proc/CtrlClickOn(atom/A)
-	A.CtrlClick(src)
+/mob/proc/CtrlClickOn(atom/A, params)
+	A.CtrlClick(src, params)
 	return
-/atom/proc/CtrlClick(mob/user)
+/atom/proc/CtrlClick(mob/user, params)
 	return
 
-/atom/movable/CtrlClick(mob/user)
+/atom/movable/CtrlClick(mob/user, params)
 	if(Adjacent(user))
 		user.start_pulling(src)
 
@@ -318,11 +318,11 @@
 	Control+Shift click
 	Unused except for AI
 */
-/mob/proc/CtrlShiftClickOn(atom/A)
-	A.CtrlShiftClick(src)
+/mob/proc/CtrlShiftClickOn(atom/A, params)
+	A.CtrlShiftClick(src, params)
 	return
 
-/atom/proc/CtrlShiftClick(mob/user)
+/atom/proc/CtrlShiftClick(mob/user, params)
 	return
 
 /*

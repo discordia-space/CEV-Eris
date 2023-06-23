@@ -8,7 +8,7 @@
 
 	Otherwise pretty standard.
 */
-/mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
+/mob/living/carbon/human/UnarmedAttack(var/atom/A, var/proximity, params)
 
 	if(!..())
 		return
@@ -20,9 +20,9 @@
 	if(istype(G) && G.Touch(A, 1))
 		return
 
-	A.attack_hand(src)
+	A.attack_hand(src, params)
 
-/atom/proc/attack_hand(mob/user)
+/atom/proc/attack_hand(mob/user as mob, params)
 	. = FALSE
 	// if(!(interaction_flags_atom & INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND))
 	// 	add_fingerprint(user)

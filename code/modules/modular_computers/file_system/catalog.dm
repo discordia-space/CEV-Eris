@@ -50,7 +50,8 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	C = GLOB.catalogs[CATALOG_ALL]
 	C.associated_template = "catalog_list_general.tmpl"
 	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
-	return 1
+	createCookingCatalogs()
+	return TRUE
 
 /proc/create_catalog_entry(var/datum/thing, var/catalog_id)
 	if(catalog_id && !GLOB.catalogs[catalog_id])
@@ -93,7 +94,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	. = ..()
 	id = _id
 
-// accespts either type or datum
+// accepts either type or datum
 /datum/catalog/proc/get_entry(var/datum/thing)
 	for(var/datum/catalog_entry/E in entry_list)
 		if(E.thing_type == ispath(thing) ? thing : thing.type)

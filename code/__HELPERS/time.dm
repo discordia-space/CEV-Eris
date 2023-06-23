@@ -103,6 +103,35 @@ var/global/rollovercheck_last_timeofday = 0
 		return midnight_rollovers++
 	return midnight_rollovers
 
+/proc/ticks_to_text(var/ticks)
+	if(ticks%1 != 0)
+		return "ERROR"
+	var/response = ""
+	var/counter = 0
+	while(ticks >= 1 DAYS)
+		ticks -= 1 DAYS
+		counter++
+	if(counter)
+		response += "[counter] Day[counter>1 ? "s" : ""][ticks ? ", " : ""]"
+	counter=0
+	while(ticks >= 1 HOURS)
+		ticks -= 1 HOURS
+		counter++
+	if(counter)
+		response += "[counter] Hour[counter>1 ? "s" : ""][ticks?", ":""]"
+	counter=0
+	while(ticks >= 1 MINUTES)
+		ticks -= 1 MINUTES
+		counter++
+	if(counter)
+		response += "[counter] Minute[counter>1 ? "s" : ""][ticks?", ":""]"
+		counter=0
+	while(ticks >= 1 SECONDS)
+		ticks -= 1 SECONDS
+		counter++
+	if(counter)
+		response += "[counter][ticks?".[ticks]" : ""] Second[counter>1 ? "s" : ""]"
+	return response
 
 //Increases delay as the server gets more overloaded,
 //as sleeps aren't cheap and sleeping only to wake up and sleep again is wasteful
