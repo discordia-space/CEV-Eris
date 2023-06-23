@@ -1248,7 +1248,7 @@
 	color = "#986164"
 	strength = 25
 
-	//glass_unique_appearance = TRUE
+	glass_unique_appearance = TRUE
 	glass_icon_state = "aleglass"
 	glass_name = "ale"
 	glass_desc = "A freezing pint of delicious ale"
@@ -1264,7 +1264,7 @@
 	strength = 35
 	nutriment_factor = 1
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "beerglass"
 	glass_name = "beer"
 	glass_desc = "A freezing pint of beer"
@@ -1300,7 +1300,7 @@
 	color = "#AB3C05"
 	strength = 15
 
-	//glass_unique_appearance = TRUE
+	glass_unique_appearance = TRUE
 	glass_icon_state = "cognacglass"
 	glass_name = "cognac"
 	glass_desc = "Damn, you feel like some kind of French aristocrat just by holding this."
@@ -1315,7 +1315,7 @@
 	color = "#664300"
 	strength = 30
 
-	//glass_unique_appearance = TRUE
+	glass_unique_appearance = TRUE
 	glass_icon_state = "rumglass"
 	glass_name = "rum"
 	glass_desc = "Popular with the sailors. Not very popular with everyone else."
@@ -1335,7 +1335,7 @@
 	strength = 25
 	taste_tag = list(TASTE_STRONG,TASTE_DRY)
 
-	//glass_unique_appearance = TRUE
+	glass_unique_appearance = TRUE
 	glass_icon_state = "ginvodkaglass"
 	glass_name = "gin"
 	glass_desc = "Crystal clear Griffeater gin."
@@ -1397,7 +1397,7 @@
 	color = "#623434"
 	strength = 15
 
-	//glass_unique_appearance = TRUE
+	glass_unique_appearance = TRUE
 	glass_icon_state = "rumglass"
 	glass_name = "rum"
 	glass_desc = "Now you want to Pray for a pirate suit, don't you?"
@@ -1412,7 +1412,7 @@
 	color = "#D0DFEC"
 	strength = 25
 
-	//glass_unique_appearance = TRUE
+	glass_unique_appearance = TRUE
 	glass_icon_state = "ginvodkaglass"
 	glass_name = "sake"
 	glass_desc = "Wine made from rice: it's sake!"
@@ -1427,7 +1427,7 @@
 	color = "#D6D9B2"
 	strength = 8
 
-	//glass_unique_appearance = TRUE
+	glass_unique_appearance = TRUE
 	glass_icon_state = "tequillaglass"
 	glass_name = "Tequilla"
 	glass_desc = "Now all that's missing is the weird colored shades!"
@@ -1482,7 +1482,7 @@
 	color = "#68BACA" // rgb: 0, 100, 200
 	strength = 5
 
-	//glass_unique_appearance = TRUE
+	glass_unique_appearance = TRUE
 	glass_icon_state = "ginvodkaglass"
 	glass_name = "vodka"
 	glass_desc = "Number one drink and fueling choice for Russians worldwide."
@@ -1501,7 +1501,7 @@
 	color = "#664300"
 	strength = 10
 
-	//glass_unique_appearance = TRUE
+	glass_unique_appearance = TRUE
 	glass_icon_state = "whiskeyglass"
 	glass_name = "whiskey"
 	glass_desc = "The silky, smoky whiskey goodness inside makes the drink look very classy."
@@ -1516,7 +1516,7 @@
 	color = "#7E4043" // rgb: 126, 64, 67
 	strength = 18
 
-	//glass_unique_appearance = TRUE
+	glass_unique_appearance = TRUE
 	glass_icon_state = "wineglassdrink"
 	glass_name = "wine"
 	glass_desc = "A very classy looking drink."
@@ -1532,7 +1532,7 @@
 	color = "#7E4043" // rgb: 126, 64, 67
 	strength = 25
 
-	//glass_unique_appearance = TRUE
+	glass_unique_appearance = TRUE
 	glass_icon_state = "wineglass"
 	glass_name = "cahors"
 	glass_desc = "It looks like wine, but more dark."
@@ -1723,7 +1723,7 @@
 	strength = 30
 	sanity_gain_ingest = 0.75
 
-	//glass_unique_appearance = TRUE
+	glass_unique_appearance = TRUE
 	glass_icon_state = "b&p"
 	glass_name = "Barefoot"
 	glass_desc = "Barefoot and pregnant"
