@@ -193,6 +193,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			if(T.autolinkers.Find(x))
 				if(src != T)
 					links |= T
+					T.links |= src
 
 /obj/machinery/telecomms/update_icon()
 	if(on)

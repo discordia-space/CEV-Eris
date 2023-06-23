@@ -26,8 +26,6 @@
 
 /obj/machinery/telecomms/relay/preset/pulsar
 	id = "Pulsar Relay"
-	use_power = NO_POWER_USE //TODO: Wire and power Pulsar sat with generator
-	idle_power_usage = 0
 	produces_heat = 0
 	autolinkers = list("p_relay")
 
