@@ -24,7 +24,7 @@
 
 /datum/design/autolathe/container/mixingbowl
 	name = "mixing bowl"
-	build_path = /obj/item/reagent_containers/glass/beaker/bowl
+	build_path = /obj/item/reagent_containers/drywet
 
 /datum/design/autolathe/container/vial
 	name = "glass vial"
@@ -32,7 +32,7 @@
 
 /datum/design/autolathe/container/jar
 	name = "jar"
-	build_path = /obj/item/reagent_containers/food/drinks/jar
+	build_path = /obj/item/reagent_containers/glass/beaker/jar
 
 /datum/design/autolathe/container/syringe
 	name = "syringe"

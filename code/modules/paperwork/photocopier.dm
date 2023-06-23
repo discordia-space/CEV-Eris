@@ -127,23 +127,13 @@
 			to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 	return
 
-/obj/machinery/photocopier/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(prob(50))
-				qdel(src)
-			else
-				if(toner > 0)
-					new /obj/effect/decal/cleanable/blood/oil(get_turf(src))
-					toner = 0
-		else
-			if(prob(50))
-				if(toner > 0)
-					new /obj/effect/decal/cleanable/blood/oil(get_turf(src))
-					toner = 0
-	return
+/obj/machinery/photocopier/take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return .
+	if(toner > 0)
+		new /obj/effect/decal/cleanable/blood/oil(get_turf(src))
+		toner = 0
 
 /obj/machinery/photocopier/proc/copy(var/obj/item/paper/copy)
 	var/obj/item/paper/c = new /obj/item/paper (loc)

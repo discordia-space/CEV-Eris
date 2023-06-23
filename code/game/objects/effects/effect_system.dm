@@ -95,7 +95,7 @@ steam.start() -- spawns the effect
 					direction = pick(cardinal)
 				else
 					direction = pick(alldirs)
-				for(i=0, i<pick(1,2,3), i++)
+				for(var/j=0, j<pick(1,2,3), j++)
 					sleep(5)
 					step(steam,direction)
 				spawn(20)
@@ -151,38 +151,50 @@ steam.start() -- spawns the effect
 /datum/effect/effect/system/spark_spread
 	var/total_sparks = 0 // To stop it being spammed and lagging!
 
-	set_up(n = 3, c = 0, loca)
-		if(n > 10)
-			n = 10
-		number = n
-		cardinals = c
-		if(istype(loca, /turf/))
-			location = loca
-		else
-			location = get_turf(loca)
+/datum/effect/effect/system/spark_spread/set_up(n = 3, c = 0, loca)
+	if(n > 10)
+		n = 10
+	number = n
+	cardinals = c
+	if(istype(loca, /turf/))
+		location = loca
+	else
+		location = get_turf(loca)
 
-	start()
-		var/i = 0
-		for(i=0, i<src.number, i++)
-			if(src.total_sparks > 20)
-				return
-			spawn(0)
-				if(holder)
-					src.location = get_turf(holder)
-				var/obj/effect/sparks/sparks = new(location)
-				src.total_sparks++
-				var/direction
-				if(src.cardinals)
-					direction = pick(cardinal)
-				else
-					direction = pick(alldirs)
-				for(i=0, i<pick(1,2,3), i++)
-					sleep(rand(1,5))
-					step(sparks,direction)
-				spawn(20)
-					if(sparks)
-						qdel(sparks)
-					src.total_sparks--
+/datum/effect/effect/system/spark_spread/start()
+	var/i = 0
+	for(i=0, i<src.number, i++)
+		if(src.total_sparks > 20)
+			return
+		if(holder)
+			src.location = get_turf(holder)
+		var/obj/effect/sparks/sparks = new(location)
+		src.total_sparks++
+		var/direction
+		if(src.cardinals)
+			direction = pick(cardinal)
+		else
+			direction = pick(alldirs)
+		for(var/j=0, j<pick(1,2,3), j++)
+			addtimer(CALLBACK(src, PROC_REF(do_spark_movement), sparks, direction), rand(1,5) SECONDS)
+			//sleep(rand(1,5))
+			//step(sparks,direction)
+
+		addtimer(CALLBACK(src, PROC_REF(delete_spark), sparks), 2 SECONDS)
+		/*
+		spawn(20)
+			if(sparks)
+				qdel(sparks)
+			src.total_sparks--
+		*/
+
+/datum/effect/effect/system/spark_spread/proc/do_spark_movement(atom/movable/sparks, direction)
+	step(sparks, direction)
+
+/datum/effect/effect/system/spark_spread/proc/delete_spark(atom/movable/sparks)
+	if(!QDELETED(sparks))
+		qdel(sparks)
+	total_sparks--
 
 
 
@@ -211,8 +223,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/Initialize()
 	. = ..()
-	spawn(time_to_live)
-		fade_out()
+	addtimer(CALLBACK(src, PROC_REF(fade_out), time_to_live))
 
 
 /obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
@@ -245,10 +256,16 @@ steam.start() -- spawns the effect
 	fading = TRUE
 	frames = max(frames, 1) //We will just assume that by 0 frames, the coder meant "during one frame".
 	var/alpha_step = round(alpha / frames)
-	while(alpha > 0)
+	fade_step(alpha_step)
+
+/obj/effect/effect/smoke/proc/fade_step(alpha_step)
+	if(alpha > 0)
 		alpha = max(0, alpha - alpha_step)
-		sleep(world.tick_lag)
-	qdel(src)
+		addtimer(CALLBACK(src, PROC_REF(fade_step), alpha_step), 1 SECOND)
+		if(alpha < initial(alpha)/2)
+			opacity = FALSE
+	else
+		qdel(src)
 
 /////////////////////////////////////////////
 // Illumination
@@ -392,17 +409,19 @@ steam.start() -- spawns the effect
 	if(holder)
 		src.location = get_turf(holder)
 	for(i=0, i<src.number, i++)
-		spawn()
-			var/obj/effect/effect/smoke/smoke = new smoke_type(location)
-			var/direction
-			if(cardinals)
-				direction = pick(cardinal)
-			else
-				direction = pick(alldirs)
+		var/obj/effect/effect/smoke/smoke = new smoke_type(location)
+		var/direction
+		if(cardinals)
+			direction = pick(cardinal)
+		else
+			direction = pick(alldirs)
+		var/added_time = 1 SECOND
+		for(var/j=0, j<pick(0,1,1,1,2,2,2,3), j++)
+			addtimer(CALLBACK(src, PROC_REF(move_smoke), smoke, direction), added_time)
+			added_time += 1 SECOND
 
-			for(i=0, i<pick(0,1,1,1,2,2,2,3), i++)
-				sleep(10)
-				step(smoke,direction)
+/datum/effect/effect/system/smoke_spread/proc/move_smoke(atom/movable/smoke, move_dir)
+	step(smoke, move_dir)
 
 
 /datum/effect/effect/system/smoke_spread/bad
@@ -453,31 +472,8 @@ steam.start() -- spawns the effect
 					M.Weaken(rand(1,5))
 			return
 		else
-			var/devst = -1
-			var/heavy = -1
-			var/light = -1
-			var/flash = -1
-
-			// Clamp all values to fractions of max_explosion_range, following the same pattern as for tank transfer bombs
-			if (round(amount/12) > 0)
-				devst = devst + amount/12
-
-			if (round(amount/6) > 0)
-				heavy = heavy + amount/6
-
-			if (round(amount/3) > 0)
-				light = light + amount/3
-
-			if (flashing && flashing_factor)
-				flash = (amount/4) * flashing_factor
-
+			var/explosion_power = amount
 			for(var/mob/M in viewers(8, location))
 				to_chat(M, SPAN_WARNING("The solution violently explodes."))
 
-			explosion(
-				location,
-				round(min(devst, BOMBCAP_DVSTN_RADIUS)),
-				round(min(heavy, BOMBCAP_HEAVY_RADIUS)),
-				round(min(light, BOMBCAP_LIGHT_RADIUS)),
-				round(min(flash, BOMBCAP_FLASH_RADIUS))
-				)
+			explosion(get_turf(location), explosion_power, explosion_power / 10)

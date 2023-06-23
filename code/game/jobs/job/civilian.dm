@@ -91,7 +91,7 @@
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_JIVE = 40, LANGUAGE_MONKEY = 20)
 	access = list(access_bar, access_kitchen, access_maint_tunnels, access_artist, access_theatre)
-
+	initial_balance = 600
 	outfit_type = /decl/hierarchy/outfit/job/service/artist
 	wage = WAGE_NONE //They should get paid by the club owner, otherwise you know what to do.
 	stat_modifiers = list(

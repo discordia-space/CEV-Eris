@@ -50,7 +50,7 @@
 		return TRUE
 	if(istype(T, /turf/simulated/floor))
 		var/turf/simulated/floor/F = T
-		if(!F.flooring?.is_plating || istype(F.flooring, /decl/flooring/reinforced/plating/hull)) //Caution stripes go where elevation would change, eg, stepping down onto underplating 
+		if(!F.flooring?.is_plating || istype(F.flooring, /decl/flooring/reinforced/plating/hull)) //Caution stripes go where elevation would change, eg, stepping down onto underplating
 			return TRUE
 
 /obj/structure/catwalk/update_icon()
@@ -79,15 +79,6 @@
 			diagonalconnect |= 8
 
 	icon_state = "catwalk[connectdir]-[diagonalconnect]"
-
-
-/obj/structure/catwalk/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			qdel(src)
-	return
 
 /obj/structure/catwalk/attackby(obj/item/I, mob/user)
 	if(QUALITY_WELDING in I.tool_qualities)

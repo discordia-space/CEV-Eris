@@ -31,8 +31,8 @@
 		return 1
 
 
-/obj/machinery/containment_field/ex_act(severity)
-	return 0
+/obj/machinery/containment_field/explosion_act(target_power, explosion_handler/handler)
+	return target_power
 
 /obj/machinery/containment_field/HasProximity(atom/movable/AM as mob|obj)
 	if(issilicon(AM) && prob(40))

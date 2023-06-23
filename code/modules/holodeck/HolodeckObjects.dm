@@ -10,11 +10,10 @@
 	return
 	// HOLOFLOOR DOES NOT GIVE A FUCK
 
-/turf/simulated/floor/holofloor/ex_act(severity)
-	switch(severity)
-		if(1)
-			take_damage(rand(100, 300), BLAST)
-		//No fucks otherwise
+/turf/simulated/floor/holofloor/explosion_act(target_power, explosion_handler/handler)
+	if(target_power > 800) //No fucks otherwise
+		take_damage(target_power / 2, BLAST)
+	return 0
 
 /turf/simulated/floor/holofloor/set_flooring()
 	return
@@ -171,7 +170,7 @@
 
 /obj/structure/catwalk/holo
 
-/obj/structure/catwalk/attackby(obj/item/I, mob/user)
+/obj/structure/catwalk/holo/attackby(obj/item/I, mob/user)
 	return
 
 /obj/item/stool/holostool

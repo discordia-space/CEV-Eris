@@ -1,0 +1,5 @@
+author: MACIEKBAKI
+delete-after: true
+changes:
+  - bugfix: The guild should no longer be able to trick merchants into buying their
+      own goods.

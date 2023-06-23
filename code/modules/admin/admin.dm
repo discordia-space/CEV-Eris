@@ -176,18 +176,6 @@ ADMIN_VERB_ADD(/datum/admins/proc/show_player_panel, null, TRUE)
 			body += "<b>Transformation:</b>"
 			body += "<br>"
 
-			//Monkey
-			if(issmall(M))
-				body += "<B>Monkeyized</B> | "
-			else
-				body += "<A href='?src=\ref[src];monkeyone=\ref[M]'>Monkeyize</A> | "
-
-			//Corgi
-			if(iscorgi(M))
-				body += "<B>Corgized</B> | "
-			else
-				body += "<A href='?src=\ref[src];corgione=\ref[M]'>Corgize</A> | "
-
 			//AI / Cyborg
 			if(isAI(M))
 				body += "<B>Is an AI</B> "
@@ -825,50 +813,6 @@ ADMIN_VERB_ADD(/datum/admins/proc/spawn_fruit, R_DEBUG, FALSE)
 	var/datum/seed/S = plant_controller.seeds[seedtype]
 	S.harvest(usr,0,0,1)
 	log_admin("[key_name(usr)] spawned [seedtype] fruit at ([usr.x],[usr.y],[usr.z])")
-
-ADMIN_VERB_ADD(/datum/admins/proc/spawn_custom_item, R_DEBUG, FALSE)
-/datum/admins/proc/spawn_custom_item()
-	set category = "Debug"
-	set desc = "Spawn a custom item."
-	set name = "Spawn Custom Item"
-
-	if(!check_rights(R_DEBUG))
-		return
-
-	var/owner = input("Select a ckey.", "Spawn Custom Item") as null|anything in custom_items
-	if(!owner|| !custom_items[owner])
-		return
-
-	var/list/possible_items = custom_items[owner]
-	var/datum/custom_item/item_to_spawn = input("Select an item to spawn.", "Spawn Custom Item") as null|anything in possible_items
-	if(!item_to_spawn)
-		return
-
-	item_to_spawn.spawn_item(get_turf(usr))
-
-
-ADMIN_VERB_ADD(/datum/admins/proc/check_custom_items, R_DEBUG, FALSE)
-/datum/admins/proc/check_custom_items()
-	set category = "Debug"
-	set desc = "Check the custom item list."
-	set name = "Check Custom Items"
-
-	if(!check_rights(R_DEBUG))
-		return
-
-	if(!custom_items)
-		to_chat(usr, "Custom item list is null.")
-		return
-
-	if(!custom_items.len)
-		to_chat(usr, "Custom item list not populated.")
-		return
-
-	for(var/assoc_key in custom_items)
-		to_chat(usr, "[assoc_key] has:")
-		var/list/current_items = custom_items[assoc_key]
-		for(var/datum/custom_item/item in current_items)
-			to_chat(usr, "- name: [item.name] icon: [item.item_icon] path: [item.item_path] desc: [item.item_desc]")
 
 
 ADMIN_VERB_ADD(/datum/admins/proc/spawn_plant, R_DEBUG, FALSE)

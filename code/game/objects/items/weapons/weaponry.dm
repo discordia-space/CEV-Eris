@@ -97,7 +97,7 @@
 	healthcheck()
 	return 0
 
-/obj/effect/energy_net/ex_act()
+/obj/effect/energy_net/explosion_act(target_power, explosion_handler/handler)
 	health = 0
 	healthcheck()
 

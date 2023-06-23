@@ -16,7 +16,7 @@
 	var/abstract = 0
 	var/r_speed = 1
 	var/health = 100
-	var/max_health = 100
+	var/maxHealth = 100
 	var/burn_point
 	var/burning
 	var/hitsound = 'sound/weapons/genhit1.ogg'
@@ -135,16 +135,14 @@
 /obj/item/get_fall_damage()
 	return w_class * 2
 
-/obj/item/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(prob(50))
-				qdel(src)
-		if(3)
-			if(prob(5))
-				qdel(src)
+/obj/item/proc/take_damage(amount)
+	health -= amount
+	if(health <= 0)
+		qdel(src)
+
+/obj/item/explosion_act(target_power, explosion_handler/handler)
+	take_damage(target_power)
+	return 0
 
 /obj/item/emp_act(severity)
 	if(chameleon_type)
@@ -481,10 +479,6 @@ var/global/list/items_blood_overlay_by_type = list()
 		if (grabbed)
 			if (grabbed.stats.getPerk(PERK_ASS_OF_CONCRETE))
 				visible_message(SPAN_WARNING("[src] tries to pick up [grabbed], and fails!"))
-				if (ishuman(src))
-					var/mob/living/carbon/human/depleted = src
-					depleted.regen_slickness(-1) // unlucky and unobservant gets the penalty
-					return
 
 			else
 				if(ishuman(grabbed)) // irish whip if human(grab special), else spin and force rest
@@ -549,9 +543,6 @@ var/global/list/items_blood_overlay_by_type = list()
 			unEquip(I)
 			return
 		I.hand_spin(src)
-	if (ishuman(src))
-		var/mob/living/carbon/human/stylish = src
-		stylish.regen_slickness()
 
 /obj/item/proc/hand_spin(mob/living/carbon/caller) // used for custom behaviour on the above proc
 	return

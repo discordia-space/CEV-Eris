@@ -14,8 +14,6 @@
 			if(on_turf)
 				E.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,max_range),30)
 
-	sleep(1)
-
 	for(var/obj/item/D in src)
 		if (keep_only_robotics && istype(D, /obj/item/organ))
 			continue

@@ -1,5 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Fixed AI Jammers not working while held(Due to checking the distance to
-      the wrong object)

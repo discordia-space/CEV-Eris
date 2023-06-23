@@ -86,7 +86,6 @@
 		/datum/design/research/item/medical/reagent_scanner,
 		/datum/design/research/item/medical/robot_scanner,
 		/datum/design/autolathe/device/slime_scanner,
-		/datum/design/autolathe/device/antibody_scanner,
 		/datum/design/autolathe/device/megaphone,
 		/datum/design/autolathe/device/t_scanner,
 		/datum/design/autolathe/device/gps,

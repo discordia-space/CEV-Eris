@@ -1,0 +1,45 @@
+2023-06-03:
+  MLGTASTICa:
+  - bugfix: Fixed tripping on plating not playing sounds and the text when it happens.
+  Mycah142:
+  - rscadd: Honey Extractor Circuit to NT Bee Crate
+  - rscadd: Crate Disposal Chute
+  - bugfix: Humon's god damn gaping club hole
+  ValoTheValo:
+  - rscdel: Bigshot mask no longer spawns naturally
+2023-06-10:
+  Firefox13:
+  - code_imp: Reverted SSChunks and Damage Types
+  MLGTASTICa:
+  - balance: Returned armored coats to the same slowdown as armored vests.
+  ValoTheValo:
+  - bugfix: fixed the mk58 not fitting in holster
+  - bugfix: fixed the "Gun" Spawning in maint
+  assortedbeads:
+  - code_imp: Bulky Weapons Lost Double Tac When Wielded
+  maikilangiolo:
+  - rscadd: added 40-round shotgun ammo packets
+  - rscadd: added a short, 8-round shotgun magazine
+  - balance: shotgun ammo boxes are now bulky and fit 160 shells
+  - balance: shotgun drums are now normal sized and fit 16 shells
+  - bugfix: fixed the confusing name for slugs in the trade stations
+  - balance: hellcat now only sells shotgun ammo packets. unlock higher ammo stations
+      for the boxes
+  - balance: the crafting station can craft scrap ammo shotgun boxes for 30 points
+      each. Only high MECH characters can craft them.
+2023-06-17:
+  Chickenish:
+  - rscadd: Bowls now use a unique storage system capable of holding both items and
+      reagents.
+  Mycah142:
+  - rscadd: Added Relay to the Pulsar Sat
+  - bugfix: fixed last Tosshin reference to Kadmin
+  RikuTheKiller:
+  - balance: Chemicals no longer take their volume into account when processing. This
+      should lead to far more predictable reagent behaviour.
+  - balance: Removed all limits on reagent metabolization modifiers. This means giving
+      yourself 10 hearts is even funnier now.
+  - rscadd: Having a highly efficient heart may cause elevated bleeding, exercise
+      caution.
+  maikilangiolo:
+  - bugfix: fixed buckshot box being invisible when full

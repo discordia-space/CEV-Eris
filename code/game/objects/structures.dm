@@ -5,10 +5,31 @@
 	rarity_value = 10
 	//spawn_tags = SPAWN_TAG_STRUCTURE
 	bad_type = /obj/structure
+	var/health = 100
+	var/maxHealth = 100
+	var/explosion_coverage = 0
 	var/climbable
 	var/breakable
 	var/parts
 	var/list/climbers = list()
+
+/obj/structure/proc/get_health_ratio()
+	if(health)
+		return health/maxHealth
+	else
+		return 1/maxHealth
+
+// Should  always return the amount of damage done
+/obj/structure/proc/take_damage(damage)
+	// Blocked amount
+	. = health - damage < 0 ? damage - (damage - health) : damage
+	. *= explosion_coverage
+	health -= damage
+	if(health < 0)
+		qdel(src)
+	return
+
+
 
 /**
  * An overridable proc used by SSfalling to determine whether if the object deals
@@ -20,7 +41,7 @@
  * Values are found in code/__defines/inventory_sizes.dm
  */
 /obj/structure/get_fall_damage(var/turf/from, var/turf/dest)
-	var/damage = w_class * 10
+	var/damage = w_class * 10 * get_health_ratio()
 
 	if (from && dest)
 		damage *= abs(from.z - dest.z)
@@ -52,17 +73,9 @@
 /obj/structure/attack_tk()
 	return
 
-/obj/structure/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			if(prob(50))
-				qdel(src)
-				return
-		if(3)
-			return
+/obj/structure/explosion_act(target_power, explosion_handler/handler)
+	var/absorbed = take_damage(target_power)
+	return absorbed
 
 /obj/structure/New()
 	..()

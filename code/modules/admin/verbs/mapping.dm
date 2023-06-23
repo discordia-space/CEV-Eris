@@ -133,7 +133,7 @@ var/list/debug_verbs = list (
 	,/client/proc/startSinglo
 	,/client/proc/set_server_fps
 	,/client/proc/cmd_admin_grantfullaccess
-	,/client/proc/kaboom
+//	,/client/proc/kaboom
 	,/client/proc/cmd_admin_areatest
 	,/client/proc/cmd_admin_rejuvenate
 	,/datum/admins/proc/show_contractor_panel

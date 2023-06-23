@@ -42,23 +42,16 @@
 	<div class="itemLabel">
 		Mode:
 	</div>
-	<div class="itemContent">
-		{{:helper.link('Separation (Transfers reagents from main beaker between separation beakers)', '', { 'setMode' : 0 }, data.mode == 0 ? 'selected' : data.on ? 'disabled' : null)}}
-		{{:helper.link('Synthesis (Separates antibodies from blood)',  '', { 'setMode' : 1 }, data.mode == 1 ? 'selected' : data.on ? 'disabled' : null)}}
-		{{if !data.minimal}}
-			{{:helper.link('Isolation (Isolates a virus sample from blood)',  '', { 'setMode' : 2 }, data.mode == 2 ? 'selected' : data.on ? 'disabled' : null)}}
-		{{/if}}
-	</div>
 {{if data.cycleTime}}
 	<div class="itemLabel">
 		Cycle time:
 	</div>
 	<div class="itemContent">
-		{{:helper.link('5',  'clock', { 'setTime' : 5  }, data.cycleTime == 5  ? 'selected' : data.on || data.mode == 2 ? 'disabled' : null)}}
-		{{:helper.link('10', 'clock', { 'setTime' : 10 }, data.cycleTime == 10 ? 'selected' : data.on || data.mode == 2 ? 'disabled' : null)}}
-		{{:helper.link('15', 'clock', { 'setTime' : 15 }, data.cycleTime == 15 ? 'selected' : data.on || data.mode == 2 ? 'disabled' : null)}}
-		{{:helper.link('30', 'clock', { 'setTime' : 30 }, data.cycleTime == 30 ? 'selected' : data.on || data.mode == 2 ? 'disabled' : null)}}
-		{{:helper.link('60', 'clock', { 'setTime' : 60 }, data.cycleTime == 60 ? 'selected' : data.on || data.mode == 2 ? 'disabled' : null)}}
+		{{:helper.link('5',  'clock', { 'setTime' : 5  }, data.cycleTime == 5  ? 'selected' : data.on ? 'disabled' : null)}}
+		{{:helper.link('10', 'clock', { 'setTime' : 10 }, data.cycleTime == 10 ? 'selected' : data.on ? 'disabled' : null)}}
+		{{:helper.link('15', 'clock', { 'setTime' : 15 }, data.cycleTime == 15 ? 'selected' : data.on ? 'disabled' : null)}}
+		{{:helper.link('30', 'clock', { 'setTime' : 30 }, data.cycleTime == 30 ? 'selected' : data.on ? 'disabled' : null)}}
+		{{:helper.link('60', 'clock', { 'setTime' : 60 }, data.cycleTime == 60 ? 'selected' : data.on ? 'disabled' : null)}}
 	</div>
 {{/if}}
 

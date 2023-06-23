@@ -65,6 +65,8 @@
 
 	var/core_removal_stage = 0 //For removing cores.
 
+	injury_type = INJURY_TYPE_HOMOGENOUS
+
 /mob/living/carbon/slime/New(var/location, var/colour="grey")
 
 	verbs += /mob/living/proc/ventcrawl
@@ -186,30 +188,11 @@
 	powerlevel = 0 // oh no, the power!
 	..()
 
-/mob/living/carbon/slime/ex_act(severity)
-	..()
-
-	var/b_loss = null
-	var/f_loss = null
-	switch (severity)
-		if (1)
-			qdel(src)
-			return
-
-		if (2)
-
-			b_loss += 60
-			f_loss += 60
-
-
-		if(3)
-			b_loss += 30
-
-	adjustBruteLoss(b_loss)
-	adjustFireLoss(f_loss)
-
+/mob/living/carbon/slime/explosion_act(target_power, explosion_handler/handler)
+	adjustBruteLoss(round(target_power))
+	adjustFireLoss(round(target_power))
 	updatehealth()
-
+	return 0
 
 /mob/living/carbon/slime/u_equip(obj/item/W as obj)
 	return

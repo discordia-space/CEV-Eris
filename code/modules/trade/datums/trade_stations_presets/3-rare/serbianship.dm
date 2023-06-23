@@ -26,6 +26,7 @@
 			/obj/item/ammo_magazine/lrifle,
 			/obj/item/ammo_magazine/lrifle/pk = custom_good_amount_range(list(1, 2)),
 			/obj/item/ammo_magazine/lrifle/drum = custom_good_amount_range(list(2, 5)),
+			/obj/item/ammo_magazine/m12/short/empty,
 			/obj/item/ammo_magazine/m12/empty,
 			/obj/item/ammo_magazine/ammobox/shotgun,
 			/obj/item/ammo_magazine/ammobox/shotgun/buckshot = custom_good_name("ammunition box (.50 pellet)"),

@@ -70,21 +70,27 @@
 			explode(get_turf(target))
 
 /obj/item/plastique/proc/explode(location)
+	var/cur_turf = get_turf(src)
 	if(!target)
 		target = get_atom_on_turf(src)
 	if(!target)
 		target = src
-	if(location)
-		explosion(location, -1, -1, 2, 3)
-
+	if(target != src)
+		target.explosion_act(1000, null)
+	else if(location)
+		target = get_turf(location)
+		target.explosion_act(1000, null)
+	explosion(cur_turf, 400, 180)
+	/*
 	if(target)
 		if (istype(target, /turf/simulated/wall))
 			var/turf/simulated/wall/W = target
 			W.dismantle_wall(no_product = TRUE)
 		else if(isliving(target))
-			target.ex_act(2) // c4 can't gib mobs anymore.
+			target.explosion_act(1000) // c4 can't gib mobs anymore.
 		else
-			target.ex_act(1)
+			target.explosion_act(1000)
+	*/
 
 	//Girders are a pain, just delete em
 	//for (var/obj/structure/girder/G in loc)

@@ -44,7 +44,7 @@
 		..()
 
 /obj/item/implant/carrion_spider/holographic/afterattack(atom/target, mob/user, proximity)
-	if(istype(target, /obj/item/storage)) 
+	if(istype(target, /obj/item/storage))
 		return
 	if(!proximity || dummy_active || !scan_mobs)
 		return
@@ -53,7 +53,7 @@
 	to_chat(user, SPAN_NOTICE("Scanned [target]."))
 	saved_name = target.name
 	saved_item = target
-	saved_type = target.type 
+	saved_type = target.type
 	saved_icon = target.icon
 	saved_icon_state = target.icon_state
 	saved_description = target.desc
@@ -63,7 +63,7 @@
 	spider_appearance = src.appearance
 	saved_layer = target.layer
 	saved_original_plane = target.original_plane
-	if(isobj(target))	
+	if(isobj(target))
 		var/obj/O = target
 		saved_item_state = O.item_state
 		saved_w_class = O.w_class
@@ -72,7 +72,7 @@
 	return
 
 /obj/item/implant/carrion_spider/holographic/proc/toggle()
-	if(!can_use || !saved_item) 
+	if(!can_use || !saved_item)
 		return
 	if(dummy_active)
 		dummy_active = FALSE
@@ -96,7 +96,7 @@
 			to_chat(owner_mob, SPAN_NOTICE("The [src] does not have anything scanned."))
 			return
 		else
-			activate_holo(saved_name, saved_icon, saved_icon_state, saved_description, saved_dir, saved_appearance, saved_item_state)		
+			activate_holo(saved_name, saved_icon, saved_icon_state, saved_description, saved_dir, saved_appearance, saved_item_state)
 			to_chat(owner_mob, SPAN_NOTICE("You activate the [src]."))
 
 /obj/item/implant/carrion_spider/holographic/proc/activate_holo(new_name, new_icon, new_iconstate, new_description, new_dir, new_appearance, new_item_state)
@@ -106,7 +106,7 @@
 	icon_state = new_iconstate
 	item_state = new_item_state
 	appearance = new_appearance
-	set_dir(new_dir) 
+	set_dir(new_dir)
 	if(is_equipped(src))
 		plane = ABOVE_HUD_PLANE
 		layer = ABOVE_HUD_LAYER
@@ -211,15 +211,17 @@
 	if(dummy_active)
 		toggle()
 		can_use = 0
-		spawn(5 SECONDS) 
+		spawn(5 SECONDS)
 			can_use = 1
 
 /obj/item/implant/carrion_spider/holographic/attackby()
 	..()
 	disrupt()
 
-/obj/item/implant/carrion_spider/holographic/ex_act()
-	..()
+/obj/item/implant/carrion_spider/holographic/explosion_act(target_power, explosion_handler/handler)
+	. = ..()
+	if(QDELETED(src))
+		return
 	disrupt()
 
 /obj/item/implant/carrion_spider/holographic/bullet_act()
