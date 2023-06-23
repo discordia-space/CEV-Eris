@@ -116,51 +116,6 @@ SUBSYSTEM_DEF(chunks)
 					returnValue += hearerToCheck
 	return returnValue
 
-/mob/proc/wnm()
-	var/list/returns = getMobsInRangeChunked(src, 8, FALSE)
-	for(var/atom/thing in returns)
-		message_admins(thing.name)
-
-/mob/proc/hearerchunks()
-	var/atom/source = src
-	var/range = input(usr, "range", "reee", 8)
-	if(!source || !range)
-		return
-	var/atom/container = source.getContainingAtom(source)
-	var/list/returnValue = list()
-	if(container.z == 0)
-		return returnValue
-	var/coordinates = list(container.x - range, container.y - range, container.x + range,  container.y + range)
-	if(coordinates[1] == 0)
-		coordinates[1] = 1
-	if(coordinates[2] == 0)
-		coordinates[2] = 1
-	if(coordinates[3] > world.maxx)
-		coordinates[3] = world.maxx
-	if(coordinates[4] > world.maxy)
-		coordinates[4] = world.maxy
-	var/datum/chunk/chunkReference
-	var/turf/containerTurf = get_turf(container)
-	var/checked = 0
-	if(containerTurf == null)
-		return returnValue
-	for(var/chunkX = coordinates[1], chunkX <= coordinates[3], chunkX += CHUNK_SIZE)
-		for(var/chunkY = coordinates[2], chunkY <= coordinates[4], chunkY += CHUNK_SIZE)
-			message_admins("Checking chunkID [CHUNKID(chunkX, chunkY)], X [chunkX] Y [chunkY] from [source], with a usr of [usr] with a range of [range], [checked]'th chunk")
-			checked++
-			chunkReference = SSchunks.chunk_list_by_zlevel[container.z][CHUNKID(chunkX, chunkY)]
-			for(var/obj/hearerToCheck as anything in chunkReference.hearers)
-				var/turf/hearerTurf = get_turf(hearerToCheck)
-				if(!hearerTurf)
-					continue
-				if(DIST_EUCLIDIAN(containerTurf.x, containerTurf.y, hearerTurf.x, hearerTurf.y) < range)
-					if(!can_see(source, get_turf(hearerToCheck), range * 2))
-						continue
-					returnValue += hearerToCheck
-	for(var/atom/thing in returnValue)
-		message_admins("[thing]")
-	return returnValue
-
 /// Mob tracking and handling
 /mob/proc/chunkOnMove(atom/source, atom/oldLocation, atom/newLocation)
 	SIGNAL_HANDLER
