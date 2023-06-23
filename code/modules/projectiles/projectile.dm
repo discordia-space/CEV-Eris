@@ -161,7 +161,7 @@
     impact_effect(effect_transform)
     if(luminosity_ttl && attached_effect)
         spawn(luminosity_ttl)
-        qdel(attached_effect)
+        QDEL_NULL(attached_effect)
 
     if(!ismob(A))
         playsound(src, hitsound_wall, 50, 1, -2)
