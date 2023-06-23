@@ -1,0 +1,4 @@
+author: Mycah142
+delete-after: true
+changes:
+  - bugfix: Fixed Pulsar Relay not being appropriately linked to the HUB on the Eris.
