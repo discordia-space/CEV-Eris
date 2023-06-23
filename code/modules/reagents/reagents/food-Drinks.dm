@@ -940,7 +940,7 @@
 	color = "#FF004F"
 	taste_tag = list(TASTE_SWEET)
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "grenadineglass"
 	glass_name = "grenadine syrup"
 	glass_desc = "Sweet and tangy, a bar syrup used to add color or flavor to drinks."
@@ -952,12 +952,12 @@
 	description = "A refreshing beverage."
 	taste_description = "cola"
 	reagent_state = LIQUID
-	color = "#220500"
+	color = "#55433D"
 	adj_drowsy = -3
 	adj_temp = -5
 	taste_tag = list(TASTE_SWEET,TASTE_BUBBLY)
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "glass_brown"
 	glass_name = "Space Cola"
 	glass_desc = "Ah, refreshing Space Cola!"
@@ -1245,7 +1245,7 @@
 	id = "ale"
 	description = "A dark alcoholic beverage made by malted barley and yeast."
 	taste_description = "hearty barley ale"
-	color = "#664300"
+	color = "#986164"
 	strength = 25
 
 	glass_unique_appearance = TRUE
@@ -1260,11 +1260,11 @@
 	id = "beer"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water."
 	taste_description = "piss water"
-	color = "#664300"
+	color = "#BE772B"
 	strength = 35
 	nutriment_factor = 1
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "beerglass"
 	glass_name = "beer"
 	glass_desc = "A freezing pint of beer"
@@ -1331,7 +1331,7 @@
 	id = "gin"
 	description = "A distilled alcoholic drink that derives its predominant flavour from juniper berries."
 	taste_description = "an alcoholic christmas tree"
-	color = "#664300"
+	color = "#D0DFEC"
 	strength = 25
 	taste_tag = list(TASTE_STRONG,TASTE_DRY)
 
@@ -1394,7 +1394,7 @@
 	description = "Distilled alcoholic drink made from sugarcane byproducts"
 	taste_description = "spiked butterscotch"
 	taste_mult = 1.1
-	color = "#664300"
+	color = "#623434"
 	strength = 15
 
 	glass_unique_appearance = TRUE
@@ -1409,7 +1409,7 @@
 	id = "sake"
 	description = " Alcoholic beverage made by fermenting rice that has been polished."
 	taste_description = "dry alcohol"
-	color = "#664300"
+	color = "#D0DFEC"
 	strength = 25
 
 	glass_unique_appearance = TRUE
@@ -1424,7 +1424,7 @@
 	id = "tequilla"
 	description = "A strong and mildly flavoured, mexican produced spirit."
 	taste_description = "paint stripper"
-	color = "#FFFF91"
+	color = "#D6D9B2"
 	strength = 8
 
 	glass_unique_appearance = TRUE
@@ -1467,7 +1467,7 @@
 	color = "#91FF91" // rgb: 145, 255, 145
 	strength = 15
 
-	glass_unique_appearance = TRUE
+	//glass_unique_appearance = TRUE
 	glass_icon_state = "vermouthglass"
 	glass_name = "vermouth"
 	glass_desc = "You wonder why you're even drinking this straight."
@@ -1479,7 +1479,7 @@
 	id = "vodka"
 	description = "Clear distilled alcoholic beverage that originates from Poland and Russia."
 	taste_description = "grain alcohol"
-	color = "#358adf" // rgb: 0, 100, 200
+	color = "#68BACA" // rgb: 0, 100, 200
 	strength = 5
 
 	glass_unique_appearance = TRUE
@@ -1522,6 +1522,7 @@
 	glass_desc = "A very classy looking drink."
 	glass_center_of_mass = list("x"=15, "y"=7)
 	taste_tag = list(TASTE_SWEET, TASTE_BITTER)
+
 
 /datum/reagent/alcohol/ntcahors
 	name = "NeoTheology Cahors Wine"
@@ -1718,7 +1719,7 @@
 	id = "barefoot"
 	description = "Barefoot and pregnant"
 	taste_description = "creamy berries"
-	color = "#664300"
+	color = "#CE93DC"
 	strength = 30
 	sanity_gain_ingest = 0.75
 
@@ -2654,6 +2655,13 @@
 	taste_tag = list(TASTE_SOUR, TASTE_BUBBLY)
 	withdrawal_threshold = 10
 
+	glass_unique_appearance = TRUE
+	glass_icon_state = "roach_beer"
+	glass_name = "Kakerlakenbier"
+	glass_desc = "A green-ish substance made out of diplopterum, beer and fuel mixed with water. Doesn\'t look nor smell like beer..."
+	glass_center_of_mass = list("x"=16, "y"=12)
+
+
 /datum/reagent/alcohol/roachbeer/apply_sanity_effect(mob/living/carbon/human/H, effect_multiplier)
 	if(H.stats.getPerk(PERK_VAGABOND))	// increases sanity_gain to 3 if true
 		effect_multiplier *= 2
@@ -2690,6 +2698,12 @@
 	addiction_threshold = 30
 	sanity_gain_ingest = 3
 	taste_tag = list(TASTE_SOUR, TASTE_BUBBLY, TASTE_STRONG)
+
+	glass_unique_appearance = TRUE
+	glass_icon_state = "kaiser_beer"
+	glass_name = "Monarchenblut"
+	glass_desc = "An improvised stimulant made out of Kaiser and Fuhrer roach blood."
+	glass_center_of_mass = list("x"=16, "y"=12)
 
 /datum/reagent/alcohol/kaiserbeer/affect_ingest(mob/living/carbon/M, alien, effect_multiplier) ////// checks user for having a vagabond perk,
 	..()
