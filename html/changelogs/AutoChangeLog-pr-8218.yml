@@ -1,0 +1,21 @@
+author: Vandu-jr, Cringelord, Watler'Je, de_dust_2
+delete-after: true
+changes:
+  - rscadd: new sprites for the Generic Robot limbs
+  - rscadd: generic robot torso, groin, and head to the augmentation menu in setup
+  - rscadd: new sprites for the jar
+  - rscadd: new sprites for the Space Mountain Wind (Mountain Dew) and Space Up (7-Up)
+      full-sized bottles
+  - rscadd: Space Mt. Wind, Space Cola, and Space-Up full-sized bottles to the soda
+      vending machine for 100 credits (they contain 100 units each)
+  - rscadd: new sprites for roach and kaiser beer
+  - rscadd: new sprites for the cigarettes
+  - rscadd: new sprites for the generic, medical, and dinnerware vendors
+  - rscadd: new sprites for the Emeraldine and Miss Blue Caracao bottles
+  - rscadd: the security hud sunglasses to the loadout for IH
+  - tweak: all of the common alcohols have had their colors remapped to something
+      more fitting along with making them no longer use their unique sprites (because
+      they use default one)
+  - tweak: the jar now uses a different path so it functions properly like a beaker
+  - bugfix: fixed a bug with the beaker's reagent-filling sprites, it stuck out a
+      pixel below the actual beaker when completely full
