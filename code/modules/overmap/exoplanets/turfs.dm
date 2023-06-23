@@ -44,13 +44,11 @@
 	else
 		..()*/
 
-/turf/simulated/floor/exoplanet/ex_act(severity)
-	switch(severity)
-		if(1)
-			ChangeTurf(get_base_turf_by_area(src))
-		if(2)
-			if(prob(40))
-				ChangeTurf(get_base_turf_by_area(src))
+/turf/simulated/floor/exoplanet/explosion_act(target_power, explosion_handler/handler)
+	if(target_power > health)
+		ChangeTurf(get_base_turf_by_area(src))
+	. = ..()
+
 /*
 /turf/simulated/floor/exoplanet/water/is_flooded(lying_mob, absolute)
 	. = absolute ? ..() : lying_mob*/

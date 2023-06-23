@@ -255,18 +255,9 @@
 		for (var/obj/effect/blob/B in blob_neighbors)
 			B.set_awake()
 
-
-/obj/effect/blob/ex_act(var/severity)
-	switch(severity)
-		if(1)
-			take_damage(rand(100, 120) / brute_resist)
-		if(2)
-			take_damage(rand(60, 100) / brute_resist)
-		if(3)
-			take_damage(rand(20, 60) / brute_resist)
-		if(4)
-			take_damage(rand(10, 30) / brute_resist)
-
+/obj/effect/blob/explosion_act(target_power, explosion_handler/handle)
+	take_damage(round(target_power / brute_resist))
+	return 0
 
 /obj/effect/blob/fire_act()
 	take_damage(rand(20, 60) / fire_resist)
@@ -342,11 +333,11 @@
 
 	var/obj/vehicle/V = locate() in T
 	if(V)
-		V.ex_act(2)
+		V.explosion_act(500, null)
 		return
 	var/obj/machinery/bot/B = locate() in T
 	if(B)
-		B.ex_act(2)
+		B.explosion_act(500, null)
 		return
 
 	T.Enter(src) //This should make them travel down stairs

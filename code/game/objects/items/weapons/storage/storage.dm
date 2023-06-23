@@ -24,6 +24,8 @@
 	var/is_tray_hidden = FALSE //hides from even t-rays
 	var/prespawned_content_amount // Number of items storage should initially contain
 	var/prespawned_content_type // Type of items storage should contain, takes effect if variable above is at least 1
+	health = 500
+	maxHealth = 500
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()

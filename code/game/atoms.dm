@@ -415,8 +415,10 @@ its easier to just keep the beam vertical.
 /atom/proc/container_dir_changed(new_dir)
 	return
 
-/atom/proc/ex_act()
-	return
+// Explosion action proc , should never SLEEP, and should avoid icon updates , overlays and other visual stuff as much as possible , since they cause massive time delays
+// in explosion processing.
+/atom/proc/explosion_act(target_power, explosion_handler/handler)
+	return 0
 
 /atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
 	return NO_EMAG_ACT
@@ -758,8 +760,8 @@ its easier to just keep the beam vertical.
 
 //Bullethole shit.
 /atom/proc/create_bullethole(var/obj/item/projectile/Proj)
-	var/p_x = Proj.p_x + pick(0,0,0,0,0,-1,1) // really ugly way of coding "sometimes offset Proj.p_x!"
-	var/p_y = Proj.p_y + pick(0,0,0,0,0,-1,1) // Used for bulletholes
+	var/p_x = Proj.p_x + rand(-8,8) // really ugly way of coding "sometimes offset Proj.p_x!"
+	var/p_y = Proj.p_y + rand(-8,8) // Used for bulletholes
 	var/obj/effect/overlay/bmark/BM = new(src)
 
 	BM.pixel_x = p_x

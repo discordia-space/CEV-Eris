@@ -155,7 +155,7 @@
 					empulse(src.loc, 3, 8, 1)
 			if (overcharge_percent >= 150)
 				if (prob(1))
-					explosion(src.loc, 0, 1, 3, 5)
+					explosion(get_turf(src), 500, 100)
 		if ((3.6e6+1) to INFINITY)
 			if (overcharge_percent >= 115)
 				if (prob(8))
@@ -167,7 +167,7 @@
 					empulse(src.loc, 4, 10, 1)
 			if (overcharge_percent >= 140)
 				if (prob(1))
-					explosion(src.loc, 1, 3, 5, 8)
+					explosion(get_turf(src), 500, 50)
 		else //how the hell was this proc called for negative charge
 			charge = 0
 

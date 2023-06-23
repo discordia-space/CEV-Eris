@@ -88,6 +88,7 @@
 // The numbers just define the ordering, they are meaningless otherwise.
 
 #define INIT_ORDER_GARBAGE 99
+#define INIT_ORDER_EXPLOSIONS 98
 #define INIT_ORDER_SKYBOX 20
 #define INIT_ORDER_DBCORE 19
 #define INIT_ORDER_BLACKBOX 18

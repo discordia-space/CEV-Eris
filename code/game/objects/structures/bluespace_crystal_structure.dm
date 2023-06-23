@@ -56,7 +56,7 @@
 		if(!(I.flags & NOBLUDGEON))
 			user.do_attack_animation(src)
 			if(I.type in explosion_items)
-				explosion(src.loc, 0, 1, 2, 3, 0)
+				explosion(get_turf(src), 200, 50)
 				qdel(I)
 				qdel(src)
 			if(I.hitsound)
@@ -78,7 +78,7 @@
 	if(isobj(AM))
 		var/obj/O = AM
 		if(O.type in explosion_items)
-			explosion(src.loc, 0, 1, 2, 3, 0)
+			explosion(src.loc, 200, 50)
 			qdel(AM)
 			qdel(src)
 	if(ismob(AM) || isobj(AM))

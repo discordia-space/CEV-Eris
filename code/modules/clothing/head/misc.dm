@@ -303,7 +303,7 @@
 		melee = 2,
 		bullet = 10,
 		energy = 10,
-		bomb = 10,
+		bomb = 50,
 		bio = 5,
 		rad = 5
 	)

@@ -101,47 +101,44 @@
 		return
 	..(duration, drop_items, doblind, doblurry)
 
-/mob/living/carbon/human/ex_act(severity, epicenter)
-	flash(5, FALSE, TRUE , TRUE, 5)
+/mob/living/carbon/human/explosion_act(target_power, explosion_handler/handle)
+	var/BombDamage = target_power - (getarmor(null, ARMOR_BOMB) + mob_bomb_defense)
+	var/obj/item/rig/hardsuitChad = back
+	if(back && istype(hardsuitChad))
+		BombDamage -= hardsuitChad.block_explosion(src, target_power)
+	var/BlockCoefficient = 0.2
+	if(handle)
+		var/ThrowTurf = get_turf(src)
+		var/ThrowDistance = round(target_power / 100)
+		if(ThrowTurf != handle.epicenter && ThrowDistance)
+			ThrowTurf = get_turf_away_from_target_simple(src, handle.epicenter, 8)
+			throw_at(ThrowTurf, ThrowDistance, ThrowDistance, "explosion")
+		// Heroic sacrifice
+		else if(ThrowTurf == handle.epicenter && lying)
+			if(BombDamage > 500)
+				BlockCoefficient = 0.8
+		if(BombDamage < 0)
+			return target_power * BlockCoefficient
 
-	var/b_loss = 0
-	var/bomb_defense = getarmor(null, ARMOR_BOMB) + mob_bomb_defense
-	var/target_turf // null means epicenter is same tile
-	if(epicenter != get_turf(src))
-		target_turf = get_turf_away_from_target_simple(src, epicenter, 8)
-	var/throw_distance = 8 - 2*severity
-	if(target_turf) // this means explosions on the same tile will not fling you
-		throw_at(target_turf, throw_distance, 5)
-	switch(severity)
-		if(1)
-			b_loss += 500
-			if(!prob(bomb_defense))
-				gib()
-				return
-		if(2)
-			b_loss = 120
-			if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-				adjustEarDamage(30, 120)
+	// 10% reduction for  takin cover down i guess
+	if(lying && BlockCoefficient != 0.8)
+		BombDamage *= 0.9
+		BlockCoefficient = 0.1
 
-		if(3)
-			b_loss += 80
-			if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-				adjustEarDamage(15, 60)
-		if(4)
-			b_loss += 50
-			if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-				adjustEarDamage(10, 30)
+	if(BombDamage > 1000)
+		gib()
 
-	if(bomb_defense)
-		b_loss = max(b_loss - bomb_defense, 0)
+	else if(BombDamage > 600)
+		var/earProtection = earcheck()
+		if(earProtection * 100 < BombDamage)
+			adjustEarDamage((BombDamage - earProtection*100)/ 10,(BombDamage - earProtection*100)/ 100)
 
-	var/organ_hit = BP_CHEST //Chest is hit first
-	var/exp_damage = 0
-	while(b_loss > 0)
-		b_loss -= exp_damage
-		exp_damage = rand(0, b_loss)
-		src.apply_damage(exp_damage, BRUTE, organ_hit)
-		organ_hit = pickweight(list(BP_HEAD = 0.1, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG = 0.1, BP_L_LEG = 0.1))  //We determine some other body parts that should be hit
+	var/DamageToApply = round(BombDamage / 4)
+
+	for(var/limb in BP_BY_DEPTH)
+		if (limb in organ_rel_size)
+			apply_damage(DamageToApply * (organ_rel_size[limb] / 100), BRUTE, limb)
+	return BombDamage * BlockCoefficient
 
 /mob/living/carbon/human/restrained()
 	if(handcuffed)
@@ -600,6 +597,13 @@ var/list/rank_prefix = list(\
 		return FLASH_PROTECTION_MAJOR
 
 	return flash_protection
+
+/mob/living/carbon/human/earcheck()
+	if(istype(l_ear, /obj/item/clothing/ears/earmuffs) || istype(r_ear, /obj/item/clothing/ears/earmuffs))
+		. += 2
+	if(istype(head, /obj/item/clothing/head/armor/helmet))
+		. += 1
+	return .
 
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.

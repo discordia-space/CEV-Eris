@@ -37,6 +37,8 @@
 	#define MED_HUD 2 //Medical HUD mode
 	mob_classification = CLASSIFICATION_SYNTHETIC
 
+	injury_type = INJURY_TYPE_UNLIVING // Has no soft vitals, but also contains delicate electronics
+
 /mob/living/silicon/Initialize()
 	GLOB.silicon_mob_list |= src
 	. = ..()
@@ -249,28 +251,11 @@
 /mob/living/silicon/binarycheck()
 	return 1
 
-/mob/living/silicon/ex_act(severity)
-	flash(0, FALSE, FALSE, FALSE)
-
-	switch(severity)
-		if(1)
-			if (stat != 2)
-				adjustBruteLoss(100)
-				adjustFireLoss(100)
-				if(!anchored)
-					gib()
-		if(2)
-			if (stat != 2)
-				adjustBruteLoss(60)
-				adjustFireLoss(60)
-		if(3)
-			if (stat != 2)
-				adjustBruteLoss(30)
-		if(4)
-			if (stat != 2)
-				adjustBruteLoss(15)
-
+/mob/living/silicon/explosion_act(target_power, explosion_handler/handler)
+	adjustBruteLoss(target_power/2)
+	adjustFireLoss(target_power/2)
 	updatehealth()
+	return 0
 
 /mob/living/silicon/proc/receive_alarm(var/datum/alarm_handler/alarm_handler, var/datum/alarm/alarm, was_raised)
 	if(!next_alarm_notice)

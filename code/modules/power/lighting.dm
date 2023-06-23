@@ -623,23 +623,15 @@
 // explosion effect
 // destroy the whole light fixture or just shatter it
 
-/obj/machinery/light/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			if (prob(75))
-				broken()
-		if(3)
-			if (prob(50))
-				broken()
-	return
+/obj/machinery/light/take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return 0
+	broken()
 
 // called when area power state changes
 /obj/machinery/light/power_change()
-	spawn(10)
-		seton(has_power())
+	seton(has_power())
 
 // called when on fire
 
@@ -650,13 +642,11 @@
 // explode the light
 
 /obj/machinery/light/proc/explode()
-	var/turf/T = get_turf(src.loc)
-	spawn(0)
-		broken()	// break it first to give a warning
-		sleep(2)
-		explosion(T, 0, 0, 2, 2)
-		sleep(1)
-		qdel(src)
+	broken()	// break it first to give a warning
+	sleep(2)
+	explosion(get_turf(src), 60, 20)
+	sleep(1)
+	qdel(src)
 
 // the light item
 // can be tube or bulb subtypes
