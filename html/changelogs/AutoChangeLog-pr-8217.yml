@@ -1,0 +1,5 @@
+author: TheShown911
+delete-after: true
+changes:
+  - rscadd: Disconnecting the pulsar disables the negative events too.
+  - tweak: Reconnecting the pulsar now has a 5 minute cooldown.
