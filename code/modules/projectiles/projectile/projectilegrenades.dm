@@ -18,7 +18,9 @@
 		..()
 
 /obj/item/projectile/bullet/grenade/on_hit(atom/target)	//Allows us to cause different effects for each grenade shell on hit
+	..()
 	grenade_effect(target)
+	qdel(src)
 
 /obj/item/projectile/bullet/grenade/proc/grenade_effect(target)
 	return
