@@ -37,6 +37,7 @@
 	serial_type = "SA"
 	action_button_name = "Switch zoom level"
 	action_button_proc = "switch_zoom"
+	move_delay = 3
 
 /obj/item/part/gun/frame/heavysniper
 	name = "Hristov frame"

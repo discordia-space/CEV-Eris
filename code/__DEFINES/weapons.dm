@@ -70,21 +70,21 @@
 #define FULL_AUTO_600		list(mode_name = "full auto",  mode_desc = "600 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 2  , icon="auto")
 #define FULL_AUTO_800		list(mode_name = "fuller auto",  mode_desc = "800 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 1.6, icon="auto")
 
-#define SEMI_AUTO_300	list(mode_name = "semiauto",  mode_desc = "Fire as fast as you can pull the trigger", burst=1, fire_delay=4, move_delay=null, icon="semi")
+#define SEMI_AUTO_300	list(mode_name = "semiauto",  mode_desc = "Fire as fast as you can pull the trigger", burst=1, fire_delay=4, icon="semi")
 
 //Cog firemode
-#define BURST_2_BEAM		list(mode_name="2-beam bursts", mode_desc = "Short, controlled bursts", burst=2, fire_delay=null, move_delay=2, icon="burst")
+#define BURST_2_BEAM		list(mode_name="2-beam bursts", mode_desc = "Short, controlled bursts", burst=2, fire_delay=null, icon="burst")
 
-#define BURST_2_ROUND			list(mode_name="2-round bursts", mode_desc = "Short, controlled bursts", burst=2, fire_delay=null, move_delay=2, icon="burst")
-#define BURST_3_ROUND			list(mode_name="3-round bursts", mode_desc = "Short, controlled bursts", burst=3, fire_delay=null, move_delay=4, icon="burst")
-#define BURST_3_ROUND_RAPID		list(mode_name=" High-delay Rapid 3-round bursts", mode_desc = "Short, fast bursts with a higher delay between bursts", burst=3, fire_delay=15, move_delay=4, icon="auto", burst_delay = 0.5)
-#define BURST_3_ROUND_DAMAGE	list(mode_name="3-round bursts", mode_desc = "Short, controlled bursts", burst=3, fire_delay=null, move_delay=4, icon="burst")
-#define BURST_5_ROUND			list(mode_name="5-round bursts", mode_desc = "Short, controlled bursts", burst=5, fire_delay=null, move_delay=6, icon="burst")
-#define BURST_8_ROUND			list(mode_name="8-round bursts", mode_desc = "Short, uncontrolled bursts", burst=8, fire_delay=null, move_delay=8, icon="burst")
+#define BURST_2_ROUND			list(mode_name="2-round bursts", mode_desc = "Short, controlled bursts", burst=2, fire_delay=null, icon="burst")
+#define BURST_3_ROUND			list(mode_name="3-round bursts", mode_desc = "Short, controlled bursts", burst=3, fire_delay=null, icon="burst")
+#define BURST_3_ROUND_RAPID		list(mode_name=" High-delay Rapid 3-round bursts", mode_desc = "Short, fast bursts with a higher delay between bursts", burst=3, fire_delay=15, icon="auto", burst_delay = 0.5)
+#define BURST_3_ROUND_DAMAGE	list(mode_name="3-round bursts", mode_desc = "Short, controlled bursts", burst=3, fire_delay=null, icon="burst")
+#define BURST_5_ROUND			list(mode_name="5-round bursts", mode_desc = "Short, controlled bursts", burst=5, fire_delay=null, icon="burst")
+#define BURST_8_ROUND			list(mode_name="8-round bursts", mode_desc = "Short, uncontrolled bursts", burst=8, fire_delay=null, icon="burst")
 
 //SMG rapid
-#define BURST_3_ROUND_SMG	list(mode_name=" High-delay Rapid 3-round bursts", mode_desc = "Short, fast bursts with a short recovery time between bursts to allow the barrel to cool", burst=3, fire_delay=12, move_delay=3, icon="auto", burst_delay = 1.4)
-#define BURST_6_ROUND_SMG	list(mode_name=" High-delay Rapid 6-round bursts", mode_desc = "Long, fast bursts with a long recovery time between bursts to allow the barrel to cool", burst=6, fire_delay=25, move_delay=5, icon="auto", burst_delay = 1.4)
+#define BURST_3_ROUND_SMG	list(mode_name=" High-delay Rapid 3-round bursts", mode_desc = "Short, fast bursts with a short recovery time between bursts to allow the barrel to cool", burst=3, fire_delay=12, icon="auto", burst_delay = 1.4)
+#define BURST_6_ROUND_SMG	list(mode_name=" High-delay Rapid 6-round bursts", mode_desc = "Long, fast bursts with a long recovery time between bursts to allow the barrel to cool", burst=6, fire_delay=25, icon="auto", burst_delay = 1.4)
 
 #define WEAPON_NORMAL		list(mode_name="standard", burst =1, icon="semi")
 #define WEAPON_CHARGE		list(mode_name="charge mode", mode_desc="Hold down the trigger, and let loose a more powerful shot", mode_type = /datum/firemode/charge, icon="charge")
@@ -99,10 +99,11 @@
 
 #define VIG_OVERCHARGE_GEN 0.05
 
-#define EMBEDDED_RECOIL(x)     list(1.3 *x, 0  *x, 0  *x )
-#define HANDGUN_RECOIL(x)      list(1.15*x, 0.1*x, 0.6*x )
-#define SMG_RECOIL(x)          list(1   *x, 0.2*x, 1.2*x )
-#define CARBINE_RECOIL(x)      list(0.85*x, 0.3*x, 1.8*x )
-#define RIFLE_RECOIL(x)        list(0.7 *x, 0.4*x, 2.4*x )
-#define LMG_RECOIL(x)          list(0.55*x, 0.5*x, 3*x   )
-#define HMG_RECOIL(x)          list(0.4 *x, 0.6*x, 3.6*x )
+// Base recoil - Offset while moving - Recoil from being one-handed
+#define EMBEDDED_RECOIL(x)     list(1.3 *x,  3, 0  *x )
+#define HANDGUN_RECOIL(x)      list(1.2 *x,3.5, 0.6*x )
+#define SMG_RECOIL(x)          list(1   *x,  4, 1.2*x )
+#define CARBINE_RECOIL(x)      list(0.9 *x,4.5, 1.8*x )
+#define RIFLE_RECOIL(x)        list(0.8 *x,  5, 2.4*x )
+#define LMG_RECOIL(x)          list(0.7 *x,  8, 3*x   )
+#define HMG_RECOIL(x)          list(0.6 *x, 12, 3.6*x )
