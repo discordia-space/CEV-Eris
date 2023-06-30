@@ -1,0 +1,11 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - rscdel: Removed bracing on tables
+  - bugfix: Foregrip gives foregrip modifier
+  - balance: Standing still improves accuracy when shooting, especially with larger
+      guns
+  - rscdel: Removed recoil gained from movement
+  - balance: Shooting guns no longer stuns your movement
+  - balance: Recoil provides a scaling slowdown
+  - balance: Takeshi stats nerfed, LMG recoil increased
