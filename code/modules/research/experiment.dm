@@ -23,6 +23,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	var/list/saved_autopsy_weapons = list()
 	var/list/saved_symptoms = list()
 	var/list/saved_slimecores = list()
+	var/list/saved_object_types = list() // type = decon_count
 
 	// Special point amount for autopsy weapons
 	var/static/list/special_weapons = list(
@@ -58,6 +59,11 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	var/has_new_tech = FALSE
 	var/is_board = istype(I, /obj/item/electronics/circuitboard)
 
+	// No research value for what has been deconstructed already
+	if(I.type in saved_object_types)
+		// has to be 1 else division by 0
+		return 1
+
 	for(var/T in temp_tech)
 		if(tech_points[T])
 			if(ignoreRepeat)
@@ -84,6 +90,9 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
 		if(!(temp_tech[T] in saved_tech_levels[T]))
 			saved_tech_levels[T] += temp_tech[T]
+
+	if(!(I.type in saved_object_types))
+		saved_object_types += I.type
 
 
 
