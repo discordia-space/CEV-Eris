@@ -97,11 +97,11 @@
 	var/organ_eff = organ_efficiency[process_define]
 	return organ_eff - (organ_eff * (damage / max_damage))
 
-/obj/item/organ/internal/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)	//Deals damage to the organ itself
+/obj/item/organ/internal/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, silent = FALSE, sharp = FALSE, edge = FALSE)	//Deals damage to the organ itself
 	if(!damage_type || status & ORGAN_DEAD)
 		return FALSE
 
-	var/wound_count = max(0, round((amount * wounding_multiplier) / 8))	// At base values, every 8 points of damage is 1 wound
+	var/wound_count = max(0, round(amount / 4))	// At base values, every 8 points of damage is 1 wound
 
 	if(!wound_count)
 		return FALSE
