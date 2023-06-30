@@ -368,12 +368,12 @@
 	if(chosen_species && use_species_name)
 		// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
 		if(is_species_whitelisted(chosen_species) || has_admin_rights())
-			new_character = new(loc, use_species_name)
+			new_character = new(NULLSPACE, use_species_name)
 
 	if(!new_character)
-		new_character = new(loc)
+		new_character = new(NULLSPACE)
 
-	new_character.lastarea = get_area(loc)
+	new_character.lastarea = get_area(NULLSPACE)
 
 	for(var/lang in client.prefs.alternate_languages)
 		var/datum/language/chosen_language = all_languages[lang]
@@ -457,5 +457,5 @@
 /mob/new_player/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0)
 	return
 
-mob/new_player/MayRespawn()
+/mob/new_player/MayRespawn()
 	return 1
