@@ -197,6 +197,8 @@ SUBSYSTEM_DEF(explosions)
 /turf/explosion_act(target_power, explosion_handler/handler)
 	var/power_reduction = 0
 	for(var/atom/movable/thing as anything in contents)
+		if(QDELETED(handler))
+			break
 		if(thing.simulated)
 			power_reduction += thing.explosion_act(target_power, handler)
 			if(!QDELETED(thing) && isobj(thing) && !thing.anchored)
