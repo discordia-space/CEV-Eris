@@ -1,0 +1,4 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - bugfix: no more unlimited speed from wrecked nerves
