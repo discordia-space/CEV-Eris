@@ -78,7 +78,7 @@
 
 /obj/item/clothing/suit/armor/vest/warden/ironhammer
 	name = "Warden's overcoat"
-	desc = "An IH warden's overcoat with a vest over it, most often used in hansa prisons."
+	desc = "An IH warden's overcoat with a vest over it, most often used in Hansa prisons."
 	icon_state = "warden_jacket_IH"
 
 /obj/item/clothing/suit/armor/vest/ironhammer
