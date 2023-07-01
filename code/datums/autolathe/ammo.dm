@@ -195,7 +195,7 @@
 	build_path = /obj/item/ammo_magazine/srifle
 
 /datum/design/autolathe/ammo/srifle/short
-	name = "Short magazine (.20 Rifle)"
+	name = "short magazine (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/srifle/short
 
 /datum/design/autolathe/ammo/srifle/empty
