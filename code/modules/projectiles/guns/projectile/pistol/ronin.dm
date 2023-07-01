@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/ronin
 	name = "SA HG .20 \"Ronin\""
-	desc = " A handgun which was designed with hit and run tactics in mind, not the most powerful firearm but its ability to reliably penetrate armor and ricochet rounds of walls make it a choice for celebrities. and playboys looking to be a nuisance..."
+	desc = "A handgun designed with hit and run tactics in mind, not very powerful but can reliably penetrate armor and ricochet rounds off the walls make it a choice for celebrities and playboys looking to be a nuisance."
 	icon = 'icons/obj/guns/projectile/ronin.dmi'
 	icon_state = "silverhand"
 	item_state = "silverhand"
