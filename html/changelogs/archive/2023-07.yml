@@ -1,6 +1,6 @@
-author: Humonitarian
-delete-after: true
-changes:
+2023-07-01:
+  Humonitarian:
+  - bugfix: no more unlimited speed from wrecked nerves
   - rscdel: Removed bracing on tables
   - bugfix: Foregrip gives foregrip modifier
   - balance: Standing still improves accuracy when shooting, especially with larger
@@ -9,3 +9,8 @@ changes:
   - balance: Shooting guns no longer stuns your movement
   - balance: Recoil provides a scaling slowdown
   - balance: Takeshi stats nerfed, LMG recoil increased
+  - code_imp: some harddeletes resolved
+  MLGTASTICa:
+  - balance: Desctructive analyzer and handheld analyzers no longer receive any points
+      from deconstructing the same objects.
+  - bugfix: Fixed null epicenter runtime
