@@ -35,11 +35,25 @@
 
 /obj/cave_generator/New()
 
+    // Honk
+    generate_map()
+
+/obj/cave_generator/proc/generate_map()
     // Fill the map with random noise
     random_fill_map()
 
     // Place a few corridors to guide the generation
-    place_corridors()
+    generate_corridors()
+
+    // Run the cellular automata to generate the cave system
+    for(var/i = 1 to 3)
+        run_cellular_automata()
+
+    // Generate mineral veins from processed map
+    generate_mineral_veins()
+
+    // Finally place the walls, ores and free space
+    place_turfs()
 
 /obj/cave_generator/proc/random_fill_map()
     // New, empty map
@@ -53,7 +67,7 @@
             else if(prob(CAVE_WALL_PROPORTION))
                 map[i][j] = CAVE_WALL
 
-/obj/cave_generator/proc/place_corridors()
+/obj/cave_generator/proc/generate_corridors()
 
     // Draw a vertical corridor from (CAVE_MARGIN, CAVE_SIZE/2) to (CAVE_SIZE/2, CAVE_SIZE/2)
     // then recursively draw corridors that branches out from it
@@ -130,3 +144,94 @@
 // Place a mineral vein starting at the designated spot
 /obj/cave_generator/proc/generate_mineral_veins(x, y)
 
+    // Find closest available spot (wall tile near a free tile)
+    var/search_for = map[x][y] == CAVE_FREE ? CAVE_WALL : CAVE_FREE
+    var/x0 = x - 1 
+    var/x1 = x + 1
+    var/y0 = y - 1
+    var/y1 = y + 1
+    var/found = FALSE
+    var/edge = FALSE
+    while(!found && !edge)
+        found = TRUE
+        if(map[x0, y] == search_for)
+            x = x0
+        else if(map[x1, y] == search_for)
+            x = x1
+        else if(map[x, y0] == search_for)
+            y = y0
+        else if(map[x, y1] == search_for)
+            y = y1
+        else:
+            found = FALSE
+        
+        if(!found)
+            x0--
+            x1++
+            y0--
+            y1++
+            edge = (x0 == 1) || (x1 == CAVE_SIZE) || (y0 == 1) || (y1 == CAVE_SIZE)
+    
+    // Hit an edge before finding an available spot
+    if(!found)
+        return 0
+
+    // TODO: Make mineral specific
+    var/p_mineral = 0.25
+    var/size_min = 5
+    var/size_max = 10
+
+    // Place mineral vein at the available spot in a recursive manner
+    place_recursive_mineral(x, y, size_min, size_max) 
+    return 1
+
+// Place a mineral vein in a recursive manner
+/obj/cave_generator/proc/place_recursive_mineral(x, y, p, size, size_min)
+
+    map[x][y] = CAVE_IRON
+    // Last turf of the vein
+    if(size == 0)
+        return
+
+    var/list/xtest = list(x - 1, x + 1, x, x)
+    var/list/ytest = list(y, y, y - 1, y + 1)
+    var/list/xs = list()
+    var/list/ys = list()
+    for(var/i = 1 to 4)
+        // Check if inside map bounds
+        if((xtest[i] > 1) && (xtest[i] < CAVE_SIZE) && (ytest[i] > 1) && (ytest[i] < CAVE_SIZE))
+            if(map[xtest[i]][ytest[i]] == CAVE_WALL)
+                xs += xtest[i]
+                ys += ytest[i]
+
+    if(!LAZYLEN(xs))
+        return
+
+    var/j = rand(1, LAZYLEN(xs))
+    if(prob(p) || size > size_min)
+        place_mineral_turf(xs[i], ys[i], p, size - 1, size_min)
+
+/obj/cave_generator/proc/place_turfs()
+
+    var/turf_type
+    for(var/i = 1 to CAVE_SIZE)
+        for(var/j = 1 to CAVE_SIZE)
+            switch(map[i][j])
+                if(CAVE_FREE)
+                    turf_type = /turf/simulated/floor/asteroid
+                if(CAVE_WALL)
+                    turf_type = /turf/unsimulated/mineral
+                if(50 to 70)
+                    return "health60"
+                if(30 to 50)
+                    return "health40"
+                if(18 to 30)
+                    return "health25"
+                if(5 to 18)
+                    return "health10"
+                if(1 to 5)
+                    return "health1"
+                if(-99 to 0)
+                    return "health0"
+                else
+                    return "health-100"
