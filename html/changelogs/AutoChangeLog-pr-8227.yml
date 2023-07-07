@@ -1,0 +1,9 @@
+author: Vandu-Jr, Watler'Je
+delete-after: true
+changes:
+  - rscadd: Added a new Warden Jacket for the Gunny (Partially Watler)
+  - rscadd: Added a new peaked cap for the IHC (Watler)
+  - rscadd: Added a new syndicate lighter for the IHC, based on the oddity sprite
+      but functional.
+  - tweak: tiny sprite change to the full ballistic helmet. Instead of having separate
+      lenses, it's now conjoined.
