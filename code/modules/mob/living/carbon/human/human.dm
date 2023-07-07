@@ -982,7 +982,7 @@ var/list/rank_prefix = list(\
 		fixblood()
 
 	if(!client || !key) //Don't boot out anyone already in the mob.
-		for(var/obj/item/organ/internal/brain/H in world)
+		for(var/obj/item/organ/internal/vital/brain/H in world)
 			if(H.brainmob)
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)
@@ -1649,8 +1649,8 @@ var/list/rank_prefix = list(\
 	reset_view(A)
 
 /mob/living/carbon/human/proc/resuscitate()
-	var/obj/item/organ/internal/heart_organ = random_organ_by_process(OP_HEART)
-	var/obj/item/organ/internal/brain_organ = random_organ_by_process(BP_BRAIN)
+	var/obj/item/organ/internal/vital/heart_organ = random_organ_by_process(OP_HEART)
+	var/obj/item/organ/internal/vital/brain_organ = random_organ_by_process(BP_BRAIN)
 
 	if(!is_asystole() && !(heart_organ && brain_organ) || (heart_organ.is_broken() || brain_organ.is_broken()))
 		return 0

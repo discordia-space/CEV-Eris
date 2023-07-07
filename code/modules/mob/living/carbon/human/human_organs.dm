@@ -159,7 +159,7 @@
 
 /mob/living/carbon/human/is_asystole()
 	if(should_have_process(OP_HEART))
-		var/obj/item/organ/internal/heart/heart = random_organ_by_process(OP_HEART)
+		var/obj/item/organ/internal/vital/heart/heart = random_organ_by_process(OP_HEART)
 		if(!istype(heart) || !heart.is_working())
 			return TRUE
 	return FALSE

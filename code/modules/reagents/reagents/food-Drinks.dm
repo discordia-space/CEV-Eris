@@ -2330,7 +2330,7 @@
 		M.add_chemical_effect(CE_TOXIN, effect_multiplier)
 	if(dose > 60 && ishuman(M) && prob(5))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/heart/L = H.random_organ_by_process(OP_HEART)
+		var/obj/item/organ/internal/vital/heart/L = H.random_organ_by_process(OP_HEART)
 		if(L && istype(L))
 			if(dose > 120)
 				L.take_damage(dose/6, FALSE, TOX)

@@ -286,7 +286,7 @@ proc/blood_splatter(var/target,var/datum/reagent/organic/blood/source,var/large)
 	var/heart_efficiency = get_organ_efficiency(OP_HEART)
 	var/robo_check = TRUE	//check if all hearts are robotic
 	var/open_check = FALSE  //check if any heart is open
-	for(var/obj/item/organ/internal/heart/heart in organ_list_by_process(OP_HEART))
+	for(var/obj/item/organ/internal/vital/heart/heart in organ_list_by_process(OP_HEART))
 		if(!(BP_IS_ROBOTIC(heart)))
 			robo_check = FALSE
 		if(heart.open)

@@ -17,7 +17,7 @@
 		return FALSE	//godmode
 
 	if(species && species.has_process[BP_BRAIN])
-		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
+		var/obj/item/organ/internal/vital/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
 			sponge.take_damage(amount)
 			brainloss = (sponge.damage / sponge.max_damage) * 200
@@ -31,7 +31,7 @@
 		return FALSE	//godmode
 
 	if(species && species.has_process[BP_BRAIN])
-		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
+		var/obj/item/organ/internal/vital/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
 			sponge.take_damage(amount)
 			brainloss = (sponge.damage / sponge.max_damage) * 200
@@ -45,7 +45,7 @@
 		return FALSE	//godmode
 
 	if(species && species.has_process[BP_BRAIN])
-		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
+		var/obj/item/organ/internal/vital/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
 			brainloss = (sponge.damage / sponge.max_damage) * 200
 		else

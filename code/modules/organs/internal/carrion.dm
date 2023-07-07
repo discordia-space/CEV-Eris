@@ -371,7 +371,7 @@
 					if (istype(to_blacklist, /obj/item/organ/internal/bone/))
 						blacklist += to_blacklist
 						continue
-					if (istype(to_blacklist, /obj/item/organ/internal/brain/))
+					if (istype(to_blacklist, /obj/item/organ/internal/vital/brain/))
 						blacklist += to_blacklist// removing bones from a valid_organs list based on
 				var/list/valid_organs = E.internal_organs - blacklist// E.internal_organs gibs the victim.
 				if (!valid_organs.len)

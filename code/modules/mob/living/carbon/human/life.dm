@@ -314,7 +314,7 @@
 
 /mob/living/carbon/human/get_breath_modulo()
 	var/breath_modulo_total
-	for(var/obj/item/organ/internal/lungs/L in organ_list_by_process(OP_LUNGS))
+	for(var/obj/item/organ/internal/vital/lungs/L in organ_list_by_process(OP_LUNGS))
 		breath_modulo_total += L.breath_modulo
 	if(!isnull(breath_modulo_total))
 		return breath_modulo_total
