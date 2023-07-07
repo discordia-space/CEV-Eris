@@ -1,0 +1,8 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - balance: small organs have less health, large organs have more
+  - balance: organs are more likely to be hit the larger they are
+  - balance: damage no longer disappears if your bones aren't broken, bones now only
+      protect vital organs
+  - tweak: toughness mutation makes bones actually protect your organs
