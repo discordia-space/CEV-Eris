@@ -14,3 +14,17 @@
   - balance: Desctructive analyzer and handheld analyzers no longer receive any points
       from deconstructing the same objects.
   - bugfix: Fixed null epicenter runtime
+2023-07-08:
+  Humonitarian:
+  - balance: small organs have less health, large organs have more
+  - balance: organs are more likely to be hit the larger they are
+  - balance: damage no longer disappears if your bones aren't broken, bones now only
+      protect vital organs
+  - tweak: toughness mutation makes bones actually protect your organs
+  Vandu-Jr, Watler'Je:
+  - rscadd: Added a new Warden Jacket for the Gunny (Partially Watler)
+  - rscadd: Added a new peaked cap for the IHC (Watler)
+  - rscadd: Added a new syndicate lighter for the IHC, based on the oddity sprite
+      but functional.
+  - tweak: tiny sprite change to the full ballistic helmet. Instead of having separate
+      lenses, it's now conjoined.
