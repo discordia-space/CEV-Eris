@@ -1841,6 +1841,8 @@
 #include "code\modules\mining\ore.dm"
 #include "code\modules\mining\ore_datum.dm"
 #include "code\modules\mining\satchel_ore_boxdm.dm"
+#include "code\modules\mining\drilling\cave_generator.dm"
+#include "code\modules\mining\drilling\cave_mineral.dm"
 #include "code\modules\mining\drilling\deep_drill.dm"
 #include "code\modules\mining\drilling\golem_burrow.dm"
 #include "code\modules\mining\drilling\golem_controller.dm"
