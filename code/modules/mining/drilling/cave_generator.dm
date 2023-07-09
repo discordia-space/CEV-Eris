@@ -6,16 +6,16 @@
 // Types of turfs in the cave
 #define CAVE_FREE 0
 #define CAVE_WALL 1
-#define CAVE_IRON 2
-#define CAVE_URANIUM 3
-#define CAVE_GOLD 4
-#define CAVE_SILVER 5
-#define CAVE_DIAMOND 6
-#define CAVE_PLASMA 7
-#define CAVE_OSMIUM 8
-#define CAVE_TRITIUM 9
-#define CAVE_GLASS 10
-#define CAVE_PLASTIC 11
+#define CAVE_POI 2
+#define CAVE_CARBON 3
+#define CAVE_IRON 4
+#define CAVE_PLASMA 5
+#define CAVE_SAND 6
+#define CAVE_URANIUM 7
+#define CAVE_DIAMOND 8
+#define CAVE_SILVER 9
+#define CAVE_GOLD 10
+#define CAVE_PLATINUM 11
 
 //////////////////////////////
 // Generator used to handle underground caves
@@ -51,6 +51,9 @@
 
     // Generate mineral veins from processed map
     generate_mineral_veins()
+
+    // Clean the map
+    clean_turfs()
 
     // Finally place the walls, ores and free space
     place_turfs()
@@ -211,6 +214,15 @@
     if(prob(p) || size > size_min)
         place_mineral_turf(xs[i], ys[i], p, size - 1, size_min)
 
+// Remove everything from all tiles except the turfs themselves
+/obj/cave_generator/proc/clean_turfs()
+
+    for(var/i = 1 to CAVE_SIZE)
+        for(var/j = 1 to CAVE_SIZE)
+            var/turf/T = get_turf(locate(x + i, y + j, z))
+	        for (var/atom/A in T.contents)
+                qdel(A)
+
 /obj/cave_generator/proc/place_turfs()
 
     var/turf_type
@@ -221,17 +233,47 @@
                     turf_type = /turf/simulated/floor/asteroid
                 if(CAVE_WALL)
                     turf_type = /turf/unsimulated/mineral
-                if(50 to 70)
-                    return "health60"
-                if(30 to 50)
-                    return "health40"
-                if(18 to 30)
-                    return "health25"
-                if(5 to 18)
-                    return "health10"
-                if(1 to 5)
-                    return "health1"
-                if(-99 to 0)
-                    return "health0"
+                if(CAVE_POI)
+                    turf_type = /turf/space
+                if(CAVE_CARBON)
+                    turf_type = /turf/simulated/mineral/carbon
+                if(CAVE_IRON)
+                    turf_type = /turf/simulated/mineral/iron
+                if(CAVE_PLASMA)
+                    turf_type = /turf/simulated/mineral/plasma
+                if(CAVE_SAND)
+                    turf_type = /turf/simulated/mineral/sand
+                if(CAVE_URANIUM)
+                    turf_type = /turf/simulated/mineral/uranium
+                if(CAVE_DIAMOND)
+                    turf_type = /turf/simulated/mineral/diamond
+                if(CAVE_SILVER)
+                    turf_type = /turf/simulated/mineral/silver
+                if(CAVE_GOLD)
+                    turf_type = /turf/simulated/mineral/gold
+                if(CAVE_PLATINUM)
+                    turf_type = /turf/simulated/mineral/platinum
                 else
-                    return "health-100"
+                    log_and_message_admins("Unknown turf type for cave generator at ([x + i], [y + j], [z]).")
+                    turf_type = /turf/simulated/floor/asteroid
+
+            var/turf/T = get_turf(locate(x + i, y + j, z))
+            if(!istype(T, turf_type))
+                ChangeTurf(turf_type)
+
+#undef CAVE_SIZE
+#undef CAVE_MARGIN
+#undef CAVE_CORRIDORS
+#undef CAVE_WALL_PROPORTION
+#undef CAVE_FREE
+#undef CAVE_WALL
+#undef CAVE_POI
+#undef CAVE_CARBON
+#undef CAVE_IRON
+#undef CAVE_PLASMA
+#undef CAVE_SAND
+#undef CAVE_URANIUM
+#undef CAVE_DIAMOND
+#undef CAVE_SILVER
+#undef CAVE_GOLD
+#undef CAVE_PLATINUM

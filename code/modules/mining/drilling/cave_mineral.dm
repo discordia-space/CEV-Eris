@@ -10,13 +10,17 @@
 	blocks_air = 1
 	temperature = T0C
 	var/mined_turf = /turf/simulated/floor/asteroid
-	var/ore/mineral = /ore/hematite
+	var/ore/mineral
+	var/mineral_name
 	var/mined_ore = 0
 
 	has_resources = 1
 
 /turf/simulated/cave_mineral/Initialize()
 	.=..()
+	if (mineral_name && (mineral_name in ore_data))
+		mineral = ore_data[mineral_name]
+		UpdateMineral()
 	icon_state = "rock[rand(0,4)]"
 
 /turf/simulated/cave_mineral/can_build_cable()
@@ -77,7 +81,7 @@
 			to_chat(user, SPAN_NOTICE("You start digging the [src]."))
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
 				to_chat(user, SPAN_NOTICE("You finish digging the [src]."))
-				GetDrilled(0)
+				GetDrilled()
 			return
 		if(ABORT_CHECK)
 			return
@@ -95,7 +99,7 @@
 	var/obj/item/ore/O = new mineral.ore (src)
 	return O
 
-/turf/simulated/cave_mineral/proc/GetDrilled(var/artifact_fail = 0)
+/turf/simulated/cave_mineral/proc/GetDrilled()
 
 	if (mineral && mineral.result_amount)
 		// If the turf has already been excavated, some of it's ore has been removed
@@ -110,3 +114,32 @@
 
 /turf/simulated/cave_mineral/proc/check_radial_dig()
 	return TRUE
+
+// SUBTYPES FOR EACH MINERAL
+
+/turf/simulated/cave_mineral/carbon
+	mineral_name = ORE_CARBON
+
+/turf/simulated/cave_mineral/iron
+	mineral_name = ORE_IRON
+
+/turf/simulated/cave_mineral/plasma
+	mineral_name = ORE_PLASMA
+
+/turf/simulated/cave_mineral/sand
+	mineral_name = ORE_SAND
+
+/turf/simulated/cave_mineral/uranium
+	mineral_name = ORE_URANIUM
+
+/turf/simulated/cave_mineral/diamond
+	mineral_name = ORE_DIAMOND
+
+/turf/simulated/cave_mineral/silver
+	mineral_name = ORE_SILVER
+
+/turf/simulated/cave_mineral/gold
+	mineral_name = ORE_GOLD
+
+/turf/simulated/cave_mineral/platinum
+	mineral_name = ORE_PLATINUM
