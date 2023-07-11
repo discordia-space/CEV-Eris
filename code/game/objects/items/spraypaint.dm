@@ -5,6 +5,7 @@
 	icon_state = "spraypaint"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_STEEL = 1)
 	price_tag = 10
+	var/uses = 30
 	w_class = ITEM_SIZE_TINY
 	throwforce = WEAPON_FORCE_HARMLESS
 
@@ -32,3 +33,9 @@
 				new /obj/effect/decal/cleanable/graffiti_skull(target)
 			if("Heart")
 				new /obj/effect/decal/cleanable/graffiti_heart(target)
+		if(uses)
+			uses--
+		if(uses <= 0)
+			playsound(loc, 'sound/effects/interaction/graffiti_empty.ogg', 100, 1)
+			to_chat(user, "<span class='notice'>You emptied the can</span>")
+			qdel(src)
