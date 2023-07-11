@@ -209,7 +209,7 @@
 
 /obj/effect/decal/cleanable/graffiti_kot
 	name = "graffiti"
-	desc = "This is a very happy cat."
+	desc = "A graffiti of a very happy cat."
 	density = FALSE
 	anchored = TRUE
 	plane = -1
@@ -219,7 +219,7 @@
 
 /obj/effect/decal/cleanable/graffiti_onestar
 	name = "graffiti"
-	desc = "The all seeing eye."
+	desc = "A graffiti of one star's eye."
 	density = FALSE
 	anchored = TRUE
 	plane = -1
@@ -239,7 +239,7 @@
 
 /obj/effect/decal/cleanable/graffiti_piss
 	name = "graffiti"
-	desc = "What did the artist tried to tell us with this? nobody knows."
+	desc = "A graffiti."
 	density = FALSE
 	anchored = TRUE
 	plane = -1
@@ -249,7 +249,7 @@
 
 /obj/effect/decal/cleanable/graffiti_clown
 	name = "graffiti"
-	desc = "Honk Honk Motherfucker!"
+	desc = "A graffiti of a clown."
 	density = FALSE
 	anchored = TRUE
 	plane = -1
@@ -259,7 +259,7 @@
 
 /obj/effect/decal/cleanable/graffiti_skull
 	name = "graffiti"
-	desc = "Don't you lecture me with your thirty dollar haircut."
+	desc = "A graffiti of a skull."
 	density = FALSE
 	anchored = TRUE
 	plane = -1
@@ -269,7 +269,7 @@
 
 /obj/effect/decal/cleanable/graffiti_heart
 	name = "graffiti"
-	desc = "What is love? Baby don't hurt me."
+	desc = "A graffiti of a heart."
 	density = FALSE
 	anchored = TRUE
 	plane = -1
