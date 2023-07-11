@@ -3,8 +3,8 @@
 	desc = "Aerosol paint sealed in a pressurized container."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spraypaint"
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_STEEL = 1)
-	price_tag = 10
+	matter = list(MATERIAL_PLASTIC = 4, MATERIAL_STEEL = 5)
+	price_tag = 200
 	var/uses = 30
 	w_class = ITEM_SIZE_TINY
 	throwforce = WEAPON_FORCE_HARMLESS
