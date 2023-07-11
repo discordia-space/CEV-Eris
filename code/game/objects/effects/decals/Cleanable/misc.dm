@@ -214,7 +214,7 @@
 	anchored = TRUE
 	plane = -1
 	icon = 'icons/effects/wall_graffiti.dmi'
-	icon_state = "Kot"
+	icon_state = "kot"
 	random_rotation = 0
 
 /obj/effect/decal/cleanable/graffiti_onestar
@@ -224,7 +224,7 @@
 	anchored = TRUE
 	plane = -1
 	icon = 'icons/effects/wall_graffiti.dmi'
-	icon_state = "Onestar"
+	icon_state = "onestar"
 	random_rotation = 0
 
 /obj/effect/decal/cleanable/graffiti_doodle
@@ -234,7 +234,7 @@
 	anchored = TRUE
 	plane = -1
 	icon = 'icons/effects/wall_graffiti.dmi'
-	icon_state = "Doodle"
+	icon_state = "doodle"
 	random_rotation = 0
 
 /obj/effect/decal/cleanable/graffiti_piss
@@ -244,7 +244,7 @@
 	anchored = TRUE
 	plane = -1
 	icon = 'icons/effects/wall_graffiti.dmi'
-	icon_state = "Piss"
+	icon_state = "piss"
 	random_rotation = 0
 
 /obj/effect/decal/cleanable/graffiti_clown
@@ -254,7 +254,7 @@
 	anchored = TRUE
 	plane = -1
 	icon = 'icons/effects/wall_graffiti.dmi'
-	icon_state = "Clown"
+	icon_state = "clown"
 	random_rotation = 0
 
 /obj/effect/decal/cleanable/graffiti_skull
@@ -264,7 +264,7 @@
 	anchored = TRUE
 	plane = -1
 	icon = 'icons/effects/wall_graffiti.dmi'
-	icon_state = "Skull"
+	icon_state = "skull"
 	random_rotation = 0
 
 /obj/effect/decal/cleanable/graffiti_heart
@@ -274,5 +274,5 @@
 	anchored = TRUE
 	plane = -1
 	icon = 'icons/effects/wall_graffiti.dmi'
-	icon_state = "Heart"
+	icon_state = "heart"
 	random_rotation = 0
