@@ -216,47 +216,34 @@
 	icon = 'icons/effects/wall_graffiti.dmi'
 	icon_state = "kot"
 	random_rotation = 0
+
 /obj/effect/decal/cleanable/graffiti/graffiti_kot
-	name = "graffiti"
 	desc = "A graffiti of a very happy cat."
-	icon = 'icons/effects/wall_graffiti.dmi'
 	icon_state = "kot"
 
 /obj/effect/decal/cleanable/graffiti/graffiti_onestar
-	name = "graffiti"
 	desc = "A graffiti of one star's eye."
-	icon = 'icons/effects/wall_graffiti.dmi'
 	icon_state = "onestar"
 
 
 /obj/effect/decal/cleanable/graffiti/graffiti_doodle
-	name = "graffiti"
 	desc = "A vagabond beaten by IH, this is mercenary brutality."
-	icon = 'icons/effects/wall_graffiti.dmi'
 	icon_state = "doodle"
 
 /obj/effect/decal/cleanable/graffiti/graffiti_piss
-	name = "graffiti"
 	desc = "A graffiti of, well."
-	icon = 'icons/effects/wall_graffiti.dmi'
 	icon_state = "piss"
 
 /obj/effect/decal/cleanable/graffiti/graffiti_clown
-	name = "graffiti"
 	desc = "A graffiti of a clown."
-	icon = 'icons/effects/wall_graffiti.dmi'
 	icon_state = "clown"
 
 /obj/effect/decal/cleanable/graffiti/graffiti_skull
-	name = "graffiti"
 	desc = "A graffiti of a skull."
-	icon = 'icons/effects/wall_graffiti.dmi'
 	icon_state = "skull"
 
 
 /obj/effect/decal/cleanable/graffiti/graffiti_heart
-	name = "graffiti"
 	desc = "A graffiti of a heart."
-	icon = 'icons/effects/wall_graffiti.dmi'
 	icon_state = "heart"
 
