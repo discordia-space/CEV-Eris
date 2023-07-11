@@ -69,7 +69,7 @@
 		/datum/design/autolathe/device/mechpainter,
 		/datum/design/autolathe/container/hcase_engi,
 		/datum/design/autolathe/container/hcase_parts,
-		/datum/design/autolathe/device/spraypaint,
+		/datum/design/autolathe/device/spraypaint
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/devices
