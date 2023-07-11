@@ -164,11 +164,6 @@
 		break_to_parts()
 		return
 
-	if(user.a_intent == I_HELP && istype(W, /obj/item/gun))
-		var/obj/item/gun/G = W
-		G.gun_brace(user, src)
-		return
-
 	if(can_plate && !material)
 		to_chat(user, SPAN_WARNING("There's nothing to put \the [W] on! Try adding plating to \the [src] first."))
 		return

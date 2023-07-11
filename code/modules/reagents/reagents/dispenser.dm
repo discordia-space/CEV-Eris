@@ -358,9 +358,9 @@
 			if(C.unacidable || C.armor.bio > 99)
 				stop_loop = TRUE
 				continue
-			var/melting_requirement = (C.max_health / C.health) * (1 - C.armor.bio / 100) * meltdose
+			var/melting_requirement = (C.maxHealth / C.health) * (1 - C.armor.bio / 100) * meltdose
 			if(melting_requirement > units_per_bodypart)
-				C.health -= (C.max_health / meltdose) * (1 - C.armor.bio / 100) * units_per_bodypart
+				C.health -= (C.maxHealth / meltdose) * (1 - C.armor.bio / 100) * units_per_bodypart
 				stop_loop = TRUE
 			else
 				to_chat(our_man, SPAN_DANGER("The [C.name] melts under the action of acid."))
@@ -378,9 +378,9 @@
 			if(C.unacidable || C.armor.bio > 99)
 				stop_loop = TRUE
 				continue
-			var/melting_requirement = (C.max_health / C.health) * (1 - C.armor.bio / 100) * meltdose
+			var/melting_requirement = (C.maxHealth / C.health) * (1 - C.armor.bio / 100) * meltdose
 			if(melting_requirement > units_per_bodypart)
-				C.health -= (C.max_health / meltdose) * (1 - C.armor.bio / 100) * units_per_bodypart
+				C.health -= (C.maxHealth / meltdose) * (1 - C.armor.bio / 100) * units_per_bodypart
 				stop_loop = TRUE
 			else
 				to_chat(our_man, SPAN_DANGER("The [C.name] melts under the action of acid."))
@@ -455,7 +455,7 @@
 	M.add_chemical_effect(CE_PULSE, 2)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/heart/L = H.random_organ_by_process(OP_HEART)
+		var/obj/item/organ/internal/vital/heart/L = H.random_organ_by_process(OP_HEART)
 		if(istype(L))
 			L.take_damage(dose/4, FALSE, TOX)
 	if(prob(5))

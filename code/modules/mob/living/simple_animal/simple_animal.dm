@@ -434,22 +434,12 @@
 	stasis = TRUE
 	return ..(gibbed,deathmessage)
 
-/mob/living/simple_animal/ex_act(severity)
-	flash(0, FALSE,FALSE,FALSE)
-	switch (severity)
-		if (1)
-			adjustBruteLoss(500)
-			gib()
-			return
-
-		if (2)
-			adjustBruteLoss(60)
-
-
-		if(3)
-			adjustBruteLoss(30)
-		if(4)
-			adjustBruteLoss(15)
+/mob/living/simple_animal/explosion_act(target_power)
+	if(target_power/3 > maxHealth)
+		gib()
+	else
+		adjustBruteLoss(target_power / 3)
+	return 0
 
 
 

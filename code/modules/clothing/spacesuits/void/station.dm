@@ -14,7 +14,7 @@
 		melee = 8,
 		bullet = 7,
 		energy = 7,
-		bomb = 40,
+		bomb = 60,
 		bio = 100,
 		rad = 100
 	)
@@ -29,7 +29,7 @@
 		melee = 8,
 		bullet = 7,
 		energy = 7,
-		bomb = 40,
+		bomb = 60,
 		bio = 100,
 		rad = 100
 	)
@@ -64,7 +64,7 @@
 		melee = 8,
 		bullet = 7,
 		energy = 7,
-		bomb = 40,
+		bomb = 60,
 		bio = 100,
 		rad = 100
 	)
@@ -103,7 +103,7 @@
 		melee = 8,
 		bullet = 7,
 		energy = 7,
-		bomb = 40,
+		bomb = 60,
 		bio = 100,
 		rad = 100
 	)
@@ -137,7 +137,7 @@
 		melee = 13,
 		bullet = 10,
 		energy = 7,
-		bomb = 25,
+		bomb = 50,
 		bio = 100,
 		rad = 75
 	)
@@ -152,7 +152,7 @@
 		melee = 13,
 		bullet = 10,
 		energy = 7,
-		bomb = 25,
+		bomb = 50,
 		bio = 100,
 		rad = 75
 	)
@@ -220,7 +220,7 @@
 		melee = 8,
 		bullet = 13,
 		energy = 10,
-		bomb = 25,
+		bomb = 75,
 		bio = 100,
 		rad = 75
 	)
@@ -236,7 +236,7 @@
 		melee = 8,
 		bullet = 13,
 		energy = 10,
-		bomb = 25,
+		bomb = 75,
 		bio = 100,
 		rad = 75
 	)
@@ -307,7 +307,7 @@
 		melee = 10,
 		bullet = 13,
 		energy = 15,
-		bomb = 40,
+		bomb = 50,
 		bio = 100,
 		rad = 75
 	)
@@ -357,7 +357,7 @@
 		melee = 10,
 		bullet = 13,
 		energy = 15,
-		bomb = 40, //platinum price justifies bloated stats
+		bomb = 50, //platinum price justifies bloated stats
 		bio = 100,
 		rad = 75
 	)
@@ -467,7 +467,7 @@
 		melee = 13,
 		bullet = 11,
 		energy = 12,
-		bomb = 30,
+		bomb = 50,
 		bio = 100,
 		rad = 50
 	)
@@ -487,7 +487,7 @@
 	    melee = 12,
 		bullet = 11,
 		energy = 12,
-		bomb = 30,
+		bomb = 50,
 		bio = 100,
 		rad = 50
 	)

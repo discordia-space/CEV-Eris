@@ -41,11 +41,5 @@
 	return
 
 /obj/item/weldpack/proc/explode()
-	if (reagents.total_volume > 150)
-		explosion(src.loc,1,2,4)
-	else if (reagents.total_volume > 50)
-		explosion(src.loc,0,1,3)
-	else if (reagents.total_volume > 0)
-		explosion(src.loc,-1,1,2)
-	if(src)
-		qdel(src)
+	explosion(get_turf(src), reagents.total_volume/2, 50)
+	qdel(src)

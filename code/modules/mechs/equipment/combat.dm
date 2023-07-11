@@ -26,7 +26,6 @@
 	init_recoil = LMG_RECOIL(1)
 	matter = list()
 	cell_type = /obj/item/cell/medium/mech
-	init_offset = 10 // Pew pew in all directions
 
 /obj/item/mech_equipment/mounted_system/taser/ion
 	name = "mounted ion rifle"
@@ -132,7 +131,7 @@
 	restrict_safety = TRUE
 	twohanded = FALSE
 	init_firemodes = list(
-		list(mode_name="spit fire",  burst=5, burst_delay=0.8, move_delay=5, one_hand_penalty=15, icon="burst")
+		list(mode_name="spit fire",  burst=5, burst_delay=0.8, one_hand_penalty=15, icon="burst")
 		)
 	spawn_tags = null
 	matter = list()

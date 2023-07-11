@@ -42,30 +42,15 @@
 			icon_state = "morgue1"
 	return
 
-/obj/structure/morgue/ex_act(severity)
-	switch(severity)
-		if(1)
-			for(var/atom/movable/A as mob|obj in src)
-				A.forceMove(loc)
-				ex_act(severity)
-			qdel(src)
-			return
-		if(2)
-			if (prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.forceMove(loc)
-					ex_act(severity)
-				qdel(src)
-				return
-		if(3)
-			if (prob(5))
-				for(var/atom/movable/A as mob|obj in src)
-					A.forceMove(loc)
-					ex_act(severity)
-				qdel(src)
-				return
-	return
-
+/obj/structure/morque/explosion_act(target_power, explosion_handler/handler)
+	if(target_power > health)
+		for(var/atom/movable/A as mob|obj in src)
+			A.forceMove(loc)
+			A.explosion_act(target_power, handler)
+	else
+		for(var/atom/movable/A as mob|obj in src)
+			A.explosion_act(target_power, handler)
+	. = ..()
 
 //No network connection. Robots can physically open it, but not remotely
 //AI can't open it at all, anything inside a morgue drawer is hidden from the AI
@@ -148,7 +133,7 @@
 			return // we got this one already
 		//We send a message to the occupant's current mob - probably a ghost, but who knows.
 		to_chat(M, SPAN_NOTICE("Your remains have been collected and properly stored. Your crew respawn time is reduced by [(MORGUE_RESPAWN_BONUS)/600] minutes."))
-		
+
 		M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
 		M.set_respawn_bonus("CORPSE_HANDLING", MORGUE_RESPAWN_BONUS)
@@ -323,29 +308,15 @@
 			icon_state = "crema1"
 	return
 
-/obj/structure/crematorium/ex_act(severity)
-	switch(severity)
-		if(1)
-			for(var/atom/movable/A as mob|obj in src)
-				A.forceMove(loc)
-				ex_act(severity)
-			qdel(src)
-			return
-		if(2)
-			if (prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.forceMove(loc)
-					ex_act(severity)
-				qdel(src)
-				return
-		if(3)
-			if (prob(5))
-				for(var/atom/movable/A as mob|obj in src)
-					A.forceMove(loc)
-					ex_act(severity)
-				qdel(src)
-				return
-	return
+/obj/structure/crematorium/explosion_act(target_power, explosion_handler/handler)
+	if(target_power > health)
+		for(var/atom/movable/A as mob|obj in src)
+			A.forceMove(loc)
+			A.explosion_act(target_power, handler)
+	else
+		for(var/atom/movable/A as mob|obj in src)
+			A.explosion_act(health - (health - target_power), handler)
+	. = ..()
 
 /obj/structure/crematorium/attack_hand(mob/user as mob)
 //	if (cremating) AWW MAN! THIS WOULD BE SO MUCH MORE FUN ... TO WATCH

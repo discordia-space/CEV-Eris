@@ -1095,11 +1095,17 @@
 
 /datum/chemical_reaction/slime/freeze/on_reaction(var/datum/reagents/holder)
 	..()
-	sleep(50)
-	playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
-	for(var/mob/living/M in range (get_turf(holder.my_atom), 7))
+	addtimer(CALLBACK(src, PROC_REF(do_freeze), get_turf(holder.my_atom), 5 SECONDS))
+
+/datum/chemical_reaction/slime/freeze/proc/do_freeze(turf/target)
+	playsound(target, 'sound/effects/phasein.ogg', 100, 1)
+	for(var/mob/living/M in range (target, 7))
 		M.bodytemperature -= 140
 		to_chat(M, SPAN_WARNING("You feel a chill!"))
+
+
+
+
 
 //Orange
 /datum/chemical_reaction/slime/casp
@@ -1117,12 +1123,12 @@
 
 /datum/chemical_reaction/slime/fire/on_reaction(var/datum/reagents/holder)
 	..()
-	sleep(50)
-	var/turf/location = get_turf(holder.my_atom.loc)
-	for(var/turf/simulated/floor/target_tile in range(0, location))
+	addtimer(CALLBACK(src, PROC_REF(do_fire), get_turf(holder.my_atom), 5 SECONDS))
+
+/datum/chemical_reaction/slime/fire/proc/do_fire(turf/target)
+	for(var/turf/simulated/floor/target_tile in range(0, target))
 		target_tile.assume_gas("plasma", 25, 1400)
-		spawn (0)
-			target_tile.hotspot_expose(700, 400)
+		target_tile.hotspot_expose(700, 400)
 
 //Yellow
 /datum/chemical_reaction/slime/overload
@@ -1236,8 +1242,10 @@
 
 /datum/chemical_reaction/slime/explosion/on_reaction(var/datum/reagents/holder)
 	..()
-	sleep(50)
-	explosion(get_turf(holder.my_atom), 1, 3, 6)
+	addtimer(CALLBACK(src, PROC_REF(do_explode), get_turf(holder.my_atom), 5 SECONDS))
+
+/datum/chemical_reaction/slime/explosion/proc/do_explode(turf/target)
+	explosion(target, 600, 50)
 
 //Light Pink
 /datum/chemical_reaction/slime/potion2

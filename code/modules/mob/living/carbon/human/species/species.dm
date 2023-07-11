@@ -62,6 +62,7 @@
 	var/radiation_mod = 1                    // Radiation modifier
 	var/flash_mod =     1                    // Stun from blindness modifier.
 	var/vision_flags = SEE_SELF              // Same flags as glasses.
+	var/injury_type =  INJURY_TYPE_LIVING    // From _DEFINES/weapons.dm
 
 	var/list/hair_styles
 	var/list/facial_hair_styles
@@ -130,13 +131,13 @@
 	var/species_rarity_value = 1          // Relative rarity/collector value for this species.
 	                              // Determines the organs that the species spawns with and
 	var/list/has_process = list(    // which required-process checks are conducted and defalut organs for them.
-		OP_HEART =    /obj/item/organ/internal/heart,
-		OP_LUNGS =    /obj/item/organ/internal/lungs,
+		OP_HEART =    /obj/item/organ/internal/vital/heart,
+		OP_LUNGS =    /obj/item/organ/internal/vital/lungs,
 		OP_STOMACH =  /obj/item/organ/internal/stomach,
 		OP_LIVER =    /obj/item/organ/internal/liver,
 		OP_KIDNEY_LEFT =  /obj/item/organ/internal/kidney/left,
 		OP_KIDNEY_RIGHT = /obj/item/organ/internal/kidney/right,
-		BP_BRAIN =    /obj/item/organ/internal/brain,
+		BP_BRAIN =    /obj/item/organ/internal/vital/brain,
 		OP_APPENDIX = /obj/item/organ/internal/appendix,
 		OP_EYES =     /obj/item/organ/internal/eyes
 		)

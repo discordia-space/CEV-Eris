@@ -80,7 +80,7 @@
 			stat &= ~EMPED
 
 /obj/machinery/power/port_gen/proc/explode()
-	explosion(src.loc, -1, 3, 5, -1)
+	explosion(get_turf(src), power_gen/100, power_gen/1000)
 	qdel(src)
 
 #define TEMPERATURE_DIVISOR 40
@@ -466,7 +466,7 @@
 		//I dunno, maybe physics works different when you live in 2D -- SM radiation also works like this, apparently
 		L.apply_effect(max(20, round(rads/get_dist(L,src))), IRRADIATE)
 
-	explosion(src.loc, 3, 3, 5, 3)
+	explosion(get_turf(src), 100 * sheets, 100, EFLAG_EXPONENTIALFALLOFF)
 	qdel(src)
 
 /obj/machinery/power/port_gen/pacman/mrs
@@ -488,5 +488,5 @@
 
 /obj/machinery/power/port_gen/pacman/mrs/explode()
 	//no special effects, but the explosion is pretty big (same as a supermatter shard).
-	explosion(src.loc, 3, 6, 12, 16, 1)
+	explosion(get_turf(src), sheets * 250, 100, EFLAG_ADDITIVEFALLOFF)
 	qdel(src)

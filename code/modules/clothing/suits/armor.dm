@@ -16,6 +16,8 @@
 	slowdown = 0
 	valid_accessory_slots = list("armband","decor")
 	restricted_accessory_slots = list("armband")
+	maxHealth = 500
+	health = 500
 
 /*
  * Vests
@@ -30,7 +32,7 @@
 		melee = 7,
 		bullet = 10,
 		energy = 10,
-		bomb = 20,
+		bomb = 25,
 		bio = 0,
 		rad = 0
 	)
@@ -73,6 +75,11 @@
 	icon_state = "warden_jacket"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	price_tag = 350
+
+/obj/item/clothing/suit/armor/vest/warden/ironhammer
+	name = "Warden's overcoat"
+	desc = "An IH warden's overcoat with a vest over it, most often used in Hansa prisons."
+	icon_state = "warden_jacket_IH"
 
 /obj/item/clothing/suit/armor/vest/ironhammer
 	name = "operator armor"
@@ -125,7 +132,7 @@
 		melee = 7,
 		bullet = 10,
 		energy = 10,
-		bomb = 20,
+		bomb = 35,
 		bio = 0,
 		rad = 0
 	)
@@ -284,7 +291,7 @@
 		melee = 5,
 		bullet = 7,
 		energy = 16,
-		bomb = 10,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
@@ -346,7 +353,7 @@
 		melee = 3,
 		bullet = 12,
 		energy = 12,
-		bomb = 10,
+		bomb = 30,
 		bio = 5,
 		rad = 5
 	)
@@ -376,7 +383,7 @@
 		melee = 16, //massive slowdown justifies
 		bullet = 13,
 		energy = 10,
-		bomb = 30,
+		bomb = 75,
 		bio = 0,
 		rad = 0
 	)
@@ -412,7 +419,7 @@
 		melee = 20,
 		bullet = 7,
 		energy = 6,
-		bomb = 20,
+		bomb = 50,
 		bio = 0,
 		rad = 0
 	)
@@ -428,7 +435,7 @@
 		melee = 16,
 		bullet = 13, //comparable to RIG
 		energy = 10,
-		bomb = 35,
+		bomb = 50,
 		bio = 0,
 		rad = 0
 	)
@@ -446,7 +453,7 @@
 		melee = 7,
 		bullet = 10,
 		energy = 10,
-		bomb = 20,
+		bomb = 25,
 		bio = 0,
 		rad = 0
 	)
@@ -487,7 +494,7 @@
 		melee = 12,
 		bullet = 12,
 		energy = 12,
-		bomb = 6,
+		bomb = 75,
 		bio = 0,
 		rad = 0
 	)
@@ -534,7 +541,7 @@
 		melee = 9,
 		bullet = 9,
 		energy = 9,
-		bomb = 40,
+		bomb = 75,
 		bio = 0,
 		rad = 0
 	)
@@ -608,7 +615,7 @@
 		melee = 13,
 		bullet = 13,
 		energy = 13,
-		bomb = 25,
+		bomb = 75,
 		bio = 0,
 		rad = 0
 	)

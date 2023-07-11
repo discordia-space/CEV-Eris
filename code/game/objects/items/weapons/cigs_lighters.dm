@@ -489,6 +489,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "zippo"
 	price_tag = 50
 
+/obj/item/flame/lighter/zippo/syndicate
+	name = "\improper syndicate lighter"
+	desc = "A zippo specifically designed for syndicate officers. Obviously no longer in production."
+	icon_state = "syndicate_lighter"
+	item_state = "syndicate_lighter"
+
+
 /obj/item/flame/lighter/random
 
 /obj/item/flame/lighter/random/Initialize(mapload)

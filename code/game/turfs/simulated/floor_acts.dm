@@ -1,28 +1,22 @@
-//EX act uses new damage type blast, which allows it to get burn AND damage overlays simultaneously
-/turf/simulated/floor/ex_act(severity)
-	//set src in oview(1)
+
+/turf/simulated/floor/explosion_act(target_power, explosion_handler/handler)
+	var/absorbed_damage = 0
 	var/obj/effect/shield/turf_shield = getEffectShield()
 
 	if (turf_shield)
 		var/temp = turf_shield.ignoreExAct
 		turf_shield.ignoreExAct = FALSE
-		turf_shield.ex_act(severity)
+		absorbed_damage = turf_shield.explosion_act(target_power, handler)
 		turf_shield.ignoreExAct = temp
+	// was fully blocked
+	if(target_power == absorbed_damage)
+		return target_power
+	// damage everything on the turf by this amount, since we the floor
+	absorbed_damage += ..(target_power - absorbed_damage, handler)
+	take_damage(target_power - absorbed_damage, BLAST)
+	// didn't block anyhing
+	return absorbed_damage
 
-		if (!turf_shield.isInactive())
-			return
-		else
-			severity++
-
-	switch(severity)
-		if(1)
-			take_damage(rand(300, 600), BLAST) //Breaks through 3 - 4 layers
-		if(2)
-			take_damage(rand(115, 430), BLAST) //Breaks through 2 - 3 layers
-		if(3)
-			take_damage(rand(20, 120), BLAST) //Breaks 1-2 layers
-		if(4)
-			take_damage(rand(10, 50), BLAST)
 
 
 /turf/simulated/floor/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)

@@ -6,8 +6,8 @@
 	price_tag = 100
 	force = WEAPON_FORCE_NORMAL
 	max_damage = IORGAN_SKELETAL_HEALTH
-	min_bruised_damage = 4
-	min_broken_damage = 6
+	min_bruised_damage = IORGAN_SKELETAL_BRUISE
+	min_broken_damage = IORGAN_SKELETAL_BREAK
 
 /obj/item/organ/internal/bone/Initialize()
     . = ..()
@@ -17,9 +17,14 @@
 /obj/item/organ/internal/bone/die()
 	return
 
+/obj/item/organ/internal/bone/take_damage()
+	if(damage > (min_broken_damage * ORGAN_HEALTH_MULTIPLIER) && !(status & ORGAN_BROKEN))
+		fracture()
+	. = ..()
+
 /obj/item/organ/internal/bone/get_possible_wounds(damage_type, sharp, edge)
 	var/list/possible_wounds = list()
-		
+
 	// Determine possible wounds based on nature and damage type
 	var/is_robotic = BP_IS_ROBOTIC(src)
 	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)

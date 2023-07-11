@@ -43,7 +43,7 @@
 
 /obj/machinery/power/am_control_unit/Process()
 	if(exploding)
-		explosion(get_turf(src),8,12,18,12)
+		explosion(get_turf(src), 5000, 250)
 		if(src) qdel(src)
 
 	if(update_shield_icons && !shield_icon_delay)
@@ -100,19 +100,11 @@
 	..()
 	return 0
 
-
-/obj/machinery/power/am_control_unit/ex_act(severity)
-	switch(severity)
-		if(1)
-			stability -= 60
-		if(2)
-			stability -= 40
-		if(3)
-			stability -= 20
-		if(4)
-			stability -= 10
+/obj/machinery/power/am_control_unit/explosion_act(target_power, explosion_handler/handler)
+	stability -= target_power / 10
 	check_stability()
-	return
+	return target_power
+
 
 
 /obj/machinery/power/am_control_unit/bullet_act(var/obj/item/projectile/Proj)

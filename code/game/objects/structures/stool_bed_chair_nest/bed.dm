@@ -83,20 +83,6 @@
 	else
 		return ..()
 
-/obj/structure/bed/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			if (prob(50))
-				qdel(src)
-				return
-		if(3)
-			if (prob(5))
-				qdel(src)
-				return
-
 /obj/structure/bed/affect_grab(var/mob/user, var/mob/target)
 	user.visible_message(SPAN_NOTICE("[user] attempts to buckle [target] into \the [src]!"))
 	if(do_after(user, 20, src) && Adjacent(target))

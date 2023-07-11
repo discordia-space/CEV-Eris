@@ -54,7 +54,7 @@
 		to_chat(user, span_danger("Your muscles ache with agonizing pain!"))
 		user.Weaken(2)
 	if(volume > 100 && prob(1))
-		var/obj/item/organ/internal/heart/user_heart = user.random_organ_by_process(OP_HEART)
+		var/obj/item/organ/internal/vital/heart/user_heart = user.random_organ_by_process(OP_HEART)
 		if(!user_heart || BP_IS_ROBOTIC(user_heart))
 			return FALSE
 		to_chat(user, span_danger("You feel like your heart just exploded!"))

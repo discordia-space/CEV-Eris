@@ -193,7 +193,7 @@ proc name: examine (/obj/item/weapon/gun/energy/examine)
 
 
 The following runtime has occurred 2 time(s).
-runtime error: WARNING: /obj/item/organ/internal/brain is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+runtime error: WARNING: /obj/item/organ/internal/vital/brain is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
 proc name: crash with (/proc/crash_with)
   source file: unsorted.dm,1264
 

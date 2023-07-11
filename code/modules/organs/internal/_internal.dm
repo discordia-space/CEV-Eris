@@ -4,8 +4,8 @@
 	bad_type = /obj/item/organ/internal
 	spawn_tags = SPAWN_TAG_ORGAN_INTERNAL
 	max_damage = IORGAN_STANDARD_HEALTH
-	min_bruised_damage = 3
-	min_broken_damage = 5
+	min_bruised_damage = IORGAN_STANDARD_BRUISE
+	min_broken_damage = IORGAN_STANDARD_BREAK
 	desc = "A vital organ."
 	var/list/owner_verbs = list()
 	var/list/initial_owner_verbs = list()
@@ -65,7 +65,7 @@
 	if(!skipverbs)
 		for(var/verb_path in owner_verbs)
 			verbs -= verb_path
-	
+
 	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
 		owner.mutation_index--
 	..()
@@ -73,6 +73,7 @@
 /obj/item/organ/internal/replaced(obj/item/organ/external/affected)
 	..()
 	parent.internal_organs |= src
+	parent.internal_organs[src] = specific_organ_size // Larger organs have greater pick weight for organ damage
 	RegisterSignal(parent, COMSIG_IORGAN_WOUND_COUNT, PROC_REF(wound_count), TRUE)
 	RegisterSignal(parent, COMSIG_IORGAN_REFRESH_PARENT, PROC_REF(refresh_organ_stats), TRUE)
 	RegisterSignal(parent, COMSIG_IORGAN_APPLY, PROC_REF(apply_modifiers), TRUE)
@@ -88,7 +89,7 @@
 
 	for(var/proc_path in owner_verbs)
 		verbs |= proc_path
-	
+
 	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
 		owner.mutation_index++
 
@@ -96,11 +97,11 @@
 	var/organ_eff = organ_efficiency[process_define]
 	return organ_eff - (organ_eff * (damage / max_damage))
 
-/obj/item/organ/internal/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)	//Deals damage to the organ itself
+/obj/item/organ/internal/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, silent = FALSE, sharp = FALSE, edge = FALSE)	//Deals damage to the organ itself
 	if(!damage_type || status & ORGAN_DEAD)
 		return FALSE
 
-	var/wound_count = max(0, round((amount * wounding_multiplier) / 8))	// At base values, every 8 points of damage is 1 wound
+	var/wound_count = max(0, round(amount / 4))	// At base values, every 8 points of damage is 1 wound
 
 	if(!wound_count)
 		return FALSE
@@ -111,7 +112,7 @@
 		for(var/i in 1 to wound_count)
 			var/choice = pick(possible_wounds)
 			add_wound(choice)
-			LAZYREMOVE(possible_wounds, choice)
+			//LAZYREMOVE(possible_wounds, choice) // If this is commented out, we can get a higher severity of a single wound
 			if(!LAZYLEN(possible_wounds))
 				break
 

@@ -24,7 +24,7 @@
 /obj/machinery/pulsar/LateInitialize()
 	scan_for_fuel()
 	. = ..()
-	
+
 
 /obj/machinery/pulsar/relaymove(mob/user, direction)
 	if(map_active && linked)
@@ -99,7 +99,7 @@
 
 	else if(href_list["scan_fuel"])
 		scan_for_fuel()
-	
+
 	else if(href_list["set_shield"])
 		var/target_level = input(usr, "Set shielding power", "Shield control", 50) as num
 		if(target_level < 100)
@@ -149,8 +149,19 @@
 	tank?.connected_console = src
 	SSnano.update_uis(src)
 
-/obj/machinery/pulsar/ex_act(severity)
+/obj/machinery/pulsar/explosion_act(severity)
 	return
+
+/obj/machinery/pulsar/proc/set_block_events(state_bool = TRUE){
+	if(state_bool){
+		ship.block_events = TRUE
+		ship.try_overcharge(FALSE)
+		ship.stop_rad_storm()
+		return
+	}
+	ship.block_events = FALSE
+	ship.try_move(0) //Recalc if the pulsar is in a beam
+}
 
 /obj/machinery/power/pulsar_power_bridge //Only holds ref to the console and its area, used to get power from it, or disconnect the ship.
 	name = "pulsar power bridge"
@@ -161,6 +172,8 @@
 	use_power = NO_POWER_USE
 	pixel_x = -10
 	circuit = /obj/item/electronics/circuitboard/pulsar_power_bridge
+	layer = ABOVE_MOB_LAYER
+	var/disconnect_time = -RECONNECT_CD
 	var/portal_active = FALSE
 	var/obj/machinery/pulsar/pulsar_console
 	var/area/console_area
@@ -175,8 +188,9 @@
 	. = ..()
 	pulsar_console = locate() in world //I can get away with it once, right?
 	if(pulsar_console)
+		pulsar_console.set_block_events(FALSE)
 		console_area = get_area(pulsar_console) //Area stored so reconnections are cheaper.
-	
+
 	portal = locate() in get_area(src)
 
 /obj/machinery/power/pulsar_power_bridge/Process()
@@ -210,6 +224,7 @@
 	var/list/data = list()
 	data["pulsar_connected"] = FALSE
 	data["portal_active"] = portal_active
+	data["reconnect_not_ready"] = world.time > disconnect_time + RECONNECT_CD ? FALSE : TRUE
 	if(pulsar_console)
 		data["pulsar_connected"] = TRUE
 		data["power_percentage"] = pulsar_console.get_effective_power_porduced()
@@ -219,17 +234,22 @@
 
 /obj/machinery/power/pulsar_power_bridge/Topic(href, href_list)
 	if(href_list["disconnect"])
+		pulsar_console?.set_block_events(TRUE)
 		pulsar_console = null
 		portal.try_deactivate()
 		portal_active = FALSE
+		disconnect_time = world.time
 	else if(href_list["reconnect"])
-		pulsar_console = locate() in console_area
-		portal.try_activate()
-		portal_active = TRUE
+		if(world.time > disconnect_time + RECONNECT_CD)
+			pulsar_console = locate() in console_area
+			pulsar_console?.set_block_events(FALSE)
+			portal.try_activate()
+			portal_active = TRUE
 
 	SSnano.update_uis(src)
 
 /obj/machinery/power/pulsar_power_bridge/Destroy()
+	pulsar_console?.set_block_events(TRUE)
 	pulsar_console = null
 	new /obj/item/electronics/circuitboard/pulsar_power_bridge(get_turf(src))
 	. = ..()
@@ -240,6 +260,7 @@
 	else
 		var/state = CLAMP(round(pulsar_console.get_effective_power_porduced() / 10), 1, 6)
 		icon_state = "bridge_on[state]"
+
 
 /obj/structure/pulsar_fuel_tank
 	name = "pulsar fuel tank"
@@ -272,7 +293,7 @@
 		tank.remove_air(tank.volume)
 		to_chat(user, SPAN_NOTICE("You pump the contents of [tank] into [src]"))
 		playsound(src, 'sound/effects/spray.ogg', 50, 1, -3)
-		
+
 		if(round(air_contents.get_total_moles()) > 100)
 			icon_state = "pulsar_tank_burst"
 			visible_message(SPAN_DANGER("[src] looks like it's about to explode!"))
