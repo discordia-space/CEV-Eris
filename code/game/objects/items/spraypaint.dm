@@ -38,5 +38,5 @@
 			uses--
 		if(uses <= 0)
 			playsound(loc, 'sound/effects/interaction/graffiti_empty.ogg', 100, 1)
-			to_chat(user, "<span class='notice'>You emptied the can</span>")
+			to_chat(user, "<span class='notice'>[src] is empty.</span>")
 			qdel(src)
