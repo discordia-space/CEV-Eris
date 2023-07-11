@@ -85,5 +85,5 @@
 	build_path = /obj/item/device/floor_painter/mech_painter
 
 /datum/design/autolathe/device/spraypaint
-	name = "spray paint"
+	name = "spraycan"
 	build_path = /obj/item/spraypaint
