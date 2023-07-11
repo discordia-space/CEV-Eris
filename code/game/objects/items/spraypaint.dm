@@ -14,10 +14,11 @@
 	if(istype(target,/turf))
 		var/graffititype = input("Choose what you'd like to paint") in list("Kot","Onestar","Doodle","Piss","Clown","Skull","Heart")
 		playsound(loc, 'sound/effects/interaction/graffiti.ogg', 100, 1)
-		if(do_after(user, 2, target))
+		if(do_after(user, 2 SECONDS, target))
 			to_chat(user, "<span class='notice'>You start tagging \the [target.name]!</span>")
 		else
-			to_chat(user, "<span class='notice'>You must stand still while tagging \the [target.name]!</span>")//cancel the making of the graffiti
+			to_chat(user, "<span class='notice'>You must stand still while tagging \the [target.name]!</span>")
+			return FALSE
 		switch(graffititype)
 			if("Kot")
 				new /obj/effect/decal/cleanable/graffiti_kot(target)
