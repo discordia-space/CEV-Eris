@@ -207,72 +207,56 @@
 	random_rotation = 2
 	random_icon_states = list("asteroid0", "asteroid1", "asteroid2", "asteroid3", "asteroid4", "asteroid5", "asteroid6","asteroid7","asteroid8")
 
-/obj/effect/decal/cleanable/graffiti_kot
-	name = "graffiti"
-	desc = "A graffiti of a very happy cat."
-	density = FALSE
-	anchored = TRUE
-	plane = -1
-	icon = 'icons/effects/wall_graffiti.dmi'
-	icon_state = "kot"
-	random_rotation = 0
-
-/obj/effect/decal/cleanable/graffiti_onestar
-	name = "graffiti"
-	desc = "A graffiti of one star's eye."
-	density = FALSE
-	anchored = TRUE
-	plane = -1
-	icon = 'icons/effects/wall_graffiti.dmi'
-	icon_state = "onestar"
-	random_rotation = 0
-
-/obj/effect/decal/cleanable/graffiti_doodle
-	name = "graffiti"
-	desc = "A vagabond beaten by IH, this is mercenary brutality."
-	density = FALSE
-	anchored = TRUE
-	plane = -1
-	icon = 'icons/effects/wall_graffiti.dmi'
-	icon_state = "doodle"
-	random_rotation = 0
-
-/obj/effect/decal/cleanable/graffiti_piss
+/obj/effect/decal/cleanable/graffiti
 	name = "graffiti"
 	desc = "A graffiti."
 	density = FALSE
 	anchored = TRUE
 	plane = -1
 	icon = 'icons/effects/wall_graffiti.dmi'
-	icon_state = "piss"
+	icon_state = "kot"
 	random_rotation = 0
+/obj/effect/decal/cleanable/graffiti/graffiti_kot
+	name = "graffiti"
+	desc = "A graffiti of a very happy cat."
+	icon = 'icons/effects/wall_graffiti.dmi'
+	icon_state = "kot"
 
-/obj/effect/decal/cleanable/graffiti_clown
+/obj/effect/decal/cleanable/graffiti/graffiti_onestar
+	name = "graffiti"
+	desc = "A graffiti of one star's eye."
+	icon = 'icons/effects/wall_graffiti.dmi'
+	icon_state = "onestar"
+
+
+/obj/effect/decal/cleanable/graffiti/graffiti_doodle
+	name = "graffiti"
+	desc = "A vagabond beaten by IH, this is mercenary brutality."
+	icon = 'icons/effects/wall_graffiti.dmi'
+	icon_state = "doodle"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_piss
+	name = "graffiti"
+	desc = "A graffiti of, well."
+	icon = 'icons/effects/wall_graffiti.dmi'
+	icon_state = "piss"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_clown
 	name = "graffiti"
 	desc = "A graffiti of a clown."
-	density = FALSE
-	anchored = TRUE
-	plane = -1
 	icon = 'icons/effects/wall_graffiti.dmi'
 	icon_state = "clown"
-	random_rotation = 0
 
-/obj/effect/decal/cleanable/graffiti_skull
+/obj/effect/decal/cleanable/graffiti/graffiti_skull
 	name = "graffiti"
 	desc = "A graffiti of a skull."
-	density = FALSE
-	anchored = TRUE
-	plane = -1
 	icon = 'icons/effects/wall_graffiti.dmi'
 	icon_state = "skull"
-	random_rotation = 0
 
-/obj/effect/decal/cleanable/graffiti_heart
+
+/obj/effect/decal/cleanable/graffiti/graffiti_heart
 	name = "graffiti"
 	desc = "A graffiti of a heart."
-	density = FALSE
-	anchored = TRUE
-	plane = -1
 	icon = 'icons/effects/wall_graffiti.dmi'
 	icon_state = "heart"
-	random_rotation = 0
+
