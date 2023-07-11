@@ -1,5 +1,5 @@
 /obj/item/spraypaint
-	name = "spraypaint"
+	name = "spraycan"
 	desc = "Aerosol paint sealed in a pressurized container."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spraypaint"
