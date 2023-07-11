@@ -15,9 +15,7 @@
 		/mob/living/simple_animal/hostile/carp,
 		/mob/living/simple_animal/hostile/carp,
 		/mob/living/simple_animal/hostile/carp/pike,
-		/mob/living/simple_animal/hostile/hivebot,
-		/mob/living/simple_animal/hostile/viscerator,
-		/mob/living/simple_animal/hostile/viscerator)//duplicates to rig chances towards spawning more weaker enemies, but in favour of generally spawning more enemies
+		/mob/living/simple_animal/hostile/hivebot)//duplicates to rig chances towards spawning more weaker enemies, but in favour of generally spawning more enemies
 	var/turfs_around = list()
 	var/victims_to_teleport = list()
 	var/obj/crawler/spawnpoint/target

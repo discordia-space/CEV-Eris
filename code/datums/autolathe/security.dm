@@ -10,10 +10,6 @@
 	name = "zip ties"
 	build_path = /obj/item/handcuffs/zipties
 
-/datum/design/autolathe/sec/electropack
-	name = "electropack"
-	build_path = /obj/item/device/radio/electropack
-
 /datum/design/autolathe/sec/binoculars
 	name = "binoculars"
 	build_path = /obj/item/device/binoculars

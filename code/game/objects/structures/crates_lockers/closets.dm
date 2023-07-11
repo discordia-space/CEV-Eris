@@ -12,7 +12,6 @@
 	var/locked = FALSE
 	var/broken = FALSE
 	var/horizontal = FALSE
-	var/rigged = FALSE
 	var/icon_door = null
 	var/icon_welded = "welded"
 	var/icon_lock = "lock"
@@ -190,14 +189,6 @@
 	if(opened || !can_open(user))
 		return FALSE
 
-	if(rigged && (locate(/obj/item/device/radio/electropack) in src) && istype(user))
-		if(user.electrocute_act(20, src))
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-			s.set_up(5, 1, src)
-			s.start()
-			if(user.stunned)
-				return FALSE
-
 	playsound(loc, open_sound, 100, 1, -3)
 	opened = TRUE
 	if(!dense_when_open)
@@ -359,8 +350,6 @@
 	if(opened)
 		usable_qualities += QUALITY_SAWING
 		usable_qualities += QUALITY_BOLT_TURNING
-	if(rigged)
-		usable_qualities += QUALITY_WIRE_CUTTING
 	if(secure && locked)
 		usable_qualities += QUALITY_PULSING
 
@@ -396,13 +385,6 @@
 					qdel(src)
 				return
 
-		if(QUALITY_WIRE_CUTTING)
-			if(rigged)
-				to_chat(user, SPAN_NOTICE("You cut away the wiring."))
-				new /obj/item/stack/cable_coil(drop_location(), 1)
-				playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
-				rigged = FALSE
-				return
 		if(QUALITY_PULSING)
 			if(!(secure && locked))
 				return
@@ -460,21 +442,6 @@
 			return
 		usr.unEquip(I, src.loc)
 		return
-	else if(istype(I, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/C = I
-		if(rigged)
-			to_chat(user, SPAN_NOTICE("[src] is already rigged!"))
-			return
-		if(C.use(1))
-			to_chat(user, SPAN_NOTICE("You rig [src]."))
-			rigged = TRUE
-			return
-	else if(istype(I, /obj/item/device/radio/electropack))
-		if(rigged)
-			to_chat(user, SPAN_NOTICE("You attach [I] to [src]."))
-			user.drop_item()
-			I.forceMove(src)
-			return
 	else if(istype(I, /obj/item/packageWrap))
 		return
 	else if(istype(I,/obj/item/card/id))

@@ -6,7 +6,6 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/ai_movement_up,
 	/mob/living/silicon/ai/proc/ai_movement_down,
 	/mob/living/silicon/ai/proc/ai_announcement,
-	/mob/living/silicon/ai/proc/ai_emergency_message,
 	/mob/living/silicon/ai/proc/ai_camera_track,
 	/mob/living/silicon/ai/proc/ai_camera_list,
 	/mob/living/silicon/ai/proc/ai_goto_location,
@@ -379,27 +378,6 @@ var/list/ai_verbs_default = list(
 	spawn(600)//One minute cooldown
 		message_cooldown = 0
 
-/mob/living/silicon/ai/var/emergency_message_cooldown = 0
-/mob/living/silicon/ai/proc/ai_emergency_message()
-	set category = "Silicon Commands"
-	set name = "Send Emergency Message"
-
-	if(check_unable(AI_CHECK_WIRELESS))
-		return
-	if(!is_relay_online())
-		to_chat(usr, SPAN_WARNING("No Emergency Bluespace Relay detected. Unable to transmit message."))
-		return
-	if(emergency_message_cooldown)
-		to_chat(usr, SPAN_WARNING("Arrays recycling. Please stand by."))
-		return
-	var/input = sanitize(input(usr, "Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
-	if(!input)
-		return
-	to_chat(usr, SPAN_NOTICE("No response from the remote server. Please, contact your system administrator."))
-	log_say("[key_name(usr)] has made an IA [boss_short] announcement: [input]")
-	emergency_message_cooldown = 1
-	spawn(300)
-		emergency_message_cooldown = 0
 
 
 /mob/living/silicon/ai/check_eye(var/mob/user as mob)

@@ -330,12 +330,6 @@ var/last_message_id = 0
 	return
 
 
-/proc/is_relay_online()
-	for(var/obj/machinery/bluespacerelay/M in GLOB.machines)
-		if(M.stat == 0)
-			return 1
-	return 0
-
 /proc/call_shuttle_proc(var/mob/user, var/emergency)
 	if (!SSticker || !evacuation_controller)
 		return

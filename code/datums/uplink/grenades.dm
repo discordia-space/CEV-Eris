@@ -34,11 +34,7 @@
 	item_cost = 10
 	path = /obj/item/storage/box/explosive
 
-/datum/uplink_item/item/grenades/viscerator
-	name = "viscerator grenade"
-	item_cost = 5
-	path = /obj/item/grenade/spawnergrenade/manhacks
-	
+
 /datum/uplink_item/item/grenades/flash
 	name = "5xFlashbang Grenades"
 	item_cost = 5

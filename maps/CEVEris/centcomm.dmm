@@ -2511,7 +2511,6 @@
 /turf/simulated/mineral,
 /area/space)
 "ke" = (
-/obj/item/device/radio/electropack,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor7"
 	},
@@ -6376,7 +6375,6 @@
 /obj/structure/table/rack,
 /obj/item/grenade/empgrenade,
 /obj/item/grenade/flashbang,
-/obj/item/grenade/spawnergrenade/manhacks,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor4"
 	},
