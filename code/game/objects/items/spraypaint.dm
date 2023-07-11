@@ -13,8 +13,12 @@
 	if(!proximity) return
 	if(istype(target,/turf))
 		var/graffititype = input("Choose what you'd like to paint") in list("Kot","Onestar","Doodle","Piss","Clown","Skull","Heart")
-		playsound(loc, 'sound/effects/interaction/graffiti.ogg', 100, 1)
-		if(do_after(user, 2 SECONDS, target))
+		if(uses <= 0)
+			playsound(loc, 'sound/effects/interaction/graffiti_empty.ogg', 100, 1)
+			to_chat(user, "<span class='notice'>The can is empty.</span>")
+			return FALSE
+		if(do_after(user, 3 SECONDS, target))
+			playsound(loc, 'sound/effects/interaction/graffiti.ogg', 100, 1)
 			to_chat(user, "<span class='notice'>You start tagging \the [target.name]!</span>")
 		else
 			to_chat(user, "<span class='notice'>You must stand still while tagging \the [target.name]!</span>")
@@ -40,3 +44,5 @@
 			playsound(loc, 'sound/effects/interaction/graffiti_empty.ogg', 100, 1)
 			to_chat(user, "<span class='notice'>[src] is empty.</span>")
 			icon_state = "spraypaint_empty"
+			name = "empty spray can"
+			desc = "this spray can is empty."
