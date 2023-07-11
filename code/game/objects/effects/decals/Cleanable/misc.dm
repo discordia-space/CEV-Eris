@@ -206,3 +206,73 @@
 	icon_state = "asteroid0"
 	random_rotation = 2
 	random_icon_states = list("asteroid0", "asteroid1", "asteroid2", "asteroid3", "asteroid4", "asteroid5", "asteroid6","asteroid7","asteroid8")
+
+/obj/effect/decal/cleanable/graffiti_kot
+	name = "graffiti"
+	desc = "This is a very happy cat."
+	density = FALSE
+	anchored = TRUE
+	plane = -1
+	icon = 'icons/effects/wall_graffiti.dmi'
+	icon_state = "Kot"
+	random_rotation = 0
+
+/obj/effect/decal/cleanable/graffiti_onestar
+	name = "graffiti"
+	desc = "The all seeing eye."
+	density = FALSE
+	anchored = TRUE
+	plane = -1
+	icon = 'icons/effects/wall_graffiti.dmi'
+	icon_state = "Onestar"
+	random_rotation = 0
+
+/obj/effect/decal/cleanable/graffiti_doodle
+	name = "graffiti"
+	desc = "A vagabond beaten by IH, this is mercenary brutality."
+	density = FALSE
+	anchored = TRUE
+	plane = -1
+	icon = 'icons/effects/wall_graffiti.dmi'
+	icon_state = "Doodle"
+	random_rotation = 0
+
+/obj/effect/decal/cleanable/graffiti_piss
+	name = "graffiti"
+	desc = "What did the artist tried to tell us with this? nobody knows."
+	density = FALSE
+	anchored = TRUE
+	plane = -1
+	icon = 'icons/effects/wall_graffiti.dmi'
+	icon_state = "Piss"
+	random_rotation = 0
+
+/obj/effect/decal/cleanable/graffiti_clown
+	name = "graffiti"
+	desc = "Honk Honk Motherfucker!"
+	density = FALSE
+	anchored = TRUE
+	plane = -1
+	icon = 'icons/effects/wall_graffiti.dmi'
+	icon_state = "Clown"
+	random_rotation = 0
+
+/obj/effect/decal/cleanable/graffiti_skull
+	name = "graffiti"
+	desc = "Don't you lecture me with your thirty dollar haircut."
+	density = FALSE
+	anchored = TRUE
+	plane = -1
+	icon = 'icons/effects/wall_graffiti.dmi'
+	icon_state = "Skull"
+	random_rotation = 0
+
+/obj/effect/decal/cleanable/graffiti_heart
+	name = "graffiti"
+	desc = "What is love? Baby don't hurt me."
+	density = FALSE
+	anchored = TRUE
+	plane = -1
+	icon = 'icons/effects/wall_graffiti.dmi'
+	icon_state = "Heart"
+	random_rotation = 0
