@@ -44,5 +44,5 @@
 			playsound(loc, 'sound/effects/interaction/graffiti_empty.ogg', 100, 1)
 			to_chat(user, "<span class='notice'>[src] is empty.</span>")
 			icon_state = "spraypaint_empty"
-			name = "empty spray can"
+			name = "empty spraycan"
 			desc = "this spray can is empty."
