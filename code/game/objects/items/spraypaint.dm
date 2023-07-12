@@ -45,4 +45,4 @@
 			to_chat(user, "<span class='notice'>[src] is empty.</span>")
 			icon_state = "spraypaint_empty"
 			name = "empty spraycan"
-			desc = "this spray can is empty."
+			desc = "This spraycan is empty."
