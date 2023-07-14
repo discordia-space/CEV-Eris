@@ -38,7 +38,7 @@
 		brainmob = null
 	. = ..()
 
-/obj/item/organ/internal/vital/brain/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)
+/obj/item/organ/internal/vital/brain/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, silent = FALSE, sharp = FALSE, edge = FALSE)
 	if(!damage_type || status & ORGAN_DEAD)
 		return
 
