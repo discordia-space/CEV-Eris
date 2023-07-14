@@ -63,6 +63,13 @@
 	f_damage = 5
 	f_step = 8
 
+/obj/item/projectile/bullet/grenade/frag/phosphorous
+	name = "phosphorous Ember"
+	f_type = /obj/item/projectile/bullet/pellet/fragment/ember
+	f_amount = 18
+	f_damage = 5
+	f_step = 8
+
 /obj/item/projectile/bullet/grenade/frag/grenade_effect(target)
 	fragment_explosion(target, range, f_type, f_amount, f_damage, f_step, same_turf_hit_chance)
 	explosion(get_turf(target), 60, 40)

@@ -326,6 +326,15 @@
 	prespawned_content_amount = 6
 	prespawned_content_type =  /obj/item/ammo_casing/grenade/teargas
 
+/obj/item/storage/box/phosphorous_rounds
+	name = "box of white phosphorous shells"
+	desc = "A box containing 7 antipersonnel incendiary  grenade shells.<br> WARNING: These devices are extremely dangerous and can cause severe burns and fires."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	prespawned_content_amount = 7
+	prespawned_content_type = /obj/item/ammo_casing/grenade/frag/phosphorus
+
 /obj/item/storage/box/emp_rounds
 	name = "box of EMP grenade shells"
 	desc = "A box containing 6 EMP grenade shells, designed to be fired from grenade launchers."

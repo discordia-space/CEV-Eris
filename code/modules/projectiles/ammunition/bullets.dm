@@ -488,6 +488,12 @@
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3)
 	rarity_value = 25
 
+/obj/item/ammo_casing/grenade/frag/phosphorus
+	name = "SA WFR \"Micic\""
+	desc = "A military-grade White phosphorus grenade shell, designed to be fired from grenade launchers. The abbreviation \"SA\" marks its producer, but the lack of detatil makes it ubiquitous."
+	icon_state = "high_incendiary
+	projectile_type = /obj/item/projectile/bullet/grenade/frag/phosphorous
+
 /obj/item/ammo_casing/grenade/frag
 	name = "NT DFR \"Pallad\""
 	desc = "A military-grade grenade shell, designed to be fired from grenade launchers. The abbreviation \"NT\" marks its producer, but the lack of detatil makes it ubiquitous."
