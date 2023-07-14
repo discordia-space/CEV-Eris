@@ -464,7 +464,7 @@
 
 /obj/item/ammo_casing/grenade/teargas
 	name = "FS TGR \"Murphy\""
-	desc = "A Riot-grade Frozen Star teargas round, for use against unruly crowds."
+	desc = "A riot-grade Frozen Star tear gas round, for use against unruly crowds."
 	icon_state = "teargas"
 	projectile_type = /obj/item/projectile/bullet/grenade/handgrenade/teargas
 	w_class = ITEM_SIZE_SMALL
