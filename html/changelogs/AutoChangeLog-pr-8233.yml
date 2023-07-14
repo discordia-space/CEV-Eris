@@ -1,0 +1,6 @@
+author: thedarkcrusader
+delete-after: true
+changes:
+  - rscadd: Adds new grenade sprites and sprites for some of the grenade code. thanks
+      to kirov for sprites
+  - rscdel: Removed old  sprites
