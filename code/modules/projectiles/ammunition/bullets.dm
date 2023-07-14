@@ -505,7 +505,7 @@
 
 /obj/item/ammo_casing/grenade/emp/low_yield
 	name = "FS EMPR \"Short Circuit\""
-	desc = "An EMP grenade shell, designed to be fired from grenade launchers. The abbreviation \"FS\" marks its producer, configured with a lower radius for use on ships and stations."
+	desc = "An EMP grenade shell configured with a lower radius for use on ships and stations, designed to be fired from grenade launchers. The abbreviation \"FS\" marks its producer,"
 	icon_state = "emp_low"
 	projectile_type = /obj/item/projectile/bullet/grenade/emp/low_yield // gonna keep this from being maint-lootable for now
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_IRON = 2, MATERIAL_URANIUM = 2)
