@@ -496,14 +496,6 @@
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 2)
 	rarity_value = 25
 
-/obj/item/ammo_casing/grenade/frag/phosphorus
-	name = "SA WFR \"Micic\""
-	desc = "A military-grade White phosphorus grenade shell, designed to be fired from grenade launchers. The abbreviation \"SA\" marks its producer, but the lack of detatil makes it ubiquitous."
-	icon_state = "warcrime"
-	projectile_type = /obj/item/projectile/bullet/grenade/frag/phosphorous
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 2)
-	rarity_value = 25
-
 /obj/item/ammo_casing/grenade/emp
 	name = "NT EMPR \"Remote Switch\""
 	desc = "An EMP grenade shell, designed to be fired from grenade launchers. The abbreviation \"NT\" marks its producer, but the lack of detatil makes it ubiquitous."

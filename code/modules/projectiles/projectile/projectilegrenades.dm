@@ -74,12 +74,6 @@
 	f_damage = 3
 	f_step = 8
 
-/obj/item/projectile/bullet/grenade/frag/phosphorous
-	name = "phosphorous ember"
-	f_type = /obj/item/projectile/bullet/pellet/fragment/ember
-	f_amount = 18
-	f_step = 8
-
 /obj/item/projectile/bullet/grenade/emp
 	var/heavy_emp_range = 3
 	var/light_emp_range = 8
