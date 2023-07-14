@@ -1,7 +1,10 @@
+#define SEISMIC_MIN 1
+#define SEISMIC_MAX 6
 #define CAVE_SIZE 100  // Size of the square cave area
 #define CAVE_MARGIN 5  // Margin near the edges of the cave
 #define CAVE_CORRIDORS 10  // Number of corridors to guide cave generation
 #define CAVE_WALL_PROPORTION 70 // Proportion of wall in random noise generation
+#define CAVE_VWEIGHT 10 // Base mineral weight for choice of mineral vein
 
 // Types of turfs in the cave
 #define CAVE_FREE 0
@@ -10,12 +13,11 @@
 #define CAVE_CARBON 3
 #define CAVE_IRON 4
 #define CAVE_PLASMA 5
-#define CAVE_SAND 6
-#define CAVE_URANIUM 7
-#define CAVE_DIAMOND 8
-#define CAVE_SILVER 9
-#define CAVE_GOLD 10
-#define CAVE_PLATINUM 11
+#define CAVE_URANIUM 6
+#define CAVE_DIAMOND 7
+#define CAVE_SILVER 8
+#define CAVE_GOLD 9
+#define CAVE_PLATINUM 10
 
 //////////////////////////////
 // Generator used to handle underground caves
@@ -28,19 +30,18 @@
 	anchored = TRUE
 	unacidable = 1
 	simulated = FALSE
-	invisibility = 101
+	invisibility = 0 // 101
 
 	var/map // map with 0 (free turf) and 1+ (wall or mineral)
-	var/N_mineral_veins // Number of mineral veins in the cave
 
 /obj/cave_generator/New()
 
-	testing("Cave generator at [x] [y] [z]")
+	log_world("Cave generator at [x] [y] [z]")
 
 	// Honk
 	generate_map()
 
-/obj/cave_generator/proc/generate_map()
+/obj/cave_generator/proc/generate_map(seismic_lvl = 1)
 	// Fill the map with random noise
 	random_fill_map()
 
@@ -51,21 +52,21 @@
 	for(var/i = 1 to 3)
 		run_cellular_automata()
 
-	testing("Generating veins")
+	log_world("Generating veins")
 	// Generate mineral veins from processed map
-	generate_mineral_veins()
+	generate_mineral_veins(seismic_lvl)
 
-	testing("Cleaning turfs")
+	log_world("Cleaning turfs")
 	// Clean the map
 	clean_turfs()
 
-	testing("Placing turfs")
+	log_world("Placing turfs")
 	// Finally place the walls, ores and free space
 	place_turfs()
 
 /obj/cave_generator/proc/random_fill_map()
 	// New, empty map
-	map = new/list(CAVE_SIZE, CAVE_SIZE, 0)
+	map = new/list(CAVE_SIZE, CAVE_SIZE)
 
 	for(var/i = 1 to CAVE_SIZE)
 		for(var/j = 1 to CAVE_SIZE)
@@ -74,6 +75,8 @@
 				map[i][j] = CAVE_WALL
 			else if(prob(CAVE_WALL_PROPORTION))
 				map[i][j] = CAVE_WALL
+			else
+				map[i][j] = CAVE_FREE
 
 /obj/cave_generator/proc/generate_corridors()
 
@@ -117,6 +120,8 @@
 	for(var/i = 2 to CAVE_SIZE - 1)
 		for(var/j = 2 to CAVE_SIZE - 1)
 			map[i][j] = place_wall_logic(i, j)
+			if(isnull(map[i][j]))
+				log_world("Problem at [i] [j]")
 
 // Wall placement logic for the cellular automata
 /obj/cave_generator/proc/place_wall_logic(x, y)
@@ -129,8 +134,8 @@
 			return CAVE_FREE
 	else if(num_walls >= 5)
 		return CAVE_WALL
-	else
-		return CAVE_FREE
+	
+	return CAVE_FREE
 
 // Get number of walls in a given range around the target tile
 /obj/cave_generator/proc/get_adjacent_walls(x, y, scope_x, scope_y)
@@ -142,19 +147,20 @@
 	return num_walls
 
 // Generate mineral veins once cave layout has been decided
-/obj/cave_generator/proc/generate_mineral_veins() 
+/obj/cave_generator/proc/generate_mineral_veins(seismic_lvl) 
 	var/x_vein = 0
 	var/y_vein = 0
-	var/N_veins = N_mineral_veins
+	var/N_veins = rand(15, 20 * (1 + 0.5 * (seismic_lvl - SEISMIC_MIN) / (SEISMIC_MAX - SEISMIC_MIN)))
 	var/N_trials = 50
+	log_world("Placing [N_veins] mineral veins at seismic level [seismic_lvl]")
 	while(N_veins > 0 && N_trials > 0)
 		N_trials--
 		x_vein = rand(CAVE_MARGIN, CAVE_SIZE - CAVE_MARGIN)
 		y_vein = rand(CAVE_MARGIN, CAVE_SIZE - CAVE_MARGIN)
-		N_veins -= place_mineral_vein(x_vein, y_vein)
+		N_veins -= place_mineral_vein(x_vein, y_vein, seismic_lvl)
 
 // Place a mineral vein starting at the designated spot
-/obj/cave_generator/proc/place_mineral_vein(x, y)
+/obj/cave_generator/proc/place_mineral_vein(x, y, seismic_lvl)
 
 	// Find closest available spot (wall tile near a free tile)
 	var/search_for = map[x][y] == CAVE_FREE ? CAVE_WALL : CAVE_FREE
@@ -188,19 +194,34 @@
 	if(!found)
 		return 0
 
-	// TODO: Make mineral specific
-	var/p_mineral = 25
-	var/size_min = 5
-	var/size_max = 10
+	// Choose which kind of mineral should the vein be made of
+	// Multiplier scale from 0 to 1
+	// Carbon and iron always have same probability
+	// Plasma, silver, gold scale up until medium seismic level
+	// Uranium, diamond and platinum scale up until max seismic level
+	var/seismic_mult = (seismic_lvl - SEISMIC_MIN) / (SEISMIC_MAX - SEISMIC_MIN)
+	var/list/datum/cave_vein/cave_veins = list(/datum/cave_vein/carbon = CAVE_VWEIGHT,
+											/datum/cave_vein/iron = CAVE_VWEIGHT,
+											/datum/cave_vein/plasma = CAVE_VWEIGHT * min(1, 2 * seismic_mult),
+											/datum/cave_vein/silver = CAVE_VWEIGHT * min(1, 2 * seismic_mult),
+											/datum/cave_vein/gold = CAVE_VWEIGHT * min(1, 2 * seismic_mult),
+											/datum/cave_vein/uranium = CAVE_VWEIGHT * seismic_mult,
+											/datum/cave_vein/diamond = CAVE_VWEIGHT * seismic_mult,
+											/datum/cave_vein/platinum = CAVE_VWEIGHT * seismic_mult)
+	var/vein_path = pickweight(cave_veins)
+	var/datum/cave_vein/CV = new vein_path()
 
 	// Place mineral vein at the available spot in a recursive manner
-	place_recursive_mineral(x, y, p_mineral, size_min, size_max) 
+	// log_world("Placing [CV.name] at [x] [y]")
+	place_recursive_mineral(x, y, CV.p_spread, CV.size_max, CV.size_min, CV.mineral) 
 	return 1
 
 // Place a mineral vein in a recursive manner
-/obj/cave_generator/proc/place_recursive_mineral(x, y, p, size, size_min)
+/obj/cave_generator/proc/place_recursive_mineral(x, y, p, size, size_min, mineral)
 
-	map[x][y] = CAVE_IRON
+	map[x][y] = mineral
+	if(isnull(map[x][y]))
+		log_world("Problema at [x] [y]")
 	// Last turf of the vein
 	if(size == 0)
 		return
@@ -221,7 +242,7 @@
 
 	var/j = rand(1, LAZYLEN(xs))
 	if(prob(p) || (size > size_min))
-		place_recursive_mineral(xs[j], ys[j], p, size - 1, size_min)
+		place_recursive_mineral(xs[j], ys[j], p, size - 1, size_min, mineral)
 
 // Remove everything from all tiles except the turfs themselves
 /obj/cave_generator/proc/clean_turfs()
@@ -230,14 +251,22 @@
 		for(var/j = 1 to CAVE_SIZE)
 			var/turf/T = get_turf(locate(x + i, y + j, z))
 			for (var/atom/A in T.contents)
-				qdel(A)
+				if(!isobserver(A))
+					if(ismob(A))
+						var/mob/M = A
+						M.death(FALSE)
+						M.ghostize()
+					qdel(A)
 
 /obj/cave_generator/proc/place_turfs()
 
 	var/turf_type
 	for(var/i = 1 to CAVE_SIZE)
 		for(var/j = 1 to CAVE_SIZE)
-			testing("Placing [i] [j] as [map[i][j]]")
+			// log_world("Placing [i] [j] as [map[i][j]]")
+			if(isnull(map[i][j]))
+				log_world("Problemo at [i] [j]")
+
 			switch(map[i][j])
 				if(CAVE_FREE)
 					turf_type = /turf/simulated/floor/asteroid
@@ -251,8 +280,6 @@
 					turf_type = /turf/simulated/cave_mineral/iron
 				if(CAVE_PLASMA)
 					turf_type = /turf/simulated/cave_mineral/plasma
-				if(CAVE_SAND)
-					turf_type = /turf/simulated/cave_mineral/sand
 				if(CAVE_URANIUM)
 					turf_type = /turf/simulated/cave_mineral/uranium
 				if(CAVE_DIAMOND)
@@ -264,24 +291,82 @@
 				if(CAVE_PLATINUM)
 					turf_type = /turf/simulated/cave_mineral/platinum
 				else
-					log_and_message_admins("Unknown turf type for cave generator at ([x + i], [y + j], [z]).")
+					log_world("Unknown turf type ([map[i][j]]) for cave generator at ([x + i], [y + j], [z]).")
 					turf_type = /turf/simulated/floor/asteroid
 
 			var/turf/T = get_turf(locate(x + i, y + j, z))
 			if(!istype(T, turf_type))
 				T.ChangeTurf(turf_type)
 
+//////////////////////////////
+// Mineral veins for the cave generator
+//////////////////////////////
+/datum/cave_vein
+	var/name  // Name of the vein
+	var/mineral  // Type of ore of this vein
+	var/size_min  // Minimal size of this vein
+	var/size_max  // Maximal size of this vein
+	var/p_spread = 50  // Probability of spread past minimal size
+
+/datum/cave_vein/carbon
+	name = "carbon vein"
+	mineral = CAVE_CARBON
+	size_min = 6
+	size_max = 12
+
+/datum/cave_vein/iron
+	name = "iron vein"
+	mineral = CAVE_IRON
+	size_min = 6
+	size_max = 12
+
+/datum/cave_vein/plasma
+	name = "plasma vein"
+	mineral = CAVE_PLASMA
+	size_min = 5
+	size_max = 10
+
+/datum/cave_vein/uranium
+	name = "uranium vein"
+	mineral = CAVE_URANIUM
+	size_min = 3
+	size_max = 6
+
+/datum/cave_vein/diamond
+	name = "diamond vein"
+	mineral = CAVE_DIAMOND
+	size_min = 3
+	size_max = 6
+
+/datum/cave_vein/silver
+	name = "silver vein"
+	mineral = CAVE_SILVER
+	size_min = 4
+	size_max = 8
+
+/datum/cave_vein/gold
+	name = "gold vein"
+	mineral = CAVE_GOLD
+	size_min = 4
+	size_max = 8
+
+/datum/cave_vein/platinum
+	name = "platinum vein"
+	mineral = CAVE_PLATINUM
+	size_min = 4
+	size_max = 8
+
 #undef CAVE_SIZE
 #undef CAVE_MARGIN
 #undef CAVE_CORRIDORS
 #undef CAVE_WALL_PROPORTION
+#undef CAVE_VWEIGHT
 #undef CAVE_FREE
 #undef CAVE_WALL
 #undef CAVE_POI
 #undef CAVE_CARBON
 #undef CAVE_IRON
 #undef CAVE_PLASMA
-#undef CAVE_SAND
 #undef CAVE_URANIUM
 #undef CAVE_DIAMOND
 #undef CAVE_SILVER

@@ -126,9 +126,6 @@
 /turf/simulated/cave_mineral/plasma
 	mineral_name = ORE_PLASMA
 
-/turf/simulated/cave_mineral/sand
-	mineral_name = ORE_SAND
-
 /turf/simulated/cave_mineral/uranium
 	mineral_name = ORE_URANIUM
 
