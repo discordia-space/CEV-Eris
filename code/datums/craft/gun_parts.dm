@@ -421,7 +421,7 @@ semi accepts weird caliber - +1 points
 	desc = "All the bits that makes the bullet go bang, for all the military hardware you know and love."
 	icon_state = "mechanism_autorifle"
 	matter = list(MATERIAL_PLASTEEL = 10)
-	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D|MAG_WELL_IH
 
 // Basic - semiauto with high damage. Total point value: +4
 /obj/item/part/gun/modular/mechanism/autorifle/basic
@@ -475,7 +475,7 @@ semi accepts weird caliber - +1 points
 			Offers 300 RPM fully automatic fire. Provides slightly improved damage output at the cost of fire control. Supports drum magazines."
 	icon_state = "mechanism_autorifle"
 	accepted_calibers = list(CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE)
-	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D|MAG_WELL_IH
 	recoil_bonus = 1.25 // -2 points
 	damage_bonus = 0.05 // +1 points
 	bonus_firemodes = list(BURST_3_ROUND, BURST_5_ROUND, FULL_AUTO_300) // +5 points
