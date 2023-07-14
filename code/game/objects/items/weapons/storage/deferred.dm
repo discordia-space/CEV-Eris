@@ -178,7 +178,6 @@
 	initial_contents = list(
 	/obj/item/ammo_casing/grenade/blast = 5,
 	/obj/item/ammo_casing/grenade/frag = 14,
-	/obj/item/ammo_casing/grenade/frag/phosphorus  = 5,
 	/obj/item/ammo_casing/grenade/emp = 4,
 	/obj/item/gun/projectile/shotgun/pump/grenade/lenar = 1)
 
