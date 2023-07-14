@@ -20,6 +20,7 @@
 
 #define ORGAN_GROWER	(1<<6)
 
+#define MAKESHIFT		(1<<7)
 
 #define RESEARCH_ENGINEERING   /datum/tech/engineering
 #define RESEARCH_BIOTECH       /datum/tech/biotech

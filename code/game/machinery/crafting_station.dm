@@ -1,3 +1,4 @@
+/*
 /obj/machinery/craftingstation
 	name = "crafting station"
 	desc = "Makeshift fabrication station for home-made munitions and components of firearms and armor."
@@ -121,6 +122,7 @@
 								required_resources = materials_smechanism
 								items_to_spawn = list("" = /obj/item/part/gun/modular/mechanism/smg)
 							if("Autorifle mechanism")
+								choice = input("What type of [choice]?") as null|anything in list("Pistol mechanism", "Revolver mechanism", "Shotgun mechanism", "SMG mechanism", "Autorifle mechanism", "Machinegun mechanism", "Bolt action mechanism")
 								required_resources = materials_lmechanism
 								items_to_spawn = list("" = /obj/item/part/gun/modular/mechanism/autorifle)
 							if("Shotgun mechanism")
@@ -405,3 +407,50 @@
 
 	//The stored material gets the amount (whole+remainder) subtracted
 	materials_stored[M] -= amount
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+//"apple", "banana", "lemon"
+// "firearm grips", "firearm barrels", "pistol mechanisms", "revolver mechanisms", "pump-action mechanisms", "self-reloading mechanisms"
+
+/obj/machinery/autolathe/crafting_station
+	name = "Crafting Station"
+	desc = "Makeshift fabrication station for home-made munitions and components of firearms and armor."
+	icon = 'icons/obj/machines/crafting_station.dmi'
+	icon_state = "craft"
+	circuit = /obj/item/electronics/circuitboard/crafting_station
+	build_type = MAKESHIFT
+	unsuitable_materials = list()
+	have_disk = FALSE
+	have_reagents = FALSE
+	have_recycling = FALSE
+	use_power = NO_POWER_USE
+
+	var/list/designs = list()
+	categories = list("firearm grips", "firearm barrels", "pistol mechanisms", "revolver mechanisms", "pump-action mechanisms", "self-reloading mechanisms", ".35 caliber", ".40 caliber", ".20 caliber", ".25 caliber", ".30 caliber", "shotgun shells", "special munitions", "miscellaneous")
+
+/obj/machinery/autolathe/crafting_station/Initialize()
+	. = ..()
+	LAZYADD(designs, subtypesof(/datum/design/makeshift))
+
+/obj/machinery/autolathe/crafting_station/res_load()
+	flick("craft_warmup", src)
+
+/obj/machinery/autolathe/crafting_station/design_list()
+	return designs
+
+
+/obj/machinery/autolathe/crafting_station/nano_ui_data()
+	var/data = ..()
+	data[subcategories] = subcategories
+	return data
