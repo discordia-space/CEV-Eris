@@ -83,3 +83,7 @@
 /datum/design/autolathe/device/mechpainter
 	name = "mech painter"
 	build_path = /obj/item/device/floor_painter/mech_painter
+
+/datum/design/autolathe/device/spraypaint
+	name = "spraycan"
+	build_path = /obj/item/spraypaint

@@ -872,6 +872,7 @@
 #include "code\game\objects\items\paintkit.dm"
 #include "code\game\objects\items\shooting_range.dm"
 #include "code\game\objects\items\slimeflashlight.dm"
+#include "code\game\objects\items\spraypaint.dm"
 #include "code\game\objects\items\talking_crystal.dm"
 #include "code\game\objects\items\toys.dm"
 #include "code\game\objects\items\trash.dm"
