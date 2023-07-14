@@ -18148,6 +18148,8 @@
 /obj/item/grenade/frag,
 /obj/item/grenade/frag,
 /obj/item/grenade/frag,
+/obj/item/storage/box/teargas_rounds,
+/obj/item/storage/box/teargas_rounds,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aSX" = (
@@ -49537,9 +49539,9 @@
 /obj/machinery/button/remote/blast_door{
 	id = "maint_hatch_eng_core2s";
 	name = "Maintenance Hatch Control";
+	pixel_x = -32;
 	pixel_y = -24;
-	req_access = null;
-	pixel_x = -32
+	req_access = null
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
@@ -81683,12 +81685,12 @@
 	dir = 9
 	},
 /obj/machinery/access_button{
+	command = "cycle_interiors";
 	frequency = 1379;
 	master_tag = "engine_access_console";
 	name = "Engine External Access Button";
 	pixel_x = -25;
-	pixel_y = -25;
-	command = "cycle_interiors"
+	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
@@ -105189,9 +105191,9 @@
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/disposal/deliveryChute{
-	dir = 8;
 	desc = "A chute for shipping crate disposal.";
-	description_antag = "Can bse used to escape if bolted in a room, or to get rid of evidence"
+	description_antag = "Can bse used to escape if bolted in a room, or to get rid of evidence";
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)

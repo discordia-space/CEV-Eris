@@ -45,6 +45,7 @@
 		"Ammunition and Accessories" = list(
 			/obj/item/grenade/empgrenade/low_yield,
 			/obj/item/grenade/smokebomb,
+			/obj/item/ammo_casing/grenade/teargas,
 			/obj/item/grenade/flashbang,
 			/obj/item/ammo_magazine/ammobox/magnum,
 			/obj/item/ammo_magazine/lrifle,
