@@ -33,10 +33,12 @@
 	invisibility = 0 // 101
 
 	var/map // map with 0 (free turf) and 1+ (wall or mineral)
+	var/obj/structure/multiz/ladder/cave_hole/ladder_down
+	var/obj/structure/multiz/ladder/up/cave/ladder_up
 
 /obj/cave_generator/New()
 
-	log_world("Cave generator at [x] [y] [z]")
+	// log_world("Cave generator at [x] [y] [z]")
 
 	// Honk
 	generate_map()
@@ -61,8 +63,11 @@
 	clean_turfs()
 
 	log_world("Placing turfs")
-	// Finally place the walls, ores and free space
+	// Place the walls, ores and free space
 	place_turfs()
+
+	// Place the golems
+	place_golems(seismic_lvl)
 
 /obj/cave_generator/proc/random_fill_map()
 	// New, empty map
@@ -119,15 +124,20 @@
 
 	for(var/i = 2 to CAVE_SIZE - 1)
 		for(var/j = 2 to CAVE_SIZE - 1)
+			if(isnull(map[i][j]) && i < 5 && j < 5)
+				log_world("Problemu at [i] [j]")
+
+	for(var/i = 2 to CAVE_SIZE - 1)
+		for(var/j = 2 to CAVE_SIZE - 1)
 			map[i][j] = place_wall_logic(i, j)
-			if(isnull(map[i][j]))
+			if(isnull(map[i][j]) && i < 5 && j < 5)
 				log_world("Problem at [i] [j]")
 
 // Wall placement logic for the cellular automata
-/obj/cave_generator/proc/place_wall_logic(x, y)
+/obj/cave_generator/proc/place_wall_logic(x0, y0)
 
-	var/num_walls = get_adjacent_walls(x, y, 1, 1)
-	if(map[x][y] == CAVE_WALL)
+	var/num_walls = get_adjacent_walls(x0, y0, 1, 1)
+	if(map[x0][y0] == CAVE_WALL)
 		if(num_walls >= 4)
 			return CAVE_WALL
 		else if(num_walls < 2)
@@ -138,11 +148,11 @@
 	return CAVE_FREE
 
 // Get number of walls in a given range around the target tile
-/obj/cave_generator/proc/get_adjacent_walls(x, y, scope_x, scope_y)
+/obj/cave_generator/proc/get_adjacent_walls(x0, y0, scope_x, scope_y)
 	var/num_walls = 0
-	for(var/i = (x - scope_x) to (x + scope_x))
-		for(var/j = (y - scope_y) to (y + scope_y))
-			if(!(i == x && j == y) && map[i][j] == CAVE_WALL)
+	for(var/i = (x0 - scope_x) to (x0 + scope_x))
+		for(var/j = (y0 - scope_y) to (y0 + scope_y))
+			if(!(i == x0 && j == y0) && map[i][j] == CAVE_WALL)
 				num_walls++
 	return num_walls
 
@@ -159,27 +169,107 @@
 		y_vein = rand(CAVE_MARGIN, CAVE_SIZE - CAVE_MARGIN)
 		N_veins -= place_mineral_vein(x_vein, y_vein, seismic_lvl)
 
+// Find a free spot in the cave
+/obj/cave_generator/proc/find_free_spot(x_start, y_start)
+
+	var/x0 = x_start - 1 
+	var/x1 = x_start + 1
+	var/y0 = y_start - 1
+	var/y1 = y_start + 1
+	var/found = FALSE
+	var/edge = FALSE
+	if(map[x_start][y_start] == CAVE_FREE)
+		found = TRUE
+	while(!found && !edge)
+		found = TRUE
+		if(map[x0][y_start] == CAVE_FREE)
+			x_start = x0
+		else if(map[x1][y_start] == CAVE_FREE)
+			x_start = x1
+		else if(map[x_start][y0] == CAVE_FREE)
+			y_start = y0
+		else if(map[x_start][y1] == CAVE_FREE)
+			y_start = y1
+		else:
+			found = FALSE
+		
+		if(!found)
+			x0--
+			x1++
+			y0--
+			y1++
+			edge = (x0 == 1) || (x1 == CAVE_SIZE) || (y0 == 1) || (y1 == CAVE_SIZE)
+	
+	// Hit an edge before finding an available spot
+	if(!found)
+		return FALSE
+
+	log_world("Placing up ladder at [x + x_start] [y + y_start] [z]")
+	ladder_up = new /obj/structure/multiz/ladder/up/cave(locate(x + x_start, y + y_start, z))
+	return TRUE
+
+// Place the up and down ladders and connect them
+/obj/cave_generator/proc/place_ladders(drill_x, drill_y, drill_z, seismic_lvl)
+
+	// Generate the map for the given seismic level
+	generate_map(seismic_lvl)
+
+	// Place the up ladder on a free spot in the cave
+	var/found = FALSE
+	var/N_trials = 10
+	while(!found && N_trials > 0)
+		N_trials--
+		found = find_free_spot(rand(2, CAVE_SIZE - 2), rand(2, CAVE_SIZE - 2))
+	if(!found)
+		log_world("Failed to find a free spot in the cave to place a ladder.")
+		return FALSE
+
+	// Place the down ladder near the drill
+	log_world("Placing down ladder at [drill_x] [drill_y] [drill_z]")
+	ladder_down = new /obj/structure/multiz/ladder/cave_hole(locate(drill_x, drill_y - 1, drill_z))
+
+	// Connect ladders
+	ladder_down.target = ladder_up
+	ladder_up.target = ladder_down
+
+	return TRUE
+
+// Disconnect and remove the ladders
+/obj/cave_generator/proc/remove_ladders()
+	ladder_down.target = null
+	ladder_up.target = null
+	QDEL_NULL(ladder_down)
+	QDEL_NULL(ladder_up)
+
 // Place a mineral vein starting at the designated spot
-/obj/cave_generator/proc/place_mineral_vein(x, y, seismic_lvl)
+/obj/cave_generator/proc/place_mineral_vein(x_start, y_start, seismic_lvl)
 
 	// Find closest available spot (wall tile near a free tile)
-	var/search_for = map[x][y] == CAVE_FREE ? CAVE_WALL : CAVE_FREE
-	var/x0 = x - 1 
-	var/x1 = x + 1
-	var/y0 = y - 1
-	var/y1 = y + 1
+	var/search_for = map[x_start][y_start] == CAVE_FREE ? CAVE_WALL : CAVE_FREE
+	var/x0 = x_start - 1 
+	var/x1 = x_start + 1
+	var/y0 = y_start - 1
+	var/y1 = y_start + 1
 	var/found = FALSE
 	var/edge = FALSE
 	while(!found && !edge)
 		found = TRUE
-		if(map[x0][y] == search_for)
-			x = x0
-		else if(map[x1][y] == search_for)
-			x = x1
-		else if(map[x][y0] == search_for)
-			y = y0
-		else if(map[x][y1] == search_for)
-			y = y1
+		if(map[x0][y_start] == search_for)
+			if(search_for == CAVE_FREE)
+				x0++
+			x_start = x0
+		else if(map[x1][y_start] == search_for)
+			if(search_for == CAVE_FREE)
+				x1--
+			x_start = x1
+		else if(map[x_start][y0] == search_for)
+			if(search_for == CAVE_FREE)
+				y0++
+			y_start = y0
+		else if(map[x_start][y1] == search_for)
+			if(search_for == CAVE_FREE)
+				y1--
+			y_start = y1
 		else:
 			found = FALSE
 		
@@ -213,21 +303,21 @@
 
 	// Place mineral vein at the available spot in a recursive manner
 	// log_world("Placing [CV.name] at [x] [y]")
-	place_recursive_mineral(x, y, CV.p_spread, CV.size_max, CV.size_min, CV.mineral) 
+	place_recursive_mineral(x_start, y_start, CV.p_spread, CV.size_max, CV.size_min, CV.mineral) 
 	return 1
 
 // Place a mineral vein in a recursive manner
-/obj/cave_generator/proc/place_recursive_mineral(x, y, p, size, size_min, mineral)
+/obj/cave_generator/proc/place_recursive_mineral(x0, y0, p, size, size_min, mineral)
 
-	map[x][y] = mineral
-	if(isnull(map[x][y]))
-		log_world("Problema at [x] [y]")
+	map[x0][y0] = mineral
+	if(isnull(map[x0][y0]))
+		log_world("Problema at [x0] [y0]")
 	// Last turf of the vein
 	if(size == 0)
 		return
 
-	var/list/xtest = list(x - 1, x + 1, x, x)
-	var/list/ytest = list(y, y, y - 1, y + 1)
+	var/list/xtest = list(x0 - 1, x0 + 1, x0, x0)
+	var/list/ytest = list(y0, y0, y0 - 1, y0 + 1)
 	var/list/xs = list()
 	var/list/ys = list()
 	for(var/i = 1 to 4)
@@ -247,15 +337,16 @@
 // Remove everything from all tiles except the turfs themselves
 /obj/cave_generator/proc/clean_turfs()
 
+	for(var/mob/living/M in SSmobs.mob_living_by_zlevel[z])
+		if((M.x > x) && (M.x < x + CAVE_SIZE) && (M.y > y) && (M.y < y + CAVE_SIZE))
+			M.death(FALSE)
+			M.ghostize()
+
 	for(var/i = 1 to CAVE_SIZE)
 		for(var/j = 1 to CAVE_SIZE)
 			var/turf/T = get_turf(locate(x + i, y + j, z))
 			for (var/atom/A in T.contents)
 				if(!isobserver(A))
-					if(ismob(A))
-						var/mob/M = A
-						M.death(FALSE)
-						M.ghostize()
 					qdel(A)
 
 /obj/cave_generator/proc/place_turfs()
@@ -264,8 +355,8 @@
 	for(var/i = 1 to CAVE_SIZE)
 		for(var/j = 1 to CAVE_SIZE)
 			// log_world("Placing [i] [j] as [map[i][j]]")
-			if(isnull(map[i][j]))
-				log_world("Problemo at [i] [j]")
+			//if(isnull(map[i][j]))
+			//	log_world("Problemo at [i] [j]")
 
 			switch(map[i][j])
 				if(CAVE_FREE)
@@ -291,12 +382,26 @@
 				if(CAVE_PLATINUM)
 					turf_type = /turf/simulated/cave_mineral/platinum
 				else
-					log_world("Unknown turf type ([map[i][j]]) for cave generator at ([x + i], [y + j], [z]).")
+					//log_world("Unknown turf type ([map[i][j]]) for cave generator at ([x + i], [y + j], [z]).")
 					turf_type = /turf/simulated/floor/asteroid
 
 			var/turf/T = get_turf(locate(x + i, y + j, z))
 			if(!istype(T, turf_type))
 				T.ChangeTurf(turf_type)
+
+// Spawn golems on free turfs depending on seismic level
+/obj/cave_generator/proc/place_golems(seismic_lvl)
+
+	var/golem_type
+	for(var/i = 1 to CAVE_SIZE)
+		for(var/j = 1 to CAVE_SIZE)
+			if(map[i][j] == CAVE_FREE && prob(2 + seismic_lvl))
+				if(prob(4 * seismic_lvl)) // Probability of special golem
+					golem_type = pick(GLOB.golems_special)
+				else
+					golem_type = pick(GLOB.golems_normal)
+				// Spawn golem at free location
+				new golem_type(get_turf(locate(x + i, y + j, z)), drill=null, parent=null)  
 
 //////////////////////////////
 // Mineral veins for the cave generator
@@ -355,6 +460,23 @@
 	mineral = CAVE_PLATINUM
 	size_min = 4
 	size_max = 8
+
+//////////////////////////////
+// Ladders to enter and exit the cave
+//////////////////////////////
+/obj/structure/multiz/ladder/cave_hole
+	name = "cave network entrance"
+	desc = "A hole in the ground leading to an extensive cavern network."
+	icon = 'icons/obj/burrows.dmi'
+	icon_state = "maint_hole"
+
+/obj/structure/multiz/ladder/up/cave
+	name = "cave network exit"
+
+/*my_burrow.audio("crumble", 80)
+		for(var/mob/M in seen)
+			M.show_message(SPAN_NOTICE("The burrow collapses inwards!"), 1)*/
+
 
 #undef CAVE_SIZE
 #undef CAVE_MARGIN
