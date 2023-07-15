@@ -28,3 +28,17 @@
       but functional.
   - tweak: tiny sprite change to the full ballistic helmet. Instead of having separate
       lenses, it's now conjoined.
+2023-07-15:
+  Hyperio:
+  - bugfix: Fix missing keyword args for linter
+  Twomoon-Github:
+  - tweak: 'tweaked ks23.dmi icon state = lefthand_doble, direction: north'
+  - rscadd: added spraypaint + graffitis
+  - soundadd: added a graffiti.ogg + graffity_empty.ogg
+  - imageadd: added spraypaint in items.dmi + wall_graffiti.dmi
+  - code_imp: added spraypaint.dm/changed cleanable/misc.dm/asters.dm and devices.dm
+      to add the spraypaint to the disk
+  thedarkcrusader:
+  - rscadd: Adds new grenade sprites and sprites for some of the grenade code. thanks
+      to kirov for sprites
+  - rscdel: Removed old  sprites
