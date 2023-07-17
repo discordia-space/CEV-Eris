@@ -225,6 +225,9 @@
 	desc = "A graffiti of one star's eye."
 	icon_state = "onestar"
 
+/obj/effect/decal/cleanable/graffiti/graffiti_excelsior
+	desc = "Ever upwards!"
+	icon_state = "excelsior"
 
 /obj/effect/decal/cleanable/graffiti/graffiti_doodle
 	desc = "A vagabond beaten by IH, this is mercenary brutality."
@@ -242,8 +245,38 @@
 	desc = "A graffiti of a skull."
 	icon_state = "skull"
 
-
 /obj/effect/decal/cleanable/graffiti/graffiti_heart
 	desc = "A graffiti of a heart."
 	icon_state = "heart"
 
+/obj/effect/decal/cleanable/graffiti/graffiti_ironhammer
+	desc = "A graffiti of ironhammer."
+	icon_state = "ironhammer"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_moebius
+	desc = "A graffiti of moebius."
+	icon_state = "moebius"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_aster
+	desc = "A graffiti of aster."
+	icon_state = "aster"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_ancapyes
+	desc = "The great capital is happy."
+	icon_state = "ancapyes"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_ancapno
+	desc = "The free market does not approve."
+	icon_state = "ancapno"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_neotheo
+	desc = "Mutants not welcomed."
+	icon_state = "neotheo"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_techno
+	desc = "Kickstart the Eteneral Engine."
+	icon_state = "techno"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_eye
+	desc = "Organs!"
+	icon_state = "eye"
