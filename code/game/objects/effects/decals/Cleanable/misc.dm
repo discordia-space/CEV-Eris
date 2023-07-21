@@ -247,3 +247,34 @@
 	desc = "A graffiti of a heart."
 	icon_state = "heart"
 
+/obj/effect/decal/cleanable/graffiti/graffiti_excelsior
+	desc = "Ever Upwards!"
+	icon_state = "excelsior"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_ironhammer
+	desc = "The best of the best."
+	icon_state = "ironhammer"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_moebius
+	desc = "Science never stops."
+	icon_state = "moebius"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_neotheo
+	desc = "Mutants not welcomed."
+	icon_state = "neotheo"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_techno
+	desc = "Kickstart the Engine."
+	icon_state = "techno"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_aster
+	desc = "Blood is the oldest currency."
+	icon_state = "aster"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_ancapyes
+	desc = "The great Capital approves."
+	icon_state = "ancapyes"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_ancapno
+	desc = "The free market isn't happy."
+	icon_state = "ancapno"
