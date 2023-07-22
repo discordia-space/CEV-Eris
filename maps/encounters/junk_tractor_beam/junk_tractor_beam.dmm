@@ -15,10 +15,10 @@
 /area/asteroid/cave)
 "t" = (
 /obj/cave_generator,
-/turf/unsimulated/mineral,
+/turf/simulated/impassable_rock,
 /area/asteroid/cave)
 "w" = (
-/turf/unsimulated/mineral,
+/turf/simulated/impassable_rock,
 /area/asteroid/cave)
 "L" = (
 /turf/unsimulated/wall,

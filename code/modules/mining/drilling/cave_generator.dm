@@ -362,7 +362,7 @@
 				if(CAVE_FREE)
 					turf_type = /turf/simulated/floor/asteroid
 				if(CAVE_WALL)
-					turf_type = /turf/unsimulated/mineral
+					turf_type = /turf/simulated/impassable_rock
 				if(CAVE_POI)
 					turf_type = /turf/space
 				if(CAVE_CARBON)

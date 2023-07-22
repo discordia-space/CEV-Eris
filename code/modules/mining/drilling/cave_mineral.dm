@@ -1,5 +1,21 @@
+/turf/simulated/impassable_rock
+	name = "impassable rock"
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "rock"
+	oxygen = 0
+	nitrogen = 0
+	opacity = 1
+	density = TRUE
+	layer = EDGED_TURF_LAYER
+	blocks_air = 1
+	temperature = T0C
+
+/turf/simulated/impassable_rock/Initialize()
+	.=..()
+	icon_state = "rock[rand(0,4)]"
+
 /turf/simulated/cave_mineral //wall piece
-	name = "Rock"
+	name = "rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
 	oxygen = 0
