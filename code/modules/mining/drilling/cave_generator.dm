@@ -64,7 +64,7 @@
 
 	log_world("Placing turfs")
 	// Place the walls, ores and free space
-	place_turfs()
+	place_turfs(seismic_lvl)
 
 	// Place the golems
 	place_golems(seismic_lvl)
@@ -349,7 +349,7 @@
 				if(!isobserver(A))
 					qdel(A)
 
-/obj/cave_generator/proc/place_turfs()
+/obj/cave_generator/proc/place_turfs(seismic_lvl)
 
 	var/turf_type
 	for(var/i = 1 to CAVE_SIZE)
@@ -388,6 +388,9 @@
 			var/turf/T = get_turf(locate(x + i, y + j, z))
 			if(!istype(T, turf_type))
 				T.ChangeTurf(turf_type)
+			if(istype(T, /turf/simulated/cave_mineral))
+				var/turf/simulated/cave_mineral/CM = T
+				CM.seismic_multiplier = seismic_lvl
 
 // Spawn golems on free turfs depending on seismic level
 /obj/cave_generator/proc/place_golems(seismic_lvl)

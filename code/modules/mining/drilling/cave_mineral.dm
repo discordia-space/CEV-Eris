@@ -29,6 +29,7 @@
 	var/ore/mineral
 	var/mineral_name
 	var/mined_ore = 0
+	var/seismic_multiplier = 1
 
 	has_resources = 1
 
@@ -111,14 +112,14 @@
 /turf/simulated/cave_mineral/proc/DropMineral()
 	if(!mineral)
 		return
-	clear_ore_effects()
-	var/obj/item/ore/O = new mineral.ore (src)
-	return O
+	for (var/i = 1 to seismic_multiplier)
+		var/obj/item/ore/O = new mineral.ore (src)
 
 /turf/simulated/cave_mineral/proc/GetDrilled()
 
 	if (mineral && mineral.result_amount)
 		// If the turf has already been excavated, some of it's ore has been removed
+		clear_ore_effects()
 		for (var/i = 1 to mineral.result_amount - mined_ore)
 			DropMineral()
 
