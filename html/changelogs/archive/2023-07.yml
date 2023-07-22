@@ -42,3 +42,9 @@
   - rscadd: Adds new grenade sprites and sprites for some of the grenade code. thanks
       to kirov for sprites
   - rscdel: Removed old  sprites
+2023-07-22:
+  Mycah142:
+  - bugfix: Cruciforms no longer emulate bone hurt juice.
+  Twomoon, SirRichardFrancis (KIROV):
+  - rscadd: Added new graffitis
+  - imageadd: added 8 more graffitis in wall_graffiti.dmi
